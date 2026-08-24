@@ -1,0 +1,9 @@
+/*
+!/.gitignore
+!/index.html
+!/index-pages.css
+!/2627-1/
+
+/2627-1/**/*.md
+/2627-1/.DS_Store
+/2627-1/._*
