@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+  <title id="title">Mô hình Taylor bậc hai của bước Newton</title>
+  <desc id="desc">Hàm f và mô hình Taylor bậc hai m x tiếp xúc tại v bằng không, có cùng độ dốc và độ cong dương tại đó. Cực tiểu của mô hình tại v bằng một xác định bước Newton.</desc>
+  <rect width="900" height="500" fill="#fff"/>
+  <g stroke="#33467f" stroke-width="2"><line x1="80" y1="420" x2="835" y2="420"/><line x1="80" y1="55" x2="80" y2="440"/></g>
+  <polyline points="126.0,29.6 143.0,60.7 160.0,89.8 177.0,116.9 194.0,142.3 211.0,165.9 228.0,187.9 245.0,208.4 262.0,227.5 279.0,245.1 296.0,261.4 313.0,276.3 330.0,290.0 347.0,302.3 364.0,313.4 381.0,323.1 398.0,331.5 415.0,338.4 432.0,343.9 449.0,347.9 466.0,350.3 483.0,350.9 500.0,349.8 517.0,346.7 534.0,341.6 551.0,334.3 568.0,324.6 585.0,312.4 602.0,297.5 619.0,279.7 636.0,258.8 653.0,234.6 670.0,206.8" fill="none" stroke="#2f6f8f" stroke-width="5"/>
+  <polyline points="126.0,40.4 143.0,68.4 160.0,95.0 177.0,120.4 194.0,144.4 211.0,167.2 228.0,188.6 245.0,208.8 262.0,227.6 279.0,245.2 296.0,261.4 313.0,276.4 330.0,290.0 347.0,302.4 364.0,313.4 381.0,323.1 398.0,331.6 415.0,338.8 432.0,344.6 449.0,349.1 466.0,352.4 483.0,354.4 500.0,355.0 517.0,354.4 534.0,352.4 551.0,349.1 568.0,344.6 585.0,338.8 602.0,331.6 619.0,323.1 636.0,313.4 653.0,302.4 670.0,290.0" fill="none" stroke="#b24a2b" stroke-width="4" stroke-dasharray="10 8"/>
+  <circle cx="330" cy="290" r="9" fill="#2f3e7a"/><circle cx="500" cy="355" r="9" fill="#b24a2b"/>
+  <line x1="330" y1="390" x2="500" y2="390" stroke="#333" stroke-width="3" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#333"/></marker></defs>
+  <g font-family="Arial, sans-serif" font-size="19" fill="#222"><text x="305" y="315">v=0 (x)</text><text x="475" y="382">v=Δx_N</text><text x="575" y="235" fill="#2f6f8f">f(x+v)</text><text x="610" y="320" fill="#b24a2b">mₓ(v)</text><text x="220" y="105">cùng giá trị, dốc và độ cong tại v=0</text><text x="345" y="270">H=mₓ″(0)&gt;0</text><text x="805" y="448">v</text></g>
+</svg>
