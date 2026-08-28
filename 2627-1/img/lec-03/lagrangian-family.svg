@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-labelledby="title desc">
+  <title id="title">Họ hàm Lagrange của ví dụ xuyên suốt</title>
+  <desc id="desc">Ba đường lấy mẫu từ L0 bằng x bình cộng 1, L1 bằng 2x bình trừ 6x cộng 9 và L2 bằng 3x bình trừ 12x cộng 17. Cả ba đi qua điểm 2,5 và 4,17; L2 đạt cực tiểu tại 2,5.</desc>
+  <rect width="720" height="320" fill="#fff"/>
+  <rect x="330" y="38" width="240" height="247" fill="#edf4ff"/>
+  <text x="410" y="58" font-size="18" fill="#2f3e7a">miền khả thi [2,4]</text>
+  <path d="M70 285H680M90 300V28" stroke="#222" stroke-width="2.5" fill="none"/>
+  <polyline points="90,274 120,273.3 150,271.3 180,267.8 210,263 240,256.8 270,249.3 300,240.3 330,230 360,218.3 390,205.3 420,190.8 450,175 480,157.8 510,139.3 540,119.3 570,98 600,75.3" fill="none" stroke="#666" stroke-width="3"/>
+  <polyline points="90,186 120,201.1 150,213.5 180,223.1 210,230 240,234.1 270,235.5 300,234.1 330,230 360,223.1 390,213.5 420,201.1 450,186 480,168.1 510,147.5 540,124.1 570,98 600,69.1" fill="none" stroke="#b15a2b" stroke-width="3.5"/>
+  <polyline points="90,98 120,128.9 150,155.8 180,178.4 210,197 240,211.4 270,221.8 300,227.9 330,230 360,227.9 390,221.8 420,211.4 450,197 480,178.4 510,155.8 540,128.9 570,98 600,62.9" fill="none" stroke="#2f3e7a" stroke-width="4"/>
+  <circle cx="330" cy="230" r="6" fill="#2e7d32"/><circle cx="570" cy="98" r="6" fill="#2e7d32"/>
+  <text x="338" y="225" font-size="17" fill="#2e7d32">(2,5)</text><text x="578" y="93" font-size="17" fill="#2e7d32">(4,17)</text>
+  <text x="515" y="137" font-size="17" fill="#666">λ=0</text><text x="495" y="174" font-size="17" fill="#b15a2b">λ=1</text><text x="205" y="190" font-size="17" fill="#2f3e7a">λ=2</text>
+  <text x="323" y="307" font-size="17">2</text><text x="563" y="307" font-size="17">4</text>
+  <text x="684" y="304" font-size="18">x</text><text x="52" y="30" font-size="18">L(x,λ)</text>
+</svg>

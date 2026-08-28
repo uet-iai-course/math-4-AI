@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" role="img" aria-labelledby="title desc">
+  <title id="title">Hàm giá trị theo nhiễu vế phải</title>
+  <desc id="desc">Đồ thị lấy mẫu từ p sao u bằng 11 cộng u trừ 6 căn 1 cộng u trên đoạn âm 1 đến 8, rồi bằng 1. Đường 5 trừ 2u đi qua 0,5, là tiếp tuyến tại đó và là cận toàn cục.</desc>
+  <rect width="720" height="330" fill="#fff"/>
+  <path d="M70 300H690M110 316V25" stroke="#222" stroke-width="2.5" fill="none"/>
+  <line x1="110" y1="32" x2="110" y2="300" stroke="#a33a1f" stroke-width="2" stroke-dasharray="7 5"/>
+  <polyline points="110,80 115,119.5 122.5,140.5 135,162.3 147.5,177.8 160,190 172.5,200.1 185,208.7 210,222.7 235,233.7 260,242.6 310,256 360,265.2 410,271.3 460,275.2 510,277.4 560,278 610,278 660,278" fill="none" stroke="#2f3e7a" stroke-width="4"/>
+  <line x1="110" y1="146" x2="272.5" y2="289" stroke="#b15a2b" stroke-width="3" stroke-dasharray="8 5"/>
+  <circle cx="160" cy="190" r="7" fill="#2e7d32"/>
+  <text x="171" y="184" font-size="18" fill="#2e7d32">p*(0)=5</text>
+  <text x="207" y="238" font-size="18" fill="#b15a2b">5−2u</text>
+  <text x="66" y="52" font-size="17" fill="#a33a1f">u&lt;−1: vô nghiệm</text>
+  <text x="100" y="320" font-size="17">−1</text><text x="154" y="320" font-size="17">0</text><text x="554" y="320" font-size="17">8</text>
+  <text x="693" y="320" font-size="18">u</text><text x="76" y="26" font-size="18">p*(u)</text>
+</svg>
