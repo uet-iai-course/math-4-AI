@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+  <title id="title">Điểm yên ngựa của hàm hai biến</title>
+  <desc id="desc">Các lát cắt của hàm u bình phương trừ v bình phương cong lên theo u và cong xuống theo v tại gốc.</desc>
+  <rect width="900" height="500" fill="#fff"/>
+  <g stroke="#33467f" stroke-width="3"><line x1="90" y1="250" x2="820" y2="250"/><line x1="450" y1="70" x2="450" y2="430"/></g>
+  <path d="M130 405 Q450 95 770 405" fill="none" stroke="#2f3e7a" stroke-width="8"/>
+  <path d="M130 95 Q450 405 770 95" fill="none" stroke="#b24a2b" stroke-width="8"/>
+  <circle cx="450" cy="250" r="11" fill="#222"/>
+  <g font-family="Arial,sans-serif" font-size="25"><text x="680" y="385" fill="#2f3e7a">theo u: cong lên</text><text x="650" y="105" fill="#b24a2b">theo v: cong xuống</text><text x="470" y="285" fill="#222">∇f=0</text></g>
+</svg>

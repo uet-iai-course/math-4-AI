@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+  <title id="title">Lan truyền thang tín hiệu qua lớp</title>
+  <desc id="desc">Qua mỗi lớp, mômen bậc hai được nhân xấp xỉ với c phi nhân fan in nhân phương sai trọng số; c phi gần một cho kích hoạt gần tuyến tính và gần một nửa cho ReLU.</desc>
+  <rect width="900" height="500" fill="#fff"/>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#33467f"/></marker></defs>
+  <g fill="#eef2fb" stroke="#33467f" stroke-width="3"><rect x="70" y="180" width="150" height="100" rx="12"/><rect x="280" y="180" width="150" height="100" rx="12"/><rect x="490" y="180" width="150" height="100" rx="12"/><rect x="700" y="180" width="130" height="100" rx="12"/></g>
+  <g stroke="#33467f" stroke-width="5" marker-end="url(#arr)"><line x1="220" y1="230" x2="275" y2="230"/><line x1="430" y1="230" x2="485" y2="230"/><line x1="640" y1="230" x2="695" y2="230"/></g>
+  <g font-family="Arial,sans-serif" text-anchor="middle" font-size="25" fill="#26345f"><text x="145" y="240">a</text><text x="355" y="225">W a</text><text x="355" y="255">+ kích hoạt</text><text x="565" y="225">W a</text><text x="565" y="255">+ kích hoạt</text><text x="765" y="240">đầu ra</text></g>
+  <g font-family="Arial,sans-serif" text-anchor="middle" fill="#26345f"><text x="450" y="350" font-size="28">hệ số mỗi lớp: cφ fan_in Var(W)</text><text x="250" y="405" font-size="23">cφ ≈ 1: gần tuyến tính</text><text x="650" y="405" font-size="23">cφ ≈ 1/2: ReLU</text><text x="450" y="455" font-size="22">hệ số &lt; 1: co dần · hệ số &gt; 1: tăng dần</text></g>
+</svg>

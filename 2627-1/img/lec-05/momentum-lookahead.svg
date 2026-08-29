@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+  <title id="title">Momentum và điểm nhìn trước Nesterov</title>
+  <desc id="desc">Từ theta hiện tại, momentum tính gradient tại theta; Nesterov đi theo quán tính đến q rồi tính gradient tại q.</desc>
+  <rect width="900" height="500" fill="#fff"/>
+  <defs><marker id="blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2f3e7a"/></marker><marker id="orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#b24a2b"/></marker></defs>
+  <circle cx="220" cy="270" r="13" fill="#222"/><circle cx="480" cy="190" r="13" fill="#2f3e7a"/>
+  <line x1="220" y1="270" x2="470" y2="194" stroke="#2f3e7a" stroke-width="8" marker-end="url(#blue)"/>
+  <line x1="220" y1="270" x2="385" y2="390" stroke="#b24a2b" stroke-width="8" marker-end="url(#orange)"/>
+  <line x1="480" y1="190" x2="690" y2="330" stroke="#b24a2b" stroke-width="8" marker-end="url(#orange)"/>
+  <g font-family="Arial,sans-serif" font-size="27"><text x="170" y="310">θ_t</text><text x="490" y="175" fill="#2f3e7a">q_t=θ_t+βv_t</text><text x="250" y="420" fill="#b24a2b">−ηg_t(θ_t)</text><text x="610" y="380" fill="#b24a2b">−ηg_t(q_t)</text><text x="310" y="130" fill="#2f3e7a">quán tính βv_t</text></g>
+</svg>
