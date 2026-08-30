@@ -2,6 +2,65 @@
 
 Tệp này ghi nguồn MIT OpenCourseWare được sử dụng trong học phần. Các tệp có tiền tố `._` là siêu dữ liệu hệ thống và không được đưa vào danh mục hoặc dùng làm nguồn.
 
+## MIT 6.079 / 6.975 — Lectures 1–3: Introduction, Convex sets, Convex functions
+
+Thông tin chung cho ba tài nguyên:
+
+| Trường | Giá trị |
+|---|---|
+| Khóa học | Introduction to Convex Optimization |
+| Mã khóa học | MIT 6.079 / 6.975 |
+| Học kỳ | Fall 2009 |
+| Tác giả tài nguyên | Stephen Boyd |
+| Giảng viên khóa học | Stephen Boyd và Pablo Parrilo |
+| Trang khóa học | `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/` |
+| Danh sách bài giảng | `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/pages/lecture-notes/` |
+| Ngày tải cục bộ | 2026-08-18, xác nhận theo thời điểm sửa đổi của tệp cục bộ |
+| Ngày kiểm tra nguồn | 2026-08-30 |
+| Giấy phép | Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International, CC BY-NC-SA 4.0 |
+| Điều khoản sử dụng | `https://ocw.mit.edu/pages/privacy-and-terms-of-use/` |
+| Bài giảng dự kiến sử dụng | Lecture 01 — Giới thiệu tối ưu, tập lồi và hàm lồi |
+
+### Lecture 1: Introduction
+
+| Trường | Giá trị |
+|---|---|
+| Trang tài nguyên | `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec01/` |
+| URL tải PDF | `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/f33960a29683274ff87e352219d54c76_MIT6_079F09_lec01.pdf` |
+| Đường dẫn cục bộ | `sources/MIT/f33960a29683274ff87e352219d54c76_MIT6_079F09_lec01.pdf` |
+| Kích thước | 125597 byte |
+| SHA-256 | `24fcf28233c4fb771c6696e33b4418ec201b1f3f16f78811a5c144bab12d822a` |
+| Vai trò nguồn | Nguồn nội dung và mẫu thứ tự cho mô hình hóa tối ưu, bình phương tối thiểu, quy hoạch tuyến tính, nhận dạng bài toán lồi và ca thiết kế chiếu sáng |
+
+### Lecture 2: Convex sets
+
+| Trường | Giá trị |
+|---|---|
+| Trang tài nguyên | `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec02/` |
+| URL tải PDF | `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/26c4c530c9db63a12b898d720dd89a44_MIT6_079F09_lec02.pdf` |
+| Đường dẫn cục bộ | `sources/MIT/26c4c530c9db63a12b898d720dd89a44_MIT6_079F09_lec02.pdf` |
+| Kích thước | 253184 byte |
+| SHA-256 | `4475a1f64d05c5e6801b1f157b63aa11cf1aedd6a136b02665a89fd2c047af7e` |
+| Vai trò nguồn | Nguồn nội dung và mẫu thứ tự cho tập lồi, các phép bảo toàn tính lồi, nón, bất đẳng thức tổng quát, phần tử tối tiểu, biên Pareto, siêu phẳng tách và siêu phẳng tựa |
+
+### Lecture 3: Convex functions
+
+| Trường | Giá trị |
+|---|---|
+| Trang tài nguyên | `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec03/` |
+| URL tải PDF | `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/2ae23d35685ff402473b36011138149a_MIT6_079F09_lec03.pdf` |
+| Đường dẫn cục bộ | `sources/MIT/2ae23d35685ff402473b36011138149a_MIT6_079F09_lec03.pdf` |
+| Kích thước | 331507 byte |
+| SHA-256 | `deda90a05600871f793374755539d8867e9e172fcb0264664493e7d5e84ae19d` |
+| Vai trò nguồn | Nguồn nội dung và mẫu thứ tự cho hàm lồi, điều kiện kiểm tra, các phép bảo toàn, hàm liên hợp, hàm tựa lồi và hàm log-lõm hoặc log-lồi |
+
+### Quyết định sử dụng và ghi công cho Lecture 01
+
+- Dùng ba tài nguyên theo đúng thứ tự Lecture 1 → Lecture 2 → Lecture 3; không trộn lại thứ tự khái niệm chỉ để thuận bố cục.
+- Chỉ kế thừa nội dung phục vụ LLO1–LLO2 và CLO1 của Lecture 01. Mọi phần giữ, gộp hoặc lược phải được truy nguyên trong storyboard và review-log của bài.
+- Không sao chụp trang PDF làm hình trình chiếu. Hình hình học, đồ thị và sơ đồ được vẽ lại bằng SVG hoặc HTML cục bộ, có mô tả thay thế và ghi công Stephen Boyd, MIT 6.079 / 6.975, Fall 2009.
+- Giấy phép MIT OpenCourseWare không tự động bao phủ tài sản bên thứ ba. Không dùng trực tiếp tài sản có quyền riêng nếu chưa xác minh; ba PDF này được dùng làm nguồn toán học và tham chiếu vẽ lại, không làm nguồn ảnh raster.
+
 ## MIT 6.079 / 6.975 — Lecture 5: Duality
 
 | Trường | Giá trị |
