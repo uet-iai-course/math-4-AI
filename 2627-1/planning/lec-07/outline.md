@@ -8,7 +8,7 @@
 - **LLO18 / CLO1:** xây dựng đa diện, vận dụng điểm cực, sự tồn tại và tính tối ưu, thuật toán khái niệm.
 - Quy hoạch động chỉ là cầu nối nội bộ theo cấu trúc cập nhật trong `sources/part1.docx`; phạm vi giới hạn ở chân trời, trạng thái và điều khiển hữu hạn, chuyển tất định, chi phí cộng; không gán thêm LLO/CLO.
 - Tiên quyết: hệ tuyến tính, độc lập tuyến tính, hạng ma trận, tập lồi và tổ hợp lồi.
-- Sản phẩm: mô hình LP đầy đủ; chuyển về dạng chuẩn; nhận dạng điểm cực/nghiệm cơ sở khả thi và bốn trạng thái; áp dụng bảo đảm điểm cực; tính Bellman trên đồ thị tầng nhỏ.
+- Sản phẩm: mô hình LP đầy đủ; chuyển về dạng chuẩn; nhận dạng điểm cực/nghiệm cơ sở khả thi và bốn kết cục; áp dụng bảo đảm điểm cực; tính Bellman trên đồ thị tầng nhỏ.
 
 ## Sáu mạch và 37 trang
 
@@ -23,14 +23,14 @@
 | A | A03 | Ràng buộc từ giới hạn | Trực quan theo đơn vị |
 | A | A04 | Mục tiêu và phương án ứng viên | Ví dụ tính được |
 | A | A05 | Định nghĩa quy hoạch tuyến tính | Hình thức |
-| A | A07 | Hồi quy với mất mát chuẩn $L_1$ | Ứng dụng chuyển mô hình LP có kiểu và ví dụ |
+| A | A07 | Hồi quy với mất mát chuẩn $L_1$ | Nhu cầu, ứng dụng chuyển về LP và ví dụ kiểm tra |
 | A | A08 | Bài tập dựng mô hình | Bài tập LLO17 |
 | B | B01 | Dạng chuẩn và đa diện | Nhu cầu |
 | B | B02 | Đa diện và đường mức | Trực quan–ví dụ |
 | B | B03 | Định nghĩa đa diện | Hình thức hình học |
 | B | B04 | Dạng chuẩn | Hình thức đại số |
 | B | B05 | Biến phụ cho hộp hạt | Ứng dụng chuyển dạng |
-| B | B06 | Nghiệm cơ sở khả thi | Điều kiện đại số |
+| B | B06 | Nghiệm cơ sở khả thi | Điều kiện đại số và tiên quyết trực tiếp cho B07 |
 | B | B07 | Nghiệm cơ sở của bài hộp hạt | Bài tập LLO18 xuyên ví dụ |
 | C | C01 | Điểm cực và bảo đảm tối ưu | Nhu cầu |
 | C | C02 | Định nghĩa hình học của điểm cực | Hình thức hình học |
@@ -38,7 +38,7 @@
 | C | C04 | Ví dụ nhiều nghiệm tối ưu | Ví dụ và trường hợp biên |
 | C | C05 | Bảo đảm tồn tại điểm cực | Định lý tồn tại |
 | C | C06 | Điểm cực tối ưu và đỉnh kề | Định lý và bổ đề cầu nối đơn hình trên đa diện tổng quát |
-| C | C07 | Bốn trạng thái của quy hoạch tuyến tính | Phân loại |
+| C | C07 | Bốn kết cục của quy hoạch tuyến tính | Phân loại |
 | C | C08 | Mô tả thuật toán ở mức ý niệm | Cầu hình học tới phương pháp đơn hình |
 | C | C09 | Đường đi qua các đỉnh kề | Trực quan thuật toán |
 | C | C10 | Bài tập chuyển giao về điểm cực | Bài tập LLO18 trên dữ kiện mới |

@@ -21,7 +21,7 @@ Nguồn MIT mới đã được tác tử nguồn bổ sung vào kho và đã c�
 | Tệp | Vai trò | Quyết định |
 |---|---|---|
 | `img/lec-07/polyhedron-level-sets.svg` | Miền đa diện, năm đỉnh và đường mức hộp hạt | Tự vẽ từ dữ kiện; nhãn trục, điểm, đường mức và chiều tăng; có `title`, `desc`, `alt` |
-| `img/lec-07/lp-four-statuses.svg` | Bốn trạng thái LP | Sơ đồ khái niệm tự vẽ; hình dạng và văn bản cùng mã hóa trạng thái, không chỉ dùng màu |
+| `img/lec-07/lp-four-statuses.svg` | Bốn kết cục LP | Sơ đồ khái niệm tự vẽ; hình dạng và văn bản cùng mã hóa kết cục, không chỉ dùng màu |
 | `img/lec-07/conceptual-vertex-walk.svg` | Đường đi đỉnh kề cải thiện | Tự vẽ; không trình bày như vết chạy của đơn hình |
 | `img/lec-07/dp-layered-graph.svg` | Đồ thị tầng và đường tối ưu chi phí 5 | Ví dụ tự tạo; số cạnh, đường tối ưu và phép cộng hiển thị rõ |
 
@@ -46,13 +46,13 @@ Không dùng ảnh raster hoặc ảnh sinh bởi AI. Không sao chép hình t�
 - Không dùng câu “LP tối ưu luôn ở một đỉnh” thiếu giả thiết. Deck nêu miền dạng chuẩn không rỗng và giá trị tối ưu hữu hạn.
 - Nêu đúng điều kiện đa diện có điểm cực: không rỗng và không chứa đường thẳng.
 - Nêu đầy đủ điều kiện nghiệm cơ sở khả thi: $A_B$ khả nghịch và $A_B^{-1}b\ge0$.
-- Phân loại bốn trạng thái: vô nghiệm; không bị chặn theo chiều tối ưu; tối ưu hữu hạn duy nhất; tối ưu hữu hạn nhiều nghiệm.
+- Phân loại bốn kết cục: không khả thi với miền khả thi rỗng; không bị chặn theo chiều tối ưu; tối ưu hữu hạn duy nhất; tối ưu hữu hạn nhiều nghiệm.
 - Với Bellman, nêu điều kiện min đạt khi tập điều khiển hữu hạn, không rỗng; nếu tập vô hạn thì cần điều kiện bổ sung như compact và liên tục.
 - Sửa phân loại ở A05: điều kiện biến nguyên tạo miền rời rạc và lớp quy hoạch nguyên, không phải một biểu thức phi tuyến.
 - Sửa B03 để dùng đúng thuật ngữ “đa diện bị chặn”; bỏ cách gọi dễ gây nhầm “đa diện lồi hữu hạn”.
 - Sửa C03 để nêu rõ $x\in P$ trước ba mệnh đề tương đương điểm cực–nghiệm cơ sở khả thi–độc lập cột.
 - Sửa B07 để kiểm nghiệm cơ sở khả thi trên chính hệ hộp hạt: $B=\{x_1,x_2,s_2\}$, $\det(A_B)=-2\ne0$ và nghiệm cơ sở không âm $(30,12,8)$.
-- Sửa C05 thành bảng định lý–giả thiết–kết luận; C06 thêm bổ đề nối điểm cực với nghiệm cơ sở khả thi và khóa chi tiết cập nhật cơ sở sang Bài 08.
+- Sửa C05 thành bảng định lý–giả thiết–kết luận; C06 thêm bổ đề điểm cực kề cải thiện và khóa chi tiết cập nhật cơ sở sang Bài 08.
 - Sửa C10 thành bài chuyển giao với bốn đỉnh $(0,0),(2,0),(1{,}6,1{,}2),(0,2)$ và đường giá trị $0\to2\to2{,}8$.
 - Sửa D06 bằng dữ kiện mới $c(s,B)=3$, $c(C,t)=0$: kết quả $J(s)=4$ và đường $s\to B\to C\to t$.
 
@@ -87,7 +87,7 @@ Không dùng ảnh raster hoặc ảnh sinh bởi AI. Không sao chép hình t�
 ## Các mục bắt buộc cho vòng rà soát độc lập
 
 1. Kiểm toán số học toàn bộ ví dụ hộp hạt và đồ thị DP.
-2. Kiểm tra giả thiết của định lý điểm cực, tương đương BFS và bốn trạng thái LP.
+2. Kiểm tra giả thiết của định lý điểm cực, tương đương BFS và bốn kết cục LP.
 3. Kiểm tra mô tả thuật toán ở mức ý niệm không lấn nội dung phương pháp đơn hình Bài 08.
 4. Rà chu trình sáu bước và tính khả thi của 2 LT + 1 BT.
 5. Render 37/37 trang ở $1280\times720$ và khung hẹp; kiểm KaTeX, tràn, alt, điều hướng bàn phím và hash.
@@ -127,3 +127,24 @@ Không xóa các nhận định trước. Bảng này ghi quyết định mới 
 - Chromium kết xuất đủ 37 trang ở $1280\times720$ và $720\times1280$. Ảnh toàn bộ trang đã được rà trực quan; phép đo hộp bao trên phiên bản cuối cho kết quả 0 trang tràn.
 - Cấu trúc cuối có 6 mạch, 37 mã duy nhất và 37 ghi chú. Có 229 biểu thức KaTeX; trình duyệt không báo lỗi công thức. Điều hướng bàn phím chuyển từ `#/1/1` sang `#/1/2`; `hash: true` và `hashOneBasedIndex: true` hoạt động.
 - Bốn SVG có mô tả truy cập và cỡ chữ tối thiểu 30 px; bốn thẻ ảnh có `alt`. Không có yêu cầu tài nguyên cốt lõi thất bại.
+
+## Rà soát GLM 5.3 Flash và chỉnh sửa hợp nhất — 2026-08-30
+
+- Tác tử lập kế hoạch và các vai kiểm định storyboard, sinh viên, chuyên gia nội dung, toán học, học thuật–giảng dạy và mạch kể chuyện chạy bằng `z-ai/glm-5.3-flash` qua OpenRouter. Vùng làm việc của worker chỉ chứa `AGENTS.md`, đề cương DOCX chính thức, deck HTML, ba tệp planning, template, CSS và index; không chứa PDF, trích xuất PDF, `sources/MIT/README.md`, `part1.docx`, `.env`, khóa hoặc dữ liệu xác thực.
+- Vòng phân tích nguồn GLM đầu tiên gặp `api_transport_error`; lần thử lại không tạo kết quả dùng được. Điều phối viên đối chiếu nguồn cục bộ: PDF mẫu quy hoạch tuyến tính có bốn trang nhưng chỉ trích được tiêu đề; MIT 15.093J Bài 16 có khung trạng thái, quyết định, chuyển trạng thái và Bellman ở trang 6–9; `part1.docx` đặt quy hoạch tuyến tính và quy hoạch động ở Tuần 7. Vì đề cương chính thức chỉ gán LLO17–18/CLO1 cho LP, DP tiếp tục là cầu nối nội bộ, không tạo LLO/CLO mới.
+- Kiểm định storyboard đạt PASS với 37 trang, 6 mạch và đúng 2 LT + 1 BT. Hai điểm nhẹ được đóng: B06 được ghi là tiên quyết trực tiếp cho B07; chu trình hồi quy $L_1$ ghi rõ các bước gộp tại A07.
+- Kiểm toán toán học đạt PASS. Các giá trị hộp hạt, nghiệm cơ sở khả thi, ví dụ chuẩn $L_1$, bài C10 và Bellman D03/D06 đều được tính lại và đúng.
+- Rà sinh viên và học thuật–giảng dạy yêu cầu làm rõ lượng từ ở C05 và giả thiết của bổ đề C06. Deck hiện nêu rõ $P=\{x:Ax=b,x\ge0\}$, $x\in P$, lượng từ $t\in\mathbb R$, đồng thời lặp điều kiện có điểm cực và giá trị tối ưu hữu hạn ngay trong hộp bổ đề.
+- Rà chuyên gia yêu cầu phân biệt “không khả thi” với “không bị chặn”; rà mạch kể chuyện yêu cầu tiêu chí C11 kiểm chứng được. C07 hiện dùng “bốn kết cục”, ghi miền khả thi rỗng; C11 yêu cầu đỉnh xuất phát, bước sang đỉnh kề cải thiện và tiêu chuẩn dừng.
+- A02 tách rõ hai giới hạn sản lượng; A07 nêu nhu cầu từ ảnh hưởng của ngoại lai và tính không khả vi; B07 ánh xạ cơ sở chỉ số $B=\{1,2,4\}$ với $\{x_1,x_2,s_2\}$; P01 bỏ ký hiệu không dùng; D02 và ghi chú B04 được viết thành câu đầy đủ. Index đồng bộ nhãn `Bài 07` và tiêu đề deck.
+- Worker soạn vượt giới hạn 16 lần gọi công cụ trước khi áp dụng bản sao tạm. Điều phối viên dừng worker và áp dụng cục bộ gói sửa đã được năm reviewer cùng kiểm định storyboard phê duyệt. Không có dữ liệu ngoài phạm vi được gửi thêm.
+- Giới hạn Codex Slides không đổi: runtime cục bộ dùng Node.js 18 và lỗi `ReferenceError: File is not defined`, trong khi plugin yêu cầu Node.js 20 trở lên; không có bề mặt Browser tích hợp. Không tuyên bố đã kiểm định bằng Codex Slides. Kiểm định RevealJS/Chromium cục bộ là cơ chế dự phòng bắt buộc trước bàn giao.
+
+## Kiểm định bàn giao sau chỉnh sửa — 2026-08-30
+
+- Tái kiểm sinh viên, toán học và học thuật–giảng dạy đều đạt PASS; không còn lỗi chặn. Hai chỗ còn dùng “trạng thái” cho LP ở C10 và Z01 đã đổi thành “kết cục”.
+- Tăng cỡ chữ bảng từ `0.86em` lên `0.94em`; với cỡ trang `0.8em`, cỡ hiệu dụng đạt khoảng `0.752em`. Không có trang nào dùng lớp `small-table`.
+- Cập nhật SVG `lp-four-statuses.svg` thành “Bốn kết cục”, nhãn “Không khả thi”, giữ mô tả truy cập, hình dạng và tín hiệu không phụ thuộc riêng vào màu.
+- Chromium kết xuất đủ 37 trang ở $1280\times720$, $800\times600$ và $720\times900$. Cả ba khung đều có 0 trang tràn, 0 lỗi console, 0 lỗi trang và 0 yêu cầu tài nguyên thất bại.
+- Ảnh chụp trực tiếp các trang P03, A02, A07, B07, C05, C06, C07, C11, D02, D03 và Z01 ở khung rộng, cùng P03, A02, A07, C05, C06, C07, C11 và D02 ở khung hẹp, đã được rà trực quan. Công thức, bảng, hộp giả thiết, sơ đồ và tiêu chí bài tập đều đọc được, không bị cắt.
+- Cấu trúc cuối: 6 mạch, 37 mã duy nhất, 37 ghi chú diễn giả, 37 mục nguồn, 14 tham chiếu cục bộ và không có đường dẫn thiếu. Cấu hình RevealJS bắt buộc và phân cách công thức Markdown đều hợp lệ; `git diff --check` sạch.
