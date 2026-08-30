@@ -178,3 +178,26 @@ Không tự kết luận năm vòng tái kiểm đã đạt trong nhật ký nà
 - Tác tử kiểm thử độc lập đã render lại B06 tại $1280\times720$ và $720\times720$: không tràn, không chồng lấn và không lỗi KaTeX. Toàn bộ nội dung hiển thị cùng ghi chú không còn mã vị trí dạng `P00`, `A01`, …; các chữ A/C/D/E trong hộp “Mạch xử lý” là nhãn phần được phép. Bằng chứng nằm tại `/tmp/lec05-b06-retest.json`, `/tmp/lec05-b06-wide.png` và `/tmp/lec05-b06-narrow.png`.
 
 **Kết luận kỹ thuật:** bản RevealJS hiện hành đạt kiểm định rộng và hẹp; các vòng toán học, học thuật–giảng dạy và mạch kể chuyện cuối đều đạt. Giới hạn còn lại là runtime render/upload của Codex Slides, đã được ghi rõ và không bị diễn giải thành một cổng đã vượt.
+
+## Hợp nhất phát hiện cuối của năm vòng rà soát
+
+- **Góc nhìn sinh viên:** đóng yêu cầu tự chứa tại C07 và Z02; dữ kiện cần tính nay nằm trên mặt trang, còn nhãn bài tích hợp được chuẩn hóa thành **“Câu hỏi:”**.
+- **Chuyên gia nội dung:** E02 giải nghĩa hai fan và khóa kiểu ma trận; notes A04 xác định §7.8 là tiên quyết ngoài phạm vi chính §§8.1–8.4; notes B04 phân biệt minh họa nhân lặp với đo thực nghiệm.
+- **Độ chính xác toán học:** không đổi quy ước hay kết quả số; công thức $F$, kích thước $a,W,z$ và dữ kiện hai vòng được nhắc lại đúng đặc tả hiện hành.
+- **Phản biện học thuật–giảng dạy:** D06 giảm tải bằng cách chuyển câu nối về điểm đầu sang notes; C07 và Z02 giữ một nhiệm vụ đánh giá rõ.
+- **Mạch kể chuyện:** notes P03 và Z01 cùng giải thích Z01 tái nhóm năm quyết định, tách đánh giá/dừng và không biểu diễn thứ tự thời gian.
+
+Cổng storyboard và năm phát hiện bắt buộc trên đã được phản ánh đồng bộ trong deck, outline và storyboard; không thêm, bỏ hoặc đổi thứ tự trang. Giới hạn Codex Slides vẫn như mục kiểm định cuối: runtime không render/upload được, nên chỉ kiểm định RevealJS cục bộ, không tuyên bố đã rà trực quan bằng Codex Slides.
+
+### Tái kiểm tính tự chứa tại Z02
+
+- Bổ sung trực tiếp $F(\theta)=\tfrac12\theta_1^2+2\theta_2^2+\tfrac52$ vào câu tính vòng hai, cùng $\theta_0,\eta,\beta,B_0,B_1$ đã có.
+- Giữ nhãn **“Câu hỏi:”**, tổng số trang, số mạch, notes và nguồn notes; không thay đổi quy ước hoặc đáp án số.
+
+### Kiểm định bàn giao của điều phối viên
+
+- Tái kiểm cuối bằng GLM 5.3 Flash qua OpenRouter đạt ở bốn phạm vi bị tác động: sinh viên, toán học, học thuật–giảng dạy và mạch kể chuyện. Z02 đạt sau khi hiện đầy đủ $F,\theta_0,\eta,\beta,B_0,B_1$; C07 và E02 cũng đạt về tính tự chứa, phép tính và kiểu đại lượng.
+- Chromium duyệt lại đủ 40/40 trang tại $1280\times720$, $800\times600$ và $720\times900$ qua máy chủ tạm `127.0.0.1:8876`. Cổng 8765 đang thuộc tiến trình khác nên không bị thay đổi trong vòng này. Cả ba khung có 0 tràn, 0 lỗi console, 0 lỗi trang và 0 yêu cầu tải thất bại.
+- Ảnh chụp P03, C07, D06, E02 và Z02 được xem trực tiếp sau sửa. Công thức, bảng, hộp câu hỏi và hình đều nằm trọn khung; Z02 vẫn đọc được sau khi bổ sung hàm $F$.
+- Thẻ viewport cho phép người dùng phóng to và favicon dữ liệu rỗng loại yêu cầu 404. Kiểm tra tĩnh giữ 7 section ngoài, 40 ID duy nhất, 40 ghi chú, 40 đoạn nguồn và 17/17 tham chiếu cục bộ hợp lệ; `git diff --check` sạch.
+- Codex Slides vẫn không có bằng chứng render trực quan thành công do giới hạn runtime đã ghi ở trên. Kết luận bàn giao chỉ dựa trên RevealJS cục bộ và không tuyên bố cổng Codex Slides đã đạt.

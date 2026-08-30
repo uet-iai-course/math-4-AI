@@ -58,7 +58,7 @@ Nesterov dùng $q_t=\theta_t+\beta v_t$ và tính $g_t(q_t)$. Khởi tạo dùng
 | C | C04 | SGD là vòng lấy lô–tính gradient–cập nhật–đánh giá | thuật toán |
 | C | C05 | $\eta_t$ và $b_t$ điều khiển chi phí, nhiễu và ổn định | ứng dụng |
 | C | C06 | Bảo đảm SGD nêu cận phương sai đều có điều kiện theo $\theta_t$ và kết luận đúng mức; chi tiết tổng nằm trong notes | ranh giới lý thuyết |
-| C | C07 | Phân biệt vết lô cố định với mô hình độc lập có hoàn lại; chứng minh $\sigma^2=17/b$ đúng với mọi $\theta$, rồi kiểm tra $L=4$, cận dưới và lịch bước hằng | bài tập LLO12 |
+| C | C07 | Nhắc lại $F=\tfrac12\theta_1^2+2\theta_2^2+\tfrac52$ để bài tự chứa; phân biệt vết lô cố định với mô hình độc lập có hoàn lại, chứng minh $\sigma^2=17/b$, rồi kiểm tra $L=4$, cận dưới và lịch bước hằng | bài tập LLO12 |
 | D | D01 | Tăng lô giảm nhiễu nhưng không triệt dao động do điều kiện hóa; trạng thái vận tốc xử lý cơ chế thứ hai | nhu cầu/trực quan |
 | D | D03 | Vết hai bước tự định nghĩa vận tốc cụ thể và cho thấy quán tính ở vòng hai | ví dụ dẫn nhập |
 | D | D02 | Momentum khái quát đúng quy ước độ dời đã dùng trong vết số | hình thức |
@@ -66,14 +66,14 @@ Nesterov dùng $q_t=\theta_t+\beta v_t$ và tính $g_t(q_t)$. Khởi tạo dùng
 | D | D05 | Công thức Nesterov giữ cùng quy ước vận tốc | hình thức |
 | D | D06 | So sánh ba vết số, khóa $g_1(q_1),v_2$ và nối rõ sang yêu cầu chọn điểm đầu | bài tập LLO12 |
 | E | E01 | Hoán vị đầy đủ $(w,b,\phi,c)$, cùng lô và cập nhật giữ các đơn vị đối xứng trong cùng quỹ đạo | nhu cầu/phản ví dụ |
-| E | E02 | Với hàng $W_{j,:}$ độc lập với véc-tơ $a$ tại khởi tạo và các trọng số trong hàng độc lập, trung bình $0$, công thức mômen bậc hai chuẩn bị Xavier/He | trực quan/tiên quyết toán |
+| E | E02 | Định nghĩa $fan_{in}$ là số đầu vào, $fan_{out}$ là số đơn vị đầu ra và khóa kiểu $a,W,z$; với các giả thiết độc lập, công thức mômen bậc hai chuẩn bị Xavier/He | trực quan/tiên quyết toán |
 | E | E03 | Phương sai mục tiêu quyết định độ lệch chuẩn hoặc nửa độ rộng của phân phối | chuyển đổi kiểu đại lượng |
 | E | E04 | Hai mục tiêu $1/fan_{in}$ và $1/fan_{out}$ dẫn tới thỏa hiệp Xavier $2/(fan_{in}+fan_{out})$ | ví dụ → hình thức |
 | E | E05 | Dữ kiện ReLU với $fan_{in}=4$ dẫn tới và khái quát quy tắc He | ví dụ → hình thức |
 | E | E06 | Hàm kích hoạt quyết định quy tắc khởi tạo ban đầu | ứng dụng |
 | E | E07 | Tính thang và kiểm tra đối xứng dưới đúng giả thiết hoán vị/cập nhật | bài tập LLO13 |
 | Z | Z01 | Hệ quyết định tách mục tiêu, điểm đầu, chẩn đoán, cập nhật, đánh giá/dừng; không phải thứ tự thời gian | tổng kết |
-| Z | Z02 | Bài tích hợp trên mạng ReLU mới khởi tạo phân biệt vai trò tăng $b$, momentum, dừng sớm và He | tự kiểm tra |
+| Z | Z02 | Tự chứa $F$ cùng dữ kiện hai vòng $\theta_0,\eta,\beta,B_0,B_1$ và bài tích hợp trên mạng ReLU mới khởi tạo để phân biệt vai trò tăng $b$, momentum, dừng sớm và He | tự kiểm tra |
 | Z | Z03 | Bảo đảm cổ điển không chuyển nguyên xi sang mạng sâu hữu hạn | kết luận giới hạn |
 | Z | Z04 | Nguồn và cầu nối sang thuật toán thích nghi Bài 06 | đọc tiếp |
 

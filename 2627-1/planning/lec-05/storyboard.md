@@ -63,22 +63,22 @@ Không tách sáu bước thành sáu trang máy móc. A03 là ví dụ dẫn nh
 | C04 | Gom một vòng SGD đủ thao tác | hình thức → C05 | LLO12 | giữ — dùng đúng $g_t$ vừa định nghĩa |
 | C05 | Cho quyết định $\eta_t$ và $b_t$ | thuật toán → C06 | LLO12 | giữ — ứng dụng đánh đổi trước bảo đảm |
 | C06 | Khóa điều kiện bước, lấy mẫu, không chệch, cận phương sai đều, tính trơn và bị chặn dưới | ứng dụng → C07 | LLO12 | sửa — hiện cận $\mathbb E[\|g_t(\theta_t)-\nabla F(\theta_t)\|_2^2\mid\theta_t]\le\sigma^2$ trên mặt trang; giữ chi tiết tổng trong notes |
-| C07 | Phân biệt vết cố định với mô hình ngẫu nhiên và kiểm giả thiết | bảo đảm → D01 | LLO12 | sửa — tính $L=4$, cận dưới và chứng minh cận đều $\sigma^2=17/b$ từ hai độ lệch $(-1,-4),(1,4)$; chỉ ra $\eta_t=0{,}1$ không thỏa tổng bình phương |
+| C07 | Phân biệt vết cố định với mô hình ngẫu nhiên và kiểm giả thiết | bảo đảm → D01 | LLO12 | sửa — nhắc lại $F=\tfrac12\theta_1^2+2\theta_2^2+\tfrac52$ trên mặt để bài tự chứa; tính $L=4$, cận dưới và cận đều $\sigma^2=17/b$; chỉ ra $\eta_t=0{,}1$ không thỏa tổng bình phương |
 | D01 | Tạo nhu cầu quán tính từ dao động/nhiễu | SGD → D03 | LLO12 | giữ — trực quan mở nhu cầu bộ nhớ hướng |
 | D03 | Tính vết quán tính tự đủ dữ kiện | D01 → D02 | LLO12 | sửa — đưa trước hình thức và tự định nghĩa vận tốc số |
 | D02 | Khóa quy ước momentum | D03 → D04 | LLO12 | sửa — khái quát đúng quy ước độ dời của ví dụ |
 | D04 | Trực quan hóa điểm nhìn trước | momentum → D05 | LLO12 | giữ — chuẩn bị vị trí đánh giá gradient |
 | D05 | Khóa công thức Nesterov | trực quan → D06 | LLO12 | giữ — giữ cùng quy ước vận tốc toàn mạch |
-| D06 | So sánh ba vết và chặn xếp hạng | hình thức → E01 | LLO12 | giữ — vừa ứng dụng có điều kiện vừa đo giải thích |
+| D06 | So sánh ba vết và chặn xếp hạng | hình thức → E01 | LLO12 | sửa — giữ một luận điểm trên mặt; chuyển nhắc về điểm đầu sang notes để nối E01 mà không tăng tải |
 | E01 | Chứng minh khởi tạo đối xứng không tự tách | cập nhật → E02 | LLO13 | sửa — khóa tham số vào, bias, hàm kích hoạt, vai trò/trọng số đi ra, cùng lô và cập nhật |
-| E02 | Khóa ánh xạ có kiểu và mômen bậc hai qua lớp | đối xứng → E03 | LLO13 | sửa — nêu cả hàng $W_{j,:}$ độc lập với véc-tơ $a$ tại khởi tạo, các trọng số trong hàng độc lập và trung bình $0$; dùng $\mathbb E[a_k^2]$ tổng quát và định nghĩa $c_\phi$ |
+| E02 | Khóa ánh xạ có kiểu và mômen bậc hai qua lớp | đối xứng → E03 | LLO13 | sửa — giải nghĩa hai fan, khóa $a,W,z$ nhất quán với kiểu ma trận; nêu các giả thiết độc lập và trung bình $0$; dùng $\mathbb E[a_k^2]$ tổng quát và định nghĩa $c_\phi$ |
 | E03 | Chuyển phương sai mục tiêu thành tham số phân phối | trực quan → E04 | LLO13 | sửa — bỏ lặp kích thước, chỉ phân biệt Var/Std/nửa độ rộng |
 | E04 | Dùng lớp $4\to2$ để dẫn Xavier | kiểu → E05 | LLO13 | sửa — hai mục tiêu thuận/ngược $1/fan_{in}$, $1/fan_{out}$ dẫn thỏa hiệp $2/(fan_{in}+fan_{out})$ |
 | E05 | Dùng ReLU với $fan_{in}=4$ để dẫn He | Xavier → E06 | LLO13 | sửa — đặt dữ kiện và kết quả số trước quy tắc tổng quát |
 | E06 | Chuyển công thức thành quyết định | hai quy tắc → E07 | LLO13 | giữ — ứng dụng dùng đúng Xavier/He |
 | E07 | Đo tính toán và giải thích đối xứng | ứng dụng → Z01 | LLO13 | giữ — bài tập đóng đủ hai tuyến của mạch E |
 | Z01 | Trả lời vấn đề trung tâm bằng hệ quyết định | A–E → Z02 | LLO11–13 | sửa — xếp điểm đầu trước cập nhật và tách đánh giá/dừng; không gọi là thứ tự thời gian |
-| Z02 | Đo chuyển giao trên mạng ReLU mới khởi tạo | bảng → Z03 | LLO11–13 | sửa — thêm phương sai lô và dao động; phân biệt tăng $b$, momentum, dừng sớm và He |
+| Z02 | Đo chuyển giao trên mạng ReLU mới khởi tạo | bảng → Z03 | LLO11–13 | sửa — hiện $F,\theta_0,\eta,\beta,B_0,B_1$ để bài hai vòng tự chứa; dùng nhãn “Câu hỏi:”; thêm phương sai lô và dao động để phân biệt tăng $b$, momentum, dừng sớm và He |
 | Z03 | Khóa khoảng cách lý thuyết–thực nghiệm | tự kiểm → Z04 | CLO1–2 | giữ — giới hạn bảo đảm được nêu đúng mức |
 | Z04 | Truy nguyên nguồn và nối Bài 06 | kết luận → bài sau | đọc tiếp | giữ — cung cấp nguồn và cầu sang thuật toán thích nghi |
 
