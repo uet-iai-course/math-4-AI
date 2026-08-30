@@ -316,19 +316,30 @@ Ma trận mở rộng $[\mathbf A\mid\mathbf b]\in\mathbb R^{m\times(n+1)}$ đư
 
 ### Định thức
 
-**Định nghĩa.** Định thức là một số vô hướng gắn với ma trận vuông. Với $\mathbf A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$,
+**Định nghĩa.** Cho $\mathbf A=[a_{ij}]\in\mathbb R^{n\times n}$. Định thức $\det(\mathbf A)$ được định nghĩa đệ quy theo kích thước. Với $n=1$, $\det([a_{11}])=a_{11}$. Với $n\ge2$, gọi $\mathbf A_{1j}$ là ma trận $(n-1)\times(n-1)$ thu được bằng cách bỏ hàng thứ nhất và cột thứ $j$ của $\mathbf A$; khi đó
 
 $$
-\det(\mathbf A)=ad-bc.
+\det(\mathbf A)
+=\sum_{j=1}^{n}(-1)^{1+j}a_{1j}\det(\mathbf A_{1j}).
 $$
 
-Ma trận vuông khả nghịch khi và chỉ khi $\det(\mathbf A)\ne0$; trị tuyệt đối của định thức cho biết hệ số thay đổi thể tích của phép biến đổi tuyến tính.
+Đây là khai triển Laplace theo hàng thứ nhất. Có thể khai triển theo bất kỳ hàng hoặc cột nào và nhận cùng một giá trị.
 
-**Ví dụ.** Với $\mathbf A=\begin{bmatrix}1&1\\1&-1\end{bmatrix}$, ta có $\det(\mathbf A)=1\cdot(-1)-1\cdot1=-2$, nên $\mathbf A$ khả nghịch.
+Với ma trận vuông $\mathbf A\in\mathbb R^{n\times n}$,
+
+$$
+\det(\mathbf A)=0
+\iff \operatorname{rank}(\mathbf A)<n
+\iff \operatorname{Ker}(\mathbf A)\ne\{\mathbf0\}.
+$$
+
+Khi đó $\mathbf A$ được gọi là **suy biến** hoặc **không đủ hạng**, và $\mathbf A^{-1}$ không tồn tại.
+
+**Ví dụ.** Với $\mathbf A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$, định nghĩa trên cho $\det(\mathbf A)=a\det([d])-b\det([c])=ad-bc$. Đặc biệt, nếu $\mathbf A=\begin{bmatrix}1&1\\1&-1\end{bmatrix}$ thì $\det(\mathbf A)=-2$.
 
 **Điểm dễ nhầm.** Định thức không phải là tích các phần tử trên đường chéo chính đối với ma trận bất kỳ; quy tắc đó chỉ đúng cho ma trận tam giác.
 
-**Ý nghĩa và vai trò trong AI.** Định thức dùng để kiểm tra tính khả nghịch; định thức của ma trận hiệp phương sai và logarit định thức xuất hiện trong mật độ Gauss nhiều biến và các phép đổi biến xác suất.
+**Ý nghĩa hình học và vai trò trong AI.** Phép biến đổi $\mathbf x\mapsto\mathbf A\mathbf x$ nhân thể tích $n$ chiều với hệ số $|\det(\mathbf A)|$. Định thức dương bảo toàn hướng, định thức âm đảo hướng, còn $\det(\mathbf A)=0$ làm không gian sụp xuống một tập có thể tích $n$ chiều bằng không. Trong AI, định thức của ma trận hiệp phương sai và logarit định thức xuất hiện trong mật độ Gauss nhiều biến và các phép đổi biến xác suất.
 
 ### Ma trận nghịch đảo
 
@@ -381,3 +392,4 @@ Các bài tập sẽ được bổ sung cùng với từng cụm nội dung. G�
 
 - Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.6 và 2.11.
 - Roe, David (2013), *Linear Methods (Math 211) — Lecture 2*, tr. 5–8, phần tính tương thích, hạng của ma trận mở rộng và số tham số của tập nghiệm: <https://math.mit.edu/~roed/courses/211/lectures/Sep-11.pdf>.
+- Mattuck, Arthur, *D. Determinants*, trong *18.02 Supplementary Notes and Problems*, MIT OpenCourseWare 18.02 (học phần do Denis Auroux giảng dạy, Fall 2007), tr. 2–5, phần khai triển Laplace và diễn giải diện tích, thể tích: <https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/60d63f4aa52f7cc54ba6b12a0c7c6080_determinants.pdf>.
