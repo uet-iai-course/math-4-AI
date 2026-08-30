@@ -34,7 +34,23 @@ Phần này dành cho các khái niệm, ví dụ và chứng minh về vô hư�
 
 ### Véc-tơ
 
-**Định nghĩa.** Véc-tơ là một danh sách có thứ tự gồm $n$ số vô hướng. Trong học phần này, véc-tơ thường được viết dạng cột, chẳng hạn $\mathbf x=[x_1,\ldots,x_n]^T\in\mathbb R^n$.
+**Định nghĩa.** Véc-tơ là một danh sách có thứ tự gồm $n$ số vô hướng. Trong học phần này, $\mathbf x\in\mathbb R^n$ thường được viết theo chiều dọc dưới dạng véc-tơ cột, có kích thước $n\times1$:
+
+$$
+\mathbf x=
+\begin{bmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n
+\end{bmatrix}.
+$$
+
+Chuyển vị của nó được viết theo chiều ngang dưới dạng véc-tơ hàng, có kích thước $1\times n$:
+
+$$
+\mathbf x^T=[x_1,x_2,\ldots,x_n].
+$$
 
 **Ví dụ.** Căn nhà thứ nhất được biểu diễn bởi véc-tơ đặc trưng $\boldsymbol\phi_1=[1,-1{,}5,-1]^T$: thành phần đầu dành cho hệ số chặn, hai thành phần sau lần lượt là diện tích và số phòng ngủ đã biến đổi.
 
