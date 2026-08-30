@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 360" role="img" aria-labelledby="title desc">
+  <title id="title">Ba cách dùng thông tin độ cong</title>
+  <desc id="desc">Newton giải hệ Hessian, Hessian-free dùng tích ma trận véc-tơ và gradient liên hợp, BFGS học xấp xỉ nghịch đảo từ các cặp sai phân.</desc>
+  <defs><marker id="m" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#B15A2B"/></marker></defs>
+  <rect width="820" height="360" rx="18" fill="#fbfaf8"/>
+  <g font-family="sans-serif" text-anchor="middle"><rect x="35" y="82" width="220" height="170" rx="14" fill="#e8edf8" stroke="#2f3e7a" stroke-width="3"/><text x="145" y="125" font-size="26" font-weight="bold">Newton</text><text x="145" y="170" font-size="22">lập H, giải Hp = −g</text><text x="145" y="208" font-size="20">bộ nhớ O(d²)</text>
+  <rect x="300" y="82" width="220" height="170" rx="14" fill="#f7efe6" stroke="#B15A2B" stroke-width="3"/><text x="410" y="125" font-size="26" font-weight="bold">HF + CG</text><text x="410" y="170" font-size="22">chỉ cần v ↦ Bv</text><text x="410" y="208" font-size="20">bộ nhớ O(d)</text>
+  <rect x="565" y="82" width="220" height="170" rx="14" fill="#e8f5e9" stroke="#2e7d32" stroke-width="3"/><text x="675" y="125" font-size="26" font-weight="bold">BFGS/L-BFGS</text><text x="675" y="170" font-size="22">học M ≈ H⁻¹</text><text x="675" y="208" font-size="20">L-BFGS: O(md)</text></g>
+  <line x1="255" y1="168" x2="290" y2="168" stroke="#B15A2B" stroke-width="4" marker-end="url(#m)"/><line x1="520" y1="168" x2="555" y2="168" stroke="#B15A2B" stroke-width="4" marker-end="url(#m)"/>
+  <text x="410" y="315" text-anchor="middle" font-family="sans-serif" font-size="23" fill="#37474f">Đổi độ chính xác của độ cong lấy chi phí và bộ nhớ phù hợp</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" role="img" aria-labelledby="title desc">
+  <title id="title">Cùng gradient nhưng bước theo từng tọa độ khác nhau</title>
+  <desc id="desc">Hai trục tham số có lịch sử gradient khác nhau. Bộ tích lũy bình phương lớn làm bước hiệu dụng ngắn hơn.</desc>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#B15A2B"/></marker></defs>
+  <rect width="760" height="360" rx="18" fill="#fbfaf8"/>
+  <line x1="90" y1="285" x2="690" y2="285" stroke="#455a64" stroke-width="3" marker-end="url(#a)"/><line x1="90" y1="285" x2="90" y2="50" stroke="#455a64" stroke-width="3" marker-end="url(#a)"/>
+  <text x="665" y="325" font-size="24" fill="#263238">θ₁</text><text x="42" y="62" font-size="24" fill="#263238">θ₂</text>
+  <ellipse cx="390" cy="180" rx="230" ry="82" fill="none" stroke="#b0bec5" stroke-width="3"/><ellipse cx="390" cy="180" rx="145" ry="50" fill="none" stroke="#cfd8dc" stroke-width="3"/>
+  <circle cx="540" cy="235" r="8" fill="#2f3e7a"/><line x1="540" y1="235" x2="430" y2="135" stroke="#2f3e7a" stroke-width="8" marker-end="url(#a)"/>
+  <line x1="540" y1="235" x2="475" y2="176" stroke="#B15A2B" stroke-width="8" marker-end="url(#a)"/>
+  <text x="545" y="205" font-size="22" fill="#2f3e7a">gradient thô</text><text x="500" y="155" font-size="22" fill="#8b451f">bước đã co giãn</text>
+  <text x="190" y="337" font-size="22" fill="#37474f">Lịch sử bình phương lớn → mẫu số lớn → bước ngắn</text>
+</svg>
