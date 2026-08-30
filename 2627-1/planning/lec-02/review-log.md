@@ -182,3 +182,47 @@ Không xóa các báo cáo vòng trước; mục 9 ghi riêng vòng hợp nhất
 - Qua máy chủ cổng 8765, tệp HTML, SVG, RevealJS, KaTeX và các plugin cục bộ đều trả HTTP 200. Kiểm tra đường dẫn, công thức, ghi chú, điều hướng, khung 16:9 và màn hình hẹp đã hoàn tất.
 - Năm vai rà soát độc lập và tác tử kiểm định storyboard đã hoàn tất lượt xác nhận sau sửa; không còn lỗi mở thuộc mức chặn bàn giao, nghiêm trọng hoặc trung bình.
 - Bộ trang chiếu đạt điều kiện kỹ thuật cục bộ để chuyển sang bước cập nhật chỉ mục, commit riêng và push theo quy định của kho.
+
+## 13. Cổng soạn sau storyboard PASS
+
+| Mã | Vấn đề | Sửa | Trạng thái |
+|---|---|---|---|
+| Z03 | Truy nguyên gắn Nguyễn Bích Vân cho cả phần 1–2; MIT chưa nêu rõ vai trò | Chỉ gắn Nguyễn Bích Vân với phần 2; phần 1 ghi tác giả và năm chưa xác minh; MIT Lecture 4 là tham chiếu cấu trúc | đã sửa |
+| D07–D09 | $F(x)$ trùng với ánh xạ ma trận affine trong LMI; hai thẻ D08 trùng tiêu đề | Đổi ánh xạ mục tiêu vector thành $\Phi(x)$; đồng bộ D07, D09, outline và storyboard; đặt tiêu đề theo từng thành phần mục tiêu | đã sửa |
+| B09 | Lời giải ca e thiếu dẫn xuất của cận dưới | Giữ nguyên đề ca e; thêm $x_1^2+9x_2^2-\tfrac12(x_1+3x_2)^2=\tfrac12(x_1-3x_2)^2\ge0$ trong ghi chú | đã sửa |
+| C05 | Bất đẳng thức trung bình cộng–trung bình nhân chưa được khai triển; điều kiện dấu bằng chưa tách | Nêu $\sqrt{xy}\le(x+y)/2$ và tách điều kiện $x=y$ với $x+y=4$ | đã sửa |
+| Storyboard | B03/B05 bị gán vai ứng dụng; điểm đo chuyển giao A1 chưa đủ rõ | Ghi B03/B05 là ví dụ dẫn nhập, ứng dụng B1/B2 tại B09 và A1 được đo chuyển giao tại A07 | đã sửa |
+
+- Ràng buộc giữ nguyên: 41 `data-slide-id`, 6 `section` ngoài, thứ tự trang và 41 khối ghi chú; không sửa A05–A06.
+- GLM 5.3 Flash qua OpenRouter đã đề xuất các thay thế theo mã trang trên đúng bốn tệp được phép; điều phối viên áp dụng và tự kiểm lại bản vá. Lượt rà sau chỉnh sửa của cùng mô hình kết luận PASS cho toàn bộ yêu cầu và các ràng buộc cấu trúc.
+
+## 14. Hợp nhất lỗi từ năm lượt rà soát độc lập
+
+| Mã | Bằng chứng reviewer | Sửa hợp nhất | Trạng thái |
+|---|---|---|---|
+| P01, D07 | P01 dùng thứ tự theo nón trước khi bài thiết lập lại; D07 chưa nhắc vai trò của nón nhọn | P01 báo trước định nghĩa chính thức ở D02; D07 nối định nghĩa tối tiểu với nón nhọn và tính phản đối xứng | đã sửa |
+| A02 | Câu dẫn bỏ sót vai trò hàm mục tiêu $f_0$ | Nêu riêng $f_0$ và các hàm ràng buộc $f_i,h_j$ | đã sửa |
+| A05–A06 | Ví dụ A05 có thể bị hiểu là tựa lồi nhưng không lồi; cột “Kết quả” ở A06 không nói rõ đối tượng khả thi | Ghi ví dụ A05 cũng lồi và A07 ca 2 mới phân biệt; đổi nhãn cột thành $S_t\ne\varnothing$? và giải nghĩa trong ghi chú | đã sửa |
+| B03 | Đường mức không đi qua nghiệm; hình có thể bị hiểu là toàn bộ miền bị chặn | Kéo đường mức tới $(3,0)$; ghi rõ SVG chỉ là cửa sổ hữu hạn của miền không bị chặn | đã sửa |
+| B08 | Phép kiểm tra trung điểm viết tắt thành $2-0>1$ | Viết đầy đủ $(\sqrt2)^2-0^2=2>1$ | đã sửa |
+| D08 | Thiếu câu nối từ thứ tự ma trận sang vector mục tiêu | Thêm câu trên mặt trang: thứ tự theo nón cũng so sánh vector mục tiêu | đã sửa |
+| D10, Z02 | Lời mời tương tác chưa dùng nhãn bắt buộc; đáp án Z02(1) thiếu điều kiện “nói chung” | Thêm nhãn “Câu hỏi:” và sửa đáp án thành phát biểu có điều kiện | đã sửa |
+| Z03 | Trạng thái metadata chưa xác minh làm nặng mặt trang | Chuyển chi tiết xác minh xuống ghi chú, vẫn tách phần 1 và phần 2 trên mặt trang | đã sửa |
+| Storyboard D1 | D02 bị gán vai trực quan dù là trang định nghĩa | Chuyển D02 sang bước hình thức/toán học; D05 đảm nhiệm trực quan và ví dụ | đã sửa |
+
+- Không thêm trang, không đổi thời lượng, thứ tự hoặc mã; giữ 41 `data-slide-id`, 6 `section` ngoài và 41 khối ghi chú.
+
+## 15. Sửa tràn C05 sau kiểm định render
+
+- Ở khung $1280\times720$, phần cuối C05 bị cắt đáy do thẻ tính toán diễn giải dài và hộp kết luận lặp lại kết quả.
+- Giữ lần xuất hiện đầy đủ `Bất đẳng thức trung bình cộng–trung bình nhân (AM–GM)`, rút chuỗi tính thành $\sqrt{xy}\le(x+y)/2\le2$, suy ra $xy\le4$; gộp điều kiện dấu bằng và giá trị tối ưu vào thẻ tính toán.
+- Bỏ hộp kết luận lặp lại; không giảm cỡ chữ, không thêm trang và không thay đổi nội dung toán học, mã trang, thời lượng hoặc mạch kể chuyện.
+
+## 16. Kiểm định kỹ thuật cuối ngày 2026-08-30
+
+- Bỏ `maximum-scale` và `user-scalable` khỏi viewport để không chặn phóng đại hỗ trợ tiếp cận; thêm favicon dữ liệu rỗng để loại yêu cầu 404 không liên quan đến bài giảng.
+- Cổng 8765 đang được một kho khác sử dụng nên không bị dừng hoặc thay đổi. Kiểm định HTTP dùng cổng tạm 8876; HTML, SVG dầm công-xôn, RevealJS, plugin, KaTeX và phông cục bộ đều trả 200 hoặc 304.
+- Chromium duyệt đúng 41 cặp chỉ số RevealJS tại 1280 × 720, 800 × 600 và 720 × 900. Không có lỗi bảng điều khiển, lỗi trang hoặc yêu cầu thất bại.
+- Sau khi rút C05, mọi trang đều có `scrollHeight` bằng vùng chứa. A03 còn chênh `scrollWidth` 9 px do MathML ẩn của KaTeX, không phải nội dung nhìn thấy; ảnh chụp A03 xác nhận toàn bộ công thức và hộp nằm trong khung.
+- Kiểm tra trực quan riêng P03, A03, A06, B03, B08, C05, D08, D10, Z02 và Z03. B03 hiển thị đúng đường mức sau sửa; C05 hiển thị đủ điều kiện dấu bằng và giá trị tối ưu, không bị cắt.
+- Các tái kiểm toán học, học thuật–giảng dạy và mạch kể chuyện đều đạt bằng GLM 5.3 Flash qua OpenRouter. Codex Slides vẫn không khả dụng trong môi trường hiện tại; không dùng nó làm bằng chứng kiểm định.

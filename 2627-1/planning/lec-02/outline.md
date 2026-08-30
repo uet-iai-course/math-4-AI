@@ -61,27 +61,27 @@ Phân bổ này bao gồm toàn bộ 41 trang, kể cả trang tiêu đề, mụ
 | $\mathbb S^r$, $\mathbb S_+^r$ | Ma trận đối xứng và nón ma trận nửa xác định dương cấp $r$ |
 | $P\succeq0$ | $z^TPz\ge0$ với mọi $z\in\mathbb R^n$ |
 | $u\preceq_Kv$ | $v-u\in K$ |
-| $F(x)$ | Ánh xạ mục tiêu vector hoặc ánh xạ ma trận affine; ngữ cảnh được nêu tại chỗ |
+| $\Phi(x)$ | Ánh xạ mục tiêu vector ở D08–D09; $F(x)$ chỉ dùng cho ánh xạ ma trận affine trong LMI ở A04 và D04 |
 | $\mathbb R_{++}^n$ | Miền vector có mọi tọa độ dương |
 
 ## 5. Ví dụ và kết quả đã chốt
 
 - A03: hai ràng buộc tương đương với $x_1\le0$, $x_1+x_2=0$.
-- A05–A06: $f(x)=(x^2+1)/(x+2)$ trên $[0,2]$; $x^*=\sqrt5-2$, $p^*=2\sqrt5-4$; mức $t=0{,}5$ khả thi trên $[0,0{,}5]$.
-- B03: nghiệm $(3,0)$, giá trị $3$.
+- A05–A06: $f(x)=(x^2+1)/(x+2)$ trên $[0,2]$; ví dụ này cũng lồi, còn A07 ca 2 mới phân biệt tựa lồi không lồi; $x^*=\sqrt5-2$, $p^*=2\sqrt5-4$; mức $t=0{,}5$ khả thi theo nghĩa $S_t\ne\varnothing$, cụ thể $S_t=[0,0{,}5]$.
+- B03: nghiệm $(3,0)$, giá trị $3$; SVG chỉ là cửa sổ hữu hạn của miền khả thi không bị chặn và đường mức đi qua $(3,0)$.
 - B05: nghiệm không ràng buộc $2$; trên $[0,1]$ nghiệm $1$, giá trị $4$.
 - B06: nghiệm $(0{,}8,0{,}2)$, giá trị $0{,}8$.
-- B08: $(\sqrt2,\pm1)$ khả thi nhưng trung điểm không khả thi.
+- B08: $(\sqrt2,\pm1)$ khả thi nhưng trung điểm không khả thi vì $(\sqrt2)^2-0^2=2>1$.
 - B10: QCQP với hai miền ellipse có Hessian $\operatorname{diag}(2,8)$ và $2I$; giao khác rỗng vì chứa $(0{,}8,0{,}7)$.
 - B09: trên miền chung $2x_1+x_2\ge1$, $x_1+3x_2\ge1$, $x\ge0$: ca a có $(2/5,1/5),3/5$; ca c có tập nghiệm $\{(0,x_2):x_2\ge1\}$, giá trị $0$; ca e có $(1/2,1/6),1/2$.
 - C05: nghiệm $(2,2)$, giá trị $1/4$; ví dụ đứng trước định nghĩa hình thức của GP.
 - C06: mô hình dầm chuẩn hóa dùng $\min\sum_i h_i$ và $\sum_i d_i h_i^{-3}\le1$, $d=(0{,}1,0{,}2,0{,}3,0{,}4)$; sau $y_i=\log h_i$ thu được hai biểu thức log-tổng-mũ lồi.
 - C07: dạng lồi log-tổng-mũ; bài tập chỉ yêu cầu cải dạng, không mở tuyến giải số phụ.
 - D05: $x=t=1$.
-- D08: mọi $x\in[0,2]$ là Pareto.
+- D08: thứ tự theo nón được chuyển từ ràng buộc ma trận sang vector mục tiêu; mọi $x\in[0,2]$ là Pareto.
 - D09: với $0<\lambda<1$, $x^*=2(1-\lambda)$; hai đầu mút $\lambda=1$ và $\lambda=0$ lần lượt cho $x^*=0$ và $x^*=2$; liên hệ đánh đổi sai số–chi phí suy diễn.
-- D10: dạng đầy đủ $\min_{x,t}t$ với LMI cho $x^*=t^*=1{,}5$; ba điểm không bị trội và $(3,3)$ bị trội.
-- Z02: với $X\in\mathbb R^{N\times d}$, $y\in\mathbb R^N$, $w\in\mathbb R^d$, $\tau\ge0$, ca hồi quy AI $\min_w\|Xw-y\|_2^2$ với $\|w\|_2^2\le\tau$ là QCQP lồi; $\tau$ giới hạn độ lớn tham số.
+- D10: dưới một nhãn “Câu hỏi:”, dạng đầy đủ $\min_{x,t}t$ với LMI cho $x^*=t^*=1{,}5$; ba điểm không bị trội và $(3,3)$ bị trội.
+- Z02: dưới nhãn “Câu hỏi:”, với $X\in\mathbb R^{N\times d}$, $y\in\mathbb R^N$, $w\in\mathbb R^d$, $\tau\ge0$, ca hồi quy AI $\min_w\|Xw-y\|_2^2$ với $\|w\|_2^2\le\tau$ là QCQP lồi; $\tau$ giới hạn độ lớn tham số. Tập mức bằng của hàm lồi phi tuyến nói chung không lồi; đẳng thức dạng chuẩn phải affine.
 
 ## 6. Điều kiện hoàn thành bản nháp
 
