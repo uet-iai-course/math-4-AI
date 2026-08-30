@@ -5,7 +5,7 @@
 - Đối chiếu độc lập Mục 6–7 của `source-map.md` với phạm vi trong `plan.md`.
 - Tự tính lại gradient, bước tìm kiếm đường chính xác, điều kiện Armijo, quỹ đạo, bước Newton, độ giảm Newton, ví dụ tự điều chỉnh và hai chế độ Newton–KKT.
 - Kết luận: mọi giá trị số, dấu và kích thước trong hai ví dụ đều đúng. Không có lỗi chặn bàn giao hoặc nghiêm trọng.
-- Khi soạn, phải giữ hai giới hạn diễn giải: công thức bước chính xác và quỹ đạo đóng chỉ áp dụng cho hàm bậc hai đang xét; $w$ trong bước Newton khả thi không được gọi là $Delta\nu$.
+- Khi soạn, phải giữ hai giới hạn diễn giải: công thức bước chính xác và quỹ đạo đóng chỉ áp dụng cho hàm bậc hai đang xét; $\eta$ trong bước Newton khả thi không được gọi là $\Delta\nu$.
 
 ## 2. Ví dụ gradient và Newton không ràng buộc
 
@@ -162,7 +162,7 @@ Tại $x^{(0)}=(1/2,1/2)^T$, $g=(1/2,2)^T$. Hệ
 
 $$
 \begin{bmatrix}1&0&1\\0&4&1\\1&1&0\end{bmatrix}
-\begin{bmatrix}\Delta x_1\\\Delta x_2\\w\end{bmatrix}
+\begin{bmatrix}\Delta x_1\\\Delta x_2\\\eta\end{bmatrix}
 =-
 \begin{bmatrix}1/2\\2\\0\end{bmatrix}
 $$
@@ -171,10 +171,10 @@ cho
 
 $$
 \Delta x=\left(\frac3{10},-\frac3{10}\right)^T,
-\qquad w=-\frac45.
+\qquad \eta=-\frac45.
 $$
 
-$A\Delta x=0$ và $x^{(0)}+\Delta x=(4/5,1/5)^T=x^*$. Dấu và kết quả trong `source-map.md` đúng. Ở chế độ này $w$ là biến phụ của bài toán Newton; không đổi tên thành $\Delta\nu$.
+$A\Delta x=0$ và $x^{(0)}+\Delta x=(4/5,1/5)^T=x^*$. Dấu và kết quả trong `source-map.md` đúng. Ở chế độ này $\eta$ là biến phụ của bài toán Newton; không đổi tên thành $\Delta\nu$.
 
 ### 4.2. Khởi đầu không khả thi
 
@@ -219,7 +219,7 @@ nên $z^*=1/5$ và $x^*=(4/5,1/5)^T$. Tham số hóa trong `source-map.md` hợp
 | Trung bình nếu thiếu | Quỹ đạo gradient | Gắn $\rho=9/11$ với đúng điểm đầu, Hessian và exact line search. |
 | Trung bình nếu thiếu | Newton decrement | Nêu đẳng thức với sai số thật chỉ đúng trong ví dụ bậc hai này. |
 | Nghiêm trọng nếu thiếu | $\phi$ | Ghi miền $s>0$ trước đạo hàm và bước Newton. |
-| Nghiêm trọng nếu trộn | Newton–KKT | Giữ $w$ cho bước khả thi và $\Delta\nu$ cho bước primal–dual không khả thi. |
-| Chặn bàn giao nếu sai | Kích thước KKT | Giữ $x,\Delta x,r_d\in\mathbb R^2$, $\nu,w,\Delta\nu,r_p\in\mathbb R$, $A\in\mathbb R^{1\times2}$ và hệ $3\times3$. |
+| Nghiêm trọng nếu trộn | Newton–KKT | Giữ $\eta$ cho bước khả thi và $\Delta\nu$ cho bước primal–dual không khả thi. |
+| Chặn bàn giao nếu sai | Kích thước KKT | Giữ $x,\Delta x,r_d\in\mathbb R^2$, $\nu,\eta,\Delta\nu,r_p\in\mathbb R$, $A\in\mathbb R^{1\times2}$ và hệ $3\times3$. |
 
 Không có số nào trong Mục 6–7 cần sửa trước khi chuyển sang outline và storyboard.

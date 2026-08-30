@@ -21,11 +21,11 @@ Bảy mạch gồm mở đầu P, năm mạch phát triển A–E và kết lu�
 | Phương pháp giảm và backtracking | A01 | A03 | A04, A06 | A02, A05, A07 | A06 | A07 | $f,x^{(0)},g,d,t$ → kiểm hướng, chọn bước, cập nhật và dừng; dữ kiện A04 truyền sang A06 | 0,35 LT + 0,15 BT |
 | Gradient và giảm dốc nhất | B01 | B03 | B03 | B02, B04 | B05 | B06 | $g,H$ từ A04 → chọn chuẩn, giải $Wd=-g$ và so sánh hướng; dữ kiện truyền B03→B06 | 0,30 LT + 0,15 BT |
 | Newton và độ giảm Newton | C01 | C04, C06 | C03, C08 | C02, C04–C06 | C07 | C08 | $g,H$ của A–B → giải $H\Delta=-g$, tính $\delta_N$ và đọc truy hồi sai số bậc hai | 0,40 LT + 0,20 BT |
-| Hàm tự điều chỉnh | D01 | D03 | D03 | D02, D04 | D04 | D05, Z02 | $\phi=s-\log s$ từ C08 → đọc tỷ số $|\phi'''|/(\phi'')^{3/2}$, dựng hàm chắn và nêu pha giảm bước, bước đầy đủ, cận theo decrement dưới giả thiết | 0,20 LT + 0,15 BT |
+| Hàm tự điều chỉnh | D01 | D03 | D03 | D02, D04 | D04 | D05, Z02 | $\phi=s-\log s$ từ C08 → kiểm tra $|\phi'''|=2(\phi'')^{3/2}$, rồi nêu pha giảm bước, bước đầy đủ và cận theo decrement dưới giả thiết | 0,20 LT + 0,15 BT |
 | Newton khả thi với $Ax=b$ | E01 dùng chung | E03 | E02 dùng chung, E05 | E03, E04 | E05 | E05 | E01 nhận kết quả Newton C và giới hạn D; $H,A,b$ → $A\Delta x=0$, $\delta_{\rm eq}^2=-g^T\Delta x$ | 0,25 LT + 0,10 BT |
 | Newton không khả thi với $Ax=b$ | E06; dùng lại E01 | E06 | E02 dùng chung, E07 | E06 | E07 | E07, Z02 | $H,A,b$ và ca AI → $r_d,r_p,\Delta x,\Delta\nu$, điểm thử trong miền và hai ngưỡng dừng | 0,25 LT + 0,15 BT |
 
-Các bước ví dụ và trực quan có thể cùng trang khi cùng phục vụ một luận điểm. C08 vừa đóng bài tập Newton vừa truyền đúng ví dụ sang D03. E01–E02 là phần dùng chung cho hai hành trình khả thi và không khả thi; E06 gộp nhu cầu khó tìm điểm đầu khả thi, trực quan giảm phần dư và thuật toán vì cả ba cùng phục vụ quyết định khởi đầu. Z02 đo riêng LLO7 bằng câu dựng hàm chắn log, nhưng không thay bài tập D05.
+Các bước ví dụ và trực quan có thể cùng trang khi cùng phục vụ một luận điểm. C08 vừa đóng bài tập Newton vừa truyền đúng ví dụ sang D03. E01–E02 là phần dùng chung cho hai hành trình khả thi và không khả thi; E06 gộp nhu cầu khó tìm điểm đầu khả thi, trực quan giảm phần dư và thuật toán vì cả ba cùng phục vụ quyết định khởi đầu. Z02 đo riêng LLO7 bằng phép kiểm tra đạo hàm bậc ba của $\phi(s)=s-\log s$ và điều kiện dùng decrement, nhưng không thay bài tập D05.
 
 ## 3. Xương sống và câu nối
 
@@ -40,7 +40,7 @@ Các bước ví dụ và trực quan có thể cùng trang khi cùng phục v�
 | P00 | Định danh đúng Buổi 4 và hai lớp bài toán | Chưa có bối cảnh → P01 khóa đầu vào | Định hướng LLO6–10 | thêm |
 | P01 | Ngăn dạy lại gradient, Hessian, tính lồi và KKT; khóa kích thước | Chủ đề → P02 nêu sản phẩm đánh giá | Tiên quyết | thêm |
 | P02 | Trích nguyên LLO6–10 và nhóm theo CLO | Đầu vào → P03 đặt vấn đề trung tâm | LLO6–10/CLO1–2 | thêm |
-| P03 | Cho đúng một chặng trên mặt trang cho mỗi mạch A–E | Mục tiêu → A01 mở phương pháp giảm | Toàn bài | sửa bản đồ theo năm chặng |
+| P03 | Cho đúng một chặng nội dung cho mỗi phần phát triển mà không lộ mã mạch hoặc quy trình nội bộ trong ghi chú diễn giả | Mục tiêu → A01 mở phương pháp giảm | Toàn bài | sửa bản đồ theo năm chặng; nguồn công khai thay tên tệp nội bộ |
 | A01 | Chỉ ra điều kiện dừng chưa tạo được nghiệm | Vấn đề trung tâm → A02 khóa giả thiết | LLO6/LLO8 | giữ trục MIT 10-2 |
 | A02 | Nêu miền, nghiệm đạt, điểm đầu và tập mức trước bảo đảm | Nhu cầu → A03 tạo hướng giảm | LLO8/CLO2 | gộp MIT 10-2–10-4 |
 | A03 | Nối đạo hàm theo hướng với hình đường mức | Giả thiết → A04 đưa ví dụ | LLO6 | thêm SVG tự vẽ |
@@ -60,7 +60,7 @@ Các bước ví dụ và trực quan có thể cùng trang khi cùng phục v�
 | C04 | Phân biệt giảm mô hình với sai số thật | Hướng Newton → C05 thuật toán | LLO6 | giữ MIT 10-16 |
 | C05 | Nêu đủ đầu vào, giải hệ, line search, cập nhật và dừng | Decrement → C06 bảo đảm | LLO6/LLO8 | giữ MIT 10-17 |
 | C06 | Chặn phát biểu vô điều kiện và gọi rõ truy hồi sai số hội tụ bậc hai | Thuật toán → C07 triển khai | LLO6/CLO1 | sửa đồ thị log và công thức |
-| C07 | Chuyển công thức sang quyết định giải hệ thực tế và đóng LLO8 trước khi đổi mục tiêu | Bảo đảm → C08 bài tập phi bậc hai | LLO8/CLO2 | giữ trước D, khác MIT có chủ ý; lược đếm flop dài |
+| C07 | Chuyển công thức sang quyết định giải hệ thực tế và đóng LLO8 trước khi đổi mục tiêu | Bảo đảm → C08 bài tập phi bậc hai | LLO8/CLO2 | giữ trước D; lý do khác thứ tự mẫu chỉ ghi trong hồ sơ, không ghi trên slide hoặc notes |
 | C08 | Đo một bước Newton và tạo ví dụ cho mạch D mà không công bố sẵn đáp án | Triển khai → D01 hỏi lớp hàm | LLO6/LLO8 | chuyển đáp án vào notes |
 | D01 | Nêu giới hạn của hằng số hội tụ cổ điển | Newton → D03 quan sát đạo hàm bậc ba | LLO7 | giữ MIT 10-24 |
 | D03 | Cho tỷ số $|\phi'''|/(\phi'')^{3/2}=2$ làm trực quan định lượng trước định nghĩa | Nhu cầu → D02 hình thức hóa | LLO7 | sửa trực quan, dùng lại C08 |
@@ -68,14 +68,14 @@ Các bước ví dụ và trực quan có thể cùng trang khi cùng phục v�
 | D04 | Dựng hàm chắn log với $a_i,b_i,m$ và miền trong đầy đủ; nêu bảo đảm có điều kiện theo decrement | Định nghĩa → D05 kiểm tra/giới hạn | LLO7 | sửa ứng dụng+bảo đảm; chi tiết cận trong notes |
 | D05 | Đo kiểm tra $-\log s$ không lộ đáp án và ngăn suy luận tự bảo đảm nghiệm | Phép tính → E01 kết hợp Newton với KKT | LLO7 | chuyển đáp án vào notes; sửa cầu nối |
 | E01 | Chỉ ra tự điều chỉnh không giữ khả thi và bước Newton thường có thể phá $Ax=b$ | Newton C và giới hạn D → E02 ví dụ đẳng thức | LLO9/LLO10 | sửa cầu D→E |
-| E02 | Khóa dữ kiện ví dụ E và chuyển giao sang hồi quy trơn với $\mathbf1^Tw=1$ dưới điều kiện dương trên không gian rỗng | Nhu cầu → E03 khử đẳng thức | LLO9/LLO10 | sửa thêm ca AI và giả thiết $\operatorname{null}X\cap\operatorname{null}(\mathbf1^T)=\{0\}$ |
+| E02 | Khóa dữ kiện ví dụ E và chuyển giao sang hồi quy trơn với $\mathbf1^Tw=1$; phân biệt rõ hai tiêu chuẩn dừng theo trạng thái khởi đầu | Nhu cầu → E03 khử đẳng thức | LLO9/LLO10 | sửa ca AI, giả thiết không gian rỗng và tiêu chuẩn dừng |
 | E03 | Trực quan hóa không gian rỗng và khóa $F,z$ | Ví dụ → E04 hệ khả thi | LLO9 | sửa kiểu đại lượng; SVG tự vẽ |
-| E04 | Nêu điều kiện khả nghịch, hệ khả thi và đẳng thức decrement có ràng buộc | Khử đẳng thức → E05 tính bước | LLO9/LLO10 | sửa dừng $\delta_{\rm eq}^2/2\le\varepsilon$ |
-| E05 | Kiểm tra $A\Delta x=0$ và bước đến nghiệm | Hệ khả thi → E06 mở chế độ không khả thi | LLO9 | thêm bài tập tính |
-| E06 | Nêu khuôn tối thiểu để thực hiện: phần dư, hệ, điểm thử trong miền, cập nhật và hai ngưỡng dừng; chi tiết bất đẳng thức quay lui ở notes | Khả thi → E07 tính bước phục hồi | LLO9/LLO10 | sửa giảm tải nhưng giữ đủ LLO10 |
+| E04 | Nêu điều kiện khả nghịch, hệ khả thi với biến phụ $\eta$ và đẳng thức decrement có ràng buộc | Khử đẳng thức → E05 tính bước | LLO9/LLO10 | sửa ký hiệu và dừng $\delta_{\rm eq}^2/2\le\varepsilon$ |
+| E05 | Kiểm tra $A\Delta x=0$, $\eta=-4/5$ và bước đến nghiệm | Hệ khả thi → E06 mở chế độ không khả thi | LLO9 | sửa ký hiệu bài tập tính |
+| E06 | Mở bằng nhu cầu khó tìm điểm đầu khả thi rồi nêu khuôn tối thiểu: phần dư, hệ, điểm thử trong miền, cập nhật và hai ngưỡng dừng; chi tiết bất đẳng thức quay lui ở notes | Khả thi → E07 tính bước phục hồi | LLO9/LLO10 | sửa nhu cầu và giảm tải nhưng giữ đủ LLO10 |
 | E07 | Đo lập RHS phần dư, nêu quy tắc LDLT/bổ Schur và nối thẳng bảng quyết định | Hệ không khả thi → Z01 tổng hợp | LLO10 | sửa cầu nối |
-| Z01 | Trả lời P03 bằng bảng chọn phương pháp, decrement đẳng thức và điều kiện bảo đảm | Kết quả A–E → Z02 tự kiểm tra | LLO6–10 | sửa thu hồi self-concordant |
-| Z02 | Dùng bốn nhiệm vụ đại diện cho tìm bước, bảo đảm, Newton–KKT và hồi quy trơn; phần còn lại ở notes | Pipeline → Z03 nguồn/chuyển tiếp | LLO6–10/CLO1–2 | sửa giảm tải; bỏ mã nội bộ trên mặt |
+| Z01 | Trả lời P03 bằng bảng chọn phương pháp, decrement đẳng thức và điều kiện bảo đảm; giảm dốc nhất dùng giả thiết B04 và dừng bằng $\|g\|_*$ | Kết quả A–E → Z02 tự kiểm tra | LLO6–10 | sửa thu hồi tự điều chỉnh và bảo đảm theo chuẩn |
+| Z02 | Dùng bốn nhiệm vụ cho tìm bước; kiểm tra tự điều chỉnh của $\phi$; giải bài $\min\frac12(x_1^2+4x_2^2)$ với $x_1+x_2=1$; và phân loại hồi quy trơn | Pipeline → Z03 nguồn/chuyển tiếp | LLO6–10/CLO1–2 | sửa câu hỏi để đo trực tiếp LLO7 và chép đủ mục tiêu LLO9–10 |
 | Z03 | Truy nguyên nguồn và làm nổi thay đổi sang cảnh quan học sâu, gradient nhiễu, minibatch | Tự kiểm tra → Bài 05 | Đọc tiếp | sửa chuyển tiếp |
 
 ## 5. Sai khác có chủ ý so với mẫu

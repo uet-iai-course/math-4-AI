@@ -95,7 +95,7 @@ Các trang MIT 10-9–10-10, 10-21–10-23, 10-28, 11-13–11-19 chỉ dùng là
 | E | E03 | Khử đẳng thức bằng $x=Fz+\hat x$ | Boyd §10.1.2; MIT 11-4–11-5 | giữ điều kiện $AF=0$, $\operatorname{rank}F=n-p$ |
 | E | E04 | Newton khả thi giải hệ Newton–KKT với $A\Delta x=0$ | Boyd §10.2.1; MIT 11-6–11-8 | hình thức và thuật toán |
 | E | E05 | Tính bước khả thi từ $(1/2,1/2)$ | phép tính Mục 7 | ứng dụng/bài tập LLO9 |
-| E | E06 | Newton không khả thi dùng $r_d,r_p$ và backtracking theo chuẩn phần dư | Boyd §10.3; MIT 11-10–11-11 | phân biệt $w$ với $\Delta\nu$; dừng số gần đúng |
+| E | E06 | Newton không khả thi dùng $r_d,r_p$ và backtracking theo chuẩn phần dư | Boyd §10.3; MIT 11-10–11-11 | phân biệt $\eta$ với $\Delta\nu$; dừng số gần đúng |
 | E | E07 | Tính một bước từ $(0,0,0)$ và chọn cách giải hệ | MIT 11-12; phép tính Mục 7 | bài tập LLO10; nhắc LDLT/Schur |
 | Z | Z01 | Bảng quyết định: gradient, steepest, Newton, Newton–KKT | tổng hợp Boyd Ch. 9–10 | trả lời P03 |
 | Z | Z02 | Bài tích hợp: hướng, bước, decrement, phần dư và dừng | hai ví dụ Mục 6–7 | tự kiểm tra LLO6–10; đáp án ở notes |
@@ -179,11 +179,11 @@ $$
 Av=0,\ v\ne0\Longrightarrow v^THv>0.
 $$
 
-Tại điểm khả thi, hướng Newton và biến phụ $w$ giải
+Tại điểm khả thi, hướng Newton và biến phụ $\eta$ giải
 
 $$
 \begin{bmatrix}H&A^T\\A&0\end{bmatrix}
-\begin{bmatrix}\Delta x_N\\w\end{bmatrix}
+\begin{bmatrix}\Delta x_N\\\eta\end{bmatrix}
 =-
 \begin{bmatrix}g\\0\end{bmatrix},
 $$
@@ -262,7 +262,7 @@ x^*=\left(\frac45,\frac15\right)^T,
 \qquad \nu^*=-\frac45.
 $$
 
-- Khởi đầu khả thi $x^{(0)}=(1/2,1/2)^T$: hệ Newton–KKT cho $\Delta x=(3/10,-3/10)^T$, $w=-4/5$; bước đầy đủ đến đúng $x^*$ và giữ $A\Delta x=0$.
+- Khởi đầu khả thi $x^{(0)}=(1/2,1/2)^T$: hệ Newton–KKT cho $\Delta x=(3/10,-3/10)^T$, $\eta=-4/5$; bước đầy đủ đến đúng $x^*$ và giữ $A\Delta x=0$.
 - Khởi đầu không khả thi $(x^{(0)},\nu^{(0)})=(0,0,0)$: $r_d=(0,0)^T$, $r_p=-1$; hệ primal–dual cho $\Delta x=(4/5,1/5)^T$, $\Delta\nu=-4/5$, nên bước đầy đủ đến nghiệm.
 - Khử đẳng thức có thể dùng $\hat x=(1,0)^T$, $F=(-1,1)^T$ hoặc một tham số hóa tương đương; phải kiểm tra $AF=0$ trước khi dùng.
 - Vai trò ứng dụng: phân bổ một tổng tài nguyên bằng 1 giữa hai thành phần có độ cong chi phí khác nhau. Không gọi đây là bằng chứng thực nghiệm AI.
@@ -278,7 +278,7 @@ $$
 | Nghiêm trọng | Gradient/steepest | “Gradient descent” dễ bị đồng nhất với steepest descent theo mọi chuẩn | Gradient là trường hợp chuẩn Euclid; chuẩn tổng quát phải nêu chuẩn đối ngẫu và hướng tương ứng |
 | Nghiêm trọng | Newton | Công thức $-H^{-1}g$ dễ bị biến thành thao tác lập nghịch đảo | Mặt slide và giả mã dùng `giải $H\Delta=-g$` |
 | Nghiêm trọng | Newton decrement | Ký hiệu $\lambda$ xung đột nhân tử Lagrange Bài 03 | Deck dùng $\delta_N(x)$; notes nêu MIT/Boyd dùng $\lambda(x)$ |
-| Nghiêm trọng | Hai chế độ đẳng thức | $w$ của bước khả thi bị lẫn với $\Delta\nu$ của bước primal–dual | Đặt tên và RHS riêng; không trộn hai hệ trên một công thức |
+| Nghiêm trọng | Hai chế độ đẳng thức | $\eta$ của bước khả thi bị lẫn với $\Delta\nu$ của bước primal–dual | Đặt tên và RHS riêng; không trộn hai hệ trên một công thức |
 | Trung bình | MIT backtracking | Nguồn dùng dấu nghiêm trong Armijo | Deck dùng $\le$ theo quy ước thuật toán; không ảnh hưởng logic |
 | Trung bình | Hằng số | $m$ vừa là số ràng buộc, vừa là hằng số lồi mạnh | Dùng $\mu$ cho lồi mạnh, $M$ cho chặn trên Hessian, $L_H$ cho Lipschitz Hessian |
 | Trung bình | Ma trận | $P$ dùng cho bậc hai và cho chuẩn | Ví dụ dùng $H$ cho Hessian, $W$ cho ma trận chuẩn |

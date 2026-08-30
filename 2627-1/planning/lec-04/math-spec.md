@@ -247,7 +247,7 @@ Với $x^{(0)}=(1/2,1/2)^T$, ta có $g=(1/2,2)^T$. Giải
 
 $$
 \begin{bmatrix}1&0&1\\0&4&1\\1&1&0\end{bmatrix}
-\begin{bmatrix}\Delta x_1\\\Delta x_2\\w\end{bmatrix}
+\begin{bmatrix}\Delta x_1\\\Delta x_2\\\eta\end{bmatrix}
 =-
 \begin{bmatrix}1/2\\2\\0\end{bmatrix}
 $$
@@ -256,10 +256,10 @@ cho
 
 $$
 \Delta x=\left(\frac3{10},-\frac3{10}\right)^T,
-\qquad w=-\frac45.
+\qquad \eta=-\frac45.
 $$
 
-Ta có $A\Delta x=0$ và $x^{(0)}+\Delta x=x^*$. Biến $w$ là biến phụ của hệ bước khả thi, không được gọi là $\Delta\nu$.
+Ta có $A\Delta x=0$ và $x^{(0)}+\Delta x=x^*$. Biến $\eta$ là biến phụ của hệ bước khả thi, không được gọi là $\Delta\nu$.
 
 Độ giảm Newton có ràng buộc được khóa bởi
 

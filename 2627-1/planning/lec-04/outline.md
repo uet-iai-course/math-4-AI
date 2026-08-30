@@ -43,11 +43,11 @@ với ràng buộc $x_1+x_2=1$.
 | P | P00 | Buổi 4 nối tối ưu không ràng buộc với ràng buộc đẳng thức | định danh |
 | P | P01 | Bài dùng lại gradient, Hessian, tính lồi và KKT với kiểu đại lượng đã khóa | tiên quyết |
 | P | P02 | LLO6–10 đo cả hiểu thuật toán và thực hiện từng bước | mục tiêu |
-| P | P03 | Năm chặng A–E: phương pháp giảm → gradient/chuẩn → Newton/độ cong → bảo đảm/tự điều chỉnh → khả thi/đẳng thức | bản đồ |
+| P | P03 | Năm chặng nội dung: phương pháp giảm → gradient/chuẩn → Newton/độ cong → bảo đảm/tự điều chỉnh → khả thi/đẳng thức | bản đồ; ghi chú diễn giả không nêu mã mạch hoặc quy trình nội bộ |
 | A | A01 | Điều kiện $\nabla f(x^*)=0$ chưa tạo ra một dãy lặp | nhu cầu |
-| A | A02 | Miền mở, nghiệm đạt, điểm đầu và tập mức khóa phạm vi thuật toán | giả thiết |
+| A | A02 | Miền mở, nghiệm đạt, điểm đầu và tập mức khóa phạm vi thuật toán; $S$ đóng là giả thiết bổ sung | giả thiết |
 | A | A03 | $g^Td<0$ cho thay đổi âm bậc nhất | trực quan |
-| A | A04 | Bậc hai điều kiện kém xác lập đường mức, điểm đầu và gradient; chưa lộ quỹ đạo | ví dụ |
+| A | A04 | Bậc hai điều kiện kém xác lập đường mức, điểm đầu và gradient; vị trí điểm và nhãn không chồng lấn, chưa lộ quỹ đạo | ví dụ |
 | A | A05 | Tìm kiếm đường chính xác và Armijo trả lời hai cách chọn bước | hình thức |
 | A | A06 | Backtracking nhận $t=1/4$ sau hai lần co | ứng dụng |
 | A | A07 | Một vòng lặp phải có hướng, bước, cập nhật và dừng | thuật toán/bài tập |
@@ -63,7 +63,7 @@ với ràng buộc $x_1+x_2=1$.
 | C | C04 | $\delta_N^2/2$ đo mức giảm của mô hình, không mặc định là sai số thật | trực quan/hình thức |
 | C | C05 | Newton đầy đủ gồm giải hệ, backtracking, cập nhật và dừng | thuật toán |
 | C | C06 | Hội tụ bậc hai là truy hồi sai số $\|e_{k+1}\|\le C\|e_k\|^2$ trong pha gần nghiệm dưới giả thiết rõ | bảo đảm |
-| C | C07 | Triển khai dùng bộ giải hệ và cấu trúc, không lập nghịch đảo; đóng LLO8 trước khi chuyển LLO7 | ứng dụng tính toán |
+| C | C07 | Triển khai dùng bộ giải hệ và cấu trúc, không lập nghịch đảo; đóng LLO8 trước khi chuyển LLO7 | ứng dụng tính toán; lý do khác thứ tự mẫu chỉ giữ trong hồ sơ planning |
 | C | C08 | Một bước Newton cho $s-\log s$ nối sang tự điều chỉnh; đáp án nằm trong notes | bài tập/chuyển ý |
 | D | D01 | Hằng số hội tụ cổ điển khó biết và không bất biến affine | nhu cầu |
 | D | D03 | Tỷ số $|\phi'''|/(\phi'')^{3/2}=2$ cho trực quan độ cong tự khống chế biến thiên | trực quan/ví dụ |
@@ -71,14 +71,14 @@ với ràng buộc $x_1+x_2=1$.
 | D | D04 | Dựng hàm chắn log với kiểu/miền đầy đủ và nêu bảo đảm Newton có điều kiện theo decrement | ứng dụng/bảo đảm |
 | D | D05 | Kiểm tra $-\log s$, chặn suy luận quá mức và nối sang nhu cầu giữ $Ax=b$; đáp án trong notes | bài tập/chuyển ý |
 | E | E01 | Bước Newton không ràng buộc có thể phá $Ax=b$ | nhu cầu |
-| E | E02 | Bài toán bậc hai đẳng thức khóa dữ kiện xuyên E và chuyển giao sang hồi quy trơn có $\mathbf1^Tw=1$, $\operatorname{null}X\cap\operatorname{null}(\mathbf1^T)=\{0\}$ | ví dụ/AI |
+| E | E02 | Bài toán bậc hai đẳng thức khóa dữ kiện xuyên E và chuyển giao sang hồi quy trơn; phân biệt dừng khả thi bằng $\delta_{\rm eq}^2/2$ với dừng chưa khả thi bằng hai chuẩn phần dư | ví dụ/AI |
 | E | E03 | Tham số hóa $F\in\mathbb R^{n\times(n-p)}$, $z\in\mathbb R^{n-p}$ loại đẳng thức | trực quan/hình thức |
-| E | E04 | Newton khả thi ép $A\Delta x=0$ và dừng bằng $\delta_{\rm eq}^2/2$ | thuật toán |
-| E | E05 | Bước từ $(1/2,1/2)$ giữ khả thi và đến nghiệm | ứng dụng/bài tập |
-| E | E06 | Khi khó tìm điểm đầu khả thi, Newton primal–dual giải hệ, chọn bước trong miền, cập nhật và dừng bằng hai ngưỡng | thuật toán |
+| E | E04 | Newton khả thi dùng biến phụ $\eta$, ép $A\Delta x=0$ và dừng bằng $\delta_{\rm eq}^2/2$ | thuật toán |
+| E | E05 | Bước từ $(1/2,1/2)$ với $\eta=-4/5$ giữ khả thi và đến nghiệm | ứng dụng/bài tập |
+| E | E06 | Khi khó tìm điểm đầu khả thi, Newton primal–dual giảm đồng thời hai phần dư, chọn bước trong miền, cập nhật và dừng bằng hai ngưỡng | nhu cầu/thuật toán |
 | E | E07 | Bước từ $(0,0,0)$ phục hồi khả thi và đến nghiệm | bài tập/triển khai |
-| Z | Z01 | Bảng quyết định phân biệt bốn họ hướng, tiêu chuẩn dừng và điều kiện bảo đảm | tổng kết |
-| Z | Z02 | Bốn nhiệm vụ đại diện đo tìm bước, tự điều chỉnh, Newton–KKT và ca hồi quy trơn | đánh giá LLO6–10 |
+| Z | Z01 | Bảng quyết định phân biệt bốn họ hướng; giảm dốc nhất dùng giả thiết bảo đảm của B04 và dừng bằng $\|g\|_*$ | tổng kết |
+| Z | Z02 | Bốn nhiệm vụ đo tìm bước; kiểm tra $\phi(s)=s-\log s$ tự điều chỉnh; giải đúng bài bậc hai đẳng thức; phân loại ca hồi quy trơn | đánh giá LLO6–10 |
 | Z | Z03 | Nguồn, giới hạn và cầu nối nổi bật sang cảnh quan, nhiễu gradient và minibatch ở Bài 05 | chuyển tiếp |
 
 ## 4. Phân bổ nội bộ

@@ -29,7 +29,7 @@ Danh mục và quyền Lecture 16–17 đã được ghi tại `sources/MIT/READ
 - Newton decrement dùng $\delta_N$, không dùng $\lambda$.
 - Hội tụ tuyến tính hoặc bậc hai chỉ phát biểu cùng giả thiết lồi mạnh, chặn Hessian hoặc Hessian Lipschitz và line search thích hợp.
 - Hệ Newton–KKT khóa $A\in\mathbb R^{p\times n}$, $\operatorname{rank}A=p<n$, và $H$ xác định dương trên $\operatorname{null}A$.
-- Chế độ khả thi dùng biến phụ $w$; chế độ primal–dual dùng $\Delta\nu$; không trộn hai đại lượng.
+- Chế độ khả thi dùng biến phụ $\eta$; chế độ primal–dual dùng $\Delta\nu$; không trộn hai đại lượng.
 
 ## 4. Sai khác có chủ ý so với mẫu
 
@@ -55,7 +55,7 @@ Danh mục và quyền Lecture 16–17 đã được ghi tại `sources/MIT/READ
 | KaTeX | đạt | 239 công thức được `renderToString` phân tích, 0 lỗi |
 | SVG/XML và văn bản thay thế | đạt | 5 SVG phân tích XML thành công; 7 lần nhúng đều có `alt` |
 | `git diff --check` | đạt | kiểm tra `--no-index --check` cho HTML/outline/storyboard/review-log, không có lỗi khoảng trắng |
-| Chromium 1600×900 và màn hình hẹp | chờ kiểm định riêng | — |
+| Chromium 1600×900 và màn hình hẹp | đạt | xem thêm kiểm định bàn giao ở Mục 11 |
 
 ## 7. Kiểm định storyboard
 
@@ -65,9 +65,9 @@ Danh mục và quyền Lecture 16–17 đã được ghi tại `sources/MIT/READ
 | trung bình | D03 | Dấu bằng công thức đúng nhưng trực quan “độ cong tự khống chế” chưa được lượng hóa | Chưa hiển thị tỷ số không thứ nguyên dẫn tới hằng số 2 | Thêm $|\phi'''|/(\phi'')^{3/2}=2$ và vai trò tử số–mẫu số | đã sửa; chờ rà lại |
 | nghiêm trọng | E06 | Thuật toán không khả thi chưa đủ để sinh viên thực hiện độc lập | Chỉ ghi “backtracking theo $\|r\|_2$”, thiếu nhu cầu, đầu vào, điều kiện nhận bước và cập nhật | Mở bằng khó tìm điểm khả thi; thêm đầu vào, hai phần dư, hệ, điều kiện co residual, cập nhật và hai ngưỡng dừng | đã sửa; chờ rà lại |
 | trung bình | D04 | Phép tính đóng chỉ được liệt kê, chưa tạo sản phẩm ứng dụng LLO7 | Không có hàm nhiều chiều được nhận dạng hoặc dựng | Dựng $-\sum_i\log(b_i-a_i^Tx)$ bằng hợp affine và lấy tổng; khóa hệ số chuẩn $c\ge1$ | đã sửa; chờ rà lại |
-| trung bình | Z02 | Bài tổng hợp gắn LLO6–10 nhưng chưa có câu đo riêng LLO7 | Các câu chỉ đo gradient, Newton, hội tụ và đẳng thức | Thêm câu dựng hàm chắn log tự điều chỉnh bằng phép tính đóng, kèm đáp án trong notes | đã sửa; chờ rà lại |
+| trung bình | Z02 | Bài tổng hợp gắn LLO6–10 nhưng chưa có câu đo riêng LLO7 | Các câu chỉ đo gradient, Newton, hội tụ và đẳng thức | Thêm câu kiểm tra trực tiếp điều kiện đạo hàm bậc ba của $\phi(s)=s-\log s$ và giả thiết dùng decrement; kèm đáp án trong notes | đã sửa |
 | trung bình | Hành trình A–B | Một hàng gộp che khuất đầu ra riêng của phương pháp giảm và lựa chọn chuẩn | Storyboard không cho thấy A07 là sản phẩm để B dùng | Tách thành hai hàng A và B, giữ dữ kiện A04 truyền sang B | đã sửa; chờ rà lại |
-| trung bình | Hành trình E | Một hàng gộp che hai chế độ khả thi và không khả thi | $w$ và $\Delta\nu$ có vai trò khác nhưng chưa có hai tuyến kiểm tra riêng | Tách hai hàng; ghi E01–E02 là phần dùng chung và khóa sản phẩm từng nhánh | đã sửa; chờ rà lại |
+| trung bình | Hành trình E | Một hàng gộp che hai chế độ khả thi và không khả thi | $\eta$ và $\Delta\nu$ có vai trò khác nhưng chưa có hai tuyến kiểm tra riêng | Tách hai hàng; ghi E01–E02 là phần dùng chung và khóa sản phẩm từng nhánh | đã sửa; chờ rà lại |
 | nhẹ | C07→D | Sai khác thứ tự với MIT chưa được truy nguyên | C07 nằm trước D dù phần triển khai ở cuối Lecture 16 | Ghi khác biệt có chủ ý trong HTML notes, outline, storyboard và nhật ký; lý do là đóng LLO8 | đã sửa; chờ rà lại |
 | trung bình | C/D/E | Thời lượng E chưa phản ánh tải của hai thuật toán Newton–KKT | E có ít LT hơn C dù gồm khử và hai chế độ | Chuyển 0,05 LT từ C và 0,05 LT từ D sang E; tổng giữ 2 LT + 1 BT | đã sửa; chờ rà lại |
 
@@ -100,7 +100,7 @@ Phạm vi rà lại bắt buộc: P03; C07–D05; E04–E07; Z02; hai trang lân
 | nghiêm trọng | A06 và `armijo-backtracking.svg` | Đường cong cũ không khớp các giá trị $405$, $92{,}5$, $39{,}375$ | Vẽ lại đúng $q(t)=55-200t+550t^2$, đường $55-20t$, đáy $2/11$ và ba quyết định bước | đã sửa |
 | nghiêm trọng | E04/Z01 | Decrement có ràng buộc chưa có đẳng thức và tiêu chuẩn dừng | Khóa $\delta_{\rm eq}^2=\Delta x^TH\Delta x=-g^T\Delta x$; dừng $\delta_{\rm eq}^2/2\le\varepsilon$ | đã sửa |
 | trung bình | D04 | Thiếu kiểu $a_i,b_i,m$ và giả thiết miền trong | Thêm $a_i\in\mathbb R^n$, $b_i\in\mathbb R$, $m\in\mathbb N$ và miền trong khác rỗng | đã sửa |
-| trung bình | E03–E06 | Thiếu kích thước $F,z,w,\nu,\Delta\nu$ và điều kiện điểm thử thuộc miền | Khóa đầy đủ kiểu đại lượng trên mặt hoặc notes; thêm $x+t\Delta x\in\operatorname{dom}f$ | đã sửa |
+| trung bình | E03–E06 | Thiếu kích thước $F,z,\eta,\nu,\Delta\nu$ và điều kiện điểm thử thuộc miền | Khóa đầy đủ kiểu đại lượng trên mặt hoặc notes; thêm $x+t\Delta x\in\operatorname{dom}f$ | đã sửa |
 | trung bình | `quadratic-zigzag.svg`, `newton-phases.svg` | Tọa độ quỹ đạo và hình pha hội tụ chưa chứng minh đúng đại lượng | Lấy mẫu đúng $(10\rho^k,(-\rho)^k)$; chỉnh điểm pha bậc hai trên trục log sai số để độ dốc tăng | đã sửa |
 
 ### 8.4. Phản biện học thuật và giảng dạy
@@ -137,9 +137,22 @@ Phạm vi rà lại bắt buộc: P03; C07–D05; E04–E07; Z02; hai trang lân
 | trung bình | E06 | Chuẩn $\|r\|_2$ được dùng trước khi vector ghép $r$ được định nghĩa | Thêm $r=(r_d^T,r_p^T)^T\in\mathbb R^{n+p}$ trong ghi chú trước bất đẳng thức quay lui | đã đóng |
 | nhẹ | `quadratic-zigzag.svg` | Nét cuối nối điểm hữu hạn vào đúng nghiệm gây hiểu nhầm đạt nghiệm sau hữu hạn vòng | Bỏ đoạn nối tới gốc; dùng mũi tên đứt và nhãn $k\to\infty$ | đã đóng |
 | nhẹ | `newton-phases.svg` | Điểm cuối sát đáy làm đoạn cuối có thể bị đọc như tốc độ phẳng dần | Dừng chuỗi trước đáy và ghi ký hiệu phần cắt | đã đóng |
+| nhẹ | P03, A04, A06, A07, B03, B06, C03, C08, D03, E02, E05, E07, Z02, Z03 | Ghi chú nguồn còn lộ tên tệp nội bộ; P03 và C07 còn mô tả quy trình biên tập | Thay bằng nguồn học thuật hoặc mô tả phép kiểm; loại mã mạch và quyết định thứ tự khỏi notes | đã đóng |
+| trung bình | Z01–Z02 | Bảo đảm giảm dốc nhất chưa gắn rõ giả thiết B04; chứng nhận dừng đẳng thức chưa viết đủ ngưỡng | Gắn bảo đảm với giả thiết lồi mạnh, trơn, bước phù hợp; giữ chuẩn dừng $\|g\|_*$; sửa thành $\delta_{\rm eq}^2/2\le\varepsilon$ | đã đóng |
+| nhẹ | E06; `2627-1/index.html` | Nhu cầu chế độ không khả thi chưa hiện rõ; tiêu đề chỉ mục lệch tiêu đề deck | Thêm nhu cầu khó tìm điểm đầu khả thi; đồng bộ thành “Tối ưu không ràng buộc và ràng buộc đẳng thức” | đã đóng |
+| trung bình | A02, A04, E02, E04–E05, Z02 | Giả thiết $S$ đóng chưa được gọi rõ là bổ sung; điểm ví dụ lệch đường mức; hai chế độ dừng và hai ký hiệu phụ còn dễ lẫn; câu tự kiểm tra chưa đủ dữ kiện | Làm rõ giả thiết; đặt lại điểm/hướng trên SVG; tách decrement khỏi hai chuẩn phần dư; đổi biến phụ khả thi thành $\eta$ nhưng giữ $\Delta\nu$ ở chế độ chưa khả thi; viết lại hai câu tự kiểm tra | đã đóng |
 
 - **Cổng toán học cuối:** đạt; không còn lỗi chặn bàn giao, nghiêm trọng hoặc trung bình. Tác tử toán xác nhận lại quỹ đạo chỉ hội tụ khi $k\to\infty$, điều kiện khả nghịch của ca hồi quy, định nghĩa vector phần dư ghép và hình hai pha Newton.
 - **Cổng storyboard, chuyên gia, học thuật và mạch kể chuyện:** đạt; đúng 40 trang và 7 mạch P/A/B/C/D/E/Z, không còn lỗi từ trung bình trở lên trong phạm vi hậu kiểm.
 - **Chromium r4:** duyệt đủ 40/40 trang tại 1600×900 và 720×1280; 0 trang tràn, 0 phần tử vượt khung, 0 lỗi KaTeX. Contact sheet được xem trực tiếp; không phát hiện chồng lấn. Lỗi console duy nhất là favicon 404, không ảnh hưởng bộ trang chiếu.
 - **Codex Slides:** dự án bền vững `20260828120744-lecture-04-t-i-u-tr-n-v-r-ng-bu-c-ng-th--d4es` chứa 6 nguồn đúng vai trò và dàn ý 40 trang đồng nhất thứ tự với RevealJS. Browser tích hợp không khả dụng trong phiên này, nên không tuyên bố đã rà trực quan bằng Codex Slides; cổng trực quan dùng Chromium cục bộ.
-- Hai trang chỉ mục, commit riêng và push do điều phối viên thực hiện sau kiểm tra HTTP cuối.
+- Chỉ mục học kỳ đã đồng bộ tiêu đề và giữ nguyên liên kết; commit riêng và push do điều phối viên thực hiện sau kiểm tra HTTP cuối.
+
+## 11. Kiểm định bàn giao cục bộ
+
+- Tái kiểm độc lập bằng GLM 5.3 Flash qua OpenRouter đạt ở năm phạm vi bị ảnh hưởng: chuyên gia, sinh viên, độ chính xác toán học, học thuật–giảng dạy và mạch kể chuyện. Vòng toán xác nhận lại đạo hàm của $\phi$, cận theo decrement và hệ Newton–KKT; $\delta_{\rm eq}=0$ sau bước đầy đủ vì phần dư KKT chiếu bằng không và lần giải kế tiếp cho $\Delta x=0$, không phải vì gradient không ràng buộc bằng không.
+- Chromium duyệt đủ 40/40 trang tại 1280×720, 800×600 và 720×900 qua máy chủ tạm `127.0.0.1:8876`; cổng 8765 đang thuộc tiến trình khác nên không bị thay đổi. Không có lỗi console, lỗi trang, yêu cầu tải thất bại hoặc tài nguyên cục bộ thiếu.
+- Lần chạy đầu phát hiện E01 tràn thật ở 1280×720. Tiêu đề được rút thành “Newton với đẳng thức”; lần chạy lại không còn tràn. Cảnh báo hình học 7,7 px của A04 tại 720×900 có `scrollWidth` và `scrollHeight` bằng vùng hiển thị; ảnh chụp xác nhận toàn bộ hình, công thức và năm gạch đầu dòng đều hiện, nên đây là sai báo do hộp đo trực tiếp của RevealJS.
+- Ảnh chụp P03, A04, E01, E02, E06 và Z02 đã được xem trực tiếp. Hình A04 đặt đúng điểm, vector và nhãn; E06, Z02 đọc được, không chồng lấn.
+- Đã bỏ khóa phóng to khỏi thẻ viewport và thêm favicon dữ liệu rỗng. Bộ trang chiếu giữ 7 section ngoài, 40 ID duy nhất, 40 ghi chú, 40 đoạn nguồn và 17/17 tham chiếu cục bộ hợp lệ.
+- Codex Slides không thể chạy ổn định trong môi trường hiện tại do runtime cục bộ không tương thích và bề mặt Browser không khả dụng. Không tuyên bố đã kiểm định trực quan vòng này bằng Codex Slides; cổng hiển thị cuối dùng Chromium cục bộ theo phương án dự phòng trong `AGENTS.md`.
