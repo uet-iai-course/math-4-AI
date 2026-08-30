@@ -368,6 +368,63 @@ Do đó, với $\mathbf b=[3,1]^T$, nghiệm của $\mathbf A\mathbf x=\mathbf b
 
 **Ý nghĩa và vai trò trong AI.** Ma trận nghịch đảo giúp biểu diễn nghiệm của hệ tuyến tính và ma trận độ chính xác $\boldsymbol\Sigma^{-1}$ trong mô hình Gauss. Khi tính toán thực tế, thường nên giải hệ tuyến tính thay vì tạo nghịch đảo tường minh.
 
+### Véc-tơ riêng và giá trị riêng
+
+**Định nghĩa.** Cho $\mathbf A\in\mathbb R^{n\times n}$. Nếu tồn tại $\lambda\in\mathbb R$ và $\mathbf v\in\mathbb R^n\setminus\{\mathbf0\}$ sao cho
+
+$$
+\mathbf A\mathbf v=\lambda\mathbf v,
+$$
+
+thì $\mathbf v$ là một véc-tơ riêng của $\mathbf A$ ứng với giá trị riêng $\lambda$. Với ma trận thực tổng quát, giá trị riêng không nhất thiết đều là số thực; ma trận đối xứng thực có các giá trị riêng thực và có thể chọn một cơ sở véc-tơ riêng trực chuẩn.
+
+**Cách tìm.** Từ phương trình riêng,
+
+$$
+(\mathbf A-\lambda\mathbf I_n)\mathbf v=\mathbf0.
+$$
+
+Vì $\mathbf v\ne\mathbf0$, ma trận $\mathbf A-\lambda\mathbf I_n$ phải suy biến, nên
+
+$$
+\det(\mathbf A-\lambda\mathbf I_n)=0.
+$$
+
+Giải phương trình đặc trưng này để tìm $\lambda$, rồi tìm một véc-tơ khác không trong $\operatorname{Ker}(\mathbf A-\lambda\mathbf I_n)$ để thu được $\mathbf v$.
+
+**Ý nghĩa hình học.** Đường thẳng sinh bởi $\mathbf v$ là một hướng bất biến dưới phép biến đổi $\mathbf x\mapsto\mathbf A\mathbf x$: trên hướng đó, phép biến đổi chỉ nhân với $\lambda$. Nếu $|\lambda|>1$, độ dài bị kéo giãn; nếu $0<|\lambda|<1$, độ dài bị co lại; nếu $\lambda<0$, hướng đồng thời bị đảo; nếu $\lambda=0$, hướng đó sụp về véc-tơ không.
+
+**Ví dụ.** Cho
+
+$$
+\mathbf A=
+\begin{bmatrix}
+2&1\\
+1&2
+\end{bmatrix}.
+$$
+
+Ta có
+
+
+$$
+\det(\mathbf A-\lambda\mathbf I_2)
+=(2-\lambda)^2-1
+=(\lambda-1)(\lambda-3),
+$$
+
+nên các giá trị riêng là $\lambda_1=3$ và $\lambda_2=1$. Chọn $\mathbf v_1=[1,1]^T$ và $\mathbf v_2=[1,-1]^T$; kiểm tra trực tiếp cho
+
+$$
+\mathbf A\mathbf v_1=3\mathbf v_1,
+\qquad
+\mathbf A\mathbf v_2=\mathbf v_2.
+$$
+
+**Điểm dễ nhầm.** Véc-tơ riêng không bao giờ là $\mathbf0$, nhưng giá trị riêng có thể bằng $0$. Nếu $\lambda=0$ thì tồn tại $\mathbf v\ne\mathbf0$ thuộc $\operatorname{Ker}(\mathbf A)$, nên $\mathbf A$ suy biến. Ngoài ra, mọi bội khác không của một véc-tơ riêng vẫn là véc-tơ riêng, vì vậy véc-tơ riêng không duy nhất theo độ dài hoặc dấu.
+
+**Ý nghĩa và vai trò trong AI.** Phân tích thành phần chính (principal component analysis, PCA) dùng các véc-tơ riêng của ma trận hiệp phương sai làm các hướng chính và dùng giá trị riêng để đo phương sai trên từng hướng. Với ma trận Hessian đối xứng, véc-tơ riêng cho các hướng độ cong còn giá trị riêng cho độ lớn và dấu của độ cong; phổ giá trị riêng vì thế ảnh hưởng đến điều kiện hóa và tốc độ của thuật toán tối ưu.
+
 ### Dạng toàn phương
 
 **Định nghĩa.** Cho ma trận đối xứng $\mathbf Q\in\mathbb R^{n\times n}$ và $\mathbf x\in\mathbb R^n$. Hàm vô hướng
@@ -433,6 +490,6 @@ Các bài tập sẽ được bổ sung cùng với từng cụm nội dung. G�
 
 ## Tài liệu tham khảo
 
-- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.6 và 2.11.
+- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.7 và 2.11.
 - Roe, David (2013), *Linear Methods (Math 211) — Lecture 2*, tr. 5–8, phần tính tương thích, hạng của ma trận mở rộng và số tham số của tập nghiệm: <https://math.mit.edu/~roed/courses/211/lectures/Sep-11.pdf>.
 - Mattuck, Arthur, *D. Determinants*, trong *18.02 Supplementary Notes and Problems*, MIT OpenCourseWare 18.02 (học phần do Denis Auroux giảng dạy, Fall 2007), tr. 2–5, phần khai triển Laplace và diễn giải diện tích, thể tích: <https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/60d63f4aa52f7cc54ba6b12a0c7c6080_determinants.pdf>.
