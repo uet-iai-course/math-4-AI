@@ -35,7 +35,7 @@ Nguồn MIT chính thức đã được kiểm tra ngày 2026-08-28:
 - URL PDF trên trang: `https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/c3e06e62a1d59d8c61efe93dd7ec9e12_MIT6_079F09_lec05.pdf`.
 - Tác giả/giảng viên: Stephen Boyd; khóa học 6.079 / 6.975, Fall 2009; tiêu đề tài nguyên `Lecture 5: Duality`.
 - Trang tài nguyên và điều khoản MIT OCW nêu CC BY-NC-SA 4.0. Hình và nội dung bên thứ ba vẫn phải được kiểm tra riêng; bài này không cần sao chụp hình nguồn.
-- `sources/MIT/README.md` hiện chưa tồn tại. Trước khi dùng nguồn MIT này trong deck, tác tử nghiên cứu nguồn phải tạo danh mục theo AGENTS.md và ghi đúng checksum, URL, ngày kiểm tra, giấy phép, vai trò, đường dẫn cục bộ và quyết định vẽ lại. Không cần tải thêm vì bản cục bộ khớp checksum ở cả ba đường dẫn.
+- Theo xác minh của điều phối viên, `sources/MIT/README.md` đã có mục cho Lecture 5 với URL, giấy phép, checksum và vai trò nguồn. Tác tử GLM không đọc tệp danh mục này. Không cần tải thêm vì bản cục bộ khớp checksum ở cả ba đường dẫn.
 
 ## 3. Thứ tự nguồn chính phải giữ
 
@@ -85,7 +85,7 @@ Hình $f_0$, $f_1$, họ $L(x,\lambda)$, $g(\lambda)$, tập giá trị và $p^*
 | Mã | Vai trò và nội dung bắt buộc | Nguồn chính theo thứ tự | Giữ/gộp/lược và ràng buộc |
 |---|---|---|---|
 | P00 | Tiêu đề, Buổi 3, Đối ngẫu Lagrange | Đề cương; `part1.docx` | Thêm trang định danh |
-| P01 | Tiên quyết và sản phẩm học tập | Lecture 01–02; đề cương | Không dạy lại dạng chuẩn hoặc tính lồi |
+| P01 | Tiên quyết và sản phẩm học tập | Lecture 01–02; đề cương | Báo trước nội tương đối và dưới gradient sẽ được định nghĩa tại chỗ |
 | P02 | LLO4–5 và quan hệ bộ phận với CLO1 | Đề cương, dòng Buổi 3 | Trích đúng LLO; không nâng “hiểu” thành “chứng minh mọi định lý” |
 | P03 | Bản đồ 7 mạch và vấn đề trung tâm về chứng nhận | `part1.docx`; `plan.md` | Nêu bài thuộc chế độ nghiêm ngặt |
 | A01 | Nhu cầu có cận kiểm chứng khi chưa biết nghiệm | BV 5.1.3, trang 216–217 | Nhu cầu trước ký hiệu |
@@ -99,7 +99,7 @@ Hình $f_0$, $f_1$, họ $L(x,\lambda)$, $g(\lambda)$, tập giá trị và $p^*
 | B01 | Nhu cầu biết cận có khít hay không | MIT 5-10 | Không lặp định nghĩa A08 |
 | B02 | Đối ngẫu yếu, mạnh và khoảng đối ngẫu | MIT 5-10; BV 5.2.2–5.2.3, trang 225–227 | Đối ngẫu yếu luôn đúng; mạnh không tự động đúng |
 | B03 | Cực đại hóa $g(\lambda)$ trong ví dụ | Bài 1c; lời giải PDF trang 3 | $\lambda^*=2$, $d^*=5$; tự tính đạo hàm |
-| B04 | Điều kiện Slater | MIT 5-11; BV 5.2.3, trang 226–227 | Điều kiện đủ; nêu `relint` trong ghi chú và ngoại lệ ràng buộc affine |
+| B04 | Điều kiện Slater | MIT 5-11; BV 5.2.3, trang 226–227 | Định nghĩa `relint` trên mặt trang trước công thức; nêu đúng ngoại lệ ràng buộc affine |
 | B05 | Áp Slater và chứng nhận khoảng bằng 0 | Bài 1; MIT 5-11 | Điểm khả thi chặt $x=3$; không suy luận đảo |
 | B06 | Bài tập phân loại giả thiết và kết luận | MIT 5-12 đến 5-14; bài tập tự tạo | Không dùng mệnh đề “QP luôn đối ngẫu mạnh” thiếu điều kiện |
 | C01 | Nhu cầu giải thích hình học của cận | Đề cương LLO5; MIT 5-15 | Mở trực tiếp LLO5 |
@@ -109,16 +109,16 @@ Hình $f_0$, $f_1$, họ $L(x,\lambda)$, $g(\lambda)$, tập giá trị và $p^*
 | C05 | Siêu phẳng đỡ, đối ngẫu mạnh và khả thi chặt | MIT 5-16; BV 5.3.2, trang 234–237 | Chứng minh chi tiết Slater chuyển ghi chú |
 | C06 | Bài tập đọc hình | Bài tập tự tạo từ MIT 5-15–16 | Phải đo được LLO5, không chỉ hỏi thuật ngữ |
 | D01 | Nhu cầu chuyển khoảng bằng 0 thành điều kiện kiểm tra | BV 5.5.1, trang 241–242 | Nối trực tiếp từ hình học tiếp xúc |
-| D02 | Bù trừ và ràng buộc hoạt động | MIT 5-17; BV 5.5.2, trang 242–243 | Nêu đủ giả thiết mạnh và đạt nghiệm |
-| D03 | Bốn nhóm điều kiện KKT | MIT 5-18; BV 5.5.3, trang 243–245 | Khả thi gốc, khả thi đối ngẫu, bù trừ, dừng |
-| D04 | Bảng điều kiện cần/đủ | MIT 5-18–19; BV 5.5.3 | Tách trường hợp tổng quát, lồi và lồi + Slater |
-| D05 | Giải KKT cho ví dụ xuyên suốt | Bài 1; phép tính độc lập | Kiểm tra đủ bốn nhóm, không chỉ stationarity |
+| D02 | Bù trừ và ràng buộc hoạt động | MIT 5-17; BV 5.5.2, trang 242–243 | Nêu $x^*$ và nghiệm đối ngẫu cùng tối ưu, đều đạt, với $p^*=d^*$ |
+| D03 | Bốn nhóm điều kiện KKT | MIT 5-18; BV 5.5.3, trang 243–245 | Dừng tổng quát $0\in\nabla_xL+N_D$; khi $D=\mathbb R^n$ thu về $\nabla_xL=0$ |
+| D04 | Bảng điều kiện cần/đủ | MIT 5-18–19; BV 5.5.3 | Nêu $D$ lồi, bất đẳng thức lồi, đẳng thức affine, khả vi hoặc dạng dưới vi phân và điều kiện chính quy |
+| D05 | Giải KKT cho ví dụ xuyên suốt | Bài 1; phép tính độc lập | Dùng $\nabla_xL=0$ cho biến trên toàn $\mathbb R$ trước khi định nghĩa nón pháp tuyến |
 | D06 | Ứng dụng AI: hồi quy có ràng buộc chuẩn | Nối từ Lecture 02 Z02; BV 5.5 | Dùng $\min_w\tfrac12\|Xw-y\|_2^2$ với $\|w\|_2^2\le\tau$, $\tau>0$; chỉ diễn giải KKT, không mở lý thuyết regularization của Tuần 11 |
 | D07 | Bài tập KKT chuyển giao | Bài tập Ch.4, Bài 5; lời giải PDF trang 8 | Có thể rút gọn đại số; nêu $A$ hạng cột đầy đủ và $G$ hạng hàng đầy đủ |
 | E01 | Nhu cầu đánh giá khi nới hoặc siết ràng buộc | MIT 5-21; PPTX Ch.4 phần 2, trang 2 | Chuyển nhân tử từ chứng nhận sang thông tin |
 | E02 | Bài toán nhiễu và hàm giá trị $p^*(u,v)$ | MIT 5-21; BV 5.6.1, trang 249 | Khóa quy ước $f_i(x)\le u_i$, $h_i(x)=v_i$ |
 | E03 | Bất đẳng thức độ nhạy toàn cục | MIT 5-22; BV 5.6.2, trang 250 | Cần đối ngẫu mạnh và nghiệm đối ngẫu của bài không nhiễu |
-| E04 | Độ nhạy cục bộ | MIT 5-23; BV 5.6.3, trang 250–252; PPTX trang 3–4 | Chỉ viết đạo hàm khi $p^*$ khả vi; nêu dấu âm |
+| E04 | Độ nhạy cục bộ | MIT 5-23; BV 5.6.3, trang 250–252; PPTX trang 3–4 | Định nghĩa dưới gradient bằng bất đẳng thức đường đỡ, rồi nối nhân tử âm với dưới vi phân |
 | E05 | Tính $p^*(u)$ cho ví dụ và diễn giải $\lambda^*$ | Bài 1d; lời giải PDF trang 3–4 | Nêu đủ ba miền $u<-1$, $-1\le u\le8$, $u\ge8$ |
 | E06 | Bất đẳng thức tổng quát, đối ngẫu theo nón và bài kiểm tra | MIT 5-28 đến 5-30; BV 5.9, trang 264–271 | Chu trình rút gọn vì nón là tiên quyết; multipliers thuộc nón đối ngẫu; dùng SDP làm cầu nối Lecture 02 |
 | Z01 | Bản đồ quyết định: cận → khít → hình học → KKT → độ nhạy | Tổng hợp MIT 5-2 đến 5-30 | Trả lời P03, không chỉ liệt kê công thức |
@@ -159,12 +159,12 @@ Bốn nhóm điều kiện:
 1. $f_i(x)\le0$, $h_j(x)=0$;
 2. $\lambda_i\ge0$;
 3. $\lambda_i f_i(x)=0$;
-4. $\nabla f_0(x)+\sum_i\lambda_i\nabla f_i(x)+\sum_j\nu_j\nabla h_j(x)=0$.
+4. $0\in\nabla_xL(x,\lambda,\nu)+N_D(x)$, với $N_D(x)$ là nón pháp tuyến của miền $D$ tại $x$. Khi $D=\mathbb R^n$, $N_D(x)=\{0\}$ và điều kiện thu về $\nabla_xL(x,\lambda,\nu)=0$.
 
 Phải phân biệt:
 
 - Nếu có nghiệm gốc và đối ngẫu đạt được, đối ngẫu mạnh và các hàm khả vi, nghiệm tối ưu thỏa KKT.
-- Với bài toán lồi khả vi có đẳng thức affine, bất kỳ bộ thỏa KKT đều tối ưu; đây là tính đủ và không cần Slater sau khi bộ KKT đã tồn tại.
+- Với bài toán lồi có $D$ lồi, các bất đẳng thức lồi, các đẳng thức affine và các hàm khả vi, bất kỳ bộ thỏa KKT đều tối ưu; đây là tính đủ và không cần Slater sau khi bộ KKT đã tồn tại. Nếu không khả vi, thay gradient bằng dưới vi phân và giữ nón pháp tuyến tương ứng.
 - Với bài toán lồi thỏa Slater, KKT là cần và đủ vì Slater cho đối ngẫu mạnh và đạt nghiệm đối ngẫu.
 - Với bài toán phi lồi, KKT nói chung không chứng nhận tối ưu toàn cục.
 
@@ -184,7 +184,13 @@ $$
 \nu_j^*=-\frac{\partial p^*}{\partial v_j}(0,0).
 $$
 
-Khi $p^*$ không khả vi hoặc nghiệm đối ngẫu không duy nhất, không được gọi một nhân tử tùy ý là “đạo hàm”; phải dùng diễn giải dưới gradient hoặc đạo hàm một phía phù hợp.
+Tổng quát hơn, đối ngẫu mạnh và đạt nghiệm đối ngẫu cho
+
+$$
+(-\lambda^*,-\nu^*)\in\partial p^*(0,0).
+$$
+
+Khi $p^*$ khả vi tại $(0,0)$, dưới vi phân chỉ có một phần tử và $\nabla p^*(0,0)=(-\lambda^*,-\nu^*)$. Khi $p^*$ không khả vi hoặc nghiệm đối ngẫu không duy nhất, không được gọi một nhân tử tùy ý là “đạo hàm”; phải dùng diễn giải dưới gradient hoặc đạo hàm một phía phù hợp.
 
 ### 6.5. Bất đẳng thức tổng quát
 
@@ -232,6 +238,6 @@ Nếu $f_i(x)\preceq_{K_i}0$, nhân tử phải thuộc nón đối ngẫu $K_i^
 - Dùng cùng $x,f_0,f_1,\lambda,p^*,d^*$ cho ví dụ xuyên suốt; không đổi quy ước dấu giữa các mạch.
 - LLO5 phải có ít nhất một hình tự vẽ mà người học có thể đọc để xác định $g(\lambda)$, $p^*$ và trạng thái cận khít.
 - Mọi phát biểu Slater, KKT và độ nhạy phải mang đủ giả thiết như Mục 6.
-- Không dùng ba bản MIT như ba nguồn và không tải thêm. Trước khi dùng MIT, tạo/cập nhật `sources/MIT/README.md` theo quy trình quản lý nguồn.
+- Không dùng ba bản MIT như ba nguồn và không tải thêm. Theo xác minh của điều phối viên, mục Lecture 5 trong `sources/MIT/README.md` đã tồn tại; tác tử GLM không đọc tệp danh mục này.
 - Ghi rõ nguồn theo chương/mục/trang trong ghi chú; trang tài liệu tham khảo ghi nguồn chính, giấy phép MIT và việc vẽ lại.
 - Không dùng hình raster từ PDF/PPTX. Tài sản dự kiến tối thiểu: SVG họ Lagrangian, SVG hàm đối ngẫu, SVG tập giá trị/siêu phẳng đỡ và SVG hàm giá trị nhiễu.

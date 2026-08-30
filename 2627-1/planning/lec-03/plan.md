@@ -6,7 +6,7 @@
 - `sources/part1.docx` xác định Tuần 3 là `Duality`, thuộc bảy tuần nền tảng tối ưu nghiêm ngặt. Bài phải phân biệt kết quả được chứng minh, giả thiết cần có và giới hạn của kết luận.
 - Đề cương chính thức xác định nội dung Chương 4: hàm và bài toán đối ngẫu Lagrange, minh họa hình học, điều kiện tối ưu, phân tích nhiễu và độ nhạy, ví dụ, bất đẳng thức tổng quát.
 - Chuẩn đầu ra bài học là LLO4–5, liên kết CLO1. Thời lượng là 2 tiết lý thuyết và 1 tiết bài tập. Kế hoạch không tự quy đổi tiết thành phút.
-- Đây là kế hoạch trước triển khai. Số trang và mã trang bên dưới là dự kiến để kiểm tra mạch; chỉ được khóa sau khi tác tử phân tích nguồn và tác tử storyboard chấp nhận.
+- Kế hoạch đã được khóa sau triển khai ở 40 trang và 7 mạch; thứ tự DOM cuối được ghi tại Mục 7.
 - Kế hoạch không sửa tệp trình chiếu và không cho phép cập nhật chỉ mục trước khi bộ trang chiếu vượt kiểm định cuối.
 
 ## 2. Sản phẩm và tên tệp
@@ -105,7 +105,7 @@ Ví dụ này là xương sống, không phải nội dung duy nhất. Một ví
 
 ## 7. Bảy mạch nội dung lớn
 
-Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận. Dự kiến 39 trang; số này chưa khóa.
+Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận, với 40 trang đã khóa.
 
 | Mạch | Mã dự kiến | Chức năng trong câu chuyện | Kết nối vào | Đầu ra cho mạch sau | Điểm nhấn |
 |---|---|---|---|---|---|
@@ -116,6 +116,10 @@ Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận. Dự
 | 5. KKT như chứng nhận tối ưu | D01–D07 | Chuyển đối ngẫu mạnh thành hệ điều kiện có thể kiểm tra | Nhận nghiệm gốc–đối ngẫu và hình học pháp tuyến từ mạch 3–4 | Có quy trình kiểm tra khả thi, bù trừ và dừng | Bốn nhóm điều kiện phải được kiểm tra cùng nhau và đúng giả thiết |
 | 6. Nhân tử như thông tin về bài toán | E01–E06 | Dùng nhân tử để phân tích độ nhạy và nối sang bất đẳng thức tổng quát | Nhận nhân tử tối ưu từ KKT | Có diễn giải giá biên và dạng chứng nhận theo nón, sẵn sàng cho bài tập tổng hợp | Độ nhạy cần giả thiết; nhân tử không tự động là đạo hàm trong mọi trường hợp |
 | 7. Kết luận và chuyển giao | Z01–Z03 | Thu hồi vấn đề trung tâm, tự kiểm tra LLO4–5, giao bài tập và nguồn đọc | Nhận chuỗi cận → khít → hình học → KKT → độ nhạy | Người học có bản đồ quyết định và bài tập chuẩn bị Bài giảng 04 | Kết luận phải trả lời đúng vấn đề mở đầu, không chỉ liệt kê công thức |
+
+Thứ tự DOM cuối gồm đúng 40 ID:
+
+`P00, P01, P02, P03, A01, A02, A03, A04, A05, A06, A07, A08, B01, B03, B02, B04, B05, B06, C01, C03, C02, C04, C05, C06, D01, D05, D02, D03, D04, D06, D07, E01, E02, E03, E04, E05, E06, Z01, Z02, Z03`.
 
 ### Câu nối bắt buộc giữa các mạch
 
@@ -133,11 +137,11 @@ Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận. Dự
 | Bước | Trang dự kiến | Nội dung và sản phẩm |
 |---|---|---|
 | Nhu cầu | P03, A01 | Cần cận dưới khi chưa giải trực tiếp bài toán gốc |
-| Trực quan | A02 | Nhân tử phạt vi phạm và tạo một họ hàm nằm dưới giá trị khả thi |
-| Ví dụ | A03–A04 | Dùng bài toán vô hướng, giữ cùng $x$, $f_0$, $f_1$, $\lambda$ |
-| Hình thức/toán học | A05–A06 | Định nghĩa $L$, $g$, miền, tính lõm, bài toán đối ngẫu và chứng minh đối ngẫu yếu |
-| Ứng dụng | A07 | Tạo cận và khoảng đối ngẫu cho nghiệm ứng viên hoặc bài toán khó |
-| Bài tập | A08 | Lập đối ngẫu cho một bài toán LP/QP nhỏ và tính một cận |
+| Ví dụ | A02 | Dùng bài toán vô hướng, khóa cùng $x$, $f_0$, $f_1$ và giá trị $p^*$ |
+| Trực quan | A03 | Nhân tử tạo một họ Lagrangian có infimum là cận dưới |
+| Hình thức/toán học | A04–A07 | Định nghĩa $L$, $g$, miền, tính lõm và chứng minh đối ngẫu yếu |
+| Ứng dụng | A08 | Chọn cận tốt nhất bằng bài toán đối ngẫu |
+| Bài tập | A08 | Gộp ứng dụng với bài tập QP vì cùng một phép tối đa hóa $g$ và vẫn giữ một luận điểm trung tâm |
 
 Đầu vào là dạng chuẩn từ Bài giảng 02; sản phẩm là khả năng lập đối ngẫu theo LLO4. Câu nối: cận đã có nhưng chưa biết khi nào cận khít.
 
@@ -146,9 +150,9 @@ Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận. Dự
 | Bước | Trang dự kiến | Nội dung và sản phẩm |
 |---|---|---|
 | Nhu cầu | B01 | Một cận lỏng chưa chứng nhận được chất lượng tối ưu |
-| Trực quan | B02 | Hai mức $d^\star$ và $p^\star$ tiến sát hoặc trùng nhau |
-| Ví dụ | B03 | Ví dụ xuyên suốt có điểm khả thi chặt $x=3$ |
-| Hình thức/toán học | B04 | Định nghĩa đối ngẫu mạnh, điều kiện Slater và kết luận đạt nghiệm đối ngẫu khi phù hợp |
+| Trực quan | B03 | Quan sát trực tiếp $g(\lambda)$ đạt $p^*$ trước khi đặt tên kết luận |
+| Ví dụ | B03 | Ví dụ xuyên suốt có cận khít tại $\lambda^*=2$ |
+| Hình thức/toán học | B02, B04 | Đặt tên yếu/mạnh/khoảng sau ví dụ, rồi nêu Slater và kết luận đạt nghiệm |
 | Ứng dụng | B05 | Kết luận khoảng đối ngẫu bằng không và chứng nhận nghiệm |
 | Bài tập | B06 | Phân loại trường hợp chỉ có đối ngẫu yếu, có Slater hoặc chưa đủ dữ kiện |
 
@@ -159,9 +163,9 @@ Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận. Dự
 | Bước | Trang dự kiến | Nội dung và sản phẩm |
 |---|---|---|
 | Nhu cầu | C01 | Công thức $g(\lambda)$ chưa cho thấy vì sao đó là cận hoặc vì sao cận có thể khít |
-| Trực quan | C02 | Tập giá trị $(u,t)$, đường $t+\lambda u=g(\lambda)$ và tung độ cắt |
+| Trực quan | C03 | Nhìn đường $t+\lambda u=g(\lambda)$ và tung độ cắt trước khi định nghĩa tập |
 | Ví dụ | C03 | Vẽ lại tập giá trị của ví dụ xuyên suốt với ba giá trị $\lambda$ |
-| Hình thức/toán học | C04 | Tập mở rộng, siêu phẳng đỡ và quan hệ với $p^\star$, $d^\star$ |
+| Hình thức/toán học | C02, C04 | Định nghĩa tập giá trị, tập mở rộng, siêu phẳng đỡ và quan hệ với $p^\star$, $d^\star$ |
 | Ứng dụng | C05 | Dùng hình để nhận biết cận lỏng, cận khít và vai trò khả thi chặt |
 | Bài tập | C06 | Đọc một hình mới, xác định $g(\lambda)$, $p^\star$ và trạng thái đối ngẫu mạnh |
 
@@ -172,9 +176,9 @@ Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận. Dự
 | Bước | Trang dự kiến | Nội dung và sản phẩm |
 |---|---|---|
 | Nhu cầu | D01 | Cần một hệ điều kiện kiểm tra được thay cho so sánh trực tiếp mọi điểm khả thi |
-| Trực quan | D02 | Gradient mục tiêu cân bằng tổ hợp pháp tuyến của các ràng buộc hoạt động |
-| Ví dụ | D03 | Tính $x^\star=2$, $\lambda^\star=2$ trong ví dụ xuyên suốt |
-| Hình thức/toán học | D04–D05 | Khả thi gốc, khả thi đối ngẫu, bù trừ, dừng; điều kiện cần và đủ theo giả thiết |
+| Trực quan | D05 | Hai ứng viên biên cho thấy khả thi và hoạt động chưa đủ để chứng nhận |
+| Ví dụ | D05 | Tính dấu nhân tử tại $x^\star=2$ và loại ứng viên $x=4$ |
+| Hình thức/toán học | D02–D04 | Bù trừ; bốn nhóm KKT với $0\in\nabla_xL+N_D$; điều kiện cần và đủ theo giả thiết |
 | Ứng dụng | D06 | Chứng nhận nghiệm và diễn giải ràng buộc hoạt động |
 | Bài tập | D07 | Giải hệ KKT cho bài toán hai biến, kiểm tra từng giả thiết trước khi kết luận |
 
@@ -185,13 +189,13 @@ Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận. Dự
 | Bước | Trang dự kiến | Nội dung và sản phẩm |
 |---|---|---|
 | Nhu cầu | E01 | Sau khi có nghiệm, cần biết giá trị tối ưu thay đổi thế nào khi nới ràng buộc |
-| Trực quan | E02 | Nhân tử là độ dốc của giá trị tối ưu theo nhiễu, với dấu phụ thuộc quy ước |
-| Ví dụ | E03 | Nhiễu vế phải trong ví dụ xuyên suốt và so sánh với $\lambda^\star$ |
-| Hình thức/toán học | E04 | Bất đẳng thức độ nhạy toàn cục; đạo hàm cục bộ khi hàm giá trị khả vi |
-| Ứng dụng | E04–E05 | Giá biên của tài nguyên và chuyển chứng nhận sang thứ tự theo nón |
-| Bài tập | E06 | Tính độ nhạy hoặc diễn giải nhân tử; nhận dạng đúng nón đối ngẫu trong một ràng buộc tổng quát |
+| Trực quan | E02 | Hàm giá trị thay đổi khi nới vế phải, với dấu phụ thuộc quy ước |
+| Ví dụ | E02 | Nhiễu vế phải trong ví dụ xuyên suốt và ba giá trị tính được |
+| Hình thức/toán học | E03–E04 | Cận toàn cục; dưới gradient $(-\lambda^*,-\nu^*)$ và gradient duy nhất khi khả vi |
+| Ứng dụng | E05 | Tính hàm giá trị, nhân tử và hai trường hợp biên $u=8$, $u>8$ |
+| Bài tập | Z02 | Tính đạo hàm và xấp xỉ bậc nhất của hàm giá trị |
 
-Phần bất đẳng thức tổng quát dùng chu trình rút gọn `nhu cầu → hình thức → kiểm tra` tại E01, E05, E06 vì nón và thứ tự theo nón đã là đầu vào bắt buộc từ Bài giảng 01–02. Storyboard phải giữ rõ lý do này, không coi đây là một khái niệm mới đầy đủ.
+Phần bất đẳng thức tổng quát dùng chu trình rút gọn `nhu cầu → hình thức → kiểm tra` tại E01 và E06 vì nón và thứ tự theo nón đã là đầu vào bắt buộc từ Bài giảng 01–02. Storyboard giữ rõ lý do này, không coi đây là một khái niệm mới đầy đủ.
 
 ## 9. Trình tự công việc, phụ thuộc và vai tác tử
 

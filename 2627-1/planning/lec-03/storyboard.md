@@ -21,11 +21,11 @@ Bảy mạch gồm mở đầu P, năm mạch phát triển A–E và kết lu�
 | Hàm và bài toán đối ngẫu | P03, A01 | A03 | A02, A06 | A04, A05, A07, A08 | A08 | A08 | Dạng chuẩn → phân biệt miền định nghĩa của $L,g$ với khả thi $\lambda\ge0$, rồi lập cận; $x,f_0,f_1,\lambda,p^*,d^*$ | 0,45 LT + 0,15 BT |
 | Đối ngẫu mạnh và Slater | B01 | B03 | B03 | B02, B04 | B05 | B06 | $d^*\le p^*$ → quan sát cận khít rồi kiểm tra $\operatorname{relint}D$, đẳng thức affine và hai loại bất đẳng thức | 0,30 LT + 0,15 BT |
 | Hình học đối ngẫu | C01 | C03 | C03 | C02, C04, C05 | C05 | C06 | $g,\lambda,p^*$ → nhìn đường đỡ trước khi định nghĩa $\mathcal G,\mathcal A$ | 0,30 LT + 0,15 BT |
-| KKT | D01 | D05 | D05 | D02–D04 | D06 | D07 | Hai ứng viên biên → bù trừ, bốn nhóm và phạm vi kết luận; $x,\lambda,\nu$ | 0,40 LT + 0,25 BT |
+| KKT | D01 | D05 | D05 | D02–D04 | D06 | D07 | Hai ứng viên biên → bù trừ, bốn nhóm với $0\in\nabla_xL+N_D$ và phạm vi kết luận; $x,\lambda,\nu,D,N_D$ | 0,40 LT + 0,25 BT |
 | Độ nhạy | E01 | E02 | E02 | E03–E04 | E05 | Z02 | Nhân tử KKT → ví dụ nới ràng buộc, cận và đạo hàm hàm giá trị; $u,v,p^*(u,v)$ | 0,30 LT + 0,15 BT |
 | Bất đẳng thức tổng quát | E06 | Không áp dụng: thứ tự theo nón đã là tiên quyết | E06, dùng SDP Bài 02 | E06 | E06 | E06, hỏi nón chứa $Z$ và hạng $\operatorname{tr}(ZF(x))$ | Giới hạn nhân tử vô hướng → nhân tử trong $K^*$; $K,K^*,Z$ | gộp trong cụm E |
 
-Chu trình rút gọn của bất đẳng thức tổng quát là `nhu cầu → hình thức → kiểm tra` vì nón, nón đối ngẫu và thứ tự theo nón đã được chuẩn bị ở Bài 01–02. Các ví dụ xuyên suốt giữ nguyên ký hiệu từ A02 đến E05; QP tại D07 dùng lại kết quả A08 thay vì lặp phép lập đối ngẫu. Bài tập kết thúc hành trình độ nhạy được đặt tại Z02 để E06 giữ vai trò cầu nối sang nón.
+Chu trình rút gọn của bất đẳng thức tổng quát là `nhu cầu → hình thức → kiểm tra` vì nón, nón đối ngẫu và thứ tự theo nón đã được chuẩn bị ở Bài 01–02. Các ví dụ xuyên suốt giữ nguyên ký hiệu từ A02 đến E05; QP tại D07 dùng lại kết quả A08 thay vì lặp phép lập đối ngẫu. A08 gộp ứng dụng và bài tập vì cùng đo việc tối đa hóa hàm đối ngẫu, không tạo luận điểm thứ hai. Thứ tự mã vật lý B01→B03→B02 và C01→C03→C02 là có chủ ý: ví dụ hoặc trực quan đi trước tên gọi hình thức. Bài tập kết thúc hành trình độ nhạy được đặt tại Z02 để E06 giữ vai trò cầu nối sang nón.
 
 ## 3. Xương sống và điểm nhấn
 
@@ -39,7 +39,7 @@ Chu trình rút gọn của bất đẳng thức tổng quát là `nhu cầu →
 | Mã | Lý do tồn tại và khoảng trống giải quyết | Quan hệ trước → sau | LLO/CLO | Quyết định |
 |---|---|---|---|---|
 | P00 | Định danh đúng Buổi 3 và chủ đề | Chưa có bối cảnh → P01 kiểm kê đầu vào | Định hướng LLO4–5 | thêm |
-| P01 | Ngăn dạy lại kiến thức nền và khóa quy ước cần đọc | Chủ đề → P02 nêu sản phẩm đánh giá | Tiên quyết | thêm |
+| P01 | Ngăn dạy lại kiến thức nền, đồng thời báo trước nội tương đối và dưới gradient sẽ được định nghĩa tại chỗ | Chủ đề → P02 nêu sản phẩm đánh giá | Tiên quyết | sửa theo phản biện sinh viên |
 | P02 | Trích nguyên văn LLO4–5 và tách sản phẩm Slater/KKT/độ nhạy để không mở rộng sai chuẩn | Đầu vào → P03 đặt vấn đề trung tâm | LLO4–5/CLO1 | sửa theo kiểm định storyboard |
 | P03 | Cho bản đồ bảy mạch trước khi vào ký hiệu | Mục tiêu → A01 tạo nhu cầu cận | Toàn bài | thêm |
 | A01 | Chỉ ra nghiệm ứng viên thiếu chứng nhận | Vấn đề trung tâm → A02 cho bài toán cụ thể | LLO4 | thêm |
@@ -53,7 +53,7 @@ Chu trình rút gọn của bất đẳng thức tổng quát là `nhu cầu →
 | B01 | Tạo nhu cầu đo khoảng đối ngẫu | Cận tốt nhất → B03 quan sát một cận khít | LLO4 | sửa câu nối |
 | B03 | Cho quan sát cận khít tính được, đúng $\lambda^*=2$ | Nhu cầu độ khít → B02 đặt tên kết quả | LLO4 | đổi thứ tự; SVG tự vẽ |
 | B02 | Khóa ba khái niệm $d^*\le p^*$, mạnh và khoảng sau ví dụ | Kết quả tính B03 → B04 hỏi giả thiết bảo đảm | LLO4 | đổi thứ tự để hình thức theo sau ví dụ |
-| B04 | Nêu Slater tinh chỉnh đúng vai trò điều kiện đủ | Ví dụ khít → B05 áp điểm khả thi chặt | LLO4/CLO1 | sửa: thêm $Ax=b$, phi affine chặt và affine không dương |
+| B04 | Định nghĩa nội tương đối trước khi nêu Slater tinh chỉnh đúng vai trò điều kiện đủ | Ví dụ khít → B05 áp điểm khả thi chặt | LLO4/CLO1 | sửa khoảng trống tiên quyết và giả thiết affine |
 | B05 | Dùng $x=3$ để kết luận mạnh và đạt nghiệm đối ngẫu | Slater tổng quát → B06 phân loại kết luận | LLO4 | thêm ứng dụng |
 | B06 | Chặn suy luận đảo hoặc bỏ khả thi tương đối/affine | Chứng nhận ví dụ → C01 mở hình học | LLO4/CLO1 | sửa câu hỏi và đáp án theo Slater tinh chỉnh |
 | C01 | Mở trực tiếp năng lực LLO5 | Kết luận đại số → C03 nhìn đường đỡ | LLO5 | sửa câu nối |
@@ -63,16 +63,16 @@ Chu trình rút gọn của bất đẳng thức tổng quát là `nhu cầu →
 | C05 | Nối hệ số góc $-\lambda^*$, pháp tuyến $(\lambda^*,1)$ với $\lambda^*\nabla f$ trong KKT | Tập mở rộng → C06 đọc hình mới | LLO5/CLO1 | sửa cầu nối hình học–KKT; chứng minh dài ở notes |
 | C06 | Đo khả năng đọc hình với chính hình tham chiếu thu nhỏ | Cơ chế tiếp xúc → D01 chuyển sang điều kiện | LLO5 | sửa; nhúng `dual-geometry.svg` |
 | D01 | Tạo nhu cầu hệ điều kiện kiểm tra được | Hình tiếp xúc → D05 so sánh ứng viên | LLO4 | sửa câu nối |
-| D05 | So sánh hai ứng viên bằng cùng phương trình $\partial_xL=0$ để thấy cần kiểm tra dấu nhân tử | Nhu cầu cục bộ → D02 giải thích bù trừ | LLO4 | giữ DOM; bổ sung phương trình chung trước khi thế |
+| D05 | So sánh hai ứng viên bằng $\nabla_xL=0$ cho biến chạy trên toàn $\mathbb R$, chưa dùng nón pháp tuyến trước khi định nghĩa | Nhu cầu cục bộ → D02 giải thích bù trừ | LLO4 | sửa thứ tự giới thiệu ký hiệu |
 | D02 | Nối khoảng bằng không với ràng buộc hoạt động | Nhu cầu kiểm tra → D03 gom bốn nhóm | LLO4 | giữ MIT 5-17 |
-| D03 | Đặt đủ bốn nhóm KKT trên cùng một trang | Bù trừ → D04 phân biệt cần/đủ | LLO4 | giữ MIT 5-18 |
-| D04 | Ngăn dùng KKT vô điều kiện | Bốn nhóm → D06 ứng dụng AI | LLO4/CLO1 | tách giới hạn bảo đảm |
+| D03 | Đặt đủ bốn nhóm KKT; định nghĩa nón pháp tuyến và dùng $0\in\nabla_xL(x^*,\lambda^*,\nu^*)+N_D(x^*)$ | Bù trừ → D04 phân biệt cần/đủ | LLO4 | sửa để bao quát miền $D$ lồi |
+| D04 | Ngăn dùng KKT vô điều kiện bằng cách nêu đủ giả thiết về $D$, bất đẳng thức, đẳng thức, tính khả vi hoặc dưới vi phân và điều kiện chính quy | Bốn nhóm → D06 ứng dụng AI | LLO4/CLO1 | sửa phạm vi bảo đảm |
 | D06 | Chuyển KKT sang hồi quy có ràng buộc chuẩn | Ví dụ vô hướng → D07 chuyển giao hai biến | LLO4/CLO1 | thêm ứng dụng AI |
 | D07 | Dùng kết quả A08 để chỉ đo Slater, đủ bốn nhóm KKT và giả thiết kết luận | KKT ứng dụng → E01 đọc nhân tử như thông tin | LLO4 | sửa để không lặp phép lập đối ngẫu |
 | E01 | Tạo nhu cầu sau khi đã biết nghiệm | Nhân tử KKT → E02 định nghĩa nhiễu | LLO4/CLO1 | thêm |
 | E02 | Cho ví dụ và trực quan nới ràng buộc trước định nghĩa tổng quát | Nhu cầu độ nhạy → E03 hình thức hóa hàm giá trị | LLO4 | đổi vai trò; dùng hình tự vẽ |
 | E03 | Định nghĩa tổng quát và nêu cận toàn cục với đủ giả thiết | Ví dụ E02 → E04 chuyển sang đạo hàm | LLO4 | gộp MIT 5-21–5-22 |
-| E04 | Nêu dấu âm và điều kiện khả vi | Cận toàn cục → E05 tính ví dụ | LLO4/CLO1 | giữ MIT 5-23 |
+| E04 | Định nghĩa dưới gradient bằng bất đẳng thức đường đỡ, rồi nêu quan hệ với nhân tử khi đối ngẫu mạnh và đạt nghiệm | Cận toàn cục → E05 tính ví dụ | LLO4/CLO1 | sửa đủ tiên quyết, giả thiết và giới hạn |
 | E05 | Áp dụng đủ ba miền, $\lambda^*(0)=2$; phân biệt suy biến tại $u=8$ với không hoạt động khi $u>8$ | Công thức cục bộ → E06 mở rộng theo nón | LLO4 | sửa notes theo hậu kiểm; mặt trang giữ $\lambda^*(u)=0$ khi $u\ge8$ |
 | E06 | Định nghĩa $F(x)\in\mathbb S^r$, $Z\in\mathbb S_+^r$ trước khi nối SDP và kiểm tra nón chứa nhân tử | Độ nhạy vô hướng → Z01 tổng hợp | LLO4/CLO1 | sửa kiểu/kích thước; giữ câu hỏi; gộp MIT 5-28–30 |
 | Z01 | Trả lời trực tiếp P03 và thu hồi mở rộng từ nhân tử vô hướng sang nón đối ngẫu | Kết quả A–E → Z02 tự kiểm tra | LLO4–5 | sửa notes để đóng cầu nối E06 |

@@ -28,6 +28,8 @@ MIT 6.079/6.975, *Lecture 5: Duality*, Stephen Boyd, 2009, được phát hành 
 - Nhiễu dùng $f_i(x)\le u_i$, do đó $p'(0)=-\lambda^*=-2$.
 - Slater tại $x=3$ là điều kiện đủ, không được phát biểu là điều kiện cần.
 - KKT phải gồm khả thi gốc, khả thi đối ngẫu, bù trừ và dừng; ngoài bài toán lồi và giả thiết thích hợp, KKT không chứng nhận tối ưu toàn cục.
+- Với miền $D$ lồi, điều kiện dừng tổng quát là $0\in\nabla_xL(x^*,\lambda^*,\nu^*)+N_D(x^*)$; khi $D=\mathbb R^n$ thì $N_D(x^*)=\{0\}$ và thu về $\nabla_xL=0$.
+- Đối ngẫu mạnh và đạt nghiệm đối ngẫu cho $(-\lambda^*,-\nu^*)\in\partial p^*(0,0)$; chỉ khi $p^*$ khả vi mới đồng nhất cặp này với gradient duy nhất.
 - QP chuyển giao có $x^*=(1/2,1/2)$, $\lambda^*=1$ và $p^*=d^*=1/2$; giá trị $1$ này không thuộc ví dụ xuyên suốt.
 
 ## 4. Sai khác có chủ ý so với mẫu
@@ -127,3 +129,28 @@ Sau thay đổi thứ tự, storyboard và outline đã dùng cùng thứ tự v
 - **Chromium r4:** sau ba sửa đổi hậu kiểm, đã duyệt lại đủ 40/40 trang ở 1600×900 và 720×1280; 0 trang tràn hiển thị, 0 lỗi KaTeX. Lỗi duy nhất là favicon 404 vô hại.
 - **Codex Slides:** dự án bền vững `20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls` đã được thay dàn ý bằng đúng 40 trang và thứ tự của RevealJS. Lệnh kết xuất 40 trang không trả trạng thái sau hơn bốn phút nên đã dừng; Browser tích hợp vẫn không khả dụng. Vì vậy, không tuyên bố đã rà trực quan bằng Codex Slides; cổng trực quan dùng Chromium cục bộ và contact sheet.
 - Hai trang chỉ mục đã được bổ sung liên kết Bài 03; commit và push do điều phối viên thực hiện sau cổng cuối.
+
+## 10. Hậu kiểm bổ sung sau phản biện điều kiện miền
+
+- D03, D04 và ghi chú D05 đã được đồng bộ theo điều kiện dừng tổng quát trên miền $D$: dùng nón pháp tuyến, nêu trường hợp $D=\mathbb R^n$, và khóa đủ giả thiết của bài toán lồi gồm miền lồi, bất đẳng thức lồi, đẳng thức affine, cùng dạng khả vi hoặc dưới vi phân phù hợp.
+- E04 đã được sửa để nêu đủ đối ngẫu mạnh và đạt nghiệm đối ngẫu trước quan hệ dưới gradient; chỉ trường hợp khả vi mới dùng gradient duy nhất.
+- `math-spec.md` phân biệt đúng $u=8$ là ràng buộc hoạt động suy biến với $\lambda^*(8)=0$, còn chỉ $u>8$ mới không hoạt động.
+- `plan.md`, outline, storyboard, source map và HTML giữ nguyên thứ tự DOM cuối gồm 40 ID, 7 section ngoài và 40 khối ghi chú. Mục Lecture 5 trong `sources/MIT/README.md` được ghi là trạng thái do điều phối viên xác minh; tác tử GLM không đọc tệp đó.
+- Lượt chỉnh sửa này chưa chạy lại Chromium hoặc Codex Slides. Các trang D03, D04, D05 và E04 cần được điều phối viên kiểm tra hiển thị ở cổng trực quan cuối; không dùng kết quả Chromium r4 trước chỉnh sửa làm bằng chứng cho bố cục mới.
+
+## 11. Hợp nhất phản biện về tiên quyết và mã nội bộ
+
+- Phần mở đầu báo trước nội tương đối và dưới gradient là khái niệm sẽ được định nghĩa tại chỗ. Trang Slater định nghĩa $\operatorname{relint}D$ là nội trong bao affine; trang độ nhạy định nghĩa dưới gradient bằng bất đẳng thức đường đỡ trước khi dùng nhân tử.
+- Ví dụ KKT một biến dùng $\nabla_xL=0$ và không nhắc nón pháp tuyến trước khi khái niệm này được định nghĩa. Điều kiện bù trừ nêu rõ nghiệm gốc, nghiệm đối ngẫu, tính đạt và $p^*=d^*$.
+- Ghi chú QP phân biệt $\operatorname{dom}g=\mathbb R$ với miền khả thi đối ngẫu $\lambda\ge0$. Ghi chú hình học nối Slater với siêu phẳng đỡ có hệ số mục tiêu khác 0 và hệ số góc hữu hạn sau chuẩn hóa.
+- Mọi mã vị trí nội bộ đã được loại khỏi mặt trang chiếu và ghi chú diễn giả; mã chỉ còn trong `data-slide-id` và tài liệu planning.
+- Mục 8 của kế hoạch đã khớp DOM: ví dụ A02 đi trước trực quan A03; B01→B03→B02 và C01→C03→C02 là thứ tự có chủ ý; A08 gộp ứng dụng với bài tập.
+
+## 12. Kiểm định kỹ thuật cuối ngày 2026-08-30
+
+- Bỏ `maximum-scale` và `user-scalable` khỏi viewport để không chặn phóng đại hỗ trợ tiếp cận; thêm favicon dữ liệu rỗng để loại lỗi 404 không liên quan.
+- Cổng 8765 đang được một kho khác sử dụng nên không bị dừng hoặc thay đổi. Kiểm định HTTP dùng cổng tạm 8876; HTML, bốn SVG cục bộ, RevealJS, plugin, KaTeX và phông đều trả 200 hoặc 304.
+- Chromium duyệt đúng 40 cặp chỉ số RevealJS ở 1280 × 720, 800 × 600 và 720 × 900. Không có lỗi bảng điều khiển, lỗi trang hoặc yêu cầu thất bại.
+- Kiểm tra trực quan riêng P01, B04, C05, D03, D04, D05, E04, E05, E06 và Z02. Các định nghĩa mới tại B04/E04 nằm trọn khung; E05 hiển thị đủ ba miền; E06 sát đáy nhưng không cắt nội dung.
+- Cảnh báo hộp đo hình học tại B04/E06 đến từ phần điều khiển/biên thẻ gần đáy; `scrollWidth` và `scrollHeight` đều không vượt vùng chứa, ảnh chụp xác nhận nội dung nhìn thấy không tràn.
+- Tái kiểm sinh viên, toán học và mạch kể chuyện sau sửa đều đạt bằng GLM 5.3 Flash qua OpenRouter. Codex Slides vẫn không khả dụng; không dùng nó làm bằng chứng kiểm định.

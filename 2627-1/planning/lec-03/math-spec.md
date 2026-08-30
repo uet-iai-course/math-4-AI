@@ -25,7 +25,7 @@ $$
 
 - Điều kiện khả thi đối ngẫu của nhân tử bất đẳng thức là $\lambda\succeq 0$; nhân tử đẳng thức $\nu$ không bị ràng buộc dấu.
 - Với mọi điểm khả thi đối ngẫu, $g(\lambda,\nu)\leq p^\star$.
-- Khi dùng nhiễu vế phải, đặc tả này cố định quy ước $f_i(x)\leq u_i$ và $h_j(x)=v_j$. Theo quy ước đó, nếu hàm giá trị khả vi tại $(0,0)$ thì $\partial p^\star/\partial u_i=-\lambda_i^\star$ và $\partial p^\star/\partial v_j=-\nu_j^\star$.
+- Khi dùng nhiễu vế phải, đặc tả này cố định quy ước $f_i(x)\leq u_i$ và $h_j(x)=v_j$. Theo định nghĩa, $s\in\partial p^\star(0,0)$ khi $p^\star(u,v)\geq p^\star(0,0)+s^T(u,v)$ với mọi $(u,v)$. Nếu bài không nhiễu có đối ngẫu mạnh và nghiệm đối ngẫu đạt được thì có thể chọn $s=(-\lambda^\star,-\nu^\star)$. Nếu hàm giá trị khả vi tại $(0,0)$, gradient duy nhất bằng cặp này; theo từng thành phần, $\partial p^\star/\partial u_i=-\lambda_i^\star$ và $\partial p^\star/\partial v_j=-\nu_j^\star$.
 - Nếu viết ràng buộc dưới dạng $f_i(x)+u_i\leq 0$, dấu độ nhạy đổi lại. Bộ trang chiếu không được trộn hai quy ước.
 
 Nguồn kiểm chứng chính: Boyd và Vandenberghe, *Convex Optimization*, Chương 5; `sources/dual.pdf`, trang 5-2 đến 5-25; `sources/Bài tập chương 4.pdf`, Bài 1.
@@ -203,14 +203,14 @@ Không được phát biểu Slater là điều kiện cần của đối ngẫu
 
 ### 2.6. Điều kiện KKT
 
-Bốn nhóm điều kiện là
+Bốn nhóm điều kiện trên miền $D$ lồi là
 
 $$
 \begin{aligned}
 &\text{khả thi gốc:} && (x-2)(x-4)\leq 0,\\
 &\text{khả thi đối ngẫu:} && \lambda\geq 0,\\
 &\text{bù trừ:} && \lambda(x-2)(x-4)=0,\\
-&\text{dừng:} && 2x+\lambda(2x-6)=0.
+&\text{dừng:} && 0\in 2x+\lambda(2x-6)+N_D(x),\ \text{với } D=\mathbb R,\ N_D(x)=\{0\}.
 \end{aligned}
 $$
 
@@ -300,7 +300,8 @@ nên $f_0(x)\geq p(0)-\lambda^\star u$; lấy infimum trên tập khả thi nhi�
 Hai trường hợp biên cần nêu trong ghi chú:
 
 - tại $u=-1$, Slater không còn thỏa và công thức nhân tử từ đạo hàm không áp dụng trực tiếp;
-- tại $u\geq 8$, ràng buộc không hoạt động, nghiệm là $x=0$ và nhân tử tương ứng bằng $0$.
+- tại đúng $u=8$, ràng buộc vẫn hoạt động nhưng suy biến với $\lambda^\star(8)=0$;
+- chỉ khi $u>8$, ràng buộc mới không hoạt động, nghiệm là $x=0$ và nhân tử bằng $0$.
 
 ## 3. Bài tập chuyển giao QP hai biến
 

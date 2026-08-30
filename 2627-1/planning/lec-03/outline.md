@@ -28,7 +28,7 @@ $$
 | Mạch | Trang | Luận điểm trung tâm | Vai trò |
 |---|---|---|---|
 | P | P00 | Đối ngẫu Lagrange là chủ đề của Buổi 3 | định danh |
-| P | P01 | Bài dùng lại dạng chuẩn, tính lồi, gradient và thứ tự theo nón | tiên quyết |
+| P | P01 | Bài dùng lại dạng chuẩn, tính lồi, gradient và thứ tự theo nón; nội tương đối và dưới gradient sẽ được định nghĩa tại chỗ | tiên quyết |
 | P | P02 | Trích nguyên LLO4–5; tách Slater, KKT và độ nhạy thành sản phẩm bổ trợ | mục tiêu |
 | P | P03 | Tuyến cận → khít → hình học → KKT → độ nhạy giải quyết vấn đề trung tâm | bản đồ |
 | A | A01 | Nghiệm ứng viên chưa phải là chứng nhận nếu chưa có cận | nhu cầu |
@@ -42,7 +42,7 @@ $$
 | B | B01 | Cận dưới chỉ hữu ích để chứng nhận khi biết độ lỏng | nhu cầu |
 | B | B03 | Ví dụ đạt cực đại tại $\lambda^*=2$, $d^*=5$ | ví dụ |
 | B | B02 | Đặt tên đối ngẫu yếu, mạnh và khoảng sau khi quan sát ví dụ khít | hình thức |
-| B | B04 | Slater tinh chỉnh dùng $\operatorname{relint}D$, khả thi affine và chặt cho bất đẳng thức phi affine | định lý |
+| B | B04 | Định nghĩa nội tương đối là nội trong bao affine, rồi dùng $\operatorname{relint}D$ trong Slater tinh chỉnh | định lý |
 | B | B05 | Điểm $x=3$ áp Slater và đóng khoảng đối ngẫu | ứng dụng |
 | B | B06 | Phân loại giả thiết trước khi kết luận đối ngẫu mạnh | bài tập |
 | C | C01 | LLO5 cần giải thích hình học của cận thay vì chỉ đọc công thức | nhu cầu |
@@ -52,16 +52,16 @@ $$
 | C | C05 | Hệ số góc $-\lambda^*$, pháp tuyến $(\lambda^*,1)$ và hạng $\lambda^*\nabla f$ nối hình học với KKT | ứng dụng |
 | C | C06 | Đọc đường đỡ để xác định $g(\lambda)$, $p^*$ và độ khít | bài tập LLO5 |
 | D | D01 | Cần hệ điều kiện cục bộ thay cho so sánh mọi điểm khả thi | nhu cầu |
-| D | D05 | Dùng phương trình $\partial_xL=2x+\lambda(2x-6)=0$ để so sánh $x=2$ và $x=4$ | ví dụ dẫn nhập |
+| D | D05 | Trước khi giới thiệu nón pháp tuyến, dùng $\nabla_xL=0$ cho ví dụ có biến chạy trên toàn $\mathbb R$ để so sánh $x=2$ và $x=4$ | ví dụ dẫn nhập |
 | D | D02 | Bù trừ xác định ràng buộc hoạt động khi khoảng bằng không | trực quan/hình thức |
-| D | D03 | KKT gồm đúng bốn nhóm điều kiện | hình thức |
-| D | D04 | Tính cần và đủ của KKT phụ thuộc tính lồi và điều kiện chính quy | giới hạn |
+| D | D03 | KKT gồm đúng bốn nhóm; điều kiện dừng tổng quát là $0\in\nabla_xL(x^*,\lambda^*,\nu^*)+N_D(x^*)$ | hình thức |
+| D | D04 | Tính cần và đủ phụ thuộc $D$ lồi, bất đẳng thức lồi, đẳng thức affine, tính khả vi hoặc dạng dưới vi phân tương ứng, và điều kiện chính quy | giới hạn |
 | D | D06 | KKT diễn giải đánh đổi trong hồi quy có ràng buộc chuẩn | ứng dụng AI |
 | D | D07 | Dùng kết quả QP ở A08 để chỉ kiểm tra Slater, bốn nhóm KKT và giả thiết kết luận | bài tập |
 | E | E01 | Nhân tử còn đo tác động của việc nới ràng buộc | nhu cầu |
 | E | E02 | Nới $u$ trong ví dụ làm miền khả thi rộng hơn và $p^*(u)$ giảm | ví dụ/trực quan |
 | E | E03 | Định nghĩa tổng quát $p^*(u,v)$ và cận toàn cục | hình thức/định lý |
-| E | E04 | Khi khả vi, đạo hàm bằng âm nhân tử theo quy ước đã khóa | hình thức/giới hạn |
+| E | E04 | Định nghĩa dưới gradient bằng bất đẳng thức đường đỡ; đối ngẫu mạnh và đạt nghiệm cho $(-\lambda^*,-\nu^*)\in\partial p^*(0,0)$ | hình thức/giới hạn |
 | E | E05 | Áp dụng đầy đủ: $\lambda^*(0)=2$; tại $u=8$ ràng buộc hoạt động nhưng nhân tử bằng 0; với $u>8$ ràng buộc không hoạt động | ứng dụng |
 | E | E06 | Với $F(x)\in\mathbb S^r$, nhân tử $Z\in\mathbb S_+^r$ cùng cấp; kiểm tra hạng ghép SDP | mở rộng/bài tập |
 | Z | Z01 | Quy trình cận → khít → hình học → KKT → độ nhạy, kèm cầu nối nhân tử theo nón, trả lời P03 | tổng kết |
