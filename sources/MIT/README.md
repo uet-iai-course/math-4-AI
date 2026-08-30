@@ -107,3 +107,34 @@ Quét checksum toàn bộ `sources/` không phát hiện bản thứ hai có cù
 - Bộ trang chiếu phải diễn giải bằng tiếng Việt và vẽ lại sơ đồ, đồ thị hoặc hình kỹ thuật thành tài sản cục bộ. Không sao chụp trang PDF làm hình trình chiếu.
 - Khi chuyển thể nội dung, phải ghi công Stephen Boyd, MIT 6.079 / 6.975, Fall 2009, nêu thay đổi hoặc việc vẽ lại và tuân thủ điều kiện phi thương mại, chia sẻ tương tự của CC BY-NC-SA 4.0.
 - Giấy phép MIT OCW không tự động bao phủ tài sản bên thứ ba. Không dùng trực tiếp tài sản có quyền riêng nếu chưa xác minh; trang khóa học có hình bên thứ ba nhưng Lecture 04 không dự kiến dùng hình đó.
+
+## MIT 15.093J / 6.255J — Lecture 16: Dynamic Programming
+
+| Trường | Giá trị |
+|---|---|
+| Khóa học | Optimization Methods |
+| Mã khóa học | MIT 15.093J / 6.255J |
+| Học kỳ | Fall 2009 |
+| Tiêu đề tài nguyên | Lecture 16: Dynamic Programming |
+| Loại tài nguyên | Lecture Notes, PDF 9 trang |
+| Tác giả/giảng viên | Prof. Dimitris Bertsimas |
+| Trang khóa học | `https://ocw.mit.edu/courses/15-093j-optimization-methods-fall-2009/` |
+| Trang tài nguyên | `https://ocw.mit.edu/courses/15-093j-optimization-methods-fall-2009/resources/mit15_093j_f09_lec16/` |
+| URL tải PDF | `https://ocw.mit.edu/courses/15-093j-optimization-methods-fall-2009/189163b71d0f322315c5c5324a3bc5e6_MIT15_093J_F09_lec16.pdf` |
+| Ngày tải và kiểm tra nguồn | 2026-08-30 |
+| Giấy phép | Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International, CC BY-NC-SA 4.0 |
+| Điều khoản sử dụng | `https://ocw.mit.edu/pages/privacy-and-terms-of-use/` |
+| Kích thước | 184524 byte |
+| SHA-256 | `b5d887a48ea1a21b59f5fedd9247049979a3ce7c6c15db0e0629a232288909fd` |
+| Đường dẫn cục bộ | `sources/MIT/189163b71d0f322315c5c5324a3bc5e6_MIT15_093J_F09_lec16.pdf` |
+| Vai trò nguồn | Nguồn trục chính thức cho quy hoạch động hữu hạn tất định: mô hình hóa quyết định theo giai đoạn, chọn trạng thái, chuyển trạng thái, truy hồi giá trị, phương trình Bellman, độ phức tạp và tái dựng nghiệm; các phần ngẫu nhiên chỉ dùng để phân biệt phạm vi, không làm trục của Lecture 07 |
+| Bài giảng dự kiến sử dụng | Lecture 07 — Quy hoạch động hữu hạn tất định |
+
+### Phạm vi kế thừa và ghi công cho Lecture 07
+
+- Dùng bài toán ba lô để hình thành trạng thái và truy hồi; dùng bài toán người du lịch hoặc nhân chuỗi ma trận làm ví dụ chuyển giao và phân tích độ phức tạp.
+- Kế thừa bốn bước xây dựng thuật toán: biểu diễn lời giải thành chuỗi quyết định, chọn trạng thái tóm tắt quá khứ liên quan, xác định chuyển trạng thái và viết truy hồi chi phí tối ưu. Diễn giải lại bằng tiếng Việt và bổ sung điều kiện biên, thứ tự tính bảng cùng bước truy vết nghiệm khi soạn bài.
+- Dùng khung hệ động lực thời gian rời rạc và phương trình Bellman để thống nhất ký hiệu. Với Lecture 07, chuyên biệt hóa về trường hợp hữu hạn tất định bằng cách bỏ biến ngẫu nhiên và kỳ vọng; không kế thừa phần điều khiển tồn kho hoặc giao dịch ngẫu nhiên làm nội dung chính.
+- Không sao chụp trang PDF vào bộ trang chiếu. Sơ đồ trạng thái, bảng quy hoạch động và đồ thị chuyển trạng thái phải được vẽ lại thành SVG hoặc HTML cục bộ, có mô tả thay thế, giữ đúng quan hệ toán học và ghi công Prof. Dimitris Bertsimas, MIT 15.093J / 6.255J, Lecture 16, Fall 2009.
+- PDF không nêu tài sản hình ảnh bên thứ ba và kiểm tra cục bộ không phát hiện ảnh nội dung raster đáng kể. Tuy vậy, giấy phép MIT OCW không tự động bao phủ tài sản bên thứ ba; không dùng trực tiếp tài sản có ghi quyền riêng nếu phát hiện trong quá trình soạn.
+- Nguồn này đủ cho phạm vi trục của Lecture 07 nên không tải MIT 6.231 Lectures 2–3. Các thay đổi, lược bỏ, chuyên biệt hóa tất định và việc vẽ lại phải được ghi trong `review-log.md` của Lecture 07.

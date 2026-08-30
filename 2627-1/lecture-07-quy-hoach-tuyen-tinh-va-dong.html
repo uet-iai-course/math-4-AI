@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+  <title>Bài 07: Quy hoạch tuyến tính và quy hoạch động</title>
+  <link rel="stylesheet" href="revealjs/dist/reset.css"/>
+  <link rel="stylesheet" href="revealjs/dist/reveal.css"/>
+  <link rel="stylesheet" href="revealjs/dist/theme/white.css"/>
+  <link rel="stylesheet" href="plugin/highlight/monokai.css"/>
+  <link rel="stylesheet" href="lecture-style.css"/>
+  <style>
+    .reveal .slides section[data-slide-id]{font-size:.8em}.reveal h1,.reveal h2{color:#2f3e7a}.reveal h3 .katex,.reveal h3 .katex *{text-transform:none!important}.note-source{font-size:.9em;color:#444}.box{border-left:5px solid #b15a2b;background:#f7efe6;padding:.5em .7em;border-radius:8px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.7em}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:.55em}.card{border:1px solid #ddd;border-radius:8px;padding:.45em .6em}.math-large{font-size:1.08em;text-align:center}.formula{font-size:.92em;text-align:center}.ok{color:#2e7d32;font-weight:700}.warn{color:#a33a1f;font-weight:700}.reveal table{font-size:.86em}.reveal th{background:#f7efe6}.visual img{width:100%;height:auto;max-height:410px}.check{background:#edf4ff;border:2px solid #2f3e7a;border-radius:8px;padding:.42em .62em}.tight li{margin:.12em 0}.small-table{font-size:.82em!important}.responsive{display:grid;grid-template-columns:minmax(360px,1.15fr) minmax(0,.85fr);gap:.7em;align-items:center}.algorithm{font-size:.9em;text-align:left;background:#f5f7fb;border-radius:8px;padding:.5em .7em}.algorithm li{margin:.12em 0}.flow{display:flex;align-items:stretch;justify-content:center;gap:.35em}.flow .node{flex:1;border:1px solid #ccd3e3;border-radius:8px;padding:.4em}.flow .arrow{align-self:center;color:#b15a2b;font-size:1.4em}@media(max-width:760px){.responsive,.grid2,.grid3{grid-template-columns:1fr}.flow{display:grid;grid-template-columns:1fr}.flow .arrow{transform:rotate(90deg);justify-self:center}.visual img{max-height:280px}.reveal .slides section[data-slide-id]{font-size:.75em}.reveal .footer,.reveal .controls{display:none!important}}
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section>
+  <section data-slide-id="P00">
+    <h1>Quy hoạch tuyến tính và quy hoạch động</h1>
+    <h3>Hình học của quyết định tuyến tính · Bài 07</h3>
+    <p>Cơ sở toán học cho AI · Học kỳ 1, 2026–2027</p>
+    <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
+    <aside class="notes"><p>Bài học hoàn tất quy hoạch tuyến tính trước khi dùng một mạch ngắn về quy hoạch động hữu hạn tất định. Trọng tâm là chuyển bài toán thành mô hình, đọc hình học đa diện và hiểu vì sao có thể tìm nghiệm ở điểm cực.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Buổi 7; Bertsimas và Tsitsiklis (1997), Chương 1–2.</p></aside>
+  </section>
+  <section data-slide-id="P01">
+    <h2>Tiên quyết và quy ước</h2>
+    <div class="grid2"><div class="card"><h3>Đầu vào</h3><ul><li>Hệ phương trình và bất phương trình tuyến tính.</li><li>Độc lập tuyến tính, hạng ma trận.</li><li>Tập lồi, tổ hợp lồi.</li><li>Giá trị nhỏ nhất và lớn nhất.</li></ul></div><div class="card"><h3>Ký hiệu</h3><ul><li>$x,c\in\mathbb R^n$; $A\in\mathbb R^{m\times n}$; $b\in\mathbb R^m$.</li><li>Bất đẳng thức véc-tơ hiểu theo từng thành phần.</li><li>$P$ là miền khả thi; $V(P)$ là tập đỉnh.</li><li>Hàm mục tiêu luôn nêu rõ chiều tối ưu.</li></ul></div></div>
+    <aside class="notes"><p>Kiểm tra người học phân biệt biến quyết định với dữ kiện. Khi đổi từ cực đại sang cực tiểu, phải đổi dấu mục tiêu; khi thêm biến phụ, phải nêu miền không âm.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§1.1–2.1.</p></aside>
+  </section>
+  <section data-slide-id="P02">
+    <h2>Mục tiêu học tập</h2>
+    <div class="grid3"><div class="card"><h3>LLO17 · CLO1</h3><p>Lập một quy hoạch tuyến tính đủ biến, đơn vị, mục tiêu, ràng buộc và miền biến.</p></div><div class="card"><h3>LLO18 · CLO1</h3><p>Chuyển dạng chuẩn; nhận biết nghiệm cơ sở khả thi, điểm cực và trạng thái tối ưu.</p></div><div class="card"><h3>Cầu nối nội bộ</h3><p>So sánh quyết định một lần trong LP với chuỗi quyết định hữu hạn giải bằng Bellman.</p></div></div>
+    <aside class="notes"><p>Hai thẻ đầu là chuẩn đầu ra chính thức và được kiểm trọn trong phần LP. Thẻ thứ ba chỉ báo trước cầu nối khái niệm: LP chọn một véc-tơ quyết định, còn DP chọn một chuỗi quyết định theo trạng thái. Không gán thêm LLO hoặc CLO cho phần DP.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, LLO17–18; cấu trúc cập nhật trong tài liệu người dùng cung cấp.</p></aside>
+  </section>
+  <section data-slide-id="P03">
+    <h2>Bản đồ quyết định</h2>
+    <div class="flow"><div class="node"><strong>LP: mô hình</strong><br/>biến–mục tiêu–ràng buộc</div><div class="arrow">→</div><div class="node"><strong>LP: cấu trúc</strong><br/>đa diện–điểm cực–nghiệm cơ sở</div><div class="arrow">→</div><div class="node"><strong>LP: tìm kiếm</strong><br/>đỉnh kề cải thiện</div><div class="arrow">→</div><div class="node"><strong>Đổi đối tượng</strong><br/>véc-tơ → chuỗi quyết định</div><div class="arrow">→</div><div class="node"><strong>DP hữu hạn</strong><br/>trạng thái–Bellman</div></div>
+    <div class="check"><strong>Vấn đề trung tâm:</strong> khai thác cấu trúc nào để tránh duyệt mọi điểm khả thi của LP và mọi chuỗi quyết định của DP?</div>
+    <aside class="notes"><p>Ba nút đầu tạo tuyến đánh giá LLO17–18. Nút thứ tư là ranh giới khái niệm, không phải phép biến đổi một LP thành DP. Mạch cuối chỉ giới thiệu Bellman trong bài toán hữu hạn tất định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997), Chương 1–2; MIT 15.093J, Bài 16.</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="A01">
+    <h1><span class="text-light">A.</span><br/>Mô hình hóa quy hoạch tuyến tính</h1>
+    <div class="box">Một quyết định thực tế chỉ trở thành bài toán tối ưu khi biến, mục tiêu, giới hạn và đơn vị cùng được xác định.</div>
+    <ul><li>Quyết định bao nhiêu đơn vị mỗi sản phẩm.</li><li>Mỗi đơn vị tạo lợi ích tuyến tính.</li><li>Mỗi nguồn lực tạo một giới hạn tuyến tính.</li></ul>
+    <aside class="notes"><p>Nhu cầu xuất phát từ bài toán phân bổ tài nguyên. Một danh sách dữ kiện chưa phải mô hình; cần xác định đại lượng nào được lựa chọn và đại lượng nào cố định.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §1.1.</p></aside>
+  </section>
+  <section data-slide-id="A02">
+    <h2>Ví dụ hộp hạt</h2>
+    <p>Một cơ sở đóng hai loại hộp. Đặt $x_1,x_2$ là số lô hộp loại 1 và 2.</p>
+    <table><thead><tr><th>Đại lượng</th><th>Loại 1</th><th>Loại 2</th><th>Giới hạn</th></tr></thead><tbody><tr><td>Nhu cầu riêng</td><td>$x_1$</td><td>$x_2$</td><td>$30$; $20$</td></tr><tr><td>Nguồn lực chung</td><td>$1$</td><td>$2$</td><td>$54$</td></tr><tr><td>Lợi ích</td><td>$2$</td><td>$3$</td><td>cực đại</td></tr></tbody></table>
+    <div class="box">Miền biến: $x_1,x_2\ge0$. Trong mô hình liên tục, hai biến không bị buộc nguyên.</div>
+    <aside class="notes"><p>Dữ kiện được chọn để theo dõi xuyên bài. “Lô hộp” làm rõ vì sao có thể dùng biến liên tục; nếu từng hộp bắt buộc nguyên thì đó là quy hoạch nguyên, không phải phạm vi chính của bài này.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo theo mô hình sản xuất trong Bertsimas và Tsitsiklis (1997), §1.2.</p></aside>
+  </section>
+  <section data-slide-id="A03">
+    <h2>Ràng buộc từ giới hạn</h2>
+    <div class="grid3"><div class="card"><h3>Loại 1</h3><div class="formula">$$x_1\le30$$</div></div><div class="card"><h3>Loại 2</h3><div class="formula">$$x_2\le20$$</div></div><div class="card"><h3>Nguồn lực chung</h3><div class="formula">$$x_1+2x_2\le54$$</div></div></div>
+    <div class="check"><strong>Câu hỏi:</strong> điểm $(30,20)$ vi phạm giới hạn nào và vượt bao nhiêu đơn vị?</div>
+    <aside class="notes"><p>Điểm $(30,20)$ thỏa hai giới hạn riêng nhưng dùng $30+2\cdot20=70$ đơn vị nguồn lực chung, vượt $16$. Bài kiểm tra buộc người học đọc hệ số theo đúng đơn vị.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; phép tính kiểm tra trực tiếp.</p></aside>
+  </section>
+  <section data-slide-id="A04">
+    <h2>Mục tiêu và phương án ứng viên</h2>
+    <div class="math-large">$$\max\ z=2x_1+3x_2$$</div>
+    <table><thead><tr><th>Phương án</th><th>Khả thi</th><th>$z$</th></tr></thead><tbody><tr><td>$(30,12)$</td><td class="ok">có</td><td>$96$</td></tr><tr><td>$(14,20)$</td><td class="ok">có</td><td>$88$</td></tr><tr><td>$(30,20)$</td><td class="warn">không</td><td>không so sánh</td></tr></tbody></table>
+    <div class="box">Chỉ so sánh giá trị mục tiêu giữa các phương án khả thi.</div>
+    <aside class="notes"><p>Kiểm tra: $(30,12)$ dùng đúng $54$ đơn vị nguồn lực chung và cho $2\cdot30+3\cdot12=96$. Điểm $(14,20)$ cũng dùng đúng $54$ nhưng chỉ cho $2\cdot14+3\cdot20=88$. Đây chưa phải chứng minh tối ưu; hình học sẽ cung cấp tập ứng viên hữu hạn.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; các đỉnh và giá trị được kiểm tra đại số.</p></aside>
+  </section>
+  <section data-slide-id="A05">
+    <h2>Định nghĩa quy hoạch tuyến tính</h2>
+    <p><strong>Định nghĩa.</strong> Một quy hoạch tuyến tính (LP) tối ưu hàm tuyến tính trên miền xác định bởi hữu hạn phương trình và bất phương trình tuyến tính.</p>
+    <div class="math-large">$$\max_{x\in\mathbb R^n}\ c^Tx\quad\text{với}\quad Ax\le b,\quad x\ge0.$$</div>
+    <div class="grid3"><div class="card"><strong>Đầu vào</strong><p>$A,b,c$ và chiều tối ưu.</p></div><div class="card"><strong>Đầu ra</strong><p>trạng thái và nghiệm tối ưu nếu có.</p></div><div class="card"><strong>Ranh giới</strong><p>$x_1x_2$, $x_1^2$ là phi tuyến; điều kiện biến nguyên tạo lớp bài toán khác.</p></div></div>
+    <aside class="notes"><p>Dạng hiển thị là một quy ước, không phải dạng duy nhất. Hệ số và vế phải là dữ kiện; $x$ là quyết định. Các tích biến hoặc lũy thừa làm mất tính tuyến tính. Điều kiện biến nguyên không làm biểu thức thành phi tuyến, nhưng làm miền quyết định rời rạc và chuyển bài toán sang quy hoạch nguyên.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §1.1.</p></aside>
+  </section>
+  <section data-slide-id="A07">
+    <h2>Hồi quy với mất mát chuẩn $L_1$</h2>
+    <p>Cho $a_i\in\mathbb R^n$, $b_i\in\mathbb R$, $x\in\mathbb R^n$. Đặt $t_i\in\mathbb R_+$ để tối thiểu hóa sai số tuyệt đối:</p>
+    <div class="formula">$$-t_i\le a_i^Tx-b_i\le t_i,\qquad i=1,\ldots,m.$$</div>
+    <div class="math-large">$$\min_{x,t}\ \sum_{i=1}^m t_i$$</div>
+    <div class="box"><strong>Ví dụ một chiều:</strong> $(a_1,b_1)=(1,1)$, $(a_2,b_2)=(1,3)$ cho $\min_x |x-1|+|x-3|$; mọi $x\in[1,3]$ đều tối ưu với giá trị $2$.</div>
+    <aside class="notes"><p>Hai bất phương trình buộc $t_i\ge|a_i^Tx-b_i|$. Vì mục tiêu giảm tổng $t_i$, tại tối ưu có dấu bằng. Ví dụ một chiều cho thấy phép chuyển là tương đương và nghiệm không nhất thiết duy nhất.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §1.3; ví dụ tự tạo.</p></aside>
+  </section>
+  <section data-slide-id="A08">
+    <h2>Bài tập dựng mô hình</h2>
+    <div class="check"><strong>Câu hỏi:</strong> một hệ thống AI phân bổ thời gian xử lý cho hai luồng. Mỗi đơn vị $x_1,x_2$ cho lợi ích $4,5$; giới hạn $x_1\le8$, $x_2\le6$, $2x_1+x_2\le14$. Hãy viết LP đầy đủ.</div>
+    <ol class="algorithm"><li>Nêu biến và đơn vị.</li><li>Viết chiều cùng hàm mục tiêu.</li><li>Viết mọi ràng buộc và miền biến.</li><li>Kiểm tra điểm $(4,6)$.</li></ol>
+    <aside class="notes"><p>Đáp án: cực đại $4x_1+5x_2$ với ba giới hạn đã cho và $x\ge0$. Điểm $(4,6)$ khả thi vì $2\cdot4+6=14$; giá trị mục tiêu bằng $46$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo để đo LLO17.</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="B01">
+    <h1><span class="text-light">B.</span><br/>Dạng chuẩn và đa diện</h1>
+    <div class="box">Mô hình đại số cần một hình học chung để mô tả toàn bộ miền khả thi và một dạng chung để liên hệ đỉnh với hệ phương trình.</div>
+    <ul><li>Giao của các nửa không gian tạo đa diện.</li><li>Biến phụ chuyển bất phương trình thành phương trình.</li><li>Nghiệm cơ sở khả thi mã hóa một đỉnh bằng đại số.</li></ul>
+    <aside class="notes"><p>Mạch này nhận mô hình hộp hạt và chuyển từ danh sách ràng buộc sang cấu trúc hình học. Mục tiêu chưa quyết định miền; nó chỉ chọn hướng đường mức.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.1–2.3.</p></aside>
+  </section>
+  <section data-slide-id="B02">
+    <h2>Đa diện và đường mức</h2>
+    <div class="responsive visual"><img src="img/lec-07/polyhedron-level-sets.svg" alt="Miền khả thi hộp hạt có năm đỉnh; hai đường mức song song z bằng bảy mươi hai và chín mươi sáu, trong đó đường cuối đi qua đỉnh ba mươi, mười hai."/><div><ul><li>Miền khả thi là phần giao của năm nửa không gian.</li><li>Đường mức $2x_1+3x_2=\alpha$ song song khi $\alpha$ đổi.</li><li>Đường mức cuối chạm tại $(30,12)$.</li></ul></div></div>
+    <aside class="notes"><p>Năm đỉnh là $(0,0),(30,0),(30,12),(14,20),(0,20)$. Nét đứt là mức $z=72$; đường đỏ song song là mức $z=96$ và đi qua $(30,12)$. So sánh các đỉnh cho giá trị $0,60,96,88,60$.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.1; hình tự vẽ.</p></aside>
+  </section>
+  <section data-slide-id="B03">
+    <h2>Định nghĩa đa diện</h2>
+    <p><strong>Định nghĩa.</strong> Đa diện là tập nghiệm của hữu hạn bất phương trình tuyến tính:</p>
+    <div class="math-large">$$P=\{x\in\mathbb R^n:Ax\le b\}.$$</div>
+    <ul><li>$P$ lồi vì là giao của các nửa không gian lồi.</li><li>$P$ có thể rỗng, bị chặn hoặc không bị chặn.</li><li><strong>Đa diện bị chặn</strong> không kéo dài vô hạn theo bất kỳ hướng nào.</li></ul>
+    <aside class="notes"><p>Không đồng nhất “đa diện” với “đa giác bị chặn”. Trong nhiều chiều, đa diện có thể kéo dài vô hạn. Tính lồi cho phép dùng tổ hợp lồi khi định nghĩa điểm cực.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.1.</p></aside>
+  </section>
+  <section data-slide-id="B04">
+    <h2>Dạng chuẩn</h2>
+    <p><strong>Quy ước của bài.</strong></p>
+    <div class="math-large">$$\max\ c^Tx\quad\text{với}\quad Ax=b,\quad x\ge0,$$</div>
+    <p>trong đó $A\in\mathbb R^{m\times n}$ có $\operatorname{rank}(A)=m\le n$ sau khi bỏ các phương trình phụ thuộc.</p>
+    <div class="box">Đổi cực tiểu thành cực đại bằng $\min c^Tx=-\max(-c^Tx)$.</div>
+    <aside class="notes"><p>Có nhiều quy ước “dạng chuẩn” trong tài liệu. Deck khóa rõ dạng phương trình và không âm. Điều kiện hạng đầy đủ theo hàng giúp định nghĩa cơ sở bằng ma trận vuông khả nghịch.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2.</p></aside>
+  </section>
+  <section data-slide-id="B05">
+    <h2>Biến phụ cho hộp hạt</h2>
+    <div class="formula">$$\begin{aligned}x_1+s_1&=30,\\x_2+s_2&=20,\\x_1+2x_2+s_3&=54,\\x_1,x_2,s_1,s_2,s_3&\ge0.\end{aligned}$$</div>
+    <div class="grid2"><div class="card"><h3>Ý nghĩa</h3><p>$s_i$ là phần tài nguyên chưa dùng ở giới hạn $i$.</p></div><div class="card"><h3>Ví dụ</h3><p>Tại $(30,12)$: $(s_1,s_2,s_3)=(0,8,0)$.</p></div></div>
+    <aside class="notes"><p>Mỗi bất phương trình kiểu “nhỏ hơn hoặc bằng” nhận một biến phụ không âm. Với bất phương trình “lớn hơn hoặc bằng”, dấu của biến dư phải được xử lý tương ứng.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2; ví dụ tự tạo.</p></aside>
+  </section>
+  <section data-slide-id="B06">
+    <h2>Nghiệm cơ sở khả thi</h2>
+    <p>Với $P=\{x:Ax=b,x\ge0\}$ và $\operatorname{rank}(A)=m$, chọn $B\subset\{1,\ldots,n\}$, $|B|=m$.</p>
+    <ol class="algorithm"><li>$A_B$ phải khả nghịch.</li><li>Đặt $x_N=0$ với $N=B^c$.</li><li>Tính $x_B=A_B^{-1}b$.</li><li>Nghiệm là <strong>cơ sở khả thi</strong> khi $x_B\ge0$.</li></ol>
+    <div class="box">Một nghiệm cơ sở khả thi tồn tại khi có ít nhất một cơ sở $B$ thỏa cả tính khả nghịch và điều kiện không âm.</div>
+    <aside class="notes"><p>Điều kiện $m\le n$ và hạng hàng đầy đủ là cần để chọn ma trận cơ sở vuông khả nghịch, nhưng chưa đủ cho tính khả thi. Phải kiểm $A_B^{-1}b\ge0$.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.2–2.3.</p></aside>
+  </section>
+  <section data-slide-id="B07">
+    <h2>Nghiệm cơ sở của bài hộp hạt</h2>
+    <div class="check"><strong>Câu hỏi:</strong> tại đỉnh $(x_1,x_2)=(30,12)$, hãy kiểm cơ sở $B=\{x_1,x_2,s_2\}$ cho hệ biến phụ của bài hộp hạt.</div>
+    <div class="formula">$$A_B=\begin{bmatrix}1&0&0\\0&1&1\\1&2&0\end{bmatrix},\qquad b=\begin{bmatrix}30\\20\\54\end{bmatrix}.$$</div>
+    <ol class="algorithm"><li>Kiểm $\det(A_B)\ne0$.</li><li>Đặt $s_1=s_3=0$.</li><li>Giải $A_B(x_1,x_2,s_2)^T=b$ và kiểm không âm.</li></ol>
+    <aside class="notes"><p>Ta có $\det(A_B)=-2\ne0$. Nghiệm cơ sở là $(x_1,x_2,s_2)=(30,12,8)$; cùng $s_1=s_3=0$, toàn bộ véc-tơ không âm. Vì vậy đây là nghiệm cơ sở khả thi của chính ví dụ xuyên bài, không phải một hệ rời rạc mới.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo theo Bertsimas và Tsitsiklis (1997), §2.2.</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="C01">
+    <h1><span class="text-light">C.</span><br/>Điểm cực và bảo đảm tối ưu</h1>
+    <div class="box">Miền khả thi có vô số điểm. Hình học điểm cực thu hẹp nơi cần tìm, nhưng chỉ dưới các giả thiết được nêu rõ.</div>
+    <ul><li>Định nghĩa hình học bằng tổ hợp lồi.</li><li>Đặc trưng đại số bằng nghiệm cơ sở khả thi.</li><li>Bảo đảm tồn tại và tối ưu tại điểm cực.</li></ul>
+    <aside class="notes"><p>Đây là bước nối từ hình học sang thuật toán. Không phát biểu “mọi nghiệm tối ưu đều là đỉnh”; khi mục tiêu song song với một cạnh, cả cạnh có thể tối ưu.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.3–2.5.</p></aside>
+  </section>
+  <section data-slide-id="C02">
+    <h2>Định nghĩa hình học của điểm cực</h2>
+    <p><strong>Định nghĩa.</strong> $v\in P$ là điểm cực nếu</p>
+    <div class="math-large">$$v=\lambda y+(1-\lambda)z,\quad y,z\in P,\quad 0&lt;\lambda&lt;1$$</div>
+    <p>chỉ có thể xảy ra khi $y=z=v$.</p>
+    <div class="box">Điểm nằm trong đoạn thẳng không tầm thường của $P$ không phải điểm cực.</div>
+    <aside class="notes"><p>Điều kiện $0<\lambda<1$ loại hai đầu mút của tổ hợp. Trên đa giác hai chiều, điểm cực chính là đỉnh theo trực giác; định nghĩa vẫn đúng trong nhiều chiều.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.3.</p></aside>
+  </section>
+  <section data-slide-id="C03">
+    <h2>Đặc trưng đại số</h2>
+    <p><strong>Định lý.</strong> Với $P=\{x:Ax=b,x\ge0\}$, $x\in P$ và $\operatorname{rank}(A)=m$, các mệnh đề sau tương đương:</p>
+    <ol><li>$x$ là điểm cực của $P$;</li><li>$x$ là nghiệm cơ sở khả thi;</li><li>các cột $A_j$ ứng với $x_j&gt;0$ độc lập tuyến tính.</li></ol>
+    <div class="box">Một điểm cực có nhiều nhất $m$ thành phần dương.</div>
+    <aside class="notes"><p>Điểm suy biến có thể có ít hơn $m$ thành phần dương và tương ứng với nhiều cơ sở. Định lý chỉ áp dụng sau khi đã khóa dạng chuẩn và hạng hàng đầy đủ.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.3.</p></aside>
+  </section>
+  <section data-slide-id="C04">
+    <h2>Ví dụ nhiều nghiệm tối ưu</h2>
+    <div class="math-large">$$\min\ -x_1-x_2\quad\text{với}\quad x_1+x_2\le2,\quad x_1,x_2\ge0.$$</div>
+    <div class="grid2"><div class="card"><h3>Điểm cực</h3><p>$(0,0)$, $(2,0)$, $(0,2)$.</p></div><div class="card"><h3>Tập nghiệm tối ưu</h3><p>Mọi điểm trên $x_1+x_2=2$, $x\ge0$.</p></div></div>
+    <div class="box">Có điểm cực tối ưu, nhưng điểm $(1,1)$ tối ưu mà không phải điểm cực.</div>
+    <aside class="notes"><p>Giá trị nhỏ nhất là $-2$. Ví dụ phân biệt phát biểu đúng “tồn tại một điểm cực tối ưu” với phát biểu sai “mọi nghiệm tối ưu đều là điểm cực”.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo theo Bertsimas và Tsitsiklis (1997), §2.5.</p></aside>
+  </section>
+  <section data-slide-id="C05">
+    <h2>Bảo đảm tồn tại điểm cực</h2>
+    <table><thead><tr><th>Phát biểu</th><th>Giả thiết</th><th>Kết luận</th></tr></thead><tbody><tr><td><strong>Định lý</strong></td><td>$P$ là đa diện không rỗng</td><td>$P$ có điểm cực $\Leftrightarrow$ $P$ không chứa đường thẳng</td></tr><tr><td><strong>Hệ quả dạng chuẩn</strong></td><td>$P=\{x:Ax=b,x\ge0\}$ không rỗng</td><td>$P$ có ít nhất một điểm cực</td></tr></tbody></table>
+    <div class="formula">$$x+td\in P\ \forall t\in\mathbb R\quad\Longrightarrow\quad d=0\ \text{ khi }x\ge0.$$</div>
+    <aside class="notes"><p><strong>Mục tiêu chứng minh:</strong> xác định khi một đa diện không rỗng có điểm cực và suy ra bảo đảm cho dạng chuẩn.</p><p><strong>Ý tưởng:</strong> một hướng đường thẳng hai phía ngăn mọi điểm là điểm cực; chiều ngược lại dùng cấu trúc hữu hạn của đa diện không chứa đường thẳng để thu được một điểm cực.</p><p><strong>Các bước:</strong> nếu đa diện chứa đường $x+td$, thì hướng $d\ne0$ thuộc không gian đường của đa diện; do đó với mọi $y\in P$, cả $y-d$ và $y+d$ đều thuộc $P$, nên $y$ không thể là điểm cực. Định lý đa diện cho chiều đảo. Với hệ quả dạng chuẩn, điều kiện $x+td\ge0$ cho cả $t$ dương lẫn âm buộc $d=0$.</p><p><strong>Điểm dùng giả thiết:</strong> tính không rỗng cần để kết luận tồn tại; cấu trúc đa diện hữu hạn cần cho chiều đảo; điều kiện $x\ge0$ loại mọi đường thẳng trong hệ quả.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.4.</p></aside>
+  </section>
+  <section data-slide-id="C06">
+    <h2>Điểm cực tối ưu và đỉnh kề</h2>
+    <p><strong>Định lý.</strong> Cho đa diện $P$ có ít nhất một điểm cực. Nếu $\max_{x\in P}c^Tx$ có giá trị tối ưu hữu hạn, thì có một điểm cực tối ưu.</p>
+    <div class="box"><strong>Bổ đề cầu nối.</strong> Nếu điểm cực $v$ chưa tối ưu, thì tồn tại một điểm cực $w$ kề $v$ sao cho $c^Tw&gt;c^Tv$.</div>
+    <aside class="notes"><p><strong>Mục tiêu chứng minh:</strong> chỉ ra rằng kiểm các đỉnh kề đủ để phát hiện một đỉnh chưa tối ưu và suy ra tồn tại đỉnh tối ưu.</p><p><strong>Ý tưởng:</strong> nón tiếp xúc tại $v$ được sinh bởi các hướng cạnh và các hướng suy thoái. Nếu có điểm tốt hơn, một hướng sinh phải cải thiện mục tiêu.</p><p><strong>Các bước:</strong> lấy $x\in P$ với $c^Tx&gt;c^Tv$, nên $d=x-v$ thuộc nón tiếp xúc và $c^Td&gt;0$. Phân rã $d$ theo các hướng cạnh và hướng suy thoái. Giá trị tối ưu hữu hạn buộc $c^Tr\le0$ với mọi hướng suy thoái $r$; do đó ít nhất một hướng cạnh có tích vô hướng dương và dẫn đến điểm cực kề $w$ với $c^Tw>c^Tv$. Đa diện có hữu hạn điểm cực, nên các bước cải thiện nghiêm ngặt phải dừng ở một điểm cực tối ưu.</p><p><strong>Điểm dùng giả thiết:</strong> “có điểm cực” loại đường thẳng và cho các hướng cạnh; “giá trị tối ưu hữu hạn” loại hướng suy thoái cải thiện. Suy biến có thể làm nhiều cơ sở biểu diễn cùng một điểm và gây quay vòng khi pivot, nhưng không làm mất sự tồn tại của điểm cực kề cải thiện.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.4–2.5.</p></aside>
+  </section>
+  <section data-slide-id="C07">
+    <h2>Bốn trạng thái của quy hoạch tuyến tính</h2>
+    <div class="visual"><img src="img/lec-07/lp-four-statuses.svg" alt="Bốn trường hợp: vô nghiệm, mục tiêu không bị chặn, tối ưu duy nhất và nhiều nghiệm tối ưu trên một cạnh."/></div>
+    <aside class="notes"><p>Bốn trạng thái dùng trong bài: vô nghiệm; khả thi nhưng giá trị mục tiêu không bị chặn theo chiều tối ưu; có giá trị tối ưu hữu hạn với nghiệm duy nhất; có giá trị tối ưu hữu hạn với nhiều nghiệm. Trong hai trường hợp hữu hạn, ít nhất một điểm cực tối ưu tồn tại dưới dạng chuẩn.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§1.1, 2.5; hình tự vẽ.</p></aside>
+  </section>
+  <section data-slide-id="C08">
+    <h2>Mô tả thuật toán ở mức ý niệm</h2>
+    <ol class="algorithm"><li><strong>Đầu vào:</strong> đa diện $P$ có điểm cực, $\max_{x\in P}c^Tx$ có giá trị tối ưu hữu hạn và một điểm cực xuất phát.</li><li>Tại điểm cực hiện tại, tìm một điểm cực kề có giá trị mục tiêu cải thiện nghiêm ngặt.</li><li>Chuyển sang điểm cực kề đó.</li><li><strong>Dừng:</strong> khi không còn điểm cực kề cải thiện; theo bổ đề đỉnh kề, điểm hiện tại tối ưu.</li></ol>
+    <div class="box"><strong>Trên bài hộp hạt:</strong> $(0,0)\to(30,0)\to(30,12)$, với $z:0\to60\to96$.</div>
+    <aside class="notes"><p>Chuỗi số cụ thể cho thấy mỗi bước giữ khả thi và cải thiện nghiêm ngặt. Điều kiện đầu vào khớp bổ đề đỉnh kề: đa diện phải có điểm cực và mục tiêu phải có giá trị tối ưu hữu hạn. Suy biến không làm sai tiêu chuẩn dừng ở mức đồ thị đỉnh; khó khăn xuất hiện khi một quy tắc pivot đi qua nhiều cơ sở của cùng một đỉnh và có thể quay vòng. Cách tìm điểm cực xuất phát, chọn cạnh và chống quay vòng thuộc phương pháp đơn hình ở Bài 08.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Chương 10.6; Bertsimas và Tsitsiklis (1997), §2.5; phép tính từ ví dụ hộp hạt.</p></aside>
+  </section>
+  <section data-slide-id="C09">
+    <h2>Đường đi qua các đỉnh kề</h2>
+    <div class="responsive visual"><img src="img/lec-07/conceptual-vertex-walk.svg" alt="Miền khả thi hộp hạt và đường qua hai cạnh từ không, không đến ba mươi, không rồi ba mươi, mười hai; mục tiêu tăng từ không lên sáu mươi rồi chín mươi sáu."/><div><ul><li>$(0,0)$: $z=0$.</li><li>$(30,0)$: $z=60$.</li><li>$(30,12)$: $z=96$, tối ưu.</li></ul></div></div>
+    <aside class="notes"><p>Đây là đường đi cụ thể trên đúng đa diện hộp hạt. Hai đoạn được tô đậm là hai cạnh của miền khả thi. Hình không mô tả phép pivot; nó chỉ cung cấp trực giác hình học cho bước “đỉnh kề cải thiện”.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.5; hình tự vẽ từ dữ kiện hộp hạt.</p></aside>
+  </section>
+  <section data-slide-id="C10">
+    <h2>Bài tập chuyển giao về điểm cực</h2>
+    <div class="check"><strong>Câu hỏi:</strong> xét $\max x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x\ge0$.</div>
+    <ol class="algorithm"><li>Kiểm tra bốn đỉnh $(0,0),(2,0),(1{,}6,1{,}2),(0,2)$.</li><li>Tính mục tiêu và phân loại trạng thái.</li><li>Cho một đường đỉnh kề cải thiện từ $(0,0)$.</li><li>Nêu định lý được dùng và đầy đủ giả thiết.</li></ol>
+    <aside class="notes"><p>Các giá trị mục tiêu lần lượt là $0,2,2{,}8,2$. Đường hợp lệ: $(0,0)\to(2,0)\to(1{,}6,1{,}2)$ với giá trị $0\to2\to2{,}8$. Miền là đa diện có các điểm cực đã liệt kê và mục tiêu có giá trị tối ưu hữu hạn; vì vậy định lý điểm cực tối ưu áp dụng. Nghiệm tối ưu duy nhất là $(1{,}6,1{,}2)$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo để đo chuyển giao LLO18.</p></aside>
+  </section>
+  <section data-slide-id="C11">
+    <h2>Bài tập tích hợp quy hoạch tuyến tính</h2>
+    <div class="check"><strong>Câu hỏi:</strong> với bài hộp hạt, hãy hoàn tất chuỗi lập luận.</div>
+    <ol class="algorithm"><li>Viết LP và dạng chuẩn có biến phụ.</li><li>Liệt kê năm đỉnh và giá trị mục tiêu.</li><li>Phân loại trạng thái của bài toán.</li><li>Nêu định lý bảo đảm có điểm cực tối ưu.</li><li>Mô tả đúng mức bước chuyển khái niệm.</li></ol>
+    <aside class="notes"><p>Đáp án chính: các đỉnh có giá trị $0,60,96,88,60$; bài toán hữu hạn với nghiệm tối ưu duy nhất $(30,12)$. Mô tả ở mức ý niệm bắt đầu từ một đỉnh khả thi, chuyển qua đỉnh kề cải thiện nghiêm ngặt và dừng khi không còn đỉnh kề cải thiện. Trang này hoàn tất đánh giá LLO17–18 trước ranh giới sang quy hoạch động.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tích hợp LLO17–18; ví dụ tự tạo.</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="D01">
+    <h1><span class="text-light">D.</span><br/>Quy hoạch động hữu hạn tất định</h1>
+    <div class="grid2"><div class="card"><h3>LP: một véc-tơ quyết định</h3><p>Cấu trúc đa diện thu hẹp việc tìm kiếm về các điểm cực và cơ sở.</p></div><div class="card"><h3>DP: một chuỗi quyết định</h3><p>Trạng thái thu hẹp việc tìm kiếm bằng cách dùng lại các bài toán con.</p></div></div>
+    <div class="box">Phạm vi DP: chân trời hữu hạn, trạng thái và điều khiển hữu hạn, chuyển trạng thái tất định, chi phí cộng.</div>
+    <aside class="notes"><p>Đây là phép so sánh hai cơ chế khai thác cấu trúc, không phải phát biểu LP và DP tương đương. LLO17–18 đã được kiểm qua hai bài tập tích hợp quy hoạch tuyến tính ngay trước. Phần còn lại chỉ giới thiệu Bellman trong phạm vi hữu hạn tất định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; MIT 15.093J, Bài 16.</p></aside>
+  </section>
+  <section data-slide-id="D02">
+    <h2>Nhu cầu của quyết định nhiều giai đoạn</h2>
+    <div class="flow"><div class="node"><strong>Trạng thái hiện tại</strong><br/>đủ tóm tắt quá khứ</div><div class="arrow">→</div><div class="node"><strong>Quyết định</strong><br/>chọn hành động khả thi</div><div class="arrow">→</div><div class="node"><strong>Trạng thái kế</strong><br/>theo chuyển trạng thái</div><div class="arrow">→</div><div class="node"><strong>Chi phí còn lại</strong><br/>giải ngược</div></div>
+    <div class="box">Liệt kê mọi chuỗi quyết định lặp lại nhiều bài toán con giống nhau.</div>
+    <aside class="notes"><p>Quy hoạch động khai thác cấu trúc con tối ưu: một trạng thái phải lưu đủ thông tin ảnh hưởng đến tương lai, nhưng bỏ chi tiết quá khứ không còn liên quan.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
+  </section>
+  <section data-slide-id="D03">
+    <h2>Ví dụ đường đi theo tầng</h2>
+    <div class="visual"><img src="img/lec-07/dp-layered-graph.svg" alt="Đồ thị tầng có chi phí s–A bằng 2, s–B bằng 5, A–C bằng 4, A–D bằng 2, B–C bằng 1, B–D bằng 3, C–t bằng 3 và D–t bằng 1; đường ngắn nhất s–A–D–t có tổng chi phí 5."/></div>
+    <aside class="notes"><p>Tính ngược: $J(C)=3$ và $J(D)=1$. Tại $A$, chọn $D$ vì $2+1=3$ nhỏ hơn $4+3=7$. Tại $B$, hai lựa chọn cùng cho $4$: $1+3=3+1=4$. Tại $s$, chọn $A$ vì $2+3=5$ nhỏ hơn $5+4=9$. Đường tối ưu là $s\to A\to D\to t$.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ và hình tự tạo theo khuôn đồ thị tầng của MIT 15.093J, Bài 16.</p></aside>
+  </section>
+  <section data-slide-id="D04">
+    <h2>Phương trình Bellman hữu hạn tất định</h2>
+    <p>Quyết định được chọn ở $k=0,\ldots,N-1$; giai đoạn $N$ chỉ mang chi phí cuối. Với trạng thái $x_k$, điều khiển $u\in U_k(x_k)$ và $x_{k+1}=f_k(x_k,u)$:</p>
+    <div class="formula">$$J_N(x)=g_N(x),\qquad J_k(x)=\min_{u\in U_k(x)}\left\{g_k(x,u)+J_{k+1}(f_k(x,u))\right\}.$$</div>
+    <div class="box">Trong phạm vi bài, $U_k(x)$ hữu hạn và không rỗng nên giá trị nhỏ nhất được đạt.</div>
+    <aside class="notes"><p>Không mở rộng sang điều khiển liên tục, vô hạn ngẫu nhiên hoặc chân trời vô hạn. Trong đồ thị tầng, mỗi tập cạnh đi ra là hữu hạn; vì vậy phép lấy min chọn được ít nhất một cạnh.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 7–9.</p></aside>
+  </section>
+  <section data-slide-id="D05">
+    <h2>Quy trình giải ngược</h2>
+    <ol class="algorithm"><li><strong>Đầu vào:</strong> chân trời $N$, trạng thái, tập điều khiển không rỗng, chuyển trạng thái và chi phí cộng.</li><li>Khởi tạo $J_N=g_N$.</li><li>Với $k=N-1,\ldots,0$, tính $J_k$ bằng Bellman và lưu một điều khiển đạt min.</li><li><strong>Đầu ra:</strong> $J_0(x_0)$ và chính sách tối ưu.</li></ol>
+    <div class="box">Chi phí phụ thuộc số trạng thái và số điều khiển được duyệt, không phụ thuộc trực tiếp số chuỗi quyết định.</div>
+    <aside class="notes"><p>Trong đồ thị tầng, trạng thái là nút hiện tại, điều khiển là cạnh đi ra và chi phí giai đoạn là trọng số cạnh. Tính bảng từ tầng cuối về đầu tránh giải lại cùng bài toán con.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
+  </section>
+  <section data-slide-id="D06">
+    <h2>Bài tập chuyển giao Bellman</h2>
+    <div class="check"><strong>Câu hỏi:</strong> giữ đồ thị ví dụ đường đi theo tầng nhưng đổi $c(s,B)=3$ và $c(C,t)=0$. Các cạnh khác giữ nguyên. Hãy tính lại mọi $J$ và nêu đường tối ưu.</div>
+    <table><thead><tr><th>Tầng</th><th>Phép tính cần lập</th></tr></thead><tbody><tr><td>$C,D$</td><td>chi phí mới đến $t$</td></tr><tr><td>$A,B$</td><td>min qua $C,D$</td></tr><tr><td>$s$</td><td>min qua $A,B$ và tái tạo đường</td></tr></tbody></table>
+    <aside class="notes"><p>Đáp án: $J(C)=0$, $J(D)=1$, $J(A)=\min\{4+0,2+1\}=3$, $J(B)=\min\{1+0,3+1\}=1$, $J(s)=\min\{2+3,3+1\}=4$. Đường tối ưu mới là $s\to B\to C\to t$. Đây là dữ kiện mới, nên người học phải tái tạo Bellman thay vì chép kết quả của ví dụ trước.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập chuyển giao tự tạo theo MIT 15.093J, Bài 16.</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="Z01">
+    <h2>Kết quả học tập và cầu nối</h2>
+    <table><thead><tr><th>Chuẩn đầu ra LP</th><th>Sản phẩm kiểm chứng</th><th>Điều kiện không được bỏ</th></tr></thead><tbody><tr><td>LLO17 · Mô hình hóa</td><td>biến, đơn vị, mục tiêu, ràng buộc</td><td>tuyến tính và miền biến</td></tr><tr><td>LLO18 · Dạng chuẩn</td><td>biến phụ, cơ sở khả thi</td><td>$\operatorname{rank}(A)=m$, $A_B^{-1}b\ge0$</td></tr><tr><td>LLO18 · Điểm cực</td><td>trạng thái và đỉnh tối ưu</td><td>khả thi, giá trị hữu hạn</td></tr></tbody></table>
+    <div class="box"><strong>Cầu nối DP, không phải LLO mới:</strong> LP tránh duyệt mọi điểm nhờ cấu trúc điểm cực; DP tránh duyệt mọi chuỗi nhờ trạng thái và Bellman.</div>
+    <aside class="notes"><p>Bảng chỉ thu hồi LLO17–18 của quy hoạch tuyến tính. Khối cuối nhắc quan hệ cấu trúc giữa hai phần nhưng không đặt DP thành một hàng chuẩn đầu ra chính thức.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997); MIT 15.093J, Bài 16.</p></aside>
+  </section>
+  <section data-slide-id="Z02">
+    <h2>Tài liệu và chuyển tiếp</h2>
+    <ul><li>Bertsimas, Dimitris và John N. Tsitsiklis (1997), <em>Introduction to Linear Optimization</em>, Chương 1–2.</li><li>MIT OpenCourseWare 15.093J / 6.255J, Fall 2009, Bài 16: <em>Dynamic Programming</em>.</li><li>Đề cương UET.AI2012, Buổi 7: quy hoạch tuyến tính và hình học đa diện.</li></ul>
+    <p><strong>Thu hồi DP:</strong> trạng thái đủ và Bellman thay việc duyệt mọi lịch sử bằng các bài toán con dùng lại.</p>
+    <div class="box"><strong>Chuyển tiếp LP:</strong> Bài 08 hiện thực hóa bổ đề đỉnh kề bằng phương pháp đơn hình: chọn cơ sở kề, cập nhật cơ sở và xử lý suy biến.</div>
+    <aside class="notes"><p>Nguồn MIT chỉ được dùng cho Bellman hữu hạn tất định và ví dụ đồ thị tầng tự tạo. Tuyến chính của học phần quay lại LP ở Bài 08: từ bảo đảm tồn tại nghiệm cơ sở tối ưu sang quy tắc tính toán cụ thể.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997); MIT OCW 15.093J, Bài 16.</p></aside>
+  </section>
+</section>
+
+<div class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 07</div>
+</div></div>
+<script src="revealjs/dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/math/math.js"></script>
+<script>Reveal.initialize({width:1280,height:720,margin:.04,controlsLayout:"edges",slideNumber:true,hashOneBasedIndex:true,hash:true,katex:{local:"vendor/katex"},plugins:[RevealMarkdown,RevealHighlight,RevealNotes,RevealMath.KaTeX]});</script>
+</body>
+</html>

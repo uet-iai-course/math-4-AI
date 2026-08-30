@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 500" role="img" aria-labelledby="title desc">
+  <title id="title">Đồ thị tầng và đường ngắn nhất</title>
+  <desc id="desc">Đồ thị bốn tầng từ s qua A hoặc B, rồi C hoặc D, đến t. Tám cạnh có chi phí lần lượt hai, năm, bốn, hai, một, ba, ba và một. Đường s đến A đến D đến t được tô đậm và có tổng chi phí năm.</desc>
+  <rect width="980" height="500" fill="#fff"/>
+  <g font-family="sans-serif" font-size="30" fill="#667085" text-anchor="middle"><text x="110" y="45">k=0</text><text x="335" y="45">k=1</text><text x="610" y="45">k=2</text><text x="860" y="45">k=3</text></g>
+  <g stroke="#a8b3ca" stroke-width="4" fill="none"><path d="M140 250L300 135"/><path d="M140 250L300 365"/><path d="M370 135L575 140"/><path d="M365 155L580 340"/><path d="M365 345L580 160"/><path d="M370 365L575 360"/><path d="M645 140L825 235"/><path d="M645 360L825 265"/></g>
+  <path d="M140 250L300 135L580 340L825 265" fill="none" stroke="#b15a2b" stroke-width="10"/>
+  <g fill="#fff" stroke="#2f3e7a" stroke-width="5"><circle cx="110" cy="250" r="34"/><circle cx="335" cy="135" r="34"/><circle cx="335" cy="365" r="34"/><circle cx="610" cy="140" r="34"/><circle cx="610" cy="360" r="34"/><circle cx="860" cy="250" r="34"/></g>
+  <g font-family="sans-serif" font-size="32" text-anchor="middle" fill="#222"><text x="110" y="261">s</text><text x="335" y="146">A</text><text x="335" y="376">B</text><text x="610" y="151">C</text><text x="610" y="371">D</text><text x="860" y="261">t</text></g>
+  <g font-family="sans-serif" font-size="30" fill="#222" text-anchor="middle"><text x="215" y="172">2</text><text x="215" y="340">5</text><text x="475" y="112">4</text><text x="455" y="232">2</text><text x="480" y="285">1</text><text x="475" y="402">3</text><text x="745" y="168">3</text><text x="745" y="354">1</text></g>
+  <text x="490" y="475" font-family="sans-serif" font-size="32" font-weight="700" text-anchor="middle" fill="#b15a2b">s → A → D → t · chi phí 5</text>
+</svg>
