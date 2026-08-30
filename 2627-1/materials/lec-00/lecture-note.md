@@ -81,6 +81,24 @@ Mỗi hàng biểu diễn một căn nhà; ba cột lần lượt chứa hệ s�
 
 **Ý nghĩa và vai trò trong AI.** Ma trận thường biểu diễn một tập dữ liệu hoặc một phép biến đổi tuyến tính. Với $\mathbf w\in\mathbb R^3$, phép nhân $\hat{\mathbf y}=\mathbf X\mathbf w\in\mathbb R^4$ tính đồng thời dự đoán cho bốn căn nhà.
 
+### Chuyển vị
+
+**Định nghĩa.** Chuyển vị của $\mathbf A=[a_{ij}]\in\mathbb R^{m\times n}$ là ma trận $\mathbf A^T\in\mathbb R^{n\times m}$ thỏa $(\mathbf A^T)_{ij}=a_{ji}$; các hàng của $\mathbf A$ trở thành các cột của $\mathbf A^T$. Với véc-tơ cột $\mathbf x$, $\mathbf x^T$ là véc-tơ hàng.
+
+**Ví dụ.** Với
+
+$$
+\mathbf A=\begin{bmatrix}1&-1&0\\0&-1&1\end{bmatrix},
+\qquad
+\mathbf A^T=\begin{bmatrix}1&0\\-1&-1\\0&1\end{bmatrix}.
+$$
+
+Ma trận $\mathbf A$ có kích thước $2\times3$, còn $\mathbf A^T$ có kích thước $3\times2$.
+
+**Điểm dễ nhầm.** Chuyển vị không phải là nghịch đảo. Nói chung, $\mathbf A^T\mathbf A$ không bằng ma trận đơn vị.
+
+**Ý nghĩa và vai trò trong AI.** Chuyển vị giúp đổi hướng biểu diễn để các kích thước khớp nhau; nó xuất hiện trong tích vô hướng, ma trận Gram $\mathbf X^T\mathbf X$ và công thức gradient của mô hình tuyến tính.
+
 ### Phép toán cơ bản
 
 #### Cộng véc-tơ
@@ -188,6 +206,29 @@ ta có $\mathbf A\mathbf x=[-1,-3]^T$.
 **Điểm dễ nhầm.** Phép nhân chỉ hợp lệ khi số cột của $\mathbf A$ bằng số thành phần của $\mathbf x$; kết quả có số thành phần bằng số hàng của $\mathbf A$.
 
 **Ý nghĩa và vai trò trong AI.** Tích ma trận–véc-tơ mô tả một lớp tuyến tính, biến đổi một biểu diễn đầu vào hoặc tính đồng thời nhiều tổ hợp tuyến tính của cùng một véc-tơ.
+
+#### Tích ma trận–ma trận
+
+**Định nghĩa.** Với $\mathbf A\in\mathbb R^{m\times n}$ và $\mathbf B\in\mathbb R^{n\times p}$, tích $\mathbf C=\mathbf A\mathbf B\in\mathbb R^{m\times p}$ có phần tử
+
+$$
+c_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}.
+$$
+
+Mỗi $c_{ij}$ là tích vô hướng giữa hàng thứ $i$ của $\mathbf A$ và cột thứ $j$ của $\mathbf B$.
+
+**Ví dụ.** Ta có
+
+$$
+\begin{bmatrix}1&-1&0\\0&-1&1\end{bmatrix}
+\begin{bmatrix}1&2\\0&1\\2&-1\end{bmatrix}
+=
+\begin{bmatrix}1&1\\2&-2\end{bmatrix}.
+$$
+
+**Điểm dễ nhầm.** Thứ tự nhân có ý nghĩa: nói chung $\mathbf A\mathbf B\ne\mathbf B\mathbf A$, ngay cả khi cả hai tích đều tồn tại.
+
+**Ý nghĩa và vai trò trong AI.** Tích ma trận–ma trận dùng để ghép các phép biến đổi tuyến tính, xử lý đồng thời một lô véc-tơ và tạo các ma trận như $\mathbf X^T\mathbf X$ trong bài toán bình phương tối thiểu.
 
 ## Giải tích nhiều biến
 
