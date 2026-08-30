@@ -368,6 +368,49 @@ Do đó, với $\mathbf b=[3,1]^T$, nghiệm của $\mathbf A\mathbf x=\mathbf b
 
 **Ý nghĩa và vai trò trong AI.** Ma trận nghịch đảo giúp biểu diễn nghiệm của hệ tuyến tính và ma trận độ chính xác $\boldsymbol\Sigma^{-1}$ trong mô hình Gauss. Khi tính toán thực tế, thường nên giải hệ tuyến tính thay vì tạo nghịch đảo tường minh.
 
+### Dạng toàn phương
+
+**Định nghĩa.** Cho ma trận đối xứng $\mathbf Q\in\mathbb R^{n\times n}$ và $\mathbf x\in\mathbb R^n$. Hàm vô hướng
+
+$$
+q(\mathbf x)=\mathbf x^T\mathbf Q\mathbf x
+$$
+
+được gọi là dạng toàn phương sinh bởi $\mathbf Q$.
+
+**Xác định dương và nửa xác định dương.** Ma trận $\mathbf Q$ là **nửa xác định dương** (positive semidefinite, PSD), ký hiệu $\mathbf Q\succeq\mathbf0$, nếu $q(\mathbf x)\ge0$ với mọi $\mathbf x\in\mathbb R^n$. Ma trận $\mathbf Q$ là **xác định dương** (positive definite, PD), ký hiệu $\mathbf Q\succ\mathbf0$, nếu $q(\mathbf x)>0$ với mọi $\mathbf x\ne\mathbf0$. Vì vậy, PD kéo theo PSD; với PD, dấu bằng chỉ xảy ra tại $\mathbf x=\mathbf0$.
+
+**Ý nghĩa hình học.** Nếu $\mathbf Q\succ\mathbf0$ thì $\sqrt{q(\mathbf x)}$ là một chuẩn và $q(\mathbf x)$ là bình phương của chuẩn đó. Tập mức $q(\mathbf x)=c$ với $c>0$ là một ellipsoid tâm tại gốc; theo các hướng riêng của $\mathbf Q$, trị riêng lớn hơn tương ứng với bán trục ngắn hơn. Nếu $\mathbf Q\succeq\mathbf0$ nhưng không xác định dương thì $\sqrt{q(\mathbf x)}$ chỉ là một nửa chuẩn và có thể bằng $0$ tại véc-tơ khác không.
+
+**Ví dụ.** Với $\mathbf Q=\begin{bmatrix}1&0\\0&4\end{bmatrix}$,
+
+$$
+q(\mathbf x)=x_1^2+4x_2^2.
+$$
+
+Ta có $q(\mathbf x)>0$ với mọi $\mathbf x\ne\mathbf0$, nên $\mathbf Q\succ\mathbf0$. Tại $\mathbf x=[2,-1]^T$, $q(\mathbf x)=2^2+4(-1)^2=8$.
+
+**Trường hợp biên.** Với $\mathbf Q=\begin{bmatrix}1&0\\0&0\end{bmatrix}$, ta có $q(\mathbf x)=x_1^2\ge0$, nên $\mathbf Q\succeq\mathbf0$. Tuy nhiên, $q([0,1]^T)=0$ dù $[0,1]^T\ne\mathbf0$, nên $\mathbf Q$ không xác định dương. Tập mức dương khi đó không nhất thiết là ellipsoid bị chặn.
+
+**Điểm dễ nhầm.** Nửa xác định dương cho phép một véc-tơ khác không có giá trị dạng toàn phương bằng $0$. Ngoài ra, các phần tử trên đường chéo đều dương chưa đủ để kết luận một ma trận đối xứng là xác định dương.
+
+**Ý nghĩa và vai trò trong AI.** Với $\mathbf A\in\mathbb R^{m\times n}$, ma trận $\mathbf A^T\mathbf A$ là nửa xác định dương vì
+
+$$
+\mathbf x^T\mathbf A^T\mathbf A\mathbf x
+=\lVert\mathbf A\mathbf x\rVert_2^2\ge0.
+$$
+
+Hơn nữa,
+
+$$
+\mathbf A^T\mathbf A\succ\mathbf0
+\iff \operatorname{rank}(\mathbf A)=n
+\iff \operatorname{Ker}(\mathbf A)=\{\mathbf0\}.
+$$
+
+Dạng toàn phương mô tả độ cong của hàm mất mát qua ma trận Hessian, xuất hiện trong bình phương tối thiểu với $\mathbf X^T\mathbf X$, và tạo hạng phạt trong điều chuẩn bậc hai.
+
 ## Giải tích nhiều biến
 
 Phần này dành cho các suy diễn về gradient, đạo hàm theo hướng, vi phân, ma trận Jacobian, ma trận Hessian, khai triển Taylor và đạo hàm của hàm mất mát bình phương tối thiểu.
