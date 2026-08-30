@@ -314,6 +314,49 @@ Ma trận mở rộng $[\mathbf A\mid\mathbf b]\in\mathbb R^{m\times(n+1)}$ đư
 
 **Điểm dễ nhầm.** Chỉ so sánh số phương trình $m$ với số ẩn $n$ chưa đủ để kết luận số nghiệm; còn phải kiểm tra hạng của $\mathbf A$ và tính tương thích thông qua hạng của $[\mathbf A\mid\mathbf b]$.
 
+### Định thức
+
+**Định nghĩa.** Định thức là một số vô hướng gắn với ma trận vuông. Với $\mathbf A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$,
+
+$$
+\det(\mathbf A)=ad-bc.
+$$
+
+Ma trận vuông khả nghịch khi và chỉ khi $\det(\mathbf A)\ne0$; trị tuyệt đối của định thức cho biết hệ số thay đổi thể tích của phép biến đổi tuyến tính.
+
+**Ví dụ.** Với $\mathbf A=\begin{bmatrix}1&1\\1&-1\end{bmatrix}$, ta có $\det(\mathbf A)=1\cdot(-1)-1\cdot1=-2$, nên $\mathbf A$ khả nghịch.
+
+**Điểm dễ nhầm.** Định thức không phải là tích các phần tử trên đường chéo chính đối với ma trận bất kỳ; quy tắc đó chỉ đúng cho ma trận tam giác.
+
+**Ý nghĩa và vai trò trong AI.** Định thức dùng để kiểm tra tính khả nghịch; định thức của ma trận hiệp phương sai và logarit định thức xuất hiện trong mật độ Gauss nhiều biến và các phép đổi biến xác suất.
+
+### Ma trận nghịch đảo
+
+**Định nghĩa.** Với ma trận vuông $\mathbf A\in\mathbb R^{n\times n}$, ma trận nghịch đảo $\mathbf A^{-1}$ thỏa
+
+$$
+\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I_n.
+$$
+
+Nghịch đảo tồn tại khi và chỉ khi $\operatorname{rank}(\mathbf A)=n$, hay tương đương $\det(\mathbf A)\ne0$.
+
+**Ví dụ.** Với $\mathbf A=\begin{bmatrix}1&1\\1&-1\end{bmatrix}$,
+
+$$
+\mathbf A^{-1}
+=\frac12
+\begin{bmatrix}
+1&1\\
+1&-1
+\end{bmatrix}.
+$$
+
+Do đó, với $\mathbf b=[3,1]^T$, nghiệm của $\mathbf A\mathbf x=\mathbf b$ là $\mathbf x=\mathbf A^{-1}\mathbf b=[2,1]^T$.
+
+**Điểm dễ nhầm.** $\mathbf A^{-1}$ không được tạo bằng cách lấy nghịch đảo từng phần tử của $\mathbf A$.
+
+**Ý nghĩa và vai trò trong AI.** Ma trận nghịch đảo giúp biểu diễn nghiệm của hệ tuyến tính và ma trận độ chính xác $\boldsymbol\Sigma^{-1}$ trong mô hình Gauss. Khi tính toán thực tế, thường nên giải hệ tuyến tính thay vì tạo nghịch đảo tường minh.
+
 ## Giải tích nhiều biến
 
 Phần này dành cho các suy diễn về gradient, đạo hàm theo hướng, vi phân, ma trận Jacobian, ma trận Hessian, khai triển Taylor và đạo hàm của hàm mất mát bình phương tối thiểu.
@@ -336,5 +379,5 @@ Các bài tập sẽ được bổ sung cùng với từng cụm nội dung. G�
 
 ## Tài liệu tham khảo
 
-- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.6.
+- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.6 và 2.11.
 - Roe, David (2013), *Linear Methods (Math 211) — Lecture 2*, tr. 5–8, phần tính tương thích, hạng của ma trận mở rộng và số tham số của tập nghiệm: <https://math.mit.edu/~roed/courses/211/lectures/Sep-11.pdf>.
