@@ -1,7 +1,5 @@
 # Bài 00 — Ôn tập nền tảng toán học cho AI
 
-> **Trạng thái:** Bản nháp nội bộ; chưa công bố trên trang chỉ mục.
-
 Tài liệu này bổ sung cho bộ trang chiếu **Bài 00 — Ôn tập nền tảng toán học cho AI**. Nội dung được phát triển dần từ các yêu cầu về khái niệm, ví dụ, định lý, chứng minh và bài tập.
 
 ## Mục tiêu và kiến thức tiên quyết
@@ -25,6 +23,14 @@ Phần này sẽ mở rộng ví dụ giá nhà dùng xuyên suốt bộ trang c
 ## Đại số tuyến tính
 
 Phần này dành cho các khái niệm, ví dụ và chứng minh về vô hướng, véc-tơ, ma trận, kích thước, hạng, dạng toàn phương, ma trận thiết kế, phép chiếu và phương trình chuẩn.
+
+### Số vô hướng
+
+**Định nghĩa.** Số vô hướng là một giá trị đơn; trong học phần này, số vô hướng thường thuộc tập số thực, chẳng hạn $\alpha\in\mathbb R$.
+
+**Ví dụ.** Trong dữ liệu giá nhà, $y_1=11$ là giá quan sát của căn nhà thứ nhất, với một đơn vị bằng 100 triệu đồng. Vì $y_1$ chỉ nhận một giá trị nên đây là một số vô hướng.
+
+**Điểm dễ nhầm.** “Vô hướng” mô tả kiểu của đại lượng, không có nghĩa đại lượng không có đơn vị. Trong ví dụ trên, $y_1$ là số vô hướng nhưng vẫn mang đơn vị giá.
 
 ## Giải tích nhiều biến
 
