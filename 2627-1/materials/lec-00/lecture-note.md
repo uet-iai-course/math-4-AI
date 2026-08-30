@@ -230,6 +230,90 @@ $$
 
 **Ý nghĩa và vai trò trong AI.** Tích ma trận–ma trận dùng để ghép các phép biến đổi tuyến tính, xử lý đồng thời một lô véc-tơ và tạo các ma trận như $\mathbf X^T\mathbf X$ trong bài toán bình phương tối thiểu.
 
+### Không gian cột và hạt nhân
+
+**Định nghĩa.** Với $\mathbf A\in\mathbb R^{m\times n}$, không gian cột và hạt nhân của $\mathbf A$ là
+
+$$
+\operatorname{Col}(\mathbf A)
+=\{\mathbf A\mathbf x:\mathbf x\in\mathbb R^n\}
+\subseteq\mathbb R^m,
+\qquad
+\operatorname{Ker}(\mathbf A)
+=\{\mathbf x\in\mathbb R^n:\mathbf A\mathbf x=\mathbf0\}
+\subseteq\mathbb R^n.
+$$
+
+Không gian cột gồm mọi đầu ra mà phép biến đổi $\mathbf A$ có thể tạo ra; hạt nhân gồm mọi đầu vào bị $\mathbf A$ ánh xạ về véc-tơ không.
+
+**Ví dụ.** Với
+
+$$
+\mathbf A=
+\begin{bmatrix}
+1&2\\
+2&4
+\end{bmatrix},
+$$
+
+ta có
+
+$$
+\operatorname{Col}(\mathbf A)
+=\operatorname{span}\!\left\{\begin{bmatrix}1\\2\end{bmatrix}\right\},
+\qquad
+\operatorname{Ker}(\mathbf A)
+=\operatorname{span}\!\left\{\begin{bmatrix}-2\\1\end{bmatrix}\right\}.
+$$
+
+Với một véc-tơ $\mathbf v$, $\operatorname{span}\{\mathbf v\}=\{t\mathbf v:t\in\mathbb R\}$ là không gian gồm mọi bội vô hướng của $\mathbf v$.
+
+**Điểm dễ nhầm.** $\operatorname{Col}(\mathbf A)$ là không gian của các đầu ra trong $\mathbb R^m$, còn $\operatorname{Ker}(\mathbf A)$ là không gian của các đầu vào trong $\mathbb R^n$; hai không gian không nhất thiết nằm trong cùng một không gian nền.
+
+**Ý nghĩa và vai trò trong AI.** Với ma trận thiết kế $\mathbf X$, $\operatorname{Col}(\mathbf X)$ chứa các véc-tơ dự đoán tuyến tính có thể tạo ra, còn một hướng khác không trong $\operatorname{Ker}(\mathbf X)$ thay đổi trọng số nhưng không thay đổi dự đoán.
+
+### Hạng của ma trận
+
+**Định nghĩa.** Hạng của $\mathbf A\in\mathbb R^{m\times n}$, ký hiệu $\operatorname{rank}(\mathbf A)$, là số cột độc lập tuyến tính lớn nhất của $\mathbf A$, hay tương đương $\dim\operatorname{Col}(\mathbf A)$. Giá trị này cũng bằng số hàng độc lập tuyến tính lớn nhất và không vượt quá $\min(m,n)$.
+
+**Ví dụ.** Với
+
+$$
+\mathbf A=
+\begin{bmatrix}
+1&2\\
+2&4
+\end{bmatrix},
+$$
+
+cột thứ hai bằng hai lần cột thứ nhất nên $\operatorname{rank}(\mathbf A)=1$.
+
+**Điểm dễ nhầm.** Hạng không phải là số phần tử khác không. Ma trận trên có bốn phần tử khác không nhưng chỉ có hạng bằng $1$.
+
+### Hệ phương trình tuyến tính
+
+**Định nghĩa.** Hệ $m$ phương trình tuyến tính theo $n$ ẩn được viết dưới dạng
+
+$$
+\mathbf A\mathbf x=\mathbf b,
+\qquad
+\mathbf A\in\mathbb R^{m\times n},\quad
+\mathbf x\in\mathbb R^n,\quad
+\mathbf b\in\mathbb R^m.
+$$
+
+Ma trận mở rộng $[\mathbf A\mid\mathbf b]\in\mathbb R^{m\times(n+1)}$ được tạo bằng cách ghép $\mathbf b$ làm cột cuối của $\mathbf A$. Đặt $r=\operatorname{rank}(\mathbf A)$ và $r_b=\operatorname{rank}([\mathbf A\mid\mathbf b])$. Hệ vô nghiệm khi $r<r_b$, có nghiệm duy nhất khi $r=r_b=n$, và có vô số nghiệm khi $r=r_b<n$.
+
+**Ví dụ về các trường hợp nghiệm.**
+
+1. **Ma trận vuông, hạng đầy đủ — nghiệm duy nhất.** Với $\mathbf A=\begin{bmatrix}1&1\\1&-1\end{bmatrix}$ và $\mathbf b=[3,1]^T$, ta có $m=n=r=2$ và nghiệm duy nhất $\mathbf x=[2,1]^T$.
+2. **Ma trận cao, hạng cột đầy đủ và hệ tương thích — nghiệm duy nhất.** Với $\mathbf A=\begin{bmatrix}1&0\\0&1\\1&1\end{bmatrix}$ và $\mathbf b=[1,2,3]^T$, ta có $m=3>n=2$, $r=r_b=2$ và $\mathbf x=[1,2]^T$.
+3. **Ma trận cao, hạng cột đầy đủ nhưng hệ không tương thích — vô nghiệm.** Giữ $\mathbf A$ ở trường hợp 2 nhưng lấy $\mathbf b=[1,2,4]^T$, ta có $r=2<r_b=3$.
+4. **Ma trận rộng, hạng hàng đầy đủ — vô số nghiệm.** Với $\mathbf A=\begin{bmatrix}1&0&1\\0&1&1\end{bmatrix}$ và $\mathbf b=[1,2]^T$, ta có $m=r=r_b=2<n=3$ và $\mathbf x=[1-t,2-t,t]^T$ với mọi $t\in\mathbb R$.
+5. **Ma trận thiếu hạng nhưng hệ tương thích — vô số nghiệm.** Với $\mathbf A=\begin{bmatrix}1&2\\2&4\end{bmatrix}$ và $\mathbf b=[3,6]^T$, ta có $r=r_b=1<n=2$ và $\mathbf x=[3-2t,t]^T$ với mọi $t\in\mathbb R$.
+
+**Điểm dễ nhầm.** Chỉ so sánh số phương trình $m$ với số ẩn $n$ chưa đủ để kết luận số nghiệm; còn phải kiểm tra hạng của $\mathbf A$ và tính tương thích thông qua hạng của $[\mathbf A\mid\mathbf b]$.
+
 ## Giải tích nhiều biến
 
 Phần này dành cho các suy diễn về gradient, đạo hàm theo hướng, vi phân, ma trận Jacobian, ma trận Hessian, khai triển Taylor và đạo hàm của hàm mất mát bình phương tối thiểu.
@@ -252,4 +336,5 @@ Các bài tập sẽ được bổ sung cùng với từng cụm nội dung. G�
 
 ## Tài liệu tham khảo
 
-- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.2 và 2.5.
+- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.6.
+- Roe, David (2013), *Linear Methods (Math 211) — Lecture 2*, tr. 5–8, phần tính tương thích, hạng của ma trận mở rộng và số tham số của tập nghiệm: <https://math.mit.edu/~roed/courses/211/lectures/Sep-11.pdf>.
