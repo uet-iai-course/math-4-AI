@@ -18,7 +18,7 @@
 | P | P02 | Ba quyết định mở rộng SGD | Vấn đề trung tâm |
 | A | A01 | Một tốc độ học cho mọi tọa độ | Nhu cầu |
 | A | A02 | Trực quan co giãn theo lịch sử | Trực quan |
-| A | A03 | Ba bộ nhớ sau vòng đầu | Ví dụ chung; giải thích $r_1,v_1,m_1$ trước công thức thuật toán |
+| A | A03 | Trạng thái vòng đầu của ba bộ tối ưu | Ví dụ chung; giải thích $r_1,v_1^{\mathrm{RMS}},m_1^{\mathrm{Adam}},v_1^{\mathrm{Adam}}$ trước công thức thuật toán |
 | A | A04 | AdaGrad | Hình thức |
 | A | A05 | RMSProp | Hình thức và giới hạn |
 | A | A06 | Adam và hiệu chỉnh độ lệch | Hình thức |
@@ -47,7 +47,7 @@
 | D | D05 | Ví dụ lịch độ khó ngẫu nhiên | Ví dụ–ứng dụng |
 | D | D06 | Ba phương án cho tuyến huấn luyện | Ba tình huống cụ thể; đáp án can thiệp và phép đo/giới hạn hiện bằng fragment |
 | Z | Z01 | Bảng quyết định tổng hợp | Thu hồi ba quyết định |
-| Z | Z02 | Bài tập tích hợp | Đo LLO14–16 |
+| Z | Z02 | Bài tập tích hợp | Tổng hợp–lựa chọn theo LLO14–16; mỗi lựa chọn có phép đo và giới hạn |
 | Z | Z03 | Ranh giới, tài liệu và chuyển tiếp | Phân biệt bảo đảm, nguồn cốt lõi và cầu nối Bài 07; URL chi tiết đặt trong ghi chú |
 
 ## Phân bổ nội bộ
@@ -79,7 +79,8 @@ Không hiển thị phân bổ này trên trang chiếu hoặc trong ghi chú di
 
 ## Khóa ký hiệu
 
-- $\theta,g_t,m_t,v_t,r_t,p_t,s_t,y_t\in\mathbb R^d$; mọi phép chia, căn và bình phương trong thuật toán thích nghi là theo phần tử.
+- $\theta,g_t,r_t,p_t,s_t,y_t\in\mathbb R^d$; $v_t^{\mathrm{RMS}},m_t^{\mathrm{Adam}},v_t^{\mathrm{Adam}}\in\mathbb R^d$. Mọi phép chia, căn và bình phương trong thuật toán thích nghi là theo phần tử.
+- $a_t\in\mathbb R^d_{\ge0}$ là thống kê lịch sử bình phương gradient; $a_{t,j}$ là phần tử thứ $j$.
 - $H_t=\nabla^2F(\theta_t)\in\mathbb R^{d\times d}$; Newton giảm chấn dùng $B_t=H_t+\lambda_tI$; HF thường dùng $B_t=G_t+\lambda_tI$ với $G_t\succeq0$, $\lambda_t>0$ để $B_t\succ0$.
 - Trong BFGS, $M_t\approx H_t^{-1}$; $s_t=\theta_{t+1}-\theta_t$, $y_t=g_{t+1}-g_t$, yêu cầu $y_t^Ts_t>0$ cho cập nhật dương xác định chuẩn.
 - Với chuẩn hóa theo lô, $H\in\mathbb R^{m\times d}$, thống kê lấy theo $m$ hàng; $\gamma,\beta\in\mathbb R^d$.

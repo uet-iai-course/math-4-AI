@@ -142,3 +142,26 @@ Các mục của những vòng trước được giữ nguyên để truy nguyê
 - Phép đo hộp bao phát hiện C02 và D03 có công thức vượt biên ngang trong bản trước. C02 được tách công thức thống kê và phép biến đổi; D03 rút gọn chuỗi mục tiêu và tách ví dụ. Kiểm lại toàn bộ 36 trang ở cả hai khung cho kết quả 0 trang tràn.
 - Cấu trúc cuối có 6 mạch, 36 mã duy nhất và 36 ghi chú. Có 225 biểu thức KaTeX; trình duyệt không báo lỗi công thức. Điều hướng bàn phím chuyển từ `#/1/1` sang `#/1/2`; `hash: true` và `hashOneBasedIndex: true` hoạt động.
 - Chỉ có yêu cầu `/favicon.ico` không thuộc tài nguyên cốt lõi trả 404; lỗi này không ảnh hưởng bộ trang chiếu.
+
+## Cổng storyboard sau hợp nhất — 2026-08-30
+
+- Giữ nguyên lịch sử các vòng 38 trang và 36 trang ở trên. Trạng thái hiện hành có 36 mã, 6 mạch; tập mã và thứ tự trong outline, storyboard và RevealJS trùng nhau.
+- Cụm A đã đồng bộ bốn trạng thái $r_1$, $v_1^{\mathrm{RMS}}$, $m_1^{\mathrm{Adam}}$, $v_1^{\mathrm{Adam}}$ từ ví dụ tới công thức và bài tập. Ba thẻ fragment cùng hộp nối ở A03 khớp giữa storyboard và HTML.
+- Cụm Z dùng chu trình rút gọn `nhu cầu → hình thức → kiểm tra`: Z01 vừa đặt lại nhu cầu quyết định vừa hình thức hóa bảng ánh xạ; Z02 kiểm tra tổng hợp–lựa chọn. Các bước trực quan và ví dụ được ghi `không áp dụng` vì cụm không đưa khái niệm mới; Z03 là ranh giới, tài liệu và chuyển tiếp, không bị gán sai thành bước hình thức.
+- Z02 không đo lại các phép tính đã được A08, B06 và B08 kiểm tra. Trang này đo khả năng phối hợp bốn lựa chọn; mỗi lựa chọn phải kèm phép đo kiểm chứng và một giới hạn.
+- Vòng hợp nhất hiện tại sửa thêm ký hiệu RMSProp/Adam, định nghĩa $a_{t,j}$, xấp xỉ giảm chấn lớn, tính tự chứa của ví dụ CG, ánh xạ LLO/CLO và nguồn Bengio và cộng sự (2009) cho ví dụ học theo chương trình. Không thêm, gộp, tách hoặc bỏ trang.
+- GLM 5.3 Flash qua OpenRouter đã rà bản sao giới hạn chỉ gồm các tệp được người dùng cho phép. Metadata runtime: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; không cung cấp PDF, trích xuất PDF, danh mục MIT, `.env`, khóa API hoặc dữ liệu xác thực cho worker.
+
+## Đóng lỗi hiển thị sau hợp nhất — 2026-08-30
+
+- A03 tràn dọc 157 px khi hiện đủ fragment. Giữ nguyên cỡ chữ, dữ kiện và bốn trạng thái; bỏ ba câu giải thích lặp trong thẻ và rút hộp tổng hợp thành ba cơ chế nhớ.
+- D03 vượt ngang 8 px ở khung rộng. Giữ nguyên công thức và cỡ chữ; giảm riêng khoảng cách lưới của trang từ `0.7em` xuống `0.35em`, không đổi CSS dùng chung.
+- Ghi chú Z02 bổ sung đủ checkpoint Adam gồm $\theta_t,m_t^{\mathrm{Adam}},v_t^{\mathrm{Adam}},t$ và điều kiện HF–CG $G\succeq0$, $\lambda>0\Rightarrow B=G+\lambda I\succ0$; phép đo cùng giới hạn được giữ.
+
+## Kiểm định bàn giao của điều phối viên — 2026-08-30
+
+- Tái kiểm cuối bằng GLM 5.3 Flash qua OpenRouter đạt ở bốn phạm vi bị tác động: sinh viên, toán học, học thuật–giảng dạy và mạch kể chuyện. Ký hiệu RMSProp/Adam, ví dụ CG, phép đo–giới hạn Z02 và cụm kết luận đều đạt.
+- Chromium duyệt lại đủ 36/36 trang tại $1280\times720$, $800\times600$ và $720\times900$ qua máy chủ tạm `127.0.0.1:8876`. Cổng 8765 đang thuộc tiến trình khác nên không bị thay đổi trong vòng này. Cả ba khung có 0 tràn, 0 lỗi console, 0 lỗi trang và 0 yêu cầu tải thất bại.
+- Ảnh A03 với toàn bộ fragment và ảnh D03 được xem trực tiếp sau sửa. A03 giữ cỡ chữ và đủ bốn trạng thái; D03 giữ công thức, hình và luận điểm trong khung.
+- Thẻ viewport cho phép phóng to và favicon dữ liệu rỗng loại yêu cầu 404. Kiểm tra tĩnh giữ 6 section ngoài, 36 ID duy nhất, 36 ghi chú, 36 đoạn nguồn và 14/14 tham chiếu cục bộ hợp lệ; `git diff --check` sạch.
+- Codex Slides vẫn không có bằng chứng render trực quan thành công do giới hạn runtime đã ghi ở trên. Kết luận bàn giao chỉ dựa trên RevealJS cục bộ và không tuyên bố cổng Codex Slides đã đạt.
