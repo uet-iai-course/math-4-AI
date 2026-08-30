@@ -2,7 +2,7 @@
 
 ## Phạm vi
 
-Tệp này áp dụng cho mọi yêu cầu tạo, sửa, rà soát hoặc xuất trang chiếu trong kho này. Sản phẩm mặc định là một bộ trang chiếu RevealJS cho học phần **Cơ sở toán học cho AI**. Điều phối viên phải sử dụng nhiều tác tử con theo quy trình dưới đây; không được tự thực hiện toàn bộ quy trình trong một vai. Có thể bổ sung tác tử chuyên trách khi phạm vi hoặc độ phức tạp của bài giảng yêu cầu.
+Tệp này áp dụng cho mọi yêu cầu tạo, sửa, rà soát hoặc xuất trang chiếu, ghi chú bài giảng và bài tập đi kèm trong kho này. Sản phẩm trình chiếu mặc định là một bộ trang chiếu RevealJS cho học phần **Cơ sở toán học cho AI**. Điều phối viên phải sử dụng nhiều tác tử con theo quy trình dưới đây; không được tự thực hiện toàn bộ quy trình trong một vai. Có thể bổ sung tác tử chuyên trách khi phạm vi hoặc độ phức tạp của bài giảng yêu cầu.
 
 ## Ngôn ngữ và giọng văn
 
@@ -43,7 +43,8 @@ Phải giữ thứ tự, bố cục, mức độ chi tiết và mạch nội dun
 - Mỗi học kỳ có một thư mục theo mẫu `YYZZ-H`, trong đó `YYZZ` là hai năm học viết liền và `H` là số học kỳ. Ví dụ: năm học 2026–2027, học kỳ 1 dùng thư mục `2627-1/`.
 - Mỗi bài giảng là một tệp HTML trong thư mục học kỳ, đặt tên `lecture-NN-<chu-de>.html`; `NN` có hai chữ số. Tài sản riêng đặt trong `img/lec-NN/` nếu không có quy định khác.
 - Với bài mới trong `2627-1/`, đặt ba tệp quy trình tại `2627-1/planning/lec-NN/`: `outline.md`, `storyboard.md` và `review-log.md`. Không tự di chuyển hoặc đổi tên các tệp quy trình cũ; chỉ chuẩn hóa bài mới hoặc di chuyển khi người dùng yêu cầu rõ và các liên kết liên quan đã được kiểm tra.
-- Trang chỉ mục của mỗi học kỳ chỉ liên kết đến các tệp bài giảng HTML hiện có. Không hiển thị hoặc liên kết các tài liệu làm việc nội bộ như dàn ý, storyboard, ánh xạ nguồn hoặc nhật ký rà soát trên trang chỉ mục.
+- Trang chỉ mục của mỗi học kỳ chỉ liên kết đến bộ trang chiếu và tài liệu học tập công khai thực sự tồn tại. Không hiển thị hoặc liên kết các tài liệu làm việc nội bộ như dàn ý, storyboard, ánh xạ nguồn hoặc nhật ký rà soát trên trang chỉ mục.
+- Ghi chú bài giảng và bài tập công khai của mỗi bài đặt tại `YYZZ-H/materials/lec-NN/lecture-note.md` và `YYZZ-H/materials/lec-NN/exercises.md`. Markdown là nguồn phát hành; hình và tài sản riêng tiếp tục dùng `img/lec-NN/`.
 - Ví dụ bắt buộc: Bài giảng 01 của năm học 2026–2027, học kỳ 1 phải nằm tại `2627-1/lecture-01-<chu-de>.html` và dùng các trang chiếu mẫu trong `sources/MIT/` theo đúng thứ tự `lec01`, `lec02`, `lec03`.
 - Với ví dụ trên, ba tệp nguồn hiện có là `sources/MIT/f33960a29683274ff87e352219d54c76_MIT6_079F09_lec01.pdf`, `sources/MIT/26c4c530c9db63a12b898d720dd89a44_MIT6_079F09_lec02.pdf` và `sources/MIT/2ae23d35685ff402473b36011138149a_MIT6_079F09_lec03.pdf`. Bỏ qua các tệp siêu dữ liệu có tiền tố `._`.
 - Khi một bài dùng nhiều bộ trang chiếu mẫu, không trộn tùy ý. Tác tử phân tích phải lập bảng ánh xạ theo thứ tự nguồn được giao, chỉ ra phần nào được giữ, gộp hoặc lược và lý do.
@@ -59,6 +60,18 @@ Phải giữ thứ tự, bố cục, mức độ chi tiết và mạch nội dun
 - Giữ `lang="vi"`; dùng `<section>` ngoài cho từng phần và `<section>` trong cho từng trang chiếu; đặt chân trang ở cuối `.slides`. Cấu hình mặc định gồm `controlsLayout: "edges"`, `slideNumber: true`, `hashOneBasedIndex: true` và `hash: true`.
 - Không thay Codex Slides bằng công cụ trình chiếu khác. Không để kết quả chỉ tồn tại trong dự án Codex Slides; các thay đổi đã duyệt phải được phản ánh trong tệp RevealJS của kho.
 - Nếu Codex Slides không khả dụng, báo rõ giới hạn, tiếp tục bằng RevealJS và thực hiện đầy đủ các vòng rà soát cục bộ. Không tuyên bố đã kiểm tra bằng Codex Slides khi chưa thực hiện.
+
+## Ghi chú bài giảng và bài tập web tĩnh
+
+- Không dùng Node.js, trình sinh trang hoặc bước build cho ghi chú bài giảng và bài tập. Tệp Markdown được tải khi chạy bởi `YYZZ-H/material-viewer.html`; JavaScript và CSS cần thiết phải được lưu cục bộ trong thư mục học kỳ.
+- URL viewer chỉ nhận hai tham số cùng bài: `doc=materials/lec-NN/lecture-note.md` hoặc `doc=materials/lec-NN/exercises.md`, và `deck=lecture-NN-<chu-de>.html`. Viewer phải từ chối đường dẫn ngoài quy ước, số bài không khớp và tài nguyên khác nguồn.
+- Thứ tự xử lý bắt buộc là bảo toàn công thức → chuyển Markdown bằng Marked → làm sạch HTML bằng DOMPurify → khôi phục công thức dưới dạng nút văn bản → render bằng KaTeX. Không chèn trực tiếp HTML chưa làm sạch vào DOM.
+- Chỉ dùng `$...$` và `$$...$$`; cấu hình auto-render phải xử lý `$$` trước `$` và bỏ qua `pre`, `code`, `script`, `style`, `textarea`, `noscript` và `option`.
+- Hỗ trợ các khối không lồng nhau `example`, `derivation`, `proof`, `exercise`, `hint` và `solution` bằng cú pháp `::: <loại>`. `hint` và `solution` phải gập mặc định, dùng được bằng bàn phím và được mở khi in.
+- Ghi chú bài giảng dùng để mở rộng ví dụ, suy diễn, chứng minh và câu hỏi kiểm tra ngắn. Tệp bài tập chứa bộ bài giao chính thức theo mức nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI. Không sao chép nguyên ghi chú diễn giả thành ghi chú bài giảng.
+- Khi trang chiếu thay đổi ký hiệu, giả thiết, ví dụ, kết luận hoặc thứ tự khái niệm, phải rà lại cả ghi chú bài giảng và bài tập của cùng bài. Tài liệu chỉ được công bố trên chỉ mục sau khi nguồn, công thức, liên kết, màn hình rộng, màn hình hẹp và bàn phím đã được kiểm tra.
+- Mỗi tệp Markdown phải bắt đầu bằng một heading cấp một. Hình phải có văn bản thay thế; bảng phải có hàng tiêu đề; nguồn phải truy nguyên được theo cùng tiêu chuẩn của bộ trang chiếu.
+- Tài sản bên thứ ba cho viewer phải có phiên bản cố định, giấy phép cục bộ, URL tải chính thức, ngày tải, checksum SHA-256 và vai trò được ghi trong `YYZZ-H/vendor/materials/README.md`. Không dùng CDN cho thành phần cốt lõi.
 
 ## Cấu trúc bộ trang chiếu mặc định
 
@@ -274,9 +287,9 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 
 - Với học kỳ 2026–2027, học kỳ 1, cập nhật `2627-1/index.html` khi một bài giảng mới đã vượt kiểm định và tệp HTML đích thực sự tồn tại. Không thêm bài chưa hoàn thành hoặc liên kết dự kiến.
 - Kế thừa cấu trúc và hành vi phù hợp từ `../deep-learning/2627-1/index.html`: tài liệu HTML tiếng Việt có thiết lập viewport; dùng bảng kiểu chung `../index-pages.css`; phần giới thiệu (`hero`) nêu đúng học kỳ, năm học và tên **Cơ sở toán học cho AI**; có mô tả ngắn về danh mục; có liên kết phụ quay về `../index.html`; phần bài giảng dùng lưới `term-grid`; cuối trang có chân trang nhận diện đúng học phần và học kỳ.
-- Mỗi bài đã hoàn thành dùng một `article.term-card` theo thứ tự số bài, gồm nhãn `Bài N`, tiêu đề, mô tả một câu và đúng một liên kết `term-link` tới `lecture-NN-<chu-de>.html`. Văn bản liên kết phải rõ nghĩa, biểu tượng mũi tên chỉ là trang trí và dùng `aria-hidden="true"`.
+- Mỗi bài đã hoàn thành dùng một `article.term-card` theo thứ tự số bài, gồm nhãn `Bài N`, tiêu đề, mô tả một câu và một hàng ba tài nguyên: `Bài giảng`, `Ghi chú bài giảng`, `Bài tập`. `Bài giảng` liên kết tới `lecture-NN-<chu-de>.html`; hai tài liệu còn lại liên kết qua `material-viewer.html` khi Markdown đích đã vượt kiểm định. Tài liệu chưa có phải hiển thị `Chưa có` dưới dạng trạng thái, không phải liên kết giả.
 - Giữ giao diện, lớp CSS và hành vi điều hướng nhất quán với mẫu chỉ mục trên, nhưng không sao chép tên học phần, danh sách bài, mô tả hoặc đường dẫn bài giảng của kho tham khảo. Không tạo kiểu nội dòng thay cho bảng kiểu chung nếu chưa có nhu cầu được kiểm chứng.
-- Trang chỉ mục chỉ liên kết các tệp bài giảng HTML. Không hiển thị hoặc liên kết `outline.md`, `storyboard.md`, `review-log.md`, thư mục `planning/`, nguồn nội bộ hoặc tệp làm việc.
+- Trang chỉ mục chỉ liên kết bộ trang chiếu và Markdown học tập công khai qua viewer. Không hiển thị hoặc liên kết `outline.md`, `storyboard.md`, `review-log.md`, thư mục `planning/`, nguồn nội bộ hoặc tệp làm việc.
 - Sau khi sửa, kiểm tra tiêu đề trang, nhãn học kỳ, liên kết quay lại, thứ tự thẻ, đường dẫn tương đối, khả năng dùng bàn phím và hiển thị ở màn hình rộng lẫn hẹp.
 
 ## Quản lý phiên bản
@@ -286,6 +299,7 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 - Trước khi tạo commit, chạy `git status --short`, kiểm tra diff chưa staging trong phạm vi công việc và chạy `git diff --check`. Staging từng đường dẫn tường minh; không dùng `git add .`, `git add -A` hoặc lệnh tương đương có thể thu nạp ngoài phạm vi. Sau khi staging, kiểm tra lại `git status --short`, `git diff --cached` và `git diff --cached --check` trước khi commit.
 - Không lấy vào commit, sửa, xóa hoặc hoàn tác các thay đổi đã có trước nhiệm vụ hay thuộc công việc của người khác. Nếu một tệp cần sửa đang có thay đổi ngoài phạm vi, chỉ staging đúng phần liên quan khi có thể xác định chắc chắn; nếu không thể tách an toàn thì dừng và báo rõ xung đột.
 - Dùng thông điệp `feat(slides): <mô tả ngắn>` cho bộ trang chiếu mới hoặc phần nội dung mới đáng kể; dùng `fix(slides): <mô tả ngắn>` cho sửa lỗi một bộ trang chiếu hiện có. Thông điệp phải nêu được bài giảng hoặc chủ đề được thay đổi.
+- Dùng `feat(materials): <mô tả ngắn>` cho hạ tầng hoặc tài liệu học tập mới và `fix(materials): <mô tả ngắn>` cho sửa lỗi ghi chú bài giảng, bài tập hoặc viewer. Commit tài liệu phải gồm Markdown nguồn, tài sản riêng, thay đổi chỉ mục và thay đổi viewer thực sự cần thiết; không đưa tệp planning bị bỏ qua vào commit.
 - Đẩy nhánh hiện tại lên upstream của chính nhánh đó. Trạng thái kho được kỳ vọng hiện nay là `main` theo dõi `origin/main`; phải kiểm tra lại trước khi đẩy. Không tự đổi nhánh, tạo nhánh, rebase, sửa commit đã có hoặc force-push.
 - Sau khi đẩy, xác minh commit cục bộ đã hiện diện trên upstream. Nếu push thất bại, giữ nguyên commit cục bộ, báo hash commit, thông báo lỗi và hướng xử lý đề xuất; không tuyên bố đã đẩy hoặc đã hoàn thành bàn giao.
 
