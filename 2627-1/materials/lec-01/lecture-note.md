@@ -198,6 +198,319 @@ Vậy $x^*$ là một nghiệm tối ưu toàn cục.
 
 **Vai trò trong AI và tối ưu.** Khi tập tham số được giới hạn bởi một ràng buộc đóng, bị chặn và hàm mất mát liên tục, định lý xác nhận bài toán có nghiệm trước khi ta bàn cách tìm nghiệm. Nếu miền không compact, cần một lập luận khác, chẳng hạn chứng minh các tập mức phù hợp bị chặn hoặc hàm tăng ra vô hạn khi chuẩn tham số tăng.
 
+## B. Hình học tập lồi
+
+### 4. Tập lồi và tổ hợp lồi
+
+**Mục tiêu đọc hiểu.** Người đọc kiểm tra được tính lồi bằng đoạn nối và phân biệt tổ hợp lồi với một tổ hợp tuyến tính tùy ý.
+
+**Định nghĩa và giả thiết.** Tập $C\subseteq\mathbb R^n$ là tập lồi nếu với mọi $x,y\in C$ và mọi $\theta\in[0,1]$,
+
+$$
+\theta x+(1-\theta)y\in C.
+$$
+
+Tổng quát hơn, một tổ hợp lồi của $x_1,\ldots,x_k$ có dạng
+
+$$
+\sum_{i=1}^k\theta_i x_i,
+\qquad
+\theta_i\ge0,
+\qquad
+\sum_{i=1}^k\theta_i=1.
+$$
+
+Tập rỗng, tập chỉ có một điểm, đoạn thẳng và một không gian affine đều có thể là tập lồi.
+
+**Trực quan.** Nếu hai quyết định đều thuộc tập khả thi lồi thì mọi phép trộn theo cùng một tỉ lệ cũng khả thi. Một lỗ thủng hoặc chỗ lõm có thể làm một phần đoạn nối đi ra ngoài tập.
+
+![Một tập lồi chứa toàn bộ đoạn nối và một tập không lồi có đoạn nối đi ra ngoài.](img/lec-01/convex-set-and-combination.svg)
+
+*Nhãn trên đoạn nối biểu diễn hệ số $\theta$; nét đứt đánh dấu phần đoạn không thuộc tập ở phản ví dụ.*
+
+**Ví dụ và phản ví dụ.** Với quả cầu Euclid đơn vị $C=\{x\in\mathbb R^2:\lVert x\rVert_2\le1\}$, hai điểm $x=(1,0)^T$, $y=(0,1)^T$ có trung điểm
+
+$$
+\frac{x+y}{2}=\begin{bmatrix}1/2\\1/2\end{bmatrix},
+\qquad
+\left\lVert\frac{x+y}{2}\right\rVert_2=\frac1{\sqrt2}<1.
+$$
+
+Ngược lại, vành khăn $A=\{x:1\le\lVert x\rVert_2\le2\}$ không lồi: $(1,0)^T$ và $(-1,0)^T$ thuộc $A$, nhưng trung điểm $(0,0)^T$ không thuộc $A$.
+
+**Ý nghĩa và ứng dụng trong AI.** Tính lồi của tập khả thi cho phép nội suy giữa hai tham số, phân phối hoặc chính sách khả thi mà không vi phạm ràng buộc. Đây là một nửa của cấu trúc cần để chuyển bảo đảm từ cực tiểu địa phương sang cực tiểu toàn cục.
+
+**Điểm dễ nhầm.** Kiểm tra một cặp điểm không chứng minh cả tập lồi. Một tổ hợp affine chỉ yêu cầu tổng hệ số bằng $1$, còn tổ hợp lồi yêu cầu thêm mọi hệ số không âm. Không nên suy tính lồi chỉ từ hình vẽ.
+
+**Đầu ra.** Tổ hợp lồi hữu hạn cho phép dựng tập lồi nhỏ nhất chứa một tập điểm; bỏ điều kiện tổng hệ số bằng $1$ dẫn tới tổ hợp nón.
+
+### 5. Bao lồi và nón lồi
+
+**Mục tiêu đọc hiểu.** Người đọc dựng được bao lồi của một tập hữu hạn và phân biệt bao lồi với nón sinh bởi cùng các véc-tơ.
+
+**Định nghĩa và giả thiết.** Bao lồi của $S\subseteq\mathbb R^n$ là
+
+$$
+\operatorname{conv}S
+=\left\{\sum_{i=1}^k\theta_i x_i:
+k\ge1,\ x_i\in S,\ \theta_i\ge0,\ \sum_{i=1}^k\theta_i=1\right\}.
+$$
+
+Tập $K$ là nón lồi nếu với mọi $x,y\in K$ và $\alpha,\beta\ge0$,
+
+$$
+\alpha x+\beta y\in K.
+$$
+
+Nón sinh bởi $S$ gồm mọi tổ hợp $\sum_i\alpha_i x_i$ với $\alpha_i\ge0$; các hệ số không phải cộng thành $1$.
+
+**Trực quan.** Bao lồi giống một dây cao su ôm quanh các điểm. Nón sinh giữ gốc tọa độ làm đỉnh và kéo dài các tia không âm đi qua các véc-tơ sinh.
+
+![Bao lồi của ba điểm là một tam giác, còn nón sinh bởi hai véc-tơ là một góc kéo dài từ gốc.](img/lec-01/convex-hull-and-conic-hull.svg)
+
+*Hai panel dùng cùng các véc-tơ nhưng hai điều kiện hệ số khác nhau.*
+
+**Ví dụ tính được.** Với $S=\{(0,0)^T,(2,0)^T,(0,2)^T\}$,
+
+$$
+\operatorname{conv}S
+=\{(u,v)^T:u\ge0,\ v\ge0,\ u+v\le2\}.
+$$
+
+Nón sinh bởi $e_1=(1,0)^T$ và $e_2=(0,1)^T$ là $\mathbb R_+^2$. Điểm $(1/2,1/2)^T$ thuộc cả hai tập, còn $(3,1)^T$ chỉ thuộc nón sinh.
+
+**Ý nghĩa và ứng dụng trong AI.** Bao lồi mô tả mọi phép trộn hữu hạn của prototype, embedding hoặc phân phối. Nón lồi mô tả các đại lượng đóng dưới phép cộng và nhân vô hướng không âm, chẳng hạn véc-tơ không âm và ma trận hiệp phương sai.
+
+**Điểm dễ nhầm.** Bao lồi của một tập không nhất thiết đóng nếu tập ban đầu không compact. Nón lồi không mặc nhiên đóng, nhọn hoặc có phần trong. Một nón chứa bội không âm của điểm, không nhất thiết chứa bội âm.
+
+**Đầu ra.** Bao lồi và nón lồi tạo nền để nhận dạng các tập lồi cơ bản dùng làm tập khả thi.
+
+### 6. Các tập lồi cơ bản
+
+**Mục tiêu đọc hiểu.** Người đọc nhận dạng được các viên gạch hình học thường gặp mà không phải kiểm tra lại định nghĩa đoạn nối từ đầu.
+
+**Định nghĩa và giả thiết.** Các tập sau đều lồi khi các biểu thức có kiểu phù hợp:
+
+- tập affine $\{x:Ax=b\}$;
+- siêu phẳng $\{x:a^Tx=b\}$ với $a\ne0$;
+- nửa không gian $\{x:a^Tx\le b\}$;
+- đa diện $\{x:Ax\le b,\ Cx=d\}$;
+- quả cầu chuẩn $\{x:\lVert x-x_c\rVert\le r\}$ với $r\ge0$;
+- ellipsoid $\{x_c+Au:\lVert u\rVert_2\le1\}$;
+- nón bậc hai $\mathcal Q^{n+1}=\{(u,t):\lVert u\rVert_2\le t\}$.
+
+Ellipsoid có thể suy biến nếu $A$ không khả nghịch; ảnh affine đó vẫn lồi.
+
+**Trực quan.** Tập affine và siêu phẳng là các đối tượng phẳng. Nửa không gian và đa diện được tạo bởi các phía của siêu phẳng. Quả cầu và ellipsoid có biên cong; các lát cắt ngang của nón bậc hai là những quả cầu.
+
+![Thư viện các tập lồi cơ bản gồm tập affine, nửa không gian, đa diện, quả cầu, ellipsoid và nón bậc hai.](img/lec-01/basic-convex-set-library.svg)
+
+*Mỗi ô ghi cả công thức và một đặc trưng hình học; hình không dùng màu làm tín hiệu duy nhất.*
+
+**Ví dụ tính được.** Ellipsoid
+
+$$
+E=\{(x_1,x_2)^T:x_1^2+4x_2^2\le1\}
+$$
+
+có bán trục dài $1$ theo hướng $x_1$ và $1/2$ theo hướng $x_2$. Điểm $(3,4,5)$ nằm trên biên $\mathcal Q^3$ vì $\lVert(3,4)^T\rVert_2=5$; điểm $(3,4,4)$ không thuộc nón vì $5>4$.
+
+**Ý nghĩa và ứng dụng trong AI.** Nửa không gian và đa diện mô tả giới hạn tuyến tính; quả cầu chuẩn mô tả ngân sách nhiễu hoặc độ lớn tham số; ellipsoid mô tả bất định có tương quan; nón bậc hai biểu diễn một ràng buộc chuẩn. Phần này chỉ nhận dạng hình học, chưa phân loại các bài toán chứa chúng.
+
+**Điểm dễ nhầm.** Quả cầu $\lVert x-x_c\rVert\le r$ lồi, nhưng mặt cầu $\lVert x-x_c\rVert=r$ nói chung không lồi. Đẳng thức affine tạo tập lồi; đẳng thức phi tuyến không có bảo đảm tương tự.
+
+**Đầu ra.** Dạng toàn phương của ellipsoid dẫn tới một nón lồi quan trọng trong không gian ma trận.
+
+### 7. Nón nửa xác định dương
+
+**Mục tiêu đọc hiểu.** Người đọc kiểm tra được một ma trận đối xứng nhỏ là nửa xác định dương và giải thích điều kiện này qua dạng toàn phương.
+
+**Định nghĩa và giả thiết.** Ký hiệu $\mathbb S^n$ là không gian các ma trận đối xứng thực cấp $n$. Nón nửa xác định dương là
+
+$$
+\mathbb S_+^n
+=\{X\in\mathbb S^n:z^TXz\ge0\ \text{với mọi }z\in\mathbb R^n\}.
+$$
+
+Ta viết $X\succeq0$ khi $X\in\mathbb S_+^n$. Nếu $z^TXz>0$ với mọi $z\ne0$, thì $X\succ0$. Với ma trận đối xứng thực, $X\succeq0$ tương đương mọi giá trị riêng của $X$ không âm.
+
+**Trực quan.** Dạng toàn phương $z^TXz$ đo độ cong theo hướng $z$. Ma trận PSD không tạo hướng có giá trị âm; một trị riêng bằng $0$ tạo hướng phẳng.
+
+![Dạng toàn phương theo các hướng và ba trường hợp xác định dương, nửa xác định dương có hướng phẳng, và bất định.](img/lec-01/psd-cone-and-quadratic-directions.svg)
+
+*Nhãn dấu của trị riêng và nét cong hoặc phẳng phân biệt các trường hợp ngoài tín hiệu màu.*
+
+**Ví dụ và phản ví dụ.** Ma trận
+
+$$
+X=\begin{bmatrix}2&1\\1&2\end{bmatrix}
+$$
+
+có các giá trị riêng $1$ và $3$, nên $X\succ0$. Ma trận $Y=\operatorname{diag}(1,0)$ thuộc $\mathbb S_+^2$ nhưng không xác định dương vì $e_2^TYe_2=0$. Ma trận $Z=\operatorname{diag}(1,-1)$ không PSD vì $e_2^TZe_2=-1$.
+
+**Ý nghĩa và ứng dụng trong AI.** Ma trận hiệp phương sai và ma trận Gram luôn PSD. Hessian PSD biểu diễn độ cong không âm theo mọi hướng. Phần này chưa đưa nón PSD vào một dạng bài toán tối ưu ma trận.
+
+**Điểm dễ nhầm.** Đường chéo không âm chưa đủ để một ma trận đối xứng tổng quát là PSD. PSD không đồng nghĩa khả nghịch. Điều kiện dạng toàn phương phải đúng với mọi $z$, không chỉ các véc-tơ cơ sở.
+
+**Đầu ra.** Nón PSD là một ví dụ quan trọng của tập lồi; mục tiếp theo khái quát các phép tạo tập lồi mới.
+
+### 8. Các phép bảo toàn tập lồi
+
+**Mục tiêu đọc hiểu.** Người đọc chứng minh được tính lồi của một tập ghép bằng các phép bảo toàn thay vì lặp lại kiểm tra đoạn nối cho toàn bộ biểu thức.
+
+**Định nghĩa và giả thiết.** Nếu $C,D$ lồi và $F(x)=Ax+b$ affine, các phép sau bảo toàn tính lồi:
+
+- giao tùy ý của các tập lồi;
+- ảnh affine $F(C)=\{Ax+b:x\in C\}$;
+- nghịch ảnh affine $F^{-1}(D)=\{x:Ax+b\in D\}$;
+- tổng Minkowski $C+D=\{x+y:x\in C,\ y\in D\}$;
+- tích Descartes $C\times D$.
+
+Phối cảnh của tập cũng lồi khi giữ điều kiện $t>0$:
+
+$$
+\widetilde C=\{(x,t):t>0,\ x/t\in C\}.
+$$
+
+**Trực quan.** Giao cắt bỏ phần không thỏa các điều kiện khác. Ảnh affine co, kéo, quay hoặc chiếu một tập. Nghịch ảnh thu tất cả điểm được ánh xạ vào tập đích.
+
+![Một quả cầu qua ánh xạ affine thành ellipsoid, nghịch ảnh của quả cầu và giao ellipsoid với một nửa không gian.](img/lec-01/convex-set-preservation-map.svg)
+
+*Các mũi tên ghi rõ ảnh hay nghịch ảnh; phép giao được biểu diễn thêm bằng đường biên và họa tiết.*
+
+**Ví dụ tính được.** Cho $D=\{u\in\mathbb R^2:\lVert u\rVert_2\le1\}$ và $F(x)=(2x_1,x_2)^T$. Khi đó
+
+$$
+F^{-1}(D)=\{x:4x_1^2+x_2^2\le1\},
+$$
+
+là một ellipsoid lồi. Giao thêm nửa không gian $x_2\ge0$ vẫn cho một tập lồi.
+
+**Ý nghĩa và ứng dụng trong AI.** Ràng buộc $\lVert Ax-b\rVert_2\le\tau$ là nghịch ảnh affine của một quả cầu. Giao nhiều ràng buộc lồi tạo tập khả thi chung. Ảnh affine mô tả biến đổi đặc trưng hoặc chiếu một tập bất định.
+
+**Điểm dễ nhầm.** Ảnh và nghịch ảnh affine không yêu cầu $A$ khả nghịch. Hợp của hai tập lồi nói chung không lồi. Nghịch ảnh qua một ánh xạ phi tuyến tùy ý không có bảo đảm này. Điều kiện $t>0$ của phối cảnh là bắt buộc.
+
+**Đầu ra.** Nhóm B cung cấp các viên gạch và phép ghép cần để chứng minh tập khả thi lồi trong các ca ứng dụng.
+
+## Các định lý và chứng minh quan trọng — Nhóm B
+
+### Bao lồi là tập lồi nhỏ nhất chứa tập đã cho
+
+**Giả thiết.** Cho $S\subseteq\mathbb R^n$ và định nghĩa $\operatorname{conv}S$ là tập mọi tổ hợp lồi hữu hạn của các điểm trong $S$.
+
+**Kết luận.** Tập $\operatorname{conv}S$ lồi, chứa $S$, và nằm trong mọi tập lồi chứa $S$.
+
+::: proof
+Mỗi $x\in S$ thuộc $\operatorname{conv}S$ vì $x=1x$. Lấy
+
+$$
+u=\sum_{i=1}^k\alpha_i x_i,
+\qquad
+v=\sum_{j=1}^{\ell}\beta_j y_j
+$$
+
+thuộc $\operatorname{conv}S$, và $\theta\in[0,1]$. Khi đó
+
+$$
+\theta u+(1-\theta)v
+=\sum_i(\theta\alpha_i)x_i
++\sum_j((1-\theta)\beta_j)y_j.
+$$
+
+Các hệ số không âm và có tổng $\theta+(1-\theta)=1$, nên tổ hợp trên thuộc $\operatorname{conv}S$. Vậy $\operatorname{conv}S$ lồi.
+
+Nếu $C$ là một tập lồi chứa $S$, mọi tổ hợp lồi hữu hạn của các điểm trong $S$ đều thuộc $C$. Do đó $\operatorname{conv}S\subseteq C$, chứng minh tính nhỏ nhất.
+:::
+
+### Quả cầu chuẩn và nón bậc hai là các tập lồi
+
+**Giả thiết.** Cho một chuẩn $\lVert\cdot\rVert$, tâm $x_c$, bán kính $r\ge0$, và $\mathcal Q^{n+1}=\{(u,t):\lVert u\rVert_2\le t\}$.
+
+**Kết luận.** Quả cầu $B=\{x:\lVert x-x_c\rVert\le r\}$ và $\mathcal Q^{n+1}$ đều lồi.
+
+::: proof
+Với $x,y\in B$ và $\theta\in[0,1]$, bất đẳng thức tam giác cho
+
+$$
+\begin{aligned}
+\left\lVert\theta x+(1-\theta)y-x_c\right\rVert
+&\le\theta\lVert x-x_c\rVert+(1-\theta)\lVert y-x_c\rVert\\
+&\le r.
+\end{aligned}
+$$
+
+Vậy quả cầu lồi. Nếu $(u_1,t_1),(u_2,t_2)\in\mathcal Q^{n+1}$ thì
+
+$$
+\begin{aligned}
+\lVert\theta u_1+(1-\theta)u_2\rVert_2
+&\le\theta\lVert u_1\rVert_2+(1-\theta)\lVert u_2\rVert_2\\
+&\le\theta t_1+(1-\theta)t_2.
+\end{aligned}
+$$
+
+Do đó tổ hợp lồi của hai điểm lại thuộc $\mathcal Q^{n+1}$.
+:::
+
+### Nón nửa xác định dương là tập lồi
+
+**Giả thiết.** Cho $X,Y\in\mathbb S_+^n$ và $\theta\in[0,1]$.
+
+**Kết luận.** $\theta X+(1-\theta)Y\in\mathbb S_+^n$.
+
+::: proof
+Với mọi $z\in\mathbb R^n$,
+
+$$
+z^T\bigl(\theta X+(1-\theta)Y\bigr)z
+=\theta z^TXz+(1-\theta)z^TYz\ge0.
+$$
+
+Ma trận tổ hợp vẫn đối xứng, nên thuộc $\mathbb S_+^n$. Hơn nữa, tổng hai ma trận PSD và bội không âm của một ma trận PSD đều PSD; vì vậy $\mathbb S_+^n$ vừa lồi vừa là nón.
+:::
+
+### Giao tùy ý của các tập lồi là tập lồi
+
+**Giả thiết.** Cho một họ tập lồi $(C_i)_{i\in I}$; tập chỉ số $I$ có thể hữu hạn hoặc vô hạn.
+
+**Kết luận.** $C=\bigcap_{i\in I}C_i$ lồi.
+
+::: proof
+Nếu $x,y\in C$ thì $x,y\in C_i$ với mọi $i\in I$. Do mỗi $C_i$ lồi,
+
+$$
+\theta x+(1-\theta)y\in C_i
+$$
+
+với mọi $\theta\in[0,1]$ và mọi $i\in I$. Vậy tổ hợp này thuộc giao $C$.
+:::
+
+### Ảnh và nghịch ảnh affine bảo toàn tính lồi
+
+**Giả thiết.** Cho $F(x)=Ax+b$ affine; cho $C,D$ là các tập lồi trong các không gian có kích thước phù hợp.
+
+**Kết luận.** $F(C)$ và $F^{-1}(D)$ đều lồi.
+
+::: proof
+Lấy $u=F(x)$, $v=F(y)$ với $x,y\in C$. Tính affine cho
+
+$$
+\theta u+(1-\theta)v
+=F\bigl(\theta x+(1-\theta)y\bigr).
+$$
+
+Vì $C$ lồi, vế phải thuộc $F(C)$; do đó ảnh lồi.
+
+Nếu $x,y\in F^{-1}(D)$ thì $F(x),F(y)\in D$. Ta có
+
+$$
+F\bigl(\theta x+(1-\theta)y\bigr)
+=\theta F(x)+(1-\theta)F(y)\in D.
+$$
+
+Suy ra $\theta x+(1-\theta)y\in F^{-1}(D)$, nên nghịch ảnh lồi. Không bước nào yêu cầu $A$ khả nghịch.
+:::
+
 ## Tài liệu tham khảo
 
-- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Mục 1.1; Chương 2–3; Mục 4.1; Phụ lục A.2.2–A.3.2.
+- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Mục 1.1, 2.1–2.3; Chương 3; Mục 4.1; Phụ lục A.2.2–A.3.2.

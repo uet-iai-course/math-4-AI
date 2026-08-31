@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 580" role="img" aria-labelledby="title desc">
+  <title id="title">Nón ma trận nửa xác định dương và độ cong theo hướng</title>
+  <desc id="desc">Khung trái minh họa nón các ma trận đối xứng nửa xác định dương, với ma trận suy biến trên biên và ma trận xác định dương trong phần trong. Khung phải dùng ma trận A bằng ba một, một hai để cho dạng toàn phương không âm theo mọi hướng; hai lát theo trục đều cong lên.</desc>
+  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.cone{fill:#e9f1fb;stroke:#315d92;stroke-width:4}.boundary{fill:#fff1e9;stroke:#b44b20;stroke-width:4}.inside{fill:#eef4f3;stroke:#16706a;stroke-width:4}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.contour{fill:none;stroke:#6a45a5;stroke-width:4}.slice1{fill:none;stroke:#315d92;stroke-width:5}.slice2{fill:none;stroke:#b44b20;stroke-width:5;stroke-dasharray:10 6}</style></defs>
+  <rect width="1200" height="580" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">A nửa xác định dương khi dạng toàn phương không âm theo mọi hướng</text>
+  <rect class="panel" x="22" y="58" width="570" height="485" rx="14"/><text class="title" x="307" y="94" text-anchor="middle">Nón PSD trong không gian ma trận đối xứng</text>
+  <path class="cone" d="M132 402 L307 120 L493 402 Z"/>
+  <ellipse class="boundary" cx="312" cy="401" rx="181" ry="44"/>
+  <circle cx="307" cy="120" r="7" fill="#fff" stroke="#315d92" stroke-width="4"/><text class="small" x="323" y="117">ma trận 0</text>
+  <rect class="inside" x="260" y="220" width="142" height="72" rx="10"/>
+  <text class="label" x="331" y="249" text-anchor="middle">A xác định dương</text><text class="small" x="331" y="277" text-anchor="middle">phần trong</text>
+  <rect class="boundary" x="125" y="350" width="150" height="70" rx="10"/>
+  <text class="label" x="200" y="379" text-anchor="middle">A PSD, det A=0</text><text class="small" x="200" y="406" text-anchor="middle">trên biên</text>
+  <text class="label" x="307" y="469" text-anchor="middle">A, B PSD; α,β≥0 thì αA+βB PSD</text>
+  <text class="small" x="307" y="505" text-anchor="middle">Đóng với tổ hợp không âm nên tạo thành một nón lồi.</text>
+
+  <rect class="panel" x="616" y="58" width="562" height="485" rx="14"/><text class="title" x="897" y="94" text-anchor="middle">Dạng toàn phương theo các hướng</text>
+  <text class="label" x="897" y="132" text-anchor="middle">A=[[3,1],[1,2]],  q(d)=d^T A d</text>
+  <line class="axis" x1="664" y1="360" x2="905" y2="360"/><line class="axis" x1="785" y1="445" x2="785" y2="165"/>
+  <path class="contour" d="M871 270 C885 310 850 350 808 360 C760 370 710 370 699 350 C686 310 720 270 762 260 C810 250 860 250 871 270 Z"/>
+  <path class="contour" d="M916 249 C940 306 884 370 820 384 C750 398 670 397 654 371 C632 314 686 250 750 236 C820 222 900 223 916 249 Z"/>
+  <line x1="785" y1="310" x2="875" y2="310" stroke="#315d92" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="785" y1="310" x2="785" y2="210" stroke="#b44b20" stroke-width="4" stroke-dasharray="8 5" marker-end="url(#arrow)"/>
+  <text class="small" x="880" y="303">d1</text><text class="small" x="765" y="200">d2</text>
+  <g transform="translate(930 165)"><line class="axis" x1="0" y1="225" x2="205" y2="225"/><line class="axis" x1="20" y1="245" x2="20" y2="0"/><path class="slice1" d="M35 55 Q112 340 190 55"/><path class="slice2" d="M45 105 Q112 300 180 105"/><text class="small" x="112" y="270" text-anchor="middle">t</text><text class="small" x="112" y="22" text-anchor="middle">q(td)</text></g>
+  <text class="label" x="897" y="465" text-anchor="middle">q(d1)=3; q(d2)=2; mọi lát đều cong lên</text>
+  <text class="small" x="897" y="505" text-anchor="middle">PSD cho phép hướng phẳng; xác định dương loại bỏ hướng phẳng khác 0.</text>
+</svg>
