@@ -1004,23 +1004,333 @@ $$
 
 ## Xác suất một biến
 
-Phần này dành cho biến ngẫu nhiên, hàm khối xác suất, hàm mật độ xác suất, hàm phân phối tích lũy, kỳ vọng, phương sai và mô hình nhiễu Gauss.
+### Phép thử, không gian mẫu, biến cố và không gian xác suất
+
+**Định nghĩa.** Phép thử ngẫu nhiên là một quy trình có kết quả chưa biết trước. Không gian mẫu $\Omega$ chứa mọi kết quả có thể; biến cố là một phần tử $E$ của sigma-đại số $\mathcal F$. Không gian xác suất là bộ ba $(\Omega,\mathcal F,\Pr)$, trong đó $\Pr:\mathcal F\to[0,1]$ thỏa $\Pr(\Omega)=1$ và tính cộng đếm được trên các biến cố đôi một rời nhau.
+
+**Trực quan.** $\Omega$ là danh sách những gì có thể xảy ra, $E$ chọn các kết quả ta quan tâm, còn $\Pr$ phân bổ một đơn vị khối lượng xác suất trên toàn bộ không gian mẫu.
+
+**Ví dụ.** Khi gieo một xúc xắc đều, $\Omega=\{1,2,3,4,5,6\}$ và biến cố ra số chẵn là $E=\{2,4,6\}$, nên $\Pr(E)=1/2$. Tính ngẫu nhiên nằm ở việc không thể biết trước mặt nào xuất hiện trong một lần gieo, dù phân phối của phép thử đã biết.
+
+**Điểm dễ nhầm.** Không được tính xác suất bằng tỉ lệ số phần tử nếu các kết quả không đồng khả năng. Biến cố không phải một kết quả đơn lẻ; nó có thể chứa nhiều kết quả.
+
+**Ý nghĩa và ứng dụng trong AI.** Không gian xác suất là nền tảng để mô tả nhiễu dữ liệu, nhãn không chắc chắn và quá trình lấy mẫu. Nó buộc mô hình phải nói rõ nguồn bất định nào đang được xét trước khi gán xác suất.
+
+### Biến ngẫu nhiên và luật phân phối
+
+**Định nghĩa.** Biến ngẫu nhiên là một hàm đo được $X:\Omega\to\mathbb R$. Luật phân phối của $X$ gán cho mỗi tập đo được $A\subseteq\mathbb R$ xác suất $\Pr(X\in A)$; chữ hoa $X$ chỉ biến ngẫu nhiên, còn chữ thường $x$ chỉ một giá trị quan sát.
+
+**Trực quan.** $X$ là một dụng cụ đo: nó bỏ qua phần chi tiết không cần thiết của kết quả $\omega$ và chỉ giữ lại một con số phục vụ bài toán. Luật phân phối mô tả tần suất tương đối dài hạn của các giá trị đó, không cho biết lần kế tiếp sẽ nhận giá trị nào.
+
+**Ví dụ.** Với xúc xắc, đặt $X=1$ nếu mặt xuất hiện là số chẵn và $X=0$ nếu là số lẻ. Sáu kết quả ban đầu được nén thành hai giá trị, và $X\sim\operatorname{Bernoulli}(1/2)$.
+
+![Không gian mẫu, biến cố và ánh xạ từ kết quả ngẫu nhiên sang giá trị của biến ngẫu nhiên.](img/lec-00/probability-space-random-variable.svg)
+
+*Một kết quả $\omega$ được sinh trong $\Omega$; biến cố gom nhiều kết quả, còn biến ngẫu nhiên biến mỗi kết quả thành một giá trị số.*
+
+**Điểm dễ nhầm.** Tên “biến ngẫu nhiên” không có nghĩa bản thân hàm $X$ thay đổi ngẫu nhiên; sau khi định nghĩa, $X$ là một hàm cố định, còn đối số $\omega$ chưa biết trước. Một giá trị quan sát $x$ cũng không phải toàn bộ phân phối.
+
+**Ý nghĩa và ứng dụng trong AI.** Nhãn, dự đoán, mất mát trên một mẫu và nhiễu quan sát đều có thể được mô hình hóa bằng biến ngẫu nhiên. Luật phân phối cho phép chuyển từ một dự đoán điểm sang dự đoán kèm mức độ bất định.
+
+### Biến rời rạc và hàm khối xác suất
+
+**Định nghĩa.** Với biến rời rạc $X$, hàm khối xác suất (PMF) là
+
+$$
+p_X(x)=\Pr(X=x),\qquad p_X(x)\ge0,\qquad \sum_x p_X(x)=1.
+$$
+
+Phân phối Bernoulli với tham số $\pi\in[0,1]$ có $p_X(1)=\pi$ và $p_X(0)=1-\pi$.
+
+**Trực quan.** PMF đặt các “cục” xác suất lên những giá trị riêng biệt; chiều cao tại $x$ chính là xác suất quan sát đúng giá trị đó.
+
+**Ví dụ.** Nếu một bộ phân loại phát hiện thư rác có xác suất dương tính $0{,}3$ trên quần thể đang xét và $X$ là chỉ báo dương tính, thì $X\sim\operatorname{Bernoulli}(0{,}3)$. Một email cụ thể vẫn cho nhãn $0$ hoặc $1$; giá trị $0{,}3$ mô tả sự biến thiên giữa các email, không phải một “nhãn phân số”.
+
+**Điểm dễ nhầm.** Tham số $\pi$ là xác suất nhận giá trị $1$, không phải giá trị quan sát của $X$. Tổng PMF được lấy trên toàn bộ miền giá trị có thể, kể cả các giá trị chưa xuất hiện trong mẫu hữu hạn.
+
+**Ý nghĩa và ứng dụng trong AI.** Bernoulli mô hình hóa phân loại nhị phân; phân phối phân loại tổng quát hóa nó cho nhiều lớp. Đầu ra xác suất của bộ phân loại thường là tham số của PMF có điều kiện theo đầu vào.
+
+### Biến liên tục và hàm mật độ xác suất
+
+**Định nghĩa.** Nếu $U$ có phân phối tuyệt đối liên tục thì một hàm mật độ xác suất (PDF) của $U$ là hàm $p_U(u)\ge0$ thỏa
+
+$$
+\int_{-\infty}^{\infty}p_U(u)\,du=1,
+\qquad
+\Pr(U\in A)=\int_A p_U(u)\,du.
+$$
+
+**Trực quan.** Xác suất là diện tích dưới đường mật độ, không phải chiều cao của đường tại một điểm. Mật độ cao quanh $u$ cho biết một khoảng nhỏ quanh $u$ tương đối dễ xuất hiện hơn một khoảng cùng độ dài ở nơi có mật độ thấp.
+
+**Ví dụ.** Nếu $U\sim\operatorname{Unif}(0,2)$ thì $p_U(u)=1/2$ trên $[0,2]$. Do đó $\Pr(0{,}5\le U\le1{,}5)=1/2$, nhưng $\Pr(U=1)=0$. Dù mọi điểm riêng lẻ đều có xác suất bằng $0$, một lần lấy mẫu vẫn trả về một giá trị cụ thể trong đoạn.
+
+**Điểm dễ nhầm.** Không phải mọi phân phối có CDF liên tục đều có PDF; điều kiện phù hợp ở đây là tính liên tục tuyệt đối. PDF có thể lớn hơn $1$; chỉ tích phân của nó trên toàn miền mới phải bằng $1$. Giá trị $p_U(u)$ có đơn vị nghịch đảo với đơn vị của $U$, còn xác suất không có đơn vị.
+
+**Ý nghĩa và ứng dụng trong AI.** PDF được dùng để mô hình hóa đặc trưng liên tục, nhiễu, sai số dự đoán và biến ẩn. So sánh mật độ tại dữ liệu quan sát là cơ sở của hàm hợp lý và nhiều phương pháp học tham số.
+
+### Hàm phân phối tích lũy và quan hệ PMF–PDF–CDF
+
+**Định nghĩa.** Hàm phân phối tích lũy (CDF) của mọi biến ngẫu nhiên $X$ là $F_X(t)=\Pr(X\le t)$. Nó không giảm, liên tục phải, có giới hạn $0$ khi $t\to-\infty$ và $1$ khi $t\to\infty$. Với biến rời rạc, độ nhảy tại $x$ bằng $p_X(x)$; với PDF khả tích, $F_X(t)=\int_{-\infty}^t p_X(x)\,dx$ và $F_X'(t)=p_X(t)$ gần khắp nơi. Đặc biệt, đẳng thức đúng tại mọi điểm $t$ mà $p_X$ liên tục.
+
+**Trực quan.** CDF là đồng hồ cộng dồn khối lượng xác suất từ trái sang phải. PMF tạo các bước nhảy; PDF quyết định độ dốc của đường tích lũy.
+
+**Ví dụ.** Với $U\sim\operatorname{Unif}(0,2)$, $F_U(t)=0$ khi $t<0$, bằng $t/2$ khi $0\le t\le2$, và bằng $1$ khi $t>2$. Vì vậy
+
+$$
+\Pr(0{,}5<U\le1{,}5)=F_U(1{,}5)-F_U(0{,}5)=0{,}5.
+$$
+
+![So sánh hàm khối xác suất, hàm mật độ xác suất và hàm phân phối tích lũy.](img/lec-00/probability-pmf-pdf-cdf.svg)
+
+*PMF đặt khối lượng tại các điểm; PDF phân bố mật độ liên tục; CDF tích lũy xác suất từ trái sang phải.*
+
+**Điểm dễ nhầm.** CDF là xác suất nên luôn nằm trong $[0,1]$, còn PDF thì không bị chặn bởi $1$. Với phân phối có mật độ, $F'=p$ nói chung chỉ đúng gần khắp nơi; muốn dùng đẳng thức tại một điểm cụ thể, một điều kiện đủ là $p$ liên tục tại điểm đó. Công thức đạo hàm không áp dụng tại các điểm nhảy của biến rời rạc.
+
+**Ý nghĩa và ứng dụng trong AI.** CDF cho phép tính phân vị, hiệu chỉnh khoảng dự đoán và lấy mẫu bằng phép biến đổi ngược. Nó cũng cung cấp một cách so sánh toàn bộ phân phối thay vì chỉ so sánh trung bình.
+
+### Kỳ vọng và kỳ vọng của một hàm
+
+**Định nghĩa.** Khi $\mathbb E[|X|]<\infty$, kỳ vọng là trung bình theo xác suất:
+
+$$
+\mathbb E[X]=\sum_x x p_X(x)
+\quad\text{hoặc}\quad
+\mathbb E[X]=\int x p_X(x)\,dx.
+$$
+
+Tổng quát hơn, nếu khả tích thì $\mathbb E[g(X)]=\sum_x g(x)p_X(x)$ hoặc $\int g(x)p_X(x)\,dx$; không cần tìm phân phối của $g(X)$ trước.
+
+**Trực quan.** Kỳ vọng là tâm cân bằng khi mỗi giá trị được đặt trọng số bằng xác suất của nó. Với $g(X)$, ta biến đổi từng kết quả rồi mới lấy trung bình có trọng số.
+
+**Ví dụ.** Với $X\sim\operatorname{Bernoulli}(0{,}3)$ và chi phí $g(1)=10$, $g(0)=1$, chi phí kỳ vọng là $0{,}3\cdot10+0{,}7\cdot1=3{,}7$. Quyết định chỉ theo trường hợp thường gặp $X=0$ sẽ bỏ qua tác động lớn của sự kiện ít gặp hơn.
+
+**Điểm dễ nhầm.** Kỳ vọng không nhất thiết là giá trị mà biến có thể nhận: kỳ vọng của xúc xắc đều là $3{,}5$. Nói “mất mát kỳ vọng nhỏ” không có nghĩa mất mát của mọi mẫu đều nhỏ.
+
+**Ý nghĩa và ứng dụng trong AI.** Huấn luyện bằng rủi ro kỳ vọng tối thiểu hóa trung bình mất mát trên phân phối dữ liệu; trung bình mẫu là xấp xỉ thực nghiệm của đại lượng này. Kỳ vọng của hàm còn xuất hiện trong entropy, log-hợp lý và học tăng cường.
+
+### Phương sai, độ lệch chuẩn và biến đổi affine
+
+**Định nghĩa.** Khi $\mathbb E[X^2]<\infty$,
+
+$$
+\operatorname{Var}(X)=\mathbb E[(X-\mathbb E[X])^2]
+=\mathbb E[X^2]-\mathbb E[X]^2.
+$$
+
+Độ lệch chuẩn là $\operatorname{Std}(X)=\sqrt{\operatorname{Var}(X)}$. Với $Y=aX+b$, $\mathbb E[Y]=a\mathbb E[X]+b$ và $\operatorname{Var}(Y)=a^2\operatorname{Var}(X)$.
+
+**Trực quan.** Phương sai đo mức trải rộng bình phương quanh tâm; độ lệch chuẩn đưa mức trải rộng về cùng đơn vị với biến. Phép tịnh tiến đổi vị trí nhưng không đổi độ phân tán, còn phép co giãn nhân độ lệch chuẩn với $|a|$.
+
+**Ví dụ.** Với $U\sim\operatorname{Unif}(0,2)$, $\mathbb E[U]=1$ và $\operatorname{Var}(U)=1/3$. Nếu đổi thang $Y=100U+20$, thì $\mathbb E[Y]=120$ và $\operatorname{Std}(Y)=100/\sqrt3$.
+
+![Kỳ vọng như tâm cân bằng và phương sai như độ phân tán quanh tâm.](img/lec-00/probability-expectation-variance.svg)
+
+*Kỳ vọng định vị tâm, còn phương sai đo độ phân tán; hai đại lượng này chỉ tóm tắt một phần của phân phối.*
+
+**Điểm dễ nhầm.** $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$ chứ không phải $a\operatorname{Var}(X)+b$. Phương sai bằng $0$ nghĩa biến bằng một hằng số gần chắc chắn, không chỉ đơn thuần là “ít nhiễu”.
+
+**Ý nghĩa và ứng dụng trong AI.** Phương sai đo độ bất định của dự đoán, độ biến thiên của gradient ngẫu nhiên và độ ổn định của bộ ước lượng. Chuẩn hóa đặc trưng dùng trung bình và độ lệch chuẩn để đưa các tọa độ về thang so sánh được.
+
+### Nhiễu Gauss, hàm hợp lý và bình phương tối thiểu
+
+**Định nghĩa.** Phân phối Gauss một biến với $\sigma>0$ có mật độ
+
+$$
+p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+$$
+
+Nếu $X\sim\mathcal N(\mu,\sigma^2)$ thì $\mathbb E[X]=\mu$, $\operatorname{Var}(X)=\sigma^2$ và $(X-\mu)/\sigma\sim\mathcal N(0,1)$. Khoảng $[\mu-\sigma,\mu+\sigma]$ chứa xác suất xấp xỉ $0{,}6827$.
+
+Trong mô hình $Y_i=\mathbf w^T\boldsymbol\phi_i+\varepsilon_i$, giả sử các $\varepsilon_i$ độc lập và cùng phân phối $\mathcal N(0,\sigma^2)$ với $\sigma^2$ dương, cố định. Hàm hợp lý là $L(\mathbf w)=\prod_i p(y_i\mid\boldsymbol\phi_i,\mathbf w)$ và
+
+$$
+-\log L(\mathbf w)=C+\frac{1}{2\sigma^2}\sum_i r_i(\mathbf w)^2,
+\qquad r_i(\mathbf w)=\mathbf w^T\boldsymbol\phi_i-y_i.
+$$
+
+**Trực quan.** Nhiễu biểu diễn biến thiên chưa quan sát được quanh giá trị trung tâm của mô hình. Cực đại hàm hợp lý chọn tham số làm dữ liệu đã quan sát ít “bất ngờ” nhất; dưới nhiễu Gauss, sai lệch lớn bị phạt theo bình phương.
+
+**Ví dụ.** Ở căn nhà thứ hai, giả sử giá trung tâm thật là $13$ nhưng quan sát được $12$, nên nhiễu ẩn là $\varepsilon_2=-1$. Nếu dùng đúng trọng số thật thì phần dư theo quy ước trên là $r_2=1=-\varepsilon_2$; với trọng số ước lượng khác, phần dư còn chứa sai số mô hình và không thể đồng nhất với nhiễu.
+
+![Nhiễu Gauss quanh giá trị trung tâm, hàm hợp lý của nhiều quan sát và liên hệ với tổng bình phương phần dư.](img/lec-00/probability-noise-gaussian-likelihood.svg)
+
+*Các quan sát phân tán quanh giá trị trung tâm của mô hình; tích các mật độ có điều kiện tạo hàm hợp lý của tham số.*
+
+**Điểm dễ nhầm.** Gauss là giả thiết mô hình, không phải kết luận suy ra từ bốn mẫu. Cực đại $L$ và cực tiểu tổng bình phương có cùng nghiệm dưới các giả thiết trên, nhưng hai hàm mục tiêu không bằng nhau. Hàm hợp lý là hàm của tham số khi dữ liệu đã cố định; nó không phải phân phối xác suất của tham số.
+
+**Ý nghĩa và ứng dụng trong AI.** Mô hình Gauss giải thích bình phương tối thiểu như một phương pháp ước lượng hợp lý cực đại và cho phép tạo khoảng dự đoán. Việc thay phân phối nhiễu sẽ dẫn đến mất mát khác, chẳng hạn nhiễu đuôi dày làm giảm ảnh hưởng của ngoại lệ.
 
 ## Xác suất nhiều biến
 
-Phần này dành cho phân phối đồng thời, phân phối biên, xác suất có điều kiện, công thức Bayes, độc lập, hiệp phương sai, tương quan, Gauss nhiều biến và bình phương tối thiểu tổng quát.
+### Véc-tơ ngẫu nhiên và phân phối đồng thời
+
+**Định nghĩa.** Véc-tơ ngẫu nhiên $\mathbf Z=(U,V)^T:\Omega\to\mathbb R^2$ gom nhiều biến ngẫu nhiên đo trên cùng một kết quả. Với biến rời rạc, phân phối đồng thời là $p_{U,V}(u,v)=\Pr(U=u,V=v)$, không âm và có tổng trên mọi cặp bằng $1$; trường hợp liên tục dùng mật độ đồng thời và tích phân hai lớp.
+
+**Trực quan.** Một quan sát không tạo hai kết quả tách rời mà tạo một điểm $(u,v)$ trong không gian nhiều chiều. Phân phối đồng thời cho biết khối lượng nằm ở đâu và hai tọa độ có xu hướng xuất hiện cùng nhau như thế nào.
+
+**Ví dụ.** Xét bảng
+
+| $U\backslash V$ | $0$ | $1$ |
+|---:|---:|---:|
+| $0$ | $0{,}30$ | $0{,}20$ |
+| $1$ | $0{,}10$ | $0{,}40$ |
+
+Xác suất quan sát đồng thời $U=1,V=1$ là $0{,}40$. Việc ô này lớn không được suy ra chỉ từ hai xác suất riêng lẻ; nó chứa thông tin ghép cặp của hai biến.
+
+**Điểm dễ nhầm.** Véc-tơ ngẫu nhiên $\mathbf Z$ khác với một giá trị quan sát $\mathbf z$. Biết hai phân phối riêng của $U$ và $V$ chưa đủ xác định phân phối đồng thời.
+
+**Ý nghĩa và ứng dụng trong AI.** Dữ liệu nhiều đặc trưng, chuỗi trạng thái–hành động và cặp đầu vào–nhãn đều là véc-tơ ngẫu nhiên. Phân phối đồng thời là đối tượng mà mô hình sinh và mô hình xác suất cố gắng biểu diễn.
+
+### Phân phối biên, có điều kiện, xác suất toàn phần và Bayes
+
+**Định nghĩa.** Từ phân phối đồng thời rời rạc,
+
+$$
+p_U(u)=\sum_v p_{U,V}(u,v),
+\qquad
+p(V=v\mid U=u)=\frac{p_{U,V}(u,v)}{p_U(u)}
+$$
+
+khi $p_U(u)>0$. Quy tắc nhân là $p_{U,V}(u,v)=p(V=v\mid U=u)p_U(u)$. Nếu $\{U=u\}$ tạo một phân hoạch, xác suất toàn phần cho $p_V(v)=\sum_u p(V=v\mid U=u)p_U(u)$; công thức Bayes đảo chiều điều kiện:
+
+$$
+p(U=u\mid V=v)=\frac{p(V=v\mid U=u)p_U(u)}{p_V(v)},
+$$
+
+với $p_V(v)>0$.
+
+**Trực quan.** Lấy biên cộng bỏ một tọa độ; điều kiện hóa phóng to và chuẩn hóa lại một lát của bảng; Bayes dùng bằng chứng mới để đổi trọng số giữa các khả năng ban đầu.
+
+**Ví dụ.** Từ bảng trên, $p_U(1)=0{,}50$, $p_V(1)=0{,}60$ và $p(V=1\mid U=1)=0{,}40/0{,}50=0{,}80$. Bayes cho $p(U=1\mid V=1)=0{,}80\cdot0{,}50/0{,}60=2/3$. Quan sát $V=1$ đã nâng xác suất của $U=1$ từ $1/2$ lên $2/3$.
+
+![Bảng phân phối đồng thời với thao tác lấy biên, điều kiện hóa và cập nhật Bayes.](img/lec-00/probability-joint-marginal-bayes.svg)
+
+*Cộng theo hàng hoặc cột tạo phân phối biên; chuẩn hóa một lát tạo phân phối có điều kiện.*
+
+**Điểm dễ nhầm.** $p(U\mid V)$ và $p(V\mid U)$ thường khác nhau. Mẫu số trong xác suất có điều kiện phải dương; công thức Bayes không biến $p(U)$ thành xác suất “chủ quan tùy ý” mà cập nhật nó bằng mô hình hợp lý và bằng chứng.
+
+**Ý nghĩa và ứng dụng trong AI.** Phân loại xác suất ước lượng $p(Y\mid X)$; mô hình sinh thường mô tả $p(X\mid Y)p(Y)$. Bayes nối hai cách nhìn, còn lấy biên là phép loại biến ẩn trong suy diễn xác suất.
+
+### Độc lập và độc lập có điều kiện
+
+**Định nghĩa.** $U$ và $V$ độc lập nếu $p_{U,V}(u,v)=p_U(u)p_V(v)$ với mọi cặp trong trường hợp rời rạc. Hai biến độc lập có điều kiện theo $W$ nếu $p(u,v\mid w)=p(u\mid w)p(v\mid w)$ với mọi $w$ có xác suất dương.
+
+**Trực quan.** Độc lập nghĩa là biết một biến không làm thay đổi phân phối của biến kia. Độc lập có điều kiện nghĩa là sự phụ thuộc biến mất sau khi đã biết một biến giải thích chung.
+
+**Ví dụ.** Trong bảng trên, $p(1,1)=0{,}40\ne0{,}50\cdot0{,}60$, nên $U,V$ phụ thuộc. Một ví dụ không tầm thường: hai kết quả xét nghiệm có thể phụ thuộc trong toàn dân vì cùng bị chi phối bởi trạng thái bệnh $W$, nhưng gần độc lập khi đã điều kiện trên $W$ nếu sai số của hai máy đo riêng biệt.
+
+**Điểm dễ nhầm.** Không tương quan không suy ra độc lập nói chung; nếu $U\sim\operatorname{Unif}[-1,1]$ và $V=U^2$ thì $\operatorname{Cov}(U,V)=0$ dù $V$ hoàn toàn do $U$ quyết định. Độc lập có điều kiện cũng không kéo theo độc lập không điều kiện.
+
+**Ý nghĩa và ứng dụng trong AI.** Các giả thiết độc lập giúp phân rã phân phối lớn thành các thừa số nhỏ, làm suy diễn và học tham số khả thi. Naive Bayes, mô hình đồ thị xác suất và mô hình chuỗi đều dựa vào các dạng độc lập có điều kiện cụ thể.
+
+### Kỳ vọng véc-tơ, hiệp phương sai, tương quan và biến đổi affine
+
+**Định nghĩa.** Nếu các mômen tồn tại,
+
+$$
+\boldsymbol\mu=\mathbb E[\mathbf Z],
+\qquad
+\boldsymbol\Sigma_Z
+=\mathbb E[(\mathbf Z-\boldsymbol\mu)(\mathbf Z-\boldsymbol\mu)^T].
+$$
+
+Phần tử đường chéo là phương sai; phần tử ngoài đường chéo là hiệp phương sai. Tương quan $\rho_{ij}=\Sigma_{ij}/\sqrt{\Sigma_{ii}\Sigma_{jj}}$ được xác định khi hai phương sai dương. Với $\mathbf Y=\mathbf A\mathbf Z+\mathbf b$,
+
+$$
+\mathbb E[\mathbf Y]=\mathbf A\boldsymbol\mu+\mathbf b,
+\qquad
+\operatorname{Cov}(\mathbf Y)=\mathbf A\boldsymbol\Sigma_Z\mathbf A^T.
+$$
+
+**Trực quan.** Trung bình xác định tâm của đám mây điểm; hiệp phương sai mô tả mức trải rộng và xu hướng hai tọa độ cùng tăng hoặc biến đổi ngược chiều. Ma trận hiệp phương sai luôn đối xứng và nửa xác định dương vì $\mathbf a^T\boldsymbol\Sigma_Z\mathbf a=\operatorname{Var}(\mathbf a^T\mathbf Z)\ge0$.
+
+**Ví dụ.** Với bảng đã cho,
+
+$$
+\boldsymbol\mu=\begin{bmatrix}0{,}50\\0{,}60\end{bmatrix},
+\qquad
+\boldsymbol\Sigma_Z=
+\begin{bmatrix}0{,}25&0{,}10\\0{,}10&0{,}24\end{bmatrix},
+\qquad
+\rho_{UV}\approx0{,}408.
+$$
+
+Giá trị dương cho biết $U=1$ và $V=1$ có xu hướng xuất hiện cùng nhau nhiều hơn mức do hai phân phối biên riêng lẻ dự đoán.
+
+**Điểm dễ nhầm.** Hiệp phương sai phụ thuộc đơn vị đo, còn tương quan không có đơn vị nhưng chỉ mô tả liên hệ tuyến tính. Tương quan không chứng minh quan hệ nhân quả.
+
+**Ý nghĩa và ứng dụng trong AI.** Ma trận hiệp phương sai mô tả nhiễu giữa nhiều đầu ra, là đầu vào của phân tích thành phần chính, làm trắng dữ liệu và Gauss nhiều biến. Công thức affine cho phép truyền bất định qua một lớp tuyến tính.
+
+### Gauss nhiều biến, khoảng cách Mahalanobis và làm trắng
+
+**Định nghĩa.** Với $\boldsymbol\mu\in\mathbb R^d$ và $\boldsymbol\Sigma\in\mathbb S_{++}^d$, phân phối Gauss nhiều biến có mật độ
+
+$$
+p(\mathbf z)=\frac{1}{(2\pi)^{d/2}\det(\boldsymbol\Sigma)^{1/2}}
+\exp\left[-\frac12(\mathbf z-\boldsymbol\mu)^T
+\boldsymbol\Sigma^{-1}(\mathbf z-\boldsymbol\mu)\right].
+$$
+
+Khoảng cách Mahalanobis bình phương là $d_M^2=(\mathbf z-\boldsymbol\mu)^T\boldsymbol\Sigma^{-1}(\mathbf z-\boldsymbol\mu)$. Một phép làm trắng véc-tơ ngẫu nhiên có dạng $\widetilde{\mathbf Z}=\boldsymbol\Sigma^{-1/2}(\mathbf Z-\boldsymbol\mu)$, khi đó $\operatorname{Cov}(\widetilde{\mathbf Z})=\mathbf I$.
+
+**Trực quan.** Các điểm có cùng mật độ nằm trên những elip hoặc ellipsoid. Mahalanobis đo khoảng cách sau khi đã co giãn và xoay theo cấu trúc biến thiên tự nhiên; làm trắng biến các elip đó thành mặt cầu.
+
+**Ví dụ.** Với
+
+$$
+\mathbf G\sim\mathcal N\left(\mathbf0,
+\begin{bmatrix}1&0{,}8\\0{,}8&1\end{bmatrix}\right),
+$$
+
+đám mây kéo dài theo hướng hai tọa độ cùng tăng. Hai điểm có cùng khoảng cách Euclid tới gốc có thể có mật độ rất khác nếu một điểm nằm dọc hướng biến thiên lớn còn điểm kia nằm ngang hướng biến thiên nhỏ.
+
+![Elip hiệp phương sai của Gauss nhiều biến, các hướng riêng và tác dụng của phép làm trắng.](img/lec-00/probability-covariance-gaussian.svg)
+
+*Mahalanobis chuẩn hóa khoảng cách theo hiệp phương sai; làm trắng đưa các hướng về phương sai bằng một.*
+
+**Điểm dễ nhầm.** Đường đồng mật độ không phải đường chứa một lượng xác suất cố định; xác suất thuộc về một miền có diện tích hoặc thể tích. Công thức mật độ thông thường cần $\boldsymbol\Sigma$ xác định dương; ma trận suy biến tạo phân phối nằm trên một không gian con và cần xử lý riêng. Làm trắng loại tương quan bậc hai nhưng không làm các tọa độ độc lập nói chung; kết luận độc lập đúng trong những trường hợp đặc biệt như Gauss nhiều biến.
+
+**Ý nghĩa và ứng dụng trong AI.** Gauss nhiều biến được dùng cho mô hình nhiễu, phân tích biệt thức, phát hiện bất thường và mô hình biến ẩn. Khoảng cách Mahalanobis tránh coi mọi hướng đặc trưng là có cùng độ tin cậy.
+
+### Nhiễu tương quan và bình phương tối thiểu tổng quát
+
+**Định nghĩa.** Với mô hình véc-tơ $\mathbf y=\mathbf X\mathbf w+\boldsymbol\varepsilon$ và $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_\varepsilon)$, giả sử $\boldsymbol\Sigma_\varepsilon\in\mathbb S_{++}^m$ đã biết và cố định. Ước lượng hợp lý cực đại tương ứng với bình phương tối thiểu tổng quát (GLS):
+
+$$
+\min_{\mathbf w}\frac12\mathbf r^T
+\boldsymbol\Sigma_\varepsilon^{-1}\mathbf r,
+\qquad
+\mathbf r=\mathbf X\mathbf w-\mathbf y.
+$$
+
+**Trực quan.** GLS không phạt mọi hướng phần dư như nhau. Một sai lệch dọc hướng nhiễu vốn biến thiên mạnh ít bất ngờ hơn sai lệch cùng chuẩn Euclid dọc hướng ổn định; làm trắng phần dư biến bài toán GLS thành bình phương tối thiểu thông thường trong tọa độ mới.
+
+**Ví dụ.** Với
+
+$$
+\boldsymbol\Sigma_2=
+\begin{bmatrix}1&0{,}5\\0{,}5&1\end{bmatrix},
+$$
+
+hai phần dư $\mathbf r_+=(1,1)^T$ và $\mathbf r_-=(1,-1)^T$ có cùng chuẩn Euclid. Tuy nhiên, mục tiêu $J_2=\tfrac12\mathbf r^T\boldsymbol\Sigma_2^{-1}\mathbf r$ lần lượt bằng $2/3$ và $2$: sai lệch ngược chiều hiếm hơn dưới nhiễu tương quan dương nên bị phạt mạnh hơn.
+
+![So sánh cách bình phương tối thiểu thông thường và bình phương tối thiểu tổng quát cân các hướng phần dư.](img/lec-00/probability-gls-weighting.svg)
+
+*OLS dùng đường tròn mức; GLS dùng elip mức thích nghi với hiệp phương sai của nhiễu.*
+
+**Điểm dễ nhầm.** Không thể ước lượng đáng tin cậy một ma trận hiệp phương sai lớn chỉ từ vài phần dư rồi coi nó là đã biết. Khi $\boldsymbol\Sigma_\varepsilon=\sigma^2\mathbf I$, GLS và bình phương tối thiểu thông thường có cùng nghiệm vì hai mục tiêu chỉ khác một hệ số dương.
+
+**Ý nghĩa và ứng dụng trong AI.** GLS phù hợp với dữ liệu chuỗi thời gian, cảm biến hoặc nhiều đầu ra có sai số tương quan. Nó cho thấy hàm mất mát nên phản ánh cấu trúc nhiễu, thay vì mặc định mọi sai lệch độc lập và có cùng độ tin cậy.
 
 ## Ghép các công cụ vào mô hình giá nhà
 
 Phần này sẽ nối các kết quả đại số, giải tích và xác suất để giải thích nghiệm bình phương tối thiểu, phần dư sau khi khớp, dự đoán kèm bất định và nguy cơ quá khớp.
 
-## Bài tập tổng hợp
-
-Các bài tập sẽ được bổ sung cùng với từng cụm nội dung. Gợi ý và lời giải được đặt trong khối gập để người học có thể thử giải trước.
-
 ## Tài liệu tham khảo
 
-- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.9 và 2.11; Chương 4, Mục 4.3–4.5; Chương 6, Mục 6.5.
+- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.9 và 2.11; Chương 3, Mục 3.1–3.9; Chương 4, Mục 4.3–4.5; Chương 5, Mục 5.5; Chương 6, Mục 6.5.
+- Koller, Daphne; Friedman, Nir (2009), *Probabilistic Graphical Models: Principles and Techniques*, Chương 2, phần biểu diễn phân phối xác suất, điều kiện hóa, công thức Bayes và độc lập.
 - Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Phụ lục A.4–A.5, phần vi phân, đạo hàm bậc hai và bình phương tối thiểu.
 - Stewart, James (2016), *Calculus*, ấn bản thứ 8, Mục 5.2–5.3, 14.1–14.7 và 15.1–15.2, phần tích phân một biến, hàm nhiều biến, đạo hàm và tích phân nhiều biến.
 - Strang, Gilbert (2016), *Introduction to Linear Algebra*, ấn bản thứ 5, Mục 2.6 và 4.4, phần phân rã LU, hệ trực chuẩn, Gram–Schmidt và phân rã QR.

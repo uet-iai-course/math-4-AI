@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">Trực quan về kỳ vọng và phương sai</title>
+  <desc id="desc">Kỳ vọng của biến Bernoulli tham số 0.3 là điểm cân bằng 0.3. Phương sai 0.21 là trung bình có trọng số của bình phương khoảng cách tới kỳ vọng. Phân phối đều từ 0 đến 2 có cùng ý nghĩa cân bằng và phân tán.</desc>
+  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:24px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.blue{fill:#dce9f8;stroke:#315d92;stroke-width:3}.orange{fill:#fff1e9;stroke:#b44b20;stroke-width:3}.mean{stroke:#16706a;stroke-width:4;stroke-dasharray:8 5}</style></defs>
+  <rect width="1200" height="540" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">Kỳ vọng định vị tâm cân bằng; phương sai đo độ phân tán quanh tâm</text>
+  <rect class="panel" x="24" y="58" width="560" height="450" rx="14"/><text class="title" x="304" y="94" text-anchor="middle">Bernoulli(0.3): hai khả năng không cân nhau</text>
+  <line x1="92" y1="315" x2="520" y2="315" stroke="#24324a" stroke-width="6"/>
+  <polygon points="220,315 250,365 190,365" fill="#16706a"/><text class="label" x="220" y="395" text-anchor="middle">E[B]=0.3</text>
+  <circle class="blue" cx="92" cy="286" r="31"/><text class="title" x="92" y="294" text-anchor="middle">0</text><text class="label" x="92" y="240" text-anchor="middle">khối lượng 0.7</text>
+  <circle class="orange" cx="520" cy="286" r="22"/><text class="title" x="520" y="294" text-anchor="middle">1</text><text class="label" x="500" y="240" text-anchor="middle">0.3</text>
+  <line x1="220" y1="180" x2="220" y2="315" class="mean"/>
+  <text class="label" x="304" y="135" text-anchor="middle">0.7(0−0.3) + 0.3(1−0.3) = 0</text>
+  <text class="label" x="304" y="445" text-anchor="middle">Var(B)=0.7(0−0.3)²+0.3(1−0.3)²=0.21</text>
+  <text class="small" x="304" y="478" text-anchor="middle">Bình phương làm hai phía đều đóng góp dương.</text>
+
+  <rect class="panel" x="610" y="58" width="566" height="450" rx="14"/><text class="title" x="893" y="94" text-anchor="middle">Uniform(0,2): tâm ở 1, trải đều</text>
+  <line class="axis" x1="670" y1="355" x2="1120" y2="355"/>
+  <rect x="710" y="220" width="350" height="135" fill="#fff1e9" stroke="#b44b20" stroke-width="3"/>
+  <line x1="885" y1="180" x2="885" y2="355" class="mean"/><text class="label" x="885" y="165" text-anchor="middle">E[U]=1</text>
+  <text class="label" x="710" y="385" text-anchor="middle">0</text><text class="label" x="885" y="385" text-anchor="middle">1</text><text class="label" x="1060" y="385" text-anchor="middle">2</text>
+  <path d="M710 415 Q885 475 1060 415" fill="none" stroke="#6a45a5" stroke-width="4"/>
+  <text class="label" x="885" y="458" text-anchor="middle">Var(U)=1/3</text>
+  <text class="small" x="893" y="489" text-anchor="middle">Kỳ vọng và phương sai chỉ tóm tắt phân phối.</text>
+</svg>

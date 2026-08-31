@@ -230,12 +230,14 @@
   margin: 20px auto;
 }
 
-.markdown-body p:has(> img[src^="img/lec-00/calculus-"]) {
+.markdown-body p:has(> img[src^="img/lec-00/calculus-"]),
+.markdown-body p:has(> img[src^="img/lec-00/probability-"]) {
   overflow-x: auto;
   padding-bottom: 8px;
 }
 
-.markdown-body img[src^="img/lec-00/calculus-"] {
+.markdown-body img[src^="img/lec-00/calculus-"],
+.markdown-body img[src^="img/lec-00/probability-"] {
   width: 100%;
   min-width: 900px;
   max-width: none;

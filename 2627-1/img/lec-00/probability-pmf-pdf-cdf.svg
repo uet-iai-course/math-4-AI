@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">Hàm khối xác suất, mật độ và hàm phân phối tích lũy</title>
+  <desc id="desc">Ba khung minh họa phân phối Bernoulli tham số 0.3, mật độ đều trên đoạn 0 đến 2 và hàm phân phối tích lũy tương ứng.</desc>
+  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:24px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.blue{fill:#dce9f8;stroke:#315d92;stroke-width:3}.orange{fill:#fff1e9;stroke:#b44b20;stroke-width:3}.curve{fill:none;stroke:#6a45a5;stroke-width:5}</style></defs>
+  <rect width="1200" height="540" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">PMF gán khối lượng; PDF gán mật độ; CDF cộng dồn xác suất</text>
+  <rect class="panel" x="20" y="58" width="370" height="450" rx="14"/><text class="title" x="205" y="94" text-anchor="middle">PMF: Bernoulli(0.3)</text>
+  <line class="axis" x1="67" y1="400" x2="345" y2="400"/><line class="axis" x1="80" y1="420" x2="80" y2="130"/>
+  <rect class="blue" x="132" y="190" width="62" height="210"/><rect class="orange" x="260" y="310" width="62" height="90"/>
+  <text class="label" x="163" y="430" text-anchor="middle">0</text><text class="label" x="291" y="430" text-anchor="middle">1</text>
+  <text class="label" x="163" y="177" text-anchor="middle">0.7</text><text class="label" x="291" y="297" text-anchor="middle">0.3</text>
+  <text class="small" x="205" y="471" text-anchor="middle">Chiều cao chính là P(B=b).</text>
+
+  <rect class="panel" x="415" y="58" width="370" height="450" rx="14"/><text class="title" x="600" y="94" text-anchor="middle">PDF: Uniform(0,2)</text>
+  <line class="axis" x1="462" y1="400" x2="740" y2="400"/><line class="axis" x1="475" y1="420" x2="475" y2="130"/>
+  <rect class="orange" x="495" y="250" width="210" height="150"/><text class="label" x="470" y="255" text-anchor="end">1/2</text>
+  <text class="label" x="495" y="430" text-anchor="middle">0</text><text class="label" x="705" y="430" text-anchor="middle">2</text>
+  <text class="small" x="600" y="471" text-anchor="middle">Diện tích = 2 × 1/2 = 1.</text>
+  <text class="small" x="600" y="494" text-anchor="middle">Tại một điểm: P(U=u)=0.</text>
+
+  <rect class="panel" x="810" y="58" width="370" height="450" rx="14"/><text class="title" x="995" y="94" text-anchor="middle">CDF: F(t)=P(U≤t)</text>
+  <line class="axis" x1="857" y1="400" x2="1135" y2="400"/><line class="axis" x1="870" y1="420" x2="870" y2="130"/>
+  <path class="curve" d="M835 400 L890 400 L1100 170 L1150 170"/>
+  <line x1="1100" y1="170" x2="870" y2="170" stroke="#91a4bd" stroke-width="2" stroke-dasharray="6 5"/>
+  <text class="label" x="852" y="176" text-anchor="end">1</text><text class="label" x="890" y="430" text-anchor="middle">0</text><text class="label" x="1100" y="430" text-anchor="middle">2</text>
+  <circle cx="995" cy="285" r="7" fill="#fff" stroke="#6a45a5" stroke-width="3"/><text class="label" x="1008" y="279">F(1)=1/2</text>
+  <text class="small" x="995" y="471" text-anchor="middle">CDF luôn không giảm, từ 0 đến 1.</text>
+</svg>
