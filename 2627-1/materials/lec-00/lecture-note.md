@@ -1325,7 +1325,268 @@ hai phần dư $\mathbf r_+=(1,1)^T$ và $\mathbf r_-=(1,-1)^T$ có cùng chuẩ
 
 ## Ghép các công cụ vào mô hình giá nhà
 
-Phần này sẽ nối các kết quả đại số, giải tích và xác suất để giải thích nghiệm bình phương tối thiểu, phần dư sau khi khớp, dự đoán kèm bất định và nguy cơ quá khớp.
+Phần này dùng lại một bộ dữ liệu xuyên suốt để chỉ rõ đầu ra của bước trước trở thành đầu vào của bước sau. Giá được đo theo đơn vị $100$ triệu đồng; dữ liệu là ví dụ tổng hợp phục vụ tính toán, không phải số liệu thị trường.
+
+### Bước 1 — Xác định dữ liệu quan sát
+
+**Đầu vào.** Bốn căn nhà với diện tích, số phòng ngủ và giá quan sát:
+
+| Căn | Diện tích $a_i$ | Phòng ngủ $b_i$ | Giá $y_i$ |
+|---:|---:|---:|---:|
+| 1 | $40\,\mathrm{m}^2$ | $1$ | $11$ |
+| 2 | $50\,\mathrm{m}^2$ | $2$ | $12$ |
+| 3 | $60\,\mathrm{m}^2$ | $2$ | $14$ |
+| 4 | $70\,\mathrm{m}^2$ | $3$ | $19$ |
+
+**Thao tác.** Chọn giá làm biến đích và diện tích, số phòng làm đặc trưng ban đầu. Giữ nguyên từng hàng như một mẫu quan sát duy nhất.
+
+**Đầu ra.** Bốn bộ ba $(a_i,b_i,y_i)$ cùng quy ước đơn vị rõ ràng.
+
+**Công cụ tái sử dụng.** Khái niệm vô hướng, véc-tơ dữ liệu và biến ngẫu nhiên giúp phân biệt giá trị đã quan sát $y_i$ với giá ngẫu nhiên $Y_i$ trước khi quan sát.
+
+**Diễn giải và giới hạn.** Bảng chỉ cho biết quan hệ quan sát được trên bốn căn. Nó chưa xác định quan hệ nhân quả và quá nhỏ để đại diện cho thị trường nhà ở.
+
+### Bước 2 — Tạo đặc trưng và chọn dạng mô hình
+
+**Đầu vào.** Các giá trị thô $a_i,b_i$ của bước 1.
+
+**Thao tác.** Dịch tâm và đổi thang đặc trưng:
+
+$$
+a_i'=\frac{a_i-55}{10},
+\qquad
+b_i'=b_i-2,
+\qquad
+\boldsymbol\phi_i=\begin{bmatrix}1\\a_i'\\b_i'\end{bmatrix}.
+$$
+
+Chọn mô hình tuyến tính theo trọng số
+
+$$
+\hat y_i=\mathbf w^T\boldsymbol\phi_i
+=w_0+w_1a_i'+w_2b_i'.
+$$
+
+**Đầu ra.** Bốn cặp đặc trưng biến đổi là $(-1{,}5,-1)$, $(-0{,}5,0)$, $(0{,}5,0)$ và $(1{,}5,1)$; véc-tơ trọng số có kích thước $\mathbf w\in\mathbb R^3$.
+
+**Công cụ tái sử dụng.** Véc-tơ cột, chuyển vị và tích vô hướng biến một mẫu thành một dự đoán vô hướng.
+
+**Diễn giải và giới hạn.** $w_0$ là giá nền tại $55\,\mathrm{m}^2$ và $2$ phòng; $w_1$ là mức đổi giá mỗi $10\,\mathrm{m}^2$ khi giữ số phòng cố định; $w_2$ là mức đổi giá mỗi phòng khi giữ diện tích cố định. Đây là diễn giải của mô hình, không tự động là hiệu ứng nhân quả.
+
+### Bước 3 — Ghép các mẫu thành ma trận thiết kế
+
+**Đầu vào.** Bốn véc-tơ đặc trưng $\boldsymbol\phi_i$ và bốn giá $y_i$.
+
+**Thao tác.** Xếp mỗi $\boldsymbol\phi_i^T$ thành một hàng của ma trận thiết kế và ghép các giá thành véc-tơ:
+
+$$
+\mathbf X=
+\begin{bmatrix}
+1&-1{,}5&-1\\
+1&-0{,}5&0\\
+1&0{,}5&0\\
+1&1{,}5&1
+\end{bmatrix}
+\in\mathbb R^{4\times3},
+\qquad
+\mathbf y=
+\begin{bmatrix}11\\12\\14\\19\end{bmatrix}
+\in\mathbb R^4.
+$$
+
+**Đầu ra.** Toàn bộ mô hình trên bốn mẫu được viết gọn thành $\hat{\mathbf y}=\mathbf X\mathbf w$ và $\mathbf r=\hat{\mathbf y}-\mathbf y$.
+
+**Công cụ tái sử dụng.** Tích ma trận–véc-tơ xử lý đồng thời một lô mẫu; kiểm tra kích thước xác nhận $(4\times3)(3\times1)=(4\times1)$.
+
+**Diễn giải và giới hạn.** Mỗi hàng tương ứng một căn nhà, còn mỗi cột tương ứng một đặc trưng. Đổi thứ tự hàng không đổi bài toán nếu $\mathbf X$ và $\mathbf y$ được đổi cùng nhau; đổi thứ tự cột mà không đổi $\mathbf w$ sẽ làm thay đổi mô hình.
+
+![Quy trình từ dữ liệu thô qua đặc trưng và ma trận thiết kế đến dự đoán, phần dư và bất định.](img/lec-00/housing-model-pipeline.svg)
+
+*Mỗi mũi tên chỉ một đầu ra được tái sử dụng ở bước kế tiếp; ba nhánh đại số, giải tích và xác suất gặp nhau trong cùng một quy trình.*
+
+### Bước 4 — Đánh giá trọng số ban đầu và nhận ra hệ không tương thích
+
+**Đầu vào.** $\mathbf X$, $\mathbf y$ và bộ trọng số thử $\mathbf w^{(0)}=(14,1,1)^T$.
+
+**Thao tác.** Tính dự đoán, phần dư và mất mát:
+
+$$
+\hat{\mathbf y}^{(0)}=\mathbf X\mathbf w^{(0)}
+=\begin{bmatrix}11{,}5\\13{,}5\\14{,}5\\16{,}5\end{bmatrix},
+\qquad
+\mathbf r^{(0)}=
+\begin{bmatrix}0{,}5\\1{,}5\\0{,}5\\-2{,}5\end{bmatrix},
+$$
+
+$$
+f(\mathbf w^{(0)})
+=\frac12\lVert\mathbf r^{(0)}\rVert_2^2
+=4{,}5.
+$$
+
+Kiểm tra khả năng khớp chính xác: căn 2–3 cho $w_1=2$, căn 1–2 cho $w_1+w_2=1$, còn căn 3–4 cho $w_1+w_2=5$. Ba điều kiện mâu thuẫn, nên $\mathbf X\mathbf w=\mathbf y$ vô nghiệm.
+
+**Đầu ra.** Một thước đo sai số có thể tối ưu và kết luận phải giải bài toán xấp xỉ thay vì một hệ phương trình chính xác.
+
+**Công cụ tái sử dụng.** Phần dư, chuẩn $\ell_2$, hạng và tính tương thích của hệ tuyến tính.
+
+**Diễn giải và giới hạn.** Phần dư có thể đến từ trọng số chưa phù hợp, đặc trưng bị bỏ sót, sai số đo hoặc biến thiên ngẫu nhiên. Bình phương phần dư ngăn sai số trái dấu triệt tiêu nhau, nhưng làm các ngoại lệ có ảnh hưởng lớn.
+
+### Bước 5 — Chọn mô hình nhiễu và hàm mục tiêu
+
+**Đầu vào.** Mô hình trung bình $\mathbf X\mathbf w$, phần dư và giả thiết về cấu trúc nhiễu.
+
+**Thao tác.** Chọn một trong hai nhánh:
+
+- Nếu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\sigma^2\mathbf I)$, các nhiễu độc lập và cùng phương sai, dùng bình phương tối thiểu thông thường (OLS): $\tfrac12\mathbf r^T\mathbf r$.
+- Nếu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_\varepsilon)$ với $\boldsymbol\Sigma_\varepsilon\in\mathbb S_{++}^4$ đã biết và cố định, dùng bình phương tối thiểu tổng quát (GLS): $\tfrac12\mathbf r^T\boldsymbol\Sigma_\varepsilon^{-1}\mathbf r$.
+
+**Đầu ra.** Với tuyến minh họa chính, chọn OLS để nhận
+
+$$
+\min_{\mathbf w}f(\mathbf w)
+=\min_{\mathbf w}\frac12\lVert\mathbf X\mathbf w-\mathbf y\rVert_2^2.
+$$
+
+**Công cụ tái sử dụng.** Mô hình Gauss, hàm hợp lý, ma trận hiệp phương sai và khoảng cách Mahalanobis giải thích vì sao hai giả thiết nhiễu dẫn đến hai dạng mất mát.
+
+![OLS cân mọi hướng phần dư như nhau, còn GLS cân theo hiệp phương sai của nhiễu.](img/lec-00/probability-gls-weighting.svg)
+
+*GLS chỉ nên dùng khi cấu trúc hiệp phương sai có cơ sở; trong trường hợp $\boldsymbol\Sigma_\varepsilon=\sigma^2\mathbf I$, hai phương pháp cho cùng nghiệm.*
+
+**Diễn giải và giới hạn.** Việc chọn OLS ở đây là giả thiết minh họa, không phải kết luận thống kê từ bốn quan sát. Không thể ước lượng đáng tin cậy một ma trận hiệp phương sai lớn từ vài phần dư rồi coi nó là đã biết.
+
+### Bước 6 — Tìm trọng số làm mất mát nhỏ nhất
+
+**Đầu vào.** Hàm OLS $f(\mathbf w)=\tfrac12\lVert\mathbf X\mathbf w-\mathbf y\rVert_2^2$.
+
+**Thao tác.** Tính các đại lượng của phương trình chuẩn:
+
+$$
+\mathbf X^T\mathbf X=
+\begin{bmatrix}
+4&0&0\\
+0&5&3\\
+0&3&2
+\end{bmatrix},
+\qquad
+\mathbf X^T\mathbf y=
+\begin{bmatrix}56\\13\\8\end{bmatrix}.
+$$
+
+Vì $\operatorname{rank}(\mathbf X)=3$, nghiệm OLS là duy nhất và thỏa
+
+$$
+\mathbf X^T\mathbf X\mathbf w=\mathbf X^T\mathbf y,
+\qquad
+\mathbf w_{\mathrm{LS}}=(14,2,1)^T.
+$$
+
+Một cách lặp để tiến về nghiệm là hạ gradient. Tại $\mathbf w^{(0)}$, $\nabla f=(0,-5,-3)^T$; với $\eta=0{,}1$,
+
+$$
+\mathbf w^+=\mathbf w^{(0)}-\eta\nabla f
+=(14,1{,}5,1{,}3)^T,
+\qquad
+f(\mathbf w^+)=2{,}265<4{,}5.
+$$
+
+**Đầu ra.** Trọng số tối ưu $\mathbf w_{\mathrm{LS}}$; một bước gradient minh họa cơ chế cập nhật nhưng chưa phải nghiệm tối ưu.
+
+**Công cụ tái sử dụng.** Chuyển vị, tích ma trận, hạng, gradient, Hessian $\nabla^2f=\mathbf X^T\mathbf X$ và điều kiện dừng bậc nhất.
+
+![Hình chiếu bình phương tối thiểu và một bước gradient làm giảm mất mát.](img/lec-00/calculus-least-squares-projection-step.svg)
+
+*Trong không gian dữ liệu, OLS chiếu $\mathbf y$ lên $\operatorname{Col}(\mathbf X)$; trong không gian tham số, đối gradient chỉ hướng giảm cục bộ.*
+
+**Diễn giải và giới hạn.** Hạng cột đầy đủ làm trọng số tối ưu duy nhất. Trong bài toán lớn thường giải hệ hoặc dùng thuật toán lặp thay vì tạo $(\mathbf X^T\mathbf X)^{-1}$ tường minh; kích thước bước quá lớn có thể làm mất mát tăng.
+
+### Bước 7 — Kiểm tra mô hình sau khi khớp
+
+**Đầu vào.** $\mathbf w_{\mathrm{LS}}=(14,2,1)^T$, $\mathbf X$ và $\mathbf y$.
+
+**Thao tác.** Tính lại dự đoán và phần dư:
+
+$$
+\hat{\mathbf y}_{\mathrm{LS}}
+=\begin{bmatrix}10\\13\\15\\18\end{bmatrix},
+\qquad
+\mathbf r_{\mathrm{LS}}
+=\begin{bmatrix}-1\\1\\1\\-1\end{bmatrix}.
+$$
+
+Khi đó $\operatorname{SSE}=\lVert\mathbf r_{\mathrm{LS}}\rVert_2^2=4$, $f(\mathbf w_{\mathrm{LS}})=2$ và $\mathbf X^T\mathbf r_{\mathrm{LS}}=\mathbf0$.
+
+**Đầu ra.** Một bảng dự đoán sau khớp, phần dư còn lại và kiểm tra điều kiện tối ưu.
+
+**Công cụ tái sử dụng.** Phần dư, chuẩn, tích vô hướng và trực giao giữa phần dư với không gian cột.
+
+![So sánh phần dư của trọng số ban đầu và phần dư sau khi khớp OLS trên bốn căn nhà.](img/lec-00/housing-residuals-before-after.svg)
+
+*Mất mát giảm từ $4{,}5$ xuống $2$, nhưng bốn phần dư sau khớp vẫn khác không vì hệ dữ liệu không tương thích.*
+
+**Diễn giải và giới hạn.** Gradient bằng $0$ không có nghĩa từng phần dư bằng $0$. Phần dư sau khớp là đại lượng tính từ mô hình và dữ liệu; nó không đồng nhất với nhiễu ẩn, và sai số huấn luyện nhỏ chưa đo được khả năng dự đoán ngoài mẫu.
+
+### Bước 8 — Dự đoán cho căn nhà mới kèm bất định
+
+**Đầu vào.** Căn nhà mới có diện tích $65\,\mathrm{m}^2$, $2$ phòng; $\mathbf w_{\mathrm{LS}}$ và giả thiết minh họa $\varepsilon\sim\mathcal N(0,1)$.
+
+**Thao tác.** Biến đổi đặc trưng thành $a'=1$, $b'=0$, nên $\boldsymbol\phi_{\mathrm{new}}=(1,1,0)^T$. Dự đoán điểm là
+
+$$
+\hat y_{\mathrm{new}}
+=\mathbf w_{\mathrm{LS}}^T\boldsymbol\phi_{\mathrm{new}}
+=16=1{,}6\ \text{tỷ đồng}.
+$$
+
+Với quy tắc Gauss $\Pr(|G|\le1{,}96)\approx0{,}95$, dải nhiễu có điều kiện là
+
+$$
+16\pm1{,}96
+=[14{,}04;17{,}96],
+$$
+
+tức $[1{,}404;1{,}796]$ tỷ đồng.
+
+**Đầu ra.** Một dự đoán điểm và một dải 95% cho biến thiên nhiễu quan sát dưới giả thiết Gauss đã nêu.
+
+**Công cụ tái sử dụng.** Tích vô hướng, biến đổi đặc trưng, phân phối Gauss, CDF và phân vị.
+
+![Dự đoán giá căn nhà mới với đường trung tâm và dải nhiễu Gauss 95 phần trăm.](img/lec-00/housing-prediction-uncertainty.svg)
+
+*Dải được đặt quanh dự đoán $1{,}6$ tỷ đồng và chỉ biểu diễn thành phần nhiễu đã giả định.*
+
+**Diễn giải và giới hạn.** $\sigma=1$ được cho để minh họa, không được ước lượng từ bốn mẫu. Dải trên điều kiện theo đặc trưng và coi trọng số là cố định; nó chưa gồm bất định trọng số, sai đặc tả, dịch chuyển phân phối hoặc sai số đo đặc trưng.
+
+### Bước 9 — So sánh mô hình và nhận diện nguy cơ quá khớp
+
+**Đầu vào.** Mô hình ba trọng số với $\boldsymbol\phi=[1,a',b']^T$ và mô hình mở rộng với $\widetilde{\boldsymbol\phi}=[1,a',b',(a')^2]^T$.
+
+**Thao tác.** Khớp hai mô hình trên cùng bốn mẫu. Mô hình thứ nhất có
+
+$$
+\mathbf w_{\mathrm{LS}}=(14,2,1)^T,
+\qquad \operatorname{SSE}=4,
+\qquad \hat y_{\mathrm{new}}=16.
+$$
+
+Mô hình mở rộng có
+
+$$
+\widetilde{\mathbf w}=(12{,}75,2,1,1)^T,
+\qquad \operatorname{SSE}=0,
+\qquad \widetilde{\hat y}_{\mathrm{new}}=15{,}75.
+$$
+
+**Đầu ra.** Hai mô hình có độ khớp huấn luyện và dự đoán ngoài bốn điểm khác nhau.
+
+**Công cụ tái sử dụng.** Đặc trưng phi tuyến, hạng, bình phương tối thiểu, phần dư và phân biệt rủi ro thực nghiệm với rủi ro trên phân phối dữ liệu.
+
+![So sánh mô hình ba trọng số với mô hình mở rộng nội suy đúng bốn mẫu.](img/lec-00/housing-model-comparison.svg)
+
+*Mô hình mở rộng đạt SSE bằng $0$ trên dữ liệu huấn luyện nhưng thay đổi dự đoán tại căn nhà mới.*
+
+**Diễn giải và giới hạn.** Lỗi huấn luyện thấp hơn không chứng minh dự đoán ngoài mẫu tốt hơn. Với chỉ bốn quan sát, chưa thể chọn mô hình bằng đánh giá ngoài mẫu đáng tin cậy; ví dụ chỉ minh họa rằng tăng độ linh hoạt làm tăng nguy cơ học cả biến thiên riêng của dữ liệu.
 
 ## Tài liệu tham khảo
 

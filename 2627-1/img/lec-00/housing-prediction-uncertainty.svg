@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 550" role="img" aria-labelledby="title desc">
+  <title id="title">Dự đoán giá nhà kèm dải bất định do nhiễu Gauss</title>
+  <desc id="desc">Nhà 65 mét vuông, hai phòng có dự đoán điểm 1,6 tỷ đồng. Với độ lệch chuẩn giả định 0,1 tỷ đồng, dải 95 phần trăm do nhiễu quan sát là từ 1,404 đến 1,796 tỷ đồng. Dải này chưa gồm bất định tham số hay sai đặc tả mô hình.</desc>
+  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:24px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.curve{fill:none;stroke:#315d92;stroke-width:5}.mean{stroke:#16706a;stroke-width:4}.bound{stroke:#b44b20;stroke-width:3;stroke-dasharray:7 5}.warn{fill:#fff8e6;stroke:#9b6b12;stroke-width:3}</style></defs>
+  <rect width="1200" height="550" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">Dự đoán điểm mô tả tâm; phân phối có điều kiện mô tả biến thiên còn lại</text>
+  <rect class="panel" x="22" y="58" width="260" height="455" rx="14"/><text class="title" x="152" y="94" text-anchor="middle">Nhà mới</text>
+  <path d="M72 235 L152 170 L232 235 V365 H72 Z" fill="#e9f1fb" stroke="#315d92" stroke-width="4"/><rect x="126" y="285" width="52" height="80" fill="#fff" stroke="#315d92" stroke-width="3"/><rect x="92" y="252" width="40" height="38" fill="#fff" stroke="#315d92" stroke-width="3"/><rect x="185" y="252" width="28" height="38" fill="#fff" stroke="#315d92" stroke-width="3"/>
+  <text class="label" x="152" y="415" text-anchor="middle">65 m², 2 phòng</text><text class="small" x="152" y="451" text-anchor="middle">a′=1, b′=0</text><text class="small" x="152" y="482" text-anchor="middle">φ*=[1,1,0]ᵀ</text>
+
+  <rect class="panel" x="307" y="58" width="575" height="455" rx="14"/><text class="title" x="594" y="94" text-anchor="middle">Y | φ* ~ N(1,6; 0,1²) tỷ đồng</text>
+  <path d="M388 375 C430 372 470 355 510 278 C548 205 570 150 594 142 C618 150 640 205 678 278 C718 355 758 372 800 375 L800 375 L388 375 Z" fill="#e9f1fb"/>
+  <path class="curve" d="M388 375 C430 372 470 355 510 278 C548 205 570 150 594 142 C618 150 640 205 678 278 C718 355 758 372 800 375"/>
+  <line class="axis" x1="365" y1="375" x2="825" y2="375"/>
+  <line class="bound" x1="470" y1="375" x2="470" y2="334"/><line class="mean" x1="594" y1="375" x2="594" y2="142"/><line class="bound" x1="718" y1="375" x2="718" y2="334"/>
+  <path d="M470 415 L718 415" stroke="#b44b20" stroke-width="5"/><path d="M470 405 L470 425 M718 405 L718 425" stroke="#b44b20" stroke-width="5"/>
+  <text class="label" x="470" y="451" text-anchor="middle">1,404</text><text class="title" x="594" y="406" text-anchor="middle">1,6</text><text class="label" x="718" y="451" text-anchor="middle">1,796</text>
+  <text class="small" x="594" y="482" text-anchor="middle">Dải 95%: 1,6 ± 1,96×0,1 (tỷ đồng)</text>
+
+  <rect class="panel" x="907" y="58" width="271" height="455" rx="14"/><text class="title" x="1042" y="94" text-anchor="middle">Giả thiết</text>
+  <text class="label" x="1042" y="144" text-anchor="middle">σ=0,1 tỷ đồng</text><text class="small" x="1042" y="175" text-anchor="middle">được cho để minh họa,</text><text class="small" x="1042" y="200" text-anchor="middle">không ước lượng từ 4 mẫu.</text>
+  <rect class="warn" x="930" y="242" width="225" height="190" rx="12"/>
+  <text class="title" x="1042" y="278" text-anchor="middle">Chưa bao gồm</text>
+  <text class="label" x="1042" y="321" text-anchor="middle">• bất định tham số</text><text class="label" x="1042" y="359" text-anchor="middle">• sai đặc tả mô hình</text><text class="label" x="1042" y="397" text-anchor="middle">• dịch chuyển dữ liệu</text>
+  <text class="small" x="1042" y="469" text-anchor="middle">Đây chỉ là dải nhiễu</text><text class="small" x="1042" y="493" text-anchor="middle">Gauss có điều kiện.</text>
+</svg>

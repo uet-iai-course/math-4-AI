@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 570" role="img" aria-labelledby="title desc">
+  <title id="title">So sánh mô hình giá nhà ba và bốn trọng số</title>
+  <desc id="desc">Mô hình ba trọng số có trọng số 14, 2, 1, tổng bình phương sai số huấn luyện bằng 4 và dự đoán nhà mới bằng 16. Mô hình bốn trọng số thêm bình phương diện tích có trọng số 12,75; 2; 1; 1, nội suy bốn mẫu với SSE bằng 0 và dự đoán nhà mới bằng 15,75. Không có dữ liệu ngoài mẫu để kết luận mô hình nào dự đoán tốt hơn.</desc>
+  <defs><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.model1{fill:#e9f1fb;stroke:#315d92;stroke-width:3}.model2{fill:#eef4f3;stroke:#16706a;stroke-width:3}.warn{fill:#fff8e6;stroke:#9b6b12;stroke-width:3}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.zero{fill:#fff;stroke:#16706a;stroke-width:3}.nonzero{fill:#fff1e9;stroke:#b44b20;stroke-width:3}</style></defs>
+  <rect width="1200" height="570" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">Thêm đặc trưng có thể giảm lỗi huấn luyện nhưng chưa chứng minh khả năng khái quát</text>
+  <rect class="model1" x="24" y="58" width="550" height="390" rx="14"/><text class="title" x="299" y="94" text-anchor="middle">Mô hình 3 trọng số</text>
+  <text class="label" x="299" y="132" text-anchor="middle">φ=[1,a′,b′]ᵀ,  w=(14,2,1)ᵀ</text>
+  <text class="small" x="299" y="169" text-anchor="middle">Giá quan sát y:   11     12     14     19</text>
+  <text class="small" x="299" y="199" text-anchor="middle">Dự đoán ŷ:       10     13     15     18</text>
+  <g text-anchor="middle"><rect class="nonzero" x="108" y="235" width="70" height="70" rx="8" fill="#fff1e9"/><rect class="nonzero" x="212" y="235" width="70" height="70" rx="8" fill="#fff1e9"/><rect class="nonzero" x="316" y="235" width="70" height="70" rx="8" fill="#fff1e9"/><rect class="nonzero" x="420" y="235" width="70" height="70" rx="8" fill="#fff1e9"/><text class="title" x="143" y="278">−1</text><text class="title" x="247" y="278">+1</text><text class="title" x="351" y="278">+1</text><text class="title" x="455" y="278">−1</text></g>
+  <text class="small" x="299" y="333" text-anchor="middle">Phần dư trên bốn mẫu huấn luyện</text>
+  <text class="title" x="170" y="383" text-anchor="middle">SSE = 4</text><text class="title" x="415" y="383" text-anchor="middle">Nhà mới = 16</text>
+  <text class="small" x="415" y="413" text-anchor="middle">= 1,6 tỷ đồng</text>
+
+  <rect class="model2" x="600" y="58" width="576" height="390" rx="14"/><text class="title" x="888" y="94" text-anchor="middle">Mô hình 4 trọng số</text>
+  <text class="label" x="888" y="132" text-anchor="middle">φ̃=[1,a′,b′,(a′)²]ᵀ</text><text class="label" x="888" y="164" text-anchor="middle">w̃=(12,75; 2; 1; 1)ᵀ</text>
+  <text class="small" x="888" y="199" text-anchor="middle">Dự đoán trùng y:   11     12     14     19</text>
+  <g text-anchor="middle"><rect class="zero" x="684" y="235" width="70" height="70" rx="35"/><rect class="zero" x="788" y="235" width="70" height="70" rx="35"/><rect class="zero" x="892" y="235" width="70" height="70" rx="35"/><rect class="zero" x="996" y="235" width="70" height="70" rx="35"/><text class="title" x="719" y="278">0</text><text class="title" x="823" y="278">0</text><text class="title" x="927" y="278">0</text><text class="title" x="1031" y="278">0</text></g>
+  <text class="small" x="888" y="333" text-anchor="middle">Nội suy đúng bốn mẫu huấn luyện</text>
+  <text class="title" x="750" y="383" text-anchor="middle">SSE = 0</text><text class="title" x="1025" y="383" text-anchor="middle">Nhà mới = 15,75</text>
+  <text class="small" x="1025" y="413" text-anchor="middle">= 1,575 tỷ đồng</text>
+
+  <rect class="warn" x="122" y="470" width="956" height="72" rx="12"/>
+  <text class="title" x="600" y="500" text-anchor="middle">Chưa có bằng chứng ngoài mẫu</text>
+  <text class="label" x="600" y="529" text-anchor="middle">SSE huấn luyện thấp hơn không cho biết dự đoán nào gần giá thật của những căn nhà mới.</text>
+</svg>
