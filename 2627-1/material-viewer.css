@@ -64,6 +64,10 @@
   background: rgba(255, 255, 255, 0.86);
 }
 
+.material-status[hidden] {
+  display: none;
+}
+
 .material-status--error {
   border-color: #a63232;
   background: #fff1f1;
