@@ -230,6 +230,17 @@
   margin: 20px auto;
 }
 
+.markdown-body p:has(> img[src^="img/lec-00/calculus-"]) {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.markdown-body img[src^="img/lec-00/calculus-"] {
+  width: 100%;
+  min-width: 900px;
+  max-width: none;
+}
+
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;

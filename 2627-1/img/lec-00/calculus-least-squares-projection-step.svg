@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Hình chiếu bình phương tối thiểu và một bước gradient</title>
+  <desc id="desc">Khung trái cho phần dư r bằng y mũ trừ y vuông góc với không gian cột. Khung phải cho một bước gradient trên lát w0 bằng 14 làm mất mát giảm từ 4,5 xuống 2,265 và tiến về nghiệm 2,1.</desc>
+  <defs>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b44b20"/></marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#315d92"/></marker>
+    <style>
+      .panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.plane{fill:#e6eef9;stroke:#315d92;stroke-width:3}.residual{stroke:#b44b20;stroke-width:5;marker-end:url(#arrowOrange)}.projection{stroke:#315d92;stroke-width:4;marker-end:url(#arrowBlue)}.contour{fill:none;stroke:#6a45a5;stroke-width:2.5}.step{stroke:#b44b20;stroke-width:5;marker-end:url(#arrowOrange)}.guide{stroke:#708096;stroke-width:1.5;stroke-dasharray:5 5}.point{fill:#fff;stroke:#172033;stroke-width:3}
+    </style>
+  </defs>
+  <rect width="1200" height="520" fill="#f3f6fb"/>
+  <text class="title" x="600" y="34" text-anchor="middle">Bình phương tối thiểu: hình chiếu trong dữ liệu, chuyển động trong tham số</text>
+
+  <rect class="panel" x="24" y="55" width="540" height="440" rx="14"/>
+  <text class="title" x="294" y="88" text-anchor="middle">Không gian dữ liệu R4</text>
+  <polygon class="plane" points="85,350 400,245 515,305 200,410"/>
+  <text class="label" x="383" y="360">Col(X)</text>
+  <circle class="point" cx="290" cy="160" r="7"/><text class="label" x="305" y="158">y</text>
+  <circle cx="290" cy="282" r="7" fill="#315d92"/><text class="label" x="305" y="279">y_hat=X w_LS</text>
+  <line class="residual" x1="290" y1="160" x2="290" y2="282"/>
+  <text class="label" x="307" y="222">r=y_hat-y</text>
+  <path d="M290 282h22v-22" fill="none" stroke="#172033" stroke-width="3"/>
+  <line class="projection" x1="120" y1="378" x2="290" y2="282"/>
+  <text class="label" x="125" y="326">X^T r=0</text>
+  <text class="small" x="294" y="458" text-anchor="middle">Mặt phẳng chỉ là sơ đồ của một không gian con trong R4.</text>
+
+  <rect class="panel" x="588" y="55" width="588" height="440" rx="14"/>
+  <text class="title" x="882" y="88" text-anchor="middle">Lát tham số w0=14</text>
+  <path class="contour" d="M955.2 228.7 C961.5 236.3 942.0 263.2 911.6 288.8 C881.1 314.3 851.2 328.9 844.8 321.3 C838.5 313.7 858.0 286.8 888.4 261.2 C918.9 235.7 948.8 221.1 955.2 228.7Z"/>
+  <path class="contour" d="M1001.1 190.2 C1012.8 204.1 977.1 253.4 921.2 300.3 C865.4 347.1 810.6 373.8 798.9 359.8 C787.2 345.9 822.9 296.6 878.8 249.7 C934.6 202.9 989.4 176.2 1001.1 190.2Z"/>
+  <path class="contour" d="M1053.2 146.4 C1071.0 167.6 1016.8 242.3 932.1 313.3 C847.5 384.3 764.5 424.7 746.8 403.6 C729.0 382.4 783.2 307.7 867.9 236.7 C952.5 165.7 1035.5 125.3 1053.2 146.4Z"/>
+  <line x1="650" y1="420" x2="1120" y2="420" stroke="#24324a" stroke-width="2"/><text class="label" x="1125" y="427">w₁</text>
+  <line x1="690" y1="455" x2="690" y2="130" stroke="#24324a" stroke-width="2"/><text class="label" x="672" y="125">w₂</text>
+  <circle class="point" cx="745" cy="300" r="7"/><text class="label" x="661" y="286">w_start=(1,1)</text>
+  <line class="step" x1="745" y1="300" x2="825" y2="252"/>
+  <circle cx="825" cy="252" r="7" fill="#b44b20"/><text class="label" x="798" y="222">w_next=(1,5; 1,3)</text>
+  <circle cx="900" cy="275" r="8" fill="#16706a"/><text class="label" x="915" y="304">w_LS=(2,1)</text>
+  <text class="small" x="785" y="345">eta=0,1; hướng -grad f</text>
+  <rect x="677" y="105" width="420" height="58" rx="11" fill="#fff" stroke="#8392a8" stroke-width="2"/>
+  <text class="label" x="887" y="140" text-anchor="middle">f: 4,5 → 2,265 → cực tiểu 2</text>
+  <text class="small" x="882" y="458" text-anchor="middle">Một bước tiến về nghiệm nhưng chưa đạt nghiệm.</text>
+</svg>

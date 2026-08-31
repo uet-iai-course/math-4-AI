@@ -630,6 +630,10 @@ Phần này dùng ba ví dụ xuyên suốt: hàm vô hướng $h(u,v)=u^2+uv+2v
 
 **Ví dụ.** Với $h(u,v)=u^2+uv+2v^2+u-2v$, giữ $v=2$ cho lát cắt $p(u)=u^2+3u+4$. Tập mức $L_0$ có phương trình $u^2+uv+2v^2+u-2v=0$ và là một elip vừa xoay vừa tịnh tiến so với các trục tọa độ.
 
+![Bề mặt của h, parabol lát cắt v bằng 2 và elip tập mức h bằng 0.](img/lec-00/calculus-graph-slice-level-set.svg)
+
+*Hình tự vẽ từ công thức của ví dụ; các khung lần lượt cho toàn bộ bề mặt, một lát cắt và một tập mức.*
+
 **Điểm dễ nhầm.** Đồ thị nằm trong $\mathbb R^{n+1}$, còn tập mức nằm trong $\mathbb R^n$. Một lát cắt không mô tả hết hành vi của hàm theo mọi hướng.
 
 **Ý nghĩa và vai trò trong AI.** Đường mức của hàm mất mát giúp quan sát độ dốc, độ điều kiện và quỹ đạo của thuật toán tối ưu trong không gian tham số thấp chiều.
@@ -723,6 +727,10 @@ $$
 
 **Ví dụ.** Tại $(1,2)$, mặt phẳng tiếp xúc là $z=8+5(u-1)+7(v-2)$. Với $\boldsymbol\Delta=[0{,}1,-0{,}1]^T$, tuyến tính hóa dự đoán $7{,}8$, còn giá trị đúng là $h(1{,}1,1{,}9)=7{,}82$.
 
+![Gradient và hướng d tại điểm 1,2 trên đường mức, cùng tuyến tính hóa gần điểm đó.](img/lec-00/calculus-gradient-direction-tangent.svg)
+
+*Hình tổng hợp ý nghĩa hình học của gradient, đạo hàm theo hướng và xấp xỉ tuyến tính.*
+
 **Điểm dễ nhầm.** $\mathrm dh$ là thay đổi tuyến tính dự đoán, không phải luôn bằng thay đổi hữu hạn $h(\mathbf x+\boldsymbol\Delta)-h(\mathbf x)$.
 
 **Ý nghĩa và vai trò trong AI.** Tuyến tính hóa giúp xấp xỉ ảnh hưởng của nhiễu đầu vào, lan truyền sai số và suy các công thức gradient theo ma trận.
@@ -787,6 +795,10 @@ $$
 **Ý nghĩa hình học.** JVP đẩy một hướng tiếp tuyến từ đầu vào sang đầu ra; VJP kéo một độ nhạy từ đầu ra ngược về đầu vào.
 
 **Ví dụ.** Với Jacobian trên, $\mathbf d=[1,0]^T$ cho $\mathbf J_F\mathbf d=[1,2,1]^T$. Với $\mathbf a=\mathbf F(1,2)=[3,2,-1]^T$, ta có $\mathbf J_F^T\mathbf a=[6,6]^T$.
+
+![Sơ đồ truyền tiếp JVP từ R2 sang R3 và truyền ngược VJP từ R3 về R2 qua Jacobian.](img/lec-00/calculus-jacobian-chain-jvp-vjp.svg)
+
+*Tuyến màu xanh truyền hướng theo chiều thuận; tuyến màu cam có nét và nhãn riêng để biểu diễn truyền độ nhạy theo chiều ngược.*
 
 **Điểm dễ nhầm.** VJP thường được viết dạng hàng $\mathbf a^T\mathbf J_F$; chuyển sang quy ước cột phải lấy chuyển vị. JVP và VJP không yêu cầu tạo tường minh toàn bộ Jacobian.
 
@@ -880,6 +892,10 @@ Bỏ hạng chứa Hessian cho mô hình Taylor bậc nhất.
 
 **Ví dụ.** Hessian của $h$ có hai giá trị riêng $3+\sqrt2$ và $3-\sqrt2$, đều dương, nên điểm dừng $(-6/7,5/7)$ là cực tiểu địa phương chặt.
 
+![Đường mức quanh cực tiểu, hai lát có độ cong khác nhau và hiệu chỉnh Taylor bậc hai từ 7,8 lên 7,82.](img/lec-00/calculus-hessian-curvature-taylor.svg)
+
+*Hình tổng hợp Hessian, độ cong theo hướng và vai trò của hạng bậc hai trong khai triển Taylor.*
+
 **Điểm dễ nhầm.** Hessian nửa xác định dương hoặc nửa xác định âm chưa đủ để phân loại. Ví dụ, $t^4$ có đạo hàm bậc hai bằng $0$ tại gốc nhưng gốc vẫn là cực tiểu.
 
 **Ý nghĩa và vai trò trong AI.** Phép thử Hessian giúp phân biệt cực tiểu với điểm yên ngựa và cho biết các hướng phẳng hoặc có độ cong lớn trong không gian tham số.
@@ -897,6 +913,10 @@ $$
 \qquad
 \int_0^1\int_0^2(x+y)\,\mathrm dy\,\mathrm dx=3.
 $$
+
+![Diện tích dưới đường 2x cộng 1 và thể tích dưới mặt x cộng y trên một miền chữ nhật.](img/lec-00/calculus-integrals-1d-2d.svg)
+
+*Vùng tô biểu diễn miền được cộng tích lũy; hình bên phải dùng một dải tô có viền riêng để minh họa thứ tự tích phân theo $y$ rồi theo $x$.*
 
 **Điểm dễ nhầm.** Cận phải đi cùng đúng biến tích phân. Khi tích phân một mật độ xác suất, mật độ phải không âm và tích phân trên toàn miền phải bằng $1$.
 
@@ -973,6 +993,10 @@ $$
 \qquad
 f(\mathbf w^+)=2{,}265<4{,}5=f(\mathbf w^{(0)}).
 $$
+
+![Phần dư vuông góc không gian cột và một bước gradient làm mất mát giảm từ 4,5 xuống 2,265.](img/lec-00/calculus-least-squares-projection-step.svg)
+
+*Khung trái nằm trong không gian dữ liệu; khung phải là lát $w_0=14$ của không gian tham số.*
 
 **Điểm dễ nhầm.** Hướng đối gradient chỉ bảo đảm giảm đối với bước đủ nhỏ; một $\eta$ quá lớn có thể làm mất mát tăng hoặc gây dao động. Việc một bước giảm hàm không chứng minh thuật toán đã hội tụ.
 

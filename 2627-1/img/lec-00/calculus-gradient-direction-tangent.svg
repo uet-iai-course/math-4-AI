@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Gradient, đạo hàm theo hướng và tuyến tính hóa</title>
+  <desc id="desc">Khung trái cho gradient vuông góc đường mức và hướng d tại điểm P. Khung phải so sánh đồ thị cục bộ với đường tiếp tuyến, cho dự đoán tuyến tính 7,8 và giá trị đúng 7,82.</desc>
+  <defs>
+    <marker id="arrowDark" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#24324a"/></marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b44b20"/></marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#16706a"/></marker>
+    <style>
+      .panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:24px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.contour{fill:none;stroke:#6a45a5;stroke-width:2.5}.grad{stroke:#b44b20;stroke-width:5;marker-end:url(#arrowOrange)}.direction{stroke:#16706a;stroke-width:4;stroke-dasharray:10 5;marker-end:url(#arrowTeal)}.tangent{stroke:#b44b20;stroke-width:4}.curve{fill:none;stroke:#315d92;stroke-width:5}.guide{stroke:#708096;stroke-width:1.5;stroke-dasharray:5 5}.point{fill:white;stroke:#172033;stroke-width:3}
+    </style>
+  </defs>
+  <rect width="1200" height="500" fill="#f3f6fb"/>
+  <text x="600" y="34" text-anchor="middle" class="title">Đạo hàm bậc nhất là hình học cục bộ</text>
+  <rect class="panel" x="24" y="55" width="555" height="420" rx="14"/>
+  <text x="301" y="88" text-anchor="middle" class="title">Đường mức và các hướng tại P=(1,2)</text>
+  <path class="contour" d="M361.3 251.3 C370.2 272.7 346.3 303.0 308.1 318.8 C269.8 334.7 231.6 330.1 222.7 308.7 C213.8 287.3 237.7 257.0 275.9 241.2 C314.2 225.3 352.4 229.9 361.3 251.3Z"/>
+  <path class="contour" d="M412.1 230.3 C427.5 267.5 386.3 320.0 319.9 347.4 C253.6 374.9 187.3 367.0 171.9 329.7 C156.5 292.5 197.7 240.0 264.1 212.6 C330.4 185.1 396.7 193.0 412.1 230.3Z"/>
+  <path class="contour" d="M465.7 208.1 C487.9 261.6 428.1 337.3 332.2 377.0 C236.3 416.7 140.5 405.5 118.3 351.9 C96.1 298.4 155.9 222.7 251.8 183.0 C347.7 143.3 443.5 154.5 465.7 208.1Z"/>
+  <circle class="point" cx="455" cy="185" r="7"/>
+  <line class="grad" x1="455" y1="185" x2="505" y2="115"/>
+  <text class="label" x="330" y="145">grad h(P)=(5,7)</text>
+  <line class="direction" x1="455" y1="185" x2="525" y2="103"/>
+  <text class="small" x="420" y="111">d=(3/5,4/5)</text>
+  <line class="guide" x1="383" y1="132" x2="520" y2="237"/>
+  <text class="small" x="80" y="388">Gradient là pháp tuyến của đường mức qua P.</text>
+  <text class="label" x="80" y="420">D_d h(P)=grad h(P)^T d=43/5</text>
+  <text class="small" x="80" y="450">Mũi tên d chỉ hướng; tích vô hướng cho tốc độ thay đổi.</text>
+
+  <rect class="panel" x="601" y="55" width="575" height="420" rx="14"/>
+  <text x="889" y="88" text-anchor="middle" class="title">Tuyến tính hóa trên một lát cắt</text>
+  <line x1="650" y1="390" x2="1125" y2="390" stroke="#24324a" stroke-width="2" marker-end="url(#arrowDark)"/>
+  <line x1="680" y1="420" x2="680" y2="115" stroke="#24324a" stroke-width="2" marker-end="url(#arrowDark)"/>
+  <text class="label" x="1130" y="397">t</text>
+  <text class="label" x="650" y="112">phi(t)</text>
+  <path class="curve" d="M675 350 C760 335 820 295 875 245 C930 195 1010 145 1120 130"/>
+  <line class="tangent" x1="710" y1="350" x2="1085" y2="125"/>
+  <circle class="point" cx="875" cy="245" r="7"/><text class="small" x="824" y="272">h(P)=8</text>
+  <line class="guide" x1="995" y1="390" x2="995" y2="176"/>
+  <circle cx="995" cy="176" r="7" fill="#315d92"/><text class="small" x="1005" y="169">giá trị đúng: 7,82</text>
+  <rect x="987" y="181" width="16" height="16" fill="white" stroke="#b44b20" stroke-width="3"/>
+  <text class="small" x="1008" y="207">tuyến tính hóa: 7,8</text>
+  <text class="label" x="889" y="432" text-anchor="middle">z=8+5(u-1)+7(v-2)</text>
+  <text class="small" x="889" y="458" text-anchor="middle">Lát theo Delta=(0.1,-0.1); sai khác 0,02 là hạng cong bậc hai.</text>
+</svg>

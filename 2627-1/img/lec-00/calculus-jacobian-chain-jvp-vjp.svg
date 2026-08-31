@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Jacobian, quy tắc dây chuyền, JVP và VJP</title>
+  <desc id="desc">Sơ đồ truyền tiếp một hướng từ R2 qua F sang R3 bằng JVP và truyền ngược độ nhạy từ mất mát về R2 bằng VJP.</desc>
+  <defs>
+    <marker id="blueArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#315d92"/></marker>
+    <marker id="orangeArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b44b20"/></marker>
+    <style>
+      .title{font-family:sans-serif;font-size:24px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.space{fill:#fbfcff;stroke:#8392a8;stroke-width:2.5}.forward{stroke:#315d92;stroke-width:5;marker-end:url(#blueArrow)}.reverse{stroke:#b44b20;stroke-width:5;marker-end:url(#orangeArrow)}.matrix{font-family:monospace;font-size:17px;fill:#172033}.tag{fill:#edf4ff;stroke:#315d92;stroke-width:2}.tag2{fill:#fff1e9;stroke:#b44b20;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1200" height="500" fill="#f3f6fb"/>
+  <text x="600" y="36" text-anchor="middle" class="title">Cùng một Jacobian, hai chiều truyền độ nhạy</text>
+  <rect class="space" x="55" y="155" width="260" height="160" rx="22"/>
+  <rect class="space" x="470" y="125" width="300" height="220" rx="22"/>
+  <rect class="space" x="930" y="155" width="215" height="160" rx="22"/>
+  <text class="title" x="185" y="190" text-anchor="middle">Đầu vào R2</text>
+  <text class="label" x="185" y="225" text-anchor="middle">x=(u,v)=(1,2)</text>
+  <text class="label" x="185" y="257" text-anchor="middle">d=(1,0)</text>
+  <text class="small" x="185" y="288" text-anchor="middle">một hướng tiếp tuyến</text>
+  <text class="title" x="620" y="164" text-anchor="middle">F(x) trong R3</text>
+  <text class="label" x="620" y="198" text-anchor="middle">F=(3,2,-1)</text>
+  <text class="matrix" x="620" y="233" text-anchor="middle">J_F = [[1,1],[2,1],[1,-1]]</text>
+  <text class="label" x="620" y="271" text-anchor="middle">J_F d=(1,2,1)</text>
+  <text class="small" x="620" y="310" text-anchor="middle">Jacobian có kích thước 3×2</text>
+  <text class="title" x="1037" y="190" text-anchor="middle">Mất mát R</text>
+  <text class="label" x="1037" y="225" text-anchor="middle">g(z)=0.5 ||z||^2</text>
+  <text class="label" x="1037" y="257" text-anchor="middle">a=grad g(F)=F</text>
+  <text class="small" x="1037" y="288" text-anchor="middle">một độ nhạy đầu ra</text>
+
+  <line class="forward" x1="315" y1="205" x2="470" y2="205"/>
+  <line class="forward" x1="770" y1="205" x2="930" y2="205"/>
+  <rect class="tag" x="337" y="116" width="112" height="48" rx="10"/><text class="label" x="393" y="146" text-anchor="middle">JVP: J_F d</text>
+  <text class="small" x="850" y="185" text-anchor="middle">F rồi g</text>
+
+  <line class="reverse" x1="930" y1="285" x2="770" y2="285"/>
+  <line class="reverse" x1="470" y1="285" x2="315" y2="285"/>
+  <rect class="tag2" x="335" y="335" width="220" height="54" rx="10"/><text class="label" x="445" y="368" text-anchor="middle">VJP: J_F^T a=(6,6)</text>
+  <text class="small" x="850" y="326" text-anchor="middle">truyền ngược</text>
+
+  <rect x="214" y="420" width="772" height="52" rx="12" fill="#fff" stroke="#bac5d6" stroke-width="2"/>
+  <text class="label" x="600" y="453" text-anchor="middle">grad ell(x)=J_F(x)^T grad g(F(x)); kích thước: (2x3)(3x1)=(2x1)</text>
+</svg>
