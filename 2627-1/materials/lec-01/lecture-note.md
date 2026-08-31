@@ -600,29 +600,35 @@ Do đó $f+I_{[-1,1]}$ bằng $x^2$ trong đoạn và bằng $+\infty$ ngoài đ
 
 **Mục tiêu đọc hiểu.** Người đọc giảm được kiểm tra nhiều biến về một biến và nhận dạng một thư viện hàm lồi nền.
 
-**Định nghĩa và giả thiết.** Cho $f:D\to\mathbb R$ với $D$ lồi. Với $x\in D$ và hướng $v\in\mathbb R^n$, hạn chế trên đường là
+**Định nghĩa và giả thiết.** Cho $f:D\to\mathbb R$ với $D$ lồi. Với $x_0\in D$ và hướng $v\in\mathbb R^n$, hạn chế trên đường là
 
 $$
-g(t)=f(x+tv),
+g(t)=f(x_0+tv),
 \qquad
-\operatorname{dom}g=\{t:x+tv\in D\}.
+\operatorname{dom}g=\{t:x_0+tv\in D\}.
 $$
 
 Hàm $f$ lồi trên $D$ khi và chỉ khi mọi hạn chế như vậy lồi trên miền một chiều tương ứng.
 
-**Trực quan.** Một mặt phẳng dọc cắt bề mặt của hàm nhiều biến thành một đường cong. Nếu bề mặt lồi, mọi lát cắt theo đường đều cong lên; một lát cắt không lồi đủ để bác bỏ tính lồi.
+**Trực quan.** Trên miền đầu vào, đường affine $x(t)=x_0+tv$ chọn một họ điểm theo đúng một hướng. Giá trị của hàm dọc đường đó tạo đồ thị một biến $g(t)$. Nếu $f$ lồi thì mọi đồ thị $g$ đều lồi; chỉ cần tìm một đường cho $g$ không lồi là đủ bác bỏ tính lồi của $f$.
 
-![Bề mặt bậc hai lồi cùng hai lát cắt theo đường và thư viện nhỏ các hàm lồi cơ bản.](img/lec-01/line-restriction-convex-library.svg)
+![Đường affine x của t bằng x không cộng t v đi qua các đường mức của một hàm hai biến và ánh xạ thành parabol g của t; bên cạnh là thư viện các hàm lồi cơ bản.](img/lec-01/line-restriction-convex-library.svg)
 
-*Các lát cắt ghi rõ điểm gốc, hướng và biến $t$.*
+*Trong hình, $f(x_1,x_2)=x_1^2+2x_2^2$, $x_0=(0,0)^T$ và $v=(1,1)^T$, nên $g(t)=3t^2$.*
 
-**Ví dụ tính được.** Với $f(x)=\lVert Ax-b\rVert_2^2$, hạn chế theo $x+tv$ là
+**Ví dụ tính được.** Cho $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$ và $f(x)=\lVert Ax-b\rVert_2^2$. Với $x_0,v\in\mathbb R^n$, hạn chế theo $x_0+tv$ là
 
 $$
-g(t)=\lVert A(x+tv)-b\rVert_2^2.
+\begin{aligned}
+g(t)
+&=\lVert A(x_0+tv)-b\rVert_2^2\\
+&=\lVert Ax_0-b\rVert_2^2
++2t(Av)^T(Ax_0-b)
++t^2\lVert Av\rVert_2^2.
+\end{aligned}
 $$
 
-Hệ số của $t^2$ bằng $\lVert Av\rVert_2^2\ge0$, nên mọi lát cắt là hàm bậc hai lồi. Các hàm nền khác gồm hàm affine, chuẩn, $e^x$, cực đại của hữu hạn hàm affine và log-tổng-mũ
+Do đó $g''(t)=2\lVert Av\rVert_2^2\ge0$, nên mọi hạn chế là hàm một biến lồi. Các hàm nền khác gồm hàm affine, chuẩn, $e^t$, cực đại từng điểm của hữu hạn hàm lồi và log-tổng-mũ
 
 $$
 \operatorname{lse}(z)=\log\left(\sum_{i=1}^m e^{z_i}\right).
@@ -972,7 +978,7 @@ Vậy kết quả đúng với mọi $k$ hữu hạn.
 
 ## D. Ca tổng hợp trong AI
 
-### 14. Logistic loss như ứng dụng AI
+### 14. Hàm mất mát logistic
 
 **Mục tiêu đọc hiểu.** Người đọc ghép được dữ liệu, biến quyết định, biên phân loại có dấu (margin), hàm mất mát và tập khả thi thành một ca tối ưu; sau đó dùng các kết quả của Bài 01 để kết luận về tính lồi, sự tồn tại và quan hệ giữa cực tiểu địa phương với cực tiểu toàn cục.
 
