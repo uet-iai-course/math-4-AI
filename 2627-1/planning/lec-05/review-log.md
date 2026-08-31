@@ -201,3 +201,15 @@ Cổng storyboard và năm phát hiện bắt buộc trên đã được phản 
 - Ảnh chụp P03, C07, D06, E02 và Z02 được xem trực tiếp sau sửa. Công thức, bảng, hộp câu hỏi và hình đều nằm trọn khung; Z02 vẫn đọc được sau khi bổ sung hàm $F$.
 - Thẻ viewport cho phép người dùng phóng to và favicon dữ liệu rỗng loại yêu cầu 404. Kiểm tra tĩnh giữ 7 section ngoài, 40 ID duy nhất, 40 ghi chú, 40 đoạn nguồn và 17/17 tham chiếu cục bộ hợp lệ; `git diff --check` sạch.
 - Codex Slides vẫn không có bằng chứng render trực quan thành công do giới hạn runtime đã ghi ở trên. Kết luận bàn giao chỉ dựa trên RevealJS cục bộ và không tuyên bố cổng Codex Slides đã đạt.
+
+## Ghi chú bài giảng công khai — kiểm định ngày 2026-08-31
+
+- **Phạm vi:** `materials/lec-05/lecture-note.md` gồm 6 mạch A–F và 14 chủ đề. Mỗi chủ đề có đủ mục tiêu đọc hiểu, định nghĩa và giả thiết, trực quan, ví dụ tính được, ý nghĩa và ứng dụng trong AI, điểm dễ nhầm, câu hỏi kiểm tra và đầu ra.
+- **Tách chứng minh:** tuyến A–F chỉ giữ phát biểu định lý hoặc mệnh đề. Năm chứng minh dài của A–C được chuyển xuống phần riêng; các chứng minh D–F tiếp tục nằm trong các nhóm riêng ở cuối ghi chú.
+- **Rà soát toán học độc lập:** đạt sau khi bổ sung giả thiết dãy tốc độ học xác định cho cận SGD, khóa đầy đủ tham số và trạng thái bộ tối ưu trong mệnh đề đối xứng, sửa ký hiệu $\mathrm{fan}_{\mathrm{in}}$, $\mathrm{fan}_{\mathrm{out}}$ và tái kiểm toàn bộ năm chứng minh A–C sau khi di chuyển. Các phép tính SGD, momentum, Nesterov, Xavier và He đều đạt.
+- **Biên tập `no-ai-slop`:** đạt sau hai vòng. Đã bỏ giọng điều phối nội bộ, câu lặp, cấu trúc dấu hai chấm tạo nhịp máy móc và metadata sản xuất trong tài liệu tham khảo; giữ nguyên nội dung toán học và khuôn tám nhãn của mỗi chủ đề.
+- **Markdown:** đúng 1 heading cấp một, 6 mạch chính, 14 chủ đề; 190 dấu phân cách công thức khối; 9 khối `proof` mở và 9 khối đóng; không dùng kiểu phân cách LaTeX thay thế; `git diff --check` sạch.
+- **Hình:** ghi chú dùng 7 SVG cục bộ, trong đó `minibatch-unbiased-variance.svg` được bổ sung cho tính không chệch và quy luật $17/b$. Cả 7 tệp phân tích XML được, có `role="img"`, `title`, `desc`, không chứa script, `foreignObject`, ảnh nhúng hoặc tài nguyên mạng.
+- **Rà trực quan SVG:** cả 7 hình được kết xuất và xem trực tiếp ở chiều rộng 900 px và 600 px. `momentum-lookahead.svg` được vẽ lại thành hai bảng, biểu diễn riêng điểm đánh giá gradient, $q_t$, $v_{t+1}$ và $\theta_{t+1}$; vòng tái kiểm độc lập xác nhận phép cộng véc-tơ và trường hợp $\beta=0$ đúng. Không dùng màu làm tín hiệu duy nhất.
+- **HTTP cục bộ:** máy chủ tạm tại `127.0.0.1:8877` trả 200 cho chỉ mục, viewer với đúng cặp `doc`–`deck`, Markdown, bộ trang chiếu và cả 7 SVG; máy chủ đã dừng sau kiểm tra.
+- **Công bố:** chỉ sau các cổng trên, thẻ Bài 05 trong `index.html` mới được đổi từ `Chưa có` thành liên kết viewer. Codex Slides không có bề mặt Browser khả dụng trong vòng ghi chú này; không tuyên bố đã kiểm định ghi chú bằng Codex Slides.

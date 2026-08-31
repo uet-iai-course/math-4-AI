@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
   <title id="title">Khe hẹp điều kiện kém</title>
   <desc id="desc">Các đường mức ellipse dài và hẹp cùng quỹ đạo gradient dao động qua hai vách trước khi tiến dọc đáy khe.</desc>
   <rect width="900" height="500" fill="#fff"/>
   <g fill="none" stroke="#cfd6e8" stroke-width="4" transform="rotate(-18 450 250)"><ellipse cx="450" cy="250" rx="360" ry="105"/><ellipse cx="450" cy="250" rx="285" ry="82"/><ellipse cx="450" cy="250" rx="205" ry="58"/><ellipse cx="450" cy="250" rx="120" ry="34"/></g>
   <polyline points="160,95 260,345 350,145 425,315 500,185 560,282 620,215 670,260 718,235" fill="none" stroke="#b24a2b" stroke-width="8" stroke-linejoin="round"/>
   <g fill="#b24a2b"> <circle cx="160" cy="95" r="9"/><circle cx="260" cy="345" r="9"/><circle cx="350" cy="145" r="9"/><circle cx="425" cy="315" r="9"/><circle cx="500" cy="185" r="9"/><circle cx="560" cy="282" r="9"/><circle cx="620" cy="215" r="9"/><circle cx="670" cy="260" r="9"/><circle cx="718" cy="235" r="9"/></g>
-  <g fill="#26345f" font-family="Arial,sans-serif" font-size="24"><text x="105" y="72">độ cong lớn</text><text x="635" y="320">độ cong nhỏ</text><text x="730" y="238">đáy khe</text></g>
+  <g fill="#26345f" font-size="24"><text x="105" y="72">độ cong lớn</text><text x="635" y="320">độ cong nhỏ</text><text x="730" y="238">đáy khe</text></g>
+  <rect x="205" y="420" width="490" height="48" rx="10" fill="#fff8e6" stroke="#b44b20" stroke-width="2"/><text x="450" y="450" text-anchor="middle" font-size="17" fill="#44516a">Sơ đồ định tính: κ lớn làm một bước vô hướng phải thỏa hiệp.</text>
 </svg>

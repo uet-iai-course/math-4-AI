@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
   <title id="title">Tích Jacobian qua mạng sâu</title>
-  <desc id="desc">Gradient truyền ngược qua nhiều lớp là tích các Jacobian; các hệ số nhỏ làm tín hiệu tiêu biến và các hệ số lớn làm tín hiệu bùng nổ.</desc>
+  <desc id="desc">Gradient truyền ngược qua nhiều lớp là tích các Jacobian chuyển vị. Tích nhiều chuẩn Jacobian nhỏ hơn một có thể làm tín hiệu tiêu biến, còn tích nhiều chuẩn lớn hơn một có thể làm tín hiệu bùng nổ; đây là cơ chế có thể xảy ra, không phải kết luận tất định từ từng lớp riêng lẻ.</desc>
   <rect width="900" height="500" fill="#fff"/>
   <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#33467f"/></marker></defs>
-  <g font-family="Arial,sans-serif" text-anchor="middle"><g fill="#eef2fb" stroke="#33467f" stroke-width="3"><rect x="80" y="170" width="125" height="95" rx="12"/><rect x="265" y="170" width="125" height="95" rx="12"/><rect x="450" y="170" width="125" height="95" rx="12"/><rect x="635" y="170" width="125" height="95" rx="12"/></g><g fill="#26345f" font-size="26"><text x="142" y="226">J₁</text><text x="327" y="226">J₂</text><text x="512" y="226">⋯</text><text x="697" y="226">J_L</text></g></g>
+  <g text-anchor="middle"><g fill="#eef2fb" stroke="#33467f" stroke-width="3"><rect x="80" y="170" width="125" height="95" rx="12"/><rect x="265" y="170" width="125" height="95" rx="12"/><rect x="450" y="170" width="125" height="95" rx="12"/><rect x="635" y="170" width="125" height="95" rx="12"/></g><g fill="#26345f" font-size="26"><text x="142" y="226">J₁</text><text x="327" y="226">J₂</text><text x="512" y="226">⋯</text><text x="697" y="226">J_L</text></g></g>
   <g stroke="#33467f" stroke-width="5" marker-end="url(#arrow)"><line x1="760" y1="320" x2="640" y2="320"/><line x1="635" y1="320" x2="455" y2="320"/><line x1="450" y1="320" x2="270" y2="320"/><line x1="265" y1="320" x2="90" y2="320"/></g>
-  <g font-family="Arial,sans-serif" font-size="25"><text x="110" y="90" fill="#2f3e7a">|c|&lt;1: |c|^L → 0</text><text x="560" y="90" fill="#b24a2b">|c|&gt;1: |c|^L tăng nhanh</text><text x="255" y="390" fill="#333">∇ đầu vào = J₁ᵀJ₂ᵀ⋯J_Lᵀ ∇ đầu ra</text></g>
+  <g font-size="22"><text x="70" y="82" fill="#2f3e7a">Tích nhiều ‖Jₗ‖&lt;1: có thể tiêu biến</text><text x="500" y="82" fill="#b24a2b">Tích nhiều ‖Jₗ‖&gt;1: có thể bùng nổ</text><text x="225" y="390" fill="#333">∇ đầu vào = J₁ᵀJ₂ᵀ⋯J_Lᵀ ∇ đầu ra</text><text x="345" y="350" fill="#44516a">chiều truyền ngược</text></g>
 </svg>
