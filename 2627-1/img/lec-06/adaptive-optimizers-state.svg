@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1260" role="img" aria-labelledby="title desc">
+  <title id="title">So sánh trạng thái của AdaGrad, RMSProp và Adam qua hai vòng</title>
+  <desc id="desc">Ba panel xếp dọc cho thấy ba thuật toán nhận cùng hai gradient. AdaGrad cộng dồn bình phương, RMSProp dùng trung bình mũ bình phương, còn Adam dùng cả mômen bậc nhất và bậc hai có hiệu chỉnh độ chệch.</desc>
+  <rect width="900" height="1260" rx="20" fill="#fbfaf8"/>
+  <g font-family="DejaVu Sans, sans-serif" fill="#263238">
+    <text x="450" y="46" text-anchor="middle" font-size="30" font-weight="bold">Cùng gradient, khác trạng thái ghi nhớ</text>
+    <rect x="60" y="70" width="780" height="60" rx="13" fill="#fff" stroke="#455a64" stroke-width="2"/>
+    <text x="450" y="108" text-anchor="middle" font-size="23">θ₀=(0,0), η=0,1, ε=10⁻⁸;  g₁=(2,1), g₂=(0,3)</text>
+
+    <rect x="45" y="160" width="810" height="292" rx="16" fill="#e8edf8" stroke="#2f3e7a" stroke-width="4"/>
+    <text x="85" y="205" font-size="29" font-weight="bold">A · AdaGrad</text>
+    <text x="85" y="244" font-size="22">aₜ=aₜ₋₁+gₜ⊙gₜ</text>
+    <line x1="430" y1="185" x2="430" y2="420" stroke="#2f3e7a" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="470" y="205" font-size="23" font-weight="bold">Hai vòng kiểm số</text>
+    <text x="470" y="246" font-size="21">a₁=(4,1)</text><text x="470" y="279" font-size="21">Δθ₁≈(−0,100; −0,100)</text>
+    <text x="470" y="327" font-size="21">a₂=(4,10)</text><text x="470" y="360" font-size="21">Δθ₂≈(0; −0,0949)</text>
+    <rect x="85" y="292" width="295" height="90" rx="12" fill="#fff" stroke="#2f3e7a" stroke-width="2"/>
+    <text x="233" y="325" text-anchor="middle" font-size="19">cộng dồn không quên</text>
+    <text x="233" y="359" text-anchor="middle" font-size="22" font-weight="bold">θ₂≈(−0,100; −0,1949)</text>
+
+    <rect x="45" y="480" width="810" height="292" rx="16" fill="#f7efe6" stroke="#9a481f" stroke-width="4"/>
+    <text x="85" y="525" font-size="29" font-weight="bold">B · RMSProp</text>
+    <text x="85" y="562" font-size="21">vₜ=0,9vₜ₋₁</text>
+    <text x="85" y="593" font-size="21"> + 0,1gₜ⊙gₜ</text>
+    <line x1="430" y1="505" x2="430" y2="740" stroke="#9a481f" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="470" y="525" font-size="23" font-weight="bold">Hai vòng kiểm số</text>
+    <text x="470" y="566" font-size="21">v₁=(0,4; 0,1)</text><text x="470" y="599" font-size="21">Δθ₁≈(−0,3162; −0,3162)</text>
+    <text x="470" y="647" font-size="21">v₂=(0,36; 0,99)</text><text x="470" y="680" font-size="21">Δθ₂≈(0; −0,3015)</text>
+    <rect x="85" y="612" width="295" height="90" rx="12" fill="#fff" stroke="#9a481f" stroke-width="2"/>
+    <text x="233" y="645" text-anchor="middle" font-size="19">quên theo hệ số 0,9</text>
+    <text x="233" y="679" text-anchor="middle" font-size="22" font-weight="bold">θ₂≈(−0,3162; −0,6177)</text>
+
+    <rect x="45" y="800" width="810" height="340" rx="16" fill="#e8f5e9" stroke="#2e7d32" stroke-width="4"/>
+    <text x="85" y="845" font-size="29" font-weight="bold">C · Adam</text>
+    <text x="85" y="880" font-size="21">β₁=0,9; β₂=0,999</text>
+    <text x="85" y="912" font-size="19">m̂ₜ, v̂ₜ đã hiệu chỉnh độ chệch</text>
+    <line x1="430" y1="825" x2="430" y2="1105" stroke="#2e7d32" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="470" y="845" font-size="23" font-weight="bold">Hai vòng kiểm số</text>
+    <text x="470" y="886" font-size="20">m̂₁=(2,1), v̂₁=(4,1)</text><text x="470" y="919" font-size="20">Δθ₁≈(−0,100; −0,100)</text>
+    <text x="470" y="965" font-size="20">m̂₂≈(0,9474; 2,0526)</text><text x="470" y="998" font-size="20">v̂₂≈(1,9990; 5,0020)</text>
+    <text x="470" y="1031" font-size="20">Δθ₂≈(−0,0670; −0,0918)</text>
+    <rect x="85" y="946" width="295" height="100" rx="12" fill="#fff" stroke="#2e7d32" stroke-width="2"/>
+    <text x="233" y="980" text-anchor="middle" font-size="19">hướng + thang, có hiệu chỉnh</text>
+    <text x="233" y="1018" text-anchor="middle" font-size="22" font-weight="bold">θ₂≈(−0,1670; −0,1918)</text>
+
+    <rect x="90" y="1170" width="720" height="58" rx="12" fill="#fff" stroke="#455a64" stroke-width="2"/>
+    <text x="450" y="1207" text-anchor="middle" font-size="20">Khác biệt chỉ do cách ghi nhớ lịch sử; η và hai gradient được giữ nguyên.</text>
+  </g>
+</svg>

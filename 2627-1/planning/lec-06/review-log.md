@@ -1,5 +1,15 @@
 # Nhật ký rà soát Bài giảng 06
 
+## Kiểm định ghi chú bài giảng — 2026-08-31
+
+- Ghi chú công khai gồm 6 mạch, 14 chủ đề; mỗi chủ đề có mục tiêu đọc hiểu, định nghĩa và giả thiết, trực quan, ví dụ tính được, ứng dụng AI, điểm dễ nhầm, câu hỏi kiểm tra và đầu ra.
+- Bảy kết quả về Adam, Newton, gradient liên hợp, BFGS, chuẩn hóa theo lô, hạ theo khối và trung bình Polyak được tách thành phần chứng minh sau ca tích hợp.
+- Rà toán học độc lập đạt sau khi bổ sung trường hợp $r_0=0$ cho gradient liên hợp, viết nghiệm gần đúng bằng sai số giá trị hàm, định nghĩa $q_\star$ trên cặp $(x,y)$ và giữ đúng chiều suy ra của bất đẳng thức hạ trơn.
+- Hậu kiểm `no-ai-slop` đạt; các câu dẫn chứng minh lặp, lời xác nhận quy trình và ba chỗ chuyển mạch đột ngột đã được sửa.
+- Sáu SVG của ghi chú phân tích XML thành công, có `role="img"`, `title`, `desc`, không chứa script, tài nguyên mạng hoặc `foreignObject`; cả bản rộng 900 px và hẹp 600 px đã được kết xuất và xem trực tiếp, không có phần tử chồng hoặc bị cắt.
+- Nguồn đúng của Martens (2010) là tệp ICML `https://icml.cc/Conferences/2010/papers/458.pdf`; đường dẫn Proceedings of Machine Learning Research từng xuất hiện trong ghi chú diễn giả của deck không phải trang bài báo này. Ghi chú dùng nội dung từ `sources/Deep_HessianFree.pdf` và không lặp lại URL sai.
+- Codex Slides vẫn không khả dụng do giới hạn runtime đã ghi bên dưới. Kiểm định phát hành dùng RevealJS và viewer web tĩnh cục bộ; không tuyên bố đã kiểm bằng Codex Slides.
+
 ## Trạng thái
 
 **Đã chỉnh sửa theo vòng rà soát cuối; chờ kiểm định trực quan bằng Browser.** Tệp RevealJS, outline và storyboard được đồng bộ ở 36 trang, 6 mạch. Các vấn đề nội dung của vai sinh viên, chuyên gia, toán học, học thuật–giảng dạy và mạch kể chuyện đã có quyết định và bằng chứng bên dưới; chưa tuyên bố đạt cổng trực quan bằng Codex Slides.

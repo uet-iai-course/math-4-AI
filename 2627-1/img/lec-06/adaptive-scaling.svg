@@ -1,13 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" role="img" aria-labelledby="title desc">
-  <title id="title">Cùng gradient nhưng bước theo từng tọa độ khác nhau</title>
-  <desc id="desc">Hai trục tham số có lịch sử gradient khác nhau. Bộ tích lũy bình phương lớn làm bước hiệu dụng ngắn hơn.</desc>
-  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#B15A2B"/></marker></defs>
-  <rect width="760" height="360" rx="18" fill="#fbfaf8"/>
-  <line x1="90" y1="285" x2="690" y2="285" stroke="#455a64" stroke-width="3" marker-end="url(#a)"/><line x1="90" y1="285" x2="90" y2="50" stroke="#455a64" stroke-width="3" marker-end="url(#a)"/>
-  <text x="665" y="325" font-size="24" fill="#263238">θ₁</text><text x="42" y="62" font-size="24" fill="#263238">θ₂</text>
-  <ellipse cx="390" cy="180" rx="230" ry="82" fill="none" stroke="#b0bec5" stroke-width="3"/><ellipse cx="390" cy="180" rx="145" ry="50" fill="none" stroke="#cfd8dc" stroke-width="3"/>
-  <circle cx="540" cy="235" r="8" fill="#2f3e7a"/><line x1="540" y1="235" x2="430" y2="135" stroke="#2f3e7a" stroke-width="8" marker-end="url(#a)"/>
-  <line x1="540" y1="235" x2="475" y2="176" stroke="#B15A2B" stroke-width="8" marker-end="url(#a)"/>
-  <text x="545" y="205" font-size="22" fill="#2f3e7a">gradient thô</text><text x="500" y="155" font-size="22" fill="#8b451f">bước đã co giãn</text>
-  <text x="190" y="337" font-size="22" fill="#37474f">Lịch sử bình phương lớn → mẫu số lớn → bước ngắn</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
+  <title id="title">Co giãn gradient theo lịch sử từng tọa độ</title>
+  <desc id="desc">Từ cùng một gradient thô, tọa độ theta một có lịch sử bình phương lớn nên thành phần bước theo phương ngang bị co mạnh hơn thành phần theo theta hai.</desc>
+  <defs>
+    <marker id="axis-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#455a64"/></marker>
+    <marker id="raw-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#2f3e7a"/></marker>
+    <marker id="scaled-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#9a481f"/></marker>
+  </defs>
+  <rect width="900" height="430" rx="18" fill="#fbfaf8"/>
+  <g font-family="DejaVu Sans, sans-serif">
+    <line x1="100" y1="335" x2="825" y2="335" stroke="#455a64" stroke-width="3" marker-end="url(#axis-arrow)"/>
+    <line x1="100" y1="335" x2="100" y2="48" stroke="#455a64" stroke-width="3" marker-end="url(#axis-arrow)"/>
+    <text x="805" y="375" font-size="25" fill="#263238">θ₁</text><text x="48" y="62" font-size="25" fill="#263238">θ₂</text>
+    <ellipse cx="450" cy="207" rx="270" ry="94" fill="none" stroke="#90a4ae" stroke-width="3"/>
+    <ellipse cx="450" cy="207" rx="172" ry="58" fill="none" stroke="#c2ccd1" stroke-width="3" stroke-dasharray="8 7"/>
+    <circle cx="635" cy="286" r="9" fill="#263238"/><text x="654" y="276" font-size="22" fill="#263238">θₜ</text>
+    <line x1="635" y1="286" x2="475" y2="108" stroke="#2f3e7a" stroke-width="7" marker-end="url(#raw-arrow)"/>
+    <text x="392" y="82" font-size="23" font-weight="bold" fill="#2f3e7a">hướng −gₜ thô</text>
+    <line x1="635" y1="286" x2="585" y2="152" stroke="#9a481f" stroke-width="7" stroke-dasharray="15 7" marker-end="url(#scaled-arrow)"/>
+    <text x="610" y="145" font-size="22" font-weight="bold" fill="#7b3b1c">bước thích nghi</text>
+    <line x1="585" y1="152" x2="585" y2="286" stroke="#7b3b1c" stroke-width="2" stroke-dasharray="5 6"/>
+    <line x1="585" y1="286" x2="635" y2="286" stroke="#7b3b1c" stroke-width="5"/>
+    <text x="445" y="322" font-size="20" fill="#7b3b1c">thành phần 1 bị co mạnh</text>
+    <rect x="155" y="357" width="590" height="52" rx="12" fill="#eef2f8" stroke="#2f3e7a" stroke-width="2"/>
+    <text x="450" y="390" text-anchor="middle" font-size="22" fill="#263238">aₜ,₁ lớn hơn aₜ,₂  ⇒  |Δθ₁| bị giảm tương đối nhiều hơn |Δθ₂|</text>
+  </g>
 </svg>
