@@ -608,7 +608,375 @@ Dạng toàn phương mô tả độ cong của hàm mất mát qua ma trận He
 
 ## Giải tích nhiều biến
 
-Phần này dành cho các suy diễn về gradient, đạo hàm theo hướng, vi phân, ma trận Jacobian, ma trận Hessian, khai triển Taylor và đạo hàm của hàm mất mát bình phương tối thiểu.
+Phần này dùng ba ví dụ xuyên suốt: hàm vô hướng $h(u,v)=u^2+uv+2v^2+u-2v$, ánh xạ véc-tơ $\mathbf F(u,v)=[u+v,uv,u-v]^T$ và bài toán bình phương tối thiểu của mô hình giá nhà.
+
+### Hàm vô hướng và ánh xạ véc-tơ
+
+**Định nghĩa.** Hàm vô hướng $h:\mathbb R^n\to\mathbb R$ nhận một véc-tơ và trả về một số. Ánh xạ véc-tơ $\mathbf F:\mathbb R^n\to\mathbb R^m$ trả về một véc-tơ; $n$ và $m$ không nhất thiết bằng nhau. Miền xác định chứa các đầu vào hợp lệ, đối miền được chọn để chứa đầu ra, còn ảnh là tập các đầu ra thực sự đạt được.
+
+**Ý nghĩa hình học.** Hàm vô hướng có thể được xem như một trường độ cao trên không gian đầu vào. Ánh xạ véc-tơ biến mỗi điểm đầu vào thành một điểm trong một không gian khác.
+
+**Ví dụ.** Tại $(u,v)=(1,2)$, $h(1,2)=8$ là một vô hướng, còn $\mathbf F(1,2)=[3,2,-1]^T\in\mathbb R^3$.
+
+**Điểm dễ nhầm.** Đối miền không nhất thiết bằng ảnh. Ngoài ra, cần phân biệt số chiều đầu vào với số chiều đầu ra trước khi viết đạo hàm.
+
+**Ý nghĩa và vai trò trong AI.** Hàm mất mát thường là hàm vô hướng của nhiều tham số; một tầng mạng nơ-ron thường là ánh xạ véc-tơ giữa hai không gian đặc trưng.
+
+### Đồ thị, lát cắt và tập mức
+
+**Định nghĩa.** Đồ thị của $h:\mathbb R^n\to\mathbb R$ là tập các điểm $(\mathbf x,h(\mathbf x))\in\mathbb R^{n+1}$. Lát cắt thu được khi giữ cố định một số biến. Tập mức ứng với $c\in\mathbb R$ là $L_c=\{\mathbf x:h(\mathbf x)=c\}$.
+
+**Ý nghĩa hình học.** Đồ thị cho toàn bộ bề mặt, lát cắt cho một đường quan sát theo hướng chọn trước, còn tập mức nối các đầu vào có cùng giá trị hàm.
+
+**Ví dụ.** Với $h(u,v)=u^2+uv+2v^2+u-2v$, giữ $v=2$ cho lát cắt $p(u)=u^2+3u+4$. Tập mức $L_0$ có phương trình $u^2+uv+2v^2+u-2v=0$ và là một elip vừa xoay vừa tịnh tiến so với các trục tọa độ.
+
+**Điểm dễ nhầm.** Đồ thị nằm trong $\mathbb R^{n+1}$, còn tập mức nằm trong $\mathbb R^n$. Một lát cắt không mô tả hết hành vi của hàm theo mọi hướng.
+
+**Ý nghĩa và vai trò trong AI.** Đường mức của hàm mất mát giúp quan sát độ dốc, độ điều kiện và quỹ đạo của thuật toán tối ưu trong không gian tham số thấp chiều.
+
+### Đạo hàm riêng qua lát cắt một biến
+
+**Định nghĩa.** Đạo hàm riêng theo biến $x_i$ tại $\mathbf x$ là đạo hàm của lát cắt khi chỉ thay đổi $x_i$ và giữ các biến còn lại cố định:
+
+$$
+\frac{\partial h}{\partial x_i}(\mathbf x)
+=\lim_{t\to0}\frac{h(\mathbf x+t\mathbf e_i)-h(\mathbf x)}{t},
+$$
+
+nếu giới hạn tồn tại.
+
+**Ý nghĩa hình học.** Đạo hàm riêng là độ dốc của tiếp tuyến trên lát cắt song song với một trục tọa độ.
+
+**Ví dụ.** Với $h(u,v)=u^2+uv+2v^2+u-2v$, ta có $\partial h/\partial u=2u+v+1$ và $\partial h/\partial v=u+4v-2$. Tại $(1,2)$, hai độ dốc lần lượt là $5$ và $7$.
+
+**Điểm dễ nhầm.** Khi lấy đạo hàm riêng theo một biến, các biến khác được giữ cố định chứ không đặt bằng $0$. Sự tồn tại của tất cả đạo hàm riêng tại một điểm chưa đủ để kết luận hàm khả vi tại đó.
+
+**Ý nghĩa và vai trò trong AI.** Mỗi đạo hàm riêng đo độ nhạy cục bộ của mất mát đối với một tham số khi các tham số khác tạm thời được giữ cố định.
+
+### Khả vi của hàm nhiều biến
+
+**Định nghĩa.** Hàm $h:\mathbb R^n\to\mathbb R$ khả vi tại $\mathbf x$ nếu tồn tại một ánh xạ tuyến tính $L$ sao cho
+
+$$
+h(\mathbf x+\boldsymbol\Delta)
+=h(\mathbf x)+L(\boldsymbol\Delta)+o(\lVert\boldsymbol\Delta\rVert_2),
+$$
+
+trong đó $o(\lVert\boldsymbol\Delta\rVert_2)/\lVert\boldsymbol\Delta\rVert_2\to0$ khi $\boldsymbol\Delta\to\mathbf0$. Với hàm vô hướng khả vi, $L(\boldsymbol\Delta)=\nabla h(\mathbf x)^T\boldsymbol\Delta$.
+
+**Ý nghĩa hình học.** Gần $\mathbf x$, đồ thị của hàm khả vi được xấp xỉ bởi một siêu phẳng; phần sai khác nhỏ hơn bậc nhất so với độ dài dịch chuyển.
+
+**Ví dụ.** Với $h(u,v)=u^2+uv+2v^2+u-2v$, phần còn lại sau xấp xỉ tuyến tính là $\Delta u^2+\Delta u\Delta v+2\Delta v^2$, có bậc hai nên thỏa điều kiện khả vi tại mọi điểm.
+
+**Điểm dễ nhầm.** Có các đạo hàm riêng không đồng nghĩa với khả vi. Một điều kiện đủ thường dùng là các đạo hàm riêng tồn tại và liên tục trong một lân cận của điểm đang xét.
+
+**Ý nghĩa và vai trò trong AI.** Khả vi bảo đảm thay đổi nhỏ của tham số có thể được mô tả bằng một mô hình tuyến tính cục bộ, là nền tảng của lan truyền ngược và tối ưu dựa trên gradient.
+
+### Gradient và quy ước véc-tơ cột
+
+**Định nghĩa.** Với $h:\mathbb R^n\to\mathbb R$ khả vi, gradient được quy ước là véc-tơ cột
+
+$$
+\nabla h(\mathbf x)
+=\begin{bmatrix}
+\partial h/\partial x_1&\cdots&\partial h/\partial x_n
+\end{bmatrix}^T\in\mathbb R^n.
+$$
+
+**Ý nghĩa hình học.** Nếu $h$ thuộc lớp $C^1$ trong một lân cận của $\mathbf x$ và $\nabla h(\mathbf x)\ne\mathbf0$, tập mức qua $\mathbf x$ là một siêu mặt trơn cục bộ và gradient là véc-tơ pháp tuyến của siêu mặt đó. Gradient cũng hướng về phía hàm tăng nhanh nhất theo chuẩn Euclid.
+
+**Ví dụ.** $\nabla h(1,2)=[5,7]^T$, có độ dài $\sqrt{74}$; hướng tăng nhanh nhất là $[5,7]^T/\sqrt{74}$.
+
+**Điểm dễ nhầm.** Gradient là một véc-tơ, không phải một đạo hàm vô hướng. Công thức chuyển vị trong quy tắc dây chuyền phụ thuộc vào quy ước gradient cột được dùng nhất quán ở đây.
+
+**Ý nghĩa và vai trò trong AI.** Gradient gom độ nhạy theo tất cả tham số và cung cấp hướng cập nhật cơ bản cho quá trình huấn luyện mô hình.
+
+### Đạo hàm theo hướng
+
+**Định nghĩa.** Với $\lVert\mathbf d\rVert_2=1$, đạo hàm theo hướng là
+
+$$
+D_{\mathbf d}h(\mathbf x)
+=\lim_{t\to0}\frac{h(\mathbf x+t\mathbf d)-h(\mathbf x)}{t}.
+$$
+
+Nếu $h$ khả vi thì $D_{\mathbf d}h(\mathbf x)=\nabla h(\mathbf x)^T\mathbf d$.
+
+**Ý nghĩa hình học.** Đây là độ dốc của lát cắt theo đường thẳng $\mathbf x+t\mathbf d$. Nếu $\nabla h(\mathbf x)\ne\mathbf0$, giá trị lớn nhất trên các hướng đơn vị là $\lVert\nabla h(\mathbf x)\rVert_2$, đạt theo hướng gradient; giá trị nhỏ nhất đạt theo hướng đối gradient. Nếu gradient bằng $\mathbf0$, mọi đạo hàm theo hướng đều bằng $0$.
+
+**Ví dụ.** Với $\mathbf d=[3/5,4/5]^T$, $D_{\mathbf d}h(1,2)=[5,7]\mathbf d=43/5$.
+
+**Điểm dễ nhầm.** Nếu $\mathbf d$ không có chuẩn bằng $1$, kết quả còn bị nhân theo độ dài của $\mathbf d$. Sự tồn tại của mọi đạo hàm theo hướng vẫn chưa đủ để suy ra khả vi.
+
+**Ý nghĩa và vai trò trong AI.** Đạo hàm theo hướng đo ảnh hưởng của một nhiễu hoặc một hướng cập nhật cụ thể lên mất mát, chẳng hạn khi phân tích độ nhạy hoặc nhiễu đối kháng.
+
+### Vi phân, tuyến tính hóa và mặt phẳng tiếp xúc
+
+**Định nghĩa.** Vi phân của hàm vô hướng khả vi là ánh xạ tuyến tính $\mathrm dh=\nabla h(\mathbf x)^T\mathrm d\mathbf x$. Tuyến tính hóa quanh $\mathbf x$ là
+
+$$
+h(\mathbf x+\boldsymbol\Delta)
+\approx h(\mathbf x)+\nabla h(\mathbf x)^T\boldsymbol\Delta.
+$$
+
+**Ý nghĩa hình học.** Với hàm hai biến, tuyến tính hóa tạo mặt phẳng tiếp xúc $z=h(u_0,v_0)+h_u(u_0,v_0)(u-u_0)+h_v(u_0,v_0)(v-v_0)$.
+
+**Ví dụ.** Tại $(1,2)$, mặt phẳng tiếp xúc là $z=8+5(u-1)+7(v-2)$. Với $\boldsymbol\Delta=[0{,}1,-0{,}1]^T$, tuyến tính hóa dự đoán $7{,}8$, còn giá trị đúng là $h(1{,}1,1{,}9)=7{,}82$.
+
+**Điểm dễ nhầm.** $\mathrm dh$ là thay đổi tuyến tính dự đoán, không phải luôn bằng thay đổi hữu hạn $h(\mathbf x+\boldsymbol\Delta)-h(\mathbf x)$.
+
+**Ý nghĩa và vai trò trong AI.** Tuyến tính hóa giúp xấp xỉ ảnh hưởng của nhiễu đầu vào, lan truyền sai số và suy các công thức gradient theo ma trận.
+
+### Ma trận Jacobian
+
+**Định nghĩa.** Với $\mathbf F:\mathbb R^n\to\mathbb R^m$ khả vi, Jacobian là
+
+$$
+(\mathbf J_F)_{ij}=\frac{\partial F_i}{\partial x_j},
+\qquad
+\mathbf J_F\in\mathbb R^{m\times n},
+$$
+
+và $\mathrm d\mathbf F=\mathbf J_F\mathrm d\mathbf x$.
+
+**Ý nghĩa hình học.** Jacobian là phép biến đổi tuyến tính tốt nhất mô tả cách một dịch chuyển nhỏ ở đầu vào được ánh xạ thành dịch chuyển đầu ra.
+
+**Ví dụ.** Với $\mathbf F(u,v)=[u+v,uv,u-v]^T$,
+
+$$
+\mathbf J_F(1,2)=
+\begin{bmatrix}
+1&1\\2&1\\1&-1
+\end{bmatrix}
+\in\mathbb R^{3\times2}.
+$$
+
+**Điểm dễ nhầm.** Jacobian không nhất thiết vuông. Hàng tương ứng với thành phần đầu ra và cột tương ứng với biến đầu vào; đảo quy ước sẽ làm sai kích thước trong quy tắc dây chuyền.
+
+**Ý nghĩa và vai trò trong AI.** Jacobian mô tả độ nhạy của một tầng véc-tơ, một biểu diễn ẩn hoặc đầu ra mô hình đối với đầu vào và tham số.
+
+### Quy tắc dây chuyền
+
+**Định nghĩa.** Nếu $\mathbf F:\mathbb R^n\to\mathbb R^m$ và $\mathbf G:\mathbb R^m\to\mathbb R^p$ khả vi thì
+
+$$
+\mathbf J_{G\circ F}(\mathbf x)
+=\mathbf J_G(\mathbf F(\mathbf x))\mathbf J_F(\mathbf x).
+$$
+
+Nếu $g:\mathbb R^m\to\mathbb R$ thì $\nabla(g\circ\mathbf F)=\mathbf J_F^T\nabla g(\mathbf F)$.
+
+**Ý nghĩa hình học.** Mỗi hàm hợp biến đổi một dịch chuyển nhỏ qua nhiều không gian; các Jacobian được ghép theo đúng thứ tự thực hiện các phép biến đổi.
+
+**Ví dụ.** Đặt $g(\mathbf z)=\frac12\lVert\mathbf z\rVert_2^2$ và $\ell=g\circ\mathbf F$. Tại $(1,2)$, $\mathbf F=[3,2,-1]^T$ nên
+
+$$
+\nabla\ell(1,2)
+=\mathbf J_F(1,2)^T\mathbf F(1,2)
+=\begin{bmatrix}6\\6\end{bmatrix}.
+$$
+
+**Điểm dễ nhầm.** Thứ tự nhân Jacobian không được đảo vì phép nhân ma trận không giao hoán. Kiểm tra kích thước là cách phát hiện nhiều lỗi quy tắc dây chuyền.
+
+**Ý nghĩa và vai trò trong AI.** Lan truyền ngược áp dụng quy tắc dây chuyền nhiều lần để đưa độ nhạy của mất mát qua các tầng của mô hình.
+
+### Tích Jacobian–véc-tơ và véc-tơ–Jacobian
+
+**Định nghĩa.** Với $\mathbf J_F\in\mathbb R^{m\times n}$, tích Jacobian–véc-tơ (Jacobian–vector product, JVP) là $\mathbf J_F\mathbf d\in\mathbb R^m$. Theo quy ước véc-tơ cột, tích véc-tơ–Jacobian (vector–Jacobian product, VJP) được biểu diễn tương đương bởi $\mathbf J_F^T\mathbf a\in\mathbb R^n$.
+
+**Ý nghĩa hình học.** JVP đẩy một hướng tiếp tuyến từ đầu vào sang đầu ra; VJP kéo một độ nhạy từ đầu ra ngược về đầu vào.
+
+**Ví dụ.** Với Jacobian trên, $\mathbf d=[1,0]^T$ cho $\mathbf J_F\mathbf d=[1,2,1]^T$. Với $\mathbf a=\mathbf F(1,2)=[3,2,-1]^T$, ta có $\mathbf J_F^T\mathbf a=[6,6]^T$.
+
+**Điểm dễ nhầm.** VJP thường được viết dạng hàng $\mathbf a^T\mathbf J_F$; chuyển sang quy ước cột phải lấy chuyển vị. JVP và VJP không yêu cầu tạo tường minh toàn bộ Jacobian.
+
+**Ý nghĩa và vai trò trong AI.** Vi phân tự động chế độ thuận tính JVP, còn chế độ ngược dùng VJP; lan truyền ngược hiệu quả vì mất mát thường chỉ có một đầu ra vô hướng.
+
+### Đạo hàm riêng bậc hai và ma trận Hessian
+
+**Định nghĩa.** Với $h:\mathbb R^n\to\mathbb R$ khả vi hai lần, Hessian là
+
+$$
+\mathbf H_h(\mathbf x)=\nabla^2h(\mathbf x),
+\qquad
+(\mathbf H_h)_{ij}=\frac{\partial^2h}{\partial x_i\partial x_j}.
+$$
+
+Nếu các đạo hàm riêng bậc hai liên tục quanh điểm đang xét thì Hessian đối xứng.
+
+**Ý nghĩa hình học.** Hessian mô tả cách gradient thay đổi và chứa thông tin độ cong cục bộ của đồ thị theo các hướng khác nhau.
+
+**Ví dụ.** Với $h(u,v)=u^2+uv+2v^2+u-2v$,
+
+$$
+\mathbf H_h=
+\begin{bmatrix}
+2&1\\1&4
+\end{bmatrix}.
+$$
+
+**Điểm dễ nhầm.** Hessian được định nghĩa cho hàm đầu ra vô hướng. Không được tự động đổi thứ tự hai đạo hàm hỗn hợp nếu thiếu giả thiết bảo đảm tính liên tục thích hợp.
+
+**Ý nghĩa và vai trò trong AI.** Hessian được dùng để phân tích độ cong của mất mát, độ điều kiện và hành vi của các thuật toán tối ưu bậc hai.
+
+### Độ cong theo hướng và dạng toàn phương
+
+**Định nghĩa.** Với $\varphi(t)=h(\mathbf x+t\mathbf d)$ và $h$ khả vi hai lần,
+
+$$
+\varphi''(0)
+=\mathbf d^T\mathbf H_h(\mathbf x)\mathbf d.
+$$
+
+Đây là độ cong của lát cắt một chiều theo hướng $\mathbf d$.
+
+**Ý nghĩa hình học.** Giá trị dương biểu thị lát cắt cong lên, giá trị âm biểu thị cong xuống. Trên một véc-tơ riêng đơn vị của Hessian, độ cong bằng giá trị riêng tương ứng.
+
+**Ví dụ.** Với Hessian của $h$, hướng $\mathbf e_1$ cho độ cong $2$, còn $\mathbf d=[1,1]^T/\sqrt2$ cho độ cong $4$.
+
+**Điểm dễ nhầm.** Nếu nhân $\mathbf d$ với $c$ thì dạng toàn phương bị nhân với $c^2$; muốn so sánh độ cong giữa các hướng phải chuẩn hóa véc-tơ hướng.
+
+**Ý nghĩa và vai trò trong AI.** Độ cong theo hướng giúp giải thích vì sao cùng một kích thước bước có thể phù hợp theo hướng này nhưng quá lớn theo hướng khác.
+
+### Khai triển Taylor bậc nhất và bậc hai
+
+**Định nghĩa.** Nếu $h$ thuộc lớp $C^2$ trong một lân cận của $\mathbf x$ thì mô hình Taylor bậc hai là
+
+$$
+h(\mathbf x+\boldsymbol\Delta)
+=h(\mathbf x)
++\nabla h(\mathbf x)^T\boldsymbol\Delta
++\frac12\boldsymbol\Delta^T\mathbf H_h(\mathbf x)\boldsymbol\Delta
++o(\lVert\boldsymbol\Delta\rVert_2^2).
+$$
+
+Bỏ hạng chứa Hessian cho mô hình Taylor bậc nhất.
+
+**Ý nghĩa hình học.** Taylor bậc nhất thay đồ thị bằng mặt phẳng tiếp xúc; Taylor bậc hai bổ sung một mặt cong dạng toàn phương.
+
+**Ví dụ.** Tại $(1,2)$ với $\boldsymbol\Delta=[0{,}1,-0{,}1]^T$, Taylor bậc hai cho $8-0{,}2+0{,}02=7{,}82$. Đây là giá trị chính xác vì $h$ là đa thức bậc hai.
+
+**Điểm dễ nhầm.** Công thức Taylor nói chung là xấp xỉ cục bộ, không phải đẳng thức toàn cục. Hệ số $1/2$ trước hạng Hessian không được bỏ.
+
+**Ý nghĩa và vai trò trong AI.** Taylor giải thích các mô hình cục bộ của mất mát, điều kiện giảm của một bước cập nhật và động cơ của phương pháp Newton.
+
+### Điểm dừng và điều kiện tối ưu bậc nhất
+
+**Định nghĩa.** Điểm $\mathbf x^*$ là điểm dừng nếu $\nabla h(\mathbf x^*)=\mathbf0$. Nếu $h$ khả vi và đạt cực tiểu hoặc cực đại địa phương tại một điểm nằm trong miền mở thì điểm đó phải là điểm dừng.
+
+**Ý nghĩa hình học.** Tại điểm dừng, mô hình tuyến tính bậc nhất là một mặt phẳng ngang; mọi đạo hàm theo hướng đều bằng $0$.
+
+**Ví dụ.** Giải $2u+v+1=0$ và $u+4v-2=0$ cho $h$ thu được điểm dừng duy nhất $(-6/7,5/7)$.
+
+**Điểm dễ nhầm.** Gradient bằng $0$ chỉ là điều kiện cần, không đủ để kết luận cực tiểu. Chẳng hạn, $s(u,v)=u^2-v^2$ có gradient bằng $0$ tại gốc nhưng gốc là điểm yên ngựa.
+
+**Ý nghĩa và vai trò trong AI.** Điều kiện gradient bằng $0$ tạo phương trình đặc trưng cho nghiệm tối ưu và giúp định nghĩa trạng thái mà thuật toán huấn luyện không còn hướng giảm bậc nhất.
+
+### Phân loại điểm dừng bằng Hessian
+
+**Định nghĩa.** Tại điểm dừng $\mathbf x^*$ của hàm $C^2$: nếu $\mathbf H_h(\mathbf x^*)\succ\mathbf0$ thì $\mathbf x^*$ là cực tiểu địa phương chặt; nếu $\mathbf H_h(\mathbf x^*)\prec\mathbf0$ thì đó là cực đại địa phương chặt; nếu Hessian bất định dấu thì đó là điểm yên ngựa.
+
+**Ý nghĩa hình học.** Hessian xác định dương tạo một chiếc bát cong lên theo mọi hướng; xác định âm tạo một mái vòm; Hessian bất định dấu cong lên ở một số hướng và cong xuống ở hướng khác.
+
+**Ví dụ.** Hessian của $h$ có hai giá trị riêng $3+\sqrt2$ và $3-\sqrt2$, đều dương, nên điểm dừng $(-6/7,5/7)$ là cực tiểu địa phương chặt.
+
+**Điểm dễ nhầm.** Hessian nửa xác định dương hoặc nửa xác định âm chưa đủ để phân loại. Ví dụ, $t^4$ có đạo hàm bậc hai bằng $0$ tại gốc nhưng gốc vẫn là cực tiểu.
+
+**Ý nghĩa và vai trò trong AI.** Phép thử Hessian giúp phân biệt cực tiểu với điểm yên ngựa và cho biết các hướng phẳng hoặc có độ cong lớn trong không gian tham số.
+
+### Tích phân một biến và tích phân nhiều biến
+
+**Định nghĩa.** Với $\psi$ khả tích trên $[a,b]$, tích phân $\int_a^b\psi(x)\,\mathrm dx$ cộng tích lũy đại lượng trên đoạn đó. Với miền $D\subset\mathbb R^2$, $\iint_D\psi(x,y)\,\mathrm dA$ cộng giá trị trên toàn miền. Nếu $\psi$ liên tục trên một miền chữ nhật thì tích phân kép có thể viết thành tích phân lặp theo một trong hai thứ tự.
+
+**Ý nghĩa hình học.** Tích phân một biến là diện tích có dấu dưới đường cong; tích phân hai biến là thể tích có dấu dưới một bề mặt.
+
+**Ví dụ.** Hai phép tính trong slide cho
+
+$$
+\int_0^1(2x+1)\,\mathrm dx=2,
+\qquad
+\int_0^1\int_0^2(x+y)\,\mathrm dy\,\mathrm dx=3.
+$$
+
+**Điểm dễ nhầm.** Cận phải đi cùng đúng biến tích phân. Khi tích phân một mật độ xác suất, mật độ phải không âm và tích phân trên toàn miền phải bằng $1$.
+
+**Ý nghĩa và vai trò trong AI.** Tích phân biến mật độ thành xác suất, tạo kỳ vọng và xuất hiện khi lấy trung bình trên các biến ẩn hoặc nhiễu liên tục.
+
+### Gradient, Hessian và phương trình chuẩn của bình phương tối thiểu
+
+**Định nghĩa.** Cho $\mathbf X\in\mathbb R^{m\times n}$, $\mathbf w\in\mathbb R^n$, $\mathbf y\in\mathbb R^m$, đặt
+
+$$
+\mathbf r(\mathbf w)=\mathbf X\mathbf w-\mathbf y,
+\qquad
+f(\mathbf w)=\frac12\mathbf r(\mathbf w)^T\mathbf r(\mathbf w).
+$$
+
+Từ $\mathrm d\mathbf r=\mathbf X\,\mathrm d\mathbf w$ suy ra
+
+$$
+\nabla f=\mathbf X^T\mathbf r,
+\qquad
+\nabla^2f=\mathbf X^T\mathbf X,
+\qquad
+\nabla f=\mathbf0
+\iff \mathbf X^T\mathbf X\mathbf w=\mathbf X^T\mathbf y.
+$$
+
+**Ý nghĩa hình học.** Cực tiểu hóa $f$ là chiếu $\mathbf y$ lên $\operatorname{Col}(\mathbf X)$; tại nghiệm, phần dư vuông góc với mọi cột của $\mathbf X$.
+
+**Ví dụ.** Với dữ liệu giá nhà và $\mathbf w^{(0)}=[14,1,1]^T$, ta có $\mathbf r=[0{,}5,1{,}5,0{,}5,-2{,}5]^T$ và $\nabla f(\mathbf w^{(0)})=[0,-5,-3]^T$. Hessian là
+
+$$
+\mathbf X^T\mathbf X=
+\begin{bmatrix}
+4&0&0\\0&5&3\\0&3&2
+\end{bmatrix}\succeq\mathbf0.
+$$
+
+**Điểm dễ nhầm.** Gradient bằng $0$ không có nghĩa từng phần dư bằng $0$. Hessian nửa xác định dương không tự động bảo đảm trọng số tối ưu là duy nhất.
+
+**Ý nghĩa và vai trò trong AI.** Đây là ví dụ cơ bản cho cách quy tắc dây chuyền biến sai số dự đoán thành gradient tham số và cách độ cong quyết định độ khó của bài toán học.
+
+### Điều kiện tồn tại và tính duy nhất của nghiệm bình phương tối thiểu
+
+**Định nghĩa.** Nghiệm bình phương tối thiểu là phần tử của $\operatorname*{arg\,min}_{\mathbf w}\lVert\mathbf X\mathbf w-\mathbf y\rVert_2^2$. Trong không gian hữu hạn chiều, nghiệm luôn tồn tại. Trọng số tối ưu duy nhất khi và chỉ khi $\operatorname{rank}(\mathbf X)=n$, tương đương $\operatorname{Ker}(\mathbf X)=\{\mathbf0\}$.
+
+**Ý nghĩa hình học.** Hình chiếu $\hat{\mathbf y}$ của $\mathbf y$ lên $\operatorname{Col}(\mathbf X)$ là duy nhất. Nếu $\mathbf X$ thiếu hạng, nhiều véc-tơ trọng số có thể tạo cùng một hình chiếu.
+
+**Ví dụ.** Ma trận thiết kế giá nhà có hạng cột đầy đủ, nên nghiệm duy nhất là $\mathbf w_{\mathrm{LS}}=[14,2,1]^T$. Khi đó có thể viết
+
+$$
+\mathbf w_{\mathrm{LS}}
+=(\mathbf X^T\mathbf X)^{-1}\mathbf X^T\mathbf y.
+$$
+
+**Điểm dễ nhầm.** Hệ $\mathbf X\mathbf w=\mathbf y$ vô nghiệm chính xác không có nghĩa bài toán bình phương tối thiểu vô nghiệm. Công thức dùng nghịch đảo chỉ hợp lệ khi $\mathbf X$ có hạng cột đầy đủ; trường hợp thiếu hạng có thể dùng giả nghịch đảo hoặc SVD.
+
+**Ý nghĩa và vai trò trong AI.** Điều kiện hạng phản ánh khả năng nhận dạng tham số. Các cột đặc trưng phụ thuộc tuyến tính làm trọng số không duy nhất và thường báo hiệu đa cộng tuyến hoặc nhu cầu điều chuẩn.
+
+### Một bước gradient và ảnh hưởng của kích thước bước
+
+**Định nghĩa.** Một bước hạ gradient với kích thước bước $\eta>0$ là
+
+$$
+\mathbf w^+
+=\mathbf w-\eta\nabla f(\mathbf w).
+$$
+
+**Ý nghĩa hình học.** Khi gradient khác $0$, hướng $-\nabla f$ là hướng giảm nhanh nhất cục bộ theo chuẩn Euclid; $\eta$ quyết định khoảng cách di chuyển trên hướng đó.
+
+**Ví dụ.** Với $\eta=0{,}1$ và gradient tại $\mathbf w^{(0)}$ ở trên,
+
+$$
+\mathbf w^+=[14,1{,}5,1{,}3]^T,
+\qquad
+f(\mathbf w^+)=2{,}265<4{,}5=f(\mathbf w^{(0)}).
+$$
+
+**Điểm dễ nhầm.** Hướng đối gradient chỉ bảo đảm giảm đối với bước đủ nhỏ; một $\eta$ quá lớn có thể làm mất mát tăng hoặc gây dao động. Việc một bước giảm hàm không chứng minh thuật toán đã hội tụ.
+
+**Ý nghĩa và vai trò trong AI.** Hạ gradient và các biến thể của nó là cơ chế cập nhật tham số phổ biến trong học máy; chuẩn hóa đặc trưng và độ cong của mất mát ảnh hưởng mạnh đến lựa chọn kích thước bước.
 
 ## Xác suất một biến
 
@@ -628,7 +996,9 @@ Các bài tập sẽ được bổ sung cùng với từng cụm nội dung. G�
 
 ## Tài liệu tham khảo
 
-- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.9 và 2.11.
+- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.9 và 2.11; Chương 4, Mục 4.3–4.5; Chương 6, Mục 6.5.
+- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Phụ lục A.4–A.5, phần vi phân, đạo hàm bậc hai và bình phương tối thiểu.
+- Stewart, James (2016), *Calculus*, ấn bản thứ 8, Mục 5.2–5.3, 14.1–14.7 và 15.1–15.2, phần tích phân một biến, hàm nhiều biến, đạo hàm và tích phân nhiều biến.
 - Strang, Gilbert (2016), *Introduction to Linear Algebra*, ấn bản thứ 5, Mục 2.6 và 4.4, phần phân rã LU, hệ trực chuẩn, Gram–Schmidt và phân rã QR.
 - Roe, David (2013), *Linear Methods (Math 211) — Lecture 2*, tr. 5–8, phần tính tương thích, hạng của ma trận mở rộng và số tham số của tập nghiệm: <https://math.mit.edu/~roed/courses/211/lectures/Sep-11.pdf>.
 - Mattuck, Arthur, *D. Determinants*, trong *18.02 Supplementary Notes and Problems*, MIT OpenCourseWare 18.02 (học phần do Denis Auroux giảng dạy, Fall 2007), tr. 2–5, phần khai triển Laplace và diễn giải diện tích, thể tích: <https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/60d63f4aa52f7cc54ba6b12a0c7c6080_determinants.pdf>.
