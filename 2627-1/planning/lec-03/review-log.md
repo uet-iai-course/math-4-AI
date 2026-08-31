@@ -154,3 +154,13 @@ Sau thay đổi thứ tự, storyboard và outline đã dùng cùng thứ tự v
 - Kiểm tra trực quan riêng P01, B04, C05, D03, D04, D05, E04, E05, E06 và Z02. Các định nghĩa mới tại B04/E04 nằm trọn khung; E05 hiển thị đủ ba miền; E06 sát đáy nhưng không cắt nội dung.
 - Cảnh báo hộp đo hình học tại B04/E06 đến từ phần điều khiển/biên thẻ gần đáy; `scrollWidth` và `scrollHeight` đều không vượt vùng chứa, ảnh chụp xác nhận nội dung nhìn thấy không tràn.
 - Tái kiểm sinh viên, toán học và mạch kể chuyện sau sửa đều đạt bằng GLM 5.3 Flash qua OpenRouter. Codex Slides vẫn không khả dụng; không dùng nó làm bằng chứng kiểm định.
+
+## 13. Ghi chú bài giảng và SVG ngày 2026-08-31
+
+- Ghi chú công khai được xây thành 6 mạch A–F và 15 chủ đề. Hai chủ đề bổ sung là điểm yên ngựa của hàm Lagrange và nón pháp tuyến; chúng nối lần lượt đối ngẫu mạnh với KKT và điều kiện dừng với miền biến tổng quát.
+- Mỗi chủ đề có mục tiêu đọc hiểu, định nghĩa và giả thiết, trực quan, ví dụ tính được, ứng dụng trong AI, điểm dễ nhầm, câu hỏi kiểm tra và đầu ra. Phần định lý và chứng minh được tách khỏi tuyến giải thích chính.
+- Rà soát toán học đã sửa miền $x\in D$ trong hàm giá trị, giả thiết hữu hạn trước khi dùng dưới vi phân, phiên bản Slater tinh chỉnh, dấu độ nhạy và giả thiết nón proper. Hậu kiểm toán học đạt.
+- Rà soát mạch đọc đã bỏ một tiêu đề tạo mạch thứ bảy, rút phần QP lặp lại thành phép tái sử dụng kết quả và chỉ nhúng hình KKT một lần. Hậu kiểm mạch kể chuyện và văn phong đạt.
+- Năm SVG của bài được đối chiếu với công thức và raster hóa ở 900 px và 600 px. Đã sửa nhãn độ nhạy bị cắt, bổ sung tập mở rộng trong hình học đối ngẫu, sửa phía tô của nửa không gian KKT và đồng nhất tỉ lệ hai trục. Cả năm hình phân tích XML thành công, có `role`, `title`, `desc`, không dùng script, `foreignObject`, ảnh nhúng hoặc tài nguyên mạng.
+- Máy chủ HTTP cục bộ tại cổng tạm 8877 trả 200 cho viewer, Markdown và năm SVG. Không có Browser tích hợp trong lượt này, nên không tuyên bố đã kiểm tra bề mặt bằng Codex Slides; cổng hình dùng raster cục bộ và kiểm tra HTTP.
+- Liên kết ghi chú Bài 03 chỉ được mở trên trang chỉ mục sau khi các cổng nội dung, công thức, khối Markdown, tài sản và HTTP đều đạt.

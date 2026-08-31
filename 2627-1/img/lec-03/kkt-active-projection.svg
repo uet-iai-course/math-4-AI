@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
+  <title id="title">Điều kiện KKT và ràng buộc hoạt động</title>
+  <desc id="desc">Khung trái so sánh hai đầu biên của đoạn khả thi từ hai đến bốn: x bằng hai cho nhân tử dương hai và thỏa KKT, còn x bằng bốn đòi nhân tử âm bốn nên bị loại. Khung phải minh họa hình chiếu của gốc tọa độ lên nửa không gian x một cộng x hai lớn hơn hoặc bằng một tại điểm một phần hai, một phần hai; hai gradient cân bằng với nhân tử một.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker>
+    <marker id="green-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#16706a"/></marker>
+    <marker id="orange-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#b44b20"/></marker>
+    <style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.head{font-size:24px;font-weight:700;fill:#172033}.label{font-size:18px;fill:#24324a}.small{font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.feasible{fill:#dcecfb;stroke:#315d92;stroke-width:3}.level{fill:none;stroke:#6a45a5;stroke-width:3}.good{fill:#e9f6f0;stroke:#16706a;stroke-width:2}.bad{fill:#fff1ec;stroke:#b44b20;stroke-width:2}.point{fill:#fff8e6;stroke:#16706a;stroke-width:4}</style>
+  </defs>
+  <rect width="1200" height="650" fill="#f3f6fb"/><text class="head" x="600" y="38" text-anchor="middle">KKT: hoạt động trên biên và cân bằng gradient</text>
+
+  <rect class="panel" x="22" y="62" width="556" height="438" rx="14"/><text class="head" x="300" y="99" text-anchor="middle">Hai điểm biên, chỉ một điểm thỏa KKT</text>
+  <text class="label" x="300" y="135" text-anchor="middle">f₁(x)=(x−2)(x−4) ≤ 0</text>
+  <line x1="82" y1="224" x2="516" y2="224" stroke="#9aa7b8" stroke-width="5"/>
+  <line x1="190" y1="224" x2="410" y2="224" stroke="#315d92" stroke-width="12" stroke-linecap="round"/>
+  <circle class="point" cx="190" cy="224" r="9"/><circle cx="410" cy="224" r="9" fill="#fff" stroke="#b44b20" stroke-width="4"/>
+  <path d="M300 215l9 9-9 9-9-9Z" fill="#fff8e6" stroke="#16706a" stroke-width="3"/>
+  <text class="label" x="190" y="256" text-anchor="middle">x=2</text><text class="label" x="300" y="256" text-anchor="middle">x=3</text><text class="label" x="410" y="256" text-anchor="middle">x=4</text>
+  <text class="small" x="300" y="288" text-anchor="middle">đoạn xanh: tập khả thi; hình thoi: khả thi chặt</text>
+  <rect class="good" x="52" y="318" width="236" height="142" rx="12"/><text class="head" x="170" y="349" text-anchor="middle">Ứng viên x=2</text>
+  <text class="label" x="170" y="383" text-anchor="middle">4−2λ=0 ⇒ λ=2≥0</text><text class="small" x="170" y="414" text-anchor="middle">hoạt động + đúng dấu</text><text class="small" x="170" y="442" text-anchor="middle">thỏa đủ bốn nhóm KKT</text>
+  <rect class="bad" x="312" y="318" width="236" height="142" rx="12"/><text class="head" x="430" y="349" text-anchor="middle">Ứng viên x=4</text>
+  <text class="label" x="430" y="383" text-anchor="middle">8+2λ=0 ⇒ λ=−4</text><text class="small" x="430" y="414" text-anchor="middle">hoạt động nhưng sai dấu</text><text class="small" x="430" y="442" text-anchor="middle">không khả thi đối ngẫu</text>
+
+  <rect class="panel" x="602" y="62" width="576" height="438" rx="14"/><text class="head" x="890" y="99" text-anchor="middle">QP: nghiệm là hình chiếu lên nửa không gian</text>
+  <line class="axis" x1="650" y1="448" x2="1134" y2="448"/><line class="axis" x1="690" y1="476" x2="690" y2="135"/>
+  <text class="small" x="1122" y="471">x₁</text><text class="small" x="702" y="151">x₂</text>
+  <path class="feasible" d="M690 178 L690 135 L1134 135 L1134 448 L960 448 Z" opacity=".76"/><line x1="690" y1="178" x2="960" y2="448" stroke="#315d92" stroke-width="4"/>
+  <path class="level" d="M690 257 A191 191 0 0 1 881 448"/><path class="level" d="M690 198 A250 250 0 0 1 940 448" opacity=".65"/>
+  <circle class="point" cx="825" cy="313" r="9"/><text class="label" x="839" y="301">x*=(1/2; 1/2)</text>
+  <line x1="690" y1="448" x2="825" y2="313" stroke="#8b98aa" stroke-width="3" stroke-dasharray="7 5"/>
+  <line x1="825" y1="313" x2="885" y2="253" stroke="#16706a" stroke-width="4" marker-end="url(#green-arrow)"/><text class="small" x="892" y="247" fill="#16706a">∇f₀=(1;1)</text>
+  <line x1="825" y1="313" x2="765" y2="373" stroke="#b44b20" stroke-width="4" marker-end="url(#orange-arrow)"/><text class="small" x="777" y="394" fill="#b44b20">λ*∇f₁=(−1;−1)</text>
+  <path d="M810 323l10 15 15-10" fill="none" stroke="#172033" stroke-width="2"/>
+  <path d="M960 170l8 8-8 8-8-8Z" fill="#fff8e6" stroke="#16706a" stroke-width="3"/><text class="small" x="974" y="176">(1;1): Slater</text>
+  <text class="small" x="890" y="480" text-anchor="middle">min x₁²+x₂² với x₁+x₂≥1;  λ*=1</text>
+
+  <rect class="good" x="22" y="526" width="271" height="91" rx="12"/><text class="head" x="157" y="558" text-anchor="middle">Khả thi gốc</text><text class="small" x="157" y="590" text-anchor="middle">fᵢ(x*)≤0, hⱼ(x*)=0</text>
+  <rect class="good" x="317" y="526" width="271" height="91" rx="12"/><text class="head" x="452" y="558" text-anchor="middle">Khả thi đối ngẫu</text><text class="small" x="452" y="590" text-anchor="middle">λ*≥0</text>
+  <rect class="good" x="612" y="526" width="271" height="91" rx="12"/><text class="head" x="747" y="558" text-anchor="middle">Bù trừ</text><text class="small" x="747" y="590" text-anchor="middle">λᵢ fᵢ(x*)=0</text>
+  <rect class="good" x="907" y="526" width="271" height="91" rx="12"/><text class="head" x="1042" y="558" text-anchor="middle">Dừng</text><text class="small" x="1042" y="590" text-anchor="middle">0∈∇ₓL+N_D(x*)</text>
+</svg>

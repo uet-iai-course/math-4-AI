@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
   <title id="title">Hàm đối ngẫu của ví dụ xuyên suốt</title>
   <desc id="desc">Đồ thị lấy mẫu từ g lambda bằng âm lambda bình cộng 9 lambda cộng 1, chia cho 1 cộng lambda. Miền hữu hiệu lớn hơn âm một, miền khả thi đối ngẫu không âm, và cực đại đúng tại lambda bằng 2, g bằng 5.</desc>
   <rect width="720" height="320" fill="#fff"/>
@@ -10,6 +10,9 @@
   <line x1="360" y1="100" x2="360" y2="275" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 5"/>
   <line x1="200" y1="100" x2="360" y2="100" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 5"/>
   <text x="372" y="94" font-size="19" fill="#2e7d32">λ*=2, d*=5</text>
+  <circle cx="200" cy="240" r="5" fill="#fff" stroke="#b15a2b" stroke-width="3"/><line x1="200" y1="105" x2="200" y2="235" stroke="#b15a2b" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="210" y="127" font-size="16" fill="#b15a2b">p*−g(0)=4</text><text x="208" y="94" font-size="16" fill="#2e7d32">p*=5</text>
+  <text x="468" y="52" font-size="16" fill="#16706a">x=3: f₁(x)=−1&lt;0 ⇒ Slater</text>
   <text x="76" y="50" font-size="16" fill="#a33a1f">g(λ)→−∞ khi λ↓−1</text>
   <text x="242" y="50" font-size="18">miền đối ngẫu: λ≥0</text>
   <text x="112" y="300" font-size="17">−1</text><text x="194" y="300" font-size="17">0</text><text x="354" y="300" font-size="17">2</text>

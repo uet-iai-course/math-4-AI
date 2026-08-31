@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
   <title id="title">Hàm giá trị theo nhiễu vế phải</title>
   <desc id="desc">Đồ thị lấy mẫu từ p sao u bằng 11 cộng u trừ 6 căn 1 cộng u trên đoạn âm 1 đến 8, rồi bằng 1. Đường 5 trừ 2u đi qua 0,5, là tiếp tuyến tại đó và là cận toàn cục.</desc>
   <rect width="720" height="330" fill="#fff"/>
@@ -9,6 +9,9 @@
   <circle cx="160" cy="190" r="7" fill="#2e7d32"/>
   <text x="171" y="184" font-size="18" fill="#2e7d32">p*(0)=5</text>
   <text x="207" y="238" font-size="18" fill="#b15a2b">5−2u</text>
+  <line x1="560" y1="278" x2="560" y2="228" stroke="#16706a" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="548" y="220" text-anchor="end" font-size="16" fill="#16706a">u=8: hoạt động, λ*=0</text>
+  <text x="548" y="252" text-anchor="end" font-size="15" fill="#44516a">u&gt;8: không hoạt động</text>
   <text x="66" y="52" font-size="17" fill="#a33a1f">u&lt;−1: vô nghiệm</text>
   <text x="100" y="320" font-size="17">−1</text><text x="154" y="320" font-size="17">0</text><text x="554" y="320" font-size="17">8</text>
   <text x="693" y="320" font-size="18">u</text><text x="76" y="26" font-size="18">p*(u)</text>
