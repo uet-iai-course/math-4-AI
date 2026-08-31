@@ -1,8 +1,8 @@
 # Ghi chú Bài 02 — Nhận dạng và cải dạng các bài toán tối ưu lồi
 
-Tài liệu này tiếp nối trực tiếp Bài 01. Ta dùng lại các khái niệm tập lồi, hàm lồi, tập mức dưới và ma trận nửa xác định dương (PSD); trọng tâm ở đây là nhận dạng cấu trúc của một bài toán, chọn phép cải dạng đúng và kiểm tra các giả thiết quyết định.
+Bài 02 dùng lại tập lồi, hàm lồi, tập mức dưới và ma trận nửa xác định dương (PSD) để nhận dạng cấu trúc bài toán, chọn phép cải dạng và kiểm tra các giả thiết quyết định.
 
-Mục tiêu được vận hành hóa từ LLO3 của học phần: nhận dạng, cải dạng và giải thích được các lớp bài toán tối ưu lồi trong một ngữ cảnh AI. Nội dung được chia thành sáu mạch chính:
+Người học cần nhận dạng, cải dạng và giải thích được các lớp bài toán tối ưu lồi trong một ngữ cảnh AI. Sáu mạch nội dung là:
 
 | Mạch | Chủ đề | Sản phẩm đọc hiểu |
 |---|---|---|
@@ -13,7 +13,7 @@ Mục tiêu được vận hành hóa từ LLO3 của học phần: nhận dạn
 | E. Tối ưu nón và SDP | Thứ tự theo nón; LMI và SDP | Đọc bất đẳng thức véc-tơ hoặc ma trận đúng kiểu |
 | F. Tối ưu nhiều mục tiêu | Pareto; vô hướng hóa bằng trọng số | Phân tích đánh đổi và giới hạn của trọng số |
 
-Đối ngẫu Lagrange, Slater, KKT và độ nhạy được dành cho Bài 03; gradient và Newton thuộc Bài 04; hình học điểm cực và thuật toán quy hoạch tuyến tính thuộc Bài 07. Ranh giới này giúp Bài 02 tập trung vào câu hỏi: **mô hình đang thuộc lớp nào, phép cải dạng nào hợp lệ và điều gì chứng nhận tính lồi?**
+Đối ngẫu Lagrange, Slater, KKT và độ nhạy được dành cho Bài 03; gradient và Newton thuộc Bài 04; hình học điểm cực và thuật toán quy hoạch tuyến tính thuộc Bài 07. Bài 02 tập trung vào ba việc: xác định lớp bài toán, chọn phép cải dạng hợp lệ và chứng nhận tính lồi.
 
 ## A. Khuôn bài toán và cải dạng tương đương
 
@@ -53,7 +53,7 @@ Bài toán ở **dạng lồi chuẩn** nếu:
 
 ![Một biểu diễn phi tuyến được rút gọn về các ràng buộc affine cùng mô tả đúng một tia khả thi; phía dưới là ba phép cải dạng chuẩn.](img/lec-02/reformulation-equivalence.svg)
 
-*Hình dùng chung cho Mạch A: hàng trên minh họa đối tượng toán học cần nhận dạng; hàng dưới chuẩn bị ba phép cải dạng của mục tiếp theo.*
+*Hàng trên minh họa đối tượng toán học cần nhận dạng; hàng dưới minh họa ba phép cải dạng tương đương.*
 
 ::: example
 **Ví dụ tính được.** Xét
@@ -600,7 +600,7 @@ lồi. Tập nghiệm của các đẳng thức affine cũng lồi. Giao của c
 Nếu $P_0\succ0$, mục tiêu lồi chặt; khi tập khả thi lồi và nghiệm tồn tại, nghiệm là duy nhất. Không cần $P_i\succ0$ cho các ràng buộc: $P_i\succeq0$ đã đủ để tập mức dưới lồi.
 :::
 
-## Tóm tắt ba mạch
+## Tóm tắt ba mạch đầu
 
 | Quyết định | Câu hỏi kiểm tra |
 |---|---|
@@ -612,7 +612,7 @@ Nếu $P_0\succ0$, mục tiêu lồi chặt; khi tập khả thi lồi và nghi�
 | QP | Ma trận mục tiêu có đối xứng PSD không? |
 | QCQP | Mọi ma trận trong mục tiêu và bất đẳng thức có PSD không? |
 
-**Chuyển tiếp.** LP, QP và QCQP xử lý cấu trúc affine hoặc bậc hai. Mạch tiếp theo của Bài 02 xét các biểu thức tích và lũy thừa trên miền dương, nơi phép đổi biến log làm lộ một bài toán lồi tương đương.
+LP, QP và QCQP xử lý cấu trúc affine hoặc bậc hai. Phần tiếp theo xét các biểu thức tích và lũy thừa trên miền dương, nơi phép đổi biến log làm lộ một bài toán lồi tương đương.
 
 ## D. Quy hoạch hình học và phép đổi biến log
 
@@ -922,7 +922,7 @@ hai trị riêng là $t+a$ và $t-a$. Vì vậy $M(t,a)\succeq0$ khi và chỉ k
 
 **Ý nghĩa và ứng dụng trong AI.** SDP xuất hiện trong học ma trận hạt nhân, hoàn thiện ma trận hiệp phương sai, chặn chuẩn phổ và các thư giãn lồi của bài toán rời rạc. Ma trận PSD bảo đảm các dạng toàn phương như phương sai hoặc năng lượng không âm theo mọi hướng.
 
-**Điểm dễ nhầm.** Mọi $F_i$ phải đối xứng cùng cấp. $F(x)\succeq0$ không có nghĩa từng phần tử không âm. Các phép biến đổi bằng bổ đề Schur cần giả thiết xác định dương của khối được nghịch đảo; note này chỉ dùng mẫu $2\times2$ trực tiếp, không phát triển bổ đề tổng quát.
+**Điểm dễ nhầm.** Mọi $F_i$ phải đối xứng cùng cấp. $F(x)\succeq0$ không có nghĩa từng phần tử không âm. Các phép biến đổi bằng bổ đề Schur cần giả thiết xác định dương của khối được nghịch đảo. Mẫu $2\times2$ trên được kiểm tra trực tiếp bằng trị riêng; chưa cần bổ đề Schur tổng quát.
 
 **Câu hỏi kiểm tra.** Giải $\min_t t$ với $\operatorname{diag}(3-x,x)\preceq tI$. Điểm nào cân bằng hai trị riêng?
 
@@ -1045,5 +1045,5 @@ và khảo sát biên Pareto hoặc vô hướng hóa bằng trọng số. Bài 
 ## Tài liệu đối chiếu
 
 - Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Chương 4: Mục 4.1–4.7.
-- Nguyễn Bích Vân, *Chương 3: Các bài toán tối ưu lồi*, phần 2, trang PDF 2–16; năm chưa xác minh. Các giả thiết về giả nghịch đảo và ma trận PSD trong bản nháp này đã được hiệu chỉnh theo Boyd và Vandenberghe.
+- Nguyễn Bích Vân, *Chương 3: Các bài toán tối ưu lồi*, phần 2, trang PDF 2–16; năm chưa xác minh. Các giả thiết về giả nghịch đảo và ma trận PSD được đối chiếu theo Boyd và Vandenberghe.
 - Đề cương học phần UET.AI2012, Buổi 2, LLO3 và CLO1.
