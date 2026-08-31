@@ -368,6 +368,31 @@ Do đó, với $\mathbf b=[3,1]^T$, nghiệm của $\mathbf A\mathbf x=\mathbf b
 
 **Ý nghĩa và vai trò trong AI.** Ma trận nghịch đảo giúp biểu diễn nghiệm của hệ tuyến tính và ma trận độ chính xác $\boldsymbol\Sigma^{-1}$ trong mô hình Gauss. Khi tính toán thực tế, thường nên giải hệ tuyến tính thay vì tạo nghịch đảo tường minh.
 
+### Hệ cơ sở, hệ trực giao và hệ trực chuẩn
+
+**Định nghĩa.** Một hệ có thứ tự $\mathcal B=(\mathbf b_1,\ldots,\mathbf b_n)$ trong $\mathbb R^n$ là một **cơ sở** nếu các véc-tơ vừa độc lập tuyến tính, vừa sinh ra $\mathbb R^n$. Tương đương, mỗi $\mathbf x\in\mathbb R^n$ có duy nhất một biểu diễn
+
+$$
+\mathbf x=\sum_{i=1}^n\alpha_i\mathbf b_i.
+$$
+
+Một hệ $(\mathbf b_1,\ldots,\mathbf b_k)$ là **trực giao** nếu $\mathbf b_i^T\mathbf b_j=0$ với mọi $i\ne j$. Hệ đó là **trực chuẩn** nếu còn thỏa $\lVert\mathbf b_i\rVert_2=1$ với mọi $i$.
+
+**Quan hệ giữa ba khái niệm.** Hệ trực chuẩn luôn trực giao. Một hệ trực giao không chứa véc-tơ không luôn độc lập tuyến tính; nếu có đúng $n$ véc-tơ trong $\mathbb R^n$ thì hệ đó là một cơ sở.
+
+**Ví dụ.** Trong $\mathbb R^2$, đặt $\mathbf b_1=[1,1]^T$ và $\mathbf b_2=[1,-1]^T$. Ta có $\mathbf b_1^T\mathbf b_2=0$ và $\lVert\mathbf b_1\rVert_2=\lVert\mathbf b_2\rVert_2=\sqrt2$, nên $(\mathbf b_1,\mathbf b_2)$ là một cơ sở trực giao nhưng chưa trực chuẩn. Hai véc-tơ $\mathbf q_i=\mathbf b_i/\sqrt2$ tạo thành một cơ sở trực chuẩn. Chẳng hạn,
+
+$$
+\begin{bmatrix}3\\1\end{bmatrix}
+=2\mathbf b_1+\mathbf b_2.
+$$
+
+**Ý nghĩa hình học.** Cơ sở chọn các trục tọa độ; cơ sở trực giao làm các trục vuông góc; cơ sở trực chuẩn còn chuẩn hóa độ dài trục. Với cơ sở trực chuẩn $(\mathbf q_1,\ldots,\mathbf q_n)$, tọa độ được lấy trực tiếp bằng $\alpha_i=\mathbf q_i^T\mathbf x$, nên độ dài và góc được bảo toàn khi đổi giữa véc-tơ và tọa độ.
+
+**Điểm dễ nhầm.** Độc lập tuyến tính không kéo theo trực giao, và trực giao không kéo theo trực chuẩn. Một hệ trực giao không chứa véc-tơ không và có ít hơn $n$ véc-tơ là một cơ sở trực giao của không gian con mà nó sinh ra. Véc-tơ không trực giao với mọi véc-tơ nhưng không thể thuộc một hệ trực giao dùng để suy ra độc lập tuyến tính.
+
+**Ý nghĩa và vai trò trong AI.** Thuật toán Gram–Schmidt biến một hệ độc lập thành hệ trực chuẩn sinh cùng không gian. Các cột của $\mathbf Q$ trong phân rã QR là trực chuẩn; các hướng của phân tích thành phần chính có thể được chọn thành một cơ sở trực chuẩn. Cơ sở trực chuẩn giúp tính phép chiếu, biểu diễn đặc trưng và các thuật toán số ổn định hơn.
+
 ### Véc-tơ riêng và giá trị riêng
 
 **Định nghĩa.** Cho $\mathbf A\in\mathbb R^{n\times n}$. Nếu tồn tại $\lambda\in\mathbb R$ và $\mathbf v\in\mathbb R^n\setminus\{\mathbf0\}$ sao cho
@@ -424,6 +449,119 @@ $$
 **Điểm dễ nhầm.** Véc-tơ riêng không bao giờ là $\mathbf0$, nhưng giá trị riêng có thể bằng $0$. Nếu $\lambda=0$ thì tồn tại $\mathbf v\ne\mathbf0$ thuộc $\operatorname{Ker}(\mathbf A)$, nên $\mathbf A$ suy biến. Ngoài ra, mọi bội khác không của một véc-tơ riêng vẫn là véc-tơ riêng, vì vậy véc-tơ riêng không duy nhất theo độ dài hoặc dấu.
 
 **Ý nghĩa và vai trò trong AI.** Phân tích thành phần chính (principal component analysis, PCA) dùng các véc-tơ riêng của ma trận hiệp phương sai làm các hướng chính và dùng giá trị riêng để đo phương sai trên từng hướng. Với ma trận Hessian đối xứng, véc-tơ riêng cho các hướng độ cong còn giá trị riêng cho độ lớn và dấu của độ cong; phổ giá trị riêng vì thế ảnh hưởng đến điều kiện hóa và tốc độ của thuật toán tối ưu.
+
+### Các phép phân rã ma trận
+
+#### Phân rã LU
+
+**Định nghĩa.** Với $\mathbf A\in\mathbb R^{n\times n}$, phân rã LU có chọn phần tử trụ (LU decomposition with pivoting) viết
+
+$$
+\mathbf P\mathbf A=\mathbf L\mathbf U,
+$$
+
+trong đó $\mathbf P$ là ma trận hoán vị, $\mathbf L$ là ma trận tam giác dưới có đường chéo bằng $1$, và $\mathbf U$ là ma trận tam giác trên. Đổi hàng giúp tránh phần tử trụ bằng $0$ hoặc quá nhỏ.
+
+**Ví dụ.** Với
+
+$$
+\mathbf A=\begin{bmatrix}1&1\\2&1\end{bmatrix},\quad
+\mathbf P=\begin{bmatrix}0&1\\1&0\end{bmatrix},\quad
+\mathbf L=\begin{bmatrix}1&0\\1/2&1\end{bmatrix},\quad
+\mathbf U=\begin{bmatrix}2&1\\0&1/2\end{bmatrix},
+$$
+
+ta kiểm tra được $\mathbf P\mathbf A=\mathbf L\mathbf U=\begin{bmatrix}2&1\\1&1\end{bmatrix}$.
+
+**Điểm dễ nhầm.** Khi có đổi hàng, công thức đúng là $\mathbf P\mathbf A=\mathbf L\mathbf U$, không được bỏ $\mathbf P$. Không phải ma trận nào cũng có phân rã $\mathbf A=\mathbf L\mathbf U$ mà không cần đổi hàng.
+
+**Ý nghĩa và vai trò trong AI.** Sau khi phân rã một lần, có thể giải nhiều hệ cùng ma trận $\mathbf A$ bằng hai phép thế tam giác thay vì tính $\mathbf A^{-1}$. Vì $\det(\mathbf L)=1$,
+
+$$
+\det(\mathbf A)=\det(\mathbf P)\prod_{i=1}^n u_{ii}.
+$$
+
+Khi $\mathbf A$ khả nghịch, $\log|\det(\mathbf A)|=\sum_{i=1}^n\log|u_{ii}|$. Các đại lượng này thường gặp trong mô hình Gauss.
+
+#### Phân rã QR
+
+**Định nghĩa.** Cho $\mathbf A\in\mathbb R^{m\times n}$ với $m\ge n$ và $\operatorname{rank}(\mathbf A)=n$. Phân rã QR rút gọn (reduced QR decomposition) có dạng
+
+$$
+\mathbf A=\mathbf Q\mathbf R,
+$$
+
+trong đó $\mathbf Q\in\mathbb R^{m\times n}$ có các cột trực chuẩn, $\mathbf Q^T\mathbf Q=\mathbf I_n$, và $\mathbf R\in\mathbb R^{n\times n}$ là ma trận tam giác trên khả nghịch.
+
+**Ví dụ.** Với
+
+$$
+\mathbf A=\begin{bmatrix}1&0\\0&1\\1&0\end{bmatrix},\quad
+\mathbf Q=\begin{bmatrix}1/\sqrt2&0\\0&1\\1/\sqrt2&0\end{bmatrix},\quad
+\mathbf R=\begin{bmatrix}\sqrt2&0\\0&1\end{bmatrix},
+$$
+
+ta có $\mathbf Q^T\mathbf Q=\mathbf I_2$ và $\mathbf Q\mathbf R=\mathbf A$.
+
+**Điểm dễ nhầm.** Trong QR rút gọn, $\mathbf Q$ không vuông khi $m>n$, nên $\mathbf Q\mathbf Q^T$ không nhất thiết bằng $\mathbf I_m$. Ma trận thiếu hạng cần QR có chọn cột trụ hoặc cách xử lý riêng.
+
+**Ý nghĩa và vai trò trong AI.** Bài toán bình phương tối thiểu $\min_{\mathbf w}\lVert\mathbf A\mathbf w-\mathbf y\rVert_2^2$ được đưa về hệ tam giác $\mathbf R\mathbf w=\mathbf Q^T\mathbf y$. Cách này thường ổn định số hơn việc lập phương trình chuẩn $\mathbf A^T\mathbf A\mathbf w=\mathbf A^T\mathbf y$.
+
+#### Phân rã trị riêng
+
+**Định nghĩa.** Nếu $\mathbf A\in\mathbb R^{n\times n}$ có $n$ véc-tơ riêng thực độc lập tuyến tính thì
+
+$$
+\mathbf A=\mathbf V\boldsymbol\Lambda\mathbf V^{-1},
+$$
+
+trong đó $\mathbf V,\boldsymbol\Lambda\in\mathbb R^{n\times n}$, các cột của $\mathbf V$ là véc-tơ riêng và $\boldsymbol\Lambda$ chứa các giá trị riêng trên đường chéo. Với $\mathbf A$ đối xứng thực, phân rã trị riêng (eigenvalue decomposition, EVD) có dạng $\mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^T$ với $\mathbf Q$ trực giao.
+
+**Ví dụ.** Với $\mathbf A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$, đặt
+
+$$
+\mathbf Q=\frac1{\sqrt2}\begin{bmatrix}1&1\\1&-1\end{bmatrix},
+\qquad
+\boldsymbol\Lambda=\begin{bmatrix}3&0\\0&1\end{bmatrix}.
+$$
+
+Hai cột của $\mathbf Q$ là các véc-tơ riêng trực chuẩn đã tìm ở trên, và phép nhân cho $\mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^T$.
+
+**Điểm dễ nhầm.** EVD chỉ áp dụng cho ma trận vuông và không phải ma trận vuông nào cũng khả chéo hóa. Dạng $\mathbf Q\boldsymbol\Lambda\mathbf Q^T$ cần giả thiết ma trận thực đối xứng.
+
+**Ý nghĩa và vai trò trong AI.** EVD cung cấp các trục chính và mức co giãn trên từng trục. Nó được dùng trong PCA của ma trận hiệp phương sai và trong phân tích phổ của Hessian để khảo sát độ cong, điều kiện hóa và tốc độ tối ưu.
+
+#### Phân rã giá trị kỳ dị
+
+**Định nghĩa.** Mọi $\mathbf A\in\mathbb R^{m\times n}$ đều có phân rã giá trị kỳ dị (singular value decomposition, SVD)
+
+$$
+\mathbf A=\mathbf U\boldsymbol\Sigma\mathbf V^T,
+$$
+
+trong đó $\mathbf U\in\mathbb R^{m\times m}$ và $\mathbf V\in\mathbb R^{n\times n}$ trực giao, còn $\boldsymbol\Sigma\in\mathbb R^{m\times n}$ chỉ có các giá trị kỳ dị $\sigma_1\ge\cdots\ge\sigma_r>0$ trên đường chéo, với $r=\operatorname{rank}(\mathbf A)$. Dạng SVD rút gọn giữ $\mathbf U_r\in\mathbb R^{m\times r}$, $\boldsymbol\Sigma_r\in\mathbb R^{r\times r}$ và $\mathbf V_r\in\mathbb R^{n\times r}$.
+
+**Ví dụ.** Với
+
+$$
+\mathbf A=\begin{bmatrix}3&0\\0&2\\0&0\end{bmatrix}
+=\mathbf I_3
+\begin{bmatrix}3&0\\0&2\\0&0\end{bmatrix}
+\mathbf I_2^T,
+$$
+
+ta có $\sigma_1=3$, $\sigma_2=2$ và $\sigma_i^2$ là các giá trị riêng của $\mathbf A^T\mathbf A=\operatorname{diag}(9,4)$.
+
+**Điểm dễ nhầm.** Giá trị kỳ dị luôn không âm, tồn tại cả với ma trận chữ nhật và không đồng nhất với giá trị riêng. EVD và SVD chỉ trùng về các hướng trong một số trường hợp đặc biệt.
+
+**Ý nghĩa và vai trò trong AI.** Cắt SVD tại một số ít giá trị kỳ dị lớn tạo xấp xỉ hạng thấp dùng trong nén và khử nhiễu. SVD cũng là nền tảng của PCA và giả nghịch đảo
+
+$$
+\mathbf A^\dagger
+=\mathbf V_r\boldsymbol\Sigma_r^{-1}\mathbf U_r^T,
+$$
+
+dùng để mô tả nghiệm bình phương tối thiểu kể cả khi ma trận chữ nhật hoặc thiếu hạng.
 
 ### Dạng toàn phương
 
@@ -490,6 +628,7 @@ Các bài tập sẽ được bổ sung cùng với từng cụm nội dung. G�
 
 ## Tài liệu tham khảo
 
-- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.7 và 2.11.
+- Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.9 và 2.11.
+- Strang, Gilbert (2016), *Introduction to Linear Algebra*, ấn bản thứ 5, Mục 2.6 và 4.4, phần phân rã LU, hệ trực chuẩn, Gram–Schmidt và phân rã QR.
 - Roe, David (2013), *Linear Methods (Math 211) — Lecture 2*, tr. 5–8, phần tính tương thích, hạng của ma trận mở rộng và số tham số của tập nghiệm: <https://math.mit.edu/~roed/courses/211/lectures/Sep-11.pdf>.
 - Mattuck, Arthur, *D. Determinants*, trong *18.02 Supplementary Notes and Problems*, MIT OpenCourseWare 18.02 (học phần do Denis Auroux giảng dạy, Fall 2007), tr. 2–5, phần khai triển Laplace và diễn giải diện tích, thể tích: <https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/60d63f4aa52f7cc54ba6b12a0c7c6080_determinants.pdf>.
