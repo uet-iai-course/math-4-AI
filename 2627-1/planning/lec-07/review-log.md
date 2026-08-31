@@ -148,3 +148,13 @@ Không xóa các nhận định trước. Bảng này ghi quyết định mới 
 - Chromium kết xuất đủ 37 trang ở $1280\times720$, $800\times600$ và $720\times900$. Cả ba khung đều có 0 trang tràn, 0 lỗi console, 0 lỗi trang và 0 yêu cầu tài nguyên thất bại.
 - Ảnh chụp trực tiếp các trang P03, A02, A07, B07, C05, C06, C07, C11, D02, D03 và Z01 ở khung rộng, cùng P03, A02, A07, C05, C06, C07, C11 và D02 ở khung hẹp, đã được rà trực quan. Công thức, bảng, hộp giả thiết, sơ đồ và tiêu chí bài tập đều đọc được, không bị cắt.
 - Cấu trúc cuối: 6 mạch, 37 mã duy nhất, 37 ghi chú diễn giả, 37 mục nguồn, 14 tham chiếu cục bộ và không có đường dẫn thiếu. Cấu hình RevealJS bắt buộc và phân cách công thức Markdown đều hợp lệ; `git diff --check` sạch.
+
+## Ghi chú bài giảng — 2026-08-31
+
+- Tạo `materials/lec-07/lecture-note.md` gồm 6 mạch nội dung, 14 chủ đề và một phần riêng có 7 định lý hoặc mệnh đề kèm chứng minh. Mỗi chủ đề có đủ mục tiêu đọc hiểu, định nghĩa và giả thiết, trực quan, ví dụ tính được, hình, ứng dụng AI, điểm dễ nhầm, câu hỏi kiểm tra và đầu ra.
+- Khóa ranh giới với các bài liền kề: không giảng lại cải dạng lồi tổng quát của Bài 02; không đưa đối ngẫu hoặc KKT của Bài 03; không triển khai pivot, chi phí giảm, Phase I/II hay chống quay vòng của Bài 08. Quy hoạch động chỉ giới hạn ở chân trời hữu hạn, trạng thái và điều khiển hữu hạn, chuyển tất định, chi phí cộng.
+- Kiểm toán toán học phát hiện và sửa ba lỗi trước công bố: hai lệnh giãn cách KaTeX thiếu dấu gạch chéo; ví dụ độ phức tạp DP không khớp giữa số tầng, số chuỗi và số cạnh; định lý tồn tại điểm cực viện dẫn kết quả cần giả thiết hạng hàng đầy đủ nhưng chưa nêu giả thiết đó.
+- Bổ sung năm SVG tự tạo: `lp-model-units.svg`, `l1-residual-slack.svg`, `standard-form-basis.svg`, `dp-state-sufficiency.svg`, `lp-dp-decision-map.svg`. Sau lần render đầu, sửa tràn chữ ở bốn hình, bỏ ký tự chỉ số dưới phụ thuộc phông trong hai hình và render lại.
+- Chín SVG của bài phân tích XML thành công, có `role="img"`, `title`, `desc`, không có script hoặc `foreignObject`; ImageMagick kết xuất đủ chín PNG để rà trực quan. Mọi ảnh trong Markdown có văn bản thay thế và đường dẫn cục bộ tồn tại.
+- Dùng quy trình `no-ai-slop` để sửa tối thiểu các câu dẫn chung, cụm nhấn mạnh mơ hồ và sự lặp cấu trúc; giữ nguyên nội dung toán, ký hiệu và mức chứng minh.
+- Giới hạn Codex Slides không đổi: runtime cục bộ chưa đáp ứng phiên bản Node.js mà plugin yêu cầu và phiên này không có bề mặt Browser tích hợp. Không tuyên bố đã kiểm định ghi chú bằng Codex Slides; kiểm định Markdown, SVG, HTTP và viewer cục bộ được dùng làm cơ chế dự phòng.
