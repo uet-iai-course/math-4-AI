@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Cải dạng tương đương làm lộ tập khả thi affine</title>
+  <desc id="desc">Hai ràng buộc có biểu thức phi tuyến được rút gọn thành x một không dương và x một cộng x hai bằng không. Cả hai biểu diễn cho cùng một tia khả thi từ gốc qua các điểm âm một, một và âm hai, hai. Dải dưới minh họa biến dư, khử đẳng thức và dạng epigraph.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker>
+    <style>
+      .panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.head{font-family:"DejaVu Sans";font-size:24px;font-weight:700;fill:#172033}.label{font-family:"DejaVu Sans";font-size:19px;fill:#24324a}.small{font-family:"DejaVu Sans";font-size:16px;fill:#44516a}.math{font-family:"DejaVu Sans";font-size:20px;fill:#172033}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.guide{stroke:#8b98aa;stroke-width:2;stroke-dasharray:7 6}.ray{stroke:#315d92;stroke-width:6;marker-end:url(#arrow)}.point{fill:#fff8e6;stroke:#16706a;stroke-width:4}.logic{fill:#eaf4ff;stroke:#315d92;stroke-width:2}.tool{fill:#f5f0fb;stroke:#6a45a5;stroke-width:2}.ok{fill:#e9f6f0;stroke:#16706a;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1200" height="650" fill="#f3f6fb"/>
+  <text class="head" x="600" y="38" text-anchor="middle">Cải dạng biểu thức, không thay đổi đối tượng toán học</text>
+
+  <rect class="panel" x="24" y="62" width="348" height="344" rx="14"/>
+  <text class="head" x="198" y="99" text-anchor="middle">Biểu diễn ban đầu</text>
+  <rect class="logic" x="55" y="128" width="286" height="72" rx="10"/>
+  <text class="math" x="198" y="160" text-anchor="middle">x₁ / (1 + x₂²) ≤ 0</text>
+  <text class="small" x="198" y="187" text-anchor="middle">mẫu số luôn dương</text>
+  <rect class="logic" x="55" y="220" width="286" height="90" rx="10"/>
+  <text class="math" x="198" y="254" text-anchor="middle">(x₁ + x₂)² = 0</text>
+  <text class="small" x="198" y="276" text-anchor="middle">bình phương bằng 0</text>
+  <text class="small" x="198" y="294" text-anchor="middle">⇔ cơ số bằng 0</text>
+  <text class="label" x="198" y="333" text-anchor="middle">Hình thức phi tuyến chưa đủ</text>
+  <text class="label" x="198" y="360" text-anchor="middle">để kết luận tập không lồi.</text>
+
+  <line class="axis" x1="386" y1="234" x2="466" y2="234"/>
+  <text class="small" x="426" y="218" text-anchor="middle">tương đương</text>
+
+  <rect class="panel" x="482" y="62" width="278" height="344" rx="14"/>
+  <text class="head" x="621" y="99" text-anchor="middle">Dạng affine</text>
+  <rect class="ok" x="520" y="132" width="202" height="59" rx="10"/>
+  <text class="math" x="621" y="169" text-anchor="middle">x₁ ≤ 0</text>
+  <rect class="ok" x="520" y="214" width="202" height="59" rx="10"/>
+  <text class="math" x="621" y="251" text-anchor="middle">x₁ + x₂ = 0</text>
+  <text class="label" x="621" y="319" text-anchor="middle">x = (−s, s), s ≥ 0</text>
+  <text class="small" x="621" y="352" text-anchor="middle">Hai biểu diễn có cùng tập khả thi.</text>
+
+  <rect class="panel" x="780" y="62" width="396" height="344" rx="14"/>
+  <text class="head" x="978" y="99" text-anchor="middle">Tập khả thi</text>
+  <line class="axis" x1="822" y1="330" x2="1140" y2="330"/><line class="axis" x1="1040" y1="372" x2="1040" y2="126"/>
+  <line class="guide" x1="830" y1="120" x2="1090" y2="380"/>
+  <line class="ray" x1="1040" y1="330" x2="846" y2="136"/>
+  <circle class="point" cx="1040" cy="330" r="7"/><circle class="point" cx="950" cy="240" r="7"/><circle class="point" cx="860" cy="150" r="7"/>
+  <text class="small" x="1050" y="351">(0,0)</text><text class="small" x="959" y="231">(−1,1)</text><text class="small" x="870" y="142">(−2,2)</text>
+  <text class="label" x="1147" y="353">x₁</text><text class="label" x="1053" y="139">x₂</text>
+
+  <rect class="tool" x="24" y="430" width="360" height="184" rx="14"/>
+  <text class="head" x="204" y="466" text-anchor="middle">Biến dư</text>
+  <text class="math" x="204" y="507" text-anchor="middle">aᵀx ≤ b</text>
+  <text class="label" x="204" y="540" text-anchor="middle">⇔ aᵀx + s = b, s ≥ 0</text>
+  <text class="small" x="204" y="582" text-anchor="middle">Thêm biến, giữ đúng phép chiếu theo x.</text>
+
+  <rect class="tool" x="420" y="430" width="360" height="184" rx="14"/>
+  <text class="head" x="600" y="466" text-anchor="middle">Khử đẳng thức</text>
+  <text class="math" x="600" y="507" text-anchor="middle">Ax = b</text>
+  <text class="label" x="600" y="540" text-anchor="middle">x = Fz + x₀</text>
+  <text class="small" x="600" y="575" text-anchor="middle">range(F) = ker(A), Ax₀ = b</text>
+
+  <rect class="tool" x="816" y="430" width="360" height="184" rx="14"/>
+  <text class="head" x="996" y="466" text-anchor="middle">Epigraph</text>
+  <text class="math" x="996" y="507" text-anchor="middle">min f(x)</text>
+  <text class="label" x="996" y="540" text-anchor="middle">⇔ min t với f(x) ≤ t</text>
+  <text class="small" x="996" y="575" text-anchor="middle">Bảo toàn nghiệm theo x và giá trị tối ưu.</text>
+</svg>

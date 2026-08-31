@@ -226,3 +226,15 @@ Không xóa các báo cáo vòng trước; mục 9 ghi riêng vòng hợp nhất
 - Sau khi rút C05, mọi trang đều có `scrollHeight` bằng vùng chứa. A03 còn chênh `scrollWidth` 9 px do MathML ẩn của KaTeX, không phải nội dung nhìn thấy; ảnh chụp A03 xác nhận toàn bộ công thức và hộp nằm trong khung.
 - Kiểm tra trực quan riêng P03, A03, A06, B03, B08, C05, D08, D10, Z02 và Z03. B03 hiển thị đúng đường mức sau sửa; C05 hiển thị đủ điều kiện dấu bằng và giá trị tối ưu, không bị cắt.
 - Các tái kiểm toán học, học thuật–giảng dạy và mạch kể chuyện đều đạt bằng GLM 5.3 Flash qua OpenRouter. Codex Slides vẫn không khả dụng trong môi trường hiện tại; không dùng nó làm bằng chứng kiểm định.
+
+## 17. Ghi chú bài giảng ngày 2026-08-31
+
+- Đã tạo `materials/lec-02/lecture-note.md` với sáu mạch A–F và 12 chủ đề: khuôn/cải dạng; tựa lồi/chia đôi; LP–QP–QCQP; GP/đổi log; tối ưu nón/SDP; Pareto/vô hướng hóa.
+- Mỗi chủ đề có mục tiêu đọc hiểu, định nghĩa và giả thiết, trực quan, ví dụ tính được, hình minh họa, ứng dụng AI, điểm dễ nhầm, câu hỏi kiểm tra và đầu ra.
+- Có bảy khối chứng minh hoặc phác thảo chứng minh: tập khả thi lồi; hai đặc trưng tựa lồi; bất biến chia đôi; chứng nhận PSD cho QP/QCQP; đổi log của GP; nghịch ảnh affine của nón; trọng số dương sinh nghiệm Pareto.
+- Đã tạo bảy SVG mới tại `img/lec-02/` và tái dùng `cantilever-gp.svg`. Mọi SVG mới có `title`, `desc`, `role="img"`, không dùng script, `foreignObject` hoặc tài nguyên mạng; đã render kiểm tra ở bề rộng 900 px.
+- Rà soát độc lập phát hiện và đã sửa hai lỗi chặn: panel QCQP không khớp ví dụ đĩa đơn vị; phép đổi log chưa nêu quan hệ $\widetilde p^*=\log p^*$. Lượt tái kiểm cuối kết luận PASS.
+- Đã mở Codex Slides và kiểm tra dự án bền vững `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc`; phiên hiện tại không có công cụ Browser để xác nhận trực tiếp bề mặt hiển thị Codex Slides, nên không dùng nó làm bằng chứng trực quan.
+- Kiểm định tĩnh đạt: Markdown bắt đầu bằng heading cấp một; chỉ dùng `$...$` và `$$...$$`; 12 chủ đề, 12 tham chiếu hình, 20 khối mở/đóng cân bằng; mọi đường dẫn hình tồn tại; XML SVG hợp lệ; `git diff --check` đạt.
+- Máy chủ HTTP cục bộ tại cổng tạm 8877 trả 200 cho viewer, Markdown, CSS và toàn bộ tám SVG. Không có Chromium trong môi trường hiện tại nên chưa thực hiện kiểm tra DOM/render tự động của viewer; khả năng cuộn hình ở màn hình hẹp được bảo đảm bằng selector chung `img[src^="img/lec-"]` và `min-width: 900px`.
+- Sau các kiểm định trên, trang chỉ mục được cập nhật để công bố ghi chú Bài 02.

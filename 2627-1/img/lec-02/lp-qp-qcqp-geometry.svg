@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Hình học của LP, QP, QCQP lồi và phản ví dụ bất định</title>
+  <desc id="desc">Bốn khung so sánh đường mức affine chạm một đa diện không bị chặn, các elip chạm đoạn simplex, một đĩa tròn tạo bởi ràng buộc bậc hai lồi, và tập bậc hai bất định có hai điểm khả thi nhưng trung điểm không khả thi.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#24324a"/></marker>
+    <style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.head{font-family:"DejaVu Sans";font-size:22px;font-weight:700;fill:#172033}.label{font-family:"DejaVu Sans";font-size:17px;fill:#24324a}.small{font-family:"DejaVu Sans";font-size:15px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.level{stroke:#b44b20;stroke-width:3;stroke-dasharray:9 6}.boundary{fill:none;stroke:#315d92;stroke-width:4}.feasible{fill:#dcecfb;stroke:#315d92;stroke-width:3}.quad{fill:none;stroke:#6a45a5;stroke-width:3}.point{fill:#fff8e6;stroke:#16706a;stroke-width:4}.bad{fill:#fff1ec;stroke:#b44b20;stroke-width:3}.chord{stroke:#16706a;stroke-width:3;stroke-dasharray:7 5}</style>
+  </defs>
+  <rect width="1200" height="760" fill="#f3f6fb"/><text class="head" x="600" y="36" text-anchor="middle">Mỗi lớp bài toán có một hình học nhận dạng riêng</text>
+
+  <rect class="panel" x="22" y="58" width="566" height="324" rx="14"/><text class="head" x="305" y="91" text-anchor="middle">LP: đường mức chạm đa diện</text>
+  <line class="axis" x1="72" y1="331" x2="538" y2="331"/><line class="axis" x1="82" y1="350" x2="82" y2="115"/>
+  <path class="feasible" d="M82 122 L82 331 L355 331 L538 240 L538 122 Z" opacity="0.82"/>
+  <line class="boundary" x1="82" y1="122" x2="355" y2="331"/>
+  <line class="level" x1="120" y1="122" x2="538" y2="331"/><line class="level" x1="82" y1="194" x2="355" y2="331"/>
+  <circle class="point" cx="355" cy="331" r="7"/><text class="label" x="366" y="315">x* = (3; 0)</text>
+  <text class="small" x="302" y="360" text-anchor="middle">min x₁ + 2x₂;  x₁ + x₂ ≥ 3;  x ≥ 0</text>
+  <text class="small" x="522" y="145" text-anchor="end">tập khả thi kéo dài</text>
+
+  <rect class="panel" x="612" y="58" width="566" height="324" rx="14"/><text class="head" x="895" y="91" text-anchor="middle">QP: elip chạm đoạn simplex</text>
+  <line class="axis" x1="658" y1="331" x2="1135" y2="331"/><line class="axis" x1="675" y1="350" x2="675" y2="115"/>
+  <line class="boundary" x1="675" y1="128" x2="1085" y2="331"/>
+  <path class="quad" d="M675 240 C790 240 930 260 1003 290 C1025 299 1040 316 1042 331"/>
+  <path class="quad" d="M675 205 C820 206 1010 238 1100 283 C1125 296 1138 313 1140 331" opacity=".65"/>
+  <circle class="point" cx="1003" cy="290" r="7"/><text class="label" x="1012" y="274">(0,8; 0,2)</text>
+  <text class="small" x="895" y="360" text-anchor="middle">min x₁² + 4x₂² trên x₁ + x₂ = 1, x ≥ 0</text>
+
+  <rect class="panel" x="22" y="404" width="566" height="324" rx="14"/><text class="head" x="305" y="437" text-anchor="middle">QCQP lồi: một tập mức bậc hai lồi</text>
+  <line class="axis" x1="65" y1="610" x2="555" y2="610"/><line class="axis" x1="245" y1="700" x2="245" y2="462"/>
+  <circle cx="245" cy="610" r="110" fill="#dcecfb" stroke="#315d92" stroke-width="4"/>
+  <line class="level" x1="260" y1="469" x2="440" y2="649"/>
+  <circle class="point" cx="323" cy="532" r="7"/><text class="small" x="335" y="520">(1/√2; 1/√2)</text>
+  <text class="small" x="305" y="716" text-anchor="middle">min −x₁−x₂;  x₁²+x₂² ≤ 1</text>
+
+  <rect class="panel" x="612" y="404" width="566" height="324" rx="14"/><text class="head" x="895" y="437" text-anchor="middle">Ma trận bất định: trung điểm có thể đi ra ngoài</text>
+  <line class="axis" x1="652" y1="596" x2="1142" y2="596"/><line class="axis" x1="740" y1="700" x2="740" y2="466"/>
+  <path class="bad" d="M652 463 L956 463 C935 525 910 560 893 596 C910 632 935 667 956 729 L652 729 Z" opacity=".72"/>
+  <path class="boundary" d="M956 463 C935 525 910 560 893 596 C910 632 935 667 956 729"/>
+  <line class="chord" x1="956" y1="506" x2="956" y2="686"/>
+  <circle class="point" cx="956" cy="506" r="7"/><circle class="point" cx="956" cy="686" r="7"/><circle cx="956" cy="596" r="8" fill="#fff" stroke="#b44b20" stroke-width="4"/>
+  <text class="small" x="970" y="500">a = (√2; 1)</text><text class="small" x="970" y="705">b = (√2; −1)</text>
+  <text class="small" x="970" y="584">(a+b)/2 không khả thi</text>
+  <text class="small" x="895" y="716" text-anchor="middle">x₁² − x₂² ≤ 1;  diag(1,−1) không PSD</text>
+</svg>

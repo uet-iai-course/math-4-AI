@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Chặn trị riêng bằng bất đẳng thức ma trận tuyến tính</title>
+  <desc id="desc">Hai đường trị riêng x và hai trừ x nằm dưới cận t; cận nhỏ nhất là một tại x bằng một. Bên phải, một ánh xạ affine ma trận được kiểm tra thuộc nón nửa xác định dương, cùng ví dụ ma trận khối hai nhân hai.</desc>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#24324a"/></marker><style>.panel{fill:#fbfcff;stroke:#b9c5d6;stroke-width:3}.title{font-family:DejaVu Sans;font-size:28px;font-weight:700;fill:#172033}.head{font-family:DejaVu Sans;font-size:23px;font-weight:700;fill:#2f3e7a}.txt{font-family:DejaVu Sans;font-size:19px;fill:#24324a}.small{font-family:DejaVu Sans;font-size:17px;fill:#44516a}.axis{stroke:#24324a;stroke-width:3;marker-end:url(#arr)}.l1{stroke:#315d92;stroke-width:5}.l2{stroke:#b15a2b;stroke-width:5}.bound{fill:#e6f3ec;stroke:#2e7d32;stroke-width:3}.box{fill:#edf4ff;stroke:#315d92;stroke-width:3}</style></defs>
+  <rect width="1200" height="620" fill="#f3f6fb"/><text class="title" x="600" y="42" text-anchor="middle">Một LMI đồng thời chặn mọi trị riêng</text>
+  <rect class="panel" x="28" y="70" width="555" height="510" rx="18"/><text class="head" x="305" y="108" text-anchor="middle">Chặn A(x)=diag(x,2−x) bởi tI</text>
+  <g transform="translate(85,500)"><line class="axis" x1="0" y1="0" x2="430" y2="0"/><line class="axis" x1="0" y1="0" x2="0" y2="-350"/>
+    <path class="bound" d="M0 -350 L430 -350 L430 -300 L215 -150 L0 -300 Z" opacity=".72"/>
+    <line class="l1" x1="0" y1="-300" x2="430" y2="0"/><line class="l2" x1="0" y1="0" x2="430" y2="-300"/>
+    <circle cx="215" cy="-150" r="10" fill="#172033"/><text class="txt" x="232" y="-166">(x*,t*)=(1,1)</text>
+    <text class="small" x="325" y="-245">t≥max{x,2−x}</text><text class="small" x="330" y="-35">λ₁=x</text><text class="small" x="55" y="-35">λ₂=2−x</text><text class="small" x="435" y="26">x</text><text class="small" x="-20" y="-362">t</text>
+  </g>
+  <text class="txt" x="305" y="555" text-anchor="middle">Tập khả thi nằm phía trên cả hai đường trị riêng.</text>
+
+  <rect class="panel" x="617" y="70" width="555" height="510" rx="18"/><text class="head" x="895" y="108" text-anchor="middle">Từ ánh xạ affine tới nón PSD</text>
+  <rect class="box" x="660" y="140" width="250" height="92" rx="12"/><text class="txt" x="785" y="177" text-anchor="middle">F(x): affine theo x</text><text class="small" x="785" y="210" text-anchor="middle">các hệ số đối xứng cùng cấp</text>
+  <line class="axis" x1="918" y1="186" x2="1002" y2="186"/>
+  <path d="M1035 140 L1130 232 L940 232 Z" fill="#e6f3ec" stroke="#2e7d32" stroke-width="3"/><text class="txt" x="1035" y="202" text-anchor="middle">Nón PSD</text>
+  <text class="small" x="895" y="265" text-anchor="middle">Điều kiện F(x) là PSD tạo một LMI.</text>
+  <rect class="box" x="680" y="305" width="430" height="170" rx="14"/><text class="head" x="895" y="342" text-anchor="middle">Mẫu khối 2×2</text><text class="txt" x="895" y="386" text-anchor="middle">M(t,a)=[ t  a ; a  t ]</text><text class="txt" x="895" y="426" text-anchor="middle">trị riêng: t+a và t−a</text><text class="txt" x="895" y="463" text-anchor="middle">M(t,a) là PSD khi t ≥ |a|</text>
+  <text class="small" x="895" y="526" text-anchor="middle">PSD là điều kiện theo mọi hướng, không phải theo từng phần tử.</text>
+</svg>

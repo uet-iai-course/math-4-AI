@@ -234,16 +234,12 @@
   margin: 20px auto;
 }
 
-.markdown-body p:has(> img[src^="img/lec-00/calculus-"]),
-.markdown-body p:has(> img[src^="img/lec-00/probability-"]),
-.markdown-body p:has(> img[src^="img/lec-00/housing-"]) {
+.markdown-body p:has(> img[src^="img/lec-"]) {
   overflow-x: auto;
   padding-bottom: 8px;
 }
 
-.markdown-body img[src^="img/lec-00/calculus-"],
-.markdown-body img[src^="img/lec-00/probability-"],
-.markdown-body img[src^="img/lec-00/housing-"] {
+.markdown-body img[src^="img/lec-"] {
   width: 100%;
   min-width: 900px;
   max-width: none;
