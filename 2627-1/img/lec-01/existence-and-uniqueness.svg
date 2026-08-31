@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 590" role="img" aria-labelledby="title desc">
+  <title id="title">Phân biệt sự tồn tại và tính duy nhất của nghiệm tối ưu</title>
+  <desc id="desc">Ba ví dụ cho thấy bài toán có thể không đạt giá trị nhỏ nhất, có nhiều nghiệm tối ưu, hoặc có đúng một nghiệm tối ưu. Khung cuối nêu điều kiện đủ thường dùng: liên tục trên miền đóng và bị chặn trong không gian hữu hạn chiều bảo đảm tồn tại; lồi chặt trên miền lồi bảo đảm nhiều nhất một nghiệm.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker>
+    <style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.good{fill:#eef4f3;stroke:#16706a;stroke-width:3}.warn{fill:#fff8e6;stroke:#9b6b12;stroke-width:3}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.curve{fill:none;stroke:#315d92;stroke-width:5}.minimum{fill:#fff8e6;stroke:#16706a;stroke-width:4}.open{fill:#fff;stroke:#b44b20;stroke-width:4}.guide{stroke:#b44b20;stroke-width:2;stroke-dasharray:7 5}</style>
+  </defs>
+  <rect width="1200" height="590" fill="#f3f6fb"/>
+  <text class="title" x="600" y="34" text-anchor="middle">“Có nghiệm” và “chỉ có một nghiệm” là hai mệnh đề độc lập</text>
+
+  <rect class="panel" x="20" y="58" width="370" height="345" rx="14"/>
+  <text class="title" x="205" y="94" text-anchor="middle">Không tồn tại nghiệm đạt được</text>
+  <text class="label" x="205" y="126" text-anchor="middle">cực tiểu exp(x) trên R</text>
+  <line class="axis" x1="62" y1="330" x2="348" y2="330"/><line class="axis" x1="80" y1="355" x2="80" y2="145"/>
+  <path class="curve" d="M70 316 C145 315 215 300 260 258 C300 220 325 165 345 120"/>
+  <line class="guide" x1="62" y1="316" x2="345" y2="316"/>
+  <line class="axis" x1="112" y1="314" x2="70" y2="316"/>
+  <text class="small" x="205" y="377" text-anchor="middle">inf exp(x)=0 nhưng exp(x) không bao giờ bằng 0.</text>
+
+  <rect class="panel" x="415" y="58" width="370" height="345" rx="14"/>
+  <text class="title" x="600" y="94" text-anchor="middle">Tồn tại nhưng không duy nhất</text>
+  <text class="label" x="600" y="126" text-anchor="middle">cực tiểu f trên [−2,2]</text>
+  <line class="axis" x1="457" y1="330" x2="743" y2="330"/><line class="axis" x1="475" y1="355" x2="475" y2="145"/>
+  <path class="curve" d="M480 180 Q520 270 550 285 L650 285 Q680 270 720 180"/>
+  <line x1="550" y1="285" x2="650" y2="285" stroke="#16706a" stroke-width="9"/>
+  <circle class="minimum" cx="550" cy="285" r="7"/><circle class="minimum" cx="600" cy="285" r="7"/><circle class="minimum" cx="650" cy="285" r="7"/>
+  <text class="small" x="600" y="377" text-anchor="middle">Mọi x trong [−1,1] đều là nghiệm tối ưu.</text>
+
+  <rect class="panel" x="810" y="58" width="370" height="345" rx="14"/>
+  <text class="title" x="995" y="94" text-anchor="middle">Tồn tại và duy nhất</text>
+  <text class="label" x="995" y="126" text-anchor="middle">cực tiểu x² trên R</text>
+  <line class="axis" x1="852" y1="330" x2="1138" y2="330"/><line class="axis" x1="870" y1="355" x2="870" y2="145"/>
+  <path class="curve" d="M885 165 Q995 450 1105 165"/>
+  <path class="minimum" d="M995 272 L1007 284 L995 296 L983 284 Z"/>
+  <text class="small" x="995" y="377" text-anchor="middle">Nghiệm tối ưu duy nhất là x*=0.</text>
+
+  <rect class="good" x="65" y="430" width="500" height="125" rx="12"/>
+  <text class="title" x="315" y="466" text-anchor="middle">Một bảo đảm tồn tại</text>
+  <text class="label" x="315" y="503" text-anchor="middle">C đóng, bị chặn, khác rỗng; f liên tục trên C</text>
+  <text class="small" x="315" y="532" text-anchor="middle">⇒ f đạt giá trị nhỏ nhất trên C.</text>
+
+  <rect class="warn" x="635" y="430" width="500" height="125" rx="12"/>
+  <text class="title" x="885" y="466" text-anchor="middle">Một bảo đảm duy nhất</text>
+  <text class="label" x="885" y="503" text-anchor="middle">C lồi; f lồi chặt trên C</text>
+  <text class="small" x="885" y="532" text-anchor="middle">⇒ có nhiều nhất một nghiệm; cần thêm tồn tại.</text>
+</svg>
