@@ -1,6 +1,6 @@
 # Bài 00 — Ôn tập nền tảng toán học cho AI
 
-Tài liệu này bổ sung cho bộ trang chiếu **Bài 00 — Ôn tập nền tảng toán học cho AI**. Nội dung được phát triển dần từ các yêu cầu về khái niệm, ví dụ, định lý, chứng minh và bài tập.
+Bài 00 nối ba nền tảng toán học dùng xuyên suốt học phần: đại số tuyến tính để biểu diễn dữ liệu, giải tích nhiều biến để học tham số và xác suất để mô tả bất định.
 
 ## Mục tiêu và kiến thức tiên quyết
 
@@ -16,13 +16,9 @@ Kiến thức tiên quyết gồm đại số phổ thông, hàm một biến, �
 - Dự đoán của mẫu thứ $i$ là $\hat y_i$.
 - Phần dư dùng quy ước $r_i=\hat y_i-y_i$.
 
-## Ví dụ xuyên suốt: mô hình giá nhà
-
-Phần này sẽ mở rộng ví dụ giá nhà dùng xuyên suốt bộ trang chiếu, gồm cách biểu diễn một mẫu, ghép nhiều mẫu thành ma trận thiết kế, tính dự đoán và phân tích phần dư.
-
 ## Đại số tuyến tính
 
-Phần này dành cho các khái niệm, ví dụ và chứng minh về vô hướng, véc-tơ, ma trận, kích thước, hạng, dạng toàn phương, ma trận thiết kế, phép chiếu và phương trình chuẩn.
+Đại số tuyến tính cung cấp các đối tượng và phép toán để đi từ một mẫu dữ liệu tới ma trận thiết kế, phép chiếu và phương trình chuẩn.
 
 ### Số vô hướng
 
@@ -608,7 +604,7 @@ Dạng toàn phương mô tả độ cong của hàm mất mát qua ma trận He
 
 ## Giải tích nhiều biến
 
-Phần này dùng ba ví dụ xuyên suốt: hàm vô hướng $h(u,v)=u^2+uv+2v^2+u-2v$, ánh xạ véc-tơ $\mathbf F(u,v)=[u+v,uv,u-v]^T$ và bài toán bình phương tối thiểu của mô hình giá nhà.
+Ba ví dụ nối các khái niệm trong phần này: hàm vô hướng $h(u,v)=u^2+uv+2v^2+u-2v$, ánh xạ véc-tơ $\mathbf F(u,v)=[u+v,uv,u-v]^T$ và bài toán bình phương tối thiểu của mô hình giá nhà.
 
 ### Hàm vô hướng và ánh xạ véc-tơ
 
@@ -728,8 +724,6 @@ $$
 **Ví dụ.** Tại $(1,2)$, mặt phẳng tiếp xúc là $z=8+5(u-1)+7(v-2)$. Với $\boldsymbol\Delta=[0{,}1,-0{,}1]^T$, tuyến tính hóa dự đoán $7{,}8$, còn giá trị đúng là $h(1{,}1,1{,}9)=7{,}82$.
 
 ![Gradient và hướng d tại điểm 1,2 trên đường mức, cùng tuyến tính hóa gần điểm đó.](img/lec-00/calculus-gradient-direction-tangent.svg)
-
-*Hình tổng hợp ý nghĩa hình học của gradient, đạo hàm theo hướng và xấp xỉ tuyến tính.*
 
 **Điểm dễ nhầm.** $\mathrm dh$ là thay đổi tuyến tính dự đoán, không phải luôn bằng thay đổi hữu hạn $h(\mathbf x+\boldsymbol\Delta)-h(\mathbf x)$.
 
@@ -894,8 +888,6 @@ Bỏ hạng chứa Hessian cho mô hình Taylor bậc nhất.
 
 ![Đường mức quanh cực tiểu, hai lát có độ cong khác nhau và hiệu chỉnh Taylor bậc hai từ 7,8 lên 7,82.](img/lec-00/calculus-hessian-curvature-taylor.svg)
 
-*Hình tổng hợp Hessian, độ cong theo hướng và vai trò của hạng bậc hai trong khai triển Taylor.*
-
 **Điểm dễ nhầm.** Hessian nửa xác định dương hoặc nửa xác định âm chưa đủ để phân loại. Ví dụ, $t^4$ có đạo hàm bậc hai bằng $0$ tại gốc nhưng gốc vẫn là cực tiểu.
 
 **Ý nghĩa và vai trò trong AI.** Phép thử Hessian giúp phân biệt cực tiểu với điểm yên ngựa và cho biết các hướng phẳng hoặc có độ cong lớn trong không gian tham số.
@@ -906,7 +898,7 @@ Bỏ hạng chứa Hessian cho mô hình Taylor bậc nhất.
 
 **Ý nghĩa hình học.** Tích phân một biến là diện tích có dấu dưới đường cong; tích phân hai biến là thể tích có dấu dưới một bề mặt.
 
-**Ví dụ.** Hai phép tính trong slide cho
+**Ví dụ.** Tính trực tiếp được
 
 $$
 \int_0^1(2x+1)\,\mathrm dx=2,
@@ -956,7 +948,7 @@ $$
 
 **Điểm dễ nhầm.** Gradient bằng $0$ không có nghĩa từng phần dư bằng $0$. Hessian nửa xác định dương không tự động bảo đảm trọng số tối ưu là duy nhất.
 
-**Ý nghĩa và vai trò trong AI.** Đây là ví dụ cơ bản cho cách quy tắc dây chuyền biến sai số dự đoán thành gradient tham số và cách độ cong quyết định độ khó của bài toán học.
+**Ý nghĩa và vai trò trong AI.** Quy tắc dây chuyền biến sai số dự đoán thành gradient tham số; ma trận $\mathbf X^T\mathbf X$ cho biết độ cong và mức điều kiện của bài toán học.
 
 ### Điều kiện tồn tại và tính duy nhất của nghiệm bình phương tối thiểu
 
@@ -1014,7 +1006,7 @@ $$
 
 **Điểm dễ nhầm.** Không được tính xác suất bằng tỉ lệ số phần tử nếu các kết quả không đồng khả năng. Biến cố không phải một kết quả đơn lẻ; nó có thể chứa nhiều kết quả.
 
-**Ý nghĩa và ứng dụng trong AI.** Không gian xác suất là nền tảng để mô tả nhiễu dữ liệu, nhãn không chắc chắn và quá trình lấy mẫu. Nó buộc mô hình phải nói rõ nguồn bất định nào đang được xét trước khi gán xác suất.
+**Ý nghĩa và ứng dụng trong AI.** Không gian xác suất mô tả nhiễu dữ liệu, nhãn không chắc chắn và quá trình lấy mẫu. Việc xác định $(\Omega,\mathcal F,\Pr)$ làm rõ nguồn bất định trước khi gán xác suất.
 
 ### Biến ngẫu nhiên và luật phân phối
 
@@ -1321,11 +1313,11 @@ hai phần dư $\mathbf r_+=(1,1)^T$ và $\mathbf r_-=(1,-1)^T$ có cùng chuẩ
 
 **Điểm dễ nhầm.** Không thể ước lượng đáng tin cậy một ma trận hiệp phương sai lớn chỉ từ vài phần dư rồi coi nó là đã biết. Khi $\boldsymbol\Sigma_\varepsilon=\sigma^2\mathbf I$, GLS và bình phương tối thiểu thông thường có cùng nghiệm vì hai mục tiêu chỉ khác một hệ số dương.
 
-**Ý nghĩa và ứng dụng trong AI.** GLS phù hợp với dữ liệu chuỗi thời gian, cảm biến hoặc nhiều đầu ra có sai số tương quan. Nó cho thấy hàm mất mát nên phản ánh cấu trúc nhiễu, thay vì mặc định mọi sai lệch độc lập và có cùng độ tin cậy.
+**Ý nghĩa và ứng dụng trong AI.** GLS phù hợp với dữ liệu chuỗi thời gian, cảm biến hoặc nhiều đầu ra có sai số tương quan. Hàm mất mát khi đó cân sai lệch theo cấu trúc nhiễu thay vì mặc định mọi sai lệch độc lập và có cùng độ tin cậy.
 
 ## Ghép các công cụ vào mô hình giá nhà
 
-Phần này dùng lại một bộ dữ liệu xuyên suốt để chỉ rõ đầu ra của bước trước trở thành đầu vào của bước sau. Giá được đo theo đơn vị $100$ triệu đồng; dữ liệu là ví dụ tổng hợp phục vụ tính toán, không phải số liệu thị trường.
+Chín bước dưới đây dùng cùng một bộ dữ liệu, trong đó đầu ra của bước trước trở thành đầu vào của bước sau. Giá được đo theo đơn vị $100$ triệu đồng; dữ liệu là ví dụ tổng hợp phục vụ tính toán, không phải số liệu thị trường.
 
 ### Bước 1 — Xác định dữ liệu quan sát
 
