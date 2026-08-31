@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
   <title id="title">Tìm kiếm đường quay lui Armijo trên ví dụ bậc hai</title>
   <desc id="desc">Đường cong q của t bằng 55 trừ 200t cộng 550t bình phương và đường Armijo bằng 55 trừ 20t. Điểm một và một phần hai nằm trên ngưỡng nên bị loại; điểm một phần tư nằm dưới ngưỡng nên được nhận.</desc>
   <rect width="900" height="500" fill="#fff"/>
   <g stroke="#33467f" stroke-width="2"><line x1="80" y1="430" x2="835" y2="430"/><line x1="100" y1="45" x2="100" y2="430"/></g>
-  <g fill="#33467f" font-family="Arial, sans-serif" font-size="19"><text x="825" y="458">t</text><text x="22" y="62">giá trị</text></g>
+  <g fill="#33467f" font-size="19"><text x="825" y="458">t</text><text x="22" y="62">giá trị</text></g>
   <polyline points="100.0,396.3 134.0,404.4 168.0,410.0 202.0,413.0 236.0,413.4 270.0,411.1 304.0,406.2 338.0,398.7 372.0,388.6 406.0,375.9 440.0,360.6 474.0,342.7 508.0,322.1 542.0,299.0 576.0,273.2 610.0,244.8 644.0,213.9 678.0,180.2 712.0,144.0 746.0,105.2 780.0,63.8" fill="none" stroke="#2f6f8f" stroke-width="5"/>
   <line x1="100" y1="396.3" x2="780" y2="415.3" stroke="#b24a2b" stroke-width="4" stroke-dasharray="10 8"/>
-  <g font-family="Arial, sans-serif" font-size="18"><text x="580" y="215" fill="#2f6f8f">q(t)=55−200t+550t²</text><text x="445" y="448" fill="#b24a2b">55−20t</text><text x="190" y="388" fill="#555">min tại t=2/11</text></g>
-  <g stroke-width="3" font-family="Arial, sans-serif" font-size="17">
-    <line x1="270" y1="401.0" x2="270" y2="411.1" stroke="#2e7d32"/><circle cx="270" cy="411.1" r="7" fill="#2e7d32"/><text x="230" y="470" fill="#222">t=1/4</text><text x="225" y="380" fill="#2e7d32">nhận</text>
+  <g font-size="18"><text x="580" y="215" fill="#2f6f8f">q(t)=55−200t+550t²</text><text x="445" y="448" fill="#b24a2b">ℓ(t)=55−20t</text><text x="115" y="372" fill="#555">min tại t=2/11</text></g>
+  <g stroke-width="3" font-size="17">
+    <line x1="270" y1="401.0" x2="270" y2="411.1" stroke="#2e7d32"/><circle cx="270" cy="411.1" r="7" fill="#2e7d32"/><text x="230" y="470" fill="#222">t=1/4</text><text x="245" y="345" fill="#2e7d32">nhận</text>
     <line x1="440" y1="360.6" x2="440" y2="405.8" stroke="#a33a1f"/><circle cx="440" cy="360.6" r="7" fill="#a33a1f"/><text x="405" y="470" fill="#222">t=1/2</text><text x="400" y="345" fill="#a33a1f">loại</text>
     <line x1="780" y1="63.8" x2="780" y2="415.3" stroke="#a33a1f"/><circle cx="780" cy="63.8" r="7" fill="#a33a1f"/><text x="764" y="470" fill="#222">t=1</text><text x="730" y="50" fill="#a33a1f">loại</text>
   </g>

@@ -1,23 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
-  <title id="title">Hướng khả thi trong không gian rỗng của ràng buộc</title>
-  <desc id="desc">Đường thẳng x một cộng x hai bằng một là tập khả thi. Từ một điểm khả thi, hướng Delta x thuộc không gian rỗng của A nằm dọc đường và giữ khả thi; một hướng thường có thể rời khỏi đường.</desc>
-  <rect width="900" height="500" fill="#fff"/>
-  <g stroke="#33467f" stroke-width="2">
-    <line x1="90" y1="420" x2="830" y2="420"/><line x1="90" y1="70" x2="90" y2="430"/>
-  </g>
-  <line x1="145" y1="390" x2="690" y2="95" stroke="#2f6f8f" stroke-width="6"/>
-  <circle cx="415" cy="244" r="9" fill="#333"/>
-  <line x1="415" y1="244" x2="545" y2="174" stroke="#2e7d32" stroke-width="5" marker-end="url(#greenArrow)"/>
-  <line x1="415" y1="244" x2="610" y2="285" stroke="#a33a1f" stroke-width="5" marker-end="url(#redArrow)"/>
-  <defs>
-    <marker id="greenArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2e7d32"/></marker>
-    <marker id="redArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a33a1f"/></marker>
-  </defs>
-  <g font-family="Arial, sans-serif" font-size="20" fill="#222">
-    <text x="650" y="115" fill="#2f6f8f">Ax=b</text>
-    <text x="440" y="230">x khả thi</text>
-    <text x="525" y="150" fill="#2e7d32">AΔx=0</text>
-    <text x="610" y="310" fill="#a33a1f">hướng thường phá khả thi</text>
-    <text x="810" y="448">x₁</text><text x="55" y="82">x₂</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
+  <title id="title">Hai chế độ Newton với ràng buộc đẳng thức</title>
+  <desc id="desc">Khung trái cho bước Newton từ điểm khả thi một phần hai, một phần hai dọc theo đường x một cộng x hai bằng một đến nghiệm bốn phần năm, một phần năm; hướng thuộc không gian hạt nhân nên A Delta x bằng không. Khung phải cho bước nguyên thủy đối ngẫu từ gốc chưa khả thi đến cùng nghiệm, đồng thời đưa phần dư gốc từ âm một về không và cập nhật nhân tử thêm âm bốn phần năm.</desc>
+  <defs><marker id="greenArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#16706a"/></marker><marker id="orangeArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b44b20"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.head{font-size:24px;font-weight:700;fill:#172033}.label{font-size:18px;fill:#24324a}.small{font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2}.constraint{stroke:#315d92;stroke-width:5}.good{fill:#e9f6f0;stroke:#16706a;stroke-width:2}.warn{fill:#fff1ec;stroke:#b44b20;stroke-width:2}.point{fill:#fff8e6;stroke:#16706a;stroke-width:4}</style></defs>
+  <rect width="1200" height="650" fill="#f3f6fb"/><text class="head" x="600" y="38" text-anchor="middle">Newton–KKT: giữ khả thi hoặc phục hồi khả thi</text>
+  <rect class="panel" x="22" y="62" width="566" height="422" rx="14"/><text class="head" x="305" y="98" text-anchor="middle">Khởi đầu khả thi: bước thuộc ker(A)</text>
+  <line class="axis" x1="72" y1="427" x2="548" y2="427"/><line class="axis" x1="112" y1="462" x2="112" y2="132"/><line class="constraint" x1="112" y1="177" x2="362" y2="427"/>
+  <text class="label" x="372" y="417">x₁+x₂=1</text><text class="small" x="532" y="452">x₁</text><text class="small" x="124" y="148">x₂</text>
+  <circle class="point" cx="237" cy="302" r="9"/><text class="small" x="168" y="282">x⁽⁰⁾=(1/2;1/2)</text><circle class="point" cx="312" cy="377" r="9"/><text class="small" x="324" y="369">x*=(4/5;1/5)</text>
+  <line x1="245" y1="310" x2="304" y2="369" stroke="#16706a" stroke-width="5" marker-end="url(#greenArrow)"/><text class="small" x="150" y="356" fill="#16706a">Δx=(3/10;−3/10)</text>
+  <text class="label" x="305" y="460" text-anchor="middle">AΔx=0 ⇒ A(x+tΔx)=b</text>
+  <rect class="panel" x="612" y="62" width="566" height="422" rx="14"/><text class="head" x="895" y="98" text-anchor="middle">Khởi đầu chưa khả thi: giảm hai phần dư</text>
+  <line class="axis" x1="660" y1="427" x2="1136" y2="427"/><line class="axis" x1="700" y1="462" x2="700" y2="132"/><line class="constraint" x1="700" y1="177" x2="950" y2="427"/>
+  <text class="label" x="960" y="417">x₁+x₂=1</text><text class="small" x="1120" y="452">x₁</text><text class="small" x="712" y="148">x₂</text>
+  <circle cx="700" cy="427" r="9" fill="#fff" stroke="#b44b20" stroke-width="4"/><text class="small" x="712" y="453">x⁽⁰⁾=0</text><circle class="point" cx="900" cy="377" r="9"/><text class="small" x="912" y="367">x*=(4/5;1/5)</text>
+  <line x1="708" y1="425" x2="891" y2="379" stroke="#b44b20" stroke-width="5" marker-end="url(#orangeArrow)"/><text class="small" x="760" y="339" fill="#b44b20">Δx=(4/5;1/5)</text><text class="label" x="895" y="460" text-anchor="middle">rₚ: −1→0, r_d: 0→0</text>
+  <rect class="good" x="22" y="510" width="566" height="108" rx="14"/><text class="head" x="305" y="545" text-anchor="middle">Hệ bước khả thi</text><text class="label" x="305" y="579" text-anchor="middle">[H  Aᵀ; A  0][Δx; η] = −[g; 0]</text><text class="small" x="305" y="605" text-anchor="middle">η=−4/5 là biến phụ; dừng bằng δ_eq²/2.</text>
+  <rect class="warn" x="612" y="510" width="566" height="108" rx="14"/><text class="head" x="895" y="545" text-anchor="middle">Hệ nguyên thủy–đối ngẫu</text><text class="label" x="895" y="579" text-anchor="middle">[H  Aᵀ; A  0][Δx; Δν] = −[r_d; r_p]</text><text class="small" x="895" y="605" text-anchor="middle">Δν=−4/5; dừng khi cả ‖r_d‖₂ và ‖r_p‖₂ đủ nhỏ.</text>
 </svg>

@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
   <title id="title">Hai pha hội tụ của Newton trên thang log sai số</title>
   <desc id="desc">Pha tắt dần giảm log sai số gần tuyến tính. Sau khi bước đầy đủ được nhận, khoảng giảm giữa các điểm trên trục log tăng nhanh, thể hiện truy hồi sai số bậc hai; đường được cắt trước giới hạn đáy của hình.</desc>
   <rect width="900" height="500" fill="#fff"/>
   <g stroke="#33467f" stroke-width="2"><line x1="95" y1="420" x2="840" y2="420"/><line x1="95" y1="70" x2="95" y2="420"/></g>
   <line x1="455" y1="75" x2="455" y2="420" stroke="#999" stroke-width="2" stroke-dasharray="8 8"/>
-  <polyline points="115,105 185,140 255,175 325,210 395,245 460,275 520,315 580,370" fill="none" stroke="#b24a2b" stroke-width="5"/>
-  <g fill="#b24a2b"><circle cx="115" cy="105" r="6"/><circle cx="185" cy="140" r="6"/><circle cx="255" cy="175" r="6"/><circle cx="325" cy="210" r="6"/><circle cx="395" cy="245" r="6"/><circle cx="460" cy="275" r="6"/><circle cx="520" cy="315" r="6"/><circle cx="580" cy="370" r="6"/></g>
-  <g font-family="Arial, sans-serif" font-size="20" fill="#222"><text x="225" y="90">Pha tắt dần</text><text x="560" y="90">Pha bậc hai</text><text x="165" y="125">backtracking</text><text x="520" y="125">t=1 được nhận</text><text x="602" y="404">⋮ phần cắt</text><text x="700" y="450">vòng lặp k</text><text transform="translate(38,345) rotate(-90)">log sai số</text></g>
+  <polyline points="115,105 185,135 255,165 325,195 395,225 460,255 520,300 580,365 620,410" fill="none" stroke="#b24a2b" stroke-width="5"/>
+  <g fill="#b24a2b"><circle cx="115" cy="105" r="6"/><circle cx="185" cy="135" r="6"/><circle cx="255" cy="165" r="6"/><circle cx="325" cy="195" r="6"/><circle cx="395" cy="225" r="6"/><circle cx="460" cy="255" r="6"/><circle cx="520" cy="300" r="6"/><circle cx="580" cy="365" r="6"/><circle cx="620" cy="410" r="6"/></g>
+  <g font-size="20" fill="#222"><text x="225" y="90">Pha tắt dần</text><text x="560" y="90">Pha bậc hai</text><text x="165" y="125">quay lui</text><text x="520" y="125">t=1 được nhận</text><text x="505" y="165">‖eₖ₊₁‖ ≤ C‖eₖ‖²</text><text x="642" y="405">⋮ phần cắt</text><text x="700" y="450">vòng lặp k</text><text transform="translate(38,345) rotate(-90)">log sai số</text><text x="285" y="478" font-size="16" fill="#44516a">Sơ đồ dưới giả thiết lồi mạnh, Hessian Lipschitz và quay lui phù hợp.</text></g>
 </svg>

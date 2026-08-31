@@ -156,3 +156,13 @@ Phạm vi rà lại bắt buộc: P03; C07–D05; E04–E07; Z02; hai trang lân
 - Ảnh chụp P03, A04, E01, E02, E06 và Z02 đã được xem trực tiếp. Hình A04 đặt đúng điểm, vector và nhãn; E06, Z02 đọc được, không chồng lấn.
 - Đã bỏ khóa phóng to khỏi thẻ viewport và thêm favicon dữ liệu rỗng. Bộ trang chiếu giữ 7 section ngoài, 40 ID duy nhất, 40 ghi chú, 40 đoạn nguồn và 17/17 tham chiếu cục bộ hợp lệ.
 - Codex Slides không thể chạy ổn định trong môi trường hiện tại do runtime cục bộ không tương thích và bề mặt Browser không khả dụng. Không tuyên bố đã kiểm định trực quan vòng này bằng Codex Slides; cổng hiển thị cuối dùng Chromium cục bộ theo phương án dự phòng trong `AGENTS.md`.
+
+## 12. Ghi chú bài giảng và SVG ngày 2026-08-31
+
+- Ghi chú công khai gồm 6 mạch A–F và 13 chủ đề. Các cầu nối bổ sung là chứng minh hướng giảm, sự kết thúc của quay lui Armijo, chuẩn đối ngẫu, bất biến affine của Newton, điều kiện không suy biến của hệ KKT và tuyến tính hóa phần dư.
+- Mỗi chủ đề có đủ tám thành phần đọc hiểu. Phần định lý và chứng minh được tách khỏi tuyến giải thích chính; nội dung dừng trước gradient ngẫu nhiên, momentum, quasi-Newton và tối ưu phi lồi của các bài sau.
+- Vòng biên tập `no-ai-slop` đã bỏ các câu chỉ dẫn nội bộ, phần giải lặp và thuật ngữ Anh không cần thiết. Thuật ngữ `độ giảm Newton`, `quay lui` và `không gian hạt nhân` được dùng nhất quán.
+- Sáu SVG được đối chiếu với công thức và raster hóa ở 900 px cùng 600 px. Đã sửa tỷ lệ ellipse–quỹ đạo, nhãn Armijo, mức giảm mô hình, hai pha Newton và hai chế độ Newton–KKT. Cả sáu hình phân tích XML thành công, có `role`, `title`, `desc`, không dùng script, `foreignObject`, ảnh nhúng hoặc tài nguyên mạng.
+- Hai vòng rà soát độc lập đã sửa định nghĩa hàm tự điều chỉnh nhiều biến thành hàm lồi $C^3$ trên miền mở, lồi; hậu kiểm toán học và mạch đọc đều đạt.
+- Máy chủ HTTP cục bộ tại cổng tạm 8878 trả 200 cho viewer, Markdown và sáu SVG. Không có Browser tích hợp trong lượt này, nên cổng hình dùng raster cục bộ và kiểm tra HTTP.
+- Liên kết ghi chú Bài 04 chỉ được mở trên trang chỉ mục sau khi các cổng nội dung, công thức, khối Markdown, tài sản và HTTP đều đạt.
