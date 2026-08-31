@@ -970,6 +970,212 @@ $$
 Vậy kết quả đúng với mọi $k$ hữu hạn.
 :::
 
+## D. Ca tổng hợp trong AI
+
+### 14. Logistic loss như ứng dụng AI
+
+**Mục tiêu đọc hiểu.** Người đọc ghép được dữ liệu, biến quyết định, biên phân loại có dấu (margin), hàm mất mát và tập khả thi thành một ca tối ưu; sau đó dùng các kết quả của Bài 01 để kết luận về tính lồi, sự tồn tại và quan hệ giữa cực tiểu địa phương với cực tiểu toàn cục.
+
+**Định nghĩa dữ liệu và mô hình.** Cho tập dữ liệu phân loại nhị phân
+
+$$
+(a_i,y_i),
+\qquad
+a_i\in\mathbb R^n,
+\qquad
+y_i\in\{-1,1\},
+\qquad
+i=1,\ldots,m.
+$$
+
+Véc-tơ $a_i$ và nhãn $y_i$ là dữ kiện; $w\in\mathbb R^n$ là biến quyết định. Điểm số tuyến tính là $a_i^Tw$. Margin có dấu của mẫu thứ $i$ là
+
+$$
+s_i(w)=y_i a_i^Tw.
+$$
+
+Biên dương nghĩa là dấu của điểm số phù hợp với nhãn; biên càng lớn thì mẫu càng nằm sâu về phía được phân loại đúng. Mất mát logistic của một biên $s$ là
+
+$$
+\sigma(s)=\frac1{1+e^{-s}},
+\qquad
+\Pr(y_i\mid a_i,w)=\sigma\bigl(s_i(w)\bigr).
+$$
+
+Vì vậy, âm log-hợp lý của nhãn quan sát được chính là
+
+$$
+\phi(s)=-\log\sigma(s)=\log(1+e^{-s}),
+$$
+
+và mất mát trên toàn bộ dữ liệu là
+
+$$
+L(w)=\sum_{i=1}^m\phi\bigl(s_i(w)\bigr)
+=\sum_{i=1}^m\log\left(1+e^{-y_i a_i^Tw}\right).
+$$
+
+Để minh họa vai trò của tập khả thi, xét bài toán
+
+$$
+\underset{\lVert w\rVert_2\le R}{\operatorname{minimize}}\;L(w),
+\qquad
+R\ge0.
+$$
+
+**Trực quan.** Mất mát logistic giảm trơn khi biên tăng. Hàm phạt mạnh biên âm, bằng $\log2$ tại biên $0$, và tiến về $0$ khi biên tiến tới $+\infty$. Quả cầu chuẩn giới hạn độ lớn của tham số và giữ tập khả thi compact.
+
+![Hai mẫu phân loại một chiều, biên phân loại có dấu và đồ thị mất mát logistic trên tập khả thi đóng từ âm một đến một.](img/lec-01/logistic-loss-convex-case.svg)
+
+*Hình đánh dấu nghiệm ở biên và ghi giá trị margin; vị trí, ký hiệu và kiểu nét được dùng cùng màu.*
+
+**Ví dụ một chiều tính được.** Cho hai mẫu
+
+$$
+(a_1,y_1)=(1,1),
+\qquad
+(a_2,y_2)=(-1,-1),
+$$
+
+và tập khả thi $C=[-1,1]$. Cả hai margin đều bằng $w$ vì
+
+$$
+y_1a_1w=w,
+\qquad
+y_2a_2w=(-1)(-1)w=w.
+$$
+
+Do đó
+
+$$
+L(w)=2\log(1+e^{-w}),
+$$
+
+với các đạo hàm
+
+$$
+L'(w)=-\frac{2}{1+e^w}<0,
+\qquad
+L''(w)=\frac{2e^w}{(1+e^w)^2}>0.
+$$
+
+Hàm giảm và lồi chặt trên $[-1,1]$, nên nghiệm là điểm biên phải
+
+$$
+w^*=1,
+\qquad
+L(w^*)=2\log(1+e^{-1})\approx0{,}627.
+$$
+
+Ví dụ này cũng cho thấy gradient tại nghiệm có ràng buộc không nhất thiết bằng $0$: ta có $L'(1)<0$, nhưng mọi điểm lớn hơn $1$ đều không khả thi.
+
+**Ý nghĩa và ứng dụng trong AI.** Mất mát logistic là một mục tiêu chuẩn cho phân loại nhị phân. Ca này cho thấy tính lồi của mất mát, tính lồi và compact của tập khả thi, cùng tính liên tục của mục tiêu trả lời ba câu hỏi khác nhau: hình học của bài toán, sự tồn tại của nghiệm và chất lượng toàn cục của cực tiểu địa phương.
+
+**Điểm dễ nhầm.** Mất mát logistic lồi không có nghĩa dữ liệu không nhiễu, mô hình dự đoán tốt ngoài mẫu hoặc nghiệm luôn duy nhất. Gradient bằng $0$ không phải điều kiện bắt buộc cho nghiệm nằm ở biên tập khả thi. Nếu bỏ giới hạn chuẩn trong dữ liệu phân tách được, một dãy tham số có thể làm mất mát tiến về infimum mà không đạt được tại tham số hữu hạn.
+
+**Đầu ra và chuyển sang Bài 02.** Bài 01 cung cấp công cụ để chứng minh tập khả thi và mục tiêu lồi, đồng thời phát biểu đúng bảo đảm tồn tại và toàn cục. Bài 02 sẽ dùng các công cụ này để nhận dạng và cải dạng những lớp bài toán tối ưu lồi cụ thể.
+
+## Các định lý và chứng minh quan trọng — Nhóm D
+
+### Tính lồi của logistic loss
+
+**Giả thiết.** Dữ liệu $(a_i,y_i)$ được giữ cố định, với $a_i\in\mathbb R^n$ và $y_i\in\{-1,1\}$.
+
+**Kết luận.** Hàm
+
+$$
+L(w)=\sum_{i=1}^m\log\left(1+e^{-y_i a_i^Tw}\right)
+$$
+
+lồi trên $\mathbb R^n$.
+
+::: proof
+Xét hàm một biến $\phi(s)=\log(1+e^{-s})$. Ta có
+
+$$
+\phi'(s)=-\frac1{1+e^s},
+\qquad
+\phi''(s)=\frac{e^s}{(1+e^s)^2}>0.
+$$
+
+Vì vậy $\phi$ lồi. Mỗi margin $s_i(w)=y_i a_i^Tw$ là hàm affine của $w$, nên $\phi\circ s_i$ lồi theo quy tắc hợp affine. Tổng hữu hạn của các hàm lồi cũng lồi, do đó $L$ lồi.
+
+Gradient của tổng mất mát là
+
+$$
+\nabla L(w)
+=-
+\sum_{i=1}^m
+\frac{y_i a_i}{1+e^{y_i a_i^Tw}}.
+$$
+
+Có thể kiểm tra lại bằng Hessian. Đặt $s_i=y_i a_i^Tw$ và
+
+$$
+q_i(w)=\frac{e^{s_i}}{(1+e^{s_i})^2}>0.
+$$
+
+Vì $y_i^2=1$,
+
+$$
+\nabla^2L(w)
+=\sum_{i=1}^m q_i(w)a_i a_i^T.
+$$
+
+Với mọi $v\in\mathbb R^n$,
+
+$$
+v^T\nabla^2L(w)v
+=\sum_{i=1}^m q_i(w)(a_i^Tv)^2\ge0.
+$$
+
+Vậy $\nabla^2L(w)\succeq0$, xác nhận lại tính lồi.
+:::
+
+### Tồn tại và tính toàn cục trên quả cầu tham số
+
+**Giả thiết.** Cho $R\ge0$ và $C=\{w\in\mathbb R^n:\lVert w\rVert_2\le R\}$. Dữ liệu hữu hạn và cố định.
+
+**Kết luận.** Bài toán $\min_{w\in C}L(w)$ có ít nhất một nghiệm; mọi cực tiểu địa phương tương đối với $C$ đều là cực tiểu toàn cục.
+
+::: proof
+Quả cầu $C$ khác rỗng, đóng và bị chặn, nên compact trong $\mathbb R^n$. Hàm $L$ là tổng hữu hạn của các hàm liên tục, nên liên tục. Định lý Weierstrass cho tồn tại ít nhất một nghiệm $w^*\in C$.
+
+Quả cầu $C$ lồi và phần trên đã chứng minh $L$ lồi. Theo định lý cực tiểu địa phương của bài toán lồi, mọi cực tiểu địa phương của $L$ tương đối với $C$ là cực tiểu toàn cục.
+:::
+
+**Không kết luận duy nhất.** Hessian chỉ được bảo đảm PSD. Nếu tồn tại $v\ne0$ sao cho $a_i^Tv=0$ với mọi $i$, thì
+
+$$
+v^T\nabla^2L(w)v=0
+$$
+
+với mọi $w$. Vì vậy không thể suy ra lồi chặt hoặc nghiệm duy nhất nếu thiếu giả thiết bổ sung về dữ liệu và tập khả thi.
+
+Một điều kiện đủ dễ kiểm tra là ma trận dữ liệu có các hàng $a_i^T$ và có hạng cột đầy đủ. Khi đó, với mọi $v\ne0$, có ít nhất một $a_i^Tv\ne0$, nên công thức Hessian cho $v^T\nabla^2L(w)v>0$. Mục tiêu lồi chặt; kết hợp với sự tồn tại trên quả cầu, nghiệm là duy nhất. Chiều ngược lại không được khẳng định vì hình học của tập khả thi vẫn có thể làm nghiệm duy nhất ngay cả khi ma trận dữ liệu thiếu hạng.
+
+### Dữ liệu phân tách được có thể làm infimum không đạt được
+
+**Giả thiết.** Dùng hai mẫu một chiều của ví dụ, nhưng bỏ ràng buộc $w\in[-1,1]$ và cho $w\in\mathbb R$.
+
+**Kết luận.** Hàm $L(w)=2\log(1+e^{-w})$ có infimum bằng $0$ nhưng không có nghiệm tối ưu hữu hạn.
+
+::: proof
+Với mọi $w\in\mathbb R$, ta có $e^{-w}>0$, nên
+
+$$
+L(w)=2\log(1+e^{-w})>0.
+$$
+
+Mặt khác,
+
+$$
+\lim_{w\to+\infty}L(w)=2\log(1+0)=0.
+$$
+
+Do đó $\inf_{w\in\mathbb R}L(w)=0$, nhưng không có $w$ hữu hạn nào đạt giá trị $0$. Phản ví dụ này cho thấy tính lồi và tính liên tục không đủ bảo đảm tồn tại trên một tập khả thi không compact.
+:::
+
 ## Tài liệu tham khảo
 
-- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Mục 1.1, 2.1–2.3, 3.1–3.2, 4.1–4.2; Phụ lục A.2.2–A.3.2.
+- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Mục 1.1, 2.1–2.3, 3.1–3.2, đặc biệt Mục 3.1.5 về các ví dụ hàm lồi và Mục 3.2.2 về hợp hàm; Mục 4.1–4.2 chỉ dùng cho ký hiệu và kết luận của bài toán lồi; Phụ lục A.2.2–A.3.2.
