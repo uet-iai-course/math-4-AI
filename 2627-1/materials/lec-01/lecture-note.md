@@ -1,6 +1,6 @@
 # Bài 01 — Giới thiệu tối ưu, tập lồi và hàm lồi
 
-Ghi chú này mở rộng các khái niệm nền của Bài 01. Phần đầu xây dựng ngôn ngữ để mô tả một bài toán tối ưu, phân biệt các loại nghiệm và kiểm tra hai câu hỏi thường bị gộp lại: nghiệm có tồn tại không và có duy nhất không.
+Bài 01 xây dựng ngôn ngữ để mô tả một bài toán tối ưu, phân biệt các loại nghiệm và tách hai câu hỏi thường bị gộp lại: nghiệm có tồn tại không và có duy nhất không.
 
 Ký hiệu chung trong phần này là $x\in\mathbb R^n$ cho biến quyết định, $C\subseteq\mathbb R^n$ cho tập khả thi và $f_0$ cho hàm mục tiêu. Khi không có nguy cơ nhầm lẫn, ta viết bài toán dưới dạng
 
@@ -8,7 +8,7 @@ $$
 \underset{x\in C}{\operatorname{minimize}}\; f_0(x).
 $$
 
-Nguồn chính của phần này là Boyd và Vandenberghe (2004), Chương 1–3. Ký hiệu giá trị tối ưu, tập khả thi và các bảo đảm tối ưu cơ bản được đối chiếu thêm với Mục 4.1–4.2; phần này chỉ dùng các kết quả đó làm nền, chưa phân loại hay cải dạng các lớp bài toán của Bài 02.
+Các định nghĩa và ký hiệu theo Boyd và Vandenberghe (2004), Chương 1–3 và Mục 4.1–4.2. Việc phân loại và cải dạng các lớp bài toán được dành cho Bài 02.
 
 ## A. Mô hình tối ưu và các loại nghiệm
 
@@ -112,7 +112,7 @@ $$
 
 Vì $f_0'(x)=4x(x^2-1)<0$ khi $x$ ở bên trái và đủ gần $0{,}5$, giá trị hàm giảm khi tiến về biên phải. Do đó $0{,}5$ là cực tiểu địa phương tương đối với $C$, nhưng không phải cực tiểu toàn cục.
 
-Đối với $f_0(x)=x^2$ trên một đoạn lồi chứa $0$, cực tiểu địa phương tại $0$ đồng thời là cực tiểu toàn cục. Đây là biểu hiện đơn giản của bảo đảm sẽ được chứng minh trong phần tập lồi và hàm lồi.
+Đối với $f_0(x)=x^2$ trên một đoạn lồi chứa $0$, cực tiểu địa phương tại $0$ đồng thời là cực tiểu toàn cục; phần tập lồi và hàm lồi sẽ chứng minh kết luận này trong trường hợp tổng quát.
 
 **Ý nghĩa và ứng dụng trong AI.** Một thuật toán huấn luyện có thể trả về điểm dừng phụ thuộc khởi tạo. Muốn kết luận điểm đó là tối ưu toàn cục, ta cần giả thiết về miền và mục tiêu, chứ không chỉ cần một giá trị mất mát nhỏ hoặc gradient gần bằng không.
 
@@ -124,7 +124,7 @@ Vì $f_0'(x)=4x(x^2-1)<0$ khi $x$ ở bên trái và đủ gần $0{,}5$, giá t
 
 **Mục tiêu đọc hiểu.** Người đọc tách được ba câu hỏi: giá trị tối ưu có hữu hạn không, infimum có đạt được không và điểm đạt được có duy nhất không.
 
-**Định nghĩa và giả thiết.** Trong không gian hữu hạn chiều, một tập compact là một tập đóng và bị chặn. Định lý Weierstrass cho một điều kiện đủ quan trọng: nếu $C\ne\varnothing$ compact và $f_0:C\to\mathbb R$ liên tục thì tồn tại $x^*\in C$ sao cho
+**Định nghĩa và giả thiết.** Trong không gian hữu hạn chiều, một tập compact là một tập đóng và bị chặn. Định lý Weierstrass cho điều kiện đủ sau: nếu $C\ne\varnothing$ compact và $f_0:C\to\mathbb R$ liên tục thì tồn tại $x^*\in C$ sao cho
 
 $$
 f_0(x^*)=\min_{x\in C}f_0(x).
@@ -150,7 +150,7 @@ Ví dụ thứ nhất cho thấy bị chặn nhưng không đóng là chưa đ�
 
 **Điểm dễ nhầm.** Hàm lồi không tự bảo đảm tồn tại. Lồi chặt không tự bảo đảm tồn tại. Hessian nửa xác định dương chỉ gợi tính lồi, không đủ cho duy nhất. Ngược lại, một bài toán không lồi vẫn có thể có nghiệm duy nhất.
 
-**Đầu ra.** Định lý Weierstrass cung cấp chứng nhận tồn tại nền; phần tiếp theo ghi rõ phát biểu và ý tưởng chứng minh để có thể tái sử dụng trong các ca ứng dụng.
+**Đầu ra.** Định lý Weierstrass cho một điều kiện đủ để nghiệm tồn tại; phần tiếp theo chứng minh kết quả để dùng lại trong các ca ứng dụng.
 
 ## Các định lý và chứng minh quan trọng — Nhóm A
 
@@ -164,7 +164,7 @@ $$
 f(x^*)=\min_{x\in C}f(x).
 $$
 
-Nói cách khác, infimum của $f$ trên $C$ là hữu hạn và được đạt tại ít nhất một điểm của $C$.
+Infimum của $f$ trên $C$ vì thế hữu hạn và được đạt tại ít nhất một điểm của $C$.
 
 ::: proof
 **Ý tưởng.** Chọn một dãy điểm có giá trị hàm tiến dần tới infimum. Tính compact giữ một dãy con hội tụ bên trong $C$; tính liên tục truyền giới hạn từ điểm sang giá trị hàm.
@@ -238,7 +238,7 @@ $$
 
 Ngược lại, vành khăn $A=\{x:1\le\lVert x\rVert_2\le2\}$ không lồi: $(1,0)^T$ và $(-1,0)^T$ thuộc $A$, nhưng trung điểm $(0,0)^T$ không thuộc $A$.
 
-**Ý nghĩa và ứng dụng trong AI.** Tính lồi của tập khả thi cho phép nội suy giữa hai tham số, phân phối hoặc chính sách khả thi mà không vi phạm ràng buộc. Đây là một nửa của cấu trúc cần để chuyển bảo đảm từ cực tiểu địa phương sang cực tiểu toàn cục.
+**Ý nghĩa và ứng dụng trong AI.** Tính lồi của tập khả thi cho phép nội suy giữa hai tham số, phân phối hoặc chính sách khả thi mà không vi phạm ràng buộc. Kết hợp tập khả thi lồi với mục tiêu lồi sẽ biến mọi cực tiểu địa phương thành cực tiểu toàn cục.
 
 **Điểm dễ nhầm.** Kiểm tra một cặp điểm không chứng minh cả tập lồi. Một tổ hợp affine chỉ yêu cầu tổng hệ số bằng $1$, còn tổ hợp lồi yêu cầu thêm mọi hệ số không âm. Không nên suy tính lồi chỉ từ hình vẽ.
 
@@ -287,7 +287,7 @@ Nón sinh bởi $e_1=(1,0)^T$ và $e_2=(0,1)^T$ là $\mathbb R_+^2$. Điểm $(1
 
 ### 6. Các tập lồi cơ bản
 
-**Mục tiêu đọc hiểu.** Người đọc nhận dạng được các viên gạch hình học thường gặp mà không phải kiểm tra lại định nghĩa đoạn nối từ đầu.
+**Mục tiêu đọc hiểu.** Người đọc nhận dạng được các tập lồi cơ bản mà không phải kiểm tra lại định nghĩa đoạn nối từ đầu.
 
 **Định nghĩa và giả thiết.** Các tập sau đều lồi khi các biểu thức có kiểu phù hợp:
 
@@ -319,7 +319,7 @@ có bán trục dài $1$ theo hướng $x_1$ và $1/2$ theo hướng $x_2$. Đi�
 
 **Điểm dễ nhầm.** Quả cầu $\lVert x-x_c\rVert\le r$ lồi, nhưng mặt cầu $\lVert x-x_c\rVert=r$ nói chung không lồi. Đẳng thức affine tạo tập lồi; đẳng thức phi tuyến không có bảo đảm tương tự.
 
-**Đầu ra.** Dạng toàn phương của ellipsoid dẫn tới một nón lồi quan trọng trong không gian ma trận.
+**Đầu ra.** Dạng toàn phương của ellipsoid dẫn tới nón nửa xác định dương trong không gian ma trận.
 
 ### 7. Nón nửa xác định dương
 
@@ -352,7 +352,7 @@ có các giá trị riêng $1$ và $3$, nên $X\succ0$. Ma trận $Y=\operatorna
 
 **Điểm dễ nhầm.** Đường chéo không âm chưa đủ để một ma trận đối xứng tổng quát là PSD. PSD không đồng nghĩa khả nghịch. Điều kiện dạng toàn phương phải đúng với mọi $z$, không chỉ các véc-tơ cơ sở.
 
-**Đầu ra.** Nón PSD là một ví dụ quan trọng của tập lồi; mục tiếp theo khái quát các phép tạo tập lồi mới.
+**Đầu ra.** Nón PSD cung cấp một tập lồi trong không gian ma trận; mục tiếp theo khái quát các phép tạo tập lồi mới.
 
 ### 8. Các phép bảo toàn tập lồi
 
@@ -390,7 +390,7 @@ là một ellipsoid lồi. Giao thêm nửa không gian $x_2\ge0$ vẫn cho mộ
 
 **Điểm dễ nhầm.** Ảnh và nghịch ảnh affine không yêu cầu $A$ khả nghịch. Hợp của hai tập lồi nói chung không lồi. Nghịch ảnh qua một ánh xạ phi tuyến tùy ý không có bảo đảm này. Điều kiện $t>0$ của phối cảnh là bắt buộc.
 
-**Đầu ra.** Nhóm B cung cấp các viên gạch và phép ghép cần để chứng minh tập khả thi lồi trong các ca ứng dụng.
+**Đầu ra.** Nhóm B cung cấp các tập lồi cơ bản và phép bảo toàn cần để chứng minh tập khả thi lồi trong các ca ứng dụng.
 
 ## Các định lý và chứng minh quan trọng — Nhóm B
 
@@ -588,9 +588,9 @@ $$
 S_1=\{x:x^2\le1\}=[-1,1].
 $$
 
-Do đó $f+I_{[-1,1]}$ bằng $x^2$ trong đoạn và bằng $+\infty$ ngoài đoạn. Ngược lại, $g(x)=\sqrt{|x|}$ có các tập mức dưới $[-\alpha^2,\alpha^2]$ khi $\alpha\ge0$, đều lồi, nhưng $g$ không lồi. Điều này cho thấy chiều đảo của hệ quả tập mức là sai.
+Do đó $f+I_{[-1,1]}$ bằng $x^2$ trong đoạn và bằng $+\infty$ ngoài đoạn. Ngược lại, $g(x)=\sqrt{|x|}$ có các tập mức dưới $[-\alpha^2,\alpha^2]$ khi $\alpha\ge0$, đều lồi, nhưng $g$ không lồi. Vì vậy, mọi tập mức dưới lồi không đủ để kết luận hàm lồi.
 
-**Ý nghĩa và ứng dụng trong AI.** Epigraph giúp tách một cận trên khỏi giá trị hàm; hàm chỉ thị giúp viết loss và tập khả thi trong cùng một biểu thức. Hai cách biểu diễn này cho phép giữ mục tiêu và giới hạn trong một ngôn ngữ thống nhất.
+**Ý nghĩa và ứng dụng trong AI.** Epigraph tách một cận trên khỏi giá trị hàm; hàm chỉ thị viết mất mát và tập khả thi trong cùng một biểu thức.
 
 **Điểm dễ nhầm.** Graph của hàm lồi thường không phải tập lồi; epigraph mới là đối tượng lồi tương ứng. Mọi tập mức dưới lồi chỉ suy ra tính tựa lồi, không suy ra tính lồi. Không thực hiện tùy ý các phép toán không xác định như $+\infty-(+\infty)$.
 
@@ -733,7 +733,7 @@ $$
 
 không lồi gần $0$ vì đạo hàm bậc hai tại $0$ bằng $-4$.
 
-**Ý nghĩa và ứng dụng trong AI.** Tổng loss theo mẫu, điều chuẩn, max-loss, log-tổng-mũ và rủi ro kỳ vọng đều dùng các quy tắc này. Jensen là cầu nối giữa giải tích lồi và xác suất.
+**Ý nghĩa và ứng dụng trong AI.** Tổng loss theo mẫu, điều chuẩn, max-loss, log-tổng-mũ và rủi ro kỳ vọng đều dùng các quy tắc này. Jensen áp dụng bất đẳng thức lồi cho trung bình và kỳ vọng của biến ngẫu nhiên.
 
 **Điểm dễ nhầm.** Trọng số âm có thể phá tính lồi. Infimum tùy ý của các hàm lồi không bảo toàn lồi; cần lồi đồng thời trước khi loại biến. Không có quy tắc chung “lồi hợp lồi”. Jensen cho biến ngẫu nhiên cần các kỳ vọng tồn tại và hữu hạn.
 
@@ -1073,9 +1073,9 @@ w^*=1,
 L(w^*)=2\log(1+e^{-1})\approx0{,}627.
 $$
 
-Ví dụ này cũng cho thấy gradient tại nghiệm có ràng buộc không nhất thiết bằng $0$: ta có $L'(1)<0$, nhưng mọi điểm lớn hơn $1$ đều không khả thi.
+Gradient tại nghiệm có ràng buộc không nhất thiết bằng $0$: ta có $L'(1)<0$, nhưng mọi điểm lớn hơn $1$ đều không khả thi.
 
-**Ý nghĩa và ứng dụng trong AI.** Mất mát logistic là một mục tiêu chuẩn cho phân loại nhị phân. Ca này cho thấy tính lồi của mất mát, tính lồi và compact của tập khả thi, cùng tính liên tục của mục tiêu trả lời ba câu hỏi khác nhau: hình học của bài toán, sự tồn tại của nghiệm và chất lượng toàn cục của cực tiểu địa phương.
+**Ý nghĩa và ứng dụng trong AI.** Mất mát logistic là một mục tiêu chuẩn cho phân loại nhị phân. Tính lồi của mất mát và tập khả thi quyết định quan hệ địa phương–toàn cục; tính compact của tập khả thi cùng tính liên tục của mục tiêu bảo đảm nghiệm tồn tại.
 
 **Điểm dễ nhầm.** Mất mát logistic lồi không có nghĩa dữ liệu không nhiễu, mô hình dự đoán tốt ngoài mẫu hoặc nghiệm luôn duy nhất. Gradient bằng $0$ không phải điều kiện bắt buộc cho nghiệm nằm ở biên tập khả thi. Nếu bỏ giới hạn chuẩn trong dữ liệu phân tách được, một dãy tham số có thể làm mất mát tiến về infimum mà không đạt được tại tham số hữu hạn.
 
