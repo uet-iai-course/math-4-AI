@@ -8,7 +8,7 @@ $$
 \underset{x\in C}{\operatorname{minimize}}\; f_0(x).
 $$
 
-Nguồn chính của phần này là Boyd và Vandenberghe (2004), Chương 1–3. Ký hiệu giá trị tối ưu, tập khả thi và cực tiểu địa phương được đối chiếu thêm với Mục 4.1; phần này chỉ dùng các ký hiệu đó làm nền, chưa phân loại hay cải dạng các lớp bài toán của Bài 02.
+Nguồn chính của phần này là Boyd và Vandenberghe (2004), Chương 1–3. Ký hiệu giá trị tối ưu, tập khả thi và các bảo đảm tối ưu cơ bản được đối chiếu thêm với Mục 4.1–4.2; phần này chỉ dùng các kết quả đó làm nền, chưa phân loại hay cải dạng các lớp bài toán của Bài 02.
 
 ## A. Mô hình tối ưu và các loại nghiệm
 
@@ -130,7 +130,7 @@ $$
 f_0(x^*)=\min_{x\in C}f_0(x).
 $$
 
-Tính duy nhất cần một giả thiết khác. Nếu $C$ lồi và $f_0$ lồi chặt trên $C$, thì bài toán có nhiều nhất một nghiệm tối ưu. Kết luận này không tự tạo ra nghiệm; nó chỉ loại trừ khả năng có hai nghiệm khác nhau.
+Tính duy nhất cần một giả thiết khác. Nếu $C$ lồi và $f_0$ lồi chặt (còn gọi là lồi nghiêm ngặt) trên $C$, thì bài toán có nhiều nhất một nghiệm tối ưu. Kết luận này không tự tạo ra nghiệm; nó chỉ loại trừ khả năng có hai nghiệm khác nhau.
 
 **Trực quan.** Miền mở có thể loại mất điểm biên mà một dãy nghiệm ứng viên đang tiến tới. Một đáy phẳng cho nhiều nghiệm. Một hàm lồi chặt trên miền phù hợp không có đoạn đáy phẳng, nên nếu đáy được đạt thì chỉ có một điểm đáy.
 
@@ -511,6 +511,465 @@ $$
 Suy ra $\theta x+(1-\theta)y\in F^{-1}(D)$, nên nghịch ảnh lồi. Không bước nào yêu cầu $A$ khả nghịch.
 :::
 
+## C. Hàm lồi và công cụ kiểm tra
+
+### 9. Hàm lồi, hàm lõm và hàm lồi chặt
+
+**Mục tiêu đọc hiểu.** Người đọc diễn giải được bất đẳng thức dây cung, phân biệt hàm lồi, hàm lõm, hàm affine và hàm lồi chặt.
+
+**Định nghĩa và giả thiết.** Cho $D\subseteq\mathbb R^n$ lồi. Hàm $f:D\to\mathbb R$ là hàm lồi nếu với mọi $x,y\in D$ và $\theta\in[0,1]$,
+
+$$
+f\bigl(\theta x+(1-\theta)y\bigr)
+\le\theta f(x)+(1-\theta)f(y).
+$$
+
+Hàm $f$ là lồi chặt nếu bất đẳng thức là chặt với mọi $x\ne y$ và $\theta\in(0,1)$. Hàm $f$ là lõm nếu $-f$ lồi. Hàm affine vừa lồi vừa lõm.
+
+**Trực quan.** Đồ thị của hàm lồi nằm không cao hơn dây cung nối hai điểm bất kỳ trên đồ thị. Với hàm lồi chặt, phần đồ thị giữa hai điểm phân biệt nằm thấp hơn hẳn dây cung.
+
+![Đồ thị hàm lồi nằm dưới dây cung, hàm lồi chặt nằm thấp hơn dây cung và hàm lõm có chiều bất đẳng thức ngược lại.](img/lec-01/convex-concave-strict.svg)
+
+*Nét liền, nét đứt và nhãn bất đẳng thức phân biệt ba trường hợp ngoài tín hiệu màu.*
+
+**Ví dụ và phản ví dụ.** Với $f(x)=x^2$, chọn $x=-1$, $y=3$ và $\theta=1/2$. Khi đó
+
+$$
+f(1)=1
+<\frac12f(-1)+\frac12f(3)=5,
+$$
+
+phù hợp với tính lồi chặt. Hàm $g(x)=|x|$ lồi nhưng không lồi chặt: với $x=1$, $y=3$, đồ thị trùng dây cung trên đoạn $[1,3]$. Hàm $h(x)=-x^2$ lõm.
+
+**Ý nghĩa và ứng dụng trong AI.** Mục tiêu lồi trên tập khả thi lồi cho phép chuyển cực tiểu địa phương thành cực tiểu toàn cục. Lồi chặt có thể cho nghiệm duy nhất khi nghiệm tồn tại. Log-hợp lý lõm thường được đổi dấu thành âm log-hợp lý lồi.
+
+**Điểm dễ nhầm.** Miền xác định phải lồi. Hình chiếc bát chỉ là trực giác, không phải định nghĩa. Hàm affine không lồi chặt. Tính lồi của mục tiêu không tự bảo đảm tập khả thi lồi, tồn tại nghiệm hoặc khả năng tổng quát hóa.
+
+**Đầu ra.** Định nghĩa dây cung có thể được chuyển thành các phát biểu hình học qua epigraph và tập mức.
+
+### 10. Epigraph, tập mức và hàm mở rộng giá trị
+
+**Mục tiêu đọc hiểu.** Người đọc chuyển được giữa một hàm và các tập gắn với hàm, đồng thời mã hóa ràng buộc bằng giá trị $+\infty$.
+
+**Định nghĩa và giả thiết.** Epigraph của $f:D\to\mathbb R$ là
+
+$$
+\operatorname{epi}f
+=\{(x,t)\in D\times\mathbb R:t\ge f(x)\}.
+$$
+
+Tập mức dưới tại mức $\alpha$ là
+
+$$
+S_\alpha=\{x\in D:f(x)\le\alpha\}.
+$$
+
+Với tập $C$, hàm chỉ thị mở rộng được định nghĩa bởi
+
+$$
+I_C(x)=
+\begin{cases}
+0,&x\in C,\\
++\infty,&x\notin C.
+\end{cases}
+$$
+
+Nếu $C$ lồi thì $I_C$ là hàm lồi mở rộng. Bài toán có ràng buộc có thể được viết thành cực tiểu hóa $f+I_C$ trên toàn không gian.
+
+**Trực quan.** Epigraph là vùng nằm trên đồ thị; một lát cắt ngang của epigraph tạo tập mức dưới. Hàm chỉ thị dựng một bức tường vô hạn bên ngoài tập khả thi.
+
+![Epigraph của hàm bình phương, lát ngang tạo tập mức dưới và hàm chỉ thị dựng tường ngoài tập khả thi.](img/lec-01/epigraph-levelset-indicator.svg)
+
+*Ba panel dùng cùng miền một chiều để thể hiện quan hệ giữa đồ thị, tập và ràng buộc.*
+
+**Ví dụ và phản ví dụ.** Với $f(x)=x^2$,
+
+$$
+S_1=\{x:x^2\le1\}=[-1,1].
+$$
+
+Do đó $f+I_{[-1,1]}$ bằng $x^2$ trong đoạn và bằng $+\infty$ ngoài đoạn. Ngược lại, $g(x)=\sqrt{|x|}$ có các tập mức dưới $[-\alpha^2,\alpha^2]$ khi $\alpha\ge0$, đều lồi, nhưng $g$ không lồi. Điều này cho thấy chiều đảo của hệ quả tập mức là sai.
+
+**Ý nghĩa và ứng dụng trong AI.** Epigraph giúp tách một cận trên khỏi giá trị hàm; hàm chỉ thị giúp viết loss và tập khả thi trong cùng một biểu thức. Hai cách biểu diễn này cho phép giữ mục tiêu và giới hạn trong một ngôn ngữ thống nhất.
+
+**Điểm dễ nhầm.** Graph của hàm lồi thường không phải tập lồi; epigraph mới là đối tượng lồi tương ứng. Mọi tập mức dưới lồi chỉ suy ra tính tựa lồi, không suy ra tính lồi. Không thực hiện tùy ý các phép toán không xác định như $+\infty-(+\infty)$.
+
+**Đầu ra.** Để kiểm tra một hàm nhiều biến, ta có thể xét mọi hạn chế của nó trên đường thẳng.
+
+### 11. Hạn chế trên đường và các ví dụ hàm lồi
+
+**Mục tiêu đọc hiểu.** Người đọc giảm được kiểm tra nhiều biến về một biến và nhận dạng một thư viện hàm lồi nền.
+
+**Định nghĩa và giả thiết.** Cho $f:D\to\mathbb R$ với $D$ lồi. Với $x\in D$ và hướng $v\in\mathbb R^n$, hạn chế trên đường là
+
+$$
+g(t)=f(x+tv),
+\qquad
+\operatorname{dom}g=\{t:x+tv\in D\}.
+$$
+
+Hàm $f$ lồi trên $D$ khi và chỉ khi mọi hạn chế như vậy lồi trên miền một chiều tương ứng.
+
+**Trực quan.** Một mặt phẳng dọc cắt bề mặt của hàm nhiều biến thành một đường cong. Nếu bề mặt lồi, mọi lát cắt theo đường đều cong lên; một lát cắt không lồi đủ để bác bỏ tính lồi.
+
+![Bề mặt bậc hai lồi cùng hai lát cắt theo đường và thư viện nhỏ các hàm lồi cơ bản.](img/lec-01/line-restriction-convex-library.svg)
+
+*Các lát cắt ghi rõ điểm gốc, hướng và biến $t$.*
+
+**Ví dụ tính được.** Với $f(x)=\lVert Ax-b\rVert_2^2$, hạn chế theo $x+tv$ là
+
+$$
+g(t)=\lVert A(x+tv)-b\rVert_2^2.
+$$
+
+Hệ số của $t^2$ bằng $\lVert Av\rVert_2^2\ge0$, nên mọi lát cắt là hàm bậc hai lồi. Các hàm nền khác gồm hàm affine, chuẩn, $e^x$, cực đại của hữu hạn hàm affine và log-tổng-mũ
+
+$$
+\operatorname{lse}(z)=\log\left(\sum_{i=1}^m e^{z_i}\right).
+$$
+
+Chẳng hạn, $\operatorname{lse}(0,0)=\log2$.
+
+**Ý nghĩa và ứng dụng trong AI.** Bình phương tối thiểu, chuẩn điều chuẩn, log-tổng-mũ và mất mát logistic được tạo từ thư viện này. Hạn chế trên đường cũng giải thích độ cong theo một hướng tham số.
+
+**Điểm dễ nhầm.** Một vài lát cắt minh họa không đủ chứng minh; phát biểu yêu cầu mọi đường. Với dạng bậc hai $x^TPx$, tính lồi phụ thuộc phần đối xứng $(P+P^T)/2$. Không nên kết luận từ vài điểm lấy mẫu trên đồ thị.
+
+**Đầu ra.** Khi hàm đủ trơn, độ cong của mọi lát cắt được mã hóa bởi gradient và Hessian.
+
+### 12. Điều kiện bậc nhất và bậc hai
+
+**Mục tiêu đọc hiểu.** Người đọc kiểm tra được tính lồi bằng mặt phẳng tiếp xúc hoặc Hessian, với đúng miền và giả thiết trơn.
+
+**Định nghĩa và giả thiết.** Cho $D\subseteq\mathbb R^n$ mở và lồi. Nếu $f:D\to\mathbb R$ khả vi thì $f$ lồi khi và chỉ khi
+
+$$
+f(y)\ge f(x)+\nabla f(x)^T(y-x)
+$$
+
+với mọi $x,y\in D$. Nếu $f\in C^2(D)$ thì $f$ lồi khi và chỉ khi
+
+$$
+\nabla^2f(x)\succeq0
+\quad
+\text{với mọi }x\in D.
+$$
+
+Điều kiện $\nabla^2f(x)\succ0$ với mọi $x\in D$ là điều kiện đủ cho lồi chặt, nhưng không phải điều kiện cần.
+
+**Trực quan.** Đồ thị hàm lồi nằm trên mọi mặt phẳng tiếp xúc. Theo hướng $d$, độ cong bậc hai là $d^T\nabla^2f(x)d$ và phải không âm.
+
+![Mặt phẳng tiếp xúc nằm dưới bề mặt lồi và các elip mức biểu diễn Hessian xác định dương.](img/lec-01/first-second-order-convexity.svg)
+
+*Panel Hessian ghi cả hướng $d$ và đại lượng $d^T\nabla^2f(x)d$.*
+
+**Ví dụ tính được.** Xét
+
+$$
+f(x_1,x_2)=x_1^2+x_1x_2+2x_2^2.
+$$
+
+Ta có
+
+$$
+\nabla f(x)=\begin{bmatrix}2x_1+x_2\\x_1+4x_2\end{bmatrix},
+\qquad
+\nabla^2f(x)=\begin{bmatrix}2&1\\1&4\end{bmatrix}.
+$$
+
+Hai giá trị riêng của Hessian là $3\pm\sqrt2>0$, nên $f$ lồi chặt. Tại $(1,-1)$, $f=2$ và $\nabla f=(1,-3)^T$.
+
+**Ý nghĩa và ứng dụng trong AI.** Gradient cung cấp chứng nhận tiếp tuyến; Hessian kiểm tra độ cong của loss và dạng toàn phương. Trong phần này, hai đại lượng chỉ được dùng để nhận dạng và chứng minh tính lồi.
+
+**Điểm dễ nhầm.** Hessian PSD tại một điểm không chứng minh tính lồi trên toàn miền. Gradient bằng $0$ chỉ suy ra tối ưu toàn cục sau khi đã có tính lồi và điểm nằm trong miền thích hợp. Hàm $x^4$ lồi chặt dù Hessian bằng $0$ tại $x=0$.
+
+**Đầu ra.** Trong nhiều mô hình, ta có thể tránh tính Hessian lại bằng các phép bảo toàn tính lồi.
+
+### 13. Các phép bảo toàn hàm lồi và Jensen
+
+**Mục tiêu đọc hiểu.** Người đọc dựng được hàm lồi mới từ các hàm cơ sở và nối tính lồi với kỳ vọng.
+
+**Định nghĩa và giả thiết.** Các phép sau bảo toàn tính lồi khi các miền tương thích:
+
+- $\sum_i\alpha_i f_i$ với $f_i$ lồi và $\alpha_i\ge0$;
+- $f(Ax+b)$ khi $f$ lồi;
+- $\sup_{s\in S}f_s(x)$ khi mỗi $f_s$ lồi trên miền chung;
+- $h\circ g$ khi $g$ lồi, $h$ lồi và không giảm trên miền liên quan;
+- $h\circ g$ khi $g$ lõm, $h$ lồi và không tăng trên miền liên quan;
+- $g(x)=\inf_{y\in C}f(x,y)$ khi $f$ lồi đồng thời theo $(x,y)$ và $C$ lồi;
+- phối cảnh $g(x,t)=tf(x/t)$ trên $t>0$.
+
+Với $f$ lồi, các điểm $x_i$ trong miền và $\theta_i\ge0$, $\sum_i\theta_i=1$, Jensen hữu hạn cho
+
+$$
+f\left(\sum_i\theta_i x_i\right)
+\le\sum_i\theta_i f(x_i).
+$$
+
+**Trực quan.** Một cây cấu tạo ghi hàm cơ sở, phép ghép và giả thiết. Jensen so sánh hàm của trung bình với trung bình của các giá trị hàm.
+
+![Cây các phép bảo toàn tính lồi và hình Jensen so sánh hàm của trung bình với trung bình của hàm.](img/lec-01/convex-preservation-and-jensen.svg)
+
+*Mỗi nhánh của cây ghi điều kiện hệ số hoặc tính đơn điệu; hình Jensen dùng cả vị trí và nhãn số.*
+
+**Ví dụ và phản ví dụ.** Cho $Z$ nhận $-1$ và $3$ với xác suất bằng nhau, và $f(u)=u^2$. Khi đó
+
+$$
+f(\mathbb EZ)=f(1)=1,
+\qquad
+\mathbb E[f(Z)]=\frac12(1+9)=5.
+$$
+
+Điều kiện hợp hàm không được bỏ. Hai hàm $h(u)=u^2$ và $g(x)=x^2-1$ đều lồi, nhưng
+
+$$
+(h\circ g)(x)=(x^2-1)^2
+$$
+
+không lồi gần $0$ vì đạo hàm bậc hai tại $0$ bằng $-4$.
+
+**Ý nghĩa và ứng dụng trong AI.** Tổng loss theo mẫu, điều chuẩn, max-loss, log-tổng-mũ và rủi ro kỳ vọng đều dùng các quy tắc này. Jensen là cầu nối giữa giải tích lồi và xác suất.
+
+**Điểm dễ nhầm.** Trọng số âm có thể phá tính lồi. Infimum tùy ý của các hàm lồi không bảo toàn lồi; cần lồi đồng thời trước khi loại biến. Không có quy tắc chung “lồi hợp lồi”. Jensen cho biến ngẫu nhiên cần các kỳ vọng tồn tại và hữu hạn.
+
+**Đầu ra.** Nhóm C cung cấp công cụ để chứng minh mục tiêu lồi từ thư viện hàm và phép ghép, chuẩn bị cho ca logistic ở chủ đề 14.
+
+## Các định lý và chứng minh quan trọng — Nhóm C
+
+### Cực tiểu địa phương của bài toán lồi là cực tiểu toàn cục
+
+**Giả thiết.** Cho $C$ lồi, $f:C\to\mathbb R$ lồi và $x^*\in C$ là cực tiểu địa phương tương đối với $C$.
+
+**Kết luận.** Điểm $x^*$ là cực tiểu toàn cục của $f$ trên $C$.
+
+::: proof
+Giả sử ngược lại rằng tồn tại $y\in C$ sao cho $f(y)<f(x^*)$. Với $\theta\in(0,1)$, đặt
+
+$$
+x_\theta=(1-\theta)x^*+\theta y.
+$$
+
+Tính lồi của $C$ cho $x_\theta\in C$, còn tính lồi của $f$ cho
+
+$$
+f(x_\theta)
+\le(1-\theta)f(x^*)+\theta f(y)
+<f(x^*).
+$$
+
+Khi $\theta\downarrow0$, $x_\theta\to x^*$. Vì vậy có các điểm khả thi tùy ý gần $x^*$ với giá trị nhỏ hơn $f(x^*)$, mâu thuẫn giả thiết cực tiểu địa phương. Do đó không tồn tại $y$ như trên.
+:::
+
+### Hàm lồi chặt có nhiều nhất một nghiệm tối ưu
+
+**Giả thiết.** Cho $C$ lồi và $f:C\to\mathbb R$ lồi chặt.
+
+**Kết luận.** Bài toán $\min_{x\in C}f(x)$ có nhiều nhất một nghiệm tối ưu.
+
+::: proof
+Giả sử có hai nghiệm phân biệt $x^*,y^*\in C$ cùng đạt giá trị $p^*$. Trung điểm $z=(x^*+y^*)/2$ thuộc $C$. Tính lồi chặt cho
+
+$$
+f(z)
+<\frac12f(x^*)+\frac12f(y^*)
+=p^*,
+$$
+
+mâu thuẫn định nghĩa của $p^*$. Vì vậy không thể có hai nghiệm tối ưu phân biệt. Kết quả này chỉ nói “nhiều nhất một”; sự tồn tại cần một lập luận riêng như định lý Weierstrass.
+:::
+
+### Hàm lồi khi và chỉ khi epigraph lồi
+
+**Giả thiết.** Cho $D$ lồi và $f:D\to\mathbb R$.
+
+**Kết luận.** Hàm $f$ lồi khi và chỉ khi $\operatorname{epi}f$ lồi. Nếu $f$ lồi thì mọi tập mức dưới $S_\alpha$ của $f$ đều lồi.
+
+::: proof
+Giả sử $f$ lồi. Lấy $(x,s),(y,t)\in\operatorname{epi}f$ và $\theta\in[0,1]$. Ta có $s\ge f(x)$, $t\ge f(y)$, nên
+
+$$
+\theta s+(1-\theta)t
+\ge\theta f(x)+(1-\theta)f(y)
+\ge f\bigl(\theta x+(1-\theta)y\bigr).
+$$
+
+Vậy tổ hợp lồi của hai điểm epigraph vẫn thuộc epigraph.
+
+Ngược lại, giả sử $\operatorname{epi}f$ lồi. Hai điểm $(x,f(x))$ và $(y,f(y))$ thuộc epigraph. Do đó
+
+$$
+\bigl(\theta x+(1-\theta)y,\ \theta f(x)+(1-\theta)f(y)\bigr)
+\in\operatorname{epi}f,
+$$
+
+chính là bất đẳng thức định nghĩa tính lồi của $f$.
+
+Với hệ quả tập mức, nếu $x,y\in S_\alpha$ thì
+
+$$
+f\bigl(\theta x+(1-\theta)y\bigr)
+\le\theta f(x)+(1-\theta)f(y)
+\le\alpha.
+$$
+
+Vậy $S_\alpha$ lồi. Chiều đảo của hệ quả này không đúng nói chung.
+:::
+
+### Tính lồi tương đương với tính lồi trên mọi đường
+
+**Giả thiết.** Cho $D\subseteq\mathbb R^n$ lồi và $f:D\to\mathbb R$.
+
+**Kết luận.** Hàm $f$ lồi trên $D$ khi và chỉ khi với mọi $x\in D$, $v\in\mathbb R^n$, hàm $g(t)=f(x+tv)$ lồi trên $\{t:x+tv\in D\}$.
+
+::: proof
+Nếu $f$ lồi thì $g$ là hợp của $f$ với ánh xạ affine $t\mapsto x+tv$, nên lồi.
+
+Ngược lại, giả sử mọi hạn chế theo đường đều lồi. Lấy $x,y\in D$ và đặt $v=y-x$. Hạn chế $g(t)=f(x+t(y-x))$ lồi trên đoạn $[0,1]$. Với $\theta\in[0,1]$,
+
+$$
+f\bigl((1-\theta)x+\theta y\bigr)
+=g(\theta)
+\le(1-\theta)g(0)+\theta g(1)
+=(1-\theta)f(x)+\theta f(y).
+$$
+
+Do đó $f$ lồi.
+:::
+
+### Điều kiện bậc nhất đặc trưng hàm lồi khả vi
+
+**Giả thiết.** Cho $D\subseteq\mathbb R^n$ mở và lồi; cho $f:D\to\mathbb R$ khả vi.
+
+**Kết luận.** Hàm $f$ lồi khi và chỉ khi với mọi $x,y\in D$,
+
+$$
+f(y)\ge f(x)+\nabla f(x)^T(y-x).
+$$
+
+::: proof
+Giả sử $f$ lồi. Đặt $g(t)=f(x+t(y-x))$. Với $t\in(0,1]$, tính lồi cho
+
+$$
+g(t)\le(1-t)g(0)+tg(1),
+$$
+
+nên
+
+$$
+g(1)\ge g(0)+\frac{g(t)-g(0)}{t}.
+$$
+
+Cho $t\downarrow0$ và dùng $g'(0)=\nabla f(x)^T(y-x)$ thu được bất đẳng thức cần chứng minh.
+
+Ngược lại, giả sử bất đẳng thức tiếp tuyến đúng. Với $z=\theta x+(1-\theta)y$, áp dụng tại $z$ cho $x$ và $y$:
+
+$$
+f(x)\ge f(z)+\nabla f(z)^T(x-z),
+$$
+
+$$
+f(y)\ge f(z)+\nabla f(z)^T(y-z).
+$$
+
+Nhân hai bất đẳng thức lần lượt với $\theta$ và $1-\theta$, rồi cộng lại. Vì $\theta(x-z)+(1-\theta)(y-z)=0$, ta được
+
+$$
+\theta f(x)+(1-\theta)f(y)\ge f(z).
+$$
+
+Đây là định nghĩa tính lồi.
+:::
+
+### Tiêu chuẩn Hessian cho hàm lồi hai lần khả vi
+
+**Giả thiết.** Cho $D\subseteq\mathbb R^n$ mở và lồi; cho $f\in C^2(D)$.
+
+**Kết luận.** Hàm $f$ lồi trên $D$ khi và chỉ khi $\nabla^2f(x)\succeq0$ với mọi $x\in D$.
+
+::: proof
+Nếu $f$ lồi, với mọi $x\in D$ và hướng $d$, hạn chế $g(t)=f(x+td)$ lồi trên một khoảng mở chứa $0$. Hàm một biến hai lần khả vi lồi có $g''(0)\ge0$. Theo quy tắc dây chuyền,
+
+$$
+g''(0)=d^T\nabla^2f(x)d\ge0.
+$$
+
+Vì điều này đúng với mọi $d$, Hessian PSD.
+
+Ngược lại, giả sử Hessian PSD tại mọi điểm. Với hai điểm $x,y\in D$, đặt $d=y-x$ và $g(t)=f(x+td)$ trên $[0,1]$. Khi đó
+
+$$
+g''(t)=d^T\nabla^2f(x+td)d\ge0.
+$$
+
+Do đó $g$ lồi trên $[0,1]$. Tính lồi trên mọi đoạn suy ra $f$ lồi trên $D$.
+:::
+
+### Tổng không âm, hợp affine và supremum bảo toàn tính lồi
+
+**Giả thiết.** Các hàm được xét có miền chung phù hợp. Cho $f_i$ lồi, $\alpha_i\ge0$; cho $f$ lồi và $F(x)=Ax+b$ affine; cho họ $(g_s)_{s\in S}$ gồm các hàm lồi.
+
+**Kết luận.** Các hàm $\sum_i\alpha_i f_i$, $f\circ F$ và $g(x)=\sup_{s\in S}g_s(x)$ đều lồi trên miền tương ứng; $g$ có thể nhận giá trị $+\infty$.
+
+::: proof
+Với tổng không âm, nhân bất đẳng thức lồi của từng $f_i$ với $\alpha_i\ge0$ rồi cộng lại.
+
+Với hợp affine, tính chất
+
+$$
+F\bigl(\theta x+(1-\theta)y\bigr)
+=\theta F(x)+(1-\theta)F(y)
+$$
+
+cho phép áp dụng trực tiếp bất đẳng thức lồi của $f$.
+
+Với supremum, với mọi $s\in S$,
+
+$$
+g_s\bigl(\theta x+(1-\theta)y\bigr)
+\le\theta g_s(x)+(1-\theta)g_s(y)
+\le\theta g(x)+(1-\theta)g(y).
+$$
+
+Lấy supremum theo $s$ ở vế trái cho bất đẳng thức lồi của $g$.
+:::
+
+### Bất đẳng thức Jensen hữu hạn
+
+**Giả thiết.** Cho $D$ lồi, $f:D\to\mathbb R$ lồi, $x_1,\ldots,x_k\in D$ và $\theta_i\ge0$ với $\sum_{i=1}^k\theta_i=1$.
+
+**Kết luận.**
+
+$$
+f\left(\sum_{i=1}^k\theta_i x_i\right)
+\le\sum_{i=1}^k\theta_i f(x_i).
+$$
+
+::: proof
+Chứng minh bằng quy nạp theo $k$. Trường hợp $k=2$ chính là định nghĩa tính lồi. Giả sử kết quả đúng với $k-1$ điểm. Nếu $\theta_k=1$ thì kết luận hiển nhiên. Nếu $\theta_k<1$, đặt
+
+$$
+\bar x=\sum_{i=1}^{k-1}\frac{\theta_i}{1-\theta_k}x_i.
+$$
+
+Các hệ số trong $\bar x$ không âm và có tổng $1$, nên $\bar x\in D$. Ta có
+
+$$
+\sum_{i=1}^k\theta_i x_i
+=(1-\theta_k)\bar x+\theta_kx_k.
+$$
+
+Áp dụng tính lồi cho hai điểm rồi giả thiết quy nạp:
+
+$$
+\begin{aligned}
+f\left(\sum_{i=1}^k\theta_i x_i\right)
+&\le(1-\theta_k)f(\bar x)+\theta_kf(x_k)\\
+&\le\sum_{i=1}^{k-1}\theta_i f(x_i)+\theta_kf(x_k).
+\end{aligned}
+$$
+
+Vậy kết quả đúng với mọi $k$ hữu hạn.
+:::
+
 ## Tài liệu tham khảo
 
-- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Mục 1.1, 2.1–2.3; Chương 3; Mục 4.1; Phụ lục A.2.2–A.3.2.
+- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Mục 1.1, 2.1–2.3, 3.1–3.2, 4.1–4.2; Phụ lục A.2.2–A.3.2.

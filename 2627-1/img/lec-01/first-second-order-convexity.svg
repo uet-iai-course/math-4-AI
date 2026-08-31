@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 570" role="img" aria-labelledby="title desc">
+  <title id="title">Điều kiện bậc nhất và bậc hai của hàm lồi khả vi</title>
+  <desc id="desc">Khung trái cho đồ thị hàm lồi luôn nằm trên tiếp tuyến tại x, biểu diễn điều kiện bậc nhất. Khung phải cho các đường đồng mức elip và các lát theo hướng đều cong lên khi Hessian nửa xác định dương, biểu diễn điều kiện bậc hai.</desc>
+  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.curve{fill:none;stroke:#315d92;stroke-width:5}.tangent{stroke:#b44b20;stroke-width:4}.point{fill:#fff8e6;stroke:#16706a;stroke-width:4}.contour{fill:none;stroke:#6a45a5;stroke-width:4}.direction{stroke:#16706a;stroke-width:4;marker-end:url(#arrow)}.slice{fill:none;stroke:#b44b20;stroke-width:5}</style></defs>
+  <rect width="1200" height="570" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">Hai phép kiểm tra tương đương khi các giả thiết khả vi phù hợp</text>
+  <rect class="panel" x="22" y="58" width="570" height="475" rx="14"/><text class="title" x="307" y="94" text-anchor="middle">Bậc nhất: tiếp tuyến đỡ đồ thị</text>
+  <line class="axis" x1="66" y1="410" x2="548" y2="410"/><line class="axis" x1="85" y1="440" x2="85" y2="125"/>
+  <path class="curve" d="M105 320 Q285 510 520 145"/><line class="tangent" x1="130" y1="442" x2="500" y2="286"/>
+  <circle class="point" cx="299" cy="371" r="9"/><text class="label" x="312" y="363">x</text><circle cx="428" cy="269" r="7" fill="#fff" stroke="#172033" stroke-width="3"/><text class="label" x="440" y="261">y</text>
+  <text class="label" x="307" y="463" text-anchor="middle">f(y)≥f(x)+grad f(x)^T(y−x)</text>
+  <text class="small" x="307" y="497" text-anchor="middle">Đúng với mọi x,y trong tập lồi đang xét.</text>
+
+  <rect class="panel" x="616" y="58" width="562" height="475" rx="14"/><text class="title" x="897" y="94" text-anchor="middle">Bậc hai: độ cong không âm theo mọi hướng</text>
+  <line class="axis" x1="655" y1="370" x2="930" y2="370"/><line class="axis" x1="790" y1="440" x2="790" y2="140"/>
+  <path class="contour" d="M905 250 C930 300 860 365 805 375 C735 390 665 365 675 325 C687 280 742 220 805 215 C850 212 892 224 905 250 Z"/>
+  <path class="contour" d="M870 275 C885 310 840 345 800 352 C755 360 710 345 717 318 C725 290 760 255 800 252 C830 250 860 257 870 275 Z"/>
+  <circle class="point" cx="795" cy="310" r="8"/><line class="direction" x1="795" y1="310" x2="885" y2="245"/>
+  <g transform="translate(945 165)"><line class="axis" x1="0" y1="225" x2="190" y2="225"/><line class="axis" x1="20" y1="245" x2="20" y2="0"/><path class="slice" d="M35 65 Q105 335 175 65"/><text class="small" x="105" y="270" text-anchor="middle">t</text><text class="small" x="112" y="26" text-anchor="middle">φ(t)</text></g>
+  <text class="label" x="897" y="463" text-anchor="middle">d^T H(x)d≥0 với mọi d</text>
+  <text class="small" x="897" y="497" text-anchor="middle">Tương đương H(x) PSD khi f khả vi hai lần.</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 590" role="img" aria-labelledby="title desc">
+  <title id="title">Các phép bảo toàn hàm lồi và bất đẳng thức Jensen</title>
+  <desc id="desc">Khung trái trình bày bốn phép tạo hàm lồi mới: tổng có trọng số không âm, hợp với ánh xạ affine, cực đại theo điểm và lấy trung bình. Khung phải minh họa Jensen: giá trị hàm tại trung bình có trọng số không vượt trung bình có trọng số của các giá trị hàm.</desc>
+  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.card{fill:#e9f1fb;stroke:#315d92;stroke-width:3}.card2{fill:#eef4f3;stroke:#16706a;stroke-width:3}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.curve{fill:none;stroke:#315d92;stroke-width:5}.chord{stroke:#b44b20;stroke-width:4}.point{fill:#fff;stroke:#172033;stroke-width:3}.mean{fill:#fff8e6;stroke:#16706a;stroke-width:4}.guide{stroke:#91a4bd;stroke-width:2;stroke-dasharray:7 5}</style></defs>
+  <rect width="1200" height="590" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">Cấu trúc lồi được giữ qua nhiều phép ghép thường gặp trong mô hình</text>
+  <rect class="panel" x="22" y="58" width="570" height="495" rx="14"/><text class="title" x="307" y="94" text-anchor="middle">Bốn phép bảo toàn cơ bản</text>
+  <rect class="card" x="52" y="125" width="245" height="150" rx="12"/><text class="label" x="174" y="160" text-anchor="middle">Tổng không âm</text><text class="small" x="174" y="198" text-anchor="middle">Σ α_i f_i(x)</text><text class="small" x="174" y="230" text-anchor="middle">với α_i≥0</text>
+  <rect class="card2" x="317" y="125" width="245" height="150" rx="12"/><text class="label" x="439" y="160" text-anchor="middle">Hợp affine</text><text class="small" x="439" y="198" text-anchor="middle">f(Ax+b)</text><text class="small" x="439" y="230" text-anchor="middle">khi f lồi</text>
+  <rect class="card2" x="52" y="300" width="245" height="150" rx="12"/><text class="label" x="174" y="335" text-anchor="middle">Cực đại theo điểm</text><text class="small" x="174" y="373" text-anchor="middle">max_i f_i(x)</text><text class="small" x="174" y="405" text-anchor="middle">của các hàm lồi</text>
+  <rect class="card" x="317" y="300" width="245" height="150" rx="12"/><text class="label" x="439" y="335" text-anchor="middle">Kỳ vọng</text><text class="small" x="439" y="373" text-anchor="middle">E[f(x,ξ)]</text><text class="small" x="439" y="405" text-anchor="middle">nếu mỗi f(·,ξ) lồi</text>
+  <text class="small" x="307" y="500" text-anchor="middle">Mỗi quy tắc cần đúng dấu hệ số và đúng tập xác định.</text>
+
+  <rect class="panel" x="616" y="58" width="562" height="495" rx="14"/><text class="title" x="897" y="94" text-anchor="middle">Jensen: hàm của trung bình không lớn hơn</text>
+  <line class="axis" x1="655" y1="410" x2="1135" y2="410"/><line class="axis" x1="675" y1="440" x2="675" y2="125"/>
+  <path class="curve" d="M700 320 Q880 520 1110 145"/><line class="chord" x1="735" y1="350" x2="1070" y2="190"/>
+  <circle class="point" cx="735" cy="350" r="8"/><circle class="point" cx="1070" cy="190" r="8"/>
+  <path class="mean" d="M870 372 L882 384 L870 396 L858 384 Z"/><circle class="mean" cx="870" cy="285" r="8"/>
+  <line class="guide" x1="870" y1="285" x2="870" y2="384"/>
+  <text class="small" x="887" y="260">trung bình trên dây cung</text><line class="guide" x1="882" y1="384" x2="965" y2="360"/><text class="small" x="970" y="356">f tại điểm trung bình</text>
+  <text class="label" x="897" y="463" text-anchor="middle">f(Σ θ_i x_i)≤Σ θ_i f(x_i)</text>
+  <text class="small" x="897" y="500" text-anchor="middle">θ_i≥0 và tổng θ_i=1.</text>
+</svg>
