@@ -388,3 +388,26 @@ Kết quả tự kiểm bản soạn: 67 mã duy nhất đúng thứ tự; 67 gh
 - `python3 -m reloadserver 8765` không chạy vì môi trường không có module `reloadserver`. Máy chủ dự phòng `python3 -m http.server 8765 --bind 127.0.0.1 --directory 2627-1` được dùng và dừng sau kiểm tra.
 - HTTP cục bộ trả mã 200 cho HTML Bài 00, `lecture-style.css`, SVG mới, RevealJS và KaTeX. Mọi `src`/`href` cốt lõi trong deck tồn tại cục bộ.
 - Không có Chromium/Firefox trong môi trường; Codex Slides cũng không khả dụng như đã ghi phía trên. Vì vậy vòng này không tuyên bố đã chụp toàn bộ 72 trang ở khung 16:9 hoặc màn hình hẹp; các sửa giảm tải và CSS hình được kiểm tra tĩnh theo kích thước 1280×720 của deck.
+
+## Hậu kiểm văn phong và mạch khái niệm ngày 2026-09-01
+
+- Rà lại 73 trang theo `no-ai-slop`; các câu mô tả “trang này”, “mạch C/D” và mục đích biên tập được thay bằng quan hệ giữa đặc trưng, Hessian, OLS/GLS và bất định.
+- Trong ứng dụng giá nhà, bỏ nhãn `Đầu ra` lặp lại nhưng giữ các kết quả tính toán của từng bước. Chuỗi dữ liệu → đặc trưng → ma trận thiết kế → mất mát → nghiệm → bất định không đổi.
+- Tìm kiếm sau sửa không còn `Chuyển ý`, mã mạch, tham chiếu trang kế tiếp, `storyboard`, `math-spec` hoặc nhãn `Đầu ra` trong deck và lecture note; `git diff --check` đạt.
+
+## Hậu kiểm nội dung công khai ngày 2026-09-01
+
+- P00–P01 bỏ định vị lịch trình, mã mục tiêu `M0.1`–`M0.4` và ánh xạ quy trình nội bộ; bốn mục tiêu quan sát được và nội dung toán học được giữ nguyên.
+- E06 bỏ tham chiếu lịch trình, mã mục tiêu và mã mạch trên mặt trang chiếu lẫn ghi chú; năm câu hỏi, công thức nghiệm đóng, bước gradient và lựa chọn OLS/GLS không đổi.
+- Ghi chú A15, B19 và C09 chỉ còn đáp án cùng quan hệ khái niệm, không còn chỉ dẫn tổ chức câu hỏi trên lớp hoặc ngoài lớp.
+- Lecture note sửa diễn giải hạt nhân: hướng không làm đổi dự đoán là một véc-tơ khác véc-tơ không, thuộc $\operatorname{Ker}(\mathbf X)$.
+- Kiểm định tĩnh bản hiện tại: 73 mã trang duy nhất, 73 ghi chú, bảy `section` ngoài cân bằng, 11 tham chiếu tài sản cục bộ đều tồn tại và `git diff --check` đạt. Cả 17 SVG của Bài 00 phân tích XML và raster hóa thành công; ảnh liên hệ khái niệm hiển thị đủ nhãn khi xem trong bảng kiểm cục bộ.
+- Codex Slides mở được dự án Bài 00 nhưng trạng thái dự án cũ vẫn ghi 72 trang và yêu cầu chuyển sang Browser nội bộ. Môi trường không có bộ điều khiển Browser, Chromium hoặc Firefox, nên vòng này không tuyên bố đã render toàn bộ HTML; chỉ kiểm tra cấu trúc, tài sản và SVG cục bộ.
+- Hậu kiểm theo quy ước tương tác đổi cả hai nhãn trên mỗi trang bài tập thành đúng `Câu hỏi:`; mức độ được phân biệt bằng số thứ tự và nội dung, không bằng nhãn quy trình.
+- Điều phối viên dùng Chromium cục bộ tại 1280 × 720 để kiểm tra P01, A15, C09 và E06. Sau phản biện độc lập, P01 và E06 được giảm khoảng trắng riêng để chừa vùng an toàn cho chân trang và nút điều hướng; A15 và C09 giữ nguyên bố cục đã đạt.
+- `material-viewer.html` tải và hiển thị `materials/lec-00/lecture-note.md` bằng tài sản cục bộ tại 1280 × 900; mục lục và nội dung xuất hiện, không còn trạng thái “Đang tải và kiểm tra tài liệu…”.
+- Ghi chú P02, H02, A09 và B17 bỏ metadata triển khai; D10 mở rộng lần đầu `bình phương tối thiểu thông thường (OLS)`; E04 phân biệt việc GLS thay đổi ước lượng trọng số với các giả thiết riêng cần có để lập dải dự đoán.
+- Lecture note giữ Gauss nhiều biến trong phạm vi chung với deck; chỉ đánh dấu khoảng cách Mahalanobis và làm trắng là phần mở rộng.
+- E06 đã hiện đủ chân trang sau khi giảm khoảng trắng. P01 cần thêm selector riêng vì CSS dùng chung ẩn chân trang cho toàn bộ chồng mở đầu; selector này đã được bổ sung cho P01–P02 và được tái kiểm lại bằng Chromium.
+- Trong lecture note, trực quan elip, ví dụ Gauss, hình minh họa và điểm dễ nhầm về đường đồng mật độ được đặt trước heading con mở rộng; chỉ Mahalanobis và làm trắng nằm dưới nhãn ngoài phạm vi deck.
+- SVG `probability-gaussian-ellipse.svg` tách riêng trực quan Gauss có tương quan dương khỏi hình mở rộng về làm trắng; Chromium render đủ ba elip, nhãn trục, chú giải và hệ số $\rho=0{,}8$.

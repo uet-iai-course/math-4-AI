@@ -264,7 +264,7 @@ Với một véc-tơ $\mathbf v$, $\operatorname{span}\{\mathbf v\}=\{t\mathbf v
 
 **Điểm dễ nhầm.** $\operatorname{Col}(\mathbf A)$ là không gian của các đầu ra trong $\mathbb R^m$, còn $\operatorname{Ker}(\mathbf A)$ là không gian của các đầu vào trong $\mathbb R^n$; hai không gian không nhất thiết nằm trong cùng một không gian nền.
 
-**Ý nghĩa và vai trò trong AI.** Với ma trận thiết kế $\mathbf X$, $\operatorname{Col}(\mathbf X)$ chứa các véc-tơ dự đoán tuyến tính có thể tạo ra, còn một hướng khác không trong $\operatorname{Ker}(\mathbf X)$ thay đổi trọng số nhưng không thay đổi dự đoán.
+**Ý nghĩa và vai trò trong AI.** Với ma trận thiết kế $\mathbf X$, $\operatorname{Col}(\mathbf X)$ chứa các véc-tơ dự đoán tuyến tính có thể tạo ra, còn một véc-tơ khác véc-tơ không, thuộc $\operatorname{Ker}(\mathbf X)$, thay đổi trọng số nhưng không thay đổi dự đoán.
 
 ### Hạng của ma trận
 
@@ -1255,9 +1255,7 @@ Giá trị dương cho biết $U=1$ và $V=1$ có xu hướng xuất hiện cùn
 
 **Ý nghĩa và ứng dụng trong AI.** Ma trận hiệp phương sai mô tả nhiễu giữa nhiều đầu ra, là đầu vào của phân tích thành phần chính, làm trắng dữ liệu và Gauss nhiều biến. Công thức affine cho phép truyền bất định qua một lớp tuyến tính.
 
-### Gauss nhiều biến, khoảng cách Mahalanobis và làm trắng
-
-> **Phần mở rộng ngoài phạm vi bộ trang chiếu.**
+### Gauss nhiều biến
 
 **Định nghĩa.** Với $\boldsymbol\mu\in\mathbb R^d$ và $\boldsymbol\Sigma\in\mathbb S_{++}^d$, phân phối Gauss nhiều biến có mật độ
 
@@ -1267,9 +1265,7 @@ p(\mathbf z)=\frac{1}{(2\pi)^{d/2}\det(\boldsymbol\Sigma)^{1/2}}
 \boldsymbol\Sigma^{-1}(\mathbf z-\boldsymbol\mu)\right].
 $$
 
-Khoảng cách Mahalanobis bình phương là $d_M^2=(\mathbf z-\boldsymbol\mu)^T\boldsymbol\Sigma^{-1}(\mathbf z-\boldsymbol\mu)$. Một phép làm trắng véc-tơ ngẫu nhiên có dạng $\widetilde{\mathbf Z}=\boldsymbol\Sigma^{-1/2}(\mathbf Z-\boldsymbol\mu)$, khi đó $\operatorname{Cov}(\widetilde{\mathbf Z})=\mathbf I$.
-
-**Trực quan.** Các điểm có cùng mật độ nằm trên những elip hoặc ellipsoid. Mahalanobis đo khoảng cách sau khi đã co giãn và xoay theo cấu trúc biến thiên tự nhiên; làm trắng biến các elip đó thành mặt cầu.
+**Trực quan.** Các điểm có cùng mật độ nằm trên những elip hoặc ellipsoid. Hướng và độ dài các trục phản ánh những hướng biến thiên do ma trận hiệp phương sai mô tả.
 
 **Ví dụ.** Với
 
@@ -1280,13 +1276,25 @@ $$
 
 đám mây kéo dài theo hướng hai tọa độ cùng tăng. Hai điểm có cùng khoảng cách Euclid tới gốc có thể có mật độ rất khác nếu một điểm nằm dọc hướng biến thiên lớn còn điểm kia nằm ngang hướng biến thiên nhỏ.
 
-![Elip hiệp phương sai của Gauss nhiều biến, các hướng riêng và tác dụng của phép làm trắng.](img/lec-00/probability-covariance-gaussian.svg)
+![Ba đường đồng mật độ hình elip của phân phối Gauss hai biến có tương quan dương.](img/lec-00/probability-gaussian-ellipse.svg)
+
+**Điểm dễ nhầm.** Đường đồng mật độ không phải đường chứa một lượng xác suất cố định; xác suất thuộc về một miền có diện tích hoặc thể tích. Công thức mật độ thông thường cần $\boldsymbol\Sigma$ xác định dương; ma trận suy biến tạo phân phối nằm trên một không gian con và cần xử lý riêng.
+
+**Ý nghĩa và ứng dụng trong AI.** Gauss nhiều biến được dùng cho mô hình nhiễu, phân tích biệt thức, phát hiện bất thường và mô hình biến ẩn.
+
+#### Khoảng cách Mahalanobis và làm trắng
+
+> **Phần mở rộng ngoài phạm vi bộ trang chiếu.**
+
+Khoảng cách Mahalanobis bình phương là $d_M^2=(\mathbf z-\boldsymbol\mu)^T\boldsymbol\Sigma^{-1}(\mathbf z-\boldsymbol\mu)$. Một phép làm trắng véc-tơ ngẫu nhiên có dạng $\widetilde{\mathbf Z}=\boldsymbol\Sigma^{-1/2}(\mathbf Z-\boldsymbol\mu)$, khi đó $\operatorname{Cov}(\widetilde{\mathbf Z})=\mathbf I$.
+
+![Elip hiệp phương sai, các hướng riêng và tác dụng của phép làm trắng.](img/lec-00/probability-covariance-gaussian.svg)
 
 *Mahalanobis chuẩn hóa khoảng cách theo hiệp phương sai; làm trắng đưa các hướng về phương sai bằng một.*
 
-**Điểm dễ nhầm.** Đường đồng mật độ không phải đường chứa một lượng xác suất cố định; xác suất thuộc về một miền có diện tích hoặc thể tích. Công thức mật độ thông thường cần $\boldsymbol\Sigma$ xác định dương; ma trận suy biến tạo phân phối nằm trên một không gian con và cần xử lý riêng. Làm trắng loại tương quan bậc hai nhưng không làm các tọa độ độc lập nói chung; kết luận độc lập đúng trong những trường hợp đặc biệt như Gauss nhiều biến.
+**Điểm dễ nhầm.** Làm trắng loại tương quan bậc hai nhưng không làm các tọa độ độc lập nói chung; kết luận độc lập đúng trong những trường hợp đặc biệt như Gauss nhiều biến.
 
-**Ý nghĩa và ứng dụng trong AI.** Gauss nhiều biến được dùng cho mô hình nhiễu, phân tích biệt thức, phát hiện bất thường và mô hình biến ẩn. Khoảng cách Mahalanobis tránh coi mọi hướng đặc trưng là có cùng độ tin cậy.
+**Ý nghĩa và ứng dụng trong AI.** Khoảng cách Mahalanobis tránh coi mọi hướng đặc trưng là có cùng độ tin cậy; làm trắng chuẩn hóa cấu trúc hiệp phương sai trước một số thuật toán học máy.
 
 ### Nhiễu tương quan và bình phương tối thiểu tổng quát
 
@@ -1335,7 +1343,7 @@ Chín bước dưới đây dùng cùng một bộ dữ liệu, trong đó đầ
 
 **Thao tác.** Chọn giá làm biến đích và diện tích, số phòng làm đặc trưng ban đầu. Giữ nguyên từng hàng như một mẫu quan sát duy nhất.
 
-**Đầu ra.** Bốn bộ ba $(a_i,b_i,y_i)$ cùng quy ước đơn vị rõ ràng.
+Bốn bộ ba $(a_i,b_i,y_i)$ dùng cùng quy ước đơn vị.
 
 **Công cụ tái sử dụng.** Khái niệm vô hướng, véc-tơ dữ liệu và biến ngẫu nhiên giúp phân biệt giá trị đã quan sát $y_i$ với giá ngẫu nhiên $Y_i$ trước khi quan sát.
 
@@ -1362,7 +1370,7 @@ $$
 =w_0+w_1a_i'+w_2b_i'.
 $$
 
-**Đầu ra.** Bốn cặp đặc trưng biến đổi là $(-1{,}5,-1)$, $(-0{,}5,0)$, $(0{,}5,0)$ và $(1{,}5,1)$; véc-tơ trọng số có kích thước $\mathbf w\in\mathbb R^3$.
+Bốn cặp đặc trưng biến đổi là $(-1{,}5,-1)$, $(-0{,}5,0)$, $(0{,}5,0)$ và $(1{,}5,1)$; véc-tơ trọng số có kích thước $\mathbf w\in\mathbb R^3$.
 
 **Công cụ tái sử dụng.** Véc-tơ cột, chuyển vị và tích vô hướng biến một mẫu thành một dự đoán vô hướng.
 
@@ -1389,7 +1397,7 @@ $$
 \in\mathbb R^4.
 $$
 
-**Đầu ra.** Toàn bộ mô hình trên bốn mẫu được viết gọn thành $\hat{\mathbf y}=\mathbf X\mathbf w$ và $\mathbf r=\hat{\mathbf y}-\mathbf y$.
+Toàn bộ mô hình trên bốn mẫu được viết gọn thành $\hat{\mathbf y}=\mathbf X\mathbf w$ và $\mathbf r=\hat{\mathbf y}-\mathbf y$.
 
 **Công cụ tái sử dụng.** Tích ma trận–véc-tơ xử lý đồng thời một lô mẫu; kiểm tra kích thước xác nhận $(4\times3)(3\times1)=(4\times1)$.
 
@@ -1421,7 +1429,7 @@ $$
 
 Kiểm tra khả năng khớp chính xác: căn 2–3 cho $w_1=2$, căn 1–2 cho $w_1+w_2=1$, còn căn 3–4 cho $w_1+w_2=5$. Ba điều kiện mâu thuẫn, nên $\mathbf X\mathbf w=\mathbf y$ vô nghiệm.
 
-**Đầu ra.** Một thước đo sai số có thể tối ưu và kết luận phải giải bài toán xấp xỉ thay vì một hệ phương trình chính xác.
+Hệ không tương thích dẫn đến bài toán xấp xỉ với một thước đo sai số có thể tối ưu.
 
 **Công cụ tái sử dụng.** Phần dư, chuẩn $\ell_2$, hạng và tính tương thích của hệ tuyến tính.
 
@@ -1436,7 +1444,7 @@ Kiểm tra khả năng khớp chính xác: căn 2–3 cho $w_1=2$, căn 1–2 ch
 - Nếu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\sigma^2\mathbf I)$, các nhiễu độc lập và cùng phương sai, dùng bình phương tối thiểu thông thường (OLS): $\tfrac12\mathbf r^T\mathbf r$.
 - Nếu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_\varepsilon)$ với $\boldsymbol\Sigma_\varepsilon\in\mathbb S_{++}^4$ đã biết và cố định, dùng bình phương tối thiểu tổng quát (GLS): $\tfrac12\mathbf r^T\boldsymbol\Sigma_\varepsilon^{-1}\mathbf r$.
 
-**Đầu ra.** Với tuyến minh họa chính, chọn OLS để nhận
+Với giả thiết nhiễu độc lập và cùng phương sai, chọn OLS:
 
 $$
 \min_{\mathbf w}f(\mathbf w)
@@ -1486,7 +1494,7 @@ $$
 f(\mathbf w^+)=2{,}265<4{,}5.
 $$
 
-**Đầu ra.** Trọng số tối ưu $\mathbf w_{\mathrm{LS}}$; một bước gradient minh họa cơ chế cập nhật nhưng chưa phải nghiệm tối ưu.
+Kết quả gồm trọng số tối ưu $\mathbf w_{\mathrm{LS}}$ và một bước gradient minh họa cơ chế cập nhật; bước này chưa phải nghiệm tối ưu.
 
 **Công cụ tái sử dụng.** Chuyển vị, tích ma trận, hạng, gradient, Hessian $\nabla^2f=\mathbf X^T\mathbf X$ và điều kiện dừng bậc nhất.
 
@@ -1512,7 +1520,7 @@ $$
 
 Khi đó $\operatorname{SSE}=\lVert\mathbf r_{\mathrm{LS}}\rVert_2^2=4$, $f(\mathbf w_{\mathrm{LS}})=2$ và $\mathbf X^T\mathbf r_{\mathrm{LS}}=\mathbf0$.
 
-**Đầu ra.** Một bảng dự đoán sau khớp, phần dư còn lại và kiểm tra điều kiện tối ưu.
+Bảng dự đoán sau khớp cho biết phần dư còn lại và cho phép kiểm tra điều kiện tối ưu.
 
 **Công cụ tái sử dụng.** Phần dư, chuẩn, tích vô hướng và trực giao giữa phần dư với không gian cột.
 
@@ -1545,7 +1553,7 @@ $$
 
 tức $[1{,}404;1{,}796]$ tỷ đồng.
 
-**Đầu ra.** Một dự đoán điểm và một dải 95% cho biến thiên nhiễu quan sát dưới giả thiết Gauss đã nêu.
+Kết quả là một dự đoán điểm và dải 95% cho biến thiên nhiễu quan sát dưới giả thiết Gauss đã nêu.
 
 **Công cụ tái sử dụng.** Tích vô hướng, biến đổi đặc trưng, phân phối Gauss, CDF và phân vị.
 
@@ -1575,7 +1583,7 @@ $$
 \qquad \widetilde{\hat y}_{\mathrm{new}}=15{,}75.
 $$
 
-**Đầu ra.** Hai mô hình có độ khớp huấn luyện và dự đoán ngoài bốn điểm khác nhau.
+Hai mô hình có độ khớp huấn luyện và dự đoán ngoài bốn điểm khác nhau.
 
 **Công cụ tái sử dụng.** Đặc trưng phi tuyến, hạng, bình phương tối thiểu, phần dư và phân biệt rủi ro thực nghiệm với rủi ro trên phân phối dữ liệu.
 

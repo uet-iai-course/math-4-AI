@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="title desc">
+  <title id="title">Đường đồng mật độ của phân phối Gauss hai biến</title>
+  <desc id="desc">Ba elip đồng tâm nghiêng lên từ trái sang phải, biểu diễn phân phối Gauss hai biến có tương quan dương 0,8.</desc>
+  <rect width="720" height="360" fill="#f3f6fb"/>
+  <line x1="80" y1="305" x2="670" y2="305" stroke="#24324a" stroke-width="4"/>
+  <path d="M670 305l-16-10v20z" fill="#24324a"/>
+  <line x1="105" y1="330" x2="105" y2="38" stroke="#24324a" stroke-width="4"/>
+  <path d="M105 38l-10 16h20z" fill="#24324a"/>
+  <g fill="none" stroke="#315d92" stroke-width="6" transform="rotate(-28 390 180)">
+    <ellipse cx="390" cy="180" rx="230" ry="72"/>
+    <ellipse cx="390" cy="180" rx="158" ry="49"/>
+    <ellipse cx="390" cy="180" rx="86" ry="27"/>
+  </g>
+  <circle cx="390" cy="180" r="8" fill="#b44b20"/>
+  <text x="630" y="340" font-family="sans-serif" font-size="28" fill="#24324a">g₁</text>
+  <text x="45" y="55" font-family="sans-serif" font-size="28" fill="#24324a">g₂</text>
+  <text x="185" y="65" font-family="sans-serif" font-size="27" font-weight="700" fill="#172033">đường đồng mật độ</text>
+  <text x="500" y="105" font-family="sans-serif" font-size="27" font-weight="700" fill="#16706a">ρ = 0,8</text>
+</svg>
