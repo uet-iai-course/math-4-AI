@@ -311,3 +311,7 @@ Không xóa các báo cáo vòng trước; mục 9 ghi riêng vòng hợp nhất
 - Kiểm định cấu trúc đạt: 41 ID duy nhất theo đúng thứ tự DOM, 41 ghi chú, 8 section ngoài, storyboard có đúng 41 hàng tương ứng, thẻ `section` cân bằng và mọi `src`/`href` cục bộ đều tồn tại. `git diff --check` đạt.
 - Tám SVG của Bài 02 đều phân tích được bằng XML và kết xuất tĩnh thành PNG bằng ImageMagick; kích thước đầu ra nằm trong khoảng $760\times300$ đến $1200\times760$, không có lỗi bộ giải mã.
 - Không có Chromium, Firefox hoặc trình kết xuất HTML headless trong môi trường. Yêu cầu mở máy chủ HTTP cục bộ bị cơ chế an toàn từ chối vì thư mục phục vụ có tài liệu nội bộ; do đó vòng này không tuyên bố đã chụp hoặc rà tràn toàn deck bằng trình duyệt, cũng không tuyên bố kiểm tra HTTP 200.
+### Hậu kiểm trực quan sau đồng bộ mạch
+
+- Chromium ở khung $1280\times720$ phát hiện tiêu đề hai thẻ E01 chạm nhau và công thức trong tiêu đề thẻ F01 khó đọc. E01 dùng nhãn ngắn “Ràng buộc phổ”, “Thứ tự ma trận”; F01 tách tên mục tiêu khỏi công thức hiển thị.
+- Kết xuất lại E01 và F01 sau sửa; tiêu đề, công thức, hộp kết luận và chân trang đều nằm trong khung.
