@@ -6,13 +6,13 @@
   <g font-family="DejaVu Sans, sans-serif" text-anchor="middle">
     <text x="500" y="44" font-size="27" font-weight="bold" fill="#263238">Chuẩn hóa từng đặc trưng trong một lô</text>
     <rect x="35" y="125" width="185" height="125" rx="13" fill="#e8edf8" stroke="#2f3e7a" stroke-width="3"/>
-    <text x="128" y="172" font-size="26" font-weight="bold">H ∈ ℝᵐˣᵈ</text><text x="128" y="207" font-size="16">m mẫu × d đặc trưng</text>
+    <text x="128" y="172" font-size="26" font-weight="bold">Z ∈ ℝᵐˣᵈ</text><text x="128" y="207" font-size="16">m mẫu × d đặc trưng</text>
     <rect x="280" y="94" width="260" height="187" rx="13" fill="#f7efe6" stroke="#9a481f" stroke-width="3"/>
     <text x="410" y="134" font-size="25" font-weight="bold">thống kê theo cột j</text>
     <text x="410" y="171" font-size="21">μⱼ = trung bình lô</text><text x="410" y="205" font-size="21">σⱼ² = phương sai lô</text>
-    <text x="410" y="245" font-size="21">Ĥᵢⱼ=(Hᵢⱼ−μⱼ)/√(σⱼ²+ε)</text>
+    <text x="410" y="245" font-size="21">Ẑᵢⱼ=(Zᵢⱼ−μⱼ)/√(σⱼ²+ε)</text>
     <rect x="600" y="112" width="225" height="151" rx="13" fill="#e8f5e9" stroke="#2e7d32" stroke-width="3"/>
-    <text x="713" y="161" font-size="25" font-weight="bold">Yᵢⱼ=γⱼĤᵢⱼ+βⱼ</text>
+    <text x="713" y="161" font-size="25" font-weight="bold">Yᵢⱼ=γⱼẐᵢⱼ+βⱼ</text>
     <text x="713" y="199" font-size="20">γ, β ∈ ℝᵈ</text><text x="713" y="229" font-size="18">phát theo m hàng</text>
     <rect x="885" y="139" width="80" height="98" rx="13" fill="#fff" stroke="#455a64" stroke-width="3"/>
     <text x="925" y="196" font-size="27" font-weight="bold">Y</text>

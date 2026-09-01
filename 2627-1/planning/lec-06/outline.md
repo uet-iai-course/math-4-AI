@@ -25,25 +25,25 @@
 | A | A07 | Quy trình triển khai và lựa chọn | Ứng dụng |
 | A | A08 | Vòng hai và so sánh bộ nhớ | Bài tập LLO14 và đối chiếu ba cơ chế nhớ |
 | B | B01 | Gradient chưa mô tả độ cong | Nhu cầu |
-| B | B02 | Mô hình bậc hai cục bộ | Trực quan–hình thức |
+| B | B02 | Mô hình bậc hai cục bộ | Định nghĩa $g_t=\nabla F(\theta_t)$, $H_t=\nabla^2F(\theta_t)$ và $p$ trước Taylor; trực quan–hình thức |
 | B | B03 | Newton có giảm chấn | Ví dụ và trường hợp biên |
 | B | B04 | Newton trong mạng sâu | Thuật toán và chi phí |
 | B | B05 | CG trong Hessian-free | Thuật toán, giả thiết SPD và tích ma trận–véc-tơ |
 | B | B06 | Hai vòng gradient liên hợp | Ví dụ tính được LLO15 |
 | B | B07 | BFGS và L-BFGS | Công thức, bộ nhớ và điều kiện cặp cong |
-| B | B08 | Kiểm số một cập nhật BFGS | Ví dụ tính được LLO15 |
+| B | B08 | Kiểm tra một cập nhật BFGS | Ví dụ tính được LLO15 |
 | B | B09 | Bài tập chọn công cụ độ cong | Bài tập LLO15 |
 | C | C01 | Ổn định bài toán thay vì chỉ đổi bước | Nhu cầu chiến lược |
-| C | C02 | Chuẩn hóa theo lô | BN: trực quan–hình thức |
+| C | C02 | Chuẩn hóa theo lô | Dùng $Z\in\mathbb R^{m\times d}$ cho kích hoạt để tách khỏi Hessian $H_t$; BN: trực quan–hình thức |
 | C | C03 | Ví dụ chuẩn hóa một đặc trưng | BN: ví dụ với $\epsilon>0$ và giới hạn lý tưởng |
 | C | C04 | Hạ tọa độ và hạ theo khối | Chiến lược 2 |
 | C | C05 | Ví dụ hạ tọa độ chậm | Phân biệt một cập nhật và một chu kỳ |
 | C | C06 | Lấy trung bình Polyak | Chiến lược 3 và ví dụ tính được |
 | C | C07 | Khung chọn chiến lược cục bộ | Ba minh chứng theo tín hiệu–can thiệp–phép đo/giới hạn; gộp trang tổng hợp cũ |
 | D | D01 | Điểm đầu chưa nằm trong miền dễ tối ưu | Nhu cầu toàn cục |
-| D | D02 | Tiền huấn luyện có giám sát | Chiến lược 4 |
-| D | D03 | Phương pháp tiếp tục | Chiến lược 5; minh họa khởi tạo ấm và làm trơn/độ khó tăng |
-| D | D04 | Học theo chương trình | Chiến lược 6 |
+| D | D02 | Tiền huấn luyện có giám sát | Định nghĩa $\theta_{\mathrm{pre}}$, ánh xạ tham số tương thích và giới hạn chuyển giao âm |
+| D | D03 | Phương pháp tiếp tục | Cùng không gian tham số hoặc có ánh xạ rõ; hình chỉ minh họa khởi tạo ấm |
+| D | D04 | Học theo chương trình | Phân phối $q_t\to q_*$, độ khó $c(z)$ và mục tiêu tức thời |
 | D | D05 | Ví dụ lịch độ khó ngẫu nhiên | Ví dụ–ứng dụng |
 | D | D06 | Ba phương án cho tuyến huấn luyện | Ba tình huống cụ thể; đáp án can thiệp và phép đo/giới hạn hiện bằng fragment |
 | Z | Z01 | Bảng quyết định tổng hợp | Thu hồi ba quyết định |
@@ -83,4 +83,4 @@ Không hiển thị phân bổ này trên trang chiếu hoặc trong ghi chú di
 - $a_t\in\mathbb R^d_{\ge0}$ là thống kê lịch sử bình phương gradient; $a_{t,j}$ là phần tử thứ $j$.
 - $H_t=\nabla^2F(\theta_t)\in\mathbb R^{d\times d}$; Newton giảm chấn dùng $B_t=H_t+\lambda_tI$; HF thường dùng $B_t=G_t+\lambda_tI$ với $G_t\succeq0$, $\lambda_t>0$ để $B_t\succ0$.
 - Trong BFGS, $M_t\approx H_t^{-1}$; $s_t=\theta_{t+1}-\theta_t$, $y_t=g_{t+1}-g_t$, yêu cầu $y_t^Ts_t>0$ cho cập nhật dương xác định chuẩn.
-- Với chuẩn hóa theo lô, $H\in\mathbb R^{m\times d}$, thống kê lấy theo $m$ hàng; $\gamma,\beta\in\mathbb R^d$.
+- Với chuẩn hóa theo lô, $Z\in\mathbb R^{m\times d}$, thống kê lấy theo $m$ hàng; $\gamma,\beta\in\mathbb R^d$.

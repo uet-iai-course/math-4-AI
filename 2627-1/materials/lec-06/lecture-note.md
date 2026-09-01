@@ -4,7 +4,7 @@ Bài 05 đã xây dựng gradient lô nhỏ, SGD, momentum, Nesterov và khởi 
 
 Ký hiệu chung là $\theta_t,g_t\in\mathbb R^d$ cho tham số và gradient ở vòng $t$. Tích $\odot$, bình phương, căn và phép chia trong các bộ tối ưu thích nghi đều được hiểu theo phần tử. Khi xét mô hình bậc hai, $g=\nabla F(\theta)$ là gradient của mục tiêu tại một điểm cố định và $H=\nabla^2F(\theta)$ là Hessian; ký hiệu này được tách khỏi gradient lô nhiễu.
 
-Nguồn chính là Goodfellow, Bengio và Courville (2016), Chương 8, §§8.5–8.7. Các công thức chuyên biệt được đối chiếu với Duchi, Hazan và Singer (2011), Hinton (2012), Kingma và Ba (2015), Martens (2010), Nocedal và Wright (2006), Ioffe và Szegedy (2015), Polyak và Juditsky (1992), cùng Bengio và cộng sự (2007, 2009). Bài 07 sẽ chuyển sang quy hoạch tuyến tính và quy hoạch động; ghi chú này không mở rộng sang hình học đa diện hoặc phương trình Bellman.
+Nguồn chính là Goodfellow, Bengio và Courville (2016), Chương 8, §§8.5–8.7. Các công thức chuyên biệt được đối chiếu với Duchi, Hazan và Singer (2011), Hinton (2012), Kingma và Ba (2015), Martens (2010), Nocedal và Wright (2006), Ioffe và Szegedy (2015), Polyak và Juditsky (1992), cùng Bengio và cộng sự (2009). Bài 07 sẽ chuyển sang quy hoạch tuyến tính và quy hoạch động; ghi chú này không mở rộng sang hình học đa diện hoặc phương trình Bellman.
 
 ## A. Từ bước vô hướng đến co giãn theo tọa độ
 
@@ -142,7 +142,7 @@ $$
 
 **Mục tiêu đọc hiểu.** Người đọc tính được trạng thái RMSProp, giải thích được vai trò của hệ số quên $\rho$ và phân biệt trạng thái RMSProp với vận tốc momentum.
 
-**Định nghĩa và giả thiết.** Với $0\le\rho<1$, RMSProp trong quy ước của deck khởi tạo $v_0^{\mathrm{RMS}}=0$ và dùng
+**Định nghĩa và giả thiết.** Với $0\le\rho<1$, biến thể RMSProp đang xét khởi tạo $v_0^{\mathrm{RMS}}=0$ và dùng
 
 $$
 v_t^{\mathrm{RMS}}
@@ -311,7 +311,7 @@ $$
 \mathbb E[v_t]=(1-\beta_2^t)\nu.
 $$
 
-Vì vậy $\widehat m_t=m_t/(1-\beta_1^t)$ và $\widehat v_t=v_t/(1-\beta_2^t)$ có đúng kỳ vọng $\mu$ và $\nu$ dưới các giả thiết trên. Phần chứng minh cuối bài khai triển truy hồi để chỉ ra chính xác nguồn gốc của hai hệ số hiệu chỉnh.
+Vì vậy $\widehat m_t=m_t/(1-\beta_1^t)$ và $\widehat v_t=v_t/(1-\beta_2^t)$ có đúng kỳ vọng $\mu$ và $\nu$ dưới các giả thiết trên. Khai triển truy hồi cho thấy hai hệ số hiệu chỉnh loại đúng phần thiếu hụt do khởi tạo tại $0$.
 
 Các phương pháp thích nghi vừa xét chỉ thay thang theo tọa độ. Khi các tọa độ tương tác mạnh, ta cần cân nhắc thông tin độ cong đầy đủ hơn cùng chi phí tính toán của nó.
 
@@ -398,7 +398,7 @@ $$
 g^Tp=-p^TBp<0.
 $$
 
-Phần chứng minh cuối bài khóa dấu của $g^Tp$ bằng tính dương xác định của $B$.
+Tính dương xác định của $B$ khóa dấu của $g^Tp$ và bảo đảm $p$ là hướng giảm khi $g\ne0$.
 
 ### 6. Tối ưu không tạo Hessian và gradient liên hợp
 
@@ -510,7 +510,7 @@ và kiểm trực tiếp cho $Bp_2=b$.
 
 Cho $B\in\mathbb R^{d\times d}$ đối xứng dương xác định, $b\in\mathbb R^d$ và điểm đầu $p_0\in\mathbb R^d$ tùy ý. Đặt $r_0=b-Bp_0$. Nếu $r_0=0$ thì $p_0$ đã là nghiệm. Nếu $r_0\ne0$, trong số học chính xác, các hướng CG sinh ra trước khi kết thúc đều khác $0$, đôi một liên hợp theo $B$, và CG tìm được nghiệm duy nhất của $Bp=b$ sau không quá $d$ vòng.
 
-Phần chứng minh cuối bài dùng tính độc lập tuyến tính của các hướng liên hợp và giải thích vì sao sai số dấu phẩy động làm mất kết luận hữu hạn chính xác.
+Các hướng liên hợp khác $0$ độc lập tuyến tính, nên số học chính xác chỉ có thể sinh nhiều nhất $d$ hướng như vậy. Sai số dấu phẩy động làm suy giảm tính liên hợp và loại bỏ kết luận hữu hạn chính xác.
 
 ### 7. BFGS và L-BFGS
 
@@ -586,7 +586,7 @@ $$
 M_{t+1}y_t=s_t.
 $$
 
-Phần chứng minh cuối bài kiểm trực tiếp điều kiện secant và viết dạng toàn phương của cập nhật để bảo toàn tính dương xác định.
+Dạng toàn phương của cập nhật bảo toàn tính dương xác định; nhân công thức với $y_t$ cho điều kiện secant.
 
 Ba công cụ độ cong trên thay cách tạo hướng bước. Nhóm tiếp theo giữ bộ tối ưu nhưng can thiệp cục bộ vào biểu diễn, khối biến được cập nhật hoặc điểm đại diện của quỹ đạo.
 
@@ -596,20 +596,20 @@ Ba công cụ độ cong trên thay cách tạo hướng bước. Nhóm tiếp t
 
 **Mục tiêu đọc hiểu.** Người đọc tính được thống kê chuẩn hóa của một đặc trưng trên một lô, phân biệt chế độ huấn luyện với suy diễn và giải thích được chuẩn hóa theo lô tác động lên biểu diễn chứ không thay thế bộ tối ưu.
 
-**Định nghĩa và giả thiết.** Xét ma trận kích hoạt trước chuẩn hóa $H\in\mathbb R^{m\times d}$, trong đó $m$ hàng là các mẫu trong lô và $d$ cột là các đặc trưng. Với từng đặc trưng $j$, đặt
+**Định nghĩa và giả thiết.** Xét ma trận kích hoạt trước chuẩn hóa $Z\in\mathbb R^{m\times d}$, trong đó $m$ hàng là các mẫu trong lô và $d$ cột là các đặc trưng. Ký hiệu $Z$ tách ma trận kích hoạt khỏi Hessian $H_t$. Với từng đặc trưng $j$, đặt
 
 $$
-\mu_j=\frac1m\sum_{i=1}^m H_{ij},
+\mu_j=\frac1m\sum_{i=1}^m Z_{ij},
 \qquad
-\sigma_j^2=\frac1m\sum_{i=1}^m(H_{ij}-\mu_j)^2.
+\sigma_j^2=\frac1m\sum_{i=1}^m(Z_{ij}-\mu_j)^2.
 $$
 
 Chuẩn hóa theo lô tạo
 
 $$
-\widehat H_{ij}=\frac{H_{ij}-\mu_j}{\sqrt{\sigma_j^2+\epsilon}},
+\widehat Z_{ij}=\frac{Z_{ij}-\mu_j}{\sqrt{\sigma_j^2+\epsilon}},
 \qquad
-Y_{ij}=\gamma_j\widehat H_{ij}+\beta_j,
+Y_{ij}=\gamma_j\widehat Z_{ij}+\beta_j,
 $$
 
 với $\epsilon>0$ và $\gamma,\beta\in\mathbb R^d$ là các tham số học được. Phương sai ở đây dùng mẫu số $m$, đúng với phép biến đổi trong thuật toán, không phải ước lượng phương sai không chệch dùng mẫu số $m-1$.
@@ -623,7 +623,7 @@ Khi huấn luyện, $\mu_j$ và $\sigma_j^2$ được tính từ lô hiện tạ
 **Ví dụ tính được.** Xét một đặc trưng trên lô hai mẫu
 
 $$
-h=(1,3)^T,\qquad \gamma=2,\qquad \beta=0{,}5,\qquad \epsilon=0{,}01.
+z=(1,3)^T,\qquad \gamma=2,\qquad \beta=0{,}5,\qquad \epsilon=0{,}01.
 $$
 
 Ta có
@@ -636,24 +636,24 @@ $$
 Vì $\sqrt{1{,}01}\approx1{,}0050$,
 
 $$
-\widehat h\approx(-0{,}9950,0{,}9950)^T,
+\widehat z\approx(-0{,}9950,0{,}9950)^T,
 \qquad
-y=2\widehat h+0{,}5\approx(-1{,}490,2{,}490)^T.
+y=2\widehat z+0{,}5\approx(-1{,}490,2{,}490)^T.
 $$
 
-Trung bình của $\widehat h$ đúng bằng $0$, nhưng phương sai theo lô là
+Trung bình của $\widehat z$ đúng bằng $0$, nhưng phương sai theo lô là
 
 $$
 \frac{1}{1+0{,}01}\approx0{,}9901,
 $$
 
-không đúng bằng $1$. Chỉ trong giới hạn $\epsilon\to0$ với $\sigma^2>0$ mới thu được $\widehat h=(-1,1)^T$ và $y=(-1{,}5,2{,}5)^T$.
+không đúng bằng $1$. Chỉ trong giới hạn $\epsilon\to0$ với $\sigma^2>0$ mới thu được $\widehat z=(-1,1)^T$ và $y=(-1{,}5,2{,}5)^T$.
 
 **Ý nghĩa và ứng dụng trong AI.** Chuẩn hóa theo lô có thể làm thang kích hoạt và gradient dễ quản lý hơn, cho phép dùng cấu hình tối ưu ổn định hơn và đôi khi tạo nhiễu có tác dụng điều chuẩn từ thống kê lô. Trong mạng tích chập, thống kê thường còn được gộp theo vị trí không gian cho từng kênh. Hiệu quả phụ thuộc phép tham số hóa, cấu trúc lô và quy trình huấn luyện; “giảm dịch chuyển hiệp biến nội bộ” là cách giải thích lịch sử, không phải một cơ chế nhân quả duy nhất đã được chứng minh.
 
-**Điểm dễ nhầm.** Chuẩn hóa theo lô không buộc đầu ra $Y$ có trung bình $0$ hay phương sai $1$, vì $\gamma$ và $\beta$ được học. Với $\epsilon>0$, ngay cả $\widehat H$ cũng có phương sai $\sigma^2/(\sigma^2+\epsilon)$ thay vì đúng bằng $1$. Không dùng thống kê của một lô suy diễn đơn lẻ thay cho thống kê chạy nếu mô hình được huấn luyện theo quy ước chuẩn. Ký hiệu $\beta$ tại đây là độ dịch của lớp chuẩn hóa, không phải $\beta_1,\beta_2$ của Adam.
+**Điểm dễ nhầm.** Chuẩn hóa theo lô không buộc đầu ra $Y$ có trung bình $0$ hay phương sai $1$, vì $\gamma$ và $\beta$ được học. Với $\epsilon>0$, ngay cả $\widehat Z$ cũng có phương sai $\sigma^2/(\sigma^2+\epsilon)$ thay vì đúng bằng $1$. Không dùng thống kê của một lô suy diễn đơn lẻ thay cho thống kê chạy nếu mô hình được huấn luyện theo quy ước chuẩn. Ký hiệu $\beta$ tại đây là độ dịch của lớp chuẩn hóa, không phải $\beta_1,\beta_2$ của Adam.
 
-**Câu hỏi kiểm tra.** Nếu mọi giá trị trong một cột của $H$ đều bằng nhau thì $\sigma_j^2$ bằng bao nhiêu, $\widehat H_{ij}$ bằng bao nhiêu, và vì sao $\epsilon>0$ là cần thiết? Trong ví dụ trên, kết quả nào thay đổi nếu chuyển sang chế độ suy diễn với trung bình chạy $1{,}8$ và phương sai chạy $1{,}2$?
+**Câu hỏi kiểm tra.** Nếu mọi giá trị trong một cột của $Z$ đều bằng nhau thì $\sigma_j^2$ bằng bao nhiêu, $\widehat Z_{ij}$ bằng bao nhiêu, và vì sao $\epsilon>0$ là cần thiết? Trong ví dụ trên, kết quả nào thay đổi nếu chuyển sang chế độ suy diễn với trung bình chạy $1{,}8$ và phương sai chạy $1{,}2$?
 
 ### 9. Hạ theo tọa độ và hạ theo khối
 
@@ -794,18 +794,16 @@ Các can thiệp cục bộ vẫn tối ưu cùng một bài toán từ điểm 
 
 **Mục tiêu đọc hiểu.** Người đọc thiết kế được tuyến tiền huấn luyện–tinh chỉnh, xác định rõ tham số được chuyển và phép đo trên nhiệm vụ đích, đồng thời nhận biết nguy cơ chuyển giao âm.
 
-**Định nghĩa và giả thiết.** Cho nhiệm vụ nguồn có dữ liệu gắn nhãn $D_S$, mục tiêu $J_S(\theta_S)$ và nhiệm vụ đích có dữ liệu $D_T$, mục tiêu $J_T(\theta_T)$. Với độ chính xác tối ưu nguồn $\delta_S\ge0$, tiền huấn luyện có giám sát trước hết tìm $\widetilde\theta_S$ thỏa
+**Định nghĩa và giả thiết.** Cho nhiệm vụ nguồn có dữ liệu gắn nhãn $D_S$, mục tiêu $J_S(\theta_S)$ và nhiệm vụ đích có dữ liệu $D_T$, mục tiêu $J_T(\theta_T)$. Chạy thuật toán huấn luyện nguồn để sinh các bước lặp $\theta_S^{(0)},\theta_S^{(1)},\ldots$. Chọn chỉ số chuyển $T_S$ bằng một tiêu chuẩn đã định trước, chẳng hạn ngân sách hoặc mất mát xác thực nguồn, rồi đặt
 
 $$
-J_S(\widetilde\theta_S)
-\le
-\inf_{\theta_S}J_S(\theta_S)+\delta_S,
+\theta_{\mathrm{pre}}=\theta_S^{(T_S)}.
 $$
 
-sau đó dùng một ánh xạ tương thích $T$ để khởi tạo phần tham số dùng chung của mô hình đích:
+Không cần giả sử $\theta_{\mathrm{pre}}$ gần cực tiểu toàn cục của $J_S$. Dùng một ánh xạ tham số tương thích $T$ để khởi tạo phần dùng chung của mô hình đích:
 
 $$
-\theta_T^{(0)}=T(\widetilde\theta_S).
+\theta_T^{(0)}=T(\theta_{\mathrm{pre}}).
 $$
 
 Cuối cùng, mô hình được tinh chỉnh theo $J_T$. Phải chỉ rõ kiến trúc nào được chia sẻ, lớp nào được khởi tạo mới, lớp nào đóng băng hoặc cho phép cập nhật và dữ liệu nào được dùng để chọn siêu tham số.
@@ -819,7 +817,7 @@ Cuối cùng, mô hình được tinh chỉnh theo $J_T$. Phải chỉ rõ kiế
 | Cấu hình | Khởi tạo encoder | Thước đo quyết định |
 |---|---|---|
 | Từ đầu | ngẫu nhiên theo cùng quy tắc | mất mát xác thực đích |
-| Tiền huấn luyện | $\widetilde\phi_S$ | mất mát xác thực đích |
+| Tiền huấn luyện | $\phi_{\mathrm{pre}}$ | mất mát xác thực đích |
 
 Nếu mất mát xác thực đích lần lượt là $0{,}61$ và $0{,}48$, chênh lệch quan sát được là $0{,}13$. Phép so sánh giả định này không phải bảo đảm lý thuyết hay số liệu thực nghiệm từ một bộ dữ liệu cụ thể.
 
@@ -839,19 +837,18 @@ $$
 J^{(0)},J^{(1)},\ldots,J^{(K)}=J
 $$
 
-trên cùng không gian tham số $\Theta$, hoặc có ánh xạ tham số được nêu rõ giữa hai giai đoạn liên tiếp. Tại giai đoạn $k$, thuật toán bắt đầu từ nghiệm gần đúng của giai đoạn trước. Với dung sai $\delta_k\ge0$, ký hiệu này được viết chính xác bằng
+trên cùng không gian tham số $\Theta$, hoặc có ánh xạ $T_{k-1\to k}$ được nêu rõ giữa hai giai đoạn liên tiếp. Gọi $\mathcal A_k$ là thuật toán dùng ở giai đoạn $k$ và $\operatorname{stop}_k$ là tiêu chuẩn dừng đã chọn. Phép chuyển được mô tả bởi
 
 $$
-\theta^{(k)}_0=\widetilde\theta^{(k-1)},
+\theta^{(k)}_0=T_{k-1\to k}(\widetilde\theta^{(k-1)}),
 \qquad
-J^{(k)}(\widetilde\theta^{(k)})
-\le
-\inf_{\theta\in\Theta}J^{(k)}(\theta)+\delta_k.
+\widetilde\theta^{(k)}
+=\mathcal A_k\!\left(J^{(k)},\theta^{(k)}_0;\operatorname{stop}_k\right).
 $$
 
-Tiêu chuẩn chuyển giai đoạn có thể dựa trên chuẩn gradient, mức giảm mục tiêu, ngân sách hoặc một thước đo ổn định đã khóa trước.
+Tiêu chuẩn chuyển giai đoạn có thể dựa trên chuẩn gradient, mức giảm mục tiêu, ngân sách hoặc một thước đo ổn định đã khóa trước. Định nghĩa không đòi hỏi nghiệm toàn cục hay gần toàn cục ở từng giai đoạn.
 
-![Chuỗi mục tiêu từ dễ đến mục tiêu đích và một lịch phân phối dữ liệu từ dễ đến khó.](img/lec-06/continuation-curriculum.svg)
+![Ba mục tiêu bậc hai minh họa khởi tạo ấm: nghiệm của giai đoạn trước trở thành điểm đầu cho giai đoạn sau.](img/lec-06/continuation-curriculum.svg)
 
 **Trực quan.** Thay vì nhảy trực tiếp vào cảnh quan khó, ta tạo các cảnh quan trung gian và lần theo một nghiệm đang thay đổi. Mục tiêu đầu có thể được làm trơn, điều chuẩn mạnh hơn hoặc giảm độ phi tuyến; độ khó sau đó tăng dần tới bài toán thật.
 
@@ -1087,27 +1084,60 @@ Giả thiết dương xác định được dùng để khóa dấu tại bướ
 ::: proof
 Đặt $r_0=b-Bp_0$. Nếu $r_0=0$ thì $p_0$ đã giải hệ và thuật toán kết thúc trước vòng lặp đầu tiên. Xét trường hợp $r_0\ne0$ và chỉ các vòng trước khi phần dư trở thành $0$; khi đó mọi mẫu số trong công thức CG đều dương vì $B\succ0$ và hướng hiện tại khác $0$.
 
-Ta nêu các bước chính của chứng minh trong số học chính xác. Công thức chọn $\alpha_k$ làm phần dư mới trực giao với hướng hiện tại:
+Trong số học chính xác, đặt không gian Krylov
+
+$$
+\mathcal K_0=\{0\},
+\qquad
+\mathcal K_k=\operatorname{span}\{r_0,Br_0,\ldots,B^{k-1}r_0\}\quad(k\ge1).
+$$
+
+Ta chứng minh bằng quy nạp ba bất biến:
+
+$$
+\mathcal K_k=\operatorname{span}\{d_0,\ldots,d_{k-1}\},
+\qquad r_k\perp\mathcal K_k,
+\qquad d_i^TBd_j=0\quad(i\ne j).
+$$
+
+Các bất biến đúng ở $k=0$. Giả sử chúng đúng tới vòng $k$. Với $k=0$, $d_0=r_0$; với $k>0$, $d_k=r_k+\beta_{k-1}d_{k-1}$. Công thức chọn $\alpha_k$ làm phần dư mới trực giao với hướng hiện tại:
 
 $$
 r_{k+1}^Td_k=0.
 $$
 
-Công thức chọn $\beta_k$ làm hướng mới liên hợp theo $B$ với hướng trước:
+Với $i<k$, ta có
+
+$$
+r_{k+1}^Td_i
+=r_k^Td_i-\alpha_kd_k^TBd_i=0,
+$$
+
+do giả thiết quy nạp. Quan hệ giữa $d_k$ và $r_k$ cho thấy các hướng $d_0,\ldots,d_k$ sinh đúng $\mathcal K_{k+1}$; suy ra $r_{k+1}\perp\mathcal K_{k+1}$.
+
+Tiếp theo, từ $r_{i+1}=r_i-\alpha_iBd_i$ suy ra $Bd_i=(r_i-r_{i+1})/\alpha_i$. Do $r_{k+1}$ trực giao với mọi phần dư trước, với $i<k$ ta được $r_{k+1}^TBd_i=0$. Với $i=k$,
+
+$$
+r_{k+1}^TBd_k=-\frac{\|r_{k+1}\|_2^2}{\alpha_k},
+\qquad
+d_k^TBd_k=\frac{\|r_k\|_2^2}{\alpha_k}.
+$$
+
+Vì $\beta_k=\|r_{k+1}\|_2^2/\|r_k\|_2^2$, công thức $d_{k+1}=r_{k+1}+\beta_kd_k$ cho
 
 $$
 d_{k+1}^TBd_k=0.
 $$
 
-Bằng quy nạp, các phần dư khác $0$ đôi một trực giao và các hướng khác $0$ đôi một $B$-liên hợp. Vì $B\succ0$, các hướng $B$-liên hợp khác $0$ độc lập tuyến tính. Không gian $\mathbb R^d$ chứa nhiều nhất $d$ hướng độc lập như vậy.
+Đồng thời $d_{k+1}^TBd_i=0$ với mọi $i<k$, nên bước quy nạp hoàn tất. Các phần dư khác $0$ đôi một trực giao và các hướng khác $0$ đôi một $B$-liên hợp. Vì $B\succ0$, các hướng $B$-liên hợp khác $0$ độc lập tuyến tính. Không gian $\mathbb R^d$ chứa nhiều nhất $d$ hướng độc lập như vậy.
 
-Sau $k$ vòng, $p_k$ là điểm cực tiểu của dạng toàn phương
+Từ $p_{i+1}=p_i+\alpha_id_i$ và $\mathcal K_k=\operatorname{span}\{d_0,\ldots,d_{k-1}\}$ suy ra $p_k-p_0\in\mathcal K_k$. Đồng thời $r_k=b-Bp_k\perp\mathcal K_k$. Vì $\nabla\varphi(p_k)=Bp_k-b=-r_k$, đây là điều kiện tối ưu bậc nhất của dạng toàn phương
 
 $$
 \varphi(p)=\frac12p^TBp-b^Tp
 $$
 
-trên không gian Krylov đã sinh. Khi các hướng đã sinh toàn bộ $\mathbb R^d$, điều kiện cực tiểu cho $\nabla\varphi(p)=Bp-b=0$, nên $p$ là nghiệm duy nhất của $Bp=b$. Vì vậy CG kết thúc sau không quá $d$ vòng.
+trên không gian affine $p_0+\mathcal K_k$. Do $B\succ0$, điều kiện này cũng đủ và $p_k$ là cực tiểu duy nhất trên không gian affine đó. Nếu phần dư chưa bằng $0$, thuật toán sinh thêm một hướng $B$-liên hợp khác $0$. Không thể có hơn $d$ hướng độc lập trong $\mathbb R^d$, nên phần dư phải bằng $0$ sau không quá $d$ vòng. Khi đó $\nabla\varphi(p)=Bp-b=0$, và $p$ là nghiệm duy nhất của $Bp=b$.
 
 Trong số học dấu phẩy động, tính trực giao và liên hợp bị suy giảm. Trong HF, ta thường dừng sớm vì ngân sách hoặc vì phần dư đã đủ nhỏ. Hai trường hợp này không được diễn giải thành kết thúc chính xác sau $d$ vòng.
 :::
@@ -1330,7 +1360,6 @@ $$
 
 ## Tài liệu tham khảo
 
-- Bengio, Y., Lamblin, P., Popovici, D. và Larochelle, H. (2007), “Greedy Layer-Wise Training of Deep Networks”; nguồn lịch sử cho tiền huấn luyện tham lam từng tầng có giám sát. Ví dụ chuyển $50\,000$ mẫu nguồn sang $200$ mẫu đích trong ghi chú là minh họa tự tạo theo khung tổng quát của Goodfellow, Bengio và Courville (2016), không phải kết quả thực nghiệm của bài báo này.
 - Bengio, Y., Louradour, J., Collobert, R. và Weston, J. (2009), “Curriculum Learning”, *Proceedings of the 26th International Conference on Machine Learning*.
 - Duchi, J., Hazan, E. và Singer, Y. (2011), “Adaptive Subgradient Methods for Online Learning and Stochastic Optimization”, *Journal of Machine Learning Research*, 12, 2121–2159.
 - Goodfellow, I., Bengio, Y. và Courville, A. (2016), *Deep Learning*, Chương 8, mục 8.5–8.7, MIT Press.

@@ -184,3 +184,35 @@ Các mục của những vòng trước được giữ nguyên để truy nguyê
 - Codex Slides xác nhận dự án `20260901031052-lecture-06-t-i-u-m-ng-s-u-bjy1` ở trạng thái draft với 36 trang; không có Browser để tuyên bố rà trực quan mới.
 - Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS về mạch khái niệm, độ đầy đủ và độ chính xác toán học.
 - Hậu kiểm toàn khóa bỏ câu mô tả cách tổ chức “mạch bắt đầu từ nhu cầu” và thay “ba chủ đề trong mạch” bằng tên ba bộ tối ưu; nội dung thuật toán không đổi.
+
+## Rà soát sâu mạch khái niệm và hình — 2026-09-01
+
+- B02 định nghĩa $g_t=\nabla F(\theta_t)$, $H_t=\nabla^2F(\theta_t)$ và độ dời $p$ trên mặt trang trước khi dùng mô hình Taylor $q_t(p)$. Cách này loại việc dùng ký hiệu trước định nghĩa.
+- Chuẩn hóa theo lô dùng $Z,\widehat Z,Y$ trong deck, lecture note, storyboard và SVG. Ký hiệu $H_t$ chỉ còn dành cho Hessian; $\beta_j$ của lớp chuẩn hóa được phân biệt với $\beta_1,\beta_2$ của Adam và $\beta_k$ của CG.
+- D02 nêu rõ $\theta_{\mathrm{pre}}$, điều kiện kiến trúc hoặc ánh xạ tham số tương thích và nguy cơ chuyển giao âm. D03 tách ví dụ khởi tạo ấm khỏi phát biểu làm trơn; SVG không còn gọi parabola đầu là “mục tiêu dễ”. D04 hiện cả $q_t\to q_*$ và mục tiêu tức thời $J^{(t)}$.
+- Sửa lỗi KaTeX ở D03 từ `,qquad` thành `,\qquad`. SVG bộ tối ưu dùng thống nhất $r_t,r_1,r_2$ cho AdaGrad và cụm “độ lệch do khởi tạo”; “Hai vòng kiểm số” đổi thành “Hai vòng tính”.
+- Lecture note bỏ bốn câu điều phối “Phần chứng minh cuối bài”. Chứng minh CG được bổ sung không gian Krylov, ba bất biến quy nạp, bước trực giao phần dư, tính liên hợp theo $B$ và lập luận kết thúc sau không quá $d$ vòng. Trường hợp $k=0$ dùng riêng $d_0=r_0$.
+- Hậu kiểm `no-ai-slop` bỏ câu “Điểm so sánh cần nói được” và cụm “hiện thực hóa điều kiện”; giữ nguyên số liệu, giả thiết và thuật ngữ chuyên môn. Quét phần văn bản công khai sau khi bỏ thuộc tính, CSS và JavaScript không thấy mã trang nội bộ hoặc các cụm `storyboard`, `review-log`, `tiêu chí chấm`, `hướng dẫn chấm`, `nộp bài`, `kiểm lại độc lập`.
+
+### Kiểm định hiện hành
+
+| Hạng mục | Trạng thái | Bằng chứng |
+|---|---|---|
+| Cấu trúc RevealJS | đạt | 6 section ngoài với số trang dọc `3/8/9/7/6/3`; 36 ID duy nhất, 36 ghi chú và 36 dòng nguồn; thẻ HTML cân bằng. |
+| Đồng bộ quy trình | đạt | 36 ID trong deck, outline và bảng từng trang của storyboard trùng thứ tự. Bản đồ khái niệm BN đã đổi $H,\widehat H$ thành $Z,\widehat Z$. |
+| Markdown | đạt | Heading cấp một ở đầu tệp; dấu `$` cân bằng; 7 khối mở rộng và 7 dấu đóng; sáu hình có văn bản thay thế. |
+| Số học | đạt | AdaGrad, RMSProp và Adam khớp A08; CG cho phần dư bằng $0$ tại $(2/7,-1/7)^T$; BFGS cho $g^Tp=-2{,}75$; BN và hai hệ số hạ tọa độ khớp số hiển thị. |
+| SVG | đạt | 6/6 tệp phân tích XML, có `title` và `desc`, không có script hoặc `foreignObject`; ba SVG sửa đổi đã được kết xuất trực tiếp bằng Chromium và xem ở kích thước gốc. |
+| Tài nguyên web | đạt | Deck, viewer, 14 tài sản cốt lõi và hai SVG chỉ dùng trong lecture note đều trả HTTP 200 từ máy chủ cục bộ. Viewer đã tải xong, ẩn trạng thái chờ và hiển thị Markdown cùng công thức. |
+| Trực quan | đạt bằng cơ chế dự phòng | Chromium kết xuất bản in 16:9 gồm 67 trạng thái fragment của 36 slide; contact sheet và các ảnh B02, C02, D02–D04, D06 không có nội dung bị cắt. Viewer được xem ở $1365\times768$ và $390\times844$. |
+| Codex Slides | đạt về trạng thái, chưa có ảnh render | `get_project` xác nhận dự án `20260901031052-lecture-06-t-i-u-m-ng-s-u-bjy1` có đúng 36 slide và ở trạng thái draft. Phiên này không có Browser tích hợp để xác nhận bề mặt hiển thị; không tuyên bố đã rà trực quan bằng Codex Slides. |
+| OpenRouter | không dùng | Không gửi tệp Bài 06 ra ngoài; quyền gần nhất của người dùng chỉ áp dụng đúng bốn tệp Bài 04. |
+
+### Đóng phát hiện của rà soát độc lập
+
+- Bỏ điều kiện gần cực tiểu toàn cục khỏi định nghĩa tiền huấn luyện. Bản hiện hành định nghĩa checkpoint nguồn bằng quỹ đạo $\theta_S^{(t)}$, chỉ số chuyển $T_S$ và tiêu chuẩn đã chọn; sau đó ánh xạ tham số dùng chung sang điểm đầu của nhiệm vụ đích.
+- Bỏ điều kiện gần $\inf J^{(k)}$ khỏi phương pháp tiếp tục. Bản hiện hành dùng thuật toán $\mathcal A_k$, ánh xạ giữa không gian tham số và tiêu chuẩn dừng $\operatorname{stop}_k$; không đòi nghiệm toàn cục hoặc gần toàn cục ở từng giai đoạn.
+- Gỡ Bengio và cộng sự (2007) khỏi D02, lời dẫn và tài liệu tham khảo. Công trình này nói về tiền huấn luyện tham lam không giám sát, không phải nguồn cho ví dụ chuyển nhiệm vụ có nhãn. D02 chỉ giữ Goodfellow, Bengio và Courville (2016), §8.7.4.
+- Chứng minh CG định nghĩa $\mathcal K_0=\{0\}$ và suy ra rõ $p_k-p_0\in\mathcal K_k$, $r_k\perp\mathcal K_k$ trước khi dùng điều kiện tối ưu trên $p_0+\mathcal K_k$.
+- Khóa ký hiệu của outline đổi kích hoạt chuẩn hóa theo lô từ $H$ sang $Z$. Lecture note bỏ cụm “trong quy ước của deck”; ghi chú Z03 nêu trực tiếp các giả thiết và chi phí cần kiểm.
+- Tác tử rà soát độc lập kiểm lại sau sửa và trả `PASS`. Viewer kết xuất lại 628 nút KaTeX của lecture note, không có `katex-error`; bố cục tài liệu đã mở và trạng thái chờ được ẩn.
