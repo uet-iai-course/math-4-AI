@@ -49,7 +49,7 @@ Không tách sáu bước thành sáu trang máy móc. A03 là ví dụ dẫn nh
 | P03 | Đặt năm câu hỏi thiết kế và vấn đề trung tâm | mục tiêu → A01 | toàn bài | sửa — dùng lưới không thứ tự thay chuỗi mũi tên gây hiểu nhầm |
 | A01 | Tạo nhu cầu phân biệt tối ưu với học | P03 → A03 | LLO11 | giữ — tạo nhu cầu trước ví dụ dẫn nhập |
 | A03 | Cho ví dụ hàm thay thế tính được | A01 → A04 | LLO11 | sửa — đưa trước hình thức và nối định tính sang xác thực |
-| A04 | Biến khoảng cách tổng quát hóa thành quyết định dừng | A03 → A02 | LLO11 | sửa — chỉ dùng nhãn huấn luyện/xác thực trước khi có $R,\widehat R_n$ |
+| A04 | Biến khoảng cách tổng quát hóa thành quyết định dừng | A03 → A02 | LLO11 | sửa — định nghĩa tại chỗ $\widehat R_{\mathrm{tr}}$ và $\widehat R_{\mathrm{val}}$ trước hình; chưa dùng $R,\widehat R_n$ |
 | A02 | Khóa $R$ và $\widehat R_n$ | A04 → A05 | LLO11 | sửa — hình thức hóa sau ví dụ và trực quan |
 | A05 | Nối dạng tổng với batch/minibatch | A02 → A06 | LLO11 | giữ — dùng trực tiếp $\widehat R_n$ vừa được khóa |
 | A06 | Đo khả năng phân loại ba loại lỗi | cấu trúc tổng → B01 | LLO11 | giữ — bài tập đóng đúng LLO11 |
@@ -61,7 +61,7 @@ Không tách sáu bước thành sáu trang máy móc. A03 là ví dụ dẫn nh
 | B06 | Đo khả năng phân loại điểm dừng rồi đóng bộ chẩn đoán và phân luồng | thách thức → C01/D/E | LLO11 | sửa — ba trường hợp buộc phân loại trước khi hiện đáp án; giữ ánh xạ tổng quát hóa/nhiễu/điều kiện hóa/độ sâu sang A/C/D/E dưới nhãn “Mạch xử lý” |
 | C01 | Định lượng nhu cầu giảm chi phí mỗi bước | chẩn đoán và A05 → C03 | LLO12 | sửa — dùng $O(nC_{\nabla})\to O(b_tC_{\nabla})$ |
 | C03 | Khóa dữ kiện hai mẫu, lô một phần tử và hai mũi tên | C01 → C02 | LLO12 | sửa — định nghĩa $B_0=(1)$, $B_1=(2)$ tại chỗ; chưa suy tính không chệch |
-| C02 | Nêu chỉ số lấy mẫu, đa tập, trực quan phương sai và tính không chệch | C03 → C04 | LLO12 | sửa — định nghĩa $I_{t,j}$, $B_t$, $g_t(q)$ với lấy độc lập có hoàn lại; dùng SVG phương sai |
+| C02 | Nêu chỉ số lấy mẫu, đa tập, trực quan phương sai và tính không chệch | C03 → C04 | LLO12 | sửa — định nghĩa $I_{t,j}$, $B_t$, $q\in\mathbb R^d$ và $g_t(q)$ với lấy độc lập có hoàn lại; dùng SVG phương sai |
 | C04 | Gom một vòng SGD đủ thao tác | hình thức → C05 | LLO12 | giữ — dùng đúng $g_t$ vừa định nghĩa |
 | C05 | Cho quyết định $\eta_t$ và $b_t$ | thuật toán → C06 | LLO12 | giữ — ứng dụng đánh đổi trước bảo đảm |
 | C06 | Khóa điều kiện bước, không chệch, cận phương sai đều, tính trơn, bị chặn dưới và hai tổng Robbins–Monro | ứng dụng → C07 | LLO12 | sửa — mọi giả thiết được bài C07 kiểm đều xuất hiện trên mặt trang |

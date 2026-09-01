@@ -258,7 +258,7 @@ $$
 F(\theta)=\frac1n\sum_{i=1}^n\ell_i(\theta).
 $$
 
-Gọi $\mathcal F_t$ là toàn bộ lịch sử trước khi lấy lô thứ $t$; do đó $\theta_t$ đo được theo $\mathcal F_t$. Điều kiện theo $\mathcal F_t$, lấy các chỉ số $I_{t,1},\ldots,I_{t,b_t}$ độc lập, đều trên $\{1,\ldots,n\}$ và có hoàn lại. Đặt
+Gọi $\mathcal F_t$ là toàn bộ lịch sử trước khi lấy lô thứ $t$; do đó $\theta_t$ đo được theo $\mathcal F_t$. Điều kiện theo $\mathcal F_t$, lấy các chỉ số $I_{t,1},\ldots,I_{t,b_t}$ độc lập, đều trên $\{1,\ldots,n\}$ và có hoàn lại. Với điểm đánh giá $q\in\mathbb R^d$, đặt
 
 $$
 g_t(q)=\frac1{b_t}

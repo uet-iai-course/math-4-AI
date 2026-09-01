@@ -252,3 +252,8 @@ Cổng storyboard và năm phát hiện bắt buộc trên đã được phản 
 
 - Codex Slides không có bề mặt Browser/MCP trong phiên này. Rà trực quan dùng Chromium headless và RevealJS cục bộ; không tuyên bố đã kiểm định bằng Codex Slides.
 - Tái kiểm độc lập cuối kết thúc `PASS`: năm lỗi của lượt trước đã đóng; thứ tự DOM khớp tuyệt đối với outline và storyboard; 40 ID, 40 ghi chú, 40 nguồn, 7 section ngoài và 7 SVG đều đồng bộ; không phát hiện lỗi toán, ký hiệu hoặc lời dẫn quy trình mới.
+
+### Bổ sung sau rà soát chéo toàn học phần
+
+- A04 định nghĩa $\widehat R_{\mathrm{tr}}$ và $\widehat R_{\mathrm{val}}$ trước khi đọc hình dừng sớm; ví dụ dẫn nhập không còn dùng ký hiệu chưa giới thiệu.
+- C02 công bố $q\in\mathbb R^d$ ở cả trang chiếu và lecture note trước khi định nghĩa $g_t(q)$.
