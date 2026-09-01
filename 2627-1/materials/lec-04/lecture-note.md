@@ -389,7 +389,7 @@ $$
 \qquad 0<\mu\le M,
 $$
 
-và dùng bước $t=1/M$.
+và dùng bước $t=1/M$. Hệ số co của cận sai số mục tiêu là $1-\mu/M=1-1/\kappa$, trong đó $\kappa=M/\mu$. Đại lượng này được xây từ hai hằng số toàn cục trên tập mức; cần phân biệt với $\kappa_2(H)=\lambda_{\max}(H)/\lambda_{\min}(H)$ của Hessian cụ thể trong ví dụ bậc hai A04.
 
 **Trực quan.** Quả cầu chuẩn $W$ trở thành ellipse trong tọa độ Euclid. Nếu ellipse này khớp đường mức, hướng dốc nhất bớt dao động giữa các phía.
 
@@ -741,7 +741,17 @@ Nghiệm duy nhất là $s^*=1$. Ví dụ này cho thấy bước Newton vẫn n
 
 ![Đồ thị của phi bằng s trừ log s, mô hình bậc hai tại s bằng một phần hai, bước Newton tới ba phần tư và tỷ số tự điều chỉnh bằng hai.](img/lec-04/self-concordant-curvature.svg)
 
-**Ý nghĩa và ứng dụng trong AI.** Hàm chắn log dùng tính tự điều chỉnh để kiểm soát Newton trong các phương pháp điểm trong. Với các bài toán ước lượng xác suất, mô hình entropy và tối ưu nón, độ giảm Newton cung cấp một tiêu chuẩn dừng gắn với sai số mục tiêu thay vì chỉ dựa vào độ lớn gradient theo tọa độ.
+**Ví dụ nhiều chiều: hàm chắn log.** Cho $a_i\in\mathbb R^n$, $b_i\in\mathbb R$, $m\in\mathbb N$ và giả thiết miền trong $\{x:a_i^Tx<b_i,\ \forall i\}$ khác rỗng. Đặt
+
+$$
+\Phi(x)=-\sum_{i=1}^{m}\log(b_i-a_i^Tx).
+$$
+
+Hàm này được dựng bằng hai phép hợp: ánh xạ affine $x\mapsto b_i-a_i^Tx$ đưa miền trong về $\mathbb R_{++}^{m}$, rồi hợp với $-\log$ theo từng thành phần và lấy tổng. Vì hợp affine và tổng đều bảo toàn tính tự điều chỉnh chuẩn, $\Phi$ là hàm tự điều chỉnh chuẩn; nhân với hệ số $c\ge1$ vẫn giữ dạng chuẩn. Phát biểu này chỉ là nhận dạng lớp hàm, không phải một định lý hội tụ mới.
+
+Mỗi số $b_i-a_i^Tx$ là khoảng cách có dấu tới một biên affine, chưa chuẩn hóa theo $\|a_i\|_2$. Khi điểm tiến sát biên thứ $i$ từ phía trong, hạng $-\log(b_i-a_i^Tx)$ tiến tới $+\infty$; gradient và Hessian vì thế phản ứng mạnh hơn với những biên đang ở gần.
+
+**Ý nghĩa và ứng dụng trong AI.** Với các bài toán ước lượng xác suất, mô hình entropy và tối ưu nón, độ giảm Newton cung cấp một tiêu chuẩn dừng gắn với sai số mục tiêu thay vì chỉ dựa vào độ lớn gradient theo tọa độ.
 
 **Điểm dễ nhầm.** Tính tự điều chỉnh không tự bảo đảm nghiệm tồn tại, Hessian xác định dương hay Newton hội tụ từ mọi điểm. Với dạng chuẩn, tổng và hợp affine được bảo toàn; nhân một hàm với hệ số $a\ge1$ vẫn giữ dạng chuẩn, nhưng không được mở rộng phát biểu này cho mọi $a>0$. Nếu $\delta_N<1$ và các giả thiết trên được thỏa thì
 
@@ -946,6 +956,14 @@ $$
 $$
 
 Không dùng $\delta_{\mathrm{eq}}^2/2$ làm tiêu chuẩn duy nhất khi điểm chưa khả thi. Tìm kiếm quay lui cũng phải bảo đảm điểm thử còn thuộc miền của $f$.
+
+Cụ thể, đặt $r=(r_d^T,r_p^T)^T\in\mathbb R^{n+p}$. Với $\alpha\in(0,1/2)$ và $\beta\in(0,1)$, bắt đầu từ $t=1$ và lặp $t\leftarrow\beta t$ cho đến khi điểm thử thuộc miền, $x+t\Delta x\in\operatorname{dom}f$, và
+
+$$
+\|r(x+t\Delta x,\nu+t\Delta\nu)\|_2\le(1-\alpha t)\,\|r(x,\nu)\|_2.
+$$
+
+Đây là bất đẳng thức quay lui theo chuẩn phần dư; điều kiện điểm thử thuộc $\operatorname{dom}f$ là bắt buộc vì phần dư đối ngẫu chứa $\nabla f(x)$.
 
 **Câu hỏi kiểm tra.** Nếu $r_d=0$ nhưng $r_p\ne0$, vì sao chưa thể dừng? Hàng khối thứ hai của hệ Newton sửa $r_p$ như thế nào khi nhận bước đầy đủ?
 
@@ -1191,7 +1209,7 @@ $$
 v^TX^TXv=\|Xv\|_2^2>0.
 $$
 
-Do đó Hessian xác định dương trên không gian hướng khả thi, và mất mát lồi chặt khi hạn chế lên siêu phẳng, nên bài toán có nhiều nhất một nghiệm. Sau khi tham số hóa siêu phẳng bằng $w=Fz+\hat w$, hạng bậc hai theo $z$ có Hessian $F^TX^TXF\succ0$; hàm cưỡng bức theo $z$ và đạt một nghiệm. Nghiệm này là duy nhất.
+Do đó Hessian xác định dương trên không gian hướng khả thi, và mất mát lồi chặt khi hạn chế lên siêu phẳng, nên bài toán có nhiều nhất một nghiệm. Sau khi tham số hóa siêu phẳng bằng $w=Fz+\hat w$, hạng bậc hai theo $z$ có Hessian $F^TX^TXF\succ0$; hàm cưỡng bức (coercive) theo $z$ và đạt một nghiệm. Nghiệm này là duy nhất.
 :::
 
 ## Bản đồ tổng hợp
@@ -1224,6 +1242,6 @@ Bài 03 cung cấp điều kiện KKT như một chứng nhận tối ưu. Bài 
 
 1. Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Cambridge University Press, Chương 9, đặc biệt các mục 9.2–9.6 về phương pháp giảm, gradient, Newton và hàm tự điều chỉnh.
 2. Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Cambridge University Press, Chương 10, đặc biệt các mục 10.1–10.3 về cực tiểu có ràng buộc đẳng thức và Newton từ điểm không khả thi.
-3. Stephen Boyd, MIT 6.079/6.975 *Introduction to Convex Optimization*, Fall 2009, Lecture 16, “Unconstrained minimization”, nguồn nội dung và thứ tự cho gradient, Newton và hàm tự điều chỉnh; giấy phép CC BY-NC-SA 4.0.
-4. Stephen Boyd, MIT 6.079/6.975 *Introduction to Convex Optimization*, Fall 2009, Lecture 17, “Equality constrained minimization”, nguồn nội dung và thứ tự cho khử đẳng thức, hệ Newton–KKT và hai chế độ khởi đầu; giấy phép CC BY-NC-SA 4.0.
+3. Stephen Boyd và Pablo Parrilo (giảng viên), MIT 6.079/6.975 *Introduction to Convex Optimization*, Fall 2009, Lecture 16, “Unconstrained minimization”, nguồn nội dung và thứ tự cho gradient, Newton và hàm tự điều chỉnh; giấy phép CC BY-NC-SA 4.0.
+4. Stephen Boyd và Pablo Parrilo (giảng viên), MIT 6.079/6.975 *Introduction to Convex Optimization*, Fall 2009, Lecture 17, “Equality constrained minimization”, nguồn nội dung và thứ tự cho khử đẳng thức, hệ Newton–KKT và hai chế độ khởi đầu; giấy phép CC BY-NC-SA 4.0.
 5. `sources/Chương 5.pdf`, tài liệu đối chiếu thuật ngữ tiếng Việt; các phát biểu và giả thiết toán học được kiểm theo Boyd–Vandenberghe và đặc tả toán học của Bài 04.

@@ -50,12 +50,12 @@ với ràng buộc $x_1+x_2=1$.
 | A | A04 | Bậc hai điều kiện kém xác lập đường mức, điểm đầu và gradient; vị trí điểm và nhãn không chồng lấn, chưa lộ quỹ đạo | ví dụ |
 | A | A05 | Tìm kiếm đường chính xác và Armijo trả lời hai cách chọn bước | hình thức |
 | A | A06 | Backtracking nhận $t=1/4$ sau hai lần co | ứng dụng |
-| A | A07 | Một vòng lặp phải có hướng, bước, cập nhật và dừng | thuật toán/bài tập |
+| A | A07 | Một vòng lặp phải có hướng, bước, cập nhật và dừng; ở đây dùng chuẩn gradient, còn các tiêu chuẩn khác chỉ xuất hiện sau khi được định nghĩa | thuật toán/bài tập |
 | B | B01 | Điều kiện hóa làm gradient tiến chậm theo một số hướng | nhu cầu |
-| B | B03 | Quỹ đạo exact line search zigzag với hệ số $9/11$ | trực quan/ví dụ |
+| B | B03 | Quỹ đạo exact line search zigzag với hệ số $9/11$; cầu sang B02: quỹ đạo theo chuẩn Euclid, trang sau đặt gradient vào khung chuẩn | trực quan/ví dụ |
 | B | B02 | Gradient là giảm dốc nhất theo chuẩn Euclid | hình thức |
 | B | B04 | Chuẩn đối ngẫu $\|g\|_*=\max_{\|v\|\le1}g^Tv$ xác định hướng giảm dốc nhất | hình thức |
-| B | B05 | Chuẩn bậc hai tương đương tiền điều kiện; hội tụ tuyến tính cần chặn Hessian và bước phù hợp | ứng dụng/bảo đảm |
+| B | B05 | Chuẩn bậc hai tương đương tiền điều kiện; bảo đảm tuyến tính: $f$ $\mu$-lồi mạnh, gradient $M$-Lipschitz hoặc $\mu I\preceq\nabla^2f\preceq MI$, bước $t=1/M$, $\kappa=M/\mu$; phân biệt với $\kappa_2(H)$ của bậc hai A04 | ứng dụng/bảo đảm |
 | B | B06 | So sánh hai hướng trên cùng gradient đo LLO6/LLO8 | bài tập |
 | C | C01 | Mô hình bậc nhất bỏ qua độ cong nên cần mô hình bậc hai | nhu cầu |
 | C | C03 | Newton giải đúng bậc hai xuyên suốt trong một bước | ví dụ dẫn nhập |
@@ -68,14 +68,14 @@ với ràng buộc $x_1+x_2=1$.
 | D | D01 | Hằng số hội tụ cổ điển khó biết và không bất biến affine | nhu cầu |
 | D | D03 | Tỷ số $|\phi'''|/(\phi'')^{3/2}=2$ cho trực quan độ cong tự khống chế biến thiên | trực quan/ví dụ |
 | D | D02 | Tự điều chỉnh khống chế đạo hàm cấp ba bằng độ cong cấp hai | hình thức |
-| D | D04 | Dựng hàm chắn log với kiểu/miền đầy đủ và nêu bảo đảm Newton có điều kiện theo decrement | ứng dụng/bảo đảm |
+| D | D04 | Dựng hàm chắn log với kiểu/miền đầy đủ; truy nguyên hợp affine và tổng theo Boyd §9.6; nêu bảo đảm Newton có điều kiện theo decrement | ứng dụng/bảo đảm |
 | D | D05 | Kiểm tra $-\log s$, chặn suy luận quá mức và nối sang nhu cầu giữ $Ax=b$; đáp án trong notes | bài tập/chuyển ý |
 | E | E01 | Bước Newton không ràng buộc có thể phá $Ax=b$ | nhu cầu |
-| E | E02 | Bài toán bậc hai đẳng thức khóa dữ kiện xuyên E và chuyển giao sang hồi quy trơn; phân biệt dừng khả thi bằng $\delta_{\rm eq}^2/2$ với dừng chưa khả thi bằng hai chuẩn phần dư | ví dụ/AI |
+| E | E02 | Bài toán bậc hai đẳng thức khóa dữ kiện xuyên E và chuyển giao sang hồi quy trơn; chưa dùng ký hiệu decrement hay phần dư trước khi chúng được định nghĩa tại E04 và E06 | ví dụ/AI |
 | E | E03 | Tham số hóa $F\in\mathbb R^{n\times(n-p)}$, $z\in\mathbb R^{n-p}$ loại đẳng thức | trực quan/hình thức |
 | E | E04 | Newton khả thi dùng biến phụ $\eta$, ép $A\Delta x=0$ và dừng bằng $\delta_{\rm eq}^2/2$ | thuật toán |
 | E | E05 | Bước từ $(1/2,1/2)$ với $\eta=-4/5$ giữ khả thi và đến nghiệm | ứng dụng/bài tập |
-| E | E06 | Khi khó tìm điểm đầu khả thi, Newton primal–dual giảm đồng thời hai phần dư, chọn bước trong miền, cập nhật và dừng bằng hai ngưỡng | nhu cầu/thuật toán |
+| E | E06 | Khi khó tìm điểm đầu khả thi, Newton primal–dual giảm đồng thời hai phần dư, chọn bước trong miền, cập nhật và dừng bằng hai ngưỡng; notes giữ bất đẳng thức quay lui theo chuẩn phần dư | nhu cầu/thuật toán |
 | E | E07 | Bước từ $(0,0,0)$ phục hồi khả thi và đến nghiệm | bài tập/triển khai |
 | Z | Z01 | Bảng quyết định phân biệt bốn họ hướng; giảm dốc nhất dùng giả thiết bảo đảm của B04 và dừng bằng $\|g\|_*$ | tổng kết |
 | Z | Z02 | Bốn nhiệm vụ đo tìm bước; kiểm tra $\phi(s)=s-\log s$ tự điều chỉnh; giải đúng bài bậc hai đẳng thức; phân loại ca hồi quy trơn | đánh giá LLO6–10 |

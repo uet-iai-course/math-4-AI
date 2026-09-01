@@ -166,3 +166,32 @@ Phạm vi rà lại bắt buộc: P03; C07–D05; E04–E07; Z02; hai trang lân
 - Hai vòng rà soát độc lập đã sửa định nghĩa hàm tự điều chỉnh nhiều biến thành hàm lồi $C^3$ trên miền mở, lồi; hậu kiểm toán học và mạch đọc đều đạt.
 - Máy chủ HTTP cục bộ tại cổng tạm 8878 trả 200 cho viewer, Markdown và sáu SVG. Không có Browser tích hợp trong lượt này, nên cổng hình dùng raster cục bộ và kiểm tra HTTP.
 - Liên kết ghi chú Bài 04 chỉ được mở trên trang chỉ mục sau khi các cổng nội dung, công thức, khối Markdown, tài sản và HTTP đều đạt.
+
+## 13. Vòng chỉnh sửa theo phản hồi ngày 2026-09-01
+
+| Mức độ | Trang/tệp | Lý do thay đổi | Thay đổi | Trạng thái |
+|---|---|---|---|---|
+| trung bình | A07 | Cụm “chứng nhận phù hợp” mơ hồ, không nói rõ đại lượng kiểm | Ở đây dùng chuẩn gradient; độ giảm Newton và phần dư chỉ xuất hiện sau khi được định nghĩa | đã đóng |
+| trung bình | B03 | Thiếu cầu nối giải thích vì sao quỹ đạo zigzag dẫn tới khái niệm chuẩn | Mặt slide gọi rõ quỹ đạo theo chuẩn Euclid; notes nối sang khung chuẩn ở B02 | đã đóng |
+| trung bình | B05 | Bảo đảm tuyến tính chưa nêu đủ giả thiết và dễ lẫn với số điều kiện phổ của bậc hai | Nêu $\mu$-lồi mạnh, gradient $M$-Lipschitz, bước $t=1/M$, hệ số co $1-\mu/M$ và phân biệt hai số điều kiện | đã đóng |
+| trung bình | D04 | Phép hợp affine và tổng bảo toàn tính tự điều chỉnh chuẩn chưa được truy nguyên | Deck và ghi chú cùng dựng $\Phi(x)=-\sum_i\log(b_i-a_i^Tx)$ với miền, kiểu đại lượng và nguồn Boyd §9.6 | đã đóng |
+| trung bình | E02 | Ký hiệu $\delta_{\rm eq}$, $r_d$, $r_p$ xuất hiện trên mặt slide trước khi được định nghĩa | Bỏ ký hiệu và tiêu chuẩn dừng khỏi mặt slide; E04 và E06 định nghĩa chúng đúng vị trí | đã đóng |
+| nhẹ | E06 | Bất đẳng thức quay lui theo chuẩn phần dư cần được giữ đúng vị trí | Notes và Chủ đề 12 dùng thống nhất $r$, $\Delta x$, $\Delta\nu$, điều kiện giảm đủ và điểm thử thuộc miền | đã đóng |
+| nhẹ | lecture note nhóm F | Thuật ngữ “hàm cưỡng bức” thiếu thuật ngữ Anh chuẩn | Sửa thành “hàm cưỡng bức (coercive)” | đã đóng |
+| nhẹ | lecture note tài liệu tham khảo | Tài liệu MIT ghi thiếu giảng viên thứ hai | Ghi Stephen Boyd và Pablo Parrilo theo danh mục nguồn MIT của kho | đã đóng |
+
+Vòng này không thêm, bỏ hoặc đổi thứ tự trang; giữ nguyên 40 slide, 7 mạch và thứ tự DOM. Chỉ sửa `lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`, `materials/lec-04/lecture-note.md`, `planning/lec-04/outline.md`, `planning/lec-04/storyboard.md`, `planning/lec-04/source-map.md` (không thay đổi nội dung vì đã xác nhận giảng viên Boyd–Parrilo) và `planning/lec-04/review-log.md`.
+
+### Phản biện độc lập và xử lý
+
+- Rà soát sư phạm và kiểm định toán học: đạt, không có lỗi chặn.
+- Rà soát sinh viên phát hiện `decrement` xuất hiện sớm ở A07 và ký hiệu bước E06 lệch với ghi chú. A07 nay chỉ dùng chuẩn gradient và báo trước các tiêu chuẩn sau; E06 thống nhất $\Delta x,\Delta\nu$ với Chủ đề 12.
+- Rà soát chuyên gia phát hiện cụm “trong ca khả vi hai lần”; đã sửa thành “trong trường hợp khả vi hai lần”. Mục nguồn `§§6.5, 10.1` được giữ vì §6.5 là nguồn cho mô hình hồi quy trơn, còn nghiệm KKT được ghi rõ là phép kiểm tra trực tiếp; siêu dữ liệu Boyd–Parrilo được giữ theo `sources/MIT/README.md` và `source-map.md`.
+- Rà soát mạch kể chuyện đề nghị làm lộ cầu B03→B02; mặt B03 nay gọi rõ đây là quỹ đạo theo chuẩn Euclid. Không thêm hộp điều phối lên A07/E02 để tránh tải chữ và nhãn quy trình; cầu nối vẫn hiện ở nội dung B01, E01 và ghi chú diễn giả.
+
+### Cổng bàn giao
+
+- Năm phạm vi rà soát độc lập đã hoàn tất: chuyên gia, sinh viên, toán học, sư phạm và mạch kể chuyện. Các phát hiện nhỏ đã được xử lý; hậu kiểm toán học và mạch kể chuyện đều `PASS`.
+- Kiểm tra tĩnh đạt: 40 ID duy nhất, 40 ghi chú diễn giả, 7 section ngoài; thẻ `section`, `div`, `aside`, `ol`, `ul`, `table` cân bằng; Markdown bắt đầu bằng heading cấp một, không dùng delimiter LaTeX ngoài `$...$` và `$$...$$`; `git diff --check` sạch.
+- Máy chủ HTTP cục bộ tại cổng tạm 8884 trả 200 cho deck, viewer, Markdown, CSS, RevealJS, plugin, KaTeX và sáu SVG. Máy chủ đã dừng sau kiểm tra.
+- Codex Slides xác nhận dự án `20260828120744-lecture-04-t-i-u-tr-n-v-r-ng-bu-c-ng-th--d4es` ở trạng thái draft, có đúng 40 trang, 40 mục outline và sáu nguồn đúng vai trò. Browser tích hợp và trình duyệt headless cục bộ không khả dụng trong phiên này, nên không tuyên bố đã rà trực quan lại sau các thay đổi chữ; cổng hình học trước đó vẫn được ghi ở Mục 11.

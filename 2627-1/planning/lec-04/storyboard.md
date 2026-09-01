@@ -47,12 +47,12 @@ Các bước ví dụ và trực quan có thể cùng trang khi cùng phục v�
 | A04 | Khóa mọi số, đường mức, điểm đầu và gradient nhưng chưa lộ quỹ đạo | Trực quan hướng → A05 chọn bước | LLO6/LLO8 | sửa hình tổng quan; giữ quỹ đạo cho B03 |
 | A05 | Phân biệt tìm kiếm đường chính xác với quay lui thực hành, khóa thuật ngữ Việt–Anh lần đầu | Ví dụ → A06 chạy Armijo | LLO8/CLO2 | gộp MIT 10-6 |
 | A06 | Cho một lần tính Armijo kiểm chứng được | Quy tắc bước → A07 đóng vòng lặp | LLO8 | thêm bảng tính |
-| A07 | Gom đúng hướng, bước, cập nhật và dừng; yêu cầu chạy vòng kế | Kết quả Armijo → B01 hỏi tốc độ | LLO6/LLO8 | gộp thuật toán+bài tập |
+| A07 | Gom đúng hướng, bước, cập nhật và dừng; ở đây dùng chuẩn gradient, còn các tiêu chuẩn khác chỉ xuất hiện sau khi được định nghĩa; yêu cầu chạy vòng kế | Kết quả Armijo → B01 hỏi tốc độ | LLO6/LLO8 | gộp thuật toán+bài tập |
 | B01 | Tạo nhu cầu thay đổi hình học hướng do điều kiện hóa | Khuôn A → B03 quan sát zigzag | LLO6 | giữ MIT 10-8 |
-| B03 | Hiển thị quỹ đạo và hệ số co trước định nghĩa chuẩn | Nhu cầu → B02 gọi tên gradient | LLO6 | đổi thứ tự theo chu trình; SVG tự vẽ |
+| B03 | Hiển thị quỹ đạo và hệ số co trước định nghĩa chuẩn; notes nêu cầu sang B02: quỹ đạo theo chuẩn Euclid, trang sau đặt gradient vào khung chuẩn | Nhu cầu → B02 gọi tên gradient | LLO6 | đổi thứ tự theo chu trình; SVG tự vẽ |
 | B02 | Đặt gradient là trường hợp Euclid, tránh đồng nhất mọi chuẩn | Ví dụ → B04 khái quát | LLO6/CLO1 | giữ MIT 10-7 |
 | B04 | Định nghĩa chuẩn đối ngẫu cùng hướng normalized và unnormalized | Euclid → B05 chuẩn bậc hai | LLO6 | sửa đủ $\|g\|_*=\max_{\|v\|\le1}g^Tv$ |
-| B05 | Biến chọn chuẩn thành tiền điều kiện và khóa hội tụ tuyến tính có điều kiện/số điều kiện | Hình thức → B06 so sánh | LLO6/LLO8 | sửa bảo đảm |
+| B05 | Biến chọn chuẩn thành tiền điều kiện và khóa hội tụ tuyến tính có điều kiện: $f$ $\mu$-lồi mạnh, gradient $M$-Lipschitz hoặc $\mu I\preceq\nabla^2f\preceq MI$, bước $t=1/M$, $\kappa=M/\mu$; phân biệt với $\kappa_2(H)$ của bậc hai A04 | Hình thức → B06 so sánh | LLO6/LLO8 | sửa bảo đảm |
 | B06 | Đo khả năng tính hai hướng và giải thích khác biệt | Ứng dụng chuẩn → C01 mở Newton | LLO6/LLO8 | thêm bài tập |
 | C01 | Chỉ ra mô hình bậc nhất bỏ qua độ cong | B06 → C03 cho Newton trên bậc hai | LLO6 | giữ MIT 10-14 |
 | C03 | Cho kết quả một bước trước công thức tổng quát | Nhu cầu → C02 giải thích bằng mô hình | LLO6 | thêm ví dụ dẫn nhập |
@@ -65,14 +65,14 @@ Các bước ví dụ và trực quan có thể cùng trang khi cùng phục v�
 | D01 | Nêu giới hạn của hằng số hội tụ cổ điển | Newton → D03 quan sát đạo hàm bậc ba | LLO7 | giữ MIT 10-24 |
 | D03 | Cho tỷ số $|\phi'''|/(\phi'')^{3/2}=2$ làm trực quan định lượng trước định nghĩa | Nhu cầu → D02 hình thức hóa | LLO7 | sửa trực quan, dùng lại C08 |
 | D02 | Định nghĩa tự điều chỉnh một và nhiều chiều | Ví dụ → D04 phép tính đóng | LLO7/CLO1 | giữ MIT 10-25 |
-| D04 | Dựng hàm chắn log với $a_i,b_i,m$ và miền trong đầy đủ; nêu bảo đảm có điều kiện theo decrement | Định nghĩa → D05 kiểm tra/giới hạn | LLO7 | sửa ứng dụng+bảo đảm; chi tiết cận trong notes |
+| D04 | Dựng hàm chắn log với $a_i,b_i,m$ và miền trong đầy đủ; truy nguyên hợp affine và tổng theo Boyd §9.6; nêu bảo đảm có điều kiện theo decrement | Định nghĩa → D05 kiểm tra/giới hạn | LLO7 | sửa ứng dụng+bảo đảm; chi tiết cận trong notes |
 | D05 | Đo kiểm tra $-\log s$ không lộ đáp án và ngăn suy luận tự bảo đảm nghiệm | Phép tính → E01 kết hợp Newton với KKT | LLO7 | chuyển đáp án vào notes; sửa cầu nối |
 | E01 | Chỉ ra tự điều chỉnh không giữ khả thi và bước Newton thường có thể phá $Ax=b$ | Newton C và giới hạn D → E02 ví dụ đẳng thức | LLO9/LLO10 | sửa cầu D→E |
-| E02 | Khóa dữ kiện ví dụ E và chuyển giao sang hồi quy trơn với $\mathbf1^Tw=1$; phân biệt rõ hai tiêu chuẩn dừng theo trạng thái khởi đầu | Nhu cầu → E03 khử đẳng thức | LLO9/LLO10 | sửa ca AI, giả thiết không gian rỗng và tiêu chuẩn dừng |
+| E02 | Khóa dữ kiện ví dụ E và chuyển giao sang hồi quy trơn với $\mathbf1^Tw=1$; hoãn decrement và phần dư tới E04, E06 là nơi chúng được định nghĩa | Nhu cầu → E03 khử đẳng thức | LLO9/LLO10 | sửa ca AI và giả thiết không gian rỗng; bỏ ký hiệu xuất hiện sớm |
 | E03 | Trực quan hóa không gian rỗng và khóa $F,z$ | Ví dụ → E04 hệ khả thi | LLO9 | sửa kiểu đại lượng; SVG tự vẽ |
 | E04 | Nêu điều kiện khả nghịch, hệ khả thi với biến phụ $\eta$ và đẳng thức decrement có ràng buộc | Khử đẳng thức → E05 tính bước | LLO9/LLO10 | sửa ký hiệu và dừng $\delta_{\rm eq}^2/2\le\varepsilon$ |
 | E05 | Kiểm tra $A\Delta x=0$, $\eta=-4/5$ và bước đến nghiệm | Hệ khả thi → E06 mở chế độ không khả thi | LLO9 | sửa ký hiệu bài tập tính |
-| E06 | Mở bằng nhu cầu khó tìm điểm đầu khả thi rồi nêu khuôn tối thiểu: phần dư, hệ, điểm thử trong miền, cập nhật và hai ngưỡng dừng; chi tiết bất đẳng thức quay lui ở notes | Khả thi → E07 tính bước phục hồi | LLO9/LLO10 | sửa nhu cầu và giảm tải nhưng giữ đủ LLO10 |
+| E06 | Mở bằng nhu cầu khó tìm điểm đầu khả thi rồi nêu khuôn tối thiểu: phần dư, hệ, điểm thử trong miền, cập nhật và hai ngưỡng dừng; notes giữ bất đẳng thức quay lui theo chuẩn phần dư với $r=(r_d,r_p)$ | Khả thi → E07 tính bước phục hồi | LLO9/LLO10 | sửa nhu cầu và giảm tải nhưng giữ đủ LLO10 |
 | E07 | Đo lập RHS phần dư, nêu quy tắc LDLT/bổ Schur và nối thẳng bảng quyết định | Hệ không khả thi → Z01 tổng hợp | LLO10 | sửa cầu nối |
 | Z01 | Trả lời P03 bằng bảng chọn phương pháp, decrement đẳng thức và điều kiện bảo đảm; giảm dốc nhất dùng giả thiết B04 và dừng bằng $\|g\|_*$ | Kết quả A–E → Z02 tự kiểm tra | LLO6–10 | sửa thu hồi tự điều chỉnh và bảo đảm theo chuẩn |
 | Z02 | Dùng bốn nhiệm vụ cho tìm bước; kiểm tra tự điều chỉnh của $\phi$; giải bài $\min\frac12(x_1^2+4x_2^2)$ với $x_1+x_2=1$; và phân loại hồi quy trơn | Pipeline → Z03 nguồn/chuyển tiếp | LLO6–10/CLO1–2 | sửa câu hỏi để đo trực tiếp LLO7 và chép đủ mục tiêu LLO9–10 |
