@@ -67,7 +67,7 @@ Phân bổ này bao gồm toàn bộ 41 trang, kể cả trang tiêu đề, mụ
 
 - A03: hai ràng buộc tương đương với $x_1\le0$, $x_1+x_2=0$; “cùng tập khả thi” chỉ là định nghĩa tương đương trong ví dụ này, còn phép cải dạng tổng quát có thể thêm/bớt biến nhưng phải bảo toàn giá trị tối ưu và ánh xạ được nghiệm.
 - A04: giả thiết lồi của $D$, $f_i$ và affine của $Ax=b$ kết luận trực tiếp tập khả thi lồi; ghi chú dẫn tới định lý tập khả thi trong lecture note.
-- A05–A06: $f(x)=(x^2+1)/(x+2)$ trên $[0,2]$; ví dụ này cũng lồi, còn A07 ca 2 mới phân biệt tựa lồi không lồi; $x^*=\sqrt5-2$, $p^*=2\sqrt5-4$; mức $t=0{,}5$ khả thi theo nghĩa $S_t\ne\varnothing$, cụ thể $S_t=[0,0{,}5]$; bảo đảm sau $k$ vòng $u_k-l_k=(u_0-l_0)/2^k$ được nêu trên mặt slide A06, quy tắc dừng $u-l\le\varepsilon$ vẫn giữ nguyên.
+- A05 dùng $f(x)=x^3$ trên $[-1,1]$ để phân biệt tựa lồi với lồi ngay tại định nghĩa. A06 chuyển sang $f(x)=(x^2+1)/(x+2)$ trên $[0,2]$, nêu lại $D$, $f$ và $\phi_t$ trước bảng chia đôi; $x^*=\sqrt5-2$, $p^*=2\sqrt5-4$ và $u_k-l_k=(u_0-l_0)/2^k$.
 - B03: nghiệm $(3,0)$, giá trị $3$; SVG chỉ là cửa sổ hữu hạn của miền khả thi không bị chặn và đường mức đi qua $(3,0)$.
 - B05: nghiệm không ràng buộc $2$; trên $[0,1]$ nghiệm $1$, giá trị $4$; mục tiêu bậc hai lồi và ràng buộc affine được gọi tên là QP ngay trong ví dụ.
 - B06: nghiệm $(0{,}8,0{,}2)$, giá trị $0{,}8$.
@@ -75,7 +75,7 @@ Phân bổ này bao gồm toàn bộ 41 trang, kể cả trang tiêu đề, mụ
 - B10: QCQP với hai miền ellipse có Hessian $\operatorname{diag}(2,8)$ và $2I$; giao khác rỗng vì chứa $(0{,}8,0{,}7)$.
 - B09: trên miền chung $2x_1+x_2\ge1$, $x_1+3x_2\ge1$, $x\ge0$: ca a có $(2/5,1/5),3/5$; ca c có tập nghiệm $\{(0,x_2):x_2\ge1\}$, giá trị $0$; ca e có $(1/2,1/6),1/2$.
 - C05: nghiệm $(2,2)$, giá trị $1/4$; ví dụ đứng trước định nghĩa hình thức của GP.
-- C04: hộp kết luận là phát biểu định lý ngắn: GP và bài toán theo $y$ tương đương, $x^*=\exp(y^*)$, giá trị log biến đổi bằng $\log p^*$; điều kiện mục tiêu dương (hệ số $c_k>0$ trên miền $\mathbb R_{++}^n$) nêu trong ghi chú.
+- C04: phép đổi log cho song ánh giữa hai tập khả thi. Quan hệ $x^*=\exp(y^*)$ chỉ dùng khi tối ưu đạt được; quan hệ giá trị $\widetilde p^*=\log p^*$ cần $0<p^*<\infty$.
 - C06: mô hình dầm chuẩn hóa dùng $\min\sum_i h_i$ và $\sum_i d_i h_i^{-3}\le1$, $d=(0{,}1,0{,}2,0{,}3,0{,}4)$; sau $y_i=\log h_i$ thu được hai biểu thức log-tổng-mũ lồi.
 - C07: dạng lồi log-tổng-mũ; bài tập chỉ yêu cầu cải dạng, không mở tuyến giải số phụ.
 - D04: tính lồi của tập khả thi được ghi rõ theo định lý nghịch ảnh affine của nón lồi.

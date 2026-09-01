@@ -746,7 +746,7 @@ Các hệ số $d_i$ trong ví dụ dầm là số liệu chuẩn hóa để min
 
 **Giả thiết.** Bài toán GP có miền $x\in\mathbb R_{++}^n$, mục tiêu và các bất đẳng thức là đa thức dương, còn các đẳng thức là đơn thức.
 
-**Kết luận.** Sau $y=\log x$, lấy log mục tiêu và các vế dương, ta thu được một bài toán lồi. Ánh xạ $x=e^y$ bảo toàn các điểm khả thi và nghiệm tối ưu; nếu $p^*>0$ là giá trị tối ưu gốc thì giá trị tối ưu mới là $\widetilde p^*=\log p^*$.
+**Kết luận.** Sau $y=\log x$, lấy log mục tiêu và các vế dương, ta thu được một bài toán lồi. Ánh xạ $x=e^y$ là song ánh giữa hai tập khả thi. Nếu tối ưu đạt được, hai bài toán có các nghiệm tối ưu tương ứng; nếu $0<p^*<\infty$, giá trị tối ưu mới là $\widetilde p^*=\log p^*$.
 
 ::: proof
 Mỗi đơn thức $c_k\prod_jx_j^{a_{kj}}$ trở thành

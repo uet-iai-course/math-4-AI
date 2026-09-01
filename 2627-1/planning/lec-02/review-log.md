@@ -1,5 +1,12 @@
 # Nhật ký rà soát Lecture 02
 
+## Hậu kiểm mạch khái niệm và giả thiết — 2026-09-01
+
+- A05 dùng $x^3$ trên $[-1,1]$ làm ví dụ tựa lồi nhưng không lồi, vì vậy sự khác nhau giữa hai khái niệm hiện ra ngay tại định nghĩa thay vì chỉ nằm trong ghi chú.
+- A06 nêu lại miền $D$, hàm phân thức $f$ và bài toán khả thi $\phi_t(x)\le0$ trước bảng chia đôi; bảng không còn phụ thuộc vào ví dụ của trang trước.
+- C04 phân biệt ba mệnh đề: song ánh giữa hai miền biến, quan hệ giữa nghiệm khi tối ưu đạt được, và quan hệ giá trị $\widetilde p^*=\log p^*$ khi $0<p^*<\infty$.
+- Không thay số trang hoặc thứ tự mạch; các sửa đổi chỉ khép khoảng trống về trực giác và giả thiết.
+
 ## 1. Trạng thái
 
 - Bản RevealJS có 41 trang và một SVG cục bộ sau vòng chỉnh sửa storyboard lần hai.
