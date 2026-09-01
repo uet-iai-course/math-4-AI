@@ -690,7 +690,7 @@ $$
 |\phi'''(s)|\le 2\phi''(s)^{3/2}
 $$
 
-với mọi $s\in I$. Cho $f:\operatorname{dom}f\to\mathbb R$ lồi, với $\operatorname{dom}f\subseteq\mathbb R^n$ mở và lồi, và $f\in C^3(\operatorname{dom}f)$. Hàm $f$ là tự điều chỉnh chuẩn nếu hạn chế $t\mapsto f(x+tv)$ thỏa bất đẳng thức trên trên mọi đoạn của đường thẳng nằm trong miền. Khi $f$ lồi chặt, $\nabla^2f(x)\succ0$ và nghiệm tồn tại, độ giảm Newton là
+với mọi $s\in I$. Cho $f:\operatorname{dom}f\to\mathbb R$ lồi, với $\operatorname{dom}f\subseteq\mathbb R^n$ mở và lồi, và $f\in C^3(\operatorname{dom}f)$. Hàm $f$ là tự điều chỉnh chuẩn nếu hạn chế $t\mapsto f(x+tv)$ thỏa bất đẳng thức trên mọi đoạn của đường thẳng nằm trong miền. Khi $f$ lồi chặt, $\nabla^2f(x)\succ0$ và nghiệm tồn tại, độ giảm Newton là
 
 $$
 \delta_N(x)^2
@@ -947,7 +947,7 @@ $$
 
 **Câu hỏi kiểm tra.** Nếu $r_d=0$ nhưng $r_p\ne0$, vì sao chưa thể dừng? Hàng khối thứ hai của hệ Newton sửa $r_p$ như thế nào khi nhận bước đầy đủ?
 
-## F. Ca tổng hợp trong AI và bản đồ lựa chọn
+## Z. Ca tổng hợp trong AI và bản đồ lựa chọn
 
 ### 13. Hồi quy trơn với tổng hệ số bằng một
 
@@ -1164,7 +1164,7 @@ $$
 Thay vào phương trình Newton cho đúng hệ phần dư đã nêu ở trên. Vì vậy, hai phần dư không phải hai tiêu chuẩn ghép tùy ý; chúng là hai khối của cùng một hệ phương trình cần giải.
 :::
 
-## Các định lý và chứng minh quan trọng — Nhóm F
+## Các định lý và chứng minh quan trọng — Nhóm Z
 
 ### Hệ quả: tính duy nhất của hồi quy trên siêu phẳng
 

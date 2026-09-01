@@ -238,3 +238,11 @@ Vòng này không thêm, bỏ hoặc đổi thứ tự trang; giữ nguyên 40 s
 - Thứ tự B01→B03→B02 được giữ theo storyboard. B03 tự nêu $d=-g$ và tìm kiếm đường chính xác trước công thức quỹ đạo, nên ký hiệu không xuất hiện đột ngột; mã `data-slide-id` không hiển thị trên mặt trang.
 - Lượt tái kiểm cuối dùng `read_text_file` đúng một lần cho mỗi tệp và kết thúc `PASS (0/8 gạch lỗi)`; `requested_model` và `observed_model` cùng là `z-ai/glm-5.3-flash`, nhà cung cấp OpenRouter.
 - Sau các sửa theo phản biện, deck được kết xuất lại thành PDF 40 trang, khung 16:9. Contact sheet và trang A02 được xem trực tiếp; nội dung, công thức và hình đều hiển thị đầy đủ, không tràn hoặc chồng lấn. Deck, Markdown và material viewer cùng trả HTTP 200 tại cổng kiểm định cục bộ.
+
+## 15. Rà soát OpenRouter bổ sung ngày 2026-09-01
+
+- Người dùng chỉ cho phép gửi bốn tệp: deck, lecture note, outline và storyboard của Bài 04. Reviewer được đặt trong thư mục tạm chỉ chứa bốn tệp này; `.env`, khóa API, SVG, `review-log.md` và các tệp khác không thuộc phạm vi đọc.
+- Metadata runtime xác nhận `requested_model` và `observed_model` cùng bằng `z-ai/glm-5.3-flash`, nhà cung cấp OpenRouter. Yêu cầu hoàn tất qua HTTP 200, không có `api_transport_error`.
+- Reviewer kết luận `PASS`, không có lỗi nghiêm trọng hoặc lỗi lớn. Các phép tính Armijo, Newton, Newton–KKT, cận hội tụ và điều kiện tự điều chỉnh được tính lại độc lập và đều khớp.
+- Sáu lỗi nhẹ đã được xử lý: A04 thống nhất ký hiệu $\kappa_2(H)$; B05 dùng $\nabla^2f(x)$ thay cho ký hiệu $H$ bị quá tải; C06 phát biểu rõ mức giảm cố định trong pha tắt dần; lecture note bỏ từ lặp; ghi chú P02 và Z03 bỏ lời biên tập; mục tổng hợp cùng nhóm định lý tương ứng của lecture note đổi từ `F` thành `Z` để khớp deck, outline và storyboard.
+- Rà soát độc lập sau chỉnh sửa phát hiện một nhãn `Nhóm F` còn sót trong phần định lý của lecture note. Nhãn đã đổi thành `Nhóm Z`; các kiểm tra cấu trúc, công thức, khối mở/đóng và tài nguyên cục bộ đều đạt.
