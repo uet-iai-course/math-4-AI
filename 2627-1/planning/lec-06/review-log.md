@@ -216,3 +216,7 @@ Các mục của những vòng trước được giữ nguyên để truy nguyê
 - Chứng minh CG định nghĩa $\mathcal K_0=\{0\}$ và suy ra rõ $p_k-p_0\in\mathcal K_k$, $r_k\perp\mathcal K_k$ trước khi dùng điều kiện tối ưu trên $p_0+\mathcal K_k$.
 - Khóa ký hiệu của outline đổi kích hoạt chuẩn hóa theo lô từ $H$ sang $Z$. Lecture note bỏ cụm “trong quy ước của deck”; ghi chú Z03 nêu trực tiếp các giả thiết và chi phí cần kiểm.
 - Tác tử rà soát độc lập kiểm lại sau sửa và trả `PASS`. Viewer kết xuất lại 628 nút KaTeX của lecture note, không có `katex-error`; bố cục tài liệu đã mở và trạng thái chờ được ẩn.
+
+### Bổ sung sau rà soát chéo toàn học phần
+
+- A03 được gắn nhãn “Ví dụ dẫn nhập” và nói rõ các trạng thái vòng đầu là kết quả cần được giải thích bằng quy tắc cập nhật; AdaGrad, RMSProp và Adam không còn xuất hiện như ký hiệu hình thức chưa định nghĩa.
