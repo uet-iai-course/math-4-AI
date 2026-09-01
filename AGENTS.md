@@ -292,6 +292,20 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 - Trang chỉ mục chỉ liên kết bộ trang chiếu và Markdown học tập công khai qua viewer. Không hiển thị hoặc liên kết `outline.md`, `storyboard.md`, `review-log.md`, thư mục `planning/`, nguồn nội bộ hoặc tệp làm việc.
 - Sau khi sửa, kiểm tra tiêu đề trang, nhãn học kỳ, liên kết quay lại, thứ tự thẻ, đường dẫn tương đối, khả năng dùng bàn phím và hiển thị ở màn hình rộng lẫn hẹp.
 
+## Điều phối mô hình trong dự án
+
+- Codex chính giữ vai trò điều phối viên: phân rã công việc, duyệt kế hoạch, hợp nhất kết quả, tự kiểm định đầu ra và thực hiện kiểm định cuối.
+- Người dùng cho phép các worker OpenRouter đọc và gửi nội dung các tệp trong workspace tới OpenRouter để thực hiện nhiệm vụ được giao, ngoại trừ mọi tệp `.env`. Không được đọc, đưa vào prompt, ghi log hoặc gửi nội dung `.env`, `.env.*` hay giá trị bí mật tới OpenRouter.
+- Mặc định dùng `z-ai/glm-5.3-flash` qua OpenRouter cho worker. Chạy từ `openrouter-mcp/` bằng `uv run openrouter-mcp-reader`, `uv run openrouter-mcp-reviewer` hoặc `uv run openrouter-mcp-writer`; không dùng `collaboration.spawn_agent` thay thế ba vai trò này và không chuyển ngầm sang worker mặc định khi OpenRouter lỗi.
+- Dùng vai trò `openrouter_reader` qua `openrouter-mcp-reader` cho kiểm kê, lập kế hoạch, ánh xạ mẫu, phân tích nguồn và các nhiệm vụ đọc khác.
+- Dùng vai trò `openrouter_reviewer` qua `openrouter-mcp-reviewer` cho kiểm định storyboard, năm vòng rà soát độc lập, rà toán học và các lượt rà lại chỉ đọc.
+- Dùng vai trò `openrouter_writer` qua `openrouter-mcp-writer` cho một phần việc ghi đã được giới hạn bằng `--repo-root`, danh sách tệp và đầu ra cụ thể. Ưu tiên cấp một thư mục con hoặc thư mục tạm thay vì toàn bộ kho.
+- Khi `--repo-root` của writer không phải gốc kho, truyền thêm `--api-key-root` trỏ tới gốc kho để phía điều phối viên nạp `.env`. Không đưa gốc nạp khóa vào công cụ, prompt hoặc nội dung worker.
+- Luôn truyền `--json`; dùng `requested_model`, `observed_model` và `provider` trong kết quả cầu nối làm bằng chứng runtime. Lời tự khai trong nội dung worker không phải bằng chứng về mô hình hay nhà cung cấp.
+- Khi cần chạy song song, khởi chạy mỗi reader hoặc reviewer trong một tiến trình riêng rồi chờ tất cả hoàn tất. Không cho hai worker có quyền ghi sửa các tệp trùng nhau cùng lúc; mặc định chỉ chạy một writer.
+- Mỗi nhiệm vụ worker phải hẹp, có đầu vào, đầu ra, phạm vi tệp và điều kiện hoàn thành cụ thể. Codex chính phải rà, chấp nhận hoặc bác bỏ kết quả trước khi bắt đầu giai đoạn phụ thuộc.
+- Nếu worker OpenRouter lỗi, dừng giai đoạn phụ thuộc, giữ nguyên kho và báo nguyên văn lỗi. Không âm thầm dùng worker Codex khác để thay thế.
+
 ## Quản lý phiên bản
 
 - Mỗi bộ trang chiếu phải có một commit riêng và được đẩy lên kho từ xa trước khi bàn giao. Chỉ thực hiện bước này sau khi bộ trang chiếu đã vượt kiểm định cuối, `index.html` đã được cập nhật đúng và không còn lỗi `chặn bàn giao` hoặc `nghiêm trọng`.

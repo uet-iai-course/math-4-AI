@@ -4,6 +4,18 @@
 !/index-pages.css
 !/2627-1/
 !/AGENTS.md
+!/codex-orchestrator
+!/.codex/
+!/.codex/config.toml
+!/.codex/README.md
+!/.codex/workflow-smoke-test-prompt.md
+!/openrouter-mcp/
+!/openrouter-mcp/**
+
+/openrouter-mcp/.venv/
+/openrouter-mcp/**/__pycache__/
+/openrouter-mcp/.pytest_cache/
+/openrouter-mcp/tmp/
 
 /2627-1/**/*.md
 !/2627-1/materials/
