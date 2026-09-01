@@ -450,7 +450,7 @@ $$
 \mathcal B=\{(0,0,t):t<p^*\}
 $$
 
-lồi và không giao $\mathcal A$. Định lý siêu phẳng tách cho một vector pháp tuyến $(\widetilde\lambda,\widetilde\nu,\mu)$ với $\widetilde\lambda\ge0$ và $\mu\ge0$.
+lồi và không giao $\mathcal A$. Định lý siêu phẳng tách cho một véc-tơ pháp tuyến $(\widetilde\lambda,\widetilde\nu,\mu)$ với $\widetilde\lambda\ge0$ và $\mu\ge0$.
 
 Điểm Slater, sau khi làm việc trong bao affine của $D$ và loại các hàng đẳng thức dư thừa, loại trường hợp $\mu=0$. Chuẩn hóa theo $\mu>0$ cho
 
@@ -541,14 +541,14 @@ $$
 \end{array}
 $$
 
-Đường ứng với $\lambda^*=2$ đi qua $(0,5)$ và có vector pháp tuyến $(2,1)$. Vì $5=p^*$, đường này vừa cho cận tốt nhất vừa tiếp xúc tại giá trị tối ưu. Hệ số góc $-2=-\lambda^*$ báo trước dấu của độ nhạy khi vế phải ràng buộc được nới.
+Đường ứng với $\lambda^*=2$ đi qua $(0,5)$ và có véc-tơ pháp tuyến $(2,1)$. Vì $5=p^*$, đường này vừa cho cận tốt nhất vừa tiếp xúc tại giá trị tối ưu. Hệ số góc $-2=-\lambda^*$ báo trước dấu của độ nhạy khi vế phải ràng buộc được nới.
 :::
 
-**Ý nghĩa và ứng dụng trong AI.** Hình học này giải thích vì sao nhân tử là một “giá biên”: nó là độ nghiêng cần để một siêu phẳng đỡ cân bằng mục tiêu với mức vi phạm ràng buộc. Với nhiều ràng buộc, đường trở thành siêu phẳng; với SDP, vector pháp tuyến trở thành một nhân tử ma trận trong nón PSD.
+**Ý nghĩa và ứng dụng trong AI.** Hình học này giải thích vì sao nhân tử là một “giá biên”: nó là độ nghiêng cần để một siêu phẳng đỡ cân bằng mục tiêu với mức vi phạm ràng buộc. Với nhiều ràng buộc, đường trở thành siêu phẳng; với SDP, véc-tơ pháp tuyến trở thành một nhân tử ma trận trong nón PSD.
 
 **Điểm dễ nhầm.** Không khẳng định $\mathcal G$ lồi chỉ vì các hàm thành phần lồi. Nếu infimum không đạt, điểm $(0,p^*)$ có thể không thuộc $\mathcal A$; phát biểu tổng quát phải dùng biên của $\operatorname{cl}\mathcal A$. Phương trình $t+\lambda u=g(\lambda)$ mô tả đường đỡ, không phải mọi điểm của tập giá trị đều nằm trên đường đó.
 
-**Câu hỏi kiểm tra.** Trong hình của ví dụ, vì sao đường $t=9/2-u$ là một đường đỡ hợp lệ nhưng không chứng nhận $p^*=5$? Vector nào vuông góc với đường $t=5-2u$?
+**Câu hỏi kiểm tra.** Trong hình của ví dụ, vì sao đường $t=9/2-u$ là một đường đỡ hợp lệ nhưng không chứng nhận $p^*=5$? Véc-tơ nào vuông góc với đường $t=5-2u$?
 
 ### Định lý: tập mở rộng của bài toán lồi là lồi
 
@@ -652,7 +652,7 @@ Bất đẳng thức bên trái nói $(\lambda^*,\nu^*)$ cực đại hóa $L$ t
 **Trực quan.** Theo hướng $x$, giá trị tại điểm yên ngựa nằm ở đáy; theo hướng nhân tử, nó nằm ở đỉnh. Hình dạng “đáy theo một hướng, đỉnh theo hướng kia” giải thích tên gọi. Cùng quan hệ xuất hiện khi một đường đỡ được nâng tới đúng $(0,p^*)$ và tiếp xúc với tập mở rộng.
 
 ::: example
-**Ví dụ tính được.** Với bài toán xuyên suốt, lấy $x^*=2$ và $\lambda^*=2$. Vì ràng buộc hoạt động tại $x^*$,
+**Ví dụ tính được.** Với bài toán xuyên suốt, lấy $x^*=2$ và $\lambda^*=2$. Vì $f_1(x^*)=0$,
 
 $$
 L(2,\lambda)=f_0(2)+\lambda f_1(2)=5
@@ -1308,7 +1308,7 @@ $$
 
 **Trực quan.** Nón $K$ xác định phía khả thi của ràng buộc; nón đối ngẫu chứa các véc-tơ tạo tích vô hướng không âm với mọi hướng trong $K$. Vì $-f(x)\in K$, hạng ghép với một nhân tử đối ngẫu khả thi không dương.
 
-![Thứ tự theo nón trên véc-tơ và ma trận được kiểm tra bằng hiệu; hình cũng chỉ ra các cặp không so sánh được và nhấn mạnh rằng thứ tự PSD không phải so sánh từng phần tử.](img/lec-02/cone-induced-orders.svg)
+![Thứ tự theo nón trên véc-tơ và ma trận được kiểm tra bằng hiệu; hình cũng chỉ ra các cặp không so sánh được và nhấn mạnh rằng thứ tự PSD không phải so sánh từng phần tử.](img/lec-03/cone-induced-orders.svg)
 
 ::: example
 **Ví dụ tính được.** Với $K=\mathbb R_+^m$, ta có $K^*=\mathbb R_+^m$ và thu lại các nhân tử thành phần $\lambda_i\ge0$.

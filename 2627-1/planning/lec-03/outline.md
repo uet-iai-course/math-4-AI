@@ -29,8 +29,8 @@ $$
 |---|---|---|---|
 | P | P00 | Đối ngẫu Lagrange là chủ đề của Buổi 3 | định danh |
 | P | P01 | Bài dùng lại dạng chuẩn, tính lồi, gradient, nón và thứ tự theo nón; nội tương đối, dưới gradient và nón đối ngẫu sẽ được định nghĩa tại chỗ | tiên quyết |
-| P | P02 | Trích nguyên LLO4–5; tách Slater, KKT và độ nhạy thành sản phẩm bổ trợ | mục tiêu |
-| P | P03 | Tuyến cận → khít → hình học → KKT → độ nhạy giải quyết vấn đề trung tâm | bản đồ |
+| P | P02 | Nêu LLO4–5 trực tiếp; nối Slater, KKT và độ nhạy bằng vai trò toán học thay cho nhãn biên soạn | mục tiêu |
+| P | P03 | Chuỗi cận → khít → hình học → KKT → độ nhạy giải quyết vấn đề trung tâm | bản đồ lập luận |
 | A | A01 | Nghiệm ứng viên chưa phải là chứng nhận nếu chưa có cận | nhu cầu |
 | A | A02 | Ví dụ xuyên suốt xác lập $f_0,f_1,\mathcal F,x^*,p^*$ | ví dụ dẫn nhập |
 | A | A03 | Cực tiểu hóa $L(\cdot,\lambda)$ tạo một họ cận dưới | trực quan |
@@ -49,23 +49,23 @@ $$
 | C | C03 | Với $u=f_1(x)$, $t=f_0(x)$, đường cận $t+\lambda u=g(\lambda)$ nằm dưới mọi cặp giá trị và có tung độ cắt $g(\lambda)$ | trực quan/ví dụ |
 | C | C02 | Hình thức hóa họ điểm vừa quan sát thành tập giá trị $\mathcal G$ | hình thức nền |
 | C | C04 | Tập mở rộng $\mathcal A$ cho $(0,p^*)\in\operatorname{bd}(\operatorname{cl}\mathcal A)$ khi $p^*$ hữu hạn; dùng bao đóng nếu infimum không đạt | hình thức |
-| C | C05 | Hệ số góc $-\lambda^*$, pháp tuyến $(\lambda^*,1)$ và hạng $\lambda^*\nabla f$ nối hình học với KKT | ứng dụng |
+| C | C05 | Hệ số góc $-\lambda^*$, pháp tuyến $(\lambda^*,1)$ và hạng $\lambda^*\nabla f$ của ràng buộc khít nối hình học với KKT mà chưa dùng thuật ngữ “hoạt động” | ứng dụng |
 | C | C06 | Đọc đường đỡ để xác định $g(\lambda)$, $p^*$ và độ khít | bài tập LLO5 |
 | C | C07 | Điểm yên ngựa của $L$: cực đại theo nhân tử, cực tiểu theo biến gốc; tương đương nghiệm gốc–đối ngẫu đều đạt và $p^*=d^*$ | hình thức/cầu nối KKT |
-| D | D01 | Cần hệ điều kiện cục bộ thay cho việc so sánh $f_0$ với mọi điểm khả thi | nhu cầu |
-| D | D05 | Trước khi giới thiệu nón pháp tuyến, dùng $\nabla_xL=0$ cho ví dụ có biến chạy trên toàn $\mathbb R$ để so sánh $x=2$ và $x=4$ | ví dụ dẫn nhập |
-| D | D02 | Bù trừ xác định ràng buộc hoạt động khi khoảng bằng không | trực quan/hình thức |
+| D | D01 | Cần hệ điều kiện cục bộ thay cho việc so sánh $f_0$ với mọi điểm khả thi; chỉ nói các ràng buộc khít tại nghiệm | nhu cầu |
+| D | D05 | Trước khi định nghĩa ràng buộc hoạt động và nón pháp tuyến, dùng $\nabla_xL=0$ cho hai ứng viên nằm trên biên $f_1(x)=0$ | ví dụ dẫn nhập |
+| D | D02 | Định nghĩa ràng buộc hoạt động rồi dùng bù trừ để nối trạng thái biên với nhân tử | trực quan/hình thức |
 | D | D03 | KKT gồm đúng bốn nhóm; điều kiện dừng tổng quát là $0\in\nabla_xL(x^*,\lambda^*,\nu^*)+N_D(x^*)$ | hình thức |
 | D | D04 | Phiên bản KKT đang dùng chỉ áp dụng cho $D$ lồi, bất đẳng thức lồi khả vi và đẳng thức affine; Slater bảo đảm nhân tử cho tính cần, còn tính lồi cho tính đủ | giới hạn |
 | D | D06 | KKT diễn giải đánh đổi trong hồi quy có ràng buộc chuẩn | ứng dụng AI |
 | D | D07 | Dùng kết quả QP ở A08 để chỉ kiểm tra Slater, bốn nhóm KKT và giả thiết kết luận | bài tập |
-| E | E01 | Nhân tử còn đo tác động của việc nới ràng buộc | nhu cầu |
+| E | E01 | Nới hoặc siết vế phải làm đổi giá trị tối ưu; nhân tử cho cận và, khi khả vi, độ dốc cục bộ | nhu cầu |
 | E | E02 | Nới $u$ trong ví dụ làm miền khả thi rộng hơn và $p^*(u)$ giảm | ví dụ/trực quan |
 | E | E03 | Định nghĩa tổng quát $p^*(u,v)$ và cận toàn cục | hình thức/định lý |
 | E | E04 | Định nghĩa dưới gradient bằng bất đẳng thức đường đỡ; đối ngẫu mạnh và đạt nghiệm cho $(-\lambda^*,-\nu^*)\in\partial p^*(0,0)$ | hình thức/giới hạn |
 | E | E05 | Áp dụng đầy đủ: $\lambda^*(0)=2$; tại $u=8$ ràng buộc hoạt động nhưng nhân tử bằng 0; với $u>8$ ràng buộc không hoạt động | ứng dụng |
-| E | E06 | Định nghĩa $K^*$, rồi với $F(x)\in\mathbb S^r$ dùng nhân tử $Z\in\mathbb S_+^r$ cùng cấp và kiểm tra hạng ghép SDP | mở rộng/bài tập |
-| Z | Z01 | Quy trình cận → khít → hình học → KKT → độ nhạy, kèm cầu nối nhân tử theo nón, trả lời P03 | tổng kết |
+| E | E06 | Dùng cùng khuôn với lecture note: $f(x)\preceq_K0$, $\lambda\in K^*$, rồi chuyên biệt $F(x)\in\mathbb S^r$, $Z\in\mathbb S_+^r$ và $\langle Z,F(x)\rangle=\operatorname{tr}(ZF(x))$ | mở rộng/bài tập |
+| Z | Z01 | Chuỗi cận → khít → hình học → KKT → độ nhạy, kèm cầu nối nhân tử theo nón, trả lời P03 | tổng kết |
 | Z | Z02 | Tự kiểm tra công thức, giả thiết, hình học, KKT và tính một xấp xỉ độ nhạy | đánh giá/bài tập E |
 | Z | Z03 | Nguồn và cầu nối sang tối ưu không ràng buộc/có đẳng thức | chuyển tiếp |
 
@@ -88,4 +88,4 @@ $$
 - Stephen Boyd, MIT 6.079/6.975, *Lecture 5: Duality* (2009), `sources/dual.pdf`; CC BY-NC-SA 4.0; chỉ dùng làm trục thứ tự và nguồn nội dung.
 - `sources/Bài tập chương 4.pdf` cùng lời giải PDF để đối chiếu; mọi kết quả được tính lại theo `math-spec.md`.
 - Đề cương chính thức và `sources/part1.docx` xác định phạm vi, LLO/CLO và chế độ nghiêm ngặt.
-- SVG tự vẽ bằng polyline lấy mẫu trực tiếp từ công thức: họ Lagrangian, hàm đối ngẫu, tập giá trị/đường đỡ và hàm giá trị nhiễu; không dùng ảnh raster từ PDF/PPTX.
+- Sáu SVG cục bộ của Bài 03 gồm năm hình tự vẽ cho Lagrangian, hàm đối ngẫu, tập giá trị, KKT, độ nhạy và một bản sao cục bộ của hình thứ tự theo nón đã dùng ở Bài 02. Lecture note không còn phụ thuộc đường dẫn ảnh của bài khác.

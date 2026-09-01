@@ -11,7 +11,7 @@
 ## 1. Trạng thái bản nháp
 
 - Bản hiện tại gồm 41 trang, đúng 7 section ngoài P/A/B/C/D/E/Z.
-- Outline, storyboard, RevealJS và năm SVG cục bộ đã đồng bộ.
+- Outline, storyboard, RevealJS và sáu SVG cục bộ đã đồng bộ.
 - Đã hợp nhất đủ năm báo cáo rà soát độc lập và áp dụng các quyết định trong Mục 8; thứ tự DOM đã qua cổng storyboard được giữ nguyên.
 - Trạng thái hiện tại: hậu kiểm toán học, storyboard, mạch kể chuyện và raster SVG đạt; không còn lỗi chặn hoặc nghiêm trọng. Lượt này không có Browser hoặc Chromium, nên không dùng kết quả trực quan cũ để khẳng định bố cục HTML sau sửa.
 
@@ -210,3 +210,14 @@ Sau thay đổi thứ tự, storyboard và outline đã dùng cùng thứ tự v
 - Kiểm định tĩnh đạt: 41 mã duy nhất, 41 ghi chú, 7 section ngoài; thẻ `section` và `aside` cân bằng; mọi tài sản tồn tại; SVG hợp lệ theo XML; `git diff --check` đạt.
 - Codex Slides xác nhận dự án `20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls` ở trạng thái draft với đúng 41 trang. Phiên hiện tại không có Browser hoặc trình duyệt headless nên không tuyên bố có vòng rà trực quan mới.
 - Hậu kiểm toàn khóa thay câu mô tả “mạch đo LLO5” bằng quan hệ giữa biến quyết định và không gian giá trị; nội dung toán và thứ tự trang không đổi.
+
+## 16. Đồng bộ nón, thuật ngữ và nội dung công khai ngày 2026-09-01
+
+- P02 bỏ các nhãn biên soạn “trích đề cương” và “sản phẩm bổ trợ”; P03 đổi thành “Chuỗi lập luận đối ngẫu”. Ghi chú P03, E01 và Z03 chỉ giữ nguồn học thuật, không còn đường dẫn tệp nội bộ hay mô tả quy trình dựng tài sản.
+- C05, D01 và D05 dùng “ràng buộc khít” hoặc phương trình biên $f_i(x)=0$. D02 là điểm đầu tiên định nghĩa thuật ngữ “ràng buộc hoạt động”, rồi mới dùng nó trong bù trừ và các trang sau.
+- E06 và lecture note dùng cùng khuôn: $f(x)\preceq_K0$, $\lambda\in K^*$, $L=f_0+\langle\lambda,f\rangle$; trường hợp ma trận nêu $F(x)\in\mathbb S^r$, $Z\in\mathbb S_+^r$ cùng cấp và $\langle Z,F(x)\rangle=\operatorname{tr}(ZF(x))$.
+- Sao chép hình thứ tự theo nón thành `img/lec-03/cone-induced-orders.svg` và đổi liên kết lecture note sang tài sản của Bài 03; tài liệu công khai không còn phụ thuộc ảnh trong `img/lec-02/`.
+- Chuẩn hóa toàn bộ nội dung công khai Bài 03 từ “vector” thành “véc-tơ”. Outline và storyboard đã cập nhật vai trò P02, P03, C05, D01, D05, D02, E01, E06 và Z03.
+- Codex Slides đã mở lại dự án `20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls` và xác nhận 41 trang ở trạng thái draft. Phiên này không có công cụ điều khiển Browser, nên không ghi nhận kiểm trực quan HTML bằng giao diện Codex Slides.
+- Cổng tĩnh sau sửa đạt: 41 ID duy nhất, 41 khối ghi chú, 7 section ngoài và thẻ section cân bằng; mọi đường dẫn deck/note tồn tại; 25 khối mở rộng Markdown mở/đóng cân bằng; `git diff --check` sạch. KaTeX cục bộ phân tích toàn bộ công thức trong deck và lecture note mà không có lỗi cú pháp.
+- Sáu SVG đều hợp lệ theo bộ phân tích XML và chuyển thành PNG thành công. Contact sheet cho thấy nhãn, trục, mũi tên và vùng tô không bị cắt. Riêng bố cục HTML 16:9 và màn hình hẹp chỉ qua kiểm tra cấu trúc tĩnh vì môi trường không có Browser hoặc Chromium.
