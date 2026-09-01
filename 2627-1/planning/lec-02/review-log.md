@@ -315,3 +315,4 @@ Không xóa các báo cáo vòng trước; mục 9 ghi riêng vòng hợp nhất
 
 - Chromium ở khung $1280\times720$ phát hiện tiêu đề hai thẻ E01 chạm nhau và công thức trong tiêu đề thẻ F01 khó đọc. E01 dùng nhãn ngắn “Ràng buộc phổ”, “Thứ tự ma trận”; F01 tách tên mục tiêu khỏi công thức hiển thị.
 - Kết xuất lại E01 và F01 sau sửa; tiêu đề, công thức, hộp kết luận và chân trang đều nằm trong khung.
+- Hậu kiểm toàn cục thay metadata đánh giá ở P02 và tham chiếu chéo sang lecture note ở P03 bằng quan hệ trực tiếp giữa nhận dạng, kiểm tra PSD, cải dạng và sáu nhóm bài toán A–F.
