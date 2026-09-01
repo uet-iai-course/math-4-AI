@@ -221,3 +221,33 @@ Các số đếm 64 trang và mạch kết thúc 1 trang trong mục này là tr
 - Kiểm tra trực quan riêng P03, A02, B16PE, C00, C20F và C23–C25. C00 có phần tử SVG vượt hộp đo hình học của kịch bản nhưng vẫn nằm trọn trong khung trình chiếu; ảnh chụp xác nhận không bị cắt.
 - Tái kiểm toán học và góc nhìn sinh viên sau sửa đều đạt bằng GLM 5.3 Flash qua OpenRouter. Vai phản biện học thuật–giảng dạy không nhận được phản hồi mô hình sau ba lượt `api_transport_error`; không tuyên bố đã hoàn tất vai này.
 - Codex Slides không khả dụng trong môi trường hiện tại; kiểm định cuối được thực hiện trên tệp RevealJS cục bộ và giới hạn này được giữ minh bạch.
+
+## Đối chiếu với lecture note và bổ sung độc lập — 2026-09-01
+
+### Tác tử lập kế hoạch
+
+- Lệnh `openrouter-mcp-planner` không tồn tại trong gói cục bộ (`No such file or directory`); tác tử kế hoạch được chạy đúng entry point `openrouter-mcp-reader --task-profile plan`.
+- Runtime: requested model `z-ai/glm-5.3-flash`; observed model `z-ai/glm-5.3-flash`; provider `OpenRouter`.
+- Đối chiếu đủ 66 trang ban đầu với `materials/lec-01/lecture-note.md` phát hiện hai mắt xích còn thiếu: cực tiểu địa phương/toàn cục và tồn tại/duy nhất. Kế hoạch cũng xác định 16 trang Pareto, đối ngẫu và hàm chuyên sâu vượt phạm vi lecture note; các trang này chưa bị xóa hoặc di chuyển vì thay đổi phạm vi lớn còn chờ xác nhận.
+
+### Thay đổi đã áp dụng
+
+- Thêm A03L ngay sau A03: định nghĩa cực tiểu địa phương và toàn cục tương đối với tập khả thi, ví dụ $f_0(x)=(x^2-1)^2$ trên $C=[-2;0{,}5]$, hình `local-versus-global-minimum.svg` và cảnh báo điểm thuật toán dừng chưa tự chứng nhận toàn cục.
+- Thêm A03W sau A03L: định lý Weierstrass, phân biệt tồn tại với nhiều nhất một nghiệm, ví dụ $\min e^x$ trên $\mathbb R$ có infimum không đạt và hình `existence-and-uniqueness.svg`.
+- A05 nói rõ định nghĩa tập lồi nằm ở B01 và định nghĩa hàm lồi ở C02; A09 báo trước các quy tắc sẽ được chứng minh ở C12–C15.
+- Tổng tạm thời tăng từ 66 lên 68 trang; sáu mạch có kích thước $4+8+7+21+25+3$. Phân bổ 90 phút được giữ bằng cách rút A08 từ 4 xuống 3 phút và A09 từ 6 xuống 4 phút, dành 1,5 phút cho mỗi trang mới.
+
+### Runtime writer và giới hạn vòng này
+
+- Writer dùng requested/observed model `z-ai/glm-5.3-flash` qua OpenRouter. HTML, outline và phần đầu storyboard được sửa bền vững.
+- Writer kết thúc với lỗi nguyên gốc `model exceeded the tool-call limit (18)` sau các lần thay thế storyboard không còn khớp nguồn đã đổi. Điều phối viên đã sửa số thứ tự, bản đồ hành trình, ma trận thời gian và mục nhật ký còn thiếu bằng `apply_patch`.
+- Không sửa lecture note, không xóa 16 trang vượt phạm vi, không commit hoặc push Bài 01 trong vòng bổ sung này.
+
+### Tái kiểm độc lập và kiểm định SVG
+
+- Reviewer toán học chạy với requested/observed model `z-ai/glm-5.3-flash`, provider `OpenRouter`; kết luận **PASS** cho A03L, A03W, A05 và A09 sau khi kiểm tra giả thiết, ví dụ số, phép cải dạng và ghi chú diễn giả.
+- Reviewer mạch kể chạy độc lập với cùng model/provider; kết luận **PASS** cho chuỗi A03→A03L→A03W→A11→A04→A05 và cầu nối A09. Hai cảnh báo nhỏ đã được sửa: A03 chuyển trực tiếp sang định nghĩa địa phương/toàn cục; A03W không còn nói A11 dùng kết quả về tính duy nhất.
+- Render trực tiếp hai SVG xác nhận chữ, đường cong và nhãn không bị cắt. `local-versus-global-minimum.svg` được đồng bộ với ví dụ trong lecture note, gồm nghiệm toàn cục $x=-1$ và cực tiểu địa phương tại biên $x=0{,}5$. `existence-and-uniqueness.svg` dùng đúng ví dụ hàm hằng $f(x)=0$ trên $[-1,1]$ cho trường hợp nhiều nghiệm.
+- CSS `.mini-figure` được mở rộng cho cả `svg` nội dòng và ảnh SVG qua thẻ `img`, với `object-fit: contain` và giới hạn chiều cao 180 px.
+- Kiểm tra cấu trúc hiện hành: 68 `section[data-slide-id]` duy nhất, 68 khối ghi chú, storyboard và ma trận thời gian cùng đúng thứ tự HTML; tổng thời lượng là 90 phút. `git diff --check` không báo lỗi trước vòng rà phạm vi cuối.
+- Kiểm định qua máy chủ HTTP cục bộ trên cổng tạm 8876: HTML, CSS, RevealJS, plugin Notes/Highlight/Math và hai SVG mới đều trả mã 200. Môi trường hiện tại không có Chromium, Firefox hoặc trình duyệt headless; không tuyên bố đã tái kiểm tràn trang bằng trình duyệt trong vòng này.

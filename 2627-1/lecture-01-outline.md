@@ -22,7 +22,7 @@ Phần lịch sử không dùng như niên biểu. A11 giải thích chuỗi nhu
 
 ## Cấu trúc trình chiếu
 
-- Bộ gồm 66 trang theo một tuyến liên tục từ đầu đến cuối.
+- Bộ tạm thời gồm 68 trang theo một tuyến liên tục từ đầu đến cuối; 16 trang vượt phạm vi lecture note chưa bị xóa trong khi chờ xác nhận.
 - Các lớp kỹ thuật dùng để kiểm định không tạo tuyến trình chiếu riêng và không xuất hiện trên mặt trang hoặc trong ghi chú.
 
 ## Phần mở đầu
@@ -41,13 +41,15 @@ Phần lịch sử không dùng như niên biểu. A11 giải thích chuỗi nhu
 | A01 | Mô hình hóa bài toán tối ưu | Trực quan và khuôn toán học | lec01 tr.2–3 |
 | A02 | Ví dụ tự học củng cố khuôn mô hình | Ba mô hình cụ thể cho khớp dữ liệu, danh mục đầu tư và kích thước mạch; dùng để củng cố khuôn sau A01, trước nhu cầu chứng nhận ở A03; không chặn tuyến giảng chính | lec01 tr.3 |
 | A03 | Cấu trúc của bài toán tối ưu | Nhu cầu cho lồi | lec01 tr.4,14 |
+| A03L | Cực tiểu địa phương và toàn cục | Định nghĩa tương đối với tập khả thi $C$; trực quan và ví dụ $f(x)=(x^2-1)^2$ trên $\mathbb R$; hình `img/lec-01/local-versus-global-minimum.svg`; ứng dụng AI là điểm thuật toán dừng chưa tự chứng nhận toàn cục | Boyd &amp; Vandenberghe (2004), §4.2.1 |
+| A03W | Tồn tại và duy nhất | Định lý Weierstrass ($C\ne\varnothing$ compact, $f_0$ liên tục thì minimum đạt được); phân biệt tồn tại với nhiều nhất một nghiệm (lồi chặt); ví dụ $\min e^x$ trên $\mathbb R$ có infimum $0$ không đạt; hình `img/lec-01/existence-and-uniqueness.svg` | Boyd &amp; Vandenberghe (2004), §4.2 |
 | A11 | Lịch sử lĩnh vực tối ưu | Quan hệ nhân quả; từ thập niên 2000, các phương pháp quy mô lớn mở rộng mạnh cho học máy, không phải mốc ra đời của gradient ngẫu nhiên; nằm giữa A03 và A04 theo vị trí HTML | lec01 tr.15; Bottou, Curtis & Nocedal (2018) |
 | A04 | Bình phương tối thiểu và LP | Ví dụ lớp có cấu trúc | lec01 tr.5–6 |
-| A05 | Bảo đảm của cấu trúc lồi | Trực quan bảo đảm | lec01 tr.7 |
+| A05 | Bảo đảm của cấu trúc lồi | Trực quan bảo đảm; trên mặt có một câu: định nghĩa tập lồi ở B01 và hàm lồi ở C02; đây là lời hứa bảo đảm, không dùng làm định nghĩa | lec01 tr.7 |
 | A06 | Nhận dạng–cải dạng–giải | Quy trình ứng dụng | lec01 tr.8,13 |
 | A07 | Ví dụ độ sáng | Nhu cầu và trực quan hai nguồn–hai vị trí đo | lec01 tr.9 |
 | A07M | Mô hình bài toán độ sáng | Dữ kiện, biến, miền log và mục tiêu | lec01 tr.9 |
-| A08–A09 | Ca độ sáng | Ví dụ tính dẫn nhập/củng cố, rồi cải dạng | lec01 tr.10–11 |
+| A08–A09 | Ca độ sáng | Ví dụ tính dẫn nhập/củng cố, rồi cải dạng; A09 ghi rõ trên mặt rằng các quy tắc $1/u$ lồi và cực đại điểm sẽ được chứng minh ở C12–C15 | lec01 tr.10–11 |
 | A10 | Hai ràng buộc, hai độ khó | Giới hạn và cầu sang tập lồi | lec01 tr.12 |
 
 ## B. Tập lồi và ràng buộc lồi
@@ -95,17 +97,18 @@ Phần lịch sử không dùng như niên biểu. A11 giải thích chuỗi nhu
 | C24 | Tổng kết theo chuẩn đầu ra | Một luận điểm nối LLO1, LLO2 và CLO1 | Đề cương; Boyd & Vandenberghe (2004), §4.2 |
 | C25 | Tự kiểm tra và tài liệu đọc | Ba câu tự kiểm tra, gợi ý trong notes và hai nguồn đọc truy nguyên | Boyd & Vandenberghe (2004), Ch. 2–4; MIT 6.079, Bài giảng 1–3 |
 
-## Đồng bộ storyboard (2026-08-30, cập nhật theo validator)
+## Đồng bộ storyboard (2026-08-30, cập nhật theo validator; bổ sung A03L/A03W)
 
-- Xác nhận 66 trang; storyboard `lecture-01-storyboard.md` khớp 66 `data-slide-id` theo thứ tự HTML, gồm C24 và C25 mới.
-- Chốt 6 mạch theo thứ tự HTML với tổng $4+6+7+21+25+3=66$ trang:
+- Tổng tạm thời là **68 trang** sau khi thêm A03L và A03W ngay sau A03; đây là **bổ sung độc lập**, trong khi quyết định phạm vi 16 slide còn lại vẫn **chờ xác nhận** và chưa được áp dụng vào tuyến.
+- Xác nhận 68 trang; storyboard `lecture-01-storyboard.md` khớp 68 `data-slide-id` theo thứ tự HTML, gồm A03L, A03W, C24 và C25.
+- Chốt 6 mạch theo thứ tự HTML với tổng $4+8+7+21+25+3=68$ trang:
   1. Mạch 1 — Mở đầu: P00, P01, P02, P03 (4 trang).
-  2. Mạch 2 — Tối ưu và mô hình hóa, kèm lịch sử: A00, A01, A02, A03, A11, A04 (6 trang).
+  2. Mạch 2 — Tối ưu và mô hình hóa, kèm lịch sử: A00, A01, A02, A03, A03L, A03W, A11, A04 (8 trang).
   3. Mạch 3 — Bảo đảm cấu trúc lồi và ca độ sáng: A05, A06, A07, A07M, A08, A09, A10 (7 trang).
   4. Mạch 4 — Tập lồi, công cụ tập, Pareto, đối ngẫu: B00, B01, B02, B03, B04, B05, B06, B07, B08, B10, B11, B09, B12, B13, B13I, B14, B16P, B16PE, B16PA, B15, B16D (21 trang).
   5. Mạch 5 — Hàm lồi: C00, C01, C02, C03, C04, C05, C06, C07, C08, C09, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C20, C20F, C20D, C21, C22 (25 trang).
   6. Mạch 6 — Đánh giá kết thúc: C23, C24, C25 (3 trang).
-- HTML đã triển khai 6 section ngoài đúng phương án validator; hai trang C24–C25 được thêm sau C23.
+- HTML đã triển khai 6 section ngoài đúng phương án validator; hai trang C24–C25 được thêm sau C23; hai trang A03L–A03W được thêm sau A03 theo vị trí HTML.
 - Phân bổ thời gian hiện hành: mở/A/B/C = 7/28/23/32 phút, tổng 90 phút. Đây là bốn khối thời lượng nội bộ, không nhất thiết trùng sáu mạch RevealJS. Phân bổ cũ 7/23/27/33 đã bị thay thế và chỉ còn giá trị lịch sử trong review-log.
 - Ánh xạ lec01→lec02→lec03 ở mức bài giảng giữ như bảng nguồn dưới; mọi trang PDF cụ thể được đánh dấu chưa xác minh bởi worker (không đọc PDF/README).
 
@@ -150,14 +153,16 @@ Mọi trang vẫn xuất hiện theo một tuyến RevealJS liên tục từ P00
 | A | A01 | trình bày | 2 |
 | A | A02 | định vị và giao đọc sau | 0,5 |
 | A | A03 | trình bày | 1,5 |
+| A | A03L | trình bày | 1,5 |
+| A | A03W | trình bày | 1,5 |
 | A | A11 | định vị và giao đọc sau | 0,5 |
 | A | A04 | dẫn nhanh | 1 |
 | A | A05 | trình bày | 2 |
 | A | A06 | trình bày | 2 |
 | A | A07 | trình bày | 2 |
 | A | A07M | trình bày | 3 |
-| A | A08 | trình bày | 4 |
-| A | A09 | trình bày | 6 |
+| A | A08 | trình bày | 3 |
+| A | A09 | trình bày | 4 |
 | A | A10 | trình bày | 2 |
 | B | B00 | trình bày | 2 |
 | B | B01 | trình bày | 2 |
@@ -208,6 +213,6 @@ Mọi trang vẫn xuất hiện theo một tuyến RevealJS liên tục từ P00
 | C+kết | C23 | trình bày | 2 |
 | C+kết | C24 | dẫn nhanh | 1 |
 | C+kết | C25 | định vị và giao đọc sau | 0,5 |
-| **Tổng** | **66 trang** | **một tuyến liên tục** | **90** |
+| **Tổng** | **68 trang** | **một tuyến liên tục** | **90** |
 
 Tổng theo khối: mở 7 phút; A 28 phút; B 23 phút; C và kết thúc 32 phút. Quy tắc nhất quán là từ 1,5 phút trở lên dùng `trình bày`, 1 phút dùng `dẫn nhanh`, và 0,5 phút dùng `định vị và giao đọc sau`.
