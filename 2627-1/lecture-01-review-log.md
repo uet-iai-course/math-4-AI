@@ -118,6 +118,14 @@ Kết quả cấu trúc mới sau kiểm định tải nhận thức: 57 trang, 
 - Kiểm tra tĩnh: 60 mã duy nhất, 60 ghi chú, 60 nguồn trong ghi chú và 60 mục storyboard; thứ tự HTML–storyboard khớp hoàn toàn.
 - Chromium duyệt toàn bộ deck ở 1280 × 720 và 800 × 600: không tràn theo hai chiều, không lỗi KaTeX, không lỗi bảng điều khiển và không thiếu tài nguyên.
 - Kiểm tra trực quan riêng A05, A07, A07M, A11, B00, B03, C00, C06, C20, C20F, C20D và C23; đã sửa hai điểm biên ở B00 và tách cụm Gauss để mọi kết luận hiện đủ trên khung.
+
+## Vòng chốt bản 53 trang
+
+- Đồng bộ 53 mã trang, 53 khối ghi chú, outline và storyboard theo cùng thứ tự; giữ sáu mạch nội dung liên tục.
+- A03L ghi rõ $x^\star\in C$ trong định nghĩa cực tiểu tương đối với tập khả thi.
+- A03W rút SVG thành ba đồ thị đối chiếu; các điều kiện đủ được trình bày bằng HTML ở cỡ chữ thân bài. Hình và hai thẻ định lý đều đọc được ở 1600 × 900.
+- A11 nén khoảng cách riêng của bốn thẻ và đưa tuyến nhân quả lên khỏi vùng điều hướng RevealJS.
+- Chromium kiểm tra trực quan A03L, A03W và A11 ở 1600 × 900; không có nội dung bị cắt hoặc bị nút điều hướng che.
 - Không còn thời lượng, mã vị trí, badge, phân tuyến, tiên quyết nội bộ hoặc nhãn `Điểm dừng` trên bề mặt deck; nhãn tương tác dùng `Câu hỏi:`.
 - Kiểm định toán học chốt: không còn lỗi chặn bàn giao, nghiêm trọng hoặc trung bình.
 - Dự án Codex Slides `20260818112809-b-i-gi-ng-01-gi-i-thi-u-t-i-u-t-p-l-i-v--jv0t` đã lưu dàn ý 60 trang; `generated/outline.md` đã cập nhật trong Design Files.
@@ -222,7 +230,9 @@ Các số đếm 64 trang và mạch kết thúc 1 trang trong mục này là tr
 - Tái kiểm toán học và góc nhìn sinh viên sau sửa đều đạt bằng GLM 5.3 Flash qua OpenRouter. Vai phản biện học thuật–giảng dạy không nhận được phản hồi mô hình sau ba lượt `api_transport_error`; không tuyên bố đã hoàn tất vai này.
 - Codex Slides không khả dụng trong môi trường hiện tại; kiểm định cuối được thực hiện trên tệp RevealJS cục bộ và giới hạn này được giữ minh bạch.
 
-## Đối chiếu với lecture note và bổ sung độc lập — 2026-09-01
+## Lịch sử — Đối chiếu với lecture note và bổ sung độc lập — 2026-09-01
+
+Mục này ghi lại vòng phát triển 68 slide trước khi thu gọn phạm vi. Các số đếm 68 và mã C23–C25 dưới đây không phải trạng thái hiện hành.
 
 ### Tác tử lập kế hoạch
 
@@ -251,3 +261,40 @@ Các số đếm 64 trang và mạch kết thúc 1 trang trong mục này là tr
 - CSS `.mini-figure` được mở rộng cho cả `svg` nội dòng và ảnh SVG qua thẻ `img`, với `object-fit: contain` và giới hạn chiều cao 180 px.
 - Kiểm tra cấu trúc hiện hành: 68 `section[data-slide-id]` duy nhất, 68 khối ghi chú, storyboard và ma trận thời gian cùng đúng thứ tự HTML; tổng thời lượng là 90 phút. `git diff --check` không báo lỗi trước vòng rà phạm vi cuối.
 - Kiểm định qua máy chủ HTTP cục bộ trên cổng tạm 8876: HTML, CSS, RevealJS, plugin Notes/Highlight/Math và hai SVG mới đều trả mã 200. Môi trường hiện tại không có Chromium, Firefox hoặc trình duyệt headless; không tuyên bố đã tái kiểm tràn trang bằng trình duyệt trong vòng này.
+
+## Trạng thái hiện hành — đồng bộ 53 slide và mạch D — 2026-09-01
+
+### Phạm vi và thứ tự
+
+- DOM hiện hành có đúng 53 slide lá, 53 mã `data-slide-id` duy nhất, 53 khối ghi chú diễn giả và 6 section ngoài.
+- Thứ tự sáu section ngoài là: P00–P03; A00–A04 kèm A03L, A03W, A11 theo vị trí DOM; A05–A10 kèm A07M; B00–B12 theo thứ tự DOM; C00–C16; D01–D04.
+- Mạch cuối đã đổi thành D01 — hàm mất mát logistic; D02 — ca hồi quy logistic; D03 — tổng kết theo chuẩn đầu ra; D04 — tự kiểm tra và tài liệu đọc. Outline và storyboard không còn dùng C23–C25 trong phần trạng thái hiện hành.
+- Các phần mở rộng Pareto, đối ngẫu và hàm chuyên sâu đã bị loại khỏi DOM Bài 01. Lịch sử phát triển vẫn được giữ ở các mục cũ nhưng không được dùng làm số đếm hoặc tuyến hiện hành.
+
+### Đồng bộ hồ sơ planning
+
+- `lecture-01-outline.md` được viết lại theo sáu section ngoài và đúng 53 mã hiện hành; bỏ ma trận thời gian 68 slide và mọi tuyên bố “16 slide chờ xác nhận”.
+- `lecture-01-storyboard.md` có đúng 53 hàng, mỗi hàng tương ứng một slide lá theo thứ tự DOM. Bản đồ hành trình hiện chỉ giữ các cụm đang có trong deck và lecture note.
+- Hai section ngoài A1 và A2 được giữ riêng vì chức năng sư phạm khác nhau, dù cùng dùng nhãn nội dung A. Tổng số section ngoài vẫn là 6.
+
+### Rà soát chéo deck và lecture note
+
+- Ký hiệu mô hình tối ưu, cực tiểu tương đối với tập khả thi, điều kiện Weierstrass, điều kiện lồi chặt và ca logistic nhất quán giữa deck với `materials/lec-01/lecture-note.md`.
+- B07 định nghĩa $Ax\preceq b$ theo từng thành phần ngay lần dùng; D01 dùng thuật ngữ `biên phân loại có dấu (margin)` và phân biệt sigmoid với mất mát logistic.
+- Không phát hiện lỗi toán học mới ở các ví dụ A03L, A03W, A04, C07–C09 và D01–D02. Các kết luận tồn tại, nhiều nhất một nghiệm, PSD của Hessian và tính lồi của mất mát logistic đều có đủ giả thiết quyết định.
+- Phát hiện nhẹ còn lại: CSS đầu deck vẫn có selector cho các mã đã bị loại (`B13`, `B13I`, `B15`). Các selector này không tạo slide, không ảnh hưởng DOM hay nội dung hiển thị; không sửa vì vòng này chỉ được phép cập nhật ba tệp planning.
+- Phát hiện nhẹ còn lại: lecture note dùng từ tiếng Anh `margin` riêng lẻ ở một vài câu sau khi đã giới thiệu `biên phân loại có dấu (margin)`. Ý nghĩa và ký hiệu không lệch deck, nhưng có thể chuẩn hóa thành `biên` ở vòng biên tập lecture note sau.
+
+### Kiểm định planning
+
+- Kiểm định tĩnh đạt: thứ tự 53 ID trong DOM, storyboard và bảng tuyến của outline trùng hoàn toàn; có 6 section ngoài, 53 notes và 53 hàng storyboard; mọi tài sản cục bộ tồn tại; hai SVG ngoài được nhúng phân tích XML thành công; `git diff --check` đạt.
+- Không có trình duyệt hoặc bề mặt Codex Slides trong phiên này, nên không tuyên bố đã tái kiểm tràn trang hay hiển thị trực quan của deck sau thay đổi ngoài phạm vi planning.
+- Vòng này không sửa deck hoặc lecture note, không commit, không push và không gửi dữ liệu ra ngoài.
+
+### Hậu kiểm trực quan và biên tập cuối
+
+- A03L rút định nghĩa về dạng quả cầu $B(x^\star,r)$ và cô đọng hai thẻ; kết xuất $1600\times900$ không còn cắt nội dung.
+- A03W mở rộng vùng SVG lên tối đa 760 px và 250 px chiều cao để ba tình huống đọc được khi trình chiếu.
+- A11 đổi tiêu đề thành “Bối cảnh lịch sử của bảo đảm tính toán”, giữ quan hệ nhân quả và nối trực tiếp hai câu hỏi tồn tại–chứng nhận với hai lớp bài toán nền tảng.
+- C15 bỏ lời giao việc “cần nộp”. D01 ghi rõ $\sigma(s)$ là xác suất mô hình gán cho nhãn đúng trước khi định nghĩa mất mát; lecture note thống nhất dùng “biên” sau lần giới thiệu `margin`.
+- CSS bỏ các selector cho mã slide đã loại. Chromium kiểm tra lại A03L, A03W, A11 và D01 ở khung 16:9.

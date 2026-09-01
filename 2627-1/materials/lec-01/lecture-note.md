@@ -14,7 +14,6 @@ Các định nghĩa và ký hiệu theo Boyd và Vandenberghe (2004), Chương 1
 
 ### 1. Khuôn bài toán tối ưu
 
-**Mục tiêu đọc hiểu.** Sau mục này, người đọc phân biệt được dữ kiện, biến quyết định, hàm mục tiêu, miền xác định, tập khả thi, giá trị tối ưu và nghiệm tối ưu trong một mô hình.
 
 **Định nghĩa và giả thiết.** Ở mức khái quát cần cho bài này, một bài toán tối ưu được viết dưới dạng
 
@@ -68,11 +67,10 @@ Nếu thay ràng buộc bằng $0\le x\le4$, điểm $x=3$ trở nên khả thi 
 
 **Điểm dễ nhầm.** Dữ liệu và siêu tham số được cho trước không phải biến tối ưu. Một điểm có giá trị mục tiêu thấp nhưng không thuộc $C$ không phải phương án chấp nhận được. Giá trị $p^*$ là infimum; nó không tự bảo đảm tồn tại một $x^*$ đạt giá trị ấy.
 
-**Đầu ra.** Khuôn $(C,f_0,p^*,x^*)$ cho phép mô tả chính xác một điểm ứng viên và giá trị mục tiêu của nó.
+Khuôn $(C,f_0,p^*,x^*)$ cho phép mô tả chính xác một điểm ứng viên và giá trị mục tiêu của nó.
 
 ### 2. Tập khả thi, cực tiểu địa phương và cực tiểu toàn cục
 
-**Mục tiêu đọc hiểu.** Người đọc phân biệt được điểm khả thi, cực tiểu địa phương tương đối với miền và cực tiểu toàn cục; đồng thời hiểu vì sao kết quả của một thuật toán chưa tự động là chứng nhận toàn cục.
 
 **Định nghĩa và giả thiết.** Điểm $x\in C$ được gọi là khả thi. Điểm $x^*\in C$ là một cực tiểu địa phương của $f_0$ trên $C$ nếu tồn tại $r>0$ sao cho
 
@@ -118,11 +116,10 @@ Vì $f_0'(x)=4x(x^2-1)<0$ khi $x$ ở bên trái và đủ gần $0{,}5$, giá t
 
 **Điểm dễ nhầm.** Cực tiểu địa phương trên $C$ được hiểu tương đối với $C$. Điểm dừng không tự động là cực tiểu. Tối ưu toàn cục cũng không đồng nghĩa với nghiệm duy nhất: một bài toán có thể có nhiều nghiệm cùng đạt $p^*$.
 
-**Đầu ra.** Sau khi phân biệt nghiệm, ta cần kiểm tra liệu nghiệm có tồn tại và, nếu tồn tại, có duy nhất hay không.
+Sau khi phân biệt nghiệm, ta cần kiểm tra liệu nghiệm có tồn tại và, nếu tồn tại, có duy nhất hay không.
 
 ### 3. Tồn tại và duy nhất
 
-**Mục tiêu đọc hiểu.** Người đọc tách được ba câu hỏi: giá trị tối ưu có hữu hạn không, infimum có đạt được không và điểm đạt được có duy nhất không.
 
 **Định nghĩa và giả thiết.** Trong không gian hữu hạn chiều, một tập compact là một tập đóng và bị chặn. Định lý Weierstrass cho điều kiện đủ sau: nếu $C\ne\varnothing$ compact và $f_0:C\to\mathbb R$ liên tục thì tồn tại $x^*\in C$ sao cho
 
@@ -150,7 +147,7 @@ Ví dụ thứ nhất cho thấy bị chặn nhưng không đóng là chưa đ�
 
 **Điểm dễ nhầm.** Hàm lồi không tự bảo đảm tồn tại. Lồi chặt không tự bảo đảm tồn tại. Hessian nửa xác định dương chỉ gợi tính lồi, không đủ cho duy nhất. Ngược lại, một bài toán không lồi vẫn có thể có nghiệm duy nhất.
 
-**Đầu ra.** Định lý Weierstrass cho một điều kiện đủ để nghiệm tồn tại; phần tiếp theo chứng minh kết quả này để dùng lại trong các ca ứng dụng.
+Định lý Weierstrass cho một điều kiện đủ để nghiệm tồn tại; phần tiếp theo chứng minh kết quả này để dùng lại trong các ca ứng dụng.
 
 ## Các định lý và chứng minh quan trọng — Nhóm A
 
@@ -202,7 +199,6 @@ Vậy $x^*$ là một nghiệm tối ưu toàn cục.
 
 ### 4. Tập lồi và tổ hợp lồi
 
-**Mục tiêu đọc hiểu.** Người đọc kiểm tra được tính lồi bằng đoạn nối và phân biệt tổ hợp lồi với một tổ hợp tuyến tính tùy ý.
 
 **Định nghĩa và giả thiết.** Tập $C\subseteq\mathbb R^n$ là tập lồi nếu với mọi $x,y\in C$ và mọi $\theta\in[0,1]$,
 
@@ -242,11 +238,10 @@ Ngược lại, vành khăn $A=\{x:1\le\lVert x\rVert_2\le2\}$ không lồi: $(1
 
 **Điểm dễ nhầm.** Kiểm tra một cặp điểm không chứng minh cả tập lồi. Một tổ hợp affine chỉ yêu cầu tổng hệ số bằng $1$, còn tổ hợp lồi yêu cầu thêm mọi hệ số không âm. Không nên suy tính lồi chỉ từ hình vẽ.
 
-**Đầu ra.** Tổ hợp lồi hữu hạn cho phép dựng bao lồi, tập lồi nhỏ nhất chứa một tập điểm; bỏ điều kiện tổng hệ số bằng $1$ dẫn tới tổ hợp nón.
+Tổ hợp lồi hữu hạn cho phép dựng bao lồi, tập lồi nhỏ nhất chứa một tập điểm; bỏ điều kiện tổng hệ số bằng $1$ dẫn tới tổ hợp nón.
 
 ### 5. Bao lồi và nón lồi
 
-**Mục tiêu đọc hiểu.** Người đọc dựng được bao lồi của một tập hữu hạn và phân biệt bao lồi với nón sinh bởi cùng các véc-tơ.
 
 **Định nghĩa và giả thiết.** Bao lồi của $S\subseteq\mathbb R^n$ là
 
@@ -283,11 +278,10 @@ Nón sinh bởi $e_1=(1,0)^T$ và $e_2=(0,1)^T$ là $\mathbb R_+^2$. Điểm $(1
 
 **Điểm dễ nhầm.** Bao lồi của một tập không nhất thiết đóng nếu tập ban đầu không compact. Nón lồi không mặc nhiên đóng, nhọn hoặc có phần trong. Một nón chứa bội không âm của điểm, không nhất thiết chứa bội âm.
 
-**Đầu ra.** Bao lồi và nón lồi là nền để nhận dạng các tập lồi cơ bản dùng làm tập khả thi.
+Bao lồi và nón lồi là nền để nhận dạng các tập lồi cơ bản dùng làm tập khả thi.
 
 ### 6. Các tập lồi cơ bản
 
-**Mục tiêu đọc hiểu.** Người đọc nhận dạng được các tập lồi cơ bản mà không phải kiểm tra lại định nghĩa đoạn nối từ đầu.
 
 **Định nghĩa và giả thiết.** Các tập sau đều lồi khi các biểu thức có kiểu phù hợp:
 
@@ -319,11 +313,10 @@ có bán trục dài $1$ theo hướng $x_1$ và $1/2$ theo hướng $x_2$. Đi�
 
 **Điểm dễ nhầm.** Quả cầu $\lVert x-x_c\rVert\le r$ lồi, nhưng mặt cầu $\lVert x-x_c\rVert=r$ nói chung không lồi. Đẳng thức affine tạo tập lồi; đẳng thức phi tuyến không có bảo đảm tương tự.
 
-**Đầu ra.** Dạng toàn phương của ellipsoid dẫn tới nón nửa xác định dương trong không gian ma trận, xét ở mục tiếp theo.
+Dạng toàn phương của ellipsoid dẫn tới nón nửa xác định dương trong không gian ma trận, xét ở mục tiếp theo.
 
 ### 7. Nón nửa xác định dương
 
-**Mục tiêu đọc hiểu.** Người đọc kiểm tra được một ma trận đối xứng nhỏ là nửa xác định dương và giải thích điều kiện này qua dạng toàn phương.
 
 **Định nghĩa và giả thiết.** Ký hiệu $\mathbb S^n$ là không gian các ma trận đối xứng thực cấp $n$. Nón nửa xác định dương là
 
@@ -352,11 +345,10 @@ có các giá trị riêng $1$ và $3$, nên $X\succ0$. Ma trận $Y=\operatorna
 
 **Điểm dễ nhầm.** Đường chéo không âm chưa đủ để một ma trận đối xứng tổng quát là PSD. PSD không đồng nghĩa khả nghịch. Điều kiện dạng toàn phương phải đúng với mọi $z$, không chỉ các véc-tơ cơ sở.
 
-**Đầu ra.** Nón PSD là một tập lồi trong không gian ma trận; mục tiếp theo khái quát các phép tạo tập lồi mới.
+Nón PSD là một tập lồi trong không gian ma trận; mục tiếp theo khái quát các phép tạo tập lồi mới.
 
 ### 8. Các phép bảo toàn tập lồi
 
-**Mục tiêu đọc hiểu.** Người đọc chứng minh được tính lồi của một tập ghép bằng các phép bảo toàn thay vì lặp lại kiểm tra đoạn nối cho toàn bộ biểu thức.
 
 **Định nghĩa và giả thiết.** Nếu $C,D$ lồi và $F(x)=Ax+b$ affine, các phép sau bảo toàn tính lồi:
 
@@ -390,7 +382,7 @@ là một ellipsoid lồi. Giao thêm nửa không gian $x_2\ge0$ vẫn cho mộ
 
 **Điểm dễ nhầm.** Ảnh và nghịch ảnh affine không yêu cầu $A$ khả nghịch. Hợp của hai tập lồi nói chung không lồi. Nghịch ảnh qua một ánh xạ phi tuyến tùy ý không có bảo đảm này. Điều kiện $t>0$ của phối cảnh là bắt buộc.
 
-**Đầu ra.** Nhóm B cung cấp các tập lồi cơ bản và phép bảo toàn cần để chứng minh tập khả thi lồi trong các ca ứng dụng ở phần sau.
+Nhóm B cung cấp các tập lồi cơ bản và phép bảo toàn cần để chứng minh tập khả thi lồi trong các ca ứng dụng ở phần sau.
 
 ## Các định lý và chứng minh quan trọng — Nhóm B
 
@@ -515,7 +507,6 @@ Suy ra $\theta x+(1-\theta)y\in F^{-1}(D)$, nên nghịch ảnh lồi. Không b�
 
 ### 9. Hàm lồi, hàm lõm và hàm lồi chặt
 
-**Mục tiêu đọc hiểu.** Người đọc diễn giải được bất đẳng thức dây cung, phân biệt hàm lồi, hàm lõm, hàm affine và hàm lồi chặt.
 
 **Định nghĩa và giả thiết.** Cho $D\subseteq\mathbb R^n$ lồi. Hàm $f:D\to\mathbb R$ là hàm lồi nếu với mọi $x,y\in D$ và $\theta\in[0,1]$,
 
@@ -545,11 +536,10 @@ phù hợp với tính lồi chặt. Hàm $g(x)=|x|$ lồi nhưng không lồi c
 
 **Điểm dễ nhầm.** Miền xác định phải lồi. Hình chiếc bát chỉ là trực giác, không phải định nghĩa. Hàm affine không lồi chặt. Tính lồi của mục tiêu không tự bảo đảm tập khả thi lồi, tồn tại nghiệm hoặc khả năng tổng quát hóa.
 
-**Đầu ra.** Định nghĩa dây cung chuyển thành các phát biểu hình học qua epigraph và tập mức.
+Định nghĩa dây cung chuyển thành các phát biểu hình học qua epigraph và tập mức.
 
 ### 10. Epigraph, tập mức và hàm mở rộng giá trị
 
-**Mục tiêu đọc hiểu.** Người đọc chuyển được giữa một hàm và các tập gắn với hàm, đồng thời mã hóa ràng buộc bằng giá trị $+\infty$.
 
 **Định nghĩa và giả thiết.** Epigraph của $f:D\to\mathbb R$ là
 
@@ -594,11 +584,10 @@ Do đó $f+I_{[-1,1]}$ bằng $x^2$ trong đoạn và bằng $+\infty$ ngoài đ
 
 **Điểm dễ nhầm.** Graph của hàm lồi thường không phải tập lồi; epigraph mới là đối tượng lồi tương ứng. Mọi tập mức dưới lồi chỉ suy ra tính tựa lồi, không suy ra tính lồi. Không thực hiện tùy ý các phép toán không xác định như $+\infty-(+\infty)$.
 
-**Đầu ra.** Để kiểm tra một hàm nhiều biến, ta xét mọi hạn chế của nó trên đường thẳng.
+Để kiểm tra một hàm nhiều biến, ta xét mọi hạn chế của nó trên đường thẳng.
 
 ### 11. Hạn chế trên đường và các ví dụ hàm lồi
 
-**Mục tiêu đọc hiểu.** Người đọc giảm được kiểm tra nhiều biến về một biến và nhận dạng một thư viện hàm lồi nền.
 
 **Định nghĩa và giả thiết.** Cho $f:D\to\mathbb R$ với $D$ lồi. Với $x_0\in D$ và hướng $v\in\mathbb R^n$, hạn chế trên đường là
 
@@ -640,11 +629,10 @@ Chẳng hạn, $\operatorname{lse}(0,0)=\log2$.
 
 **Điểm dễ nhầm.** Một vài lát cắt minh họa không đủ chứng minh; phát biểu yêu cầu mọi đường. Với dạng bậc hai $x^TPx$, tính lồi phụ thuộc phần đối xứng $(P+P^T)/2$. Không nên kết luận từ vài điểm lấy mẫu trên đồ thị.
 
-**Đầu ra.** Khi hàm đủ trơn, độ cong của mọi lát cắt được mã hóa bởi gradient và Hessian, xét ở mục tiếp theo.
+Khi hàm đủ trơn, độ cong của mọi lát cắt được mã hóa bởi gradient và Hessian, xét ở mục tiếp theo.
 
 ### 12. Điều kiện bậc nhất và bậc hai
 
-**Mục tiêu đọc hiểu.** Người đọc kiểm tra được tính lồi bằng mặt phẳng tiếp xúc hoặc Hessian, với đúng miền và giả thiết trơn.
 
 **Định nghĩa và giả thiết.** Cho $D\subseteq\mathbb R^n$ mở và lồi. Nếu $f:D\to\mathbb R$ khả vi thì $f$ lồi khi và chỉ khi
 
@@ -688,11 +676,10 @@ Hai giá trị riêng của Hessian là $3\pm\sqrt2>0$, nên $f$ lồi chặt. T
 
 **Điểm dễ nhầm.** Hessian PSD tại một điểm không chứng minh tính lồi trên toàn miền. Gradient bằng $0$ chỉ suy ra tối ưu toàn cục sau khi đã có tính lồi và điểm nằm trong miền thích hợp. Hàm $x^4$ lồi chặt dù Hessian bằng $0$ tại $x=0$.
 
-**Đầu ra.** Trong nhiều mô hình, ta tránh tính Hessian lại bằng các phép bảo toàn tính lồi.
+Trong nhiều mô hình, ta tránh tính Hessian lại bằng các phép bảo toàn tính lồi.
 
 ### 13. Các phép bảo toàn hàm lồi và Jensen
 
-**Mục tiêu đọc hiểu.** Người đọc dựng được hàm lồi mới từ các hàm cơ sở và nối tính lồi với kỳ vọng.
 
 **Định nghĩa và giả thiết.** Các phép sau bảo toàn tính lồi khi các miền tương thích:
 
@@ -737,7 +724,7 @@ không lồi gần $0$ vì đạo hàm bậc hai tại $0$ bằng $-4$.
 
 **Điểm dễ nhầm.** Trọng số âm có thể phá tính lồi. Infimum tùy ý của các hàm lồi không bảo toàn lồi; cần lồi đồng thời trước khi loại biến. Không có quy tắc chung “lồi hợp lồi”. Jensen cho biến ngẫu nhiên cần các kỳ vọng tồn tại và hữu hạn.
 
-**Đầu ra.** Nhóm C cung cấp công cụ để chứng minh mục tiêu lồi từ thư viện hàm và phép ghép, chuẩn bị cho ca logistic ở mục 14.
+Nhóm C cung cấp công cụ để chứng minh mục tiêu lồi từ thư viện hàm và phép ghép, chuẩn bị cho ca logistic ở mục 14.
 
 ## Các định lý và chứng minh quan trọng — Nhóm C
 
@@ -980,7 +967,6 @@ Vậy kết quả đúng với mọi $k$ hữu hạn.
 
 ### 14. Hàm mất mát logistic
 
-**Mục tiêu đọc hiểu.** Người đọc ghép được dữ liệu, biến quyết định, biên phân loại có dấu (margin), hàm mất mát và tập khả thi thành một ca tối ưu; sau đó dùng các kết quả của Bài 01 để kết luận về tính lồi, sự tồn tại và quan hệ giữa cực tiểu địa phương với cực tiểu toàn cục.
 
 **Định nghĩa dữ liệu và mô hình.** Cho tập dữ liệu phân loại nhị phân
 
@@ -994,13 +980,13 @@ y_i\in\{-1,1\},
 i=1,\ldots,m.
 $$
 
-Véc-tơ $a_i$ và nhãn $y_i$ là dữ kiện; $w\in\mathbb R^n$ là biến quyết định. Điểm số tuyến tính là $a_i^Tw$. Margin có dấu của mẫu thứ $i$ là
+Véc-tơ $a_i$ và nhãn $y_i$ là dữ kiện; $w\in\mathbb R^n$ là biến quyết định. Điểm số tuyến tính là $a_i^Tw$. Biên phân loại có dấu (margin) của mẫu thứ $i$ là
 
 $$
 s_i(w)=y_i a_i^Tw.
 $$
 
-Biên dương nghĩa là dấu của điểm số phù hợp với nhãn; biên càng lớn thì mẫu càng nằm sâu về phía được phân loại đúng. Mất mát logistic của một biên $s$ là
+Biên dương nghĩa là dấu của điểm số phù hợp với nhãn; biên càng lớn thì mẫu càng nằm sâu về phía được phân loại đúng. Xác suất logistic gán cho nhãn đúng tại biên $s$ là
 
 $$
 \sigma(s)=\frac1{1+e^{-s}},
@@ -1033,7 +1019,7 @@ $$
 
 ![Hai mẫu phân loại một chiều, biên phân loại có dấu và đồ thị mất mát logistic trên tập khả thi đóng từ âm một đến một.](img/lec-01/logistic-loss-convex-case.svg)
 
-*Hình đánh dấu nghiệm ở biên và ghi giá trị margin; vị trí, ký hiệu và kiểu nét được dùng cùng màu.*
+*Hình đánh dấu nghiệm ở biên và ghi giá trị biên; vị trí, ký hiệu và kiểu nét được dùng cùng màu.*
 
 **Ví dụ một chiều tính được.** Cho hai mẫu
 
@@ -1043,7 +1029,7 @@ $$
 (a_2,y_2)=(-1,-1),
 $$
 
-và tập khả thi $C=[-1,1]$. Cả hai margin đều bằng $w$ vì
+và tập khả thi $C=[-1,1]$. Cả hai biên đều bằng $w$ vì
 
 $$
 y_1a_1w=w,
@@ -1079,11 +1065,11 @@ Gradient tại nghiệm có ràng buộc không nhất thiết bằng $0$: ta c�
 
 **Điểm dễ nhầm.** Mất mát logistic lồi không có nghĩa dữ liệu không nhiễu, mô hình dự đoán tốt ngoài mẫu hoặc nghiệm luôn duy nhất. Gradient bằng $0$ không phải điều kiện bắt buộc cho nghiệm nằm ở biên tập khả thi. Nếu bỏ giới hạn chuẩn trong dữ liệu phân tách được, một dãy tham số có thể làm mất mát tiến về infimum mà không đạt được tại tham số hữu hạn.
 
-**Đầu ra và chuyển sang Bài 02.** Bài 01 cung cấp công cụ để chứng minh tập khả thi và mục tiêu lồi, đồng thời phát biểu đúng các bảo đảm về tồn tại và tính toàn cục. Bài 02 sẽ dùng các công cụ này để nhận dạng và cải dạng những lớp bài toán tối ưu lồi cụ thể.
+Bài 01 cung cấp công cụ để chứng minh tập khả thi và mục tiêu lồi, đồng thời phát biểu đúng các bảo đảm về tồn tại và tính toàn cục. Bài 02 dùng các công cụ này để nhận dạng và cải dạng những lớp bài toán tối ưu lồi cụ thể.
 
 ## Các định lý và chứng minh quan trọng — Nhóm D
 
-### Tính lồi của logistic loss
+### Tính lồi của hàm mất mát logistic
 
 **Giả thiết.** Dữ liệu $(a_i,y_i)$ được giữ cố định, với $a_i\in\mathbb R^n$ và $y_i\in\{-1,1\}$.
 
@@ -1104,7 +1090,7 @@ $$
 \phi''(s)=\frac{e^s}{(1+e^s)^2}>0.
 $$
 
-Vì vậy $\phi$ lồi. Mỗi margin $s_i(w)=y_i a_i^Tw$ là hàm affine của $w$, nên $\phi\circ s_i$ lồi theo quy tắc hợp affine. Tổng hữu hạn của các hàm lồi cũng lồi, do đó $L$ lồi.
+Vì vậy $\phi$ lồi. Mỗi biên $s_i(w)=y_i a_i^Tw$ là hàm affine của $w$, nên $\phi\circ s_i$ lồi theo quy tắc hợp affine. Tổng hữu hạn của các hàm lồi cũng lồi, do đó $L$ lồi.
 
 Gradient của tổng mất mát là
 
