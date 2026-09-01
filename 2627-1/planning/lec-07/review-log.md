@@ -190,3 +190,7 @@ Không xóa các nhận định trước. Bảng này ghi quyết định mới 
 - Dự án Codex Slides `20260901031914-lecture-07-quy-ho-ch-tuy-n-t-nh-v-ng-dqvy` vẫn ở trạng thái draft với 37 trang. Outline bền vững đã cập nhật tiêu đề Z01 thành “Điều kiện cần giữ và cầu nối”; lần đọc lại xác nhận đúng 37 mục outline và 37 trang.
 - Phiên hiện tại không có Browser tích hợp, nên không tuyên bố đã kiểm tra bề mặt hiển thị của Codex Slides. Kiểm định trực quan dùng RevealJS và Chromium cục bộ.
 - Không gửi nội dung Bài 07 tới OpenRouter hoặc dịch vụ ngoài. Quyền gửi dữ liệu được người dùng cấp trong lượt này chỉ áp dụng cho bốn tệp Bài 04.
+
+### Bổ sung sau rà soát chéo toàn học phần
+
+- Lecture note công bố ánh xạ giữa ký hiệu in đậm $(\mathbf x,\mathbf c,\mathbf A,\mathbf b)$ và dạng lược kiểu đậm $(x,c,A,b)$ trên trang chiếu; kiểu và kích thước đại lượng không đổi.
