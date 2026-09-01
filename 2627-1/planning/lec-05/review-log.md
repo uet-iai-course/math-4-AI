@@ -257,3 +257,4 @@ Cổng storyboard và năm phát hiện bắt buộc trên đã được phản 
 
 - A04 định nghĩa $\widehat R_{\mathrm{tr}}$ và $\widehat R_{\mathrm{val}}$ trước khi đọc hình dừng sớm; ví dụ dẫn nhập không còn dùng ký hiệu chưa giới thiệu.
 - C02 công bố $q\in\mathbb R^d$ ở cả trang chiếu và lecture note trước khi định nghĩa $g_t(q)$.
+- Hậu kiểm toàn cục bỏ lời quy trình đánh giá ở P02 và tham chiếu mã trang C03 khỏi notes; điều kiện không chệch nay phát biểu trực tiếp theo cơ chế lấy mẫu ngẫu nhiên đối lập với việc tái sử dụng một vết cố định.
