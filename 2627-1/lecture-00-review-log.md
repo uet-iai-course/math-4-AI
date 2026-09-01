@@ -411,3 +411,4 @@ Kết quả tự kiểm bản soạn: 67 mã duy nhất đúng thứ tự; 67 gh
 - E06 đã hiện đủ chân trang sau khi giảm khoảng trắng. P01 cần thêm selector riêng vì CSS dùng chung ẩn chân trang cho toàn bộ chồng mở đầu; selector này đã được bổ sung cho P01–P02 và được tái kiểm lại bằng Chromium.
 - Trong lecture note, trực quan elip, ví dụ Gauss, hình minh họa và điểm dễ nhầm về đường đồng mật độ được đặt trước heading con mở rộng; chỉ Mahalanobis và làm trắng nằm dưới nhãn ngoài phạm vi deck.
 - SVG `probability-gaussian-ellipse.svg` tách riêng trực quan Gauss có tương quan dương khỏi hình mở rộng về làm trắng; Chromium render đủ ba elip, nhãn trục, chú giải và hệ số $\rho=0{,}8$.
+- Kiểm toán tiêu đề toàn bộ Bài 00–07 đổi C13 từ dạng kể tiến trình “Từ … đến …” thành `Hàm hợp lý Gauss và tổng bình phương phần dư`; không đổi nội dung toán học hoặc thứ tự trang.
