@@ -12,7 +12,7 @@ $$
 \end{aligned}
 $$
 
-Nguồn chính là Boyd và Vandenberghe (2004), Chương 5, cùng Lecture 5 của MIT 6.079/6.975. Ví dụ xuyên suốt được tính lại từ bộ bài tập Chương 4 trong kho. Bài 02 cung cấp dạng chuẩn và các lớp bài toán lồi; Bài 04 sẽ dùng các điều kiện tối ưu ở đây làm đầu vào cho phương pháp số.
+Nguồn chính là Boyd và Vandenberghe (2004), Chương 5, cùng Lecture 5 của MIT 6.079/6.975. Ví dụ xuyên suốt dựa trên bộ bài tập Chương 4 trong kho. Bài 02 cung cấp dạng chuẩn và các lớp bài toán lồi; Bài 04 sẽ dùng các điều kiện tối ưu ở đây làm đầu vào cho phương pháp số.
 
 
 ## A. Từ ràng buộc đến cận đối ngẫu
@@ -60,8 +60,6 @@ $$
 **Điểm dễ nhầm.** Trong bài toán cực tiểu, nghiệm khả thi cho cận trên, không phải cận dưới. Việc nhìn ra nghiệm trong ví dụ chỉ dùng để kiểm tra kết quả; phép dựng đối ngẫu không được giả sử đã biết $x^*$.
 
 **Câu hỏi kiểm tra.** Nếu một điểm khả thi có giá trị $7$ và một phép chứng nhận cho cận dưới $5{,}5$, có thể kết luận gì về $p^*$ và độ lệch tối ưu của điểm đang có?
-
-**Đầu ra.** Người đọc xác định được đích của mạch A: tạo một số $g$ thỏa $g\le p^*$, rồi làm cho cận này lớn nhất có thể.
 
 ### 2. Hàm Lagrange và vai trò của nhân tử
 
@@ -119,8 +117,6 @@ Do đó $L(x,2)\ge5$ với mọi $x\in\mathbb R$, trong khi $L(x,2)\le f_0(x)$ v
 
 **Câu hỏi kiểm tra.** Với ràng buộc $2-x\le0$, hạng nào phải được cộng vào mục tiêu: $\lambda(2-x)$ hay $\lambda(x-2)$? Điều kiện dấu nào đi kèm?
 
-**Đầu ra.** Người đọc lập được $L$ từ dạng chuẩn và chỉ ra chính xác bước dùng $\lambda\ge0$.
-
 ### 3. Hàm đối ngẫu và miền hữu hiệu
 
 **Mục tiêu đọc hiểu.** Người đọc tính được hàm đối ngẫu bằng phép lấy infimum theo biến gốc, xác định miền hữu hiệu và phân biệt miền này với miền khả thi đối ngẫu.
@@ -177,8 +173,6 @@ và $\operatorname{dom}g=(-1,\infty)$. Trong khi đó, miền khả thi của b�
 **Điểm dễ nhầm.** $\operatorname{dom}g$ trả lời khi nào infimum hữu hạn; điều kiện $\lambda\ge0$ trả lời khi nào nhân tử tạo cận đúng. Hai tập này có vai trò khác nhau. Giá trị $g=-\infty$ là hợp lệ và không có nghĩa là phép tính “bị lỗi”.
 
 **Câu hỏi kiểm tra.** Trong ví dụ, vì sao $x_0=0$ được phép dùng để tính $g(0)$ dù không thuộc $[2,4]$? Tính $g(0)$ và $g(1)$.
-
-**Đầu ra.** Người đọc tính được $g$ theo từng miền tham số và ghi riêng $\operatorname{dom}g$ với điều kiện dấu của nhân tử.
 
 ### Định lý: hàm đối ngẫu luôn lõm
 
@@ -273,8 +267,6 @@ Cận dưới và giá trị của nghiệm khả thi trùng nhau, nên nghiệm
 **Điểm dễ nhầm.** Đối ngẫu yếu không nói cận tốt nhất phải khít. Dùng $\inf$ cho bài toán gốc và $\sup$ cho bài toán đối ngẫu tránh ngầm giả sử nghiệm đạt. Chỉ khi có điểm đạt mới viết $\min$ hoặc $\max$ theo nghĩa nghiêm ngặt.
 
 **Câu hỏi kiểm tra.** Nếu $x$ khả thi có $f_0(x)=10$ và một cặp đối ngẫu khả thi có $g(\lambda,\nu)=9{,}7$, hãy cho một khoảng chứa $p^*$ và một cận trên cho độ lệch tối ưu của $x$.
-
-**Đầu ra.** Người đọc lập được bài toán đối ngẫu và chuyển một cặp khả thi thành khoảng chứng nhận định lượng.
 
 ### Định lý: đối ngẫu yếu và cận độ lệch tối ưu
 
@@ -375,8 +367,6 @@ Ví dụ này đồng thời có đối ngẫu mạnh và nghiệm đối ngẫu
 
 **Câu hỏi kiểm tra.** Hãy phân loại ba mệnh đề sau: $d^*\le p^*$; $d^*=p^*$; tồn tại $(\lambda^*,\nu^*)$ sao cho $g(\lambda^*,\nu^*)=d^*$. Mệnh đề nào luôn đúng?
 
-**Đầu ra.** Người đọc dùng ba thuật ngữ “đối ngẫu yếu”, “đối ngẫu mạnh” và “đạt nghiệm đối ngẫu” cho đúng ba phát biểu khác nhau.
-
 ### 6. Điều kiện Slater
 
 **Mục tiêu đọc hiểu.** Người đọc kiểm tra được phiên bản Slater tinh chỉnh và nêu đúng phần kết luận mà điều kiện này bảo đảm.
@@ -436,8 +426,6 @@ và nghiệm đối ngẫu đạt được; phép tính trực tiếp đã xác 
 **Điểm dễ nhầm.** Slater là điều kiện đủ, không phải điều kiện cần của đối ngẫu mạnh. Bất đẳng thức affine không cần thỏa chặt trong phiên bản tinh chỉnh. Nếu $D$ nằm trong một không gian affine thấp chiều, phải dùng $\operatorname{relint}D$ thay cho nội thông thường. Điều kiện một điểm thỏa chặt không cho kết luận Slater nếu bài toán phi lồi.
 
 **Câu hỏi kiểm tra.** Một bài toán lồi chỉ có các bất đẳng thức affine và đẳng thức affine. Vì sao một điểm khả thi tương đối đã đủ cho phiên bản Slater tinh chỉnh, dù một số bất đẳng thức affine đang hoạt động?
-
-**Đầu ra.** Người đọc có một bảng kiểm Slater gồm: tính lồi, miền nội tương đối, đẳng thức affine, dấu chặt đúng nhóm và điều kiện hữu hạn khi cần kết luận tính đạt.
 
 ### Định lý Slater: đối ngẫu mạnh và tính đạt
 
@@ -562,8 +550,6 @@ $$
 
 **Câu hỏi kiểm tra.** Trong hình của ví dụ, vì sao đường $t=9/2-u$ là một đường đỡ hợp lệ nhưng không chứng nhận $p^*=5$? Vector nào vuông góc với đường $t=5-2u$?
 
-**Đầu ra.** Người đọc ánh xạ được bốn đối tượng $u,t,g(\lambda),\lambda$ sang trục ràng buộc, trục mục tiêu, tung độ cắt và độ nghiêng của đường đỡ.
-
 ### Định lý: tập mở rộng của bài toán lồi là lồi
 
 **Giả thiết.** $D$ lồi, $f_0$ và $f_1$ lồi trên $D$.
@@ -663,7 +649,7 @@ với mọi $x\in D$, mọi $\lambda\ge0$ và mọi $\nu\in\mathbb R^p$.
 
 Bất đẳng thức bên trái nói $(\lambda^*,\nu^*)$ cực đại hóa $L$ theo các nhân tử khả thi khi giữ $x=x^*$. Bất đẳng thức bên phải nói $x^*$ cực tiểu hóa $L$ theo biến gốc khi giữ các nhân tử tối ưu.
 
-**Trực quan.** Theo hướng $x$, giá trị tại điểm yên ngựa nằm ở đáy; theo hướng nhân tử, nó nằm ở đỉnh. Hình dạng “đáy theo một hướng, đỉnh theo hướng kia” giải thích tên gọi. Trong hình học của mạch C, cùng quan hệ xuất hiện khi một đường đỡ được nâng tới đúng $(0,p^*)$ và tiếp xúc với tập mở rộng.
+**Trực quan.** Theo hướng $x$, giá trị tại điểm yên ngựa nằm ở đáy; theo hướng nhân tử, nó nằm ở đỉnh. Hình dạng “đáy theo một hướng, đỉnh theo hướng kia” giải thích tên gọi. Cùng quan hệ xuất hiện khi một đường đỡ được nâng tới đúng $(0,p^*)$ và tiếp xúc với tập mở rộng.
 
 ::: example
 **Ví dụ tính được.** Với bài toán xuyên suốt, lấy $x^*=2$ và $\lambda^*=2$. Vì ràng buộc hoạt động tại $x^*$,
@@ -694,8 +680,6 @@ với mọi $x\in\mathbb R$ và $\lambda\ge0$. Bộ $(2,2)$ là một điểm y�
 **Điểm dễ nhầm.** Thứ tự hai bất đẳng thức không đối xứng: cực tiểu theo $x$ nhưng cực đại theo $(\lambda,\nu)$. Miền cực đại phải giữ $\lambda\ge0$, trong khi $\nu$ tự do. Một điểm dừng của $L$ chưa chắc là điểm yên ngựa; cần các bất đẳng thức toàn cục hoặc các giả thiết lồi–lõm cho phép suy ra chúng.
 
 **Câu hỏi kiểm tra.** Với ví dụ xuyên suốt, vì sao $x=4$ không thể ghép với một $\lambda\ge0$ để tạo điểm yên ngựa, dù $f_1(4)=0$? Hãy kiểm tra điều kiện cực tiểu của $L(\cdot,\lambda)$ tại $x=4$.
-
-**Đầu ra.** Người đọc chuyển được phát biểu “nghiệm gốc và đối ngẫu đạt cùng giá trị” thành bất đẳng thức yên ngựa, sẵn sàng tách quan hệ này thành khả thi, bù trừ và dừng trong KKT.
 
 ### Định lý: điểm yên ngựa tương đương với cặp tối ưu đạt và đối ngẫu mạnh
 
@@ -804,8 +788,6 @@ Trong bài toán nhiễu $f_1(x)\le u$, tại $u=8$ nghiệm là $x^*(8)=0$ và 
 
 **Câu hỏi kiểm tra.** Nếu $f_i(x^*)=-0{,}3$ và bộ đang xét thỏa bù trừ, $\lambda_i^*$ phải bằng bao nhiêu? Điều gì còn chưa thể kết luận nếu $f_i(x^*)=0$?
 
-**Đầu ra.** Người đọc phân loại được trạng thái của từng ràng buộc và kiểm tra riêng từng tích $\lambda_i f_i(x)$.
-
 ### 10. Nón pháp tuyến và điều kiện dừng trên miền
 
 **Mục tiêu đọc hiểu.** Người đọc viết được điều kiện dừng khi biến bị giới hạn trong một miền lồi $D$, đồng thời nhận ra khi nào điều kiện này thu về $\nabla_xL=0$.
@@ -858,8 +840,6 @@ Gradient không bằng $0$, nhưng điều kiện dừng trên miền vẫn đú
 **Điểm dễ nhầm.** Với quy ước trên, $-\nabla_xL$ thuộc nón pháp tuyến. Không được thay điều kiện bao hàm bằng $\nabla_xL=0$ khi nghiệm nằm trên biên của $D$.
 
 **Câu hỏi kiểm tra.** Hãy tính $N_{[0,\infty)}(x)$ khi $x>0$ và khi $x=0$. Vì sao hai trường hợp cho hai điều kiện dừng khác nhau?
-
-**Đầu ra.** Người đọc kiểm tra được điều kiện dừng đúng với miền, gồm cả trường hợp toàn không gian và trường hợp nghiệm trên biên.
 
 ### 11. Bốn nhóm điều kiện KKT và phạm vi cần–đủ
 
@@ -917,8 +897,6 @@ trái với khả thi đối ngẫu.
 **Điểm dễ nhầm.** Không kiểm tra riêng điều kiện dừng rồi gọi đó là KKT. Slater hỗ trợ tính cần và sự tồn tại của nhân tử; tính lồi cho tính đủ khi đã có một bộ KKT. Trong bài toán phi lồi, KKT không bảo đảm tối ưu toàn cục.
 
 **Câu hỏi kiểm tra.** Hãy nêu giả thiết cần kiểm tra trước khi kết luận rằng một bộ KKT là nghiệm tối ưu toàn cục.
-
-**Đầu ra.** Người đọc có một bảng kiểm KKT đầy đủ và phân biệt được kết luận cần, đủ và cần–đủ.
 
 ### 12. KKT cho hồi quy có giới hạn chuẩn
 
@@ -985,8 +963,6 @@ $$
 **Điểm dễ nhầm.** Hệ số $2$ xuất phát từ cách viết $\|w\|_2^2$; nếu dùng $\tfrac12\|w\|_2^2$ thì hệ số thay đổi. Không được khẳng định ánh xạ giữa $\tau$ và $\lambda^*$ luôn một–một, đặc biệt khi nghiệm hoặc nhân tử không duy nhất.
 
 **Câu hỏi kiểm tra.** Hãy viết khả thi gốc, khả thi đối ngẫu và bù trừ cho bài hồi quy có giới hạn chuẩn ở trên.
-
-**Đầu ra.** Người đọc áp dụng được KKT vào một mô hình AI và diễn giải được nhân tử như giá của ngân sách chuẩn.
 
 ## Các định lý và chứng minh quan trọng — Nhóm D
 
@@ -1165,8 +1141,6 @@ Ngược lại, với hàm lồi $q(u)=|u|$, tập dưới gradient tại $0$ l�
 
 **Câu hỏi kiểm tra.** Với $\lambda^*=3$ và quy ước $f(x)\le u$, giá trị tối ưu thay đổi bậc nhất theo dấu nào khi tăng $u$ một lượng nhỏ?
 
-**Đầu ra.** Người đọc dùng được nhân tử như một dưới gradient có điều kiện và giữ đúng dấu của độ nhạy.
-
 ### 14. Hàm giá trị đầy đủ của ví dụ xuyên suốt
 
 **Mục tiêu đọc hiểu.** Người đọc tính được hàm giá trị trên toàn miền nhiễu, nhận ra các điểm đổi chế độ và phân biệt cận toàn cục với xấp xỉ cục bộ.
@@ -1230,8 +1204,6 @@ trong khi xấp xỉ bậc nhất cho $5-2(0{,}1)=4{,}8$.
 **Điểm dễ nhầm.** Tại $u=-1$, Slater không còn thỏa. Tại đúng $u=8$, ràng buộc vẫn hoạt động nhưng suy biến với $\lambda^*(8)=0$; chỉ khi $u>8$ ràng buộc mới không hoạt động. Đường $5-2u$ là cận toàn cục và tiếp tuyến tại $0$, không phải công thức đúng cho mọi $u$.
 
 **Câu hỏi kiểm tra.** Vì sao $u=8$ không được gọi là trường hợp ràng buộc không hoạt động? Xấp xỉ $5-2u$ nên được dùng trong phạm vi nào?
-
-**Đầu ra.** Người đọc tính và diễn giải được hàm giá trị từng đoạn, đạo hàm tại gốc và hai trường hợp biên.
 
 ## Các định lý và chứng minh quan trọng — Nhóm E
 
@@ -1381,8 +1353,6 @@ với mọi $x\in[0,1]$.
 
 **Câu hỏi kiểm tra.** Với $F(x)\in\mathbb S^r$ và $F(x)\preceq0$, nhân tử thuộc nón nào, có kích thước gì, và hạng tương ứng trong Lagrangian là gì?
 
-**Đầu ra.** Người đọc nhận dạng đúng nón chứa nhân tử và mở rộng được chuỗi chứng nhận đối ngẫu sang ràng buộc ma trận.
-
 ## Các định lý và chứng minh quan trọng — Nhóm F
 
 ### Định lý: đối ngẫu yếu cho bất đẳng thức theo nón
@@ -1437,6 +1407,5 @@ Suy ra $g(\lambda,\nu)\le f_0(x)$ với mọi điểm khả thi gốc và mọi 
 
 - Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Chương 5, đặc biệt các mục 5.1–5.6 và 5.9.
 - Stephen Boyd (2009), *Lecture 5: Duality*, MIT 6.079/6.975, các trang 5-2–5-30; MIT OpenCourseWare.
-- Nguyễn Bích Vân, *Bài tập chương 4*, Bài 1 và các bài KKT liên quan; năm chưa xác minh. Mọi kết quả số trong ghi chú được tính lại độc lập.
+- Nguyễn Bích Vân, *Bài tập chương 4*, Bài 1 và các bài KKT liên quan; năm chưa xác minh.
 - Đề cương học phần UET.AI2012, Buổi 3, LLO4–LLO5 và CLO1.
-- Bộ trang chiếu `lecture-03-doi-ngau-lagrange.html` và đặc tả toán học cục bộ `planning/lec-03/math-spec.md`, dùng để thống nhất ký hiệu, ví dụ xuyên suốt và các trường hợp biên.

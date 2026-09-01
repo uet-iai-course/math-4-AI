@@ -192,3 +192,12 @@ Sau thay đổi thứ tự, storyboard và outline đã dùng cùng thứ tự v
   - Z01: thêm điểm yên ngựa vào bước Giải thích và notes.
 - **Đồng bộ planning:** plan.md, outline.md, storyboard.md và source-map.md đã cập nhật từ 40 thành 41 trang, dải C01–C07, danh sách DOM chèn C07, bản đồ hành trình/định lý, câu nối C06→C07→D01 và nguồn C07 (Boyd §5.4, lecture note). Không xóa lịch sử cũ trong nhật ký này.
 - **Trạng thái:** chờ 5 phản biện độc lập (sinh viên, chuyên gia, độ chính xác toán học, học thuật–giảng dạy, mạch kể chuyện) và kiểm định kỹ thuật (Chromium 16:9 và màn hình hẹp, KaTeX, ghi chú, tràn hiển thị) trước khi đóng cổng bàn giao.
+
+## 15. Rà văn phong và mạch khái niệm ngày 2026-09-01
+
+- Đã đọc lại toàn bộ 41 trang và ghi chú bài giảng theo tiêu chí `no-ai-slop`. Ghi chú diễn giả không còn các cụm `Chuyển ý:`, tham chiếu mã mạch, lời mô tả “trang này/trang sau”, hay chỉ dẫn tới lecture note và `math-spec.md`.
+- Các cầu nối được viết bằng quan hệ toán học: cận trên từ điểm khả thi dẫn tới nhu cầu cận dưới; Slater dẫn tới tiếp xúc đường đỡ; pháp tuyến dẫn tới KKT; điểm yên ngựa liên kết nghiệm gốc và đối ngẫu.
+- Dòng nguồn trên slide chỉ giữ nguồn truy nguyên. Các câu xác nhận “được tính/kiểm tra trong math-spec” được chuyển về hồ sơ kiểm định thay vì lặp trên từng trang.
+- Ghi chú bài giảng bỏ các dòng `Đầu ra` lặp mục tiêu đọc hiểu và bỏ tham chiếu tới tệp planning nội bộ. Định nghĩa, ví dụ, định lý, chứng minh, ứng dụng AI và câu hỏi kiểm tra được giữ nguyên.
+- Kiểm định tĩnh đạt: 41 mã duy nhất, 41 ghi chú, 7 section ngoài; thẻ `section` và `aside` cân bằng; mọi tài sản tồn tại; SVG hợp lệ theo XML; `git diff --check` đạt.
+- Codex Slides xác nhận dự án `20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls` ở trạng thái draft với đúng 41 trang. Phiên hiện tại không có Browser hoặc trình duyệt headless nên không tuyên bố có vòng rà trực quan mới.
