@@ -201,3 +201,4 @@ Sau thay đổi thứ tự, storyboard và outline đã dùng cùng thứ tự v
 - Ghi chú bài giảng bỏ các dòng `Đầu ra` lặp mục tiêu đọc hiểu và bỏ tham chiếu tới tệp planning nội bộ. Định nghĩa, ví dụ, định lý, chứng minh, ứng dụng AI và câu hỏi kiểm tra được giữ nguyên.
 - Kiểm định tĩnh đạt: 41 mã duy nhất, 41 ghi chú, 7 section ngoài; thẻ `section` và `aside` cân bằng; mọi tài sản tồn tại; SVG hợp lệ theo XML; `git diff --check` đạt.
 - Codex Slides xác nhận dự án `20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls` ở trạng thái draft với đúng 41 trang. Phiên hiện tại không có Browser hoặc trình duyệt headless nên không tuyên bố có vòng rà trực quan mới.
+- Hậu kiểm toàn khóa thay câu mô tả “mạch đo LLO5” bằng quan hệ giữa biến quyết định và không gian giá trị; nội dung toán và thứ tự trang không đổi.
