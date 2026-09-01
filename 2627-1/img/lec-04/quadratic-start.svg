@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+  <title id="title">Đường mức và gradient tại điểm đầu</title>
+  <desc id="desc">Các đường mức ellipse của hàm bậc hai, điểm đầu x mũ không và véc-tơ gradient tại đó; hình chưa hiển thị quỹ đạo lặp.</desc>
+  <rect width="900" height="500" fill="#fff"/>
+  <g stroke="#d7dceb" fill="none" stroke-width="3">
+    <ellipse cx="430" cy="250" rx="330" ry="104"/>
+    <ellipse cx="430" cy="250" rx="245" ry="77"/>
+    <ellipse cx="430" cy="250" rx="165" ry="52"/>
+    <ellipse cx="430" cy="250" rx="85" ry="27"/>
+  </g>
+  <g stroke="#33467f" stroke-width="2">
+    <line x1="70" y1="250" x2="825" y2="250"/>
+    <line x1="430" y1="60" x2="430" y2="440"/>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#b24a2b"/>
+    </marker>
+  </defs>
+  <circle cx="730" cy="220" r="9" fill="#2f3e7a"/>
+  <line x1="730" y1="220" x2="790" y2="160" stroke="#b24a2b" stroke-width="5" marker-end="url(#arrow)"/>
+  <g fill="#222" font-family="Arial, sans-serif" font-size="20">
+    <text x="742" y="247">x⁽⁰⁾=(10,1)</text>
+    <text x="684" y="148" fill="#b24a2b">g⁽⁰⁾=(10,10)</text>
+    <text x="805" y="238">x₁</text>
+    <text x="442" y="78">x₂</text>
+    <text x="440" y="273">0</text>
+  </g>
+</svg>

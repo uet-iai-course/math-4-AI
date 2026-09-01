@@ -3,7 +3,7 @@
 ## 1. Trạng thái bản nháp
 
 - Bản nháp triển khai có 40 trang, đúng 7 section ngoài P/A/B/C/D/E/Z; số trang và thứ tự không đổi sau vòng sửa storyboard ngày 2026-08-28.
-- Đã khóa toán trong `math-spec.md`, đồng bộ `outline.md`, `storyboard.md`, RevealJS và năm SVG cục bộ.
+- Đã khóa toán trong `math-spec.md`, đồng bộ `outline.md`, `storyboard.md`, RevealJS và bảy SVG cục bộ dùng cho bộ trang chiếu cùng ghi chú.
 - Báo cáo kiểm định storyboard vòng 1 và đủ năm báo cáo độc lập đã được hợp nhất vào HTML, SVG, `math-spec.md`, outline và storyboard. Vòng kiểm định lại độc lập, Chromium rộng/hẹp và Codex Slides do điều phối viên thực hiện; chưa sẵn sàng cập nhật chỉ mục, commit hoặc push.
 
 ## 2. Nguồn và quyết định sử dụng
@@ -23,20 +23,20 @@ Danh mục và quyền Lecture 16–17 đã được ghi tại `sources/MIT/READ
 
 ## 3. Quy ước toán đã khóa
 
-- Gradient là steepest descent theo chuẩn Euclid; chuẩn tổng quát phải đi cùng chuẩn đối ngẫu.
-- Backtracking dùng $\alpha\in(0,1/2)$, $\beta\in(0,1)$ và điều kiện Armijo không nghiêm.
+- Hướng âm gradient là hướng giảm dốc nhất theo chuẩn Euclid; chuẩn tổng quát phải đi cùng chuẩn đối ngẫu.
+- Quay lui dùng $\alpha\in(0,1/2)$, $\beta\in(0,1)$ và điều kiện Armijo không nghiêm.
 - Newton giải $H\Delta=-g$; không lập $H^{-1}$.
-- Newton decrement dùng $\delta_N$, không dùng $\lambda$.
-- Hội tụ tuyến tính hoặc bậc hai chỉ phát biểu cùng giả thiết lồi mạnh, chặn Hessian hoặc Hessian Lipschitz và line search thích hợp.
+- Độ giảm Newton dùng ký hiệu $\delta_N$, không dùng $\lambda$.
+- Hội tụ tuyến tính hoặc bậc hai chỉ phát biểu cùng giả thiết lồi mạnh, chặn Hessian hoặc Hessian liên tục Lipschitz và quy tắc tìm bước thích hợp.
 - Hệ Newton–KKT khóa $A\in\mathbb R^{p\times n}$, $\operatorname{rank}A=p<n$, và $H$ xác định dương trên $\operatorname{null}A$.
-- Chế độ khả thi dùng biến phụ $\eta$; chế độ primal–dual dùng $\Delta\nu$; không trộn hai đại lượng.
+- Chế độ khả thi dùng biến phụ $\eta$; chế độ nguyên thủy–đối ngẫu dùng $\Delta\nu$; không trộn hai đại lượng.
 
 ## 4. Sai khác có chủ ý so với mẫu
 
 - Dùng hai ví dụ xuyên suốt để giảm chuyển ngữ cảnh.
-- Đảo ví dụ trước định nghĩa tại B03, C03 và D03 theo yêu cầu hành trình khái niệm.
+- Đặt trực quan hoặc ví dụ trước định nghĩa tại B03 và D03. Riêng Newton, C02 định nghĩa mô hình và hướng trước khi C03 kiểm chứng tính một bước trên hàm bậc hai.
 - Đặt C07 trước mạch D thay vì để phần triển khai ở cuối Lecture 16 như MIT. Mục đích là đóng LLO8 về thực hiện Newton trước khi chuyển sang LLO7; phần đếm phép toán được lược và thời lượng chuyển sang Newton–KKT.
-- Lược các đồ thị thực nghiệm và ứng dụng dài của MIT; vẽ lại năm hình cục bộ từ công thức.
+- Lược các đồ thị thực nghiệm và ứng dụng dài của MIT; dùng bảy SVG cục bộ tự vẽ từ công thức cho bộ trang chiếu và ghi chú.
 - Lược trust-region, quasi-Newton, điểm trong và bài toán bất đẳng thức tổng quát vì ngoài phạm vi Buổi 4.
 
 ## 5. Codex Slides
@@ -48,12 +48,12 @@ Danh mục và quyền Lecture 16–17 đã được ghi tại `sources/MIT/READ
 
 | Hạng mục | Trạng thái | Bằng chứng |
 |---|---|---|
-| 40 ID duy nhất, đúng thứ tự | đạt | kiểm tra lại sau sửa: P00–Z03, không thêm/bỏ/đổi thứ tự |
+| 40 ID duy nhất, đúng thứ tự | đạt | C02 đứng trước C03; `outline.md` và bảng 40 trang trong storyboard khớp đúng thứ tự DOM |
 | 40 ghi chú, mỗi ghi chú hai đoạn | đạt | kiểm tra lại sau sửa: 40 notes, tập số đoạn là `{2}` |
 | 7 section ngoài | đạt | P/A/B/C/D/E/Z |
 | HTML và đường dẫn cục bộ | đạt | bộ phân tích HTML chuẩn kiểm tra cân bằng section; 17 tham chiếu cục bộ đều tồn tại |
 | KaTeX | đạt | 239 công thức được `renderToString` phân tích, 0 lỗi |
-| SVG/XML và văn bản thay thế | đạt | 5 SVG phân tích XML thành công; 7 lần nhúng đều có `alt` |
+| SVG/XML và văn bản thay thế | đạt | 7 SVG phân tích XML thành công, đều có `title` và `desc`; mọi lần nhúng trong deck đều có `alt` |
 | `git diff --check` | đạt | kiểm tra `--no-index --check` cho HTML/outline/storyboard/review-log, không có lỗi khoảng trắng |
 | Chromium 1600×900 và màn hình hẹp | đạt | xem thêm kiểm định bàn giao ở Mục 11 |
 
@@ -80,7 +80,7 @@ Phạm vi rà lại bắt buộc: P03; C07–D05; E04–E07; Z02; hai trang lân
 | Mức độ | Trang/cụm | Vấn đề và bằng chứng | Quyết định | Trạng thái |
 |---|---|---|---|---|
 | nghiêm trọng | C01 và `newton-model.svg` | Hai đường cũ không tiếp xúc nên hình không thể hiện đúng Taylor cùng giá trị, dốc và độ cong tại $x$ | Vẽ lại từ $m(v)=2-2v+v^2$ và $f(x+v)=m(v)+0{,}08v^4$; khóa $H>0$, $v=0$, cực tiểu $v=\Delta x_N=1$ | đã sửa |
-| trung bình | A04/B03 | A04 lộ toàn quỹ đạo trước khi mạch B tạo nhu cầu về điều kiện hóa | A04 dùng SVG nội dòng chỉ có đường mức, điểm đầu và gradient; B03 mới dùng quỹ đạo đầy đủ lấy mẫu đúng | đã sửa |
+| trung bình | A04/B03 | A04 lộ toàn quỹ đạo trước khi mạch B tạo nhu cầu về điều kiện hóa | A04 dùng `quadratic-start.svg` chỉ có đường mức, điểm đầu và gradient; B03 mới dùng quỹ đạo đầy đủ lấy mẫu đúng | đã sửa |
 | trung bình | C08/D05 | Đáp án hiện sẵn làm mất vai trò kiểm tra | Chuyển toàn bộ kết quả vào ghi chú diễn giả; mặt trang chỉ giữ yêu cầu và dữ kiện | đã sửa |
 | trung bình | E06/Z02 | Tải chữ quá cao, khó đọc và khó thao tác | E06 giữ phần dư, hệ, khuôn chọn bước/cập nhật/dừng; bất đẳng thức quay lui chuyển notes. Z02 còn bốn nhiệm vụ đại diện | đã sửa |
 
@@ -123,7 +123,7 @@ Phạm vi rà lại bắt buộc: P03; C07–D05; E04–E07; Z02; hai trang lân
 
 ## 9. Quyết định tài sản
 
-- `quadratic-zigzag.svg` chỉ dùng ở B03; A04 dùng SVG nội dòng riêng trên mặt trang để không tạo tệp tài sản thứ sáu và không lộ quỹ đạo sớm.
+- `quadratic-start.svg` chỉ hiển thị đường mức, điểm đầu và gradient ở A04; `quadratic-zigzag.svg` chỉ xuất hiện ở B03 sau khi nhu cầu về điều kiện hóa đã được thiết lập.
 - `armijo-backtracking.svg`, `newton-model.svg`, `newton-phases.svg` được vẽ lại từ công thức; `equality-nullspace.svg` được giữ vì quan hệ $A\Delta x=0$ đúng và không dùng dữ liệu định lượng.
 - Không áp dụng đề xuất sao chụp hình từ MIT: toàn bộ hình vẫn là SVG tự vẽ, có `title`/`desc` hoặc `alt`, và nguồn được truy nguyên trong notes.
 
@@ -202,3 +202,39 @@ Vòng này không thêm, bỏ hoặc đổi thứ tự trang; giữ nguyên 40 s
 - Ghi chú diễn giả A07, B03, D05 và E01 được viết lại bằng quan hệ thuật toán, phổ Hessian, chuẩn đối ngẫu và hệ KKT; không còn nhãn mạch hay lời điều phối “trang sau”.
 - Deck giữ đúng 40 mã duy nhất, 40 ghi chú và 7 section ngoài; `git diff --check` đạt. Các sửa chỉ rút gọn chữ, không đổi công thức, hình, số trang hoặc thứ tự.
 - Hậu kiểm toàn khóa bỏ hai tham chiếu “mạch trước/mạch sau” còn sót ở C08 và E01; thay bằng quan hệ trực tiếp giữa độ cong, mô hình Newton và hệ KKT.
+
+## 14. Rà soát sâu và kiểm định in ngày 2026-09-01
+
+### Nội dung và mạch khái niệm
+
+- A05 và B04 dùng quan hệ thuộc với `argmin`, vì tập cực tiểu có thể chứa nhiều phần tử.
+- B03 tự nêu hướng Euclid $d=-g$ trước khi tính quỹ đạo; B02 sau đó gọi tên đây là trường hợp giảm dốc nhất theo chuẩn Euclid.
+- C02 được đặt trước C03. Sinh viên thấy mô hình bậc hai, giả thiết $H\succ0$ và hệ Newton trước khi kiểm chứng kết quả một bước trên hàm bậc hai.
+- D02 nêu đủ miền mở, tính lồi, lớp $C^3$ và điều kiện theo mọi hạn chế trên đường. E07 ghi rõ kiểu của $x^{(0)}$ và $\nu^{(0)}$.
+- Các từ `decrement`, `backtracking`, `normalized` và `unnormalized` trên mặt trang hoặc ghi chú đã được thay bằng thuật ngữ Việt tương ứng, trừ tên tiếng Anh đặt trong ngoặc ở lần giới thiệu đầu và nguyên văn LLO trong đề cương.
+- Ghi chú diễn giả không còn mã mạch, chỉ dẫn sửa tệp, lời nhắc công bố đáp án hoặc câu điều phối biên tập. Các chuyển ý còn lại đều nêu quan hệ toán học giữa đầu ra hiện tại và nhu cầu kế tiếp.
+
+### Kiểm định cấu trúc, toán học và tài sản
+
+- Có 40 mã trang duy nhất, 40 ghi chú, 40 đoạn nguồn và 7 `<section>` ngoài. Storyboard có đúng một hàng cho mỗi mã; bảng 40 trang trong outline khớp thứ tự DOM.
+- Tính lại bằng phân số chính xác cho $t_0=2/11$, ba phép thử Armijo và hai hệ Newton–KKT đều khớp số liệu trên trang.
+- Bảy SVG phân tích XML thành công, đều có `title` và `desc`, không chứa `script`, `foreignObject`, ảnh nhúng hoặc tài nguyên mạng. Contact sheet đã được xem trực tiếp; nhãn, trục và mũi tên thể hiện đúng đại lượng.
+- Kết xuất PDF ban đầu phát hiện A04 mất nội dung vì SVG nội dòng và quy tắc màn hình hẹp kích hoạt khi in. Hình được tách thành `quadratic-start.svg`; quy tắc `@media print` giữ lưới hai/ba cột. PDF kết xuất lại có đủ 40 trang 16:9; contact sheet và trang A04 riêng đều hiển thị đủ hình, công thức và dữ kiện.
+- Ảnh chụp trực tiếp ở 1280×720 cho C02 và ở 720×900 cho A04, C02, D02, E07 đều đọc được, không tràn hoặc chồng lấn.
+- Máy chủ đang giữ cổng 8765 là `python3 -m http.server 8765 --bind 127.0.0.1 --directory 2627-1`; vì vậy URL kiểm định trong phiên này không có tiền tố `/2627-1/`. Deck và 16 tài sản được tham chiếu trực tiếp đều trả HTTP 200; KaTeX cục bộ trả 200 tại `vendor/katex/dist/katex.min.js`.
+
+### Giới hạn chưa đóng
+
+- `python3 -m reloadserver 8765` không chạy được vì môi trường không có mô-đun `reloadserver`; cổng 8765 đồng thời đã thuộc máy chủ tĩnh nêu trên. Không dừng tiến trình có sẵn hoặc đổi cổng.
+- Codex Slides không có bề mặt Browser/MCP trong phiên này. Kiểm định trực quan dùng Chromium headless cục bộ; không tuyên bố đã rà lại bằng Codex Slides.
+
+### Phản biện OpenRouter sau khi được cấp quyền
+
+- Reviewer chạy qua OpenRouter với `requested_model` và `observed_model` cùng bằng `z-ai/glm-5.3-flash`. Lần đầu bị cắt ở giới hạn đầu ra; lần chạy lại hoàn tất và trả báo cáo.
+- Reviewer xác nhận số học, các cận tự điều chỉnh, giả thiết hội tụ, điều kiện không suy biến của hệ Newton–KKT và số lượng 40 trang đều đúng.
+- Hai lỗi trung bình đã đóng: storyboard nay ghi đúng bảy SVG; lecture note đã bỏ mã `A04`, các tham chiếu “Chủ đề 10/12/13” và đường dẫn `sources/Chương 5.pdf` khỏi tài liệu người học.
+- Các lỗi nhẹ đã đóng: A02 nêu rõ $\operatorname{dom}f$ mở; outline tách kiểu của $x^{(0)}$ và $\nu^{(0)}$; chứng minh hội tụ bậc hai giải thích nghịch đảo chỉ là ký hiệu phân tích, còn triển khai vẫn giải hệ.
+- Đề xuất thêm `self-concordant-curvature.svg` vào D03 không áp dụng: D03 đã có trực quan định lượng bằng tỷ số, tử số và mẫu số; SVG nhiều panel được giữ cho ghi chú bài giảng để tránh lặp và quá tải mặt trang. Outline đã ghi rõ sáu SVG dùng trong deck và một SVG dùng riêng trong lecture note.
+- Thứ tự B01→B03→B02 được giữ theo storyboard. B03 tự nêu $d=-g$ và tìm kiếm đường chính xác trước công thức quỹ đạo, nên ký hiệu không xuất hiện đột ngột; mã `data-slide-id` không hiển thị trên mặt trang.
+- Lượt tái kiểm cuối dùng `read_text_file` đúng một lần cho mỗi tệp và kết thúc `PASS (0/8 gạch lỗi)`; `requested_model` và `observed_model` cùng là `z-ai/glm-5.3-flash`, nhà cung cấp OpenRouter.
+- Sau các sửa theo phản biện, deck được kết xuất lại thành PDF 40 trang, khung 16:9. Contact sheet và trang A02 được xem trực tiếp; nội dung, công thức và hình đều hiển thị đầy đủ, không tràn hoặc chồng lấn. Deck, Markdown và material viewer cùng trả HTTP 200 tại cổng kiểm định cục bộ.

@@ -379,7 +379,7 @@ $$
 \qquad 0<\mu\le M,
 $$
 
-và dùng bước $t=1/M$. Hệ số co của cận sai số mục tiêu là $1-\mu/M=1-1/\kappa$, trong đó $\kappa=M/\mu$. Đại lượng này được xây từ hai hằng số toàn cục trên tập mức; cần phân biệt với $\kappa_2(H)=\lambda_{\max}(H)/\lambda_{\min}(H)$ của Hessian cụ thể trong ví dụ bậc hai A04.
+và dùng bước $t=1/M$. Hệ số co của cận sai số mục tiêu là $1-\mu/M=1-1/\kappa$, trong đó $\kappa=M/\mu$. Đại lượng này được xây từ hai hằng số toàn cục trên tập mức; cần phân biệt với $\kappa_2(H)=\lambda_{\max}(H)/\lambda_{\min}(H)$ của Hessian cụ thể trong ví dụ bậc hai xuyên suốt.
 
 **Trực quan.** Quả cầu chuẩn $W$ trở thành ellipse trong tọa độ Euclid. Nếu ellipse này khớp đường mức, hướng dốc nhất bớt dao động giữa các phía.
 
@@ -651,7 +651,7 @@ $$
 =\int_0^1\nabla^2f(x^*+\tau(x-x^*))(x-x^*)\,d\tau.
 $$
 
-Dùng $x^+=x-H(x)^{-1}\nabla f(x)$, trừ $x^*$ và gom các Hessian cho
+Dùng đẳng thức $x^+=x-H(x)^{-1}\nabla f(x)$ trong chứng minh, trừ $x^*$ và gom các Hessian cho
 
 $$
 x^+-x^*
@@ -662,6 +662,8 @@ x^+-x^*
 $$
 
 Cận dưới $H(x)\succeq\mu I$ cho $\|H(x)^{-1}\|_2\le1/\mu$. Tính Lipschitz cho hiệu Hessian không vượt quá $L_H(1-\tau)\|x-x^*\|_2$. Lấy chuẩn và tích phân $\int_0^1(1-\tau)d\tau=1/2$ cho kết luận.
+
+Nghịch đảo chỉ dùng để viết đẳng thức và lấy cận chuẩn trong chứng minh. Khi triển khai, ta vẫn giải hệ $H(x)\Delta x_N=-\nabla f(x)$.
 
 Định lý là cục bộ. Quay lui và pha tắt dần được dùng để đưa dãy lặp vào lân cận nơi bước đầy đủ cùng cận trên hợp lệ.
 :::
@@ -847,7 +849,7 @@ $$
 
 Ta kiểm tra $A\Delta x=0$ và $x^{(0)}+\Delta x=(4/5,1/5)^T=x^*$.
 
-Trong hình ở Chủ đề 10, $\Delta x$ nằm dọc đường khả thi, còn $A^T\eta$ vuông góc với đường này. Hai hướng tạo cách đọc hình học của hệ Newton–KKT.
+Trong hình khử ràng buộc bằng không gian hạt nhân ở trên, $\Delta x$ nằm dọc đường khả thi, còn $A^T\eta$ vuông góc với đường này. Hai hướng tạo cách đọc hình học của hệ Newton–KKT.
 
 **Ý nghĩa và ứng dụng trong AI.** Hệ KKT cho phép giữ chính xác các ràng buộc tuyến tính trong hồi quy, hiệu chỉnh và ước lượng có bảo toàn. Việc giải một hệ tuyến tính đối xứng bất định thường khai thác tốt cấu trúc thưa hơn so với dựng cơ sở hạt nhân.
 
@@ -897,7 +899,7 @@ $$
 
 **Trực quan.** Một thành phần của bước sửa điều kiện dừng, thành phần còn lại kéo điểm về không gian affine. Khác với chế độ khả thi, quỹ đạo có thể đi ngoài $Ax=b$ trong các vòng đầu; điều cần giảm đồng thời là hai sai lệch $r_d$ và $r_p$.
 
-**Ví dụ tính được.** Khởi đầu từ $(x^{(0)},\nu^{(0)})=(0,0,0)$ cho bài toán bậc hai. Ta có
+**Ví dụ tính được.** Khởi đầu từ $x^{(0)}=(0,0)^T\in\mathbb R^2$ và $\nu^{(0)}=0\in\mathbb R$ cho bài toán bậc hai. Ta có
 
 $$
 r_d=(0,0)^T,\qquad r_p=-1.
@@ -921,7 +923,7 @@ $$
 
 Vì bài toán là bậc hai với đẳng thức affine, bước đầy đủ đến đúng $(x^*,\nu^*)$.
 
-Panel đối chiếu trong hình ở Chủ đề 10 biểu diễn $r_p$ như độ lệch khỏi đường $Ax=b$ và phân biệt bước từ điểm khả thi với bước khởi đầu không khả thi.
+Panel bên phải của hình khử ràng buộc bằng không gian hạt nhân biểu diễn $r_p$ như độ lệch khỏi đường $Ax=b$ và phân biệt bước từ điểm khả thi với bước khởi đầu không khả thi.
 
 **Ý nghĩa và ứng dụng trong AI.** Khởi đầu không khả thi hữu ích khi khó dựng một nghiệm thỏa chính xác các ràng buộc cân bằng, hoặc khi bài toán được giải lặp lại với dữ liệu và ràng buộc thay đổi. Hai phần dư cũng cung cấp nhật ký chẩn đoán: mô hình có thể gần dừng nhưng còn vi phạm ràng buộc, hoặc ngược lại.
 
@@ -1001,7 +1003,7 @@ $$
 
 Ta kiểm tra $\mathbf1^Tw^*=1$ và mất mát tối ưu bằng $2/5$.
 
-Hình ở Chủ đề 10 áp dụng trực tiếp sau phép thay $x\leftrightarrow w$, $A\leftrightarrow\mathbf1^T$ và $H\leftrightarrow X^TX$.
+Hình khử ràng buộc bằng không gian hạt nhân áp dụng trực tiếp sau phép thay $x\leftrightarrow w$, $A\leftrightarrow\mathbf1^T$ và $H\leftrightarrow X^TX$.
 
 **Ý nghĩa và ứng dụng trong AI.** Ràng buộc tổng bằng một xuất hiện trong tổ hợp mô hình, trọng số danh mục, nội suy và một số mô hình hỗn hợp (mixture model). Điều kiện hạt nhân quyết định tính duy nhất; trạng thái điểm đầu quyết định hệ Newton–KKT và tiêu chuẩn dừng cần dùng.
 
@@ -1159,14 +1161,14 @@ A&0
 \end{bmatrix}.
 $$
 
-Thay vào phương trình Newton cho đúng hệ ở Chủ đề 12. Vì vậy, hai phần dư không phải hai tiêu chuẩn ghép tùy ý; chúng là hai khối của cùng một hệ phương trình cần giải.
+Thay vào phương trình Newton cho đúng hệ phần dư đã nêu ở trên. Vì vậy, hai phần dư không phải hai tiêu chuẩn ghép tùy ý; chúng là hai khối của cùng một hệ phương trình cần giải.
 :::
 
 ## Các định lý và chứng minh quan trọng — Nhóm F
 
 ### Hệ quả: tính duy nhất của hồi quy trên siêu phẳng
 
-**Giả thiết.** Xét bài toán ở Chủ đề 13 và giả sử
+**Giả thiết.** Xét bài toán hồi quy có ràng buộc tổng bằng một đã nêu và giả sử
 
 $$
 \operatorname{null}(X)\cap\operatorname{null}(\mathbf1^T)=\{0\}.
@@ -1218,4 +1220,3 @@ Bài 03 cung cấp điều kiện KKT như một chứng nhận tối ưu. Bài 
 2. Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Cambridge University Press, Chương 10, đặc biệt các mục 10.1–10.3 về cực tiểu có ràng buộc đẳng thức và Newton từ điểm không khả thi.
 3. Stephen Boyd và Pablo Parrilo (giảng viên), MIT 6.079/6.975 *Introduction to Convex Optimization*, Fall 2009, Lecture 16, “Unconstrained minimization”, nguồn nội dung và thứ tự cho gradient, Newton và hàm tự điều chỉnh; giấy phép CC BY-NC-SA 4.0.
 4. Stephen Boyd và Pablo Parrilo (giảng viên), MIT 6.079/6.975 *Introduction to Convex Optimization*, Fall 2009, Lecture 17, “Equality constrained minimization”, nguồn nội dung và thứ tự cho khử đẳng thức, hệ Newton–KKT và hai chế độ khởi đầu; giấy phép CC BY-NC-SA 4.0.
-5. `sources/Chương 5.pdf`, tài liệu đối chiếu thuật ngữ tiếng Việt; các phát biểu và giả thiết toán học được kiểm theo Boyd–Vandenberghe và đặc tả toán học của Bài 04.
