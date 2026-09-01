@@ -24,7 +24,7 @@ F(\theta)=\frac12\theta_1^2+2\theta_2^2+\frac52,\quad
 \theta_0=(2,1),\quad v_0=0,\quad \eta=0{,}1,\quad \beta=0{,}5.
 $$
 
-Hai lô đơn cố định là $B_0=\{1\}$, $B_1=\{2\}$. Đây là vết tính tái lập, không dùng để chứng minh tính không chệch. Trong mô hình không chệch, $B_t=(I_{t,1},\ldots,I_{t,b_t})$ là đa tập các chỉ số độc lập, đều và có hoàn lại. Quy ước vận tốc:
+Hai lô một phần tử cố định là $B_0=(1)$, $B_1=(2)$. Đây là vết tính tái lập, không dùng để chứng minh tính không chệch. Trong mô hình không chệch, $B_t=(I_{t,1},\ldots,I_{t,b_t})$ là đa tập các chỉ số độc lập, đều và có hoàn lại. Quy ước vận tốc:
 
 $$
 v_{t+1}=\beta v_t-\eta_t g_t(\theta_t),\qquad \theta_{t+1}=\theta_t+v_{t+1}.
@@ -39,7 +39,7 @@ Nesterov dùng $q_t=\theta_t+\beta v_t$ và tính $g_t(q_t)$. Khởi tạo dùng
 | P | P00 | Bài 05 nối khuôn hướng–bước–dừng với học từ dữ liệu | định danh |
 | P | P01 | Bài dùng lại gradient, Hessian, xác suất và quy tắc dây chuyền | tiên quyết |
 | P | P02 | LLO11–13 được rút thành ba sản phẩm quan sát được: phân biệt/chẩn đoán, tính hai vòng, chọn và tính thang | mục tiêu |
-| P | P03 | Năm quyết định A–E trả lời vấn đề tối ưu trên lô nhỏ và dữ liệu chưa thấy; không phải thứ tự thời gian | bản đồ |
+| P | P03 | Bản đồ năm câu hỏi: mục tiêu, điểm đầu, dữ liệu và gradient, cập nhật, đánh giá và dừng | bản đồ |
 | A | A01 | Tối ưu huấn luyện là phương tiện, không phải mục tiêu cuối | nhu cầu |
 | A | A03 | Mất mát 0–1 tạo ví dụ dẫn nhập cho đại lượng huấn luyện thay thế | ví dụ dẫn nhập |
 | A | A04 | Hai đường huấn luyện–xác thực tạo trực quan; $\widehat R_{\mathrm{val}}$ là ước lượng hữu hạn dùng chọn dừng, không phải $R$ | trực quan/ứng dụng |
@@ -53,11 +53,11 @@ Nesterov dùng $q_t=\theta_t+\beta v_t$ và tính $g_t(q_t)$. Khởi tạo dùng
 | B | B05 | Nhiễu lô nhỏ và tính cục bộ là hai giới hạn khác nhau | tổng hợp |
 | B | B06 | Người học phân loại yên ngựa, cực tiểu cục bộ kém và cực đại trước khi hiện đáp án; chẩn đoán vẫn ánh xạ sang A/C/D/E dưới nhãn “Mạch xử lý” | bài tập LLO11 |
 | C | C01 | Với $C_{\nabla}$ là chi phí một gradient mẫu, chi phí đổi từ $O(nC_{\nabla})$ sang $O(b_tC_{\nabla})$ | nhu cầu |
-| C | C03 | Hai mất mát bậc hai khóa $F$, $b_t$, các lô và trực quan hai mũi tên gradient | ví dụ/trực quan |
+| C | C03 | Hai mất mát bậc hai khóa $F$, $b_t=1$, hai lô một phần tử $B_0=(1)$, $B_1=(2)$ và hai mũi tên gradient | ví dụ/trực quan |
 | C | C02 | Định nghĩa chỉ số độc lập $I_{t,j}$, đa tập có hoàn lại và $g_t(q)$ trước phát biểu không chệch | hình thức |
 | C | C04 | SGD là vòng lấy lô–tính gradient–cập nhật–đánh giá | thuật toán |
 | C | C05 | $\eta_t$ và $b_t$ điều khiển chi phí, nhiễu và ổn định | ứng dụng |
-| C | C06 | Bảo đảm SGD nêu cận phương sai đều có điều kiện theo $\theta_t$ và kết luận đúng mức; chi tiết tổng nằm trong notes | ranh giới lý thuyết |
+| C | C06 | Bảo đảm SGD nêu cận phương sai đều, $0<\eta_t\le1/L$, $\sum_t\eta_t=\infty$, $\sum_t\eta_t^2<\infty$ và kết luận đúng mức | ranh giới lý thuyết |
 | C | C07 | Nhắc lại $F=\tfrac12\theta_1^2+2\theta_2^2+\tfrac52$ để bài tự chứa; phân biệt vết lô cố định với mô hình độc lập có hoàn lại, chứng minh $\sigma^2=17/b$, rồi kiểm tra $L=4$, cận dưới và lịch bước hằng | bài tập LLO12 |
 | D | D01 | Tăng lô giảm nhiễu nhưng không triệt dao động do điều kiện hóa; trạng thái vận tốc xử lý cơ chế thứ hai | nhu cầu/trực quan |
 | D | D03 | Vết hai bước tự định nghĩa vận tốc cụ thể và cho thấy quán tính ở vòng hai | ví dụ dẫn nhập |
@@ -65,14 +65,14 @@ Nesterov dùng $q_t=\theta_t+\beta v_t$ và tính $g_t(q_t)$. Khởi tạo dùng
 | D | D04 | Nesterov tính gradient tại điểm nhìn trước | trực quan |
 | D | D05 | Công thức Nesterov giữ cùng quy ước vận tốc | hình thức |
 | D | D06 | So sánh ba vết số, khóa $g_1(q_1),v_2$ và nối rõ sang yêu cầu chọn điểm đầu | bài tập LLO12 |
-| E | E01 | Hoán vị đầy đủ $(w,b,\phi,c)$, cùng lô và cập nhật giữ các đơn vị đối xứng trong cùng quỹ đạo | nhu cầu/phản ví dụ |
+| E | E01 | Hoán vị đầy đủ $(w,b,\phi,c)$, trạng thái bộ tối ưu bằng nhau, cùng lô và cùng cập nhật xác định giữ đối xứng | nhu cầu/phản ví dụ |
 | E | E02 | Định nghĩa $fan_{in}$ là số đầu vào, $fan_{out}$ là số đơn vị đầu ra và khóa kiểu $a,W,z$; với các giả thiết độc lập, công thức mômen bậc hai chuẩn bị Xavier/He | trực quan/tiên quyết toán |
 | E | E03 | Phương sai mục tiêu quyết định độ lệch chuẩn hoặc nửa độ rộng của phân phối | chuyển đổi kiểu đại lượng |
 | E | E04 | Hai mục tiêu $1/fan_{in}$ và $1/fan_{out}$ dẫn tới thỏa hiệp Xavier $2/(fan_{in}+fan_{out})$ | ví dụ → hình thức |
 | E | E05 | Dữ kiện ReLU với $fan_{in}=4$ dẫn tới và khái quát quy tắc He | ví dụ → hình thức |
 | E | E06 | Hàm kích hoạt quyết định quy tắc khởi tạo ban đầu | ứng dụng |
 | E | E07 | Tính thang và kiểm tra đối xứng dưới đúng giả thiết hoán vị/cập nhật | bài tập LLO13 |
-| Z | Z01 | Hệ quyết định tách mục tiêu, điểm đầu, chẩn đoán, cập nhật, đánh giá/dừng; không phải thứ tự thời gian | tổng kết |
+| Z | Z01 | Hệ quyết định tách mục tiêu, điểm đầu, chẩn đoán, cập nhật, đánh giá và dừng; nêu quan hệ phụ thuộc giữa chúng | tổng kết |
 | Z | Z02 | Tự chứa $F$ cùng dữ kiện hai vòng $\theta_0,\eta,\beta,B_0,B_1$ và bài tích hợp trên mạng ReLU mới khởi tạo để phân biệt vai trò tăng $b$, momentum, dừng sớm và He | tự kiểm tra |
 | Z | Z03 | Bảo đảm cổ điển không chuyển nguyên xi sang mạng sâu hữu hạn | kết luận giới hạn |
 | Z | Z04 | Nguồn và cầu nối sang thuật toán thích nghi Bài 06 | đọc tiếp |
@@ -95,5 +95,5 @@ Nesterov dùng $q_t=\theta_t+\beta v_t$ và tính $g_t(q_t)$. Khởi tạo dùng
 - Goodfellow, Bengio và Courville (2016), *Deep Learning*, Chương 8, §§8.1–8.4.
 - Glorot và Bengio (2010), PMLR 9; Sutskever và cộng sự (2013), PMLR 28(3); He và cộng sự (2015), ICCV/CVF.
 - `sources/Chapter7-full1.pdf` chỉ đối chiếu thuật ngữ; không kế thừa hình.
-- Sáu SVG tự vẽ: `risk-curves.svg`, `ill-conditioning.svg`, `saddle.svg`, `gradient-chain.svg`, `momentum-lookahead.svg`, `variance-flow.svg`.
+- Bảy SVG tự vẽ: `risk-curves.svg`, `ill-conditioning.svg`, `saddle.svg`, `gradient-chain.svg`, `minibatch-unbiased-variance.svg`, `momentum-lookahead.svg`, `variance-flow.svg`. Hình `minibatch-unbiased-variance.svg` trực quan hóa tính không chệch và mức giảm phương sai theo kích thước lô ở C02.
 - Không dùng `sources/6S191_MIT_DeepLearning_L1.pdf` và không dùng bản sách `z-lib.org` làm nguồn phát hành.

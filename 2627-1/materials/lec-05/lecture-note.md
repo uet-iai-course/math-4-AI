@@ -105,7 +105,7 @@ vẫn tạo một tín hiệu nhỏ để tăng biên.
 
 **Kết luận.** $\phi$ khả vi hai lần, giảm theo $m$ và lồi theo $m$.
 
-Chứng minh chi tiết nằm ở mục Nhóm A cuối ghi chú.
+Hai đạo hàm $\phi'(m)=-1/(1+e^m)$ và $\phi''(m)=e^m/(1+e^m)^2$ lần lượt cho tính giảm và tính lồi.
 
 Mất mát khả vi tạo ra gradient để cập nhật tham số. Hình học của hàm hợp theo $\theta$ mới quyết định gradient đó dễ hay khó sử dụng.
 
@@ -159,7 +159,7 @@ ta có $\nabla s(0,0)=0$ và $\nabla^2s=\operatorname{diag}(2,-2)$. Dọc $v=0$,
 
 **Kết luận.** Nếu $\nabla^2f(x^*)\succ0$ thì $x^*$ là cực tiểu địa phương chặt. Nếu $\nabla^2f(x^*)\prec0$ thì $x^*$ là cực đại địa phương chặt. Nếu Hessian bất định thì $x^*$ là điểm yên ngựa.
 
-Mục Nhóm B cuối ghi chú chứng minh kết quả này bằng khai triển Taylor.
+Khai triển Taylor bậc hai quanh $x^*$ chuyển dấu của dạng toàn phương $d^T\nabla^2f(x^*)d$ thành phân loại cục bộ.
 
 ### 4. Tích Jacobian và gradient qua mạng sâu
 
@@ -205,7 +205,7 @@ $$
 
 Hai con số minh họa bản chất tích lũy; chúng không phải số đo từ một mạng thực nghiệm.
 
-**Ý nghĩa và ứng dụng trong AI.** Công thức giải thích vì sao lựa chọn hàm kích hoạt, thang khởi tạo, chuẩn hóa và kết nối dư có thể ảnh hưởng mạnh tới gradient ở các lớp đầu. Nhu cầu kiểm soát thang tín hiệu này dẫn tới các quy tắc khởi tạo Xavier và He ở phần sau.
+**Ý nghĩa và ứng dụng trong AI.** Công thức giải thích vì sao lựa chọn hàm kích hoạt, thang khởi tạo, chuẩn hóa và kết nối dư có thể ảnh hưởng mạnh tới gradient ở các lớp đầu. Xavier và He chọn thang trọng số ban đầu để hạn chế sự co hoặc khuếch đại mômen qua nhiều lớp.
 
 **Điểm dễ nhầm.** Cận
 
@@ -242,7 +242,7 @@ $$
 \|\nabla_{h_K}\mathcal L\|_2.
 $$
 
-Mục Nhóm B cuối ghi chú trình bày chuỗi bất đẳng thức chuẩn.
+Áp dụng tính dưới nhân của chuẩn phổ qua từng Jacobian cho cận trên; cận dưới cần các trị kỳ dị nhỏ nhất.
 
 Sau khi nhận diện độ cong và nguy cơ suy giảm tín hiệu, ta chuyển sang cách ước lượng gradient khi tập dữ liệu quá lớn để dùng toàn bộ ở mỗi vòng.
 
@@ -341,7 +341,7 @@ $$
 \le\frac{\sigma_1^2}{b_t}.
 $$
 
-Mục Nhóm C cuối ghi chú chứng minh kết quả bằng cách triệt các hạng chéo.
+Độc lập có điều kiện làm các hạng chéo có kỳ vọng bằng $0$; trung bình $b_t$ số hạng vì thế chia sai số bình phương kỳ vọng cho $b_t$.
 
 ### 6. Thuật toán SGD và một vết hai vòng
 
@@ -365,7 +365,7 @@ $$
 \qquad
 \eta=0{,}1,
 \qquad
-B_0=\{1\},\quad B_1=\{2\}.
+B_0=(1),\quad B_1=(2).
 $$
 
 Vòng đầu:
@@ -483,7 +483,7 @@ $$
 
 tiến về $0$.
 
-Mục Nhóm C cuối ghi chú suy ra cận này từ bổ đề giảm của hàm trơn.
+Bổ đề giảm của hàm $L$-trơn, tính không chệch và cận phương sai cho bất đẳng thức tổng; hai điều kiện Robbins–Monro làm tỷ số tiến về $0$.
 
 ### Hệ quả: chọn ngẫu nhiên một vòng để đọc cận
 
@@ -539,7 +539,7 @@ $$
 \end{aligned}
 $$
 
-với $\theta_0=(2,1)^T$, $v_0=0$, $\eta=0{,}1$, $\beta=0{,}5$, $B_0=\{1\}$ và $B_1=\{2\}$. Vòng đầu cho
+với $\theta_0=(2,1)^T$, $v_0=0$, $\eta=0{,}1$, $\beta=0{,}5$, $B_0=(1)$ và $B_1=(2)$. Vòng đầu cho
 
 $$
 g_0(\theta_0)=(1,0)^T,\qquad
@@ -605,7 +605,7 @@ $$
 q_1=\theta_1+0{,}5v_1=(1{,}85,1)^T.
 $$
 
-Với $B_1=\{2\}$,
+Với $B_1=(2)$,
 
 $$
 g_1(q_1)=(2{,}85,8)^T.
@@ -630,7 +630,7 @@ và $\theta_2=(1{,}565,0{,}2)^T$.
 
 **Mục tiêu đọc hiểu.** Người đọc đối chiếu được ba quy tắc trên cùng dữ kiện và nêu đúng giới hạn của một so sánh ngắn.
 
-**Định nghĩa và giả thiết.** So sánh giữ cố định $\theta_0$, $\eta$, $\beta$, $B_0$, $B_1$ và hai hàm mất mát. Vết $B_0=\{1\}$, $B_1=\{2\}$ là một thứ tự cố định để tái lập phép tính, không phải quá trình lấy mẫu dùng trong định lý không chệch.
+**Định nghĩa và giả thiết.** So sánh giữ cố định $\theta_0$, $\eta$, $\beta$, $B_0$, $B_1$ và hai hàm mất mát. Vết $B_0=(1)$, $B_1=(2)$ gồm hai lô một phần tử theo thứ tự cố định để tái lập phép tính, không phải quá trình lấy mẫu dùng trong định lý không chệch.
 
 **Trực quan.** Ba quỹ đạo có cùng bước đầu. Ở bước hai, momentum dùng thêm vận tốc cũ; Nesterov còn dịch điểm đánh giá gradient. Khoảng cách nhỏ giữa ba điểm chỉ biểu diễn khác biệt cơ chế trong hai vòng này.
 
@@ -681,14 +681,14 @@ Có thể đọc cơ chế này trực tiếp từ ví dụ dưới đây: hai �
 **Ví dụ tính được.** Xét hai đơn vị tuyến tính $h_j=w_jx$ với $x=2$ và mất mát
 
 $$
-L=\frac12(h_1+h_2-y)^2.
+\mathcal L=\frac12(h_1+h_2-y)^2.
 $$
 
 Nếu $w_1=w_2=0$ và $y=1$ thì
 
 $$
-\frac{\partial L}{\partial w_1}
-=\frac{\partial L}{\partial w_2}
+\frac{\partial \mathcal L}{\partial w_1}
+=\frac{\partial \mathcal L}{\partial w_2}
 =(0+0-1)\,2=-2.
 $$
 

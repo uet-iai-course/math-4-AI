@@ -222,3 +222,33 @@ Cổng storyboard và năm phát hiện bắt buộc trên đã được phản 
 - Codex Slides xác nhận dự án `20260901025958-lecture-05-t-i-u-b-c-nh-t-cho-h-c-m-y-z8ku` ở trạng thái draft với 40 trang; không có Browser để tuyên bố rà trực quan mới.
 - Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS về mạch khái niệm, độ đầy đủ và độ chính xác toán học.
 - Hậu kiểm toàn khóa thay các tham chiếu “mạch/trang trước” còn sót bằng các quan hệ cụ thể: điều kiện hóa–nhiễu–đối xứng, dao động trong khe hẹp và phép đổi từ phương sai sang tham số phân phối.
+
+## Rà soát sâu và kiểm định in ngày 2026-09-01
+
+### Mạch khái niệm và ký hiệu
+
+- P03 đổi chuỗi mũi tên sai thứ tự thành lưới năm câu hỏi: mục tiêu, điểm đầu, dữ liệu và gradient, cập nhật, đánh giá và dừng. Z01 nêu trực tiếp ba quan hệ phụ thuộc thay cho câu chữa “không phải thứ tự thời gian”.
+- Thứ tự A01→A03→A04→A02 được khôi phục đúng outline và storyboard: nhu cầu phân biệt mục tiêu → ví dụ mất mát → trực quan dừng sớm → định nghĩa rủi ro kỳ vọng và thực nghiệm.
+- C03 định nghĩa ngay hai lô một phần tử $B_0=(1)$, $B_1=(2)$. C02 sau đó khái quát $B_t$ thành đa tập lấy độc lập, đều, có hoàn lại và dùng hình phương sai; C06 hiện đủ hai tổng Robbins–Monro trước khi C07 kiểm tốc độ học hằng.
+- B04 dùng $\mathcal L$ cho mất mát, phân biệt với hằng Lipschitz $L$. Lecture note áp dụng cùng quy ước trong ví dụ đối xứng.
+- E01 nêu đủ đẳng thức của $(w,b,\phi,c)$, trạng thái bộ tối ưu, cùng lô và cùng quy tắc cập nhật xác định trước kết luận bảo toàn đối xứng.
+
+### Phản biện độc lập và biên tập
+
+- Tác tử lập kế hoạch kiểm kê 40 trang, 7 SVG và các phụ thuộc trước khi sửa; không sửa tệp và không gửi dữ liệu ra ngoài.
+- Lượt phản biện độc lập đầu tiên xác nhận các sửa trọng tâm đúng, đồng thời phát hiện năm điểm còn lại: lời dẫn “Nhóm … cuối ghi chú”, xung đột ký hiệu $L$, câu thao tác hóa LLO trong notes, ký hiệu ngoặc nhọn trong SVG và danh mục hình thiếu trong storyboard. Cả năm điểm đã được sửa.
+- Các câu chuyển chung chung “điểm kết của câu chuyện”, “cầu trực tiếp” và lời biên tập nội bộ được thay bằng quan hệ toán học cụ thể. Ghi chú bài giảng giữ nguyên chứng minh và ví dụ, chỉ bỏ lời dẫn quy trình.
+- Vòng rà soát này không gửi tệp Bài 05 tới OpenRouter. Các mục OpenRouter trước đó trong nhật ký là lịch sử của lần kiểm định cũ.
+
+### Kiểm định toán học, cấu trúc và hình
+
+- Tính lại bằng phân số chính xác: SGD cho $(1{,}61,0{,}2)$, momentum cho $(1{,}56,0{,}2)$, Nesterov cho $(1{,}565,0{,}2)$; sai số bình phương một mẫu là $17$, Xavier có phương sai $1/3$, He có phương sai $1/2$.
+- Deck có 40 mã duy nhất, 40 ghi chú, 40 đoạn nguồn và 7 `<section>` ngoài. Outline và storyboard đều có đúng 40 hàng, khớp tập mã và thứ tự DOM. Markdown bắt đầu bằng heading cấp một; chín khối mở rộng và chín dấu đóng cân bằng; `git diff --check` sạch.
+- Bảy SVG phân tích XML thành công, có `title` và `desc`, không chứa `script`, `foreignObject`, ảnh nhúng hoặc tài nguyên mạng. `minibatch-unbiased-variance.svg` được render và xem trực tiếp sau khi đổi ký hiệu sang $B_0=(1)$, $B_1=(2)$; các mũi tên, số $17$, $8{,}5$, $4{,}25$ và quy luật $17/b$ hiển thị đúng.
+- Kết xuất in ban đầu làm lưới P03, C02, C06 và E01 thành một cột vì quy tắc màn hình hẹp cũng kích hoạt khi in. Quy tắc `@media print` nay giữ lưới hai hoặc ba cột. PDF cuối có khung 16:9 và 46 trạng thái in do các fragment; bốn trang sửa chính và E01 riêng đều hiển thị đủ nội dung, không chồng lấn.
+- Deck, lecture note, material viewer và toàn bộ tài sản cục bộ trả HTTP 200 tại cổng kiểm định 8765.
+
+### Giới hạn công cụ
+
+- Codex Slides không có bề mặt Browser/MCP trong phiên này. Rà trực quan dùng Chromium headless và RevealJS cục bộ; không tuyên bố đã kiểm định bằng Codex Slides.
+- Tái kiểm độc lập cuối kết thúc `PASS`: năm lỗi của lượt trước đã đóng; thứ tự DOM khớp tuyệt đối với outline và storyboard; 40 ID, 40 ghi chú, 40 nguồn, 7 section ngoài và 7 SVG đều đồng bộ; không phát hiện lỗi toán, ký hiệu hoặc lời dẫn quy trình mới.
