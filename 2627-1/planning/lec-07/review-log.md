@@ -158,3 +158,11 @@ Không xóa các nhận định trước. Bảng này ghi quyết định mới 
 - Chín SVG của bài phân tích XML thành công, có `role="img"`, `title`, `desc`, không có script hoặc `foreignObject`; ImageMagick kết xuất đủ chín PNG để rà trực quan. Mọi ảnh trong Markdown có văn bản thay thế và đường dẫn cục bộ tồn tại.
 - Dùng quy trình `no-ai-slop` để sửa tối thiểu các câu dẫn chung, cụm nhấn mạnh mơ hồ và sự lặp cấu trúc; giữ nguyên nội dung toán, ký hiệu và mức chứng minh.
 - Giới hạn Codex Slides không đổi: runtime cục bộ chưa đáp ứng phiên bản Node.js mà plugin yêu cầu và phiên này không có bề mặt Browser tích hợp. Không tuyên bố đã kiểm định ghi chú bằng Codex Slides; kiểm định Markdown, SVG, HTTP và viewer cục bộ được dùng làm cơ chế dự phòng.
+
+## Rà văn phong và mạch khái niệm ngày 2026-09-01
+
+- Bỏ 14 dòng `Đầu ra` lặp mục tiêu đọc hiểu trong lecture note; không sửa định nghĩa, ví dụ, định lý, chứng minh hoặc câu hỏi kiểm tra.
+- Deck không có lời điều phối biên tập hoặc mã quy trình lộ ra. Các cụm “kiểm trực tiếp” còn trong note là nhiệm vụ toán học cụ thể về chi phí đường đi và tích ma trận–véc-tơ, nên được giữ.
+- Kiểm định đạt 37 mã duy nhất, 37 ghi chú, 6 section ngoài, thẻ cân bằng, tài sản tồn tại, SVG hợp lệ và HTTP 200 cho deck/viewer/note/KaTeX.
+- Codex Slides xác nhận dự án `20260901031914-lecture-07-quy-ho-ch-tuy-n-t-nh-v-ng-dqvy` ở trạng thái draft với 37 trang; không có Browser để tuyên bố rà trực quan mới.
+- Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS. Ghi chú nhỏ về nguồn nội bộ ở P02 đã được xử lý: nhãn đổi thành `Chuỗi quyết định`, nguồn thay bằng đề cương và Bellman (1957).

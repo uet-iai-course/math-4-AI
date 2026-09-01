@@ -65,8 +65,6 @@ $$
 
 **Câu hỏi kiểm tra.** Hai luồng xử lý có lợi ích $4$ và $5$ trên mỗi đơn vị, với $x_1\le8$, $x_2\le6$, $2x_1+x_2\le14$ và $x\ge0$. Hãy viết LP đầy đủ và kiểm tra điểm $(4,6)$.
 
-**Đầu ra.** Người đọc viết được một LP có biến và đơn vị rõ, đúng chiều tối ưu, đủ mục tiêu, ràng buộc và miền biến.
-
 ### 2. Mất mát từng đoạn và hồi quy chuẩn $L_1$ dưới dạng LP
 
 **Mục tiêu đọc hiểu.** Người đọc đưa được tổng trị tuyệt đối của các phần dư về quy hoạch tuyến tính và giải thích được vì sao phép chuyển là tương đương.
@@ -142,8 +140,6 @@ $$
 
 về LP với một biến phụ $t$, rồi xác định nghiệm và giá trị tối ưu.
 
-**Đầu ra.** Người đọc chuyển được trị tuyệt đối hoặc cực đại của các biểu thức affine thành LP bằng biến phụ và giải thích được tính tương đương.
-
 ## B. Hình học đa diện và dạng chuẩn
 
 Bài hộp hạt tiếp tục được dùng để chuyển từ danh sách ràng buộc sang đa diện, rồi mã hóa một đỉnh bằng nghiệm cơ sở khả thi.
@@ -187,8 +183,6 @@ $$
 **Điểm dễ nhầm.** Đa diện không đồng nghĩa với đa giác bị chặn. Miền khả thi không bị chặn chưa đủ để kết luận giá trị mục tiêu không bị chặn; mục tiêu có thể không tăng theo các hướng kéo dài vô hạn của miền.
 
 **Câu hỏi kiểm tra.** Nếu thêm ràng buộc $x_1+x_2\ge10$ vào bài hộp hạt, những đỉnh cũ nào bị loại? Miền mới còn bị chặn không?
-
-**Đầu ra.** Người đọc dựng và diễn giải được một đa diện như giao của các nửa không gian, đồng thời đọc được quan hệ giữa đường mức và miền khả thi.
 
 ### 4. Dạng chuẩn và các phép chuyển cơ bản
 
@@ -252,8 +246,6 @@ x_1-x_2\ge2
 $$
 
 thành một phương trình chỉ dùng biến không âm.
-
-**Đầu ra.** Người đọc chuyển được các ràng buộc tuyến tính sang quy ước dạng chuẩn, ghi đúng dấu và ánh xạ được nghiệm về biến gốc.
 
 ### 5. Cơ sở, nghiệm cơ sở khả thi và suy biến
 
@@ -338,8 +330,6 @@ Với cơ sở $B=\{1,2\}$, nghiệm cơ sở là $(x_1,x_2)=(1,0)$. Biến cơ 
 
 **Câu hỏi kiểm tra.** Với cơ sở $B=\{1,2,4\}$ của bài hộp hạt, hãy nêu các biến ngoài cơ sở, tính nghiệm đầy đủ theo thứ tự $(x_1,x_2,s_1,s_2,s_3)$ và kiểm tính suy biến.
 
-**Đầu ra.** Người đọc kiểm được ma trận cơ sở, nghiệm cơ sở, tính khả thi và tính suy biến bằng các phép tính cụ thể.
-
 ## C. Điểm cực và logic tìm kiếm trên đa diện
 
 Định nghĩa hình học của điểm cực sẽ được nối với nghiệm cơ sở khả thi. Từ đó, ta xác định các giả thiết cho bảo đảm tối ưu và bước đi qua các đỉnh kề.
@@ -398,8 +388,6 @@ nên không phải điểm cực.
 
 **Câu hỏi kiểm tra.** Trên đoạn nghiệm tối ưu của ví dụ, điểm $(1/2,3/2)$ có phải điểm cực không? Hãy viết nó thành một tổ hợp lồi của hai đầu mút.
 
-**Đầu ra.** Người đọc dùng được định nghĩa tổ hợp lồi để kiểm tra điểm cực và phân biệt điểm cực với một nghiệm tối ưu bất kỳ.
-
 ### 7. Tương đương giữa điểm cực, nghiệm cơ sở khả thi và độc lập cột
 
 **Mục tiêu đọc hiểu.** Người đọc chuyển được giữa ba chứng nhận hình học và đại số của cùng một điểm khả thi ở dạng chuẩn.
@@ -452,8 +440,6 @@ có định thức $-2$, nên độc lập tuyến tính. Theo định lý, $\ma
 
 **Câu hỏi kiểm tra.** Nếu $\operatorname{rank}(\mathbf A)=m$ và một điểm khả thi có nhiều hơn $m$ thành phần dương, điểm đó có thể là điểm cực không? Hãy giải thích bằng điều kiện độc lập cột.
 
-**Đầu ra.** Người đọc chuyển được giữa ba chứng nhận: điểm cực, BFS và độc lập tuyến tính của các cột ứng với thành phần dương.
-
 ### 8. Tồn tại điểm cực, điểm cực tối ưu và bốn kết cục
 
 **Mục tiêu đọc hiểu.** Người đọc phân loại được kết cục của một LP và nêu đủ giả thiết để kết luận có điểm cực tối ưu.
@@ -499,8 +485,6 @@ P=\{(x_1,x_2):0\le x_1\le1,\ x_2\ge0\}
 $$
 
 và mục tiêu $\max x_1$. Miền có bị chặn không? Giá trị tối ưu có hữu hạn và được đạt không? Tập nghiệm tối ưu là gì?
-
-**Đầu ra.** Người đọc phân loại được bốn kết cục và nêu đủ giả thiết trước khi dùng bảo đảm tồn tại điểm cực tối ưu.
 
 ### 9. Đỉnh kề và bước đi cải thiện ở mức ý niệm
 
@@ -548,8 +532,6 @@ Mỗi đoạn là một cạnh của đa diện và mỗi bước cải thiện 
 
 **Câu hỏi kiểm tra.** Vì sao tiêu chuẩn “không còn đỉnh kề cải thiện” không thể được dùng nếu bài toán không có điểm cực hoặc mục tiêu không có giá trị tối ưu hữu hạn? Hãy chỉ ra giả thiết bị thiếu trong mỗi trường hợp.
 
-**Đầu ra.** Người đọc mô tả được bước đi qua đỉnh kề ở mức hình học, kiểm được chuỗi cải thiện và xác định đúng ranh giới với thuật toán đơn hình.
-
 ## D. Quy hoạch động hữu hạn tất định
 
 Quy hoạch tuyến tính gom quyết định vào một véc-tơ. Khi quyết định hiện tại làm thay đổi lựa chọn tương lai, mô hình cần thêm chỉ số giai đoạn và một trạng thái tóm tắt quá khứ.
@@ -594,8 +576,6 @@ Một trạng thái là nút hiện tại. Chẳng hạn, mọi lịch sử đi 
 **Điểm dễ nhầm.** Trạng thái không nhất thiết là toàn bộ lịch sử, nhưng cũng không được bỏ thông tin làm thay đổi chi phí hoặc chuyển tiếp tương lai. “Tất định” nghĩa là $f_k(x,u)$ cho đúng một trạng thái kế tiếp; bài này chưa xét kỳ vọng hay nhiễu ngẫu nhiên.
 
 **Câu hỏi kiểm tra.** Nếu chi phí từ $C$ đến $t$ còn phụ thuộc vào việc đã đi qua $A$ hay $B$, chỉ dùng nút $C$ làm trạng thái có đủ không? Hãy nêu một cách mở rộng trạng thái.
-
-**Đầu ra.** Người đọc xác định được chân trời, trạng thái, điều khiển, chuyển trạng thái, chi phí theo giai đoạn và chi phí cuối.
 
 ### 11. Nguyên lý tối ưu và phương trình Bellman
 
@@ -651,8 +631,6 @@ $$
 
 **Câu hỏi kiểm tra.** Vì sao $J(A)$ bằng $3$ chứ không bằng chi phí cạnh nhỏ nhất $2$? Hãy chỉ ra hai phần được cộng trong mỗi lựa chọn.
 
-**Đầu ra.** Người đọc viết và tính được truy hồi Bellman cho một đồ thị hữu hạn có tầng.
-
 ## E. Giải ngược, chính sách và chi phí tính toán
 
 Phương trình Bellman cho giá trị tối ưu ở từng trạng thái. Để thực thi quyết định, ta còn phải lưu lựa chọn đạt cực tiểu và khôi phục chính sách theo chiều thời gian.
@@ -697,8 +675,6 @@ và một đường tối ưu mới là $s\to B\to C\to t$.
 
 **Câu hỏi kiểm tra.** Với dữ kiện đã đổi, hãy kiểm trực tiếp hai tổng chi phí $s\to A\to D\to t$ và $s\to B\to C\to t$.
 
-**Đầu ra.** Người đọc trả về được cả $J_0(x_0)$ và một chuỗi quyết định đạt giá trị đó.
-
 ### 13. Dùng lại bài toán con và độ phức tạp
 
 **Mục tiêu đọc hiểu.** Người đọc đếm được số cặp trạng thái–điều khiển mà giải ngược phải xét, chỉ ra phần tiết kiệm so với liệt kê chuỗi và nhận ra giới hạn do số trạng thái.
@@ -729,8 +705,6 @@ Con số cụ thể phụ thuộc cấu trúc biên; điểm tiết kiệm là �
 
 **Câu hỏi kiểm tra.** Nếu mỗi tầng có $q$ trạng thái và mỗi trạng thái nối đến mọi trạng thái của tầng sau, số cạnh giữa hai tầng là bao nhiêu? Điều này nói gì khi $q$ lớn?
 
-**Đầu ra.** Người đọc nêu được cả nguồn tiết kiệm và nút thắt tính toán của quy hoạch động hữu hạn.
-
 ## F. Bản đồ lựa chọn công cụ
 
 Hai tuyến trong bài trả lời hai kiểu cấu trúc khác nhau. Phần này dùng cùng một bảng kiểm để tránh chọn công cụ chỉ vì tên bài toán quen thuộc.
@@ -752,8 +726,6 @@ Hai tuyến trong bài trả lời hai kiểu cấu trúc khác nhau. Phần nà
 **Điểm dễ nhầm.** Một bài toán đường đi có thể có nhiều cải dạng toán học. Trong phạm vi này, LP khai thác đa diện và điểm cực, còn DP tái sử dụng bài toán con theo trạng thái. Bài 08 mới chỉ ra cách cập nhật cơ sở trong phương pháp đơn hình.
 
 **Câu hỏi kiểm tra.** Với mỗi tình huống sau, hãy chọn khuôn gần nhất và nêu giả thiết quyết định: phân bổ bộ nhớ cho ba mô hình; chọn ba bước xử lý phụ thuộc kết quả bước trước; phân bổ số máy chủ nguyên; định tuyến khi thời gian cạnh là ngẫu nhiên.
-
-**Đầu ra.** Người đọc có một bảng kiểm gồm đối tượng quyết định, quan hệ toán học, đầu ra và giới hạn của hai khuôn.
 
 ## G. Định lý và chứng minh quan trọng
 
