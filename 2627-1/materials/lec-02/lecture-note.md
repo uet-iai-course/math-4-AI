@@ -9,7 +9,7 @@ Người học cần nhận dạng, cải dạng và giải thích được các
 | A. Khuôn và cải dạng | Khuôn lồi chuẩn; các phép cải dạng tương đương | Tách đối tượng toán học khỏi biểu diễn ban đầu |
 | B. Tối ưu tựa lồi | Tập mức dưới; chia đôi theo giá trị | Đổi tối ưu thành chuỗi phép thử khả thi |
 | C. LP, QP và QCQP | Ba lớp affine và bậc hai | Nhận dạng lớp và kiểm tra giả thiết PSD |
-| D. Quy hoạch hình học | Đơn thức, đa thức dương; đổi log | Làm lộ cấu trúc lồi trên miền dương |
+| D. Quy hoạch hình học | Đơn thức, đa thức dương; đổi log | Cho thấy cấu trúc lồi trên miền dương |
 | E. Tối ưu nón và SDP | Thứ tự theo nón; LMI và SDP | Đọc bất đẳng thức véc-tơ hoặc ma trận đúng kiểu |
 | F. Tối ưu nhiều mục tiêu | Pareto; vô hướng hóa bằng trọng số | Phân tích đánh đổi và giới hạn của trọng số |
 
@@ -185,7 +185,7 @@ $$
 Vậy $x^*=1$ và $p^*=1$.
 :::
 
-**Ý nghĩa và ứng dụng trong AI.** Nhiều mất mát cực đại, chuẩn $L_1$, chuẩn $L_\infty$ và giới hạn độ lệch có biểu diễn ban đầu không trơn. Thêm biến phụ có thể làm lộ một bài toán tuyến tính hoặc bài toán nón mà bộ giải nhận dạng trực tiếp.
+**Ý nghĩa và ứng dụng trong AI.** Nhiều mất mát cực đại, chuẩn $L_1$, chuẩn $L_\infty$ và giới hạn độ lệch có biểu diễn ban đầu không trơn. Thêm biến phụ có thể đưa về một bài toán tuyến tính hoặc bài toán nón mà bộ giải nhận dạng trực tiếp.
 
 **Điểm dễ nhầm.** Khi khử $Ax=b$, chỉ viết $x=Fz+x_0$ là chưa đủ; cần $Ax_0=b$ và các cột của $F$ sinh đúng $\ker A$. Biến dư phải đi kèm lượng từ tồn tại và điều kiện $s\ge0$. Dạng trên-đồ-thị không cho phép bỏ các ràng buộc gốc.
 
@@ -373,7 +373,7 @@ Nếu $S_t=\varnothing$, mọi $x\in D$ đều thỏa $f(x)>t$, nên $p^*\ge t$.
 Trong cả hai trường hợp, một đầu mút được thay bằng trung điểm, nên
 
 $$
-u_{mathrm{mới}}-l_{mathrm{mới}}
+u_{\mathrm{mới}}-l_{\mathrm{mới}}
 =\frac{u-l}{2}.
 $$
 
@@ -595,7 +595,7 @@ $$
 \{x:q_i(x)\le0\}
 $$
 
-lồi. Tập nghiệm của các đẳng thức affine cũng lồi. Giao của các tập này là tập khả thi lồi, còn $q_0$ là mục tiêu lồi. Đây chính là cấu trúc của một bài toán tối ưu lồi.
+lồi. Tập nghiệm của các đẳng thức affine cũng lồi. Giao của các tập này là tập khả thi lồi, còn $q_0$ là mục tiêu lồi. Đây là cấu trúc của một bài toán tối ưu lồi.
 
 Nếu $P_0\succ0$, mục tiêu lồi chặt; khi tập khả thi lồi và nghiệm tồn tại, nghiệm là duy nhất. Không cần $P_i\succ0$ cho các ràng buộc: $P_i\succeq0$ đã đủ để tập mức dưới lồi.
 :::
@@ -750,7 +750,7 @@ $$
 \end{aligned}
 $$
 
-**Ý nghĩa và ứng dụng trong AI.** Cùng cơ chế được dùng khi các biến dương là độ rộng lớp, mức nén, công suất, tần số hoặc ngân sách tính toán. Phép đổi tọa độ có thể làm lộ một bài toán lồi mà biểu thức gốc không cho thấy trực tiếp.
+**Ý nghĩa và ứng dụng trong AI.** Cùng cơ chế được dùng khi các biến dương là độ rộng lớp, mức nén, công suất, tần số hoặc ngân sách tính toán. Phép đổi tọa độ đưa biểu thức gốc về một bài toán lồi tương đương.
 
 Các hệ số $d_i$ trong ví dụ dầm là số liệu chuẩn hóa để minh họa cấu trúc GP, không phải dữ liệu đo thực nghiệm.
 
@@ -1033,7 +1033,7 @@ $$
 \|w\|_2^2\le\tau.
 $$
 
-Đây là QCQP lồi vì Hessian của mục tiêu là $2X^TX\succeq0$ và Hessian của ràng buộc là $2I\succ0$. Tham số $\tau$ kiểm soát độ lớn của mô hình. Nếu đồng thời muốn giảm sai số và giảm độ lớn tham số mà chưa chốt $\tau$, ta có thể xét bài toán hai mục tiêu
+Đây là QCQP lồi vì Hessian của mục tiêu là $2X^TX\succeq0$ và Hessian của ràng buộc là $2I\succ0$. Tham số $\tau$ kiểm soát độ lớn của mô hình, như ngân sách $\tau$ đã xét ở mục 7. Nếu đồng thời muốn giảm sai số và giảm độ lớn tham số mà chưa chốt $\tau$, ta có thể xét bài toán hai mục tiêu
 
 $$
 \Phi(w)=\bigl(\|Xw-y\|_2^2,\|w\|_2^2\bigr)

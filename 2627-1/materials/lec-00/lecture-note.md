@@ -4,9 +4,7 @@ Bài 00 nối ba nền tảng toán học dùng xuyên suốt học phần: đ�
 
 ## Mục tiêu và kiến thức tiên quyết
 
-Ghi chú bám theo mục tiêu của buổi ôn tập: dùng đại số tuyến tính, giải tích nhiều biến và xác suất để biểu diễn dữ liệu, học tham số và diễn giải bất định trong một mô hình AI đơn giản.
-
-Kiến thức tiên quyết gồm đại số phổ thông, hàm một biến, đạo hàm cơ bản và các phép tính xác suất sơ cấp.
+Kiến thức phổ thông (đại số phổ thông, hàm một biến, đạo hàm cơ bản và các phép tính xác suất sơ cấp) là đầu vào để đọc bài này. Tài liệu ôn lại ba học phần tiên quyết chính thức của học phần: Giải tích 1, Xác suất thống kê và Đại số tuyến tính cho kỹ thuật.
 
 ## Quy ước ký hiệu
 
@@ -385,7 +383,7 @@ $$
 
 **Ý nghĩa hình học.** Cơ sở chọn các trục tọa độ; cơ sở trực giao làm các trục vuông góc; cơ sở trực chuẩn còn chuẩn hóa độ dài trục. Với cơ sở trực chuẩn $(\mathbf q_1,\ldots,\mathbf q_n)$, tọa độ được lấy trực tiếp bằng $\alpha_i=\mathbf q_i^T\mathbf x$, nên độ dài và góc được bảo toàn khi đổi giữa véc-tơ và tọa độ.
 
-**Điểm dễ nhầm.** Độc lập tuyến tính không kéo theo trực giao, và trực giao không kéo theo trực chuẩn. Một hệ trực giao không chứa véc-tơ không và có ít hơn $n$ véc-tơ là một cơ sở trực giao của không gian con mà nó sinh ra. Véc-tơ không trực giao với mọi véc-tơ nhưng không thể thuộc một hệ trực giao dùng để suy ra độc lập tuyến tính.
+**Điểm dễ nhầm.** Độc lập tuyến tính không kéo theo trực giao, và trực giao không kéo theo trực chuẩn. Một hệ trực giao không chứa véc-tơ không và có ít hơn $n$ véc-tơ là một cơ sở trực giao của không gian con mà nó sinh ra. Véc-tơ không trực giao với mọi véc-tơ, nhưng không thể thuộc một hệ trực giao dùng để suy ra độc lập tuyến tính.
 
 **Ý nghĩa và vai trò trong AI.** Thuật toán Gram–Schmidt biến một hệ độc lập thành hệ trực chuẩn sinh cùng không gian. Các cột của $\mathbf Q$ trong phân rã QR là trực chuẩn; các hướng của phân tích thành phần chính có thể được chọn thành một cơ sở trực chuẩn. Cơ sở trực chuẩn giúp tính phép chiếu, biểu diễn đặc trưng và các thuật toán số ổn định hơn.
 
@@ -427,7 +425,6 @@ $$
 
 Ta có
 
-
 $$
 \det(\mathbf A-\lambda\mathbf I_2)
 =(2-\lambda)^2-1
@@ -447,6 +444,8 @@ $$
 **Ý nghĩa và vai trò trong AI.** Phân tích thành phần chính (principal component analysis, PCA) dùng các véc-tơ riêng của ma trận hiệp phương sai làm các hướng chính và dùng giá trị riêng để đo phương sai trên từng hướng. Với ma trận Hessian đối xứng, véc-tơ riêng cho các hướng độ cong còn giá trị riêng cho độ lớn và dấu của độ cong; phổ giá trị riêng vì thế ảnh hưởng đến điều kiện hóa và tốc độ của thuật toán tối ưu.
 
 ### Các phép phân rã ma trận
+
+> **Phần mở rộng ngoài phạm vi bộ trang chiếu.**
 
 #### Phân rã LU
 
@@ -550,7 +549,7 @@ ta có $\sigma_1=3$, $\sigma_2=2$ và $\sigma_i^2$ là các giá trị riêng c�
 
 **Điểm dễ nhầm.** Giá trị kỳ dị luôn không âm, tồn tại cả với ma trận chữ nhật và không đồng nhất với giá trị riêng. EVD và SVD chỉ trùng về các hướng trong một số trường hợp đặc biệt.
 
-**Ý nghĩa và vai trò trong AI.** Cắt SVD tại một số ít giá trị kỳ dị lớn tạo xấp xỉ hạng thấp dùng trong nén và khử nhiễu. SVD cũng là nền tảng của PCA và giả nghịch đảo
+**Ý nghĩa và vai trò trong AI.** Cắt SVD tại vài giá trị kỳ dị lớn nhất tạo xấp xỉ hạng thấp dùng trong nén và khử nhiễu. SVD cũng là nền tảng của PCA và giả nghịch đảo:
 
 $$
 \mathbf A^\dagger
@@ -727,7 +726,7 @@ $$
 
 **Điểm dễ nhầm.** $\mathrm dh$ là thay đổi tuyến tính dự đoán, không phải luôn bằng thay đổi hữu hạn $h(\mathbf x+\boldsymbol\Delta)-h(\mathbf x)$.
 
-**Ý nghĩa và vai trò trong AI.** Tuyến tính hóa giúp xấp xỉ ảnh hưởng của nhiễu đầu vào, lan truyền sai số và suy các công thức gradient theo ma trận.
+**Ý nghĩa và vai trò trong AI.** Tuyến tính hóa giúp xấp xỉ ảnh hưởng của nhiễu đầu vào, lan truyền sai số và suy ra các công thức gradient theo ma trận.
 
 ### Ma trận Jacobian
 
@@ -868,6 +867,8 @@ Bỏ hạng chứa Hessian cho mô hình Taylor bậc nhất.
 
 ### Điểm dừng và điều kiện tối ưu bậc nhất
 
+> **Phần mở rộng ngoài phạm vi bộ trang chiếu.**
+
 **Định nghĩa.** Điểm $\mathbf x^*$ là điểm dừng nếu $\nabla h(\mathbf x^*)=\mathbf0$. Nếu $h$ khả vi và đạt cực tiểu hoặc cực đại địa phương tại một điểm nằm trong miền mở thì điểm đó phải là điểm dừng.
 
 **Ý nghĩa hình học.** Tại điểm dừng, mô hình tuyến tính bậc nhất là một mặt phẳng ngang; mọi đạo hàm theo hướng đều bằng $0$.
@@ -876,7 +877,7 @@ Bỏ hạng chứa Hessian cho mô hình Taylor bậc nhất.
 
 **Điểm dễ nhầm.** Gradient bằng $0$ chỉ là điều kiện cần, không đủ để kết luận cực tiểu. Chẳng hạn, $s(u,v)=u^2-v^2$ có gradient bằng $0$ tại gốc nhưng gốc là điểm yên ngựa.
 
-**Ý nghĩa và vai trò trong AI.** Điều kiện gradient bằng $0$ tạo phương trình đặc trưng cho nghiệm tối ưu và giúp định nghĩa trạng thái mà thuật toán huấn luyện không còn hướng giảm bậc nhất.
+**Ý nghĩa và vai trò trong AI.** Điều kiện gradient bằng $0$ tạo hệ phương trình xác định nghiệm tối ưu và giúp định nghĩa trạng thái mà thuật toán huấn luyện không còn hướng giảm bậc nhất.
 
 ### Phân loại điểm dừng bằng Hessian
 
@@ -1256,6 +1257,8 @@ Giá trị dương cho biết $U=1$ và $V=1$ có xu hướng xuất hiện cùn
 
 ### Gauss nhiều biến, khoảng cách Mahalanobis và làm trắng
 
+> **Phần mở rộng ngoài phạm vi bộ trang chiếu.**
+
 **Định nghĩa.** Với $\boldsymbol\mu\in\mathbb R^d$ và $\boldsymbol\Sigma\in\mathbb S_{++}^d$, phân phối Gauss nhiều biến có mật độ
 
 $$
@@ -1528,8 +1531,10 @@ Khi đó $\operatorname{SSE}=\lVert\mathbf r_{\mathrm{LS}}\rVert_2^2=4$, $f(\mat
 $$
 \hat y_{\mathrm{new}}
 =\mathbf w_{\mathrm{LS}}^T\boldsymbol\phi_{\mathrm{new}}
-=16=1{,}6\ \text{tỷ đồng}.
+=16.
 $$
+
+Giá trị này tương ứng $1{,}6$ tỷ đồng.
 
 Với quy tắc Gauss $\Pr(|G|\le1{,}96)\approx0{,}95$, dải nhiễu có điều kiện là
 

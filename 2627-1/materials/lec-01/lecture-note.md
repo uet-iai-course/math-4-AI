@@ -1,6 +1,6 @@
 # Bài 01 — Giới thiệu tối ưu, tập lồi và hàm lồi
 
-Bài 01 xây dựng ngôn ngữ để mô tả một bài toán tối ưu, phân biệt các loại nghiệm và tách hai câu hỏi thường bị gộp lại: nghiệm có tồn tại không và có duy nhất không.
+Bài này giới thiệu ký hiệu và khái niệm để mô tả một bài toán tối ưu, phân biệt các loại nghiệm và tách hai câu hỏi thường bị gộp lại: nghiệm có tồn tại không và có duy nhất không.
 
 Ký hiệu chung trong phần này là $x\in\mathbb R^n$ cho biến quyết định, $C\subseteq\mathbb R^n$ cho tập khả thi và $f_0$ cho hàm mục tiêu. Khi không có nguy cơ nhầm lẫn, ta viết bài toán dưới dạng
 
@@ -64,11 +64,11 @@ $$
 
 Nếu thay ràng buộc bằng $0\le x\le4$, điểm $x=3$ trở nên khả thi và nghiệm đổi thành $x^*=3$, $p^*=0$.
 
-**Ý nghĩa và ứng dụng trong AI.** Trong học máy, $x$ có thể là véc-tơ trọng số; $f_0$ có thể là mất mát huấn luyện cộng điều chuẩn; các ràng buộc có thể giới hạn chuẩn tham số, năng lượng, độ trễ hoặc độ lệch giữa các nhóm. Việc viết rõ khuôn bài toán ngăn ta tối ưu một thước đo nhưng quên điều kiện vận hành.
+**Ý nghĩa và ứng dụng trong AI.** Trong học máy, $x$ có thể là véc-tơ trọng số; $f_0$ có thể là mất mát huấn luyện cộng điều chuẩn; các ràng buộc có thể giới hạn chuẩn tham số, năng lượng, độ trễ hoặc độ lệch giữa các nhóm. Việc viết rõ khuôn bài toán ngăn ta tối ưu một thước đo mà bỏ qua điều kiện vận hành.
 
 **Điểm dễ nhầm.** Dữ liệu và siêu tham số được cho trước không phải biến tối ưu. Một điểm có giá trị mục tiêu thấp nhưng không thuộc $C$ không phải phương án chấp nhận được. Giá trị $p^*$ là infimum; nó không tự bảo đảm tồn tại một $x^*$ đạt giá trị ấy.
 
-**Đầu ra.** Khuôn $(C,f_0,p^*,x^*)$ cho phép phát biểu chính xác các mức kết luận về một điểm ứng viên.
+**Đầu ra.** Khuôn $(C,f_0,p^*,x^*)$ cho phép mô tả chính xác một điểm ứng viên và giá trị mục tiêu của nó.
 
 ### 2. Tập khả thi, cực tiểu địa phương và cực tiểu toàn cục
 
@@ -118,7 +118,7 @@ Vì $f_0'(x)=4x(x^2-1)<0$ khi $x$ ở bên trái và đủ gần $0{,}5$, giá t
 
 **Điểm dễ nhầm.** Cực tiểu địa phương trên $C$ được hiểu tương đối với $C$. Điểm dừng không tự động là cực tiểu. Tối ưu toàn cục cũng không đồng nghĩa với nghiệm duy nhất: một bài toán có thể có nhiều nghiệm cùng đạt $p^*$.
 
-**Đầu ra.** Sau khi phân biệt mức kết luận về nghiệm, ta cần kiểm tra liệu nghiệm có tồn tại và, nếu tồn tại, có duy nhất hay không.
+**Đầu ra.** Sau khi phân biệt nghiệm, ta cần kiểm tra liệu nghiệm có tồn tại và, nếu tồn tại, có duy nhất hay không.
 
 ### 3. Tồn tại và duy nhất
 
@@ -150,7 +150,7 @@ Ví dụ thứ nhất cho thấy bị chặn nhưng không đóng là chưa đ�
 
 **Điểm dễ nhầm.** Hàm lồi không tự bảo đảm tồn tại. Lồi chặt không tự bảo đảm tồn tại. Hessian nửa xác định dương chỉ gợi tính lồi, không đủ cho duy nhất. Ngược lại, một bài toán không lồi vẫn có thể có nghiệm duy nhất.
 
-**Đầu ra.** Định lý Weierstrass cho một điều kiện đủ để nghiệm tồn tại; phần tiếp theo chứng minh kết quả để dùng lại trong các ca ứng dụng.
+**Đầu ra.** Định lý Weierstrass cho một điều kiện đủ để nghiệm tồn tại; phần tiếp theo chứng minh kết quả này để dùng lại trong các ca ứng dụng.
 
 ## Các định lý và chứng minh quan trọng — Nhóm A
 
@@ -238,11 +238,11 @@ $$
 
 Ngược lại, vành khăn $A=\{x:1\le\lVert x\rVert_2\le2\}$ không lồi: $(1,0)^T$ và $(-1,0)^T$ thuộc $A$, nhưng trung điểm $(0,0)^T$ không thuộc $A$.
 
-**Ý nghĩa và ứng dụng trong AI.** Tính lồi của tập khả thi cho phép nội suy giữa hai tham số, phân phối hoặc chính sách khả thi mà không vi phạm ràng buộc. Kết hợp tập khả thi lồi với mục tiêu lồi sẽ biến mọi cực tiểu địa phương thành cực tiểu toàn cục.
+**Ý nghĩa và ứng dụng trong AI.** Tính lồi của tập khả thi cho phép nội suy giữa hai tham số, phân phối hoặc chính sách khả thi mà không vi phạm ràng buộc. Khi mục tiêu cũng lồi, mọi cực tiểu địa phương đều là cực tiểu toàn cục; phần định lý bên dưới chứng minh kết quả này.
 
 **Điểm dễ nhầm.** Kiểm tra một cặp điểm không chứng minh cả tập lồi. Một tổ hợp affine chỉ yêu cầu tổng hệ số bằng $1$, còn tổ hợp lồi yêu cầu thêm mọi hệ số không âm. Không nên suy tính lồi chỉ từ hình vẽ.
 
-**Đầu ra.** Tổ hợp lồi hữu hạn cho phép dựng tập lồi nhỏ nhất chứa một tập điểm; bỏ điều kiện tổng hệ số bằng $1$ dẫn tới tổ hợp nón.
+**Đầu ra.** Tổ hợp lồi hữu hạn cho phép dựng bao lồi, tập lồi nhỏ nhất chứa một tập điểm; bỏ điều kiện tổng hệ số bằng $1$ dẫn tới tổ hợp nón.
 
 ### 5. Bao lồi và nón lồi
 
@@ -283,7 +283,7 @@ Nón sinh bởi $e_1=(1,0)^T$ và $e_2=(0,1)^T$ là $\mathbb R_+^2$. Điểm $(1
 
 **Điểm dễ nhầm.** Bao lồi của một tập không nhất thiết đóng nếu tập ban đầu không compact. Nón lồi không mặc nhiên đóng, nhọn hoặc có phần trong. Một nón chứa bội không âm của điểm, không nhất thiết chứa bội âm.
 
-**Đầu ra.** Bao lồi và nón lồi tạo nền để nhận dạng các tập lồi cơ bản dùng làm tập khả thi.
+**Đầu ra.** Bao lồi và nón lồi là nền để nhận dạng các tập lồi cơ bản dùng làm tập khả thi.
 
 ### 6. Các tập lồi cơ bản
 
@@ -319,7 +319,7 @@ có bán trục dài $1$ theo hướng $x_1$ và $1/2$ theo hướng $x_2$. Đi�
 
 **Điểm dễ nhầm.** Quả cầu $\lVert x-x_c\rVert\le r$ lồi, nhưng mặt cầu $\lVert x-x_c\rVert=r$ nói chung không lồi. Đẳng thức affine tạo tập lồi; đẳng thức phi tuyến không có bảo đảm tương tự.
 
-**Đầu ra.** Dạng toàn phương của ellipsoid dẫn tới nón nửa xác định dương trong không gian ma trận.
+**Đầu ra.** Dạng toàn phương của ellipsoid dẫn tới nón nửa xác định dương trong không gian ma trận, xét ở mục tiếp theo.
 
 ### 7. Nón nửa xác định dương
 
@@ -352,7 +352,7 @@ có các giá trị riêng $1$ và $3$, nên $X\succ0$. Ma trận $Y=\operatorna
 
 **Điểm dễ nhầm.** Đường chéo không âm chưa đủ để một ma trận đối xứng tổng quát là PSD. PSD không đồng nghĩa khả nghịch. Điều kiện dạng toàn phương phải đúng với mọi $z$, không chỉ các véc-tơ cơ sở.
 
-**Đầu ra.** Nón PSD cung cấp một tập lồi trong không gian ma trận; mục tiếp theo khái quát các phép tạo tập lồi mới.
+**Đầu ra.** Nón PSD là một tập lồi trong không gian ma trận; mục tiếp theo khái quát các phép tạo tập lồi mới.
 
 ### 8. Các phép bảo toàn tập lồi
 
@@ -390,7 +390,7 @@ là một ellipsoid lồi. Giao thêm nửa không gian $x_2\ge0$ vẫn cho mộ
 
 **Điểm dễ nhầm.** Ảnh và nghịch ảnh affine không yêu cầu $A$ khả nghịch. Hợp của hai tập lồi nói chung không lồi. Nghịch ảnh qua một ánh xạ phi tuyến tùy ý không có bảo đảm này. Điều kiện $t>0$ của phối cảnh là bắt buộc.
 
-**Đầu ra.** Nhóm B cung cấp các tập lồi cơ bản và phép bảo toàn cần để chứng minh tập khả thi lồi trong các ca ứng dụng.
+**Đầu ra.** Nhóm B cung cấp các tập lồi cơ bản và phép bảo toàn cần để chứng minh tập khả thi lồi trong các ca ứng dụng ở phần sau.
 
 ## Các định lý và chứng minh quan trọng — Nhóm B
 
@@ -545,7 +545,7 @@ phù hợp với tính lồi chặt. Hàm $g(x)=|x|$ lồi nhưng không lồi c
 
 **Điểm dễ nhầm.** Miền xác định phải lồi. Hình chiếc bát chỉ là trực giác, không phải định nghĩa. Hàm affine không lồi chặt. Tính lồi của mục tiêu không tự bảo đảm tập khả thi lồi, tồn tại nghiệm hoặc khả năng tổng quát hóa.
 
-**Đầu ra.** Định nghĩa dây cung có thể được chuyển thành các phát biểu hình học qua epigraph và tập mức.
+**Đầu ra.** Định nghĩa dây cung chuyển thành các phát biểu hình học qua epigraph và tập mức.
 
 ### 10. Epigraph, tập mức và hàm mở rộng giá trị
 
@@ -590,11 +590,11 @@ $$
 
 Do đó $f+I_{[-1,1]}$ bằng $x^2$ trong đoạn và bằng $+\infty$ ngoài đoạn. Ngược lại, $g(x)=\sqrt{|x|}$ có các tập mức dưới $[-\alpha^2,\alpha^2]$ khi $\alpha\ge0$, đều lồi, nhưng $g$ không lồi. Vì vậy, mọi tập mức dưới lồi không đủ để kết luận hàm lồi.
 
-**Ý nghĩa và ứng dụng trong AI.** Epigraph tách một cận trên khỏi giá trị hàm; hàm chỉ thị viết mất mát và tập khả thi trong cùng một biểu thức.
+**Ý nghĩa và ứng dụng trong AI.** Epigraph biểu diễn điều kiện $f(x)\le t$ như một điều kiện trên $(x,t)$; hàm chỉ thị viết mất mát và tập khả thi trong cùng một biểu thức.
 
 **Điểm dễ nhầm.** Graph của hàm lồi thường không phải tập lồi; epigraph mới là đối tượng lồi tương ứng. Mọi tập mức dưới lồi chỉ suy ra tính tựa lồi, không suy ra tính lồi. Không thực hiện tùy ý các phép toán không xác định như $+\infty-(+\infty)$.
 
-**Đầu ra.** Để kiểm tra một hàm nhiều biến, ta có thể xét mọi hạn chế của nó trên đường thẳng.
+**Đầu ra.** Để kiểm tra một hàm nhiều biến, ta xét mọi hạn chế của nó trên đường thẳng.
 
 ### 11. Hạn chế trên đường và các ví dụ hàm lồi
 
@@ -640,7 +640,7 @@ Chẳng hạn, $\operatorname{lse}(0,0)=\log2$.
 
 **Điểm dễ nhầm.** Một vài lát cắt minh họa không đủ chứng minh; phát biểu yêu cầu mọi đường. Với dạng bậc hai $x^TPx$, tính lồi phụ thuộc phần đối xứng $(P+P^T)/2$. Không nên kết luận từ vài điểm lấy mẫu trên đồ thị.
 
-**Đầu ra.** Khi hàm đủ trơn, độ cong của mọi lát cắt được mã hóa bởi gradient và Hessian.
+**Đầu ra.** Khi hàm đủ trơn, độ cong của mọi lát cắt được mã hóa bởi gradient và Hessian, xét ở mục tiếp theo.
 
 ### 12. Điều kiện bậc nhất và bậc hai
 
@@ -688,7 +688,7 @@ Hai giá trị riêng của Hessian là $3\pm\sqrt2>0$, nên $f$ lồi chặt. T
 
 **Điểm dễ nhầm.** Hessian PSD tại một điểm không chứng minh tính lồi trên toàn miền. Gradient bằng $0$ chỉ suy ra tối ưu toàn cục sau khi đã có tính lồi và điểm nằm trong miền thích hợp. Hàm $x^4$ lồi chặt dù Hessian bằng $0$ tại $x=0$.
 
-**Đầu ra.** Trong nhiều mô hình, ta có thể tránh tính Hessian lại bằng các phép bảo toàn tính lồi.
+**Đầu ra.** Trong nhiều mô hình, ta tránh tính Hessian lại bằng các phép bảo toàn tính lồi.
 
 ### 13. Các phép bảo toàn hàm lồi và Jensen
 
@@ -737,7 +737,7 @@ không lồi gần $0$ vì đạo hàm bậc hai tại $0$ bằng $-4$.
 
 **Điểm dễ nhầm.** Trọng số âm có thể phá tính lồi. Infimum tùy ý của các hàm lồi không bảo toàn lồi; cần lồi đồng thời trước khi loại biến. Không có quy tắc chung “lồi hợp lồi”. Jensen cho biến ngẫu nhiên cần các kỳ vọng tồn tại và hữu hạn.
 
-**Đầu ra.** Nhóm C cung cấp công cụ để chứng minh mục tiêu lồi từ thư viện hàm và phép ghép, chuẩn bị cho ca logistic ở chủ đề 14.
+**Đầu ra.** Nhóm C cung cấp công cụ để chứng minh mục tiêu lồi từ thư viện hàm và phép ghép, chuẩn bị cho ca logistic ở mục 14.
 
 ## Các định lý và chứng minh quan trọng — Nhóm C
 
@@ -1079,7 +1079,7 @@ Gradient tại nghiệm có ràng buộc không nhất thiết bằng $0$: ta c�
 
 **Điểm dễ nhầm.** Mất mát logistic lồi không có nghĩa dữ liệu không nhiễu, mô hình dự đoán tốt ngoài mẫu hoặc nghiệm luôn duy nhất. Gradient bằng $0$ không phải điều kiện bắt buộc cho nghiệm nằm ở biên tập khả thi. Nếu bỏ giới hạn chuẩn trong dữ liệu phân tách được, một dãy tham số có thể làm mất mát tiến về infimum mà không đạt được tại tham số hữu hạn.
 
-**Đầu ra và chuyển sang Bài 02.** Bài 01 cung cấp công cụ để chứng minh tập khả thi và mục tiêu lồi, đồng thời phát biểu đúng bảo đảm tồn tại và toàn cục. Bài 02 sẽ dùng các công cụ này để nhận dạng và cải dạng những lớp bài toán tối ưu lồi cụ thể.
+**Đầu ra và chuyển sang Bài 02.** Bài 01 cung cấp công cụ để chứng minh tập khả thi và mục tiêu lồi, đồng thời phát biểu đúng các bảo đảm về tồn tại và tính toàn cục. Bài 02 sẽ dùng các công cụ này để nhận dạng và cải dạng những lớp bài toán tối ưu lồi cụ thể.
 
 ## Các định lý và chứng minh quan trọng — Nhóm D
 
@@ -1158,7 +1158,7 @@ $$
 
 với mọi $w$. Vì vậy không thể suy ra lồi chặt hoặc nghiệm duy nhất nếu thiếu giả thiết bổ sung về dữ liệu và tập khả thi.
 
-Một điều kiện đủ dễ kiểm tra là ma trận dữ liệu có các hàng $a_i^T$ và có hạng cột đầy đủ. Khi đó, với mọi $v\ne0$, có ít nhất một $a_i^Tv\ne0$, nên công thức Hessian cho $v^T\nabla^2L(w)v>0$. Mục tiêu lồi chặt; kết hợp với sự tồn tại trên quả cầu, nghiệm là duy nhất. Chiều ngược lại không được khẳng định vì hình học của tập khả thi vẫn có thể làm nghiệm duy nhất ngay cả khi ma trận dữ liệu thiếu hạng.
+Một điều kiện đủ dễ kiểm tra là ma trận dữ liệu có các hàng $a_i^T$ và có hạng cột đầy đủ. Khi đó, với mọi $v\ne0$, có ít nhất một $a_i^Tv\ne0$, nên công thức Hessian cho $v^T\nabla^2L(w)v>0$. Mục tiêu lồi chặt; kết hợp với sự tồn tại trên quả cầu, nghiệm là duy nhất. Chiều ngược lại không đúng: nghiệm vẫn có thể duy nhất ngay cả khi ma trận dữ liệu thiếu hạng.
 
 ### Dữ liệu phân tách được có thể làm infimum không đạt được
 
