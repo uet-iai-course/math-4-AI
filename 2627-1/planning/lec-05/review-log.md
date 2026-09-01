@@ -221,3 +221,4 @@ Cổng storyboard và năm phát hiện bắt buộc trên đã được phản 
 - Dòng nguồn bỏ các câu QA lặp; bằng chứng tính toán vẫn nằm trong nhật ký. Kiểm định đạt 40 mã duy nhất, 40 ghi chú, 7 section ngoài, thẻ cân bằng, tài sản tồn tại, SVG hợp lệ và HTTP 200 cho deck/viewer/note/KaTeX.
 - Codex Slides xác nhận dự án `20260901025958-lecture-05-t-i-u-b-c-nh-t-cho-h-c-m-y-z8ku` ở trạng thái draft với 40 trang; không có Browser để tuyên bố rà trực quan mới.
 - Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS về mạch khái niệm, độ đầy đủ và độ chính xác toán học.
+- Hậu kiểm toàn khóa thay các tham chiếu “mạch/trang trước” còn sót bằng các quan hệ cụ thể: điều kiện hóa–nhiễu–đối xứng, dao động trong khe hẹp và phép đổi từ phương sai sang tham số phân phối.
