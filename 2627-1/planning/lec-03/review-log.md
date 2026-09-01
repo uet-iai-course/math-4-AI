@@ -221,3 +221,7 @@ Sau thay đổi thứ tự, storyboard và outline đã dùng cùng thứ tự v
 - Codex Slides đã mở lại dự án `20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls` và xác nhận 41 trang ở trạng thái draft. Phiên này không có công cụ điều khiển Browser, nên không ghi nhận kiểm trực quan HTML bằng giao diện Codex Slides.
 - Cổng tĩnh sau sửa đạt: 41 ID duy nhất, 41 khối ghi chú, 7 section ngoài và thẻ section cân bằng; mọi đường dẫn deck/note tồn tại; 25 khối mở rộng Markdown mở/đóng cân bằng; `git diff --check` sạch. KaTeX cục bộ phân tích toàn bộ công thức trong deck và lecture note mà không có lỗi cú pháp.
 - Sáu SVG đều hợp lệ theo bộ phân tích XML và chuyển thành PNG thành công. Contact sheet cho thấy nhãn, trục, mũi tên và vùng tô không bị cắt. Riêng bố cục HTML 16:9 và màn hình hẹp chỉ qua kiểm tra cấu trúc tĩnh vì môi trường không có Browser hoặc Chromium.
+### Hậu kiểm trực quan sau đồng bộ mạch
+
+- Chromium ở khung $1280\times720$ phát hiện hai thẻ D02 chồng chữ và hộp cuối E06 bị cắt. D02 tách nhãn chữ khỏi công thức bù trừ; E06 gộp cận dưới vào cùng câu hỏi kiểm tra để giảm tải chiều dọc.
+- Kết xuất lại D02 và E06 sau sửa; công thức, hai thẻ và câu hỏi đều nằm trong khung.
