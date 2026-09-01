@@ -201,3 +201,4 @@ Vòng này không thêm, bỏ hoặc đổi thứ tự trang; giữ nguyên 40 s
 - Đã bỏ 13 dòng `Đầu ra` lặp mục tiêu đọc hiểu trong lecture note; toàn bộ định nghĩa, ví dụ, suy diễn, chứng minh và câu hỏi kiểm tra được giữ nguyên.
 - Ghi chú diễn giả A07, B03, D05 và E01 được viết lại bằng quan hệ thuật toán, phổ Hessian, chuẩn đối ngẫu và hệ KKT; không còn nhãn mạch hay lời điều phối “trang sau”.
 - Deck giữ đúng 40 mã duy nhất, 40 ghi chú và 7 section ngoài; `git diff --check` đạt. Các sửa chỉ rút gọn chữ, không đổi công thức, hình, số trang hoặc thứ tự.
+- Hậu kiểm toàn khóa bỏ hai tham chiếu “mạch trước/mạch sau” còn sót ở C08 và E01; thay bằng quan hệ trực tiếp giữa độ cong, mô hình Newton và hệ KKT.
