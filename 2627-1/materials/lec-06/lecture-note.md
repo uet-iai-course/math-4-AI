@@ -69,8 +69,6 @@ Hai thành phần gradient khác nhau nhưng sau co giãn lại tạo ra hai đ�
 
 **Câu hỏi kiểm tra.** Giữ $g_1=(2,1)^T$ nhưng đổi $a_1$ thành $(4,9)^T$. Bỏ qua $\epsilon$ chỉ trong phép tính gần đúng, hãy tính $D_1g_1$ và cho biết tọa độ nào bị co mạnh hơn.
 
-**Đầu ra.** Người đọc có một khuôn chung để so sánh ba cơ chế nhớ: tổng không quên, trung bình mũ có quên, và hai mômen đã hiệu chỉnh độ lệch.
-
 ## B. Ba bộ tối ưu thích nghi
 
 Ba chủ đề trong mạch này dùng chung dữ kiện
@@ -140,8 +138,6 @@ $$
 
 **Câu hỏi kiểm tra.** Giả sử từ vòng 3 trở đi $g_{t,2}=1$. Viết $r_{t,2}$ theo $t$ và giải thích vì sao bước hiệu dụng ở tọa độ 2 tiến dần về $0$ khi $\eta$ cố định.
 
-**Đầu ra.** Người đọc thấy rõ giới hạn của tổng không quên và có động cơ thay nó bằng một trung bình đặt trọng số nhỏ hơn cho lịch sử xa.
-
 ### 3. RMSProp và trung bình mũ bậc hai
 
 **Mục tiêu đọc hiểu.** Người đọc tính được trạng thái RMSProp, giải thích được vai trò của hệ số quên $\rho$ và phân biệt trạng thái RMSProp với vận tốc momentum.
@@ -206,8 +202,6 @@ $$
 **Điểm dễ nhầm.** $v_t^{\mathrm{RMS}}$ là trung bình bình phương gradient, không phải véc-tơ vận tốc trong momentum. Phiên bản RMSProp đang dùng không có bước hiệu chỉnh độ lệch do khởi tạo bằng $0$. Không có một giá trị $\rho$ tốt cho mọi bài toán.
 
 **Câu hỏi kiểm tra.** Với $\rho=0{,}9$, hãy tính hệ số trực tiếp của $g_{t-2}\odot g_{t-2}$ trong $v_t^{\mathrm{RMS}}$. Hệ số này thay đổi thế nào nếu $\rho=0{,}5$?
-
-**Đầu ra.** Người đọc hiểu cơ chế quên dần và nhận ra RMSProp mới theo dõi thang bậc hai, chưa giữ riêng hướng trung bình của gradient.
 
 ### 4. Adam, hai mômen và hiệu chỉnh độ lệch
 
@@ -307,8 +301,6 @@ $$
 
 **Câu hỏi kiểm tra.** Ở vòng đầu, nếu bỏ hiệu chỉnh $1-\beta_2^t$, mẫu số chứa $\sqrt{v_1}$ nhỏ hơn $\sqrt{\widehat v_1}$ bao nhiêu lần khi $\epsilon$ không đáng kể?
 
-**Đầu ra.** Người đọc phân biệt được tổng không quên, trung bình mũ bậc hai và hai mômen đã hiệu chỉnh. Bước tiếp theo là xét thông tin độ cong liên kết các tọa độ mà ba phép co giãn đường chéo chưa biểu diễn.
-
 #### Mệnh đề: kỳ vọng của hai mômen Adam dưới thống kê dừng
 
 Giả sử $g_1,g_2,\ldots$ có kỳ vọng không đổi $\mathbb E[g_t]=\mu$ và mômen bậc hai theo thành phần không đổi $\mathbb E[g_t\odot g_t]=\nu<\infty$. Với $m_0=v_0=0$,
@@ -397,8 +389,6 @@ $$
 **Điểm dễ nhầm.** Hessian khả nghịch có thể bất định. Không cần và không nên tạo $H^{-1}$ tường minh để giải hệ. Điều kiện $g^Tp<0$ xác nhận hướng giảm cục bộ khi $g\ne0$, nhưng chưa chọn được độ dài bước an toàn. Công thức $p\approx-g/\lambda$ chỉ là xấp xỉ khi $\lambda$ đủ lớn so với thang của $H$.
 
 **Câu hỏi kiểm tra.** Với $B\succ0$, $g\ne0$ và $Bp=-g$, hãy biến đổi $g^Tp$ theo $p^TBp$ và xác định dấu của nó.
-
-**Đầu ra.** Người đọc biết điều kiện tạo hướng Newton giảm chấn, đồng thời thấy nhu cầu dùng tích ma trận–véc-tơ thay vì lưu toàn bộ ma trận.
 
 #### Mệnh đề: hệ giảm chấn dương xác định cho hướng giảm
 
@@ -516,8 +506,6 @@ và kiểm trực tiếp cho $Bp_2=b$.
 
 **Câu hỏi kiểm tra.** Với dữ kiện trên, hãy kiểm $d_0^TBd_1=0$. Quan hệ này khác gì với $d_0^Td_1=0$?
 
-**Đầu ra.** Người đọc giải thích được vì sao HF vẫn dùng thông tin độ cong dù không tạo Hessian, và có một phép tính CG hoàn chỉnh để đối chiếu.
-
 #### Định lý: kết thúc hữu hạn của CG trong số học chính xác
 
 Cho $B\in\mathbb R^{d\times d}$ đối xứng dương xác định, $b\in\mathbb R^d$ và điểm đầu $p_0\in\mathbb R^d$ tùy ý. Đặt $r_0=b-Bp_0$. Nếu $r_0=0$ thì $p_0$ đã là nghiệm. Nếu $r_0\ne0$, trong số học chính xác, các hướng CG sinh ra trước khi kết thúc đều khác $0$, đôi một liên hợp theo $B$, và CG tìm được nghiệm duy nhất của $Bp=b$ sau không quá $d$ vòng.
@@ -589,8 +577,6 @@ $$
 **Điểm dễ nhầm.** $M_t$ ở đây xấp xỉ nghịch đảo Hessian, không phải Hessian. Nếu $g_t$ và $g_{t+1}$ được tính từ hai lô không tương thích, $y_t$ có thể phản ánh nhiễu thay vì độ cong. Điều kiện $y_t^Ts_t>0$ không nên bị bỏ qua. L-BFGS không tạo rồi nén một ma trận $d\times d$; nó áp dụng xấp xỉ từ các cặp đã lưu.
 
 **Câu hỏi kiểm tra.** Với $d=10^6$ và $m=10$, BFGS lưu bậc bao nhiêu số thực, còn L-BFGS lưu bậc bao nhiêu? Không cần tính bộ nhớ phụ của triển khai.
-
-**Đầu ra.** Người đọc chọn được Newton, HF–CG hoặc L-BFGS theo kích thước, khả năng tính tích toán tử, mức nhiễu gradient và điều kiện độ cong.
 
 #### Định lý: BFGS bảo toàn tính dương xác định
 
@@ -669,8 +655,6 @@ không đúng bằng $1$. Chỉ trong giới hạn $\epsilon\to0$ với $\sigma^
 
 **Câu hỏi kiểm tra.** Nếu mọi giá trị trong một cột của $H$ đều bằng nhau thì $\sigma_j^2$ bằng bao nhiêu, $\widehat H_{ij}$ bằng bao nhiêu, và vì sao $\epsilon>0$ là cần thiết? Trong ví dụ trên, kết quả nào thay đổi nếu chuyển sang chế độ suy diễn với trung bình chạy $1{,}8$ và phương sai chạy $1{,}2$?
 
-**Đầu ra.** Người đọc thực hiện đúng định tâm, co giãn và biến đổi affine; phát biểu đúng hai đẳng thức về trung bình và phương sai; đồng thời lưu đúng thống kê chạy khi triển khai mô hình.
-
 ### 9. Hạ theo tọa độ và hạ theo khối
 
 **Mục tiêu đọc hiểu.** Người đọc mô tả được một vòng hạ theo tọa độ hoặc theo khối, tính được nghiệm chính xác của bài toán con và nhận biết khi ghép mạnh giữa các biến làm phương pháp tiến chậm.
@@ -744,8 +728,6 @@ Nghiệm duy nhất là $(0,0)$ vì Hessian của $F$ xác định dương khi $
 
 **Câu hỏi kiểm tra.** Với $\alpha=1$ và $x_2^0=4$, hãy tính $x_1^1,x_2^1$ và giá trị $F$ trước, sau từng cập nhật khi $x_1^0=0$. Nếu chỉ báo “mất mát giảm sau một cập nhật $x_1$”, còn thiếu đại lượng nào để so sánh công bằng với một bước cập nhật toàn bộ véc-tơ?
 
-**Đầu ra.** Người đọc viết đúng bài toán con, phân biệt cập nhật với chu kỳ, kiểm được giảm mục tiêu và nêu được giới hạn do tương tác giữa các khối.
-
 ### 10. Trung bình Polyak: đổi đầu ra của quỹ đạo
 
 **Mục tiêu đọc hiểu.** Người đọc tính được trung bình các tham số, chứng minh bảo đảm Jensen trong trường hợp lồi và phân biệt trung bình Polyak với trung bình mũ hoặc một quy tắc cập nhật mới.
@@ -804,8 +786,6 @@ $$
 
 **Câu hỏi kiểm tra.** Nếu chỉ lấy trung bình hậu kỳ của $\theta_3$ và $\theta_4$ trong ví dụ thì kết quả là gì? Hãy cho một hàm không lồi một biến và hai điểm mà giá trị tại trung bình lớn hơn trung bình hai giá trị.
 
-**Đầu ra.** Người đọc tính trung bình trực tuyến hoặc theo cửa sổ, dùng Jensen đúng phạm vi và quyết định có lấy trung bình dựa trên cấu trúc quỹ đạo cùng phép đo xác thực.
-
 Các can thiệp cục bộ vẫn tối ưu cùng một bài toán từ điểm đầu đã cho. Khi điểm đầu hoặc chính tuyến mục tiêu là nút thắt, ta phải thay một đối tượng ở cấp cao hơn.
 
 ## E. Thay điểm đầu và tuyến bài toán
@@ -848,8 +828,6 @@ Nếu mất mát xác thực đích lần lượt là $0{,}61$ và $0{,}48$, ch�
 **Điểm dễ nhầm.** Nhiều dữ liệu nguồn không bảo đảm chuyển giao tốt nếu nhãn, miền hoặc đặc trưng quyết định khác nhiệm vụ đích. Hiệu năng nguồn cao không thay cho đánh giá đích. “Tiền huấn luyện” không đồng nghĩa với “đóng băng encoder”; đóng băng hay tinh chỉnh là một quyết định riêng. Không so sánh hai tuyến có ngân sách, kiến trúc hoặc tiêu chuẩn dừng khác nhau rồi quy toàn bộ chênh lệch cho điểm khởi tạo.
 
 **Câu hỏi kiểm tra.** Nếu tiền huấn luyện giảm mất mát huấn luyện đích nhanh hơn nhưng thước đo xác thực đích kém hơn, kết luận nào liên quan tối ưu và kết luận nào liên quan chuyển giao? Cần lưu những trạng thái nào ngoài trọng số nếu muốn tiếp tục bộ tối ưu Adam từ một checkpoint nguồn?
-
-**Đầu ra.** Người đọc lập được đối chứng từ đầu–tiền huấn luyện, xác định tham số chuyển và đánh giá lợi ích hoặc chuyển giao âm trên nhiệm vụ đích.
 
 ### 12. Phương pháp tiếp tục
 
@@ -906,8 +884,6 @@ Một bước đi đúng tới nghiệm kế tiếp. Ví dụ chỉ minh họa k
 
 **Câu hỏi kiểm tra.** Nếu thay tốc độ học bằng $1/4$, từ $\theta=0$ khi tối ưu $J^{(1)}$ ta đến đâu sau một bước? Trong một tuyến làm trơn ảnh, đại lượng nào phải hội tụ về bài toán đích để giai đoạn cuối thực sự giải đúng mục tiêu ban đầu?
 
-**Đầu ra.** Người đọc đặc tả được họ mục tiêu, ánh xạ tham số, tiêu chuẩn chuyển và phép đánh giá cuối; đồng thời không suy rộng khởi tạo ấm thành bảo đảm tối ưu toàn cục.
-
 ### 13. Học theo chương trình
 
 **Mục tiêu đọc hiểu.** Người đọc biểu diễn học theo chương trình như một lịch phân phối lấy mẫu, tính được rủi ro ở từng giai đoạn và đánh giá mô hình trên phân phối đích thay vì trên lịch dễ tạm thời.
@@ -957,8 +933,6 @@ Mục tiêu tăng dù tham số không đổi vì phân phối đã đổi. Do �
 **Điểm dễ nhầm.** Đổi $q_t$ đồng nghĩa đổi hàm mục tiêu, nên mất mát giữa hai giai đoạn không so trực tiếp nếu chưa quy về cùng phân phối đánh giá. Một lịch có thể làm mô hình quên mẫu dễ hoặc thiên lệch về một nhóm. Không dùng tập kiểm tra để quyết định chuyển giai đoạn. Không có bảo đảm rằng một thứ tự “dễ đến khó” tùy ý sẽ tìm nghiệm tốt hơn.
 
 **Câu hỏi kiểm tra.** Với $\ell_E=0{,}4$ và $\ell_K=0{,}7$, hãy tính ba mục tiêu theo bảng. Nếu mất mát quan sát tăng ở lần chuyển từ giữa sang đích, cần tính thêm đại lượng nào trên một phân phối cố định trước khi kết luận mô hình xấu đi?
-
-**Đầu ra.** Người đọc viết được $q_t$ và $J^{(t)}$, kiểm tra xác suất, phân biệt thay đổi mục tiêu với thay đổi tham số và báo cáo kết quả trên phân phối đích.
 
 Tiếp tục và chương trình học cùng tạo một chuỗi mục tiêu, nhưng chưa cho biết cách phối hợp chúng với các can thiệp ở các nhóm trước. Ca cuối gom các quyết định vào một tuyến huấn luyện có đối chứng.
 
@@ -1032,8 +1006,6 @@ Mỗi bước cần một đối chứng:
 **Điểm dễ nhầm.** Không dùng thống kê BN từ tập xác thực để huấn luyện. Không so một cập nhật khối với một cập nhật toàn bộ mà bỏ qua chi phí. Không trung bình checkpoint từ các chế độ kiến trúc hoặc trạng thái BN không tương thích. Curriculum và tiếp tục đều tạo mục tiêu thay đổi theo thời gian; log phải ghi mục tiêu hoặc phân phối đang dùng. Tiền huấn luyện tốt và mất mát huấn luyện thấp không đủ chứng minh chất lượng đích.
 
 **Câu hỏi kiểm tra.** Nếu chỉ được bật một can thiệp cho từng tín hiệu sau, hãy chọn công cụ và phép đo: kích hoạt đổi thang mạnh giữa các lô; hai khối có bài toán con rẻ; checkpoint muộn dao động; chỉ có ít nhãn đích; tối ưu mục tiêu chưa làm trơn thất bại; chuỗi dài gây gradient tăng vọt. Vì sao không thể dùng cùng một đường mất mát thô để đánh giá cả sáu quyết định?
-
-**Đầu ra.** Người đọc lập được tuyến dữ liệu–tham số–mục tiêu có thể tái lập, ghép đúng tín hiệu với can thiệp và thiết kế được phép đánh giá tách riêng hiệu quả của từng chiến lược.
 
 ## Các định lý và chứng minh quan trọng: Nhóm A–C
 

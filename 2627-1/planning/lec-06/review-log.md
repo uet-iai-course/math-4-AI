@@ -175,3 +175,11 @@ Các mục của những vòng trước được giữ nguyên để truy nguyê
 - Ảnh A03 với toàn bộ fragment và ảnh D03 được xem trực tiếp sau sửa. A03 giữ cỡ chữ và đủ bốn trạng thái; D03 giữ công thức, hình và luận điểm trong khung.
 - Thẻ viewport cho phép phóng to và favicon dữ liệu rỗng loại yêu cầu 404. Kiểm tra tĩnh giữ 6 section ngoài, 36 ID duy nhất, 36 ghi chú, 36 đoạn nguồn và 14/14 tham chiếu cục bộ hợp lệ; `git diff --check` sạch.
 - Codex Slides vẫn không có bằng chứng render trực quan thành công do giới hạn runtime đã ghi ở trên. Kết luận bàn giao chỉ dựa trên RevealJS cục bộ và không tuyên bố cổng Codex Slides đã đạt.
+
+## Rà văn phong và mạch khái niệm ngày 2026-09-01
+
+- Bỏ 14 dòng `Đầu ra` lặp mục tiêu đọc hiểu trong lecture note; giữ nguyên toàn bộ nội dung toán và câu hỏi.
+- Ghi chú P02 thay mô tả mã mạch bằng ba loại thông tin thật sự được tích lũy hoặc can thiệp: trạng thái theo tọa độ, độ cong liên kết hướng và cấu trúc bài toán. Dòng nguồn của các vết số không còn câu QA lặp.
+- Kiểm định đạt 36 mã duy nhất, 36 ghi chú, 6 section ngoài, thẻ cân bằng, tài sản tồn tại, SVG hợp lệ và HTTP 200 cho deck/viewer/note/KaTeX.
+- Codex Slides xác nhận dự án `20260901031052-lecture-06-t-i-u-m-ng-s-u-bjy1` ở trạng thái draft với 36 trang; không có Browser để tuyên bố rà trực quan mới.
+- Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS về mạch khái niệm, độ đầy đủ và độ chính xác toán học.
