@@ -167,3 +167,26 @@ Không xóa các nhận định trước. Bảng này ghi quyết định mới 
 - Codex Slides xác nhận dự án `20260901031914-lecture-07-quy-ho-ch-tuy-n-t-nh-v-ng-dqvy` ở trạng thái draft với 37 trang; không có Browser để tuyên bố rà trực quan mới.
 - Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS. Ghi chú nhỏ về nguồn nội bộ ở P02 đã được xử lý: nhãn đổi thành `Chuỗi quyết định`, nguồn thay bằng đề cương và Bellman (1957).
 - Hậu kiểm toàn khóa bỏ ba câu dùng “mạch” để mô tả cấu trúc bài; thay bằng chuyển đổi khái niệm cụ thể giữa mô hình LP, hình học đa diện và chuỗi quyết định DP.
+
+## Rà soát sâu và kiểm định bổ sung ngày 2026-09-01
+
+### Nội dung và văn phong
+
+- Ví dụ hộp hạt không còn gọi biến liên tục là “số lô”. Deck, lecture note, outline và SVG thống nhất $x_1,x_2$ là sản lượng tính theo nghìn hộp; nguồn chung là 54 giờ máy và hệ số tiêu hao là 1, 2 giờ máy trên mỗi nghìn hộp. Nếu quyết định chỉ nhận số lô nguyên, nội dung nêu rõ phải chuyển sang quy hoạch nguyên.
+- A05 dùng “kết cục” cho quy hoạch tuyến tính, tránh lẫn với “trạng thái” của quy hoạch động. P02, P03, A08, C10, C11, D01 và Z01 đã bỏ lời về đo LLO, tuyến nội bộ hoặc quy trình biên soạn khỏi ghi chú công khai; mục tiêu học tập P02 vẫn giữ mã LLO/CLO vì đây là nội dung chính thức của đề cương.
+- Lecture note bỏ 14 câu mở đầu lặp mẫu `Mục tiêu đọc hiểu`; định nghĩa, trực quan, ví dụ, ứng dụng, điểm dễ nhầm, câu hỏi kiểm tra, định lý và chứng minh được giữ nguyên. Khuôn LP tổng quát khai báo kiểu của $A,b,G,h,\boldsymbol\ell,u$ trước khi dùng và thống nhất $\boldsymbol\ell$ trong công thức.
+- Z01 được viết lại thành bảng điều kiện toán học cần giữ và so sánh hai cơ chế tránh duyệt vét cạn. Metadata LLO/CLO tiếp tục nằm trong outline và storyboard để truy nguyên, không lộ thành lời điều phối trên trang tổng kết.
+
+### Định lý, SVG và hiển thị
+
+- Rà soát toán học độc lập xác nhận các chứng minh về tồn tại điểm cực của đa diện dạng chuẩn, đạt supremum hữu hạn, tồn tại điểm cực tối ưu, điểm cực kề cải thiện và phương trình Bellman đều đúng với giả thiết đã nêu.
+- `lp-four-statuses.svg` đổi nhãn thành “Mục tiêu không bị chặn”. Ô không khả thi nay tô hai nửa không gian đối nghịch, gắn nhãn `H1`, `H2` và để khoảng trống giữa chúng; hình không còn chỉ dựa vào hai đường song song hoặc màu.
+- `lp-model-units.svg` ghi đủ đơn vị biến, giới hạn, giờ máy và hệ số tiêu hao. Ký hiệu trong SVG dùng `x1`, `x2` thay cho chỉ số dưới Unicode để tránh mất glyph khi kết xuất. Hai SVG được phân tích và kết xuất lại; không có chữ tràn.
+- Chromium kiểm tra trực tiếp A02, C07 và Z01 ở $1280\times720$, cùng A02 ở $720\times900$: chữ, bảng, công thức và hình đọc được, không cắt hoặc chồng lấn. Material viewer tải thành công; trạng thái chờ có thuộc tính `hidden`, có 484 nút KaTeX và không có `katex-error`.
+- Cấu trúc giữ 6 section ngoài, 37 mã duy nhất, 37 ghi chú và 37 mục nguồn. `git diff --check` sạch. Reviewer độc lập hậu kiểm ba lỗi nhẹ cuối và trả `PASS`.
+
+### Codex Slides và phạm vi dữ liệu ngoài
+
+- Dự án Codex Slides `20260901031914-lecture-07-quy-ho-ch-tuy-n-t-nh-v-ng-dqvy` vẫn ở trạng thái draft với 37 trang. Outline bền vững đã cập nhật tiêu đề Z01 thành “Điều kiện cần giữ và cầu nối”; lần đọc lại xác nhận đúng 37 mục outline và 37 trang.
+- Phiên hiện tại không có Browser tích hợp, nên không tuyên bố đã kiểm tra bề mặt hiển thị của Codex Slides. Kiểm định trực quan dùng RevealJS và Chromium cục bộ.
+- Không gửi nội dung Bài 07 tới OpenRouter hoặc dịch vụ ngoài. Quyền gửi dữ liệu được người dùng cấp trong lượt này chỉ áp dụng cho bốn tệp Bài 04.

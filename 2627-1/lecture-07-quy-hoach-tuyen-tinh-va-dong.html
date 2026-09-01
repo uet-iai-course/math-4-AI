@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bài 07: Quy hoạch tuyến tính và quy hoạch động</title>
   <link rel="icon" href="data:,"/>
   <link rel="stylesheet" href="revealjs/dist/reset.css"/>
@@ -33,13 +33,13 @@
   <section data-slide-id="P02">
     <h2>Mục tiêu học tập</h2>
     <div class="grid3"><div class="card"><h3>LLO17 · CLO1</h3><p>Lập một quy hoạch tuyến tính đủ biến, đơn vị, mục tiêu, ràng buộc và miền biến.</p></div><div class="card"><h3>LLO18 · CLO1</h3><p>Chuyển dạng chuẩn; nhận biết nghiệm cơ sở khả thi, điểm cực và kết cục tối ưu.</p></div><div class="card"><h3>Chuỗi quyết định</h3><p>So sánh quyết định một lần trong LP với chuỗi quyết định hữu hạn giải bằng Bellman.</p></div></div>
-    <aside class="notes"><p>Hai thẻ đầu là chuẩn đầu ra chính thức và được kiểm trọn trong phần LP. Thẻ thứ ba phân biệt hai kiểu quyết định: LP chọn một véc-tơ, còn quy hoạch động chọn một chuỗi theo trạng thái. Phần quy hoạch động không được gán thêm LLO hoặc CLO.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, LLO17–18; Bellman (1957), Chương 3.</p></aside>
+    <aside class="notes"><p>Hai kết quả về LP là lập mô hình và nhận biết cấu trúc đa diện. Phần quy hoạch động phân biệt một cấu trúc khác: quyết định được chọn theo chuỗi và thông tin quá khứ được nén vào trạng thái.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, LLO17–18; MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="P03">
     <h2>Bản đồ quyết định</h2>
     <div class="flow"><div class="node"><strong>LP: mô hình</strong><br/>biến–mục tiêu–ràng buộc</div><div class="arrow">→</div><div class="node"><strong>LP: cấu trúc</strong><br/>đa diện–điểm cực–nghiệm cơ sở</div><div class="arrow">→</div><div class="node"><strong>LP: tìm kiếm</strong><br/>đỉnh kề cải thiện</div><div class="arrow">→</div><div class="node"><strong>Đổi đối tượng</strong><br/>véc-tơ → chuỗi quyết định</div><div class="arrow">→</div><div class="node"><strong>DP hữu hạn</strong><br/>trạng thái–Bellman</div></div>
     <div class="check"><strong>Vấn đề trung tâm:</strong> khai thác cấu trúc nào để tránh duyệt mọi điểm khả thi của LP và mọi chuỗi quyết định của DP?</div>
-    <aside class="notes"><p>Ba nút đầu hỗ trợ đánh giá LLO17–18. Nút thứ tư đánh dấu đổi đối tượng từ véc-tơ quyết định sang chuỗi quyết định, không phải phép biến đổi một LP thành DP. Phần quy hoạch động chỉ giới thiệu Bellman trong bài toán hữu hạn tất định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997), Chương 1–2; MIT 15.093J, Bài 16.</p></aside>
+    <aside class="notes"><p>Ba nút đầu nối mô hình LP với hình học đa diện và bước đi qua các đỉnh kề. Nút thứ tư đổi đối tượng từ một véc-tơ sang một chuỗi quyết định; đây không phải phép biến đổi LP thành DP. Bellman chỉ được xét trong bài toán hữu hạn tất định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997), Chương 1–2; MIT 15.093J, Bài 16.</p></aside>
   </section>
 </section>
 
@@ -52,29 +52,29 @@
   </section>
   <section data-slide-id="A02">
     <h2>Ví dụ hộp hạt</h2>
-    <p>Một cơ sở đóng hai loại hộp. Đặt $x_1,x_2$ là số lô hộp loại 1 và 2.</p>
-    <table><thead><tr><th>Đại lượng</th><th>Loại 1</th><th>Loại 2</th><th>Giới hạn</th></tr></thead><tbody><tr><td>Giới hạn sản lượng</td><td>$x_1\le30$</td><td>$x_2\le20$</td><td>—</td></tr><tr><td>Nguồn lực chung</td><td>$1$</td><td>$2$</td><td>$54$</td></tr><tr><td>Lợi ích</td><td>$2$</td><td>$3$</td><td>cực đại</td></tr></tbody></table>
-    <div class="box">Miền biến: $x_1,x_2\ge0$. Trong mô hình liên tục, hai biến không bị buộc nguyên.</div>
-    <aside class="notes"><p>Dữ kiện được chọn để theo dõi xuyên bài. “Lô hộp” làm rõ vì sao có thể dùng biến liên tục; nếu từng hộp bắt buộc nguyên thì đó là quy hoạch nguyên, không phải phạm vi chính của bài này.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo theo mô hình sản xuất trong Bertsimas và Tsitsiklis (1997), §1.2.</p></aside>
+    <p>Một cơ sở đóng hai loại hộp. Đặt $x_1,x_2$ là sản lượng, tính theo nghìn hộp loại 1 và 2.</p>
+    <table><thead><tr><th>Đại lượng</th><th>Loại 1</th><th>Loại 2</th><th>Giới hạn</th></tr></thead><tbody><tr><td>Sản lượng (nghìn hộp)</td><td>$x_1\le30$</td><td>$x_2\le20$</td><td>—</td></tr><tr><td>Giờ máy trên nghìn hộp</td><td>$1$</td><td>$2$</td><td>$54$ giờ</td></tr><tr><td>Lợi ích trên nghìn hộp</td><td>$2$</td><td>$3$</td><td>cực đại</td></tr></tbody></table>
+    <div class="box">Miền biến: $x_1,x_2\ge0$. Sản lượng được mô hình hóa liên tục; nếu quyết định là số lô nguyên thì cần quy hoạch nguyên.</div>
+    <aside class="notes"><p>Đơn vị nghìn hộp cho phép xem sản lượng là đại lượng liên tục ở mức lập kế hoạch. Các giới hạn $30,20,54$ được dùng xuyên bài. Nếu quyết định thực tế chỉ nhận số lô nguyên, mô hình phải chuyển sang quy hoạch nguyên.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo theo mô hình sản xuất trong Bertsimas và Tsitsiklis (1997), §1.2.</p></aside>
   </section>
   <section data-slide-id="A03">
     <h2>Ràng buộc từ giới hạn</h2>
     <div class="grid3"><div class="card"><h3>Loại 1</h3><div class="formula">$$x_1\le30$$</div></div><div class="card"><h3>Loại 2</h3><div class="formula">$$x_2\le20$$</div></div><div class="card"><h3>Nguồn lực chung</h3><div class="formula">$$x_1+2x_2\le54$$</div></div></div>
     <div class="check"><strong>Câu hỏi:</strong> điểm $(30,20)$ vi phạm giới hạn nào và vượt bao nhiêu đơn vị?</div>
-    <aside class="notes"><p>Điểm $(30,20)$ thỏa hai giới hạn riêng nhưng dùng $30+2\cdot20=70$ đơn vị nguồn lực chung, vượt $16$. Bài kiểm tra buộc người học đọc hệ số theo đúng đơn vị.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; phép tính kiểm tra trực tiếp.</p></aside>
+    <aside class="notes"><p>Điểm $(30,20)$ thỏa hai giới hạn riêng nhưng dùng $30+2\cdot20=70$ giờ máy, vượt $16$ giờ. Bài kiểm tra buộc người học đọc hệ số theo đúng đơn vị.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; phép tính kiểm tra trực tiếp.</p></aside>
   </section>
   <section data-slide-id="A04">
     <h2>Mục tiêu và phương án ứng viên</h2>
     <div class="math-large">$$\max\ z=2x_1+3x_2$$</div>
     <table><thead><tr><th>Phương án</th><th>Khả thi</th><th>$z$</th></tr></thead><tbody><tr><td>$(30,12)$</td><td class="ok">có</td><td>$96$</td></tr><tr><td>$(14,20)$</td><td class="ok">có</td><td>$88$</td></tr><tr><td>$(30,20)$</td><td class="warn">không</td><td>không so sánh</td></tr></tbody></table>
     <div class="box">Chỉ so sánh giá trị mục tiêu giữa các phương án khả thi.</div>
-    <aside class="notes"><p>Kiểm tra: $(30,12)$ dùng đúng $54$ đơn vị nguồn lực chung và cho $2\cdot30+3\cdot12=96$. Điểm $(14,20)$ cũng dùng đúng $54$ nhưng chỉ cho $2\cdot14+3\cdot20=88$. Đây chưa phải chứng minh tối ưu; hình học sẽ cung cấp tập ứng viên hữu hạn.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; các đỉnh và giá trị được kiểm tra đại số.</p></aside>
+    <aside class="notes"><p>Kiểm tra: $(30,12)$ dùng đúng $54$ giờ máy và cho $2\cdot30+3\cdot12=96$. Điểm $(14,20)$ cũng dùng đúng $54$ giờ nhưng chỉ cho $2\cdot14+3\cdot20=88$. Đây chưa phải chứng minh tối ưu; hình học sẽ cung cấp tập ứng viên hữu hạn.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; các đỉnh và giá trị được kiểm tra đại số.</p></aside>
   </section>
   <section data-slide-id="A05">
     <h2>Định nghĩa quy hoạch tuyến tính</h2>
     <p><strong>Định nghĩa.</strong> Một quy hoạch tuyến tính (LP) tối ưu hàm tuyến tính trên miền xác định bởi hữu hạn phương trình và bất phương trình tuyến tính.</p>
     <div class="math-large">$$\max_{x\in\mathbb R^n}\ c^Tx\quad\text{với}\quad Ax\le b,\quad x\ge0.$$</div>
-    <div class="grid3"><div class="card"><strong>Đầu vào</strong><p>$A,b,c$ và chiều tối ưu.</p></div><div class="card"><strong>Đầu ra</strong><p>trạng thái và nghiệm tối ưu nếu có.</p></div><div class="card"><strong>Ranh giới</strong><p>$x_1x_2$, $x_1^2$ là phi tuyến; điều kiện biến nguyên tạo lớp bài toán khác.</p></div></div>
+    <div class="grid3"><div class="card"><strong>Đầu vào</strong><p>$A,b,c$ và chiều tối ưu.</p></div><div class="card"><strong>Đầu ra</strong><p>kết cục và nghiệm tối ưu nếu có.</p></div><div class="card"><strong>Ranh giới</strong><p>$x_1x_2$, $x_1^2$ là phi tuyến; điều kiện biến nguyên tạo lớp bài toán khác.</p></div></div>
     <aside class="notes"><p>Dạng hiển thị là một quy ước, không phải dạng duy nhất. Hệ số và vế phải là dữ kiện; $x$ là quyết định. Các tích biến hoặc lũy thừa làm mất tính tuyến tính. Điều kiện biến nguyên không làm biểu thức thành phi tuyến, nhưng làm miền quyết định rời rạc và chuyển bài toán sang quy hoạch nguyên.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §1.1.</p></aside>
   </section>
   <section data-slide-id="A07">
@@ -90,7 +90,7 @@
     <h2>Bài tập dựng mô hình</h2>
     <div class="check"><strong>Câu hỏi:</strong> một hệ thống AI phân bổ thời gian xử lý cho hai luồng. Mỗi đơn vị $x_1,x_2$ cho lợi ích $4,5$; giới hạn $x_1\le8$, $x_2\le6$, $2x_1+x_2\le14$. Hãy viết LP đầy đủ.</div>
     <ol class="algorithm"><li>Nêu biến và đơn vị.</li><li>Viết chiều cùng hàm mục tiêu.</li><li>Viết mọi ràng buộc và miền biến.</li><li>Kiểm tra điểm $(4,6)$.</li></ol>
-    <aside class="notes"><p>Đáp án: cực đại $4x_1+5x_2$ với ba giới hạn đã cho và $x\ge0$. Điểm $(4,6)$ khả thi vì $2\cdot4+6=14$; giá trị mục tiêu bằng $46$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo để đo LLO17.</p></aside>
+    <aside class="notes"><p>Đáp án: cực đại $4x_1+5x_2$ với ba giới hạn đã cho và $x\ge0$. Điểm $(4,6)$ khả thi vì $2\cdot4+6=14$; giá trị mục tiêu bằng $46$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo từ dữ kiện phân bổ tài nguyên.</p></aside>
   </section>
 </section>
 
@@ -124,7 +124,7 @@
   <section data-slide-id="B05">
     <h2>Biến phụ cho hộp hạt</h2>
     <div class="formula">$$\begin{aligned}x_1+s_1&=30,\\x_2+s_2&=20,\\x_1+2x_2+s_3&=54,\\x_1,x_2,s_1,s_2,s_3&\ge0.\end{aligned}$$</div>
-    <div class="grid2"><div class="card"><h3>Ý nghĩa</h3><p>$s_i$ là phần tài nguyên chưa dùng ở giới hạn $i$.</p></div><div class="card"><h3>Ví dụ</h3><p>Tại $(30,12)$: $(s_1,s_2,s_3)=(0,8,0)$.</p></div></div>
+    <div class="grid2"><div class="card"><h3>Ý nghĩa</h3><p>$s_i$ là phần giới hạn thứ $i$ chưa dùng.</p></div><div class="card"><h3>Ví dụ</h3><p>Tại $(30,12)$: $(s_1,s_2,s_3)=(0,8,0)$.</p></div></div>
     <p><strong>Hai phép đổi khác:</strong> $a^Tx\ge b\Rightarrow a^Tx-s=b$, $s\ge0$; biến tự do viết $x=x^+-x^-$ với $x^+,x^-\ge0$.</p>
     <aside class="notes"><p>Mỗi bất phương trình kiểu “nhỏ hơn hoặc bằng” nhận một biến phụ không âm. Với bất phương trình “lớn hơn hoặc bằng”, dấu của biến dư phải được xử lý tương ứng.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2; ví dụ tự tạo.</p></aside>
   </section>
@@ -205,13 +205,13 @@
     <h2>Bài tập chuyển giao về điểm cực</h2>
     <div class="check"><strong>Câu hỏi:</strong> xét $\max x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x\ge0$.</div>
     <ol class="algorithm"><li>Kiểm tra bốn đỉnh $(0,0),(2,0),(1{,}6,1{,}2),(0,2)$.</li><li>Tính mục tiêu và phân loại kết cục.</li><li>Cho một đường đỉnh kề cải thiện từ $(0,0)$.</li><li>Nêu định lý được dùng và đầy đủ giả thiết.</li></ol>
-    <aside class="notes"><p>Các giá trị mục tiêu lần lượt là $0,2,2{,}8,2$. Đường hợp lệ: $(0,0)\to(2,0)\to(1{,}6,1{,}2)$ với giá trị $0\to2\to2{,}8$. Miền là đa diện có các điểm cực đã liệt kê và mục tiêu có giá trị tối ưu hữu hạn; vì vậy định lý điểm cực tối ưu áp dụng. Nghiệm tối ưu duy nhất là $(1{,}6,1{,}2)$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo để đo chuyển giao LLO18.</p></aside>
+    <aside class="notes"><p>Các giá trị mục tiêu lần lượt là $0,2,2{,}8,2$. Đường hợp lệ: $(0,0)\to(2,0)\to(1{,}6,1{,}2)$ với giá trị $0\to2\to2{,}8$. Miền là đa diện có các điểm cực đã liệt kê và mục tiêu có giá trị tối ưu hữu hạn; vì vậy định lý điểm cực tối ưu áp dụng. Nghiệm tối ưu duy nhất là $(1{,}6,1{,}2)$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo từ một đa diện hai chiều.</p></aside>
   </section>
   <section data-slide-id="C11">
     <h2>Bài tập tích hợp quy hoạch tuyến tính</h2>
     <div class="check"><strong>Câu hỏi:</strong> với bài hộp hạt, hãy hoàn tất chuỗi lập luận.</div>
     <ol class="algorithm"><li>Viết LP và dạng chuẩn có biến phụ.</li><li>Liệt kê năm đỉnh và giá trị mục tiêu.</li><li>Phân loại kết cục của bài toán.</li><li>Nêu định lý bảo đảm có điểm cực tối ưu.</li><li>Nêu đỉnh xuất phát, bước sang đỉnh kề cải thiện và tiêu chuẩn dừng.</li></ol>
-    <aside class="notes"><p>Đáp án chính: các đỉnh có giá trị $0,60,96,88,60$; bài toán hữu hạn với nghiệm tối ưu duy nhất $(30,12)$. Mô tả ở mức ý niệm bắt đầu từ một đỉnh khả thi, chuyển qua đỉnh kề cải thiện nghiêm ngặt và dừng khi không còn đỉnh kề cải thiện. Bài tập đánh giá LLO17–18 trước khi đổi đối tượng sang chuỗi quyết định trong quy hoạch động.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tích hợp LLO17–18; ví dụ tự tạo.</p></aside>
+    <aside class="notes"><p>Đáp án chính: các đỉnh có giá trị $0,60,96,88,60$; bài toán hữu hạn với nghiệm tối ưu duy nhất $(30,12)$. Mô tả ở mức ý niệm bắt đầu từ một đỉnh khả thi, chuyển qua đỉnh kề cải thiện nghiêm ngặt và dừng khi không còn đỉnh kề cải thiện. Bài tập khép phần LP trước khi đổi đối tượng sang chuỗi quyết định.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tích hợp từ ví dụ hộp hạt.</p></aside>
   </section>
 </section>
 
@@ -220,7 +220,7 @@
     <h1><span class="text-light">D.</span><br/>Quy hoạch động hữu hạn tất định</h1>
     <div class="grid2"><div class="card"><h3>LP: một véc-tơ quyết định</h3><p>Cấu trúc đa diện thu hẹp việc tìm kiếm về các điểm cực và cơ sở.</p></div><div class="card"><h3>DP: một chuỗi quyết định</h3><p>Trạng thái thu hẹp việc tìm kiếm bằng cách dùng lại các bài toán con.</p></div></div>
     <div class="box">Phạm vi DP: chân trời hữu hạn, trạng thái và điều khiển hữu hạn, chuyển trạng thái tất định, chi phí cộng.</div>
-    <aside class="notes"><p>Đây là phép so sánh hai cơ chế khai thác cấu trúc, không phải phát biểu LP và DP tương đương. LLO17–18 đã được kiểm qua hai bài tập tích hợp quy hoạch tuyến tính ngay trước. Phần còn lại chỉ giới thiệu Bellman trong phạm vi hữu hạn tất định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; MIT 15.093J, Bài 16.</p></aside>
+    <aside class="notes"><p>Đây là phép so sánh hai cơ chế khai thác cấu trúc, không phải phát biểu LP và DP tương đương. LP dùng hình học đa diện của một véc-tơ quyết định; DP dùng trạng thái để tái sử dụng chi phí còn lại của một chuỗi quyết định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="D02">
     <h2>Nhu cầu của quyết định nhiều giai đoạn</h2>
@@ -256,10 +256,10 @@
 
 <section>
   <section data-slide-id="Z01">
-    <h2>Kết quả học tập và cầu nối</h2>
-    <table><thead><tr><th>Chuẩn đầu ra LP</th><th>Sản phẩm kiểm chứng</th><th>Điều kiện không được bỏ</th></tr></thead><tbody><tr><td>LLO17 · Mô hình hóa</td><td>biến, đơn vị, mục tiêu, ràng buộc</td><td>tuyến tính và miền biến</td></tr><tr><td>LLO18 · Dạng chuẩn</td><td>biến phụ, cơ sở khả thi</td><td>$\operatorname{rank}(A)=m$, $A_B^{-1}b\ge0$</td></tr><tr><td>LLO18 · Điểm cực</td><td>kết cục và đỉnh tối ưu</td><td>khả thi, giá trị hữu hạn</td></tr></tbody></table>
-    <div class="box"><strong>Cầu nối DP, không phải LLO mới:</strong> LP tránh duyệt mọi điểm nhờ cấu trúc điểm cực; DP tránh duyệt mọi chuỗi nhờ trạng thái và Bellman.</div>
-    <aside class="notes"><p>Bảng chỉ thu hồi LLO17–18 của quy hoạch tuyến tính. Khối cuối nhắc quan hệ cấu trúc giữa hai phần nhưng không đặt DP thành một hàng chuẩn đầu ra chính thức.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997); MIT 15.093J, Bài 16.</p></aside>
+    <h2>Điều kiện cần giữ và cầu nối</h2>
+    <table><thead><tr><th>Chủ đề LP</th><th>Kết quả cần tạo</th><th>Điều kiện không được bỏ</th></tr></thead><tbody><tr><td>Mô hình hóa</td><td>biến, đơn vị, mục tiêu, ràng buộc</td><td>tuyến tính và miền biến</td></tr><tr><td>Dạng chuẩn</td><td>biến phụ, cơ sở khả thi</td><td>$\operatorname{rank}(A)=m$, $A_B^{-1}b\ge0$</td></tr><tr><td>Điểm cực</td><td>kết cục và đỉnh tối ưu</td><td>khả thi, giá trị hữu hạn</td></tr></tbody></table>
+    <div class="box"><strong>Hai cơ chế tránh duyệt vét cạn:</strong> LP dùng cấu trúc điểm cực; DP dùng trạng thái và phương trình Bellman.</div>
+    <aside class="notes"><p>Trong LP, mô hình đúng đơn vị dẫn đến đa diện và dạng chuẩn; các giả thiết về hạng, tính khả thi và giá trị hữu hạn quyết định kết luận về điểm cực. Trong DP, trạng thái đủ cho phép thay toàn bộ lịch sử bằng chi phí tối ưu còn lại.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997); MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="Z02">
     <h2>Tài liệu và chuyển tiếp</h2>

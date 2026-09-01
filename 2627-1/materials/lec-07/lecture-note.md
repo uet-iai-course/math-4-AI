@@ -12,9 +12,7 @@ Ta bắt đầu từ dữ kiện của một quyết định thực tế, viết
 
 ### 1. Khuôn quy hoạch tuyến tính và mô hình hộp hạt
 
-**Mục tiêu đọc hiểu.** Người đọc xác định được biến quyết định, dữ kiện, đơn vị, mục tiêu và các ràng buộc của một mô hình quy hoạch tuyến tính.
-
-**Định nghĩa và giả thiết.** Quy hoạch tuyến tính (LP) tối ưu một hàm tuyến tính trên một tập được xác định bởi hữu hạn phương trình và bất phương trình tuyến tính. Một khuôn thường dùng là
+**Định nghĩa và giả thiết.** Quy hoạch tuyến tính (LP) tối ưu một hàm tuyến tính trên một tập được xác định bởi hữu hạn phương trình và bất phương trình tuyến tính. Cho $\mathbf x,\mathbf c\in\mathbb R^n$, $\mathbf A\in\mathbb R^{p\times n}$, $\mathbf b\in\mathbb R^p$, $\mathbf G\in\mathbb R^{q\times n}$, $\mathbf h\in\mathbb R^q$ và các cận thành phần $\boldsymbol\ell,\mathbf u\in(\mathbb R\cup\{-\infty,+\infty\})^n$. Một khuôn thường dùng là
 
 $$
 \begin{aligned}
@@ -23,7 +21,7 @@ $$
 \text{với}\quad
 &\mathbf A\mathbf x\le \mathbf b,\\
 &\mathbf G\mathbf x=\mathbf h,\\
-&\ell\le \mathbf x\le \mathbf u.
+&\boldsymbol\ell\le \mathbf x\le \mathbf u.
 \end{aligned}
 $$
 
@@ -36,7 +34,7 @@ Mỗi thành phần của $\mathbf x$ là một đại lượng được lựa c
 ![Từ dữ kiện và đơn vị của bài toán hộp hạt đến biến quyết định, ràng buộc và hàm mục tiêu tuyến tính.](img/lec-07/lp-model-units.svg)
 
 ::: example
-**Ví dụ tính được.** Một cơ sở đóng hai loại hộp hạt. Đặt $x_1,x_2$ là số lô hộp loại 1 và loại 2. Mỗi lô đem lại lợi ích lần lượt là $2$ và $3$ đơn vị. Các giới hạn cho bài toán
+**Ví dụ tính được.** Một cơ sở đóng hai loại hộp hạt. Đặt $x_1,x_2$ là sản lượng, tính theo nghìn hộp loại 1 và loại 2. Mỗi nghìn hộp đem lại lợi ích lần lượt là $2$ và $3$ đơn vị. Các giới hạn cho bài toán
 
 $$
 \begin{aligned}
@@ -50,13 +48,13 @@ $$
 \end{aligned}
 $$
 
-Điểm $(30,12)$ dùng đúng $30+2\cdot12=54$ đơn vị nguồn lực chung và cho
+Điểm $(30,12)$ dùng đúng $30+2\cdot12=54$ giờ máy và cho
 
 $$
 z=2\cdot30+3\cdot12=96.
 $$
 
-Điểm $(30,20)$ thỏa hai giới hạn sản lượng riêng nhưng dùng $70$ đơn vị nguồn lực chung, vượt giới hạn $16$ đơn vị. Vì không khả thi, giá trị mục tiêu của điểm này không được dùng để so sánh phương án.
+Điểm $(30,20)$ thỏa hai giới hạn sản lượng riêng nhưng dùng $70$ giờ máy, vượt giới hạn $16$ giờ máy. Vì không khả thi, giá trị mục tiêu của điểm này không được dùng để so sánh phương án.
 :::
 
 **Ý nghĩa và ứng dụng trong AI.** LP mô tả các quyết định phân bổ tài nguyên trong một lần, chẳng hạn chia thời gian xử lý, bộ nhớ hoặc thông lượng cho nhiều tác vụ khi lợi ích và mức dùng tài nguyên được xấp xỉ tuyến tính.
@@ -66,8 +64,6 @@ $$
 **Câu hỏi kiểm tra.** Hai luồng xử lý có lợi ích $4$ và $5$ trên mỗi đơn vị, với $x_1\le8$, $x_2\le6$, $2x_1+x_2\le14$ và $x\ge0$. Hãy viết LP đầy đủ và kiểm tra điểm $(4,6)$.
 
 ### 2. Mất mát từng đoạn và hồi quy chuẩn $L_1$ dưới dạng LP
-
-**Mục tiêu đọc hiểu.** Người đọc đưa được tổng trị tuyệt đối của các phần dư về quy hoạch tuyến tính và giải thích được vì sao phép chuyển là tương đương.
 
 **Định nghĩa và giả thiết.** Cho dữ liệu $\mathbf a_i\in\mathbb R^n$, $b_i\in\mathbb R$ và tham số $\mathbf x\in\mathbb R^n$. Phần dư của mẫu $i$ là
 
@@ -146,8 +142,6 @@ Bài hộp hạt tiếp tục được dùng để chuyển từ danh sách ràn
 
 ### 3. Đa diện, nửa không gian và đường mức
 
-**Mục tiêu đọc hiểu.** Người đọc dựng được miền khả thi từ các nửa không gian và dùng đường mức để diễn giải hướng cải thiện của mục tiêu.
-
 **Định nghĩa và giả thiết.** Một đa diện là tập nghiệm của hữu hạn bất đẳng thức tuyến tính,
 
 $$
@@ -185,8 +179,6 @@ $$
 **Câu hỏi kiểm tra.** Nếu thêm ràng buộc $x_1+x_2\ge10$ vào bài hộp hạt, những đỉnh cũ nào bị loại? Miền mới còn bị chặn không?
 
 ### 4. Dạng chuẩn và các phép chuyển cơ bản
-
-**Mục tiêu đọc hiểu.** Người đọc chuyển được một hệ ràng buộc tuyến tính về quy ước dạng chuẩn và khôi phục được nghiệm trong các biến gốc.
 
 **Định nghĩa và giả thiết.** Trong ghi chú này, dạng chuẩn của LP được quy ước là
 
@@ -232,7 +224,7 @@ $$
 (s_1,s_2,s_3)=(0,8,0).
 $$
 
-Các giá trị này cho biết giới hạn loại 1 và nguồn lực chung đang hoạt động, còn giới hạn loại 2 dư $8$ đơn vị.
+Các giá trị này cho biết giới hạn loại 1 và giới hạn giờ máy đang hoạt động, còn giới hạn loại 2 dư $8$ nghìn hộp.
 :::
 
 **Ý nghĩa và ứng dụng trong AI.** Dạng chuẩn tạo một giao diện đại số thống nhất cho bộ giải. Sau phép chuyển, trạng thái của các giới hạn được thể hiện trực tiếp qua các biến phụ và có thể liên hệ với một cơ sở ma trận.
@@ -248,8 +240,6 @@ $$
 thành một phương trình chỉ dùng biến không âm.
 
 ### 5. Cơ sở, nghiệm cơ sở khả thi và suy biến
-
-**Mục tiêu đọc hiểu.** Người đọc tính được một nghiệm cơ sở, kiểm tra tính khả thi và nhận ra trường hợp suy biến.
 
 **Định nghĩa và giả thiết.** Xét
 
@@ -336,8 +326,6 @@ Với cơ sở $B=\{1,2\}$, nghiệm cơ sở là $(x_1,x_2)=(1,0)$. Biến cơ 
 
 ### 6. Điểm cực và trường hợp nhiều nghiệm tối ưu
 
-**Mục tiêu đọc hiểu.** Người đọc kiểm tra được điểm cực bằng định nghĩa tổ hợp lồi và phân biệt điểm cực với một nghiệm tối ưu bất kỳ.
-
 **Định nghĩa và giả thiết.** Cho tập lồi $P$. Điểm $\mathbf v\in P$ là một **điểm cực** nếu
 
 $$
@@ -390,8 +378,6 @@ nên không phải điểm cực.
 
 ### 7. Tương đương giữa điểm cực, nghiệm cơ sở khả thi và độc lập cột
 
-**Mục tiêu đọc hiểu.** Người đọc chuyển được giữa ba chứng nhận hình học và đại số của cùng một điểm khả thi ở dạng chuẩn.
-
 **Định nghĩa và giả thiết.** Với
 
 $$
@@ -442,8 +428,6 @@ có định thức $-2$, nên độc lập tuyến tính. Theo định lý, $\ma
 
 ### 8. Tồn tại điểm cực, điểm cực tối ưu và bốn kết cục
 
-**Mục tiêu đọc hiểu.** Người đọc phân loại được kết cục của một LP và nêu đủ giả thiết để kết luận có điểm cực tối ưu.
-
 **Định nghĩa và giả thiết.** Một đa diện $P$ chứa một đường thẳng nếu tồn tại $\mathbf x\in P$ và $\mathbf d\ne\mathbf0$ sao cho
 
 $$
@@ -487,8 +471,6 @@ $$
 và mục tiêu $\max x_1$. Miền có bị chặn không? Giá trị tối ưu có hữu hạn và được đạt không? Tập nghiệm tối ưu là gì?
 
 ### 9. Đỉnh kề và bước đi cải thiện ở mức ý niệm
-
-**Mục tiêu đọc hiểu.** Người đọc mô tả được một bước cải thiện qua đỉnh kề và phân biệt mô tả hình học này với phương pháp đơn hình đầy đủ.
 
 **Định nghĩa và giả thiết.** Hai điểm cực của một đa diện là **kề nhau** nếu đoạn nối chúng là một cạnh, tức một mặt một chiều của đa diện. Cho $P$ có điểm cực và bài toán
 
@@ -538,8 +520,6 @@ Quy hoạch tuyến tính gom quyết định vào một véc-tơ. Khi quyết �
 
 ### 10. Trạng thái, điều khiển, chuyển trạng thái và chi phí cộng
 
-**Mục tiêu đọc hiểu.** Người đọc mô tả được một bài toán quyết định hữu hạn tất định và kiểm tra được trạng thái có giữ đủ thông tin cần cho tương lai hay không.
-
 **Định nghĩa và giả thiết.** Ở giai đoạn $k=0,\ldots,N-1$, hệ có trạng thái $x_k\in X_k$. Ta chọn điều khiển $u_k\in U_k(x_k)$, chịu chi phí $g_k(x_k,u_k)$ và chuyển tất định theo
 
 $$
@@ -578,8 +558,6 @@ Một trạng thái là nút hiện tại. Chẳng hạn, mọi lịch sử đi 
 **Câu hỏi kiểm tra.** Nếu chi phí từ $C$ đến $t$ còn phụ thuộc vào việc đã đi qua $A$ hay $B$, chỉ dùng nút $C$ làm trạng thái có đủ không? Hãy nêu một cách mở rộng trạng thái.
 
 ### 11. Nguyên lý tối ưu và phương trình Bellman
-
-**Mục tiêu đọc hiểu.** Người đọc lập được truy hồi Bellman với đúng điều kiện biên, tính được hàm giá trị và giải thích được vì sao một đuôi của chính sách tối ưu cũng phải tối ưu.
 
 **Định nghĩa và giả thiết.** Hàm giá trị $J_k(x)$ là chi phí nhỏ nhất còn lại từ trạng thái $x$ ở giai đoạn $k$. Với các giả thiết hữu hạn ở Chủ đề 10,
 
@@ -637,8 +615,6 @@ Phương trình Bellman cho giá trị tối ưu ở từng trạng thái. Để
 
 ### 12. Giải ngược và khôi phục chính sách
 
-**Mục tiêu đọc hiểu.** Người đọc thực hiện được lượt tính ngược, lưu một lựa chọn tối ưu ở mỗi trạng thái và chạy xuôi để khôi phục một chính sách.
-
 **Định nghĩa và giả thiết.** Trong khi tính $J_k(x)$, chọn và lưu
 
 $$
@@ -677,8 +653,6 @@ và một đường tối ưu mới là $s\to B\to C\to t$.
 
 ### 13. Dùng lại bài toán con và độ phức tạp
 
-**Mục tiêu đọc hiểu.** Người đọc đếm được số cặp trạng thái–điều khiển mà giải ngược phải xét, chỉ ra phần tiết kiệm so với liệt kê chuỗi và nhận ra giới hạn do số trạng thái.
-
 **Định nghĩa và giả thiết.** Với các tập hữu hạn, giải ngược xét mỗi cặp $(x,u)$ khả dĩ một lần. Số phép đánh giá chuyển tiếp có bậc
 
 $$
@@ -710,8 +684,6 @@ Con số cụ thể phụ thuộc cấu trúc biên; điểm tiết kiệm là �
 Hai tuyến trong bài trả lời hai kiểu cấu trúc khác nhau. Phần này dùng cùng một bảng kiểm để tránh chọn công cụ chỉ vì tên bài toán quen thuộc.
 
 ### 14. Một quyết định hay một chuỗi quyết định: chọn LP hoặc DP
-
-**Mục tiêu đọc hiểu.** Người đọc phân loại được một mô hình theo cấu trúc quyết định, nêu được giả thiết khiến quy hoạch tuyến tính hoặc quy hoạch động phù hợp và chỉ ra trường hợp nằm ngoài phạm vi bài.
 
 **Định nghĩa và giả thiết.** Quy hoạch tuyến tính dùng một véc-tơ quyết định $x$, mục tiêu tuyến tính và các ràng buộc affine. Quy hoạch động hữu hạn tất định dùng chuỗi $(x_k,u_k)$, trạng thái đủ, chuyển tất định và chi phí cộng. Đây là hai khuôn mô hình, không phải hai cách viết mặc nhiên tương đương.
 

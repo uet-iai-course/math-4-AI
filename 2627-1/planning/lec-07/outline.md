@@ -49,7 +49,7 @@
 | D | D04 | Phương trình Bellman hữu hạn tất định | Quyết định ở $k=0,\ldots,N-1$; chi phí cuối ở $N$ |
 | D | D05 | Quy trình giải ngược | Ứng dụng DP |
 | D | D06 | Bài tập chuyển giao Bellman | Bài tập DP với dữ kiện mới |
-| Z | Z01 | Kết quả học tập và cầu nối | Tổng kết |
+| Z | Z01 | Điều kiện cần giữ và cầu nối | Tổng kết |
 | Z | Z02 | Tài liệu và chuyển tiếp | Thu hồi DP, nguồn và cầu nối Bài 08 |
 
 ## Phân bổ nội bộ
@@ -67,15 +67,16 @@ Không hiển thị phân bổ này trên trang chiếu hoặc trong ghi chú di
 
 1. Đề cương UET.AI2012 chính thức: phạm vi Buổi 7, phân bổ 2 LT + 1 BT, LLO17–18 và CLO1.
 2. Bertsimas và Tsitsiklis (1997), *Introduction to Linear Optimization*, Chương 1–2: nguồn chính cho mô hình LP, đa diện, dạng chuẩn, nghiệm cơ sở khả thi, điểm cực và bảo đảm tối ưu.
-3. `sources/Chương 8 Quy hoạch tuyến tính-phần 1.pdf`: mẫu nội dung người dùng cung cấp; chỉ có tiêu đề và các trang trống khi trích văn bản, nên không dùng làm nguồn phát biểu toán.
-4. `sources/part1.docx`: cấu trúc cập nhật đặt LP và DP trong Tuần 7; chỉ dùng để xác nhận cầu nối DP.
-5. `sources/MIT/189163b71d0f322315c5c5324a3bc5e6_MIT15_093J_F09_lec16.pdf`: nguồn MIT OCW cho khung trạng thái, quyết định, chuyển trạng thái và Bellman; không sao chép hình.
+3. Vanderbei (2014), *Linear Programming: Foundations and Extensions*, ấn bản 4, Chương 1–3: bổ sung cách trình bày dạng chuẩn và nghiệm cơ sở trong lecture note.
+4. `sources/Chương 8 Quy hoạch tuyến tính-phần 1.pdf`: mẫu nội dung người dùng cung cấp; chỉ có tiêu đề và các trang trống khi trích văn bản, nên không dùng làm nguồn phát biểu toán.
+5. `sources/part1.docx`: cấu trúc cập nhật đặt LP và DP trong Tuần 7; chỉ dùng để xác nhận cầu nối DP.
+6. `sources/MIT/189163b71d0f322315c5c5324a3bc5e6_MIT15_093J_F09_lec16.pdf`: nguồn MIT OCW cho khung trạng thái, quyết định, chuyển trạng thái và Bellman; không sao chép hình.
 
 ## Khóa ký hiệu và dữ kiện
 
 - LP tổng quát: $x,c\in\mathbb R^n$, $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$.
 - Dạng chuẩn trong bài: $\max c^Tx$ với $Ax=b$, $x\ge0$, $\operatorname{rank}(A)=m\le n$.
-- Ví dụ hộp hạt: $\max 2x_1+3x_2$ với $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$.
+- Ví dụ hộp hạt: $x_1,x_2$ là sản lượng tính theo nghìn hộp; $\max 2x_1+3x_2$ với $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$.
 - Các đỉnh: $(0,0),(30,0),(30,12),(14,20),(0,20)$; giá trị tương ứng $0,60,96,88,60$; nghiệm tối ưu duy nhất $(30,12)$.
 - Hồi quy $L_1$: $a_i\in\mathbb R^n$, $b_i\in\mathbb R$, $x\in\mathbb R^n$, $t_i\in\mathbb R_+$; ví dụ $\min_x|x-1|+|x-3|$ có tập nghiệm $[1,3]$.
 - Ví dụ điểm cực: $\min -x_1-x_2$ với $x_1+x_2\le2$, $x\ge0$; cả cạnh $x_1+x_2=2$ tối ưu.

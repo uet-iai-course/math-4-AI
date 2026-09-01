@@ -29,7 +29,7 @@
 | P02 | Chuyển LLO17–18 thành sản phẩm có thể chấm và khai báo DP là cầu nối nội bộ. | Ký hiệu → vấn đề trung tâm. | Minh chứng CLO1; không tạo LLO DP. | sửa: ba thẻ phân biệt LP chính thức và DP nội bộ. |
 | P03 | Nối hai cơ chế tránh duyệt vét cạn mà không đồng nhất LP với DP. | Mục tiêu → nhu cầu mô hình hóa. | Bản đồ đánh giá tích hợp. | sửa: thêm ranh giới “véc-tơ → chuỗi quyết định”. |
 | A01 | Một quyết định tài nguyên cần biến, mục tiêu và ràng buộc đồng nhất. | P03 → ví dụ hộp hạt. | Nhu cầu LLO17. | thêm: không mở bằng định nghĩa. |
-| A02 | Khóa dữ kiện và đơn vị dùng xuyên bài. | Nhu cầu → dựng ràng buộc. | Ví dụ dẫn nhập LLO17. | thêm: lấp khoảng trống trước hình thức. |
+| A02 | Khóa dữ kiện và đơn vị dùng xuyên bài; $x_1,x_2$ là sản lượng tính theo nghìn hộp nên mô hình liên tục có nghĩa. | Nhu cầu → dựng ràng buộc. | Ví dụ dẫn nhập LLO17. | sửa: tránh gọi biến liên tục là số lô; lấp khoảng trống trước hình thức. |
 | A03 | Biến giới hạn thành bất phương trình và kiểm một điểm vi phạm. | Dữ kiện → mục tiêu. | Tái tạo ràng buộc LLO17. | thêm: trực quan theo đơn vị. |
 | A04 | Buộc so sánh đúng các phương án khả thi; khóa kết quả $96>88$. | Ràng buộc → định nghĩa LP. | Ví dụ tính được LLO17. | thêm: kiểm số học. |
 | A05 | Nêu định nghĩa, đầu vào, đầu ra và ranh giới tuyến tính. | Ví dụ → ứng dụng hồi quy $L_1$. | Hiểu định nghĩa LLO17. | giữ: khái niệm đề cương và mở bước ứng dụng A07. |
@@ -59,7 +59,7 @@
 | D04 | Nêu Bellman đúng với quyết định ở $k=0,\ldots,N-1$, chi phí cuối ở $N$, và tập điều khiển hữu hạn, không rỗng. | Ví dụ → thuật toán giải ngược. | Hình thức DP nội bộ. | sửa: khóa chỉ số giai đoạn và bỏ nhánh điều khiển vô hạn vượt phạm vi. |
 | D05 | Chuyển Bellman thành quy trình có đầu vào/ra và chiều tính. | Hình thức → bài tập. | Ứng dụng DP nội bộ. | đổi mã từ D06. |
 | D06 | Buộc tính lại Bellman khi hai chi phí đổi, thay vì chép kết quả D03. | Kết D → tổng kết. | $J(C)=0$, $J(D)=1$, $J(A)=3$, $J(B)=1$, $J(s)=4$; đường $s\to B\to C\to t$. | sửa: bài chuyển giao trên dữ kiện mới. |
-| Z01 | Thu hồi LLO17–18 và so sánh hai cơ chế tránh duyệt vét cạn. | A–D → tài liệu. | Tổng hợp LLO17–18/CLO1; DP nội bộ. | sửa: cầu nối không tạo chuẩn đầu ra DP. |
+| Z01 | Thu hồi các điều kiện toán học của LP và so sánh hai cơ chế tránh duyệt vét cạn. | A–D → tài liệu. | Tổng hợp LLO17–18/CLO1; DP nội bộ. | sửa: nội dung công khai nói trực tiếp về mô hình, dạng chuẩn, điểm cực và Bellman; dữ liệu chuẩn đầu ra chỉ giữ trong kế hoạch. |
 | Z02 | Thu hồi ngắn vai trò trạng thái–Bellman, truy nguyên nguồn và nối bổ đề cơ sở C06 với phương pháp đơn hình Bài 08. | Khép bài → Bài 08. | Tự học. | sửa: kết luận DP trước khi tuyến chính quay lại LP. |
 
 ## Quyết định cấu trúc
