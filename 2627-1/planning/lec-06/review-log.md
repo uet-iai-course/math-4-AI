@@ -183,3 +183,4 @@ Các mục của những vòng trước được giữ nguyên để truy nguyê
 - Kiểm định đạt 36 mã duy nhất, 36 ghi chú, 6 section ngoài, thẻ cân bằng, tài sản tồn tại, SVG hợp lệ và HTTP 200 cho deck/viewer/note/KaTeX.
 - Codex Slides xác nhận dự án `20260901031052-lecture-06-t-i-u-m-ng-s-u-bjy1` ở trạng thái draft với 36 trang; không có Browser để tuyên bố rà trực quan mới.
 - Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS về mạch khái niệm, độ đầy đủ và độ chính xác toán học.
+- Hậu kiểm toàn khóa bỏ câu mô tả cách tổ chức “mạch bắt đầu từ nhu cầu” và thay “ba chủ đề trong mạch” bằng tên ba bộ tối ưu; nội dung thuật toán không đổi.

@@ -71,7 +71,7 @@ Hai thành phần gradient khác nhau nhưng sau co giãn lại tạo ra hai đ�
 
 ## B. Ba bộ tối ưu thích nghi
 
-Ba chủ đề trong mạch này dùng chung dữ kiện
+Ba bộ tối ưu dưới đây dùng chung dữ kiện
 
 $$
 \theta_0=(0,0)^T,
