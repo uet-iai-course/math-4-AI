@@ -33,7 +33,7 @@
 | Chặn bàn giao | D05 | Sửa mô hình sinh thành $\mathbf y=\mathbf X\mathbf w_{\mathrm{true}}+\boldsymbol\varepsilon$; định nghĩa $\mathbf r(\mathbf w)=\mathbf X\mathbf w-\mathbf y$ và chỉ khẳng định $\mathbf r(\mathbf w_{\mathrm{true}})=-\boldsymbol\varepsilon$. Phân biệt thiết kế cố định với quần thể ngẫu nhiên trong ghi chú để chuẩn bị D06 câu 5. |
 | Chặn bàn giao | C04–C05 | Đổi tiêu đề và câu hỏi từ “bình phương sai số” sang “bình phương phần dư”, nhất quán với đại lượng quan sát được sau khi chọn $\mathbf w$. |
 
-Các quyết định 37–45 mã thuộc những vòng trước. Vòng hiện tại bổ sung nền tảng giải tích nhiều biến và có 55 mã.
+**[Lịch sử, đã được thay bởi bản 72 mã]** Các quyết định 37–45 mã thuộc những vòng trước. Vòng hiện tại bổ sung nền tảng giải tích nhiều biến và có 55 mã.
 
 ## Hợp nhất ba báo cáo độc lập
 
@@ -67,8 +67,8 @@ Các quyết định 37–45 mã thuộc những vòng trước. Vòng hiện t�
 - A09: thay sơ đồ kết quả bằng ba hàng phép tính có điền số đầy đủ cho $\mathbf X\mathbf w^{(0)}=\hat{\mathbf y}$, $\mathbf r=\hat{\mathbf y}-\mathbf y$ và $f(\mathbf w^{(0)})=4{,}5$; dùng cỡ cục bộ $0{,}8\,\mathrm{em}$, không thấp hơn chuẩn thân bài.
 - D06: thay câu thiết kế cố định/quần thể bằng phép rút gọn khi $\boldsymbol\Sigma_\varepsilon=\sigma^2\mathbf I$; bổ sung đáp án đầy đủ trong ghi chú.
 - Nội dung hạng/Gram cũ được thay bằng A05 hiện tại: hạng, dạng toàn phương và đẳng thức $\mathbf d^T\mathbf A^T\mathbf A\mathbf d=\|\mathbf A\mathbf d\|_2^2$. A10 trình bày đặc trưng phi tuyến; A11 chỉ xét hệ dữ liệu không tương thích. C03 phân biệt PMF/PDF và xác suất khoảng; D05 thêm trường hợp iid.
-- A10–A11 thiết lập đặc trưng phi tuyến, tính không tương thích và mục tiêu bình phương tối thiểu. A12 giữ hình học phép chiếu, A13 suy phương trình chuẩn và bài tập ứng dụng là A14. Thời lượng phần A được tăng lên 25/38 phút.
-- Vòng kiểm định toán và ảnh 16:9: A10 và E05 dùng $(\boldsymbol\phi,\mathbf w)\in\mathbb R^3\times\mathbb R^3$ cho mô hình hiện tại, $(\widetilde{\boldsymbol\phi},\widetilde{\mathbf w})\in\mathbb R^4\times\mathbb R^4$ cho mô hình mở rộng. A11 dùng bố cục gọn cho kiểm tra mâu thuẫn và mục tiêu xấp xỉ, không giảm cỡ chữ. Nội dung hiện ở B16 thay toàn bộ nhánh hạng/Gram/xác định dương/nghiệm duy nhất bằng Hessian số, đẳng thức $\mathbf d^T\mathbf H\mathbf d=\|\mathbf X\mathbf d\|_2^2\ge0$ và phép kiểm tra $f:4{,}5\to2{,}265$ tại $\eta=0{,}1$; bỏ $\lambda_{\max}$. B17/E06 thay câu hỏi nghiệm duy nhất bằng kiểm tra bước gradient và nhu cầu tối ưu khi hệ không tương thích.
+- **[Lịch sử theo sơ đồ mã cũ]** A10–A11 thiết lập đặc trưng phi tuyến, tính không tương thích và mục tiêu bình phương tối thiểu. A12 giữ hình học phép chiếu, A13 suy phương trình chuẩn và bài tập ứng dụng là A14. Thời lượng phần A được tăng lên 25/38 phút.
+- **[Lịch sử theo sơ đồ mã cũ]** Vòng kiểm định toán và ảnh 16:9: A10 và E05 dùng $(\boldsymbol\phi,\mathbf w)\in\mathbb R^3\times\mathbb R^3$ cho mô hình hiện tại, $(\widetilde{\boldsymbol\phi},\widetilde{\mathbf w})\in\mathbb R^4\times\mathbb R^4$ cho mô hình mở rộng. A11 dùng bố cục gọn cho kiểm tra mâu thuẫn và mục tiêu xấp xỉ, không giảm cỡ chữ. Nội dung hiện ở B16 thay toàn bộ nhánh hạng/Gram/xác định dương/nghiệm duy nhất bằng Hessian số, đẳng thức $\mathbf d^T\mathbf H\mathbf d=\|\mathbf X\mathbf d\|_2^2\ge0$ và phép kiểm tra $f:4{,}5\to2{,}265$ tại $\eta=0{,}1$; bỏ $\lambda_{\max}$. B17/E06 thay câu hỏi nghiệm duy nhất bằng kiểm tra bước gradient và nhu cầu tối ưu khi hệ không tương thích.
 - Kiểm tra ảnh 1280×720 nội dung hiện ở B16: rút hộp dưới thành đúng một dòng “Với $\eta=0{,}1$: $f$ giảm $4{,}5\to2{,}265$; cần kiểm tra $f$ khi đổi bước.”; chuyển diễn giải về bước thử khác vào ghi chú, giữ nguyên cỡ chữ và các nội dung còn lại.
 - Chuẩn hóa ký hiệu: ma trận và véc-tơ dùng chữ đậm KaTeX, vô hướng giữ nghiêng thường. A07 chuyển nhãn $\boldsymbol\phi_1,\ldots,\boldsymbol\phi_4$ khỏi `h3` sang `.vector-label` với `text-transform:none` để phi luôn hiển thị thường; $\boldsymbol\Phi$ chỉ ma trận ghép. A11 giữ một kiểm tra mâu thuẫn số và một công thức mục tiêu ngắn.
 - A08 bổ sung quy ước mỗi hàng là một mẫu, mỗi cột là một đặc trưng, tên ba cột và khoảng trắng cục bộ trong ma trận số. A12 “Bình phương tối thiểu là phép chiếu” giữ SVG code-native cùng ba hệ thức hình học; A13 “Phương trình chuẩn từ phép chiếu” suy riêng phương trình chuẩn và nghiệm đóng dưới điều kiện cột độc lập, với Moore--Penrose trong ghi chú. Bài tập ứng dụng đổi mã thành A14.
@@ -121,7 +121,7 @@ Các quyết định 37–45 mã thuộc những vòng trước. Vòng hiện t�
 
 | Kiểm tra | Trạng thái bản soạn |
 |---|---|
-| Đúng 67 mã duy nhất theo thứ tự khóa | Đã tự kiểm bằng script cục bộ sau khi chỉnh sửa |
+| [Lịch sử] Đúng 67 mã duy nhất theo thứ tự khóa | Bản hiện tại có 72 mã duy nhất; hàng này thuộc vòng trước |
 | Bảy `section` ngoài | Đã tự kiểm bằng bộ phân tích HTML |
 | Mỗi trang có một ghi chú diễn giả | Đã tự kiểm số lượng |
 | H01–H04 không dùng $\mathbf X$ hoặc $\mathbf X\mathbf w$ | Đã rà chuỗi trong bốn trang |
@@ -300,3 +300,91 @@ Kết quả tự kiểm bản soạn: 67 mã duy nhất đúng thứ tự; 67 gh
 ### Giới hạn Codex Slides
 
 - Codex Slides vẫn chưa khả dụng như mục giới hạn đã ghi trước đó; chưa tuyên bố đã kiểm định bằng Codex Slides.
+
+## 2026-09-01
+
+### Nguồn và kế hoạch
+
+- Worker thực hiện: z-ai/glm-5.3-flash qua OpenRouter, theo kế hoạch đã duyệt và AGENTS.md.
+- Phạm vi sửa: đúng 5 tệp `lecture-00-on-tap-nen-tang-toan-hoc.html`, `lecture_00_outline.md`, `lecture-00-storyboard.md`, `lecture-00-review-log.md`, `materials/lec-00/lecture-note.md`.
+
+### Các quyết định sửa
+
+- A02: notes thêm câu $\boldsymbol\phi_i$ là véc-tơ đặc trưng và được định nghĩa chính thức ở A08.
+- A06: mặt slide định nghĩa $\mathbb S^n$ là tập ma trận đối xứng $n\times n$.
+- A12: mặt slide định nghĩa $\mathbf r(\mathbf w)=\mathbf X\mathbf w-\mathbf y$ và nêu B14 sẽ dùng.
+- A13: mặt slide khai báo $\mathbf w_{\mathrm{LS}}$ là nghiệm bình phương tối thiểu, công thức ở A14.
+- C11: mặt slide khai báo $\mathbf w_{\mathrm{true}}\in\mathbb R^3$ là trọng số sinh dữ liệu không quan sát được.
+- D09: mặt slide định nghĩa $\mathbb S_{++}^n$ là tập ma trận đối xứng xác định dương.
+- E05: mặt slide nêu $\widetilde{\mathbf w}$ thu được khi giải hệ phương trình chuẩn bốn chiều và nội suy bốn mẫu.
+- Outline: A05 nguồn thành Goodfellow §2.5–2.6; B15 nguồn thành ví dụ tự tính dựa trên Goodfellow §4.3–4.5; C01 thêm Goodfellow §3.1; E03 thêm Goodfellow §4.5; B19 đồng bộ $\boldsymbol\Delta$ hai chiều.
+- Storyboard: cập nhật các hàng A02, A06, A12, A13, B19, C11, D09, E05 ghi quyết định sửa notes/mặt slide và ký hiệu cầu nối; không đổi mã và thứ tự.
+- Lecture note: mục tiên quyết nêu Bài 00 ôn ba học phần tiên quyết chính thức Giải tích 1, Xác suất thống kê, Đại số tuyến tính cho kỹ thuật, đồng thời kiến thức phổ thông là đầu vào; thêm nhãn "Phần mở rộng ngoài phạm vi bộ trang chiếu" ở đầu ba cụm Các phép phân rã ma trận, Điểm dừng và điều kiện tối ưu bậc nhất, Gauss nhiều biến/Mahalanobis/làm trắng.
+
+### Lỗi B19
+
+- Mặt slide B19 dùng $\boldsymbol\Delta=(0,1,0)^T$ sai chiều; đã sửa thành $\boldsymbol\Delta=(0{,}1,\,0)^T\in\mathbb R^2$. Đáp án notes Taylor tại $(0{,}1,1)$ bằng $1{,}11$ giữ nguyên.
+
+### Giới hạn kiểm định
+
+- Codex Slides không khả dụng: Node 18 nhỏ hơn yêu cầu 20; package root 0.2.1 lệch với plugin 0.1.0+codex.20260713; chạy plugin gây `ReferenceError: File is not defined`. Không tuyên bố đã kiểm định bằng Codex Slides.
+
+### Kiểm tĩnh sau sửa
+
+- Đủ 72 `data-slide-id` duy nhất; không đổi 7 `section` ngoài; không đổi thứ tự slide; công thức Markdown chỉ dùng `$` và `$$`; không lỗi whitespace.
+
+## Kiểm định storyboard ngày 2026-09-01
+
+### Bằng chứng runtime
+
+- requested_model: z-ai/glm-5.3-flash; observed_model: z-ai/glm-5.3-flash; provider: OpenRouter.
+
+### Kết quả rà storyboard
+
+- Đã rà đủ 72 mã; quyết định giữ toàn bộ, không xóa hay đổi mã trang.
+- Không có lỗi chặn bàn giao và không có lỗi nghiêm trọng; có một lỗi trung bình và bốn lỗi nhẹ.
+- Trạng thái lỗi: lỗi trung bình và cả bốn lỗi nhẹ đã được sửa trong phiên này (trong đó notes B19 nay ghi đáp án cụ thể: gradient của $g\circ\mathbf F$ tại $(0,1)$ bằng $(0,2)^T$ khi tính bằng $(\mathbf J_F)^T\nabla g$).
+
+### Giới hạn kiểm định
+
+- Codex Slides không dùng được do Node 18 thấp hơn yêu cầu 20; manifest lệch phiên bản; lần mở máy chủ bị từ chối vì bind 0.0.0.0. Kiểm định trực quan sẽ dùng RevealJS cục bộ; không tuyên bố đã kiểm tra bằng Codex Slides.
+
+## Đồng bộ mạch khái niệm với ghi chú bài giảng ngày 2026-09-01
+
+### Phạm vi và quyết định
+
+- Giữ nguyên 72 mã và bảy mạch. Các số 55/67 trang và phân bổ 25/38 phút ở các mục cũ chỉ là lịch sử của những vòng trước, không mô tả bản hiện tại.
+- A02 giải thích nguồn gốc của $\boldsymbol\phi_1$ và $\mathbf w^{(0)}$ trên mặt trang trước khi dùng tích vô hướng; A08 vẫn là nơi định nghĩa chính thức véc-tơ đặc trưng.
+- B01–B11 và B19 dùng thống nhất ví dụ bất đối xứng trong ghi chú: $h(u,v)=u^2+uv+2v^2+u-2v$. Chuỗi số được kiểm tra lại: $h(1,2)=8$, $\nabla h(1,2)=(5,7)^T$, $D_{(3/5,4/5)}h=43/5$, tuyến tính hóa $7{,}8$, Taylor bậc hai $7{,}82$, $\mathbf H_h=[[2,1],[1,4]]$.
+- B02 dùng lại SVG `img/lec-00/calculus-graph-slice-level-set.svg` của ghi chú để đồ thị, lát cắt và tập mức không đổi ví dụ giữa hai tài liệu. B03 sửa toàn bộ nhãn tiếp tuyến và mô tả thay thế theo các độ dốc $5$ và $7$.
+- B13 thêm câu nối hiển thị trở lại quy tắc dây chuyền ở B14. B15 nói rõ tổng phần dư bằng không chỉ làm thành phần gradient theo $w_0$ bằng không.
+- D10 chuyển phép tính hai chiều chi tiết vào ghi chú diễn giả; mặt trang giữ giả thiết, mục tiêu GLS, trực giác cân hướng và trường hợp GLS rút về OLS.
+- E01 chỉ vị trí giải thích bất định ở E04; E04 gọi $1{,}96$ là phân vị chuẩn cho sẵn; E05 bổ sung đơn vị tiền; E06 đưa kết luận `Biểu diễn (A) → tối ưu (B) → bất định (C/D/E)` lên mặt trang.
+- Bỏ khóa phóng to trong `viewport`; chuẩn hóa dấu trừ số ở H03 và E03 bằng KaTeX.
+
+### Kết quả năm lượt rà trước sửa
+
+- Storyboard: PASS; một lỗi trung bình và bốn lỗi nhẹ đã được xử lý trong vòng này.
+- Góc nhìn sinh viên: phát hiện hợp lệ ở A02, D10, E05 và khả năng phóng to. Kết luận thiếu KaTeX bị bác bỏ vì `katex.min.js`, `katex.min.css` và `auto-render.min.js` đều tồn tại cục bộ.
+- Sư phạm: PASS; đã sửa mô tả P01, vai trò chung của A15 và thuật ngữ “bộ trang chiếu”.
+- Chuyên gia: lượt đầu lỗi `model exceeded the tool-call limit (26)`; lượt chạy lại phạm vi hẹp PASS và chỉ ra lệch ví dụ giải tích giữa ghi chú với trang chiếu, nay đã sửa.
+- Toán học: lượt đầy đủ thất bại với lỗi nguyên gốc `model returned an empty or incomplete answer after all retries`; phải chạy lại phạm vi hẹp sau sửa.
+
+### Tác tử viết và giới hạn runtime
+
+- Hai lần gọi writer với requested model `z-ai/glm-5.3-flash`, khóa lấy qua `--api-key-root /data/tqlong/math-4-AI`, đều dừng ở `api_transport_error` ngay vòng 1; không lần nào sửa tệp.
+- Điều phối viên áp dụng bản sửa đã khóa bằng `apply_patch`; tái kiểm toán học và mạch kể chuyện qua OpenRouter được ghi ở mục tiếp theo.
+
+### Tái kiểm sau sửa
+
+- Toán học: **PASS**, không có lỗi. Runtime: requested model `z-ai/glm-5.3-flash`; observed model `z-ai/glm-5.3-flash`; provider `OpenRouter`. Reviewer xác nhận toàn bộ lát cắt, đạo hàm, Hessian, Taylor, B19, ví dụ GLS và đơn vị E04–E05 đều đúng.
+- Mạch kể chuyện: lượt đầu đọc vượt phạm vi và được dừng thủ công; lượt thứ hai chỉ đọc gói trích đoạn tối thiểu, **PASS**. Runtime: requested model `z-ai/glm-5.3-flash`; observed model `z-ai/glm-5.3-flash`; provider `OpenRouter`.
+- Hai nhận xét nhẹ của lượt mạch kể chuyện về việc $\mathbf X,\mathbf y$ chưa được nhắc ở B14–B15 bị bác bỏ: gói trích đoạn cố ý không chứa A09, còn bộ trang chiếu thật đã định nghĩa $\mathbf X,\mathbf y$ ở A09 và dùng xuyên suốt A10–A14 trước B14–B15.
+
+### Kiểm định tĩnh và tài sản
+
+- Đếm được 72 `<section data-slide-id>` và 72 `<aside class="notes">`; không có công thức cũ của ví dụ $u^2+uv+v^2$ trong HTML, outline hoặc storyboard; `git diff --check` không báo lỗi.
+- SVG `calculus-graph-slice-level-set.svg` được raster hóa để quan sát: hình hiển thị đủ ba khung, điểm $P=(1,2,8)$, lát $v=2$, elip mức và văn bản thay thế khớp khái niệm.
+- `python3 -m reloadserver 8765` không chạy vì môi trường không có module `reloadserver`. Máy chủ dự phòng `python3 -m http.server 8765 --bind 127.0.0.1 --directory 2627-1` được dùng và dừng sau kiểm tra.
+- HTTP cục bộ trả mã 200 cho HTML Bài 00, `lecture-style.css`, SVG mới, RevealJS và KaTeX. Mọi `src`/`href` cốt lõi trong deck tồn tại cục bộ.
+- Không có Chromium/Firefox trong môi trường; Codex Slides cũng không khả dụng như đã ghi phía trên. Vì vậy vòng này không tuyên bố đã chụp toàn bộ 72 trang ở khung 16:9 hoặc màn hình hẹp; các sửa giảm tải và CSS hình được kiểm tra tĩnh theo kích thước 1280×720 của deck.
