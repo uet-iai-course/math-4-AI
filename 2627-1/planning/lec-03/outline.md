@@ -34,21 +34,21 @@ $$
 | A | A01 | Nghiệm ứng viên chưa phải là chứng nhận nếu chưa có cận | nhu cầu |
 | A | A02 | Ví dụ xuyên suốt xác lập $f_0,f_1,\mathcal F,x^*,p^*$ | ví dụ dẫn nhập |
 | A | A03 | Cực tiểu hóa $L(\cdot,\lambda)$ tạo một họ cận dưới | trực quan |
-| A | A04 | Với $\varnothing\ne D\subseteq\mathbb R^n$, định nghĩa $L$ cho $\lambda\in\mathbb R^m$, $\nu\in\mathbb R^p$; trang A05 mới định nghĩa $g$, còn dấu $\lambda\ge0$ dùng cho khả thi đối ngẫu | hình thức |
+| A | A04 | Với $\varnothing\ne D\subseteq\mathbb R^n$, định nghĩa $L$ cho mọi nhân tử thực; dấu $\lambda\ge0$ bảo đảm $L\le f_0$ tại điểm khả thi và tạo cận dưới sau khi lấy infimum trên $D$ | hình thức |
 | A | A05 | Hàm đối ngẫu là infimum của các hàm affine theo nhân tử nên lõm | hình thức |
 | A | A06 | Ví dụ cho $\operatorname{dom}g=(-1,\infty)$ và công thức $g(\lambda)$ | tính toán |
 | A | A07 | Đối ngẫu yếu theo sau từ chuỗi $f_0(x)\ge L\ge g$ | chứng minh |
 | A | A08 | Bài toán đối ngẫu chọn cận tốt nhất; QP chuyển giao cho $\lambda^*=1$, $x^*=(1/2,1/2)$ | ứng dụng/bài tập |
-| B | B01 | Cận dưới chỉ hữu ích để chứng nhận khi biết độ lỏng | nhu cầu |
+| B | B01 | Khoảng $p^*-d^*$ đo trực tiếp độ lỏng của cận; tính lồi chưa đủ để bảo đảm khoảng bằng không | nhu cầu |
 | B | B03 | Ví dụ đạt cực đại tại $\lambda^*=2$, $d^*=5$ | ví dụ |
 | B | B02 | Đặt tên đối ngẫu yếu, mạnh và khoảng sau khi quan sát ví dụ khít | hình thức |
 | B | B04 | Định nghĩa nội tương đối là nội trong bao affine, rồi dùng $\operatorname{relint}D$ trong Slater tinh chỉnh | định lý |
 | B | B05 | Điểm $x=3$ áp Slater và đóng khoảng đối ngẫu | ứng dụng |
 | B | B06 | Phân loại giả thiết trước khi kết luận đối ngẫu mạnh | bài tập |
 | C | C01 | LLO5 cần giải thích hình học của cận thay vì chỉ đọc công thức | nhu cầu |
-| C | C03 | Với $u=f_1(x)$, $t=f_0(x)$, đường $t+\lambda u=g(\lambda)$ có tung độ cắt là cận | trực quan/ví dụ |
+| C | C03 | Với $u=f_1(x)$, $t=f_0(x)$, đường cận $t+\lambda u=g(\lambda)$ nằm dưới mọi cặp giá trị và có tung độ cắt $g(\lambda)$ | trực quan/ví dụ |
 | C | C02 | Hình thức hóa họ điểm vừa quan sát thành tập giá trị $\mathcal G$ | hình thức nền |
-| C | C04 | Tập mở rộng $\mathcal A$ đặt $(0,p^*)$ vào hình học đối ngẫu | hình thức |
+| C | C04 | Tập mở rộng $\mathcal A$ cho $(0,p^*)\in\operatorname{bd}(\operatorname{cl}\mathcal A)$ khi $p^*$ hữu hạn; dùng bao đóng nếu infimum không đạt | hình thức |
 | C | C05 | Hệ số góc $-\lambda^*$, pháp tuyến $(\lambda^*,1)$ và hạng $\lambda^*\nabla f$ nối hình học với KKT | ứng dụng |
 | C | C06 | Đọc đường đỡ để xác định $g(\lambda)$, $p^*$ và độ khít | bài tập LLO5 |
 | C | C07 | Điểm yên ngựa của $L$: cực đại theo nhân tử, cực tiểu theo biến gốc; tương đương nghiệm gốc–đối ngẫu đều đạt và $p^*=d^*$ | hình thức/cầu nối KKT |
@@ -56,7 +56,7 @@ $$
 | D | D05 | Trước khi giới thiệu nón pháp tuyến, dùng $\nabla_xL=0$ cho ví dụ có biến chạy trên toàn $\mathbb R$ để so sánh $x=2$ và $x=4$ | ví dụ dẫn nhập |
 | D | D02 | Bù trừ xác định ràng buộc hoạt động khi khoảng bằng không | trực quan/hình thức |
 | D | D03 | KKT gồm đúng bốn nhóm; điều kiện dừng tổng quát là $0\in\nabla_xL(x^*,\lambda^*,\nu^*)+N_D(x^*)$ | hình thức |
-| D | D04 | Tính cần và đủ phụ thuộc $D$ lồi, bất đẳng thức lồi, đẳng thức affine, tính khả vi và điều kiện chính quy; trường hợp không khả vi được báo trước, dưới gradient được định nghĩa ở E04 | giới hạn |
+| D | D04 | Phiên bản KKT đang dùng chỉ áp dụng cho $D$ lồi, bất đẳng thức lồi khả vi và đẳng thức affine; Slater bảo đảm nhân tử cho tính cần, còn tính lồi cho tính đủ | giới hạn |
 | D | D06 | KKT diễn giải đánh đổi trong hồi quy có ràng buộc chuẩn | ứng dụng AI |
 | D | D07 | Dùng kết quả QP ở A08 để chỉ kiểm tra Slater, bốn nhóm KKT và giả thiết kết luận | bài tập |
 | E | E01 | Nhân tử còn đo tác động của việc nới ràng buộc | nhu cầu |

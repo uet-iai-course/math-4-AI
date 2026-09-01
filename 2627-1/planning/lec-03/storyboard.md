@@ -45,21 +45,21 @@ Chu trình rút gọn của bất đẳng thức tổng quát là `nhu cầu →
 | A01 | Chỉ ra nghiệm ứng viên thiếu chứng nhận | Vấn đề trung tâm → A02 cho bài toán cụ thể | LLO4 | thêm |
 | A02 | Xác lập ví dụ và mọi ký hiệu truyền A–E | Nhu cầu cận → A03 thử hấp thụ ràng buộc | LLO4 | thêm từ Bài 1 |
 | A03 | Trực quan hóa infimum của Lagrangian là cận | Ví dụ gốc → A04 khái quát Lagrangian | LLO4 | thêm; SVG tự vẽ |
-| A04 | Nêu miền khác rỗng, định nghĩa $L,g$ cho mọi nhân tử thực và tách điều kiện khả thi đối ngẫu | Họ hàm ví dụ → A05 xác định miền hữu hiệu của $g$ | LLO4 | sửa: $\varnothing\ne D\subseteq\mathbb R^n$; chỉ A07–A08 yêu cầu $\lambda\ge0$ |
+| A04 | Nêu miền khác rỗng, định nghĩa $L$ cho mọi nhân tử thực và giải thích trực tiếp vì sao $\lambda\ge0$ tạo cận dưới tại điểm khả thi | Họ hàm ví dụ → A05 lấy infimum để định nghĩa $g$ | LLO4 | sửa: bỏ báo trước theo mã trang; nối bằng bất đẳng thức $L\le f_0$ |
 | A05 | Giải thích hàm đối ngẫu, miền hữu hiệu và tính lõm | $L$ tổng quát → A06 tính $g$ ví dụ | LLO4 | giữ trục MIT 5-3 |
 | A06 | Tính đúng $g$ và tách $\operatorname{dom}g$ khỏi $\lambda\ge0$ | Định nghĩa $g$ → A07 chứng minh cận | LLO4 | sửa theo math-spec |
 | A07 | Chứng minh đối ngẫu yếu và chỉ rõ chỗ dùng dấu | Công thức ví dụ → A08 chọn cận tốt nhất | LLO4/CLO1 | giữ |
 | A08 | Định nghĩa bài toán đối ngẫu và giải phần đối ngẫu của QP chuyển giao | Cận cho mỗi nhân tử → B01 hỏi độ khít; kết quả chuyển sang D07 | LLO4 | sửa: tối đa hóa $g$, suy ra $\lambda^*=1$, $x^*=(1/2,1/2)$ |
-| B01 | Tạo nhu cầu đo khoảng đối ngẫu | Cận tốt nhất → B03 quan sát một cận khít | LLO4 | sửa câu nối |
+| B01 | Định nghĩa nhu cầu bằng đại lượng $p^*-d^*$ và chỉ ra tính lồi chưa đủ cho khoảng bằng không | Cận tốt nhất → B03 quan sát một cận khít | LLO4 | sửa: thay đối lập khẩu hiệu bằng đại lượng đo được |
 | B03 | Cho quan sát cận khít tính được, đúng $\lambda^*=2$ | Nhu cầu độ khít → B02 đặt tên kết quả | LLO4 | đổi thứ tự; SVG tự vẽ |
 | B02 | Khóa ba khái niệm $d^*\le p^*$, mạnh và khoảng sau ví dụ | Kết quả tính B03 → B04 hỏi giả thiết bảo đảm | LLO4 | đổi thứ tự để hình thức theo sau ví dụ |
 | B04 | Định nghĩa nội tương đối trước khi nêu Slater tinh chỉnh đúng vai trò điều kiện đủ | Ví dụ khít → B05 áp điểm khả thi chặt | LLO4/CLO1 | sửa khoảng trống tiên quyết và giả thiết affine |
 | B05 | Dùng $x=3$ để kết luận mạnh và đạt nghiệm đối ngẫu | Slater tổng quát → B06 phân loại kết luận | LLO4 | thêm ứng dụng |
 | B06 | Chặn suy luận đảo hoặc bỏ khả thi tương đối/affine | Chứng nhận ví dụ → C01 mở hình học | LLO4/CLO1 | sửa câu hỏi và đáp án theo Slater tinh chỉnh |
 | C01 | Mở trực tiếp năng lực LLO5 | Kết luận đại số → C03 nhìn đường đỡ | LLO5 | sửa câu nối |
-| C03 | Cho hình đọc được với $u=f_1(x)$, $t=f_0(x)$ trước ký hiệu tập | Nhu cầu hình học → C02 gọi tên họ điểm | LLO5 | giữ DOM; SVG lấy mẫu công thức và đường đỡ qua đúng $(0,5)$ |
+| C03 | Cho hình đọc được với $u=f_1(x)$, $t=f_0(x)$; chỉ gọi là đường cận cho tới khi tập mở rộng được định nghĩa | Nhu cầu hình học → C02 gọi tên họ điểm | LLO5 | sửa thuật ngữ để không dùng “đường đỡ” trước đối tượng được đỡ |
 | C02 | Hình thức hóa họ điểm quan sát ở C03 thành tập giá trị | Trực quan → C04 thêm tập mở rộng | LLO5 | đổi thứ tự; giữ MIT 5-15 |
-| C04 | Phân biệt $\mathcal G$ với $\mathcal A$ và đặt $(0,p^*)$ | Đường đỡ → C05 giải thích mạnh | LLO5 | giữ MIT 5-16 |
+| C04 | Phân biệt $\mathcal G$ với $\mathcal A$; đặt $(0,p^*)$ trên biên của $\operatorname{cl}\mathcal A$ khi $p^*$ hữu hạn | Đường cận → C05 giải thích đối ngẫu mạnh bằng đường đỡ | LLO5 | sửa: dùng bao đóng để bao quát infimum không đạt |
 | C05 | Nối hệ số góc $-\lambda^*$, pháp tuyến $(\lambda^*,1)$ với $\lambda^*\nabla f$ trong KKT | Tập mở rộng → C06 đọc hình mới | LLO5/CLO1 | sửa cầu nối hình học–KKT; chứng minh dài ở notes |
 | C06 | Đo khả năng đọc hình với chính hình tham chiếu thu nhỏ | Cơ chế tiếp xúc → C07 định nghĩa điểm yên ngựa | LLO5 | sửa; nhúng `dual-geometry.svg` |
 | C07 | Đưa khái niệm điểm yên ngựa của $L$ từ lecture note vào deck: định nghĩa hai phía, ví dụ $L(2,\lambda)=5$, $L(x,2)=3(x-2)^2+5$, và định lý tương đương với nghiệm gốc–đối ngẫu đều đạt cùng $p^*=d^*$; nối đối ngẫu mạnh với KKT | Bài tập đọc hình → D01 chuyển sang điều kiện KKT | LLO4/CLO1 | thêm; một luận điểm duy nhất, chi tiết chứng minh ở lecture note |
@@ -67,7 +67,7 @@ Chu trình rút gọn của bất đẳng thức tổng quát là `nhu cầu →
 | D05 | So sánh hai ứng viên bằng $\nabla_xL=0$ cho biến chạy trên toàn $\mathbb R$, chưa dùng nón pháp tuyến trước khi định nghĩa | Nhu cầu cục bộ → D02 giải thích bù trừ | LLO4 | sửa thứ tự giới thiệu ký hiệu |
 | D02 | Nối khoảng bằng không với ràng buộc hoạt động | Nhu cầu kiểm tra → D03 gom bốn nhóm | LLO4 | giữ MIT 5-17 |
 | D03 | Đặt đủ bốn nhóm KKT; định nghĩa nón pháp tuyến và dùng $0\in\nabla_xL(x^*,\lambda^*,\nu^*)+N_D(x^*)$ | Bù trừ → D04 phân biệt cần/đủ | LLO4 | sửa để bao quát miền $D$ lồi |
-| D04 | Ngăn dùng KKT vô điều kiện bằng cách nêu đủ giả thiết về $D$, bất đẳng thức, đẳng thức, tính khả vi và điều kiện chính quy; báo trước trường hợp không khả vi rồi định nghĩa dưới gradient ở E04 | Bốn nhóm → D06 ứng dụng AI | LLO4/CLO1 | sửa phạm vi bảo đảm và thứ tự tiên quyết |
+| D04 | Ngăn dùng KKT vô điều kiện bằng cách khóa phạm vi ở phiên bản lồi khả vi; tách vai trò Slater cho tính cần khỏi vai trò tính lồi cho tính đủ | Bốn nhóm → D06 ứng dụng AI | LLO4/CLO1 | sửa: bỏ nhánh KKT không trơn chưa được định nghĩa; E04 chỉ còn phục vụ độ nhạy |
 | D06 | Chuyển KKT sang hồi quy có ràng buộc chuẩn | Ví dụ vô hướng → D07 chuyển giao hai biến | LLO4/CLO1 | thêm ứng dụng AI |
 | D07 | Dùng kết quả A08 để chỉ đo Slater, đủ bốn nhóm KKT và giả thiết kết luận | KKT ứng dụng → E01 đọc nhân tử như thông tin | LLO4 | sửa để không lặp phép lập đối ngẫu |
 | E01 | Tạo nhu cầu sau khi đã biết nghiệm | Nhân tử KKT → E02 định nghĩa nhiễu | LLO4/CLO1 | thêm |

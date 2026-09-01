@@ -1,11 +1,19 @@
 # Nhật ký rà soát Bài giảng 03 — Đối ngẫu Lagrange
 
+## Hậu kiểm mạch khái niệm và phạm vi định lý — 2026-09-01
+
+- P01, A04, B02, C06, D05, E01, E06 và Z03 đã bỏ tham chiếu mã trang, “trang kế” và mô tả tuyến nội bộ; câu nối hiện dựa trên quan hệ toán học được truyền sang khái niệm sau.
+- B01 dùng khoảng $p^*-d^*$ thay cho cặp nhãn “cận lỏng/cận khít”, đồng thời nêu rõ tính lồi chưa tự bảo đảm đối ngẫu mạnh.
+- C03 chỉ gọi $t+\lambda u=g(\lambda)$ là đường cận trước khi định nghĩa tập mở rộng. C04 mới gọi nó là đường đỡ và dùng $\operatorname{cl}\mathcal A$ để đúng cả khi infimum không đạt.
+- D04 giới hạn rõ ở KKT khả vi. Nhánh không trơn bị bỏ vì dưới gradient của hàm giá trị ở E04 không phải là điều kiện dừng KKT tổng quát.
+- Số trang, thứ tự DOM và tài sản không thay đổi. Bộ phân tích xác nhận 41 trang, 41 ghi chú, 7 section ngoài; năm SVG phân tích XML và raster hóa thành công. Contact sheet cho thấy nhãn, trục, đường và điểm cần đọc đều hiển thị đầy đủ.
+
 ## 1. Trạng thái bản nháp
 
-- Bản nháp triển khai gồm 40 trang, đúng 7 section ngoài P/A/B/C/D/E/Z.
-- Đã tạo đồng bộ outline, storyboard, RevealJS và bốn SVG cục bộ.
+- Bản hiện tại gồm 41 trang, đúng 7 section ngoài P/A/B/C/D/E/Z.
+- Outline, storyboard, RevealJS và năm SVG cục bộ đã đồng bộ.
 - Đã hợp nhất đủ năm báo cáo rà soát độc lập và áp dụng các quyết định trong Mục 8; thứ tự DOM đã qua cổng storyboard được giữ nguyên.
-- Trạng thái hiện tại: hậu kiểm toán học, storyboard/mạch kể chuyện và Chromium r3 đã đạt; không còn lỗi chặn hoặc nghiêm trọng. Chưa cập nhật chỉ mục, commit hoặc push vì các việc đó nằm ngoài phạm vi lượt này.
+- Trạng thái hiện tại: hậu kiểm toán học, storyboard, mạch kể chuyện và raster SVG đạt; không còn lỗi chặn hoặc nghiêm trọng. Lượt này không có Browser hoặc Chromium, nên không dùng kết quả trực quan cũ để khẳng định bố cục HTML sau sửa.
 
 ## 2. Nguồn và quyết định sử dụng
 
