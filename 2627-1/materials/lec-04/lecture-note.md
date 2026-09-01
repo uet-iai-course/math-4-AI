@@ -77,8 +77,6 @@ Nghiệm duy nhất là $x^*=0$ và $p^*=0$. Điều kiện $g(x^*)=0$ xác nh�
 
 **Câu hỏi kiểm tra.** Trong công thức cập nhật, đại lượng nào quyết định phương, đại lượng nào quyết định độ dài, và vì sao không thể bỏ kiểm tra $x^{(k+1)}\in\operatorname{dom}f$?
 
-**Đầu ra.** Người đọc viết được giao diện của một vòng tối ưu gồm đầu vào, hướng, bước, cập nhật và dừng.
-
 ### 2. Hướng giảm và xấp xỉ bậc nhất
 
 **Mục tiêu đọc hiểu.** Người đọc kiểm tra được một hướng có làm giảm hàm với bước đủ nhỏ hay không và chỉ ra điểm dùng tính khả vi.
@@ -124,8 +122,6 @@ Với $t>0$ đủ nhỏ, hạng tuyến tính âm chi phối hạng bậc hai, n
 **Điểm dễ nhầm.** $g^Td<0$ chỉ bảo đảm giảm với bước đủ nhỏ, không bảo đảm bước $t=1$. Nếu $g=0$, không tồn tại hướng có tích âm; điều đó chỉ cho một điểm dừng, không tự chứng minh cực tiểu toàn cục ngoài bài toán lồi.
 
 **Câu hỏi kiểm tra.** Với $g=(2,-1)^T$, hãy kiểm tra hai hướng $d_1=(-1,0)^T$ và $d_2=(1,1)^T$. Hướng nào là hướng giảm?
-
-**Đầu ra.** Người đọc dùng được tích $g^Td$ để sàng lọc hướng trước khi chọn độ dài bước.
 
 ### Mệnh đề: tích âm tạo một hướng giảm
 
@@ -198,8 +194,6 @@ Nếu dùng tìm kiếm chính xác trên cùng tia, $q'(t)=0$ cho $t=2/11$.
 **Điểm dễ nhầm.** Armijo không tìm bước tốt nhất trên tia. Tham số $\beta$ là hệ số co, không phải độ dài bước cố định. Tìm kiếm chính xác thường tốn kém và công thức đóng $2/11$ chỉ thuộc ví dụ bậc hai này.
 
 **Câu hỏi kiểm tra.** Nếu bắt đầu từ $t=1$ với $\beta=1/2$ và bước đầu tiên được nhận là $1/8$, đã thực hiện bao nhiêu lần co?
-
-**Đầu ra.** Người đọc thực hiện được bảng thử bước và phân biệt “giảm đủ” với “cực tiểu chính xác trên tia”.
 
 ### Định lý: quay lui Armijo kết thúc với hướng giảm
 
@@ -279,8 +273,6 @@ Dấu của $x_2^{(k)}$ luân phiên; nghiệm chỉ đạt trong giới hạn $
 
 **Câu hỏi kiểm tra.** Với $\rho=9/11$, thành phần nào đổi dấu qua mỗi vòng? Sau hai vòng, độ lớn mỗi thành phần đã nhân với hệ số nào?
 
-**Đầu ra.** Người đọc nối được phổ Hessian, hình dạng đường mức và tốc độ co của quỹ đạo gradient.
-
 ### 5. Giảm dốc nhất theo chuẩn tổng quát
 
 **Mục tiêu đọc hiểu.** Người đọc định nghĩa được chuẩn đối ngẫu, phân biệt hướng đã chuẩn hóa với bước không chuẩn hóa và nhận ra gradient là trường hợp Euclid.
@@ -333,8 +325,6 @@ Tại $g=(10,10)^T$, hướng không chuẩn hóa là $(-10,-10)^T$. Vì vậy p
 **Điểm dễ nhầm.** Nếu bài toán $\operatorname*{argmin}$ có nhiều nghiệm, phải viết quan hệ thuộc thay vì một đẳng thức duy nhất. Độ lớn của hướng có thể được hấp thụ vào tìm kiếm đường; vì vậy phải công bố đang dùng hướng chuẩn hóa hay không chuẩn hóa.
 
 **Câu hỏi kiểm tra.** Với $g=(3,4)^T$ và chuẩn Euclid, hãy tính $\|g\|_*$, $d_{\mathrm{nsd}}$ và $d_{\mathrm{sd}}$.
-
-**Đầu ra.** Người đọc dùng được chuẩn đối ngẫu để xác định cả phương và mức dốc tuyến tính lớn nhất.
 
 ### Định lý: đặc trưng hướng giảm dốc nhất bằng chuẩn đối ngẫu
 
@@ -411,8 +401,6 @@ Hai hướng đều giảm vì các tích lần lượt là $-200$ và $-110$. H
 **Điểm dễ nhầm.** $W\approx H$ là một quyết định mô hình hoặc tính toán, không phải đẳng thức bắt buộc. Câu “hội tụ tuyến tính” phải nêu đại lượng; dưới định lý bên dưới, đó là sai số mục tiêu $f(x^{(k)})-p^*$.
 
 **Câu hỏi kiểm tra.** Với $W=\operatorname{diag}(2,8)$ và $g=(4,8)^T$, hãy giải $Wd=-g$ mà không lập nghịch đảo.
-
-**Đầu ra.** Người đọc tính được một hướng đã tiền điều kiện và nêu được vai trò của $\mu$, $M$ và $\kappa=M/\mu$.
 
 ### Định lý: tốc độ tuyến tính của gradient với bước $1/M$
 
@@ -522,8 +510,6 @@ $$
 **Điểm dễ nhầm.** Không triển khai Newton bằng cách lập $H^{-1}$. Nếu $H$ không xác định dương, nghiệm hệ có thể không phải hướng giảm. $\delta_N^2/2$ là giảm dự báo, không mặc định bằng $f(x)-p^*$.
 
 **Câu hỏi kiểm tra.** Nếu $g^T\Delta x_N=-8$, hãy tính $\delta_N^2$ và mức giảm dự báo của mô hình.
-
-**Đầu ra.** Người đọc giải được hệ Newton, tính độ giảm Newton và diễn giải đúng đại lượng này.
 
 ### Mệnh đề: cực tiểu mô hình và các đồng nhất của độ giảm Newton
 
@@ -645,8 +631,6 @@ Nghiệm thật là $s^*=1$, nên khác ví dụ bậc hai, một bước đầy
 
 **Câu hỏi kiểm tra.** Với $\phi$ ở trên, hãy so sánh $\delta_N(s_0)^2/2$ với sai số thật $\phi(s_0)-\phi(1)$. Hai số có bằng nhau không, và điều đó minh họa cảnh báo nào?
 
-**Đầu ra.** Người đọc có một quy trình Newton gồm giải hệ, độ giảm Newton, tìm bước, cập nhật, dừng và kiểm tra giả thiết.
-
 ### Định lý: hội tụ bậc hai cục bộ của Newton
 
 **Giả thiết.** Trong một lân cận lồi của nghiệm $x^*$, $\nabla^2f(x)\succeq\mu I$ với $\mu>0$ và Hessian là $L_H$-Lipschitz. Xét bước Newton đầy đủ $x^+=x+\Delta x_N$ nằm trong lân cận đó.
@@ -763,8 +747,6 @@ nhưng cận này không áp dụng vô điều kiện.
 
 **Câu hỏi kiểm tra.** Với $\phi(s)=s-\log s$, hãy tính $\delta_N(1/2)$ và kiểm tra trực tiếp bất đẳng thức tự điều chỉnh tại $s=1/2$.
 
-**Đầu ra.** Người đọc kiểm tra được một hàm tự điều chỉnh một chiều, tính được độ giảm Newton và nêu đủ giả thiết trước khi dùng đại lượng này làm chứng nhận sai số hay chọn bước.
-
 ## E. Newton với ràng buộc đẳng thức
 
 ### 10. Không gian hạt nhân và khử đẳng thức
@@ -814,8 +796,6 @@ $$
 **Điểm dễ nhầm.** $F$ không phải ma trận nghịch đảo của $A$ và thường không duy nhất. Công thức $x=Fz+\hat x$ cần cả $AF=0$ lẫn $A\hat x=b$. Trong tính toán lớn, dựng tường minh một cơ sở hạt nhân có thể làm mất tính thưa; hệ Newton–KKT ở chủ đề sau là một lựa chọn khác.
 
 **Câu hỏi kiểm tra.** Với $A=[1\ 1]$, vì sao $F=(1,-1)^T$ và $F=(-1,1)^T$ đều hợp lệ? Hai lựa chọn này có làm thay đổi nghiệm $x^*$ không?
-
-**Đầu ra.** Người đọc tham số hóa được tập nghiệm của $Ax=b$, rút bài toán về biến tự do và nhận biết khi nào nên chuyển sang hệ KKT.
 
 ### 11. Newton–KKT từ điểm khả thi
 
@@ -882,8 +862,6 @@ $$
 chỉ có diễn giải trên không gian khả thi dưới các giả thiết độ cong đã nêu.
 
 **Câu hỏi kiểm tra.** Từ hàng khối thứ hai của hệ, hãy chứng minh $A(x+t\Delta x)=b$ với mọi $t$ nếu $Ax=b$.
-
-**Đầu ra.** Người đọc lập, giải và kiểm tra được một bước Newton–KKT khả thi, đồng thời phân biệt đúng hướng nguyên thủy $\Delta x$ với biến phụ $\eta$.
 
 ### 12. Newton từ điểm không khả thi
 
@@ -967,8 +945,6 @@ $$
 
 **Câu hỏi kiểm tra.** Nếu $r_d=0$ nhưng $r_p\ne0$, vì sao chưa thể dừng? Hàng khối thứ hai của hệ Newton sửa $r_p$ như thế nào khi nhận bước đầy đủ?
 
-**Đầu ra.** Người đọc lập được hệ Newton nguyên thủy–đối ngẫu, tính một bước từ điểm không khả thi và chọn đúng hai chuẩn phần dư để dừng.
-
 ## F. Ca tổng hợp trong AI và bản đồ lựa chọn
 
 ### 13. Hồi quy trơn với tổng hệ số bằng một
@@ -1032,8 +1008,6 @@ Hình ở Chủ đề 10 áp dụng trực tiếp sau phép thay $x\leftrightarr
 **Điểm dễ nhầm.** $X$ không cần có hạng cột đầy đủ trên toàn $\mathbb R^n$ để nghiệm trên siêu phẳng là duy nhất; điều cần là không có hướng khác $0$ đồng thời thuộc $\operatorname{null}X$ và $\operatorname{null}(\mathbf1^T)$. Ràng buộc tổng bằng một không tự buộc $w_i\ge0$; thêm không âm sẽ tạo bất đẳng thức và nằm ngoài phạm vi Bài 04.
 
 **Câu hỏi kiểm tra.** Nếu tồn tại $v\ne0$ sao cho $Xv=0$ và $\mathbf1^Tv=0$, điều gì xảy ra với dự đoán và mất mát dọc đường $w+tv$? Có thể còn khẳng định nghiệm duy nhất không?
-
-**Đầu ra.** Người đọc chuyển một mô hình hồi quy có đẳng thức sang hệ Newton–KKT, kiểm tra điều kiện duy nhất và chọn đúng giữa khởi đầu khả thi với khởi đầu không khả thi.
 
 ## Các định lý và chứng minh quan trọng — Nhóm D
 

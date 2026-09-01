@@ -195,3 +195,9 @@ Vòng này không thêm, bỏ hoặc đổi thứ tự trang; giữ nguyên 40 s
 - Kiểm tra tĩnh đạt: 40 ID duy nhất, 40 ghi chú diễn giả, 7 section ngoài; thẻ `section`, `div`, `aside`, `ol`, `ul`, `table` cân bằng; Markdown bắt đầu bằng heading cấp một, không dùng delimiter LaTeX ngoài `$...$` và `$$...$$`; `git diff --check` sạch.
 - Máy chủ HTTP cục bộ tại cổng tạm 8884 trả 200 cho deck, viewer, Markdown, CSS, RevealJS, plugin, KaTeX và sáu SVG. Máy chủ đã dừng sau kiểm tra.
 - Codex Slides xác nhận dự án `20260828120744-lecture-04-t-i-u-tr-n-v-r-ng-bu-c-ng-th--d4es` ở trạng thái draft, có đúng 40 trang, 40 mục outline và sáu nguồn đúng vai trò. Browser tích hợp và trình duyệt headless cục bộ không khả dụng trong phiên này, nên không tuyên bố đã rà trực quan lại sau các thay đổi chữ; cổng hình học trước đó vẫn được ghi ở Mục 11.
+
+## Rà văn phong ngày 2026-09-01
+
+- Đã bỏ 13 dòng `Đầu ra` lặp mục tiêu đọc hiểu trong lecture note; toàn bộ định nghĩa, ví dụ, suy diễn, chứng minh và câu hỏi kiểm tra được giữ nguyên.
+- Ghi chú diễn giả A07, B03, D05 và E01 được viết lại bằng quan hệ thuật toán, phổ Hessian, chuẩn đối ngẫu và hệ KKT; không còn nhãn mạch hay lời điều phối “trang sau”.
+- Deck giữ đúng 40 mã duy nhất, 40 ghi chú và 7 section ngoài; `git diff --check` đạt. Các sửa chỉ rút gọn chữ, không đổi công thức, hình, số trang hoặc thứ tự.
