@@ -213,3 +213,11 @@ Cổng storyboard và năm phát hiện bắt buộc trên đã được phản 
 - **Rà trực quan SVG:** cả 7 hình được kết xuất và xem trực tiếp ở chiều rộng 900 px và 600 px. `momentum-lookahead.svg` được vẽ lại thành hai bảng, biểu diễn riêng điểm đánh giá gradient, $q_t$, $v_{t+1}$ và $\theta_{t+1}$; vòng tái kiểm độc lập xác nhận phép cộng véc-tơ và trường hợp $\beta=0$ đúng. Không dùng màu làm tín hiệu duy nhất.
 - **HTTP cục bộ:** máy chủ tạm tại `127.0.0.1:8877` trả 200 cho chỉ mục, viewer với đúng cặp `doc`–`deck`, Markdown, bộ trang chiếu và cả 7 SVG; máy chủ đã dừng sau kiểm tra.
 - **Công bố:** chỉ sau các cổng trên, thẻ Bài 05 trong `index.html` mới được đổi từ `Chưa có` thành liên kết viewer. Codex Slides không có bề mặt Browser khả dụng trong vòng ghi chú này; không tuyên bố đã kiểm định ghi chú bằng Codex Slides.
+
+## Rà văn phong và mạch khái niệm ngày 2026-09-01
+
+- Bỏ 14 dòng `Đầu ra` lặp mục tiêu đọc hiểu trong lecture note; giữ nguyên định nghĩa, ví dụ, định lý, suy diễn và câu hỏi kiểm tra.
+- Deck không còn mã mạch A–E hoặc nhãn “Mạch xử lý” trên mặt trang. Các nối giữa tổng quát hóa, cảnh quan, nhiễu lô, momentum và khởi tạo được viết bằng tín hiệu quan sát cùng can thiệp tương ứng.
+- Dòng nguồn bỏ các câu QA lặp; bằng chứng tính toán vẫn nằm trong nhật ký. Kiểm định đạt 40 mã duy nhất, 40 ghi chú, 7 section ngoài, thẻ cân bằng, tài sản tồn tại, SVG hợp lệ và HTTP 200 cho deck/viewer/note/KaTeX.
+- Codex Slides xác nhận dự án `20260901025958-lecture-05-t-i-u-b-c-nh-t-cho-h-c-m-y-z8ku` ở trạng thái draft với 40 trang; không có Browser để tuyên bố rà trực quan mới.
+- Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS về mạch khái niệm, độ đầy đủ và độ chính xác toán học.

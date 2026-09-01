@@ -61,8 +61,6 @@ Nếu mất mát huấn luyện ở thời điểm thứ hai nhỏ hơn, ta vẫ
 
 **Câu hỏi kiểm tra.** Nếu $\widehat R_n$ giảm nhưng $\widehat R_{\mathrm{val}}$ tăng qua nhiều vòng, đây trước hết là dấu hiệu của lỗi tối ưu hay khoảng cách khái quát hóa? Vì sao không dùng tập kiểm tra để chọn vòng dừng?
 
-**Đầu ra.** Người đọc gắn đúng mỗi tập dữ liệu với một quyết định và không đồng nhất tối ưu trên tập huấn luyện với tổng quát hóa.
-
 ### 2. Mất mát thay thế khả vi và dừng sớm
 
 **Mục tiêu đọc hiểu.** Người đọc phân biệt được thước đo đích với mất mát thay thế, tính được mất mát logistic theo biên và giải thích được vai trò riêng của dừng sớm.
@@ -100,8 +98,6 @@ vẫn tạo một tín hiệu nhỏ để tăng biên.
 **Điểm dễ nhầm.** Mất mát logistic không phải độ chính xác và giảm log-loss không buộc độ chính xác thay đổi ở mọi vòng. Quy ước $\mathbf1\{m\le0\}$ tính điểm đúng biên là lỗi; nếu dùng quy ước khác phải nói rõ. Không dùng việc logistic khả vi để suy rằng mô hình sâu tạo ra một hàm lồi theo $\theta$.
 
 **Câu hỏi kiểm tra.** Tính hai mất mát tại $m=0$ và $m=2$. Đại lượng nào đổi liên tục khi biên thay đổi, và đại lượng nào trực tiếp đếm lỗi theo quy ước đã nêu?
-
-**Đầu ra.** Người đọc chọn đúng vai trò của mất mát thay thế và không dùng dừng sớm như một điều kiện dừng tối ưu thuần túy.
 
 ### Mệnh đề: tính trơn và lồi của mất mát logistic theo biên
 
@@ -156,8 +152,6 @@ ta có $\nabla s(0,0)=0$ và $\nabla^2s=\operatorname{diag}(2,-2)$. Dọc $v=0$,
 **Điểm dễ nhầm.** $\nabla f=0$ chỉ là điều kiện dừng. Hessian nửa xác định dương không bảo đảm cực tiểu nếu thiếu thông tin bậc cao. Số điều kiện chỉ có ý nghĩa theo chuẩn và tọa độ đã chọn. Không quy mọi thất bại huấn luyện cho “cực tiểu địa phương”; nhiễu, độ sâu và điều kiện hóa là các cơ chế khác nhau.
 
 **Câu hỏi kiểm tra.** Một điểm dừng có Hessian $\operatorname{diag}(0,2)$ có thể được kết luận là cực tiểu chỉ từ dữ kiện này không? So sánh với Hessian $\operatorname{diag}(-1,3)$.
-
-**Đầu ra.** Người đọc phân loại được các trường hợp Hessian xác định và tách đúng điều kiện hóa khỏi loại điểm dừng.
 
 ### Định lý: kiểm tra bậc hai tại điểm dừng
 
@@ -225,8 +219,6 @@ $$
 là cận trên, nên trực tiếp mô tả nguy cơ tăng lớn. Muốn bảo đảm không tiêu biến cần cận dưới theo trị kỳ dị nhỏ nhất và phải xét hướng của gradient. Không thể thay mọi Jacobian ma trận bằng một số vô hướng mà vẫn giữ đầy đủ hình học.
 
 **Câu hỏi kiểm tra.** Kiểm tra kích thước của $J_K^T\nabla_{h_K}\mathcal L$, rồi tiếp tục tới $\nabla_{h_0}\mathcal L$. Vì sao chỉ biết $\|J_k\|_2\le1$ chưa mô tả chính xác mọi hướng?
-
-**Đầu ra.** Người đọc viết đúng chuỗi Jacobian, kiểm tra được kích thước và nêu đúng phạm vi của các cận chuẩn.
 
 ### Mệnh đề: cận chuẩn cho gradient truyền ngược
 
@@ -321,8 +313,6 @@ Mỗi véc-tơ có bình phương chuẩn bằng $17$; với lô độc lập c�
 
 **Câu hỏi kiểm tra.** Với ví dụ hai mẫu, tính gradient toàn bộ tại $\theta=(2,1)^T$ và so sánh với từng gradient mẫu. Vì sao trung bình hai gradient bằng gradient toàn bộ nhưng vết cố định $\{1\},\{2\}$ vẫn không phải một chứng minh hội tụ?
 
-**Đầu ra.** Người đọc nêu đúng không gian điều kiện, cơ chế lấy mẫu, tính không chệch và cận phương sai của gradient lô.
-
 ### Định lý: gradient lô không chệch và giảm phương sai theo $1/b$
 
 **Giả thiết.** Điều kiện theo $\mathcal F_t$, các véc-tơ
@@ -405,8 +395,6 @@ Vết xác định này chỉ dùng để kiểm phép tính. Hai lô đã ấn 
 
 **Câu hỏi kiểm tra.** Từ dữ kiện trên, hãy tính lại $g_1(\theta_1)$ trước khi tính $\theta_2$. Nếu đổi thứ tự hai lô, vì sao không được mặc định kết quả sau hai vòng giữ nguyên?
 
-**Đầu ra.** Người đọc thực hiện đúng SGD theo chỉ số vòng và ghi rõ phần nào là dữ kiện cố định, phần nào là biến ngẫu nhiên.
-
 ### 7. Đánh đổi tốc độ học–kích thước lô và bảo đảm điểm dừng
 
 **Mục tiêu đọc hiểu.** Người đọc nêu đủ giả thiết của một bảo đảm SGD không lồi, diễn giải đúng đại lượng hội tụ và phân tích được ảnh hưởng riêng của tốc độ học với kích thước lô.
@@ -463,8 +451,6 @@ Vì vậy nó không thỏa lịch giảm thường dùng để làm cận trung
 **Điểm dễ nhầm.** Kết luận về trung bình có trọng số không kéo theo mọi $\mathbb E\|\nabla F(\theta_t)\|^2$ giảm đơn điệu. Điều kiện $F$ bị chặn dưới không phải tính lồi. Không chuyển định lý này sang momentum hoặc Nesterov nếu chưa kiểm một định lý riêng cho đúng biến thể. Trong mạng sâu hữu hạn, cận phương sai đều và trơn toàn cục có thể không đúng.
 
 **Câu hỏi kiểm tra.** Với $\eta_t=c/(t+1)^a$, khoảng nào của $a$ làm $\sum_t\eta_t=\infty$ nhưng $\sum_t\eta_t^2<\infty$? Vì sao $a=0$ không đạt yêu cầu thứ hai?
-
-**Đầu ra.** Người đọc kiểm tra được các giả thiết trơn, không chệch, phương sai và lịch bước; sau đó phát biểu đúng kết luận điểm dừng theo trung bình.
 
 ### Định lý: cận trung bình gradient của SGD không lồi trơn
 
@@ -582,8 +568,6 @@ và $\theta_2=(1{,}56,0{,}2)^T$.
 
 **Câu hỏi kiểm tra.** Đặt $\beta=0$ trong hai phương trình cập nhật. Quy tắc nhận được có đúng bằng SGD không? Trong ví dụ, phần nào của $v_2$ đến từ trạng thái cũ?
 
-**Đầu ra.** Người đọc viết và tính đúng momentum theo quy ước độ dời, đồng thời phân biệt tác dụng của quán tính với tác dụng của tăng kích thước lô.
-
 ### 9. Momentum Nesterov và điểm nhìn trước
 
 **Mục tiêu đọc hiểu.** Người đọc xác định đúng điểm tính gradient của Nesterov và tính được hai vòng bằng cùng quy ước vận tốc của momentum.
@@ -642,8 +626,6 @@ và $\theta_2=(1{,}565,0{,}2)^T$.
 
 **Câu hỏi kiểm tra.** Trong ví dụ, nếu nhầm tính gradient tại $\theta_1$ thay vì $q_1$, thành phần thứ nhất của gradient và của $v_2$ sẽ bằng bao nhiêu?
 
-**Đầu ra.** Người đọc tính được điểm nhìn trước, gradient tại điểm đó và cập nhật Nesterov mà không đổi quy ước dấu hoặc chỉ số.
-
 ### 10. So sánh ba vết cập nhật
 
 **Mục tiêu đọc hiểu.** Người đọc đối chiếu được ba quy tắc trên cùng dữ kiện và nêu đúng giới hạn của một so sánh ngắn.
@@ -675,8 +657,6 @@ với nghiệm $\theta^*=0$. Các khoảng cách đến $0$ sau hai vòng có th
 **Điểm dễ nhầm.** Một thứ tự hai mẫu có thể thiên vị một quy tắc. Kết quả trên không phải bằng chứng hội tụ, tốc độ hay khái quát hóa. Muốn so sánh thực nghiệm phải kiểm soát lịch tốc độ học, hạt giống, ngân sách tính toán và thước đo trên dữ liệu chưa thấy.
 
 **Câu hỏi kiểm tra.** Từ bảng, hãy chỉ ra hai nguồn tạo khác biệt giữa Nesterov và SGD ở vòng hai. Kết luận nào không được phép rút ra từ ba điểm $\theta_2$?
-
-**Đầu ra.** Người đọc đối chiếu được ba quy tắc và tách một phép kiểm tra triển khai khỏi một kết luận về hiệu năng.
 
 Mọi quy tắc cập nhật đều cần một điểm đầu. Điểm đó phải phá đối xứng giữa các đơn vị và giữ thang tín hiệu phù hợp trước vòng cập nhật đầu tiên.
 
@@ -719,8 +699,6 @@ Với cùng tốc độ học, hai trọng số vẫn bằng nhau sau bước c�
 **Điểm dễ nhầm.** Không phải mọi tham số đều phải khác nhau. Độ chệch thường có thể khởi tạo bằng $0$ khi trọng số vào đã ngẫu nhiên. Lập luận đối xứng phải hoán vị đầy đủ cả tham số vào, hàm kích hoạt và tham số đi ra; chỉ nhìn một véc-tơ trọng số là chưa đủ.
 
 **Câu hỏi kiểm tra.** Trong ví dụ, tính $w_1^+$ và $w_2^+$ với tốc độ học $0{,}1$. Vì sao hai đơn vị chưa học hai vai trò khác nhau?
-
-**Đầu ra.** Người đọc phát hiện được đối xứng tham số, chỉ ra điều kiện giữ đối xứng và phân biệt phá đối xứng với kiểm soát thang.
 
 ### 12. Truyền mômen bậc hai qua một lớp
 
@@ -766,8 +744,6 @@ Nếu mỗi lớp lặp cùng hệ số lần lượt là $1/4$, $1$ hoặc $4$,
 **Điểm dễ nhầm.** Công thức dựa trên các xấp xỉ độc lập và trung bình $0$. Tương quan giữa đơn vị, độ chệch, tích chập chia sẻ trọng số, kết nối tắt và chuẩn hóa có thể làm sai mô hình. Không đổi $\operatorname{Var}$ thành $\operatorname{Std}$ mà quên căn bậc hai.
 
 **Câu hỏi kiểm tra.** Nếu $\mathbb E[a_k]=1$ và $\operatorname{Var}(a_k)=2$, mômen $\mathbb E[a_k^2]$ bằng bao nhiêu? Đại lượng nào phải được dùng trong công thức tổng quát?
-
-**Đầu ra.** Người đọc tính được hệ số truyền mômen bậc hai và liệt kê được các giả thiết làm phép tính có ý nghĩa.
 
 ### 13. Khởi tạo Xavier/Glorot và He
 
@@ -821,8 +797,6 @@ Nếu dùng phân phối đều cùng phương sai He thì nửa độ rộng l�
 
 **Câu hỏi kiểm tra.** Với một lớp ReLU có $\mathrm{fan}_{\mathrm{in}}=100$, hãy tính phương sai và độ lệch chuẩn He. Với lớp tanh có $\mathrm{fan}_{\mathrm{in}}=100$, $\mathrm{fan}_{\mathrm{out}}=50$, hãy tính hai đại lượng Xavier.
 
-**Đầu ra.** Người đọc chọn và tính được thang Xavier hoặc He, đồng thời ghi đúng kiểu đại lượng dùng làm tham số phân phối.
-
 ## F. Ca tích hợp và bản đồ quyết định
 
 ### 14. Thiết kế một quy trình huấn luyện có thể kiểm chứng
@@ -849,8 +823,6 @@ Mỗi can thiệp xử lý một cơ chế khác. Không thay dừng sớm bằn
 **Điểm dễ nhầm.** Khởi tạo xảy ra trước vòng cập nhật đầu tiên. Tập kiểm tra không dùng để chọn siêu tham số hay dừng. Các bảo đảm SGD có điều kiện không chuyển nguyên dạng sang mạng sâu phi lồi với momentum.
 
 **Câu hỏi kiểm tra.** Với bốn tín hiệu trong bảng, hãy giải thích vì sao ba can thiệp còn lại không thay thế trực tiếp can thiệp được ghép. Cần lưu những trạng thái nào để tiếp tục một lần chạy momentum đúng chỗ đã dừng?
-
-**Đầu ra.** Người đọc thiết kế được một quy trình huấn luyện bậc nhất có thể kiểm tra, tái lập và nêu đúng giới hạn của từng quyết định.
 
 ## Các định lý và chứng minh quan trọng: Nhóm A–C
 
