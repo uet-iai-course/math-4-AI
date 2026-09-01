@@ -7,7 +7,7 @@
 - LLO4: hiểu hàm đối ngẫu và bài toán đối ngẫu Lagrange. LLO5: thể hiện minh họa hình học của hàm đối ngẫu. Cả hai liên kết CLO1.
 - Phạm vi bắt buộc từ đề cương: hàm đối ngẫu Lagrange; bài toán đối ngẫu Lagrange; minh họa hình học; điều kiện tối ưu; phân tích nhiễu và độ nhạy; ví dụ; bất đẳng thức tổng quát.
 - Trọng tâm phải giữ đúng tinh thần `part1.docx`: nêu đối tượng toán học, giả thiết, kết quả chứng minh được và ranh giới áp dụng. Không biến KKT, Slater hoặc công thức độ nhạy thành quy tắc vô điều kiện.
-- Tệp dự kiến là `2627-1/lecture-03-doi-ngau-lagrange.html`. Kế hoạch dùng 7 mạch lớn: P, A, B, C, D, E, Z. Các dải mã trong `plan.md` cộng thành **40 trang**, không phải 39: $4+8+6+6+7+6+3=40$. Tác tử soạn phải dùng 40 làm số dự kiến hoặc ghi rõ quyết định khác trong storyboard.
+- Tệp dự kiến là `2627-1/lecture-03-doi-ngau-lagrange.html`. Kế hoạch dùng 7 mạch lớn: P, A, B, C, D, E, Z. Các dải mã trong `plan.md` cộng thành **41 trang**, không phải 40: $4+8+6+7+7+6+3=41$. Trang C07 được thêm sau C06 để đưa điểm yên ngựa của hàm Lagrange từ lecture note vào deck.
 
 ## 2. Kiểm kê và phân loại nguồn
 
@@ -78,14 +78,14 @@ Các kết quả phải truyền nguyên ký hiệu từ A đến E:
 
 Hình $f_0$, $f_1$, họ $L(x,\lambda)$, $g(\lambda)$, tập giá trị và $p^*(u)$ phải được vẽ lại bằng SVG cục bộ. Không cắt hình từ lời giải hoặc MIT.
 
-## 5. Ánh xạ dự kiến theo 40 trang
+## 5. Ánh xạ dự kiến theo 41 trang
 
 Đây là đặc tả nguồn cho tác tử soạn; số trang chỉ thay đổi khi storyboard chứng minh được khoảng trống hoặc trang dư.
 
 | Mã | Vai trò và nội dung bắt buộc | Nguồn chính theo thứ tự | Giữ/gộp/lược và ràng buộc |
 |---|---|---|---|
 | P00 | Tiêu đề, Buổi 3, Đối ngẫu Lagrange | Đề cương; `part1.docx` | Thêm trang định danh |
-| P01 | Tiên quyết và sản phẩm học tập | Lecture 01–02; đề cương | Báo trước nội tương đối và dưới gradient sẽ được định nghĩa tại chỗ |
+| P01 | Tiên quyết và sản phẩm học tập | Lecture 01–02; đề cương | Báo trước nội tương đối, dưới gradient và nón đối ngẫu sẽ được định nghĩa tại chỗ |
 | P02 | LLO4–5 và quan hệ bộ phận với CLO1 | Đề cương, dòng Buổi 3 | Trích đúng LLO; không nâng “hiểu” thành “chứng minh mọi định lý” |
 | P03 | Bản đồ 7 mạch và vấn đề trung tâm về chứng nhận | `part1.docx`; `plan.md` | Nêu bài thuộc chế độ nghiêm ngặt |
 | A01 | Nhu cầu có cận kiểm chứng khi chưa biết nghiệm | BV 5.1.3, trang 216–217 | Nhu cầu trước ký hiệu |
@@ -108,10 +108,11 @@ Hình $f_0$, $f_1$, họ $L(x,\lambda)$, $g(\lambda)$, tập giá trị và $p^*
 | C04 | Tập mở rộng $\mathcal A$ và điểm $(0,p^*)$ | MIT 5-16; BV 5.3.1 | Phân biệt $G$ với tập mở rộng/epigraph |
 | C05 | Siêu phẳng đỡ, đối ngẫu mạnh và khả thi chặt | MIT 5-16; BV 5.3.2, trang 234–237 | Chứng minh chi tiết Slater chuyển ghi chú |
 | C06 | Bài tập đọc hình | Bài tập tự tạo từ MIT 5-15–16 | Phải đo được LLO5, không chỉ hỏi thuật ngữ |
+| C07 | Điểm yên ngựa của hàm Lagrange: $L(x^*,\lambda,\nu)\le L(x^*,\lambda^*,\nu^*)\le L(x,\lambda^*,\nu^*)$; ví dụ $L(2,\lambda)=5$, $L(x,2)=3(x-2)^2+5$; định lý tương đương với nghiệm gốc–đối ngẫu đều đạt và $p^*=d^*$ | BV Ch. 5, §5.4, trang 238–240; lecture note Bài giảng 03 | Một luận điểm; hai phía của bất đẳng thức và cầu nối sang KKT ở notes; không chứng minh đầy đủ trên mặt trang |
 | D01 | Nhu cầu chuyển khoảng bằng 0 thành điều kiện kiểm tra | BV 5.5.1, trang 241–242 | Nối trực tiếp từ hình học tiếp xúc |
 | D02 | Bù trừ và ràng buộc hoạt động | MIT 5-17; BV 5.5.2, trang 242–243 | Nêu $x^*$ và nghiệm đối ngẫu cùng tối ưu, đều đạt, với $p^*=d^*$ |
 | D03 | Bốn nhóm điều kiện KKT | MIT 5-18; BV 5.5.3, trang 243–245 | Dừng tổng quát $0\in\nabla_xL+N_D$; khi $D=\mathbb R^n$ thu về $\nabla_xL=0$ |
-| D04 | Bảng điều kiện cần/đủ | MIT 5-18–19; BV 5.5.3 | Nêu $D$ lồi, bất đẳng thức lồi, đẳng thức affine, khả vi hoặc dạng dưới vi phân và điều kiện chính quy |
+| D04 | Bảng điều kiện cần/đủ | MIT 5-18–19; BV 5.5.3 | Nêu $D$ lồi, bất đẳng thức lồi, đẳng thức affine, khả vi và điều kiện chính quy; báo trước trường hợp không khả vi nhưng không dùng dưới vi phân như tiên quyết |
 | D05 | Giải KKT cho ví dụ xuyên suốt | Bài 1; phép tính độc lập | Dùng $\nabla_xL=0$ cho biến trên toàn $\mathbb R$ trước khi định nghĩa nón pháp tuyến |
 | D06 | Ứng dụng AI: hồi quy có ràng buộc chuẩn | Nối từ Lecture 02 Z02; BV 5.5 | Dùng $\min_w\tfrac12\|Xw-y\|_2^2$ với $\|w\|_2^2\le\tau$, $\tau>0$; chỉ diễn giải KKT, không mở lý thuyết regularization của Tuần 11 |
 | D07 | Bài tập KKT chuyển giao | Bài tập Ch.4, Bài 5; lời giải PDF trang 8 | Có thể rút gọn đại số; nêu $A$ hạng cột đầy đủ và $G$ hạng hàng đầy đủ |
@@ -120,7 +121,7 @@ Hình $f_0$, $f_1$, họ $L(x,\lambda)$, $g(\lambda)$, tập giá trị và $p^*
 | E03 | Bất đẳng thức độ nhạy toàn cục | MIT 5-22; BV 5.6.2, trang 250 | Cần đối ngẫu mạnh và nghiệm đối ngẫu của bài không nhiễu |
 | E04 | Độ nhạy cục bộ | MIT 5-23; BV 5.6.3, trang 250–252; PPTX trang 3–4 | Định nghĩa dưới gradient bằng bất đẳng thức đường đỡ, rồi nối nhân tử âm với dưới vi phân |
 | E05 | Tính $p^*(u)$ cho ví dụ và diễn giải $\lambda^*$ | Bài 1d; lời giải PDF trang 3–4 | Nêu đủ ba miền $u<-1$, $-1\le u\le8$, $u\ge8$ |
-| E06 | Bất đẳng thức tổng quát, đối ngẫu theo nón và bài kiểm tra | MIT 5-28 đến 5-30; BV 5.9, trang 264–271 | Chu trình rút gọn vì nón là tiên quyết; multipliers thuộc nón đối ngẫu; dùng SDP làm cầu nối Lecture 02 |
+| E06 | Bất đẳng thức tổng quát, đối ngẫu theo nón và bài kiểm tra | MIT 5-28 đến 5-30; BV 5.9, trang 264–271 | Chu trình rút gọn vì nón và thứ tự theo nón là tiên quyết; định nghĩa $K^*$ trước khi chọn nhân tử trong nón đối ngẫu; dùng SDP làm cầu nối Lecture 02 |
 | Z01 | Bản đồ quyết định: cận → khít → hình học → KKT → độ nhạy | Tổng hợp MIT 5-2 đến 5-30 | Trả lời P03, không chỉ liệt kê công thức |
 | Z02 | Tự kiểm tra LLO4–5/CLO1 | Bài 1, Bài 2, Bài 5 chọn lọc | Có đáp án/gợi ý trong ghi chú; hỏi cả giả thiết và hình học |
 | Z03 | Tài liệu, quyền, giới hạn và cầu nối Lecture 04 | Đề cương; BV Ch.5; MIT L5 | Lecture 04 dùng KKT/đối ngẫu làm đầu vào cho tối ưu trơn và đẳng thức |
@@ -195,6 +196,16 @@ Khi $p^*$ khả vi tại $(0,0)$, dưới vi phân chỉ có một phần tử v
 ### 6.5. Bất đẳng thức tổng quát
 
 Nếu $f_i(x)\preceq_{K_i}0$, nhân tử phải thuộc nón đối ngẫu $K_i^*$ theo chiều $\lambda_i\succeq_{K_i^*}0$ và Lagrangian dùng tích vô hướng $\langle\lambda_i,f_i(x)\rangle$. Không dùng $\lambda\ge0$ thành phần cho một ràng buộc ma trận nếu chưa ánh xạ rõ sang nón PSD.
+
+### 6.6. Điểm yên ngựa của hàm Lagrange
+
+Cặp $(x^*,\lambda^*,\nu^*)$ là điểm yên ngựa của $L$ khi
+
+$$
+L(x^*,\lambda,\nu)\le L(x^*,\lambda^*,\nu^*)\le L(x,\lambda^*,\nu^*)
+$$
+
+với mọi $x\in D$, $\lambda\ge0$, $\nu\in\mathbb R^p$. Phía trái là cực đại theo nhân tử; phía phải là cực tiểu theo biến gốc. Định lý ngắn: điểm yên ngựa tồn tại khi và chỉ khi nghiệm gốc và nghiệm đối ngẫu đều đạt được và $p^*=d^*$. Nguồn: Boyd và Vandenberghe (2004), Ch. 5, §5.4, trang 238–240; lecture note Bài giảng 03.
 
 ## 7. Mâu thuẫn, giả thiết thiếu và ký hiệu cần sửa
 

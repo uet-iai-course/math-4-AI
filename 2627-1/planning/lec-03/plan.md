@@ -6,7 +6,7 @@
 - `sources/part1.docx` xác định Tuần 3 là `Duality`, thuộc bảy tuần nền tảng tối ưu nghiêm ngặt. Bài phải phân biệt kết quả được chứng minh, giả thiết cần có và giới hạn của kết luận.
 - Đề cương chính thức xác định nội dung Chương 4: hàm và bài toán đối ngẫu Lagrange, minh họa hình học, điều kiện tối ưu, phân tích nhiễu và độ nhạy, ví dụ, bất đẳng thức tổng quát.
 - Chuẩn đầu ra bài học là LLO4–5, liên kết CLO1. Thời lượng là 2 tiết lý thuyết và 1 tiết bài tập. Kế hoạch không tự quy đổi tiết thành phút.
-- Kế hoạch đã được khóa sau triển khai ở 40 trang và 7 mạch; thứ tự DOM cuối được ghi tại Mục 7.
+- Kế hoạch đã được khóa sau triển khai ở 41 trang và 7 mạch; thứ tự DOM cuối được ghi tại Mục 7.
 - Kế hoạch không sửa tệp trình chiếu và không cho phép cập nhật chỉ mục trước khi bộ trang chiếu vượt kiểm định cuối.
 
 ## 2. Sản phẩm và tên tệp
@@ -105,28 +105,28 @@ Ví dụ này là xương sống, không phải nội dung duy nhất. Một ví
 
 ## 7. Bảy mạch nội dung lớn
 
-Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận, với 40 trang đã khóa.
+Bài dùng đúng 7 `<section>` ngoài, gồm mở đầu và kết luận, với 41 trang đã khóa.
 
 | Mạch | Mã dự kiến | Chức năng trong câu chuyện | Kết nối vào | Đầu ra cho mạch sau | Điểm nhấn |
 |---|---|---|---|---|---|
 | 1. Mở đầu: nhu cầu chứng nhận | P00–P03 | Nêu mục tiêu, đầu vào, vấn đề trung tâm và bài toán chưa có chứng nhận | Kế thừa dạng chuẩn và giá trị tối ưu từ Bài giảng 02 | Câu hỏi cần một cận dưới có thể tính mà chưa biết nghiệm gốc | Nghiệm ứng viên chưa phải là chứng nhận |
 | 2. Từ ràng buộc đến cận đối ngẫu | A01–A08 | Xây dựng Lagrange, hàm đối ngẫu, bài toán đối ngẫu và đối ngẫu yếu | Nhận bài toán gốc cùng quy ước dấu từ mạch mở đầu | Có cận tốt nhất $d^\star\leq p^\star$ và khoảng đối ngẫu | Phép lấy infimum biến nhân tử thành chứng nhận cận |
 | 3. Khi cận trở thành giá trị tối ưu | B01–B06 | Phân biệt đối ngẫu yếu, mạnh và dùng Slater đúng phạm vi | Nhận cặp giá trị $d^\star,p^\star$ từ mạch 2 | Biết khi nào khoảng đối ngẫu bằng không và nghiệm đối ngẫu đạt được | Slater là điều kiện đủ, không phải định nghĩa đối ngẫu mạnh |
-| 4. Hình học của đối ngẫu | C01–C06 | Làm rõ LLO5 bằng tập giá trị, đường mức và siêu phẳng đỡ | Nhận kết luận về cận và khoảng đối ngẫu từ mạch 3 | Hiểu hình học vì sao có cận, khi nào siêu phẳng đỡ không thẳng đứng | Tung độ cắt $g(\lambda)$ và điểm $(0,p^\star)$ nối đại số với hình học |
+| 4. Hình học của đối ngẫu | C01–C07 | Làm rõ LLO5 bằng tập giá trị, đường mức, siêu phẳng đỡ và điểm yên ngựa của $L$ | Nhận kết luận về cận và khoảng đối ngẫu từ mạch 3 | Hiểu hình học vì sao có cận, khi nào siêu phẳng đỡ không thẳng đứng, và khi nào tồn tại điểm yên ngựa | Tung độ cắt $g(\lambda)$, điểm $(0,p^\star)$ và điểm yên ngựa nối đại số với hình học |
 | 5. KKT như chứng nhận tối ưu | D01–D07 | Chuyển đối ngẫu mạnh thành hệ điều kiện có thể kiểm tra | Nhận nghiệm gốc–đối ngẫu và hình học pháp tuyến từ mạch 3–4 | Có quy trình kiểm tra khả thi, bù trừ và dừng | Bốn nhóm điều kiện phải được kiểm tra cùng nhau và đúng giả thiết |
 | 6. Nhân tử như thông tin về bài toán | E01–E06 | Dùng nhân tử để phân tích độ nhạy và nối sang bất đẳng thức tổng quát | Nhận nhân tử tối ưu từ KKT | Có diễn giải giá biên và dạng chứng nhận theo nón, sẵn sàng cho bài tập tổng hợp | Độ nhạy cần giả thiết; nhân tử không tự động là đạo hàm trong mọi trường hợp |
 | 7. Kết luận và chuyển giao | Z01–Z03 | Thu hồi vấn đề trung tâm, tự kiểm tra LLO4–5, giao bài tập và nguồn đọc | Nhận chuỗi cận → khít → hình học → KKT → độ nhạy | Người học có bản đồ quyết định và bài tập chuẩn bị Bài giảng 04 | Kết luận phải trả lời đúng vấn đề mở đầu, không chỉ liệt kê công thức |
 
-Thứ tự DOM cuối gồm đúng 40 ID:
+Thứ tự DOM cuối gồm đúng 41 ID:
 
-`P00, P01, P02, P03, A01, A02, A03, A04, A05, A06, A07, A08, B01, B03, B02, B04, B05, B06, C01, C03, C02, C04, C05, C06, D01, D05, D02, D03, D04, D06, D07, E01, E02, E03, E04, E05, E06, Z01, Z02, Z03`.
+`P00, P01, P02, P03, A01, A02, A03, A04, A05, A06, A07, A08, B01, B03, B02, B04, B05, B06, C01, C03, C02, C04, C05, C06, C07, D01, D05, D02, D03, D04, D06, D07, E01, E02, E03, E04, E05, E06, Z01, Z02, Z03`.
 
 ### Câu nối bắt buộc giữa các mạch
 
 1. Mạch 1 → 2: từ thiếu chứng nhận cho nghiệm ứng viên sang việc hấp thụ ràng buộc bằng nhân tử.
 2. Mạch 2 → 3: từ một họ cận dưới sang câu hỏi cận tốt nhất có đạt $p^\star$ hay không.
 3. Mạch 3 → 4: từ kết luận đại số $d^\star=p^\star$ sang cơ chế hình học của siêu phẳng đỡ.
-4. Mạch 4 → 5: từ tiếp xúc hình học sang cân bằng gradient và pháp tuyến trong KKT.
+4. Mạch 4 → 5: từ tiếp xúc hình học và điểm yên ngựa của $L$ sang cân bằng gradient và pháp tuyến trong KKT.
 5. Mạch 5 → 6: từ nhân tử như biến chứng nhận sang nhân tử như thông tin về thay đổi giá trị tối ưu.
 6. Mạch 6 → 7: từ các công cụ riêng lẻ về một quy trình lập, kiểm tra và diễn giải đối ngẫu.
 
@@ -165,7 +165,7 @@ Thứ tự DOM cuối gồm đúng 40 ID:
 | Nhu cầu | C01 | Công thức $g(\lambda)$ chưa cho thấy vì sao đó là cận hoặc vì sao cận có thể khít |
 | Trực quan | C03 | Nhìn đường $t+\lambda u=g(\lambda)$ và tung độ cắt trước khi định nghĩa tập |
 | Ví dụ | C03 | Vẽ lại tập giá trị của ví dụ xuyên suốt với ba giá trị $\lambda$ |
-| Hình thức/toán học | C02, C04 | Định nghĩa tập giá trị, tập mở rộng, siêu phẳng đỡ và quan hệ với $p^\star$, $d^\star$ |
+| Hình thức/toán học | C02, C04, C07 | Định nghĩa tập giá trị, tập mở rộng, siêu phẳng đỡ, điểm yên ngựa và quan hệ với $p^\star$, $d^\star$ |
 | Ứng dụng | C05 | Dùng hình để nhận biết cận lỏng, cận khít và vai trò khả thi chặt |
 | Bài tập | C06 | Đọc một hình mới, xác định $g(\lambda)$, $p^\star$ và trạng thái đối ngẫu mạnh |
 

@@ -2,7 +2,7 @@
 
 ## 1. Phạm vi và chuẩn đầu ra
 
-- Buổi 3, 2 tiết lý thuyết và 1 tiết bài tập; 40 trang, 7 mạch P/A/B/C/D/E/Z.
+- Buổi 3, 2 tiết lý thuyết và 1 tiết bài tập; 41 trang, 7 mạch P/A/B/C/D/E/Z.
 - LLO4, nguyên văn đề cương: “Hiểu được hàm đối ngẫu và bài toán đối ngẫu Lagrange”.
 - LLO5, nguyên văn đề cương: “Thể hiện được minh họa hình học của hàm đối ngẫu”.
 - Sản phẩm bổ trợ: kiểm tra Slater/KKT và diễn giải độ nhạy; các sản phẩm này phục vụ CLO1 nhưng không thay nội dung LLO4–5.
@@ -23,18 +23,18 @@ $$
 - $\lambda^*=2$, $d^*=5$, $p^*-d^*=0$; Slater tại $x=3$.
 - Với nhiễu $f_1(x)\le u$, $p'(0)=-2=-\lambda^*$.
 
-## 3. Tuyến 40 trang
+## 3. Tuyến 41 trang
 
 | Mạch | Trang | Luận điểm trung tâm | Vai trò |
 |---|---|---|---|
 | P | P00 | Đối ngẫu Lagrange là chủ đề của Buổi 3 | định danh |
-| P | P01 | Bài dùng lại dạng chuẩn, tính lồi, gradient và thứ tự theo nón; nội tương đối và dưới gradient sẽ được định nghĩa tại chỗ | tiên quyết |
+| P | P01 | Bài dùng lại dạng chuẩn, tính lồi, gradient, nón và thứ tự theo nón; nội tương đối, dưới gradient và nón đối ngẫu sẽ được định nghĩa tại chỗ | tiên quyết |
 | P | P02 | Trích nguyên LLO4–5; tách Slater, KKT và độ nhạy thành sản phẩm bổ trợ | mục tiêu |
 | P | P03 | Tuyến cận → khít → hình học → KKT → độ nhạy giải quyết vấn đề trung tâm | bản đồ |
 | A | A01 | Nghiệm ứng viên chưa phải là chứng nhận nếu chưa có cận | nhu cầu |
 | A | A02 | Ví dụ xuyên suốt xác lập $f_0,f_1,\mathcal F,x^*,p^*$ | ví dụ dẫn nhập |
 | A | A03 | Cực tiểu hóa $L(\cdot,\lambda)$ tạo một họ cận dưới | trực quan |
-| A | A04 | Với $\varnothing\ne D\subseteq\mathbb R^n$, định nghĩa $L,g$ cho $\lambda\in\mathbb R^m$, $\nu\in\mathbb R^p$; dấu $\lambda\ge0$ chỉ dùng cho khả thi đối ngẫu | hình thức |
+| A | A04 | Với $\varnothing\ne D\subseteq\mathbb R^n$, định nghĩa $L$ cho $\lambda\in\mathbb R^m$, $\nu\in\mathbb R^p$; trang A05 mới định nghĩa $g$, còn dấu $\lambda\ge0$ dùng cho khả thi đối ngẫu | hình thức |
 | A | A05 | Hàm đối ngẫu là infimum của các hàm affine theo nhân tử nên lõm | hình thức |
 | A | A06 | Ví dụ cho $\operatorname{dom}g=(-1,\infty)$ và công thức $g(\lambda)$ | tính toán |
 | A | A07 | Đối ngẫu yếu theo sau từ chuỗi $f_0(x)\ge L\ge g$ | chứng minh |
@@ -51,11 +51,12 @@ $$
 | C | C04 | Tập mở rộng $\mathcal A$ đặt $(0,p^*)$ vào hình học đối ngẫu | hình thức |
 | C | C05 | Hệ số góc $-\lambda^*$, pháp tuyến $(\lambda^*,1)$ và hạng $\lambda^*\nabla f$ nối hình học với KKT | ứng dụng |
 | C | C06 | Đọc đường đỡ để xác định $g(\lambda)$, $p^*$ và độ khít | bài tập LLO5 |
-| D | D01 | Cần hệ điều kiện cục bộ thay cho so sánh mọi điểm khả thi | nhu cầu |
+| C | C07 | Điểm yên ngựa của $L$: cực đại theo nhân tử, cực tiểu theo biến gốc; tương đương nghiệm gốc–đối ngẫu đều đạt và $p^*=d^*$ | hình thức/cầu nối KKT |
+| D | D01 | Cần hệ điều kiện cục bộ thay cho việc so sánh $f_0$ với mọi điểm khả thi | nhu cầu |
 | D | D05 | Trước khi giới thiệu nón pháp tuyến, dùng $\nabla_xL=0$ cho ví dụ có biến chạy trên toàn $\mathbb R$ để so sánh $x=2$ và $x=4$ | ví dụ dẫn nhập |
 | D | D02 | Bù trừ xác định ràng buộc hoạt động khi khoảng bằng không | trực quan/hình thức |
 | D | D03 | KKT gồm đúng bốn nhóm; điều kiện dừng tổng quát là $0\in\nabla_xL(x^*,\lambda^*,\nu^*)+N_D(x^*)$ | hình thức |
-| D | D04 | Tính cần và đủ phụ thuộc $D$ lồi, bất đẳng thức lồi, đẳng thức affine, tính khả vi hoặc dạng dưới vi phân tương ứng, và điều kiện chính quy | giới hạn |
+| D | D04 | Tính cần và đủ phụ thuộc $D$ lồi, bất đẳng thức lồi, đẳng thức affine, tính khả vi và điều kiện chính quy; trường hợp không khả vi được báo trước, dưới gradient được định nghĩa ở E04 | giới hạn |
 | D | D06 | KKT diễn giải đánh đổi trong hồi quy có ràng buộc chuẩn | ứng dụng AI |
 | D | D07 | Dùng kết quả QP ở A08 để chỉ kiểm tra Slater, bốn nhóm KKT và giả thiết kết luận | bài tập |
 | E | E01 | Nhân tử còn đo tác động của việc nới ràng buộc | nhu cầu |
@@ -63,7 +64,7 @@ $$
 | E | E03 | Định nghĩa tổng quát $p^*(u,v)$ và cận toàn cục | hình thức/định lý |
 | E | E04 | Định nghĩa dưới gradient bằng bất đẳng thức đường đỡ; đối ngẫu mạnh và đạt nghiệm cho $(-\lambda^*,-\nu^*)\in\partial p^*(0,0)$ | hình thức/giới hạn |
 | E | E05 | Áp dụng đầy đủ: $\lambda^*(0)=2$; tại $u=8$ ràng buộc hoạt động nhưng nhân tử bằng 0; với $u>8$ ràng buộc không hoạt động | ứng dụng |
-| E | E06 | Với $F(x)\in\mathbb S^r$, nhân tử $Z\in\mathbb S_+^r$ cùng cấp; kiểm tra hạng ghép SDP | mở rộng/bài tập |
+| E | E06 | Định nghĩa $K^*$, rồi với $F(x)\in\mathbb S^r$ dùng nhân tử $Z\in\mathbb S_+^r$ cùng cấp và kiểm tra hạng ghép SDP | mở rộng/bài tập |
 | Z | Z01 | Quy trình cận → khít → hình học → KKT → độ nhạy, kèm cầu nối nhân tử theo nón, trả lời P03 | tổng kết |
 | Z | Z02 | Tự kiểm tra công thức, giả thiết, hình học, KKT và tính một xấp xỉ độ nhạy | đánh giá/bài tập E |
 | Z | Z03 | Nguồn và cầu nối sang tối ưu không ràng buộc/có đẳng thức | chuyển tiếp |

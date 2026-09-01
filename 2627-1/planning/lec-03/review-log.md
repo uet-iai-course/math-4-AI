@@ -164,3 +164,31 @@ Sau thay đổi thứ tự, storyboard và outline đã dùng cùng thứ tự v
 - Năm SVG của bài được đối chiếu với công thức và raster hóa ở 900 px và 600 px. Đã sửa nhãn độ nhạy bị cắt, bổ sung tập mở rộng trong hình học đối ngẫu, sửa phía tô của nửa không gian KKT và đồng nhất tỉ lệ hai trục. Cả năm hình phân tích XML thành công, có `role`, `title`, `desc`, không dùng script, `foreignObject`, ảnh nhúng hoặc tài nguyên mạng.
 - Máy chủ HTTP cục bộ tại cổng tạm 8877 trả 200 cho viewer, Markdown và năm SVG. Không có Browser tích hợp trong lượt này, nên không tuyên bố đã kiểm tra bề mặt bằng Codex Slides; cổng hình dùng raster cục bộ và kiểm tra HTTP.
 - Liên kết ghi chú Bài 03 chỉ được mở trên trang chỉ mục sau khi các cổng nội dung, công thức, khối Markdown, tài sản và HTTP đều đạt.
+
+## 14. Đồng bộ slide với ghi chú và bổ sung điểm yên ngựa ngày 2026-09-01
+
+- Hai lượt đọc trước soạn phát hiện khoảng trống chính: ghi chú đã có định nghĩa, ví dụ và định lý về điểm yên ngựa của hàm Lagrange nhưng deck chuyển thẳng từ hình học đường đỡ sang KKT. Quyết định thêm đúng một trang C07 sau C06, giữ 7 mạch và mọi trang cũ.
+- Tác tử soạn OpenRouter được gọi với mô hình yêu cầu z-ai/glm-5.3-flash, phạm vi sáu tệp Bài 03 và khóa từ .env. API trả HTTP 200 nhưng worker kết thúc mà không trả JSON hoàn tất; nó sửa dở năm tệp. Điều phối viên kiểm tra diff, sửa lỗi gạch chéo kép và hoàn thiện bằng bản vá cục bộ. Không có api_transport_error.
+- Deck hiện có 41 ID duy nhất, 41 khối ghi chú và 7 section ngoài. Thứ tự DOM là P00–P03, A01–A08, B01→B03→B02→B04–B06, C01→C03→C02→C04–C07, D01→D05→D02–D04→D06–D07, E01–E06 và Z01–Z03.
+- C07 định nghĩa đúng hai phía của điểm yên ngựa, dùng ví dụ $(x^*,\lambda^*)=(2,2)$ với $L(2,\lambda)=5$ và $L(x,2)=3(x-2)^2+5$, rồi nối định lý tương đương nghiệm đạt và $p^*=d^*$ sang KKT. Chứng minh đầy đủ tiếp tục nằm trong ghi chú bài giảng.
+- Các sửa tiên quyết cục bộ: A04 chỉ định nghĩa $L$ và báo A05 mới định nghĩa $g$; A07 giải nghĩa khả thi đối ngẫu bằng $\lambda\ge0$; C03 gọi tên đường đỡ; C05 dùng $\lambda_i^*\nabla f_i(x^*)$ cho ràng buộc hoạt động; D04 báo trước trường hợp không khả vi và chỉ tới định nghĩa dưới gradient ở E04; E06 định nghĩa $\mathbb S^r$, $\mathbb S_+^r$ và $K^*$ trước khi dùng.
+- Năm phản biện độc lập đều dùng z-ai/glm-5.3-flash qua OpenRouter. Vai chuyên gia và toán học PASS ngay. Vai sinh viên, sư phạm và mạch kể chuyện yêu cầu các sửa nhỏ về câu nối C05→C06→C07, E06→Z01, ký hiệu ma trận, cụm “khả thi đối ngẫu”, đường đỡ và câu D01 trong outline; mọi mục đã được áp dụng.
+- Hậu kiểm toán học sau sửa PASS cho A05, A07, C03, C05, C07 và E06. Hậu kiểm mạch kể chuyện sau sửa PASS cho 41 ID, 7 mạch và sáu nối A04→A05, C05→C06, C06→C07, C07→D01, D04→E04, E06→Z01.
+- Cổng tĩnh đạt: git diff --check sạch; bộ phân tích HTML xác nhận thẻ cân bằng; không còn chuỗi LaTeX bị gạch chéo kép; HTML, CSS, RevealJS, bốn plugin, KaTeX đúng đường dẫn vendor/katex/dist/ và bốn SVG của deck đều trả HTTP 200 trên máy chủ chỉ gắn 127.0.0.1. Một lần dò nhầm vendor/katex/katex.min.js trả 404; đây không phải URL mà plugin tải và lần kiểm tra đúng vendor/katex/dist/katex.min.js trả 200.
+- Dự án Codex Slides bền vững 20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls đã được mở lại và thay dàn ý bằng đúng 41 tiêu đề theo thứ tự RevealJS. Hậu kiểm canonical bằng get_project trả 41 slide, trạng thái draft và handoff tại checkpoint outline. Bề mặt Browser tích hợp và trình duyệt headless không có trong môi trường hiện tại, nên không tuyên bố đã xem trực quan C07/E06 hoặc kiểm tràn bằng Codex Slides/Chromium trong lượt này. Các bằng chứng trực quan cũ không được dùng thay cho kiểm tra sau sửa.
+
+## 14. Chỉnh sửa theo AGENTS.md — thêm C07 và các sửa cục bộ
+
+- **Lý do thay đổi:** đưa khái niệm điểm yên ngựa của hàm Lagrange từ lecture note vào deck và nối đối ngẫu mạnh với KKT; đồng thời áp dụng các sửa cục bộ đã chốt. Giữ nguyên 7 mạch P/A/B/C/D/E/Z và thứ tự mọi slide hiện có; chỉ chèn đúng một slide C07 sau C06, trước D01. Tổng số trang tăng từ 40 lên 41.
+- **C07 (mới):** tiêu đề "Điểm yên ngựa của hàm Lagrange"; định nghĩa $L(x^*,\lambda,\nu)\le L(x^*,\lambda^*,\nu^*)\le L(x,\lambda^*,\nu^*)$ với mọi $x\in D$, $\lambda\ge0$, $\nu\in\mathbb R^p$; giải thích cực đại theo nhân tử và cực tiểu theo biến gốc; ví dụ xuyên suốt $x^*=2$, $\lambda^*=2$ với $L(2,\lambda)=5$ và $L(x,2)=3(x-2)^2+5$; định lý ngắn: điểm yên ngựa tương đương nghiệm gốc và đối ngẫu đều đạt cùng $p^*=d^*$. Notes giải thích hai phía và nối sang KKT. Nguồn: Boyd & Vandenberghe (2004), Ch. 5, §5.4; lecture note. Một luận điểm duy nhất, không quá tải.
+- **Sửa cục bộ đã áp dụng:**
+  - A04: không nhắc $g$ như đã định nghĩa; nói $g$ xuất hiện ở trang kế tiếp.
+  - A05: notes thêm chứng minh lõm một câu bằng bất đẳng thức infimum của tổ hợp lồi.
+  - B04: notes nói đường chứng minh Slater dùng định lý tách cho tập mở rộng lồi, chi tiết ở lecture note.
+  - C05: notes nói $\lambda^*\nabla f$ sẽ được hình thức hóa bởi điều kiện dừng ở mạch D.
+  - D04: mặt trang không dùng dưới vi phân như kiến thức đã biết; nói trường hợp không khả vi cần điều kiện dừng tổng quát và dưới gradient được định nghĩa ở E04; notes thêm phản ví dụ phi lồi $\min_{[-1,1]}-x^2$ với $x=0$ dừng nhưng không tối ưu toàn cục.
+  - E04: notes thêm ví dụ $q(u)=|u|$, $\partial q(0)=[-1,1]$.
+  - E06: định nghĩa rõ $K^*=\{z:\langle z,y\rangle\ge0\text{ với mọi }y\in K\}$; dùng $\lambda\in K^*$; notes chứng minh $\langle\lambda,f(x)\rangle\le0$ cho $x$ khả thi và nêu nón PSD tự đối ngẫu, không tuyên bố nón đối ngẫu đã là tiên quyết.
+  - Z01: thêm điểm yên ngựa vào bước Giải thích và notes.
+- **Đồng bộ planning:** plan.md, outline.md, storyboard.md và source-map.md đã cập nhật từ 40 thành 41 trang, dải C01–C07, danh sách DOM chèn C07, bản đồ hành trình/định lý, câu nối C06→C07→D01 và nguồn C07 (Boyd §5.4, lecture note). Không xóa lịch sử cũ trong nhật ký này.
+- **Trạng thái:** chờ 5 phản biện độc lập (sinh viên, chuyên gia, độ chính xác toán học, học thuật–giảng dạy, mạch kể chuyện) và kiểm định kỹ thuật (Chromium 16:9 và màn hình hẹp, KaTeX, ghi chú, tràn hiển thị) trước khi đóng cổng bàn giao.
