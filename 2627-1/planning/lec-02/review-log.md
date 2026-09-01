@@ -300,3 +300,14 @@ Không xóa các báo cáo vòng trước; mục 9 ghi riêng vòng hợp nhất
 - Kiểm định tĩnh đạt: 41 mã duy nhất, 41 ghi chú, 6 section ngoài; thẻ `section` và `aside` cân bằng; Markdown bắt đầu bằng H1 và chỉ dùng `$...$`, `$$...$$`; mọi tài sản tồn tại; tám SVG hợp lệ theo XML; `git diff --check` đạt. Tám SVG được raster hóa và rà trên một contact sheet: nhãn, trục, hướng mũi tên, miền tô, điểm tối ưu và quan hệ lồi/không lồi đều hiển thị đúng, không có phần tử mất hoặc chồng lấn đáng kể.
 - Máy chủ HTTP cục bộ giới hạn trong `2627-1/` trả 200 cho deck, viewer, lecture note, KaTeX và toàn bộ tám SVG của Bài 02. Không có Chromium, Firefox hoặc trình duyệt headless trong môi trường, nên không tuyên bố kiểm định trực quan mới.
 - Codex Slides xác nhận dự án bền vững `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc` ở trạng thái draft với đúng 41 trang. Phiên hiện tại không có bề mặt Browser để đối chiếu hình ảnh; kiểm định hiển thị dựa trên RevealJS cục bộ và giới hạn này được giữ minh bạch.
+
+## 20. Đồng bộ mạch deck–lecture note ngày 2026-09-01
+
+- Deck được tách theo đúng sáu phần nội dung của lecture note: A — khuôn bài toán; B — tối ưu tựa lồi; C — LP/QP/QCQP; D — quy hoạch hình học; E — tối ưu nón và SDP; F — tối ưu nhiều mục tiêu và Pareto.
+- Giữ nguyên 41 trang nhưng đổi mã truy nguyên theo mạch mới. Thứ tự vật lý là P00–P03; A01, A03, A02, A04; B01–B03; C01, C03, C02, C05, C06, C04, C08, C07, C10, C09; D01, D05, D02–D04, D06–D07; E01, E02, E05, E03, E04, E06; F01–F04; Z01–Z03.
+- Phần bài tập hỗn hợp SDP–Pareto trước đây được tách theo mạch: E06 nhận câu hỏi chặn trị riêng; F04 chỉ kiểm tra quan hệ trội và phép vô hướng hóa. Thuật ngữ `không gian vector` và các lần dùng `vector` trong phạm vi sửa được chuẩn hóa thành `không gian véc-tơ` và `véc-tơ`.
+- Deck hiện có 8 section ngoài nếu tính cả mở đầu và kết luận. Đây là ngoại lệ có chủ ý so với giới hạn mặc định 5–7, vì yêu cầu đồng bộ trực tiếp sáu phần A–F của lecture note; không thêm trang và không tạo tuyến điều hướng phụ.
+- Outline và storyboard được cập nhật theo mã, thứ tự và quan hệ đầu vào–đầu ra mới. Cổng kiểm định yêu cầu: 41 ID duy nhất, 8 section ngoài, thẻ cân bằng, tài sản cục bộ tồn tại, HTTP cục bộ trả 200 và ảnh chụp tĩnh không tràn nội dung.
+- Kiểm định cấu trúc đạt: 41 ID duy nhất theo đúng thứ tự DOM, 41 ghi chú, 8 section ngoài, storyboard có đúng 41 hàng tương ứng, thẻ `section` cân bằng và mọi `src`/`href` cục bộ đều tồn tại. `git diff --check` đạt.
+- Tám SVG của Bài 02 đều phân tích được bằng XML và kết xuất tĩnh thành PNG bằng ImageMagick; kích thước đầu ra nằm trong khoảng $760\times300$ đến $1200\times760$, không có lỗi bộ giải mã.
+- Không có Chromium, Firefox hoặc trình kết xuất HTML headless trong môi trường. Yêu cầu mở máy chủ HTTP cục bộ bị cơ chế an toàn từ chối vì thư mục phục vụ có tài liệu nội bộ; do đó vòng này không tuyên bố đã chụp hoặc rà tràn toàn deck bằng trình duyệt, cũng không tuyên bố kiểm tra HTTP 200.
