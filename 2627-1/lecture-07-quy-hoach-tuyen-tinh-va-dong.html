@@ -23,7 +23,7 @@
     <h3>Hình học của quyết định tuyến tính · Bài 07</h3>
     <p>Cơ sở toán học cho AI · Học kỳ 1, 2026–2027</p>
     <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
-    <aside class="notes"><p>Bài học hoàn tất quy hoạch tuyến tính trước khi dùng một mạch ngắn về quy hoạch động hữu hạn tất định. Trọng tâm là chuyển bài toán thành mô hình, đọc hình học đa diện và hiểu vì sao có thể tìm nghiệm ở điểm cực.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Buổi 7; Bertsimas và Tsitsiklis (1997), Chương 1–2.</p></aside>
+    <aside class="notes"><p>Bài học hoàn tất quy hoạch tuyến tính rồi giới thiệu quy hoạch động hữu hạn tất định. Trọng tâm là chuyển bài toán thành mô hình, đọc hình học đa diện và hiểu vì sao có thể tìm nghiệm ở điểm cực.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Buổi 7; Bertsimas và Tsitsiklis (1997), Chương 1–2.</p></aside>
   </section>
   <section data-slide-id="P01">
     <h2>Tiên quyết và quy ước</h2>
@@ -39,7 +39,7 @@
     <h2>Bản đồ quyết định</h2>
     <div class="flow"><div class="node"><strong>LP: mô hình</strong><br/>biến–mục tiêu–ràng buộc</div><div class="arrow">→</div><div class="node"><strong>LP: cấu trúc</strong><br/>đa diện–điểm cực–nghiệm cơ sở</div><div class="arrow">→</div><div class="node"><strong>LP: tìm kiếm</strong><br/>đỉnh kề cải thiện</div><div class="arrow">→</div><div class="node"><strong>Đổi đối tượng</strong><br/>véc-tơ → chuỗi quyết định</div><div class="arrow">→</div><div class="node"><strong>DP hữu hạn</strong><br/>trạng thái–Bellman</div></div>
     <div class="check"><strong>Vấn đề trung tâm:</strong> khai thác cấu trúc nào để tránh duyệt mọi điểm khả thi của LP và mọi chuỗi quyết định của DP?</div>
-    <aside class="notes"><p>Ba nút đầu tạo tuyến đánh giá LLO17–18. Nút thứ tư là ranh giới khái niệm, không phải phép biến đổi một LP thành DP. Mạch cuối chỉ giới thiệu Bellman trong bài toán hữu hạn tất định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997), Chương 1–2; MIT 15.093J, Bài 16.</p></aside>
+    <aside class="notes"><p>Ba nút đầu hỗ trợ đánh giá LLO17–18. Nút thứ tư đánh dấu đổi đối tượng từ véc-tơ quyết định sang chuỗi quyết định, không phải phép biến đổi một LP thành DP. Phần quy hoạch động chỉ giới thiệu Bellman trong bài toán hữu hạn tất định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997), Chương 1–2; MIT 15.093J, Bài 16.</p></aside>
   </section>
 </section>
 
@@ -99,7 +99,7 @@
     <h1><span class="text-light">B.</span><br/>Dạng chuẩn và đa diện</h1>
     <div class="box">Mô hình đại số cần một hình học chung để mô tả toàn bộ miền khả thi và một dạng chung để liên hệ đỉnh với hệ phương trình.</div>
     <ul><li>Giao của các nửa không gian tạo đa diện.</li><li>Biến phụ chuyển bất phương trình thành phương trình.</li><li>Nghiệm cơ sở khả thi mã hóa một đỉnh bằng đại số.</li></ul>
-    <aside class="notes"><p>Mạch này nhận mô hình hộp hạt và chuyển từ danh sách ràng buộc sang cấu trúc hình học. Mục tiêu chưa quyết định miền; nó chỉ chọn hướng đường mức.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.1–2.3.</p></aside>
+    <aside class="notes"><p>Mô hình hộp hạt chuyển từ danh sách ràng buộc sang cấu trúc hình học của đa diện. Hàm mục tiêu không quyết định miền khả thi; nó chỉ chọn hướng đường mức.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.1–2.3.</p></aside>
   </section>
   <section data-slide-id="B02">
     <h2>Đa diện và đường mức</h2>
@@ -211,7 +211,7 @@
     <h2>Bài tập tích hợp quy hoạch tuyến tính</h2>
     <div class="check"><strong>Câu hỏi:</strong> với bài hộp hạt, hãy hoàn tất chuỗi lập luận.</div>
     <ol class="algorithm"><li>Viết LP và dạng chuẩn có biến phụ.</li><li>Liệt kê năm đỉnh và giá trị mục tiêu.</li><li>Phân loại kết cục của bài toán.</li><li>Nêu định lý bảo đảm có điểm cực tối ưu.</li><li>Nêu đỉnh xuất phát, bước sang đỉnh kề cải thiện và tiêu chuẩn dừng.</li></ol>
-    <aside class="notes"><p>Đáp án chính: các đỉnh có giá trị $0,60,96,88,60$; bài toán hữu hạn với nghiệm tối ưu duy nhất $(30,12)$. Mô tả ở mức ý niệm bắt đầu từ một đỉnh khả thi, chuyển qua đỉnh kề cải thiện nghiêm ngặt và dừng khi không còn đỉnh kề cải thiện. Trang này hoàn tất đánh giá LLO17–18 trước ranh giới sang quy hoạch động.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tích hợp LLO17–18; ví dụ tự tạo.</p></aside>
+    <aside class="notes"><p>Đáp án chính: các đỉnh có giá trị $0,60,96,88,60$; bài toán hữu hạn với nghiệm tối ưu duy nhất $(30,12)$. Mô tả ở mức ý niệm bắt đầu từ một đỉnh khả thi, chuyển qua đỉnh kề cải thiện nghiêm ngặt và dừng khi không còn đỉnh kề cải thiện. Bài tập đánh giá LLO17–18 trước khi đổi đối tượng sang chuỗi quyết định trong quy hoạch động.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tích hợp LLO17–18; ví dụ tự tạo.</p></aside>
   </section>
 </section>
 

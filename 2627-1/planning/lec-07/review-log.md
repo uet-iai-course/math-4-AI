@@ -166,3 +166,4 @@ Không xóa các nhận định trước. Bảng này ghi quyết định mới 
 - Kiểm định đạt 37 mã duy nhất, 37 ghi chú, 6 section ngoài, thẻ cân bằng, tài sản tồn tại, SVG hợp lệ và HTTP 200 cho deck/viewer/note/KaTeX.
 - Codex Slides xác nhận dự án `20260901031914-lecture-07-quy-ho-ch-tuy-n-t-nh-v-ng-dqvy` ở trạng thái draft với 37 trang; không có Browser để tuyên bố rà trực quan mới.
 - Reviewer độc lập `z-ai/glm-5.3-flash` đọc toàn bộ deck và note, kết luận PASS. Ghi chú nhỏ về nguồn nội bộ ở P02 đã được xử lý: nhãn đổi thành `Chuỗi quyết định`, nguồn thay bằng đề cương và Bellman (1957).
+- Hậu kiểm toàn khóa bỏ ba câu dùng “mạch” để mô tả cấu trúc bài; thay bằng chuyển đổi khái niệm cụ thể giữa mô hình LP, hình học đa diện và chuỗi quyết định DP.
