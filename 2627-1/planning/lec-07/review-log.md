@@ -194,3 +194,4 @@ Không xóa các nhận định trước. Bảng này ghi quyết định mới 
 ### Bổ sung sau rà soát chéo toàn học phần
 
 - Lecture note công bố ánh xạ giữa ký hiệu in đậm $(\mathbf x,\mathbf c,\mathbf A,\mathbf b)$ và dạng lược kiểu đậm $(x,c,A,b)$ trên trang chiếu; kiểu và kích thước đại lượng không đổi.
+- Hậu kiểm toàn cục bỏ tham chiếu biên tập giữa hai bề mặt: lecture note nêu trực tiếp ánh xạ ký hiệu, còn ghi chú B04 phát biểu quy ước dạng chuẩn bằng `Trong bài này`.
