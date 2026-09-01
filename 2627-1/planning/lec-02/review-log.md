@@ -282,3 +282,14 @@ Không xóa các báo cáo vòng trước; mục 9 ghi riêng vòng hợp nhất
 - Qua máy chủ HTTP cục bộ trên cổng tạm 8876, HTML, CSS, RevealJS, plugin Notes/Highlight/Math và SVG dầm công-xôn đều trả mã 200.
 - Môi trường hiện tại không có Chromium, Firefox hoặc trình duyệt headless; không tuyên bố đã tái kiểm tràn trang bằng trình duyệt trong vòng đồng bộ này. Bản 41 trang trước đó đã có bằng chứng Chromium ở mục 16; các thay đổi hiện tại chỉ sửa văn bản trên bảy trang và đã được rút gọn sau phản biện để hạn chế tăng tải.
 - Codex Slides vẫn không khả dụng trong phiên hiện tại; không dùng nó làm bằng chứng kiểm định.
+
+## 19. Rà văn phong và mạch khái niệm ngày 2026-09-01
+
+- Đã đọc lại toàn bộ 41 trang và toàn bộ ghi chú bài giảng theo tiêu chí `no-ai-slop`. Ghi chú diễn giả được sửa từ lời điều phối nội bộ sang lời giảng trực tiếp; đã loại các cụm `Chuyển ý:`, `Lưu ý sư phạm`, tham chiếu mã trang, tham chiếu chéo tới chính lecture note và thông tin quản trị metadata.
+- B05 không còn đưa giả nghịch đảo Moore–Penrose vào ví dụ một biến. Khái niệm này không phục vụ LLO3 và làm đứt mạch LP–QP; hộp nội dung mới gọi tên QP từ mục tiêu bậc hai lồi và ràng buộc affine. Câu hỏi tương ứng ở Z02 cũng được bỏ.
+- D05 viết đầy đủ `bất đẳng thức ma trận tuyến tính (LMI)` ngay lần xuất hiện đầu, thay cho lời hẹn “các trang sau gọi”. Các cầu nối A, B, C và D hiện nêu trực tiếp quan hệ toán học giữa hai khái niệm.
+- Ghi chú bài giảng bỏ các dòng `Đầu ra` lặp lại mục tiêu đọc hiểu; đổi `Tóm tắt ba mạch đầu` thành `Bảng kiểm nhận dạng`. Định nghĩa, ví dụ, chứng minh, ứng dụng AI và câu hỏi kiểm tra không bị lược.
+- Reviewer độc lập bằng `z-ai/glm-5.3-flash` qua OpenRouter đọc toàn bộ hai tệp, xác nhận không phát hiện lỗi toán học và nêu đúng các điểm điều phối, lặp khuôn và khái niệm xuất hiện đột ngột đã sửa ở trên.
+- Kiểm định tĩnh đạt: 41 mã duy nhất, 41 ghi chú, 6 section ngoài; thẻ `section` và `aside` cân bằng; Markdown bắt đầu bằng H1 và chỉ dùng `$...$`, `$$...$$`; mọi tài sản tồn tại; tám SVG hợp lệ theo XML; `git diff --check` đạt. Tám SVG được raster hóa và rà trên một contact sheet: nhãn, trục, hướng mũi tên, miền tô, điểm tối ưu và quan hệ lồi/không lồi đều hiển thị đúng, không có phần tử mất hoặc chồng lấn đáng kể.
+- Máy chủ HTTP cục bộ giới hạn trong `2627-1/` trả 200 cho deck, viewer, lecture note, KaTeX và toàn bộ tám SVG của Bài 02. Không có Chromium, Firefox hoặc trình duyệt headless trong môi trường, nên không tuyên bố kiểm định trực quan mới.
+- Codex Slides xác nhận dự án bền vững `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc` ở trạng thái draft với đúng 41 trang. Phiên hiện tại không có bề mặt Browser để đối chiếu hình ảnh; kiểm định hiển thị dựa trên RevealJS cục bộ và giới hạn này được giữ minh bạch.

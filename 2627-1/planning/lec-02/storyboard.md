@@ -7,7 +7,7 @@
 | A1. Dạng chuẩn và cải dạng | A01 | A03 | A03 | A02, A04 | Không áp dụng: A04 chỉ minh họa ngắn ba phép cải dạng; A07 là điểm đo chuyển giao duy nhất của cụm A1 | A07 (ca 1, 3) | Tập lồi, hàm lồi → nhận dạng và cải dạng tương đương; LLO3, minh chứng bộ phận CLO1 | $D,\mathcal F,p^*,f_i,h_j$ | 0,22 tiết LT + 0,05 tiết BT |
 | A2. Tựa lồi và chia đôi | A05 | A05 | A05 | A05, A06 | A06 | A07 (ca 2) | Tập mức dưới → kiểm tra mức và cập nhật cận; LLO3, minh chứng bộ phận CLO1 | $f,S_t,\phi_t,l,u,\varepsilon$ | 0,18 tiết LT + 0,10 tiết BT |
 | B1. LP | B01 | B03 | B03 (ví dụ dẫn nhập) | B02 | B09 (ca a, c) | B09 (ca a, c) | Đa diện, hàm affine → nhận dạng LP và đọc nghiệm; LLO3 | $c,A,b,G,h$ | 0,17 tiết LT + 0,08 tiết BT |
-| B2. QP | B02 | B05, B06 | B05 (ví dụ dẫn nhập), B06 | B04 | B09 (ca e) | B09 (ca e) | Dạng toàn phương, PSD → kiểm tra QP và hồi quy ràng buộc; LLO3, minh chứng bộ phận CLO1 | $P,q,r,A^\dagger$ | 0,20 tiết LT + 0,12 tiết BT |
+| B2. QP | B02 | B05, B06 | B05 (ví dụ dẫn nhập), B06 | B04 | B09 (ca e) | B09 (ca e) | Dạng toàn phương, PSD → kiểm tra QP và hồi quy ràng buộc; LLO3, minh chứng bộ phận CLO1 | $P,q,r$ | 0,20 tiết LT + 0,12 tiết BT |
 | B3. QCQP | B04 | B08 | B08 | B07 | B10 | B10 | QP và PSD → kiểm tra Hessian, miền ellipse và QCQP lồi; LLO3 | $P_i,q_i,r_i$ | 0,18 tiết LT + 0,10 tiết BT |
 | C. GP | C01 | C05 | C05 | C02–C04 | C06 | C07 | Log, hàm mũ → đổi GP sang bài toán lồi; LLO3, minh chứng bộ phận CLO1 | $x>0,y=\log x,c_k,a_{kj}$ | 0,30 tiết LT + 0,15 tiết BT |
 | D1. SDP theo nón | D01 | D05 | D05 | D02, D03, D04 | D06 | D10 (chặn trị riêng) | Ma trận đối xứng → đọc thứ tự PSD và LMI; LLO3 | $E,K,G,h,\preceq_K,\mathbb S_+^r,F(x)$ | 0,28 tiết LT + 0,10 tiết BT |
@@ -55,7 +55,7 @@ Sáu mạch gồm một mạch mở P, bốn mạch phát triển A–D và mộ
 | B01 | Đặt quan hệ bao hàm giữa LP, QP, QCQP | Năng lực cải dạng chung → ví dụ hình học của lớp tuyến tính đầu tiên | Nhận dạng lớp | sửa: mở bằng ví dụ LP |
 | B03 | Cụ thể hóa hình học LP bằng ví dụ số; hình là cửa sổ hữu hạn của miền không bị chặn và đường mức đi qua nghiệm | Phân cấp ba lớp → dạng LP tổng quát rút ra từ đường mức và đa diện | Nghiệm $(3,0)$ | sửa: đặt trước dạng chuẩn LP và hiệu chỉnh hình |
 | B02 | Khái quát ví dụ thành kiểu dữ liệu và ba trạng thái kết quả LP | Hình học LP → nhu cầu thêm độ cong cho sai số bình phương | Dạng chuẩn LP | sửa: hình thức sau trực quan |
-| B05 | Nối độ cong bậc hai với bình phương tối thiểu và định nghĩa giả nghịch đảo Moore–Penrose trước khi Z02 kiểm tra công thức hạng đầy đủ | Giới hạn mục tiêu affine → QP hai biến cho thấy độ cong theo tọa độ | Ứng dụng LS | sửa: ví dụ dẫn nhập QP; định nghĩa $A^\dagger$ trên mặt slide và giữ điều kiện hạng cột đầy đủ trong ghi chú |
+| B05 | Nối độ cong bậc hai với bình phương tối thiểu có ràng buộc; gọi tên QP ngay trong ví dụ một biến | Giới hạn mục tiêu affine → QP hai biến cho thấy độ cong theo tọa độ | Ứng dụng LS | sửa: ví dụ dẫn nhập QP; bỏ giả nghịch đảo Moore–Penrose vì không phục vụ LLO3 và xuất hiện đột ngột |
 | B06 | Cho một QP hai biến tính đầy đủ để so sánh độ cong theo tọa độ | Bình phương tối thiểu một biến → khuôn ma trận thống nhất hai ví dụ QP | Nghiệm QP | sửa: ví dụ thứ hai trước khuôn chung |
 | B04 | Gom hai ví dụ vào dạng QP và xác lập PSD là giả thiết quyết định | Hai ví dụ có mục tiêu cong → phản ví dụ về ràng buộc bậc hai bất định | Dạng chuẩn QP | sửa: hình thức sau ví dụ |
 | B08 | Cung cấp phản ví dụ khi ma trận không PSD và tính tường minh giá trị tại trung điểm | Chứng nhận PSD của QP → dạng QCQP lồi với PSD cho mọi hàm bậc hai | Chứng minh tập không lồi | sửa: phản ví dụ chuẩn bị giả thiết QCQP |
@@ -87,7 +87,7 @@ Sáu mạch gồm một mạch mở P, bốn mạch phát triển A–D và mộ
 
 - Không sao chép ảnh hoặc bố cục trang nguồn; hình kỹ thuật được vẽ lại thành SVG cục bộ.
 - Tách QCQP khỏi QP để nêu riêng giả thiết $P_i\succeq0$ và phản ví dụ ma trận bất định.
-- Sửa phát biểu giả nghịch đảo: $A^\dagger$ là dạng tổng quát; công thức $(A^TA)^{-1}A^T$ chỉ khi $A$ hạng cột đầy đủ.
+- Bỏ giả nghịch đảo Moore–Penrose khỏi B05 và Z02; nội dung này không cần cho việc nhận dạng QP và làm đứt mạch ví dụ một biến sang dạng tổng quát.
 - Bài tập B09 giữ đúng miền khả thi chung và các mục tiêu a, c, e của nguồn; sửa nhãn phân loại sai nếu có và tính lại kết quả mà không dùng kỹ thuật chưa được chuẩn bị.
 - Đổi thứ tự vật lý nhưng giữ nguyên mã truy nguyên: A03 trước A02; B03 trước B02, B05–B06 trước B04, B08 trước B07; C05 trước C02; D05 trước D03–D04 và D08 trước D07. Thêm B10 sau B07 để hoàn thành riêng chu trình QCQP. Mục đích là đặt nhu cầu, trực quan hoặc ví dụ trước phát biểu hình thức và đóng mỗi khái niệm bằng ứng dụng hoặc bài tập.
 - Thêm caveat: tổng trọng số không sinh mọi nghiệm Pareto nếu tập mục tiêu không lồi.

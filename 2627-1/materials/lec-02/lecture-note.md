@@ -2,7 +2,7 @@
 
 Bài 02 dùng lại tập lồi, hàm lồi, tập mức dưới và ma trận nửa xác định dương (PSD) để nhận dạng cấu trúc bài toán, chọn phép cải dạng và kiểm tra các giả thiết quyết định.
 
-Người học cần nhận dạng, cải dạng và giải thích được các lớp bài toán tối ưu lồi trong một ngữ cảnh AI. Sáu mạch nội dung là:
+Người học cần nhận dạng, cải dạng và giải thích được các lớp bài toán tối ưu lồi trong một ngữ cảnh AI. Nội dung được chia như sau:
 
 | Mạch | Chủ đề | Sản phẩm đọc hiểu |
 |---|---|---|
@@ -84,8 +84,6 @@ Mục tiêu là hàm bậc hai lồi, bất đẳng thức và đẳng thức đ
 **Điểm dễ nhầm.** Một đẳng thức $h(x)=0$ với $h$ lồi nhưng phi tuyến nói chung không tạo tập lồi. Tính lồi của mục tiêu cũng không đủ nếu tập khả thi không lồi. Ngược lại, một biểu diễn không giống dạng chuẩn chưa đủ để kết luận bài toán không lồi; trước hết phải tìm một biểu diễn tương đương.
 
 **Câu hỏi kiểm tra.** Bài toán $\min_x x^2$ với $(x-1)^2=0$ không ở dạng lồi chuẩn theo biểu diễn đã cho. Tập khả thi thực sự là gì, và có thể viết lại bài toán thế nào?
-
-**Đầu ra.** Người đọc có một bảng kiểm gồm miền lồi, mục tiêu lồi, bất đẳng thức lồi và đẳng thức affine.
 
 ### Định lý: tập khả thi của dạng lồi chuẩn là lồi
 
@@ -191,8 +189,6 @@ Vậy $x^*=1$ và $p^*=1$.
 
 **Câu hỏi kiểm tra.** Hãy đưa $\min_x |x-3|$ về một quy hoạch tuyến tính bằng một biến $t$, rồi xác định nghiệm.
 
-**Đầu ra.** Người đọc phân biệt được “cùng tập khả thi” với “có ánh xạ nghiệm tương ứng” và ghi đủ điều kiện của từng phép cải dạng.
-
 ## B. Tối ưu tựa lồi và chia đôi theo giá trị mục tiêu
 
 ### 3. Hàm tựa lồi qua tập mức dưới
@@ -241,8 +237,6 @@ Mọi $S_t$ đều là một khoảng hoặc tập rỗng, nên $f$ tựa lồi.
 **Điểm dễ nhầm.** Mọi hàm lồi đều tựa lồi, nhưng chiều ngược lại sai. Tính lồi của một vài tập mức không đủ; lượng từ là mọi $t\in\mathbb R$. Tập rỗng cũng là tập lồi.
 
 **Câu hỏi kiểm tra.** Vì sao mọi hàm đơn điệu trên một khoảng đồng thời tựa lồi và tựa lõm? Hàm $x^3$ cho thấy chiều ngược nào của quan hệ “lồi và tựa lồi” là sai?
-
-**Đầu ra.** Người đọc dùng được tập mức dưới như giao diện giữa một mục tiêu tựa lồi và một bộ kiểm tra tính khả thi lồi.
 
 ### Định lý: hai đặc trưng tương đương của tính tựa lồi
 
@@ -351,8 +345,6 @@ $$
 
 **Câu hỏi kiểm tra.** Nếu $u_0-l_0=8$ và cần độ rộng không quá $1/32$, cần ít nhất bao nhiêu vòng chia đôi?
 
-**Đầu ra.** Người đọc viết được giao diện đầy đủ của thuật toán: cận đầu, mức thử, bài toán khả thi, cập nhật cận và dung sai.
-
 ### Mệnh đề: bất biến của khoảng chia đôi
 
 **Giả thiết.** Trước một vòng lặp, $l\le p^*\le u$ và $t=(l+u)/2$.
@@ -430,8 +422,6 @@ $$
 
 **Câu hỏi kiểm tra.** Hãy dùng dạng trên-đồ-thị để đưa $\min_x\max\{2x+1,-x+4\}$ về LP.
 
-**Đầu ra.** Người đọc nhận dạng LP bằng tính affine của mọi biểu thức phụ thuộc biến.
-
 ### 6. Quy hoạch bậc hai
 
 **Mục tiêu đọc hiểu.** Người đọc dùng dấu PSD của ma trận bậc hai để chứng nhận một QP lồi và phân biệt tính lồi với tính duy nhất hoặc tồn tại nghiệm.
@@ -493,8 +483,6 @@ Ma trận $X^TX\succeq0$ mã hóa độ cong của mất mát. Thiếu hạng c�
 **Điểm dễ nhầm.** $P\succ0$ cho mục tiêu lồi chặt và do đó nhiều nhất một nghiệm tối ưu nếu nghiệm tồn tại; nó không tự bảo đảm tập khả thi khác rỗng hoặc nghiệm được đạt. Nếu biểu thức dùng ma trận không đối xứng, phần quyết định độ cong là $(P+P^T)/2$.
 
 **Câu hỏi kiểm tra.** Với $P=\operatorname{diag}(2,0)$, mục tiêu QP có lồi không, có lồi chặt không, và hướng nào có độ cong bằng không?
-
-**Đầu ra.** Người đọc kiểm tra kiểu $P\in\mathbb S^n$, dấu $P\succeq0$ và tính affine của các ràng buộc.
 
 ### 7. Quy hoạch bậc hai với ràng buộc bậc hai
 
@@ -566,8 +554,6 @@ $$
 
 có phải tập lồi không? Hãy tìm hai điểm khả thi có trung điểm không khả thi.
 
-**Đầu ra.** Người đọc kiểm tra riêng $P_0,P_1,\ldots,P_m$, các kiểu của $q_i,r_i$ và tính affine của mọi đẳng thức.
-
 ### Định lý: điều kiện PSD chứng nhận QP và QCQP lồi
 
 **Giả thiết.** Với mỗi $i=0,1,\ldots,m$, đặt
@@ -600,7 +586,7 @@ lồi. Tập nghiệm của các đẳng thức affine cũng lồi. Giao của c
 Nếu $P_0\succ0$, mục tiêu lồi chặt; khi tập khả thi lồi và nghiệm tồn tại, nghiệm là duy nhất. Không cần $P_i\succ0$ cho các ràng buộc: $P_i\succeq0$ đã đủ để tập mức dưới lồi.
 :::
 
-## Tóm tắt ba mạch đầu
+## Bảng kiểm nhận dạng
 
 | Quyết định | Câu hỏi kiểm tra |
 |---|---|
@@ -681,8 +667,6 @@ nên $xy\le4$. Dấu bằng xảy ra khi $x=y=2$. Giá trị mục tiêu gốc l
 
 **Câu hỏi kiểm tra.** Biểu thức $2x^{-1/2}y^3$ có phải đơn thức không? Biểu thức $x-y+2$ có phải đa thức dương không? Nêu lý do từ hệ số và miền.
 
-**Đầu ra.** Người đọc kiểm tra được miền dương, hệ số, số mũ và loại biểu thức ở từng mục tiêu hoặc ràng buộc.
-
 ### 9. Phép đổi biến log và ca thiết kế dầm công-xôn
 
 **Mục tiêu đọc hiểu.** Người đọc thực hiện được phép đổi biến $y_i=\log x_i$, chứng minh dạng mới lồi và khôi phục nghiệm trong biến gốc.
@@ -757,8 +741,6 @@ Các hệ số $d_i$ trong ví dụ dầm là số liệu chuẩn hóa để min
 **Điểm dễ nhầm.** Không lấy log tại $0$. Không được phân phối log qua phép cộng: $\log(u+v)\ne\log u+\log v$. Phải đổi cả mục tiêu, ràng buộc và miền; tính lồi của bài toán sau đổi biến không có nghĩa mọi biểu thức gốc lồi theo $x$.
 
 **Câu hỏi kiểm tra.** Hãy đổi $3x_1^2x_2^{-1}=1$ sang biến $y_i=\log x_i$. Kết quả là đẳng thức affine nào?
-
-**Đầu ra.** Người đọc có quy trình $x>0\to y=\log x\to$ log-tổng-mũ lồi $\to x=e^y$.
 
 ### Định lý: phép đổi log biến GP thành bài toán lồi tương đương
 
@@ -839,8 +821,6 @@ nên $X\preceq_{\mathbb S_+^2}Y$.
 **Điểm dễ nhầm.** Thứ tự theo nón là thứ tự bộ phận: có các cặp không so sánh được. Thứ tự PSD không phải so sánh từng phần tử. Không được đặt $Gx$ trong một không gian nhưng chọn $K$ ở không gian khác.
 
 **Câu hỏi kiểm tra.** Với $X=\operatorname{diag}(1,2)$ và $Z=\operatorname{diag}(4,1)$, hãy kiểm tra $X\preceq Z$ và $Z\preceq X$ bằng trị riêng của hiệu.
-
-**Đầu ra.** Người đọc đọc một bất đẳng thức nón theo ba bước: lấy hiệu, xác định đúng nón, kiểm tra phép thuộc.
 
 ### Định lý: nghịch ảnh affine của một nón lồi là lồi
 
@@ -926,8 +906,6 @@ hai trị riêng là $t+a$ và $t-a$. Vì vậy $M(t,a)\succeq0$ khi và chỉ k
 
 **Câu hỏi kiểm tra.** Giải $\min_t t$ với $\operatorname{diag}(3-x,x)\preceq tI$. Điểm nào cân bằng hai trị riêng?
 
-**Đầu ra.** Người đọc kiểm tra được tính affine theo $x$, tính đối xứng, cấp ma trận và hướng của dấu PSD.
-
 ## F. Tối ưu nhiều mục tiêu và biên Pareto
 
 ### 12. Điểm Pareto và vô hướng hóa bằng trọng số
@@ -980,8 +958,6 @@ Chẳng hạn, $\lambda=3/4,1/2,1/4$ lần lượt cho $x^*=1/2,1,3/2$.
 **Điểm dễ nhầm.** “Không bị trội” không có nghĩa tốt nhất ở từng mục tiêu riêng lẻ. Trọng số bằng $0$ có thể trả về nghiệm chỉ tối tiểu yếu. Khi tập mục tiêu không lồi, tổng trọng số có thể bỏ sót các điểm Pareto không được hỗ trợ. Vô hướng hóa ở đây không phải đối ngẫu Lagrange của Bài 03.
 
 **Câu hỏi kiểm tra.** Trong bốn điểm $(1,4)$, $(2,2)$, $(4,1)$ và $(3,3)$, điểm nào bị trội? Ba điểm còn lại có trội lẫn nhau không?
-
-**Đầu ra.** Người đọc thực hiện được chuỗi: dựng tập mục tiêu $\to$ loại điểm bị trội $\to$ chọn trọng số $\to$ kiểm tra giới hạn của lựa chọn.
 
 ### Định lý: trọng số dương sinh nghiệm Pareto
 
@@ -1045,5 +1021,5 @@ và khảo sát biên Pareto hoặc vô hướng hóa bằng trọng số. Bài 
 ## Tài liệu đối chiếu
 
 - Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Chương 4: Mục 4.1–4.7.
-- Nguyễn Bích Vân, *Chương 3: Các bài toán tối ưu lồi*, phần 2, trang PDF 2–16; năm chưa xác minh. Các giả thiết về giả nghịch đảo và ma trận PSD được đối chiếu theo Boyd và Vandenberghe.
+- Nguyễn Bích Vân, *Chương 3: Các bài toán tối ưu lồi*, phần 2, trang PDF 2–16; năm chưa xác minh. Các giả thiết về ma trận PSD được đối chiếu theo Boyd và Vandenberghe.
 - Đề cương học phần UET.AI2012, Buổi 2, LLO3 và CLO1.

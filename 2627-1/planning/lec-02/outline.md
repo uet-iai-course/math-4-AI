@@ -55,7 +55,6 @@ Phân bổ này bao gồm toàn bộ 41 trang, kể cả trang tiêu đề, mụ
 | $D\subseteq\mathbb R^n$ | Miền xác định chung |
 | $\mathcal F$ | Tập khả thi |
 | $p^*$ | Giá trị tối ưu theo nghĩa infimum, cho phép $\pm\infty$ |
-| $A^\dagger$ | Giả nghịch đảo Moore–Penrose; không đồng nhất với $(A^TA)^{-1}A^T$ nếu thiếu hạng cột đầy đủ |
 | $E$, $K\subseteq E$ | Không gian vector hữu hạn chiều và nón sinh thứ tự trên $E$ |
 | $G:\mathbb R^n\to E$, $h\in E$ | Ánh xạ tuyến tính và phần tử vế phải trong dạng tối ưu nón |
 | $\mathbb S^r$, $\mathbb S_+^r$ | Ma trận đối xứng và nón ma trận nửa xác định dương cấp $r$ |
@@ -70,7 +69,7 @@ Phân bổ này bao gồm toàn bộ 41 trang, kể cả trang tiêu đề, mụ
 - A04: giả thiết lồi của $D$, $f_i$ và affine của $Ax=b$ kết luận trực tiếp tập khả thi lồi; ghi chú dẫn tới định lý tập khả thi trong lecture note.
 - A05–A06: $f(x)=(x^2+1)/(x+2)$ trên $[0,2]$; ví dụ này cũng lồi, còn A07 ca 2 mới phân biệt tựa lồi không lồi; $x^*=\sqrt5-2$, $p^*=2\sqrt5-4$; mức $t=0{,}5$ khả thi theo nghĩa $S_t\ne\varnothing$, cụ thể $S_t=[0,0{,}5]$; bảo đảm sau $k$ vòng $u_k-l_k=(u_0-l_0)/2^k$ được nêu trên mặt slide A06, quy tắc dừng $u-l\le\varepsilon$ vẫn giữ nguyên.
 - B03: nghiệm $(3,0)$, giá trị $3$; SVG chỉ là cửa sổ hữu hạn của miền khả thi không bị chặn và đường mức đi qua $(3,0)$.
-- B05: nghiệm không ràng buộc $2$; trên $[0,1]$ nghiệm $1$, giá trị $4$; $A^\dagger$ được định nghĩa ngay trên mặt slide là giả nghịch đảo Moore–Penrose, điều kiện hạng cột đầy đủ cho công thức $(A^TA)^{-1}A^T$ giữ trong ghi chú.
+- B05: nghiệm không ràng buộc $2$; trên $[0,1]$ nghiệm $1$, giá trị $4$; mục tiêu bậc hai lồi và ràng buộc affine được gọi tên là QP ngay trong ví dụ.
 - B06: nghiệm $(0{,}8,0{,}2)$, giá trị $0{,}8$.
 - B08: $(\sqrt2,\pm1)$ khả thi nhưng trung điểm không khả thi vì $(\sqrt2)^2-0^2=2>1$.
 - B10: QCQP với hai miền ellipse có Hessian $\operatorname{diag}(2,8)$ và $2I$; giao khác rỗng vì chứa $(0{,}8,0{,}7)$.
