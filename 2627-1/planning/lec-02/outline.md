@@ -66,20 +66,23 @@ Phân bổ này bao gồm toàn bộ 41 trang, kể cả trang tiêu đề, mụ
 
 ## 5. Ví dụ và kết quả đã chốt
 
-- A03: hai ràng buộc tương đương với $x_1\le0$, $x_1+x_2=0$.
-- A05–A06: $f(x)=(x^2+1)/(x+2)$ trên $[0,2]$; ví dụ này cũng lồi, còn A07 ca 2 mới phân biệt tựa lồi không lồi; $x^*=\sqrt5-2$, $p^*=2\sqrt5-4$; mức $t=0{,}5$ khả thi theo nghĩa $S_t\ne\varnothing$, cụ thể $S_t=[0,0{,}5]$.
+- A03: hai ràng buộc tương đương với $x_1\le0$, $x_1+x_2=0$; “cùng tập khả thi” chỉ là định nghĩa tương đương trong ví dụ này, còn phép cải dạng tổng quát có thể thêm/bớt biến nhưng phải bảo toàn giá trị tối ưu và ánh xạ được nghiệm.
+- A04: giả thiết lồi của $D$, $f_i$ và affine của $Ax=b$ kết luận trực tiếp tập khả thi lồi; ghi chú dẫn tới định lý tập khả thi trong lecture note.
+- A05–A06: $f(x)=(x^2+1)/(x+2)$ trên $[0,2]$; ví dụ này cũng lồi, còn A07 ca 2 mới phân biệt tựa lồi không lồi; $x^*=\sqrt5-2$, $p^*=2\sqrt5-4$; mức $t=0{,}5$ khả thi theo nghĩa $S_t\ne\varnothing$, cụ thể $S_t=[0,0{,}5]$; bảo đảm sau $k$ vòng $u_k-l_k=(u_0-l_0)/2^k$ được nêu trên mặt slide A06, quy tắc dừng $u-l\le\varepsilon$ vẫn giữ nguyên.
 - B03: nghiệm $(3,0)$, giá trị $3$; SVG chỉ là cửa sổ hữu hạn của miền khả thi không bị chặn và đường mức đi qua $(3,0)$.
-- B05: nghiệm không ràng buộc $2$; trên $[0,1]$ nghiệm $1$, giá trị $4$.
+- B05: nghiệm không ràng buộc $2$; trên $[0,1]$ nghiệm $1$, giá trị $4$; $A^\dagger$ được định nghĩa ngay trên mặt slide là giả nghịch đảo Moore–Penrose, điều kiện hạng cột đầy đủ cho công thức $(A^TA)^{-1}A^T$ giữ trong ghi chú.
 - B06: nghiệm $(0{,}8,0{,}2)$, giá trị $0{,}8$.
 - B08: $(\sqrt2,\pm1)$ khả thi nhưng trung điểm không khả thi vì $(\sqrt2)^2-0^2=2>1$.
 - B10: QCQP với hai miền ellipse có Hessian $\operatorname{diag}(2,8)$ và $2I$; giao khác rỗng vì chứa $(0{,}8,0{,}7)$.
 - B09: trên miền chung $2x_1+x_2\ge1$, $x_1+3x_2\ge1$, $x\ge0$: ca a có $(2/5,1/5),3/5$; ca c có tập nghiệm $\{(0,x_2):x_2\ge1\}$, giá trị $0$; ca e có $(1/2,1/6),1/2$.
 - C05: nghiệm $(2,2)$, giá trị $1/4$; ví dụ đứng trước định nghĩa hình thức của GP.
+- C04: hộp kết luận là phát biểu định lý ngắn: GP và bài toán theo $y$ tương đương, $x^*=\exp(y^*)$, giá trị log biến đổi bằng $\log p^*$; điều kiện mục tiêu dương (hệ số $c_k>0$ trên miền $\mathbb R_{++}^n$) nêu trong ghi chú.
 - C06: mô hình dầm chuẩn hóa dùng $\min\sum_i h_i$ và $\sum_i d_i h_i^{-3}\le1$, $d=(0{,}1,0{,}2,0{,}3,0{,}4)$; sau $y_i=\log h_i$ thu được hai biểu thức log-tổng-mũ lồi.
 - C07: dạng lồi log-tổng-mũ; bài tập chỉ yêu cầu cải dạng, không mở tuyến giải số phụ.
+- D04: tính lồi của tập khả thi được ghi rõ theo định lý nghịch ảnh affine của nón lồi.
 - D05: $x=t=1$.
 - D08: thứ tự theo nón được chuyển từ ràng buộc ma trận sang vector mục tiêu; mọi $x\in[0,2]$ là Pareto.
-- D09: với $0<\lambda<1$, $x^*=2(1-\lambda)$; hai đầu mút $\lambda=1$ và $\lambda=0$ lần lượt cho $x^*=0$ và $x^*=2$; liên hệ đánh đổi sai số–chi phí suy diễn.
+- D09: trọng số dương sinh nghiệm Pareto; chiều đảo cần tập mục tiêu lồi phù hợp. Với $0<\lambda<1$, $x^*=2(1-\lambda)$; hai đầu mút $\lambda=1$ và $\lambda=0$ lần lượt cho $x^*=0$ và $x^*=2$; liên hệ đánh đổi sai số–chi phí suy diễn.
 - D10: dưới một nhãn “Câu hỏi:”, dạng đầy đủ $\min_{x,t}t$ với LMI cho $x^*=t^*=1{,}5$; ba điểm không bị trội và $(3,3)$ bị trội.
 - Z02: dưới nhãn “Câu hỏi:”, với $X\in\mathbb R^{N\times d}$, $y\in\mathbb R^N$, $w\in\mathbb R^d$, $\tau\ge0$, ca hồi quy AI $\min_w\|Xw-y\|_2^2$ với $\|w\|_2^2\le\tau$ là QCQP lồi; $\tau$ giới hạn độ lớn tham số. Tập mức bằng của hàm lồi phi tuyến nói chung không lồi; đẳng thức dạng chuẩn phải affine.
 

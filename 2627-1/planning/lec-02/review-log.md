@@ -238,3 +238,47 @@ Không xóa các báo cáo vòng trước; mục 9 ghi riêng vòng hợp nhất
 - Kiểm định tĩnh đạt: Markdown bắt đầu bằng heading cấp một; chỉ dùng `$...$` và `$$...$$`; 12 chủ đề, 12 tham chiếu hình, 20 khối mở/đóng cân bằng; mọi đường dẫn hình tồn tại; XML SVG hợp lệ; `git diff --check` đạt.
 - Máy chủ HTTP cục bộ tại cổng tạm 8877 trả 200 cho viewer, Markdown, CSS và toàn bộ tám SVG. Không có Chromium trong môi trường hiện tại nên chưa thực hiện kiểm tra DOM/render tự động của viewer; khả năng cuộn hình ở màn hình hẹp được bảo đảm bằng selector chung `img[src^="img/lec-"]` và `min-width: 900px`.
 - Sau các kiểm định trên, trang chỉ mục được cập nhật để công bố ghi chú Bài 02.
+
+## 18. Đồng bộ deck với lecture note ngày 2026-09-01
+
+### Kiểm toán kế hoạch và ánh xạ nguồn
+
+- Tác tử lập kế hoạch và tác tử phân tích nguồn chạy độc lập qua OpenRouter; cả hai có `requested_model` và `observed_model` là `z-ai/glm-5.3-flash`, provider `OpenRouter`.
+- Kiểm toán xác nhận giữ nguyên 41 trang, 41 khối ghi chú và 6 mạch P–A–B–C–D–Z. Thứ tự ví dụ trước hình thức trong deck là có chủ ý và đã được storyboard giải thích.
+- Ánh xạ đủ 41 slide với `materials/lec-02/lecture-note.md` phát hiện hai lỗi logic ưu tiên: A03 đồng nhất khái niệm tương đương tổng quát với “cùng tập khả thi”; B05/Z02 dùng $A^\dagger$ khi mặt slide chưa định nghĩa ký hiệu này.
+- Các kết quả quan trọng trong lecture note đã có trên deck dưới dạng tóm tắt nhưng cần cầu nối rõ hơn: tập khả thi của dạng lồi chuẩn là lồi; bất biến và độ co của chia đôi; tương đương GP–log; nghịch ảnh affine của nón lồi; trọng số dương sinh nghiệm Pareto.
+
+### Sửa theo từng mạch
+
+- A03 phân biệt tương đương trong ví dụ với cải dạng tổng quát có thể thêm/bớt biến nhưng phải bảo toàn giá trị tối ưu và ánh xạ nghiệm. A04 nêu trực tiếp cấu trúc giao làm tập khả thi lồi. A06 đưa bảo đảm $u_k-l_k=(u_0-l_0)/2^k$ lên mặt slide và giữ bất biến $p^*\in[l_k,u_k]$ trong ghi chú.
+- B05 định nghĩa $A^\dagger$ là giả nghịch đảo Moore–Penrose ngay lần xuất hiện đầu; điều kiện hạng cột đầy đủ cho $(A^TA)^{-1}A^T$ vẫn nằm trong ghi chú và được đo ở Z02.
+- C04 phát biểu ngắn định lý tương đương GP–log, gồm ánh xạ $x^*=\exp(y^*)$ và giá trị tối ưu mới $\log p^*$; ghi chú nêu điều kiện mục tiêu dương trên $\mathbb R_{++}^n$.
+- D04 dùng đúng định lý nghịch ảnh affine để chứng nhận tập LMI lồi. D09 nêu chiều thuận của vô hướng hóa bằng trọng số dương và điều kiện lồi phù hợp cho chiều đảo.
+- Không sửa lecture note, SVG, số trang, thứ tự trang, mã truy nguyên hoặc số mạch.
+
+### Runtime writer và giới hạn
+
+- Writer chạy với `requested_model` và `observed_model` là `z-ai/glm-5.3-flash`, provider `OpenRouter`; các sửa HTML và một phần hồ sơ quy trình đã được ghi bền vững.
+- Writer dừng với lỗi nguyên gốc `model exceeded the tool-call limit (16)` khi đang cập nhật storyboard, không phải `api_transport_error`. Điều phối viên đã đối chiếu diff, rút gọn A06 và D04 để tránh tăng tải mặt slide, rồi hoàn tất storyboard và review-log bằng `apply_patch`.
+
+### Năm góc nhìn rà soát và sửa sau phản biện
+
+- Rà toán học: **PASS** cho A03, A04, A06, B05, C04, D04, D09 và các trang lân cận; các ví dụ số, giả thiết và kết luận đều được tính lại.
+- Rà theo góc nhìn sinh viên: **PASS**; phát hiện hai thuật ngữ có thể xuất hiện đột ngột. C04 đã định nghĩa $\operatorname{lse}(z)=\log\sum_k e^{z_k}$ ngay lần đầu; D09 đã bỏ cụm “Pareto được hỗ trợ” vì bài không định nghĩa thuật ngữ này.
+- Rà học thuật theo Boyd: **PASS**; sửa thuật ngữ không chính xác “tia affine” ở A03 thành “tia (nửa đường thẳng)”. Quy ước dấu $F(x)\succeq0$ ở D04 tương đương quy ước đổi dấu thường gặp và không làm thay đổi lớp SDP.
+- Rà sư phạm: lượt đầu không hợp lệ vì worker tìm sai đường dẫn và kết luận thiếu tệp dù tệp tồn tại; không dùng lượt này làm bằng chứng. Lượt chạy lại với ba đường dẫn khóa chính xác kết luận **PASS** cho hành trình sáu bước, phân bổ 2 tiết lý thuyết + 1 tiết bài tập, tải nhận thức và minh chứng LLO3/CLO1. A06 được bổ sung cận khởi tạo $[l_0,u_0]=[0,1]$ trên mặt slide.
+- Rà mạch kể: **PASS**; phát hiện hai dòng D09 trùng trong outline và đã gộp thành một mục. Sáu mạch, 41 mã và các thứ tự ví dụ trước hình thức vẫn nhất quán.
+- Một lượt chuyên gia khác dừng với `model exceeded the tool-call limit (10)` và không tạo báo cáo hoàn chỉnh; lượt chạy lại có đường dẫn khóa chính xác đã thay thế kết quả này.
+- Tất cả các reviewer hợp lệ dùng `requested_model` và `observed_model` là `z-ai/glm-5.3-flash`, provider `OpenRouter`.
+
+### Tái kiểm sau sửa cuối
+
+- Reviewer toán học tái kiểm A03, A04, A06, B05, C04, D04, D09 sau mọi thay đổi và kết luận **PASS**.
+- Reviewer mạch kể tái kiểm 41 slide, 6 mạch, bảy điểm khái niệm trọng tâm và outline sau khi gộp D09; kết luận **PASS**.
+
+### Kiểm định kỹ thuật vòng đồng bộ
+
+- Bộ phân tích HTML xác nhận mọi thẻ đóng/mở cân bằng; có đúng 41 `data-slide-id` duy nhất, 41 khối ghi chú và 6 section ngoài. Mười một đường dẫn tài sản cục bộ đều tồn tại; `git diff --check` không báo lỗi.
+- Qua máy chủ HTTP cục bộ trên cổng tạm 8876, HTML, CSS, RevealJS, plugin Notes/Highlight/Math và SVG dầm công-xôn đều trả mã 200.
+- Môi trường hiện tại không có Chromium, Firefox hoặc trình duyệt headless; không tuyên bố đã tái kiểm tràn trang bằng trình duyệt trong vòng đồng bộ này. Bản 41 trang trước đó đã có bằng chứng Chromium ở mục 16; các thay đổi hiện tại chỉ sửa văn bản trên bảy trang và đã được rút gọn sau phản biện để hạn chế tăng tải.
+- Codex Slides vẫn không khả dụng trong phiên hiện tại; không dùng nó làm bằng chứng kiểm định.
