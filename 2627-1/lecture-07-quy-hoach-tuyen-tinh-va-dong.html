@@ -125,13 +125,14 @@
     <h2>Biến phụ cho hộp hạt</h2>
     <div class="formula">$$\begin{aligned}x_1+s_1&=30,\\x_2+s_2&=20,\\x_1+2x_2+s_3&=54,\\x_1,x_2,s_1,s_2,s_3&\ge0.\end{aligned}$$</div>
     <div class="grid2"><div class="card"><h3>Ý nghĩa</h3><p>$s_i$ là phần tài nguyên chưa dùng ở giới hạn $i$.</p></div><div class="card"><h3>Ví dụ</h3><p>Tại $(30,12)$: $(s_1,s_2,s_3)=(0,8,0)$.</p></div></div>
+    <p><strong>Hai phép đổi khác:</strong> $a^Tx\ge b\Rightarrow a^Tx-s=b$, $s\ge0$; biến tự do viết $x=x^+-x^-$ với $x^+,x^-\ge0$.</p>
     <aside class="notes"><p>Mỗi bất phương trình kiểu “nhỏ hơn hoặc bằng” nhận một biến phụ không âm. Với bất phương trình “lớn hơn hoặc bằng”, dấu của biến dư phải được xử lý tương ứng.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2; ví dụ tự tạo.</p></aside>
   </section>
   <section data-slide-id="B06">
     <h2>Nghiệm cơ sở khả thi</h2>
     <p>Với $P=\{x:Ax=b,x\ge0\}$ và $\operatorname{rank}(A)=m$, chọn $B\subset\{1,\ldots,n\}$, $|B|=m$.</p>
     <ol class="algorithm"><li>$A_B$ phải khả nghịch.</li><li>Đặt $x_N=0$ với $N=B^c$.</li><li>Tính $x_B=A_B^{-1}b$.</li><li>Nghiệm là <strong>cơ sở khả thi</strong> khi $x_B\ge0$.</li></ol>
-    <div class="box">Một nghiệm cơ sở khả thi tồn tại khi có ít nhất một cơ sở $B$ thỏa cả tính khả nghịch và điều kiện không âm.</div>
+    <div class="box">Nghiệm cơ sở khả thi suy biến khi ít nhất một thành phần của $x_B$ bằng $0$; nhiều cơ sở có thể biểu diễn cùng một điểm.</div>
     <aside class="notes"><p>Điều kiện $m\le n$ và hạng hàng đầy đủ là cần để chọn ma trận cơ sở vuông khả nghịch, nhưng chưa đủ cho tính khả thi. Phải kiểm $A_B^{-1}b\ge0$.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.2–2.3.</p></aside>
   </section>
   <section data-slide-id="B07">
@@ -242,7 +243,7 @@
   <section data-slide-id="D05">
     <h2>Quy trình giải ngược</h2>
     <ol class="algorithm"><li><strong>Đầu vào:</strong> chân trời $N$, trạng thái, tập điều khiển không rỗng, chuyển trạng thái và chi phí cộng.</li><li>Khởi tạo $J_N=g_N$.</li><li>Với $k=N-1,\ldots,0$, tính $J_k$ bằng Bellman và lưu một điều khiển đạt min.</li><li><strong>Đầu ra:</strong> $J_0(x_0)$ và chính sách tối ưu.</li></ol>
-    <div class="box">Chi phí phụ thuộc số trạng thái và số điều khiển được duyệt, không phụ thuộc trực tiếp số chuỗi quyết định.</div>
+    <div class="box">Số cặp trạng thái–điều khiển được duyệt là $\sum_{k=0}^{N-1}\sum_{x\in X_k}|U_k(x)|$; bảng Bellman dùng lại mỗi bài toán con thay vì duyệt mọi chuỗi.</div>
     <aside class="notes"><p>Trong đồ thị tầng, trạng thái là nút hiện tại, điều khiển là cạnh đi ra và chi phí giai đoạn là trọng số cạnh. Tính bảng từ tầng cuối về đầu tránh giải lại cùng bài toán con.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
   </section>
   <section data-slide-id="D06">

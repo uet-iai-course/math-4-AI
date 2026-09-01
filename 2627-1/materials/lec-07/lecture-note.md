@@ -158,7 +158,7 @@ $$
 P=\{\mathbf x\in\mathbb R^n:\mathbf A\mathbf x\le\mathbf b\}.
 $$
 
-Các đẳng thức tuyến tính có thể được ghi bằng hai bất đẳng thức ngược chiều. Đa diện có thể rỗng, bị chặn hoặc không bị chặn. Đa diện bị chặn thường được gọi là đa diện lồi bị chặn.
+Các đẳng thức tuyến tính có thể được ghi bằng hai bất đẳng thức ngược chiều. Đa diện có thể rỗng, bị chặn hoặc không bị chặn.
 
 **Trực quan.** Mỗi hàng của $\mathbf A\mathbf x\le\mathbf b$ tạo một nửa không gian. Miền khả thi là phần giao của chúng. Các đường mức $\mathbf c^T\mathbf x=\alpha$ song song khi $\alpha$ thay đổi; đường mức cuối cùng còn chạm miền cho biết vị trí tối ưu theo hình học.
 
@@ -1089,7 +1089,7 @@ $$
 c^Tr_j\le0
 $$
 
-với mọi hướng suy thoái; nếu có $c^Tr_j>0$ thì $v+tr_j$ làm mục tiêu tăng vô hạn khi $t\to+\infty$. Vì $c^Td>0$, phải tồn tại ít nhất một hướng cạnh $e_i$ với $c^Te_i>0$.
+với mọi hướng suy thoái; nếu có $c^Tr_j>0$ thì $v+tr_j$ làm mục tiêu tăng vô hạn khi $t\to+\infty$. Mọi cạnh vô hạn xuất phát từ $v$ được xếp vào nhóm hướng suy thoái $r_j$; các $e_i$ còn lại là hướng của cạnh bị chặn nối $v$ với một điểm cực kề. Vì $c^Td>0$, phải tồn tại ít nhất một hướng cạnh bị chặn $e_i$ với $c^Te_i>0$.
 
 Hướng cạnh đó dẫn từ $v$ tới một điểm cực kề $w$, nên
 
