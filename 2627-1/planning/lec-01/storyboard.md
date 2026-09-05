@@ -59,7 +59,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | H03 | Cực tiểu địa phương là toàn cục | Trả lời câu hỏi toàn cục và chỉ ra vai trò của cả hai giả thiết lồi | H02 → H04 | LLO2, CLO1 | Dời T03; dùng SVG |
 | H04 | Điều kiện bậc nhất | Cho chứng nhận bằng siêu phẳng tiếp xúc trên miền mở, lồi | H03 → H05 | LLO2, CLO1 | Tách từ H04 |
 | H05 | Điều kiện bậc hai | Cho chứng nhận bằng Hessian và áp dụng vào hàm bậc hai | H04 → H06 | LLO2, CLO1 | Tách từ H04; dùng SVG |
-| H06 | Các phép biến đổi giữ tính lồi | Dùng tổng không âm và hợp affine để dựng ba mục tiêu | H05 → H07 | LLO2, CLO1 | Sửa H05 |
+| H06 | Các phép biến đổi giữ tính lồi | Dùng hai phép bảo toàn để chứng nhận tính lồi của hai hàm mất mát hồi quy tuyến tính và logistic | H05 → H07 | LLO2, CLO1 | Sửa H05 |
 | H07 | Tồn tại và duy nhất | Phân biệt lồi, lồi chặt, miền đóng bị chặn và tính bức bằng phản ví dụ | H06 → K01 | LLO1, LLO2, CLO1 | Thêm; dùng SVG; có câu hỏi |
 | K01 | Chứng nhận ca điều khiển | Ghép miền đóng, bị chặn và lồi với độ cong để kết luận tồn tại và duy nhất | H07 → K02 | LLO1, LLO2, CLO1 | Tách từ K01 |
 | K02 | Chứng nhận hồi quy tuyến tính | Kết luận tồn tại luôn có và duy nhất đúng khi $X$ hạng cột đầy đủ | K01 → K03 | LLO1, LLO2, CLO1 | Tách từ K01 |

@@ -402,3 +402,11 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - Reader, writer và reviewer chỉ đọc đoạn H06 trong `deck.html` cùng hàng H06 trong `storyboard.md`; lần lượt dùng `task_profile=plan`, `write`, `recheck`, cùng `max_rounds=3`, `timeout=120`, `max_tokens=900`, `temperature=0`, `reasoning_effort=low`. Mỗi lượt hoàn tất sau 2 hoặc 3 vòng; reviewer kết luận `ĐẠT`.
 - Bằng chứng runtime của ba lượt: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; thư mục tạm không chứa `.env` hoặc `.env.*`.
 - Kiểm định cấu trúc đạt 7 mạch, 37 trang và 37 ghi chú; H06 không tràn ở 1280 × 720 (`y=101,76`, `h=515,82`) hoặc 720 × 1280 (`y=495,01`, `h=290,15`), không có lỗi KaTeX hoặc ảnh hỏng. Ảnh 16:9 đã được quan sát trực tiếp.
+
+## Gọi rõ hai hàm mất mát ở H06
+
+- Theo yêu cầu ngày 2026-09-05, thay câu kết khái quát về `hai mục tiêu đầu` bằng phát biểu trực tiếp: hàm mất mát hồi quy tuyến tính là tổng bình phương các phần dư affine $x_i^Tw-y_i$; hàm mất mát hồi quy logistic là tổng các $\ell(y_i a_i^Tw)$. Ghi chú diễn giả và vai trò H06 trong storyboard được đồng bộ.
+- Reader chỉ đọc đoạn H06 và hàng storyboard, dùng `task_profile=plan`, `max_rounds=3`, `timeout=120`, `max_tokens=1200`, `temperature=0`, `reasoning_effort=low`. Đề xuất đầu dùng ký hiệu $a_i^Tw-b_i$ cho hồi quy tuyến tính nên điều phối viên bác ký hiệu này và giữ ký hiệu $x_i^Tw-y_i$ nhất quán với ví dụ đã học.
+- Writer dùng `task_profile=write`, `max_rounds=4`, `timeout=150`, `max_tokens=1500`, `temperature=0`, `reasoning_effort=low`; hoàn tất các phép thay ở vòng 5 do lượt báo cáo cuối nằm sau bốn vòng công cụ. Bản writer còn giữ hệ số $\lambda$ lạc ngữ cảnh trong ghi chú; điều phối viên loại câu này và viết lại lập luận theo đúng hai phép bảo toàn. Reviewer đọc trực tiếp kết quả cuối với `task_profile=recheck`, `max_rounds=3`, `timeout=150`, `max_tokens=1200`, `temperature=0`, `reasoning_effort=low`; kết luận `ĐẠT`.
+- Các lượt hoàn tất có `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; thư mục tạm không chứa `.env` hoặc `.env.*`.
+- Kiểm định cấu trúc đạt 7 mạch, 37 trang và 37 ghi chú; H06 không tràn ở 1280 × 720 (`y=101,76`, `h=515,82`) hoặc 720 × 1280 (`y=495,01`, `h=290,15`), không có lỗi KaTeX hoặc ảnh hỏng. Ảnh 16:9 đã được quan sát trực tiếp.

@@ -522,8 +522,8 @@
           </div>
         </div>
         <div class="math-mid">$$\ell(s)=\log(1+e^{-s}),\qquad \ell''(s)=\frac{e^s}{(1+e^s)^2}>0.$$</div>
-        <p class="takeaway">Bình phương của biểu thức affine tạo hai mục tiêu đầu; tổng $\ell(y_i a_i^Tw)$ tạo mục tiêu logistic.</p>
-        <aside class="notes">Từng hạng bình phương trong điều khiển và hồi quy tuyến tính là hàm bình phương hợp với ánh xạ affine; hệ số $\lambda$ phải không âm. Với logistic, $s=y_i a_i^Tw$ là affine theo $w$, rồi cộng các hạng. Nguồn: MIT 6.079, lec03, trang 3-13 đến 3-14. Chuyển sang các giả thiết riêng cho tồn tại và duy nhất.</aside>
+        <p class="takeaway">Với hồi quy tuyến tính, hàm mất mát là tổng bình phương của các phần dư affine $x_i^Tw-y_i$; với hồi quy logistic, hàm mất mát là tổng các $\ell(y_i a_i^Tw)$.</p>
+        <aside class="notes">Phần dư $x_i^Tw-y_i$ là affine theo $w$; bình phương từng phần dư rồi cộng lại cho hàm mất mát hồi quy tuyến tính lồi. Với logistic, $s=y_i a_i^Tw$ là affine theo $w$; hợp với hàm $\ell$ lồi rồi cộng các hạng cho hàm mất mát logistic lồi. Nguồn: MIT 6.079, lec03, trang 3-13 đến 3-14. Chuyển sang các giả thiết riêng cho tồn tại và duy nhất.</aside>
       </section>
 
       <section data-slide-id="H07">
