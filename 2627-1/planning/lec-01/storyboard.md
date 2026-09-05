@@ -36,7 +36,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | D01 | Bài toán điều khiển một bước | Xác định dữ kiện, động lực, biến và miền bằng sơ đồ trạng thái–tác động–chi phí | M03 → D02 | LLO1, CLO1 | Tách từ U01; chuyển SVG từ D02 |
 | D02 | Tối ưu nhiều mục tiêu: Bám đích và Năng lượng | Làm rõ lựa chọn mô hình khi gộp bám đích và năng lượng thành một hàm chi phí | D01 → D03 | LLO1, CLO1 | Sửa tiêu đề; nhóm các giải thích vào thẻ năng lượng; tách công thức mô hình |
 | D03 | Nghiệm của ca điều khiển | Dùng đồ thị để phân biệt nghiệm tự do ngoài miền với nghiệm tối ưu trên biên và so sánh hai giá trị mục tiêu | D02 → D04 | LLO1, CLO1 | Sửa; thêm SVG |
-| D04 | Nghiệm tối ưu trên biên | Phát hiện điều kiện $q'(u)=0$ không áp dụng máy móc ở biên | D03 → L01 | LLO1, CLO1 | Thêm câu hỏi |
+| D04 | Nghiệm tối ưu trên biên | Phát hiện điều kiện $q'(u)=0$ không áp dụng máy móc ở biên | D03 → L01 | LLO1, CLO1 | Thêm câu hỏi; làm rõ xấp xỉ biến thiên bậc nhất |
 | L01 | Học đường thẳng từ dữ liệu | Đặt kiểu, kích thước, mô hình dự đoán và biến tham số | D04 → L02 | LLO1, CLO1 | Tách từ U03 |
 | L02 | Bình phương nhỏ nhất | Nối phần dư với khoảng cách hình học và hàm mục tiêu | L01 → L03 | LLO1, CLO1 | Sửa; thêm SVG |
 | L03 | Ví dụ hồi quy tuyến tính | Tính nghiệm, dự đoán, phần dư và tổng bình phương sai số | L02 → L04 | LLO1, CLO1 | Thêm |

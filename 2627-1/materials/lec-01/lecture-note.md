@@ -105,7 +105,7 @@ $$
 Tại nghiệm trên, $q'(1)=-3\ne0$. Dấu đạo hàm khác không vẫn phù hợp với tính tối ưu vì $u=1$ là biên phải của miền. Mọi dịch chuyển khả thi đủ nhỏ có dạng $\Delta u\le0$, nên
 
 $$
-q'(1)\Delta u\ge0.
+\Delta q \approx q'(1)\Delta u\ge0.
 $$
 
 Không có hướng khả thi bậc nhất nào làm $q$ giảm. Điều kiện $q'(u^*)=0$ chỉ áp dụng trực tiếp cho nghiệm nằm trong miền trong.
