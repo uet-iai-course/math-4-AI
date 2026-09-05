@@ -27,7 +27,7 @@ Sau bài học, sinh viên phải làm được bốn việc:
 
 ## Bảy mạch và 37 trang lá
 
-1. **Mở đầu và ba nhu cầu — M01–M03:** mục tiêu, vấn đề trung tâm và ba quyết định cần tối ưu.
+1. **Mở đầu và một số bài toán tối ưu — M01–M03:** mục tiêu, vấn đề trung tâm và ba quyết định cần tối ưu.
 2. **Điều khiển một bước — D01–D04:** mô hình động lực, đánh đổi bám đích–năng lượng, nghiệm bị chặn và câu hỏi về nghiệm biên.
 3. **Hồi quy tuyến tính — L01–L04:** dữ liệu, bình phương nhỏ nhất, ví dụ số và câu hỏi về hạng của ma trận thiết kế.
 4. **Hồi quy logistic — G01–G04:** biên có dấu, mất mát logistic, dữ liệu tách tuyến tính và câu hỏi về sự tồn tại nghiệm.
@@ -39,7 +39,7 @@ Sau bài học, sinh viên phải làm được bốn việc:
 
 | Mạch | Phân bổ dự kiến | Vai trò |
 |---|---:|---|
-| 1. Mở đầu và ba nhu cầu | 0,15 tiết lý thuyết | Đặt vấn đề và chuẩn đầu ra |
+| 1. Mở đầu và một số bài toán tối ưu | 0,15 tiết lý thuyết | Đặt vấn đề và chuẩn đầu ra |
 | 2. Điều khiển một bước | 0,30 tiết lý thuyết | Ca có ràng buộc và nghiệm biên |
 | 3. Hồi quy tuyến tính | 0,30 tiết lý thuyết | Ca bậc hai trong học máy |
 | 4. Hồi quy logistic | 0,30 tiết lý thuyết | Ca lồi có thể không đạt nghiệm |
