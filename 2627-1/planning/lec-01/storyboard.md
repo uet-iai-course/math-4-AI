@@ -46,7 +46,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | G03 | Dữ liệu tách tuyến tính | Cho ví dụ số có mất mát giảm mãi nhưng không đạt cận dưới | G02 → G04 | LLO1, CLO1 | Thêm; sửa SVG sẵn có |
 | G04 | Giá trị tốt dần và sự tồn tại nghiệm | Buộc người học phân biệt dãy tốt dần với một nghiệm hữu hạn | G03 → T01 | LLO1, CLO1 | Thêm câu hỏi |
 | T01 | Bài toán tối ưu tổng quát | Rút cấu trúc chung sau ba ca, không mở bài bằng định nghĩa | G04 → T02 | LLO1, CLO1 | Giữ, đổi vị trí |
-| T02 | Ánh xạ ba ca vào khuôn chung | Kiểm tra nghĩa của dữ kiện, $x$, $f_0$ và $C$ trong từng ca | T01 → T03 | LLO1, CLO1 | Sửa |
+| T02 | 3 bài toán tối ưu đã học | Kiểm tra nghĩa của dữ kiện, $x$, $f_0$ và $C$ trong từng bài toán | T01 → T03 | LLO1, CLO1 | Sửa |
 | T03 | Bốn loại kết luận | Tách khả thi, giá trị tối ưu, tồn tại và duy nhất | T02 → T04 | LLO1, LLO2, CLO1 | Thêm |
 | T04 | Các chứng nhận cần có | Biến ba nghi vấn thành chương trình lý thuyết cụ thể | T03 → F01 | LLO1, LLO2, CLO1 | Sửa |
 | F01 | Đoạn nối giữa hai phương án | Tạo trực giác miền không có lỗ trên các đoạn khả thi | T04 → F02 | LLO2, CLO1 | Sửa; dùng SVG |
