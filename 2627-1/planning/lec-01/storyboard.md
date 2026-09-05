@@ -35,7 +35,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | M03 | Một số bài toán tối ưu trong điều khiển và AI | Tạo ba quyết định cụ thể và vấn đề trung tâm bằng ba hình khái quát | M02 → D01 | LLO1, CLO1 | Sửa; thêm ba SVG |
 | D01 | Bài toán điều khiển một bước | Xác định dữ kiện, động lực, biến và miền bằng sơ đồ trạng thái–tác động–chi phí | M03 → D02 | LLO1, CLO1 | Tách từ U01; chuyển SVG từ D02 |
 | D02 | Tối ưu nhiều mục tiêu: Bám đích và Năng lượng | Làm rõ lựa chọn mô hình khi gộp bám đích và năng lượng thành một hàm chi phí | D01 → D03 | LLO1, CLO1 | Sửa tiêu đề và khung mô hình |
-| D03 | Nghiệm của ca điều khiển | Cho ví dụ số kiểm được và quy tắc chiếu nghiệm tự do | D02 → D04 | LLO1, CLO1 | Thêm |
+| D03 | Nghiệm của ca điều khiển | Dùng đồ thị để phân biệt nghiệm tự do ngoài miền với nghiệm tối ưu trên biên và so sánh hai giá trị mục tiêu | D02 → D04 | LLO1, CLO1 | Sửa; thêm SVG |
 | D04 | Nghiệm tối ưu trên biên | Phát hiện điều kiện $q'(u)=0$ không áp dụng máy móc ở biên | D03 → L01 | LLO1, CLO1 | Thêm câu hỏi |
 | L01 | Học đường thẳng từ dữ liệu | Đặt kiểu, kích thước, mô hình dự đoán và biến tham số | D04 → L02 | LLO1, CLO1 | Tách từ U03 |
 | L02 | Bình phương nhỏ nhất | Nối phần dư với khoảng cách hình học và hàm mục tiêu | L01 → L03 | LLO1, CLO1 | Sửa; thêm SVG |
@@ -135,6 +135,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | `m03-control-target.svg` | Thêm | M03 |
 | `m03-linear-fit-sketch.svg` | Thêm | M03 |
 | `m03-logistic-classes.svg` | Thêm | M03 |
+| `d03-cost-parabola-feasible.svg` | Thêm | D03 |
 | `basic-convex-set-library.svg` | Bỏ khỏi tuyến | Rộng hơn nhu cầu ba ca |
 | `convex-hull-and-conic-hull.svg` | Bỏ khỏi tuyến | Nón lồi không thuộc phạm vi cần thiết |
 | `convex-set-preservation-map.svg` | Bỏ khỏi tuyến | Có phép tổng Minkowski chưa cần |

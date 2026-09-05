@@ -36,6 +36,7 @@
     .reveal .control-overview { height: 260px; }
     .reveal .visual-compact { max-height: 210px; }
     .compact-cards { font-size: .84em; }
+    .stack-cards { display: grid; gap: .55em; }
     .takeaway { margin-top: .45em; color: var(--lec-ink); font-weight: 650; }
     .muted { color: #536077; }
     .tight li { margin: .18em 0; }
@@ -127,22 +128,23 @@
 
       <section data-slide-id="D03">
         <h2>Nghiệm của ca điều khiển</h2>
-        <p>Cho $x_0=0$, $t=3$, $\lambda=1/2$, $u_{\max}=1$.</p>
-        <div class="grid2">
-          <div class="card">
-            <h3>Nghiệm tự do</h3>
-            <div class="math-mid">$$q'(u)=3u-6=0\quad\Longrightarrow\quad u_{\mathrm{free}}=2.$$</div>
-            <p class="muted">Điểm này vi phạm $|u|\le1$.</p>
-          </div>
-          <div class="card">
-            <h3>Nghiệm khả thi</h3>
-            <div class="math-mid">$$u^*=\operatorname{clip}(2,[-1,1])=1.$$</div>
-            <div class="math-mid">$$x_1=1,\qquad q(u^*)=\frac92.$$</div>
+        <p>Cho $q(u)=\tfrac32u^2-6u+9$ và miền khả thi $C=[-1,1]$.</p>
+        <div class="split-6040">
+          <img class="visual visual-short" src="img/lec-01/d03-cost-parabola-feasible.svg" alt="Đồ thị parabol q(u), dải khả thi từ âm một đến một, nghiệm tối ưu u bằng một trên biên và nghiệm tự do u bằng hai ngoài miền" />
+          <div class="stack-cards compact-cards">
+            <div class="card">
+              <h3>Nghiệm tự do</h3>
+              <div class="math-mid">$$q'(u)=3u-6=0\Rightarrow u_{\mathrm{free}}=2.$$</div>
+              <p>$q(2)=3$, nhưng $2\notin C$.</p>
+            </div>
+            <div class="card">
+              <h3>Nghiệm có ràng buộc</h3>
+              <div class="math-mid">$$u^*=1,\qquad q(u^*)=\frac92.$$</div>
+              <p>Nghiệm nằm trên biên phải của $C$.</p>
+            </div>
           </div>
         </div>
-        <p class="muted"><strong>clip</strong>: giữ $z$ nếu $z$ thuộc đoạn; nếu không, thay bằng cận gần nhất.</p>
-        <div class="result">Giới hạn tác động quyết định nghiệm, dù đích $t=3$ chưa đạt sau một bước.</div>
-        <aside class="notes">Có thể viết $q(u)=\tfrac32u^2-6u+9$ để kiểm tra đạo hàm. Quy tắc clip ở đây đúng vì mục tiêu bậc hai một biến có đáy duy nhất; phần lý thuyết sau sẽ chứng nhận điều đó. Chuyển sang kiểm tra dấu đạo hàm tại nghiệm biên.</aside>
+        <aside class="notes">Dữ kiện gốc là $x_0=0$, $t=3$, $\lambda=1/2$, $u_{\max}=1$. Quy tắc clip giữ nghiệm tự do nếu nó thuộc đoạn; nếu không, thay bằng cận gần nhất. Dải tô trên đồ thị là miền khả thi; điểm rỗng tại $u=2$ nằm ngoài dải, còn điểm kín tại $u=1$ nằm trên biên phải. Ràng buộc làm giá trị tối ưu tăng từ $3$ lên $9/2$. Chuyển sang kiểm tra dấu đạo hàm tại nghiệm biên.</aside>
       </section>
 
       <section data-slide-id="D04">

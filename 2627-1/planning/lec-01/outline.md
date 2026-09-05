@@ -102,7 +102,7 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 
 - Giữ và dùng: `optimization-model-anatomy.svg`, `convex-set-and-combination.svg`, `convex-concave-strict.svg`, `local-versus-global-minimum.svg`, `first-second-order-convexity.svg`, `existence-and-uniqueness.svg`.
 - Sửa: `logistic-loss-convex-case.svg` để ca chính dùng miền $\mathbb R$ và làm rõ cận dưới đúng không đạt; phần ràng buộc đóng, bị chặn được chuyển thành đối chiếu trong mạch kết luận.
-- Tạo mới năm SVG: `one-step-control.svg`, `linear-regression-fit.svg` và ba hình khái quát ở M03 (`m03-control-target.svg`, `m03-linear-fit-sketch.svg`, `m03-logistic-classes.svg`).
+- Tạo mới sáu SVG: `one-step-control.svg`, `linear-regression-fit.svg`, `d03-cost-parabola-feasible.svg` và ba hình khái quát ở M03 (`m03-control-target.svg`, `m03-linear-fit-sketch.svg`, `m03-logistic-classes.svg`).
 - Không dùng trong tuyến chính: `basic-convex-set-library.svg`, `convex-hull-and-conic-hull.svg`, `convex-set-preservation-map.svg`, `epigraph-levelset-indicator.svg`, `convex-preservation-and-jensen.svg`, `line-restriction-convex-library.svg`, `psd-cone-and-quadratic-directions.svg`.
 
 ## Tiêu chí hoàn thành

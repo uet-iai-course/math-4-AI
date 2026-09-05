@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Đồ thị chi phí điều khiển trên miền khả thi</title>
+  <desc id="desc">Parabol q của u bằng ba phần hai u bình phương trừ sáu u cộng chín. Dải tô từ u bằng âm một đến u bằng một là miền khả thi. Nghiệm tối ưu có ràng buộc ở u bằng một với giá trị chín phần hai. Nghiệm tự do ở u bằng hai với giá trị ba nằm ngoài miền khả thi.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#24324a"/></marker>
+    <style>
+      .panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.axis{stroke:#24324a;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .curve{stroke:#16706a;stroke-width:6;fill:none;stroke-linecap:round}.feasible{fill:#dcece9;opacity:.8}
+      .boundary{stroke:#9b6b12;stroke-width:3;stroke-dasharray:9 7}.guide{stroke:#6a45a5;stroke-width:2.5;stroke-dasharray:6 6}
+      .opt{fill:#315d92;stroke:#fff;stroke-width:3}.free{fill:#fff;stroke:#b44b20;stroke-width:5}
+      .title{font:700 28px sans-serif;fill:#172033}.label{font:23px sans-serif;fill:#24324a}.small{font:19px sans-serif;fill:#44516a}
+      .callout{fill:#fff;stroke:#bac5d6;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1200" height="620" fill="#f3f6fb"/>
+  <rect class="panel" x="28" y="24" width="1144" height="568" rx="16"/>
+  <text class="title" x="600" y="62" text-anchor="middle">q(u) = (3/2)u² − 6u + 9</text>
+
+  <rect class="feasible" x="147" y="76" width="541" height="459"/>
+  <line class="boundary" x1="147" y1="76" x2="147" y2="535"/>
+  <line class="boundary" x1="688" y1="76" x2="688" y2="535"/>
+  <text class="label" x="418" y="108" text-anchor="middle">Miền khả thi C = [−1, 1]</text>
+
+  <line class="axis" x1="120" y1="535" x2="1135" y2="535"/>
+  <line class="axis" x1="120" y1="535" x2="120" y2="68"/>
+  <text class="label" x="1144" y="545">u</text>
+  <text class="label" x="92" y="76">q(u)</text>
+
+  <polyline class="curve" points="120.0,94.8 147.0,117.9 174.1,140.3 201.1,161.9 228.1,182.8 255.1,202.9 282.2,222.2 309.2,240.8 336.2,258.6 363.2,275.6 390.3,292.0 417.3,307.5 444.3,322.3 471.4,336.3 498.4,349.6 525.4,362.1 552.4,373.9 579.5,384.9 606.5,395.1 633.5,404.6 660.5,413.3 687.6,421.2 714.6,428.5 741.6,434.9 768.6,440.6 795.7,445.5 822.7,449.7 849.7,453.1 876.8,455.8 903.8,457.6 930.8,458.8 957.8,459.2 984.9,458.8 1011.9,457.6 1038.9,455.8 1065.9,453.1 1093.0,449.7 1120.0,445.5"/>
+
+  <line class="guide" x1="688" y1="421" x2="688" y2="535"/>
+  <circle class="opt" cx="688" cy="421" r="11"/>
+  <rect class="callout" x="392" y="316" width="268" height="82" rx="10"/>
+  <text class="label" x="412" y="349">u* = 1</text>
+  <text class="small" x="412" y="379">q(u*) = 9/2 — trên biên</text>
+  <line class="guide" x1="660" y1="386" x2="682" y2="413"/>
+
+  <line class="guide" x1="958" y1="459" x2="958" y2="535"/>
+  <circle class="free" cx="958" cy="459" r="12"/>
+  <rect class="callout" x="786" y="335" width="326" height="82" rx="10"/>
+  <text class="label" x="806" y="368">u<tspan baseline-shift="sub" font-size="16">free</tspan> = 2</text>
+  <text class="small" x="806" y="398">q(u<tspan baseline-shift="sub" font-size="14">free</tspan>) = 3 — ngoài C</text>
+  <line class="guide" x1="939" y1="417" x2="954" y2="447"/>
+
+  <line x1="147" y1="535" x2="147" y2="548" stroke="#24324a" stroke-width="3"/>
+  <line x1="417" y1="535" x2="417" y2="548" stroke="#24324a" stroke-width="3"/>
+  <line x1="688" y1="535" x2="688" y2="548" stroke="#24324a" stroke-width="3"/>
+  <line x1="958" y1="535" x2="958" y2="548" stroke="#24324a" stroke-width="3"/>
+  <text class="small" x="147" y="574" text-anchor="middle">−1</text>
+  <text class="small" x="417" y="574" text-anchor="middle">0</text>
+  <text class="small" x="688" y="574" text-anchor="middle">1</text>
+  <text class="small" x="958" y="574" text-anchor="middle">2</text>
+
+  <line x1="108" y1="535" x2="120" y2="535" stroke="#24324a" stroke-width="3"/>
+  <line x1="108" y1="459" x2="120" y2="459" stroke="#24324a" stroke-width="3"/>
+  <line x1="108" y1="421" x2="120" y2="421" stroke="#24324a" stroke-width="3"/>
+  <line x1="108" y1="308" x2="120" y2="308" stroke="#24324a" stroke-width="3"/>
+  <text class="small" x="100" y="542" text-anchor="end">0</text>
+  <text class="small" x="100" y="466" text-anchor="end">3</text>
+  <text class="small" x="100" y="428" text-anchor="end">9/2</text>
+  <text class="small" x="100" y="315" text-anchor="end">9</text>
+</svg>
