@@ -31,6 +31,11 @@
     .reveal .slides section.l03-slide { font-size: .78em; }
     .l03-slide .math-mid .katex-display { margin: .2em 0; }
     .l03-slide .card h3 { font-size: 1.08em; }
+    .reveal .slides section.l01-slide { font-size: .78em; }
+    .l01-slide h2 { font-size: 1.38em; margin-bottom: .18em; }
+    .l01-slide .visual-short { max-height: 300px; }
+    .l01-slide .mini-data { font-size: .78em; margin: .12em 0; }
+    .l01-slide .mini-data th, .l01-slide .mini-data td { padding: .16em .24em; text-align: center; }
     .g01-slide h2 { font-size: 1.3em; margin-bottom: .2em; }
     .g01-slide .visual-short { max-height: 300px; }
     .result { border-left: 5px solid #16706a; background: #eef4f3; }
@@ -181,23 +186,49 @@
     </section>
 
     <section>
-      <section data-slide-id="L01">
+      <section class="l01-slide" data-slide-id="L01">
         <h2>Bài toán dự đoán giá trị số</h2>
-        <div class="grid2">
-          <div class="card">
-            <h3>Dữ liệu</h3>
-            <p>$X\in\mathbb R^{n\times d}$, $y\in\mathbb R^n$</p>
-            <p>Hàng $x_i^T$ chứa đặc trưng của mẫu $i$.</p>
-          </div>
-          <div class="card">
-            <h3>Tham số cần học</h3>
-            <p>$w\in\mathbb R^d$</p>
-            <p>Dự đoán: $\widehat y=Xw$.</p>
+        <div class="split-6040">
+          <img class="visual visual-short" src="img/lec-01/height-weight-regression.svg" alt="Năm điểm dữ liệu cân nặng và chiều cao cùng đường hồi quy h mũ bằng 123 cộng 0,7 lần cân nặng; ba đoạn nét đứt biểu diễn phần dư" />
+          <div>
+            <div class="card">
+              <h3>Nhu cầu dự đoán</h3>
+              <p>Biết cân nặng $m_i$ (kg), dự đoán chiều cao $h_i$ (cm).</p>
+              <table class="mini-data" aria-label="Năm cặp dữ liệu cân nặng và chiều cao minh họa">
+                <tbody>
+                  <tr><th>$m_i$ (kg)</th><td>50</td><td>55</td><td>60</td><td>65</td><td>70</td></tr>
+                  <tr><th>$h_i$ (cm)</th><td>158</td><td>162</td><td>164</td><td>169</td><td>172</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="box"><strong>Giả thuyết mô hình:</strong> $\widehat h_i=b+a m_i$.</div>
           </div>
         </div>
-        <div class="math-large">$$\min_{w\in\mathbb R^d}J(w),\qquad J(w)=\lVert Xw-y\rVert_2^2.$$</div>
-        <p class="takeaway">Tối ưu biến việc “khớp dữ liệu” thành một quy tắc chọn tham số.</p>
-        <aside class="notes">Nêu rõ $n$ là số mẫu và $d$ là số tham số, gồm hệ số chặn nếu cột đầu của $X$ toàn số một. Vector phần dư là $Xw-y$. Chuyển sang ý nghĩa hình học của tổng bình phương phần dư.</aside>
+        <div class="check"><strong>Câu hỏi:</strong> Đại lượng nào đo được đường thẳng nào khớp dữ liệu tốt hơn?</div>
+        <aside class="notes">Dữ liệu trong hình là dữ liệu minh họa tự tạo, không phải kết quả thực nghiệm. Giả thuyết tuyến tính cho rằng tăng một ki-lô-gam làm chiều cao dự đoán thay đổi cùng một lượng $a$; đây là một lựa chọn mô hình chủ quan và chưa đưa các yếu tố như tuổi vào. Đường vẽ có phương trình $\widehat h=123+0{,}7m$. Câu hỏi cuối tạo nhu cầu định nghĩa sai số trước khi tối ưu. Chuyển sang cách viết cùng giả thuyết khi có nhiều đặc trưng.</aside>
+      </section>
+
+      <section data-slide-id="L01B">
+        <h2>Hồi quy tuyến tính nhiều đặc trưng</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Một đặc trưng</h3>
+            <div class="math-mid">$$x_i^T=\begin{bmatrix}1&m_i\end{bmatrix},\qquad w=\begin{bmatrix}b\\a\end{bmatrix}.$$</div>
+            <p>$\widehat h_i=x_i^Tw=b+a m_i$.</p>
+          </div>
+          <div class="card">
+            <h3>Nhiều đặc trưng</h3>
+            <p>$X\in\mathbb R^{n\times d}$, $w\in\mathbb R^d$, $y\in\mathbb R^n$.</p>
+            <p>Mỗi hệ số $w_j$ biểu diễn mức ảnh hưởng của cột đặc trưng $j$ trong mô hình.</p>
+          </div>
+        </div>
+        <div class="grid2 compact-cards">
+          <div class="result"><strong>Hàng $i$ của $X$:</strong> đặc trưng của một mẫu dữ liệu.</div>
+          <div class="result"><strong>Cột $j$ của $X$:</strong> một đặc trưng qua $n$ mẫu.</div>
+        </div>
+        <div class="math-large">$$\widehat y=Xw.$$</div>
+        <p class="takeaway">Cột đầu toàn số $1$ tạo hệ số chặn; các cột còn lại mang các đặc trưng đo được.</p>
+        <aside class="notes">Ở ví dụ trước, mỗi hàng là $(1,m_i)$ và $w=(b,a)^T$. Khi có nhiều đặc trưng, mỗi hàng vẫn đại diện cho một mẫu, còn mỗi cột gom cùng một đặc trưng qua các mẫu. Mức lớn nhỏ của hệ số chỉ có thể so sánh như độ ảnh hưởng khi các đặc trưng dùng thang đo tương thích. Trang sau chọn một cách đo sai số dự đoán.</aside>
       </section>
 
       <section class="l02-slide" data-slide-id="L02">

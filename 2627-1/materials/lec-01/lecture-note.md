@@ -122,7 +122,25 @@ Do đó $q$ lồi chặt (còn gọi là lồi nghiêm ngặt) trên $\mathbb R$
 
 ## 3. Hồi quy tuyến tính
 
-### 3.1. Mô hình bình phương nhỏ nhất
+### 3.1. Dự đoán chiều cao từ cân nặng
+
+Xét năm quan sát minh họa tự tạo:
+
+| Cân nặng $m_i$ (kg) | 50 | 55 | 60 | 65 | 70 |
+|---:|---:|---:|---:|---:|---:|
+| Chiều cao $h_i$ (cm) | 158 | 162 | 164 | 169 | 172 |
+
+Ta cần dự đoán chiều cao từ cân nặng. Một giả thuyết mô hình đơn giản là
+
+$$
+\widehat h_i=b+a m_i,
+$$
+
+trong đó $b$ là hệ số chặn và $a$ là mức thay đổi của chiều cao dự đoán khi cân nặng tăng một ki-lô-gam. Giả thuyết này là lựa chọn chủ quan: tuổi, giới tính và các yếu tố khác chưa được đưa vào mô hình.
+
+Đường $\widehat h=123+0{,}7m$ trong trang chiếu cho một dự đoán tại mọi giá trị cân nặng. Tuy nhiên, trước khi gọi đây là đường tốt nhất, ta phải chọn một đại lượng đo độ lệch giữa dự đoán và quan sát.
+
+### 3.2. Mô hình bình phương nhỏ nhất
 
 Cho ma trận thiết kế $X\in\mathbb R^{n\times d}$ và vector đầu ra $y\in\mathbb R^n$. Hàng $x_i^T$ của $X$ chứa đặc trưng của mẫu thứ $i$. Ta chọn $w\in\mathbb R^d$ và dự đoán
 
@@ -142,7 +160,26 @@ Bình phương nhỏ nhất là một lựa chọn mô hình chủ quan về cá
 
 Miền khả thi là toàn bộ $\mathbb R^d$; không có ràng buộc bổ sung.
 
-### 3.2. Phương trình chuẩn
+::: example
+Với dữ liệu cân nặng–chiều cao ở trên, $\bar m=60$ và $\bar h=165$. Hệ số của đường bình phương nhỏ nhất là
+
+$$
+a^*=\frac{\sum_i(m_i-\bar m)(h_i-\bar h)}{\sum_i(m_i-\bar m)^2}
+=\frac{175}{250}=0{,}7,
+\qquad
+b^*=\bar h-a^*\bar m=123.
+$$
+
+Các dự đoán lần lượt là $158$, $161{,}5$, $165$, $168{,}5$ và $172$. Theo quy ước dự đoán trừ quan sát, vector phần dư là
+
+$$
+\begin{bmatrix}0&-0{,}5&1&-0{,}5&0\end{bmatrix}^T,
+$$
+
+nên tổng phần dư bằng $0$ và tổng bình phương sai số bằng $1{,}5$.
+:::
+
+### 3.3. Phương trình chuẩn
 
 Khai triển đạo hàm cho
 
@@ -212,7 +249,7 @@ J(w^*)=\left(\frac16\right)^2+\left(-\frac13\right)^2+\left(\frac16\right)^2=\fr
 $$
 :::
 
-### 3.3. Tồn tại và duy nhất
+### 3.4. Tồn tại và duy nhất
 
 Không gian cột $\mathcal R(X)$ là một không gian con hữu hạn chiều nên đóng. Hình chiếu trực giao của $y$ lên $\mathcal R(X)$ luôn tồn tại. Vì điểm chiếu thuộc $\mathcal R(X)$, có ít nhất một $w^*$ tạo ra dự đoán đó. Do vậy bài toán bình phương nhỏ nhất luôn có nghiệm với mọi $X$ và $y$.
 
