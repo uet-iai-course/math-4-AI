@@ -309,7 +309,7 @@ $$
 
 Hạng chính quy hóa làm mục tiêu lồi chặt và bức: $L_\mu(w)\to+\infty$ khi $\lVert w\rVert_2\to\infty$. Do mục tiêu liên tục trên miền đóng $\mathbb R^d$, nghiệm tồn tại và duy nhất.
 
-## 5. Khuôn chung của bài toán tối ưu
+## 5. Bài toán tối ưu tổng quát
 
 Ba ca đều có dạng
 
