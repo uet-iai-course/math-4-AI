@@ -25,12 +25,12 @@ Sau bài học, sinh viên phải làm được bốn việc:
 3. Kiểm tra tính lồi của miền và mục tiêu bằng định nghĩa hoặc điều kiện vi phân phù hợp.
 4. Phân biệt ba kết luận: cực tiểu địa phương là toàn cục, nghiệm tồn tại, nghiệm duy nhất.
 
-## Bảy mạch và 38 trang lá
+## Bảy mạch và 39 trang lá
 
 1. **Mở đầu và một số bài toán tối ưu — M01–M03:** mục tiêu, vấn đề trung tâm và ba quyết định cần tối ưu.
 2. **Điều khiển một bước — D01–D04:** mô hình động lực, đánh đổi bám đích–năng lượng, nghiệm bị chặn và câu hỏi về nghiệm biên.
 3. **Hồi quy tuyến tính — L01, L01B–L04:** dự đoán chiều cao từ cân nặng, khái quát sang nhiều đặc trưng, bình phương nhỏ nhất, ví dụ số và câu hỏi về hạng của ma trận thiết kế.
-4. **Hồi quy logistic — G01–G04:** bài toán phân loại bằng biên tuyến tính, biên có dấu, mất mát logistic, dữ liệu tách tuyến tính và câu hỏi về sự tồn tại nghiệm.
+4. **Hồi quy logistic — G00–G04:** phân loại chất lượng cam bằng hai đặc trưng đo từ ảnh, khái quát thành bài toán biên tuyến tính, mất mát logistic, dữ liệu tách tuyến tính và câu hỏi về sự tồn tại nghiệm.
 5. **Khuôn chung của bài toán tối ưu — T01–T04:** giải phẫu mô hình, ánh xạ ba ca, các loại kết luận và danh sách điều cần chứng nhận.
 6. **Công cụ lồi vừa đủ — F01–F05 và H01–H07:** tập lồi, hàm lồi, điều kiện vi phân, phép bảo toàn, định lý địa phương–toàn cục, tồn tại và duy nhất.
 7. **Trở lại ba ca — K01–K06:** chứng nhận riêng từng ca, so sánh kết luận, bài tập chuyển giao và tài liệu.
@@ -102,12 +102,12 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 
 - Giữ và dùng: `optimization-model-anatomy.svg`, `convex-set-and-combination.svg`, `convex-concave-strict.svg`, `local-versus-global-minimum.svg`, `first-second-order-convexity.svg`, `existence-and-uniqueness.svg`.
 - Sửa: `logistic-loss-convex-case.svg` để ca chính dùng miền $\mathbb R$ và làm rõ cận dưới đúng không đạt; phần ràng buộc đóng, bị chặn được chuyển thành đối chiếu trong mạch kết luận.
-- Tạo mới tám SVG: `one-step-control.svg`, `height-weight-regression.svg`, `linear-regression-fit.svg`, `d03-cost-parabola-feasible.svg`, `g01-linear-boundary-2d.svg` và ba hình khái quát ở M03 (`m03-control-target.svg`, `m03-linear-fit-sketch.svg`, `m03-logistic-classes.svg`).
+- Tạo mới chín SVG: `one-step-control.svg`, `height-weight-regression.svg`, `linear-regression-fit.svg`, `d03-cost-parabola-feasible.svg`, `g00-orange-quality-pipeline.svg`, `g01-linear-boundary-2d.svg` và ba hình khái quát ở M03 (`m03-control-target.svg`, `m03-linear-fit-sketch.svg`, `m03-logistic-classes.svg`).
 - Không dùng trong tuyến chính: `basic-convex-set-library.svg`, `convex-hull-and-conic-hull.svg`, `convex-set-preservation-map.svg`, `epigraph-levelset-indicator.svg`, `convex-preservation-and-jensen.svg`, `line-restriction-convex-library.svg`, `psd-cone-and-quadratic-directions.svg`.
 
 ## Tiêu chí hoàn thành
 
-- HTML có đúng 7 `<section>` ngoài, 38 trang lá, 38 mã `data-slide-id` duy nhất và ghi chú diễn giả có nội dung trên mọi trang nội dung.
+- HTML có đúng 7 `<section>` ngoài, 39 trang lá, 39 mã `data-slide-id` duy nhất và ghi chú diễn giả có nội dung trên mọi trang nội dung.
 - Mỗi ca có nhu cầu, trực quan, ví dụ tính được, mô hình, chứng nhận và bài tập kiểm tra.
 - Mọi giả thiết của kết luận về lồi, tồn tại và duy nhất đều hiện diện trước khi dùng.
 - Ghi chú học tập mở rộng lập luận; bài tập có mức nhận biết, tính toán hoặc chứng minh và vận dụng AI.

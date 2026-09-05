@@ -20,7 +20,7 @@ Tổng phân bổ: 2 tiết lý thuyết và 1 tiết bài tập. Không đưa p
 |---|---|---|---|---|---|---|---|---|---|
 | Điều khiển một bước | M03, D01 | D01 | D03 | D01–D03, T01 | K01 | D04 | Đại số một biến → lập và giải mô hình bị chặn | $x_0,t,u,u_{\max},\lambda,q$ → $x,C,f_0$ | LLO1, CLO1 |
 | Hồi quy tuyến tính | M03, L01 | L01 | L01, L03 | L01B–L03, T01 | K02 | L04 | Dữ liệu cân nặng–chiều cao và đại số tuyến tính → lập mô hình, chọn hàm mất mát và đọc nghiệm | $m,h,b,a$ → $X,y,w,J$ → $x,C,f_0$ | LLO1, CLO1 |
-| Hồi quy logistic | M03, G01 | G01, G03 | G03 | G02, G03, T01 | K03 | G04 | Xác suất và hàm mũ → phân biệt cận dưới đúng với nghiệm | $a_i,y_i,w,L$ → $x,C,f_0$ | LLO1, CLO1 |
+| Hồi quy logistic | M03, G00 | G00, G01, G03 | G00, G03 | G01–G03, T01 | K03 | G04 | Dữ liệu nhãn nhị phân và hàm mũ → lập mô hình biên tuyến tính, rồi phân biệt cận dưới đúng với nghiệm | $z_1,z_2,y$ → $a_i,y_i,w,L$ → $x,C,f_0$ | LLO1, CLO1 |
 | Tập lồi | T04, F01 | F01 | F03 | F02, F04 | F05, K01–K03 | F05 | Đoạn thẳng và tập hợp → chứng nhận miền lồi | $C,x,y,\theta$ | LLO2, CLO1 |
 | Hàm lồi và chứng nhận | T04, H01 | H01, H03, H07 | H05, H06 | H02–H07 | K01–K04 | H07, K05 | Đạo hàm, Hessian → kết luận toàn cục, tồn tại, duy nhất | $f,\nabla f,\nabla^2f$ | LLO2, CLO1 |
 
@@ -41,8 +41,9 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 | L01B | Hồi quy tuyến tính nhiều đặc trưng | Khái quát từ một đặc trưng sang ma trận thiết kế; chỉ rõ hàng là mẫu, cột là đặc trưng và cột số một tạo hệ số chặn | L01 → L02 | LLO1, CLO1 | Thêm |
 | L02 | Bình phương nhỏ nhất | Nối phần dư với khoảng cách hình học và hàm mục tiêu; nêu rõ lựa chọn mô hình chủ quan | L01B → L03 | LLO1, CLO1 | Sửa; thêm SVG |
 | L03 | Ví dụ hồi quy tuyến tính | Tính nghiệm, dự đoán, phần dư và tổng bình phương sai số; chỉ rõ cột toàn số một tạo hệ số chặn $b$ và $a^*=1/2$ là hệ số góc | L02 → L04 | LLO1, CLO1 | Thêm |
-| L04 | Hạng của ma trận thiết kế | Tạo nhu cầu phân biệt tồn tại và duy nhất | L03 → G01 | LLO1, CLO1 | Thêm câu hỏi |
-| G01 | Bài toán phân loại bằng biên tuyến tính | Chuyển nhãn nhị phân thành đại lượng đo độ đúng của dự đoán; minh họa mặt phẳng đặc trưng, hai miền dấu, biên qua gốc và véc tơ pháp tuyến $w$ | L04 → G02 | LLO1, CLO1 | Tách từ U04; thêm SVG `g01-linear-boundary-2d.svg` |
+| L04 | Hạng của ma trận thiết kế | Tạo nhu cầu phân biệt tồn tại và duy nhất | L03 → G00 | LLO1, CLO1 | Thêm câu hỏi |
+| G00 | Phân loại chất lượng cam trên dây chuyền | Cụ thể hóa nhu cầu phân loại bằng hai đại lượng đo được từ ảnh: tỉ lệ kích thước và phần trăm diện tích vết sẫm | L04 → G01 | LLO1, CLO1 | Thêm; dùng SVG tự tạo `g00-orange-quality-pipeline.svg` và nêu rõ dữ liệu chỉ để minh họa |
+| G01 | Bài toán phân loại bằng biên tuyến tính | Khái quát ví dụ cam thành đại lượng đo độ đúng của dự đoán; minh họa mặt phẳng đặc trưng, hai miền dấu, biên qua gốc và véc tơ pháp tuyến $w$ | G00 → G02 | LLO1, CLO1 | Tách từ U04; thêm SVG `g01-linear-boundary-2d.svg` |
 | G02 | Mất mát logistic | Xây mục tiêu từ từng biên có dấu, nêu đúng miền $\mathbb R^d$ | G01 → G03 | LLO1, CLO1 | Sửa |
 | G03 | Dữ liệu tách tuyến tính | Cho ví dụ số có mất mát giảm mãi nhưng không đạt cận dưới | G02 → G04 | LLO1, CLO1 | Thêm; sửa SVG sẵn có |
 | G04 | Giá trị tốt dần và sự tồn tại nghiệm | Buộc người học phân biệt dãy tốt dần với một nghiệm hữu hạn | G03 → T01 | LLO1, CLO1 | Thêm câu hỏi |
@@ -76,7 +77,7 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 | M01–M03 | M01–M03 | Giữ vai trò, thay toàn bộ câu chữ tạm bằng nội dung hoàn chỉnh |
 | U01–U02 | D01–D04 | Tách ca điều khiển thành mô hình, trực quan, ví dụ và kiểm tra |
 | U03 | L01, L01B–L04 | Tách hồi quy tuyến tính thành nhu cầu cụ thể, mô hình nhiều đặc trưng, mất mát, ví dụ và kiểm tra |
-| U04 | G01–G04 | Tách hồi quy logistic; thêm phản ví dụ không tồn tại nghiệm |
+| U04 | G00–G04 | Thêm ví dụ phân loại cam để tạo cầu nối; tách hồi quy logistic và thêm phản ví dụ không tồn tại nghiệm |
 | T01–T02 | T01–T02 | Giữ và bổ sung dữ liệu ánh xạ |
 | T03–T04 | H03, T04 | Chuyển địa phương–toàn cục sang mạch công cụ; giữ cầu vào lý thuyết |
 | F01–F04 | F01–F04 | Giữ lõi, lược tập và phép không dùng trực tiếp |
@@ -138,6 +139,7 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 | `m03-linear-fit-sketch.svg` | Thêm | M03 |
 | `m03-logistic-classes.svg` | Thêm | M03 |
 | `d03-cost-parabola-feasible.svg` | Thêm | D03 |
+| `g00-orange-quality-pipeline.svg` | Thêm | G00; dữ liệu và sơ đồ tự tạo để minh họa hai đặc trưng ảnh |
 | `basic-convex-set-library.svg` | Bỏ khỏi tuyến | Rộng hơn nhu cầu ba ca |
 | `convex-hull-and-conic-hull.svg` | Bỏ khỏi tuyến | Nón lồi không thuộc phạm vi cần thiết |
 | `convex-set-preservation-map.svg` | Bỏ khỏi tuyến | Có phép tổng Minkowski chưa cần |
@@ -152,7 +154,8 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 - D04 → L01: chuyển từ quyết định điều khiển sang nhu cầu dự đoán một giá trị số từ dữ liệu.
 - L01 → L01B: khái quát từ một đặc trưng cân nặng sang nhiều cột đặc trưng.
 - L01B → L02: sau khi có mô hình dự đoán, chọn đại lượng đo sai số để học tham số.
-- L04 → G01: chuyển từ dự đoán liên tục sang quyết định phân loại.
+- L04 → G00: chuyển từ dự đoán một giá trị liên tục sang quyết định phân loại chất lượng trên dây chuyền.
+- G00 → G01: khái quát hai đặc trưng của quả cam thành vector đặc trưng và biên tuyến tính.
 - G04 → T01: ba ca tạo ba nghi vấn khác nhau nhưng cùng một khuôn mô hình.
 - T04 → F01: chứng nhận toàn cục bắt đầu từ cấu trúc của miền khả thi.
 - F05 → H01: miền lồi mới là một nửa; mục tiêu còn phải có độ cong phù hợp.

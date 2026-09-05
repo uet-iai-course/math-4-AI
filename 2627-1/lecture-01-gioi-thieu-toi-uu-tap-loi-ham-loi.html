@@ -38,6 +38,11 @@
     .l01-slide .mini-data th, .l01-slide .mini-data td { padding: .16em .24em; text-align: center; }
     .g01-slide h2 { font-size: 1.3em; margin-bottom: .2em; }
     .g01-slide .visual-short { max-height: 300px; }
+    .reveal .slides section.g00-slide { font-size: .78em; }
+    .g00-slide h2 { font-size: 1.34em; margin-bottom: .16em; }
+    .g00-slide .orange-workflow { max-height: 250px; margin: 0 auto .12em; }
+    .g00-slide .card { padding: .3em .48em; }
+    .g00-slide .card h3 { font-size: 1.08em; margin-bottom: .08em; }
     .result { border-left: 5px solid #16706a; background: #eef4f3; }
     .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72em; }
     .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .58em; }
@@ -276,11 +281,23 @@
           <div class="card"><h3>Tham số</h3><p>Nhiều cặp hệ số tạo cùng $Xw$, nên $w$ không còn được xác định duy nhất.</p></div>
         </div>
         <p class="takeaway">Một bài toán có thể đạt cùng giá trị tốt nhất tại nhiều nghiệm.</p>
-        <aside class="notes">Đáp án: không gian cột của $X$ không đổi nên dự đoán tối ưu và giá trị tối ưu không đổi; không gian không của ma trận mở rộng trở nên khác không nên tham số không duy nhất. Phần lý thuyết sẽ nối điều kiện đủ hạng với độ cong. Chuyển sang dự đoán nhãn nhị phân.</aside>
+        <aside class="notes">Đáp án: không gian cột của $X$ không đổi nên dự đoán tối ưu và giá trị tối ưu không đổi; không gian không của ma trận mở rộng trở nên khác không nên tham số không duy nhất. Phần lý thuyết sẽ nối điều kiện đủ hạng với độ cong. Chuyển sang ví dụ phân loại chất lượng cam trên dây chuyền.</aside>
       </section>
     </section>
 
     <section>
+      <section class="g00-slide" data-slide-id="G00">
+        <h2>Phân loại chất lượng cam trên dây chuyền</h2>
+        <img class="visual orange-workflow" src="img/lec-01/g00-orange-quality-pipeline.svg" alt="Dây chuyền đưa cam qua camera, hai phép đo hình dạng và diện tích vết sẫm, rồi biểu diễn cam tốt bằng hình tròn và cam xấu bằng hình vuông trên mặt phẳng hai đặc trưng có một biên tuyến tính" />
+        <div class="grid3 compact-cards">
+          <div class="card"><h3>Hình dạng</h3><p>$z_1=d_{\max}/d_{\min}$: tỉ lệ hai kích thước chính.</p></div>
+          <div class="card"><h3>Vết sẫm</h3><p>$z_2=100\,A_{\text{vết}}/A_{\text{quả}}$: tỉ lệ diện tích theo phần trăm.</p></div>
+          <div class="card"><h3>Nhãn chất lượng</h3><p>$y=+1$: tốt; $y=-1$: xấu.</p></div>
+        </div>
+        <div class="check"><strong>Câu hỏi:</strong> Có thể dùng một đường thẳng trong mặt phẳng $(z_1,z_2)$ để tách cam tốt và cam xấu không?</div>
+        <aside class="notes">Hai đặc trưng trong hình do con người lựa chọn; các điểm chỉ là dữ liệu minh họa tự tạo, không phải kết quả thực nghiệm. Quả tròn đều có $z_1$ gần $1$; quả ít vết có $z_2$ nhỏ. Khi thêm một thành phần hằng bằng $1$, có thể viết $a_i=(1,z_{i1},z_{i2})^T$ và đưa hệ số chặn vào vector tham số. Trang sau khái quát hóa bằng $a_i$, nhãn $y_i$ và biên tuyến tính.</aside>
+      </section>
+
       <section class="g01-slide" data-slide-id="G01">
         <h2>Bài toán phân loại bằng biên tuyến tính</h2>
         <div class="split-6040">

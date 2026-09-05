@@ -267,7 +267,37 @@ Nếu thêm vào $X$ một cột trùng với cột đặc trưng đang có, kh�
 
 ## 4. Hồi quy logistic
 
-### 4.1. Biên có dấu và mất mát
+### 4.1. Phân loại chất lượng cam trên dây chuyền
+
+Giả sử camera quan sát từng quả cam đã được tách khỏi nền. Ta chọn hai đặc trưng có thể đo trực tiếp từ ảnh:
+
+$$
+z_{i1}=\frac{d_{\max,i}}{d_{\min,i}},
+\qquad
+z_{i2}=100\,\frac{A_{\mathrm{vết},i}}{A_{\mathrm{quả},i}}.
+$$
+
+Ở đây, $z_{i1}$ là tỉ lệ hai kích thước chính của quả, còn $z_{i2}$ là phần trăm diện tích vết sẫm. Gán nhãn $y_i=+1$ cho cam tốt và $y_i=-1$ cho cam xấu. Việc chọn hai đặc trưng này là một phần của mô hình do con người xây dựng; các điểm trên trang chiếu chỉ là dữ liệu minh họa, không phải kết quả thực nghiệm.
+
+Để đưa hệ số chặn vào cùng vector tham số, đặt
+
+$$
+a_i=\begin{bmatrix}1\\z_{i1}\\z_{i2}\end{bmatrix},
+\qquad
+w=\begin{bmatrix}b\\w_1\\w_2\end{bmatrix}.
+$$
+
+Điểm số tuyến tính và biên quyết định là
+
+$$
+a_i^Tw=b+w_1z_{i1}+w_2z_{i2},
+\qquad
+a_i^Tw=0.
+$$
+
+Trong mặt phẳng $(z_1,z_2)$, phương trình thứ hai là một đường thẳng. Bài toán tiếp theo là chọn $w$ sao cho hai phía của đường thẳng phù hợp với các nhãn đã quan sát.
+
+### 4.2. Biên có dấu và mất mát
 
 Cho $a_i\in\mathbb R^d$ và $y_i\in\{-1,+1\}$ với $i=1,\ldots,n$. Điểm số của mô hình là $a_i^Tw$. Biên có dấu
 
@@ -298,7 +328,7 @@ $$
 
 Do đó mất mát giảm khi biên tăng và lồi chặt theo biến vô hướng $m$.
 
-### 4.2. Dữ liệu tách tuyến tính và nghiệm không tồn tại
+### 4.3. Dữ liệu tách tuyến tính và nghiệm không tồn tại
 
 ::: example
 Xét hai mẫu một chiều
@@ -332,7 +362,7 @@ nhưng bài toán không có nghiệm tối ưu hữu hạn.
 
 Ví dụ này cho thấy tính lồi, kể cả lồi chặt, không tự bảo đảm sự tồn tại của nghiệm.
 
-### 4.3. Chính quy hóa bậc hai
+### 4.4. Chính quy hóa bậc hai
 
 Thêm hạng $\mu\lVert w\rVert_2^2/2$ với $\mu>0$:
 
