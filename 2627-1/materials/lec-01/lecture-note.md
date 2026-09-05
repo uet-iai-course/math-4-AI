@@ -179,6 +179,8 @@ X=\begin{bmatrix}
 y=\begin{bmatrix}1\\2\\2\end{bmatrix}.
 $$
 
+Mỗi hàng của $X$ là $(1,t_i)$ và $w=(b,a)^T$, nên $\widehat y_i=b+a t_i$; cột đầu toàn số $1$ tạo hệ số chặn $b$.
+
 Ta có
 
 $$
@@ -192,6 +194,8 @@ Giải phương trình chuẩn được
 $$
 w^*=\begin{bmatrix}7/6\\1/2\end{bmatrix}.
 $$
+
+Do đó $b^*=7/6$ là hệ số chặn và $a^*=1/2$ là hệ số góc.
 
 Dự đoán và phần dư là
 

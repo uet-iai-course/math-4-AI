@@ -39,7 +39,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | D04 | Nghiệm tối ưu trên biên | Phát hiện điều kiện $q'(u)=0$ không áp dụng máy móc ở biên | D03 → L01 | LLO1, CLO1 | Thêm câu hỏi; làm rõ xấp xỉ biến thiên bậc nhất |
 | L01 | Bài toán dự đoán giá trị số | Đặt kiểu, kích thước, mô hình dự đoán và biến tham số | D04 → L02 | LLO1, CLO1 | Tách từ U03 |
 | L02 | Bình phương nhỏ nhất | Nối phần dư với khoảng cách hình học và hàm mục tiêu; nêu rõ lựa chọn mô hình chủ quan | L01 → L03 | LLO1, CLO1 | Sửa; thêm SVG |
-| L03 | Ví dụ hồi quy tuyến tính | Tính nghiệm, dự đoán, phần dư và tổng bình phương sai số | L02 → L04 | LLO1, CLO1 | Thêm |
+| L03 | Ví dụ hồi quy tuyến tính | Tính nghiệm, dự đoán, phần dư và tổng bình phương sai số; chỉ rõ cột toàn số một tạo hệ số chặn $b$ và $a^*=1/2$ là hệ số góc | L02 → L04 | LLO1, CLO1 | Thêm |
 | L04 | Hạng của ma trận thiết kế | Tạo nhu cầu phân biệt tồn tại và duy nhất | L03 → G01 | LLO1, CLO1 | Thêm câu hỏi |
 | G01 | Phân loại bằng biên có dấu | Chuyển nhãn nhị phân thành đại lượng đo độ đúng của dự đoán | L04 → G02 | LLO1, CLO1 | Tách từ U04 |
 | G02 | Mất mát logistic | Xây mục tiêu từ từng biên có dấu, nêu đúng miền $\mathbb R^d$ | G01 → G03 | LLO1, CLO1 | Sửa |

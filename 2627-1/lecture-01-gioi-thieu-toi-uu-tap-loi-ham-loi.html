@@ -28,6 +28,9 @@
     .d02-slide .model-statement .katex-display { margin: .16em 0 0; }
     .reveal .slides section.l02-slide { font-size: .78em; }
     .l02-slide .visual-short { max-height: 300px; }
+    .reveal .slides section.l03-slide { font-size: .78em; }
+    .l03-slide .math-mid .katex-display { margin: .2em 0; }
+    .l03-slide .card h3 { font-size: 1.08em; }
     .result { border-left: 5px solid #16706a; background: #eef4f3; }
     .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72em; }
     .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .58em; }
@@ -212,17 +215,19 @@
         <aside class="notes">Các đoạn thẳng đứng trong hình là phần dư theo trục đầu ra, không phải khoảng cách vuông góc tới đường. Bình phương loại dấu và tạo một mục tiêu trơn. Dữ liệu không bắt buộc duy nhất cách đo sai số này. Dùng cùng ba điểm của hình để tính nghiệm chính xác ở trang sau.</aside>
       </section>
 
-      <section data-slide-id="L03">
+      <section class="l03-slide" data-slide-id="L03">
         <h2>Ví dụ hồi quy tuyến tính</h2>
         <div class="grid2">
           <div class="card">
-            <h3>Dữ kiện</h3>
+            <h3>Dữ kiện và mô hình</h3>
             <div class="math-mid">$$X=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix},\qquad y=\begin{bmatrix}1\\2\\2\end{bmatrix}.$$</div>
-            <p>Giải $X^TXw=X^Ty$.</p>
+            <div class="math-mid">$$\widehat y_i=b+a t_i,\qquad w=\begin{bmatrix}b\\a\end{bmatrix}.$$</div>
+            <p>Cột đầu của $X$ toàn số $1$ nên $b$ là hệ số chặn.</p>
           </div>
           <div class="card">
             <h3>Kết quả</h3>
             <div class="math-mid">$$w^*=\begin{bmatrix}7/6\\1/2\end{bmatrix},\qquad J(w^*)=\frac16.$$</div>
+            <p>$b^*=7/6$ là hệ số chặn; $a^*=1/2$ là hệ số góc.</p>
             <div class="math-mid">$$Xw^*-y=\begin{bmatrix}1/6\\-1/3\\1/6\end{bmatrix}.$$</div>
           </div>
         </div>
