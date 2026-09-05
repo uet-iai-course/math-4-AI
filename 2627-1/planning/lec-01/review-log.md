@@ -244,3 +244,15 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - Năm vai rà soát độc lập và ba lượt tái kiểm đều đạt sau chỉnh sửa; không còn lỗi chặn bàn giao, nghiêm trọng hoặc trung bình.
 - Codex Slides đã có dự án bền vững và đủ nguồn nhưng chưa render được phiên bản 37 trang do lỗi Browser/Design File nêu trên. Đây là giới hạn công cụ được báo trung thực theo phương án người dùng cho phép; không dùng nó để thay thế bằng chứng RevealJS.
 - RevealJS, material viewer, nguồn, hình, giọng văn và điều hướng đã vượt kiểm định cuối. Commit sửa L03 và tài liệu quy trình đã được đẩy; hash local trùng ref `origin/main` khi kiểm tra bằng `git ls-remote`.
+
+## Bỏ hướng dẫn điều phối khỏi mặt trang
+
+- Theo yêu cầu ngày 2026-09-05, xóa khỏi M01 câu `Tuyến học: ba bài toán cụ thể → khuôn tối ưu → công cụ lồi → chứng nhận.` và khỏi M02 câu `Các sản phẩm này cụ thể hóa LLO1 và LLO2, cùng hỗ trợ CLO1.`; không thay bằng nội dung khác.
+- Rà toàn bộ văn bản hiển thị không phát hiện nhãn tuyến, lộ trình, mã LLO/CLO hoặc chỉ dẫn điều phối tương tự. Giữ mục tiêu học tập, vấn đề trung tâm và câu hỏi kiểm tra vì chúng có chức năng học tập cụ thể. LLO/CLO tiếp tục được truy nguyên trong outline, storyboard và review-log, không hiển thị trên mặt trang.
+- Writer chỉ nhận `deck.html` trong thư mục tạm không có `.env` hoặc `.env.*`; dùng `task_profile=write`, `max_rounds=4`, `max_tokens=2500`, `timeout=120`, `temperature=0`, `reasoning_effort=low`, `empty_answer_retries=1` và hoàn tất đúng 4 vòng.
+- Bằng chứng runtime: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`. Writer chỉ đọc dòng 50–80 rồi thực hiện đúng hai phép thay thế; điều phối viên kiểm tra diff trước khi áp dụng.
+- M02 được viết lại thành bốn nội dung người học cần nắm: các bài toán tối ưu trong điều khiển thông minh và AI; nhu cầu về bằng chứng nghiệm tối ưu; tập lồi và hàm lồi; quay lại ba ví dụ để chứng nhận. Ghi chú diễn giả được sửa đồng bộ.
+- Lượt writer thứ hai dùng cùng thư mục tạm và các giới hạn trên, với `max_tokens=2800`; hoàn tất đúng 4 vòng. Bằng chứng runtime tiếp tục là `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`.
+- Reviewer cuối chỉ đọc M01–M03, dùng `task_profile=recheck`, `max_rounds=4`, `max_tokens=2400`, `timeout=120`, `temperature=0`, `reasoning_effort=low`, `empty_answer_retries=1`; hoàn tất sau 2 vòng. Bằng chứng runtime: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; kết luận `ĐẠT`, không có lỗi trung bình trở lên.
+- Tự kiểm `no-ai-slop` trên phần sửa xác nhận bốn thẻ dùng từ cụ thể, không có mã nội bộ, câu quảng bá, câu hỏi tu từ hoặc lời chỉ dẫn người xem. Playwright duyệt lại đủ 37 trang ở 1280 × 720 và 720 × 1280; không có tràn, lỗi KaTeX hoặc lỗi điều hướng.
+- Codex Slides mở được dự án bền vững nhưng dự án vẫn có 0 slide render; Browser handoff không phản hồi trong 8 giây. Vì vậy thay đổi được kiểm định trên bản RevealJS có thẩm quyền, không tuyên bố đã rà trực quan bằng Codex Slides.

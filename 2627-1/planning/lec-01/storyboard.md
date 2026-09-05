@@ -30,8 +30,8 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 
 | Mã | Tiêu đề | Lý do tồn tại và khoảng trống được giải quyết | Kết nối vào → kết nối ra | LLO/CLO | Quyết định |
 |---|---|---|---|---|---|
-| M01 | Giới thiệu tối ưu, tập lồi và hàm lồi | Định danh bài và báo rõ tuyến ứng dụng trước lý thuyết | Mở bài → M02 | CLO1 | Sửa |
-| M02 | Mục tiêu học tập | Chuyển LLO thành bốn hành động quan sát được | M01 → M03 | LLO1, LLO2, CLO1 | Sửa |
+| M01 | Giới thiệu tối ưu, tập lồi và hàm lồi | Định danh bài, học phần, học kỳ và đơn vị | Mở bài → M02 | CLO1 | Sửa |
+| M02 | Mục tiêu học tập | Nêu bốn nội dung: các ví dụ tối ưu, nhu cầu chứng nhận, công cụ lồi và quay lại ví dụ | M01 → M03 | LLO1, LLO2, CLO1 | Sửa |
 | M03 | Ba nhu cầu tối ưu | Tạo ba quyết định cụ thể và vấn đề trung tâm | M02 → D01 | LLO1, CLO1 | Sửa |
 | D01 | Bài toán điều khiển một bước | Xác định dữ kiện, động lực, biến và miền trước khi tối ưu | M03 → D02 | LLO1, CLO1 | Tách từ U01 |
 | D02 | Đánh đổi bám đích và năng lượng | Làm rõ vai trò hai hạng tử và giới hạn điều khiển bằng hình | D01 → D03 | LLO1, CLO1 | Tách từ U01–U02; thêm SVG |
