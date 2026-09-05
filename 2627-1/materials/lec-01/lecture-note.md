@@ -138,6 +138,8 @@ $$
 =\sum_{i=1}^{n}(x_i^Tw-y_i)^2.
 $$
 
+Bình phương nhỏ nhất là một lựa chọn mô hình chủ quan về cách đo sai số dự đoán; dữ liệu không bắt buộc duy nhất lựa chọn này.
+
 Miền khả thi là toàn bộ $\mathbb R^d$; không có ràng buộc bổ sung.
 
 ### 3.2. Phương trình chuẩn

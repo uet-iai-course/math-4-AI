@@ -26,6 +26,8 @@
     .d02-slide .card { padding: .34em .55em; }
     .d02-slide .card h3 { font-size: 1.16em; margin-bottom: .12em; }
     .d02-slide .model-statement .katex-display { margin: .16em 0 0; }
+    .reveal .slides section.l02-slide { font-size: .78em; }
+    .l02-slide .visual-short { max-height: 300px; }
     .result { border-left: 5px solid #16706a; background: #eef4f3; }
     .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72em; }
     .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .58em; }
@@ -193,7 +195,7 @@
         <aside class="notes">Nêu rõ $n$ là số mẫu và $d$ là số tham số, gồm hệ số chặn nếu cột đầu của $X$ toàn số một. Vector phần dư là $Xw-y$. Chuyển sang ý nghĩa hình học của tổng bình phương phần dư.</aside>
       </section>
 
-      <section data-slide-id="L02">
+      <section class="l02-slide" data-slide-id="L02">
         <h2>Bình phương nhỏ nhất</h2>
         <div class="split-6040">
           <img class="visual visual-short" src="img/lec-01/linear-regression-fit.svg" alt="Ba điểm dữ liệu, đường thẳng hồi quy và ba đoạn phần dư thẳng đứng" />
@@ -206,7 +208,8 @@
             </ul>
           </div>
         </div>
-        <aside class="notes">Các đoạn thẳng đứng trong hình là phần dư theo trục đầu ra, không phải khoảng cách vuông góc tới đường. Bình phương loại dấu và tạo một mục tiêu trơn. Dùng cùng ba điểm của hình để tính nghiệm chính xác ở trang sau.</aside>
+        <div class="check"><strong>Mô hình:</strong> bình phương nhỏ nhất là một lựa chọn chủ quan về cách đo sai số dự đoán.</div>
+        <aside class="notes">Các đoạn thẳng đứng trong hình là phần dư theo trục đầu ra, không phải khoảng cách vuông góc tới đường. Bình phương loại dấu và tạo một mục tiêu trơn. Dữ liệu không bắt buộc duy nhất cách đo sai số này. Dùng cùng ba điểm của hình để tính nghiệm chính xác ở trang sau.</aside>
       </section>
 
       <section data-slide-id="L03">
