@@ -395,3 +395,10 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - Reader, writer và reviewer chỉ đọc đoạn H03 trong một bản sao `deck.html`, không chứa `.env` hoặc `.env.*`. Reader dùng `task_profile=plan`, writer dùng `task_profile=write`, reviewer dùng `task_profile=recheck`; cả ba dùng `max_rounds=3`, `timeout=120`, `max_tokens=900`, `temperature=0`, `reasoning_effort=low`. Mỗi lượt hoàn tất sau 2 hoặc 3 vòng và reviewer kết luận `ĐẠT`.
 - Bằng chứng runtime của ba lượt: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`.
 - Kiểm định cấu trúc đạt 7 mạch, 37 trang và 37 ghi chú; H03 không tràn ở 1280 × 720 (`y=84,48`, `h=551,28`) hoặc 720 × 1280 (`y=485,02`, `h=310,10`), không có lỗi KaTeX hoặc ảnh hỏng. Ảnh 16:9 đã được quan sát trực tiếp.
+
+## Đổi tiêu đề H06 theo phép bảo toàn tính lồi
+
+- Theo yêu cầu ngày 2026-09-05, đổi tiêu đề H06 từ `Ghép các viên gạch lồi` thành `Các phép biến đổi giữ tính lồi` và đồng bộ tên trang trong storyboard. Hai quy tắc, công thức mất mát logistic, câu kết và ghi chú diễn giả giữ nguyên.
+- Reader, writer và reviewer chỉ đọc đoạn H06 trong `deck.html` cùng hàng H06 trong `storyboard.md`; lần lượt dùng `task_profile=plan`, `write`, `recheck`, cùng `max_rounds=3`, `timeout=120`, `max_tokens=900`, `temperature=0`, `reasoning_effort=low`. Mỗi lượt hoàn tất sau 2 hoặc 3 vòng; reviewer kết luận `ĐẠT`.
+- Bằng chứng runtime của ba lượt: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; thư mục tạm không chứa `.env` hoặc `.env.*`.
+- Kiểm định cấu trúc đạt 7 mạch, 37 trang và 37 ghi chú; H06 không tràn ở 1280 × 720 (`y=101,76`, `h=515,82`) hoặc 720 × 1280 (`y=495,01`, `h=290,15`), không có lỗi KaTeX hoặc ảnh hỏng. Ảnh 16:9 đã được quan sát trực tiếp.
