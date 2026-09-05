@@ -399,7 +399,7 @@ Các tập dùng trong bài:
 Hai quy tắc bảo toàn cần dùng là:
 
 1. giao của một họ tập lồi là lồi;
-2. nếu $D$ lồi thì ảnh ngược affine $\{x\mid Ax+b\in D\}$ là lồi.
+2. nếu $D$ lồi thì nghịch ảnh affine $\{x\mid Ax+b\in D\}$ là lồi.
 
 ::: proof
 Nếu $x,y\in\bigcap_jC_j$ thì $x,y\in C_j$ với mọi $j$. Do từng $C_j$ lồi,
@@ -410,7 +410,7 @@ $$
 
 với mọi $j$, nên tổ hợp này thuộc giao.
 
-Với ảnh ngược affine, nếu $Ax+b$ và $Ay+b$ thuộc $D$ thì
+Với nghịch ảnh affine, nếu $Ax+b$ và $Ay+b$ thuộc $D$ thì
 
 $$
 A(\theta x+(1-\theta)y)+b

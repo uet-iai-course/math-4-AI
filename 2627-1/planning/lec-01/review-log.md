@@ -313,3 +313,10 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - Đối chiếu bản tạm phát hiện `$z_\theta$` trong đối số shell đã bị diễn giải thành `$\theta$` trước khi tới worker. Không áp dụng hai câu sai; điều phối viên dùng bản đã duyệt với ký hiệu nguyên vẹn và từ đây chuyển công thức worker qua tệp ngữ cảnh thay vì đối số shell.
 - Reviewer đầu chỉ được cấp bản tóm tắt nên kết luận `CHƯA ĐẠT` do thiếu bằng chứng nguồn. Lượt tái kiểm đọc trực tiếp đúng đoạn F02–F03 và hàng storyboard; dùng `task_profile=recheck`, `max_rounds=4`, `timeout=120`, `max_tokens=2000`, `temperature=0`, `reasoning_effort=low`; kết luận `ĐẠT`. Các lượt hoàn tất có `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; thư mục tạm không chứa `.env` hoặc `.env.*`.
 - Kiểm định cấu trúc đạt 7 mạch, 37 trang, 37 ghi chú; F03 không tràn ở 1280 × 720 hoặc 720 × 1280, không có lỗi KaTeX hay ảnh hỏng. Ảnh 16:9 xác nhận cả hai ký hiệu $z_\theta$ hiển thị đúng.
+
+## Chuẩn hóa thuật ngữ nghịch ảnh affine ở F04
+
+- Theo yêu cầu ngày 2026-09-05, thay `Ảnh ngược affine` bằng `Nghịch ảnh affine` trên mặt F04, ghi chú diễn giả, hai vị trí trong ghi chú bài giảng và storyboard. Không đổi công thức hoặc mệnh đề bảo toàn tính lồi.
+- Writer chỉ đọc một đoạn của ba tệp tạm, cấm liệt kê/tìm kiếm; dùng `task_profile=write`, `max_rounds=5`, `timeout=120`, `max_tokens=1800`, `temperature=0`, `reasoning_effort=low`, hoàn tất sau 3 vòng. Reviewer đọc trực tiếp ba đoạn nguồn sau sửa với `task_profile=recheck`, `max_rounds=4`, `timeout=120`, `max_tokens=1800`, `temperature=0`, `reasoning_effort=low`; kết luận `ĐẠT`.
+- Hai lượt có `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; thư mục tạm không chứa `.env` hoặc `.env.*`.
+- Kiểm định cấu trúc đạt 7 mạch, 37 trang, 37 ghi chú; F04 không tràn ở 1280 × 720 hoặc 720 × 1280, không có lỗi KaTeX hay ảnh hỏng. Ảnh 16:9 đã được quan sát trực tiếp.
