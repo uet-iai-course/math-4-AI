@@ -11,27 +11,39 @@
   <link rel="stylesheet" href="plugin/highlight/monokai.css" />
   <link rel="stylesheet" href="lecture-style.css" />
   <style>
-    :root { --lec-primary: #2f3e7a; --lec-accent: #b15a2b; }
-    .reveal .slides section[data-slide-id] { font-size: .86em; }
+    :root { --lec-primary: #2f3e7a; --lec-accent: #b15a2b; --lec-ink: #172033; }
+    .reveal .slides section[data-slide-id] { font-size: .82em; }
     .reveal h1, .reveal h2, .reveal h3 { color: var(--lec-primary); }
-    .box { border-left: 5px solid var(--lec-accent); background: #f7efe6; padding: .55em .75em; border-radius: 8px; }
-    .check { border: 2px solid var(--lec-primary); background: #edf4ff; padding: .45em .65em; border-radius: 8px; }
-    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75em; }
-    .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6em; }
-    .card { border: 1px solid #d7dbe5; border-radius: 8px; padding: .5em .65em; }
-    .card h3 { margin: .1em 0 .25em; }
-    .card p { margin: .2em 0; }
+    .reveal h2 { margin-bottom: .45em; }
+    .box, .check, .result { padding: .52em .7em; border-radius: 8px; }
+    .box { border-left: 5px solid var(--lec-accent); background: #f7efe6; }
+    .check { border: 2px solid var(--lec-primary); background: #edf4ff; }
+    .result { border-left: 5px solid #16706a; background: #eef4f3; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72em; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .58em; }
+    .split-6040 { display: grid; grid-template-columns: 3fr 2fr; gap: .7em; align-items: center; }
+    .card { border: 1px solid #d7dbe5; border-radius: 8px; padding: .48em .62em; background: #fff; }
+    .card h3 { margin: .05em 0 .2em; }
+    .card p, .card ul { margin: .16em 0; }
     .math-large { font-size: 1.12em; text-align: center; }
-    .route { display: flex; align-items: stretch; gap: .35em; margin: .65em 0; }
-    .route .stage { flex: 1; border: 1px solid #d7dbe5; border-radius: 8px; padding: .45em; text-align: center; }
+    .math-mid { font-size: 1.02em; text-align: center; }
+    .route { display: flex; align-items: stretch; gap: .32em; margin: .58em 0; }
+    .route .stage { flex: 1; border: 1px solid #d7dbe5; border-radius: 8px; padding: .42em; text-align: center; }
     .route .arrow { align-self: center; color: var(--lec-accent); font-weight: 700; }
-    .reveal table { font-size: .82em; }
+    .visual { display: block; width: 100%; max-height: 410px; object-fit: contain; margin: .15em auto; }
+    .visual-short { max-height: 330px; }
+    .reveal .visual-compact { max-height: 210px; }
+    .compact-cards { font-size: .84em; }
+    .takeaway { margin-top: .45em; color: var(--lec-ink); font-weight: 650; }
+    .muted { color: #536077; }
+    .tight li { margin: .18em 0; }
+    .reveal table { width: 100%; font-size: 1em; }
     .reveal th { background: #f7efe6; }
+    .reveal td, .reveal th { padding: .27em .38em; }
+    .reveal .source-note { font-size: .76em; }
     @media (max-width: 800px) {
-      .reveal .slides section[data-slide-id] { font-size: .78em; }
-      .grid2, .grid3 { grid-template-columns: 1fr; }
-      .route { display: grid; grid-template-columns: 1fr; }
-      .route .arrow { transform: rotate(90deg); justify-self: center; }
+      .reveal .slides section[data-slide-id] { font-size: .82em; }
+      .visual { max-height: 360px; }
     }
   </style>
 </head>
@@ -45,251 +57,556 @@
         <h3>Bài 01 · Cơ sở toán học cho AI</h3>
         <p>Năm học 2026–2027 · Học kỳ 1</p>
         <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
-        <aside class="notes">Bài học bắt đầu bằng ba quyết định cụ thể, sau đó mới trừu tượng hóa thành ngôn ngữ tối ưu và cấu trúc lồi. Chuyển sang mục tiêu học tập và vấn đề trung tâm.</aside>
+        <div class="box"><strong>Tuyến học:</strong> ba bài toán cụ thể → khuôn tối ưu → công cụ lồi → chứng nhận.</div>
+        <aside class="notes">Bài học bắt đầu từ quyết định trong điều khiển và học máy. Các định nghĩa về tính lồi chỉ xuất hiện sau khi ba ca đã tạo ra những câu hỏi cần trả lời. Chuyển sang các sản phẩm học tập có thể quan sát.</aside>
       </section>
 
       <section data-slide-id="M02">
-        <h2>Mục tiêu và vấn đề trung tâm</h2>
+        <h2>Mục tiêu học tập</h2>
         <div class="grid2">
-          <div class="card"><h3>LLO1</h3><p>Hiểu các khái niệm cơ bản về tối ưu toán học, tối ưu lồi và ứng dụng.</p></div>
-          <div class="card"><h3>LLO2</h3><p>Trình bày khái niệm, tính chất của tập lồi, hàm lồi và áp dụng trong bài toán tối ưu.</p></div>
+          <div class="card"><h3>Lập mô hình</h3><p>Tách dữ kiện, biến quyết định, mục tiêu và miền khả thi.</p></div>
+          <div class="card"><h3>Nhận dạng</h3><p>Kiểm tra tính lồi của miền và mục tiêu.</p></div>
+          <div class="card"><h3>Chứng nhận</h3><p>Kết luận đúng về nghiệm toàn cục, sự tồn tại và tính duy nhất.</p></div>
+          <div class="card"><h3>Chuyển giao</h3><p>Áp dụng bảng kiểm cho một bài toán AI mới.</p></div>
         </div>
-        <div class="box"><strong>Vấn đề trung tâm:</strong> Từ một nhu cầu cụ thể, xây dựng mô hình và xác định điều kiện để nghiệm tìm được có giá trị toàn cục.</div>
-        <aside class="notes">Hai chuẩn đầu ra bài học cùng gắn với CLO1. Khung chi tiết sau này cần chuyển chúng thành các sản phẩm quan sát được: lập mô hình, nhận dạng tính lồi và phát biểu bảo đảm có điều kiện. Nguồn: đề cương UET.AI2012.</aside>
+        <p class="takeaway">Các sản phẩm này cụ thể hóa LLO1 và LLO2, cùng hỗ trợ CLO1.</p>
+        <aside class="notes">Yêu cầu sinh viên phân biệt hành động lập mô hình với hành động chứng minh tính chất của mô hình. Ba loại kết luận ở ô chứng nhận không đồng nghĩa với nhau. Chuyển sang vấn đề trung tâm và ba nhu cầu dẫn nhập.</aside>
       </section>
 
       <section data-slide-id="M03">
         <h2>Ba nhu cầu tối ưu</h2>
-        <p><strong>Thứ tự khảo sát trong bài:</strong></p>
         <div class="route">
-          <div class="stage"><strong>Điều khiển</strong><br />Chọn tác động để bám đích</div>
+          <div class="stage"><strong>Điều khiển</strong><br />Chọn tác động để bám đích trong giới hạn</div>
           <div class="arrow">→</div>
-          <div class="stage"><strong>Hồi quy tuyến tính</strong><br />Chọn tham số để khớp dữ liệu</div>
+          <div class="stage"><strong>Hồi quy tuyến tính</strong><br />Chọn tham số để khớp dữ liệu số</div>
           <div class="arrow">→</div>
           <div class="stage"><strong>Hồi quy logistic</strong><br />Chọn tham số để phân loại</div>
         </div>
-        <div class="check">Ba nhu cầu khác nhau sẽ được mô tả bằng cùng bốn thành phần: dữ kiện, biến, mục tiêu và ràng buộc.</div>
-        <aside class="notes">Đây là tuyến ứng dụng dẫn nhập. Khi phát triển chi tiết, mỗi ca cần một ví dụ số hoặc hình tự vẽ có thể kiểm tra. Bắt đầu với ca điều khiển một bước.</aside>
+        <div class="check"><strong>Vấn đề trung tâm:</strong> Mô hình được xây thế nào, và cần giả thiết nào để kết luận về nghiệm toàn cục, sự tồn tại và tính duy nhất?</div>
+        <aside class="notes">Ba ca được khảo sát theo thứ tự này, không phải vì ca sau là hệ quả của ca trước. Mỗi ca tạo ra một khoảng trống khác nhau: nghiệm biên, nghiệm có thể không duy nhất và cận dưới có thể không đạt. Bắt đầu bằng một quyết định vật lý chỉ có một biến.</aside>
       </section>
     </section>
 
     <section>
-      <section data-slide-id="U01">
-        <h2>Điều khiển một bước</h2>
-        <p>Trạng thái $x_0$ cần tiến gần đích $r$ bằng tác động $u$:</p>
-        <div class="math-large">$$x_1=x_0+u,\qquad \min_{|u|\le u_{\max}}(x_0+u-r)^2+\lambda u^2.$$</div>
-        <div class="box">Sai lệch bám đích và năng lượng điều khiển tạo thành một đánh đổi.</div>
-        <aside class="notes">Mô hình chỉ dùng một bước để tránh đưa động lực học nhiều bước vào trước khi người học có khuôn tối ưu. Khi bổ sung chi tiết, chọn một bộ số nhỏ và giải trực tiếp.</aside>
-      </section>
-
-      <section data-slide-id="U02">
-        <h2>Thành phần của ca điều khiển</h2>
+      <section data-slide-id="D01">
+        <h2>Bài toán điều khiển một bước</h2>
         <div class="grid2">
-          <div class="card"><h3>Dữ kiện</h3><p>$x_0,r\in\mathbb R$, $u_{\max}\ge0$, $\lambda\ge0$.</p></div>
-          <div class="card"><h3>Biến quyết định</h3><p>Tác động $u\in\mathbb R$.</p></div>
-          <div class="card"><h3>Mục tiêu</h3><p>Giảm sai lệch và chi phí năng lượng.</p></div>
-          <div class="card"><h3>Ràng buộc</h3><p>$|u|\le u_{\max}$.</p></div>
+          <div class="card">
+            <h3>Dữ kiện và động lực</h3>
+            <p>$x_0,r\in\mathbb R$, $u_{\max}\ge0$, $\lambda\ge0$</p>
+            <div class="math-mid">$$x_1=x_0+u$$</div>
+          </div>
+          <div class="card">
+            <h3>Quyết định và giới hạn</h3>
+            <p>Chọn $u\in\mathbb R$ sao cho</p>
+            <div class="math-mid">$$-u_{\max}\le u\le u_{\max}.$$</div>
+          </div>
         </div>
-        <aside class="notes">Tách tình huống thành bốn thành phần trước khi giới thiệu ký hiệu tổng quát. Dùng cùng bảng kiểm cho hai ca học máy tiếp theo.</aside>
+        <div class="box">Giá trị $u$ vừa thay đổi trạng thái kế tiếp, vừa tiêu tốn năng lượng điều khiển.</div>
+        <aside class="notes">Nêu kiểu của từng đại lượng trước khi dùng. $x_0$ và $r$ là dữ kiện; chỉ $u$ được phép thay đổi. Giới hạn biên độ là ràng buộc vật lý, không phải một hạng phạt. Chuyển sang cách lượng hóa hai yêu cầu cạnh tranh.</aside>
       </section>
 
-      <section data-slide-id="U03">
-        <h2>Hồi quy tuyến tính</h2>
-        <p>Chọn $w\in\mathbb R^d$ để dự đoán $Xw$ gần dữ liệu đích $y$:</p>
-        <div class="math-large">$$\min_{w\in\mathbb R^d}\|Xw-y\|_2^2.$$</div>
+      <section data-slide-id="D02">
+        <h2>Đánh đổi bám đích và năng lượng</h2>
+        <div class="split-6040">
+          <img class="visual visual-short" src="img/lec-01/one-step-control.svg" alt="Sơ đồ trạng thái x0 cộng tác động u tạo trạng thái x1, cùng hai hạng chi phí bám đích và năng lượng" />
+          <div>
+            <div class="math-mid">$$q(u)=\underbrace{(x_0+u-r)^2}_{\text{sai lệch bám đích}}+\underbrace{\lambda u^2}_{\text{năng lượng}}$$</div>
+            <ul class="tight">
+              <li>$\lambda$ lớn: hạn chế tác động mạnh.</li>
+              <li>$u_{\max}$ nhỏ: nghiệm dễ nằm trên biên.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="takeaway">Mô hình là $\min_{|u|\le u_{\max}}q(u)$.</p>
+        <aside class="notes">Hạng thứ nhất đo khoảng cách tới đích sau một bước; hạng thứ hai điều hòa độ lớn tác động. Không đồng nhất $\lambda$ với $u_{\max}$: một đại lượng đổi ưu tiên, đại lượng kia loại phương án không khả thi. Tiếp theo giải một bộ số cụ thể.</aside>
+      </section>
+
+      <section data-slide-id="D03">
+        <h2>Nghiệm của ca điều khiển</h2>
+        <p>Cho $x_0=0$, $r=3$, $\lambda=1/2$, $u_{\max}=1$.</p>
         <div class="grid2">
-          <div class="card"><h3>Dữ kiện</h3><p>$X\in\mathbb R^{n\times d}$, $y\in\mathbb R^n$.</p></div>
-          <div class="card"><h3>Biến quyết định</h3><p>$w\in\mathbb R^d$.</p></div>
-          <div class="card"><h3>Mục tiêu</h3><p>Tổng bình phương sai số.</p></div>
-          <div class="card"><h3>Miền khả thi</h3><p>$\mathbb R^d$; không có ràng buộc bổ sung.</p></div>
+          <div class="card">
+            <h3>Nghiệm tự do</h3>
+            <div class="math-mid">$$q'(u)=3u-6=0\quad\Longrightarrow\quad u_{\mathrm{free}}=2.$$</div>
+            <p class="muted">Điểm này vi phạm $|u|\le1$.</p>
+          </div>
+          <div class="card">
+            <h3>Nghiệm khả thi</h3>
+            <div class="math-mid">$$u^*=\operatorname{clip}(2,[-1,1])=1.$$</div>
+            <div class="math-mid">$$x_1=1,\qquad q(u^*)=\frac92.$$</div>
+          </div>
         </div>
-        <aside class="notes">Khi phát triển chi tiết, dùng một bộ dữ liệu nhỏ để người học tính được mất mát của hai phương án. Nguồn nền: Boyd và Vandenberghe (2004), Chương 1.</aside>
+        <p class="muted"><strong>clip</strong>: giữ $z$ nếu $z$ thuộc đoạn; nếu không, thay bằng cận gần nhất.</p>
+        <div class="result">Giới hạn tác động quyết định nghiệm, dù đích $r=3$ chưa đạt sau một bước.</div>
+        <aside class="notes">Có thể viết $q(u)=\tfrac32u^2-6u+9$ để kiểm tra đạo hàm. Quy tắc clip ở đây đúng vì mục tiêu bậc hai một biến có đáy duy nhất; phần lý thuyết sau sẽ chứng nhận điều đó. Chuyển sang kiểm tra dấu đạo hàm tại nghiệm biên.</aside>
       </section>
 
-      <section data-slide-id="U04">
-        <h2>Hồi quy logistic</h2>
-        <p>Với $a_i\in\mathbb R^d$, $y_i\in\{-1,1\}$, chọn $w\in\mathbb R^d$ để giảm mất mát phân loại:</p>
-        <div class="math-large">$$\min_{w\in\mathbb R^d}\sum_{i=1}^{n}\log\!\left(1+e^{-y_i a_i^T w}\right).$$</div>
-        <p><strong>Miền khả thi:</strong> $\mathbb R^d$; không có giới hạn bổ sung.</p>
-        <div class="box">Ở bước này chỉ lập mô hình; tính lồi của mục tiêu sẽ được chứng nhận sau.</div>
-        <aside class="notes">Giữ ký hiệu $a_i,y_i,w$ cho phần hàm lồi; $a_i^T$ đóng vai trò một hàng dữ liệu tương tự hàng thứ $i$ của $X$ ở hồi quy tuyến tính. Khi bổ sung chi tiết, giải thích biên có dấu $y_i a_i^T w$ bằng một ví dụ hai điểm trước khi xét đạo hàm.</aside>
+      <section data-slide-id="D04">
+        <h2>Nghiệm tối ưu trên biên</h2>
+        <div class="check"><strong>Câu hỏi:</strong> Tại $u^*=1$, ta có $q'(1)=-3\ne0$. Vì sao $u^*$ vẫn có thể là nghiệm tối ưu trên $[-1,1]$?</div>
+        <div class="grid2">
+          <div class="card"><h3>Hướng được phép</h3><p>Từ $u=1$, mọi dịch chuyển khả thi đủ nhỏ đều có $\Delta u\le0$.</p></div>
+          <div class="card"><h3>Biến thiên bậc nhất</h3><p>$q'(1)=-3<0$ và $\Delta u\le0$, nên $q'(1)\Delta u\ge0$.</p></div>
+        </div>
+        <p class="takeaway">Điều kiện đạo hàm bằng không chỉ áp dụng trực tiếp cho nghiệm nằm trong miền trong.</p>
+        <aside class="notes">Đáp án: tại biên phải, hướng làm giảm $u$ là hướng khả thi duy nhất; với $q'(1)=-3$, dịch chuyển âm làm giá trị tăng ở bậc nhất. Không kết luận từ đạo hàm bằng không khi nghiệm chịu ràng buộc. Chuyển từ một biến điều khiển sang nhiều tham số học từ dữ liệu.</aside>
+      </section>
+    </section>
+
+    <section>
+      <section data-slide-id="L01">
+        <h2>Học đường thẳng từ dữ liệu</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Dữ liệu</h3>
+            <p>$X\in\mathbb R^{n\times d}$, $y\in\mathbb R^n$</p>
+            <p>Hàng $x_i^T$ chứa đặc trưng của mẫu $i$.</p>
+          </div>
+          <div class="card">
+            <h3>Tham số cần học</h3>
+            <p>$w\in\mathbb R^d$</p>
+            <p>Dự đoán: $\widehat y=Xw$.</p>
+          </div>
+        </div>
+        <div class="math-large">$$\min_{w\in\mathbb R^d}J(w),\qquad J(w)=\lVert Xw-y\rVert_2^2.$$</div>
+        <p class="takeaway">Tối ưu biến việc “khớp dữ liệu” thành một quy tắc chọn tham số.</p>
+        <aside class="notes">Nêu rõ $n$ là số mẫu và $d$ là số tham số, gồm hệ số chặn nếu cột đầu của $X$ toàn số một. Vector phần dư là $Xw-y$. Chuyển sang ý nghĩa hình học của tổng bình phương phần dư.</aside>
+      </section>
+
+      <section data-slide-id="L02">
+        <h2>Bình phương nhỏ nhất</h2>
+        <div class="split-6040">
+          <img class="visual visual-short" src="img/lec-01/linear-regression-fit.svg" alt="Ba điểm dữ liệu, đường thẳng hồi quy và ba đoạn phần dư thẳng đứng" />
+          <div>
+            <div class="math-mid">$$J(w)=\sum_{i=1}^{n}(x_i^Tw-y_i)^2.$$</div>
+            <ul class="tight">
+              <li>Mỗi phần dư được bình phương.</li>
+              <li>Phần dư lớn chịu phạt mạnh hơn.</li>
+              <li>Không có ràng buộc bổ sung: $w\in\mathbb R^d$.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Các đoạn thẳng đứng trong hình là phần dư theo trục đầu ra, không phải khoảng cách vuông góc tới đường. Bình phương loại dấu và tạo một mục tiêu trơn. Dùng cùng ba điểm của hình để tính nghiệm chính xác ở trang sau.</aside>
+      </section>
+
+      <section data-slide-id="L03">
+        <h2>Ví dụ hồi quy tuyến tính</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Dữ kiện</h3>
+            <div class="math-mid">$$X=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix},\qquad y=\begin{bmatrix}1\\2\\2\end{bmatrix}.$$</div>
+            <p>Giải $X^TXw=X^Ty$.</p>
+          </div>
+          <div class="card">
+            <h3>Kết quả</h3>
+            <div class="math-mid">$$w^*=\begin{bmatrix}7/6\\1/2\end{bmatrix},\quad Xw^*-y=\begin{bmatrix}1/6\\-1/3\\1/6\end{bmatrix}.$$</div>
+            <div class="math-mid">$$J(w^*)=\frac16.$$</div>
+          </div>
+        </div>
+        <div class="result">Các phần dư có tổng bằng $0$ vì mô hình chứa hệ số chặn.</div>
+        <aside class="notes">Kiểm tra $X^TX=\begin{bmatrix}3&3\\3&5\end{bmatrix}$ và $X^Ty=(5,6)^T$. Tổng phần dư bằng không là hệ quả của phương trình chuẩn ứng với cột toàn số một; đây không phải tính chất của mọi mô hình hồi quy. Chuyển sang vai trò của hạng ma trận thiết kế.</aside>
+      </section>
+
+      <section data-slide-id="L04">
+        <h2>Hạng của ma trận thiết kế</h2>
+        <div class="check"><strong>Câu hỏi:</strong> Nếu thêm một cột của $X$ trùng hệt cột thứ hai, giá trị dự đoán tối ưu có đổi không? Vector tham số tối ưu còn duy nhất không?</div>
+        <div class="grid2">
+          <div class="card"><h3>Dự đoán</h3><p>Có thể giữ nguyên bằng cách chia cùng một hệ số cho hai cột trùng nhau.</p></div>
+          <div class="card"><h3>Tham số</h3><p>Nhiều cặp hệ số tạo cùng $Xw$, nên $w$ không còn được xác định duy nhất.</p></div>
+        </div>
+        <p class="takeaway">Một bài toán có thể đạt cùng giá trị tốt nhất tại nhiều nghiệm.</p>
+        <aside class="notes">Đáp án: không gian cột của $X$ không đổi nên dự đoán tối ưu và giá trị tối ưu không đổi; không gian không của ma trận mở rộng trở nên khác không nên tham số không duy nhất. Phần lý thuyết sẽ nối điều kiện đủ hạng với độ cong. Chuyển sang dự đoán nhãn nhị phân.</aside>
+      </section>
+    </section>
+
+    <section>
+      <section data-slide-id="G01">
+        <h2>Phân loại bằng biên có dấu</h2>
+        <p>Với $a_i\in\mathbb R^d$ và $y_i\in\{-1,+1\}$, mô hình cho điểm số $a_i^Tw$.</p>
+        <div class="math-large">$$m_i=y_i a_i^Tw$$</div>
+        <div class="grid3">
+          <div class="card"><h3>$m_i>0$</h3><p>Dấu dự đoán khớp nhãn.</p></div>
+          <div class="card"><h3>$m_i=0$</h3><p>Mẫu nằm trên biên quyết định.</p></div>
+          <div class="card"><h3>$m_i<0$</h3><p>Dấu dự đoán sai nhãn.</p></div>
+        </div>
+        <p class="takeaway">Biên có dấu gom đặc trưng, nhãn và tham số vào một đại lượng cần tăng.</p>
+        <aside class="notes">Không nhầm $a_i$ với hàng $x_i$ của hồi quy tuyến tính: ký hiệu khác để nhấn mạnh đây là ca phân loại, dù đều là vector đặc trưng. Tích $y_i a_i^Tw$ lớn và dương biểu thị phân loại đúng với độ tin cậy cao hơn. Chuyển sang hàm phạt cho biên có dấu.</aside>
+      </section>
+
+      <section data-slide-id="G02">
+        <h2>Mất mát logistic</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Mất mát một mẫu</h3>
+            <div class="math-mid">$$\ell(m)=\log(1+e^{-m})$$</div>
+            <p>$m$ tăng thì $\ell(m)$ giảm.</p>
+          </div>
+          <div class="card">
+            <h3>Mục tiêu học tham số</h3>
+            <div class="math-mid">$$L(w)=\sum_{i=1}^{n}\ell(y_i a_i^Tw)$$</div>
+            <p>Biến quyết định: $w\in\mathbb R^d$.</p>
+          </div>
+        </div>
+        <div class="box">Mô hình cơ sở không có ràng buộc bổ sung: $\min_{w\in\mathbb R^d}L(w)$.</div>
+        <aside class="notes">Hàm mất mát luôn dương với biên hữu hạn và tiến về không khi biên tiến ra dương vô cùng. Việc mỗi hạng giảm không có nghĩa tổng luôn đạt giá trị nhỏ nhất tại một vector hữu hạn. Trang sau cung cấp phản ví dụ tính được.</aside>
+      </section>
+
+      <section data-slide-id="G03">
+        <h2>Dữ liệu tách tuyến tính</h2>
+        <div class="split-6040">
+          <img class="visual" src="img/lec-01/logistic-loss-convex-case.svg" alt="Hai mẫu một chiều được phân loại đúng hơn khi w tăng và đồ thị mất mát logistic tiến gần không nhưng không chạm không" />
+          <div>
+            <p>Hai mẫu: $(a_1,y_1)=(1,+1)$, $(a_2,y_2)=(-1,-1)$.</p>
+            <div class="math-mid">$$L(w)=2\log(1+e^{-w}).$$</div>
+            <table>
+              <thead><tr><th>$w$</th><th>$L(w)$</th></tr></thead>
+              <tbody><tr><td>0</td><td>1,386</td></tr><tr><td>1</td><td>0,627</td></tr><tr><td>2</td><td>0,254</td></tr><tr><td>4</td><td>0,036</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="result">$\inf_{w\in\mathbb R}L(w)=0$, nhưng $L(w)>0$ với mọi $w$ hữu hạn.</div>
+        <aside class="notes">Cả hai biên có dấu đều bằng $w$, nên tăng $w$ làm cả hai mất mát giảm. Giá trị 0 là cận dưới đúng nhưng không phải giá trị nhỏ nhất, vì hàm logarit luôn dương tại mọi $w$ hữu hạn. Đây là ca chính dùng miền $\mathbb R$, khác bản SVG cũ từng đặt thêm đoạn $[-1,1]$. Chuyển sang phân biệt dãy điểm tốt dần với nghiệm.</aside>
+      </section>
+
+      <section data-slide-id="G04">
+        <h2>Giá trị tốt dần và sự tồn tại nghiệm</h2>
+        <div class="check"><strong>Câu hỏi:</strong> Dãy $w_k=k$ làm $L(w_k)\to0$. Dữ kiện này có đủ để gọi một $w_k$ là nghiệm tối ưu không?</div>
+        <div class="grid2">
+          <div class="card"><h3>Dãy tối ưu hóa</h3><p>Các giá trị tiến gần cận dưới tùy ý.</p></div>
+          <div class="card"><h3>Nghiệm tối ưu</h3><p>Phải là một điểm hữu hạn đạt đúng cận dưới.</p></div>
+        </div>
+        <p class="takeaway">Một mục tiêu có thể có cận dưới hữu hạn nhưng không có nghiệm.</p>
+        <aside class="notes">Đáp án: không. Với mọi $k$ hữu hạn, chọn $k+1$ cho giá trị nhỏ hơn, nên không phần tử nào của dãy là nghiệm. Ba ca đến đây đã tạo ba câu hỏi: xử lý nghiệm biên, điều kiện duy nhất và điều kiện tồn tại. Chuyển sang khuôn chung để gọi tên các thành phần.</aside>
       </section>
     </section>
 
     <section>
       <section data-slide-id="T01">
         <h2>Khuôn bài toán tối ưu</h2>
-        <div class="math-large">$$\min_{x\in C} f_0(x).$$</div>
-        <div class="grid3">
-          <div class="card"><h3>$x$</h3><p>Biến quyết định.</p></div>
-          <div class="card"><h3>$f_0$</h3><p>Thước đo chất lượng.</p></div>
-          <div class="card"><h3>$C$</h3><p>Miền khả thi.</p></div>
+        <div class="split-6040">
+          <img class="visual" src="img/lec-01/optimization-model-anatomy.svg" alt="Sơ đồ dữ kiện đi vào biến quyết định, hàm mục tiêu, ràng buộc và tập khả thi để tạo nghiệm tối ưu" />
+          <div>
+            <div class="math-large">$$\underset{x\in C}{\operatorname{minimize}}\; f_0(x)$$</div>
+            <ul class="tight">
+              <li>$x\in\mathbb R^d$: biến quyết định.</li>
+              <li>$f_0:C\to\mathbb R$: hàm mục tiêu.</li>
+              <li>$C\subseteq\mathbb R^d$: miền khả thi.</li>
+            </ul>
+          </div>
         </div>
-        <aside class="notes">Chỉ đưa khuôn tổng quát sau khi ba ca đã xác lập ý nghĩa của từng thành phần. Nguồn: MIT 6.079, Bài giảng 1; Boyd và Vandenberghe (2004), Mục 1.1.</aside>
+        <aside class="notes">Khuôn tổng quát xuất hiện sau ba ví dụ để mỗi ký hiệu đã có một đối tượng cụ thể. Dữ kiện xác định $f_0$ và $C$ nhưng không phải biến mà mô hình được phép chọn. Nguồn ý tưởng: MIT 6.079, lec01, trang 1-2; hình được vẽ lại cục bộ.</aside>
       </section>
 
       <section data-slide-id="T02">
         <h2>Ánh xạ ba ca vào khuôn chung</h2>
         <table>
-          <thead><tr><th>Ca</th><th>Biến</th><th>Mục tiêu</th><th>Miền khả thi</th></tr></thead>
+          <thead><tr><th>Ca</th><th>Biến $x$</th><th>Mục tiêu $f_0$</th><th>Miền $C$</th></tr></thead>
           <tbody>
-            <tr><td>Điều khiển</td><td>$u$</td><td>Bám đích và năng lượng</td><td>$[-u_{\max},u_{\max}]$</td></tr>
-            <tr><td>Hồi quy tuyến tính</td><td>$w$</td><td>$\|Xw-y\|_2^2$</td><td>$\mathbb R^d$</td></tr>
-            <tr><td>Hồi quy logistic</td><td>$w$</td><td>Tổng mất mát logistic</td><td>$\mathbb R^d$</td></tr>
+            <tr><td>Điều khiển</td><td>$u\in\mathbb R$</td><td>$(x_0+u-r)^2+\lambda u^2$</td><td>$[-u_{\max},u_{\max}]$</td></tr>
+            <tr><td>Hồi quy tuyến tính</td><td>$w\in\mathbb R^d$</td><td>$\lVert Xw-y\rVert_2^2$</td><td>$\mathbb R^d$</td></tr>
+            <tr><td>Hồi quy logistic</td><td>$w\in\mathbb R^d$</td><td>$\sum_i\log(1+e^{-y_i a_i^Tw})$</td><td>$\mathbb R^d$</td></tr>
           </tbody>
         </table>
-        <aside class="notes">Bảng này là điểm kiểm tra mô hình hóa: dữ kiện không được nhầm với biến quyết định. Sau khuôn chung, cần làm rõ từ “tốt nhất” theo nghĩa địa phương hay toàn cục.</aside>
+        <div class="box">Cùng một ký hiệu trừu tượng có thể biểu diễn tác động điều khiển hoặc tham số của mô hình học máy.</div>
+        <aside class="notes">Đọc theo từng cột thay vì từng hàng để nhấn mạnh khuôn chung. Hai ca hồi quy có cùng miền nhưng khác mục tiêu và khác câu hỏi về nghiệm. Chuyển sang phân biệt bốn loại thông tin mà lời giải có thể cung cấp.</aside>
       </section>
 
       <section data-slide-id="T03">
-        <h2>Cực tiểu địa phương và toàn cục</h2>
+        <h2>Bốn loại kết luận</h2>
         <div class="grid2">
-          <div class="card"><h3>Địa phương</h3><p>Tồn tại lân cận $N$ của $x^\star$ sao cho $f_0(x^\star)\le f_0(z)$ với mọi $z\in C\cap N$.</p></div>
-          <div class="card"><h3>Toàn cục</h3><p>$f_0(x^\star)\le f_0(z)$ với mọi $z\in C$.</p></div>
+          <div class="card"><h3>Khả thi</h3><p>$x\in C$; chưa so sánh giá trị mục tiêu.</p></div>
+          <div class="card"><h3>Giá trị tốt nhất</h3><p>$p^*=\inf_{x\in C}f_0(x)$; cận dưới có thể không đạt.</p></div>
+          <div class="card"><h3>Tồn tại</h3><p>Có $x^*\in C$ sao cho $f_0(x^*)=p^*$.</p></div>
+          <div class="card"><h3>Duy nhất</h3><p>Tập nghiệm chỉ gồm một điểm.</p></div>
         </div>
-        <div class="check">Một thuật toán dừng tại điểm địa phương chưa tự tạo ra chứng nhận toàn cục.</div>
-        <aside class="notes">Khi điền chi tiết, thêm một hình tự vẽ đối chiếu hai loại cực tiểu và nêu rõ lân cận phải giao với miền khả thi.</aside>
+        <p class="takeaway">Một chứng nhận đúng phải nói rõ đang bảo đảm kết luận nào.</p>
+        <aside class="notes">Liên hệ G03: $p^*=0$ tồn tại như một số nhưng không có $w^*$ đạt nó. Liên hệ L04: có thể tồn tại nghiệm nhưng không duy nhất. Chuyển sang danh sách công cụ cần xây để trả lời có điều kiện.</aside>
       </section>
 
       <section data-slide-id="T04">
-        <h2>Nhu cầu về cấu trúc lồi</h2>
-        <p>Cần một cấu trúc đủ để chuyển kết luận địa phương thành kết luận toàn cục.</p>
+        <h2>Các chứng nhận cần có</h2>
         <div class="route">
-          <div class="stage">Miền khả thi<br /><strong>có cấu trúc</strong></div>
-          <div class="arrow">và</div>
-          <div class="stage">Mục tiêu<br /><strong>có cấu trúc</strong></div>
+          <div class="stage"><strong>Miền</strong><br />Đoạn nối hai điểm khả thi có còn khả thi?</div>
           <div class="arrow">→</div>
-          <div class="stage">Chứng nhận<br /><strong>toàn cục</strong></div>
+          <div class="stage"><strong>Mục tiêu</strong><br />Giá trị trên đoạn được khống chế thế nào?</div>
+          <div class="arrow">→</div>
+          <div class="stage"><strong>Nghiệm</strong><br />Toàn cục, tồn tại và duy nhất cần giả thiết nào?</div>
         </div>
-        <div class="box">Nếu $C$ lồi và $f_0$ lồi trên $C$, mọi cực tiểu địa phương của $f_0$ trên $C$ đều là cực tiểu toàn cục.</div>
-        <aside class="notes">Không dùng kết luận địa phương–toàn cục trước khi phát biểu đủ giả thiết. Trang này chỉ tạo nhu cầu cho hai khái niệm lồi.</aside>
+        <div class="check"><strong>Câu hỏi:</strong> Ca logistic ở G03 thiếu bảo đảm nào, dù mục tiêu có dạng trơn và giảm đều?</div>
+        <aside class="notes">Đáp án ngắn: thiếu sự tồn tại của một điểm hữu hạn đạt cận dưới. Không gọi tính trơn là điều kiện đủ cho tồn tại. Bước đầu của chương trình chứng nhận là kiểm tra cấu trúc hình học của miền khả thi.</aside>
       </section>
     </section>
 
     <section>
       <section data-slide-id="F01">
-        <h2>Trực giác về tập lồi</h2>
-        <p>Trước hết, làm rõ giả thiết “miền $C$ lồi” đã dùng ở mạch trước.</p>
-        <div class="grid2">
-          <div class="card"><h3>Chọn hai phương án</h3><p>$x,y\in C$.</p></div>
-          <div class="card"><h3>Trộn hai phương án</h3><p>Toàn bộ đoạn nối vẫn thuộc $C$.</p></div>
+        <h2>Đoạn nối giữa hai phương án</h2>
+        <div class="split-6040">
+          <img class="visual" src="img/lec-01/convex-set-and-combination.svg" alt="So sánh một tập chứa toàn bộ đoạn nối hai điểm với một tập có đoạn nối đi ra ngoài" />
+          <div>
+            <p>Chọn hai phương án $x,y\in C$.</p>
+            <div class="math-mid">$$z_\theta=\theta x+(1-\theta)y,\qquad 0\le\theta\le1.$$</div>
+            <p>$z_\theta$ là điểm nằm trên đoạn nối $x$ và $y$.</p>
+          </div>
         </div>
-        <aside class="notes">Khi phát triển chi tiết, bổ sung một cặp hình tập lồi và không lồi có văn bản thay thế. Trực giác này chuẩn bị cho lượng từ trong định nghĩa.</aside>
+        <p class="takeaway">Miền lồi giữ mọi phương án nội suy trên đoạn ở trong miền.</p>
+        <aside class="notes">Trực giác ở đây là tính khép kín theo đoạn thẳng, không phải tập phải tròn hoặc bị chặn. Hình bên phải cung cấp phản ví dụ khi một phần đoạn nối đi ra ngoài tập. Nguồn nội dung: MIT 6.079, lec02, trang 2-3; hình được vẽ lại cục bộ.</aside>
       </section>
 
       <section data-slide-id="F02">
         <h2>Định nghĩa tập lồi</h2>
-        <p>Tập $C\subseteq\mathbb R^d$ là lồi nếu</p>
-        <div class="math-large">$$ (1-\theta)x+\theta y\in C,\qquad \forall x,y\in C,\ \forall\theta\in[0,1]. $$</div>
-        <aside class="notes">Giữ đủ hai lượng từ và miền của $\theta$. Nguồn: Boyd và Vandenberghe (2004), Mục 2.1; MIT 6.079, Bài giảng 2.</aside>
+        <div class="box"><strong>Định nghĩa.</strong> Tập $C\subseteq\mathbb R^d$ là lồi nếu
+          $$\theta x+(1-\theta)y\in C$$
+          với mọi $x,y\in C$ và mọi $\theta\in[0,1]$.
+        </div>
+        <div class="grid2">
+          <div class="card"><h3>Hai điểm bất kỳ</h3><p>Phải kiểm tra mọi cặp điểm trong tập.</p></div>
+          <div class="card"><h3>Mọi hệ số</h3><p>Phải kiểm tra toàn bộ $\theta\in[0,1]$.</p></div>
+        </div>
+        <aside class="notes">Nhấn mạnh thứ tự lượng từ: với mọi cặp điểm trong tập, rồi với mọi hệ số trong đoạn đơn vị. Kiểm tra trung điểm chưa đủ nếu không có thêm giả thiết như tính đóng phù hợp. Nguồn: MIT 6.079, lec02, trang 2-3. Chuyển sang các tập xuất hiện trực tiếp trong ba ca.</aside>
       </section>
 
       <section data-slide-id="F03">
-        <h2>Các tập lồi chuẩn</h2>
-        <div class="grid3">
-          <div class="card"><h3>Affine</h3><p>Đường thẳng, siêu phẳng.</p></div>
-          <div class="card"><h3>Khoảng cách</h3><p>Quả cầu chuẩn.</p></div>
-          <div class="card"><h3>Bất đẳng thức tuyến tính</h3><p>Nửa không gian, đa diện.</p></div>
+        <h2>Các tập lồi dùng trong ba ca</h2>
+        <div class="grid2">
+          <div class="card"><h3>Toàn không gian</h3><p>$\mathbb R^d$</p><p>Mọi tổ hợp lồi vẫn thuộc $\mathbb R^d$.</p></div>
+          <div class="card"><h3>Đoạn và hộp</h3><p>$[a,b]$; $l\le x\le u$</p><p>Từng tọa độ nằm giữa hai cận.</p></div>
+          <div class="card"><h3>Tập affine</h3><p>$\{x\mid Ax=b\}$</p><p>Đẳng thức được bảo toàn khi lấy tổ hợp affine.</p></div>
+          <div class="card"><h3>Nửa không gian</h3><p>$\{x\mid a^Tx\le b\}$</p><p>Bất đẳng thức tuyến tính được bảo toàn.</p></div>
         </div>
-        <aside class="notes">Đây mới là danh mục khung. Vòng chi tiết cần thêm định nghĩa, kiểu đại lượng và ít nhất một phản ví dụ phù hợp với ba ca ứng dụng.</aside>
+        <p class="takeaway">Miền của ba ca chỉ cần toàn không gian và một đoạn; hai dạng còn lại phục vụ bài chuyển giao.</p>
+        <aside class="notes">Không mở rộng sang nón, bao lồi hoặc nón nửa xác định dương trong Bài 01. Với hộp, bất đẳng thức được hiểu theo từng tọa độ. Nguồn: MIT 6.079, lec02, các trang 2-4 đến 2-6. Chuyển sang hai quy tắc xây miền lồi phức hơn.</aside>
       </section>
 
       <section data-slide-id="F04">
-        <h2>Phép bảo toàn tính lồi của tập</h2>
+        <h2>Xây miền lồi từ các tập đơn giản</h2>
         <div class="grid2">
-          <div class="card"><h3>Giao</h3><p>Giao tùy ý của các tập lồi là lồi.</p></div>
-          <div class="card"><h3>Ánh xạ affine</h3><p>Ảnh và nghịch ảnh affine bảo toàn tính lồi.</p></div>
+          <div class="card">
+            <h3>Giao</h3>
+            <p>Nếu mọi $C_j$ lồi thì $\bigcap_j C_j$ lồi.</p>
+            <p class="muted">Dùng để ghép nhiều ràng buộc.</p>
+          </div>
+          <div class="card">
+            <h3>Ảnh ngược affine</h3>
+            <p>Nếu $D$ lồi thì $\{x\mid Ax+b\in D\}$ lồi.</p>
+            <p class="muted">Dùng khi ràng buộc áp lên đại lượng dẫn xuất.</p>
+          </div>
         </div>
-        <aside class="notes">Vòng chi tiết cần chứng minh ngắn phép giao và minh họa nghịch ảnh affine. Nguồn: Boyd và Vandenberghe (2004), Mục 2.3.</aside>
+        <div class="math-mid">$$[-u_{\max},u_{\max}]=\{u\mid u\le u_{\max}\}\cap\{u\mid -u\le u_{\max}\}.$$</div>
+        <aside class="notes">Ý tưởng chứng minh cho giao: đoạn nối thuộc từng tập thành phần nên thuộc giao. Với ảnh ngược affine, ánh xạ của tổ hợp lồi bằng tổ hợp lồi của hai ảnh. Nguồn: MIT 6.079, lec02, trang 2-11 đến 2-13. Chuyển sang kiểm tra miền của ba ca.</aside>
       </section>
 
       <section data-slide-id="F05">
-        <h2>Miền khả thi của ba ca</h2>
+        <h2>Kiểm tra miền của ba ca</h2>
+        <div class="check"><strong>Câu hỏi:</strong> Điền căn cứ chứng nhận tính lồi cho từng miền khả thi.</div>
         <table>
-          <thead><tr><th>Ca</th><th>Miền</th><th>Căn cứ lồi</th></tr></thead>
+          <thead><tr><th>Ca</th><th>Miền</th><th>Căn cứ</th></tr></thead>
           <tbody>
-            <tr><td>Điều khiển</td><td>$[-u_{\max},u_{\max}]$</td><td>Khoảng</td></tr>
+            <tr><td>Điều khiển</td><td>$[-u_{\max},u_{\max}]$</td><td>Giao của hai nửa không gian trên $\mathbb R$</td></tr>
             <tr><td>Hồi quy tuyến tính</td><td>$\mathbb R^d$</td><td>Toàn không gian</td></tr>
             <tr><td>Hồi quy logistic</td><td>$\mathbb R^d$</td><td>Toàn không gian</td></tr>
           </tbody>
         </table>
-        <div class="check">Miền đã được chứng nhận; bước còn lại là kiểm tra hàm mục tiêu.</div>
-        <aside class="notes">Trang này quay lại đúng ba ca dẫn nhập. Không suy ra bài toán lồi chỉ từ miền lồi; cần tiếp tục với hàm lồi.</aside>
+        <p class="takeaway">Miền lồi hoàn thành nửa đầu của chứng nhận; mục tiêu vẫn cần được kiểm tra.</p>
+        <aside class="notes">Cho sinh viên tự điền cột căn cứ trước khi hiện đáp án. Với $u_{\max}\ge0$, đoạn điều khiển không rỗng; điều kiện không rỗng sẽ cần khi nói về nghiệm. Chuyển từ hình học của miền sang độ cong của hàm mục tiêu.</aside>
       </section>
-    </section>
 
-    <section>
       <section data-slide-id="H01">
-        <h2>Trực giác về hàm lồi</h2>
-        <div class="box">Giá trị trên đoạn nối không vượt quá giá trị nội suy tuyến tính ở hai đầu.</div>
-        <p>Hình học: đồ thị nằm dưới dây nối hai điểm trên đồ thị.</p>
-        <aside class="notes">Khi phát triển chi tiết, vẽ một hàm lồi và một phản ví dụ trên cùng hệ trục. Trực giác chuẩn bị cho bất đẳng thức định nghĩa.</aside>
+        <h2>Dây cung và đồ thị hàm</h2>
+        <div class="split-6040">
+          <img class="visual" src="img/lec-01/convex-concave-strict.svg" alt="Các đồ thị minh họa dây cung nằm trên đồ thị của hàm cong lên và trường hợp không thỏa quan hệ này" />
+          <div>
+            <p>Với $x,y\in C$ và $0\le\theta\le1$:</p>
+            <div class="math-mid">$$z=\theta x+(1-\theta)y.$$</div>
+            <p>So sánh $f(z)$ với trung bình có trọng số của $f(x)$ và $f(y)$.</p>
+          </div>
+        </div>
+        <p class="takeaway">Độ cong phù hợp giữ đồ thị không vượt lên trên dây cung.</p>
+        <aside class="notes">Hình chỉ tạo trực giác; phát biểu chính xác cần cả miền $C$ lồi và bất đẳng thức cho mọi cặp điểm. Không dùng màu làm dấu hiệu duy nhất: vị trí của dây cung và đồ thị mang thông tin. Nguồn: MIT 6.079, lec03, trang 3-2 đến 3-4; hình được vẽ lại cục bộ.</aside>
       </section>
 
       <section data-slide-id="H02">
         <h2>Định nghĩa hàm lồi</h2>
-        <p>Hàm $f:C\to\mathbb R$ trên tập lồi $C$ là lồi nếu</p>
-        <div class="math-large">$$ f((1-\theta)x+\theta y)\le(1-\theta)f(x)+\theta f(y) $$</div>
-        <p>với mọi $x,y\in C$ và $\theta\in[0,1]$.</p>
-        <aside class="notes">Nêu miền lồi trước bất đẳng thức và phân biệt “hàm lồi” với “đồ thị lồi”. Nguồn: Boyd và Vandenberghe (2004), Mục 3.1; MIT 6.079, Bài giảng 3.</aside>
+        <div class="box"><strong>Định nghĩa.</strong> Cho $C\subseteq\mathbb R^d$ lồi. Hàm $f:C\to\mathbb R$ là lồi nếu
+          $$f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$$
+          với mọi $x,y\in C$ và $\theta\in[0,1]$.
+        </div>
+        <p><strong>Lồi chặt (còn gọi là lồi nghiêm ngặt):</strong> dấu bất đẳng thức là nghiêm với $x\ne y$ và $\theta\in(0,1)$.</p>
+        <aside class="notes">Miền xác định lồi là một phần của định nghĩa. Lồi chặt loại trừ đoạn thẳng trên đồ thị giữa hai điểm phân biệt nhưng chưa bảo đảm hàm đạt giá trị nhỏ nhất. Nguồn: MIT 6.079, lec03, trang 3-2. Chuyển sang hệ quả toàn cục của bất đẳng thức này.</aside>
       </section>
 
       <section data-slide-id="H03">
-        <h2>Bình phương và mất mát logistic</h2>
-        <div class="grid2">
-          <div class="card"><h3>Hồi quy tuyến tính</h3><p>$w\mapsto\|Xw-y\|_2^2$.</p></div>
-          <div class="card"><h3>Hồi quy logistic</h3><p>$s=y_i a_i^T w$; $s\mapsto\log(1+e^{-s})$.</p></div>
+        <h2>Cực tiểu địa phương là toàn cục</h2>
+        <div class="split-6040">
+          <img class="visual visual-short" src="img/lec-01/local-versus-global-minimum.svg" alt="So sánh đồ thị không lồi có cực tiểu địa phương khác cực tiểu toàn cục với đồ thị lồi chỉ có cực tiểu toàn cục" />
+          <div>
+            <div class="box"><strong>Định lý.</strong> Nếu $C$ lồi và $f:C\to\mathbb R$ lồi, mọi cực tiểu địa phương tương đối với $C$ đều là cực tiểu toàn cục. “Địa phương” chỉ so sánh trên $C\cap N$.</div>
+            <p><strong>Ý tưởng:</strong> nếu có $y\in C$ tốt hơn $x^*$, các điểm trên đoạn từ $x^*$ đến $y$ vừa khả thi, vừa tốt hơn và có thể nằm tùy ý gần $x^*$.</p>
+          </div>
         </div>
-        <div class="box">Hai viên gạch này sẽ được kiểm tra bằng đạo hàm và phép bảo toàn.</div>
-        <aside class="notes">Không chỉ nêu kết luận. Vòng chi tiết cần tính Hessian của bình phương và đạo hàm bậc hai của mất mát logistic, rồi nối lại ký hiệu $s=y_i a_i^T w$.</aside>
+        <aside class="notes">Trong chứng minh, đặt $z_\theta=(1-\theta)x^*+\theta y$. Khi $\theta$ nhỏ, $z_\theta$ nằm trong lân cận tương đối của $x^*$; tính lồi cho $f(z_\theta)<f(x^*)$, mâu thuẫn. Cả miền lồi và hàm lồi đều được dùng. Nguồn: MIT 6.079, lec01, trang 1-14.</aside>
       </section>
 
       <section data-slide-id="H04">
-        <h2>Điều kiện bậc nhất và bậc hai</h2>
-        <p>Cho $C$ là tập mở lồi:</p>
-        <div class="grid2">
-          <div class="card"><h3>Nếu $f$ khả vi trên $C$</h3><p>$f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y\in C$.</p></div>
-          <div class="card"><h3>Nếu $f$ khả vi hai lần trên $C$</h3><p>$\nabla^2 f(x)\succeq0$ với mọi $x\in C$.</p></div>
+        <h2>Điều kiện bậc nhất</h2>
+        <div class="box"><strong>Định lý.</strong> Cho $C\subseteq\mathbb R^d$ mở, lồi và $f:C\to\mathbb R$ khả vi. Khi đó $f$ lồi khi và chỉ khi
+          $$f(y)\ge f(x)+\nabla f(x)^T(y-x),\qquad \forall x,y\in C.$$
         </div>
-        <aside class="notes">Trong các giả thiết nêu trên, mỗi điều kiện là cần và đủ cho tính lồi. “Khả vi trên $C$” nghĩa là khả vi tại một lân cận của mỗi điểm thuộc tập mở $C$. Với ca điều khiển, kiểm tra độ cong của mục tiêu trên $\mathbb R$ rồi hạn chế lên đoạn khả thi đóng. Vòng chi tiết phải nêu miền, kích thước gradient/Hessian và một ví dụ tính được.</aside>
+        <div class="grid2">
+          <div class="card"><h3>Hình học</h3><p>Mọi siêu phẳng tiếp xúc nằm dưới đồ thị.</p></div>
+          <div class="card"><h3>Tối ưu không ràng buộc</h3><p>Nếu $\nabla f(x^*)=0$ thì $x^*$ là cực tiểu toàn cục.</p></div>
+        </div>
+        <aside class="notes">Điều kiện là cần và đủ dưới các giả thiết đã nêu. Kết luận gradient bằng không chỉ dùng trực tiếp cho điểm trong miền mở; D04 đã cho thấy nghiệm biên cần xét hướng khả thi. Nguồn: MIT 6.079, lec03, trang 3-7. Chuyển sang tiêu chuẩn Hessian khi hàm khả vi hai lần.</aside>
       </section>
 
       <section data-slide-id="H05">
-        <h2>Phép bảo toàn tính lồi của hàm</h2>
-        <div class="grid2">
-          <div class="card"><h3>Tổ hợp</h3><p>Tổng với hệ số không âm.</p></div>
-          <div class="card"><h3>Hợp affine</h3><p>$f(Ax+b)$ khi $f$ lồi.</p></div>
+        <h2>Điều kiện bậc hai</h2>
+        <div class="split-6040">
+          <img class="visual" src="img/lec-01/first-second-order-convexity.svg" alt="Minh họa siêu phẳng tiếp xúc và các hướng cong không âm dùng để kiểm tra hàm lồi" />
+          <div>
+            <div class="box">Nếu $C$ mở, lồi và $f$ khả vi hai lần thì
+              $$f\text{ lồi}\quad\Longleftrightarrow\quad \nabla^2f(x)\succeq0,\ \forall x\in C.$$
+            </div>
+            <p class="muted">$A\succeq0$ nghĩa là $v^TAv\ge0$ với mọi $v$.</p>
+            <p>Với $J(w)=\lVert Xw-y\rVert_2^2$:</p>
+            <div class="math-mid">$$\nabla^2J(w)=2X^TX\succeq0.$$</div>
+            <p class="muted">Ca điều khiển: kiểm tra $q$ trên $\mathbb R$, rồi hạn chế xuống đoạn đóng.</p>
+          </div>
         </div>
-        <aside class="notes">Skeleton chỉ giữ hai quy tắc trực tiếp cần cho ba ca. Vòng chi tiết có thể bổ sung cực đại điểm nếu phục vụ bài tập. Nguồn: Boyd và Vandenberghe (2004), Mục 3.2.</aside>
+        <aside class="notes">Ký hiệu $A\succeq0$ nghĩa là $v^TAv\ge0$ với mọi $v$. Với hồi quy tuyến tính, $v^TX^TXv=\lVert Xv\rVert^2$, nên Hessian nửa xác định dương. Với ca điều khiển, kiểm tra $q''$ trên miền mở $\mathbb R$, rồi hạn chế hàm lồi xuống đoạn đóng. Nguồn: MIT 6.079, lec03, trang 3-8 đến 3-9.</aside>
+      </section>
+
+      <section data-slide-id="H06">
+        <h2>Ghép các viên gạch lồi</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Tổng không âm</h3>
+            <p>Nếu $f_j$ lồi và $\alpha_j\ge0$ thì $\sum_j\alpha_jf_j$ lồi.</p>
+          </div>
+          <div class="card">
+            <h3>Hợp với ánh xạ affine</h3>
+            <p>Nếu $f$ lồi thì $x\mapsto f(Ax+b)$ lồi.</p>
+          </div>
+        </div>
+        <div class="math-mid">$$\ell(s)=\log(1+e^{-s}),\qquad \ell''(s)=\frac{e^s}{(1+e^s)^2}>0.$$</div>
+        <p class="takeaway">Bình phương của biểu thức affine tạo hai mục tiêu đầu; tổng $\ell(y_i a_i^Tw)$ tạo mục tiêu logistic.</p>
+        <aside class="notes">Từng hạng bình phương trong điều khiển và hồi quy tuyến tính là hàm bình phương hợp với ánh xạ affine; hệ số $\lambda$ phải không âm. Với logistic, $s=y_i a_i^Tw$ là affine theo $w$, rồi cộng các hạng. Nguồn: MIT 6.079, lec03, trang 3-13 đến 3-14. Chuyển sang các giả thiết riêng cho tồn tại và duy nhất.</aside>
+      </section>
+
+      <section data-slide-id="H07">
+        <h2>Tồn tại và duy nhất</h2>
+        <img class="visual visual-compact" src="img/lec-01/existence-and-uniqueness.svg" alt="Ba đồ thị đối chiếu trường hợp không đạt cận dưới đúng, có nhiều nghiệm và có một nghiệm duy nhất" />
+        <div class="grid3 compact-cards">
+          <div class="card"><h3>Tồn tại</h3><p>Liên tục trên miền không rỗng, đóng và bị chặn ⇒ đạt giá trị nhỏ nhất.</p></div>
+          <div class="card"><h3>Miền không bị chặn</h3><p>Liên tục và bức trên miền đóng, không rỗng ⇒ đạt giá trị nhỏ nhất.</p></div>
+          <div class="card"><h3>Duy nhất</h3><p>$f$ lồi chặt trên miền lồi thì có nhiều nhất một nghiệm.</p></div>
+        </div>
+        <div class="check"><strong>Câu hỏi:</strong> Trong ba mệnh đề trên, mệnh đề nào vẫn đúng cho $e^x$ trên $\mathbb R$?</div>
+        <aside class="notes">Đáp án: lồi chặt chỉ bảo đảm có nhiều nhất một nghiệm, không bảo đảm tồn tại. Hàm bức nghĩa là $f(x)\to+\infty$ khi $\lVert x\rVert\to\infty$ dọc theo miền; $e^x$ không bức vì tiến về 0 khi $x\to-\infty$. Hình được vẽ lại cục bộ theo các phản ví dụ chuẩn. Chuyển sang dùng từng giả thiết cho ba ca.</aside>
       </section>
     </section>
 
     <section>
       <section data-slide-id="K01">
-        <h2>Chứng nhận ba ca ứng dụng</h2>
-        <p>Với từng ca, nếu miền $C$ lồi và mục tiêu $f_0$ lồi trên $C$:</p>
-        <div class="route">
-          <div class="stage">Miền<br /><strong>lồi</strong></div>
-          <div class="arrow">và</div>
-          <div class="stage">Mục tiêu<br /><strong>lồi</strong></div>
-          <div class="arrow">→</div>
-          <div class="stage">Cực tiểu địa phương<br /><strong>là toàn cục</strong></div>
+        <h2>Chứng nhận ca điều khiển</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Miền và tồn tại</h3>
+            <p>$C=[-u_{\max},u_{\max}]$ không rỗng, đóng, bị chặn và lồi.</p>
+            <p>$q$ liên tục nên đạt giá trị nhỏ nhất trên $C$.</p>
+          </div>
+          <div class="card">
+            <h3>Độ cong và duy nhất</h3>
+            <div class="math-mid">$$q''(u)=2(1+\lambda)>0.$$</div>
+            <p>$q$ lồi chặt nên nghiệm là duy nhất.</p>
+          </div>
         </div>
-        <p>“Địa phương” luôn được hiểu tương đối với miền khả thi $C$.</p>
-        <div class="check">Điều khiển một bước, hồi quy tuyến tính và hồi quy logistic đều đi qua cùng quy trình chứng nhận.</div>
-        <aside class="notes">Khi điền chi tiết, kiểm tra riêng giả thiết của từng ca và không suy rộng sang tồn tại hoặc duy nhất nếu chưa có điều kiện bổ sung.</aside>
+        <div class="result">$$u^*=\operatorname{clip}\!\left(\frac{r-x_0}{1+\lambda},[-u_{\max},u_{\max}]\right).$$</div>
+        <p class="takeaway">Với bộ số đã cho: $u^*=1$ là nghiệm duy nhất dù $q'(1)\ne0$.</p>
+        <aside class="notes">Điều kiện $u_{\max}\ge0$ bảo đảm miền không rỗng; $\lambda\ge0$ cho $q''>0$. Công thức clip thu được từ nghiệm tự do và hình học một chiều của mục tiêu bậc hai. Kết luận toàn cục đến từ tính lồi; tồn tại đến từ miền đóng, bị chặn; duy nhất đến từ lồi chặt. Chuyển sang ca có miền không bị chặn.</aside>
       </section>
 
       <section data-slide-id="K02">
-        <h2>Tổng kết và bước tiếp theo</h2>
-        <div class="check"><strong>Vấn đề trung tâm được giải bằng:</strong> mô hình đúng thành phần, miền lồi, mục tiêu lồi và kết luận đúng phạm vi.</div>
-        <div class="grid3">
-          <div class="card"><h3>Mô hình</h3><p>Nêu dữ kiện, biến, mục tiêu và ràng buộc.</p></div>
-          <div class="card"><h3>Chứng nhận</h3><p>Kiểm tra miền lồi và mục tiêu lồi.</p></div>
-          <div class="card"><h3>Chuyển giao</h3><p>Áp dụng bảng kiểm cho một bài toán mới.</p></div>
+        <h2>Chứng nhận hồi quy tuyến tính</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Luôn có nghiệm</h3>
+            <p>Không gian cột $\mathcal R(X)$ là tập con đóng của $\mathbb R^n$.</p>
+            <p>Hình chiếu của $y$ lên $\mathcal R(X)$ tồn tại, nên có $w^*$ tạo dự đoán tốt nhất.</p>
+          </div>
+          <div class="card">
+            <h3>Duy nhất khi đủ hạng</h3>
+            <div class="math-mid">$$\nabla^2J=2X^TX.$$</div>
+            <p>$J$ lồi chặt khi và chỉ khi $Xv=0$ chỉ có nghiệm $v=0$, tức $X$ có hạng cột đầy đủ.</p>
+          </div>
         </div>
-        <div class="box"><strong>Câu hỏi:</strong> Với mỗi ca, chỉ ra một giả thiết mà nếu bỏ đi thì kết luận cần được xem xét lại.</div>
-        <aside class="notes">Đây là chỗ đặt câu hỏi tự kiểm tra và bài tập chuyển giao ở vòng chi tiết. Bài 02 sẽ mở rộng từ nhận dạng tính lồi sang các lớp bài toán lồi chuẩn.</aside>
+        <div class="result">Ví dụ L03 có $\det(X^TX)=6>0$, nên $w^*=(7/6,1/2)^T$ là nghiệm duy nhất.</div>
+        <aside class="notes">Không dùng miền đóng, bị chặn vì $\mathbb R^d$ không bị chặn. Lập luận hình chiếu chứng minh tồn tại cho mọi $X$ và $y$, kể cả khi phương trình chuẩn có nhiều nghiệm. Nếu $X$ thiếu hạng, mọi vector trong $w^*+\ker(X)$ cho cùng dự đoán. Chuyển sang ca mà ngay cả tồn tại cũng có thể thất bại.</aside>
+      </section>
+
+      <section data-slide-id="K03">
+        <h2>Chứng nhận hồi quy logistic</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Tính lồi</h3>
+            <p>Đặt $m_i=y_i a_i^Tw$ và $d_i=\ell''(m_i)>0$.</p>
+            <div class="math-mid">$$\nabla^2L(w)=\sum_i d_i a_i a_i^T\succeq0.$$</div>
+          </div>
+          <div class="card">
+            <h3>Sự tồn tại</h3>
+            <p>Trong G03, $L(w)\downarrow0$ khi $w\to+\infty$.</p>
+            <p>Mục tiêu lồi chặt nhưng không đạt giá trị nhỏ nhất.</p>
+          </div>
+        </div>
+        <div class="result">Thêm $\frac\mu2\lVert w\rVert_2^2$, $\mu>0$: $L_\mu(w)\ge\frac\mu2\lVert w\rVert_2^2\to\infty$ và Hessian $\succeq\mu I$; nghiệm tồn tại và duy nhất.</div>
+        <aside class="notes">Trong công thức Hessian, dấu $y_i$ biến mất vì $y_i^2=1$. Nếu ma trận có các hàng $a_i^T$ có hạng cột đầy đủ thì Hessian của mất mát không chính quy hóa xác định dương tại mọi $w$ hữu hạn, nhưng điều đó vẫn không tạo nghiệm. Chính quy hóa bậc hai vừa tăng độ cong vừa buộc mục tiêu tăng khi chuẩn của $w$ tăng. Chuyển sang bảng so sánh để tách các bảo đảm.</aside>
+      </section>
+
+      <section data-slide-id="K04">
+        <h2>So sánh ba ca</h2>
+        <table>
+          <thead><tr><th>Ca</th><th>Miền lồi</th><th>Mục tiêu lồi</th><th>Tồn tại</th><th>Duy nhất</th></tr></thead>
+          <tbody>
+            <tr><td>Điều khiển</td><td>Có: đoạn đóng</td><td>Lồi chặt</td><td>Có</td><td>Có</td></tr>
+            <tr><td>Hồi quy tuyến tính</td><td>Có: $\mathbb R^d$</td><td>Có</td><td>Luôn có</td><td>Khi $X$ đủ hạng cột</td></tr>
+            <tr><td>Logistic tách tuyến tính</td><td>Có: $\mathbb R^d$</td><td>Lồi; lồi chặt trong ví dụ G03</td><td>Không, nếu chưa chính quy hóa</td><td>Không áp dụng</td></tr>
+          </tbody>
+        </table>
+        <div class="box">Tính lồi cho bảo đảm địa phương–toàn cục. Tồn tại và duy nhất cần các giả thiết riêng.</div>
+        <aside class="notes">Đọc bảng theo hai cột cuối để thu hồi vấn đề trung tâm. “Không áp dụng” ở ca logistic nghĩa là không thể hỏi nghiệm có duy nhất hay không khi nghiệm chưa tồn tại. Nếu thêm chính quy hóa bậc hai với $\mu>0$, ca logistic có nghiệm duy nhất. Chuyển sang một bài toán mới để sinh viên tự dựng chuỗi chứng nhận.</aside>
+      </section>
+
+      <section data-slide-id="K05">
+        <h2>Bài tập chuyển giao về chiếu sáng</h2>
+        <p>$m$ đèn tạo độ sáng trên $n$ vùng: $I=Ap$, với $A\in\mathbb R_+^{n\times m}$ và công suất $p\in\mathbb R^m$.</p>
+        <div class="math-large">$$\min_{0\le p\le p_{\max}}\;\lVert Ap-I_{\mathrm{des}}\rVert_2^2.$$</div>
+        <div class="check"><strong>Câu hỏi:</strong> (1) Chỉ ra dữ kiện, biến, mục tiêu và miền. (2) Chứng nhận miền và mục tiêu lồi. (3) Nêu điều kiện đủ để nghiệm duy nhất.</div>
+        <aside class="notes">Đáp án: dữ kiện là $A$, $I_{\mathrm{des}}$ và $p_{\max}$; biến là $p$; miền là một hộp lồi, đóng và bị chặn nên nghiệm tồn tại. Hessian của mục tiêu là $2A^TA\succeq0$; nghiệm duy nhất nếu $A$ có hạng cột đầy đủ. Ca chiếu sáng được phỏng theo MIT 6.079, lec01, trang 1-9 đến 1-12; mục tiêu được chọn ở dạng bình phương nhỏ nhất vì phép lấy giá trị lớn nhất chưa được dạy trong Bài 01.</aside>
+      </section>
+
+      <section data-slide-id="K06">
+        <h2>Tổng kết và tài liệu</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Bảng kiểm chứng nhận</h3>
+            <ol class="tight">
+              <li>Viết đúng $x$, $f_0$ và $C$.</li>
+              <li>Kiểm tra $C$ lồi và $f_0$ lồi.</li>
+              <li>Tách kết luận toàn cục, tồn tại và duy nhất.</li>
+              <li>Diễn giải nghiệm trong ngữ cảnh ban đầu.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3>Tài liệu chính</h3>
+            <ul class="tight">
+              <li>Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, Chương 1–3.</li>
+              <li>MIT OpenCourseWare 6.079, Fall 2009, lec01 → lec02 → lec03.</li>
+              <li>Đề cương học phần UET.AI2012.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="check"><strong>Câu hỏi:</strong> Với một mô hình mới, giả thiết nào hỗ trợ từng kết luận trong ba kết luận ở bước 3?</div>
+        <aside class="notes">Thu hồi vấn đề trung tâm: mô hình đúng chưa đủ; mỗi kết luận phải được gắn với giả thiết cụ thể. Đáp án mẫu: miền và mục tiêu lồi hỗ trợ địa phương–toàn cục; tính liên tục cùng miền đóng, bị chặn hoặc tính bức hỗ trợ tồn tại; lồi chặt hỗ trợ có nhiều nhất một nghiệm. Bài tiếp theo mở rộng các lớp bài toán lồi và quy tắc nhận dạng.</aside>
       </section>
     </section>
 

@@ -1,56 +1,159 @@
-# Storyboard Bài 01: skeleton ứng dụng trước lý thuyết
+# Storyboard Bài 01: ứng dụng trước lý thuyết
+
+## Bản đồ bảy mạch kể chuyện
+
+| Mạch | Chức năng | Điểm vào | Đầu ra dùng cho mạch sau | Phân bổ nội bộ |
+|---|---|---|---|---:|
+| 1. Mở đầu và ba nhu cầu | Đặt vấn đề trung tâm và chuẩn đầu ra | Kiến thức tiên quyết | Ba quyết định cần mô hình hóa | 0,15 tiết lý thuyết |
+| 2. Điều khiển một bước | Xây ca có đánh đổi, ràng buộc và nghiệm biên | Nhu cầu bám đích | Mô hình $\min_{u\in C}q(u)$ và nghi vấn về điều kiện dừng | 0,30 tiết lý thuyết |
+| 3. Hồi quy tuyến tính | Xây ca học tham số bằng bình phương nhỏ nhất | Dữ liệu dự đoán liên tục | Mô hình $\min_w\lVert Xw-y\rVert^2$ và nghi vấn về duy nhất | 0,30 tiết lý thuyết |
+| 4. Hồi quy logistic | Xây ca phân loại có cận dưới đúng nhưng có thể không có nghiệm | Dữ liệu nhãn nhị phân | Mô hình mất mát logistic và nghi vấn về tồn tại | 0,30 tiết lý thuyết |
+| 5. Khuôn chung | Trừu tượng hóa ba ca bằng cùng một ngôn ngữ | Ba mô hình cụ thể | $\min_{x\in C}f_0(x)$, bốn loại kết luận và ba chặng chứng nhận | 0,20 tiết lý thuyết |
+| 6. Công cụ lồi vừa đủ | Xây đúng các định nghĩa và định lý cần cho ba ca | Bốn câu hỏi chứng nhận | Bộ công cụ về miền, mục tiêu, toàn cục, tồn tại và duy nhất | 0,75 tiết lý thuyết |
+| 7. Trở lại ba ca | Ghép công cụ, diễn giải nghiệm và chuyển giao | Bộ công cụ lồi | Ba chứng nhận hoàn chỉnh và bài tập mới | 1,00 tiết bài tập |
+
+Tổng phân bổ: 2 tiết lý thuyết và 1 tiết bài tập. Không đưa phân bổ này lên mặt trang chiếu hoặc vào ghi chú diễn giả.
 
 ## Bản đồ hành trình khái niệm
 
-| Cụm khái niệm | Nhu cầu | Trực quan | Ví dụ | Hình thức/toán học | Ứng dụng | Bài tập | Đầu vào → sản phẩm | LLO/CLO | Ký hiệu truyền tiếp |
+| Cụm | Nhu cầu | Trực quan | Ví dụ | Hình thức/toán học | Ứng dụng | Bài tập | Đầu vào → sản phẩm | Ký hiệu truyền tiếp | LLO/CLO |
 |---|---|---|---|---|---|---|---|---|---|
-| Mô hình tối ưu và chứng nhận | M03, U01 | U02 | U01, U03, U04 | T01–T04 | F05, K01 | K02 | Đại số tuyến tính cơ bản → lập được mô hình và nêu loại bảo đảm cần tìm | LLO1, CLO1 | $x_0,r,u,w,X,y,a_i,y_i$ → $x,f_0,C$ |
-| Tập lồi | T04 | F01 | F03 | F02, F04 | F05 | K02 | Tập hợp và đoạn thẳng → kiểm tra được miền khả thi | LLO2, CLO1 | $C$, $x,y$, $\theta$ |
-| Hàm lồi | F05, H01 | H01 | H03 | H02, H04, H05 | K01 | K02 | Hàm, gradient, Hessian → kiểm tra được mục tiêu lồi | LLO2, CLO1 | $f_0$, $f$, $\nabla f$, $\nabla^2f$ |
+| Điều khiển một bước | M03, D01 | D02 | D03 | D01–D03, T01 | K01 | D04 | Đại số một biến → lập và giải mô hình bị chặn | $x_0,r,u,u_{\max},\lambda,q$ → $x,C,f_0$ | LLO1, CLO1 |
+| Hồi quy tuyến tính | M03, L01 | L02 | L03 | L01–L03, T01 | K02 | L04 | Đại số tuyến tính → lập mô hình và đọc nghiệm | $X,y,w,J$ → $x,C,f_0$ | LLO1, CLO1 |
+| Hồi quy logistic | M03, G01 | G01, G03 | G03 | G02, G03, T01 | K03 | G04 | Xác suất và hàm mũ → phân biệt cận dưới đúng với nghiệm | $a_i,y_i,w,L$ → $x,C,f_0$ | LLO1, CLO1 |
+| Tập lồi | T04, F01 | F01 | F03 | F02, F04 | F05, K01–K03 | F05 | Đoạn thẳng và tập hợp → chứng nhận miền lồi | $C,x,y,\theta$ | LLO2, CLO1 |
+| Hàm lồi và chứng nhận | T04, H01 | H01, H03, H07 | H05, H06 | H02–H07 | K01–K04 | H07, K05 | Đạo hàm, Hessian → kết luận toàn cục, tồn tại, duy nhất | $f,\nabla f,\nabla^2f$ | LLO2, CLO1 |
 
-Ba ca U01, U03 và U04 là ví dụ dẫn nhập đứng trước trực quan và hình thức toán học. Cách đặt này làm cụ thể nhu cầu mô hình hóa và chứng nhận; kết luận tính lồi được hoãn đến F05, H03 và K01. Chu trình đầy đủ là **nhu cầu + ví dụ dẫn nhập → trực quan → hình thức/toán học → ứng dụng → bài tập**. Tổng thời lượng chi tiết của từng cụm chưa phân bổ ở giai đoạn skeleton.
-
-## Sáu mạch kể chuyện
-
-| Mạch | Chức năng | Đầu vào | Đầu ra | Đóng góp cho vấn đề trung tâm |
-|---|---|---|---|---|
-| Mở đầu | Đặt mục tiêu và ba nhu cầu | Kiến thức tiên quyết của học phần | Ba ca cần mô hình hóa | Chuyển “tối ưu” từ thuật ngữ thành nhu cầu quyết định |
-| Ba ca ứng dụng | Xác lập dữ kiện, biến, mục tiêu, ràng buộc | Ba nhu cầu | Ba mô hình cụ thể | Cung cấp vật liệu để trừu tượng hóa |
-| Khuôn bài toán | Rút cấu trúc chung và loại bảo đảm | Ba mô hình | Khuôn $\min_{x\in C}f_0(x)$ và nhu cầu lồi | Xác định chính xác điều cần chứng nhận |
-| Tập lồi | Kiểm tra cấu trúc miền | Miền $C$ của ba ca | Chứng nhận miền lồi | Hoàn thành nửa thứ nhất của chứng nhận |
-| Hàm lồi | Kiểm tra cấu trúc mục tiêu | Hàm $f_0$ của ba ca | Chứng nhận mục tiêu lồi | Hoàn thành nửa thứ hai của chứng nhận |
-| Kết luận | Ghép hai nửa và chuyển giao | Miền lồi, mục tiêu lồi | Kết luận có điều kiện và bài tập | Trả lời vấn đề trung tâm |
+Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi để làm rõ nhu cầu. Ký hiệu của chúng được giữ nguyên tại K01–K03. Không bước nào bị bỏ ngầm. Hai bước trực quan và ví dụ được gộp ở D02–D03, L02–L03 và G03 vì mỗi trang vẫn giữ một luận điểm trung tâm.
 
 ## Bảng theo từng trang
 
-| Mã | Tiêu đề | Lý do tồn tại | Nhu cầu hoặc khoảng trống | Kết nối vào → kết nối ra | LLO/CLO | Quyết định |
-|---|---|---|---|---|---|---|
-| M01 | Giới thiệu tối ưu, tập lồi và hàm lồi | Định danh bài và tuyến tiếp cận | Người học chưa có bối cảnh | Mở bài → M02 | CLO1 | Sửa trang tiêu đề cũ để báo trước tuyến ứng dụng |
-| M02 | Mục tiêu và vấn đề trung tâm | Nối LLO với một sản phẩm chung | Chưa biết bài cần giải quyết vấn đề gì | M01 → M03 | LLO1, LLO2, CLO1 | Gộp mục tiêu và vấn đề trung tâm |
-| M03 | Ba nhu cầu tối ưu | Công bố thứ tự ba ca | Khái niệm tối ưu còn trừu tượng | M02 → U01 | LLO1, CLO1 | Thêm ca điều khiển; gộp bản đồ ứng dụng |
-| U01 | Điều khiển một bước | Cho bài toán đầu tiên có đánh đổi và ràng buộc | Chưa có quyết định cụ thể | M03 → U02 | LLO1, CLO1 | Thêm |
-| U02 | Thành phần của ca điều khiển | Tách tình huống thành bốn thành phần | Chưa có bảng kiểm mô hình hóa | U01 → U03 | LLO1, CLO1 | Sửa khuôn mô hình cũ thành bước phân tích ca |
-| U03 | Hồi quy tuyến tính | Đưa tối ưu vào dự đoán liên tục | Chưa thấy biến tham số học máy | U02 → U04 | LLO1, CLO1 | Giữ bình phương nhỏ nhất, đổi vị trí |
-| U04 | Hồi quy logistic | Đưa tối ưu vào phân loại | Chưa thấy mục tiêu không phải bậc hai | U03 → T01 | LLO1, CLO1 | Dời ca logistic lên trước lý thuyết; hoãn chứng nhận |
-| T01 | Khuôn bài toán tối ưu | Rút mẫu chung sau ba ca | Ba ca chưa dùng cùng ngôn ngữ | U04 → T02 | LLO1, CLO1 | Dời khuôn tổng quát xuống sau ví dụ |
-| T02 | Ánh xạ ba ca vào khuôn chung | Kiểm chứng ý nghĩa $x,f_0,C$ | Có khuôn nhưng chưa ánh xạ | T01 → T03 | LLO1, CLO1 | Thêm bảng so sánh |
-| T03 | Cực tiểu địa phương và toàn cục | Làm rõ “tốt nhất” | Chưa phân biệt phạm vi so sánh | T02 → T04 | LLO1, CLO1 | Gộp nội dung cũ |
-| T04 | Nhu cầu về cấu trúc lồi | Tạo cầu vào lý thuyết | Chưa biết điều kiện cho bảo đảm | T03 → F01 | LLO1, LLO2, CLO1 | Gộp các trang động cơ lồi |
-| F01 | Trực giác về tập lồi | Trực giác trước lượng từ | Chưa hình dung miền lồi | T04 → F02 | LLO2, CLO1 | Giữ vai trò, rút gọn |
-| F02 | Định nghĩa tập lồi | Cung cấp phát biểu hình thức | Trực giác chưa đủ để chứng minh | F01 → F03 | LLO2, CLO1 | Giữ |
-| F03 | Các tập lồi chuẩn | Tạo kho nhận dạng cơ bản | Chưa có ví dụ chuẩn | F02 → F04 | LLO2, CLO1 | Gộp các tập không trực tiếp phục vụ ba ca |
-| F04 | Phép bảo toàn tính lồi của tập | Xây miền phức từ tập chuẩn | Chưa có quy tắc suy luận | F03 → F05 | LLO2, CLO1 | Gộp giao và ánh xạ affine |
-| F05 | Miền khả thi của ba ca | Áp dụng lý thuyết tập | Chưa chứng nhận miền của ví dụ | F04 → H01 | LLO2, CLO1 | Thay ca độ sáng bằng ba ca mới |
-| H01 | Trực giác về hàm lồi | Trực giác trước bất đẳng thức | Miền đã lồi nhưng mục tiêu chưa kiểm tra | F05 → H02 | LLO2, CLO1 | Giữ vai trò, nối trực tiếp từ ba ca |
-| H02 | Định nghĩa hàm lồi | Cung cấp phát biểu hình thức | Trực giác chưa đủ để chứng minh | H01 → H03 | LLO2, CLO1 | Giữ |
-| H03 | Bình phương và mất mát logistic | Trả món nợ từ U03–U04 | Hai mục tiêu chưa được chứng nhận | H02 → H04 | LLO2, CLO1 | Gộp ví dụ phục vụ trực tiếp ứng dụng |
-| H04 | Điều kiện bậc nhất và bậc hai | Cho công cụ kiểm tra | Định nghĩa khó dùng trực tiếp | H03 → H05 | LLO2, CLO1 | Gộp điều kiện vi phân; chi tiết sẽ tách nếu tràn |
-| H05 | Phép bảo toàn tính lồi của hàm | Ghép các viên gạch thành mục tiêu hoàn chỉnh | Chưa có quy tắc hợp thành | H04 → K01 | LLO2, CLO1 | Chỉ giữ các phép cần cho ba ca |
-| K01 | Chứng nhận ba ca ứng dụng | Khép vòng ứng dụng–lý thuyết | Hai chứng nhận chưa được ghép | H05 → K02 | LLO1, LLO2, CLO1 | Gộp ca tổng hợp và kết luận cục bộ–toàn cục |
-| K02 | Tổng kết và bước tiếp theo | Cố kết, tự kiểm tra và chuyển bài | Chưa đo khả năng chuyển giao | K01 → Bài 02 | LLO1, LLO2, CLO1 | Gộp tổng kết, câu hỏi và cầu nối |
+| Mã | Tiêu đề | Lý do tồn tại và khoảng trống được giải quyết | Kết nối vào → kết nối ra | LLO/CLO | Quyết định |
+|---|---|---|---|---|---|
+| M01 | Giới thiệu tối ưu, tập lồi và hàm lồi | Định danh bài và báo rõ tuyến ứng dụng trước lý thuyết | Mở bài → M02 | CLO1 | Sửa |
+| M02 | Mục tiêu học tập | Chuyển LLO thành bốn hành động quan sát được | M01 → M03 | LLO1, LLO2, CLO1 | Sửa |
+| M03 | Ba nhu cầu tối ưu | Tạo ba quyết định cụ thể và vấn đề trung tâm | M02 → D01 | LLO1, CLO1 | Sửa |
+| D01 | Bài toán điều khiển một bước | Xác định dữ kiện, động lực, biến và miền trước khi tối ưu | M03 → D02 | LLO1, CLO1 | Tách từ U01 |
+| D02 | Đánh đổi bám đích và năng lượng | Làm rõ vai trò hai hạng tử và giới hạn điều khiển bằng hình | D01 → D03 | LLO1, CLO1 | Tách từ U01–U02; thêm SVG |
+| D03 | Nghiệm của ca điều khiển | Cho ví dụ số kiểm được và quy tắc chiếu nghiệm tự do | D02 → D04 | LLO1, CLO1 | Thêm |
+| D04 | Nghiệm tối ưu trên biên | Phát hiện điều kiện $q'(u)=0$ không áp dụng máy móc ở biên | D03 → L01 | LLO1, CLO1 | Thêm câu hỏi |
+| L01 | Học đường thẳng từ dữ liệu | Đặt kiểu, kích thước, mô hình dự đoán và biến tham số | D04 → L02 | LLO1, CLO1 | Tách từ U03 |
+| L02 | Bình phương nhỏ nhất | Nối phần dư với khoảng cách hình học và hàm mục tiêu | L01 → L03 | LLO1, CLO1 | Sửa; thêm SVG |
+| L03 | Ví dụ hồi quy tuyến tính | Tính nghiệm, dự đoán, phần dư và tổng bình phương sai số | L02 → L04 | LLO1, CLO1 | Thêm |
+| L04 | Hạng của ma trận thiết kế | Tạo nhu cầu phân biệt tồn tại và duy nhất | L03 → G01 | LLO1, CLO1 | Thêm câu hỏi |
+| G01 | Phân loại bằng biên có dấu | Chuyển nhãn nhị phân thành đại lượng đo độ đúng của dự đoán | L04 → G02 | LLO1, CLO1 | Tách từ U04 |
+| G02 | Mất mát logistic | Xây mục tiêu từ từng biên có dấu, nêu đúng miền $\mathbb R^d$ | G01 → G03 | LLO1, CLO1 | Sửa |
+| G03 | Dữ liệu tách tuyến tính | Cho ví dụ số có mất mát giảm mãi nhưng không đạt cận dưới | G02 → G04 | LLO1, CLO1 | Thêm; sửa SVG sẵn có |
+| G04 | Giá trị tốt dần và sự tồn tại nghiệm | Buộc người học phân biệt dãy tốt dần với một nghiệm hữu hạn | G03 → T01 | LLO1, CLO1 | Thêm câu hỏi |
+| T01 | Khuôn bài toán tối ưu | Rút cấu trúc chung sau ba ca, không mở bài bằng định nghĩa | G04 → T02 | LLO1, CLO1 | Giữ, đổi vị trí |
+| T02 | Ánh xạ ba ca vào khuôn chung | Kiểm tra nghĩa của dữ kiện, $x$, $f_0$ và $C$ trong từng ca | T01 → T03 | LLO1, CLO1 | Sửa |
+| T03 | Bốn loại kết luận | Tách khả thi, giá trị tối ưu, tồn tại và duy nhất | T02 → T04 | LLO1, LLO2, CLO1 | Thêm |
+| T04 | Các chứng nhận cần có | Biến ba nghi vấn thành chương trình lý thuyết cụ thể | T03 → F01 | LLO1, LLO2, CLO1 | Sửa |
+| F01 | Đoạn nối giữa hai phương án | Tạo trực giác miền không có lỗ trên các đoạn khả thi | T04 → F02 | LLO2, CLO1 | Sửa; dùng SVG |
+| F02 | Định nghĩa tập lồi | Cung cấp lượng từ và miền của hệ số tổ hợp lồi | F01 → F03 | LLO2, CLO1 | Giữ |
+| F03 | Các tập lồi dùng trong ba ca | Chỉ giữ toàn không gian, đoạn, tập affine và nửa không gian | F02 → F04 | LLO2, CLO1 | Gộp và lược |
+| F04 | Xây miền lồi từ các tập đơn giản | Cung cấp giao và ảnh ngược affine, hai phép cần cho ràng buộc | F03 → F05 | LLO2, CLO1 | Sửa |
+| F05 | Kiểm tra miền của ba ca | Đo khả năng dùng định nghĩa và phép bảo toàn | F04 → H01 | LLO2, CLO1 | Sửa thành câu hỏi |
+| H01 | Dây cung và đồ thị hàm | Tạo trực giác độ cong trước bất đẳng thức | F05 → H02 | LLO2, CLO1 | Giữ; dùng SVG |
+| H02 | Định nghĩa hàm lồi | Phát biểu lồi và lồi chặt (còn gọi là lồi nghiêm ngặt) trên miền lồi bằng cùng ký hiệu | H01 → H03 | LLO2, CLO1 | Giữ |
+| H03 | Cực tiểu địa phương là toàn cục | Trả lời câu hỏi toàn cục và chỉ ra vai trò của cả hai giả thiết lồi | H02 → H04 | LLO2, CLO1 | Dời T03; dùng SVG |
+| H04 | Điều kiện bậc nhất | Cho chứng nhận bằng siêu phẳng tiếp xúc trên miền mở, lồi | H03 → H05 | LLO2, CLO1 | Tách từ H04 |
+| H05 | Điều kiện bậc hai | Cho chứng nhận bằng Hessian và áp dụng vào hàm bậc hai | H04 → H06 | LLO2, CLO1 | Tách từ H04; dùng SVG |
+| H06 | Ghép các viên gạch lồi | Dùng tổng không âm và hợp affine để dựng ba mục tiêu | H05 → H07 | LLO2, CLO1 | Sửa H05 |
+| H07 | Tồn tại và duy nhất | Phân biệt lồi, lồi chặt, miền đóng bị chặn và tính bức bằng phản ví dụ | H06 → K01 | LLO1, LLO2, CLO1 | Thêm; dùng SVG; có câu hỏi |
+| K01 | Chứng nhận ca điều khiển | Ghép miền đóng, bị chặn và lồi với độ cong để kết luận tồn tại và duy nhất | H07 → K02 | LLO1, LLO2, CLO1 | Tách từ K01 |
+| K02 | Chứng nhận hồi quy tuyến tính | Kết luận tồn tại luôn có và duy nhất đúng khi $X$ hạng cột đầy đủ | K01 → K03 | LLO1, LLO2, CLO1 | Tách từ K01 |
+| K03 | Chứng nhận hồi quy logistic | Chỉ ra lồi không kéo theo tồn tại và vai trò của chính quy hóa | K02 → K04 | LLO1, LLO2, CLO1 | Tách từ K01 |
+| K04 | So sánh ba ca | Đặt các kết luận cạnh nhau để ngăn suy diễn quá mức từ tính lồi | K03 → K05 | LLO1, LLO2, CLO1 | Thêm |
+| K05 | Bài tập chuyển giao về chiếu sáng | Đo khả năng lập mô hình và đề xuất chuỗi chứng nhận cho ca mới | K04 → K06 | LLO1, LLO2, CLO1 | Khôi phục lec01 trang 1-9–1-12 làm bài tập |
+| K06 | Tổng kết và tài liệu | Thu hồi vấn đề trung tâm, tự kiểm tra và ghi nguồn truy nguyên | K05 → Bài 02 | LLO1, LLO2, CLO1 | Sửa |
+
+## Ánh xạ trang cũ sang cấu trúc mới
+
+| Trang skeleton cũ | Trang mới | Xử lý |
+|---|---|---|
+| M01–M03 | M01–M03 | Giữ vai trò, thay toàn bộ câu chữ tạm bằng nội dung hoàn chỉnh |
+| U01–U02 | D01–D04 | Tách ca điều khiển thành mô hình, trực quan, ví dụ và kiểm tra |
+| U03 | L01–L04 | Tách hồi quy tuyến tính thành dữ kiện, mất mát, ví dụ và kiểm tra |
+| U04 | G01–G04 | Tách hồi quy logistic; thêm phản ví dụ không tồn tại nghiệm |
+| T01–T02 | T01–T02 | Giữ và bổ sung dữ liệu ánh xạ |
+| T03–T04 | H03, T04 | Chuyển địa phương–toàn cục sang mạch công cụ; giữ cầu vào lý thuyết |
+| F01–F04 | F01–F04 | Giữ lõi, lược tập và phép không dùng trực tiếp |
+| F05 | F05, K01–K03 | Tách kiểm tra miền khỏi chứng nhận hoàn chỉnh |
+| H01–H05 | H01–H06 | Tách điều kiện bậc nhất/bậc hai; giới hạn phép bảo toàn |
+| K01 | K01–K04 | Tách từng ca và bảng so sánh |
+| K02 | K05–K06 | Tách bài tập chuyển giao khỏi tổng kết và tài liệu |
+
+## Ánh xạ ba bộ trang chiếu MIT theo đúng thứ tự
+
+| Nguồn | Trang nguồn | Quyết định và đích dùng |
+|---|---|---|
+| lec01 | 1-1 | Bỏ; chỉ là bìa mẫu |
+| lec01 | 1-2 | Giữ ý mô hình chung tại T01 |
+| lec01 | 1-3 | Gộp vai trò nhu cầu ứng dụng vào M03 |
+| lec01 | 1-4 | Giữ ý phân lớp và nhu cầu cấu trúc tại T04 |
+| lec01 | 1-5 | Giữ bình phương nhỏ nhất tại L01–L03 |
+| lec01 | 1-6 | Bỏ khỏi tuyến chính; quy hoạch tuyến tính thuộc bài sau |
+| lec01 | 1-7–1-8 | Giữ khái niệm bài toán lồi tại H02–H03 và K01–K04 |
+| lec01 | 1-9–1-12 | Chuyển thành bài tập chiếu sáng K05, không dùng như ca chính thứ tư |
+| lec01 | 1-13 | Dùng để kiểm tra mục tiêu học tập tại M02 |
+| lec01 | 1-14 | Giữ quan hệ địa phương–toàn cục tại H03 |
+| lec01 | 1-15 | Bỏ lịch sử vì không phục vụ mạch nhân quả của bài |
+| lec02 | 2-1–2-2 | Dùng rất nhẹ làm cầu vào F01; không giữ trang giới thiệu riêng |
+| lec02 | 2-3 | Giữ định nghĩa tập lồi tại F02 |
+| lec02 | 2-4–2-5 | Gộp các ví dụ trực tiếp dùng vào F03 |
+| lec02 | 2-6 | Giữ nửa không gian tại F03 |
+| lec02 | 2-7–2-10 | Bỏ hoặc chuyển đọc thêm; không phục vụ ba ca |
+| lec02 | 2-11–2-13 | Giữ giao và ánh xạ affine tại F04 |
+| lec02 | 2-14–2-23 | Bỏ khỏi Bài 01: nón, thứ tự tổng quát, tách và siêu phẳng đỡ |
+| lec03 | 3-1 | Bỏ trang giới thiệu riêng |
+| lec03 | 3-2 | Giữ định nghĩa tại H02 |
+| lec03 | 3-3–3-4 | Gộp vào trực giác H01 và ví dụ H05–H06 |
+| lec03 | 3-5–3-6 | Bỏ khỏi tuyến chính |
+| lec03 | 3-7 | Giữ điều kiện bậc nhất tại H04 |
+| lec03 | 3-8 | Giữ điều kiện bậc hai tại H05 |
+| lec03 | 3-9 | Giữ hàm bậc hai tại H05 và L02–L03; bỏ quadratic-over-linear |
+| lec03 | 3-10–3-12 | Bỏ hoặc chuyển đọc thêm |
+| lec03 | 3-13–3-14 | Giữ tổng không âm và hợp affine tại H06 |
+| lec03 | 3-15–3-31 | Bỏ khỏi Bài 01: thư viện rộng, epigraph, Jensen, liên hợp, tựa lồi và log-concavity |
+
+Ánh xạ lec01 được điều phối viên sửa so với đề xuất của một reader: quy hoạch tuyến tính không phải một trong ba ca của bài; bảy mạch cố định là cấu trúc do người dùng yêu cầu, không phải tên mục của MIT.
+
+## Kiểm kê SVG Bài 01
+
+| Tệp | Quyết định | Vị trí hoặc lý do |
+|---|---|---|
+| `optimization-model-anatomy.svg` | Giữ | T01 |
+| `convex-set-and-combination.svg` | Giữ | F01 |
+| `convex-concave-strict.svg` | Giữ | H01 |
+| `local-versus-global-minimum.svg` | Giữ | H03 |
+| `first-second-order-convexity.svg` | Giữ | H04–H05 |
+| `existence-and-uniqueness.svg` | Giữ | H07 |
+| `logistic-loss-convex-case.svg` | Sửa | G03; ưu tiên miền $\mathbb R$ và trường hợp không đạt nghiệm |
+| `one-step-control.svg` | Thêm | D02 |
+| `linear-regression-fit.svg` | Thêm | L02 |
+| `basic-convex-set-library.svg` | Bỏ khỏi tuyến | Rộng hơn nhu cầu ba ca |
+| `convex-hull-and-conic-hull.svg` | Bỏ khỏi tuyến | Nón lồi không thuộc phạm vi cần thiết |
+| `convex-set-preservation-map.svg` | Bỏ khỏi tuyến | Có phép tổng Minkowski chưa cần |
+| `epigraph-levelset-indicator.svg` | Bỏ khỏi tuyến | Epigraph và hàm chỉ báo không cần cho chứng nhận |
+| `convex-preservation-and-jensen.svg` | Bỏ khỏi tuyến | Jensen vượt nhu cầu Bài 01 |
+| `line-restriction-convex-library.svg` | Bỏ khỏi tuyến | Thư viện hàm rộng và dễ quá tải |
+| `psd-cone-and-quadratic-directions.svg` | Bỏ khỏi tuyến | Nón nửa xác định dương không cần trình bày riêng |
+
+## Câu nối bắt buộc
+
+- M03 → D01: bắt đầu bằng quyết định vật lý có giới hạn.
+- D04 → L01: chuyển từ một biến điều khiển sang nhiều tham số học từ dữ liệu.
+- L04 → G01: chuyển từ dự đoán liên tục sang quyết định phân loại.
+- G04 → T01: ba ca tạo ba nghi vấn khác nhau nhưng cùng một khuôn mô hình.
+- T04 → F01: chứng nhận toàn cục bắt đầu từ cấu trúc của miền khả thi.
+- F05 → H01: miền lồi mới là một nửa; mục tiêu còn phải có độ cong phù hợp.
+- H07 → K01: dùng từng giả thiết đúng chỗ, không gộp lồi với tồn tại hay duy nhất.
+- K04 → K05: chuyển từ ba ca đã biết sang một ca mới để đo khả năng lập mô hình.
 
 ## Nội dung bỏ hoặc chuyển khỏi mặt trang chiếu
 
-- Ca độ sáng: chuyển thành bài luyện bổ sung khi xây dựng tài liệu học tập.
-- Lịch sử thuật toán, nón lồi, nón nửa xác định dương, lát cắt, epigraph, Jensen, liên hợp, tựa lồi và log-lồi/log-lõm: giữ trong nguồn hoặc tài liệu mở rộng; không đưa vào skeleton vì chưa phục vụ trực tiếp ba ca.
-- Các chi tiết chứng minh và đại số dài: bổ sung vào ghi chú diễn giả hoặc ghi chú bài giảng ở vòng sau.
+- Không có lịch sử kiểu danh sách năm–tên–thuật toán.
+- Không có nhãn quy trình, mã tuyến, mã trang hoặc thời lượng trên mặt trang chiếu và ghi chú diễn giả.
+- Chứng minh đại số dài chuyển sang `lecture-note.md`; mặt trang chiếu chỉ giữ mục tiêu, ý tưởng và bước then chốt.
+- Bài giải đầy đủ của K05 chuyển sang ghi chú diễn giả và tệp bài tập; mặt trang chiếu chỉ nêu dữ kiện và yêu cầu.

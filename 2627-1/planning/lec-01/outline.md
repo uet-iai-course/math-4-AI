@@ -2,48 +2,114 @@
 
 ## Trạng thái
 
-Đây là skeleton ngày 2026-09-05. Bộ trang chiếu mới đã có mạch kể chuyện, mã trang, công thức dẫn nhập và ghi chú định hướng; ví dụ số, hình, chứng minh, câu hỏi kiểm tra và bài tập chi tiết sẽ được bổ sung ở vòng sau.
+Dàn ý triển khai ngày 2026-09-05. Bài được tổ chức theo hướng ứng dụng trước lý thuyết: ba nhu cầu cụ thể tạo dữ kiện và câu hỏi, sau đó mới trừu tượng hóa và xây công cụ chứng nhận. Bộ trang chiếu gồm đúng bảy mạch, tạo thành một tuyến trình chiếu liên tục.
 
-## Phạm vi theo đề cương
+## Phạm vi theo đề cương chính thức
 
-- Buổi 1 của học phần UET.AI2012: giới thiệu tối ưu, tập lồi và hàm lồi.
-- Hình thức toàn học phần: 15 buổi; mỗi buổi gồm 2 tiết lý thuyết và 1 tiết bài tập.
-- LLO1: hiểu các khái niệm cơ bản về tối ưu toán học, tối ưu lồi và ứng dụng.
-- LLO2: trình bày khái niệm, tính chất của tập lồi, hàm lồi và áp dụng trong bài toán tối ưu.
-- LLO1 và LLO2 cùng liên quan CLO1.
+- Học phần: UET.AI2012, Cơ sở toán học của Trí tuệ nhân tạo.
+- Bài 01: giới thiệu tối ưu; tập lồi; hàm lồi.
+- Phân bổ theo đề cương: 2 tiết lý thuyết và 1 tiết bài tập. Dàn ý không quy đổi tiết sang phút.
+- Kiến thức tiên quyết: Giải tích 1, Xác suất thống kê, Đại số tuyến tính cho kỹ thuật.
+- LLO1: trình bày được các khái niệm cơ bản của tối ưu toán học, gồm tối ưu lồi và ứng dụng.
+- LLO2: trình bày được khái niệm, tính chất của tập lồi và hàm lồi; dùng chúng trong bài toán tối ưu.
+- LLO1 và LLO2 cùng hỗ trợ CLO1. Minh chứng của Bài 01 là câu hỏi ngắn trên lớp và bài tập cá nhân hoặc nhóm.
 
-## Vấn đề trung tâm
+## Vấn đề trung tâm và sản phẩm học tập
 
-Từ một nhu cầu cụ thể, xây dựng mô hình và xác định điều kiện để nghiệm tìm được có giá trị toàn cục.
+Vấn đề trung tâm: từ một nhu cầu cụ thể, xây dựng mô hình tối ưu và xác định điều kiện để kết luận về nghiệm toàn cục, sự tồn tại và tính duy nhất.
 
-## Sáu mạch và 23 trang lá
+Sau bài học, sinh viên phải làm được bốn việc:
 
-1. **Mở đầu — M01–M03:** mục tiêu, vấn đề trung tâm và ba nhu cầu tối ưu.
-2. **Ba ca ứng dụng — U01–U04:** điều khiển một bước, hồi quy tuyến tính, hồi quy logistic.
-3. **Khuôn bài toán — T01–T04:** trừu tượng hóa, ánh xạ ba ca, cực tiểu địa phương/toàn cục và nhu cầu cấu trúc lồi.
-4. **Tập lồi — F01–F05:** trực giác, định nghĩa, tập chuẩn, phép bảo toàn và chứng nhận miền của ba ca.
-5. **Hàm lồi — H01–H05:** trực giác, định nghĩa, hai viên gạch mất mát, điều kiện kiểm tra và phép bảo toàn.
-6. **Kết luận — K01–K02:** chứng nhận lại ba ca, tổng kết và bài tập chuyển giao.
+1. Tách dữ kiện, biến quyết định, hàm mục tiêu và miền khả thi trong một tình huống đơn giản.
+2. Viết mô hình cho điều khiển một bước, hồi quy tuyến tính và hồi quy logistic.
+3. Kiểm tra tính lồi của miền và mục tiêu bằng định nghĩa hoặc điều kiện vi phân phù hợp.
+4. Phân biệt ba kết luận: cực tiểu địa phương là toàn cục, nghiệm tồn tại, nghiệm duy nhất.
 
-## Nguồn chính
+## Bảy mạch và 37 trang lá
 
-- Đề cương học phần UET.AI2012.
-- Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Chương 1–3.
-- MIT OpenCourseWare, 6.079 *Introduction to Convex Optimization*, Bài giảng 1 → 2 → 3.
+1. **Mở đầu và ba nhu cầu — M01–M03:** mục tiêu, vấn đề trung tâm và ba quyết định cần tối ưu.
+2. **Điều khiển một bước — D01–D04:** mô hình động lực, đánh đổi bám đích–năng lượng, nghiệm bị chặn và câu hỏi về nghiệm biên.
+3. **Hồi quy tuyến tính — L01–L04:** dữ liệu, bình phương nhỏ nhất, ví dụ số và câu hỏi về hạng của ma trận thiết kế.
+4. **Hồi quy logistic — G01–G04:** biên có dấu, mất mát logistic, dữ liệu tách tuyến tính và câu hỏi về sự tồn tại nghiệm.
+5. **Khuôn chung của bài toán tối ưu — T01–T04:** giải phẫu mô hình, ánh xạ ba ca, các loại kết luận và danh sách điều cần chứng nhận.
+6. **Công cụ lồi vừa đủ — F01–F05 và H01–H07:** tập lồi, hàm lồi, điều kiện vi phân, phép bảo toàn, định lý địa phương–toàn cục, tồn tại và duy nhất.
+7. **Trở lại ba ca — K01–K06:** chứng nhận riêng từng ca, so sánh kết luận, bài tập chuyển giao và tài liệu.
 
-## Sai khác có chủ ý so với bản cũ
+## Phân bổ nội bộ theo tiết
 
-- Đưa ba ca ứng dụng lên trước định nghĩa tập lồi và hàm lồi.
-- Thêm ca điều khiển một bước làm nhu cầu dẫn nhập.
-- Đưa hồi quy tuyến tính và hồi quy logistic vào cùng tuyến học tập; chưa kết luận lồi trước khi có công cụ.
-- Bỏ ca độ sáng khỏi mặt trang chiếu; có thể dùng lại trong tài liệu học tập như bài luyện bổ sung.
-- Nén 53 trang lá của bản cũ xuống 23 trang skeleton. Không giữ trang chỉ vì có trong mẫu.
-- Giữ thứ tự sử dụng nguồn MIT lec01 → lec02 → lec03, nhưng thay đổi thứ tự trình bày để tuân theo chỉ dẫn ứng dụng trước lý thuyết của người dùng.
+| Mạch | Phân bổ dự kiến | Vai trò |
+|---|---:|---|
+| 1. Mở đầu và ba nhu cầu | 0,15 tiết lý thuyết | Đặt vấn đề và chuẩn đầu ra |
+| 2. Điều khiển một bước | 0,30 tiết lý thuyết | Ca có ràng buộc và nghiệm biên |
+| 3. Hồi quy tuyến tính | 0,30 tiết lý thuyết | Ca bậc hai trong học máy |
+| 4. Hồi quy logistic | 0,30 tiết lý thuyết | Ca lồi có thể không đạt nghiệm |
+| 5. Khuôn chung | 0,20 tiết lý thuyết | Trừu tượng hóa ba ca |
+| 6. Công cụ lồi vừa đủ | 0,75 tiết lý thuyết | Xây công cụ chứng nhận |
+| 7. Trở lại ba ca | 1,00 tiết bài tập | Chứng nhận, diễn giải và chuyển giao |
 
-## Nội dung cần bổ sung sau
+Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đề cương; đây là dữ liệu điều phối nội bộ, không hiển thị trên trang chiếu hoặc ghi chú diễn giả.
 
-- Ví dụ số tính được cho cả ba ca.
-- Hình SVG tự vẽ cho điều khiển, dữ liệu hồi quy, tập lồi và dây cung của hàm lồi.
-- Chứng minh ngắn và giả thiết đầy đủ cho các kết luận.
-- Câu hỏi kiểm tra sau từng cụm; bộ bài tập nhận biết, tính toán hoặc chứng minh và vận dụng AI.
-- Đồng bộ ghi chú bài giảng và tạo `materials/lec-01/exercises.md` sau khi nội dung trang chiếu ổn định.
+## Ba ca xuyên suốt
+
+### Điều khiển một bước
+
+- Dữ kiện: $x_0,r\in\mathbb R$, $u_{\max}\ge 0$, $\lambda\ge 0$.
+- Biến quyết định: $u\in[-u_{\max},u_{\max}]$; trạng thái kế tiếp $x_1=x_0+u$.
+- Mục tiêu: $q(u)=(x_0+u-r)^2+\lambda u^2$.
+- Ví dụ số: $x_0=0$, $r=3$, $\lambda=1/2$, $u_{\max}=1$; $u_{\mathrm{free}}=2$, $u^*=1$, $q(u^*)=9/2$.
+- Kết luận cuối bài: miền đóng, bị chặn và lồi; $q$ lồi chặt (còn gọi là lồi nghiêm ngặt) khi $\lambda\ge0$; nghiệm tồn tại và duy nhất. Nghiệm biên không cần thỏa $q'(u^*)=0$.
+
+### Hồi quy tuyến tính
+
+- Dữ kiện: $X\in\mathbb R^{n\times d}$, $y\in\mathbb R^n$.
+- Biến quyết định: $w\in\mathbb R^d$.
+- Mục tiêu: $J(w)=\lVert Xw-y\rVert_2^2$.
+- Ví dụ số: $X=[(1,0);(1,1);(1,2)]$, $y=(1,2,2)^T$; $w^*=(7/6,1/2)^T$, tổng bình phương sai số bằng $1/6$.
+- Kết luận cuối bài: $J$ lồi; luôn có ít nhất một nghiệm; nghiệm duy nhất khi và chỉ khi $X$ có hạng cột đầy đủ.
+
+### Hồi quy logistic
+
+- Dữ kiện: $a_i\in\mathbb R^d$, $y_i\in\{-1,+1\}$, $i=1,\ldots,n$.
+- Biến quyết định: $w\in\mathbb R^d$.
+- Mục tiêu: $L(w)=\sum_i\log(1+\exp(-y_i a_i^Tw))$.
+- Ví dụ số tách tuyến tính: $(a_1,y_1)=(1,+1)$, $(a_2,y_2)=(-1,-1)$; $L(w)=2\log(1+e^{-w})\downarrow0$ khi $w\to+\infty$ nhưng không có nghiệm hữu hạn.
+- Kết luận cuối bài: $L$ lồi; tính lồi không tự bảo đảm tồn tại. Thêm $\mu\lVert w\rVert_2^2/2$ với $\mu>0$ tạo mục tiêu lồi mạnh, bức và có nghiệm duy nhất.
+
+## Công cụ lý thuyết được giữ
+
+- Tổ hợp lồi và định nghĩa tập lồi.
+- Các tập trực tiếp phục vụ ba ca: $\mathbb R^d$, đoạn hoặc hộp, tập affine và nửa không gian.
+- Giao của các tập lồi và ảnh ngược affine.
+- Định nghĩa hàm lồi; `lồi chặt (còn gọi là lồi nghiêm ngặt)` ở lần xuất hiện đầu.
+- Định lý: cực tiểu địa phương của hàm lồi trên tập lồi là cực tiểu toàn cục.
+- Điều kiện bậc nhất và bậc hai trên miền mở, lồi; cách áp dụng cho hàm xác định trên $\mathbb R$ rồi hạn chế lên đoạn đóng.
+- Tổng không âm và hợp với ánh xạ affine.
+- Phân biệt tồn tại và duy nhất; định lý Weierstrass trên miền đóng, bị chặn; vai trò của tính bức.
+
+Không đưa nón lồi, nón nửa xác định dương, epigraph, tập mức, Jensen, liên hợp, tựa lồi, log-lồi hoặc log-lõm vào tuyến chính vì chúng không cần để chứng nhận ba ca.
+
+## Nguồn và thứ tự sử dụng
+
+1. Đề cương chính thức UET.AI2012 xác định phạm vi, LLO/CLO, kiến thức tiên quyết và hình thức đánh giá.
+2. MIT 6.079 lec01: mô hình tối ưu, bình phương nhỏ nhất, phân lớp bài toán, tối ưu lồi và ca chiếu sáng dùng làm bài chuyển giao.
+3. MIT 6.079 lec02: định nghĩa tập lồi, nửa không gian, giao và ảnh affine.
+4. MIT 6.079 lec03: định nghĩa hàm lồi, điều kiện bậc nhất/bậc hai, hàm bậc hai, tổng không âm và hợp affine.
+5. Boyd và Vandenberghe (2004), Chương 1–3, dùng để kiểm tra giả thiết và phát biểu.
+
+Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự trình bày khác mẫu vì chỉ dẫn của người dùng yêu cầu ứng dụng trước lý thuyết.
+
+## Tài sản trực quan
+
+- Giữ và dùng: `optimization-model-anatomy.svg`, `convex-set-and-combination.svg`, `convex-concave-strict.svg`, `local-versus-global-minimum.svg`, `first-second-order-convexity.svg`, `existence-and-uniqueness.svg`.
+- Sửa: `logistic-loss-convex-case.svg` để ca chính dùng miền $\mathbb R$ và làm rõ cận dưới đúng không đạt; phần ràng buộc đóng, bị chặn được chuyển thành đối chiếu trong mạch kết luận.
+- Tạo mới tối đa hai SVG: `one-step-control.svg` và `linear-regression-fit.svg`.
+- Không dùng trong tuyến chính: `basic-convex-set-library.svg`, `convex-hull-and-conic-hull.svg`, `convex-set-preservation-map.svg`, `epigraph-levelset-indicator.svg`, `convex-preservation-and-jensen.svg`, `line-restriction-convex-library.svg`, `psd-cone-and-quadratic-directions.svg`.
+
+## Tiêu chí hoàn thành
+
+- HTML có đúng 7 `<section>` ngoài, 37 trang lá, 37 mã `data-slide-id` duy nhất và ghi chú diễn giả có nội dung trên mọi trang nội dung.
+- Mỗi ca có nhu cầu, trực quan, ví dụ tính được, mô hình, chứng nhận và bài tập kiểm tra.
+- Mọi giả thiết của kết luận về lồi, tồn tại và duy nhất đều hiện diện trước khi dùng.
+- Ghi chú học tập mở rộng lập luận; bài tập có mức nhận biết, tính toán hoặc chứng minh và vận dụng AI.
+- Trang chỉ mục chỉ công bố các tệp đã tồn tại và đã kiểm định.
+- Bộ trang chiếu, viewer và tài liệu chạy hoàn toàn bằng tài sản cục bộ; không có liên kết runtime chéo hoặc tài nguyên hỏng.
