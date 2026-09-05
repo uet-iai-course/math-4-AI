@@ -18,6 +18,14 @@
     .box, .check, .result { padding: .52em .7em; border-radius: 8px; }
     .box { border-left: 5px solid var(--lec-accent); background: #f7efe6; }
     .check { border: 2px solid var(--lec-primary); background: #edf4ff; }
+    .model-statement p { margin: .08em 0 .12em; }
+    .model-statement .math-mid { margin: .08em 0 0; }
+    .d02-slide h2 { font-size: 1.34em; margin-bottom: .18em; }
+    .d02-slide > div > .math-mid .katex-display { margin: .22em 0; }
+    .d02-slide .grid2 { gap: .48em; }
+    .d02-slide .card { padding: .34em .55em; }
+    .d02-slide .card h3 { font-size: 1.16em; margin-bottom: .12em; }
+    .d02-slide .model-statement .katex-display { margin: .16em 0 0; }
     .result { border-left: 5px solid #16706a; background: #eef4f3; }
     .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72em; }
     .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .58em; }
@@ -109,20 +117,26 @@
         <aside class="notes">Nêu kiểu của từng đại lượng trước khi dùng. $x_0$ và $t$ là dữ kiện, với $t$ là đích (target) cần bám; chỉ $u$ được phép thay đổi. Giới hạn biên độ là ràng buộc vật lý, không phải một hạng phạt. Chuyển sang cách lượng hóa hai yêu cầu cạnh tranh.</aside>
       </section>
 
-      <section data-slide-id="D02">
+      <section class="d02-slide" data-slide-id="D02">
         <h2>Tối ưu nhiều mục tiêu: Bám đích và Năng lượng</h2>
         <div>
           <div class="math-mid">$$q(u)=\underbrace{(x_0+u-t)^2}_{\text{bám đích}}+\underbrace{\lambda u^2}_{\text{năng lượng}}$$</div>
           <div class="grid2">
             <div class="card"><h3>Thành phần bám đích</h3><p>$(x_0+u-t)^2$: sai lệch tới đích $t$ sau một bước.</p></div>
-            <div class="card"><h3>Thành phần năng lượng</h3><p>$\lambda u^2$: điều hòa độ lớn tác động.</p></div>
+            <div class="card">
+              <h3>Thành phần năng lượng</h3>
+              <p>$\lambda u^2$: điều hòa độ lớn tác động.</p>
+              <ul class="tight">
+                <li>$\lambda$ lớn: hạn chế tác động mạnh.</li>
+                <li>$u_{\max}$ nhỏ: nghiệm dễ nằm trên biên.</li>
+              </ul>
+            </div>
           </div>
-          <ul class="tight">
-            <li>$\lambda$ lớn: hạn chế tác động mạnh.</li>
-            <li>$u_{\max}$ nhỏ: nghiệm dễ nằm trên biên.</li>
-          </ul>
         </div>
-        <div class="check"><strong>Mô hình:</strong> quan niệm chủ quan của con người về thế giới. Ở đây, ta gộp bám đích và năng lượng thành $q(u)$, rồi giải $\min_{|u|\le u_{\max}}q(u)$.</div>
+        <div class="check model-statement">
+          <p><strong>Mô hình:</strong> quan niệm chủ quan của con người về thế giới. Ở đây, ta gộp bám đích và năng lượng thành $q(u)$.</p>
+          <div class="math-mid">$$\underset{|u|\le u_{\max}}{\operatorname{minimize}}\quad q(u).$$</div>
+        </div>
         <aside class="notes">Hạng thứ nhất đo khoảng cách tới đích $t$ sau một bước; hạng thứ hai điều hòa độ lớn tác động. Không đồng nhất $\lambda$ với $u_{\max}$: một đại lượng đổi ưu tiên, đại lượng kia loại phương án không khả thi. Tiếp theo giải một bộ số cụ thể.</aside>
       </section>
 

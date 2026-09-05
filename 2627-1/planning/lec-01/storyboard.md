@@ -34,7 +34,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | M02 | Mục tiêu học tập | Nêu bốn nội dung: các ví dụ tối ưu, nhu cầu chứng nhận, công cụ lồi và quay lại ví dụ | M01 → M03 | LLO1, LLO2, CLO1 | Sửa |
 | M03 | Một số bài toán tối ưu trong điều khiển và AI | Tạo ba quyết định cụ thể và vấn đề trung tâm bằng ba hình khái quát | M02 → D01 | LLO1, CLO1 | Sửa; thêm ba SVG |
 | D01 | Bài toán điều khiển một bước | Xác định dữ kiện, động lực, biến và miền bằng sơ đồ trạng thái–tác động–chi phí | M03 → D02 | LLO1, CLO1 | Tách từ U01; chuyển SVG từ D02 |
-| D02 | Tối ưu nhiều mục tiêu: Bám đích và Năng lượng | Làm rõ lựa chọn mô hình khi gộp bám đích và năng lượng thành một hàm chi phí | D01 → D03 | LLO1, CLO1 | Sửa tiêu đề và khung mô hình |
+| D02 | Tối ưu nhiều mục tiêu: Bám đích và Năng lượng | Làm rõ lựa chọn mô hình khi gộp bám đích và năng lượng thành một hàm chi phí | D01 → D03 | LLO1, CLO1 | Sửa tiêu đề; nhóm các giải thích vào thẻ năng lượng; tách công thức mô hình |
 | D03 | Nghiệm của ca điều khiển | Dùng đồ thị để phân biệt nghiệm tự do ngoài miền với nghiệm tối ưu trên biên và so sánh hai giá trị mục tiêu | D02 → D04 | LLO1, CLO1 | Sửa; thêm SVG |
 | D04 | Nghiệm tối ưu trên biên | Phát hiện điều kiện $q'(u)=0$ không áp dụng máy móc ở biên | D03 → L01 | LLO1, CLO1 | Thêm câu hỏi |
 | L01 | Học đường thẳng từ dữ liệu | Đặt kiểu, kích thước, mô hình dự đoán và biến tham số | D04 → L02 | LLO1, CLO1 | Tách từ U03 |
