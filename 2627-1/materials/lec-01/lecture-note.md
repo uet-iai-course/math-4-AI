@@ -354,10 +354,12 @@ $$
 
 Các câu hỏi phải được tách riêng:
 
-1. điểm tìm được có khả thi không;
-2. cực tiểu địa phương có phải toàn cục không;
-3. có điểm nào đạt $p^*$ không;
-4. nếu có, nghiệm có duy nhất không.
+1. Điểm $x$ đang xét có thuộc $C$ không?
+2. Tập khả thi $C$ có lồi không?
+3. Hàm mục tiêu $f_0$ có lồi trên $C$ không?
+4. Điểm ứng viên có tối ưu toàn cục không?
+5. Nghiệm tối ưu có tồn tại không?
+6. Nếu tồn tại, nghiệm có duy nhất không?
 
 ::: example
 Trong ca điều khiển, $u=0$ là khả thi nhưng không tối ưu cho bộ số đã cho. Trong ca logistic tách tuyến tính, $p^*=0$ nhưng không có $w^*$ đạt $p^*$. Trong hồi quy tuyến tính thiếu hạng, nghiệm tồn tại nhưng không duy nhất.

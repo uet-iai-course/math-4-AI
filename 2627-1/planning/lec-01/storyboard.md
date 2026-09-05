@@ -48,7 +48,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | T01 | Bài toán tối ưu tổng quát | Rút cấu trúc chung sau ba ca, không mở bài bằng định nghĩa | G04 → T02 | LLO1, CLO1 | Giữ, đổi vị trí |
 | T02 | 3 bài toán tối ưu đã học | Kiểm tra nghĩa của dữ kiện, $x$, $f_0$ và $C$ trong từng bài toán | T01 → T03 | LLO1, CLO1 | Sửa |
 | T03 | Bốn loại chứng nhận | Phân biệt bốn loại chứng nhận: khả thi, giá trị tối ưu, tồn tại và duy nhất | T02 → T04 | LLO1, LLO2, CLO1 | Thêm |
-| T04 | Các chứng nhận cần có | Biến ba nghi vấn thành chương trình lý thuyết cụ thể | T03 → F01 | LLO1, LLO2, CLO1 | Sửa |
+| T04 | Các câu hỏi | Chuyển bốn loại chứng nhận thành sáu câu hỏi dẫn vào tập lồi và hàm lồi | T03 → F01 | LLO1, LLO2, CLO1 | Sửa |
 | F01 | Đoạn nối giữa hai phương án | Tạo trực giác miền không có lỗ trên các đoạn khả thi | T04 → F02 | LLO2, CLO1 | Sửa; dùng SVG |
 | F02 | Định nghĩa tập lồi | Cung cấp lượng từ và miền của hệ số tổ hợp lồi | F01 → F03 | LLO2, CLO1 | Giữ |
 | F03 | Các tập lồi dùng trong ba ca | Chỉ giữ toàn không gian, đoạn, tập affine và nửa không gian | F02 → F04 | LLO2, CLO1 | Gộp và lược |
