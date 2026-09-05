@@ -1,1173 +1,603 @@
-# Bài 01 — Giới thiệu tối ưu, tập lồi và hàm lồi
+# Bài 01: Giới thiệu tối ưu, tập lồi và hàm lồi
 
-Bài này giới thiệu ký hiệu và khái niệm để mô tả một bài toán tối ưu, phân biệt các loại nghiệm và tách hai câu hỏi thường bị gộp lại: nghiệm có tồn tại không và có duy nhất không.
+## 1. Mục tiêu và vấn đề trung tâm
 
-Ký hiệu chung trong phần này là $x\in\mathbb R^n$ cho biến quyết định, $C\subseteq\mathbb R^n$ cho tập khả thi và $f_0$ cho hàm mục tiêu. Khi không có nguy cơ nhầm lẫn, ta viết bài toán dưới dạng
+Bài học đi từ ba nhu cầu cụ thể đến công cụ toán học dùng để chứng nhận mô hình. Sau khi học, sinh viên cần:
 
-$$
-\underset{x\in C}{\operatorname{minimize}}\; f_0(x).
-$$
+1. tách dữ kiện, biến quyết định, hàm mục tiêu và miền khả thi;
+2. lập mô hình điều khiển một bước, hồi quy tuyến tính và hồi quy logistic;
+3. kiểm tra tính lồi của miền và mục tiêu;
+4. phân biệt bảo đảm toàn cục, sự tồn tại và tính duy nhất của nghiệm.
 
-Các định nghĩa và ký hiệu theo Boyd và Vandenberghe (2004), Chương 1–3 và Mục 4.1–4.2. Việc phân loại và cải dạng các lớp bài toán được dành cho Bài 02.
+Vấn đề trung tâm là: từ một nhu cầu cụ thể, xây dựng mô hình tối ưu thế nào, và cần giả thiết nào để kết luận đúng về nghiệm?
 
-## A. Mô hình tối ưu và các loại nghiệm
+Kiến thức dùng trong bài gồm đạo hàm một và nhiều biến, ma trận, hạng, không gian không, hình chiếu trực giao, chuẩn Euclid, hàm mũ và logarit.
 
-### 1. Khuôn bài toán tối ưu
+::: example
+Ba từ “tốt nhất” có thể chỉ ba đối tượng khác nhau:
 
+- một điểm khả thi có giá trị tốt hơn các điểm đã thử;
+- cận dưới $p^*=\inf_{x\in C}f_0(x)$;
+- một nghiệm $x^*\in C$ đạt $f_0(x^*)=p^*$.
 
-**Định nghĩa và giả thiết.** Ở mức khái quát cần cho bài này, một bài toán tối ưu được viết dưới dạng
-
-$$
-\underset{x\in C}{\operatorname{minimize}}\; f_0(x),
-$$
-
-trong đó $x\in\mathbb R^n$ là biến quyết định, $f_0$ là hàm mục tiêu và $C\subseteq\operatorname{dom}f_0$ là tập các phương án thỏa mọi giới hạn của bài toán. Dữ liệu dùng để xác định $f_0$ và $C$ được giữ cố định khi giải. Cách tách từng ràng buộc thành dạng chuẩn sẽ được trình bày ở Bài 02.
-
-Giá trị tối ưu được định nghĩa bằng
-
-$$
-p^*=\inf_{x\in C}f_0(x).
-$$
-
-Một điểm $x^*\in C$ là nghiệm tối ưu nếu $f_0(x^*)=p^*$. Định nghĩa bằng infimum vẫn có nghĩa khi không có điểm nào đạt được giá trị $p^*$.
-
-Tập tất cả nghiệm tối ưu được ký hiệu
-
-$$
-\operatorname*{arg\,min}_{x\in C}f_0(x)
-=
-\{x\in C:f_0(x)=p^*\}.
-$$
-
-Nếu $C=\varnothing$, ta dùng quy ước $p^*=+\infty$. Nếu $f_0$ không bị chặn dưới trên $C$, ta có $p^*=-\infty$. Trong cả hai trường hợp, bài toán không có nghiệm tối ưu nhận giá trị thực.
-
-**Trực quan.** Mô hình hóa tách một tình huống thành hai câu hỏi. Tập $C$ trả lời phương án nào được phép chọn; hàm $f_0$ cho biết cách so sánh các phương án được phép đó. Thay một ràng buộc hoặc thước đo có thể làm thay đổi nghiệm dù dữ liệu ban đầu không đổi.
-
-![Sơ đồ tách tình huống thành dữ kiện, biến quyết định, mục tiêu, ràng buộc và kết luận tối ưu.](img/lec-01/optimization-model-anatomy.svg)
-
-*Dữ kiện được giữ cố định; chỉ biến quyết định được thay đổi khi giải bài toán.*
-
-**Ví dụ tính được.** Xét
-
-$$
-\underset{0\le x\le 2}{\operatorname{minimize}}\;(x-3)^2.
-$$
-
-Ở đây $x$ là biến quyết định, $C=[0,2]$ là tập khả thi và $f_0(x)=(x-3)^2$ là mục tiêu. Trên đoạn $[0,2]$, hàm giảm khi $x$ tăng, nên
-
-$$
-x^*=2,
-\qquad
-p^*=f_0(2)=1.
-$$
-
-Nếu thay ràng buộc bằng $0\le x\le4$, điểm $x=3$ trở nên khả thi và nghiệm đổi thành $x^*=3$, $p^*=0$.
-
-**Ý nghĩa và ứng dụng trong AI.** Trong học máy, $x$ có thể là véc-tơ trọng số; $f_0$ có thể là mất mát huấn luyện cộng điều chuẩn; các ràng buộc có thể giới hạn chuẩn tham số, năng lượng, độ trễ hoặc độ lệch giữa các nhóm. Việc viết rõ khuôn bài toán ngăn ta tối ưu một thước đo mà bỏ qua điều kiện vận hành.
-
-**Điểm dễ nhầm.** Dữ liệu và siêu tham số được cho trước không phải biến tối ưu. Một điểm có giá trị mục tiêu thấp nhưng không thuộc $C$ không phải phương án chấp nhận được. Giá trị $p^*$ là infimum; nó không tự bảo đảm tồn tại một $x^*$ đạt giá trị ấy.
-
-Khuôn $(C,f_0,p^*,x^*)$ cho phép mô tả chính xác một điểm ứng viên và giá trị mục tiêu của nó.
-
-### 2. Tập khả thi, cực tiểu địa phương và cực tiểu toàn cục
-
-
-**Định nghĩa và giả thiết.** Điểm $x\in C$ được gọi là khả thi. Điểm $x^*\in C$ là một cực tiểu địa phương của $f_0$ trên $C$ nếu tồn tại $r>0$ sao cho
-
-$$
-f_0(x^*)\le f_0(x)
-\quad
-\text{với mọi }x\in C\cap B(x^*,r),
-$$
-
-trong đó $B(x^*,r)=\{x:\lVert x-x^*\rVert_2<r\}$. Điểm $x^*$ là cực tiểu toàn cục nếu
-
-$$
-f_0(x^*)\le f_0(x)
-\quad
-\text{với mọi }x\in C.
-$$
-
-Mọi cực tiểu toàn cục đều là cực tiểu địa phương, nhưng chiều ngược lại không đúng đối với bài toán tổng quát.
-
-**Trực quan.** Cực tiểu địa phương chỉ so sánh với những điểm khả thi đủ gần. Vì vậy, một điểm nằm ở đáy của một thung lũng nông hoặc ở biên miền vẫn có thể là cực tiểu địa phương, dù một thung lũng khác có giá trị thấp hơn.
-
-![Hai cực tiểu trên một miền không lồi theo mục tiêu và sự khác nhau giữa cực tiểu địa phương với cực tiểu toàn cục.](img/lec-01/local-versus-global-minimum.svg)
-
-*Lân cận trong định nghĩa phải được giao với tập khả thi; điểm ở biên không được so sánh với điểm nằm ngoài miền.*
-
-**Ví dụ và phản ví dụ.** Trên miền $C=[-2,0{,}5]$, xét
-
-$$
-f_0(x)=(x^2-1)^2.
-$$
-
-Tại $x=-1$, ta có $f_0(-1)=0$, nên $-1$ là cực tiểu toàn cục. Điểm biên $x=0{,}5$ có
-
-$$
-f_0(0{,}5)=\left(\frac14-1\right)^2=\frac9{16}.
-$$
-
-Vì $f_0'(x)=4x(x^2-1)<0$ khi $x$ ở bên trái và đủ gần $0{,}5$, giá trị hàm giảm khi tiến về biên phải. Do đó $0{,}5$ là cực tiểu địa phương tương đối với $C$, nhưng không phải cực tiểu toàn cục.
-
-Đối với $f_0(x)=x^2$ trên một đoạn lồi chứa $0$, cực tiểu địa phương tại $0$ đồng thời là cực tiểu toàn cục; phần tập lồi và hàm lồi sẽ chứng minh kết luận này trong trường hợp tổng quát.
-
-**Ý nghĩa và ứng dụng trong AI.** Một thuật toán huấn luyện có thể trả về điểm dừng phụ thuộc khởi tạo. Muốn kết luận điểm đó là tối ưu toàn cục, ta cần giả thiết về miền và mục tiêu, chứ không chỉ cần một giá trị mất mát nhỏ hoặc gradient gần bằng không.
-
-**Điểm dễ nhầm.** Cực tiểu địa phương trên $C$ được hiểu tương đối với $C$. Điểm dừng không tự động là cực tiểu. Tối ưu toàn cục cũng không đồng nghĩa với nghiệm duy nhất: một bài toán có thể có nhiều nghiệm cùng đạt $p^*$.
-
-Sau khi phân biệt nghiệm, ta cần kiểm tra liệu nghiệm có tồn tại và, nếu tồn tại, có duy nhất hay không.
-
-### 3. Tồn tại và duy nhất
-
-
-**Định nghĩa và giả thiết.** Trong không gian hữu hạn chiều, một tập compact là một tập đóng và bị chặn. Định lý Weierstrass cho điều kiện đủ sau: nếu $C\ne\varnothing$ compact và $f_0:C\to\mathbb R$ liên tục thì tồn tại $x^*\in C$ sao cho
-
-$$
-f_0(x^*)=\min_{x\in C}f_0(x).
-$$
-
-Tính duy nhất cần một giả thiết khác. Nếu $C$ lồi và $f_0$ lồi chặt (còn gọi là lồi nghiêm ngặt) trên $C$, thì bài toán có nhiều nhất một nghiệm tối ưu. Kết luận này không tự tạo ra nghiệm; nó chỉ loại trừ khả năng có hai nghiệm khác nhau.
-
-**Trực quan.** Miền mở có thể loại mất điểm biên mà một dãy nghiệm ứng viên đang tiến tới. Một đáy phẳng cho nhiều nghiệm. Một hàm lồi chặt trên miền phù hợp không có đoạn đáy phẳng, nên nếu đáy được đạt thì chỉ có một điểm đáy.
-
-![Ba tình huống: infimum không đạt, nhiều nghiệm tối ưu và một nghiệm tối ưu duy nhất.](img/lec-01/existence-and-uniqueness.svg)
-
-*Tồn tại phụ thuộc cả miền lẫn tính liên tục; duy nhất cần thêm cấu trúc như lồi chặt.*
-
-**Ví dụ và phản ví dụ.** Ba bài toán sau tách ba hiện tượng:
-
-1. Với $C=(0,1]$ và $f_0(x)=x$, ta có $p^*=0$ nhưng không có $x^*\in C$ đạt $0$.
-2. Với $C=[-1,1]$ và $f_0(x)=0$, mọi điểm của $C$ đều là nghiệm tối ưu.
-3. Với $C=[-1,1]$ và $f_0(x)=x^2$, nghiệm duy nhất là $x^*=0$.
-
-Ví dụ thứ nhất cho thấy bị chặn nhưng không đóng là chưa đủ. Ví dụ thứ hai cho thấy liên tục trên tập compact bảo đảm tồn tại nhưng không bảo đảm duy nhất.
-
-**Ý nghĩa và ứng dụng trong AI.** Ràng buộc compact hoặc điều chuẩn tăng theo chuẩn tham số có thể ngăn dãy tham số thoát ra vô hạn. Tính lồi chặt có thể làm nghiệm tham số duy nhất, nhưng không tự bảo đảm mô hình tổng quát hóa tốt hoặc dự đoán là duy nhất khi cách tham số hóa dư thừa.
-
-**Điểm dễ nhầm.** Hàm lồi không tự bảo đảm tồn tại. Lồi chặt không tự bảo đảm tồn tại. Hessian nửa xác định dương chỉ gợi tính lồi, không đủ cho duy nhất. Ngược lại, một bài toán không lồi vẫn có thể có nghiệm duy nhất.
-
-Định lý Weierstrass cho một điều kiện đủ để nghiệm tồn tại; phần tiếp theo chứng minh kết quả này để dùng lại trong các ca ứng dụng.
-
-## Các định lý và chứng minh quan trọng — Nhóm A
-
-### Định lý Weierstrass về sự tồn tại của nghiệm
-
-**Giả thiết.** Cho $C\subseteq\mathbb R^n$ khác rỗng và compact. Cho $f:C\to\mathbb R$ liên tục.
-
-**Kết luận.** Tồn tại $x^*\in C$ sao cho
-
-$$
-f(x^*)=\min_{x\in C}f(x).
-$$
-
-Infimum của $f$ trên $C$ vì thế hữu hạn và được đạt tại ít nhất một điểm của $C$.
-
-::: proof
-**Ý tưởng.** Chọn một dãy điểm có giá trị hàm tiến dần tới infimum. Tính compact giữ một dãy con hội tụ bên trong $C$; tính liên tục truyền giới hạn từ điểm sang giá trị hàm.
-
-Đặt
-
-$$
-p^*=\inf_{x\in C}f(x).
-$$
-
-Vì $f$ liên tục trên tập compact, $f(C)$ bị chặn, nên $p^*>-\infty$. Theo định nghĩa infimum, với mỗi số nguyên $k\ge1$, tồn tại $x_k\in C$ sao cho
-
-$$
-p^*\le f(x_k)<p^*+\frac1k.
-$$
-
-Do $C$ compact, dãy $(x_k)$ có một dãy con $(x_{k_j})$ hội tụ tới một điểm $x^*\in C$. Tính liên tục của $f$ cho
-
-$$
-f(x^*)
-=\lim_{j\to\infty}f(x_{k_j})
-=p^*.
-$$
-
-Vậy $x^*$ là một nghiệm tối ưu toàn cục.
+Ca logistic ở Mục 4 có cận dưới hữu hạn nhưng không có nghiệm hữu hạn.
 :::
 
-**Điểm dùng giả thiết.** Tính compact được dùng hai lần: bảo đảm hàm liên tục bị chặn trên $C$ và bảo đảm dãy cực tiểu có dãy con hội tụ tới một điểm vẫn nằm trong $C$. Tính liên tục được dùng để đổi giới hạn của điểm thành giới hạn của giá trị hàm.
+## 2. Điều khiển một bước
 
-**Giới hạn của định lý.** Đây là điều kiện đủ, không phải điều kiện cần. Chẳng hạn, $f(x)=x^2$ trên $C=\mathbb R$ vẫn có nghiệm dù $C$ không compact. Định lý cũng không nói nghiệm là duy nhất.
+### 2.1. Từ động lực đến mô hình
 
-**Vai trò trong AI và tối ưu.** Khi tập tham số được giới hạn bởi một ràng buộc đóng, bị chặn và hàm mất mát liên tục, định lý xác nhận bài toán có nghiệm trước khi ta bàn cách tìm nghiệm. Nếu miền không compact, cần một lập luận khác, chẳng hạn chứng minh các tập mức phù hợp bị chặn hoặc hàm tăng ra vô hạn khi chuẩn tham số tăng.
-
-## B. Hình học tập lồi
-
-### 4. Tập lồi và tổ hợp lồi
-
-
-**Định nghĩa và giả thiết.** Tập $C\subseteq\mathbb R^n$ là tập lồi nếu với mọi $x,y\in C$ và mọi $\theta\in[0,1]$,
+Cho trạng thái đầu $x_0\in\mathbb R$, đích $r\in\mathbb R$, giới hạn $u_{\max}\ge0$ và trọng số năng lượng $\lambda\ge0$. Ta chọn tác động $u\in\mathbb R$; trạng thái kế tiếp là
 
 $$
-\theta x+(1-\theta)y\in C.
+x_1=x_0+u.
 $$
 
-Tổng quát hơn, một tổ hợp lồi của $x_1,\ldots,x_k$ có dạng
+Hai yêu cầu cạnh tranh là:
+
+- giảm sai lệch bám đích $(x_1-r)^2$;
+- giảm năng lượng điều khiển $u^2$.
+
+Mô hình là
 
 $$
-\sum_{i=1}^k\theta_i x_i,
-\qquad
-\theta_i\ge0,
-\qquad
-\sum_{i=1}^k\theta_i=1.
+\underset{-u_{\max}\le u\le u_{\max}}{\operatorname{minimize}}
+\quad q(u)=(x_0+u-r)^2+\lambda u^2.
 $$
 
-Tập rỗng, tập chỉ có một điểm, đoạn thẳng và một không gian affine đều có thể là tập lồi.
+Dữ kiện là $x_0,r,u_{\max},\lambda$; biến quyết định là $u$; hàm mục tiêu là $q$; miền khả thi là đoạn $[-u_{\max},u_{\max}]$.
 
-**Trực quan.** Nếu hai quyết định đều thuộc tập khả thi lồi thì mọi phép trộn theo cùng một tỉ lệ cũng khả thi. Một lỗ thủng hoặc chỗ lõm có thể làm một phần đoạn nối đi ra ngoài tập.
+### 2.2. Nghiệm tự do và nghiệm bị chặn
 
-![Một tập lồi chứa toàn bộ đoạn nối và một tập không lồi có đoạn nối đi ra ngoài.](img/lec-01/convex-set-and-combination.svg)
-
-*Nhãn trên đoạn nối biểu diễn hệ số $\theta$; nét đứt đánh dấu phần đoạn không thuộc tập ở phản ví dụ.*
-
-**Ví dụ và phản ví dụ.** Với quả cầu Euclid đơn vị $C=\{x\in\mathbb R^2:\lVert x\rVert_2\le1\}$, hai điểm $x=(1,0)^T$, $y=(0,1)^T$ có trung điểm
+Trước hết bỏ ràng buộc và giải bài toán trên $\mathbb R$:
 
 $$
-\frac{x+y}{2}=\begin{bmatrix}1/2\\1/2\end{bmatrix},
-\qquad
-\left\lVert\frac{x+y}{2}\right\rVert_2=\frac1{\sqrt2}<1.
+q'(u)=2(x_0+u-r)+2\lambda u.
 $$
 
-Ngược lại, vành khăn $A=\{x:1\le\lVert x\rVert_2\le2\}$ không lồi: $(1,0)^T$ và $(-1,0)^T$ thuộc $A$, nhưng trung điểm $(0,0)^T$ không thuộc $A$.
-
-**Ý nghĩa và ứng dụng trong AI.** Tính lồi của tập khả thi cho phép nội suy giữa hai tham số, phân phối hoặc chính sách khả thi mà không vi phạm ràng buộc. Khi mục tiêu cũng lồi, mọi cực tiểu địa phương đều là cực tiểu toàn cục; phần định lý bên dưới chứng minh kết quả này.
-
-**Điểm dễ nhầm.** Kiểm tra một cặp điểm không chứng minh cả tập lồi. Một tổ hợp affine chỉ yêu cầu tổng hệ số bằng $1$, còn tổ hợp lồi yêu cầu thêm mọi hệ số không âm. Không nên suy tính lồi chỉ từ hình vẽ.
-
-Tổ hợp lồi hữu hạn cho phép dựng bao lồi, tập lồi nhỏ nhất chứa một tập điểm; bỏ điều kiện tổng hệ số bằng $1$ dẫn tới tổ hợp nón.
-
-### 5. Bao lồi và nón lồi
-
-
-**Định nghĩa và giả thiết.** Bao lồi của $S\subseteq\mathbb R^n$ là
+Vì $1+\lambda>0$, phương trình $q'(u)=0$ có nghiệm duy nhất
 
 $$
-\operatorname{conv}S
-=\left\{\sum_{i=1}^k\theta_i x_i:
-k\ge1,\ x_i\in S,\ \theta_i\ge0,\ \sum_{i=1}^k\theta_i=1\right\}.
+u_{\mathrm{free}}=\frac{r-x_0}{1+\lambda}.
 $$
 
-Tập $K$ là nón lồi nếu với mọi $x,y\in K$ và $\alpha,\beta\ge0$,
+Trong một chiều, nghiệm trên đoạn thu được bằng cách chiếu nghiệm tự do lên đoạn:
 
 $$
-\alpha x+\beta y\in K.
+u^*=\operatorname{clip}\!\left(u_{\mathrm{free}},[-u_{\max},u_{\max}]\right).
 $$
 
-Nón sinh bởi $S$ gồm mọi tổ hợp $\sum_i\alpha_i x_i$ với $\alpha_i\ge0$; các hệ số không phải cộng thành $1$.
-
-**Trực quan.** Bao lồi giống một dây cao su ôm quanh các điểm. Nón sinh giữ gốc tọa độ làm đỉnh và kéo dài các tia không âm đi qua các véc-tơ sinh.
-
-![Bao lồi của ba điểm là một tam giác, còn nón sinh bởi hai véc-tơ là một góc kéo dài từ gốc.](img/lec-01/convex-hull-and-conic-hull.svg)
-
-*Hai panel dùng cùng các véc-tơ nhưng hai điều kiện hệ số khác nhau.*
-
-**Ví dụ tính được.** Với $S=\{(0,0)^T,(2,0)^T,(0,2)^T\}$,
+Ở đây
 
 $$
-\operatorname{conv}S
-=\{(u,v)^T:u\ge0,\ v\ge0,\ u+v\le2\}.
-$$
-
-Nón sinh bởi $e_1=(1,0)^T$ và $e_2=(0,1)^T$ là $\mathbb R_+^2$. Điểm $(1/2,1/2)^T$ thuộc cả hai tập, còn $(3,1)^T$ chỉ thuộc nón sinh.
-
-**Ý nghĩa và ứng dụng trong AI.** Bao lồi mô tả mọi phép trộn hữu hạn của prototype, embedding hoặc phân phối. Nón lồi mô tả các đại lượng đóng dưới phép cộng và nhân vô hướng không âm, chẳng hạn véc-tơ không âm và ma trận hiệp phương sai.
-
-**Điểm dễ nhầm.** Bao lồi của một tập không nhất thiết đóng nếu tập ban đầu không compact. Nón lồi không mặc nhiên đóng, nhọn hoặc có phần trong. Một nón chứa bội không âm của điểm, không nhất thiết chứa bội âm.
-
-Bao lồi và nón lồi là nền để nhận dạng các tập lồi cơ bản dùng làm tập khả thi.
-
-### 6. Các tập lồi cơ bản
-
-
-**Định nghĩa và giả thiết.** Các tập sau đều lồi khi các biểu thức có kiểu phù hợp:
-
-- tập affine $\{x:Ax=b\}$;
-- siêu phẳng $\{x:a^Tx=b\}$ với $a\ne0$;
-- nửa không gian $\{x:a^Tx\le b\}$;
-- đa diện $\{x:Ax\le b,\ Cx=d\}$;
-- quả cầu chuẩn $\{x:\lVert x-x_c\rVert\le r\}$ với $r\ge0$;
-- ellipsoid $\{x_c+Au:\lVert u\rVert_2\le1\}$;
-- nón bậc hai $\mathcal Q^{n+1}=\{(u,t):\lVert u\rVert_2\le t\}$.
-
-Ellipsoid có thể suy biến nếu $A$ không khả nghịch; ảnh affine đó vẫn lồi.
-
-**Trực quan.** Tập affine và siêu phẳng là các đối tượng phẳng. Nửa không gian và đa diện được tạo bởi các phía của siêu phẳng. Quả cầu và ellipsoid có biên cong; các lát cắt ngang của nón bậc hai là những quả cầu.
-
-![Thư viện các tập lồi cơ bản gồm tập affine, nửa không gian, đa diện, quả cầu, ellipsoid và nón bậc hai.](img/lec-01/basic-convex-set-library.svg)
-
-*Mỗi ô ghi cả công thức và một đặc trưng hình học; hình không dùng màu làm tín hiệu duy nhất.*
-
-**Ví dụ tính được.** Ellipsoid
-
-$$
-E=\{(x_1,x_2)^T:x_1^2+4x_2^2\le1\}
-$$
-
-có bán trục dài $1$ theo hướng $x_1$ và $1/2$ theo hướng $x_2$. Điểm $(3,4,5)$ nằm trên biên $\mathcal Q^3$ vì $\lVert(3,4)^T\rVert_2=5$; điểm $(3,4,4)$ không thuộc nón vì $5>4$.
-
-**Ý nghĩa và ứng dụng trong AI.** Nửa không gian và đa diện mô tả giới hạn tuyến tính; quả cầu chuẩn mô tả ngân sách nhiễu hoặc độ lớn tham số; ellipsoid mô tả bất định có tương quan; nón bậc hai biểu diễn một ràng buộc chuẩn. Phần này chỉ nhận dạng hình học, chưa phân loại các bài toán chứa chúng.
-
-**Điểm dễ nhầm.** Quả cầu $\lVert x-x_c\rVert\le r$ lồi, nhưng mặt cầu $\lVert x-x_c\rVert=r$ nói chung không lồi. Đẳng thức affine tạo tập lồi; đẳng thức phi tuyến không có bảo đảm tương tự.
-
-Dạng toàn phương của ellipsoid dẫn tới nón nửa xác định dương trong không gian ma trận, xét ở mục tiếp theo.
-
-### 7. Nón nửa xác định dương
-
-
-**Định nghĩa và giả thiết.** Ký hiệu $\mathbb S^n$ là không gian các ma trận đối xứng thực cấp $n$. Nón nửa xác định dương là
-
-$$
-\mathbb S_+^n
-=\{X\in\mathbb S^n:z^TXz\ge0\ \text{với mọi }z\in\mathbb R^n\}.
-$$
-
-Ta viết $X\succeq0$ khi $X\in\mathbb S_+^n$. Nếu $z^TXz>0$ với mọi $z\ne0$, thì $X\succ0$. Với ma trận đối xứng thực, $X\succeq0$ tương đương mọi giá trị riêng của $X$ không âm.
-
-**Trực quan.** Dạng toàn phương $z^TXz$ đo độ cong theo hướng $z$. Ma trận PSD không tạo hướng có giá trị âm; một trị riêng bằng $0$ tạo hướng phẳng.
-
-![Dạng toàn phương theo các hướng và ba trường hợp xác định dương, nửa xác định dương có hướng phẳng, và bất định.](img/lec-01/psd-cone-and-quadratic-directions.svg)
-
-*Nhãn dấu của trị riêng và nét cong hoặc phẳng phân biệt các trường hợp ngoài tín hiệu màu.*
-
-**Ví dụ và phản ví dụ.** Ma trận
-
-$$
-X=\begin{bmatrix}2&1\\1&2\end{bmatrix}
-$$
-
-có các giá trị riêng $1$ và $3$, nên $X\succ0$. Ma trận $Y=\operatorname{diag}(1,0)$ thuộc $\mathbb S_+^2$ nhưng không xác định dương vì $e_2^TYe_2=0$. Ma trận $Z=\operatorname{diag}(1,-1)$ không PSD vì $e_2^TZe_2=-1$.
-
-**Ý nghĩa và ứng dụng trong AI.** Ma trận hiệp phương sai và ma trận Gram luôn PSD. Hessian PSD biểu diễn độ cong không âm theo mọi hướng. Phần này chưa đưa nón PSD vào một dạng bài toán tối ưu ma trận.
-
-**Điểm dễ nhầm.** Đường chéo không âm chưa đủ để một ma trận đối xứng tổng quát là PSD. PSD không đồng nghĩa khả nghịch. Điều kiện dạng toàn phương phải đúng với mọi $z$, không chỉ các véc-tơ cơ sở.
-
-Nón PSD là một tập lồi trong không gian ma trận; mục tiếp theo khái quát các phép tạo tập lồi mới.
-
-### 8. Các phép bảo toàn tập lồi
-
-
-**Định nghĩa và giả thiết.** Nếu $C,D$ lồi và $F(x)=Ax+b$ affine, các phép sau bảo toàn tính lồi:
-
-- giao tùy ý của các tập lồi;
-- ảnh affine $F(C)=\{Ax+b:x\in C\}$;
-- nghịch ảnh affine $F^{-1}(D)=\{x:Ax+b\in D\}$;
-- tổng Minkowski $C+D=\{x+y:x\in C,\ y\in D\}$;
-- tích Descartes $C\times D$.
-
-Phối cảnh của tập cũng lồi khi giữ điều kiện $t>0$:
-
-$$
-\widetilde C=\{(x,t):t>0,\ x/t\in C\}.
-$$
-
-**Trực quan.** Giao cắt bỏ phần không thỏa các điều kiện khác. Ảnh affine co, kéo, quay hoặc chiếu một tập. Nghịch ảnh thu tất cả điểm được ánh xạ vào tập đích.
-
-![Một quả cầu qua ánh xạ affine thành ellipsoid, nghịch ảnh của quả cầu và giao ellipsoid với một nửa không gian.](img/lec-01/convex-set-preservation-map.svg)
-
-*Các mũi tên ghi rõ ảnh hay nghịch ảnh; phép giao được biểu diễn thêm bằng đường biên và họa tiết.*
-
-**Ví dụ tính được.** Cho $D=\{u\in\mathbb R^2:\lVert u\rVert_2\le1\}$ và $F(x)=(2x_1,x_2)^T$. Khi đó
-
-$$
-F^{-1}(D)=\{x:4x_1^2+x_2^2\le1\},
-$$
-
-là một ellipsoid lồi. Giao thêm nửa không gian $x_2\ge0$ vẫn cho một tập lồi.
-
-**Ý nghĩa và ứng dụng trong AI.** Ràng buộc $\lVert Ax-b\rVert_2\le\tau$ là nghịch ảnh affine của một quả cầu. Giao nhiều ràng buộc lồi tạo tập khả thi chung. Ảnh affine mô tả biến đổi đặc trưng hoặc chiếu một tập bất định.
-
-**Điểm dễ nhầm.** Ảnh và nghịch ảnh affine không yêu cầu $A$ khả nghịch. Hợp của hai tập lồi nói chung không lồi. Nghịch ảnh qua một ánh xạ phi tuyến tùy ý không có bảo đảm này. Điều kiện $t>0$ của phối cảnh là bắt buộc.
-
-Nhóm B cung cấp các tập lồi cơ bản và phép bảo toàn cần để chứng minh tập khả thi lồi trong các ca ứng dụng ở phần sau.
-
-## Các định lý và chứng minh quan trọng — Nhóm B
-
-### Bao lồi là tập lồi nhỏ nhất chứa tập đã cho
-
-**Giả thiết.** Cho $S\subseteq\mathbb R^n$ và định nghĩa $\operatorname{conv}S$ là tập mọi tổ hợp lồi hữu hạn của các điểm trong $S$.
-
-**Kết luận.** Tập $\operatorname{conv}S$ lồi, chứa $S$, và nằm trong mọi tập lồi chứa $S$.
-
-::: proof
-Mỗi $x\in S$ thuộc $\operatorname{conv}S$ vì $x=1x$. Lấy
-
-$$
-u=\sum_{i=1}^k\alpha_i x_i,
-\qquad
-v=\sum_{j=1}^{\ell}\beta_j y_j
-$$
-
-thuộc $\operatorname{conv}S$, và $\theta\in[0,1]$. Khi đó
-
-$$
-\theta u+(1-\theta)v
-=\sum_i(\theta\alpha_i)x_i
-+\sum_j((1-\theta)\beta_j)y_j.
-$$
-
-Các hệ số không âm và có tổng $\theta+(1-\theta)=1$, nên tổ hợp trên thuộc $\operatorname{conv}S$. Vậy $\operatorname{conv}S$ lồi.
-
-Nếu $C$ là một tập lồi chứa $S$, mọi tổ hợp lồi hữu hạn của các điểm trong $S$ đều thuộc $C$. Do đó $\operatorname{conv}S\subseteq C$, chứng minh tính nhỏ nhất.
-:::
-
-### Quả cầu chuẩn và nón bậc hai là các tập lồi
-
-**Giả thiết.** Cho một chuẩn $\lVert\cdot\rVert$, tâm $x_c$, bán kính $r\ge0$, và $\mathcal Q^{n+1}=\{(u,t):\lVert u\rVert_2\le t\}$.
-
-**Kết luận.** Quả cầu $B=\{x:\lVert x-x_c\rVert\le r\}$ và $\mathcal Q^{n+1}$ đều lồi.
-
-::: proof
-Với $x,y\in B$ và $\theta\in[0,1]$, bất đẳng thức tam giác cho
-
-$$
-\begin{aligned}
-\left\lVert\theta x+(1-\theta)y-x_c\right\rVert
-&\le\theta\lVert x-x_c\rVert+(1-\theta)\lVert y-x_c\rVert\\
-&\le r.
-\end{aligned}
-$$
-
-Vậy quả cầu lồi. Nếu $(u_1,t_1),(u_2,t_2)\in\mathcal Q^{n+1}$ thì
-
-$$
-\begin{aligned}
-\lVert\theta u_1+(1-\theta)u_2\rVert_2
-&\le\theta\lVert u_1\rVert_2+(1-\theta)\lVert u_2\rVert_2\\
-&\le\theta t_1+(1-\theta)t_2.
-\end{aligned}
-$$
-
-Do đó tổ hợp lồi của hai điểm lại thuộc $\mathcal Q^{n+1}$.
-:::
-
-### Nón nửa xác định dương là tập lồi
-
-**Giả thiết.** Cho $X,Y\in\mathbb S_+^n$ và $\theta\in[0,1]$.
-
-**Kết luận.** $\theta X+(1-\theta)Y\in\mathbb S_+^n$.
-
-::: proof
-Với mọi $z\in\mathbb R^n$,
-
-$$
-z^T\bigl(\theta X+(1-\theta)Y\bigr)z
-=\theta z^TXz+(1-\theta)z^TYz\ge0.
-$$
-
-Ma trận tổ hợp vẫn đối xứng, nên thuộc $\mathbb S_+^n$. Hơn nữa, tổng hai ma trận PSD và bội không âm của một ma trận PSD đều PSD; vì vậy $\mathbb S_+^n$ vừa lồi vừa là nón.
-:::
-
-### Giao tùy ý của các tập lồi là tập lồi
-
-**Giả thiết.** Cho một họ tập lồi $(C_i)_{i\in I}$; tập chỉ số $I$ có thể hữu hạn hoặc vô hạn.
-
-**Kết luận.** $C=\bigcap_{i\in I}C_i$ lồi.
-
-::: proof
-Nếu $x,y\in C$ thì $x,y\in C_i$ với mọi $i\in I$. Do mỗi $C_i$ lồi,
-
-$$
-\theta x+(1-\theta)y\in C_i
-$$
-
-với mọi $\theta\in[0,1]$ và mọi $i\in I$. Vậy tổ hợp này thuộc giao $C$.
-:::
-
-### Ảnh và nghịch ảnh affine bảo toàn tính lồi
-
-**Giả thiết.** Cho $F(x)=Ax+b$ affine; cho $C,D$ là các tập lồi trong các không gian có kích thước phù hợp.
-
-**Kết luận.** $F(C)$ và $F^{-1}(D)$ đều lồi.
-
-::: proof
-Lấy $u=F(x)$, $v=F(y)$ với $x,y\in C$. Tính affine cho
-
-$$
-\theta u+(1-\theta)v
-=F\bigl(\theta x+(1-\theta)y\bigr).
-$$
-
-Vì $C$ lồi, vế phải thuộc $F(C)$; do đó ảnh lồi.
-
-Nếu $x,y\in F^{-1}(D)$ thì $F(x),F(y)\in D$. Ta có
-
-$$
-F\bigl(\theta x+(1-\theta)y\bigr)
-=\theta F(x)+(1-\theta)F(y)\in D.
-$$
-
-Suy ra $\theta x+(1-\theta)y\in F^{-1}(D)$, nên nghịch ảnh lồi. Không bước nào yêu cầu $A$ khả nghịch.
-:::
-
-## C. Hàm lồi và công cụ kiểm tra
-
-### 9. Hàm lồi, hàm lõm và hàm lồi chặt
-
-
-**Định nghĩa và giả thiết.** Cho $D\subseteq\mathbb R^n$ lồi. Hàm $f:D\to\mathbb R$ là hàm lồi nếu với mọi $x,y\in D$ và $\theta\in[0,1]$,
-
-$$
-f\bigl(\theta x+(1-\theta)y\bigr)
-\le\theta f(x)+(1-\theta)f(y).
-$$
-
-Hàm $f$ là lồi chặt nếu bất đẳng thức là chặt với mọi $x\ne y$ và $\theta\in(0,1)$. Hàm $f$ là lõm nếu $-f$ lồi. Hàm affine vừa lồi vừa lõm.
-
-**Trực quan.** Đồ thị của hàm lồi nằm không cao hơn dây cung nối hai điểm bất kỳ trên đồ thị. Với hàm lồi chặt, phần đồ thị giữa hai điểm phân biệt nằm thấp hơn hẳn dây cung.
-
-![Đồ thị hàm lồi nằm dưới dây cung, hàm lồi chặt nằm thấp hơn dây cung và hàm lõm có chiều bất đẳng thức ngược lại.](img/lec-01/convex-concave-strict.svg)
-
-*Nét liền, nét đứt và nhãn bất đẳng thức phân biệt ba trường hợp ngoài tín hiệu màu.*
-
-**Ví dụ và phản ví dụ.** Với $f(x)=x^2$, chọn $x=-1$, $y=3$ và $\theta=1/2$. Khi đó
-
-$$
-f(1)=1
-<\frac12f(-1)+\frac12f(3)=5,
-$$
-
-phù hợp với tính lồi chặt. Hàm $g(x)=|x|$ lồi nhưng không lồi chặt: với $x=1$, $y=3$, đồ thị trùng dây cung trên đoạn $[1,3]$. Hàm $h(x)=-x^2$ lõm.
-
-**Ý nghĩa và ứng dụng trong AI.** Mục tiêu lồi trên tập khả thi lồi cho phép chuyển cực tiểu địa phương thành cực tiểu toàn cục. Lồi chặt có thể cho nghiệm duy nhất khi nghiệm tồn tại. Log-hợp lý lõm thường được đổi dấu thành âm log-hợp lý lồi.
-
-**Điểm dễ nhầm.** Miền xác định phải lồi. Hình chiếc bát chỉ là trực giác, không phải định nghĩa. Hàm affine không lồi chặt. Tính lồi của mục tiêu không tự bảo đảm tập khả thi lồi, tồn tại nghiệm hoặc khả năng tổng quát hóa.
-
-Định nghĩa dây cung chuyển thành các phát biểu hình học qua epigraph và tập mức.
-
-### 10. Epigraph, tập mức và hàm mở rộng giá trị
-
-
-**Định nghĩa và giả thiết.** Epigraph của $f:D\to\mathbb R$ là
-
-$$
-\operatorname{epi}f
-=\{(x,t)\in D\times\mathbb R:t\ge f(x)\}.
-$$
-
-Tập mức dưới tại mức $\alpha$ là
-
-$$
-S_\alpha=\{x\in D:f(x)\le\alpha\}.
-$$
-
-Với tập $C$, hàm chỉ thị mở rộng được định nghĩa bởi
-
-$$
-I_C(x)=
+\operatorname{clip}(z,[a,b])=
 \begin{cases}
-0,&x\in C,\\
-+\infty,&x\notin C.
+a,&z<a,\\
+z,&a\le z\le b,\\
+b,&z>b.
 \end{cases}
 $$
 
-Nếu $C$ lồi thì $I_C$ là hàm lồi mở rộng. Bài toán có ràng buộc có thể được viết thành cực tiểu hóa $f+I_C$ trên toàn không gian.
-
-**Trực quan.** Epigraph là vùng nằm trên đồ thị; một lát cắt ngang của epigraph tạo tập mức dưới. Hàm chỉ thị dựng một bức tường vô hạn bên ngoài tập khả thi.
-
-![Epigraph của hàm bình phương, lát ngang tạo tập mức dưới và hàm chỉ thị dựng tường ngoài tập khả thi.](img/lec-01/epigraph-levelset-indicator.svg)
-
-*Ba panel dùng cùng miền một chiều để thể hiện quan hệ giữa đồ thị, tập và ràng buộc.*
-
-**Ví dụ và phản ví dụ.** Với $f(x)=x^2$,
+::: derivation
+Với $x_0=0$, $r=3$, $\lambda=1/2$ và $u_{\max}=1$,
 
 $$
-S_1=\{x:x^2\le1\}=[-1,1].
+q(u)=(u-3)^2+\frac12u^2=\frac32u^2-6u+9,
 $$
 
-Do đó $f+I_{[-1,1]}$ bằng $x^2$ trong đoạn và bằng $+\infty$ ngoài đoạn. Ngược lại, $g(x)=\sqrt{|x|}$ có các tập mức dưới $[-\alpha^2,\alpha^2]$ khi $\alpha\ge0$, đều lồi, nhưng $g$ không lồi. Vì vậy, mọi tập mức dưới lồi không đủ để kết luận hàm lồi.
-
-**Ý nghĩa và ứng dụng trong AI.** Epigraph biểu diễn điều kiện $f(x)\le t$ như một điều kiện trên $(x,t)$; hàm chỉ thị viết mất mát và tập khả thi trong cùng một biểu thức.
-
-**Điểm dễ nhầm.** Graph của hàm lồi thường không phải tập lồi; epigraph mới là đối tượng lồi tương ứng. Mọi tập mức dưới lồi chỉ suy ra tính tựa lồi, không suy ra tính lồi. Không thực hiện tùy ý các phép toán không xác định như $+\infty-(+\infty)$.
-
-Để kiểm tra một hàm nhiều biến, ta xét mọi hạn chế của nó trên đường thẳng.
-
-### 11. Hạn chế trên đường và các ví dụ hàm lồi
-
-
-**Định nghĩa và giả thiết.** Cho $f:D\to\mathbb R$ với $D$ lồi. Với $x_0\in D$ và hướng $v\in\mathbb R^n$, hạn chế trên đường là
-
 $$
-g(t)=f(x_0+tv),
+q'(u)=3u-6,
 \qquad
-\operatorname{dom}g=\{t:x_0+tv\in D\}.
+u_{\mathrm{free}}=2.
 $$
 
-Hàm $f$ lồi trên $D$ khi và chỉ khi mọi hạn chế như vậy lồi trên miền một chiều tương ứng.
-
-**Trực quan.** Trên miền đầu vào, đường affine $x(t)=x_0+tv$ chọn một họ điểm theo đúng một hướng. Giá trị của hàm dọc đường đó tạo đồ thị một biến $g(t)$. Nếu $f$ lồi thì mọi đồ thị $g$ đều lồi; chỉ cần tìm một đường cho $g$ không lồi là đủ bác bỏ tính lồi của $f$.
-
-![Đường affine x của t bằng x không cộng t v đi qua các đường mức của một hàm hai biến và ánh xạ thành parabol g của t; bên cạnh là thư viện các hàm lồi cơ bản.](img/lec-01/line-restriction-convex-library.svg)
-
-*Trong hình, $f(x_1,x_2)=x_1^2+2x_2^2$, $x_0=(0,0)^T$ và $v=(1,1)^T$, nên $g(t)=3t^2$.*
-
-**Ví dụ tính được.** Cho $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$ và $f(x)=\lVert Ax-b\rVert_2^2$. Với $x_0,v\in\mathbb R^n$, hạn chế theo $x_0+tv$ là
+Do $2\notin[-1,1]$, ta có $u^*=1$. Khi đó
 
 $$
-\begin{aligned}
-g(t)
-&=\lVert A(x_0+tv)-b\rVert_2^2\\
-&=\lVert Ax_0-b\rVert_2^2
-+2t(Av)^T(Ax_0-b)
-+t^2\lVert Av\rVert_2^2.
-\end{aligned}
+x_1=1,
+\qquad
+q(u^*)=(1-3)^2+\frac12=\frac92.
 $$
+:::
 
-Do đó $g''(t)=2\lVert Av\rVert_2^2\ge0$, nên mọi hạn chế là hàm một biến lồi. Các hàm nền khác gồm hàm affine, chuẩn, $e^t$, cực đại từng điểm của hữu hạn hàm lồi và log-tổng-mũ
+### 2.3. Điều kiện dừng tại biên
 
-$$
-\operatorname{lse}(z)=\log\left(\sum_{i=1}^m e^{z_i}\right).
-$$
-
-Chẳng hạn, $\operatorname{lse}(0,0)=\log2$.
-
-**Ý nghĩa và ứng dụng trong AI.** Bình phương tối thiểu, chuẩn điều chuẩn, log-tổng-mũ và mất mát logistic được tạo từ thư viện này. Hạn chế trên đường cũng giải thích độ cong theo một hướng tham số.
-
-**Điểm dễ nhầm.** Một vài lát cắt minh họa không đủ chứng minh; phát biểu yêu cầu mọi đường. Với dạng bậc hai $x^TPx$, tính lồi phụ thuộc phần đối xứng $(P+P^T)/2$. Không nên kết luận từ vài điểm lấy mẫu trên đồ thị.
-
-Khi hàm đủ trơn, độ cong của mọi lát cắt được mã hóa bởi gradient và Hessian, xét ở mục tiếp theo.
-
-### 12. Điều kiện bậc nhất và bậc hai
-
-
-**Định nghĩa và giả thiết.** Cho $D\subseteq\mathbb R^n$ mở và lồi. Nếu $f:D\to\mathbb R$ khả vi thì $f$ lồi khi và chỉ khi
+Tại nghiệm trên, $q'(1)=-3\ne0$. Dấu đạo hàm khác không vẫn phù hợp với tính tối ưu vì $u=1$ là biên phải của miền. Mọi dịch chuyển khả thi đủ nhỏ có dạng $\Delta u\le0$, nên
 
 $$
-f(y)\ge f(x)+\nabla f(x)^T(y-x)
+q'(1)\Delta u\ge0.
 $$
 
-với mọi $x,y\in D$. Nếu $f\in C^2(D)$ thì $f$ lồi khi và chỉ khi
+Không có hướng khả thi bậc nhất nào làm $q$ giảm. Điều kiện $q'(u^*)=0$ chỉ áp dụng trực tiếp cho nghiệm nằm trong miền trong.
+
+::: proof
+Ta có
 
 $$
-\nabla^2f(x)\succeq0
-\quad
-\text{với mọi }x\in D.
+q''(u)=2(1+\lambda)>0.
 $$
 
-Điều kiện $\nabla^2f(x)\succ0$ với mọi $x\in D$ là điều kiện đủ cho lồi chặt, nhưng không phải điều kiện cần.
+Do đó $q$ lồi chặt (còn gọi là lồi nghiêm ngặt) trên $\mathbb R$, rồi cũng lồi chặt khi hạn chế lên đoạn $[-u_{\max},u_{\max}]$. Đoạn này không rỗng, đóng và bị chặn; $q$ liên tục. Vì vậy nghiệm tồn tại và duy nhất.
+:::
 
-**Trực quan.** Đồ thị hàm lồi nằm trên mọi mặt phẳng tiếp xúc. Theo hướng $d$, độ cong bậc hai là $d^T\nabla^2f(x)d$ và phải không âm.
+## 3. Hồi quy tuyến tính
 
-![Mặt phẳng tiếp xúc nằm dưới bề mặt lồi và các elip mức biểu diễn Hessian xác định dương.](img/lec-01/first-second-order-convexity.svg)
+### 3.1. Mô hình bình phương nhỏ nhất
 
-*Panel Hessian ghi cả hướng $d$ và đại lượng $d^T\nabla^2f(x)d$.*
-
-**Ví dụ tính được.** Xét
+Cho ma trận thiết kế $X\in\mathbb R^{n\times d}$ và vector đầu ra $y\in\mathbb R^n$. Hàng $x_i^T$ của $X$ chứa đặc trưng của mẫu thứ $i$. Ta chọn $w\in\mathbb R^d$ và dự đoán
 
 $$
-f(x_1,x_2)=x_1^2+x_1x_2+2x_2^2.
+\widehat y=Xw.
+$$
+
+Vector phần dư là $Xw-y$. Bài toán bình phương nhỏ nhất là
+
+$$
+\underset{w\in\mathbb R^d}{\operatorname{minimize}}
+\quad J(w)=\lVert Xw-y\rVert_2^2
+=\sum_{i=1}^{n}(x_i^Tw-y_i)^2.
+$$
+
+Miền khả thi là toàn bộ $\mathbb R^d$; không có ràng buộc bổ sung.
+
+### 3.2. Phương trình chuẩn
+
+Khai triển đạo hàm cho
+
+$$
+J(w)=(Xw-y)^T(Xw-y)
+$$
+
+cho
+
+$$
+\nabla J(w)=2X^T(Xw-y),
+\qquad
+\nabla^2J(w)=2X^TX.
+$$
+
+Mọi nghiệm của phương trình chuẩn
+
+$$
+X^TXw=X^Ty
+$$
+
+đều là nghiệm tối ưu toàn cục. Phương trình chuẩn luôn có nghiệm, dù $X^TX$ có thể suy biến.
+
+::: derivation
+Xét
+
+$$
+X=\begin{bmatrix}
+1&0\\
+1&1\\
+1&2
+\end{bmatrix},
+\qquad
+y=\begin{bmatrix}1\\2\\2\end{bmatrix}.
 $$
 
 Ta có
 
 $$
-\nabla f(x)=\begin{bmatrix}2x_1+x_2\\x_1+4x_2\end{bmatrix},
+X^TX=\begin{bmatrix}3&3\\3&5\end{bmatrix},
 \qquad
-\nabla^2f(x)=\begin{bmatrix}2&1\\1&4\end{bmatrix}.
+X^Ty=\begin{bmatrix}5\\6\end{bmatrix}.
 $$
 
-Hai giá trị riêng của Hessian là $3\pm\sqrt2>0$, nên $f$ lồi chặt. Tại $(1,-1)$, $f=2$ và $\nabla f=(1,-3)^T$.
-
-**Ý nghĩa và ứng dụng trong AI.** Gradient cung cấp chứng nhận tiếp tuyến; Hessian kiểm tra độ cong của loss và dạng toàn phương. Trong phần này, hai đại lượng chỉ được dùng để nhận dạng và chứng minh tính lồi.
-
-**Điểm dễ nhầm.** Hessian PSD tại một điểm không chứng minh tính lồi trên toàn miền. Gradient bằng $0$ chỉ suy ra tối ưu toàn cục sau khi đã có tính lồi và điểm nằm trong miền thích hợp. Hàm $x^4$ lồi chặt dù Hessian bằng $0$ tại $x=0$.
-
-Trong nhiều mô hình, ta tránh tính Hessian lại bằng các phép bảo toàn tính lồi.
-
-### 13. Các phép bảo toàn hàm lồi và Jensen
-
-
-**Định nghĩa và giả thiết.** Các phép sau bảo toàn tính lồi khi các miền tương thích:
-
-- $\sum_i\alpha_i f_i$ với $f_i$ lồi và $\alpha_i\ge0$;
-- $f(Ax+b)$ khi $f$ lồi;
-- $\sup_{s\in S}f_s(x)$ khi mỗi $f_s$ lồi trên miền chung;
-- $h\circ g$ khi $g$ lồi, $h$ lồi và không giảm trên miền liên quan;
-- $h\circ g$ khi $g$ lõm, $h$ lồi và không tăng trên miền liên quan;
-- $g(x)=\inf_{y\in C}f(x,y)$ khi $f$ lồi đồng thời theo $(x,y)$ và $C$ lồi;
-- phối cảnh $g(x,t)=tf(x/t)$ trên $t>0$.
-
-Với $f$ lồi, các điểm $x_i$ trong miền và $\theta_i\ge0$, $\sum_i\theta_i=1$, Jensen hữu hạn cho
+Giải phương trình chuẩn được
 
 $$
-f\left(\sum_i\theta_i x_i\right)
-\le\sum_i\theta_i f(x_i).
+w^*=\begin{bmatrix}7/6\\1/2\end{bmatrix}.
 $$
 
-**Trực quan.** Một cây cấu tạo ghi hàm cơ sở, phép ghép và giả thiết. Jensen so sánh hàm của trung bình với trung bình của các giá trị hàm.
-
-![Cây các phép bảo toàn tính lồi và hình Jensen so sánh hàm của trung bình với trung bình của hàm.](img/lec-01/convex-preservation-and-jensen.svg)
-
-*Mỗi nhánh của cây ghi điều kiện hệ số hoặc tính đơn điệu; hình Jensen dùng cả vị trí và nhãn số.*
-
-**Ví dụ và phản ví dụ.** Cho $Z$ nhận $-1$ và $3$ với xác suất bằng nhau, và $f(u)=u^2$. Khi đó
+Dự đoán và phần dư là
 
 $$
-f(\mathbb EZ)=f(1)=1,
+Xw^*=\begin{bmatrix}7/6\\5/3\\13/6\end{bmatrix},
 \qquad
-\mathbb E[f(Z)]=\frac12(1+9)=5.
+Xw^*-y=\begin{bmatrix}1/6\\-1/3\\1/6\end{bmatrix}.
 $$
 
-Điều kiện hợp hàm không được bỏ. Hai hàm $h(u)=u^2$ và $g(x)=x^2-1$ đều lồi, nhưng
+Vì vậy
 
 $$
-(h\circ g)(x)=(x^2-1)^2
+J(w^*)=\left(\frac16\right)^2+\left(-\frac13\right)^2+\left(\frac16\right)^2=\frac16.
+$$
+:::
+
+### 3.3. Tồn tại và duy nhất
+
+Không gian cột $\mathcal R(X)$ là một không gian con hữu hạn chiều nên đóng. Hình chiếu trực giao của $y$ lên $\mathcal R(X)$ luôn tồn tại. Vì điểm chiếu thuộc $\mathcal R(X)$, có ít nhất một $w^*$ tạo ra dự đoán đó. Do vậy bài toán bình phương nhỏ nhất luôn có nghiệm với mọi $X$ và $y$.
+
+Nghiệm duy nhất khi và chỉ khi $X$ có hạng cột đầy đủ. Thật vậy,
+
+$$
+v^TX^TXv=\lVert Xv\rVert_2^2.
 $$
 
-không lồi gần $0$ vì đạo hàm bậc hai tại $0$ bằng $-4$.
+Ma trận $X^TX$ xác định dương khi và chỉ khi $Xv=0$ chỉ có nghiệm $v=0$. Nếu tồn tại $v\ne0$ thuộc $\ker(X)$, thì $X(w^*+tv)=Xw^*$ với mọi $t\in\mathbb R$, nên tham số tối ưu không duy nhất.
 
-**Ý nghĩa và ứng dụng trong AI.** Tổng loss theo mẫu, điều chuẩn, max-loss, log-tổng-mũ và rủi ro kỳ vọng đều dùng các quy tắc này. Jensen áp dụng bất đẳng thức lồi cho trung bình và kỳ vọng của biến ngẫu nhiên.
+::: example
+Nếu thêm vào $X$ một cột trùng với cột đặc trưng đang có, không gian cột của $X$ không đổi nên dự đoán tốt nhất không đổi. Hai hệ số của các cột trùng nhau có thể bù qua lại, vì vậy vector tham số không còn duy nhất.
+:::
 
-**Điểm dễ nhầm.** Trọng số âm có thể phá tính lồi. Infimum tùy ý của các hàm lồi không bảo toàn lồi; cần lồi đồng thời trước khi loại biến. Không có quy tắc chung “lồi hợp lồi”. Jensen cho biến ngẫu nhiên cần các kỳ vọng tồn tại và hữu hạn.
+## 4. Hồi quy logistic
 
-Nhóm C cung cấp công cụ để chứng minh mục tiêu lồi từ thư viện hàm và phép ghép, chuẩn bị cho ca logistic ở mục 14.
+### 4.1. Biên có dấu và mất mát
 
-## Các định lý và chứng minh quan trọng — Nhóm C
+Cho $a_i\in\mathbb R^d$ và $y_i\in\{-1,+1\}$ với $i=1,\ldots,n$. Điểm số của mô hình là $a_i^Tw$. Biên có dấu
 
-### Cực tiểu địa phương của bài toán lồi là cực tiểu toàn cục
+$$
+m_i=y_i a_i^Tw
+$$
 
-**Giả thiết.** Cho $C$ lồi, $f:C\to\mathbb R$ lồi và $x^*\in C$ là cực tiểu địa phương tương đối với $C$.
+dương khi dấu dự đoán khớp nhãn. Mất mát logistic cho một mẫu là
 
-**Kết luận.** Điểm $x^*$ là cực tiểu toàn cục của $f$ trên $C$.
+$$
+\ell(m)=\log(1+e^{-m}).
+$$
+
+Ta chọn $w\in\mathbb R^d$ bằng cách giải
+
+$$
+\underset{w\in\mathbb R^d}{\operatorname{minimize}}
+\quad L(w)=\sum_{i=1}^{n}\ell(y_i a_i^Tw).
+$$
+
+Các đạo hàm theo biên là
+
+$$
+\ell'(m)=-\frac{1}{1+e^m},
+\qquad
+\ell''(m)=\frac{e^m}{(1+e^m)^2}>0.
+$$
+
+Do đó mất mát giảm khi biên tăng và lồi chặt theo biến vô hướng $m$.
+
+### 4.2. Dữ liệu tách tuyến tính và nghiệm không tồn tại
+
+::: example
+Xét hai mẫu một chiều
+
+$$
+(a_1,y_1)=(1,+1),
+\qquad
+(a_2,y_2)=(-1,-1).
+$$
+
+Cả hai biên có dấu đều bằng $w$, nên
+
+$$
+L(w)=2\log(1+e^{-w}).
+$$
+
+Một số giá trị là
+
+| $w$ | $0$ | $1$ | $2$ | $4$ |
+|---:|---:|---:|---:|---:|
+| $L(w)$ | $1{,}386$ | $0{,}627$ | $0{,}254$ | $0{,}036$ |
+
+Khi $w\to+\infty$, $L(w)\to0$, còn $L(w)>0$ với mọi $w$ hữu hạn. Vì vậy
+
+$$
+\inf_{w\in\mathbb R}L(w)=0
+$$
+
+nhưng bài toán không có nghiệm tối ưu hữu hạn.
+:::
+
+Ví dụ này cho thấy tính lồi, kể cả lồi chặt, không tự bảo đảm sự tồn tại của nghiệm.
+
+### 4.3. Chính quy hóa bậc hai
+
+Thêm hạng $\mu\lVert w\rVert_2^2/2$ với $\mu>0$:
+
+$$
+L_\mu(w)=L(w)+\frac\mu2\lVert w\rVert_2^2.
+$$
+
+Nếu $A$ là ma trận có hàng $a_i^T$ và $d_i=\ell''(m_i)>0$, thì
+
+$$
+\nabla^2L(w)=\sum_{i=1}^{n}d_i a_i a_i^T=A^TDA\succeq0,
+$$
+
+$$
+\nabla^2L_\mu(w)=A^TDA+\mu I\succeq\mu I.
+$$
+
+Hạng chính quy hóa làm mục tiêu lồi chặt và bức: $L_\mu(w)\to+\infty$ khi $\lVert w\rVert_2\to\infty$. Do mục tiêu liên tục trên miền đóng $\mathbb R^d$, nghiệm tồn tại và duy nhất.
+
+## 5. Khuôn chung của bài toán tối ưu
+
+Ba ca đều có dạng
+
+$$
+\underset{x\in C}{\operatorname{minimize}}\quad f_0(x),
+$$
+
+trong đó:
+
+- $x\in\mathbb R^d$ là biến quyết định;
+- $f_0:C\to\mathbb R$ là hàm mục tiêu;
+- $C\subseteq\mathbb R^d$ là miền khả thi do các ràng buộc xác định;
+- dữ kiện của bài toán xác định $f_0$ và $C$ nhưng không được mô hình tự thay đổi.
+
+| Ca | Biến | Mục tiêu | Miền khả thi |
+|---|---|---|---|
+| Điều khiển | $u\in\mathbb R$ | $(x_0+u-r)^2+\lambda u^2$ | $[-u_{\max},u_{\max}]$ |
+| Hồi quy tuyến tính | $w\in\mathbb R^d$ | $\lVert Xw-y\rVert_2^2$ | $\mathbb R^d$ |
+| Hồi quy logistic | $w\in\mathbb R^d$ | $\sum_i\log(1+e^{-y_i a_i^Tw})$ | $\mathbb R^d$ |
+
+### 5.1. Các khái niệm về nghiệm
+
+Một điểm $x\in C$ là khả thi. Giá trị tối ưu là
+
+$$
+p^*=\inf_{x\in C}f_0(x).
+$$
+
+Một điểm $x^*\in C$ là nghiệm tối ưu toàn cục nếu
+
+$$
+f_0(x^*)\le f_0(x),
+\qquad \forall x\in C.
+$$
+
+Điểm $x^*$ là cực tiểu địa phương tương đối với $C$ nếu tồn tại một lân cận $N$ của $x^*$ sao cho
+
+$$
+f_0(x^*)\le f_0(x),
+\qquad \forall x\in C\cap N.
+$$
+
+Các câu hỏi phải được tách riêng:
+
+1. điểm tìm được có khả thi không;
+2. cực tiểu địa phương có phải toàn cục không;
+3. có điểm nào đạt $p^*$ không;
+4. nếu có, nghiệm có duy nhất không.
+
+::: example
+Trong ca điều khiển, $u=0$ là khả thi nhưng không tối ưu cho bộ số đã cho. Trong ca logistic tách tuyến tính, $p^*=0$ nhưng không có $w^*$ đạt $p^*$. Trong hồi quy tuyến tính thiếu hạng, nghiệm tồn tại nhưng không duy nhất.
+:::
+
+## 6. Công cụ lồi vừa đủ
+
+### 6.1. Tập lồi
+
+Cho $C\subseteq\mathbb R^d$. Với $x,y\in C$ và $\theta\in[0,1]$, điểm
+
+$$
+z_\theta=\theta x+(1-\theta)y
+$$
+
+nằm trên đoạn nối $x$ và $y$.
 
 ::: proof
-Giả sử ngược lại rằng tồn tại $y\in C$ sao cho $f(y)<f(x^*)$. Với $\theta\in(0,1)$, đặt
+**Định nghĩa.** Tập $C$ là lồi nếu
 
 $$
-x_\theta=(1-\theta)x^*+\theta y.
+\theta x+(1-\theta)y\in C
 $$
 
-Tính lồi của $C$ cho $x_\theta\in C$, còn tính lồi của $f$ cho
+với mọi $x,y\in C$ và mọi $\theta\in[0,1]$.
+
+Thứ tự lượng từ là một phần của định nghĩa. Kiểm tra một cặp điểm hoặc chỉ trung điểm chưa đủ để kết luận trong trường hợp tổng quát.
+:::
+
+Các tập dùng trong bài:
+
+- $\mathbb R^d$ là lồi;
+- đoạn $[a,b]$ và hộp $\{x\mid l\le x\le u\}$ là lồi;
+- tập affine $\{x\mid Ax=b\}$ là lồi;
+- nửa không gian $\{x\mid a^Tx\le b\}$ là lồi.
+
+Hai quy tắc bảo toàn cần dùng là:
+
+1. giao của một họ tập lồi là lồi;
+2. nếu $D$ lồi thì ảnh ngược affine $\{x\mid Ax+b\in D\}$ là lồi.
+
+::: proof
+Nếu $x,y\in\bigcap_jC_j$ thì $x,y\in C_j$ với mọi $j$. Do từng $C_j$ lồi,
 
 $$
-f(x_\theta)
+\theta x+(1-\theta)y\in C_j
+$$
+
+với mọi $j$, nên tổ hợp này thuộc giao.
+
+Với ảnh ngược affine, nếu $Ax+b$ và $Ay+b$ thuộc $D$ thì
+
+$$
+A(\theta x+(1-\theta)y)+b
+=\theta(Ax+b)+(1-\theta)(Ay+b)\in D.
+$$
+:::
+
+Áp dụng:
+
+$$
+[-u_{\max},u_{\max}]
+=\{u\mid u\le u_{\max}\}\cap\{u\mid -u\le u_{\max}\}
+$$
+
+là lồi; miền của hai ca hồi quy là $\mathbb R^d$, cũng lồi.
+
+### 6.2. Hàm lồi và hàm lồi chặt
+
+Cho $C\subseteq\mathbb R^d$ lồi.
+
+::: proof
+**Định nghĩa.** Hàm $f:C\to\mathbb R$ là lồi nếu
+
+$$
+f(\theta x+(1-\theta)y)
+\le \theta f(x)+(1-\theta)f(y)
+$$
+
+với mọi $x,y\in C$ và mọi $\theta\in[0,1]$.
+
+Hàm là **lồi chặt** nếu bất đẳng thức là nghiêm khi $x\ne y$ và $\theta\in(0,1)$.
+:::
+
+Về hình học, đồ thị của hàm lồi không nằm trên dây cung nối hai điểm của đồ thị. Lồi chặt loại trừ đoạn thẳng trên đồ thị giữa hai điểm phân biệt.
+
+::: proof
+**Định lý địa phương–toàn cục.** Nếu $C$ lồi và $f:C\to\mathbb R$ lồi, mọi cực tiểu địa phương tương đối với $C$ đều là cực tiểu toàn cục.
+
+Giả sử $x^*$ là cực tiểu địa phương nhưng tồn tại $y\in C$ sao cho $f(y)<f(x^*)$. Với $\theta\in(0,1)$, đặt
+
+$$
+z_\theta=(1-\theta)x^*+\theta y.
+$$
+
+Tính lồi của $C$ cho $z_\theta\in C$. Khi $\theta$ đủ nhỏ, $z_\theta$ nằm trong lân cận dùng trong định nghĩa cực tiểu địa phương. Mặt khác,
+
+$$
+f(z_\theta)
 \le(1-\theta)f(x^*)+\theta f(y)
-<f(x^*).
+<f(x^*),
 $$
 
-Khi $\theta\downarrow0$, $x_\theta\to x^*$. Vì vậy có các điểm khả thi tùy ý gần $x^*$ với giá trị nhỏ hơn $f(x^*)$, mâu thuẫn giả thiết cực tiểu địa phương. Do đó không tồn tại $y$ như trên.
+mâu thuẫn.
 :::
 
-### Hàm lồi chặt có nhiều nhất một nghiệm tối ưu
+Nếu $f$ lồi chặt trên $C$ lồi, $f$ có nhiều nhất một nghiệm. Nếu có hai nghiệm phân biệt $x^*$ và $y^*$, tính lồi chặt tại trung điểm cho giá trị nhỏ hơn giá trị tối ưu, tạo mâu thuẫn.
 
-**Giả thiết.** Cho $C$ lồi và $f:C\to\mathbb R$ lồi chặt.
-
-**Kết luận.** Bài toán $\min_{x\in C}f(x)$ có nhiều nhất một nghiệm tối ưu.
+### 6.3. Điều kiện bậc nhất
 
 ::: proof
-Giả sử có hai nghiệm phân biệt $x^*,y^*\in C$ cùng đạt giá trị $p^*$. Trung điểm $z=(x^*+y^*)/2$ thuộc $C$. Tính lồi chặt cho
+**Định lý.** Cho $C\subseteq\mathbb R^d$ mở, lồi và $f:C\to\mathbb R$ khả vi. Hàm $f$ lồi khi và chỉ khi
 
 $$
-f(z)
-<\frac12f(x^*)+\frac12f(y^*)
-=p^*,
+f(y)\ge f(x)+\nabla f(x)^T(y-x),
+\qquad \forall x,y\in C.
 $$
-
-mâu thuẫn định nghĩa của $p^*$. Vì vậy không thể có hai nghiệm tối ưu phân biệt. Kết quả này chỉ nói “nhiều nhất một”; sự tồn tại cần một lập luận riêng như định lý Weierstrass.
 :::
 
-### Hàm lồi khi và chỉ khi epigraph lồi
+Vế phải là siêu phẳng tiếp xúc tại $x$. Điều kiện nói rằng mọi siêu phẳng tiếp xúc nằm dưới đồ thị.
 
-**Giả thiết.** Cho $D$ lồi và $f:D\to\mathbb R$.
+Nếu $x^*\in C$ và $\nabla f(x^*)=0$, điều kiện bậc nhất cho
 
-**Kết luận.** Hàm $f$ lồi khi và chỉ khi $\operatorname{epi}f$ lồi. Nếu $f$ lồi thì mọi tập mức dưới $S_\alpha$ của $f$ đều lồi.
+$$
+f(y)\ge f(x^*),
+\qquad \forall y\in C,
+$$
+
+nên $x^*$ là cực tiểu toàn cục. Điều kiện gradient bằng không không áp dụng trực tiếp cho nghiệm ở biên của một miền đóng; khi đó cần xét hướng khả thi hoặc điều kiện tối ưu có ràng buộc.
+
+### 6.4. Điều kiện bậc hai
 
 ::: proof
-Giả sử $f$ lồi. Lấy $(x,s),(y,t)\in\operatorname{epi}f$ và $\theta\in[0,1]$. Ta có $s\ge f(x)$, $t\ge f(y)$, nên
+**Định lý.** Cho $C\subseteq\mathbb R^d$ mở, lồi và $f:C\to\mathbb R$ khả vi hai lần. Khi đó
 
 $$
-\theta s+(1-\theta)t
-\ge\theta f(x)+(1-\theta)f(y)
-\ge f\bigl(\theta x+(1-\theta)y\bigr).
+f\text{ lồi trên }C
+\quad\Longleftrightarrow\quad
+\nabla^2f(x)\succeq0,
+\qquad \forall x\in C.
 $$
 
-Vậy tổ hợp lồi của hai điểm epigraph vẫn thuộc epigraph.
-
-Ngược lại, giả sử $\operatorname{epi}f$ lồi. Hai điểm $(x,f(x))$ và $(y,f(y))$ thuộc epigraph. Do đó
-
-$$
-\bigl(\theta x+(1-\theta)y,\ \theta f(x)+(1-\theta)f(y)\bigr)
-\in\operatorname{epi}f,
-$$
-
-chính là bất đẳng thức định nghĩa tính lồi của $f$.
-
-Với hệ quả tập mức, nếu $x,y\in S_\alpha$ thì
-
-$$
-f\bigl(\theta x+(1-\theta)y\bigr)
-\le\theta f(x)+(1-\theta)f(y)
-\le\alpha.
-$$
-
-Vậy $S_\alpha$ lồi. Chiều đảo của hệ quả này không đúng nói chung.
+Ký hiệu $H\succeq0$ nghĩa là $v^THv\ge0$ với mọi $v\in\mathbb R^d$.
 :::
 
-### Tính lồi tương đương với tính lồi trên mọi đường
-
-**Giả thiết.** Cho $D\subseteq\mathbb R^n$ lồi và $f:D\to\mathbb R$.
-
-**Kết luận.** Hàm $f$ lồi trên $D$ khi và chỉ khi với mọi $x\in D$, $v\in\mathbb R^n$, hàm $g(t)=f(x+tv)$ lồi trên $\{t:x+tv\in D\}$.
-
-::: proof
-Nếu $f$ lồi thì $g$ là hợp của $f$ với ánh xạ affine $t\mapsto x+tv$, nên lồi.
-
-Ngược lại, giả sử mọi hạn chế theo đường đều lồi. Lấy $x,y\in D$ và đặt $v=y-x$. Hạn chế $g(t)=f(x+t(y-x))$ lồi trên đoạn $[0,1]$. Với $\theta\in[0,1]$,
+Với hồi quy tuyến tính,
 
 $$
-f\bigl((1-\theta)x+\theta y\bigr)
-=g(\theta)
-\le(1-\theta)g(0)+\theta g(1)
-=(1-\theta)f(x)+\theta f(y).
+\nabla^2J(w)=2X^TX,
 $$
 
-Do đó $f$ lồi.
+và
+
+$$
+v^T\nabla^2J(w)v=2\lVert Xv\rVert_2^2\ge0.
+$$
+
+Với ca điều khiển, $q$ được xác định và khả vi hai lần trên miền mở $\mathbb R$. Ta chứng nhận $q''(u)>0$ trên $\mathbb R$, rồi hạn chế $q$ lên đoạn đóng khả thi.
+
+### 6.5. Ghép các hàm lồi
+
+Hai quy tắc đủ cho ba ca là:
+
+1. nếu $f_j$ lồi và $\alpha_j\ge0$ thì $\sum_j\alpha_jf_j$ lồi;
+2. nếu $f$ lồi thì $x\mapsto f(Ax+b)$ lồi.
+
+Hàm $s\mapsto s^2$ lồi. Vì vậy từng bình phương của biểu thức affine là lồi; tổng các hạng này tạo mục tiêu điều khiển và bình phương nhỏ nhất.
+
+Hàm $\ell(s)=\log(1+e^{-s})$ lồi vì $\ell''(s)>0$. Mỗi biên $y_i a_i^Tw$ là affine theo $w$, nên từng $\ell(y_i a_i^Tw)$ lồi; tổng của chúng là $L(w)$ lồi.
+
+### 6.6. Tồn tại và duy nhất
+
+Ba mệnh đề cần được dùng riêng:
+
+1. Nếu $C$ không rỗng, đóng và bị chặn, còn $f:C\to\mathbb R$ liên tục, thì $f$ đạt giá trị nhỏ nhất trên $C$.
+2. Nếu $C$ không rỗng, đóng, $f$ liên tục và bức trên $C$, thì $f$ đạt giá trị nhỏ nhất trên $C$. Tính bức nghĩa là $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$ dọc theo $C$.
+3. Nếu $C$ lồi và $f$ lồi chặt trên $C$, thì $f$ có nhiều nhất một nghiệm.
+
+::: example
+Ba trường hợp biên:
+
+- $f(x)=e^x$ trên $\mathbb R$ lồi chặt nhưng không đạt cận dưới đúng $0$;
+- $f(x)=0$ trên $[-1,1]$ có vô số nghiệm;
+- $f(x)=x^2$ trên $\mathbb R$ có nghiệm duy nhất $x^*=0$.
+
+Các trường hợp này tách rõ “không có”, “có nhiều” và “có đúng một” nghiệm.
 :::
 
-### Điều kiện bậc nhất đặc trưng hàm lồi khả vi
+## 7. Chứng nhận ba ca và chuyển giao
 
-**Giả thiết.** Cho $D\subseteq\mathbb R^n$ mở và lồi; cho $f:D\to\mathbb R$ khả vi.
+### 7.1. Bảng chứng nhận
 
-**Kết luận.** Hàm $f$ lồi khi và chỉ khi với mọi $x,y\in D$,
+| Ca | Miền và mục tiêu | Bảo đảm tồn tại | Bảo đảm duy nhất |
+|---|---|---|---|
+| Điều khiển | Đoạn lồi; $q''=2(1+\lambda)>0$ | Miền không rỗng, đóng, bị chặn; $q$ liên tục | $q$ lồi chặt |
+| Hồi quy tuyến tính | $\mathbb R^d$ lồi; $2X^TX\succeq0$ | Hình chiếu của $y$ lên $\mathcal R(X)$ luôn tồn tại | $X$ có hạng cột đầy đủ |
+| Logistic tách tuyến tính | $\mathbb R^d$ lồi; $A^TDA\succeq0$ | Có thể không có nếu chưa chính quy hóa | Không xét khi nghiệm không tồn tại |
+| Logistic có chính quy hóa | $\nabla^2L_\mu\succeq\mu I$ | $L_\mu$ liên tục và bức | $L_\mu$ lồi chặt |
 
-$$
-f(y)\ge f(x)+\nabla f(x)^T(y-x).
-$$
+Tính lồi của miền và mục tiêu tạo bảo đảm địa phương–toàn cục. Nó không thay thế các giả thiết về tồn tại hoặc duy nhất.
 
-::: proof
-Giả sử $f$ lồi. Đặt $g(t)=f(x+t(y-x))$. Với $t\in(0,1]$, tính lồi cho
+### 7.2. Bài toán chiếu sáng
 
-$$
-g(t)\le(1-t)g(0)+tg(1),
-$$
-
-nên
+Cho $m$ đèn và $n$ vùng cần chiếu sáng. Vector $p\in\mathbb R^m$ chứa công suất đèn; ma trận $A\in\mathbb R_+^{n\times m}$ mô tả mức đóng góp của mỗi đèn tại mỗi vùng. Độ sáng là
 
 $$
-g(1)\ge g(0)+\frac{g(t)-g(0)}{t}.
+I=Ap.
 $$
 
-Cho $t\downarrow0$ và dùng $g'(0)=\nabla f(x)^T(y-x)$ thu được bất đẳng thức cần chứng minh.
-
-Ngược lại, giả sử bất đẳng thức tiếp tuyến đúng. Với $z=\theta x+(1-\theta)y$, áp dụng tại $z$ cho $x$ và $y$:
+Một mô hình bình phương nhỏ nhất với giới hạn công suất là
 
 $$
-f(x)\ge f(z)+\nabla f(z)^T(x-z),
+\underset{0\le p\le p_{\max}}{\operatorname{minimize}}
+\quad \lVert Ap-I_{\mathrm{des}}\rVert_2^2.
 $$
 
-$$
-f(y)\ge f(z)+\nabla f(z)^T(y-z).
-$$
-
-Nhân hai bất đẳng thức lần lượt với $\theta$ và $1-\theta$, rồi cộng lại. Vì $\theta(x-z)+(1-\theta)(y-z)=0$, ta được
-
-$$
-\theta f(x)+(1-\theta)f(y)\ge f(z).
-$$
-
-Đây là định nghĩa tính lồi.
+::: exercise
+Xác định dữ kiện, biến quyết định, hàm mục tiêu và miền khả thi. Sau đó chứng nhận tính lồi, sự tồn tại và nêu điều kiện đủ cho tính duy nhất.
 :::
 
-### Tiêu chuẩn Hessian cho hàm lồi hai lần khả vi
-
-**Giả thiết.** Cho $D\subseteq\mathbb R^n$ mở và lồi; cho $f\in C^2(D)$.
-
-**Kết luận.** Hàm $f$ lồi trên $D$ khi và chỉ khi $\nabla^2f(x)\succeq0$ với mọi $x\in D$.
-
-::: proof
-Nếu $f$ lồi, với mọi $x\in D$ và hướng $d$, hạn chế $g(t)=f(x+td)$ lồi trên một khoảng mở chứa $0$. Hàm một biến hai lần khả vi lồi có $g''(0)\ge0$. Theo quy tắc dây chuyền,
-
-$$
-g''(0)=d^T\nabla^2f(x)d\ge0.
-$$
-
-Vì điều này đúng với mọi $d$, Hessian PSD.
-
-Ngược lại, giả sử Hessian PSD tại mọi điểm. Với hai điểm $x,y\in D$, đặt $d=y-x$ và $g(t)=f(x+td)$ trên $[0,1]$. Khi đó
-
-$$
-g''(t)=d^T\nabla^2f(x+td)d\ge0.
-$$
-
-Do đó $g$ lồi trên $[0,1]$. Tính lồi trên mọi đoạn suy ra $f$ lồi trên $D$.
+::: solution
+Dữ kiện là $A$, $I_{\mathrm{des}}$ và $p_{\max}$; biến quyết định là $p$. Miền $[0,p_{\max}]^m$ là một hộp lồi, không rỗng, đóng và bị chặn. Mục tiêu có Hessian $2A^TA\succeq0$, nên lồi. Mục tiêu liên tục trên miền đóng, bị chặn nên nghiệm tồn tại. Nếu $A$ có hạng cột đầy đủ, Hessian xác định dương; mục tiêu lồi chặt và nghiệm duy nhất.
 :::
 
-### Tổng không âm, hợp affine và supremum bảo toàn tính lồi
-
-**Giả thiết.** Các hàm được xét có miền chung phù hợp. Cho $f_i$ lồi, $\alpha_i\ge0$; cho $f$ lồi và $F(x)=Ax+b$ affine; cho họ $(g_s)_{s\in S}$ gồm các hàm lồi.
-
-**Kết luận.** Các hàm $\sum_i\alpha_i f_i$, $f\circ F$ và $g(x)=\sup_{s\in S}g_s(x)$ đều lồi trên miền tương ứng; $g$ có thể nhận giá trị $+\infty$.
-
-::: proof
-Với tổng không âm, nhân bất đẳng thức lồi của từng $f_i$ với $\alpha_i\ge0$ rồi cộng lại.
-
-Với hợp affine, tính chất
-
-$$
-F\bigl(\theta x+(1-\theta)y\bigr)
-=\theta F(x)+(1-\theta)F(y)
-$$
-
-cho phép áp dụng trực tiếp bất đẳng thức lồi của $f$.
-
-Với supremum, với mọi $s\in S$,
-
-$$
-g_s\bigl(\theta x+(1-\theta)y\bigr)
-\le\theta g_s(x)+(1-\theta)g_s(y)
-\le\theta g(x)+(1-\theta)g(y).
-$$
-
-Lấy supremum theo $s$ ở vế trái cho bất đẳng thức lồi của $g$.
-:::
-
-### Bất đẳng thức Jensen hữu hạn
-
-**Giả thiết.** Cho $D$ lồi, $f:D\to\mathbb R$ lồi, $x_1,\ldots,x_k\in D$ và $\theta_i\ge0$ với $\sum_{i=1}^k\theta_i=1$.
-
-**Kết luận.**
-
-$$
-f\left(\sum_{i=1}^k\theta_i x_i\right)
-\le\sum_{i=1}^k\theta_i f(x_i).
-$$
-
-::: proof
-Chứng minh bằng quy nạp theo $k$. Trường hợp $k=2$ chính là định nghĩa tính lồi. Giả sử kết quả đúng với $k-1$ điểm. Nếu $\theta_k=1$ thì kết luận hiển nhiên. Nếu $\theta_k<1$, đặt
-
-$$
-\bar x=\sum_{i=1}^{k-1}\frac{\theta_i}{1-\theta_k}x_i.
-$$
-
-Các hệ số trong $\bar x$ không âm và có tổng $1$, nên $\bar x\in D$. Ta có
-
-$$
-\sum_{i=1}^k\theta_i x_i
-=(1-\theta_k)\bar x+\theta_kx_k.
-$$
-
-Áp dụng tính lồi cho hai điểm rồi giả thiết quy nạp:
-
-$$
-\begin{aligned}
-f\left(\sum_{i=1}^k\theta_i x_i\right)
-&\le(1-\theta_k)f(\bar x)+\theta_kf(x_k)\\
-&\le\sum_{i=1}^{k-1}\theta_i f(x_i)+\theta_kf(x_k).
-\end{aligned}
-$$
-
-Vậy kết quả đúng với mọi $k$ hữu hạn.
-:::
-
-## D. Ca tổng hợp trong AI
-
-### 14. Hàm mất mát logistic
-
-
-**Định nghĩa dữ liệu và mô hình.** Cho tập dữ liệu phân loại nhị phân
-
-$$
-(a_i,y_i),
-\qquad
-a_i\in\mathbb R^n,
-\qquad
-y_i\in\{-1,1\},
-\qquad
-i=1,\ldots,m.
-$$
-
-Véc-tơ $a_i$ và nhãn $y_i$ là dữ kiện; $w\in\mathbb R^n$ là biến quyết định. Điểm số tuyến tính là $a_i^Tw$. Biên phân loại có dấu (margin) của mẫu thứ $i$ là
-
-$$
-s_i(w)=y_i a_i^Tw.
-$$
-
-Biên dương nghĩa là dấu của điểm số phù hợp với nhãn; biên càng lớn thì mẫu càng nằm sâu về phía được phân loại đúng. Xác suất logistic gán cho nhãn đúng tại biên $s$ là
-
-$$
-\sigma(s)=\frac1{1+e^{-s}},
-\qquad
-\Pr(y_i\mid a_i,w)=\sigma\bigl(s_i(w)\bigr).
-$$
-
-Vì vậy, âm log-hợp lý của nhãn quan sát được chính là
-
-$$
-\phi(s)=-\log\sigma(s)=\log(1+e^{-s}),
-$$
-
-và mất mát trên toàn bộ dữ liệu là
-
-$$
-L(w)=\sum_{i=1}^m\phi\bigl(s_i(w)\bigr)
-=\sum_{i=1}^m\log\left(1+e^{-y_i a_i^Tw}\right).
-$$
-
-Để minh họa vai trò của tập khả thi, xét bài toán
-
-$$
-\underset{\lVert w\rVert_2\le R}{\operatorname{minimize}}\;L(w),
-\qquad
-R\ge0.
-$$
-
-**Trực quan.** Mất mát logistic giảm trơn khi biên tăng. Hàm phạt mạnh biên âm, bằng $\log2$ tại biên $0$, và tiến về $0$ khi biên tiến tới $+\infty$. Quả cầu chuẩn giới hạn độ lớn của tham số và giữ tập khả thi compact.
-
-![Hai mẫu phân loại một chiều, biên phân loại có dấu và đồ thị mất mát logistic trên tập khả thi đóng từ âm một đến một.](img/lec-01/logistic-loss-convex-case.svg)
-
-*Hình đánh dấu nghiệm ở biên và ghi giá trị biên; vị trí, ký hiệu và kiểu nét được dùng cùng màu.*
-
-**Ví dụ một chiều tính được.** Cho hai mẫu
-
-$$
-(a_1,y_1)=(1,1),
-\qquad
-(a_2,y_2)=(-1,-1),
-$$
-
-và tập khả thi $C=[-1,1]$. Cả hai biên đều bằng $w$ vì
-
-$$
-y_1a_1w=w,
-\qquad
-y_2a_2w=(-1)(-1)w=w.
-$$
-
-Do đó
-
-$$
-L(w)=2\log(1+e^{-w}),
-$$
-
-với các đạo hàm
-
-$$
-L'(w)=-\frac{2}{1+e^w}<0,
-\qquad
-L''(w)=\frac{2e^w}{(1+e^w)^2}>0.
-$$
-
-Hàm giảm và lồi chặt trên $[-1,1]$, nên nghiệm là điểm biên phải
-
-$$
-w^*=1,
-\qquad
-L(w^*)=2\log(1+e^{-1})\approx0{,}627.
-$$
-
-Gradient tại nghiệm có ràng buộc không nhất thiết bằng $0$: ta có $L'(1)<0$, nhưng mọi điểm lớn hơn $1$ đều không khả thi.
-
-**Ý nghĩa và ứng dụng trong AI.** Mất mát logistic là một mục tiêu chuẩn cho phân loại nhị phân. Tính lồi của mất mát và tập khả thi quyết định quan hệ địa phương–toàn cục; tính compact của tập khả thi cùng tính liên tục của mục tiêu bảo đảm nghiệm tồn tại.
-
-**Điểm dễ nhầm.** Mất mát logistic lồi không có nghĩa dữ liệu không nhiễu, mô hình dự đoán tốt ngoài mẫu hoặc nghiệm luôn duy nhất. Gradient bằng $0$ không phải điều kiện bắt buộc cho nghiệm nằm ở biên tập khả thi. Nếu bỏ giới hạn chuẩn trong dữ liệu phân tách được, một dãy tham số có thể làm mất mát tiến về infimum mà không đạt được tại tham số hữu hạn.
-
-Bài 01 cung cấp công cụ để chứng minh tập khả thi và mục tiêu lồi, đồng thời phát biểu đúng các bảo đảm về tồn tại và tính toàn cục. Bài 02 dùng các công cụ này để nhận dạng và cải dạng những lớp bài toán tối ưu lồi cụ thể.
-
-## Các định lý và chứng minh quan trọng — Nhóm D
-
-### Tính lồi của hàm mất mát logistic
-
-**Giả thiết.** Dữ liệu $(a_i,y_i)$ được giữ cố định, với $a_i\in\mathbb R^n$ và $y_i\in\{-1,1\}$.
-
-**Kết luận.** Hàm
-
-$$
-L(w)=\sum_{i=1}^m\log\left(1+e^{-y_i a_i^Tw}\right)
-$$
-
-lồi trên $\mathbb R^n$.
-
-::: proof
-Xét hàm một biến $\phi(s)=\log(1+e^{-s})$. Ta có
-
-$$
-\phi'(s)=-\frac1{1+e^s},
-\qquad
-\phi''(s)=\frac{e^s}{(1+e^s)^2}>0.
-$$
-
-Vì vậy $\phi$ lồi. Mỗi biên $s_i(w)=y_i a_i^Tw$ là hàm affine của $w$, nên $\phi\circ s_i$ lồi theo quy tắc hợp affine. Tổng hữu hạn của các hàm lồi cũng lồi, do đó $L$ lồi.
-
-Gradient của tổng mất mát là
-
-$$
-\nabla L(w)
-=-
-\sum_{i=1}^m
-\frac{y_i a_i}{1+e^{y_i a_i^Tw}}.
-$$
-
-Có thể kiểm tra lại bằng Hessian. Đặt $s_i=y_i a_i^Tw$ và
-
-$$
-q_i(w)=\frac{e^{s_i}}{(1+e^{s_i})^2}>0.
-$$
-
-Vì $y_i^2=1$,
-
-$$
-\nabla^2L(w)
-=\sum_{i=1}^m q_i(w)a_i a_i^T.
-$$
-
-Với mọi $v\in\mathbb R^n$,
-
-$$
-v^T\nabla^2L(w)v
-=\sum_{i=1}^m q_i(w)(a_i^Tv)^2\ge0.
-$$
-
-Vậy $\nabla^2L(w)\succeq0$, xác nhận lại tính lồi.
-:::
-
-### Tồn tại và tính toàn cục trên quả cầu tham số
-
-**Giả thiết.** Cho $R\ge0$ và $C=\{w\in\mathbb R^n:\lVert w\rVert_2\le R\}$. Dữ liệu hữu hạn và cố định.
-
-**Kết luận.** Bài toán $\min_{w\in C}L(w)$ có ít nhất một nghiệm; mọi cực tiểu địa phương tương đối với $C$ đều là cực tiểu toàn cục.
-
-::: proof
-Quả cầu $C$ khác rỗng, đóng và bị chặn, nên compact trong $\mathbb R^n$. Hàm $L$ là tổng hữu hạn của các hàm liên tục, nên liên tục. Định lý Weierstrass cho tồn tại ít nhất một nghiệm $w^*\in C$.
-
-Quả cầu $C$ lồi và phần trên đã chứng minh $L$ lồi. Theo định lý cực tiểu địa phương của bài toán lồi, mọi cực tiểu địa phương của $L$ tương đối với $C$ là cực tiểu toàn cục.
-:::
-
-**Không kết luận duy nhất.** Hessian chỉ được bảo đảm PSD. Nếu tồn tại $v\ne0$ sao cho $a_i^Tv=0$ với mọi $i$, thì
-
-$$
-v^T\nabla^2L(w)v=0
-$$
-
-với mọi $w$. Vì vậy không thể suy ra lồi chặt hoặc nghiệm duy nhất nếu thiếu giả thiết bổ sung về dữ liệu và tập khả thi.
-
-Một điều kiện đủ dễ kiểm tra là ma trận dữ liệu có các hàng $a_i^T$ và có hạng cột đầy đủ. Khi đó, với mọi $v\ne0$, có ít nhất một $a_i^Tv\ne0$, nên công thức Hessian cho $v^T\nabla^2L(w)v>0$. Mục tiêu lồi chặt; kết hợp với sự tồn tại trên quả cầu, nghiệm là duy nhất. Chiều ngược lại không đúng: nghiệm vẫn có thể duy nhất ngay cả khi ma trận dữ liệu thiếu hạng.
-
-### Dữ liệu phân tách được có thể làm infimum không đạt được
-
-**Giả thiết.** Dùng hai mẫu một chiều của ví dụ, nhưng bỏ ràng buộc $w\in[-1,1]$ và cho $w\in\mathbb R$.
-
-**Kết luận.** Hàm $L(w)=2\log(1+e^{-w})$ có infimum bằng $0$ nhưng không có nghiệm tối ưu hữu hạn.
-
-::: proof
-Với mọi $w\in\mathbb R$, ta có $e^{-w}>0$, nên
-
-$$
-L(w)=2\log(1+e^{-w})>0.
-$$
-
-Mặt khác,
-
-$$
-\lim_{w\to+\infty}L(w)=2\log(1+0)=0.
-$$
-
-Do đó $\inf_{w\in\mathbb R}L(w)=0$, nhưng không có $w$ hữu hạn nào đạt giá trị $0$. Phản ví dụ này cho thấy tính lồi và tính liên tục không đủ bảo đảm tồn tại trên một tập khả thi không compact.
-:::
+Mô hình này được phỏng theo ca chiếu sáng trong MIT 6.079, lec01, trang 1-9 đến 1-12. Bản MIT còn xét mục tiêu sai lệch tương đối theo logarit; Bài 01 dùng dạng bình phương nhỏ nhất để chỉ cần các phép bảo toàn đã học.
+
+### 7.3. Bảng kiểm cho một mô hình mới
+
+1. Nêu kiểu và kích thước của mọi dữ kiện.
+2. Chỉ ra biến quyết định và miền của biến.
+3. Viết hàm mục tiêu và từng ràng buộc.
+4. Kiểm tra miền khả thi có lồi không.
+5. Kiểm tra mục tiêu có lồi không; ghi đúng giả thiết của công cụ kiểm tra.
+6. Tách ba kết luận: địa phương–toàn cục, tồn tại, duy nhất.
+7. Diễn giải nghiệm trong ngữ cảnh ban đầu.
 
 ## Tài liệu tham khảo
 
-- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Mục 1.1, 2.1–2.3, 3.1–3.2, đặc biệt Mục 3.1.5 về các ví dụ hàm lồi và Mục 3.2.2 về hợp hàm; Mục 4.1–4.2 chỉ dùng cho ký hiệu và kết luận của bài toán lồi; Phụ lục A.2.2–A.3.2.
+1. Stephen Boyd và Lieven Vandenberghe, *Convex Optimization*, Cambridge University Press, 2004, Chương 1–3.
+2. Stephen Boyd và Pablo Parrilo, MIT OpenCourseWare 6.079/6.975, *Introduction to Convex Optimization*, Fall 2009, lec01, lec02 và lec03.
+3. Trường Đại học Công nghệ, Đại học Quốc gia Hà Nội, đề cương học phần UET.AI2012, *Cơ sở toán học của Trí tuệ nhân tạo*.
+
+Các hình trong bộ trang chiếu được vẽ lại cục bộ. Nguồn MIT OpenCourseWare dùng theo giấy phép CC BY-NC-SA 4.0; thông tin URL, ngày tải và checksum nằm trong `sources/MIT/README.md` của kho học phần.
