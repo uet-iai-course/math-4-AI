@@ -31,6 +31,8 @@
     .reveal .slides section.l03-slide { font-size: .78em; }
     .l03-slide .math-mid .katex-display { margin: .2em 0; }
     .l03-slide .card h3 { font-size: 1.08em; }
+    .g01-slide h2 { font-size: 1.3em; margin-bottom: .2em; }
+    .g01-slide .visual-short { max-height: 300px; }
     .result { border-left: 5px solid #16706a; background: #eef4f3; }
     .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72em; }
     .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .58em; }
@@ -248,11 +250,17 @@
     </section>
 
     <section>
-      <section data-slide-id="G01">
-        <h2>Phân loại bằng biên có dấu</h2>
-        <p>Với $a_i\in\mathbb R^d$ và $y_i\in\{-1,+1\}$, mô hình cho điểm số $a_i^Tw$.</p>
-        <div class="math-large">$$m_i=y_i a_i^Tw$$</div>
-        <div class="grid3">
+      <section class="g01-slide" data-slide-id="G01">
+        <h2>Bài toán phân loại bằng biên tuyến tính</h2>
+        <div class="split-6040">
+          <img class="visual visual-short" src="img/lec-01/g01-linear-boundary-2d.svg" alt="Mặt phẳng đặc trưng với hai miền dấu, biên tuyến tính đi qua gốc và véc tơ pháp tuyến w vuông góc với biên; lớp dương dùng hình tròn, lớp âm dùng hình vuông" />
+          <div>
+            <p>Với $a_i\in\mathbb R^d$ và $y_i\in\{-1,+1\}$, mô hình cho điểm số $a_i^Tw$.</p>
+            <div class="math-large">$$m_i=y_i a_i^Tw$$</div>
+            <p>Biên $a^Tw=0$ chia mặt phẳng thành hai miền dự đoán.</p>
+          </div>
+        </div>
+        <div class="grid3 compact-cards">
           <div class="card"><h3>$m_i>0$</h3><p>Dấu dự đoán khớp nhãn.</p></div>
           <div class="card"><h3>$m_i=0$</h3><p>Mẫu nằm trên biên quyết định.</p></div>
           <div class="card"><h3>$m_i<0$</h3><p>Dấu dự đoán sai nhãn.</p></div>

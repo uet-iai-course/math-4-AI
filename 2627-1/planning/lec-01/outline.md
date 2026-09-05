@@ -30,7 +30,7 @@ Sau bài học, sinh viên phải làm được bốn việc:
 1. **Mở đầu và một số bài toán tối ưu — M01–M03:** mục tiêu, vấn đề trung tâm và ba quyết định cần tối ưu.
 2. **Điều khiển một bước — D01–D04:** mô hình động lực, đánh đổi bám đích–năng lượng, nghiệm bị chặn và câu hỏi về nghiệm biên.
 3. **Hồi quy tuyến tính — L01–L04:** dữ liệu, bình phương nhỏ nhất, ví dụ số và câu hỏi về hạng của ma trận thiết kế.
-4. **Hồi quy logistic — G01–G04:** biên có dấu, mất mát logistic, dữ liệu tách tuyến tính và câu hỏi về sự tồn tại nghiệm.
+4. **Hồi quy logistic — G01–G04:** bài toán phân loại bằng biên tuyến tính, biên có dấu, mất mát logistic, dữ liệu tách tuyến tính và câu hỏi về sự tồn tại nghiệm.
 5. **Khuôn chung của bài toán tối ưu — T01–T04:** giải phẫu mô hình, ánh xạ ba ca, các loại kết luận và danh sách điều cần chứng nhận.
 6. **Công cụ lồi vừa đủ — F01–F05 và H01–H07:** tập lồi, hàm lồi, điều kiện vi phân, phép bảo toàn, định lý địa phương–toàn cục, tồn tại và duy nhất.
 7. **Trở lại ba ca — K01–K06:** chứng nhận riêng từng ca, so sánh kết luận, bài tập chuyển giao và tài liệu.
@@ -102,7 +102,7 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 
 - Giữ và dùng: `optimization-model-anatomy.svg`, `convex-set-and-combination.svg`, `convex-concave-strict.svg`, `local-versus-global-minimum.svg`, `first-second-order-convexity.svg`, `existence-and-uniqueness.svg`.
 - Sửa: `logistic-loss-convex-case.svg` để ca chính dùng miền $\mathbb R$ và làm rõ cận dưới đúng không đạt; phần ràng buộc đóng, bị chặn được chuyển thành đối chiếu trong mạch kết luận.
-- Tạo mới sáu SVG: `one-step-control.svg`, `linear-regression-fit.svg`, `d03-cost-parabola-feasible.svg` và ba hình khái quát ở M03 (`m03-control-target.svg`, `m03-linear-fit-sketch.svg`, `m03-logistic-classes.svg`).
+- Tạo mới bảy SVG: `one-step-control.svg`, `linear-regression-fit.svg`, `d03-cost-parabola-feasible.svg`, `g01-linear-boundary-2d.svg` và ba hình khái quát ở M03 (`m03-control-target.svg`, `m03-linear-fit-sketch.svg`, `m03-logistic-classes.svg`).
 - Không dùng trong tuyến chính: `basic-convex-set-library.svg`, `convex-hull-and-conic-hull.svg`, `convex-set-preservation-map.svg`, `epigraph-levelset-indicator.svg`, `convex-preservation-and-jensen.svg`, `line-restriction-convex-library.svg`, `psd-cone-and-quadratic-directions.svg`.
 
 ## Tiêu chí hoàn thành
