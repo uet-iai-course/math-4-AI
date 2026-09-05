@@ -127,7 +127,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | `convex-set-and-combination.svg` | Giữ | F01 |
 | `convex-concave-strict.svg` | Giữ | H01 |
 | `local-versus-global-minimum.svg` | Giữ | H03 |
-| `first-second-order-convexity.svg` | Giữ | H04–H05 |
+| `first-second-order-convexity.svg` | Giữ | H05 |
 | `existence-and-uniqueness.svg` | Giữ | H07 |
 | `logistic-loss-convex-case.svg` | Sửa | G03; ưu tiên miền $\mathbb R$ và trường hợp không đạt nghiệm |
 | `one-step-control.svg` | Thêm | D02 |

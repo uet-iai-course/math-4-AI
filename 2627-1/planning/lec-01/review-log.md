@@ -3,8 +3,8 @@
 ## Trạng thái
 
 - Ngày: 2026-09-05.
-- Sản phẩm hiện tại: đang triển khai bản hoàn chỉnh từ skeleton đã duyệt.
-- Cấu trúc 6 mạch, 23 trang ở các mục lịch sử dưới đây đã hết hiệu lực. Cấu trúc đang triển khai gồm đúng 7 mạch và 37 trang theo `outline.md` và `storyboard.md`.
+- Sản phẩm hiện tại: bản hoàn chỉnh đã qua vòng nghiệm thu cuối.
+- Cấu trúc 6 mạch, 23 trang ở các mục lịch sử dưới đây đã hết hiệu lực. Bản hoàn chỉnh gồm đúng 7 mạch và 37 trang theo `outline.md` và `storyboard.md`.
 
 ## Quyết định nguồn và cấu trúc
 
@@ -25,12 +25,12 @@
 
 | Vai rà soát | Trạng thái | Ghi chú |
 |---|---|---|
-| Kiểm định storyboard | Đã rà skeleton | Không còn lỗi chặn, nghiêm trọng hoặc trung bình. |
-| Góc nhìn sinh viên | Hoãn | Thực hiện khi ví dụ và hình đã được điền. |
-| Góc nhìn chuyên gia | Hoãn | Thực hiện khi độ bao phủ chi tiết đã được chốt. |
-| Độ chính xác toán học | Đã rà skeleton | Công thức khung đã qua lượt rà lại; ví dụ số chưa tồn tại. |
-| Phản biện học thuật–giảng dạy | Hoãn | Thực hiện sau bản nháp nội dung. |
-| Mạch kể chuyện | Đã rà skeleton | Lượt gọi điều chỉnh hoàn tất; chi tiết nói vẫn dành cho vòng nội dung. |
+| Kiểm định storyboard | Đạt | 7 mạch, 37 trang và các bản đồ sáu bước khớp bản triển khai. |
+| Góc nhìn sinh viên | Đạt sau sửa | Ký hiệu, ví dụ, câu hỏi và điểm dễ nhầm đã được xử lý. |
+| Góc nhìn chuyên gia | Đạt | Phạm vi lý thuyết và giả thiết miền mở được dùng đúng. |
+| Độ chính xác toán học | Đạt sau tái kiểm | Ba ví dụ, các chứng nhận và bài tập đã được tính lại. |
+| Phản biện học thuật–giảng dạy | Đạt sau sửa | Thang bài tập và ánh xạ LLO/CLO đã được xác nhận. |
+| Mạch kể chuyện | Đạt sau tái kiểm | Ba món nợ nhận thức và mạch quay lại được khép kín. |
 
 ## Kiểm định storyboard vòng skeleton
 
@@ -147,9 +147,10 @@
 
 ## Giới hạn Codex Slides ở vòng hoàn thiện
 
-- Danh mục khả năng của Codex Slides truy cập được tại `http://127.0.0.1:4311`, nhưng lệnh mở dự án thất bại với thông báo `Codex Slides did not start at http://127.0.0.1:4311. See /tmp/codex-slides-server.log.`
-- Nhật ký máy chủ ghi `ReferenceError: File is not defined` trong giao diện tệp dự án. Lần thử máy chủ độc lập tiếp tục thất bại do thiếu mô-đun `./node-polyfill-crypto` trên Node v22.23.2.
-- Theo quy trình dự phòng, việc triển khai tiếp tục bằng RevealJS và sẽ có các vòng kiểm định cục bộ. Không tuyên bố đã rà trực quan bằng Codex Slides.
+- Lần mở đầu thất bại với thông báo `Codex Slides did not start at http://127.0.0.1:4311. See /tmp/codex-slides-server.log.` do sandbox không cho bind `0.0.0.0:4311`.
+- Chạy runtime ngoài sandbox đã mở được Codex Slides và tạo dự án bền vững `20260905080627-b-i-gi-ng-01-gi-i-thi-u-t-i-u-t-p-l-i-v--bkkd`, tỷ lệ 16:9. Dự án nhận đủ 11 nguồn: deck hiện tại, đề cương chính thức, ba PDF MIT, mẫu HTML/CSS, outline, storyboard, ghi chú bài giảng và bài tập.
+- Giao diện Browser trong Codex không hoàn tất handoff. API tải Design File trả HTTP 500 với lỗi `ReferenceError: File is not defined`; tham số tạo dự án cũng giới hạn `pages` không quá 30 nên không thể đặt trực tiếp 37 trang. Vì vậy chưa có phiên bản 37 trang đã render trong Codex Slides để đối chiếu trực quan.
+- Bản RevealJS trong kho là bản có thẩm quyền. Kiểm định trực quan cuối được thực hiện bằng Chromium và Playwright; không tuyên bố đã rà trực quan bằng Codex Slides.
 
 ## Rà soát độc lập bản hoàn chỉnh
 
@@ -203,16 +204,26 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - Tái kiểm toán: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; kết luận `ĐẠT`. D03, D04, H03, H05, H07, K02–K04 và Bài 4, 6, 8, 9 đều được xác nhận đúng sau sửa.
 - Tái kiểm mạch: cùng mô hình và nhà cung cấp; kết luận `ĐẠT`. Xác nhận đúng 7 mạch, 37 trang; SVG logistic chỉ ở G03; tám câu nối và ba món nợ nhận thức được khép lại; K05–K06 kết thúc đúng vai trò.
 
+### Tái kiểm L02–L04 sau sửa bố cục
+
+- Playwright phát hiện công thức phần dư ở L03 vượt mép phải tại 1280 × 720. Chỉ đổi cách chia hai dòng: dòng một chứa $w^*$ và $J(w^*)$; dòng hai chứa $Xw^*-y$. Không đổi dữ kiện, ký hiệu hoặc kết quả.
+- Worker chỉ nhận một bản deck trong thư mục tạm không có `.env` hoặc `.env.*`. Lượt gọi dùng `task_profile=recheck`, `max_rounds=4`, `max_tokens=2500`, `timeout=120`, `temperature=0`, `reasoning_effort=low`, `empty_answer_retries=1`; prompt cấm liệt kê và tìm kiếm tệp, chỉ cho đọc dòng 177–220 một lần.
+- Bằng chứng runtime: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; hoàn tất sau 2 vòng.
+- Kết luận: `ĐẠT`. Số học, ký hiệu, phần dư, giá trị mục tiêu, ghi chú và mạch L02 → L03 → L04 đều khớp; không có lỗi trung bình trở lên.
+
 ## Biên tập giọng văn
 
 - Áp dụng kỹ năng `no-ai-slop` cho deck, ghi chú bài giảng, bài tập và trang chỉ mục.
 - Loại các câu chuyển ý chung chung, cách lặp “không chỉ”, ghi chú sản xuất và từ tiếng Anh có cách gọi tiếng Việt ổn định. Giữ nguyên tên riêng, ký hiệu, tên thư viện và thuật ngữ kỹ thuật cần thiết.
 - Chuyển chú thích nguồn của K05 khỏi mặt trang chiếu vào ghi chú diễn giả; mặt trang không còn nhãn quy trình, mã nội bộ, thời lượng, khẩu hiệu hoặc câu cảm thán.
 - Không thay đổi kết luận toán học trong lượt biên tập này.
+- Vòng tự kiểm theo `eval.md` đã đọc lại toàn bộ văn bản hiển thị, ghi chú diễn giả, ghi chú bài giảng, bài tập và mô tả Bài 01 trên chỉ mục. Không còn câu cảm thán, lời ca tụng hoặc quảng bá, câu hỏi tu từ, nhịp câu khuôn mẫu, đối lập giả tạo, câu báo trước tầm quan trọng hoặc thay từ đồng nghĩa làm lệch thuật ngữ.
+- Tìm lại các chuỗi `TODO`, `FIXME`, `placeholder`, ghi chú sản xuất, chỉ dẫn cho người viết, reviewer hoặc worker trong năm bề mặt công khai cho kết quả bằng không. Các câu hỏi còn lại đều mang nhãn `Câu hỏi:` và có đáp án hoặc gợi ý trong ghi chú diễn giả khi phù hợp.
+- Sửa bố cục L03 sau vòng biên tập chỉ đổi vị trí hai công thức; không phát sinh văn bản mới cần biên tập lại.
 
 ## Kiểm định kỹ thuật và trực quan cuối
 
-- Lệnh bắt buộc `python3 -m reloadserver 8765` thất bại vì môi trường báo `/usr/bin/python3: No module named reloadserver`. Dùng `python3 -m http.server 8765 --bind 127.0.0.1` tại gốc kho làm phương án dự phòng.
+- Lần chạy đầu của lệnh bắt buộc `python3 -m reloadserver 8765` thất bại vì thiếu mô-đun. Sau khi cài bản cố định `reloadserver==1.0.0` và phụ thuộc `watchdog==6.0.0` vào user site, chính lệnh này chạy thành công tại gốc kho trên cổng 8765. Không còn dùng máy chủ dự phòng làm bằng chứng nghiệm thu.
 - Deck, chỉ mục, Markdown ghi chú và Markdown bài tập đều trả HTTP 200.
 - Kiểm tra cấu trúc tự động xác nhận 7 section ngoài, 37 trang lá, 37 mã `data-slide-id` duy nhất, 37 khối ghi chú và tập mã trùng khớp chính xác với storyboard.
 - Kiểm tra 20 đường dẫn cục bộ trong deck; mọi tài sản đều tồn tại và không thoát khỏi thư mục học kỳ. Cả 16 SVG của Bài 01 phân tích được như XML.
@@ -222,8 +233,13 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - In thử bài tập tạo PDF 9 trang; đủ 14 tiêu đề gợi ý hoặc lời giải xuất hiện trong văn bản PDF, xác nhận các khối được mở khi in.
 - Markdown bắt đầu bằng heading cấp một, chỉ dùng `$...$` và `$$...$$`; mọi directive thuộc sáu loại được hỗ trợ, đóng đủ và không lồng nhau. Liên kết bài 01 trên chỉ mục ghép đúng deck với từng tài liệu.
 - `git diff --check` hoàn tất không có lỗi khoảng trắng.
+- Playwright duyệt đủ 37 trang tại 1280 × 720 và 37 trang tại 720 × 1280 qua `reloadserver`; phép đo phần tử và quan sát bảng ảnh liên lạc không phát hiện tràn hoặc chồng lấn. L03 được sửa sau lần đo đầu và đã vượt lượt chạy lại.
+- DOM deck có 275 nút KaTeX trong phiên Playwright và 0 `katex-error`; sai khác một nút so với lần đếm Chromium CLI trước thuộc cách dựng DOM của hai phiên bản trình duyệt. Không trang nào còn dấu phân cách toán chưa render.
+- Điều hướng RevealJS bằng `ArrowDown` và `ArrowUp` đã đổi trang đúng. Các khối `details/summary` của cả hai viewer mở và đóng bằng phím `Enter`; yêu cầu ghép sai số bài tiếp tục bị từ chối.
+- Checksum SHA-256 của ba PDF MIT trùng danh mục. Storyboard phân loại đủ 16 SVG: 9 hình dùng trong deck và 7 hình loại khỏi tuyến; mọi hình dùng đều có `alt`, và ánh xạ `first-second-order-convexity.svg` được sửa thành đúng H05.
 
 ## Trạng thái bàn giao
 
 - Năm vai rà soát độc lập và hai lượt tái kiểm đều đạt sau chỉnh sửa; không còn lỗi chặn bàn giao, nghiêm trọng hoặc trung bình.
-- Hạn chế duy nhất còn lại là Codex Slides không khởi động trong môi trường hiện tại; toàn bộ kiểm định cục bộ bắt buộc đã được thực hiện bằng RevealJS và Chromium, không thay thế bằng tuyên bố kiểm định Codex Slides.
+- Codex Slides đã có dự án bền vững và đủ nguồn nhưng chưa render được phiên bản 37 trang do lỗi Browser/Design File nêu trên. Đây là giới hạn công cụ được báo trung thực theo phương án người dùng cho phép; không dùng nó để thay thế bằng chứng RevealJS.
+- RevealJS, material viewer, nguồn, hình, giọng văn và điều hướng đã vượt kiểm định cuối. Phần Git chỉ được đóng sau khi commit sửa L03 cùng tài liệu quy trình được đẩy và xác minh trên upstream.
