@@ -237,9 +237,10 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - DOM deck có 275 nút KaTeX trong phiên Playwright và 0 `katex-error`; sai khác một nút so với lần đếm Chromium CLI trước thuộc cách dựng DOM của hai phiên bản trình duyệt. Không trang nào còn dấu phân cách toán chưa render.
 - Điều hướng RevealJS bằng `ArrowDown` và `ArrowUp` đã đổi trang đúng. Các khối `details/summary` của cả hai viewer mở và đóng bằng phím `Enter`; yêu cầu ghép sai số bài tiếp tục bị từ chối.
 - Checksum SHA-256 của ba PDF MIT trùng danh mục. Storyboard phân loại đủ 16 SVG: 9 hình dùng trong deck và 7 hình loại khỏi tuyến; mọi hình dùng đều có `alt`, và ánh xạ `first-second-order-convexity.svg` được sửa thành đúng H05.
+- Sau lần push đầu của vòng nghiệm thu, URL công khai trả HTTP 200 từ GitHub Pages; checksum HTML trùng tuyệt đối với tệp local. Playwright trên chính URL công khai tiếp tục đạt 37 trang ở cả hai kích thước, 0 lỗi KaTeX, hai viewer đúng số công thức và khối gập, điều hướng bàn phím hoạt động và đủ ba liên kết Bài 01.
 
 ## Trạng thái bàn giao
 
-- Năm vai rà soát độc lập và hai lượt tái kiểm đều đạt sau chỉnh sửa; không còn lỗi chặn bàn giao, nghiêm trọng hoặc trung bình.
+- Năm vai rà soát độc lập và ba lượt tái kiểm đều đạt sau chỉnh sửa; không còn lỗi chặn bàn giao, nghiêm trọng hoặc trung bình.
 - Codex Slides đã có dự án bền vững và đủ nguồn nhưng chưa render được phiên bản 37 trang do lỗi Browser/Design File nêu trên. Đây là giới hạn công cụ được báo trung thực theo phương án người dùng cho phép; không dùng nó để thay thế bằng chứng RevealJS.
-- RevealJS, material viewer, nguồn, hình, giọng văn và điều hướng đã vượt kiểm định cuối. Phần Git chỉ được đóng sau khi commit sửa L03 cùng tài liệu quy trình được đẩy và xác minh trên upstream.
+- RevealJS, material viewer, nguồn, hình, giọng văn và điều hướng đã vượt kiểm định cuối. Commit sửa L03 và tài liệu quy trình đã được đẩy; hash local trùng ref `origin/main` khi kiểm tra bằng `git ls-remote`.
