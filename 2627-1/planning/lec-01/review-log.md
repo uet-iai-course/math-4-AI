@@ -320,3 +320,10 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - Writer chỉ đọc một đoạn của ba tệp tạm, cấm liệt kê/tìm kiếm; dùng `task_profile=write`, `max_rounds=5`, `timeout=120`, `max_tokens=1800`, `temperature=0`, `reasoning_effort=low`, hoàn tất sau 3 vòng. Reviewer đọc trực tiếp ba đoạn nguồn sau sửa với `task_profile=recheck`, `max_rounds=4`, `timeout=120`, `max_tokens=1800`, `temperature=0`, `reasoning_effort=low`; kết luận `ĐẠT`.
 - Hai lượt có `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; thư mục tạm không chứa `.env` hoặc `.env.*`.
 - Kiểm định cấu trúc đạt 7 mạch, 37 trang, 37 ghi chú; F04 không tràn ở 1280 × 720 hoặc 720 × 1280, không có lỗi KaTeX hay ảnh hỏng. Ảnh 16:9 đã được quan sát trực tiếp.
+
+## Xóa câu chỉ dẫn khỏi F05
+
+- Theo yêu cầu ngày 2026-09-05, xóa hoàn toàn câu `Miền lồi hoàn thành nửa đầu của chứng nhận; mục tiêu vẫn cần được kiểm tra.` khỏi mặt F05; giữ nguyên tiêu đề, câu hỏi, bảng và ghi chú diễn giả.
+- Writer chỉ đọc một đoạn deck tạm, cấm liệt kê/tìm kiếm; dùng `task_profile=write`, `max_rounds=4`, `timeout=120`, `max_tokens=1400`, `temperature=0`, `reasoning_effort=low`, hoàn tất sau 3 vòng. Reviewer đọc trực tiếp đoạn F05 sau sửa với `task_profile=recheck`, `max_rounds=4`, `timeout=120`, `max_tokens=1400`, `temperature=0`, `reasoning_effort=low`; kết luận `ĐẠT`.
+- Hai lượt có `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; thư mục tạm không chứa `.env` hoặc `.env.*`.
+- Kiểm định cấu trúc đạt 7 mạch, 37 trang, 37 ghi chú; F05 không tràn ở 1280 × 720 hoặc 720 × 1280, không có lỗi KaTeX hay ảnh hỏng. Ảnh 16:9 xác nhận khoảng trắng sau khi xóa cân đối.
