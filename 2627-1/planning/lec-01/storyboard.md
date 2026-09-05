@@ -53,7 +53,7 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | F02 | Định nghĩa tập lồi | Cung cấp lượng từ và miền của hệ số tổ hợp lồi | F01 → F03 | LLO2, CLO1 | Giữ |
 | F03 | Các tập lồi dùng trong ba ví dụ | Chỉ giữ toàn không gian, đoạn, tập affine và nửa không gian | F02 → F04 | LLO2, CLO1 | Gộp và lược |
 | F04 | Xây miền lồi từ các tập đơn giản | Cung cấp giao và nghịch ảnh affine, hai phép cần cho ràng buộc | F03 → F05 | LLO2, CLO1 | Sửa |
-| F05 | Kiểm tra miền của ba ca | Đo khả năng dùng định nghĩa và phép bảo toàn | F04 → H01 | LLO2, CLO1 | Sửa thành câu hỏi |
+| F05 | Kiểm tra miền của ba ví dụ | Đo khả năng dùng định nghĩa và phép bảo toàn | F04 → H01 | LLO2, CLO1 | Sửa thành câu hỏi |
 | H01 | Dây cung và đồ thị hàm | Tạo trực giác độ cong trước bất đẳng thức | F05 → H02 | LLO2, CLO1 | Giữ; dùng SVG |
 | H02 | Định nghĩa hàm lồi | Phát biểu lồi và lồi chặt (còn gọi là lồi nghiêm ngặt) trên miền lồi bằng cùng ký hiệu | H01 → H03 | LLO2, CLO1 | Giữ |
 | H03 | Cực tiểu địa phương là toàn cục | Trả lời câu hỏi toàn cục và chỉ ra vai trò của cả hai giả thiết lồi | H02 → H04 | LLO2, CLO1 | Dời T03; dùng SVG |
