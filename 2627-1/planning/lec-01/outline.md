@@ -53,10 +53,10 @@ Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đ�
 
 ### Điều khiển một bước
 
-- Dữ kiện: $x_0,r\in\mathbb R$, $u_{\max}\ge 0$, $\lambda\ge 0$.
+- Dữ kiện: $x_0,t\in\mathbb R$, trong đó $t$ là đích (target); $u_{\max}\ge 0$, $\lambda\ge 0$.
 - Biến quyết định: $u\in[-u_{\max},u_{\max}]$; trạng thái kế tiếp $x_1=x_0+u$.
-- Mục tiêu: $q(u)=(x_0+u-r)^2+\lambda u^2$.
-- Ví dụ số: $x_0=0$, $r=3$, $\lambda=1/2$, $u_{\max}=1$; $u_{\mathrm{free}}=2$, $u^*=1$, $q(u^*)=9/2$.
+- Mục tiêu: $q(u)=(x_0+u-t)^2+\lambda u^2$.
+- Ví dụ số: $x_0=0$, $t=3$, $\lambda=1/2$, $u_{\max}=1$; $u_{\mathrm{free}}=2$, $u^*=1$, $q(u^*)=9/2$.
 - Kết luận cuối bài: miền đóng, bị chặn và lồi; $q$ lồi chặt (còn gọi là lồi nghiêm ngặt) khi $\lambda\ge0$; nghiệm tồn tại và duy nhất. Nghiệm biên không cần thỏa $q'(u^*)=0$.
 
 ### Hồi quy tuyến tính
@@ -102,7 +102,7 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 
 - Giữ và dùng: `optimization-model-anatomy.svg`, `convex-set-and-combination.svg`, `convex-concave-strict.svg`, `local-versus-global-minimum.svg`, `first-second-order-convexity.svg`, `existence-and-uniqueness.svg`.
 - Sửa: `logistic-loss-convex-case.svg` để ca chính dùng miền $\mathbb R$ và làm rõ cận dưới đúng không đạt; phần ràng buộc đóng, bị chặn được chuyển thành đối chiếu trong mạch kết luận.
-- Tạo mới tối đa hai SVG: `one-step-control.svg` và `linear-regression-fit.svg`.
+- Tạo mới năm SVG: `one-step-control.svg`, `linear-regression-fit.svg` và ba hình khái quát ở M03 (`m03-control-target.svg`, `m03-linear-fit-sketch.svg`, `m03-logistic-classes.svg`).
 - Không dùng trong tuyến chính: `basic-convex-set-library.svg`, `convex-hull-and-conic-hull.svg`, `convex-set-preservation-map.svg`, `epigraph-levelset-indicator.svg`, `convex-preservation-and-jensen.svg`, `line-restriction-convex-library.svg`, `psd-cone-and-quadratic-directions.svg`.
 
 ## Tiêu chí hoàn thành

@@ -18,7 +18,7 @@ Tổng phân bổ: 2 tiết lý thuyết và 1 tiết bài tập. Không đưa p
 
 | Cụm | Nhu cầu | Trực quan | Ví dụ | Hình thức/toán học | Ứng dụng | Bài tập | Đầu vào → sản phẩm | Ký hiệu truyền tiếp | LLO/CLO |
 |---|---|---|---|---|---|---|---|---|---|
-| Điều khiển một bước | M03, D01 | D02 | D03 | D01–D03, T01 | K01 | D04 | Đại số một biến → lập và giải mô hình bị chặn | $x_0,r,u,u_{\max},\lambda,q$ → $x,C,f_0$ | LLO1, CLO1 |
+| Điều khiển một bước | M03, D01 | D01 | D03 | D01–D03, T01 | K01 | D04 | Đại số một biến → lập và giải mô hình bị chặn | $x_0,t,u,u_{\max},\lambda,q$ → $x,C,f_0$ | LLO1, CLO1 |
 | Hồi quy tuyến tính | M03, L01 | L02 | L03 | L01–L03, T01 | K02 | L04 | Đại số tuyến tính → lập mô hình và đọc nghiệm | $X,y,w,J$ → $x,C,f_0$ | LLO1, CLO1 |
 | Hồi quy logistic | M03, G01 | G01, G03 | G03 | G02, G03, T01 | K03 | G04 | Xác suất và hàm mũ → phân biệt cận dưới đúng với nghiệm | $a_i,y_i,w,L$ → $x,C,f_0$ | LLO1, CLO1 |
 | Tập lồi | T04, F01 | F01 | F03 | F02, F04 | F05, K01–K03 | F05 | Đoạn thẳng và tập hợp → chứng nhận miền lồi | $C,x,y,\theta$ | LLO2, CLO1 |
@@ -32,9 +32,9 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 |---|---|---|---|---|---|
 | M01 | Giới thiệu tối ưu, tập lồi và hàm lồi | Định danh bài, học phần, học kỳ và đơn vị | Mở bài → M02 | CLO1 | Sửa |
 | M02 | Mục tiêu học tập | Nêu bốn nội dung: các ví dụ tối ưu, nhu cầu chứng nhận, công cụ lồi và quay lại ví dụ | M01 → M03 | LLO1, LLO2, CLO1 | Sửa |
-| M03 | Một số bài toán tối ưu trong điều khiển và AI | Tạo ba quyết định cụ thể và vấn đề trung tâm | M02 → D01 | LLO1, CLO1 | Sửa |
-| D01 | Bài toán điều khiển một bước | Xác định dữ kiện, động lực, biến và miền trước khi tối ưu | M03 → D02 | LLO1, CLO1 | Tách từ U01 |
-| D02 | Đánh đổi bám đích và năng lượng | Làm rõ vai trò hai hạng tử và giới hạn điều khiển bằng hình | D01 → D03 | LLO1, CLO1 | Tách từ U01–U02; thêm SVG |
+| M03 | Một số bài toán tối ưu trong điều khiển và AI | Tạo ba quyết định cụ thể và vấn đề trung tâm bằng ba hình khái quát | M02 → D01 | LLO1, CLO1 | Sửa; thêm ba SVG |
+| D01 | Bài toán điều khiển một bước | Xác định dữ kiện, động lực, biến và miền bằng sơ đồ trạng thái–tác động–chi phí | M03 → D02 | LLO1, CLO1 | Tách từ U01; chuyển SVG từ D02 |
+| D02 | Tối ưu nhiều mục tiêu: Bám đích và Năng lượng | Làm rõ lựa chọn mô hình khi gộp bám đích và năng lượng thành một hàm chi phí | D01 → D03 | LLO1, CLO1 | Sửa tiêu đề và khung mô hình |
 | D03 | Nghiệm của ca điều khiển | Cho ví dụ số kiểm được và quy tắc chiếu nghiệm tự do | D02 → D04 | LLO1, CLO1 | Thêm |
 | D04 | Nghiệm tối ưu trên biên | Phát hiện điều kiện $q'(u)=0$ không áp dụng máy móc ở biên | D03 → L01 | LLO1, CLO1 | Thêm câu hỏi |
 | L01 | Học đường thẳng từ dữ liệu | Đặt kiểu, kích thước, mô hình dự đoán và biến tham số | D04 → L02 | LLO1, CLO1 | Tách từ U03 |
@@ -130,8 +130,11 @@ Các ví dụ D03, L03 và G03 được đặt trước định nghĩa lồi đ�
 | `first-second-order-convexity.svg` | Giữ | H05 |
 | `existence-and-uniqueness.svg` | Giữ | H07 |
 | `logistic-loss-convex-case.svg` | Sửa | G03; ưu tiên miền $\mathbb R$ và trường hợp không đạt nghiệm |
-| `one-step-control.svg` | Thêm | D02 |
+| `one-step-control.svg` | Thêm | D01 |
 | `linear-regression-fit.svg` | Thêm | L02 |
+| `m03-control-target.svg` | Thêm | M03 |
+| `m03-linear-fit-sketch.svg` | Thêm | M03 |
+| `m03-logistic-classes.svg` | Thêm | M03 |
 | `basic-convex-set-library.svg` | Bỏ khỏi tuyến | Rộng hơn nhu cầu ba ca |
 | `convex-hull-and-conic-hull.svg` | Bỏ khỏi tuyến | Nón lồi không thuộc phạm vi cần thiết |
 | `convex-set-preservation-map.svg` | Bỏ khỏi tuyến | Có phép tổng Minkowski chưa cần |

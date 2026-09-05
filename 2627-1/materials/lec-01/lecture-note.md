@@ -27,7 +27,7 @@ Ca logistic ở Mục 4 có cận dưới hữu hạn nhưng không có nghiệm
 
 ### 2.1. Từ động lực đến mô hình
 
-Cho trạng thái đầu $x_0\in\mathbb R$, đích $r\in\mathbb R$, giới hạn $u_{\max}\ge0$ và trọng số năng lượng $\lambda\ge0$. Ta chọn tác động $u\in\mathbb R$; trạng thái kế tiếp là
+Cho trạng thái đầu $x_0\in\mathbb R$, đích $t\in\mathbb R$ (target), giới hạn $u_{\max}\ge0$ và trọng số năng lượng $\lambda\ge0$. Ta chọn tác động $u\in\mathbb R$; trạng thái kế tiếp là
 
 $$
 x_1=x_0+u.
@@ -35,30 +35,30 @@ $$
 
 Hai yêu cầu cạnh tranh là:
 
-- giảm sai lệch bám đích $(x_1-r)^2$;
+- giảm sai lệch bám đích $(x_1-t)^2$;
 - giảm năng lượng điều khiển $u^2$.
 
 Mô hình là
 
 $$
 \underset{-u_{\max}\le u\le u_{\max}}{\operatorname{minimize}}
-\quad q(u)=(x_0+u-r)^2+\lambda u^2.
+\quad q(u)=(x_0+u-t)^2+\lambda u^2.
 $$
 
-Dữ kiện là $x_0,r,u_{\max},\lambda$; biến quyết định là $u$; hàm mục tiêu là $q$; miền khả thi là đoạn $[-u_{\max},u_{\max}]$.
+Dữ kiện là $x_0,t,u_{\max},\lambda$; biến quyết định là $u$; hàm mục tiêu là $q$; miền khả thi là đoạn $[-u_{\max},u_{\max}]$. Mô hình là quan niệm chủ quan của con người về thế giới: ở đây ta chọn cách gộp bám đích và năng lượng thành một hàm chi phí.
 
 ### 2.2. Nghiệm tự do và nghiệm bị chặn
 
 Trước hết bỏ ràng buộc và giải bài toán trên $\mathbb R$:
 
 $$
-q'(u)=2(x_0+u-r)+2\lambda u.
+q'(u)=2(x_0+u-t)+2\lambda u.
 $$
 
 Vì $1+\lambda>0$, phương trình $q'(u)=0$ có nghiệm duy nhất
 
 $$
-u_{\mathrm{free}}=\frac{r-x_0}{1+\lambda}.
+u_{\mathrm{free}}=\frac{t-x_0}{1+\lambda}.
 $$
 
 Trong một chiều, nghiệm trên đoạn thu được bằng cách chiếu nghiệm tự do lên đoạn:
@@ -79,7 +79,7 @@ b,&z>b.
 $$
 
 ::: derivation
-Với $x_0=0$, $r=3$, $\lambda=1/2$ và $u_{\max}=1$,
+Với $x_0=0$, $t=3$, $\lambda=1/2$ và $u_{\max}=1$,
 
 $$
 q(u)=(u-3)^2+\frac12u^2=\frac32u^2-6u+9,
@@ -326,7 +326,7 @@ trong đó:
 
 | Ca | Biến | Mục tiêu | Miền khả thi |
 |---|---|---|---|
-| Điều khiển | $u\in\mathbb R$ | $(x_0+u-r)^2+\lambda u^2$ | $[-u_{\max},u_{\max}]$ |
+| Điều khiển | $u\in\mathbb R$ | $(x_0+u-t)^2+\lambda u^2$ | $[-u_{\max},u_{\max}]$ |
 | Hồi quy tuyến tính | $w\in\mathbb R^d$ | $\lVert Xw-y\rVert_2^2$ | $\mathbb R^d$ |
 | Hồi quy logistic | $w\in\mathbb R^d$ | $\sum_i\log(1+e^{-y_i a_i^Tw})$ | $\mathbb R^d$ |
 

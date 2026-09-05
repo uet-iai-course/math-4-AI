@@ -30,8 +30,10 @@
     .route { display: flex; align-items: stretch; gap: .32em; margin: .58em 0; }
     .route .stage { flex: 1; border: 1px solid #d7dbe5; border-radius: 8px; padding: .42em; text-align: center; }
     .route .arrow { align-self: center; color: var(--lec-accent); font-weight: 700; }
+    .route .case-visual { display: block; width: 100%; max-height: 132px; object-fit: contain; margin-top: .3em; }
     .visual { display: block; width: 100%; max-height: 410px; object-fit: contain; margin: .15em auto; }
     .visual-short { max-height: 330px; }
+    .reveal .control-overview { height: 260px; }
     .reveal .visual-compact { max-height: 210px; }
     .compact-cards { font-size: .84em; }
     .takeaway { margin-top: .45em; color: var(--lec-ink); font-weight: 650; }
@@ -44,6 +46,8 @@
     @media (max-width: 800px) {
       .reveal .slides section[data-slide-id] { font-size: .82em; }
       .visual { max-height: 360px; }
+      .reveal .control-overview { height: 220px; }
+      .route .case-visual { max-height: 104px; }
     }
   </style>
 </head>
@@ -74,11 +78,11 @@
       <section data-slide-id="M03">
         <h2>Một số bài toán tối ưu trong điều khiển và AI</h2>
         <div class="route">
-          <div class="stage"><strong>Điều khiển</strong><br />Chọn tác động để bám đích trong giới hạn</div>
+          <div class="stage"><strong>Điều khiển</strong><br />Chọn tác động để bám đích trong giới hạn<br /><img class="case-visual" src="img/lec-01/m03-control-target.svg" alt="Trạng thái x0 cộng tác động u tạo x1, so với đích t, kèm hai hạng chi phí" /></div>
           <div class="arrow">→</div>
-          <div class="stage"><strong>Hồi quy tuyến tính</strong><br />Chọn tham số để khớp dữ liệu số</div>
+          <div class="stage"><strong>Hồi quy tuyến tính</strong><br />Chọn tham số để khớp dữ liệu số<br /><img class="case-visual" src="img/lec-01/m03-linear-fit-sketch.svg" alt="Điểm dữ liệu, đường khớp và phần dư thẳng đứng" /></div>
           <div class="arrow">→</div>
-          <div class="stage"><strong>Hồi quy logistic</strong><br />Chọn tham số để phân loại</div>
+          <div class="stage"><strong>Hồi quy logistic</strong><br />Chọn tham số để phân loại<br /><img class="case-visual" src="img/lec-01/m03-logistic-classes.svg" alt="Hai lớp tròn và vuông tách bởi biên phân loại" /></div>
         </div>
         <div class="check"><strong>Vấn đề trung tâm:</strong> Mô hình được xây thế nào, và cần giả thiết nào để kết luận về nghiệm toàn cục, sự tồn tại và tính duy nhất?</div>
         <aside class="notes">Ba ca được khảo sát theo thứ tự này, không phải vì ca sau là hệ quả của ca trước. Mỗi ca tạo ra một khoảng trống khác nhau: nghiệm biên, nghiệm có thể không duy nhất và cận dưới có thể không đạt. Bắt đầu bằng một quyết định vật lý chỉ có một biến.</aside>
@@ -88,10 +92,11 @@
     <section>
       <section data-slide-id="D01">
         <h2>Bài toán điều khiển một bước</h2>
+        <img class="visual control-overview" src="img/lec-01/one-step-control.svg" alt="Sơ đồ trạng thái x0 cộng tác động u tạo trạng thái x1, cùng hai hạng chi phí bám đích và năng lượng" />
         <div class="grid2">
           <div class="card">
             <h3>Dữ kiện và động lực</h3>
-            <p>$x_0,r\in\mathbb R$, $u_{\max}\ge0$, $\lambda\ge0$</p>
+            <p>$x_0,t\in\mathbb R$, $u_{\max}\ge0$, $\lambda\ge0$; $t$ là đích (target)</p>
             <div class="math-mid">$$x_1=x_0+u$$</div>
           </div>
           <div class="card">
@@ -100,29 +105,29 @@
             <div class="math-mid">$$-u_{\max}\le u\le u_{\max}.$$</div>
           </div>
         </div>
-        <div class="box">Giá trị $u$ vừa thay đổi trạng thái kế tiếp, vừa tiêu tốn năng lượng điều khiển.</div>
-        <aside class="notes">Nêu kiểu của từng đại lượng trước khi dùng. $x_0$ và $r$ là dữ kiện; chỉ $u$ được phép thay đổi. Giới hạn biên độ là ràng buộc vật lý, không phải một hạng phạt. Chuyển sang cách lượng hóa hai yêu cầu cạnh tranh.</aside>
+        <aside class="notes">Nêu kiểu của từng đại lượng trước khi dùng. $x_0$ và $t$ là dữ kiện, với $t$ là đích (target) cần bám; chỉ $u$ được phép thay đổi. Giới hạn biên độ là ràng buộc vật lý, không phải một hạng phạt. Chuyển sang cách lượng hóa hai yêu cầu cạnh tranh.</aside>
       </section>
 
       <section data-slide-id="D02">
-        <h2>Đánh đổi bám đích và năng lượng</h2>
-        <div class="split-6040">
-          <img class="visual visual-short" src="img/lec-01/one-step-control.svg" alt="Sơ đồ trạng thái x0 cộng tác động u tạo trạng thái x1, cùng hai hạng chi phí bám đích và năng lượng" />
-          <div>
-            <div class="math-mid">$$q(u)=\underbrace{(x_0+u-r)^2}_{\text{sai lệch bám đích}}+\underbrace{\lambda u^2}_{\text{năng lượng}}$$</div>
-            <ul class="tight">
-              <li>$\lambda$ lớn: hạn chế tác động mạnh.</li>
-              <li>$u_{\max}$ nhỏ: nghiệm dễ nằm trên biên.</li>
-            </ul>
+        <h2>Tối ưu nhiều mục tiêu: Bám đích và Năng lượng</h2>
+        <div>
+          <div class="math-mid">$$q(u)=\underbrace{(x_0+u-t)^2}_{\text{bám đích}}+\underbrace{\lambda u^2}_{\text{năng lượng}}$$</div>
+          <div class="grid2">
+            <div class="card"><h3>Thành phần bám đích</h3><p>$(x_0+u-t)^2$: sai lệch tới đích $t$ sau một bước.</p></div>
+            <div class="card"><h3>Thành phần năng lượng</h3><p>$\lambda u^2$: điều hòa độ lớn tác động.</p></div>
           </div>
+          <ul class="tight">
+            <li>$\lambda$ lớn: hạn chế tác động mạnh.</li>
+            <li>$u_{\max}$ nhỏ: nghiệm dễ nằm trên biên.</li>
+          </ul>
         </div>
-        <p class="takeaway">Mô hình là $\min_{|u|\le u_{\max}}q(u)$.</p>
-        <aside class="notes">Hạng thứ nhất đo khoảng cách tới đích sau một bước; hạng thứ hai điều hòa độ lớn tác động. Không đồng nhất $\lambda$ với $u_{\max}$: một đại lượng đổi ưu tiên, đại lượng kia loại phương án không khả thi. Tiếp theo giải một bộ số cụ thể.</aside>
+        <div class="check"><strong>Mô hình:</strong> quan niệm chủ quan của con người về thế giới. Ở đây, ta gộp bám đích và năng lượng thành $q(u)$, rồi giải $\min_{|u|\le u_{\max}}q(u)$.</div>
+        <aside class="notes">Hạng thứ nhất đo khoảng cách tới đích $t$ sau một bước; hạng thứ hai điều hòa độ lớn tác động. Không đồng nhất $\lambda$ với $u_{\max}$: một đại lượng đổi ưu tiên, đại lượng kia loại phương án không khả thi. Tiếp theo giải một bộ số cụ thể.</aside>
       </section>
 
       <section data-slide-id="D03">
         <h2>Nghiệm của ca điều khiển</h2>
-        <p>Cho $x_0=0$, $r=3$, $\lambda=1/2$, $u_{\max}=1$.</p>
+        <p>Cho $x_0=0$, $t=3$, $\lambda=1/2$, $u_{\max}=1$.</p>
         <div class="grid2">
           <div class="card">
             <h3>Nghiệm tự do</h3>
@@ -136,7 +141,7 @@
           </div>
         </div>
         <p class="muted"><strong>clip</strong>: giữ $z$ nếu $z$ thuộc đoạn; nếu không, thay bằng cận gần nhất.</p>
-        <div class="result">Giới hạn tác động quyết định nghiệm, dù đích $r=3$ chưa đạt sau một bước.</div>
+        <div class="result">Giới hạn tác động quyết định nghiệm, dù đích $t=3$ chưa đạt sau một bước.</div>
         <aside class="notes">Có thể viết $q(u)=\tfrac32u^2-6u+9$ để kiểm tra đạo hàm. Quy tắc clip ở đây đúng vì mục tiêu bậc hai một biến có đáy duy nhất; phần lý thuyết sau sẽ chứng nhận điều đó. Chuyển sang kiểm tra dấu đạo hàm tại nghiệm biên.</aside>
       </section>
 
@@ -301,7 +306,7 @@
         <table>
           <thead><tr><th>Ca</th><th>Biến $x$</th><th>Mục tiêu $f_0$</th><th>Miền $C$</th></tr></thead>
           <tbody>
-            <tr><td>Điều khiển</td><td>$u\in\mathbb R$</td><td>$(x_0+u-r)^2+\lambda u^2$</td><td>$[-u_{\max},u_{\max}]$</td></tr>
+            <tr><td>Điều khiển</td><td>$u\in\mathbb R$</td><td>$(x_0+u-t)^2+\lambda u^2$</td><td>$[-u_{\max},u_{\max}]$</td></tr>
             <tr><td>Hồi quy tuyến tính</td><td>$w\in\mathbb R^d$</td><td>$\lVert Xw-y\rVert_2^2$</td><td>$\mathbb R^d$</td></tr>
             <tr><td>Hồi quy logistic</td><td>$w\in\mathbb R^d$</td><td>$\sum_i\log(1+e^{-y_i a_i^Tw})$</td><td>$\mathbb R^d$</td></tr>
           </tbody>
@@ -519,7 +524,7 @@
             <p>$q$ lồi chặt nên nghiệm là duy nhất.</p>
           </div>
         </div>
-        <div class="result">$$u^*=\operatorname{clip}\!\left(\frac{r-x_0}{1+\lambda},[-u_{\max},u_{\max}]\right).$$</div>
+        <div class="result">$$u^*=\operatorname{clip}\!\left(\frac{t-x_0}{1+\lambda},[-u_{\max},u_{\max}]\right).$$</div>
         <p class="takeaway">Với bộ số đã cho: $u^*=1$ là nghiệm duy nhất dù $q'(1)\ne0$.</p>
         <aside class="notes">Điều kiện $u_{\max}\ge0$ bảo đảm miền không rỗng; $\lambda\ge0$ cho $q''>0$. Công thức clip thu được từ nghiệm tự do và hình học một chiều của mục tiêu bậc hai. Kết luận toàn cục đến từ tính lồi; tồn tại đến từ miền đóng, bị chặn; duy nhất đến từ lồi chặt. Chuyển sang ca có miền không bị chặn.</aside>
       </section>
