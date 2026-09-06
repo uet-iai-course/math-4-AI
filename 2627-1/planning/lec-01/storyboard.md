@@ -39,7 +39,7 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 | D04 | Nghiệm tối ưu trên biên | Phát hiện điều kiện $q'(u)=0$ không áp dụng máy móc ở biên | D03 → L01 | LLO1, CLO1 | Thêm câu hỏi; làm rõ xấp xỉ biến thiên bậc nhất |
 | L01 | Bài toán dự đoán giá trị số | Cụ thể hóa nhu cầu bằng dữ liệu cân nặng–chiều cao một đặc trưng, đường hồi quy và câu hỏi về độ khớp | D04 → L01B | LLO1, CLO1 | Sửa; thêm SVG `height-weight-regression.svg` |
 | L01B | Hồi quy tuyến tính nhiều đặc trưng | Khái quát từ một đặc trưng sang ma trận thiết kế; chỉ rõ hàng là mẫu, cột là đặc trưng và cột số một tạo hệ số chặn | L01 → L02 | LLO1, CLO1 | Thêm |
-| L02 | Bình phương nhỏ nhất | Nối phần dư với khoảng cách hình học và hàm mục tiêu; nêu rõ lựa chọn mô hình chủ quan | L01B → L03 | LLO1, CLO1 | Sửa; thêm SVG |
+| L02 | Bình phương nhỏ nhất | Nối phần dư với khoảng cách hình học và hàm mục tiêu; nêu rõ lựa chọn mô hình chủ quan | L01B → L03 | LLO1, CLO1 | Sửa; thêm SVG; ghi miền ngay trong toán tử $\min$ và định nghĩa $J$ bằng $\triangleq$ |
 | L03 | Ví dụ hồi quy tuyến tính | Tính nghiệm, dự đoán, phần dư và tổng bình phương sai số; chỉ rõ cột toàn số một tạo hệ số chặn $b$ và $a^*=1/2$ là hệ số góc | L02 → L04 | LLO1, CLO1 | Thêm |
 | L04 | Hạng của ma trận thiết kế | Tạo nhu cầu phân biệt tồn tại và duy nhất | L03 → G00 | LLO1, CLO1 | Thêm câu hỏi |
 | G00 | Phân loại chất lượng cam trên dây chuyền | Cụ thể hóa nhu cầu phân loại bằng hai đại lượng đo được từ ảnh: tỉ lệ kích thước và phần trăm diện tích vết sẫm | L04 → G01 | LLO1, CLO1 | Thêm; dùng SVG tự tạo `g00-orange-quality-pipeline.svg` và nêu rõ dữ liệu chỉ để minh họa |

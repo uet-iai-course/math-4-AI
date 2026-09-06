@@ -152,7 +152,7 @@ Vector phần dư là $Xw-y$. Bài toán bình phương nhỏ nhất là
 
 $$
 \underset{w\in\mathbb R^d}{\operatorname{minimize}}
-\quad J(w)=\lVert Xw-y\rVert_2^2
+\quad J(w)\triangleq\lVert Xw-y\rVert_2^2
 =\sum_{i=1}^{n}(x_i^Tw-y_i)^2.
 $$
 

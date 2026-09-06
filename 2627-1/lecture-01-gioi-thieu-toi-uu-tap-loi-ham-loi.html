@@ -251,7 +251,7 @@
         <div class="split-6040">
           <img class="visual visual-short" src="img/lec-01/linear-regression-fit.svg" alt="Ba điểm dữ liệu, đường thẳng hồi quy và ba đoạn phần dư thẳng đứng" />
           <div>
-            <div class="math-mid">$$J(w)=\sum_{i=1}^{n}(x_i^Tw-y_i)^2.$$</div>
+            <div class="math-mid">$$\min_{w\in\mathbb R^d} J(w)\triangleq \sum_{i=1}^n (x_i^T w-y_i)^2.$$</div>
             <ul class="tight">
               <li>Mỗi phần dư được bình phương.</li>
               <li>Phần dư lớn chịu phạt mạnh hơn.</li>
@@ -260,7 +260,7 @@
           </div>
         </div>
         <div class="check"><strong>Mô hình:</strong> bình phương nhỏ nhất là một lựa chọn chủ quan về cách đo sai số dự đoán.</div>
-        <aside class="notes">Các đoạn thẳng đứng trong hình là phần dư theo trục đầu ra, không phải khoảng cách vuông góc tới đường. Bình phương loại dấu và tạo một mục tiêu trơn. Dữ liệu không bắt buộc duy nhất cách đo sai số này. Dùng cùng ba điểm của hình để tính nghiệm chính xác ở trang sau.</aside>
+        <aside class="notes">Các đoạn thẳng đứng trong hình là phần dư theo trục đầu ra, không phải khoảng cách vuông góc tới đường. Ký hiệu $\triangleq$ cho biết tổng bình phương ở vế phải định nghĩa hàm $J(w)$; toán tử $\min$ yêu cầu chọn $w\in\mathbb R^d$. Bình phương loại dấu và tạo một mục tiêu trơn. Dữ liệu không bắt buộc duy nhất cách đo sai số này. Dùng cùng ba điểm của hình để tính nghiệm chính xác ở trang sau.</aside>
       </section>
 
       <section class="l03-slide" data-slide-id="L03">
