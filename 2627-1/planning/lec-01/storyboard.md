@@ -67,7 +67,7 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 | K02 | Chứng nhận hồi quy tuyến tính | Kết luận tồn tại luôn có và duy nhất đúng khi $X$ hạng cột đầy đủ | K01 → K03 | LLO1, LLO2, CLO1 | Tách từ K01 |
 | K03 | Chứng nhận hồi quy logistic | Chỉ ra lồi không kéo theo tồn tại và vai trò của chính quy hóa | K02 → K04 | LLO1, LLO2, CLO1 | Tách từ K01 |
 | K04 | So sánh ba ca | Đặt các kết luận cạnh nhau để ngăn suy diễn quá mức từ tính lồi | K03 → K05 | LLO1, LLO2, CLO1 | Thêm |
-| K05 | Bài tập chuyển giao về chiếu sáng | Đo khả năng lập mô hình và đề xuất chuỗi chứng nhận cho ca mới | K04 → K06 | LLO1, LLO2, CLO1 | Khôi phục lec01 trang 1-9–1-12 làm bài tập |
+| K05 | Bài tập chuyển giao về chiếu sáng | Đo khả năng lập mô hình và đề xuất chuỗi chứng nhận cho ca mới; trực quan hóa ảnh hưởng chéo từ nhiều đèn tới nhiều vùng đo | K04 → K06 | LLO1, LLO2, CLO1 | Khôi phục lec01 trang 1-9–1-12 làm bài tập; thêm SVG tự tạo `lighting-distribution.svg` |
 | K06 | Tổng kết và tài liệu | Thu hồi vấn đề trung tâm, tự kiểm tra và ghi nguồn truy nguyên | K05 → Bài 02 | LLO1, LLO2, CLO1 | Sửa |
 
 ## Ánh xạ trang cũ sang cấu trúc mới
@@ -140,6 +140,7 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 | `m03-logistic-classes.svg` | Thêm | M03 |
 | `d03-cost-parabola-feasible.svg` | Thêm | D03 |
 | `g00-orange-quality-pipeline.svg` | Thêm | G00; dữ liệu và sơ đồ tự tạo để minh họa hai đặc trưng ảnh |
+| `lighting-distribution.svg` | Thêm | K05; minh họa nhiều đèn, nhiều vùng đo và mức sáng mục tiêu |
 | `basic-convex-set-library.svg` | Bỏ khỏi tuyến | Rộng hơn nhu cầu ba ca |
 | `convex-hull-and-conic-hull.svg` | Bỏ khỏi tuyến | Nón lồi không thuộc phạm vi cần thiết |
 | `convex-set-preservation-map.svg` | Bỏ khỏi tuyến | Có phép tổng Minkowski chưa cần |

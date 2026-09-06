@@ -43,6 +43,11 @@
     .g00-slide .orange-workflow { max-height: 250px; margin: 0 auto .12em; }
     .g00-slide .card { padding: .3em .48em; }
     .g00-slide .card h3 { font-size: 1.08em; margin-bottom: .08em; }
+    .k05-slide h2 { font-size: 1.34em; margin-bottom: .2em; }
+    .k05-slide .split-6040 { gap: .55em; }
+    .k05-slide .lighting-diagram { max-height: 315px; margin: .05em auto; }
+    .k05-slide .math-large .katex-display { margin: .25em 0; }
+    .k05-slide .check { margin-top: .22em; }
     .result { border-left: 5px solid #16706a; background: #eef4f3; }
     .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72em; }
     .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .58em; }
@@ -657,12 +662,17 @@
         <aside class="notes">Đọc bảng theo hai cột cuối để thu hồi vấn đề trung tâm. “Không áp dụng” ở ca logistic nghĩa là không thể hỏi nghiệm có duy nhất hay không khi nghiệm chưa tồn tại. Nếu thêm chính quy hóa bậc hai với $\mu>0$, ca logistic có nghiệm duy nhất. Chuyển sang một bài toán mới để sinh viên tự dựng chuỗi chứng nhận.</aside>
       </section>
 
-      <section data-slide-id="K05">
+      <section class="k05-slide" data-slide-id="K05">
         <h2>Bài tập chuyển giao về chiếu sáng</h2>
-        <p>$m$ đèn tạo độ sáng trên $n$ vùng: $I=Ap$, với $A\in\mathbb R_+^{n\times m}$ và công suất $p\in\mathbb R^m$.</p>
-        <div class="math-large">$$\min_{0\le p\le p_{\max}}\;\lVert Ap-I_{\mathrm{des}}\rVert_2^2.$$</div>
+        <div class="split-6040">
+          <img class="visual lighting-diagram" src="img/lec-01/lighting-distribution.svg" alt="Ba đèn có công suất điều chỉnh chiếu chồng lấn lên bốn vùng đo; mỗi vùng có thanh độ sáng tạo được và vạch độ sáng mục tiêu" />
+          <div>
+            <p>$m$ đèn tạo độ sáng trên $n$ vùng: $I=Ap$, với $A\in\mathbb R_+^{n\times m}$ và công suất $p\in\mathbb R^m$.</p>
+            <div class="math-large">$$\min_{0\le p\le p_{\max}}\;\lVert Ap-I_{\mathrm{des}}\rVert_2^2.$$</div>
+          </div>
+        </div>
         <div class="check"><strong>Câu hỏi:</strong> (1) Chỉ ra dữ kiện, biến, mục tiêu và miền. (2) Chứng nhận miền và mục tiêu lồi. (3) Nêu điều kiện đủ để nghiệm duy nhất.</div>
-        <aside class="notes">Đáp án: dữ kiện là $A$, $I_{\mathrm{des}}$ và $p_{\max}$; biến là $p$; miền là một hộp lồi, đóng và bị chặn nên nghiệm tồn tại. Hessian của mục tiêu là $2A^TA\succeq0$; nghiệm duy nhất nếu $A$ có hạng cột đầy đủ. Ca chiếu sáng được phỏng theo MIT 6.079, lec01, trang 1-9 đến 1-12; mục tiêu được chọn ở dạng bình phương nhỏ nhất vì phép lấy giá trị lớn nhất chưa được dạy trong Bài 01.</aside>
+        <aside class="notes">Đọc hình từ trên xuống: mỗi công suất $p_j$ tác động đồng thời lên nhiều vùng; hệ số $A_{ij}\ge0$ mô tả mức đóng góp của đèn $j$ tại vùng $i$. Thanh liền là độ sáng tạo được, vạch đứt là mức mục tiêu; các độ dài chỉ minh họa quan hệ, không phải số liệu thực nghiệm. Đáp án: dữ kiện là $A$, $I_{\mathrm{des}}$ và $p_{\max}$; biến là $p$; miền là một hộp lồi, đóng và bị chặn nên nghiệm tồn tại. Hessian của mục tiêu là $2A^TA\succeq0$; nghiệm duy nhất nếu $A$ có hạng cột đầy đủ. Ca chiếu sáng được phỏng theo MIT 6.079, lec01, trang 1-9 đến 1-12; mục tiêu được chọn ở dạng bình phương nhỏ nhất vì phép lấy giá trị lớn nhất chưa được dạy trong Bài 01.</aside>
       </section>
 
       <section data-slide-id="K06">

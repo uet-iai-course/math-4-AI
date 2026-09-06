@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 430" role="img" aria-labelledby="title desc">
+  <title id="title">Điều chỉnh nhiều nguồn sáng để đạt độ sáng mục tiêu</title>
+  <desc id="desc">Ba đèn có công suất p một, p hai, p ba chiếu chồng lấn lên bốn vùng đo. Mỗi vùng có một thanh liền biểu diễn độ sáng tạo được và một vạch đứt biểu diễn độ sáng mục tiêu. Một tia nét đứt minh họa mức đóng góp A ba hai của đèn hai tại vùng ba.</desc>
+  <defs>
+    <linearGradient id="coneBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#88b7ea" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#88b7ea" stop-opacity="0.08" />
+    </linearGradient>
+    <linearGradient id="coneOrange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#efad70" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#efad70" stop-opacity="0.08" />
+    </linearGradient>
+    <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#315d92" stroke-width="3" opacity="0.28" />
+    </pattern>
+    <style>
+      .frame{fill:#f8fafc;stroke:#bac5d6;stroke-width:2}.ceiling{stroke:#64748b;stroke-width:4}.cord{stroke:#64748b;stroke-width:3}.lamp{fill:#f4c36b;stroke:#8d5a19;stroke-width:3}.bulb{fill:#fff5bd;stroke:#8d5a19;stroke-width:2}.cone-a{fill:url(#coneBlue);stroke:#315d92;stroke-width:2}.cone-b{fill:url(#coneOrange);stroke:#c7662b;stroke-width:2;stroke-dasharray:10 7}.cone-c{fill:url(#hatch);stroke:#315d92;stroke-width:2;stroke-dasharray:3 6}.zone{fill:#fff;stroke:#9aa8bc;stroke-width:2}.zone-label{font:700 23px sans-serif;fill:#24324a}.label{font:700 24px sans-serif;fill:#24324a}.small{font:20px sans-serif;fill:#44516a}.actual{stroke:#315d92;stroke-width:10;stroke-linecap:round}.baseline{stroke:#d2d9e4;stroke-width:5;stroke-linecap:round}.target{stroke:#c7662b;stroke-width:4;stroke-dasharray:8 6}.influence{stroke:#24324a;stroke-width:3;stroke-dasharray:8 7}.note{fill:#edf4ff;stroke:#315d92;stroke-width:2}
+    </style>
+  </defs>
+
+  <rect class="frame" x="10" y="10" width="1080" height="410" rx="18" />
+  <text class="label" x="50" y="43">Điều chỉnh công suất từng đèn</text>
+  <line class="ceiling" x1="45" y1="66" x2="1055" y2="66" />
+
+  <g aria-label="Đèn một, công suất p một">
+    <line class="cord" x1="200" y1="66" x2="200" y2="103" />
+    <path class="lamp" d="M164 105 H236 L252 139 H148 Z" />
+    <circle class="bulb" cx="200" cy="142" r="11" />
+    <text class="label" x="200" y="98" text-anchor="middle">p₁</text>
+  </g>
+  <g aria-label="Đèn hai, công suất p hai">
+    <line class="cord" x1="550" y1="66" x2="550" y2="103" />
+    <path class="lamp" d="M514 105 H586 L602 139 H498 Z" />
+    <circle class="bulb" cx="550" cy="142" r="11" />
+    <text class="label" x="550" y="98" text-anchor="middle">p₂</text>
+  </g>
+  <g aria-label="Đèn ba, công suất p ba">
+    <line class="cord" x1="900" y1="66" x2="900" y2="103" />
+    <path class="lamp" d="M864 105 H936 L952 139 H848 Z" />
+    <circle class="bulb" cx="900" cy="142" r="11" />
+    <text class="label" x="900" y="98" text-anchor="middle">p₃</text>
+  </g>
+
+  <path class="cone-a" d="M188 153 L55 300 H520 L212 153 Z" />
+  <path class="cone-b" d="M538 153 L270 300 H860 L562 153 Z" />
+  <path class="cone-c" d="M888 153 L585 300 H1045 L912 153 Z" />
+
+  <line class="influence" x1="550" y1="151" x2="681" y2="300" />
+  <rect class="note" x="604" y="190" width="232" height="48" rx="10" />
+  <text class="small" x="720" y="221" text-anchor="middle">mức đóng góp A₃₂</text>
+
+  <text class="label" x="50" y="287">Độ sáng tại các vùng đo</text>
+
+  <g transform="translate(45 304)">
+    <rect class="zone" width="242" height="82" rx="10" />
+    <text class="zone-label" x="16" y="29">Vùng 1 · I₁</text>
+    <line class="baseline" x1="18" y1="58" x2="219" y2="58" />
+    <line class="actual" x1="18" y1="58" x2="154" y2="58" />
+    <line class="target" x1="181" y1="42" x2="181" y2="74" />
+  </g>
+  <g transform="translate(301 304)">
+    <rect class="zone" width="242" height="82" rx="10" />
+    <text class="zone-label" x="16" y="29">Vùng 2 · I₂</text>
+    <line class="baseline" x1="18" y1="58" x2="219" y2="58" />
+    <line class="actual" x1="18" y1="58" x2="188" y2="58" />
+    <line class="target" x1="181" y1="42" x2="181" y2="74" />
+  </g>
+  <g transform="translate(557 304)">
+    <rect class="zone" width="242" height="82" rx="10" />
+    <text class="zone-label" x="16" y="29">Vùng 3 · I₃</text>
+    <line class="baseline" x1="18" y1="58" x2="219" y2="58" />
+    <line class="actual" x1="18" y1="58" x2="130" y2="58" />
+    <line class="target" x1="181" y1="42" x2="181" y2="74" />
+  </g>
+  <g transform="translate(813 304)">
+    <rect class="zone" width="242" height="82" rx="10" />
+    <text class="zone-label" x="16" y="29">Vùng 4 · I₄</text>
+    <line class="baseline" x1="18" y1="58" x2="219" y2="58" />
+    <line class="actual" x1="18" y1="58" x2="169" y2="58" />
+    <line class="target" x1="181" y1="42" x2="181" y2="74" />
+  </g>
+
+  <g transform="translate(258 406)">
+    <line class="actual" x1="0" y1="0" x2="56" y2="0" />
+    <text class="small" x="70" y="7">độ sáng tạo được Iᵢ</text>
+    <line class="target" x1="390" y1="-16" x2="390" y2="16" />
+    <text class="small" x="408" y="7">mức sáng mục tiêu</text>
+  </g>
+</svg>
