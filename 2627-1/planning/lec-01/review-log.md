@@ -454,3 +454,57 @@ Mọi lượt hoàn tất dưới đây đều ghi `requested_model=z-ai/glm-5.3
 - Reviewer dùng `task_profile=recheck`, `max_rounds=3`, `timeout=120`, `max_tokens=900`, `temperature=0`, `reasoning_effort=low`; worker tự liệt kê tệp ba lần dù prompt cấm nhưng vẫn chỉ đọc đúng `l02.html` và `note.md`, rồi hoàn tất ở vòng báo cáo thứ 4. Reviewer xác nhận miền $w\in\mathbb R^d$, từng $x_i^Tw-y_i$ là vô hướng, $\triangleq$ dùng đúng vai trò và đẳng thức chuẩn–tổng trong ghi chú được bảo toàn; không có lỗi chặn hoặc nghiêm trọng.
 - Bằng chứng runtime của ba lượt: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`; thư mục tạm không chứa `.env` hoặc `.env.*`. Tệp bài tập không dùng ký hiệu $J(w)$ nên không cần sửa.
 - Kiểm định cấu trúc đạt 7 mạch, 39 trang, 39 ghi chú, 28 đường dẫn và 24 SVG hợp lệ. L02 không tràn ở 1280 × 720 (`h=604,38`) hoặc 720 × 1280 (`h=331,18`), không lỗi KaTeX hoặc ảnh hỏng; ảnh 16:9 xác nhận công thức hiển thị đủ và không chồng nội dung.
+
+## Giới thiệu hai phần học phần và kiểm tra, đánh giá — 2026-09-07
+
+### Phạm vi, nguồn và quyết định
+
+- Thêm M01A «Hai phần của học phần» và M01B «Kiểm tra và đánh giá» ngay sau M01, trước M02. Tổng tăng từ 39 lên 41 trang, giữ bảy mạch. Sửa câu chuyển trong ghi chú M01; đồng bộ dàn ý, storyboard và ghi chú học tập. Rà tệp bài tập: không thay giả thiết, ký hiệu hay nhiệm vụ toán học nên không cần sửa.
+- Kiểm kê nguồn dùng cho phần bổ sung: đề cương chính thức `sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx` là nguồn nội dung, tiên quyết và đánh giá; phần đầu RevealJS hiện hành là mẫu bố cục/thị giác. Các mẫu MIT lec01 → lec02 → lec03 giữ vai trò cũ cho phần toán; không tải hay đưa thêm nguồn MIT, hình hoặc ngoại lệ raster.
+- Đề cương: mục I (tiên quyết), III (hai cụm chủ đề), IV.1 (thang 10; trọng số thường xuyên 20%, giữa kỳ 20%, cuối kỳ 60%). SHA-256: `b8e5b9fb29a33d169f5a17b3c9ee08118077013d85b9d7461e721f1d909b6ec7`.
+- Chỉ dẫn bổ sung của người dùng có ưu tiên cao hơn đề cương: kiểm tra cuối kỳ gồm một buổi trong tuần 15 và một buổi theo lịch thi; 60% là trọng số chung. Không suy diễn tỷ trọng từng buổi hoặc lịch thi cụ thể.
+- Kế hoạch reader được điều phối duyệt với sửa đổi: tiêu đề trực tiếp, bảng ba cột; bỏ đề xuất nhồi ma trận CLO và thang tiêu chí lên màn chiếu. Hai trang định hướng không triển khai khái niệm toán học mới; ngoại lệ chu trình sáu bước được ghi rõ trong storyboard và reviewer chấp nhận.
+
+### Rà soát độc lập và xử lý
+
+| Vai | Kết quả, vấn đề | Quyết định và bằng chứng rà lại |
+|---|---|---|
+| Kiểm định storyboard | Đạt lý do tồn tại, chuỗi M01 → M01A → M01B → M02 → M03, bảy mạch, ngoại lệ hành chính | Giữ hai trang; cấu trúc thực tế có 41 mã khớp chính xác 41 hàng storyboard |
+| Sinh viên | Báo chặn vì thừa thẻ đóng trong gói trích; đề nghị giữ cột Trọng số một dòng; làm rõ 60% chung | Cảnh báo thẻ do gói trích thiếu thẻ mở ngoài, không phải lỗi deck. Reviewer tái kiểm xác nhận 6 mở/6 đóng trong phần đầu. Đã thêm CSS nowrap riêng cột cuối M01B; hai buổi cùng hàng 60%, notes và tài liệu công khai nói rõ trọng số chung |
+| Chuyên gia | Đạt nguồn và tỷ trọng; nhận xét phần xác suất khái quát nhưng đề nghị giữ; lưu ý tuần 15 | Giữ đúng ba chủ đề biểu diễn, suy diễn, học tham số. Giữ lời người dùng «tuần 15», không tự thêm cụm «lịch thi trung tâm» |
+| Toán học | Đạt tổng 100%, hệ số 0,2/0,2/0,6 và thang 10; 60% chung hai buổi | Không chia nhỏ trọng số cuối kỳ. Tái kiểm H03 xác nhận sửa mã hóa HTML không đổi bất đẳng thức hay lập luận |
+| Phản biện học thuật–giảng dạy | Không lỗi nghiêm trọng; thứ tự và ngoại lệ hành chính hợp lý; đề nghị đưa tiên quyết lên mặt chiếu và thông báo chia điểm hai buổi | Giữ tiên quyết trong notes và ghi chú học tập vì trang không dạy kiến thức xác suất mới. Không tự tạo quy định chia điểm; giữ trọng số chung theo người dùng |
+| Mạch kể chuyện | Rà toàn bộ 41 trang: mở/kết đóng vòng ba ca, kết nối bảy mạch đạt; phát hiện H03 thiếu đuôi chứng minh trong bản đọc; nghi lặp H05 và H06 đứng lẻ | Chromium xác nhận dấu `<` trước `f(x^*)` trong notes H03 bị hiểu thành thẻ. Writer đổi thành `&lt;` đúng một lần; không thay nghĩa toán. Reviewer rà lại H01–H06 xác nhận chứng minh/nguồn đủ, H04 độc lập, H05/H06 phân biệt mặt chiếu và notes hợp lý; không xóa giải thích của diễn giả |
+
+H03 là sửa lỗi hiển thị ghi chú phát hiện trong kiểm định toàn tuyến, ngoài hai trang mới. Đã truy nguyên thay đổi trong storyboard. Mặt chiếu H03 và các công thức ở ghi chú học tập/bài tập giữ nghĩa cũ.
+
+### Bằng chứng tác tử
+
+Các lượt thành công được gọi qua cầu nối OpenRouter; mỗi nhiệm vụ chỉ được cấp gói tạm giới hạn, không có `.env`, `.env.*` hay giá trị bí mật. Dữ liệu đề cương đưa cho worker đã loại tên và email giảng viên. Tác tử lập kế hoạch mặc định ban đầu được dừng trước đầu ra khi kiểm kê phát hiện quy định dùng OpenRouter; không dùng kết quả của tác tử đó.
+
+Lượt đầu trong sandbox gặp `api_transport_error`; kết nối được chạy lại sau khi đối chiếu ủy quyền rõ tại AGENTS.md và thu hẹp dữ liệu. Hai lượt reviewer giảng dạy và mạch bài gặp lỗi nguyên văn `OpenRouter request exceeded 180s wall timeout`; giai đoạn phụ thuộc được dừng, bản nháp giữ nguyên, sau đó chạy lại cùng vai trên gói hẹp. Lượt mạch bài có một phản hồi `finish_reason=length` dùng hết token cho suy luận; cơ chế thử lại của cầu nối đã trả câu trả lời hoàn chỉnh. Không chuyển sang worker Codex thay thế.
+
+| Nhiệm vụ | requested_model | observed_model | provider |
+|---|---|---|---|
+| Lập kế hoạch | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Phân tích nguồn | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Soạn hai trang | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Kiểm định storyboard | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Sinh viên | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Chuyên gia | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Toán học | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Giảng dạy, chạy lại | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Mạch toàn bài, chạy lại | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Tái kiểm thẻ phần mở đầu | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Chỉnh sửa cột trọng số | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Sửa escape H03 | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Tái kiểm toán H03 | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| Tái kiểm mạch H01–H06 | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+
+### Kiểm định cuối và Codex Slides
+
+- Cấu trúc: 7 phần ngoài, 41 trang lá, 41 ghi chú, mã storyboard khớp thứ tự chính xác; 28 đường dẫn cục bộ tồn tại, 24 SVG hợp lệ. Liên kết Bài 01, ghi chú và bài tập trên chỉ mục đã tồn tại đúng nên không cần sửa chỉ mục.
+- Chromium/Playwright duyệt toàn bộ trang ngang và dọc ở 1280 × 720 và 720 × 1280: không ra ngoài khung, không tràn ngang hoặc cắt nội dung, không lỗi KaTeX, không ảnh hỏng, không lỗi JavaScript/HTTP. Đã quan sát trực tiếp ảnh hai trang mới ở cả hai kích thước. Các cảnh báo scrollHeight của dấu tiếng Việt trong tiêu đề được đối chiếu với khung chữ và ảnh, không phải nội dung bị cắt; không dùng overflow hidden để che lỗi.
+- Bàn phím: từ tiêu đề, ArrowDown đến M01A rồi M01B. Viewer ghi chú/bài tập hoạt động ở 1280 × 720 và 390 × 844, không tràn trang hoặc lỗi công thức. Máy chủ dùng `python3 -m reloadserver 8765` tại gốc kho.
+- Codex Slides: đã mở và đọc dự án `20260905080627-b-i-gi-ng-01-gi-i-thi-u-t-i-u-t-p-l-i-v--bkkd`. Đã cập nhật Design Files của HTML, outline, storyboard và lecture-note; đọc lại cho kết quả trùng nội dung chính xác. Lưu hai ảnh chụp trang mới làm tài liệu rà soát. Dự án vẫn ở dạng nháp, chưa render; phiên không cung cấp Browser tích hợp nên không tuyên bố đã kiểm định hiển thị bằng Codex Slides. Kiểm định trực quan thực hiện trên RevealJS cục bộ.
+- Mọi lỗi chặn/nghiêm trọng trong phạm vi đã được xử lý hoặc được tái kiểm loại trừ bằng bằng chứng. `git diff --check` đạt trước staging; commit chỉ gồm bài giảng, ghi chú học tập và ba tệp quy trình của Bài 01.

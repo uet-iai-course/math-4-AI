@@ -4,7 +4,7 @@
 
 | Mạch | Chức năng | Điểm vào | Đầu ra dùng cho mạch sau | Phân bổ nội bộ |
 |---|---|---|---|---:|
-| 1. Mở đầu và ba nhu cầu | Đặt vấn đề trung tâm và chuẩn đầu ra | Kiến thức tiên quyết | Ba quyết định cần mô hình hóa | 0,15 tiết lý thuyết |
+| 1. Mở đầu và ba nhu cầu | Định hướng học phần, cách đánh giá, vấn đề trung tâm và chuẩn đầu ra | Kiến thức tiên quyết | Ba quyết định cần mô hình hóa | 0,15 tiết lý thuyết |
 | 2. Điều khiển một bước | Xây ca có đánh đổi, ràng buộc và nghiệm biên | Nhu cầu bám đích | Mô hình $\min_{u\in C}q(u)$ và nghi vấn về điều kiện dừng | 0,30 tiết lý thuyết |
 | 3. Hồi quy tuyến tính | Xây ca học tham số bằng bình phương nhỏ nhất | Dữ liệu dự đoán liên tục | Mô hình $\min_w\lVert Xw-y\rVert^2$ và nghi vấn về duy nhất | 0,30 tiết lý thuyết |
 | 4. Hồi quy logistic | Xây ca phân loại có cận dưới đúng nhưng có thể không có nghiệm | Dữ liệu nhãn nhị phân | Mô hình mất mát logistic và nghi vấn về tồn tại | 0,30 tiết lý thuyết |
@@ -30,8 +30,10 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 
 | Mã | Tiêu đề | Lý do tồn tại và khoảng trống được giải quyết | Kết nối vào → kết nối ra | LLO/CLO | Quyết định |
 |---|---|---|---|---|---|
-| M01 | Giới thiệu tối ưu, tập lồi và hàm lồi | Định danh bài, học phần, học kỳ và đơn vị | Mở bài → M02 | CLO1 | Sửa |
-| M02 | Mục tiêu học tập | Nêu bốn nội dung: các ví dụ tối ưu, nhu cầu chứng nhận, công cụ lồi và quay lại ví dụ | M01 → M03 | LLO1, LLO2, CLO1 | Sửa |
+| M01 | Giới thiệu tối ưu, tập lồi và hàm lồi | Định danh bài, học phần, học kỳ và đơn vị | Mở bài → M01A | CLO1 | Sửa |
+| M01A | Hai phần của học phần | Giúp sinh viên phân biệt vai trò tối ưu hóa và mô hình xác suất, định vị Bài 01 trong học phần | M01 → M01B; bản đồ kiến thức dẫn đến cách đánh giá | Định hướng CLO1–CLO4; không đánh giá kiến thức xác suất mới | Thêm theo yêu cầu người dùng; mục I, III đề cương |
+| M01B | Kiểm tra và đánh giá | Làm rõ ba thành phần điểm và hai buổi cuối kỳ để sinh viên chuẩn bị đúng | M01A → M02; cách đánh giá dẫn về mục tiêu cụ thể của bài | Định hướng học tập, hỗ trợ CLO5; không tạo LLO mới | Thêm theo yêu cầu người dùng; mục IV.1 đề cương và chỉ dẫn ngày 2026-09-07 |
+| M02 | Mục tiêu học tập | Nêu bốn nội dung: các ví dụ tối ưu, nhu cầu chứng nhận, công cụ lồi và quay lại ví dụ | M01B → M03 | LLO1, LLO2, CLO1 | Sửa |
 | M03 | Một số bài toán tối ưu trong điều khiển và AI | Tạo ba quyết định cụ thể và vấn đề trung tâm bằng ba hình khái quát | M02 → D01 | LLO1, CLO1 | Sửa; thêm ba SVG |
 | D01 | Bài toán điều khiển một bước | Xác định dữ kiện, động lực, biến và miền bằng sơ đồ trạng thái–tác động–chi phí | M03 → D02 | LLO1, CLO1 | Tách từ U01; chuyển SVG từ D02 |
 | D02 | Tối ưu nhiều mục tiêu: Bám đích và Năng lượng | Làm rõ lựa chọn mô hình khi gộp bám đích và năng lượng thành một hàm chi phí | D01 → D03 | LLO1, CLO1 | Sửa tiêu đề; phân bố hai giải thích vào hai thẻ để cân bố cục; tách công thức mô hình |
@@ -169,3 +171,15 @@ Ví dụ dẫn nhập L01 cụ thể hóa nhu cầu dự đoán số trước kh
 - Không có nhãn quy trình, mã tuyến, mã trang hoặc thời lượng trên mặt trang chiếu và ghi chú diễn giả.
 - Chứng minh đại số dài chuyển sang `lecture-note.md`; mặt trang chiếu chỉ giữ mục tiêu, ý tưởng và bước then chốt.
 - Bài giải đầy đủ của K05 chuyển sang ghi chú diễn giả và tệp bài tập; mặt trang chiếu chỉ nêu dữ kiện và yêu cầu.
+
+## Hành trình định hướng bổ sung ngày 2026-09-07
+
+M01 → M01A → M01B → M02 → M03; các trang tiếp theo giữ nguyên. Tổng hiện hành: 41 trang, bảy mạch.
+
+M01A/M01B giải quyết nhu cầu biết học gì và được đánh giá ra sao. M01A dùng hai cột để phân biệt vai trò; M01B dùng bảng ba thành phần và tổng trọng số 100%. Đầu vào là định danh học phần; đầu ra là định vị Bài 01 và kế hoạch học tập phù hợp. Không truyền ký hiệu toán học mới.
+
+Chu trình sáu bước không áp dụng cho hai trang định hướng hành chính: không dạy khái niệm toán học hay giao bài tập xác suất tại đây. Trực quan được gộp vào hai cột và bảng; ví dụ tính toán, phát biểu hình thức, ứng dụng và bài tập không áp dụng. Hành trình toán học bắt đầu bằng ba nhu cầu tại M03 và giữ nguyên các bước đã ánh xạ. Hai trang dùng chung phân bổ 0,15 tiết của mạch mở đầu; không tăng tổng thời lượng.
+
+Khác mẫu có chủ ý: chèn hai trang để đáp ứng yêu cầu giới thiệu học phần; không thay thứ tự lec01 → lec02 → lec03. Cuối kỳ có hai buổi theo chỉ dẫn người dùng (một buổi tuần 15, một buổi theo lịch thi), chung trọng số 60%.
+
+Kiểm định toàn tuyến phát hiện dấu nhỏ hơn trong ghi chú H03 bị HTML hiểu thành thẻ. Đã đổi cách mã hóa thành `&lt;`, giữ nguyên bất đẳng thức và toàn bộ lập luận; rà lại H01–H06 để xác nhận kết nối và phân biệt nội dung hiển thị với ghi chú.

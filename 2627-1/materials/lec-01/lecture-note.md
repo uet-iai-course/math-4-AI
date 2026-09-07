@@ -1,5 +1,24 @@
 # Bài 01: Giới thiệu tối ưu, tập lồi và hàm lồi
 
+## Định hướng học phần và kiểm tra, đánh giá
+
+Học phần gồm hai phần:
+
+- **Tối ưu hóa:** tối ưu lồi và đối ngẫu; tối ưu có và không có ràng buộc; tối ưu cho học sâu; quy hoạch tuyến tính, phương pháp đơn hình, luồng mạng và quy hoạch nguyên.
+- **Xác suất và mô hình xác suất:** biểu diễn sự bất định và quan hệ giữa các đại lượng bằng mô hình đồ thị có hướng hoặc vô hướng; suy diễn từ thông tin quan sát và học tham số từ dữ liệu. Xác suất thống kê là kiến thức tiên quyết của học phần.
+
+Hai phần kết nối trong việc xây dựng và học mô hình từ dữ liệu. Bài 01 mở đầu phần tối ưu hóa bằng ba bài toán cụ thể và các công cụ về tính lồi.
+
+| Thành phần | Cách thức | Trọng số |
+|---|---|---:|
+| Kiểm tra thường xuyên | Câu hỏi kiểm tra ngắn, bài tập cá nhân và nhóm, bài kiểm tra thường xuyên tại các buổi học | 20% |
+| Kiểm tra giữa kỳ | Bài kiểm tra giữa kỳ | 20% |
+| Kiểm tra cuối kỳ | Một buổi trong tuần 15 và một buổi theo lịch thi | 60% |
+
+Các thành phần được chấm theo thang điểm 10. Điểm học phần bằng 0,2 lần điểm thường xuyên cộng 0,2 lần điểm giữa kỳ cộng 0,6 lần điểm cuối kỳ. Trọng số 60% áp dụng chung cho hai buổi kiểm tra cuối kỳ.
+
+Nguồn: đề cương chính thức UET.AI2012, mục I, III và IV.1; cách tổ chức hai buổi kiểm tra cuối kỳ theo thông báo của giảng viên ngày 07/09/2026.
+
 ## 1. Mục tiêu và vấn đề trung tâm
 
 Bài học đi từ ba nhu cầu cụ thể đến công cụ toán học dùng để chứng nhận mô hình. Sau khi học, sinh viên cần:

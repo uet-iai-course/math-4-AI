@@ -25,9 +25,9 @@ Sau bài học, sinh viên phải làm được bốn việc:
 3. Kiểm tra tính lồi của miền và mục tiêu bằng định nghĩa hoặc điều kiện vi phân phù hợp.
 4. Phân biệt ba kết luận: cực tiểu địa phương là toàn cục, nghiệm tồn tại, nghiệm duy nhất.
 
-## Bảy mạch và 39 trang lá
+## Bảy mạch và 41 trang lá
 
-1. **Mở đầu và một số bài toán tối ưu — M01–M03:** mục tiêu, vấn đề trung tâm và ba quyết định cần tối ưu.
+1. **Mở đầu và một số bài toán tối ưu — M01, M01A, M01B, M02–M03:** định hướng hai phần học phần, kiểm tra đánh giá, mục tiêu bài, vấn đề trung tâm và ba quyết định cần tối ưu.
 2. **Điều khiển một bước — D01–D04:** mô hình động lực, đánh đổi bám đích–năng lượng, nghiệm bị chặn và câu hỏi về nghiệm biên.
 3. **Hồi quy tuyến tính — L01, L01B–L04:** dự đoán chiều cao từ cân nặng, khái quát sang nhiều đặc trưng, bình phương nhỏ nhất, ví dụ số và câu hỏi về hạng của ma trận thiết kế.
 4. **Hồi quy logistic — G00–G04:** phân loại chất lượng cam bằng hai đặc trưng đo từ ảnh, khái quát thành bài toán biên tuyến tính, mất mát logistic, dữ liệu tách tuyến tính và câu hỏi về sự tồn tại nghiệm.
@@ -107,9 +107,17 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 
 ## Tiêu chí hoàn thành
 
-- HTML có đúng 7 `<section>` ngoài, 39 trang lá, 39 mã `data-slide-id` duy nhất và ghi chú diễn giả có nội dung trên mọi trang nội dung.
+- HTML có đúng 7 `<section>` ngoài, 41 trang lá, 41 mã `data-slide-id` duy nhất và ghi chú diễn giả có nội dung trên mọi trang nội dung.
 - Mỗi ca có nhu cầu, trực quan, ví dụ tính được, mô hình, chứng nhận và bài tập kiểm tra.
 - Mọi giả thiết của kết luận về lồi, tồn tại và duy nhất đều hiện diện trước khi dùng.
 - Ghi chú học tập mở rộng lập luận; bài tập có mức nhận biết, tính toán hoặc chứng minh và vận dụng AI.
 - Trang chỉ mục chỉ công bố các tệp đã tồn tại và đã kiểm định.
 - Bộ trang chiếu, viewer và tài liệu chạy hoàn toàn bằng tài sản cục bộ; không có liên kết runtime chéo hoặc tài nguyên hỏng.
+
+## Bổ sung định hướng học phần ngày 2026-09-07
+
+- Thêm M01A và M01B sau tiêu đề, trước mục tiêu bài; tăng 39 lên 41 trang, giữ bảy mạch và thứ tự các trang toán học.
+- M01A đối chiếu mục I và III của đề cương chính thức: tối ưu hóa; xác suất và mô hình xác suất, trọng tâm đồ thị, suy diễn và học tham số. Không biến phần giới thiệu thành bài giảng xác suất mới.
+- M01B dùng mục IV.1 và chỉ dẫn cụ thể của người dùng: kiểm tra thường xuyên 20%, giữa kỳ 20%, cuối kỳ 60%; cuối kỳ có một buổi tuần 15 và một buổi theo lịch thi. Không suy diễn tỷ trọng từng buổi.
+- Nguồn mới chỉ là đề cương hiện có và chỉ dẫn người dùng; không tải thêm MIT. Hai trang định hướng không kế thừa mẫu nội dung MIT; dùng thẻ và bảng sẵn có của RevealJS.
+- Giữ tổng 2 tiết lý thuyết và 1 tiết bài tập. Phần mở đầu vẫn phân bổ nội bộ 0,15 tiết, trình bày ngắn và đưa chi tiết vào tài liệu học tập.

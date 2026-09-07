@@ -73,6 +73,7 @@
     .reveal table { width: 100%; font-size: 1em; }
     .reveal th { background: #f7efe6; }
     .reveal td, .reveal th { padding: .27em .38em; }
+    .reveal section[data-slide-id="M01B"] th:last-child, .reveal section[data-slide-id="M01B"] td:last-child { white-space: nowrap; }
     .reveal .source-note { font-size: .76em; }
     @media (max-width: 800px) {
       .reveal .slides section[data-slide-id] { font-size: .82em; }
@@ -92,7 +93,70 @@
         <h3>Bài 01 · Cơ sở toán học cho AI</h3>
         <p>Năm học 2026–2027 · Học kỳ 1</p>
         <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
-        <aside class="notes">Bài học bắt đầu từ quyết định trong điều khiển và học máy. Các định nghĩa về tính lồi chỉ xuất hiện sau khi ba ca đã tạo ra những câu hỏi cần trả lời. Chuyển sang các sản phẩm học tập có thể quan sát.</aside>
+        <aside class="notes">Bài học bắt đầu từ quyết định trong điều khiển và học máy. Các định nghĩa về tính lồi chỉ xuất hiện sau khi ba ca đã tạo ra những câu hỏi cần trả lời. Trước khi vào mục tiêu của bài, giới thiệu hai phần của học phần và cách kiểm tra, đánh giá.</aside>
+      </section>
+
+      <section data-slide-id="M01A">
+        <h2>Hai phần của học phần</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>1. Tối ưu hóa</h3>
+            <p>Chọn quyết định và tham số để tối ưu một tiêu chí.</p>
+            <ul class="tight">
+              <li>Tối ưu lồi và đối ngẫu.</li>
+              <li>Tối ưu có và không có ràng buộc; tối ưu cho học sâu.</li>
+              <li>Quy hoạch tuyến tính, đơn hình, luồng mạng và quy hoạch nguyên.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>2. Xác suất và mô hình xác suất</h3>
+            <p>Biểu diễn sự bất định và quan hệ giữa các đại lượng.</p>
+            <ul class="tight">
+              <li>Mô hình đồ thị có hướng và vô hướng.</li>
+              <li>Suy diễn từ thông tin quan sát.</li>
+              <li>Học tham số từ dữ liệu.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="takeaway">Hai phần kết nối trong việc xây dựng và học mô hình từ dữ liệu.</p>
+        <aside class="notes">
+          <p>Xác suất thống kê là tiên quyết của học phần. Phần hai tập trung vào biểu diễn đồ thị, suy diễn và học tham số. Tối ưu là công cụ để học tham số. Bài 01 mở đầu phần tối ưu, sau đó chuyển sang cách đánh giá. Nguồn: Đề cương UET.AI2012, mục I và III.</p>
+        </aside>
+      </section>
+
+      <section data-slide-id="M01B">
+        <h2>Kiểm tra và đánh giá</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Thành phần</th>
+              <th scope="col">Cách thức</th>
+              <th scope="col">Trọng số</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kiểm tra thường xuyên</td>
+              <td>Câu hỏi kiểm tra ngắn; bài tập cá nhân, nhóm; bài kiểm tra thường xuyên.</td>
+              <td><strong>20%</strong></td>
+            </tr>
+            <tr>
+              <td>Kiểm tra giữa kỳ</td>
+              <td>Bài kiểm tra giữa kỳ.</td>
+              <td><strong>20%</strong></td>
+            </tr>
+            <tr>
+              <td>Kiểm tra cuối kỳ</td>
+              <td>Một buổi trong tuần 15 và một buổi theo lịch thi.</td>
+              <td><strong>60%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Các thành phần được chấm theo thang điểm 10.</p>
+        <div class="result">Điểm học phần = 0,2 × điểm thường xuyên + 0,2 × điểm giữa kỳ + 0,6 × điểm cuối kỳ.</div>
+        <aside class="notes">
+          <p>Đánh giá thường xuyên thực hiện tại mỗi buổi học qua các hoạt động trên; chuyên cần và tinh thần học tập thuộc đánh giá thường xuyên. Khuyến khích sinh viên trình bày giả thiết, lập luận và diễn giải kết quả. Chuyển về mục tiêu Bài 01. Nguồn: đề cương UET.AI2012, mục IV.1; cách tổ chức cuối kỳ theo thông báo của giảng viên ngày 07/09/2026. Hai buổi cuối kỳ cùng thuộc thành phần 60%; chưa quy định tỷ trọng riêng giữa hai buổi.</p>
+        </aside>
       </section>
 
       <section data-slide-id="M02">
@@ -535,7 +599,7 @@
             <p><strong>Ý tưởng:</strong> nếu có $y\in C$ tốt hơn $x^*$, các điểm trên đoạn từ $x^*$ đến $y$ vừa khả thi, vừa tốt hơn và có thể nằm tùy ý gần $x^*$.</p>
           </div>
         </div>
-        <aside class="notes">Trong chứng minh, đặt $z_\theta=(1-\theta)x^*+\theta y$. Khi $\theta$ nhỏ, $z_\theta$ nằm trong lân cận tương đối của $x^*$; tính lồi cho $f(z_\theta)<f(x^*)$, mâu thuẫn. Cả miền lồi và hàm lồi đều được dùng. Nguồn: MIT 6.079, lec01, trang 1-14.</aside>
+        <aside class="notes">Trong chứng minh, đặt $z_\theta=(1-\theta)x^*+\theta y$. Khi $\theta$ nhỏ, $z_\theta$ nằm trong lân cận tương đối của $x^*$; tính lồi cho $f(z_\theta)&lt;f(x^*)$, mâu thuẫn. Cả miền lồi và hàm lồi đều được dùng. Nguồn: MIT 6.079, lec01, trang 1-14.</aside>
       </section>
 
       <section data-slide-id="H04">
