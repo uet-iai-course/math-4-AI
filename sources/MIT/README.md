@@ -1,5 +1,26 @@
 # Danh mục nguồn MIT OpenCourseWare
 
+## MIT 6.079 — Lecture 4: Convex optimization problems
+
+| Trường | Giá trị |
+|---|---|
+| Khóa học | Introduction to Convex Optimization, MIT 6.079, Fall 2009 |
+| Tiêu đề | Lecture 4: Convex optimization problems |
+| Tác giả | Stephen Boyd; xác nhận trong metadata PDF cục bộ |
+| Giảng viên khóa học | Stephen Boyd và Pablo Parrilo |
+| Trang khóa học | https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/ |
+| Trang tài nguyên | https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec04/ |
+| Ngày tải | Chưa xác minh; tệp đã có trước đợt chỉnh sửa ngày 2026-09-10, không tải lại |
+| Ngày kiểm tra | 2026-09-10 |
+| Giấy phép | CC BY-NC-SA 4.0 theo trang MIT OpenCourseWare; nội dung bên thứ ba có thể có điều kiện riêng |
+| Điều khoản | https://ocw.mit.edu/pages/privacy-and-terms-of-use/ |
+| Vai trò | Tham chiếu cấu trúc và nguồn truy nguyên của bản Bài 02 trước chỉnh sửa; đối chiếu các dạng bài toán với giáo trình Boyd–Vandenberghe |
+| Bài giảng sử dụng | Bài 02 — Các bài toán tối ưu lồi |
+| Đường dẫn cục bộ | `sources/Lecture4-MIT.pdf` (giữ vị trí cũ, không di chuyển) |
+| Kích thước | 468925 byte; 48 trang |
+| SHA-256 | `1f7b1e9aa62781117de56ae98ff975d613a8cd30e736287f41c392038f248228` |
+| Thay đổi và ghi công | Bản đề xuất ngày 2026-09-10 quyết định thứ tự mới. Công thức được dựng bằng KaTeX; hình bài giảng được tự vẽ từ mô hình và dữ liệu minh họa. Không sao chép ảnh, logo hoặc tài sản bên thứ ba từ PDF. Không khẳng định checksum bản trên mạng trùng bản cục bộ khi chưa tải đối chiếu. |
+
 Tệp này ghi nguồn MIT OpenCourseWare được sử dụng trong học phần. Các tệp có tiền tố `._` là siêu dữ liệu hệ thống và không được đưa vào danh mục hoặc dùng làm nguồn.
 
 ## MIT 6.079 / 6.975 — Lectures 1–3: Introduction, Convex sets, Convex functions

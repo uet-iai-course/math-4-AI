@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title"><title id="title">Tập giá trị Pareto của hai mục tiêu bình phương</title>
+<rect width="600" height="420" fill="#fff"/>
+<defs><clipPath id="plot"><rect x="70" y="38" width="300" height="300"/></clipPath><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10" fill="#333"/></marker></defs>
+<g font-family="Arial,sans-serif" font-size="24" fill="#222">
+<line x1="70.0" y1="338.0" x2="370.0" y2="338.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<line x1="70.0" y1="338.0" x2="70.0" y2="38.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="402.00" y="346.00" text-anchor="start" fill="#222" font-size="24">Φ₁</text>
+<text x="30.00" y="24.00" text-anchor="start" fill="#222" font-size="24">Φ₂</text>
+<text x="70.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0</text>
+<text x="220.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">2,25</text>
+<text x="370.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">4,5</text>
+<text x="60.00" y="345.00" text-anchor="end" fill="#222" font-size="24">0</text>
+<text x="60.00" y="195.00" text-anchor="end" fill="#222" font-size="24">2,25</text>
+<text x="60.00" y="45.00" text-anchor="end" fill="#222" font-size="24">4,5</text>
+<path d="M70.000,71.333 L70.027,76.640 L70.107,81.893 L70.240,87.093 L70.427,92.240 L70.667,97.333 L70.960,102.373 L71.307,107.360 L71.707,112.293 L72.160,117.173 L72.667,122.000 L73.227,126.773 L73.840,131.493 L74.507,136.160 L75.227,140.773 L76.000,145.333 L76.827,149.840 L77.707,154.293 L78.640,158.693 L79.627,163.040 L80.667,167.333 L81.760,171.573 L82.907,175.760 L84.107,179.893 L85.360,183.973 L86.667,188.000 L88.027,191.973 L89.440,195.893 L90.907,199.760 L92.427,203.573 L94.000,207.333 L95.627,211.040 L97.307,214.693 L99.040,218.293 L100.827,221.840 L102.667,225.333 L104.560,228.773 L106.507,232.160 L108.507,235.493 L110.560,238.773 L112.667,242.000 L114.827,245.173 L117.040,248.293 L119.307,251.360 L121.627,254.373 L124.000,257.333 L126.427,260.240 L128.907,263.093 L131.440,265.893 L134.027,268.640 L136.667,271.333 L139.360,273.973 L142.107,276.560 L144.907,279.093 L147.760,281.573 L150.667,284.000 L153.627,286.373 L156.640,288.693 L159.707,290.960 L162.827,293.173 L166.000,295.333 L169.227,297.440 L172.507,299.493 L175.840,301.493 L179.227,303.440 L182.667,305.333 L186.160,307.173 L189.707,308.960 L193.307,310.693 L196.960,312.373 L200.667,314.000 L204.427,315.573 L208.240,317.093 L212.107,318.560 L216.027,319.973 L220.000,321.333 L224.027,322.640 L228.107,323.893 L232.240,325.093 L236.427,326.240 L240.667,327.333 L244.960,328.373 L249.307,329.360 L253.707,330.293 L258.160,331.173 L262.667,332.000 L267.227,332.773 L271.840,333.493 L276.507,334.160 L281.227,334.773 L286.000,335.333 L290.827,335.840 L295.707,336.293 L300.640,336.693 L305.627,337.040 L310.667,337.333 L315.760,337.573 L320.907,337.760 L326.107,337.893 L331.360,337.973 L336.667,338.000" fill="none" stroke="#2f3e7a" stroke-width="3" stroke-dasharray="" clip-path="url(#plot)"/>
+<circle cx="70.0" cy="71.33333333333331" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
+<circle cx="136.66666666666669" cy="271.3333333333333" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
+<circle cx="336.6666666666667" cy="338.0" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
+<text x="142.00" y="266.00" text-anchor="start" fill="#222" font-size="24">(1; 1)</text>
+<line x1="270.0" y1="184.66666666666666" x2="223.33333333333334" y2="184.66666666666666" stroke="#b15a2b" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<line x1="270.0" y1="184.66666666666666" x2="270.0" y2="231.33333333333331" stroke="#b15a2b" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="300.00" y="406.00" text-anchor="middle" fill="#222" font-size="22">Cải thiện: sang trái và xuống; x tăng dọc đường</text>
+</g></svg>

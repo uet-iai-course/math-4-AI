@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title"><title id="title">Một miền khả thi cho ba mục tiêu</title>
+<rect width="600" height="420" fill="#fff"/>
+<defs><clipPath id="plot"><rect x="70" y="38" width="300" height="300"/></clipPath><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10" fill="#333"/></marker></defs>
+<g font-family="Arial,sans-serif" font-size="24" fill="#222">
+<line x1="70.0" y1="338.0" x2="370.0" y2="338.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<line x1="70.0" y1="338.0" x2="70.0" y2="38.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="402.00" y="346.00" text-anchor="start" fill="#222" font-size="24">x₁</text>
+<text x="30.00" y="24.00" text-anchor="start" fill="#222" font-size="24">x₂</text>
+<text x="70.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0</text>
+<text x="220.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0,75</text>
+<text x="370.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">1,5</text>
+<text x="60.00" y="345.00" text-anchor="end" fill="#222" font-size="24">0</text>
+<text x="60.00" y="195.00" text-anchor="end" fill="#222" font-size="24">0,75</text>
+<text x="60.00" y="45.00" text-anchor="end" fill="#222" font-size="24">1,5</text>
+<path d="M70.000,138.000 L150.000,298.000 L270.000,338.000 L370.000,338.000 L370.000,38.000 L70.000,38.000 Z" fill="#edf1fc" stroke="#2f3e7a" stroke-width="3" stroke-dasharray="" clip-path="url(#plot)"/>
+<path d="M70.000,218.000 L190.000,338.000" fill="none" stroke="#b15a2b" stroke-width="3" stroke-dasharray="7 5" clip-path="url(#plot)"/>
+<path d="M211.421,338.000 L211.400,337.177 L211.335,336.355 L211.228,335.533 L211.077,334.712 L210.883,333.891 L210.647,333.072 L210.367,332.255 L210.045,331.439 L209.680,330.626 L209.273,329.814 L208.823,329.005 L208.331,328.199 L207.797,327.396 L207.221,326.596 L206.603,325.799 L205.943,325.006 L205.242,324.217 L204.500,323.433 L203.717,322.653 L202.893,321.877 L202.028,321.106 L201.124,320.341 L200.179,319.581 L199.195,318.826 L198.171,318.078 L197.109,317.335 L196.007,316.599 L194.868,315.869 L193.690,315.146 L192.474,314.430 L191.222,313.721 L189.932,313.019 L188.606,312.325 L187.244,311.639 L185.846,310.961 L184.412,310.292 L182.944,309.630 L181.442,308.977 L179.905,308.334 L178.335,307.699 L176.732,307.073 L175.097,306.457 L173.429,305.850 L171.730,305.253 L170.000,304.667 L168.240,304.090 L166.449,303.524 L164.629,302.968 L162.781,302.423 L160.904,301.888 L158.999,301.365 L157.068,300.853 L155.109,300.352 L153.125,299.863 L151.116,299.385 L149.082,298.919 L147.024,298.465 L144.942,298.023 L142.837,297.593 L140.711,297.175 L138.562,296.770 L136.393,296.377 L134.204,295.998 L131.995,295.630 L129.767,295.276 L127.521,294.935 L125.258,294.607 L122.977,294.292 L120.681,293.991 L118.369,293.702 L116.042,293.428 L113.702,293.167 L111.348,292.919 L108.981,292.686 L106.603,292.466 L104.213,292.260 L101.813,292.068 L99.403,291.890 L96.984,291.726 L94.558,291.576 L92.123,291.440 L89.682,291.318 L87.235,291.211 L84.783,291.118 L82.326,291.039 L79.865,290.974 L77.401,290.924 L74.936,290.888 L72.468,290.867 L70.000,290.860" fill="none" stroke="#28664b" stroke-width="3" stroke-dasharray="3 4" clip-path="url(#plot)"/>
+<circle cx="150.0" cy="298.0" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
+<text x="94.00" y="268.00" text-anchor="start" fill="#222" font-size="21">(2/5; 1/5)</text>
+<circle cx="170.0" cy="304.6666666666667" r="6" fill="#28664b" stroke="#fff" stroke-width="2"/>
+<text x="196.00" y="306.00" text-anchor="start" fill="#222" font-size="21">(1/2; 1/6)</text>
+<line x1="70.0" y1="138.0" x2="70.0" y2="38.0" stroke="#b15a2b" stroke-width="3" stroke-dasharray=""/>
+<text x="300.00" y="406.00" text-anchor="middle" fill="#222" font-size="22">Miền tiếp tục ra ngoài khung; ca c có cả tia nghiệm</text>
+</g></svg>

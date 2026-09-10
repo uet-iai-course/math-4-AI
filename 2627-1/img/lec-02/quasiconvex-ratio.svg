@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title"><title id="title">Tập mức affine của phân thức x₁/x₂</title>
+<rect width="600" height="420" fill="#fff"/>
+<defs><clipPath id="plot"><rect x="70" y="38" width="300" height="300"/></clipPath><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10" fill="#333"/></marker></defs>
+<g font-family="Arial,sans-serif" font-size="24" fill="#222">
+<line x1="70.0" y1="338.0" x2="370.0" y2="338.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<line x1="70.0" y1="338.0" x2="70.0" y2="38.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
+<text x="402.00" y="346.00" text-anchor="start" fill="#222" font-size="24">x₁</text>
+<text x="30.00" y="24.00" text-anchor="start" fill="#222" font-size="24">x₂</text>
+<text x="70.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0</text>
+<text x="220.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">1</text>
+<text x="370.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">2</text>
+<text x="60.00" y="345.00" text-anchor="end" fill="#222" font-size="24">1</text>
+<text x="60.00" y="195.00" text-anchor="end" fill="#222" font-size="24">1,5</text>
+<text x="60.00" y="45.00" text-anchor="end" fill="#222" font-size="24">2</text>
+<path d="M70.000,338.000 L145.000,338.000 L220.000,38.000 L70.000,38.000 Z" fill="#edf1fc" stroke="#2f3e7a" stroke-width="3" stroke-dasharray="" clip-path="url(#plot)"/>
+<path d="M220.000,338.000 L370.000,38.000" fill="none" stroke="#b15a2b" stroke-width="3" stroke-dasharray="8 5" clip-path="url(#plot)"/>
+<path d="M145.000,338.000 L220.000,38.000" fill="none" stroke="#b15a2b" stroke-width="3" stroke-dasharray="" clip-path="url(#plot)"/>
+<path d="M70.000,338.000 L70.000,38.000" fill="none" stroke="#b15a2b" stroke-width="3" stroke-dasharray="4 4" clip-path="url(#plot)"/>
+<text x="80.50" y="173.00" text-anchor="start" fill="#222" font-size="24">S₁/₂</text>
+<text x="300.00" y="406.00" text-anchor="middle" fill="#222" font-size="22">Hộp C; mức t = 1, 1/2, 0 lần lượt thu hẹp miền</text>
+</g></svg>

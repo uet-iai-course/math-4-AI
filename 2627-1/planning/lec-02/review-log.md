@@ -1,5 +1,7 @@
 # Nhật ký rà soát Lecture 02
 
+Các mục 1–20 và các ghi nhận trước ngày 2026-09-10 là lịch sử của bản 41 trang. Trạng thái và kiểm định của bản 58 trang hiện tại nằm ở mục 21 dưới đây.
+
 ## Hậu kiểm mạch khái niệm và giả thiết — 2026-09-01
 
 - A05 dùng $x^3$ trên $[-1,1]$ làm ví dụ tựa lồi nhưng không lồi, vì vậy sự khác nhau giữa hai khái niệm hiện ra ngay tại định nghĩa thay vì chỉ nằm trong ghi chú.
@@ -316,3 +318,144 @@ Không xóa các báo cáo vòng trước; mục 9 ghi riêng vòng hợp nhất
 - Chromium ở khung $1280\times720$ phát hiện tiêu đề hai thẻ E01 chạm nhau và công thức trong tiêu đề thẻ F01 khó đọc. E01 dùng nhãn ngắn “Ràng buộc phổ”, “Thứ tự ma trận”; F01 tách tên mục tiêu khỏi công thức hiển thị.
 - Kết xuất lại E01 và F01 sau sửa; tiêu đề, công thức, hộp kết luận và chân trang đều nằm trong khung.
 - Hậu kiểm toàn cục thay metadata đánh giá ở P02 và tham chiếu chéo sang lecture note ở P03 bằng quan hệ trực tiếp giữa nhận dạng, kiểm tra PSD, cải dạng và sáu nhóm bài toán A–F.
+
+
+## 21. Chỉnh sửa theo đề xuất ngày 2026-09-10
+
+### Phạm vi và quyết định nội dung
+
+- Thực hiện `revise/de_xuat_chinh_sua_lecture_02_toi_uu_loi.md`, giữ đúng toàn bộ 58 mã và thứ tự của bảng đề xuất: 39 trang chính, 19 trang mở rộng. Sáu mạch chính và một nhóm phụ lục tương ứng bảy `section` ngoài; bản mặc định có sáu mạch sau khi bỏ nhóm phụ lục khỏi DOM.
+- Ba ứng dụng chính là hồi quy có ràng buộc, thiết kế dầm và chọn cấu hình đo. Tựa lồi và nhiều mục tiêu vẫn có trong phụ lục, ghi chú và bài tập để đáp ứng LLO3. Ghi chú có mười phần nội dung; bài tập có 12 bài chính và hai bài mở rộng.
+- Đọc đề cương DOCX chính thức `sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx`: Buổi 2, Chương 3, LLO3 liên quan CLO1; hai tiết lý thuyết, một tiết bài tập; đánh giá bằng bài tập cá nhân và nhóm. Thời lượng chỉ ở dàn ý/storyboard, không quy đổi thành 135 phút và không đưa lên trang chiếu hoặc lời giảng.
+- So với bản cũ, thêm ví dụ hồi quy xuyên suốt, tập trên đồ thị, kiểm tra PSD, phép đo có hiệp phương sai và ca dầm hai kích thước; tách các bước dài và chuyển nội dung mở rộng theo đúng đề xuất. Không bổ sung hoặc đảo trang ngoài bảng 58 trang. Các thay đổi có chủ ý so với mẫu MIT được truy nguyên trong storyboard.
+- Mở rộng bài tập để khép vòng luyện tập: Bài 4 có GP bốn đoạn và khôi phục đơn vị vật lý; Bài 9 kiểm tra trung điểm; Bài 12 giải minimax có trần chuẩn; Bài 14 kiểm tra trọng số bằng không. Không phát hành tài liệu planning trên chỉ mục.
+
+### Nguồn và tài sản
+
+| Nguồn | Vai trò và phạm vi sử dụng |
+|---|---|
+| Đề xuất chỉnh sửa ngày 2026-09-10 | Quyết định thứ tự, vai trò và bộ số của 58 trang |
+| Boyd–Vandenberghe (2004), `sources/bv_cvxbook.pdf` | Chương 4; tập trên đồ thị §3.1.5, tựa lồi §3.4, bổ đề Schur §A.5.5; diễn giải lại, không sao chụp hình |
+| Nguyễn Bích Vân, `sources/Chương 3 Các bài toán tối ưu lồi phần 2.pdf` | Nguồn nội dung và đối chiếu mẫu cũ; tác giả từ trang bìa, năm chưa xác minh |
+| Boyd (2009), `sources/Lecture4-MIT.pdf` | MIT 6.079 Lecture 4, 48 trang; đối chiếu lớp bài toán. Bổ sung danh mục trong `sources/MIT/README.md`; không tải lại hoặc di chuyển tệp |
+| `sources/Bài tập tuần 3.pdf` | Truy nguyên các ca a, c, e trên cùng miền khả thi và bài luyện bổ sung |
+| IIT Kharagpur, Lesson 3, Example 3.1 | Cơ sở công thức độ võng Euler–Bernoulli; hệ số bốn đoạn được tự suy từ tích phân, không nhận là dữ liệu thực nghiệm |
+| GGPLAB, ví dụ cantilever; MOSEK Modeling Cookbook §6.2.4 | Đối chiếu cấu trúc GP dầm và LMI chặn chuẩn phổ |
+
+Không tải nguồn MIT OpenCourseWare mới. Đã đối chiếu trang tài nguyên chính thức và điều khoản MIT; không dùng ảnh, logo hoặc nội dung hình bên thứ ba từ PDF. Tệp MIT hiện có: SHA-256 `1f7b1e9aa62781117de56ae98ff975d613a8cd30e736287f41c392038f248228`, 468925 byte; ngày tải cũ chưa xác minh. Không suy rằng bản trên mạng có cùng checksum khi chưa tải đối chiếu.
+
+22 SVG được dựng cục bộ từ công thức và dữ liệu minh họa, không có ngoại lệ raster trong sản phẩm:
+
+- Hồi quy và miền khả thi: `regression-qp.svg`, `regression-minimax.svg`, `regression-qcqp.svg`, `epigraph.svg`, `allocation.svg`, `feasible-ray.svg`, `indefinite-midpoint.svg`, `simplex-qp.svg`, `qcqp-intersection.svg`, `shared-feasible.svg`.
+- Dầm: `cantilever-gp.svg`, `beam-original-space.svg`, `beam-log-space.svg`, `beam-log-spaces.svg`; nguồn hình học từ các mô hình đã nêu, hình dầm đánh số từ ngàm ra đầu tự do.
+- Ma trận và tập mức: `diagonal-epigraph.svg`, `covariance-epigraph.svg`, `bisection-values.svg`, `quasiconvex-cubic.svg`, `quasiconvex-ratio.svg`.
+- Nhiều mục tiêu: `pareto-front.svg`, `pareto-dominance.svg`, `pareto-points.svg`.
+
+Hình có nhãn trục, mô tả thay thế và dấu nét/điểm bổ sung cho màu. Một số SVG được nhúng nội dòng để hiện dần đường mức và điểm nghiệm; ID của SVG được thêm tiền tố mã trang để tránh trùng. Công thức, ma trận và bảng vẫn là KaTeX/HTML. Nguồn và việc tự vẽ nằm trong lời giảng hoặc tài liệu tham khảo, không làm chú thích nhỏ ở cuối từng trang.
+
+### Năm báo cáo độc lập và quyết định
+
+| Vai | Báo cáo và vấn đề | Quyết định, trạng thái |
+|---|---|---|
+| Sinh viên | SV1: ký hiệu G đổi ngữ cảnh; SV2: các lớp dễ bị hiểu là rời nhau; SV3: cận chia đôi chưa giải thích; SV4: thiếu nhiệm vụ dầm | Đã giải thích G theo ngữ cảnh, quan hệ bao hàm ở Z01, cận $f(0)=1/2\le1$, và nhiệm vụ tại D06-a/D06-c |
+| Sinh viên | SV5 đề nghị chỉ phát biểu Schur với $t\ge0$, hoặc $t^*>0$ | Bác bỏ: tương đương đúng với mọi $t\in\mathbb R$; $t=0$ có thể khả thi khi $A=0$. Giữ đủ ba trường hợp |
+| Chuyên gia | Đủ LLO3/CLO1; cần liên hệ ridge với AI, phân bổ bài tập và thống nhất đối ngẫu | Đã bổ sung ý nghĩa kiểm soát hệ số; kế hoạch ghi bài tập xen kẽ, tổng 2+1 tiết; kết bài chuẩn bị cho đối ngẫu |
+| Chuyên gia | D04-b bị đứt văn bản, dòng công thức mất bố cục, ký hiệu khác sách và ngày được cho là tương lai | Bác bỏ các lỗi giả: bản trích làm mất dấu nhỏ hơn và bố cục; HTML thật đã escape toán và kiểm bằng ảnh. Ký hiệu C02/C04 nhất quán; ngày 2026-09-10 là ngày thực hiện |
+| Toán học | Các bài QP, QCQP, LP, trị riêng, Schur, chia đôi, Pareto; rà riêng ghi chú và bài tập | Đã tính lại và xử lý các lỗi trong bảng toán học bên dưới. Không lấy kết luận của reviewer thay cho kiểm chứng công thức |
+| Giảng dạy | GD1 thiếu bài luyện GP/SDP ngay tuyến chính; GD2 PSD và S^d xuất hiện sớm; GD3 định nghĩa B,H sau khi dùng; GD4 LP xuất hiện trước định nghĩa | Đã thêm nhiệm vụ D06-c/NEW-09; định nghĩa ký hiệu ở C04; chuyển mô hình B,H lên §4.3 trước GP §4.4. Minimax trước định nghĩa chuẩn là ví dụ dẫn nhập hợp lệ; đã nêu lý do affine |
+| Mạch kể chuyện | V1/V4 thiếu link phụ lục; V2 đề nghị sửa hằng số trong trị riêng; V3 thiếu câu nối | V1/V4 là giới hạn bản fragment: bản ghép có bốn link và 19 link trở lại, đã kiểm bàn phím. V2 bị bác bỏ bằng tính vết/định thức. V3 đã sửa các ranh giới |
+| Mạch kể chuyện, rà lại toàn bộ | Cần báo đủ nhóm phụ lục, làm rõ biến thể trung bình khác nhau, nối phản ví dụ với ridge và các đoạn luyện thêm | Đã sửa. `recheck-story-closure` xác nhận ĐẠT, không còn lỗi nghiêm trọng; góp ý nhỏ lặp cụm “trung bình khác nhau” đã rút gọn mà không đổi quan hệ nội dung |
+
+Kiểm định storyboard độc lập chấp nhận 58 trang, cấu trúc 39+19, sáu mạch chính và nhóm phụ lục. Góp ý bổ sung §3.4 vào danh mục đã thực hiện; không đưa metadata tuyến học lên speaker notes theo đề nghị vì trái AGENTS.md.
+
+### Các lỗi toán học và hậu kiểm
+
+| Mã | Vấn đề ban đầu | Sửa và bằng chứng đóng lỗi |
+|---|---|---|
+| M1 | Đẳng thức và chiều bất đẳng thức sai trong chứng minh dầm bốn đoạn | Với $a_i=B_iH_i$, dùng $1/(B_iH_i^3)=1/(a_iH_i^2)\ge1/(2a_i^2)$. `review-proof-lemma` xác nhận; `recheck-holder` xác nhận cận Hölder và điểm đạt cận |
+| M2 | Chứng minh tập ảnh trên lồi dựa vòng tròn vào siêu phẳng đỡ | Chứng minh trực tiếp từ tính lồi của miền và từng mục tiêu; tách $\mathcal U-y^*$ với $-\mathbb R_{++}^q$, giải thích hệ số tách bằng 0. Reviewer xác nhận phần lồi/rời nhau nhưng đọc nhầm dấu ở bước tách; điều phối bác lỗi giả bằng chuỗi $w^T(y-y^*)\ge\beta\ge w^Tr$. `recheck-sign-small` xác nhận bước suy ra $w\ge0$ |
+| M3 | Bài 9 dùng “trung điểm dữ liệu” không được định nghĩa | Thay bằng hai điểm $(\sqrt2,\pm1)$ và trung điểm vi phạm $2>1$; phân biệt Hessian không xác định với phản ví dụ về tập khả thi |
+| M4 | Bài 10 nói miền dầm có trần tỉ lệ bị chặn, rồi dùng dãy vi phạm trần | Miền không bị chặn: $B=H=T\ge1$. Chứng minh đạt tối ưu bằng cận dưới và điểm đạt cận; `recheck-ex-models` xác nhận |
+| M5 | Bài 14 tính sai nghiệm của trọng số 0,1 và ví dụ trọng số 0 chưa phản bác đúng mệnh đề | Sửa $x^*=2/11$; thêm $\Phi(x)=(0,x)$ trên $[0,1]$, $w=(1,0)$. `recheck-ex-minimax` xác nhận |
+| M6 | Bài 8 chia cho chuẩn bằng 0; overclaim về ridge và trần | Tách $w=0$, chỉ chia khi khác 0; dùng bộ số minh họa cụ thể thay kết luận tương đương chung |
+| M7 | Bài 4 chỉ lấy mũ rồi gọi đó là kích thước vật lý; nhầm mục tiêu sau log | Bổ sung GP bốn đoạn bằng log-tổng-mũ, $b_i=s_0e^{u_i}$, $h_i=s_0e^{v_i}$, $V_{phys}=(L/4)s_0^2e^{\widetilde p^*}$. `recheck-ex-models` xác nhận |
+| M8 | Bài 5c có phản ví dụ cắt tọa độ sai; Bài 1b chưa cho hai tập nghiệm khác nhau | Thay bằng cắt riêng vào $[0,2]$ vẫn vi phạm tổng; so $\min x^2$ và $\min(x-1)^2$. Reviewer xác nhận |
+| M9 | Bài 12 dùng nhầm nghiệm QP, sai phần dư và sai số lượng ràng buộc | Minimax trên đĩa có $w^*=(1,0)$, $p^*=1$ từ $2-w_1\ge1$; $2N+d+1$ ràng buộc affine và một bậc hai. Ví dụ biến phụ lỏng: $w=0,t=3$, sai số thật 2. `recheck-ex-minimax` xác nhận toàn bộ |
+| M10 | Thiếu hệ quả địa phương–toàn cục trong ghi chú; thiếu chuẩn hóa/giả thiết vật lý trong lời giảng | Thêm chứng minh bằng đoạn nối, không cần khả vi; thêm $F,E,L,\delta_{max},h_{ref},s_0$ và giả thiết Euler–Bernoulli |
+| M11 | Đề nghị đổi công thức trị riêng đúng thành sai | Giữ $1+\sqrt{(\alpha-1/2)^2+1/4}$: vết 2, định thức $1/2+\alpha-\alpha^2$. Nghiệm $\alpha=1/2,t=1,5$ và hai đầu $1+\sqrt{1/2}$ đã kiểm độc lập |
+
+Một số báo cáo có suy luận phụ sai dù kết luận đúng: không dùng câu $H^4\le2$ cho mọi điểm khả thi; không dùng hệ số $k=1/\sqrt S$ do reviewer ghi nhầm trong phân tích Hölder (đúng là $k=\sqrt S$, chính phép thế nghiệm trong cùng báo cáo xác nhận). Không đưa các sai sót đó vào tài liệu công khai. Mọi lỗi thật chặn bàn giao/nghiêm trọng nêu trên đã đóng.
+
+Các bộ số đã kiểm lại: QP hồi quy $(1,5;0,5)$, giá trị $0,5$; QCQP bình phương sai số $(2,1)/\sqrt5$, giá trị khoảng $1,527864$; ridge $(1;0,5)$, mục tiêu $2,5$; dầm bốn đoạn $V^*\approx2,3521846684$, log thể tích $0,8553445424$, độ võng chuẩn hóa 1; dầm rộng cố định tổng chiều cao $3,4633446474$; minimax có trần chuẩn giá trị 1.
+
+### Biên tập và kiểm định kỹ thuật
+
+- Áp dụng `no-ai-slop`: sửa lời giảng thành giải thích trực tiếp, bỏ lịch sử sửa, mã nội bộ và nhãn điều phối; giữ chứng minh, giả thiết, phản ví dụ, đáp án và nguồn. Chỉ dùng tiếng Anh cần thiết ở tên riêng hoặc thuật ngữ được giải nghĩa.
+- Khắc phục công thức kéo ngang bằng xuống dòng ở C04, C07-b, NEW-06, D03, NEW-07, C10, E03 và B02-a; rút thẻ Schur E06-b để link trở lại không chạm chân trang. Không che lỗi bằng cắt nội dung hoặc giảm cỡ chữ dưới chuẩn.
+- Chromium, máy chủ `python3 -m reloadserver 8765`: đã duyệt/chụp đủ 58 trang ở 1600×900 và 390×844; không lỗi JavaScript, HTTP, KaTeX, ảnh hỏng, tràn khung hoặc công thức bị giấu do cuộn ngang. Đã rà ảnh toàn bộ ở cả hai kích thước; các nhãn sửa cuối được kiểm lại.
+- Kiểm định tĩnh: 58 mã duy nhất, 58 notes, 7 section ngoài, 58 hàng storyboard đúng thứ tự; thẻ cân bằng, SVG phân tích XML được, đường dẫn cục bộ tồn tại. Runtime RevealJS/KaTeX/notes/highlight thuộc chính thư mục học kỳ.
+- Điều hướng bàn phím đi đủ 39 trang chính và 58 trang mở rộng; bốn link từ Z03 và link trở lại hoạt động; cửa sổ speaker view mở từ plugin cục bộ. Chặn yêu cầu ngoài máy chủ cục bộ vẫn chạy được các thành phần cốt lõi.
+- Viewer ghi chú và bài tập: không tràn ngang trang ở hai kích thước, không KaTeX lỗi hoặc tài nguyên hỏng; khối gập đóng mặc định, Enter mở/đóng, in mở mọi khối. Các yêu cầu khác số bài, đường dẫn ngoài quy ước và URL ngoài nguồn bị từ chối. H1 được viewer đưa lên tiêu đề; Markdown nguồn có đúng một H1.
+- Bài tập có 14 hint và 14 solution; ghi chú có 10 khối gập. Chỉ mục Bài 02 có đúng ba liên kết công khai và không lộ planning.
+
+### Codex Slides và giới hạn bề mặt kiểm định
+
+Dự án `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc` giữ tài liệu mẫu, đề cương và đề xuất trong Design Files. Bản cuối có 58 mục dàn ý, 58 ảnh PNG chụp từ RevealJS và 58 ghi chú diễn giả; đọc lại trạng thái bền vững xác nhận toàn bộ tiêu đề và notes khớp bản ghép. Ảnh chỉ là bản đối chiếu trong plugin, không thay sản phẩm RevealJS/SVG của kho.
+
+Bề mặt Browser tích hợp trong Codex không khả dụng trong phiên này. Kiểm định trực quan dùng Chromium cục bộ để mở đúng trang Codex Slides và bản RevealJS; không tuyên bố đã kiểm trong Browser tích hợp. Trạng thái dự án vẫn mang nhãn `draft` của quy trình cũ, nhưng cả 58 trang riêng có trạng thái `rendered` và ảnh đã lưu.
+
+Hậu kiểm giao diện: bước quy trình cũ `outline` làm canvas chỉ hiện dàn ý dù ảnh đã tồn tại. Sau khi xác nhận đủ 58 ảnh, cập nhật đúng dự án qua API cục bộ sang `workflow.stage=deck`, `workspaceMode=canvas`; đọc lại bằng `get_project` xác nhận trạng thái bền vững. Đã xem ảnh trang 1, 30, 36 và 58 trên chính canvas, tiêu đề, hình, công thức và notes khớp RevealJS; trang cuối xác nhận toàn bộ ảnh đã tải. Bộ đếm canvas là 58/58. Trường cấu hình số trang bị bộ chuẩn hóa của plugin giới hạn ở 30; danh sách 58 trang và ảnh không bị cắt. Không dùng trường cấu hình đó để suy ra số trang thực tế.
+
+Đã xem mẫu ảnh ghi chú và bài tập ở màn hình rộng/hẹp; bỏ ba mã trang nội bộ còn sót trong một câu của ghi chú. Chỉ mục đã được kiểm ở hai kích thước và liên kết bài tập mở được bằng bàn phím.
+
+Lượt tải ảnh đầu bị auto-review từ chối với lý do sensitive egress. Đã đọc handler của plugin: `apiFetch` gọi `127.0.0.1:4311`, route ảnh gọi `saveSlideImage`, hàm này ghi tệp cục bộ bằng `fs.writeFileSync`, không gửi ảnh ra ngoài. Thử lại cùng công cụ với bằng chứng này được chấp nhận; không đi vòng qua cơ chế xét duyệt.
+
+### Truy nguyên các tác tử
+
+Các tác tử chạy qua cầu nối `openrouter-mcp-reader/reviewer/writer`, thư mục ghi giới hạn ở `/tmp/lec02-revision`; không gửi tệp `.env` hoặc giá trị bí mật. Các writer chạy tuần tự. Lập kế hoạch, phân tích nguồn, tác giả, reviewer và editor là các lượt độc lập. Điều phối tự kiểm và bác các kết quả sai; không dùng lời tự khai của worker làm bằng chứng mô hình.
+
+Một số lượt OpenRouter lỗi `OpenRouter request exceeded 300s wall timeout`, `model returned an empty or incomplete answer after all retries`, hết vòng công cụ hoặc `JSONDecodeError: Expecting value`. Dừng phần phụ thuộc, báo lỗi, thu hẹp phạm vi và thử lại cùng `z-ai/glm-5.3-flash`; không chuyển mô hình. Bản ghi phụ lục tạm bị hỏng được tác tử sửa lại trước khi kết thúc; điều phối chỉ tích hợp sau khi kiểm đủ 19 mã và 19 notes.
+
+Bảng dưới lấy trường runtime của các kết quả cầu nối thành công; tên báo cáo là mã truy nguyên của phiên làm việc, nội dung và quyết định đã hợp nhất ở trên.
+
+| Báo cáo | Vai runtime | requested_model | observed_model | provider |
+|---|---|---|---|---|
+| edit-exercises | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| edit-note-1 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| edit-note-2 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| edit-note-3 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| edit-slides-01-20 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| edit-slides-21-39 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| edit-slides-40-58 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| plan | reader | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| recheck-ex-minimax | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| recheck-ex-models | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| recheck-holder | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| recheck-pareto-final | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| recheck-sign-small | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| recheck-story-closure | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| recheck-story-final | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-beam-ex-direct | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-ex-direct | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-expert-compact | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-math-a-note | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-math-a-slide | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-math-b-slide | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-math-c | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-proof-lemma | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-story-retry | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-storyboard | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-student-retry | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| review-teaching-retry | reviewer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| source-assumptions | reader | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| source-mapping | reader | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| source-minimal | reader | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-exercises | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-note-1 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-note-2 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-note-3 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-outline | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-slides-01-20 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-slides-21-39 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-slides-40-58 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+| write-storyboard | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
