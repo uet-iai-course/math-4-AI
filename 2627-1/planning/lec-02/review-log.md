@@ -551,3 +551,57 @@ Lỗi gọi tác tử được xử lý và không đổi mô hình: một lần
 - Reviewer nhận xét nguy cơ quá tải trang dạng LP, lập luận tương đương cần rõ hai chiều, biến thể sai số lớn nhất có thể lặp chứng minh, trang cuối nhiều vai trò. Đã đưa đại số/kích thước chi tiết vào notes dự kiến; tách rõ hai chiều bảo toàn giá trị; chuyển một chiều chứng minh biến thể thành câu hỏi có đáp án; trang cuối tập trung vào bài tập phân loại. Giữ $Ax=b$ trong dạng chung vì phần 1 đã giới thiệu và LP có thể có đẳng thức. Biến thể đổi đơn giá hoặc biến nguyên của pha trộn đã được nêu rõ trong bảng, nên không bổ sung một biến thể khác chỉ để lặp.
 - Nguồn đã có: Boyd và Vandenberghe (2004), *Convex Optimization*, §4.3–4.3.1 và §6.1.1; đề cương DOCX chính thức để đối chiếu CLO2/CLO4 và phạm vi các buổi về LP/đơn hình sau này. Không tải thêm nguồn, không chốt số liệu hoặc thời lượng.
 - Kiểm tra trang tiêu đề mới ở 1600×900 và 390×844, xác nhận đúng tên và chưa thêm nội dung. Đồng bộ ảnh và tiêu đề trang 8 trong Codex Slides; các trang khác giữ nguyên. CSS, ví dụ, ghi chú học tập và bài tập không đổi.
+
+
+## 28. Triển khai phần Quy hoạch tuyến tính ngày 2026-09-11
+
+### Phạm vi và quyết định
+
+- Người dùng duyệt triển khai kế hoạch 10 trang, bổ sung dạng chuẩn tắc và yêu cầu ví dụ phối trộn có câu chuyện. Kết quả: phần 2 có 12 trang, toàn bài 24 trang trong bảy section ngoài. Giữ phần 1 và các khung phần 3–7.
+- Thêm `S02-01b` trước mô hình: vườn ươm cần phối trộn hai nguyên liệu cho một luống cây, đáp ứng nitơ/phốtpho với chi phí thấp nhất. Tách câu chuyện khỏi bảng số và công thức để giữ thứ tự nhu cầu trước mô hình, không thu nhỏ chữ. Thêm `S02-03b` sau dạng phổ biến để trình bày canonical theo quy ước bất đẳng thức cùng chiều và phân biệt standard (đẳng thức, biến không âm).
+- Dữ liệu phối trộn: giá 3/2 đơn vị 10 nghìn đồng/kg, nitơ 2/1 g/kg, phốtpho 1/2 g/kg, yêu cầu ít nhất 4/5 g. Phương án chỉ dùng II là phương án ban đầu khả thi (4 kg, 80 nghìn đồng); nghiệm tối ưu là 1 kg I và 2 kg II (70 nghìn đồng).
+- Dữ liệu hồi quy tự tạo: u=(-2,-1,0,1,2), y=(-2,-1,3,1,2), w=(a,b), r=Xw-y. Tổng sai số tuyệt đối: w=(1,0), giá trị 3. Sai số lớn nhất: w=(1,1.5), giá trị 1.5 và tổng sai số tuyệt đối 7.5. Có chứng minh cận dưới, phép cải dạng hai chiều và cách khôi phục nghiệm trong ghi chú diễn giả.
+- Boyd–Vandenberghe (2004), §4.3, §4.3.1, §6.1.1 là nguồn nội dung; đề cương DOCX chính thức xác nhận buổi 2 LLO3/CLO1. CLO2/CLO4 được liên hệ theo quyết định thiết kế, không nhận là ánh xạ LLO được trích nguyên từ đề cương. Quy ước canonical đối chiếu ghi chép Grant Wang/David Karger, MIT 6.854, phần Definitions; đã bổ sung danh mục `sources/MIT/README.md`. Chỉ đối chiếu trực tuyến, không tải nguồn MIT mới, không dùng hình hay văn bản sao chép.
+
+### Quy trình tác tử và xử lý lỗi
+
+- Reader lập kế hoạch; reader khác kiểm nguồn và số liệu; writer soạn trong thư mục tạm, writer chỉnh sửa theo đặc tả; reviewer kiểm định storyboard trước năm vai độc lập; writer cuối sửa đúng hai chuỗi sau khi hợp nhất báo cáo. Điều phối duyệt từng đầu ra và kiểm tra thực tế; không dùng lời tự khai của tác tử thay bằng chứng runtime.
+- Các kết quả thành công của các vai trên đều ghi requested_model = observed_model = `z-ai/glm-5.3-flash`, provider = `OpenRouter`. Không đổi mô hình sau lỗi.
+- Chuẩn bị hai tệp mẫu lúc đầu dùng sai đường dẫn tương đối, đã chép lại bằng đường dẫn tuyệt đối. Writer đã ghi bản nháp nhưng lượt đầu báo `model exceeded the tool-call limit (6)`; chạy lại kiểm tệp rồi giao chỉnh sửa, không ghép tệp lỗi vào bài trước khi đọc kiểm tra.
+- Lượt storyboard đầu báo `model exceeded the tool-call limit (4)`; chạy lại với đầu vào trực tiếp và kết thúc thành công. Lượt toán đầu báo `model returned an empty or incomplete answer after all retries`; chạy lại với công thức cô đọng, sau đó bổ sung ngữ cảnh của phương án ban đầu. Các lỗi được báo cho người dùng trong khi làm.
+- Điều phối bác bỏ lỗi của reader nguồn khi tự đổi quy ước phần dư thành y-Xw. Giữ đúng r=Xw-y xuyên suốt. Sửa bản nháp writer: lời khẳng định LP luôn có nghiệm, ký hiệu `^\*` không hợp lệ, chứng minh tổng sai số tuyệt đối/minimax bị viết sai, thuật ngữ canonical/standard và ghi chú quy trình máy móc.
+
+### Kiểm định storyboard và năm báo cáo độc lập
+
+| Vai | Kết quả, phát hiện | Quyết định và bằng chứng xử lý |
+|---|---|---|
+| Storyboard | Đạt 12 trang, hành trình mô hình và hồi quy; phát hiện câu đặt d=a-1 bị lặp; gợi ý thêm chiều ngược minimax. Đề nghị đổi I thành -I cho x không âm trong Mx≥q | Xóa câu lặp, thêm chiều ngược. Bác bỏ đề nghị đổi dấu: Ix≥0 mới là x≥0; math reviewer sau xác nhận. Giữ đủ hai trang mới theo yêu cầu |
+| Sinh viên | Đạt; gợi ý làm rõ vô hướng→vector, đặt hộp câu hỏi trước notes, kiểm mật độ trang minimax. Báo cáo nhầm đếm 11 trang | Thêm câu một biến t_i cho mỗi r_i; chuyển box trước notes; kiểm ảnh rộng/hẹp đạt. Đếm DOM xác nhận 12. Vai này chỉ xét thông số chữ/hình, không nhận là đã xem ảnh; điều phối xem ảnh trực tiếp |
+| Chuyên gia | Đạt; không có lỗi bắt buộc. Hai ghi chú về thứ tự box/notes và việc lặp miền t thuộc R | Sửa thứ tự box/notes; giữ miền t để nhấn mạnh biến vô hướng. Phạm vi mô hình/cải dạng, không dạy đơn hình hoặc thuật toán ngoài phần |
+| Toán học | Các dạng LP, phép đổi biểu diễn, chứng minh hai chiều và ba nghiệm đều đúng. Bản cô đọng khiến reviewer hiểu nhầm phương án chỉ dùng II là tuyên bố tối ưu | Gửi nguyên văn notes nói phương án khả thi, chưa chắc tối ưu. Reviewer rút nhận xét, kết luận không còn vấn đề bắt buộc; writer vẫn thêm nhãn Phương án ban đầu để rõ hơn. Quy ước r=Xw-y giữ nguyên; đơn vị chi phí 7 tương ứng 70 nghìn đồng |
+| Phản biện giảng dạy | Đạt chuỗi nhu cầu, trực quan, mô hình, kiểm chứng, ứng dụng, bài tập; hai biểu diễn và đổi tiêu chí được phân biệt | Giữ cấu trúc; sửa thứ tự box/notes. Gợi ý t≥0 đã được suy ra từ hai ràng buộc, không thêm ràng buộc thừa trên mặt chiếu |
+| Mạch kể chuyện | Đạt 12/12 trang, điểm vào từ phần tối ưu lồi và điểm ra sang quy hoạch bậc hai trên cùng dữ liệu | Giữ các câu nối và thứ tự. Các sửa cuối là nhãn phương án/giải thích hàng I, không đổi thứ tự, vai trò hay điểm nhấn |
+
+### Kiểm định kỹ thuật và trực quan
+
+- HiGHS qua SciPy giải độc lập ba LP, khớp cả nghiệm, phần dư và giá trị tối ưu. Cận dưới giải tích cho mỗi bài và biến thể tăng giá đều được đối chiếu.
+- Vẽ năm SVG cục bộ từ tọa độ mô hình; có tiêu đề, mô tả thay thế, nhãn trục/đơn vị. Hình phối trộn có chú giải hai biên và đường nối tới mức chi phí 7; các hình hồi quy dùng cùng dữ liệu. Không dùng raster nguồn hay ảnh sinh bởi AI.
+- CSS mở rộng được giới hạn `.lp-slide` trong `lecture-02-style.css`, kế thừa màu/chữ từ mẫu `../rl-plan`. Thân bài 0.84em, không thu nhỏ để che tràn. Đã sửa tràn trang mô hình và minimax bằng rút gọn/chia cột, tăng chiều cao hình lên 340 px để nhãn rõ hơn.
+- Chromium kiểm toàn bộ 24 trang ở 1600×900 và 390×844 trên cổng 8765: KaTeX không lỗi, không tài nguyên hỏng, không tràn nội dung; điều hướng dọc/ngang và tải lại hash đúng. Ghi chú tồn tại trên đủ 12 trang LP. Màn hình hẹp dùng phép co tỷ lệ của RevealJS.
+- Đồng bộ 11 trang thêm vào dự án Codex Slides hiện có, giữ thứ tự các phần; tải ảnh thực của 12 trang LP và notes. Kiểm trạng thái bền vững 24 trang, canvas câu chuyện, chuẩn tắc và hồi quy. Browser tích hợp không có trong phiên này; kiểm bằng Chromium cục bộ, không tuyên bố dùng Browser tích hợp.
+- Chỉ mục cập nhật mô tả đã soạn phần mở đầu và LP. Đã rà hai tài liệu học tập cũ: vẫn thuộc mô hình/bố cục trước, tiếp tục ngừng liên kết trong lúc xây dựng từng phần; không công bố như đã đồng bộ. Lời giải và câu hỏi của phần mới có trong notes. Không thêm nội dung phần 3–7.
+
+Bằng chứng tệp báo cáo tác tử thành công (SHA-256; bản hợp nhất theo vai ở trên):
+
+- plan: `a050028b8503dacc681dbfb39d7cf1a0625ddc938b3afdb1f361134b2789932f`.
+- source: `8b07a9970cc95e1ab567be8e7875f8f9b11f0f1bafc38fc180e2c91fc94e73cc`.
+- write-retry: `4568ddca12241ceb70550f313664e65fd66bf729baf11638557be762c647d983`.
+- edit: `47e406a2ab65268159a5d6c840545ed6fdef938fb8a017029f506caf8c7f9499`.
+- story-retry: `897d4815d9c598f21e8855809771a8566489c6cc9d540b879fbf24706236ec77`.
+- student: `6049d17a4695d50c4c909652dec77f8ba4d3fcd3a33e20f704e6036c8baf50a8`.
+- expert: `8a20b9c0dee072d85f439ef30a9f3f90dafe4d137ee46f570fd499a45a6170dd`.
+- math-retry: `309a958ada2528626035c302935c9b674a432495ad42f03b806f3d16a18c725a`.
+- math-final: `ba2c6e6891b996e6037d5f69e825c15762e6690cd0d7881eb155103b6c47ff0b`.
+- teaching: `81858d40378a9f1b1587bdc92ec949dc503680f366749a4a1588f775278852b1`.
+- narrative: `c85d198fd0d7f5f8be3901a03e38d672434f837ba722841a36942ec330863e00`.
+- final-editor: `778c4caec6c6ca352fa8aa28eb31f2599913f585b3201f02d1727d4ecf7b1dfc`.

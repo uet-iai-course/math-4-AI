@@ -197,11 +197,311 @@
         </aside>
       </section>
     </section>
-    <section id="section-2">
-      <section id="mach-2" data-slide-id="S02">
-        <h2><span class="text-light">2</span><br>Quy hoạch tuyến tính</h2>
-      </section>
-    </section>
+<section id="section-2">
+  <section id="mach-2" data-slide-id="S02" class="lp-slide">
+    <h2><span class="text-light">2</span><br>Quy hoạch tuyến tính</h2>
+    <aside class="notes">
+      <p>Phần trước đã chứng nhận rằng hàm mục tiêu và tập khả thi của bài toán tối ưu lồi là lồi. Nay xét mô hình trong đó hàm mục tiêu và các ràng buộc đều affine.</p>
+      <p>Ta bắt đầu từ một nhu cầu pha trộn nguyên liệu, rồi học cách cải dạng hai bài toán hồi quy về quy hoạch tuyến tính. Quy hoạch tuyến tính được viết tắt là LP.</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.3.</p>
+    </aside>
+  </section>
+
+  <section id="lp-cau-chuyen-pha-tron" data-slide-id="S02-01b" class="lp-slide">
+    <h2>Pha trộn cho một vườn ươm</h2>
+    <p>Một vườn ươm chuẩn bị hỗn hợp bón cho một luống cây. Hỗn hợp cần cung cấp đủ lượng nitơ và phốtpho theo yêu cầu.</p>
+    <div class="grid2">
+      <div class="card"><p><strong>Nguyên liệu I</strong></p><p>Nhiều nitơ hơn trong mỗi kg, nhưng giá cao hơn.</p></div>
+      <div class="card"><p><strong>Nguyên liệu II</strong></p><p>Rẻ hơn theo kg, nhưng cần dùng nhiều hơn để đủ nitơ.</p></div>
+    </div>
+    <p>Người phụ trách có thể mua và phối trộn hai loại với lượng tùy chọn, kể cả phần lẻ của một kg.</p>
+    <div class="box"><p><strong>Cần quyết định:</strong> dùng bao nhiêu kg mỗi loại để đủ dinh dưỡng với chi phí thấp nhất.</p></div>
+    <aside class="notes">
+      <p>Đây là tình huống và dữ liệu minh họa tự tạo. Nhu cầu thực tế là chọn lượng mua cho một luống cây; chưa ấn định tổng khối lượng hỗn hợp. Hai yêu cầu dinh dưỡng được quy đổi thành lượng nitơ và phốtpho tối thiểu. Giả thiết các thành phần cộng được và chi phí tỷ lệ với lượng dùng.</p>
+      <p>Câu hỏi: hãy đề xuất một phương án mua ban đầu. Có thể chọn toàn bộ loại II vì giá mỗi kg thấp hơn. Ta sẽ kiểm tra chi phí của phương án này bằng bảng số liệu, rồi so với một phương án pha trộn. Dữ liệu ở trang sau giúp chuyển câu chuyện thành biến, mục tiêu và ràng buộc.</p>
+      <p>Nguồn mô hình: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.3.1, bài toán khẩu phần; bối cảnh vườn ươm và số liệu do nhóm soạn tự đặt.</p>
+    </aside>
+  </section>
+
+  <section id="lp-pha-tron" data-slide-id="S02-02" class="lp-slide">
+    <h2>Mô hình pha trộn</h2>
+    <p>Chọn lượng hai nguyên liệu cho luống cây; số liệu minh họa.</p>
+    <div class="grid2">
+      <div>
+        <table class="lp-data">
+          <thead>
+            <tr><th>Nguyên liệu</th><th>I</th><th>II</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Giá (10 nghìn đồng/kg)</td><td>3</td><td>2</td></tr>
+            <tr><td>Nitơ (g/kg)</td><td>2</td><td>1</td></tr>
+            <tr><td>Phốtpho (g/kg)</td><td>1</td><td>2</td></tr>
+          </tbody>
+        </table>
+        <p>Biến: $x_1,x_2$ kg nguyên liệu I, II.</p>
+        <p>Cần ít nhất 4 g nitơ và 5 g phốtpho.</p>
+      </div>
+      <div class="math-large">
+        $$\begin{aligned}
+        \min\;& 3x_1+2x_2\\
+        \text{với}\quad & 2x_1+x_2\ge 4,\\
+        & x_1+2x_2\ge 5,\\
+        & x_1,x_2\ge 0.
+        \end{aligned}$$
+      </div>
+    </div>
+    <div class="box">
+      <p>Phương án ban đầu: chỉ dùng II, 4 kg, chi phí 80 nghìn đồng.</p>
+    </div>
+    <aside class="notes">
+      <p>Hai nguyên liệu I, II với giá và hàm lượng nitơ và phốtpho như bảng; nhu cầu nitơ tối thiểu $\ge 4$ g, phốtpho $\ge 5$ g; lượng dùng liên tục, không âm.</p>
+      <p>Chi phí $3x_1+2x_2$ và hàm lượng $2x_1+x_2$, $x_1+2x_2$ đều tuyến tính theo $(x_1,x_2)$, nên bài toán là LP. Tỷ lệ chi phí trên hàm lượng quyết định nguyên liệu nào hiệu quả hơn: nguyên liệu II rẻ hơn mỗi kg nhưng cho ít nitơ hơn.</p>
+      <p>Chỉ dùng II: cần $x_2\ge 4$ cho nitơ và $x_2\ge 2.5$ cho phốtpho, nên $x_2=4$, chi phí $2\cdot 4=8$ (đơn vị 10 nghìn đồng) tức 80 nghìn đồng. Đây là nghiệm khả thi nhưng chưa chắc tối ưu; ta sẽ tìm nghiệm tối ưu sau khi nhận dạng dạng bài toán.</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.3.1 (bài toán khẩu phần); số liệu minh họa tự tạo.</p>
+    </aside>
+  </section>
+
+  <section id="lp-dang-pho-bien" data-slide-id="S02-03" class="lp-slide">
+    <h2>Dạng phổ biến của quy hoạch tuyến tính</h2>
+    <p>Biến $x\in\mathbb{R}^n$; dữ liệu $c, G, h, A, b$.</p>
+    <div class="math-large">
+      $$\begin{aligned}
+      \min\;& c^Tx\\
+      \text{với}\quad & Gx\le h,\\
+      & Ax=b.
+      \end{aligned}$$
+    </div>
+    <div class="box">
+      <p>Mục tiêu affine nên lồi.</p>
+      <p>Tập khả thi là giao các nửa không gian và siêu phẳng lồi.</p>
+    </div>
+    <aside class="notes">
+      <p>$x\in\mathbb{R}^n$; $c\in\mathbb{R}^n$, $G\in\mathbb{R}^{m\times n}$, $h\in\mathbb{R}^m$, $A\in\mathbb{R}^{p\times n}$, $b\in\mathbb{R}^p$.</p>
+      <p>Mục tiêu $c^Tx$ là hàm affine nên lồi. Tập $\{x\mid Gx\le h\}$ là giao các nửa không gian lồi; tập $\{x\mid Ax=b\}$ là giao các siêu phẳng affine, cũng lồi; do đó tập khả thi là giao các tập lồi, vẫn lồi.</p>
+      <p>Bài toán pha trộn đưa về dạng này bằng đổi dấu ràng buộc: $2x_1+x_2\ge 4$ thành $-2x_1-x_2\le -4$, $x_1+2x_2\ge 5$ thành $-x_1-2x_2\le -5$, và $x\ge 0$ thành $-x\le 0$. Hằng số cộng vào mục tiêu bỏ được khi tìm nghiệm; nếu cần giá trị đúng, ta ghi nhận giá trị dịch hằng số riêng.</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.3, tr. 147.</p>
+      <p>Trang sau giới thiệu hai cách biểu diễn của cùng lớp bài toán.</p>
+    </aside>
+  </section>
+
+  <section id="lp-chuan-tac" data-slide-id="S02-03b" class="lp-slide">
+    <h2>Dạng chuẩn tắc của quy hoạch tuyến tính</h2>
+    <p>Quy ước dùng trong bài; ở dạng chuẩn tắc, $x$ tự do về dấu.</p>
+    <div class="grid2">
+      <div class="card">
+        <p><strong>Chuẩn tắc (canonical)</strong></p>
+        <div class="math-large">
+          $$\begin{aligned}
+          \min_{x\in\mathbb{R}^n}\;& c^Tx\\
+          \text{với}\quad & Mx\ge q.
+          \end{aligned}$$
+        </div>
+      </div>
+      <div class="card">
+        <p><strong>Dạng chuẩn (standard)</strong></p>
+        <div class="math-large">
+          $$\begin{aligned}
+          \min_{z\ge 0}\;& d^Tz\\
+          \text{với}\quad & Bz=e.
+          \end{aligned}$$
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <p>Một đẳng thức tương đương hai bất đẳng thức:</p>
+      <p>$a^Tx=b \iff \{a^Tx\ge b,\ -a^Tx\ge -b\}$.</p>
+    </div>
+    <aside class="notes">
+      <p>$M, q, B, d, e$ có kích thước phù hợp: $M\in\mathbb{R}^{k\times n}$, $q\in\mathbb{R}^k$, $B\in\mathbb{R}^{p\times n'}$, $e\in\mathbb{R}^p$, $d\in\mathbb{R}^{n'}$.</p>
+      <p>Từ dạng phổ biến $Gx\le h,\ Ax=b$: đặt $M=\begin{bmatrix}-G\\ A\\ -A\end{bmatrix}$, $q=\begin{bmatrix}-h\\ b\\ -b\end{bmatrix}$ thì $Mx\ge q$ tương đương $Gx\le h,\ Ax=b$. Ràng buộc $x\ge0$ được thêm vào dạng $Mx\ge q$ bằng các hàng của $I$ trong $M$ và các số 0 tương ứng trong $q$. Chuyển sang dạng chuẩn: $x=x^+-x^-$ với $x^\pm\ge 0$; bất đẳng thức $a^Tx\le b$ thành $a^Tx+s=b$ với biến phụ $s\ge 0$; từ nghiệm $z$ khôi phục $x=x^+-x^-$. Cả hai cách biểu diễn đều lồi: mục tiêu affine, tập khả thi là giao các nửa không gian/siêu phẳng lồi.</p>
+      <p><strong>Nguồn:</strong> Quy ước canonical theo Grant Wang, ghi chép bài giảng David Karger, MIT 6.854, Lecture 8: Linear Programming, 1/10/2003, phần Definitions, https://courses.csail.mit.edu/6.854/18/Scribe/s11-lp/s11-lp.html — chỉ dùng phần quy ước/biến đổi. Boyd và Vandenberghe (2004), §4.3 gọi dạng đẳng thức với biến không âm là standard form.</p>
+    </aside>
+  </section>
+
+  <section id="lp-nghiem-pha-tron" data-slide-id="S02-04" class="lp-slide">
+    <h2>Nghiệm của bài toán pha trộn</h2>
+    <div class="example-grid">
+      <figure class="example-plot">
+        <img class="lp-plot" src="img/lec-02/lp-mixture.svg" alt="Miền khả thi và đường cùng chi phí của bài toán pha trộn, nghiệm tối ưu tại (1, 2)">
+        <figcaption>Biên liền: $2x_1+x_2=4$.<br>Biên đứt: $x_1+2x_2=5$.</figcaption>
+      </figure>
+      <div>
+        <p>Nghiệm tối ưu: $x^\star=(1,\,2)$.</p>
+        <p>Nitơ $=4$ g, phốtpho $=5$ g (đủ đúng yêu cầu).</p>
+        <p>Chi phí: $3\cdot1+2\cdot2=7$, tức 70 nghìn đồng.</p>
+      </div>
+    </div>
+
+    <div class="box">
+      <p>Câu hỏi: Nếu giá nguyên liệu I tăng từ 3 lên 4, nghiệm thay đổi thế nào?</p>
+    </div>
+    <aside class="notes">
+      <p>Mô hình LP ở trang pha trộn với dữ liệu đã cho.</p>
+      <p>Với mọi nghiệm khả thi, $3x_1+2x_2=\frac{4}{3}(2x_1+x_2)+\frac{1}{3}(x_1+2x_2)\ge \frac{4}{3}\cdot 4+\frac{1}{3}\cdot 5=7$, vì $2x_1+x_2\ge 4$ và $x_1+2x_2\ge 5$. Dấu bằng đạt tại $x^\star=(1,2)$, vốn khả thi, nên đây là nghiệm tối ưu với giá trị 7 (70 nghìn đồng). Đường cùng chi phí là $3x_1+2x_2=\alpha$; đường $\alpha=7$ tiếp xúc miền khả thi tại $(1,2)$.</p>
+      <p>Nếu giá nguyên liệu I tăng lên 4 (đơn vị 10 nghìn đồng/kg), mục tiêu là $4x_1+2x_2=2(2x_1+x_2)\ge8$. Mọi điểm khả thi trên đoạn nối $(0,4)$ và $(1,2)$ đều đạt giá trị 8, nên có nhiều nghiệm tối ưu. Tiếp theo, xét một mục tiêu hồi quy chưa được viết ở dạng tuyến tính.</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §4.3.1; số liệu và hình minh họa tự tạo.</p>
+    </aside>
+  </section>
+
+  <section id="lp-hoi-quy-tuyet-doi" data-slide-id="S02-05" class="lp-slide">
+    <h2>Hồi quy với sai số tuyệt đối</h2>
+    <p>Dự đoán đầu ra từ một đặc trưng, đánh giá tổng độ lệch.</p>
+    <div class="grid2">
+      <div>
+        <table class="lp-data">
+          <thead>
+            <tr><th>$u_i$</th><th>$-2$</th><th>$-1$</th><th>$0$</th><th>$1$</th><th>$2$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$y_i$</td><td>$-2$</td><td>$-1$</td><td>$3$</td><td>$1$</td><td>$2$</td></tr>
+          </tbody>
+        </table>
+        <p>Dữ liệu minh họa đã chuẩn hóa.</p>
+        <p>Mô hình: $\hat{y}_i=au_i+b$, tức $w=(a,b)$.</p>
+        <p>$X$ có hàng thứ $i$ là $(u_i,1)$; $w\in\mathbb{R}^2$.</p>
+        <p>$r=Xw-y$, mục tiêu $\min_w \sum_i |r_i|$.</p>
+      </div>
+      <figure class="example-plot">
+        <img class="lp-plot" src="img/lec-02/lp-data.svg" alt="Năm điểm dữ liệu (u_i, y_i) và đường thử ŷ = u + 1 với các đoạn phần dư">
+      </figure>
+    </div>
+    <div class="box">
+      <p>Hàm mục tiêu $\sum_i|r_i|$ đã lồi, nhưng trị tuyệt đối chưa ở dạng LP.</p>
+    </div>
+    <aside class="notes">
+      <p>$u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$; $X$ có hàng thứ $i$ là $(u_i,1)$ nên $X\in\mathbb{R}^{5\times 2}$, $w\in\mathbb{R}^2$, $y\in\mathbb{R}^5$.</p>
+      <p>$r=Xw-y$ là affine theo $w$, nên $|r_i|$ lồi và tổng $\sum_i|r_i|$ lồi. Đây là tiêu chí tổng sai số tuyệt đối. Tuy nhiên $|\cdot|$ không phải hàm tuyến tính, nên mục tiêu chưa ở dạng LP.</p>
+      <p>Không dùng đạo hàm tại $0$ (hàm không khả vi); thay vào đó ta thêm biến phụ ở trang sau.</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §6.1.1 (hồi quy chuẩn $\ell_1$); dữ liệu minh họa tự tạo.</p>
+      <p>Đường thử $\hat{y}=u+1$ có tổng sai số 6. Cần chọn lại hệ số góc và hệ số chặn để giảm tổng độ lệch. Ta sẽ cải dạng bài toán rồi kiểm tra nghiệm trên cùng dữ liệu.</p>
+    </aside>
+  </section>
+
+  <section id="lp-bien-phu" data-slide-id="S02-06" class="lp-slide">
+    <h2>Biến phụ cho giá trị tuyệt đối</h2>
+    <div class="example-grid">
+      <figure class="example-plot">
+        <img class="lp-plot" src="img/lec-02/lp-epigraph.svg" alt="Miền epigraph V = {(r, t) : t ≥ |r|} trên mặt phẳng (r, t)">
+      </figure>
+      <div>
+        <p>Với một số vô hướng $r$: $t\ge|r| \iff t\ge r$ và $t\ge -r$.</p>
+        <p>Với $m$ điểm, đặt một biến $t_i$ cho mỗi phần dư $r_i$; ghép thành $t\in\mathbb{R}^m$.</p>
+        <div class="math-large">
+          $$\begin{aligned}
+          \min_{w,\,t}\;& \mathbf{1}^Tt\\
+          \text{với}\quad & -t\le Xw-y\le t.
+          \end{aligned}$$
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <p>Tối thiểu hóa tổng các cận trên của sai số.</p>
+    </div>
+    <aside class="notes">
+      <p>$t$ là vector $\mathbb{R}^m$ (một biến phụ cho mỗi điểm; thống nhất dùng $m$ cho khái quát, $m=5$ cho ví dụ), khác với một biến vô hướng minh họa phía trên.</p>
+      <p>Vector $\mathbf1$ có mọi thành phần bằng 1, nên $\mathbf1^Tt=\sum_i t_i$. Với $m$ điểm và $n$ tham số, $X\in\mathbb R^{m\times n}$, $y\in\mathbb R^m$, $w\in\mathbb R^n$. Miền $\{(r,t)\mid t\ge|r|\}$ là tập trên đồ thị (epigraph) của $|\cdot|$. Ràng buộc $-t\le Xw-y\le t$ nghĩa là $t_i\ge r_i$ và $t_i\ge -r_i$, tức $t_i\ge|r_i|$. Vì mục tiêu $\mathbf{1}^Tt$ cần nhỏ nhất, tại nghiệm tối ưu $t$ sẽ hạ xuống đúng $|r|$. Lưu ý khác biệt: nếu chỉ thêm ràng buộc $t\ge|r|$ rồi khẳng định $t=|r|$ cho mọi cặp khả thi thì sai — chỉ đúng tại nghiệm tối ưu của bài toán có mục tiêu $\min\mathbf{1}^Tt$.</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §4.3.1, §6.1.1.</p>
+    </aside>
+  </section>
+
+  <section id="lp-tuong-duong" data-slide-id="S02-07" class="lp-slide">
+    <h2>Tính tương đương của phép cải dạng</h2>
+    <div class="grid2">
+      <div class="card">
+        <p><strong>Từ bài toán gốc</strong></p>
+        <p>Mọi $w$ cho ta chọn $t_i=|r_i|$: tạo nghiệm khả thi của bài LP với cùng giá trị mục tiêu $\sum_i|r_i|$.</p>
+      </div>
+      <div class="card">
+        <p><strong>Từ bài toán có biến phụ</strong></p>
+        <p>Mọi $(w,t)$ khả thi có $\sum_i t_i\ge\sum_i|r_i|$.</p>
+      </div>
+    </div>
+    <div class="box">
+      <p>Giá trị tối ưu hai bài toán bằng nhau; tại nghiệm tối ưu $t_i^\star=|r_i^\star|$, khôi phục được $w^\star$.</p>
+    </div>
+    <aside class="notes">
+      <p>Hai bài toán: $\min_w\sum_i|r_i|$ và $\min_{w,t}\mathbf{1}^Tt$ với $-t\le Xw-y\le t$.</p>
+      <p>Chiều thuận: với mọi $w$, $(w,t)$ với $t_i=|r_i|$ khả thi và có mục tiêu $\sum_i|r_i|$, nên giá trị tối ưu LP $\le$ giá trị gốc. Chiều ngược: mọi $(w,t)$ khả thi có $\sum_i t_i\ge\sum_i|r_i|$, nên giá trị tối ưu LP $\ge$ giá trị tối ưu gốc. Vậy hai giá trị bằng nhau. Nếu tại nghiệm tối ưu có $t_i>|r_i|$ thì giảm $t_i$ xuống $|r_i|$ vẫn khả thi và giảm mục tiêu — mâu thuẫn; do đó $t_i^\star=|r_i^\star|$.</p>
+      <p>Mục tiêu và ràng buộc mới affine nên bài cải dạng là LP lồi. Đây không phải xấp xỉ: chỉ thêm biến, bài toán mới là LP và tương đương chính xác. Biến phụ $t$ không phải tham số dự đoán; nó chỉ phục vụ cải dạng.</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §4.3.1, §6.1.1.</p>
+    </aside>
+  </section>
+
+  <section id="lp-nghiem-hoi-quy" data-slide-id="S02-08" class="lp-slide">
+    <h2>Nghiệm hồi quy với sai số tuyệt đối</h2>
+    <div class="example-grid">
+      <figure class="example-plot">
+        <img class="lp-plot" src="img/lec-02/lp-lad.svg" alt="Đường hồi quy ŷ = u khớp bốn điểm, điểm (0, 3) lệch 3">
+      </figure>
+      <div>
+        <p>Nghiệm: $w^\star=(1,\,0)$, tức $\hat{y}=u$.</p>
+        <p>$r=(0,\,0,\,-3,\,0,\,0)$.</p>
+        <p>Tổng sai số tuyệt đối: $3$.</p>
+        <p>$t^\star=(0,\,0,\,3,\,0,\,0)$.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Dữ liệu $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$; mục tiêu $\min\sum_i|r_i|$ với $r=Xw-y$.</p>
+      <p>Đặt $d=a-1$. Phần dư tại $\pm1$ là $b-d,\ b+d$; tại $\pm2$ là $b-2d,\ b+2d$. Bất đẳng thức tam giác cho $|b-d|+|b+d|\ge 2|b|$ và $|b-2d|+|b+2d|\ge 2|b|$. Vì thế tổng $\ge 4|b|+|b-3|\ge 3$. Bất đẳng thức cuối: $|b-3|\ge 3-|b|$, nên tổng $\ge 3+3|b|\ge 3$. Đạt tại $b=0,\ d=0$. Nếu tối ưu thì $b=0$; tổng sai số còn $6|d|+3$ nên $d=0$.</p>
+      <p>Điểm $(0,3)$ sai 3, còn bốn điểm còn lại khớp chính xác. Đây là tính chất riêng của bộ dữ liệu này, không phải khẳng định tổng quát.</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §6.1.1; dữ liệu minh họa tự tạo.</p>
+      <p>Câu hỏi: nếu muốn giảm sai số lớn nhất thì đổi tiêu chí nào? Đáp án: tiêu chí minimax.</p>
+    </aside>
+  </section>
+
+  <section id="lp-sai-so-lon-nhat" data-slide-id="S02-09" class="lp-slide">
+    <h2>Hồi quy với sai số lớn nhất</h2>
+    <p>Mục tiêu ban đầu: $\min_w \max_i |r_i|$ — giảm sai số tệ nhất.</p>
+    <div class="example-grid">
+      <figure class="example-plot">
+        <img class="lp-plot" src="img/lec-02/lp-minimax.svg" alt="Đường hồi quy ŷ = u + 1.5 với mọi điểm sai lệch đúng 1.5">
+      </figure>
+      <div>
+    <div class="math-large">
+      $$\begin{aligned}
+      \min_{w,\,t}\;& t\\
+      \text{với}\quad & -t\mathbf{1}\le Xw-y\le t\mathbf{1},\\
+      & t\in\mathbb{R}.
+      \end{aligned}$$
+    </div>
+        <p>Một biến phụ chung $t\in\mathbb{R}$.</p>
+        <p>Nghiệm: $w^\star=(1,\,1{,}5)$, $t^\star=1{,}5$.</p>
+
+      </div>
+    </div>
+    <div class="box"><p>Sai số lớn nhất: $3\to1{,}5$; tổng sai số: $3\to7{,}5$.</p></div>
+    <aside class="notes">
+      <p>Cùng dữ liệu; mục tiêu $\min_w\max_i|r_i|$ với $r=Xw-y$.</p>
+      <p>Bài toán là LP vì mục tiêu và ràng buộc tuyến tính. Mọi cặp $(w,t)$ khả thi có $t\ge\max_i|r_i|$. Tương đương hai chiều với $t=\max_i|r_i|$: với $w$ bất kỳ, chọn $t$ nhỏ nhất thỏa ràng buộc là $t=\max_i|r_i|$.</p>
+      <p>Đặt $d=a-1$. Phần dư tại $\pm1$ là $b-d,\ b+d$. Nếu mọi $|r_i|\le t$ thì $|b|=\left|\frac{(b-d)+(b+d)}{2}\right|\le t$. Điểm $u=0$ cho $|b-3|\le t$. Do đó $3\le|b|+|b-3|\le 2t$ nên $t\ge 1{,}5$. Đạt tại $w=(1,\,1{,}5)$.</p>
+      <p>Riêng bộ dữ liệu này mọi điểm sai lệch đúng 1,5; không khẳng định tính chất này tổng quát. Đánh đổi: tổng sai số tăng (7,5 so với 3) nhưng sai số tệ nhất giảm (1,5 so với 3).</p>
+      <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §6.1.1 (xấp xỉ chuẩn vô cùng); dữ liệu minh họa tự tạo.</p>
+    </aside>
+  </section>
+
+  <section id="lp-nhan-dang" data-slide-id="S02-10" class="lp-slide">
+    <h2>Nhận dạng quy hoạch tuyến tính</h2>
+    <p>Câu hỏi: Phân loại ba biến thể và giải thích tính lồi.</p>
+    <div class="grid2">
+      <div class="card">
+        <p><strong>1.</strong> Thêm $a\ge 0$ vào bài hồi quy sai số tuyệt đối.</p>
+      </div>
+      <div class="card">
+        <p><strong>2.</strong> Buộc $x_1, x_2$ nguyên trong bài pha trộn.</p>
+      </div>
+    </div>
+    <div class="card">
+      <p><strong>3.</strong> Đổi mục tiêu hồi quy sang $\sum_i (au_i+b-y_i)^2$.</p>
+    </div>
+    <aside class="notes">
+      <p>Ba biến thể xuất phát từ các bài toán trong phần này.</p>
+      <p>(1) Thêm $a\ge 0$ chỉ thêm ràng buộc tuyến tính, bài vẫn là LP và lồi. (2) Ràng buộc nguyên làm tập khả thi không lồi: ví dụ $(1,2)$ và $(2,2)$ khả thi nhưng trung điểm $(1.5,2)$ không nguyên; đây là quy hoạch nguyên, không còn là LP. (3) Mục tiêu còn tuyến tính không? Không — nhưng nó là tổng các bình phương của hàm affine, nên lồi; đây là bài quy hoạch bậc hai, không phải LP.</p>
+      <p>Cách tổng quát: tổng bình phương của các hàm affine là lồi. Cụ thể $\sum_i(au_i+b-y_i)^2=\|Xw-y\|_2^2$ có Hessian $2X^TX$ nửa xác định dương vì $v^T2X^TXv=2\|Xv\|^2\ge 0$.</p>
+      <p>Nguồn: Boyd và Vandenberghe (2004), §4.3–4.3.1, §6.1.1; ví dụ minh họa tự tạo. Phần tiếp theo dùng cùng dữ liệu hồi quy với tổng bình phương sai số để tìm hiểu quy hoạch bậc hai.</p>
+    </aside>
+  </section>
+</section>
+
     <section id="section-3">
       <section id="mach-3" data-slide-id="S03">
         <h2><span class="text-light">3</span><br>Quy hoạch bậc hai: khớp dữ liệu và kiểm soát độ lớn của mô hình</h2>

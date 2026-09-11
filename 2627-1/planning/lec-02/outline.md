@@ -12,7 +12,7 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 6. Xấp xỉ lồi và nới lỏng bài toán không lồi.
 7. Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm.
 
-Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Các phần 2–7 mỗi phần có một trang tiêu đề. Tổng cộng 13 trang trong bảy section ngoài; đây không phải số trang cuối cùng.
+Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Phần 2 có 12 trang đã triển khai; các phần 3–7 mỗi phần có một trang tiêu đề. Tổng cộng 24 trang trong bảy section ngoài; đây không phải số trang cuối cùng.
 
 ## Phần 1 hiện tại
 
@@ -34,6 +34,19 @@ Trang điều kiện riêng được bỏ theo yêu cầu người dùng vì n�
 - Ghi chú bài giảng và bài tập của bản cũ được giữ để tham khảo nhưng tạm ngừng liên kết trên chỉ mục trong thời gian đồng bộ lại.
 - Bản trình chiếu trước khi xóa nội dung truy xuất tại commit `774112d`.
 
-## Kế hoạch phần 2 đang đề xuất
+## Phần 2 đã triển khai
 
-Tiêu đề phần đã rút thành **Quy hoạch tuyến tính**. Đề xuất 10 trang trong [storyboard.md](storyboard.md): pha trộn và dạng LP; hồi quy với tổng sai số tuyệt đối; biến phụ và chứng minh tương đương; nghiệm số; biến thể sai số lớn nhất; bài tập nối sang quy hoạch bậc hai. Đây là kế hoạch để người dùng duyệt, chưa tạo các trang nội dung.
+1. Quy hoạch tuyến tính.
+2. Pha trộn cho một vườn ươm — câu chuyện, nhu cầu dinh dưỡng, lựa chọn nguyên liệu.
+3. Mô hình pha trộn — dữ liệu, biến, chi phí và ràng buộc.
+4. Dạng phổ biến của quy hoạch tuyến tính — nhận dạng và chứng nhận tính lồi.
+5. Dạng chuẩn tắc của quy hoạch tuyến tính — quy ước canonical và dạng standard; phép chuyển đổi.
+6. Nghiệm của bài toán pha trộn — hình học, nghiệm (1,2), chi phí 70 nghìn đồng.
+7. Hồi quy với sai số tuyệt đối — năm điểm dữ liệu và mô hình tuyến tính.
+8. Biến phụ cho giá trị tuyệt đối — một cận trên cho mỗi phần dư.
+9. Tính tương đương của phép cải dạng — hai chiều, giá trị tối ưu, khôi phục nghiệm.
+10. Nghiệm hồi quy với sai số tuyệt đối — đường dự đoán y=u, tổng sai số 3.
+11. Hồi quy với sai số lớn nhất — đường dự đoán y=u+1,5, sai số lớn nhất 1,5.
+12. Nhận dạng quy hoạch tuyến tính — ba biến thể kiểm tra và chuyển sang quy hoạch bậc hai.
+
+Giữ kế hoạch 10 trang đã duyệt, bổ sung trang chuẩn tắc theo yêu cầu và tách câu chuyện khỏi mô hình theo yêu cầu mô tả bối cảnh. Các mã cũ giữ nguyên; hai mã mới là S02-01b và S02-03b. Không bổ sung thời lượng. Nguồn và quyết định từng trang ở [storyboard.md](storyboard.md).

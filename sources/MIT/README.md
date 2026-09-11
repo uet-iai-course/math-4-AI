@@ -218,3 +218,21 @@ Quét checksum toàn bộ `sources/` không phát hiện bản thứ hai có cù
 - Không sao chụp trang PDF vào bộ trang chiếu. Sơ đồ trạng thái, bảng quy hoạch động và đồ thị chuyển trạng thái phải được vẽ lại thành SVG hoặc HTML cục bộ, có mô tả thay thế, giữ đúng quan hệ toán học và ghi công Prof. Dimitris Bertsimas, MIT 15.093J / 6.255J, Lecture 16, Fall 2009.
 - PDF không nêu tài sản hình ảnh bên thứ ba và kiểm tra cục bộ không phát hiện ảnh nội dung raster đáng kể. Tuy vậy, giấy phép MIT OCW không tự động bao phủ tài sản bên thứ ba; không dùng trực tiếp tài sản có ghi quyền riêng nếu phát hiện trong quá trình soạn.
 - Nguồn này đủ cho phạm vi trục của Lecture 07 nên không tải MIT 6.231 Lectures 2–3. Các thay đổi, lược bỏ, chuyên biệt hóa tất định và việc vẽ lại phải được ghi trong `review-log.md` của Lecture 07.
+
+## MIT 6.854 — Quy ước chuẩn tắc và dạng chuẩn của LP
+
+| Trường | Giá trị |
+|---|---|
+| Khóa học | Advanced Algorithms, MIT 6.854 |
+| Tiêu đề | Lecture 8 — Linear Programming, phần Definitions |
+| Tác giả / giảng viên | Grant Wang (ghi chép); David Karger (giảng viên), theo đầu tài nguyên |
+| Ngày bài giảng | 2003-10-01; tài nguyên hiện được lưu trong thư mục khóa học 2018, không đồng nhất hai mốc |
+| Trang khóa học | https://courses.csail.mit.edu/6.854/18/ |
+| URL tài nguyên | https://courses.csail.mit.edu/6.854/18/Scribe/s11-lp/s11-lp.html |
+| Ngày truy cập | 2026-09-11 |
+| Ngày tải | Không tải tệp vào kho; chỉ đối chiếu trực tuyến |
+| Giấy phép | Trang không nêu giấy phép tại phần đã kiểm tra; không suy ra giấy phép MIT OpenCourseWare vì đây là trang CSAIL |
+| Vai trò | Đối chiếu thuật ngữ: canonical là cực tiểu với bất đẳng thức cùng chiều; standard là đẳng thức và biến không âm |
+| Bài giảng sử dụng | Bài 02, phần Quy hoạch tuyến tính, trang dạng chuẩn tắc |
+| Đường dẫn cục bộ / SHA-256 | Không áp dụng: tham chiếu trực tuyến, không lưu bản nguồn |
+| Thay đổi và ghi công | Tự viết lại công thức và lập luận sơ cấp; không sao chép văn bản hoặc hình. Chỉ dùng quy ước và phép chuyển đổi trong Definitions. Không dùng lỗi khẳng định không gian Euclid compact hoặc nhầm nhãn dạng bài toán ở phần Geometry. Boyd–Vandenberghe §4.3 là nguồn chính đối chiếu dạng standard. |

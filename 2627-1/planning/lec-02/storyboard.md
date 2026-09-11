@@ -4,7 +4,7 @@ Phiên bản làm lại ngày 2026-09-11; bảy mạch đã được người d�
 
 ## Trạng thái và mục tiêu
 
-- Phạm vi hiện tại: bảy trang của phần 1 có nội dung và ghi chú diễn giả; các phần 2–7 vẫn là khung tiêu đề. Phần 1 có bảy trang sau khi bỏ trang điều kiện riêng theo yêu cầu người dùng; toàn bài hiện có 13 trang trong bảy section ngoài. Chưa chốt số trang cuối cùng, ví dụ số cho các phần 2–7, phân bổ thời lượng, vị trí của tựa lồi và nhiều mục tiêu.
+- Phạm vi hiện tại: phần 1 có bảy trang và phần 2 có 12 trang đã triển khai, kèm ghi chú diễn giả; phần 3–7 vẫn là khung tiêu đề theo yêu cầu làm từng phần. Toàn bài hiện có 24 trang trong bảy section ngoài. Chưa chốt số trang cuối cùng hoặc thời lượng; không triển khai các phần tiếp theo trong lượt này.
 - Cấu trúc 58 trang (39 chính + 19 phụ lục) của lần sửa trước không còn là ràng buộc.
 - Bản storyboard cũ lưu trong lịch sử Git tại commit e030846; không tạo bản sao, không di chuyển tệp cũ.
 - Mục tiêu bài học: sinh viên hiểu rõ các dạng bài toán tối ưu lồi; nhận biết bài toán thực tế có thể chuyển về dạng lồi hoặc xấp xỉ bằng dạng lồi; chứng minh một bài toán tối ưu là lồi. Ưu tiên ví dụ trong trí tuệ nhân tạo và học máy (AI/ML) hoặc bài toán quen thuộc.
@@ -35,7 +35,7 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 
 ### Mạch 2 — Quy hoạch tuyến tính
 
-- Ví dụ: phân bổ ngân sách hoặc nguồn lực liên tục để hình thành quy hoạch tuyến tính (LP), rồi quay lại dự đoán với tổng sai số tuyệt đối hoặc sai số lớn nhất.
+- Ví dụ: pha trộn nguyên liệu cho một vườn ươm để hình thành quy hoạch tuyến tính (LP), rồi hồi quy với tổng sai số tuyệt đối hoặc sai số lớn nhất.
 - Nội dung: biến phụ đưa trị tuyệt đối/cực đại về ràng buộc tuyến tính; giải thích tương đương và đọc nghiệm. Biến thể: số máy/sản phẩm phải nguyên.
 - Đầu vào: mô hình và khung chứng nhận.
 - Đầu ra: dạng LP, cải dạng bằng biến phụ và giới hạn của giả thiết biến liên tục.
@@ -98,7 +98,7 @@ Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạ
 | Mạch | Section ngoài | Trang khung | Vai trò và quyết định |
 |---|---|---|---|
 | 1 | `section-1` | `S01-01`–`S01-04`, `S01-06`–`S01-08` | Soạn bốn trang đầu và ba ví dụ; bỏ `S01-05` theo bảng bên dưới |
-| 2 | `section-2` | `mach-2` / `S02` | Thêm khung tiêu đề cho mạch 2; nội dung sẽ được xây dựng cùng người dùng |
+| 2 | `section-2` | `mach-2` / `S02` | Giữ tiêu đề; 11 trang nội dung của mạch 2 được ánh xạ trong bảng triển khai phần 2 phía dưới |
 | 3 | `section-3` | `mach-3` / `S03` | Thêm khung tiêu đề cho mạch 3; nội dung sẽ được xây dựng cùng người dùng |
 | 4 | `section-4` | `mach-4` / `S04` | Thêm khung tiêu đề cho mạch 4; nội dung sẽ được xây dựng cùng người dùng |
 | 5 | `section-5` | `mach-5` / `S05` | Thêm khung tiêu đề cho mạch 5; nội dung sẽ được xây dựng cùng người dùng |
@@ -143,32 +143,34 @@ Phần này ôn khái niệm đã học trong Bài 01, theo thứ tự hình th�
 - CSS điều chỉnh được lưu tại `2627-1/lecture-02-style.css`; không tạo phụ thuộc runtime sang kho tham chiếu.
 
 
-## Đề xuất kế hoạch phần 2 — Quy hoạch tuyến tính
+## Triển khai phần 2 — Quy hoạch tuyến tính
 
-Trạng thái: đề xuất để người dùng duyệt; chưa tạo các trang nội dung. Yêu cầu đã thực hiện là rút tiêu đề trang `S02` / `mach-2` thành **Quy hoạch tuyến tính**. Dự kiến 10 trang tính cả trang tiêu đề hiện có; số lượng có thể thay đổi khi cùng soạn.
+Trạng thái: đã triển khai theo yêu cầu ngày 2026-09-11. Tổng 12 trang trong phần 2; 24 trang trong toàn bộ bảy phần. So với kế hoạch 10 trang, thêm chuẩn tắc theo yêu cầu và tách câu chuyện vườn ươm khỏi bảng dữ liệu/mô hình. Giữ mã cũ, không đổi phần 1 và các khung phần 3–7.
 
 Mục tiêu: nhận dạng quy hoạch tuyến tính (LP), mô hình hóa một bài toán đã có cấu trúc tuyến tính, cải dạng hồi quy với sai số tuyệt đối hoặc sai số lớn nhất thành LP, chứng nhận tính lồi và giải thích nghiệm. Hỗ trợ CLO2 về xây dựng mô hình học máy và CLO4 về nhận dạng bài toán tối ưu trong đề cương chính thức; không ấn định thời lượng mới. Phần này giới thiệu LP trong chủ đề các dạng bài toán lồi. Đề cương dành các buổi sau cho giới thiệu/hình học LP và phương pháp đơn hình nên kế hoạch hiện tại tập trung vào mô hình và cải dạng.
 
-Ví dụ mở đầu đề xuất: pha trộn hai nguyên liệu với chi phí thấp nhất, đáp ứng hai chỉ tiêu tối thiểu. Lượng nguyên liệu là biến liên tục, dùng số liệu nhỏ tự chọn khi soạn. Đây là biến thể của bài toán khẩu phần trong Boyd, quen thuộc và dễ vẽ hình hai chiều. Ví dụ chính về học máy: hồi quy tuyến tính với tổng sai số tuyệt đối; sau đó đổi tiêu chí thành sai số lớn nhất trên cùng dữ liệu. Ví dụ pha trộn thay ý tưởng phân bổ ngân sách trong kế hoạch khái quát trước; thay đổi này mới là đề xuất.
+Ví dụ mở đầu: pha trộn hai nguyên liệu với chi phí thấp nhất, đáp ứng hai chỉ tiêu tối thiểu. Lượng nguyên liệu là biến liên tục, dùng số liệu minh họa đã kiểm chứng. Đây là biến thể của bài toán khẩu phần trong Boyd, quen thuộc và dễ vẽ hình hai chiều. Ví dụ chính về học máy: hồi quy tuyến tính với tổng sai số tuyệt đối; sau đó đổi tiêu chí thành sai số lớn nhất trên cùng dữ liệu. Bối cảnh vườn ươm bổ sung theo yêu cầu người dùng: cần đủ nitơ và phốtpho, lượng nguyên liệu liên tục. Pha trộn thay ý tưởng phân bổ ngân sách trong kế hoạch khái quát trước.
 
-| Vị trí / mã dự kiến | Tiêu đề đề xuất | Nội dung và lý do tồn tại | Kết nối vào → ra | Sản phẩm học tập / quyết định |
+| Vị trí / mã | Tiêu đề | Nội dung và lý do tồn tại | Kết nối vào → ra | Sản phẩm học tập / quyết định |
 |---|---|---|---|---|
 | 1 / `S02` | Quy hoạch tuyến tính | Định danh lớp bài toán tiếp theo | Khung chứng nhận phần 1 → nhu cầu pha trộn | Sửa tiêu đề đã được yêu cầu; giữ trang hiện có |
-| 2 / `S02-02` | Bài toán pha trộn | Nêu quyết định cần chọn, bảng chi phí và hàm lượng; xác định dữ liệu, lượng nguyên liệu, mục tiêu, ràng buộc, đơn vị, đầu ra. So sánh cách chọn nguyên liệu rẻ nhất với yêu cầu đủ chỉ tiêu | Nhu cầu thực tế → các biểu thức affine | Mô hình rõ nghĩa; đề xuất thêm |
-| 3 / `S02-03` | Dạng phổ biến của quy hoạch tuyến tính | Nhận ra các biểu thức affine; đưa mô hình về $\min c^Tx$ với $Gx\le h$, $Ax=b$. Nhắc lại ký hiệu từ phần 1; các bước đổi dấu và kích thước chi tiết để notes. Chứng nhận ngắn: mục tiêu affine, tập khả thi là giao các nửa không gian/siêu phẳng lồi | Mô hình cụ thể → dạng chuẩn và chứng nhận | Giải thích vì sao bài toán là LP và là lồi; đề xuất thêm |
-| 4 / `S02-04` | Nghiệm của bài toán pha trộn | Tính ví dụ hai biến, vẽ miền khả thi và các đường cùng chi phí; đọc nghiệm thành lượng từng nguyên liệu và tổng chi phí. Đổi một đơn giá hoặc yêu cầu số lượng nguyên để kiểm tra hiểu | Dạng chuẩn → nghiệm trong ngữ cảnh ban đầu | Giải thích nghiệm, nhận ra giả thiết biến liên tục; đề xuất thêm |
-| 5 / `S02-05` | Hồi quy với sai số tuyệt đối | Dữ liệu $X,y$, tham số $w$, dự đoán $Xw$, phần dư $r=Xw-y$; nhu cầu khớp dữ liệu theo tổng độ lệch tuyệt đối. Mô hình trực tiếp $\min_w\sum_i\lvert r_i\rvert$ đã lồi nhưng chưa được viết thành LP | LP đã có sẵn → mô hình cần cải dạng | Phân biệt dự đoán tuyến tính với dạng của bài toán tối ưu; đề xuất thêm |
-| 6 / `S02-06` | Biến phụ cho giá trị tuyệt đối | Bắt đầu với một phần dư; dùng $t_i\ge r_i$, $t_i\ge-r_i$. Ghép thành $\min_{w,t}\sum_i t_i$ với $-t\le Xw-y\le t$ | Trị tuyệt đối → mục tiêu và ràng buộc affine | Tự viết LP bằng biến phụ; đề xuất thêm |
-| 7 / `S02-07` | Tính tương đương của phép cải dạng | Hai chiều: từ $w$ chọn $t_i=\lvert r_i\rvert$; từ cặp khả thi suy ra $\sum_i t_i\ge\sum_i\lvert r_i\rvert$. Chứng nhận LP lồi, giải thích vì sao tại nghiệm tối ưu mọi $t_i=\lvert r_i\rvert$ và lấy lại $w$ để dự đoán | Phép biến đổi → bảo đảm không thay đổi bài toán | Chứng minh tương đương thay vì chỉ nhận dạng công thức; đề xuất thêm |
-| 8 / `S02-08` | Nghiệm hồi quy với sai số tuyệt đối | Dùng một bộ dữ liệu nhỏ; tính nghiệm, vẽ dữ liệu và đường dự đoán, kiểm từng phần dư và tổng sai số. Diễn giải $w$ và $t$; làm rõ $t$ là biến phụ, không phải tham số dùng để dự đoán | Chứng minh → kiểm tra số và diễn giải | Kiểm lại nghiệm của LP bằng mục tiêu gốc; đề xuất thêm |
-| 9 / `S02-09` | Hồi quy với sai số lớn nhất | Đổi nhu cầu sang giảm sai số tệ nhất; dùng một biến $t$ với $-t\mathbf{1}\le Xw-y\le t\mathbf{1}$, mục tiêu $\min t$. Kiểm quan hệ $t\ge\max_i\lvert r_i\rvert$, vẽ dải sai số trên cùng dữ liệu và so sánh với tổng sai số tuyệt đối | Cùng dữ liệu, khác tiêu chí → một LP khác | Tự chuyển giao kỹ thuật biến phụ; đề xuất thêm |
-| 10 / `S02-10` | Nhận dạng quy hoạch tuyến tính | Bài tập phân loại ba biến thể: thay đổi ràng buộc affine, thêm điều kiện nguyên, đổi mục tiêu thành tổng bình phương sai số. Yêu cầu giải thích dạng bài toán và tính lồi; trường hợp cuối nối cùng bài hồi quy sang phần quy hoạch bậc hai | Các ví dụ → lựa chọn dạng mô hình và giới hạn | Bài tập phân loại kèm lập luận; đề xuất thêm |
+| 2 / `S02-01b` | Pha trộn cho một vườn ươm | Xác lập người ra quyết định, luống cây cần dinh dưỡng, đánh đổi giá và hàm lượng; tránh mở ví dụ bằng ký hiệu | Tiêu đề phần → dữ liệu của mô hình | Đề xuất cách mua ban đầu; Thêm theo yêu cầu câu chuyện, tách khỏi mô hình để giữ khả năng đọc |
+| 3 / `S02-02` | Mô hình pha trộn | Nêu quyết định cần chọn, bảng chi phí và hàm lượng; xác định dữ liệu, lượng nguyên liệu, mục tiêu, ràng buộc, đơn vị, đầu ra. So sánh cách chọn nguyên liệu rẻ nhất với yêu cầu đủ chỉ tiêu | Nhu cầu thực tế → các biểu thức affine | Mô hình rõ nghĩa; Thêm: đã triển khai |
+| 4 / `S02-03` | Dạng phổ biến của quy hoạch tuyến tính | Nhận ra các biểu thức affine; đưa mô hình về $\min c^Tx$ với $Gx\le h$, $Ax=b$. Nhắc lại ký hiệu từ phần 1; các bước đổi dấu và kích thước chi tiết để notes. Chứng nhận ngắn: mục tiêu affine, tập khả thi là giao các nửa không gian/siêu phẳng lồi | Mô hình cụ thể → dạng chuẩn và chứng nhận | Giải thích vì sao bài toán là LP và là lồi; Thêm: đã triển khai |
+| 5 / `S02-03b` | Dạng chuẩn tắc của quy hoạch tuyến tính | Phân biệt canonical với standard và giải thích chuyển đẳng thức thành hai bất đẳng thức; biến phụ/tách biến trong ghi chú | Dạng phổ biến → biểu diễn thống nhất → kiểm nghiệm mô hình | Chuyển đổi đúng dấu và khôi phục biến gốc; Thêm theo yêu cầu người dùng |
+| 6 / `S02-04` | Nghiệm của bài toán pha trộn | Tính ví dụ hai biến, vẽ miền khả thi và các đường cùng chi phí; đọc nghiệm thành lượng từng nguyên liệu và tổng chi phí. Đổi một đơn giá hoặc yêu cầu số lượng nguyên để kiểm tra hiểu | Dạng chuẩn → nghiệm trong ngữ cảnh ban đầu | Giải thích nghiệm, nhận ra giả thiết biến liên tục; Thêm: đã triển khai |
+| 7 / `S02-05` | Hồi quy với sai số tuyệt đối | Dữ liệu $X,y$, tham số $w$, dự đoán $Xw$, phần dư $r=Xw-y$; nhu cầu khớp dữ liệu theo tổng độ lệch tuyệt đối. Mô hình trực tiếp $\min_w\sum_i\lvert r_i\rvert$ đã lồi nhưng chưa được viết thành LP | LP đã có sẵn → mô hình cần cải dạng | Phân biệt dự đoán tuyến tính với dạng của bài toán tối ưu; Thêm: đã triển khai |
+| 8 / `S02-06` | Biến phụ cho giá trị tuyệt đối | Bắt đầu với một phần dư; dùng $t_i\ge r_i$, $t_i\ge-r_i$. Ghép thành $\min_{w,t}\sum_i t_i$ với $-t\le Xw-y\le t$ | Trị tuyệt đối → mục tiêu và ràng buộc affine | Tự viết LP bằng biến phụ; Thêm: đã triển khai |
+| 9 / `S02-07` | Tính tương đương của phép cải dạng | Hai chiều: từ $w$ chọn $t_i=\lvert r_i\rvert$; từ cặp khả thi suy ra $\sum_i t_i\ge\sum_i\lvert r_i\rvert$. Chứng nhận LP lồi, giải thích vì sao tại nghiệm tối ưu mọi $t_i=\lvert r_i\rvert$ và lấy lại $w$ để dự đoán | Phép biến đổi → bảo đảm không thay đổi bài toán | Chứng minh tương đương thay vì chỉ nhận dạng công thức; Thêm: đã triển khai |
+| 10 / `S02-08` | Nghiệm hồi quy với sai số tuyệt đối | Dùng một bộ dữ liệu nhỏ; tính nghiệm, vẽ dữ liệu và đường dự đoán, kiểm từng phần dư và tổng sai số. Diễn giải $w$ và $t$; làm rõ $t$ là biến phụ, không phải tham số dùng để dự đoán | Chứng minh → kiểm tra số và diễn giải | Kiểm lại nghiệm của LP bằng mục tiêu gốc; Thêm: đã triển khai |
+| 11 / `S02-09` | Hồi quy với sai số lớn nhất | Đổi nhu cầu sang giảm sai số tệ nhất; dùng một biến $t$ với $-t\mathbf{1}\le Xw-y\le t\mathbf{1}$, mục tiêu $\min t$. Kiểm quan hệ $t\ge\max_i\lvert r_i\rvert$, vẽ dải sai số trên cùng dữ liệu và so sánh với tổng sai số tuyệt đối | Cùng dữ liệu, khác tiêu chí → một LP khác | Tự chuyển giao kỹ thuật biến phụ; Thêm: đã triển khai |
+| 12 / `S02-10` | Nhận dạng quy hoạch tuyến tính | Bài tập phân loại ba biến thể: thay đổi ràng buộc affine, thêm điều kiện nguyên, đổi mục tiêu thành tổng bình phương sai số. Yêu cầu giải thích dạng bài toán và tính lồi; trường hợp cuối nối cùng bài hồi quy sang phần quy hoạch bậc hai | Các ví dụ → lựa chọn dạng mô hình và giới hạn | Bài tập phân loại kèm lập luận; Thêm: đã triển khai |
 
 ### Ánh xạ chín bước và hành trình học
 
 | Ví dụ | Bước 1–3: nhu cầu, mô hình, cách trực tiếp | Bước 4–6: nhận dạng, biến đổi, chứng nhận | Bước 7–8: số, hình, khái quát | Bước 9: biến thể |
 |---|---|---|---|---|
-| Pha trộn | `S02-02` | `S02-03`; không cần biến phụ vì mô hình đã tuyến tính, chỉ chuẩn hóa dấu và ký hiệu | `S02-04`; dạng chung ở `S02-03` là cầu nối ký hiệu | `S02-04`, nhắc lại ở `S02-10` |
+| Pha trộn | `S02-01b`–`S02-02` | `S02-03`–`S02-03b`; không cần biến phụ vì mô hình đã tuyến tính, chỉ chuẩn hóa dấu và ký hiệu | `S02-04`; dạng chung ở `S02-03` là cầu nối ký hiệu | `S02-04`, nhắc lại ở `S02-10` |
 | Hồi quy sai số tuyệt đối | `S02-05` | `S02-06`–`S02-07` | `S02-08`; khái quát vào `S02-10` | `S02-09`–`S02-10` |
 | Hồi quy sai số lớn nhất | Nhu cầu thay đổi ở `S02-09`; dùng lại dữ liệu/biến từ ví dụ trước | Một biến chặn trên thay cho từng biến $t_i$; lập luận hai chiều tương tự, có kiểm tra cụ thể | Dùng lại dữ liệu ở `S02-08` để so sánh nghiệm và dải sai số | Sinh viên tự đề xuất ràng buộc giới hạn sai số trên từng điểm |
 
@@ -182,4 +184,13 @@ Nhu cầu đi trước dạng chuẩn. Trực quan pha trộn bắt đầu bằn
 - Dạng LP dùng hàm affine; hằng số ở mục tiêu có thể bỏ khi tìm nghiệm. Điều kiện $x\ge0$ là ràng buộc của mô hình hoặc một quy ước dạng chuẩn, không bắt buộc với mọi cách viết LP.
 - Không biến minh họa một nghiệm ở đỉnh thành khẳng định rằng mọi LP đều có nghiệm, có đỉnh hoặc có nghiệm duy nhất.
 - Không gọi thêm biến phụ là xấp xỉ: cần chứng minh giá trị tối ưu và cách khôi phục nghiệm. Với sai số lớn nhất, không khẳng định mọi điểm dữ liệu đều đạt cùng sai số $t$.
-- Dữ liệu minh họa phải được tự tính và kiểm nghiệm khi soạn; chưa chọn số liệu hoặc tuyên bố kết quả thực nghiệm. Biến thể nguyên nhìn chung làm mất tính lồi; bình phương sai số chuẩn bị cho dạng bậc hai ở phần sau.
+- Dữ liệu minh họa phải được tự tính và kiểm nghiệm khi soạn; số liệu tự tạo, không phải kết quả thực nghiệm. Biến thể nguyên nhìn chung làm mất tính lồi; bình phương sai số chuẩn bị cho dạng bậc hai ở phần sau.
+
+### Quy ước, dữ liệu và nguồn đã chốt
+
+- Chuẩn tắc (canonical): mục tiêu cực tiểu, bất đẳng thức cùng chiều lớn hơn hoặc bằng; biến tự do về dấu. Dạng chuẩn (standard): đẳng thức và biến không âm. Quy ước canonical đối chiếu phần Definitions của Grant Wang, ghi chép bài giảng David Karger, MIT 6.854 Lecture 8 (2003-10-01): https://courses.csail.mit.edu/6.854/18/Scribe/s11-lp/s11-lp.html. Nguồn bổ sung lấp khoảng trống tên canonical mà Boyd §4.3 không dùng cho dạng standard. Danh mục, quyền và giới hạn sử dụng ở `sources/MIT/README.md`; không tải PDF mới, không dùng hình nguồn.
+- Dữ liệu vườn ươm: giá 3 và 2 (10 nghìn đồng/kg); nitơ 2 và 1 g/kg; phốtpho 1 và 2 g/kg; cần ít nhất 4 g nitơ và 5 g phốtpho. Nghiệm (1,2), chi phí 7; chứng minh cận dưới bằng tổ hợp hai bất đẳng thức với hệ số 4/3 và 1/3 trong ghi chú. Đổi giá loại I lên 4 tạo cả đoạn nghiệm tối ưu từ (0,4) đến (1,2).
+- Hồi quy: u=(-2,-1,0,1,2), y=(-2,-1,3,1,2), w=(a,b), hàng i của X là (u_i,1), phần dư r=Xw-y. Tổng sai số tuyệt đối: w=(1,0), r=(0,0,-3,0,0), giá trị 3. Sai số lớn nhất: w=(1,1.5), r=(1.5,1.5,-1.5,1.5,1.5), giá trị 1.5; tổng sai số tuyệt đối 7.5. Mỗi kết quả có cận dưới giải tích trong ghi chú và được kiểm lại bằng bộ giải LP HiGHS qua SciPy.
+- CLO1 và LLO3 là đối chiếu trực tiếp với buổi 2 trong đề cương; liên hệ CLO2/CLO4 về mô hình học máy và nhận dạng tối ưu là ánh xạ thiết kế của nhóm soạn, không phải trích nguyên ánh xạ LLO của đề cương. Không suy diễn thời lượng riêng cho phần LP.
+- Năm SVG tự tạo: lp-mixture.svg, lp-data.svg, lp-epigraph.svg, lp-lad.svg, lp-minimax.svg. Không dùng tài sản raster. Đơn vị g và kg của câu chuyện không truyền sang dữ liệu hồi quy đã chuẩn hóa.
+- Rà ghi chú học tập và bài tập cũ: hai tệp vẫn thuộc bản trước (mô hình X=I2, y=(2,1), các chủ đề sau chưa xây dựng lại). Giữ chúng làm tham khảo, tiếp tục ngừng liên kết trên chỉ mục; không công bố như tài liệu đã đồng bộ với phần mới. Trong phạm vi hiện tại, lời giải và biến thể của phần LP nằm trong ghi chú diễn giả.

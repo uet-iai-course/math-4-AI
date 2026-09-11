@@ -87,3 +87,20 @@
   line-height: 1.2;
   margin-top: .15em;
 }
+
+/* Quy hoạch tuyến tính: cùng hệ chữ, màu và khoảng cách với phần mở đầu. */
+.reveal .lp-slide .lp-plot {
+  display: block;
+  width: 100%;
+  height: 340px;
+  margin: 0;
+  object-fit: contain;
+}
+.reveal .lp-slide p { margin: .35em 0; }
+.reveal .lp-slide .grid2 { align-items: center; }
+.reveal .lp-slide .lp-data { font-size: .9em; width: 100%; }
+.reveal .lp-slide .lp-data th,
+.reveal .lp-slide .lp-data td { padding: .18em .3em; }
+.reveal .lp-slide .card { align-self: stretch; }
+.reveal .lp-slide .card + .card { margin-top: 0; }
+.reveal #lp-nhan-dang > .card { margin-top: .8em; }
