@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" role="img" aria-labelledby="t d"><title id="t">Hộp kín có ba kích thước cần chọn</title><desc id="d">Sơ đồ hộp chữ nhật kín, ba cạnh a,b,c và thể tích8 dm3. Độ dày và mép ghép được bỏ qua.</desc><rect width="640" height="430" fill="white"/>
+<g stroke="#2F3E7A" stroke-width="3" fill="#EEF1F8"><path d="M120 140 L340 140 L340 330 L120 330 Z"/><path d="M120 140 L250 70 L470 70 L340 140 Z" fill="#FAF4ED"/><path d="M340 140 L470 70 L470 260 L340 330 Z" fill="#E0E6F4"/></g>
+<g stroke="#777" stroke-width="2" stroke-dasharray="6 5" fill="none"><path d="M120 330 L250 260 L470 260 M250 260 L250 70"/></g>
+<g font-family="sans-serif" font-size="28" fill="#2F3E7A"><text x="215" y="375">a</text><text x="420" y="325">b</text><text x="76" y="250">c</text><text x="155" y="420">V = 8 dm³</text></g></svg>

@@ -7,12 +7,12 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 1. Mô hình hóa và chứng nhận bài toán tối ưu lồi.
 2. Quy hoạch tuyến tính.
 3. Quy hoạch bậc hai.
-4. Quy hoạch hình học và phép đổi biến làm lộ tính lồi.
+4. Quy hoạch hình học.
 5. Tối ưu nón và quy hoạch nửa xác định: ràng buộc trên chuẩn và ma trận.
 6. Xấp xỉ lồi và nới lỏng bài toán không lồi.
 7. Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm.
 
-Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Phần 2 có 12 trang và phần 3 có 14 trang đã triển khai; các phần 4–7 mỗi phần có một trang tiêu đề. Tổng cộng 37 trang trong bảy section ngoài; đây không phải số trang cuối cùng.
+Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Phần 2 có 12 trang và phần 3 có 14 trang đã triển khai; phần 4 có 16 trang và các phần 5–7 mỗi phần có một trang tiêu đề. Tổng cộng 52 trang trong bảy section ngoài; đây không phải số trang cuối cùng.
 
 ## Phần 1 hiện tại
 
@@ -53,7 +53,7 @@ Giữ kế hoạch 10 trang đã duyệt, bổ sung trang chuẩn tắc theo yê
 
 ## Phần 3 đã triển khai — Quy hoạch bậc hai
 
-Phần này có 14 trang, bổ sung chính quy hóa cho cả hai tiêu chí sai số theo yêu cầu. Mô hình chuẩn một có biến phụ dùng lại kết quả của phần 2; không tạo một phần riêng chỉ để lặp kỹ thuật. Toàn bài 37 trang trong bảy phần.
+Phần này có 14 trang, bổ sung chính quy hóa cho cả hai tiêu chí sai số theo yêu cầu. Mô hình chuẩn một có biến phụ dùng lại kết quả của phần 2; không tạo một phần riêng chỉ để lặp kỹ thuật. Toàn bài 52 trang trong bảy phần.
 
 1. Quy hoạch bậc hai — Định danh lớp bài toán; nhận câu hỏi đổi tiêu chí từ phần 2.
 2. Hồi quy với tổng bình phương sai số — Thiết lập nhu cầu dự đoán và hai ứng viên trước khi khai triển mục tiêu.
@@ -70,4 +70,28 @@ Phần này có 14 trang, bổ sung chính quy hóa cho cả hai tiêu chí sai 
 13. Quy hoạch bậc hai với ràng buộc bậc hai — Khái quát QCQP từ ràng buộc chuẩn; chứng nhận cả mục tiêu và các bất đẳng thức.
 14. Nhận dạng và chứng nhận bài toán bậc hai — Kiểm tra chuyển giao khi thêm ràng buộc, đổi chiều bất đẳng thức hoặc đặt hệ số phạt bằng 0.
 
-Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số để minh họa. Chính quy hóa chuẩn một khác chính quy hóa bằng bình phương chuẩn hai. Nguồn, chứng nhận hai chiều, giới hạn và ánh xạ từng ví dụ nằm trong [storyboard.md](storyboard.md). Các phần 4–7 chưa triển khai nội dung; không phân bổ thời lượng mới.
+Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số để minh họa. Chính quy hóa chuẩn một khác chính quy hóa bằng bình phương chuẩn hai. Nguồn, chứng nhận hai chiều, giới hạn và ánh xạ từng ví dụ nằm trong [storyboard.md](storyboard.md). Các phần 5–7 chưa triển khai nội dung; không phân bổ thời lượng mới.
+
+
+## Phần 4 đã triển khai — Quy hoạch hình học
+
+Đã triển khai 16 trang, gồm tiêu đề và 15 trang nội dung. Giữ nhu cầu hộp có thể tích cho trước, dùng ít vật liệu nhất; thêm bài phân bổ công suất cho hai đường truyền. Tách phép đổi biến, mô hình lồi và nghiệm để sinh viên kiểm tra từng bước.
+
+1. Quy hoạch hình học.
+2. Hộp đựng và chi phí vật liệu.
+3. Mô hình thiết kế hộp.
+4. Đơn thức và tổng đơn thức dương.
+5. Dạng chuẩn của quy hoạch hình học.
+6. Cải dạng về quy hoạch hình học.
+7. Phép đổi biến logarit.
+8. Dạng lồi của quy hoạch hình học.
+9. Cải dạng bài toán thiết kế hộp.
+10. Kích thước hộp tối ưu.
+11. Phân bổ công suất cho hai đường truyền.
+12. Mô hình chất lượng đường truyền.
+13. Cải dạng bài phân bổ công suất.
+14. Dạng lồi của bài phân bổ công suất.
+15. Nghiệm phân bổ công suất.
+16. Nhận dạng và giới hạn cải dạng.
+
+Dạng tổng quát có vế phải đơn thức được chuẩn hóa bằng phép chia; tối đa hóa đơn thức chuyển thành tối thiểu hóa nghịch đảo. Đổi biến logarit sau đó tạo mô hình lồi tương đương. Phải phân biệt ba bước này, chứng nhận tính lồi và khôi phục đại lượng ban đầu. Nguồn chính: Boyd–Vandenberghe, §4.5; bối cảnh công suất phỏng theo Bài tập 4.20, còn dữ liệu và cải dạng GP tự xây dựng. Không phân bổ thời lượng hoặc triển khai phần 5–7 trong lượt này.

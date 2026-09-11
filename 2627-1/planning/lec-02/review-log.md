@@ -716,3 +716,63 @@ Các báo cáo dưới đây nằm tại /tmp/lec02-regularization trong phiên 
 | review-math | d8f4ad0434e53e671d9dc7a74335519e7f57ae1e15b5ae9b648ba53591289d3c |
 | review-teaching | 67bd58c33d614d3d652eb6ef1ed266c4b44096ab2d2eb7dfe95ccdbb8dd3f347 |
 | review-narrative | 7a5369e3eb502c0d1a4bcfea5d9e10b3dcd40eff39e3b72f7e7fc88dbaf1c070 |
+
+
+## 32. Triển khai phần Quy hoạch hình học ngày 2026-09-11
+
+- Theo mục tiêu mới, sửa tiêu đề thành **Quy hoạch hình học** và lập kế hoạch trước khi soạn. Triển khai 16 trang: câu chuyện/mô hình hộp; đơn thức và tổng đơn thức dương; dạng chuẩn; cải dạng mô hình tổng quát; phép đổi logarit; dạng lồi và chứng nhận; cải dạng/nghiệm hộp; câu chuyện/mô hình công suất; dạng GP/dạng lồi/nghiệm công suất; giới hạn cải dạng. Toàn bài hiện có 52 trang/bảy phần.
+- Kế hoạch reader đề xuất 13 trang; điều phối chọn 16 để tách phép cải dạng, mô hình lồi và nghiệm của hai ví dụ. Giữ nhu cầu hộp thể tích cho trước dùng ít vật liệu nhất đã có trong storyboard, không đổi sang mục tiêu thể tích lớn nhất. Các phần 1–3 và 5–7 được kiểm byte-identical so với HEAD trước lượt này. Không thêm KKT, thuật toán, thời lượng hoặc giả định đây là thực nghiệm AI.
+- Đã đọc lại đề cương DOCX chính thức: buổi 2, mục 3.5 quy hoạch hình học, LLO3/CLO1, đánh giá bài tập cá nhân/nhóm. Nguồn nội dung: Boyd–Vandenberghe (2004), sources/bv_cvxbook.pdf, §4.5.1–3, tr.160–163; §3.1.5 cho chứng nhận logarit tổng hàm mũ. Bài tập 4.20 tr.196 chỉ cung cấp bối cảnh max-min SINR; yêu cầu trong sách là dạng tuyến tính phân thức tổng quát. Dữ liệu và phép cải dạng GP là ví dụ tự xây dựng. Không tải nguồn MIT mới.
+- Bài hộp: $S=2(ab+ac+bc)$, $abc=8$, biến dương theo đơn vị chiều dài 1 dm. Hai ứng viên cho 28 và 24 dm². Miền gốc không lồi; Hessian của $S$ có trị riêng $4,-2,-2$. Dạng log có ràng buộc affine và mục tiêu logarit tổng mũ lồi; nghiệm $(\log2,\log2,\log2)$ được khôi phục thành hộp cạnh 2 dm. Chứng nhận độc lập bằng bất đẳng thức trung bình cộng–trung bình nhân; giá trị mục tiêu đã đổi là $\log24$, diện tích thật là 24.
+- Bài công suất: hệ số chính bằng 1, hệ số chéo $G_{12}=1/4$, $G_{21}=3/2$, nhiễu nền bằng 1, ngân sách 6. Chia đều $(3,3)$ cho chất lượng nhỏ nhất $6/11$; nghiệm $(2,4)$ cho hai tỷ số cùng 1. Biến ngưỡng $t$, nghịch đảo mục tiêu và logarit được chứng minh theo hai chiều. Với $t>1$, hai công suất phải lớn hơn 2 và 4, trái ngân sách. Nghiệm log $(\log2,\log4,0)$, mục tiêu log bằng 0 và chất lượng gốc bằng 1.
+- Kiểm số bằng SLSQP ở biến log, ba điểm khởi tạo bài công suất; kiểm LP độc lập với ngưỡng cố định 1 và 1,001; đối chiếu phân số và cận dưới. Bốn SVG tự vẽ: gp-box.svg, gp-box-contour.svg, gp-wireless.svg, gp-power.svg. Có mô tả thay thế, nhãn, hướng truyền và nét phân biệt. Đồ thị công suất biểu diễn cách chia dùng hết ngân sách; ghi chú giải thích tại sao nhiễu nền dương khiến nghiệm dùng hết ngân sách.
+- Dàn ý/storyboard cập nhật từng trang, bản đồ chín bước cho hai ví dụ và sáu bước cho hai cụm, đầu vào/đầu ra và kết nối phần 3–4–5. Chỉ mục ghi đúng bốn phần đã soạn. Đã rà lại các mục GP trong lecture-note.md/exercises.md bản cũ: chúng vẫn dùng ví dụ cũ, tiếp tục ngừng liên kết trong thời gian xây dựng lại; không công bố là đã đồng bộ. Chứng minh và lời giải của phần mới nằm trong ghi chú diễn giả.
+
+### Quy trình tác tử và xử lý lỗi
+
+- Reader lập kế hoạch; reader phân tích nguồn; ba writer soạn các cụm tuần tự trong thư mục tạm; điều phối biên tập và kiểm toán; reviewer kiểm storyboard, sau đó năm reviewer độc lập; writer chỉnh sửa riêng thực hiện sáu thay thế đã duyệt; ba reviewer rà lại.
+- Lượt nguồn đầu lỗi “model exceeded the tool-call limit (4)”. Chạy lại cùng mô hình, sau đó theo yêu cầu người dùng tăng giới hạn các lượt đọc/rà soát lên 12 và writer lên 20. Không đổi mô hình. Editor thực hiện tới vòng 11 thành công, nên không còn bị giới hạn thấp của cấu hình gọi trước.
+- Reader phát hiện trích đoạn công suất bị lệch vì thao tác tách dòng tính cả ký tự ngắt trang. Điều phối sửa cách trích theo đầu/cuối Bài tập 4.20; reader xác nhận đúng nội dung. Không ghi nguồn công suất trước khi đã kiểm lại.
+- Lần tải thư viện khoa học trong sandbox lỗi DNS; chạy lại có quyền mạng để vẽ hình và kiểm số. Không gửi bí mật hoặc nội dung tệp môi trường tới worker.
+- Điều phối sửa bản nháp writer: bỏ đoạn dài và metadata trong notes; sửa phát biểu GP “luôn không lồi” thành “không nhất thiết lồi”; bỏ suy luận điểm yên ngựa không hợp lệ; sửa trị riêng Hessian; khai báo miền/kích thước/đơn vị; chuẩn hóa công thức và nguồn; bổ sung bài max-min trên mặt chiếu, chứng nhận tương đương và câu hỏi thực sự ở cuối phần. Không dùng lời tự khai của writer làm bằng chứng kiểm định.
+
+### Hợp nhất năm báo cáo và rà lại
+
+| Vai | Kết quả, quyết định và bằng chứng |
+|---|---|
+| Storyboard | Đạt 16 trang, lý do riêng, hai hành trình và ranh giới. Không đổi thứ tự sau kiểm định. |
+| Sinh viên | Chấp nhận đưa ví dụ đơn thức, hệ số thành số mũ, nghĩa mẫu số SINR và bước nhân/chia lên mặt chiếu. Không thêm câu hỏi tu từ hoặc tách ba quy tắc thành trang mới vì nhu cầu/ghi chú đã đủ. Rà lại đạt. |
+| Chuyên môn | Đạt dạng chuẩn, mô hình tổng quát có thể cải dạng, dạng lồi, điều kiện biến dương, nguồn và giới hạn. Không yêu cầu thêm mô hình AI ngoài phạm vi hai ví dụ được phép. |
+| Toán | Tính lại toàn bộ diện tích, Hessian, logarit tổng mũ, công suất, mục tiêu sau đổi và phản ví dụ miền; không phát hiện lỗi. Rà lại sáu thay đổi đạt. |
+| Giảng dạy | Đạt nhu cầu trước định nghĩa, ứng dụng đóng vòng và bài tập đã chuẩn bị. Giữ ngân sách dạng log tổng mũ không quá log6, vì notes đã giải thích tương đương vế 0. Bác bỏ nhận xét phụ “x+y≥xy khả thi với mọi x,y>0”: cặp (2,3) là phản ví dụ. |
+| Mạch kể chuyện | Đạt mạch tổng thể. Hai nghi vấn về abc/8=1 và câu nối phần5 đều đã có trong notes; không đưa trùng lên mặt. Rà lại toàn phần và hai trang mỗi phía xác nhận đủ. |
+| Chỉnh sửa | Writer riêng thực hiện đúng sáu cặp old/new đã duyệt; điều phối so sánh toàn văn để bảo đảm không có thay đổi khác. Sửa thêm điều kiện đầu bài tập: x,y>0 chỉ áp dụng câu1–2, câu3 xét cả biên0. |
+
+### Kiểm định cuối và Codex Slides
+
+- Chromium kiểm toàn bộ 52 trang ở 1600×900 và 390×844: không tràn khung, không lỗi KaTeX/JavaScript/tài nguyên; điều hướng bàn phím, hash và tải lại đúng trang đều đạt. Xem trực tiếp ảnh của cả 16 trang phần4 và các trang vừa chỉnh sửa. CSS bổ sung chỉ phạm vi gp-slide, theo phong cách rl-plan đang dùng.
+- Codex Slides: thêm 15 trang sau trang phân cách phần4, đồng bộ ảnh/tiêu đề/notes của trang34–49, thay Design File uploaded/storyboard.md. Đọc lại xác nhận52trang,16tiêu đề và notes khớp hoàn toàn, storyboard khớp toàn văn, các phần khác giữ nguyên thứ tự. Chromium kiểm canvas từng trang34–49, ảnh tải đầy đủ, không tài nguyên lỗi; đã xem ảnh canvas.
+- Browser tích hợp không được cung cấp trong phiên; dùng Chromium cục bộ theo phương án dự phòng, không tuyên bố đã kiểm trong Browser tích hợp. Sản phẩm chính vẫn là RevealJS và tài sản cục bộ trong kho.
+
+### Bằng chứng runtime OpenRouter
+
+Báo cáo ở /tmp/lec02-gp trong phiên này; đã kiểm requested_model và observed_model đều là z-ai/glm-5.3-flash, provider là OpenRouter. Không dùng lời tự khai trong nội dung báo cáo để xác nhận mô hình.
+
+| Báo cáo JSON | SHA-256 |
+|---|---|
+| plan | 50405a22ce15d0e90e0b85fe1da60e27e9d0b2c16eabb4689768f3b42c8f36c7 |
+| source-retry | 563c5bfa1d999f36615fa7c9bca4dcd4b5103ff3dfdf28881398b5e808186ebf |
+| source-wireless | 1758dd2177c5fc3b94abf7b390ab48f60a73dd0d740b96d81f49a83358830014 |
+| write-a | ae83fcff8c6b01db06735b3b6103232faccab8bd2673a64542c67a11dd9565f7 |
+| write-b | a8283746cc767a1c2586a48960599682747b04a7d3ca28ad91d5610ab066d723 |
+| write-c | dd1c2b065fb581ca1bcc9c318381af1c3bb1604d972b27c83d577da5c3be5e25 |
+| story-review | 37a2dda8454f3ca18e62a626ee93fa9d4db47e8cc85011a090a35393f9c7655c |
+| review-student | 8a8a944c2cc118153335c79a3c81dce8ba1cb1349268eb0f3450edadcb8abe13 |
+| review-expert | 33492dbb494b1549076d1f021ade3987e1213c19c443aff25793c30839a6d2f1 |
+| review-math | 9fc9540e35e46fd8fab37c24efddc9b13ebb0ca059dfb6f0e4ac743f48a48668 |
+| review-teaching | 447ca35c772e3519d0025ef8aaef912c8da1213bb1bd6b3521717d4fe3608f2c |
+| review-narrative | e434033291c57a4db747963bdfa90ded66d1fe0f2283effb4cad33e1fa8fc1ff |
+| editor | 895f1552674e4cb3d5ecf3b4a41a691bcc3449a8477c4849bd69500b94ec3c89 |
+| recheck-student | cd5ba2b79334bfd7966f70fb1c332e9fd48765dd978c1c9656d94e41de3f7361 |
+| recheck-math | 34dbda2063ce965fc163b8be27344d90e2e1a6d14bd74aa1c9c56ebd77b4eb61 |
+| recheck-narrative | 0274c67afc09cf1d0c89dca906fb6370c525818b58d5b34c623755033cd04b02 |

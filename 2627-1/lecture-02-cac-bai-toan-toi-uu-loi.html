@@ -793,11 +793,263 @@
 </section>
 
 <section id="section-4">
-      <section id="mach-4" data-slide-id="S04">
-        <h2><span class="text-light">4</span><br>Quy hoạch hình học và phép đổi biến làm lộ tính lồi</h2>
-      </section>
-    </section>
-    <section id="section-5">
+<section id="mach-4" data-slide-id="S04" class="gp-slide">
+  <h2><span class="text-light">4</span><br>Quy hoạch hình học</h2>
+  <aside class="notes">
+    <p>Ở các mô hình trước, ta nhận ra tính lồi theo biến ban đầu hoặc thêm biến phụ. Một số bài toán có tích và tỷ số của các đại lượng dương cần thêm phép đổi biến. Hai ví dụ thiết kế hộp và phân bổ công suất sẽ cho thấy khi nào phép đổi biến logarit tạo ra bài toán lồi tương đương.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.5, tr. 160–163.</p>
+  </aside>
+</section>
+<section id="gp-hop-cau-chuyen" data-slide-id="S04-01" class="gp-slide">
+  <h2>Hộp đựng và chi phí vật liệu</h2>
+  <div class="grid2">
+    <div>
+      <p>Cần thiết kế hộp kín có dung tích $8\,\mathrm{dm}^3$.</p>
+      <p>Chọn chiều dài, chiều rộng và chiều cao để dùng ít vật liệu nhất.</p>
+      <div class="box"><p>Cùng một vật liệu cho mọi mặt: chi phí tỉ lệ với diện tích bề mặt.</p></div>
+    </div>
+    <figure class="example-plot"><img class="gp-plot" src="img/lec-02/gp-box.svg" alt="Hộp kín có ba kích thước a, b, c cần chọn và dung tích 8 dm³"></figure>
+  </div>
+  <aside class="notes">
+    <p>Dung tích là yêu cầu cho trước; hình dạng hộp là quyết định thiết kế. Hai hộp chứa cùng lượng hàng có thể cần lượng vật liệu khác nhau. Ta bỏ qua độ dày, mép ghép và phần vật liệu hao hụt khi cắt; giá trên một đơn vị diện tích giống nhau ở cả sáu mặt.</p>
+    <p>Lấy 1 dm làm đơn vị chiều dài. Các ký hiệu $a,b,c$ sau đây là giá trị số của kích thước theo đơn vị đó; nhờ vậy có thể lấy logarit của các số không thứ nguyên. Đầu ra cần báo cáo vẫn là ba kích thước thật theo dm và diện tích theo dm². Ví dụ và hình tự xây dựng theo khung quy hoạch hình học trong Boyd–Vandenberghe (2004), §4.5.</p>
+  </aside>
+</section>
+<section id="gp-hop-mo-hinh" data-slide-id="S04-02" class="gp-slide">
+  <h2>Mô hình thiết kế hộp</h2>
+  <p>Biến quyết định: $a,b,c>0$, theo đơn vị chiều dài $1\,\mathrm{dm}$.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{a,b,c>0}\;&S(a,b,c)=2(ab+ac+bc)\\
+    \text{với}\quad&abc=8.
+  \end{aligned}$$</div>
+  <div class="grid2">
+    <div class="card"><p>Hộp $(1,2,4)$: $S=28$.</p></div>
+    <div class="card"><p>Hộp $(2,2,2)$: $S=24$.</p></div>
+  </div>
+  <div class="box"><p>Tích kích thước xuất hiện ở cả mục tiêu và ràng buộc.</p></div>
+  <aside class="notes">
+    <p>Hai ứng viên đều có thể tích 8 dm³; diện tích tương ứng là 28 và 24 dm². Thử vài bộ kích thước gợi ý hộp cân đối hơn tiết kiệm vật liệu, nhưng chưa chứng minh được tối ưu.</p>
+    <p>Mô hình này chưa là bài toán lồi theo biến gốc. Hai điểm $(1,2,4)$ và $(4,2,1)$ cùng khả thi; trung điểm $(5/2,2,5/2)$ có tích $25/2\ne8$, nên tập khả thi không lồi. Hàm $S$ cũng không lồi: Hessian có trị riêng $4,-2,-2$. Đây là kiểm tra Hessian của hàm trên miền dương, không phải khẳng định có điểm dừng hoặc điểm yên ngựa khả thi.</p>
+    <p>Ta sẽ giữ yêu cầu thể tích và chi phí này, thay cách biểu diễn tích kích thước. Nguồn: mô hình tự xây dựng theo Boyd–Vandenberghe (2004), §4.5.</p>
+  </aside>
+</section>
+<section id="gp-don-thuc" data-slide-id="S04-03" class="gp-slide">
+  <h2>Đơn thức và tổng đơn thức dương</h2>
+  <p>Miền $x\in\mathbb R_{++}^n$: mọi thành phần $x_i>0$.</p>
+  <div class="math-large">$$m(x)=c\prod_{i=1}^n x_i^{\alpha_i},
+  \qquad c>0,\quad\alpha_i\in\mathbb R.$$</div>
+  <p><strong>Ví dụ:</strong> $2x_1^{-1}x_2^{1/2}$ là một đơn thức.</p>
+  <div class="math-large">$$f(x)=\sum_{k=1}^{K}c_k\prod_{i=1}^n x_i^{\alpha_{ik}},
+  \qquad c_k>0.$$</div>
+  <p><strong>Tổng đơn thức dương (posynomial):</strong> tổng hữu hạn các đơn thức.</p>
+  <aside class="notes">
+    <p>Định nghĩa này mở rộng đơn thức đại số quen thuộc: hệ số dương, số mũ thực, biến dương. Ví dụ $2x_1^{-1}x_2^{1/2}$ là đơn thức; $x_1+2x_2/x_1$ là tổng hai đơn thức dương. Ở đây $n,K$ là số nguyên dương, $c_k$ và $\alpha_{ik}$ là dữ liệu.</p>
+    <p>Trong mô hình hộp, $abc/8$ là đơn thức; $2ab+2ac+2bc$ là tổng ba đơn thức dương. Tổng đơn thức dương không có nghĩa là mọi đa thức nhận giá trị dương: các hệ số trong biểu diễn phải dương. Các số hạng có hệ số 0 được bỏ đi.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.5.1, tr. 160–161. Từ nay dùng tên “tổng đơn thức dương” nhất quán.</p>
+  </aside>
+</section>
+<section id="gp-dang-chuan" data-slide-id="S04-04" class="gp-slide">
+  <h2>Dạng chuẩn của quy hoạch hình học</h2>
+  <div class="math-large">$$\begin{aligned}
+    \min_{x\in\mathbb R_{++}^n}\;&f_0(x)\\
+    \text{với}\quad&f_i(x)\le1,\quad i=1,\ldots,m,\\
+    &h_j(x)=1,\quad j=1,\ldots,p.
+  \end{aligned}$$</div>
+  <p>$f_0,\ldots,f_m$: tổng đơn thức dương; $h_1,\ldots,h_p$: đơn thức.</p>
+  <div class="box"><p>Dạng chuẩn này không nhất thiết lồi theo biến $x$.</p></div>
+  <aside class="notes">
+    <p>Đây là quy hoạch hình học (GP). Các hàm đã biết là dữ liệu; $x$ là biến quyết định. Miền dương là điều kiện thiết yếu. Số bất đẳng thức $m$ hoặc số đẳng thức $p$ có thể bằng 0.</p>
+    <p>Hộp đã có mục tiêu đúng lớp; chuẩn hóa đẳng thức thành $abc/8=1$ là đủ đưa về dạng GP. Điều này chưa chứng nhận mô hình lồi theo kích thước. Một số GP vốn đã lồi, nhưng dạng chuẩn GP nói chung cần xét phép đổi biến.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.5.2, công thức (4.43), tr. 161.</p>
+  </aside>
+</section>
+
+<section id="gp-cai-dang-chuan" data-slide-id="S04-05" class="gp-slide">
+  <h2>Cải dạng về quy hoạch hình học</h2>
+  <p>$f$: tổng đơn thức dương; $g,h,h_1,h_2$: đơn thức.</p>
+  <div class="math-large">$$\begin{aligned}
+    f(x)\le g(x)&\iff f(x)/g(x)\le1,\\
+    h_1(x)=h_2(x)&\iff h_1(x)/h_2(x)=1.
+  \end{aligned}$$</div>
+  <div class="math-large">$$\max_x h(x)\quad\longleftrightarrow\quad\min_x h(x)^{-1}.$$</div>
+  <div class="box"><p>Chia cho một đơn thức dương giữ đúng cấu trúc cần có.</p></div>
+  <aside class="notes">
+    <p>Mọi biến vẫn thuộc $\mathbb R_{++}^n$. Do mẫu số dương, chia không đổi chiều bất đẳng thức; phép biến đổi ngược là nhân lại. Chia tổng đơn thức dương cho đơn thức vẫn cho tổng đơn thức dương. Thương và nghịch đảo của các đơn thức vẫn là đơn thức.</p>
+    <p>Hàm nghịch đảo giảm chặt trên số dương, nên điểm tối đa hóa $h$ chính là điểm tối thiểu hóa $1/h$ trên cùng miền. Giá trị hai mục tiêu là nghịch đảo nhau, không phải bằng nhau. Quy tắc này không tự áp dụng cho cực đại một tổng đơn thức dương.</p>
+    <p>Với hộp, $abc=8$ thành $abc/8=1$. Một giới hạn trên $f(x)\le M$, $M>0$, thành $f(x)/M\le1$. Ràng buộc cận dưới đơn thức $h(x)\ge L>0$ thành $L/h(x)\le1$.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.5.2, tr. 161. Từ mô hình tổng quát dễ nhận dạng, các quy tắc trên đưa về đúng dạng chuẩn.</p>
+  </aside>
+</section>
+<section id="gp-doi-bien" data-slide-id="S04-06" class="gp-slide">
+  <h2>Phép đổi biến logarit</h2>
+  <p>Đặt $z_i=\log x_i$, tức $x_i=e^{z_i}$, với $i=1,\ldots,n$.</p>
+  <div class="math-large">$$\log m(e^z)=\alpha^Tz+\log c.$$</div>
+  <div class="math-large">$$\log f(e^z)=\log\left(\sum_{k=1}^{K}e^{\alpha_k^Tz+\beta_k}\right),
+    \quad\beta_k=\log c_k.$$</div>
+  <div class="box"><p>$c_ke^{\alpha_k^Tz}=e^{\alpha_k^Tz+\log c_k}$: hệ số dương được đưa vào số mũ.</p></div>
+  <aside class="notes">
+    <p>Logarit ở đây là logarit tự nhiên; $e^z$ và $\log x$ áp dụng theo từng thành phần. Phép đổi là song ánh giữa $\mathbb R_{++}^n$ và $\mathbb R^n$. Dữ liệu $\alpha,\alpha_k\in\mathbb R^n$ là các vectơ số mũ đã có trong đơn thức; $\beta_k=\log c_k$.</p>
+    <p>Trước hết $m(e^z)=c\prod_i e^{\alpha_i z_i}=e^{\alpha^Tz+\log c}$. Lấy logarit mới thu được hàm affine. Với tổng đơn thức dương, $f(e^z)=\sum_k e^{\alpha_k^Tz+\beta_k}$; logarit của tổng không bằng tổng các logarit.</p>
+    <p>Do mọi hàm trong dạng chuẩn nhận giá trị dương, lấy logarit bảo toàn thứ tự: $f_i(x)\le1$ tương đương $\log f_i(x)\le0$, và $h_j(x)=1$ tương đương $\log h_j(x)=0$. Cần chứng minh riêng tính lồi của logarit tổng hàm mũ, không suy từ việc logarit là hàm tăng.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.5.3, tr. 162–163.</p>
+  </aside>
+</section>
+<section id="gp-dang-loi" data-slide-id="S04-07" class="gp-slide">
+  <h2>Dạng lồi của quy hoạch hình học</h2>
+  <p>$F_i(z)=\log f_i(e^z)$: logarit tổng hàm mũ của các biểu thức affine.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{z\in\mathbb R^n}\;&F_0(z)\\
+    \text{với}\quad&F_i(z)\le0,\quad i=1,\ldots,m,\\
+    &\gamma_j^Tz+\delta_j=0,\quad j=1,\ldots,p.
+  \end{aligned}$$</div>
+  <div class="box"><p>$F_i$ lồi; đẳng thức affine. Khôi phục $x^\star=e^{z^\star}$.</p></div>
+  <aside class="notes">
+    <p>Với $i=0,\ldots,m$, đặt $F_i(z)=\log\sum_{k=1}^{K_i}\exp(\alpha_{ik}^Tz+\beta_{ik})$, trong đó $\alpha_{ik}\in\mathbb R^n$ và $\beta_{ik}\in\mathbb R$ là dữ liệu. Nếu $h_j(x)=d_j\prod_\ell x_\ell^{\gamma_{j\ell}}$, $d_j>0$, thì $\delta_j=\log d_j$ và $\gamma_j\in\mathbb R^n$.</p>
+    <p>Chứng nhận tính lồi của một hàm $F$: đặt $\pi_k=e^{\alpha_k^Tz+\beta_k}/\sum_\ell e^{\alpha_\ell^Tz+\beta_\ell}$ và $\bar\alpha=\sum_k\pi_k\alpha_k$. Ta có $\nabla F=\bar\alpha$ và $$\nabla^2F=\sum_k\pi_k(\alpha_k-\bar\alpha)(\alpha_k-\bar\alpha)^T\succeq0.$$ Thật vậy, dạng toàn phương theo mọi $v$ là tổng $\sum_k\pi_k[v^T(\alpha_k-\bar\alpha)]^2\ge0$. Đây là chứng minh trực tiếp; logarit của một hàm lồi bất kỳ không nhất thiết lồi.</p>
+    <p>Mỗi điểm khả thi $x$ tạo điểm khả thi $z=\log x$ và ngược lại. Logarit tăng chặt nên thứ tự các giá trị mục tiêu được giữ nguyên. Vì vậy, nếu nghiệm tối ưu tồn tại, $x^\star=e^{z^\star}$ là nghiệm gốc và $f_0(x^\star)=e^{F_0(z^\star)}$. Không đồng nhất hai giá trị mục tiêu; cải dạng cũng không tự bảo đảm tồn tại nghiệm.</p>
+    <p>Nếu tất cả các hàm chỉ có một đơn thức thì các $F_i$ affine, nên dạng sau đổi biến là quy hoạch tuyến tính. Nguồn: Boyd–Vandenberghe (2004), §4.5.3, tr. 162–163; chứng nhận Hessian áp dụng lập luận logarit tổng hàm mũ ở §3.1.5.</p>
+  </aside>
+</section>
+<section id="gp-hop-log" data-slide-id="S04-08" class="gp-slide">
+  <h2>Cải dạng bài toán thiết kế hộp</h2>
+  <p>$A=\log a$, $B=\log b$, $C=\log c$.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{A,B,C\in\mathbb R}\;&\log\left(2e^{A+B}+2e^{A+C}+2e^{B+C}\right)\\
+    \text{với}\quad&A+B+C=\log8.
+  \end{aligned}$$</div>
+  <p>Mục tiêu lồi; yêu cầu thể tích trở thành một mặt phẳng.</p>
+  <div class="box"><p>Khôi phục kích thước: $(a,b,c)=(e^A,e^B,e^C)$.</p></div>
+  <aside class="notes">
+    <p>Bắt đầu từ dạng chuẩn $abc/8=1$. Thay biến và lấy logarit cho $A+B+C-\log8=0$. Mục tiêu diện tích sau thay biến là tổng ba hàm mũ; lấy logarit giữ nguyên điểm cực tiểu vì diện tích luôn dương. Mỗi số hạng có thể viết $e^{A+B+\log2}$ hoặc tương tự, nên hàm này thuộc lớp vừa chứng nhận.</p>
+    <p>Không thay yêu cầu thể tích hoặc xấp xỉ vật liệu trong bước cải dạng. Hai chiều khả thi theo phép đổi song ánh; diện tích thật theo dm² bằng hàm mũ của giá trị mục tiêu đã đổi. Bài toán không lồi theo kích thước đã được biểu diễn thành bài toán lồi theo logarit kích thước.</p>
+    <p>Nguồn: phép áp dụng tự xây dựng từ Boyd–Vandenberghe (2004), §4.5.3.</p>
+  </aside>
+</section>
+<section id="gp-hop-nghiem" data-slide-id="S04-09" class="gp-slide">
+  <h2>Kích thước hộp tối ưu</h2>
+  <div class="grid2">
+    <div>
+      <div class="math-large">$$A^\star=B^\star=C^\star=\log2.$$</div>
+      <p>Hộp lập phương cạnh $2\,\mathrm{dm}$.</p>
+      <div class="math-large">$$V=8\,\mathrm{dm}^3,\qquad S_{\min}=24\,\mathrm{dm}^2.$$</div>
+    </div>
+    <figure class="example-plot">
+      <img class="gp-plot" src="img/lec-02/gp-box-contour.svg" alt="Đồng mức logarit diện tích sau khử C, với nghiệm A=B=ln2">
+      <figcaption>Đồng mức $\log S$ sau khi khử $C$ bằng ràng buộc thể tích.</figcaption>
+    </figure>
+  </div>
+  <aside class="notes">
+    <p>Hình dùng $C=\log8-A-B$ để nhìn bài toán trên hai biến. Các đường đồng mức bao quanh điểm $A=B=\log2$; khi đó $C=\log2$. Chuyển về kích thước thật được hộp cạnh 2 dm. So với hộp $(1,2,4)$, cùng dung tích nhưng giảm diện tích từ 28 xuống 24 dm².</p>
+    <p>Kiểm nghiệm tối ưu độc lập bằng bất đẳng thức trung bình cộng–trung bình nhân: $$ab+ac+bc\ge3\sqrt[3]{(ab)(ac)(bc)}=3(abc)^{2/3}=12.$$ Dấu bằng khi $ab=ac=bc$; do các kích thước dương, điều này tương đương $a=b=c$. Vì thế $S\ge24$ và ứng viên lập phương đạt cận dưới.</p>
+    <p>Câu hỏi: nếu yêu cầu thể tích ít nhất 8 dm³ thì sao? Ràng buộc $abc\ge8$ viết thành $8/(abc)\le1$, vẫn là GP. Cận trên cho diện tích của một ứng viên và bất đẳng thức vừa dùng cho thấy nghiệm tối ưu vẫn đạt thể tích 8 và cạnh 2. Với thể tích cố định $V>0$ nói chung, cạnh tối ưu là $V^{1/3}$ và diện tích nhỏ nhất là $6V^{2/3}$ theo cùng hệ đơn vị.</p>
+    <p>Mô hình, số liệu và SVG tự xây dựng theo khung Boyd–Vandenberghe (2004), §4.5; kiểm số độc lập bằng bài toán lồi theo biến log.</p>
+  </aside>
+</section>
+
+<section id="gp-cong-suat-cau-chuyen" data-slide-id="S04-10" class="gp-slide">
+  <h2>Phân bổ công suất cho hai đường truyền</h2>
+  <div class="grid2">
+    <div>
+      <p>Hai đường truyền dùng chung một kênh vô tuyến.</p>
+      <p>Tăng công suất vừa tăng tín hiệu có ích, vừa gây nhiễu cho đường còn lại.</p>
+      <div class="box"><p>Chọn cách chia công suất để cải thiện đường truyền yếu nhất.</p></div>
+    </div>
+    <figure class="example-plot"><img class="gp-plot" src="img/lec-02/gp-wireless.svg" alt="Hai cặp phát–thu; hệ số chính bằng 1, nhiễu từ phát 2 đến thu 1 là 1/4, từ phát 1 đến thu 2 là 3/2"></figure>
+  </div>
+  <aside class="notes">
+    <p>Không thể đánh giá từng công suất tách khỏi công suất còn lại. Mục tiêu là tăng chất lượng của đường yếu hơn. Do mức gây nhiễu không đối xứng, chia đều ngân sách chưa chắc cho chất lượng cân bằng.</p>
+    <p>$G_{ij}$ trên hình là hệ số truyền từ bộ phát $j$ tới bộ thu $i$; đường liền là tín hiệu chính, đường đứt là nhiễu chéo. Nhiễu nền tại mỗi bộ thu bằng 1 và tổng công suất không quá 6, theo đơn vị công suất chuẩn hóa. Các hệ số và công suất đều liên tục trong mô hình này.</p>
+    <p>Bối cảnh phỏng theo Bài tập 4.20, Boyd–Vandenberghe (2004), tr. 196. Dữ liệu và hình tự xây dựng, không phải kết quả đo hoặc tham số thiết bị thực tế; phép cải dạng GP là suy diễn của ví dụ này.</p>
+  </aside>
+</section>
+<section id="gp-cong-suat-mo-hinh" data-slide-id="S04-11" class="gp-slide">
+  <h2>Mô hình chất lượng đường truyền</h2>
+  <p>Tỷ số tín hiệu trên nhiễu và tạp âm (SINR):</p><p>Mẫu số gồm tạp âm nền bằng 1 và nhiễu từ đường còn lại.</p>
+  <div class="math-large">$$S_1(p)=\frac{p_1}{1+p_2/4},\qquad
+    S_2(p)=\frac{p_2}{1+3p_1/2}.$$</div>
+  <div class="math-large">$$\begin{aligned}
+    \max_{p_1,p_2>0}\;&\min\{S_1(p),S_2(p)\}\\
+    \text{với}\quad&p_1+p_2\le6.
+  \end{aligned}$$</div>
+  <div class="box"><p>Chia đều $(3,3)$: chất lượng yếu nhất chỉ đạt $6/11$.</p></div>
+  <aside class="notes">
+    <p>Biến quyết định là hai công suất $p_1,p_2$; dữ liệu gồm $G=\begin{pmatrix}1&amp;1/4\\3/2&amp;1\end{pmatrix}$, nhiễu nền $\sigma_1=\sigma_2=1$ và ngân sách 6. Tử số là tín hiệu có ích; mẫu số gồm tạp âm nền và nhiễu từ bộ phát còn lại. SINR là tỷ số không thứ nguyên, dùng làm đại lượng chất lượng trong mô hình.</p>
+    <p>Chia đều cho $S_1=3/(1+3/4)=12/7$ và $S_2=3/(1+9/2)=6/11$. Tăng riêng công suất thứ hai có thể giúp đường thứ hai nhưng làm giảm chất lượng thứ nhất. Cần tối ưu giá trị nhỏ hơn của hai tỷ số.</p>
+    <p>Đầu ra cần báo cáo là cách chia công suất và chất lượng thấp nhất đạt được, không chỉ một giá trị của mục tiêu đã biến đổi. Nguồn bối cảnh: Boyd–Vandenberghe (2004), Bài tập 4.20, tr. 196; các giá trị số tự xây dựng.</p>
+  </aside>
+</section>
+<section id="gp-cong-suat-chuan" data-slide-id="S04-12" class="gp-slide">
+  <h2>Cải dạng bài phân bổ công suất</h2>
+  <p>Ngưỡng $t>0$: $t\le S_1(p)\iff t(1+p_2/4)\le p_1$; tương tự cho $S_2$.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{p_1,p_2,t>0}\;&t^{-1}\\
+    \text{với}\quad&tp_1^{-1}+\tfrac14tp_2p_1^{-1}\le1,\\
+    &tp_2^{-1}+\tfrac32tp_1p_2^{-1}\le1,\\
+    &(p_1+p_2)/6\le1.
+  \end{aligned}$$</div>
+  <div class="box"><p>Mục tiêu là đơn thức; mỗi bất đẳng thức là tổng đơn thức dương.</p></div>
+  <aside class="notes">
+    <p>Với mỗi $p$ khả thi, chọn $t=\min\{S_1(p),S_2(p)\}>0$. Ngược lại, một cặp $(p,t)$ khả thi có chất lượng nhỏ nhất của $p$ không dưới $t$. Tại tối ưu ngưỡng phải chạm chất lượng nhỏ nhất, nếu không có thể tăng $t$. Vì vậy cực đại theo ngưỡng và bài max-min có cùng chất lượng tối ưu; lấy khối $p$ để khôi phục phương án gốc.</p>
+    <p>Biến đổi cụ thể: $t\le p_1/(1+p_2/4)$ tương đương $t(1+p_2/4)\le p_1$, rồi chia cho $p_1>0$. Tương tự với đường thứ hai. Điều kiện dương bảo đảm mọi phép nhân/chia và khai triển giữ nguyên quan hệ khả thi.</p>
+    <p>Do $t>0$, tối đa hóa $t$ tương đương tối thiểu hóa nghịch đảo $t^{-1}$. Bài chuẩn GP có các biến $(p_1,p_2,t)$; cả ba bất đẳng thức đều đúng lớp. Giá trị tối ưu GP là nghịch đảo của chất lượng tối ưu.</p>
+    <p>Nếu mô hình cho phép $p_i=0$, trong ví dụ này vẫn có một phương án dương khả thi đạt chất lượng dương, còn công suất 0 ở một đường làm chất lượng nhỏ nhất bằng 0. Vì thế giới hạn về biến dương không bỏ nghiệm tối ưu của ví dụ; lập luận này không tự đúng cho mọi bài toán khác. Nguồn: cải dạng tự suy từ Boyd–Vandenberghe (2004), §4.5.2 và bối cảnh Bài tập 4.20.</p>
+  </aside>
+</section>
+<section id="gp-cong-suat-log" data-slide-id="S04-13" class="gp-slide">
+  <h2>Dạng lồi của bài phân bổ công suất</h2>
+  <p>$z_1=\log p_1$, $z_2=\log p_2$, $\tau=\log t$.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{z_1,z_2,\tau\in\mathbb R}\;&-\tau\\
+    \text{với}\quad&\log\left(e^{\tau-z_1}+\tfrac14e^{\tau+z_2-z_1}\right)\le0,\\
+    &\log\left(e^{\tau-z_2}+\tfrac32e^{\tau+z_1-z_2}\right)\le0,\\
+    &\log\left(e^{z_1}+e^{z_2}\right)\le\log6.
+  \end{aligned}$$</div>
+  <div class="box"><p>Mục tiêu affine; các hàm bất đẳng thức là logarit tổng mũ lồi.</p></div>
+  <aside class="notes">
+    <p>Áp dụng đúng hai bước đã có: thay $p_i=e^{z_i}$, $t=e^\tau$, rồi lấy logarit mục tiêu và các vế dương. Với ngân sách, $\log((e^{z_1}+e^{z_2})/6)\le0$ được viết tương đương bằng cách chuyển $\log6$ sang vế phải.</p>
+    <p>Các hệ số $1/4$ và $3/2$ dương được hấp thụ vào số mũ qua $\log(1/4)$ và $\log(3/2)$. Vì vậy các vế trái thuộc đúng lớp đã chứng minh lồi. Bài toán không phải quy hoạch tuyến tính: các bất đẳng thức này không affine.</p>
+    <p>Ánh xạ song ánh giữ các điểm khả thi và thứ tự mục tiêu GP. Khôi phục $p_i^\star=e^{z_i^\star}$ và $t^\star=e^{\tau^\star}$. Nếu giá trị nhỏ nhất của bài log là $v^\star=-\tau^\star$, chất lượng gốc là $e^{-v^\star}$, không phải $v^\star$.</p>
+    <p>Nguồn: phép áp dụng tự xây dựng từ Boyd–Vandenberghe (2004), §4.5.3, tr. 162–163.</p>
+  </aside>
+</section>
+<section id="gp-cong-suat-nghiem" data-slide-id="S04-14" class="gp-slide">
+  <h2>Nghiệm phân bổ công suất</h2>
+  <div class="grid2">
+    <div>
+      <div class="math-large">$$p^\star=(2,4),\qquad t^\star=1.$$</div>
+      <p>Hai đường đạt cùng SINR bằng 1.</p>
+      <div class="box"><p>Chia đều $(3,3)$ chỉ đạt chất lượng nhỏ nhất $6/11$.</p></div>
+    </div>
+    <figure class="example-plot">
+      <img class="gp-plot" src="img/lec-02/gp-power.svg" alt="Đồ thị SINR theo p1 khi p2=6-p1; giá trị nhỏ nhất đạt cực đại 1 tại p1=2">
+      <figcaption>Cùng ngân sách 6, tăng công suất cho đường chịu nhiễu mạnh hơn.</figcaption>
+    </figure>
+  </div>
+  <aside class="notes">
+    <p>Nghiệm log là $(\log2,\log4,0)$. Lấy hàm mũ để được $(p_1,p_2,t)=(2,4,1)$; mục tiêu GP nghịch đảo bằng 1, mục tiêu log bằng 0. Thay vào mô hình gốc: $S_1=2/(1+4/4)=1$ và $S_2=4/(1+3)=1$.</p>
+    <p>Chứng nhận tối ưu không cần thuật toán: để đạt $t=1$, phải có $p_1\ge1+p_2/4$, $p_2\ge1+3p_1/2$. Thế vào nhau cho $p_1\ge2$ và $p_2\ge4$; ngân sách không quá 6 buộc $p=(2,4)$. Nếu $t>1$, cả hai bất đẳng thức với ngưỡng 1 đều chặt; cùng phép thế cho $p_1>2,p_2>4$, mâu thuẫn ngân sách. Vậy không phương án nào đạt chất lượng lớn hơn 1.</p>
+    <p>Hình xét đường $p_1+p_2=6$. Đây không phải bỏ các phương án bên trong tùy ý: nếu còn ngân sách và hai công suất dương, cùng nhân chúng với hệ số lớn hơn 1 làm mỗi SINR tăng vì nhiễu nền dương. Do đó nghiệm phải dùng hết ngân sách. Hai đường SINR riêng được cắt ở mức cao để thấy rõ đường giá trị nhỏ nhất; không thay đổi vị trí cực đại.</p>
+    <p>Câu hỏi: cố định ngưỡng $t=\bar t>0$ thì còn bài toán tuyến tính theo $p$ không? Có: $p_1\ge\bar t(1+p_2/4)$ và $p_2\ge\bar t(1+3p_1/2)$ đều tuyến tính, cùng ngân sách. Khi ngưỡng là biến, các tích với công suất cần cải dạng GP như trên.</p>
+    <p>Khái quát $n$ đường: với $G_{ii}>0$, $G_{ij}\ge0$, $\sigma_i>0$, ngân sách $P>0$, ta có $t(\sigma_i+\sum_{j\ne i}G_{ij}p_j)/(G_{ii}p_i)\le1$ và $\sum_i p_i/P\le1$. Các số hạng hệ số 0 được bỏ đi; còn lại là tổng đơn thức dương. Nguồn bối cảnh: Boyd–Vandenberghe (2004), Bài tập 4.20, tr. 196; dữ liệu, cải dạng, chứng nhận và hình tự xây dựng.</p>
+  </aside>
+</section>
+<section id="gp-kiem-tra" data-slide-id="S04-15" class="gp-slide">
+  <h2>Nhận dạng và giới hạn cải dạng</h2>
+  <p>Câu hỏi: Hai câu đầu xét $x,y>0$.</p>
+  <div class="card"><p><strong>1.</strong> $x+y\le xy$: đưa về dạng chuẩn. Đảo chiều bất đẳng thức thì sao?</p></div>
+  <div class="card"><p><strong>2.</strong> $x+y=1$: có là đẳng thức đơn thức không? Có lồi theo $(x,y)$ không?</p></div>
+  <div class="card"><p><strong>3.</strong> $\min x$ với $0\le x\le1$: đổi $x=e^z$ có giữ nghiệm tối ưu không?</p></div>
+  <aside class="notes">
+    <p>(1) Chia cho $xy>0$ được $1/x+1/y\le1$, đúng dạng GP. Đảo chiều cho $1/x+1/y\ge1$, không phải chiều bất đẳng thức GP chuẩn. Không thể dùng quy tắc chia đó để tuyên bố bài đã là GP; cần phân tích riêng, không suy rằng mọi ràng buộc sai dạng đều không lồi.</p>
+    <p>(2) $x+y$ là tổng hai đơn thức, không phải một đơn thức, nên không được dùng làm đẳng thức GP chuẩn. Tuy vậy $x+y=1$ là đẳng thức affine theo biến gốc và tạo tập khả thi lồi trên miền dương. Sau đổi log, $\log(e^{z_1}+e^{z_2})=0$ không phải đẳng thức affine. Đây là ví dụ phân biệt cấu trúc GP với khái niệm tính lồi.</p>
+    <p>(3) Nghiệm gốc là $x^\star=0$. Đổi $x=e^z$ chỉ xét $x>0$, nên bài mới có cận dưới 0 khi $z\to-\infty$ nhưng không có nghiệm đạt cận. Như vậy không được bỏ điều kiện về miền khi khẳng định tương đương.</p>
+    <p>Các phép cải dạng phải đi kèm điều kiện cấu trúc và ánh xạ nghiệm. Tiếp theo là các yêu cầu trên chuẩn và ma trận, được biểu diễn bằng những lớp nón phù hợp. Nguồn: biến thể tự xây dựng từ Boyd–Vandenberghe (2004), §4.5.</p>
+  </aside>
+</section>
+
+
+</section>
+<section id="section-5">
       <section id="mach-5" data-slide-id="S05">
         <h2><span class="text-light">5</span><br>Tối ưu nón và quy hoạch nửa xác định: ràng buộc trên chuẩn và ma trận</h2>
       </section>

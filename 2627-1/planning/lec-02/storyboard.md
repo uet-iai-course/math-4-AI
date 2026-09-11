@@ -4,7 +4,7 @@ Phiên bản làm lại ngày 2026-09-11; bảy mạch đã được người d�
 
 ## Trạng thái và mục tiêu
 
-- Phạm vi hiện tại: phần 1 có bảy trang, phần 2 có 12 trang và phần 3 có 14 trang đã triển khai, kèm ghi chú diễn giả; phần 4–7 vẫn là khung tiêu đề theo yêu cầu làm từng phần. Toàn bài hiện có 37 trang trong bảy section ngoài. Chưa chốt số trang cuối cùng hoặc thời lượng; không triển khai các phần tiếp theo trong lượt này.
+- Phạm vi hiện tại: phần 1 có bảy trang, phần 2 có 12 trang và phần 3 có 14 trang đã triển khai, kèm ghi chú diễn giả; phần 4 được triển khai 16 trang về quy hoạch hình học; phần 5–7 vẫn là khung tiêu đề. Toàn bài hiện có 52 trang trong bảy section ngoài. Chưa chốt số trang cuối cùng hoặc thời lượng; không triển khai phần 5–7 trong lượt này.
 - Cấu trúc 58 trang (39 chính + 19 phụ lục) của lần sửa trước không còn là ràng buộc.
 - Bản storyboard cũ lưu trong lịch sử Git tại commit e030846; không tạo bản sao, không di chuyển tệp cũ.
 - Mục tiêu bài học: sinh viên hiểu rõ các dạng bài toán tối ưu lồi; nhận biết bài toán thực tế có thể chuyển về dạng lồi hoặc xấp xỉ bằng dạng lồi; chứng minh một bài toán tối ưu là lồi. Ưu tiên ví dụ trong trí tuệ nhân tạo và học máy (AI/ML) hoặc bài toán quen thuộc.
@@ -47,10 +47,10 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 - Đầu vào: cùng dữ liệu dự đoán với tiêu chí sai số ở mạch 2.
 - Đầu ra: nhận dạng QP/QCQP, chứng nhận cả mục tiêu lẫn ràng buộc và diễn giải lựa chọn mô hình.
 
-### Mạch 4 — Quy hoạch hình học và phép đổi biến làm lộ tính lồi
+### Mạch 4 — Quy hoạch hình học
 
-- Ví dụ: thiết kế hộp có thể tích cho trước, sử dụng ít vật liệu nhất. Tích kích thước nảy sinh từ nhu cầu; cách nhìn trực tiếp chưa cho mô hình lồi.
-- Nội dung: phát triển đổi biến log, điều kiện biến dương, đơn thức và đa thức dương, khái quát quy hoạch hình học (GP). Phải làm rõ quan hệ nghiệm, giá trị mục tiêu sau biến đổi và khôi phục kích thước thật. Biến thể: phép trừ hoặc biến được phép bằng 0.
+- Ví dụ: thiết kế hộp kín thể tích 8 dm³, sử dụng ít vật liệu nhất; phân bổ công suất cho hai đường truyền để tăng chất lượng của đường yếu hơn. Tích và tỷ số của biến dương nảy sinh từ nhu cầu.
+- Nội dung: phát triển đổi biến log, điều kiện biến dương, đơn thức và tổng đơn thức dương, khái quát quy hoạch hình học (GP). Phải làm rõ quan hệ nghiệm, giá trị mục tiêu sau biến đổi và khôi phục kích thước thật. Biến thể: phép trừ hoặc biến được phép bằng 0.
 - Đầu vào: nhận dạng/chứng nhận theo biến ban đầu.
 - Đầu ra: cải dạng bằng đổi biến, kèm điều kiện và ánh xạ nghiệm.
 
@@ -197,7 +197,7 @@ Nhu cầu đi trước dạng chuẩn. Trực quan pha trộn bắt đầu bằn
 
 ## Triển khai phần 3 — Quy hoạch bậc hai
 
-Đã triển khai theo yêu cầu bổ sung chính quy hóa rồi làm phần 3. Phần này có 14 trang; toàn bài 37 trang/bảy phần. So với kế hoạch 10 trang, thêm bốn trang S03-04b–e để thiết lập nhu cầu và tách các phép cải dạng. Giữ mã cũ; sửa vai trò S03-05 thành trường hợp bình phương sai số + hình phạt bậc hai, S03-06 thành so sánh bốn nghiệm. Không dạy thuật toán giải, KKT hoặc đối ngẫu; không gán thời lượng. Năng lực thiết kế hỗ trợ LLO3/CLO1 buổi 2: mô hình hóa, nhận dạng, chứng nhận và diễn giải nghiệm; đánh giá bằng bài tập cá nhân/nhóm.
+Đã triển khai theo yêu cầu bổ sung chính quy hóa rồi làm phần 3. Phần này có 14 trang; toàn bài hiện có 52 trang/bảy phần. So với kế hoạch 10 trang, thêm bốn trang S03-04b–e để thiết lập nhu cầu và tách các phép cải dạng. Giữ mã cũ; sửa vai trò S03-05 thành trường hợp bình phương sai số + hình phạt bậc hai, S03-06 thành so sánh bốn nghiệm. Không dạy thuật toán giải, KKT hoặc đối ngẫu; không gán thời lượng. Năng lực thiết kế hỗ trợ LLO3/CLO1 buổi 2: mô hình hóa, nhận dạng, chứng nhận và diễn giải nghiệm; đánh giá bằng bài tập cá nhân/nhóm.
 
 | Mã | Tiêu đề | Lý do tồn tại / khoảng trống | Kết nối vào → ra | Minh chứng / quyết định |
 |---|---|---|---|---|
@@ -245,3 +245,58 @@ Nhu cầu đi trước dạng chuẩn. Trực quan pha trộn bắt đầu bằn
 - Nguồn: Boyd–Vandenberghe (2004), sources/bv_cvxbook.pdf, §4.4 tr.152–153, §4.4.1 tr.153–154, §6.3.2 tr.306, §6.5.4 tr.334; đề cương DOCX chính thức cho buổi 2/LLO3/CLO1. Các phép cải dạng ba mô hình có biến phụ được tự suy từ khung nguồn, không nhận là trích nguyên ví dụ. Không tải MIT mới.
 - Năm SVG tự vẽ: qp-ls.svg, qp-geometry.svg, qp-penalties.svg, qp-regularized.svg, qp-bound.svg. Tỷ lệ trục $a,b$ bằng nhau ở các hình hình học; có chú giải nét, nhãn và mô tả thay thế. Không tài sản raster hoặc ảnh sinh bởi AI.
 - Ghi chú học tập và bài tập của bản cũ tiếp tục ngừng liên kết trong lúc xây dựng các phần còn lại; không công bố như đã đồng bộ. Lời giải, giả thiết và biến thể của phần mới nằm trong notes.
+
+
+## Phần 4 đã triển khai — Quy hoạch hình học
+
+Phần này có 16 trang, dùng hai ví dụ: hộp ít vật liệu và phân bổ công suất. Kế hoạch tác tử ban đầu đề xuất 13 trang; điều phối chọn 16 để tách mô hình, phép cải dạng lồi và nghiệm của hai ví dụ. Giữ đúng nhu cầu hộp thể tích cho trước đã có trong storyboard, không đổi sang mục tiêu thể tích lớn nhất. Toàn bài 52 trang/bảy phần. Không gán thời lượng; hỗ trợ buổi 2, mục 3.5, LLO3/CLO1 theo đề cương DOCX chính thức.
+
+### Quyết định theo trang
+
+| Mã | Tiêu đề | Quyết định | Lý do tồn tại | Kết nối vào → ra | Minh chứng hỗ trợ LLO3/CLO1 |
+|---|---|---|---|---|---|
+| S04 | Quy hoạch hình học | Sửa | Rút tiêu đề theo cách gọi lớp bài toán ở phần 2 và 3. | S03-09 → hộp | Định hướng cải dạng tương đương |
+| S04-01 | Hộp đựng và chi phí vật liệu | Thêm | Thiết lập quyết định thiết kế và quan hệ giữa diện tích với chi phí trước ký hiệu. | S04 → mô hình | Xác định dữ liệu, yêu cầu, đầu ra |
+| S04-02 | Mô hình thiết kế hộp | Thêm | Chuyển sáu mặt và thể tích thành tích các kích thước; thử hai ứng viên chưa chứng minh tối ưu. | Câu chuyện → nhận dạng đơn thức | Mô hình hóa; kiểm tập khả thi |
+| S04-03 | Đơn thức và tổng đơn thức dương | Thêm | Cung cấp đúng lớp hàm chứa các tích đã xuất hiện, kể cả số mũ âm/thực. | Mô hình hộp → dạng chuẩn | Phân loại theo hệ số và số mũ |
+| S04-04 | Dạng chuẩn của quy hoạch hình học | Thêm | Khái quát mục tiêu và hai loại ràng buộc; tách cấu trúc GP khỏi tính lồi theo biến gốc. | Đơn thức → quy tắc cải dạng | Nhận dạng dạng chuẩn |
+| S04-05 | Cải dạng về quy hoạch hình học | Thêm | Giải quyết vế phải chưa bằng 1, đẳng thức đơn thức và mục tiêu cực đại trong mô hình tổng quát. | Dạng chuẩn → đổi log | Chọn phép chia/đảo mục tiêu hợp lệ |
+| S04-06 | Phép đổi biến logarit | Thêm | Viết bước biến tích thành mũ affine; phân biệt log của tổng với tổng log. | Chuẩn hóa → chứng nhận lồi | Tái tạo biến đổi và điều kiện miền |
+| S04-07 | Dạng lồi của quy hoạch hình học | Thêm | Đóng lập luận bằng logarit tổng mũ lồi, đẳng thức affine và ánh xạ nghiệm hai chiều. | Đổi biến → áp dụng hộp | Chứng nhận và khôi phục nghiệm |
+| S04-08 | Cải dạng bài toán thiết kế hộp | Thêm | Áp dụng đầy đủ khung vào đúng mô hình ban đầu, không nhảy thẳng đến nghiệm. | Khung tổng quát → nghiệm hộp | Viết mô hình lồi tương đương |
+| S04-09 | Kích thước hộp tối ưu | Thêm | Đọc nghiệm log thành kích thước và lượng vật liệu; kiểm bằng cận dưới độc lập. | Mô hình lồi hộp → công suất | Kiểm nghiệm, diễn giải và biến thể thể tích |
+| S04-10 | Phân bổ công suất cho hai đường truyền | Thêm | Làm rõ tác động vừa tăng tín hiệu vừa gây nhiễu trước khi dùng tỷ số. | Hộp → mô hình tỷ số | Xác định quyết định, dữ liệu và chất lượng |
+| S04-11 | Mô hình chất lượng đường truyền | Thêm | Từ liên kết trên hình lập hai tỷ số và mục tiêu bảo vệ đường yếu hơn. | Bối cảnh công suất → biến ngưỡng | Mô hình hóa và đánh giá chia đều |
+| S04-12 | Cải dạng bài phân bổ công suất | Thêm | Biến ngưỡng chuyển cực tiểu các tỷ số thành ràng buộc, rồi chuẩn hóa GP. | Mô hình max-min → dạng log | Cải dạng hai chiều bằng ngưỡng và đơn thức |
+| S04-13 | Dạng lồi của bài phân bổ công suất | Thêm | Viết rõ từng ràng buộc sau đổi log để sinh viên có thể tự làm lại. | GP công suất → nghiệm | Chứng nhận lồi và ánh xạ p,t |
+| S04-14 | Nghiệm phân bổ công suất | Thêm | Diễn giải nghiệm theo chất lượng đường yếu nhất; so với chia đều và kiểm cận tối ưu. | Dạng lồi → kiểm tra | Đánh giá lựa chọn và giới hạn mô hình |
+| S04-15 | Nhận dạng và giới hạn cải dạng | Thêm | Kiểm trường hợp biên về chiều bất đẳng thức, đẳng thức tổng và biến bằng 0. | Hai ví dụ → phần 5 | Chứng minh/ phản ví dụ; phân biệt chưa là GP với không lồi |
+
+### Ánh xạ chín bước theo từng ví dụ
+
+| Ví dụ | 1–3: nhu cầu, mô hình, cách trực tiếp | 4–6: nhận dạng, cải dạng, chứng nhận | 7–8: số/hình, diễn giải, khái quát | 9: biến thể |
+|---|---|---|---|---|
+| Hộp có thể tích cố định | S04-01–02: ít vật liệu, cùng giá mỗi mặt, ba kích thước; thử $(1,2,4)$ và $(2,2,2)$ | S04-03–08: đơn thức/tổng đơn thức dương; chuẩn hóa $abc/8=1$; đổi $A,B,C$; logarit tổng mũ lồi, đẳng thức affine; song ánh và thứ tự mục tiêu | S04-09: kích thước 2 dm, diện tích 24 dm²; đồng mức sau khử $C$; cận trung bình cộng–trung bình nhân; notes khái quát thể tích $V>0$ | Notes S04-09: thay thể tích đúng 8 thành ít nhất 8; vẫn là GP, nghiệm vẫn đạt thể tích 8. S04-15: điều kiện miền/chiều ràng buộc |
+| Phân bổ công suất | S04-10–11: hai đường cùng kênh gây nhiễu; dữ liệu hệ số truyền, tạp âm và ngân sách; max-min SINR; chia đều $(3,3)$ cho $6/11$ | S04-12–13: thêm ngưỡng $t$, đổi $\max t$ thành $\min1/t$, chia cho công suất dương, đổi $z_i,\tau$; hàm logarit tổng mũ lồi, tương đương hai chiều, lấy lại $p,t$ | S04-14: $(2,4)$ cho hai tỷ số cùng 1; đồ thị theo cách chia; notes cận không thể $t>1$; khái quát $n$ đường với $G_{ii}>0,G_{ij}\ge0,\sigma_i>0$ | Notes S04-14: khi cố định $t$, các ràng buộc trở thành tuyến tính; S04-15: biến bằng 0, mẫu không đơn thức, đẳng thức tổng |
+
+### Bản đồ hành trình khái niệm
+
+- GP và phép đổi log: **nhu cầu** hộp ít vật liệu ở S04-01 → **trực quan** sáu mặt/tích kích thước trên hình cùng trang → **ví dụ** hai bộ kích thước ở S04-02 → **hình thức/toán học** S04-03–07 → **ứng dụng** cải dạng và lấy lại kích thước ở S04-08–09 → **bài tập** biến thể thể tích trong notes S04-09 và phân loại S04-15. Hình/nhu cầu gộp cùng trang vì hình biểu diễn trực tiếp quyết định thiết kế. Ký hiệu $a,b,c$, $abc$ và $2(ab+ac+bc)$ truyền sang đơn thức và tổng đơn thức dương; ánh xạ tổng quát $x=(a,b,c)$, $z=(A,B,C)$ được nêu rõ.
+- Ứng dụng tỷ số có nhiễu: **nhu cầu** cải thiện đường yếu nhất ở S04-10 → **trực quan** tín hiệu chính/nhiễu chéo trên hình cùng trang → **ví dụ** hai đường và chia đều ở S04-11 → **hình thức/toán học** ngưỡng $t$, GP và dạng lồi S04-12–13 → **ứng dụng** phân bổ $(2,4)$ và đọc chất lượng ở S04-14 → **bài tập** cố định ngưỡng ở notes S04-14, kiểm giới hạn ở S04-15. Dùng lại khung đã chứng minh; không giảng lại toàn bộ GP. Ký hiệu $p_1,p_2,t$ được giữ trước khi đặt $z_1,z_2,\tau$ và có công thức khôi phục.
+- Đầu vào: tập/hàm lồi, hàm mũ và logarit, phép biến đổi affine, Hessian; biến phụ và chứng nhận hai chiều từ phần 2–3. Sản phẩm: xác định GP theo cấu trúc, chuẩn hóa, viết dạng lồi, chứng minh tương đương và diễn giải nghiệm. Đây là các minh chứng thiết kế hỗ trợ LLO3/CLO1, không phải trích thêm chuẩn đầu ra.
+- Câu nối phần 3–4: thay vì chỉ xét Hessian theo biến gốc, nhận ra lớp tích/tỷ số của biến dương để đổi biểu diễn. Câu nối phần 4–5: điều kiện cấu trúc của GP có giới hạn; các yêu cầu chuẩn và ma trận cần lớp biểu diễn nón tiếp theo. Hai trang cuối phần 3 và hai trang phân cách sau phần 4 được đưa vào phạm vi rà mạch.
+- Không ấn định tổng thời lượng cụm khi người dùng chưa yêu cầu phân bổ; số trang không được diễn giải thành thời lượng mặc định. Không bước nào bị bỏ ngầm: chứng minh dài và biến thể nằm trong ghi chú.
+
+### Nguồn, số liệu và giới hạn
+
+- Đề cương chính thức: sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx, buổi 2, mục 3.5; LLO3 liên quan CLO1 và đánh giá bài tập cá nhân/nhóm.
+- Nguồn nội dung chính: Boyd–Vandenberghe (2004), sources/bv_cvxbook.pdf, §4.5.1 tr.160–161 (đơn thức, tổng đơn thức dương), §4.5.2 tr.161 (dạng chuẩn và quy tắc cải dạng), §4.5.3 tr.162–163 (dạng lồi); §3.1.5 cho logarit tổng hàm mũ. Bài tập 4.20 tr.196 cung cấp bối cảnh công suất và tỷ số tín hiệu/nhiễu; nguồn yêu cầu biểu diễn tuyến tính phân thức tổng quát, còn cải dạng GP ở đây do nhóm tự suy, không nhận là nguyên mẫu sách. Không tải nguồn MIT mới.
+- Hộp: các kích thước chia cho 1 dm trước khi lấy log, diện tích báo theo dm². $abc=8$; $(1,2,4)$ cho 28, $(2,2,2)$ cho 24. Sau đổi log, nghiệm $(\log2,\log2,\log2)$ đạt mục tiêu $\log24$, không phải 24; phải lấy hàm mũ để báo diện tích.
+- Công suất: dữ liệu tự xây dựng $G=\begin{pmatrix}1&1/4\\3/2&1\end{pmatrix}$, tạp âm mỗi máy thu bằng 1, tổng công suất không quá 6, dùng đơn vị chuẩn hóa. $G_{ij}$ là hệ số từ bộ phát $j$ tới bộ thu $i$. Không khẳng định đây là số đo, tham số thiết bị hay kết quả AI. Nghiệm $(2,4)$ đạt ngưỡng 1; chia đều đạt $6/11$. Nghiệm log là $(\log2,\log4,0)$ và mục tiêu $-\tau$ bằng 0.
+- Kiểm số: SLSQP cho hộp và ba điểm khởi tạo của bài công suất theo biến log; kiểm độc lập bằng LP khi cố định ngưỡng 1 hoặc 1,001; số hữu tỉ và cận dưới cho nghiệm. Không dạy thuật toán này trong slide.
+- Cải dạng chính xác, không phải xấp xỉ lồi. Đổi log chỉ áp dụng biến dương và giá trị hàm dương. Tổng đơn thức dương không phải mọi hàm dương; phép chia chỉ bảo toàn lớp khi mẫu đơn thức. Không suy “không đúng cấu trúc GP” thành “không lồi”.
+- Bốn SVG tự vẽ: gp-box.svg, gp-box-contour.svg, gp-wireless.svg, gp-power.svg; có mô tả thay thế, nhãn và nét phân biệt. Hình vô tuyến thể hiện chiều truyền và nhiễu; hình công suất dùng $p_1+p_2=6$, các đường SINR riêng có thể vượt khung nhưng mục tiêu nhỏ nhất và hai phương án được hiển thị đầy đủ.
+- Tài liệu học tập/bài tập của bản cũ tiếp tục ngừng liên kết khi xây dựng phần 5–7. Ghi chú diễn giả mới chứa các điều kiện, chứng minh và lời giải; chưa công bố tài liệu cũ như đã đồng bộ.
+
+
+Sau rà soát phần 4: giữ 16 trang; thêm ví dụ đơn thức ngay trên mặt, đồng nhất thức đưa hệ số vào số mũ, ý nghĩa mẫu số SINR và bước nhân/chia trước dạng GP. Câu hỏi về miền dương chỉ áp dụng cho hai câu đầu; câu thứ ba xét biên 0 theo đúng đề. Không đổi mạch hoặc thứ tự; câu nối phần 5 và bước chuẩn hóa hộp tiếp tục nằm trong ghi chú.
