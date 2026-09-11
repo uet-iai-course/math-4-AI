@@ -627,3 +627,44 @@ Bằng chứng SHA-256 của các báo cáo tác tử:
 - math: `c5b3e23d47d47f0df9c31f95bf01a184a38c5542b867a62c1f92c3a80c7fed92`.
 - teaching: `0ce466bff2eabd7051bf9d5ea1f2076b064bd1b92227de6e88040985fb8b6ae1`.
 - narrative: `b2f1616892d86905250c9f713a95987584087cc05cd29548cc94929c19441ab9`.
+
+
+## 30. Tiêu đề và kế hoạch phần Quy hoạch bậc hai ngày 2026-09-11
+
+- Chỉ sửa tiêu đề S03 / mach-3 thành **Quy hoạch bậc hai**. HTML đổi một chuỗi, giữ 24 trang/bảy phần. Dàn ý và storyboard có đề xuất 10 trang (một tiêu đề hiện có, chín trang chưa triển khai).
+- Ba cụm dùng cùng dữ liệu phần 2: tổng bình phương sai số → hình phạt độ lớn hệ số → giới hạn cứng và QCQP. Có khai triển tương đương, dạng phổ biến, chứng nhận, nghiệm/hình học và biến thể. Phân biệt đổi tiêu chí hoặc thêm yêu cầu với cải dạng tương đương. Bán kính và nghiệm cụ thể của giới hạn cứng sẽ được chọn khi triển khai.
+- Đề cương DOCX chính thức xác nhận buổi 2, mục 3.4, LLO3/CLO1, bài tập cá nhân/nhóm; các năng lực chi tiết là minh chứng thiết kế hỗ trợ chuẩn đầu ra, không phải trích nguyên văn. Tiên quyết chính thức gồm Giải tích 1, Xác suất thống kê, Đại số tuyến tính cho kỹ thuật; phần này dùng tập/hàm lồi từ Bài 01. Không gán thời lượng.
+- Boyd–Vandenberghe (2004), sources/bv_cvxbook.pdf: §4.4 tr.152–153 cho QP/QCQP; §4.4.1 tr.153–154 cho hồi quy và ràng buộc affine; §6.3.2 tr.306 cho Tikhonov. Không tải nguồn MIT hoặc tài sản mới.
+- Reader lập kế hoạch, reader kiểm nguồn, writer soạn bản tạm, reviewer kiểm storyboard rồi năm vai độc lập. Điều phối bỏ đề xuất KKT/thuật toán của planner, không ép ánh xạ 1:1 số trang với LP. Sửa bản nháp writer: trạng thái 10 trang là đề xuất, kích thước, viết tắt, ánh xạ mục nguồn và vị trí nghiệm QCQP.
+- Planner đầu lỗi “model exceeded the tool-call limit (3)”; chạy lại với đầu vào trực tiếp. Trích nguồn đầu bị lệch do tách cả ký tự ngắt trang; reader phát hiện đúng sai lệch. Điều phối sửa cách trích, reader xác nhận nguồn QP/QCQP/Tikhonov. Hai lượt toán và giảng dạy đầu lỗi “model returned an empty or incomplete answer after all retries”; chạy lại cùng mô hình. Các lỗi worker được báo trong quá trình làm.
+- Kiểm độc lập bằng số hữu tỉ: $X^TX=\operatorname{diag}(10,5)$, $X^Ty=(10,3)$, tổng bình phương sai số $10(a-1)^2+5(b-3/5)^2+36/5$. Nghiệm tự do $(1,3/5)$ đạt $36/5$; thêm $a\le1/2$ đạt $(1/2,3/5)$ và $97/10$. Phạt cả hai hệ số với $\lambda=10$ cho $(1/2,1/5)$, sai số $21/2$, mục tiêu toàn phần $67/5$.
+- Chromium kiểm tiêu đề mới ở 1600×900 và 390×844: không tràn, không lỗi KaTeX/JavaScript, đúng 24 trang/bảy phần; xem ảnh trực tiếp. Đồng bộ trang 20 và storyboard trong Codex Slides, đọc lại trạng thái và kiểm canvas bằng Chromium cục bộ. Browser tích hợp không khả dụng; không nhận đã kiểm trong Browser tích hợp.
+- CSS, hash và chỉ mục không đổi. Tài liệu học tập cũ vẫn ngừng liên kết theo quy trình làm lại từng phần; kế hoạch mới chưa công bố thành tài liệu học tập.
+
+
+### Kết quả rà soát và quyết định hợp nhất
+
+| Vai | Kết quả và quyết định |
+|---|---|
+| Storyboard | Đạt lý do từng trang, ba cụm, ánh xạ chín/sáu bước và ranh giới phần 2–4. Không thêm trang nội dung lúc lập kế hoạch. |
+| Sinh viên | Đạt ký hiệu, tải nhận thức, nhu cầu trước hình thức, ví dụ và kiểm tra hiểu; chưa nhận là đã xem các mặt chiếu chưa soạn. |
+| Chuyên gia | Chấp nhận nguồn/phạm vi, nhưng cộng nhầm tổng $y$ thành 5 và đề nghị đổi nghiệm. Bác bỏ bằng phép cộng đúng $-2-1+3+1+2=3$, $X^Ty=(10,3)$ và kiểm số hữu tỉ. Lượt rà lại đầu lỗi phản hồi thiếu; chuyển kết quả tính đầy đủ cho lượt kiểm số cuối, giữ cùng mô hình. |
+| Toán học | Đạt Hessian, điều kiện lồi, QCQP và giới hạn kết luận; cộng nhầm tổng $y$ thành 7, cho nghiệm sai. Bác bỏ bằng khai triển chính xác và phương trình $10a=10$, $5b=3$; với hình phạt, $20a=10$, $15b=3$. Không sửa mô hình đúng theo báo cáo sai. |
+| Giảng dạy | Đạt thứ tự, tiên quyết và bài tập. Tính sai phần dư và viết $21/2=12{,}9$; bác bỏ: tại $(1/2,1/5)$ phần dư là $(6/5,7/10,-14/5,-3/10,-4/5)$, tổng bình phương bằng $21/2=10{,}5$, cộng phạt $29/10$ cho $67/5$. |
+| Mạch kể chuyện | Đạt ba cụm và kết nối LP → bình phương → hình phạt → giới hạn cứng/QCQP → nhu cầu đổi biến ở phần 4. Giữ thứ tự và điểm nhấn. |
+
+Bằng chứng runtime: mọi báo cáo thành công dưới đây ghi requested_model = observed_model = z-ai/glm-5.3-flash, provider = OpenRouter. SHA-256:
+
+- plan-retry: 1ef4ce2d023a4fac2ae373c5ad823beea78c6741401f95764c9e769514fce6b5.
+- source: 07c684ee1477b7badcf9055e842d194d4965edb813bbc4d5da119e2818d780e5.
+- source-recheck: 591b22eac58e93a8c3caa0bd0b82eb38b687623aa05d8f973c8d0ecc695c8923.
+- write: 784fc3ac38c82ce37524a27adcebf900e2286767f54a8fe409da98122f74dad1.
+- story: bf2945bdc5d8b77539ddd411afd2e61dabde6c36b05039bc3ae30c8f0613b1e1.
+- student: f484a7a7935cce93d2a656fce3ad872b11ac73de58f827f07e5b501ba521286d.
+- expert: fc2c7dd06a1642e233a092c2d6433ac88da6106c669cd02d05d07293868d0ba8.
+- math-retry: 2bed4ff2fc621be965ee452d236190c55c13c36da80ca361dc3cd4392367bfa4.
+- teaching-retry: 49520825970533d3970ac2ea7b83da1a0cc38d52d9cf9b6c22d657c18fecb851.
+- narrative: 1b720f7b31590baf5e5998f4bba788c135114b74097a8613417d496a0bb2dd2e.
+
+
+Lượt kiểm số cuối thành công (SHA-256: f8b5f742854f637ba9d8086084f1a77945c57d6304d10807e892638a31dbca32) xác nhận $X^TX$, $X^Ty$, khai triển và kết quả phạt, nhưng sau đó đổi thứ tự hệ số thành $a+bu$ khi tính phần dư và tự mâu thuẫn với khai triển vừa xác nhận. Điều phối bác bỏ các đề nghị đổi nghiệm/sai số còn lại: mô hình đã chốt là $au+b$, $r=Xw-y$; phép tính Python Fraction in từng phần dư và tổng bình phương khớp hoàn toàn các số liệu trong kế hoạch. Giữ nguyên ký hiệu và kết quả đã kiểm. Không còn lỗi bắt buộc có căn cứ; không dùng sự đồng thuận tác tử thay bằng chứng tính toán.
