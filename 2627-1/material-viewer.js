@@ -219,7 +219,7 @@
   }
 
   function buildTableOfContents() {
-    const headings = Array.from(contentElement.querySelectorAll("h2, h3"));
+    const headings = Array.from(contentElement.querySelectorAll(":scope > h2, :scope > h3"));
     const usedIds = new Map();
     const list = document.createElement("ol");
 

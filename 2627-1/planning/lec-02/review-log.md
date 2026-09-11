@@ -941,3 +941,67 @@ Bốn điểm phân loại minh họa là hai cặp đối xứng theo hai trụ
 - Kiểm giao diện Codex Slides tại trang 2 và 63–73, bao gồm hai trang trước phần mới; ảnh tải thành công, ghi chú mới hiển thị đầy đủ và tải lại giữ trang kết. Chromium lần đầu bị sandbox chặn với `Operation not permitted`; chạy lại với quyền cần thiết thành công. Không có Browser tích hợp trong phiên: dùng Chromium cục bộ, không tuyên bố đã kiểm bằng Browser tích hợp. Liên kết kiểm định: `http://127.0.0.1:4311/project/20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc?slide=73`.
 
 Không còn vấn đề chặn bàn giao hoặc nghiêm trọng chưa xử lý trong phạm vi phần 6.
+
+## Viết lại ghi chú Bài 02 — 2026-09-11
+
+### Phạm vi và nguồn
+
+Thay toàn bộ `materials/lec-02/lecture-note.md` theo 73 trang, sáu phần của bản RevealJS tại commit nền `d1e36a08bd453c42b8a606efde0e269b34ac27d3`. Yêu cầu bổ sung của người dùng: từng ví dụ phải có suy diễn và chứng minh lồi chi tiết. Đối chiếu đề cương DOCX chính thức trong `sources/` và `sources/bv_cvxbook.pdf`; phạm vi nguồn được ghi trong dàn ý và ghi chú. Ví dụ số là dữ liệu minh họa, không phải kết quả thực nghiệm. Không tải thêm MIT, không dùng ảnh raster hoặc ảnh sinh bởi AI.
+
+### Vai trò và bằng chứng thực thi
+
+Các worker chạy bằng cầu nối OpenRouter CLI, trong thư mục tạm `/tmp/lec02-note-new`, chỉ một worker ghi tại một thời điểm. Toàn bộ kết quả thành công dưới đây có `requested_model = observed_model = z-ai/glm-5.3-flash`, `provider = OpenRouter`, kiểm trực tiếp trường JSON. Không đưa nội dung `.env` vào đầu vào, báo cáo hay tài liệu. Tên tệp dưới đây nhận diện bằng chứng chạy trong phiên; quyết định và kết quả cần lưu bền vững được hợp nhất trong nhật ký này.
+
+| Vai trò / kết quả JSON | Kết luận và quyết định |
+|---|---|
+| Lập kế hoạch / `plan.json` | Chốt sáu phần theo bài hiện tại; xây dựng tài liệu tự học, rà nội dung trước khi công bố. |
+| Phân tích nguồn / `source.json` | Ánh xạ 47 cụm nội dung với 73 trang; chọn Boyd và đề cương. Không coi tài sản ngoài thư mục worker là tài sản bị thiếu trong kho. |
+| Soạn / `write.json` | Soạn sáu phần, phép biến đổi, bài tự kiểm và lời giải. Bản đầu có lỗi toán, chưa được công bố. |
+| Kiểm định độ phủ / `coverage.json` | Xác nhận sáu phần và các cụm ví dụ hiện tại có mặt. Giữ các lỗi đã nhận diện cho vòng rà độc lập trước khi sửa chung. |
+| Sinh viên / `student-retry.json` | Nhận yêu cầu giải thích dữ liệu, ký hiệu và bước dấu bằng. Bác bỏ tính lại sai tổng bình phương bằng 10; giá trị đúng là 10,5. |
+| Chuyên gia / `expert-retry.json` | Nhận yêu cầu chứng nhận nghiệm toàn cục và phân biệt chính quy hóa với giới hạn cứng. Tự kiểm lại đề xuất đạo hàm từng miền, không chép công thức sai dấu. |
+| Toán học / `math-late.json`, `math-corrections.json` | Nhận các lỗi miền, hệ số và tương đương. Bác bỏ yêu cầu chia thêm miền không cần thiết khi chứng minh cận dưới toàn cục; bản cuối kiểm riêng điều kiện đạt cận tại nghiệm. |
+| Phản biện giảng dạy / `teaching-final-draft.json` | Nhận yêu cầu giải thích mục đích phép biến đổi và nghiệm trong ngữ cảnh ban đầu; duy trì cùng dữ liệu hồi quy. |
+| Mạch kể chuyện / `narrative-final-draft.json` | Nhận yêu cầu nối LP → QP → GP → xấp xỉ/nới lỏng → tổng hợp. Kiểm các nhận xét “thiếu” trên toàn văn vì bản trích để rà đã lược các khối chứng minh. |
+| Chỉnh sửa / `editor.json`, `editor-recovery.json` | Lượt đầu đã ghi sáu phần nhưng dừng do giới hạn công cụ. Lượt phục hồi hoàn tất báo cáo quyết định; điều phối đọc lại toàn bộ, sửa các lỗi còn lại và chỉ sau đó ghép bản phát hành. |
+| Rà toán cuối / `final-regression.json` | Xác nhận bốn tổ hợp sai số/hình phạt, điều kiện dấu bằng, nghiệm và giá trị số sau sửa. |
+| Rà toán cuối / `final-gp.json` | Xác nhận suy diễn Hessian logarit tổng hàm mũ và bài công suất. Giữ cách gọi tử số là tổng đơn thức, không nhận diễn đạt “hai đơn thức” trong báo cáo. |
+| Rà toán cuối / `final-classification.json` | Xác nhận bảng ngưỡng, bản lề, mô hình thưa và phản ví dụ. Kiểm lại khai triển tại hệ số chặn: công thức trong tài liệu là $2|b|$. |
+| Rà mạch cuối / `final-narrative-retry.json` | Xác nhận sáu phần nối được và kết bài thu hồi mục tiêu. Không thêm nội dung mà báo cáo trích thiếu nhưng đã có trong toàn văn. |
+
+Các lỗi công cụ đã được báo trong phiên và chạy lại cùng vai/mô hình: `model exceeded the tool-call limit (30)`, `OpenRouter request exceeded 240s wall timeout`, `model returned an empty or incomplete answer after all retries`; một lượt toán chạm giới hạn 480 giây và lượt chỉnh sửa chạm giới hạn 40 lần gọi. Giữ nguyên kho trong các giai đoạn lỗi; chỉ xử lý bản tạm. Các lượt phục hồi thu hẹp đầu vào hoặc tăng giới hạn phù hợp, không chuyển sang worker Codex. Lượt rà mạch cuối đầu tiên cũng chạm giới hạn 30; bản trích mạch có phạm vi cố định được chạy lại thành công.
+
+### Các sửa đổi toán học đã kiểm lại
+
+- Hàm nghịch đảo trên $x\ge1$: infimum bằng 0 nhưng không đạt; không suy ra tồn tại nghiệm chỉ từ tính lồi. Nêu riêng điều kiện liên tục trên tập compact không rỗng.
+- Dạng chuẩn LP: biến tự do tách thành phần không âm, ràng buộc có biến phụ và chứng minh khôi phục hai chiều. Không gọi tổ hợp có tổng hệ số $5/3$ là tổ hợp lồi. Phối trộn đạt $(1,2)$, chi phí 70 nghìn đồng.
+- Hồi quy sai số tuyệt đối: bất đẳng thức tam giác lấy tổng để triệt tiêu độ lệch theo hệ số góc; đạt nghiệm $(1,0)$ và tổng sai số 3. Sai số lớn nhất đạt $(1,3/2)$, sai số $3/2$; liệt kê đầy đủ năm phần dư, gồm điểm trung tâm.
+- Bình phương tối thiểu: $X^TX=\operatorname{diag}(10,5)$, $X^Ty=(10,3)^T$; khai triển thành $10(a-1)^2+5(b-3/5)^2+36/5$. Kiểm nghiệm không ràng buộc và ràng buộc $a\le1/2$.
+- Sai số tuyệt đối cộng phạt chuẩn một: chứng minh cận và điều kiện đạt cận cho hai hệ số phạt; không lấy việc đếm hệ số bằng 0 làm chứng nhận tối ưu.
+- Sai số tuyệt đối cộng phạt bình phương chuẩn hai: với hệ số phạt 4, dùng cận $6|a-1|+3-b+4(a^2+b^2)$ đúng trên toàn miền. Hoàn thành bình phương, kiểm điều kiện dấu bằng tại $(3/4,1/8)$, mục tiêu $107/16$. Bản thân chuẩn hai bình phương trơn tại tọa độ 0; điểm không trơn đến từ sai số tuyệt đối. Chứng minh lồi chặt bằng định nghĩa, không gán Hessian cho mất mát không khả vi.
+- Bình phương sai số cộng phạt chuẩn một: đạo hàm ở miền âm có dấu trừ trước hệ số phạt; suy ra các ngưỡng 6 và 20. Với hệ số phạt 4, nghiệm $(4/5,1/5)$ có tổng bình phương $42/5$, mục tiêu $62/5$.
+- Chính quy hóa Tikhonov: hệ số phạt 10 cho nghiệm $(1/2,1/5)$, tổng bình phương $21/2$, mục tiêu $67/5$. Ràng buộc chuẩn có bình phương bán kính $29/100$, chứng nhận bằng cận từ bài có phạt.
+- Logarit tổng hàm mũ: đạo hàm trọng số chuẩn hóa, lấy đạo hàm gradient, khai triển ma trận trung tâm hóa và kiểm dạng toàn phương không âm. Không triệt tiêu nhầm trung bình trọng số. Quy hoạch hình học khai báo biến dương, điều kiện hệ số và cách đổi biến ngược.
+- Công suất: kiểm lại phép chia đơn thức và dữ liệu nhiễu; nghiệm $(2,4)$ cho tỷ số 1. Giả sử tỷ số lớn hơn 1 dẫn tới mâu thuẫn giới hạn công suất. Hộp có diện tích 24 đạt thể tích 8, chứng minh bằng bất đẳng thức trung bình cộng–trung bình nhân.
+- Ngưỡng phân loại: phần dư đầu là $2+\theta$; lỗi khi $\theta\le-2$. Bảng đầy đủ chín khoảng/mốc, có quy ước tại biên. Phân biệt cực tiểu số lỗi với cực tiểu bản lề và kiểm cả hai tại nghiệm.
+- Gói dữ liệu: liệt kê tám phương án nhị phân, bốn phương án khả thi; nghiệm nới lỏng chi phí 3 triệu, phương án mua hợp lệ 4 triệu. Chứng nhận bằng cận và tính chất chi phí là bội của 2; không khẳng định làm tròn tự động tối ưu trong trường hợp tổng quát.
+- Giới hạn đặc trưng: chứng minh đại lượng đếm không phải chuẩn; phản ví dụ miền không lồi dùng hai tập hỗ trợ giao nhau để đúng cho mọi $1\le k<d$. Phạt chuẩn một cải dạng thành LP nhưng không tương đương giới hạn cứng. Phản ví dụ bốn điểm có nghiệm duy nhất $(1,1),b=0$, dùng hai đặc trưng.
+- Nguồn: §6.5.4 của Boyd là mô tả thưa và tìm biểu diễn thưa, không phải mục phân loại; phân biệt §8.6.1 với §8.6.2. Các số liệu tự xây dựng được tính độc lập bằng phân số chính xác.
+
+### Trình bày và kiểm định trước tích hợp
+
+Đã kiểm bản tạm hoàn chỉnh trên viewer hiện có, sau đó kiểm lại với đúng thay đổi viewer dự kiến. Có 35 khối chứng minh, 18 khối suy diễn, 13 bài tự kiểm và 13 lời giải gập; 21 hình, 60 liên kết trang chiếu và 1677 biểu thức KaTeX. Kiểm Markdown: một tiêu đề cấp một, sáu phần, dấu phân cách công thức hợp lệ, khối không lồng, ảnh tồn tại, mã đích tồn tại.
+
+Ở 1600×900 và 390×844: không lỗi JavaScript/KaTeX, không tài nguyên hỏng hoặc tràn ngang toàn trang; các khối nội dung nằm trong khung. Mở/đóng cả 13 lời giải bằng Enter; gập mặc định, mở khi in và khôi phục sau in. Đã xem ảnh chụp sáu phần, màn hình đầu và các suy diễn trọng tâm; công thức dài được tách bước, không giảm cỡ chữ.
+
+Thay đổi dùng chung duy nhất là bộ chọn mục lục trong `material-viewer.js`: chỉ lấy tiêu đề cấp hai/ba trực tiếp của tài liệu, không đưa nhãn “Chứng minh”, “Suy diễn”, “Bài tập” tự sinh bên trong khối vào mục lục. Kiểm hồi quy ghi chú Bài 01 đạt: 30 đích mục lục hợp lệ trên màn hình rộng và hẹp. Lỗi bộ kiểm thử ban đầu dùng bộ chọn CSS với mã bắt đầu bằng chữ số đã được sửa bằng tra cứu ID; không phải lỗi viewer. Mô tả thay thế của hình không còn mã giữ chỗ công thức.
+
+Ba SVG mới tách nguyên từ hình tự tạo trong bộ trang chiếu, chỉ bổ sung không gian tên XML. 18 hình khác giữ tài sản cũ, viết lại mô tả thay thế chính xác. Không thay CSS hoặc HTML bộ trang chiếu. Tài liệu bài tập riêng đã được rà tác động và tiếp tục để “Đang cập nhật”; chỉ công bố liên kết ghi chú mới sau kiểm định bản tích hợp.
+
+### Kiểm định bản tích hợp và trạng thái bàn giao
+
+- Bản trong kho khớp nguyên văn bản đã rà; SHA-256 của ghi chú là `cb3388864c7d2dad474ef5a6030805ac2c165bd33f48d10a145bf9c6784815e4`. Chạy lại viewer trực tiếp từ máy chủ kho, không thay thế phản hồi bằng tệp tạm: đủ 1677 công thức, 21 hình và 13 lời giải ở cả hai kích thước; kiểm bàn phím, in, đích mục lục, lỗi tài nguyên và tràn nội dung đều đạt.
+- Liên kết ghi chú trên `index.html` mở đúng bài bằng Enter ở màn hình rộng và hẹp. Đã xem ảnh chỉ mục; bài tập riêng vẫn không có liên kết công bố. Không thêm tài liệu quy trình vào chỉ mục.
+- Codex Slides: đọc lại Design File `uploaded/lecture-note.md` khớp nội dung trong kho; trạng thái 73 trang và dàn ý giữ nguyên so với đầu nhiệm vụ. Lần tải storyboard tạo bản `storyboard-3.md` nhưng trả liên kết tới tên cũ; đã dùng công cụ ghi tệp để cập nhật đúng `uploaded/storyboard.md`, đọc lại và đối chiếu toàn văn thành công.
+- Mở đúng hai Design File trong giao diện, chuyển sang tab mã nguồn, đối chiếu toàn bộ nội dung với tệp trong kho; tải lại vẫn khớp. Bước kiểm đầu tìm nội dung trong ô nhập khi giao diện còn ở tab xem trước đã được sửa sang tab mã nguồn. Không có Browser tích hợp trong phiên; kiểm bằng Chromium cục bộ tại cổng 4311, không tuyên bố đã kiểm bằng Browser tích hợp.
+- Năm vai rà độc lập, các lượt rà toán/mạch sau sửa và các kiểm định cuối đã hoàn tất. Không còn lỗi chặn bàn giao hoặc nghiêm trọng trong phạm vi ghi chú mới. Phạm vi commit gồm ghi chú, ba SVG, liên kết chỉ mục, sửa mục lục dùng chung và ba tệp quy trình đang được theo dõi; không đổi bộ trang chiếu hoặc bài tập riêng.

@@ -148,3 +148,20 @@ Phần 6 gồm 9 trang trong một section ngoài, mã tiêu đề S06, nội du
 - Giữ giao diện hiện có; không thêm bài tập tổng hợp hồi quy hoặc mở rộng sang tối ưu tựa lồi/nhiều mục tiêu.
 - Nguồn chỉ Boyd–Vandenberghe (2004) đã có: chương 4; §6.2, tr. 304–305; §6.3.2; §4.5 cho GP. Không dùng "§6.2.1".
 - Thời lượng chưa ấn định, không tự đặt phút cho từng trang.
+
+## Ghi chú học tập viết lại — 2026-09-11
+
+Nguồn phát hành: `materials/lec-02/lecture-note.md`. Viết lại theo 73 trang hiện có, sáu phần lần lượt 7, 12, 14, 16, 15, 9 trang. Phạm vi mới này thay trạng thái ghi chú cũ “Đang cập nhật” ở các mục lịch sử phía trên. Bộ bài tập riêng vẫn chưa công bố vì chưa theo tuyến hiện tại.
+
+Mục tiêu là tài liệu tự học có thể tái tạo phép tính: mỗi ví dụ xác định nhu cầu, dữ liệu, biến, miền, mục tiêu và ràng buộc; trình bày cách trực tiếp và dấu hiệu cấu trúc; suy diễn từng bước; chứng minh tính lồi và quan hệ với mô hình gốc; tính nghiệm, diễn giải, khái quát và kiểm tra biến thể. Các bước được triển khai liền mạch qua nhiều tiểu mục khi dùng chung dữ liệu, không lặp chín nhãn ở mỗi phép tính phụ.
+
+1. Mô hình hóa và chứng nhận: bậc hai trên đoạn, giá trị tuyệt đối trên toàn trục số, nghịch đảo trên nửa trục dương; phân biệt tính lồi và tồn tại nghiệm.
+2. Quy hoạch tuyến tính: phối trộn, dạng chuẩn, hồi quy sai số tuyệt đối và sai số lớn nhất; chứng minh biến phụ tương đương hai chiều.
+3. Quy hoạch bậc hai: bình phương tối thiểu, ràng buộc tuyến tính, bốn tổ hợp sai số và chính quy hóa; suy ra nghiệm theo từng miền, chứng minh cận đạt được, kiểm tra ràng buộc chuẩn.
+4. Quy hoạch hình học: hộp có diện tích giới hạn, đơn thức và tổng đơn thức, đổi biến logarit; đạo hàm và Hessian của logarit tổng hàm mũ; phân bổ công suất và khôi phục nghiệm.
+5. Xấp xỉ và nới lỏng: phân loại theo ngưỡng, mất mát bản lề, chọn gói dữ liệu; bảng trường hợp biên, nghiệm phân số, khôi phục phương án nguyên và cận tối ưu.
+6. Tổng hợp: chứng nhận theo cấu trúc, giới hạn số đặc trưng, phản ví dụ trung điểm, phạt chuẩn một và phản ví dụ không bảo toàn giới hạn cứng.
+
+Nguồn cấu trúc và ví dụ: bộ RevealJS Bài 02 hiện tại. Nguồn nội dung: Boyd–Vandenberghe (2004), chương 3–4, §6.1.1, §6.2, §6.3.2, §6.5.4, §8.6.1, Bài tập 4.15 và 4.20; đối chiếu trực tiếp bản `sources/bv_cvxbook.pdf`. Đề cương DOCX chính thức xác định buổi 2, LLO3/CLO1 và nền tảng giải tích, đại số tuyến tính, xác suất–thống kê. Không khẳng định bản ghi chú bao phủ toàn bộ phạm vi rộng hơn của đề cương, không tự ấn định thời lượng. Không bổ sung nguồn MIT hoặc tài sản bên thứ ba.
+
+Tiêu chí hoàn thành: đủ sáu phần và các cụm ví dụ trong bài; phép biến đổi có điều kiện và chứng minh hai chiều khi tuyên bố tương đương; nghiệm được kiểm bằng số và chứng nhận độc lập; Markdown, hình, công thức, liên kết và thao tác bàn phím trên viewer đạt; năm vai rà độc lập và rà lại toán/mạch sau sửa; đồng bộ Design File; chỉ sau đó công bố liên kết ghi chú, commit và push.

@@ -404,3 +404,20 @@ Cụm ôn tập S06-01–03 dùng chu trình rút gọn: nhu cầu tổng hợp 
 | 9. Biến thể kiểm tra hiểu | S06-07: miền chuẩn một, tác động của $\lambda$ và kiểm nghiệm trong bài gốc. |
 
 Nguồn nội dung: Boyd–Vandenberghe (2004), chương 4, §6.2, tr. 304–305 và §6.3.2; bộ phân loại kế thừa phần 5. Hình học và dữ liệu số tự xây dựng. Không thêm bài tập tổng hợp hồi quy; không mở rộng sang quy hoạch nửa xác định hoặc tối ưu tựa lồi trong phần này.
+
+## Ánh xạ ghi chú học tập viết lại — 2026-09-11
+
+Giữ nguyên 73 trang và thứ tự sáu phần. Bản ghi chú mới mở rộng lời giải và chứng minh để tự học, không sao chép ghi chú diễn giả. Quyết định chung: **sửa** toàn bộ ghi chú cũ theo tuyến hiện tại; **thêm** suy diễn, chứng nhận, kiểm nghiệm và lời giải gập; **bỏ** các nội dung ngoài tuyến hiện tại như nón, quy hoạch nửa xác định, tối ưu tựa lồi và nhiều mục tiêu. Không thay số trang hoặc bảng ánh xạ trang ở trên.
+
+| Phần và cụm ví dụ | Nhu cầu → trực quan → ví dụ | Hình thức/toán học → ứng dụng → bài tập | Đầu vào, đầu ra và điểm nối |
+|---|---|---|---|
+| 1 — Ba hàm quen thuộc | Chọn đại lượng trong miền cho phép; đồ thị và tập khả thi; bậc hai, giá trị tuyệt đối, nghịch đảo | Kiểm đạo hàm hoặc bất đẳng thức tam giác và tập khả thi; xác định nghiệm hoặc chỉ có infimum; biến thể thay miền | Đầu vào giải tích cơ bản; đầu ra hai phép kiểm lồi và điều kiện tồn tại; chuyển sang mô hình nhiều biến |
+| 2 — Phối trộn và hai tiêu chí hồi quy | Nhu cầu nguyên liệu hoặc khớp dữ liệu; bảng thành phần và hình phần dư; mô hình dữ liệu nhỏ | Dạng chuẩn, biến phụ, chứng minh hai chiều, cận dưới đạt được; diễn giải lượng mua và đường dự báo; kiểm biến thể sai số | Truyền cùng ma trận dữ liệu và phần dư sang phần 3; đầu ra nhận dạng LP và cách khôi phục nghiệm |
+| 3 — Bình phương tối thiểu và chính quy hóa | Dùng cùng dữ liệu nhưng thay cách đo sai số; hình so sánh nghiệm; bốn tổ hợp sai số/hình phạt | Khai triển ma trận, Hessian, hoàn thành bình phương, xét dấu và cận đạt được; diễn giải hệ số và ràng buộc chuẩn; bài tự kiểm có lời giải | Đầu vào mô hình hồi quy phần 2; đầu ra phân biệt LP/QP/QCQP, tính lồi chặt và tác động của hệ số phạt; chuyển sang đổi biến phi tuyến |
+| 4 — Hộp và công suất | Giới hạn vật liệu hoặc nhiễu; hình hộp và miền công suất; dữ liệu tính được | Chia đơn thức, đổi biến logarit, chứng minh Hessian logarit tổng hàm mũ, khôi phục bằng hàm mũ; kiểm kích thước/công suất; biến thể dấu hệ số | Đầu ra nhận dạng GP và điều kiện tương đương; nối sang những mô hình không thể giữ nguyên bằng cải dạng |
+| 5 — Ngưỡng phân loại và gói dữ liệu | Giảm lỗi hoặc mua đủ dữ liệu; hình ngưỡng và bảng gói; liệt kê trường hợp | Chứng minh bản lề lồi, cải dạng LP, chứng minh bao hàm miền và cận dưới; đánh giá lại lỗi hoặc chi phí nguyên; bài kiểm phân biệt ba cách xử lý | Đầu vào chứng nhận cấu trúc; đầu ra phân biệt tương đương, thay mục tiêu và nới lỏng; chuẩn bị đánh giá giới hạn số đặc trưng |
+| 6 — Giới hạn số đặc trưng | Nhu cầu mô hình ít hệ số; hình trung điểm ngoài miền; ví dụ hai tọa độ và bốn điểm phân loại | Chứng minh miền không lồi cho mọi trường hợp không tầm thường, LP của hình phạt, phản ví dụ nghiệm vi phạm giới hạn; kiểm lại yêu cầu gốc; bài tổng hợp | Thu hồi nhận dạng, mô hình hóa và chứng nhận; đầu ra biết giới hạn của mô hình thay thế |
+
+Mỗi hàng hỗ trợ LLO3/CLO1 bằng minh chứng người học tự dựng mô hình, thực hiện cải dạng và chứng nhận. Ví dụ dẫn nhập làm cụ thể nhu cầu trong cùng hàng; hình và dữ kiện được giữ xuyên suốt phép suy diễn. Các dạng chuẩn và bảng tổng hợp dùng chu trình rút gọn nhu cầu → hình thức → kiểm tra vì đã được thiết lập bằng ví dụ trước đó. Thời lượng tự học chưa ấn định; không thêm thời gian lên tài liệu công khai.
+
+Tài liệu có 35 khối chứng minh, 18 khối suy diễn, 13 bài tự kiểm và 13 lời giải gập, 21 hình cùng 60 liên kết trực tiếp tới trang chiếu. Ba hình `note-quadratic.svg`, `note-absolute.svg`, `note-reciprocal.svg` tách nguyên hình SVG tự tạo từ HTML hiện có, bổ sung không gian tên XML để dùng qua thẻ ảnh. Các hình khác dùng lại tài sản hiện có; mô tả thay thế bằng văn bản thuần để không mất ký hiệu khi bảo toàn công thức trong viewer.
