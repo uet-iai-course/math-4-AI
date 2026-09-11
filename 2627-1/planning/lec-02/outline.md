@@ -117,3 +117,7 @@ Theo yêu cầu mới, bỏ phần Tối ưu nón; chuyển xấp xỉ/nới l�
 15. Đánh giá nghiệm theo bài toán gốc.
 
 Tiêu chí hoàn thành: phân biệt thay mục tiêu với cải dạng tương đương; chứng nhận tính lồi; chứng minh cận dưới từ tối ưu LP; kiểm tra và diễn giải phương án nguyên. LLO3/CLO1 buổi 2 được hỗ trợ qua năng lực mô hình hóa, nhận dạng và đánh giá nghiệm. Không gán mục đề cương hoặc thời lượng riêng cho ví dụ bổ sung. Nguồn: Boyd–Vandenberghe (2004), §8.6.1 và Bài tập 4.15; dữ liệu và bốn hình SVG tự xây dựng.
+
+### Làm rõ cụm chọn gói dữ liệu
+
+Sáu trang giữ nguyên thứ tự. Dùng nhu cầu mua ảnh đã gán nhãn người đi bộ cho ngày khô, đêm khô và trời mưa; bảng mô tả nội dung từng gói, mỗi gói giá minh họa 2 triệu đồng. Giải thích biến nhị phân và ràng buộc bằng lời trước khi nới lỏng. Nghiệm phân số được kiểm từng yêu cầu, cho cận dưới 3 triệu đồng. Mua cả ba gói tốn 6 triệu đồng; bỏ gói 3 còn gói 1 và 2, đủ yêu cầu với 4 triệu đồng. Chi phí là bội của 2 chứng nhận phương án 4 triệu đồng tối ưu. Khung cận tổng quát chuyển vào ghi chú sau lập luận bằng số.

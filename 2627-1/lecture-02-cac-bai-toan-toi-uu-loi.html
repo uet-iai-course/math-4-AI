@@ -1172,104 +1172,115 @@
 </section>
 <section id="ap-goi-du-lieu" data-slide-id="S05-07" class="ap-slide">
   <h2>Chọn các gói dữ liệu</h2>
-  <p>Cần ảnh đã gán nhãn cho ba điều kiện chụp: ngày, đêm, mưa. Nhà cung cấp chỉ bán nguyên gói.</p>
+  <p>Nhóm phát triển mô hình nhận diện người đi bộ cần mua ảnh đã gán nhãn, đủ ba bối cảnh.</p>
   <div class="card">
     <table>
-      <tr><th>Gói</th><th>Ngày</th><th>Đêm</th><th>Mưa</th><th>Giá</th></tr>
-      <tr><td>1</td><td>✓</td><td>✓</td><td></td><td>2</td></tr>
-      <tr><td>2</td><td></td><td>✓</td><td>✓</td><td>2</td></tr>
-      <tr><td>3</td><td>✓</td><td></td><td>✓</td><td>2</td></tr>
+      <tr><th>Gói</th><th>Ảnh có sẵn</th><th>Giá minh họa (triệu đồng)</th></tr>
+      <tr><td>1</td><td>Ngày khô, đêm khô</td><td>2</td></tr>
+      <tr><td>2</td><td>Đêm khô, trời mưa</td><td>2</td></tr>
+      <tr><td>3</td><td>Ngày khô, trời mưa</td><td>2</td></tr>
     </table>
   </div>
-  <div class="box"><p>Mỗi loại ảnh phải xuất hiện trong ít nhất một gói đã mua; giá mỗi gói là 2 đơn vị chi phí (minh họa).</p></div>
+  <div class="box"><p>Mua trọn gói, mỗi gói tối đa một lần. Chọn các gói đủ ba bối cảnh với tổng chi phí thấp nhất.</p></div>
   <aside class="notes">
-    <p>Đây là ví dụ thứ hai của phần này, một bài toán tổ hợp nhỏ. Ta cần dữ liệu đã gán nhãn cho ba điều kiện chụp, nhưng nhà cung cấp không bán lẻ: chỉ mua nguyên gói hoặc không mua. Ba gói mỗi gói phủ hai trong ba loại, giá như nhau là 2 đơn vị chi phí, số liệu chỉ để minh họa.</p>
-    <p>Yêu cầu đặt ra: mỗi loại ảnh ngày, đêm, mưa phải có mặt trong ít nhất một gói được chọn, chi phí tổng nhỏ nhất, không có ngân sách hay ràng buộc nào khác. Cần xác định gói được mua, tổng chi phí và mức phủ từng điều kiện chụp.</p>
-    <p>Ví dụ phân loại trước dùng hàm thay thế lồi; ví dụ này sẽ cho thấy một hướng xử lý khác: nới lỏng miền khả thi rồi khôi phục phương án. Trước hết, viết mô hình chính xác của bài toán.</p>
+    <p>Đây là ví dụ thứ hai của phần này, một bài toán tổ hợp nhỏ. Mỗi gói là một bộ ảnh đã gán nhãn người đi bộ; giá 2 triệu đồng mỗi gói chỉ là giả định minh họa, không phải dữ liệu thực. Ta chưa xét số lượng ảnh trong gói, chất lượng ảnh hay mức tổng quát hóa của mô hình.</p>
+    <p>Quy ước bối cảnh: ngày khô và đêm khô đều là những lúc không mưa; nhóm mưa gồm mọi ảnh chụp khi mưa, bất kể ngày hay đêm. Ba gói có dữ liệu riêng, nên hai gói cùng phủ một bối cảnh không có nghĩa là ảnh trùng nhau.</p>
+    <p>Mua cả ba gói thì đủ ba bối cảnh nhưng tốn 6 triệu đồng; mục tiêu là tiết kiệm. Ví dụ phân loại trước dùng hàm thay thế lồi. Ở đây ta giữ mục tiêu chi phí; khó khăn nằm ở điều kiện mua nguyên gói. Ta sẽ nới lỏng miền khả thi rồi tìm lại phương án mua hợp lệ. Trước hết, viết mô hình chính xác.</p>
   </aside>
 </section>
 <section id="ap-mo-hinh-nhi-phan" data-slide-id="S05-08" class="ap-slide">
   <h2>Mô hình chọn gói dữ liệu</h2>
-  <p>$x_j\in\{0,1\}$: mua gói $j$ hay không, $j=1,2,3$.</p>
+  <p>$x_j=1$ nếu mua trọn gói $j$, $x_j=0$ nếu không mua, $j=1,2,3$.</p>
   <div class="math-large">$$\begin{aligned}
-    \min_{x}\;&2(x_1+x_2+x_3)\\
-    \text{với}\quad&x_1+x_3\ge1\quad(\text{ngày}),\\
-    &x_1+x_2\ge1\quad(\text{đêm}),\\
-    &x_2+x_3\ge1\quad(\text{mưa}).
+    \min_{x}\;&2(x_1+x_2+x_3)\quad\text{(triệu đồng)}\\
+    \text{với}\quad&x_1+x_3\ge1\quad(\text{ngày khô}),\\
+    &x_1+x_2\ge1\quad(\text{đêm khô}),\\
+    &x_2+x_3\ge1\quad(\text{trời mưa}),\\
+    &x_j\in\{0,1\},\quad j=1,2,3.
   \end{aligned}$$</div>
-  <div class="box"><p>Biến nhị phân nên đây không phải quy hoạch tuyến tính; tập khả thi rời rạc, không lồi.</p></div>
+  <div class="box"><p>Ảnh ngày khô có trong gói 1 hoặc gói 3, nên $x_1+x_3\ge1$.</p></div>
   <aside class="notes">
-    <p>Biến quyết định $x=(x_1,x_2,x_3)$ với $x_j\in\{0,1\}$: bằng 1 nghĩa là mua gói $j$. Mục tiêu là tổng chi phí $2(x_1+x_2+x_3)$, hàm affine theo $x$. Ba ràng buộc phủ: mỗi loại ảnh cần ít nhất một gói chứa nó, viết thành bất đẳng thức affine.</p>
-    <p>Mục tiêu và ràng buộc đều affine, nhưng ta không được gọi đây là bài toán quy hoạch tuyến tính, vì biến bị giới hạn nhị phân. Tập khả thi chỉ gồm bốn điểm $(1,1,0)$, $(1,0,1)$, $(0,1,1)$, $(1,1,1)$; đây là tập rời rạc, không lồi, nên cấu trúc lồi không áp dụng trực tiếp.</p>
-    <p>Kiểm tra bằng tay: ba phương án đầu mỗi cái mua đúng hai gói, chi phí 4; mua cả ba tốn 6. Vậy giá trị tối ưu của bài toán gốc là 4. Việc liệt kê đủ các phương án giải được ví dụ nhỏ, nhưng số tổ hợp có thể tăng theo $2^n$ khi có $n$ gói. Ta thử bỏ điều kiện nhị phân để dùng công cụ LP.</p>
+    <p>Mục tiêu là tổng chi phí tính bằng triệu đồng, hàm affine theo $x$. Ba ràng buộc phủ viết thành bất đẳng thức affine; hai dòng còn lại hoàn toàn tương tự dòng ngày khô. Số 1 ở vế phải nghĩa là cần ít nhất một gói chứa bối cảnh đó, không phải một ảnh.</p>
+    <p>Mục tiêu và ràng buộc đều affine, nhưng ta không được gọi đây là quy hoạch tuyến tính, vì biến bị giới hạn nhị phân. Tập khả thi chỉ gồm $(1,1,0)$, $(1,0,1)$, $(0,1,1)$, $(1,1,1)$; đây là tập rời rạc, không lồi. Trung điểm của $(1,1,0)$ và $(1,0,1)$ là $(1,0.5,0.5)$, không nhị phân, nên không thuộc tập khả thi.</p>
+    <p>Chi phí affine vẫn chưa đủ để dùng LP, vì vấn đề nằm ở miền khả thi. Ta thử bỏ điều kiện nhị phân.</p>
   </aside>
 </section>
 <section id="ap-noi-long-lp" data-slide-id="S05-09" class="ap-slide">
   <h2>Nới lỏng điều kiện nhị phân</h2>
-  <p>Thay $x_j\in\{0,1\}$ bằng $0\le x_j\le1$; giữ nguyên mục tiêu và ba ràng buộc phủ.</p>
+  <div class="grid2">
+    <div class="card"><p><strong>Bài mua nguyên gói:</strong> $x_j\in\{0,1\}$</p></div>
+    <div class="card"><p><strong>Bài nới lỏng:</strong> $0\le x_j\le1$</p></div>
+  </div>
   <div class="math-large">$$\begin{aligned}
-    \min_{x}\;&2(x_1+x_2+x_3)\\
+    \min_{x}\;&2(x_1+x_2+x_3)\quad\text{(triệu đồng)}\\
     \text{với}\quad&x_1+x_3\ge1,\;\;x_1+x_2\ge1,\;\;x_2+x_3\ge1,\\
     &0\le x_j\le1,\quad j=1,2,3.
   \end{aligned}$$</div>
-  <div class="box"><p>Gọi $F$ là tập khả thi gốc, $R$ là tập mới. $F\subseteq R$ và $R$ lồi: đây là LP.</p></div>
+  <div class="box"><p>Giữ mục tiêu và các ràng buộc phủ, thu được LP. Chỉ mô hình được nới lỏng; nhà cung cấp vẫn bán nguyên gói.</p></div>
   <aside class="notes">
-    <p>Phép nới lỏng chỉ thay điều kiện biến bằng khoảng $[0,1]$, không đổi mục tiêu và không đổi ba ràng buộc phủ. Mọi phương án nhị phân khả thi của bài toán gốc đều khả thi cho bài nới lỏng, nên tập khả thi mở rộng từ $F$ thành $R$ với $F\subseteq R$.</p>
-    <p>Vì mọi ràng buộc đều affine và biến liên tục, bài nới lỏng là quy hoạch tuyến tính đúng nghĩa. Tập khả thi $R$ là một đa diện lồi. Hệ quả quan trọng: giá trị tối ưu trên tập lớn hơn không thể lớn hơn giá trị trên tập nhỏ hơn, tức $\min_R f\le\min_F f$.</p>
-    <p>Giá trị tối ưu của bài LP cho cận dưới. Giá trị tại một điểm chỉ khả thi cho LP không tự cho cận dưới; chẳng hạn chi phí 6 lớn hơn giá trị tối ưu gốc 4 trong ví dụ này. Giờ hãy xem nghiệm của LP trông như thế nào.</p>
+    <p>Phép nới lỏng chỉ thay điều kiện biến bằng khoảng $[0,1]$, không đổi mục tiêu và không đổi ba ràng buộc phủ, nên không cần học lại bảng dữ liệu. Mọi phương án nhị phân khả thi đều khả thi cho bài nới lỏng, nên với $F$ là tập khả thi gốc và $R$ là tập mới, ta có $F\subseteq R\subseteq\mathbb{R}^3$ và $R$ lồi.</p>
+    <p>Vì mọi ràng buộc đều affine và biến liên tục, bài nới lỏng là quy hoạch tuyến tính đúng nghĩa. Hệ quả: giá trị tối ưu trên tập lớn hơn không thể lớn hơn giá trị trên tập nhỏ hơn, tức $\min_R f\le\min_F f$.</p>
+    <p>Lưu ý: $x_j=0.5$ không phải tỷ lệ ảnh hay xác suất mua; đó chỉ là giá trị của biến trong bài nới lỏng. Giờ hãy xem nghiệm của LP trông như thế nào.</p>
   </aside>
 </section>
 <section id="ap-nghiem-phan-so" data-slide-id="S05-10" class="ap-slide">
   <h2>Nghiệm phân số của bài nới lỏng</h2>
-  <div class="grid2">
-    <div>
-      <div class="math-large">$$x^R=\left(\tfrac12,\tfrac12,\tfrac12\right),\qquad f=3.$$</div>
-      <div class="math-large">$$2(x_1+x_2+x_3)\ge2\cdot\tfrac32=3.$$</div>
-      <div class="box"><p>Cộng ba ràng buộc phủ cho cận dưới 3; nghiệm đạt, nên là tối ưu LP.</p></div>
-    </div>
-    <figure class="example-plot">
-      <img class="ap-plot" src="img/lec-02/ap-cover.svg" alt="Ba gói dữ liệu phủ ngày, đêm, mưa với nghiệm phân số một nửa mỗi gói">
-      <figcaption>Nửa gói không phải phương án mua được phép.</figcaption>
-    </figure>
+  <div class="math-large">$$x^R=\left(\tfrac12,\tfrac12,\tfrac12\right)$$</div>
+  <div class="math-large">$$2\left(\tfrac12+\tfrac12+\tfrac12\right)=3\ \text{triệu đồng}$$</div>
+  <div class="card">
+    <table>
+      <tr><th>Bối cảnh</th><th>Kiểm tra</th></tr>
+      <tr><td>Ngày khô</td><td>$x_1+x_3=\tfrac12+\tfrac12=1$</td></tr>
+      <tr><td>Đêm khô</td><td>$x_1+x_2=\tfrac12+\tfrac12=1$</td></tr>
+      <tr><td>Trời mưa</td><td>$x_2+x_3=\tfrac12+\tfrac12=1$</td></tr>
+    </table>
   </div>
+  <div class="box"><p>Bài nới lỏng đạt chi phí 3 triệu đồng. Nghiệm này chưa phải phương án mua hợp lệ.</p></div>
   <aside class="notes">
-    <p>Giả thiết: ba ràng buộc phủ và biên $[0,1]$. Cộng cả ba bất đẳng thức phủ vế theo vế: $2(x_1+x_2+x_3)\ge3$, nên chi phí ít nhất là 3. Điểm $x^R=(1/2,1/2,1/2)$ khả thi, mỗi cặp cộng lại đúng 1, và đạt chi phí 3. Kết hợp hai chiều, đây là nghiệm tối ưu LP và giá trị tối ưu LP là $L=3$.</p>
-    <p>Chứng minh này độc lập với việc giải số, nên cận dưới được chứng nhận chắc chắn. Nhưng nghiệm là phân số: mua một nửa mỗi gói. Trên mô hình gốc không có khái niệm mua nửa gói; nghiệm này không thể dùng trực tiếp.</p>
+    <p>Giả thiết: ba ràng buộc phủ và biên $[0,1]$. Cộng cả ba bất đẳng thức phủ vế theo vế: $2(x_1+x_2+x_3)\ge3$, nên chi phí ít nhất là 3 triệu đồng. Điểm $x^R=(1/2,1/2,1/2)$ khả thi như bảng kiểm trên, và đạt chi phí 3. Kết hợp hai chiều, đây là nghiệm tối ưu LP với giá trị $L=3$.</p>
+    <p>Chứng minh này độc lập với việc giải số, nên cận dưới được chứng nhận chắc chắn. Nhưng nghiệm là phân số: ba tọa độ bằng một nửa chỉ thuộc bài nới lỏng; không được diễn giải là mua nửa gói trong bài gốc. Trên mô hình gốc không có khái niệm mua nửa gói; nhà cung cấp trong tình huống này không bán lẻ, nên nghiệm này không thể dùng trực tiếp.</p>
     <p>Tiếp theo, tìm phương án mua nguyên gói rồi kiểm tra lại tính khả thi.</p>
   </aside>
 </section>
 <section id="ap-khoi-phuc" data-slide-id="S05-11" class="ap-slide">
   <h2>Khôi phục phương án mua</h2>
-  <p>Từ $x^R=(1/2,1/2,1/2)$:</p>
-  <div class="grid2">
-    <div class="card">
-      <p><strong>Làm tròn xuống:</strong> $(0,0,0)$ — không phủ loại nào, không khả thi.</p>
-      <p><strong>Làm tròn lên:</strong> $(1,1,1)$ — khả thi, chi phí 6.</p>
-    </div>
-    <div class="card">
-      <p><strong>Kiểm tra rồi chọn:</strong> $(1,1,0)$ — phủ đủ ba loại, chi phí 4.</p>
-    </div>
+  <p>Từ $x^R=(1/2,1/2,1/2)$: làm tròn lên cho $(1,1,1)$, mua cả ba gói, chi phí 6 triệu đồng.</p>
+  <div class="card">
+    <table>
+      <tr><th>Phương án</th><th>Đủ ba bối cảnh</th><th>Chi phí (triệu đồng)</th></tr>
+      <tr><td>$(0,0,0)$ — làm tròn xuống</td><td>Không</td><td>0</td></tr>
+      <tr><td>$(1,1,1)$ — làm tròn lên</td><td>Có</td><td>6</td></tr>
+      <tr><td>$(1,1,0)$ — bỏ gói 3</td><td>Có</td><td>4</td></tr>
+    </table>
   </div>
-  <div class="box"><p>Làm tròn từng biến không bảo đảm khả thi hay tối ưu; cần kiểm tra phương án sau khi làm tròn.</p></div>
+  <div class="box"><p>Gói 1 có ngày khô và đêm khô; gói 2 bổ sung trời mưa. Bỏ gói 3 khỏi $(1,1,1)$ vẫn đủ ba bối cảnh, chi phí giảm còn 4.</p></div>
   <aside class="notes">
-    <p>Giả thiết: xuất phát từ nghiệm phân số $(1/2,1/2,1/2)$. Làm tròn từng thành phần xuống cho $(0,0,0)$: không mua gói nào, cả ba loại ảnh đều thiếu, phương án bất khả thi. Làm tròn lên cho $(1,1,1)$: khả thi nhưng chi phí 6, cao hơn mức cần thiết.</p>
-    <p>Ở bài phủ này, mua thêm gói không làm mất phủ, nên phương án sau làm tròn lên vẫn hợp lệ; nhưng chi phí tăng. Nếu kiểm tra thêm, $(1,1,0)$ gồm gói 1 và gói 2 phủ đủ ngày, đêm, mưa với chi phí 4. Có thể bỏ gói 3 khỏi phương án mua cả ba, rồi kiểm tra lại ba ràng buộc phủ.</p>
-    <p>Do đó, làm tròn đơn không bảo đảm luôn khả thi và không bảo đảm luôn tối ưu; mỗi phương án thu được phải được kiểm tra tính phủ và tính chi phí trên mô hình gốc. Giờ hãy ghép các con số lại thành khung đánh giá chung.</p>
+    <p>Giả thiết: xuất phát từ nghiệm phân số $(1/2,1/2,1/2)$. Làm tròn xuống cho $(0,0,0)$: không mua gói nào, cả ba bối cảnh đều thiếu, bất khả thi. Làm tròn lên cho $(1,1,1)$: khả thi nhưng chi phí 6 triệu đồng, cao hơn mức cần thiết.</p>
+    <p>Ở bài phủ này, mua thêm gói không làm mất phủ, nên phương án làm tròn lên vẫn hợp lệ; nhưng không được khẳng định làm tròn lên luôn tốt. Vì $x^R$ không cho biết duy nhất nên bỏ gói nào, ta kiểm tra lại ba ràng buộc phủ cho từng phương án; bỏ gói 3 còn $(1,1,0)$ vẫn đủ ba bối cảnh với chi phí 4.</p>
+    <p>Do đó, làm tròn đơn không bảo đảm luôn khả thi và không bảo đảm luôn tối ưu; cần kiểm tra lại ba yêu cầu trước khi chấp nhận phương án. Giờ hãy ghép các con số lại thành khung đánh giá chung.</p>
   </aside>
 </section>
 <section id="ap-chung-nhan-can" data-slide-id="S05-12" class="ap-slide">
   <h2>Cận dưới và chứng nhận nghiệm</h2>
-  <p>Cực tiểu hóa $f$ trên $F\subseteq R$; $\hat x\in F$ là phương án đã kiểm tra.</p>
-  <div class="math-large">$$\begin{aligned}
-    L=\min_R f&\le p^*=\min_F f\le U=f(\hat x),\quad \hat x\in F,\\
-    0&\le U-p^*\le U-L.
-  \end{aligned}$$</div>
-  <div class="box"><p>Ví dụ: $3\le p^*\le4$; chi phí là bội của 2 nên $p^*\ge4$, suy ra $p^*=4$.</p></div>
+  <p>$p^*$: chi phí nhỏ nhất khi mua nguyên gói, tính bằng triệu đồng.</p>
+  <div class="grid2">
+    <div class="card">
+      <p><strong>Cận dưới từ LP:</strong> 3 triệu đồng</p>
+      <p><strong>Phương án mua gói 1 + 2:</strong> 4 triệu đồng</p>
+      <p>$$3\le p^*\le4$$</p>
+    </div>
+    <div class="card">
+      <p>Chi phí mua nguyên gói là bội của 2 triệu đồng.</p>
+      <p>Trong khoảng $[3,4]$ chỉ có 4 là bội của 2.</p>
+
+    </div>
+  </div>
+  <div class="box"><p>Phương án mua gói 1 và gói 2 là tối ưu.</p></div>
   <aside class="notes">
-    <p>Nguồn: Boyd–Vandenberghe (2004), Bài tập 4.15, tr. 193. Bối cảnh gói ảnh và số liệu tự xây dựng.</p>
-    <p>Ở đây $p^*$ ký hiệu giá trị tối ưu, khác với vectơ công suất ở ví dụ trước. Giả sử các bài toán đang xét đạt giá trị nhỏ nhất và giá trị tối ưu bài nới lỏng hữu hạn. Khung tổng quát: bài toán gốc cực tiểu hóa $f$ trên $F$; phép nới lỏng cho tập $R\supseteq F$ với $f$ lồi và $R$ lồi. Gọi $L$ là giá trị tối ưu trên $R$ và $U$ là chi phí của một phương án khả thi $\hat x$ của bài gốc. Khi $L$ hữu hạn và được chứng nhận, ta có $L\le p^*\le U$, tức khoảng cách tối đa là $U-L$. Với ví dụ này: $L=3$, $U=4$, nên $3\le p^*\le4$.</p>
-    <p>Để khép khoảng, dùng cấu trúc số liệu: mỗi gói giá 2, nên mọi chi phí là bội của 2; vì cần ít nhất hai gói, $p^*\ge4$. Kết hợp với phương án chi phí 4, thu được $p^*=4$ chính xác. Cũng có thể hiểu trực tiếp: mỗi gói chỉ phủ hai trong ba loại nên cần ít nhất hai gói, chi phí 4.</p>
-    <p>Nhấn mạnh phân vai: $L=3$ là cận dưới vì đó là giá trị tối ưu LP; chi phí 6 của phương án làm tròn lên không phải cận dưới, nó chỉ là một cận trên. Nếu nghiệm tối ưu LP tình cờ đã nhị phân thì nó tối ưu luôn cho bài gốc. Nếu LP bất khả thi thì bài gốc bất khả thi. Với bài toán nhị phân tổng quát, chiều ngược lại không được bảo đảm: chẳng hạn ràng buộc $x=1/2$ khả thi khi $0\le x\le1$ nhưng không có nghiệm $x\in\{0,1\}$. Riêng bài phủ đang xét luôn có phương án mua cả ba gói. Với bài cực đại hóa, giá trị tối ưu của bài nới lỏng cho cận trên; chiều cận phải gắn với chiều tối ưu.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), Bài tập 4.15, tr. 193. Bối cảnh gói ảnh và số liệu tự xây dựng, giá giả định.</p>
+    <p>Ở đây $p^*$ ký hiệu chi phí nhỏ nhất khi mua nguyên gói, tính bằng triệu đồng, khác với vectơ công suất ở ví dụ trước. Định nghĩa: $F$ là tập khả thi của bài gốc, $R$ là tập khả thi của bài nới lỏng, $F\subseteq R$; $\hat x\in F$ là một phương án mua khả thi. Khung tổng quát: $L=\min_R f\le p^*=\min_F f\le U=f(\hat x)$ với $f(x)=2\sum_j x_j$; khi $L$ hữu hạn và đạt được thì $U-p^*\le U-L$. Với ví dụ này: $L=3$, $U=4$, nên $3\le p^*\le4$. Quan hệ cận xuất phát từ $F\subseteq R$; tính lồi của $R$ cho phép giải bài nới lỏng bằng công cụ tối ưu lồi.</p>
+    <p>Để khép khoảng, phải dùng cấu trúc chi phí: mỗi gói giá 2 triệu đồng nên mọi chi phí là bội của 2; trong $[3,4]$ chỉ có 4 là bội của 2, nên $p^*=4$. Chỉ riêng $3\le p^*$ chưa đủ để kết luận $p^*=4$, vì khoảng $[3,4]$ còn chứa các giá trị không phải bội của 2; không được cho rằng không đạt được 3 thì tự động là 4 mà bỏ qua lập luận bội của 2.</p>
+    <p>Nhấn mạnh phân vai: $L=3$ là cận dưới vì đó là giá trị tối ưu LP; chi phí 6 của phương án làm tròn lên không phải cận dưới, chỉ là một cận trên. Nếu nghiệm tối ưu LP tình cờ nhị phân thì nó tối ưu luôn cho bài gốc; nếu LP bất khả thi thì bài gốc bất khả thi. Với bài nhị phân tổng quát, chiều ngược lại không được bảo đảm: ràng buộc $x=1/2$ khả thi khi $0\le x\le1$ nhưng không có nghiệm $x\in\{0,1\}$. Riêng bài phủ này luôn có phương án mua cả ba gói. Với bài cực đại hóa, giá trị tối ưu bài nới lỏng cho cận trên; chiều cận phải gắn với chiều tối ưu. Trong ví dụ này ta mở rộng tập khả thi, giữ nguyên chi phí; quan hệ này khác với thay hàm mục tiêu ở bài phân loại.</p>
   </aside>
 </section>
 <section id="ap-so-sanh" data-slide-id="S05-13" class="ap-slide">

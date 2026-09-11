@@ -844,3 +844,47 @@ Mọi đề xuất chặn bàn giao hoặc nghiêm trọng đã được xử l�
 | recheck-bound | reviewer | `827098f32f959000b41ee331e3540b26b4ac5f95689ab20e85ac9cbc23d954b4` |
 
 Ở bước kiểm diff cuối, điều phối sửa thêm một câu trong notes S05-09: giá trị của điểm chỉ khả thi cho LP **không tự cho** cận dưới, thay vì phủ nhận tuyệt đối khả năng nó là cận dưới. Rà toán độc lập bổ sung xác nhận lượng từ và chiều cận đúng; không đổi mặt chiếu hoặc thứ tự. Notes trang 59 đã đồng bộ và đọc lại từ Codex Slides. Lệnh rà bổ sung đầu tiên khởi chạy sai thư mục báo `Failed to spawn: openrouter-mcp-reviewer — No such file or directory (os error 2)`; đã thông báo và chạy lại từ `openrouter-mcp/`, không đổi mô hình.
+
+## 34. Làm rõ ví dụ chọn gói dữ liệu
+
+Yêu cầu: các trang mô tả ví dụ chưa rõ. Phạm vi sửa sáu trang S05-07–12; giữ nguyên 65 trang, sáu phần, tiêu đề, thứ tự và CSS. Kế hoạch được reader riêng đề xuất, điều phối duyệt trước khi soạn. Nguồn đã kiểm kê và đối chiếu: đề cương DOCX chính thức trong `sources/` (bản `(3)`), Boyd–Vandenberghe (2004), Bài tập 4.15, tr. 193. Không tải nguồn MIT mới; không dùng lời giải làm mẫu. Bối cảnh ảnh người đi bộ và giá minh họa tự xây dựng.
+
+### Truy nguyên tác tử và quyết định
+
+| Vai | Mô hình yêu cầu / quan sát | Nhà cung cấp | Kết quả và quyết định |
+|---|---|---|---|
+| Lập kế hoạch | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Nhận sáu vai trò trang và phạm vi sửa; không nhận tiêu đề dài hoặc chuỗi chín bước khác yêu cầu người dùng. |
+| Phân tích nguồn | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Nhận ánh xạ mô hình nhị phân–nới lỏng LP theo Bài 4.15; thống nhất đơn vị triệu đồng, giá giả định và ý nghĩa biến. |
+| Soạn bản nháp | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Đủ sáu trang và toán đúng; yêu cầu biên tập lại bảng dấu tích, câu giải thích phép nới lỏng, khung cận trên mặt và diễn giải nghiệm phân số. |
+| Kiểm định storyboard | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Chấp nhận chuỗi nhu cầu → mô hình → nới lỏng → nghiệm phân số → khôi phục → chứng nhận. Nhận hai yêu cầu sửa công thức tổng quát và diễn giải nửa gói; bác bỏ đề xuất giữ bảng dấu tích vì chưa đáp ứng mục tiêu làm rõ nội dung gói. |
+| Sinh viên | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Phát hiện thiếu câu giữ nguyên mục tiêu/ràng buộc trên mặt S05-09 (nghiêm trọng); nhận và sửa. Nhận xét đạt ở bảng/công thức không thay thế kiểm tra của điều phối. |
+| Chuyên gia | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Không phát hiện lỗi mô hình; yêu cầu bổ sung câu giải thích phép nới lỏng trên mặt (trung bình), nhận và sửa. |
+| Toán học | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Tự kiểm LP=3, tối ưu nhị phân=4, trung điểm và cận. Nhận sửa câu giải thích S05-09 và chuyển khung tổng quát vào ghi chú S05-12. |
+| Giảng dạy | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Nhận yêu cầu làm rõ S05-09 (nghiêm trọng) và rút công thức tổng quát khỏi mặt. Không cần xin xác nhận: đặc tả đã xác định rõ vị trí công thức. |
+| Mạch kể chuyện | `z-ai/glm-5.3-flash` / `z-ai/glm-5.3-flash` | OpenRouter | Nhận sửa kết nối vào S05-07 và kết nối ra S05-12: giữ chi phí/đổi miền, rồi đối chiếu ba cách xử lý. Bỏ câu nhảy qua trang so sánh sang Bài 14. Phạm vi gồm hai trang mỗi phía và ranh giới phần. |
+
+Điều phối bổ sung: thay dấu tích/ô trống bằng mô tả ảnh; ghi giá minh họa trên mặt; định nghĩa $p^*$ và ý nghĩa ba ràng buộc; bỏ diễn giải phân số như giao dịch; rút câu chuyển nội bộ khỏi ghi chú. Các nhận xét “đạt” bỏ sót những điểm này không được dùng làm bằng chứng hoàn thành. Các báo cáo runtime đầy đủ nằm trong thư mục tạm `/tmp/lec02-pack-clarify/`; bảng trên lưu bản hợp nhất có truy nguyên theo vai trong kho.
+
+### Nội dung được duyệt
+
+Ngày khô/đêm khô không mưa; nhóm trời mưa bao gồm ngày và đêm. Gói là bộ ảnh đã gán nhãn, giá minh họa 2 triệu đồng, chỉ mua nguyên gói. Từ bảng dữ liệu viết ba ràng buộc; nới miền biến cho cận 3; mua cả ba gói cho chi phí 6; bỏ gói 3 còn phương án gói 1 và 2 giá 4. Chi phí là bội của 2 chứng nhận tối ưu 4. Giới hạn: có dữ liệu cho ba bối cảnh chưa bảo đảm đủ số lượng ảnh hoặc chất lượng mô hình.
+
+Thay đổi thị giác có chủ ý: bảng nội dung gói thay bảng dấu tích; bảng kiểm ràng buộc thay hình các thanh nửa gói; công thức cận tổng quát chuyển vào ghi chú. Không tạo CSS, SVG hay raster mới. Giữ `ap-cover.svg` như tài sản cũ không còn được nhúng.
+
+Ghi chú học tập và bài tập cũ của Bài 02 đã rà ảnh hưởng: chưa theo tuyến bài mới và vẫn không được liên kết trên chỉ mục. Khi biên tập lại phải dùng đúng bối cảnh và đơn vị triệu đồng của ví dụ này. Mô tả Bài 02 và liên kết hiện có trên chỉ mục vẫn đúng, không cần đổi.
+
+### Biên tập và rà lại
+
+Biên tập viên OpenRouter riêng đã sửa theo năm báo cáo và quyết định điều phối; runtime `requested_model=observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`. Điều phối bổ sung định nghĩa $p^*$ trên mặt, rút câu thừa và đặt hai miền biến cạnh nhau để tránh sát chân trang. Không thu nhỏ phông chữ.
+
+Hai reviewer độc lập cùng runtime trên đã rà lại bản cuối: vai toán xác nhận ba ràng buộc, chứng minh LP tối ưu 3, bốn phương án nguyên khả thi và tối ưu 4; vai mạch kể chuyện xác nhận kết nối từ bài phân loại qua sáu bước của ví dụ rồi sang bảng ba cách xử lý. Không còn lỗi chặn bàn giao hoặc nghiêm trọng. Nhận xét về dòng trắng trong HTML không ảnh hưởng hiển thị, không cần đổi nội dung. Các lỗi S05-09 và S05-12 đã đóng bằng nội dung trên mặt cùng ảnh kết xuất, câu chuyển nội bộ đã bỏ.
+
+### Kiểm định cuối
+
+- Liệt kê đủ tám vectơ nhị phân: bốn vectơ khả thi 011,101,110,111 có chi phí 4,4,4,6. Điểm $(1/2,1/2,1/2)$ thỏa ba ràng buộc và đạt 3; tổng ba ràng buộc chứng minh cận dưới 3.
+- Đối chiếu Git: đúng sáu nội dung trang S05-07–12 đổi; 59 trang còn lại giữ nguyên. Tổng 65 trang/sáu phần, CSS và tài sản không đổi. Mỗi mã trang có ánh xạ trong storyboard; sáu hàng vừa sửa xuất hiện duy nhất.
+- RevealJS tại cổng 8765: kết xuất 11 trang liên quan (S05-04–14), gồm sáu trang sửa và lân cận, ở 1600×900 và 390×844. Không có lỗi JavaScript/KaTeX, tài nguyên 4xx/5xx, ảnh hỏng hoặc tràn khung; kiểm tra phím mũi tên, hash và tải lại. Quan sát trực tiếp ảnh của sáu trang, sửa thẻ S05-09 sau phát hiện sát chân trang. Màn hình hẹp giữ cơ chế thu phóng toàn trang 16:9 của RevealJS.
+- Codex Slides: giữ dự án `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc` với 65 trang. Cập nhật ảnh/ghi chú đúng vị trí 57–62; đọc lại xác nhận sáu tiêu đề và ghi chú khớp bản HTML, ảnh tồn tại; 59 ảnh khác không đổi thời điểm cập nhật. Design File `uploaded/storyboard.md` đọc lại khớp nguyên văn storyboard trong kho.
+- Không có Browser tích hợp trong phiên; dùng Chromium cục bộ kiểm tra bề mặt Codex Slides, không tuyên bố đã kiểm tra bằng Browser tích hợp. Ảnh chụp và kết quả kỹ thuật lưu tạm tại `/tmp/lec02-pack-clarify/`.
+
+Kết quả kiểm tra bề mặt Codex Slides: duyệt các vị trí 55–64, sáu ảnh mới tải thành công; ảnh chụp xác nhận bảng bằng lời ở 57 và chứng nhận bằng số ở 62, ghi chú mới hiển thị đúng ở 57. Không có tài nguyên tải lỗi.
