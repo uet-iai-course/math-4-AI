@@ -33,7 +33,7 @@
           <li>Quy hoạch bậc hai và ràng buộc bậc hai</li>
           <li>Quy hoạch hình học</li>
           <li>Xấp xỉ lồi và nới lỏng</li>
-          <li>Lựa chọn biểu diễn và đánh giá nghiệm</li>
+          <li>Tổng hợp và vận dụng</li>
         </ol>
         <aside class="notes">
           <p>Bài giảng tập trung nhận dạng các dạng bài toán, cải dạng hoặc xấp xỉ mô hình thực tế và chứng minh tính lồi. Ta bắt đầu bằng khung chung trước khi xét từng lớp mô hình.</p>
@@ -1318,9 +1318,156 @@
 
 </section>
 <section id="section-6">
-  <section id="mach-6" data-slide-id="S06">
-    <h2><span class="text-light">6</span><br>Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm</h2>
-  </section>
+<section id="mach-6" data-slide-id="S06" class="ap-slide">
+  <h2><span class="text-light">6</span><br>Tổng hợp và vận dụng</h2>
+  <p>Phần cuối: dùng lại toàn bộ các dạng đã học để tự kiểm một bài toán mới.</p>
+  <aside class="notes">
+    <p>Nối từ nhận xét cuối phần 5: sau khi phân biệt tương đương, thay mục tiêu và nới lỏng, sinh viên giờ phải tự làm toàn bộ chu trình với một bài toán mới. Nhắc ba năng lực cần tổng hợp: (1) nhận dạng LP/QP/GP từ cấu trúc; (2) cải dạng hoặc xấp xỉ kèm giả thiết và quan hệ với bài gốc; (3) chứng nhận mục tiêu và miền lồi, rồi kiểm tra nghiệm trong ngữ cảnh. Phần này đi theo ba nhóm: ôn bảng dạng chuẩn, một biến thể mới về giới hạn số đặc trưng, rồi bài tập kiểm tra.</p>
+  </aside>
+</section>
+
+<section id="tong-hop-dang-bai" data-slide-id="S06-01" class="ap-slide">
+  <h2>Các dạng bài toán đã học</h2>
+  <p>Biến $x\in\mathbb R^n$. Ký hiệu chung: $f_i(x)=\tfrac12 x^TP_ix+q_i^Tx+r_i$ với $P_i=P_i^T$, dùng cho mục tiêu ($i=0$) và các ràng buộc bất đẳng thức ($i=1,\dots,m$).</p>
+  <table class="ap-data">
+    <thead><tr><th>Dạng</th><th>Mục tiêu và ràng buộc</th><th>Chứng nhận</th></tr></thead>
+    <tbody>
+      <tr><td>LP</td><td>$\min c^Tx$ với $Gx\le h,\ Ax=b$</td><td>hàm affine, tập khả thi là đa diện lồi</td></tr>
+      <tr><td>QP</td><td>$\min f_0(x)$ với $Gx\le h,\ Ax=b$</td><td>$P_0\succeq 0$</td></tr>
+      <tr><td>QCQP</td><td>$\min f_0(x)$ với $f_i(x)\le 0$ ($i=1,\dots,m$), $Ax=b$</td><td>$P_i\succeq 0$ với mọi $i=0,\dots,m$</td></tr>
+    </tbody>
+  </table>
+  <div class="box"><p>Chứng nhận cả hàm mục tiêu và tập khả thi.</p></div>
+  <aside class="notes">
+    <p>Các điều kiện trong bảng đủ để chứng nhận tính lồi của các dạng đang xét: kiểm tra $P_i\succeq 0$ (nửa xác định dương, tức $v^TP_iv\ge 0$ với mọi $v$) là cách ta chứng nhận tính lồi của từng thành phần bậc hai. LP là trường hợp đặc biệt với hàm affine, tức $P_i=0$. Kích thước: $c\in\mathbb R^n$, $q_i\in\mathbb R^n$, $r_i\in\mathbb R$, $P_i\in\mathbb R^{n\times n}$; $G\in\mathbb R^{r\times n}$, $h\in\mathbb R^r$; $A\in\mathbb R^{p\times n}$, $b\in\mathbb R^p$. Trong QCQP, $i=1,\ldots,m$ đánh số các bất đẳng thức.</p>
+    <p>Nối lại các ví dụ đã học: bài pha trộn và hồi quy sai số tuyệt đối là LP; hồi quy bình phương tối thiểu và chính quy hóa chuẩn hai là QP; giới hạn cứng độ lớn hệ số dẫn tới QCQP. Các mô hình trong bảng lồi theo biến đang dùng. Với quy hoạch hình học, ta cần thêm bước đổi biến để có chứng nhận tương tự.</p>
+  </aside>
+</section>
+
+<section id="tong-hop-gp" data-slide-id="S06-02" class="ap-slide">
+  <h2>Quy hoạch hình học và đổi biến</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>GP dạng tổng đơn thức</h3>
+      <div class="math-large">$$\begin{aligned}
+      \min_{x}\ & f_0(x)\\
+      \text{với } & f_i(x)\le 1,\\
+      & g_j(x)=1,\quad x>0
+      \end{aligned}$$</div>
+      <p>$f_i$: tổng đơn thức dương; $g_j$: đơn thức.</p>
+    </div>
+    <div class="card">
+      <h3>Sau đổi biến $z=\log x$</h3>
+      <div class="math-large">$$\begin{aligned}
+      \min_{z}\ & \log f_0(\exp z)\\
+      \text{với } & \log f_i(\exp z)\le 0,\\
+      & \log g_j(\exp z)=0,\quad z\in\mathbb R^n
+      \end{aligned}$$</div>
+      <p>Sau đổi biến: mục tiêu và các bất đẳng thức lồi, các đẳng thức affine.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Miền trước đổi biến là $x&gt;0$; sau đổi biến $z=\log x$, tức $x=\exp z$, miền là toàn bộ $z\in\mathbb R^n$. Đơn thức $c\,x_1^{a_1}\cdots x_n^{a_n}$ với hệ số $c&gt;0$ và số mũ thực bất kỳ; tổng đơn thức dương là tổng các đơn thức như vậy. Mỗi đơn thức trở thành $\exp(a^Tz+b)$, nên $\log$ của nó là affine; mỗi tổng đơn thức trở thành tổng các $\exp$ của hàm affine, và $\log$ của tổng đó là lồi (log-sum-exp). Điều kiện áp dụng: biến dương, hệ số dương, số mũ thực bất kỳ.</p>
+    <p>Quan hệ nghiệm: nếu $z^\star$ là nghiệm của dạng lồi thì $x^\star=\exp z^\star$ là nghiệm của GP gốc; khi giá trị tối ưu đạt được, $p^\star=\exp v^\star$ với $v^\star$ là giá trị tối ưu của dạng lồi. Nguồn: Boyd–Vandenberghe §4.5. Nối lại hai ví dụ đã học: thiết kế hộp kín thể tích cho trước và phân bổ công suất hai đường truyền — cả hai đều về được dạng này, và đây là lần cuối ta dùng đổi biến trước khi sang khung chứng nhận chung.</p>
+  </aside>
+</section>
+
+<section id="tong-hop-chung-nhan" data-slide-id="S06-03" class="ap-slide">
+  <h2>Chứng nhận một bài toán lồi</h2>
+  <ol>
+    <li>Xác định biến và miền xác định.</li>
+    <li>Chứng minh $f_0$ lồi: Hessian nửa xác định dương, hoặc quy tắc cấu tạo.</li>
+    <li>Chứng minh tập khả thi lồi: bất đẳng thức hàm lồi $\le 0$, đẳng thức affine.</li>
+    <li>Nếu cải dạng: giải thích quan hệ với bài gốc và cách khôi phục nghiệm.</li>
+  </ol>
+  <div class="box"><p><strong>Câu hỏi:</strong> mục tiêu lồi đã đủ để kết luận bài toán lồi chưa?</p></div>
+  <aside class="notes">
+    <p>Nếu dùng tiêu chuẩn Hessian, hàm phải khả vi hai lần trên miền mở lồi đang xét. Có thể dùng các ví dụ đã học để chọn cách chứng nhận: (1) giá trị tuyệt đối $\max(x,-x)$ lồi theo bất đẳng thức tam giác; (2) hàm bậc hai với $P\succeq 0$ kiểm Hessian; (3) GP dạng log tổng các mũ — bước 2 gộp với đổi biến ở trang trước. Nhấn mạnh điều kiện: cần cả mục tiêu lẫn tập khả thi; không khẳng định ngược rằng nếu một $f_i$ không lồi thì tập khả thi không lồi — tập khả thi vẫn có thể lồi qua một biểu diễn khác.</p>
+    <p><strong>Đáp án câu hỏi:</strong> chưa đủ. Phải xét cả miền xác định và tập khả thi. Ví dụ đã gặp: $f_0(x)=x_1^2+x_2^2$ lồi nhưng bài toán vẫn có thể không lồi nếu ràng buộc không lồi. Đây chính là cầu nối sang trang tiếp theo: một ràng buộc đếm hệ số làm mất tính lồi của miền.</p>
+  </aside>
+</section>
+
+<section id="tong-hop-gioi-han-dac-trung" data-slide-id="S06-04" class="ap-slide">
+  <h2>Giới hạn số đặc trưng</h2>
+  <p>Bộ phân loại ảnh chỉ dùng tối đa $k$ đặc trưng để giảm chi phí tính toán.</p>
+  <p>Dữ liệu cho trước: $u_i\in\mathbb R^d$, $y_i\in\{\pm1\}$, $i=1,\dots,m$; và $k\in\{1,\dots,d-1\}$ với $d\ge 2$. Biến: $w\in\mathbb R^d$, $b\in\mathbb R$.</p>
+  <div class="math-large">$$H(w,b)=\sum_{i=1}^m \max\bigl(0,\,1-y_i(w^Tu_i+b)\bigr)$$</div>
+  <div class="math-large">$$\min_{w,b}\ H(w,b)\quad\text{với}\quad \|w\|_0\le k$$</div>
+  <p>$\|w\|_0=\#\{j: w_j\ne 0\}$ — đếm số đặc trưng được dùng, không phải chuẩn.</p>
+  <aside class="notes">
+    <p>Mất mát bản lề $H$ là tổng mất mát trên các mẫu huấn luyện. Chỉ giới hạn $w$, không đếm $b$ — $b$ là hệ số chặn, không phải đặc trưng; trong phản ví dụ sau này $b$ giữ bằng 0. Giả thiết $k\le d-1$ để ràng buộc thực sự hạn chế.</p>
+    <p>Cách làm trực tiếp: liệt kê mọi tập chỉ số có độ lớn không quá $k$ (tức mọi tập hỗ trợ khả dĩ), cố định các hệ số ngoài tập bằng 0 rồi giải bài lồi theo các hệ số trong tập và hệ số chặn, rồi chọn tốt nhất. Số bài con là $\sum_{j=0}^{k}\binom{d}{j}$ — khó khi $m,d$ lớn. Đây là mô hình thưa theo nghĩa chi phí chỉ phụ thuộc số đặc trưng được dùng. Trang sau kiểm tra ngay tập khả thi của ràng buộc đếm này.</p>
+  </aside>
+</section>
+
+<section id="tong-hop-mien-khong-loi" data-slide-id="S06-05" class="ap-slide">
+  <h2>Miền giới hạn đặc trưng không lồi</h2>
+  <div class="example-grid">
+    <figure class="example-plot">
+      <img class="ap-plot" src="img/lec-02/feature-cardinality.svg" alt="Tập F gồm hai trục w1 và w2; A=(1,0) và B=(0,1) thuộc F nhưng trung điểm M=(0.5,0.5) không thuộc F, nên F không lồi">
+      <figcaption>Trung điểm $M$ của hai điểm thuộc $F$ lại không thuộc $F$.</figcaption>
+    </figure>
+    <div>
+      <p>$d=2$, $k=1$: $F=\{w:\|w\|_0\le 1\}$ là hợp của hai trục.</p>
+      <p>$A=(1,0)$, $B=(0,1)$: mỗi điểm có 1 hệ số khác 0, thuộc $F$.</p>
+      <p>$M=(A+B)/2=(0.5,0.5)$: có 2 hệ số khác 0, $M\notin F$.</p>
+      <p class="math-large">$\Rightarrow$ $F$ không lồi.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Với $1\le k&lt;d$, chọn hai vectơ có tập chỉ số khác không lần lượt là $S_1=\{1,\ldots,k\}$ và $S_2=\{1,\ldots,k-1\}\cup\{k+1\}$. Đặt các hệ số trên mỗi tập bằng 1, các hệ số còn lại bằng 0. Mỗi vectơ dùng đúng $k$ đặc trưng. Trung điểm có hệ số 1 tại $k-1$ vị trí chung và hệ số $1/2$ tại hai vị trí riêng, nên dùng $k+1$ đặc trưng. Khi $k=1$, phần chung rỗng và $S_2=\{2\}$. Giữ hệ số chặn bằng 0 ở cả hai phương án; trung điểm vẫn vi phạm ràng buộc đếm. Do đó tập khả thi không lồi. Với $k=0$ tập hệ số chỉ gồm vectơ không; với $k=d$ là toàn không gian: hai trường hợp này đều lồi.</p>
+    <p>Điểm mấu chốt: hàm mất mát $H$ là lồi (tổng các hàm bản lề lồi), nhưng ràng buộc mới $\|w\|_0\le k$ làm tập khả thi không lồi — nên bài toán tổng thể không phải bài toán lồi. Vì miền không lồi, ta chuyển sang một bài toán thay thế có phạt ở trang sau.</p>
+  </aside>
+</section>
+
+<section id="tong-hop-phat-chuan-mot" data-slide-id="S06-06" class="ap-slide">
+  <h2>Thay bằng hình phạt chuẩn một</h2>
+  <p>Nhu cầu: vừa giữ mất mát nhỏ, vừa khuyến khích hệ số bằng 0.</p>
+  <p class="math-large">$\min_{w,b}\ H(w,b)+\lambda\|w\|_1$, $\lambda\ge 0$ chọn trước; $w,b$ tự do</p>
+  <p>$H$ và chuẩn một đều lồi $\Rightarrow$ mục tiêu lồi.</p>
+  <table class="ap-data">
+    <thead><tr><th>Vectơ</th><th>$\|w\|_1$</th><th>Số hệ số khác 0</th></tr></thead>
+    <tbody>
+      <tr><td>$(2,0)$</td><td>2</td><td>1</td></tr>
+      <tr><td>$(1,1)$</td><td>2</td><td>2</td></tr>
+    </tbody>
+  </table>
+  <div class="box"><p>Mô hình thay thế lồi; không bảo đảm dùng tối đa $k$ đặc trưng.</p></div>
+  <aside class="notes">
+    <p>Cải dạng LP bằng biến phụ: $\xi_i\ge 0$, $\xi_i\ge 1-y_i(w^Tu_i+b)$ cho từng điểm, và $t_j\ge w_j$, $t_j\ge -w_j$ cho từng thành phần của $w$; mục tiêu $\min \sum_i \xi_i+\lambda\sum_j t_j$. Chứng minh tương đương cho bài có phạt: với mọi $(w,b)$, chọn $\xi_i$ bằng phần bản lề và $t_j=|w_j|$ đạt cùng giá trị mục tiêu; ngược lại mọi bộ $(w,b,\xi,t)$ khả thi có mục tiêu không nhỏ hơn $H(w,b)+\lambda\|w\|_1$ vì $\xi_i\ge\max(0,1-y_i(w^Tu_i+b))$ và $\sum_j t_j\ge\|w\|_1$ khi $\lambda\ge 0$. Vậy hai bài có cùng giá trị tối ưu, và từ nghiệm LP lấy $(w,b)$ khôi phục nghiệm của bài $H+\lambda\|w\|_1$. Khi $\lambda=0$, biến $t$ không nhất thiết bằng $|w|$ tại mọi nghiệm tối ưu. Khôi phục này chỉ dành cho bài có phạt; với bài giới hạn cứng $\|w\|_0\le k$ phải kiểm tra riêng, không dùng chung nghiệm.</p>
+    <p>Bảng $(2,0)$ và $(1,1)$ chỉ minh họa ý nghĩa: cùng chuẩn một nhưng số đặc trưng khác nhau — không phải chứng minh về nghiệm tối ưu. Phản ví dụ số tự chọn (đã học phân loại, không phải số đo ảnh thật): dữ liệu bốn điểm $u_1=(1,0),y_1=1$; $u_2=(-1,0),y_2=-1$; $u_3=(0,1),y_3=1$; $u_4=(0,-1),y_4=-1$. Theo từng tọa độ $j$, cặp điểm đối xứng cho $H\ge\sum_j 2\max(0,1-w_j)$; lại có $2\max(0,1-w_j)+|w_j|\ge 1$ với mọi $w_j$ (xét ba trường hợp $w_j&lt;0$, $0\le w_j\le 1$, $w_j&gt;1$). Với $\lambda=1$, suy ra $H+\|w\|_1\ge 2$, đạt tại $w=(1,1),b=0$ — nghiệm có 2 hệ số khác 0, vi phạm giới hạn $k=1$; mọi nghiệm đạt cận buộc $w_1=w_2=1,b=0$. Đây là phản ví dụ mạnh cho ý "phạt $\lambda&gt;0$ bảo đảm $\|w\|_0\le k$". Nguồn: Boyd–Vandenberghe §6.2, tr. 304–305 và §6.3.2. Trang sau hỏi lại chính điểm này dưới dạng bài tập.</p>
+  </aside>
+</section>
+
+<section id="tong-hop-kiem-tra" data-slide-id="S06-07" class="ap-slide">
+  <h2>Kiểm tra các biến thể</h2>
+  <p><strong>Câu hỏi:</strong></p>
+  <ol>
+    <li>Thay giới hạn cứng bằng $|w_1|+|w_2|\le 2$: tập khả thi có lồi không? Điểm $(1,1)$ có được phép?</li>
+    <li>Phạt $\lambda>0$ có bảo đảm $\|w\|_0\le 1$ không?</li>
+    <li>Tìm được nghiệm $(w,b)$ của bài có phạt: cần kiểm tra gì ở bài gốc?</li>
+  </ol>
+  <aside class="notes">
+    <p><strong>Đáp án a)</strong> Tập $\{w:|w_1|+|w_2|\le 2\}$ là hình thoi — lồi. Điểm $(1,1)$ có $|w_1|+|w_2|=2$ nên được phép; lưu ý nó dùng 2 đặc trưng, khác với giới hạn đếm $\|w\|_0\le1$.</p>
+    <p><strong>Đáp án b)</strong> Không. Dùng ví dụ số đã dẫn ở trang hình phạt: với dữ liệu bốn điểm và $\lambda=1$, nghiệm của $H+\|w\|_1$ là $w=(1,1),b=0$, có 2 hệ số khác 0 — vi phạm $\|w\|_0\le1$. Hình phạt chỉ khuyến khích thưa, không bảo đảm đếm.</p>
+    <p><strong>Đáp án c)</strong> Không được chỉ đọc giá trị có phạt. Phải: (i) kiểm tra số đặc trưng thực dùng của $w$; (ii) đánh giá lại mất mát $H(w,b)$ và số lỗi của bài gốc — hai giá trị $H$ và $H+\lambda\|w\|_1$ không cùng thước đo, không so sánh trực tiếp. Nếu cắt bớt đặc trưng để giữ đúng $k$, phải tính lại mất mát trên tập đặc trưng còn lại, và không có bảo đảm nghiệm còn tối ưu. Ba câu hỏi này khép lại đúng ba năng lực chốt ở trang kết.</p>
+  </aside>
+</section>
+
+<section id="tong-ket-bai" data-slide-id="S06-08" class="ap-slide">
+  <h2>Tổng kết bài giảng</h2>
+  <ol>
+    <li><strong>Nhận dạng:</strong> đọc LP/QP/GP từ cấu trúc mục tiêu và ràng buộc.</li>
+    <li><strong>Cải dạng/xấp xỉ:</strong> nêu rõ giả thiết và quan hệ với bài gốc.</li>
+    <li><strong>Chứng nhận:</strong> chứng nhận tính lồi và diễn giải nghiệm trong bài toán ban đầu.</li>
+  </ol>
+  <p>Mỗi mô hình cần: dữ liệu, biến, mục tiêu, ràng buộc, chứng nhận, ý nghĩa nghiệm.</p>
+  <p class="ref">Đọc thêm: Boyd–Vandenberghe, <em>Convex Optimization</em> (2004), chương 4; §6.2; §6.3.2.</p>
+  <aside class="notes">
+    <p>Ba năng lực bám đúng mục tiêu bài học: (1) nhận dạng LP/QP/GP từ cấu trúc; (2) cải dạng hoặc xấp xỉ kèm giả thiết và quan hệ bài gốc; (3) chứng minh mục tiêu và miền lồi, rồi diễn giải nghiệm trong ngữ cảnh bài ban đầu — kể cả khi dùng phản ví dụ để kiểm.</p>
+    <p>Chốt: mỗi mô hình cần đủ sáu thành phần — dữ liệu, biến, mục tiêu, ràng buộc, chứng nhận, ý nghĩa nghiệm. Khi làm bài, sinh viên tự đi đủ chu trình này thay vì chỉ nhận dạng công thức. Nguồn đọc: Boyd–Vandenberghe (2004), chương 4 cho các dạng chuẩn; §6.2 và §6.3.2 cho xấp xỉ chuẩn một và chính quy hóa.</p>
+  </aside>
+</section>
 </section>
     <footer class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 02</footer>
   </div>

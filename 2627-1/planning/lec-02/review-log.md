@@ -888,3 +888,56 @@ Hai reviewer độc lập cùng runtime trên đã rà lại bản cuối: vai t
 - Không có Browser tích hợp trong phiên; dùng Chromium cục bộ kiểm tra bề mặt Codex Slides, không tuyên bố đã kiểm tra bằng Browser tích hợp. Ảnh chụp và kết quả kỹ thuật lưu tạm tại `/tmp/lec02-pack-clarify/`.
 
 Kết quả kiểm tra bề mặt Codex Slides: duyệt các vị trí 55–64, sáu ảnh mới tải thành công; ảnh chụp xác nhận bảng bằng lời ở 57 và chứng nhận bằng số ở 62, ghi chú mới hiển thị đúng ở 57. Không có tài nguyên tải lỗi.
+
+## 35. Triển khai phần 6 — Tổng hợp và vận dụng
+
+Yêu cầu: bỏ mục bài tập tổng hợp hồi quy trong đề xuất phần 6 và triển khai các mục còn lại. Giữ phần 3 Quy hoạch bậc hai đã duyệt. Phần 6 chuyển từ một tiêu đề thành chín trang; toàn bài có 73 trang trong sáu phần. Nội dung gồm bảng dạng bài, GP và đổi biến, khung chứng nhận, giới hạn số đặc trưng của bộ phân loại bản lề, hình phạt chuẩn một, kiểm tra và tổng kết. Cập nhật tên phần trên trang nội dung chính.
+
+Nguồn chọn: đề cương DOCX chính thức trong `sources/` (bản `(3)`), buổi 2/LLO3/CLO1, đánh giá bằng bài tập cá nhân và nhóm; Boyd–Vandenberghe (2004), chương 4, §6.2, tr. 304–305 và §6.3.2; bộ phân loại kế thừa §8.6.1 đã dùng ở phần 5. Không tự thêm thời lượng hoặc tuyên bố bao phủ toàn bộ đề cương. Không tải nguồn MIT mới; không chọn sách lời giải làm mẫu.
+
+### Truy nguyên các vai và quyết định
+
+Mười ba báo cáo thành công đều có bằng chứng cầu nối: `requested_model` và `observed_model` cùng là `z-ai/glm-5.3-flash`, `provider` là `OpenRouter`. Các vai chỉ đọc chạy độc lập; tác tử soạn và tác tử chỉnh sửa chạy tuần tự. Bảng sau hợp nhất vấn đề theo vai; báo cáo đầy đủ và ảnh kiểm định lưu tạm trong `/tmp/lec02-section6/`.
+
+| Vai / báo cáo | Vấn đề, quyết định và trạng thái |
+|---|---|
+| Lập kế hoạch / `plan.json` | Nhận nội dung và tám vai trò trang đề xuất; tách mô hình giới hạn đặc trưng khỏi chứng minh thành chín trang. Không hỏi lại số trang vì đã được phép triển khai. |
+| Phân tích nguồn / `source.json` | Nhận cấu trúc LP/QP/QCQP/GP và ý nghĩa chuẩn một. Bản trích PDF ban đầu lệch dòng do ký tự sang trang; đã trích lại đúng đoạn. |
+| Rà lại nguồn / `source-final.json` | Xác nhận đoạn mới. Điều phối kiểm sách và sửa nguồn thành §6.2, tr. 304–305; sách không có tiểu mục 6.2.1. |
+| Soạn / `write.json` | Đủ chín trang; chưa chấp nhận để bàn giao vì còn lỗi hình, chứng minh tổng quát, nguồn và ghi chú. |
+| Kiểm định storyboard / `story-review.json` | Giữ chín trang; sửa mã tiêu đề, giả thiết, quan hệ với bài có phạt, nguồn và nhãn câu hỏi. Không thêm/bỏ/gộp trang sau lượt này. |
+| Sinh viên / `student.json` | Nhận lỗi hình, nguồn và ký hiệu chiều. Bác bỏ đề xuất dùng hai tập hỗ trợ rời nhau cho mọi $k<d$: không thể khi $2k>d$. |
+| Chuyên gia / `expert.json` | Nhận lỗi hình, nguồn và kích thước; ứng dụng AI phù hợp phạm vi. Giữ quyết định bỏ bài tập tổng hợp hồi quy. |
+| Toán học / `math.json` | Nhận lỗi chứng minh tổng quát và nguồn. Bác bỏ xác nhận hình đúng: tọa độ điểm trong hình nháp không khớp nhãn. Đã sửa hình và kiểm độc lập. |
+| Phản biện giảng dạy / `teaching.json` | Nhận lỗi đoạn nối hai điểm, thiếu hai chiều âm/dương của trục, nguồn và chiều biến. Giữ chuỗi nhu cầu → mô hình → phản ví dụ → hình phạt → kiểm tra. |
+| Mạch kể chuyện / `narrative-retry.json` | Rà 64 trang phần 1–5 cùng chín trang phần 6. Nhận chức năng sáu mạch, bổ sung câu nối. Bác bỏ đề xuất dùng $2k$ cho mọi $k<d$; các đoạn đầu câu bị cắt trong bản trích đuôi ghi chú không phải lỗi HTML cũ. |
+| Chỉnh sửa / `edit.json` | Sửa theo các báo cáo đã duyệt. Điều phối bổ sung trường hợp $k=1$, kích thước, giả thiết Hessian, nhãn câu hỏi và rút hai câu ở trang mô hình để tăng khoảng trắng. |
+| Rà toán học cuối / `math-final.json` | Kiểm lại tọa độ SVG, chứng minh với hỗ trợ giao nhau, bốn điểm phân loại, LP biến phụ, GP và Hessian: đạt. Góp ý khoảng trắng trong tệp tính nháp không ảnh hưởng tài liệu phát hành. |
+| Rà mạch toàn bài cuối / `narrative-final.json` | Sáu phần nối được và kết bài thu hồi ba năng lực; không thêm bài tập hồi quy. Góp ý nhẹ về ký hiệu và câu hỏi ôn tập không làm đứt mạch; giữ vì ký hiệu đã có kích thước và câu hỏi yêu cầu kiểm mô hình gốc. |
+
+Lượt rà mạch đầu tiên (`narrative.json`) dừng với lỗi `model returned an empty or incomplete answer after all retries`: giới hạn đầu ra 2600 token bị dùng cho suy luận. Đã dừng giai đoạn biên tập phụ thuộc, báo nguyên văn lỗi và chạy lại cùng vai/mô hình với 6500 token; lần chạy lại thành công. Không chuyển sang tác tử Codex thay thế.
+
+### Các vấn đề đã xử lý
+
+- **Nghiêm trọng — S06-05:** hình nháp và chứng minh khái quát sai. SVG cuối có gốc tại (170, 210), tỷ lệ 110 pixel/đơn vị trên cả hai trục; tọa độ ảnh của A, B, M lần lượt là (280, 210), (170, 100), (225, 155). Đoạn AB đi qua M. Hai trục có cả hai chiều; M rỗng, A/B tô kín. Đã kiểm XML, nhìn ảnh kết xuất và nhận rà toán học cuối.
+- **Nghiêm trọng — ghi chú S06-05:** dùng hai tập hỗ trợ $\{1,\ldots,k\}$ và $\{1,\ldots,k-1\}\cup\{k+1\}$, hệ số trên tập bằng 1; trung điểm có $k+1$ hệ số khác không. Đúng với mọi $1\le k<d$, kể cả $k=1$. Giữ hệ số chặn bằng 0; nêu riêng hai trường hợp biên lồi.
+- **Trung bình — S06-06:** cải dạng LP chỉ tương đương bài có hình phạt, không bảo toàn yêu cầu giới hạn cứng. Ghi rõ cách lấy lại $(w,b)$, trường hợp $\lambda=0$ và nghĩa vụ kiểm mô hình gốc. Rà toán học cuối xác nhận.
+- **Trung bình — nguồn và ký hiệu:** sửa §6.2, khai báo chiều các ma trận, giả thiết khả vi hai lần trên miền mở lồi khi dùng Hessian. Không suy ra tập khả thi không lồi chỉ vì một hàm ràng buộc trong cách viết hiện tại không lồi.
+- **Nhẹ — bố cục và mạch nói:** tách dòng công thức, dùng ký hiệu chung trong bảng, bổ sung câu nối và nhãn “Câu hỏi:”, bỏ chỉ dẫn nội bộ trong ghi chú. Giữ CSS và cỡ chữ; kiểm lại các trang bị rút câu.
+- **Kiểm định ghi chú:** cách bỏ thẻ HTML khi đồng bộ đã nhầm dấu `<` trong công thức với thẻ, làm mất đoạn chứng minh trên Codex Slides. Đã giới hạn phép bỏ thẻ vào các thẻ thực, đồng bộ lại và kiểm nguyên văn ghi chú. Mã hóa dấu so sánh trong công thức ghi chú HTML thành thực thể HTML để DOM RevealJS cũng giữ đủ nội dung.
+
+### Ví dụ số, tài sản và tài liệu học tập
+
+Bốn điểm phân loại minh họa là hai cặp đối xứng theo hai trục, nhãn $\pm1$. Theo từng tọa độ, $H(w,b)\ge\sum_{j=1}^{2}2\max(0,1-w_j)$ và $2\max(0,1-w_j)+|w_j|\ge1$. Với $\lambda=1$, mục tiêu có phạt đạt cận 2 tại $w=(1,1),b=0$, vi phạm giới hạn một đặc trưng. Giải độc lập bằng `scipy.optimize.linprog` xác nhận nghiệm và giá trị này; bài giới hạn cứng một đặc trưng có mất mát bản lề tối ưu bằng 2. Không so sánh hai giá trị 2 như cùng một hàm mục tiêu. Đây là dữ liệu tự xây dựng, không phải kết quả thực nghiệm ảnh.
+
+`img/lec-02/feature-cardinality.svg` là hình tự vẽ, có mô tả thay thế; không dùng ảnh raster hoặc tài sản bên thứ ba mới. Ghi chú học tập và bài tập cũ của Bài 02 chưa theo tuyến mới; đã rà tác động về chuẩn một, giới hạn đặc trưng và phản ví dụ. Giữ trạng thái “Đang cập nhật”, chưa liên kết chúng trên chỉ mục. Chỉ mục cập nhật mô tả bài giảng.
+
+### Kiểm định cuối
+
+- Toàn bài: 73 trang trong sáu phần, số trang lần lượt 7, 12, 14, 16, 15, 9. Mỗi mã có đúng một hàng trong storyboard; chín trang mới có ghi chú. Chỉ trang nội dung chính đổi tên phần trong 64 trang đầu; phần 3 giữ nguyên. Các đường dẫn cục bộ và dấu phân cách công thức Markdown hợp lệ.
+- RevealJS tại cổng 8765: kiểm toàn bộ 73 trang ở 1600×900 và 390×844; không lỗi JavaScript/KaTeX, tài nguyên hỏng hoặc tràn khung. Phím mũi tên, hash và tải lại đạt. Kiểm riêng trang giới hạn đặc trưng sau rút câu và trang nội dung chính sau đổi tên. Màn hình hẹp giữ cơ chế thu phóng toàn trang 16:9 của RevealJS.
+- Ghi chú trong DOM RevealJS: khôi phục biểu thức từ chú giải LaTeX của KaTeX và đối chiếu cả chín ghi chú với nguồn; khớp đầy đủ, bao gồm dấu so sánh. Phép so sánh văn bản hiển thị ban đầu không phù hợp vì KaTeX có cả lớp MathML và HTML; đã sửa cách kiểm, không coi nội dung hai lớp là lỗi lặp ghi chú.
+- Codex Slides: dự án `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc` có 73 trang. Thêm tám vị trí, cập nhật hình và ghi chú ở trang 2 và 65–73. Đọc lại xác nhận đúng tiêu đề, hình và ghi chú; 63 trang khác giữ nguyên trạng thái. Design File `uploaded/storyboard.md` đọc lại khớp storyboard trong kho.
+- Kiểm giao diện Codex Slides tại trang 2 và 63–73, bao gồm hai trang trước phần mới; ảnh tải thành công, ghi chú mới hiển thị đầy đủ và tải lại giữ trang kết. Chromium lần đầu bị sandbox chặn với `Operation not permitted`; chạy lại với quyền cần thiết thành công. Không có Browser tích hợp trong phiên: dùng Chromium cục bộ, không tuyên bố đã kiểm bằng Browser tích hợp. Liên kết kiểm định: `http://127.0.0.1:4311/project/20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc?slide=73`.
+
+Không còn vấn đề chặn bàn giao hoặc nghiêm trọng chưa xử lý trong phạm vi phần 6.

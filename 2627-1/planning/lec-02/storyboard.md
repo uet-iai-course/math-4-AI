@@ -4,7 +4,7 @@ Phiên bản làm lại ngày 2026-09-11; cập nhật sáu mạch theo yêu c�
 
 ## Trạng thái và mục tiêu
 
-- Phạm vi hiện tại: phần 1–5 có lần lượt 7, 12, 14, 16, 15 trang đã triển khai; phần 6 còn một tiêu đề. Toàn bài 65 trang trong sáu section ngoài. Chưa chốt số trang cuối cùng hoặc thời lượng; tiếp tục xây dựng phần tổng hợp cùng người dùng.
+- Phạm vi hiện tại: phần 1–5 có lần lượt 7, 12, 14, 16, 15 trang đã triển khai; phần 6 có 9 trang đã triển khai. Toàn bài 73 trang trong sáu section ngoài. Giữ thời lượng chưa ấn định; không tự thêm phân bổ.
 - Cấu trúc 58 trang (39 chính + 19 phụ lục) của lần sửa trước không còn là ràng buộc.
 - Bản storyboard cũ lưu trong lịch sử Git tại commit e030846; không tạo bản sao, không di chuyển tệp cũ.
 - Mục tiêu bài học: sinh viên hiểu rõ các dạng bài toán tối ưu lồi; nhận biết bài toán thực tế có thể chuyển về dạng lồi hoặc xấp xỉ bằng dạng lồi; chứng minh một bài toán tối ưu là lồi. Ưu tiên ví dụ trong trí tuệ nhân tạo và học máy (AI/ML) hoặc bài toán quen thuộc.
@@ -61,10 +61,10 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 - Đầu vào: nhận dạng LP/QP và cải dạng tương đương ở phần 2–4.
 - Đầu ra: phân biệt tương đương, thay mục tiêu và nới lỏng; đánh giá nghiệm theo mô hình ban đầu.
 
-### Mạch 6 — Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm
+### Mạch 6 — Tổng hợp và vận dụng
 
-- Ví dụ/tình huống: tình huống mới hoặc đổi giả thiết ví dụ đã học. Sinh viên tự đi đủ chín bước, chọn dạng bài và viết chứng nhận.
-- Nội dung: sản phẩm gồm mô hình rõ nghĩa, lập luận tính lồi, quan hệ với bài ban đầu, diễn giải nghiệm. Bảng tổng hợp dạng chuẩn xuất hiện sau các ví dụ.
+- Ví dụ/tình huống: giới hạn số đặc trưng của bộ phân loại bản lề đã học, nhận ra miền không lồi và xét hình phạt chuẩn một. Bỏ bài tập tổng hợp hồi quy theo yêu cầu; giữ kiểm tra biến thể và đánh giá nghiệm.
+- Nội dung: bảng tổng hợp dạng chuẩn sau các ví dụ phần 2–5; khung chứng nhận; biến thể giới hạn đặc trưng và ba câu hỏi tự kiểm; tổng kết ba năng lực. Sản phẩm gồm mô hình rõ nghĩa, lập luận tính lồi, quan hệ với bài ban đầu và diễn giải nghiệm.
 - Đầu vào: các lớp mô hình và phép biến đổi/xấp xỉ.
 - Đầu ra: bài làm tích hợp có thể đánh giá theo ba mục tiêu bài học.
 
@@ -95,7 +95,7 @@ Khung ban đầu có bảy phần; sau yêu cầu bỏ Tối ưu nón, phần x�
 | 3 | `section-3` | 14 trang | Giữ nội dung đã duyệt |
 | 4 | `section-4` | 16 trang | Giữ; sửa câu nối cuối để dẫn sang quan hệ không tương đương |
 | 5 | `section-5` | 15 trang | Sửa tiêu đề và thêm nội dung theo bảng phần 5 |
-| 6 | `section-6` | `mach-6` / `S06` | Sửa số phần, giữ tiêu đề tổng hợp chờ cùng người dùng triển khai; chưa coi là minh chứng đánh giá |
+| 6 | `section-6` | 9 trang: `S06`, `S06-01`–`S06-08` | Triển khai tổng hợp và vận dụng; bỏ bài tập tổng hợp hồi quy theo yêu cầu |
 
 Bản trước khi xóa nội dung truy xuất tại commit `774112d`. Các bảng dưới là ánh xạ hiện tại; số trang ở những quyết định lịch sử chỉ mô tả thời điểm đó.
 
@@ -356,3 +356,51 @@ Ví dụ dẫn nhập được gộp với nhu cầu và trực quan: bốn đi�
 ### Làm rõ ví dụ chọn gói dữ liệu
 
 Giữ nguyên sáu trang S05-07–12, tiêu đề và thứ tự. Nhu cầu mua ảnh dẫn tới bảng nội dung gói; bảng dẫn tới ba bất đẳng thức; nới miền biến cho cận dưới; phương án mua nguyên gói cho cận trên. Trực quan dùng bảng kiểm yêu cầu và đường đi $(1/2,1/2,1/2) \to (1,1,1) \to (1,1,0)$, cùng phản ví dụ trung điểm trong ghi chú. Khái quát cận đặt sau chứng nhận bằng số, trong ghi chú S05-12. Bài kiểm tra S05-14 tiếp tục đánh giá phương án chi phí 6 theo đơn vị triệu đồng. Không đổi chuỗi chín bước, số trang hoặc phân bổ thời lượng.
+
+
+## Phần 6 đã triển khai — Tổng hợp và vận dụng
+
+Phần 6 gồm chín trang: giữ mã S06 và thêm S06-01–08.
+
+| Mã | Tiêu đề | Lý do tồn tại | Vào → ra | LLO3 / CLO1 | Quyết định |
+|---|---|---|---|---|---|
+| `S06` | Tổng hợp và vận dụng | Định danh phần cuối, nối phần 5 | Nhận xét cuối phần 5 → chu trình tự kiểm | Hỗ trợ LLO3, CLO1 | Sửa: triển khai phần tổng hợp, giữ mã S06 và liên kết mach-6 |
+| `S06-01` | Các dạng bài toán đã học | Ôn bảng LP/QP/QCQP làm khung nhận dạng | Tiêu đề → bảng dạng chuẩn 3 hàng | Nhận dạng cấu trúc | Thêm: định nghĩa $f_i$ một lần phía trên, gộp cột mục tiêu và ràng buộc để bảng vừa khít |
+| `S06-02` | Quy hoạch hình học và đổi biến | Ôn GP và đổi biến log | Bảng → hai khối trước/sau | Nhận dạng + cải dạng | Thêm: mỗi khối một nhãn ngắn và ba dòng công thức căn thẳng, nêu miền $x>0$ và $z\in\mathbb R^n$ |
+| `S06-03` | Chứng nhận một bài toán lồi | Khung bốn bước dùng cho biến thể sau | Ôn tập → câu hỏi kiểm tra | Chứng nhận | Thêm: nhãn "Câu hỏi:" trên mặt, đáp án trong ghi chú |
+| `S06-04` | Giới hạn số đặc trưng | Nhu cầu mới: giảm chi phí đặc trưng | Khung → mô hình $\|w\|_0\le k$ | Biến thể nhu cầu | Thêm: tách công thức $H$ và bài toán cực tiểu, nêu dữ liệu $u_i,y_i,k$ và biến $w,b$ trước |
+| `S06-05` | Miền giới hạn đặc trưng không lồi | Trực quan phản ví dụ trung điểm | Mô hình → SVG $F$ không lồi | Kiểm tra tập khả thi | Thêm: chú thích hình chỉ nêu $M\notin F$; khái quát hai tập hỗ trợ giao nhau, trung điểm $k+1$ hệ số |
+| `S06-06` | Thay bằng hình phạt chuẩn một | Hình thức và mô hình thay thế lồi | Phản ví dụ → bài có phạt + LP biến phụ | Cải dạng/xấp xỉ | Thêm: chứng minh tương đương chỉ cho bài có phạt, phản ví dụ 4 điểm với bất đẳng thức theo cặp, cận 2 đạt tại $(1,1),b=0$; nguồn §6.2, tr. 304–305 |
+| `S06-07` | Kiểm tra các biến thể | Áp dụng tới bộ phân loại, khôi phục nghiệm | Mô hình phạt → ba câu hỏi | Ứng dụng + bài tập | Thêm: ba câu hỏi đúng nhãn, đáp án khớp phản ví dụ S06-06 |
+| `S06-08` | Tổng kết bài giảng | Chốt ba năng lực và sáu thành phần | Bài tập → kết bài | Đối chiếu mục tiêu bài học | Thêm: ba dòng đánh số thay bố cục hai cột, mục 3 "Chứng nhận tính lồi và diễn giải nghiệm trong bài toán ban đầu", nguồn chương 4; §6.2; §6.3.2 |
+
+### Bản đồ hành trình khái niệm
+
+Cụm ôn tập S06-01–03 dùng chu trình rút gọn: nhu cầu tổng hợp kết quả đã học → bảng dạng bài và khung chứng nhận → câu hỏi kiểm tra ở S06-03. Các khái niệm này đã được phát triển đầy đủ trong phần 1–5; không lặp lại toàn bộ ví dụ.
+
+| Bước | Trang và vai trò trong ví dụ giới hạn đặc trưng |
+|---|---|
+| Nhu cầu | S06-04: giảm chi phí tính toán bằng cách chỉ sử dụng tối đa $k$ đặc trưng. |
+| Trực quan | S06-04 giải nghĩa đếm hệ số; S06-05 biểu diễn hai trục và trung điểm nằm ngoài miền. |
+| Ví dụ | S06-05: $d=2,k=1$, hai phương án hợp lệ có trung điểm không hợp lệ; ghi chú S06-06 bổ sung bốn điểm phân loại tính được. |
+| Hình thức/toán học | Mô hình giới hạn cứng ở S06-04 đặt sau nhu cầu và ý nghĩa biến; S06-05 kiểm tính lồi của miền; S06-06 xây dựng bài có hình phạt và chứng nhận tính lồi. |
+| Ứng dụng | Ghi chú S06-06: chuyển bài có phạt thành LP, lấy lại $(w,b)$ và kiểm số đặc trưng trong yêu cầu ban đầu. |
+| Bài tập | S06-07: thay miền khả thi, kiểm giới hạn của hình phạt và diễn giải nghiệm. |
+
+Đây là biến thể của bộ phân loại đã học, không giới thiệu lại mất mát bản lề. Đầu vào: LP, quy tắc tạo hàm lồi, mất mát bản lề và chuẩn một. Giữ ký hiệu $u_i,y_i,w,b,H$ từ phần 5; thêm $d,k$ và phép đếm hệ số khác không. Sản phẩm học tập: phản ví dụ trung điểm, mô hình có phạt lồi và cách kiểm yêu cầu gốc; đo LLO3/CLO1 qua S06-07. Nhu cầu và mô hình được gộp ở S06-04; trực quan và ví dụ gộp ở S06-05. Câu nối: giảm số đặc trưng → miền không lồi → dùng hình phạt lồi → kiểm lại số đặc trưng → tổng kết cách chứng nhận. Tổng thời lượng chưa chốt; không tự phân bổ.
+
+### Ánh xạ chín bước của ví dụ
+
+| Bước theo yêu cầu người dùng | Vị trí thực hiện |
+|---|---|
+| 1. Tình huống thực tế | S06-04: bộ phân loại ảnh cần giảm chi phí tính toán. |
+| 2. Mô hình ban đầu | S06-04: dữ liệu, biến, miền, mất mát bản lề và giới hạn số đặc trưng. |
+| 3. Cách tiếp cận trực tiếp | Ghi chú S06-04: duyệt tập đặc trưng; số tập tăng theo tổ hợp. |
+| 4. Ý tưởng nhận dạng hoặc cải dạng | S06-05: mục tiêu lồi nhưng miền giới hạn đặc trưng không lồi. |
+| 5. Phép biến đổi chi tiết | S06-06 và ghi chú: thay bằng hình phạt chuẩn một; biến phụ chuyển bài có phạt thành LP. |
+| 6. Chứng nhận | S06-06: chứng nhận tính lồi; LP tương đương bài có phạt, không tương đương yêu cầu giới hạn cứng; lấy lại $(w,b)$. |
+| 7. Ví dụ số và hình học | SVG trung điểm S06-05; phản ví dụ bốn điểm với $\lambda=1$ trong ghi chú S06-06. |
+| 8. Khái quát hóa | Ghi chú S06-05: mọi $1\le k<d$; S06-06: hình phạt chuẩn một không bảo đảm số đặc trưng đã định. |
+| 9. Biến thể kiểm tra hiểu | S06-07: miền chuẩn một, tác động của $\lambda$ và kiểm nghiệm trong bài gốc. |
+
+Nguồn nội dung: Boyd–Vandenberghe (2004), chương 4, §6.2, tr. 304–305 và §6.3.2; bộ phân loại kế thừa phần 5. Hình học và dữ liệu số tự xây dựng. Không thêm bài tập tổng hợp hồi quy; không mở rộng sang quy hoạch nửa xác định hoặc tối ưu tựa lồi trong phần này.

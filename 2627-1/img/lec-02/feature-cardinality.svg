@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" role="img" aria-labelledby="feature-title feature-desc">
+  <title id="feature-title">Miền có tối đa một hệ số khác không</title>
+  <desc id="feature-desc">Hai trục w1 và w2 là tập F. A bằng (1,0), B bằng (0,1) thuộc F. Đoạn nét đứt AB chứa trung điểm M bằng (0.5,0.5), không thuộc F. Hai trục cùng tỷ lệ và kéo dài theo cả hai chiều.</desc>
+  <defs>
+    <marker id="feature-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#B15A2B"/>
+    </marker>
+  </defs>
+  <rect width="460" height="340" fill="white"/>
+  <g stroke="#B15A2B" stroke-width="4" marker-start="url(#feature-arrow)" marker-end="url(#feature-arrow)">
+    <line x1="30" y1="210" x2="425" y2="210"/>
+    <line x1="170" y1="320" x2="170" y2="30"/>
+  </g>
+  <g stroke="#444" stroke-width="1.5">
+    <line x1="280" y1="204" x2="280" y2="216"/>
+    <line x1="225" y1="204" x2="225" y2="216"/>
+    <line x1="164" y1="100" x2="176" y2="100"/>
+    <line x1="164" y1="155" x2="176" y2="155"/>
+    <line x1="60" y1="204" x2="60" y2="216"/>
+  </g>
+  <g font-family="sans-serif" font-size="18" fill="#333">
+    <text x="145" y="232">0</text>
+    <text x="217" y="237">½</text>
+    <text x="139" y="160">½</text>
+    <text x="143" y="106">1</text>
+    <text x="49" y="238">−1</text>
+    <text x="274" y="237">1</text>
+    <text x="421" y="240" font-size="22">w₁</text>
+    <text x="130" y="39" font-size="22">w₂</text>
+    <text x="310" y="303">F: hai trục</text>
+  </g>
+  <line id="feature-segment" x1="280" y1="210" x2="170" y2="100" stroke="#2F3E7A" stroke-width="2.5" stroke-dasharray="7 6"/>
+  <circle id="feature-a" cx="280" cy="210" r="6" fill="#2F3E7A"/>
+  <circle id="feature-b" cx="170" cy="100" r="6" fill="#2F3E7A"/>
+  <circle id="feature-m" cx="225" cy="155" r="7" fill="white" stroke="#B15A2B" stroke-width="3"/>
+  <g font-family="sans-serif" font-size="18" fill="#2F3E7A">
+    <text x="293" y="191">A = (1, 0)</text>
+    <text x="184" y="86">B = (0, 1)</text>
+    <text x="239" y="150" fill="#873C16">M = (½, ½)</text>
+  </g>
+</svg>

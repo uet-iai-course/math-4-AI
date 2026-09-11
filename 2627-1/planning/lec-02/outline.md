@@ -9,9 +9,9 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 3. Quy hoạch bậc hai.
 4. Quy hoạch hình học.
 5. Xấp xỉ lồi và nới lỏng bài toán không lồi.
-6. Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm.
+6. Tổng hợp và vận dụng.
 
-Phần 1 có 7 trang; phần 2 có 12; phần 3 có 14; phần 4 có 16; phần 5 có 15 trang đã triển khai. Phần 6 còn một trang tiêu đề. Toàn bài có 65 trang trong sáu section ngoài; chưa chốt số trang cuối cùng.
+Phần 1 có 7 trang; phần 2 có 12; phần 3 có 14; phần 4 có 16; phần 5 có 15 trang đã triển khai. Phần 6 có 9 trang đã triển khai. Toàn bài có 73 trang trong sáu section ngoài. Không ấn định thời lượng mới.
 
 ## Phần 1 hiện tại
 
@@ -121,3 +121,30 @@ Tiêu chí hoàn thành: phân biệt thay mục tiêu với cải dạng tươn
 ### Làm rõ cụm chọn gói dữ liệu
 
 Sáu trang giữ nguyên thứ tự. Dùng nhu cầu mua ảnh đã gán nhãn người đi bộ cho ngày khô, đêm khô và trời mưa; bảng mô tả nội dung từng gói, mỗi gói giá minh họa 2 triệu đồng. Giải thích biến nhị phân và ràng buộc bằng lời trước khi nới lỏng. Nghiệm phân số được kiểm từng yêu cầu, cho cận dưới 3 triệu đồng. Mua cả ba gói tốn 6 triệu đồng; bỏ gói 3 còn gói 1 và 2, đủ yêu cầu với 4 triệu đồng. Chi phí là bội của 2 chứng nhận phương án 4 triệu đồng tối ưu. Khung cận tổng quát chuyển vào ghi chú sau lập luận bằng số.
+
+
+## Phần 6 đã triển khai — Tổng hợp và vận dụng
+
+Phần 6 gồm 9 trang trong một section ngoài, mã tiêu đề S06, nội dung S06-01–08.
+
+### Danh sách trang
+
+1. `S06` — Tổng hợp và vận dụng: trang tiêu đề, nối nhận xét cuối phần 5, nhắc ba năng lực.
+2. `S06-01` — Các dạng bài toán đã học: bảng 3 hàng LP/QP/QCQP (mục tiêu và ràng buộc, chứng nhận), định nghĩa $f_i$ một lần phía trên.
+3. `S06-02` — Quy hoạch hình học và đổi biến: GP trước/sau đổi biến $z=\log x$, hai khối công thức đối chiếu.
+4. `S06-03` — Chứng nhận một bài toán lồi: bốn bước hành động, câu hỏi kiểm tra đúng nhãn "Câu hỏi:".
+5. `S06-04` — Giới hạn số đặc trưng: nhu cầu, dữ liệu/biến, mô hình $\|w\|_0\le k$; tách công thức $H$ và bài toán cực tiểu.
+6. `S06-05` — Miền giới hạn đặc trưng không lồi: ví dụ $d=2,k=1$, SVG trung điểm, khái quát hai tập hỗ trợ giao nhau.
+7. `S06-06` — Thay bằng hình phạt chuẩn một: mô hình có phạt, bảng $(2,0)/(1,1)$, chứng minh tương đương LP chỉ cho bài có phạt, phản ví dụ 4 điểm cận 2.
+8. `S06-07` — Kiểm tra các biến thể: ba câu hỏi, đáp án trong ghi chú diễn giả.
+9. `S06-08` — Tổng kết bài giảng: ba dòng đánh số, sáu thành phần mô hình, nguồn đọc.
+
+### Quyết định
+
+- Tách nhu cầu/mô hình giới hạn đặc trưng (S06-04) khỏi phản ví dụ trung điểm (S06-05) để mỗi trang một luận điểm; S06-04 nêu nhu cầu và mô hình giới hạn cứng, S06-05 kiểm tập khả thi bằng SVG.
+- Bảng dạng chuẩn ở S06-01 gộp "Mục tiêu và ràng buộc" thành một cột, định nghĩa $f_i$ phía trên, tránh lặp hai lần công thức bậc hai dài; cụ thể: ba hàng LP/QP/QCQP vừa khít bảng.
+- S06-06: chứng minh tương đương LP chỉ áp dụng cho bài có phạt $H+\lambda\|w\|_1$; bài giới hạn cứng phải kiểm nghiệm riêng, không mặc nhiên dùng chung nghiệm.
+- S06-05: khái quát không lồi dùng hai tập hỗ trợ $\{1,\dots,k\}$ và $\{1,\dots,k-1,k+1\}$ giao nhau, trung điểm có $k+1$ hệ số khác 0, phủ mọi $1\le k<d$.
+- Giữ giao diện hiện có; không thêm bài tập tổng hợp hồi quy hoặc mở rộng sang tối ưu tựa lồi/nhiều mục tiêu.
+- Nguồn chỉ Boyd–Vandenberghe (2004) đã có: chương 4; §6.2, tr. 304–305; §6.3.2; §4.5 cho GP. Không dùng "§6.2.1".
+- Thời lượng chưa ấn định, không tự đặt phút cho từng trang.
