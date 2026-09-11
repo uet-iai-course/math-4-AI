@@ -18,27 +18,183 @@
     <section id="section-1">
       <section id="mach-1" data-slide-id="S01-01">
         <h1>Bài 02: Các bài toán tối ưu lồi</h1>
+        <h3>Cơ sở toán học cho AI</h3>
+        <p>Viện Trí tuệ nhân tạo</p>
+        <p>Năm học 2026–2027 · Học kỳ 1</p>
+        <aside class="notes">
+          <p>Giới thiệu bài giảng về các bài toán tối ưu lồi và vai trò của chúng trong cơ sở toán học cho AI.</p>
+        </aside>
       </section>
       <section id="noi-dung-chinh" data-slide-id="S01-02">
-        <h2>Nội dung chính: bảy mạch</h2>
+        <h2>Nội dung chính</h2>
+        <ol class="agenda">
+          <li>Mô hình hóa và chứng nhận tính lồi</li>
+          <li>Quy hoạch tuyến tính</li>
+          <li>Quy hoạch bậc hai và ràng buộc bậc hai</li>
+          <li>Quy hoạch hình học</li>
+          <li>Tối ưu nón và quy hoạch nửa xác định</li>
+          <li>Xấp xỉ lồi và nới lỏng</li>
+          <li>Lựa chọn biểu diễn và đánh giá nghiệm</li>
+        </ol>
+        <aside class="notes">
+          <p>Bài giảng tập trung nhận dạng các dạng bài toán, cải dạng hoặc xấp xỉ mô hình thực tế và chứng minh tính lồi. Ta bắt đầu bằng khung chung trước khi xét từng lớp mô hình.</p>
+        </aside>
       </section>
       <section id="bai-toan-toi-uu-tong-quat" data-slide-id="S01-03">
-        <h2>Bài toán tối ưu tổng quát</h2>
+        <h2>Bài toán tối ưu lồi tổng quát</h2>
+        <p>Biến quyết định $x\in\mathbb{R}^n$.</p>
+        <div class="math-large">
+          $$\min_{x\in C} f_0(x)$$
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <p><strong>Hàm mục tiêu</strong></p>
+            <p>$f_0:C\to\mathbb{R}$ là hàm lồi.</p>
+          </div>
+          <div class="card">
+            <p><strong>Tập khả thi</strong></p>
+            <p>$C\subseteq\mathbb{R}^n$ là tập lồi.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          <p>Ta cần chọn điểm $x$ trong tập khả thi $C$ sao cho giá trị mục tiêu nhỏ nhất. Muốn chứng nhận bài toán lồi, cần xét cả hàm mục tiêu lẫn tập khả thi. Tính lồi tự nó chưa bảo đảm bài toán có nghiệm tối ưu.</p><p>Ở trang sau, $C$ được mô tả bằng miền chung $D$ cùng các ràng buộc. Hàm mục tiêu trên $C$ là hạn chế của hàm xác định trên $D$. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.2, tr. 137–138.</p>
+        </aside>
       </section>
       <section id="dang-toan-hoc" data-slide-id="S01-04">
-        <h2>Dạng toán học của bài toán tối ưu</h2>
-      </section>
-      <section id="dieu-kien-loi" data-slide-id="S01-05">
-        <h2>Điều kiện để bài toán tối ưu là lồi</h2>
+        <h2>Dạng toán học của bài toán tối ưu lồi</h2>
+        <p>Với biến $x\in D\subseteq\mathbb{R}^n$, miền $D$ lồi.</p>
+        <div class="math-large">
+          $$\begin{aligned}
+          \min_{x\in D}\;& f_0(x)\\
+          \text{với}\quad & f_i(x)\le 0,\quad i=1,\ldots,m,\\
+          & Ax=b.
+          \end{aligned}$$
+        </div>
+        <p>$f_0,f_1,\ldots,f_m:D\to\mathbb{R}$ đều lồi.</p>
+        <p>Đẳng thức affine: $A\in\mathbb{R}^{p\times n}$, $b\in\mathbb{R}^p$.</p>
+        <p>Các ràng buộc trên xác định tập khả thi $C$ lồi.</p>
+        <aside class="notes">
+          <p>$D$ là miền chung của các hàm; tập khả thi là $C=\{x\in D\mid f_i(x)\le0,\ i=1,\ldots,m,\ Ax=b\}$. Mỗi tập mức dưới của $f_i$ lồi vì $f_i$ lồi. Tập nghiệm của $Ax=b$ là tập affine, do đó lồi. Giao của các tập này với $D$ vẫn lồi.</p><p>Đây là dạng biểu diễn chuẩn. Một tập khả thi lồi vẫn có thể được mô tả bằng các hàm không lồi; vì vậy không đồng nhất tính lồi của tập với tính lồi của mọi cách biểu diễn nó. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.2, tr. 136–138. Tiếp theo, áp dụng khung chứng nhận vào các hàm quen thuộc.</p>
+        </aside>
       </section>
       <section id="vi-du-bac-hai" data-slide-id="S01-06">
         <h2>Ví dụ: hàm bậc hai</h2>
+        <div class="math-large">
+          $$\min_{0\le x\le1}\; (x-2)^2$$
+        </div>
+        <div class="example-grid">
+          <figure class="example-plot">
+            <svg viewBox="0 0 600 360" role="img" aria-labelledby="svg-bac-hai-title svg-bac-hai-desc">
+              <title id="svg-bac-hai-title">Hàm bậc hai trên đoạn [0,1]</title>
+              <desc id="svg-bac-hai-desc">Parabol (x−2)², nét liền đậm ứng với 0≤x≤1, nét đứt ở ngoài tập khả thi. Điểm tối ưu (1,1). Thanh đoạn có hai đầu đóng.</desc>
+              <defs><marker id="arrow-bac-hai" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B15A2B"/></marker></defs>
+              <g stroke="#333" stroke-width="2"><line x1="45" y1="275" x2="560" y2="275"/><line x1="121.25" y1="280" x2="121.25" y2="30"/></g>
+              <g font-size="30" fill="#333"><text x="570" y="284">x</text><text x="133.25" y="28">f₀(x)</text></g>
+              <line x1="121.25" y1="275" x2="121.25" y2="282" stroke="#333" stroke-width="2"/><text x="121.25" y="314" text-anchor="middle" font-size="30" fill="#333">0</text>
+              <line x1="243.75" y1="275" x2="243.75" y2="282" stroke="#333" stroke-width="2"/><text x="243.75" y="314" text-anchor="middle" font-size="30" fill="#333">1</text>
+              <line x1="366.25" y1="275" x2="366.25" y2="282" stroke="#333" stroke-width="2"/><text x="366.25" y="314" text-anchor="middle" font-size="30" fill="#333">2</text>
+              <line x1="488.75" y1="275" x2="488.75" y2="282" stroke="#333" stroke-width="2"/><text x="488.75" y="314" text-anchor="middle" font-size="30" fill="#333">3</text>
+              <line x1="114.25" y1="241.43" x2="121.25" y2="241.43" stroke="#333" stroke-width="2"/><text x="108.25" y="251.43" text-anchor="end" font-size="30" fill="#333">1</text>
+              <line x1="114.25" y1="140.71" x2="121.25" y2="140.71" stroke="#333" stroke-width="2"/><text x="108.25" y="150.71" text-anchor="end" font-size="30" fill="#333">4</text>
+              <polyline data-function="bac-hai" points="60.000,65.179 63.062,69.354 66.125,73.487 69.188,77.579 72.250,81.629 75.312,85.636 78.375,89.602 81.438,93.525 84.500,97.407 87.562,101.247 90.625,105.045 93.688,108.800 96.750,112.514 99.812,116.186 102.875,119.816 105.938,123.404 109.000,126.950 112.062,130.454 115.125,133.916 118.188,137.336 121.250,140.714 124.312,144.050 127.375,147.345 130.438,150.597 133.500,153.807 136.562,156.975 139.625,160.102 142.688,163.186 145.750,166.229 148.812,169.229 151.875,172.188 154.938,175.104 158.000,177.979 161.062,180.811 164.125,183.602 167.188,186.350 170.250,189.057 173.312,191.722 176.375,194.345 179.438,196.925 182.500,199.464 185.562,201.961 188.625,204.416 191.688,206.829 194.750,209.200 197.812,211.529 200.875,213.816 203.938,216.061 207.000,218.264 210.062,220.425 213.125,222.545 216.188,224.622 219.250,226.657 222.312,228.650 225.375,230.602 228.438,232.511 231.500,234.379 234.562,236.204 237.625,237.988 240.688,239.729 243.750,241.429 246.812,243.086 249.875,244.702 252.938,246.275 256.000,247.807 259.062,249.297 262.125,250.745 265.188,252.150 268.250,253.514 271.312,254.836 274.375,256.116 277.438,257.354 280.500,258.550 283.562,259.704 286.625,260.816 289.688,261.886 292.750,262.914 295.812,263.900 298.875,264.845 301.938,265.747 305.000,266.607 308.062,267.425 311.125,268.202 314.188,268.936 317.250,269.629 320.312,270.279 323.375,270.887 326.438,271.454 329.500,271.979 332.562,272.461 335.625,272.902 338.688,273.300 341.750,273.657 344.812,273.972 347.875,274.245 350.938,274.475 354.000,274.664 357.062,274.811 360.125,274.916 363.188,274.979 366.250,275.000 369.312,274.979 372.375,274.916 375.438,274.811 378.500,274.664 381.562,274.475 384.625,274.245 387.688,273.972 390.750,273.657 393.812,273.300 396.875,272.902 399.938,272.461 403.000,271.979 406.062,271.454 409.125,270.887 412.188,270.279 415.250,269.629 418.312,268.936 421.375,268.202 424.438,267.425 427.500,266.607 430.562,265.747 433.625,264.845 436.688,263.900 439.750,262.914 442.812,261.886 445.875,260.816 448.938,259.704 452.000,258.550 455.062,257.354 458.125,256.116 461.188,254.836 464.250,253.514 467.312,252.150 470.375,250.745 473.438,249.297 476.500,247.807 479.562,246.275 482.625,244.702 485.688,243.086 488.750,241.429 491.812,239.729 494.875,237.988 497.938,236.204 501.000,234.379 504.062,232.511 507.125,230.602 510.188,228.650 513.250,226.657 516.312,224.622 519.375,222.545 522.438,220.425 525.500,218.264 528.562,216.061 531.625,213.816 534.688,211.529 537.750,209.200 540.812,206.829 543.875,204.416 546.938,201.961 550.000,199.464" fill="none" stroke="#666" stroke-width="3" stroke-dasharray="8 6" />
+              <polyline data-function="bac-hai" points="121.250,140.714 123.292,142.943 125.333,145.153 127.375,147.345 129.417,149.517 131.458,151.672 133.500,153.807 135.542,155.924 137.583,158.022 139.625,160.102 141.667,162.163 143.708,164.205 145.750,166.229 147.792,168.234 149.833,170.220 151.875,172.188 153.917,174.137 155.958,176.067 158.000,177.979 160.042,179.872 162.083,181.746 164.125,183.602 166.167,185.439 168.208,187.257 170.250,189.057 172.292,190.838 174.333,192.601 176.375,194.345 178.417,196.070 180.458,197.776 182.500,199.464 184.542,201.134 186.583,202.784 188.625,204.416 190.667,206.029 192.708,207.624 194.750,209.200 196.792,210.757 198.833,212.296 200.875,213.816 202.917,215.317 204.958,216.800 207.000,218.264 209.042,219.710 211.083,221.137 213.125,222.545 215.167,223.934 217.208,225.305 219.250,226.657 221.292,227.991 223.333,229.306 225.375,230.602 227.417,231.879 229.458,233.138 231.500,234.379 233.542,235.600 235.583,236.803 237.625,237.988 239.667,239.153 241.708,240.300 243.750,241.429" fill="none" stroke="#B15A2B" stroke-width="6"  />
+              <line x1="121.25" y1="339" x2="243.75" y2="339" stroke="#B15A2B" stroke-width="7"/>
+              <circle cx="121.25" cy="339" r="6" fill="#B15A2B"/>
+              <circle cx="243.75" cy="339" r="6" fill="#B15A2B"/>
+              <circle cx="243.75" cy="241.43" r="7" fill="#B15A2B"/>
+              <text x="255.75" y="226.43" font-size="30" fill="#8d451e">(1, 1)</text>
+            </svg>
+            <figcaption>Nét đậm: phần khả thi.</figcaption>
+          </figure>
+          <div>
+            <p><strong>Tập khả thi:</strong> $C=[0,1]$ là đoạn lồi.</p>
+            <p><strong>Hàm mục tiêu:</strong> $f_0''(x)=2&gt;0$, nên $f_0$ lồi.</p>
+            <p><strong>Nghiệm:</strong> $x^\star=1$, $f_0(x^\star)=1$.</p>
+          </div>
+        </div>
+        <div class="box">
+          <p>Ở đây, nghiệm tối ưu nằm trên biên.</p>
+        </div>
+        <aside class="notes">
+          <p>Ta chọn $x$ gần mốc 2 nhất theo bình phương độ lệch, nhưng chỉ được chọn trong đoạn $[0,1]$. Dữ liệu gồm mốc 2 và hai cận 0, 1; biến quyết định là $x$. Nếu bỏ ràng buộc, ta chọn 2, nhưng điểm đó không khả thi. Hàm $f_0(x)=(x-2)^2$ lồi trên $\mathbb{R}$ vì $f_0''=2$. Hai ràng buộc $-x\le0$ và $x-1\le0$ đều affine; không cần cải dạng.</p><p>Trên $[0,1]$, $(x-2)^2\ge1$, dấu bằng chỉ khi $x=1$. Vì vậy nghiệm tối ưu là $x^\star=1$, giá trị tối ưu bằng 1. Đồ thị phân biệt phần khả thi nét liền đậm với phần còn lại nét đứt. Câu hỏi: nếu đổi $C$ thành $[0,3]$, nghiệm thay đổi thế nào? Đáp án: $x^\star=2$, giá trị bằng 0.</p><p>Ví dụ sau cho thấy tính lồi không đòi hỏi hàm phải trơn. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §3.1.3 và §4.1.2, Ví dụ 4.2; mốc và cận tự chọn, đồ thị tự vẽ.</p>
+        </aside>
       </section>
       <section id="vi-du-gia-tri-tuyet-doi" data-slide-id="S01-07">
         <h2>Ví dụ: hàm giá trị tuyệt đối</h2>
+        <div class="math-large">
+          $$\min_{x\in\mathbb{R}}\; |x-2|$$
+        </div>
+        <div class="example-grid">
+          <figure class="example-plot">
+            <svg viewBox="0 0 600 360" role="img" aria-labelledby="svg-gtd-title svg-gtd-desc">
+              <title id="svg-gtd-title">Hàm giá trị tuyệt đối trên toàn trục số</title>
+              <desc id="svg-gtd-desc">Đường chữ V của |x−2| có đỉnh (2,0). Toàn bộ trục số khả thi, biểu diễn bằng thanh mũi tên hai chiều.</desc>
+              <defs><marker id="arrow-gtd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B15A2B"/></marker></defs>
+              <g stroke="#333" stroke-width="2"><line x1="45" y1="275" x2="560" y2="275"/><line x1="141.67" y1="280" x2="141.67" y2="30"/></g>
+              <g font-size="30" fill="#333"><text x="570" y="284">x</text><text x="153.67" y="28">f₀(x)</text></g>
+              <line x1="141.67" y1="275" x2="141.67" y2="282" stroke="#333" stroke-width="2"/><text x="141.67" y="314" text-anchor="middle" font-size="30" fill="#333">0</text>
+              <line x1="305.00" y1="275" x2="305.00" y2="282" stroke="#333" stroke-width="2"/><text x="305.00" y="314" text-anchor="middle" font-size="30" fill="#333">2</text>
+              <line x1="468.33" y1="275" x2="468.33" y2="282" stroke="#333" stroke-width="2"/><text x="468.33" y="314" text-anchor="middle" font-size="30" fill="#333">4</text>
+              <line x1="134.67" y1="157.50" x2="141.67" y2="157.50" stroke="#333" stroke-width="2"/><text x="128.67" y="167.50" text-anchor="end" font-size="30" fill="#333">2</text>
+              <line x1="134.67" y1="40.00" x2="141.67" y2="40.00" stroke="#333" stroke-width="2"/><text x="128.67" y="50.00" text-anchor="end" font-size="30" fill="#333">4</text>
+              <polyline data-function="gtd" points="60.000,98.750 305.000,275.000 550.000,98.750" fill="none" stroke="#B15A2B" stroke-width="6"  marker-start="url(#arrow-gtd)" marker-end="url(#arrow-gtd)"/>
+              <line x1="65" y1="339" x2="545" y2="339" stroke="#B15A2B" stroke-width="7" marker-start="url(#arrow-gtd)" marker-end="url(#arrow-gtd)"/>
+              <circle cx="305.00" cy="275" r="7" fill="#B15A2B"/>
+              <text x="305" y="220" text-anchor="middle" font-size="30" fill="#8d451e">(2, 0)</text>
+            </svg>
+            <figcaption>Thanh hai chiều: $C=\mathbb{R}$.</figcaption>
+          </figure>
+          <div>
+            <p><strong>Tập khả thi:</strong> $C=\mathbb{R}$ lồi.</p>
+            <p><strong>Hàm mục tiêu:</strong> $|x-2|$ lồi theo bất đẳng thức tam giác.</p>
+            <p><strong>Nghiệm:</strong> $x^\star=2$, $f_0(x^\star)=0$.</p>
+          </div>
+        </div>
+        <div class="box">
+          <p>Hàm mục tiêu lồi không nhất thiết khả vi.</p>
+        </div>
+        <aside class="notes">
+          <p>Ta vẫn chọn $x$ khớp mốc 2, lần này đo độ lệch bằng trị tuyệt đối và cho phép $x$ thuộc toàn bộ $\mathbb{R}$. Hàm mục tiêu là $f_0(x)=|x-2|$. Với $u,v\in\mathbb{R}$ và $\theta\in[0,1]$, bất đẳng thức tam giác cho</p>$$|\theta u+(1-\theta)v-2|\le\theta|u-2|+(1-\theta)|v-2|.$$<p>Vì $|x-2|\ge0$ và dấu bằng chỉ khi $x=2$, nghiệm là $x^\star=2$, giá trị tối ưu bằng 0. Đạo hàm trái bằng $-1$, đạo hàm phải bằng 1 tại điểm này, nên hàm không khả vi tại nghiệm. Câu hỏi: nếu thay $C$ bằng $[3,5]$, nghiệm là gì? Đáp án: $x^\star=3$, giá trị bằng 1.</p><p>Hai ví dụ vừa rồi đều đạt giá trị tối ưu; tiếp theo xét một trường hợp không đạt. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §3.1.5; phép dịch biến tự chọn, đồ thị tự vẽ.</p>
+        </aside>
       </section>
       <section id="vi-du-nghich-dao" data-slide-id="S01-08">
         <h2>Ví dụ: hàm nghịch đảo</h2>
+        <div class="math-large">
+          $$\min_{x&gt;0}\; \frac{1}{x}$$
+        </div>
+        <div class="example-grid">
+          <figure class="example-plot">
+            <svg viewBox="0 0 600 360" role="img" aria-labelledby="svg-nghich-dao-title svg-nghich-dao-desc">
+              <title id="svg-nghich-dao-title">Hàm nghịch đảo trên miền dương</title>
+              <desc id="svg-nghich-dao-desc">Đường 1/x luôn ở trên trục hoành và tiến sát trục khi x tăng. Thanh miền dương có đầu rỗng tại 0 và mũi tên sang phải.</desc>
+              <defs><marker id="arrow-nghich-dao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="2" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B15A2B"/></marker></defs>
+              <g stroke="#333" stroke-width="2"><line x1="45" y1="275" x2="560" y2="275"/><line x1="60.00" y1="280" x2="60.00" y2="30"/></g>
+              <g font-size="30" fill="#333"><text x="570" y="284">x</text><text x="125" y="28">f₀(x)</text></g>
+              <line x1="141.67" y1="275" x2="141.67" y2="282" stroke="#333" stroke-width="2"/><text x="141.67" y="314" text-anchor="middle" font-size="30" fill="#333">1</text>
+              <line x1="223.33" y1="275" x2="223.33" y2="282" stroke="#333" stroke-width="2"/><text x="223.33" y="314" text-anchor="middle" font-size="30" fill="#333">2</text>
+              <line x1="386.67" y1="275" x2="386.67" y2="282" stroke="#333" stroke-width="2"/><text x="386.67" y="314" text-anchor="middle" font-size="30" fill="#333">4</text>
+              <line x1="53.00" y1="216.25" x2="60.00" y2="216.25" stroke="#333" stroke-width="2"/><text x="47.00" y="226.25" text-anchor="end" font-size="30" fill="#333">1</text>
+              <line x1="53.00" y1="157.50" x2="60.00" y2="157.50" stroke="#333" stroke-width="2"/><text x="47.00" y="167.50" text-anchor="end" font-size="30" fill="#333">2</text>
+              <line x1="53.00" y1="40.00" x2="60.00" y2="40.00" stroke="#333" stroke-width="2"/><text x="47.00" y="50.00" text-anchor="end" font-size="30" fill="#333">4</text>
+              <polyline data-function="nghich-dao" points="80.417,40.000 82.373,60.551 84.330,77.797 86.286,92.476 88.243,105.120 90.200,116.127 92.156,125.794 94.113,134.352 96.069,141.981 98.026,148.826 99.983,155.000 101.939,160.598 103.896,165.698 105.852,170.362 107.809,174.644 109.766,178.590 111.722,182.237 113.679,185.618 115.635,188.761 117.592,191.691 119.549,194.429 121.505,196.992 123.462,199.397 125.418,201.658 127.375,203.788 129.332,205.798 131.288,207.697 133.245,209.495 135.201,211.199 137.158,212.817 139.115,214.355 141.071,215.818 143.028,217.213 144.984,218.544 146.941,219.814 148.898,221.029 150.854,222.191 152.811,223.304 154.767,224.372 156.724,225.396 158.681,226.379 160.637,227.325 162.594,228.234 164.550,229.109 166.507,229.952 168.464,230.765 170.420,231.549 172.377,232.305 174.333,233.036 176.290,233.742 178.247,234.424 180.203,235.085 182.160,235.724 184.116,236.343 186.073,236.943 188.030,237.525 189.986,238.089 191.943,238.636 193.899,239.168 195.856,239.684 197.812,240.185 199.769,240.673 201.726,241.146 203.682,241.607 205.639,242.056 207.595,242.493 209.552,242.918 211.509,243.332 213.465,243.736 215.422,244.130 217.378,244.514 219.335,244.888 221.292,245.253 223.248,245.610 225.205,245.958 227.161,246.298 229.118,246.630 231.075,246.954 233.031,247.271 234.988,247.581 236.944,247.885 238.901,248.181 240.858,248.471 242.814,248.755 244.771,249.033 246.727,249.305 248.684,249.572 250.641,249.833 252.597,250.088 254.554,250.339 256.510,250.584 258.467,250.825 260.424,251.061 262.380,251.293 264.337,251.520 266.293,251.742 268.250,251.961 270.207,252.175 272.163,252.386 274.120,252.592 276.076,252.795 278.033,252.995 279.990,253.190 281.946,253.383 283.903,253.571 285.859,253.757 287.816,253.940 289.773,254.119 291.729,254.295 293.686,254.469 295.642,254.639 297.599,254.807 299.556,254.972 301.512,255.134 303.469,255.294 305.425,255.451 307.382,255.605 309.339,255.757 311.295,255.907 313.252,256.055 315.208,256.200 317.165,256.343 319.122,256.484 321.078,256.623 323.035,256.759 324.991,256.894 326.948,257.027 328.905,257.158 330.861,257.286 332.818,257.413 334.774,257.539 336.731,257.662 338.688,257.784 340.644,257.904 342.601,258.022 344.557,258.139 346.514,258.254 348.470,258.368 350.427,258.480 352.384,258.590 354.340,258.699 356.297,258.807 358.253,258.913 360.210,259.018 362.167,259.122 364.123,259.224 366.080,259.325 368.036,259.424 369.993,259.523 371.950,259.620 373.906,259.715 375.863,259.810 377.819,259.904 379.776,259.996 381.733,260.087 383.689,260.177 385.646,260.266 387.602,260.354 389.559,260.441 391.516,260.527 393.472,260.612 395.429,260.696 397.385,260.779 399.342,260.861 401.299,260.942 403.255,261.022 405.212,261.102 407.168,261.180 409.125,261.257 411.082,261.334 413.038,261.410 414.995,261.485 416.951,261.559 418.908,261.632 420.865,261.704 422.821,261.776 424.778,261.847 426.734,261.917 428.691,261.987 430.648,262.055 432.604,262.123 434.561,262.191 436.517,262.257 438.474,262.323 440.431,262.388 442.387,262.453 444.344,262.517 446.300,262.580 448.257,262.642 450.214,262.704 452.170,262.766 454.127,262.826 456.083,262.887 458.040,262.946 459.997,263.005 461.953,263.063 463.910,263.121 465.866,263.179 467.823,263.235 469.780,263.291 471.736,263.347 473.693,263.402 475.649,263.457 477.606,263.511 479.563,263.564 481.519,263.618 483.476,263.670 485.432,263.722 487.389,263.774 489.345,263.825 491.302,263.876 493.259,263.926 495.215,263.976 497.172,264.025 499.128,264.074 501.085,264.122 503.042,264.171 504.998,264.218 506.955,264.265 508.911,264.312 510.868,264.358 512.825,264.404 514.781,264.450 516.738,264.495 518.694,264.540 520.651,264.584 522.608,264.629 524.564,264.672 526.521,264.716 528.477,264.758 530.434,264.801 532.391,264.843 534.347,264.885 536.304,264.927 538.260,264.968 540.217,265.009 542.174,265.049 544.130,265.090 546.087,265.130 548.043,265.169 550.000,265.208" fill="none" stroke="#B15A2B" stroke-width="6"  marker-start="url(#arrow-nghich-dao)" marker-end="url(#arrow-nghich-dao)"/>
+              <line x1="60" y1="339" x2="545" y2="339" stroke="#B15A2B" stroke-width="7" marker-end="url(#arrow-nghich-dao)"/>
+              <circle cx="60" cy="339" r="7" fill="white" stroke="#B15A2B" stroke-width="3"/>
+              <text x="60" y="314" text-anchor="middle" font-size="30" fill="#333">0</text>
+            </svg>
+            <figcaption>Vòng rỗng: loại $x=0$.</figcaption>
+          </figure>
+          <div>
+            <p><strong>Tập khả thi:</strong> $C=(0,+\infty)$ lồi.</p>
+            <p><strong>Hàm mục tiêu:</strong> $f_0''(x)=2/x^3&gt;0$ trên $C$.</p>
+            <p><strong>Cận dưới:</strong> $\inf_{x&gt;0}1/x=0$, không có nghiệm tối ưu.</p>
+          </div>
+        </div>
+        <div class="box">
+          <p>Bài toán lồi chưa chắc có nghiệm tối ưu.</p>
+        </div>
+        <aside class="notes">
+          <p>Ta muốn làm $f_0(x)=1/x$ nhỏ nhất với $x&gt;0$. Miền xác định và tập khả thi đều là $(0,+\infty)$; ở đây không có ràng buộc bổ sung. Không thay miền $x&gt;0$ bằng $x\ge0$, vì hàm không xác định tại 0. Đạo hàm bậc hai $2/x^3$ dương trên miền dương nên mục tiêu lồi.</p><p>Với mọi $x&gt;0$, ta có $1/x&gt;0$. Dãy $x_k=k$, $k=1,2,\ldots$, cho $1/x_k\to0$. Do đó cận dưới đúng bằng 0 nhưng không có điểm khả thi nào đạt được. Ký hiệu $+\infty$ không phải một nghiệm. Bài toán vẫn bị chặn dưới; không đạt cận dưới khác với không bị chặn dưới.</p><p>Câu hỏi: nếu thêm $x\le M$ với $M&gt;0$, nghiệm là gì? Đáp án: $x^\star=M$, giá trị bằng $1/M$. Ba ví dụ giúp phân biệt tính lồi với sự tồn tại nghiệm. Tiếp theo, dùng khung chứng nhận cho các mô hình có mục tiêu và ràng buộc tuyến tính. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, Ví dụ 4.1, tr. 128; đồ thị tự vẽ.</p>
+        </aside>
       </section>
     </section>
     <section id="section-2">

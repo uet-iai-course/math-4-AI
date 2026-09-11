@@ -488,3 +488,47 @@ Bảng dưới lấy trường runtime của các kết quả cầu nối thành
 - Kiểm định Chromium: 14 trang ở 1600×900 và 390×844, không tràn, không lỗi JavaScript/HTTP. Section đầu chỉ có h1/h2; điều hướng dọc, ngang và tải lại URL hash đúng. Cỡ h2 thực tế 56.448px, nền cỡ 35.28px trong hệ tọa độ RevealJS, khớp các quy tắc đã áp dụng. Đã xem ảnh đại diện trang bìa, dạng toán, ví dụ và section dài.
 - Codex Slides được đồng bộ 14 tiêu đề không có nội dung; đọc lại trạng thái khớp chính xác và đã đối chiếu trên giao diện dàn ý qua Chromium cục bộ. Browser tích hợp không khả dụng.
 - Dàn ý và storyboard cập nhật tám khung tiêu đề, vai trò từng trang và nguồn. Nội dung, ví dụ số và ghi chú diễn giả sẽ được xây dựng cùng người dùng ở bước tiếp theo.
+
+## 25. Soạn phần mở đầu và ba ví dụ ngày 2026-09-11
+
+### Phạm vi được người dùng chốt
+
+- Soạn trang tiêu đề với học phần **Cơ sở toán học cho AI**, **Viện Trí tuệ nhân tạo**, năm học và học kỳ; trang nội dung chính chỉ ghi các chủ đề.
+- Trang tổng quát nêu mục tiêu lồi và tập khả thi lồi. Trang dạng chuẩn nêu miền chung lồi, các hàm mục tiêu/bất đẳng thức lồi và đẳng thức affine, có kích thước ma trận và vectơ.
+- Bỏ `S01-05` / `dieu-kien-loi` theo chỉ dẫn “bỏ đi”; nội dung điều kiện đã có ở `S01-04`. Giữ mã của các ví dụ để truy nguyên; mã không hiển thị trên mặt chiếu hay notes.
+- Theo yêu cầu triển khai ngay ba ví dụ với tập khả thi khác nhau: $(x-2)^2$ trên $[0,1]$; $|x-2|$ trên $\mathbb{R}$; $1/x$ trên $(0,+\infty)$. Ba điểm nhấn: nghiệm ở biên trong ví dụ đang xét; lồi không cần khả vi; lồi chưa bảo đảm có nghiệm.
+- Bản hiện tại: 13 trang trong bảy section ngoài; cả bảy trang phần 1 có nội dung và notes, phần 2–7 mỗi phần vẫn là một khung tiêu đề. Đây là bàn giao phần mở đầu, không xác nhận hoàn thành toàn bộ bài.
+
+### Nguồn, phong cách và tài sản
+
+- Nguồn nội dung đã có: `sources/bv_cvxbook.pdf`, Boyd và Vandenberghe (2004), *Convex Optimization*, §3.1.3, §3.1.5, §4.1.2 Ví dụ 4.2, §4.2 trang 136–138; ví dụ nghịch đảo theo Ví dụ 4.1 trang 128. Mốc 2 và các cận trong hai ví dụ đầu tự chọn. Không tải thêm nguồn MIT.
+- Phong cách tham chiếu: `../rl-plan/2627-1/lecture-style.css` và bài 02 của kho đó. Giữ nền trắng, tiêu đề xanh `#2F3E7A`, chữ nội dung 0.84em, lưới hai cột, thẻ và hộp nền kem viền `#B15A2B`. CSS riêng nằm trong `lecture-02-style.css`; không đổi CSS dùng chung hoặc tạo phụ thuộc runtime sang kho khác.
+- Khác biệt có chủ ý: giữ chữ hoa/thường tự nhiên; bố cục riêng cho ba đồ thị với chiều cao SVG 320px để đủ chỗ cho công thức, kết luận và nhãn. Chú thích ngắn 0.8em; nhãn SVG tương đương khoảng 26.7px trong khung gốc, thân bài 35.28px.
+- Ba hình tự vẽ bằng SVG nội dòng từ công thức, có trục, nhãn, mô tả thay thế, nét liền/nét đứt và dấu đầu mở/đóng. Không có raster hoặc ảnh sinh. Không có ngoại lệ quyền tài sản.
+- Rà lại phạm vi ghi chú bài giảng và bài tập cũ: chưa đồng bộ với cấu trúc đang làm lại, tiếp tục giữ để tham khảo và không mở lại liên kết công khai. Chỉ mục ghi rõ phần mở đầu đã được soạn, các phần sau đang xây dựng.
+
+### Tác tử và quyết định biên tập
+
+Các kết quả cầu nối của 14 lượt thành công đều ghi `requested_model = observed_model = z-ai/glm-5.3-flash`, `provider = OpenRouter`: lập kế hoạch bốn trang, phân tích nguồn, soạn bốn trang, lập kế hoạch ba ví dụ, soạn ví dụ, kiểm định storyboard, năm vai rà độc lập, chỉnh sửa, rà lại toán học và rà lại mạch/storyboard. Các tác tử chỉ nhận bản sao giới hạn trong thư mục tạm; không đưa `.env` hoặc bí mật vào đầu vào/đầu ra.
+
+| Vai | Vấn đề có bằng chứng | Quyết định và trạng thái |
+|---|---|---|
+| Lập kế hoạch và nguồn | Phân biệt dạng trừu tượng với dạng chuẩn; một số gợi ý đổi bốn trang đầu và ánh xạ mã chưa đúng phạm vi | Giữ nội dung người dùng chốt; ánh xạ dạng trừu tượng vào `S01-03`, dạng chuẩn vào `S01-04`; bác đề xuất thay bốn trang đã chốt |
+| Kiểm định storyboard | Cần làm rõ $C/D$ và nối ví dụ nghịch đảo sang phần tiếp theo | Đã bổ sung quan hệ tập khả thi/miền chung và câu nối trong notes; chấp nhận thứ tự ôn tập do người dùng yêu cầu |
+| Sinh viên | Quan hệ $C/D$ chưa rõ; câu kết ví dụ bậc hai có thể bị hiểu thành khẳng định cho mọi bài lồi; “dữ liệu 2/0/1” khó hiểu | Đã nêu tập khả thi do các ràng buộc xác định, giải thích giao tập trong notes; sửa “Ở đây, nghiệm tối ưu nằm trên biên”; viết rõ mốc và hai cận |
+| Chuyên gia | Đỉnh chữ V lệch vạch $x=2$; dữ liệu trong notes viết tắt | Đã thay hình bằng tọa độ tính từ hàm và viết lại notes. Không đổi thuật ngữ “không khả vi” thành thuật ngữ khác vì đây là khái niệm cần học |
+| Toán học | Phát hiện chữ V sai đối xứng; một số đề xuất về hai hình còn lại suy ra từ thước đo không đúng | Chấp nhận lỗi chữ V; bác các tọa độ sửa dựa trên nhầm thước/gốc. Tính lại toàn bộ đường cong và kiểm tra bằng phép đảo tọa độ. Lượt rà lại xác nhận công thức, nghiệm, miền, chứng minh và biến thể đúng |
+| Phản biện giảng dạy | Chữ V sai tọa độ; thanh miền có thể không liền với mũi tên | Đã thay SVG; dùng marker gắn trực tiếp vào đường. Chấp nhận chu trình ôn tập rút gọn cho ba hàm quen thuộc; không thêm ứng dụng giả tạo hoặc trang ngoài phạm vi |
+| Mạch kể chuyện | Thiếu câu nối sang phần 2; đề nghị đánh lại mã và làm agenda dài bằng tiêu đề section | Đã bổ sung câu nối giữa ba ví dụ và sang mô hình tuyến tính. Giữ mã ẩn để truy nguyên; giữ agenda rút gọn vì vẫn cùng chủ đề. Lượt rà lại chấp nhận mạch khung chung → dạng chuẩn → biên → không khả vi → không đạt cận dưới |
+| Điều phối và chỉnh sửa | Tràn ba ví dụ; công thức min bị viết như đẳng thức; thẻ đóng dư sau sửa; nhãn/mũi tên dễ chạm đường cong | Đã sửa công thức với biến và miền rõ ràng, bỏ thẻ dư, giảm chiều cao hình thay vì cắt nội dung hoặc thu nhỏ thân chữ. Dịch nhãn điểm và thu mũi tên nghịch đảo để hình không chạm trục hoành |
+
+Lỗi gọi tác tử được xử lý và không đổi mô hình: một lần chạy sai thư mục báo `Failed to spawn: openrouter-mcp-reviewer`; các lượt giới hạn công cụ báo `model exceeded the tool-call limit (4)` và `(5)`; một lượt báo `model returned an empty or incomplete answer after all retries`. Đã gọi lại từ thư mục cầu nối, với đầu vào rút gọn hoặc giới hạn trả lời phù hợp. Không lấy kết quả chưa hoàn tất làm báo cáo đạt.
+
+### Kiểm định cuối
+
+- HTML cân bằng thẻ; bảy section ngoài, 13 trang trong, bảy khối notes; không còn `dieu-kien-loi`. Các đường dẫn runtime đều cục bộ và tồn tại. Markdown quy trình dùng đúng dấu phân cách công thức.
+- Chromium tại cổng 8765: duyệt đủ 13 trang ở 1600×900 và 390×844; không lỗi JavaScript, tài nguyên HTTP hoặc KaTeX; không tràn phần tử khỏi khung. Điều hướng dọc/ngang bằng bàn phím và tải lại liên kết hash đúng. Màn hình hẹp giữ cách thu phóng khung 16:9 của RevealJS.
+- Đường cong được kiểm bằng cách đảo tọa độ SVG về dữ liệu: 161 điểm parabol tổng thể, 61 điểm phần khả thi, 3 điểm chữ V và 241 điểm nghịch đảo; sai số lớn nhất dưới 0.0001 đơn vị do làm tròn. Đỉnh, trục tại 0, đầu mở/đóng và khoảng cách đường nghịch đảo với trục hoành đã được xem trực tiếp.
+- Dự án Codex Slides `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc`: đã thay dàn ý thành 13 trang, tải đủ 13 hình từ bản RevealJS đã kiểm tra, ghi đủ bảy notes và đọc lại xác nhận nội dung trùng khớp. Trạng thái vẫn là bản nháp vì phần 2–7 chưa soạn.
+- Browser tích hợp Codex không có trong môi trường này; dùng Chromium cục bộ để kiểm tra RevealJS và canvas Codex Slides, không tuyên bố đã dùng Browser tích hợp.
+- Kiểm tra canvas Codex Slides: chọn lần lượt các trang 1–7 bằng ảnh thu nhỏ, xác nhận ảnh chính đúng tiêu đề, tải thành công và hiển thị đúng công thức/đồ thị. Hộp hướng dẫn kết nối và panel Design Files được chuyển sang canvas trước khi kiểm tra; không dựa riêng vào trạng thái API.

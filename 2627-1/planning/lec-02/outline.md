@@ -12,20 +12,19 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 6. Xấp xỉ lồi và nới lỏng bài toán không lồi.
 7. Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm.
 
-Phần 1 hiện có tám trang chỉ tiêu đề; các phần 2–7 mỗi phần có một trang tiêu đề. Tệp trình chiếu giữ bảy `<section>` ngoài và hiện có tổng cộng 14 trang khung; đây không phải số trang cuối cùng. Nội dung, ví dụ, công thức và ghi chú diễn giả sẽ được soạn lần lượt cùng người dùng theo [storyboard.md](storyboard.md).
+Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Các phần 2–7 mỗi phần có một trang tiêu đề. Tổng cộng 13 trang trong bảy section ngoài; đây không phải số trang cuối cùng.
 
-## Khung phần 1
+## Phần 1 hiện tại
 
-1. Bài 02: Các bài toán tối ưu lồi.
-2. Nội dung chính: bảy mạch.
-3. Bài toán tối ưu tổng quát.
-4. Dạng toán học của bài toán tối ưu.
-5. Điều kiện để bài toán tối ưu là lồi.
-6. Ví dụ: hàm bậc hai.
-7. Ví dụ: hàm giá trị tuyệt đối.
-8. Ví dụ: hàm nghịch đảo.
+1. Bài 02: Các bài toán tối ưu lồi — thông tin học phần, Viện Trí tuệ nhân tạo, năm học và học kỳ.
+2. Nội dung chính — liệt kê các chủ đề đã chốt.
+3. Bài toán tối ưu lồi tổng quát — mục tiêu lồi và tập khả thi lồi.
+4. Dạng toán học của bài toán tối ưu lồi — miền chung lồi, mục tiêu và các hàm bất đẳng thức lồi, đẳng thức affine.
+5. Ví dụ: hàm bậc hai — tối thiểu hóa $(x-2)^2$ trên $[0,1]$, nghiệm ở biên.
+6. Ví dụ: hàm giá trị tuyệt đối — tối thiểu hóa $|x-2|$ trên $\mathbb{R}$, nghiệm tại điểm không khả vi.
+7. Ví dụ: hàm nghịch đảo — tối thiểu hóa $1/x$ trên $(0,+\infty)$, cận dưới không đạt được.
 
-Nguồn dự kiến: Boyd và Vandenberghe (2004), *Convex Optimization*, §3.1.3, §3.1.5, §4.1.1–4.1.2 và §4.2. Hàm nghịch đảo lấy từ Ví dụ 4.1; hai hàm còn lại dùng các ví dụ cơ bản trong chương 3. Chưa chèn công thức, dữ liệu số hay lời giải. CSS riêng Bài 02 tham khảo các bài trong `../rl-plan/2627-1/`.
+Trang điều kiện riêng được bỏ theo yêu cầu người dùng vì nội dung đã nằm ở trang dạng toán học. Nguồn đã dùng: Boyd và Vandenberghe (2004), *Convex Optimization*, §4.2, trang 136–138. Nguồn cho các ví dụ: §3.1.3, §3.1.5 và Ví dụ 4.1, trang 128. Ba ví dụ có công thức, đồ thị SVG tự vẽ, chứng nhận tính lồi và kết luận về nghiệm; chứng minh chi tiết và biến thể kiểm tra hiểu nằm trong ghi chú diễn giả. CSS riêng Bài 02 tham khảo các bài trong `../rl-plan/2627-1/`.
 
 ## Quy ước triển khai tiếp
 

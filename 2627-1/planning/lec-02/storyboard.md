@@ -4,7 +4,7 @@ Phiên bản làm lại ngày 2026-09-11; bảy mạch đã được người d�
 
 ## Trạng thái và mục tiêu
 
-- Phạm vi hiện tại: cấu trúc nội dung và khung tiêu đề. Phần 1 có tám trang theo yêu cầu mới; các phần còn lại mỗi phần có một trang khung. Chưa chốt số trang cuối cùng, ví dụ số, phân bổ thời lượng, vị trí của tựa lồi và nhiều mục tiêu.
+- Phạm vi hiện tại: bảy trang của phần 1 có nội dung và ghi chú diễn giả; các phần 2–7 vẫn là khung tiêu đề. Phần 1 có bảy trang sau khi bỏ trang điều kiện riêng theo yêu cầu người dùng; toàn bài hiện có 13 trang trong bảy section ngoài. Chưa chốt số trang cuối cùng, ví dụ số cho các phần 2–7, phân bổ thời lượng, vị trí của tựa lồi và nhiều mục tiêu.
 - Cấu trúc 58 trang (39 chính + 19 phụ lục) của lần sửa trước không còn là ràng buộc.
 - Bản storyboard cũ lưu trong lịch sử Git tại commit e030846; không tạo bản sao, không di chuyển tệp cũ.
 - Mục tiêu bài học: sinh viên hiểu rõ các dạng bài toán tối ưu lồi; nhận biết bài toán thực tế có thể chuyển về dạng lồi hoặc xấp xỉ bằng dạng lồi; chứng minh một bài toán tối ưu là lồi. Ưu tiên ví dụ trong trí tuệ nhân tạo và học máy (AI/ML) hoặc bài toán quen thuộc.
@@ -28,8 +28,8 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 
 ### Mạch 1 — Mô hình hóa và chứng nhận bài toán tối ưu lồi
 
-- Theo yêu cầu mới, phần mở đầu gồm trang tiêu đề bài, nội dung chính, mô hình tối ưu tổng quát, dạng toán học, điều kiện lồi và ví dụ nhanh với hàm quen thuộc. Ba ví dụ đã chọn ở cấp tiêu đề: hàm bậc hai, giá trị tuyệt đối và nghịch đảo. Ví dụ dự đoán giá nhà được giữ như ý tưởng cho các mạch ứng dụng sau; chưa triển khai trong phần mở đầu.
-- Nội dung: từ ví dụ, xây dựng chứng nhận — miền xác định lồi, mục tiêu lồi, bất đẳng thức hàm lồi không vượt quá 0, đẳng thức affine. Phân biệt chứng minh tính lồi với tìm nghiệm.
+- Theo yêu cầu mới, phần mở đầu gồm trang tiêu đề bài, nội dung chính, mô hình tối ưu tổng quát, dạng toán học kèm điều kiện lồi và ví dụ nhanh với hàm quen thuộc. Ba ví dụ đã triển khai với các tập khả thi khác nhau: hàm bậc hai trên đoạn $[0,1]$, giá trị tuyệt đối trên $\mathbb{R}$ và nghịch đảo trên $(0,+\infty)$. Ví dụ dự đoán giá nhà được giữ như ý tưởng cho các mạch ứng dụng sau; chưa triển khai trong phần mở đầu.
+- Nội dung: nhắc lại khung chứng nhận trước các ví dụ nhanh theo thứ tự người dùng yêu cầu — miền xác định lồi, mục tiêu lồi, bất đẳng thức hàm lồi không vượt quá 0, đẳng thức affine. Phân biệt chứng minh tính lồi với tìm nghiệm.
 - Đầu vào: kiến thức tập/hàm lồi của Bài 01.
 - Đầu ra: mô hình rõ nghĩa và khung chứng nhận để dùng ở các mạch tiếp theo.
 
@@ -93,11 +93,11 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 
 ## Khung RevealJS đã tạo ngày 2026-09-11
 
-Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạo bảy section lớn để cùng xây dựng từng phần. Ở bước tạo khung ban đầu, bộ trang chiếu có bảy section ngoài, mỗi phần một trang tiêu đề. Cập nhật tiếp theo: section đầu có tám trang chỉ tiêu đề; tổng số trang khung hiện tại là 14. Chưa có nội dung giảng hoặc ghi chú diễn giả.
+Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạo bảy section lớn để cùng xây dựng từng phần. Ở bước tạo khung ban đầu, bộ trang chiếu có bảy section ngoài, mỗi phần một trang tiêu đề. Cập nhật hiện tại: section đầu có bảy trang, đều có nội dung và ghi chú diễn giả; tổng số trang là 13. Trang điều kiện riêng đã được bỏ theo yêu cầu người dùng.
 
 | Mạch | Section ngoài | Trang khung | Vai trò và quyết định |
 |---|---|---|---|
-| 1 | `section-1` | `S01-01` đến `S01-08` | Sửa trang mở đầu và thêm bảy trang chỉ tiêu đề theo bảng bên dưới |
+| 1 | `section-1` | `S01-01`–`S01-04`, `S01-06`–`S01-08` | Soạn bốn trang đầu và ba ví dụ; bỏ `S01-05` theo bảng bên dưới |
 | 2 | `section-2` | `mach-2` / `S02` | Thêm khung tiêu đề cho mạch 2; nội dung sẽ được xây dựng cùng người dùng |
 | 3 | `section-3` | `mach-3` / `S03` | Thêm khung tiêu đề cho mạch 3; nội dung sẽ được xây dựng cùng người dùng |
 | 4 | `section-4` | `mach-4` / `S04` | Thêm khung tiêu đề cho mạch 4; nội dung sẽ được xây dựng cùng người dùng |
@@ -107,22 +107,34 @@ Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạ
 
 Các trang khung phục vụ điều hướng và xác định vị trí soạn bài, chưa được coi là minh chứng hoàn thành mục tiêu học tập. Bảng từng trang với liên kết chuẩn đầu ra, phép biến đổi, chứng nhận và bài tập sẽ được bổ sung khi triển khai từng mạch. Nội dung trước khi xóa có thể truy xuất tại commit `774112d`.
 
-## Khung tám trang của phần 1
+## Bảy trang của phần 1
 
-Người dùng yêu cầu chỉ đặt tiêu đề, chưa viết nội dung. Trang nội dung chính sẽ liệt kê bảy mạch khi soạn chi tiết; hiện cũng chỉ có tiêu đề. Thứ tự này ưu tiên yêu cầu cụ thể của người dùng cho phần giới thiệu.
+Bốn trang đầu được soạn theo nội dung người dùng chốt; ba ví dụ được triển khai ngay theo yêu cầu tiếp theo, với ba tập khả thi khác nhau. Thứ tự hình thức trước ví dụ là yêu cầu cụ thể cho phần ôn tập này, với kiến thức tập lồi và hàm lồi đã học ở Bài 01. Không coi phần mở đầu là một ví dụ ứng dụng đầy đủ theo chín bước.
 
-| Mã | Tiêu đề | Vai trò dự kiến | Quyết định |
-|---|---|---|---|
-| `S01-01` | Bài 02: Các bài toán tối ưu lồi | Định danh bài trước nội dung chính | Sửa trang khung mở đầu |
-| `S01-02` | Nội dung chính: bảy mạch | Dành vị trí cho bản đồ bảy mạch | Thêm trang khung theo yêu cầu |
-| `S01-03` | Bài toán tối ưu tổng quát | Giới thiệu bài toán tối ưu trước ký hiệu | Thêm trang khung theo yêu cầu |
-| `S01-04` | Dạng toán học của bài toán tối ưu | Dành vị trí cho mô hình toán học cơ bản | Thêm trang khung theo yêu cầu |
-| `S01-05` | Điều kiện để bài toán tối ưu là lồi | Tách điều kiện chứng nhận lồi khỏi mô hình tổng quát | Thêm trang khung theo yêu cầu |
-| `S01-06` | Ví dụ: hàm bậc hai | Chuẩn bị ví dụ hàm trơn quen thuộc | Thêm trang khung theo yêu cầu |
-| `S01-07` | Ví dụ: hàm giá trị tuyệt đối | Chuẩn bị ví dụ lồi không khả vi tại một điểm | Thêm trang khung theo yêu cầu |
-| `S01-08` | Ví dụ: hàm nghịch đảo | Chuẩn bị ví dụ từ Boyd về hàm lồi và khả năng đạt giá trị tối ưu | Thêm trang khung theo yêu cầu |
+| Mã | Tiêu đề | Nhu cầu và vai trò | Kết nối trước–sau | Minh chứng hỗ trợ | Quyết định |
+|---|---|---|---|---|---|
+| `S01-01` | Bài 02: Các bài toán tối ưu lồi | Định danh bài, học phần và đơn vị | Mở bài → nội dung chính | Định hướng; không đánh giá riêng | Sửa: thêm học phần, Viện Trí tuệ nhân tạo và học kỳ |
+| `S01-02` | Nội dung chính | Cho biết các nhóm mô hình và kỹ năng sẽ học | Tên bài → khung chung của các mô hình | Định hướng ba mục tiêu bài học | Sửa: liệt kê nội dung; bỏ nhãn nội bộ khỏi mặt chiếu |
+| `S01-03` | Bài toán tối ưu lồi tổng quát | Phân biệt hai đối tượng cần chứng nhận: mục tiêu và tập khả thi | Nội dung chính → cách biểu diễn ràng buộc | Nhận dạng bài toán lồi; chuẩn bị chứng nhận | Sửa: mô hình $\min_{x\in C} f_0(x)$, $C$ lồi và $f_0$ lồi |
+| `S01-04` | Dạng toán học của bài toán tối ưu lồi | Cụ thể hóa tập khả thi bằng ràng buộc để kiểm tra mô hình | Tập $C$ → các hàm quen thuộc | Chuẩn bị chứng minh tính lồi | Sửa: miền $D$ lồi, $f_0,\ldots,f_m$ lồi, $f_i(x)\le0$, $Ax=b$; ghi kích thước và giải thích giao tập trong notes |
+| `S01-06` | Ví dụ: hàm bậc hai | Dùng đoạn khả thi để phân biệt cực tiểu tự do với nghiệm có ràng buộc | Dạng chuẩn → hàm không trơn | Chứng nhận lồi; tìm nghiệm ở biên $x^\star=1$; biến thể đổi cận trên thành 3 trong notes | Sửa: công thức, parabol với đoạn khả thi, chứng nhận và nghiệm |
+| `S01-07` | Ví dụ: hàm giá trị tuyệt đối | Cho thấy tính lồi không cần khả vi | Hàm trơn trên đoạn → hàm không trơn trên toàn trục → miền dương | Chứng nhận bằng bất đẳng thức tam giác; nghiệm $x^\star=2$; biến thể $[3,5]$ trong notes | Sửa: đồ thị chữ V, chứng nhận, nghiệm tại điểm không khả vi |
+| `S01-08` | Ví dụ: hàm nghịch đảo | Phân biệt tính lồi với sự tồn tại nghiệm tối ưu | Hai ví dụ có nghiệm → cận dưới không đạt → quy hoạch tuyến tính | Chứng nhận trên miền dương; chứng minh cận dưới 0 không đạt; biến thể thêm chặn trên trong notes | Sửa: đồ thị không chạm trục hoành, chứng nhận và giới hạn |
 
-Các trang nối tuần tự theo bảng: tiêu đề → bản đồ nội dung → bài toán tổng quát → biểu diễn toán học → điều kiện lồi → ba ví dụ nhanh. Trang cuối nối sang mạch quy hoạch tuyến tính. Đánh giá nội dung và minh chứng chuẩn đầu ra sẽ được bổ sung cùng công thức, hình và câu hỏi khi soạn chi tiết.
+Quyết định bỏ: `S01-05` / `dieu-kien-loi` — người dùng yêu cầu bỏ vì điều kiện đã được nêu tại `S01-04`. Không tái sử dụng mã này; các mã ví dụ giữ nguyên để truy nguyên. Nối trực tiếp dạng toán học với ví dụ hàm bậc hai.
+
+### Bản đồ hành trình của phần mở đầu
+
+Phần này ôn khái niệm đã học trong Bài 01, theo thứ tự hình thức trước ví dụ mà người dùng yêu cầu. Các ví dụ hàm số quen thuộc dùng chu trình rút gọn nhu cầu → mô hình và hình học → chứng nhận → kiểm tra; không giả tạo ứng dụng AI cho ba bài một biến. Hành trình ứng dụng đầy đủ theo chín bước sẽ nằm trong các mạch tiếp theo.
+
+| Cụm | Nhu cầu | Trực quan và ví dụ | Hình thức/toán học | Ứng dụng | Bài tập |
+|---|---|---|---|---|---|
+| Khung chung | `S01-02`–`S01-03`: nhận dạng cấu trúc | Hai đối tượng mục tiêu và tập khả thi ở `S01-03`; kiến thức nền Bài 01 | `S01-03`–`S01-04`: mô hình trừu tượng và dạng chuẩn | Các mạch 2–6 sẽ dùng khung; chưa triển khai | Ba ví dụ sau áp dụng chứng nhận |
+| Bậc hai | `S01-06`, notes: chọn giá trị gần mốc 2 nhưng chỉ được nằm trong $[0,1]$ | Cùng trang: parabol và đoạn khả thi | Dùng $f_0''=2$ cùng hai bất đẳng thức affine; chứng minh nghiệm ở 1 trong notes | Không áp dụng riêng: ví dụ ôn hàm quen thuộc theo yêu cầu | Notes: thay $C$ bằng $[0,3]$; nghiệm 2 |
+| Giá trị tuyệt đối | `S01-07`, notes: đo độ lệch tới mốc 2 bằng trị tuyệt đối | Cùng trang: đồ thị chữ V trên toàn trục | Bất đẳng thức tam giác trong notes; nghiệm tại 2 dù không khả vi | Không áp dụng riêng: chuẩn bị tiêu chí sai số tuyệt đối ở mạch 2 | Notes: thay $C$ bằng $[3,5]$; nghiệm 3 |
+| Nghịch đảo | `S01-08`, notes: làm $1/x$ nhỏ hơn với $x>0$ | Cùng trang: đường cong tiến sát trục hoành | $f_0''=2/x^3>0$; chứng minh infimum bằng 0 nhưng không đạt trong notes | Không áp dụng riêng: kiểm tra giới hạn của kết luận về bài toán lồi | Notes: thêm $x\le M$, $M>0$; nghiệm $M$ |
+
+Đầu vào: tập/hàm lồi, đạo hàm bậc hai và bất đẳng thức tam giác. Sản phẩm: chứng nhận mục tiêu/tập khả thi, tìm hoặc chứng minh không tồn tại nghiệm cho ba ví dụ. Ký hiệu xuyên suốt: $x$, $f_0$, $C$; $D$ là miền chung trong dạng chuẩn. Hai bài đầu dùng mốc 2; bài thứ ba xét miền dương. Câu nối: nhận dạng cấu trúc → nghiệm ở biên → lồi không cần khả vi → lồi chưa bảo đảm có nghiệm. Các bước trực quan, ví dụ và áp dụng chứng nhận được gộp trên mỗi trang để giữ một điểm nhấn. Các bước cải dạng không áp dụng vì ba mô hình đã lồi; notes chỉ nối ràng buộc đoạn với dạng chuẩn. Không gán thời lượng hoặc mã chuẩn đầu ra mới; nội dung hỗ trợ mục tiêu nhận dạng và chứng minh tính lồi đã chốt của bài.
 
 ### Nguồn và tham chiếu trình bày
 
