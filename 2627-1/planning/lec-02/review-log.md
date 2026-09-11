@@ -668,3 +668,51 @@ Bằng chứng runtime: mọi báo cáo thành công dưới đây ghi requested
 
 
 Lượt kiểm số cuối thành công (SHA-256: f8b5f742854f637ba9d8086084f1a77945c57d6304d10807e892638a31dbca32) xác nhận $X^TX$, $X^Ty$, khai triển và kết quả phạt, nhưng sau đó đổi thứ tự hệ số thành $a+bu$ khi tính phần dư và tự mâu thuẫn với khai triển vừa xác nhận. Điều phối bác bỏ các đề nghị đổi nghiệm/sai số còn lại: mô hình đã chốt là $au+b$, $r=Xw-y$; phép tính Python Fraction in từng phần dư và tổng bình phương khớp hoàn toàn các số liệu trong kế hoạch. Giữ nguyên ký hiệu và kết quả đã kiểm. Không còn lỗi bắt buộc có căn cứ; không dùng sự đồng thuận tác tử thay bằng chứng tính toán.
+
+## 31. Triển khai phần Quy hoạch bậc hai và chính quy hóa ngày 2026-09-11
+
+- Theo yêu cầu bổ sung chính quy hóa cho cả hai hàm sai số rồi triển khai toàn bộ phần 3, mở kế hoạch 10 trang thành 14 trang: tiêu đề, hồi quy bình phương tối thiểu, khai triển, dạng QP, nghiệm/hình học, động cơ chính quy hóa, bốn kết hợp sai số và hình phạt, bảng nghiệm, giới hạn cứng, QCQP, kiểm tra hiểu. Bộ trình chiếu có 37 trang trong bảy phần; phần 1 và 2 giữ nguyên.
+- Dùng lại năm điểm phần 2, $w=(a,b)$, $r=Xw-y$. Giải thích rõ việc đổi hàm sai số và thêm hình phạt thay đổi mô hình; khai triển và thêm biến phụ là cải dạng tương đương. Mỗi cải dạng có chứng nhận hai chiều và cách lấy lại $w$ trong ghi chú.
+- Bốn mô hình: $\ell_1+\ell_1$ là LP; $\ell_1+\ell_2^2$, $\ell_2^2+\ell_1$ và $\ell_2^2+\ell_2^2$ là QP. Mọi hệ số phạt không âm; xét riêng biến phụ khi $\lambda=0$. Phạt toàn bộ hệ số, kể cả hệ số chặn, là lựa chọn của ví dụ. Không đồng nhất chuẩn hai với bình phương chuẩn hai; không hứa mọi chính quy hóa đều cải thiện dự đoán.
+- Kiểm bằng số hữu tỉ, HiGHS/SLSQP và reviewer toán độc lập: LS $(1,3/5)$ đạt $36/5$; thêm $a\le1/2$ đạt $(1/2,3/5)$ và $97/10$. Bốn mô hình lần lượt cho $(1,0)$, $(3/4,1/8)$, $(4/5,1/5)$, $(1/2,1/5)$ với $\lambda=4,4,4,10$ và giá trị toàn mục tiêu $7,107/16,62/5,67/5$. Không so thứ hạng giữa các giá trị của những hàm mục tiêu khác nhau.
+- Giới hạn cứng $\|w\|_2^2\le29/100$ cho nghiệm $(1/2,1/5)$ và sai số $21/2$. Ghi chú chứng minh cận dưới qua $E(w)+10\|w\|_2^2$; không suy ra $\lambda=R$. Đảo chiều ràng buộc cho phản ví dụ không lồi. Bài tập thêm giới hạn chuẩn một vẫn là QP sau cải dạng.
+- Năm hình SVG tự vẽ từ dữ liệu và công thức: qp-ls.svg, qp-geometry.svg, qp-penalties.svg, qp-regularized.svg, qp-bound.svg. Hình hình học giữ tỷ lệ hai trục bằng nhau; phân biệt bằng nét và ký hiệu, có nhãn và văn bản thay thế. Không tải tài nguyên MIT mới, không dùng ảnh sinh bởi AI.
+- Nguồn nội dung đã kiểm: Boyd–Vandenberghe (2004), nguồn cục bộ bv_cvxbook.pdf, §4.4, §4.4.1, §6.3.2, §6.5.4; ví dụ và cải dạng cụ thể tự xây dựng. Phạm vi theo đề cương DOCX chính thức, buổi 2/LLO3/CLO1. Không thêm thuật toán, KKT hoặc thời lượng.
+- Dàn ý và storyboard cập nhật đủ 14 trang, lý do tồn tại, liên kết phần 2–4, bản đồ chín bước từng ví dụ và sáu bước từng cụm. Chỉ mục ghi đúng ba phần đã soạn. Đã rà trạng thái lecture-note.md và exercises.md bản cũ: tiếp tục ngừng liên kết trong lúc làm lại bài, không công bố là đã đồng bộ; giả thiết và lời giải phần mới nằm trong ghi chú diễn giả.
+
+### Tác tử và quyết định rà soát
+
+- Reader lập kế hoạch và phân tích nguồn; writer triển khai ba cụm tuần tự trong thư mục tạm; reviewer kiểm storyboard và năm vai độc lập. Mọi kết quả đều được điều phối kiểm lại trước khi hợp nhất.
+- Planner đầu lỗi “OpenRouter request exceeded 180s wall timeout”; writer đầy đủ lỗi “OpenRouter request exceeded 300s wall timeout”; chạy lại cùng mô hình, chia writer thành ba cụm. Reviewer chuyên môn đầu lỗi “model returned an empty or incomplete answer after all retries”; chạy lại phạm vi ngắn hơn cùng mô hình, đạt. Đã báo lỗi trong quá trình làm.
+- Điều phối sửa bản nháp writer: số liệu và phân loại bốn mô hình, điều kiện duy nhất của bài phạt bình phương, chứng nhận giới hạn cứng, ký hiệu/ID/đường dẫn, nguồn, ghi chú và bố cục. Không nhận số liệu hoặc xác nhận toán học từ lời tự khai của writer.
+- Storyboard: đạt; sửa cách viết mã đầy đủ S03-05 và ghi rõ chứng nhận giới hạn cứng nằm trong ghi chú.
+- Sinh viên: chấp nhận làm rõ “Với $\lambda>0$, hàm gốc không trơn; cải dạng là QP lồi”. Nhắc lại dữ liệu trong ghi chú. Giữ phân số ở công thức và thập phân trên trục hình; cách ghi cặp hệ số trong bảng là ký hiệu tọa độ, không thay định hướng biến cột. Không đưa đáp án của câu hỏi $\lambda=0$ lên mặt slide.
+- Chuyên môn: xác nhận bốn cải dạng và dạng QCQP. Bác bỏ nhận xét phụ cho rằng bài tập thêm giới hạn chuẩn một là LP: mục tiêu bình phương vẫn bậc hai, nên là QP; HTML đã ghi đúng.
+- Toán: không phát hiện lỗi sau khi tính lại các ví dụ. Làm rõ Hessian theo $(w,t)$ chỉ nửa xác định dương do khối $t$ bằng 0. Bác bỏ chữ “LP” trong nhận xét phụ về bài tập 1 vì cùng lý do trên.
+- Giảng dạy: chấp nhận chỉnh cách mô tả vị trí chứng nhận trong storyboard. Bác bỏ phép tính reviewer dùng $\|w\|_1$ thay cho $\|w\|_2^2$ trong ví dụ thứ hai: phạt đúng là $4(9/16+1/64)=37/16$, tổng $107/16$. Các hình bị loại khỏi bản văn gửi reviewer vẫn tồn tại trong HTML, có nhãn/alt và đã xem ảnh thực tế; không coi placeholder của bản trích là lỗi slide. Các biến thể đã ghi trong notes. Lỗi chữ dính chỉ thuộc hướng dẫn tạm cho reviewer, không nằm trong sản phẩm.
+- Mạch kể chuyện: đạt kết nối LP → bình phương sai số → QP → chính quy hóa → giới hạn cứng → QCQP → kiểm tra → phần 4.
+
+### Kiểm định và đồng bộ
+
+- Chromium cục bộ kiểm đủ 37 trang ở 1600×900 và 390×844: không tràn khung, không lỗi KaTeX/JavaScript/tài nguyên; điều hướng bàn phím, tải lại liên kết hash đều đạt. Xem trực tiếp các ảnh phần 3; rút biểu diễn ràng buộc của trang chuẩn một/chuẩn một để tách khỏi chân trang, không thu nhỏ chữ.
+- CSS chỉ bổ sung phạm vi qp-slide, kế thừa phong cách rl-plan đang dùng. Ghi chú đầy đủ ở cả 14 trang; runtime RevealJS và KaTeX tiếp tục cục bộ.
+- Codex Slides: thêm 13 trang sau trang phân cách phần 3; đồng bộ ảnh, tiêu đề và ghi chú của trang 20–33, thay Design File uploaded/storyboard.md. Đọc lại xác nhận 37 trang, 14 tiêu đề/ghi chú khớp nguồn, storyboard khớp toàn văn, các phần khác giữ đúng thứ tự. Kiểm canvas bằng Chromium cục bộ; Browser tích hợp không khả dụng, không nhận đã kiểm bằng Browser tích hợp.
+
+### Bằng chứng runtime OpenRouter
+
+Các báo cáo dưới đây nằm tại /tmp/lec02-regularization trong phiên làm việc. Đã kiểm trường requested_model và observed_model đều là z-ai/glm-5.3-flash, provider là OpenRouter. Không gửi tệp môi trường hoặc bí mật.
+
+| Báo cáo JSON | SHA-256 |
+|---|---|
+| plan-retry | c220a53533456a37a97a5fd7d632bef2006c6d67aea07edc75bcdfe9c5382d88 |
+| source | 776cc24d4a1c5c71d95877758994d434237afc7556d94c191aec576a66cd58ec |
+| write-a | c9c2e18baa6f55af5dde4274ad8521d1990b29a418dfd27587adb9fbfe1dc283 |
+| write-b | a782243a572efb1267abf88b60d9e8091d97ee4581383ea743c0893d0f308966 |
+| write-c | e4063cb95130c1c63830d45216cbbf26e8bc0239797cacfa298f4f6e685fda08 |
+| story-plan | 2ca5250b65ef77dda308162dc3e0d870fe08c0b4436921add4e84c064da9905b |
+| story-review | 4a7bf3f273a7b872b94013b57a7088094392306f35979fa164ec80904aa37889 |
+| review-student | df34c49d86f8eef7dd01c00ed7c16d7aafbd98f8a877b994df6f21d18c9dc299 |
+| review-expert-retry | 15692176b4796ae4f6f82695caf9e5de935da56bf669fa471f55d932a5a4a5b4 |
+| review-math | d8f4ad0434e53e671d9dc7a74335519e7f57ae1e15b5ae9b648ba53591289d3c |
+| review-teaching | 67bd58c33d614d3d652eb6ef1ed266c4b44096ab2d2eb7dfe95ccdbb8dd3f347 |
+| review-narrative | 7a5369e3eb502c0d1a4bcfea5d9e10b3dcd40eff39e3b72f7e7fc88dbaf1c070 |

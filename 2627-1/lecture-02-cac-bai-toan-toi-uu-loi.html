@@ -504,12 +504,295 @@
   </section>
 </section>
 
-    <section id="section-3">
-      <section id="mach-3" data-slide-id="S03">
-        <h2><span class="text-light">3</span><br>Quy hoạch bậc hai</h2>
-      </section>
-    </section>
-    <section id="section-4">
+<section id="section-3">
+
+<section id="mach-3" data-slide-id="S03" class="qp-slide">
+  <h2><span class="text-light">3</span><br>Quy hoạch bậc hai</h2>
+  <aside class="notes">
+    <p>Tiếp nối phần 2, ta giữ cùng dữ liệu nhưng đổi cách đo sai số và thêm cơ chế kiểm soát hệ số.</p>
+
+    <p>Phần 2 dùng sai số tuyệt đối; phần 3 đổi sang tổng bình phương sai số — một tiêu chí khác, dẫn tự nhiên đến quy hoạch bậc hai.</p>
+    <p>Sau khi có nghiệm, ta thêm chính quy hóa để phạt hệ số, cho cả hai tiêu chí.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.4, §6.3.2.</p>
+  </aside>
+</section>
+
+<section id="qp-hoi-quy" data-slide-id="S03-01" class="qp-slide">
+  <h2>Hồi quy với tổng bình phương sai số</h2>
+  <div class="grid2">
+    <div>
+      <p>Chọn đường dự đoán cho cùng năm điểm dữ liệu ở phần 2.</p><p>$w=(a,b)\in\mathbb{R}^2$, $\hat y_i=au_i+b$.</p>
+      <div class="math-large">$$\min_w\; E(w)=\sum_{i=1}^{5}(au_i+b-y_i)^2$$</div>
+    </div>
+    <figure class="example-plot">
+      <img class="qp-plot" src="img/lec-02/qp-ls.svg" alt="Năm điểm và hai đường ứng viên">
+      <figcaption>Hai ứng viên: $\hat y=u$ (nét đứt) và $\hat y=u+0{,}6$ (nét liền).</figcaption>
+    </figure>
+  </div>
+  <aside class="notes">
+    <p>Chọn đường thẳng dự đoán sao cho giảm được sai số lớn nhờ phép bình phương.</p>
+    <p>Dữ liệu $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$; $w\in\mathbb{R}^2$, mục tiêu $E(w)=\sum(au_i+b-y_i)^2$.</p>
+    <p>Bình phương phạt nặng điểm lệch xa, nên đường dự đoán được kéo về phía các điểm có sai số lớn.</p>
+    <p>Đường thử $\hat y=u$ cho $E=9$; ứng viên $\hat y=u+0{,}6$ cho $E=7{,}2$ — chưa tuyên bố nghiệm, chỉ so hai ứng viên.</p>
+    <p>Đáp án câu hỏi thường gặp: đổi tiêu chí này không phải cải dạng từ bài L1; đây là bài toán khác ngay từ đầu.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.4.1 (bình phương tối thiểu).</p>
+  </aside>
+</section>
+
+<section id="qp-khai-trien" data-slide-id="S03-02" class="qp-slide">
+  <h2>Dạng bậc hai của bình phương sai số</h2>
+  <p>$X\in\mathbb{R}^{m\times n}$, $w\in\mathbb{R}^n$, $y\in\mathbb{R}^m$; $r=Xw-y$.</p>
+  <div class="math-large">$$\|Xw-y\|_2^2=w^TX^TXw-2y^TXw+y^Ty.$$</div>
+  <p><strong>Chứng nhận:</strong> Hessian $2X^TX$ nửa xác định dương vì</p>
+  <div class="math-large">$$v^T(2X^TX)v=2\|Xv\|_2^2\ge0,\quad\forall v\in\mathbb{R}^n.$$</div>
+  <div class="box"><p>Chỉ khai triển biểu thức: giữ nguyên mục tiêu và biến quyết định.</p></div>
+  <aside class="notes">
+    <p>Giữ nguyên $w$ và mục tiêu, chỉ viết lại dưới dạng bậc hai theo $w$.</p>
+    <p>$X\in\mathbb{R}^{5\times 2}$, $y,r\in\mathbb{R}^5$, $w\in\mathbb{R}^2$; tổng quát $X\in\mathbb{R}^{m\times n}$, $w,v\in\mathbb{R}^n$, $y,r\in\mathbb{R}^m$.</p>
+    <p>Khai triển $\|Xw-y\|_2^2$ cho ba thành phần: bậc hai $w^\top X^\top Xw$, bậc nhất $-2y^\top Xw$, hằng số $y^\top y$.</p>
+    <p>Chứng minh tính lồi: với mọi $v$, $v^\top(2X^\top X)v=2\|Xv\|_2^2\ge 0$, nên Hessian nửa xác định dương với mọi $X$.</p>
+    <p>Nếu $X$ có hạng đầy cột thì $X^\top X$ xác định dương và mục tiêu lồi chặt (còn gọi là lồi nghiêm ngặt); điều kiện hạng đầy cột không cần để có tính lồi (nửa xác định dương đủ rồi).</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.4, §4.4.1; phép khai triển được trình bày với ký hiệu của ví dụ.</p>
+  </aside>
+</section>
+
+<section id="qp-dang-pho-bien" data-slide-id="S03-03" class="qp-slide">
+  <h2>Dạng phổ biến của quy hoạch bậc hai</h2>
+  <div class="math-large">
+    $$\begin{aligned}
+    \min_{x\in\mathbb{R}^n}\;&\tfrac12x^TPx+q^Tx+r_0\\
+    \text{với}\quad&Gx\le h,\quad Ax=b.
+    \end{aligned}$$
+  </div>
+  <div class="grid2">
+    <div class="card"><p>$P=P^T\succeq0$: mục tiêu lồi.</p></div>
+    <div class="card"><p>Ràng buộc affine: tập khả thi lồi.</p></div>
+  </div>
+  <div class="box"><p>$P=0$: quy hoạch tuyến tính là một trường hợp riêng.</p></div>
+  <aside class="notes">
+    <p>Đây là dạng phổ biến của quy hoạch bậc hai (QP), mục tiêu bậc hai cộng ràng buộc tuyến tính đẳng thức và bất đẳng thức.</p>
+    <p>$P$ cấp $n\times n$, $q$ cấp $n$, $r_0$ vô hướng; $G$ cấp $m\times n$, $h$ cấp $m$; $A$ cấp $p\times n$, $b$ cấp $p$.</p>
+    <p>Mục tiêu lồi vì $P$ nửa xác định dương; tập khả thi là giao các nửa không gian và siêu phẳng, cũng lồi.</p>
+    <p>Hồi quy bình phương tối thiểu khớp dạng này với $x=w$, $P=2X^\top X$, $q=-2X^\top y$, $r_0=y^\top y$, không có ràng buộc.</p>
+    <p>Khi $P=0$, bài toán trở thành quy hoạch tuyến tính. Lưu ý: không mọi quy hoạch bậc hai đều lồi hoặc có nghiệm.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.4 (QP), §4.4.1.</p>
+  </aside>
+</section>
+
+<section id="qp-nghiem-hoi-quy" data-slide-id="S03-04" class="qp-slide">
+  <h2>Nghiệm hồi quy bình phương tối thiểu</h2>
+  <div class="grid2">
+    <div>
+      <div class="math-large">$$w^\star=\begin{pmatrix}1\\ 3/5\end{pmatrix},\qquad E(w^\star)=\frac{36}{5}$$</div>
+      <p>Dự đoán: $\hat y=u+0{,}6$. Câu hỏi: thêm $a\le 1/2$ thì sao?</p>
+    </div>
+    <figure class="example-plot">
+      <img class="qp-plot" src="img/lec-02/qp-geometry.svg" alt="Đồng mức E, nghiệm tự do và nghiệm có ràng buộc">
+      <figcaption>Đồng mức $E$; nghiệm tự do $(1;0{,}6)$; miền $a\le0{,}5$; nghiệm có ràng buộc $(0{,}5;0{,}6)$.</figcaption>
+    </figure>
+  </div>
+  <aside class="notes">
+    <p>Tìm $w=(a,b)$ tối thiểu $E(w)=10(a-1)^2+5(b-3/5)^2+36/5$ — tổng các bình phương đã hoàn thành, cộng hằng số $36/5$.</p>
+    <p>$w\in\mathbb{R}^2$; dữ liệu như phần 2, $X^\top X=\mathrm{diag}(10,5)$, $X^\top y=(10,3)$.</p>
+    <p>Vì mỗi thành phần là bình phương không âm, $E$ nhỏ nhất khi $a=1$, $b=3/5$; giá trị nhỏ nhất là $36/5$, dự đoán $\hat y=u+0{,}6$.</p>
+    <p>Chứng minh có ràng buộc: thêm $a\le 1/2$, nghiệm là $(1/2,\,3/5)$ với $E=97/10$ — nghiệm bị đẩy lên mép miền khả thi, đúng như hình đồng mức.</p>
+    <p>Khi $X$ có hạng đầy cột, nghiệm tự do duy nhất; với ràng buộc $a\le1/2$ đang xét, nghiệm tồn tại và nằm trên biên.</p>
+    <p>Tiêu chí bình phương không "tốt hơn" sai số tuyệt đối — chỉ là lựa chọn tiêu chí khác.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §4.4.1; dữ liệu và hình tự tạo.</p>
+  </aside>
+</section>
+
+
+<section id="qp-chinh-quy-hoa" data-slide-id="S03-04b" class="qp-slide">
+  <h2>Chính quy hóa trong hồi quy</h2>
+  <p>Cần vừa khớp dữ liệu, vừa kiểm soát độ lớn hệ số.</p>
+  <div class="example-grid">
+    <div>
+      <div class="math-large">$$\min_w\;L(w)+\lambda R(w),\quad\lambda\ge0.$$</div>
+      <p>Sai số: $L(w)=\|r\|_1$ hoặc $\|r\|_2^2$.</p>
+      <p>Hình phạt: $R(w)=\|w\|_1$ hoặc $\|w\|_2^2$.</p>
+      <p>Chính quy hóa (regularization) thêm yêu cầu vào mô hình.</p>
+    </div>
+    <figure class="example-plot">
+      <img class="qp-plot" src="img/lec-02/qp-penalties.svg" alt="Đường mức chuẩn một là hình thoi, bình phương chuẩn hai là đường tròn; các trục a và b cùng tỷ lệ">
+    </figure>
+  </div>
+  <aside class="notes">
+    <p>Ta có dữ liệu $(u_i, y_i)$, mô hình tuyến tính $au+b$, và muốn vừa khớp vừa giữ $w$ nhỏ.</p>
+    <p>Trực quan từ hai hình: hình thoi có đỉnh nằm trên trục, đường tròn tròn đều — hình dạng vùng phạt quyết định nghiệm được kéo về đâu.</p>
+    <p>Mục tiêu của phạt là <em>thay đổi mô hình</em>; sau cải dạng phải bảo toàn mô hình mới, không quay về mô hình cũ. Phương án trực tiếp là giữ nghiệm không phạt, tức $\lambda = 0$.</p>
+    <p><strong>Câu hỏi:</strong> chuẩn 1 có thể cho ra $w = 0$ nhưng không luôn như vậy; thang đo của đặc trưng cũng ảnh hưởng mức phạt.</p>
+    <p>Bốn trang sau lần lượt ghép từng loại sai số với từng loại phạt. Nguồn: Boyd–Vandenberghe (2004) §6.3.2.</p>
+  <p>Phạt toàn bộ $w=(a,b)$, kể cả hệ số chặn, là lựa chọn của ví dụ; các mô hình thực tế có thể chỉ phạt một phần. $\lambda$ là dữ liệu do người xây dựng mô hình chọn, $w$ là biến cần tối ưu. Không khẳng định chính quy hóa luôn cải thiện dự đoán ngoài mẫu. Hình thoi có thể cho một số hệ số bằng 0, không phải lúc nào cả vectơ cũng bằng 0.</p>
+  </aside>
+</section>
+
+<section id="qp-lad-l1" data-slide-id="S03-04c" class="qp-slide">
+  <h2>Sai số tuyệt đối và chính quy hóa chuẩn một</h2>
+  <p>Với $\lambda\ge0$, $r=Xw-y$:</p>
+  <div class="math-large">$$\min_w\;\|r\|_1+\lambda\|w\|_1.$$</div>
+  <p>Thêm biến phụ $t$ cho sai số, $v$ cho hệ số:</p>
+  <div class="math-large">$$\begin{aligned}
+  \min_{w,t,v}\;&\mathbf1^Tt+\lambda\mathbf1^Tv\\
+  \text{với}\quad&-t\le Xw-y\le t,\quad -v\le w\le v.
+  \end{aligned}$$</div>
+  <div class="box"><p>Mục tiêu và ràng buộc affine: quy hoạch tuyến tính lồi.</p></div>
+  <aside class="notes">
+    <p>$X \in \mathbb{R}^{5\times 2}$, $w, v \in \mathbb{R}^2$, $y, r, t \in \mathbb{R}^5$.</p>
+    <p>Mọi $w$ tạo được $t = |r|$, $v = |w|$ cùng giá trị mục tiêu; ngược lại mọi cặp khả thi cho mục tiêu $\ge$ mục tiêu gốc vì $\lambda \ge 0$; lấy khối $w$ để khôi phục nghiệm gốc. Tại tối ưu $t = |r|$; $v = |w|$ nếu $\lambda > 0$, còn $\lambda = 0$ không cần $v$ chặt.</p>
+    <p>Sai số tuyệt đối $\ge 6|a-1| + |b-3|$; thêm $\lambda(|a|+|b|)$ được $6|a-1| + \lambda|a| + 3 + (\lambda-1)|b|$, đạt các giá trị trên với $\lambda = 4, 8$.</p>
+    <p>Lấy các số liệu này sang trang kết quả. Nguồn: Boyd–Vandenberghe (2004), §4.3, §6.3.2; phép cải dạng và số liệu do nhóm tự xây dựng.</p>
+  <p>Với $\lambda=4$, $w^\star=(1,0)$ đạt mục tiêu 7. Với $\lambda=8$, $w^\star=(0,0)$ đạt 9. Bất đẳng thức ở trên cho cận dưới tương ứng: $6|a-1|+4|a|\ge4$ và $6|a-1|+8|a|\ge6$; phần $b$ có cận dưới 3. Lấy $w$ sau khi giải để dự đoán $au+b$; $t,v$ chỉ phục vụ biểu diễn.</p>
+  </aside>
+</section>
+
+<section id="qp-lad-l2" data-slide-id="S03-04d" class="qp-slide">
+  <h2>Sai số tuyệt đối và chính quy hóa bậc hai</h2>
+  <p>Với $\lambda\ge0$, $r=Xw-y$:</p>
+  <div class="math-large">$$\min_w\;\|r\|_1+\lambda\|w\|_2^2.$$</div>
+  <p>Giữ hình phạt bậc hai; chỉ thêm biến phụ cho sai số:</p>
+  <div class="math-large">$$\begin{aligned}
+  \min_{w,t}\;&\mathbf1^Tt+\lambda w^Tw\\
+  \text{với}\quad&-t\le Xw-y\le t.
+  \end{aligned}$$</div>
+  <div class="box"><p>Mục tiêu bậc hai lồi, ràng buộc affine: bài toán QP.</p></div>
+  <aside class="notes">
+    <p>$w \in \mathbb{R}^2$, $t \in \mathbb{R}^5$; hai chiều như trang trước.</p>
+    <p>Với $\lambda > 0$, nghiệm $w$ duy nhất mà không cần hạng của $X$: Hessian theo $(w,t)$ chỉ nửa xác định dương do khối $t$ bằng 0, nhưng mục tiêu gốc theo $w$ là lồi chặt.</p>
+    <p>Chứng nhận: sai số tuyệt đối $\ge 6|a-1| + 3 - b$; thêm $4(a^2 + b^2)$, cận dưới đạt nhỏ nhất tại $w$ trên và đạt đẳng thức.</p>
+    <p><strong>Câu hỏi:</strong> $\lambda = 0$ thì bài toán trở về LP của sai số tuyệt đối thuần.</p>
+    <p>Đổi tiêu chí sai số sang tổng bình phương và dùng phạt chuẩn một. Nguồn: Boyd–Vandenberghe (2004) §6.3.2.</p>
+  <p>Khi khái quát $X\in\mathbb R^{m\times n}$, $w\in\mathbb R^n$, $t\in\mathbb R^m$. Theo thứ tự $(w,t)$, $P=\operatorname{diag}(2\lambda I_n,0_{m\times m})\succeq0$. Mọi $w$ chọn $t=|Xw-y|$ cho cùng mục tiêu; mọi cặp khả thi cho $\mathbf1^Tt\ge\|Xw-y\|_1$, nên giá trị tối ưu bằng nhau và khôi phục được $w$.</p><p>Với $\lambda=4$, $w^\star=(3/4,1/8)$, tổng sai số tuyệt đối $35/8$, hình phạt $37/16$, mục tiêu $107/16$. Cận dưới $6|a-1|+3-b+4(a^2+b^2)$ đạt tại đúng điểm này; các dấu bằng cũng đạt vì $|b|\le1-a$ và $b\le3$. Ví dụ tự xây dựng từ khung QP.</p>
+  </aside>
+</section>
+
+<section id="qp-ls-l1" data-slide-id="S03-04e" class="qp-slide">
+  <h2>Bình phương sai số và chính quy hóa chuẩn một</h2>
+  <p>Với $\lambda\ge0$, $r=Xw-y$:</p>
+  <div class="math-large">$$\min_w\;\|r\|_2^2+\lambda\|w\|_1.$$</div>
+  <p>Giữ sai số bậc hai; thêm biến phụ cho hệ số:</p>
+  <div class="math-large">$$\begin{aligned}
+  \min_{w,v}\;&\|Xw-y\|_2^2+\lambda\mathbf1^Tv\\
+  \text{với}\quad&-v\le w\le v.
+  \end{aligned}$$</div>
+  <div class="box"><p>Với $\lambda>0$, hàm gốc không trơn; cải dạng là QP lồi.</p></div>
+  <aside class="notes">
+    <p>$w, v \in \mathbb{R}^2$; hai chiều như các trang trước; $\lambda = 0$ thì $v$ không cần chặt.</p>
+    <p>Với dữ liệu này nghiệm có dạng $w_\lambda = \big(\max(1 - \lambda/20,\, 0),\; \max(3/5 - \lambda/10,\, 0)\big)$: hoàn thành bình phương rồi xét dấu.</p>
+    <p>$X$ có hạng đầy cột là đủ để $w$ duy nhất. Với $\lambda = 8$, thành phần $b$ bằng $0$ — minh họa tính thưa, nhưng điều này không đúng với mọi dữ liệu.</p>
+    <p><strong>Câu hỏi:</strong> tại sao $b$ về $0$ trước? Với dữ liệu này, ngưỡng triệt tiêu của $b$ là $\lambda=6$, còn của $a$ là $\lambda=20$, đọc trực tiếp từ công thức $w_\lambda$.</p>
+    <p>Tiếp theo xét tổng bình phương sai số cùng hình phạt bậc hai. Nguồn: Boyd–Vandenberghe (2004) §6.5.4; cải dạng do nhóm tự suy.</p>
+  <p>Với thứ tự $(w,v)$, $P=\operatorname{diag}(2X^TX,0_{n\times n})\succeq0$ và các ràng buộc affine. Mỗi $w$ chọn $v=|w|$ cho cùng mục tiêu. Ngược lại mọi cặp khả thi có $\mathbf1^Tv\ge\|w\|_1$; nhân với $\lambda\ge0$ bảo toàn bất đẳng thức, nên cải dạng tương đương và lấy lại $w$.</p><p>Với $\lambda=4$, $w^\star=(4/5,1/5)$ đạt tổng bình phương sai số $42/5$ và mục tiêu $62/5$. Công thức ngưỡng trong ghi chú dùng riêng cấu trúc $X^TX=\operatorname{diag}(10,5)$; không áp nguyên công thức này cho mọi ma trận dữ liệu.</p>
+  </aside>
+</section>
+
+<section id="qp-ls-l2" data-slide-id="S03-05" class="qp-slide">
+  <h2>Bình phương sai số và chính quy hóa bậc hai</h2>
+  <p>Với $\lambda\ge0$, $r=Xw-y$:</p>
+  <div class="math-large">$$\min_w\;\|r\|_2^2+\lambda\|w\|_2^2.$$</div>
+  <p>Khối bậc hai sau khai triển:</p>
+  <div class="math-large">$$P=2(X^TX+\lambda I)\succeq0.$$</div>
+  <div class="grid2">
+    <div class="card"><p>Không cần biến phụ: đây là QP lồi.</p></div>
+    <div class="card"><p>$\lambda>0$: $P\succ0$, nghiệm $w$ duy nhất.</p></div>
+  </div>
+  <aside class="notes">
+    <p>Khai triển trực tiếp vì cả hai thành phần đều là bình phương; đây là dạng Tikhonov kinh điển.</p>
+    <p>Với $\lambda > 0$, $X^\top X + \lambda I$ xác định dương nên hàm mục tiêu lồi chặt, nghiệm duy nhất; $\lambda = 0$ chỉ cần $X$ có hạng đầy cột.</p>
+    <p><strong>Câu hỏi:</strong> nếu chỉ phạt một phần hệ số thì ma trận không tự động xác định dương; ở đây ta phạt cả $a$ và $b$ — đây là lựa chọn để minh họa, không phải quy ước mặc định của mọi mô hình.</p>
+    <p>Tổng kết bốn tổ hợp sai số × phạt và so sánh nghiệm. Nguồn: Boyd–Vandenberghe (2004) §6.3.2, §4.4.1.</p>
+  <p>Khai triển thành $w^T(X^TX+\lambda I)w-2y^TXw+y^Ty$, giữ nguyên biến và giá trị. Với mọi $d\ne0$, $d^T(X^TX+\lambda I)d=\|Xd\|_2^2+\lambda\|d\|_2^2>0$ nếu $\lambda>0$.</p><p>Với $\lambda=10$, điều kiện dừng của hàm bậc hai là $20a=10$, $15b=3$. Vậy $w^\star=(1/2,1/5)$; tổng bình phương sai số $21/2$, phạt $29/10$, mục tiêu $67/5$. Đây là cực tiểu toàn cục duy nhất vì Hessian xác định dương. Phép khai triển tương đương với mô hình đã có hình phạt, không với bài chưa phạt.</p>
+  </aside>
+</section>
+
+
+<section id="qp-so-sanh-chinh-quy" data-slide-id="S03-06" class="qp-slide">
+  <h2>Nghiệm hồi quy có chính quy hóa</h2>
+  <p>Cùng dữ liệu, bốn lựa chọn sai số và hình phạt.</p>
+  <div class="example-grid">
+    <figure class="example-plot">
+      <img class="qp-plot" src="img/lec-02/qp-regularized.svg" alt="Bốn đường hồi quy tương ứng bốn hàng của bảng, phân biệt bằng màu và nét; cùng năm điểm dữ liệu">
+    </figure>
+    <table>
+      <thead><tr><th>Sai số + phạt</th><th>$\lambda$</th><th>$w^\star$</th><th>Dạng</th></tr></thead>
+      <tbody>
+        <tr><td>$\ell_1+\ell_1$</td><td>$4$</td><td>$(1,0)$</td><td>LP</td></tr>
+        <tr><td>$\ell_1+\ell_2^2$</td><td>$4$</td><td>$(3/4,1/8)$</td><td>QP</td></tr>
+        <tr><td>$\ell_2^2+\ell_1$</td><td>$4$</td><td>$(4/5,1/5)$</td><td>QP</td></tr>
+        <tr><td>$\ell_2^2+\ell_2^2$</td><td>$10$</td><td>$(1/2,1/5)$</td><td>QP</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box"><p>Câu hỏi: $\lambda=0$ khôi phục mô hình nào ở mỗi hàng?</p></div>
+  <aside class="notes">
+    <p>Bảng dùng $\ell_1$ cho chuẩn một và $\ell_2^2$ cho bình phương chuẩn hai, theo thứ tự sai số rồi hình phạt. Chỉ hàng đầu cải dạng thành LP; ba hàng còn lại thành QP với $\lambda>0$ đang xét.</p>
+    <p>Giá trị mục tiêu lần lượt là $7$, $107/16$, $62/5$, $67/5$. Mỗi giá trị đã được kiểm theo mục tiêu của chính nó; không so sánh các số này như cùng một thước đo. Các $\lambda$ được chọn để minh họa, chưa phải kết quả chọn tham số trên tập kiểm định.</p>
+    <p>Với $\lambda=0$, hai hàng đầu trở về hồi quy sai số tuyệt đối, nghiệm $(1,0)$; hai hàng cuối về bình phương tối thiểu, nghiệm $(1,3/5)$. Với chính quy hóa chuẩn một và $\lambda=8$, sai số tuyệt đối cho $(0,0)$, còn tổng bình phương sai số cho $(3/5,0)$. Đây là ví dụ một số hệ số bằng 0, không phải bảo đảm cho mọi dữ liệu.</p>
+    <p>Ta đang phạt cả hệ số chặn để giữ ví dụ nhất quán. Tiếp theo thay hình phạt bằng giới hạn cứng độ lớn hệ số. Nguồn: Boyd–Vandenberghe (2004), §6.3.2, §6.5.4; dữ liệu, nghiệm và hình tự xây dựng.</p>
+  </aside>
+</section>
+
+<section id="qp-gioi-han-he-so" data-slide-id="S03-07" class="qp-slide">
+  <h2>Hồi quy với giới hạn độ lớn hệ số</h2>
+  <p>Cần một mức trần bắt buộc cho độ lớn hệ số.</p>
+  <div class="example-grid">
+    <figure class="example-plot">
+      <img class="qp-plot" src="img/lec-02/qp-bound.svg" alt="Miền hình tròn a²+b²≤0,29; đường đồng mức E=10,5 chạm tại (0,5;0,2), nghiệm tự do (1;0,6) nằm ngoài">
+    </figure>
+    <div>
+      <div class="math-large">$$\begin{aligned}
+      \min_w\;&E(w)\\
+      \text{với}\quad&\|w\|_2^2\le\tfrac{29}{100}.
+      \end{aligned}$$</div>
+      <p>$w^\star=(1/2,1/5)$.</p>
+      <p>$E(w^\star)=21/2$.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>Thay vì phạt mềm bằng $\lambda$, ta dùng trần cứng — giới hạn trực tiếp độ lớn hệ số. Kích thước: $w\in\mathbb{R}^2$ trên cùng dữ liệu phần 2.</p>
+    <p>Đặt $g(w)=w^\top w-29/100$; Hessian của $g$ là $2I$, xác định dương nên $g$ lồi; tập mức dưới $g(w)\le0$ là tập lồi.</p>
+    <p>Chứng nhận: với $w$ khả thi, $$E(w)+10\|w\|_2^2 \;\ge\; E(w^\star)+10\cdot\tfrac{29}{100} \;\Rightarrow\; E(w)\ge E(w^\star)+10\big(\tfrac{29}{100}-\|w\|_2^2\big)\;\ge\; E(w^\star).$$ Vậy $w^\star$ tối ưu.</p>
+    <p>Không tự khẳng định $\lambda=R$; đúng hơn: tồn tại tham số đã chọn (nay là $\lambda=10$) cho nghiệm cùng $w^\star$. Bán kính được chọn bằng chuẩn của nghiệm của bài $\lambda=10$ mang tính chủ đích minh họa.</p>
+    <p>Nếu $R=0$ thì $w=0$. Cần $R^2\ge 34/25$ để nghiệm bình phương tối thiểu khả thi. Ràng buộc tròn này là trường hợp riêng của cấu trúc tổng quát — trang sau. Không cần khôi phục biến phụ.</p>
+  <p>Nguồn: Boyd–Vandenberghe (2004), §4.4, §6.3.2; bán kính, số liệu, cận dưới và hình do nhóm tự xây dựng.</p>
+  </aside>
+</section>
+
+<section id="qp-rang-buoc-bac-hai" data-slide-id="S03-08" class="qp-slide">
+  <h2>Quy hoạch bậc hai với ràng buộc bậc hai</h2>
+  <div class="math-large">$$\begin{aligned}
+  \min_{x\in\mathbb R^n}\;&\tfrac12x^TP_0x+q_0^Tx+r_0\\
+  \text{với}\quad&\tfrac12x^TP_ix+q_i^Tx+r_i\le0,\quad i=1,\ldots,m,\\
+  &Ax=b.
+  \end{aligned}$$</div>
+  <p><strong>Chứng nhận:</strong> $P_i=P_i^T\succeq0$ với $i=0,\ldots,m$.</p>
+  <div class="box"><p>Mục tiêu lồi; các bất đẳng thức lồi và đẳng thức affine xác định tập khả thi lồi.</p></div>
+  <aside class="notes">
+    <p>Quy hoạch bậc hai với ràng buộc bậc hai (QCQP) tổng quát hóa cả mục tiêu và ràng buộc sang dạng bậc hai, với điều kiện $\succeq 0$ (nửa xác định dương) trên mọi $P_i$.</p>
+    <p>Kích thước: $x\in\mathbb{R}^n$, $P_i\in\mathbb{R}^{n\times n}$ đối xứng, $r_i\in\mathbb R$ với $i=0,\ldots,m$, $q_i\in\mathbb{R}^n$, $A\in\mathbb{R}^{p\times n}$, $b\in\mathbb{R}^p$.</p>
+    <p>Giới hạn trước của ta là trường hợp riêng: $P_0=2X^\top X$, $q_0=-2X^Ty$, $r_0=y^Ty$; còn $P_1=2I$, $q_1=0$, $r_1=-29/100$ cho ràng buộc tròn $\|w\|_2^2\le 29/100$.</p>
+    <p>Nếu $P_i=0$ với mọi $i\ge 1$ thì các ràng buộc trở thành affine và QCQP suy thành QP.</p>
+    <p>Câu hỏi: mọi ma trận bậc hai tùy ý có hợp lệ không? — Không: thiếu $P_i\succeq 0$ thì tập khả thi có thể không lồi. Nguồn: Boyd–Vandenberghe (2004) §4.4.</p>
+  </aside>
+</section>
+
+<section id="qp-kiem-tra" data-slide-id="S03-09" class="qp-slide">
+  <h2>Nhận dạng và chứng nhận bài toán bậc hai</h2>
+  <p>Câu hỏi: Phân loại và giải thích từng biến thể.</p>
+  <div class="card"><p><strong>1.</strong> Thêm $\|w\|_1\le R$, $R\ge0$, vào hồi quy bình phương sai số có chính quy hóa chuẩn một.</p></div>
+  <div class="card"><p><strong>2.</strong> Đổi giới hạn thành $\|w\|_2^2\ge R^2$, $R>0$.</p></div>
+  <div class="card"><p><strong>3.</strong> Đặt $\lambda=0$: có buộc $v=|w|$ tại nghiệm tối ưu?</p></div>
+  <aside class="notes">
+    <p>(1) Đúng, vẫn QP: đặt $v\ge\pm w$ (tức $v\ge w$ và $v\ge -w$), thêm $\sum v \le R$; mục tiêu bậc hai lồi, ràng buộc affine. Với $w$ gốc khả thi, chọn $v=|w|$ để khả thi mới. Ngược lại, mọi cặp mới có $\|w\|_1\le\mathbf1^Tv\le R$; giá trị tối ưu được bảo toàn vì hệ số phạt không âm.</p>
+    <p>(2) Không lồi: miền $\|w\|_2^2\ge R^2$ là phần ngoài của hình tròn. Lấy hai điểm đối nhau trên biên bán kính $R$: trung điểm là gốc $0$ không thuộc miền, nên tập không lồi.</p>
+    <p>(3) Không: với $\lambda=0$ hệ số của $v$ trong mục tiêu bằng 0, nên $v$ có thể lớn hơn $|w|$ tại nghiệm tối ưu, nhưng vẫn khôi phục được $w$ đúng; $v$ chỉ là biến phụ.</p>
+    <p>Chuyển ý sang phần 4: khi biến ban đầu không lộ rõ tính lồi, ta cần xét các phép đổi biến; nhưng không phải mọi bài toán không lồi đều cải dạng được. Nguồn: Boyd–Vandenberghe (2004) §4.4, §6.3.2, §6.5.4 (tr. 334).</p>
+  </aside>
+</section>
+
+</section>
+
+<section id="section-4">
       <section id="mach-4" data-slide-id="S04">
         <h2><span class="text-light">4</span><br>Quy hoạch hình học và phép đổi biến làm lộ tính lồi</h2>
       </section>

@@ -12,7 +12,7 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 6. Xấp xỉ lồi và nới lỏng bài toán không lồi.
 7. Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm.
 
-Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Phần 2 có 12 trang đã triển khai; các phần 3–7 mỗi phần có một trang tiêu đề. Tổng cộng 24 trang trong bảy section ngoài; đây không phải số trang cuối cùng.
+Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Phần 2 có 12 trang và phần 3 có 14 trang đã triển khai; các phần 4–7 mỗi phần có một trang tiêu đề. Tổng cộng 37 trang trong bảy section ngoài; đây không phải số trang cuối cùng.
 
 ## Phần 1 hiện tại
 
@@ -51,19 +51,23 @@ Trang điều kiện riêng được bỏ theo yêu cầu người dùng vì n�
 
 Giữ kế hoạch 10 trang đã duyệt, bổ sung trang chuẩn tắc theo yêu cầu và tách câu chuyện khỏi mô hình theo yêu cầu mô tả bối cảnh. Các mã cũ giữ nguyên; hai mã mới là S02-01b và S02-03b. Không bổ sung thời lượng. Nguồn và quyết định từng trang ở [storyboard.md](storyboard.md).
 
-## Kế hoạch phần 3 — Quy hoạch bậc hai (dự kiến 10 trang, chưa triển khai)
+## Phần 3 đã triển khai — Quy hoạch bậc hai
 
-Người dùng yêu cầu sửa tiêu đề mạch 3 thành "Quy hoạch bậc hai" và sửa kế hoạch; đề xuất dưới đây gồm 10 trang; chưa thêm bất kỳ trang nội dung nào vào HTML. Toàn bài vẫn 24 trang trong bảy section. Ký hiệu dùng lại từ phần 2: dữ liệu $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, $X$ có hàng thứ $i$ là $(u_i,1)$, $w=(a,b)$, phần dư $r=Xw-y$.
+Phần này có 14 trang, bổ sung chính quy hóa cho cả hai tiêu chí sai số theo yêu cầu. Mô hình chuẩn một có biến phụ dùng lại kết quả của phần 2; không tạo một phần riêng chỉ để lặp kỹ thuật. Toàn bài 37 trang trong bảy phần.
 
-1. `S03` Quy hoạch bậc hai — trang tiêu đề hiện có, chỉ đổi h2.
-2. `S03-01` Hồi quy với tổng bình phương sai số — cùng dữ liệu phần 2; nhu cầu dự đoán và ưu tiên giảm sai số lớn qua bình phương; đường thử $y=u$, miền $\mathbb{R}^2$.
-3. `S03-02` Dạng bậc hai của bình phương sai số — khai triển $\|Xw-y\|_2^2=w^TX^TXw-2y^TXw+y^Ty$; $P=2X^TX$ nửa xác định dương, Hessian; cải dạng tương đương, không phải xấp xỉ.
-4. `S03-03` Dạng phổ biến của quy hoạch bậc hai — $\min \tfrac12 x^TPx+q^Tx+r_0$ với $Gx\le h$, $Ax=b$, $x\in\mathbb{R}^n$, $P$ đối xứng nửa xác định dương; $P=0$ thu LP. Chứng nhận; không nói mọi QP đều lồi, không lấy $P$ nửa xác định dương làm điều kiện cần trên mọi miền ràng buộc.
-5. `S03-04` Nghiệm hồi quy bình phương tối thiểu — $w=(1,3/5)$, tổng bình phương sai số $=36/5$; so với các tiêu chí phần 2 trên cùng dữ liệu, không coi đổi tiêu chí là cải dạng. Đồ thị đường dự đoán và mức mục tiêu trong $(a,b)$. Biến thể $a\le 1/2$ vẫn QP, nghiệm $(1/2,3/5)$, tổng bình phương sai số $=97/10$; suy diễn vào notes.
-6. `S03-05` Hồi quy với hình phạt bậc hai — nhu cầu giảm độ nhạy dự đoán với nhiễu đầu vào/giữ hệ số nhỏ; $\min \|Xw-y\|_2^2+\lambda\|w\|_2^2$, $\lambda\ge0$; phạt cả hệ số chặn trong ví dụ để minh họa, không tuyên bố thông lệ mọi mô hình hoặc đảm bảo tổng quát hóa. $P=2(X^TX+\lambda I)$; $\lambda>0$ đảm bảo xác định dương, nghiệm duy nhất; nếu chỉ phạt một phần không kết luận tự động.
-7. `S03-06` Ảnh hưởng của hệ số phạt — giữ dữ liệu; $\lambda=10$ cho $w=(1/2,1/5)$, tổng bình phương sai số $=21/2$, toàn mục tiêu $=67/5$. Đồ thị sự co hệ số và đường dự đoán; $\lambda=0$ kiểm lại bài trước. Thay $\lambda$ âm không còn bảo đảm lồi, phải kiểm Hessian.
-8. `S03-07` Hồi quy với giới hạn độ lớn hệ số — nhu cầu mức trần cứng thay chi phí mềm; $\min \|Xw-y\|_2^2$ với $\|w\|_2^2\le R^2$, $R\ge0$. Miền hình tròn, nghiệm tự do ngoài/vào miền. Chọn $R$ và tính nghiệm số khi triển khai; chứng nhận hàm ràng buộc Hessian $2I$, không khẳng định tương đương bài phạt nếu chưa xác lập tham số. Kiểm $R=0$ và $R$ đủ lớn.
-9. `S03-08` Quy hoạch bậc hai với ràng buộc bậc hai — QCQP dạng min bậc hai, các bất đẳng thức bậc hai lồi, đẳng thức affine; các $P_i$ nửa xác định dương kể cả $P_0$. Tổng quát từ giới hạn chuẩn; so sánh QP và QCQP. QCQP nói chung có thể không lồi.
-10. `S03-09` Nhận dạng và chứng nhận bài toán bậc hai — bài tập đổi ràng buộc chuẩn thành $\|w\|_2^2\ge R^2$ ($R>0$) hoặc $=R^2$; đổi $\lambda$; phân loại và chứng nhận theo mô hình. Nối phần 4: không thấy cấu trúc lồi theo biến gốc sẽ cần tìm phép đổi biến.
+1. Quy hoạch bậc hai — Định danh lớp bài toán; nhận câu hỏi đổi tiêu chí từ phần 2.
+2. Hồi quy với tổng bình phương sai số — Thiết lập nhu cầu dự đoán và hai ứng viên trước khi khai triển mục tiêu.
+3. Dạng bậc hai của bình phương sai số — Chỉ ra cấu trúc bậc hai và chứng nhận Hessian; phân biệt viết lại với thay mục tiêu.
+4. Dạng phổ biến của quy hoạch bậc hai — Khái quát nhận dạng QP: mục tiêu bậc hai lồi, ràng buộc affine.
+5. Nghiệm hồi quy bình phương tối thiểu — Đọc nghiệm thành đường dự đoán; hình đồng mức làm rõ tác động của ràng buộc.
+6. Chính quy hóa trong hồi quy — Thiết lập nhu cầu kiểm soát hệ số và phân biệt hai tiêu chí sai số với hai hình phạt.
+7. Sai số tuyệt đối và chính quy hóa chuẩn một — Dùng lại biến phụ của phần 2 cho cả sai số và hệ số; nhận dạng LP.
+8. Sai số tuyệt đối và chính quy hóa bậc hai — Thay hình phạt bằng bình phương chuẩn hai; nhận ra QP dù sai số chưa trơn.
+9. Bình phương sai số và chính quy hóa chuẩn một — Giữ sai số bậc hai, cải dạng hình phạt chuẩn một; phân biệt QP với hàm trơn.
+10. Bình phương sai số và chính quy hóa bậc hai — Khai triển chính quy hóa bậc hai; chỉ rõ điều kiện đủ cho nghiệm duy nhất theo w.
+11. Nghiệm hồi quy có chính quy hóa — Đối chiếu bốn đường dự đoán, hệ số và tham số; đánh giá theo từng mục tiêu gốc.
+12. Hồi quy với giới hạn độ lớn hệ số — Thay chi phí mềm bằng mức trần cứng; chứng nhận miền hình tròn và nghiệm trên biên.
+13. Quy hoạch bậc hai với ràng buộc bậc hai — Khái quát QCQP từ ràng buộc chuẩn; chứng nhận cả mục tiêu và các bất đẳng thức.
+14. Nhận dạng và chứng nhận bài toán bậc hai — Kiểm tra chuyển giao khi thêm ràng buộc, đổi chiều bất đẳng thức hoặc đặt hệ số phạt bằng 0.
 
-Chi tiết từng trang, bảng lý do tồn tại/khoảng trống, kết nối trước–sau, minh chứng LLO3/CLO1 và ánh xạ chín bước ở [storyboard.md](storyboard.md). Các con số minh họa là dự kiến tự tính, không phải dữ liệu thực nghiệm. Không gán thời lượng; chưa phân bổ.
+Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số để minh họa. Chính quy hóa chuẩn một khác chính quy hóa bằng bình phương chuẩn hai. Nguồn, chứng nhận hai chiều, giới hạn và ánh xạ từng ví dụ nằm trong [storyboard.md](storyboard.md). Các phần 4–7 chưa triển khai nội dung; không phân bổ thời lượng mới.

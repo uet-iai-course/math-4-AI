@@ -4,7 +4,7 @@ Phiên bản làm lại ngày 2026-09-11; bảy mạch đã được người d�
 
 ## Trạng thái và mục tiêu
 
-- Phạm vi hiện tại: phần 1 có bảy trang và phần 2 có 12 trang đã triển khai, kèm ghi chú diễn giả; phần 3–7 vẫn là khung tiêu đề theo yêu cầu làm từng phần. Toàn bài hiện có 24 trang trong bảy section ngoài. Chưa chốt số trang cuối cùng hoặc thời lượng; không triển khai các phần tiếp theo trong lượt này.
+- Phạm vi hiện tại: phần 1 có bảy trang, phần 2 có 12 trang và phần 3 có 14 trang đã triển khai, kèm ghi chú diễn giả; phần 4–7 vẫn là khung tiêu đề theo yêu cầu làm từng phần. Toàn bài hiện có 37 trang trong bảy section ngoài. Chưa chốt số trang cuối cùng hoặc thời lượng; không triển khai các phần tiếp theo trong lượt này.
 - Cấu trúc 58 trang (39 chính + 19 phụ lục) của lần sửa trước không còn là ràng buộc.
 - Bản storyboard cũ lưu trong lịch sử Git tại commit e030846; không tạo bản sao, không di chuyển tệp cũ.
 - Mục tiêu bài học: sinh viên hiểu rõ các dạng bài toán tối ưu lồi; nhận biết bài toán thực tế có thể chuyển về dạng lồi hoặc xấp xỉ bằng dạng lồi; chứng minh một bài toán tối ưu là lồi. Ưu tiên ví dụ trong trí tuệ nhân tạo và học máy (AI/ML) hoặc bài toán quen thuộc.
@@ -42,7 +42,7 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 
 ### Mạch 3 — Quy hoạch bậc hai
 
-- Ví dụ: hồi quy tuyến tính, bổ sung hạn chế độ lớn hệ số; hình thành quy hoạch bậc hai (QP) và quy hoạch bậc hai với ràng buộc bậc hai (QCQP).
+- Ví dụ: hồi quy bình phương tối thiểu; chính quy hóa chuẩn một hoặc bình phương chuẩn hai cho cả sai số tuyệt đối và tổng bình phương sai số. Giới hạn cứng độ lớn hệ số dẫn tới quy hoạch bậc hai với ràng buộc bậc hai (QCQP).
 - Nội dung: chứng minh dạng bậc hai lồi qua ma trận nửa xác định dương; phân biệt hình phạt ở mục tiêu với giới hạn cứng. Hình đường đồng mức/miền khả thi giải thích nghiệm. Không mặc định hai cách cho cùng nghiệm nếu chưa xác định quan hệ tham số.
 - Đầu vào: cùng dữ liệu dự đoán với tiêu chí sai số ở mạch 2.
 - Đầu ra: nhận dạng QP/QCQP, chứng nhận cả mục tiêu lẫn ràng buộc và diễn giải lựa chọn mô hình.
@@ -99,7 +99,7 @@ Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạ
 |---|---|---|---|
 | 1 | `section-1` | `S01-01`–`S01-04`, `S01-06`–`S01-08` | Soạn bốn trang đầu và ba ví dụ; bỏ `S01-05` theo bảng bên dưới |
 | 2 | `section-2` | `mach-2` / `S02` | Giữ tiêu đề; 11 trang nội dung của mạch 2 được ánh xạ trong bảng triển khai phần 2 phía dưới |
-| 3 | `section-3` | `mach-3` / `S03` | Thêm khung tiêu đề cho mạch 3; nội dung sẽ được xây dựng cùng người dùng |
+| 3 | `section-3` | `mach-3` / `S03` | Giữ tiêu đề; 13 trang nội dung được ánh xạ trong bảng phần 3 phía dưới |
 | 4 | `section-4` | `mach-4` / `S04` | Thêm khung tiêu đề cho mạch 4; nội dung sẽ được xây dựng cùng người dùng |
 | 5 | `section-5` | `mach-5` / `S05` | Thêm khung tiêu đề cho mạch 5; nội dung sẽ được xây dựng cùng người dùng |
 | 6 | `section-6` | `mach-6` / `S06` | Thêm khung tiêu đề cho mạch 6; nội dung sẽ được xây dựng cùng người dùng |
@@ -195,39 +195,53 @@ Nhu cầu đi trước dạng chuẩn. Trực quan pha trộn bắt đầu bằn
 - Năm SVG tự tạo: lp-mixture.svg, lp-data.svg, lp-epigraph.svg, lp-lad.svg, lp-minimax.svg. Không dùng tài sản raster. Đơn vị g và kg của câu chuyện không truyền sang dữ liệu hồi quy đã chuẩn hóa.
 - Rà ghi chú học tập và bài tập cũ: hai tệp vẫn thuộc bản trước (mô hình X=I2, y=(2,1), các chủ đề sau chưa xây dựng lại). Giữ chúng làm tham khảo, tiếp tục ngừng liên kết trên chỉ mục; không công bố như tài liệu đã đồng bộ với phần mới. Trong phạm vi hiện tại, lời giải và biến thể của phần LP nằm trong ghi chú diễn giả.
 
-## Kế hoạch phần 3 — Quy hoạch bậc hai (dự kiến 10 trang, chưa triển khai)
+## Triển khai phần 3 — Quy hoạch bậc hai
 
-Trạng thái: người dùng yêu cầu sửa tiêu đề mạch 3 thành "Quy hoạch bậc hai" và sửa kế hoạch; đề xuất dưới đây gồm 10 trang. HTML chỉ đổi h2 của `mach-3`; chưa thêm trang, notes hay nội dung phần 3. Toàn bài vẫn 24 trang trong bảy section. Ký hiệu dùng lại từ phần 2: $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, $X$ có hàng thứ $i$ là $(u_i,1)$, $w=(a,b)$, $r=Xw-y$. Các số liệu bình phương tối thiểu và hình phạt đã được kiểm bằng số hữu tỉ; nghiệm giới hạn cứng sẽ tính khi triển khai, không phải dữ liệu thực nghiệm. Không gán thời lượng; chưa phân bổ. Phạm vi: nhận dạng, mô hình hóa và chứng nhận; không thêm thuật toán, KKT hay đối ngẫu.
+Đã triển khai theo yêu cầu bổ sung chính quy hóa rồi làm phần 3. Phần này có 14 trang; toàn bài 37 trang/bảy phần. So với kế hoạch 10 trang, thêm bốn trang S03-04b–e để thiết lập nhu cầu và tách các phép cải dạng. Giữ mã cũ; sửa vai trò S03-05 thành trường hợp bình phương sai số + hình phạt bậc hai, S03-06 thành so sánh bốn nghiệm. Không dạy thuật toán giải, KKT hoặc đối ngẫu; không gán thời lượng. Năng lực thiết kế hỗ trợ LLO3/CLO1 buổi 2: mô hình hóa, nhận dạng, chứng nhận và diễn giải nghiệm; đánh giá bằng bài tập cá nhân/nhóm.
 
-| Vị trí / mã | Tiêu đề | Lý do tồn tại / khoảng trống lấp | Kết nối vào → ra | Minh chứng LLO3/CLO1 | Quyết định |
-|---|---|---|---|---|---|
-| 1 / `S03` | Quy hoạch bậc hai | Định danh lớp bài toán tiếp theo | LP phần 2 → nhu cầu khớp dữ liệu bằng bình phương | Định hướng; chưa minh chứng riêng | Sửa tiêu đề hiện có (đã sửa trong RevealJS) |
-| 2 / `S03-01` | Hồi quy với tổng bình phương sai số | Phần 2 dừng ở tiêu chí tuyệt đối/lớn nhất; thiếu tiêu chí bình phương | Dữ liệu phần 2 → mục tiêu $\min_w\|Xw-y\|_2^2$; nhu cầu dự đoán, ưu tiên giảm sai số lớn qua bình phương; đường thử $y=u$, miền $\mathbb{R}^2$ | Minh chứng thiết kế hỗ trợ LLO3/CLO1: lập mô hình | Thêm dự kiến, chưa thực hiện |
-| 3 / `S03-02` | Dạng bậc hai của bình phương sai số | Mục tiêu chưa viết ở dạng bậc hai theo $w$ | Khai triển $\|Xw-y\|_2^2=w^TX^TXw-2y^TXw+y^Ty$; $P=2X^TX$ nửa xác định dương, Hessian; cải dạng tương đương, không phải xấp xỉ | Hỗ trợ LLO3/CLO1: chứng nhận cấu trúc | Thêm dự kiến, chưa thực hiện |
-| 4 / `S03-03` | Dạng phổ biến của quy hoạch bậc hai | Thiếu dạng chuẩn QP để nhận dạng | $\min \tfrac12 x^TPx+q^Tx+r_0$, $Gx\le h$, $Ax=b$, $x\in\mathbb{R}^n$, $P$ đối xứng nửa xác định dương; $P=0$ thu LP. Chứng nhận; không nói mọi QP đều lồi, không lấy $P$ nửa xác định dương làm điều kiện cần trên mọi miền ràng buộc | Hỗ trợ LLO3/CLO1: nhận dạng dạng chuẩn | Thêm dự kiến, chưa thực hiện |
-| 5 / `S03-04` | Nghiệm hồi quy bình phương tối thiểu | Chưa có nghiệm số trên cùng dữ liệu | $w=(1,3/5)$, tổng bình phương sai số $=36/5$; so với các tiêu chí phần 2 trên cùng dữ liệu, không coi đổi tiêu chí là cải dạng. Đồ thị đường dự đoán và mức mục tiêu trong $(a,b)$. Biến thể $a\le 1/2$ vẫn QP, nghiệm $(1/2,3/5)$, tổng bình phương sai số $=97/10$; suy diễn vào notes | Hỗ trợ LLO3/CLO1: giải và diễn giải nghiệm | Thêm dự kiến, chưa thực hiện |
-| 6 / `S03-05` | Hồi quy với hình phạt bậc hai | Thiếu cơ chế kiểm soát độ lớn hệ số mềm | Nhu cầu giảm độ nhạy dự đoán với nhiễu đầu vào/giữ hệ số nhỏ; $\min\|Xw-y\|_2^2+\lambda\|w\|_2^2$, $\lambda\ge0$; phạt cả hệ số chặn trong ví dụ để minh họa, không tuyên bố thông lệ mọi mô hình hoặc đảm bảo tổng quát hóa. $P=2(X^TX+\lambda I)$; $\lambda>0$ đảm bảo xác định dương, nghiệm duy nhất; nếu chỉ phạt một phần không kết luận tự động | Hỗ trợ LLO3/CLO1: mô hình hóa và chứng nhận | Thêm dự kiến, chưa thực hiện |
-| 7 / `S03-06` | Ảnh hưởng của hệ số phạt | Chưa thấy vai trò của $\lambda$ | Giữ dữ liệu; $\lambda=10$ cho $w=(1/2,1/5)$, tổng bình phương sai số $=21/2$, toàn mục tiêu $=67/5$. Đồ thị sự co hệ số và đường dự đoán; $\lambda=0$ kiểm lại bài trước. Thay $\lambda$ âm không còn bảo đảm lồi, phải kiểm Hessian | Hỗ trợ LLO3/CLO1: phân tích mô hình theo tham số | Thêm dự kiến, chưa thực hiện |
-| 8 / `S03-07` | Hồi quy với giới hạn độ lớn hệ số | Thiếu mức trần cứng thay cho chi phí mềm | $\min\|Xw-y\|_2^2$ với $\|w\|_2^2\le R^2$, $R\ge0$. Miền hình tròn, nghiệm tự do ngoài/vào miền. Chọn $R$ và tính nghiệm số khi triển khai; chứng nhận hàm ràng buộc Hessian $2I$, không khẳng định tương đương bài phạt nếu chưa xác lập tham số. Kiểm $R=0$ và $R$ đủ lớn | Hỗ trợ LLO3/CLO1: phân biệt phạt mềm và trần cứng | Thêm dự kiến, chưa thực hiện |
-| 9 / `S03-08` | Quy hoạch bậc hai với ràng buộc bậc hai | Thiếu lớp QCQP tổng quát | QCQP dạng min bậc hai, các bất đẳng thức bậc hai lồi, đẳng thức affine; các $P_i$ nửa xác định dương kể cả $P_0$. Tổng quát từ giới hạn chuẩn; so sánh QP và QCQP. QCQP nói chung có thể không lồi | Hỗ trợ LLO3/CLO1: mở rộng lớp bài toán | Thêm dự kiến, chưa thực hiện |
-| 10 / `S03-09` | Nhận dạng và chứng nhận bài toán bậc hai | Thiếu bài tập chuyển giao | Bài tập đổi ràng buộc chuẩn thành $\|w\|_2^2\ge R^2$ ($R>0$) hoặc $=R^2$; đổi $\lambda$; phân loại và chứng nhận theo mô hình. Nối phần 4: không thấy cấu trúc lồi theo biến gốc sẽ cần tìm phép đổi biến | LLO3/CLO1: bài tập cá nhân/nhóm theo đề cương buổi 2 | Thêm dự kiến, chưa thực hiện |
+| Mã | Tiêu đề | Lý do tồn tại / khoảng trống | Kết nối vào → ra | Minh chứng / quyết định |
+|---|---|---|---|---|
+| S03 | Quy hoạch bậc hai | Định danh lớp bài toán; nhận câu hỏi đổi tiêu chí từ phần 2. | Phần 2 → S03-01 | Định hướng; Giữ tiêu đề, bổ sung ghi chú |
+| S03-01 | Hồi quy với tổng bình phương sai số | Thiết lập nhu cầu dự đoán và hai ứng viên trước khi khai triển mục tiêu. | S03 → S03-02 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-02 | Dạng bậc hai của bình phương sai số | Chỉ ra cấu trúc bậc hai và chứng nhận Hessian; phân biệt viết lại với thay mục tiêu. | S03-01 → S03-03 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-03 | Dạng phổ biến của quy hoạch bậc hai | Khái quát nhận dạng QP: mục tiêu bậc hai lồi, ràng buộc affine. | S03-02 → S03-04 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-04 | Nghiệm hồi quy bình phương tối thiểu | Đọc nghiệm thành đường dự đoán; hình đồng mức làm rõ tác động của ràng buộc. | S03-03 → S03-04b | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-04b | Chính quy hóa trong hồi quy | Thiết lập nhu cầu kiểm soát hệ số và phân biệt hai tiêu chí sai số với hai hình phạt. | S03-04 → S03-04c | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Thêm theo yêu cầu chính quy hóa |
+| S03-04c | Sai số tuyệt đối và chính quy hóa chuẩn một | Dùng lại biến phụ của phần 2 cho cả sai số và hệ số; nhận dạng LP. | S03-04b → S03-04d | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Thêm theo yêu cầu chính quy hóa |
+| S03-04d | Sai số tuyệt đối và chính quy hóa bậc hai | Thay hình phạt bằng bình phương chuẩn hai; nhận ra QP dù sai số chưa trơn. | S03-04c → S03-04e | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Thêm theo yêu cầu chính quy hóa |
+| S03-04e | Bình phương sai số và chính quy hóa chuẩn một | Giữ sai số bậc hai, cải dạng hình phạt chuẩn một; phân biệt QP với hàm trơn. | S03-04d → S03-05 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Thêm theo yêu cầu chính quy hóa |
+| S03-05 | Bình phương sai số và chính quy hóa bậc hai | Khai triển chính quy hóa bậc hai; chỉ rõ điều kiện đủ cho nghiệm duy nhất theo w. | S03-04e → S03-06 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-06 | Nghiệm hồi quy có chính quy hóa | Đối chiếu bốn đường dự đoán, hệ số và tham số; đánh giá theo từng mục tiêu gốc. | S03-05 → S03-07 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-07 | Hồi quy với giới hạn độ lớn hệ số | Thay chi phí mềm bằng mức trần cứng; chứng nhận miền hình tròn và nghiệm trên biên. | S03-06 → S03-08 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-08 | Quy hoạch bậc hai với ràng buộc bậc hai | Khái quát QCQP từ ràng buộc chuẩn; chứng nhận cả mục tiêu và các bất đẳng thức. | S03-07 → S03-09 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-09 | Nhận dạng và chứng nhận bài toán bậc hai | Kiểm tra chuyển giao khi thêm ràng buộc, đổi chiều bất đẳng thức hoặc đặt hệ số phạt bằng 0. | S03-08 → Phần 4: đổi biến | Phân loại và lập luận ở bài tập; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
 
-### Bản đồ sáu bước cho ba cụm
 
-| Cụm | Nhu cầu | Trực quan và ví dụ | Hình thức/toán học | Ứng dụng | Bài tập |
-|---|---|---|---|---|---|
-| Bình phương sai số | `S03-01`: dự đoán, ưu tiên giảm sai số lớn | Đường thử $y=u$ trên dữ liệu phần 2 | `S03-02`–`S03-03`: khai triển bậc hai, Hessian, dạng chuẩn QP | Nghiệm và diễn giải ở `S03-04` | Biến thể $a\le 1/2$ trong notes `S03-04` |
-| Hình phạt | `S03-05`: giảm độ nhạy, giữ hệ số nhỏ | Đồ thị co hệ số và đường dự đoán | `S03-05`–`S03-06`: $\lambda\|w\|_2^2$, $P=2(X^TX+\lambda I)$ | $\lambda=0$ kiểm lại; $\lambda=10$ minh họa | Đổi $\lambda$ ở `S03-09` |
-| Giới hạn cứng / QCQP | `S03-07`: trần cứng thay chi phí mềm | Miền hình tròn, nghiệm vào/ra miền | `S03-07`–`S03-08`: ràng buộc bậc hai, QCQP, các $P_i$ nửa xác định dương | So sánh QP/QCQP | Đổi ràng buộc chuẩn ở `S03-09` |
+### Chín bước theo từng ví dụ
 
-Ánh xạ chín bước cho từng ví dụ: hồi quy bình phương — bước 1–3 ở `S03-01`, bước 4–6 ở `S03-02`–`S03-03`, bước 7–8 ở `S03-04`, bước 9 trong notes `S03-04`; hồi quy phạt — bước 1–3 ở `S03-05`, bước 4–6 ở `S03-05`–`S03-06`, bước 7–8 ở `S03-06`, bước 9 ở `S03-09`; giới hạn cứng/QCQP — bước 1–3 ở `S03-07`, bước 4–6 ở `S03-07`–`S03-08`, bước 7 ở `S03-07`, bước 8 ở `S03-08`, bước 9 ở `S03-09`. Lý do gộp trực quan và ví dụ trên cùng trang: giữ một điểm nhấn mỗi trang như phần 1–2. Thứ tự chín bước theo yêu cầu người dùng được ưu tiên; không gán thời lượng, chưa phân bổ. Không cần ánh xạ 1:1 số trang với phần 2.
+| Ví dụ | 1–3: nhu cầu, mô hình, cách trực tiếp | 4–6: cấu trúc, cải dạng, chứng nhận | 7–8: số, hình, khái quát | 9: kiểm tra hiểu |
+|---|---|---|---|---|
+| Bình phương tối thiểu | S03-01: dự đoán cùng dữ liệu, thử đường $\hat y=u$ | S03-02–03: khai triển tương đương, Hessian, QP | S03-04: đường dự đoán, nghiệm và đồng mức; QP đã khái quát ở S03-03 | S03-04: thêm $a\le1/2$ |
+| Sai số tuyệt đối + chuẩn một | S03-04b–c: kiểm soát hệ số; bắt đầu từ nghiệm không phạt của phần 2 | S03-04c: hai nhóm biến phụ, tương đương hai chiều và LP | S03-06 và notes S03-04c: nghiệm, đường dự đoán, lớp LP | Notes: tăng $\lambda$ từ 4 lên 8; S03-09: $\lambda=0$ |
+| Sai số tuyệt đối + bình phương chuẩn hai | S03-04b,d: cùng nhu cầu và dữ liệu, thay hình phạt | S03-04d: biến phụ cho sai số, mục tiêu QP; lồi chặt theo $w$ khi $\lambda>0$ | S03-06 và notes S03-04d: nghiệm/cận dưới, đường dự đoán | S03-06: $\lambda=0$ trả về hồi quy sai số tuyệt đối |
+| Bình phương sai số + chuẩn một | S03-04b,e: thử nghiệm LS trước khi phạt | S03-04e: biến phụ cho hệ số, QP, bảo toàn giá trị và khôi phục $w$ | S03-06 và notes S03-04e: nghiệm; công thức theo $\lambda$ cho riêng dữ liệu này | Notes: $\lambda=8$; S03-09: thêm giới hạn chuẩn một |
+| Bình phương sai số + bình phương chuẩn hai | S03-04b, S03-05: cân bằng sai số/độ lớn, thử nghiệm LS không phạt | S03-05: khai triển giữ nguyên biến, ma trận nửa xác định dương; $\lambda>0$ cho xác định dương | S03-06 và notes S03-05: nghiệm, đường dự đoán, QP không cần biến phụ | S03-06: $\lambda=0$; notes: phạt chỉ một phần hệ số |
+| Giới hạn cứng | S03-07: yêu cầu mức trần, kiểm nghiệm LS nằm ngoài hình tròn | S03-07: mô hình đã lồi; Hessian của ràng buộc và cận dưới chứng minh nghiệm, không cần đổi biến | S03-07–08: nghiệm trên biên, đường dự đoán, khái quát QCQP | Notes: $R=0$, $R$ đủ lớn; S03-09: đảo chiều ràng buộc |
 
-### Nguồn và phạm vi
+### Bản đồ sáu bước và ký hiệu
 
-- Boyd và Vandenberghe (2004), *Convex Optimization*, `sources/bv_cvxbook.pdf`: §4.4 tr. 152–153 (QP và QCQP), §4.4.1 tr. 153–154 (hồi quy bình phương tối thiểu và ràng buộc tuyến tính), §6.3.2 tr. 306 (hình phạt Tikhonov). Không dùng nguồn mới.
-- Đề cương chính thức buổi 2: LLO3/CLO1, bài tập cá nhân/nhóm.
-- Phạm vi nhận dạng/mô hình/chứng nhận; không thêm thuật toán, KKT, đối ngẫu. Ký hiệu nhất quán với phần 2 ($X,y,w,r,P,G,h,A,b$), đủ kích thước khi soạn.
+- Bình phương tối thiểu: nhu cầu và trực quan hai ứng viên ở S03-01 → ví dụ cùng năm điểm → hình thức S03-02–03 → áp dụng đọc nghiệm S03-04 → biến thể trong notes S03-04.
+- Bốn mô hình chính quy hóa: nhu cầu ở S03-04b → trực quan hình thoi/đường tròn trên cùng trang → ví dụ dùng lại dữ liệu đã học → hình thức và chứng nhận riêng S03-04c,d,e,05 → áp dụng số/đường dự đoán S03-06 → bài tập trong notes và S03-09. Ví dụ số sau chứng nhận tuân theo chín bước người dùng yêu cầu; không xem hình thoi là bằng chứng rằng mọi nghiệm đều thưa.
+- QCQP: nhu cầu, trực quan hình tròn và ví dụ giới hạn cụ thể ở S03-07 → hình thức riêng trên trang và chứng nhận trong ghi chú của trang, khái quát S03-08 → dùng nghiệm để dự đoán → bài tập S03-09. Gộp các bước trên S03-07 vì chỉ thêm một ràng buộc vào mô hình đã biết; chứng minh chi tiết nằm trong notes.
+- Đầu vào: tập/hàm lồi, đạo hàm bậc hai và đại số tuyến tính từ Bài 01; mô hình hồi quy và kỹ thuật biến phụ của phần 2. Sản phẩm: mô hình rõ nghĩa, phép cải dạng hai chiều, chứng nhận và diễn giải nghiệm. Điểm ra: phân biệt bài đã lồi theo biến gốc với bài cần xét phép đổi biến ở phần 4. Thời lượng chưa phân bổ riêng.
+- Xuyên suốt $X\in\mathbb R^{5\times2}$ có hàng $(u_i,1)$, $w=(a,b)$, $r=Xw-y$. Khi khái quát $X\in\mathbb R^{m\times n}$, $w,v\in\mathbb R^n$, $r,y,t\in\mathbb R^m$. $E=\|r\|_2^2$; hình phạt $\|w\|_1$ hoặc $\|w\|_2^2$; không dùng chuẩn Euclid chưa bình phương thay thế ngầm. $b$ trong $Ax=b$ là vectơ dữ liệu, khác hệ số chặn của hồi quy.
 
-Ký hiệu trước khi dùng: $X\in\mathbb{R}^{5\times2}$, $y,r\in\mathbb{R}^5$, $w\in\mathbb{R}^2$; mọi chuẩn trong phần này là chuẩn Euclid. Trong dạng tổng quát: $x\in\mathbb{R}^n$, $P,P_i\in\mathbb{R}^{n\times n}$ đối xứng, $q,q_i\in\mathbb{R}^n$, $r_0,r_i\in\mathbb{R}$, $G\in\mathbb{R}^{m\times n}$, $h\in\mathbb{R}^m$, $A\in\mathbb{R}^{p\times n}$, $b\in\mathbb{R}^p$; $b$ của dạng tổng quát khác hệ số chặn $b$ trong $w=(a,b)$. Ánh xạ hồi quy: $x=w$, $P=2X^TX$, $q=-2X^Ty$, $r_0=y^Ty$. Quy hoạch bậc hai (QP), quy hoạch bậc hai với ràng buộc bậc hai (QCQP) được viết đầy đủ trước khi dùng viết tắt khi soạn.
+### Số liệu, nguồn và giới hạn
 
-Phần hình phạt: đặt trước công thức một so sánh hai đường dự đoán và độ lớn hệ số ở `S03-05`; trực quan số ở `S03-06` kiểm lại ý tưởng. Phương án trực tiếp là giữ nghiệm không phạt; sau khai triển, dùng chính $w$ để dự đoán, không có biến cần khôi phục. Khái quát và biến thể ở `S03-06`–`S03-09`. Phần giới hạn cứng: phương án trực tiếp là kiểm tra nghiệm tự do có nằm trong hình tròn không; nếu có thì giữ nghiệm, nếu không thì phải giải bài có ràng buộc. `S03-07` phải có một $R$ cụ thể, nghiệm số và đường dự đoán khi triển khai; `S03-08` chỉ khái quát QCQP. Trường hợp này đã lồi, không cần đổi biến; hình phạt và giới hạn cứng là hai yêu cầu khác nhau. Ba cụm dùng lại kiến thức hàm lồi, đạo hàm và đại số tuyến tính từ Bài 01; sản phẩm là mô hình, chứng nhận và diễn giải nghiệm. Ánh xạ năng lực chi tiết là thiết kế hỗ trợ LLO3/CLO1, không phải nguyên văn chuẩn đầu ra trong đề cương.
+- Giữ dữ liệu phần 2: $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$. Phạt cả hệ số góc và hệ số chặn để minh họa; thang đặc trưng đã chuẩn hóa. Không khẳng định đây là lựa chọn mặc định mọi mô hình hay bảo đảm hiệu quả tổng quát hóa.
+- Các ví dụ đã kiểm bằng HiGHS/SLSQP và phép tính độc lập: $\ell_1+\ell_1$, $\lambda=4$, $w=(1,0)$, mục tiêu 7; $\ell_1+\ell_2^2$, $\lambda=4$, $w=(3/4,1/8)$, mục tiêu $107/16$; $\ell_2^2+\ell_1$, $\lambda=4$, $w=(4/5,1/5)$, mục tiêu $62/5$; $\ell_2^2+\ell_2^2$, $\lambda=10$, $w=(1/2,1/5)$, mục tiêu $67/5$. Không so sánh giá trị giữa các hàm mục tiêu khác nhau hoặc nhận các $\lambda$ minh họa là đã chọn tối ưu trên tập kiểm định.
+- Giới hạn $\|w\|_2^2\le29/100$ cho $w=(1/2,1/5)$, $E=21/2$. Bán kính chọn từ nghiệm hình phạt $\lambda=10$; notes chứng minh cận dưới, không suy ra quan hệ $\lambda=R$. Mô hình phạt và trần cứng chỉ được gọi cùng nghiệm khi đã xác lập quan hệ tham số.
+- Tại $\lambda=0$, biến phụ cho hình phạt có thể không chạm $\lvert w\rvert$; vẫn khôi phục nghiệm $w$ và bảo toàn giá trị. Với phạt bình phương toàn bộ $w$ và $\lambda>0$, mục tiêu gốc lồi chặt theo $w$ ngay cả khi Hessian của bài có biến phụ chỉ nửa xác định dương. Không dùng hạng đầy cột làm điều kiện bắt buộc cho trường hợp này.
+- Nguồn: Boyd–Vandenberghe (2004), sources/bv_cvxbook.pdf, §4.4 tr.152–153, §4.4.1 tr.153–154, §6.3.2 tr.306, §6.5.4 tr.334; đề cương DOCX chính thức cho buổi 2/LLO3/CLO1. Các phép cải dạng ba mô hình có biến phụ được tự suy từ khung nguồn, không nhận là trích nguyên ví dụ. Không tải MIT mới.
+- Năm SVG tự vẽ: qp-ls.svg, qp-geometry.svg, qp-penalties.svg, qp-regularized.svg, qp-bound.svg. Tỷ lệ trục $a,b$ bằng nhau ở các hình hình học; có chú giải nét, nhãn và mô tả thay thế. Không tài sản raster hoặc ảnh sinh bởi AI.
+- Ghi chú học tập và bài tập của bản cũ tiếp tục ngừng liên kết trong lúc xây dựng các phần còn lại; không công bố như đã đồng bộ. Lời giải, giả thiết và biến thể của phần mới nằm trong notes.
