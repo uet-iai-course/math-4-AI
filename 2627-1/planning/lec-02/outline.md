@@ -40,7 +40,7 @@ Trang điều kiện riêng được bỏ theo yêu cầu người dùng vì n�
 2. Pha trộn cho một vườn ươm — câu chuyện, nhu cầu dinh dưỡng, lựa chọn nguyên liệu.
 3. Mô hình pha trộn — dữ liệu, biến, chi phí và ràng buộc.
 4. Dạng phổ biến của quy hoạch tuyến tính — nhận dạng và chứng nhận tính lồi.
-5. Dạng chuẩn tắc của quy hoạch tuyến tính — quy ước canonical và dạng standard; phép chuyển đổi.
+5. Dạng chuẩn của quy hoạch tuyến tính — đẳng thức, biến không âm và cách chuyển từ bài toán tổng quát.
 6. Nghiệm của bài toán pha trộn — hình học, nghiệm (1,2), chi phí 70 nghìn đồng.
 7. Hồi quy với sai số tuyệt đối — năm điểm dữ liệu và mô hình tuyến tính.
 8. Biến phụ cho giá trị tuyệt đối — một cận trên cho mỗi phần dư.

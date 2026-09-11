@@ -605,3 +605,25 @@ Bằng chứng tệp báo cáo tác tử thành công (SHA-256; bản hợp nh�
 - teaching: `81858d40378a9f1b1587bdc92ec949dc503680f366749a4a1588f775278852b1`.
 - narrative: `c85d198fd0d7f5f8be3901a03e38d672434f837ba722841a36942ec330863e00`.
 - final-editor: `778c4caec6c6ca352fa8aa28eb31f2599913f585b3201f02d1727d4ecf7b1dfc`.
+
+
+## 29. Rút gọn trang dạng chuẩn của quy hoạch tuyến tính ngày 2026-09-11
+
+- Theo yêu cầu người dùng, sửa `S02-03b` thành **Dạng chuẩn của quy hoạch tuyến tính**. Mặt chiếu chỉ giữ dạng $\min_{z\ge0}d^Tz$ với $Bz=e$ và cách chuyển bài tổng quát: tách biến tự do, thêm biến phụ không âm, giữ đẳng thức. Bỏ so sánh chuẩn tắc/chuẩn; giữ hash `lp-chuan-tac`, 24 trang và bảy phần.
+- Ghi chú định nghĩa kích thước, ma trận khối $B$, các vectơ $d,e$, bảo toàn tính khả thi và mục tiêu theo hai chiều, cách khôi phục $x=x^+-x^-$; không khẳng định tương ứng một-một. Có xử lý ràng buộc chiều ngược, biến đã không âm và cực đại. Nguồn nội dung hiện tại là Boyd–Vandenberghe (2004), §4.3; nguồn quy ước canonical trong mục 28 chỉ ghi lịch sử phiên bản trước.
+- Reader lập kế hoạch, writer soạn trang, reviewer kiểm storyboard trước năm vai độc lập. Các kết quả thành công đều ghi requested_model = observed_model = `z-ai/glm-5.3-flash`, provider = `OpenRouter`. Storyboard và các vai sinh viên, chuyên gia, toán học, giảng dạy, mạch kể chuyện đều kết luận đạt, không có lỗi bắt buộc. Rà toán xác nhận $B$ có kích thước $(m+p)\times(2n+m)$ và dấu biến phụ đúng. Không nhận gợi ý thêm cụm từ không chuẩn “khối phụ nghiệm”.
+- Điều phối sửa lời dẫn và ngôn ngữ của bản nháp; đặt điều kiện $z\ge0$ dưới dấu cực tiểu. Bỏ hộp khôi phục nghiệm bị lặp trên mặt chiếu, giữ lời giải thích trong notes để tăng khoảng trắng. Không đổi CSS hoặc giảm cỡ chữ. Cập nhật câu nối trang trước, dàn ý và storyboard.
+- Chromium kiểm trang sửa cùng hai trang lân cận mỗi phía ở 1600×900 và 390×844: không lỗi KaTeX hoặc JavaScript, không tràn. Khoảng trống được đo theo tỷ lệ co RevealJS; kiểm ảnh trực tiếp ở cả hai kích thước. Lượt Chromium đầu bị sandbox chặn khởi động, chạy lại với quyền nâng đã được cấp.
+- Đồng bộ ảnh/tiêu đề trang 12, notes trang 11–12 và storyboard trong Codex Slides; đọc lại xác nhận 24 trang, tiêu đề và notes trùng bản RevealJS. Kiểm canvas trang sửa và hai trang kề bằng Chromium cục bộ, không có tài nguyên lỗi. Browser tích hợp không khả dụng; không tuyên bố đã kiểm bằng Browser tích hợp.
+- Rà tài liệu học tập cũ: vẫn thuộc phiên bản trước và ngừng liên kết trong lúc làm lại từng phần; không công bố như đã đồng bộ. Không thay ví dụ hoặc số liệu của phần này.
+
+Bằng chứng SHA-256 của các báo cáo tác tử:
+
+- plan: `662f38ee1954088351177f3abf8c14ea5e58aa3b4976f103c229fd2acabdfeab`.
+- write: `f7150ae523ae3eb28ecc951ea895a4863d7095165f5e7ec88fa50408e9134dee`.
+- story: `6c3651547d8e872570c71eb39aed0aeec0b58f65e9d19c6d3abeaeb9efb8fa08`.
+- student: `56f23afc9dc0e6337b8cf7bec91b4dbdf2558768d80f038610ac7b7f8798d6a8`.
+- expert: `672eca243f4abaa70c9497b7159a0c4b4321280822b7f8706de7f56ee012fa0e`.
+- math: `c5b3e23d47d47f0df9c31f95bf01a184a38c5542b867a62c1f92c3a80c7fed92`.
+- teaching: `0ce466bff2eabd7051bf9d5ea1f2076b064bd1b92227de6e88040985fb8b6ae1`.
+- narrative: `b2f1616892d86905250c9f713a95987584087cc05cd29548cc94929c19441ab9`.

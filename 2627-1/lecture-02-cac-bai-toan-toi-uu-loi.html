@@ -280,41 +280,43 @@
       <p>Mục tiêu $c^Tx$ là hàm affine nên lồi. Tập $\{x\mid Gx\le h\}$ là giao các nửa không gian lồi; tập $\{x\mid Ax=b\}$ là giao các siêu phẳng affine, cũng lồi; do đó tập khả thi là giao các tập lồi, vẫn lồi.</p>
       <p>Bài toán pha trộn đưa về dạng này bằng đổi dấu ràng buộc: $2x_1+x_2\ge 4$ thành $-2x_1-x_2\le -4$, $x_1+2x_2\ge 5$ thành $-x_1-2x_2\le -5$, và $x\ge 0$ thành $-x\le 0$. Hằng số cộng vào mục tiêu bỏ được khi tìm nghiệm; nếu cần giá trị đúng, ta ghi nhận giá trị dịch hằng số riêng.</p>
       <p><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.3, tr. 147.</p>
-      <p>Trang sau giới thiệu hai cách biểu diễn của cùng lớp bài toán.</p>
+      <p>Trang sau chuyển bài toán tổng quát về dạng chuẩn với đẳng thức và biến không âm.</p>
     </aside>
   </section>
 
   <section id="lp-chuan-tac" data-slide-id="S02-03b" class="lp-slide">
-    <h2>Dạng chuẩn tắc của quy hoạch tuyến tính</h2>
-    <p>Quy ước dùng trong bài; ở dạng chuẩn tắc, $x$ tự do về dấu.</p>
+    <h2>Dạng chuẩn của quy hoạch tuyến tính</h2>
+    <p>Từ $\min c^Tx$ với $Gx\le h$, $Ax=b$, $x\in\mathbb R^n$.</p>
+
     <div class="grid2">
       <div class="card">
-        <p><strong>Chuẩn tắc (canonical)</strong></p>
-        <div class="math-large">
-          $$\begin{aligned}
-          \min_{x\in\mathbb{R}^n}\;& c^Tx\\
-          \text{với}\quad & Mx\ge q.
-          \end{aligned}$$
+        <p><strong>Dạng chuẩn</strong></p>
+        <div class="math math-large">
+          $$\begin{aligned}\min_{z\ge0}\;&d^Tz\\\text{với}\quad&Bz=e.\end{aligned}$$
         </div>
+        <p>$z=(x^+,x^-,s)$.</p>
       </div>
       <div class="card">
-        <p><strong>Dạng chuẩn (standard)</strong></p>
-        <div class="math-large">
-          $$\begin{aligned}
-          \min_{z\ge 0}\;& d^Tz\\
-          \text{với}\quad & Bz=e.
-          \end{aligned}$$
-        </div>
+        <p><strong>Chuyển đổi</strong></p>
+        <ol>
+          <li>Biến tự do: $x=x^+-x^-$, với $x^+,x^-\ge 0$.</li>
+          <li>Bất đẳng thức: $Gx+s=h$, với $s\ge 0$.</li>
+          <li>Giữ các đẳng thức $Ax=b$.</li>
+        </ol>
       </div>
     </div>
-    <div class="box">
-      <p>Một đẳng thức tương đương hai bất đẳng thức:</p>
-      <p>$a^Tx=b \iff \{a^Tx\ge b,\ -a^Tx\ge -b\}$.</p>
-    </div>
+
     <aside class="notes">
-      <p>$M, q, B, d, e$ có kích thước phù hợp: $M\in\mathbb{R}^{k\times n}$, $q\in\mathbb{R}^k$, $B\in\mathbb{R}^{p\times n'}$, $e\in\mathbb{R}^p$, $d\in\mathbb{R}^{n'}$.</p>
-      <p>Từ dạng phổ biến $Gx\le h,\ Ax=b$: đặt $M=\begin{bmatrix}-G\\ A\\ -A\end{bmatrix}$, $q=\begin{bmatrix}-h\\ b\\ -b\end{bmatrix}$ thì $Mx\ge q$ tương đương $Gx\le h,\ Ax=b$. Ràng buộc $x\ge0$ được thêm vào dạng $Mx\ge q$ bằng các hàng của $I$ trong $M$ và các số 0 tương ứng trong $q$. Chuyển sang dạng chuẩn: $x=x^+-x^-$ với $x^\pm\ge 0$; bất đẳng thức $a^Tx\le b$ thành $a^Tx+s=b$ với biến phụ $s\ge 0$; từ nghiệm $z$ khôi phục $x=x^+-x^-$. Cả hai cách biểu diễn đều lồi: mục tiêu affine, tập khả thi là giao các nửa không gian/siêu phẳng lồi.</p>
-      <p><strong>Nguồn:</strong> Quy ước canonical theo Grant Wang, ghi chép bài giảng David Karger, MIT 6.854, Lecture 8: Linear Programming, 1/10/2003, phần Definitions, https://courses.csail.mit.edu/6.854/18/Scribe/s11-lp/s11-lp.html — chỉ dùng phần quy ước/biến đổi. Boyd và Vandenberghe (2004), §4.3 gọi dạng đẳng thức với biến không âm là standard form.</p>
+      <p>Từ bài trang trước: $G\in\mathbb R^{m\times n}$, $h\in\mathbb R^m$, $A\in\mathbb R^{p\times n}$, $b\in\mathbb R^p$, $c\in\mathbb R^n$. Vectơ $z$ là vectơ cột xếp $x^+,x^-,s$, kích thước $2n+m$.</p>
+      <p>Thay các biểu thức sau để nhận được ma trận và các vectơ dữ liệu mới:</p>
+      $$B=\begin{bmatrix}G & -G & I_m\\ A & -A & 0_{p\times m}\end{bmatrix},\qquad e=\begin{bmatrix}h\\ b\end{bmatrix},\qquad d=\begin{bmatrix}c\\ -c\\ 0_m\end{bmatrix}.$$
+      <p>Mục tiêu: $d^Tz=c^T(x^+-x^-)$.</p>
+      <p>Với mọi $x$ khả thi, chọn $x^+_j=\max(x_j,0)$, $x^-_j=\max(-x_j,0)$, $s=h-Gx\ge 0$ thì tạo được $z$ khả thi cùng mục tiêu. Ngược lại, mọi $z$ khả thi khôi phục được $x$ thỏa $Gx\le h$, $Ax=b$, cùng mục tiêu.</p>
+      <p>Không khẳng định tương ứng một-một vì cách tách biến không duy nhất. Hai bài cùng giá trị tối ưu và khôi phục được nghiệm khi tồn tại.</p>
+      <p>Ràng buộc dạng $\ge$ đổi dấu trước khi chuyển; biến đã không âm không cần tách; bài cực đại đổi dấu mục tiêu rồi đổi dấu lại giá trị khi báo cáo (phát biểu cùng giá trị ở trên chỉ so sánh hai bài cực tiểu).</p>
+      <p>$Bz=e$ là affine, $z\ge 0$ là tập lồi, $d^Tz$ affine nên bài mới là bài lồi.</p>
+      <p>Câu hỏi: $2x_1+x_2\ge 4$ đổi thành đẳng thức gì? Đáp: $2x_1+x_2-s_1=4$, $s_1\ge 0$; tương đương $-2x_1-x_2+s_1=-4$.</p>
+      <p>Ta áp dụng cách biểu diễn này rồi kiểm tra nghiệm của bài toán pha trộn. Nguồn: Boyd–Vandenberghe (2004), §4.3.</p>
     </aside>
   </section>
 
