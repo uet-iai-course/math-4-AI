@@ -776,3 +776,71 @@ Báo cáo ở /tmp/lec02-gp trong phiên này; đã kiểm requested_model và o
 | recheck-student | cd5ba2b79334bfd7966f70fb1c332e9fd48765dd978c1c9656d94e41de3f7361 |
 | recheck-math | 34dbda2063ce965fc163b8be27344d90e2e1a6d14bd74aa1c9c56ebd77b4eb61 |
 | recheck-narrative | 0274c67afc09cf1d0c89dca906fb6370c525818b58d5b34c623755033cd04b02 |
+
+
+## 33. Triển khai phần Xấp xỉ lồi và nới lỏng ngày 2026-09-11
+
+### Phạm vi và quyết định
+
+- Theo yêu cầu, bỏ phần Tối ưu nón, chuyển xấp xỉ/nới lỏng thành phần 5 và tổng hợp thành phần 6. Phần 5 có 15 trang (tiêu đề và 14 nội dung), toàn bài 65 trang trong sáu section ngoài. Phần 6 vẫn chỉ có tiêu đề, chưa được yêu cầu triển khai. Dàn ý, storyboard và mục lục cùng phản ánh cấu trúc này.
+- Kế hoạch tác tử đề xuất 15 trang được giữ về quy mô; điều phối bỏ chuỗi lý thuyết mở đầu để đi trực tiếp từ nhu cầu phân loại, rồi nhu cầu mua gói ảnh. Giữ chuỗi chín bước và bản đồ sáu bước cho hai ví dụ, không thêm thời lượng. Hỗ trợ LLO3/CLO1 buổi 2 qua mô hình hóa, nhận dạng, chứng nhận và diễn giải; không gán nhầm mục 3.5 của GP cho nội dung bổ sung này.
+- Hai ví dụ: ngưỡng phân loại với bốn điểm nhãn xen kẽ; mua ba gói ảnh cho ngày, đêm, mưa. Hàm bản lề thay mục tiêu đếm lỗi, cải dạng LP chính xác cho bản lề; mô hình nhiều đặc trưng có chính quy hóa bậc hai là QP. Nới lỏng biến nhị phân tạo LP; nghiệm phân số cần khôi phục và kiểm tra theo mô hình gốc.
+- Nguồn: Boyd–Vandenberghe (2004), §8.6.1 tr. 425–427 và Bài tập 4.15 tr. 193, đọc từ `sources/bv_cvxbook.pdf`. Nguồn phân loại dùng chuẩn không bình phương; dạng phạt bình phương chuẩn hai là biến thể QP tự suy liên hệ phần 3. Đề cương DOCX chính thức được đọc lại. Không tải MIT mới; nguồn là nội dung, mẫu thị giác tiếp tục theo rl-plan đã dùng ở phần 1–4.
+- Bốn SVG tự vẽ tại `img/lec-02/`: `ap-data.svg`, `ap-hinge.svg`, `ap-threshold.svg`, `ap-cover.svg`. Dữ liệu minh họa, không phải kết quả thực nghiệm; có nhãn, mô tả thay thế và tín hiệu hình dạng/nét ngoài màu. Không có ngoại lệ raster mới.
+- CSS chỉ thêm phạm vi `.ap-slide` trong `lecture-02-style.css`, giữ hệ chữ/màu/khoảng cách. Trong 49 trang trước, chỉ mục lục và câu nối cuối GP thay đổi; kiểm tra so với HEAD xác nhận phạm vi này. Không sửa nội dung phần 1–4 khác.
+
+### Rà soát độc lập và quyết định biên tập
+
+| Vai | Kết quả và vấn đề | Quyết định, bằng chứng xử lý |
+|---|---|---|
+| Lập kế hoạch / phân tích nguồn | Đủ hai ví dụ, cần phân biệt ba quan hệ; có đề xuất lý thuyết mở đầu và cách nói cận thiếu điều kiện | Bắt đầu bằng ví dụ; chỉ giá trị tối ưu LP/cận có chứng nhận mới cho cận dưới. Sửa nhầm phạm vi đề cương; đối chiếu từng nguồn chọn. |
+| Soạn | Hai writer tuần tự soạn 7 và 8 trang | Điều phối sửa đường dẫn hình lec-05 thành lec-02, tiêu đề phân cách, công thức cực tiểu E, một số phát biểu quá mạnh, lời nói và quy ước biên. Không đồng nhất mọi điểm khả thi biến phụ với giá trị H. |
+| Storyboard | 15/15 mã đạt; hai cụm đủ hành trình; mối nối GP và tiêu đề tổng hợp hợp lệ | Giữ vai trò từng trang. Ghi nhận câu nối phần 6 phụ thuộc nội dung sẽ xây dựng; bảng đã tách H→LP và E→H. |
+| Sinh viên | Đạt; lưu ý trùng ký hiệu p*, gọi lambda là dữ liệu, chứng minh H trong notes dày | Đổi thành tham số chọn trước, nêu p* là giá trị tối ưu, tách lập luận theo khoảng. Dòng “Phạm vi” chỉ nằm trong bản rà tạm, không nằm trong RevealJS. Không chèn metadata này vào ghi chú. |
+| Chuyên gia | Đạt về bao phủ, nguồn, AI và chứng nhận; chưa có trích đoạn Bài tập 4.20 cho hai trang GP lân cận trong source.txt lượt này | Giữ nguồn GP đã đối chiếu ở mục 32; không bỏ nguồn thật vì gói trích dẫn lần này chỉ có phần 5. Không nhận lời tác tử về hình tồn tại làm bằng chứng hình; điều phối trực tiếp xem SVG và ảnh kết xuất. |
+| Toán học | Tính lại E/H, Hessian, LP phụ, phủ và cận đều đạt; lưu ý thẻ đóng trong đoạn cắt | Thẻ đó đóng section ngoài phần 4, không dư trong HTML đầy đủ. Không xóa. Điều phối kiểm cân bằng thẻ và số section. |
+| Phản biện giảng dạy | Đạt; đề nghị viết rõ chiều min E ≤ min H | Bổ sung vào notes; không đổi loại cận. Giữ mô hình trước khái quát, bài tập sau hai ví dụ. |
+| Mạch kể chuyện | Lượt chạy lại đạt toàn bản đồ sáu phần, phần 5 và ranh giới 4/5/6; đề nghị đối xứng ứng viên phần 2 và kéo dài nhãn bảng | Không sửa phần 2 chỉ để tạo đối xứng; ví dụ đã có ứng viên và nghiệm. Giữ bảng ngắn vì tên hàng và notes đã phân biệt phép thêm biến phụ với thay mục tiêu. |
+| Biên tập riêng | Nhận đủ năm báo cáo và quyết định điều phối; thực hiện đúng năm phép thay ở notes | Kiểm tra bằng so sánh chuỗi xác nhận đúng phạm vi, không đổi mặt chiếu/thứ tự. Ngoài các sửa trên, thêm giả thiết đạt cực tiểu/hữu hạn và phản ví dụ nhị phân x=1/2; riêng bài phủ vẫn có phương án mua cả ba. |
+| Rà lại toán học / mạch | Hai báo cáo đạt, không vấn đề mới sau năm sửa | Điều phối xác nhận phản ví dụ và các quan hệ. Không kế thừa câu phụ sai trong báo cáo toán “cận dưới phải là min E”: mọi giá trị không lớn hơn min E đều là cận dưới. Nội dung trang chiếu không có câu đó. |
+
+Mọi đề xuất chặn bàn giao hoặc nghiêm trọng đã được xử lý; không còn vấn đề loại này trong phạm vi phần 5. Các báo cáo chỉ đọc không xác minh được ảnh qua công cụ văn bản; kiểm định hình do điều phối thực hiện riêng.
+
+### Kiểm định số và trình chiếu
+
+- SciPy `linprog` và liệt kê đủ tám tổ hợp nhị phân xác nhận: H nhỏ nhất bằng 4, đạt trên [-1,1]; H(-1.5)=4.5, E(-1.5)=1; H(0)=4, E(0)=2. LP phủ đạt 3 tại (1/2,1/2,1/2), bốn phương án nhị phân khả thi có chi phí 4,4,4,6; làm tròn xuống không khả thi, lên chi phí 6, chọn 110 chi phí 4. Chứng minh giải tích có trong notes, không dựa riêng vào kết quả bộ giải.
+- Kiểm tra toàn bộ 65 trang ở 1600×900 và 390×844 trên cổng 8765: không còn tràn, lỗi KaTeX, lỗi JavaScript hoặc tài nguyên hỏng; điều hướng dọc/ngang, URL hash và tải lại đúng trang đều đạt. Ban đầu trang bản lề và trang so sánh H/E bị tràn; chuyển bản lề sang hai cột và rút câu nhấn, không thu nhỏ thân bài.
+- Điều phối xem cả 15 trang mới, mục lục, tiêu đề tổng hợp, các hình và trang so sánh sau sửa. Mặt chiếu cuối không đổi sau biên tập notes, được xác minh bằng so sánh HTML đã loại notes.
+- Kiểm tra HTML cân bằng, 65 mã duy nhất, sáu section ngoài, 15 notes phần 5, đường dẫn tương đối tồn tại, ảnh có alt, không còn Tối ưu nón hoặc section-7 trong bộ trang chiếu. CSS giữ thân bài 0.84em và bảng 0.9 lần thân bài.
+- Rà tài liệu học tập cũ: còn nón/SDP và ví dụ bản trước khi làm lại. Không sửa vượt phạm vi, tiếp tục chưa liên kết hai tài liệu trên chỉ mục. Chỉ mục đã cập nhật mô tả phần 5, phần tổng hợp còn đang xây dựng; kiểm tra rộng/hẹp và mở bài bằng bàn phím.
+- Codex Slides: dự án `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc` có 65 trang; bỏ trang Tối ưu nón, thêm 14 trang sau tiêu đề phần 5. Đồng bộ 17 ảnh (mục lục, 15 trang phần 5, tiêu đề phần 6), 16 notes (trang cuối GP và phần 5), và Design File `uploaded/storyboard.md`. Đọc lại xác nhận đúng mọi tiêu đề/notes mục tiêu, Design File khớp từng ký tự và ảnh các trang cũ ngoài mục lục giữ dấu thời gian.
+- Không có Browser tích hợp trong phiên; dùng Chromium cục bộ để mở giao diện Codex Slides và kiểm 18 trang mục tiêu/lân cận. Ảnh tải đầy đủ, đúng tiêu đề, không có tài nguyên lỗi; đã xem ảnh giao diện tại trang 54 và 62. Không tuyên bố kiểm bằng Browser tích hợp. Nội dung RevealJS là bản phát hành trong kho, ảnh/notes Codex Slides phản ánh cùng bản.
+
+### Giới hạn lượt gọi và lỗi dịch vụ
+
+- Theo yêu cầu tăng giới hạn, các lượt đọc/rà tiếp theo dùng `--max-rounds 24`, các lượt viết dùng `--max-rounds 40`; writer đầu của phần này trước điều chỉnh đã dùng 20. Đây là giới hạn vòng OpenRouter của từng lượt, không phải thay giới hạn nền tảng Codex.
+- Một yêu cầu duyệt tự động khởi chạy planner hết hạn trước khi chạy tiến trình; đã thử lại một lần và thành công, không coi là lỗi OpenRouter.
+- Lượt rà mạch đầu báo nguyên văn `RuntimeError: OpenRouter request exceeded 240s wall timeout`. Đã thông báo, dừng bước biên tập phụ thuộc, giữ nguyên kết quả rồi chạy lại cùng mô hình với timeout 360 giây và đầu ra ngắn hơn; lượt chạy lại thành công. Không thay worker Codex hoặc đổi mô hình ngầm.
+
+### Bằng chứng runtime OpenRouter
+
+14 báo cáo thành công tại `/tmp/lec02-relax/` trong phiên làm việc; đã kiểm `requested_model = observed_model = z-ai/glm-5.3-flash`, `provider = OpenRouter` từ JSON cầu nối. Không đọc hoặc gửi tệp môi trường/bí mật vào nội dung worker. SHA-256:
+
+| Báo cáo | Vai cầu nối | SHA-256 |
+|---|---|---|
+| plan | reader | `a07ed1247b3c9b4af559859caa5480136fa9c8a3a37483a1fc5f548a5c27a77e` |
+| source | reader | `ffefaa2fdffefa7f0ba3f30c7b19732560b71cbd5a80e75e07b556c6be72a2c9` |
+| write-a | writer | `0c3c4b34468a6554f88d1012d2c1fd5dfa609d0ad70dc2afc581bafd7480dd58` |
+| write-b | writer | `1463448eb714ac7f277b1902650b3270fb5fea05bfd4ce097c8d99fa90d36d6a` |
+| storyboard | reviewer | `4f4a93ceed9b47deb9871b5cefe0308dafdcc8b01d96aae3a56450148593be5b` |
+| review-student | reviewer | `5f9702b2406411bd48d877e16f1f112fce4e0286ea3de1aeb463e929dfe9b751` |
+| review-expert | reviewer | `2699fbef57a452d4ddc0f3a0157ffae12f197a6f7700e39e3af1c251143f01d5` |
+| review-math | reviewer | `dfa9754775566fb973194c5d89df922e03e057106ee41e6b44e96c6315a4ea8a` |
+| review-teaching | reviewer | `6b526dbadde1cc54ac01132a9161a0a012de1ab07f468a8ec3d0ccb803a2bb8d` |
+| review-narrative | reviewer | `ea45ae3dae7a4536a47cca171edeb55919a46292d75b7f91c28b5ad57b3e2bb1` |
+| edit | writer | `2c37aa9522cf8429b2e2293566e8d2af67753e6739faf9d45e25a73d2a51b1ea` |
+| recheck-math | reviewer | `4602fe0e938dc4a1b71e23f5dcbbd3ad54773a3f6af1be10bceeaf93f31a2786` |
+| recheck-narrative | reviewer | `2f5b0f40d1b1737123a61df7f63561255073b4c8a9a57902a7f38231916f8043` |
+| recheck-bound | reviewer | `827098f32f959000b41ee331e3540b26b4ac5f95689ab20e85ac9cbc23d954b4` |
+
+Ở bước kiểm diff cuối, điều phối sửa thêm một câu trong notes S05-09: giá trị của điểm chỉ khả thi cho LP **không tự cho** cận dưới, thay vì phủ nhận tuyệt đối khả năng nó là cận dưới. Rà toán độc lập bổ sung xác nhận lượng từ và chiều cận đúng; không đổi mặt chiếu hoặc thứ tự. Notes trang 59 đã đồng bộ và đọc lại từ Codex Slides. Lệnh rà bổ sung đầu tiên khởi chạy sai thư mục báo `Failed to spawn: openrouter-mcp-reviewer — No such file or directory (os error 2)`; đã thông báo và chạy lại từ `openrouter-mcp/`, không đổi mô hình.

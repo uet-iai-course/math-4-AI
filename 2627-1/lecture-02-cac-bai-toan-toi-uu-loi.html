@@ -32,7 +32,6 @@
           <li>Quy hoạch tuyến tính</li>
           <li>Quy hoạch bậc hai và ràng buộc bậc hai</li>
           <li>Quy hoạch hình học</li>
-          <li>Tối ưu nón và quy hoạch nửa xác định</li>
           <li>Xấp xỉ lồi và nới lỏng</li>
           <li>Lựa chọn biểu diễn và đánh giá nghiệm</li>
         </ol>
@@ -1043,27 +1042,275 @@
     <p>(1) Chia cho $xy>0$ được $1/x+1/y\le1$, đúng dạng GP. Đảo chiều cho $1/x+1/y\ge1$, không phải chiều bất đẳng thức GP chuẩn. Không thể dùng quy tắc chia đó để tuyên bố bài đã là GP; cần phân tích riêng, không suy rằng mọi ràng buộc sai dạng đều không lồi.</p>
     <p>(2) $x+y$ là tổng hai đơn thức, không phải một đơn thức, nên không được dùng làm đẳng thức GP chuẩn. Tuy vậy $x+y=1$ là đẳng thức affine theo biến gốc và tạo tập khả thi lồi trên miền dương. Sau đổi log, $\log(e^{z_1}+e^{z_2})=0$ không phải đẳng thức affine. Đây là ví dụ phân biệt cấu trúc GP với khái niệm tính lồi.</p>
     <p>(3) Nghiệm gốc là $x^\star=0$. Đổi $x=e^z$ chỉ xét $x>0$, nên bài mới có cận dưới 0 khi $z\to-\infty$ nhưng không có nghiệm đạt cận. Như vậy không được bỏ điều kiện về miền khi khẳng định tương đương.</p>
-    <p>Các phép cải dạng phải đi kèm điều kiện cấu trúc và ánh xạ nghiệm. Tiếp theo là các yêu cầu trên chuẩn và ma trận, được biểu diễn bằng những lớp nón phù hợp. Nguồn: biến thể tự xây dựng từ Boyd–Vandenberghe (2004), §4.5.</p>
+    <p>Các phép cải dạng phải đi kèm điều kiện cấu trúc và ánh xạ nghiệm. Khi không giữ được tính tương đương, ta cần phân biệt thay hàm mục tiêu với nới rộng tập khả thi và đánh giá lại nghiệm theo bài toán gốc. Nguồn: biến thể tự xây dựng từ Boyd–Vandenberghe (2004), §4.5.</p>
   </aside>
 </section>
 
 
 </section>
 <section id="section-5">
-      <section id="mach-5" data-slide-id="S05">
-        <h2><span class="text-light">5</span><br>Tối ưu nón và quy hoạch nửa xác định: ràng buộc trên chuẩn và ma trận</h2>
-      </section>
-    </section>
-    <section id="section-6">
-      <section id="mach-6" data-slide-id="S06">
-        <h2><span class="text-light">6</span><br>Xấp xỉ lồi và nới lỏng bài toán không lồi</h2>
-      </section>
-    </section>
-    <section id="section-7">
-      <section id="mach-7" data-slide-id="S07">
-        <h2><span class="text-light">7</span><br>Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm</h2>
-      </section>
-    </section>
+<section id="mach-5" data-slide-id="S05">
+<h2><span class="text-light">5</span><br>Xấp xỉ lồi và nới lỏng bài toán không lồi</h2>
+<aside class="notes"><p>Quy hoạch hình học ở phần trước được cải dạng tương đương khi thỏa các điều kiện cấu trúc. Khi không có cải dạng như vậy, ta có thể thay hàm mục tiêu hoặc mở rộng tập khả thi. Hai ví dụ tiếp theo giúp xác định những bảo đảm còn giữ được và cách đánh giá nghiệm theo bài toán gốc.</p></aside>
+</section>
+
+<section id="ap-phan-loai" data-slide-id="S05-01" class="ap-slide">
+  <h2>Phân loại bằng ngưỡng</h2>
+  <p>Chọn ngưỡng $\theta$ cho bộ phân loại ảnh, chỉ dùng một đặc trưng chuẩn hóa $u$.</p>
+  <div class="grid2">
+    <div>
+      <table class="card">
+        <tr><th>$u_i$</th><th>$y_i$</th><th>Ý nghĩa</th></tr>
+        <tr><td>$-2$</td><td>$-1$</td><td>nhóm còn lại</td></tr>
+        <tr><td>$-1$</td><td>$+1$</td><td>nhóm cần tìm</td></tr>
+        <tr><td>$1$</td><td>$-1$</td><td>nhóm còn lại</td></tr>
+        <tr><td>$2$</td><td>$+1$</td><td>nhóm cần tìm</td></tr>
+      </table>
+      <p>Điểm số $s_\theta(u)=u-\theta$; dự đoán theo dấu điểm số.</p>
+    </div>
+    <figure class="example-plot">
+      <img class="ap-plot" src="img/lec-02/ap-data.svg" alt="Bốn điểm dữ liệu trên trục u, nhãn xen kẽ">
+      <figcaption>Dữ liệu minh họa: nhãn xen kẽ trên trục $u$.</figcaption>
+    </figure>
+  </div>
+  <aside class="notes">
+    <p>Nhu cầu đặt ra: chọn ngưỡng cho bộ phân loại ảnh chỉ dùng một đặc trưng chuẩn hóa $u$; nhãn $y=+1$ là nhóm cần tìm, $y=-1$ là nhóm còn lại. Bốn điểm ở bảng là dữ liệu minh họa tự xây dựng, không phải dữ liệu thực nghiệm. Hệ số của $u$ cố định bằng 1 để ví dụ số dễ tính; $\theta\in\mathbb R$ là biến quyết định.</p>
+    <p>Dự đoán theo dấu điểm số $s_\theta(u)=u-\theta$: dương chọn nhóm cần tìm, âm chọn nhóm còn lại. Trường hợp điểm số bằng 0 được tính là lỗi, tức không quyết định. Mục tiêu là chọn $\theta$ giảm số lỗi trên dữ liệu đã gán nhãn; không hứa tổng quát hóa sang dữ liệu mới.</p>
+    <p>Nhìn hình, nhãn xen kẽ $-1,+1,-1,+1$ theo trục $u$: không có một ngưỡng nào phân loại đúng cả bốn điểm. Ta sẽ viết số lỗi thành một hàm của ngưỡng.</p>
+  </aside>
+</section>
+
+<section id="ap-dem-loi" data-slide-id="S05-02" class="ap-slide">
+  <h2>Mô hình giảm số lỗi phân loại</h2>
+  <p>Biên có dấu và hàm mất mát đếm lỗi.</p>
+  <div class="math-large">$$r_i(\theta)=y_i(u_i-\theta),\qquad
+    \ell_{01}(r)=\begin{cases}1,&r\le0,\\0,&r>0.\end{cases}$$</div>
+  <div class="math-large">$$\min_{\theta\in\mathbb R}\;\underbrace{\sum_{i=1}^{4}\ell_{01}\big(r_i(\theta)\big)}_{E(\theta)}.$$</div>
+  <div class="box"><p>$E$ là hàm bậc thang, không lồi; một ngưỡng không phân loại đúng cả bốn điểm.</p></div>
+  <aside class="notes">
+    <p>Biên có dấu $r_i(\theta)=y_i(u_i-\theta)$: dương nghĩa là điểm được phân loại đúng, không dương tính là lỗi, kể cả biên bằng 0 theo quy ước đã nêu. Hàm $\ell_{01}$ đếm lỗi theo đúng nghĩa này, và $E(\theta)$ là tổng số lỗi trên bốn điểm.</p>
+    <p>Ví dụ số: $\theta=-1.5$ cho 1 lỗi; $\theta=0$ cho 2 lỗi. Với $\theta$ trong khoảng $(-2,-1)$ hoặc $(1,2)$, $E=1$ là giá trị tối ưu. Không dùng điểm trên biên để so sánh hai phương án, vì quy ước đã tính biên là lỗi.</p>
+    <p>$E$ không lồi: $E(-1.5)=E(1.5)=1$ nhưng $E(0)=2>1$, vi phạm bất đẳng thức lồi tại trung điểm. Nhãn xen kẽ khiến một ngưỡng không phân loại đúng cả bốn, nên bài toán tối thiểu hóa $E$ không lồi. Ví dụ nhỏ có thể giải bằng cách xét các khoảng ngưỡng; trong mô hình nhiều đặc trưng, cách liệt kê này khó mở rộng. Ta xét một hàm lồi thay cho mất mát đếm lỗi.</p>
+  </aside>
+</section>
+
+<section id="ap-ban-le" data-slide-id="S05-03" class="ap-slide">
+  <h2>Hàm mất mát bản lề</h2>
+  <div class="grid2">
+    <figure class="example-plot">
+      <img class="ap-plot" src="img/lec-02/ap-hinge.svg" alt="Hàm bản lề lồi chặn trên mất mát đếm lỗi với điểm biên r=0 tính là lỗi">
+      <figcaption>Hàm bản lề chặn trên mất mát đếm lỗi.</figcaption>
+    </figure>
+    <div>
+      <div class="math-large">$$\ell_h(r)=\max(0,1-r)$$</div>
+      <p>Giá trị lớn nhất của hai hàm affine nên lồi.</p>
+      <div class="math-large">$$\ell_{01}(r)\le\ell_h(r),\quad r\in\mathbb R.$$</div>
+    </div>
+  </div>
+  <div class="box"><p>$H(\theta)=\sum_i\ell_h(y_i(u_i-\theta))$ lồi theo $\theta$.</p></div>
+  <aside class="notes">
+    <p>Hàm mất mát bản lề (hinge loss) $\ell_h(r)=\max(0,1-r)$ là giá trị lớn nhất của hai hàm affine, nên lồi. Bất đẳng thức $\ell_{01}(r)\le\ell_h(r)$ đúng mọi $r$: khi $r\le0$, $\ell_{01}=1\le1-r\le\ell_h$; khi $r>0$, $\ell_{01}=0\le\ell_h$. Tại $r=0$, hai mất mát cùng bằng 1 theo quy ước tính điểm trên ngưỡng là lỗi.</p>
+    <p>Thay từng số hạng trong tổng, ta được $H(\theta)=\sum_i\ell_h(y_i(u_i-\theta))$. Mỗi $\ell_h(y_i(u_i-\theta))$ là hàm lồi theo $\theta$ vì hợp của hàm lồi với hàm affine; tổng các hàm lồi là lồi. Bài toán $\min_\theta H(\theta)$ là bài toán lồi một biến.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §8.6.1, tr. 425–427. Lưu ý quan trọng: $H$ chỉ là hàm thay thế; giá trị $H(\theta)$ không phải số lỗi $E(\theta)$, và mối liên hệ giữa nghiệm của hai bài toán sẽ được kiểm tra bằng số liệu ở phần so sánh nghiệm.</p>
+  </aside>
+</section>
+
+<section id="ap-ban-le-lp" data-slide-id="S05-04" class="ap-slide">
+  <h2>Cải dạng hàm bản lề thành LP</h2>
+  <p>Biến phụ $\xi_i$ biểu diễn từng số hạng bản lề.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{\theta,\,\xi}\;&\sum_{i=1}^{4}\xi_i\\
+    \text{với}\quad&\xi_i\ge1-y_i(u_i-\theta),\quad i=1,\ldots,4,\\
+    &\xi_i\ge0,\quad i=1,\ldots,4.
+  \end{aligned}$$</div>
+  <div class="box"><p>Đây là LP, chính xác cho $H$; không chính xác cho $E$.</p></div>
+  <aside class="notes">
+    <p>Chứng nhận tương đương hai chiều với $H$. Chiều thuận: với mọi $\theta$ chọn được, lấy $\xi_i=\max(0,1-y_i(u_i-\theta))$ thì mọi ràng buộc thỏa và mục tiêu bằng $H(\theta)$. Chiều ngược: với mọi điểm khả thi $(\theta,\xi)$, mỗi $\xi_i\ge\ell_h(y_i(u_i-\theta))$ nên mục tiêu $\sum\xi_i\ge H(\theta)$. Vậy giá trị tối ưu của LP bằng $\min_\theta H$.</p>
+    <p>Mục tiêu và ràng buộc đều affine theo $(\theta,\xi)$, nên đây là quy hoạch tuyến tính. Cải dạng này chính xác cho hàm bản lề $H$, không phải cho số lỗi $E$. Bước thêm biến phụ không hoàn tác việc thay mục tiêu $E$ bằng $H$.</p>
+    <p>Khi trình bày kết quả, cần lấy $\theta$ về mô hình phân loại; giá trị tối ưu của LP là $H$, không phải số lỗi $E$. Nguồn: Boyd–Vandenberghe (2004), §8.6.1, tr. 425–427.</p>
+  </aside>
+</section>
+
+<section id="ap-nghiem-phan-loai" data-slide-id="S05-05" class="ap-slide">
+  <h2>Nghiệm của hàm thay thế</h2>
+  <div class="grid2">
+    <div>
+      <table class="card">
+        <tr><th>$\theta$</th><th>$H(\theta)$</th><th>$E(\theta)$</th></tr>
+        <tr><td>$-1.5$</td><td>$4.5$</td><td>$1$</td></tr>
+        <tr><td>$0$</td><td>$4$</td><td>$2$</td></tr>
+      </table>
+      <div class="math-large">$$\min_{\theta\in\mathbb R}H(\theta)=4.$$</div>
+    </div>
+    <figure class="example-plot">
+      <img class="ap-plot" src="img/lec-02/ap-threshold.svg" alt="Đồ thị H(theta) lồi và E(theta) bậc thang theo theta">
+      <figcaption>$H$ lồi, $E$ bậc thang; mọi $\theta\in[-1,1]$ tối ưu cho $H$.</figcaption>
+    </figure>
+  </div>
+  <div class="box"><p>Tối ưu $H$ không bảo đảm giảm số lỗi $E$ nhiều nhất.</p></div>
+  <aside class="notes">
+    <p>Tính trực tiếp: $H(-1.5)=4.5$, $E(-1.5)=1$; $H(0)=4$, $E(0)=2$. Chứng minh giá trị nhỏ nhất toàn cục của $H$ bằng 4: bốn số hạng là $\max(0,-1-\theta)$, $\max(0,2+\theta)$, $\max(0,2-\theta)$, $\max(0,\theta-1)$. Hai số hạng giữa có tổng ít nhất 4 với mọi $\theta$. Trên $[-1,1]$, tổng đó bằng 4 và hai số hạng ngoài đều bằng 0. Ngoài đoạn này, ít nhất một số hạng ngoài dương, nên $H>4$. Vậy mọi $\theta\in[-1,1]$ đều tối ưu cho $H$, với giá trị 4.</p>
+    <p>Trong các nghiệm đó, $\theta=0$ có $E=2$, nhưng $E$ tối ưu bằng 1, đạt chẳng hạn tại $\theta=-1.5$. Tức là một nghiệm của hàm thay thế không tối ưu cho bài toán gốc. Nguyên tắc chung: $E(\theta)\le H(\theta)$ tại mọi $\theta$ không suy ra $\arg\min E=\arg\min H$; quan hệ đúng là $\min E\le\min H$, nên tối ưu $H$ không tự cung cấp cận dưới cho giá trị nhỏ nhất của $E$. Có thể đánh giá $E$ tại nghiệm đã học để biết số lỗi thật.</p>
+    <p>Không tuyên bố mọi nghiệm của hàm bản lề cho cùng một bộ phân loại, vì cách xử lý trường hợp điểm số bằng 0 có thể khác nhau giữa các nghiệm trong $[-1,1]$.</p>
+  </aside>
+</section>
+
+<section id="ap-phan-loai-tong-quat" data-slide-id="S05-06" class="ap-slide">
+  <h2>Phân loại nhiều đặc trưng</h2>
+  <p>$u_i\in\mathbb R^d$, $y_i\in\{\pm1\}$; chọn trước $\lambda\ge0$.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{w,b,\,\xi}\;&\frac{\lambda}{2}\|w\|_2^2+\sum_{i=1}^{m}\xi_i\\
+    \text{với}\quad&y_i(w^Tu_i+b)\ge1-\xi_i,\quad i=1,\ldots,m,\\
+    &\xi_i\ge0,\quad i=1,\ldots,m.
+  \end{aligned}$$</div>
+  <div class="box"><p>Hessian $\operatorname{diag}(\lambda I,0,0)$ nửa xác định dương, ràng buộc affine: bài toán QP; khi $\lambda=0$ thành LP.</p></div>
+  <aside class="notes">
+    <p>Mô hình nhiều đặc trưng: $u_i\in\mathbb R^d$, $y_i=\pm1$; tham số $\lambda\ge0$ do người xây dựng mô hình chọn trước; biến $w\in\mathbb R^d$, $b\in\mathbb R$, $\xi\in\mathbb R^m$. Mục tiêu gồm phạt $\lambda\|w\|_2^2/2$ cộng tổng biến phụ bản lề; ràng buộc affine. Hessian khối $\operatorname{diag}(\lambda I,0,0)$ nửa xác định dương, nên đây là QP; khi $\lambda=0$ mục tiêu tuyến tính, thành LP.</p>
+    <p>Đây là cải dạng chính xác của hàm bản lề cộng phạt, không phải của số lỗi 0–1: biến phụ $\xi_i$ đúng bằng $\ell_h(y_i(w^Tu_i+b))$ tại tối ưu, theo cùng lập luận hai chiều đã dùng cho mô hình ngưỡng. Không khẳng định nghiệm duy nhất khi $b$ không bị phạt. Với ví dụ một đặc trưng, $w=1$ và $b=-\theta$ khôi phục đúng mô hình ngưỡng.</p>
+    <p>Nguồn: Boyd–Vandenberghe (2004), §8.6.1, tr. 425–427 trình bày bộ phân loại với chuẩn không bình phương; dạng bình phương $\|w\|_2^2$ ở đây là biến thể QP được suy ra từ hàm bản lề và chính quy hóa bậc hai, liên hệ với phần 3. Khi $H=0$ thì $E=0$ chỉ trên tập huấn luyện; không bảo đảm gì trên dữ liệu mới.</p>
+  </aside>
+</section>
+<section id="ap-goi-du-lieu" data-slide-id="S05-07" class="ap-slide">
+  <h2>Chọn các gói dữ liệu</h2>
+  <p>Cần ảnh đã gán nhãn cho ba điều kiện chụp: ngày, đêm, mưa. Nhà cung cấp chỉ bán nguyên gói.</p>
+  <div class="card">
+    <table>
+      <tr><th>Gói</th><th>Ngày</th><th>Đêm</th><th>Mưa</th><th>Giá</th></tr>
+      <tr><td>1</td><td>✓</td><td>✓</td><td></td><td>2</td></tr>
+      <tr><td>2</td><td></td><td>✓</td><td>✓</td><td>2</td></tr>
+      <tr><td>3</td><td>✓</td><td></td><td>✓</td><td>2</td></tr>
+    </table>
+  </div>
+  <div class="box"><p>Mỗi loại ảnh phải xuất hiện trong ít nhất một gói đã mua; giá mỗi gói là 2 đơn vị chi phí (minh họa).</p></div>
+  <aside class="notes">
+    <p>Đây là ví dụ thứ hai của phần này, một bài toán tổ hợp nhỏ. Ta cần dữ liệu đã gán nhãn cho ba điều kiện chụp, nhưng nhà cung cấp không bán lẻ: chỉ mua nguyên gói hoặc không mua. Ba gói mỗi gói phủ hai trong ba loại, giá như nhau là 2 đơn vị chi phí, số liệu chỉ để minh họa.</p>
+    <p>Yêu cầu đặt ra: mỗi loại ảnh ngày, đêm, mưa phải có mặt trong ít nhất một gói được chọn, chi phí tổng nhỏ nhất, không có ngân sách hay ràng buộc nào khác. Cần xác định gói được mua, tổng chi phí và mức phủ từng điều kiện chụp.</p>
+    <p>Ví dụ phân loại trước dùng hàm thay thế lồi; ví dụ này sẽ cho thấy một hướng xử lý khác: nới lỏng miền khả thi rồi khôi phục phương án. Trước hết, viết mô hình chính xác của bài toán.</p>
+  </aside>
+</section>
+<section id="ap-mo-hinh-nhi-phan" data-slide-id="S05-08" class="ap-slide">
+  <h2>Mô hình chọn gói dữ liệu</h2>
+  <p>$x_j\in\{0,1\}$: mua gói $j$ hay không, $j=1,2,3$.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{x}\;&2(x_1+x_2+x_3)\\
+    \text{với}\quad&x_1+x_3\ge1\quad(\text{ngày}),\\
+    &x_1+x_2\ge1\quad(\text{đêm}),\\
+    &x_2+x_3\ge1\quad(\text{mưa}).
+  \end{aligned}$$</div>
+  <div class="box"><p>Biến nhị phân nên đây không phải quy hoạch tuyến tính; tập khả thi rời rạc, không lồi.</p></div>
+  <aside class="notes">
+    <p>Biến quyết định $x=(x_1,x_2,x_3)$ với $x_j\in\{0,1\}$: bằng 1 nghĩa là mua gói $j$. Mục tiêu là tổng chi phí $2(x_1+x_2+x_3)$, hàm affine theo $x$. Ba ràng buộc phủ: mỗi loại ảnh cần ít nhất một gói chứa nó, viết thành bất đẳng thức affine.</p>
+    <p>Mục tiêu và ràng buộc đều affine, nhưng ta không được gọi đây là bài toán quy hoạch tuyến tính, vì biến bị giới hạn nhị phân. Tập khả thi chỉ gồm bốn điểm $(1,1,0)$, $(1,0,1)$, $(0,1,1)$, $(1,1,1)$; đây là tập rời rạc, không lồi, nên cấu trúc lồi không áp dụng trực tiếp.</p>
+    <p>Kiểm tra bằng tay: ba phương án đầu mỗi cái mua đúng hai gói, chi phí 4; mua cả ba tốn 6. Vậy giá trị tối ưu của bài toán gốc là 4. Việc liệt kê đủ các phương án giải được ví dụ nhỏ, nhưng số tổ hợp có thể tăng theo $2^n$ khi có $n$ gói. Ta thử bỏ điều kiện nhị phân để dùng công cụ LP.</p>
+  </aside>
+</section>
+<section id="ap-noi-long-lp" data-slide-id="S05-09" class="ap-slide">
+  <h2>Nới lỏng điều kiện nhị phân</h2>
+  <p>Thay $x_j\in\{0,1\}$ bằng $0\le x_j\le1$; giữ nguyên mục tiêu và ba ràng buộc phủ.</p>
+  <div class="math-large">$$\begin{aligned}
+    \min_{x}\;&2(x_1+x_2+x_3)\\
+    \text{với}\quad&x_1+x_3\ge1,\;\;x_1+x_2\ge1,\;\;x_2+x_3\ge1,\\
+    &0\le x_j\le1,\quad j=1,2,3.
+  \end{aligned}$$</div>
+  <div class="box"><p>Gọi $F$ là tập khả thi gốc, $R$ là tập mới. $F\subseteq R$ và $R$ lồi: đây là LP.</p></div>
+  <aside class="notes">
+    <p>Phép nới lỏng chỉ thay điều kiện biến bằng khoảng $[0,1]$, không đổi mục tiêu và không đổi ba ràng buộc phủ. Mọi phương án nhị phân khả thi của bài toán gốc đều khả thi cho bài nới lỏng, nên tập khả thi mở rộng từ $F$ thành $R$ với $F\subseteq R$.</p>
+    <p>Vì mọi ràng buộc đều affine và biến liên tục, bài nới lỏng là quy hoạch tuyến tính đúng nghĩa. Tập khả thi $R$ là một đa diện lồi. Hệ quả quan trọng: giá trị tối ưu trên tập lớn hơn không thể lớn hơn giá trị trên tập nhỏ hơn, tức $\min_R f\le\min_F f$.</p>
+    <p>Giá trị tối ưu của bài LP cho cận dưới. Giá trị tại một điểm chỉ khả thi cho LP không tự cho cận dưới; chẳng hạn chi phí 6 lớn hơn giá trị tối ưu gốc 4 trong ví dụ này. Giờ hãy xem nghiệm của LP trông như thế nào.</p>
+  </aside>
+</section>
+<section id="ap-nghiem-phan-so" data-slide-id="S05-10" class="ap-slide">
+  <h2>Nghiệm phân số của bài nới lỏng</h2>
+  <div class="grid2">
+    <div>
+      <div class="math-large">$$x^R=\left(\tfrac12,\tfrac12,\tfrac12\right),\qquad f=3.$$</div>
+      <div class="math-large">$$2(x_1+x_2+x_3)\ge2\cdot\tfrac32=3.$$</div>
+      <div class="box"><p>Cộng ba ràng buộc phủ cho cận dưới 3; nghiệm đạt, nên là tối ưu LP.</p></div>
+    </div>
+    <figure class="example-plot">
+      <img class="ap-plot" src="img/lec-02/ap-cover.svg" alt="Ba gói dữ liệu phủ ngày, đêm, mưa với nghiệm phân số một nửa mỗi gói">
+      <figcaption>Nửa gói không phải phương án mua được phép.</figcaption>
+    </figure>
+  </div>
+  <aside class="notes">
+    <p>Giả thiết: ba ràng buộc phủ và biên $[0,1]$. Cộng cả ba bất đẳng thức phủ vế theo vế: $2(x_1+x_2+x_3)\ge3$, nên chi phí ít nhất là 3. Điểm $x^R=(1/2,1/2,1/2)$ khả thi, mỗi cặp cộng lại đúng 1, và đạt chi phí 3. Kết hợp hai chiều, đây là nghiệm tối ưu LP và giá trị tối ưu LP là $L=3$.</p>
+    <p>Chứng minh này độc lập với việc giải số, nên cận dưới được chứng nhận chắc chắn. Nhưng nghiệm là phân số: mua một nửa mỗi gói. Trên mô hình gốc không có khái niệm mua nửa gói; nghiệm này không thể dùng trực tiếp.</p>
+    <p>Tiếp theo, tìm phương án mua nguyên gói rồi kiểm tra lại tính khả thi.</p>
+  </aside>
+</section>
+<section id="ap-khoi-phuc" data-slide-id="S05-11" class="ap-slide">
+  <h2>Khôi phục phương án mua</h2>
+  <p>Từ $x^R=(1/2,1/2,1/2)$:</p>
+  <div class="grid2">
+    <div class="card">
+      <p><strong>Làm tròn xuống:</strong> $(0,0,0)$ — không phủ loại nào, không khả thi.</p>
+      <p><strong>Làm tròn lên:</strong> $(1,1,1)$ — khả thi, chi phí 6.</p>
+    </div>
+    <div class="card">
+      <p><strong>Kiểm tra rồi chọn:</strong> $(1,1,0)$ — phủ đủ ba loại, chi phí 4.</p>
+    </div>
+  </div>
+  <div class="box"><p>Làm tròn từng biến không bảo đảm khả thi hay tối ưu; cần kiểm tra phương án sau khi làm tròn.</p></div>
+  <aside class="notes">
+    <p>Giả thiết: xuất phát từ nghiệm phân số $(1/2,1/2,1/2)$. Làm tròn từng thành phần xuống cho $(0,0,0)$: không mua gói nào, cả ba loại ảnh đều thiếu, phương án bất khả thi. Làm tròn lên cho $(1,1,1)$: khả thi nhưng chi phí 6, cao hơn mức cần thiết.</p>
+    <p>Ở bài phủ này, mua thêm gói không làm mất phủ, nên phương án sau làm tròn lên vẫn hợp lệ; nhưng chi phí tăng. Nếu kiểm tra thêm, $(1,1,0)$ gồm gói 1 và gói 2 phủ đủ ngày, đêm, mưa với chi phí 4. Có thể bỏ gói 3 khỏi phương án mua cả ba, rồi kiểm tra lại ba ràng buộc phủ.</p>
+    <p>Do đó, làm tròn đơn không bảo đảm luôn khả thi và không bảo đảm luôn tối ưu; mỗi phương án thu được phải được kiểm tra tính phủ và tính chi phí trên mô hình gốc. Giờ hãy ghép các con số lại thành khung đánh giá chung.</p>
+  </aside>
+</section>
+<section id="ap-chung-nhan-can" data-slide-id="S05-12" class="ap-slide">
+  <h2>Cận dưới và chứng nhận nghiệm</h2>
+  <p>Cực tiểu hóa $f$ trên $F\subseteq R$; $\hat x\in F$ là phương án đã kiểm tra.</p>
+  <div class="math-large">$$\begin{aligned}
+    L=\min_R f&\le p^*=\min_F f\le U=f(\hat x),\quad \hat x\in F,\\
+    0&\le U-p^*\le U-L.
+  \end{aligned}$$</div>
+  <div class="box"><p>Ví dụ: $3\le p^*\le4$; chi phí là bội của 2 nên $p^*\ge4$, suy ra $p^*=4$.</p></div>
+  <aside class="notes">
+    <p>Nguồn: Boyd–Vandenberghe (2004), Bài tập 4.15, tr. 193. Bối cảnh gói ảnh và số liệu tự xây dựng.</p>
+    <p>Ở đây $p^*$ ký hiệu giá trị tối ưu, khác với vectơ công suất ở ví dụ trước. Giả sử các bài toán đang xét đạt giá trị nhỏ nhất và giá trị tối ưu bài nới lỏng hữu hạn. Khung tổng quát: bài toán gốc cực tiểu hóa $f$ trên $F$; phép nới lỏng cho tập $R\supseteq F$ với $f$ lồi và $R$ lồi. Gọi $L$ là giá trị tối ưu trên $R$ và $U$ là chi phí của một phương án khả thi $\hat x$ của bài gốc. Khi $L$ hữu hạn và được chứng nhận, ta có $L\le p^*\le U$, tức khoảng cách tối đa là $U-L$. Với ví dụ này: $L=3$, $U=4$, nên $3\le p^*\le4$.</p>
+    <p>Để khép khoảng, dùng cấu trúc số liệu: mỗi gói giá 2, nên mọi chi phí là bội của 2; vì cần ít nhất hai gói, $p^*\ge4$. Kết hợp với phương án chi phí 4, thu được $p^*=4$ chính xác. Cũng có thể hiểu trực tiếp: mỗi gói chỉ phủ hai trong ba loại nên cần ít nhất hai gói, chi phí 4.</p>
+    <p>Nhấn mạnh phân vai: $L=3$ là cận dưới vì đó là giá trị tối ưu LP; chi phí 6 của phương án làm tròn lên không phải cận dưới, nó chỉ là một cận trên. Nếu nghiệm tối ưu LP tình cờ đã nhị phân thì nó tối ưu luôn cho bài gốc. Nếu LP bất khả thi thì bài gốc bất khả thi. Với bài toán nhị phân tổng quát, chiều ngược lại không được bảo đảm: chẳng hạn ràng buộc $x=1/2$ khả thi khi $0\le x\le1$ nhưng không có nghiệm $x\in\{0,1\}$. Riêng bài phủ đang xét luôn có phương án mua cả ba gói. Với bài cực đại hóa, giá trị tối ưu của bài nới lỏng cho cận trên; chiều cận phải gắn với chiều tối ưu.</p>
+  </aside>
+</section>
+<section id="ap-so-sanh" data-slide-id="S05-13" class="ap-slide">
+  <h2>Phân biệt ba cách xử lý</h2>
+  <div class="card">
+    <table>
+      <tr><th>Cách xử lý</th><th>Bảo toàn</th><th>Ý nghĩa nghiệm</th></tr>
+      <tr><td>Cải dạng chính xác ($H$ → LP)</td><td>Giá trị $H$</td><td>Khôi phục ngưỡng tối ưu cho $H$</td></tr>
+      <tr><td>Hàm thay thế ($E\to H$)</td><td>Không giữ mục tiêu</td><td>Đánh giá $E$ riêng tại nghiệm đã học</td></tr>
+      <tr><td>Nới lỏng ($F\to R$)</td><td>Giữ mục tiêu; mở rộng miền</td><td>Cần khôi phục phương án</td></tr>
+    </table>
+  </div>
+  <aside class="notes">
+    <p>Ba kỹ thuật trong phần này dễ bị lẫn, nên đặt cạnh nhau. Thứ nhất, cải dạng chính xác: bài LP với biến phụ $\xi_i$ có giá trị nhỏ nhất theo $\xi$ đúng bằng $H(\theta)$ tại mỗi $\theta$; nghiệm của nó là nghiệm đúng của bài tối ưu hóa $H$, theo ánh xạ lấy lại $\theta$.</p>
+    <p>Thứ hai, hàm thay thế: thay mục tiêu số lỗi $E$ bằng $H$ là đổi mục tiêu, không phải đổi biến. Ta chỉ được đánh giá $E$ tại nghiệm đã học; việc $E\le H$ tại mỗi điểm không suy ra điểm nhỏ nhất $H$ cũng nhỏ nhất $E$. Thứ ba, nới lỏng: mở tập khả thi từ $F$ sang $R$; giá trị tối ưu LP cho cận dưới, còn nghiệm phân số phải được khôi phục và kiểm tra, nếu không phương án có thể bất khả thi.</p>
+    <p>Chuyển ý: ba cách xử lý đều cho thông tin, nhưng loại thông tin khác nhau; câu hỏi cuối cùng là làm sao đánh giá chất lượng nghiệm trên chính bài toán gốc.</p>
+  </aside>
+</section>
+<section id="ap-kiem-tra" data-slide-id="S05-14" class="ap-slide">
+  <h2>Đánh giá nghiệm theo bài toán gốc</h2>
+  <div class="card">
+    <p><strong>Câu hỏi:</strong></p>
+    <ol>
+      <li>Với một tập dữ liệu khác, hàm bản lề có $H=0$: có suy ra $E=0$ trên tập huấn luyện? Trên dữ liệu mới thì sao?</li>
+      <li>Phương án khả thi LP với chi phí 6: có phải cận dưới của bài gốc không?</li>
+      <li>Nếu nghiệm tối ưu LP đã nhị phân thì kết luận gì?</li>
+    </ol>
+  </div>
+  <aside class="notes">
+    <p>Câu một: nếu $H=0$ tại nghiệm thì vì $E\le H$, số lỗi trên tập huấn luyện bằng 0. Nhưng điều này chỉ đúng trên tập huấn luyện; không có bảo đảm gì cho dữ liệu mới, đó là vấn đề tổng quát hóa, không phải của phép xấp xỉ.</p>
+    <p>Câu hai: không. Trong ví dụ này, điểm $(1,1,1)$ có chi phí 6 và cũng khả thi cho bài gốc, nên 6 là một cận trên. Một điểm chỉ khả thi cho LP chưa đủ để cho cận trên của bài gốc, và giá trị của nó cũng không tự cho cận dưới. Giá trị tối ưu LP bằng 3 mới là cận dưới đã chứng nhận. Nhắc lại để tránh nhầm phổ biến nhất của phần này.</p>
+    <p>Câu ba: nếu nghiệm tối ưu LP đã nhị phân thì nó khả thi cho bài gốc và giá trị của nó bằng cận dưới, nên nó tối ưu cho bài gốc; trong ví dụ của ta nghiệm LP là phân số nên cần bước khôi phục. Tổng kết phần này: xấp xỉ và nới lỏng cho ta bài toán giải được cùng các chứng nhận kèm theo, nhưng mỗi chứng nhận phải được đọc đúng vai. Phần tiếp theo tổng hợp lại toàn bộ các kỹ thuật cải dạng đã học.</p>
+  </aside>
+</section>
+
+</section>
+<section id="section-6">
+  <section id="mach-6" data-slide-id="S06">
+    <h2><span class="text-light">6</span><br>Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm</h2>
+  </section>
+</section>
     <footer class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 02</footer>
   </div>
 </div>

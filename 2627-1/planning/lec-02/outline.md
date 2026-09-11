@@ -1,4 +1,4 @@
-# Dàn ý Bài 02 — Khung bảy phần
+# Dàn ý Bài 02 — Khung sáu phần
 
 Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hiện tại và tạo khung để cùng người dùng xây dựng từng phần.
 
@@ -8,11 +8,10 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 2. Quy hoạch tuyến tính.
 3. Quy hoạch bậc hai.
 4. Quy hoạch hình học.
-5. Tối ưu nón và quy hoạch nửa xác định: ràng buộc trên chuẩn và ma trận.
-6. Xấp xỉ lồi và nới lỏng bài toán không lồi.
-7. Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm.
+5. Xấp xỉ lồi và nới lỏng bài toán không lồi.
+6. Tổng hợp: lựa chọn biểu diễn và đánh giá nghiệm.
 
-Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Phần 2 có 12 trang và phần 3 có 14 trang đã triển khai; phần 4 có 16 trang và các phần 5–7 mỗi phần có một trang tiêu đề. Tổng cộng 52 trang trong bảy section ngoài; đây không phải số trang cuối cùng.
+Phần 1 có 7 trang; phần 2 có 12; phần 3 có 14; phần 4 có 16; phần 5 có 15 trang đã triển khai. Phần 6 còn một trang tiêu đề. Toàn bài có 65 trang trong sáu section ngoài; chưa chốt số trang cuối cùng.
 
 ## Phần 1 hiện tại
 
@@ -28,7 +27,7 @@ Trang điều kiện riêng được bỏ theo yêu cầu người dùng vì n�
 
 ## Quy ước triển khai tiếp
 
-- Giữ thứ tự bảy mạch và chuỗi chín bước cho mỗi ví dụ trong storyboard.
+- Giữ thứ tự sáu mạch hiện tại và chuỗi chín bước cho mỗi ví dụ trong storyboard.
 - Thêm các trang nội dung vào section ngoài tương ứng khi xây dựng từng mạch.
 - Tựa lồi, nhiều mục tiêu, dữ liệu ví dụ và số trang chi tiết còn chờ chốt.
 - Ghi chú bài giảng và bài tập của bản cũ được giữ để tham khảo nhưng tạm ngừng liên kết trên chỉ mục trong thời gian đồng bộ lại.
@@ -53,7 +52,7 @@ Giữ kế hoạch 10 trang đã duyệt, bổ sung trang chuẩn tắc theo yê
 
 ## Phần 3 đã triển khai — Quy hoạch bậc hai
 
-Phần này có 14 trang, bổ sung chính quy hóa cho cả hai tiêu chí sai số theo yêu cầu. Mô hình chuẩn một có biến phụ dùng lại kết quả của phần 2; không tạo một phần riêng chỉ để lặp kỹ thuật. Toàn bài 52 trang trong bảy phần.
+Phần này có 14 trang, bổ sung chính quy hóa cho cả hai tiêu chí sai số theo yêu cầu. Mô hình chuẩn một có biến phụ dùng lại kết quả của phần 2; không tạo một phần riêng chỉ để lặp kỹ thuật. Toàn bài hiện có 65 trang trong sáu phần.
 
 1. Quy hoạch bậc hai — Định danh lớp bài toán; nhận câu hỏi đổi tiêu chí từ phần 2.
 2. Hồi quy với tổng bình phương sai số — Thiết lập nhu cầu dự đoán và hai ứng viên trước khi khai triển mục tiêu.
@@ -70,7 +69,7 @@ Phần này có 14 trang, bổ sung chính quy hóa cho cả hai tiêu chí sai 
 13. Quy hoạch bậc hai với ràng buộc bậc hai — Khái quát QCQP từ ràng buộc chuẩn; chứng nhận cả mục tiêu và các bất đẳng thức.
 14. Nhận dạng và chứng nhận bài toán bậc hai — Kiểm tra chuyển giao khi thêm ràng buộc, đổi chiều bất đẳng thức hoặc đặt hệ số phạt bằng 0.
 
-Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số để minh họa. Chính quy hóa chuẩn một khác chính quy hóa bằng bình phương chuẩn hai. Nguồn, chứng nhận hai chiều, giới hạn và ánh xạ từng ví dụ nằm trong [storyboard.md](storyboard.md). Các phần 5–7 chưa triển khai nội dung; không phân bổ thời lượng mới.
+Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số để minh họa. Chính quy hóa chuẩn một khác chính quy hóa bằng bình phương chuẩn hai. Nguồn, chứng nhận hai chiều, giới hạn và ánh xạ từng ví dụ nằm trong [storyboard.md](storyboard.md). Phần 5 được triển khai ở mục dưới; phần 6 còn khung tiêu đề. Không phân bổ thời lượng mới.
 
 
 ## Phần 4 đã triển khai — Quy hoạch hình học
@@ -94,4 +93,27 @@ Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số đ�
 15. Nghiệm phân bổ công suất.
 16. Nhận dạng và giới hạn cải dạng.
 
-Dạng tổng quát có vế phải đơn thức được chuẩn hóa bằng phép chia; tối đa hóa đơn thức chuyển thành tối thiểu hóa nghịch đảo. Đổi biến logarit sau đó tạo mô hình lồi tương đương. Phải phân biệt ba bước này, chứng nhận tính lồi và khôi phục đại lượng ban đầu. Nguồn chính: Boyd–Vandenberghe, §4.5; bối cảnh công suất phỏng theo Bài tập 4.20, còn dữ liệu và cải dạng GP tự xây dựng. Không phân bổ thời lượng hoặc triển khai phần 5–7 trong lượt này.
+Dạng tổng quát có vế phải đơn thức được chuẩn hóa bằng phép chia; tối đa hóa đơn thức chuyển thành tối thiểu hóa nghịch đảo. Đổi biến logarit sau đó tạo mô hình lồi tương đương. Phải phân biệt ba bước này, chứng nhận tính lồi và khôi phục đại lượng ban đầu. Nguồn chính: Boyd–Vandenberghe, §4.5; bối cảnh công suất phỏng theo Bài tập 4.20, còn dữ liệu và cải dạng GP tự xây dựng. Không phân bổ thời lượng mới.
+
+
+## Phần 5 đã triển khai — Xấp xỉ lồi và nới lỏng bài toán không lồi
+
+Theo yêu cầu mới, bỏ phần Tối ưu nón; chuyển xấp xỉ/nới lỏng thành phần 5 và tổng hợp thành phần 6. Giữ hai ví dụ AI: chọn ngưỡng phân loại ảnh và chọn mua các gói ảnh đã gán nhãn. Đi từ nhu cầu đến mô hình và phép biến đổi, sau đó mới khái quát ba quan hệ với bài toán gốc.
+
+1. Xấp xỉ lồi và nới lỏng bài toán không lồi.
+2. Phân loại bằng ngưỡng.
+3. Mô hình giảm số lỗi phân loại.
+4. Hàm mất mát bản lề.
+5. Cải dạng hàm bản lề thành LP.
+6. Nghiệm của hàm thay thế.
+7. Phân loại nhiều đặc trưng.
+8. Chọn các gói dữ liệu.
+9. Mô hình chọn gói dữ liệu.
+10. Nới lỏng điều kiện nhị phân.
+11. Nghiệm phân số của bài nới lỏng.
+12. Khôi phục phương án mua.
+13. Cận dưới và chứng nhận nghiệm.
+14. Phân biệt ba cách xử lý.
+15. Đánh giá nghiệm theo bài toán gốc.
+
+Tiêu chí hoàn thành: phân biệt thay mục tiêu với cải dạng tương đương; chứng nhận tính lồi; chứng minh cận dưới từ tối ưu LP; kiểm tra và diễn giải phương án nguyên. LLO3/CLO1 buổi 2 được hỗ trợ qua năng lực mô hình hóa, nhận dạng và đánh giá nghiệm. Không gán mục đề cương hoặc thời lượng riêng cho ví dụ bổ sung. Nguồn: Boyd–Vandenberghe (2004), §8.6.1 và Bài tập 4.15; dữ liệu và bốn hình SVG tự xây dựng.
