@@ -89,4 +89,20 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 - Xấp xỉ/nới lỏng thành mạch riêng.
 - Ưu tiên AI/ML hoặc bài quen thuộc.
 - Bản storyboard cũ: lịch sử Git tại commit e030846.
-- Việc chuyển thành từng trang, chọn dữ liệu, chứng minh, hình và bài tập là bước làm việc tiếp theo với người dùng. Bộ trang chiếu, ghi chú bài giảng và bài tập hiện vẫn thuộc bản đã phát hành; cấu trúc này là cơ sở cho các bước chỉnh sửa tiếp theo.
+- Việc chuyển thành từng trang, chọn dữ liệu, chứng minh, hình và bài tập là bước làm việc tiếp theo với người dùng. Bộ trang chiếu hiện đã được thay bằng khung bảy phần theo yêu cầu tiếp theo của người dùng; ghi chú bài giảng và bài tập vẫn giữ bản cũ để tham khảo.
+
+## Khung RevealJS đã tạo ngày 2026-09-11
+
+Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạo bảy section lớn để cùng xây dựng từng phần. Bản hiện tại có đúng bảy section ngoài, mỗi phần có một trang tiêu đề. Chưa có nội dung giảng hoặc ghi chú diễn giả.
+
+| Mạch | Section ngoài | Trang khung | Vai trò và quyết định |
+|---|---|---|---|
+| 1 | `section-1` | `mach-1` / `S01` | Thêm khung tiêu đề cho mạch 1; nội dung sẽ được xây dựng cùng người dùng |
+| 2 | `section-2` | `mach-2` / `S02` | Thêm khung tiêu đề cho mạch 2; nội dung sẽ được xây dựng cùng người dùng |
+| 3 | `section-3` | `mach-3` / `S03` | Thêm khung tiêu đề cho mạch 3; nội dung sẽ được xây dựng cùng người dùng |
+| 4 | `section-4` | `mach-4` / `S04` | Thêm khung tiêu đề cho mạch 4; nội dung sẽ được xây dựng cùng người dùng |
+| 5 | `section-5` | `mach-5` / `S05` | Thêm khung tiêu đề cho mạch 5; nội dung sẽ được xây dựng cùng người dùng |
+| 6 | `section-6` | `mach-6` / `S06` | Thêm khung tiêu đề cho mạch 6; nội dung sẽ được xây dựng cùng người dùng |
+| 7 | `section-7` | `mach-7` / `S07` | Thêm khung tiêu đề cho mạch 7; nội dung sẽ được xây dựng cùng người dùng |
+
+Bảy trang khung phục vụ điều hướng và xác định vị trí soạn bài, chưa được coi là minh chứng hoàn thành mục tiêu học tập. Bảng từng trang với liên kết chuẩn đầu ra, phép biến đổi, chứng nhận và bài tập sẽ được bổ sung khi triển khai từng mạch. Nội dung trước khi xóa có thể truy xuất tại commit `774112d`.
