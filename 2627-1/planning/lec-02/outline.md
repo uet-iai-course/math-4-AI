@@ -1,5 +1,7 @@
 # Dàn ý Bài 02 — Các bài toán tối ưu lồi (58 trang: 39 cốt lõi + 19 mở rộng)
 
+> Trạng thái ngày 2026-09-11: dàn ý dưới đây mô tả bộ trang chiếu đã phát hành tại commit `e030846`. Cấu trúc làm lại gồm bảy mạch đã được người dùng chốt trong [storyboard.md](storyboard.md). Số trang và phân bổ của bản đã phát hành không phải ràng buộc cho bản làm lại; dàn ý chi tiết sẽ được cập nhật khi cùng người dùng xây dựng từng mạch.
+
 ## Định hướng chung
 - **Chuẩn đầu ra:** LLO3 — "Hiểu rõ và biết cách vận dụng các khái niệm cơ bản về tối ưu lồi, tối ưu tựa lồi, tối ưu tuyến tính, tối ưu bậc hai, quy hoạch nửa xác định và tối ưu hóa vector" (CLO 1; đánh giá bằng bài tập cá nhân và nhóm). Tựa lồi và nhiều mục tiêu giữ trong tài liệu đọc và bài tập, không loại khỏi LLO3.
 - **Đề cương:** 2 tiết lý thuyết và 1 tiết bài tập. Phân bổ nội bộ lần lượt cho sáu mạch chính: 0,40; 0,55; 0,55; 0,65; 0,50; 0,35 tiết (tổng 3 tiết). Không quy đổi sang phút khi chưa xác minh độ dài tiết. Bài tập được bố trí xen kẽ: trong sáu mạch, phần bài tập lần lượt là 0,05; 0,20; 0,20; 0,20; 0,15; 0,20 tiết (tổng 1 tiết); phần lý thuyết còn lại tổng 2 tiết. Phần mở rộng dùng cho đọc và luyện tập thêm.

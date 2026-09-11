@@ -459,3 +459,12 @@ Bảng dưới lấy trường runtime của các kết quả cầu nối thành
 | write-slides-21-39 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
 | write-slides-40-58 | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
 | write-storyboard | writer | z-ai/glm-5.3-flash | z-ai/glm-5.3-flash | OpenRouter |
+
+## 22. Cấu trúc làm lại được thống nhất ngày 2026-09-11
+
+- Người dùng đánh giá cách viết, bố cục và nội dung bản sửa chưa đạt, yêu cầu cùng làm lại từng phần. Ba mục tiêu mới nhấn mạnh nhận dạng các dạng tối ưu lồi, cải dạng hoặc xấp xỉ bài toán thực tế bằng bài toán lồi, và chứng minh tính lồi. Ví dụ ưu tiên AI/ML hoặc bài toán quen thuộc.
+- Người dùng đã đồng ý bảy mạch và yêu cầu ghi vào bản mới của `storyboard.md`. Storyboard hiện ghi cấu trúc ở cấp mạch và chuỗi chín bước cho mỗi ví dụ. Chưa chốt số trang, mã trang, dữ liệu số, thời lượng và vị trí của tựa lồi/nhiều mục tiêu.
+- Cấu trúc 58 trang của lần sửa trước không còn là ràng buộc. Bản storyboard tương ứng với bộ trang chiếu đã phát hành vẫn truy xuất được trong lịch sử Git tại `e030846`; `outline.md` được đánh dấu rõ là dàn ý của bản đã phát hành và liên kết tới cấu trúc mới.
+- Thay đổi chỉ thuộc ba tệp lập kế hoạch. Chưa sửa bộ trang chiếu, ghi chú hay bài tập; các kiểm định của phiên trước không phải bằng chứng cho bản làm lại chưa triển khai.
+- Tác tử lập kế hoạch ở lượt thảo luận trước và tác tử ghi storyboard chạy qua OpenRouter. Runtime của cả hai: `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`. Điều phối loại các gợi ý toán học sai của bản tư vấn, đặc biệt việc đồng nhất chuẩn một với nới lỏng, hàm mất mát thay thế với xấp xỉ địa phương, và dùng hồi quy logistic để minh họa trường hợp tựa lồi nhưng không lồi. Tác tử ghi chỉ nhận nội dung đã được người dùng đồng ý cùng các lưu ý đúng về điều kiện áp dụng.
+- Hậu kiểm: đủ bảy mạch đúng tên/thứ tự, đủ chín bước; mỗi mạch có ví dụ, nội dung, đầu vào và đầu ra; tham chiếu phiên bản cũ hợp lệ. Đã đối chiếu với nội dung người dùng đồng ý và kiểm tra diff; không cần chạy lại kiểm định trình chiếu cho thay đổi văn bản lập kế hoạch này.
