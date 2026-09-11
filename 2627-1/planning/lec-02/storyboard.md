@@ -4,7 +4,7 @@ Phiên bản làm lại ngày 2026-09-11; bảy mạch đã được người d�
 
 ## Trạng thái và mục tiêu
 
-- Phạm vi hiện tại: cấu trúc nội dung. Chưa chốt số trang, mã trang, ví dụ số, phân bổ thời lượng, vị trí của tựa lồi và nhiều mục tiêu.
+- Phạm vi hiện tại: cấu trúc nội dung và khung tiêu đề. Phần 1 có tám trang theo yêu cầu mới; các phần còn lại mỗi phần có một trang khung. Chưa chốt số trang cuối cùng, ví dụ số, phân bổ thời lượng, vị trí của tựa lồi và nhiều mục tiêu.
 - Cấu trúc 58 trang (39 chính + 19 phụ lục) của lần sửa trước không còn là ràng buộc.
 - Bản storyboard cũ lưu trong lịch sử Git tại commit e030846; không tạo bản sao, không di chuyển tệp cũ.
 - Mục tiêu bài học: sinh viên hiểu rõ các dạng bài toán tối ưu lồi; nhận biết bài toán thực tế có thể chuyển về dạng lồi hoặc xấp xỉ bằng dạng lồi; chứng minh một bài toán tối ưu là lồi. Ưu tiên ví dụ trong trí tuệ nhân tạo và học máy (AI/ML) hoặc bài toán quen thuộc.
@@ -28,7 +28,7 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 
 ### Mạch 1 — Mô hình hóa và chứng nhận bài toán tối ưu lồi
 
-- Ví dụ: dự đoán giá nhà từ dữ liệu. Xác định hệ số cần chọn, tiêu chí dự đoán tốt, dữ liệu, biến, miền, mục tiêu, ràng buộc, đầu ra trước dạng tổng quát.
+- Theo yêu cầu mới, phần mở đầu gồm trang tiêu đề bài, nội dung chính, mô hình tối ưu tổng quát, dạng toán học, điều kiện lồi và ví dụ nhanh với hàm quen thuộc. Ba ví dụ đã chọn ở cấp tiêu đề: hàm bậc hai, giá trị tuyệt đối và nghịch đảo. Ví dụ dự đoán giá nhà được giữ như ý tưởng cho các mạch ứng dụng sau; chưa triển khai trong phần mở đầu.
 - Nội dung: từ ví dụ, xây dựng chứng nhận — miền xác định lồi, mục tiêu lồi, bất đẳng thức hàm lồi không vượt quá 0, đẳng thức affine. Phân biệt chứng minh tính lồi với tìm nghiệm.
 - Đầu vào: kiến thức tập/hàm lồi của Bài 01.
 - Đầu ra: mô hình rõ nghĩa và khung chứng nhận để dùng ở các mạch tiếp theo.
@@ -93,11 +93,11 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 
 ## Khung RevealJS đã tạo ngày 2026-09-11
 
-Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạo bảy section lớn để cùng xây dựng từng phần. Bản hiện tại có đúng bảy section ngoài, mỗi phần có một trang tiêu đề. Chưa có nội dung giảng hoặc ghi chú diễn giả.
+Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạo bảy section lớn để cùng xây dựng từng phần. Ở bước tạo khung ban đầu, bộ trang chiếu có bảy section ngoài, mỗi phần một trang tiêu đề. Cập nhật tiếp theo: section đầu có tám trang chỉ tiêu đề; tổng số trang khung hiện tại là 14. Chưa có nội dung giảng hoặc ghi chú diễn giả.
 
 | Mạch | Section ngoài | Trang khung | Vai trò và quyết định |
 |---|---|---|---|
-| 1 | `section-1` | `mach-1` / `S01` | Thêm khung tiêu đề cho mạch 1; nội dung sẽ được xây dựng cùng người dùng |
+| 1 | `section-1` | `S01-01` đến `S01-08` | Sửa trang mở đầu và thêm bảy trang chỉ tiêu đề theo bảng bên dưới |
 | 2 | `section-2` | `mach-2` / `S02` | Thêm khung tiêu đề cho mạch 2; nội dung sẽ được xây dựng cùng người dùng |
 | 3 | `section-3` | `mach-3` / `S03` | Thêm khung tiêu đề cho mạch 3; nội dung sẽ được xây dựng cùng người dùng |
 | 4 | `section-4` | `mach-4` / `S04` | Thêm khung tiêu đề cho mạch 4; nội dung sẽ được xây dựng cùng người dùng |
@@ -105,4 +105,27 @@ Người dùng yêu cầu xóa toàn bộ các trang hiện tại và chỉ tạ
 | 6 | `section-6` | `mach-6` / `S06` | Thêm khung tiêu đề cho mạch 6; nội dung sẽ được xây dựng cùng người dùng |
 | 7 | `section-7` | `mach-7` / `S07` | Thêm khung tiêu đề cho mạch 7; nội dung sẽ được xây dựng cùng người dùng |
 
-Bảy trang khung phục vụ điều hướng và xác định vị trí soạn bài, chưa được coi là minh chứng hoàn thành mục tiêu học tập. Bảng từng trang với liên kết chuẩn đầu ra, phép biến đổi, chứng nhận và bài tập sẽ được bổ sung khi triển khai từng mạch. Nội dung trước khi xóa có thể truy xuất tại commit `774112d`.
+Các trang khung phục vụ điều hướng và xác định vị trí soạn bài, chưa được coi là minh chứng hoàn thành mục tiêu học tập. Bảng từng trang với liên kết chuẩn đầu ra, phép biến đổi, chứng nhận và bài tập sẽ được bổ sung khi triển khai từng mạch. Nội dung trước khi xóa có thể truy xuất tại commit `774112d`.
+
+## Khung tám trang của phần 1
+
+Người dùng yêu cầu chỉ đặt tiêu đề, chưa viết nội dung. Trang nội dung chính sẽ liệt kê bảy mạch khi soạn chi tiết; hiện cũng chỉ có tiêu đề. Thứ tự này ưu tiên yêu cầu cụ thể của người dùng cho phần giới thiệu.
+
+| Mã | Tiêu đề | Vai trò dự kiến | Quyết định |
+|---|---|---|---|
+| `S01-01` | Bài 02: Các bài toán tối ưu lồi | Định danh bài trước nội dung chính | Sửa trang khung mở đầu |
+| `S01-02` | Nội dung chính: bảy mạch | Dành vị trí cho bản đồ bảy mạch | Thêm trang khung theo yêu cầu |
+| `S01-03` | Bài toán tối ưu tổng quát | Giới thiệu bài toán tối ưu trước ký hiệu | Thêm trang khung theo yêu cầu |
+| `S01-04` | Dạng toán học của bài toán tối ưu | Dành vị trí cho mô hình toán học cơ bản | Thêm trang khung theo yêu cầu |
+| `S01-05` | Điều kiện để bài toán tối ưu là lồi | Tách điều kiện chứng nhận lồi khỏi mô hình tổng quát | Thêm trang khung theo yêu cầu |
+| `S01-06` | Ví dụ: hàm bậc hai | Chuẩn bị ví dụ hàm trơn quen thuộc | Thêm trang khung theo yêu cầu |
+| `S01-07` | Ví dụ: hàm giá trị tuyệt đối | Chuẩn bị ví dụ lồi không khả vi tại một điểm | Thêm trang khung theo yêu cầu |
+| `S01-08` | Ví dụ: hàm nghịch đảo | Chuẩn bị ví dụ từ Boyd về hàm lồi và khả năng đạt giá trị tối ưu | Thêm trang khung theo yêu cầu |
+
+Các trang nối tuần tự theo bảng: tiêu đề → bản đồ nội dung → bài toán tổng quát → biểu diễn toán học → điều kiện lồi → ba ví dụ nhanh. Trang cuối nối sang mạch quy hoạch tuyến tính. Đánh giá nội dung và minh chứng chuẩn đầu ra sẽ được bổ sung cùng công thức, hình và câu hỏi khi soạn chi tiết.
+
+### Nguồn và tham chiếu trình bày
+
+- Boyd và Vandenberghe (2004), *Convex Optimization*, bản có sẵn `sources/bv_cvxbook.pdf`: §4.1.1–4.1.2 cho mô hình và thuật ngữ, §4.2 cho điều kiện lồi; §3.1.3 và §3.1.5 cho hàm bậc hai và giá trị tuyệt đối. Ví dụ hàm nghịch đảo tham chiếu trực tiếp Ví dụ 4.1, trang in 128, với miền dương. Không tải thêm nguồn.
+- Tham khảo `../rl-plan/2627-1/lecture-style.css` và CSS trong `lecture-01-gioi-thieu-hoc-tang-cuong.html`, `lecture-02-giao-dien-tac-tu-moi-truong.html`: nền trắng, chữ Source Sans Pro từ theme cục bộ, tiêu đề xanh, cỡ nội dung 0.84em và phân cấp h1/h2. Giữ kiểu chữ hoa/thường đã viết, không tự chuyển toàn bộ thành chữ hoa.
+- CSS điều chỉnh được lưu tại `2627-1/lecture-02-style.css`; không tạo phụ thuộc runtime sang kho tham chiếu.
