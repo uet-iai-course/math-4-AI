@@ -5,7 +5,7 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 ## Cấu trúc hiện tại
 
 1. Mô hình hóa và chứng nhận bài toán tối ưu lồi.
-2. Quy hoạch tuyến tính: phân bổ nguồn lực và kiểm soát sai số.
+2. Quy hoạch tuyến tính.
 3. Quy hoạch bậc hai: khớp dữ liệu và kiểm soát độ lớn của mô hình.
 4. Quy hoạch hình học và phép đổi biến làm lộ tính lồi.
 5. Tối ưu nón và quy hoạch nửa xác định: ràng buộc trên chuẩn và ma trận.
@@ -33,3 +33,7 @@ Trang điều kiện riêng được bỏ theo yêu cầu người dùng vì n�
 - Tựa lồi, nhiều mục tiêu, dữ liệu ví dụ và số trang chi tiết còn chờ chốt.
 - Ghi chú bài giảng và bài tập của bản cũ được giữ để tham khảo nhưng tạm ngừng liên kết trên chỉ mục trong thời gian đồng bộ lại.
 - Bản trình chiếu trước khi xóa nội dung truy xuất tại commit `774112d`.
+
+## Kế hoạch phần 2 đang đề xuất
+
+Tiêu đề phần đã rút thành **Quy hoạch tuyến tính**. Đề xuất 10 trang trong [storyboard.md](storyboard.md): pha trộn và dạng LP; hồi quy với tổng sai số tuyệt đối; biến phụ và chứng minh tương đương; nghiệm số; biến thể sai số lớn nhất; bài tập nối sang quy hoạch bậc hai. Đây là kế hoạch để người dùng duyệt, chưa tạo các trang nội dung.
