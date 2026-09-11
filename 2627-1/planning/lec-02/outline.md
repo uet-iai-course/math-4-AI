@@ -19,7 +19,7 @@ Phần 1 hiện có bảy trang: cả bảy trang đã có nội dung. Các ph�
 1. Bài 02: Các bài toán tối ưu lồi — thông tin học phần, Viện Trí tuệ nhân tạo, năm học và học kỳ.
 2. Nội dung chính — liệt kê các chủ đề đã chốt.
 3. Bài toán tối ưu lồi tổng quát — mục tiêu lồi và tập khả thi lồi.
-4. Dạng toán học của bài toán tối ưu lồi — miền chung lồi, mục tiêu và các hàm bất đẳng thức lồi, đẳng thức affine.
+4. Dạng phổ biến của tối ưu lồi — biến $x\in\mathbb{R}^n$, mục tiêu và các hàm bất đẳng thức lồi, đẳng thức affine.
 5. Ví dụ: hàm bậc hai — tối thiểu hóa $(x-2)^2$ trên $[0,1]$, nghiệm ở biên.
 6. Ví dụ: hàm giá trị tuyệt đối — tối thiểu hóa $|x-2|$ trên $\mathbb{R}$, nghiệm tại điểm không khả vi.
 7. Ví dụ: hàm nghịch đảo — tối thiểu hóa $1/x$ trên $(0,+\infty)$, cận dưới không đạt được.

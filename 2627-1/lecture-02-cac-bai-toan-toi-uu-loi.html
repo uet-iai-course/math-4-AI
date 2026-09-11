@@ -57,24 +57,24 @@
           </div>
         </div>
         <aside class="notes">
-          <p>Ta cần chọn điểm $x$ trong tập khả thi $C$ sao cho giá trị mục tiêu nhỏ nhất. Muốn chứng nhận bài toán lồi, cần xét cả hàm mục tiêu lẫn tập khả thi. Tính lồi tự nó chưa bảo đảm bài toán có nghiệm tối ưu.</p><p>Ở trang sau, $C$ được mô tả bằng miền chung $D$ cùng các ràng buộc. Hàm mục tiêu trên $C$ là hạn chế của hàm xác định trên $D$. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.2, tr. 137–138.</p>
+          <p>Ta cần chọn điểm $x$ trong tập khả thi $C$ sao cho giá trị mục tiêu nhỏ nhất. Muốn chứng nhận bài toán lồi, cần xét cả hàm mục tiêu lẫn tập khả thi. Tính lồi tự nó chưa bảo đảm bài toán có nghiệm tối ưu.</p><p>Ở trang sau, $C$ được mô tả bằng các ràng buộc bất đẳng thức và đẳng thức. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.2, tr. 137–138.</p>
         </aside>
       </section>
       <section id="dang-toan-hoc" data-slide-id="S01-04">
-        <h2>Dạng toán học của bài toán tối ưu lồi</h2>
-        <p>Với biến $x\in D\subseteq\mathbb{R}^n$, miền $D$ lồi.</p>
+        <h2>Dạng phổ biến của tối ưu lồi</h2>
+        <p>Biến quyết định $x\in\mathbb{R}^n$.</p>
         <div class="math-large">
           $$\begin{aligned}
-          \min_{x\in D}\;& f_0(x)\\
+          \min_{x\in\mathbb{R}^n}\;& f_0(x)\\
           \text{với}\quad & f_i(x)\le 0,\quad i=1,\ldots,m,\\
           & Ax=b.
           \end{aligned}$$
         </div>
-        <p>$f_0,f_1,\ldots,f_m:D\to\mathbb{R}$ đều lồi.</p>
+        <p>$f_0,f_1,\ldots,f_m$ là các hàm lồi.</p>
         <p>Đẳng thức affine: $A\in\mathbb{R}^{p\times n}$, $b\in\mathbb{R}^p$.</p>
         <p>Các ràng buộc trên xác định tập khả thi $C$ lồi.</p>
         <aside class="notes">
-          <p>$D$ là miền chung của các hàm; tập khả thi là $C=\{x\in D\mid f_i(x)\le0,\ i=1,\ldots,m,\ Ax=b\}$. Mỗi tập mức dưới của $f_i$ lồi vì $f_i$ lồi. Tập nghiệm của $Ax=b$ là tập affine, do đó lồi. Giao của các tập này với $D$ vẫn lồi.</p><p>Đây là dạng biểu diễn chuẩn. Một tập khả thi lồi vẫn có thể được mô tả bằng các hàm không lồi; vì vậy không đồng nhất tính lồi của tập với tính lồi của mọi cách biểu diễn nó. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.2, tr. 136–138. Tiếp theo, áp dụng khung chứng nhận vào các hàm quen thuộc.</p>
+          <p>Tập khả thi là $C=\{x\in\mathbb{R}^n\mid f_i(x)\le0,\ i=1,\ldots,m,\ Ax=b\}$. Điều kiện xác định của các hàm được hiểu ngầm và sẽ được ghi rõ trong từng ví dụ. Mỗi tập mức dưới của $f_i$ lồi vì $f_i$ lồi. Tập nghiệm của $Ax=b$ là tập affine, do đó lồi. Giao của các tập này với miền xác định của các hàm vẫn lồi.</p><p>Đây là dạng biểu diễn chuẩn. Một tập khả thi lồi vẫn có thể được mô tả bằng các hàm không lồi; vì vậy không đồng nhất tính lồi của tập với tính lồi của mọi cách biểu diễn nó. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §4.2, tr. 136–138. Tiếp theo, áp dụng khung chứng nhận vào các hàm quen thuộc.</p>
         </aside>
       </section>
       <section id="vi-du-bac-hai" data-slide-id="S01-06">

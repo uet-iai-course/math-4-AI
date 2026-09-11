@@ -532,3 +532,12 @@ Lỗi gọi tác tử được xử lý và không đổi mô hình: một lần
 - Dự án Codex Slides `20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc`: đã thay dàn ý thành 13 trang, tải đủ 13 hình từ bản RevealJS đã kiểm tra, ghi đủ bảy notes và đọc lại xác nhận nội dung trùng khớp. Trạng thái vẫn là bản nháp vì phần 2–7 chưa soạn.
 - Browser tích hợp Codex không có trong môi trường này; dùng Chromium cục bộ để kiểm tra RevealJS và canvas Codex Slides, không tuyên bố đã dùng Browser tích hợp.
 - Kiểm tra canvas Codex Slides: chọn lần lượt các trang 1–7 bằng ảnh thu nhỏ, xác nhận ảnh chính đúng tiêu đề, tải thành công và hiển thị đúng công thức/đồ thị. Hộp hướng dẫn kết nối và panel Design Files được chuyển sang canvas trước khi kiểm tra; không dựa riêng vào trạng thái API.
+
+## 26. Rút gọn dạng phổ biến của tối ưu lồi ngày 2026-09-11
+
+- Theo yêu cầu người dùng, đổi tiêu đề `S01-04` thành **Dạng phổ biến của tối ưu lồi**, bỏ ký hiệu miền $D$ và dùng $x\in\mathbb{R}^n$ trong dòng biến và phép tối thiểu hóa. Giữ $f_i(x)\le0$, $Ax=b$ và điều kiện các hàm lồi. Dòng hàm không khẳng định tất cả đều xác định trên toàn bộ không gian; điều kiện xác định riêng được hiểu ngầm và giải thích ngắn trong notes.
+- Đồng bộ câu chuyển trong notes `S01-03`, giải thích tập khả thi trong notes `S01-04`, dàn ý và storyboard. Giữ nguyên 13 trang, các mã/hash, ba ví dụ và CSS. Ghi chú bài giảng/bài tập cũ vẫn chưa được công bố lại theo trạng thái đang xây dựng.
+- Kế hoạch do reader OpenRouter lập; writer sửa đoạn HTML giới hạn; điều phối bỏ câu mở rộng không cần thiết về ví dụ mới và miền toàn không gian. Một lượt writer báo `model exceeded the tool-call limit (7)`; đã gọi lại cùng mô hình với đúng hai trang liên quan và hoàn tất.
+- Kiểm định storyboard và năm vai độc lập (sinh viên, chuyên gia, toán học, phản biện giảng dạy, mạch kể chuyện) đều xác nhận đạt trong phạm vi thay đổi. Mỗi báo cáo cầu nối ghi `requested_model = observed_model = z-ai/glm-5.3-flash`, `provider = OpenRouter`; không còn vấn đề bắt buộc xử lý.
+- Chromium tại cổng 8765: kiểm trang sửa và hai trang liền kề ở 1600×900 và 390×844; công thức KaTeX đúng, không tràn nội dung, hash `#/dang-toan-hoc` và điều hướng sang ví dụ bậc hai vẫn đúng. Không đổi nguồn hay tài sản hình.
+- Đồng bộ tiêu đề, nội dung dàn ý và notes trong dự án Codex Slides hiện có, khôi phục đủ 13 ảnh trình chiếu và bảy notes; chỉ ảnh trang 4 thay đổi. Dùng Chromium cục bộ để kiểm canvas vì Browser tích hợp không khả dụng trong môi trường này.
