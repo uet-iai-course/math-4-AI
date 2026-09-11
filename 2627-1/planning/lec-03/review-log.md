@@ -1,4 +1,164 @@
-# Nhật ký rà soát Bài giảng 03 — Đối ngẫu Lagrange
+# Nhật ký rà soát Bài 03 — Khung Đối ngẫu Lagrange
+
+## Phiên bản hiện hành — 2026-09-11
+
+- Yêu cầu: xóa nội dung bộ chiếu cũ, dựng khung theo Bài 02; section đầu chứa tiêu đề; mỗi trang chỉ có tiêu đề và TODO.
+- Đã duyệt 7 mạch, 36 trang; thay nội dung HTML tại đường dẫn cũ. Không xóa tài liệu học tập và SVG.
+- Mẫu Bài 02 chỉ đọc tại máy; giữ nguyên quy tắc CSS liên quan và cấu hình RevealJS.
+- Tác tử lập kế hoạch, phân tích nguồn và soạn TODO đã chạy bằng OpenRouter; requested_model = observed_model = z-ai/glm-5.3-flash; provider = OpenRouter.
+- Điều phối bác bỏ đề nghị hỏi lại quyền xóa (người dùng đã yêu cầu), giữ mã nội bộ trên slide, bỏ bản đồ mở đầu, và đồng nhất cận dưới đúng với giá trị nhỏ nhất.
+- Đã sửa TODO do writer nhầm khả thi thành khả vi, tên bốn nhóm KKT và độ nhạy của giá trị tối ưu thành độ nhạy của nghiệm.
+- Index đánh dấu đang dựng khung; ghi chú cũ có thông báo phiên bản. Bài tập công khai chưa có.
+- Kiểm định khung, năm vai rà và kiểm tra RevealJS đã đạt phạm vi skeleton; Codex Slides đã lưu đủ 36 trang và 36 ảnh chụp tương ứng.
+
+## Kiểm định khung và năm vai độc lập — 2026-09-11
+
+**Phạm vi bằng chứng:** reviewer chỉ đọc outline.md đã được cho phép gửi. Điều phối kiểm tra riêng HTML, CSS và trình duyệt tại máy.
+
+- Kiểm định storyboard: đạt 36 trang/7 mạch, không thiếu cầu nối ở mức khung; ghi nhớ kiểm tra Slater khi soạn hồi quy và nối nhân tử tối ưu sang độ nhạy.
+
+### Góc nhìn sinh viên
+
+Runtime: requested_model `z-ai/glm-5.3-flash`; observed_model `z-ai/glm-5.3-flash`; provider `OpenRouter`.
+
+> **Kết luận: ĐẠT trong phạm vi skeleton** (chỉ đọc `2627-1/planning/lec-03/outline.md`, không đọc tệp khác, không sửa).
+>
+> Kiểm tra theo góc nhìn sinh viên:
+>
+> 1. **Cấu trúc khung** — Đạt. 36 trang / 7 mạch đúng như storyboard đã kiểm định (dòng 3, 17–86); mỗi trang chỉ tiêu đề + một TODO, không có công thức/hình/lời giải (dòng 9, 12).
+>
+> 2. **Mạch KKT (S05)** — Đạt đúng thứ tự yêu cầu: S05-01 suy điều kiện + minh họa cân bằng gradient tại ví dụ **trước** S05-03 bốn nhóm điều kiện; S05-04 giải ứng viên ví dụ **trước** S05-05 bảng giả thiết cần/đủ; rồi S05-06 ứng dụng hồi quy, S05-07 bài tập. Không có lỗi.
+>
+> 3. **Slater (S03-03)** — Đạt: phát biểu với giả thiết lồi, miền toàn không gian, điểm khả thi nghiêm; nội tương đối được đẩy sang đọc mở rộng (dòng 13) — phù hợp, không đòi thêm.
+>
+> 4. **Độ nhạy (S06)** — Đạt: S06-01/S06-05 nói đúng "thay đổi **giá trị tối ưu**", không lẫn thành thay đổi nghiệm.
+>
+> 5. **Tiên quyết & tải nhận thức** — Đạt: S01-02 nêu tiên quyết và mục tiêu; mỗi mạch có trang ví dụ xuyên suốt (S02-02) và trang bài tập cuối mạch (S02-08, S03-06, S04-04, S05-07, S06-05), tải đều, không nhảy khái niệm.
+>
+> **Ghi nhớ khi soạn chi tiết** (không phải lỗi): (a) S05-02 "bù trừ" xuất hiện trước S05-03 — khi soạn cần giới thiệu khái niệm này đủ nhẹ để sinh viên theo được trước bảng 4 nhóm; (b) S03-05 phản ví dụ cần chọn cẩn thận để phân biệt đủ/cần/đạt nghiệm đối ngẫu; (c) giữ ví dụ $x^2+1$ nhất quán, không đưa số liệu lên khung.
+>
+> Không có lỗi mức nào cần báo.
+
+### Góc nhìn chuyên gia
+
+Runtime: requested_model `z-ai/glm-5.3-flash`; observed_model `z-ai/glm-5.3-flash`; provider `OpenRouter`.
+
+> **Kết quả rà độc lập (phạm vi skeleton): ĐẠT.**
+>
+> Đã chỉ đọc `2627-1/planning/lec-03/outline.md` (95 dòng), không đọc tệp khác, không sửa tệp.
+>
+> **Kiểm tra độ bao phủ:**
+> - **LLO4** (hàm/bài toán đối ngẫu Lagrange): mạch 2 (S02-04→S02-07) và mạch 3 bao phủ đủ — dòng 25–47.
+> - **LLO5** (minh họa hình học): mạch 4 riêng biệt, 4 trang (dòng 49–56) — đạt.
+> - **CLO1**: dòng 7 nêu liên quan; dòng 90 ghi nguồn đề cương DOCX — đạt.
+> - **Ví dụ xuyên suốt**: dòng 12 — $\min x^2+1$, $(x-2)(x-4)\le0$, $x^*=2$, $p^*=5$, $\lambda^*=2$; được dùng lại ở S02-02, S02-05, S03-02, S03-04, S04, S05-04, S06-02 — nhất quán.
+> - **Ứng dụng học máy**: S05-06 (hồi quy có ràng buộc chuẩn), S06-04 (diễn giải nhân tử trong hồi quy) — đạt.
+> - **Thuật ngữ**: cận dưới, đối ngẫu yếu/mạnh, Slater, KKT, bù trừ, độ nhạy — đầy đủ, đúng mạch.
+>
+> **Kiểm tra mạch KKT theo yêu cầu:** S05-01 suy điều kiện từ cận khít + minh họa cân bằng gradient tại ví dụ **trước** S05-03 (bốn nhóm) và S05-04 (giải ứng viên); sau đó S05-05 (giả thiết cần/đủ) → S05-06 (ứng dụng) → S05-07 (bài tập). Trình tự đúng.
+>
+> **Kiểm tra Slater:** S03-03 phát biểu Slater cơ bản (lồi hữu hạn, toàn không gian, đẳng thức affine, điểm khả thi nghiêm — dòng 44); nội tương đối/tập mở rộng đặt ở kế hoạch đọc mở rộng (dòng 13) — đúng yêu cầu.
+>
+> **Độ nhạy:** S06-03 gắn với giá trị tối ưu (dòng 74, 76) — đúng.
+>
+> **Điều cần nhớ khi soạn (không phải lỗi):** giữ ví dụ xuyên suốt nhất quán dấu nhân tử; S03-05 phản ví dụ cần phân biệt rõ "đủ" vs "đạt nghiệm đối ngẫu"; không thêm công thức/hình vào khung ở bước này.
+
+### Độ chính xác toán học
+
+Runtime: requested_model `z-ai/glm-5.3-flash`; observed_model `z-ai/glm-5.3-flash`; provider `OpenRouter`.
+
+> **Kết quả: ĐẠT trong phạm vi skeleton (khung 36 trang / 7 mạch, chỉ tiêu đề + TODO).** Chỉ đọc tệp được phép `2627-1/planning/lec-03/outline.md`; không xem HTML/trình duyệt.
+>
+> Kiểm tra độ chính xác toán học của các TODO:
+>
+> 1. **Ví dụ xuyên suốt (dòng 12):** min x²+1, (x−2)(x−4)≤0 ⇒ miền [2,4], x*=2, p*=5. Lagrangian L=x²+1+λ(x−2)(x−4); ∂L/∂x=2x+λ(2x−6)=0 tại x=2 ⇒ λ=2; g(2)=min 3x²−12x+17=5=p*. Cả ba giá trị x*=2, p*=5, λ*=2 đều đúng, cận khít. Không có lỗi.
+>
+> 2. **Cận dưới đúng (S02-05):** "cận dưới đúng" — đúng, g(λ)≤p* với λ≥0 là cận dưới của giá trị tối ưu, không nhầm với cực tiểu. ✓
+>
+> 3. **Đối ngẫu yếu (S02-06):** "không cần giả thiết lồi" — đúng. ✓
+>
+> 4. **Slater (S03-03):** "lồi, miền toàn không gian, điểm khả thi nghiêm" — khớp Slater cơ bản; nội tương đối để mở rộng đúng như ghi dòng 13. ✓
+>
+> 5. **Thứ tự mạch KKT:** S05-01 minh họa cân bằng gradient tại ví dụ trước S05-03 (bốn nhóm); S05-04 giải ứng viên trước S05-05 (bảng cần/đủ), rồi S05-06 ứng dụng, S05-07 bài tập — đúng trình tự yêu cầu. ✓
+>
+> 6. **Độ nhạy (S06-01, S06-03):** là của **giá trị tối ưu** — đúng. ✓
+>
+> **Cần nhớ khi soạn chi tiết (không phải lỗi):** S05-05 cần nêu rõ KKT cần cho bài toán bất kỳ với điều kiện ràng buộc phù hợp, đủ khi lồi; S03-05 phản ví dụ phải phân biệt đủ vs. đối ngẫu mạnh vs. đạt nghiệm đối ngẫu.
+
+### Phản biện học thuật và giảng dạy
+
+Runtime: requested_model `z-ai/glm-5.3-flash`; observed_model `z-ai/glm-5.3-flash`; provider `OpenRouter`.
+
+> **Kết quả rà độc lập KHUNG outline.md (chỉ đọc tệp được phép): ĐẠT trong phạm vi skeleton.**
+>
+> **Kiểm định cấu trúc**
+> - Đúng 36 trang / 7 mạch: 3+8+6+4+7+5+3 = 36 (dòng 17–86), khớp storyboard đã duyệt.
+> - Mỗi trang chỉ có tiêu đề + một TODO; không có công thức, hình, lời giải hay ghi chú diễn giả — đúng yêu cầu khung (dòng 3, 9). Ví dụ xuyên suốt chỉ ghi chú nội bộ khi soạn (dòng 12), không lộ lên khung.
+>
+> **Chu trình pedagogy — hợp lý**
+> - Mạch 2: nhu cầu (S02-01) → ví dụ (S02-02) → trực quan cận (S02-03) → hình thức Lagrange/đối ngẫu (S02-04/05) → đối ngẫu yếu (S02-06) → ứng dụng/bài tập (S02-07/08). Đúng trình tự.
+> - Mạch KKT: S05-01 minh họa cân bằng gradient **trước** S05-03 bốn nhóm; S05-04 giải ứng viên **trước** S05-05 phân loại cần/đủ; rồi S05-06 ứng dụng hồi quy, S05-07 bài tập. Đúng thứ tự yêu cầu.
+> - Độ nhạy nhắm đúng giá trị tối ưu: S06-01 "thay đổi giá trị tối ưu", S06-03 xấp xỉ cục bộ, S06-05 bài tập ước lượng giá trị.
+>
+> **Slater — đúng phạm vi**
+> - S03-03: Slater cơ bản (lồi, miền toàn không gian, điểm khả thi nghiêm). Nội tương đối/tập mở rộng chỉ đặt ở đọc mở rộng (dòng 13) — phù hợp, không mở rộng sớm.
+>
+> **Điều cần nhớ khi soạn (không phải lỗi khung)**
+> 1. S05-05: tách rõ KKT cần (điều kiện thường) và đủ (lồi) — TODO hiện gộp chung.
+> 2. S06-03: nêu rõ giả thiết khả vi nghiêm cho xấp xỉ độ nhạy.
+> 3. S03-05 phản ví dụ: giữ phân biệt "đối ngẫu mạnh" với "đạt nghiệm đối ngẫu".
+>
+> Không có lỗi chặn; không xác nhận đã xem HTML/trình duyệt.
+
+### Mạch kể chuyện và điểm kết nối
+
+Runtime: requested_model `z-ai/glm-5.3-flash`; observed_model `z-ai/glm-5.3-flash`; provider `OpenRouter`.
+
+> **ĐẠT trong phạm vi skeleton** (không có lỗi chặn) — chỉ đọc `2627-1/planning/lec-03/outline.md`, không xem HTML/trình duyệt, không sửa tệp.
+>
+> Kiểm định theo yêu cầu:
+>
+> 1. **36 trang / 7 mạch**: 3+8+6+4+7+5+3 = 36 trang, 7 mạch có chức năng, đầu vào/đầu ra riêng (mở đầu → cận dưới → Slater → hình học → KKT → độ nhạy → tổng hợp). Đạt.
+> 2. **Skeleton đúng yêu cầu**: mỗi trang chỉ tiêu đề + một TODO (dòng 3, 9); không có công thức/hình/lời giải trong khung; ví dụ $x^2+1$ chỉ ghi chú soạn nội bộ (dòng 12). Đạt.
+> 3. **Mạch KKT đúng thứ tự**: S05-01 minh họa cân bằng gradient tại ví dụ **trước** S05-03 bốn nhóm; S05-04 giải ứng viên **trước** S05-05 bảng giả thiết cần/đủ; rồi S05-06 ứng dụng, S05-07 bài tập. Đạt.
+> 4. **Slater**: S03-03 nêu lồi, miền toàn không gian, đẳng thức affine (hàm ý "đẳng thức affine" qua "miền toàn không gian" — cần nhớ ghi rõ khi soạn), điểm khả thi nghiêm; nội tương đối đặt ở kế hoạch mở rộng (dòng 13). Đạt.
+> 5. **Độ nhạy**: S06-03/S06-05 nói về thay đổi **giá trị tối ưu**, đúng đối tượng. Đạt.
+> 6. **Kết luận thu hồi**: S07-01/S07-02 thu hồi vấn đề chứng nhận tối ưu bằng cận + KKT. Đạt.
+>
+> **Cần nhớ khi soạn (không phải lỗi)**: Slater cần nêu tường minh ràng buộc đẳng thức affine; S05-02 "ràng buộc hoạt động có nhân tử bằng không" nên đối chiếu với ví dụ $\lambda^*=2$ (ràng buộc hoạt động, nhân tử khác 0) để tránh hiểu nhầm bù trừ.
+
+### Quyết định của điều phối
+
+| Vấn đề | Trạng thái | Quyết định và bằng chứng |
+|---|---|---|
+| Writer nhầm cực tiểu/infimum, khả vi/khả thi, bốn nhóm KKT và độ nhạy của nghiệm | Đã sửa trước rà | HTML và outline dùng cận dưới đúng, điểm khả thi nghiêm, bốn nhóm đúng và thay đổi giá trị tối ưu. |
+| Reviewer giảng dạy đề nghị “khả vi nghiêm” | Không áp dụng | Khi soạn, dùng khả vi của hàm giá trị cùng đối ngẫu mạnh và nhân tử tối ưu; không có giả thiết “khả vi nghiêm”. |
+| Reviewer mạch kể chuyện suy đẳng thức affine từ miền toàn không gian | Bác bỏ suy luận | Hai giả thiết độc lập. Phát biểu Slater khi soạn phải ghi riêng hàm lồi hữu hạn và đẳng thức affine. |
+| Reviewer toán mô tả cận dưới đúng chỉ bằng bất đẳng thức cận | Làm rõ | Cận dưới đúng ở S02-05 nghĩa là infimum của hàm Lagrange theo biến gốc; không phải cận tùy ý hoặc cực tiểu mặc nhiên đạt. |
+| Giảm từ 41 xuống 36 trang | Đã duyệt | Storyboard có ánh xạ và quyết định gộp/tách/mở rộng. Không đổi tuyến sau năm lượt rà. |
+
+## Kiểm định kỹ thuật phiên bản khung
+
+- HTML tiếng Việt có 7 section ngoài, 36 section trong, 36 ID duy nhất; mỗi trang đúng một h1/h2 và một đoạn TODO. Trang đầu là tiêu đề Bài 03. Không còn aside, công thức, ảnh, bảng hoặc lời giải cũ trong deck.
+- Mỗi ID có đúng một hàng trong bảng vai trò storyboard; outline khớp thứ tự 36 tiêu đề/TODO.
+- CSS riêng Bài 03 trích nguyên các quy tắc đang dùng từ Bài 02 tại máy. Giữ CSS chung học kỳ và runtime cục bộ; không liên kết CSS riêng Bài 02 hoặc runtime khác học phần.
+- Giữ cấu hình 1280×720, margin 0.06, controlsLayout edges, slideNumber, hashOneBasedIndex, hash, transition none, scrollActivationWidth null và KaTeX/Notes/Highlight cục bộ.
+- Đã chạy python3 -m reloadserver 8765; cổng đang có máy chủ của kho nên dùng lại, không đổi cổng.
+- Chromium duyệt 36/36 trang ở 1280×720 và 390×844: không tràn khỏi canvas, không lỗi JavaScript hoặc tài nguyên HTTP. Đã xem bảng ảnh toàn bộ trang và ảnh riêng tiêu đề/KKT/màn hình hẹp.
+- Phép đo kiểm tra vùng chữ so với canvas thực tế, không nhầm nét chữ vượt line box với cắt nội dung. Không sửa CSS hoặc giảm chữ để che lỗi.
+- Space đi liên tục đủ 36 trang; Home về mạch đầu, giữ vị trí dọc theo RevealJS; ArrowDown/ArrowRight và hash tới Slater đúng trang.
+- Index ghi đang dựng khung, không công bố khung như bài hoàn chỉnh. Ghi chú cũ có thông báo phiên bản; Markdown và SVG cũ không bị sửa. Chưa có bài tập công khai Bài 03.
+- Không tải thêm nguồn MIT, không tạo hình minh họa raster. 36 ảnh trong Codex Slides là ảnh kiểm định chụp từ RevealJS, không nhúng vào bài giảng.
+- Codex Slides: dự án 20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls lưu 36 tiêu đề/TODO và 36 ảnh tương ứng; đã tải HTML, CSS và outline vào Design Files. Browser tích hợp không có trong phiên; không tuyên bố đã xem trong Browser tích hợp.
+- Đã xác minh trực quan giao diện dàn ý Codex Slides bằng Chromium cục bộ: đủ 36 tiêu đề, trang đầu và TODO hiển thị đúng. Giao diện dự án vẫn ở bước dàn ý; không tuyên bố đã kiểm tra chế độ Play của Codex Slides.
+- Máy chủ có sẵn sau đó ngừng; đã khởi động lại đúng lệnh tại cổng 8765.
+- Giới hạn: nội dung các TODO chưa được triển khai theo đúng yêu cầu khung; ghi chú học tập chưa được viết lại.
+
+## Hồ sơ phiên bản cũ — chỉ để truy nguyên
+
+Các phát biểu “hiện tại”, số trang và kết quả kiểm tra bên dưới chỉ áp dụng cho bản trước ngày 2026-09-11. Không dùng làm bằng chứng cho khung mới.
+
+## Nhật ký trước khi dựng lại
 
 ## Hậu kiểm mạch khái niệm và phạm vi định lý — 2026-09-01
 

@@ -1,91 +1,95 @@
-# Dàn ý Bài giảng 03 — Đối ngẫu Lagrange
+# Dàn ý Bài 03 — Khung Đối ngẫu Lagrange
 
-## 1. Phạm vi và chuẩn đầu ra
+**Trạng thái:** khung theo yêu cầu ngày 2026-09-11; 36 trang, 7 mạch. Mỗi trang chỉ có tiêu đề và một TODO hiển thị. Chưa phải bài giảng hoàn chỉnh.
 
-- Buổi 3, 2 tiết lý thuyết và 1 tiết bài tập; 41 trang, 7 mạch P/A/B/C/D/E/Z.
-- LLO4, nguyên văn đề cương: “Hiểu được hàm đối ngẫu và bài toán đối ngẫu Lagrange”.
-- LLO5, nguyên văn đề cương: “Thể hiện được minh họa hình học của hàm đối ngẫu”.
-- Sản phẩm bổ trợ: kiểm tra Slater/KKT và diễn giải độ nhạy; các sản phẩm này phục vụ CLO1 nhưng không thay nội dung LLO4–5.
-- Đóng góp CLO1: hiểu, đánh giá và vận dụng chứng nhận tối ưu vào bài toán cụ thể.
-- Vấn đề trung tâm: khi chưa biết nghiệm tối ưu, xây một cận kiểm chứng được, xác định khi cận khít, rồi chuyển cận thành điều kiện tối ưu và thông tin độ nhạy.
+## Phạm vi và mẫu
 
-## 2. Quy ước và ví dụ xuyên suốt
+- Buổi 3 theo đề cương DOCX chính thức; LLO4: hiểu hàm và bài toán đối ngẫu Lagrange; LLO5: thể hiện minh họa hình học của hàm đối ngẫu; liên quan CLO1.
+- Bài 02 là mẫu cấu trúc và phong cách theo yêu cầu mới: section ngoài cho mạch, section trong cho trang, trang tiêu đề nằm đầu mạch thứ nhất; giữ kiểu chữ, màu, chân trang và cấu hình RevealJS.
+- Ưu tiên yêu cầu khung: bỏ toàn bộ nội dung và ghi chú diễn giả cũ trong HTML; chưa thêm hình, công thức, lời giải hoặc ghi chú bài giảng mới.
+- Đề cương phân bổ 2 tiết lý thuyết và 1 tiết bài tập cho buổi; thời lượng chi tiết chỉ là dự kiến nội bộ khi phát triển nội dung.
+- Vấn đề trung tâm: tạo cận dưới, nhận biết khi cận khít và dùng kết quả để chứng nhận nghiệm tối ưu.
+- Ví dụ cho giai đoạn soạn: $\min_x x^2+1$ với $(x-2)(x-4)\le0$; $x^*=2$, $p^*=5$, $\lambda^*=2$. Không đưa công thức lên khung.
+- Nội tương đối, tập mở rộng và bao đóng, nón pháp tuyến, dưới gradient, điểm yên ngựa và đối ngẫu theo nón đặt trong kế hoạch đọc mở rộng cuối bài.
 
-$$
-\min_{x\in\mathbb R} f_0(x)=x^2+1
-\quad\text{với}\quad
-f_1(x)=(x-2)(x-4)\le0.
-$$
+## Danh sách mạch và trang
 
-- $\mathcal F=[2,4]$, $x^*=2$, $p^*=5$.
-- $L(x,\lambda)=(1+\lambda)x^2-6\lambda x+1+8\lambda$.
-- $\operatorname{dom}g=(-1,\infty)$; bài toán đối ngẫu dùng $\lambda\ge0$.
-- $\lambda^*=2$, $d^*=5$, $p^*-d^*=0$; Slater tại $x=3$.
-- Với nhiễu $f_1(x)\le u$, $p'(0)=-2=-\lambda^*$.
+### 1. Mở đầu — 3 trang
 
-## 3. Tuyến 41 trang
+| Mã | Tiêu đề | Việc cần soạn |
+|---|---|---|
+| S01-01 | Bài 03: Đối ngẫu Lagrange | TODO: Giới thiệu học phần, đơn vị phụ trách và chủ đề đối ngẫu Lagrange. |
+| S01-02 | Mục tiêu học tập | TODO: Nêu tiên quyết và mục tiêu giải thích cận dưới, đọc hình, kiểm tra điều kiện tối ưu. |
+| S01-03 | Nội dung chính | TODO: Nối các mạch cận dưới, đối ngẫu mạnh, hình học, điều kiện tối ưu và độ nhạy. |
 
-| Mạch | Trang | Luận điểm trung tâm | Vai trò |
-|---|---|---|---|
-| P | P00 | Đối ngẫu Lagrange là chủ đề của Buổi 3 | định danh |
-| P | P01 | Bài dùng lại dạng chuẩn, tính lồi, gradient, nón và thứ tự theo nón; nội tương đối, dưới gradient và nón đối ngẫu sẽ được định nghĩa tại chỗ | tiên quyết |
-| P | P02 | Nêu LLO4–5 trực tiếp; nối Slater, KKT và độ nhạy bằng vai trò toán học thay cho nhãn biên soạn | mục tiêu |
-| P | P03 | Chuỗi cận → khít → hình học → KKT → độ nhạy giải quyết vấn đề trung tâm | bản đồ lập luận |
-| A | A01 | Nghiệm ứng viên chưa phải là chứng nhận nếu chưa có cận | nhu cầu |
-| A | A02 | Ví dụ xuyên suốt xác lập $f_0,f_1,\mathcal F,x^*,p^*$ | ví dụ dẫn nhập |
-| A | A03 | Cực tiểu hóa $L(\cdot,\lambda)$ tạo một họ cận dưới | trực quan |
-| A | A04 | Với $\varnothing\ne D\subseteq\mathbb R^n$, định nghĩa $L$ cho mọi nhân tử thực; dấu $\lambda\ge0$ bảo đảm $L\le f_0$ tại điểm khả thi và tạo cận dưới sau khi lấy infimum trên $D$ | hình thức |
-| A | A05 | Hàm đối ngẫu là infimum của các hàm affine theo nhân tử nên lõm | hình thức |
-| A | A06 | Ví dụ cho $\operatorname{dom}g=(-1,\infty)$ và công thức $g(\lambda)$ | tính toán |
-| A | A07 | Đối ngẫu yếu theo sau từ chuỗi $f_0(x)\ge L\ge g$ | chứng minh |
-| A | A08 | Bài toán đối ngẫu chọn cận tốt nhất; QP chuyển giao cho $\lambda^*=1$, $x^*=(1/2,1/2)$ | ứng dụng/bài tập |
-| B | B01 | Khoảng $p^*-d^*$ đo trực tiếp độ lỏng của cận; tính lồi chưa đủ để bảo đảm khoảng bằng không | nhu cầu |
-| B | B03 | Ví dụ đạt cực đại tại $\lambda^*=2$, $d^*=5$ | ví dụ |
-| B | B02 | Đặt tên đối ngẫu yếu, mạnh và khoảng sau khi quan sát ví dụ khít | hình thức |
-| B | B04 | Định nghĩa nội tương đối là nội trong bao affine, rồi dùng $\operatorname{relint}D$ trong Slater tinh chỉnh | định lý |
-| B | B05 | Điểm $x=3$ áp Slater và đóng khoảng đối ngẫu | ứng dụng |
-| B | B06 | Phân loại giả thiết trước khi kết luận đối ngẫu mạnh | bài tập |
-| C | C01 | LLO5 cần giải thích hình học của cận thay vì chỉ đọc công thức | nhu cầu |
-| C | C03 | Với $u=f_1(x)$, $t=f_0(x)$, đường cận $t+\lambda u=g(\lambda)$ nằm dưới mọi cặp giá trị và có tung độ cắt $g(\lambda)$ | trực quan/ví dụ |
-| C | C02 | Hình thức hóa họ điểm vừa quan sát thành tập giá trị $\mathcal G$ | hình thức nền |
-| C | C04 | Tập mở rộng $\mathcal A$ cho $(0,p^*)\in\operatorname{bd}(\operatorname{cl}\mathcal A)$ khi $p^*$ hữu hạn; dùng bao đóng nếu infimum không đạt | hình thức |
-| C | C05 | Hệ số góc $-\lambda^*$, pháp tuyến $(\lambda^*,1)$ và hạng $\lambda^*\nabla f$ của ràng buộc khít nối hình học với KKT mà chưa dùng thuật ngữ “hoạt động” | ứng dụng |
-| C | C06 | Đọc đường đỡ để xác định $g(\lambda)$, $p^*$ và độ khít | bài tập LLO5 |
-| C | C07 | Điểm yên ngựa của $L$: cực đại theo nhân tử, cực tiểu theo biến gốc; tương đương nghiệm gốc–đối ngẫu đều đạt và $p^*=d^*$ | hình thức/cầu nối KKT |
-| D | D01 | Cần hệ điều kiện cục bộ thay cho việc so sánh $f_0$ với mọi điểm khả thi; chỉ nói các ràng buộc khít tại nghiệm | nhu cầu |
-| D | D05 | Trước khi định nghĩa ràng buộc hoạt động và nón pháp tuyến, dùng $\nabla_xL=0$ cho hai ứng viên nằm trên biên $f_1(x)=0$ | ví dụ dẫn nhập |
-| D | D02 | Định nghĩa ràng buộc hoạt động rồi dùng bù trừ để nối trạng thái biên với nhân tử | trực quan/hình thức |
-| D | D03 | KKT gồm đúng bốn nhóm; điều kiện dừng tổng quát là $0\in\nabla_xL(x^*,\lambda^*,\nu^*)+N_D(x^*)$ | hình thức |
-| D | D04 | Phiên bản KKT đang dùng chỉ áp dụng cho $D$ lồi, bất đẳng thức lồi khả vi và đẳng thức affine; Slater bảo đảm nhân tử cho tính cần, còn tính lồi cho tính đủ | giới hạn |
-| D | D06 | KKT diễn giải đánh đổi trong hồi quy có ràng buộc chuẩn | ứng dụng AI |
-| D | D07 | Dùng kết quả QP ở A08 để chỉ kiểm tra Slater, bốn nhóm KKT và giả thiết kết luận | bài tập |
-| E | E01 | Nới hoặc siết vế phải làm đổi giá trị tối ưu; nhân tử cho cận và, khi khả vi, độ dốc cục bộ | nhu cầu |
-| E | E02 | Nới $u$ trong ví dụ làm miền khả thi rộng hơn và $p^*(u)$ giảm | ví dụ/trực quan |
-| E | E03 | Định nghĩa tổng quát $p^*(u,v)$ và cận toàn cục | hình thức/định lý |
-| E | E04 | Định nghĩa dưới gradient bằng bất đẳng thức đường đỡ; đối ngẫu mạnh và đạt nghiệm cho $(-\lambda^*,-\nu^*)\in\partial p^*(0,0)$ | hình thức/giới hạn |
-| E | E05 | Áp dụng đầy đủ: $\lambda^*(0)=2$; tại $u=8$ ràng buộc hoạt động nhưng nhân tử bằng 0; với $u>8$ ràng buộc không hoạt động | ứng dụng |
-| E | E06 | Dùng cùng khuôn với lecture note: $f(x)\preceq_K0$, $\lambda\in K^*$, rồi chuyên biệt $F(x)\in\mathbb S^r$, $Z\in\mathbb S_+^r$ và $\langle Z,F(x)\rangle=\operatorname{tr}(ZF(x))$ | mở rộng/bài tập |
-| Z | Z01 | Chuỗi cận → khít → hình học → KKT → độ nhạy, kèm cầu nối nhân tử theo nón, trả lời P03 | tổng kết |
-| Z | Z02 | Tự kiểm tra công thức, giả thiết, hình học, KKT và tính một xấp xỉ độ nhạy | đánh giá/bài tập E |
-| Z | Z03 | Nguồn và cầu nối sang tối ưu không ràng buộc/có đẳng thức | chuyển tiếp |
+### 2. Hàm và bài toán đối ngẫu Lagrange — 8 trang
 
-## 4. Phân bổ nội bộ
+| Mã | Tiêu đề | Việc cần soạn |
+|---|---|---|
+| S02-01 | Hàm và bài toán đối ngẫu Lagrange | TODO: Nêu nhu cầu chứng nhận một nghiệm khả thi bằng cận dưới của giá trị tối ưu. |
+| S02-02 | Ví dụ tối ưu có ràng buộc | TODO: Giới thiệu ví dụ bậc hai xuyên suốt, miền khả thi và nghiệm ứng viên. |
+| S02-03 | Họ hàm tạo cận dưới | TODO: Vẽ họ hàm tạo cận và kiểm tra một cận cụ thể trên ví dụ. |
+| S02-04 | Hàm Lagrange | TODO: Định nghĩa hàm Lagrange, miền biến và quy ước dấu của các nhân tử. |
+| S02-05 | Hàm đối ngẫu | TODO: Định nghĩa hàm đối ngẫu bằng cận dưới đúng và tính trên ví dụ xuyên suốt. |
+| S02-06 | Đối ngẫu yếu | TODO: Chứng minh đối ngẫu yếu bằng chuỗi bất đẳng thức, không cần giả thiết lồi. |
+| S02-07 | Bài toán đối ngẫu | TODO: Chọn cận dưới tốt nhất trong ví dụ và phát biểu bài toán đối ngẫu. |
+| S02-08 | Bài tập xây dựng cận dưới | TODO: Giao bài tập tạo cận dưới và chứng nhận nghiệm cho một bài toán mới. |
 
-| Cụm | Lý thuyết | Bài tập |
-|---|---:|---:|
-| P và chuyển mạch | 0,15 tiết | 0,00 tiết |
-| A — hàm và bài toán đối ngẫu | 0,45 tiết | 0,15 tiết |
-| B — đối ngẫu mạnh và Slater | 0,30 tiết | 0,15 tiết |
-| C — hình học | 0,30 tiết | 0,15 tiết |
-| D — KKT | 0,40 tiết | 0,25 tiết |
-| E — độ nhạy và nón tổng quát | 0,30 tiết | 0,15 tiết |
-| Z — tổng hợp | 0,10 tiết | 0,15 tiết |
-| **Tổng** | **2,00 tiết** | **1,00 tiết** |
+### 3. Đối ngẫu mạnh và điều kiện Slater — 6 trang
 
-## 5. Nguồn và tài sản
+| Mã | Tiêu đề | Việc cần soạn |
+|---|---|---|
+| S03-01 | Đối ngẫu mạnh và điều kiện Slater | TODO: Minh họa khoảng giữa cận dưới và giá trị tối ưu; nêu nhu cầu bảo đảm cận khít. |
+| S03-02 | Cận khít trong ví dụ | TODO: Tìm nhân tử cho cận khít trong ví dụ và đặt tên đối ngẫu mạnh. |
+| S03-03 | Điều kiện Slater | TODO: Phát biểu Slater với giả thiết lồi, miền toàn không gian và điểm khả thi nghiêm. |
+| S03-04 | Kiểm tra điều kiện Slater | TODO: Tìm điểm thỏa Slater trong ví dụ và phân biệt điểm này với nghiệm tối ưu. |
+| S03-05 | Giới hạn của điều kiện Slater | TODO: Dùng phản ví dụ phân biệt điều kiện đủ, đối ngẫu mạnh và sự đạt nghiệm đối ngẫu. |
+| S03-06 | Bài tập đối ngẫu mạnh và Slater | TODO: Giao bài tập kiểm tra Slater và xác định những kết luận được bảo đảm. |
 
-- Boyd và Vandenberghe (2004), *Convex Optimization*, Chương 5, trang sách 215–271.
-- Stephen Boyd, MIT 6.079/6.975, *Lecture 5: Duality* (2009), `sources/dual.pdf`; CC BY-NC-SA 4.0; chỉ dùng làm trục thứ tự và nguồn nội dung.
-- `sources/Bài tập chương 4.pdf` cùng lời giải PDF để đối chiếu; mọi kết quả được tính lại theo `math-spec.md`.
-- Đề cương chính thức và `sources/part1.docx` xác định phạm vi, LLO/CLO và chế độ nghiêm ngặt.
-- Sáu SVG cục bộ của Bài 03 gồm năm hình tự vẽ cho Lagrangian, hàm đối ngẫu, tập giá trị, KKT, độ nhạy và một bản sao cục bộ của hình thứ tự theo nón đã dùng ở Bài 02. Lecture note không còn phụ thuộc đường dẫn ảnh của bài khác.
+### 4. Hình học của đối ngẫu — 4 trang
+
+| Mã | Tiêu đề | Việc cần soạn |
+|---|---|---|
+| S04-01 | Hình học của đối ngẫu | TODO: Nêu nhu cầu đọc cận bằng hình và đổi tọa độ trên các điểm của ví dụ. |
+| S04-02 | Đường cận trong mặt phẳng giá trị | TODO: Vẽ tập giá trị và đường cận; giải thích hệ số góc và tung độ cắt. |
+| S04-03 | Tiếp xúc và đối ngẫu mạnh | TODO: Liên hệ đường cận khít với giá trị tối ưu và điều kiện tiếp xúc trong ví dụ. |
+| S04-04 | Bài tập đọc hình đối ngẫu | TODO: Giao bài tập đọc cận, nhân tử và khoảng đối ngẫu từ hình. |
+
+### 5. Điều kiện Karush–Kuhn–Tucker (KKT) — 7 trang
+
+| Mã | Tiêu đề | Việc cần soạn |
+|---|---|---|
+| S05-01 | Điều kiện Karush–Kuhn–Tucker (KKT) | TODO: Suy điều kiện tối ưu từ cận khít; minh họa cân bằng gradient trong ví dụ. |
+| S05-02 | Ràng buộc hoạt động và bù trừ | TODO: Giải thích bù trừ và kiểm tra trường hợp ràng buộc hoạt động có nhân tử bằng không. |
+| S05-03 | Bốn nhóm điều kiện KKT | TODO: Trình bày khả thi gốc, khả thi đối ngẫu, bù trừ và dừng trong trường hợp khả vi. |
+| S05-04 | Giải ví dụ bằng KKT | TODO: Giải các trường hợp của ví dụ và loại ứng viên vi phạm tính khả thi hoặc dấu nhân tử. |
+| S05-05 | Điều kiện cần và điều kiện đủ | TODO: Nêu giả thiết cho tính cần và tính đủ; phân biệt bài toán lồi với phi lồi. |
+| S05-06 | KKT trong hồi quy có ràng buộc | TODO: Áp dụng KKT cho hồi quy có ràng buộc chuẩn và kiểm tra điều kiện Slater. |
+| S05-07 | Bài tập kiểm tra nghiệm tối ưu | TODO: Giao bài tập kiểm tra bốn nhóm KKT và biện minh kết luận tối ưu. |
+
+### 6. Nhân tử và độ nhạy — 5 trang
+
+| Mã | Tiêu đề | Việc cần soạn |
+|---|---|---|
+| S06-01 | Nhân tử và độ nhạy | TODO: Nêu nhu cầu dự đoán thay đổi giá trị tối ưu khi nới hoặc siết ràng buộc. |
+| S06-02 | Nới ràng buộc trong ví dụ | TODO: Vẽ miền khả thi và tính giá trị tối ưu khi thay đổi ràng buộc trong ví dụ. |
+| S06-03 | Hàm giá trị và độ nhạy cục bộ | TODO: Định nghĩa hàm giá trị, nêu giả thiết khả vi và diễn giải xấp xỉ cục bộ bằng nhân tử. |
+| S06-04 | Diễn giải nhân tử trong hồi quy | TODO: Ước lượng thay đổi mất mát tối ưu khi nới giới hạn chuẩn trong hồi quy. |
+| S06-05 | Bài tập độ nhạy | TODO: Giao bài tập ước lượng thay đổi giá trị tối ưu và kiểm tra giới hạn của xấp xỉ. |
+
+### 7. Tổng hợp và vận dụng — 3 trang
+
+| Mã | Tiêu đề | Việc cần soạn |
+|---|---|---|
+| S07-01 | Tổng hợp và vận dụng | TODO: Tổng hợp cách tạo cận, kiểm tra Slater, dùng KKT và diễn giải nhân tử. |
+| S07-02 | Bài tập tổng hợp | TODO: Giao bài tập tích hợp mô hình hóa, cận đối ngẫu và chứng nhận tối ưu. |
+| S07-03 | Tài liệu và nội dung mở rộng | TODO: Ghi nguồn đọc, nội dung mở rộng và kiến thức dùng tiếp ở bài sau. |
+
+## Nguồn và trạng thái tài liệu
+
+- `sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx`: phạm vi, LLO/CLO và đánh giá; đã đọc ở bước nghiên cứu.
+- `2627-1/lecture-02-cac-bai-toan-toi-uu-loi.html`, `lecture-02-style.css`: mẫu bố cục và phong cách, chỉ phân tích tại máy.
+- Boyd và Vandenberghe (2004), *Convex Optimization*, Chương 5: nguồn nội dung khi soạn chi tiết; [trang giáo trình chính thức](https://web.stanford.edu/~boyd/cvxbook/).
+- `sources/dual.pdf`: nguồn thứ tự khái niệm cũ; `sources/Bài tập chương 4.pdf`: nguồn ví dụ. Không tải thêm nguồn MIT.
+- `source-map.md`, `math-spec.md`, `plan.md` trong thư mục này là hồ sơ phiên bản trước; ánh xạ khung hiện hành nằm trong `storyboard.md`.
+- Ghi chú công khai hiện có thuộc phiên bản trước. Chưa có tệp bài tập công khai Bài 03; không tạo lại trong nhiệm vụ khung.
