@@ -961,3 +961,21 @@ Kiểm định cuối:
 - Đã dùng công cụ Codex Slides để sửa cấu trúc, tải ảnh và ghi chú; phần ảnh còn lại được tải tuần tự qua chính API PNG cục bộ của plugin sau khi đọc mã nguồn xác minh chỉ lưu ảnh/phiên bản, không gọi mô hình. Design Files HTML, ghi chú, bài tập, outline và storyboard được cập nhật. Rà trực quan bằng Chromium cục bộ, không tuyên bố dùng Browser trong trình soạn thảo.
 
 Chỉ commit cục bộ; không push theo yêu cầu người dùng.
+
+## 2026-09-12 — Hai trang chứng minh: tính lõm và định lý Slater
+
+Theo hai yêu cầu liên tiếp của người dùng, thêm S02-05c ngay sau định nghĩa hàm đối ngẫu và S03-03a ngay sau phát biểu Slater. Bộ trang chiếu tăng từ 42 lên 44 trang, giữ 6 mạch, giao diện và các mã liên kết cũ. Dàn ý, storyboard và ghi chú bài giảng đồng bộ; đã rà bài tập, không phát sinh thay đổi giả thiết hoặc kỹ thuật cần thêm vào bài giao.
+
+- Tính lõm: dùng tính affine của L theo nhân tử ở mỗi x cố định, lấy infimum của bất đẳng thức. Nêu hai giá trị g hữu hạn để tránh phép toán vô cùng không xác định; không cần bài toán gốc lồi. Nguồn nội dung: Boyd và Vandenberghe (2004), mục 5.1.2, trang 216, bản giáo trình đã có.
+- Slater: áp dụng định lý tách hai tập lồi, dùng khả thi nghiêm để loại hệ số mục tiêu bằng 0, chuẩn hóa rồi dùng đối ngẫu yếu. Đầy đủ định nghĩa hai tập, dấu hệ số, xử lý hàng đẳng thức phụ thuộc và khôi phục nhân tử nằm trong ghi chú. Không giả định bài toán gốc đạt nghiệm. Nguồn nội dung: cùng giáo trình, mục 2.5.1 và 5.3.2, trang 235–236. Bổ đề tách được phát biểu và sử dụng, không chứng minh lại bổ đề.
+- Vai trò mẫu: Lecture 02 tiếp tục quyết định cách chia phần và phong cách; giáo trình là nguồn toán học, không thay thế mẫu bố cục. Không tải tài nguyên MIT mới.
+
+Quy trình OpenRouter: mỗi nội dung có reader lập kế hoạch, writer đề xuất và sáu reviewer độc lập theo vai trò storyboard, toán học, sinh viên, giảng viên, biên tập, kỹ thuật. Các lượt đều trả mã 0, requested_model và observed_model đều là z-ai/glm-5.3-flash, provider OpenRouter. Bằng chứng tạm ở /tmp/lec03-concavity/ (plan, writer, review-0–5; slater-plan, slater-writer, slater-review-0–5).
+
+Điều phối viên sửa các lỗi trong đề xuất trước khi triển khai: không tách infimum của tổng thành tổng infimum bằng dấu bằng; không khẳng định điều kiện dấu bằng đòi hỏi cùng điểm đạt infimum. Với Slater, bác nhận xét sai rằng bỏ các hàng phụ thuộc có thể đổi miền khả thi khi hệ nhất quán; không suy tính lồi của ảnh một ánh xạ lồi; dấu hệ số đến từ khả năng tăng các tọa độ của tập C. Chứng minh cuối dùng tổ hợp lồi của các điểm chứng và lập luận tách đúng.
+
+Rà độc lập xác nhận lập luận cuối đúng. Theo góp ý, ghi tên định lý tách trên mặt trang và sửa câu chuẩn hóa trong ghi chú. Các lý do của chuỗi mâu thuẫn được diễn giải đầy đủ trong ghi chú, không thêm một chu trình ví dụ lặp lại. Góp ý kỹ thuật giả định bố cục hai cột không áp dụng: trang dùng một cột, ghi chú ẩn theo RevealNotes. Lần chụp đầu phát hiện câu kết lặp bị tràn; đã bỏ câu này vì chuỗi đẳng thức ngay trên đã thể hiện kết luận, không thu nhỏ chữ.
+
+Một lần kiểm duyệt tự động ban đầu từ chối lệnh rà qua OpenRouter vì hiểu phạm vi gửi chỉ gồm outline.md. Sau khi đọc quyền rõ ràng tại AGENTS.md cho phép worker gửi nội dung workspace trừ .env, đã kiểm tra script và gửi lại cùng hành động với dẫn chứng quyền; kiểm duyệt chấp thuận và chạy thành công. Không đọc hoặc gửi nội dung .env, không còn phần việc bị chặn.
+
+Kiểm định bản cuối: 44 trang × 2 khung 1280×720 và 390×844, không tràn, không lỗi KaTeX, ảnh, JavaScript hoặc tải tài nguyên; phím Space đi đúng tuyến. Ghi chú bài giảng và bài tập hiển thị công thức, không tràn ngang ở cả hai khung. Codex Slides ở giai đoạn deck có đủ 44 trang; đối chiếu 44 tiêu đề, ghi chú và SHA-256 ảnh đều khớp RevealJS. Play mở đúng chứng minh Slater, phím mũi tên sang trang kiểm tra Slater và trở lại. HTML, ghi chú, outline và storyboard đã cập nhật trong Design Files. Rà trực quan bằng Chromium cục bộ; không có Browser trong trình soạn thảo để kiểm tra bằng bề mặt đó. Bằng chứng tạm: verification.json, audit.json, shots/ và plugin-play.png trong /tmp/lec03-concavity/. git diff --check đạt. Chỉ commit cục bộ, không push.

@@ -73,6 +73,27 @@ Ký hiệu $\inf$ chỉ cận dưới lớn nhất. Nó bằng giá trị nhỏ 
 
 Khi tính $g$, ta tối ưu theo $x$ trên **toàn miền ban đầu của các hàm**, không áp lại $f_i(x)\le0$ hoặc $Ax=b$. Trong bài này, miền đó là $\mathbb R^n$. Với các hàm chỉ xác định trên miền $D$, phải thay bằng $\inf_{x\in D}$; các phát biểu Slater tổng quát cũng phải xét miền $D$.
 
+**Mệnh đề: tính lõm của hàm đối ngẫu.** Viết $\theta=(\lambda,\nu)$, $g(\theta)=\inf_x L(x,\theta)$. Hàm $g$ lõm theo nhân tử, kể cả khi bài toán gốc không lồi.
+
+::: proof
+Chọn hai bộ nhân tử $\theta_a,\theta_b$ có giá trị $g$ hữu hạn và $\alpha\in[0,1]$. Đặt $\theta_\alpha=\alpha\theta_a+(1-\alpha)\theta_b$. Với mỗi $x$ cố định, $L$ affine theo nhân tử, nên
+
+$$
+\begin{aligned}
+L(x,\theta_\alpha)&=\alpha L(x,\theta_a)+(1-\alpha)L(x,\theta_b)\\
+&\ge\alpha g(\theta_a)+(1-\alpha)g(\theta_b).
+\end{aligned}
+$$
+
+Bất đẳng thức dùng $L(x,\theta_a)\ge g(\theta_a)$, $L(x,\theta_b)\ge g(\theta_b)$ và trọng số không âm. Vế phải không phụ thuộc $x$, nên lấy infimum vế trái cho
+
+$$
+g(\theta_\alpha)\ge\alpha g(\theta_a)+(1-\alpha)g(\theta_b).
+$$
+
+Đây là bất đẳng thức tính lõm. Không tách infimum của tổng thành tổng các infimum bằng dấu bằng. Chứng minh không cần tính lồi theo $x$ hay điều kiện Slater. Giá trị $g$ có thể là $-\infty$ ngoài miền hữu hiệu; cách viết với hai giá trị hữu hạn tránh phép toán không xác định với vô cùng. Nguồn: Boyd và Vandenberghe (2004), mục 5.1.2, trang 216.
+:::
+
 ### 2.4. Tính hàm đối ngẫu trong ví dụ
 
 ::: derivation
@@ -134,14 +155,7 @@ $$
 
 với $p^*=\inf\{f_0(x):x\text{ khả thi}\}$. Dùng $\sup$ để không giả định trước rằng đối ngẫu đạt nghiệm. Nếu đạt, có thể viết bài toán cực đại và gọi bộ nhân tử đạt giá trị đó là nghiệm đối ngẫu.
 
-Hàm $g$ luôn lõm theo các nhân tử: với $x$ cố định, $L$ là hàm affine theo $(\lambda,\nu)$; cận dưới của họ hàm affine là hàm lõm. Cụ thể, với hai bộ nhân tử $z_1,z_2$ và $0\le\theta\le1$,
-
-$$
-\inf_x[\theta L(x,z_1)+(1-\theta)L(x,z_2)]
-\ge\theta\inf_xL(x,z_1)+(1-\theta)\inf_xL(x,z_2).
-$$
-
-Tính lõm không bảo đảm $g$ dễ tính, khả vi hoặc có cực đại đạt được.
+Tính lõm đã chứng minh ở trên giúp nhận dạng cấu trúc của bài toán đối ngẫu. Tính lõm không bảo đảm $g$ dễ tính, khả vi hoặc có cực đại đạt được.
 
 Trong ví dụ,
 
@@ -211,6 +225,38 @@ $$
 Đây là điều kiện đủ; không thỏa Slater không cho phép kết luận rằng đối ngẫu mạnh sai. Định lý cũng không tự bảo đảm bài toán gốc đạt nghiệm. Ví dụ $\min_{x\in\mathbb R}e^x$ có giá trị tối ưu $0$ nhưng không đạt; có thể thêm ràng buộc luôn nghiêm $-1\le0$ mà vẫn giữ hiện tượng này.
 
 Trực quan, điểm khả thi nghiêm tạo khoảng dư cho các bất đẳng thức. Trong hình học phân tách dùng để chứng minh định lý, khoảng dư ngăn hệ số của mục tiêu bị triệt tiêu, nhờ đó có thể chuẩn hóa thành các nhân tử hữu hạn. Chứng minh đầy đủ ở Boyd–Vandenberghe, §5.3.2; không cần kỹ thuật này để vận dụng bản định lý vừa nêu.
+
+::: proof
+**Ý tưởng.** Tách tập các mức đạt được khỏi các mức mục tiêu thấp hơn $p^*$. Điểm Slater bảo đảm có thể chuẩn hóa siêu phẳng tách thành các nhân tử Lagrange.
+
+**Chuẩn bị.** Các hàm $f_0,\ldots,f_m$ lồi, hữu hạn trên $\mathbb R^n$; $p^*$ hữu hạn. Vì điểm Slater thỏa $Ax=b$, hệ đẳng thức nhất quán. Giữ một tập hàng độc lập của $A$ và các phần tử tương ứng của $b$: các hàng bỏ đi là tổ hợp tuyến tính của các hàng giữ lại, với cùng tổ hợp ở vế phải. Miền khả thi không đổi. Tiếp tục gọi hệ rút gọn là $Ax=b$, với $A$ đủ hạng hàng. Nếu không có đẳng thức, bỏ các đại lượng $v,\beta,\nu$ dưới đây.
+
+**1. Tách hai tập lồi.** Đặt $f(x)=(f_1(x),\ldots,f_m(x))\in\mathbb R^m$, và giả sử hệ rút gọn có $r$ hàng. Xét
+
+$$C=\{(u,v,t)\in\mathbb R^m\times\mathbb R^r\times\mathbb R:\exists x,\ f(x)\le u,\ Ax-b=v,\ f_0(x)\le t\},$$
+
+$$B=\{(0,0,t):t<p^*\}.$$
+
+Tập $C$ lồi: lấy hai bộ có các điểm chứng $x_1,x_2$, tổ hợp lồi của hai điểm chứng thỏa các bất đẳng thức nhờ tính lồi của $f_i$, và thỏa đẳng thức nhờ tính affine của $Ax-b$. Tập $B$ lồi. Hai tập không giao nhau, vì một điểm chung sẽ cho điểm khả thi có mục tiêu nhỏ hơn $p^*$. Đây là lập luận dùng giá trị infimum, không cần nghiệm gốc đạt được.
+
+Dùng định lý tách hai tập lồi không giao nhau: tồn tại $(a,\beta,\mu)\ne0$ và $c\in\mathbb R$ sao cho
+
+$$a^Tu+\beta^Tv+\mu t\ge c\quad ((u,v,t)\in C),\qquad \mu t\le c\quad(t<p^*).$$
+
+Vì có thể tăng tùy ý từng tọa độ $u_i$ và $t$ trong $C$, ta phải có $a\ge0,\mu\ge0$. Cho $t\uparrow p^*$ trong bất đẳng thức trên $B$ được $c\ge\mu p^*$. Do $(f(x),Ax-b,f_0(x))\in C$, suy ra
+
+$$a^Tf(x)+\beta^T(Ax-b)+\mu f_0(x)\ge\mu p^*\qquad\forall x\in\mathbb R^n.$$
+
+**2. Điểm dùng Slater: $\mu>0$.** Giả sử $\mu=0$. Thay điểm Slater $\bar x$ vào bất đẳng thức tách cho $a^Tf(\bar x)\ge0$. Vì mọi $f_i(\bar x)<0$ và $a\ge0$, điều này buộc $a=0$. Khi đó $\beta^T(Ax-b)\ge0$ với mọi $x$. Nếu $A^T\beta\ne0$, chọn $x=-sA^T\beta$, $s\to+\infty$, làm vế trái tiến tới $-\infty$. Vậy $A^T\beta=0$. Do $A$ đủ hạng hàng, suy ra $\beta=0$, mâu thuẫn với $(a,\beta,\mu)\ne0$.
+
+**3. Chuẩn hóa và lấy infimum.** Đặt $\lambda=a/\mu\ge0$, $\nu=\beta/\mu$. Chia bất đẳng thức tách cho $\mu>0$, được $L(x,\lambda,\nu)\ge p^*$ với mọi $x$. Lấy infimum theo $x$, rồi dùng đối ngẫu yếu:
+
+$$p^*\le g(\lambda,\nu)\le d^*\le p^*.$$
+
+Vậy $d^*=p^*$ và bộ nhân tử này đạt nghiệm đối ngẫu. Với hệ đẳng thức ban đầu, đặt nhân tử của các hàng đã bỏ bằng $0$ để giữ nguyên hàm Lagrange. Chứng minh không khẳng định bài toán gốc đạt nghiệm.
+
+Nguồn: Boyd và Vandenberghe (2004), mục 2.5.1 (định lý tách) và mục 5.3.2, trang 235–236 (chứng minh Slater). Định lý tách được dùng như một bổ đề; chứng minh bổ đề không thuộc phạm vi bài này.
+:::
 
 ### 3.3. Kiểm tra trên ví dụ
 
@@ -411,4 +457,4 @@ Tự kiểm tra bằng cách giải bài $\min(x_1^2+x_2^2)$ với $x_1+x_2\ge1$
 - Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, chương 5: §5.1 hàm đối ngẫu, §5.2 bài toán đối ngẫu và Slater, §5.3 hình học, §5.5 điều kiện tối ưu. [Giáo trình và bản PDF chính thức](https://web.stanford.edu/~boyd/cvxbook/).
 - MIT OpenCourseWare, *6.079 Introduction to Convex Optimization*, Fall 2009, bài 5 về đối ngẫu; giảng viên Stephen Boyd và Pablo Parrilo. [Trang tài nguyên chính thức](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec05/). Dùng cho thứ tự khái niệm; các hình trong bài này được tự vẽ từ công thức, không cắt ảnh nguồn.
 
-Nội dung đọc mở rộng sau khi hoàn thành tuyến chính: Slater trên nội tương đối của miền xác định (§5.2.3), cách chứng minh bằng phân tách (§5.3.2), điểm yên ngựa (§5.4), và bất đẳng thức tổng quát theo nón (§5.9). Những phần này mở rộng phạm vi áp dụng; chúng không phải tiên quyết cho các bài tập cơ bản ở đây.
+Nội dung đọc mở rộng sau khi hoàn thành tuyến chính: Slater trên nội tương đối của miền xác định (§5.2.3), điểm yên ngựa (§5.4), và bất đẳng thức tổng quát theo nón (§5.9). Những phần này mở rộng phạm vi áp dụng; chúng không phải tiên quyết cho các bài tập cơ bản ở đây.
