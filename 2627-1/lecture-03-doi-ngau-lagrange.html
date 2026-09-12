@@ -18,159 +18,205 @@
     <section id="section-1">
       <section id="mach-1" data-slide-id="S01-01">
         <h1>Bài 03: Đối ngẫu Lagrange</h1>
-        <p class="box">TODO: Giới thiệu học phần, đơn vị phụ trách và chủ đề đối ngẫu Lagrange.</p>
+        <p>Cơ sở toán học cho AI</p><p>Trường Đại học Công nghệ, Đại học Quốc gia Hà Nội</p><p class="box">Chứng nhận nghiệm tối ưu bằng cận dưới.</p>
+        <aside class="notes"><p>Một nghiệm khả thi cho biết ta làm được đến đâu. Một cận dưới cho biết không thể làm tốt hơn mức nào. Khi hai giá trị bằng nhau, ta chứng nhận được tối ưu. Bài học xây dựng cách tạo cận, điều kiện để cận khít và hệ điều kiện tìm nghiệm. Ví dụ một chiều sẽ được dùng xuyên suốt, rồi chuyển sang hồi quy có ràng buộc. Nguồn: Boyd và Vandenberghe (2004), chương 5.</p></aside>
       </section>
       <section id="muc-tieu-hoc-tap" data-slide-id="S01-02">
         <h2>Mục tiêu học tập</h2>
-        <p class="box">TODO: Nêu tiên quyết và mục tiêu giải thích cận dưới, đọc hình, kiểm tra điều kiện tối ưu.</p>
+        <ul><li>Tính hàm đối ngẫu và dùng cận dưới chứng nhận tối ưu.</li><li>Kiểm tra Slater và nêu đúng kết luận được bảo đảm.</li><li>Đọc nhân tử và cận dưới trên hình.</li><li>Kiểm tra điều kiện tối ưu và diễn giải độ nhạy của giá trị tối ưu.</li></ul><p class="box">Tiên quyết: gradient, hàm lồi, hoàn thành bình phương.</p>
+        <aside class="notes"><p>Các mục tiêu tính hàm và bài toán đối ngẫu hỗ trợ chuẩn đầu ra bài học 4; đọc hình hỗ trợ chuẩn đầu ra bài học 5. Các bài tập kiểm tra việc vận dụng kiến thức tối ưu của chuẩn đầu ra học phần 1. Ôn ý nghĩa gradient và điều kiện gradient bằng không của một hàm lồi khả vi trên toàn không gian. Sinh viên sẽ cần phân biệt một nghiệm ứng viên với một nghiệm đã được chứng nhận. Nguồn: Boyd và Vandenberghe (2004), chương 5.</p></aside>
       </section>
       <section id="noi-dung-chinh" data-slide-id="S01-03">
         <h2>Nội dung chính</h2>
-        <p class="box">TODO: Nối các mạch cận dưới, đối ngẫu mạnh, hình học, điều kiện tối ưu và độ nhạy.</p>
+        <ol class="agenda"><li>Mở đầu.</li><li>Hàm và bài toán đối ngẫu Lagrange.</li><li>Đối ngẫu mạnh và điều kiện Slater.</li><li>Hình học của đối ngẫu.</li><li>Điều kiện Karush–Kuhn–Tucker (KKT).</li><li>Nhân tử và độ nhạy.</li><li>Tổng hợp và vận dụng.</li></ol>
+        <aside class="notes"><p>Trước hết ta cần một cận dưới cho giá trị tối ưu. Sau khi tạo cận, ta xét khi nào cận khít. Hình học giải thích cùng phép tính trong mặt phẳng giá trị; KKT khai thác các điều kiện xảy ra đẳng thức để tìm nghiệm trực tiếp. Cuối cùng, nhân tử còn dự báo tác động của việc nới ràng buộc. Mỗi phần có bài tập để kiểm tra bước lập luận vừa học. Nguồn: Boyd và Vandenberghe (2004), chương 5.</p></aside>
       </section>
     </section>
     <section id="section-2">
       <section id="mach-2" data-slide-id="S02-01">
         <h2>Hàm và bài toán đối ngẫu Lagrange</h2>
-        <p class="box">TODO: Nêu nhu cầu chứng nhận một nghiệm khả thi bằng cận dưới của giá trị tối ưu.</p>
+        <p>Một phương án khả thi có chi phí $5$.</p><p>Giả sử có cận dưới $4{,}5$. Gọi $p^*$ là giá trị tối ưu:</p><p class="math-large">$$4{,}5\le p^*\le5$$</p><p class="box">Phương án đã tìm chỉ còn có thể cải thiện tối đa $0{,}5$.</p>
+        <aside class="notes"><p>Đặt vấn đề bằng con số: nếu ta đề xuất phương án chi phí 5 và chứng minh được không phương án nào dưới 4.5, thì dù chưa tìm được tối ưu, ta biết sai số tối đa 0.5. Điểm dễ nhầm: nghiệm khả thi tốt nhất hiện có chưa phải là chứng nhận, vì có thể còn phương án tốt hơn chưa thấy; chỉ cận dưới mới khép được khoảng. Chuyển ý: vậy làm sao sinh ra cận dưới? Ta sẽ dùng một họ hàm phụ thuộc tham số. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="vi-du-toi-uu-co-rang-buoc" data-slide-id="S02-02">
         <h2>Ví dụ tối ưu có ràng buộc</h2>
-        <p class="box">TODO: Giới thiệu ví dụ bậc hai xuyên suốt, miền khả thi và nghiệm ứng viên.</p>
+        <div class="example-grid"><figure class="example-plot"><img src="img/lec-03/intro-feasible.svg" alt="Hàm mục tiêu trên đoạn khả thi [2,4], cực tiểu tại (2,5)."></figure><div><p>Với $x\in\mathbb R$:</p><p>$$\min_x\;f_0(x)=x^2+1$$</p><p>$$f_1(x)=(x-2)(x-4)\le0$$</p><p>Khả thi: $x\in[2,4]$.</p><p class="box">$x^*=2$, giá trị tối ưu $p^*=5$.</p></div></div>
+        <aside class="notes"><p>Đây là ví dụ chính xuyên suốt bài giảng. Ràng buộc $(x-2)(x-4)\le 0$ chính là $(x-3)^2-1\le 0$, tức $x\in[2,4]$. Trên đoạn này parabol $x^2+1$ đang tăng, nên nhỏ nhất tại đầu trái $x^*=2$, giá trị $p^*=5$. Lưu ý $x^*=2$ nằm trên biên, không phải điểm nội tại — điều này sẽ quan trọng khi nói ràng buộc hoạt động. Chuyển ý: bài này giải được bằng quan sát, nhưng ta muốn một quy trình tổng quát, và bước đầu là sinh cận dưới. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="ho-ham-tao-can-duoi" data-slide-id="S02-03">
         <h2>Họ hàm tạo cận dưới</h2>
-        <p class="box">TODO: Vẽ họ hàm tạo cận và kiểm tra một cận cụ thể trên ví dụ.</p>
+        <div class="example-grid"><figure class="example-plot"><img src="img/lec-03/bound-family.svg" alt="Họ hàm Lagrange nằm dưới mục tiêu trên miền khả thi; hai cực tiểu tạo cận 4,5 và 5."></figure><div><p>Với $\lambda\ge0$, đặt $L=f_0+\lambda f_1$.</p><p>Trên miền khả thi: $L\le f_0$.</p><p>Chọn $\lambda=1$:</p><p>$$L(x,1)=2(x-1{,}5)^2+4{,}5$$</p><p class="box">$f_0(x)\ge4{,}5$ với mọi $x$ khả thi.</p></div></div>
+        <aside class="notes"><p>Vì ràng buộc không dương trên đoạn khả thi và nhân tử không âm, cộng thêm hạng này chỉ làm giảm hoặc giữ nguyên giá trị. Hoàn thành bình phương cho cực tiểu của L bằng 4,5, đạt tại x bằng 1,5 trên toàn trục số. Điểm này không khả thi nhưng cận vẫn hợp lệ: mọi giá trị L đều ít nhất 4,5, và mục tiêu tại mỗi điểm khả thi còn lớn hơn hoặc bằng L. Hình cũng vẽ nhân tử 2 để chuẩn bị so sánh các cận. Tiếp theo ta đặt tên và tổng quát hóa phép xây dựng này. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="ham-lagrange" data-slide-id="S02-04">
         <h2>Hàm Lagrange</h2>
-        <p class="box">TODO: Định nghĩa hàm Lagrange, miền biến và quy ước dấu của các nhân tử.</p>
+        <p>$x\in\mathbb R^n$, $f_i:\mathbb R^n\to\mathbb R$ ($i=0,\ldots,m$).</p><p>Bài toán gốc: $\min f_0(x)$, với $f_i(x)\le0$, $Ax=b$.</p><p><strong>Định nghĩa.</strong></p><p>$$L(x,\lambda,\nu)=f_0(x)+\sum_{i=1}^m\lambda_i f_i(x)+\nu^T(Ax-b)$$</p><p>$\lambda\in\mathbb R^m$, $\lambda\ge0$; $\nu\in\mathbb R^r$ tự do.</p>
+        <aside class="notes"><p>Ta dùng các hàm hữu hạn trên toàn không gian. A là ma trận r hàng, n cột; b có r thành phần; vì vậy Ax trừ b và nhân tử nu cùng có r thành phần. Các bất đẳng thức mang chỉ số từ 1 đến m. Tại điểm khả thi, các hạng lambda_i f_i không dương; hạng nu nhân với sai lệch đẳng thức bằng không bất kể dấu của nu. Hàm Lagrange được định nghĩa cho các nhân tử thực, còn điều kiện lambda không âm được dùng khi xây dựng đối ngẫu tạo cận dưới. Miền hàm khác toàn không gian được dành cho tài liệu mở rộng. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="ham-doi-ngau" data-slide-id="S02-05">
         <h2>Hàm đối ngẫu</h2>
-        <p class="box">TODO: Định nghĩa hàm đối ngẫu bằng cận dưới đúng và tính trên ví dụ xuyên suốt.</p>
+        <p><strong>Định nghĩa.</strong> Giữ nhân tử cố định, lấy cận dưới theo $x$:</p><p class="math-large">$$g(\lambda,\nu)=\inf_{x\in\mathbb R^n}L(x,\lambda,\nu)$$</p><ul><li>$\inf$: cận dưới lớn nhất; có thể không đạt.</li><li>Không áp lại các ràng buộc của bài toán gốc.</li><li>$g$ có thể bằng $-\infty$.</li></ul>
+        <aside class="notes"><p>Biến được tối ưu ở bước này là x; các nhân tử được giữ cố định. Cận dưới lớn nhất bằng giá trị nhỏ nhất nếu có điểm đạt, nhưng nói chung có thể chỉ là giới hạn. Ví dụ inf của e mũ x trên toàn trục số bằng 0 dù không có điểm hữu hạn đạt 0; inf của x là âm vô cùng. Trong ví dụ chính, ta lấy inf trên toàn R chứ không phải trên đoạn [2,4]. Dùng toàn miền làm bài toán bên trong đơn giản hơn mà vẫn giữ cận dưới. Trang tiếp theo tính cụ thể bằng hoàn thành bình phương. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
+      </section>
+      <section id="s02-05b" data-slide-id="S02-05b">
+        <h2>Tính hàm đối ngẫu trong ví dụ</h2>
+        <p>Với $\lambda\ge0$, hoàn thành bình phương:</p><p>$$L=(1+\lambda)\left(x-\frac{3\lambda}{1+\lambda}\right)^2+1+8\lambda-\frac{9\lambda^2}{1+\lambda}$$</p><p>Vì $1+\lambda>0$, cực tiểu tại $x(\lambda)=\dfrac{3\lambda}{1+\lambda}$.</p><p class="box">$$g(\lambda)=10-\lambda-\frac9{1+\lambda}$$</p>
+        <aside class="notes"><p>Hệ số của bình phương luôn dương trong miền nhân tử đang xét. Vì thế cho bình phương bằng không là đủ để tìm cực tiểu toàn cục theo x. Hạng còn lại chính là g. Tại lambda bằng 0, L=x²+1 đạt cực tiểu duy nhất tại x bằng 0; điểm này không khả thi cho bài toán gốc. Khi lambda bằng 1, nghiệm là 1,5 và g bằng 4,5; khi lambda bằng 2, nghiệm là 2 và g bằng 5. Ta sẽ dùng các giá trị này để chọn cận. Công thức x(lambda) chưa bảo đảm nghiệm gốc khả thi. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="doi-ngau-yeu" data-slide-id="S02-06">
         <h2>Đối ngẫu yếu</h2>
-        <p class="box">TODO: Chứng minh đối ngẫu yếu bằng chuỗi bất đẳng thức, không cần giả thiết lồi.</p>
+        <p><strong>Định lý.</strong> Với $x$ khả thi và $\lambda\ge0$:</p><p class="math-large">$$g(\lambda,\nu)\ \le\ L(x,\lambda,\nu)\ \le\ f_0(x)$$</p><ol><li>Bất đẳng thức đầu: định nghĩa $\inf$.</li><li>Bất đẳng thức sau: $\lambda_i f_i(x)\le0$, $Ax-b=0$.</li></ol><p class="box">Suy ra $g(\lambda,\nu)\le p^*$. Không cần tính lồi.</p>
+        <aside class="notes"><p>Chứng minh ngắn nhưng từng bước cần chú giải: bất đẳng thức đầu $L\le f_0$ chỉ đúng trên miền khả thi vì $\lambda_i\ge 0$ nhân với $f_i\le 0$. Bước lấy inf: nếu $L(x)\le f_0(x)$ với mọi $x$ khả thi thì inf của $L$ (trên toàn không gian) không vượt inf của $f_0$ trên miền khả thi. Điểm mạnh của định lý: không đòi hỏi gì về tính lồi, đúng cho mọi bài toán. Điểm dễ nhầm: quên rằng $L\le f_0$ sai ngoài miền khả thi. Chuyển ý: định lý gợi ý bài toán tối ưu hóa trên $g$. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="bai-toan-doi-ngau" data-slide-id="S02-07">
         <h2>Bài toán đối ngẫu</h2>
-        <p class="box">TODO: Chọn cận dưới tốt nhất trong ví dụ và phát biểu bài toán đối ngẫu.</p>
+        <div class="example-grid"><figure class="example-plot"><img src="img/lec-03/dual-bound.svg" alt="Hàm đối ngẫu đạt cực đại bằng 5 tại nhân tử 2."></figure><div><p><strong>Bài toán đối ngẫu:</strong> chọn cận dưới lớn nhất.</p><p>$$d^*=\sup_{\lambda\ge0,\,\nu}g(\lambda,\nu)\le p^*$$</p><p>Trong ví dụ: $g(0)=1$, $g(1)=4{,}5$, $g(2)=5$.</p><p class="box">$g$ lõm theo nhân tử; $\sup$ có thể không đạt.</p></div></div>
+        <aside class="notes"><p>g là cận dưới của các hàm affine theo nhân tử nên luôn lõm, kể cả khi bài toán gốc phi lồi. Chứng minh trực tiếp: inf của tổng có trọng số không nhỏ hơn tổng các inf cùng trọng số không âm. Tính lõm không bảo đảm có công thức tường minh hoặc có nghiệm đạt được. Trong ví dụ, đạo hàm g là âm 1 cộng 9 chia bình phương 1 cộng lambda; nó đổi từ dương sang âm tại lambda bằng 2. Hoặc dùng đối ngẫu yếu: không cận nào vượt 5, và g(2) đã bằng 5. Bài tập sau yêu cầu tự dựng một chứng nhận như vậy. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="bai-tap-xay-dung-can-duoi" data-slide-id="S02-08">
         <h2>Bài tập xây dựng cận dưới</h2>
-        <p class="box">TODO: Giao bài tập tạo cận dưới và chứng nhận nghiệm cho một bài toán mới.</p>
+        <p><strong>Câu hỏi:</strong> Xét $\min_{x\in\mathbb R}(x-2)^2$ với $x\le1$.</p><ol><li>Viết ràng buộc dạng $f_1(x)\le0$ và lập $L$.</li><li>Tính $g(\lambda)$ với $\lambda\ge0$.</li><li>Dùng $\lambda=2$ để chứng nhận nghiệm $x=1$.</li></ol>
+        <aside class="notes"><p>Ràng buộc đúng là x trừ 1 không dương. Do đó L bằng (x−2)² cộng lambda(x−1), không được quên hằng số −lambda. Cực tiểu theo x tại 2−lambda/2; g bằng lambda−lambda²/4. Với lambda bằng 2, L bằng (x−1)²+1, nên g(2)=1. Điểm x=1 khả thi, mục tiêu bằng 1, bằng cận dưới. Vì vậy x*=1, p*=1. Lỗi hay gặp là bỏ hằng số trong ràng buộc rồi thu được một cận sai. Sau khi có ví dụ cận khít, ta xem điều kiện tổng quát nào bảo đảm điều đó. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
     </section>
     <section id="section-3">
       <section id="mach-3" data-slide-id="S03-01">
         <h2>Đối ngẫu mạnh và điều kiện Slater</h2>
-        <p class="box">TODO: Minh họa khoảng giữa cận dưới và giá trị tối ưu; nêu nhu cầu bảo đảm cận khít.</p>
+        <p>Trong ví dụ: $g(1)=4{,}5$, còn $p^*=5$.</p><p>Cần phân biệt:</p><ul><li>Khoảng của một cặp: $f_0(x)-g(\lambda)$.</li><li>Khoảng đối ngẫu tối ưu: $p^*-d^*$.</li></ul><p class="box">Nhiệm vụ: tìm điều kiện bảo đảm cận tốt nhất bằng giá trị tối ưu.</p>
+        <aside class="notes"><p>Một nhân tử chưa tốt có thể cho khoảng dương ngay cả khi đối ngẫu mạnh đúng. Khoảng của cặp x bằng 2, lambda bằng 1 là 0,5; nó chặn trên sai số của phương án x bằng 2 nhưng không phải khoảng đối ngẫu tối ưu. Khi tăng chất lượng cận, khoảng có thể khép lại. Ta dùng thuật ngữ khoảng đối ngẫu khi các giá trị hữu hạn. Trang kế tiếp kiểm tra một cận khít cụ thể trước khi phát biểu điều kiện Slater. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.2.3.</p></aside>
       </section>
       <section id="can-khit-trong-vi-du" data-slide-id="S03-02">
         <h2>Cận khít trong ví dụ</h2>
-        <p class="box">TODO: Tìm nhân tử cho cận khít trong ví dụ và đặt tên đối ngẫu mạnh.</p>
+        <p>Chọn $\lambda=2$:</p><p class="math-large">$$L(x,2)=3(x-2)^2+5\ge5$$</p><p>Tại $x=2$ khả thi: $g(2)=f_0(2)=5$.</p><p class="box"><strong>Định nghĩa.</strong> Đối ngẫu mạnh: $d^*=p^*$.</p><p>Ở đây, cả hai phía đều đạt nghiệm.</p>
+        <aside class="notes"><p>Kiểm tra: $L(x,2)=x^2+1+2(x-2)(x-4)=3x^2-12x+17=3(x-2)^2+5$. Minimum tại $x=2$, đúng là điểm khả thi tối ưu, giá trị $5=p^*$. Đây là chứng nhận khít: một hàm lồi duy nhất nằm dưới $f_0$ trên miền khả thi và chạm tại $x^*$. Điểm dễ nhầm: $x(2)=3\cdot2/3=2$ trùng $x^*$ — điều này không ngẫu nhiên mà liên quan KKT sau này. Chuyển ý: để có kết luận tổng quát kiểu này, ta cần một giả thiết kiểm tra được, đó là Slater. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.2.3.</p></aside>
       </section>
       <section id="dieu-kien-slater" data-slide-id="S03-03">
         <h2>Điều kiện Slater</h2>
-        <p class="box">TODO: Phát biểu Slater với giả thiết lồi, miền toàn không gian và điểm khả thi nghiêm.</p>
+        <p><strong>Giả thiết:</strong> $f_0,\ldots,f_m$ lồi, hữu hạn trên $\mathbb R^n$; đẳng thức $Ax=b$.</p><p><strong>Slater:</strong> tồn tại cùng một điểm $\bar x$ sao cho</p><p>$$f_i(\bar x)<0\ (i=1,\ldots,m),\qquad A\bar x=b.$$</p><p class="box"><strong>Định lý.</strong> Nếu $p^*$ hữu hạn: $d^*=p^*$ và đối ngẫu đạt nghiệm.</p><p>Điều kiện đủ; không bảo đảm nghiệm gốc tồn tại.</p>
+        <aside class="notes"><p>Slater yêu cầu tồn tại một điểm khả thi <em>nghiêm ngặt</em>: mọi ràng buộc bất đẳng thức đều thỏa với dấu nhỏ hơn ngặt, cùng một điểm $\bar{x}$. Kết luận có hai phần: đối ngẫu mạnh và bài toán đối ngẫu đạt nghiệm. Điểm dễ nhầm: Slater không bảo đảm bài toán gốc đạt nghiệm — chỉ bảo đảm phía đối ngẫu đạt. Đây là điều kiện <em>đủ</em>, không phải cần; các hàm phải hữu hạn trên toàn $\mathbb{R}^n$ để bản phát biểu đơn giản này đúng. Chuyển ý: kiểm tra Slater trong ví dụ chính. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.2.3.</p></aside>
       </section>
       <section id="kiem-tra-dieu-kien-slater" data-slide-id="S03-04">
         <h2>Kiểm tra điều kiện Slater</h2>
-        <p class="box">TODO: Tìm điểm thỏa Slater trong ví dụ và phân biệt điểm này với nghiệm tối ưu.</p>
+        <p>Ví dụ: $f_0=x^2+1$, $f_1=(x-3)^2-1$.</p><ul><li>$f_0^{\prime\prime}=f_1^{\prime\prime}=2>0$: hai hàm lồi.</li><li>$\bar x=3$: $f_1(3)=-1<0$.</li><li>$p^*=5$ hữu hạn: áp dụng định lý Slater.</li></ul><p class="box">Điểm Slater $\bar x=3$ khác nghiệm tối ưu $x^*=2$.</p>
+        <aside class="notes"><p>Kiểm tra trước các giả thiết lồi và miền toàn không gian, rồi mới tìm điểm khả thi nghiêm. Đặt x bằng 3 cho khoảng dư 1 trong ràng buộc. Điểm tối ưu x bằng 2 nằm trên biên nên không dùng làm điểm Slater. Nếu có đẳng thức x1+x2=1 và bất đẳng thức −x1≤0,−x2≤0, có thể chọn cả hai bằng 1/2: bất đẳng thức nghiêm nhưng đẳng thức vẫn đúng. Không thay bài toán bằng các ràng buộc nghiêm. Thiếu điểm Slater chỉ có nghĩa là định lý này chưa cho kết luận; phần sau minh họa giới hạn ấy. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.2.3.</p></aside>
       </section>
       <section id="gioi-han-cua-dieu-kien-slater" data-slide-id="S03-05">
         <h2>Giới hạn của điều kiện Slater</h2>
-        <p class="box">TODO: Dùng phản ví dụ phân biệt điều kiện đủ, đối ngẫu mạnh và sự đạt nghiệm đối ngẫu.</p>
+        <p><strong>Ví dụ phản chứng.</strong> $\min x$ với $x^2\le 0$.</p><p>Miền khả thi $\{0\}$, $x^*=0$, $p^*=0$. Không có điểm $f_1<0$: <strong>không Slater</strong>.</p><p>$g(0)=-\infty$; với $\lambda>0$: $g(\lambda)=-\dfrac{1}{4\lambda}$.</p><p>$\sup g = 0$ nhưng <strong>không đạt</strong>.</p>
+        <aside class="notes"><p>Bài toán gốc chỉ có điểm x=0 nên p*=0. Với lambda dương, hoàn thành bình phương L=lambda(x+1/(2lambda))²−1/(4lambda), cho g âm. Khi lambda tiến ra dương vô cùng, g tiến lên 0, nhưng không có nhân tử hữu hạn đạt 0. Với lambda bằng 0, L=x nên g âm vô cùng. Đối ngẫu mạnh vẫn đúng dù Slater không thỏa; thiếu Slater không đồng nghĩa với có khoảng đối ngẫu dương. Sự đạt nghiệm là một mệnh đề riêng. Trường hợp này sẽ được dùng lại khi xét tính cần của KKT. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.2.3.</p></aside>
       </section>
       <section id="bai-tap-doi-ngau-manh-va-slater" data-slide-id="S03-06">
         <h2>Bài tập đối ngẫu mạnh và Slater</h2>
-        <p class="box">TODO: Giao bài tập kiểm tra Slater và xác định những kết luận được bảo đảm.</p>
+        <p><strong>Câu hỏi:</strong> Xét $\min_{x\in\mathbb R^2}(x_1^2+x_2^2)$ với $x_1+x_2\ge1$.</p><ol><li>Đưa ràng buộc về dạng không dương.</li><li>Tìm một điểm Slater và kiểm tra $p^*$ hữu hạn.</li><li>Nêu các kết luận được bảo đảm.</li></ol><p>So sánh chi phí tại $(1,1)$ và $(1/2,1/2)$.</p>
+        <aside class="notes"><p>Đáp án: viết ràng buộc dạng chuẩn $f_1=1-x_1-x_2\le 0$. Điểm Slater: $\bar{x}=(1,1)$ cho $f_1=-1<0$. Vì hàm mục tiêu lồi và Slater thỏa, suy ra đối ngẫu mạnh $d^*=p^*$ và bài toán đối ngẫu đạt nghiệm. Điểm Slater $(1,1)$ có chi phí $2$, trong khi tối ưu là $(0.5,0.5)$ với $p^*=0.5$: điểm Slater chỉ cần nằm <em>sâu trong</em> miền khả thi, thường xa tối ưu. Điểm dễ nhầm: vai trò của điểm Slater là kiểm tra giả thiết, không phải ứng viên nghiệm. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.2.3.</p></aside>
       </section>
     </section>
     <section id="section-4">
       <section id="mach-4" data-slide-id="S04-01">
         <h2>Hình học của đối ngẫu</h2>
-        <p class="box">TODO: Nêu nhu cầu đọc cận bằng hình và đổi tọa độ trên các điểm của ví dụ.</p>
+        <p>Mặt phẳng $(u,t)$ với $u=f_1(x)$, $t=f_0(x)$. Tập $G$ = các cặp $(u,t)$:</p><div class="grid2"><div class="card"><p>$x=0$: $(8,\,1)$</p><p>$x=2$: $(0,\,5)$</p></div><div class="card"><p>$x=3$: $(-1,\,10)$</p><p>$x=4$: $(0,\,17)$</p></div></div><p>Miền khả thi: các điểm có $u\le 0$.</p>
+        <aside class="notes"><p>Ta muốn nhìn trực tiếp cận dưới và việc cận khít. Đổi mỗi quyết định x thành hai giá trị u=f1(x), t=f0(x). Bốn điểm giúp xác định phần khả thi của đường cong: các điểm trên G có u không dương. Cùng u bằng 0 có thể có nhiều giá trị t, như 5 và 17. Vì vậy không coi t luôn là hàm đơn trị của u. Tập G ở đây là một đường cong không lồi; tính lồi của bài toán gốc không làm ảnh của nó qua ánh xạ này thành tập lồi. Các trục không mang đơn vị vật lý trong ví dụ này. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.3.1.</p></aside>
       </section>
       <section id="duong-can-trong-mat-phang-gia-tri" data-slide-id="S04-02">
         <h2>Đường cận trong mặt phẳng giá trị</h2>
-        <p class="box">TODO: Vẽ tập giá trị và đường cận; giải thích hệ số góc và tung độ cắt.</p>
+        <div class="example-grid"><figure class="example-plot"><img src="img/lec-03/value-plane-1.svg" alt="Đường cận nhân tử 1 chạm tập giá trị ở u dương, không khả thi."></figure><div><p>Trên $G$: $t+\lambda u\ge g(\lambda)$.</p><p>Đường cận:</p><p>$$t=g(\lambda)-\lambda u$$</p><p>Hệ số góc $-\lambda$; tung độ cắt $g(\lambda)$.</p><p>Với $\lambda=1$: chạm tại $(1{,}25;3{,}25)$, không khả thi.</p></div></div>
+        <aside class="notes"><p>Giữ nguyên hệ số góc âm lambda rồi nâng đường thẳng từ dưới lên đến mức cao nhất mà vẫn không vượt bất kỳ điểm nào của G. Tung độ cắt khi đó là inf của t+lambda u, tức g(lambda). Không hạ xuống mức thấp nhất: các đường thấp hơn vẫn là cận, nhưng yếu hơn. Với lambda bằng 1, tiếp xúc tại x bằng 1,5 nằm ngoài miền khả thi. Ta vẫn có cận 4,5 cho mọi quyết định khả thi. Tiếp xúc riêng lẻ không đủ; trang sau tìm điểm chạm có giá trị mục tiêu bằng tung độ cắt. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.3.1.</p></aside>
       </section>
       <section id="tiep-xuc-va-doi-ngau-manh" data-slide-id="S04-03">
         <h2>Tiếp xúc và đối ngẫu mạnh</h2>
-        <p class="box">TODO: Liên hệ đường cận khít với giá trị tối ưu và điều kiện tiếp xúc trong ví dụ.</p>
+        <div class="example-grid"><figure class="example-plot"><img src="img/lec-03/value-plane-2.svg" alt="Đường cận nhân tử 2 chạm tại (0,5), chứng nhận tối ưu."></figure><div><p>Với $\lambda=2$, đường cận: $t=5-2u$.</p><p>Chạm tại $(u,t)=(0,5)$, ứng với $x=2$ khả thi.</p><p>$$t+2u-5=3(x-2)^2\ge0$$</p><p class="box">$g(2)=f_0(2)=5$: cận khít.</p></div></div>
+        <aside class="notes"><p>Đẳng thức đại số chứng minh đường không vượt G và chỉ chạm tại x bằng 2. Tại điểm đó u bằng 0 nên t bằng chính tung độ cắt 5. Đây là một chứng nhận hình học cụ thể: điểm khả thi đạt cận dưới. Không tổng quát hóa thành đối ngẫu mạnh luôn tương đương một đường cận hữu hạn chạm nghiệm: đối ngẫu mạnh có thể không đạt nghiệm đối ngẫu, như ví dụ x²≤0. Nếu điểm chạm có u âm và lambda dương, giá trị t không bằng tung độ cắt; vì vậy cần kiểm tra cả tính khả thi và đẳng thức của giá trị. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.3.1.</p></aside>
       </section>
       <section id="bai-tap-doc-hinh-doi-ngau" data-slide-id="S04-04">
         <h2>Bài tập đọc hình đối ngẫu</h2>
-        <p class="box">TODO: Giao bài tập đọc cận, nhân tử và khoảng đối ngẫu từ hình.</p>
+        <p><strong>Câu hỏi:</strong> Đường $t=4{,}5-u$ nằm dưới và chạm $G$ của ví dụ; một phương án khả thi có chi phí $5$.</p><ol><li>Đọc nhân tử $\lambda$ và giá trị $g(\lambda)$.</li><li>Chặn trên sai số của phương án chi phí $5$.</li><li>Có thể suy ra $p^*-d^*=0{,}5$ hay không?</li></ol>
+        <aside class="notes"><p>Đáp án: hệ số góc $-\lambda=-1$ nên $\lambda=1$; tung độ gốc $g(1)=4{,}5$. Theo đối ngẫu yếu $p^*\ge 4{,}5$, và phương án có chi phí $5\ge p^*$, nên khoảng cách $5-p^*\le 5-4{,}5=0{,}5$. Lưu ý quan trọng: ta chỉ kết luận khoảng cách tối đa là $0{,}5$ cho cặp này; không được khẳng định đây là khoảng cách đối ngẫu tối ưu, vì ta biết $g(2)=5$ cho cận dưới khít. Bài tập luyện kỹ năng đọc hình: từ đường hỗ trợ suy ra nhân tử và cận dưới. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.3.1.</p></aside>
       </section>
     </section>
     <section id="section-5">
       <section id="mach-5" data-slide-id="S05-01">
         <h2>Điều kiện Karush–Kuhn–Tucker (KKT)</h2>
-        <p class="box">TODO: Suy điều kiện tối ưu từ cận khít; minh họa cân bằng gradient trong ví dụ.</p>
+        <p>Cần tìm nghiệm mà không tính tường minh $g$.</p><p>Khi hai phía tối ưu đều đạt và cận khít:</p><p>$$g(\lambda^*,\nu^*)=L(x^*,\lambda^*,\nu^*)=f_0(x^*)$$</p><ul><li>$x^*$ cực tiểu hóa $L$ theo $x$.</li><li>$\lambda_i^*f_i(x^*)=0$ với từng ràng buộc.</li></ul><p class="box">Tại $x^*=2$: $f_0^{\prime}=4$, $\lambda^*f_1^{\prime}=-4$.</p>
+        <aside class="notes"><p>Chuỗi đẳng thức $g=L=f_0$ xảy ra khi: cận dưới khít và đạt tại $x^*$. Điều đó buộc hai việc: $x^*$ phải là điểm cực tiểu của $L(x,\lambda^*,\nu^*)$ (nên gradient bằng không nếu khả vi), và các số hạng $\lambda_i f_i(x^*)$ phải triệt tiêu. Kiểm tra trực giác ở ví dụ: tại $x^*=2$, $f_0'=4$ và $f_1'(x)=2x-6$ nên $\lambda^* f_1'=2\cdot(-2)=-4$: hai lực cân bằng. Đây chính là bản chất KKT: cân bằng gradient và bù trừ. Chuyển ý: phân loại ràng buộc hoạt động. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.5.3.</p></aside>
       </section>
       <section id="rang-buoc-hoat-dong-va-bu-tru" data-slide-id="S05-02">
         <h2>Ràng buộc hoạt động và bù trừ</h2>
-        <p class="box">TODO: Giải thích bù trừ và kiểm tra trường hợp ràng buộc hoạt động có nhân tử bằng không.</p>
+        <p><strong>Bù trừ:</strong> $\lambda_i^*f_i(x^*)=0$.</p><div class="grid2"><div class="card"><p><strong>Không hoạt động</strong></p><p>$f_i(x^*)<0$</p><p>Suy ra $\lambda_i^*=0$.</p></div><div class="card"><p><strong>Hoạt động</strong></p><p>$f_i(x^*)=0$</p><p>Nhân tử vẫn có thể bằng $0$.</p></div></div><p>Ví dụ $\min x^2$ với $x\le0$: $(x^*,\lambda^*)=(0,0)$.</p>
+        <aside class="notes"><p>Bù trừ $\lambda_i f_i(x^*)=0$ nghĩa là mỗi cặp có ít nhất một số bằng không. Chiều chắc chắn: $f_i<0$ (không hoạt động) thì $\lambda_i=0$, vì nếu $\lambda_i>0$ thì tích âm, mâu thuẫn. Chiều ngược không chắc: ràng buộc hoạt động vẫn có thể có $\lambda_i=0$. Ví dụ $\min x^2$ với $x\le 0$: nghiệm $x^*=0$ nằm đúng đỉnh parabol, gradient mục tiêu đã tự triệt tiêu, ràng buộc không cần 'lực' nên $\lambda^*=0$. Điểm dễ nhầm: hoạt động $\Leftrightarrow\ \lambda>0$ là sai. Chuyển ý: gom thành bốn nhóm điều kiện. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.5.3.</p></aside>
       </section>
       <section id="bon-nhom-dieu-kien-kkt" data-slide-id="S05-03">
         <h2>Bốn nhóm điều kiện KKT</h2>
-        <p class="box">TODO: Trình bày khả thi gốc, khả thi đối ngẫu, bù trừ và dừng trong trường hợp khả vi.</p>
+        <p><strong>Định nghĩa.</strong> Các $f_i$ khả vi trên $\mathbb R^n$.</p><ol><li><strong>Khả thi gốc:</strong> $f_i(x^*)\le0$, $Ax^*=b$.</li><li><strong>Khả thi đối ngẫu:</strong> $\lambda_i^*\ge0$.</li><li><strong>Bù trừ:</strong> $\lambda_i^*f_i(x^*)=0$.</li><li><strong>Dừng:</strong></li></ol><p>$$\nabla f_0(x^*)+\sum_{i=1}^m\lambda_i^*\nabla f_i(x^*)+A^T\nu^*=0$$</p>
+        <aside class="notes"><p>Bốn nhóm cần nhớ theo cấu trúc: hai nhóm khả thi (gốc và đối ngẫu), một nhóm ghép cặp (bù trừ), một nhóm vi phân (dừng). Giả thiết nền: các hàm khả vi — điều kiện dừng mới có nghĩa. Nhóm 3 là cầu nối giữa hai phía; nhóm 4 là cân bằng gradient. Mẹo kiểm tra bài làm: đếm đủ bốn nhóm, mỗi nhóm đúng số phương trình. Điểm dễ nhầm: quên nhóm khả thi đối ngẫu $\lambda\ge 0$ vì nó quá đơn giản. Chuyển ý: áp dụng vào ví dụ chính, lọc ứng viên. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.5.3.</p></aside>
       </section>
       <section id="giai-vi-du-bang-kkt" data-slide-id="S05-04">
         <h2>Giải ví dụ bằng KKT</h2>
-        <p class="box">TODO: Giải các trường hợp của ví dụ và loại ứng viên vi phạm tính khả thi hoặc dấu nhân tử.</p>
+        <p>$2x+\lambda(2x-6)=0$, $\lambda(x-2)(x-4)=0$.</p><table><thead><tr><th>Trường hợp</th><th>Ứng viên $(x,\lambda)$</th><th>Kiểm tra</th></tr></thead><tbody><tr><td>$\lambda=0$</td><td>$(0,0)$</td><td>$f_1(0)=8>0$: loại</td></tr><tr><td>$x=2$</td><td>$(2,2)$</td><td>Thỏa cả bốn nhóm</td></tr><tr><td>$x=4$</td><td>$(4,-4)$</td><td>$\lambda<0$: loại</td></tr></tbody></table><p class="box">Bộ hợp lệ: $(x^*,\lambda^*)=(2,2)$.</p>
+        <aside class="notes"><p>Giải chi tiết: bù trừ cho hai nhánh. Nhánh $\lambda=0$: dừng cho $2x=0$, $x=0$, nhưng $f_1(0)=8>0$ — vi phạm khả thi, loại. Nhánh $f_1=0$: $x=2$ hoặc $x=4$. Với $x=2$: dừng cho $4-2\lambda=0$, tức $\lambda=2$ — hợp lệ, và trùng $\lambda^*=2$ từ phân tích đối ngẫu. Với $x=4$: $8+2\lambda=0$ cho $\lambda=-4$, sai dấu, loại. Kết quả khớp hoàn toàn với phân tích đối ngẫu ở mạch trước. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.5.3.</p></aside>
       </section>
       <section id="dieu-kien-can-va-dieu-kien-du" data-slide-id="S05-05">
         <h2>Điều kiện cần và điều kiện đủ</h2>
-        <p class="box">TODO: Nêu giả thiết cho tính cần và tính đủ; phân biệt bài toán lồi với phi lồi.</p>
+        <p>Trong lớp bài toán khả vi, đẳng thức affine:</p><div class="grid2"><div class="card"><p><strong>Điều kiện đủ</strong></p><p>Bài toán lồi + KKT</p><p>$\Rightarrow$ tối ưu toàn cục.</p><p>Không cần Slater.</p></div><div class="card"><p><strong>Điều kiện cần</strong></p><p>Bài toán lồi + Slater + nghiệm tối ưu tồn tại</p><p>$\Rightarrow$ tồn tại nhân tử thỏa KKT.</p></div></div><p>Phi lồi: KKT không đủ để kết luận tối ưu.</p>
+        <aside class="notes"><p>Hai chiều cần tách bạch. Chiều đủ: bài toán lồi, bất kỳ điểm thỏa KKT nào là tối ưu toàn cục — không cần Slater vì chứng minh chỉ dùng tính lồi. Chiều cần: trong khung tổng quát cần điều kiện chính quy; với lồi và Slater, nếu nghiệm tối ưu tồn tại thì phải thỏa KKT. Chiều đủ sai với phi lồi: $\min(-x^2)$ trên $[-1,1]$, điểm $0$ thỏa KKT với $\lambda=0$ nhưng là điểm cực đại. Điểm dễ nhầm: nhớ đúng cặp giả thiết–kết luận, không hoán đổi vai trò Slater. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.5.3.</p></aside>
+      </section>
+      <section id="s05-05b" data-slide-id="S05-05b">
+        <h2>Chứng nhận tối ưu bằng KKT</h2>
+        <p><strong>Chứng minh tính đủ trong bài toán lồi.</strong></p><ol><li>$\lambda^*\ge0$ nên $L(\cdot,\lambda^*,\nu^*)$ lồi.</li><li>Dừng $\Rightarrow$ $x^*$ cực tiểu hóa $L$.</li><li>Khả thi và bù trừ $\Rightarrow$ $L(x^*,\lambda^*,\nu^*)=f_0(x^*)$.</li></ol><p class="box">$$f_0(x^*)=g(\lambda^*,\nu^*)\le p^*\le f_0(x^*)$$</p>
+        <aside class="notes"><p>Điểm dùng tính lồi nằm ở bước biến gradient bằng không thành cực tiểu toàn cục của L. Điểm dùng dấu nhân tử nằm ở việc bảo toàn tính lồi khi cộng các hàm ràng buộc. Bù trừ loại các hạng bất đẳng thức tại x*, còn khả thi loại hạng đẳng thức. Chuỗi cuối buộc mọi dấu là đẳng thức, chứng nhận cả nghiệm gốc lẫn nhân tử đối ngẫu. Chứng minh không dùng Slater. Nếu phi lồi, điểm dừng có thể là cực đại: min −x² trên [−1,1] tại x=0 thỏa KKT với hai nhân tử bằng 0 nhưng không tối ưu. Ta chuyển sang một mô hình hồi quy lồi để áp dụng chiều đủ. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.5.3.</p></aside>
       </section>
       <section id="kkt-trong-hoi-quy-co-rang-buoc" data-slide-id="S05-06">
         <h2>KKT trong hồi quy có ràng buộc</h2>
-        <p class="box">TODO: Áp dụng KKT cho hồi quy có ràng buộc chuẩn và kiểm tra điều kiện Slater.</p>
+        <p>$X\in\mathbb R^{N\times d}$, $y\in\mathbb R^N$, $w\in\mathbb R^d$, $\tau>0$.</p><p>$$\min_w\frac12\|Xw-y\|_2^2\quad\text{với }\|w\|_2^2\le\tau$$</p><p>Lồi; điểm Slater $w=0$.</p><p>$$X^T(Xw-y)+2\lambda w=0$$</p><p>$$\lambda(\|w\|_2^2-\tau)=0,\qquad\lambda\ge0$$</p>
+        <aside class="notes"><p>X có N hàng mẫu và d cột đặc trưng. Mục tiêu là mất mát bình phương, còn tau giới hạn độ lớn trọng số. Hai hàm đều lồi và khả vi; w bằng 0 thỏa nghiêm khi tau dương. KKT gồm thêm tính khả thi bình phương chuẩn không vượt tau đã ghi trong mô hình. Nếu ràng buộc không hoạt động thì lambda bằng 0. Nếu hoạt động, lambda có thể dương hoặc bằng 0, không được suy ngược sai. Phương trình dừng giống điều kiện của hồi quy có phạt bình phương chuẩn với hệ số thích hợp. Không giả định X đủ hạng hoặc mọi nghiệm đều duy nhất. Bài tập một trọng số cho phép kiểm tra đầy đủ bằng tay. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.5.3.</p></aside>
       </section>
       <section id="bai-tap-kiem-tra-nghiem-toi-uu" data-slide-id="S05-07">
         <h2>Bài tập kiểm tra nghiệm tối ưu</h2>
-        <p class="box">TODO: Giao bài tập kiểm tra bốn nhóm KKT và biện minh kết luận tối ưu.</p>
+        <p><strong>Câu hỏi:</strong> Xét $\min_{w\in\mathbb R}\frac12(w-3)^2$ với $w^2\le1$.</p><ol><li>Giải các trường hợp của điều kiện bù trừ.</li><li>Kiểm tra đủ bốn nhóm KKT.</li><li>Tính mất mát tối ưu và biện minh kết luận.</li></ol>
+        <aside class="notes"><p>Đáp án: dừng $(w-3)+2\lambda w=0$; bù trừ $\lambda(w^2-1)=0$. Nhánh $\lambda=0$ cho $w=3$, vi phạm khả thi. Nhánh $w^2=1$: $w=1$ cho $-2+2\lambda=0$, $\lambda=1$ hợp lệ; $w=-1$ cho $-4-2\lambda=0$, $\lambda=-2$ sai dấu. Vậy $w^*=1$, $\lambda^*=1$, mất mát $=\tfrac12(1-3)^2=2$. Bốn nhóm: khả thi $1\le1$; đối ngẫu $\lambda=1\ge0$; bù trừ $1\cdot(1-1)=0$; dừng $-2+2=0$. Bài toán này sẽ quay lại ở mạch độ nhạy. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.5.3.</p></aside>
       </section>
     </section>
     <section id="section-6">
       <section id="mach-6" data-slide-id="S06-01">
         <h2>Nhân tử và độ nhạy</h2>
-        <p class="box">TODO: Nêu nhu cầu dự đoán thay đổi giá trị tối ưu khi nới hoặc siết ràng buộc.</p>
+        <p>Trong hồi quy, nới giới hạn trọng số có thể giảm mất mát.</p><p>Cần dự đoán lợi ích trước khi giải lại bài toán.</p><p class="box">Ví dụ chính: đã biết $p^*=5$, $\lambda^*=2$.<br>Nới ràng buộc từ $f_1(x)\le0$ thành $f_1(x)\le0{,}1$.</p><p><strong>Câu hỏi:</strong> Dự đoán giá trị tối ưu mới.</p>
+        <aside class="notes"><p>Nhân tử không chỉ dùng tìm nghiệm. Ta muốn định lượng mức giảm của giá trị tối ưu khi cho phép thêm một ít tài nguyên. Trong ví dụ, nhân tử 2 gợi ý mức giảm khoảng 0,2 khi tăng vế phải 0,1. Dấu sẽ là âm vì đây là nới ràng buộc của bài toán cực tiểu. Chưa coi dự đoán là định lý: ta tính trực tiếp hàm giá trị rồi nêu rõ điều kiện để nhân tử bằng âm đạo hàm. Cần phân biệt giá trị tối ưu với vị trí nghiệm. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.6.</p></aside>
       </section>
       <section id="noi-rang-buoc-trong-vi-du" data-slide-id="S06-02">
         <h2>Nới ràng buộc trong ví dụ</h2>
-        <p class="box">TODO: Vẽ miền khả thi và tính giá trị tối ưu khi thay đổi ràng buộc trong ví dụ.</p>
+        <div class="example-grid"><figure class="example-plot"><img src="img/lec-03/value-sensitivity.svg" alt="Hàm giá trị chính xác và tiếp tuyến tại mức nới ràng buộc bằng 0."></figure><div><p>Ràng buộc mới: $(x-3)^2\le1+u$.</p><p>Với $-1\le u\le8$, nghiệm ở đầu trái:</p><p>$$x^*(u)=3-\sqrt{1+u}$$</p><p>$$p(u)=11+u-6\sqrt{1+u}$$</p><p class="box">$p(0{,}1)\approx4{,}807$; tiếp tuyến dự đoán $4{,}8$.</p></div></div>
+        <aside class="notes"><p>Giải thích: nới $u$ làm miền khả thi thành $[3-\sqrt{1+u},\,3+\sqrt{1+u}]$; với −1≤u≤8, đoạn này nằm trong nửa trục không âm và parabol tăng ở đó, tối ưu ở đầu trái. Kiểm tra dự đoán: $p'(0)=-2=-\lambda^*$, đúng như giả thuyết. Số liệu: $p(0.1)=4.8071...\approx 4.8$, giảm đúng khoảng $0.2=\lambda^*\cdot 0.1$. Nhưng $p(1)=3.5147...$, không phải $5-2=3$: xấp xỉ tuyến tính lệch khi $u$ lớn. Điểm dễ nhầm: công thức chỉ đúng trên $-1\le u\le 8$; ngoài khoảng đó phải dùng nhánh khác. Chuyển ý: phát biểu tổng quát. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.6.</p></aside>
       </section>
       <section id="ham-gia-tri-va-do-nhay-cuc-bo" data-slide-id="S06-03">
         <h2>Hàm giá trị và độ nhạy cục bộ</h2>
-        <p class="box">TODO: Định nghĩa hàm giá trị, nêu giả thiết khả vi và diễn giải xấp xỉ cục bộ bằng nhân tử.</p>
+        <p><strong>Định nghĩa.</strong> $p(u)=\inf\{f_0(x):f_1(x)\le u\}$.</p><p>Giả sử $p(0)$ hữu hạn, đối ngẫu mạnh và $\lambda^*$ tối ưu:</p><p>$$p(u)\ge p(0)-\lambda^*u\qquad\text{(cận toàn cục)}$$</p><p>Nếu $p$ khả vi tại $0$:</p><p class="box">$$p^{\prime}(0)=-\lambda^*,\quad p(\varepsilon)\approx p(0)-\lambda^*\varepsilon$$</p><p>Xấp xỉ chỉ dùng cho nhiễu nhỏ quanh $0$.</p>
+        <aside class="notes"><p>Phát biểu tổng quát cho bài toán một ràng buộc vô hướng: với đối ngẫu mạnh và $\lambda^*$ đạt được, $p(u)\ge p(0)-\lambda^* u$ cho mọi $u$ — bất đẳng thức toàn cục, là hệ quả trực tiếp của đối ngẫu yếu. Nếu $p$ khả vi tại $0$ thì $p'(0)=-\lambda^*$, và xấp xỉ $p(\varepsilon)\approx p(0)-\lambda^*\varepsilon$ chỉ đúng cục bộ. Điểm dễ nhầm: không được dùng xấp xỉ tuyến tính như công thức sai khác hữu hạn chính xác — ví dụ $p(1)=3{,}5147$ chứ không phải $3$. Dấu âm: nới lỏng ($u>0$) làm $p$ giảm. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.6.</p></aside>
       </section>
       <section id="dien-giai-nhan-tu-trong-hoi-quy" data-slide-id="S06-04">
         <h2>Diễn giải nhân tử trong hồi quy</h2>
-        <p class="box">TODO: Ước lượng thay đổi mất mát tối ưu khi nới giới hạn chuẩn trong hồi quy.</p>
+        <p>Hồi quy một trọng số: $\min\frac12(w-3)^2$ với $w^2\le\tau$.</p><p>Tại $\tau=1$: $w^*=1$, $\lambda^*=1$, $v(1)=2$.</p><p>$$v(\tau)=\frac12(3-\sqrt\tau)^2\quad(0<\tau<9)$$</p><p class="box">$v^{\prime}(1)=-1$; nới tới $1{,}1$ cho $v(1{,}1)\approx1{,}9$.</p><p>Giá trị đúng xấp xỉ $1{,}90357$.</p>
+        <aside class="notes"><p>Với giới hạn tau dương và nhỏ hơn 9, nghiệm là căn bậc hai của tau, nên mất mát tối ưu v(tau)=1/2(3−sqrt(tau))². Lấy đạo hàm cho v′(1)=−1, bằng âm nhân tử đã tính. Khi nới từ 1 lên 1,1, xấp xỉ tuyến tính là 1,9; giá trị đúng khoảng 1,90357, sai số khoảng 0,00357. Nhân tử đo thay đổi mất mát tối ưu, không phải thay đổi trọng số. Xấp xỉ cần được đánh giá theo độ lớn nhiễu và độ cong; không suy rằng thêm một đơn vị giới hạn luôn giảm mất mát đúng một đơn vị. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.6.</p></aside>
       </section>
       <section id="bai-tap-do-nhay" data-slide-id="S06-05">
         <h2>Bài tập độ nhạy</h2>
-        <p class="box">TODO: Giao bài tập ước lượng thay đổi giá trị tối ưu và kiểm tra giới hạn của xấp xỉ.</p>
+        <p><strong>Câu hỏi:</strong> Với $p(u)=11+u-6\sqrt{1+u}$ trên $[-1,8]$:</p><ol><li>Tính $p(0{,}1)$ và $p(1)$.</li><li>So sánh với xấp xỉ $5-2u$.</li><li>Giải thích sai số lớn hơn tại $u=1$.</li></ol><p>Cận $p(u)\ge5-2u$ còn đúng ở cả hai điểm hay không?</p>
+        <aside class="notes"><p>Đáp án: $p(0.1)=11.1-6\sqrt{1.1}=11.1-6.2928...=4.8071...\approx4.8$; xấp xỉ cho $5-0.2=4.8$ — khớp tốt. $p(1)=12-6\sqrt2=12-8.4853=3.5147...$; xấp xỉ cho $5-2=3$ — lệch $0.5147$. Giải thích: xấp xỉ tuyến tính chỉ dùng đạo hàm tại $0$; $p$ không tuyến tính, $p'(u)=1-3/\sqrt{1+u}$ thay đổi theo $u$, nên sai số tích lũy theo $u$. Kết luận sư phạm: tin cậy xấp xỉ chỉ khi nhiễu loạn nhỏ so với thang cong của $p$. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.6.</p></aside>
       </section>
     </section>
     <section id="section-7">
       <section id="mach-7" data-slide-id="S07-01">
         <h2>Tổng hợp và vận dụng</h2>
-        <p class="box">TODO: Tổng hợp cách tạo cận, kiểm tra Slater, dùng KKT và diễn giải nhân tử.</p>
+        <ol><li><strong>Lập cận:</strong> chuẩn hóa ràng buộc, lập $L$, lấy $\inf_x$.</li><li><strong>Cận khít:</strong> kiểm tra giả thiết lồi và Slater.</li><li><strong>Chứng nhận:</strong> đủ bốn nhóm KKT trong bài toán lồi.</li><li><strong>Độ nhạy:</strong> phân biệt cận toàn cục và đạo hàm cục bộ.</li></ol><p class="box">Bộ nhân tử nối cận dưới, điều kiện tối ưu và độ nhạy.</p>
+        <aside class="notes"><p>Có hai cách chứng nhận: tìm một cận bằng giá trị của nghiệm khả thi, hoặc kiểm tra KKT trong bài toán lồi. Không bắt buộc tính g tường minh trước khi dùng KKT; không bắt buộc Slater để dùng chiều KKT suy ra tối ưu. Slater hữu ích để bảo đảm cận khít và sự tồn tại các nhân tử tại một nghiệm tối ưu. Độ nhạy cần đối ngẫu mạnh và nhân tử tối ưu; muốn kết luận đạo hàm còn phải kiểm tra khả vi của hàm giá trị. Bài tập cuối yêu cầu tự nối các bước trong hai chiều. Nguồn: Boyd và Vandenberghe (2004), chương 5.</p></aside>
       </section>
       <section id="bai-tap-tong-hop" data-slide-id="S07-02">
         <h2>Bài tập tổng hợp</h2>
-        <p class="box">TODO: Giao bài tập tích hợp mô hình hóa, cận đối ngẫu và chứng nhận tối ưu.</p>
+        <p><strong>Câu hỏi:</strong> Chọn $x\in\mathbb R^2$ để cực tiểu hóa $x_1^2+x_2^2$, với $x_1+x_2\ge1$.</p><ol><li>Lập $L$, tính $g$ và kiểm tra Slater.</li><li>Tìm nghiệm bằng KKT và viết chứng nhận cận khít.</li><li>Siết yêu cầu thành $x_1+x_2\ge1+\varepsilon$ ($\varepsilon>0$ nhỏ): dự đoán chi phí.</li></ol>
+        <aside class="notes"><p>Viết f1=1−x1−x2. L=x1²+x2²+lambda(1−x1−x2). Cực tiểu bên trong tại xi=lambda/2, nên g=lambda−lambda²/2. Cực đại tại lambda=1 cho d*=1/2. Điểm Slater (1,1), giá trị tối ưu hữu hạn vì mục tiêu không âm và có điểm khả thi. KKT cho x*=(1/2,1/2),lambda*=1. Chứng nhận L(x,1)=(x1−1/2)²+(x2−1/2)²+1/2. Tăng yêu cầu tổng lên 1+epsilon là siết, không phải nới. Giá trị mới q(epsilon)=(1+epsilon)²/2 gần epsilon=0, nên q′(0)=1: chi phí tăng xấp xỉ epsilon. Với quy ước f1≤u, thay đổi này là u=−epsilon; dấu khớp p′(0)=−lambda*. Nguồn: Boyd và Vandenberghe (2004), chương 5.</p></aside>
       </section>
       <section id="tai-lieu-va-noi-dung-mo-rong" data-slide-id="S07-03">
         <h2>Tài liệu và nội dung mở rộng</h2>
-        <p class="box">TODO: Ghi nguồn đọc, nội dung mở rộng và kiến thức dùng tiếp ở bài sau.</p>
+        <ul><li>Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, chương 5: §5.1–5.3, §5.5–5.6.</li><li>MIT OpenCourseWare, 6.079 (2009), bài 5 về đối ngẫu.</li><li>Đọc tiếp: nội tương đối, điểm yên ngựa, bất đẳng thức theo nón.</li></ul><p><a href="material-viewer.html?doc=materials/lec-03/lecture-note.md&amp;deck=lecture-03-doi-ngau-lagrange.html">Ghi chú bài giảng</a> · <a href="material-viewer.html?doc=materials/lec-03/exercises.md&amp;deck=lecture-03-doi-ngau-lagrange.html">Bài tập và lời giải</a></p>
+        <aside class="notes"><p>Giáo trình chính ở trang web chính thức của Stephen Boyd, mục Convex Optimization. Các mục 5.1 và 5.2 xây dựng đối ngẫu, 5.3 giải thích hình học, 5.5 trình bày KKT, 5.6 trình bày độ nhạy. Bài 5 của MIT 6.079 cung cấp cách trình bày bổ sung. Nội tương đối và các bất đẳng thức theo nón mở rộng phạm vi của kết quả đã học, không phải tiên quyết cho bài tập cơ bản. Đọc ghi chú để xem phép biến đổi đầy đủ, sau đó tự làm bài trước khi mở lời giải. Các hình của bài được tự vẽ từ công thức. Nguồn: Boyd và Vandenberghe (2004), chương 5.</p></aside>
       </section>
     </section>
     <footer class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 03</footer>

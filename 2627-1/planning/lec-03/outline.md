@@ -1,95 +1,101 @@
-# Dàn ý Bài 03 — Khung Đối ngẫu Lagrange
+# Dàn ý Bài 03 — Đối ngẫu Lagrange
 
-**Trạng thái:** khung theo yêu cầu ngày 2026-09-11; 36 trang, 7 mạch. Mỗi trang chỉ có tiêu đề và một TODO hiển thị. Chưa phải bài giảng hoàn chỉnh.
+**Trạng thái:** bản nội dung 38 trang, 7 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
 
-## Phạm vi và mẫu
+## Phạm vi và tiêu chí hoàn thành
 
-- Buổi 3 theo đề cương DOCX chính thức; LLO4: hiểu hàm và bài toán đối ngẫu Lagrange; LLO5: thể hiện minh họa hình học của hàm đối ngẫu; liên quan CLO1.
-- Bài 02 là mẫu cấu trúc và phong cách theo yêu cầu mới: section ngoài cho mạch, section trong cho trang, trang tiêu đề nằm đầu mạch thứ nhất; giữ kiểu chữ, màu, chân trang và cấu hình RevealJS.
-- Ưu tiên yêu cầu khung: bỏ toàn bộ nội dung và ghi chú diễn giả cũ trong HTML; chưa thêm hình, công thức, lời giải hoặc ghi chú bài giảng mới.
-- Đề cương phân bổ 2 tiết lý thuyết và 1 tiết bài tập cho buổi; thời lượng chi tiết chỉ là dự kiến nội bộ khi phát triển nội dung.
-- Vấn đề trung tâm: tạo cận dưới, nhận biết khi cận khít và dùng kết quả để chứng nhận nghiệm tối ưu.
-- Ví dụ cho giai đoạn soạn: $\min_x x^2+1$ với $(x-2)(x-4)\le0$; $x^*=2$, $p^*=5$, $\lambda^*=2$. Không đưa công thức lên khung.
-- Nội tương đối, tập mở rộng và bao đóng, nón pháp tuyến, dưới gradient, điểm yên ngựa và đối ngẫu theo nón đặt trong kế hoạch đọc mở rộng cuối bài.
+Buổi 3 theo đề cương DOCX chính thức: Chương 4, Đối ngẫu; 2 tiết lý thuyết và 1 tiết bài tập. Chuẩn đầu ra bài học (LLO) 4: “Hiểu được hàm đối ngẫu và bài toán đối ngẫu Lagrange”; LLO5: “Thể hiện được minh họa hình học của hàm đối ngẫu”; cùng liên quan chuẩn đầu ra học phần (CLO) 1. Đánh giá qua bài tập cá nhân và nhóm. Tiên quyết: gradient, hàm lồi và hoàn thành bình phương.
+
+Tiêu chí: sinh viên có thể tự tạo cận, kiểm tra Slater, giải và kiểm tra bốn nhóm KKT, giải thích hình học và phân biệt độ nhạy cục bộ với sai phân hữu hạn. RevealJS, ghi chú diễn giả, tài liệu đọc và tám bài tập có lời giải phải nhất quán. Chỉ commit cục bộ, không push theo yêu cầu mới của người dùng.
+
+Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, được đọc tại máy. Giữ cấu trúc ngoài–trong, bảng màu, kiểu chữ, hộp, lưới hai cột, chân trang và runtime cục bộ. Giữ thứ tự 7 mạch của khung đã duyệt; thêm S02-05b (phép tính g) và S05-05b (chứng minh tính đủ KKT) để tách lập luận, không thu nhỏ chữ. Ví dụ chính: $\min x^2+1$ với $(x-2)(x-4)\le0$, kết quả $x^*=2$, $p^*=5$, $\lambda^*=2$.
 
 ## Danh sách mạch và trang
 
-### 1. Mở đầu — 3 trang
+### 1. Mở đầu
 
-| Mã | Tiêu đề | Việc cần soạn |
+| Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S01-01 | Bài 03: Đối ngẫu Lagrange | TODO: Giới thiệu học phần, đơn vị phụ trách và chủ đề đối ngẫu Lagrange. |
-| S01-02 | Mục tiêu học tập | TODO: Nêu tiên quyết và mục tiêu giải thích cận dưới, đọc hình, kiểm tra điều kiện tối ưu. |
-| S01-03 | Nội dung chính | TODO: Nối các mạch cận dưới, đối ngẫu mạnh, hình học, điều kiện tối ưu và độ nhạy. |
+| S01-01 | Bài 03: Đối ngẫu Lagrange | Đặt vấn đề chứng nhận nghiệm, tạo động cơ cho cận dưới trước mọi ký hiệu. |
+| S01-02 | Mục tiêu học tập | Định nghĩa minh chứng học được và nhắc đúng tiên quyết dùng trong phép tính. |
+| S01-03 | Nội dung chính | Cho người học biết quan hệ giữa các công cụ và vị trí của ví dụ xuyên suốt. |
 
-### 2. Hàm và bài toán đối ngẫu Lagrange — 8 trang
+### 2. Hàm và bài toán đối ngẫu Lagrange
 
-| Mã | Tiêu đề | Việc cần soạn |
+| Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S02-01 | Hàm và bài toán đối ngẫu Lagrange | TODO: Nêu nhu cầu chứng nhận một nghiệm khả thi bằng cận dưới của giá trị tối ưu. |
-| S02-02 | Ví dụ tối ưu có ràng buộc | TODO: Giới thiệu ví dụ bậc hai xuyên suốt, miền khả thi và nghiệm ứng viên. |
-| S02-03 | Họ hàm tạo cận dưới | TODO: Vẽ họ hàm tạo cận và kiểm tra một cận cụ thể trên ví dụ. |
-| S02-04 | Hàm Lagrange | TODO: Định nghĩa hàm Lagrange, miền biến và quy ước dấu của các nhân tử. |
-| S02-05 | Hàm đối ngẫu | TODO: Định nghĩa hàm đối ngẫu bằng cận dưới đúng và tính trên ví dụ xuyên suốt. |
-| S02-06 | Đối ngẫu yếu | TODO: Chứng minh đối ngẫu yếu bằng chuỗi bất đẳng thức, không cần giả thiết lồi. |
-| S02-07 | Bài toán đối ngẫu | TODO: Chọn cận dưới tốt nhất trong ví dụ và phát biểu bài toán đối ngẫu. |
-| S02-08 | Bài tập xây dựng cận dưới | TODO: Giao bài tập tạo cận dưới và chứng nhận nghiệm cho một bài toán mới. |
+| S02-01 | Hàm và bài toán đối ngẫu Lagrange | Phân biệt cận trên từ nghiệm khả thi với cận dưới chặn sai số; cụ thể hóa nhu cầu bằng 5 và 4,5. |
+| S02-02 | Ví dụ tối ưu có ràng buộc | Cung cấp miền khả thi và giá trị đúng để mỗi cận sau đó có thể đối chiếu. |
+| S02-03 | Họ hàm tạo cận dưới | Cho thấy lý do cộng một hạng không dương tạo cận, và vì sao cực tiểu L có thể không khả thi. |
+| S02-04 | Hàm Lagrange | Chuyển phép cộng trong ví dụ thành dạng nhiều ràng buộc, giải thích dấu và kích thước nhân tử. |
+| S02-05 | Hàm đối ngẫu | Ngăn nhầm inf với min và ngăn áp lại ràng buộc gốc khi tính g. |
+| S02-05b | Tính hàm đối ngẫu trong ví dụ | Tách phép hoàn thành bình phương để thấy rõ biến được tối ưu và vai trò hệ số dương. |
+| S02-06 | Đối ngẫu yếu | Chứng minh cận hợp lệ bằng hai bước độc lập, chỉ rõ không dùng tính lồi. |
+| S02-07 | Bài toán đối ngẫu | Biến họ cận thành quyết định chọn cận tốt nhất, đồng thời phân biệt lõm với dễ tính. |
+| S02-08 | Bài tập xây dựng cận dưới | Đo khả năng chuyển giao sang ràng buộc affine và phát hiện lỗi bỏ hằng số. |
 
-### 3. Đối ngẫu mạnh và điều kiện Slater — 6 trang
+### 3. Đối ngẫu mạnh và điều kiện Slater
 
-| Mã | Tiêu đề | Việc cần soạn |
+| Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S03-01 | Đối ngẫu mạnh và điều kiện Slater | TODO: Minh họa khoảng giữa cận dưới và giá trị tối ưu; nêu nhu cầu bảo đảm cận khít. |
-| S03-02 | Cận khít trong ví dụ | TODO: Tìm nhân tử cho cận khít trong ví dụ và đặt tên đối ngẫu mạnh. |
-| S03-03 | Điều kiện Slater | TODO: Phát biểu Slater với giả thiết lồi, miền toàn không gian và điểm khả thi nghiêm. |
-| S03-04 | Kiểm tra điều kiện Slater | TODO: Tìm điểm thỏa Slater trong ví dụ và phân biệt điểm này với nghiệm tối ưu. |
-| S03-05 | Giới hạn của điều kiện Slater | TODO: Dùng phản ví dụ phân biệt điều kiện đủ, đối ngẫu mạnh và sự đạt nghiệm đối ngẫu. |
-| S03-06 | Bài tập đối ngẫu mạnh và Slater | TODO: Giao bài tập kiểm tra Slater và xác định những kết luận được bảo đảm. |
+| S03-01 | Đối ngẫu mạnh và điều kiện Slater | Ngăn đồng nhất khoảng của một cặp với khoảng đối ngẫu tối ưu trước khi nói cận khít. |
+| S03-02 | Cận khít trong ví dụ | Đặt tên đối ngẫu mạnh sau một chứng nhận bằng bình phương có thể kiểm tra. |
+| S03-03 | Điều kiện Slater | Cung cấp một giả thiết kiểm tra được thay cho việc phải giải hai bài toán mới biết cận khít. |
+| S03-04 | Kiểm tra điều kiện Slater | Tách vai trò điểm Slater và nghiệm tối ưu, đồng thời thực hành kiểm tra tính lồi. |
+| S03-05 | Giới hạn của điều kiện Slater | Phản ví dụ buộc tách ba mệnh đề Slater, đối ngẫu mạnh và sự đạt nghiệm đối ngẫu. |
+| S03-06 | Bài tập đối ngẫu mạnh và Slater | Đo khả năng kiểm tra cùng một điểm nghiêm và tính hữu hạn trước khi dùng định lý. |
 
-### 4. Hình học của đối ngẫu — 4 trang
+### 4. Hình học của đối ngẫu
 
-| Mã | Tiêu đề | Việc cần soạn |
+| Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S04-01 | Hình học của đối ngẫu | TODO: Nêu nhu cầu đọc cận bằng hình và đổi tọa độ trên các điểm của ví dụ. |
-| S04-02 | Đường cận trong mặt phẳng giá trị | TODO: Vẽ tập giá trị và đường cận; giải thích hệ số góc và tung độ cắt. |
-| S04-03 | Tiếp xúc và đối ngẫu mạnh | TODO: Liên hệ đường cận khít với giá trị tối ưu và điều kiện tiếp xúc trong ví dụ. |
-| S04-04 | Bài tập đọc hình đối ngẫu | TODO: Giao bài tập đọc cận, nhân tử và khoảng đối ngẫu từ hình. |
+| S04-01 | Hình học của đối ngẫu | Thiết lập ý nghĩa hai trục mới bằng bốn quyết định đã biết, tránh nhầm trục x với giá trị ràng buộc. |
+| S04-02 | Đường cận trong mặt phẳng giá trị | Ánh xạ nhân tử sang hệ số góc và inf sang tung độ cắt; điểm chạm không khả thi cho giới hạn trực giác. |
+| S04-03 | Tiếp xúc và đối ngẫu mạnh | Dùng đẳng thức bình phương xác nhận hình học cận khít, không suy luận chỉ bằng nhìn hình. |
+| S04-04 | Bài tập đọc hình đối ngẫu | Đo khả năng đọc cận và giới hạn sai số từ đường thẳng, không nhầm khoảng tối ưu. |
 
-### 5. Điều kiện Karush–Kuhn–Tucker (KKT) — 7 trang
+### 5. Điều kiện Karush–Kuhn–Tucker (KKT)
 
-| Mã | Tiêu đề | Việc cần soạn |
+| Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S05-01 | Điều kiện Karush–Kuhn–Tucker (KKT) | TODO: Suy điều kiện tối ưu từ cận khít; minh họa cân bằng gradient trong ví dụ. |
-| S05-02 | Ràng buộc hoạt động và bù trừ | TODO: Giải thích bù trừ và kiểm tra trường hợp ràng buộc hoạt động có nhân tử bằng không. |
-| S05-03 | Bốn nhóm điều kiện KKT | TODO: Trình bày khả thi gốc, khả thi đối ngẫu, bù trừ và dừng trong trường hợp khả vi. |
-| S05-04 | Giải ví dụ bằng KKT | TODO: Giải các trường hợp của ví dụ và loại ứng viên vi phạm tính khả thi hoặc dấu nhân tử. |
-| S05-05 | Điều kiện cần và điều kiện đủ | TODO: Nêu giả thiết cho tính cần và tính đủ; phân biệt bài toán lồi với phi lồi. |
-| S05-06 | KKT trong hồi quy có ràng buộc | TODO: Áp dụng KKT cho hồi quy có ràng buộc chuẩn và kiểm tra điều kiện Slater. |
-| S05-07 | Bài tập kiểm tra nghiệm tối ưu | TODO: Giao bài tập kiểm tra bốn nhóm KKT và biện minh kết luận tối ưu. |
+| S05-01 | Điều kiện Karush–Kuhn–Tucker (KKT) | Dẫn hệ KKT từ nhu cầu tránh tính g và từ các điều kiện xảy ra đẳng thức trong chuỗi cận. |
+| S05-02 | Ràng buộc hoạt động và bù trừ | Làm rõ logic bù trừ trước khi viết hệ tổng quát; phản ví dụ sửa chiều suy luận sai. |
+| S05-03 | Bốn nhóm điều kiện KKT | Tổ chức các điều kiện thành bốn nhóm để sinh viên kiểm tra có hệ thống. |
+| S05-04 | Giải ví dụ bằng KKT | Minh họa quy trình giải nhánh và loại ứng viên theo tính khả thi, không chỉ giải phương trình. |
+| S05-05 | Điều kiện cần và điều kiện đủ | Tách giả thiết cho tính cần và tính đủ, tránh coi Slater là điều kiện bắt buộc của chứng nhận. |
+| S05-05b | Chứng nhận tối ưu bằng KKT | Chứng minh điểm dùng tính lồi để bảo đảm toàn cục và nối KKT trở lại đối ngẫu yếu. |
+| S05-06 | KKT trong hồi quy có ràng buộc | Áp dụng các kết quả vừa học cho mô hình AI có kích thước thực tế; giải thích vai trò giới hạn trọng số. |
+| S05-07 | Bài tập kiểm tra nghiệm tối ưu | Đo khả năng tự giải đủ nhánh và bốn nhóm KKT trên hồi quy một trọng số; cung cấp đầu vào độ nhạy. |
 
-### 6. Nhân tử và độ nhạy — 5 trang
+### 6. Nhân tử và độ nhạy
 
-| Mã | Tiêu đề | Việc cần soạn |
+| Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S06-01 | Nhân tử và độ nhạy | TODO: Nêu nhu cầu dự đoán thay đổi giá trị tối ưu khi nới hoặc siết ràng buộc. |
-| S06-02 | Nới ràng buộc trong ví dụ | TODO: Vẽ miền khả thi và tính giá trị tối ưu khi thay đổi ràng buộc trong ví dụ. |
-| S06-03 | Hàm giá trị và độ nhạy cục bộ | TODO: Định nghĩa hàm giá trị, nêu giả thiết khả vi và diễn giải xấp xỉ cục bộ bằng nhân tử. |
-| S06-04 | Diễn giải nhân tử trong hồi quy | TODO: Ước lượng thay đổi mất mát tối ưu khi nới giới hạn chuẩn trong hồi quy. |
-| S06-05 | Bài tập độ nhạy | TODO: Giao bài tập ước lượng thay đổi giá trị tối ưu và kiểm tra giới hạn của xấp xỉ. |
+| S06-01 | Nhân tử và độ nhạy | Tạo nhu cầu định lượng lợi ích nới ràng buộc trước khi giới thiệu hàm giá trị. |
+| S06-02 | Nới ràng buộc trong ví dụ | Tính được hàm giá trị và nhìn sự khác biệt giữa đường chính xác với tiếp tuyến trên cùng ví dụ. |
+| S06-03 | Hàm giá trị và độ nhạy cục bộ | Phân biệt cận toàn cục và đạo hàm có giả thiết khả vi; tránh dùng nhân tử cho sai phân hữu hạn chính xác. |
+| S06-04 | Diễn giải nhân tử trong hồi quy | Chuyển cách diễn giải sang giới hạn chuẩn trong hồi quy; đối chiếu dự đoán với nghiệm đúng. |
+| S06-05 | Bài tập độ nhạy | Đo khả năng kiểm tra sai số xấp xỉ khi đi xa điểm gốc, trong khi cận vẫn đúng. |
 
-### 7. Tổng hợp và vận dụng — 3 trang
+### 7. Tổng hợp và vận dụng
 
-| Mã | Tiêu đề | Việc cần soạn |
+| Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S07-01 | Tổng hợp và vận dụng | TODO: Tổng hợp cách tạo cận, kiểm tra Slater, dùng KKT và diễn giải nhân tử. |
-| S07-02 | Bài tập tổng hợp | TODO: Giao bài tập tích hợp mô hình hóa, cận đối ngẫu và chứng nhận tối ưu. |
-| S07-03 | Tài liệu và nội dung mở rộng | TODO: Ghi nguồn đọc, nội dung mở rộng và kiến thức dùng tiếp ở bài sau. |
+| S07-01 | Tổng hợp và vận dụng | Gom các quyết định thành quy trình, không biến Slater thành bước bắt buộc trước chiều KKT đủ. |
+| S07-02 | Bài tập tổng hợp | Đánh giá tích hợp trong hai chiều và kiểm tra dấu khi tăng yêu cầu là siết ràng buộc. |
+| S07-03 | Tài liệu và nội dung mở rộng | Chỉ đường tự học và nguồn kiểm chứng; tách kiến thức nâng cao khỏi tiên quyết của bài tập. |
 
-## Nguồn và trạng thái tài liệu
+## Nguồn đã kiểm kê và vai trò
 
-- `sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx`: phạm vi, LLO/CLO và đánh giá; đã đọc ở bước nghiên cứu.
-- `2627-1/lecture-02-cac-bai-toan-toi-uu-loi.html`, `lecture-02-style.css`: mẫu bố cục và phong cách, chỉ phân tích tại máy.
-- Boyd và Vandenberghe (2004), *Convex Optimization*, Chương 5: nguồn nội dung khi soạn chi tiết; [trang giáo trình chính thức](https://web.stanford.edu/~boyd/cvxbook/).
-- `sources/dual.pdf`: nguồn thứ tự khái niệm cũ; `sources/Bài tập chương 4.pdf`: nguồn ví dụ. Không tải thêm nguồn MIT.
-- `source-map.md`, `math-spec.md`, `plan.md` trong thư mục này là hồ sơ phiên bản trước; ánh xạ khung hiện hành nằm trong `storyboard.md`.
-- Ghi chú công khai hiện có thuộc phiên bản trước. Chưa có tệp bài tập công khai Bài 03; không tạo lại trong nhiệm vụ khung.
+| Tài nguyên | Vai trò | Phần sử dụng |
+|---|---|---|
+| DOCX đề cương UET.AI2012 chính thức trong sources/ | Đề cương | Buổi 3, phạm vi Chương 4, LLO4–5/CLO1, 2 tiết lý thuyết + 1 tiết bài tập |
+| Bài 02 HTML và lecture-02-style.css | Mẫu cấu trúc và thị giác | Chia phần, tiêu đề, lưới, hộp, màu, runtime; chỉ đọc tại máy |
+| sources/bv_cvxbook.pdf, Boyd–Vandenberghe (2004) | Nguồn nội dung | §5.1–5.3, §5.5–5.6; đọc và đối chiếu tại máy |
+| sources/dual.pdf và bản trùng bài 5 MIT | Nguồn tham khảo trình tự khái niệm | Lagrange → đối ngẫu → hình học → tối ưu → độ nhạy; không sao chép hình |
+| sources/Bài tập chương 4.pdf và bản lời giải | Nguồn ví dụ cũ | Ví dụ bậc hai được tự tính lại; không mặc định lời giải nguồn đúng |
+| Ghi chú và hình của Bài 03 phiên bản trước | Tài liệu cũ cần đồng bộ | Viết lại ghi chú; không dùng hình cũ cho tuyến mới |
+
+Không tải thêm MIT. Hình mới tự vẽ từ công thức kiểm tra được, không có ngoại lệ raster. Nguồn chính thức: [Boyd–Vandenberghe](https://web.stanford.edu/~boyd/cvxbook/), [MIT 6.079 bài 5](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec05/). Nội tương đối, nón pháp tuyến, điểm yên ngựa và đối ngẫu theo nón chuyển sang đọc mở rộng; không phải tiên quyết của bài tập chính.
+
+Các tệp plan.md, source-map.md, math-spec.md giữ để truy nguyên phiên bản trước; bản hiện hành là outline.md, storyboard.md và review-log.md. Tài liệu công khai: materials/lec-03/lecture-note.md và exercises.md.

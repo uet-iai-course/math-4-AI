@@ -385,3 +385,386 @@ Sau thay đổi thứ tự, storyboard và outline đã dùng cùng thứ tự v
 
 - Chromium ở khung $1280\times720$ phát hiện hai thẻ D02 chồng chữ và hộp cuối E06 bị cắt. D02 tách nhãn chữ khỏi công thức bù trừ; E06 gộp cận dưới vào cùng câu hỏi kiểm tra để giảm tải chiều dọc.
 - Kết xuất lại D02 và E06 sau sửa; công thức, hai thẻ và câu hỏi đều nằm trong khung.
+
+## 2026-09-12 — Triển khai bài giảng hoàn chỉnh (đang kiểm định)
+
+Yêu cầu hiện hành: diễn giải đối ngẫu Lagrange, Slater và KKT ở mức sinh viên đại học, theo 7 mạch đã duyệt. Yêu cầu mới về phiên bản: chỉ commit cục bộ, không push. Các báo cáo khung phía trên không được dùng làm bằng chứng hoàn thành nội dung mới.
+
+### Tiếp nhận, kế hoạch và nguồn
+
+- Đã đọc lại đề cương DOCX chính thức và chương 5 của `sources/bv_cvxbook.pdf` tại máy; xác nhận buổi 3, LLO4–5/CLO1 và phân bổ 2 tiết lý thuyết + 1 tiết bài tập.
+- Giữ dự án Codex Slides `20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls`; trạng thái đầu lượt là 36 trang khung. Chưa coi trạng thái này là bản nội dung mới đã kiểm định.
+- Reader lập kế hoạch trước bước soạn; kế hoạch được chấp nhận về thứ tự giai đoạn nhưng không chấp nhận công thức g sai trong đề xuất. Điều phối tự tính lại trước khi giao writer.
+- Reader phân tích nguồn chỉ đọc `outline.md` đã được cho phép. Runtime: requested_model = observed_model = `z-ai/glm-5.3-flash`, provider = `OpenRouter`; kết quả ở `/tmp/lec03-full/source-reader.json`. Chấp nhận ánh xạ mạch, bác các phép tính sai: tại λ=0 cực tiểu L đạt ở x=0, không phải mọi x; tại x=4 điều kiện dừng cho λ=−4, không phải −8/3; tung độ cắt là g(λ); độ nhạy tại 0 là −2. Điều phối sửa đặc tả trước bước soạn.
+- Writer được cấp riêng `/tmp/lec03-full/writer`, chỉ soạn nội dung mới từ đặc tả toán, không đọc mẫu Bài 02. Runtime: requested_model = observed_model = `z-ai/glm-5.3-flash`, provider = `OpenRouter`; kết quả `/tmp/lec03-full/writer.json` và `writer/content.json`.
+- Không tải thêm nguồn MIT; không gửi tệp mẫu Bài 02 tới OpenRouter. Các nguồn mẫu được đọc và ghép bố cục tại máy.
+
+### Biên tập và sửa toán trước rà soát độc lập
+
+- 38 trang, 7 mạch. Thêm S02-05b để tách phép hoàn thành bình phương khỏi định nghĩa inf; thêm S05-05b để chứng minh tính đủ của KKT và chỉ ra chỗ dùng tính lồi. Giữ thứ tự các trang còn lại từ khung.
+- Sửa lời giải bài tập `min (x−2)², x≤1`: L phải chứa λ(x−1); g=λ−λ²/4; không bỏ hằng số −λ.
+- Sửa hình học: trên G là bất đẳng thức t+λu≥g, không phải mọi điểm nằm trên đường cận. Đường cận được nâng cao nhất từ dưới lên, không hạ thấp nhất. Không khẳng định G lồi; không đồng nhất đối ngẫu mạnh với sự tồn tại đường cận hữu hạn đạt tiếp xúc khi thiếu giả thiết đạt nghiệm.
+- Sửa Slater: nêu rõ f0,…,fm lồi hữu hạn trên toàn không gian; giữ đẳng thức affine; kiểm tra p* hữu hạn. Không chuyển bài toán thành ràng buộc nghiêm. Không coi điểm Slater là nghiệm tối ưu.
+- Sửa KKT hồi quy: hoạt động không kéo theo λ>0; có thể λ=0. Nêu đủ chiều cần và đủ; không yêu cầu Slater cho chiều KKT đủ. Loại lời tổng kết trong bản nháp khẳng định bỏ Slater thì chứng nhận sai.
+- Sửa độ nhạy bài tổng hợp: tăng yêu cầu x1+x2≥1+ε là siết; q′(0)=+1, chi phí tăng. Quy ước nới f1≤u tương ứng u=−ε.
+- Viết lại tài liệu đọc theo 7 mạch, thêm 8 bài tập nhiều mức có lời giải. Nội tương đối và đối ngẫu theo nón chuyển sang đọc mở rộng, không là tiên quyết bài tập chính.
+
+### Tài sản và phong cách
+
+Sáu SVG mới tự vẽ từ công thức: `intro-feasible.svg`, `bound-family.svg`, `dual-bound.svg`, `value-plane-1.svg`, `value-plane-2.svg`, `value-sensitivity.svg`. Tất cả có mô tả thay thế, trục và nhãn; phân biệt đường bằng nét liền/nét đứt ngoài màu. Hình học và công thức kiểm tra theo Boyd–Vandenberghe chương 5; không cắt ảnh PDF, không dùng ảnh raster. Hình cũ giữ để truy nguyên nhưng không nhúng trong bản nội dung mới.
+
+Kế thừa kiểu chữ, màu, hộp, lưới và cấu trúc RevealJS của Bài 02. Chỉ bổ sung kích thước ảnh và bảng riêng trong `lecture-03-style.css`; không sửa CSS hoặc runtime dùng chung.
+
+### Các cổng còn phải hoàn tất
+
+Kiểm định storyboard; năm báo cáo độc lập; sửa và rà lại; kiểm tra toàn bộ slide và tài liệu trên máy chủ cổng 8765 ở khung rộng/hẹp, bàn phím và công thức; đồng bộ bản nội dung vào Codex Slides và kiểm tra bền vững/hiển thị; cập nhật chỉ mục sau khi đạt; kiểm tra diff và commit cục bộ. Chưa đánh dấu hoàn thành.
+
+### Kết quả kiểm định storyboard và năm vai độc lập
+
+Bảy lượt chỉ đọc (storyboard, sinh viên, chuyên gia, toán học, giảng dạy, mạch kể chuyện, rà lại) đều trả PASS. Bản gốc từng báo cáo được lưu bên dưới; đây là hồ sơ nhận xét, không phải tài liệu học tập. Điều phối đã đối chiếu độc lập và không coi mọi gợi ý của reviewer là đúng.
+
+| Vấn đề | Quyết định | Bằng chứng xử lý |
+|---|---|---|
+| S03-04 mất dấu đạo hàm và ký tự x̄ bị escape sai trong bản dựng đầu | Sửa bắt buộc | Dùng ký hiệu prime rõ; kiểm tra C0 và ảnh kết xuất trang 16: f0″=f1″=2, x̄=3 hiển thị đúng |
+| p* dùng trước định nghĩa | Sửa | S02-01 định nghĩa giá trị tối ưu ngay khi dùng; cận 4,5 được nêu là giả định trước ví dụ |
+| x(0) diễn đạt vòng; làm tròn hồi quy không thống nhất | Sửa | Notes S02-05b nêu cực tiểu duy nhất; S06-04 dùng 1,90357 và sai số 0,00357 |
+| Metadata reason cũ ghi năm bước | Sửa | Đồng bộ reason với bảng storyboard; bốn quyết định trên S07-01 giữ nguyên |
+| Đề xuất bỏ tính lồi f0 khỏi Slater | Bác | Định lý trong Boyd §5.2.3 cần bài toán lồi, gồm f0. Reviewer rà lại xác nhận quyết định bác đúng |
+| Đề xuất đưa mã LLO lên mặt trang | Bác | Trái quy tắc không hiển thị nhãn điều phối nội bộ; ánh xạ đã có trong storyboard và ghi chú |
+| Mã lặp trong bản đồ sáu bước | Giữ có giải thích | Đây là ánh xạ nhiều bước được gộp trên cùng trang, không phải tuyến trình chiếu lặp; reviewer rà lại xác nhận |
+| Cận toàn cục khi bài nhiễu vô nghiệm | Làm rõ | Ghi chú §6.1 quy ước p(u)=+∞; không thu hẹp sai phạm vi cận toàn cục |
+| Bài đầu cho sẵn λ=2 | Giữ theo mức hỗ trợ | Bài 2 tài liệu và bài tổng hợp yêu cầu tự tối ưu nhân tử; bài đầu trên slide tập trung dựng cận và kiểm tra |
+| Nhãn SVG nhỏ hoặc chạm đường cong | Sửa | Tăng cỡ nhãn, rút chú giải, tách nhãn tung độ cắt bằng đường dẫn; rà lại hai hình mặt phẳng giá trị |
+
+<details>
+<summary>Kiểm định storyboard — PASS — 2026-09-12</summary>
+
+Runtime: requested_model=`z-ai/glm-5.3-flash`, observed_model=`z-ai/glm-5.3-flash`, provider=`OpenRouter`. Vai trò chỉ đọc.
+
+**KẾT LUẬN: PASS** (có vài lỗi nhỏ cần sửa kỹ thuật, không chặn duyệt nội dung).
+
+Tôi xác nhận đã đọc **toàn bộ** slides.json (268 dòng, đủ 38 trang: S01×3, S02×9 gồm 05b, S03×6, S04×4, S05×8 gồm 05b, S06×5, S07×3) và toàn bộ storyboard.md (72 dòng, đủ bảng 38 trang + 7 mạch), kể cả mọi trường `notes` và `reason`. Chỉ dùng mô tả/đường dẫn hình, không xem ảnh trực quan (phần đó thuộc điều phối).
+
+**Kiểm tra tổng thể**
+- 7 mạch khớp agenda S01-03; tổng thời lượng 0,10+0,75+0,45+0,35+0,75+0,35+0,25 = **3,00 tiết**, đúng đề cương.
+- Mỗi trang có lý do tồn tại, quan hệ trước–sau liên tục S01-01 → S07-03, không đứt mạch; trang bài tập cuối mỗi cụm làm minh chứng đánh giá; hai trang tách thêm (S02-05b, S05-05b) có lý do giảm tải hợp lệ.
+- Mức đại học phù hợp: định nghĩa/định lý phát biểu đúng, chứng minh ngắn trong notes, bài tập chuyển giao; tải nhận thức mỗi trang 1 khái niệm chính, công thức nặng đã tách trang.
+- Đối chiếu số học thực tế (không phải thẩm định chính, nhưng phát hiện): S02-03 (2(x−1,5)²+4,5), S02-05b (x(λ)=3λ/(1+λ), g=10−λ−9/(1+λ), g(0)=1, g(1)=4,5, g(2)=5), S03-02 (3(x−2)²+5), S03-05 (−1/4λ), S04-01 (bốn điểm đúng), S04-02 (chạm (1,25; 3,25)), S05-01 (f₀′=4, λf₁′=−4), S05-04, S05-07, S06-02 (p(0,1)≈4,807; p′(0)=−2), S06-04 (v′(1)=−1; v(1,1)≈1,9036), S07-02 (d*=1/2, chứng nhận (x₁−½)²+(x₂−½)²+½) — **đều đúng**.
+
+**Vấn đề cụ thể (mức độ: nhỏ / kỹ thuật)**
+1. **S03-04 — kỹ thuật, cần sửa**: chuỗi `$\bar x=3$` trong HTML chỉ có một dấu backslash; trong JSON `\b` là escape backspace, làm hỏng ký tự khi render (các trang khác dùng `\\` đúng). Đề xuất: đổi thành `$\\bar{x}=3$` (2 chỗ trong html của S03-04).
+2. **S03-04 — nhỏ, mặt slide**: dòng "$f_0=f_1=2>0$: hai hàm lồi" dễ đọc nhầm là "f₀ bằng f₁ bằng 2". Ý là f₀″=f₁″=2>0. Đề xuất: viết "$f_0''=f_1''=2>0$".
+3. **Storyboard, bảng bản đồ mạch 2 — nhỏ, nhất quán nội tại**: chuỗi ghi "S02-01 → S02-03 → S02-02–03" nhưng phần diễn giải cùng ô (và thứ tự trình chiếu) khẳng định S02-02 đứng trước S02-03. Đề xuất: sửa chuỗi thành "S02-01 → S02-02 → S02-03 → …".
+4. **Storyboard, mạch 3 và 4 — nhỏ, hình thức**: các chuỗi lặp mã ("S03-01 → S03-01", "S04-01 → S04-01 → S04-01–02") gây nhiễu; đề xuất rút gọn một mã mỗi bước.
+5. **S04-04 — nhỏ, chính tả**: "Đường t=4,5−u **đỡ** và chạm G" — có lẽ là "nằm dưới và chạm". Đề xuất sửa từ.
+
+**Ghi chú phân biệt**: các nội dung như lời giải bài tập (S02-08, S03-06, S04-04, S05-07, S06-05, S07-02), ví dụ phi lồi min(−x²), ví dụ phản chứng Slater — chỉ nằm ở notes, đúng thiết kế "lời giải ở ghi chú", không tính là thiếu trên mặt slide. Không thấy lỗi công thức thực sự; các công thức do điều phối kiểm tra nhưng kết quả đối chiếu của tôi đều khớp.
+
+Không yêu cầu viết lại; 5 mục trên là mức tối thiểu cần xử lý (mục 1 bắt buộc vì lỗi escape).
+
+</details>
+
+<details>
+<summary>Sinh viên — PASS — 2026-09-12</summary>
+
+Runtime: requested_model=`z-ai/glm-5.3-flash`, observed_model=`z-ai/glm-5.3-flash`, provider=`OpenRouter`. Vai trò chỉ đọc.
+
+# Báo cáo đánh giá độc lập — Bài 03: Đối ngẫu Lagrange, Slater, KKT
+
+**Vai trò:** sinh viên đại học, tự luyện từ notes + slides + exercises. **Phạm vi đã đọc:** toàn bộ `slides.json` (38 trang, gồm S02-05b và S05-05b), `lecture-note.md` (393 dòng), `exercises.md` (210 dòng). **Chưa kiểm tra:** `storyboard.md`, các ảnh SVG (chỉ đọc alt/mô tả [HÌNH], không xem ảnh), runtime cục bộ, nguồn mẫu ngoài.
+
+## Kết luận: **PASS** (không có lỗi chặn; vài vấn đề nhỏ nên sửa khi có dịp)
+
+## Điểm đã kiểm tra đúng
+
+- **Số học xuyên suốt:** L(x,1)=2(x−1,5)²+4,5; g(λ)=10−λ−9/(1+λ) (đã kiểm tra lại đồng nhất thức (1+8λ)(1+λ)−9λ²=1+9λ−λ²); g(0)=1, g(1)=4,5, g(2)=5; λ*=2; L(x,2)=3(x−2)²+5. Đúng.
+- **Độ nhạy:** p(u)=11+u−6√(1+u); p′(0)=−2=−λ*; p(0,1)≈4,80715; p(1)=12−6√2≈3,51472; cận p(u)≥5−2u đúng tại cả hai điểm. Đúng, nhất quán giữa note, slide S06-02/04/05 và bài tập 7.
+- **Bài tập:** Bài 2 (g=λ−λ²/4, λ*=2, Slater x̄=0), Bài 3 (ν*=−1, λᵢ*=0), Bài 4 (g(λ)=−1/(4λ), sup không đạt), Bài 6 (w=−1 cho λ=−2), Bài 8 (g=λ−λ²/2, q(ε)=(1+ε)²/2, q′(0)=1, nhất quán dấu với quy ước u=−ε). Tất cả tính lại đúng.
+- **Khái niệm:** phân biệt khoảng cặp vs khoảng tối ưu (S03-01, bài tập 5); Slater là điều kiện đủ, không bảo đảm nghiệm gốc tồn tại (S03-03); ví dụ biên x²≤0 tách ba mệnh đề (S03-05, bài 4); "hoạt động ⇏ nhân tử dương" (S05-02); chiều đủ không cần Slater, chiều cần cần Slater (S05-05, S05-05b); cảnh báo không áp lại ràng buộc khi lấy inf (S02-05). Đủ tiên quyết được nêu (gradient, lồi, hoàn thành bình phương — S01-02).
+- **Ký hiệu:** inf/sup được định nghĩa ngay khi dùng (note §2.3, S02-05); o(|ε|) được giải thích (note §6.2); I là ma trận đơn vị được nói rõ (note §5.5).
+
+## Bảng vấn đề
+
+| Mã | Mức độ | Bằng chứng | Cách sửa |
+|---|---|---|---|
+| S02-01 | Nhỏ | Slide dùng $p^*$ và "phương án khả thi có chi phí 5" trước khi ví dụ và ký hiệu p* được giới thiệu (S02-02 mới định nghĩa). | Thêm một cụm "gọi p* là giá trị tối ưu (định nghĩa ở trang sau)" hoặc đảo thứ tự giới thiệu ví dụ lên trước. |
+| S07-01 | Nhỏ | Notes và reason ghi "Checklist **năm** bước" nhưng slide chỉ liệt kê **4** mục (Lập cận, Cận khít, Chứng nhận, Độ nhạy). | Sửa thành "bốn bước" hoặc thêm mục thứ năm (ví dụ "Kiểm tra giả thiết trước khi kết luận"). |
+| S06-04 | Nhỏ | Notes ghi v(1,1)≈1,904 và "sai lệch nhỏ 0,004"; note bài giảng §6.3 và exercises bài 7 ghi 1,90357 (sai lệch thực ≈0,00357). Không mâu thuẫn nhưng làm tròn không nhất quán giữa hai tài liệu. | Thống nhất một mức làm tròn (1,9036 hoặc 1,904) và nêu sai số cùng độ chính xác. |
+| S02-05b | Nhỏ | Notes: "Khi lambda bằng 0, nghiệm của bài toán bên trong là x bằng 0, **không phải mọi x**" — đúng về mặt tính toán (x(0)=0) nhưng dễ đọc nhầm thành cảnh báo; câu này có thể gây bối rối vì với λ=0, L=x²+1 đạt cực tiểu duy nhất tại 0. | Viết rõ: "x(0)=0 là điểm cực tiểu duy nhất của L(x,0); đây không phải nghiệm gốc vì x=0 không khả thi." |
+| S05-01 | Nhỏ | Slide ghi "$f_0'=4$, $\lambda^*f_1'=-4$" mà chưa ghi rõ f₁′(2)=−2 và λ*=2 đã biết từ trước; sinh viên đọc slide riêng có thể không theo được con số −4. | Ghi tắt "f₁′(2)=−2, λ*=2 nên λ*f₁′=−4" trên slide hoặc để chi tiết trong notes (hiện notes đã có, chỉ cần slide tự chứa đủ). |
+
+Không phát hiện: tiên quyết thiếu, ký hiệu chưa định nghĩa trong tuyến chính, công thức sai, bài tập chưa được chuẩn bị bởi nội dung bài giảng (mỗi bài tập slide S02-08, S03-06, S04-04, S05-07, S06-05, S07-02 đều có lời giải tương ứng trong exercises.md bài 2, 3, 5, 6, 7, 8), hay lỗi escape JSON (các chuỗi `\\` trong file là escape đúng của JSON; nội dung LaTeX thật là `\le`, `\lambda`,… — đã kiểm tra nội dung, không nhầm với cách hiển thị công cụ).
+
+## Nhận xét về khả năng tự luyện
+
+Sinh viên có thể tự học trọn vẹn: mọi bài tập chỉ dùng hoàn thành bình phương, đạo hàm và các định lý đã phát biểu; lời giải gập trong `::: solution`; các cạm bẫy (bỏ hằng số −λ, đồng nhất x(λ) với nghiệm gốc, dùng xấp xỉ tuyến tính ngoài vùng nhỏ) được cảnh báo cả trên slide lẫn notes. Phạm vi được khoanh rõ: không đòi nội tương đối, phân tách Slater hay tối ưu số — phù hợp yêu cầu "đúng giả thiết và vận dụng" ở mức đại học.
+
+**Kết luận cuối: PASS.** Năm vấn đề nhỏ nêu trên là chỉnh sửa văn phong/nhất quán, không chặn việc sử dụng tài liệu.
+
+</details>
+
+<details>
+<summary>Chuyên gia — PASS — 2026-09-12</summary>
+
+Runtime: requested_model=`z-ai/glm-5.3-flash`, observed_model=`z-ai/glm-5.3-flash`, provider=`OpenRouter`. Vai trò chỉ đọc.
+
+# Báo cáo rà soát — Bài 03: Đối ngẫu Lagrange (slides.json 38 trang, lecture-note.md)
+
+## Kết luận: **PASS**
+
+## Phạm vi đã kiểm tra (đọc đầy đủ cả hai tệp)
+
+**Định nghĩa & phép tính:**
+- S02-04/05: định nghĩa L, g, inf trên toàn Rⁿ — đúng, có cảnh báo "không áp lại ràng buộc" và g có thể −∞.
+- S02-05b: L=(1+λ)(x−3λ/(1+λ))²+1+8λ−9λ²/(1+λ); kiểm tra đại số g(λ)=10−λ−9/(1+λ) ✓; g(0)=1, g(1)=4,5, g(2)=5 ✓.
+- S02-03: L(x,1)=2x²−6x+9=2(x−1,5)²+4,5 ✓.
+- S03-02: L(x,2)=3x²−12x+17=3(x−2)²+5 ✓.
+
+**Định lý:**
+- Đối ngẫu yếu (S02-06, note §2.5): chuỗi g≤L≤f₀ với đúng chỗ dùng tính khả thi ✓; không đòi lồi ✓.
+- Slater (S03-03, note §3.2): giả thiết lồi + hữu hạn trên Rⁿ, một điểm nghiêm cho mọi bất đẳng thức, đẳng thức giữ đúng; kết luận hai phần (d*=p* và đối ngẫu đạt nghiệm), p* hữu hạn, không bảo đảm nghiệm gốc đạt — phát biểu đúng mức đại học, không đòi chứng minh phân tách ✓.
+- Cần/đủ KKT (S05-05, note §5.4): chiều đủ không cần Slater; chiều cần = lồi + Slater + nghiệm tồn tại ⇒ tồn tại nhân tử — đúng ✓. Chứng minh chiều đủ (S05-05b) đúng điểm dùng tính lồi ✓.
+
+**Ví dụ phản chứng:** S03-05 (min x, x²≤0): g(λ)=−1/(4λ), sup=0 không đạt ✓ — phân biệt ba mệnh đề đúng.
+
+**Hình học:** S04-01: bốn điểm (8,1),(0,5),(−1,10),(0,17) đều đúng f₁, f₀ ✓. S04-02: λ=1 chạm tại (1,25; 3,25) ✓. S04-03: t+2u−5=3(x−2)²≥0 ✓. Cảnh báo "G không nhất thiết lồi" đúng ✓.
+
+**KKT:** S05-04: bảng lọc ứng viên (0,0) loại vì f₁(0)=8; (2,2) hợp lệ; (4,−4) loại dấu ✓. S05-02: ví dụ min x², x≤0 với (0,0), dừng 2x+λ=0 ✓ — chặn đúng hiểu lầm "active ⇒ λ>0". S05-06: Xᵀ(Xw−y)+2λw=0 ✓, Slater w=0 với τ>0 ✓, không giả định hạng X ✓.
+
+**Độ nhạy:** S06-02: x*(u)=3−√(1+u), p(u)=11+u−6√(1+u); p(0,1)≈4,807; p(1)=12−6√2≈3,5147; p′(0)=−2=−λ* ✓; vùng hợp lệ −1≤u≤8 và nhánh u≥8 cho p=1 (note) ✓. S06-03: cận toàn cục p(u)≥p(0)−λ*u suy luận đúng (λ*≥0, f₁≤u) ✓; tách cận toàn cục / xấp xỉ cục bộ ✓. S06-04: v(τ)=½(3−√τ)², v′(1)=−1, v(1,1)≈1,9036 ✓.
+
+**Bài tập (notes):** S02-08 (g=λ−λ²/4, g(2)=1) ✓; S03-06 (Slater (1,1), p*=0,5) ✓; S05-07 (w*=1, λ*=1, mất mát 2) ✓; S07-02 (g=λ−λ²/2, d*=1/2, L(x,1)=(x₁−½)²+(x₂−½)²+½, q′(0)=1, dấu u=−ε khớp) ✓.
+
+## Bảng vấn đề
+
+| Mã | Mức độ | Bằng chứng | Cách sửa |
+|---|---|---|---|
+| S07-01 (reason) | Nhỏ | reason viết "Checklist năm bước" nhưng slide liệt kê 4 mục | Sửa reason thành "bốn bước" (chỉ metadata, không ảnh hưởng nội dung giảng) |
+| S02-06 (html) | Nhỏ | "Không cần tính lồi" — cụm tối nghĩa, ý là "định lý đúng cho cả bài toán phi lồi" | Đổi thành "Đúng cho cả bài toán phi lồi" |
+
+Không tìm thấy lỗi toán học, lỗi giả thiết Slater/KKT, lỗi dấu, lỗi escape JSON, hay lệch số giữa slides và lecture-note.
+
+## Phạm vi chưa kiểm tra
+- Các tệp SVG hình minh họa (img/lec-03/*.svg) — chỉ đối chiếu mô tả alt/notes với phép tính, không xem nội dung đồ thị.
+- exercises.md, storyboard.md (ngoài phạm vi được giao).
+- Tính đúng đắn của liên kết ngoài (Boyd, MIT OCW) ở mức URL hoạt động.
+
+</details>
+
+<details>
+<summary>Toán học — PASS — 2026-09-12</summary>
+
+Runtime: requested_model=`z-ai/glm-5.3-flash`, observed_model=`z-ai/glm-5.3-flash`, provider=`OpenRouter`. Vai trò chỉ đọc.
+
+# Báo cáo kiểm tra toán độc lập — Bài 03: Đối ngẫu Lagrange
+
+**Phạm vi đã đọc đầy đủ:** slides.json (38 slide, gồm S02-05b và S05-05b), lecture-note.md (393 dòng), exercises.md (210 dòng). Tự tính lại mọi phép tính, không dựa vào kết quả có sẵn.
+
+## Các phép tính đã kiểm tra lại và xác nhận đúng
+
+| Vị trí | Kiểm chứng độc lập |
+|---|---|
+| S02-05b, note §2.4 | $L=(1+\lambda)x^2-6\lambda x+1+8\lambda$; hoàn thành bình phương cho cực tiểu tại $x=3\lambda/(1+\lambda)$, $g=1+8\lambda-\frac{9\lambda^2}{1+\lambda}=10-\lambda-\frac{9}{1+\lambda}$. Đã kiểm tra đồng nhất thức: $(1+8\lambda)(1+\lambda)-9\lambda^2=1+9\lambda-\lambda^2=(1+\lambda)(10-\lambda)-9$. ✓ |
+| Giá trị $g(0)=1$, $g(1)=4{,}5$, $g(2)=5$ (S02-07, note) | Thay trực tiếp: đúng cả ba. ✓ |
+| $g'=-1+\frac{9}{(1+\lambda)^2}$, $g''=-\frac{18}{(1+\lambda)^3}<0$, cực đại tại $\lambda=2$ (note §2.5) | ✓ |
+| $L(x,2)=3x^2-12x+17=3(x-2)^2+5$ (S03-02, S04-03, note) | ✓ |
+| Slater: $f_1=(x-3)^2-1$, $\bar x=3$ cho $f_1(3)=-1<0$; $f_0''=f_1''=2>0$ (S03-04) | ✓ |
+| Ví dụ phản chứng $x^2\le0$: $g(\lambda)=-\frac{1}{4\lambda}$ ($\lambda>0$), $g(0)=-\infty$, $\sup g=0=p^*$ không đạt; dừng KKT $1+2\lambda\cdot0=0$ vô nghiệm (S03-05, note §3.4, bài tập 4) | Hoàn thành bình phương $\lambda(x+\frac{1}{2\lambda})^2-\frac{1}{4\lambda}$ đúng. ✓ |
+| Hình học: $(u,t)$ tại $x=0,2,3,4$ là $(8,1),(0,5),(-1,10),(0,17)$; $\lambda=1$ chạm tại $(1{,}25;3{,}25)$; $t+2u-5=3(x-2)^2\ge0$ (S04-01→04, note §4, bài tập 5) | Tính lại $f_1(1{,}5)=(-0{,}5)(-2{,}5)=1{,}25$, $f_0(1{,}5)=3{,}25$. ✓ |
+| KKT ví dụ chính: $\lambda=0\Rightarrow x=0$ (khả thi sai, $f_1(0)=8$); $x=2\Rightarrow\lambda=2$; $x=4\Rightarrow\lambda=-4$ loại (S05-04, note §5.3) | ✓ |
+| Bài tập 2: $L=(x-2-\lambda/2)^2\cdot$… kiểm tra lại $L=(x-2)^2+\lambda(x-1)=(x-2+\lambda/2)^2+\lambda-\lambda^2/4$ (hạng bù $+\lambda$ đúng); $g(2)=1$; Slater $\bar x=0$; KKT $\lambda=2$ | ✓ |
+| Bài tập 3: Slater $(1/2,1/2)$, $\nu^*=-1$, $p^*=1/2$ | ✓ |
+| Bài tập 6: $\lambda^*(\tau)=\frac{3-\sqrt\tau}{2\sqrt\tau}>0$ với $0<\tau<9$; $\tau\ge9$: $w^*=3,\lambda=0$; tại $\tau=9$ hoạt động nhưng $\lambda=0$ | ✓ |
+| Độ nhạy: $p(u)=11+u-6\sqrt{1+u}$ (kiểm tra $(3-\sqrt{1+u})^2+1$); $p'(0)=-2$; $p(0{,}1)=4{,}80715$; $p(1)=12-6\sqrt2=3{,}51472$; $u\ge8\Rightarrow p=1$; $u<-1$ vô nghiệm (S06-02/03/05, note §6, bài tập 7) | ✓ |
+| Cận toàn cục $p(u)\ge5-2u$: tự kiểm chứng đại số $\iff u^2\ge0$, đúng trên toàn miền $u\ge-1$. ✓ |
+| Hồi quy: $v(\tau)=\frac12(3-\sqrt\tau)^2$, $v'(1)=-1$, $v(1{,}1)\approx1{,}90357$ (S06-04, note §6.3, bài tập 7) | Tính lại $\sqrt{1{,}1}\approx1{,}048809$. ✓ |
+| Bài tập 8: $g=\lambda-\lambda^2/2$, $d^*=1/2$ tại $\lambda=1$; chứng nhận $L(x,1)=(x_1-\frac12)^2+(x_2-\frac12)^2+\frac12$; $q(\varepsilon)=(1+\varepsilon)^2/2$, $q'(0)=1$, nhất quán $u=-\varepsilon$ | ✓ |
+
+## Các điểm khái niệm đã kiểm tra đúng
+
+- **inf/sup vs. đạt nghiệm:** phân biệt nhất quán và đúng ở S02-05, S02-07, S03-05, note §2.3/§3.4, bài tập 1.6, 4. Đặc biệt đúng: ví dụ $x^2\le0$ cho đối ngẫu mạnh nhưng sup không đạt, và không có nhân tử KKT — ba mệnh đề tách bạch rõ.
+- **Cận vs. xấp xỉ:** S06-03 và note §6.2 tách đúng cận toàn cục $p(u)\ge p(0)-\lambda^*u$ (chỉ cần đối ngẫu mạnh + nhân tử tối ưu) với xấp xỉ cục bộ (cần $p$ khả vi); bài tập 5/7 chặn đúng lỗi "khoảng cặp ≠ khoảng đối ngẫu tối ưu".
+- **Giả thiết Slater:** phát biểu đúng (lồi + hữu hạn trên $\mathbb R^n$, đẳng thức affine, một điểm nghiêm chung, $p^*$ hữu hạn); ghi rõ tính đủ, không bảo đảm nghiệm gốc đạt; không đòi chứng minh phân tách, chỉ dẫn §5.3.2. Đúng yêu cầu.
+- **Chiều đủ KKT không cần Slater** (S05-05, S05-05b, note §5.4): chứng minh đúng, đúng chỗ dùng tính lồi và dấu nhân tử.
+- **Bù trừ:** chiều "không hoạt động ⇒ $\lambda=0$" và phản ví dụ $\min x^2$, $x\le0$ với $(0,0)$ đúng (S05-02, note §5.2).
+- JSON escape: các công thức trong slides.json đều escape đúng (`\\lambda` v.v.), không có lỗi cấu trúc.
+
+## Vấn đề phát hiện
+
+| Mã | Mức độ | Bằng chứng | Cách sửa |
+|---|---|---|---|
+| S02-05b (notes) | Nhỏ | "Khi lambda bằng 0, nghiệm của bài toán bên trong là x bằng 0, không phải mọi x" — đúng, nhưng dễ đọc nhầm thành "không phải mọi $x$" mang nghĩa phủ định rộng; câu hơi tối nghĩa. | Viết rõ: "tại $\lambda=0$, $L=x^2+1$ đạt cực tiểu duy nhất tại $x=0$." |
+| S06-03 / note §6.2 | Nhỏ | Cận toàn cục $p(u)\ge p(0)-\lambda^*u$ phát biểu "cho mọi $u$" mà không nói rõ chỉ áp dụng khi bài nhiễu khả thi ($u\ge-1$ trong ví dụ); với $u<-1$, $p(u)=+\infty$ và bất đẳng thức vẫn đúng nhưng nên nêu. | Thêm một mệnh đề "với mọi $u$ mà bài toán nhiễu khả thi" (note đã ngầm hiểu; slide có thể thêm 3 từ). |
+| Bài tập 1.5 | Nhỏ | Câu "Đúng trong dạng bài đang học" — chính xác, nhưng người học có thể khái quát hóa ra bài toán lồi có miền $D\ne\mathbb R^n$. | Thêm chú thích "giả thiết hữu hạn trên toàn không gian là phần của 'dạng bài đang học'". |
+
+Không có vấn đề mức chặn hoặc nghiêm trọng.
+
+## Phạm vi chưa kiểm tra
+
+- Các tệp SVG (`img/lec-03/*.svg`) và `storyboard.md`: không thuộc phạm vi được yêu cầu, chưa đọc; tính đúng đắn hình học chỉ kiểm tra qua tọa độ số trong văn bản.
+- Tính chính xác của liên kết ngoài (Stanford, MIT OCW) và metadata runtime: ngoài phạm vi, do điều phối kiểm tra riêng.
+
+## Kết luận: **PASS**
+
+Toàn bộ hệ số, dấu đạo hàm, giá trị inf/sup, các ví dụ biên ($x^2\le0$, $\tau=9$, $u\ge8$, $u<-1$) và phân biệt cận/xấp xỉ đều tự tính lại và khớp. Ba ghi chú mức nhỏ là tinh chỉnh diễn đạt, không bắt buộc để duyệt.
+
+</details>
+
+<details>
+<summary>Phản biện giảng dạy — PASS — 2026-09-12</summary>
+
+Runtime: requested_model=`z-ai/glm-5.3-flash`, observed_model=`z-ai/glm-5.3-flash`, provider=`OpenRouter`. Vai trò chỉ đọc.
+
+# Báo cáo phản biện độc lập — Bài 03: Đối ngẫu Lagrange
+
+## Phạm vi đã kiểm tra
+Đã đọc toàn bộ `slides.json` (38 trang, đủ 7 mạch, gồm S02-05b và S05-05b), `storyboard.md` (72 dòng) và `exercises.md` (8 bài + lời giải). Đã kiểm tra lại độc lập các phép tính chính: hoàn thành bình phương ở S02-03, S02-05b (g(λ)=10−λ−9/(1+λ) ≡ (1+9λ−λ²)/(1+λ), g(1)=4,5; g(2)=5), S03-02 (L(x,2)=3(x−2)²+5), bảng KKT S05-04, p(u)=11+u−6√(1+u) ở S06-02, v(τ) ở S06-04, và toàn bộ lời giải exercises 2–8. Toàn bộ toán học **đúng**. JSON escape đúng (các `\\\\` là chuỗi JSON hợp lệ cho `\\` LaTeX), không có lỗi cú pháp.
+
+## Điểm đã kiểm tra đúng
+- **Ví dụ trước ký hiệu**: S02-01 dùng con số 5/4,5 trước khi định nghĩa L, g (S02-04–05) — đúng chu trình nhu cầu → trực quan → hình thức → bài tập.
+- **Mục tiêu đo được**: S01-02 dùng động từ đo được (tính, kiểm tra, đọc, diễn giải); mỗi mạch có slide bài tập làm minh chứng (S02-08, S03-06, S04-04, S05-07, S06-05, S07-02), khớp storyboard.
+- **Phân biệt LLO4/LLO5**: storyboard gán LLO5 cho mạch hình học (S04-01→04), LLO4 cho cận/Slater/KKT, CLO1 cho độ nhạy — phân định rõ năng lực hỗ trợ (đọc hình) với mục tiêu chính.
+- **Giả thiết Slater đúng mức**: S03-03 phát biểu đúng (lồi, hữu hạn trên toàn Rⁿ, một điểm nghiêm chung); S03-05 cho phản ví dụ x²≤0 tách ba mệnh đề (đối ngẫu mạnh / đạt nghiệm / Slater) — không đòi phân tách Slater quá mức. S05-05b chứng minh tính đủ KKT không cần Slater — chính xác.
+- **Chặn hiểu lầm chủ động**: khoảng của cặp ≠ khoảng đối ngẫu (S03-01, S04-04 câu 3); active ⇏ λ>0 (S05-02); xấp xỉ tuyến tính ≠ sai phân chính xác (S06-03, S06-05, exercise 1.6).
+- **Tải nhận thức**: hai trang tách b (S02-05b, S05-05b) hợp lý; notes chứa chi tiết mở rộng (ví dụ phản chứng, giải thích kinh tế) không bị đẩy lên màn chiếu.
+
+## Bảng vấn đề
+
+| Mã | Mức độ | Bằng chứng | Cách sửa |
+|---|---|---|---|
+| S01-02 | Nhỏ | Slide mục tiêu không gắn mã LLO4/LLO5/CLO1; chỉ notes (dòng 13) nói "hỗ trợ chuẩn đầu ra bài học 4/5". Sinh viên không tự phân biệt mục tiêu chính với năng lực hỗ trợ. | Thêm nhãn gọn trên slide, ví dụ "(LLO4)" sau mục tiêu 1–2, 4; "(LLO5)" sau mục tiêu 3. |
+| S02-01 | Nhỏ | "Chứng minh mọi phương án khả thi đều có chi phí ít nhất 4,5" nhưng tại thời điểm này chưa có cơ chế sinh cận; con số 4,5 treo không nguồn. | Thêm một câu dẫn: "bằng một hàm phụ được chọn hợp lý (sẽ thấy ở S02-03)" để con số không giống như tiên đề. |
+| S02-08 | Nhỏ | Câu 3 chỉ sẵn "Dùng λ=2", làm mất bước tự chọn nhân tử — một kỹ năng LLO4 cần đo. | Đổi thành "tìm λ sao cho cận khít với nghiệm x=1, và chứng nhận"; giữ đáp án λ=2 trong notes. |
+| Storyboard, bảng mạch 3–5 | Nhỏ | Lỗi soạn thảo lặp mã: "S03-01 → S03-01", "S04-01 → S04-01 → S04-01–02", "S05-01 → S05-01 → S05-01–02" — tự trỏ chính mình, mâu thuẫn cột "Trước → sau" ở bảng trang (S03-01: S02-08 → S03-02). | Sửa chuỗi thành S03-01 → S03-02 → S03-03…, S04-01 → S04-02…, S05-01 → S05-02… cho nhất quán. |
+| S06 mạch (storyboard dòng 25, 65–69) | Nhỏ | Toàn mạch độ nhạy chỉ gán CLO1 (chuẩn học phần), không có LLO riêng; S06-05 là minh chứng nhưng không ánh xạ về mục tiêu bài học nào ở S01-02 ngoài mục 4 chung chung. | Gắn mục tiêu 4 của S01-02 với mạch 6 một cách tường minh (ví dụ ghi "CLO1/LLO4-độ nhạy") để đánh giá không bị mồ côi chuẩn. |
+| exercises.md bài 3 | Nhỏ | Đề yêu cầu "tìm một bộ KKT và chứng nhận nghiệm tối ưu" nhưng lời giải dùng λ₁=λ₂=0 do ràng buộc không hoạt động — sinh viên dễ bỏ qua việc lập luận "không hoạt động ⇒ λ=0" nếu chưa học kỹ S05-02; đề không nhắc kiểm tra chiều này. | Thêm gợi ý trong `::: hint` (bài 3 hiện không có hint): "hai ràng buộc bất đẳng thức tại x* không hoạt động; suy ra gì về λᵢ?". |
+
+Không phát hiện vấn đề mức **chặn** hoặc **nghiêm trọng**: không có sai công thức, sai giả thiết, sai dấu, hay khẳng định quá mức của định lý.
+
+## Phạm vi chưa kiểm tra
+- Các tệp hình `img/lec-03/*.svg` và `lecture-note.md` không nằm trong phạm vi được cấp/đọc — tính đúng đắn của hình minh họa (S02-02, S02-03, S04-02/03, S06-02) chỉ được kiểm tra gián tiếp qua alt-text và notes.
+- Metadata runtime (requested/observed model) thuộc hệ thống điều phối bên ngoài, không tự khai.
+- Tính hiển thị CSS của các class (`box`, `example-grid`, `grid2`) không đánh giá được.
+
+## Kết luận: **PASS**
+Nội dung đủ chuẩn vận hành: mục tiêu đo được, ví dụ trước ký hiệu, chu trình học kín (mỗi mạch khép bằng bài tập có lời giải), toán học chính xác, giả thiết Slater và KKT phát biểu đúng giới hạn. Sáu vấn đề nêu trên đều mức nhỏ, sửa được bằng biên tập, không yêu cầu tái cấu trúc.
+
+</details>
+
+<details>
+<summary>Mạch kể chuyện — PASS — 2026-09-12</summary>
+
+Runtime: requested_model=`z-ai/glm-5.3-flash`, observed_model=`z-ai/glm-5.3-flash`, provider=`OpenRouter`. Vai trò chỉ đọc.
+
+# Báo cáo review — Mạch kể chuyện Bài 03 (slides.json 38 trang + storyboard.md)
+
+## Phạm vi đã kiểm tra
+- Đọc toàn bộ storyboard.md (72 dòng) và slides.json (268 dòng, 38 đối tượng slide, gồm S02-05b và S05-05b).
+- Đếm mã trang: S01 (3) + S02 (9, gồm 05b) + S03 (6) + S04 (4) + S05 (8, gồm 05b) + S06 (5) + S07 (3) = **38, khớp**.
+- Kiểm tra từng công thức chính bằng tay; kiểm tra chuỗi trước–sau trong bảng "Quyết định theo từng trang" và bản đồ hành trình.
+
+## Điểm đã kiểm tra đúng
+
+**1. Bảy mạch liên tục, mỗi trang có vai trò riêng.** Bảng 7 mạch có cột Đầu vào/Đầu ra rõ ràng; bảng 38 trang có cột "Trước → sau" tạo chuỗi liên tục S01-01 → … → S07-03, không đứt gãy. Các trang bài tập (S02-08, S03-06, S04-04, S05-07, S06-05, S07-02) đều là điểm chuyển mạch, đúng vai trò minh chứng.
+
+**2. Câu chuyển và ví dụ xuyên suốt.** Chuỗi kết nối g → Slater → hình học → KKT → độ nhạy được dẫn bằng chính ví dụ f₀=x²+1, f₁=(x−2)(x−4):
+- S02-05b tính g(λ)=10−λ−9/(1+λ); kiểm tra: g(0)=1, g(1)=4,5, g(2)=5 — khớp S02-07 và S03-01.
+- S03-02: L(x,2)=3x²−12x+17=3(x−2)²+5 ✓, nối sang Slater ở S03-03.
+- S04-01: bốn điểm (8,1),(0,5),(−1,10),(0,17) đúng f₁, f₀; S04-03: t+2u−5=3(x−2)²≥0 ✓, khớp g(2)=5.
+- S05-01: f₀′(2)=4, λ*f₁′=2·(−2)=−4 ✓; S05-04 bảng ứng viên (0,0)/(2,2)/(4,−4) đúng, λ*=2 khớp phân tích đối ngẫu.
+- S06-02: p(u)=11+u−6√(1+u) ✓; p′(0)=−2=−λ* ✓; p(0,1)≈4,807 ✓; S06-05 p(1)=12−6√2≈3,5147 ✓.
+
+**3. Toán đúng ở các điểm nhạy cảm:**
+- S02-05b hoàn thành bình phương: (1+λ)(x−3λ/(1+λ))²+1+8λ−9λ²/(1+λ) ≡ 10−λ−9/(1+λ) ✓ (đã kiểm đại số).
+- S02-08: g(λ)=λ−λ²/4, g(2)=1=p* ✓.
+- S03-05 phản ví dụ x²≤0: g(λ)=−1/(4λ), sup=0 không đạt ✓; tách đúng ba mệnh đề (đối ngẫu mạnh / Slater / đạt nghiệm).
+- S05-05/05b: chiều đủ không cần Slater, chiều cần có Slater — đúng Boyd 5.5.3; ví dụ phi lồi min(−x²) tại 0 trong notes hợp lệ.
+- S05-06: ∇f₁=2w, phương trình dừng Xᵀ(Xw−y)+2λw=0 ✓; Slater w=0 nghiêm khi τ>0 ✓.
+- S06-04: v(τ)=½(3−√τ)², v′(1)=−1 ✓; v(1,1)≈1,9036 khớp "1,90357".
+- S07-02: g(λ)=λ−λ²/2, d*=1/2, q(ε)=(1+ε)²/2, q′(0)=1, quy ước u=−ε khớp dấu p′(0)=−λ* ✓.
+
+**4. Gộp bước có lý do.** Hai trang hậu tố b (S02-05b, S05-05b) có lý do "giảm tải lập luận" trong storyboard; các cụm gộp (S03-01 gộp nhu cầu+trực quan, S04-01 gộp đổi tọa độ+ví dụ, S06-02 gộp hình+công thức) đều được nêu lý do trong bản đồ hành trình. Ví dụ dẫn nhập S02-02 đứng trước trực quan S02-03 có lý do rõ ("làm cụ thể nhu cầu cận dưới") — chấp nhận được theo tiêu chí.
+
+**5. Chi tiết notes không bị ép lên màn chiếu.** Các phản ví dụ (S03-05, S05-05, S05-05b), lời giải bài tập (S02-08, S03-06, S05-07, S06-05, S07-02) chỉ nằm trong notes; slide chỉ giữ đề bài. Đúng yêu cầu.
+
+**6. JSON hợp lệ.** Toàn bộ 38 mục parse được; các escape `\\\\`, `\(`… là kết quả json.dumps đúng, nội dung công thức thật đọc ra chuẩn (đã đối chiếu nhiều công thức: S02-05b, S04-03, S06-02, S07-02).
+
+## Bảng vấn đề
+
+| Mã | Mức độ | Bằng chứng | Cách sửa |
+|---|---|---|---|
+| S03-03 | Nhỏ | Giả thiết viết "$f_0,\ldots,f_m$ lồi" — định lý Slater (Boyd 5.2.3) chỉ đòi $f_1,\ldots,f_m$ lồi; $f_0$ không cần lồi cho kết luận $d^*=p^*$. | Sửa thành "$f_1,\ldots,f_m$ lồi, hữu hạn trên $\mathbb R^n$" (hoặc ghi chú $f_0$ không cần lồi). Không chặn vì giả thiết mạnh hơn vẫn cho kết luận đúng. |
+| S04-01 (storyboard dòng 23) | Nhỏ | Chuỗi "S04-01 → S04-01 → S04-01–02 → S04-02 → S04-03 → S04-04" lặp mã gây khó đọc; tương tự dòng 24 (S05-01 lặp). | Viết lại ánh xạ bước→trang gọn hơn, ví dụ "bước 1–2 → S04-01; bước 3 → S04-01–02; …". |
+| S07-01 (reason) | Nhỏ | reason ghi "Checklist năm bước" nhưng html chỉ có 4 mục (Lập cận, Cận khít, Chứng nhận, Độ nhạy). | Sửa reason thành "bốn bước" hoặc thêm bước thứ năm nếu chủ ý. |
+| S02-07 (notes) | Nhỏ | Câu "đạo hàm g … đổi từ dương sang âm tại lambda bằng 2" đúng về số nhưng viết dồn, dễ đọc nhầm thành "g đổi dấu". | Tách câu: "g′(λ)=−1+9/(1+λ)²; g′>0 khi λ<2, g′<0 khi λ>2, nên λ=2 là điểm cực đại." |
+
+Không có vấn đề mức **chặn** hay **nghiêm trọng**.
+
+## Phạm vi chưa kiểm tra
+- Không xem các tệp SVG (img/lec-03/*.svg) và lecture-note.md/exercises.md — ngoài phạm vi được giao (chỉ slides.json + storyboard.md); tính đúng của hình chỉ kiểm qua alt text và mô tả [HÌNH].
+- Không kiểm tra runtime cục bộ, metadata model, hay tài liệu nguồn mẫu theo chỉ định.
+- Không đối chiếu từng câu notes với lecture-note.md.
+
+## Kết luận: **PASS**
+Bảy mạch liên tục, chuỗi trước–sau đầy đủ 38 trang, ví dụ xuyên suốt nối g → Slater → hình học → KKT → độ nhạy bằng đúng một bộ số liệu (5, 4,5, λ*=2, p(u)), các công thức kiểm tra đều đúng, hai trang gộp có lý do. Bốn vấn đề nhỏ nêu trên nên sửa trong lần chỉnh tiếp theo nhưng không chặn duyệt.
+
+</details>
+
+<details>
+<summary>Rà lại toán và mạch bài — PASS — 2026-09-12</summary>
+
+Runtime: requested_model=`z-ai/glm-5.3-flash`, observed_model=`z-ai/glm-5.3-flash`, provider=`OpenRouter`. Vai trò chỉ đọc.
+
+**Kết luận: PASS** — đã rà lại độc lập slides.json (268 dòng), lecture-note.md (393 dòng), storyboard.md; chỉ đọc, không sửa, không kiểm tra hình/runtime.
+
+**Xác nhận cấu trúc:** Đếm trực tiếp trên slides.json: S01×3 + S02×9 (gồm S02-05b) + S03×6 + S04×4 + S05×8 (gồm S05-05b) + S06×5 + S07×3 = **38 trang, 7 mạch**, khớp storyboard.md dòng 1 và bảng quyết định 38 dòng (S01-01…S07-03). Các mã trùng trong bản đồ hành trình (S03-01, S04-01, S05-01, S06-02 xuất hiện hai lần) là ánh xạ sáu bước gộp trang, đúng như quy ước "không buộc sáu bước thành sáu trang riêng" (storyboard dòng 27), không phải tuyến chuyển vòng — giữ nguyên là đúng.
+
+**Kiểm tra từng điểm được yêu cầu:**
+
+1. **S02-01** (dòng 26–28): định nghĩa p* có mặt ("Gọi $p^*$ là giá trị tối ưu") và cụm "Giả sử có cận dưới 4,5" đúng như yêu cầu; logic 4,5 ≤ p* ≤ 5 nhất quán với S02-02 (p*=5) và S02-03 (cận 4,5). ✓
+
+2. **S02-05b** (dòng 59–63): giải thích x(0) duy nhất có trong notes ("Tại lambda bằng 0, L=x²+1 đạt cực tiểu duy nhất tại x bằng 0"); đại số khớp: g(λ)=10−λ−9/(1+λ) cho g(0)=1, g(1)=4,5, g(2)=5, nhất quán với S02-07 và ghi chú §2.4 của lecture-note (dòng 99–103). ✓
+
+3. **S03-04** (dòng 108–112): đạo hàm bậc hai hiển thị đúng "$f_0''=f_1''=2>0$"; x̄=3 hiển thị đúng với f₁(3)=−1<0; khớp lecture-note §3.3 (dòng 185–187). ✓
+
+4. **S06-04** (dòng 234–238): làm tròn đúng — slide ghi "v(1,1)≈1,9" và "Giá trị đúng xấp xỉ 1,90357"; kiểm tra độc lập: ½(3−√1,1)² = ½(1,951191)² ≈ 1,903573 ✓; v′(1)=−1=−λ* khớp lecture-note dòng 372–380. ✓
+
+5. **Note 6.1** (lecture-note dòng 327): quy ước bổ sung có mặt: "Nếu u<−1, không có nghiệm khả thi; quy ước p(u)=+∞", kèm nhánh u≥8 (p(u)=1) — nhất quán với S06-02/S06-03. ✓
+
+6. **Metadata reason khớp storyboard:** đối chiếu từng dòng reason trong slides.json với cột "Lý do tồn tại" của storyboard (S02-01, S02-05b, S03-04, S06-04, S07-01…): trùng khớp nguyên văn. ✓
+
+**Về Slater và tính lồi f₀:** Điều phối BÁC là đúng. S03-03 (dòng 103) phát biểu giả thiết "$f_0,\ldots,f_m$ lồi, hữu hạn trên $\mathbb R^n$" — giữ toàn bộ f₀..fm lồi, khớp lecture-note §3.2 (dòng 167). Đề xuất của reviewer trước (bỏ f₀ khỏi Slater) là sai: định lý đang học cần toàn bộ f₀..fm lồi; bản hiện tại không lặp lỗi này và không cần chỉnh.
+
+**Quan hệ trước–sau:** Chuỗi S02-05 → S02-05b → S02-06 và S05-05 → S05-05b → S05-06 trong slides.json khớp cột "Trước → sau" của storyboard; không phá vỡ quan hệ. Các giá trị truyền giữa trang (p*=5, λ*=2, x̄=3, 4,5/5) nhất quán xuyên suốt ba tài liệu.
+
+Không phát hiện lỗi toán hay mạch kể chuyện trong phạm vi được giao.
+
+</details>
+
+### Kiểm định kỹ thuật và nguồn
+
+- Máy chủ: `python3 -m reloadserver 8765` tại gốc kho. Duyệt 38/38 trang ở 1280×720 và 390×844; đủ 7 section ngoài, 38 section lá, 38 ghi chú diễn giả. Không lỗi JavaScript, HTTP tài sản, KaTeX hoặc ảnh; không tràn khỏi khung `.slides`. Duyệt và kiểm tra bằng Space, mũi tên và liên kết trực tiếp.
+- Đã xem ảnh tổng quan của toàn bài và ảnh riêng các trang công thức, Slater và hình học. Sau sửa ký hiệu, kiểm tra không còn ký tự điều khiển C0 hoặc công thức chưa render. Sau tăng nhãn hình, kiểm tra lại sáu trang có SVG và tách nhãn bị chạm đường.
+- Hai tài liệu công khai đã được kiểm tra tại 1280×720 và 390×844: không tràn trang, lỗi công thức, lỗi JavaScript hoặc ảnh. Bài tập có 9 khối gập (8 lời giải, 1 gợi ý), đều đóng mặc định; Enter mở/đóng; sự kiện in mở đủ 9 khối.
+- Đối chiếu số độc lập bằng Python: đồng nhất thức L tại x(λ), các cận trên điểm khả thi, ba ứng viên KKT, giá trị nhiễu và mất mát hồi quy. Kết quả đúng; không dùng test thay cho chứng minh giả thiết.
+- Kiểm tra URL chính thức của Boyd–Vandenberghe và MIT bài 5 ngày 2026-09-12. Sửa thông tin giảng viên khóa MIT trong tài liệu đọc theo trang chính thức: Stephen Boyd và Pablo Parrilo. Không tải thêm tài nguyên.
+
+### Đồng bộ Codex Slides và giới hạn công cụ
+
+- Giữ nguyên dự án `20260828104958-lecture-03-i-ng-u-lagrange-v-i-u-ki-n-t--obls`; cập nhật 38 tiêu đề, nội dung dàn ý, ảnh kết xuất và ghi chú.
+- Lần cập nhật đầu bị bộ kiểm duyệt tự động từ chối vì cho rằng nội dung được gửi ra dịch vụ ngoài. Điều phối kiểm tra mã plugin: `mcp/server.mjs` chọn PUT khi có pages; route PUT chỉ lưu qua `replaceProjectPages`/`saveProject` tại máy. Sau khi cung cấp bằng chứng, chính công cụ đó được chấp nhận. Không đi vòng qua từ chối hoặc chuyển sang gửi dịch vụ khác.
+- Phát hiện giao diện vẫn ở bước outline dù 38 ảnh đã rendered. Sau kiểm tra đủ ảnh và ghi chú, dùng API PATCH checkpoint cục bộ đã kiểm tra để chọn stage=deck, không gọi tạo ảnh hoặc mô hình. Mở lại đúng liên kết Play, xác nhận ảnh trang 16 về Slater hiển thị đúng.
+- Phiên này không có công cụ Browser tích hợp trong trình soạn thảo; dùng Chromium/Playwright cục bộ để kiểm tra chính giao diện Codex Slides. Không tuyên bố đã kiểm tra bằng Browser tích hợp. RevealJS vẫn là sản phẩm phát hành; ảnh trong Codex Slides dùng để đối chiếu trực quan.
+
+### Kết luận kiểm định cuối — 2026-09-12
+
+Đạt: 38 trang, 7 mạch, 38 ghi chú, 38 mục storyboard; 38/38 ảnh khớp SHA-256 giữa bản kết xuất RevealJS và Codex Slides; 38/38 ghi chú khớp. Đã duyệt mọi trang trong Play bằng bàn phím, kiểm tra chỉ mục rộng/hẹp và ba liên kết học tập. Không còn lỗi chặn bàn giao hoặc nghiêm trọng. Khác mẫu có chủ ý: thêm hai trang để tách lập luận; số phần vẫn là bảy, phong cách Bài 02 được giữ.
+
+| Tệp phát hành | SHA-256 tại kiểm định cuối |
+|---|---|
+| lecture-03-doi-ngau-lagrange.html | `2e86720c7e2b12a8a516b8c11f46149c0cf6b604e1a5f69278710f9bf6a1230f` |
+| lecture-03-style.css | `17a4ee50259448332f40aaeb8573cdfb7ac77c3965af1def3e46b1c5167e1a7d` |
+| materials/lec-03/lecture-note.md | `7f563ec388e52691b629a654ef165795acd4b7c817a9f78d8902054628ce28d1` |
+| materials/lec-03/exercises.md | `f3987b7fab21c1c165e3da7e0c35060ce4bea9c8b1ba80659308ce0d3ad95213` |
+
+Phiên bản: tạo commit riêng cho Bài 03 trên nhánh hiện tại, không push theo chỉ dẫn mới của người dùng. Không yêu cầu người dùng xác nhận lại việc push.

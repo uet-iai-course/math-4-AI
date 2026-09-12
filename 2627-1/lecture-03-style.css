@@ -1,4 +1,3 @@
-/* Kế thừa trực tiếp kiểu chữ, màu và hộp nội dung của Bài 02. */
 .reveal .slides section[data-slide-id] {
   font-size: .84em;
 }
@@ -18,6 +17,51 @@
   font-size: 1.6em;
 }
 
+.reveal h3 {
+  text-transform: none;
+}
+
+.reveal .grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .8em;
+}
+
+.reveal .card {
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  padding: .5em .65em;
+}
+
+.reveal .math-large {
+  font-size: 1.14em;
+  text-align: center;
+}
+
+.reveal ol.agenda {
+  line-height: 1.35;
+}
+
+.reveal .example-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .7em;
+}
+
+.reveal .example-grid p {
+  margin: .35em 0;
+}
+
+.reveal .example-plot {
+  margin: 0;
+}
+
+.reveal .example-plot svg {
+  width: 100%;
+  height: 320px;
+  display: block;
+}
+
 .reveal .box {
   border-left: 5px solid #B15A2B;
   background: #F7EFE6;
@@ -25,3 +69,30 @@
   border-radius: 8px;
   margin-top: .35em;
 }
+
+.reveal .box p {
+  margin: 0;
+}
+
+.reveal .math-large .katex-display {
+  margin: .45em 0;
+}
+
+.reveal .example-grid {
+  align-items: center;
+}
+
+.reveal .example-plot figcaption {
+  font-size: .8em;
+  line-height: 1.2;
+  margin-top: .15em;
+}
+
+
+/* Hình tự vẽ và bảng điều kiện của Bài 03. */
+.reveal .example-plot img { display:block; width:100%; height:360px; object-fit:contain; margin:0; }
+.reveal .example-grid { grid-template-columns: 1.05fr 1fr; }
+.reveal table { font-size: .9em; width:100%; margin:.5em 0; }
+.reveal table th, .reveal table td { padding:.3em .4em; }
+.reveal .katex-display { margin:.45em 0; }
+.reveal .slides section[data-slide-id] p { margin:.4em 0; }
