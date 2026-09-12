@@ -768,3 +768,116 @@ Không phát hiện lỗi toán hay mạch kể chuyện trong phạm vi đượ
 | materials/lec-03/exercises.md | `f3987b7fab21c1c165e3da7e0c35060ce4bea9c8b1ba80659308ce0d3ad95213` |
 
 Phiên bản: tạo commit riêng cho Bài 03 trên nhánh hiện tại, không push theo chỉ dẫn mới của người dùng. Không yêu cầu người dùng xác nhận lại việc push.
+
+
+## 2026-09-12 — Làm rõ dẫn nhập và suy diễn hàm Lagrange
+
+Phản hồi người dùng: thuật ngữ khả thi xuất hiện đột ngột; ví dụ chưa nói rõ bài toán; trang tính hàm đối ngẫu chưa nhắc ví dụ và lược quá nhiều bước của L.
+
+- S02-01: nêu bài toán cực tiểu có ràng buộc, giải thích điểm khả thi trước khi dùng, phát biểu chứng nhận khi cận dưới bằng giá trị mục tiêu tại điểm khả thi. Bỏ số 5 và 4,5 chưa có bối cảnh.
+- S02-02: nêu bằng lời việc tìm x để x²+1 nhỏ nhất trên [2,4], sau đó viết ràng buộc tương đương và gắn nhãn nghiệm/giá trị tối ưu.
+- Tách phép tính thành S02-05a (thay f0, f1, khai triển tích, gom hệ số) và S02-05b (thêm–bớt bình phương, tìm cực tiểu, rút gọn g). Cả hai nhắc đúng đề bài. Tăng từ 38 lên 39 trang, giữ bảy mạch và phong cách Bài 02. Không giảm cỡ chữ; bỏ khung quanh kết quả g để giữ khoảng cách chân trang.
+- Đồng bộ ghi chú diễn giả, ghi chú bài giảng, dàn ý và storyboard. Đã rà bài tập: mô hình, ký hiệu, nghiệm và kết quả không đổi nên không cần sửa đề hoặc đáp án.
+
+Quy trình OpenRouter: reader lập kế hoạch trước khi sửa, writer đề xuất trong thư mục tạm, sáu lượt reviewer độc lập cho hai trang đầu (storyboard, toán, sinh viên, giảng viên, biên tập, kỹ thuật), thêm reader/writer/reviewer cho phản hồi về suy diễn. Tất cả kết quả runtime ghi requested_model = observed_model = `z-ai/glm-5.3-flash`, provider = `OpenRouter`.
+
+Điều phối viên bác bỏ ánh xạ nhầm S01-01 của reader: phạm vi đúng là S02-01. Sửa đề xuất writer để giữ ký hiệu f0/f1, dành g cho hàm đối ngẫu, và nêu điều kiện cận khít. Hai cảnh báo reviewer về ảnh thiếu và section thiếu chỉ do bản trích trong thư mục tạm: SVG tồn tại trong kho và tải thành công; cả hai trang triển khai có section cùng data-slide-id. Kiểm tra trình duyệt và đối chiếu storyboard xác nhận, không sửa sai theo các cảnh báo này.
+
+Kết quả rà nội dung độc lập:
+
+### review-0
+
+> **Đạt.**
+>
+> - Trình tự đúng vai trò: trang 1 nêu nhu cầu (điểm khả thi ≠ chứng minh tối ưu), trang 2 vào ví dụ cụ thể kèm hình trực quan, trang 3 (theo kế hoạch) tiếp tục ví dụ bằng L=f₀+λf₁ tạo cận dưới — không nhảy khái niệm trừu tượng trước ví dụ.
+> - Hộp "Đối ngẫu Lagrange tạo cận dưới" ở trang 1 chỉ là lời dẫn/định hướng, khái niệm chưa được khai thác; trang 2 nói rõ "chuẩn bị cho phép xây dựng Lagrange ở trang sau", nối mạch hợp lý.
+> - Nhất quán nội dung: f₁=(x−2)(x−4)≤0 ⟺ x∈[2,4]; x*=2, p*=5 đúng với f₀=x²+1 trên [2,4]; alt ảnh khớp; notes diễn giải lại HTML bằng lời thường, không thêm khái niệm mới.
+> - Không phát hiện lỗi phạm vi trong hai slide dẫn nhập.
+
+### review-1
+
+> **Đạt.** Kiểm tra final.json (2 slide dẫn nhập):
+>
+> 1. **Ràng buộc dạng tích:** $f_1(x)=(x-2)(x-4)\le0 \iff x\in[2,4]$ — đúng, vì parabol mở lên âm giữa hai nghiệm.
+> 2. **Nghiệm ví dụ:** trên $[2,4]$, $f_0(x)=x^2+1$ đồng biến nên $x^*=2$, $p^*=5$ — đúng; ghi chú "điểm 0 cho giá trị nhỏ nhất trên toàn trục nhưng không khả thi" cũng đúng ($f_0(0)=1$).
+> 3. **Cận dưới khít:** slide 1 nêu đúng logic đối ngẫu: cận dưới $g(\lambda)\le p^*$; nếu $g(\lambda)=f_0(x)$ tại điểm khả thi thì $x$ tối ưu — khẳng định chính xác, không có lẫn lộn chiều bất đẳng thức.
+> 4. **Chuẩn bị trang sau:** dạng $f_1\le0$ và khung Lagrange $L=f_0+\lambda f_1$ được dẫn dắt hợp lý.
+>
+> Không phát hiện lỗi toán hay logic trong phạm vi này.
+
+### review-2
+
+> **Đánh giá: đạt (nội dung), 1 lỗi tài nguyên.**
+>
+> - Slide 1: khái niệm bài toán cực tiểu, điểm khả thi, vai trò cận dưới của đối ngẫu Lagrange — rõ ràng, đúng, dẫn nhập hợp lý.
+> - Slide 2: ví dụ min x²+1 trên [2,4], ràng buộc f₁=(x−2)(x−4)≤0 tương đương 2≤x≤4, x*=2, p*=5 — toán học chính xác; notes giải thích đúng, chuẩn bị cho L=f₀+λf₁ ở trang sau.
+> - **Lỗi (trung bình):** slide 2 tham chiếu `img/lec-03/intro-feasible.svg` nhưng tệp này không tồn tại trong repo (thư mục `img/` trống) → ảnh sẽ hỏng khi render. Cần bổ sung tệp SVG hoặc bỏ figure.
+> - Không có lỗi HTML/JSON, LaTeX hợp lệ.
+
+### review-3
+
+> **Đạt.** Đã rà final.json (2 slide dẫn nhập đối ngẫu, HTML + notes):
+>
+> - Slide 1: định nghĩa bài toán cực tiểu có ràng buộc, điểm khả thi, và vai trò cận dưới của đối ngẫu Lagrange — nhất quán, không lỗi.
+> - Slide 2: toán học đúng — $f_1(x)=(x-2)(x-4)\le0$ tương đương $x\in[2,4]$; $f_0=x^2+1$ tăng trên đoạn nên $x^*=2$, $p^*=5$ đúng; nhận xét "điểm 0 nhỏ nhất toàn trục nhưng không khả thi" đúng.
+> - Notes khớp nội dung slide, có chuyển ý hợp lý: slide 1 nêu vai trò cận dưới → slide 2 chuẩn bị "dạng tích không dương" → trang 3 dùng $L=f_0+\lambda f_1$ tạo cận dưới, mạch logic liền mạch.
+> - Không thấy mâu thuẫn thuật ngữ, không có nội dung sai lệch cần sửa.
+
+### review-4
+
+> **Kết quả: ĐẠT** (chỉ có lưu ý nhỏ, không bắt buộc sửa)
+>
+> Phạm vi rà: final.json — hai slide dẫn nhập đối ngẫu (HTML + notes).
+>
+> Kiểm tra chính tả, ngữ pháp, thuật ngữ: "điểm khả thi", "miền khả thi", "cận dưới", "đối ngẫu Lagrange", "hàm mục tiêu", "ràng buộc" — dùng nhất quán và đúng chuẩn tối ưu hóa. Không phát hiện lỗi chính tả hay câu sai.
+>
+> Ký hiệu toán: $f_0(x)=x^2+1$, $f_1(x)=(x-2)(x-4)\le0$, miền khả thi $[2,4]$, $x^*=2$, $p^*=5$ — nhất quán với nhau và với mô tả bài toán; đúng chuẩn $f_0$/$f_1$ chuẩn bị cho trang 3 dùng $L=f_0+\lambda f_1$. Alt ảnh khớp nội dung.
+>
+> Lưu ý tùy chọn (không phải lỗi):
+> 1. Notes slide 2: "nhỏ nhất tại đầu trái 2" → nên viết "đầu bên trái của đoạn, tại $x=2$" cho trang trọng hơn.
+> 2. "$2\le x\le4$" có thể thêm khoảng trắng "$2 \le x \le 4$" cho đồng bộ với các công thức khác.
+>
+> Không sửa tệp; không kiểm tra trình duyệt.
+
+### review-5
+
+> **Đạt** (trong phạm vi final.json, hai slide dẫn nhập):
+>
+> - Cấu trúc hai cột hợp lý: cột trái chỉ chứa figure (SVG tự co theo chiều rộng), cột phải chứa văn bản + box; không có phần tử có chiều rộng cố định vượt cột.
+> - Toán hiển thị `$$f_1(x)=(x-2)(x-4)\le0$$` nằm trong cột phải hẹp — đây là điểm cần chú ý duy nhất: nếu cột quá hẹp, công thức hiển thị có thể tràn ngang. Nội dung công thức ngắn, khả năng tràn thấp; không thể xác nhận thêm nếu không kiểm tra trình duyệt (ngoài phạm vi cho phép).
+> - Không có chuỗi dài không ngắt (URL, từ dài) trong HTML hay notes; alt text gọn.
+> - Nội dung khớp dẫn dắt trang sau (L = f₀ + λf₁ tạo cận dưới): slide 1 nêu "cận dưới", slide 2 nêu "dạng tích… chuẩn bị cho Lagrange" — nhất quán, không mâu thuẫn.
+>
+> Không phát hiện lỗi tràn cụ thể; không sửa tệp.
+
+### derivation-review
+
+> ## Báo cáo rà độc lập — derivation-final.html
+>
+> **Phạm vi:** chỉ 2 trang kế tiếp trong `derivation-final.html` (dòng 1–15); không xem ảnh/screenshot.
+>
+> ### Finding 1 — Cấu trúc trang 2 bị lỗi (HIGH)
+> - **Vị trí:** dòng 9–15.
+> - **Vấn đề:** trang thứ hai ("Tính hàm đối ngẫu") không được bọc trong thẻ `<section>` và thiếu `data-slide-id`, trong khi trang 1 có `<section id="lap-ham-lagrange-trong-vi-du" data-slide-id="S02-05a">`. Các phần tử `<h2>`, `<p>`, `<aside>` nằm trần, phá vỡ ánh xạ storyboard (mỗi slide = một `<section>`) và có thể khiến slide không được nhận diện khi dựng bài.
+> - **Bằng chứng:** dòng 8 đóng `</section>`; dòng 9 mở trực tiếp bằng `<h2>Tính hàm đối ngẫu</h2>`.
+> - **Đề xuất (không sửa):** bọc dòng 9–15 trong `<section id="tinh-ham-doi-nguy-trong-vi-du" data-slide-id="S02-05b">…</section>`.
+>
+> ### Finding 2 — Đáp ứng yêu cầu nội dung (PASS)
+> - **Nhắc đúng bài toán:** cả hai trang đều lặp "min (x²+1) với (x−2)(x−4)≤0" (dòng 3, 10) ✓.
+> - **Khai triển L từng bước:** dòng 5 đủ 3 bước: L = x²+1+λ(x−2)(x−4) → khai triển tích → gom hệ số ✓.
+> - **Giải thích thêm–bớt bình phương:** dòng 11 nêu "thêm rồi bớt cùng một hạng"; công thức dòng 12 hiện rõ `(3λ/(1+λ))² − (3λ/(1+λ))²`; ghi chú dòng 15 giải thích mẫu số (1+λ) sau khi nhân hệ số ngoài ✓.
+>
+> ### Finding 3 — Kiểm tra toán (PASS)
+> - Hoàn thành bình phương đúng: (1+λ)(x−3λ/(1+λ))² + 1+8λ − 9λ²/(1+λ) ✓.
+> - Cực tiểu x(λ)=3λ/(1+λ) với 1+λ>0 (λ≥0) ✓.
+> - Rút gọn g(λ)=1+8λ−9λ²/(1+λ)=10−λ−9/(1+λ): kiểm chứng bằng quy đồng, hai vế đều bằng (1+9λ−λ²)/(1+λ) ✓.
+>
+> ### Finding 4 — Ghi chú/ký hiệu (MINOR)
+> - **Vị trí:** dòng 7.
+> - **Vấn đề:** ghi chú viết "trên đoạn từ 2 đến 4" — đúng về bản chất (miền khả thi [2,4]) nhưng trang 1 chưa nói rõ điều này trong phần thân; chỉ ghi chú mới giải thích. Không sai, chỉ là điểm có thể làm rõ.
+> - **Đề xuất:** thêm một câu trong thân trang 1: "(x−2)(x−4)≤0 ⟺ x∈[2,4]".
+>
+> **Kết luận:** toán đúng, nội dung đủ theo yêu cầu; lỗi duy nhất cần xử lý là Finding 1 (thiếu `<section>` cho trang 2).
+
+
+Kiểm định cuối cho lượt sửa này: tám trang liên quan tại 1280×720 và 390×844 không tràn, không lỗi KaTeX hoặc ảnh hỏng; điều hướng bàn phím hoạt động. Ghi chú bài giảng tải và render công thức ở hai kích thước. Đối chiếu dự án Codex Slides: 39 tiêu đề, 39 ghi chú và 39 ảnh khớp các bản cục bộ đã nạp; trạng thái deck, điều hướng Play giữa hai trang suy diễn hoạt động. Đã xem trực quan bằng Chromium cục bộ, không tuyên bố dùng Browser trong trình soạn thảo. Các Design Files của HTML, ghi chú, outline và storyboard được cập nhật. Không tải nguồn hay tạo hình mới. Commit cục bộ, không push theo yêu cầu người dùng.

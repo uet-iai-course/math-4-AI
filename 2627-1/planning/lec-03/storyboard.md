@@ -1,4 +1,4 @@
-# Storyboard Bài 03 — Bản nội dung 38 trang
+# Storyboard Bài 03 — Bản nội dung 39 trang
 
 ## Chức năng và thời lượng dự kiến của bảy mạch
 
@@ -18,7 +18,7 @@ Phân bổ nội bộ theo tổng 3 tiết của đề cương; không giả đ�
 
 | Cụm | Nhu cầu → trực quan → ví dụ → hình thức → ứng dụng → bài tập | Đầu vào, đầu ra, ký hiệu và câu nối |
 |---|---|---|
-| Hàm và bài toán đối ngẫu (0,75 tiết) | Nhu cầu S02-01 → ví dụ dẫn nhập S02-02 → trực quan và ví dụ S02-03 → hình thức S02-04–06, S02-05b → S02-07 → S02-08 | Ví dụ dẫn nhập S02-02 đứng trước trực quan S02-03 để làm cụ thể nhu cầu cận dưới. Truyền nguyên f0,f1,x,λ từ ví dụ sang L,g. Đầu vào: bậc hai, gradient; đầu ra đo LLO4: tự dựng chứng nhận trên ràng buộc mới. Câu nối: một cận có thể lỏng, nên chọn cận lớn nhất. |
+| Hàm và bài toán đối ngẫu (0,75 tiết) | Nhu cầu S02-01 → ví dụ dẫn nhập S02-02 → trực quan và ví dụ S02-03 → hình thức S02-04–06, S02-05a–b → S02-07 → S02-08 | Ví dụ dẫn nhập S02-02 đứng trước trực quan S02-03 để làm cụ thể nhu cầu cận dưới. Truyền nguyên f0,f1,x,λ từ ví dụ sang L,g. Đầu vào: bậc hai, gradient; đầu ra đo LLO4: tự dựng chứng nhận trên ràng buộc mới. Câu nối: một cận có thể lỏng, nên chọn cận lớn nhất. |
 | Đối ngẫu mạnh và Slater (0,45 tiết) | S03-01 → S03-01 (khoảng 4,5 đến 5, tiếp nối hình S02-07) → S03-02 → S03-03 → S03-04–05 → S03-06 | Gộp nhu cầu và trực quan khoảng cận trên cùng trang; ví dụ L(x,2) cho cận khít trước định lý. Đầu vào L,g,p*,d*; đầu ra LLO4: biết kiểm tra cùng một điểm nghiêm và kết luận đúng. Truyền x*=2 nhưng phân biệt x̄=3. Câu nối: Slater cho điều kiện đủ, trường hợp biên kiểm tra giới hạn của chiều suy luận. |
 | Hình học (0,35 tiết) | S04-01 → S04-01 → S04-01–02 → S04-02 → S04-03 → S04-04 | Gộp đổi tọa độ và ví dụ trên bốn điểm, rồi vẽ đường cận. Đầu vào g≤L; đầu ra LLO5: đọc hệ số góc và tung độ cắt. Truyền u=f1(x),t=f0(x). Câu nối: inf của t+λu xác định đường cao nhất vẫn nằm dưới G; kiểm tra điểm chạm để chứng nhận. |
 | KKT (0,75 tiết) | S05-01 → S05-01 → S05-01–02 → S05-03 → S05-04–06, S05-05b → S05-07 | Gộp nhu cầu, gradient cân bằng 4 và −4 ở ví dụ đã biết; ví dụ hoạt động λ=0 trước hệ tổng quát. Đầu vào cận khít, gradient của hàm lồi; đầu ra LLO4/CLO1: giải nhánh và chứng nhận hồi quy. Truyền x,λ; đổi sang w có kích thước được nêu. Câu nối: tính lồi biến dừng thành cực tiểu; hệ KKT vì vậy đủ. |
@@ -35,12 +35,13 @@ Mỗi trang sửa từ khung được triển khai nội dung mới; hai trang t
 | S01-01 | Bài 03: Đối ngẫu Lagrange | Đặt vấn đề chứng nhận nghiệm, tạo động cơ cho cận dưới trước mọi ký hiệu. | Vấn đề chứng nhận → S01-02 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S01-02 | Mục tiêu học tập | Định nghĩa minh chứng học được và nhắc đúng tiên quyết dùng trong phép tính. | S01-01 → S01-03 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S01-03 | Nội dung chính | Cho người học biết quan hệ giữa các công cụ và vị trí của ví dụ xuyên suốt. | S01-02 → S02-01 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
-| S02-01 | Hàm và bài toán đối ngẫu Lagrange | Phân biệt cận trên từ nghiệm khả thi với cận dưới chặn sai số; cụ thể hóa nhu cầu bằng 5 và 4,5. | S01-03 → S02-02 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
-| S02-02 | Ví dụ tối ưu có ràng buộc | Cung cấp miền khả thi và giá trị đúng để mỗi cận sau đó có thể đối chiếu. | S02-01 → S02-03 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
+| S02-01 | Hàm và bài toán đối ngẫu Lagrange | Nêu bài toán cực tiểu có ràng buộc, giải thích điểm khả thi và nhu cầu chứng nhận tối ưu bằng cận dưới khít. | S01-03 → S02-02 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
+| S02-02 | Ví dụ tối ưu có ràng buộc | Nêu rõ việc cần tìm x để x²+1 nhỏ nhất trên [2,4], rồi viết ràng buộc tương đương và xác định nghiệm tối ưu. | S02-01 → S02-03 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S02-03 | Họ hàm tạo cận dưới | Cho thấy lý do cộng một hạng không dương tạo cận, và vì sao cực tiểu L có thể không khả thi. | S02-02 → S02-04 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S02-04 | Hàm Lagrange | Chuyển phép cộng trong ví dụ thành dạng nhiều ràng buộc, giải thích dấu và kích thước nhân tử. | S02-03 → S02-05 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
-| S02-05 | Hàm đối ngẫu | Ngăn nhầm inf với min và ngăn áp lại ràng buộc gốc khi tính g. | S02-04 → S02-05b | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
-| S02-05b | Tính hàm đối ngẫu trong ví dụ | Tách phép hoàn thành bình phương để thấy rõ biến được tối ưu và vai trò hệ số dương. | S02-05 → S02-06 | LLO4/CLO1 | thêm/tách — giảm tải lập luận |
+| S02-05 | Hàm đối ngẫu | Ngăn nhầm inf với min và ngăn áp lại ràng buộc gốc khi tính g. | S02-04 → S02-05a | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
+| S02-05a | Lập hàm Lagrange | Nhắc bài toán trên [2,4], thay f0 và f1, khai triển tích rồi gom hệ số để tránh nhảy bước. | S02-05 → S02-05b | LLO4/CLO1 | thêm/tách — theo phản hồi cần suy diễn L chi tiết |
+| S02-05b | Tính hàm đối ngẫu | Nhắc bài toán đang xét, thêm rồi bớt cùng một hạng để hoàn thành bình phương và suy ra g. | S02-05a → S02-06 | LLO4/CLO1 | thêm/tách — giảm tải lập luận |
 | S02-06 | Đối ngẫu yếu | Chứng minh cận hợp lệ bằng hai bước độc lập, chỉ rõ không dùng tính lồi. | S02-05b → S02-07 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S02-07 | Bài toán đối ngẫu | Biến họ cận thành quyết định chọn cận tốt nhất, đồng thời phân biệt lõm với dễ tính. | S02-06 → S02-08 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S02-08 | Bài tập xây dựng cận dưới | Đo khả năng chuyển giao sang ràng buộc affine và phát hiện lỗi bỏ hằng số. | S02-07 → S03-01 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |

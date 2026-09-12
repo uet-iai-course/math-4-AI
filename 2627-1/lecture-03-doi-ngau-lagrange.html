@@ -35,13 +35,13 @@
     <section id="section-2">
       <section id="mach-2" data-slide-id="S02-01">
         <h2>Hàm và bài toán đối ngẫu Lagrange</h2>
-        <p>Một phương án khả thi có chi phí $5$.</p><p>Giả sử có cận dưới $4{,}5$. Gọi $p^*$ là giá trị tối ưu:</p><p class="math-large">$$4{,}5\le p^*\le5$$</p><p class="box">Phương án đã tìm chỉ còn có thể cải thiện tối đa $0{,}5$.</p>
-        <aside class="notes"><p>Đặt vấn đề bằng con số: nếu ta đề xuất phương án chi phí 5 và chứng minh được không phương án nào dưới 4.5, thì dù chưa tìm được tối ưu, ta biết sai số tối đa 0.5. Điểm dễ nhầm: nghiệm khả thi tốt nhất hiện có chưa phải là chứng nhận, vì có thể còn phương án tốt hơn chưa thấy; chỉ cận dưới mới khép được khoảng. Chuyển ý: vậy làm sao sinh ra cận dưới? Ta sẽ dùng một họ hàm phụ thuộc tham số. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
+        <p>Bài toán cực tiểu có ràng buộc: tìm giá trị nhỏ nhất của hàm mục tiêu trong các điểm thỏa ràng buộc.</p><p>Một điểm thỏa mọi ràng buộc được gọi là <strong>điểm khả thi</strong>.</p><p>Tìm được một điểm khả thi chưa đủ để kết luận đó là nghiệm tối ưu.</p><p class="box">Đối ngẫu Lagrange tạo cận dưới cho giá trị tối ưu. Nếu cận này bằng giá trị mục tiêu tại một điểm khả thi, điểm đó là nghiệm tối ưu.</p>
+        <aside class="notes"><p>Phân biệt hai việc: tìm một điểm thỏa ràng buộc và chứng minh không điểm nào thỏa ràng buộc có giá trị mục tiêu nhỏ hơn. Cận dưới là một mức mà giá trị tối ưu không thể thấp hơn. Chỉ khi cận ấy bằng giá trị mục tiêu tại điểm đang xét, ta mới chứng nhận được tối ưu. Tiếp theo, ta xác định cụ thể hàm mục tiêu, ràng buộc và điểm khả thi trong một bài toán một biến. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="vi-du-toi-uu-co-rang-buoc" data-slide-id="S02-02">
         <h2>Ví dụ tối ưu có ràng buộc</h2>
-        <div class="example-grid"><figure class="example-plot"><img src="img/lec-03/intro-feasible.svg" alt="Hàm mục tiêu trên đoạn khả thi [2,4], cực tiểu tại (2,5)."></figure><div><p>Với $x\in\mathbb R$:</p><p>$$\min_x\;f_0(x)=x^2+1$$</p><p>$$f_1(x)=(x-2)(x-4)\le0$$</p><p>Khả thi: $x\in[2,4]$.</p><p class="box">$x^*=2$, giá trị tối ưu $p^*=5$.</p></div></div>
-        <aside class="notes"><p>Đây là ví dụ chính xuyên suốt bài giảng. Ràng buộc $(x-2)(x-4)\le 0$ chính là $(x-3)^2-1\le 0$, tức $x\in[2,4]$. Trên đoạn này parabol $x^2+1$ đang tăng, nên nhỏ nhất tại đầu trái $x^*=2$, giá trị $p^*=5$. Lưu ý $x^*=2$ nằm trên biên, không phải điểm nội tại — điều này sẽ quan trọng khi nói ràng buộc hoạt động. Chuyển ý: bài này giải được bằng quan sát, nhưng ta muốn một quy trình tổng quát, và bước đầu là sinh cận dưới. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
+        <p><strong>Bài toán:</strong> Tìm số thực $x$ để $x^2+1$ nhỏ nhất, với $2\le x\le4$.</p><div class="example-grid"><figure class="example-plot"><img src="img/lec-03/intro-feasible.svg" alt="Hàm mục tiêu trên đoạn khả thi [2,4], cực tiểu tại (2,5)."></figure><div><p>Hàm mục tiêu: $f_0(x)=x^2+1$.</p><p>Viết ràng buộc dưới dạng:</p><p>$$f_1(x)=(x-2)(x-4)\le0$$</p><p>Miền khả thi: $[2,4]$.</p><div class="box"><p>Nghiệm tối ưu: $x^*=2$.</p><p>Giá trị tối ưu: $p^*=5$.</p></div></div></div>
+        <aside class="notes"><p>Đọc bài toán trước khi xét hình: chọn một số thực trong đoạn từ 2 đến 4 để bình phương của nó cộng 1 nhỏ nhất. Mỗi số trong đoạn là một điểm khả thi; tập các điểm này là miền khả thi. Điểm 0 làm hàm mục tiêu nhỏ nhất trên toàn trục số nhưng không thỏa ràng buộc. Trên đoạn [2,4], hàm mục tiêu tăng nên nhỏ nhất tại đầu trái 2, với giá trị 5. Dạng tích không dương tương đương ràng buộc ban đầu và chuẩn bị cho phép xây dựng Lagrange ở trang sau. Ví dụ này giải được bằng quan sát; ta dùng nó để kiểm tra cách xây dựng cận dưới có thể áp dụng cho bài toán tổng quát. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="ho-ham-tao-can-duoi" data-slide-id="S02-03">
         <h2>Họ hàm tạo cận dưới</h2>
@@ -58,10 +58,22 @@
         <p><strong>Định nghĩa.</strong> Giữ nhân tử cố định, lấy cận dưới theo $x$:</p><p class="math-large">$$g(\lambda,\nu)=\inf_{x\in\mathbb R^n}L(x,\lambda,\nu)$$</p><ul><li>$\inf$: cận dưới lớn nhất; có thể không đạt.</li><li>Không áp lại các ràng buộc của bài toán gốc.</li><li>$g$ có thể bằng $-\infty$.</li></ul>
         <aside class="notes"><p>Biến được tối ưu ở bước này là x; các nhân tử được giữ cố định. Cận dưới lớn nhất bằng giá trị nhỏ nhất nếu có điểm đạt, nhưng nói chung có thể chỉ là giới hạn. Ví dụ inf của e mũ x trên toàn trục số bằng 0 dù không có điểm hữu hạn đạt 0; inf của x là âm vô cùng. Trong ví dụ chính, ta lấy inf trên toàn R chứ không phải trên đoạn [2,4]. Dùng toàn miền làm bài toán bên trong đơn giản hơn mà vẫn giữ cận dưới. Trang tiếp theo tính cụ thể bằng hoàn thành bình phương. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
+      <section id="lap-ham-lagrange-trong-vi-du" data-slide-id="S02-05a">
+        <h2>Lập hàm Lagrange</h2>
+        <p>Bài toán: $\min_{x\in\mathbb R}(x^2+1)$, với $(x-2)(x-4)\le0$.</p>
+        <p>Với $\lambda\ge0$, thay $f_0$ và $f_1$ vào $L=f_0+\lambda f_1$:</p>
+        <p>$$\begin{aligned}L(x,\lambda)&=x^2+1+\lambda(x-2)(x-4)\\&=x^2+1+\lambda(x^2-6x+8)\\&=(1+\lambda)x^2-6\lambda x+1+8\lambda.\end{aligned}$$</p>
+        <p class="box">Giữ $\lambda$ cố định, tìm giá trị nhỏ nhất của $L$ theo $x\in\mathbb R$ để tính $g(\lambda)$.</p>
+        <aside class="notes"><p>Ta quay lại bài toán tìm giá trị nhỏ nhất của x bình phương cộng 1 trên đoạn từ 2 đến 4. Hàm ràng buộc là tích x trừ 2 với x trừ 4. Thay trực tiếp hai hàm vào định nghĩa Lagrange. Khai triển tích được x bình phương trừ 6x cộng 8. Nhân từng hạng với lambda, rồi gom các hạng bậc hai, bậc nhất và hằng số theo x. Khi tính hàm đối ngẫu, lambda là tham số cố định và x chạy trên toàn trục số. Trang sau hoàn thành bình phương để đọc giá trị nhỏ nhất. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
+      </section>
       <section id="s02-05b" data-slide-id="S02-05b">
-        <h2>Tính hàm đối ngẫu trong ví dụ</h2>
-        <p>Với $\lambda\ge0$, hoàn thành bình phương:</p><p>$$L=(1+\lambda)\left(x-\frac{3\lambda}{1+\lambda}\right)^2+1+8\lambda-\frac{9\lambda^2}{1+\lambda}$$</p><p>Vì $1+\lambda>0$, cực tiểu tại $x(\lambda)=\dfrac{3\lambda}{1+\lambda}$.</p><p class="box">$$g(\lambda)=10-\lambda-\frac9{1+\lambda}$$</p>
-        <aside class="notes"><p>Hệ số của bình phương luôn dương trong miền nhân tử đang xét. Vì thế cho bình phương bằng không là đủ để tìm cực tiểu toàn cục theo x. Hạng còn lại chính là g. Tại lambda bằng 0, L=x²+1 đạt cực tiểu duy nhất tại x bằng 0; điểm này không khả thi cho bài toán gốc. Khi lambda bằng 1, nghiệm là 1,5 và g bằng 4,5; khi lambda bằng 2, nghiệm là 2 và g bằng 5. Ta sẽ dùng các giá trị này để chọn cận. Công thức x(lambda) chưa bảo đảm nghiệm gốc khả thi. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
+        <h2>Tính hàm đối ngẫu</h2>
+        <p>Bài toán: $\min_{x\in\mathbb R}(x^2+1)$, với $(x-2)(x-4)\le0$; $\lambda\ge0$.</p>
+        <p>Hoàn thành bình phương bằng cách thêm rồi bớt cùng một hạng:</p>
+        <p>$$\begin{aligned}L(x,\lambda)&=(1+\lambda)\left[x^2-\frac{6\lambda}{1+\lambda}x+\left(\frac{3\lambda}{1+\lambda}\right)^2-\left(\frac{3\lambda}{1+\lambda}\right)^2\right]+1+8\lambda\\&=(1+\lambda)\left(x-\frac{3\lambda}{1+\lambda}\right)^2+1+8\lambda-\frac{9\lambda^2}{1+\lambda}.\end{aligned}$$</p>
+        <p>Vì $1+\lambda>0$, cực tiểu tại $x(\lambda)=\frac{3\lambda}{1+\lambda}$.</p>
+        <p>$$g(\lambda)=1+8\lambda-\frac{9\lambda^2}{1+\lambda}=10-\lambda-\frac9{1+\lambda}$$</p>
+        <aside class="notes"><p>Tiếp tục bài toán có hàm mục tiêu x bình phương cộng 1 và miền khả thi từ 2 đến 4. Tách hệ số 1 cộng lambda ra khỏi hai hạng chứa x. Nửa hệ số của x trong ngoặc là âm 3 lambda chia 1 cộng lambda. Thêm và bớt bình phương của đại lượng này để giá trị không đổi. Ba hạng đầu tạo thành một bình phương; hạng trừ còn lại được nhân với 1 cộng lambda, nên mẫu số sau rút gọn chỉ còn 1 cộng lambda. Vì hệ số ngoài bình phương dương, chọn x để bình phương bằng không cho cực tiểu toàn cục. Phần hằng số còn lại là hàm đối ngẫu. Rút gọn bằng đẳng thức 9 lambda bình phương chia 1 cộng lambda bằng 9 lambda trừ 9 cộng 9 chia 1 cộng lambda. Điểm đạt cực tiểu của L chưa chắc thuộc đoạn khả thi. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.1–5.2.</p></aside>
       </section>
       <section id="doi-ngau-yeu" data-slide-id="S02-06">
         <h2>Đối ngẫu yếu</h2>

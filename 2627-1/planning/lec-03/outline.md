@@ -1,6 +1,6 @@
 # Dàn ý Bài 03 — Đối ngẫu Lagrange
 
-**Trạng thái:** bản nội dung 38 trang, 7 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
+**Trạng thái:** bản nội dung 39 trang, 7 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
 
 ## Phạm vi và tiêu chí hoàn thành
 
@@ -24,12 +24,13 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S02-01 | Hàm và bài toán đối ngẫu Lagrange | Phân biệt cận trên từ nghiệm khả thi với cận dưới chặn sai số; cụ thể hóa nhu cầu bằng 5 và 4,5. |
-| S02-02 | Ví dụ tối ưu có ràng buộc | Cung cấp miền khả thi và giá trị đúng để mỗi cận sau đó có thể đối chiếu. |
+| S02-01 | Hàm và bài toán đối ngẫu Lagrange | Nêu bài toán cực tiểu có ràng buộc, giải thích điểm khả thi và nhu cầu chứng nhận tối ưu bằng cận dưới khít. |
+| S02-02 | Ví dụ tối ưu có ràng buộc | Nêu rõ việc cần tìm x để x²+1 nhỏ nhất trên [2,4], rồi viết ràng buộc tương đương và xác định nghiệm tối ưu. |
 | S02-03 | Họ hàm tạo cận dưới | Cho thấy lý do cộng một hạng không dương tạo cận, và vì sao cực tiểu L có thể không khả thi. |
 | S02-04 | Hàm Lagrange | Chuyển phép cộng trong ví dụ thành dạng nhiều ràng buộc, giải thích dấu và kích thước nhân tử. |
 | S02-05 | Hàm đối ngẫu | Ngăn nhầm inf với min và ngăn áp lại ràng buộc gốc khi tính g. |
-| S02-05b | Tính hàm đối ngẫu trong ví dụ | Tách phép hoàn thành bình phương để thấy rõ biến được tối ưu và vai trò hệ số dương. |
+| S02-05a | Lập hàm Lagrange | Thay hàm mục tiêu và ràng buộc, khai triển tích, gom hệ số theo x trước khi tính g. |
+| S02-05b | Tính hàm đối ngẫu | Nhắc bài toán đang xét, thêm rồi bớt cùng một hạng để hoàn thành bình phương và suy ra g. |
 | S02-06 | Đối ngẫu yếu | Chứng minh cận hợp lệ bằng hai bước độc lập, chỉ rõ không dùng tính lồi. |
 | S02-07 | Bài toán đối ngẫu | Biến họ cận thành quyết định chọn cận tốt nhất, đồng thời phân biệt lõm với dễ tính. |
 | S02-08 | Bài tập xây dựng cận dưới | Đo khả năng chuyển giao sang ràng buộc affine và phát hiện lỗi bỏ hằng số. |

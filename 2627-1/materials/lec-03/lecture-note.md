@@ -2,7 +2,7 @@
 
 ## 1. Mở đầu: chứng nhận một nghiệm tối ưu
 
-Một thuật toán tìm được nghiệm khả thi có giá trị mục tiêu bằng $5$ chưa đủ để kết luận không còn nghiệm tốt hơn. Với bài toán cực tiểu, nghiệm khả thi cho **cận trên** của giá trị tối ưu. Nếu xây dựng được một **cận dưới** cũng bằng $5$, ta đã chứng nhận tối ưu mà không phải thử mọi nghiệm khả thi.
+Trong bài toán cực tiểu có ràng buộc, ta tìm giá trị nhỏ nhất của hàm mục tiêu trong các điểm thỏa mọi ràng buộc. Những điểm này được gọi là **điểm khả thi**. Một thuật toán tìm được điểm khả thi có giá trị mục tiêu bằng $5$ chưa đủ để kết luận không còn nghiệm tốt hơn. Với bài toán cực tiểu, nghiệm khả thi cho **cận trên** của giá trị tối ưu. Nếu xây dựng được một **cận dưới** cũng bằng $5$, ta đã chứng nhận tối ưu mà không phải thử mọi nghiệm khả thi.
 
 Bài này phát triển ba công cụ liên quan: đối ngẫu Lagrange tạo cận dưới; điều kiện Slater bảo đảm cận tốt nhất bằng giá trị tối ưu trong một lớp bài toán lồi; điều kiện Karush–Kuhn–Tucker (KKT) biến chứng nhận ấy thành một hệ điều kiện có thể kiểm tra và giải. Cuối bài, nhân tử Lagrange được dùng để diễn giải ảnh hưởng của việc nới ràng buộc.
 
@@ -12,7 +12,7 @@ Kiến thức cần dùng: đạo hàm, gradient, hàm lồi, điều kiện c�
 
 ### 2.1. Ví dụ xuyên suốt
 
-Xét biến $x\in\mathbb R$ và bài toán
+Bài toán: tìm số thực $x$ để $x^2+1$ nhỏ nhất, với $2\le x\le4$. Viết ràng buộc dưới dạng tương đương, ta có
 
 $$
 \begin{aligned}
@@ -76,16 +76,20 @@ Khi tính $g$, ta tối ưu theo $x$ trên **toàn miền ban đầu của các 
 ### 2.4. Tính hàm đối ngẫu trong ví dụ
 
 ::: derivation
-Khai triển và hoàn thành bình phương, với $\lambda\ge0$:
+Xét lại bài toán $\min_x(x^2+1)$ với $(x-2)(x-4)\le0$. Với $\lambda\ge0$, thay hai hàm vào định nghĩa Lagrange, khai triển tích rồi gom hệ số:
 
 $$
 \begin{aligned}
 L(x,\lambda)
+&=x^2+1+\lambda(x-2)(x-4)\\
+&=x^2+1+\lambda(x^2-6x+8)\\
 &=(1+\lambda)x^2-6\lambda x+1+8\lambda\\
 &=(1+\lambda)\left(x-\frac{3\lambda}{1+\lambda}\right)^2
   +1+8\lambda-\frac{9\lambda^2}{1+\lambda}.
 \end{aligned}
 $$
+
+Ở bước cuối, thêm rồi bớt $(3\lambda/(1+\lambda))^2$ trong ngoặc sau khi tách hệ số $1+\lambda$. Ba hạng đầu tạo thành bình phương; hạng trừ còn lại, khi nhân với $1+\lambda$, là $-9\lambda^2/(1+\lambda)$.
 
 Vì $1+\lambda>0$, cực tiểu đạt duy nhất tại
 
