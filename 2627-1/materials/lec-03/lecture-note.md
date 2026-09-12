@@ -392,6 +392,26 @@ Mọi dấu đều là đẳng thức, nên bộ nhân tử cũng tối ưu đ�
 
 **Tính cần trong lớp bài toán đang học.** Nếu bài toán lồi, khả vi, thỏa Slater và có nghiệm tối ưu $x^*$, thì tồn tại các nhân tử để KKT thỏa tại $x^*$. Slater cung cấp đối ngẫu mạnh và nghiệm đối ngẫu; chuỗi cận khít dẫn tới bù trừ và điều kiện dừng.
 
+::: proof
+Giả sử $f_0,\ldots,f_m$ lồi, khả vi trên $\mathbb R^n$, các đẳng thức là $Ax=b$, Slater thỏa, và $x^*$ là nghiệm tối ưu. Vì các hàm hữu hạn và nghiệm tối ưu tồn tại, $p^*=f_0(x^*)$ hữu hạn. Định lý Slater cho một bộ nhân tử $\lambda^*\ge0,\nu^*$ đạt $g(\lambda^*,\nu^*)=d^*=p^*$. Đây là chỗ dùng cả đối ngẫu mạnh lẫn sự đạt nghiệm đối ngẫu; chỉ biết $d^*=p^*$ chưa đủ để chọn bộ nhân tử này.
+
+Theo định nghĩa infimum và tính khả thi của $x^*$,
+
+$$p^*=g(\lambda^*,\nu^*)\le L(x^*,\lambda^*,\nu^*)\le f_0(x^*)=p^*.$$
+
+Hai đầu bằng nhau, nên cả hai bất đẳng thức đều là đẳng thức. Không giả định trước $g=L(x^*,\lambda^*,\nu^*)$.
+
+**Bù trừ.** Từ $L(x^*,\lambda^*,\nu^*)=f_0(x^*)$ và $Ax^*=b$, ta có $\sum_i\lambda_i^*f_i(x^*)=0$. Mỗi số hạng không dương vì $\lambda_i^*\ge0$ và $f_i(x^*)\le0$. Nếu một số hạng âm thì tổng âm; do đó mọi tích $\lambda_i^*f_i(x^*)=0$.
+
+**Dừng.** Từ $L(x^*,\lambda^*,\nu^*)=g(\lambda^*,\nu^*)=\inf_x L(x,\lambda^*,\nu^*)$, suy ra $x^*$ cực tiểu hóa $L$ trên toàn $\mathbb R^n$. Hàm này khả vi, nên
+
+$$\nabla_x L(x^*,\lambda^*,\nu^*)=\nabla f_0(x^*)+\sum_i\lambda_i^*\nabla f_i(x^*)+A^T\nu^*=0.$$
+
+Tính khả thi gốc có sẵn vì $x^*$ tối ưu; tính khả thi đối ngẫu có sẵn từ bộ nhân tử Slater. Vậy cả bốn nhóm KKT đều thỏa. Chính việc đạt infimum của $L$, không phải chỉ tính khả thi của $x^*$, cho điều kiện dừng. Kết quả áp dụng cho mọi nghiệm tối ưu $x^*$ của bài toán trong lớp giả thiết này.
+
+Nguồn: Boyd và Vandenberghe (2004), mục 5.5.3.
+:::
+
 Ngoài lớp bài toán này, tính cần phải dựa vào điều kiện chính quy thích hợp. Trong ví dụ $\min x$ với $x^2\le0$, nghiệm gốc $0$ tồn tại nhưng phương trình dừng $1+2\lambda\cdot0=0$ vô nghiệm. Ngược lại, với bài phi lồi $\min -x^2$ trên $[-1,1]$, điểm $0$ và hai nhân tử bằng không thỏa KKT nhưng $0$ là cực đại, không phải cực tiểu.
 
 ::: example

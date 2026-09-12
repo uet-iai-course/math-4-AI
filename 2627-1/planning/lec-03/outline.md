@@ -1,6 +1,6 @@
 # Dàn ý Bài 03 — Đối ngẫu Lagrange
 
-**Trạng thái:** bản nội dung 46 trang, 6 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
+**Trạng thái:** bản nội dung 47 trang, 6 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
 
 ## Phạm vi và tiêu chí hoàn thành
 
@@ -73,8 +73,9 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 | S05-03 | Bốn nhóm điều kiện KKT | Tổ chức các điều kiện thành bốn nhóm để sinh viên kiểm tra có hệ thống. |
 | S05-04 | Giải ví dụ bằng KKT | Minh họa quy trình giải nhánh và loại ứng viên theo tính khả thi, không chỉ giải phương trình. |
 | S05-05 | Điều kiện cần và điều kiện đủ | Tách giả thiết cho tính cần và tính đủ, tránh coi Slater là điều kiện bắt buộc của chứng nhận. |
+| S05-05b | Chứng minh điều kiện đủ của KKT | Chứng minh điểm dùng tính lồi để bảo đảm toàn cục và nối KKT trở lại đối ngẫu yếu. |
+| S05-05c | Chứng minh điều kiện cần của KKT | Dùng nhân tử đạt đối ngẫu và chuỗi cận khít để suy ra riêng bù trừ và dừng. |
 | S05-05a | Nghiệm tối ưu không thỏa KKT | Dùng miền chỉ có một điểm để thấy nghiệm tối ưu có thể không có nhân tử KKT khi thiếu giả thiết chính quy. |
-| S05-05b | Chứng nhận tối ưu bằng KKT | Chứng minh điểm dùng tính lồi để bảo đảm toàn cục và nối KKT trở lại đối ngẫu yếu. |
 | S05-06 | KKT trong hồi quy có ràng buộc | Áp dụng các kết quả vừa học cho mô hình AI có kích thước thực tế; giải thích vai trò giới hạn trọng số. |
 | S05-06a | Giải hệ KKT của hồi quy | Giải hệ dừng, xét nghiệm bình phương tối thiểu và nhánh nhân tử dương mà không giả định X đủ hạng. |
 | S05-06b | Ví dụ hồi quy hai trọng số | Tính hai trọng số, nhân tử và mất mát đến kết quả số; kiểm tra đầy đủ bốn nhóm KKT. |
@@ -103,4 +104,6 @@ Không tải thêm MIT. Hình mới tự vẽ từ công thức kiểm tra đư�
 
 Các tệp plan.md, source-map.md, math-spec.md giữ để truy nguyên phiên bản trước; bản hiện hành là outline.md, storyboard.md và review-log.md. Tài liệu công khai: materials/lec-03/lecture-note.md và exercises.md.
 
-Điều chỉnh thứ tự theo yêu cầu người dùng: S03-02 → S03-03 → S03-02b → S03-03a. Phát biểu điều kiện và định lý trước, sau đó minh họa trực quan rồi chứng minh; yêu cầu này ưu tiên hơn trình tự mặc định trực quan trước hình thức. Giữ 46 trang và thời lượng đã phân bổ.
+Điều chỉnh thứ tự theo yêu cầu người dùng: S03-02 → S03-03 → S03-02b → S03-03a. Phát biểu điều kiện và định lý trước, sau đó minh họa trực quan rồi chứng minh; yêu cầu này ưu tiên hơn trình tự mặc định trực quan trước hình thức. Giữ 47 trang và thời lượng đã phân bổ.
+
+Cụm hai chiều KKT: S05-05 → S05-05b (chứng minh điều kiện đủ đã có, đổi tên theo yêu cầu) → S05-05c (chứng minh điều kiện cần mới) → S05-05a (giới hạn khi thiếu Slater) → S05-06 (hồi quy). Giữ nội dung chứng minh đủ, không tạo trang trùng.
