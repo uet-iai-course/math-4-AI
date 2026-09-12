@@ -168,6 +168,12 @@ Phân biệt khoảng đối ngẫu tối ưu với khoảng của một cặp c
 
 ### 3.2. Điều kiện Slater trong trường hợp toàn không gian
 
+**Trực quan.** Trong ví dụ $f_1(x)=(x-3)^2-1\le0$, điểm $\bar x=3$ không chỉ thỏa ràng buộc mà còn có khoảng dư: $f_1(3)=-1<0$. Cả đoạn $[2{,}5;3{,}5]$ quanh điểm này vẫn thỏa nghiêm vì $|x-3|\le0{,}5$ kéo theo $f_1(x)\le-0{,}75<0$. Nghiệm tối ưu $x^*=2$ nằm trên biên vẫn hoàn toàn phù hợp với Slater.
+
+![Điểm Slater 3 bên trong miền [2,4], một lân cận quanh 3 thỏa nghiêm, nghiệm tối ưu 2 ở biên.](img/lec-03/slater-interior.svg)
+
+Với các hàm lồi hữu hạn trên toàn không gian, tính liên tục bảo đảm quanh một điểm thỏa nghiêm tất cả bất đẳng thức có một lân cận nhỏ vẫn thỏa nghiêm. Nếu có đẳng thức $Ax=b$, chỉ xét các dịch chuyển nằm trong tập thỏa đẳng thức. Đây là trực quan cho giả thiết, không phải chứng minh đối ngẫu mạnh hay yêu cầu nghiệm tối ưu nằm trong miền. Hình tự vẽ từ ví dụ; căn cứ: Boyd và Vandenberghe (2004), mục 5.2.3, trang 226–227.
+
 **Giả thiết:** $f_0,\ldots,f_m$ lồi và hữu hạn trên $\mathbb R^n$; các ràng buộc đẳng thức là $Ax=b$.
 
 **Điều kiện Slater:** tồn tại **cùng một điểm** $\bar x\in\mathbb R^n$ sao cho

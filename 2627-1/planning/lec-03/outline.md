@@ -1,6 +1,6 @@
 # Dàn ý Bài 03 — Đối ngẫu Lagrange
 
-**Trạng thái:** bản nội dung 39 trang, 7 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
+**Trạng thái:** bản nội dung 40 trang, 7 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
 
 ## Phạm vi và tiêu chí hoàn thành
 
@@ -41,6 +41,7 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 |---|---|---|
 | S03-01 | Đối ngẫu mạnh và điều kiện Slater | Ngăn đồng nhất khoảng của một cặp với khoảng đối ngẫu tối ưu trước khi nói cận khít. |
 | S03-02 | Cận khít trong ví dụ | Đặt tên đối ngẫu mạnh sau một chứng nhận bằng bình phương có thể kiểm tra. |
+| S03-02b | Ý nghĩa và trực quan của Slater | Minh họa khoảng dư quanh cùng một điểm khả thi nghiêm, phân biệt điểm Slater và nghiệm tối ưu trước định lý. |
 | S03-03 | Điều kiện Slater | Cung cấp một giả thiết kiểm tra được thay cho việc phải giải hai bài toán mới biết cận khít. |
 | S03-04 | Kiểm tra điều kiện Slater | Tách vai trò điểm Slater và nghiệm tối ưu, đồng thời thực hành kiểm tra tính lồi. |
 | S03-05 | Giới hạn của điều kiện Slater | Phản ví dụ buộc tách ba mệnh đề Slater, đối ngẫu mạnh và sự đạt nghiệm đối ngẫu. |

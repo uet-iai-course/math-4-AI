@@ -881,3 +881,25 @@ Kết quả rà nội dung độc lập:
 
 
 Kiểm định cuối cho lượt sửa này: tám trang liên quan tại 1280×720 và 390×844 không tràn, không lỗi KaTeX hoặc ảnh hỏng; điều hướng bàn phím hoạt động. Ghi chú bài giảng tải và render công thức ở hai kích thước. Đối chiếu dự án Codex Slides: 39 tiêu đề, 39 ghi chú và 39 ảnh khớp các bản cục bộ đã nạp; trạng thái deck, điều hướng Play giữa hai trang suy diễn hoạt động. Đã xem trực quan bằng Chromium cục bộ, không tuyên bố dùng Browser trong trình soạn thảo. Các Design Files của HTML, ghi chú, outline và storyboard được cập nhật. Không tải nguồn hay tạo hình mới. Commit cục bộ, không push theo yêu cầu người dùng.
+
+
+## 2026-09-12 — Bổ sung ý nghĩa và trực quan của Slater
+
+Theo yêu cầu người dùng, thêm đúng một trang S03-02b sau ví dụ cận khít và trước định lý Slater. Tổng 40 trang, giữ bảy mạch và phong cách Bài 02. Trang mới minh họa khoảng dư quanh cùng một điểm thỏa nghiêm, phân biệt điểm Slater 3 với nghiệm tối ưu 2 trên biên; nêu rõ dịch chuyển phải giữ các đẳng thức. Trang kiểm tra Slater phía sau tiếp tục thực hành kiểm tra tính lồi và giả thiết định lý, không bị thay thế. Dàn ý, storyboard và ghi chú bài giảng đã đồng bộ; bài tập được rà, không cần sửa vì không thay ký hiệu, giả thiết hay kết quả.
+
+Nguồn nội dung: `sources/bv_cvxbook.pdf`, Boyd và Vandenberghe (2004), mục 5.2.3, trang in 226–227; đã đọc lại phần Slater. Mẫu bố cục: Bài 02, giữ runtime học kỳ hiện tại. Không tải nguồn MIT hay tài sản bên thứ ba mới. Hình `img/lec-03/slater-interior.svg` tự vẽ từ bất đẳng thức của ví dụ, gồm đoạn đóng [2,4], điểm 3 và dải [2,5;3,5] thỏa nghiêm; màu đi kèm vị trí, chữ và nét đứt. Có title, desc và văn bản thay thế.
+
+Quy trình: reader OpenRouter lập kế hoạch trước khi sửa; writer đề xuất nội dung trong thư mục tạm; điều phối viên hợp nhất và vẽ SVG; sáu reviewer độc lập rà storyboard, toán, cách hiểu của sinh viên, ghi chú giảng viên, biên tập và kỹ thuật. Mọi lượt có requested_model = observed_model = `z-ai/glm-5.3-flash`, provider = `OpenRouter`.
+
+- Rà storyboard: đạt; Đạt.
+- Rà toán học: đạt; Đạt.
+- Rà sinh viên: đạt; Đạt.
+- Rà giảng viên: đạt; Đạt.
+- Rà biên tập: đạt; Đạt — không phát hiện lỗi chính tả, ngữ pháp hay ký hiệu sai trong final.html.
+- Rà kỹ thuật: đạt; Kết luận: ĐẠT (không phát hiện lỗi tràn cụ thể trong phạm vi cho phép).
+
+Điều phối viên không nhận đề xuất đổi ký hiệu đoạn thập phân thành dấu gạch ngang: dấu chấm phẩy trong [2,5; 3,5] phân cách hai đầu mút rõ ràng. Báo cáo kỹ thuật ghi thiếu một phần tên ảnh; tệp triển khai thực là `slater-interior.svg`, đã xác minh tải thành công. Sửa hai chi tiết sau xem hình: đầu mút 4 dùng chấm đặc để biểu diễn đoạn đóng, đường chỉ dẫn không cắt nhãn.
+
+Kiểm định: bảy trang mạch Slater tại 1280×720 và 390×844 không tràn, không lỗi KaTeX, JavaScript hay ảnh hỏng; điều hướng bàn phím hoạt động. Ghi chú bài giảng tải và render trên cả hai kích thước, không tràn ngang. Codex Slides có 40 trang ở giai đoạn deck; 40 tiêu đề và ghi chú khớp RevealJS, bảy ảnh mạch Slater khớp SHA-256 với ảnh cục bộ. Play mở đúng trang mới và chuyển sang định lý bằng bàn phím. Đã xem trực quan qua Chromium cục bộ; không tuyên bố dùng Browser trong trình soạn thảo. Cập nhật Design Files của HTML, SVG, ghi chú, outline và storyboard. Commit cục bộ, không push theo yêu cầu người dùng.
+
+SHA-256 của SVG mới: `8969bc29d3ac9f84ace178cc2fa78fef80f5632859fa4a0adc302f89cd8e3f0b`.

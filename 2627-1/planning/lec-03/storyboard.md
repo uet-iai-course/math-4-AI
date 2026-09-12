@@ -1,4 +1,4 @@
-# Storyboard Bài 03 — Bản nội dung 39 trang
+# Storyboard Bài 03 — Bản nội dung 40 trang
 
 ## Chức năng và thời lượng dự kiến của bảy mạch
 
@@ -19,7 +19,7 @@ Phân bổ nội bộ theo tổng 3 tiết của đề cương; không giả đ�
 | Cụm | Nhu cầu → trực quan → ví dụ → hình thức → ứng dụng → bài tập | Đầu vào, đầu ra, ký hiệu và câu nối |
 |---|---|---|
 | Hàm và bài toán đối ngẫu (0,75 tiết) | Nhu cầu S02-01 → ví dụ dẫn nhập S02-02 → trực quan và ví dụ S02-03 → hình thức S02-04–06, S02-05a–b → S02-07 → S02-08 | Ví dụ dẫn nhập S02-02 đứng trước trực quan S02-03 để làm cụ thể nhu cầu cận dưới. Truyền nguyên f0,f1,x,λ từ ví dụ sang L,g. Đầu vào: bậc hai, gradient; đầu ra đo LLO4: tự dựng chứng nhận trên ràng buộc mới. Câu nối: một cận có thể lỏng, nên chọn cận lớn nhất. |
-| Đối ngẫu mạnh và Slater (0,45 tiết) | S03-01 → S03-01 (khoảng 4,5 đến 5, tiếp nối hình S02-07) → S03-02 → S03-03 → S03-04–05 → S03-06 | Gộp nhu cầu và trực quan khoảng cận trên cùng trang; ví dụ L(x,2) cho cận khít trước định lý. Đầu vào L,g,p*,d*; đầu ra LLO4: biết kiểm tra cùng một điểm nghiêm và kết luận đúng. Truyền x*=2 nhưng phân biệt x̄=3. Câu nối: Slater cho điều kiện đủ, trường hợp biên kiểm tra giới hạn của chiều suy luận. |
+| Đối ngẫu mạnh và Slater (0,45 tiết) | S03-01 → S03-01 (khoảng 4,5 đến 5, tiếp nối hình S02-07) → S03-02 → S03-02b (trực quan giả thiết) → S03-03 → S03-04–05 → S03-06 | Gộp nhu cầu và trực quan khoảng cận trên cùng trang; ví dụ L(x,2) cho cận khít trước định lý. Đầu vào L,g,p*,d*; đầu ra LLO4: biết kiểm tra cùng một điểm nghiêm và kết luận đúng. Truyền x*=2 nhưng phân biệt x̄=3; S03-02b truyền khoảng dư f1(3)=-1 và lân cận quanh 3 sang bất đẳng thức nghiêm ở S03-03. Gộp trực quan và ví dụ trên S03-02b; ứng dụng và bài tập giữ S03-04 và S03-06. Phân bổ lại trong 0,45 tiết hiện có, không tăng thời lượng bài. Câu nối: Slater cho điều kiện đủ, trường hợp biên kiểm tra giới hạn của chiều suy luận. |
 | Hình học (0,35 tiết) | S04-01 → S04-01 → S04-01–02 → S04-02 → S04-03 → S04-04 | Gộp đổi tọa độ và ví dụ trên bốn điểm, rồi vẽ đường cận. Đầu vào g≤L; đầu ra LLO5: đọc hệ số góc và tung độ cắt. Truyền u=f1(x),t=f0(x). Câu nối: inf của t+λu xác định đường cao nhất vẫn nằm dưới G; kiểm tra điểm chạm để chứng nhận. |
 | KKT (0,75 tiết) | S05-01 → S05-01 → S05-01–02 → S05-03 → S05-04–06, S05-05b → S05-07 | Gộp nhu cầu, gradient cân bằng 4 và −4 ở ví dụ đã biết; ví dụ hoạt động λ=0 trước hệ tổng quát. Đầu vào cận khít, gradient của hàm lồi; đầu ra LLO4/CLO1: giải nhánh và chứng nhận hồi quy. Truyền x,λ; đổi sang w có kích thước được nêu. Câu nối: tính lồi biến dừng thành cực tiểu; hệ KKT vì vậy đủ. |
 | Độ nhạy (0,35 tiết) | S06-01 → S06-02 → S06-02 → S06-03 → S06-04 → S06-05 | S06-02 gộp hình và công thức ví dụ có nghiệm đầu trái; định lý tổng quát ở trang sau. Đầu vào nhân tử tối ưu; đầu ra CLO1: phân biệt cận và xấp xỉ. u trở thành mức nới f1≤u, khác vai trò tọa độ giá trị ở mạch hình học và được định nghĩa lại rõ. p(u) là giá trị, không phải x*(u). Câu nối: tiếp tuyến dự đoán thay đổi nhỏ; so với nghiệm đúng để đánh giá sai số. |
@@ -46,8 +46,9 @@ Mỗi trang sửa từ khung được triển khai nội dung mới; hai trang t
 | S02-07 | Bài toán đối ngẫu | Biến họ cận thành quyết định chọn cận tốt nhất, đồng thời phân biệt lõm với dễ tính. | S02-06 → S02-08 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S02-08 | Bài tập xây dựng cận dưới | Đo khả năng chuyển giao sang ràng buộc affine và phát hiện lỗi bỏ hằng số. | S02-07 → S03-01 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S03-01 | Đối ngẫu mạnh và điều kiện Slater | Ngăn đồng nhất khoảng của một cặp với khoảng đối ngẫu tối ưu trước khi nói cận khít. | S02-08 → S03-02 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
-| S03-02 | Cận khít trong ví dụ | Đặt tên đối ngẫu mạnh sau một chứng nhận bằng bình phương có thể kiểm tra. | S03-01 → S03-03 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
-| S03-03 | Điều kiện Slater | Cung cấp một giả thiết kiểm tra được thay cho việc phải giải hai bài toán mới biết cận khít. | S03-02 → S03-04 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
+| S03-02 | Cận khít trong ví dụ | Đặt tên đối ngẫu mạnh sau một chứng nhận bằng bình phương có thể kiểm tra. | S03-01 → S03-02b | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
+| S03-02b | Ý nghĩa và trực quan của Slater | Sau cận khít, giải thích khoảng dư quanh điểm 3 bằng đoạn [2,5; 3,5]; phân biệt điều kiện trên miền với yêu cầu về nghiệm tối ưu. | S03-02 → S03-03 | LLO4/CLO1 | thêm — trực quan hóa giả thiết trước định lý theo yêu cầu người dùng |
+| S03-03 | Điều kiện Slater | Cung cấp một giả thiết kiểm tra được thay cho việc phải giải hai bài toán mới biết cận khít. | S03-02b → S03-04 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S03-04 | Kiểm tra điều kiện Slater | Tách vai trò điểm Slater và nghiệm tối ưu, đồng thời thực hành kiểm tra tính lồi. | S03-03 → S03-05 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S03-05 | Giới hạn của điều kiện Slater | Phản ví dụ buộc tách ba mệnh đề Slater, đối ngẫu mạnh và sự đạt nghiệm đối ngẫu. | S03-04 → S03-06 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |
 | S03-06 | Bài tập đối ngẫu mạnh và Slater | Đo khả năng kiểm tra cùng một điểm nghiêm và tính hữu hạn trước khi dùng định lý. | S03-05 → S04-01 | LLO4/CLO1 | sửa — triển khai khung đã duyệt |

@@ -102,6 +102,17 @@
         <p>Chọn $\lambda=2$:</p><p class="math-large">$$L(x,2)=3(x-2)^2+5\ge5$$</p><p>Tại $x=2$ khả thi: $g(2)=f_0(2)=5$.</p><p class="box"><strong>Định nghĩa.</strong> Đối ngẫu mạnh: $d^*=p^*$.</p><p>Ở đây, cả hai phía đều đạt nghiệm.</p>
         <aside class="notes"><p>Kiểm tra: $L(x,2)=x^2+1+2(x-2)(x-4)=3x^2-12x+17=3(x-2)^2+5$. Minimum tại $x=2$, đúng là điểm khả thi tối ưu, giá trị $5=p^*$. Đây là chứng nhận khít: một hàm lồi duy nhất nằm dưới $f_0$ trên miền khả thi và chạm tại $x^*$. Điểm dễ nhầm: $x(2)=3\cdot2/3=2$ trùng $x^*$ — điều này không ngẫu nhiên mà liên quan KKT sau này. Chuyển ý: để có kết luận tổng quát kiểu này, ta cần một giả thiết kiểm tra được, đó là Slater. Nguồn: Boyd và Vandenberghe (2004), chương 5, mục 5.2.3.</p></aside>
       </section>
+      <section id="y-nghia-truc-quan-slater" data-slide-id="S03-02b">
+        <h2>Ý nghĩa và trực quan của Slater</h2>
+        <p>Bài toán: $\min_x(x^2+1)$, với $(x-3)^2-1\le0$, tức $x\in[2,4]$.</p>
+        <div class="example-grid"><figure class="example-plot"><img src="img/lec-03/slater-interior.svg" alt="Điểm Slater 3 ở trong đoạn khả thi [2,4]; cả đoạn [2,5; 3,5] quanh 3 thỏa nghiêm, còn nghiệm tối ưu 2 nằm trên biên."></figure><div>
+          <p>Slater yêu cầu <strong>một điểm có khoảng dư</strong> với mọi bất đẳng thức.</p>
+          <p>Quanh $\bar x=3$, dịch chuyển nhỏ vẫn thỏa nghiêm ràng buộc.</p>
+          <p>Nghiệm tối ưu $x^*=2$ vẫn có thể nằm trên biên.</p>
+        </div></div>
+        <p class="box">Nếu có đẳng thức, chỉ dịch chuyển trong tập thỏa đúng các đẳng thức.</p>
+        <aside class="notes"><p>Ở ví dụ này, hàm ràng buộc là $f_1(x)=(x-3)^2-1$. Tại 3, giá trị bằng −1, nhỏ hơn 0 nên còn khoảng dư. Với $|x-3|\le0{,}5$, ta vẫn có $f_1(x)\le-0{,}75&lt;0$. Dải nét đứt trên hình biểu diễn một lân cận cụ thể còn thỏa nghiêm. Slater yêu cầu cùng một điểm có khoảng dư cho tất cả bất đẳng thức, không phải mỗi ràng buộc có một điểm riêng. Trong khung các hàm lồi hữu hạn trên toàn không gian của bài này, tính liên tục bảo đảm tồn tại một lân cận nhỏ như vậy; nếu có đẳng thức thì xét lân cận trong tập affine thỏa đẳng thức. Ví dụ có $x_1+x_2=1$ thì chỉ dịch chuyển dọc đường này. Không suy ngược rằng miền có nội luôn đồng nghĩa với Slater cho mọi cách viết ràng buộc. Điểm Slater giúp kiểm tra giả thiết chính quy; nó không phải nghiệm tối ưu cần tìm. Hình không chứng minh đối ngẫu mạnh. Trang sau nêu các giả thiết chính xác để khoảng dư này bảo đảm cận đối ngẫu khít. Nguồn: Boyd và Vandenberghe (2004), mục 5.2.3, trang 226–227. Hình tự vẽ từ ràng buộc của ví dụ.</p></aside>
+      </section>
       <section id="dieu-kien-slater" data-slide-id="S03-03">
         <h2>Điều kiện Slater</h2>
         <p><strong>Giả thiết:</strong> $f_0,\ldots,f_m$ lồi, hữu hạn trên $\mathbb R^n$; đẳng thức $Ax=b$.</p><p><strong>Slater:</strong> tồn tại cùng một điểm $\bar x$ sao cho</p><p>$$f_i(\bar x)<0\ (i=1,\ldots,m),\qquad A\bar x=b.$$</p><p class="box"><strong>Định lý.</strong> Nếu $p^*$ hữu hạn: $d^*=p^*$ và đối ngẫu đạt nghiệm.</p><p>Điều kiện đủ; không bảo đảm nghiệm gốc tồn tại.</p>
