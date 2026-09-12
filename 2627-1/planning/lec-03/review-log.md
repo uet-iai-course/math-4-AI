@@ -1015,3 +1015,75 @@ Quy trình OpenRouter: reader kiểm tra nguồn và lập kế hoạch; writer 
 Sáu reviewer xác nhận toán học và thứ tự đúng. Góp ý thêm d*=p* hoặc định nghĩa infimum trên mặt trang không bắt buộc: quan hệ đạt g=p* đã nêu và định nghĩa g đã học; ghi chú có đầy đủ cả hai. Trang đủ giữ nguyên chứng minh theo yêu cầu mới. Trang cần bỏ một câu dẫn lặp để tăng khoảng trắng trước chân trang, không thu nhỏ chữ.
 
 Kiểm định: toàn bộ 47 trang tại 1280×720 và 390×844 không tràn, lỗi công thức, ảnh, JavaScript hoặc tải tài nguyên; sau sửa khoảng trắng, riêng trang mới được kiểm tra lại hai khung. Codex Slides giai đoạn deck có đủ 47 trang; 47 tiêu đề, ghi chú và SHA-256 ảnh khớp RevealJS, storyboard khớp thứ tự DOM. Play đi từ chứng minh đủ sang chứng minh cần và trở lại. Tài liệu ghi chú và bài tập hiển thị đúng ở hai khung. Design Files đồng bộ. Rà trực quan bằng Chromium cục bộ; không tuyên bố dùng Browser trong trình soạn thảo. Bằng chứng: /tmp/lec03-kkt-proof/verification.json, verification-final-slide.json, audit.json, shots/ và plugin-play.png. Chỉ commit cục bộ, không push.
+
+
+## 2026-09-13 — Sinh lại toàn bộ ghi chú Bài 03 theo 47 trang chiếu
+
+Theo yêu cầu người dùng, sinh lại toàn bộ `materials/lec-03/lecture-note.md` từ bản RevealJS hiện tại, thay bản ghi chú cũ. Giữ sáu phần kiến thức và ký hiệu của bài; mở rộng suy diễn, chứng minh và lời giải để sinh viên tự học. Đối chiếu đề cương DOCX chính thức: buổi 3, chương Đối ngẫu, LLO4/LLO5 gắn CLO1. Không đưa phần độ nhạy trở lại vì người dùng đã bỏ phần này. Nguồn nội dung chính vẫn là Boyd và Vandenberghe (2004), chương 5; không tải nguồn mới. Mẫu ghi chú và viewer hiện hành được giữ.
+
+Quy trình: reader lập kế hoạch; reader phân tích nguồn và ví dụ; writer sinh bản mới trong thư mục tạm; reviewer rà ánh xạ trước năm lượt rà độc lập (sinh viên, chuyên gia, toán học, giảng dạy, mạch kể chuyện); writer biên tập; hai reviewer rà lại toán học và khả năng tự học. Các lượt hoàn tất dùng requested_model=observed_model=z-ai/glm-5.3-flash, provider=OpenRouter. Lượt rà ánh xạ đầu vượt giới hạn 10 lần gọi công cụ; chạy lại cùng vai với giới hạn 24 và hoàn tất. Lần mở reader ban đầu gặp hết thời gian duyệt, sau đó bị tự động từ chối vì phạm vi gửi tệp; đã đối chiếu quyền gửi nội dung workspace tại AGENTS.md dòng 298, kiểm tra phạm vi và chạy lại được duyệt. Không gửi tệp môi trường hoặc bí mật. Bằng chứng tác tử lưu tại `/tmp/lec03-regenerate-note/`.
+
+Điều phối viên kiểm tra và sửa các lỗi bản sinh trước khi phát hành: đối ngẫu yếu dùng L≤f0, không mặc định bằng nhau; chứng minh tách dùng mâu thuẫn với cận dưới; phân biệt định nghĩa supremum và đối ngẫu yếu; giải thích khả thi nghiêm và bước hệ số đẳng thức bằng 0; chuẩn hóa khối Markdown được viewer hỗ trợ. Bổ sung ví dụ Slater nhưng nghiệm gốc không đạt, giải thích đường cận có thể chạm tập giá trị tại điểm không khả thi, phân biệt sai số thật với cận sai số. Trong hồi quy, xét đúng bình phương chuẩn, loại nhánh nhân tử bằng 0 trước khi dùng bù trừ; ký hiệu trị riêng là η để tránh nhầm với giá trị kỳ dị. Hai lượt rà cuối không tìm thấy lỗi thực chất. Bài tập chính thức được đối chiếu và giữ nguyên.
+
+Kiểm định trực tiếp tệp phát hành bằng Chromium cục bộ tại 1280×720 và 390×844: 896 nút công thức KaTeX, 7 hình có mô tả thay thế, 13 khối gập; không lỗi công thức, JavaScript, tải tài nguyên hoặc tràn ngang toàn trang. Bàn phím mở/đóng lời giải được; khi in mở toàn bộ và khôi phục sau in. Đã xem ảnh màn hình rộng và hẹp, kiểm tra liên kết chỉ mục → ghi chú → bài tập và trạng thái tải. Bằng chứng: `verification-final.json`, `arithmetic-checks.json`, `links-final.json`, các ảnh `note-*.png` trong thư mục tạm trên.
+
+Codex Slides: tải bản mới vào Design Files `uploaded/lecture-note-10.md`, đọc lại và đối chiếu SHA-256 với tệp phát hành; mở đúng tệp trên giao diện cục bộ, bằng chứng `plugin-note.png`. Công cụ upload trả liên kết tệp cũ ở trường file; đã dùng danh sách trả về để chọn đúng tệp mới và kiểm tra nội dung. Không tuyên bố kiểm tra bằng Browser trong trình soạn thảo vì công cụ đó không khả dụng.
+
+SHA-256 bản cuối: ghi chú `59506cdb58f0b2de643571270fa3d7a7469e786e168bfc83bb769461c029617f`; bộ trang chiếu nguồn không đổi `98379a706141c17716e910957fe04abacf0d7c5de836319b3ab5537b04b32a7c`; bài tập không đổi `be677cda5fb848f3981a095deae728c5d0a2775106c970447c043022928129ab`. Chỉ commit cục bộ, không push.
+
+### Ánh xạ nội dung ghi chú với bộ trang chiếu hiện tại
+
+| ID | Heading trong lecture-note.md |
+|---|---|
+| S01-01 | Bài 03 — Đối ngẫu Lagrange (H1), đoạn mở đầu giới thiệu Slater và KKT |
+| S01-02 | Mục tiêu học tập và kiến thức tiên quyết |
+| S01-03 | Đoạn mở đầu nêu sáu phần, hệ thống heading; Phần 6 tổng hợp quy trình vận dụng |
+| S02-01 | Phần 1 — Nhu cầu chứng nhận tối ưu và cận dưới → Bài toán có ràng buộc và điểm khả thi |
+| S02-02 | Phần 1 → Ví dụ xuyên suốt của bài học (example) |
+| S02-03 | Phần 1 → Họ hàm tạo cận dưới + derivation Tính một cận cụ thể với λ=1 |
+| S02-04 | Phần 2 → Định nghĩa tổng quát → Định nghĩa hàm Lagrange |
+| S02-05 | Phần 2 → Hàm đối ngẫu: inf trên toàn không gian → Định nghĩa hàm đối ngẫu |
+| S02-05c | Phần 2 → Tính lõm của g theo nhân tử → proof Mệnh đề g lõm theo θ |
+| S02-05a | Phần 2 → Tính g trong ví dụ xuyên suốt → derivation Bước 1 (lập L) |
+| S02-05b | Phần 2 → derivation Tính g(λ) đầy đủ (Bước 2–3: hoàn thành bình phương, g(λ)=10−λ−9/(1+λ)) |
+| S02-06 | Phần 2 → Đối ngẫu yếu → proof Định lý đối ngẫu yếu |
+| S02-07 | Phần 2 → Bài toán đối ngẫu (d*, g(0)=1, g(1)=4,5, g(2)=5, λ*=2) |
+| S02-07a | Phần 2 → Ví dụ hai chiều → example Đối ngẫu cho bài toán hai chiều (phần lập L, g) |
+| S02-07b | Phần 2 → example Đối ngẫu cho bài toán hai chiều (phần hoàn thành bình phương, λ*=(1,2), d*=p*=5/2) |
+| S02-08 | Phần 2 → exercise Bài tập tự luyện: xây dựng cận dưới (+ hint, solution) |
+| S03-01 | Phần 3 → Hai khái niệm khoảng cần phân biệt |
+| S03-02 | Phần 3 → Cận khít trong ví dụ (λ=2, L=3(x−2)²+5) |
+| S03-03 | Phần 3 → Định nghĩa Điều kiện Slater và định lý đối ngẫu mạnh |
+| S03-02b | Phần 3 → Trực quan về khoảng dư (hình slater-interior.svg) |
+| S03-03a | Phần 3 → proof Chứng minh định lý Slater, từng bước (tập C, B, tách, chuẩn hóa) |
+| S03-03b | Phần 3 → proof Chứng minh Slater, Bước 2 (vai trò khả thi nghiêm, a=0) |
+| S03-03c | Phần 3 → proof Chứng minh Slater, Bước 2 (hệ số đẳng thức: x=x̄−Aᵀβ, −‖Aᵀβ‖², β=0) |
+| S03-04 | Phần 3 → Kiểm tra Slater trong ví dụ xuyên suốt (f₀″=f₁″=2>0, x̄=3, p* hữu hạn) |
+| S03-05 | Phần 3 → example Thiếu Slater, đối ngẫu mạnh vẫn đúng nhưng không đạt |
+| S03-06 | Phần 3 → Kiểm tra điều kiện Slater ở hai chiều (exercise và solution), nối bài tổng hợp ở Phần 6 |
+| S04-01 | Phần 4 → Biểu diễn quyết định bằng cặp giá trị |
+| S04-01a | Phần 4 → Tập giá trị G (bảng x=0,2,3,4; hình value-plane-mapping.svg) |
+| S04-01b | Phần 4 → Hàm Lagrange trên mặt phẳng giá trị (t=g(λ)−λu) |
+| S04-02 | Phần 4 → example Đường cận với λ=1 (value-plane-1.svg) |
+| S04-03 | Phần 4 → example Đường cận với λ=2: tiếp xúc và chứng nhận (value-plane-2.svg) |
+| S04-04 | Phần 4 → exercise Bài tập tự luyện: đọc hình đối ngẫu (+ hint, solution) |
+| S05-01 | Phần 5 → Cân bằng gradient và bù trừ |
+| S05-02 | Phần 5 → Ràng buộc hoạt động và bù trừ |
+| S05-03 | Phần 5 → Định nghĩa Hệ KKT (bốn nhóm) |
+| S05-04 | Phần 5 → derivation Giải hệ KKT của ví dụ xuyên suốt (ba nhánh) |
+| S05-05 | Phần 5 → Hai chiều của điều kiện tối ưu (bảng giả thiết và kết luận) |
+| S05-05b | Phần 5 → proof Chứng minh chiều đủ: bài toán lồi + KKT ⇒ tối ưu toàn cục |
+| S05-05c | Phần 5 → proof Chứng minh chiều cần: lồi + Slater + nghiệm tối ưu tồn tại ⇒ nhân tử KKT |
+| S05-05a | Phần 5 → example Nghiệm tối ưu không thỏa KKT (min x, x²≤0) |
+| S05-06 | Phần 5 → Hồi quy có ràng buộc chuẩn → Mô hình và hệ KKT |
+| S05-06a | Phần 5 → Hồi quy có ràng buộc chuẩn → Giải hệ theo hai nhánh (w₀, hai nhánh, XᵀX+2λI xác định dương, chia đôi nhân tử) |
+| S05-06b | Phần 5 → Hồi quy có ràng buộc chuẩn → example Hồi quy hai trọng số, kiểm tra đủ bốn nhóm KKT (λ*=2, w*=(3/5,4/5), mất mát 8) |
+| S05-07 | Phần 5 → Hồi quy có ràng buộc chuẩn → exercise Bài tập tự luyện: một trọng số (+ hint, solution) |
+| S07-01 | Phần 6 — Tổng hợp và vận dụng (ba bước lập cận / cận khít / chứng nhận) |
+| S07-02 | Phần 6 → example Bài tổng hợp: hai biến, một ràng buộc (x*=(1/2,1/2), λ*=1, p*=1/2) |
+| S07-03 | Phần 6 → Tài liệu tham khảo + Bài tập chính thức (liên kết material-viewer) |
+
+Ghi chú: các câu hỏi "Tự kiểm tra" xen kẽ có ở phần 1, 2, 3, 5, 6; bài tự luyện đọc hình ở phần 4; mục "Quy trình vận dụng" (phần 6) phục vụ tự học, không ánh xạ riêng theo ID. Hình dùng: intro-feasible.svg, bound-family.svg, dual-bound.svg, slater-interior.svg, value-plane-mapping.svg, value-plane-1.svg, value-plane-2.svg (tất cả tự vẽ theo công thức, có alt cụ thể).
+Nguồn chính của ghi chú là Boyd và Vandenberghe. MIT OpenCourseWare 6.079 được slide S07-03 giới thiệu như nguồn đọc bổ sung; bản ghi chú không khai sử dụng trực tiếp một tài nguyên MIT mới và không tải thêm nguồn. Các nguồn đọc thêm trong ghi chú trỏ tới cùng giáo trình đã dùng.
+
+Rà cuối: Phần 6 có thêm câu hỏi chứng nhận từ cặp (x=(1,1), λ=0) và cặp khít đã giải, không dùng dữ kiện ngoài bài. Chỉnh diễn đạt về đường cận của ví dụ x²≤0: các đường có thể chạm G ngoài miền khả thi, nhưng không nhân tử hữu hạn nào cho đường qua nghiệm tối ưu.
