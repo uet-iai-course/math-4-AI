@@ -148,31 +148,7 @@ $$
 Với $\tau\ge9$, lấy $w^*=3$, $\lambda^*=0$, mất mát $0$. Tại $\tau=9$, ràng buộc hoạt động nhưng nhân tử bằng không. Với $\tau>9$, ràng buộc không hoạt động.
 :::
 
-## 7. Độ nhạy và giới hạn của xấp xỉ
-
-::: exercise
-Trong ví dụ xuyên suốt, nới ràng buộc thành $(x-3)^2\le1+u$. Với $-1\le u\le8$, biết $p(u)=11+u-6\sqrt{1+u}$.
-
-1. Tính $p'(0)$ và đối chiếu với $\lambda^*=2$.
-2. Tính giá trị đúng và xấp xỉ tuyến tính tại $u=0{,}1$ và $u=1$.
-3. Phân biệt cận toàn cục với xấp xỉ cục bộ.
-4. Với mô hình hồi quy ở bài 6, dự đoán mất mát khi nới $\tau$ từ $1$ lên $1{,}1$, rồi kiểm tra bằng công thức đúng.
-:::
-
-::: solution
-$p'(u)=1-3/\sqrt{1+u}$, nên $p'(0)=-2=-\lambda^*$; tiếp tuyến là $5-2u$.
-
-| Mức nới $u$ | Giá trị đúng | Xấp xỉ tuyến tính | Sai số tuyệt đối |
-|---|---|---|---|
-| $0{,}1$ | $11{,}1-6\sqrt{1{,}1}\approx4{,}80715$ | $4{,}8$ | $0{,}00715$ |
-| $1$ | $12-6\sqrt2\approx3{,}51472$ | $3$ | $0{,}51472$ |
-
-Cận $p(u)\ge5-2u$ đúng cho mọi $u$ theo giả thiết đối ngẫu mạnh và nhân tử tối ưu tại $0$. Xấp xỉ $p(u)\approx5-2u$ chỉ chính xác cục bộ; nó dùng thêm khả vi của hàm giá trị. Sai số tăng ở $u=1$ vì độ dốc của $p$ thay đổi.
-
-Trong hồi quy, $v(1)=2$, $\lambda^*=1$, nên dự đoán $v(1{,}1)\approx2-0{,}1=1{,}9$. Giá trị đúng là $\tfrac12(3-\sqrt{1{,}1})^2\approx1{,}90357$.
-:::
-
-## 8. Bài tập tổng hợp hai chiều
+## 7. Bài tập tổng hợp hai chiều
 
 ::: exercise
 Chọn hai trọng số $x_1,x_2\in\mathbb R$ với tổng ít nhất $1$, đồng thời làm nhỏ bình phương chuẩn:
@@ -184,7 +160,6 @@ $$
 1. Kiểm tra tính lồi, Slater và tính hữu hạn của giá trị tối ưu.
 2. Tính $g(\lambda)$ và giải đối ngẫu.
 3. Giải KKT và viết một chứng nhận cận khít.
-4. Siết yêu cầu thành $x_1+x_2\ge1+\varepsilon$ với $\varepsilon>0$ nhỏ. Tính giá trị tối ưu mới và giải thích dấu của độ nhạy.
 :::
 
 ::: solution
@@ -202,9 +177,8 @@ $$
 
 Chứng nhận: $L(x,1)=(x_1-1/2)^2+(x_2-1/2)^2+1/2\ge1/2$, bằng mục tiêu tại điểm khả thi $x^*$. Do đó $p^*=d^*=1/2$.
 
-Với $\varepsilon$ gần $0$, nghiệm mới là $x_i=(1+\varepsilon)/2$, giá trị $q(\varepsilon)=(1+\varepsilon)^2/2$. Suy ra $q'(0)=1$: siết yêu cầu làm chi phí tăng xấp xỉ $\varepsilon$. Theo quy ước $f_1\le u$, thay đổi này tương ứng $u=-\varepsilon$; công thức $p'(0)=-\lambda^*=-1$ vì thế hoàn toàn nhất quán.
 :::
 
 ## Nguồn và phạm vi
 
-Các bài tập được biên soạn và tính lại cho bài giảng này; bài 2–8 dùng phép hoàn thành bình phương, đạo hàm và các định lý đã trình bày. Kiến thức nền: Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, chương 5, §5.1–5.3, §5.5–5.6. [Nguồn chính thức](https://web.stanford.edu/~boyd/cvxbook/). Không yêu cầu nội tương đối, nón pháp tuyến hoặc kỹ thuật tối ưu số để giải các bài trên.
+Các bài tập được biên soạn và tính lại cho bài giảng này; bài 2–7 dùng phép hoàn thành bình phương, đạo hàm và các định lý đã trình bày. Kiến thức nền: Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, chương 5, §5.1–5.3, §5.5. [Nguồn chính thức](https://web.stanford.edu/~boyd/cvxbook/). Không yêu cầu nội tương đối, nón pháp tuyến hoặc kỹ thuật tối ưu số để giải các bài trên.

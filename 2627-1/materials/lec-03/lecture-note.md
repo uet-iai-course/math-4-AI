@@ -4,7 +4,7 @@
 
 Trong bài toán cực tiểu có ràng buộc, ta tìm giá trị nhỏ nhất của hàm mục tiêu trong các điểm thỏa mọi ràng buộc. Những điểm này được gọi là **điểm khả thi**. Một thuật toán tìm được điểm khả thi có giá trị mục tiêu bằng $5$ chưa đủ để kết luận không còn nghiệm tốt hơn. Với bài toán cực tiểu, nghiệm khả thi cho **cận trên** của giá trị tối ưu. Nếu xây dựng được một **cận dưới** cũng bằng $5$, ta đã chứng nhận tối ưu mà không phải thử mọi nghiệm khả thi.
 
-Bài này phát triển ba công cụ liên quan: đối ngẫu Lagrange tạo cận dưới; điều kiện Slater bảo đảm cận tốt nhất bằng giá trị tối ưu trong một lớp bài toán lồi; điều kiện Karush–Kuhn–Tucker (KKT) biến chứng nhận ấy thành một hệ điều kiện có thể kiểm tra và giải. Cuối bài, nhân tử Lagrange được dùng để diễn giải ảnh hưởng của việc nới ràng buộc.
+Bài này phát triển ba công cụ liên quan: đối ngẫu Lagrange tạo cận dưới; điều kiện Slater bảo đảm cận tốt nhất bằng giá trị tối ưu trong một lớp bài toán lồi; điều kiện Karush–Kuhn–Tucker (KKT) biến chứng nhận ấy thành một hệ điều kiện có thể kiểm tra và giải.
 
 Kiến thức cần dùng: đạo hàm, gradient, hàm lồi, điều kiện cực tiểu của hàm lồi khả vi và phép hoàn thành bình phương. Mục tiêu là tự tính hàm đối ngẫu, tìm một điểm thỏa Slater, đọc đường cận trên hình và kiểm tra đầy đủ bốn nhóm KKT.
 
@@ -157,6 +157,28 @@ L(x,2)=3(x-2)^2+5\ge5.
 $$
 
 Với $x$ khả thi, $f_0(x)\ge L(x,2)\ge5$, còn $f_0(2)=5$. Đây là chứng nhận tối ưu.
+
+### 2.6. Ví dụ đối ngẫu hai chiều
+
+Xét $x=(x_1,x_2)\in\mathbb R^2$ và bài toán $\min\frac12(x_1^2+x_2^2)$ với $x_1\ge1$, $x_2\ge2$. Viết $f_1=1-x_1\le0$, $f_2=2-x_2\le0$ và gán mỗi bất đẳng thức một nhân tử $\lambda_i\ge0$.
+
+::: derivation
+$$
+\begin{aligned}
+L(x,\lambda)&=\frac12(x_1^2+x_2^2)+\lambda_1(1-x_1)+\lambda_2(2-x_2)\\
+&=\frac12[(x_1-\lambda_1)^2+(x_2-\lambda_2)^2]+\lambda_1+2\lambda_2-\frac12(\lambda_1^2+\lambda_2^2).
+\end{aligned}
+$$
+
+Lấy cực tiểu trên toàn $\mathbb R^2$ tại $x_i=\lambda_i$, ta được
+
+$$
+g(\lambda)=\lambda_1+2\lambda_2-\frac12(\lambda_1^2+\lambda_2^2)
+=\frac52-\frac12[(\lambda_1-1)^2+(\lambda_2-2)^2].
+$$
+
+Bài toán đối ngẫu là cực đại hóa $g$ với $\lambda_1,\lambda_2\ge0$. Hai bình phương cho $g\le5/2$, đạt tại $\lambda^*=(1,2)$. Điểm $x=(1,2)$ thỏa hai ràng buộc và có mục tiêu $5/2$, nên $x^*=(1,2)$ và $p^*=d^*=5/2$. Chứng nhận này dùng trực tiếp đối ngẫu yếu, không cần áp dụng Slater.
+:::
 
 ## 3. Đối ngẫu mạnh và điều kiện Slater
 
@@ -316,6 +338,10 @@ Mọi dấu đều là đẳng thức, nên bộ nhân tử cũng tối ưu đ�
 
 Ngoài lớp bài toán này, tính cần phải dựa vào điều kiện chính quy thích hợp. Trong ví dụ $\min x$ với $x^2\le0$, nghiệm gốc $0$ tồn tại nhưng phương trình dừng $1+2\lambda\cdot0=0$ vô nghiệm. Ngược lại, với bài phi lồi $\min -x^2$ trên $[-1,1]$, điểm $0$ và hai nhân tử bằng không thỏa KKT nhưng $0$ là cực đại, không phải cực tiểu.
 
+::: example
+**Nghiệm tối ưu không thỏa KKT.** Với $\min x$ và $x^2\le0$, miền khả thi chỉ có $x=0$, nên $x^*=0$. Hàm Lagrange $L=x+\lambda x^2$ cho điều kiện dừng $1+2\lambda x=0$. Tại $x^*=0$, vế trái luôn bằng $1$: không có nhân tử hữu hạn thỏa KKT dù nghiệm tối ưu tồn tại. Bài toán lồi nhưng không có điểm Slater. Thiếu Slater không đồng nghĩa mọi bài đều không có KKT: nếu đổi mục tiêu thành $x^2$, cùng ràng buộc này có cặp KKT $(x,\lambda)=(0,0)$.
+:::
+
 ### 5.5. Hồi quy có ràng buộc
 
 Cho $X\in\mathbb R^{N\times d}$ chứa dữ liệu, $y\in\mathbb R^N$ chứa giá trị cần dự đoán, $w\in\mathbb R^d$ là trọng số và $\tau>0$ là giới hạn bình phương chuẩn. Xét
@@ -334,80 +360,55 @@ X^T(Xw-y)+2\lambda w=0.
 \end{gathered}
 $$
 
-Điều kiện dừng tương đương $(X^TX+2\lambda I)w=X^Ty$, trong đó $I$ là ma trận đơn vị $d\times d$. Khi $\lambda>0$, ma trận vế trái xác định dương; khi $\lambda=0$, không được giả định nó khả nghịch nếu chưa biết hạng của $X$. Ta không khẳng định nghiệm duy nhất cho mọi $X$.
+**Giải hệ KKT.** Điều kiện dừng tương đương
+
+$$
+(X^TX+2\lambda I)w=X^Ty,
+$$
+
+trong đó $I$ là ma trận đơn vị $d\times d$. Chọn $w_0$ là nghiệm bình phương tối thiểu không ràng buộc có chuẩn nhỏ nhất. Đây là tên một nghiệm, không phải véc-tơ không.
+
+- Nếu $\|w_0\|^2\le\tau$, chọn $w^*=w_0$, $\lambda^*=0$. Trường hợp bằng vẫn có thể có ràng buộc hoạt động với nhân tử bằng không.
+- Nếu $\|w_0\|^2>\tau$, không có nghiệm khả thi của hệ dừng với $\lambda=0$. Vì vậy $\lambda^*>0$ và bù trừ buộc $\|w^*\|^2=\tau$. Khi đó
+
+$$
+w(\lambda)=(X^TX+2\lambda I)^{-1}X^Ty,\qquad
+\|w(\lambda^*)\|^2=\tau.
+$$
+
+Với $\lambda>0$, ma trận luôn xác định dương, kể cả khi $X$ thiếu hạng. Trong tính toán, giải hệ tuyến tính thay vì lập ma trận nghịch đảo. Trong nhánh thứ hai, hàm $h(\lambda)=\|w(\lambda)\|^2$ liên tục, giảm nghiêm từ $\|w_0\|^2$ khi $\lambda\downarrow0$ về $0$ khi $\lambda\to\infty$. Do đó phương trình $h(\lambda)=\tau$ có một nghiệm dương duy nhất. Có thể tìm bằng chia đôi: bắt đầu một cận trên dương, nhân đôi đến khi $h$ không vượt $\tau$, rồi thu hẹp khoảng dựa vào dấu $h-\tau$. Dừng theo dung sai của khoảng nhân tử và kiểm tra lại phần dư KKT; mỗi bước chính là một lần giải hệ tuyến tính. Chia đôi thu hẹp khoảng còn một nửa mỗi bước. Không cần giới thiệu phép nghịch đảo giả để thực hiện ví dụ dưới đây.
+
+::: example
+**Hồi quy hai trọng số.** Chọn $X=I_2$, $y=(3,4)^T$, $\tau=1$:
+
+$$
+\min_w\frac12[(w_1-3)^2+(w_2-4)^2]\quad\text{với }w_1^2+w_2^2\le1.
+$$
+
+Nghiệm không ràng buộc $w_0=y$ có bình phương chuẩn $25>1$, nên $\lambda^*>0$. Dừng cho $w=y/(1+2\lambda)$. Bù trừ buộc
+
+$$
+\frac{25}{(1+2\lambda)^2}=1\quad\Longrightarrow\quad1+2\lambda=5\quad\Longrightarrow\quad\lambda^*=2.
+$$
+
+Chọn căn dương vì $\lambda\ge0$. Vậy $w^*=(3/5,4/5)^T$. Kiểm tra: $\|w^*\|^2=1$ (khả thi gốc), $\lambda^*=2\ge0$ (khả thi đối ngẫu), $2(1-1)=0$ (bù trừ), $5w^*-y=0$ (dừng). Bài toán lồi nên KKT chứng nhận tối ưu. Mất mát bằng
+
+$$
+\frac12\left[\left(-\frac{12}{5}\right)^2+\left(-\frac{16}{5}\right)^2\right]=8.
+$$
+:::
 
 Ví dụ một trọng số: $\min_w\tfrac12(w-3)^2$ với $w^2\le1$. Nghiệm khả thi gần $3$ nhất là $w^*=1$. Dừng $w-3+2\lambda w=0$ cho $\lambda^*=1$. Bù trừ và hai điều kiện khả thi đều đúng, nên mất mát tối ưu bằng $2$.
 
-## 6. Nhân tử và độ nhạy
+## 6. Tổng hợp và vận dụng
 
-### 6.1. Nới ràng buộc trong ví dụ
+Khi giải một bài toán mới, trước hết đưa bất đẳng thức về dạng $f_i\le0$ và ghi miền biến. Tính lồi quyết định chiều “KKT suy ra tối ưu”. Một điểm Slater kiểm tra được giúp bảo đảm chiều ngược lại khi nghiệm gốc tồn tại. Từ đó, ta có thể tính $g$ để tạo cận hoặc giải trực tiếp KKT, nhưng vẫn phải kiểm tra đầy đủ tính khả thi, dấu nhân tử và bù trừ.
 
-Thay $f_1(x)\le0$ bằng $f_1(x)\le u$, trong đó $u$ là mức thay đổi vế phải; $u>0$ nghĩa là nới. Ký hiệu $p(u)$ là giá trị tối ưu của bài toán mới, không phải vị trí nghiệm $x^*(u)$.
-
-Ràng buộc tương đương $(x-3)^2\le1+u$. Nếu $u<-1$, không có nghiệm khả thi; quy ước $p(u)=+\infty$. Với $-1\le u\le8$, đầu trái của đoạn khả thi không âm, nên
-
-$$
-x^*(u)=3-\sqrt{1+u},\qquad
-p(u)=(3-\sqrt{1+u})^2+1=11+u-6\sqrt{1+u}.
-$$
-
-Với $u\ge8$, đoạn khả thi chứa $0$, nên $x^*(u)=0$, $p(u)=1$. Gần $u=0$,
-
-$$
-p'(u)=1-\frac3{\sqrt{1+u}},\qquad p'(0)=-2=-\lambda^*.
-$$
-
-Như vậy, nhân tử $2$ cho biết tăng vế phải một lượng nhỏ $\varepsilon$ làm giá trị tối ưu giảm xấp xỉ $2\varepsilon$.
-
-![Hàm giá trị chính xác và đường tiếp tuyến 5 trừ 2u tại u bằng 0. Sai lệch tăng khi đi xa điểm tiếp xúc.](img/lec-03/value-sensitivity.svg)
-
-### 6.2. Cận toàn cục và xấp xỉ cục bộ
-
-Với một ràng buộc $f_1(x)\le u$, đặt $p(u)=\inf\{f_0(x):f_1(x)\le u\}$. Giả sử tại $u=0$ có đối ngẫu mạnh, $p(0)$ hữu hạn và nhân tử tối ưu $\lambda^*$ tồn tại. Với mọi $x$ khả thi cho bài nhiễu,
-
-$$
-p(0)=g(\lambda^*)\le f_0(x)+\lambda^*f_1(x)
-\le f_0(x)+\lambda^*u.
-$$
-
-Lấy cận dưới theo các $x$ đó cho **cận toàn cục**
-
-$$
-p(u)\ge p(0)-\lambda^*u.
-$$
-
-Nếu $p$ khả vi tại $0$ thì đường affine này tiếp xúc với $p$ và
-
-$$
-p'(0)=-\lambda^*,\qquad
-p(\varepsilon)=p(0)-\lambda^*\varepsilon+o(|\varepsilon|).
-$$
-
-Ký hiệu $o(|\varepsilon|)$ là sai số mà tỷ số với $|\varepsilon|$ tiến về $0$ khi $\varepsilon\to0$. Khi chỉ cần ước lượng, viết $p(\varepsilon)\approx p(0)-\lambda^*\varepsilon$. Công thức đạo hàm đòi hỏi khả vi của **hàm giá trị**, không chỉ khả vi của các hàm trong bài toán.
-
-Trong ví dụ, $p(0{,}1)\approx4{,}8$, giá trị đúng xấp xỉ $4{,}80715$. Với $u=1$, xấp xỉ tuyến tính cho $3$, trong khi giá trị đúng là $12-6\sqrt2\approx3{,}51472$. Cận $p(u)\ge5-2u$ vẫn đúng ở cả hai điểm, nhưng độ chính xác của xấp xỉ thay đổi.
-
-### 6.3. Diễn giải trong hồi quy
-
-Với ví dụ một trọng số ở trên, gọi $v(\tau)$ là mất mát tối ưu khi $w^2\le\tau$. Với $0<\tau<9$,
-
-$$
-w^*(\tau)=\sqrt\tau,\quad
-v(\tau)=\frac12(3-\sqrt\tau)^2,\quad
-v'(\tau)=-\frac{3-\sqrt\tau}{2\sqrt\tau}.
-$$
-
-Tại $\tau=1$, $v(1)=2$ và $v'(1)=-1=-\lambda^*$. Nới giới hạn từ $1$ lên $1{,}1$ cho dự đoán mất mát xấp xỉ $1{,}9$. Giá trị đúng là $\tfrac12(3-\sqrt{1{,}1})^2\approx1{,}90357$. Đây là thay đổi mất mát tối ưu, không phải thay đổi của trọng số.
-
-## 7. Tổng hợp và vận dụng
-
-Khi giải một bài toán mới, trước hết đưa bất đẳng thức về dạng $f_i\le0$ và ghi miền biến. Tính lồi quyết định chiều “KKT suy ra tối ưu”. Một điểm Slater kiểm tra được giúp bảo đảm chiều ngược lại khi nghiệm gốc tồn tại. Từ đó, ta có thể tính $g$ để tạo cận hoặc giải trực tiếp KKT, nhưng vẫn phải kiểm tra đầy đủ tính khả thi, dấu nhân tử và bù trừ. Muốn diễn giải đạo hàm bằng nhân tử, cần bổ sung giả thiết về hàm giá trị.
-
-Tự kiểm tra bằng cách giải bài $\min(x_1^2+x_2^2)$ với $x_1+x_2\ge1$ mà không xem lời giải. Bạn cần tạo được cận $1/2$, tìm nghiệm $(1/2,1/2)$, giải thích vì sao điểm Slater $(1,1)$ không phải nghiệm tối ưu, và xác nhận cùng một nhân tử $\lambda=1$ vừa xuất hiện trong KKT vừa tạo cận khít. Các bài giao và lời giải nằm ở tài liệu **Bài tập Bài 03**.
+Tự kiểm tra bằng cách giải bài $\min(x_1^2+x_2^2)$ với $x_1+x_2\ge1$ mà không xem lời giải. Bạn cần tạo được cận $1/2$, tìm nghiệm $(1/2,1/2)$, giải thích vì sao điểm Slater $(1,1)$ không phải nghiệm tối ưu, và xác nhận cùng một nhân tử vừa thỏa KKT vừa tạo cận khít. Các bài giao và lời giải nằm ở tài liệu **Bài tập Bài 03**.
 
 ### Tài liệu đọc
 
-- Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, chương 5: §5.1 hàm đối ngẫu, §5.2 bài toán đối ngẫu và Slater, §5.3 hình học, §5.5 điều kiện tối ưu, §5.6 độ nhạy. [Giáo trình và bản PDF chính thức](https://web.stanford.edu/~boyd/cvxbook/).
+- Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, chương 5: §5.1 hàm đối ngẫu, §5.2 bài toán đối ngẫu và Slater, §5.3 hình học, §5.5 điều kiện tối ưu. [Giáo trình và bản PDF chính thức](https://web.stanford.edu/~boyd/cvxbook/).
 - MIT OpenCourseWare, *6.079 Introduction to Convex Optimization*, Fall 2009, bài 5 về đối ngẫu; giảng viên Stephen Boyd và Pablo Parrilo. [Trang tài nguyên chính thức](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec05/). Dùng cho thứ tự khái niệm; các hình trong bài này được tự vẽ từ công thức, không cắt ảnh nguồn.
 
 Nội dung đọc mở rộng sau khi hoàn thành tuyến chính: Slater trên nội tương đối của miền xác định (§5.2.3), cách chứng minh bằng phân tách (§5.3.2), điểm yên ngựa (§5.4), và bất đẳng thức tổng quát theo nón (§5.9). Những phần này mở rộng phạm vi áp dụng; chúng không phải tiên quyết cho các bài tập cơ bản ở đây.

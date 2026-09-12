@@ -928,3 +928,36 @@ Quy trình: reader lập kế hoạch; writer soạn ba trang trong thư mục t
 Kiểm định cuối: sáu trang mạch hình học tại 1280×720 và 390×844 không tràn, không lỗi KaTeX, JavaScript hoặc ảnh; điều hướng bàn phím hoạt động. Ghi chú bài giảng tải và render công thức trên hai kích thước, không tràn ngang. Codex Slides ở giai đoạn deck với 42 trang; 42 tiêu đề và ghi chú khớp RevealJS, sáu ảnh mạch hình học khớp SHA-256 với ảnh chụp cục bộ. Play mở đúng trang dẫn nhập và chuyển sang trang ánh xạ điểm. Đã xem trực quan bằng Chromium cục bộ, không tuyên bố dùng Browser trong trình soạn thảo. Design Files của HTML, SVG, ghi chú, outline và storyboard đã cập nhật. Commit cục bộ, không push theo yêu cầu.
 
 SHA-256 hình mới: `3afc86143c9914e3af8e4daf3af5f59a4b44de063cdc37a68025a6563e823c7f`.
+
+
+## 2026-09-12 — Ví dụ nhiều chiều, giải KKT và bỏ độ nhạy
+
+Tổng hợp ba yêu cầu liên tiếp của người dùng: giải tiếp hồi quy có ràng buộc; bỏ mạch Nhân tử và độ nhạy, bổ sung ví dụ điều kiện/giải KKT; thêm ví dụ đối ngẫu nhiều chiều sau ví dụ chính.
+
+- Thêm S02-07a và S02-07b sau bài toán đối ngẫu: hai biến, hai ràng buộc, véc-tơ nhân tử; tính inf theo từng biến, cực đại hóa g và chứng nhận x*=λ*=(1,2), p*=d*=5/2. Không dùng Slater trước khi được giới thiệu.
+- Thêm S05-05a sau điều kiện cần/đủ: min x với x²≤0 có nghiệm tối ưu 0 nhưng không có nhân tử KKT; phân biệt thiếu bảo đảm với khẳng định mọi bài thiếu Slater đều thất bại.
+- Thêm S05-06a và S05-06b: giải hệ KKT của hồi quy trong hai nhánh, xử lý X thiếu hạng bằng nghiệm bình phương tối thiểu chuẩn nhỏ nhất; tính ví dụ X=I2, y=(3,4), τ=1 đến w*=(3/5,4/5), λ*=2 và mất mát 8, kiểm tra bốn nhóm KKT. Giữ bài tập một trọng số để tự luyện.
+- Bỏ năm trang S06-01–05. Cập nhật mục tiêu, mục lục, tổng kết, bài tập tổng hợp, tài liệu đọc và mô tả trên chỉ mục. Ghi chú bài giảng và bài tập công khai bỏ nội dung độ nhạy; bộ bài tập còn bảy mục.
+
+Tổng số trang vẫn 42: thêm năm, bỏ năm; còn sáu mạch, trong khoảng quy định. Giữ ID các trang còn lại, gồm S07 cho tổng hợp, để bảo toàn liên kết. Chuyển 0,35 tiết nội bộ của độ nhạy sang đối ngẫu nhiều chiều (0,10) và KKT (0,25); tổng thời lượng vẫn 3 tiết. Không tạo phong cách hay hình mới. Nguồn toán: Boyd–Vandenberghe (2004), chương 5, §5.1–5.2 và §5.5.3; ví dụ được tính trực tiếp từ mô hình.
+
+Quy trình: reader lập kế hoạch và cập nhật phạm vi theo từng yêu cầu; hai lượt writer soạn hồi quy và các ví dụ bổ sung trong thư mục tạm; sáu reviewer độc lập rà năm trang mới theo vai trò storyboard, toán, sinh viên, giảng viên, biên tập và kỹ thuật. Mọi kết quả runtime có requested_model = observed_model = `z-ai/glm-5.3-flash`, provider = `OpenRouter`.
+
+Điều phối viên sửa các điểm sai trong đề xuất: giữ hệ số 1/2 của mất mát; w0 là nghiệm chuẩn nhỏ nhất, không phải véc-tơ không; nhánh chuẩn không vượt giới hạn cho phép dấu bằng với λ=0, không được gọi toàn bộ nhánh là không hoạt động. Không đưa phép nghịch đảo giả chưa học lên slide. Sửa dấu cộng nhầm ở phép đếm trang của reader thành trừ năm trang độ nhạy. Chuẩn hóa khoảng trắng và ký hiệu trong ghi chú sau góp ý biên tập.
+
+- Rà storyboard: nội dung và số học đạt; góp ý về ghi chú dính chữ đã được sửa.
+- Rà toán học: nội dung và số học đạt; góp ý về ghi chú dính chữ đã được sửa.
+- Rà sinh viên: nội dung và số học đạt; góp ý về ghi chú dính chữ đã được sửa.
+- Rà giảng viên: nội dung và số học đạt; góp ý về ghi chú dính chữ đã được sửa.
+- Rà biên tập: nội dung và số học đạt; góp ý về ghi chú dính chữ đã được sửa.
+- Rà kỹ thuật: nội dung và số học đạt; góp ý về ghi chú dính chữ đã được sửa.
+
+Kiểm định cuối:
+
+- Toàn bộ 42 trang tại 1280×720 và 390×844: không tràn, không lỗi công thức, ảnh, JavaScript hoặc tải tài nguyên; điều hướng bàn phím hoạt động.
+- Kiểm tra số hữu tỉ chính xác cho ba trường hợp hồi quy: X đủ hạng (λ=2, mất mát8), X thiếu hạng (λ=1, mất mát10), và ràng buộc hoạt động với λ=0 (mất mát0); cả bốn nhóm KKT đúng. Đối ngẫu hai chiều kiểm tra đúng giá trị5/2. Không cần cài thư viện tính toán bổ sung.
+- Ghi chú bài giảng và bài tập tải, render công thức và không tràn ngang trên hai kích thước. Chỉ mục có đủ ba liên kết tài liệu Bài03 và mô tả đúng phạm vi mới.
+- Codex Slides có 42 trang, giai đoạn deck; toàn bộ 42 tiêu đề, ghi chú và SHA-256 ảnh khớp bản RevealJS cục bộ. Play mở đúng ví dụ hồi quy và điều hướng sang bài tập.
+- Đã dùng công cụ Codex Slides để sửa cấu trúc, tải ảnh và ghi chú; phần ảnh còn lại được tải tuần tự qua chính API PNG cục bộ của plugin sau khi đọc mã nguồn xác minh chỉ lưu ảnh/phiên bản, không gọi mô hình. Design Files HTML, ghi chú, bài tập, outline và storyboard được cập nhật. Rà trực quan bằng Chromium cục bộ, không tuyên bố dùng Browser trong trình soạn thảo.
+
+Chỉ commit cục bộ; không push theo yêu cầu người dùng.

@@ -1,14 +1,14 @@
 # Dàn ý Bài 03 — Đối ngẫu Lagrange
 
-**Trạng thái:** bản nội dung 42 trang, 7 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
+**Trạng thái:** bản nội dung 42 trang, 6 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
 
 ## Phạm vi và tiêu chí hoàn thành
 
 Buổi 3 theo đề cương DOCX chính thức: Chương 4, Đối ngẫu; 2 tiết lý thuyết và 1 tiết bài tập. Chuẩn đầu ra bài học (LLO) 4: “Hiểu được hàm đối ngẫu và bài toán đối ngẫu Lagrange”; LLO5: “Thể hiện được minh họa hình học của hàm đối ngẫu”; cùng liên quan chuẩn đầu ra học phần (CLO) 1. Đánh giá qua bài tập cá nhân và nhóm. Tiên quyết: gradient, hàm lồi và hoàn thành bình phương.
 
-Tiêu chí: sinh viên có thể tự tạo cận, kiểm tra Slater, giải và kiểm tra bốn nhóm KKT, giải thích hình học và phân biệt độ nhạy cục bộ với sai phân hữu hạn. RevealJS, ghi chú diễn giả, tài liệu đọc và tám bài tập có lời giải phải nhất quán. Chỉ commit cục bộ, không push theo yêu cầu mới của người dùng.
+Tiêu chí: sinh viên có thể tự tạo cận, kiểm tra Slater, giải và kiểm tra bốn nhóm KKT, giải thích hình học, vận dụng cho nhiều biến và phân biệt tính cần với tính đủ của KKT. RevealJS, ghi chú diễn giả, tài liệu đọc và bảy bài tập có lời giải phải nhất quán. Chỉ commit cục bộ, không push theo yêu cầu mới của người dùng.
 
-Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, được đọc tại máy. Giữ cấu trúc ngoài–trong, bảng màu, kiểu chữ, hộp, lưới hai cột, chân trang và runtime cục bộ. Giữ thứ tự 7 mạch của khung đã duyệt; thêm S02-05b (phép tính g) và S05-05b (chứng minh tính đủ KKT) để tách lập luận, không thu nhỏ chữ. Ví dụ chính: $\min x^2+1$ với $(x-2)(x-4)\le0$, kết quả $x^*=2$, $p^*=5$, $\lambda^*=2$.
+Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, được đọc tại máy. Giữ cấu trúc ngoài–trong, bảng màu, kiểu chữ, hộp, lưới hai cột, chân trang và runtime cục bộ. Giữ thứ tự sáu mạch còn lại sau khi bỏ độ nhạy theo yêu cầu người dùng; thêm S02-05b (phép tính g) và S05-05b (chứng minh tính đủ KKT) để tách lập luận, không thu nhỏ chữ. Ví dụ chính: $\min x^2+1$ với $(x-2)(x-4)\le0$, kết quả $x^*=2$, $p^*=5$, $\lambda^*=2$.
 
 ## Danh sách mạch và trang
 
@@ -33,6 +33,8 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 | S02-05b | Tính hàm đối ngẫu | Nhắc bài toán đang xét, thêm rồi bớt cùng một hạng để hoàn thành bình phương và suy ra g. |
 | S02-06 | Đối ngẫu yếu | Chứng minh cận hợp lệ bằng hai bước độc lập, chỉ rõ không dùng tính lồi. |
 | S02-07 | Bài toán đối ngẫu | Biến họ cận thành quyết định chọn cận tốt nhất, đồng thời phân biệt lõm với dễ tính. |
+| S02-07a | Ví dụ đối ngẫu hai chiều | Chuyển từ một biến sang hai biến, gán nhân tử riêng cho hai ràng buộc và tính inf theo từng biến. |
+| S02-07b | Giải đối ngẫu hai chiều | Giải đối ngẫu hai nhân tử bằng hoàn thành bình phương và kiểm tra điểm khả thi đạt cận. |
 | S02-08 | Bài tập xây dựng cận dưới | Đo khả năng chuyển giao sang ràng buộc affine và phát hiện lỗi bỏ hằng số. |
 
 ### 3. Đối ngẫu mạnh và điều kiện Slater
@@ -67,26 +69,19 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 | S05-03 | Bốn nhóm điều kiện KKT | Tổ chức các điều kiện thành bốn nhóm để sinh viên kiểm tra có hệ thống. |
 | S05-04 | Giải ví dụ bằng KKT | Minh họa quy trình giải nhánh và loại ứng viên theo tính khả thi, không chỉ giải phương trình. |
 | S05-05 | Điều kiện cần và điều kiện đủ | Tách giả thiết cho tính cần và tính đủ, tránh coi Slater là điều kiện bắt buộc của chứng nhận. |
+| S05-05a | Nghiệm tối ưu không thỏa KKT | Dùng miền chỉ có một điểm để thấy nghiệm tối ưu có thể không có nhân tử KKT khi thiếu giả thiết chính quy. |
 | S05-05b | Chứng nhận tối ưu bằng KKT | Chứng minh điểm dùng tính lồi để bảo đảm toàn cục và nối KKT trở lại đối ngẫu yếu. |
 | S05-06 | KKT trong hồi quy có ràng buộc | Áp dụng các kết quả vừa học cho mô hình AI có kích thước thực tế; giải thích vai trò giới hạn trọng số. |
-| S05-07 | Bài tập kiểm tra nghiệm tối ưu | Đo khả năng tự giải đủ nhánh và bốn nhóm KKT trên hồi quy một trọng số; cung cấp đầu vào độ nhạy. |
+| S05-06a | Giải hệ KKT của hồi quy | Giải hệ dừng, xét nghiệm bình phương tối thiểu và nhánh nhân tử dương mà không giả định X đủ hạng. |
+| S05-06b | Ví dụ hồi quy hai trọng số | Tính hai trọng số, nhân tử và mất mát đến kết quả số; kiểm tra đầy đủ bốn nhóm KKT. |
+| S05-07 | Bài tập kiểm tra nghiệm tối ưu | Đo khả năng tự giải đủ nhánh và bốn nhóm KKT trên hồi quy một trọng số. |
 
-### 6. Nhân tử và độ nhạy
-
-| Mã | Tiêu đề | Vai trò |
-|---|---|---|
-| S06-01 | Nhân tử và độ nhạy | Tạo nhu cầu định lượng lợi ích nới ràng buộc trước khi giới thiệu hàm giá trị. |
-| S06-02 | Nới ràng buộc trong ví dụ | Tính được hàm giá trị và nhìn sự khác biệt giữa đường chính xác với tiếp tuyến trên cùng ví dụ. |
-| S06-03 | Hàm giá trị và độ nhạy cục bộ | Phân biệt cận toàn cục và đạo hàm có giả thiết khả vi; tránh dùng nhân tử cho sai phân hữu hạn chính xác. |
-| S06-04 | Diễn giải nhân tử trong hồi quy | Chuyển cách diễn giải sang giới hạn chuẩn trong hồi quy; đối chiếu dự đoán với nghiệm đúng. |
-| S06-05 | Bài tập độ nhạy | Đo khả năng kiểm tra sai số xấp xỉ khi đi xa điểm gốc, trong khi cận vẫn đúng. |
-
-### 7. Tổng hợp và vận dụng
+### 6. Tổng hợp và vận dụng
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
 | S07-01 | Tổng hợp và vận dụng | Gom các quyết định thành quy trình, không biến Slater thành bước bắt buộc trước chiều KKT đủ. |
-| S07-02 | Bài tập tổng hợp | Đánh giá tích hợp trong hai chiều và kiểm tra dấu khi tăng yêu cầu là siết ràng buộc. |
+| S07-02 | Bài tập tổng hợp | Đánh giá tích hợp trong hai chiều. |
 | S07-03 | Tài liệu và nội dung mở rộng | Chỉ đường tự học và nguồn kiểm chứng; tách kiến thức nâng cao khỏi tiên quyết của bài tập. |
 
 ## Nguồn đã kiểm kê và vai trò
@@ -95,8 +90,8 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 |---|---|---|
 | DOCX đề cương UET.AI2012 chính thức trong sources/ | Đề cương | Buổi 3, phạm vi Chương 4, LLO4–5/CLO1, 2 tiết lý thuyết + 1 tiết bài tập |
 | Bài 02 HTML và lecture-02-style.css | Mẫu cấu trúc và thị giác | Chia phần, tiêu đề, lưới, hộp, màu, runtime; chỉ đọc tại máy |
-| sources/bv_cvxbook.pdf, Boyd–Vandenberghe (2004) | Nguồn nội dung | §5.1–5.3, §5.5–5.6; đọc và đối chiếu tại máy |
-| sources/dual.pdf và bản trùng bài 5 MIT | Nguồn tham khảo trình tự khái niệm | Lagrange → đối ngẫu → hình học → tối ưu → độ nhạy; không sao chép hình |
+| sources/bv_cvxbook.pdf, Boyd–Vandenberghe (2004) | Nguồn nội dung | §5.1–5.3, §5.5; đọc và đối chiếu tại máy |
+| sources/dual.pdf và bản trùng bài 5 MIT | Nguồn tham khảo trình tự khái niệm | Lagrange → đối ngẫu → hình học → tối ưu; phần độ nhạy của nguồn không dùng; không sao chép hình |
 | sources/Bài tập chương 4.pdf và bản lời giải | Nguồn ví dụ cũ | Ví dụ bậc hai được tự tính lại; không mặc định lời giải nguồn đúng |
 | Ghi chú và hình của Bài 03 phiên bản trước | Tài liệu cũ cần đồng bộ | Viết lại ghi chú; không dùng hình cũ cho tuyến mới |
 
