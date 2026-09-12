@@ -1,6 +1,6 @@
 # Dàn ý Bài 03 — Đối ngẫu Lagrange
 
-**Trạng thái:** bản nội dung 40 trang, 7 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
+**Trạng thái:** bản nội dung 42 trang, 7 mạch; đã qua các vòng rà soát nội dung và kiểm định cục bộ; đã công bố trên chỉ mục.
 
 ## Phạm vi và tiêu chí hoàn thành
 
@@ -51,7 +51,9 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S04-01 | Hình học của đối ngẫu | Thiết lập ý nghĩa hai trục mới bằng bốn quyết định đã biết, tránh nhầm trục x với giá trị ràng buộc. |
+| S04-01 | Hình học của đối ngẫu | Nêu mục đích nhìn quyết định khả thi và cận trong cùng hình, nhắc bài toán và giải thích hai trục trước ký hiệu G. |
+| S04-01a | Điểm và tập giá trị | Tính tọa độ từ x, vẽ G và phân biệt phần G khả thi với nửa mặt phẳng. |
+| S04-01b | Hàm Lagrange trong mặt phẳng giá trị | Suy diễn đường cận từ L và g; giải thích tung độ cắt là cận dưới. |
 | S04-02 | Đường cận trong mặt phẳng giá trị | Ánh xạ nhân tử sang hệ số góc và inf sang tung độ cắt; điểm chạm không khả thi cho giới hạn trực giác. |
 | S04-03 | Tiếp xúc và đối ngẫu mạnh | Dùng đẳng thức bình phương xác nhận hình học cận khít, không suy luận chỉ bằng nhìn hình. |
 | S04-04 | Bài tập đọc hình đối ngẫu | Đo khả năng đọc cận và giới hạn sai số từ đường thẳng, không nhầm khoảng tối ưu. |

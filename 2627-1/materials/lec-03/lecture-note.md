@@ -214,6 +214,10 @@ Với $\lambda=0$, $g(0)=\inf_x x=-\infty$. Do đó $\sup_{\lambda\ge0}g(\lambda
 
 ## 4. Hình học của đối ngẫu
 
+Ở phần trước, ta đã tính cận dưới $g(\lambda)$ và biết khi nào cận tốt nhất bằng giá trị tối ưu. Phần này biểu diễn **quyết định khả thi và cận dưới trong cùng một hình**: nhân tử quyết định độ dốc của đường cận, còn giá trị đối ngẫu là tung độ cắt.
+
+Xét lại bài toán $\min_x(x^2+1)$ với $f_1(x)=(x-2)(x-4)\le0$. Đồ thị theo $x$ giúp đọc nghiệm trong ví dụ một chiều. Để nhìn trực tiếp hàm Lagrange $L=f_0+\lambda f_1$, ta ghi lại đúng hai giá trị xuất hiện trong biểu thức này: giá trị ràng buộc và giá trị mục tiêu. Dấu của giá trị ràng buộc cho biết một quyết định có hợp lệ hay không; giá trị mục tiêu cho biết chi phí của quyết định đó.
+
 Đặt $u=f_1(x)$ và $t=f_0(x)$. Mỗi quyết định $x$ tạo một điểm trong mặt phẳng **giá trị ràng buộc–giá trị mục tiêu**, khác với mặt phẳng $x$–$f_0(x)$ trước đó. Các đại lượng của ví dụ không có đơn vị vật lý.
 
 | $x$ | $u=f_1(x)$ | $t=f_0(x)$ | Khả thi |
@@ -223,13 +227,19 @@ Với $\lambda=0$, $g(0)=\inf_x x=-\infty$. Do đó $\sup_{\lambda\ge0}g(\lambda
 | $3$ | $-1$ | $10$ | Có |
 | $4$ | $0$ | $17$ | Có |
 
+Chẳng hạn, $x=2$ cho $u=(2-2)(2-4)=0$ và $t=2^2+1=5$, nên được biểu diễn bằng điểm $(0,5)$. Điểm này nằm trên trục tung vì ràng buộc đạt dấu bằng. Với $x=3$, cặp giá trị là $(-1,10)$: điểm nằm bên trái trục tung vì thỏa nghiêm ràng buộc.
+
+![Tập giá trị G với các điểm ứng với x bằng 0, 2, 3, 4; phần G bên trái và trên trục tung ứng với quyết định khả thi.](img/lec-03/value-plane-mapping.svg)
+
 Gọi $G=\{(f_1(x),f_0(x)):x\in\mathbb R\}$. Miền quyết định khả thi tương ứng với phần của $G$ có $u\le0$. Không được suy ra $G$ lồi chỉ từ việc bài toán gốc lồi.
 
-Theo định nghĩa hàm đối ngẫu, mọi điểm của $G$ thỏa
+Giữ $\lambda\ge0$ cố định. Trên mỗi điểm $(u,t)\in G$, giá trị Lagrange là $L=t+\lambda u$. Vì $g(\lambda)$ là cận dưới lớn nhất của các giá trị này khi $x$ chạy trên toàn $\mathbb R$, mọi điểm của $G$ thỏa
 
 $$
 t+\lambda u\ge g(\lambda),\quad\text{tức }t\ge g(\lambda)-\lambda u.
 $$
+
+Xét các đường song song $t=c-\lambda u$. Với $c$ đủ thấp, đường nằm dưới toàn bộ $G$. Tăng $c$ cho đến mức lớn nhất vẫn giữ tính chất đó cho $c=g(\lambda)$, khi giá trị này hữu hạn. Đường chỉ có điểm chạm khi cận dưới đạt được; không giả định điều này cho mọi bài toán.
 
 Đường cận có hệ số góc $-\lambda$, tung độ cắt $g(\lambda)$. Với $u\le0$ và $\lambda\ge0$, đường này nằm ở mức ít nhất $g(\lambda)$, giải thích cận dưới đối với các quyết định khả thi.
 

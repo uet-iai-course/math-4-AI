@@ -903,3 +903,28 @@ Quy trình: reader OpenRouter lập kế hoạch trước khi sửa; writer đ�
 Kiểm định: bảy trang mạch Slater tại 1280×720 và 390×844 không tràn, không lỗi KaTeX, JavaScript hay ảnh hỏng; điều hướng bàn phím hoạt động. Ghi chú bài giảng tải và render trên cả hai kích thước, không tràn ngang. Codex Slides có 40 trang ở giai đoạn deck; 40 tiêu đề và ghi chú khớp RevealJS, bảy ảnh mạch Slater khớp SHA-256 với ảnh cục bộ. Play mở đúng trang mới và chuyển sang định lý bằng bàn phím. Đã xem trực quan qua Chromium cục bộ; không tuyên bố dùng Browser trong trình soạn thảo. Cập nhật Design Files của HTML, SVG, ghi chú, outline và storyboard. Commit cục bộ, không push theo yêu cầu người dùng.
 
 SHA-256 của SVG mới: `8969bc29d3ac9f84ace178cc2fa78fef80f5632859fa4a0adc302f89cd8e3f0b`.
+
+
+## 2026-09-12 — Làm rõ mạch hình học của đối ngẫu
+
+Phản hồi người dùng: mạch hình học xuất hiện đột ngột, thiếu giải thích. Sửa mạch từ bốn thành sáu trang; tổng bài từ 40 thành 42 trang, vẫn bảy mạch, giữ phong cách Bài 02 và phân bổ thời lượng đã duyệt.
+
+- S04-01: nối từ cận đại số và Slater sang mục tiêu nhìn nghiệm khả thi cùng cận; nhắc lại bài toán; giải thích lý do dùng giá trị ràng buộc làm trục ngang và giá trị mục tiêu làm trục dọc.
+- S04-01a mới: tính các cặp giá trị từ x, dựng G trước khi thêm đường cận, phân biệt phần G có u không dương với toàn nửa mặt phẳng; nhắc G không nhất thiết là đồ thị một hàm của u.
+- S04-01b mới: suy diễn L=t+λu, dùng định nghĩa inf để được đường cận, giải thích nâng tung độ cắt và chiều bất đẳng thức trên phần khả thi.
+- S04-02: áp dụng rõ λ=1, g=4,5; phân biệt điểm chạm không khả thi với cận hợp lệ. S04-03 và bài tập giữ kết quả, tiếp nối trực tiếp.
+
+Đã đồng bộ ghi chú diễn giả, ghi chú bài giảng, outline và storyboard. Đã rà bài tập: kỹ thuật, ký hiệu và kết quả không thay đổi, nên không sửa đề/đáp án. Hình `img/lec-03/value-plane-mapping.svg` tự vẽ từ f1=(x−2)(x−4), f0=x²+1, có trục, chú giải và văn bản thay thế; nhãn x=3 được tách khỏi số trên trục sau rà trực quan. Nguồn chính đã đọc lại: `sources/bv_cvxbook.pdf`, Boyd và Vandenberghe (2004), §5.3.1, trang in 232–233. Không tải nguồn hay hình bên thứ ba mới.
+
+Quy trình: reader lập kế hoạch; writer soạn ba trang trong thư mục tạm; điều phối viên chuẩn bị bản diễn giải và hình, hợp nhất sau đối chiếu; sáu reviewer độc lập kiểm tra storyboard, toán, sinh viên, giảng viên, tiếng Việt và kỹ thuật trong phạm vi ba trang dẫn nhập. Runtime mọi worker: requested_model = observed_model = `z-ai/glm-5.3-flash`, provider = `OpenRouter`. Tác tử writer phản hồi chậm nhưng hoàn tất thành công; không thay mô hình. Điều phối viên bác bỏ suy đoán thời lượng hai tiết của reader và cách mô tả dịch đường từ trên xuống của writer: cách đúng là nâng từ dưới, tìm tung độ cắt lớn nhất mà đường vẫn không vượt G. Không khẳng định tiếp xúc nếu inf không đạt.
+
+- Rà storyboard: đạt, không có lỗi bắt buộc sửa trong phạm vi đã giao.
+- Rà toán học: đạt, không có lỗi bắt buộc sửa trong phạm vi đã giao.
+- Rà sinh viên: đạt, không có lỗi bắt buộc sửa trong phạm vi đã giao.
+- Rà giảng viên: đạt, không có lỗi bắt buộc sửa trong phạm vi đã giao.
+- Rà biên tập: đạt, không có lỗi bắt buộc sửa trong phạm vi đã giao.
+- Rà kỹ thuật: đạt, không có lỗi bắt buộc sửa trong phạm vi đã giao.
+
+Kiểm định cuối: sáu trang mạch hình học tại 1280×720 và 390×844 không tràn, không lỗi KaTeX, JavaScript hoặc ảnh; điều hướng bàn phím hoạt động. Ghi chú bài giảng tải và render công thức trên hai kích thước, không tràn ngang. Codex Slides ở giai đoạn deck với 42 trang; 42 tiêu đề và ghi chú khớp RevealJS, sáu ảnh mạch hình học khớp SHA-256 với ảnh chụp cục bộ. Play mở đúng trang dẫn nhập và chuyển sang trang ánh xạ điểm. Đã xem trực quan bằng Chromium cục bộ, không tuyên bố dùng Browser trong trình soạn thảo. Design Files của HTML, SVG, ghi chú, outline và storyboard đã cập nhật. Commit cục bộ, không push theo yêu cầu.
+
+SHA-256 hình mới: `3afc86143c9914e3af8e4daf3af5f59a4b44de063cdc37a68025a6563e823c7f`.
