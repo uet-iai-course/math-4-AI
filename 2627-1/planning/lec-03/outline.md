@@ -44,8 +44,8 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 |---|---|---|
 | S03-01 | Đối ngẫu mạnh và điều kiện Slater | Ngăn đồng nhất khoảng của một cặp với khoảng đối ngẫu tối ưu trước khi nói cận khít. |
 | S03-02 | Cận khít trong ví dụ | Đặt tên đối ngẫu mạnh sau một chứng nhận bằng bình phương có thể kiểm tra. |
-| S03-02b | Ý nghĩa và trực quan của Slater | Minh họa khoảng dư quanh cùng một điểm khả thi nghiêm, phân biệt điểm Slater và nghiệm tối ưu trước định lý. |
 | S03-03 | Điều kiện Slater | Cung cấp một giả thiết kiểm tra được thay cho việc phải giải hai bài toán mới biết cận khít. |
+| S03-02b | Ý nghĩa và trực quan của Slater | Minh họa khoảng dư quanh cùng một điểm khả thi nghiêm, phân biệt điểm Slater và nghiệm tối ưu sau khi đã phát biểu định lý. |
 | S03-03a | Chứng minh định lý Slater | Giải thích vì sao khả thi nghiêm bảo đảm cận khít và đạt đối ngẫu. |
 | S03-03b | Vai trò của khả thi nghiêm | Khai triển tổng không âm nhưng từng số hạng không dương; dấu nghiêm buộc mọi hệ số bằng không. |
 | S03-03c | Hệ số của ràng buộc đẳng thức | Dùng một điểm cụ thể để suy ra bình phương chuẩn bằng không, rồi dùng các hàng độc lập để kết luận hệ số bằng không. |
@@ -102,3 +102,5 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 Không tải thêm MIT. Hình mới tự vẽ từ công thức kiểm tra được, không có ngoại lệ raster. Nguồn chính thức: [Boyd–Vandenberghe](https://web.stanford.edu/~boyd/cvxbook/), [MIT 6.079 bài 5](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec05/). Nội tương đối, nón pháp tuyến, điểm yên ngựa và đối ngẫu theo nón chuyển sang đọc mở rộng; không phải tiên quyết của bài tập chính.
 
 Các tệp plan.md, source-map.md, math-spec.md giữ để truy nguyên phiên bản trước; bản hiện hành là outline.md, storyboard.md và review-log.md. Tài liệu công khai: materials/lec-03/lecture-note.md và exercises.md.
+
+Điều chỉnh thứ tự theo yêu cầu người dùng: S03-02 → S03-03 → S03-02b → S03-03a. Phát biểu điều kiện và định lý trước, sau đó minh họa trực quan rồi chứng minh; yêu cầu này ưu tiên hơn trình tự mặc định trực quan trước hình thức. Giữ 46 trang và thời lượng đã phân bổ.
