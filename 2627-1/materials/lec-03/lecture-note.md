@@ -247,7 +247,17 @@ Vì có thể tăng tùy ý từng tọa độ $u_i$ và $t$ trong $C$, ta phả
 
 $$a^Tf(x)+\beta^T(Ax-b)+\mu f_0(x)\ge\mu p^*\qquad\forall x\in\mathbb R^n.$$
 
-**2. Điểm dùng Slater: $\mu>0$.** Giả sử $\mu=0$. Thay điểm Slater $\bar x$ vào bất đẳng thức tách cho $a^Tf(\bar x)\ge0$. Vì mọi $f_i(\bar x)<0$ và $a\ge0$, điều này buộc $a=0$. Khi đó $\beta^T(Ax-b)\ge0$ với mọi $x$. Nếu $A^T\beta\ne0$, chọn $x=-sA^T\beta$, $s\to+\infty$, làm vế trái tiến tới $-\infty$. Vậy $A^T\beta=0$. Do $A$ đủ hạng hàng, suy ra $\beta=0$, mâu thuẫn với $(a,\beta,\mu)\ne0$.
+**2. Điểm dùng Slater: $\mu>0$.** Giả sử $\mu=0$. Thay điểm Slater $\bar x$ vào bất đẳng thức tách cho $a^Tf(\bar x)\ge0$. Mặt khác, mỗi số hạng $a_if_i(\bar x)\le0$ vì $a_i\ge0$ và $f_i(\bar x)<0$. Bởi vậy
+
+$$0\le a^Tf(\bar x)=\sum_{i=1}^m a_if_i(\bar x)\le0.$$
+
+Nếu có một $a_j>0$, thì $a_jf_j(\bar x)<0$; các số hạng còn lại không dương, nên tổng âm, mâu thuẫn. Do đó mọi $a_i=0$. **Đây chính là bước dùng khả thi nghiêm.** Nếu chỉ biết $f_i(\bar x)\le0$, một ràng buộc có $f_j(\bar x)=0$ cho phép $a_j>0$ mà tích vẫn bằng $0$; không thể suy ra $a=0$. Chẳng hạn $f(\bar x)=(0,-2)$ và $a=(3,0)$ cho tích vô hướng bằng $0$ dù $a\ne0$.
+
+ Khi đó $\beta^T(Ax-b)\ge0$ với **mọi** $x\in\mathbb R^n$. Chọn $x=\bar x-A^T\beta$; điểm này không cần khả thi. Vì $A\bar x=b$,
+
+$$0\le\beta^T(Ax-b)=-\beta^TAA^T\beta=-\|A^T\beta\|^2.$$
+
+Suy ra $A^T\beta=0$. Viết các hàng của $A$ là $r_1^T,\ldots,r_k^T$, ta có $\sum_{j=1}^k\beta_jr_j=0$. Do các hàng độc lập tuyến tính, mọi hệ số $\beta_j=0$, tức $\beta=0$. Nếu chưa loại hàng phụ thuộc, bước cuối có thể sai: $A=(1,1)^T$ và $\beta=(1,-1)$ cho $A^T\beta=0$ nhưng $\beta\ne0$. Với hệ đã rút gọn, kết luận $a=\beta=\mu=0$ mâu thuẫn với bộ hệ số tách khác không. Vậy $\mu>0$.
 
 **3. Chuẩn hóa và lấy infimum.** Đặt $\lambda=a/\mu\ge0$, $\nu=\beta/\mu$. Chia bất đẳng thức tách cho $\mu>0$, được $L(x,\lambda,\nu)\ge p^*$ với mọi $x$. Lấy infimum theo $x$, rồi dùng đối ngẫu yếu:
 
