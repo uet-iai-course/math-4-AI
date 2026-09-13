@@ -290,9 +290,93 @@ Hai lưu ý quan trọng về phạm vi kết luận:
 
 **Trực quan về khoảng dư.** Với ví dụ viết lại $f_1(x)=(x-3)^2-1\le0$ (tương đương $x\in[2,4]$), tại $\bar x=3$ ta có $f_1(3)=-1<0$: còn dư. Với $|x-3|\le0{,}5$ thì $f_1(x)\le-0{,}75<0$: dịch chuyển nhỏ vẫn thỏa nghiêm. Slater yêu cầu **một** điểm có khoảng dư với **tất cả** bất đẳng thức cùng lúc (nếu có đẳng thức, chỉ dịch chuyển trong tập thỏa đúng các đẳng thức). Điểm Slater chỉ để kiểm tra giả thiết chính quy, không phải ứng viên nghiệm; ở đây $\bar x=3$ còn $x^*=2$. Cũng không suy ngược rằng "miền có nội điểm" luôn tương đương Slater cho mọi cách viết ràng buộc.
 
+### Bổ đề tách hai tập lồi (phiên bản yếu)
+
+Chứng minh định lý Slater ở mục sau cần một công cụ: tách hai tập lồi rời nhau bằng một siêu phẳng. Trực quan: nếu hai tập lồi không giao nhau, ta có thể kẹp giữa chúng một siêu phẳng $\{x: q^T x = c\}$ với pháp tuyến $q \ne 0$, sao cho một tập nằm hoàn toàn về phía $q^T x \ge c$ và tập kia hoàn toàn về phía $q^T x \le c$. Ví dụ trong $\mathbb R$: $C = [1,2]$ và $B = [-2,0]$ rời nhau; chọn $q = 1$ và $c = 1/2$ thì $q^T z = z \ge 1 > 1/2 \ge w = q^T w$ cho mọi $z \in C$, $w \in B$. Điểm $1/2$ nằm trong khe giữa hai tập.
+
+**Bổ đề (tách yếu).** Cho $C, B$ khác rỗng, lồi, rời nhau trong $\mathbb R^d$ với $d \ge 1$. Khi đó tồn tại $q \in \mathbb R^d$, $q \ne 0$, và $c \in \mathbb R$ sao cho
+
+$$q^T z \ \ge\ c\ \ge\ q^T w \qquad \forall z \in C,\ \forall w \in B.$$
+
+Đây là phiên bản **yếu**: không cần $C$ hoặc $B$ đóng, bị chặn hay có nội điểm, và không đòi hỏi tách nghiêm ngặt (dấu bằng có thể xảy ra).
+
+**Kiến thức dùng trong chứng minh:** một tập trong không gian Euclid hữu hạn chiều là **compact** khi và chỉ khi nó đóng và bị chặn; hàm liên tục trên tập compact khác rỗng đạt giá trị nhỏ nhất; ảnh của tập compact qua ánh xạ liên tục là compact; mọi phủ mở của tập compact có phủ con hữu hạn. Ở đây **phủ mở** của một tập là một họ tập mở có hợp chứa tập đang xét; **phủ con hữu hạn** là việc chọn được một số hữu hạn tập trong họ sao cho chúng vẫn phủ được tập đó.
+
+::: proof Chứng minh bổ đề tách yếu
+**Bước 1 — về tập hiệu và loại bỏ gốc tọa độ.** Đặt
+
+$$E = C - B = \{z - w:\ z \in C,\ w \in B\}.$$
+
+Vì $C, B$ khác rỗng nên $E$ khác rỗng. $E$ lồi: lấy $e_1 = z_1 - w_1$, $e_2 = z_2 - w_2$ trong $E$ và $\alpha \in [0,1]$; đặt $z_\alpha = \alpha z_1 + (1-\alpha) z_2 \in C$ (vì $C$ lồi) và $w_\alpha = \alpha w_1 + (1-\alpha) w_2 \in B$ (vì $B$ lồi); khi đó $\alpha e_1 + (1-\alpha) e_2 = z_\alpha - w_\alpha \in E$.
+
+$E$ không chứa $0$: nếu $0 = z - w$ với $z \in C$, $w \in B$ thì $z = w$, mâu thuẫn với $C \cap B = \emptyset$.
+
+**Bước 2 — bao lồi hữu hạn của một tập hữu hạn trong $E$.** Lấy tập hữu hạn không rỗng bất kỳ $F \subset E$, viết $F = \{e_1, \ldots, e_k\}$. Đặt
+
+$$K = \operatorname{conv}(F) = \Big\{\sum_{i=1}^k \alpha_i e_i:\ \alpha_i \ge 0,\ \sum_{i=1}^k \alpha_i = 1\Big\}.$$
+
+$K$ là ảnh của đơn hình hệ số $\Delta_k = \{\alpha \in \mathbb R^k:\ \alpha_i \ge 0,\ \sum \alpha_i = 1\}$ qua ánh xạ liên tục $\alpha \mapsto \sum \alpha_i e_i$. Vì $\Delta_k$ đóng và bị chặn trong $\mathbb R^k$ (nên compact trong $\mathbb R^k$) và ảnh liên tục của tập compact là compact, $K$ compact trong $\mathbb R^d$, tức đóng và bị chặn.
+
+Mỗi điểm của $K$ là tổ hợp lồi của các điểm thuộc $E$, và $E$ lồi, nên $K \subset E$. Kết hợp Bước 1: $0 \notin K$.
+
+**Bước 3 — điểm gần gốc nhất trên $K$.** Hàm $x \mapsto \|x\|$ liên tục trên tập compact $K$ nên đạt giá trị nhỏ nhất tại một điểm $p \in K$. Vì $0 \notin K$ nên $p \ne 0$.
+
+Với $z \in K$ bất kỳ và $t \in [0,1]$, tính lồi của $K$ cho $p + t(z - p) = (1-t)p + tz \in K$. Theo tính cực tiểu của $\|p\|$:
+
+$$\|p + t(z-p)\|^2 \ \ge\ \|p\|^2.$$
+
+Khai triển:
+
+$$\|p + t(z-p)\|^2 = \|p\|^2 + 2t\, p^T(z-p) + t^2 \|z-p\|^2.$$
+
+Trừ $\|p\|^2$, chia cho $t > 0$:
+
+$$2\, p^T(z-p) + t\, \|z-p\|^2 \ \ge\ 0.$$
+
+Cho $t \downarrow 0$ (bất đẳng thức đúng với mọi $t \in (0,1]$ nên giới hạn cũng vậy) được $p^T(z - p) \ge 0$, tức
+
+$$p^T z \ \ge\ \|p\|^2 \ >\ 0 \qquad \forall z \in K.$$
+
+Đặt $q_F = p / \|p\|$, véc-tơ đơn vị. Chia bất đẳng thức trên cho $\|p\| > 0$:
+
+$$q_F^T z \ \ge\ \|p\| \ >\ 0 \qquad \forall z \in F.$$
+
+**Bước 4 — từ hữu hạn sang toàn bộ $E$ bằng tính compact của mặt cầu đơn vị.** Đặt $S = \{q \in \mathbb R^d:\ \|q\| = 1\}$, mặt cầu đơn vị — đóng và bị chặn trong $\mathbb R^d$, do đó compact. Với mỗi $z \in E$ đặt
+
+$$H_z = \{q \in S:\ q^T z \ge 0\}.$$
+
+$H_z$ đóng: nó là ảnh nghịch của $[0, +\infty)$ qua hàm liên tục $q \mapsto q^T z$ trên $S$.
+
+Với mọi tập hữu hạn $\{z_1, \ldots, z_k\} \subset E$, giao $\bigcap_{i=1}^k H_{z_i}$ khác rỗng: theo Bước 3 áp dụng cho $F = \{z_1, \ldots, z_k\}$ (các $z_i$ thuộc $E \subset \mathbb R^d$), véc-tơ $q_F$ đơn vị thỏa $q_F^T z_i \ge \|p\| > 0$ với mọi $i$, nên $q_F$ thuộc giao đó.
+
+Bây giờ chứng minh $\bigcap_{z \in E} H_z \ne \emptyset$ bằng phản chứng, dùng tính compact của $S$. Giả sử giao tất cả rỗng. Khi đó các tập bù $S \setminus H_z$ (mở trong $S$, vì $H_z$ đóng) tạo thành một phủ mở của $S$. Vì $S$ compact, tồn tại phủ con hữu hạn: các $z_1, \ldots, z_k \in E$ sao cho $S = \bigcup_{i=1}^k (S \setminus H_{z_i})$. Nhưng điều này nghĩa là $\bigcap_{i=1}^k H_{z_i} = \emptyset$, trái với kết luận hữu hạn ở trên. Vậy giao đầy đủ khác rỗng: tồn tại $q \in S$ với $q^T z \ge 0$ cho mọi $z \in E$, và $\|q\| = 1$ nên $q \ne 0$.
+
+**Bước 5 — trở về $C$ và $B$, chọn $c$.** Với mọi $z \in C$, $w \in B$: $z - w \in E$ nên $q^T(z - w) \ge 0$, tức
+
+$$q^T z \ \ge\ q^T w \qquad \forall z \in C,\ \forall w \in B.$$
+
+Cần chuyển bất đẳng thức "mọi cặp" thành hai cận với một hằng số $c$. Chọn cố định $z_0 \in C$, $w_0 \in B$ (tồn tại vì hai tập khác rỗng). Với mọi $w \in B$: $q^T z_0 \ge q^T w$, nên $s = \sup_{w \in B} q^T w \le q^T z_0 < +\infty$. Với mọi $z \in C$: $q^T z \ge q^T w_0$, nên $t = \inf_{z \in C} q^T z \ge q^T w_0 > -\infty$. Hơn nữa $s \le t$: với mọi $z \in C$, $w \in B$ ta có $q^T z \ge q^T w$, lấy $\sup$ theo $w$ rồi $\inf$ theo $z$ (theo thứ tự này) cho $t \ge s$. Cụ thể, $q^T w_0 \le s \le t \le q^T z_0$, nên cả $s$ và $t$ đều hữu hạn. Chọn bất kỳ $c \in [s, t]$ (khoảng khác rỗng vì $s \le t$). Khi đó với mọi $z \in C$: $q^T z \ge t \ge c$; với mọi $w \in B$: $q^T w \le s \le c$. Vậy
+
+$$q^T z \ \ge\ c\ \ge\ q^T w \qquad \forall z \in C,\ \forall w \in B,$$
+
+với $q \in \mathbb R^d$, $q \ne 0$. $\blacksquare$
+:::
+
+**Giới hạn: tách yếu không cho tách nghiêm.** Bổ đề trên chỉ bảo đảm $q^T z \ge c \ge q^T w$; không thể kỳ vọng $q^T z > c > q^T w$ cho mọi cặp điểm. Ví dụ $C = (0,1)$ và $B = \{0\}$ trong $\mathbb R$: hai tập lồi, rời nhau. Giả sử tồn tại $q, c$ với $qz > c > q^T w = 0$ cho mọi $z \in C$. Suy ra $c > 0$. Với $z_k = 1/(k+1)$, $k \ge 1$, ta có $q z_k > c$. Cho $k$ ra vô cùng suy ra $0 \ge c$, mâu thuẫn. Vậy tách nghiêm không tồn tại ở đây; lập luận không cần giả sử $q > 0$ và không đổi chiều bất đẳng thức nào. Trong ví dụ này, chọn $q = 1$, $c = 0$ cho tách yếu $z \ge 0 \ge w$; bao đóng của hai tập gặp nhau tại $0$. Đối với chứng minh Slater ở mục sau, kết luận tách yếu là đủ.
+
+::: exercise Tự kiểm tra về bổ đề tách
+1. Trong Bước 3, tại sao cần chuẩn hóa $q_F = p / \|p\|$ thành véc-tơ đơn vị trước khi sang Bước 4?
+2. Từ $C$ và $B$ lồi, rời nhau, có thể luôn áp dụng bổ đề cho hai bao đóng $\operatorname{cl} C$ và $\operatorname{cl} B$ không? Giải thích bằng ví dụ.
+:::
+
+::: solution
+1. Chuẩn hóa không làm mất tính chất tách (chia mọi bất đẳng thức cho $\|p\| > 0$ vẫn đúng) nhưng đưa $q_F$ về mặt cầu đơn vị $S$ — tập compact. Bước 4 cần các $H_z$ là tập con của $S$ để dùng phủ con hữu hạn; nếu $q$ chỉ nằm trong $\mathbb R^d$ nói chung, họ $\{q: q^T z \ge 0\}$ không bị chặn và lập luận compact không áp dụng được. Ngoài ra chuẩn hóa cố định độ dài giúp so sánh các véc-tơ $q$ từ các bước hữu hạn khác nhau trong cùng một không gian $S$.
+2. Không. Ví dụ $C = (0,1)$ và $B = \{0\}$: hai tập lồi, rời nhau, nhưng $\operatorname{cl} C = [0,1]$ và $\operatorname{cl} B = \{0\}$ giao nhau tại $0$, nên không đáp ứng giả thiết rời nhau khi áp dụng bổ đề cho hai bao đóng. Ngược lại, nếu hai bao đóng $\operatorname{cl} C$ và $\operatorname{cl} B$ thực sự rời nhau thì vẫn áp dụng được bổ đề cho chúng.
+:::
+
 ### Chứng minh định lý Slater
 
-Chứng minh dùng **định lý tách hai tập lồi** như một bổ đề (được phát biểu, không chứng minh ở đây — chứng minh bổ đề thuộc phạm vi tài liệu về tính lồi; xem Boyd–Vandenberghe §2.5.1).
+Chứng minh dùng **bổ đề tách hai tập lồi (phiên bản yếu)** đã phát biểu và chứng minh ở mục trên (xem Boyd–Vandenberghe 2004, mục 2.5.1, trang in 46–49; giáo trình trình bày chứng minh cho trường hợp khoảng cách giữa hai tập dương đạt được, còn lập luận bao lồi hữu hạn kết hợp tính compact ở đây là phần khai triển cho trường hợp tổng quát do ghi chú biên soạn).
 
 ::: proof Chứng minh định lý Slater, từng bước
 **Chuẩn bị về hệ đẳng thức.** Vì điểm Slater thỏa $A\bar x=b$, hệ nhất quán. Giữ một tập hàng độc lập tuyến tính của $A$ cùng các phần tử tương ứng của $b$ (các hàng bỏ đi là tổ hợp tuyến tính của hàng giữ lại, với cùng tổ hợp ở vế phải); miền khả thi không đổi. Gọi hệ rút gọn là $Ax=b$ với $A$ đủ hạng hàng; trong phần chứng minh này, $r$ là số hàng còn lại sau khi rút gọn. Nếu không có đẳng thức thì bỏ các đại lượng $v,\beta,\nu$ dưới đây. Đặt $f(x)=(f_1(x),\ldots,f_m(x))\in\mathbb R^m$.
@@ -307,7 +391,7 @@ $C$ chứa các mức giới hạn ràng buộc và mục tiêu có thể đáp 
 
 *Hai tập không giao nhau:* một điểm chung sẽ cho một $x$ với $f(x)\le0$, $Ax=b$ và $f_0(x)\le t<p^*$ — tức một điểm khả thi có mục tiêu nhỏ hơn $p^*$, mâu thuẫn với định nghĩa infimum (lập luận này không cần nghiệm gốc đạt được).
 
-Áp dụng định lý tách cho hai tập lồi rời nhau: tồn tại $(a,\beta,\mu)\ne0$ và $c\in\mathbb R$ sao cho
+Áp dụng **bổ đề tách hai tập lồi (phiên bản yếu)** cho $C$ và $B$: hai tập này khác rỗng ($C$ chứa $(f(x), Ax-b, f_0(x))$ cho mọi $x$; $B$ chứa $(0,0,t)$ với mọi $t < p^*$), lồi và rời nhau như trên, trong không gian $\mathbb R^{m+r+1}$ với $d = m+r+1 \ge 1$. Bổ đề cho $(a,\beta,\mu) = q \ne 0$ và $c \in \mathbb R$ sao cho
 
 $$a^Tu+\beta^Tv+\mu t\ \ge\ c\quad\ \forall (u,v,t)\in C,\qquad \mu t\ \le\ c\quad\ \forall t<p^*.$$
 

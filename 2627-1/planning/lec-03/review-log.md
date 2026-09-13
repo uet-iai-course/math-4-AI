@@ -1107,3 +1107,179 @@ Người dùng cung cấp URL file:///Volumes/files/math-4-AI/2627-1/material-vi
 Thêm tham số phiên bản vào bootstrap, viewer và dữ liệu đóng gói để tránh tái sử dụng JavaScript cũ khi cập nhật tệp. Tạo /tmp/math-4-AI-local.zip gồm 328 tệp học tập và runtime công khai, không gồm planning, .git hoặc tệp môi trường; dùng nội dung workspace mới nhất. Hướng dẫn giải nén thành thư mục mới và mở index.html. Không triển khai hoặc push. Không có WebKit trong môi trường nên không tuyên bố đã kiểm tra Safari.
 
 Kiểm định bản cuối: cả 10 liên kết chỉ mục qua file:// và HTTP đạt; bản ZIP giải nén độc lập đi được từ index gốc → học kỳ → ghi chú 03, có 896 nút KaTeX và không lỗi console.
+
+
+## 2026-09-13 — Bổ sung bổ đề tách hai tập lồi vào ghi chú
+
+Phạm vi người dùng yêu cầu: ghi chú Bài 03, trước chứng minh Slater; không thay đổi trang chiếu, dàn ý hay số trang. Đề cương DOCX chính thức: buổi 3, LLO4–5/CLO1. Nguồn đối chiếu tại máy: Boyd–Vandenberghe (2004), mục 2.5.1, trang in 46–49; không tải thêm MIT, không thêm hình.
+
+Người dùng đã xác nhận gửi lecture-note.md và outline.md tới OpenRouter; reader đọc hai tệp này, writer/reviewer chỉ đọc ghi chú. Mọi worker: requested_model=observed_model=z-ai/glm-5.3-flash, provider=OpenRouter. Reader lập kế hoạch riêng, writer soạn, năm reviewer chạy độc lập, writer khác lượt chỉnh sửa.
+
+Điều phối viên chấp nhận vị trí bổ sung nhưng bác đề xuất thêm trang S03-03z và sửa cấu trúc outline vì ngoài phạm vi; bác bước lấy dãy cặp gần nhau rồi mặc nhiên suy ra siêu phẳng. Duyệt phương án tập hiệu → bao lồi hữu hạn → điểm gần gốc → giao hữu hạn các tập đóng trên mặt cầu compact → chọn c qua sup/inf. Bản đồ học tập: nhu cầu chứng minh Slater → trực quan siêu phẳng → ví dụ hai đoạn → phát biểu và chứng minh → ánh xạ q=(a,beta,mu) → câu hỏi chuẩn hóa và bao đóng.
+
+### Báo cáo năm vai trên bản nháp
+
+#### Sinh viên
+
+## Báo cáo rà soát độc lập — lecture-note.md, dòng 293–400
+
+**Phạm vi:** chỉ đọc `lecture-note.md`, dòng 293–400 (kèm ngữ cảnh tối thiểu). Góc nhìn: sinh viên tự học.
+
+### 1. Lỗi logic dấu trong ví dụ phản例 tách nghiêm — **Mức độ: Trung bình (cần sửa)**
+- **Vị trí:** dòng 365.
+- **Bằng chứng:** văn bản viết: *"Lấy $w = 0 \in B$: cần $c < 0$."* Nhưng dạng tách nghiêm được giả sử là $q^Tz > c > q^Tw$; với $w=0$, $q^Tw = 0$ (vì $q>0$ đã chuẩn hóa), nên điều kiện đúng là **$c > 0$**, không phải $c<0$.
+- **Ảnh hưởng:** kết luận phản chứng vẫn đúng (lấy $z\downarrow 0$ trong $C=(0,1)$ cho $0 \ge c$, mâu thuẫn với $c>0$), nhưng lập luận trung gian hiện sai dấu, gây rối cho người tự học.
+- **Sửa cụ thể:** thay bằng: *"Lấy $w=0\in B$: cần $c>0$. Nhưng lấy $z\in C$ tiến về $0$: cần $qz>c$ với mọi $z>0$, cho $z\downarrow0$ được $0\ge c$, mâu thuẫn với $c>0$."*
+
+### 2. Diễn đạt gây hiểu lầm ở câu hỏi/lời giải tự kiểm tra — **Mức độ: Nhẹ**
+- **Vị trí:** dòng 369 và 374.
+- **Bằng chứng:** câu hỏi hỏi *"Vì sao không thể thay giả thiết … bằng cl C và cl B rời nhau"*; lời giải viết *"giả thiết của bổ đề (dạng mạnh hơn) bị vi phạm"*. Cụm "(dạng mạnh hơn)" không rõ đối chiếu với gì; về logic, thay bằng giả thiết mạnh hơn **được phép** nếu nó thỏa — vấn đề là giả thiết mạnh thường **không thỏa** (cl C ∩ cl B ≠ ∅).
+- **Sửa cụ thể:** câu hỏi đổi thành: *"Vì sao giả thiết thay thế 'cl C và cl B rời nhau' thường không thể kiểm chứng được / có thể sai dù C, B rời nhau?"*; lời giải bỏ cụm "(dạng mạnh hơn)", viết: *"giả thiết thay thế này không được bảo đảm bởi giả thiết gốc; ví dụ dưới đây cho thấy nó có thể sai."*
+
+### 3. Các điểm đã kiểm chứng và **đạt**
+- **Phát biểu bổ đề (297–301):** đúng, điều kiện tối thiểu (khác rỗng, lồi, rời nhau), ghi rõ "phiên bản yếu".
+- **Chứng minh (303–363):** từng bước đúng — $E=C-B$ lồi, $0\notin E$; $K=\operatorname{conv}(F)$ compact và $K\subset E$; điểm gần gốc nhất $p$ cho $p^Tz\ge\|p\|^2$; chuyển hữu hạn→toàn bộ $E$ bằng compactness của $S$ và phủ con hữu hạn (tường minh, đúng); Bước 5 chọn $c\in[s,t]$ với lập luận sup/inf đúng chiều. Ký hiệu $q_F, H_z, S, \Delta_k$ đều định nghĩa trước khi dùng. Ghi chú công cụ (dòng 362) phù hợp người tự học, không bỏ bước topological ngầm.
+- **Bước đầu chứng minh Slater (377–400):** tập $C,B$ lồi, rời nhau đúng; suy ra $a\ge0,\ \mu\ge0$ bằng cách tăng $u_i,t$ đúng; $c\ge\mu p^*$ bằng $t\uparrow p^*$ đúng; (1) đúng. Dòng 404: $0\le a^Tf(\bar x)\le0$ và suy ra $a=0$ đúng nhờ dấu nghiêm.
+- **Ví dụ minh họa (295):** $C=[1,2]$, $B=[-2,0]$, $q=1$, $c=1/2$ — kiểm tra đúng.
+
+### Kết luận
+Một lỗi dấu cần sửa (mục 1), một lỗi diễn đạt nhẹ (mục 2); phần còn lại của đoạn 293–400 **đạt** về tính đúng đắn, ký hiệu và khả năng tự học.
+
+#### Chuyên gia
+
+## Báo cáo rà soát độc lập — `lecture-note.md`, dòng 293–400
+
+**Kết luận chung:** Toán học của bổ đề và các bước chứng minh (Bước 1–5) là **đúng**, lập luận compact + phủ con hữu hạn chặt chẽ, không lẫn tách yếu/tách nghiêm ở phần bổ đề. Ví dụ 365 về giới hạn tách nghiêm đúng. Tuy nhiên có vài điểm cần chỉnh:
+
+---
+
+**1. (Nhẹ) Dòng 369–374 — lời giải bài tập 2 dễ gây hiểu sai.**
+- Vị trí: `::: solution`, mục 2.
+- Bằng chứng: câu hỏi "Vì sao không thể thay giả thiết... bằng cl C, cl B rời nhau" và lời giải "không thể áp dụng bổ đề cho các bao đóng" dễ đọc thành "bổ đề không đúng cho bao đóng". Thực tế nếu cl C ∩ cl B = ∅ thì bổ đề áp dụng được cho hai bao đóng (chúng lồi, rời nhau); điểm đúng là giả thiết bao đóng **không cần** và **có thể không thỏa** dù C, B rời nhau.
+- Sửa: viết lại lời giải thành: "Thay giả thiết bằng cl C, cl B rời nhau là (a) không cần thiết — bổ đề yếu chỉ cần C, B rời nhau; (b) không phải lúc nào cũng khả dụng — ví dụ C=(0,1), B={0} có bao đóng giao nhau nên giả thiết mạnh không được thỏa; khi bao đóng rời nhau thì bổ đề vẫn áp dụng được cho bao đóng."
+
+**2. (Nhẹ) Dòng 402–406 — ngầm giả thiết m ≥ 1.**
+- Bằng chứng: Bước 2 suy μ>0 từ sự tồn tại x̄ với f_i(x̄)<0 cho **mọi** i; nếu không có ràng buộc bất đẳng thức (m=0) lập luận này rỗng (dòng 382 chỉ nói "nếu không có đẳng thức thì bỏ v,β,ν", không nói trường hợp không có bất đẳng thức).
+- Sửa: thêm một câu tại đầu Bước 2: "Giả thiết Slater đòi hỏi m ≥ 1 (nếu m = 0, cần lập luận riêng/điều kiện khác); ở đây m ≥ 1."
+
+**3. (Nhẹ) Dòng 379 — nhận định về nguồn có thể quá mạnh.**
+- Bằng chứng: "lập luận bao lồi hữu hạn kết hợp tính compact ở đây là phần khai triển cho trường hợp tổng quát do ghi chú biên soạn". Kỹ thuật bao lồi hữu hạn + phủ con hữu hạn trên mặt cầu đơn vị là lập luận cổ điển (tương đương chứng minh định lý Farkas / Hahn–Banach hình học) và có trong nhiều tài liệu, không phải mới.
+- Sửa: đổi thành "trình bày theo kỹ thuật tiêu chuẩn (tương tự chứng minh bổ đề Farkas); Boyd–Vandenberghe trình bày phiên bản dùng khoảng cách đạt được."
+
+**4. (Rất nhẹ) Dòng 365 — diễn đạt "đúng như bổ đề yếu dự đoán".**
+- Bổ đề yếu không "dự đoán" gì về sự vắng mặt của tách nghiêm; nó chỉ không bảo đảm điều đó.
+- Sửa: "điều này minh họa rằng bổ đề yếu không kéo theo tách nghiêm."
+
+**Các điểm đã kiểm chứng đạt:** bổ đề phát biểu đúng cho hai tập lồi khác rỗng rời nhau bất kỳ (không cần đóng/bị chặn) — đúng; E = C−B lồi và 0∉E (dòng 308–310) đúng; Bước 3 (tính chất điểm gần nhất) đúng; Bước 4 (FIP trên S compact, dạng phản chứng) đúng; Bước 5 (chọn c ∈ [s,t]) đúng; phân biệt tách yếu/tách nghiêm nhất quán; C và B ở dòng 386–392 khác rỗng, lồi, rời nhau được xác lập đúng; suy ra a≥0, μ≥0 và c ≥ μp* đúng; Bước 2 dùng dấu nghiêm f_i(x̄)<0 có chú giải đúng chỗ (dòng 406). Thuật ngữ "tách yếu / tách nghiêm ngặt" phù hợp chuẩn (Boyd §2.5.1).
+
+#### Toán học
+
+## Báo cáo kiểm chứng độc lập — lecture-note.md, dòng 293–400
+
+Đã đọc toàn bộ đoạn 293–400 (và lướt ngữ cảnh 280–292, 401–409 chỉ để hiểu nối tiếp). Kiểm từng dấu, lượng từ, tính hữu hạn của sup/inf, lập luận compact và phản ví dụ. Kết quả:
+
+### Lỗi tìm thấy (1 lỗi)
+
+**[Trung bình] Dòng 365 — sai dấu trong phản ví dụ tách nghiêm, lập luận như viết tự mâu thuẫn nội bộ.**
+- **Vị trí:** đoạn "Giới hạn: tách yếu không cho tách nghiêm", câu: *"Lấy $w = 0 \in B$: cần $c < 0$."*
+- **Bằng chứng:** dạng tách nghiêm được giả sử là $q^T z > c > q^T w$. Với $w=0\in B$, $q^Tw = 0$, nên điều kiện là $c > 0$, **không phải** $c<0$. Tiếp đó, $z\downarrow 0$ trong $C=(0,1)$ cho $0 \ge c$ — mâu thuẫn với $c>0$, không mâu thuẫn với "$c<0$" như văn bản đang viết. Kết luận cuối (tách nghiêm không tồn tại) vẫn đúng, nhưng chuỗi lập luận khi viết ra là sai dấu và không tạo ra mâu thuẫn.
+- **Sửa cụ thể:** thay câu trên bằng: *"Lấy $w=0\in B$: cần $c > q^Tw = 0$, tức $c>0$. Nhưng lấy $z\in C$ tiến về $0$: cần $qz>c$ với mọi $z>0$, cho $z\downarrow0$ được $0\ge c$, mâu thuẫn với $c>0$."*
+
+### Các điểm đã kiểm và đạt
+
+- **Dòng 295 (ví dụ minh họa):** $C=[1,2]$, $B=[-2,0]$, $q=1$, $c=1/2$: $z\ge1>1/2\ge w$ đúng với mọi cặp.
+- **Bước 1 (304–310):** tính lồi của $E=C-B$ và $0\notin E$ chứng đúng; lượng từ và tổ hợp lồi chính xác.
+- **Bước 2 (312–318):** $\Delta_k$ đóng bị chặn ⇒ compact; ảnh liên tục của compact là compact; $K\subset E$ đúng vì $E$ lồi; $0\notin K$ đúng.
+- **Bước 3 (320–341):** cực tiểu $\|x\|$ trên $K$ compact đạt được; khai triển $\|p+t(z-p)\|^2$ đúng; chia $t>0$ và cho $t\downarrow0$ hợp lệ (bất đẳng thức đúng mọi $t\in(0,1]$); $p^Tz\ge\|p\|^2>0$ và chuẩn hóa $q_F=p/\|p\|$ đúng.
+- **Bước 4 (342–350):** $H_z$ đóng trong $S$ (preimage của $[0,\infty)$ qua hàm liên tục) đúng; giao hữu hạn khác rỗng nhờ Bước 3 đúng; lập luận phản chứng + phủ con hữu hạn trên $S$ compact chặt chẽ, không bỏ bước.
+- **Bước 5 (352–360):** sup/inf được lập luận hữu hạn tường minh ($s\le q^Tz_0<+\infty$, $t\ge q^Tw_0>-\infty$); thứ tự lấy sup theo $w$ rồi inf theo $z$ cho $t\ge s$ đúng; chọn $c\in[s,t]$ và hai cận $q^Tz\ge t\ge c\ge s\ge q^Tw$ đúng từng dấu.
+- **Dòng 365 (phần chuẩn hóa dấu):** việc đổi $(q,c)\to(-q,-c)$ giữ dạng tách nghiêm — kiểm đúng.
+- **Dòng 367–375 (exercise/solution):** giải thích chuẩn hóa và phản ví dụ bao đóng chính xác.
+- **Dòng 384–400 (Bước 1 chứng minh Slater):** $C$, $B$ lồi, rời nhau (lập luận qua infimum, không cần nghiệm đạt) đúng; suy ra $a\ge0$, $\mu\ge0$ bằng cách tăng tọa độ đúng; $c\ge\mu p^*$ từ $t\uparrow p^*$ đúng; bất đẳng thức (1) suy ra đúng dấu.
+
+**Kết luận:** toàn đoạn đạt trừ một lỗi dấu tại dòng 365 nêu trên; sau khi sửa theo đề xuất, đoạn đạt về mặt toán học.
+
+#### Học thuật và giảng dạy
+
+# Báo cáo phản biện — lecture-note.md, dòng 293–400 (mở rộng đến hết chứng minh Slater, dòng 419)
+
+## Lỗi 1 — Mức độ: Cao (lỗi toán trong ví dụ phản例)
+- **Vị trí:** dòng 365, ví dụ $C=(0,1)$, $B=\{0\}$.
+- **Bằng chứng:** "Lấy $w = 0 \in B$: cần $c < 0$." Theo định nghĩa tách nghiêm $q^Tz > c > q^Tw$, với $w=0$ ta có $c > q^Tw = 0$, tức **$c > 0$**, không phải $c<0$.
+- **Sửa:** thay "cần $c<0$" bằng "cần $c>0$"; và "mâu thuẫn với $c<0$" bằng "mâu thuẫn với $c>0$". Kết luận (mâu thuẫn, tách nghiêm không tồn tại) vẫn đúng vì $z\downarrow 0$ cho $0\ge c$.
+
+## Lỗi 2 — Mức độ: Trung bình (lỗi sư phạm ở bài tập)
+- **Vị trí:** dòng 369 (câu hỏi 2) và lời giải dòng 374.
+- **Bằng chứng:** Câu hỏi hỏi "vì sao không thể thay giả thiết '$C,B$ rời nhau' bằng '$\operatorname{cl}C$, $\operatorname{cl}B$ rời nhau'". Nhưng đây là giả thiết **mạnh hơn**, hoàn toàn có thể thay — bổ đề vẫn áp dụng được. Lời giải thực chất nói điều khác (bao đóng có thể chạm nhau nên giả thiết mạnh bị vi phạm), không trả lời đúng câu hỏi như phát biểu.
+- **Sửa:** phát biểu lại câu hỏi thành: "Vì sao không thể **yếu hóa** giả thiết thành '$\operatorname{cl}C$ và $\operatorname{cl}B$ rời nhau là điều kiện cần' / hoặc: 'vì sao không thể áp dụng bổ đề cho $\operatorname{cl}C,\operatorname{cl}B$ khi chỉ biết $C\cap B=\emptyset$?'" — khi đó lời giải hiện tại khớp.
+
+## Lỗi 3 — Mức độ: Nhẹ (diễn đạt sai về logic)
+- **Vị trí:** dòng 365, cuối đoạn.
+- **Bằng chứng:** "đúng như bổ đề yếu dự đoán, vì $C$ và $B$ chạm nhau tại điểm biên $0$". Bổ đề yếu không "dự đoán" điều gì; nó chỉ không bảo đảm tách nghiêm. Việc tách nghiêm thất bại là do $0\in\operatorname{cl}C\cap B$, không phải hệ quả của bổ đề.
+- **Sửa:** thay bằng "phù hợp với giới hạn đã nêu: bổ đề yếu không bảo đảm tách nghiêm khi hai tập chạm nhau tại biên".
+
+## Điểm đã kiểm chứng, đạt
+- Bổ đề tách yếu (dòng 297–301): phát biểu đúng; chứng minh Bước 1–5 (dòng 304–360) chặt chẽ: $E$ lồi, $0\notin E$; $K=\operatorname{conv}(F)$ compact; điểm gần gốc $p$; bất đẳng thức $p^Tz\ge\|p\|^2$; lập luận compact của $S$ + phủ con hữu hạn chuyển từ giao hữu hạn sang giao đầy đủ — đều đúng.
+- Bước 5: chuyển "mọi cặp" thành hai cận qua $s=\sup$, $t=\inf$, chọn $c\in[s,t]$ — đúng.
+- Ứng dụng Slater (dòng 384–418): $C,B$ lồi, rời nhau đúng; suy ra $a\ge0,\mu\ge0$, $c\ge\mu p^*$ đúng; Bước 2 ($\mu>0$) và bước chọn $x=\bar x-A^T\beta$ cho $-\|A^T\beta\|^2\ge0\Rightarrow\beta=0$ đúng; lưu ý rút gọn hạng $A$ hợp lý.
+- Ví dụ $q=1,c=1/2$ (dòng 295) và lời giải bài tập 1 (dòng 373) đúng.
+- Trích dẫn Boyd–Vandenberghe (dòng 379, 457) phù hợp, không phát hiện sai.
+
+**Kết luận:** cần sửa Lỗi 1 (bắt buộc) và Lỗi 2 (khuyến nghị mạnh); Lỗi 3 là chỉnh văn phong. Sau khi sửa, mục đạt yêu cầu học thuật và giảng dạy.
+
+#### Mạch kể chuyện
+
+## Báo cáo rà soát lecture-note.md, dòng 293–400 (bổ đề tách hai tập lồi)
+
+**Kết luận chung: ĐẠT.** Không phát hiện lỗi toán học hay lỗi mạch kể chuyện trong phạm vi yêu cầu. Dưới đây là các điểm xác nhận và hai gợi ý nhỏ (không bắt buộc).
+
+### 1. Vai mạch kể chuyện và kết nối — đạt
+- Dòng 295 đặt bổ đề đúng vị trí: ngay sau phát biểu + giới hạn Slater (282–291), trước chứng minh Slater (377), với câu dẫn "Chứng minh định lý Slater ở mục sau cần một công cụ" — chuyển ý rõ, không lệch vai.
+- Dòng 379 liên kết ngược về bổ đề ("đã phát biểu và chứng minh ở mục trên") — vòng kết nối đóng đúng.
+- Đầu vào/đầu ra nhất quán: bổ đề nhận $C,B$ khác rỗng, lồi, rời nhau trong $\mathbb R^d$ (297), trả về $q\ne0$, $c$ (299); ứng dụng ở 394–396 khớp chính xác ($d=m+r+1\ge1$, $q=(a,\beta,\mu)$).
+
+### 2. Kiểm chứng toán học — đạt
+- Bước 1 (308–310): $E$ lồi, $0\notin E$ — đúng.
+- Bước 2 (312–318): $K=\mathrm{conv}(F)$ compact qua ảnh liên tục của $\Delta_k$; $K\subset E$; $0\notin K$ — đúng.
+- Bước 3 (320–340): khai triển $\|p+t(z-p)\|^2$, chia $t>0$, cho $t\downarrow0$ — đại số đúng; chuẩn hóa $q_F=p/\|p\|$ hợp lý.
+- Bước 4 (342–350): lập luận compact của $S$ + phủ con hữu minh, tường minh, không bỏ bước — đúng.
+- Bước 5 (352–360): chuyển "mọi cặp" thành hai cận qua $\sup/\inf$, chọn $c\in[s,t]$ — đúng ($t\ge s$ lập luận đúng thứ tự).
+- Ứng dụng (384–400): $C,B$ lồi, rời nhau (392, đúng cả khi nghiệm gốc không đạt), suy ra $a\ge0,\ \mu\ge0$, $c\ge\mu p^*$, bất đẳng thức (1) — đúng. Ví dụ tách $\mathbb R$ (295) và ví dụ tách nghiêm thất bại (365) đều kiểm tra lại đúng.
+
+### 3. Gợi ý nhỏ (không phải lỗi)
+1. **[Thấp | dòng 295]** Câu "$q^T z = z \ge 1 > 1/2 \ge w$" đúng nhưng viết "$\ge w$" khi thực tế $w\le0<1/2$; có thể viết "$1/2 > 0 \ge w$" cho chặt hơn. *Sửa:* thay "$1/2 \ge w = q^Tw$" bằng "$1/2 > 0 \ge w = q^Tw$".
+2. **[Thấp | dòng 369, 374]** Câu hỏi tự kiểm tra 2 hơi dễ gây hiểu nhầm: bổ đề không yêu cầu bao đóng; phần lời giải "giả thiết của bổ đề (dạng mạnh hơn) bị vi phạm" cần nói rõ đó là giả thiết **nếu áp dụng bổ đề cho các bao đóng**, không phải giả thiết gốc. *Sửa:* thêm một cụm "khi áp dụng bổ đề cho $\operatorname{cl}C,\operatorname{cl}B$, giả thiết rời nhau của bao đóng bị vi phạm".
+
+### 4. Phạm vi
+Chỉ ghi chú trong lecture-note.md; không đề xuất thay slides hay số phần; không đọc/sửa tệp khác.
+
+### Quyết định hợp nhất của điều phối viên
+
+- Nghiêm trọng: phản ví dụ nháp viết c<0 sai, còn phép đổi (q,c) thành (-q,-c) không giữ chiều với cùng C,B. Reviewer toán phát hiện lỗi c nhưng chấp nhận nhầm đổi dấu; reviewer chuyên gia và mạch kể chuyện bỏ sót lỗi này. Bác các kết luận đạt ở phần phản ví dụ; yêu cầu thay bằng c>0 và dãy z_k=1/(k+1) để suy ra 0>=c, không đổi dấu.
+- Trung bình: câu hỏi thay giả thiết bằng bao đóng rời nhau gây hiểu nhầm. Viết lại thành câu hỏi có luôn áp dụng bổ đề cho bao đóng được không; phân biệt giả thiết mạnh hơn với giả thiết gốc.
+- Trung bình: bổ sung kiến thức compact và phủ mở trước chứng minh, bỏ đoạn tự đánh giá cùng từ tiếng Anh không cần thiết; ghi rõ q thuộc không gian d chiều và cả hai cận s,t hữu hạn.
+- Bác đề xuất chuyên gia thêm m>=1 vào Slater: khi m=0, véc-tơ a rỗng bằng 0 và lập luận còn lại vẫn đúng. Không thêm điều kiện không cần thiết vào định lý.
+- Giữ trích dẫn nguồn đã kiểm tại máy; không gán phương pháp cho bổ đề Farkas khi chưa có nguồn xác minh. Cụm do ghi chú biên soạn chỉ chỉ cách trình bày, không khẳng định phát minh mới.
+- Không đổi thứ tự trang chiếu hay mẫu: đây là bổ sung chứng minh trong tài liệu học tập, không thay đổi RevealJS.
+
+### Rà lại và kiểm định cuối
+
+**Kết luận: bản hiện tại đã sửa đúng; không còn lỗi bản chất.** Các điểm kiểm tra (dòng 293–448):
+
+- **Giả thiết đủ:** bổ đề yêu cầu $C,B$ khác rỗng, lồi, rời nhau trong $\mathbb R^d$, $d\ge1$ (d.297) — bước Slater xác nhận đủ (d.394), và không yêu cầu $m\ge1$; tổng rỗng $a=0$ không làm sai (chỉ có vai trò ở Bước 2, d.402–406).
+- **Hữu hạn/compact:** Bước 2–3 dùng $\Delta_k$ compact, ảnh liên tục compact, $K$ compact (d.318–322); Bước 4 dùng $S$ compact + phủ con hữu hạn (d.344–352). Đúng.
+- **$q\ne0$:** $q\in S$, $\|q\|=1$ (d.352); trong Slater $(a,\beta,\mu)\ne0$ (d.394). Đúng.
+- **$c$ hữu hạn:** $q^Tw_0\le s\le t\le q^Tz_0$ (d.358) — đúng, và không còn dấu vết của $c<0$ hay đổi dấu $q$ trong bản nháp cũ.
+- **Phản ví dụ tách nghiêm (d.365):** $C=(0,1)$, $B=\{0\}$; lập luận $c>0$, dãy $z_k=1/(k+1)\to0$ cho $0\ge c$, mâu thuẫn — đúng, không cần $q>0$, không đổi chiều bất đẳng thức. Đã sửa đúng.
+- **Câu hỏi bao đóng (d.369) và lời giải (d.374):** đúng — $\operatorname{cl}C\cap\operatorname{cl}B=\{0\}\ne\emptyset$.
+- **Câu nối Slater (d.379, 394):** gọi bổ đề đúng phiên bản yếu; chuỗi $p^*\le g\le d^*\le p^*$ (d.416) đúng.
+
+**Lỗi nhỏ duy nhất còn lại (cosmetic, không phải bản chất):** d.365 viết lẫn "$qz$" và "$q^T w=0$" — nên thống nhất thành $q^Tz>c>q^Tw=0$ và $q^Tz_k>c$ cho nhất quán ký hiệu.
+
+Trạng thái: **ĐẠT**.
+
+Điều phối viên chấp nhận kết quả đạt. Giữ ký hiệu nhân vô hướng qz trong ví dụ một chiều: ở đây chuyển vị của số thực không làm thay đổi giá trị. Đã sửa thống nhất véc-tơ và tách rõ ví dụ q=1,c=0 khỏi ứng dụng Slater. Đã đối chiếu bài tập cùng bài tại máy; không thay giả thiết hay kết quả của Slater/KKT.
+
+Kiểm định Chromium: đi từ chỉ mục học kỳ tới ghi chú qua file:// và HTTP localhost:8765; kích thước 1280×720 và 390×844; cả bốn trường hợp có 1101 nút KaTeX, không lỗi công thức, không lỗi JavaScript, không tràn ngang, hình tải đủ, lời giải dùng được bằng bàn phím. Tiện ích sync-local-materials.py đã chạy và --check đạt, 11 tài liệu khớp bản đóng gói. git diff --check đạt. Bằng chứng: /tmp/lec03-separation/verification.json và các ảnh file/http.
+
+Codex Slides: mở đúng dự án Bài 03, đọc danh mục Design Files, tải ghi chú mới vào uploaded/lecture-note-11.md. Phản hồi upload trỏ nhầm tệp cũ; đã xác minh danh mục, mở lại đúng filePath và kiểm tra bản bền vững khớp từng byte với Markdown nguồn (SHA-256: 34e86054b2767c36ad2178023175c513d27a75e6c80dfc69ca919edfcfc684ed). Dùng Chromium cục bộ xem Design Files; phiên này không có Browser nhúng trong Codex. Viewer của kho là nơi kiểm tra KaTeX và các khối proof/solution; không tuyên bố tài liệu Markdown đã được render thành trang chiếu. RevealJS giữ nguyên.
