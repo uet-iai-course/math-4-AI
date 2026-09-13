@@ -1283,3 +1283,19 @@ Trạng thái: **ĐẠT**.
 Kiểm định Chromium: đi từ chỉ mục học kỳ tới ghi chú qua file:// và HTTP localhost:8765; kích thước 1280×720 và 390×844; cả bốn trường hợp có 1101 nút KaTeX, không lỗi công thức, không lỗi JavaScript, không tràn ngang, hình tải đủ, lời giải dùng được bằng bàn phím. Tiện ích sync-local-materials.py đã chạy và --check đạt, 11 tài liệu khớp bản đóng gói. git diff --check đạt. Bằng chứng: /tmp/lec03-separation/verification.json và các ảnh file/http.
 
 Codex Slides: mở đúng dự án Bài 03, đọc danh mục Design Files, tải ghi chú mới vào uploaded/lecture-note-11.md. Phản hồi upload trỏ nhầm tệp cũ; đã xác minh danh mục, mở lại đúng filePath và kiểm tra bản bền vững khớp từng byte với Markdown nguồn (SHA-256: 34e86054b2767c36ad2178023175c513d27a75e6c80dfc69ca919edfcfc684ed). Dùng Chromium cục bộ xem Design Files; phiên này không có Browser nhúng trong Codex. Viewer của kho là nơi kiểm tra KaTeX và các khối proof/solution; không tuyên bố tài liệu Markdown đã được render thành trang chiếu. RevealJS giữ nguyên.
+
+
+## 2026-09-13 — Gập chứng minh bổ đề tách hai tập lồi
+
+Người dùng yêu cầu gập chứng minh, rồi commit và push. Đổi đúng một chỉ thị proof thành solution với tiêu đề Chứng minh bổ đề tách yếu, sử dụng khối details có sẵn của viewer. Nội dung toán học không đổi, không thay runtime. Reader lập kế hoạch, writer sửa đúng một lần, reviewer chỉ đọc vùng bị ảnh hưởng; requested_model=observed_model=z-ai/glm-5.3-flash, provider=OpenRouter.
+
+**Xác nhận đạt yêu cầu** (lecture-note.md, dòng 299–367):
+
+1. **Thẻ đúng:** Dòng 305 mở `::: solution Chứng minh bổ đề tách yếu`, dòng 363 đóng `:::` — viewer render `<details>` mặc định đóng.
+2. **Không lồng:** Trong đoạn 305–363 không có thẻ `:::` nào khác; khối đóng gọn một dòng.
+3. **Đóng trước Giới hạn:** Khối kết thúc ở dòng 363, trước đoạn "**Giới hạn: tách yếu không cho tách nghiêm.**" (dòng 365) — đoạn này nằm ngoài details.
+4. **Tiêu đề rõ:** "Chứng minh bổ đề tách yếu" nêu rõ là chứng minh, khớp nội dung Bước 1–5 và dấu `■` dòng 362.
+
+Không cần sửa.
+
+Kiểm định cục bộ: nguồn chỉ đổi một dòng; bản đóng gói chỉ thay mục ghi chú Bài 03; sync-local-materials.py và --check đạt. Chromium kiểm tra file:// và HTTP tại 1280×720, 390×844: khối đóng mặc định, Enter mở/đóng, công thức đủ và không lỗi, không tràn ngang; beforeprint mở và afterprint khôi phục trạng thái. Ảnh và báo cáo tại /tmp/lec03-collapse/. Đồng bộ Codex Slides Design Files vào uploaded/lecture-note-12.md và xác minh khớp từng byte. Kiểm tra trực quan cách gập thực hiện tại viewer của kho.

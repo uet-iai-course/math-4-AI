@@ -302,7 +302,7 @@ $$q^T z \ \ge\ c\ \ge\ q^T w \qquad \forall z \in C,\ \forall w \in B.$$
 
 **Kiến thức dùng trong chứng minh:** một tập trong không gian Euclid hữu hạn chiều là **compact** khi và chỉ khi nó đóng và bị chặn; hàm liên tục trên tập compact khác rỗng đạt giá trị nhỏ nhất; ảnh của tập compact qua ánh xạ liên tục là compact; mọi phủ mở của tập compact có phủ con hữu hạn. Ở đây **phủ mở** của một tập là một họ tập mở có hợp chứa tập đang xét; **phủ con hữu hạn** là việc chọn được một số hữu hạn tập trong họ sao cho chúng vẫn phủ được tập đó.
 
-::: proof Chứng minh bổ đề tách yếu
+::: solution Chứng minh bổ đề tách yếu
 **Bước 1 — về tập hiệu và loại bỏ gốc tọa độ.** Đặt
 
 $$E = C - B = \{z - w:\ z \in C,\ w \in B\}.$$
