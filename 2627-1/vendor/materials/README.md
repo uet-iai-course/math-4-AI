@@ -36,4 +36,4 @@ Các tệp trong danh mục này và các thư mục liên quan được phục 
 - Vai trò: render `$...$` và `$$...$$` sau khi HTML đã được làm sạch.
 - KaTeX tạo một số thuộc tính kiểu nội tuyến khi render; vì vậy CSP của viewer cho phép `style-src 'unsafe-inline'` nhưng vẫn giữ `script-src 'self'` và làm sạch HTML trước khi gọi KaTeX.
 
-Các thẻ tải năm tài sản thực thi trong `material-viewer.html` dùng SRI SHA-256 tương ứng với các checksum ở trên. Khi cập nhật một tệp vendor, phải cập nhật đồng thời checksum trong danh mục và thuộc tính `integrity` trên trang viewer.
+Trình nạp `material-bootstrap.js` dùng SRI SHA-256 tương ứng với năm checksum ở trên khi chạy qua HTTP/HTTPS. Khi mở trực tiếp bằng `file://`, trình duyệt không hỗ trợ kiểm tra SRI cho tệp local, nên trình nạp bỏ thuộc tính này và tải đúng các tài sản cục bộ đã được kiểm kê. Khi cập nhật vendor, phải cập nhật đồng thời checksum trong danh mục và trình nạp.

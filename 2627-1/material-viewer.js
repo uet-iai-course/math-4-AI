@@ -253,7 +253,12 @@
     contentElement.querySelectorAll("a[href]").forEach((link) => {
       try {
         const target = new URL(link.getAttribute("href"), window.location.href);
-        if (!allowedProtocols.has(target.protocol)) {
+        const rawHref = link.getAttribute("href");
+        const localRelative = window.location.protocol === "file:"
+          && target.protocol === "file:"
+          && !/^(?:[a-z][a-z0-9+.-]*:|\/|\\)/i.test(rawHref)
+          && target.href.startsWith(new URL("./", window.location.href).href);
+        if (!allowedProtocols.has(target.protocol) && !localRelative) {
           link.removeAttribute("href");
           removedLinks += 1;
           return;
@@ -316,15 +321,24 @@
     kindElement.textContent = request.kind === "lecture-note" ? `Ghi chú bài giảng · Bài ${request.lecture}` : `Bài tập · Bài ${request.lecture}`;
 
     try {
-      const response = await fetch(request.documentPath, {
-        credentials: "same-origin",
-        cache: "no-cache"
-      });
-      if (!response.ok) {
-        throw new Error(`Máy chủ trả mã ${response.status} khi tải Markdown.`);
+      let markdown;
+      if (window.location.protocol === "file:") {
+        const localMaterials = window.LOCAL_MATERIALS;
+        if (!localMaterials || !Object.hasOwn(localMaterials, request.documentPath)
+            || typeof localMaterials[request.documentPath] !== "string") {
+          throw new Error("Tài liệu chưa có trong bản tải về. Hãy tải lại đầy đủ thư mục học kỳ.");
+        }
+        markdown = localMaterials[request.documentPath];
+      } else {
+        const response = await fetch(request.documentPath, {
+          credentials: "same-origin",
+          cache: "no-cache"
+        });
+        if (!response.ok) {
+          throw new Error(`Máy chủ trả mã ${response.status} khi tải Markdown.`);
+        }
+        markdown = await response.text();
       }
-
-      const markdown = await response.text();
       validateDirectives(markdown);
       const protectedMath = protectMath(markdown);
       const rendered = window.marked.parse(protectedMath.source);

@@ -63,6 +63,8 @@ Phải giữ thứ tự, bố cục, mức độ chi tiết và mạch nội dun
 
 ## Ghi chú bài giảng và bài tập web tĩnh
 
+- Theo yêu cầu người dùng, tài liệu phải mở được cả khi nhấp `index.html` bằng `file://` và trên GitHub Pages. Markdown vẫn là nguồn; `material-local-data.js` là bản đóng gói cho chế độ mở trực tiếp. Sau mọi lần sửa ghi chú hoặc bài tập, chạy `python3 2627-1/scripts/sync-local-materials.py`, kiểm tra bằng `--check` và commit bản đóng gói cùng Markdown. Người đọc không cần chạy lệnh. Đây là ngoại lệ đóng gói dữ liệu cho `file://`; không sinh HTML hoặc dùng Node.js.
+
 - Không dùng Node.js, trình sinh trang hoặc bước build cho ghi chú bài giảng và bài tập. Tệp Markdown được tải khi chạy bởi `YYZZ-H/material-viewer.html`; JavaScript và CSS cần thiết phải được lưu cục bộ trong thư mục học kỳ.
 - URL viewer chỉ nhận hai tham số cùng bài: `doc=materials/lec-NN/lecture-note.md` hoặc `doc=materials/lec-NN/exercises.md`, và `deck=lecture-NN-<chu-de>.html`. Viewer phải từ chối đường dẫn ngoài quy ước, số bài không khớp và tài nguyên khác nguồn.
 - Thứ tự xử lý bắt buộc là bảo toàn công thức → chuyển Markdown bằng Marked → làm sạch HTML bằng DOMPurify → khôi phục công thức dưới dạng nút văn bản → render bằng KaTeX. Không chèn trực tiếp HTML chưa làm sạch vào DOM.
