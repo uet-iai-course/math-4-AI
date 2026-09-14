@@ -1005,3 +1005,79 @@ Ba SVG mới tách nguyên từ hình tự tạo trong bộ trang chiếu, chỉ
 - Codex Slides: đọc lại Design File `uploaded/lecture-note.md` khớp nội dung trong kho; trạng thái 73 trang và dàn ý giữ nguyên so với đầu nhiệm vụ. Lần tải storyboard tạo bản `storyboard-3.md` nhưng trả liên kết tới tên cũ; đã dùng công cụ ghi tệp để cập nhật đúng `uploaded/storyboard.md`, đọc lại và đối chiếu toàn văn thành công.
 - Mở đúng hai Design File trong giao diện, chuyển sang tab mã nguồn, đối chiếu toàn bộ nội dung với tệp trong kho; tải lại vẫn khớp. Bước kiểm đầu tìm nội dung trong ô nhập khi giao diện còn ở tab xem trước đã được sửa sang tab mã nguồn. Không có Browser tích hợp trong phiên; kiểm bằng Chromium cục bộ tại cổng 4311, không tuyên bố đã kiểm bằng Browser tích hợp.
 - Năm vai rà độc lập, các lượt rà toán/mạch sau sửa và các kiểm định cuối đã hoàn tất. Không còn lỗi chặn bàn giao hoặc nghiêm trọng trong phạm vi ghi chú mới. Phạm vi commit gồm ghi chú, ba SVG, liên kết chỉ mục, sửa mục lục dùng chung và ba tệp quy trình đang được theo dõi; không đổi bộ trang chiếu hoặc bài tập riêng.
+
+## 2026-09-14 — Rà và cập nhật bài tập theo Bài 02 hiện hành
+
+### Phạm vi và kế hoạch được duyệt
+
+Người dùng yêu cầu một tệp Markdown để công bố trong cột Bài tập của chỉ mục, tham khảo Boyd, sau đó yêu cầu kiểm lại sự phù hợp với bộ trang chiếu và ghi chú hiện hành. Không sửa nội dung hoặc thứ tự 73 trang chiếu. Tệp bài tập cũ có 14 bài nhưng còn các chủ đề dầm, hiệp phương sai, Schur và Pareto thuộc tuyến cũ; không thể chỉ công bố lại liên kết cũ.
+
+Kế hoạch của vai đọc qua OpenRouter được điều phối duyệt với điều chỉnh: biên soạn lại 14 bài theo sáu phần hiện hành, kèm gợi ý/lời giải gập; ghi rõ biến thể; rà độc lập, chỉnh sửa riêng, rà lại toán/mạch; chỉ công bố sau kiểm định Markdown và viewer. Sản phẩm đánh giá LLO3 gắn CLO1 của buổi 2 trong đề cương chính thức; không đặt thời lượng ngoài đề cương.
+
+### Kiểm kê và ánh xạ nguồn
+
+| Nguồn | Vai trò và quyết định |
+|---|---|
+| `sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx` | Đề cương chính thức; đọc nội dung DOCX để xác nhận phạm vi buổi 2, LLO3/CLO1 và cơ cấu đánh giá; không dùng kho tham khảo để suy thời lượng. |
+| `2627-1/lecture-02-cac-bai-toan-toi-uu-loi.html` | Nguồn nội dung hiện hành: 73 trang, sáu mạch. Giữ nguyên toàn bộ. |
+| `2627-1/materials/lec-02/lecture-note.md` | Nguồn giải thích, chứng minh, ký hiệu và ví dụ hiện hành; đọc đủ sáu phần. Giữ nguyên toàn bộ. |
+| `sources/bv_cvxbook.pdf` và trang chính thức `https://web.stanford.edu/~boyd/cvxbook/` | Boyd–Vandenberghe (2004), *Convex Optimization*: §4.1–4.5, §6.1.1, §6.3.2, §6.5.4, §8.6.1; bài 4.15 cho ý tưởng nới lỏng nhị phân, bài 4.20 cho ý tưởng công suất. Tự biên soạn dữ liệu/lời giải; không dịch nguyên bộ đề. |
+| Bài tập cũ | Tài liệu cần thay thế để bỏ lệch tuyến; giữ các năng lực nhận dạng, cải dạng, chứng nhận và chuyển giao, không giữ máy móc số bài theo chủ đề cũ. |
+| Nguồn MIT đã có trong danh mục của bài | Nguồn nền của bài giảng hiện hành; không tải thêm hoặc tái phân loại tài nguyên MIT trong nhiệm vụ bài tập. Không dùng tệp `._*`. |
+
+| Bài mới | Phần ghi chú / chuẩn bị trên trang chiếu | Quyết định và biến thể |
+|---|---|---|
+| 1–2 | Phần 1; `vi-du-bac-hai`, `vi-du-nghich-dao`, `dang-toan-hoc` | Miền, infimum, chứng nhận tính lồi; phản ví dụ trung điểm. Bỏ dẫn trước tới hộp chưa học. |
+| 3–4 | Phần 2; `lp-pha-tron`, `lp-chuan-tac`, `lp-bien-phu`, `lp-sai-so-lon-nhat` | Pha trộn và hai tiêu chí hồi quy; biến thể trần mua và điểm trung tâm đổi 3 thành 4. |
+| 5–8 | Phần 3; `qp-dang-pho-bien`, `qp-ls-l1`, `qp-ls-l2`, `qp-gioi-han-he-so` | Bình phương tối thiểu; đủ bốn tổ hợp sai số/phạt; ngưỡng triệt tiêu; QCQP. Biến thể hệ số phạt 5 và bình phương bán kính 481/900 liên kết trực tiếp với nhau. |
+| 9–10 | Phần 4; các trang `gp-hop-*`, `gp-cong-suat-*` | Hộp thể tích 27 thay 8; công suất giữ dữ liệu và thêm câu ngân sách tổng quát. Kỹ thuật logarit đã được chuẩn bị trong ghi chú. |
+| 11–12 | Phần 5; `ap-ban-le`, `ap-ban-le-lp`, `ap-noi-long-lp`, `ap-chung-nhan-can` | Phân biệt thay mất mát và nới lỏng; giá gói đổi thành 2, 3, 4 triệu, giữ cấu trúc phủ. |
+| 13–14 | Phần 6; `tong-hop-gioi-han-dac-trung`, `tong-hop-phat-chuan-mot`, `tong-ket-bai` | Tổng hợp giới hạn số đặc trưng, LP có phạt và phản ví dụ bốn điểm; thu hồi bốn phép xử lý mô hình. Hệ số chặn không phạt/đếm được khai báo tại chỗ. |
+
+Không đưa vào bài tập các công cụ chưa có trong tuyến hiện hành: quy hoạch nửa xác định, bổ đề Schur, Pareto hoặc mô hình dầm. Các bài có mức nhận dạng/giải thích, tính toán/chứng minh và vận dụng; mỗi bài có liên kết trang chiếu thực và nguồn Boyd.
+
+### Truy nguyên các vai và quyết định rà soát
+
+Các JSON cầu nối của những lượt hoàn tất đều ghi `requested_model=z-ai/glm-5.3-flash`, `observed_model=z-ai/glm-5.3-flash`, `provider=OpenRouter`. Tên bên dưới là tên chứng cứ tạm trong phiên; báo cáo hợp nhất và quyết định được lưu tại đây, không công bố tệp tạm lên chỉ mục.
+
+| Vai / chứng cứ | Kết quả được nhận và xử lý |
+|---|---|
+| Lập kế hoạch / `lec02-plan.json` | Duyệt quy trình Markdown → rà → viewer → chỉ mục, với điều chỉnh thay toàn bộ bộ bài cũ lệch tuyến. |
+| Phân tích nguồn / `lec02-source.json` | Nhận ánh xạ sáu phần; điều phối bác bỏ các gợi ý số học không khớp dữ liệu thực tế và viết đặc tả số liệu kiểm được. |
+| Viết bản nháp / `lec02-writer-retry.json`, `lec02-writer-part6.json` | Lượt lớn viết đủ phần 1–5 nhưng chưa ghi phần 6; không chấp nhận tự khai đã hoàn tất, chạy lại phần 6 có phạm vi riêng. |
+| Phù hợp tiên quyết / `lec02-prerequisite.json` | Nhận ánh xạ đủ 14 bài vào slide/ghi chú. Không nhận kết luận toán ngoài phạm vi, đặc biệt nhận xét sai về tính nguyên của chi phí gói. |
+| Sinh viên / `lec02-review-student.json` | Rà ký hiệu, khả năng tự học và đề/gợi ý. Bác bỏ đề nghị cho rằng với cố định $w=(1,0)$ mọi $|b|\le1$ đều tối ưu; cặp được giữ còn thêm mất mát nếu $b\ne0$. |
+| Chuyên gia / `lec02-review-expert-retry.json` | Nhận độ phủ sáu phần và mức độ. Đề nghị nguồn dựa trên trích đoạn đầu vào sai đã bị bác bỏ sau đối chiếu sách gốc; xem phục hồi nguồn bên dưới. |
+| Toán / `lec02-review-math.json` | Rà công thức và điều kiện; điều phối tự đọc toàn văn, không nhận kết luận “đúng hết” khi còn lỗi cụ thể. Danh sách sửa được hợp nhất ở mục tiếp theo. |
+| Phản biện giảng dạy / `lec02-review-pedagogy.json` | Nhận yêu cầu nối dữ liệu, phép cải dạng và diễn giải nghiệm. Bác bỏ suy luận sai rằng hai số không âm tự buộc $b=0$ trong cặp bị bỏ của Bài 14. |
+| Mạch kể chuyện / `lec02-review-narrative.json` | Đối chiếu sáu phần, các bước chuyển và tổng hợp; không nhận nhận xét ngoài vai cho rằng chi phí 2,3,4 không dùng được tính nguyên để khép cận. Rà mạch lại sau chỉnh sửa. |
+| Đối chiếu nguồn lại / `lec02-source-recheck.json` | Dùng đoạn trích định vị theo tiêu đề thật để xác nhận 4.15 là *Relaxation of Boolean LP*, 4.20 là *Power assignment in a wireless communication system*. Chỉ dẫn đúng tới Bài 12 và Bài 10. |
+| Chỉnh sửa riêng / `lec02-editor.json` | Nhận năm báo cáo và bản hợp nhất điều phối, sửa bản tạm tuần tự. Điều phối kiểm lại từng thay đổi, sửa thêm sai sót còn sót trước rà lại. |
+
+Lỗi và phục hồi: lượt viết đầu trả `OpenRouter request exceeded 300s wall timeout`; lượt chuyên gia đầu trả `model exceeded the tool-call limit (10)`. Đã báo lỗi trong phiên, giữ nguyên kho, chạy lại cùng vai/mô hình với phạm vi nhỏ hơn. Một số phép thay chuỗi của editor trả `replacement count mismatch: expected 1, found 0`; editor đọc lại đoạn thật rồi thử lại, không ghi đè mù. Trích đoạn Boyd ban đầu dùng chỉ số dòng sau `splitlines`, bị lệch bởi ký tự ngắt trang; điều phối phát hiện, đọc lại nguyên bản và cắt theo tiêu đề chính xác. Đây là lỗi đầu vào của rà nguồn, không phải sách thay số bài. Kết quả nguồn cuối thay thế các đề nghị dựa trên đoạn sai.
+
+### Các lỗi nội dung đã xử lý và bằng chứng
+
+- Bài 1–2: phân biệt miền dương của hàm nghịch đảo và tập khả thi; Hessian đúng là diag(2,−2); phân biệt không nửa xác định dương với bất định. Hàm ràng buộc không lồi chưa đủ kết luận tập không lồi; dùng điều kiện đủ với bất đẳng thức lồi và đẳng thức affine. Bỏ yêu cầu dựa vào hộp ở phần 4.
+- Bài 3–4: nghiệm trần mua là $(1/2,3)$, chi phí 15/2, phốtpho dư 1,5 g. Với biến thể điểm trung tâm 4, minimax có nghiệm duy nhất $(1,2)$: cận buộc $b=2$, hai phần dư ngoài buộc $a=1$. Không dùng đạo hàm trị tuyệt đối tại 0.
+- Bài 5–8: dùng hằng số $r_0$ để không trùng phần dư $r$; phân biệt đổi tiêu chí và thêm ràng buộc. Ví dụ thiếu một bất đẳng thức dùng $r_i=t_i=-3$ đúng điều kiện một phía. Tikhonov hệ số 5 có $E=1577/180$, chuẩn bình phương 481/900, $J=343/30$. Với hệ số phạt chuẩn một 6, bổ sung đủ hạng theo hệ số chặn để được $E=99/10$, $J=141/10$. Chứng minh lồi chặt dùng chênh lệch đúng $\theta(1-\theta)\|X(u-v)\|_2^2$; kết luận cho mục tiêu theo hệ số gốc. Cận QCQP dùng đúng bình phương bán kính.
+- Bài 9–10: sửa trung bình cộng của ba tích cho cận 9, diện tích ít nhất 54; $\log54$ không bằng $3\log3$. Khôi phục biến và giá trị riêng. Khai báo đầy đủ kích thước trong chứng minh Hessian. Dùng “ngặt” cho dấu >; ngân sách lớn hơn 6 cho chất lượng lớn hơn 1 bằng kiểm trực tiếp phép tăng đều công suất.
+- Bài 11: nêu toàn bộ tập nghiệm của đếm lỗi và bản lề, không dùng một điểm minh họa thay câu trả lời tổng quát. Trên tập nghiệm đếm lỗi, bản lề bằng $3+|\theta|\in(4,5)$. Khai báo mất mát 0–1 và chứng minh cận bởi bản lề.
+- Bài 12: miền vectơ đúng ba chiều; phương án nhị phân có chi phí nguyên, nên cận $9/2\le p^\star\le5$ khép thành 5. Bỏ phát biểu sai “không còn bội chung”. Chuyển tập bốn vectơ sang công thức khối để tránh tràn đoạn ở màn hình hẹp.
+- Bài 13–14: khai báo số nguyên $m,d,k$; tập khả thi bằng $F\times\mathbb R$; bỏ dẫn sai 4.15 cho phạt chuẩn một. Bỏ $w_3$ trong bài hai chiều. Cặp bị bỏ luôn có mất mát ít nhất 2; chứng nhận bằng một điểm đạt cận, không suy sai điều kiện dấu bằng. Bảng kết phân biệt cải dạng có phép chiếu biến phụ, thay mất mát, thêm phạt và nới lỏng giữ nguyên mục tiêu; không gán cận dưới cho mô hình thay cả mục tiêu.
+
+### Rà lại và kiểm định cuối
+
+- Editor chạm `model exceeded the tool-call limit (45)` sau khi đã ghi các sửa đổi. Lượt phục hồi `lec02-editor-recovery.json` cùng vai/mô hình hoàn tất phần nguồn Bài 13 và bảng nguồn, ghi báo cáo kết thúc. Không có hai writer cùng sửa một tệp.
+- Rà toán sau sửa (`lec02-math-final.json`) tự tính lại chín nhóm lỗi trọng tâm, xác nhận các kết quả và chứng minh đã sửa. Worker không đọc được bản hợp nhất điều phối, nên chỉ nhận phạm vi kiểm trực tiếp mà báo cáo nêu; không nhận tự khai đã kiểm mọi nguồn.
+- Rà mạch sau sửa (`lec02-fit-final.json`) xác nhận các điểm nối Bài 5→6/7/8, 6→8, 9→10, 11→13→14 và việc thu hồi bốn phép xử lý. Lượt này chỉ đọc bản bài tập và các liên kết trong đó; đối chiếu toàn văn slide/ghi chú dựa trên lượt tiên quyết trước đó và kiểm của điều phối. Không dùng lượt này thay cho việc đọc nguồn.
+- Hai báo cáo cuối phát hiện ba lỗi do hậu xử lý: miền vô hướng Bài 1 bị thêm số mũ 3, cụm phép chiếu bị lặp và lệnh `\iff` bị thay như một từ tiếng Anh. Điều phối đã nhận ra và sửa cùng các lỗi này trước khi nhận báo cáo; kiểm bản thực tế xác nhận miền đúng, câu không lặp và KaTeX không lỗi. Bộ lọc ngôn ngữ không được áp mù lên tên lệnh toán.
+- Kiểm độc lập bằng phân số chính xác: 27 kết quả số đạt, gồm các nghiệm hồi quy, mục tiêu tại hệ số phạt 6, cận nới lỏng, bảng phân loại và phản ví dụ thưa. Chứng minh toàn cục và điều kiện dấu bằng được rà trực tiếp, không suy từ việc kiểm số tại một điểm.
+- Markdown: một heading cấp một, sáu phần, 14 bài có mức năng lực, 14 gợi ý và 14 lời giải không lồng; 58 liên kết hợp lệ, mã trang chiếu đích thực sự tồn tại. Không có công thức dùng dấu phân cách LaTeX ngoài `$...$`/`$$...$$`.
+- Máy chủ kiểm định đúng kho chạy ở `http://[::1]:8765/`, dùng `python3 -m reloadserver 8765 --bind ::1`. Cổng IPv4 8765 đã có máy chủ của kho khác nên giữ nguyên tiến trình đó và dùng IPv6 cùng cổng; không kiểm nhầm trang của kho khác.
+- Viewer được mở bằng HTTP và `file://` ở 1440×810 và 390×844: không lỗi JavaScript/KaTeX, không tài nguyên hỏng; gợi ý/lời giải gập mặc định, dùng Enter mở/đóng được, mở khi in; không tràn ngang toàn trang. Kiểm riêng từng đoạn/li và ảnh chụp các bài 2,7,9,12,14 ở hai kích thước không phát hiện tràn đoạn. Giữ giao diện và cỡ chữ hiện có.
+- Chạy `sync-local-materials.py` và `--check`. Gói ngoại tuyến chỉ đổi khóa `materials/lec-02/exercises.md`; mười tài liệu khác không đổi. Không cần người đọc chạy lệnh, không thêm bước build hoặc tài sản bên thứ ba.
+- Codex Slides: lưu `uploaded/exercises.md`, đọc lại khớp toàn văn và mở đúng Design File trong giao diện ở cổng 4311; tải lại vẫn khớp. Đã xem ảnh chụp bề mặt tệp. Không có Browser tích hợp trong phiên; kiểm bằng Chromium cục bộ, không tuyên bố đã dùng Browser tích hợp. Dàn ý dự án vẫn 73 trang; không kết xuất lại bộ trang chiếu.
+- SHA-256 của bộ trang chiếu giữ `f301b2295bf9dd88fee79ca645322e20034d0eea1613fd241067e9901c35e0d4`; ghi chú giữ `cb3388864c7d2dad474ef5a6030805ac2c165bd33f48d10a145bf9c6784815e4`. Chỉ mục chỉ thay trạng thái bài tập của Bài 02 bằng liên kết viewer đúng hai tham số; không công bố tài liệu quy trình.
+
+Bản phát hành cuối có 1270 biểu thức KaTeX; bốn tổ hợp HTTP/file và rộng/hẹp đều đạt. Liên kết Bài tập trên chỉ mục mở đúng 14 bài bằng Enter ở cả bốn tổ hợp. SHA-256 Markdown bài tập: `d661d8c20caeca36ff082da5e407e14f9b74e32e61b06d8c80fcb848365d2117`. Không còn lỗi chặn bàn giao hoặc nghiêm trọng trong phạm vi tài liệu này.

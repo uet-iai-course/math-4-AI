@@ -421,3 +421,11 @@ Giữ nguyên 73 trang và thứ tự sáu phần. Bản ghi chú mới mở r�
 Mỗi hàng hỗ trợ LLO3/CLO1 bằng minh chứng người học tự dựng mô hình, thực hiện cải dạng và chứng nhận. Ví dụ dẫn nhập làm cụ thể nhu cầu trong cùng hàng; hình và dữ kiện được giữ xuyên suốt phép suy diễn. Các dạng chuẩn và bảng tổng hợp dùng chu trình rút gọn nhu cầu → hình thức → kiểm tra vì đã được thiết lập bằng ví dụ trước đó. Thời lượng tự học chưa ấn định; không thêm thời gian lên tài liệu công khai.
 
 Tài liệu có 35 khối chứng minh, 18 khối suy diễn, 13 bài tự kiểm và 13 lời giải gập, 21 hình cùng 60 liên kết trực tiếp tới trang chiếu. Ba hình `note-quadratic.svg`, `note-absolute.svg`, `note-reciprocal.svg` tách nguyên hình SVG tự tạo từ HTML hiện có, bổ sung không gian tên XML để dùng qua thẻ ảnh. Các hình khác dùng lại tài sản hiện có; mô tả thay thế bằng văn bản thuần để không mất ký hiệu khi bảo toàn công thức trong viewer.
+
+## Ánh xạ bài tập đi kèm — 2026-09-14
+
+Giữ nguyên 73 trang và mọi quyết định theo mã trang. Tệp bài tập công khai thay tuyến cũ, bám sáu phần: Bài 1–2 kiểm chứng nhận và nghiệm; 3–4 dùng LP; 5–8 dùng dạng bậc hai và chính quy hóa; 9–10 dùng GP; 11–12 phân biệt thay mất mát với nới lỏng; 13–14 đánh giá mô hình giới hạn đặc trưng. Các bài là minh chứng luyện tập sau chu trình khái niệm đã triển khai trong slide/ghi chú, không thêm chu trình trang chiếu mới.
+
+Điểm nối được kiểm: dữ liệu hồi quy Bài 4 truyền sang 5–8; dạng hoàn thành bình phương Bài 5 chuẩn bị 6–8; nghiệm phạt Bài 6 tạo cận Bài 8; chứng minh logarit tổng hàm mũ Bài 9 chuẩn bị 10; bản lề và biến phụ Bài 11 chuẩn bị 13; phản ví dụ Bài 14 kiểm giới hạn của phạt chuẩn một Bài 13 và thu hồi bốn phép xử lý. Bỏ dẫn trước từ Bài 2 tới hộp chưa học. Không thêm bài tổng hợp hồi quy vào phần 6.
+
+Nguồn, biến thể, kiểm tiên quyết và kết quả rà lại nằm trong `review-log.md`. Trạng thái bài tập công khai ở mục này thay các ghi chép lịch sử giữ bài tập cũ ở trên.

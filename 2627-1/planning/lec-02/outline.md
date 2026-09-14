@@ -165,3 +165,9 @@ Mục tiêu là tài liệu tự học có thể tái tạo phép tính: mỗi v
 Nguồn cấu trúc và ví dụ: bộ RevealJS Bài 02 hiện tại. Nguồn nội dung: Boyd–Vandenberghe (2004), chương 3–4, §6.1.1, §6.2, §6.3.2, §6.5.4, §8.6.1, Bài tập 4.15 và 4.20; đối chiếu trực tiếp bản `sources/bv_cvxbook.pdf`. Đề cương DOCX chính thức xác định buổi 2, LLO3/CLO1 và nền tảng giải tích, đại số tuyến tính, xác suất–thống kê. Không khẳng định bản ghi chú bao phủ toàn bộ phạm vi rộng hơn của đề cương, không tự ấn định thời lượng. Không bổ sung nguồn MIT hoặc tài sản bên thứ ba.
 
 Tiêu chí hoàn thành: đủ sáu phần và các cụm ví dụ trong bài; phép biến đổi có điều kiện và chứng minh hai chiều khi tuyên bố tương đương; nghiệm được kiểm bằng số và chứng nhận độc lập; Markdown, hình, công thức, liên kết và thao tác bàn phím trên viewer đạt; năm vai rà độc lập và rà lại toán/mạch sau sửa; đồng bộ Design File; chỉ sau đó công bố liên kết ghi chú, commit và push.
+
+## Cập nhật bài tập công khai — 2026-09-14
+
+Thay bộ bài cũ bằng `materials/lec-02/exercises.md`: 14 bài theo đúng sáu phần hiện hành, phục vụ LLO3/CLO1. Phân bổ 2–2–4–2–2–2 bài lần lượt cho mô hình/tính lồi, LP, QP/chính quy hóa, GP, xấp xỉ/nới lỏng và tổng hợp. Mỗi bài có mức năng lực, gợi ý/lời giải gập, liên kết trang chiếu và nguồn Boyd. Các biến thể số liệu được đánh dấu, không yêu cầu Schur, Pareto, quy hoạch nửa xác định hoặc mô hình dầm của tuyến cũ.
+
+Bài tập và bản đóng gói ngoại tuyến được đồng bộ; công bố qua viewer trong mục Bài tập của chỉ mục sau kiểm định. Mục này thay trạng thái bài tập “chưa công bố/Đang cập nhật” trong các ghi chép lịch sử phía trên. Không sửa 73 trang chiếu, ghi chú hoặc thời lượng. Ánh xạ từng cụm và quyết định năm vai rà được lưu trong nhật ký cùng bài.
