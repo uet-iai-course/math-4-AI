@@ -1081,3 +1081,225 @@ Lỗi và phục hồi: lượt viết đầu trả `OpenRouter request exceeded
 - SHA-256 của bộ trang chiếu giữ `f301b2295bf9dd88fee79ca645322e20034d0eea1613fd241067e9901c35e0d4`; ghi chú giữ `cb3388864c7d2dad474ef5a6030805ac2c165bd33f48d10a145bf9c6784815e4`. Chỉ mục chỉ thay trạng thái bài tập của Bài 02 bằng liên kết viewer đúng hai tham số; không công bố tài liệu quy trình.
 
 Bản phát hành cuối có 1270 biểu thức KaTeX; bốn tổ hợp HTTP/file và rộng/hẹp đều đạt. Liên kết Bài tập trên chỉ mục mở đúng 14 bài bằng Enter ở cả bốn tổ hợp. SHA-256 Markdown bài tập: `d661d8c20caeca36ff082da5e407e14f9b74e32e61b06d8c80fcb848365d2117`. Không còn lỗi chặn bàn giao hoặc nghiêm trọng trong phạm vi tài liệu này.
+
+## 2026-09-17 — Bản đề xuất trang tư duy AI, chờ người dùng duyệt
+
+Thêm đúng S05-03b (`ap-triet-ly-ai`) ngay sau S05-03 và trước S05-04; 73 → 74 trang, sáu mạch giữ nguyên. Không commit/push vì yêu cầu hiện tại là tạo bản để duyệt. Không thêm tài nguyên MIT hoặc hình minh họa bên thứ ba. Ảnh xem trước là ảnh chụp bản RevealJS, không phải bằng chứng thực nghiệm.
+
+Nguồn: đoạn bài hiện hành về mất mát 0–1, bản lề và cải dạng LP; Boyd–Vandenberghe (2004), §8.6.1. Đối chiếu bổ sung Goodfellow, Bengio, Courville (2016), Deep Learning §5.2–5.3, https://www.deeplearningbook.org/contents/ml.html, cho tổng quát hóa và phân biệt dữ liệu huấn luyện/kiểm tra. Đề cương DOCX chính thức đã được đọc lại, phạm vi CLO1/LLO về nhận dạng và đánh giá mô hình; không thêm thời lượng.
+
+### Báo cáo tác tử và quyết định điều phối
+
+Các lượt dưới đây có metadata runtime requested_model=observed_model=`z-ai/glm-5.3-flash`, provider=`OpenRouter`. Chỉ cấp đoạn liên quan và bản nháp mới trong thư mục tạm; không gửi tài liệu khác. Lỗi kết nối lượt trước và từ chối tự động đã được báo; người dùng cho phép rõ phạm vi gửi đoạn. Từ chối nhầm bản nháp là tài liệu nội bộ bổ sung được giải quyết bằng kiểm chứng nó là đầu ra vừa tạo của chính OpenRouter.
+
+#### plan
+
+## Kế hoạch 1 slide mới: `ap-dich-den` (chèn giữa S05-03 và S05-04)
+
+**Vị trí:** sau `ap-ban-le` (context.html:15), trước `ap-ban-le-lp` (context.html:36). Đặt `data-slide-id="S05-03b"`, `id="ap-dich-den"`, dùng `grid2` hoặc lưới 3 cột như slide hiện có (context.html:17, 54).
+
+**Tiêu đề:** "Ba trụ cột và đích đến" (ít chữ).
+
+### Bố cục 3 cột (mỗi cột 1–2 dòng, ít chữ)
+
+1. **Toán** – Cơ sở phương pháp: chứng minh cấu trúc (lồi, chặn trên). Nguồn: `ap-ban-le` — $\ell_h=\max(0,1-r)$ lồi, $\ell_{01}\le\ell_h$ (context.html:23–25); nguồn Boyd–Vandenberghe §8.6.1 (context.html:32).
+2. **Thuật toán** – Hàm thay thế/nghiệm gần đúng **có kiểm chứng**: cải dạng LP chính xác cho $H$, không cho $E$ (context.html:44, 47); nghiệm của $H$ phải được đối chiếu với $E$ (context.html:68, 71).
+3. **Thực nghiệm** – Đánh giá số liệu: bảng $H$ vs $E$ (context.html:56–61); $E(\theta)\le H(\theta)$ không suy ra $\arg\min E=\arg\min H$ (context.html:71).
+
+### Dòng "Đích đến" (dải ngang nổi bật, class `box`)
+
+> Dự đoán đúng trên **dữ liệu chưa biết** — không dừng ở cực tiểu lỗi huấn luyện.
+
+Hàm thay thế chỉ là phương tiện; đích là khái quát hóa.
+
+### Kết luận (1 dòng, dưới cùng)
+
+> Toán – thuật toán – thực nghiệm phối hợp: toán cho cấu trúc, thuật toán cho nghiệm, thực nghiệm kiểm chứng về số lỗi thật.
+
+### Ánh xạ nguồn (không thêm giả định ngoài file)
+
+| Nội dung slide mới | Bằng chứng |
+|---|---|
+| Toán làm cơ sở | `ap-ban-le`, dòng 24–28, 32 |
+| Thay thế có kiểm chứng | `ap-ban-le-lp` dòng 44, 47; `ap-nghiem-phan-loai` dòng 68, 71 |
+| Đích là dữ liệu chưa biết | Suy ra từ nguyên tắc "đánh giá $E$ tại nghiệm đã học" (dòng 71) — slide mới nêu rõ |
+| Bản sắc không hạ Toán/KHMT | Toán đứng cột đầu, là "cơ sở"; thực nghiệm chỉ kiểm chứng |
+
+**Ghi chú trình bày (aside.notes):** nhấn mạnh $H$ chỉ là thay thế, giá trị LP là $H$ không phải $E$ (dòng 48); tránh tuyên bố mọi nghiệm bản lề cho cùng bộ phân loại (dòng 72).
+
+#### source
+
+**Phân tích nguồn riêng — chỉ context.html**
+
+**Điểm chèn:** Xác nhận: `ap-ban-le` kết thúc ở dòng 34, `ap-ban-le-lp` bắt đầu ở dòng 36. Điểm chèn hợp lệ là sau dòng 34 (trước dòng 36).
+
+**Kết luận có bằng chứng trong đoạn này:**
+- `H` lồi theo θ (dòng 28, 31), `ℓ_h ≥ ℓ_01` mọi r (dòng 25, 30).
+- LP tương đương hai chiều với `H`, không với `E` (dòng 44, 46–47).
+- `E` không lồi trên ví dụ 4 điểm (dòng 11).
+
+**Kết luận chưa có bằng chứng ở đây:**
+- Bất kỳ khẳng định nào về nghiệm tối ưu của `H` so với `E` (dòng 32 chỉ nói "sẽ được kiểm tra bằng số liệu ở phần so sánh nghiệm" — chưa có trong đoạn này).
+- Khẳng định về khả năng mở rộng sang nhiều đặc trưng ngoài nhận xét định tính dòng 11.
+
+**Về tổng quát hóa:** Đoạn không chứa dữ liệu huấn luyện hay số lỗi E trên mẫu; không suy gì thêm. Nguyên tắc tổng quát hóa (Goodfellow et al., 2016, §5.2) do điều phối đối chiếu riêng, không nằm trong context.html.
+
+#### review-storyboard
+
+**Kết luận rà soát (≤200 từ):**
+
+**Vị trí — đạt.** `slide.html` là file riêng, không chèn trực tiếp vào `context.html`; thứ tự được bảo đảm qua `data-slide-id="S05-03b"` (slide.html:1), nằm giữa S05-03 (`ap-ban-le`, context.html:15) và S05-04 (`ap-ban-le-lp`, context.html:36). Không có xung đột ID.
+
+**Lý do tồn tại — đạt.** Storyboard.md:3 nêu đúng động cơ: sau hai slide kỹ thuật (bản lề, LP), cần khung tư duy tổng hợp. Phù hợp context: H lồi (context.html:28), ℓ₀₁≤ℓ_h (dòng 25), LP chính xác cho H không cho E (dòng 44).
+
+**Nối trước — đạt.** Storyboard.md:7 khớp context.html:28, 32 (H chỉ là thay thế) và dòng 44, 47.
+
+**Nối ra — đạt.** Storyboard.md:9 trỏ `ap-nghiem-phan-loai` (S05-05, context.html:52), nơi bảng H vs E (dòng 56–61) và dòng 68, 71 chứng minh tối ưu H không bảo đảm tối ưu E.
+
+**Ghi chú nhỏ (thấp):** Notes slide.html:28 trích Goodfellow §5.2–5.3 — không có trong context.html; source.json xác nhận do điều phối cung cấp riêng, đã ghi chú minh bạch, chấp nhận được.
+
+#### review-student
+
+## Nhận xét vai Góc nhìn sinh viên — slide S05-03b
+
+**1. [Cao] Câu "H lồi và chặn trên E chỉ trên mẫu đang xét" gộp hai tính chất (slide.html:26).**
+Bằng chứng: notes dòng 26 viết một câu duy nhất. Sinh viên đọc từ cuối lớp, lướt nhanh, dễ gộp thành "vì H lồi nên H chặn trên E", hoặc tưởng H chặn E nói chung. Thực chất H≥E là bất đẳng thức từng điểm trên mẫu; tính lồi là tính chất riêng của H.
+Đề xuất: tách thành hai mệnh đề độc lập: "ℓ_h chặn trên ℓ_01 tại từng điểm trên mẫu, nên H(θ)≥E(θ) trên mẫu; riêng H là hàm lồi theo θ." Có thể nhắc hệ quả đúng: min E ≤ min H (khớp notes slide S05-05, context.html:71).
+
+**2. [Trung] Viết tắt "KHMT" (slide.html:26, storyboard.md:15).**
+Bằng chứng: "kế thừa Toán/KHMT và thống kê". Sinh viên mới có thể không giải mã.
+Đề xuất: viết đủ "khoa học máy tính".
+
+**3. [Trung] Metadata điều phối lọt vào notes (slide.html:28).**
+Bằng chứng: "(điều phối đã đối chiếu)" trong chú thích nguồn — không phải thông tin cho người học.
+Đề xuất: bỏ cụm này; giữ trích dẫn Goodfellow §5.2–5.3 như đã có.
+
+**4. [Trung] CSS đè display của section (slide.css:10).**
+Bằng chứng: `.ai-philosophy { display: flex; ... }` áp trực tiếp lên `<section>`; khi Reveal ẩn slide bằng display:none, quy tắc này có thể làm slide ẩn vẫn hiện.
+Đề xuất: chuyển flex xuống wrapper con bên trong section, hoặc dùng `.ai-philosophy:not([hidden])`, giữ Reveal quản lý display.
+
+**5. [Thấp] Kích thước cứng 1280×720 và font 35px (slide.css:3–7)** — rủi ro tràn ở tỷ lệ khác; cân nhắc đơn vị tương đối.
+
+Không phát hiện diễn giải sai về dữ liệu kiểm tra: notes dòng 28 đã nói rõ tập kiểm tra không dùng để chọn mô hình — giữ nguyên.
+
+#### review-expert
+
+**Nhận xét vai Chuyên gia — slide S05-03b (slide.html, slide.css, storyboard.md, context.html)**
+
+**1. [Cao] CSS ghi đè display của Reveal** — slide.css:10 đặt `display: flex` trực tiếp lên `section.ai-philosophy`. Reveal quản lý hiện/ẩn bằng `display` trên section; rule này thắng đặc tính class của Reveal nên slide ẩn có thể vẫn hiển thị. Đề xuất: bỏ `display:flex` khỏi section, chuyển bố cục flex vào một `div` bọc bên trong, hoặc scope như `.reveal .present .ai-philosophy` (giữ nguyên việc Reveal quản lý display).
+
+**2. [Trung] Notes dòng 26 gộp hai mệnh đề** — "H lồi và chặn trên E chỉ trên mẫu đang xét" cần tách: (a) H lồi là tính chất của hàm mục tiêu thay thế; (b) bất đẳng thức E(θ) ≤ H(θ) chỉ đúng tại mỗi θ trên cùng mẫu huấn luyện, không kéo theo quan hệ nghiệm (min E ≤ min H, như notes S05-05 đã ghi đúng). Đề xuất tách câu và nêu rõ giới hạn "trên cùng mẫu".
+
+**3. [Trung] Viết tắt "KHMT"** — slide.html:26 và storyboard.md:15. Đề xuất viết đủ "Khoa học máy tính".
+
+**4. [Thấp] Metadata điều phối trong notes** — slide.html:28 "(điều phối đã đối chiếu)" là ghi chú nội bộ, bỏ khỏi notes.
+
+**5. [Thấp] Cảnh báo dùng dữ liệu kiểm tra** — notes 28 đã đúng ("không dùng để chọn mô hình"); khi nối sang S05-05, nhắc rõ bảng H/E là trên mẫu huấn luyện, không phải chọn mô hình trên tập kiểm tra.
+
+**Triết lý AI**: chính xác, phù hợp Goodfellow §5.2–5.3 (tổng quát hóa, dữ liệu độc lập); không hạ thấp Toán/KHMT — notes khẳng định "gần đúng có kiểm soát ≠ lập luận sai", đúng tinh thần. Nguồn Boyd §8.6.1 hợp lệ.
+
+#### review-math
+
+**Báo cáo rà slide S05-03b (Toán: H/E, chặn trên, tối ưu & tổng quát hóa)**
+
+1. **[Cao] Notes gộp hai phát biểu khác biệt về H lồi và E≤H** — `slide.html:26`: "H lồi và chặn trên E chỉ trên mẫu đang xét" viết liền một câu. Toán học: H lồi là tính chất hình thái hàm; chặn ℓ₀₁≤ℓ_h (nên E≤H) chỉ đúng trên cùng mẫu huấn luyện đã xét — hai mệnh đề độc lập. **Đề xuất:** tách thành hai ý: "H lồi (trên mọi θ); còn ℓ₀₁≤ℓ_h, tức E≤H, chỉ trên mẫu đang xét — không phải bảo đảm tổng quát hóa."
+
+2. **[Trung] CSS đặt display:flex trên section gốc** — `slide.css:10-11`: `.ai-philosophy { display:flex }` đè lên `display` mà Reveal.js dùng để ẩn/hiện slide, có thể làm hiện slide ẩn. **Đề xuất:** bỏ `display:flex` ở cấp section; bọc nội dung trong một `.ap-content` con và đặt flex vào đó, giữ Reveal quản lý `display` của section.
+
+3. **[Trung] Notes dùng viết tắt ngành "KHMT"** — `slide.html:26` ("kế thừa Toán/KHMT và thống kê") và lặp ở `storyboard.md:15`. **Đề xuất:** viết đầy đủ "khoa học máy tính", hoặc bỏ chi tiết ngành (điều phối) — metadata phân ngành không thuộc nội dung giảng.
+
+4. **[Trung] Tham chiếu điều phối trong notes** — `slide.html:28`: "(điều phối đã đối chiếu)". Thông tin điều phối không nên xuất hiện trong slide. **Đề xuất:** giữ chỉ nguồn: "Goodfellow, Bengio, Courville (2016), §5.2–5.3, https://www.deeplearningbook.org/contents/ml.html" (§5.2–5.3 đã được kiểm trực tiếp).
+
+5. **[Thấp] Cẩn trọng diễn giải dữ liệu kiểm tra** — `slide.html:21` "Đánh giá trên dữ liệu độc lập" đúng, nhưng nên thêm (notes `slide.html:27` đã có hướng đúng): tập kiểm tra chỉ ước lượng, không dùng để chọn/tối ưu mô hình. **Đề xuất:** thêm một cụm "không dùng để chọn mô hình" vào phần hiển thị nếu còn chỗ trống.
+
+6. **[Thấp] Nhất quán cận min E≤min H** — `slide.html:27` (chuyển sang LP: "chính xác cho H nhưng không cho E") nhất quán với `context.html` (S05-05 notes: "min E ≤ min H"); không cần chỉnh, chỉ xác nhận đúng.
+
+Không sửa tệp nào.
+
+#### review-pedagogy
+
+## Nhận định slide S05-03b
+
+**Nhu cầu/timing — Đạt.** Đoạn mới hợp lý: đến sau hai slide kỹ thuật (`ap-ban-le`, `ap-ban-le-lp` trong context.html), storyboard.md dòng 3–5 nêu rõ "lý do tồn tại" và nhu cầu (vì sao dám thay mất mát đếm lỗi). Không quá sớm: khái niệm H, E đã dựng ở S05-02/S05-03.
+
+**1. Nghiêm trọng — CSS đè `display` lên `section` của Reveal (slide.css:10).** `.ai-philosophy { display:flex; ... }` áp trực tiếp lên phần tử `section` có class trùng, có thể hiển thị slide ẩn khi Reveal chỉ quản lý `display` của section. Đề xuất: bỏ `display:flex` khỏi `.ai-philosophy`, bọc nội dung trong một `.ai-philosophy .ap-inner` rồi flex phần con đó (giữ `width/height/padding` vẫn ổn, hoặc chuyển cả khối sang con).
+
+**2. Trung bình — Notes chưa tách rõ H lồi với quan hệ E ≤ H trên cùng mẫu (slide.html:26).** Câu "H lồi và chặn trên E chỉ trên mẫu đang xét" gộp hai phát biểu cần tách: (i) H lồi do tổng hàm hợp lồi–affine; (ii) E(θ) ≤ H(θ) từng điểm trên cùng tập mẫu, nhưng không suy ra nghiệm trùng (context.html:71 đã nêu đúng `min E ≤ min H`). Đề xuất viết hai câu riêng như ở S05-03/notes dòng 32.
+
+**3. Trung bình — Viết tắt "KHMT" (slide.html:26, storyboard.md:15).** Viết đầy đủ "khoa học máy tính" cho khán phòng.
+
+**4. Nhẹ — Câu hỏi/ghi chú.** Câu hỏi "H tối ưu đã đủ kết luận mô hình tốt chưa? — Chưa" (slide.html:28) tốt, nhưng câu trả lời nên thêm mỏ neo sang slide số liệu S05-05 (đáp án cụ thể) thay vì dừng ở khẳng định; "Đích là tổng quát hóa" nên nhắc tập kiểm tra chỉ ước lượng (đã có "số liệu chỉ ước lượng" — giữ nguyên, hợp lệ).
+
+**5. Nhẹ — Nguồn.** Goodfellow §5.2–5.3 trích đúng và có ghi chú điều phối đã đối chiếu; Boyd–Vandenberghe §8.6.1 khớp context.html.
+
+**6. Nhẹ — Không dùng dữ liệu kiểm tra để chọn mô hình.** Ghi chú slide.html:28 nêu rõ "tập kiểm tra độc lập, không dùng để chọn mô hình" — đúng, giữ nguyên; không thêm nhầm ý nghĩa tối ưu hóa trên S05-05 vào slide này.
+
+#### review-narrative
+
+**Rà slide S05-03b (`ap-triet-ly-ai`), hai trang lân cận mỗi phía (S05-02…S05-06):**
+
+**1. Nối vào/ra sai trong storyboard — Nghiêm trọng**
+- Vị trí: `storyboard.md` dòng 7–9.
+- Bằng chứng: Nối vào nói kế thừa `ap-ban-le` **và** `ap-ban-le-lp`; nối ra dẫn sang `ap-nghiem-phan-loai`. Nhưng thứ tự thực tế (context.html): `ap-ban-le` (S05-03) → `ap-ban-le-lp` (S05-04) → `ap-nghiem-phan-loai` (S05-05) → S05-03b phải chèn giữa S05-04 và S05-05.
+- Đề xuất: sửa nối vào thành "kế thừa `ap-ban-le` (H lồi, chặn trên E trên mẫu đang xét) qua `ap-ban-le-lp` (LP chính xác cho H, không cho E)"; nối ra thành "dẫn sang `ap-nghiem-phan-loai`". Notes (slide.html:28) đã đúng hướng "Chuyển sang LP" — nhưng cần ngược: đã đi qua LP, chuyển tiếp sang nghiệm.
+
+**2. Vai trò/điểm nhấn — Đạt**
+- Vai trò: slide tổng hợp khung tư duy (toán – linh hoạt – thực nghiệm), dòng 3, 11; điểm nhấn ở `.ap-punch` và `.ap-conclusion` (slide.html:11,16,21,24). Nhất quán với CLO1 (dòng 13).
+
+**3. Câu H lồi / chặn E — Trung bình**
+- slide.html:26 viết gộp "H lồi và chặn trên E chỉ trên mẫu đang xét". Đề xuất tách: "H(θ) lồi; theo ℓ₀₁ ≤ ℓ_h ta có E(θ) ≤ H(θ) tại từng θ, tức E bị chặn trên bởi H chỉ trên mẫu đang xét" — đúng quan hệ E ≤ H (context:30–31), không đảo chiều.
+
+**4. CSS display:flex trên section — Trung bình**
+- slide.css:10 đặt `display:flex` lên `.ai-philosophy` (chính là section). Ghi đè cơ chế ẩn/hiện của Reveal (nó quản lý `display` trên section), slide có thể lộ. Đề xuất: đặt flex lên con trực tiếp hoặc dùng wrapper bên trong section, giữ Reveal kiểm soát `display` của section.
+
+**5. Trình bày**
+- Bỏ viết tắt "KHMT" (storyboard.md:15, slide.html:26) → "khoa học máy tính". Bỏ cụm điều phối "điều phối đã đối chiếu" (slide.html:28); giữ nguồn Goodfellow §5.2–5.3 (đã kiểm trực tiếp).
+- Không diễn giải số liệu kiểm tra ở S05-05 làm dữ liệu chọn mô hình — hiện chưa vi phạm, giữ nguyên khi nối ra.
+
+#### editor
+
+Xong cả ba file:
+
+- **storyboard.md**: thứ tự đúng `ap-ban-le → ap-triet-ly-ai → ap-ban-le-lp → ap-nghiem-phan-loai` (nối ra là LP, không phải nghiệm phân loại); lý do khái quát ngay sau thay mất mát, chuẩn bị LP; notes toán đúng (H lồi theo θ, ℓ01 ≤ ℓh mọi r, E ≤ H trên cùng mẫu, đúng mẫu bất kỳ); viết "Khoa học máy tính" đầy đủ; bỏ metadata điều phối; đặc trưng AI trong bối cảnh học từ dữ liệu, không hạ ngành khác.
+- **slide.html**: bọc nội dung (trừ h2, notes) bằng `.ap-layout`; bỏ dòng ap-punch thẻ 1; thẻ 3 đổi chốt thành "Ước lượng khả năng tổng quát hóa"; notes sửa theo yêu cầu, không chứa mã trang.
+- **slide.css**: bỏ display/flex/width/height/font-size/padding cứng trên section; `.ap-layout` flex column gap 18px; `.ap-cards` grid 3 cột minmax(0,1fr); thẻ padding 18px; h3 .95em min-height 2.4em; p .85em; goal p margin .12em; bỏ rule h2 riêng (giữ 1.6em mặc định); kết luận .9em.
+
+#### final-math
+
+**Kết luận rà soát (slide.html, storyboard.md):**
+
+- Vị trí: `ap-triet-ly-ai` giữ nguyên trong cả hai tệp; các điểm neo `ap-ban-le` (storyboard dòng 7) và `ap-ban-le-lp` (dòng 9) đúng, không đổi vị trí.
+- Tính lồi H độc lập: slide.html dòng 28 nêu H(θ) lồi và bất đẳng thức ℓ01 ≤ ℓh trên mọi r, đúng trên cùng mẫu bất kỳ, tách bạch rõ "điều không có là bảo đảm tổng quát hóa". Storyboard dòng 7 trích nhất quán "trên cùng mẫu", không suy ra tổng quát hóa.
+- Câu kết: dòng 25 (slide) và dòng 15 (storyboard) đều nêu kế thừa Toán, Khoa học máy tính, thống kê — không độc quyền.
+- Storyboard: chỉ cầu nối (dòng 7, 9), không nêu định lý mới (dòng 15).
+- Bố cục slide hai cột/thẻ ngắn, không tràn rộng/cao.
+
+**Không còn lỗi.**
+
+#### final-narrative-storyboard
+
+**Kết quả rà soát (slide.html + storyboard.md):**
+
+- **Vị trí:** slide.html mang đúng `id="ap-triet-ly-ai"` (S05-03b); storyboard nối vào `ap-ban-le` và ra `ap-ban-le-lp` — khớp chuỗi bắt buộc, không đổi vị trí. ✔
+- **Tính lồi H độc lập:** ghi chú tách rõ hai mệnh đề ("H(θ) lồi theo θ" / "bất đẳng thức đúng với mọi r… trên cùng mẫu"), và phủ định minh thị "điều không có là bảo đảm tổng quát hóa". ✔
+- **Câu kết:** "kế thừa Toán, Khoa học máy tính và thống kê; đặc trưng của AI là trách nhiệm nối các tầng" — kết hợp ngành, không độc quyền. ✔
+- **Storyboard:** chỉ tổng hợp, "Không mở khái niệm toán mới", không định lý mới. ✔
+- **Bề rộng:** đã kiểm theo tiền đề, không phát hiện tràn.
+
+**Không còn lỗi cần báo.**
+
+### Xử lý và phạm vi kiểm định
+
+- Chấp nhận bố cục đích đến + ba thẻ + kết luận, nhưng bác bỏ suy luận của planner rằng đánh giá E trên mẫu chứng minh tổng quát hóa; dùng nguồn Goodfellow riêng. Reader nguồn đọc chưa đủ rồi báo không có bảng nghiệm: bác bỏ vì đoạn thực tế chứa ap-nghiem-phan-loai.
+- Reviewer storyboard và giảng dạy bỏ sót lỗi thứ tự; reviewer mạch đề xuất đặt sau LP trái yêu cầu: bác bỏ. Editor được giao giữ đúng bản lề → tư duy AI → LP → nghiệm. Rà lại toán và mạch xác nhận nội dung đã sửa; vị trí được kiểm trực tiếp trong DOM. Không dùng nhận xét bố cục của reviewer văn bản thay kiểm hình.
+- Đã tách tính lồi của H với bất đẳng thức mất mát đúng mọi r và quan hệ hai tổng trên cùng mẫu; thay KHMT bằng tên đầy đủ; bỏ metadata trong notes; giữ giả thiết và giới hạn tổng quát hóa.
+- CSS chỉ áp vào .ai-philosophy, không đặt display trên section. Điều phối chuẩn hóa công thức trong notes và đổi nhấn thẻ đầu thành “Lập luận chặt chẽ”, giữ đối xứng ba thẻ.
+- Rà ghi chú lecture-note.md phần hàm bản lề và Bài 11 exercises.md: đã phân biệt hàm thay thế, không hứa tổng quát hóa. Trang thêm diễn giải triết lý, không đổi ký hiệu, dữ kiện, giả thiết hoặc bài tập; không cần sửa hai Markdown và bản đóng gói.
+- Chromium cục bộ ở 1440×810 và 390×844: không tràn trang mới, không ảnh vỡ hoặc lỗi KaTeX/JavaScript; ArrowUp đến ap-ban-le, ArrowDown đến ap-ban-le-lp. Runtime cục bộ tại http://[::1]:8765; IPv4 8765 đang phục vụ kho khác.
+- Codex Slides đã thêm trang 54 trong dự án 20260828090221-lecture-02-c-c-b-i-to-n-t-i-u-l-i-cho-h--42jc, tải ảnh chụp và notes; đọc lại 74 trang, 53 bản lề / 54 tư duy / 55 LP. Phiên không có Browser tích hợp; kiểm bằng Chromium cục bộ, không tuyên bố đã dùng Browser tích hợp.
+
+Xác minh bề mặt Codex Slides: chuyển từ Design Files sang mặt trình chiếu, ảnh lớn có alt “Tư duy thiết kế phương pháp AI”, endpoint 54.png tải thành công; đã xem ảnh chụp bề mặt. Bản ảnh khớp RevealJS. Ghi chú đã lưu và trang trước/sau lần lượt là 53 bản lề và 55 LP.
+
+### Chấp thuận phát hành
+
+Ngày 2026-09-17, người dùng yêu cầu “commit / push” sau khi xem bản đề xuất. Yêu cầu này thay trạng thái chờ duyệt ở trên. Kiểm tra phạm vi chỉ gồm trang mới của Bài 02, CSS riêng, tài liệu quy trình và ảnh xem trước; kiểm định hiển thị đã hoàn tất ở lượt trước.

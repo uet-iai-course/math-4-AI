@@ -1115,6 +1115,39 @@
   </aside>
 </section>
 
+<section id="ap-triet-ly-ai" data-slide-id="S05-03b" class="ap-slide ai-philosophy">
+  <h2>Tư duy thiết kế phương pháp AI</h2>
+  <div class="ap-layout">
+    <div class="ap-goal">
+      <p class="ap-goal-main">Dự đoán tốt trên dữ liệu chưa biết</p>
+      <p class="ap-goal-sub">Tối ưu trên tập huấn luyện là phương tiện.</p>
+    </div>
+    <div class="ap-cards">
+      <div class="ap-card">
+        <h3>Cơ sở toán học</h3>
+        <p>Nêu rõ giả thiết, bảo đảm và giới hạn.</p>
+        <p class="ap-punch">Lập luận chặt chẽ</p>
+      </div>
+      <div class="ap-card">
+        <h3>Lựa chọn linh hoạt</h3>
+        <p>Dùng hàm thay thế, mô hình giản lược hoặc nghiệm gần đúng.</p>
+        <p class="ap-punch">Tính toán hiệu quả</p>
+      </div>
+      <div class="ap-card">
+        <h3>Kiểm chứng thực nghiệm</h3>
+        <p>Đánh giá trên dữ liệu độc lập, đại diện cho bài toán.</p>
+        <p class="ap-punch">Ước lượng khả năng tổng quát hóa</p>
+      </div>
+    </div>
+    <p class="ap-conclusion">Bản sắc AI: kết hợp lập luận toán học, thiết kế thuật toán và kiểm chứng bằng dữ liệu.</p>
+  </div>
+  <aside class="notes">
+    <p>Cầu nối từ slide trước: $H(\theta)$ lồi theo $\theta$; bất đẳng thức $\ell_{01}(r)\le\ell_h(r)$ đúng với mọi $r$, nên $E(\theta)\le H(\theta)$ khi hai tổng được tính trên cùng một mẫu — bất đẳng thức này đúng trên mẫu bất kỳ, không chỉ mẫu huấn luyện; điều không có là bảo đảm tổng quát hóa. Thay mất mát là thay đổi mục tiêu, không phải cải dạng tương đương. Cách nhìn này kế thừa Toán, Khoa học máy tính và thống kê; đặc trưng của AI là trách nhiệm nối các tầng trong bối cảnh học từ dữ liệu.</p>
+    <p>Toán phải đúng dưới giả thiết đã nêu; gần đúng có kiểm soát không phải chấp nhận lập luận sai. Không mặc nhiên cho rằng bài toán lồi thì chạy nhanh — cần kiểm tra cấu trúc và chi phí tính toán cụ thể.</p>
+    <p>Đích là tổng quát hóa: tập kiểm tra độc lập, không dùng để chọn mô hình, và phải đại diện cho phân phối đích; số liệu chỉ ước lượng, không bảo đảm mọi dữ liệu tương lai. Chuyển sang LP: chính xác cho $H$ nhưng không cho $E$. Câu hỏi: $H$ tối ưu đã đủ kết luận mô hình tốt chưa? — Chưa. Nguồn: Boyd–Vandenberghe (2004), §8.6.1; Goodfellow, Bengio, Courville (2016), Deep Learning §5.2–5.3, https://www.deeplearningbook.org/contents/ml.html.</p>
+  </aside>
+</section>
+
 <section id="ap-ban-le-lp" data-slide-id="S05-04" class="ap-slide">
   <h2>Cải dạng hàm bản lề thành LP</h2>
   <p>Biến phụ $\xi_i$ biểu diễn từng số hạng bản lề.</p>

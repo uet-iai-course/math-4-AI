@@ -11,7 +11,7 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 5. Xấp xỉ lồi và nới lỏng bài toán không lồi.
 6. Tổng hợp và vận dụng.
 
-Phần 1 có 7 trang; phần 2 có 12; phần 3 có 14; phần 4 có 16; phần 5 có 15 trang đã triển khai. Phần 6 có 9 trang đã triển khai. Toàn bài có 73 trang trong sáu section ngoài. Không ấn định thời lượng mới.
+Phần 1 có 7 trang; phần 2 có 12; phần 3 có 14; phần 4 có 16; phần 5 có 16 trang đã triển khai. Phần 6 có 9 trang đã triển khai. Toàn bài có 74 trang trong sáu section ngoài. Không ấn định thời lượng mới.
 
 ## Phần 1 hiện tại
 
@@ -104,17 +104,18 @@ Theo yêu cầu mới, bỏ phần Tối ưu nón; chuyển xấp xỉ/nới l�
 2. Phân loại bằng ngưỡng.
 3. Mô hình giảm số lỗi phân loại.
 4. Hàm mất mát bản lề.
-5. Cải dạng hàm bản lề thành LP.
-6. Nghiệm của hàm thay thế.
-7. Phân loại nhiều đặc trưng.
-8. Chọn các gói dữ liệu.
-9. Mô hình chọn gói dữ liệu.
-10. Nới lỏng điều kiện nhị phân.
-11. Nghiệm phân số của bài nới lỏng.
-12. Khôi phục phương án mua.
-13. Cận dưới và chứng nhận nghiệm.
-14. Phân biệt ba cách xử lý.
-15. Đánh giá nghiệm theo bài toán gốc.
+5. Tư duy thiết kế phương pháp AI.
+6. Cải dạng hàm bản lề thành LP.
+7. Nghiệm của hàm thay thế.
+8. Phân loại nhiều đặc trưng.
+9. Chọn các gói dữ liệu.
+10. Mô hình chọn gói dữ liệu.
+11. Nới lỏng điều kiện nhị phân.
+12. Nghiệm phân số của bài nới lỏng.
+13. Khôi phục phương án mua.
+14. Cận dưới và chứng nhận nghiệm.
+15. Phân biệt ba cách xử lý.
+16. Đánh giá nghiệm theo bài toán gốc.
 
 Tiêu chí hoàn thành: phân biệt thay mục tiêu với cải dạng tương đương; chứng nhận tính lồi; chứng minh cận dưới từ tối ưu LP; kiểm tra và diễn giải phương án nguyên. LLO3/CLO1 buổi 2 được hỗ trợ qua năng lực mô hình hóa, nhận dạng và đánh giá nghiệm. Không gán mục đề cương hoặc thời lượng riêng cho ví dụ bổ sung. Nguồn: Boyd–Vandenberghe (2004), §8.6.1 và Bài tập 4.15; dữ liệu và bốn hình SVG tự xây dựng.
 
@@ -171,3 +172,7 @@ Tiêu chí hoàn thành: đủ sáu phần và các cụm ví dụ trong bài; p
 Thay bộ bài cũ bằng `materials/lec-02/exercises.md`: 14 bài theo đúng sáu phần hiện hành, phục vụ LLO3/CLO1. Phân bổ 2–2–4–2–2–2 bài lần lượt cho mô hình/tính lồi, LP, QP/chính quy hóa, GP, xấp xỉ/nới lỏng và tổng hợp. Mỗi bài có mức năng lực, gợi ý/lời giải gập, liên kết trang chiếu và nguồn Boyd. Các biến thể số liệu được đánh dấu, không yêu cầu Schur, Pareto, quy hoạch nửa xác định hoặc mô hình dầm của tuyến cũ.
 
 Bài tập và bản đóng gói ngoại tuyến được đồng bộ; công bố qua viewer trong mục Bài tập của chỉ mục sau kiểm định. Mục này thay trạng thái bài tập “chưa công bố/Đang cập nhật” trong các ghi chép lịch sử phía trên. Không sửa 73 trang chiếu, ghi chú hoặc thời lượng. Ánh xạ từng cụm và quyết định năm vai rà được lưu trong nhật ký cùng bài.
+
+## Bản đề xuất ngày 2026-09-17 — Tư duy thiết kế phương pháp AI
+
+Thêm đúng một trang sau hàm mất mát bản lề và trước cải dạng LP theo yêu cầu người dùng. Đích là dự đoán trên dữ liệu chưa biết; ba thành phần là cơ sở toán học, lựa chọn phương pháp linh hoạt và kiểm chứng thực nghiệm. Người dùng đã duyệt và yêu cầu commit/push ngày 2026-09-17. Sáu mạch và thời lượng giữ nguyên.

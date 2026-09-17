@@ -4,7 +4,7 @@ Phiên bản làm lại ngày 2026-09-11; cập nhật sáu mạch theo yêu c�
 
 ## Trạng thái và mục tiêu
 
-- Phạm vi hiện tại: phần 1–5 có lần lượt 7, 12, 14, 16, 15 trang đã triển khai; phần 6 có 9 trang đã triển khai. Toàn bài 73 trang trong sáu section ngoài. Giữ thời lượng chưa ấn định; không tự thêm phân bổ.
+- Phạm vi hiện tại: phần 1–5 có lần lượt 7, 12, 14, 16, 16 trang đã triển khai; phần 6 có 9 trang đã triển khai. Toàn bài 74 trang trong sáu section ngoài. Giữ thời lượng chưa ấn định; không tự thêm phân bổ.
 - Cấu trúc 58 trang (39 chính + 19 phụ lục) của lần sửa trước không còn là ràng buộc.
 - Bản storyboard cũ lưu trong lịch sử Git tại commit e030846; không tạo bản sao, không di chuyển tệp cũ.
 - Mục tiêu bài học: sinh viên hiểu rõ các dạng bài toán tối ưu lồi; nhận biết bài toán thực tế có thể chuyển về dạng lồi hoặc xấp xỉ bằng dạng lồi; chứng minh một bài toán tối ưu là lồi. Ưu tiên ví dụ trong trí tuệ nhân tạo và học máy (AI/ML) hoặc bài toán quen thuộc.
@@ -306,6 +306,7 @@ Kế hoạch 15 trang được duyệt sau tác tử lập kế hoạch: bỏ ch
 | S05-01 | Phân loại bằng ngưỡng | Thiết lập quyết định, dữ liệu và trực quan nhãn xen kẽ trước ký hiệu mất mát | Ngưỡng ảnh → đếm lỗi | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: cụ thể hóa nhu cầu |
 | S05-02 | Mô hình giảm số lỗi phân loại | Biến nhu cầu thành mục tiêu gốc để không đánh tráo tiêu chí | Dữ liệu u,y → E không lồi | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: thiết lập tiêu chí cần đánh giá |
 | S05-03 | Hàm mất mát bản lề | Đưa ra một hàm lồi chặn trên và chứng nhận quan hệ từng điểm | E → H → biến phụ | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: có trực quan và chứng minh |
+| S05-03b | Tư duy thiết kế phương pháp AI | Làm rõ quyền chọn hàm thay thế và trách nhiệm kiểm chứng sau khi đổi mục tiêu | Hàm bản lề → tiêu chí lựa chọn phương pháp → LP chính xác cho H | LLO3/CLO1: diễn giải giới hạn của mô hình; câu hỏi trong notes và Bài 11 | Thêm theo yêu cầu: khái quát tư duy AI, không lặp chứng minh |
 | S05-04 | Cải dạng hàm bản lề thành LP | Dùng lại kỹ thuật phần 2 và xác định chính xác bài toán được giữ | H → LP tương đương → nghiệm | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: tránh đồng nhất với tối ưu số lỗi |
 | S05-05 | Nghiệm của hàm thay thế | Phản ví dụ cho suy luận hai mục tiêu cùng nghiệm | Tối ưu H → kiểm tra E → nhiều đặc trưng | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: kiểm tra số và hình học |
 | S05-06 | Phân loại nhiều đặc trưng | Chuyển mô hình ngưỡng sang ứng dụng nhiều biến có chính quy hóa | LP ngưỡng → QP → chọn gói | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: dùng lại chứng nhận phần 3 |
@@ -429,3 +430,22 @@ Giữ nguyên 73 trang và mọi quyết định theo mã trang. Tệp bài tậ
 Điểm nối được kiểm: dữ liệu hồi quy Bài 4 truyền sang 5–8; dạng hoàn thành bình phương Bài 5 chuẩn bị 6–8; nghiệm phạt Bài 6 tạo cận Bài 8; chứng minh logarit tổng hàm mũ Bài 9 chuẩn bị 10; bản lề và biến phụ Bài 11 chuẩn bị 13; phản ví dụ Bài 14 kiểm giới hạn của phạt chuẩn một Bài 13 và thu hồi bốn phép xử lý. Bỏ dẫn trước từ Bài 2 tới hộp chưa học. Không thêm bài tổng hợp hồi quy vào phần 6.
 
 Nguồn, biến thể, kiểm tiên quyết và kết quả rà lại nằm trong `review-log.md`. Trạng thái bài tập công khai ở mục này thay các ghi chép lịch sử giữ bài tập cũ ở trên.
+
+## Bản đề xuất ngày 2026-09-17 — S05-03b
+
+
+**Lý do tồn tại:** Sau slide hàm bản lề, người học có nguy cơ xem việc thay mất mát là "mẹo" rời rạc. Slide này đặt nó vào khung tư duy chung của AI: toán làm cơ sở, lựa chọn linh hoạt làm phương tiện, thực nghiệm làm trọng tài — chuẩn bị cho bước cải dạng LP ngay sau đó.
+
+**Nhu cầu:** Người học cần hiểu vì sao ta dám thay mất mát đếm lỗi bằng hàm bản lề, và vì sao việc đó phải đi kèm kiểm chứng bằng dữ liệu — không phải vì "lồi thì đẹp".
+
+**Nối vào:** Kế thừa trực tiếp slide `ap-ban-le` (H lồi theo θ; ℓ01(r) ≤ ℓh(r) với mọi r nên E(θ) ≤ H(θ) trên cùng mẫu).
+
+**Nối ra:** Dẫn sang slide `ap-ban-le-lp`, nơi ta cải dạng bài toán tối ưu H thành chương trình tuyến tính.
+
+**Thêm theo yêu cầu:** Dải đích đến nhấn mạnh tổng quát hóa trên dữ liệu chưa biết; ba thẻ trụ cột với dòng chốt; câu kết luận về bản sắc AI.
+
+**CLO1:** Góp phần nhận dạng và đánh giá mô hình: biết mô hình tốt được đo bằng khả năng dự đoán trên dữ liệu độc lập, không bằng giá trị hàm mục tiêu huấn luyện.
+
+**Phạm vi:** Không mở khái niệm toán mới; đây là tổng hợp rút gọn của cụm sáu bước đã có, đóng lại bằng cách gọi tên từng tầng. Cách nhìn này kế thừa Toán/Khoa học máy tính và thống kê; đặc trưng của AI là trách nhiệm nối các tầng trong bối cảnh học từ dữ liệu.
+
+Bản đồ hành trình của cụm hàm thay thế giữ nguyên: nhu cầu S05-01; trực quan S05-01,03; ví dụ S05-01–02; hình thức S05-03–04; ứng dụng S05-05–06; bài tập S05-14 và Bài 11. S05-03b là cầu nối rút gọn nhu cầu chọn phương pháp → nguyên tắc lựa chọn → câu hỏi kiểm tra trong notes; không giới thiệu định lý hoặc ký hiệu mới. Kế thừa $E,H,\theta$; không suy bảo đảm tổng quát hóa từ bất đẳng thức $E\le H$. Chưa phân bổ thêm thời lượng vì người dùng không yêu cầu.

@@ -147,3 +147,68 @@
 .reveal .ap-slide th,
 .reveal .ap-slide td { padding: .18em .3em; }
 .reveal .ap-slide .card + .card { margin-top: 0; }
+
+/* S05-03b — Tư duy thiết kế phương pháp AI */
+.reveal .ai-philosophy {
+  background: #ffffff;
+  color: #222222;
+  box-sizing: border-box;
+}
+.reveal .ai-philosophy .ap-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.reveal .ai-philosophy .ap-goal {
+  border-left: 6px solid #B15A2B;
+  padding: 8px 20px;
+  background: #faf7f4;
+}
+.reveal .ai-philosophy .ap-goal-main {
+  margin: 0;
+  font-weight: 700;
+  color: #2F3E7A;
+}
+.reveal .ai-philosophy .ap-goal-sub {
+  margin: 0.12em 0;
+  color: #B15A2B;
+}
+.reveal .ai-philosophy .ap-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.reveal .ai-philosophy .ap-card {
+  background: #f4f5f9;
+  border-radius: 9px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reveal .ai-philosophy .ap-card h3 {
+  margin: 0;
+  color: #2F3E7A;
+  font-size: 0.95em;
+  min-height: 2.4em;
+}
+.reveal .ai-philosophy .ap-card p {
+  margin: 0;
+  font-size: 0.85em;
+}
+.reveal .ai-philosophy .ap-punch {
+  margin-top: auto;
+  font-weight: 700;
+  color: #B15A2B;
+  border-top: 2px solid #B15A2B;
+  padding-top: 8px;
+}
+.reveal .ai-philosophy .ap-conclusion {
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  color: #2F3E7A;
+  font-size: 0.9em;
+}
+
+.reveal .ai-philosophy .ap-card .ap-punch { margin-top: auto; }
