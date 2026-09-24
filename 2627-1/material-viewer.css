@@ -245,6 +245,12 @@
   max-width: none;
 }
 
+.markdown-body .katex {
+  /* Keep the clipped MathML accessibility layer anchored to its formula,
+     including formulas inside horizontally scrolling tables. */
+  position: relative;
+}
+
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
