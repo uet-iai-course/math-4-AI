@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 455" role="img" aria-labelledby="t d">
+<title id="t">Đổi tọa độ biến elip đơn vị thành đường tròn</title><desc id="d">Với W bằng diag(3,7), đặt z bằng (căn 3 nhân v1, căn 7 nhân v2). Elip 3v1 bình phương cộng 7v2 bình phương bằng 1 trở thành đường tròn đơn vị. Hai mũi tên là cùng hướng tối ưu trong hai hệ tọa độ.</desc>
+<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#287444"/></marker></defs>
+<rect width="590" height="455" fill="white"/><style>text{font-family:Arial,sans-serif;fill:#263044;font-size:27px} .head{fill:#2f3e7a;font-weight:bold}</style>
+<text x="140" y="42" text-anchor="middle" class="head">Chuẩn W</text><text x="445" y="42" text-anchor="middle" class="head">Chuẩn Euclid</text>
+<path d="M30 230H248 M140 120V340 M333 230H565 M445 118V345" stroke="#aeb5ca" fill="none"/>
+<ellipse cx="140" cy="230" rx="63.51" ry="41.58" fill="#edf1f9" stroke="#2f3e7a" stroke-width="3"/>
+<circle cx="445" cy="230" r="110" fill="none" stroke="#2f3e7a" stroke-width="3"/>
+<path d="M140 230L120.24 269.52 M445 230L410.78 334.6" stroke="#287444" stroke-width="4" fill="none" marker-end="url(#arr)"/>
+<path d="M248 230H314 M302 218L315 230L302 242" fill="none" stroke="#b15a2b" stroke-width="3"/>
+<text x="245" y="262">v₁</text><text x="150" y="123">v₂</text><text x="551" y="265">z₁</text><text x="455" y="115">z₂</text>
+<text x="140" y="382" text-anchor="middle">3v₁² + 7v₂² = 1</text><text x="445" y="382" text-anchor="middle">z₁² + z₂² = 1</text>
+<text x="295" y="433" text-anchor="middle" class="head">z = (√3 v₁, √7 v₂)</text>
+</svg>

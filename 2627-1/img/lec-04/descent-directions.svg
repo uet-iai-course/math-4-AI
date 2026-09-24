@@ -27,6 +27,10 @@
 <text x="592.44" y="219.23" text-anchor="middle" class="small" style="fill:#687080">62</text>
 <circle cx="420.706" cy="92.391" r="6" fill="#b15a2b" stroke="white" stroke-width="2"/>
 <text x="428.68" y="88.09" text-anchor="start" class="label" style="fill:#b15a2b">x⁰ = (2,4)</text>
-<path d="M420.706,92.391 L432.662,52.217" fill="none" stroke="#b15a2b" stroke-width="4" clip-path="url(#plot-area)" marker-end="url(#arrow)"/>
-<text x="452.59" y="56.52" text-anchor="start" class="label" style="fill:#b15a2b">hướng g</text>
+<path d="M420.706,92.391 L372.882,155.522" fill="none" stroke="#287444" stroke-width="4" clip-path="url(#plot-area)" marker-end="url(#arrow)"/>
+<text x="241.37" y="155.52" text-anchor="start" class="label" style="fill:#287444">gᵀd &lt; 0</text>
+<path d="M420.706,92.391 L309.118,75.174" fill="none" stroke="#2f3e7a" stroke-width="4" clip-path="url(#plot-area)" marker-end="url(#arrow)"/>
+<text x="117.82" y="59.39" text-anchor="start" class="label" style="fill:#2f3e7a">gᵀd = 0</text>
+<path d="M420.706,92.391 L432.662,52.217" fill="none" stroke="#a23627" stroke-width="4" clip-path="url(#plot-area)" marker-end="url(#arrow)"/>
+<text x="452.59" y="56.52" text-anchor="start" class="label" style="fill:#a23627">gᵀd &gt; 0</text>
 </svg>

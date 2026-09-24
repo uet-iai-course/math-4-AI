@@ -1,3 +1,34 @@
+# Kế hoạch thực hiện dàn bài lecture04 — 2026-09-24
+
+## Giai đoạn triển khai được người dùng xác nhận
+
+Người dùng xác nhận triển khai và cho phép OpenRouter đọc/gửi các tệp liên quan, loại trừ bí mật và tệp môi trường. Mục tiêu hiện hành: dựng `2627-1/lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html` theo storyboard 46 trang; đồng bộ tài liệu công khai, kiểm định, tạo commit riêng và đẩy nhánh hiện tại theo AGENTS.md. Kế hoạch lập dàn bài bên dưới là lịch sử, không giới hạn phạm vi triển khai đã được xác nhận sau đó.
+
+Thứ tự: reader lập kế hoạch → reader đối chiếu nguồn → soạn bản RevealJS và bài tập → cổng storyboard → năm reviewer chỉ đọc chạy song song → writer chỉnh sửa riêng → kiểm định cục bộ và Codex Slides → quản lý phiên bản. Các writer chạy tuần tự trong thư mục tạm hẹp; điều phối kiểm tra và hợp nhất. Storyboard quyết định bố cục từng trang; outline quyết định nội dung; math-spec khóa ký hiệu và số.
+
+
+## Phạm vi đã duyệt
+
+Chỉ sửa hồ sơ lập kế hoạch cho bài04;46trang,7mạch,2tiết lý thuyết+1tiết bài tập theo DC; LLO6–10. Không triển khai HTML, không sửa tài liệu công khai hoặc chỉ mục. Không phát sinh commit/push của bộ trang chiếu trong nhiệm vụ lập dàn bài này; Các tệp planning của bài này đã được Git theo dõi; giữ thay đổi để người dùng rà soát, không tự mở rộng nhiệm vụ sang xuất bản bộ trang chiếu.
+
+## Phân công, phụ thuộc và điều kiện hoàn thành
+
+| Giai đoạn | Vai trò và công cụ | Đầu vào → đầu ra | Điều kiện chuyển bước |
+|---|---|---|---|
+| Tiếp nhận | Điều phối | Yêu cầu, DC, tài liệu hiện có → phạm vi/kiểm kê | Đã xác định buổi4, LLO, thời lượng và thứ tự M16→M17 |
+| Lập kế hoạch | Reader OpenRouter | Hồ sơ hiện có → kế hoạch | Điều phối chấp nhận phạm vi; bác giữ cứng40trang và mở sang HTML |
+| Nguồn/toán ban đầu | Reader và reviewer OpenRouter song song | Trích nguồn, ví dụ → bảng ánh xạ và nhận xét | Điều phối đọc nguồn/kiểm số, không dùng nhận xét sai củaworker |
+| Soạn | Điều phối và writer OpenRouter có phạm vi hẹp | Đặc tả → outline,storyboard,math-spec,source-map | Có đủ nội dung, bố cục/lýdo từngtrang, câu hỏi/đápán từngphần |
+| Cổng storyboard | Reviewer chỉ đọc | Bản46trang → quyết định từngtrang và hành trình | Sửa vấn đề nghiêm trọng trước năm vai tiếp theo |
+| Năm rà độc lập | Reviewer sinh viên/chuyên gia/toán/giảng dạy/mạch truyện chạy song song | Cùng bản kế hoạch → nhận xét có chứng cứ | Điều phối nhận hoặc bác từng nhận xét, sửa và rà lại chỗ ảnh hưởng |
+| Kiểm cuối | Điều phối + Codex Slides | Hồ sơ → kiểm cấu trúc/số và đồng bộ outline bền vững | Đủ46mục,7kiểmtra,2LT+1BT; nêu giới hạn chưa kiểm hiển thị |
+
+Rủi ro: trộn gradient với Newton; nhầmδ²/2 với sai sốthật; nhầm rd với g; nhầm tựđiềuchỉnh với quaylui; hệKKT quá dày trênmànchiếu. Đối sách: sổ số, phép thế độc lập, nhãn loạiđạilượng, bảng dữ kiện và hai vòng rà. Mọi worker dùng z-ai/glm-5.3-flash/OpenRouter; quyền gửi tài liệu do người dùng xác nhận trực tiếp, loại trừ bí mật. Writer chỉ được sửa thư mục nháp, điều phối hợp nhất sau kiểm.
+
+## Kế hoạch cũ — lịch sử của bản HTML40trang
+
+Không áp phạm vi triển khai/xuất bản trong phần cũ dưới đây cho yêu cầu lập dàn bài hiện tại.
+
 # Kế hoạch Bài giảng 04 — Tối ưu không ràng buộc và ràng buộc đẳng thức
 
 ## 1. Mục tiêu, phạm vi và đối tượng

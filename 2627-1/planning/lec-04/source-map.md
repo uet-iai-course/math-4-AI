@@ -1,3 +1,87 @@
+# Phân tích và ánh xạ nguồn — Bài giảng 04
+
+## Bản lập kế hoạch 2026-09-24
+
+Phần này cùng outline.md, storyboard.md và math-spec.md điều khiển bản46trang mới. Phần danh mục cũ cuối tệp là lịch sử của HTML40trang, không được dùng để khôi phục ví dụ cũ hoặc suy ra đã kiểm định bản mới. Phạm vi chỉ lập dàn bài, chưa thay đổi HTML, ghi chú hay bài tập công khai.
+
+## Kiểm kê và vai trò nguồn
+
+| Mã | Tài liệu, tác giả/đơn vị, năm | Vị trí đã đọc và đường dẫn | Vai trò và trạng thái |
+|---|---|---|---|
+| DC | Đề cương chính thức UET.AI2012; Trường Đại học Công nghệ | `sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx`; bảng6 về tiên quyết/thời lượng, bảng25 buổi4 | Nguồn quyết định LLO6–10/CLO1,2, phạm vi và2LT+1BT; đã trích văn bản từ DOCX. Không suy niên bản chỉ từ tên tệp |
+| M16 | MIT6.079, Fall2009; Stephen Boyd, Pablo Parrilo; bộ bài16 dùng hệ slide Boyd–Vandenberghe | `sources/b9e5d6e835bcd8071edc67771e5362e7_MIT6_079F09_lec16.pdf`; toàn bộ10–1 đến10–30, PDF31trang kể cả trang giấy phép | Mẫu nội dung/thứ tự và tham chiếu thị giác; đã đọc toàn bộ văn bản, xem trực tiếp hình10–9. Hai tệp lecture16-unconstrained tương ứng là bản trùng, không tính là nguồn độc lập |
+| M17 | Cùng khóa MIT; bộ bài17 | `sources/4c428302acfe82bee62cf037829a8abd_MIT6_079F09_lec17.pdf`; toàn bộ11–1 đến11–19, PDF20trang kể cả giấy phép | Dùng sau M16; đã đọc toàn bộ văn bản và xem trực tiếp11–7; nguồn hệ KKT và hai chế độ Newton |
+| BV | Stephen Boyd, Lieven Vandenberghe; *Convex Optimization*,2004; giáo trình | `sources/bv_cvxbook.pdf`; chương9 trang in457–520, chương10 trang521–560; PDF471–574 | Kiểm phát biểu/giả thiết và thuật toán, đặc biệt§9.2,9.4,9.5.3,9.6,10.2,10.3; đây là sách, không ghi là slide |
+| ST | Stanford EE364a; Boyd và Vandenberghe; hệ slide gốc | [Danh mục chính thức](https://web.stanford.edu/class/ee364a/lectures.html), [PDF chính thức](https://web.stanford.edu/class/ee364a/lectures/lectures_hd.pdf); chương10–11, PDF214–262; xem trực tiếp PDF227, nhãn10–14 | Đối chiếu cách diễn giải và bố cục; PDF301trang. Niên khóa của bản này chưa xác minh; metadata tạo PDF2015 không tự là niên khóa. Không tái sử dụng ảnh trong bộ bài |
+| VN | `sources/Chương 5.pdf`, `sources/Chương 5phần 1.pdf`; tác giả/niên bản chưa xác minh | Văn bản chương5 và kiểm kê bản rút gọn; các bản chương6 là bản quét ít trang, không đủ OCR để làm nguồn phát biểu | Bổ sung thuật ngữ/kiểm kê; không ưu tiên trên DC/BV, không trích mệnh đề chưa xác minh |
+| TPL | Mẫu kho học phần | `2526-2-another-course/lecture-template.html` và CSS tương ứng | Chỉ kế thừa cấu trúc/giao diện; không sao chép thời lượng hay nội dung môn khác. Runtime sau này đặt tại2627-1 theo AGENTS.md |
+| VD1–3 | Ví dụ sư phạm tự xây dựng trong math-spec.md | Dữ kiện, phép tính và phép thế đã kiểm; không phải nguồn ngoài | Thay số để dễ phân biệt vai trò; không gán số mới cho MIT, Stanford hoặc bộ dữ liệu thực nghiệm |
+
+Đã bỏ qua tệp `._*`. Danh mục nguồn MIT đã có mục M16,M17 trong `sources/MIT/README.md`; không tải thêm tài nguyên MIT và không tạo bản sao. URL nguồn: [MIT bài16](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec16/), [MIT bài17](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/resources/mit6_079f09_lec17/). Đã đọc [điều khoản MIT](https://ocw.mit.edu/pages/privacy-and-terms-of-use/); CC BY-NC-SA không mặc nhiên bao phủ tài sản bên thứ ba. Lần này chỉ lập đặc tả hình tự dựng, không sao chép ảnh PDF vào trang chiếu.
+
+Bản Stanford gốc tại URL boyd/cvxbook đọc được văn bản qua web nhưng tải trực tiếp bị403; công cụ ảnh web báo Cache miss. Bản chính thức EE364a ở đường dẫn lectures/lectures_hd.pdf tải được vào tệp tạm, xem trang227 bằng raster hóa cục bộ. Quan sát bố cục dưới đây dựa trên ảnh đã xem, không suy từ OCR. Chưa xác minh giấy phép cho việc sao chép toàn bộ slide Stanford; chỉ đối chiếu và dẫn nguồn, không nhập ảnh làm tài sản.
+
+## Đối chiếu ba bộ slide tại hai trường
+
+| Bộ slide và bằng chứng | Quan sát từ tài liệu | Nhận định sư phạm và quyết định |
+|---|---|---|
+| MIT16,10–2 đến10–6;10–9 | Mở bằng mô hình/giả thiết rồi hướng và tìm bước;10–9 đặt công thức trên hai hình đường đi cạnh nhau | Giữ trục lập luận, nhưng đưa VD1 tính tay trước định nghĩa; giữ phép so cạnh nhau chỉ khi cùng dữ kiện, không bê hình nhiều đường sang năm3 |
+| MIT16,10–14 đến10–20;10–24 đến10–27 | Newton có hai cách diễn giải, độ giảm và phân tích; tự điều chỉnh đi sau giới hạn của phân tích cổ điển | Giữ nhu cầu trước định nghĩa tự điều chỉnh; tách mô hình, phép tính, định nghĩa hướng và sai số mô hình thành C01–C04 |
+| MIT17,11–2 đến11–11; ảnh11–7 | Khử rồi Newton khả thi, sau đó không khả thi; trang độ giảm đặt công thức và nhiều hệ quả cùng một trang | Giữ thứ tự chính; tách phép tính trước hệ khối, đặt hai loại phần dư thành trang riêng; nêu rõ độ giảm có ràng buộc khác công thức không ràng buộc |
+| Stanford EE364a, PDF227/10–14 | Một trang Newton đặt công thức hướng phía trên, hai diễn giải ở giữa, hai hình nhỏ phía dưới; dùng ký hiệu nghịch đảo | Chỉ chọn cực tiểu mô hình làm tuyến chính C01–C03; diễn giải tuyến tính hóa được dùng sau cho hệ phần dư. Đưa thao tác giải hệ lên chính, không dạy lập nghịch đảo |
+
+MIT và Stanford ở đây dùng chung hệ nội dung Boyd–Vandenberghe. Hai trường cung cấp căn cứ đối chiếu cách trình bày, không phải hai kiểm chứng độc lập của cùng định lý. Các quyết định “dễ theo dõi hơn” là phán đoán sư phạm của người soạn, chưa phải kết quả thực nghiệm về sinh viên.
+
+## Khái niệm, tiên quyết và lựa chọn dẫn nhập
+
+Đồ thị phụ thuộc: tích vô hướng/đạo hàm → hướng giảm → tìm bước; hướng giảm + chuẩn → giảm dốc nhất; chuẩn bậc hai + Hessian + giải hệ → Newton; mô hình sai số + đạo hàm bậc ba → tự điều chỉnh; Newton + kerA/KKT → Newton khả thi; tuyến tính hóa hệ + hai phần dư → Newton không khả thi. Khái niệm chuẩn đối ngẫu được giới thiệu tối thiểu tạiB03; không dùng trước B02 để giải thích bằng số. KKT được nhắc ởP03, hệ mô hình được dẫn lại ởE05–E06.
+
+| Cụm | Phương án đã cân nhắc | Lựa chọn và lý do | Kết quả dùng tiếp |
+|---|---|---|---|
+| Hướng và bước | Định nghĩa trước; hoặc thử các hướng cùng gradient rồi định nghĩa | A01–A03 đặt dữ kiện trước vì tích vô hướng đã là tiên quyết; A04 mới đặt tên và bảo đảm cục bộ | D và t được tách trước Armijo |
+| Chuẩn | Liệt kê chuẩn đối ngẫu; hoặc đổi cầu đơn vị trên cùng g | B02 so hai tập đơn vị rồi B03 định nghĩa; giảm số khái niệm mới xuất hiện đồng thời | Wd=-g chuẩn bị Hd=-g |
+| Newton | Bắt đầu từ nghiệm của f′; hoặc cực tiểu mô hình bậc hai | Chọn mô hình vì chuyển nguyên vẹn sang ràng buộc; tuyến tính hóa dùng sau ởE10 | Cùng q,g,H,d được dùng cho hệ KKT |
+| Tự điều chỉnh | Phát biểu tensor ngay; hoặc tỷ số đạo hàm trên hàm log đã biết | D02 lấy thêm một đạo hàm của VD2 rồi khái quát qua đường cắt | Kiểm mọi điểm và phân biệt điều kiện/nguồn gốc bảo đảm |
+| Khử và Newton khả thi | Hệ khối trước; hoặc phép thế một biến và kiểm hướng giữ tổng | E03–E05 tạo nhu cầu và các hàng phương trình trước E06 | Không nhầm phần dưới bằng0 với không có ràng buộc |
+| Newton phần dư | Ghép công thức vào hệ cũ; hoặc tính hai phần dư trên điểm chưa khả thi | E08–E09 tính và giải cụ thể; E10 tổng quát | Giữ rd khác g và Δν khácη, truyền sang mô hìnhAI |
+
+Hàm tự điều chỉnh là thuộc tính đạo hàm, không phải tên khác của quay lui. Bài này phải giảng thực chất ràng buộc đẳng thức theo LLO9–10; không được lược thành một trang so sánh Newton/gradient. Hai lỗi này xuất hiện trong nháp writer và đã bị bác, không nhập vào dàn bài.
+
+Ví dụ thay thế đã cân nhắc: hàm bậc hai đối xứng cho số dễ nhưng hai thành phần gradient trùng; một ví dụ hai biến có tích chéo tạo thêm phép khử mà không cần cho LLO; φ tại1/2 hoặc1/3 làm các đại lượng dẫn xuất trùng vai trò. Chọn VD1 chéo, VD2 tại1/4, VD3 tổng14 để giữ phép tính ngắn và phân biệt đại lượng. Những trùng số có cấu trúc được giữ và giải thích trong math-spec.md.
+
+Danh mục định nghĩa, mệnh đề, thuật toán, giả thiết và mức chứng minh HT1–HT13 nằm trong math-spec.md; bản đồ sáu bước và phép kiểm mỗi cụm nằm trong storyboard.md. Không tạo analysis.md thứ hai vì source-map.md đã làm vai trò phân tích tương đương. Thực hành nằm trong từng cụm để kiểm ngay thao tác cần học; hoạt động tổng hợp tạiZ02, bài giao dự kiến tạiZ03.
+
+## Ánh xạ toàn bộ mẫu theo thứ tự
+
+| Mẫu, trang in = chỉ số trang PDF | Quyết định | Đích mới | Lý do |
+|---|---|---|---|
+| M16 10–1 | gộp | P01 | Gộp bản đồ hai bộ nguồn thành một tuyến |
+| M16 10–2 đến10–4 | sửa/tách | P02,A01,B05,C06 | Đưa nhu cầu trước giả thiết; giữ giả thiết đúng tại bảo đảm sử dụng nó |
+| M16 10–5 đến10–6 | tách | A02–A07 | Tách hướng/độ dài và vòng thử có bảng số |
+| M16 10–7 đến10–8 | sửa | B01,B05 | Quỹ đạo minh họa bước cố định được ghi rõ; không dùng phân số dài của tìm bước chính xác |
+| M16 10–9 đến10–10 | bỏ khỏi tuyến trực tiếp | ghi chú C06, đọc thêmBV | Nhiều đường/quy mô lớn chưa cần để tính được một bước; không coi hình nguồn là thực nghiệm của bài này |
+| M16 10–11 đến10–13 | tách/sửa | B02–B06 | Giữ chuẩn và tiền điều kiện; ví dụ số trước ký hiệu tổng quát |
+| M16 10–14 đến10–17 | tách | C01–C05 | Mỗi trang một bước: mô hình, tính tay, hệ, độ giảm, thuật toán |
+| M16 10–18 đến10–20 | gộp | C06; đọc thêmBV§9.5.3 | Giữ giả thiết và kết luận, phác thảo chứng minh thay chi tiết đại số |
+| M16 10–21 đến10–23 | sửa/bỏ hình nguồn | C07–C08 | Thay minh họa hội tụ bằng ví dụ phi bậc hai có kiểm sai số thật |
+| M16 10–24 đến10–28 | sửa/tách | D01–D05 | Giữ nhu cầu/định nghĩa; dùng cùngφ và phản ví dụ -log |
+| M16 10–29 đến10–30 | gộp | C05, ghi chúE07 | Giữ giải hệ, chi phí và cấu trúc; không mở phần kỹ thuật mới |
+| M16 PDF31 giấy phép | giữ trong hồ sơ nguồn | nguồn/ghi công | Không làm trang nội dung |
+| M17 11–1 | gộp | P01 | Bản đồ chung |
+| M17 11–2 đến11–3 | sửa | E01–E02 | Bắt đầu bằng hướng vi phạm và ví dụ tổng cố định |
+| M17 11–4 đến11–5 | tách | E03–E04 | Phép thế trước cơ sởkerA |
+| M17 11–6 đến11–9 | tách/sửa | E05–E07,E12 | Phép tính, hệ, vòng lặp và phép kiểm riêng; quan hệ với khử giữ trongghi chú |
+| M17 11–10 đến11–11 | tách | E08–E10,E12 | Tách hai phần dư, tính tay, thuật toán và lỗi vế phải |
+| M17 11–12 | gộp | ghi chúE07 | Nêu hệ bất định và cách giải phù hợp |
+| M17 11–13 đến11–15 | bỏ khỏi tuyến chính | đọc thêmBV§10.3 | Tâm giải tích chưa cần cho mục tiêu thao tác một bước |
+| M17 11–16 đến11–17 | bỏ khỏi tuyến chính | bài khác theo đề cương | Luồng mạng có cụm chủ đề riêng; tránh thêm mô hình mới |
+| M17 11–18 đến11–19 | bỏ khỏi tuyến chính | đọc thêm | Bất đẳng thức ma trận tuyến tính vượt phạm vi buổi4 |
+| M17 PDF20 giấy phép | giữ trong hồ sơ nguồn | nguồn/ghi công | Không làm trang nội dung |
+
+## Phần lưu vết trước 2026-09-24 — chỉ mô tả bản HTML cũ
+
+Các bảng dưới đây giữ để truy nguyên công việc trước. Khi xung đột về số, thứ tự, sốtrang hoặc trạng thái rà soát, bản lập kế hoạch phía trên có ưu tiên cho lần sửa tiếp theo; chưa được coi là đã triển khai.
+
 # Đặc tả nguồn và mẫu Bài giảng 04 — Tối ưu không ràng buộc và ràng buộc đẳng thức
 
 ## 1. Phạm vi đã khóa

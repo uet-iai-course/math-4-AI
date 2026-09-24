@@ -1,3 +1,51 @@
+# Rà toán học Bài giảng04
+
+## Bản lập kế hoạch 2026-09-24
+
+Đã kiểm 33 phép tính/cấu trúc bằng phân số chính xác và phép thế hệ. Kết quả theo từng phép:
+
+| Kiểm tra | Kết quả | Trạng thái |
+|---|---|---|
+| VD1 f0 | `62` | đạt |
+| VD1 point 1 | `(Fraction(-4, 1), Fraction(-24, 1))` | đạt |
+| VD1 objective 1 | `2040` | đạt |
+| VD1 Armijo RHS 1 | `-20` | đạt |
+| VD1 accept 1 | `False` | đạt |
+| VD1 point 1/2 | `(Fraction(-1, 1), Fraction(-10, 1))` | đạt |
+| VD1 objective 1/2 | `703/2` | đạt |
+| VD1 Armijo RHS 1/2 | `21` | đạt |
+| VD1 accept 1/2 | `False` | đạt |
+| VD1 point 1/4 | `(Fraction(1, 2), Fraction(-3, 1))` | đạt |
+| VD1 objective 1/4 | `255/8` | đạt |
+| VD1 Armijo RHS 1/4 | `83/2` | đạt |
+| VD1 accept 1/4 | `True` | đạt |
+| VD1 g squared | `820` | đạt |
+| VD1 Newton decrement squared | `124` | đạt |
+| VD2 derivative | `-3` | đạt |
+| VD2 Hessian | `16` | đạt |
+| VD2 third | `-128` | đạt |
+| VD2 step | `3/16` | đạt |
+| VD2 next | `7/16` | đạt |
+| VD2 decrement squared | `9/16` | đạt |
+| VD2 model gap | `9/32` | đạt |
+| VD3 optimum F | `140` | đạt |
+| VD3 initial feasible F | `623/2` | đạt |
+| VD3 feasible direction norm | `343` | đạt |
+| VD3 feasible KKT | `(-6, -55, 0)` | đạt |
+| VD3 infeasible KKT | `(-6, -44, 5)` | đạt |
+| VD3 updated primal | `(10, 4)` | đạt |
+| VD3 updated dual | `-20` | đạt |
+| VD3 reduced curvature | `7` | đạt |
+| Slide count | `46` | đạt |
+| Lecture periods | `200` | đạt |
+| Exercise periods | `100` | đạt |
+
+Đã kiểm riêng phi: sai số thật tại1/4 ≈0.636294, giảm một bước≈0.372116, giảm mô hình9/32; không đồng nhất. Báo cáo worker ban đầu nhầm hướng gradient với Newton và dùng -40 thay -44 ở hệ phần dư bị bác bằng phép thế. Báo cáo mới và quyết định cuối nằm ởreview-log.md.
+
+## Lịch sử trước 2026-09-24
+
+Phần dưới là kết quả của bản HTML40trang cũ; không dùng để chứng nhận bản mới.
+
 # Kiểm toán ví dụ và bài tập Bài giảng 04
 
 ## 1. Phạm vi và kết luận
@@ -223,3 +271,10 @@ nên $z^*=1/5$ và $x^*=(4/5,1/5)^T$. Tham số hóa trong `source-map.md` hợp
 | Chặn bàn giao nếu sai | Kích thước KKT | Giữ $x,\Delta x,r_d\in\mathbb R^2$, $\nu,\eta,\Delta\nu,r_p\in\mathbb R$, $A\in\mathbb R^{1\times2}$ và hệ $3\times3$. |
 
 Không có số nào trong Mục 6–7 cần sửa trước khi chuyển sang outline và storyboard.
+
+
+## Kiểm toán bản triển khai 46 trang — 2026-09-24
+
+Đối chiếu HTML, ghi chú và 8 bài tập với đặc tả. Các phép tính được kiểm bằng phân số chính xác và thế hệ; reviewer toán học độc lập cũng tính lại và xác nhận. Armijo trả bước đầu tiên $1/4$, giá trị $255/8$, ngưỡng $83/2$. Newton bậc hai cho $\delta_N^2=124$, giảm mô hình $62$. Với hàm log tại $1/4$: $\delta_N^2=9/16$, giảm mô hình $9/32$, sai số thật $\log4-3/4$ và giảm một bước $\log(7/4)-3/16$ được giữ riêng. Hệ khả thi cho $(d,\eta)=((7,-7),-20)$; hệ phần dư cho $r_d=(6,44)$, $r_p=-5$, $(d,\Delta\nu)=((9,-4),-24)$. Mô hình học giữ ràng buộc $Aw=b$ với $A=[1\;1]$, $b=14$; không đổi ký hiệu $A$ thành Hessian.
+
+Ghi chú giữ chứng minh mở rộng và chuyển các ví dụ cũ sang bộ số mới. Bài tập phân biệt hướng đơn vị với hướng không chuẩn hóa, hệ số cong với độ dài bước, nhân tử mô hình với hiệu chỉnh nhân tử. Không suy tồn tại nghiệm từ tính tự điều chỉnh, không đồng nhất giảm mô hình với sai số thật. Kiểm tra KaTeX trên HTML và hai tài liệu không phát hiện lỗi công thức.
