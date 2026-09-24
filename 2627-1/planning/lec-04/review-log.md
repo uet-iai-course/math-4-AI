@@ -1,5 +1,66 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Đồng bộ học liệu với bộ trang chiếu đã sửa — 2026-09-25
+
+Người dùng làm rõ rằng ghi chú bài giảng và bài tập phải đi cùng mạch của bộ trang chiếu mới. Các kiểm tra tệp, checksum và liên kết của lần trước chỉ chứng minh tài liệu mở được; chúng chưa chứng minh thứ tự suy luận trong học liệu đã khớp với trang chiếu. Đợt này sửa trực tiếp hai Markdown công khai và đồng bộ bản đóng gói cho chế độ mở trực tiếp.
+
+Bộ trang chiếu làm chuẩn gồm 46 trang, bảy mạch; HTML giữ checksum SHA-256 `452b7abf30ef50a9c401e55e6ed566515977fc943691a938b4a9d4541c58c7d3`. Không thay thứ tự hoặc nội dung trang chiếu trong đợt sửa học liệu này. Chỉ mục đã có ba liên kết đúng tới bộ trang chiếu, ghi chú và bài tập; các liên kết này được kiểm bằng thao tác mở thật.
+
+### Quyết định nội dung và ánh xạ
+
+| Mạch trang chiếu | Thay đổi trong ghi chú | Bài tập đi kèm |
+|---|---|---|
+| Điều kiện KKT và nhiệm vụ tính | Nhắc lại đúng bài hồi quy có ràng buộc của Bài 03; phân biệt mục tiêu nguyên thủy với hàm Lagrange và vai trò nhân tử $\lambda$. | Tiên quyết dùng trong các bài sau. |
+| Hướng giảm, bước và thước đo | Đưa $Q_I$ và phép suy ra $d=-g$ trước hướng giảm và Armijo. Với chuẩn $W$, nêu nhu cầu, lập bài con, dùng đủ bốn nhóm KKT, giải hướng đơn vị, nhận diện chuẩn đối ngẫu rồi mới đổi độ dài. Chuyển chứng minh và bảo đảm tốc độ xuống phần mở rộng. | Bài 1–2 giữ nội dung đúng và bộ số của trang chiếu. |
+| Newton không ràng buộc | Mở bằng $\varphi(s)=s-\log s$ tại $1/4$; lập $Q_H$, suy ra $16d=3$, kiểm gradient thật tại $7/16$, rồi khái quát hệ Newton và phân biệt ba đại lượng giảm. Ví dụ bậc hai đặt sau để đối chiếu; ba chứng minh mở rộng nằm sau phần diễn giải chính. | Bài 3 là ví dụ $\varphi$, yêu cầu tự lập mô hình và lấy đạo hàm; Bài 4 mới chứng minh kết quả tổng quát. |
+| Newton khả thi và khử biến | Cho thấy bước bỏ ràng buộc $(-16,2)$ từ $(16,-2)$ phá tổng bằng $14$, rồi suy ra $Ad=0$ trước Lagrange và hệ khối. | Bài 5 yêu cầu tự lập $L_m$, lấy đạo hàm theo $d,\eta$, xếp và giải hệ. |
+| Newton phần dư | Giữ phần E đã đúng với trang chiếu. | Bài 6 giữ nguyên. |
+| Tính tự điều chỉnh và cận sai số | Giữ phần F, gồm giả thiết, cận theo $\delta_N$ và phản ví dụ về sự tồn tại nghiệm. | Bài 7 giữ nguyên. |
+| Tổng hợp và mô hình học | Giữ phần G và sự phân biệt nhân tử với hệ số chính quy hóa. | Bài 8 giữ nguyên. |
+
+Cả hai tài liệu có bảng đọc kèm bảy mạch với liên kết thật `#/1/1` đến `#/7/1`, tên phần dễ đọc và số bài tập tương ứng. Thêm liên kết hai chiều giữa ghi chú và bài tập. Không đưa mã trang nội bộ lên học liệu. Giữ nguyên từng byte 14 khối chứng minh; các phần E–G của ghi chú và nội dung Bài 1, 2, 6, 7, 8 được bảo toàn. Bài 4 chỉ đổi số, vị trí và cách viết thuật ngữ đã được giới thiệu ở Bài 3.
+
+### Nguồn tác tử, lỗi và phân xử khi hợp nhất
+
+Các lượt hợp lệ dùng `requested_model = observed_model = z-ai/glm-5.3-flash`, `provider = OpenRouter`, `finish_reason = stop`, được kiểm từ metadata cầu nối. Planner: 29,8 giây; reader: 168,2 giây. Reader cung cấp ánh xạ 46 trang và tám bài nhưng điều phối viên không chấp nhận các nhãn `keep` làm bằng chứng thứ tự đã đúng; phạm vi sửa được xác định lại bằng nội dung thật của trang chiếu và Markdown.
+
+Writer toàn ghi chú gặp lỗi `RuntimeError: OpenRouter request exceeded 300s wall timeout`; không có đầu ra, không tính đạt. Phục hồi bằng các lượt nhỏ: phần B (157,8 giây), phần C ban đầu (103,9 giây), A/D và chỉnh B (192,8 giây), viết lại phần diễn giải chính C (69,6 giây), bài tập ban đầu (38,1 giây), bốn đoạn bài tập cần sửa (20,2 giây). Tất cả lượt phục hồi có metadata hợp lệ; tính hợp lệ runtime được tách khỏi việc chấp nhận nội dung.
+
+- Bản C chỉ chuyển đoạn bị bác vì chưa suy ra $16d=3$, còn dùng ký hiệu cũ trong phần chính và làm dính văn bản vào tiêu đề. Bản viết lại cung cấp phép suy ra đầy đủ; ba mục chứng minh được ghép nguyên văn theo thứ tự đồng nhất mô hình, bất biến affine khả nghịch, hội tụ cục bộ.
+- Lượt A/D có hai anchor lệch xuống dòng; điều phối viên đối chiếu đúng đoạn gốc và áp lại cơ học. Đây không phải lỗi dịch vụ hoặc thiếu câu nguồn. Lượt C viết lại có một cặp dấu nháy chưa escape trong JSON; chỉ sửa lớp mã hóa để đọc, giữ bản gốc và nội dung được giải mã.
+- Điều phối viên sửa lỗi hồi quy bị cộng hạng $\lambda\|w\|^2$ hai lần về đúng mục tiêu nguyên thủy và hàm Lagrange; sửa quan hệ cực tiểu/cực đại trong chuẩn đối ngẫu bằng tính đối xứng của quả cầu. Sửa cách nói về độ dời so với điểm mới, giả thiết so với kết luận hội tụ, và dùng $\alpha\in(0,1/2)$, $\beta\in(0,1)$ nhất quán.
+- Bản bài tập chỉ đổi vị trí mà chưa thay yêu cầu suy ra bị bác một phần. Writer riêng sửa đúng bốn đoạn đề, gợi ý, lời giải của Bài 3 và đề Bài 5. Điều phối viên sửa bảng đọc kèm, giới thiệu thuật ngữ ở lần xuất hiện đầu tiên và nối ký hiệu $d_N$ sang các câu sau.
+
+Bằng chứng chi tiết được lưu trong `openrouter-mcp/tmp/lec04-materials-slide-alignment/` (scratch nội bộ): prompt, raw output, log runtime, manifest, diff, bản nháp bị bác và các quyết định hợp nhất. Không dùng các lời tự nhận “đã đồng bộ” của writer làm kết luận nghiệm thu.
+
+### Rà soát độc lập và kiểm định học liệu
+
+Năm vai nhận bản chụp `alignment-v1` của hai Markdown thật, cùng các đoạn trang chiếu liên quan. Phạm vi là phần A–D của ghi chú, Bài 3–5, hai bảng đọc kèm và các ranh giới liên quan; phần không đổi được ghi rõ thay vì coi việc lược bằng chứng là thiếu nội dung. Các công thức và chứng minh cần cho rà toán được gửi đầy đủ. Không dùng năm lượt này để tuyên bố rà lại hình hoặc toàn bộ bộ trang chiếu không đổi.
+
+| Vai | Runtime hoàn tất | Vấn đề và quyết định của điều phối viên |
+|---|---:|---|
+| Sinh viên | 152,5 giây | Hai ý kiến về phần mở rộng: không nhận đề nghị đưa chuẩn bất kỳ và cận bước $1/L$ trở lại phần chính, vì phần chuẩn bậc hai đã đủ cho Bài 2 và trang chiếu tương ứng. Nhận sửa nhẹ câu dẫn để nêu đủ phạm vi mở rộng và quan hệ giữa chuẩn bậc hai với chuẩn bất kỳ. |
+| Chuyên gia | 223,4 giây | Không nhận hai đề nghị đổi tên mạch đầu theo tiêu đề một trang hoặc chuyển chuẩn bất kỳ lên phần chính. Bảng nêu tên khái niệm của mạch; liên kết mở đầu thực tế tới trang tiêu đề, không phải trang được reviewer dùng để so tên. Việc phân bố phần mở rộng giữ đúng phạm vi đã duyệt. |
+| Toán học | 43,8 giây, lượt phục hồi | Không phát hiện lỗi có căn cứ. Đã kiểm phép suy ra $Q_I$, KKT chuẩn $W$, quan hệ cực tiểu/cực đại, ví dụ $\varphi$, ba đại lượng giảm, các phép đổi ký hiệu trong chứng minh, ví dụ đẳng thức, hồi quy Bài 03 và đề/gợi ý/lời giải Bài 3–5. |
+| Sư phạm | 106,1 giây, lượt phục hồi | Đề nghị chuyển chuẩn bất kỳ và tốc độ lên phần chính được bác cùng lý do trên. Nhận làm rõ bằng lời rằng biểu thức cực đại hiện có là định nghĩa chuẩn đối ngẫu tương ứng; không đổi công thức hoặc thứ tự. |
+| Mạch trình bày | 94,6 giây | Không nhận đề nghị buộc tên mạch đầu trùng tiêu đề RP01: bảng nêu tên mạch, còn `#/1/1` mở RP00. Reviewer không nêu điểm đứt mạch trong các phần B/C/D và Bài 3–5 được đối chiếu. |
+
+Metadata năm final đều có mô hình và nhà cung cấp đúng, `finish_reason=stop`. Lượt sư phạm đầu kết thúc với `finish_reason=length`, toàn bộ 6.000 token đầu ra là reasoning, lỗi `model returned an empty or incomplete answer after all retries`; không có final, không tính đạt. Lượt toán đầu lỗi `RuntimeError: OpenRouter request exceeded 300s wall timeout`; không tính đạt. Các lượt phục hồi bỏ phần diff cũ lặp lại, giữ nguyên nội dung và giả thiết cần đối chiếu, cùng cầu nối và mô hình. Không có worker toán nào bị hủy hoặc thay bằng tác tử Codex.
+
+Báo cáo sư phạm phục hồi để mảng `slides` rỗng, nên validator cấu trúc đánh không đạt. Điều phối viên giữ nguyên raw và cờ này, xác nhận metadata runtime hợp lệ, rồi chấp nhận báo cáo với ánh xạ vị trí riêng: cả hai mục `evidence` đã nêu rõ `lecture-note.md`, phần B và đoạn cần xét. Không tự thêm mã trang rồi gán cho reviewer; đây là rà Markdown, không phải thay trang chiếu. Quyết định và ánh xạ nằm trong `root-five-review-adjudication.json`.
+
+Tác tử chỉnh sửa riêng hoàn tất sau 19,6 giây, chỉ sửa ba đoạn văn ở phần B theo các ý kiến đã nhận. Điều phối viên bỏ hai ký hiệu nội dòng được thêm ngoài phạm vi và chỉnh câu tiếng Việt; kiểm tự động xác nhận mọi công thức, chứng minh, tiêu đề, liên kết và thứ tự giữ nguyên so với bản đã rà. Lượt kiểm lại mạch sau chỉnh sửa hoàn tất sau 6,7 giây, không có phát hiện; xác nhận đủ ba câu dẫn và ngữ cảnh lân cận. Cả hai lượt có metadata mô hình và nhà cung cấp đúng, kết thúc `stop`. Báo cáo kiểm lại có văn xuôi sau đối tượng JSON, nên bộ đọc JSON nghiêm ngặt báo `ExtraData`; giữ nguyên raw, tách đối tượng và phần văn xuôi thành bằng chứng riêng, không sửa nội dung nhận xét hoặc coi raw đã đạt validator.
+
+Kiểm kỹ thuật trên bản trước ba sửa câu dẫn: **đạt 8/8** lượt nhấp thật từ chỉ mục, gồm hai tài liệu × HTTP/chế độ mở trực tiếp × rộng 1600 px/hẹp 390 px. Có 14 lần nhấp tới bảy đích mở mạch theo hai giao thức và bốn lần nhấp qua lại giữa tài liệu. Không lỗi JavaScript, HTTP, KaTeX, hình hoặc tràn ngang thân trang; mục lục, tám bài, 16 khối gợi ý/lời giải, thao tác Enter và chế độ in đều đạt. Tất cả hộp cuộn được kiểm bằng bàn phím. Cảnh báo ban đầu ở bảng đọc kèm là dương giả của detector: Tab tới liên kết con rồi ArrowRight/ArrowLeft vẫn cuộn bảng đúng trên cả hai giao thức. Chỉ sửa detector, không sửa viewer. Ảnh bổ sung xác nhận chuỗi $Q_H\to Q_H'=0\to16d=3$ và lời giải Bài 3; hình rộng cuộn được tới đầy đủ nhãn.
+
+Bằng chứng kỹ thuật trước sửa câu dẫn có SHA nguồn riêng trong `technical/merged-draft-895498fb-46463984/`. Bản ghi chú được rà lúc đó có SHA-256 `895498fb9e00a67bb4a4933308264372de7781a55bf4ff855511d2c56fadd3b3`; bài tập có SHA-256 `46463984c104e963fadb517a50f2a4b359104b9e8a1dc44d40e780cbea3e0795`.
+
+Kiểm cuối sau chỉnh sửa: **đạt bốn lượt ghi chú mới** trên HTTP và mở trực tiếp, rộng 1600 px và hẹp 390 px; kế thừa bốn lượt bài tập vì nguồn bài tập và chỉ mục không đổi. Ghi chú có 936 công thức được KaTeX xử lý, chín hình, 40 mục lục và bảy phần A–G; 49/49 hộp cuộn dùng được bằng bàn phím trên mỗi giao thức. Bài tập giữ 616 công thức, tám bài, 16 khối gập và các kết quả bàn phím/in đã kiểm. Không lỗi JavaScript, HTTP, KaTeX, hình hoặc tràn ngang thân trang. Bản đồ liên kết không đổi, nên kế thừa 14 lần nhấp đích mạch và bốn lần nhấp chéo đã kiểm, không ghi thành lượt nhấp mới. Đã chạy đồng bộ bản đóng gói và `sync-local-materials.py --check`, đạt 12 tệp.
+
+Hai Markdown cuối đã được ghi vào đúng Design Files của dự án Codex Slides hiện có và đọc lại khớp toàn bộ nội dung. Kiểm giao diện **đạt 2/2 tệp trước và sau tải lại**, đối chiếu đúng đường dẫn đã chọn, nội dung vùng soạn thảo và SHA; không có lỗi JavaScript/HTTP. Dùng Chromium ngoài qua Playwright vì không có Browser trong Codex; không tuyên bố đã kiểm bằng Browser trong Codex hoặc rà lại canvas 46 trang. Lần mở đầu bị hộp giới thiệu kết nối Codex hiện trễ che giao diện; lưu ảnh lỗi, đóng hộp bằng thao tác giao diện và kiểm lại đạt, không thay xác thực hay nội dung dự án. Bằng chứng cuối nằm trong `technical/final-caa241e1-46463984/`, gồm audit, báo cáo, ảnh và manifest.
+
+SHA-256 cuối: ghi chú `caa241e153c452fb241daabb86efcfb77f8c00213d2165e47fc171b2e701e402`; bài tập `46463984c104e963fadb517a50f2a4b359104b9e8a1dc44d40e780cbea3e0795`; bản đóng gói `aea36228a79bf1495bb70b190015846d1a9ff006abd8d24ff65b681d9fc02e68`. HTML và chỉ mục giữ nguyên. Phạm vi commit gồm hai Markdown, bản đóng gói và nhật ký này.
+
 ## Trạng thái triển khai ngày 2026-09-25
 
 Người dùng đã phê duyệt đầy đủ bản đề xuất KKT và yêu cầu triển khai, đồng bộ tài liệu, kiểm định, commit riêng rồi push upstream hiện tại. Phần này ghi lần triển khai mới; các báo cáo proposal và các bản cũ bên dưới chỉ là lịch sử, không dùng làm bằng chứng HTML mới đã đạt.

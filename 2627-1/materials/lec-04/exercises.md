@@ -2,6 +2,20 @@
 
 Bài tập bám theo bài giảng 04: hướng giảm và quay lui Armijo, hướng dốc nhất theo chuẩn $W$, Newton không ràng buộc, ví dụ hàm log, phương pháp khả thi và khử ràng buộc đẳng thức, Newton phần dư, tính tự điều chỉnh và vận dụng vào mô hình học. Mỗi bài có đủ dữ kiện ngay trong đề; các bộ số là ví dụ sư phạm tự xây dựng. Nguồn cơ chế toán: Boyd–Vandenberghe, *Convex Optimization* (2004), chương 9 (tr. 457–520) và chương 10 (tr. 521–560), [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/); MIT 6.079, bài giảng 16 và 17, [MIT 6.079, Fall 2009](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/). Hãy tự làm phép tính trước khi mở lời giải.
 
+**Đọc cùng bộ trang chiếu.** Bộ trang chiếu gồm bảy mạch, mở đầu bằng **điều kiện Karush–Kuhn–Tucker (KKT)** và nhiệm vụ tính của nó. Bảng dưới dẫn tới trang mở đầu từng mạch và chỉ bài tập tương ứng.
+
+| Mạch | Mở phần | Ghi chú | Bài tập |
+| --- | --- | --- | --- |
+| A. Điều kiện KKT và nhiệm vụ tính | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/1/1) | A | — |
+| B. Hướng giảm, bước và thước đo | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/2/1) | B | Bài 1, Bài 2 |
+| C. Newton không ràng buộc | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/3/1) | C | Bài 3, Bài 4 |
+| D. Newton khả thi và khử biến | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/4/1) | D | Bài 5 |
+| E. Newton phần dư từ điểm chưa khả thi | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/5/1) | E | Bài 6 |
+| F. Tính tự điều chỉnh và cận sai số | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/6/1) | F | Bài 7 |
+| G. Tổng hợp và chuyển giao vào mô hình học | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/7/1) | G | Bài 8 |
+
+Đọc phần giải thích và các chứng minh trong [ghi chú bài giảng](material-viewer.html?doc=materials/lec-04/lecture-note.md&deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html).
+
 ## Bài 1 — Hướng gradient và quay lui Armijo
 
 ::: exercise
@@ -69,10 +83,33 @@ $$g^Tv=(W^{-1/2}g)^T(W^{1/2}v)\ge-\|W^{-1/2}g\|_2\,\|W^{1/2}v\|_2\ge-\sqrt{g^TW^
 và đẳng thức đúng tại $v$ tìm được, xác nhận tối ưu.
 :::
 
-## Bài 3 — Điều kiện dừng của mô hình Newton
+## Bài 3 — Ba đại lượng giảm
 
 ::: exercise
-**Bài 3 (chứng minh).** Cho $f$ khả vi hai lần trên một miền mở và điểm $x$ trong miền. Đặt $g=\nabla f(x)\ne0$, $H=\nabla^2f(x)\succ0$, với $g,d\in\mathbb R^n$ và $H\in\mathbb R^{n\times n}$. Xét mô hình $q(d)=f(x)+g^Td+\tfrac12 d^THd$. (a) Chứng minh $q$ có nghiệm duy nhất của điều kiện tối ưu và nghiệm đó thỏa $Hd=-g$. (b) Chứng minh rằng với nghiệm $d$ này, $g^Td=-d^THd<0$, tức hướng Newton là hướng giảm. (c) Đặt $\delta_N=\sqrt{d^THd}\ge0$. Chứng minh $q(0)-q(d)=\delta_N^2/2$. (d) Phân biệt điều kiện tối ưu của bài toán mô hình ($Hd=-g$) với điều kiện tối ưu của bài toán gốc $\min f(x)$; cho biết $H\succ0$ được dùng ở chỗ nào.
+**Bài 3 (tính toán).** Cho $\varphi(s)=s-\log s$ trên $s>0$ ($\log$ là logarit tự nhiên), điểm đầu $s^0=1/4$. (a) Tính $\varphi'(s)$, $\varphi''(s)$, từ đó $g$ và $H$ tại $s^0=1/4$. Tự lập mô hình bậc hai $Q_H(d)$ xấp xỉ $\varphi(s^0+d)$ theo độ dời $d$, lấy đạo hàm của $Q_H$ theo $d$, giải điều kiện dừng $Q_H'(d)=0$ để tìm bước $d_N$ và điểm mới $s^1$. (b) Tính $\delta_N$, $\delta_N^2$ và mức giảm dự đoán của mô hình $\delta_N^2/2$; kiểm tra $\varphi'(s^1)$ để thấy $s^1$ chưa tối ưu. (c) Tính sai số thật $\varphi(s^0)-\varphi(1)$, mức giảm thật của một bước $\varphi(s^0)-\varphi(s^1)$, và kiểm tra bước đầy đủ $t=1$ có thỏa Armijo với $\alpha=1/10$ không. (d) Nêu rõ vì sao ba đại lượng ở (b) và (c) không được đồng nhất.
+:::
+
+::: hint
+Dùng khai triển Taylor bậc hai của $\varphi$ quanh $s^0$ theo độ dời $d$ để lập $Q_H(d)$; đạo hàm theo $d$ rồi giải điều kiện dừng để được bước. Chú ý $\delta_N=|g^Td_N|^{1/2}$ không phải bình phương; cận Armijo là $\alpha(-g^Td_N)$. Sai số thật cần giá trị $\varphi(1)=1$.
+:::
+
+::: solution
+(a) $\varphi'(s)=1-1/s$, $\varphi''(s)=1/s^2$. Tại $s^0=1/4$: $g=\varphi'(1/4)=1-4=-3$, $H=\varphi''(1/4)=16$. Mô hình bậc hai theo độ dời $d$:
+$$Q_H(d)=\varphi(1/4)+g\,d+\tfrac12 H d^2=\varphi(1/4)-3d+8d^2.$$
+Vì $H=16>0$, $Q_H$ lồi chặt (còn gọi là lồi nghiêm ngặt) nên điều kiện dừng cho nghiệm duy nhất. Đạo hàm mô hình: $Q_H'(d)=-3+16d$. Giải $Q_H'(d)=0$: $16d=3$, tức $d_N=3/16$. Điểm mới: $s^1=s^0+d_N=1/4+3/16=7/16$.
+
+(b) $g^Td_N=(-3)(3/16)=-9/16$, nên $\delta_N^2=-g^Td_N=9/16$ và $\delta_N=\sqrt{9/16}=3/4$. Chú ý $\delta_N=3/4$ không phải bình phương; đại lượng bình phương là $\delta_N^2=9/16$. Mức giảm dự đoán của mô hình là $\delta_N^2/2=9/32=0{,}28125$. Kiểm tra tối ưu: $\varphi'(7/16)=1-16/7=-9/7\ne0$, nên $s^1$ chưa phải điểm tối ưu.
+
+(c) Vì $\varphi^{\prime\prime}(s)>0$ trên $s>0$ và $\varphi^{\prime}(1)=0$, nghiệm duy nhất là $s^*=1$. Sai số thật tại điểm đầu: $\varphi(1/4)-\varphi(1)=(1/4+\log4)-1=\log4-3/4\approx0{,}636294$. Mức giảm thật của một bước: $\varphi(1/4)-\varphi(7/16)=\log(7/4)-3/16\approx0{,}372116$. Điều kiện Armijo cho bước đầy đủ: cần $\varphi(1/4)-\varphi(s^1)\ge\alpha(-g^Td_N)=\tfrac{1}{10}\cdot\tfrac{9}{16}=\tfrac{9}{160}=0{,}05625$ (không phải $\alpha\cdot 9/32$); vì $0{,}372116\ge0{,}05625$, bước $t=1$ được nhận.
+
+(d) Ba đại lượng đo ba thứ khác nhau: $\delta_N^2/2=9/32$ là giảm dự đoán của mô hình bậc hai; sai số thật $\log4-3/4$ là khoảng cách tới giá trị tối ưu $\varphi(1)=1$; mức giảm một bước $\log(7/4)-3/16$ là lượng $\varphi$ giảm thật sau một lần lặp. Ba số $0{,}28125$, $0{,}636294$, $0{,}372116$ không được đồng nhất; với hàm bậc hai xác định dương, mô hình là hàm thật và bước Newton đầy đủ tới nghiệm, nên ba đại lượng trùng nhau.
+:::
+
+
+## Bài 4 — Điều kiện dừng của mô hình Newton
+
+::: exercise
+**Bài 4 (chứng minh).** Cho $f$ khả vi hai lần trên một miền mở và điểm $x$ trong miền. Đặt $g=\nabla f(x)\ne0$, $H=\nabla^2f(x)\succ0$, với $g,d\in\mathbb R^n$ và $H\in\mathbb R^{n\times n}$. Xét mô hình $q(d)=f(x)+g^Td+\tfrac12 d^THd$. (a) Chứng minh $q$ có nghiệm duy nhất của điều kiện tối ưu và nghiệm đó thỏa $Hd=-g$. (b) Chứng minh rằng với nghiệm $d$ này, $g^Td=-d^THd<0$, tức hướng Newton là hướng giảm. (c) Đặt $\delta_N=\sqrt{d^THd}\ge0$. Chứng minh $q(0)-q(d)=\delta_N^2/2$. (d) Phân biệt điều kiện tối ưu của bài toán mô hình ($Hd=-g$) với điều kiện tối ưu của bài toán gốc $\min f(x)$; cho biết $H\succ0$ được dùng ở chỗ nào.
 :::
 
 ::: hint
@@ -80,7 +117,7 @@ và đẳng thức đúng tại $v$ tìm được, xác nhận tối ưu.
 :::
 
 ::: solution
-(a) Vì $H\succ0$, $H$ khả nghịch, nên hệ $Hd=-g$ có nghiệm duy nhất $d=-H^{-1}g$. Với nghiệm này $\nabla q(d)=g+Hd=0$; hơn nữa $q$ lồi chặt (còn gọi là lồi nghiêm ngặt) vì Hessian $H\succ0$, nên điểm dừng là cực tiểu duy nhất toàn cục của $q$.
+(a) Vì $H\succ0$, $H$ khả nghịch, nên hệ $Hd=-g$ có nghiệm duy nhất $d=-H^{-1}g$. Với nghiệm này $\nabla q(d)=g+Hd=0$; hơn nữa $q$ lồi chặt vì Hessian $H\succ0$, nên điểm dừng là cực tiểu duy nhất toàn cục của $q$.
 
 (b) Nhân $Hd=-g$ trái với $d^T$: $d^THd=-g^Td$, tức $g^Td=-d^THd$. Vì $d\ne0$ (nếu $d=0$ thì $g=0$, mâu thuẫn) và $H\succ0$, ta có $d^THd>0$, suy ra $g^Td<0$.
 
@@ -91,30 +128,10 @@ với $\delta_N=\sqrt{d^THd}\ge0$ theo định nghĩa. Đây là mức giảm d�
 (d) Điều kiện tối ưu của bài toán mô hình là $\nabla q(d)=0$, tức $Hd=-g$, cho nghiệm bước $d=-H^{-1}g$. Điều kiện cần tại nghiệm $x^*$ của bài gốc là $\nabla f(x^*)=0$; trong bài toán lồi trên miền mở lồi, điều kiện này cũng đủ. Giải $Hd=-g$ chỉ giải mô hình tại $x$; không bảo đảm $\nabla f(x+d)=0$ hay tự bảo đảm hội tụ của cả dãy lặp. $H\succ0$ chỉ được dùng để bảo đảm mô hình có cực tiểu duy nhất và $d$ là hướng giảm của $f$ tại $x$; nó không thay thế điều kiện tối ưu của bài toán gốc.
 :::
 
-## Bài 4 — Ba đại lượng giảm
-
-::: exercise
-**Bài 4 (tính toán).** Cho $\varphi(s)=s-\log s$ trên $s>0$ ($\log$ là logarit tự nhiên), điểm đầu $s^0=1/4$. (a) Tính $\varphi'(s)$, $\varphi''(s)$, từ đó $g$, $H$ tại $s^0$ và bước Newton $d_N$, điểm mới $s^1$. (b) Tính $\delta_N$, $\delta_N^2$ và mức giảm dự đoán của mô hình $\delta_N^2/2$; kiểm tra $\varphi'(s^1)$ để thấy $s^1$ chưa tối ưu. (c) Tính sai số thật $\varphi(s^0)-\varphi(1)$, mức giảm thật của một bước $\varphi(s^0)-\varphi(s^1)$, và kiểm tra bước đầy đủ $t=1$ có thỏa Armijo với $\alpha=1/10$ không. (d) Nêu rõ vì sao ba đại lượng ở (b) và (c) không được đồng nhất.
-:::
-
-::: hint
-$\varphi'(s)=1-1/s$, $\varphi''(s)=1/s^2$. Tại $s^0=1/4$: $g=-3$, $H=16$. Bước Newton là $d_N=-g/H$. Chú ý $\delta_N=|g^Td_N|^{1/2}$ không phải bình phương; cận Armijo là $\alpha(-g^Td_N)$. Sai số thật cần giá trị $\varphi(1)=1$.
-:::
-
-::: solution
-(a) $\varphi'(s)=1-1/s$, $\varphi''(s)=1/s^2$. Tại $s^0=1/4$: $g=\varphi'(1/4)=1-4=-3$, $H=\varphi''(1/4)=16$. Bước Newton $d_N=-g/H=3/16$, nên $s^1=s^0+d_N=1/4+3/16=7/16$.
-
-(b) $g^Td_N=(-3)(3/16)=-9/16$, nên $\delta_N^2=-g^Td_N=9/16$ và $\delta_N=\sqrt{9/16}=3/4$. Chú ý $\delta_N=3/4$ không phải bình phương; đại lượng bình phương là $\delta_N^2=9/16$. Mức giảm dự đoán của mô hình là $\delta_N^2/2=9/32=0{,}28125$. Kiểm tra tối ưu: $\varphi'(7/16)=1-16/7=-9/7\ne0$, nên $s^1$ chưa phải điểm tối ưu.
-
-(c) Vì $\varphi^{\prime\prime}(s)>0$ trên $s>0$ và $\varphi^{\prime}(1)=0$, nghiệm duy nhất là $s^*=1$. Sai số thật tại điểm đầu: $\varphi(1/4)-\varphi(1)=(1/4+\log4)-1=\log4-3/4\approx0{,}636294$. Mức giảm thật của một bước: $\varphi(1/4)-\varphi(7/16)=\log(7/4)-3/16\approx0{,}372116$. Điều kiện Armijo cho bước đầy đủ: cần $\varphi(1/4)-\varphi(s^1)\ge\alpha(-g^Td_N)=\tfrac{1}{10}\cdot\tfrac{9}{16}=\tfrac{9}{160}=0{,}05625$ (không phải $\alpha\cdot 9/32$); vì $0{,}372116\ge0{,}05625$, bước $t=1$ được nhận.
-
-(d) Ba đại lượng đo ba thứ khác nhau: $\delta_N^2/2=9/32$ là giảm dự đoán của mô hình bậc hai; sai số thật $\log4-3/4$ là khoảng cách tới giá trị tối ưu $\varphi(1)=1$; mức giảm một bước $\log(7/4)-3/16$ là lượng $\varphi$ giảm thật sau một lần lặp. Ba số $0{,}28125$, $0{,}636294$, $0{,}372116$ không được đồng nhất; với hàm bậc hai xác định dương, mô hình là hàm thật và bước Newton đầy đủ tới nghiệm, nên ba đại lượng trùng nhau.
-:::
-
 ## Bài 5 — Newton khả thi và khử biến
 
 ::: exercise
-**Bài 5 (tính toán).** Xét bài toán $\min_u F(u)$ với $F(u)=\tfrac12(2u_1^2+5u_2^2)$ và ràng buộc đẳng thức $u_1+u_2=14$, tức $A=\begin{bmatrix}1&1\end{bmatrix}$, $b=14$. Điểm xuất phát $u^0=(16,-2)^T$ thỏa $Au^0=b$. (a) Lập mô hình bậc hai $\min_d\; g^Td+\tfrac12d^THd$ với $Ad=0$, viết hệ Newton khả thi dạng khối, rồi giải để tìm bước $d$ và nhân tử $\eta$. Kiểm tra $Ad=0$, tính bình phương độ giảm khả thi $\delta_{eq}^2=d^THd$, so sánh giảm mô hình $\delta_{eq}^2/2$ với giảm thật sau một bước đầy đủ, và cho biết điểm mới cùng giá trị $F$. (b) Đặt $N=(-1,1)^T$ và $\hat u=(14,0)^T$ với $A\hat u=b$, $AN=0$. Viết $u=\hat u+Nz$, lập hàm $\psi(z)=F(\hat u+Nz)$, tìm điểm cực tiểu $z^*$ và đối chiếu $\Delta z=z^*-z^0$ (với $z^0$ từ $u^0=\hat u+Nz^0$) với bước ở câu (a) qua hệ rút gọn $(N^THN)\Delta z=-N^Tg$.
+**Bài 5 (tính toán).** Xét bài toán $\min_u F(u)$ với $F(u)=\tfrac12(2u_1^2+5u_2^2)$ và ràng buộc đẳng thức $u_1+u_2=14$, tức $A=\begin{bmatrix}1&1\end{bmatrix}$, $b=14$. Điểm xuất phát $u^0=(16,-2)^T$ thỏa $Au^0=b$. (a) Tự lập mô hình bậc hai $\min_d\; g^Td+\tfrac12d^THd$ với ràng buộc $Ad=0$; tự lập Lagrange $L_m$ với nhân tử $\eta$, lấy đạo hàm theo $d$ và $\eta$, xếp thành hệ điều kiện tối ưu dạng khối rồi tự giải để tìm bước $d$ và nhân tử $\eta$. Kiểm tra $Ad=0$, tính bình phương độ giảm khả thi $\delta_{eq}^2=d^THd$, so sánh giảm mô hình $\delta_{eq}^2/2$ với giảm thật sau một bước đầy đủ, và cho biết điểm mới cùng giá trị $F$. (b) Đặt $N=(-1,1)^T$ và $\hat u=(14,0)^T$ với $A\hat u=b$, $AN=0$. Viết $u=\hat u+Nz$, lập hàm $\psi(z)=F(\hat u+Nz)$, tìm điểm cực tiểu $z^*$ và đối chiếu $\Delta z=z^*-z^0$ (với $z^0$ từ $u^0=\hat u+Nz^0$) với bước ở câu (a) qua hệ rút gọn $(N^THN)\Delta z=-N^Tg$.
 :::
 
 ::: hint
