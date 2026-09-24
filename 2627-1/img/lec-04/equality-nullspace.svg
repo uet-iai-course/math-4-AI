@@ -1,19 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
-  <title id="title">Hai chế độ Newton với ràng buộc đẳng thức</title>
-  <desc id="desc">Khung trái cho bước Newton từ điểm khả thi một phần hai, một phần hai dọc theo đường x một cộng x hai bằng một đến nghiệm bốn phần năm, một phần năm; hướng thuộc không gian hạt nhân nên A Delta x bằng không. Khung phải cho bước nguyên thủy đối ngẫu từ gốc chưa khả thi đến cùng nghiệm, đồng thời đưa phần dư gốc từ âm một về không và cập nhật nhân tử thêm âm bốn phần năm.</desc>
-  <defs><marker id="greenArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#16706a"/></marker><marker id="orangeArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b44b20"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.head{font-size:24px;font-weight:700;fill:#172033}.label{font-size:18px;fill:#24324a}.small{font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2}.constraint{stroke:#315d92;stroke-width:5}.good{fill:#e9f6f0;stroke:#16706a;stroke-width:2}.warn{fill:#fff1ec;stroke:#b44b20;stroke-width:2}.point{fill:#fff8e6;stroke:#16706a;stroke-width:4}</style></defs>
-  <rect width="1200" height="650" fill="#f3f6fb"/><text class="head" x="600" y="38" text-anchor="middle">Newton–KKT: giữ khả thi hoặc phục hồi khả thi</text>
-  <rect class="panel" x="22" y="62" width="566" height="422" rx="14"/><text class="head" x="305" y="98" text-anchor="middle">Khởi đầu khả thi: bước thuộc ker(A)</text>
-  <line class="axis" x1="72" y1="427" x2="548" y2="427"/><line class="axis" x1="112" y1="462" x2="112" y2="132"/><line class="constraint" x1="112" y1="177" x2="362" y2="427"/>
-  <text class="label" x="372" y="417">x₁+x₂=1</text><text class="small" x="532" y="452">x₁</text><text class="small" x="124" y="148">x₂</text>
-  <circle class="point" cx="237" cy="302" r="9"/><text class="small" x="168" y="282">x⁽⁰⁾=(1/2;1/2)</text><circle class="point" cx="312" cy="377" r="9"/><text class="small" x="324" y="369">x*=(4/5;1/5)</text>
-  <line x1="245" y1="310" x2="304" y2="369" stroke="#16706a" stroke-width="5" marker-end="url(#greenArrow)"/><text class="small" x="150" y="356" fill="#16706a">Δx=(3/10;−3/10)</text>
-  <text class="label" x="305" y="460" text-anchor="middle">AΔx=0 ⇒ A(x+tΔx)=b</text>
-  <rect class="panel" x="612" y="62" width="566" height="422" rx="14"/><text class="head" x="895" y="98" text-anchor="middle">Khởi đầu chưa khả thi: giảm hai phần dư</text>
-  <line class="axis" x1="660" y1="427" x2="1136" y2="427"/><line class="axis" x1="700" y1="462" x2="700" y2="132"/><line class="constraint" x1="700" y1="177" x2="950" y2="427"/>
-  <text class="label" x="960" y="417">x₁+x₂=1</text><text class="small" x="1120" y="452">x₁</text><text class="small" x="712" y="148">x₂</text>
-  <circle cx="700" cy="427" r="9" fill="#fff" stroke="#b44b20" stroke-width="4"/><text class="small" x="712" y="453">x⁽⁰⁾=0</text><circle class="point" cx="900" cy="377" r="9"/><text class="small" x="912" y="367">x*=(4/5;1/5)</text>
-  <line x1="708" y1="425" x2="891" y2="379" stroke="#b44b20" stroke-width="5" marker-end="url(#orangeArrow)"/><text class="small" x="760" y="339" fill="#b44b20">Δx=(4/5;1/5)</text><text class="label" x="895" y="460" text-anchor="middle">rₚ: −1→0, r_d: 0→0</text>
-  <rect class="good" x="22" y="510" width="566" height="108" rx="14"/><text class="head" x="305" y="545" text-anchor="middle">Hệ bước khả thi</text><text class="label" x="305" y="579" text-anchor="middle">[H  Aᵀ; A  0][Δx; η] = −[g; 0]</text><text class="small" x="305" y="605" text-anchor="middle">η=−4/5 là biến phụ; dừng bằng δ_eq²/2.</text>
-  <rect class="warn" x="612" y="510" width="566" height="108" rx="14"/><text class="head" x="895" y="545" text-anchor="middle">Hệ nguyên thủy–đối ngẫu</text><text class="label" x="895" y="579" text-anchor="middle">[H  Aᵀ; A  0][Δx; Δν] = −[r_d; r_p]</text><text class="small" x="895" y="605" text-anchor="middle">Δν=−4/5; dừng khi cả ‖r_d‖₂ và ‖r_p‖₂ đủ nhỏ.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" role="img" aria-labelledby="title desc"><title id="title">Tham số hóa không gian hạt nhân u = û + Nz</title><desc id="desc">û=(14,0), N=(−1,1) nên u(z)=(14−z, z) nằm trọn trên u₁+u₂=14. Điểm đầu ứng với z⁰=−2 cho u⁰=(16,−2); nghiệm ứng với z*=4 cho u*=(10,4). Số gia Δz=6 cho đúng hướng d=NΔz=(−6,6).</desc>
+<defs><clipPath id="plot-area"><rect x="70" y="35" width="542" height="330"/></clipPath><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker></defs>
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,DejaVu Sans,sans-serif;font-size:24px;fill:#263044}.label{font-size:25px;font-weight:600}.small{font-size:21px}</style>
+<rect x="70" y="35" width="542" height="330" fill="none" stroke="#e7e9ef"/>
+<path d="M70.0,35V365" stroke="#e7e9ef"/>
+<text x="70.00" y="393.00" text-anchor="middle" class="small" style="fill:#687080">-3</text>
+<path d="M151.3,35V365" stroke="#e7e9ef"/>
+<text x="151.30" y="393.00" text-anchor="middle" class="small" style="fill:#687080">0</text>
+<path d="M286.8,35V365" stroke="#e7e9ef"/>
+<text x="286.80" y="393.00" text-anchor="middle" class="small" style="fill:#687080">5</text>
+<path d="M422.3,35V365" stroke="#e7e9ef"/>
+<text x="422.30" y="393.00" text-anchor="middle" class="small" style="fill:#687080">10</text>
+<path d="M557.8,35V365" stroke="#e7e9ef"/>
+<text x="557.80" y="393.00" text-anchor="middle" class="small" style="fill:#687080">15</text>
+<path d="M70,365.0H612" stroke="#e7e9ef"/>
+<text x="60.00" y="373.00" text-anchor="end" class="small" style="fill:#687080">-3</text>
+<path d="M70,315.5H612" stroke="#e7e9ef"/>
+<text x="60.00" y="323.50" text-anchor="end" class="small" style="fill:#687080">0</text>
+<path d="M70,233.0H612" stroke="#e7e9ef"/>
+<text x="60.00" y="241.00" text-anchor="end" class="small" style="fill:#687080">5</text>
+<path d="M70,150.5H612" stroke="#e7e9ef"/>
+<text x="60.00" y="158.50" text-anchor="end" class="small" style="fill:#687080">10</text>
+<path d="M70,68.0H612" stroke="#e7e9ef"/>
+<text x="60.00" y="76.00" text-anchor="end" class="small" style="fill:#687080">15</text>
+<path d="M151.300,365.000 L151.300,35.000" fill="none" stroke="#687080" stroke-width="1.5" clip-path="url(#plot-area)"/>
+<path d="M70.000,315.500 L612.000,315.500" fill="none" stroke="#687080" stroke-width="1.5" clip-path="url(#plot-area)"/>
+<text x="341.00" y="422.00" text-anchor="middle" class="label" style="fill:#2f3e7a">u₁</text>
+<text x="8.00" y="24.00" text-anchor="start" class="label" style="fill:#2f3e7a">u₂</text>
+<path d="M70.000,35.000 L612.000,365.000" fill="none" stroke="#2f3e7a" stroke-width="3" clip-path="url(#plot-area)"/>
+<path d="M476.500,282.500 L449.400,266.000" fill="none" stroke="#287444" stroke-width="3" clip-path="url(#plot-area)" marker-end="url(#arrow)"/>
+<text x="400.62" y="279.20" text-anchor="end" class="small" style="fill:#287444">N = (−1, 1)</text>
+<circle cx="584.900" cy="348.500" r="6" fill="#b15a2b" stroke="white" stroke-width="2"/>
+<text x="555.00" y="363.00" text-anchor="end" class="small" style="fill:#b15a2b">z⁰ = −2: (16, −2)</text>
+<circle cx="422.300" cy="249.500" r="6" fill="#287444" stroke="white" stroke-width="2"/>
+<text x="435.85" y="229.70" text-anchor="start" class="small" style="fill:#287444">u* = (10, 4)</text>
+<text x="435.85" y="203.30" text-anchor="start" class="small" style="fill:#287444">z* = 4</text>
+<path d="M584.900,348.500 L422.300,249.500" fill="none" stroke="#b15a2b" stroke-width="4" clip-path="url(#plot-area)" marker-end="url(#arrow)"/>
+<text x="330.00" y="22.00" text-anchor="middle" class="small" style="fill:#b15a2b">Δz = 6 ⇒ d = NΔz = (−6, 6)</text>
+<text x="205.50" y="94.40" text-anchor="start" class="small" style="fill:#2f3e7a">û = (14, 0) tại z = 0</text>
+<circle cx="530.700" cy="315.500" r="5" fill="#2f3e7a" stroke="white" stroke-width="2"/>
 </svg>

@@ -1,6 +1,290 @@
-# Dàn bài Bài giảng 04 — Tối ưu không ràng buộc và ràng buộc đẳng thức
+# Dàn ý Bài giảng 04 — triển khai mạch KKT đã duyệt
 
-## Phạm vi bản lập kế hoạch ngày 2026-09-24
+**Trạng thái ngày 2026-09-25: đã triển khai và kiểm định bản KKT.** Đặc tả hiện hành là 46 trang có mã RP/RG/RN/RE/RR/RS/RZ trong [storyboard.md](storyboard.md), khớp HTML và tài liệu công khai sau các sửa đã ghi trong [review-log.md](review-log.md). Phần cuối mang nhãn “Bản đang triển khai trước đề xuất — lưu để đối chiếu” là lịch sử của bản cũ; không dùng các đánh giá đạt cũ để chứng nhận bản mới. Mục 9 giữ prompt đầy đủ đã được duyệt để truy nguyên phạm vi triển khai.
+
+Căn cứ: KKT thực tế trong [Bài 03](../../lecture-03-doi-ngau-lagrange.html), bản Bài 04 trước sửa, đề cương DOCX chính thức và các mục nguồn nêu dưới. Người dùng đã cho phép worker OpenRouter thực hiện, loại trừ bí mật, và yêu cầu commit/push sau kiểm định.
+
+## 1. Kết luận phân tích và quyết định đã duyệt
+
+Bản trước sửa có các công thức KKT và ví dụ tính đúng, nhưng chưa biến kiến thức Bài 03 thành công cụ để sinh ra phương pháp. Nhiều chỗ cho hướng hoặc hệ phương trình trước rồi kiểm lại; sinh viên chưa thấy cần chọn bài toán con nào, lấy đạo hàm theo biến nào và vì sao hệ đó xuất hiện. Phần giải thích trong ghi chú chưa đủ thay các bước suy luận phải nhìn thấy trên màn chiếu.
+
+Tổ chức **46 trang trong 7 mạch**, theo luận đề: **dùng điều kiện Karush–Kuhn–Tucker (KKT) xác định đích, lập bài toán con hoặc tuyến tính hóa điều kiện đó để tạo bước lặp, rồi kiểm bước và điều kiện dừng**. Số trang là kết quả của gộp nội dung lặp và tách phép suy ra còn thiếu, không phải hạn ngạch giữ bằng bản cũ.
+
+Các quyết định chính đã được duyệt:
+
+1. Đưa KKT của Bài 03 vào mở bài và dùng lại xuyên suốt; phân biệt điều kiện tối ưu của bài gốc với KKT của bài toán con.
+2. Gộp hướng giảm, chọn bước và thước đo thành một mạch. Suy ra hướng gradient và hướng theo chuẩn bậc hai trước khi đưa thuật toán.
+3. Bắt đầu Newton bằng hàm không bậc hai để thấy rõ đây là xấp xỉ; sau đó trình bày cả hai cách suy ra: cực tiểu mô hình và tuyến tính hóa phương trình tối ưu.
+4. Tách Newton khả thi và Newton từ điểm chưa khả thi thành hai mạch. Mỗi hệ ma trận đều có Lagrange hoặc hai dòng tuyến tính hóa đứng trước.
+5. Đưa tính tự điều chỉnh sau hai phương pháp có đẳng thức, trả lời câu hỏi còn mở về cận sai số. Giữ đủ phạm vi LLO7 và thêm một cận có thể tính, thay vì chỉ kiểm đạo hàm.
+6. Giữ ba họ hàm ví dụ hiện tại; đổi riêng điểm đầu khả thi VD3 từ $(3,11)^T$ thành $(16,-2)^T$ để hệ số rút gọn 7 khác số gia 6. Ghi rõ điểm đầu được đổi và các đẳng thức số có chủ ý. Không thay dữ kiện chỉ để làm các số khác nhau trên toàn bài.
+
+## 2. Những điểm bất hợp lý của bản trước sửa
+
+Mã ở cột đầu thuộc HTML trước sửa. Mã bắt đầu bằng R là mã của bản triển khai mới; bảng giữ lại chẩn đoán và truy nguyên.
+
+| Vị trí hiện tại | Bằng chứng và tác động đến người học | Sửa cụ thể |
+|---|---|---|
+| P01–P04 | P03 liệt kê KKT như tiên quyết, P04 kiểm tích vô hướng và hướng khả thi; chưa yêu cầu tái tạo kết quả Bài 03. | RP01–RP04 nhắc đúng S05-03, chuyên biệt hóa KKT rồi kiểm Lagrange và hai phương trình. |
+| P02, A01 | Hai lần đặt ví dụ trước khi vai trò của chúng trong nhiệm vụ tính được xác lập; mở bài chủ yếu là danh sách kỹ thuật. | Gộp dữ kiện vào RG01 và RE01; mở bài nêu khoảng cách giữa chứng nhận nghiệm và tạo ứng viên. |
+| A03, B02–B04 | Hướng âm gradient và vectơ chuẩn hóa được cho trước; công thức $Wd=-g$ thiếu phép chuyển từ bài toán chuẩn đơn vị sang hướng không chuẩn hóa. | RG02 lập $Q_I$; RG08–RG10 viết đủ KKT, giải nhân tử và chỉ ra bước đổi độ dài. |
+| A06, B01, B05 | Lần lượt dùng Armijo, bước cố định $1/4$ và cấu hình $1/L$; khác biệt chủ yếu nằm trong ghi chú. | RG04–RG07 ghi tên cấu hình trên mặt trang; đặt thuật toán hoàn chỉnh trước thí nghiệm giữ bước cố định. |
+| B04, C02 | $W=H=\operatorname{diag}(3,7)$ nên hướng theo thước đo trùng Newton; dễ bị hiểu thành một đẳng thức tổng quát. | RG10 và RN04 ghi đây là lựa chọn có chủ ý cho hàm bậc hai; $W$ cố định không mặc nhiên là $H(x)$. |
+| C01–C03, C07 | Hàm bậc hai cho nghiệm sau một bước; ví dụ không bậc hai xuất hiện muộn. Chưa cho thấy sai lệch của phương trình tối ưu thật sau bước. | RN01 dùng $s-\log s$ ngay đầu, RN03 kiểm $\varphi'(7/16)=-9/7\ne0$. |
+| C04, C05, C07 | Độ giảm Newton được nêu nhưng chưa làm rõ phép tính giảm mô hình trên mặt trang; dễ lẫn giảm một bước, giảm mô hình và sai số tối ưu. | RN04 suy ra $\delta_N^2/2$; RN05 đặt ba phép trừ cạnh giá trị tương ứng; RS03 cung cấp cận thật có giả thiết. |
+| E01–E06 | Nhánh khử biến xuất hiện trước hệ Newton rồi không được nối lại; E05 cho hướng trước khi E06 nêu hệ. | RE03–RE05: bài con → Lagrange → đạo hàm → hệ → giải số. RE06 khử nhân tử từ chính hệ đó. |
+| E06 | Hệ khối được đưa như công thức hoàn chỉnh; thiếu nguồn gốc từng khối và ý nghĩa nhân tử của bài con. | RE04 đặt hai phương trình cạnh ma trận, ghi kích thước và giả thiết khả nghịch. |
+| E08–E10 | Hai phần dư và hệ cập nhật có mặt nhưng thiếu hai dòng tuyến tính hóa; nhận bước theo chuẩn phần dư chưa có lập luận trên mặt trang. | RR02 phân biệt xấp xỉ với đẳng thức chính xác; RR05 chứng minh đạo hàm âm của chuẩn phần dư và cho phản ví dụ dùng $F$. |
+| E05, E09–E10 | Phân biệt $\eta$ và $\Delta\nu$ bằng tên chưa đủ cho cập nhật giảm bước. | RR03 và RR06 dùng $\eta=\nu+\Delta\nu$, $\nu^+=(1-t)\nu+t\eta$. |
+| D01–D05, E01 | Tính tự điều chỉnh ngắt chuỗi xây dựng Newton; tính chất được kiểm nhưng chưa cho một đầu ra định lượng để sử dụng. | Chuyển thành RS01–RS05 sau hai hệ Newton, nối lại RN07 và dùng cận $-\delta-\log(1-\delta)$. |
+| E11, Z01–Z02 | Ứng dụng học máy đến muộn, chưa đối chiếu nhân tử hồi quy Bài 03; tổng kết theo tên phương pháp. | RZ01 tổng hợp cách suy ra; RZ02 yêu cầu tự lập KKT, gradient, Hessian và hai phần dư của mô hình học. |
+
+## 3. Phạm vi, chuẩn đầu ra và nguồn
+
+Đối tượng: sinh viên năm 3. Thời lượng từ đề cương DOCX chính thức: **2 tiết lý thuyết + 1 tiết bài tập**. Không quy đổi sang phút khi chưa có quy định độ dài tiết. Tất cả hoạt động kiểm tra nằm trong tổng này. Các mục tiêu dưới đây gắn với chuẩn đầu ra bài học (LLO) và chuẩn đầu ra học phần (CLO).
+
+| Mục tiêu đề xuất | Liên hệ chuẩn chính thức | Minh chứng |
+|---|---|---|
+| MT1: suy ra hướng gradient, hướng theo chuẩn bậc hai và Newton từ điều kiện tối ưu của bài con | LLO6 / CLO1 | RG11, RN07 |
+| MT2: giải một bước, nhận bước và phân biệt các tiêu chí dừng | LLO8 / CLO2 | RG05–RG06, RN05–RN07 |
+| MT3: dùng tính tự điều chỉnh để kiểm điều kiện của một cận sai số | LLO7 / CLO1 | RS03, RS05 |
+| MT4: tự lập hai hệ Newton có đẳng thức và giải thích các ẩn | LLO9 / CLO1 | RE08, RR07 |
+| MT5: thực hiện và kiểm bước có đẳng thức, chuyển sang mô hình học | LLO10 / CLO2 | RE05, RR04, RZ02 |
+
+Giữ tiên quyết chính thức: Giải tích 1, Xác suất thống kê, Đại số tuyến tính cho kỹ thuật; tiên quyết dùng ngay là gradient, Hessian, hệ tuyến tính và KKT đã học ở Bài 03. Không giả định sinh viên đã học thuật toán đối ngẫu, phương pháp điểm trong hoặc Newton cho đẳng thức phi tuyến.
+
+| Nguồn được chọn | Vai trò, vị trí dùng | Phần kế thừa và thay đổi |
+|---|---|---|
+| `sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx` | Nguồn phạm vi, buổi 4, LLO6–10, CLO1–2, thời lượng và đánh giá | Giữ nội dung và thời lượng; không coi thứ tự liệt kê đề cương là bắt buộc giữ mọi chuyển trang. |
+| HTML Bài 03, S02-04; S05-01–S05-06b; S07-01 | Nguồn tiên quyết đã học thực tế | Tái dùng Lagrange, bốn nhóm KKT, tính đủ trong bài lồi, hồi quy giới hạn chuẩn. |
+| HTML Bài 04 hiện tại | Đối tượng cần sửa, dữ kiện và giao diện hiện hành | Ánh xạ toàn bộ 46 trang trong storyboard; không coi bản hiện tại là mẫu thứ tự bất biến. |
+| Boyd–Vandenberghe (2004), `sources/bv_cvxbook.pdf`, §§5.5.3, 9.4.1, 9.5.1, 9.6.3, 10.2.1, 10.3.1 | Nguồn nội dung, kiểm phép suy ra và giả thiết | KKT; hướng theo chuẩn; hai cách hiểu Newton; cận tự điều chỉnh (9.49), tr. 501–503; hai hệ có đẳng thức. |
+| MIT 6.079, Fall 2009, các tệp lec16 rồi lec17 đã có trong `sources/` | Nguồn bài giảng, so sánh lựa chọn trình bày | Giữ tuyến phương pháp không ràng buộc → có đẳng thức. Chủ ý dời phần tự điều chỉnh sau Newton có đẳng thức và tách các bước suy ra để nối Bài 03. Không tải nguồn mới. |
+| [Bài giảng chính thức Boyd–Vandenberghe–Nobel](https://web.stanford.edu/~boyd/cvxbook/bv_cvxslides.pdf), các mục “Steepest descent”, “Interpretations of Newton step”, “Equality constrained minimization” | Đối chiếu cách lập bài toán con và tuyến tính hóa điều kiện tối ưu | Dùng làm nguồn lập luận, không sao chép bố cục hoặc hình và không gán năm chưa xác minh. |
+| `2526-2-another-course/lecture-template.html` và giao diện hiện tại của học kỳ | Mẫu kỹ thuật, thị giác | Giữ màu, thẻ, lưới, chân trang; chỉ thay phân vùng phù hợp thao tác học. |
+
+Không dùng nguồn về lịch sử hay số liệu thực nghiệm: bài này cần suy luận và phép tính tái tạo được. Các ví dụ VD1–VD3 là ví dụ sư phạm, không phải dữ liệu thực nghiệm. Đối chiếu học liệu đại học được dùng để chọn cách giải thích, không ghép thêm toàn bộ khóa học.
+
+## 4. Cầu nối chính xác với Bài 03
+
+| Kết quả Bài 03 | Phép dùng thực sự ở Bài 04 đề xuất | Vị trí |
+|---|---|---|
+| S02-04: hàm Lagrange, nhân tử đẳng thức tự do dấu | Tự viết Lagrange của bài gốc và của bài con, phân biệt biến $x,u$ với bước $d$ | RP02, RG08, RE01, RE03 |
+| S05-03: bốn nhóm KKT | Bỏ các nhóm không có trong bài gốc không ràng buộc/chỉ đẳng thức; khôi phục đủ bốn nhóm cho bài con có bất đẳng thức chuẩn | RP02, RG09 |
+| S05-05 và S05-05b: lồi + KKT đủ cho tối ưu, không cần Slater để chứng minh tính đủ | Chứng nhận nghiệm của mô hình lồi; không tự gán chứng nhận đó cho điểm mới của hàm phi bậc hai | RG02, RN02–RN03, RE04 |
+| S05-05c: điều kiện chính quy giúp bảo đảm tồn tại nhân tử/KKT cần | $v=0$ thỏa Slater cho bài con chuẩn; $A$ đủ hạng hàng cho bài con đẳng thức | RG09, RE04 |
+| S05-06a: $(X^TX+2\lambda I)w=X^Ty$ | Mẫu quen thuộc “lập Lagrange → đạo hàm → giải hệ”; phân biệt nhân tử $\lambda$ với hệ số điều chuẩn $\rho$ cho trước | RP01, RZ02 |
+| S05-06b: $X=I_2,y=(3,4)^T,\tau=1$, nghiệm $(3/5,4/5)^T$, $\lambda^*=2$ | Nhắc lại đúng ví dụ cũ, không tạo bộ hồi quy mới. Với bài điều chuẩn tương ứng, $\rho=2\lambda^*=4$ chỉ sau khi ghép đúng dữ liệu/nghiệm | Ghi chú RP01, RZ02 |
+
+Quy ước: $g$ trong Bài 04 là vectơ gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$ của Bài 03. $\lambda$ dành cho nhân tử bất đẳng thức Bài 03; $\zeta$ là nhân tử của bài con chọn hướng; $\nu$ là nhân tử bài gốc; $\eta$ là nhân tử bài con; $\Delta\nu$ là số gia. Quy tắc này phải xuất hiện trước chỗ dùng, không chỉ trong ghi chú.
+
+## 5. Các phép suy ra phải hiện trên slide
+
+### 5.1. Điều kiện tối ưu và phần thiết kế thêm
+
+Trong miền mở, hàm khả vi, không có ràng buộc: điều kiện cần là $\nabla f(x^*)=0$; nếu $f$ lồi thì điều kiện này cũng đủ. Với $u\in\mathbb R^n$, $A\in\mathbb R^{p\times n}$, $b,\nu\in\mathbb R^p$, $F$ lồi khả vi và $Au=b$, điều kiện KKT là
+
+$$\nabla F(u^*)+A^T\nu^*=0,\qquad Au^*=b.$$
+
+Chúng mô tả đích cần đạt, chưa quy định cách chọn bước. Tại $x$, đặt $g=\nabla f(x)\in\mathbb R^n$ và **chọn** mô hình theo biến $d\in\mathbb R^n$:
+
+$$Q_B(d)=f(x)+g^Td+\frac12d^TBd,\qquad B=B^T\succ0.$$
+
+KKT không ràng buộc của bài con cho $g+Bd=0$. Chọn $B=I$ được gradient; chọn $B=W\succ0$ được hướng theo thước đo cố định; chọn $B=H(x)\succ0$ được Newton. KKT không tự chọn $B$, cách tìm bước hay định lý hội tụ. Khi tính, giải hệ $Bd=-g$, không lập nghịch đảo tường minh.
+
+### 5.2. Hướng theo chuẩn bậc hai: dùng đủ bốn nhóm KKT
+
+Với $g\ne0$, $W\succ0$, đặt $\|v\|_W=\sqrt{v^TWv}$. Bài con chọn hướng chuẩn hóa:
+
+$$\min_v g^Tv\quad\text{với}\quad v^TWv\le1.$$
+
+Lagrange $L_s=g^Tv+\zeta(v^TWv-1)$ cho
+
+$$g+2\zeta Wv=0,\quad v^TWv\le1,\quad\zeta\ge0,\quad\zeta(v^TWv-1)=0.$$
+
+Bài con lồi, $v=0$ thỏa Slater và tập khả thi compact nên có nghiệm, KKT cần và đủ. Tính đủ đến từ lồi; Slater được dùng cho chiều cần/tồn tại nhân tử. Vì $g\ne0$, phương trình dừng buộc $\zeta>0$, nên điều kiện bù trừ cùng $\zeta>0$ cho ràng buộc hoạt động $v^TWv=1$. Do đó
+
+$$v=-\frac{W^{-1}g}{2\zeta},\qquad 4\zeta^2=g^TW^{-1}g,$$
+$$v=-\frac{W^{-1}g}{\sqrt{g^TW^{-1}g}},\qquad d=\underbrace{\sqrt{g^TW^{-1}g}}_{\|g\|_{W,*}}v=-W^{-1}g.$$
+
+Phải chỉ ra bước đổi độ dài từ $v$ sang $d$; với $g=0$ thì dừng, không chia cho 0. Bài giảng chỉ suy ra công thức trơn này cho chuẩn bậc hai. Định nghĩa giảm dốc nhất theo chuẩn tổng quát đặt trong ghi chú RG08: $v\in\arg\min_{\|v\|\le1}g^Tv$, $\|g\|_*=\max_{\|v\|\le1}g^Tv$, $d=\|g\|_*v$; nhưng không áp công thức đạo hàm này cho chuẩn không trơn.
+
+### 5.3. Newton: hai cách nhìn cùng một hệ
+
+Hessian $H=\nabla^2f(x)\succ0$. Cực tiểu $Q_H$ cho $Hd=-g$. Cũng có thể tuyến tính hóa điều kiện tối ưu:
+
+$$\nabla f(x+d)\approx g+Hd,\qquad g+Hd=0.$$
+
+Dấu xấp xỉ phải giữ trên slide. Với $\varphi(s)=s-\log s$, $s>0$, tại $s=1/4$:
+
+$$g=-3,\quad H=16,\quad d=3/16,\quad s^+=7/16,\quad\varphi'(s^+)=-9/7\ne0.$$
+
+Giải đúng bài con không có nghĩa đã giải xong bài gốc. Định nghĩa $\delta_N=\sqrt{d^THd}\ge0$. Từ $Hd=-g$:
+
+$$\delta_N^2=d^THd=-g^Td=g^TH^{-1}g,\qquad Q_H(0)-Q_H(d)=\frac12\delta_N^2.$$
+
+| Đại lượng khác nhau của cùng VD2 | Phép trừ | Giá trị |
+|---|---|---|
+| Giảm mô hình | $Q_H(0)-Q_H(d)$ | $9/32\approx0{,}28125$ |
+| Giảm thật một bước | $\varphi(1/4)-\varphi(7/16)$ | $\log(7/4)-3/16\approx0{,}37212$ |
+| Sai số tối ưu tại điểm đầu | $\varphi(1/4)-\varphi(1)$ | $\log4-3/4\approx0{,}63629$ |
+
+Không gọi hàng cuối là “sai số mô hình”; không lấy hàng đầu làm cận hàng cuối. Với $\alpha=1/10$, bước đầy đủ thỏa Armijo vì giảm thật lớn hơn $\alpha(-g^Td)=9/160$. Đây là ngưỡng nhận bước từ đạo hàm hướng, không phải giảm mô hình $9/32$.
+
+### 5.4. Newton khả thi: lập Lagrange của bài con rồi xếp khối
+
+Cho $F$ lồi hai lần khả vi liên tục trên miền mở lồi; $u\in\mathbb R^n$, $A\in\mathbb R^{p\times n}$ đủ hạng hàng, $p<n$, $Au=b$, $H=\nabla^2F(u)\succ0$, $g=\nabla F(u)$. Muốn $u+td$ khả thi thì $Ad=0$. Chọn bài con
+
+$$\min_d\ g^Td+\frac12d^THd\quad\text{với}\quad Ad=0.$$
+
+Viết $L_m(d,\eta)=g^Td+\frac12d^THd+\eta^TAd$, $\eta\in\mathbb R^p$ tự do dấu. Lấy đạo hàm theo hai biến:
+
+$$g+Hd+A^T\eta=0,\qquad Ad=0.$$
+$$\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}.$$
+
+Ma trận khối khả nghịch theo giả thiết nhưng không xác định dương; không dùng Cholesky trực tiếp cho toàn ma trận. KKT chứng nhận nghiệm của bài con lồi chặt (còn gọi là lồi nghiêm ngặt). Nhân hàng đầu với $d^T$ và dùng $Ad=0$ được $g^Td=-d^THd<0$ khi $d\ne0$, nên dùng Armijo trên $F$ được.
+
+Với VD3, chọn điểm đầu khả thi mới $u=(16,-2)^T$, $g=(32,-10)^T$, $F(u)=266$. Tọa độ âm hợp lệ vì $u\in\mathbb R^2$ và bài toán không có ràng buộc dấu. Giải
+
+$$2d_1+\eta=-32,\qquad5d_2+\eta=10,\qquad d_1+d_2=0.$$
+
+Thế $d_2=-d_1$, trừ hai phương trình được $7d_1=-42$. Do đó $d=(-6,6)^T$, $\eta=-20$, $\delta_{eq}^2=252$. Bước đầy đủ đến $(10,4)^T$, có giá trị mục tiêu 140. Ví dụ bậc hai giải xong một bước là trường hợp đặc biệt, không là lời hứa cho $F$ tổng quát.
+
+Nếu $u=\hat u+Nz$, $A\hat u=b$, các cột của $N\in\mathbb R^{n\times(n-p)}$ là cơ sở $\ker A$, thì $d=N\Delta z$. Nhân $N^T$ vào hàng đầu khử nhân tử:
+
+$$N^THN\Delta z=-N^Tg.$$
+
+VD3: $\hat u=(14,0)^T$, $N=(-1,1)^T$, $N^THN=7$, $N^Tg=-42$, $\Delta z=6$; được cùng hướng $(-6,6)^T$. Phép khử là cách giải cùng hệ KKT. Đa thức $\psi(z)=196-28z+7z^2/2$ và đại số dài đặt trong ghi chú.
+
+### 5.5. Newton từ điểm chưa khả thi: tuyến tính hóa hai điều kiện KKT
+
+Đặt $r_d=\nabla F(u)+A^T\nu\in\mathbb R^n$, $r_p=Au-b\in\mathbb R^p$, $r=(r_d,r_p)$. Điểm đầu trong miền nhưng có thể $r_p\ne0$. Hai dòng cần hiện trước ma trận:
+
+$$r_d(u+d,\nu+\Delta\nu)\approx r_d+Hd+A^T\Delta\nu,$$
+$$r_p(u+d)=r_p+Ad.$$
+
+Đặt hai biểu thức mô hình bằng 0:
+
+$$\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}r_d\\r_p\end{bmatrix}.$$
+
+Giữ cùng giả thiết $H\succ0$, $A$ đủ hạng hàng. Hàng hai chính xác vì ràng buộc affine. Ma trận giống hệ khả thi, nhưng ẩn thứ hai và vế phải khác. Với bài con mở rộng có $Ad=-r_p$, nhân tử của nó thỏa $\eta=\nu+\Delta\nu$, cả khi điểm đầu chưa khả thi. Sau bước dài $t$:
+
+$$u^+=u+td,\qquad\nu^+=\nu+t\Delta\nu=(1-t)\nu+t\eta,\qquad r_p^+=(1-t)r_p.$$
+
+Chỉ khi $t=1$ mới có $\nu^+=\eta$ và khôi phục đẳng thức chính xác theo số học lý tưởng. Với VD3 tại $u=(1,8)^T$, $\nu=4$: $g=(2,40)^T$, $r_d=(6,44)^T$, $r_p=-5$; giải được $d=(9,-4)^T$, $\Delta\nu=-24$, nên $u^+=(10,4)^T$, $\nu^+=-20$ khi $t=1$.
+
+Vì sao nhận bước theo phần dư: tại điểm đầu khác $u=(0,0)^T$, $\nu=0$, có $F(u)=0<140=F^*$ nhưng $r_p=-14$. Muốn đến nghiệm khả thi, $F$ phải tăng. Với $\Delta=(d,\Delta\nu)$, hệ Newton viết $J_r\Delta=-r$; nếu $r\ne0$ thì
+
+$$\left.\frac{d}{dt}\frac12\|r((u,\nu)+t\Delta)\|_2^2\right|_{t=0}=r^TJ_r\Delta=-\|r\|_2^2,$$
+$$\left.\frac{d}{dt}\|r((u,\nu)+t\Delta)\|_2\right|_{t=0}=-\|r\|_2.$$
+
+Quay lui kiểm miền và tiêu chí chấp nhận $\|r_{new}\|_2\le(1-\alpha t)\|r\|_2$. Vì $0<\alpha<1$ và đạo hàm tại 0 là $-\|r\|_2<-\alpha\|r\|_2$, tồn tại bước dương đủ nhỏ thỏa tiêu chí; không suy ra mọi $t$ đều được nhận. Kiểm dừng riêng $\|r_p\|_2\le\varepsilon_p$ và $\|r_d\|_2\le\varepsilon_d$. Phần dư nhỏ là chứng nhận gần thỏa KKT theo dung sai, không tự là một cận sai số mục tiêu khi chưa có giả thiết/cận bổ sung.
+
+### 5.6. Tính tự điều chỉnh trả lời câu hỏi về sai số
+
+Trong phần này viết gọn $\delta=\delta_N=\sqrt{d^THd}$. Định nghĩa dùng hệ số chuẩn 2: hàm lồi $C^3$ trên miền mở lồi là tự điều chỉnh nếu mọi hạn chế lên đường thẳng thỏa $|h'''|\le2(h'')^{3/2}$. Với $\varphi(s)=s-\log s$, $s>0$, có $\varphi''=1/s^2$, $|\varphi'''|=2/s^3$ nên bất đẳng thức đúng toàn miền; kiểm riêng tại $s=1/4$ không thay chứng minh đó.
+
+**Kết quả để áp dụng, không chứng minh đầy đủ trên slide:** với hàm tự điều chỉnh lồi chặt, Hessian xác định dương, có nghiệm tối ưu trong miền, nếu độ giảm Newton $\delta<1$, thì (BV §9.6.3, (9.49))
+
+$$f(x)-f^*\le-\delta-\log(1-\delta).$$
+
+VD2: $\delta=3/4$ cho cận $\log4-3/4$, bằng sai số thật của ví dụ này; sự bằng nhau có chủ ý do dạng log, không phải tính chất chung. $\delta^2/2=9/32$ vẫn chỉ là giảm mô hình. Muốn dùng cận để dừng theo sai số $\varepsilon$, cần $\delta<1$ và $-\delta-\log(1-\delta)\le\varepsilon$.
+
+Tính tự điều chỉnh bảo toàn qua hợp thành affine, nên áp dụng cho $\psi(z)=F(\hat u+Nz)$ ở bài rút gọn khi thỏa các giả thiết còn lại. Tính bất biến của bước Newton dưới phép đổi tọa độ affine khả nghịch là tính chất riêng rộng hơn, không chỉ đúng cho hàm tự điều chỉnh. Hàm $-\log s$ cũng tự điều chỉnh nhưng không đạt cực tiểu hữu hạn trên $s>0$; không bỏ giả thiết tồn tại nghiệm.
+
+### 5.7. Các phát biểu hội tụ và giới hạn đặt trong ghi chú
+
+Không dùng KKT để suy ra hội tụ. Với gradient bước cố định $1/L$, $f:\mathbb R^n\to\mathbb R$ lồi, có gradient $L$-Lipschitz toàn cục và có nghiệm: $f(x^k)-f^*\le L\|x^0-x^*\|^2/(2k)$, $k\ge1$. Nếu thêm lồi mạnh hệ số $\mu>0$, có cận $f(x^k)-f^*\le(1-\mu/L)^k(f(x^0)-f^*)$; phải ghi giả thiết cạnh cận. Đây không phải khẳng định về mọi dãy bước Armijo ở RG04–RG06.
+
+Tiêu chí $\|g\|\le\varepsilon_g$ chỉ đo tính dừng gần đúng. Nếu biết hệ số lồi mạnh $\mu$, mới suy ra $f-f^*\le\|g\|^2/(2\mu)$. Newton hội tụ bậc hai cục bộ khi Hessian Lipschitz trong lân cận nghiệm và Hessian tại nghiệm xác định dương, điểm đầu đủ gần; quay lui nhận bước đầy đủ trong lân cận thích hợp. Chi phí giải hệ đặc tổng quát cỡ $O(n^3)$; cấu trúc thưa có thể khác. Với hệ khối kích thước $n+p$, ghi chi phí tổng quát $O((n+p)^3)$ và không coi đó là chi phí mọi bộ giải.
+
+## 6. Sổ số và phép thử nhầm lẫn
+
+| Họ ví dụ | Dữ kiện, miền/kích thước | Trung gian và đầu ra đã tính | Nguy cơ, quyết định |
+|---|---|---|---|
+| VD1: không ràng buộc | $x\in\mathbb R^2$, $f=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$ | $g=(6,28)^T$, $f_0=62$, $d_G=(-6,-28)^T$, $\|g\|^2=820$ | Hệ số, tọa độ, gradient, giá trị hàm đều có vai trò khác và số phân biệt. Vectơ thử $\tilde d=(-2,1)^T$ cho đạo hàm 16, không trùng $-820$. |
+| VD1: nhận bước | $\alpha=1/10$, $\beta=1/2$, $t=1,1/2,1/4$ | $f_{trial}=2040,703/2,255/8$; ngưỡng $-20,21,83/2$ | Giữ phân số chính xác trong bảng; hàng nhận $1/4$ khác tham số co $1/2$. Không gọi bước $1/L=1/7$ là bước đã nhận. |
+| VD1: đổi thước đo | $W=\operatorname{diag}(3,7)$ cố ý bằng Hessian hằng | $Wd=-g\Rightarrow d=(-2,-4)^T$; $v=d/\sqrt{124}$; $d^TWd=124$; chỉ ở RN04 mới gọi là $\delta_N^2$ vì $W=H$, giảm mô hình 62 | $62=f_0$ vì mô hình là hàm thật và $f^*=0$; giải thích sự trùng. Đảo dấu cho hướng tăng, bỏ $W$ cho $(-6,-28)$ khác kết quả đúng. |
+| VD2: Newton phi bậc hai | $s>0$, $s^0=1/4$, $\varphi=s-\log s$ | $g=-3$, $H=16$, $d=3/16$, $s^+=7/16$, $\delta=3/4$, $\delta^2=9/16$; ba mức giảm ở §5.3 | $s$ đổi ký hiệu để không lẫn $x$ hai chiều. $1/4$ trùng bước được nhận ở VD1 nhưng được giới thiệu rõ là điểm đầu của ví dụ mới. Không đưa hai vai trò này vào cùng bảng. |
+| VD3: giữ khả thi | $u\in\mathbb R^2$, $F=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ 1]$, $b=14$, $u=(16,-2)^T$ | $g=(32,-10)^T$, $F_0=266$, $d=(-6,6)^T$, $\eta=-20$, $\delta_{eq}^2=252$, $u^*=(10,4)^T$, $F^*=140$ | $d_1=-d_2$ là cấu trúc bắt buộc của $Ad=0$. Trùng độ lớn không phải lỗi; hướng không ràng buộc $(-16,2)$ bị phát hiện bởi $Ad=-14$. |
+| VD3: khử | $\hat u=(14,0)^T$, $N=(-1,1)^T$, $z=-2$ | $N^THN=7$, $N^Tg=-42$, $\Delta z=6$ | Hệ số 7, gradient rút gọn −42 và số gia 6 khác nhau. Lỗi lấy âm hệ số sẽ cho −7, khác đáp án 6; lỗi quên chia cho Hessian cho 42, cũng khác. Cùng điểm đầu mới ở cả hai cách giải. |
+| VD3: sửa phần dư | Đổi điểm đầu thành $u=(1,8)^T$, $\nu=4$, giữ $F,A,b$ | $g=(2,40)^T$, $r_d=(6,44)^T$, $r_p=-5$, $d=(9,-4)^T$, $\Delta\nu=-24$, $\nu^+=-20$ | Bỏ $A^T\nu$ cho sai vế phải $-40$ thay vì $-44$; nhầm $\eta$ với $\Delta\nu$ cho $-20$ thay vì $-24$. Ghi rõ $r_p=-5$ nhưng vế phải là $5$. |
+| VD3: trường hợp biên | Chỉ ở RR05 đổi thành $u=(0,0)^T$, $\nu=0$ | $g=r_d=0$, $r_p=-14$, $F=0<140$ | Số 0 có chủ ý: chứng minh chỉ kiểm gradient hoặc chỉ giảm mục tiêu là sai khi chưa khả thi. Không dùng làm ví dụ tính bước chính. |
+| Hồi quy Bài 03 | $X=I_2$, $y=(3,4)^T$, $\tau=1$ | $\lambda^*=2$, $w^*=(3/5,4/5)^T$, hàm mất mát 8; $\rho=4$ cho bài điều chuẩn ghép đúng | Giữ số nguồn bài cũ; $\tau$ là mức ràng buộc, $\rho$ là hệ số cho trước, $\lambda$ là nhân tử cần tìm. Không đặt ba ký hiệu ngang vai trò. |
+
+Các số trùng giữa những họ ví dụ cách nhau không bị cấm. Cần ngăn trùng gây che lỗi ngay trong phép suy luận. Giữ nhãn, vị trí cột và đơn vị/miền; màu chỉ hỗ trợ. Các trang không dùng số ghi rõ “không áp dụng” trong storyboard.
+
+## 7. Câu hỏi kiểm tra, đáp án và tiêu chí
+
+Mỗi mạch có một trang kiểm tra riêng. Thời gian nghĩ/chữa là phần của dự toán nội bộ trong storyboard, không đưa lên slide hoặc ghi chú diễn giả.
+
+| Trang | Đáp án/gợi ý phải có trong ghi chú | Tiêu chí đánh giá |
+|---|---|---|
+| RP04 | $L=F+\nu^T(Au-b)$; $\nabla F+A^T\nu=0$, $Au=b$; $\nu$ tự do; $Ad=d_1+d_2$; hướng giữ khả thi khi $d_1+d_2=0$ | Đúng hai nhóm, dấu nhân tử và tự tìm điều kiện của hướng. |
+| RG11 | $Wd=-g$, $d=(-2,-4)^T$; $\|v\|_W=1$ với $v=d/\sqrt{124}$. Armijo dừng thử ngay khi nhận $1/4$, không thử tiếp $1/8$ | Phân biệt hướng/chuẩn hóa/bước; tự suy ra hệ từ $Q_W$. |
+| RN07 | $d=3/16$, $s^+=7/16$, $\varphi'=-9/7$; $9/32$ là giảm mô hình, không là sai số thật $\log4-3/4$ | Không suy nghiệm của bài gốc từ nghiệm mô hình; nêu đúng phép trừ. |
+| RE08 | $L_m=g^Td+d^THd/2+\eta^TAd$; hai đạo hàm cho hệ khối; dùng $N^TA^T=0$ được $N^THN\Delta z=-N^Tg$ | Viết và giải thích nguồn gốc từng hàng, không chỉ chép ma trận. |
+| RR07 | $-44=-(40+4)$, $5=-(-5)$; $\Delta\nu=-24$ còn $\eta=4-24=-20$. Dừng cần cả $\|r_p\|\le\varepsilon_p$, $\|r_d\|\le\varepsilon_d$ | Không lẫn gradient/phần dư, nhân tử/số gia; kiểm cả hai điều kiện KKT. |
+| RS05 | $-\log s$ giảm không bị chặn dưới, không có cực tiểu; $s-\log s$ đạt min tại 1. Không thay $\delta$ bằng $\delta^2$ trong biểu thức cận. Riêng điều kiện $\delta<1$ và $\delta^2<1$ tương đương vì $\delta\ge0$ | Phân biệt điều kiện tồn tại nghiệm, giảm mô hình, cận sai số và cách đọc ký hiệu. |
+| RZ02 | Với $M\in\mathbb R^{m\times n}$, $y\in\mathbb R^m$, $A\in\mathbb R^{p\times n}$ đủ hạng hàng, $\rho>0$: $g=M^T(Mw-y)+\rho w$, $H=M^TM+\rho I\succ0$; KKT $g+A^T\nu=0,Aw=b$; $r_d=g+A^T\nu,r_p=Aw-b$; dùng hệ RR03 | Tự chuyển quy trình sang mô hình học, có kích thước và giả thiết; không cần đã học thuật toán mới. |
+
+RZ02 thực hiện hai mốc: (1) tính $g,H$ và viết KKT; (2) điền $r_d,r_p$ vào mẫu hệ đã học, không phải tái suy Jacobian. Dành 0.15 tiết BT cho RZ02 thay 0.10; giảm RG11 từ 0.20 xuống 0.15, tổng BT vẫn 1 tiết. Ghi chú RZ02 có phép liên hệ cụ thể: $M=\operatorname{diag}(1,2)$, $y=0$, $\rho=1$, $A=[1\ 1]$, $b=14$ cho $H=\operatorname{diag}(2,5)$ và đúng VD3. Bài toán điều chuẩn chỉ là ứng dụng lại các đạo hàm đã dùng, không mở thêm mạch kiến thức ở kết luận.
+
+## 8. Bố cục và tải nội dung khi triển khai
+
+Giữ giao diện RevealJS hiện tại. Các trang suy ra dùng một luồng biến đổi từ trên xuống, tối đa một phép suy luận chính trên trang. Hệ ma trận đặt cạnh hai phương trình nguồn, không đặt cạnh đoạn văn dài. Những phép so sánh dùng hai cột cùng thứ tự đại lượng. Trang tính số dùng bảng có cột vai trò và phép tính; không rải số trong nhiều thẻ. Tất cả 46 trang có bố cục được chốt và lý do học tập riêng trong storyboard, kể cả tiêu đề và kiểm tra.
+
+Các trang dễ quá tải: RP02, RG09–RG10, RE04, RR03, RS03, RZ01. Với RN06 và RE07, tiêu chí dừng được ghi rõ là $\delta^2/2\le\varepsilon_{\mathrm{model}}$, chỉ là dung sai của mô hình; cận sai số tối ưu cần giả thiết và phép kiểm riêng ở RS03. Đặc tả giới hạn công thức/đại số ở storyboard; chuyển chứng minh đầy đủ của cận tự điều chỉnh, cận hội tụ và các phép khử dài sang ghi chú hoặc tài liệu học tập. Không thu nhỏ thân bài dưới ngưỡng để giữ số trang. 46 trang trong 3 tiết là dự toán còn cần diễn tập; nếu không đủ thời gian, giảm phần nhắc lại/chi tiết đại số, không bỏ các bước suy ra KKT đang là mục tiêu sửa.
+
+Sau khi được duyệt mới cập nhật đồng bộ HTML, SVG liên quan, ghi chú và bài tập công khai; riêng điểm khả thi mới ảnh hưởng `equality-start-new.svg`, `equality-violation.svg`, `equality-feasible-step.svg`, `equality-nullspace.svg` trong `img/lec-04/`. Các hình dùng trục $u_1,u_2$ phải cho thấy $(16,-2)$, đường tổng 14 và nghiệm $(10,4)$, với miền nhìn dự kiến từ −3 tới 17; không ngầm thêm điều kiện không âm; cập nhật `math-spec.md`, `source-map.md` nếu cần theo bản được duyệt; chạy đồng bộ tài liệu cục bộ và kiểm tra hiển thị đầy đủ. Trong nhiệm vụ hiện tại chỉ sửa ba tệp kế hoạch. Chưa có bộ trang chiếu mới để kiểm tra tràn hoặc tuyên bố đạt thị giác.
+
+## 9. Prompt triển khai đã được người dùng phê duyệt
+
+Đoạn dưới là prompt đầy đủ đã được người dùng phê duyệt và dùng cho lần triển khai hiện tại. Giữ nguyên khối để truy nguyên phạm vi, yêu cầu kiểm định và bàn giao.
+
+```text
+Làm việc trong kho `/data/tqlong/math-4-AI`.
+
+Tôi duyệt bản đề xuất sửa mạch Bài giảng 04 ngày 2026-09-24, với KKT của Bài 03 làm nền để suy ra các phương pháp. Hãy triển khai đầy đủ bản đề xuất vào bộ trang chiếu RevealJS và tài liệu đi kèm.
+
+Căn cứ triển khai:
+- Đọc `AGENTS.md` hiện hành và skill `$build-math-slide-deck-outline`.
+- Dùng `2627-1/planning/lec-04/storyboard.md` làm đặc tả chính cho từng trang; `outline.md` cùng thư mục chứa phân tích, phép suy ra, giả thiết, sổ số và đáp án; `review-log.md` chứa các góp ý đã được phân xử.
+- Triển khai phần đề xuất mới với các mã RP/RG/RN/RE/RR/RS/RZ. Phần “Bản đang triển khai trước đề xuất — lưu để đối chiếu” là bản cũ để truy nguyên.
+- Đọc các kết quả KKT thực tế trong `2627-1/lecture-03-doi-ngau-lagrange.html`, đặc biệt S02-04, S05-03, S05-05b/c và S05-06a/b.
+
+Các yêu cầu nội dung:
+1. Giữ 46 trang, 7 mạch theo storyboard: mở đầu dùng lại KKT; hướng giảm, bước và thước đo; Newton không ràng buộc; Newton khả thi; Newton phần dư; tính tự điều chỉnh và cận sai số; tổng hợp và chuyển giao. Mỗi mạch có trang kiểm tra riêng. Thời lượng nội bộ là 2 tiết lý thuyết + 1 tiết bài tập theo đề cương.
+2. Đưa các bước suy ra lên mặt trang: lập bài con, viết Lagrange hoặc điều kiện dừng, lấy đạo hàm, xếp hệ, giải số, kiểm lại. Dùng đủ bốn nhóm KKT cho bài con chuẩn bậc hai. Phân biệt KKT của bài gốc với KKT của mô hình; việc chọn mô hình và quy tắc bước là phần thiết kế thêm.
+3. Suy ra Newton khả thi từ Lagrange của bài con có $Ad=0$; suy ra Newton phần dư bằng tuyến tính hóa hai phương trình KKT. Nêu rõ $\eta=\nu+\Delta\nu$ và $\nu^+=\nu+t\Delta\nu=(1-t)\nu+t\eta$.
+4. Giữ riêng giảm mô hình, giảm thật một bước và sai số tối ưu. Dung sai mô hình hoặc phần dư nhỏ chưa tự cho cận sai số mục tiêu. Dùng tính tự điều chỉnh đúng giả thiết để trả lời câu hỏi về cận sai số.
+5. Dùng đúng sổ số đã duyệt. Riêng VD3 khả thi dùng $u=(16,-2)^T$, $g=(32,-10)^T$, $d=(-6,6)^T$, $\eta=-20$, $F_0=266$, $\delta_{eq}^2=252$; hệ rút gọn có các số $7,-42,6$. Giữ điểm chưa khả thi $(1,8)^T$, $\nu=4$ và các kết quả của nó. Thể hiện tọa độ âm trên hình; bài toán chỉ có đẳng thức, không có điều kiện không âm.
+6. Mỗi trang dùng đúng bố cục và lý do học tập trong storyboard. Viết thuần Việt, khai báo ký hiệu trước khi dùng, giữ chữ đủ lớn. Mã trang chỉ ở `data-slide-id` và tài liệu nội bộ; thời lượng chỉ ở kế hoạch. Ghi chú diễn giả phải giải thích phép suy ra, điểm dễ nhầm, đáp án và câu chuyển.
+
+Các tệp cần cập nhật đồng bộ:
+- `2627-1/lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`.
+- Các SVG liên quan trong `2627-1/img/lec-04/`, đặc biệt các hình điểm khả thi, hướng vi phạm, bước khả thi và khử biến.
+- `2627-1/materials/lec-04/lecture-note.md` và `exercises.md`, cùng bản đóng gói `material-local-data.js` qua script đồng bộ của kho.
+- Ba tệp `outline.md`, `storyboard.md`, `review-log.md`; cập nhật `math-spec.md` và `source-map.md` khi nội dung tương ứng đã thay đổi. Sau triển khai, ghi rõ bản nào khớp HTML hiện hành và lưu truy nguyên mã cũ–mới.
+
+Kế thừa giao diện và cấu trúc của kho. Dùng tài sản RevealJS, plugin và KaTeX cục bộ trong `2627-1/`. Duy trì Codex Slides để tiếp nhận đặc tả, tham chiếu phong cách và rà trực quan; dùng dự án Bài 04 hiện có nếu còn khả dụng. Nếu Codex Slides không khả dụng, báo rõ và làm đầy đủ kiểm định RevealJS cục bộ theo `AGENTS.md`.
+
+Thực hiện quy trình đa tác tử của kho, gồm kiểm định storyboard, năm vai rà độc lập và tác tử chỉnh sửa riêng. Tôi cho phép các worker OpenRouter đọc và gửi các tệp liên quan của bài để soạn/rà; loại trừ `.env` và bí mật. Dùng mô hình đã quy định trong `AGENTS.md`, kiểm metadata runtime, phân xử từng góp ý bằng bằng chứng. Giao đầu vào hẹp đúng vai, tránh đọc lặp hoặc để một vai tính lại công việc không thuộc phạm vi. Các lượt lỗi hoặc báo cáo bị cắt không được tính là đã đạt.
+
+Trước bàn giao, tính lại các ví dụ và đáp án; kiểm đủ 46 trang/7 mạch, các liên kết và tài sản, công thức, ghi chú, bàn phím, khung 16:9 và màn hình hẹp. Kiểm tài liệu ở `file://` và trên máy chủ tĩnh; chạy đồng bộ tài liệu và `--check`. Mở máy chủ tại gốc kho bằng `python3 -m reloadserver 8765`, rà đúng URL Bài 04. Sau khi đạt đầy đủ, commit riêng phạm vi Bài 04 và đẩy lên upstream hiện tại theo `AGENTS.md`.
+
+Tiếp tục đến khi hoàn tất phạm vi đã duyệt. Các điều chỉnh cần thiết khi dựng để bảo đảm tính đúng hoặc khả năng đọc phải được đồng bộ trong kế hoạch và nhật ký, rồi rà lại đúng phần bị ảnh hưởng. Bàn giao đường dẫn xem, tóm tắt thay đổi, kết quả kiểm định, giới hạn còn lại và commit/upstream đã xác minh.
+```
+
+---
+
+## Bản đang triển khai trước đề xuất — lưu để đối chiếu
+
+Phần dưới mô tả HTML trước lần sửa KKT. Các tuyên bố đã triển khai/đã đạt trong phần này chỉ thuộc lần bàn giao trước; đặc tả hiện hành là các mã RP/RG/RN/RE/RR/RS/RZ ở phần trên.
+
+## Dàn bài Bài giảng 04 — Tối ưu không ràng buộc và ràng buộc đẳng thức
+
+### Phạm vi bản lập kế hoạch ngày 2026-09-24
 
 Bản này thay thế dàn ý 40 trang trước đó và đặc tả **46 trang, 7 mạch**, dành cho sinh viên năm 3. Bản này đã được triển khai vào RevealJS và đồng bộ với ghi chú, bài tập của Bài 04. Mã trang khớp 46 trang trong HTML; storyboard là căn cứ chính cho bố cục và mạch nối. Kết quả kiểm định và các điều chỉnh cục bộ được ghi trong review-log.md.
 
@@ -12,7 +296,7 @@ Nguồn phạm vi là đề cương DOCX chính thức (DC), bảng6 và bảng2
 
 Mã HT1–HT13 chỉ các mục hình thức hóa trong [math-spec.md](math-spec.md); VD1–VD3 chỉ các ví dụ tự xây dựng ở cùng tệp. “Ghi chú soạn” chứa cả chỉ dẫn nội bộ; khi triển khai chỉ chuyển phần diễn giải và đáp án sang ghi chú diễn giả, loại mã trang và tỷ lệ thời gian hoạt động.
 
-## Mục tiêu có thể đánh giá
+### Mục tiêu có thể đánh giá
 
 | Mục tiêu | Chuẩn chính thức | Minh chứng trong bài |
 |---|---|---|
@@ -22,7 +306,7 @@ Mã HT1–HT13 chỉ các mục hình thức hóa trong [math-spec.md](math-spec
 | MT4: lập hệ Newton cho đẳng thức và phân biệt hai chế độ khởi đầu | LLO9/CLO1 | E12,Z02 |
 | MT5: tính phần dư, bước nguyên thủy–đối ngẫu và kiểm tra kết quả | LLO10/CLO2 | E09,E12,Z02 |
 
-## Bản đồ các phần
+### Bản đồ các phần
 
 | Phần | Đầu vào | Đầu ra dùng tiếp | Số trang | Tiết lý thuyết | Tiết bài tập | Trang kiểm tra riêng |
 |---|---|---|---:|---:|---:|---|
@@ -37,9 +321,9 @@ Mã HT1–HT13 chỉ các mục hình thức hóa trong [math-spec.md](math-spec
 
 Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận dụng mô hình học gắn ngay vào khái niệm cần đo. Sáu trang tăng so với bản cũ dành cho động lực/kiểm tra mở đầu và các bước suy luận còn dồn trong phần đẳng thức; không thêm trang chia phần trang trí. Mỗi trang dưới đây có nội dung đủ để triển khai, quyết định bố cục và lý do riêng cho sinh viên năm3.
 
-## Dàn bài chi tiết
+### Dàn bài chi tiết
 
-### P00 — Tối ưu không ràng buộc và ràng buộc đẳng thức
+#### P00 — Tối ưu không ràng buộc và ràng buộc đẳng thức
 
 - **Vai trò và mục tiêu:** định danh; LLO6–10
 - **Luận điểm trung tâm:** Bài 04 xây dựng quy trình tính từ điều kiện tối ưu.
@@ -52,7 +336,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.01 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ mở bài; đầu ra là “Bài 04 xây dựng quy trình tính từ điều kiện tối ưu.”; chuyển sang P01 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### P01 — Nội dung bài học
+#### P01 — Nội dung bài học
 
 - **Vai trò và mục tiêu:** bản đồ; LLO6–10
 - **Luận điểm trung tâm:** Năm cụm kiến thức cùng phục vụ việc chọn và kiểm tra một bước lặp.
@@ -65,7 +349,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.02 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ P00; đầu ra là “Năm cụm kiến thức cùng phục vụ việc chọn và kiểm tra một bước lặp.”; chuyển sang P02 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### P02 — Bước lặp và điều kiện chấp nhận
+#### P02 — Bước lặp và điều kiện chấp nhận
 
 - **Vai trò và mục tiêu:** nhu cầu; LLO6,8,9,10
 - **Luận điểm trung tâm:** Biết nghiệm phải thỏa điều kiện gì chưa đủ để tạo một dãy lặp dùng được.
@@ -78,7 +362,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ P01; đầu ra là “Biết nghiệm phải thỏa điều kiện gì chưa đủ để tạo một dãy lặp dùng được.”; chuyển sang P03 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### P03 — Mục tiêu và kiến thức sử dụng
+#### P03 — Mục tiêu và kiến thức sử dụng
 
 - **Vai trò và mục tiêu:** tiên quyết; LLO6–10/CLO1,2
 - **Luận điểm trung tâm:** Mỗi mục tiêu được kiểm bằng thao tác hoặc giải thích có điều kiện.
@@ -91,7 +375,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ P02; đầu ra là “Mỗi mục tiêu được kiểm bằng thao tác hoặc giải thích có điều kiện.”; chuyển sang P04 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### P04 — Kiểm tra tiên quyết
+#### P04 — Kiểm tra tiên quyết
 
 - **Vai trò và mục tiêu:** bài tập; tiên quyết cho LLO6,9; không chứng nhận hoàn thành LLO
 - **Luận điểm trung tâm:** Tích vô hướng và phép nhân ma trận đủ để kiểm tra hai tính chất cơ bản.
@@ -104,7 +388,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.00 tiết lý thuyết + 0.10 tiết bài tập
 - **Kết nối:** nhận kết quả từ P03; đầu ra là “Tích vô hướng và phép nhân ma trận đủ để kiểm tra hai tính chất cơ bản.”; chuyển sang A01 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### A01 — Mục tiêu giảm hàm
+#### A01 — Mục tiêu giảm hàm
 
 - **Vai trò và mục tiêu:** nhu cầu + ví dụ dẫn nhập; LLO6,8
 - **Luận điểm trung tâm:** Một điểm khởi đầu và một hàm cụ thể cho phép quan sát tác động của bước lặp.
@@ -117,7 +401,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.03 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ P04; đầu ra là “Một điểm khởi đầu và một hàm cụ thể cho phép quan sát tác động của bước lặp.”; chuyển sang A02 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### A02 — Trực quan hướng giảm
+#### A02 — Trực quan hướng giảm
 
 - **Vai trò và mục tiêu:** trực quan; LLO6
 - **Luận điểm trung tâm:** Chiếu hướng đi lên gradient dự báo biến thiên bậc nhất.
@@ -130,7 +414,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.04 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ A01; đầu ra là “Chiếu hướng đi lên gradient dự báo biến thiên bậc nhất.”; chuyển sang A03 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### A03 — Kiểm tra hướng bằng số
+#### A03 — Kiểm tra hướng bằng số
 
 - **Vai trò và mục tiêu:** ví dụ; LLO6,8
 - **Luận điểm trung tâm:** Dấu của tích vô hướng kiểm tra được bằng một phép tính ngắn.
@@ -143,7 +427,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.03 tiết lý thuyết + 0.03 tiết bài tập
 - **Kết nối:** nhận kết quả từ A02; đầu ra là “Dấu của tích vô hướng kiểm tra được bằng một phép tính ngắn.”; chuyển sang A04 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### A04 — Hướng giảm và độ dài bước
+#### A04 — Hướng giảm và độ dài bước
 
 - **Vai trò và mục tiêu:** hình thức; LLO6,8
 - **Luận điểm trung tâm:** Hướng xác định đường đi; độ dài bước xác định điểm được chấp nhận.
@@ -156,7 +440,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ A03; đầu ra là “Hướng xác định đường đi; độ dài bước xác định điểm được chấp nhận.”; chuyển sang A05 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### A05 — Quay lui Armijo
+#### A05 — Quay lui Armijo
 
 - **Vai trò và mục tiêu:** thuật toán; LLO8
 - **Luận điểm trung tâm:** Quay lui kiểm tra miền xác định và mức giảm đủ trước khi cập nhật.
@@ -169,7 +453,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ A04; đầu ra là “Quay lui kiểm tra miền xác định và mức giảm đủ trước khi cập nhật.”; chuyển sang A06 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### A06 — Một lượt quay lui
+#### A06 — Một lượt quay lui
 
 - **Vai trò và mục tiêu:** ứng dụng; LLO6,8
 - **Luận điểm trung tâm:** Armijo chọn bước đầu tiên đạt điều kiện, không nhất thiết là bước tốt nhất trên tia.
@@ -182,7 +466,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.08 tiết lý thuyết + 0.03 tiết bài tập
 - **Kết nối:** nhận kết quả từ A05; đầu ra là “Armijo chọn bước đầu tiên đạt điều kiện, không nhất thiết là bước tốt nhất trên tia.”; chuyển sang A07 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### A07 — Kiểm tra quy tắc nhận bước
+#### A07 — Kiểm tra quy tắc nhận bước
 
 - **Vai trò và mục tiêu:** bài tập; LLO6,8
 - **Luận điểm trung tâm:** Một bước đã đạt Armijo kết thúc vòng quay lui.
@@ -195,7 +479,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.00 tiết lý thuyết + 0.09 tiết bài tập
 - **Kết nối:** nhận kết quả từ A06; đầu ra là “Một bước đã đạt Armijo kết thúc vòng quay lui.”; chuyển sang B01 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### B01 — Độ cong và đường đi
+#### B01 — Độ cong và đường đi
 
 - **Vai trò và mục tiêu:** nhu cầu + trực quan; LLO6
 - **Luận điểm trung tâm:** Độ cong khác nhau theo tọa độ làm cùng một bước gradient co khác nhau theo mỗi trục.
@@ -208,7 +492,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ A07; đầu ra là “Độ cong khác nhau theo tọa độ làm cùng một bước gradient co khác nhau theo mỗi trục.”; chuyển sang B02 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### B02 — Hai thước đo độ dài
+#### B02 — Hai thước đo độ dài
 
 - **Vai trò và mục tiêu:** trực quan + ví dụ; LLO6
 - **Luận điểm trung tâm:** Hướng dốc nhất phụ thuộc tập hướng được coi là dài không quá một.
@@ -221,7 +505,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.04 tiết lý thuyết + 0.02 tiết bài tập
 - **Kết nối:** nhận kết quả từ B01; đầu ra là “Hướng dốc nhất phụ thuộc tập hướng được coi là dài không quá một.”; chuyển sang B03 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### B03 — Giảm dốc nhất theo chuẩn
+#### B03 — Giảm dốc nhất theo chuẩn
 
 - **Vai trò và mục tiêu:** hình thức; LLO6
 - **Luận điểm trung tâm:** Giảm dốc nhất tối thiểu hóa mô hình tuyến tính dưới một giới hạn độ dài đã chọn.
@@ -234,7 +518,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ B02; đầu ra là “Giảm dốc nhất tối thiểu hóa mô hình tuyến tính dưới một giới hạn độ dài đã chọn.”; chuyển sang B04 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### B04 — Chuẩn bậc hai và tiền điều kiện
+#### B04 — Chuẩn bậc hai và tiền điều kiện
 
 - **Vai trò và mục tiêu:** ứng dụng; LLO6,8
 - **Luận điểm trung tâm:** Một ma trận xác định dương biến việc chọn hướng thành giải hệ tuyến tính.
@@ -247,7 +531,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ B03; đầu ra là “Một ma trận xác định dương biến việc chọn hướng thành giải hệ tuyến tính.”; chuyển sang B05 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### B05 — Hội tụ của giảm gradient
+#### B05 — Hội tụ của giảm gradient
 
 - **Vai trò và mục tiêu:** giới hạn và bảo đảm; LLO6,8
 - **Luận điểm trung tâm:** Tốc độ tuyến tính cần giả thiết về độ cong, không suy ra chỉ từ hình đường đi.
@@ -260,7 +544,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ B04; đầu ra là “Tốc độ tuyến tính cần giả thiết về độ cong, không suy ra chỉ từ hình đường đi.”; chuyển sang B06 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### B06 — Kiểm tra lựa chọn chuẩn
+#### B06 — Kiểm tra lựa chọn chuẩn
 
 - **Vai trò và mục tiêu:** bài tập; LLO6,8
 - **Luận điểm trung tâm:** So sánh hướng cần nêu chuẩn và quy ước chuẩn hóa.
@@ -273,7 +557,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.00 tiết lý thuyết + 0.08 tiết bài tập
 - **Kết nối:** nhận kết quả từ B05; đầu ra là “So sánh hướng cần nêu chuẩn và quy ước chuẩn hóa.”; chuyển sang C01 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### C01 — Mô hình bậc hai cục bộ
+#### C01 — Mô hình bậc hai cục bộ
 
 - **Vai trò và mục tiêu:** nhu cầu + trực quan; LLO6
 - **Luận điểm trung tâm:** Hessian cung cấp thước đo thay đổi theo điểm khi độ cong không cố định.
@@ -286,7 +570,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ B06; đầu ra là “Hessian cung cấp thước đo thay đổi theo điểm khi độ cong không cố định.”; chuyển sang C02 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### C02 — Nghiệm mô hình trong ví dụ bậc hai
+#### C02 — Nghiệm mô hình trong ví dụ bậc hai
 
 - **Vai trò và mục tiêu:** ví dụ; LLO6,8
 - **Luận điểm trung tâm:** Hai phép chia theo độ cong cho một bước đến nghiệm của VD1.
@@ -299,7 +583,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.04 tiết lý thuyết + 0.03 tiết bài tập
 - **Kết nối:** nhận kết quả từ C01; đầu ra là “Hai phép chia theo độ cong cho một bước đến nghiệm của VD1.”; chuyển sang C03 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### C03 — Hướng Newton
+#### C03 — Hướng Newton
 
 - **Vai trò và mục tiêu:** hình thức; LLO6,8
 - **Luận điểm trung tâm:** Hướng Newton cực tiểu hóa mô hình bậc hai khi Hessian xác định dương.
@@ -312,7 +596,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.07 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ C02; đầu ra là “Hướng Newton cực tiểu hóa mô hình bậc hai khi Hessian xác định dương.”; chuyển sang C04 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### C04 — Độ giảm Newton và sai số mô hình
+#### C04 — Độ giảm Newton và sai số mô hình
 
 - **Vai trò và mục tiêu:** hình thức; LLO6,8
 - **Luận điểm trung tâm:** Độ giảm của mô hình và sai số thật là hai đại lượng khác nhau.
@@ -325,7 +609,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ C03; đầu ra là “Độ giảm của mô hình và sai số thật là hai đại lượng khác nhau.”; chuyển sang C05 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### C05 — Thuật toán Newton với quay lui
+#### C05 — Thuật toán Newton với quay lui
 
 - **Vai trò và mục tiêu:** thuật toán và ứng dụng; LLO8
 - **Luận điểm trung tâm:** Newton dùng hệ tuyến tính để chọn hướng và Armijo để kiểm soát bước.
@@ -338,7 +622,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.07 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ C04; đầu ra là “Newton dùng hệ tuyến tính để chọn hướng và Armijo để kiểm soát bước.”; chuyển sang C06 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### C06 — Hội tụ Newton có điều kiện
+#### C06 — Hội tụ Newton có điều kiện
 
 - **Vai trò và mục tiêu:** bảo đảm; LLO6
 - **Luận điểm trung tâm:** Bước đầy đủ và hội tụ bậc hai xuất hiện gần nghiệm dưới các giả thiết cụ thể.
@@ -351,7 +635,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ C05; đầu ra là “Bước đầy đủ và hội tụ bậc hai xuất hiện gần nghiệm dưới các giả thiết cụ thể.”; chuyển sang C07 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### C07 — Newton cho hàm một biến
+#### C07 — Newton cho hàm một biến
 
 - **Vai trò và mục tiêu:** ứng dụng + ví dụ dẫn sang D; LLO6,8
 - **Luận điểm trung tâm:** Ngoài hàm bậc hai, một bước Newton không xóa hết sai số.
@@ -364,7 +648,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.04 tiết bài tập
 - **Kết nối:** nhận kết quả từ C06; đầu ra là “Ngoài hàm bậc hai, một bước Newton không xóa hết sai số.”; chuyển sang C08 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### C08 — Kiểm tra ý nghĩa độ giảm Newton
+#### C08 — Kiểm tra ý nghĩa độ giảm Newton
 
 - **Vai trò và mục tiêu:** bài tập; LLO6,8
 - **Luận điểm trung tâm:** Dừng theo mô hình phải được mô tả đúng loại bảo đảm.
@@ -377,7 +661,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.00 tiết lý thuyết + 0.08 tiết bài tập
 - **Kết nối:** nhận kết quả từ C07; đầu ra là “Dừng theo mô hình phải được mô tả đúng loại bảo đảm.”; chuyển sang D01 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### D01 — Kiểm soát biến thiên độ cong
+#### D01 — Kiểm soát biến thiên độ cong
 
 - **Vai trò và mục tiêu:** nhu cầu; LLO7
 - **Luận điểm trung tâm:** Cần so tốc độ thay đổi độ cong với chính độ cong để có phân tích phù hợp phép đổi tọa độ.
@@ -390,7 +674,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.04 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ C08; đầu ra là “Cần so tốc độ thay đổi độ cong với chính độ cong để có phân tích phù hợp phép đổi tọa độ.”; chuyển sang D02 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### D02 — Tỷ số đạo hàm trong ví dụ log
+#### D02 — Tỷ số đạo hàm trong ví dụ log
 
 - **Vai trò và mục tiêu:** trực quan + ví dụ; LLO7
 - **Luận điểm trung tâm:** Ở VD2, đạo hàm bậc ba được kiểm soát đúng theo lũy thừa ba phần hai của độ cong.
@@ -403,7 +687,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.02 tiết bài tập
 - **Kết nối:** nhận kết quả từ D01; đầu ra là “Ở VD2, đạo hàm bậc ba được kiểm soát đúng theo lũy thừa ba phần hai của độ cong.”; chuyển sang D03 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### D03 — Định nghĩa hàm tự điều chỉnh
+#### D03 — Định nghĩa hàm tự điều chỉnh
 
 - **Vai trò và mục tiêu:** hình thức; LLO7
 - **Luận điểm trung tâm:** Tính tự điều chỉnh là điều kiện tương đối trên biến thiên độ cong.
@@ -416,7 +700,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.08 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ D02; đầu ra là “Tính tự điều chỉnh là điều kiện tương đối trên biến thiên độ cong.”; chuyển sang D04 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### D04 — Áp dụng cho hàm chứa log
+#### D04 — Áp dụng cho hàm chứa log
 
 - **Vai trò và mục tiêu:** ứng dụng và giới hạn; LLO7
 - **Luận điểm trung tâm:** Điều kiện tự điều chỉnh có thể kiểm bằng cấu trúc hàm thay vì thử nhiều điểm.
@@ -429,7 +713,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.07 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ D03; đầu ra là “Điều kiện tự điều chỉnh có thể kiểm bằng cấu trúc hàm thay vì thử nhiều điểm.”; chuyển sang D05 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### D05 — Kiểm tra điều kiện và tồn tại nghiệm
+#### D05 — Kiểm tra điều kiện và tồn tại nghiệm
 
 - **Vai trò và mục tiêu:** bài tập; LLO7
 - **Luận điểm trung tâm:** Một điều kiện đạo hàm không thay thế kiểm tra tồn tại nghiệm.
@@ -442,7 +726,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.00 tiết lý thuyết + 0.08 tiết bài tập
 - **Kết nối:** nhận kết quả từ D04; đầu ra là “Một điều kiện đạo hàm không thay thế kiểm tra tồn tại nghiệm.”; chuyển sang E01 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E01 — Hướng đi trong tập đẳng thức
+#### E01 — Hướng đi trong tập đẳng thức
 
 - **Vai trò và mục tiêu:** nhu cầu; LLO9
 - **Luận điểm trung tâm:** Hướng tốt cho hàm mục tiêu có thể đưa điểm ra khỏi tập khả thi.
@@ -455,7 +739,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.04 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ D05; đầu ra là “Hướng tốt cho hàm mục tiêu có thể đưa điểm ra khỏi tập khả thi.”; chuyển sang E02 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E02 — Ví dụ tổng cố định
+#### E02 — Ví dụ tổng cố định
 
 - **Vai trò và mục tiêu:** trực quan + ví dụ; LLO9
 - **Luận điểm trung tâm:** Tối ưu phải tìm trên đường khả thi, nơi đường đồng mức tiếp xúc với đường ràng buộc.
@@ -468,7 +752,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.04 tiết lý thuyết + 0.03 tiết bài tập
 - **Kết nối:** nhận kết quả từ E01; đầu ra là “Tối ưu phải tìm trên đường khả thi, nơi đường đồng mức tiếp xúc với đường ràng buộc.”; chuyển sang E03 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E03 — Khử một biến trong ví dụ
+#### E03 — Khử một biến trong ví dụ
 
 - **Vai trò và mục tiêu:** ví dụ; LLO9,10
 - **Luận điểm trung tâm:** Tham số hóa đường khả thi chuyển VD3 thành bài một biến không ràng buộc.
@@ -481,7 +765,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.02 tiết bài tập
 - **Kết nối:** nhận kết quả từ E02; đầu ra là “Tham số hóa đường khả thi chuyển VD3 thành bài một biến không ràng buộc.”; chuyển sang E04 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E04 — Khử đẳng thức bằng không gian rỗng
+#### E04 — Khử đẳng thức bằng không gian rỗng
 
 - **Vai trò và mục tiêu:** hình thức + ứng dụng; LLO9,10
 - **Luận điểm trung tâm:** Một cơ sở của không gian rỗng biểu diễn mọi biến thiên khả thi.
@@ -494,7 +778,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ E03; đầu ra là “Một cơ sở của không gian rỗng biểu diễn mọi biến thiên khả thi.”; chuyển sang E05 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E05 — Bước khả thi trong ví dụ
+#### E05 — Bước khả thi trong ví dụ
 
 - **Vai trò và mục tiêu:** ví dụ trước hệ tổng quát; LLO9,10
 - **Luận điểm trung tâm:** Tối ưu mô hình trên đường khả thi cho hướng có tổng bằng0.
@@ -507,7 +791,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.03 tiết bài tập
 - **Kết nối:** nhận kết quả từ E04; đầu ra là “Tối ưu mô hình trên đường khả thi cho hướng có tổng bằng0.”; chuyển sang E06 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E06 — Hệ Newton tại điểm khả thi
+#### E06 — Hệ Newton tại điểm khả thi
 
 - **Vai trò và mục tiêu:** hình thức; LLO9,10
 - **Luận điểm trung tâm:** Ràng buộc lên hướng được ghép vào điều kiện cực tiểu của mô hình bậc hai.
@@ -520,7 +804,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ E05; đầu ra là “Ràng buộc lên hướng được ghép vào điều kiện cực tiểu của mô hình bậc hai.”; chuyển sang E07 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E07 — Thuật toán Newton khả thi
+#### E07 — Thuật toán Newton khả thi
 
 - **Vai trò và mục tiêu:** ứng dụng; LLO9,10
 - **Luận điểm trung tâm:** Giải hệ, dừng theo mô hình và chọn bước trên đường khả thi tạo một vòng lặp hoàn chỉnh.
@@ -533,7 +817,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ E06; đầu ra là “Giải hệ, dừng theo mô hình và chọn bước trên đường khả thi tạo một vòng lặp hoàn chỉnh.”; chuyển sang E08 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E08 — Phần dư khi điểm đầu chưa khả thi
+#### E08 — Phần dư khi điểm đầu chưa khả thi
 
 - **Vai trò và mục tiêu:** nhu cầu + trực quan + ví dụ dẫn nhập; LLO9,10
 - **Luận điểm trung tâm:** Khi chưa thỏa đẳng thức, cần đo đồng thời sai lệch ràng buộc và điều kiện dừng.
@@ -546,7 +830,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.04 tiết lý thuyết + 0.03 tiết bài tập
 - **Kết nối:** nhận kết quả từ E07; đầu ra là “Khi chưa thỏa đẳng thức, cần đo đồng thời sai lệch ràng buộc và điều kiện dừng.”; chuyển sang E09 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E09 — Hiệu chỉnh nguyên thủy và đối ngẫu
+#### E09 — Hiệu chỉnh nguyên thủy và đối ngẫu
 
 - **Vai trò và mục tiêu:** ví dụ; LLO9,10
 - **Luận điểm trung tâm:** Một bước khử cả ba thành phần phần dư trong bài bậc hai.
@@ -559,7 +843,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.03 tiết bài tập
 - **Kết nối:** nhận kết quả từ E08; đầu ra là “Một bước khử cả ba thành phần phần dư trong bài bậc hai.”; chuyển sang E10 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E10 — Newton cho hệ phần dư
+#### E10 — Newton cho hệ phần dư
 
 - **Vai trò và mục tiêu:** hình thức và thuật toán; LLO9,10
 - **Luận điểm trung tâm:** Newton không khả thi chọn bước theo độ giảm phần dư.
@@ -572,7 +856,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.07 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ E09; đầu ra là “Newton không khả thi chọn bước theo độ giảm phần dư.”; chuyển sang E11 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E11 — Bình phương tối thiểu có đẳng thức
+#### E11 — Bình phương tối thiểu có đẳng thức
 
 - **Vai trò và mục tiêu:** ứng dụng vào AI; LLO9,10
 - **Luận điểm trung tâm:** Mô hình học có ràng buộc tuyến tính dùng trực tiếp hệ Newton đã xây dựng.
@@ -585,7 +869,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.05 tiết lý thuyết + 0.03 tiết bài tập
 - **Kết nối:** nhận kết quả từ E10; đầu ra là “Mô hình học có ràng buộc tuyến tính dùng trực tiếp hệ Newton đã xây dựng.”; chuyển sang E12 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### E12 — Kiểm tra hai chế độ Newton
+#### E12 — Kiểm tra hai chế độ Newton
 
 - **Vai trò và mục tiêu:** bài tập; LLO9,10
 - **Luận điểm trung tâm:** Tính khả thi quyết định vế phải và tiêu chí chọn bước.
@@ -598,7 +882,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.00 tiết lý thuyết + 0.13 tiết bài tập
 - **Kết nối:** nhận kết quả từ E11; đầu ra là “Tính khả thi quyết định vế phải và tiêu chí chọn bước.”; chuyển sang Z01 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### Z01 — Lựa chọn phương pháp và điều kiện
+#### Z01 — Lựa chọn phương pháp và điều kiện
 
 - **Vai trò và mục tiêu:** tổng hợp; LLO6–10
 - **Luận điểm trung tâm:** Chọn phương pháp bằng thông tin đạo hàm, ràng buộc và bảo đảm cần dùng.
@@ -611,7 +895,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.06 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ E12; đầu ra là “Chọn phương pháp bằng thông tin đạo hàm, ràng buộc và bảo đảm cần dùng.”; chuyển sang Z02 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### Z02 — Kiểm tra lựa chọn quy trình
+#### Z02 — Kiểm tra lựa chọn quy trình
 
 - **Vai trò và mục tiêu:** bài tập tổng hợp; LLO6–10
 - **Luận điểm trung tâm:** Một lựa chọn hợp lệ phải kèm điều kiện, hướng, bước và kiểm tra dừng.
@@ -624,7 +908,7 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.00 tiết lý thuyết + 0.10 tiết bài tập
 - **Kết nối:** nhận kết quả từ Z01; đầu ra là “Một lựa chọn hợp lệ phải kèm điều kiện, hướng, bước và kiểm tra dừng.”; chuyển sang Z03 để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-### Z03 — Bài tập và tài liệu đọc
+#### Z03 — Bài tập và tài liệu đọc
 
 - **Vai trò và mục tiêu:** kết luận; LLO6–10
 - **Luận điểm trung tâm:** Người học hoàn tất bài bằng tái tạo phép tính và giải thích giới hạn bảo đảm.
@@ -637,13 +921,13 @@ Không tách một phần thực hành riêng: tính tay, kiểm lỗi và vận
 - **Thời lượng nội bộ:** 0.04 tiết lý thuyết + 0.00 tiết bài tập
 - **Kết nối:** nhận kết quả từ Z02; đầu ra là “Người học hoàn tất bài bằng tái tạo phép tính và giải thích giới hạn bảo đảm.”; chuyển sang tự học và bài tiếp để tiếp tục nhiệm vụ theo bản đồ khái niệm trong storyboard.
 
-## Quy ước triển khai và giới hạn bàn giao
+### Quy ước triển khai và giới hạn bàn giao
 
 Kế thừa nền sáng, màu, lưới, chân trang và kiểu chữ của mẫu RevealJS trong `2526-2-another-course/`. Các hình mô tả ở đây là đặc tả để vẽ SVG, chưa phải tài sản đã dựng. Thân bài mục tiêu từ0.75em; không thu nhỏ để giữ bảng quá tải. Hình có nhãn, mô tả thay thế, không chỉ phân biệt bằng màu. Đáp án hiện sau trao đổi hoặc trong ghi chú; nguồn đầy đủ trong ghi chú/tài liệu đọc, không gắn dòng MIT ở chân mọi trang.
 
 Chưa kiểm định hiển thị16:9, màn hình hẹp, KaTeX hay bàn phím vì yêu cầu hiện tại là lập dàn bài. Lần triển khai phải đồng bộ các ví dụ mới với HTML, ghi chú và bài tập công khai rồi chạy kiểm định theo AGENTS.md. Các kiểm tra đã thực hiện cho bản lập kế hoạch được ghi riêng trong review-log.md; không kế thừa nhãn “đã duyệt HTML” của các vòng cũ.
 
 
-## Điều chỉnh cục bộ khi triển khai
+### Điều chỉnh cục bộ khi triển khai
 
 Giữ nguyên 46 trang và thứ tự. B04 bổ sung SVG đổi tọa độ đúng vai trò đã chốt. E11 giữ sơ đồ bốn bước nhưng đặt hai công thức dài g,H trong một dải chung bên dưới để đọc được ở cỡ chữ thân bài; dữ kiện ràng buộc được nêu rõ. Z03 trình bày ba nhiệm vụ thành bảng nhiệm vụ/sản phẩm để đối chiếu trực tiếp. C07 giảm khoảng đệm bảng và rút nhãn, không giảm cỡ chữ hoặc thêm hàng. E05 tăng cỡ nhãn trong SVG. Các thay đổi này giữ vai trò và kết nối của từng trang.

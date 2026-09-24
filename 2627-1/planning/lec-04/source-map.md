@@ -1,5 +1,41 @@
 # Phân tích và ánh xạ nguồn — Bài giảng 04
 
+## Ánh xạ hiện hành của bản KKT ngày 2026-09-25
+
+Đặc tả nguồn này điều khiển bản 46 trang, 7 mạch đã được người dùng duyệt. Kế thừa nguồn đã kiểm kê; không tải nguồn MIT mới, không đưa ảnh PDF vào sản phẩm. Các hình là SVG tự dựng theo công thức, các sơ đồ và công thức được dựng bằng HTML/KaTeX. Danh mục nguồn và checksum trong sources/MIT/README.md giữ nguyên vì không thêm tài nguyên ngoài.
+
+| Nhóm trang | Kết quả nguồn được dùng | Phần kế thừa và thay đổi có chủ ý |
+|---|---|---|
+| RP00–RP04 | HTML Bài 03: S02-04, S05-03, S05-05b/c, S05-06a/b; BV §5.5.3 | Dùng Lagrange, bốn nhóm KKT, tính đủ do lồi và chiều cần có chính quy. Nhắc đúng hồi quy chuẩn với $X=I_2$, $y=(3,4)^T$, $\tau=1$, $\lambda=2$. Không dạy lại toàn bộ đối ngẫu |
+| RG01–RG11 | BV §§9.2–9.4.1; MIT bài 16, 10–5 đến 10–13 | Đặt ví dụ trước công thức; tự chọn mô hình Q_I và giải điều kiện dừng. Với chuẩn W, hiện đủ bốn nhóm KKT của bài con bất đẳng thức rồi đổi độ dài, thay cách chỉ nêu công thức |
+| RN01–RN07 | BV §§9.5.1–9.5.3; MIT bài 16, 10–14 đến 10–20 | Dẫn Newton bằng mô hình bậc hai của hàm $\varphi(s)=s-\log s$. Hiện cả cực tiểu mô hình và tuyến tính hóa gradient, phép trừ giảm mô hình và kiểm đạo hàm thật. Bố cục ba phép trừ riêng ở RN05 |
+| RE01–RE08 | BV §§10.1–10.2.1; MIT bài 17, 11–2 đến 11–11 | Hệ khả thi xuất phát từ L_m và hai đạo hàm. Khử biến đặt sau hệ như cách giải cùng bài con, thay thứ tự khử→hệ của mẫu. Điểm đầu khả thi đổi sang $(16,-2)^T$, minh họa không có ràng buộc không âm |
+| RR01–RR07 | BV §§10.3.1–10.3.2; MIT bài 17, 11–12 đến 11–19 | Hiện hai dòng tuyến tính hóa, phân biệt η và Δν, chứng minh đạo hàm chuẩn phần dư. Giữ ví dụ chưa khả thi $(1,8)^T$, $\nu=4$ |
+| RS01–RS05 | BV §§9.6.1,9.6.3, phương trình (9.49), trang 501–503; MIT bài 16, 10–24 đến 10–27; BV §10.1 | Dời phần tự điều chỉnh sau hai phương pháp đẳng thức để trả lời câu hỏi sai số ở RN07. Cận thật với đủ giả thiết, không dùng δ²/2 như cận không điều kiện |
+| RZ01–RZ03 | Kết quả vừa suy ra; BV Chương 9–10; Bài 03 hồi quy | Tổng hợp nguồn gốc hệ và loại chứng nhận. Mô hình học dùng ρ đã cho và ν đẳng thức, tách λ bất đẳng thức của Bài 03 |
+
+Nguồn quyết định phạm vi là DOCX chính thức UET.AI2012: buổi 4, LLO6–10/CLO1–2, 2 LT + 1 BT; tiên quyết giải tích 1, xác suất–thống kê và đại số tuyến tính. Mẫu nội dung MIT 16 rồi MIT 17 được kế thừa có chọn lọc; thay đổi thứ tự do yêu cầu người dùng làm rõ KKT, được chứng minh bằng bản đồ hành trình trong storyboard. Stanford EE364a chỉ dùng đối chiếu hình thức, không là nguồn độc lập thứ hai cho cùng định lý Boyd–Vandenberghe.
+
+### Truy nguyên hình và tài sản mới
+
+| Tệp | Nội dung và căn cứ | Vị trí dùng |
+|---|---|---|
+| phi-local-model.svg | Hàm phi, tiếp tuyến và mô hình bậc hai tại $s=1/4$; chưa đánh dấu nghiệm mô hình để RN02 tự giải | RN01 và ghi chú |
+| descent-ray.svg | Tự dựng tia VD1 và đường mức tính từ f; t=1/4 giảm, t=1/2 tăng | RG03 |
+| equality-start-new.svg | Tự dựng đường tổng $14$ và đường mức VD3, điểm $(16,-2)^T$, nghiệm $(10,4)^T$ | RE01 và ghi chú |
+| equality-violation.svg | Hướng Newton không ràng buộc $(-16,2)^T$ về gốc vi phạm tổng $14$ | RE02 |
+| equality-feasible-step.svg | Bước $(-6,6)^T$ từ $(16,-2)^T$ tới $(10,4)^T$ | RE05 và ghi chú |
+| equality-nullspace.svg | Cơ sở $N=(-1,1)^T$, $u=\hat u+Nz$, điểm $z=-2$ và nghiệm $z=4$ | Minh họa khử biến kèm bài |
+| self-concordance-ratio.svg | Tỷ số đạo hàm của s−log s bằng $2$ trên $s>0$, không gắn mốc Newton khác | RS02 |
+
+Các SVG còn được dùng giữ nguyên khi đúng dữ kiện. Không dùng ảnh raster bên thứ ba; không có ngoại lệ raster cần quyền mới. Sơ đồ RS04 dựng bằng HTML để thể hiện đúng phép hợp thành affine. Bằng chứng tính tọa độ và kiểm trực quan cập nhật trong nhật ký.
+
+## Lưu vết kế hoạch trước bản KKT — không còn điều khiển HTML
+
+Các nhận định “chưa triển khai”, mã P/A/B/C/D/E/Z và số liệu cũ dưới đây là lịch sử. Danh mục tài liệu vẫn dùng để truy nguyên vị trí nguồn, không dùng các quyết định nội dung cũ thay đặc tả hiện hành.
+
+## Danh mục và phân tích nguồn trước sửa
+
 ## Bản lập kế hoạch 2026-09-24
 
 Phần này cùng outline.md, storyboard.md và math-spec.md điều khiển bản46trang mới. Phần danh mục cũ cuối tệp là lịch sử của HTML40trang, không được dùng để khôi phục ví dụ cũ hoặc suy ra đã kiểm định bản mới. Phạm vi chỉ lập dàn bài, chưa thay đổi HTML, ghi chú hay bài tập công khai.
