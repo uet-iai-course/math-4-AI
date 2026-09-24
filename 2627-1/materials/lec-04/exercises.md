@@ -114,9 +114,9 @@ chứng minh bằng phép thế rằng $d=(9,-4)^T$, $\Delta\nu=-24$, và kiểm
 Độ giảm khả thi $\delta_{eq}^2=d^THd=2\cdot49+5\cdot49=343$, giảm mô hình $343/2$. Vì bài bậc hai, mô hình trùng $F$ trên hướng bước, nên giảm thật một bước đầy đủ đúng bằng $F_0-F^*=623/2-140=343/2$: hai đại lượng trùng, và đây là hệ quả cần dạy của trường hợp bậc hai, không phải quy tắc chung. Mỗi vòng Newton khả thi giữ $A(u+td)=Au^0+t\,Ad=b$, nên tính khả thi được bảo toàn.
 
 (b) Tại $u^0=(1,8)$: $\nabla F=(2,40)^T$; **sau khi cộng** $A^T\nu^0=(4,4)^T$ ta được $r_d=(6,44)^T$; $r_p=Au^0-b=9-14=-5$. Hệ cần giải có vế phải $(-6,-44,5)^T$. Phép thế $d=(9,-4)$, $\Delta\nu=-24$:
-- Hàng 1: $2\cdot9+0+(-24)=18-24=-6$. 
+- Hàng 1: $2\cdot9+0+(-24)=18-24=-6$.
 - Hàng 2: $0+5\cdot(-4)+(-24)=-20-24=-44$.  (vế phải là $-44$, không phải $-40$: sai lầm phổ biến là quên cộng nhân tử vào gradient.)
-- Hàng 3: $9+(-4)=5=-r_p$. 
+- Hàng 3: $9+(-4)=5=-r_p$.
 
 Vậy $u^1=(1+9,\,8-4)=(10,4)^T=u^*$ và $\nu^1=4-24=-20=\nu^*$. Kiểm phần dư mới: $\nabla F(u^1)+A^T\nu^1=(20,20)+(-20,-20)=(0,0)$, $Au^1-b=0$. Cả hai phần dư triệt tiêu sau một bước — đúng như kỳ vọng của Newton trên bài bậc hai, nơi tuyến tính hóa là chính xác.
 :::
@@ -140,7 +140,7 @@ tức hệ khối $\begin{bmatrix}H & A^T\\ A & 0\end{bmatrix}\begin{bmatrix}w\\
 
 (b) $M^TM=\mathrm{diag}(1,4)\Rightarrow H=\mathrm{diag}(2,5)$, $M^Ty=0$. Hệ KKT:
 $$2w_1+\nu=0,\quad 5w_2+\nu=0,\quad w_1+w_2=14.$$
-Từ hai phương trình đầu: $2w_1=5w_2$; kết hợp ràng buộc: $\tfrac52w_2+w_2=14\Rightarrow w_2=4,\ w_1=10,\ \nu=-20$. Vậy $w^*=(10,4)^T$, $\nu^*=-20$. **Gradient tại nghiệm không bằng 0**: $\nabla f(w^*)=Hw^*=(20,20)^T\ne0$. Điều kiện tối ưu của bài toán có ràng buộc là tính dừng của Hàm Lagrange: $\nabla f(w^*)+A^T\nu^*=(20,20)+(-20,-20)=(0,0)^T$ — thành phần $A^T\nu^*$ bù lại phần gradient bị ràng buộc "giữ". Khả thi gốc: $Aw^*=10+4=14=b$. 
+Từ hai phương trình đầu: $2w_1=5w_2$; kết hợp ràng buộc: $\tfrac52w_2+w_2=14\Rightarrow w_2=4,\ w_1=10,\ \nu=-20$. Vậy $w^*=(10,4)^T$, $\nu^*=-20$. **Gradient tại nghiệm không bằng 0**: $\nabla f(w^*)=Hw^*=(20,20)^T\ne0$. Điều kiện tối ưu của bài toán có ràng buộc là tính dừng của Hàm Lagrange: $\nabla f(w^*)+A^T\nu^*=(20,20)+(-20,-20)=(0,0)^T$ — thành phần $A^T\nu^*$ bù lại phần gradient bị ràng buộc "giữ". Khả thi gốc: $Aw^*=10+4=14=b$.
 
 (c) Tại $w^0=(1,8)^T$, $\nu^0=4$ (chưa khả thi vì $Aw^0=9\ne14$):
 $$r_d=\nabla f(w^0)+A^T\nu^0=(2,40)^T+(4,4)^T=(6,44)^T,\qquad r_p=Aw^0-b=9-14=-5.$$
