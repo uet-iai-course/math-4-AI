@@ -19,37 +19,37 @@
   <p class="unit">Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
   <p class="term">Năm học 2026–2027 · Học kỳ 1</p>
   <div class="panel">
-    <p><strong>Nhiệm vụ của bài này:</strong> dùng điều kiện Karush–Kuhn–Tucker (KKT) để xây dựng bước lặp và kiểm tra điểm mới.</p>
+    <p><strong>Cơ sở của bước lặp:</strong> điều kiện Karush–Kuhn–Tucker (KKT), mô hình cục bộ và quy tắc chọn bước.</p>
   </div>
-  <aside class="notes"><p>Ta dùng lại hai kết quả của bài trước về đối ngẫu Lagrange: hàm Lagrange với nhân tử đẳng thức tự do dấu, và bốn nhóm điều kiện KKT. Bài trước dùng KKT để chứng nhận một ứng viên đã cho là tối ưu; nhiệm vụ mới là tự tạo ra ứng viên bằng một bước tính. Ta sẽ lập bài toán con và giải hệ để tạo bước đó. Điểm dễ nhầm: KKT là điều kiện của bài gốc, không phải một thuật toán — trang sau sẽ nhắc chính xác kết quả cũ trước khi tổ chức cách tạo ứng viên. Nguồn: bài 03, mục "Hàm Lagrange" và "Bốn nhóm điều kiện KKT"; đề cương học phần và giáo trình, phần ràng buộc đẳng thức.</p></aside>
+  <aside class="notes"><p>Cơ sở xây dựng bước lặp gồm hàm Lagrange với nhân tử đẳng thức tự do dấu, và bốn nhóm điều kiện KKT. Trong bài toán lồi, KKT đủ để chứng nhận nghiệm tối ưu; chiều cần sử dụng điều kiện chính quy thích hợp. Bài toán con xác định hướng thông qua hệ điều kiện tối ưu của mô hình. Quy tắc chọn bước xác định điểm cập nhật; tiêu chuẩn dừng đo mức độ thỏa điều kiện của bài gốc hoặc độ giảm mô hình. Nguồn: bài 03, mục "Hàm Lagrange" và "Bốn nhóm điều kiện KKT"; đề cương học phần và giáo trình, phần ràng buộc đẳng thức.</p></aside>
 </section>
 
 <section data-slide-id="RP01">
-  <h2>Điều kiện tối ưu và nhiệm vụ tính</h2>
+  <h2>Điều kiện tối ưu và bước lặp</h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
-      <h3>Đã biết từ bài trước</h3>
+      <h3>Chứng nhận nghiệm tối ưu</h3>
       <p>Trong bài toán lồi, KKT là điều kiện đủ để chứng nhận một ứng viên $x^*$ là tối ưu toàn cục.</p>
-      <p>Ví dụ đã giải: hồi quy có ràng buộc chuẩn, điều kiện dừng</p>
+      <p>Ví dụ: hồi quy có ràng buộc chuẩn, điều kiện dừng</p>
       <div class="formula" tabindex="0">$$(X^TX+2\lambda I)w=X^Ty,$$</div>
     </div>
     <div class="fragment">
-      <h3>Bài này tổ chức ba thao tác</h3>
+      <h3>Cấu trúc bước lặp</h3>
       <ol class="steps">
         <li><strong>Lập mô hình:</strong> chọn bài toán con tại điểm hiện tại.</li>
         <li><strong>Giải bước:</strong> viết KKT của bài con thành hệ, giải hệ.</li>
-        <li><strong>Kiểm điểm mới:</strong> nhận bước và kiểm tiêu chí dừng.</li>
+        <li><strong>Kiểm tra điểm cập nhật:</strong> nhận bước và kiểm tiêu chí dừng.</li>
       </ol>
     </div>
   </div>
-  <aside class="notes"><p>Với bài toán lồi, một bộ thỏa KKT chứng nhận nghiệm tối ưu; tính đủ này không cần Slater. Trong ví dụ hồi quy đã học, $X=I_2$, $y=(3,4)^T$, $\tau=1$ cho $w^*=(3/5,4/5)^T$, $\lambda^*=2$, mất mát bằng 8. Ta đã lập Lagrange, lấy đạo hàm rồi giải hệ. Bây giờ tổ chức thao tác đó thành quy trình lặp. Điểm dễ nhầm: chứng nhận tính đủ của KKT áp dụng cho bài gốc lồi đúng giả thiết; nhưng nghiệm của một bài con mô hình không tự động là nghiệm của bài gốc phi bậc hai — đó là hai bài toán khác nhau. Trang sau rút gọn KKT cho hai lớp bài toán sẽ dùng. Nguồn: bài 03, mục "Chứng minh điều kiện đủ của KKT", "Giải hệ KKT của hồi quy" và ví dụ hai trọng số; đề cương học phần và giáo trình.</p></aside>
+  <aside class="notes"><p>Với bài toán lồi, một bộ thỏa KKT chứng nhận nghiệm tối ưu; tính đủ này không cần Slater. Trong ví dụ hồi quy đã học, $X=I_2$, $y=(3,4)^T$, $\tau=1$ cho $w^*=(3/5,4/5)^T$, $\lambda^*=2$, mất mát bằng 8. Hàm Lagrange dẫn đến hệ phương trình qua phép lấy đạo hàm. Trong một phương pháp lặp, chứng nhận tính đủ của KKT áp dụng cho bài gốc lồi đúng giả thiết; nhưng nghiệm của một bài con mô hình không tự động là nghiệm của bài gốc phi bậc hai vì biến và mục tiêu của hai bài toán khác nhau. Khi bài gốc không có bất đẳng thức, hệ KKT chỉ còn các nhóm dừng và khả thi đẳng thức tương ứng. Nguồn: bài 03, mục "Chứng minh điều kiện đủ của KKT", "Giải hệ KKT của hồi quy" và ví dụ hai trọng số; đề cương học phần và giáo trình.</p></aside>
 </section>
 
 <section data-slide-id="RP02">
-  <h2>Hai dạng rút gọn của KKT</h2>
+  <h2>Điều kiện KKT cho hai lớp bài toán</h2>
   <p class="hypothesis">Giả thiết: $f,F$ lồi, khả vi trên miền mở lồi.</p>
   <p class="dims">Kích thước: $x,u\in\mathbb R^n$, $A\in\mathbb R^{p\times n}$, $b,\nu\in\mathbb R^p$.</p>
-  <p>Bốn nhóm KKT của bài trước: khả thi gốc · khả thi đối ngẫu $\lambda\ge0$ · bù trừ · dừng.</p>
+  <p>Bốn nhóm KKT: khả thi gốc · khả thi đối ngẫu $\lambda\ge0$ · bù trừ · dừng.</p>
   <div class="lec-grid">
     <div>
       <h3>Không ràng buộc</h3>
@@ -63,13 +63,13 @@
     </div>
   </div>
   <div class="takeaway">$g=\nabla f(x)$ là gradient tại điểm hiện tại; phân biệt với hàm đối ngẫu $g(\lambda,\nu)$ của Bài 03.</div>
-  <aside class="notes"><p>Phép chuyên biệt hóa làm ngay trên trang: bỏ nhóm khả thi đối ngẫu và bù trừ vì chúng gắn với bất đẳng thức, mà hai lớp bài toán này không có. Nhân tử đẳng thức $\nu$ tự do dấu — khác hẳn nhân tử bất đẳng thức $\lambda\ge0$ của bài trước; tính đủ của KKT đến từ tính lồi của bài gốc đúng giả thiết. Kích thước: $p$ là số hàng của $A$, ứng với số thành phần của $\nu$ và $b$. Điểm dễ nhầm: chữ $g$ ở đây là gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$. Hai phương trình đích này sẽ trở thành bài con ở các trang sau. Nguồn: bài 03, mục "Bốn nhóm điều kiện KKT" và "Hàm Lagrange"; đề cương học phần và giáo trình.</p></aside>
+  <aside class="notes"><p>Hai lớp bài toán không có bất đẳng thức nên không có nhóm khả thi đối ngẫu của nhân tử bất đẳng thức và điều kiện bù trừ. Nhân tử đẳng thức $\nu$ tự do dấu, còn nhân tử bất đẳng thức thỏa $\lambda\ge0$; tính đủ của KKT đến từ tính lồi của bài gốc đúng giả thiết. Kích thước: $p$ là số hàng của $A$, ứng với số thành phần của $\nu$ và $b$. Ký hiệu $g$ ở đây là gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$. Các phương trình tối ưu xác định nghiệm cần đạt; mô hình theo biến bước xác định hướng cập nhật. Nguồn: bài 03, mục "Bốn nhóm điều kiện KKT" và "Hàm Lagrange"; đề cương học phần và giáo trình.</p></aside>
 </section>
 
 <section data-slide-id="RP03">
-  <h2>Mục tiêu và quy trình xây dựng phương pháp</h2>
+  <h2>Mục tiêu học tập và cấu trúc phương pháp</h2>
   <div class="lec-flow">
-    <div class="flow-node">KKT xác định đích</div>
+    <div class="flow-node">Điều kiện KKT</div>
     <span class="arrow">→</span>
     <div class="flow-node">Mô hình chọn hướng</div>
     <span class="arrow">→</span>
@@ -82,18 +82,18 @@
   <div class="panel">
     <p><strong>Ba đầu ra cần đạt:</strong></p>
     <ol class="steps">
-      <li>Tự suy ra hệ điều kiện từ bài con, không học thuộc ma trận.</li>
+      <li>Suy ra hệ điều kiện tối ưu của bài toán con.</li>
       <li>Thực hiện một bước cập nhật bằng số.</li>
-      <li>Kiểm đúng tiêu chí nhận bước và dừng.</li>
+      <li>Kiểm tra điều kiện nhận bước và tiêu chuẩn dừng.</li>
     </ol>
   </div>
-  <aside class="notes"><p>Sơ đồ thể hiện quan hệ phụ thuộc, không phải danh sách độc lập: KKT cho biết đích là cặp phương trình dừng và khả thi; mọi phương pháp sau đều sinh ra từ việc biến cặp đó thành hệ giải được. Điểm cần ngăn: KKT không tự cho một thuật toán duy nhất — lựa chọn mô hình bài con và quy tắc nhận bước là thiết kế thêm, và mỗi lựa chọn cho một phương pháp khác nhau. Ba đầu ra đánh giá là những gì người học phải làm được, không chỉ nhận diện tên; trang kiểm tra kế tiếp sẽ yêu cầu viết lại chính điều kiện vừa dùng trong sơ đồ này. Nguồn: bài 03, mục khái niệm về đối ngẫu Lagrange và điều kiện KKT; đề cương học phần và giáo trình.</p></aside>
+  <aside class="notes"><p>Điều kiện dừng và khả thi xác định nghiệm của bài toán. Một phương pháp lặp cần thêm mô hình chọn hướng, quy tắc nhận bước và tiêu chuẩn dừng. Các lựa chọn mô hình khác nhau dẫn tới hướng gradient, hướng theo chuẩn bậc hai và hướng Newton. Với đẳng thức, bài toán con phải bảo toàn tính khả thi hoặc hiệu chỉnh phần dư của hệ KKT. Việc thiết lập các hệ này sử dụng hàm Lagrange và điều kiện khả thi của hướng. Nguồn: bài 03, mục khái niệm về đối ngẫu Lagrange và điều kiện KKT; đề cương học phần và giáo trình.</p></aside>
 </section>
 
 <section data-slide-id="RP04">
-  <h2>Kiểm tra điều kiện cần dùng</h2>
+  <h2>Điều kiện KKT và hướng bảo toàn đẳng thức</h2>
   <div class="question">
-    <p><strong>Câu hỏi:</strong> cho bài toán cực tiểu hàm lồi $F(u)$ với ràng buộc $Au=b$. Hãy viết hàm Lagrange và hai phương trình KKT. Có cần $\nu\ge0$ không?</p>
+    <p><strong>Câu hỏi:</strong> cho bài toán cực tiểu hàm lồi $F(u)$ với ràng buộc $Au=b$. Viết hàm Lagrange và hai phương trình KKT. Có cần $\nu\ge0$ không?</p>
   </div>
   <div class="lec-grid">
     <div>
@@ -104,25 +104,25 @@
     </div>
     <div>
       <div class="question">
-        <p><strong>Câu hỏi:</strong> với $A=[1\;1]$ và $d=(d_1,d_2)^T$, hãy tính $Ad$. Hướng $d$ cần thỏa điều kiện nào để giữ tính khả thi?</p>
+        <p><strong>Câu hỏi:</strong> với $A=[1\;1]$ và $d=(d_1,d_2)^T$, tính $Ad$. Hướng $d$ cần thỏa điều kiện nào để giữ tính khả thi?</p>
         <div class="formula" tabindex="0">$$[1\;1]\begin{bmatrix}d_1\\d_2\end{bmatrix}=\ ?$$</div>
       </div>
     </div>
   </div>
-  <aside class="notes"><p>Đáp án. Lagrange: $L(u,\nu)=F(u)+\nu^T(Au-b)$. Hai nhóm KKT: điều kiện dừng $\nabla F(u^*)+A^T\nu^*=0$ và khả thi $Au^*=b$. Nhân tử $\nu$ tự do dấu, không cần $\nu\ge0$ — điều đó chỉ dành cho nhân tử bất đẳng thức. Phép nhân: $[1\;1](d_1,d_2)^T=d_1+d_2$. Hướng $d$ giữ tính khả thi khi $d_1+d_2=0$: nếu $Au=b$ và $Ad=0$ thì $A(u+td)=b$. Điểm dễ nhầm: quên hạng $A^T\nu$ trong điều kiện dừng, hoặc gán nhầm điều kiện không âm cho $\nu$. Điều kiện dừng dẫn vào việc chọn hướng ở phần tiếp theo. Điều kiện $Ad=0$ được giữ lại để xây dựng hướng khả thi khi xét ràng buộc đẳng thức. Nguồn: bài 03, mục "Hàm Lagrange" và "Bốn nhóm điều kiện KKT"; đề cương học phần và giáo trình.</p></aside>
+  <aside class="notes"><p>Đáp án. Lagrange: $L(u,\nu)=F(u)+\nu^T(Au-b)$. Hai nhóm KKT: điều kiện dừng $\nabla F(u^*)+A^T\nu^*=0$ và khả thi $Au^*=b$. Nhân tử $\nu$ tự do dấu, không cần $\nu\ge0$; điều kiện không âm áp dụng cho nhân tử bất đẳng thức. Phép nhân: $[1\;1](d_1,d_2)^T=d_1+d_2$. Hướng $d$ giữ tính khả thi khi $d_1+d_2=0$: nếu $Au=b$ và $Ad=0$ thì $A(u+td)=b$. Hạng $A^T\nu$ biểu diễn tác động của đẳng thức lên điều kiện dừng. Trong bài không ràng buộc, hướng cập nhật được xác định từ gradient của mục tiêu. Điều kiện $Ad=0$ xác định hướng khả thi khi xét ràng buộc đẳng thức. Nguồn: bài 03, mục "Hàm Lagrange" và "Bốn nhóm điều kiện KKT"; đề cương học phần và giáo trình.</p></aside>
 </section>
 </section>
 <section>
 <section data-slide-id="RG01">
-<h2>Bài toán và độ dốc cục bộ</h2>
+<h2>Đạo hàm hướng và biến thiên cục bộ</h2>
 <div class="lec-grid ratio55">
 <div>
 <img class="plot" src="img/lec-04/descent-directions.svg" alt="Các đường mức của f và ba hướng tại x⁰=(2,4): giảm, tăng và có đạo hàm hướng bằng không">
-<div class="takeaway">Đạo hàm theo hướng $g^Td$ cho biết hướng nào làm $f$ giảm; cần chọn hướng, không chỉ kiểm một hướng cho trước.</div>
+<div class="takeaway">Đạo hàm hướng $g^Td&lt;0$ bảo đảm $f$ giảm với bước dương đủ nhỏ.</div>
 </div>
 <div>
 <div class="panel">
-<h3>Bốn dữ kiện của VD1</h3>
+<h3>Dữ kiện VD1</h3>
 <table>
 <tr><th>Đại lượng</th><th>Giá trị</th></tr>
 <tr><td>$f$</td><td>$\tfrac12(3x_1^2+7x_2^2)$</td></tr>
@@ -133,14 +133,14 @@
 </div>
 </div>
 </div>
-<aside class="notes">Trên hình, đường mức vuông góc với gradient: đi theo chiều $-g$ thì $f$ giảm ngay, đi theo hướng vuông góc với $g$ thì đạo hàm hướng bằng 0. Tích vô hướng $g^Td$ chính là đạo hàm theo hướng của $f$ tại $x^0$ theo hướng $d$, nên dấu của nó quyết định giảm hay tăng cục bộ. Với VD1, $g=(6,28)^T$ và $f(x^0)=\tfrac12(3\cdot4+7\cdot16)=62$. Điểm dễ nhầm: gradient là vectơ tại điểm hiện tại, chưa phải hướng bước; ta phải chọn $d$. Câu hỏi: với $d=(1,0)^T$, $g^Td$ bằng bao nhiêu? Đáp án: $6>0$, hướng này làm $f$ tăng cục bộ. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Ba mũi tên trên hình biểu diễn hướng có đạo hàm hướng âm, dương và bằng không. Hướng tiếp tuyến với đường mức thỏa $g^Td=0$; dấu đạo hàm được xét theo tọa độ của bài toán. Tích vô hướng $g^Td$ chính là đạo hàm theo hướng của $f$ tại $x^0$ theo hướng $d$, nên dấu của nó quyết định giảm hay tăng cục bộ. Với VD1, $g=(6,28)^T$ và $f(x^0)=\tfrac12(3\cdot4+7\cdot16)=62$. Gradient là vectơ đạo hàm tại điểm hiện tại; hướng cập nhật $d$ là biến cần xác định. Với $d=(1,0)^T$, tích $g^Td=6>0$ cho hướng tăng cục bộ. Khi gradient khác không, mục tiêu tuyến tính theo hướng không bị chặn dưới; số hạng bậc hai tạo bài toán chọn hướng có nghiệm hữu hạn. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
 </section>
 
 <section data-slide-id="RG02">
-<h2>Hướng gradient từ mô hình chọn bước</h2>
+<h2>Hướng gradient từ mô hình bậc hai</h2>
 <div class="lec-grid lec-grid--75-25">
 <div>
-<div class="formula" tabindex="0">Mô hình tuyến tính: $f(x+d)\approx f(x)+g^Td$ — không có cực tiểu hữu hạn khi $g\ne0$.</div>
+<div class="formula" tabindex="0">Xấp xỉ tuyến tính: $f(x+d)\approx f(x)+g^Td$. Mô hình không có cực tiểu hữu hạn khi $g\ne0$.</div>
 <div class="formula fragment" tabindex="0">Chọn mô hình bậc hai: $Q_I(d)=f(x)+g^Td+\tfrac12\|d\|_2^2$.</div>
 <div class="formula emphasis fragment" tabindex="0">KKT không ràng buộc theo biến $d$: $g+d=0\Rightarrow d_G=-g$.</div>
 </div>
@@ -151,7 +151,7 @@
 </div>
 </div>
 </div>
-<aside class="notes">Ta suy ra hướng từ điều kiện dừng đã học: lập bài con tối ưu $Q_I(d)$ theo biến $d$, với $x$ giữ nguyên. Đạo hàm theo $d$ cho $g+d=0$, nên $d_G=-g$. Vì $I\succ0$, $Q_I$ lồi chặt nên nghiệm duy nhất; KKT khi đó vừa cần vừa đủ. Điểm dễ nhầm: nghiệm $d_G$ là nghiệm của bài con, chưa phải nghiệm của bài gốc theo $x$; hai bài này khác biến và khác vai trò. Mô hình tuyến tính một mình không chọn được hướng vì $g^Td$ không bị chặn dưới khi $g\ne0$. Câu hỏi: vì sao cần thêm $\tfrac12\|d\|_2^2$? Đáp án: để bài con có cực tiểu hữu hạn và duy nhất. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Hướng gradient là nghiệm của bài toán con cực tiểu $Q_I(d)$ theo biến $d$, với $x$ giữ nguyên. Đạo hàm theo $d$ cho $g+d=0$, nên $d_G=-g$. Vì $I\succ0$, $Q_I$ lồi chặt nên nghiệm duy nhất; KKT khi đó vừa cần vừa đủ. Nghiệm $d_G$ là nghiệm của bài con, chưa phải nghiệm của bài gốc theo $x$; hai bài này khác biến và khác vai trò. Mô hình tuyến tính một mình không chọn được hướng vì $g^Td$ không bị chặn dưới khi $g\ne0$. Số hạng $\tfrac12\|d\|_2^2$ bảo đảm cực tiểu hữu hạn và duy nhất. Hướng thu được có đạo hàm hướng âm khi gradient khác không; độ dài bước cần được xác định riêng. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
 </section>
 
 <section data-slide-id="RG03">
@@ -171,7 +171,7 @@
 <img class="plot" src="img/lec-04/descent-ray.svg" alt="Tia x+td theo hướng giảm với hai vị trí bước gần và xa trên đường mức">
 </div>
 </div>
-<aside class="notes">Hướng gradient $d_G=-g$ cho đạo hàm hướng $g^Td_G=-\|g\|^2=-820&lt;0$, cho giảm với bước dương đủ nhỏ. Hướng thử $\tilde d=(-2,1)^T$ cho $g^T\tilde d=16&gt;0$, làm $f$ tăng cục bộ, bị loại. Nhưng đạo hàm hướng âm chỉ bảo đảm giảm với bước dương đủ nhỏ: nếu $t$ quá lớn, độ cong có thể khiến giá trị tăng trở lại và $f(x+td)&gt;f(x)$. Trên hình, tia $x+td$ cắt hai vùng: điểm gần giảm giá trị, điểm xa có thể vượt qua cả thung lũng. Vậy cần một quy tắc chọn $t$ — đó là nội dung trang sau. Câu hỏi: $\tilde d$ có phải hướng giảm không? Đáp án: không, vì $g^T\tilde d=16&gt;0$. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Hướng gradient $d_G=-g$ cho đạo hàm hướng $g^Td_G=-\|g\|^2=-820&lt;0$, cho giảm với bước dương đủ nhỏ. Hướng thử $\tilde d=(-2,1)^T$ cho $g^T\tilde d=16&gt;0$, làm $f$ tăng cục bộ, bị loại. Nhưng đạo hàm hướng âm chỉ bảo đảm giảm với bước dương đủ nhỏ: nếu $t$ quá lớn, độ cong có thể khiến giá trị tăng trở lại và $f(x+td)&gt;f(x)$. Trên tia $x+td$, một điểm thử ở xa có thể có giá trị mục tiêu lớn hơn điểm xuất phát. Bất đẳng thức Armijo kiểm mức giảm tại điểm thử để xác định $t$. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
 </section>
 
 <section data-slide-id="RG04">
@@ -193,11 +193,11 @@
 </div>
 </div>
 <div class="formula emphasis" tabindex="0">$$f(x+td)\le f(x)+\alpha t\,g^Td.$$</div>
-<aside class="notes">Đọc quy tắc đúng thứ tự: trước hết phải có $g^Td&lt;0$; rồi thử $t=1$; kiểm điểm thử thuộc miền trước khi đánh giá hàm và kiểm bất đẳng thức Armijo; nếu chưa đạt mới co bước theo hệ số $\beta$. Trên hình, đường thẳng ngưỡng $f(x)+\alpha t\,g^Td$ nằm trên tiếp tuyến khi $t&gt;0$, vì $g^Td&lt;0$ và $0&lt;\alpha&lt;1$; điểm $t$ được nhận khi đồ thị giá trị thật rơi xuống dưới ngưỡng. Với hàm khả vi trên miền mở và hướng giảm, bước dương đủ nhỏ được nhận. Hình dùng VD1 với $\alpha=1/10$; điểm thử ngoài miền luôn bị loại. Điểm dễ nhầm: $\alpha$ là tham số ngưỡng, $\beta$ là hệ số co — hai vai trò khác nhau. Câu hỏi: nếu $t=1$ đạt ngay thì có thử $t=\beta$ không? Đáp án: không, dừng ngay khi đạt. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Quay lui yêu cầu $g^Td&lt;0$; rồi thử $t=1$; kiểm điểm thử thuộc miền trước khi đánh giá hàm và kiểm bất đẳng thức Armijo; nếu chưa đạt mới co bước theo hệ số $\beta$. Trên hình, đường thẳng ngưỡng $f(x)+\alpha t\,g^Td$ nằm trên tiếp tuyến khi $t&gt;0$, vì $g^Td&lt;0$ và $0&lt;\alpha&lt;1$; điểm $t$ được nhận khi đồ thị giá trị thật không vượt ngưỡng. Với hàm khả vi trên miền mở và hướng giảm, bước dương đủ nhỏ được nhận. Hình dùng VD1 với $\alpha=1/10$; điểm thử ngoài miền luôn bị loại. $\alpha$ là tham số ngưỡng, $\beta$ là hệ số co. Nếu $t=1$ thỏa điều kiện, thuật toán nhận ngay bước này; $t=\beta$ chỉ được thử sau khi bước đầy đủ bị loại. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
 </section>
 
 <section data-slide-id="RG05">
-<h2>Một lượt nhận bước</h2>
+<h2>Ví dụ quay lui Armijo</h2>
 <div class="formula" tabindex="0">Cho $f(x^0)=62$, $g^Td=-820$, $\alpha=1/10$, $\beta=1/2$.</div>
 <div class="table-scroll" tabindex="0">
 <table>
@@ -207,7 +207,7 @@
 <tr class="fragment"><td>3</td><td>$1/4$</td><td>$(1/2,-3)^T$</td><td>$255/8$</td><td>$83/2$</td><td><strong>nhận</strong></td></tr>
 </table>
 </div>
-<aside class="notes">Thực hiện đúng thứ tự Armijo với $d=d_G=(-6,-28)^T$. Lần thử 1: $x+t d=(-4,-24)^T$, $f=2040&gt;-20$, loại. Lần thử 2: $t=1/2$ cho $(-1,-10)^T$, $f=703/2&gt;21$, loại. Lần thử 3: $t=1/4$ cho $(1/2,-3)^T$, $f=255/8\le83/2$, nhận và dừng — không thử tiếp $1/8$. Điểm dễ nhầm: bước nhận là $1/4$, còn $1/2$ là hệ số co $\beta$; giá trị $1/2$ còn là bước thử thứ hai, trùng số với $\beta$ nhưng khác vai trò. Giữ phân số chính xác để so sánh không sai. Câu hỏi: vì sao không thử $t=1/8$? Đáp án: quy tắc dừng ngay khi bất đẳng thức đạt lần đầu. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Quay lui Armijo với $d=d_G=(-6,-28)^T$. Lần thử 1: $x+t d=(-4,-24)^T$, $f=2040&gt;-20$, loại. Lần thử 2: $t=1/2$ cho $(-1,-10)^T$, $f=703/2&gt;21$, loại. Lần thử 3: $t=1/4$ cho $(1/2,-3)^T$, $f=255/8\le83/2$, nhận bước và kết thúc tìm kiếm, không thử $1/8$. Bước nhận là $1/4$, còn $1/2$ là hệ số co $\beta$; giá trị $1/2$ còn là bước thử thứ hai, trùng số với $\beta$ nhưng khác vai trò. Các phân số cho phép so sánh chính xác với ngưỡng Armijo. Bước $t=1/8$ chỉ được xét nếu bước trước bị loại; sau khi cập nhật, gradient được tính lại tại điểm mới. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
 </section>
 
 <section data-slide-id="RG06">
@@ -224,7 +224,7 @@
 <p><strong>Chi phí mỗi lượt:</strong> một gradient và các lần đánh giá hàm để thử bước.</p></div>
 </div>
 <div class="takeaway">Bước cố định $t=1/L$ dùng hằng số Lipschitz $L$ của gradient và có định lý hội tụ riêng.</div>
-<aside class="notes">Thuật toán gom đủ năm bước đã xây: tính gradient, kiểm tiêu chí dừng theo chuẩn gradient, đặt $d=-g$, nhận bước bằng Armijo, cập nhật. Đầu vào gồm điểm đầu trong miền, dung sai $\varepsilon_g$ và cặp tham số $(\alpha,\beta)$ của quay lui. Chi phí mỗi vòng lặp chủ yếu là một gradient và vài lần đánh giá hàm khi thử bước. Điểm dễ nhầm: định lý hội tụ với bước cố định $1/L$ là một cấu hình khác, không thay thế vòng quay lui; đừng trộn hai quy tắc nhận bước. Câu hỏi: nếu $\|g\|\le\varepsilon_g$ ngay từ đầu thì thuật toán làm gì? Đáp án: dừng ngay, không tính hướng. Hằng số $L&gt;0$ thỏa $\|\nabla f(x)-\nabla f(y)\|_2\le L\|x-y\|_2$ với mọi $x,y\in\mathbb R^n$ được gọi là hằng số Lipschitz của gradient. Với $f$ lồi khả vi trên $\mathbb R^n$, gradient $L$-Lipschitz và nghiệm $x^\star$ tồn tại, cấu hình bước cố định $1/L$ thỏa $f(x^k)-f^\star\le L\|x^0-x^\star\|_2^2/(2k)$ khi $k\ge1$. Nếu thêm tính lồi mạnh với hệ số $\mu&gt;0$, sai số mục tiêu giảm không quá $(1-\mu/L)^k[f(x^0)-f^\star]$. Đây là kết quả cho cấu hình bước cố định, không gán nguyên công thức cho vòng Armijo. Chuẩn gradient nhỏ chỉ là tiêu chí dừng; cận $f(x)-f^\star\le\|g\|_2^2/(2\mu)$ cần tính lồi mạnh. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Thuật toán gồm tính gradient, kiểm tiêu chí dừng theo chuẩn gradient, đặt $d=-g$, nhận bước bằng Armijo, cập nhật. Đầu vào gồm điểm đầu trong miền, dung sai $\varepsilon_g$ và cặp tham số $(\alpha,\beta)$ của quay lui. Chi phí mỗi vòng lặp chủ yếu là một gradient và vài lần đánh giá hàm khi thử bước. Cấu hình bước cố định $1/L$ có định lý hội tụ riêng; các cận của nó không tự động áp dụng cho quay lui. Nếu $\|g\|\le\varepsilon_g$ ngay tại điểm đầu, thuật toán dừng trước khi tính hướng. Hằng số $L&gt;0$ thỏa $\|\nabla f(x)-\nabla f(y)\|_2\le L\|x-y\|_2$ với mọi $x,y\in\mathbb R^n$ được gọi là hằng số Lipschitz của gradient. Với $f$ lồi khả vi trên $\mathbb R^n$, gradient $L$-Lipschitz và nghiệm $x^\star$ tồn tại, cấu hình bước cố định $1/L$ thỏa $f(x^k)-f^\star\le L\|x^0-x^\star\|_2^2/(2k)$ khi $k\ge1$. Nếu thêm tính lồi mạnh với hệ số $\mu&gt;0$, sai số mục tiêu giảm không quá $(1-\mu/L)^k[f(x^0)-f^\star]$. Các cận này áp dụng cho cấu hình bước cố định. Cấu hình đó cũng cho phép tách hệ số cập nhật của từng tọa độ trên hàm bậc hai. Chuẩn gradient nhỏ chỉ là tiêu chí dừng; cận $f(x)-f^\star\le\|g\|_2^2/(2\mu)$ cần tính lồi mạnh. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
 </section>
 <section data-slide-id="RG07">
 <h2>Ảnh hưởng của thước đo</h2>
@@ -238,17 +238,17 @@
 <div class="formula" tabindex="0">$x_1^+=x_1-\tfrac14\cdot 3x_1=\tfrac14 x_1$</div>
 <div class="formula" tabindex="0">$x_2^+=x_2-\tfrac14\cdot 7x_2=-\tfrac34 x_2$</div>
 </div>
-<p>Đây là thí nghiệm giữ $t=1/4$ cố định, không phải chuỗi quay lui đã nhận bước ở trang trước.</p>
+<p>Cấu hình bước cố định tách ảnh hưởng của độ cong khỏi quy tắc quay lui.</p>
 </div>
 </div>
-<div class="takeaway">Hai tọa độ co với tốc độ rất khác nhau: cần một cách đo độ dài phù hợp từng tọa độ.</div>
+<div class="takeaway">Hai tọa độ có hệ số co khác nhau; chuẩn bậc hai phản ánh độ cong theo từng phương.</div>
 <aside class="notes">
-Với $f=\tfrac12(3x_1^2+7x_2^2)$ tại $x^0=(2,4)^T$, gradient là $g=(6,28)^T$. Giữ bước $t=1/4$ và hướng $d_G=-g$, cập nhật $x^+=x+t\,d_G$ cho $x_1^+=x_1/4$ và $x_2^+=-3x_2/4$: tại mỗi điểm phải tính lại $g=(3x_1,7x_2)^T$. Thành phần thứ hai đổi dấu và co chậm hơn, với hệ số độ lớn $3/4$ so với $1/4$. Điểm dễ nhầm: đây không phải chuỗi quay lui với các mức $t=1,1/2,1/4$; ta cố ý khóa $t$ để nhìn cấu trúc đường đi. Tọa độ $x_2$ đổi dấu qua mỗi lượt, còn $x_1$ giữ dấu; các điểm tiến dần về gốc. Điều đó cho thấy chuẩn Euclid không phản ánh độ cong khác nhau giữa hai phương, nên trang sau sẽ chọn một thước đo khác. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Với $f=\tfrac12(3x_1^2+7x_2^2)$ tại $x^0=(2,4)^T$, gradient là $g=(6,28)^T$. Giữ bước $t=1/4$ và hướng $d_G=-g$, cập nhật $x^+=x+t\,d_G$ cho $x_1^+=x_1/4$ và $x_2^+=-3x_2/4$: tại mỗi điểm phải tính lại $g=(3x_1,7x_2)^T$. Thành phần thứ hai đổi dấu và co chậm hơn, với hệ số độ lớn $3/4$ so với $1/4$. Phân tích này giữ cố định $t$, khác với tìm bước bằng quay lui qua các mức $t=1,1/2,1/4$. Tọa độ $x_2$ đổi dấu qua mỗi lượt, còn $x_1$ giữ dấu; các điểm tiến dần về gốc. Hai hệ số co xuất phát từ độ cong khác nhau theo hai phương. Chuẩn bậc hai với ma trận chọn theo độ cong thay đổi thước đo dùng để xác định hướng giảm dốc nhất. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 
 <section data-slide-id="RG08">
-<h2>Bài toán chọn hướng có chuẩn đơn vị</h2>
+<h2>Hướng giảm dốc nhất có chuẩn đơn vị</h2>
 <div class="lec-grid lec-grid--45-55">
 <div>
 <img class="plot" src="img/lec-04/weighted-unit.svg" alt="Elip 3v1²+7v2²=1 và các đường mức tuyến tính 6v1+28v2=c trên VD1 với W=diag(3,7); điểm tiếp xúc cho giá trị gᵀv nhỏ nhất">
@@ -264,12 +264,12 @@ Với $f=\tfrac12(3x_1^2+7x_2^2)$ tại $x^0=(2,4)^T$, gradient là $g=(6,28)^T$
 </div>
 </div>
 <aside class="notes">
-Trang trước cho thấy chuẩn Euclid co hai tọa độ không đều, nên ta đổi cách đo độ dài: chuẩn bậc hai $\|v\|_W=\sqrt{v^TWv}$ với $W\succ0$. Việc chọn $W=\operatorname{diag}(3,7)$ theo độ cong là một quyết định mô hình, không phải kết quả do KKT bắt buộc. Với hàm bậc hai của VD1, lựa chọn này trùng Hessian. Hình vẽ đúng VD1: $g=(6,28)^T$ nên đường mức là $6v_1+28v_2=c$; elip $3v_1^2+7v_2^2=1$ là biên tập khả thi. Giá trị $g^Tv$ nhỏ nhất đạt tại điểm tiếp xúc, nơi gradient của mục tiêu song song với gradient của ràng buộc. Bài con này giống dạng giới hạn chuẩn đã học ở Bài 03, nhưng biến bây giờ là $v$ và mục tiêu tuyến tính. Điểm dễ nhầm: chưa giải vội; hãy tự viết Lagrange như trên, nhân tử $\zeta$ là nhân tử bất đẳng thức của bài con, khác $\lambda$ của Bài 03. Bài con lồi, $v=0$ thỏa Slater và tập khả thi đóng và bị chặn nên KKT cần và đủ. Với chuẩn bất kỳ, hướng chuẩn hóa giải $\min_{\|v\|\le1}g^Tv$ và $\|g\|_*=\max_{\|v\|\le1}g^Tv$ là chuẩn đối ngẫu. Quy ước hướng không chuẩn hóa là $d=\|g\|_*v$. Công thức dùng $W^{-1}$ chỉ dành cho chuẩn bậc hai. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Để phản ánh độ cong khác nhau theo các phương, xét chuẩn bậc hai $\|v\|_W=\sqrt{v^TWv}$ với $W\succ0$. Việc chọn $W=\operatorname{diag}(3,7)$ theo độ cong là một quyết định mô hình, không phải kết quả do KKT bắt buộc. Với hàm bậc hai của VD1, lựa chọn này trùng Hessian. Với VD1, $g=(6,28)^T$ nên đường mức là $6v_1+28v_2=c$; elip $3v_1^2+7v_2^2=1$ là biên tập khả thi. Giá trị $g^Tv$ nhỏ nhất đạt tại điểm tiếp xúc, nơi gradient của mục tiêu song song với gradient của ràng buộc. Bài con này giống dạng giới hạn chuẩn đã học ở Bài 03, với biến $v$ và mục tiêu tuyến tính. Nhân tử $\zeta$ là nhân tử bất đẳng thức của bài con, khác $\lambda$ của Bài 03. Tính lồi bảo đảm KKT đủ; $v=0$ thỏa Slater bảo đảm chiều cần và sự tồn tại nhân tử. Tập khả thi đóng, bị chặn và mục tiêu liên tục nên bài con có nghiệm. Với chuẩn bất kỳ, hướng chuẩn hóa giải $\min_{\|v\|\le1}g^Tv$ và $\|g\|_*=\max_{\|v\|\le1}g^Tv$ là chuẩn đối ngẫu. Quy ước hướng không chuẩn hóa là $d=\|g\|_*v$. Công thức dùng $W^{-1}$ chỉ dành cho chuẩn bậc hai. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 
 <section data-slide-id="RG09">
-<h2>Giải KKT của hướng chuẩn hóa</h2>
+<h2>Điều kiện KKT của hướng chuẩn hóa</h2>
 <div class="lec-grid lec-grid--70-30">
 <div>
 <p><strong>Bước 1 — nhóm dừng:</strong> từ $g+2\zeta Wv=0$ và $g\ne0$ suy ra $\zeta>0$ (nếu $\zeta=0$ thì $g=0$, mâu thuẫn).</p>
@@ -287,14 +287,14 @@ Trang trước cho thấy chuẩn Euclid co hai tọa độ không đều, nên 
 </ul>
 </div>
 </div>
-<div class="takeaway">Vì $g\ne0$ nên $\zeta>0$, và bù trừ cùng $\zeta>0$ cho $v^TWv=1$.</div>
+<div class="takeaway">Nghiệm trên biên elip xác định hướng giảm dốc nhất có chuẩn đơn vị.</div>
 <aside class="notes">
-Bốn nhóm KKT của Bài 03 áp dụng đủ ở đây vì bài con lồi, $v=0$ thỏa Slater và tập khả thi đóng và bị chặn: KKT cần và đủ, nghiệm bài con là nghiệm toàn cục của bài con. Bước 1 là điểm dễ nhầm nhất: phương trình dừng $g+2\zeta Wv=0$ với $\zeta=0$ sẽ cho $g=0$, trái giả thiết $g\ne0$; nếu $g=0$ thì dừng ngay, không chia cho 0. Bước 2: nhân tử dương khiến bù trừ kích hoạt ràng buộc, nên nghiệm nằm trên biên elip — đúng như hình tiếp xúc ở trang trước. Bước 3: từ phương trình dừng, $v=-\tfrac{1}{2\zeta}W^{-1}g$; thay vào $v^TWv=1$ được $g^TW^{-1}g/(4\zeta^2)=1$, tức $4\zeta^2=g^TW^{-1}g$. Đại số thay $W=\operatorname{diag}(3,7)$ vào bình phương: $g^TW^{-1}g=36/3+784/7=12+112=124$. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Bài con lồi nên KKT đủ cho tối ưu toàn cục; $v=0$ thỏa Slater nên KKT cũng cần. Tính compact của tập khả thi và tính liên tục của mục tiêu bảo đảm nghiệm tồn tại. Phương trình dừng $g+2\zeta Wv=0$ với $\zeta=0$ sẽ cho $g=0$, trái giả thiết $g\ne0$. Trường hợp $g=0$ là điều kiện dừng, không áp dụng công thức chia cho chuẩn gradient. Nhân tử dương và điều kiện bù trừ buộc ràng buộc hoạt động, nên nghiệm nằm trên biên elip tại điểm tiếp xúc với đường mức của mục tiêu tuyến tính. Từ phương trình dừng, $v=-\tfrac{1}{2\zeta}W^{-1}g$; thay vào $v^TWv=1$ được $g^TW^{-1}g/(4\zeta^2)=1$, tức $4\zeta^2=g^TW^{-1}g$. Với $W=\operatorname{diag}(3,7)$, bình phương chuẩn đối ngẫu là $g^TW^{-1}g=36/3+784/7=12+112=124$. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 
 <section data-slide-id="RG10">
-<h2>Hướng không chuẩn hóa theo W</h2>
+<h2>Hướng giảm dốc nhất theo chuẩn bậc hai</h2>
 <div class="lec-grid ratio55">
 <div><p>Chuẩn đối ngẫu đo độ dốc lớn nhất trên quả cầu đơn vị:</p>
 <div class="formula" tabindex="0">$$\begin{aligned}\|g\|_{W,*}&amp;=\max_{\|v\|_W\le1}g^Tv\\&amp;=\sqrt{g^TW^{-1}g}.\end{aligned}$$</div>
@@ -305,35 +305,35 @@ Bốn nhóm KKT của Bài 03 áp dụng đủ ở đây vì bài con lồi, $v=
 </div>
 <div class="formula" tabindex="0">Mô hình $Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$ cho cùng hệ $g+Wd=0$.</div>
 <aside class="notes">
-Quả cầu $\|v\|_W\le1$ đối xứng qua gốc nên giá trị nhỏ nhất của $g^Tv$ bằng âm giá trị lớn nhất; vì thế bài con chọn hướng nối trực tiếp với chuẩn đối ngẫu. Với $W\succ0$, $W^{1/2}$ là căn bậc hai đối xứng xác định dương của $W$, còn $W^{-1/2}=(W^{1/2})^{-1}$. Bất đẳng thức Cauchy–Schwarz cho $g^Tv=(W^{-1/2}g)^T(W^{1/2}v)\ge-\sqrt{g^TW^{-1}g}\,\|v\|_W$. Nghiệm chuẩn hóa đã tìm đạt dấu bằng, nên giá trị nhỏ nhất là $-\sqrt{g^TW^{-1}g}$ và chuẩn đối ngẫu là $\sqrt{g^TW^{-1}g}$. Chuỗi suy ra: nghiệm chuẩn hóa $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$ chỉ cho hướng đúng chiều; nhân với độ dài $\|g\|_{W,*}=\sqrt{g^TW^{-1}g}$ được $d=\|g\|_{W,*}v=-W^{-1}g$, tức $Wd=-g$. Điểm dễ nhầm: $v$ và $d$ khác độ dài ($\|v\|_W=1$, còn $d^TWd=124$), và $t$ là bước số nhận sau; ba đại lượng này không thể hoán đổi. Khi tính, giải hệ $Wd=-g$ bằng thay trực tiếp từng phương trình, không lập $W^{-1}$ tường minh. Mô hình $Q_W$ thu được bằng cách thay ma trận $I$ trong mô hình bậc hai của trang trước bằng $W\succ0$; điều kiện dừng $g+Wd=0$ chính là hệ vừa giải. Lưu ý $d^TWd=124$ là bình phương độ dài theo $W$, còn giảm mô hình $Q_W(0)-Q_W(d)=124/2=62$; chưa gọi là $\delta_N^2$ — điều đó chỉ xuất hiện khi chọn $W=H$. Trong VD1, ta cố ý chọn $W$ trùng Hessian; một thước đo cố định bất kỳ không có tính chất này. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Quả cầu $\|v\|_W\le1$ đối xứng qua gốc nên giá trị nhỏ nhất của $g^Tv$ bằng âm giá trị lớn nhất; vì thế bài con chọn hướng nối trực tiếp với chuẩn đối ngẫu. Với $W\succ0$, $W^{1/2}$ là căn bậc hai đối xứng xác định dương của $W$, còn $W^{-1/2}=(W^{1/2})^{-1}$. Bất đẳng thức Cauchy–Schwarz cho $g^Tv=(W^{-1/2}g)^T(W^{1/2}v)\ge-\sqrt{g^TW^{-1}g}\,\|v\|_W$. Nghiệm chuẩn hóa đã tìm đạt dấu bằng, nên giá trị nhỏ nhất là $-\sqrt{g^TW^{-1}g}$ và chuẩn đối ngẫu là $\sqrt{g^TW^{-1}g}$. Do đó, nghiệm chuẩn hóa $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$ có chuẩn bằng một; nhân với độ dài $\|g\|_{W,*}=\sqrt{g^TW^{-1}g}$ được $d=\|g\|_{W,*}v=-W^{-1}g$, tức $Wd=-g$. $v$ và $d$ khác độ dài ($\|v\|_W=1$, còn $d^TWd=124$), và $t$ là bước số nhận sau; ba đại lượng này không thể hoán đổi. Khi tính, giải hệ $Wd=-g$ bằng thay trực tiếp từng phương trình, không lập $W^{-1}$ tường minh. Mô hình $Q_W$ thu được bằng cách thay ma trận $I$ trong mô hình bậc hai đã chọn bằng $W\succ0$; điều kiện dừng $g+Wd=0$ chính là hệ vừa giải. $d^TWd=124$ là bình phương độ dài theo $W$, còn giảm mô hình $Q_W(0)-Q_W(d)=124/2=62$. Ký hiệu $\delta_N^2$ áp dụng khi chọn $W=H$. Trong VD1, ma trận $W$ được chọn trùng Hessian; một thước đo cố định bất kỳ không có tính chất này. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 
 <section data-slide-id="RG11">
-<h2>Kiểm tra bài con và bước cập nhật</h2>
+<h2>Kiểm tra hướng theo chuẩn và quy tắc bước</h2>
 <div class="lec-grid lec-grid--60-40">
 <div class="question">
 <p><strong>Câu hỏi:</strong> Với $W=\operatorname{diag}(3,7)$, $g=(6,28)^T$: viết điều kiện dừng của $Q_W$ và giải ra $d$. Phân biệt $d$ với hướng chuẩn hóa $v=d/\sqrt{124}$.</p>
 </div>
 <div class="question">
-<p><strong>Câu hỏi:</strong> Nếu dùng hướng gradient trong bảng các hướng đã lập và quy tắc nhận bước đã nhận $t=1/4$, thì có thử tiếp $t=1/8$ không? Vì sao?</p>
+<p><strong>Câu hỏi:</strong> Với hướng gradient của VD1, Armijo đã nhận $t=1/4$. Xác định có cần thử tiếp $t=1/8$ và giải thích theo quy tắc quay lui.</p>
 </div>
 </div>
 <aside class="notes">
-Đáp án vùng một: từ $Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$, đạo hàm theo $d$ và cho bằng 0 được $g+Wd=0$; giải hệ thay $3d_1=-6$, $7d_2=-28$ cho $d=(-2,-4)^T$. Phân biệt: $d$ là hướng không chuẩn hóa theo quy ước đã chọn, dùng trong cập nhật $x^+=x+t\,d$; $v=d/\sqrt{124}$ là nghiệm chuẩn hóa với $\|v\|_W=1$; $t$ là bước số do quy tắc nhận bước quyết định. Đáp án vùng hai: không. Quy tắc Armijo dừng thử ngay khi mức $t=1/4$ thỏa điều kiện giảm đủ; $t=1/8$ chỉ được thử khi $1/4$ bị loại. Tiêu chí: tự suy ra hệ từ $Q_W$ thay vì gắn tên; phân biệt đúng ba vai trò hướng/chuẩn hóa/bước; nêu đúng logic dừng của Armijo. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Đáp án về hướng: từ $Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$, đạo hàm theo $d$ và cho bằng 0 được $g+Wd=0$; giải hệ thay $3d_1=-6$, $7d_2=-28$ cho $d=(-2,-4)^T$. Phân biệt: $d$ là hướng không chuẩn hóa theo quy ước đã chọn, dùng trong cập nhật $x^+=x+t\,d$; $v=d/\sqrt{124}$ là nghiệm chuẩn hóa với $\|v\|_W=1$; $t$ là bước số do quy tắc nhận bước quyết định. Đáp án về bước: không. Quy tắc Armijo dừng thử ngay khi mức $t=1/4$ thỏa điều kiện giảm đủ; $t=1/8$ chỉ được thử khi $1/4$ bị loại. Điều kiện dừng của $Q_W$ xác định hướng; Armijo xác định độ dài bước. Thay ma trận cố định bằng Hessian tại mỗi điểm tạo mô hình phản ánh độ cong thay đổi. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 </section>
 <section>
 <section data-slide-id="RN01">
-<h2>Mô hình độ cong tại điểm đang xét</h2>
+<h2>Mô hình bậc hai tại điểm hiện tại</h2>
 <div class="lec-grid ratio60"><div>
 <img class="plot" src="img/lec-04/phi-local-model.svg" alt="Hàm φ(s)=s−log s, tiếp tuyến và parabol bậc hai tại s=1/4; parabol khớp gần điểm hiện tại rồi tách khỏi hàm thật.">
 </div><div class="panel"><p><strong>VD2:</strong> $\varphi(s)=s-\log s$, $s&gt;0$; logarit tự nhiên.</p>
 <p>Điểm đầu: $s^0=1/4$.</p><div class="formula" tabindex="0">$$\begin{aligned}g&amp;=\varphi'(1/4)=-3,\\H&amp;=\varphi''(1/4)=16.\end{aligned}$$</div></div></div>
 <div class="takeaway">Thay thước đo cố định bằng Hessian tại điểm hiện tại: parabol chỉ mô tả độ cong cục bộ.</div>
 <aside class="notes">
-Hàm $\varphi(s)=s-\log s$ với logarit tự nhiên có đạo hàm $\varphi'(s)=1-1/s$ và đạo hàm cấp hai $\varphi''(s)=1/s^2$. Thay $s^0=1/4$ ta được $g=1-4=-3$ và $H=16$, đúng như hình: đường tiếp tuyến dốc âm qua điểm $(1/4,\varphi(1/4))$, còn parabol bậc hai với độ cong 16 ôm sát hàm thật ngay quanh điểm đó rồi tách dần khi ra xa. Điểm dễ nhầm là coi parabol này là hàm mục tiêu; nó chỉ là mô hình cục bộ tại điểm đang xét, và toàn bộ hướng Newton dưới đây sẽ được xây trên mô hình chứ không trên hàm thật. Hình cho thấy vì sao thay thước đo cố định bằng Hessian tại điểm hiện tại là điều tự nhiên. Bước tiếp theo là lấy điều kiện dừng của chính mô hình này. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Hàm $\varphi(s)=s-\log s$ với logarit tự nhiên có đạo hàm $\varphi'(s)=1-1/s$ và đạo hàm cấp hai $\varphi''(s)=1/s^2$. Tại $s^0=1/4$, $g=1-4=-3$ và $H=16$, đúng như hình: đường tiếp tuyến dốc âm qua điểm $(1/4,\varphi(1/4))$, còn parabol bậc hai với độ cong 16 xấp xỉ hàm gốc ngay quanh điểm đó rồi tách dần khi ra xa. Parabol là mô hình cục bộ của mục tiêu; độ chính xác giảm khi điểm thử rời xa điểm khai triển. Hessian tại điểm hiện tại thay cho thước đo cố định, và điều kiện dừng của mô hình xác định hướng Newton. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
 </aside>
 </section>
 
@@ -346,19 +346,19 @@ Hàm $\varphi(s)=s-\log s$ với logarit tự nhiên có đạo hàm $\varphi'(s
 <p><strong>VD2:</strong> $16d=3\Rightarrow d=3/16$, $s^+=1/4+d=7/16$.</p></div>
 <div class="panel"><p>$H\succ0$: bài con lồi chặt, nghiệm duy nhất.</p></div></div>
 <aside class="notes">
-Thao tác ở đây đúng là thao tác đã luyện ở phần hướng giảm: lập mô hình bậc hai, lấy đạo hàm theo bước, giải điều kiện dừng. Khác biệt duy nhất là ma trận trong số hạng bậc hai không còn đơn vị mà là Hessian $H$ tại điểm hiện tại. Với ví dụ, phương trình $g+Hd=0$ thành $-3+16d=0$, tức $16d=3$, nên $d=3/16$ và điểm mới $s^+=1/4+3/16=7/16$. Vì $H\succ0$, bài con lồi chặt nên điều kiện dừng vừa đủ cho nghiệm mô hình; đây là KKT của bài con không ràng buộc. Điểm dễ nhầm: nghiệm này là nghiệm của mô hình, chưa phải nghiệm của hàm thật. Câu hỏi tự nhiên tiếp theo là hướng này còn nghĩa gì với phương trình tối ưu của bài gốc. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Mô hình bậc hai dùng Hessian $H$ tại điểm hiện tại thay cho ma trận đơn vị hoặc thước đo cố định. Với ví dụ, phương trình $g+Hd=0$ thành $-3+16d=0$, tức $16d=3$, nên $d=3/16$ và điểm mới $s^+=1/4+3/16=7/16$. Vì $H\succ0$, bài con lồi chặt nên điều kiện dừng cần và đủ cho nghiệm mô hình; đây là KKT của bài con không ràng buộc. Nghiệm này là nghiệm của mô hình, chưa phải nghiệm của hàm thật. Cùng hệ phương trình còn thu được khi tuyến tính hóa điều kiện tối ưu của bài gốc. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
 </aside>
 </section>
 
 <section data-slide-id="RN03">
-<h2>Newton cho phương trình tối ưu</h2>
-<div class="panel"><p><strong>Phương trình thật tại điểm mới:</strong></p>
+<h2>Tuyến tính hóa phương trình tối ưu</h2>
+<div class="panel"><p><strong>Điều kiện tối ưu của bài toán gốc tại điểm mới:</strong></p>
 <div class="formula" tabindex="0">$$\nabla f(x+d)=0.$$</div></div>
 <div class="panel"><p><strong>Mô hình tuyến tính của vế trái:</strong></p>
 <div class="formula emphasis" tabindex="0">$$\nabla f(x+d)\approx g+Hd\quad\Longrightarrow\quad g+Hd=0.$$</div></div>
-<div class="takeaway">Kiểm VD2: $\varphi'(7/16)=1-16/7=-9/7\ne0$. Giải mô hình chưa giải xong phương trình thật.</div>
+<div class="takeaway">Kiểm VD2: $\varphi'(7/16)=1-16/7=-9/7\ne0$. Điểm cực tiểu của mô hình chưa thỏa điều kiện tối ưu của hàm gốc.</div>
 <aside class="notes">
-Cách nhìn thứ hai của Newton: thay vì cực tiểu hóa mô hình bậc hai, ta tuyến tính hóa chính phương trình tối ưu $\nabla f(x+d)=0$ bằng khai triển $\nabla f(x+d)\approx g+Hd$, rồi giải đẳng thức $g+Hd=0$. Hai cách cho cùng một hướng, nên Newton thống nhất các phương pháp đã học. Kiểm tra bằng ví dụ: $\varphi'(s)=1-1/s$ nên $\varphi'(7/16)=1-16/7=-9/7$, khác không. Điểm dễ nhầm và cũng là điểm quan trọng nhất: dấu xấp xỉ phải được giữ nguyên ý nghĩa; giải đúng bài con không có nghĩa đã giải xong bài gốc phi bậc hai. Với mô hình lồi, KKT đủ cho nghiệm của mô hình, nhưng chứng nhận đó không tự động chuyển sang điểm mới của hàm thật. Vậy cần một đại lượng đo được trên mặt mô hình để biết còn cách nghiệm mô hình bao xa. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Hướng Newton còn được suy ra bằng tuyến tính hóa phương trình tối ưu $\nabla f(x+d)=0$ bằng khai triển $\nabla f(x+d)\approx g+Hd$, rồi giải đẳng thức $g+Hd=0$. Cực tiểu hóa mô hình bậc hai và tuyến tính hóa phương trình gradient cho cùng một hướng. Trong ví dụ logarit, $\varphi'(s)=1-1/s$ nên $\varphi'(7/16)=1-16/7=-9/7$, khác không. Phương trình gradient được xấp xỉ bậc nhất; nghiệm chính xác của bài con có thể chưa thỏa phương trình của hàm gốc. Với mô hình lồi, KKT đủ cho nghiệm của mô hình, nhưng chứng nhận đó không tự động chuyển sang điểm mới của hàm thật. Độ giảm từ bước bằng không đến cực tiểu mô hình là đại lượng tính được; quan hệ của nó với sai số mục tiêu của bài gốc cần được xác định riêng. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
 </aside>
 </section>
 
@@ -370,14 +370,14 @@ Cách nhìn thứ hai của Newton: thay vì cực tiểu hóa mô hình bậc h
 <div class="formula" tabindex="0">$$\begin{aligned}Q_H(0)-Q_H(d)&amp;=-g^Td-\tfrac12d^THd\\&amp;=\tfrac12\delta_N^2.\end{aligned}$$</div></div>
 <div><table><thead><tr><th>VD2</th><th>Giá trị</th></tr></thead><tbody>
 <tr><td>$d^THd$</td><td>$9/16$</td></tr><tr><td>Giảm mô hình</td><td>$9/32$</td></tr></tbody></table></div></div>
-<div class="panel"><strong>Đối chiếu VD1:</strong> chọn $W=H$ có chủ ý nên hướng theo $W$ trùng Newton. Hàm bậc hai trùng mô hình: giảm mô hình và giảm thật đều bằng $62$.</div>
+<div class="panel"><strong>Đối chiếu VD1:</strong> với $W=H$, hướng theo $W$ trùng Newton. Hàm bậc hai trùng mô hình: giảm mô hình và giảm thật đều bằng $62$.</div>
 <aside class="notes">
-Định nghĩa $\delta_N$ là căn bậc hai không âm của $d^THd$; vì $H\succ0$ nên $\delta_N\ge0$ luôn đúng, và $\delta_N^2$ là đại lượng dùng trong tiêu chí. Từ $Hd=-g$ nhân trái với $d^T$ ta được $\delta_N^2=d^THd=-g^Td$, cũng bằng $g^TH^{-1}g$. Giá trị mô hình tại bước bằng không là $Q_H(0)=f(x)$, tại hướng Newton là $Q_H(d)=f(x)-\tfrac12\delta_N^2$, nên độ giảm mô hình đúng bằng $\delta_N^2/2$; với ví dụ, $\delta_N^2=9/16$ và giảm mô hình $9/32$. Điểm dễ nhầm: phân biệt $\delta_N$ với $\delta_N^2$, đừng thay nhau. Riêng ví dụ hàm bậc hai, số $62$ trùng vì $W=H$ có chủ ý, mô hình trùng hàm thật; không đem số đó vào bảng của ví dụ phi bậc hai. Tiếp theo, đặt giảm mô hình cạnh các phép trừ của hàm thật. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Định nghĩa $\delta_N$ là căn bậc hai không âm của $d^THd$; vì $H\succ0$ nên $\delta_N\ge0$ luôn đúng, và $\delta_N^2$ là đại lượng dùng trong tiêu chí. Từ $Hd=-g$ nhân trái với $d^T$ thu được $\delta_N^2=d^THd=-g^Td$, cũng bằng $g^TH^{-1}g$. Giá trị mô hình tại bước bằng không là $Q_H(0)=f(x)$, tại hướng Newton là $Q_H(d)=f(x)-\tfrac12\delta_N^2$, nên độ giảm mô hình đúng bằng $\delta_N^2/2$; với ví dụ, $\delta_N^2=9/16$ và giảm mô hình $9/32$. Riêng ví dụ hàm bậc hai, số $62$ trùng vì $W=H$ có chủ ý, mô hình trùng hàm thật. Với hàm phi bậc hai, độ giảm mô hình, mức giảm mục tiêu sau một bước và sai số so với cực tiểu là ba phép trừ riêng. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
 </aside>
 </section>
 
 <section data-slide-id="RN05">
-<h2>Mức giảm thật và sai số thật</h2>
+<h2>Mức giảm hàm mục tiêu và sai số tối ưu</h2>
 <p>Ba phép trừ khác nhau trên cùng ví dụ $\varphi(s)=s-\log s$, $s^0=1/4$, $d=3/16$, $s^+=7/16$:</p>
 <div class="table-scroll" tabindex="0">
 <table>
@@ -391,12 +391,12 @@ Cách nhìn thứ hai của Newton: thay vì cực tiểu hóa mô hình bậc h
 </div>
 <p>Nhận bước với $\alpha=1/10$: bước đầy đủ cần giảm ít nhất $\alpha(-g^Td)=9/160$; giảm thật $0{,}37212$ vượt ngưỡng này nên bước được nhận.</p>
 <aside class="notes">
-Ba hàng của bảng là ba phép trừ khác nhau, không thể hoán đổi. Hàng đầu đo trên mô hình: $Q_H(0)-Q_H(d)=\delta_N^2/2=9/32$. Hàng giữa đo trên hàm thật sau một bước: $\varphi(1/4)-\varphi(7/16)=(1/4-\log(1/4))-(7/16-\log(7/16))=\log(7/4)-3/16\approx0{,}37212$. Hàng cuối là sai số tối ưu tại điểm đầu so với nghiệm $s=1$: $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$. Không gọi hàng cuối là sai số mô hình, và không lấy giảm mô hình $9/32$ làm cận cho sai số thật. Về nhận bước: đạo hàm hướng cho $-g^Td=9/16$, nên với $\alpha=1/10$ ngưỡng Armijo là $\alpha(-g^Td)=9/160\approx0{,}05625$; giảm thật $0{,}37212$ vượt ngưỡng nên bước đầy đủ được nhận. Chú ý ngưỡng này lấy từ đạo hàm hướng, không phải từ giảm mô hình $9/32$. Câu hỏi còn lại: tiêu chí dừng của thuật toán đo được điều gì thật sự. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Ba hàng của bảng là ba phép trừ khác nhau, không thể hoán đổi. Hàng đầu đo trên mô hình: $Q_H(0)-Q_H(d)=\delta_N^2/2=9/32$. Hàng giữa đo trên hàm thật sau một bước: $\varphi(1/4)-\varphi(7/16)=(1/4-\log(1/4))-(7/16-\log(7/16))=\log(7/4)-3/16\approx0{,}37212$. Hàng cuối là sai số tối ưu tại điểm đầu so với nghiệm $s=1$: $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$. Sai số mục tiêu tại điểm đầu lớn hơn giảm mô hình $9/32$ trong ví dụ này. Về nhận bước: đạo hàm hướng cho $-g^Td=9/16$, nên với $\alpha=1/10$ ngưỡng Armijo là $\alpha(-g^Td)=9/160\approx0{,}05625$; giảm thật $0{,}37212$ vượt ngưỡng nên bước đầy đủ được nhận. Ngưỡng này được tính từ đạo hàm hướng, không phải từ giảm mô hình $9/32$. Tiêu chuẩn dừng dựa trên giảm mô hình vì vậy cần được phân biệt với chứng nhận sai số mục tiêu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
 </aside>
 </section>
 
 <section data-slide-id="RN06">
-<h2>Thuật toán Newton và điều kiện dùng</h2>
+<h2>Thuật toán Newton và điều kiện áp dụng</h2>
 <div class="lec-grid lec-grid--65-35"><div class="panel"><ol class="steps">
 <li>Tính $g=\nabla f(x)$, $H=\nabla^2f(x)$.</li><li>Giải hệ $Hd=-g$.</li><li>Tính $\delta_N^2=d^THd$.</li>
 <li>Nếu $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$: dừng.</li><li>Nếu chưa: chọn $t$ bằng Armijo, rồi $x\leftarrow x+td$.</li>
@@ -405,56 +405,56 @@ Ba hàng của bảng là ba phép trừ khác nhau, không thể hoán đổi. 
 <div class="panel"><strong>Chi phí:</strong> hệ đặc cỡ $O(n^3)$.</div></div></div>
 <div class="takeaway">Dừng theo mô hình chưa chứng nhận sai số thật. Hội tụ bậc hai cần giả thiết cục bộ tại nghiệm.</div>
 <aside class="notes">
-Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tính gradient và Hessian, giải hệ $Hd=-g$, đo độ giảm mô hình qua $\delta_N^2$, dừng nếu $\delta_N^2/2$ dưới dung sai mô hình, nếu chưa thì quay lui và cập nhật. Điều kiện dừng này chỉ là dung sai trên mô hình; nó không phải chứng nhận sai số thật so với nghiệm bài gốc. Điều kiện dùng: cần $H\succ0$ tại từng điểm lặp để hệ giải được và mô hình lồi chặt; chi phí giải hệ đặc tổng quát cỡ $O(n^3)$. Về hội tụ: Newton hội tụ bậc hai cục bộ khi Hessian Lipschitz trong lân cận nghiệm, Hessian tại nghiệm xác định dương và điểm đầu đủ gần; trong lân cận thích hợp, quay lui nhận bước đầy đủ. Đây là phát biểu cục bộ, không dùng KKT để suy ra hội tụ, và không khẳng định về mọi dãy bước Armijo nói chung. Trang sau sẽ kiểm xem chạy đúng thuật toán có đồng nghĩa với đạt điều kiện tối ưu thật hay không. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009.
+Thuật toán gồm tính gradient và Hessian, giải hệ $Hd=-g$, đo độ giảm mô hình qua $\delta_N^2$, dừng nếu $\delta_N^2/2$ dưới dung sai mô hình, nếu chưa thì quay lui và cập nhật. Điều kiện dừng này chỉ là dung sai trên mô hình; nó không phải chứng nhận sai số thật so với nghiệm bài gốc. Điều kiện dùng: cần $H\succ0$ tại từng điểm lặp để hệ giải được và mô hình lồi chặt; chi phí giải hệ đặc tổng quát cỡ $O(n^3)$. Về hội tụ: Newton hội tụ bậc hai cục bộ khi Hessian Lipschitz trong lân cận nghiệm, Hessian tại nghiệm xác định dương và điểm đầu đủ gần; trong lân cận thích hợp, quay lui nhận bước đầy đủ. Kết quả cục bộ này dựa trên tính chính quy của Hessian và vị trí điểm đầu. Dung sai mô hình vẫn cần được đối chiếu với điều kiện tối ưu và sai số của hàm gốc. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009.
 </aside>
 </section>
 
 <section data-slide-id="RN07">
 <h2>Kiểm tra mô hình và điều kiện tối ưu</h2>
-<div class="lec-grid ratio55"><div class="panel"><p>$\varphi(s)=s-\log s$, $s&gt;0$.</p><p>Tại $s^0=1/4$: $g=-3$, $H=16$.</p><p>$16d=3$ cho $d=3/16$, $s^+=7/16$.</p><p>Giảm mô hình: $9/32$; nghiệm thật: $s^\star=1$.</p></div>
+<div class="lec-grid ratio55"><div class="panel"><p>$\varphi(s)=s-\log s$, $s&gt;0$.</p><p>Tại $s^0=1/4$: $g=-3$, $H=16$.</p><p>$16d=3$ cho $d=3/16$, $s^+=7/16$.</p><p>Giảm mô hình: $9/32$; nghiệm bài toán gốc: $s^\star=1$.</p></div>
 <div class="question"><p><strong>Câu hỏi:</strong> $s^+$ đã đạt nghiệm chưa?</p><p>$\varphi'(s^+)=$ ______</p><p>Sai số tại $s^0$:</p><p>$\varphi(1/4)-\varphi(1)=$ ______</p><p>Giải thích vai trò của $9/32$.</p></div></div>
-<p><strong>Câu hỏi:</strong> Cần thêm giả thiết gì để có cận sai số từ đại lượng Newton?</p>
+<p><strong>Vấn đề cần nghiên cứu:</strong> xác định điều kiện để độ giảm Newton cho một cận sai số mục tiêu.</p>
 <aside class="notes">
-Đáp án: $\varphi'(s)=1-1/s$ nên $\varphi'(7/16)=1-16/7=-9/7$, khác không, do đó $s^+$ chưa đạt nghiệm của bài gốc; nghiệm mô hình không tự động là nghiệm bài gốc phi bậc hai. Sai số thật tại điểm đầu là $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$. Số $9/32$ chỉ là độ giảm của mô hình, tức $Q_H(0)-Q_H(d)$; nó không phải sai số thật và không được dùng làm cận cho $\log4-3/4$. Tiêu chí chấm: không suy nghiệm của bài gốc từ nghiệm mô hình, và nêu đúng phép trừ của từng đại lượng. Câu hỏi về giả thiết cần thêm để có cận sai số sẽ được trả lời ở phần sau của bài; bây giờ ta chuyển sang hạn chế khác của bước Newton: khi bài gốc có ràng buộc đẳng thức, bước Newton có thể đưa điểm ra khỏi miền khả thi. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Đáp án: $\varphi'(s)=1-1/s$ nên $\varphi'(7/16)=1-16/7=-9/7$, khác không, do đó $s^+$ chưa đạt nghiệm của bài gốc; nghiệm mô hình không tự động là nghiệm bài gốc phi bậc hai. Sai số thật tại điểm đầu là $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$. Số $9/32$ chỉ là độ giảm của mô hình, tức $Q_H(0)-Q_H(d)$; nó không phải sai số thật và không được dùng làm cận cho $\log4-3/4$. Việc suy cận sai số từ độ giảm Newton cần một điều kiện bổ sung kiểm soát biến thiên độ cong. Một yêu cầu độc lập xuất hiện khi bài gốc có đẳng thức: hướng cực tiểu mô hình không ràng buộc có thể vi phạm tính khả thi. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
 </aside>
 </section>
 </section>
 <section>
 <section data-slide-id="RE01">
-  <h2>KKT của bài toán có đẳng thức</h2>
+  <h2>Điều kiện KKT với ràng buộc đẳng thức</h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
       <img class="plot" src="img/lec-04/equality-start-new.svg" alt="Hai trục u1, u2 với đường thẳng u1 + u2 = 14, điểm khả thi (16, −2) và điểm nghiệm (10, 4) nằm trên đường đó; không có điều kiện không âm.">
     </div>
     <div>
-      <p>Cần tối ưu trong khi giữ $u_1+u_2=14$: đường mức chỉ được dịch tới một điểm trên đường khả thi.</p>
+      <p>Cực tiểu của mục tiêu trên đường $u_1+u_2=14$ phải đồng thời thỏa điều kiện dừng và khả thi.</p>
       <p>VD3: $F=\tfrac12(2u_1^2+5u_2^2)$, ràng buộc $u_1+u_2=14$.</p>
       <div class="formula" tabindex="0">$$L=F+\nu(u_1+u_2-14)$$</div>
       <div class="formula" tabindex="0">$$2u_1+\nu=0,\quad 5u_2+\nu=0,\quad u_1+u_2=14$$</div>
       <p>Ứng viên: $u=(10,4)^T$, $\nu=-20$, $F^*=140$.</p>
     </div>
   </div>
-  <div class="takeaway">$F$ lồi chặt và KKT thỏa, nên $(10,4)^T$ là nghiệm — mốc kiểm cho ví dụ bậc hai.</div>
-  <aside class="notes">Ta quay lại cân bằng gradient của Bài 03 trước khi xây dựng thuật toán giữ ràng buộc. Nhân tử $\nu$ của bài gốc tự do dấu, vì ràng buộc là đẳng thức. Hệ ba phương trình cho nghiệm duy nhất: trừ hai hàng đầu được $2u_1-5u_2=0$, thay vào hàng thứ ba được $u_1=10$, $u_2=4$, $\nu=-20$. Điểm dễ nhầm: tọa độ $-2$ của điểm đầu ở hình là hợp lệ vì $u\in\mathbb R^2$ và bài toán không có điều kiện không âm. Vì $F$ lồi chặt và KKT đủ cả với bài gốc lồi khi đúng giả thiết, nghiệm này là nghiệm toàn cục. Câu hỏi về cận sai số vẫn còn mở; trước khi trả lời, ta xây dựng bước Newton khi phải giữ một đẳng thức. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức Lagrange và KKT đã học ở Bài 03.</aside>
+  <div class="takeaway">$F$ lồi chặt và KKT thỏa, nên $(10,4)^T$ là nghiệm duy nhất của bài toán bậc hai.</div>
+  <aside class="notes">Hệ KKT cân bằng gradient mục tiêu với tổ hợp các pháp tuyến của đẳng thức. Nhân tử $\nu$ của bài gốc tự do dấu, vì ràng buộc là đẳng thức. Hệ ba phương trình cho nghiệm duy nhất: trừ hai hàng đầu được $2u_1-5u_2=0$, thay vào hàng thứ ba được $u_1=10$, $u_2=4$, $\nu=-20$. Tọa độ $-2$ của điểm đầu ở hình là hợp lệ vì $u\in\mathbb R^2$ và bài toán không có điều kiện không âm. Vì $F$ lồi chặt và KKT đủ cả với bài gốc lồi khi đúng giả thiết, nghiệm này là nghiệm toàn cục. Một bước Newton xuất phát từ điểm khả thi phải được giới hạn trên các hướng bảo toàn đẳng thức. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức Lagrange và KKT đã học ở Bài 03.</aside>
 </section>
 <section data-slide-id="RE02">
-  <h2>Hướng khả thi tại điểm hiện tại</h2>
+  <h2>Hướng bảo toàn ràng buộc đẳng thức</h2>
   <div class="lec-grid ratio60">
     <div>
       <img class="plot" src="img/lec-04/equality-violation.svg" alt="Hai trục u1, u2, đường tổng u1 + u2 = 14, miền nhìn từ −3 tới 17, mũi tên từ điểm (16, −2) về gốc vi phạm đường tổng 14; không có điều kiện không âm.">
     </div>
     <div>
-      <p>$A=[1\ 1]$, $b=14$. Tại $u=(16,-2)^T$: bước Newton không ràng buộc $(-16,2)^T$ đi về gốc và phá tổng.</p>
+      <p>$A=[1\ 1]$, $b=14$. Tại $u=(16,-2)^T$: bước Newton không ràng buộc $(-16,2)^T$ đưa điểm về gốc, vi phạm đẳng thức.</p>
       <p>Dữ kiện: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$.</p>
       <div class="formula" tabindex="0">$$A(u+td)=Au+tAd=b+tAd$$</div>
       <p>Giữ $Au=b$ sau mọi bước $t$ khi và chỉ khi $Ad=0$.</p>
     </div>
   </div>
   <div class="takeaway">Hướng khả thi phải nằm trong $\ker A$: với $A=[1\ 1]$ thì $d_1+d_2=0$.</div>
-  <aside class="notes">Không gian hạt nhân của $A$ được ký hiệu $\ker A=\operatorname{null}A=\{v:Av=0\}$. Bước Newton không ràng buộc tại điểm này là $d=-H^{-1}g=(-16,2)^T$. Kiểm nhanh: $A d=(-16)+2=-14$, nghĩa là sau bước đầy đủ tổng trở thành $0$, không còn là $14$. Đó chính là hạn chế của công cụ vừa học trước khi thêm nhân tử vào bài con. Ngược lại, phép tính $A(u+td)=b+tAd$ cho thấy điều kiện đủ và cần để mọi bước $t$ đều khả thi là $Ad=0$. Lưu ý $u\in\mathbb R^2$ và không có điều kiện không âm, nên tọa độ âm của điểm hiện tại không phải lỗi. Điều kiện $Ad=0$ này sẽ trở thành ràng buộc của mô hình Newton ở trang sau. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Không gian hạt nhân của $A$ được ký hiệu $\ker A=\operatorname{null}A=\{v:Av=0\}$. Bước Newton không ràng buộc tại điểm này là $d=-H^{-1}g=(-16,2)^T$. Vì $A d=(-16)+2=-14$, sau bước đầy đủ tổng trở thành $0$, không còn là $14$. Hướng Newton không ràng buộc không bảo toàn đẳng thức. Ngược lại, phép tính $A(u+td)=b+tAd$ cho thấy điều kiện đủ và cần để mọi bước $t$ đều khả thi là $Ad=0$. $u\in\mathbb R^2$ và không có điều kiện không âm, nên tọa độ âm của điểm hiện tại không phải lỗi. Điều kiện $Ad=0$ xác định ràng buộc của mô hình Newton theo biến bước. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
 </section>
 <section data-slide-id="RE03">
-  <h2>Lagrange của mô hình có đẳng thức</h2>
+  <h2>Hàm Lagrange của mô hình có đẳng thức</h2>
   <p>$d,g\in\mathbb R^n$, $H\in\mathbb R^{n\times n}$, $A\in\mathbb R^{p\times n}$; nhân tử $\eta\in\mathbb R^p$.</p>
   <div class="panel">
     <p><strong>Bài con:</strong> $\min_d\ g^Td+\tfrac12d^THd$ với $Ad=0$.</p>
@@ -465,29 +465,29 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
     <div class="formula" tabindex="0">$$Ad=0$$</div>
   </div>
 
-  <aside class="notes">Ta dùng đúng thao tác đã luyện ở Bài 03: lập hàm Lagrange rồi lấy đạo hàm theo từng biến. Nhân tử $\eta$ của bài con tự do dấu vì ràng buộc là đẳng thức; đừng lẫn $\eta$ với nhân tử $\nu$ của bài gốc hay với số gia nhân tử sẽ gặp sau. Đạo hàm theo $d$ cho $g+Hd+A^T\eta=0$: gradient của mô hình cộng với lực phản của ràng buộc phải triệt tiêu. Đạo hàm theo $\eta$ trả lại đúng $Ad=0$, tức điều kiện khả thi của hướng đã tìm ở trang trước. Vậy hai hàng này không phải công thức mới phải nhớ, mà là KKT của bài con. Trang sau xếp hai hàng thành một ma trận. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Hàm Lagrange của bài con kết hợp mô hình bậc hai với ràng buộc bảo toàn đẳng thức. Nhân tử $\eta$ của bài con tự do dấu vì ràng buộc là đẳng thức. Ký hiệu $\eta$ chỉ nhân tử của bài con, còn $\nu$ chỉ nhân tử của bài gốc. Đạo hàm theo $d$ cho $g+Hd+A^T\eta=0$: gradient mô hình cộng với tổ hợp pháp tuyến của ràng buộc bằng không. Đạo hàm theo $\eta$ trả lại đúng $Ad=0$, tức điều kiện để hướng bảo toàn đẳng thức. Hai phương trình là điều kiện dừng và khả thi của bài con; dạng ma trận của chúng cho hệ Newton có đẳng thức. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
 </section>
 <section data-slide-id="RE04">
-  <h2>Hệ Newton từ KKT của bài con</h2>
+  <h2>Hệ Newton từ KKT của bài toán con</h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
       <div class="formula" tabindex="0">$$g+Hd+A^T\eta=0$$</div>
       <div class="formula" tabindex="0">$$Ad=0$$</div>
     </div>
     <div>
-      <p>Cùng các hạng, xếp thành ma trận:</p>
+      <p>Dạng ma trận của hai phương trình:</p>
       <div class="formula emphasis" tabindex="0">$$\begin{bmatrix}H&amp;A^T\\A&amp;0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$$</div>
     </div>
   </div>
   <p>Kích thước: $H$ cấp $n\times n$, $A$ cấp $p\times n$, $\eta\in\mathbb R^p$. Với $H\succ0$ và $A$ đủ hạng hàng, ma trận khối khả nghịch.</p>
   <div class="takeaway">KKT bài con chứng nhận bước tối ưu cho mô hình; chưa chứng nhận điểm mới tối ưu cho $F$ tổng quát.</div>
-  <aside class="notes">Hàng đầu của hệ chính là đạo hàm theo $d$: khối $H$ nhân $d$, khối $A^T$ nhân $\eta$, vế phải là $-g$. Hàng thứ hai là đạo hàm theo $\eta$: khối $A$ nhân $d$, vế phải $0$. Điểm dễ nhầm: ma trận khối khả nghịch theo giả thiết nhưng không xác định dương, nên không dùng phân rã Cholesky trực tiếp cho toàn ma trận. Tính đủ của KKT áp dụng cho bài con lồi chặt; với $F$ tổng quát hai lần khả vi, nghiệm mô hình chỉ là bước, chưa phải nghiệm bài gốc. Hệ đã có nguồn gốc và giả thiết rõ; trang sau giải hệ này trên ví dụ số thay vì chỉ kiểm hướng cho sẵn. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Hàng đầu của hệ chính là đạo hàm theo $d$: khối $H$ nhân $d$, khối $A^T$ nhân $\eta$, vế phải là $-g$. Hàng thứ hai là đạo hàm theo $\eta$: khối $A$ nhân $d$, vế phải $0$. Ma trận khối khả nghịch theo giả thiết nhưng không xác định dương, nên không dùng phân rã Cholesky trực tiếp cho toàn ma trận. Tính đủ của KKT áp dụng cho bài con lồi chặt; với $F$ tổng quát hai lần khả vi, nghiệm mô hình chỉ là bước, chưa phải nghiệm bài gốc. Với gradient và Hessian của ví dụ bậc hai, hệ này xác định đồng thời hướng khả thi và nhân tử mô hình. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
 </section>
 <section data-slide-id="RE05">
-  <h2>Một bước Newton khả thi</h2>
+  <h2>Ví dụ Newton khả thi</h2>
   <div class="lec-grid ratio60">
     <div>
-      <p>Thế $g=(32,-10)^T$ vào hệ:</p>
+      <p>Với $g=(32,-10)^T$, hệ Newton là:</p>
       <div class="formula" tabindex="0">$$\begin{aligned}2d_1+\eta&amp;=-32,\\5d_2+\eta&amp;=10,\\d_1+d_2&amp;=0.\end{aligned}$$</div>
       <p>Thế $d_2=-d_1$ và trừ hai hàng:</p>
       <div class="formula" tabindex="0">$$7d_1=-42\ \Rightarrow\ d=(-6,6)^T,\ \eta=-20$$</div>
@@ -498,7 +498,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
     </div>
   </div>
   <div class="takeaway">Một bước đầy đủ đưa đúng tới nghiệm $(10,4)^T$ vì ví dụ là hàm bậc hai.</div>
-  <aside class="notes">Ta giải hệ trước rồi mới kết luận hướng. Từ $d_1+d_2=0$ đặt $d_2=-d_1$; trừ $2d_1+\eta=-32$ cho $5d_2+\eta=10$ được $2d_1-5d_2=-42$, thay $d_2=-d_1$ được $7d_1=-42$, nên $d=(-6,6)^T$ và $\eta=-20$. Giá trị đầu là $F_0=266$; sau bước đầy đủ tới $(10,4)^T$ có $F=140$, giảm $126$. Kiểm $\delta_{eq}^2=(-6)^2\cdot2+6^2\cdot5=252$. Điểm dễ nhầm: $d_1=-d_2$ là cấu trúc bắt buộc của $Ad=0$, độ lớn hai thành phần trùng nhau không phải lỗi. Ví dụ bậc hai giải xong trong một bước là trường hợp đặc biệt, không phải lời hứa cho $F$ tổng quát. Trang sau phải cho cùng hướng khi khử nhân tử. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Từ $d_1+d_2=0$ đặt $d_2=-d_1$; trừ $2d_1+\eta=-32$ cho $5d_2+\eta=10$ được $2d_1-5d_2=-42$, thay $d_2=-d_1$ được $7d_1=-42$, nên $d=(-6,6)^T$ và $\eta=-20$. Giá trị đầu là $F_0=266$; sau bước đầy đủ tới $(10,4)^T$ có $F=140$, giảm $126$. Kiểm $\delta_{eq}^2=(-6)^2\cdot2+6^2\cdot5=252$. $d_1=-d_2$ là cấu trúc bắt buộc của $Ad=0$, nên hai thành phần có cùng độ lớn và trái dấu. Ví dụ bậc hai giải xong trong một bước là trường hợp đặc biệt, không áp dụng cho $F$ tổng quát. Khử nhân tử bằng một cơ sở của không gian hạt nhân cho cách giải rút gọn của cùng hệ. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
 </section>
 <section data-slide-id="RE06">
 <h2>Khử biến và hệ Newton rút gọn</h2>
@@ -507,7 +507,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <div class="formula" tabindex="0">$$\begin{aligned}N^T(g+Hd+A^T\eta)&amp;=0\\N^THN\Delta z&amp;=-N^Tg.\end{aligned}$$</div></div>
 <div class="panel"><p><strong>VD3:</strong> $N=(-1,1)^T$.</p><p>$N^THN=7$, $N^Tg=-42$.</p><div class="formula" tabindex="0">$$7\Delta z=42\Rightarrow\Delta z=6.$$</div></div></div>
 <div class="takeaway">Cùng hướng $d=N\Delta z=(-6,6)^T$: hai cách giải cùng một hệ KKT.</div>
-<aside class="notes">Với $A\hat u=b$, mọi điểm khả thi viết được $u=\hat u+Nz$; vì các cột của $N$ sinh phần bù của không gian hàng, $N^TA^T=0$, nên nhân $N^T$ vào hàng dừng $g+Hd+A^T\eta=0$ khử được nhân tử $\eta$ và còn $N^THN\Delta z=-N^Tg$. Với VD3: $N^THN=(-1,1)\operatorname{diag}(2,5)(-1,1)^T=7$, $N^Tg=-32-10=-42$, nên $7\Delta z=42$, $\Delta z=6$, cho đúng hướng $d=(-6,6)^T=N\Delta z$ như trang trước. Điểm dễ nhầm: hệ số $7$, gradient rút gọn $-42$ và số gia $6$ là ba số khác vai trò; lấy nhầm dấu hệ số cho $-7$, quên chia cho Hessian cho $42$. Đa thức một biến $\psi(z)=196-28z+7z^2/2$ có điểm đầu $z=-2$ khi $\hat u=(14,0)^T$; sau bước $\Delta z=6$ tới cực tiểu $z^+=4$. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+<aside class="notes">Với $A\hat u=b$, mọi điểm khả thi viết được $u=\hat u+Nz$; vì các cột của $N$ sinh phần bù trực giao của không gian hàng của $A$, $N^TA^T=0$, nên nhân $N^T$ vào hàng dừng $g+Hd+A^T\eta=0$ khử được nhân tử $\eta$ và còn $N^THN\Delta z=-N^Tg$. Với VD3: $N^THN=(-1,1)\operatorname{diag}(2,5)(-1,1)^T=7$, $N^Tg=-32-10=-42$, nên $7\Delta z=42$, $\Delta z=6$, cho đúng hướng $d=(-6,6)^T=N\Delta z$ của hệ KKT. Hessian rút gọn là $7$, gradient rút gọn là $-42$ và số gia là $6$; số gia bằng đối của gradient chia cho Hessian rút gọn. Đa thức một biến $\psi(z)=196-28z+7z^2/2$ có điểm đầu $z=-2$ khi $\hat u=(14,0)^T$; sau bước $\Delta z=6$ tới cực tiểu $z^+=4$. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
 </section>
 <section data-slide-id="RE07">
   <h2>Thuật toán Newton khả thi</h2>
@@ -530,25 +530,25 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
     </div>
   </div>
   <div class="takeaway">Dung sai mô hình chưa tự cho cận sai số mục tiêu.</div>
-  <aside class="notes">Vì sao được tái dùng Armijo trên $F$? Nhân hàng dừng với $d^T$ và dùng $Ad=0$ để triệt tiêu số hạng $d^TA^T\eta$ được $g^Td=-d^THd$, âm khi $d\ne0$, nên hướng là hướng giảm của $F$ thật, không chỉ của mô hình. Bảo toàn khả thi hiển nhiên từ $Ad=0$. Điểm dễ nhầm: phép chứng minh này đúng trên giấy, nhưng khi tính số cần kiểm thêm sai lệch $Au-b$ do sai số máy; và tiêu chí $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$ chỉ là tiêu chí mô hình, chưa phải chứng nhận sai số thật tới nghiệm. Hệ khối đặc cỡ $n+p$ có chi phí giải thông thường $O((n+p)^3)$; hệ rút gọn cỡ $n-p$ có thể rẻ hơn tùy cấu trúc. Giữ $H\succ0$, $A$ đủ hạng hàng. Hội tụ bậc hai cục bộ xét trên hàm rút gọn, cần Hessian rút gọn Lipschitz gần nghiệm và xác định dương tại nghiệm, điểm đầu đủ gần. Điều kiện điểm đầu khả thi là giới hạn của thuật toán này; trang kiểm tra sau yêu cầu tự dựng lại hệ và giải thích vì sao Armijo được dùng trên mục tiêu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Điều kiện hướng giảm để dùng Armijo trên $F$ được suy ra bằng cách nhân hàng dừng với $d^T$ và dùng $Ad=0$ để triệt tiêu số hạng $d^TA^T\eta$ được $g^Td=-d^THd$, âm khi $d\ne0$, nên hướng là hướng giảm của $F$ thật, không chỉ của mô hình. Tính khả thi được bảo toàn bởi $Ad=0$. Khi tính số, cần kiểm thêm sai lệch $Au-b$ do sai số máy; tiêu chí $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$ chỉ là tiêu chí mô hình, chưa phải chứng nhận sai số thật tới nghiệm. Hệ khối đặc cỡ $n+p$ có chi phí giải thông thường $O((n+p)^3)$; hệ rút gọn cỡ $n-p$ có thể rẻ hơn tùy cấu trúc. Giả thiết gồm $H\succ0$, $A$ đủ hạng hàng. Hội tụ bậc hai cục bộ xét trên hàm rút gọn, cần Hessian rút gọn Lipschitz gần nghiệm và xác định dương tại nghiệm, điểm đầu đủ gần. Thuật toán yêu cầu điểm đầu khả thi; hệ Newton và quy tắc Armijo cùng dựa trên điều kiện hướng bảo toàn đẳng thức. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
 </section>
 <section data-slide-id="RE08">
-  <h2>Kiểm tra phép suy ra có đẳng thức</h2>
+  <h2>Kiểm tra hệ Newton khả thi</h2>
   <div class="question">
-    <p><strong>Câu hỏi:</strong> Từ $Q(d)=g^Td+\tfrac12d^THd$ với $Ad=0$: hãy viết $L_m$, lấy hai đạo hàm rồi xếp ma trận; nhân $N^T$ cho hệ nào?</p>
+    <p><strong>Câu hỏi:</strong> Từ $Q(d)=g^Td+\tfrac12d^THd$ với $Ad=0$: viết $L_m$, lấy hai đạo hàm rồi xếp ma trận; nhân $N^T$ cho hệ nào?</p>
     <p>Dữ kiện VD3 để kiểm $d$ nếu cần: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$, $A=[1\ 1]$, $b=14$, điểm đầu $(16,-2)^T$.</p>
   </div>
   <div class="lec-grid lec-grid--three">
     <div class="flow-node">Lagrange</div>
-    <div class="flow-node">Hai điều kiện dừng</div>
+    <div class="flow-node">Dừng và khả thi</div>
     <div class="flow-node">Hệ rút gọn</div>
   </div>
-  <aside class="notes">Đáp án: $L_m=g^Td+\tfrac12d^THd+\eta^TAd$; đạo hàm theo $d$ cho $g+Hd+A^T\eta=0$, đạo hàm theo $\eta$ cho $Ad=0$; xếp hai hàng thành $\begin{bmatrix}H&amp;A^T\\A&amp;0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$. Nhân $N^T$ với $N^TA^T=0$ khử nhân tử, cho hệ rút gọn $N^THN\Delta z=-N^Tg$. Trên VD3, cả hai cách cho $d=(-6,6)^T$, $\eta=-20$. Tiêu chí: viết và giải thích nguồn gốc từng hàng, không chỉ chép ma trận hay nhớ vế phải bằng $0$. Điều kiện điểm đầu khả thi còn là giới hạn; phần sau đổi điểm đầu để làm rõ điều cần phục hồi. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Đáp án: $L_m=g^Td+\tfrac12d^THd+\eta^TAd$; đạo hàm theo $d$ cho $g+Hd+A^T\eta=0$, đạo hàm theo $\eta$ cho $Ad=0$; xếp hai hàng thành $\begin{bmatrix}H&amp;A^T\\A&amp;0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$. Nhân $N^T$ với $N^TA^T=0$ khử nhân tử, cho hệ rút gọn $N^THN\Delta z=-N^Tg$. Trên VD3, cả hai cách cho $d=(-6,6)^T$, $\eta=-20$. Vế phải hàng khả thi bằng $0$ vì bài con bảo toàn một đẳng thức đã được thỏa. Khi điểm đầu chưa khả thi, hướng phải hiệu chỉnh sai lệch đẳng thức thay vì giữ nguyên sai lệch đó. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
 </section>
 </section>
 <section>
 <section data-slide-id="RR01">
-<h2>Hai sai lệch của điều kiện KKT</h2>
+<h2>Hai phần dư của điều kiện KKT</h2>
 <p><strong>Điểm đầu mới:</strong> $u=(1,8)^T$, $\nu=4$; giữ VD3 với $A=[1\ 1]$, $b=14$.</p>
 <div class="lec-grid ratio55"><div>
 <div class="panel"><p><strong>Điều kiện dừng:</strong></p><div class="formula" tabindex="0">$$\underbrace{\nabla F(u)+A^T\nu}_{r_d}=0.$$</div></div>
@@ -556,7 +556,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <div><p>Gradient $g=(2,40)^T$.</p><div class="formula" tabindex="0">$$r_d=(2,40)^T+(4,4)^T=(6,44)^T.$$</div>
 <div class="formula" tabindex="0">$$r_p=1+8-14=-5.$$</div></div></div>
 <div class="takeaway">Giữ $Ad=0$ sẽ giữ nguyên sai lệch $r_p$; cần sửa cả hai phương trình KKT.</div>
-<aside class="notes">Ta quay lại ví dụ có ràng buộc $u_1+u_2=14$, nhưng lần này điểm đầu là $(1,8)$ với nhân tử $\nu=4$, nên $Au-b=-5$: điểm chưa khả thi. Gradient tại đó là $(2,40)$, cộng $A^T\nu=(4,4)$ cho phần dư đối ngẫu $(6,44)$. Điểm dễ nhầm: số 40 nằm trong gradient, còn 44 là thành phần của phần dư sau khi cộng $A^T\nu$; hai số này phải ở hai hàng khác nhau. Mỗi phần dư đo sai lệch của đúng một phương trình KKT đã viết ở Bài 03, nên nhiệm vụ của bước mới là đưa cả hai về 0 đồng thời; không thể dùng điều kiện $Ad=0$ của điểm khả thi để sửa phần dư khả thi. Câu hỏi tiếp theo: tuyến tính hóa chính hai phương trình này quanh điểm đầu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<aside class="notes">Xét ví dụ có ràng buộc $u_1+u_2=14$, tại điểm đầu $(1,8)$ với nhân tử $\nu=4$, nên $Au-b=-5$: điểm chưa khả thi. Gradient tại đó là $(2,40)$, cộng $A^T\nu=(4,4)$ cho phần dư đối ngẫu $(6,44)$. Số 40 nằm trong gradient, còn 44 là thành phần của phần dư sau khi cộng $A^T\nu$; hai đại lượng có vai trò riêng trong hệ Newton. Mỗi phần dư đo sai lệch của đúng một phương trình KKT đã viết ở Bài 03, nên nhiệm vụ của bước mới là đưa cả hai về 0 đồng thời; không thể dùng điều kiện $Ad=0$ của điểm khả thi để sửa phần dư khả thi. Tuyến tính hóa hai phương trình cho hệ xác định bước; chuẩn phần dư ghép sẽ được dùng để kiểm tiến triển. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR02">
@@ -568,7 +568,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 </div>
 <p>Đặt hai biểu thức mô hình bằng 0:</p>
 <div class="formula emphasis" tabindex="0"><p>$r_d+Hd+A^T\Delta\nu=0,\qquad r_p+Ad=0.$</p></div>
-<aside class="notes">Ta tuyến tính hóa từng phần dư quanh điểm đầu. Hàng gradient chỉ là gần đúng: ta thay $\nabla F$ bằng mô hình bậc nhất $r_d+Hd$ và thêm số gia nhân tử $A^T\Delta\nu$, nên dấu là gần bằng. Hàng ràng buộc thì chính xác tuyệt đối: vì ràng buộc là affine, $A(u+d)-b=r_p+Ad$ đúng từng chữ, không phải xấp xỉ. Điểm dễ nhầm: hai dấu này khác nhau vì bản chất hai hàm khác nhau, không phải vì cách viết. Số gia $\Delta\nu$ là ẩn mới, khác $\nu$ hiện tại. Đặt cả hai biểu thức mô hình bằng 0, ta được vế phải $-r_d$ và $-r_p$ cùng hai ẩn $d$ và $\Delta\nu$ cho trang sau. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<aside class="notes">Hệ Newton được xây bằng tuyến tính hóa từng phần dư quanh điểm hiện tại. Do $\nabla F$ có thể phi tuyến, phần dư đối ngẫu tại nhân tử cố định được xấp xỉ bởi $r_d+Hd$; biến thiên nhân tử bổ sung số hạng $A^T\Delta\nu$. Hàng ràng buộc thì chính xác: vì ràng buộc là affine, $A(u+d)-b=r_p+Ad$ là đẳng thức, không phải xấp xỉ. Dấu xấp xỉ thuộc phần dư chứa gradient; dấu bằng thuộc phần dư affine. Số gia $\Delta\nu$ là ẩn mới, khác $\nu$ hiện tại. Đặt cả hai biểu thức mô hình bằng 0, thu được vế phải $-r_d$ và $-r_p$ cùng hai ẩn $d$ và $\Delta\nu$ của hệ Newton. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR03">
@@ -583,26 +583,26 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 </table>
 </div>
 <p>Với bài con mở rộng $Ad=-r_p$, nhân tử của nó thỏa $\eta=\nu+\Delta\nu$.</p>
-<aside class="notes">Ma trận giữ nguyên hình dạng như hệ ở điểm khả thi, nhưng hai chỗ khác: ẩn thứ hai là số gia $\Delta\nu$, không phải nhân tử $\eta$, và vế phải gồm cả hai sai lệch $r_d$ và $r_p$. Điểm dễ nhầm: vì ma trận giống hệt, nhiều người đồng nhất $\eta$ với $\Delta\nu$; thay $r_d=g+A^T\nu$ vào hàng đầu cho $g+Hd+A^T(\nu+\Delta\nu)=0$. Vì vậy $\eta=\nu+\Delta\nu$ là nhân tử của bài con mở rộng, còn $\Delta\nu$ chỉ là bước dịch của nhân tử hiện tại. Khi so sánh hai hệ, phải nói rõ cùng điểm và cùng mô hình tuyến tính hóa. Giả thiết $H$ xác định dương và $A$ đủ hạng hàng vẫn giữ nguyên để hệ có nghiệm duy nhất. Trang sau sẽ giải số để thấy nhân tử cuối cùng khác số gia dù ma trận cùng dạng. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<aside class="notes">Ma trận giữ nguyên hình dạng như hệ ở điểm khả thi, nhưng hai chỗ khác: ẩn thứ hai là số gia $\Delta\nu$, không phải nhân tử $\eta$, và vế phải gồm cả hai sai lệch $r_d$ và $r_p$. Thay $r_d=g+A^T\nu$ vào hàng đầu cho $g+Hd+A^T(\nu+\Delta\nu)=0$. Vì vậy $\eta=\nu+\Delta\nu$ là nhân tử của bài con mở rộng, còn $\Delta\nu$ chỉ là bước dịch của nhân tử hiện tại. Quan hệ này đối chiếu hai dạng hệ tại cùng điểm và cùng mô hình tuyến tính hóa. Giả thiết $H$ xác định dương và $A$ đủ hạng hàng vẫn giữ nguyên để hệ có nghiệm duy nhất. Phép giải số xác định số gia; nhân tử mới còn phụ thuộc nhân tử hiện tại và độ dài bước. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR04">
-<h2>Giải bước nguyên thủy và đối ngẫu</h2>
+<h2>Bước Newton của điểm và nhân tử</h2>
 <div class="lec-grid ratio60"><div>
 <div class="formula" tabindex="0">$$\begin{aligned}2d_1+\Delta\nu&amp;=-6,\\5d_2+\Delta\nu&amp;=-44,\\d_1+d_2&amp;=5.\end{aligned}$$</div>
 <p>Trừ hai hàng đầu: $2d_1-5d_2=38$.</p>
 <p>Thế $d_2=5-d_1$: $7d_1=63$.</p><div class="formula" tabindex="0">$$d=(9,-4)^T,\quad\Delta\nu=-24.$$</div></div>
 <div class="panel"><p><strong>Bước đầy đủ:</strong></p><p>$u^+=(1,8)^T+d=(10,4)^T$.</p><p>$\nu^+=4-24=-20$.</p><p><strong>Kiểm:</strong> $r_p^+=10+4-14=0$.</p><div class="formula" tabindex="0">$$\begin{aligned}r_d^+&amp;=(20,20)^T\\&amp;\quad+(-20,-20)^T=0.\end{aligned}$$</div></div></div>
-<aside class="notes">Với ví dụ bậc hai, một bước là đủ. Ta giải hệ ba phương trình: hai phương trình gradient cho $2d_1+\Delta\nu=-6$ và $5d_2+\Delta\nu=-44$, cùng phương trình ràng buộc $d_1+d_2=5$ (chú ý vế phải là 5, trừ dấu của $r_p=-5$). Trừ hai hàng đầu được $2d_1-5d_2=38$; thế $d_2=5-d_1$ cho $7d_1=63$. Suy ra $d=(9,-4)$ và $\Delta\nu=-24$; cập nhật điểm thành $(10,4)$ và nhân tử thành $4-24=-20$. Thế lại cả ba phương trình: phần dư khả thi bằng 0 và phần dư đối ngẫu $(20,20)+(-20,-20)$ cũng bằng 0, đúng nghiệm $(10,4)$ với giá trị 140. Điểm dễ nhầm: $-24$ là số gia, còn $-20$ là nhân tử cuối; hai số này không thay thế nhau. Với hàm tổng quát hoặc bước chưa đầy đủ, ta cần thước đo tiến triển, đó là nội dung trang sau. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<aside class="notes">Với ví dụ bậc hai, một bước là đủ. Hệ ba phương trình gồm hai phương trình gradient cho $2d_1+\Delta\nu=-6$ và $5d_2+\Delta\nu=-44$, cùng phương trình ràng buộc $d_1+d_2=5$ (vế phải bằng đối của $r_p=-5$). Trừ hai hàng đầu được $2d_1-5d_2=38$; thế $d_2=5-d_1$ cho $7d_1=63$. Suy ra $d=(9,-4)$ và $\Delta\nu=-24$; cập nhật điểm thành $(10,4)$ và nhân tử thành $4-24=-20$. Thế lại cả ba phương trình: phần dư khả thi bằng 0 và phần dư đối ngẫu $(20,20)+(-20,-20)$ cũng bằng 0, đúng nghiệm $(10,4)$ với giá trị 140. $-24$ là số gia, còn $-20$ là nhân tử cuối; hai số này không thay thế nhau. Với hàm tổng quát hoặc bước chưa đầy đủ, mức tiến triển được đánh giá bằng chuẩn phần dư ghép. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR05">
-<h2>Đại lượng đo tiến triển khi chưa khả thi</h2>
-<div class="lec-grid lec-grid--40-60"><div class="panel"><p><strong>Đổi điểm đầu để kiểm giới hạn:</strong> $u=(0,0)^T$, $\nu=0$.</p><p>$F=0&lt;140=F^\star$ nhưng $r_p=-14$.</p><p>Đến nghiệm khả thi đòi hỏi $F$ tăng.</p></div>
+<h2>Chuẩn phần dư và điều kiện nhận bước</h2>
+<div class="lec-grid lec-grid--40-60"><div class="panel"><p><strong>Trường hợp mục tiêu phải tăng:</strong> $u=(0,0)^T$, $\nu=0$.</p><p>$F=0&lt;140=F^\star$ nhưng $r_p=-14$.</p><p>Đến nghiệm khả thi đòi hỏi $F$ tăng.</p></div>
 <div><p>Gộp $r=[r_d;r_p]\ne0$, $\Delta=[d;\Delta\nu]$; $J_r$ là ma trận Jacobi của $r$.</p>
 <div class="formula" tabindex="0">$$J_r\Delta=-r.$$</div><div class="formula" tabindex="0">$$\left.\frac{d}{dt}\|r((u,\nu)+t\Delta)\|_2\right|_{t=0}$$</div><div class="formula" tabindex="0">$$=\frac{r^TJ_r\Delta}{\|r\|_2}=-\|r\|_2&lt;0.$$</div></div></div>
-<div class="takeaway">Chuẩn phần dư giảm với bước dương đủ nhỏ: dùng nó để nhận bước.</div>
-<aside class="notes">Tại điểm đầu $(0,0)$ với $\nu=0$, giá trị hàm mục tiêu bằng 0, nhỏ hơn 140 của nghiệm, nhưng $Au-b=-14$: điểm không khả thi. Muốn đến nghiệm, hàm mục tiêu phải tăng, nên không thể dùng $F$ làm thước đo khi chưa khả thi. Lập luận thay thế: với $\Delta=(d,\Delta\nu)$, hệ Newton viết $J_r\Delta=-r$, nên đạo hàm của nửa bình phương chuẩn phần dư tại $t=0$ là $r^TJ_r\Delta=-\|r\|^2$, suy ra đạo hàm của chuẩn phần dư là $-\|r\|$. Điểm dễ nhầm: kết luận này chỉ nói đạo hàm âm tại $t=0$ khi $r\ne0$, không suy ra mọi bước đều giảm chuẩn phần dư, cũng không khẳng định mọi bước đều được nhận. Trang sau sẽ dùng lập luận này cho phép quay lui. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<div class="takeaway">Đạo hàm âm của chuẩn phần dư là cơ sở cho quy tắc nhận bước.</div>
+<aside class="notes">Tại điểm đầu $(0,0)$ với $\nu=0$, giá trị hàm mục tiêu bằng 0, nhỏ hơn 140 của nghiệm, nhưng $Au-b=-14$: điểm không khả thi. Quá trình tiến đến nghiệm khả thi làm mục tiêu tăng trong trường hợp này; yêu cầu giảm $F$ không phù hợp để nhận bước. Lập luận thay thế: với $\Delta=(d,\Delta\nu)$, hệ Newton viết $J_r\Delta=-r$, nên đạo hàm của nửa bình phương chuẩn phần dư tại $t=0$ là $r^TJ_r\Delta=-\|r\|^2$, suy ra đạo hàm của chuẩn phần dư là $-\|r\|$. Kết luận này chỉ nói đạo hàm âm tại $t=0$ khi $r\ne0$, không suy ra mọi bước đều giảm chuẩn phần dư, cũng không khẳng định mọi bước đều được nhận. Đạo hàm âm bảo đảm tồn tại bước dương đủ nhỏ làm giảm chuẩn phần dư ghép. Điều này không có nghĩa chuẩn của từng thành phần phần dư đều giảm đơn điệu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR06">
@@ -624,11 +624,11 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <p>Bước đầy đủ $t=1$ cho $\nu^+=\eta$.</p>
 </div>
 </div>
-<aside class="notes">Đầu vòng lặp, tính hai phần dư và kiểm đồng thời hai dung sai trước khi giải hệ. Nếu chưa đạt, giải hướng rồi quay lui và cập nhật đồng thời hai biến. Đầu vào gồm điểm trong miền, nhân tử ban đầu, hai dung sai dương và tham số Armijo. Đạo hàm âm tại $t=0$ bảo đảm tồn tại bước dương đủ nhỏ thỏa tiêu chí, nhưng không bảo đảm mọi $t$ đều được nhận, nên phải thử giảm bước. Điểm dễ nhầm: khi chỉ đi một phần bước $t&lt;1$, phần dư khả thi còn $(1-t)r_p$ và nhân tử mới là $(1-t)\nu+t\eta$, không phải giá trị nhân tử đầy đủ $\eta$; với $t=1$ ta có $\nu^+=\eta$ và đẳng thức được khôi phục chính xác theo số học lý tưởng. Hệ khối đặc có chi phí $O((n+p)^3)$; cấu trúc thưa có thể giảm chi phí. Cần $H\succ0$, $A$ đủ hạng hàng; phát biểu hội tụ bậc hai chỉ cục bộ, khi Jacobian KKT khả nghịch tại nghiệm, Lipschitz gần nghiệm và bắt đầu đủ gần. Với VD3, $t=1/2$ cho $\nu^+=-8$, $r_p^+=-5/2$ và $r_d^+=(3,22)^T$: phần dư chưa triệt tiêu. Phần dư nhỏ chỉ là chứng nhận gần thỏa KKT theo dung sai, chưa tự là cận sai số mục tiêu. Trang sau kiểm các chi tiết này. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<aside class="notes">Đầu vòng lặp, tính hai phần dư và kiểm đồng thời hai dung sai trước khi giải hệ. Nếu chưa đạt, giải hướng rồi quay lui và cập nhật đồng thời hai biến. Đầu vào gồm điểm trong miền, nhân tử ban đầu, hai dung sai dương và tham số Armijo. Đạo hàm âm tại $t=0$ bảo đảm tồn tại bước dương đủ nhỏ thỏa tiêu chí, nhưng không bảo đảm mọi $t$ đều được nhận, nên phải thử giảm bước. Khi chỉ đi một phần bước $t&lt;1$, phần dư khả thi còn $(1-t)r_p$ và nhân tử mới là $(1-t)\nu+t\eta$, không phải giá trị nhân tử đầy đủ $\eta$; với $t=1$, $\nu^+=\eta$ và đẳng thức được khôi phục chính xác theo số học lý tưởng. Hệ khối đặc có chi phí $O((n+p)^3)$; cấu trúc thưa có thể giảm chi phí. Cần $H\succ0$, $A$ đủ hạng hàng; phát biểu hội tụ bậc hai chỉ cục bộ, khi Jacobian KKT khả nghịch tại nghiệm, Lipschitz gần nghiệm và bắt đầu đủ gần. Với VD3, $t=1/2$ cho $\nu^+=-8$, $r_p^+=-5/2$ và $r_d^+=(3,22)^T$: phần dư chưa triệt tiêu. Phần dư nhỏ chỉ là chứng nhận gần thỏa KKT theo dung sai, chưa tự là cận sai số mục tiêu. Hai dung sai tương ứng hai nhóm điều kiện KKT và cần được kiểm riêng khi dừng. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR07">
-<h2>Kiểm tra hai hệ Newton</h2>
+<h2>Kiểm tra hai dạng hệ Newton</h2>
 <div class="question">
 <p><strong>Câu hỏi:</strong> Với $u=(1,8)^T$, $\nu=4$, giải thích vì sao vế phải tọa độ hai của hàng gradient là $-44$ và vế phải hàng ràng buộc là $5$. $\eta=-20$ có phải là $\Delta\nu$ không? Nêu hai điều kiện phải kiểm để dừng.</p>
 </div>
@@ -640,28 +640,28 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <p><strong>Lỗi cần sửa:</strong> lấy vế phải hàng ràng buộc là $-5$ thay vì $5$.</p>
 </div>
 </div>
-<aside class="notes">Tọa độ hai của gradient là 40, cộng $A^T\nu$ cho thêm 4, nên phần dư đối ngẫu là 44 và vế phải là $-44=-(40+4)$; bỏ mất $A^T\nu$ sẽ ra $-40$, sai. Phần dư khả thi là $-5$, nên vế phải của hệ là $5=-(-5)$; quên trừ dấu là lỗi thứ hai. Về ẩn: giải hệ cho $\Delta\nu=-24$, còn $\eta=\nu+\Delta\nu=4-24=-20$ là nhân tử của bài con mở rộng; hai số này khác nhau và không thay thế nhau. Để dừng, phải kiểm đồng thời cả hai điều kiện: $\|r_p\|_2\le\varepsilon_p$ và $\|r_d\|_2\le\varepsilon_d$; chỉ kiểm một trong hai là chưa đủ vì mỗi phần dư ứng với một nhóm KKT. Đã có cách tạo bước cho cả hai loại điểm đầu. Ta quay lại xác định khi nào đại lượng của mô hình cho một cận sai số mục tiêu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<aside class="notes">Tọa độ hai của gradient là 40, cộng $A^T\nu$ cho thêm 4, nên phần dư đối ngẫu là 44 và vế phải là $-44=-(40+4)$; bỏ mất $A^T\nu$ sẽ ra $-40$, sai. Phần dư khả thi là $-5$, nên vế phải của hệ là $5=-(-5)$; quên trừ dấu là lỗi thứ hai. Về ẩn: giải hệ cho $\Delta\nu=-24$, còn $\eta=\nu+\Delta\nu=4-24=-20$ là nhân tử của bài con mở rộng; hai số này khác nhau và không thay thế nhau. Để dừng, phải kiểm đồng thời cả hai điều kiện: $\|r_p\|_2\le\varepsilon_p$ và $\|r_d\|_2\le\varepsilon_d$; chỉ kiểm một trong hai là chưa đủ vì mỗi phần dư ứng với một nhóm KKT. Hai phương pháp phân biệt điểm đầu khả thi và chưa khả thi. Dung sai phần dư chứng nhận mức độ thỏa KKT; cận sai số mục tiêu cần thêm quan hệ giữa mô hình cục bộ và hàm gốc. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 </section>
 <section>
 <section data-slide-id="RS01">
-  <h2>Giới hạn của tiêu chí dừng theo mô hình</h2>
+  <h2>Độ cong và sai số của mô hình Newton</h2>
   <div class="lec-grid ratio60">
     <div>
       <img class="plot" src="img/lec-04/log-curvature.svg" alt="Đồ thị độ cong bậc hai của hàm s − log s trên s &gt; 0: đường cong 1/s² tăng vô hạn khi s tiến về 0 và giảm về 0 khi s lớn, cho thấy Hessian không bị chặn trên toàn miền.">
     </div>
     <div>
-      <p>Từ đây viết $\delta=\delta_N=\sqrt{d^THd}\ge0$.</p>
+      <p>Ký hiệu $\delta=\delta_N=\sqrt{d^THd}\ge0$.</p>
       <p>Với VD2: $\delta_N^2=9/16$, nên $\delta=3/4$.</p>
       <p>Với $\varphi(s)=s-\log s$: $\varphi''=1/s^2$ không bị chặn trên toàn miền $s&gt;0$.</p>
       <p class="takeaway">Cần kiểm biến thiên độ cong tương đối để có một cận sai số.</p>
     </div>
   </div>
-  <aside class="notes">Chúng ta quay lại một câu hỏi còn mở: độ giảm mô hình và sai số thật khác nhau bao nhiêu? Từ đây ta viết gọn $\delta=\delta_N=\sqrt{d^THd}$, tức căn không âm của độ giảm Newton bình phương; với ví dụ Newton phi bậc hai, $\delta_N^2=9/16$ nên $\delta=3/4$. Hình bên vẽ $\varphi''=1/s^2$ của $\varphi(s)=s-\log s$: độ cong tăng vô hạn khi $s$ tiến về biên $s=0$, nên Hessian không bị chặn trên toàn miền. Chính vì thế ta không thể lấy một con số độ cong duy nhất làm căn cứ; cần một cách kiểm biến thiên độ cong tương đối trước khi phát biểu cận sai số. Câu hỏi này sẽ được trả lời ngay ở trang sau. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+  <aside class="notes">Xét lại độ giảm Newton của bài toán không ràng buộc: với $\varphi(s)=s-\log s$ tại $s=1/4$, giảm mô hình $9/32$ nhỏ hơn sai số mục tiêu $\log4-3/4$. Cận cần xây dựng dùng độ giảm Newton của bài toán này, không dùng chuẩn phần dư tại điểm chưa khả thi. Phép khử đẳng thức sẽ chuyển kết quả sang hàm rút gọn trên tập khả thi. Ký hiệu $\delta=\delta_N=\sqrt{d^THd}$, tức căn không âm của độ giảm Newton bình phương; với ví dụ Newton phi bậc hai, $\delta_N^2=9/16$ nên $\delta=3/4$. Hình bên vẽ $\varphi''=1/s^2$ của $\varphi(s)=s-\log s$: độ cong tăng vô hạn khi $s$ tiến về biên $s=0$, nên Hessian không bị chặn trên toàn miền. Phân tích trên tập mức vẫn có thể dùng cận riêng; tính tự điều chỉnh cung cấp một cách khác, dựa trên biến thiên độ cong tương đối. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
 </section>
 
 <section data-slide-id="RS02">
-  <h2>Định nghĩa và phép kiểm tự điều chỉnh</h2>
+  <h2>Định nghĩa hàm tự điều chỉnh</h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
       <img class="plot" src="img/lec-04/self-concordance-ratio.svg" alt="Đồ thị tỷ số trị tuyệt đối đạo hàm bậc ba chia lũy thừa ba phần hai của đạo hàm bậc hai của hàm s − log s trên s &gt; 0: đường nằm ngang ở mức 2, minh họa bất đẳng thức |φ'''| ≤ 2(φ'')^{3/2} đúng với mọi s.">
@@ -674,7 +674,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
       </div>
     </div>
   </div>
-  <aside class="notes">Hãy tính cho ví dụ quen thuộc: $\varphi''=1/s^2$ và $|\varphi'''|=2/s^3$, nên tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ bằng đúng $2$ với mọi $s&gt;0$; hình bên cho thấy đường tỷ số nằm ngang ở mức 2. Nếu chỉ kiểm tại $s=1/4$, ta được $128=2\cdot16^{3/2}$ — đó chỉ là một phép thử số, không thay được chứng minh cho mọi $s$. Khái quát: một hàm lồi $C^3$ trên miền mở lồi gọi là tự điều chỉnh khi mọi hạn chế của nó lên đường thẳng đều thỏa $|h'''|\le2(h'')^{3/2}$. Lớp hàm này vừa được xác lập; trang sau sẽ dùng nó để biến độ giảm Newton thành một cận sai số có điều kiện. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+  <aside class="notes">Với ví dụ logarit, $\varphi''=1/s^2$ và $|\varphi'''|=2/s^3$, nên tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ bằng đúng $2$ với mọi $s&gt;0$; hình bên cho thấy đường tỷ số nằm ngang ở mức 2. Nếu chỉ kiểm tại $s=1/4$, thu được $128=2\cdot16^{3/2}$; phép thử số này không thay cho chứng minh với mọi $s$. Khái quát: một hàm lồi $C^3$ trên miền mở lồi gọi là tự điều chỉnh khi mọi hạn chế của nó lên đường thẳng đều thỏa $|h'''|\le2(h'')^{3/2}$. Điều kiện trên các hạn chế đường thẳng kiểm soát sai lệch khỏi mô hình bậc hai, từ đó cho cận sai số theo độ giảm Newton khi các giả thiết bổ sung được thỏa. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
 </section>
 
 <section data-slide-id="RS03">
@@ -682,24 +682,24 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <div class="panel"><p><strong>Giả thiết:</strong> hàm tự điều chỉnh, lồi chặt, $H\succ0$, đạt cực tiểu trong miền.</p>
 <div class="formula emphasis" tabindex="0">$$f(x)-f^\star\le-\delta-\log(1-\delta)\quad\text{khi }\delta&lt;1.$$</div></div>
 <p><strong>VD2 tại $s=1/4$:</strong> $\delta=3/4$.</p>
-<div class="lec-grid"><div class="panel"><strong>Cận sai số thật:</strong><div class="formula" tabindex="0">$$-\tfrac34-\log\tfrac14=\log4-\tfrac34$$</div><p>$\approx0{,}63629$; đúng bằng sai số ở ví dụ này.</p></div>
-<div class="panel"><strong>Giảm mô hình:</strong><div class="formula" tabindex="0">$$\delta^2/2=9/32\approx0{,}28125.$$</div><p>Hai đại lượng khác nhau.</p></div></div>
-<aside class="notes">Đây là kết quả trả lời câu hỏi sai số còn mở ở phần Newton. Đọc kỹ giả thiết: hàm phải tự điều chỉnh, lồi chặt, Hessian xác định dương và đạt cực tiểu hữu hạn trong miền; thêm điều kiện $\delta&lt;1$. Khi đó $f-f^*\le-\delta-\log(1-\delta)$. Áp vào $\varphi(s)=s-\log s$ tại $s=1/4$ với $\delta=3/4$: cận bằng $\log4-3/4\approx0{,}63629$, và với ví dụ log này cận trùng đúng sai số thật. Đừng nhầm với $9/32$: đó chỉ là độ giảm của mô hình bậc hai, không phải sai số thật. Sự bằng nhau giữa cận và sai số thật chỉ được xác nhận cho ví dụ log này, không phải tính chất chung. Chứng minh cận nằm trong tài liệu nguồn, không lặp lại trên trang. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+<div class="lec-grid"><div class="panel"><strong>Cận sai số mục tiêu:</strong><div class="formula" tabindex="0">$$-\tfrac34-\log\tfrac14=\log4-\tfrac34$$</div><p>$\approx0{,}63629$; đúng bằng sai số ở ví dụ này.</p></div>
+<div class="panel"><strong>Giảm mô hình:</strong><div class="formula" tabindex="0">$$\delta^2/2=9/32\approx0{,}28125.$$</div><p>Độ giảm mô hình nhỏ hơn sai số mục tiêu trong ví dụ này.</p></div></div>
+<aside class="notes">Cận sai số theo độ giảm Newton yêu cầu các giả thiết sau: hàm phải tự điều chỉnh, lồi chặt, Hessian xác định dương và đạt cực tiểu hữu hạn trong miền; thêm điều kiện $\delta&lt;1$. Khi đó $f-f^*\le-\delta-\log(1-\delta)$. Áp vào $\varphi(s)=s-\log s$ tại $s=1/4$ với $\delta=3/4$: cận bằng $\log4-3/4\approx0{,}63629$, và với ví dụ log này cận trùng đúng sai số thật. Giá trị $9/32$ là độ giảm của mô hình bậc hai, nhỏ hơn sai số mục tiêu trong ví dụ này. Sự bằng nhau giữa cận và sai số thật chỉ được xác nhận cho ví dụ log này, không phải tính chất chung. Cận này còn áp dụng cho bài toán sau khử đẳng thức nếu hàm rút gọn thỏa đầy đủ giả thiết. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
 </section>
 
 <section data-slide-id="RS04">
-  <h2>Khử đẳng thức và tính tự điều chỉnh</h2>
+  <h2>Tính tự điều chỉnh sau khử đẳng thức</h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
       <div class="panel"><div class="lec-flow"><div class="flow-node">$z$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$u=\hat u+Nz$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$\psi(z)=F(u)$</div></div></div>
     </div>
     <div>
-      <p>Nếu $F$ tự điều chỉnh thì $\psi(z)=F(\hat u+Nz)$ cũng tự điều chỉnh trên miền tiền ảnh — chính là bài rút gọn đã học.</p>
+      <p>Nếu $F$ tự điều chỉnh thì $\psi(z)=F(\hat u+Nz)$ cũng tự điều chỉnh trên miền tiền ảnh của phép khử đẳng thức.</p>
       <p><strong>Điều kiện dùng cận cho hàm rút gọn:</strong> $\psi$ lồi chặt, Hessian xác định dương, đạt cực tiểu trong miền, và độ giảm Newton của $\psi$ nhỏ hơn $1$.</p>
       <p class="takeaway">Bảo toàn lớp hàm qua hợp thành affine khác tính bất biến của Newton dưới phép đổi tọa độ affine khả nghịch.</p>
     </div>
   </div>
-  <aside class="notes">Sơ đồ bên là chính phép khử biến ta đã dùng: chọn $\hat u$ khả thi, ma trận $N$ có các cột là cơ sở $\ker A$, và xét $\psi(z)=F(\hat u+Nz)$. Nếu $F$ tự điều chỉnh thì $\psi$ cũng tự điều chỉnh trên miền tiền ảnh, vì hợp thành affine bảo toàn lớp hàm. Nhưng để dùng cận sai số cho hàm rút gọn, phải kiểm đủ các giả thiết còn lại: $\psi$ lồi chặt, Hessian xác định dương, đạt cực tiểu trong miền, và độ giảm Newton của $\psi$ nhỏ hơn 1. Cần phân biệt hai tính chất: bảo toàn lớp hàm qua hợp thành affine là một chuyện; tính bất biến của bước Newton dưới phép đổi tọa độ affine khả nghịch là tính chất riêng rộng hơn, đúng cho mọi hàm chứ không chỉ hàm tự điều chỉnh. Tiêu chí dừng khả thi của bài rút gọn nối thẳng với điều kiện $\delta&lt;1$ này. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+  <aside class="notes">Phép khử biến chọn $\hat u$ khả thi, ma trận $N$ có các cột là cơ sở $\ker A$, và xét $\psi(z)=F(\hat u+Nz)$. Nếu $F$ tự điều chỉnh thì $\psi$ cũng tự điều chỉnh trên miền tiền ảnh, vì hợp thành affine bảo toàn lớp hàm. Nhưng để dùng cận sai số cho hàm rút gọn, phải kiểm đủ các giả thiết còn lại: $\psi$ lồi chặt, Hessian xác định dương, đạt cực tiểu trong miền, và độ giảm Newton của $\psi$ nhỏ hơn 1. Bất biến của Newton qua đổi tọa độ affine khả nghịch là tính chất riêng, áp dụng khi Hessian hoặc hệ xác định bước khả nghịch; tính chất này không đòi hỏi hàm tự điều chỉnh. Khi $\delta&lt;1$ và các giả thiết trên được thỏa, tiêu chuẩn dừng của bài rút gọn có thể sử dụng cận sai số mục tiêu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
 </section>
 
 <section data-slide-id="RS05">
@@ -707,12 +707,12 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <p><strong>Câu hỏi:</strong> Hai hàm có cùng đạo hàm bậc hai và ba. Hàm nào đạt cực tiểu hữu hạn?</p>
 <div class="lec-grid"><div class="panel">$-\log s$, $s&gt;0$.</div><div class="panel">$s-\log s$, $s&gt;0$.</div></div>
 <div class="question"><p><strong>Câu hỏi:</strong> Tại $s=1/4$ của hàm thứ hai:</p><ul><li>Có được dùng $9/32$ làm cận sai số tối ưu không?</li><li>Có được thay $\delta$ bằng $\delta^2$ trong biểu thức cận không?</li></ul></div>
-<aside class="notes">Hai hàm có cùng $\varphi''=1/s^2$ và $|\varphi'''|=2/s^3$, nên cả hai đều tự điều chỉnh; vậy tính tự điều chỉnh không bảo đảm tồn tại nghiệm. Đáp án: $-\log s$ giảm đơn điệu và không bị chặn dưới trên $s&gt;0$, nên không có cực tiểu; $s-\log s$ có đạo hàm bậc nhất $1-1/s$ triệt tiêu tại $s=1$ và đạt cực tiểu hữu hạn tại đó. Về hai câu còn lại: không, $9/32$ chỉ là độ giảm mô hình bậc hai, không phải cận sai số; và không, không được thay $\delta$ bằng $\delta^2$ trong biểu thức $-\delta-\log(1-\delta)$, vì $\delta$ là căn không âm của độ giảm Newton bình phương. Riêng điều kiện $\delta&lt;1$ và $\delta^2&lt;1$ thì tương đương, do $\delta\ge0$. Trước khi dùng cận, hãy kiểm cả giả thiết tồn tại nghiệm và cách đọc đúng $\delta$. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+<aside class="notes">Hai hàm có cùng $\varphi''=1/s^2$ và $|\varphi'''|=2/s^3$, nên cả hai đều tự điều chỉnh; vậy tính tự điều chỉnh không bảo đảm tồn tại nghiệm. Đáp án: $-\log s$ giảm đơn điệu và không bị chặn dưới trên $s&gt;0$, nên không có cực tiểu; $s-\log s$ có đạo hàm bậc nhất $1-1/s$ triệt tiêu tại $s=1$ và đạt cực tiểu hữu hạn tại đó. Giá trị $9/32$ là độ giảm mô hình bậc hai, không phải cận sai số. Thay $\delta$ bằng $\delta^2$ làm thay đổi biểu thức $-\delta-\log(1-\delta)$, vì $\delta$ là căn không âm của độ giảm Newton bình phương. Riêng điều kiện $\delta&lt;1$ và $\delta^2&lt;1$ thì tương đương, do $\delta\ge0$. Áp dụng cận yêu cầu đồng thời sự tồn tại nghiệm và giá trị đúng của độ giảm Newton. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
 </section>
 </section>
 <section>
 <section data-slide-id="RZ01">
-<h2>Tổng hợp nguồn gốc các phương pháp</h2>
+<h2>Tổng hợp các phương pháp tối ưu</h2>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>Phương pháp</th><th>Bài con / điều kiện chọn</th><th>Hệ giải</th><th>Nhận bước</th></tr></thead><tbody>
 <tr><td>Gradient</td><td>Cực tiểu $Q_I$</td><td>$g+d=0$</td><td>Armijo trên $f$</td></tr>
 <tr><td>Chuẩn $W$</td><td>Chuẩn đơn vị, đổi độ dài</td><td>$Wd=-g$</td><td>Armijo trên $f$</td></tr>
@@ -720,11 +720,11 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <tr><td>Newton khả thi</td><td>Cực tiểu $Q_H$, $Ad=0$</td><td>KKT theo $d,\eta$</td><td>Armijo trên $F$</td></tr>
 <tr><td>Newton phần dư</td><td>Tuyến tính hóa KKT gốc</td><td>Hệ theo $d,\Delta\nu$</td><td>Chuẩn $\|r\|_2$</td></tr>
 </tbody></table></div>
-<div class="takeaway">KKT chính xác chứng nhận đích trong lớp lồi. Dung sai mô hình hoặc phần dư cần được diễn giải thêm.</div>
-<aside class="notes"><p>Các hướng gradient, theo chuẩn W và Newton được xây bằng cách chọn bài con rồi giải điều kiện tối ưu của nó. Gradient không phải kết quả tuyến tính hóa phương trình gradient bằng Hessian: thao tác đó cho Newton. Với W, KKT của bài con chuẩn đơn vị cho v, sau đó đổi độ dài để được d; cũng có thể giải mô hình Q_W. Newton khả thi thêm Ad=0 vào mô hình, còn Newton phần dư tuyến tính hóa KKT của bài gốc. Các hệ có cùng cấu trúc do dùng cùng mô hình bậc hai và ràng buộc affine; KKT không tự quyết định mô hình hoặc quy tắc bước. Trong lớp lồi, KKT chính xác đủ để chứng nhận nghiệm, còn sai số mục tiêu từ dung sai cần giả thiết bổ sung. Ta dùng các thao tác này để lập hệ cho một mô hình học. Nguồn: Boyd và Vandenberghe (2004), §§5.5.3, 9.4–9.6, 10.2–10.3; MIT 6.079, bài giảng 16–17.</p></aside>
+<div class="takeaway">Trong lớp lồi, KKT đủ để chứng nhận nghiệm tối ưu. Dung sai mô hình hoặc phần dư chưa tự cho cận sai số; các giả thiết tự điều chỉnh đã nêu cho phép suy cận từ độ giảm Newton.</div>
+<aside class="notes"><p>Các hướng gradient, theo chuẩn $W$ và Newton được xây bằng cách chọn bài con rồi giải điều kiện tối ưu của nó. Gradient không phải kết quả tuyến tính hóa phương trình gradient bằng Hessian: thao tác đó cho Newton. Với $W$, KKT của bài con chuẩn đơn vị cho $v$, sau đó đổi độ dài để được $d$; cũng có thể giải mô hình $Q_W$. Newton khả thi thêm $Ad=0$ vào mô hình, còn Newton phần dư tuyến tính hóa KKT của bài gốc. Các hệ có cùng cấu trúc do dùng cùng mô hình bậc hai và ràng buộc affine; KKT không tự quyết định mô hình hoặc quy tắc bước. Trong lớp lồi, KKT đủ để chứng nhận nghiệm tối ưu. Dung sai mô hình đo mức giảm dự báo, còn dung sai phần dư đo mức độ thỏa KKT; cả hai chưa tự cho cận sai số mục tiêu. Với bài toán không ràng buộc, giả sử $f$ thuộc lớp $C^3$, lồi chặt và tự điều chỉnh chuẩn trên miền mở lồi, Hessian xác định dương trên miền và cực tiểu hữu hạn đạt trong miền. Khi độ giảm Newton $\delta&lt;1$, ta có $f(x)-f^\star\le-\delta-\log(1-\delta)$. Cận này cũng áp dụng cho hàm rút gọn sau khử đẳng thức khi hàm rút gọn thỏa đầy đủ các giả thiết trên; nó chứng nhận sai số tại điểm khả thi tương ứng, không chuyển trực tiếp chuẩn phần dư ở điểm chưa khả thi thành sai số mục tiêu. Với bình phương tối thiểu có chính quy hóa và đẳng thức, đạo hàm của mục tiêu xác định trực tiếp các khối trong hệ Newton. Nguồn: Boyd và Vandenberghe (2004), §5.5.3, §§9.2–9.6, 10.1–10.3; MIT 6.079, bài giảng 16–17.</p></aside>
 </section>
 <section data-slide-id="RZ02">
-<h2>Kiểm tra KKT trong mô hình học</h2>
+<h2>Điều kiện KKT của mô hình học</h2>
 <div class="lec-grid lec-grid--40-60"><div>
 <p>Bình phương tối thiểu: giải $\min_{w:Aw=b}J(w)$ với $\rho&gt;0$.</p>
 <div class="formula" tabindex="0">$$\begin{aligned}J(w)&amp;=\tfrac12\|Mw-y\|_2^2\\&amp;\quad+\tfrac\rho2\|w\|_2^2.\end{aligned}$$</div>
@@ -733,18 +733,18 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <div class="arrow arrow-centered" aria-hidden="true">↓</div>
 <div class="question"><strong>Câu hỏi:</strong> Từ kết quả trên, điền $r_d,r_p$ vào mẫu:
 <div class="formula" tabindex="0">$$\begin{bmatrix}H&amp;A^T\\A&amp;0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}\ \square\ \\\ \square\ \end{bmatrix}.$$</div></div></div></div>
-<aside class="notes"><p>Đáp án: $g=M^T(Mw-y)+\rho w$, $H=M^TM+\rho I$. Với vectơ v khác không, $v^THv=\|Mv\|_2^2+\rho\|v\|_2^2&gt;0$, nên H xác định dương. Lagrange là $J(w)+\nu^T(Aw-b)$; KKT gồm $g+A^T\nu=0$, $Aw=b$. Vì $g=Hw-M^Ty$, hệ nghiệm có vế phải $[M^Ty;b]$, không được bỏ $M^Ty$ với dữ liệu tổng quát. Hai ô là $r_d=g+A^T\nu$ và $r_p=Aw-b$. Với $M=\operatorname{diag}(1,2)$, $y=(0,0)^T$, $\rho=1$, $A=[1\ 1]$, $b=14$, ta khôi phục VD3: $H=\operatorname{diag}(2,5)$, nghiệm $w^\star=(10,4)^T$, $\nu^\star=-20$; ma trận khối có định thức $-7$. Điểm $w=0$ không khả thi. Phân biệt $\rho$ là tham số đã cho, $\nu$ là nhân tử đẳng thức hiện tại, còn $\lambda$ của Bài 03 là nhân tử bất đẳng thức chuẩn. Tiêu chí là tự lập đạo hàm và KKT trước khi điền phần dư. Nguồn: Boyd và Vandenberghe (2004), §§5.5.3, 10.2–10.3; ví dụ số tự xây dựng.</p></aside>
+<aside class="notes"><p>Đáp án: $g=M^T(Mw-y)+\rho w$, $H=M^TM+\rho I$. Với vectơ $v$ khác không, $v^THv=\|Mv\|_2^2+\rho\|v\|_2^2&gt;0$, nên $H$ xác định dương. Lagrange là $J(w)+\nu^T(Aw-b)$; KKT gồm $g+A^T\nu=0$, $Aw=b$. Vì $g=Hw-M^Ty$, hệ nghiệm có vế phải $[M^Ty;b]$, không được bỏ $M^Ty$ với dữ liệu tổng quát. Hai ô là $r_d=g+A^T\nu$ và $r_p=Aw-b$. Với $M=\operatorname{diag}(1,2)$, $y=(0,0)^T$, $\rho=1$, $A=[1\ 1]$, $b=14$, bài toán trùng VD3: $H=\operatorname{diag}(2,5)$, nghiệm $w^\star=(10,4)^T$, $\nu^\star=-20$; ma trận khối có định thức $-7$. Điểm $w=0$ không khả thi. Phân biệt $\rho$ là tham số đã cho, $\nu$ là nhân tử đẳng thức hiện tại, còn $\lambda$ của Bài 03 là nhân tử bất đẳng thức chuẩn. Đạo hàm mục tiêu và đẳng thức xác định hai phần dư, còn tính khả thi của điểm đầu quyết định dạng vế phải sử dụng. Nguồn: Boyd và Vandenberghe (2004), §§5.5.3, 10.2–10.3; ví dụ số tự xây dựng.</p></aside>
 </section>
 <section data-slide-id="RZ03">
 <h2>Bài tập và tài liệu đọc</h2>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>Nhiệm vụ</th><th>Sản phẩm cần có</th></tr></thead><tbody>
-<tr><td>Tự suy ra hướng từ bài con</td><td>Lagrange hoặc điều kiện dừng; giả thiết; hướng giải được.</td></tr>
+<tr><td>Suy ra hướng từ bài con</td><td>Lagrange hoặc điều kiện dừng; giả thiết; hướng giải được.</td></tr>
 <tr><td>Tái tạo một lượt quay lui</td><td>Bảng điểm thử, giá trị thật, ngưỡng và bước nhận đầu tiên.</td></tr>
 <tr><td>Suy ra hai hệ Newton đẳng thức</td><td>Hai hàng phương trình; ẩn và vế phải; phép giải số rồi kiểm lại.</td></tr>
 </tbody></table></div>
-<p><strong>Tài liệu đọc:</strong> Boyd và Vandenberghe, <em>Convex Optimization</em> (2004), §§5.5.3, 9.4–9.6, 10.2–10.3.</p>
+<p><strong>Tài liệu đọc:</strong> Boyd và Vandenberghe, <em>Convex Optimization</em> (2004), §5.5.3, §§9.2–9.6, 10.1–10.3.</p>
 <p>MIT 6.079, mùa thu 2009: bài giảng 16, sau đó bài giảng 17.</p>
-<aside class="notes"><p>Ba sản phẩm cần làm được tương ứng với quy trình đầu bài: chọn và giải bài con, kiểm bước thật, rồi kiểm điều kiện tối ưu của bài gốc. Khi giải Newton khả thi, ẩn thứ hai là nhân tử eta của mô hình; khi giải hệ phần dư, ẩn thứ hai là số gia nhân tử. Với bước đầy đủ, nhân tử cập nhật bằng eta; khi giảm bước phải cập nhật cả điểm và nhân tử theo cùng t. Bài tập chính thức có gợi ý và lời giải gập để tự kiểm sau khi làm; ghi chú mở rộng các chứng minh và giả thiết. Bài sau dùng thông tin từ dữ liệu hoặc lô nhỏ và xét giới hạn khi các giả thiết lồi của bài này không còn đúng. Nguồn: Boyd và Vandenberghe (2004), §5.5.3 về KKT, chương 9 về tối ưu không ràng buộc, chương 10 về đẳng thức; MIT 6.079, bài giảng 16 rồi 17.</p></aside>
+<aside class="notes"><p>Ba loại bài tập kiểm tra khả năng lập và giải bài con, xác định bước được nhận và đánh giá điều kiện tối ưu của bài gốc. Khi giải Newton khả thi, ẩn thứ hai là nhân tử $\eta$ của mô hình; khi giải hệ phần dư, ẩn thứ hai là số gia nhân tử. Với bước đầy đủ, nhân tử cập nhật bằng $\eta$; khi giảm bước phải cập nhật cả điểm và nhân tử theo cùng $t$. Bài tập chính thức có gợi ý và lời giải gập để đối chiếu kết quả; ghi chú mở rộng các chứng minh và giả thiết. Khi gradient toàn lô được thay bằng ước lượng từ lô nhỏ, phép kiểm giảm mục tiêu cần xét thêm nhiễu; với mục tiêu phi lồi, điều kiện dừng cần được phân biệt với chứng nhận tối ưu toàn cục. Nguồn: Boyd và Vandenberghe (2004), §5.5.3 về KKT, chương 9 về tối ưu không ràng buộc, chương 10 về đẳng thức; MIT 6.079, bài giảng 16 rồi 17.</p></aside>
 </section>
 </section>
 <div class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 04</div>

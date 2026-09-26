@@ -1,5 +1,7 @@
 # Kế hoạch thực hiện dàn bài lecture04 — 2026-09-24
 
+> **Đính chính hiện hành — 2026-09-26.** Đợt biên tập hiện hành dùng các tác tử GPT-6-Astra native theo chỉ định của người dùng; không gọi OpenRouter, script cầu nối hoặc đọc tệp môi trường và bí mật. Mục “Mục tiêu hiện hành” cùng ủy quyền OpenRouter bên dưới là bản ghi lịch sử, không phải chỉ dẫn của đợt này. Kế hoạch hiện hành được xác định trong [outline.md](outline.md), [storyboard.md](storyboard.md) và mục ngày 2026-09-26 của [review-log.md](review-log.md).
+
 ## Giai đoạn triển khai được người dùng xác nhận
 
 Người dùng xác nhận triển khai và cho phép OpenRouter đọc/gửi các tệp liên quan, loại trừ bí mật và tệp môi trường. Mục tiêu hiện hành: dựng `2627-1/lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html` theo storyboard 46 trang; đồng bộ tài liệu công khai, kiểm định, tạo commit riêng và đẩy nhánh hiện tại theo AGENTS.md. Kế hoạch lập dàn bài bên dưới là lịch sử, không giới hạn phạm vi triển khai đã được xác nhận sau đó.

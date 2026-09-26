@@ -1,8 +1,10 @@
 # Dàn ý Bài giảng 04 — triển khai mạch KKT đã duyệt
 
-**Trạng thái ngày 2026-09-25: đã triển khai và kiểm định bản KKT.** Đặc tả hiện hành là 46 trang có mã RP/RG/RN/RE/RR/RS/RZ trong [storyboard.md](storyboard.md), khớp HTML và tài liệu công khai sau các sửa đã ghi trong [review-log.md](review-log.md). Phần cuối mang nhãn “Bản đang triển khai trước đề xuất — lưu để đối chiếu” là lịch sử của bản cũ; không dùng các đánh giá đạt cũ để chứng nhận bản mới. Mục 9 giữ prompt đầy đủ đã được duyệt để truy nguyên phạm vi triển khai.
+**Trạng thái ngày 2026-09-26: đã hoàn tất biên tập và kiểm định.** Giữ 46 trang, 46 ghi chú và bảy mạch; tiêu đề và thứ tự khớp [storyboard.md](storyboard.md). Đã đồng bộ hai Markdown và bản đóng gói mở trực tiếp. Năm vai rà soát độc lập và các lượt hậu kiểm toán học, học thuật, toàn tuyến đã hoàn tất; bằng chứng, giới hạn và quyết định nằm trong [review-log.md](review-log.md).
 
-Căn cứ: KKT thực tế trong [Bài 03](../../lecture-03-doi-ngau-lagrange.html), bản Bài 04 trước sửa, đề cương DOCX chính thức và các mục nguồn nêu dưới. Người dùng đã cho phép worker OpenRouter thực hiện, loại trừ bí mật, và yêu cầu commit/push sau kiểm định.
+> Trạng thái lịch sử trước biên tập: **Trạng thái ngày 2026-09-25: đã triển khai và kiểm định bản KKT.** Đặc tả hiện hành là 46 trang có mã RP/RG/RN/RE/RR/RS/RZ trong [storyboard.md](storyboard.md), khớp HTML và tài liệu công khai sau các sửa đã ghi trong [review-log.md](review-log.md). Phần cuối mang nhãn “Bản đang triển khai trước đề xuất — lưu để đối chiếu” là lịch sử của bản cũ; không dùng các đánh giá đạt cũ để chứng nhận bản mới. Mục 9 giữ prompt đầy đủ đã được duyệt để truy nguyên phạm vi triển khai.
+
+Căn cứ: KKT thực tế trong [Bài 03](../../lecture-03-doi-ngau-lagrange.html), bản Bài 04 trước sửa, đề cương DOCX chính thức và các mục nguồn nêu dưới. Đợt biên tập ngày 2026-09-26 dùng các tác tử GPT-6-Astra native theo chỉ định của người dùng; không gọi OpenRouter, script cầu nối hoặc đọc tệp môi trường và bí mật. Quyền và quy trình OpenRouter trong các mục lịch sử không áp dụng cho đợt này.
 
 ## 1. Kết luận phân tích và quyết định đã duyệt
 
@@ -41,7 +43,7 @@ Mã ở cột đầu thuộc HTML trước sửa. Mã bắt đầu bằng R là 
 
 ## 3. Phạm vi, chuẩn đầu ra và nguồn
 
-Đối tượng: sinh viên năm 3. Thời lượng từ đề cương DOCX chính thức: **2 tiết lý thuyết + 1 tiết bài tập**. Không quy đổi sang phút khi chưa có quy định độ dài tiết. Tất cả hoạt động kiểm tra nằm trong tổng này. Các mục tiêu dưới đây gắn với chuẩn đầu ra bài học (LLO) và chuẩn đầu ra học phần (CLO).
+Đối tượng: sinh viên năm 3. Thời lượng từ đề cương DOCX chính thức: **2 giờ lý thuyết + 1 giờ bài tập**, theo cột “Số giờ/buổi” của đề cương. Đính chính chữ “tiết” của bản kế hoạch trước; không quy đổi sang phút. Tất cả hoạt động kiểm tra nằm trong tổng này. Các mục tiêu dưới đây gắn với chuẩn đầu ra bài học (LLO) và chuẩn đầu ra học phần (CLO).
 
 | Mục tiêu đề xuất | Liên hệ chuẩn chính thức | Minh chứng |
 |---|---|---|
@@ -73,8 +75,8 @@ Không dùng nguồn về lịch sử hay số liệu thực nghiệm: bài này
 | S05-03: bốn nhóm KKT | Bỏ các nhóm không có trong bài gốc không ràng buộc/chỉ đẳng thức; khôi phục đủ bốn nhóm cho bài con có bất đẳng thức chuẩn | RP02, RG09 |
 | S05-05 và S05-05b: lồi + KKT đủ cho tối ưu, không cần Slater để chứng minh tính đủ | Chứng nhận nghiệm của mô hình lồi; không tự gán chứng nhận đó cho điểm mới của hàm phi bậc hai | RG02, RN02–RN03, RE04 |
 | S05-05c: điều kiện chính quy giúp bảo đảm tồn tại nhân tử/KKT cần | $v=0$ thỏa Slater cho bài con chuẩn; $A$ đủ hạng hàng cho bài con đẳng thức | RG09, RE04 |
-| S05-06a: $(X^TX+2\lambda I)w=X^Ty$ | Mẫu quen thuộc “lập Lagrange → đạo hàm → giải hệ”; phân biệt nhân tử $\lambda$ với hệ số điều chuẩn $\rho$ cho trước | RP01, RZ02 |
-| S05-06b: $X=I_2,y=(3,4)^T,\tau=1$, nghiệm $(3/5,4/5)^T$, $\lambda^*=2$ | Nhắc lại đúng ví dụ cũ, không tạo bộ hồi quy mới. Với bài điều chuẩn tương ứng, $\rho=2\lambda^*=4$ chỉ sau khi ghép đúng dữ liệu/nghiệm | Ghi chú RP01, RZ02 |
+| S05-06a: $(X^TX+2\lambda I)w=X^Ty$ | Mẫu quen thuộc “lập Lagrange → đạo hàm → giải hệ”; phân biệt nhân tử $\lambda$ với hệ số chính quy hóa $\rho$ cho trước | RP01, RZ02 |
+| S05-06b: $X=I_2,y=(3,4)^T,\tau=1$, nghiệm $(3/5,4/5)^T$, $\lambda^*=2$ | Nhắc lại đúng ví dụ cũ, không tạo bộ hồi quy mới. Với bài chính quy hóa tương ứng, $\rho=2\lambda^*=4$ chỉ sau khi ghép đúng dữ liệu/nghiệm | Ghi chú RP01, RZ02 |
 
 Quy ước: $g$ trong Bài 04 là vectơ gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$ của Bài 03. $\lambda$ dành cho nhân tử bất đẳng thức Bài 03; $\zeta$ là nhân tử của bài con chọn hướng; $\nu$ là nhân tử bài gốc; $\eta$ là nhân tử bài con; $\Delta\nu$ là số gia. Quy tắc này phải xuất hiện trước chỗ dùng, không chỉ trong ghi chú.
 
@@ -171,7 +173,7 @@ Giữ cùng giả thiết $H\succ0$, $A$ đủ hạng hàng. Hàng hai chính x�
 
 $$u^+=u+td,\qquad\nu^+=\nu+t\Delta\nu=(1-t)\nu+t\eta,\qquad r_p^+=(1-t)r_p.$$
 
-Chỉ khi $t=1$ mới có $\nu^+=\eta$ và khôi phục đẳng thức chính xác theo số học lý tưởng. Với VD3 tại $u=(1,8)^T$, $\nu=4$: $g=(2,40)^T$, $r_d=(6,44)^T$, $r_p=-5$; giải được $d=(9,-4)^T$, $\Delta\nu=-24$, nên $u^+=(10,4)^T$, $\nu^+=-20$ khi $t=1$.
+Với $t=1$, ta có $\nu^+=\eta$ và khôi phục đẳng thức chính xác theo số học lý tưởng. Với VD3 tại $u=(1,8)^T$, $\nu=4$: $g=(2,40)^T$, $r_d=(6,44)^T$, $r_p=-5$; giải được $d=(9,-4)^T$, $\Delta\nu=-24$, nên $u^+=(10,4)^T$, $\nu^+=-20$ khi $t=1$.
 
 Vì sao nhận bước theo phần dư: tại điểm đầu khác $u=(0,0)^T$, $\nu=0$, có $F(u)=0<140=F^*$ nhưng $r_p=-14$. Muốn đến nghiệm khả thi, $F$ phải tăng. Với $\Delta=(d,\Delta\nu)$, hệ Newton viết $J_r\Delta=-r$; nếu $r\ne0$ thì
 
@@ -210,7 +212,7 @@ Tiêu chí $\|g\|\le\varepsilon_g$ chỉ đo tính dừng gần đúng. Nếu bi
 | VD3: khử | $\hat u=(14,0)^T$, $N=(-1,1)^T$, $z=-2$ | $N^THN=7$, $N^Tg=-42$, $\Delta z=6$ | Hệ số 7, gradient rút gọn −42 và số gia 6 khác nhau. Lỗi lấy âm hệ số sẽ cho −7, khác đáp án 6; lỗi quên chia cho Hessian cho 42, cũng khác. Cùng điểm đầu mới ở cả hai cách giải. |
 | VD3: sửa phần dư | Đổi điểm đầu thành $u=(1,8)^T$, $\nu=4$, giữ $F,A,b$ | $g=(2,40)^T$, $r_d=(6,44)^T$, $r_p=-5$, $d=(9,-4)^T$, $\Delta\nu=-24$, $\nu^+=-20$ | Bỏ $A^T\nu$ cho sai vế phải $-40$ thay vì $-44$; nhầm $\eta$ với $\Delta\nu$ cho $-20$ thay vì $-24$. Ghi rõ $r_p=-5$ nhưng vế phải là $5$. |
 | VD3: trường hợp biên | Chỉ ở RR05 đổi thành $u=(0,0)^T$, $\nu=0$ | $g=r_d=0$, $r_p=-14$, $F=0<140$ | Số 0 có chủ ý: chứng minh chỉ kiểm gradient hoặc chỉ giảm mục tiêu là sai khi chưa khả thi. Không dùng làm ví dụ tính bước chính. |
-| Hồi quy Bài 03 | $X=I_2$, $y=(3,4)^T$, $\tau=1$ | $\lambda^*=2$, $w^*=(3/5,4/5)^T$, hàm mất mát 8; $\rho=4$ cho bài điều chuẩn ghép đúng | Giữ số nguồn bài cũ; $\tau$ là mức ràng buộc, $\rho$ là hệ số cho trước, $\lambda$ là nhân tử cần tìm. Không đặt ba ký hiệu ngang vai trò. |
+| Hồi quy Bài 03 | $X=I_2$, $y=(3,4)^T$, $\tau=1$ | $\lambda^*=2$, $w^*=(3/5,4/5)^T$, hàm mất mát 8; $\rho=4$ cho bài chính quy hóa ghép đúng | Giữ số nguồn bài cũ; $\tau$ là mức ràng buộc, $\rho$ là hệ số cho trước, $\lambda$ là nhân tử cần tìm. Không đặt ba ký hiệu ngang vai trò. |
 
 Các số trùng giữa những họ ví dụ cách nhau không bị cấm. Cần ngăn trùng gây che lỗi ngay trong phép suy luận. Giữ nhãn, vị trí cột và đơn vị/miền; màu chỉ hỗ trợ. Các trang không dùng số ghi rõ “không áp dụng” trong storyboard.
 
@@ -228,17 +230,30 @@ Mỗi mạch có một trang kiểm tra riêng. Thời gian nghĩ/chữa là ph�
 | RS05 | $-\log s$ giảm không bị chặn dưới, không có cực tiểu; $s-\log s$ đạt min tại 1. Không thay $\delta$ bằng $\delta^2$ trong biểu thức cận. Riêng điều kiện $\delta<1$ và $\delta^2<1$ tương đương vì $\delta\ge0$ | Phân biệt điều kiện tồn tại nghiệm, giảm mô hình, cận sai số và cách đọc ký hiệu. |
 | RZ02 | Với $M\in\mathbb R^{m\times n}$, $y\in\mathbb R^m$, $A\in\mathbb R^{p\times n}$ đủ hạng hàng, $\rho>0$: $g=M^T(Mw-y)+\rho w$, $H=M^TM+\rho I\succ0$; KKT $g+A^T\nu=0,Aw=b$; $r_d=g+A^T\nu,r_p=Aw-b$; dùng hệ RR03 | Tự chuyển quy trình sang mô hình học, có kích thước và giả thiết; không cần đã học thuật toán mới. |
 
-RZ02 thực hiện hai mốc: (1) tính $g,H$ và viết KKT; (2) điền $r_d,r_p$ vào mẫu hệ đã học, không phải tái suy Jacobian. Dành 0.15 tiết BT cho RZ02 thay 0.10; giảm RG11 từ 0.20 xuống 0.15, tổng BT vẫn 1 tiết. Ghi chú RZ02 có phép liên hệ cụ thể: $M=\operatorname{diag}(1,2)$, $y=0$, $\rho=1$, $A=[1\ 1]$, $b=14$ cho $H=\operatorname{diag}(2,5)$ và đúng VD3. Bài toán điều chuẩn chỉ là ứng dụng lại các đạo hàm đã dùng, không mở thêm mạch kiến thức ở kết luận.
+RZ02 thực hiện hai mốc: (1) tính $g,H$ và viết KKT; (2) điền $r_d,r_p$ vào mẫu hệ đã học, không phải tái suy Jacobian. Dành 0.15 giờ BT cho RZ02 thay 0.10; giảm RG11 từ 0.20 xuống 0.15, tổng BT vẫn 1 giờ. Ghi chú RZ02 có phép liên hệ cụ thể: $M=\operatorname{diag}(1,2)$, $y=0$, $\rho=1$, $A=[1\ 1]$, $b=14$ cho $H=\operatorname{diag}(2,5)$ và đúng VD3. Bài toán chính quy hóa chỉ là ứng dụng lại các đạo hàm đã dùng, không mở thêm mạch kiến thức ở kết luận.
 
 ## 8. Bố cục và tải nội dung khi triển khai
 
 Giữ giao diện RevealJS hiện tại. Các trang suy ra dùng một luồng biến đổi từ trên xuống, tối đa một phép suy luận chính trên trang. Hệ ma trận đặt cạnh hai phương trình nguồn, không đặt cạnh đoạn văn dài. Những phép so sánh dùng hai cột cùng thứ tự đại lượng. Trang tính số dùng bảng có cột vai trò và phép tính; không rải số trong nhiều thẻ. Tất cả 46 trang có bố cục được chốt và lý do học tập riêng trong storyboard, kể cả tiêu đề và kiểm tra.
 
-Các trang dễ quá tải: RP02, RG09–RG10, RE04, RR03, RS03, RZ01. Với RN06 và RE07, tiêu chí dừng được ghi rõ là $\delta^2/2\le\varepsilon_{\mathrm{model}}$, chỉ là dung sai của mô hình; cận sai số tối ưu cần giả thiết và phép kiểm riêng ở RS03. Đặc tả giới hạn công thức/đại số ở storyboard; chuyển chứng minh đầy đủ của cận tự điều chỉnh, cận hội tụ và các phép khử dài sang ghi chú hoặc tài liệu học tập. Không thu nhỏ thân bài dưới ngưỡng để giữ số trang. 46 trang trong 3 tiết là dự toán còn cần diễn tập; nếu không đủ thời gian, giảm phần nhắc lại/chi tiết đại số, không bỏ các bước suy ra KKT đang là mục tiêu sửa.
+Các trang dễ quá tải: RP02, RG09–RG10, RE04, RR03, RS03, RZ01. Với RN06 và RE07, tiêu chí dừng được ghi rõ là $\delta^2/2\le\varepsilon_{\mathrm{model}}$, chỉ là dung sai của mô hình; cận sai số tối ưu cần giả thiết và phép kiểm riêng ở RS03. Đặc tả giới hạn công thức/đại số ở storyboard; chuyển chứng minh đầy đủ của cận tự điều chỉnh, cận hội tụ và các phép khử dài sang ghi chú hoặc tài liệu học tập. Không thu nhỏ thân bài dưới ngưỡng để giữ số trang. 46 trang trong 3 giờ theo nhãn đề cương là dự toán còn cần diễn tập; nếu không đủ thời gian, giảm phần nhắc lại/chi tiết đại số, không bỏ các bước suy ra KKT đang là mục tiêu sửa.
 
-Sau khi được duyệt mới cập nhật đồng bộ HTML, SVG liên quan, ghi chú và bài tập công khai; riêng điểm khả thi mới ảnh hưởng `equality-start-new.svg`, `equality-violation.svg`, `equality-feasible-step.svg`, `equality-nullspace.svg` trong `img/lec-04/`. Các hình dùng trục $u_1,u_2$ phải cho thấy $(16,-2)$, đường tổng 14 và nghiệm $(10,4)$, với miền nhìn dự kiến từ −3 tới 17; không ngầm thêm điều kiện không âm; cập nhật `math-spec.md`, `source-map.md` nếu cần theo bản được duyệt; chạy đồng bộ tài liệu cục bộ và kiểm tra hiển thị đầy đủ. Trong nhiệm vụ hiện tại chỉ sửa ba tệp kế hoạch. Chưa có bộ trang chiếu mới để kiểm tra tràn hoặc tuyên bố đạt thị giác.
+Bản nháp ngày 2026-09-26 đã cập nhật văn bản HTML và hai Markdown; giữ nguyên SVG, CSS, runtime, thứ tự và cấu trúc phần. Các giả thiết, hệ phương trình và bộ số xuyên suốt không thay đổi. Bước tiếp theo là kiểm định storyboard, năm vai rà soát độc lập, chỉnh sửa theo kết quả, kiểm trực quan và đồng bộ dữ liệu học liệu cục bộ. Chưa tuyên bố bản nháp đạt các kiểm tra này.
+
+### Đợt biên tập học thuật 2026-09-26
+
+- Toàn bộ 46 ghi chú được viết bằng phát biểu về giả thiết, đại lượng, phép suy ra, kết quả và quan hệ với phương pháp kế tiếp. Bỏ lời điều phối lớp, lời nhấn mạnh và tham chiếu “trang trước/trang sau”; giữ giải thích và đáp án.
+- RN03 xác định đúng độ giảm từ bước bằng không tới cực tiểu mô hình, không hỏi khoảng cách tới nghiệm mô hình đã giải. RN07 chỉ kiểm đạo hàm và ba phép trừ đã học; điều kiện cho cận sai số là vấn đề cần nghiên cứu, không phải yêu cầu chấm trước phần tự điều chỉnh.
+- RR05 và học liệu phần E dùng độ giảm chuẩn phần dư ghép; không suy rằng chuẩn từng thành phần phải giảm đơn điệu. Hai dung sai vẫn được kiểm riêng khi dừng.
+- RS01 phân biệt Hessian không bị chặn trên toàn miền với cận trên tập mức. RS04 phân biệt bảo toàn lớp hàm qua hợp affine với bất biến Newton khi hệ tính bước khả nghịch.
+- RG01 mô tả hình bằng dấu đạo hàm hướng và tiếp tuyến, không dùng góc trên ảnh có tỷ lệ hai trục khác nhau. RG08–RG09 tách vai trò tính lồi, Slater và tính compact.
+- Tiêu đề của từng mã được cập nhật trực tiếp trong 46 mục hiện có của storyboard. Bản đồ sáu bước, bảy mạch, các mục tiêu và phép đánh giá được giữ. Không có thay đổi số lượng hoặc thứ tự trang so với bản 2026-09-25.
+- Hai Markdown giữ nguyên 1.552 chuỗi công thức theo thứ tự, 14 chứng minh, 8 bài tập và 16 khối gợi ý/lời giải; giữ đích liên kết và tài sản.
 
 ## 9. Prompt triển khai đã được người dùng phê duyệt
+
+> Tư liệu lịch sử: giữ nguyên prompt đã duyệt để truy nguyên. Các đơn vị “tiết” bên trong prompt phản ánh cách ghi của lần trước; mô tả hiện hành ở mục 3 đã được đính chính thành 2 giờ lý thuyết + 1 giờ bài tập theo DOCX.
+
 
 Đoạn dưới là prompt đầy đủ đã được người dùng phê duyệt và dùng cho lần triển khai hiện tại. Giữ nguyên khối để truy nguyên phạm vi, yêu cầu kiểm định và bàn giao.
 

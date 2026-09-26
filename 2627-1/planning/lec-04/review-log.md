@@ -1,5 +1,161 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Kiểm định cuối đợt biên tập — 2026-09-26
+
+**Kết luận: đạt các cổng nội dung, hiển thị, học liệu và đồng bộ Codex Slides; đủ điều kiện commit và phát hành.** Mục này chốt trạng thái của đợt 2026-09-26 và thay các trạng thái chờ ở hai mục tiến trình bên dưới. Không thêm, bỏ hoặc đổi thứ tự trang so với bản đầu đợt: 46 trang, 46 ghi chú, bảy mạch. Đã đổi 30 tiêu đề, biên tập toàn bộ ghi chú và đồng bộ hai học liệu; các hệ toán, bộ số và trình tự MIT lec16 rồi lec17 được giữ. Không dùng OpenRouter, script cầu nối hoặc tệp bí mật; các tác tử của đợt này được gọi native với GPT-6-Astra theo chỉ định của người dùng.
+
+### Hậu kiểm độc lập và đóng phát hiện
+
+| Phạm vi | Bằng chứng sau chỉnh sửa | Trạng thái |
+|---|---|---|
+| Toán học | Hậu kiểm trực tiếp toàn bộ diff công khai và đoạn lân cận; tính lại số hàm log, dấu đạo hàm hướng, hệ rút gọn và cập nhật phần dư. Cận tự điều chỉnh ở RS01/RZ01 đủ giả thiết, đúng đối số; phép chuyển chỉ áp dụng cho bài không ràng buộc hoặc hàm rút gọn khả thi đủ giả thiết. Chiều đủ $t=1$ và các trường hợp suy biến được xác nhận. | Đạt; không phát hiện lỗi mới. Vòng đầu đã kiểm đủ 46 trang, hai học liệu, 14 chứng minh và 11 SVG trong deck. |
+| AC01–AC04, CG02 | Reviewer học thuật đọc lại các đoạn sửa, thuật ngữ KKT và Bài 3. Không còn câu lặp được nêu; tên gọi, kết luận và giả thiết nhất quán. | Đã đóng. |
+| ST01–ST02, G1–G3 | Reviewer mạch kể chuyện đọc lại đủ 46 mặt trang và notes, xét 45 cạnh, sáu ranh giới và bảy mạch; đối chiếu 46 mục storyboard, bảng bố cục RR05 và thời lượng hai cụm RG. Đoạn F và RZ01 gọi đúng đối tượng của cận, thu hồi kết quả RS03. | Đã đóng; tiêu đề 46/46 và quan hệ vào–ra khớp. |
+| CG01, CG03 và hồ sơ | Phạm vi đọc trên RZ03, ghi chú và storyboard khớp §5.5.3, §§9.2–9.6, 10.1–10.3. Dàn ý dùng chiều đủ; đính chính đầu math-spec giữ lịch sử nhưng nêu ngoại lệ. Plan/source-map/math-spec phân biệt chỉ dẫn cũ với native và đơn vị giờ hiện hành. | Đã đóng qua đối chiếu tệp, hậu kiểm toán và mạch bài. |
+| SV-01 | So XML xác nhận SVG chỉ đổi tung độ chữ `k=0` thêm 24 đơn vị; ảnh rộng/hẹp và ảnh SVG xác nhận hai nhãn tách nhau. Điểm, đường và dữ liệu không đổi. | Đã đóng. |
+| Quan sát điều phối | RR05 diễn đạt cơ sở nhận bước; RN03/RN07 gọi bài toán gốc; RE06 xác định không gian hàng của $A$; RZ03 nối bằng thay đổi giả thiết về dữ liệu/lô nhỏ và phi lồi. | Đã kiểm trong các lượt toán, toàn tuyến và đối chiếu trực tiếp. |
+
+Các báo cáo gốc và hậu kiểm nằm ở `/tmp/lec04-refinement/`: `review-math.md`, `review-student.md`, `review-academic.md`, `review-expert.md`, `review-story.md`, `storyboard-gate.md`, `editor-report.md`, `recheck-math.md`, `recheck-academic.md`, `recheck-story.md`. Bảng năm vai và bảng phân xử ở mục tiếp theo bảo tồn phát hiện, bằng chứng, quyết định; mục này ghi kết quả cuối để không phụ thuộc thư mục tạm.
+
+### RevealJS và tài sản dùng chung
+
+- Duyệt đúng URL `http://localhost:8765/2627-1/lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html` qua máy chủ của kho tại cổng 8765. Kết xuất toàn bộ 46 trang ở 1600×900 và 390×844: 138 ảnh gồm 46 ảnh rộng, 46 ảnh đầu vùng cuộn hẹp và 46 ảnh cuối vùng cuộn hẹp.
+- Không lỗi JavaScript, tải tài nguyên, KaTeX, ảnh, văn bản thay thế, mã trùng, chồng chân trang hoặc tràn ngoài vùng cuộn. Chữ thân rộng 32 px hoặc 35,84 px, hẹp 24 px. Các vùng cuộn dọc/ngang nhận bàn phím; Down/Right/Left lần lượt tới RP01/RG01/RP01 sau xử lý fragment.
+- Giữ `lang="vi"`, `RevealMath.KaTeX`, `RevealNotes`, `RevealHighlight`, `hash: true`, số trang, hash một gốc và điều khiển ở cạnh. Runtime và đường dẫn đều cục bộ trong học kỳ.
+- HTML không có khối `<style>` hoặc thuộc tính `style` tĩnh. Một khối style quan sát sau khi chạy do Highlight hỗ trợ số dòng sinh ra, thuộc runtime thư viện. Cả tám bộ đang phát hành dùng một CSS tự viết `2627-1/lecture-style.css`; tệp này trùng nguyên byte với đầu đợt, nên không có thay đổi CSS cần mở rộng kiểm hồi quy.
+- Vòng sinh viên đã xem đủ 138 ảnh bản nháp; bản cuối được kết xuất lại toàn bộ. Điều phối viên xem trực tiếp các ảnh cuối RG07, RN03, RZ01 và bề mặt Codex Slides; không có lỗi hình mới ở phần sửa.
+
+Bằng chứng máy: `technical/deck-final/report.json`, `summary.json`, `keyboard.json` trong thư mục tạm; danh sách `failures` rỗng. Bộ kiểm phân biệt phần nội dung nằm dưới vùng cuộn với lỗi cắt nội dung.
+
+### Ghi chú, bài tập và mở trực tiếp
+
+- Đã chạy `python3 2627-1/scripts/sync-local-materials.py` và `--check`: bản đóng gói có 13 tài liệu, chỉ hai bản ghi của Bài 04 thay đổi. Markdown là nguồn; người đọc không cần chạy lệnh.
+- Kiểm cuối đủ tám tổ hợp HTTP/`file://` × 1600×900/390×844 × hai tài liệu. Ghi chú có 937 công thức và 14 khối chứng minh; bài tập có 616 công thức, tám gợi ý và tám lời giải. Không lỗi công thức, ảnh, tài nguyên, liên kết nội bộ hoặc tràn ngang ngoài vùng cuộn khi gập/mở.
+- Tên Bài 3 và mục lục khớp; nhấp mục lục mới tới đúng đích trong bốn tổ hợp bài tập. Cả 16 khối gập đều mở/đóng bằng Enter, mở khi có sự kiện trước in, phục hồi trạng thái sau in. Liên kết giữa hai học liệu hoạt động.
+- Lượt kiểm trước editor đã nhấp đủ 40 mục lục ghi chú, tám mục lục bài tập, bảy liên kết phần trên mỗi tài liệu và 12 lần mở từ chỉ mục; kiểm Tab/ArrowRight toàn bộ vùng cuộn. Lượt cuối kiểm lại phần bị ảnh hưởng; viewer, cấu trúc điều hướng và đích liên kết không đổi.
+
+**Giới hạn in có sẵn:** giả lập CSS in A4 còn cắt chín ảnh rộng tối thiểu 900 px và một công thức trong ghi chú. Baseline bài tập có một công thức vượt khoảng 5 px; lần kiểm cuối không tái hiện vùng cắt này. CSS/JavaScript viewer trùng HEAD, không có sửa cơ chế in và chưa kiểm PDF vật lý. Kiểm tự mở gợi ý/lời giải khi in đạt; không suy từ đó rằng mọi bố cục in A4 đều đạt. Bằng chứng và phân loại detector: `technical/materials/assessment.json` và `technical/materials-final/assessment.md`; kết luận cuối không có hồi quy.
+
+### Codex Slides
+
+Dự án bền vững: `20260828120744-lecture-04-t-i-u-tr-n-v-r-ng-bu-c-ng-th--d4es`. Đã thay dàn ý 46 tiêu đề theo HTML, nạp 46 ảnh từ bản RevealJS cuối và ghi đủ 46 notes gốc trước khi KaTeX kết xuất. Mỗi ảnh có kiểm trạng thái lưu; lượt Chromium cục bộ duyệt đủ 46 mặt trong ứng dụng, đối chiếu SHA-256 ảnh được phục vụ với PNG RevealJS và đối chiếu toàn văn notes trong giao diện: 46/46 khớp, không lỗi trình duyệt. Mốc thủ công **147**, mã `f778c5e3-537a-466d-812a-8be347c207aa`, lưu đủ 46 trang/46 ảnh; bản lưu bất biến có tiêu đề và notes khớp nguồn.
+
+Bản HTML, hai Markdown, CSS chung và SVG được nạp vào Design Files; đối chiếu byte qua giao diện tải của ứng dụng đạt. Các tệp planning được đồng bộ sau khi chốt nhật ký. Không gọi công cụ sinh/biên tập nội dung bằng mô hình của plugin.
+
+**Giới hạn công cụ:** Browser tích hợp trong Codex không được cung cấp trong phiên; kiểm giao diện Codex Slides dùng Chromium cục bộ, không tuyên bố đã thao tác Browser tích hợp. Trường số trang cấu hình của plugin giới hạn 30; số trang thật được kiểm từ `outline`, `pages`, phiên bản lưu và giao diện, đều là 46. Không sửa runtime plugin để bỏ giới hạn cấu hình.
+
+### Nhận diện bản đã kiểm
+
+| Tệp | SHA-256 |
+|---|---|
+| HTML Bài 04 | `101cfaa4f1962b6880b0530bdc76cbf06ad0b8a23452a300f464070110b22c41` |
+| Ghi chú bài giảng | `fd5318f7f5860b25fd9745492a9e4f2410f014194a9730bc6d6a19585ccbf1b6` |
+| Bài tập | `d9f69611d018f55a231c45cce4c7fd4eb0f1dbdaf90d030c0c0e108bfbf2ee00` |
+| SVG quỹ đạo gradient | `0bb10779cc697e01ed9b86962965b82f83330c15b48ebdefc1d2d8cbd77c93f2` |
+
+Không có nguồn tải mới hoặc tài sản raster mới. Không đổi số trang, thứ tự, bộ số hay bố cục trong đợt biên tập này. Tổng dự toán vẫn là 2 giờ lý thuyết + 1 giờ bài tập theo đề cương; chưa phải kết quả diễn tập.
+
+## Chỉnh sửa sau năm vai rà soát độc lập — 2026-09-26
+
+**Trạng thái hiện hành: ĐÃ SỬA, CHỜ HẬU KIỂM.** Mục này thay thế trạng thái chờ rà soát của bản soạn ngay bên dưới; mọi hồ sơ và kết quả lịch sử được bảo tồn. Điều phối viên đã duyệt kế hoạch, đặc tả nguồn, cổng storyboard và từng đề nghị trước khi giao tác tử chỉnh sửa riêng. Các tác tử của đợt này dùng GPT-6-Astra native theo chỉ định của người dùng; không gọi OpenRouter, script cầu nối hoặc đọc tệp môi trường và bí mật.
+
+### Bản đầu vào và bằng chứng độc lập
+
+Cổng storyboard và cả năm vai đều rà bản HTML có SHA-256 `9e1e9cbb53c86e31f83b0dc5de1ec055f01ad04ec0894223b81f333bc398d8f9`. Các vai đọc bản thật, không dùng kết luận của vai khác hoặc kết quả lịch sử để chứng nhận. Báo cáo tạm được lưu dưới `/tmp/lec04-refinement/`; các phát hiện và quyết định cần truy nguyên được ghi đầy đủ trong mục này để không phụ thuộc sự tồn tại của thư mục tạm.
+
+| Vai độc lập | Phạm vi và bằng chứng của bản đầu vào | Kết quả rà trước sửa |
+|---|---|---|
+| Độ chính xác toán học | Đọc 46 trang, 46 ghi chú và hai Markdown; kiểm công thức, giả thiết, tám bài cùng lời giải, 11 SVG tham chiếu; đối chiếu Boyd–Vandenberghe và MIT hiện có. Tính lại ba mức giảm của hàm log, hệ khả thi, hệ phần dư, phép khử và cận tự điều chỉnh. | Không phát hiện lỗi toán cần sửa trong sản phẩm công khai. Giữ hệ, bộ số và giả thiết đúng. Vai này chỉ xem ba ảnh có sẵn, không chứng nhận toàn bộ bố cục. |
+| Sinh viên | Đọc đủ nội dung và học liệu; xem 138 ảnh của 46 trang ở khung rộng 1600×900, khung hẹp 390×844 tại đầu/cuối vùng cuộn. Phóng các trang dày và tự kiểm cuộn ngang bằng bàn phím ở năm bảng. | Không có lỗi chặn, nghiêm trọng hoặc trung bình; một lỗi nhẹ SV-01: nhãn vòng lặp chồng nhãn điểm đầu ở RG07. |
+| Phản biện học thuật và giảng dạy | Đọc 46 trang/ghi chú và toàn bộ hai Markdown; đối chiếu hành trình khái niệm và no-ai-slop. | Bốn lỗi nhẹ AC01–04: lặp cục bộ, biến thể tên nhóm KKT, tên Bài 3 và kết luận mơ hồ ở RZ01. Không cần đổi cấu trúc. |
+| Chuyên gia | Đọc toàn bài, hai học liệu và đặc tả; trích DOCX chính thức, xác nhận Buổi 4, LLO6–10, quan hệ CLO và 2 giờ LT + 1 giờ BT; đối chiếu nguồn Boyd–Vandenberghe và MIT. | Ba lỗi nhẹ CG01–03: phạm vi nguồn RZ03, thuật ngữ trùng AC02, chiều kéo theo trong dàn ý. Phạm vi và trình độ đáp ứng đề cương. |
+| Mạch kể chuyện | Đọc 46 trang và ghi chú, kiểm đủ 45 cạnh nối, bảy mạch, ranh giới A–G của ghi chú và bảy ranh giới giữa tám bài tập. | Hai đề nghị nhẹ ST01–02: gọi đúng đối tượng của cận khi chuyển RR→RS và thu hồi kết quả cận ở tổng kết. Giữ tuyến 46 trang/7 mạch. |
+
+Cổng storyboard xác nhận đủ 46 mục, tiêu đề khớp HTML, bảy mạch và tổng dự toán 2 giờ LT + 1 giờ BT; còn G1 trung bình về đặc tả RR05 trái bề mặt thật, G2 nhẹ về câu chuyển/quan hệ chuẩn bị và G3 nhẹ về lý do tồn tại/phân bổ hai cụm RG. Các vai trên không chứng nhận trạng thái sau sửa; những kiểm định đó còn chờ.
+
+### Phân xử và sửa tại chỗ
+
+| Vấn đề | Bằng chứng trên bản đầu vào | Quyết định đã áp dụng và vị trí | Trạng thái |
+|---|---|---|---|
+| G1 | Hàng giới hạn RR05 trong storyboard nói mặt trang dùng bình phương chuẩn và notes chứa phép chia; HTML làm ngược lại. | Đặc tả nay ghi mặt trang đạo hàm chuẩn, phép chia và điều kiện phần dư khác không; notes suy qua nửa bình phương chuẩn. Giữ phép đạo hàm HTML. | Đã sửa, chờ hậu kiểm. |
+| G2 | RR07 còn câu điều phối “Câu chuyển sau chữa”; RZ03 nói chuẩn bị phép kiểm đã diễn ra ở RZ02. | RR07 dùng quan hệ dung sai KKT với cận theo độ giảm Newton. RZ03 củng cố kết quả đã kiểm tại RZ02 và giao tự học LLO6–10. | Đã sửa, chờ hậu kiểm. |
+| G3 | Bản đồ hai cụm RG chỉ ghi tổng chung; lý do RG04/05/07 và RR04 chỉ mô tả bố cục. | Ghi RG01–06: 0.30 giờ LT + 0.075 giờ BT; RG07–10: 0.20 giờ LT + 0.075 giờ BT. Hai nhiệm vụ RG11 chia đều 0.15 giờ BT. Bổ sung nhu cầu chọn bước, phân biệt hệ số co/bước thử, ảnh hưởng độ cong và phân biệt số gia/nhân tử ở bốn mục. Tổng bài không đổi. | Đã sửa, chờ hậu kiểm. |
+| SV-01 | `k=0` tại `(429.47,98.13)` chồng nhãn `x⁰=(2,4)` tại `(428.68,88.09)`. | Trong `gradient-fixed-step.svg`, chỉ đổi tung độ nhãn `k=0` từ 98.13 thành 122.13, dịch xuống 24 đơn vị. Giữ mọi điểm, đường, font và dữ liệu. | Đã sửa, chờ ảnh rộng/hẹp. |
+| AC01 | RG03 nhắc hai lần cùng lý do loại hướng; RN04 nhắc hai lần định nghĩa căn không âm; RS01 nhắc hai lần Hessian không bị chặn; học liệu đọc lại ba số ngay sau bảng. | Bỏ đúng các câu lặp. Bảng, định nghĩa ban đầu, phép tính, suy diễn và chứng minh vẫn nguyên. Ba công thức số lặp trong học liệu được bỏ có chủ ý. | Đã sửa, chờ hậu kiểm. |
+| AC02 + CG02 | “dừng tĩnh”, “khả thi nguyên thủy”, “Dòng nguyên thủy” trong học liệu chỉ cùng các nhóm được gọi “dừng”, “khả thi gốc” trên trang chiếu. | Thống nhất “điều kiện dừng”, “khả thi gốc”, “Phương trình khả thi”. Mục tiêu phần E gọi trực tiếp bước của biến gốc và số gia nhân tử, tránh thêm một tên đồng nghĩa. | Đã sửa, chờ hậu kiểm. |
+| AC03 | Tên Bài 3 “Ba đại lượng giảm” gom cả sai số tối ưu vào mức giảm qua bước. | Đổi thành “Độ giảm mô hình, mức giảm hàm và sai số tối ưu”; đề và mọi công thức bài tập giữ nguyên. | Đã sửa, chờ hậu kiểm. |
+| AC04 + ST02 | RZ01 chỉ nói “chứng nhận đích” và dung sai “cần được diễn giải thêm”, chưa thu hồi kết quả dương của cận. | Mặt trang nêu KKT đủ chứng nhận nghiệm tối ưu trong lớp lồi, dung sai chưa tự cho cận và kết quả tự điều chỉnh cho cận theo độ giảm Newton. Notes thu hồi $f(x)-f^\star\le-\delta-\log(1-\delta)$ với $\delta<1$; đủ giả thiết lồi chặt $C^3$, tự điều chỉnh chuẩn trên miền mở lồi, Hessian xác định dương trên miền và đạt cực tiểu hữu hạn trong miền. Chỉ dùng cho Newton không ràng buộc hoặc hàm rút gọn khả thi thỏa giả thiết, không đổi chuẩn phần dư thành cận. Đồng bộ mục RZ01 của storyboard. | Đã sửa, chờ hậu kiểm nội dung và bố cục. |
+| CG01 | RZ03 bỏ sót §§9.2–9.3 và §10.1; danh mục ghi chú thiếu nền KKT §5.5.3. | RZ03 và đặc tả dẫn §5.5.3, §§9.2–9.6, 10.1–10.3; bổ sung §5.5.3 vào danh mục Boyd–Vandenberghe của ghi chú. Nguồn tổng hợp trong notes RZ01 đồng bộ cùng phạm vi. Không thêm nguồn mới. | Đã sửa, chờ hậu kiểm. |
+| CG03 | Dàn ý ghi “Chỉ khi $t=1$…” như điều kiện cần. | Sửa thành “Với $t=1$…” là chiều đủ; không sửa RR06. Đính chính đầu math-spec chỉ rõ ngoại lệ $\Delta\nu=0$ cho nhân tử và $r_p=0$ cho tính khả thi với mọi $t$; giữ nguyên thân lịch sử. | Đã sửa, chờ hậu kiểm. |
+| ST01 | Chuyển RR→RS chưa gọi rõ $d$ trong độ giảm là hướng Newton không ràng buộc, có thể lẫn với hệ phần dư ngay trước. | Notes RS01 và dẫn phần F gọi đúng bài không ràng buộc, dùng lại giảm mô hình $9/32$ và sai số $\log4-3/4$ của hàm log. Nêu phép khử chuyển cận sang hàm trên tập khả thi; không áp trực tiếp cho chuẩn phần dư. Đồng bộ ghi chú soạn của storyboard. | Đã sửa, chờ hậu kiểm toàn tuyến. |
+| Quan sát điều phối: văn và đối tượng | RR05 còn “dùng nó”; RN03/RN07 dùng “phương trình thật/nghiệm thật”; RE06 chưa gọi tên ma trận của không gian hàng; RZ03 kết bằng lịch buổi sau. | RR05 dùng phát biểu đạo hàm âm làm cơ sở nhận bước; RN03/RN07 gọi bài toán gốc; RE06 nêu phần bù trực giao của không gian hàng của $A$; RZ03 nối bằng nhiễu gradient lô nhỏ và giới hạn chứng nhận tối ưu ở mục tiêu phi lồi. | Đã sửa, chờ hậu kiểm. |
+| Quan sát điều phối: hồ sơ lịch sử | Căn cứ hiện hành trong outline còn ủy quyền OpenRouter; plan tự gọi ủy quyền cũ là hiện hành; source-map/math-spec còn đơn vị tiết. | Outline ghi quy định native của đợt này; thêm ghi chú đính chính đầu plan/source-map/math-spec. Dùng đơn vị giờ đúng nhãn DOCX; giữ nguyên prompt, báo cáo và thân lịch sử. | Đã sửa, chờ hậu kiểm. |
+
+Không bác đề nghị nội dung nào: các đề nghị đã duyệt đều có thể sửa tại chỗ mà giữ hệ toán và cấu trúc. Không thêm, bỏ hoặc đổi thứ tự trang. Tác tử chỉnh sửa không thay CSS, runtime, chỉ mục hoặc `material-local-data.js`; việc đồng bộ bản đóng gói và kiểm viewer do điều phối viên thực hiện sau khi đóng băng nội dung.
+
+### Tự kiểm của tác tử chỉnh sửa
+
+- Giữ 46 mã duy nhất theo đúng thứ tự, 46 notes và bảy section ngoài. Danh sách thẻ/thuộc tính HTML và toàn bộ runtime trùng bản đầu vào. Các tiêu đề HTML không đổi trong vòng chỉnh sửa này.
+- Các mục storyboard vẫn khớp thứ tự 46 mã; cộng dự toán bằng phân số cho đúng 2 giờ LT + 1 giờ BT. Thời lượng chỉ ở planning, không thêm vào HTML hoặc notes.
+- Markdown chỉ dùng dấu phân cách công thức `$...$` và `$$...$$`; giữ heading cấp một, thứ tự các khối chứng minh/bài tập/gợi ý/lời giải và đích liên kết của hai học liệu.
+- So biểu thức cho thấy HTML có 940→945 lần xuất hiện: bỏ bốn công thức/nhãn lặp trong notes RG03/RN04; thêm chín lần xuất hiện của các ký hiệu/ví dụ/cận đã học để làm rõ RE06, RS01, RZ01. Ghi chú có 936→937 lần: bỏ ba số lặp sau bảng, thêm bốn biểu thức đã có vào cầu nối phần F. Bài tập giữ 616→616, chuỗi biểu thức không đổi. Đây là kiểm chuỗi nguồn, chưa phải kết xuất KaTeX.
+- SVG khác đúng một giá trị tung độ nhãn, tăng 24 đơn vị; không thay hình học, dữ liệu hoặc cỡ chữ.
+- Đã tự so trực tiếp `no-ai-slop/eval.md`: giữ nội dung và giọng học thuật, sửa tối thiểu, bỏ lặp/lời điều phối, dùng đối tượng cụ thể và thuật ngữ nhất quán. Giữ các tương phản có ý nghĩa toán, nhiệm vụ “Tính/Chứng minh”, bảng tổng hợp và câu hỏi đánh giá vì có chức năng học tập. Bản sửa đầy đủ là các tệp trong kho; bảng quyết định trên ghi những thay đổi.
+- `git diff --check` không báo lỗi tại thời điểm tự kiểm. SHA-256 HTML sau chỉnh sửa: `101cfaa4f1962b6880b0530bdc76cbf06ad0b8a23452a300f464070110b22c41`.
+
+Tác tử chỉnh sửa chưa render, chưa kiểm viewer, chưa kiểm trạng thái bền vững hay bề mặt Codex Slides, chưa commit/push. Cần hậu kiểm toán/văn/mạch kể chuyện các đoạn sửa, ảnh rộng/hẹp RG07 và RZ01, đồng bộ bản đóng gói rồi kiểm kỹ thuật học liệu trước khi chốt phát hành. Không dùng kết quả tự kiểm trên thay chứng nhận cuối.
+
+
+## Biên tập học thuật và liên kết toán học — 2026-09-26
+
+**Trạng thái: bản nháp của tác tử soạn, chờ kiểm định storyboard, năm vai rà soát độc lập và vòng chỉnh sửa.** Các kết quả đạt ở những đợt trước không chứng nhận bản nháp này. Tác tử soạn chỉ ghi HTML, hai Markdown công khai và ba tệp planning của Bài 04; không sửa CSS, SVG, runtime hoặc chỉ mục; chưa đồng bộ bản đóng gói học liệu, commit hay push.
+
+### Căn cứ và phạm vi
+
+Điều phối viên đã duyệt kế hoạch và đặc tả nguồn trước khi tác tử soạn sửa tệp. Phạm vi giữ nguyên 46 trang, 46 ghi chú, bảy mạch RP/RG/RN/RE/RR/RS/RZ và thứ tự hiện hành. Đề cương DOCX chính thức, Boyd–Vandenberghe (2004), Chương 9–10 và §5.5.3, hai PDF MIT lec16 rồi lec17, Bài 03 và danh mục nguồn hiện có là căn cứ. Không tải nguồn mới, không sửa tài sản hay tái sử dụng kết quả rà soát OpenRouter lịch sử để chứng nhận lần sửa này. Công việc soạn dùng tác tử native theo chỉ định của người dùng; không gọi OpenRouter hoặc đọc tệp bí mật.
+
+Áp dụng kỹ năng `no-ai-slop` tại `/home/tqlong/.codex/skills/no-ai-slop/SKILL.md` và tự đối chiếu trực tiếp `eval.md`. Nội dung toán, thuật ngữ, phân biệt giữa các đại lượng, ví dụ và phép đánh giá được giữ; lời điều phối lớp, lời nhấn mạnh không có luận cứ và câu nối chỉ dựa vào vị trí trang được thay bằng quan hệ toán học.
+
+### Quyết định biên tập
+
+| Phạm vi | Quyết định và lý do | Trạng thái |
+|---|---|---|
+| Toàn bộ 46 trang | Rà tiêu đề, văn bản và ghi chú; đổi 30 tiêu đề để gọi đúng khái niệm. Giữ 46 mã, thứ tự, bảy phần, toàn bộ thẻ và thuộc tính HTML. | Đã soạn; chờ rà soát độc lập. |
+| Toàn bộ 46 ghi chú | Thay lời giảng mô phỏng và hướng dẫn giảng viên bằng giả thiết, phép tính, kết luận, đáp án và kết nối toán học. Không chứa mã trang hoặc thời lượng. | Đã đọc lại đủ 46 ghi chú. |
+| RP00–RP04 | Tách điều kiện KKT của bài gốc, lựa chọn mô hình bài con, hướng, bước và tiêu chuẩn dừng. Giữ vai trò điều kiện chính quy ở chiều cần và tính lồi ở chiều đủ. | Đã soạn. |
+| RG01 | Mô tả ba mũi tên theo dấu đạo hàm hướng và tiếp tuyến. Không gán mũi tên giảm là hướng đối gradient hoặc dùng góc trên ảnh có tỷ lệ hai trục khác nhau làm chứng cứ. Nêu rõ bước dương đủ nhỏ. | SVG giữ nguyên; chờ reviewer toán đối chiếu. |
+| RG08–RG10 | Tách vai trò tính lồi, Slater và tính compact; giữ phép đổi độ dài của hướng chuẩn hóa, chuẩn đối ngẫu và hệ theo chuẩn bậc hai. | Đã soạn. |
+| RN03 | Thay phát biểu sai về khoảng cách tới nghiệm mô hình đã giải bằng độ giảm từ bước bằng không tới cực tiểu mô hình và quan hệ với sai số mục tiêu. | Đã sửa ý diễn đạt; không thay ví dụ hoặc hệ. |
+| RN07 | Câu hỏi chưa học về giả thiết cho cận sai số trở thành “Vấn đề cần nghiên cứu”. Phần kiểm tra chỉ dùng đạo hàm và ba đại lượng đã được xây dựng. | Đã soạn; đồng bộ storyboard và dàn ý. |
+| RE–RR | Giữ nguồn gốc hai hệ Newton, phân biệt nhân tử mô hình và số gia, bảo toàn đẳng thức với hiệu chỉnh phần dư. RR02 diễn giải đúng xấp xỉ của phần dư đối ngẫu tại nhân tử cố định. | Đã soạn. |
+| RR05 và ghi chú học tập phần E | Tiêu chí nhận bước yêu cầu giảm chuẩn phần dư ghép; không suy ra chuẩn từng thành phần giảm đơn điệu. Dừng vẫn kiểm hai dung sai riêng. | Đã sửa diễn giải; công thức giữ nguyên. |
+| RS01, RS04 | Hessian không bị chặn toàn miền không loại trừ cận trên tập mức. Bất biến Newton yêu cầu điều kiện khả nghịch của Hessian hoặc hệ tính bước; hợp affine bảo toàn lớp hàm là kết quả riêng. | Đã soạn. |
+| Storyboard | Cập nhật trực tiếp 46 mục hiện có: tiêu đề khớp HTML, đầu vào và đầu ra cụ thể. Giữ bản đồ sáu bước, bảy mạch và lịch sử cấu trúc; không chép thêm bảng 46 mã trùng lặp. | Tự kiểm khớp 46/46. |
+| Đơn vị thời lượng trong planning hiện hành | Đính chính thành 2 giờ lý thuyết + 1 giờ bài tập theo cột “Số giờ/buổi” của DOCX. Giữ nguyên prompt và kế hoạch lịch sử, gắn nhãn lịch sử; không quy đổi phút. | Đã đính chính. |
+| Hai Markdown | Áp dụng bản nháp chuyên trách đã duyệt; đồng bộ cách gọi phần dư khả thi và diễn giải chuẩn ghép; giữ mọi công thức, chứng minh, bài tập, hình và đích liên kết. KKT đã được viết đầy đủ ở phần mở đầu. | Chưa đồng bộ `material-local-data.js`; điều phối viên thực hiện sau. |
+
+### Sai khác của chuỗi công thức HTML
+
+Không thay hệ phương trình, ma trận, định nghĩa, dữ kiện số hoặc đáp án. Phép so chuỗi phát hiện khác biệt ở RP04, RG01, RG07, RG09, RE06, RR03, RS05 và RZ01–RZ03 do biên tập câu:
+
+- RG01 nêu rõ dấu âm của đạo hàm hướng trên mặt trang; ghi chú dùng đẳng thức đạo hàm hướng bằng không cho tiếp tuyến và gộp phép kiểm hướng tăng thành một công thức.
+- RP04, RG07, RG09, RR03 và RS05 bỏ công thức hoặc ký hiệu lặp trong lời nhắc, hoặc đổi thứ tự hai lần nhắc; các biểu thức chính vẫn còn trong cùng trang.
+- RE06 bỏ hai giá trị sai được nêu như lỗi giả định, giữ Hessian rút gọn, gradient rút gọn, số gia và toàn bộ phép giải đúng.
+- RZ01–RZ03 đặt các ký hiệu vốn viết bằng chữ vào dấu phân cách KaTeX; không đổi quan hệ toán học.
+
+Công thức xấp xỉ tuyến tính ở RG02 được giữ nguyên. Các phân biệt cần thiết giữa mô hình và bài gốc, ba loại mức giảm, hai loại nhân tử và hai tiêu chuẩn phần dư vẫn còn.
+
+### Tự kiểm của tác tử soạn
+
+- 46 trang, 46 ghi chú, 7 phần ngoài; mã, thứ tự và phân nhóm trùng bản chụp trước sửa.
+- 30 tiêu đề thay đổi; 46 ghi chú được biên tập. 46 tiêu đề trong storyboard khớp HTML, mỗi mục có đầu vào và đầu ra.
+- Toàn bộ thẻ và thuộc tính HTML trùng bản chụp trước sửa. CSS chung trùng tuyệt đối với bản chụp; không thay bố cục, tài sản hoặc runtime.
+- Hai Markdown giữ nguyên từng chuỗi công thức và thứ tự: 936 trong ghi chú, 616 trong bài tập, tổng 1.552. Giữ 14 khối chứng minh, 8 bài tập, 8 gợi ý và 8 lời giải; nhãn khối và đích liên kết trùng bản trước.
+- Đọc lại toàn bộ ghi chú và phần văn xuôi học liệu; kiểm trực tiếp các mục của `eval.md`: giữ ý và chi tiết toán, cắt lời điều phối, dùng quan hệ cụ thể, giữ tương phản toán học có nội dung. Bản đầy đủ là các tệp trong kho; bảng trên ghi phạm vi thay đổi.
+- `git diff --check` không báo lỗi tại thời điểm tự kiểm. SHA-256 HTML bản nháp: `9e1e9cbb53c86e31f83b0dc5de1ec055f01ad04ec0894223b81f333bc398d8f9`.
+
+Đây là bằng chứng tự kiểm của bản soạn, không thay kiểm định độc lập, kiểm trực quan, kiểm viewer hoặc xác nhận Codex Slides. Điều phối viên tiếp tục các bước đó và cập nhật trạng thái riêng trước khi phát hành.
+
 ## Đồng bộ học liệu với bộ trang chiếu đã sửa — 2026-09-25
 
 Người dùng làm rõ rằng ghi chú bài giảng và bài tập phải đi cùng mạch của bộ trang chiếu mới. Các kiểm tra tệp, checksum và liên kết của lần trước chỉ chứng minh tài liệu mở được; chúng chưa chứng minh thứ tự suy luận trong học liệu đã khớp với trang chiếu. Đợt này sửa trực tiếp hai Markdown công khai và đồng bộ bản đóng gói cho chế độ mở trực tiếp.

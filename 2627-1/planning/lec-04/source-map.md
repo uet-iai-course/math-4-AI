@@ -1,5 +1,7 @@
 # Phân tích và ánh xạ nguồn — Bài giảng 04
 
+> **Đính chính hiện hành — 2026-09-26.** Theo cột “Số giờ/buổi” của DOCX chính thức, thời lượng Buổi 4 là 2 giờ lý thuyết + 1 giờ bài tập. Chữ “tiết” trong bản ghi bên dưới là đơn vị cũ; dùng “giờ” khi diễn giải dự toán hiện hành, không quy đổi sang phút. Nội dung và ánh xạ nguồn bên dưới được giữ để truy nguyên; quyết định hiện hành nằm trong [outline.md](outline.md) và [storyboard.md](storyboard.md).
+
 ## Ánh xạ hiện hành của bản KKT ngày 2026-09-25
 
 Đặc tả nguồn này điều khiển bản 46 trang, 7 mạch đã được người dùng duyệt. Kế thừa nguồn đã kiểm kê; không tải nguồn MIT mới, không đưa ảnh PDF vào sản phẩm. Các hình là SVG tự dựng theo công thức, các sơ đồ và công thức được dựng bằng HTML/KaTeX. Danh mục nguồn và checksum trong sources/MIT/README.md giữ nguyên vì không thêm tài nguyên ngoài.

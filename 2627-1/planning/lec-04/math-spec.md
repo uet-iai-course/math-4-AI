@@ -1,5 +1,7 @@
 # Đặc tả toán và lựa chọn số — Bài giảng 04
 
+> **Đính chính hiện hành — 2026-09-26.** Dự toán hiện hành dùng đơn vị giờ theo cột “Số giờ/buổi” của DOCX: RZ02 có 0.15 giờ bài tập, RG11 có 0.15 giờ bài tập, tổng bài là 2 giờ lý thuyết + 1 giờ bài tập; không quy đổi sang phút. Câu lịch sử “Chỉ khi $t=1$…” ở mục hệ phần dư được đính chính: $t=1$ là điều kiện đủ, không phải điều kiện cần, để có $\nu^+=\eta$ và khôi phục đẳng thức. Nếu $\Delta\nu=0$ thì $\nu=\eta$ và $\nu^+=\eta$ với mọi $t$; nếu $r_p=0$ thì tính khả thi được bảo toàn với mọi $t$. Thân đặc tả dưới đây được bảo tồn để truy nguyên; dùng [outline.md](outline.md) và [storyboard.md](storyboard.md) cho quyết định ngày 2026-09-26.
+
 ## Bản triển khai KKT ngày 2026-09-25
 
 Đặc tả hiện hành cho 46 mã RP/RG/RN/RE/RR/RS/RZ. Nội dung dưới hợp nhất trực tiếp từ dàn ý đã duyệt, giữ phép suy ra, giả thiết, sổ số và đáp án. Bản cũ cuối tệp chỉ để truy nguyên; không dùng điểm khả thi cũ (3,11) trong sản phẩm mới. Bằng chứng tính lại và rà độc lập được ghi trong review-log.md.
