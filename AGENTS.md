@@ -9,7 +9,10 @@ Tệp này áp dụng cho mọi yêu cầu tạo, sửa, rà soát hoặc xuất
 - Viết thuần Việt. Chỉ giữ tiếng Anh cho tên riêng, ký hiệu chuẩn, tên thuật toán hoặc thư viện chưa có cách dịch ổn định, và thuật ngữ xuất hiện lần đầu trong ngoặc sau cách gọi tiếng Việt.
 - Khi dùng viết tắt lần đầu, viết đầy đủ bằng tiếng Việt rồi đặt viết tắt trong ngoặc. Có thể giữ dạng viết tắt ở các lần sau.
 - Không dùng câu cảm thán, lời ca tụng, khẩu hiệu, câu hỏi tu từ hoặc cách diễn đạt quảng bá.
-- Viết trực tiếp, chính xác, học thuật. Ưu tiên câu ngắn, động từ rõ và thuật ngữ nhất quán.
+- Tiêu đề, nội dung trang chiếu, ghi chú diễn giả, ghi chú bài giảng và lời giải phải dùng văn phong trang trọng, học thuật. Viết trực tiếp, chính xác; ưu tiên câu ngắn, động từ rõ và thuật ngữ nhất quán.
+- Không dùng văn nói mô phỏng hoặc lời hướng dẫn giảng viên, người soạn trên sản phẩm công khai và trong ghi chú diễn giả, chẳng hạn “chúng ta hãy nhìn”, “nhấn mạnh với sinh viên”, “đến đây chuyển sang trang sau”. Diễn đạt bằng đối tượng, giả thiết, phép suy ra và kết luận. Các yêu cầu học tập như “Tính”, “Xác định”, “Chứng minh” và các bước thuật toán vẫn được dùng khi đúng chức năng.
+- Bắt buộc áp dụng kỹ năng `$no-ai-slop` khi soạn, sửa hoặc rà tiêu đề, nội dung trang chiếu, ghi chú và học liệu. Đọc `SKILL.md` trước khi áp dụng. Tác tử soạn hoặc chỉnh sửa dùng chế độ Edit, biên tập rồi tự đối chiếu `eval.md` và sửa các mục chưa đạt trước khi bàn giao. Tác tử rà soát chỉ đọc dùng chế độ Detect, trích đoạn có vấn đề và đề xuất sửa; không chỉnh tệp. Loại câu dẫn rỗng, lời nhấn mạnh không có căn cứ, câu lặp, đổi từ đồng nghĩa tùy tiện, nhịp câu khuôn mẫu và kết luận kịch tính. Ghi phạm vi cùng kết quả kiểm tra trong `review-log.md`; không dùng điểm từ bộ phát hiện AI hoặc suy đoán tác giả làm bằng chứng.
+- Khi áp dụng `no-ai-slop`, giữ nguyên giả thiết, ký hiệu, nguồn, phép suy luận và các phân biệt toán học cần thiết. Văn phong học thuật của học phần được ưu tiên hơn các gợi ý của kỹ năng về giữ giọng nói, hài hước hoặc câu rời. Giữ định nghĩa, nhãn kết quả, câu hỏi đánh giá và phần tổng kết khi chúng có chức năng học tập rõ.
 - Không dịch tên người, tên tổ chức, tên phần mềm, tên mô hình hoặc ký hiệu toán học.
 - Dùng thuật ngữ `lồi chặt (còn gọi là lồi nghiêm ngặt)` ở lần xuất hiện đầu tiên; các lần sau chỉ dùng `lồi chặt`.
 - Trong mọi tệp Markdown, chỉ dùng `$...$` cho công thức nội dòng và `$$...$$` cho công thức khối; không dùng kiểu phân cách LaTeX thay thế.
@@ -88,7 +91,13 @@ Nếu mẫu người dùng không quy định khác, bộ trang chiếu gồm:
 5. Câu hỏi kiểm tra hiểu biết hoặc bài tập ngắn sau mỗi cụm khái niệm lớn.
 6. Tổng kết theo mục tiêu học tập, câu hỏi tự kiểm tra, bài tập và tài liệu đọc.
 
-Toàn bộ bài phải được tổ chức thành từ 5 đến 7 mạch nội dung lớn, mỗi mạch tương ứng với một `<section>` ngoài của RevealJS; số này bao gồm mạch mở đầu và mạch kết luận. Mỗi mạch phải có một chức năng riêng trong việc giải quyết vấn đề trung tâm, một điểm vào nhận kết quả hoặc câu hỏi từ mạch trước và một đầu ra đủ rõ để mạch sau sử dụng. Không chia một mạch liền lạc hoặc tạo mạch trang trí chỉ để đạt đủ số lượng. Chỉ dùng ngoài khoảng 5–7 khi mẫu hoặc yêu cầu cụ thể của người dùng quy định rõ, và phải ghi lý do cùng ảnh hưởng đến mạch kể chuyện trong `storyboard.md` và `review-log.md`.
+Toàn bộ bài phải được tổ chức thành từ 5 đến 7 mạch nội dung lớn, mỗi mạch tương ứng với một `<section>` ngoài của RevealJS; số này bao gồm mạch mở đầu và mạch kết luận. Mỗi mạch phải có một chức năng riêng trong việc giải quyết vấn đề trung tâm, một điểm vào nhận kết quả hoặc câu hỏi từ mạch trước và một đầu ra đủ rõ để mạch sau sử dụng. Không chia một mạch liền lạc hoặc tạo mạch trang trí chỉ để đạt đủ số lượng. Chỉ dùng ngoài khoảng 5–7 khi mẫu hoặc yêu cầu cụ thể của người dùng quy định rõ, và phải ghi lý do cùng ảnh hưởng đến mạch lập luận trong `storyboard.md` và `review-log.md`.
+
+Mỗi bài phải có một cơ sở lý thuyết chung làm sườn cho toàn bộ lập luận, được xác định trong `outline.md` và `storyboard.md` trước khi chốt các trang. Sườn này gồm bài toán trung tâm, đối tượng và ký hiệu chung, giả thiết, chuỗi định nghĩa–kết quả–phương pháp và giới hạn áp dụng. Chọn cơ sở phù hợp với chủ đề và đề cương; không ép mọi bài dùng cùng một định lý hoặc khuôn khổ tối ưu.
+
+Mỗi phần phải nêu cách dùng, mở rộng hoặc kiểm tra cơ sở chung đó. Các ví dụ, ứng dụng và bài tập phải gắn với một bước cụ thể của lập luận. Phần mở đầu xác lập vấn đề và nhu cầu của cơ sở chung; các thành phần hình thức được phát triển theo hành trình khái niệm đã quy định. Phần kết luận tổng hợp những kết quả đã xây dựng và điều kiện sử dụng, không chỉ nhắc lại danh sách chủ đề.
+
+Liên kết giữa các trang phải thể hiện quan hệ học thuật: kết quả nào được kế thừa, giả thiết nào được bổ sung hoặc thay đổi, và giới hạn nào dẫn tới nhu cầu tiếp theo. Thể hiện quan hệ này trong nội dung hoặc ghi chú diễn giả bằng một câu nối cụ thể hay ký hiệu nhất quán. Không dùng lời chỉ đường như “tiếp theo chúng ta…” để thay cho quan hệ suy luận; không ép mọi trang có cùng một mẫu câu chuyển.
 
 Mỗi trang chiếu chỉ nên có một luận điểm trung tâm. Tách phép suy diễn dài thành nhiều trang chiếu; không thu nhỏ chữ để nhồi nội dung.
 
@@ -96,7 +105,7 @@ Mỗi bộ trang chiếu mới phải có `storyboard.md` tại `2627-1/planning
 
 - lý do trang chiếu cần tồn tại trong mạch bài;
 - nhu cầu học tập hoặc khoảng trống nhận thức mà trang giải quyết;
-- quan hệ với trang trước và trang sau;
+- kết quả hoặc giả thiết kế thừa từ trang trước, đầu ra cho trang sau và vị trí trong sườn lý thuyết chung;
 - LLO/CLO hoặc minh chứng đánh giá mà trang hỗ trợ;
 - quyết định `thêm`, `giữ`, `sửa`, `gộp`, `tách` hoặc `bỏ`, kèm lý do.
 
@@ -145,14 +154,14 @@ Nội dung toàn học phần phải nhất quán với các cụm chủ đề t
 - Mã vị trí nội bộ như `A01`, `B02`, `C03` chỉ xuất hiện trong `data-slide-id`, storyboard, dàn ý và nhật ký khi cần truy nguyên; không xuất hiện trên mặt trang chiếu hoặc trong ghi chú diễn giả. Nhãn phần `A`, `B`, `C` được phép giữ.
 - Không hiển thị badge hoặc nhãn quy trình như `Giảng chính`, `Tự học`, `Bài tập`, thống kê phân tuyến hay tiên quyết theo mã trên mặt trang chiếu. Ghi chú diễn giả cũng không chứa mã trang, tuyến hoặc chỉ dẫn điều phối nội bộ; các dữ liệu này chỉ nằm trong storyboard và dàn ý.
 - Bộ trang chiếu mặc định phải tạo một tuyến liên tục có thể trình chiếu từ đầu đến cuối. Phân loại nội bộ không được tạo ra các tuyến mà tệp RevealJS không có cơ chế điều hướng riêng để thực hiện; nếu cần nhiều tuyến, phải thiết kế và kiểm định cơ chế điều hướng rõ ràng.
-- Mọi lời mời tương tác trên mặt trang chiếu dùng nhãn **“Câu hỏi:”**. Không dùng “Điểm dừng:” hoặc gắn số phút vào nhãn.
+- Mọi câu hỏi hoặc nhiệm vụ kiểm tra trên mặt trang chiếu dùng nhãn **“Câu hỏi:”**. Không dùng “Điểm dừng:” hoặc gắn số phút vào nhãn.
 - Không hiển thị hoặc gợi ý thời lượng trên mặt trang chiếu hay trong ghi chú diễn giả, trừ khi người dùng yêu cầu rõ. Phân bổ thời gian chỉ được giữ trong tài liệu lập kế hoạch nội bộ như storyboard hoặc dàn ý.
 - Công thức trung tâm phải đủ lớn, có khoảng trắng và không bị cắt. Căn các bước biến đổi để người học theo dõi được.
 - Hình, đồ thị và sơ đồ phải có nhãn trục, chú giải, đơn vị, mô tả thay thế và ghi nguồn nếu không phải tài sản tự tạo.
 - Không dùng ảnh trang trí không hỗ trợ lập luận. Không dùng ảnh sinh bởi AI để minh họa dữ liệu hoặc kết quả thực nghiệm nếu có thể khiến người học hiểu đó là bằng chứng thật.
-- Mỗi trang chiếu nội dung cần ghi chú diễn giả trong `<aside class="notes">` khi phần nói có giả thiết, diễn giải, đáp án, chuyển ý hoặc chi tiết không nên đặt lên màn chiếu.
+- Mỗi trang chiếu nội dung cần ghi chú diễn giả trong `<aside class="notes">` khi có giả thiết, diễn giải, đáp án, quan hệ suy luận hoặc chi tiết không nên đặt lên màn chiếu.
 - Không hiển thị chú thích nguồn dạng “MIT 6.079 …” ở cuối từng trang chiếu. Đặt nguồn trong ghi chú diễn giả hoặc một trang tài liệu tham khảo.
-- Ghi chú diễn giả phải tạo thành mạch nói ngắn, thuần Việt, trực tiếp và học thuật: ý chính; giải thích công thức hoặc hình; điểm dễ nhầm; chuyển ý; gợi ý hoặc đáp án đối với bài tập. Không chỉ ghi metadata và không lặp nguyên văn nội dung hiển thị.
+- Ghi chú diễn giả phải là phần diễn giải học thuật ngắn, thuần Việt: ý chính, giả thiết, giải thích công thức hoặc hình, phân biệt dễ nhầm, quan hệ với nội dung kế tiếp và gợi ý hoặc lời giải bài tập. Gợi ý phải nêu cách lập luận hoặc bước toán học; không chỉ dẫn giảng viên phải nói, nhấn mạnh hay điều phối lớp thế nào. Không chỉ ghi siêu dữ liệu và không lặp nguyên văn nội dung hiển thị.
 - Bộ trang chiếu phải dùng được bằng bàn phím, không có tài nguyên hỏng và không phụ thuộc mạng cho các thành phần cốt lõi.
 - Trước khi bàn giao, kiểm tra và sửa tràn nội dung ở khung 16:9 và màn hình hẹp; không che lỗi bằng cách cắt nội dung hoặc thu nhỏ thân bài dưới ngưỡng quy định.
 
@@ -185,7 +194,7 @@ Giao một tác tử riêng lập kế hoạch trước khi phân tích chi ti�
 - Xác định mục tiêu, phạm vi, đối tượng, thời lượng theo đề cương hoặc yêu cầu người dùng, sản phẩm đầu ra và tiêu chí hoàn thành.
 - Chia công việc thành các giai đoạn: kiểm kê nguồn, ánh xạ mẫu, dàn ý, triển khai RevealJS, rà soát độc lập, chỉnh sửa và kiểm định cuối.
 - Xác định quan hệ phụ thuộc giữa các việc, việc nào có thể chạy song song và việc nào phải chạy tuần tự.
-- Lập danh mục khái niệm trọng tâm và bản đồ sáu bước `nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập` trước khi chốt số trang; phát hiện bước thiếu trước khi triển khai.
+- Xác định sườn lý thuyết chung và quan hệ phụ thuộc giữa các kết quả; lập danh mục khái niệm trọng tâm và bản đồ sáu bước `nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập` trước khi chốt số trang. Phát hiện cơ sở còn thiếu, bước nhảy lập luận và bước học tập chưa được chuẩn bị.
 - Chỉ định tác tử, đầu vào, đầu ra và điều kiện hoàn thành cho từng việc.
 - Đề xuất các tác tử chuyên trách bổ sung nếu nội dung có nhu cầu đặc biệt.
 - Nêu các rủi ro chính như thiếu nguồn, xung đột giữa mẫu, công thức khó kiểm chứng, quá tải nội dung, thiếu hình hoặc nguy cơ tràn trang chiếu.
@@ -207,16 +216,16 @@ Giao một tác tử xây dựng dàn ý và tệp RevealJS theo đặc tả đ�
 
 - Tạo và duy trì `2627-1/planning/lec-NN/outline.md`, `storyboard.md` và `review-log.md` cho bài mới; cập nhật đồng bộ ba tệp khi cấu trúc, nguồn hoặc quyết định biên tập thay đổi.
 - Giữ thứ tự và bố cục của mẫu.
-- Viết nội dung thuần Việt theo quy tắc ngôn ngữ.
+- Viết tiêu đề, nội dung và ghi chú theo văn phong học thuật; áp dụng `no-ai-slop` và tự kiểm bằng `eval.md`. Triển khai rõ sườn lý thuyết và các quan hệ phụ thuộc đã được duyệt.
 - Vẽ lại hoặc tái sử dụng hình minh họa cục bộ theo quy tắc tài sản, thêm ghi chú diễn giả và nguồn.
 - Không sửa các tệp dùng chung ngoài phạm vi cần thiết. Nếu cần thay đổi `lecture-style.css`, xác minh không làm hỏng các bộ trang chiếu hiện có.
 
 ### 5. Tác tử kiểm định storyboard
 
-Trước vòng rà soát sinh viên, chuyên gia, toán học, phản biện học thuật–giảng dạy và mạch kể chuyện, giao một tác tử chỉ đọc kiểm định `storyboard.md` và bộ trang chiếu. Tác tử này phải:
+Trước vòng rà soát sinh viên, chuyên gia, toán học, phản biện học thuật–giảng dạy và mạch lập luận, giao một tác tử chỉ đọc kiểm định `storyboard.md` và bộ trang chiếu. Tác tử này phải:
 
 - rà từng trang, không chỉ rà theo phần;
-- kiểm tra lý do tồn tại có cụ thể, kiểm chứng được và khác với việc mô tả nội dung hay không;
+- kiểm tra lý do tồn tại có cụ thể, kiểm chứng được và khác với việc mô tả nội dung hay không; xác nhận mỗi trang có vị trí rõ trong sườn lý thuyết chung;
 - kiểm tra trang có tạo một bước tiến trong lập luận, cung cấp tiên quyết, trực giác, phát biểu hình thức, ví dụ, luyện tập, chuyển ý hoặc tổng kết cần thiết hay không;
 - kiểm tra ở cấp cụm rằng mỗi khái niệm trọng tâm hoàn thành đúng thứ tự sáu bước; không chấp nhận một cụm chỉ có định nghĩa, định lý và công thức dù từng trang riêng lẻ đều đúng;
 - kiểm tra ví dụ dùng được để dẫn tới phát biểu hình thức, ứng dụng sử dụng đúng kết quả vừa xây dựng, bài tập đo đúng LLO/CLO và tổng thời lượng của cụm khả thi;
@@ -230,19 +239,19 @@ Phân mức riêng cho hành trình khái niệm: `chặn bàn giao` nếu bài 
 
 ### 6. Năm tác tử rà soát độc lập
 
-Sau bản nháp đầu tiên, chạy song song năm vai. Các tác tử này không sửa tệp; mỗi tác tử chỉ trả về danh sách vấn đề có cấu trúc gồm `mức độ`, `trang chiếu`, `vấn đề`, `bằng chứng`, `đề xuất sửa`.
+Sau bản nháp đầu tiên, giao đủ năm vai độc lập; chạy song song trong giới hạn số tác tử khả dụng, chia lượt khi cần. Các tác tử này không sửa tệp; mỗi tác tử chỉ trả về danh sách vấn đề có cấu trúc gồm `mức độ`, `trang chiếu`, `vấn đề`, `bằng chứng`, `đề xuất sửa`.
 
 - **Góc nhìn sinh viên:** kiểm tra kiến thức tiên quyết, tải nhận thức, nhịp giảng, khả năng đọc từ cuối lớp, độ rõ của ký hiệu, ví dụ, chuyển ý, câu hỏi kiểm tra và khả năng tự học từ bộ trang chiếu.
 - **Góc nhìn chuyên gia:** kiểm tra độ bao phủ, chiều sâu, thuật ngữ, mạch học thuật, liên kết với AI, LLO/CLO, nguồn và tính phù hợp với thời lượng buổi học.
 - **Độ chính xác toán học:** kiểm tra từng định nghĩa, giả thiết, lượng từ, miền, kích thước, chỉ số, dấu, đạo hàm, chuyển vị, chuẩn, xác suất, điều kiện lồi, điều kiện tối ưu, bước biến đổi, kết quả ví dụ, hội tụ và độ phức tạp. Tự tính lại các ví dụ số quan trọng.
-- **Phản biện học thuật và giảng dạy:** kiểm tra mỗi khái niệm hình thức có đủ nhu cầu, trực quan, ví dụ và tiên quyết; thứ tự hiện tại có hỗ trợ suy luận trên lớp; ứng dụng và bài tập có đóng vòng học tập; các lựa chọn lược, gộp hoặc thêm so với mẫu có được biện minh. Phải chỉ ra trường hợp nội dung đúng riêng lẻ nhưng đặt sai trình tự, thiếu cầu nối sư phạm hoặc không phục vụ LLO/CLO.
-- **Mạch kể chuyện và điểm kết nối:** kiểm tra xương sống lập luận của toàn bài, điểm xuất phát, đích đến, các điểm nhấn và sự tích lũy ý nghĩa qua từng phần; xác nhận bài có từ 5 đến 7 mạch nội dung lớn tương ứng với các `<section>` ngoài, gồm mạch mở đầu và mạch kết luận, trừ ngoại lệ đã được người dùng yêu cầu rõ và ghi nhận. Với mỗi mạch, kiểm tra chức năng riêng, điểm nối vào, đầu ra cho mạch sau và đóng góp cụ thể vào việc giải quyết vấn đề trung tâm; với mỗi trang, xác định vai trò cụ thể trong câu chuyện và kiểm tra câu nối với trang liền trước, trang liền sau. Phải phát hiện bước nhảy lập luận, chuyển phần đột ngột, mạch hoặc trang đứng riêng lẻ, mạch lặp chức năng, tuyến không tiến triển, điểm nhấn đặt sai chỗ, cao trào không được chuẩn bị, kết luận không thu hồi vấn đề mở đầu hoặc nhiều trang cùng tranh vai trò trung tâm. Vai này không thay thế kiểm định storyboard về lý do tồn tại và hành trình sáu bước, không kiểm tra lại tính đúng toán học, độ bao phủ chuyên môn hay tải nhận thức trừ khi các vấn đề đó trực tiếp làm đứt mạch kể chuyện. Báo cáo phải nêu thêm `vai trò trong câu chuyện`, `kết nối vào`, `kết nối ra` và `điểm nhấn` cho mỗi vấn đề hoặc cụm trang bị ảnh hưởng; ở cấp mạch, phải nêu `chức năng`, `đầu vào`, `đầu ra` và `đóng góp cho vấn đề trung tâm`.
+- **Phản biện học thuật và giảng dạy:** kiểm tra mỗi khái niệm hình thức có đủ nhu cầu, trực quan, ví dụ và tiên quyết; thứ tự hiện tại có hỗ trợ suy luận trên lớp; ứng dụng và bài tập có đóng vòng học tập; các lựa chọn lược, gộp hoặc thêm so với mẫu có được biện minh. Rà văn phong học thuật của tiêu đề, nội dung và ghi chú theo `no-ai-slop`, bảo toàn độ chính xác toán học. Phải chỉ ra trường hợp nội dung đúng riêng lẻ nhưng đặt sai trình tự, thiếu cầu nối sư phạm hoặc không phục vụ LLO/CLO.
+- **Mạch lập luận và liên kết trang chiếu:** kiểm tra cơ sở lý thuyết chung, bài toán trung tâm và chuỗi kết quả của toàn bài; xác nhận 5–7 mạch hoặc ngoại lệ được phép. Với mỗi mạch, xác định chức năng, đầu vào, đầu ra và đóng góp cho vấn đề trung tâm. Với mỗi trang, xác định kết quả đã dùng, bước suy luận mới và đầu ra cho trang kế tiếp. Phải phát hiện thiếu tiên quyết, bước nhảy lập luận, chuyển phần đột ngột, phần đứng riêng, lặp chức năng, kết quả trọng tâm chưa được chuẩn bị hoặc kết luận không giải quyết vấn đề mở đầu. Báo cáo từng vấn đề phải nêu `vai trò trong lập luận`, `kết nối vào`, `kết nối ra` và `kết quả cần đạt`; báo cáo cấp mạch phải nêu `chức năng`, `đầu vào`, `đầu ra` và `đóng góp cho vấn đề trung tâm`. Vai này không thay kiểm định storyboard, toán học hoặc độ bao phủ chuyên môn.
 
 Mức độ gồm `chặn bàn giao`, `nghiêm trọng`, `trung bình`, `nhẹ`. Mọi lỗi `chặn bàn giao` và `nghiêm trọng` phải được xử lý.
 
-Đối với vai mạch kể chuyện, phân mức `chặn bàn giao` khi thiếu mạch mở đầu hoặc mạch kết luận, số mạch ngoài khoảng 5–7 mà không có yêu cầu rõ của người dùng, không thể xác định được luận đề hoặc tuyến chính của bài, hay kết luận mâu thuẫn với vấn đề đã thiết lập; `nghiêm trọng` khi một mạch không có chức năng riêng, lặp chức năng của mạch khác, không tạo tiến triển cho vấn đề trung tâm, hoặc một phần trọng tâm bị đứt khỏi tuyến chính khiến quan hệ nhân quả hay lập luận không thể theo dõi; `trung bình` khi điểm vào hoặc đầu ra giữa hai mạch còn mờ, chuyển trang hay chuyển phần đột ngột, vai trò một trang chưa rõ hoặc nhịp nhấn làm loãng luận điểm; `nhẹ` khi mạch đúng nhưng tên mạch, câu nối, tín hiệu chuyển ý hoặc thứ bậc nhấn có thể rõ hơn.
+Đối với vai mạch lập luận, phân mức `chặn bàn giao` khi thiếu mạch mở đầu hoặc mạch kết luận, số mạch ngoài khoảng 5–7 mà không có yêu cầu rõ của người dùng, không thể xác định được luận đề hoặc tuyến chính của bài, hay kết luận mâu thuẫn với vấn đề đã thiết lập; `nghiêm trọng` khi một mạch không có chức năng riêng, lặp chức năng của mạch khác, không tạo tiến triển cho vấn đề trung tâm, hoặc một phần trọng tâm bị đứt khỏi tuyến chính khiến quan hệ nhân quả hay lập luận không thể theo dõi; `trung bình` khi điểm vào hoặc đầu ra giữa hai mạch còn mờ, chuyển trang hay chuyển phần đột ngột, vai trò một trang hoặc kết quả trọng tâm chưa rõ; `nhẹ` khi mạch đúng nhưng tên mạch, câu nối hoặc tín hiệu chuyển ý có thể rõ hơn.
 
-Lưu đủ năm báo cáo hoặc bản hợp nhất có truy nguyên từng vai trong `2627-1/planning/lec-NN/review-log.md`. Không xóa vấn đề đã sửa; ghi trạng thái, quyết định và bằng chứng kiểm tra lại. Sau khi thêm, bỏ, gộp, tách, đổi thứ tự trang, đổi điểm nhấn chính hoặc sửa câu chuyển có ảnh hưởng đến mạch bài, phải giao lại vai mạch kể chuyện rà các trang bị ảnh hưởng, hai trang lân cận mỗi phía và toàn bộ ranh giới phần liên quan; nếu thay đổi mở bài, kết bài hoặc luận đề trung tâm, phải rà lại toàn bộ bộ trang chiếu.
+Lưu đủ năm báo cáo hoặc bản hợp nhất có truy nguyên từng vai trong `2627-1/planning/lec-NN/review-log.md`. Không xóa vấn đề đã sửa; ghi trạng thái, quyết định và bằng chứng kiểm tra lại. Sau khi thêm, bỏ, gộp, tách, đổi thứ tự trang, đổi điểm nhấn chính hoặc sửa câu chuyển có ảnh hưởng đến mạch bài, phải giao lại vai mạch lập luận rà các trang bị ảnh hưởng, hai trang lân cận mỗi phía và toàn bộ ranh giới phần liên quan; nếu thay đổi mở bài, kết bài hoặc luận đề trung tâm, phải rà lại toàn bộ bộ trang chiếu.
 
 ### 7. Tác tử chỉnh sửa
 
@@ -252,7 +261,7 @@ Giao một tác tử chỉnh sửa riêng nhận bản nháp và năm báo cáo.
 - Sửa trực tiếp tệp RevealJS và tài sản liên quan; không thay đổi thứ tự hoặc bố cục mẫu nếu lỗi có thể sửa cục bộ.
 - Ghi quyết định đối với đề xuất không áp dụng, kèm lý do cụ thể.
 - Sau thay đổi nội dung đáng kể, yêu cầu tác tử kiểm tra toán học rà soát lại phần bị ảnh hưởng.
-- Sau thay đổi thứ tự, cấu trúc phần, câu chuyển, điểm nhấn hoặc vai trò của trang, yêu cầu tác tử mạch kể chuyện rà soát lại theo phạm vi quy định ở mục 6.
+- Sau thay đổi thứ tự, cấu trúc phần, câu chuyển, điểm nhấn hoặc vai trò của trang, yêu cầu tác tử mạch lập luận rà soát lại theo phạm vi quy định ở mục 6.
 
 ### 8. Các tác tử chuyên trách tùy chọn
 
@@ -262,7 +271,7 @@ Tác tử lập kế hoạch hoặc điều phối viên có thể bổ sung cá
 - **Tác tử ký hiệu và thuật ngữ:** lập bảng thuật ngữ Việt–Anh, kiểm tra lần xuất hiện đầu tiên, viết tắt và tính nhất quán của ký hiệu.
 - **Tác tử ví dụ và bài tập:** xây dựng ví dụ số, phản ví dụ, câu hỏi kiểm tra, bài tập nhiều mức và đáp án; tự tính lại kết quả trước khi bàn giao.
 - **Tác tử hình hóa:** thiết kế đồ thị, sơ đồ hoặc hình học minh họa; bảo đảm nhãn, đơn vị, mô tả thay thế và nguồn.
-- **Tác tử ghi chú diễn giả:** viết phần diễn giải, chuyển ý, gợi ý giảng dạy và đáp án nằm ngoài phần hiển thị.
+- **Tác tử ghi chú diễn giả:** viết giả thiết, diễn giải, quan hệ suy luận, gợi ý toán học và lời giải nằm ngoài phần hiển thị theo văn phong học thuật.
 - **Tác tử khả năng tiếp cận:** kiểm tra tương phản, khả năng đọc, điều hướng bàn phím, văn bản thay thế và việc không dùng màu làm tín hiệu duy nhất.
 - **Tác tử kiểm thử kỹ thuật:** kiểm tra HTML, KaTeX, plugin, tài nguyên, liên kết, lỗi trình duyệt và hiển thị trên các kích thước màn hình.
 - **Tác tử đối chiếu mẫu:** so sánh bản triển khai với mẫu theo từng trang chiếu và ghi các sai khác có chủ ý hoặc ngoài ý muốn.
@@ -279,7 +288,8 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 - Kiểm tra HTML, đường dẫn nội bộ, ảnh, plugin, KaTeX, ghi chú diễn giả, số trang chiếu và liên kết từ trang chỉ mục nếu có.
 - Kiểm tra mọi mã trang chiếu đều có đúng một mục trong `2627-1/planning/lec-NN/storyboard.md`, lý do tồn tại đã được tác tử storyboard chấp nhận, và quyết định biên tập khớp với bản RevealJS hiện tại.
 - Kiểm tra `outline.md`, `storyboard.md` và `review-log.md` cùng phản ánh bản RevealJS hiện tại; rà mọi ảnh raster và chỉ chấp nhận ngoại lệ đã được ghi đủ nguồn, quyền, lý do và văn bản thay thế.
-- Kiểm tra đủ năm báo cáo hoặc bản hợp nhất có truy nguyên từng vai; mọi vấn đề về vai trò trang, kết nối vào–ra, điểm nhấn và tuyến kể chuyện đã có trạng thái, quyết định và bằng chứng rà lại phù hợp.
+- Kiểm tra sườn lý thuyết chung, quan hệ phụ thuộc giữa các trang và mức độ giải quyết bài toán trung tâm trong phần kết luận; xác nhận phạm vi biên tập và kết quả tự kiểm `no-ai-slop` trong nhật ký.
+- Kiểm tra đủ năm báo cáo hoặc bản hợp nhất có truy nguyên từng vai; mọi vấn đề về vai trò trang, kết nối vào–ra, kết quả trọng tâm và mạch lập luận đã có trạng thái, quyết định và bằng chứng rà lại phù hợp.
 - Kiểm tra bài có 5–7 `<section>` ngoài gồm mở đầu và kết luận, hoặc có ngoại lệ do người dùng yêu cầu rõ; đối chiếu chức năng, đầu vào, đầu ra và đóng góp của từng mạch với `storyboard.md`, `review-log.md` và bản RevealJS hiện tại.
 - Tại thư mục gốc của kho, chạy `python3 -m reloadserver 8765`. Cổng là đối số vị trí; không dùng tùy chọn `--port`. Không thay đổi cổng nếu người dùng không yêu cầu. Ví dụ truy cập Bài giảng 01 qua `http://localhost:8765/2627-1/lecture-01-<chu-de>.html`.
 - Mở đúng URL, duyệt mọi trang chiếu và các trang chiếu dọc; kiểm tra tràn chữ, chữ quá nhỏ, phần tử chồng lấn, công thức lỗi, ảnh vỡ, tương phản và điều hướng bàn phím.
@@ -298,19 +308,13 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 
 ## Điều phối mô hình trong dự án
 
-- Codex chính giữ vai trò điều phối viên: phân rã công việc, duyệt kế hoạch, hợp nhất kết quả, tự kiểm định đầu ra và thực hiện kiểm định cuối.
-- Người dùng cho phép trước điều phối viên và các tác tử con gọi OpenRouter để thực hiện nhiệm vụ được giao, bao gồm yêu cầu nâng quyền thực thi (`elevate`, `sandbox_permissions: "require_escalated"`) khi cần truy cập mạng hoặc chạy cầu nối OpenRouter. Không cần xin xác nhận lại cho từng lần gọi trong phạm vi này. Nếu tác tử con không thể tự yêu cầu nâng quyền, điều phối viên thực hiện thay. Quyền này vẫn tuân theo cơ chế phê duyệt và giới hạn của môi trường; không tự tắt hoặc vượt qua cơ chế bảo vệ.
-- Người dùng cho phép điều phối viên và các tác tử con đọc, gửi tệp hoặc nội dung tệp trong kho làm việc tới OpenRouter khi cần cho nhiệm vụ, không cần xin phép riêng cho từng tệp. Quyền này áp dụng cho tài liệu nguồn, mã nguồn, trang chiếu, hình, ghi chú và báo cáo, ngoại trừ `.env`, `.env.*` ở mọi thư mục và mọi bí mật, kể cả bí mật nằm trong tệp có tên thông thường.
-- Trước khi gửi, kiểm tra phạm vi tệp và loại bỏ nội dung bí mật như khóa truy cập, mã truy cập, mật khẩu, khóa riêng và thông tin xác thực. Không để tác tử đọc các tệp `.env`, `.env.*`; không đưa nội dung các tệp này hoặc bí mật vào lời nhắc, tệp đính kèm, kết quả công cụ hay nhật ký. Chỉ tiến trình cầu nối được nạp khóa cục bộ để xác thực yêu cầu với OpenRouter; không đưa khóa vào nội dung gửi cho mô hình. Nếu tệp cần dùng chứa bí mật, chỉ gửi bản đã loại bỏ bí mật và được kiểm tra lại, hoặc loại tệp đó khỏi đầu vào.
-- Mặc định dùng `z-ai/glm-5.3-flash` qua OpenRouter cho worker. Chạy từ `openrouter-mcp/` bằng `uv run openrouter-mcp-reader`, `uv run openrouter-mcp-reviewer` hoặc `uv run openrouter-mcp-writer`; không dùng `collaboration.spawn_agent` thay thế ba vai trò này và không chuyển ngầm sang worker mặc định khi OpenRouter lỗi.
-- Dùng vai trò `openrouter_reader` qua `openrouter-mcp-reader` cho kiểm kê, lập kế hoạch, ánh xạ mẫu, phân tích nguồn và các nhiệm vụ đọc khác.
-- Dùng vai trò `openrouter_reviewer` qua `openrouter-mcp-reviewer` cho kiểm định storyboard, năm vòng rà soát độc lập, rà toán học và các lượt rà lại chỉ đọc.
-- Dùng vai trò `openrouter_writer` qua `openrouter-mcp-writer` cho một phần việc ghi đã được giới hạn bằng `--repo-root`, danh sách tệp và đầu ra cụ thể. Ưu tiên cấp một thư mục con hoặc thư mục tạm thay vì toàn bộ kho.
-- Khi `--repo-root` của writer không phải gốc kho, truyền thêm `--api-key-root` trỏ tới gốc kho để phía điều phối viên nạp `.env`. Không đưa gốc nạp khóa vào công cụ, prompt hoặc nội dung worker.
-- Luôn truyền `--json`; dùng `requested_model`, `observed_model` và `provider` trong kết quả cầu nối làm bằng chứng runtime. Lời tự khai trong nội dung worker không phải bằng chứng về mô hình hay nhà cung cấp.
-- Khi cần chạy song song, khởi chạy mỗi reader hoặc reviewer trong một tiến trình riêng rồi chờ tất cả hoàn tất. Không cho hai worker có quyền ghi sửa các tệp trùng nhau cùng lúc; mặc định chỉ chạy một writer.
-- Mỗi nhiệm vụ worker phải hẹp, có đầu vào, đầu ra, phạm vi tệp và điều kiện hoàn thành cụ thể. Codex chính phải rà, chấp nhận hoặc bác bỏ kết quả trước khi bắt đầu giai đoạn phụ thuộc.
-- Nếu lệnh gọi OpenRouter bị chặn bởi giới hạn mạng hoặc thực thi, được yêu cầu nâng quyền và thử lại trong phạm vi đã cho phép. Nếu worker vẫn lỗi, dừng giai đoạn phụ thuộc, giữ nguyên kho và báo lỗi sau khi đã loại bỏ bí mật. Không âm thầm dùng worker Codex khác để thay thế.
+- Codex chính giữ vai trò điều phối viên: phân rã công việc, duyệt kế hoạch, hợp nhất kết quả và kiểm định đầu ra.
+- Mọi tác tử con, kể cả tác tử do tác tử con tạo tiếp, phải dùng **GPT-6-Astra** qua cơ chế tác tử gốc của Codex trong phiên dùng gói thuê bao (subscription). Tạo tác tử bằng `collaboration.spawn_agent` với `model: "gpt-6-astra"`; chọn `fork_turns: "none"` hoặc số lượt phù hợp khi công cụ yêu cầu để đặt mô hình tường minh. Giao tiếp và tiếp tục nhiệm vụ bằng các công cụ `collaboration` tương ứng.
+- Không dùng OpenRouter, cầu nối trong `openrouter-mcp/`, các script OpenRouter hoặc lời gọi mô hình qua API/CLI để thay cơ chế tác tử gốc. Các ủy quyền OpenRouter trong hồ sơ lịch sử không áp dụng cho quy trình hiện hành.
+- Không đọc, nạp hoặc gửi `.env`, `.env.*` ở bất kỳ thư mục nào; không dùng khóa API hay bí mật để tạo hoặc xác thực tác tử. Không đưa bí mật, kể cả trong tệp có tên thông thường, vào lời nhắc, tệp đính kèm, kết quả công cụ hoặc nhật ký.
+- Mỗi nhiệm vụ phải có vai trò, đầu vào, đầu ra, phạm vi tệp và điều kiện hoàn thành cụ thể. Tác tử chỉ đọc có thể chạy song song trong giới hạn khả dụng; mặc định chỉ một tác tử được ghi tệp tại một thời điểm. Điều phối viên phải chấp nhận hoặc bác bỏ kết quả trước giai đoạn phụ thuộc.
+- Ghi tên tác tử, vai trò và mô hình đã chỉ định từ lời gọi công cụ trong nhật ký. Chỉ ghi mô hình thực chạy hoặc tuyến xác thực khi công cụ cung cấp bằng chứng; không coi lời tự khai của tác tử là bằng chứng runtime.
+- Nếu không tạo được tác tử GPT-6-Astra qua cơ chế gốc, báo rõ giới hạn và dừng phần việc phụ thuộc. Tiếp tục các việc độc lập đã được phép; không chuyển ngầm sang mô hình khác, OpenRouter hoặc script gọi mô hình.
 
 ## Quản lý phiên bản
 
@@ -330,11 +334,12 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 Chỉ coi bộ trang chiếu hoàn thành khi:
 
 - Tuân theo trang chiếu mẫu và tài liệu người dùng theo đúng thứ tự ưu tiên.
-- Toàn bộ nội dung chính bằng tiếng Việt và đạt giọng văn quy định.
+- Tiêu đề, nội dung, ghi chú diễn giả và học liệu bằng tiếng Việt, đạt văn phong học thuật; đã biên tập và tự kiểm theo `no-ai-slop`.
 - Năm báo cáo rà soát đã có và các lỗi bắt buộc đã được xử lý.
 - Ba tệp quy trình của bài mới nằm trong `2627-1/planning/lec-NN/`; `storyboard.md` bao phủ toàn bộ trang chiếu và không còn trang có lý do tồn tại yếu hoặc chưa được xử lý.
 - Mọi khái niệm trọng tâm hoàn thành hành trình `nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập`, hoặc có ngoại lệ được giải thích và được tác tử kiểm định storyboard chấp nhận.
 - Bài có 5–7 mạch nội dung lớn tương ứng với các `<section>` ngoài, gồm mở đầu và kết luận; mỗi mạch có chức năng riêng, điểm nối vào–ra và đóng góp kiểm chứng được cho vấn đề trung tâm, hoặc có ngoại lệ do người dùng yêu cầu rõ và đã được ghi nhận.
+- Bài có cơ sở lý thuyết chung phù hợp chủ đề; liên kết giữa các trang chỉ rõ kết quả kế thừa, giả thiết thay đổi và bước suy luận tiếp theo.
 - Các công thức, ví dụ số, giả thiết và nguồn đã được kiểm tra.
 - Bộ trang chiếu chạy tại cổng `8765`, không có tài nguyên hỏng hoặc lỗi hiển thị nghiêm trọng.
 - `2627-1/index.html` liên kết đúng tới bài đã hoàn thành, dùng cấu trúc chỉ mục quy định và không lộ tài liệu quy trình nội bộ.
