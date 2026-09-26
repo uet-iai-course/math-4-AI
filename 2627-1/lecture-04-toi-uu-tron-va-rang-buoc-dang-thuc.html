@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-lecture="04">
 <head>
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <link rel="icon" href="data:,"/>
@@ -9,64 +9,7 @@
   <link rel="stylesheet" href="revealjs/dist/theme/white.css"/>
   <link rel="stylesheet" href="plugin/highlight/monokai.css"/>
   <link rel="stylesheet" href="lecture-style.css"/>
-  <style>
-.reveal{font-size:40px;color:#263044}
-.reveal .slides{text-align:left}
-.reveal .slides section[data-slide-id]{font-size:.80em;line-height:1.30;height:674px;box-sizing:border-box;padding:10px 10px 35px}
-.reveal h1,.reveal h2,.reveal h3{text-transform:none;color:#2f3e7a;line-height:1.13}
-.reveal h1{font-size:1.85em;margin:.40em 0 .65em}
-.reveal h2{font-size:1.32em;margin:0 0 .44em;font-weight:650}
-.reveal h3{font-size:1.02em;margin:0 0 .4em;font-weight:650}
-.reveal p{margin:.42em 0}.reveal li{margin:.20em 0}.reveal ul,.reveal ol{display:block;margin:.25em 0 .25em 1.1em;padding:0;line-height:1.30}
-.lec-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:center;margin:14px 0}.lec-grid>div{min-width:0}.ratio55{grid-template-columns:minmax(0,11fr) minmax(0,9fr)}.ratio60{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
-.panel{background:#f7efe6;border:1px solid #e4d6c8;border-radius:8px;padding:18px 22px;margin:8px 0}
-.takeaway{background:#edf1f9;border-left:5px solid #2f3e7a;padding:13px 19px;margin:18px 0 0;border-radius:6px;font-weight:550}
-.question{background:#edf1f9;border:2px solid #2f3e7a;border-radius:8px;padding:20px 24px;margin:20px 0}
-.formula{text-align:center;overflow-x:auto;padding:2px 0}.formula:focus-visible,.table-scroll:focus-visible{outline:3px solid #b15a2b;outline-offset:3px}
-.reveal .katex{font-size:1.06em}.reveal .katex-display{margin:.36em 0}.formula.emphasis{font-size:1.12em;margin:20px 0}
-@media(min-width:761px){.reveal [data-slide-id="RG10"] .formula.emphasis{margin:4px 0}}
-.reveal .plot{display:block;width:100%;height:auto;max-height:410px;object-fit:contain;margin:0!important;border:0!important;box-shadow:none!important;background:white}
-.compact-figures .plot{max-height:265px}
 
-
-
-
-.compact-figures .lec-grid{margin:7px 0;gap:22px}
-.table-scroll{overflow-x:auto;max-width:100%;margin:15px 0}.reveal table{font-size:1em;border-collapse:collapse;margin:0 auto;width:100%;line-height:1.24}.reveal table th{background:#f7efe6;color:#2f3e7a;padding:12px 14px;font-weight:650;border-bottom:2px solid #b15a2b}.reveal table td{padding:12px 14px;border-bottom:1px solid #d8dbe2;vertical-align:middle}.reveal table tr:last-child td{border-bottom:1px solid #d8dbe2}
-.steps li{padding-left:8px;margin:.33em 0}.lec-flow{display:flex;align-items:center;gap:12px;margin:22px 0}.flow-node{flex:1;background:#f7efe6;border-top:4px solid #b15a2b;padding:16px 12px;text-align:center;border-radius:5px;font-weight:600}.arrow{color:#b15a2b;font-weight:bold}.panel .lec-flow{flex-direction:column}.panel .lec-flow .arrow{transform:rotate(90deg)}
-.title-slide{text-align:left!important;padding-top:40px!important}.eyebrow{color:#b15a2b;font-weight:650}
-
-
-
-
-
-
-
-
-
-.reveal .footer{font-size:18px;bottom:2px;color:#666;z-index:2}.reveal .slide-number{font-size:16px}.reveal .controls{color:#b15a2b}
-
-@media(max-width:760px){
-html,body{overflow:auto;height:auto}.reveal{font-size:24px;height:100dvh;overflow-y:auto;overflow-x:hidden;touch-action:pan-y}.reveal .slides{position:relative!important;top:0!important;left:0!important;transform:none!important;width:100%!important;height:auto!important;margin:0!important;perspective:none!important}.reveal .slides>section.present{position:relative!important;top:0!important;left:0!important;transform:none!important;transition:none!important;width:100%!important;height:auto!important;padding:0}.reveal .slides section[data-slide-id]{position:relative!important;top:0!important;left:0!important;transform:none!important;transition:none!important;width:100%!important;height:auto!important;min-height:100dvh;font-size:1em!important;padding:22px 24px 86px!important}.reveal .slides>section:not(.present),.reveal .slides>section>section:not(.present){display:none!important}.reveal h1{font-size:1.65em}.reveal h2{font-size:1.35em}.lec-grid{grid-template-columns:1fr!important;gap:12px}.lec-flow{flex-direction:column;gap:7px}.flow-node{width:100%;box-sizing:border-box}.lec-flow .arrow{transform:rotate(90deg)}.plot,.compact-figures .plot{max-height:none}.panel{padding:16px}.table-scroll table{min-width:590px}.reveal .footer{display:none}.reveal .controls{bottom:9px;right:10px}.formula.emphasis{font-size:1em}.reveal .slide-number{position:fixed;bottom:8px;left:8px;right:auto}
-}
-.reveal>.lecture-viewport{height:100%}
-@media screen and (max-width:760px){
-html,body{height:100dvh}
-.reveal{height:100dvh;overflow:visible}
-.reveal>.lecture-viewport{height:calc(100dvh - 128px);overflow-y:auto;overflow-x:hidden;touch-action:pan-y}
-.lecture-viewport:focus-visible{outline:3px solid #b15a2b;outline-offset:-3px}
-.reveal .slides section[data-slide-id]{min-height:calc(100dvh - 128px)}
-.reveal .controls[data-controls-layout]{position:fixed;top:auto;left:auto;bottom:9px;right:10px;width:0;height:0;z-index:31}
-.reveal .controls[data-controls-layout] button{animation:none!important;transform:none!important}
-.reveal .controls[data-controls-layout] .navigate-left{top:auto;left:auto;right:64px;bottom:32px;margin:0}
-.reveal .controls[data-controls-layout] .navigate-right{top:auto;left:auto;right:0;bottom:32px;margin:0}
-.reveal .controls[data-controls-layout] .navigate-up{top:auto;left:auto;right:32px;bottom:64px;margin:0}
-.reveal .controls[data-controls-layout] .navigate-down{top:auto;left:auto;right:32px;bottom:0;margin:0;padding:0}
-.reveal .progress{position:fixed;bottom:125px;left:0;width:100%;z-index:31}
-.reveal .slide-number{position:fixed;bottom:8px;left:8px;right:auto;z-index:31}
-}
-@media print{.reveal .slides section[data-slide-id]{height:674px!important}.reveal .footer{display:block}}
-</style>
 </head>
 <body><div class="reveal"><div class="lecture-viewport" tabindex="0" role="region" aria-label="Nội dung trang chiếu"><div class="slides">
 <section>
@@ -83,7 +26,7 @@ html,body{height:100dvh}
 
 <section data-slide-id="RP01">
   <h2>Điều kiện tối ưu và nhiệm vụ tính</h2>
-  <div class="lec-grid" style="grid-template-columns:minmax(0,9fr) minmax(0,11fr);">
+  <div class="lec-grid lec-grid--45-55">
     <div>
       <h3>Đã biết từ bài trước</h3>
       <p>Trong bài toán lồi, KKT là điều kiện đủ để chứng nhận một ứng viên $x^*$ là tối ưu toàn cục.</p>
@@ -195,7 +138,7 @@ html,body{height:100dvh}
 
 <section data-slide-id="RG02">
 <h2>Hướng gradient từ mô hình chọn bước</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,3fr) minmax(0,1fr)">
+<div class="lec-grid lec-grid--75-25">
 <div>
 <div class="formula" tabindex="0">Mô hình tuyến tính: $f(x+d)\approx f(x)+g^Td$ — không có cực tiểu hữu hạn khi $g\ne0$.</div>
 <div class="formula fragment" tabindex="0">Chọn mô hình bậc hai: $Q_I(d)=f(x)+g^Td+\tfrac12\|d\|_2^2$.</div>
@@ -218,7 +161,7 @@ html,body{height:100dvh}
 <div class="table-scroll" tabindex="0">
 <table>
 <tr><th>Hướng</th><th>Đạo hàm hướng</th><th>Kết luận</th></tr>
-<tr><td>$d_G=(-6,-28)^T$</td><td><span style="white-space:nowrap">$g^Td_G=-820&lt;0$</span></td><td>giảm</td></tr>
+<tr><td>$d_G=(-6,-28)^T$</td><td><span class="math-nowrap">$g^Td_G=-820&lt;0$</span></td><td>giảm</td></tr>
 <tr><td>$\tilde d=(-2,1)^T$</td><td>$g^T\tilde d=16&gt;0$</td><td>tăng</td></tr>
 </table>
 </div>
@@ -269,7 +212,7 @@ html,body{height:100dvh}
 
 <section data-slide-id="RG06">
 <h2>Thuật toán giảm gradient</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,13fr) minmax(0,7fr)">
+<div class="lec-grid lec-grid--65-35">
 <div class="panel"><ol class="steps">
 <li>Tính $g=\nabla f(x)$.</li>
 <li>Nếu $\|g\|_2\le\varepsilon_g$ thì dừng.</li>
@@ -285,7 +228,7 @@ html,body{height:100dvh}
 </section>
 <section data-slide-id="RG07">
 <h2>Ảnh hưởng của thước đo</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,13fr) minmax(0,7fr)">
+<div class="lec-grid lec-grid--65-35">
 <div>
 <img class="plot" src="img/lec-04/gradient-fixed-step.svg" alt="Đường đi của phương pháp gradient với bước cố định t=1/4 trên VD1: các điểm co dần theo tọa độ, x1 nhân 1/4 và x2 nhân −3/4 sau mỗi bước">
 </div>
@@ -306,7 +249,7 @@ Với $f=\tfrac12(3x_1^2+7x_2^2)$ tại $x^0=(2,4)^T$, gradient là $g=(6,28)^T$
 
 <section data-slide-id="RG08">
 <h2>Bài toán chọn hướng có chuẩn đơn vị</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,9fr) minmax(0,11fr)">
+<div class="lec-grid lec-grid--45-55">
 <div>
 <img class="plot" src="img/lec-04/weighted-unit.svg" alt="Elip 3v1²+7v2²=1 và các đường mức tuyến tính 6v1+28v2=c trên VD1 với W=diag(3,7); điểm tiếp xúc cho giá trị gᵀv nhỏ nhất">
 </div>
@@ -327,7 +270,7 @@ Trang trước cho thấy chuẩn Euclid co hai tọa độ không đều, nên 
 
 <section data-slide-id="RG09">
 <h2>Giải KKT của hướng chuẩn hóa</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,7fr) minmax(0,3fr)">
+<div class="lec-grid lec-grid--70-30">
 <div>
 <p><strong>Bước 1 — nhóm dừng:</strong> từ $g+2\zeta Wv=0$ và $g\ne0$ suy ra $\zeta>0$ (nếu $\zeta=0$ thì $g=0$, mâu thuẫn).</p>
 <p><strong>Bước 2 — nhóm bù trừ:</strong> vì $\zeta>0$, điều kiện $\zeta(v^TWv-1)=0$ buộc $v^TWv=1$: ràng buộc hoạt động.</p>
@@ -368,7 +311,7 @@ Quả cầu $\|v\|_W\le1$ đối xứng qua gốc nên giá trị nhỏ nhất c
 
 <section data-slide-id="RG11">
 <h2>Kiểm tra bài con và bước cập nhật</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,3fr) minmax(0,2fr)">
+<div class="lec-grid lec-grid--60-40">
 <div class="question">
 <p><strong>Câu hỏi:</strong> Với $W=\operatorname{diag}(3,7)$, $g=(6,28)^T$: viết điều kiện dừng của $Q_W$ và giải ra $d$. Phân biệt $d$ với hướng chuẩn hóa $v=d/\sqrt{124}$.</p>
 </div>
@@ -398,7 +341,7 @@ Hàm $\varphi(s)=s-\log s$ với logarit tự nhiên có đạo hàm $\varphi'(s
 <h2>Hướng Newton từ điều kiện dừng</h2>
 <p>Với $g=\nabla f(x)\in\mathbb R^n$, $H=\nabla^2 f(x)\in\mathbb R^{n\times n}$, chọn:</p>
 <div class="formula emphasis" tabindex="0">$$Q_H(d)=f(x)+g^Td+\tfrac12d^THd.$$</div>
-<div class="lec-grid" style="grid-template-columns:minmax(0,3fr) minmax(0,1fr)"><div>
+<div class="lec-grid lec-grid--75-25"><div>
 <div class="formula fragment" tabindex="0">$$\begin{aligned}\nabla_dQ_H(d)&amp;=0\\g+Hd&amp;=0\\Hd&amp;=-g.\end{aligned}$$</div>
 <p><strong>VD2:</strong> $16d=3\Rightarrow d=3/16$, $s^+=1/4+d=7/16$.</p></div>
 <div class="panel"><p>$H\succ0$: bài con lồi chặt, nghiệm duy nhất.</p></div></div>
@@ -454,7 +397,7 @@ Ba hàng của bảng là ba phép trừ khác nhau, không thể hoán đổi. 
 
 <section data-slide-id="RN06">
 <h2>Thuật toán Newton và điều kiện dùng</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,13fr) minmax(0,7fr)"><div class="panel"><ol class="steps">
+<div class="lec-grid lec-grid--65-35"><div class="panel"><ol class="steps">
 <li>Tính $g=\nabla f(x)$, $H=\nabla^2f(x)$.</li><li>Giải hệ $Hd=-g$.</li><li>Tính $\delta_N^2=d^THd$.</li>
 <li>Nếu $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$: dừng.</li><li>Nếu chưa: chọn $t$ bằng Armijo, rồi $x\leftarrow x+td$.</li>
 </ol></div><div><div class="panel"><strong>Đầu vào:</strong> $x^0$ trong miền, dung sai dương, $\alpha,\beta$.</div>
@@ -479,7 +422,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <section>
 <section data-slide-id="RE01">
   <h2>KKT của bài toán có đẳng thức</h2>
-  <div class="lec-grid" style="grid-template-columns:minmax(0,9fr) minmax(0,11fr)">
+  <div class="lec-grid lec-grid--45-55">
     <div>
       <img class="plot" src="img/lec-04/equality-start-new.svg" alt="Hai trục u1, u2 với đường thẳng u1 + u2 = 14, điểm khả thi (16, −2) và điểm nghiệm (10, 4) nằm trên đường đó; không có điều kiện không âm.">
     </div>
@@ -526,7 +469,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 </section>
 <section data-slide-id="RE04">
   <h2>Hệ Newton từ KKT của bài con</h2>
-  <div class="lec-grid" style="grid-template-columns:minmax(0,9fr) minmax(0,11fr)">
+  <div class="lec-grid lec-grid--45-55">
     <div>
       <div class="formula" tabindex="0">$$g+Hd+A^T\eta=0$$</div>
       <div class="formula" tabindex="0">$$Ad=0$$</div>
@@ -595,7 +538,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
     <p><strong>Câu hỏi:</strong> Từ $Q(d)=g^Td+\tfrac12d^THd$ với $Ad=0$: hãy viết $L_m$, lấy hai đạo hàm rồi xếp ma trận; nhân $N^T$ cho hệ nào?</p>
     <p>Dữ kiện VD3 để kiểm $d$ nếu cần: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$, $A=[1\ 1]$, $b=14$, điểm đầu $(16,-2)^T$.</p>
   </div>
-  <div class="lec-grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)">
+  <div class="lec-grid lec-grid--three">
     <div class="flow-node">Lagrange</div>
     <div class="flow-node">Hai điều kiện dừng</div>
     <div class="flow-node">Hệ rút gọn</div>
@@ -655,7 +598,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 
 <section data-slide-id="RR05">
 <h2>Đại lượng đo tiến triển khi chưa khả thi</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,2fr) minmax(0,3fr)"><div class="panel"><p><strong>Đổi điểm đầu để kiểm giới hạn:</strong> $u=(0,0)^T$, $\nu=0$.</p><p>$F=0&lt;140=F^\star$ nhưng $r_p=-14$.</p><p>Đến nghiệm khả thi đòi hỏi $F$ tăng.</p></div>
+<div class="lec-grid lec-grid--40-60"><div class="panel"><p><strong>Đổi điểm đầu để kiểm giới hạn:</strong> $u=(0,0)^T$, $\nu=0$.</p><p>$F=0&lt;140=F^\star$ nhưng $r_p=-14$.</p><p>Đến nghiệm khả thi đòi hỏi $F$ tăng.</p></div>
 <div><p>Gộp $r=[r_d;r_p]\ne0$, $\Delta=[d;\Delta\nu]$; $J_r$ là ma trận Jacobi của $r$.</p>
 <div class="formula" tabindex="0">$$J_r\Delta=-r.$$</div><div class="formula" tabindex="0">$$\left.\frac{d}{dt}\|r((u,\nu)+t\Delta)\|_2\right|_{t=0}$$</div><div class="formula" tabindex="0">$$=\frac{r^TJ_r\Delta}{\|r\|_2}=-\|r\|_2&lt;0.$$</div></div></div>
 <div class="takeaway">Chuẩn phần dư giảm với bước dương đủ nhỏ: dùng nó để nhận bước.</div>
@@ -665,7 +608,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 <section data-slide-id="RR06">
 <h2>Thuật toán Newton từ điểm chưa khả thi</h2>
 <p>Dừng khi $\|r_p\|_2\le\varepsilon_p$ và $\|r_d\|_2\le\varepsilon_d$.</p>
-<div class="lec-grid" style="grid-template-columns:minmax(0,13fr) minmax(0,7fr)">
+<div class="lec-grid lec-grid--65-35">
 <div>
 <ol class="steps">
 <li>Tính $r_d,r_p$; kiểm hai dung sai để dừng.</li>
@@ -719,7 +662,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 
 <section data-slide-id="RS02">
   <h2>Định nghĩa và phép kiểm tự điều chỉnh</h2>
-  <div class="lec-grid" style="grid-template-columns:minmax(0,9fr) minmax(0,11fr)">
+  <div class="lec-grid lec-grid--45-55">
     <div>
       <img class="plot" src="img/lec-04/self-concordance-ratio.svg" alt="Đồ thị tỷ số trị tuyệt đối đạo hàm bậc ba chia lũy thừa ba phần hai của đạo hàm bậc hai của hàm s − log s trên s &gt; 0: đường nằm ngang ở mức 2, minh họa bất đẳng thức |φ'''| ≤ 2(φ'')^{3/2} đúng với mọi s.">
     </div>
@@ -746,7 +689,7 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 
 <section data-slide-id="RS04">
   <h2>Khử đẳng thức và tính tự điều chỉnh</h2>
-  <div class="lec-grid" style="grid-template-columns:minmax(0,9fr) minmax(0,11fr)">
+  <div class="lec-grid lec-grid--45-55">
     <div>
       <div class="panel"><div class="lec-flow"><div class="flow-node">$z$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$u=\hat u+Nz$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$\psi(z)=F(u)$</div></div></div>
     </div>
@@ -782,12 +725,12 @@ Quy trình năm bước là cơ chế đã suy ra từ các trang trước: tín
 </section>
 <section data-slide-id="RZ02">
 <h2>Kiểm tra KKT trong mô hình học</h2>
-<div class="lec-grid" style="grid-template-columns:minmax(0,2fr) minmax(0,3fr)"><div>
+<div class="lec-grid lec-grid--40-60"><div>
 <p>Bình phương tối thiểu: giải $\min_{w:Aw=b}J(w)$ với $\rho&gt;0$.</p>
 <div class="formula" tabindex="0">$$\begin{aligned}J(w)&amp;=\tfrac12\|Mw-y\|_2^2\\&amp;\quad+\tfrac\rho2\|w\|_2^2.\end{aligned}$$</div>
 <p>$w\in\mathbb R^n$, $M\in\mathbb R^{m\times n}$, $y\in\mathbb R^m$.</p><p>$A\in\mathbb R^{p\times n}$ đủ hạng hàng; $b,\nu\in\mathbb R^p$.</p></div>
 <div><div class="question"><strong>Câu hỏi:</strong> Tính $g=\nabla J(w)$, $H=\nabla^2J(w)$ và viết KKT.</div>
-<div class="arrow" aria-hidden="true" style="text-align:center">↓</div>
+<div class="arrow arrow-centered" aria-hidden="true">↓</div>
 <div class="question"><strong>Câu hỏi:</strong> Từ kết quả trên, điền $r_d,r_p$ vào mẫu:
 <div class="formula" tabindex="0">$$\begin{bmatrix}H&amp;A^T\\A&amp;0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}\ \square\ \\\ \square\ \end{bmatrix}.$$</div></div></div></div>
 <aside class="notes"><p>Đáp án: $g=M^T(Mw-y)+\rho w$, $H=M^TM+\rho I$. Với vectơ v khác không, $v^THv=\|Mv\|_2^2+\rho\|v\|_2^2&gt;0$, nên H xác định dương. Lagrange là $J(w)+\nu^T(Aw-b)$; KKT gồm $g+A^T\nu=0$, $Aw=b$. Vì $g=Hw-M^Ty$, hệ nghiệm có vế phải $[M^Ty;b]$, không được bỏ $M^Ty$ với dữ liệu tổng quát. Hai ô là $r_d=g+A^T\nu$ và $r_p=Aw-b$. Với $M=\operatorname{diag}(1,2)$, $y=(0,0)^T$, $\rho=1$, $A=[1\ 1]$, $b=14$, ta khôi phục VD3: $H=\operatorname{diag}(2,5)$, nghiệm $w^\star=(10,4)^T$, $\nu^\star=-20$; ma trận khối có định thức $-7$. Điểm $w=0$ không khả thi. Phân biệt $\rho$ là tham số đã cho, $\nu$ là nhân tử đẳng thức hiện tại, còn $\lambda$ của Bài 03 là nhân tử bất đẳng thức chuẩn. Tiêu chí là tự lập đạo hàm và KKT trước khi điền phần dư. Nguồn: Boyd và Vandenberghe (2004), §§5.5.3, 10.2–10.3; ví dụ số tự xây dựng.</p></aside>

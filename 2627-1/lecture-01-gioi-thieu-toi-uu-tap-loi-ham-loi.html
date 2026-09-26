@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-lecture="01">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,78 +10,7 @@
   <link rel="stylesheet" href="revealjs/dist/theme/white.css" />
   <link rel="stylesheet" href="plugin/highlight/monokai.css" />
   <link rel="stylesheet" href="lecture-style.css" />
-  <style>
-    :root { --lec-primary: #2f3e7a; --lec-accent: #b15a2b; --lec-ink: #172033; }
-    .reveal .slides section[data-slide-id] { font-size: .82em; }
-    .reveal h1, .reveal h2, .reveal h3 { color: var(--lec-primary); }
-    .reveal h2 { margin-bottom: .45em; }
-    .box, .check, .result { padding: .52em .7em; border-radius: 8px; }
-    .box { border-left: 5px solid var(--lec-accent); background: #f7efe6; }
-    .check { border: 2px solid var(--lec-primary); background: #edf4ff; }
-    .model-statement p { margin: .08em 0 .12em; }
-    .model-statement .math-mid { margin: .08em 0 0; }
-    .d02-slide h2 { font-size: 1.34em; margin-bottom: .18em; }
-    .d02-slide > div > .math-mid .katex-display { margin: .22em 0; }
-    .d02-slide .grid2 { gap: .48em; }
-    .d02-slide .card { padding: .34em .55em; }
-    .d02-slide .card h3 { font-size: 1.16em; margin-bottom: .12em; }
-    .d02-slide .model-statement .katex-display { margin: .16em 0 0; }
-    .reveal .slides section.l02-slide { font-size: .78em; }
-    .l02-slide .visual-short { max-height: 300px; }
-    .reveal .slides section.l03-slide { font-size: .78em; }
-    .l03-slide .math-mid .katex-display { margin: .2em 0; }
-    .l03-slide .card h3 { font-size: 1.08em; }
-    .reveal .slides section.l01-slide { font-size: .78em; }
-    .l01-slide h2 { font-size: 1.38em; margin-bottom: .18em; }
-    .l01-slide .visual-short { max-height: 300px; }
-    .l01-slide .mini-data { font-size: .78em; margin: .12em 0; }
-    .l01-slide .mini-data th, .l01-slide .mini-data td { padding: .16em .24em; text-align: center; }
-    .g01-slide h2 { font-size: 1.3em; margin-bottom: .2em; }
-    .g01-slide .visual-short { max-height: 300px; }
-    .reveal .slides section.g00-slide { font-size: .78em; }
-    .g00-slide h2 { font-size: 1.34em; margin-bottom: .16em; }
-    .g00-slide .orange-workflow { max-height: 250px; margin: 0 auto .12em; }
-    .g00-slide .card { padding: .3em .48em; }
-    .g00-slide .card h3 { font-size: 1.08em; margin-bottom: .08em; }
-    .k05-slide h2 { font-size: 1.34em; margin-bottom: .2em; }
-    .k05-slide .split-6040 { gap: .55em; }
-    .k05-slide .lighting-diagram { max-height: 315px; margin: .05em auto; }
-    .k05-slide .math-large .katex-display { margin: .25em 0; }
-    .k05-slide .check { margin-top: .22em; }
-    .result { border-left: 5px solid #16706a; background: #eef4f3; }
-    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72em; }
-    .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .58em; }
-    .split-6040 { display: grid; grid-template-columns: 3fr 2fr; gap: .7em; align-items: center; }
-    .card { border: 1px solid #d7dbe5; border-radius: 8px; padding: .48em .62em; background: #fff; }
-    .card h3 { margin: .05em 0 .2em; }
-    .card p, .card ul { margin: .16em 0; }
-    .math-large { font-size: 1.12em; text-align: center; }
-    .math-mid { font-size: 1.02em; text-align: center; }
-    .route { display: flex; align-items: stretch; gap: .32em; margin: .58em 0; }
-    .route .stage { flex: 1; border: 1px solid #d7dbe5; border-radius: 8px; padding: .42em; text-align: center; }
-    .route .arrow { align-self: center; color: var(--lec-accent); font-weight: 700; }
-    .route .case-visual { display: block; width: 100%; max-height: 132px; object-fit: contain; margin-top: .3em; }
-    .visual { display: block; width: 100%; max-height: 410px; object-fit: contain; margin: .15em auto; }
-    .visual-short { max-height: 330px; }
-    .reveal .control-overview { height: 260px; }
-    .reveal .visual-compact { max-height: 210px; }
-    .compact-cards { font-size: .84em; }
-    .stack-cards { display: grid; gap: .55em; }
-    .takeaway { margin-top: .45em; color: var(--lec-ink); font-weight: 650; }
-    .muted { color: #536077; }
-    .tight li { margin: .18em 0; }
-    .reveal table { width: 100%; font-size: 1em; }
-    .reveal th { background: #f7efe6; }
-    .reveal td, .reveal th { padding: .27em .38em; }
-    .reveal section[data-slide-id="M01B"] th:last-child, .reveal section[data-slide-id="M01B"] td:last-child { white-space: nowrap; }
-    .reveal .source-note { font-size: .76em; }
-    @media (max-width: 800px) {
-      .reveal .slides section[data-slide-id] { font-size: .82em; }
-      .visual { max-height: 360px; }
-      .reveal .control-overview { height: 220px; }
-      .route .case-visual { max-height: 104px; }
-    }
-  </style>
+
 </head>
 <body>
 <div class="reveal">

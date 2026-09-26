@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-lecture="00">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -9,41 +9,8 @@
   <link rel="stylesheet" href="revealjs/dist/theme/white.css"/>
   <link rel="stylesheet" href="plugin/highlight/monokai.css"/>
   <link rel="stylesheet" href="lecture-style.css"/>
-  <style>
-    .reveal .slides section[data-slide-id]{font-size:.82em}.reveal h1,.reveal h2{color:#2f3e7a}.note-source{font-size:.9em;color:#444}
-    .box{border-left:5px solid #b15a2b;background:#f7efe6;padding:.55em .75em;border-radius:8px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.8em}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:.6em}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:.45em}
-    .card{border:1px solid #ddd;border-radius:8px;padding:.5em .65em}.math-large{font-size:1.14em;text-align:center}.ok{color:#2e7d32;font-weight:700}.warn{color:#a33a1f;font-weight:700}.muted{color:#555}
-    .reveal table{font-size:.92em}.reveal th{background:#f7efe6}.mini-figure img{display:block;width:100%;height:auto;max-height:330px;object-fit:contain}.model-data{color:#8b0000!important;font-weight:800!important;background:#fff1f1!important}.model-key{color:#8b0000;font-weight:800;margin:.2em 0}.model-label{margin:.18em 0 0}.reveal section[data-slide-id="H02"] table{margin:.12em auto}.reveal section[data-slide-id="H02"] th,.reveal section[data-slide-id="H02"] td{padding:.12em .28em}.reveal section[data-slide-id="H02"] .weight-line{padding:.2em .45em}.reveal section[data-slide-id="A08"] .vector-label{text-transform:none;font-weight:700;text-align:center;margin:.08em 0 .18em}.reveal section[data-slide-id="A10"] .a03-calc{font-size:.92em;margin:.12em 0}.reveal section[data-slide-id="A12"] .grid2{gap:.6em}.reveal section[data-slide-id="A12"] .card{padding:.35em .55em}.reveal section[data-slide-id="A12"] .card p{margin:.2em 0}.reveal section[data-slide-id="A12"] .katex-display{margin:.12em 0}.reveal section[data-slide-id="A12"] .box{padding:.35em .6em}.reveal section[data-slide-id="B02"] p{margin:.14em 0}.reveal section[data-slide-id="B02"] .katex-display{margin:.08em 0}.reveal section[data-slide-id="B02"] .caption{margin:.12em 0 0}.reveal section[data-slide-id="B02"] .b02-definition{margin:.14em 1.6em;padding:.28em .55em}.reveal section[data-slide-id="B12"] .grid2>div:last-child,.reveal section[data-slide-id="B13"] .grid2>div:last-child{padding-right:1em}.reveal section[data-slide-id="B12"] .katex-display,.reveal section[data-slide-id="B13"] .katex-display{margin:.16em 0}.reveal section[data-slide-id="B12"] p,.reveal section[data-slide-id="B13"] p{margin:.18em 0}.reveal section[data-slide-id="B19"] .card{padding:.4em .55em}.reveal section[data-slide-id="B19"] li{margin:.12em 0}.projection-figure svg{width:100%;height:auto;max-height:270px}.mini-figure{margin:.25em auto;max-width:610px}.mini-figure svg{width:100%;height:auto;max-height:190px}.check{background:#edf4ff;border:2px solid #2f3e7a;border-radius:8px;padding:.4em .6em}.route{font-size:.92em}.fragment.hint{color:#2f3e7a;font-weight:700}.compact{font-size:.92em}.tight li{margin:.16em 0}.arrow{color:#b15a2b;font-weight:700}.reveal section[data-slide-id="P00"] h1{font-size:2.15em}.reveal section[data-slide-id="P01"] .box{padding:.35em .6em}.reveal section[data-slide-id="P01"] .tight li{margin:.08em 0}.reveal section[data-slide-id="E06"] .card{padding:.3em .5em}.reveal section[data-slide-id="E06"] li{margin:.08em 0}.reveal section[data-slide-id="E06"]>.box{padding:.22em .5em;margin:.1em .5em}
-    @media(max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.reveal section[data-slide-id="A08"] .grid4{grid-template-columns:1fr 1fr}.reveal section[data-slide-id="C02"] .grid3{grid-template-columns:1fr}.reveal .slides section[data-slide-id]{font-size:.82em}.reveal .slides section[data-slide-id] .compact,.reveal .slides section[data-slide-id] .a03-calc{font-size:1em}.reveal table{font-size:.85em}.reveal section[data-slide-id="H02"] th,.reveal section[data-slide-id="H02"] td{padding:.08em .2em}.mini-figure svg{max-height:150px}}
-  </style>
-  <style>
-    .reveal section[data-slide-id="B02"] .grid2{display:block}
-    .reveal section[data-slide-id="B02"] .mini-figure{max-width:900px}
-    .reveal section[data-slide-id="B02"] .mini-figure svg{max-height:300px}
-    .reveal section[data-slide-id="B02"] svg text,.reveal section[data-slide-id="B03"] svg text{font-size:22px}
-    .reveal section[data-slide-id="B03"] .grid2{gap:.35em;margin:.12em 0}
-    .reveal section[data-slide-id="B03"] .grid2 .box{padding:.2em .4em;margin:0}
-    .reveal section[data-slide-id="B03"]>.box{padding:.25em .5em;margin:.12em .7em}
-    .reveal section[data-slide-id="D09"] .katex-display{margin:.12em 0}
-    .reveal section[data-slide-id="D09"] .mini-figure svg{max-height:240px}
-    .reveal section[data-slide-id="C12"]>.box{padding:.22em .45em;margin:.1em .5em}
-    .reveal section[data-slide-id="D10"] .grid2{gap:.4em;margin:.12em 0}
-    .reveal section[data-slide-id="D10"] .card{padding:.28em .45em}
-    .reveal section[data-slide-id="D10"]>.box{padding:.25em .5em;margin:.12em .5em}
-    .reveal section[data-slide-id="B03"] .mini-figure{max-width:950px}
-    .reveal section[data-slide-id="B03"] .mini-figure svg{max-height:340px}
-    .reveal section[data-slide-id="B12"] .mini-figure,.reveal section[data-slide-id="B13"] .mini-figure{max-width:720px}
-    .reveal section[data-slide-id="B12"] svg text,.reveal section[data-slide-id="B13"] svg text{font-size:21px}
-    .reveal section[data-slide-id="B12"] .mini-figure svg,.reveal section[data-slide-id="B13"] .mini-figure svg{max-height:250px}
-    .reveal section[data-slide-id="A05"] .katex-display{margin:.1em 0}
-    .reveal section[data-slide-id="A05"] .card{padding:.3em .5em}
-    .reveal section[data-slide-id="A05"] .card p{margin:.16em 0}
-    .reveal section[data-slide-id="A05"]>.box{padding:.3em .55em;margin:.14em .5em}
-    .reveal section[data-slide-id="A02"] .grid2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-    .reveal section[data-slide-id="A02"] .card{min-width:0}
-    .reveal section:first-of-type.present:has(> section[data-slide-id="P01"].present)~.footer,
-    .reveal section:first-of-type.present:has(> section[data-slide-id="P02"].present)~.footer{display:block}
-  </style>
+
+
 </head>
 <body><div class="reveal"><div class="slides">
 
