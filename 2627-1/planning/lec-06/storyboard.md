@@ -2,7 +2,7 @@
 
 ## Phạm vi và cơ sở lý thuyết chung
 
-Storyboard mới ngày 2026-09-26 gồm 45 trang trong 7 mạch, xây dựng từ nguồn và mục tiêu buổi học. Toàn bộ trang được thêm khi xây dựng lại tuyến; vòng biên tập sau rà soát ghi riêng quyết định **giữ** hoặc **sửa** cho từng trang; quyết định giữ/sửa/gộp/tách nội dung nguồn nằm ở outline.md, phần Phân tích nguồn và thiết kế nội dung, mục 8. Không coi số trang cũ hoặc HTML hiện có là ràng buộc. Bản này chưa đồng bộ RevealJS.
+Storyboard mới ngày 2026-09-26 gồm 45 trang trong 7 mạch, xây dựng từ nguồn và mục tiêu buổi học. Toàn bộ trang được thêm khi xây dựng lại tuyến; vòng biên tập sau rà soát ghi riêng quyết định **giữ** hoặc **sửa** cho từng trang; quyết định giữ/sửa/gộp/tách nội dung nguồn nằm ở outline.md, phần Phân tích nguồn và thiết kế nội dung, mục 8. Không coi số trang cũ là ràng buộc. RevealJS đã được triển khai đủ 45 trang theo thứ tự này ngày 2026-09-27; trạng thái kiểm định nằm trong vòng triển khai của review-log.md.
 
 Vấn đề trung tâm là chọn thành phần huấn luyện cần thay và kiểm điều kiện sử dụng. A02 xác lập sơ đồ thành phần ngay trên tuyến trang; E01 và G01 dùng lại cùng nhãn. Đối tượng chung: dữ liệu, mô hình, mục tiêu F, tham số θ, gradient, điểm đầu, quỹ đạo và quy tắc trả về. Sườn B–D: ví dụ thang đo → mô hình tuyến tính có phạt SPD → thống kê đường chéo → mô hình Taylor/hệ SPD → giải qua Av hoặc xấp xỉ nghịch đảo từ (s,y). Sườn E–F gọi lại các thành phần: phép tính/khối/đầu ra → điểm đầu/họ mục tiêu/phân phối → phương án đánh giá. Không có định lý chung khẳng định mọi can thiệp cải thiện hội tụ mạng sâu.
 
@@ -49,7 +49,7 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 - **Sáu bước:** nhu cầu B03–B04; trực quan B04; ví dụ B04; hình thức/toán học B05; ứng dụng B05; bài tập B09.
 - **Đầu vào và mục tiêu:** Tích lũy AdaGrad; MT1. Tính thống kê suy giảm và bước RMSProp, giải thích cơ chế quên khi tọa độ vắng gradient; kiểm ở B09.
 - **Ký hiệu/dữ kiện truyền tiếp:** Cùng dãy gradient; ρ=1/2.
-- **Gộp hoặc rút gọn:** B04 gộp nhu cầu, hình trọng số và bước số vì chúng giải thích một cơ chế quên.
+- **Gộp hoặc rút gọn:** B04 gộp nhu cầu, bảng trọng số và bước số vì chúng giải thích một cơ chế quên; đồ thị trọng số theo độ trễ nằm ở B05.
 - **Câu nối học thuật:** Bộ nhớ không quên → trọng số suy giảm → thống kê cục bộ theo thời gian.
 - **Thời lượng cụm:** 0,14 tiết lý thuyết + 0,14 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
 
@@ -305,7 +305,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Sinh viên chưa học CG cần thấy hệ số và hướng thứ hai được sinh ra bằng phép tính, không chỉ nhận đáp số.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C04 tạo hệ A; C05 dùng một hệ SPD nhỏ, C06 tổng quát hóa cùng r,p,α,β.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN5; MT2.
-- **Quyết định và lý do:** Sửa để hiện α₀, β₀ và p₁; chi tiết vòng hai ở ghi chú, giữ kết quả hình hai đoạn. Đặc tả tại C05 trong outline.md.
+- **Quyết định và lý do:** Sửa để hiện nghĩa của $d_k,r_k,p_k$, tỷ số tạo $\alpha_0$, quan hệ $p_1=r_1+(9/25)p_0$ và điều kiện liên hợp. Phép suy ra $\beta_0$, tọa độ số của $p_1$ và phép tính vòng hai nằm trong ghi chú; giữ hình hai đoạn tới nghiệm. Các nhãn và phép thế làm rõ cơ chế trước thuật toán C06 mà không tăng mật độ trang. Đặc tả tại C05 trong outline.md.
 - **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,07 tiết bài tập; tối thiểu trên đường, dùng điều kiện liên hợp, thế số và kiểm phần dư.
 
 ### C06. Thuật toán gradient liên hợp tuyến tính
@@ -314,7 +314,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Kế thừa, đầu ra và vị trí trong sườn:** C05 giải hai chiều; C07 dùng cùng thuật toán cho hệ Newton giảm chấn.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Hình thức hóa KN5/HT6; MT2.
 - **Quyết định và lý do:** Sửa để giữ β,p trên mặt trang; dẫn SH cho đúng truy hồi và ghi biến thể ngưỡng dừng. Đặc tả tại C06 trong outline.md.
-- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; đọc tuần tự giả mã, kiểm r₀=0, dừng trước phép chia và cập nhật hướng.
+- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; đọc tuần tự giả mã, kiểm ngưỡng phần dư ban đầu, dừng trước phép chia và cập nhật hướng.
 
 ### C07. Giải gần đúng hệ Newton
 
@@ -522,4 +522,4 @@ Không có ánh xạ mã trang cũ–mới vì người dùng yêu cầu bỏ tu
 
 Không bỏ ngầm bước của khái niệm trọng tâm. KN10 là hỗ trợ nên dùng chu trình rút gọn đã ghi; L-BFGS chỉ hỗ trợ chi phí BFGS và không có bài tập đòi đệ quy chưa dạy. Nhu cầu và ví dụ dẫn nhập được gộp có chủ ý ở A03,E04,F01,F03,F05. Những trang gộp nhiều bước giữ một luận điểm; phép suy diễn phụ đặt ghi chú khi triển khai.
 
-Bản đồ và 45 mục trang đã được biên tập theo cổng storyboard và năm báo cáo độc lập; đang chờ điều phối viên cùng các vai liên quan rà lại sửa đổi được ghi ở review-log.md. Chỉ khi các lỗi chặn/nghiêm trọng được xử lý mới chốt kế hoạch. Việc dựng và kiểm định trực quan RevealJS, đồng bộ tài liệu học tập và xác nhận phiên bản Codex Slides là các bước riêng, không được suy ra từ storyboard này.
+Bản đồ và 45 mục trang đã được chốt sau cổng storyboard, năm báo cáo độc lập và tái kiểm của vòng lập kế hoạch. Bản RevealJS đã triển khai đủ 45 trang và 7 mạch; các báo cáo phản biện, chỉnh sửa, kiểm định trực quan, đồng bộ học liệu và xác nhận phiên bản Codex Slides của vòng triển khai được ghi riêng trong review-log.md. Kết quả của vòng lập kế hoạch không thay thế nghiệm thu bản triển khai.

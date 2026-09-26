@@ -10,7 +10,7 @@ Chuẩn đầu ra bài học (LLO) và chuẩn đầu ra học phần (CLO) đư
 
 Tiên quyết: mục tiêu trung bình, giảm theo gradient ngẫu nhiên (SGD), momentum, Nesterov, khởi tạo từ Bài 05; gradient, Hessian, dạng toàn phương và quy tắc dây chuyền. Gradient liên hợp và BFGS được dạy mới. Tổng **45 trang, 7 mạch, 2 tiết lý thuyết và 1 tiết bài tập**. Không quy đổi sang phút. Hoạt động tính tay và kiểm tra đã nằm trong tổng; thời lượng không được đưa lên mặt trang hay ghi chú diễn giả.
 
-Bản này chỉ là kế hoạch mới; HTML và tài liệu công khai hiện có chưa đồng bộ. Không giữ hoặc dùng kết quả kiểm định tuyến cũ để chứng nhận tuyến mới.
+HTML đã được triển khai đủ 45 trang và 7 mạch theo kế hoạch này; ghi chú bài giảng và bài tập đã được soạn lại ngày 2026-09-27. Trạng thái rà soát và kiểm định của bản triển khai được ghi riêng trong `review-log.md`. Không dùng kết quả kiểm định tuyến cũ để chứng nhận tuyến mới.
 
 Quy ước viết tắt trong kế hoạch: ma trận đối xứng xác định dương (SPD); gradient liên hợp (conjugate gradient, CG); chuẩn hóa theo lô (batch normalization, BN); BFGS là tên thuật toán Broyden–Fletcher–Goldfarb–Shanno. Các dạng viết tắt được giới thiệu lại tại trang dạy tương ứng nếu cần hiển thị.
 
@@ -139,7 +139,7 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Kết nối:** B02 cung cấp cơ chế; tích lũy không quên dẫn tới nhu cầu B04 khi gradient thay đổi phân bố.
 - **Nguồn:** DL, §8.5.1, thuật toán 8.4; DU, §3, Hình 1, tr.2130; §5, tr.2136.
 - **Thời lượng:** 0,06 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
-- **Ghi chú soạn:** Dừng theo ngân sách $T$ hoặc tiêu chí kiểm định đã ấn định. Bảo đảm trong tối ưu lồi của nguồn AdaGrad không được dùng như định lý hội tụ mạng sâu.
+- **Ghi chú soạn:** Dừng theo ngân sách $T$ hoặc tiêu chí xác thực đã ấn định. Bảo đảm trong tối ưu lồi của nguồn AdaGrad không được dùng như định lý hội tụ mạng sâu.
 
 #### B04. Ví dụ cập nhật RMSProp
 
@@ -183,7 +183,7 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Luận điểm trung tâm:** Adam dùng moment đã hiệu chỉnh để xác định tử và mẫu của bước cập nhật.
 - **Ý chính:** $m_t=\beta_1m_{t-1}+(1-\beta_1)g_t$, $v_t=\beta_2v_{t-1}+(1-\beta_2)g_t\odot g_t$; hiệu chỉnh như B06; $\theta_t=\theta_{t-1}-\eta_t\widehat m_t/(\sqrt{\widehat v_t}+\varepsilon)$.
 - **Ví dụ/hình dự kiến:** Lưu đồ: gradient → hai moment → hiệu chỉnh theo $t$ → tham số. Hai nhánh trạng thái đều bắt đầu bằng 0.
-- **Hình thức hóa:** HT4: $0<\beta_1,\beta_2<1$, $\varepsilon>0$; đầu vào $\theta_0,T,\eta_t,\mathcal B_t$; đầu ra $\theta_T$ hoặc điểm được chọn theo kiểm định.
+- **Hình thức hóa:** HT4: $0<\beta_1,\beta_2<1$, $\varepsilon>0$; đầu vào $\theta_0,T,\eta_t,\mathcal B_t$; đầu ra $\theta_T$ hoặc điểm được chọn theo xác thực.
 - **Kết nối:** B06 xác lập hiệu chỉnh; B07 phân biệt moment và gradient hiện tại. B08 xét riêng thông tin tương tác mà thống kê đường chéo không chứa.
 - **Nguồn:** AD, thuật toán 1; DL, thuật toán 8.7.
 - **Thời lượng:** 0,07 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
@@ -280,13 +280,13 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Kết nối:** C04 tạo hệ A; C05 dùng một hệ SPD nhỏ, C06 tổng quát hóa cùng r,p,α,β.
 - **Nguồn:** SH, §8, (45)–(49), tr. in 32/trang PDF 38; DL, §8.6.2 cho phạm vi; ví dụ V7 tự xây dựng.
 - **Thời lượng:** 0,05 tiết lý thuyết + 0,07 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
-- **Ghi chú soạn:** Chỉ số k là vòng giải hệ bên trong, khác t của huấn luyện. CG tuyến tính được dạy mới, không giả định tiên quyết.
+- **Ghi chú soạn:** Chỉ số k là vòng giải hệ bên trong, khác t của huấn luyện. CG tuyến tính được dạy mới, không giả định tiên quyết. Bản triển khai ghi nghĩa của $d_k,r_k,p_k$, tỷ số tạo $\alpha_0$, quan hệ sinh $p_1$ và điều kiện liên hợp trên mặt trang. Phép tính $\beta_0$, tọa độ số của $p_1$ và vòng hai nằm trong ghi chú; hình giữ quỹ đạo hai bước. Quyết định này làm rõ cơ chế trước khi tổng quát ở C06 mà không tăng mật độ trang.
 
 #### C06. Thuật toán gradient liên hợp tuyến tính
 
 - **Vai trò và mục tiêu:** Hình thức hóa KN5/HT6; MT2.
 - **Luận điểm trung tâm:** Thuật toán cần toán tử nhân với ma trận xác định dương, không cần ma trận nghịch đảo.
-- **Ý chính:** Đầu vào toán tử $v\mapsto Av$, $b$, $d_0$, dung sai $\tau$, giới hạn K; $A=A^\top\succ0$. Đặt $r_0=b-Ad_0,p_0=r_0$. Nếu $r_0=0$ trả $d_0$. Lặp $\alpha_k=r_k^\top r_k/(p_k^\top Ap_k)$; $d_{k+1}=d_k+\alpha_kp_k$; $r_{k+1}=r_k-\alpha_kAp_k$; dừng nếu chuẩn phần dư đạt ngưỡng; nếu chưa, $\beta_k=r_{k+1}^\top r_{k+1}/(r_k^\top r_k)$, $p_{k+1}=r_{k+1}+\beta_kp_k$.
+- **Ý chính:** Đầu vào toán tử $v\mapsto Av$, $b$, $d_0$, dung sai $\tau>0$, ngân sách nguyên $K\ge1$; $A=A^\top\succ0$. Đặt $r_0=b-Ad_0,p_0=r_0$. Nếu $\|r_0\|_2\le\tau\max(1,\|b\|_2)$ trả $d_0$. Với $k=0,\ldots,K-1$, lặp $\alpha_k=r_k^\top r_k/(p_k^\top Ap_k)$; $d_{k+1}=d_k+\alpha_kp_k$; $r_{k+1}=r_k-\alpha_kAp_k$; trả $d_{k+1}$ nếu chuẩn phần dư đạt ngưỡng hoặc $k+1=K$; nếu chưa, $\beta_k=r_{k+1}^\top r_{k+1}/(r_k^\top r_k)$, $p_{k+1}=r_{k+1}+\beta_kp_k$.
 - **Ví dụ/hình dự kiến:** Giả mã gồm khởi tạo, bước, cập nhật phần dư, kiểm dừng, rồi cập nhật hệ số và hướng liên hợp. Giữ đủ cập nhật β và p trên mặt trang; phần giải thích chi phí và hữu hạn vòng đặt trong ghi chú.
 - **Hình thức hóa:** HT6: dừng khi $\|r_k\|_2\le\tau\max(1,\|b\|_2)$ hoặc k=K; trong số học chính xác, nhiều nhất p bước cho hệ p chiều SPD.
 - **Kết nối:** C05 giải hai chiều; C07 dùng cùng thuật toán cho hệ Newton giảm chấn.
@@ -367,7 +367,7 @@ Chức năng: xấp xỉ độ cong từ gradient. Đầu vào: Chi phí cung c�
 
 - **Vai trò và mục tiêu:** Ứng dụng KN6/HT7; MT2.
 - **Luận điểm trung tâm:** Lưu ít cặp độ cong giảm bộ nhớ nhưng không loại bỏ nhu cầu kiểm tra bước và nhiễu.
-- **Ý chính:** Đầu vào θ₀, P₀≻0, ngân sách T, ngưỡng gradient; tính g; đặt d=−Pg; tìm bước α; tính s=αd và y từ gradient mới; nhận cập nhật khi yᵀs đủ dương, nếu không bỏ cập nhật hoặc giảm chấn có quy tắc. BFGS lưu ma trận O(p²); BFGS với bộ nhớ giới hạn (L-BFGS) lưu m cặp, O(mp).
+- **Ý chính:** Đầu vào θ₀, P₀≻0, ngân sách T, ngưỡng gradient; tính g; đặt d=−Pg; tìm bước α>0 làm giảm cùng mục tiêu F; tính s=αd và y từ gradient mới; nhận cập nhật khi yᵀs đủ dương, nếu không bỏ cập nhật hoặc giảm chấn có quy tắc. BFGS lưu ma trận O(p²); BFGS với bộ nhớ giới hạn (L-BFGS) lưu m cặp, O(mp).
 - **Ví dụ/hình dự kiến:** Sơ đồ so sánh Newton–CG cần Av với BFGS cần (s,y); một cặp ô bộ nhớ minh họa L-BFGS.
 - **Hình thức hóa:** Dừng khi $\|\nabla F\|_2$ dưới ngưỡng hoặc hết ngân sách; tìm bước Wolfe cho hàm trơn và hướng giảm là một cách bảo đảm $y^\top s>0$.
 - **Kết nối:** D03 cho phép cập nhật hợp lệ; E01 xem xét giới hạn mà chỉ đổi quy tắc cập nhật chưa xử lý.
@@ -523,7 +523,7 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 - **Kết nối:** F01 cho phép chuyển cụ thể; F03 xét trường hợp giữ không gian tham số nhưng thay mục tiêu theo giai đoạn.
 - **Nguồn:** DL, §8.7.4, tr.319–321.
 - **Thời lượng:** 0,05 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
-- **Ghi chú soạn:** Chỉ định khối được tinh chỉnh và tiêu chí chọn điểm kiểm định. Tiền huấn luyện không bảo đảm tốt hơn khởi tạo khác; không đồng nhất mọi tiền huấn luyện với học từng tầng.
+- **Ghi chú soạn:** Chỉ định khối được tinh chỉnh và tiêu chí chọn điểm bằng xác thực. Tiền huấn luyện không bảo đảm tốt hơn khởi tạo khác; không đồng nhất mọi tiền huấn luyện với học từng tầng.
 
 #### F03. Ví dụ họ mục tiêu tiếp diễn
 
@@ -541,7 +541,7 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 
 - **Vai trò và mục tiêu:** Hình thức hóa và ứng dụng KN12/HT12; MT3.
 - **Luận điểm trung tâm:** Nghiệm giai đoạn trước là khởi tạo cho giai đoạn sau, nhưng điểm dừng có thể tồn tại suốt chuỗi.
-- **Ý chính:** Phương pháp tiếp diễn (continuation) chọn Fλ₀,…,Fλ_K=F đích; gần giải từng bài toán và chuyển nghiệm làm điểm đầu. Với V14, $F_\lambda'=4θ^3+(2\lambda-4)θ$, $F_\lambda''=12θ^2+2\lambda-4$.
+- **Ý chính:** Phương pháp tiếp diễn (continuation) chọn Fλ₀,…,Fλ_K=F đích; giải gần đúng từng bài toán và chuyển nghiệm làm điểm đầu. Với V14, $F_\lambda'=4θ^3+(2\lambda-4)θ$, $F_\lambda''=12θ^2+2\lambda-4$.
 - **Ví dụ/hình dự kiến:** Kiểm λ=3,1,5,0 bằng dấu đạo hàm hai tại các điểm dừng. Vẽ đường θ=0 qua cả ba đồ thị.
 - **Hình thức hóa:** HT12: $\theta_{k,0}=\theta_{k-1,out}$; chỉ số k là giai đoạn. Trong V14, θ=0 luôn có gradient 0, nên gradient chính xác bắt đầu từ 0 không tự chọn nhánh ±1/2.
 - **Kết nối:** F03 tạo họ mục tiêu; F04 nêu giới hạn; F05 thay phân phối dữ liệu để tạo họ mục tiêu theo cơ chế khác.
@@ -633,7 +633,7 @@ Chức năng: lựa chọn và đánh giá phương pháp. Đầu vào: Kết qu
 - **Kết nối:** G02 hoàn tất minh chứng; nguồn phục vụ kiểm công thức và đọc giới hạn.
 - **Nguồn:** Danh mục đầy đủ trong phần Phân tích nguồn và thiết kế nội dung, mục 2–3.
 - **Thời lượng:** 0,04 tiết lý thuyết + 0,00 tiết bài tập. Đối chiếu nhóm kết quả với nguồn và vị trí đọc tiếp để kiểm giả thiết.
-- **Ghi chú soạn:** Chỉ hiện tài liệu đã đọc; phần chính giữ ngắn, URL đầy đủ trong ghi chú. Bản dàn bài chưa đồng bộ HTML hiện có. Nguồn cho Newton: Boyd, Vandenberghe (2004), Convex Optimization, §9.5.1–9.5.3, tr. 484–489, https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf. Nguồn truy hồi CG: Shewchuk (1994), An Introduction to the Conjugate Gradient Method Without the Agonizing Pain, CMU, §8 (45)–(49), tr. in 32; Phụ lục B2, tr. in 50, https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf. Danh mục hiển thị giữ ngắn; các vị trí chi tiết thuộc ghi chú tài liệu.
+- **Ghi chú soạn:** Chỉ hiện tài liệu đã đọc; phần chính giữ ngắn, URL đầy đủ trong ghi chú. Nguồn cho Newton: Boyd, Vandenberghe (2004), Convex Optimization, §9.5.1–9.5.3, tr. 484–489, https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf. Nguồn truy hồi CG: Shewchuk (1994), An Introduction to the Conjugate Gradient Method Without the Agonizing Pain, CMU, §8 (45)–(49), tr. in 32; Phụ lục B2, tr. in 50, https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf. Danh mục hiển thị giữ ngắn; các vị trí chi tiết thuộc ghi chú tài liệu.
 
 ## Tự kiểm và giới hạn
 
@@ -641,7 +641,7 @@ MT1 được dạy ở B01–B08 và kiểm ở B09; MT2 ở C01–C07/D01–D04
 
 Các ví dụ, công thức, chỉ số và tổng thời lượng đã được tác tử soạn kiểm lại; các sửa sớm của điều phối viên gồm phân biệt gradient đầy đủ/ngẫu nhiên, tốc độ học hiệu dụng/độ dài bước, điều kiện hiệu chỉnh moment, nguồn CG và pha hội tụ Newton. Phạm vi kiểm tra độc lập tiếp theo và trạng thái xử lý được ghi ở review-log.md. Tiêu đề, ý chính, câu hỏi và ghi chú soạn đã qua no-ai-slop Edit và tự đối chiếu eval.md; các chú thích quy trình ở đây không được chép vào ghi chú diễn giả.
 
-Nguồn hình chỉ là đặc tả tự dựng. Khả năng đọc thực tế, KaTeX, bàn phím, màn hình rộng/hẹp và đồng bộ ghi chú/bài tập công khai chưa được kiểm vì chưa triển khai RevealJS. Dàn bài không chứng nhận trạng thái HTML hiện có.
+Các đặc tả hình đã được triển khai thành chín SVG tự vẽ. Kết quả kiểm tra RevealJS, KaTeX, bàn phím, màn hình rộng/hẹp và đồng bộ học liệu được ghi trong vòng triển khai của `review-log.md`; không suy kết quả nghiệm thu từ việc hoàn thành dàn bài.
 
 ## Phân tích nguồn và thiết kế nội dung
 
@@ -665,7 +665,7 @@ Bài 05 đã thiết lập mục tiêu trung bình, gradient lô nhỏ, SGD, mom
 
 Ngoài phạm vi: chứng minh hội tụ tổng quát của Adam; chứng minh hội tụ siêu tuyến tính BFGS; SR1, DFP và lớp Broyden; đệ quy hai vòng L-BFGS; gradient tự nhiên; AdaDelta; triển khai mã; thí nghiệm so sánh tối ưu hóa trên mạng sâu. Thiết kế mô hình ở §8.7.5 được giữ bằng một trang hỗ trợ về đường truyền gradient, dù LLO16 không liệt kê riêng.
 
-Sản phẩm hiện tại chỉ gồm tài liệu lập kế hoạch. HTML, ghi chú công khai và bài tập hiện có chưa được đồng bộ với bản mới; không dùng trạng thái kiểm định cũ để chứng nhận bản này.
+Sản phẩm triển khai gồm HTML 45 trang, chín SVG, ghi chú bài giảng và 12 bài tập theo kế hoạch mới. Kết quả kiểm định được ghi trong vòng triển khai ngày 2026-09-27 của `review-log.md`; không dùng trạng thái kiểm định cũ để chứng nhận bản này.
 
 ### 2. Kiểm kê và phân tích học liệu
 
@@ -749,7 +749,7 @@ Bản đồ sáu bước đầy đủ, mã trang, thời lượng cụm và lý 
 
 ### 6. Ví dụ, hình và phương án thay thế
 
-Mọi ví dụ V1–V16 là ví dụ sư phạm tự xây dựng, không phải kết quả thực nghiệm. Nguồn chỉ cung cấp khái niệm/thuật toán. Các số đã kiểm bằng đại số và chương trình độc lập; minh chứng được ghi trong nhật ký. Hình chưa được tạo vì phạm vi chỉ lập dàn bài.
+Mọi ví dụ V1–V16 là ví dụ sư phạm tự xây dựng, không phải kết quả thực nghiệm. Nguồn chỉ cung cấp khái niệm/thuật toán. Các số đã kiểm bằng đại số và chương trình độc lập; minh chứng được ghi trong nhật ký. Chín hình đã được vẽ thành SVG cục bộ trong vòng triển khai; ánh xạ tệp và kết quả kiểm hình học nằm trong nhật ký.
 
 | Mã và trang | Dữ kiện, thao tác, kết quả | Hình và giới hạn; lý do chọn thay phương án khác |
 |---|---|---|
@@ -772,11 +772,11 @@ Mọi hình dự kiến có nhãn trục/đối tượng, chú giải cơ chế 
 
 ### 7. Danh mục hình thức hóa
 
-**HT0. Bài toán và hợp đồng thuật toán; định nghĩa.** $\mathcal D=\{(x_i,y_i)\}_{i=1}^n$, $\theta\in\mathbb R^p$, $F(\theta)=n^{-1}\sum_i\ell(f_\theta(x_i),y_i)$ khi đầu ra từng mẫu độc lập với các mẫu cùng lô. Vòng $t\ge1$ tính gradient lô tại $\theta_{t-1}$ rồi tạo $\theta_t$. Cần dữ liệu, tham số đầu, ngân sách, lịch bước và quy tắc kiểm định; dừng theo ngân sách hoặc tiêu chí đã định trước. Chuẩn gradient ngẫu nhiên nhỏ ở một lô không chứng minh dừng tối ưu của $F$. BN thay giả thiết độc lập bằng mục tiêu kỳ vọng theo lô ở HT8. Vị trí A02 (sơ đồ thành phần), A04 (mô hình một bước), B03–B07, E01/E03 và G01 (gọi lại thành phần). Nguồn DL, §§8.1, 8.5, 8.7.1; chỉ nhắc lại phần bài toán từ Bài 05, không chứng minh.
+**HT0. Bài toán và hợp đồng thuật toán; định nghĩa.** $\mathcal D=\{(x_i,y_i)\}_{i=1}^n$, $\theta\in\mathbb R^p$, $F(\theta)=n^{-1}\sum_i\ell(f_\theta(x_i),y_i)$ khi đầu ra từng mẫu độc lập với các mẫu cùng lô. Vòng $t\ge1$ tính gradient lô tại $\theta_{t-1}$ rồi tạo $\theta_t$. Cần dữ liệu, tham số đầu, ngân sách, lịch bước và quy tắc xác thực; dừng theo ngân sách hoặc tiêu chí đã định trước. Chuẩn gradient ngẫu nhiên nhỏ ở một lô không chứng minh dừng tối ưu của $F$. BN thay giả thiết độc lập bằng mục tiêu kỳ vọng theo lô ở HT8. Vị trí A02 (sơ đồ thành phần), A04 (mô hình một bước), B03–B07, E01/E03 và G01 (gọi lại thành phần). Nguồn DL, §§8.1, 8.5, 8.7.1; chỉ nhắc lại phần bài toán từ Bài 05, không chứng minh.
 
 **HT1. Bước có phạt xác định dương; mệnh đề tự suy ra.** Cho $g\in\mathbb R^p$, $M=M^\top\succ0$, $\eta>0$. Hàm $g^\top d+(2\eta)^{-1}d^\top Md$ lồi chặt (còn gọi là lồi nghiêm ngặt), có nghiệm duy nhất $d=-\eta M^{-1}g$. Nếu $g=\nabla F(\theta)\ne0$ thì $g^\top d=-\eta g^\top M^{-1}g<0$. Đây là hướng giảm; giảm sau bước hữu hạn cần điều kiện bước. Chứng minh đầy đủ bằng đạo hàm và dạng toàn phương tại A04; không áp kết luận dấu này cho moment Adam hoặc gradient lô bất kỳ. V1 ánh xạ $M=\operatorname{diag}(1,9)$. Vai trò là so sánh B–D; nguồn hỗ trợ DL §§8.5–8.6, BV §9.5.1, còn mô hình thống nhất là tổng hợp sư phạm.
 
-**HT2. AdaGrad; thuật toán.** $v_0=0$, $v_t=v_{t-1}+g_t\odot g_t$, $\theta_t=\theta_{t-1}-\eta g_t/(\sqrt{v_t}+\varepsilon)$, $\eta,\varepsilon>0$. Tính gradient, cập nhật thống kê, rồi tham số; dừng HT0; đầu ra tham số được chọn bằng kiểm định đã định trước. Tốc độ học hiệu dụng $\eta/(\sqrt{v_{t,j}}+\varepsilon)$ không tăng với $t$ khi $\eta$ cố định; độ dài bước còn phụ thuộc $g_{t,j}$. V2 minh họa một tọa độ lặp gradient. Phát biểu/áp dụng, không chứng minh định lý tối ưu trực tuyến; trạng thái $O(p)$. Nguồn DL §8.5.1, thuật toán 8.4; DU §3 và §5. Vị trí B01–B03, kiểm B09.
+**HT2. AdaGrad; thuật toán.** $v_0=0$, $v_t=v_{t-1}+g_t\odot g_t$, $\theta_t=\theta_{t-1}-\eta g_t/(\sqrt{v_t}+\varepsilon)$, $\eta,\varepsilon>0$. Tính gradient, cập nhật thống kê, rồi tham số; dừng HT0; đầu ra tham số được chọn bằng xác thực đã định trước. Tốc độ học hiệu dụng $\eta/(\sqrt{v_{t,j}}+\varepsilon)$ không tăng với $t$ khi $\eta$ cố định; độ dài bước còn phụ thuộc $g_{t,j}$. V2 minh họa một tọa độ lặp gradient. Phát biểu/áp dụng, không chứng minh định lý tối ưu trực tuyến; trạng thái $O(p)$. Nguồn DL §8.5.1, thuật toán 8.4; DU §3 và §5. Vị trí B01–B03, kiểm B09.
 
 **HT3. RMSProp; thuật toán với biến thể epsilon đã chọn.** $v_0=0$, $v_t=\rho v_{t-1}+(1-\rho)g_t\odot g_t$, $0<\rho<1$; cập nhật tham số như HT2 với thống kê mới. Đầu vào và dừng HT0. Đây là dạng epsilon ngoài căn; DL thuật toán 8.5 dùng hằng số bên trong căn. Không đồng nhất giá trị hai hằng số. V3 dùng $\rho=1/2$ và mẫu dương, bỏ epsilon chỉ để tính tay. Trọng số của gradient cách $k$ vòng là $(1-\rho)\rho^k$; giải thích bằng khai triển, không trình bày bảo đảm hội tụ mạng sâu. Chi phí ngoài gradient/bộ nhớ $O(p)$. Nguồn DL §8.5.2; TO tr.29–31; vị trí B04–B05, kiểm B09.
 
@@ -784,9 +784,9 @@ Mọi hình dự kiến có nhãn trục/đối tượng, chú giải cơ chế 
 
 **HT5. Newton; mô hình, thuật toán và kết quả cục bộ.** Tại điểm $\theta$ khả vi hai lần, $g=\nabla F(\theta)$, $H=\nabla^2F(\theta)\succ0$, mô hình Taylor có nghiệm $Hd=-g$. Nếu $g\ne0$ thì $g^\top d<0$. Đầu vào $F,\theta_0$, ngưỡng, ngân sách và quy tắc chọn bước; mỗi vòng tính $g,H$, giải hệ, chọn $\alpha$, cập nhật $\theta+\alpha d$. Dừng bằng chuẩn gradient đầy đủ hoặc ngân sách. Khi Hessian bất định, chọn $A=H+\lambda I\succ0$, với $\lambda>-\lambda_{\min}(H)$; cộng một số dương bất kỳ chưa đủ. Hội tụ bậc hai cần nghiệm có Hessian xác định dương, Hessian Lipschitz lân cận, điểm đầu đủ gần và bước đầy đủ trong pha cục bộ; tìm bước có thể cho phép bước đầy đủ ở pha này, nhưng cố định $\alpha<1$ không tự cho tốc độ đó. Chứng minh hướng giảm đầy đủ; chỉ phát biểu kết quả cục bộ. V5,V6; nguồn BV §9.5.1 tr.484, §9.5.2 tr.487, §9.5.3 tr.488–489; DL §8.6.1; HF §3. Vị trí C01–C04, dùng tại C07.
 
-**HT6. Gradient liên hợp tuyến tính; thuật toán.** Hệ $Ad=b$ có $A=A^\top\succ0$ cố định. Đầu vào toán tử $Av$, $b$, $d_0$, $\tau$, $K$; khởi tạo $r_0=b-Ad_0$, $p_0=r_0$. Nếu $r_0=0$ thì trả ngay. Vòng $k$: $\alpha_k=(r_k^\top r_k)/(p_k^\top Ap_k)$, $d_{k+1}=d_k+\alpha_kp_k$, $r_{k+1}=r_k-\alpha_kAp_k$. Kiểm dừng trước khi chia tiếp; nếu tiếp tục, $\beta_k=(r_{k+1}^\top r_{k+1})/(r_k^\top r_k)$, $p_{k+1}=r_{k+1}+\beta_kp_k$. Dừng khi $\|r_k\|_2\le\tau\max(1,\|b\|_2)$ hoặc hết $K$; đầu ra gần đúng. Tính liên hợp $p_i^\top Ap_j=0$ được kiểm trên V7; kết quả tối đa $p$ vòng trong số học chính xác chỉ phát biểu, không chứng minh toàn bộ. Mỗi vòng một tích $Av$ và $O(p)$ phép vectơ; bộ nhớ phụ $O(p)$. Nguồn truy hồi: SH §8 (45)–(49), tr. in 32/PDF 38; giả mã B2 tr. in 50/PDF 56; giả thiết SPD §1 tr. in 1/PDF 7; hữu hạn vòng và sai số §9 tr. in 32–34/PDF 38–40. Ngưỡng dừng theo $\max(1,\|b\|_2)$ là biến thể biên soạn, khác B2 dùng chuẩn phần dư ban đầu và tính lại phần dư định kỳ. DL §8.6.2 giữ vai trò phạm vi, HF §3–4 cho ứng dụng Newton–CG. Vị trí C05–C07; kiểm C08. CG phi tuyến ngoài phạm vi chi tiết; chỉ nêu phân biệt. Toán tử và dữ liệu dùng cho nó phải cố định trong mỗi lần giải hệ. Trong Newton–CG ở C07, dùng $d_0=0$. Nếu $g=0$, dừng để kiểm điểm dừng; nếu $g\ne0$, kiểm thêm $g^\top d<0$ trước tìm bước ngoài. Khi kiểm hướng không đạt do giải gần đúng hoặc sai số, siết dung sai/giải lại hoặc dùng $-g$ kèm tìm bước. Kiểm phần dư và kiểm dấu là hai yêu cầu khác nhau.
+**HT6. Gradient liên hợp tuyến tính; thuật toán.** Hệ $Ad=b$ có $A=A^\top\succ0$ cố định. Đầu vào toán tử $Av$, $b$, $d_0$, $\tau>0$, ngân sách nguyên $K\ge1$; khởi tạo $r_0=b-Ad_0$, $p_0=r_0$. Nếu $\|r_0\|_2\le\tau\max(1,\|b\|_2)$ thì trả $d_0$. Với $k=0,\ldots,K-1$: $\alpha_k=(r_k^\top r_k)/(p_k^\top Ap_k)$, $d_{k+1}=d_k+\alpha_kp_k$, $r_{k+1}=r_k-\alpha_kAp_k$. Kiểm dừng trước khi chia tiếp; nếu tiếp tục, $\beta_k=(r_{k+1}^\top r_{k+1})/(r_k^\top r_k)$, $p_{k+1}=r_{k+1}+\beta_kp_k$. Dừng khi $\|r_k\|_2\le\tau\max(1,\|b\|_2)$ hoặc hết $K$; đầu ra gần đúng. Tính liên hợp $p_i^\top Ap_j=0$ được kiểm trên V7; kết quả tối đa $p$ vòng trong số học chính xác chỉ phát biểu, không chứng minh toàn bộ. Mỗi vòng một tích $Av$ và $O(p)$ phép vectơ; bộ nhớ phụ $O(p)$. Nguồn truy hồi: SH §8 (45)–(49), tr. in 32/PDF 38; giả mã B2 tr. in 50/PDF 56; giả thiết SPD §1 tr. in 1/PDF 7; hữu hạn vòng và sai số §9 tr. in 32–34/PDF 38–40. Ngưỡng dừng theo $\max(1,\|b\|_2)$ là biến thể biên soạn, khác B2 dùng chuẩn phần dư ban đầu và tính lại phần dư định kỳ. DL §8.6.2 giữ vai trò phạm vi, HF §3–4 cho ứng dụng Newton–CG. Vị trí C05–C07; kiểm C08. CG phi tuyến ngoài phạm vi chi tiết; chỉ nêu phân biệt. Toán tử và dữ liệu dùng cho nó phải cố định trong mỗi lần giải hệ. Trong Newton–CG ở C07, dùng $d_0=0$. Nếu $g=0$, dừng để kiểm điểm dừng; nếu $g\ne0$, kiểm thêm $g^\top d<0$ trước tìm bước ngoài. Khi kiểm hướng không đạt do giải gần đúng hoặc sai số, siết dung sai/giải lại hoặc dùng $-g$ kèm tìm bước. Kiểm phần dư và kiểm dấu là hai yêu cầu khác nhau.
 
-**HT7. BFGS; thuật toán và mệnh đề bảo toàn xác định dương.** Với $s,y\in\mathbb R^p$, $P=P^\top\succ0$, $y^\top s>0$, $\rho=(y^\top s)^{-1}$, đặt $P^+=(I-\rho sy^\top)P(I-\rho ys^\top)+\rho ss^\top$. Có $P^+y=s$ và $P^+\succ0$. Phác thảo chứng minh bằng dạng toàn phương tại D03; V8 kiểm tích và định thức. Thuật toán: gradient đầy đủ, hướng $d=-Pg$, chọn bước, lập $s$ và sai phân gradient $y$, kiểm điều kiện độ cong, cập nhật hoặc bỏ/sửa theo quy tắc. Đầu vào $\theta_0,P_0\succ0$, ngân sách, ngưỡng, quy tắc tìm bước; dừng như HT5. Tìm bước Wolfe là một cách thu được điều kiện độ cong; nội dung đầy đủ Wolfe không là tiên quyết bài tập. BFGS lưu $O(p^2)$; L-BFGS lưu $m$ cặp với $O(mp)$, chỉ giới thiệu vai trò. Không đồng nhất $P$ với Hessian hoặc với $M$ của HT1; với $\eta=1$, hướng $d=-Pg$ tương ứng $M=P^{-1}$. Bước thực tế là $\alpha d$; nếu dùng HT1 cho bước này thì đặt $\eta=\alpha$ và vẫn $M=P^{-1}$. Nguồn CM tr.8–18, 20–23; DL §8.6.3. Vị trí D01–D04, kiểm D05; không phát biểu siêu tuyến tính vô điều kiện.
+**HT7. BFGS; thuật toán và mệnh đề bảo toàn xác định dương.** Với $s,y\in\mathbb R^p$, $P=P^\top\succ0$, $y^\top s>0$, $\rho=(y^\top s)^{-1}$, đặt $P^+=(I-\rho sy^\top)P(I-\rho ys^\top)+\rho ss^\top$. Có $P^+y=s$ và $P^+\succ0$. Phác thảo chứng minh bằng dạng toàn phương tại D03; V8 kiểm tích và định thức. Thuật toán: gradient đầy đủ, hướng $d=-Pg$, chọn bước làm giảm cùng mục tiêu, lập $s$ và sai phân gradient $y$, kiểm điều kiện độ cong, cập nhật hoặc bỏ/sửa theo quy tắc. Đầu vào $\theta_0,P_0\succ0$, ngân sách, ngưỡng, quy tắc tìm bước; dừng như HT5. Tìm bước Wolfe là một cách thu được điều kiện độ cong; nội dung đầy đủ Wolfe không là tiên quyết bài tập. BFGS lưu $O(p^2)$; L-BFGS lưu $m$ cặp với $O(mp)$, chỉ giới thiệu vai trò. Không đồng nhất $P$ với Hessian hoặc với $M$ của HT1; với $\eta=1$, hướng $d=-Pg$ tương ứng $M=P^{-1}$. Bước thực tế là $\alpha d$; nếu dùng HT1 cho bước này thì đặt $\eta=\alpha$ và vẫn $M=P^{-1}$. Nguồn CM tr.8–18, 20–23; DL §8.6.3. Vị trí D01–D04, kiểm D05; không phát biểu siêu tuyến tính vô điều kiện.
 
 **HT8. BN; định nghĩa phép biến đổi.** Với một đặc trưng $a_i$ trong lô $m$, $\mu_\mathcal B=m^{-1}\sum_i a_i$, $\sigma_\mathcal B^2=m^{-1}\sum_i(a_i-\mu_\mathcal B)^2$, $\widehat a_i=(a_i-\mu_\mathcal B)/\sqrt{\sigma_\mathcal B^2+\varepsilon}$, $z_i=\gamma\widehat a_i+\beta$, $\varepsilon>0$. $\gamma,\beta$ được học. Phương sai chuẩn hóa là $\sigma^2/(\sigma^2+\varepsilon)$; kiểm một dòng đại số trên V9. Huấn luyện dùng thống kê lô; suy luận dùng thống kê đã ước lượng và cố định. Mô hình học phụ thuộc lô nên mục tiêu phù hợp là $F_{BN}(\theta)=\mathbb E_\mathcal B[L_\mathcal B(\theta)]$. Đây là thay phép tính/biểu diễn, không là chia gradient theo ma trận đường chéo. Nguồn BN thuật toán 1/§3.1; DL §8.7.1, (8.34)–(8.37). Vị trí E02–E03; kiểm E08. Không khẳng định giả thuyết về cơ chế trong tên bài báo là định lý.
 
@@ -794,7 +794,7 @@ Mọi hình dự kiến có nhãn trục/đối tượng, chú giải cơ chế 
 
 **HT10. Trung bình Polyak; định nghĩa quy tắc trả về.** Cho quỹ đạo $\theta_1,\ldots,\theta_T$ cùng không gian tham số; $\bar\theta_T=T^{-1}\sum_t\theta_t$. Tính trực tuyến bằng $\bar\theta_t=\bar\theta_{t-1}+(\theta_t-\bar\theta_{t-1})/t$; $O(p)$ bộ nhớ. Đầu vào là quỹ đạo, không thay bước đã sinh; dừng khi quỹ đạo đầu vào dừng. V11 tính trung bình và phản ví dụ hai nghiệm khác miền. Phát biểu/áp dụng, không chứng minh định lý xác suất tiệm cận. Nguồn DL §8.7.3, tr. 318, đoạn định nghĩa trung bình đều không đánh số; vị trí E06, kiểm E08. Phương trình DL (8.39) mô tả trung bình mũ, một biến thể riêng, không đổi định nghĩa đang dùng.
 
-**HT11. Tiền huấn luyện có giám sát; quy trình.** Dữ liệu phụ có nhãn, mô hình phụ, phép chuyển $T$ và tham số mới $\xi$ xác định $\theta_0=T(\theta_{aux},\xi)$. Học nhiệm vụ phụ, chuyển phần tham số hợp lệ, khởi tạo phần thêm, tinh chỉnh trên mục tiêu đích. Đầu ra là tham số đích; dừng/giai đoạn theo ngân sách và kiểm định đã chọn; chi phí phải tính cả huấn luyện phụ. V13 đối chiếu gradient bằng 0 tại điểm đầu (0,0) với gradient khác 0 tại điểm chuyển (2,1), rồi tính bước tinh chỉnh; chỉ minh họa quỹ đạo phụ thuộc điểm đầu, không chứng minh ưu thế so với mọi khởi tạo ngẫu nhiên. Nguồn DL §8.7.4 tr.319–321, Hình 8.7. Vị trí F01–F02, kiểm F07. Không đồng nhất mọi tiền huấn luyện với sơ đồ tham lam từng tầng minh họa.
+**HT11. Tiền huấn luyện có giám sát; quy trình.** Dữ liệu phụ có nhãn, mô hình phụ, phép chuyển $T$ và tham số mới $\xi$ xác định $\theta_0=T(\theta_{aux},\xi)$. Học nhiệm vụ phụ, chuyển phần tham số hợp lệ, khởi tạo phần thêm, tinh chỉnh trên mục tiêu đích. Đầu ra là tham số đích; dừng/giai đoạn theo ngân sách và xác thực đã chọn; chi phí phải tính cả huấn luyện phụ. V13 đối chiếu gradient bằng 0 tại điểm đầu (0,0) với gradient khác 0 tại điểm chuyển (2,1), rồi tính bước tinh chỉnh; chỉ minh họa quỹ đạo phụ thuộc điểm đầu, không chứng minh ưu thế so với mọi khởi tạo ngẫu nhiên. Nguồn DL §8.7.4 tr.319–321, Hình 8.7. Vị trí F01–F02, kiểm F07. Không đồng nhất mọi tiền huấn luyện với sơ đồ tham lam từng tầng minh họa.
 
 **HT12. Tiếp diễn; định nghĩa quy trình họ bài toán.** Cùng không gian tham số; lịch $F_{\lambda_0},\ldots,F_{\lambda_K}=F$ và các bộ giải con. Nghiệm trả về của giai đoạn $k-1$ làm điểm đầu giai đoạn $k$; dừng con theo tiêu chí đã định, dừng ngoài khi hoàn thành mục tiêu đích hoặc ngân sách. V14 có $F_\lambda=(\theta^2-1)^2+\lambda\theta^2$, $F_\lambda'=4\theta^3+(2\lambda-4)\theta$; nghiệm và điểm dừng được kiểm bằng đạo hàm hai. Có thể mắc ở 0 dù mục tiêu đã đổi. Phát biểu và áp dụng, không có bảo đảm tối ưu toàn cục. Nguồn DL §8.7.6 tr.323–325; họ phạt là ví dụ tự dựng. Vị trí F03–F04, kiểm F07.
 
@@ -818,4 +818,4 @@ Mọi hình dự kiến có nhãn trục/đối tượng, chú giải cơ chế 
 | Bài thực hành phối hợp | Gộp G02, không tạo mạch thứ tám | Sản phẩm nhóm là phương án có điều kiện; tính tay từng cơ chế đã phân bố ở B–F |
 | Đánh giá mỗi mạch | Thêm A05/B09/C08/D05/E08/F07/G02 | Mỗi đề đủ dữ kiện, đáp án và tiêu chí; câu hỏi không dùng kiến thức chưa dạy |
 
-Tổng 7 mạch, 45 trang, 2 tiết lý thuyết + 1 tiết bài tập. Không thay HTML/CSS hoặc tài liệu học tập công khai trong phạm vi này. Codex Slides do điều phối viên xử lý bằng các trang đã soạn tường minh; nhật ký chỉ ghi thao tác có bằng chứng. Rà trực quan RevealJS và đồng bộ tài liệu công khai thuộc bước triển khai sau, chưa được chứng nhận bởi dàn bài. Các quyết định từ rà độc lập được lưu trong `review-log.md`; trạng thái bản cũ là lịch sử.
+Tổng 7 mạch, 45 trang, 2 tiết lý thuyết + 1 tiết bài tập. HTML, CSS chung và học liệu đã được triển khai theo phạm vi này. Codex Slides do điều phối viên xử lý bằng các trang đã soạn tường minh; nhật ký chỉ ghi thao tác có bằng chứng. Kiểm định trực quan RevealJS, đồng bộ học liệu và xác nhận trạng thái Codex Slides được ghi riêng trong vòng triển khai của `review-log.md`; bản dàn bài không tự chứng nhận các bước này. Các quyết định từ rà độc lập được lưu trong nhật ký; trạng thái bản cũ là lịch sử.

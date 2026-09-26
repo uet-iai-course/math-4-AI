@@ -1,5 +1,647 @@
 # Nhật ký rà soát Bài giảng 06
 
+## Vòng triển khai RevealJS theo kế hoạch mới, 2026-09-27
+
+**Trạng thái nghiệm thu:** bản RevealJS và học liệu đã qua cổng storyboard, đủ năm phản biện độc lập, chỉnh sửa riêng và tái kiểm; các phép kiểm cục bộ cuối đều đạt. Đã đồng bộ 45 ảnh và 45 notes vào Codex Slides. Browser tích hợp của Codex không có công cụ trong phiên; giới hạn và bằng chứng thay thế được ghi rõ bên dưới. Các kết quả phía dưới chỉ áp dụng bản triển khai 45 trang, 7 mạch; trạng thái của những vòng cũ được giữ nguyên để truy nguyên.
+
+### Phạm vi và tổ chức công việc
+
+- Triển khai lại `lecture-06-toi-uu-mang-sau.html` theo outline/storyboard đã chốt: A01–A05, B01–B09, C01–C08, D01–D05, E01–E08, F01–F07, G01–G03; 45 trang và 45 ghi chú diễn giả. Giữ thứ tự, tiêu đề, bảy câu hỏi kiểm tra và các quan hệ phụ thuộc của kế hoạch.
+- Cơ sở chung là các thành phần của quá trình huấn luyện. Mô hình bước có phạt xác định dương liên kết B–D; E–F thay phép tính mô hình, khối biến, đầu ra, điểm đầu, họ mục tiêu hoặc phân phối. Không diễn giải mọi can thiệp thành một ma trận tiền điều kiện hóa.
+- Đối chiếu Buổi 6 trong DOCX chính thức, Chương 8 §§8.5–8.7: LLO14/CLO2,3; LLO15/CLO2,3; LLO16/CLO3,4; 2 tiết lý thuyết và 1 tiết bài tập. Không đưa thời lượng lên mặt trang hoặc notes. Nguồn và ví dụ đã chốt ở vòng kế hoạch tiếp tục được kiểm trực tiếp trong bản triển khai; không dùng chứng nhận kế hoạch thay phản biện sản phẩm.
+- Viết lại ghi chú bài giảng và thêm 12 bài tập có gợi ý/lời giải trong `materials/lec-06/`. Markdown là nguồn; cập nhật `material-local-data.js` cùng nguồn bằng script Python đã quy định. Không sinh HTML học liệu hoặc dùng Node.js để build học liệu.
+- Chỉ sửa khối Bài 06 trong `lecture-style.css`. Cả tám bộ đang phát hành dùng cùng tệp CSS tự viết; các selector riêng của Bài 06 có phạm vi `:where(html[data-lecture="06"])`. Runtime, KaTeX, plugin và tài sản đều nằm trong học kỳ. Không thêm khối style, style tĩnh hoặc CSS riêng cho bài.
+- Kế thừa cấu trúc và giao diện của `2526-2-another-course/lecture-template.html`; dùng runtime cục bộ học kỳ. Khung rộng 1280×720; màn hẹp giữ chữ 24px và cho cuộn nội dung, công thức, bảng hoặc hình khi cần. Không cắt nội dung hoặc hạ chữ để che tràn.
+- Mỗi lần chỉ một tác tử ghi kho. Điều phối viên duyệt kế hoạch, tiếp nhận phân tích nguồn, duyệt cổng storyboard, hợp nhất năm phản biện độc lập, giao tác tử chỉnh sửa riêng và kiểm định đầu ra. Các báo cáo và quyết định dưới đây giữ cả lỗi đã sửa.
+
+### Tác tử và bằng chứng chỉ định mô hình
+
+Tất cả lời gọi tạo tác tử của vòng này chỉ định `model: "gpt-6-astra"`, `fork_turns: "none"` qua `collaboration.spawn_agent`. Các lượt tiếp tục dùng `collaboration.followup_task` trên cùng tác tử. Đây là bằng chứng cấu hình từ công cụ, không phải chứng nhận độc lập mô hình runtime hoặc tuyến thanh toán. Không dùng OpenRouter, script gọi mô hình, API/CLI mô hình, khóa API hoặc tệp `.env`/`.env.*`.
+
+| Tác tử | Vai trò và đầu ra |
+|---|---|
+| `lec06_implementation_plan` | Kế hoạch triển khai; điều phối viên đã duyệt trước khi sửa HTML |
+| `lec06_impl_source` | Đối chiếu nguồn, quy định và hồi quy CSS chung |
+| `lec06_deck_writer` | Soạn 45 trang, 45 notes và chín SVG |
+| `lec06_material_draft` | Soạn ghi chú mở rộng và 12 bài tập; điều phối viên đưa bản thảo vào kho |
+| `lec06_deck_storyboard_gate` | Cổng kiểm định storyboard và tái kiểm sau sửa |
+| `lec06_deck_math` | Phản biện toán học độc lập và tái kiểm |
+| `lec06_deck_argument` | Phản biện mạch lập luận độc lập và tái kiểm |
+| `lec06_deck_student` | Phản biện góc nhìn sinh viên và trực quan |
+| `lec06_deck_expert` | Phản biện chuyên gia, nguồn và chuẩn đầu ra |
+| `lec06_deck_academic` | Phản biện học thuật–giảng dạy và no-ai-slop Detect |
+| `lec06_deck_editor` | Biên tập riêng sau phản biện; tự kiểm no-ai-slop Edit và eval |
+| Điều phối viên | Duyệt, kiểm trực quan/kỹ thuật, đồng bộ Codex Slides và quản lý phiên bản |
+
+### Hình tự vẽ và thay đổi so với đặc tả
+
+| Trang | SVG trong `img/lec-06/` | Nội dung và quyết định |
+|---|---|---|
+| A03 | `scale-step.svg` | Hàm bậc hai và hai bước; hai ô có thang riêng, ô toàn cảnh chứa điểm (0,−8) |
+| B05 | `rms-weights.svg` | Trọng số quá khứ của hai hệ số suy giảm; tính từ công thức |
+| B08 | `tilted-curvature.svg` | Đường đồng mức nghiêng và hai trục riêng của Q |
+| C01 | `newton-direction.svg` | Hướng gradient âm và bước Newton; mũi tên gradient được co 5/8 và ghi rõ trong notes |
+| C05 | `cg-path.svg` | Hai bước CG; trục dùng chỉ số tọa độ có ngoặc để phân biệt số vòng |
+| E02 | `batch-shift.svg` | Hai lô dịch chuyển, trung bình/phương sai và đầu ra chuẩn hóa |
+| E04 | `coordinate-path.svg` | Hai bước tọa độ; giữ đường elip đầy đủ rồi cắt bằng clipPath, tránh đoạn nối giả qua điểm ngoài khung |
+| E07 | `gradient-chain.svg` | Hai chuỗi năm hệ số và tích; màn hẹp giữ tỷ lệ hình trong vùng cuộn |
+| F03 | `continuation-quartic.svg` | Ba hàm bậc bốn, các cực tiểu và điểm dừng 0 |
+
+Tất cả hình có title/desc và alt ở HTML. Phản biện toán học tính ngược tọa độ để kiểm hàm và quan hệ; sai số chỉ do làm tròn tọa độ SVG. Hình là ví dụ sư phạm tự tạo, không phải dữ liệu thực nghiệm. Không cắt ảnh PDF, không dùng raster hoặc tài sản bên thứ ba; không tải nguồn MIT mới. Sáu SVG cũ không còn được bản mới tham chiếu và được giữ để tránh xóa tài sản ngoài phạm vi.
+
+### Cổng storyboard và sửa trước năm phản biện
+
+| Vấn đề | Quyết định và bằng chứng |
+|---|---|
+| D04: dấu nhỏ trong TeX bị HTML hiểu thành thẻ | Đổi sang lệnh TeX lt; kiểm không có thẻ lạ, không lỗi KaTeX; tái kiểm gate đóng lỗi nghiêm trọng |
+| D04: vòng BFGS chưa nêu đủ nhận điểm/ma trận, lặp và trả | Hoàn chỉnh giả mã; giữ hoặc cập nhật P theo kiểm cặp; gate đóng lỗi |
+| C05: trục đồ thị trùng chỉ số vòng | Sửa trục thành chỉ số tọa độ có ngoặc; notes định nghĩa các biến; gate đóng lỗi |
+| E04: đường mức nối giả sau lọc điểm | Giữ đủ đường khép kín và dùng clipPath; toán học kiểm lại đường mức |
+| C06/D02/F05: khối cuối chạm chân trang | Rút khoảng cách hoặc chuyển phép đối chiếu phụ sang notes; giữ nội dung trung tâm, không hạ chữ; kiểm rộng/hẹp đạt |
+| F01: công thức gradient dài | Tách hai đạo hàm riêng; kiểm rộng không bị cắt |
+| B01/B04/B09/F05: MathML làm nở khung ngoài | Đặt vùng chứa tương đối và bảng trong vùng cuộn; khung ngoài ở màn hẹp rộng đúng 390px |
+| Bàn phím vùng cuộn | Giữ phím cuộn trong vùng có tiêu điểm; kiểm cuộn không đổi trang và điều hướng toàn bài vẫn hoạt động |
+| C06: miền vòng lặp còn ngầm hiểu | Ghi rõ k chạy từ 0 đến K−1 trước bốn bước; đồng bộ ngân sách nguyên dương trong học liệu; math tái kiểm đóng M01 |
+| Trạng thái planning lỗi thời | Sửa các câu còn nói chỉ lập kế hoạch/chưa có hình/chưa đồng bộ HTML; giữ toàn bộ lịch sử trong nhật ký |
+
+Cổng storyboard sau sửa xác nhận đúng 45 ID, 45 tiêu đề, thứ tự và 7 mạch; 14 cụm và bảy câu hỏi có tiên quyết. Đủ điều kiện mở năm vai phản biện. Không có thay đổi số trang hoặc thứ tự trong vòng triển khai.
+
+#### Hợp nhất finding và quyết định sửa
+
+| Finding | Quyết định, sửa thực tế | Bằng chứng / phạm vi tái kiểm |
+|---|---|---|
+| AC01 + sinh viên C05–C06 | Nhận. C05 thêm dòng định danh $d_k$ là nghiệm gần đúng, $r_k=b-Ad_k$ là phần dư, $p_k$ là hướng tìm kiếm. Công thức mặt trang ghi $\alpha_0=(r_0^\top r_0)/(p_0^\top Ap_0)=2/5$, $d_1=\alpha_0p_0$, $p_1=r_1+(9/25)p_0$ và $p_0^\top Ap_1=0$. | Giữ hình, dữ kiện, số $d_1,r_1$ và thứ tự C05→C06. Ảnh rộng đủ nội dung; không giảm cỡ chữ. Cần tái kiểm math/argument đối với C05 và hai trang lân cận. |
+| Sinh viên: khó nhận vùng cuộn ngang | Nhận. Chỉ ở màn hình hẹp, vùng công thức/bảng/hình thực sự tràn có dấu ↔, viền trên/dưới và tiêu điểm bàn phím. JavaScript đo overflow rồi đổi class/tabindex/aria-label; không chèn style tĩnh. | Sáu trang C05/D03/E07/F01/F05/G01 đạt kiểm mở liên kết trực tiếp, chuyển trang, đổi kích thước, cuộn bàn phím tới tận phải. Nội dung ngoài rộng đúng 390px. Có ảnh sau khi cuộn tới cuối. |
+| AC02 + sinh viên E03 | Nhận. Đổi nhãn thành “Phương sai lô của $\widehat a$”. | Công thức giữ nguyên, khớp §5.1 của học liệu; không gán phương sai này cho $z$. |
+| AC03 + sinh viên F05 | Nhận. F05 và dữ kiện G02 ghi rõ “Hai mẫu $(x,y)$”. Ghi chú bài giảng §6.3 cũng ghi cùng định danh trước cặp mẫu. | Giữ $E=(1,1)$, $H=(3,1)$, mô hình, mất mát, lịch phân phối và đích. Độ nhạy $1$ và $9$ tiếp tục trong notes/học liệu; không thêm định nghĩa độ khó phổ quát. |
+| AC04, notes F06 | Nhận. Thay bình luận về cách tổ chức đánh giá bằng “Bước tinh chỉnh được kiểm trên mất mát đích; truyền nghiệm cần kiểm điểm dừng; lịch lấy mẫu cần đạt phân phối cuối.” | Nêu ba quan hệ học thuật cụ thể. F07 và đáp án không đổi. |
+| F04, nhận xét ngôn ngữ học thuật | Nhận. Đổi “gần giải từng bài toán” thành “giải gần đúng từng bài toán”. | Không đổi quy trình hay bảo đảm của tiếp diễn. |
+| EX-02 | Nhận. Dùng “xác thực” cho chọn điểm/tiêu chí dừng trong B03/B05/B07/F02 và ghi chú bài giảng §2.5. | Đã kiểm tất cả lần “kiểm định” trong ba sản phẩm: đều chỉ cùng chức năng validation. Giữ “tập kiểm tra”, “phép kiểm”, “kiểm hướng”, “kiểm phần dư”. Các chỗ dùng “xác thực” sẵn có trong ghi chú §1.1/§6.4 và Bài 9 giữ nguyên. |
+| M01–M04 / SG6 | Giữ bản sửa đã được math đóng. Không chỉnh lại C06/D01/D04 hoặc giả thiết epsilon ở Bài 2 trong vòng này. | Hash học liệu Bài tập giữ nguyên bản đã tái kiểm toán học. |
+| ARG-01 / EX-01 / AC05 | Không ghi thêm: điều phối viên đã sửa hồ sơ và các vai đã xác nhận. | Tác tử này không có quyền ghi planning; giữ kết quả đóng trong báo cáo các vai. |
+
+Không bác bỏ finding nội dung nào được giao. Các giới hạn về diễn tập/thời lượng và khoảng cách đọc giảng đường vẫn là giới hạn của bằng chứng hiện có; không suy chúng thành lỗi hoặc chứng nhận thực dạy.
+
+#### Chi tiết chuyển nội dung C05 để đồng bộ planning
+
+- Thêm nhãn $d_k,r_k,p_k$ lên mặt trang, giữ bản diễn giải đầy đủ trong notes.
+- Thay đáp số $\alpha_0=2/5$ bằng phép thế tỷ số tạo hệ số; thay dòng chỉ cho $\beta_0=9/25$, $p_1=(24/25,-6/25)^\top$ bằng quan hệ sinh hướng $p_1=r_1+(9/25)p_0$ và điều kiện liên hợp.
+- Đưa kết quả số tường minh $p_1=(24/25,-6/25)^\top$ và phép suy ra hệ số $\beta_0$ về notes; cả hai đã có đầy đủ ở đó, nên không mất nội dung.
+- Bỏ khung cuối lặp lại điều kiện liên hợp và các số vòng hai khỏi mặt trang. Điều kiện liên hợp xuất hiện ngay cạnh công thức $p_1$; $\alpha_1=5/8$ và phép tính $d_2=(1,1/4)^\top$ còn trong notes. Hình vẫn giữ nhãn điểm cuối $d_2$ và quỹ đạo hai bước.
+- Không sửa SVG, không đổi vai trò, tiêu đề, số trang, thứ tự hoặc dữ kiện bài kiểm tra. C06 tiếp tục tổng quát hóa từ ví dụ đã có công thức sinh hệ số/hướng.
+
+
+### Kiểm định cuối và giới hạn bằng chứng
+
+- Cấu trúc: 45 trang, 45 notes, 7 mạch; ID/thứ tự/tiêu đề khớp kế hoạch. Chín SVG hợp lệ, tất cả tài sản cục bộ tồn tại, có mô tả thay thế. Không có style tĩnh trong HTML, khối style, mã trang nội bộ hoặc thời lượng trên sản phẩm công khai.
+- RevealJS: kiểm 45 trang × 1600×900 và 390×844, tổng 90 lượt; không tràn ngoài vùng cuộn, không lỗi KaTeX, JavaScript, hình hoặc tài nguyên. Màn rộng không có công thức bị cắt. Màn hẹp giữ nội dung dài trong vùng cuộn có thể nhận biết và tiếp cận. Điều phối viên đã xem toàn bộ ảnh rộng; sinh viên xem lại 27 ảnh sau sửa cùng bằng chứng cuộn.
+- Bàn phím: 67 ca vùng cuộn và hai ca điều hướng/tải lại, tổng 69 ca; tất cả đạt. Các phím cuộn giữ đúng trang; điều hướng tới A02 cho hash `#/1/2` và tải lại giữ A02. Phải chờ khoảng cập nhật URL của RevealJS trước khi kiểm hash. Sáu ca mở liên kết sâu, chuyển trang, đổi kích thước và cuộn tới tận phải đều đạt; dấu ↔ chỉ hiện ở vùng thực sự tràn trên màn hẹp.
+- Hồi quy CSS chung: bảy bộ 00–05 và 07, 355 trang × hai kích thước = 710 lượt; đối chiếu 20.326 nút với CSS từ HEAD trước nhiệm vụ. Không có thay đổi văn bản, kiểu tính toán hoặc hình học; không lỗi JavaScript, KaTeX, hình hay tài nguyên. Byte ngoài khối CSS Bài 06 giữ nguyên. Đây là kiểm ảnh hưởng của thay CSS, không phải một cuộc phản biện mới về nội dung bảy bài đó.
+- Học liệu: hai tài liệu × HTTP/file × rộng/hẹp = tám ca. Ghi chú render 587 công thức; bài tập 322 công thức; không lỗi KaTeX hoặc tài nguyên, không nở chiều rộng ngoài màn hình. Năm khối lời giải trong ghi chú và 14 khối gợi ý/lời giải trong bài tập gập mặc định; mở bằng bàn phím được, mở khi in và khôi phục trạng thái sau in. `sync-local-materials.py --check` đạt với 14 Markdown toàn học kỳ.
+- Chỉ mục: chỉ sửa thẻ Bài 06, cập nhật tên/phạm vi và thêm liên kết bài tập đã kiểm. Bốn ca HTTP/file × rộng/hẹp xác nhận ba liên kết, bố cục và mở bài tập bằng bàn phím. Không đưa tài liệu planning lên chỉ mục.
+- no-ai-slop: tác tử soạn và học liệu áp dụng Edit trên toàn bản thảo, tự đối chiếu eval; editor áp dụng Edit và tự eval trong các phạm vi sửa đã liệt kê. Năm vai áp dụng Detect, giữ các phân biệt toán học có chức năng. Đã sửa bình luận tổ chức đánh giá ở F06 và thống nhất “xác thực”; không dùng điểm phát hiện AI hoặc suy đoán tác giả. Điều phối viên biên tập các cập nhật planning, chỉ mục và nhật ký theo cùng nguyên tắc, giữ lịch sử nguyên trạng.
+- Không có diễn tập giảng đường trong phiên. Nhận định về thời lượng dựa trên đề cương, phân bổ hoạt động và phản biện thiết kế; không coi số trang hay ảnh chụp là bằng chứng đã dạy trong đúng thời lượng.
+
+### Codex Slides và tài liệu dự án
+
+Dự án bền vững: `20260901031052-lecture-06-t-i-u-m-ng-s-u-bjy1`. Đã tiếp nhận đề cương bắt buộc, outline/storyboard và tệp `lecture-template.html` với vai trò tham chiếu cấu trúc/giao diện. Nhập ảnh PNG từ 45 trang RevealJS bằng thao tác xác định; nhập 45 notes bằng thao tác xác định. Không gọi render/outline/notes generation hoặc dịch vụ mô hình bên ngoài tác tử gốc.
+
+Trạng thái đọc lại: 45 mục outline, 45 trang có ảnh và trạng thái rendered, 45 notes khớp bản HTML; workflow ở deck. Phiên bản hiện tại **46**, ID `141a309a-fc01-454a-860c-cb21731a8402`, có 45 ảnh. Tải lại từng endpoint ảnh cho checksum giống PNG đã kiểm; gọi GET lần nữa vẫn giữ ảnh và notes. Trường gợi ý sinh trang của plugin bị giới hạn 30 và trường status tổng vẫn là draft khi nhập thủ công; số trang thực trong outline/pages/version là 45, không dùng hai trường đó để suy số lượng hoặc nghiệm thu.
+
+Không có công cụ Browser tích hợp trong phiên. Theo hướng dẫn của kỹ năng kiểm định Codex Slides, dùng trạng thái chuẩn và endpoint ảnh lưu bền vững làm bằng chứng cấu trúc; dùng ảnh RevealJS và trình duyệt Chromium cục bộ làm bằng chứng trực quan. **Chưa kiểm bề mặt hiển thị trong Browser tích hợp Codex**, không tuyên bố đã thực hiện bước đó. Liên kết bàn giao chính xác: [Bài 06 trong Codex Slides](http://127.0.0.1:4311/project/20260901031052-lecture-06-t-i-u-m-ng-s-u-bjy1?slide=1&mode=workspace&checkpoint=deck).
+
+HTML, CSS, hai Markdown và ba tệp planning được đồng bộ thành Design Files để truy nguyên; tệp trong kho là nguồn triển khai RevealJS. Không xuất PDF/PPTX vì không có yêu cầu.
+
+### Dấu vân tay bản được kiểm
+
+| Tệp | SHA-256 |
+|---|---|
+| `2627-1/lecture-06-toi-uu-mang-sau.html` | `6561e164fdcc24f84a7b6bccff2cb171142b5e7ac3a040d77521f4c5979396e4` |
+| `2627-1/lecture-style.css` | `14d4f69d56769e9eb55c9832acb0af0dbccb5c79a4ce4111c66d9faa4dd14611` |
+| `2627-1/materials/lec-06/lecture-note.md` | `54a9d86124db41a3222c9d6473b6355dc88b30933614ddad914cb33ea3754050` |
+| `2627-1/materials/lec-06/exercises.md` | `175f30c3ba342c61c203f989000f16c65cd06184c23f1bbc2fa3c14905b459c6` |
+| `2627-1/material-local-data.js` | `b49545668012918811f944db519a0bd35ee5d79c95a911b76e29c40327124ef6` |
+
+### Ảnh đã đối chiếu với endpoint lưu bền vững
+
+| Trang | Ảnh dự án | SHA-256 |
+|---|---|---|
+| A01 | `01.png` | `62cc1b4fb2251f260e08d97c189d05b9ae83e3dc1abeb6891f05cc4e7e2f4df2` |
+| A02 | `02.png` | `b98d3fa70c6dbd6035f9e9b03f46a1256956b3d36a747d603f588f2512745a88` |
+| A03 | `03.png` | `e829daa3eca7a6445ad18447cbb63a2792afee4bd74ab223282abb2d24b5d0a1` |
+| A04 | `04.png` | `ce88e9cda4d16b66963339cbc27e42fb34a729c78a7f112d2ded07649748581d` |
+| A05 | `05.png` | `712552067d15599e3a7532dbcba1c2fdb53a4b0b46184c7f04b6336526b08a94` |
+| B01 | `06.png` | `237248ab09f77e0bf21cbc3ae71a41e5c561bdfa01beabfe2384566a8724b788` |
+| B02 | `07.png` | `d858269715f31bf725bacf760979ce4a7164336e3dd7100fe5b906b3e1cb7af1` |
+| B03 | `08.png` | `c4dc0b0d00506e5c5ceee4124248eda7edee107e38b9a7811b073d81efde06a3` |
+| B04 | `09.png` | `a80f1951d3f1a588ace16ea988607a51e6e6d5aa73988f751c4a6c051c1e301e` |
+| B05 | `10.png` | `e3441ec6705e30ad435aaa8258a43c7e062e9e0bd3d11def4636c9ccd57573ad` |
+| B06 | `11.png` | `bd2ed2271e3ce2704fd1e2b90a2add1f48cabc0e69c9c2281a1efa4cc637266a` |
+| B07 | `12.png` | `16675c48ed666c867501de61c8657c913a9dba151775dd36a093afd7f37b0a16` |
+| B08 | `13.png` | `cf741ecee2bff65c899c6873629e323bf90cde07f0ec323d8541fb42ff2586a8` |
+| B09 | `14.png` | `62cc89902739935fabce23c1836705a7397ddfb2262461947103893da25c2ab9` |
+| C01 | `15.png` | `2af3afa934940065e6e324bda7ebc86ec9bc30af12915f63e57d7f1d0fb31570` |
+| C02 | `16.png` | `32c92ea9036b04519d8337e279bd42de70b836934847af4e48e5a6fdaae9c1a3` |
+| C03 | `17.png` | `33c8d02eb2ba7799b4a45a48d46b98e4ab10daf73600440a7fdb63fc652f03ca` |
+| C04 | `18.png` | `cba3eaeeb4c7eff6617f0b0e991ce841758118f8796f25b570d95c7f1ed09df0` |
+| C05 | `19.png` | `efa77e433ed3f0301268e32789b5362a008913739fba26255abc122e01b218dd` |
+| C06 | `20.png` | `da9a13d6c10c6ac96193d25bf45fa685379faa3ddb09c1cb42a03cc735a42565` |
+| C07 | `21.png` | `312756be69ee8c72f2d61de6c0332c0c5a98ff552efc7da65126b06ebd92b3cd` |
+| C08 | `22.png` | `bb74907baae884d3bac297b44ebe93dc3fcbc4305075ae1cbcd7e914aecbe9f8` |
+| D01 | `23.png` | `83a0b092c7ef8aebcd02797830c556cf3fc4f89b0d92134940d1de97dc540142` |
+| D02 | `24.png` | `c30cf3c115cbcc81c57543d600a34d0b07ac669ef5d4d71ffeb315502b945fb8` |
+| D03 | `25.png` | `26362d6f6d6ec36636190e6ab8abacc7ad4e21dd623dfc45e91fe4c9ca4f7d1e` |
+| D04 | `26.png` | `dfa425ae9ac8db28ef2c5e9d98fb53c9b1288f9f89f3f1483ea6ccf2a45ca405` |
+| D05 | `27.png` | `d1f204794bcad7918c0e0b2cf4a00d0cd40fcbae1631c2091108795ec3b94adc` |
+| E01 | `28.png` | `8e4b587f18cfd52c0592b9082e5b3c97c50c5be9415f66c0d60ce278a038ae6b` |
+| E02 | `29.png` | `9c46161b3880cb29dfb65e4c8691683b758017f0776ae3f9e891562b146fb739` |
+| E03 | `30.png` | `51b65e6dfbb18ba5fdc34c0ff56296821422b335e03fd3059ba2f894e5c12420` |
+| E04 | `31.png` | `e70e719504ff0a83f9a3df2bc534262e3b6ff34899c70b4ac5c6cd96d62f8a2b` |
+| E05 | `32.png` | `580b002ecff70fa92f8ca9bdee2ee8fbceb4a119637278a00250d083b2f3a33f` |
+| E06 | `33.png` | `0eba9aec41d2adcb982935849351406665a32ef13a5a3267e8d3224607b45aa3` |
+| E07 | `34.png` | `c31043ca67a07ad42e704ccf7dd9f82b4e207a57255d98173ef966ba05c28607` |
+| E08 | `35.png` | `123876997618bf5db9085814d0a45c6180282465f8c3b1c9c27b376bb66def1e` |
+| F01 | `36.png` | `922c7ee11d6085edf924b6466af79b9e91d9c0687fb30bebe10636b07901b7a9` |
+| F02 | `37.png` | `4b24063f0ffcb54292a890030c3a22c9e590eccd136ed1926a35d15bfd8ff250` |
+| F03 | `38.png` | `b191fbfb18dea914e38574198a7a1a813a227b8ebdb80f32f6963340a852b70d` |
+| F04 | `39.png` | `7d71b164aaf4b3ef8aae90c03e73751f07f3ad2062c78d574ee8c45874fc894b` |
+| F05 | `40.png` | `b8ef1f68fa4597e95a4b6a3797175de94e7d5388318a40d227c7845caa850140` |
+| F06 | `41.png` | `063eb4dabfcfcb002c418a737a70e4c8528c41f70e31434d31e196be54830492` |
+| F07 | `42.png` | `640150b94316804b4b6e04a3d8e8f5b4773ff477a3f0c0c436e22b53959d0548` |
+| G01 | `43.png` | `fafbb55eb4f1f3a9905c075bba1dbcbbeb400800860ff2f911bfaa40de5bce60` |
+| G02 | `44.png` | `9696a520fe0af0af30ddeee63b18bcf19a803a4d1205a64919ecdd9c6c1d0eac` |
+| G03 | `45.png` | `721b47314e6f25e2680591730a32a137a9f76edb4a8cb358743b511f42c0f1da` |
+
+### Năm báo cáo độc lập và các lượt tái kiểm
+
+Các báo cáo dưới giữ kết luận tại thời điểm đọc cùng các phần tái kiểm bổ sung. Bảng quyết định ở trên xác định trạng thái xử lý cuối; một đề xuất đã đóng vẫn được giữ làm lịch sử.
+
+### Phản biện toán học độc lập Bài 06
+
+Ngày kiểm: 2026-09-27. Vai chỉ đọc: `/root/lec06_deck_math`. Đã đọc `AGENTS.md` và kỹ năng `no-ai-slop/SKILL.md`, áp dụng Detect. Không sửa kho; không đọc `.env`; không gọi dịch vụ mô hình. Báo cáo này chỉ chứng nhận phạm vi toán học đã kiểm, không thay bốn vai rà soát còn lại hoặc nghiệm thu trực quan.
+
+#### Kết luận
+
+Không phát hiện lỗi **chặn bàn giao** hoặc **nghiêm trọng** về toán học trong bản đã đọc. Các ví dụ số và đáp án trung tâm đúng; điều kiện CG, Newton–CG, BFGS, hiệu chỉnh Adam, BN, tiếp diễn và học theo chương trình được phân biệt với kết luận hội tụ. Có hai điểm trung bình và hai điểm nhẹ nên sửa để phát biểu, giả mã và học liệu tự đủ hơn. C06 là điểm nhẹ đã được điều phối viên báo trước; ba điểm còn lại được phát hiện khi đọc trực tiếp sản phẩm.
+
+#### Vấn đề có cấu trúc
+
+| Mã | Mức độ | Trang/vị trí | Vấn đề và bằng chứng | Đề xuất sửa |
+|---|---|---|---|---|
+| M01 | Nhẹ | C06, `lecture-note.md` §3.3 | Mặt trang có $K\ge1$ nguyên, kiểm dừng khởi tạo và $k+1=K$, nhưng danh sách bốn bước chưa ghi miền lặp. Ghi chú bài giảng dùng “Với $k=0,1,\ldots$” và “ngân sách $K$ vòng”, chưa định rõ $K$ nguyên dương. Thuật toán đúng khi hiểu lặp tự nhiên, nhưng người đọc phải tự bổ sung cấu trúc lặp. | Trước danh sách ghi “Với $k=0,\ldots,K-1$”; đồng bộ ghi chú bài giảng thành $K\ge1$ nguyên và nêu trả $d_{k+1}$ khi dừng. |
+| M02 | Trung bình | D01, ghi chú diễn giả | Câu “Nếu $F$ khả vi hai lần trên đoạn nối” được dùng để suy $y=\int_0^1\nabla^2F(\theta+ts)s\,dt$. Chỉ khả vi hai lần chưa bảo đảm Hessian khả tích theo nghĩa thông thường; điều kiện an toàn là Hessian liên tục trên đoạn. `lecture-note.md` §4.1 đã có đúng điều kiện liên tục, nên hai sản phẩm hiện khác mức giả thiết. Kết quả bậc hai $y=Qs$ và công thức BFGS không bị ảnh hưởng. | Thay giả thiết của câu tích phân bằng “Nếu Hessian liên tục trên đoạn nối hai điểm” hoặc $F\in C^2$ trên một lân cận đoạn. Giữ nguyên công thức. |
+| M03 | Trung bình | D04 bước 2; `lecture-note.md` §4.3 bước 3 | Bước chỉ ghi “tìm bước $\alpha>0$ trên cùng mục tiêu”. Điều kiện chấp nhận bước chưa tường minh; kiểm $s^\top y>0$ ở bước sau bảo vệ ma trận, không bảo vệ giá trị mục tiêu. Ví dụ $F(x)=x^2/2$, $x=1$, $P=1$, $d=-1$, chọn $\alpha=3$ cho $x^+=-2$, $s=y=-3$, $s^\top y=9>0$ nhưng $F$ tăng từ $1/2$ lên $2$. Notes có giải thích Wolfe đúng, song chưa ràng buộc bước được nhận phải giảm mục tiêu. | Ghi “tìm $\alpha>0$ làm giảm mục tiêu” trong giả mã; notes giữ Wolfe là một lựa chọn mạnh hơn giúp có độ cong dương. Nếu chọn đặc tả Wolfe thì cần nêu điều kiện đủ giảm cùng điều kiện độ cong, không chỉ điều kiện sau. Không cần thêm bài học Wolfe. |
+| M04 | Nhẹ | `exercises.md`, Bài 2, đề mở đầu và lời giải phần 3 | Đề nói “Trong bài này bỏ $\varepsilon$”, nhưng phản ví dụ của phần 3 đổi sang $\varepsilon=1$. Phản ví dụ số đúng nhưng phạm vi giả thiết chưa thống nhất. | Thu hẹp lời mở đầu thành “Trong các phép tính số ở phần 1–2, bỏ $\varepsilon$”; phần 3 xét công thức tổng quát có $\varepsilon>0$. Hoặc giữ $\varepsilon=0$ và dùng dãy $g_1=1,g_2=1,g_3=10$: độ dài bước thứ hai $1/\sqrt2$ tăng thành $10/\sqrt{102}$ ở vòng ba. |
+
+Các điểm trên không làm sai một đáp án hiện có hoặc một định lý trọng tâm. M02 sửa giả thiết của một diễn giải phụ; M03 làm rõ hợp đồng tìm bước thay vì thêm bảo đảm hội tụ.
+
+#### Bảng phủ phạm vi
+
+| Phạm vi | Nội dung đã đọc và kiểm | Kết quả |
+|---|---|---|
+| A01–A05, đủ nội dung và notes | Mục tiêu, quy ước gradient, hai bước thang đo, bài toán phạt SPD, trường hợp bất định | 5/5 trang; phép tính và phân biệt hướng giảm/bước hữu hạn đúng |
+| B01–B09, đủ nội dung và notes | AdaGrad, RMSProp, Adam, hiệu chỉnh moment, moment thô/phương sai, giới hạn đường chéo, bài kiểm tra | 9/9 trang; đúng. Biến thể epsilon ngoài căn được xác định trong học liệu và dàn bài |
+| C01–C08, đủ nội dung và notes | Newton, điều kiện cục bộ bậc hai, giảm chấn, hai vòng CG, kiểm phần dư, Newton–CG, $g=0$ | 8/8 trang; đúng; M01 |
+| D01–D05, đủ nội dung và notes | Sai phân gradient, cát tuyến, nghịch đảo BFGS, chứng minh SPD, Wolfe, L-BFGS, bài kiểm tra | 5/5 trang; đúng công thức và số; M02–M03 |
+| E01–E08, đủ nội dung và notes | BN, mục tiêu phụ thuộc lô, hạ khối, Polyak/Jensen, chuỗi đạo hàm và nối tắt | 8/8 trang; đúng; không suy hội tụ mạng sâu từ không tăng hoặc từ ví dụ |
+| F01–F07, đủ nội dung và notes | Chuyển tham số, bước đồng thời, tiếp diễn bậc bốn, điểm dừng cố định, lịch phân phối | 7/7 trang; đúng; mục tiêu đích và ngân sách tách rõ |
+| G01–G03, đủ nội dung và notes | Lựa chọn có điều kiện, ngân sách trạng thái, giải hệ và sai phân phối | 3/3 trang; đáp án đủ điều kiện toán học |
+| `lecture-note.md` | Đọc toàn bộ 757 dòng, các chứng minh và lời giải; kiểm riêng CG §3.4, sai số nghiệm §3.5, BFGS §4.2, Jensen và tiếp diễn | Công thức và suy luận đúng; đồng bộ M01/M03 là đủ |
+| `exercises.md` | Đọc toàn bộ 374 dòng; 12 bài, đủ đề, gợi ý và lời giải | Đáp án đúng; M04 |
+| `outline.md` / `storyboard.md` | Đối chiếu 45 mã, bảy mạch, bảng V1–V16, hợp đồng ký hiệu và HT0–HT13, bản đồ hành trình | Cơ sở toán học được triển khai đúng. Các câu trạng thái “chưa đồng bộ” trong kế hoạch là trạng thái quy trình, không được dùng để kết luận sai nội dung hiện tại |
+| 9 SVG thực sự dùng | Đọc XML, nhãn, tọa độ; tính ngược các đường đồng mức và đường hàm từ tọa độ SVG | Không phát hiện sai số toán học ngoài làm tròn tọa độ; chi tiết ở bảng dưới |
+
+#### Phép tính độc lập
+
+Tính lại bằng đại số và Python `fractions.Fraction`; không lấy kết quả từ một báo cáo cũ.
+
+| Nhóm | Kết quả kiểm độc lập |
+|---|---|
+| Thang đo | $F(1,1)=5$; $\eta=1/5$ cho $(4/5,-4/5)$ và $16/5$; $\eta=1$ cho $(0,-8)$ và $288$. Lặp hội tụ từ mọi điểm đầu khi $0<\eta<2/9$. |
+| Phạt ma trận | $d=-\eta M^{-1}g$; với $g=(2,8)$, $\eta=1/2$, hai ma trận SPD cho $(-1,-4)$ và $(-1,-1)$. Ma trận $\operatorname{diag}(1,-4)$ cho $8z-4z^2\to-\infty$. |
+| AdaGrad/RMSProp | AdaGrad $v_1=(4,1)$, $v_2=(8,1)$, $d_2=(-1/\sqrt2,0)$. RMSProp $v_1=(2,1/2)$, $v_2=(3,1/4)$, $d_1=(-\sqrt2,-\sqrt2)$, $d_2=(-2/\sqrt3,0)$. |
+| Adam | Với $g_1=2,g_2=0$: $(m_2,v_2)=(1/2,3/4)$, $(\widehat m_2,\widehat v_2)=(2/3,12/7)$, $d_2=-0{,}5091750772\ldots$. Với $g_2=-1/5$, $m_2=2/5$ nên $g_2d_2>0$. Hiệu chỉnh kỳ vọng chỉ cần moment chung và tuyến tính kỳ vọng, không cần độc lập. |
+| Newton | $Q$ có trị riêng $1,3$; $Q(-1,0)^\top=-(2,1)^\top$. Ví dụ bất định: Newton cho $g^\top d=1$, giảm chấn $2I$ cho $-1$. Điều kiện SPD chính xác là $\lambda>-\lambda_{\min}(H)$. |
+| CG | $\alpha_0=2/5$, $r_1=(3/5,-3/5)$, $\beta_0=9/25$, $p_1=(24/25,-6/25)$; $p_0^\top Ap_1=0$, $p_0^\top p_1=18/25$; $p_1^\top Ap_1=144/125$, $\alpha_1=5/8$, $d_2=(1,1/4)$, $r_2=0$. $\|r_1\|=0{,}848528\ldots$. |
+| Newton–CG | Từ $r=-g-Ad$, suy $d-d_*=-A^{-1}r$ và $g^\top d=-d^\top Ad-r^\top d$. CG số học chính xác từ $0$ tạo hướng giảm khi bước khác $0$; học liệu đã nêu điều này và vẫn giữ kiểm dấu để bảo vệ triển khai. |
+| BFGS | Nhân công thức cho $P_1=\left(\begin{smallmatrix}3/4&-1/2\\-1/2&1\end{smallmatrix}\right)$, $P_1y=s$, $\det P_1=1/2$; hướng cho $g=(1,0)$ là $(-3/4,1/2)$. Dạng toàn phương chứng minh SPD đúng. Cặp $y=(-1,1)$ không thể thỏa cát tuyến với ma trận SPD. |
+| BN | Hai lô dịch chuyển có $(\mu,\sigma^2)=(3,4),(7,4)$. Lô $(1,1,1,5)$ có $(2,3)$. Với $\varepsilon=1$, giá trị $5$ cho $2/\sqrt5$ hoặc $3/2$. Phương sai chuẩn hóa $4/5$; sau affine phải nhân $\gamma^2$, học liệu đã tách rõ. |
+| Hạ tọa độ | Dãy giá trị $2,1,3/4,11/16,43/64$ ứng với các điểm trong ghi chú. Nghiệm $(2/3,2/3)$ có giá trị $2/3$. |
+| Polyak/kiến trúc | Trung bình bốn điểm bằng $2$; hai nghiệm $\pm1$ của hàm bậc bốn cho trung bình có mất mát $1$. Tích qua năm lớp là $10^{-5}$ và $1{,}61051$. |
+| Tiền huấn luyện | Bước đồng thời $(2,1)\mapsto(21/10,6/5)$ cho tích $63/25$ và mất mát $72/625$. Điểm $(0,0)$ có gradient bằng $0$. |
+| Tiếp diễn | $F_\lambda'=\theta(4\theta^2+2\lambda-4)$; $0$ luôn dừng. Với $\lambda=3/2$, cực tiểu $\pm1/2$ có giá trị $15/16$. Với $\lambda=2$, $F_2=\theta^4+1$ vẫn có cực tiểu duy nhất $0$. |
+| Chương trình | $F_q'=(1+8q)\theta-(1+2q)$; ba nghiệm $1,1/2,2/5$. Mất mát đích tại hai nghiệm sau là $1/8$ và $1/10$, chênh $1/40$. Tại $\theta=1/2$, mọi $F_q$ cùng bằng $1/8$; nhận xét trong ghi chú đúng. |
+
+#### Kiểm toán học của hình
+
+| SVG | Phép kiểm |
+|---|---|
+| `scale-step.svg` | Hai điểm mới đúng theo hai hệ trục riêng; đường đồng mức có giá trị xấp xỉ $0{,}5;2;5$. Dao động lớn nhất trên một đường dưới $0{,}0011$ do lưu tọa độ hai chữ số. |
+| `rms-weights.svg` | Tính ngược đủ 18 điểm cho $(1-\rho)\rho^k$, $k=0,\ldots,8$, $\rho=0{,}5;0{,}9$; sai số tuyệt đối dưới $10^{-5}$. |
+| `tilted-curvature.svg` | Bốn đường có $F\approx0{,}15;0{,}4;1;1{,}5$, trục riêng ứng với $(1,1)$ và $(1,-1)$; dao động dưới $0{,}00024$. |
+| `newton-direction.svg` | Cùng các đường mức đúng; mũi Newton tới gốc. Mũi $-g$ có độ dời toán học $(-1{,}25,-0{,}625)$, đúng hệ số $5/8$ ghi trong notes. |
+| `cg-path.svg` | Đường đi đúng $0\to(2/5,2/5)\to(1,1/4)$. Các đường $q$ có giá trị xấp xỉ $-0{,}605;-0{,}545;-0{,}425;-0{,}125$ và dao động dưới $0{,}000074$. |
+| `batch-shift.svg` | Vị trí tám dấu chấm, hai trung bình và hai phương sai đúng; đầu ra giới hạn ghi đúng. |
+| `coordinate-path.svg` | Hai đoạn song song trục tới $(1,0)$ rồi $(1,1/2)$; nghiệm đánh dấu đúng $(2/3,2/3)$. Các đường mức quanh nghiệm đúng trong sai số làm tròn dưới $0{,}00015$. |
+| `gradient-chain.svg` | Mỗi chuỗi có năm cạnh, hệ số $0{,}1$ hoặc $1{,}1$; tích cuối đúng. Đây là hệ số qua khối, phù hợp phân biệt với gradient đầy đủ trong E07. |
+| `continuation-quartic.svg` | Tính ngược đủ các điểm của ba đường hàm; sai số tuyệt đối dưới $0{,}00031$. Năm dấu cực tiểu đúng vị trí và giá trị. |
+
+Kiểm hình ở đây là kiểm dữ liệu và hình học SVG, không chứng nhận kích thước chữ hoặc cách trình duyệt hiển thị.
+
+#### Đối chiếu nguồn và Detect
+
+Đã mở lại các nguồn chính thức, độc lập với báo cáo cũ: [Shewchuk 1994](https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf) cho hệ SPD/truy hồi CG; [CMU Quasi-Newton](https://stat.cmu.edu/~ryantibs/convexopt/lectures/quasi-newton.pdf), tr.13–16 cho công thức nghịch đảo, bảo toàn SPD và điều kiện độ cong; [Adam](https://arxiv.org/pdf/1412.6980), thuật toán 1 và §3 cho chỉ số, epsilon và moment không đổi; [BN](https://proceedings.mlr.press/v37/ioffe15.pdf), thuật toán 1 và §3.1 cho phương sai lô, phụ thuộc lô và thống kê suy luận. Các công thức được đối chiếu phù hợp.
+
+[Deep Learning, Chương 8](https://www.deeplearningbook.org/contents/optimization.html), §8.7.3 và §8.7.6, xác nhận phân biệt trung bình đều/trung bình mũ và cách thay trọng số hoặc tần suất lấy mẫu trong chương trình. URL bản tác giả bài Curriculum trả lỗi trong lần mở này; không suy rằng nguồn không tồn tại và không ghi đã đọc lại PDF đó. Phép tính chương trình được kiểm trực tiếp từ hàm tự xây dựng, nguồn giáo trình truy cập được đủ kiểm cơ chế được dùng.
+
+Detect bao phủ tiêu đề, nội dung, notes và hai học liệu. Không phát hiện câu dẫn rỗng, kết luận kịch tính hoặc lời ca tụng cần xử lý trong phạm vi đọc. Các câu phủ định bảo đảm toàn cục có chức năng phân biệt toán học, không đánh dấu máy móc thành lỗi đối lập nhị nguyên. Không chấm điểm phát hiện AI hoặc suy đoán tác giả.
+
+Đề nghị điều phối viên ghi phạm vi và kết quả Detect vào `review-log.md`, xử lý M01–M04 rồi gửi tái kiểm. Chỉ sau đủ các vai còn lại mới có căn cứ nghiệm thu toàn bộ bộ trang chiếu.
+
+#### Tái kiểm lần 1 sau sửa M01–M04
+
+Ngày 2026-09-27. Đã đọc `/tmp/lec06-deck-editor-math.md`, sau đó kiểm trực tiếp các tệp hiện tại. Chuỗi `bd98ed3...` là SHA-256 của HTML, không phải mã commit Git. Bản tái kiểm có các checksum khớp bàn giao của tác tử biên tập:
+
+```text
+bd98ed3b877c625828b9d9ba558bac15797a238a5b8ac35bc1307c4f652c9101  lecture-06-toi-uu-mang-sau.html
+0c0adae0db2be1c980681bc7fc8d3d3becb1cc0a59b4dd4493697f9960e80237  materials/lec-06/lecture-note.md
+175f30c3ba342c61c203f989000f16c65cd06184c23f1bbc2fa3c14905b459c6  materials/lec-06/exercises.md
+fd535aea19a526dd56abc57b41f9fe1aec64a333b3b5e668e060eaf2a317ff62  material-local-data.js
+```
+
+| Mã | Kết quả | Bằng chứng tái kiểm |
+|---|---|---|
+| M01 | Đóng | C06 đặt “Với $k=0,\ldots,K-1$, lặp” trước đủ bốn bước; giữ $K\ge1$ nguyên, kiểm khởi tạo, kiểm phần dư mới trước $\beta_k$ và trả ở $k+1=K$. Ghi chú §3.3 đã thống nhất $\tau>0$, ngân sách nguyên, miền lặp và đầu ra. Với $K=1$, trả $d_1$ sau một vòng; với nghiệm ở điểm đầu, trả $d_0$ trước mọi phép chia. |
+| M02 | Đóng | D01 notes đã dùng “Nếu Hessian liên tục trên đoạn nối hai điểm”; công thức tích phân giữ nguyên và khớp §4.1. Giả thiết đủ cho áp dụng định lý cơ bản của giải tích lên gradient dọc đoạn. |
+| M03 | Đóng | D04 yêu cầu tìm $\alpha>0$ làm giảm cùng $F$. Notes tách điều kiện $y^\top s>0$ khỏi việc nhận bước tham số và xác định ngân sách đếm bước được nhận. §4.3 viết rõ $F(\theta+\alpha d)<F(\theta)$, nhận hoặc giữ $P$, nhận tham số và lặp. Phản ví dụ $x=1,\alpha=3$ của vòng đầu sẽ bị loại ở phép kiểm giảm; không còn dùng dấu cặp để thay kiểm mục tiêu. |
+| M04 | Đóng | Đề Bài 2 chỉ bỏ $\varepsilon$ ở phần 1–2 và quy định phần 3 xét $\varepsilon>0$. Phản ví dụ với $\varepsilon=1$ giữ nguyên, đúng vì $10/(\sqrt{101}+1)>1/2$. Phần 4 về thống kê không phụ thuộc epsilon. |
+
+Phạm vi hồi quy: đọc lại C04–C08, D01–D05 và E01, gồm ít nhất hai trang liền trước/sau mỗi vị trí sửa khi xét hợp phạm vi. Đọc lại ghi chú §3.3–§4.3 và Bài 1–4 trong tệp bài tập. So sánh văn bản 45 trang với bản trích ở vòng đầu xác nhận chỉ C06, D01, D04 đổi nội dung; không có thay đổi kín ở trang khác. Các ví dụ CG, cặp BFGS và bài kiểm tra liền kề giữ nguyên đáp số và điều kiện đã kiểm. Không phát hiện hồi quy toán học.
+
+Chạy độc lập `python3 2627-1/scripts/sync-local-materials.py --check`: đạt, bản đóng gói khớp 14 Markdown. Đây là kiểm chỉ đọc; không ghi vào kho.
+
+Detect cho phần vừa sửa: câu trực tiếp, ký hiệu và thuật ngữ nhất quán; không phát hiện lời dẫn rỗng hoặc phô trương. Phân biệt kiểm giảm mục tiêu với kiểm độ cong là nội dung toán học cần giữ.
+
+**Kết luận tái kiểm:** M01–M04 đều đã đóng. Trong phạm vi toán học đã kiểm, hiện không còn phát hiện mở ở bất kỳ mức nào; không có lỗi chặn bàn giao hoặc nghiêm trọng. Kết luận chỉ áp dụng cho các checksum trên. Các đề xuất đang chờ về nhãn $d/r/p$ tại C05, biến có phương sai tại E03 và cặp mẫu $(x,y)$ tại F05 chưa được chỉnh trong bản này, nên chưa thuộc phần xác nhận sửa. Bốn vai còn lại đã được điều phối viên mở; báo cáo không kết luận quy trình còn bị chặn bởi công cụ và không thay nghiệm thu đủ năm vai.
+
+#### Tái kiểm lần 2: bản biên tập cuối
+
+Ngày 2026-09-27. Kiểm chỉ đọc trực tiếp HTML có SHA-256 `6561e164fdcc24f84a7b6bccff2cb171142b5e7ac3a040d77521f4c5979396e4`, khớp đúng bản điều phối viên giao. Tệp bàn giao `/tmp/lec06-deck-editor-final.md` chưa tồn tại ở hai lần kiểm trong lượt này; kết luận dựa trên sản phẩm thực tế và phạm vi sửa do điều phối viên cung cấp, không dựa trên báo cáo chưa đọc.
+
+Phạm vi: C05, E03, F04–F06, G02 cùng hai trang lân cận mỗi phía khi còn trang trong bộ; hợp phạm vi gồm C03–C07, E01–E05, F02–G03. Đọc thêm B03/B05/B07 và F02 cho việc thống nhất “xác thực”; đối chiếu ghi chú §2.4, §3.3, §5.1, §6.3–§6.4, các bài tập liên quan và các điều kiện đã đóng ở M01–M04.
+
+| Sửa đổi | Kết quả toán học |
+|---|---|
+| C05 định nghĩa $d_k,r_k,p_k$ trước ví dụ; hiện thương tính $\alpha_0$ và cách tạo $p_1$ | Đạt. $r_0=p_0=(1,1)^\top$ cho $\alpha_0=2/5$. Do $d_0=0$, cách viết $d_1=\alpha_0p_0$ đúng. $r_1=(3/5,-3/5)^\top$ và $p_1=r_1+(9/25)p_0$ cho $(24/25,-6/25)^\top$, nên $p_0^\top Ap_1=0$. Ghi chú còn đầy đủ suy ra $\beta_0$, kết quả số $p_1$ và vòng hai; hình và học liệu khớp. Việc chuyển số vòng hai khỏi mặt trang không làm mất giả thiết hoặc biến đổi. |
+| E03 chỉ rõ phương sai lô của $\widehat a$ | Đạt. Công thức $\sigma_\mathcal B^2/(\sigma_\mathcal B^2+\varepsilon)$ thuộc biến trước affine; ghi chú bài giảng vẫn phân biệt phương sai của $z$ bằng $\gamma^2$ lần đại lượng này. Không còn khả năng gán trực tiếp công thức trên cho $z$ từ nhãn mặt trang. |
+| F05/G02 định danh $E,H$ là cặp mẫu $(x,y)$ | Đạt. Với $f_\theta(x)=\theta x$ và hai nhãn bằng $1$, hai mất mát, trọng số, nghiệm $\theta_q^*=(1+2q)/(1+8q)$ và các đáp án giữ nguyên. Ghi chú §6.3 đã thêm cùng định danh. |
+| F04 đổi “gần giải” thành “giải gần đúng” | Đạt. Không thay quy trình hoặc khẳng định bảo đảm. Phản ví dụ gradient giữ nguyên $0$ vẫn được giới hạn rõ cho khởi tạo chính xác tại $0$. |
+| F06 thay câu điều phối bằng câu nối học thuật | Đạt. Ba phép kiểm gắn đúng với bước tinh chỉnh, truyền nghiệm và phân phối cuối. Không bổ sung kết luận hội tụ hay ưu thế phương pháp. |
+| Thống nhất “xác thực” trong thuật toán và học liệu | Đạt. Thuật ngữ chỉ tiêu chí chọn điểm/dừng đã định; không bị dùng thay cho kiểm hướng, kiểm phần dư hoặc chứng nhận điểm dừng. Phân biệt tập xác thực với tập kiểm tra cuối vẫn được giữ. |
+| Hồi quy M01–M04 | M01–M04 tiếp tục đóng: C06 còn miền lặp và kiểm dừng; D01 còn giả thiết Hessian liên tục; D04 còn điều kiện giảm cùng mục tiêu; Bài 2 còn phạm vi epsilon phần 1–2 và phần 3 riêng. |
+
+Checksum học liệu của bản này:
+
+```text
+54a9d86124db41a3222c9d6473b6355dc88b30933614ddad914cb33ea3754050  materials/lec-06/lecture-note.md
+175f30c3ba342c61c203f989000f16c65cd06184c23f1bbc2fa3c14905b459c6  materials/lec-06/exercises.md
+b49545668012918811f944db519a0bd35ee5d79c95a911b76e29c40327124ef6  material-local-data.js
+```
+
+Chạy lại kiểm chỉ đọc `sync-local-materials.py --check`: đạt, bản đóng gói khớp 14 Markdown. Detect trên câu vừa sửa không phát hiện vấn đề mới; ký hiệu, giả thiết và các phân biệt toán học được bảo toàn.
+
+**Kết luận toán học cuối:** Không phát hiện hồi quy; toàn bộ phát hiện M01–M04 đã đóng. Không còn lỗi toán học mở, chặn bàn giao hoặc nghiêm trọng trong phạm vi đã kiểm của bản SHA-256 nêu trên. Không yêu cầu sửa toán học thêm. Chứng nhận hiển thị và nghiệm thu chung thuộc kết quả tổng hợp các vai của điều phối viên.
+
+
+### Rà soát độc lập mạch lập luận Bài 06
+
+Ngày rà: 2026-09-27. Vai: mạch lập luận và liên kết trang chiếu, chỉ đọc. Đã đọc AGENTS.md và kỹ năng no-ai-slop, chế độ Detect. Đầu vào chính là nội dung và ghi chú của `2627-1/lecture-06-toi-uu-mang-sau.html`; đối chiếu với `planning/lec-06/outline.md` và `storyboard.md`. Kết luận dưới đây được rút từ bản HTML, không kế thừa kết luận rà soát trong hồ sơ cũ. Không sửa tệp trong kho; không gọi API, không dùng OpenRouter và không đọc tệp môi trường.
+
+#### Kết luận và phạm vi
+
+Bản HTML có đủ 45 trang, phân vào đúng 7 mạch ngoài: 5 + 9 + 8 + 5 + 8 + 7 + 3. Các mục trang trong dàn ý và storyboard cùng có đúng 45 mã, không trùng và khớp HTML. Không phát hiện lỗi chặn bàn giao, nghiêm trọng hoặc trung bình thuộc vai mạch lập luận. Có một lỗi nhẹ về trạng thái hồ sơ, ghi ở cuối báo cáo.
+
+Cơ sở chung có hai tầng phù hợp với phạm vi bài. Sơ đồ quá trình huấn luyện ở A02 xác định dữ liệu/mô hình, mục tiêu/điểm đầu, quy tắc cập nhật/quỹ đạo và quy tắc trả về/đầu ra. Mô hình bước có phạt xác định dương ở A04 cụ thể hóa nhóm quyết định cập nhật, nối B–D bằng ma trận phạt, thống kê gradient, độ cong và xấp xỉ nghịch đảo. E–F quay về sơ đồ quá trình để phân biệt các can thiệp ngoài bước cập nhật. Bài không suy ra một định lý hội tụ chung cho mọi can thiệp.
+
+Phạm vi kiểm tra này là quan hệ học thuật và vai trò trang. Không chứng nhận thay vai toán học, nguồn, storyboard hoặc kiểm tra trực quan. Đã đọc lại C06 có miền vòng lặp, D01 có giả thiết Hessian liên tục và D04 có bước làm giảm cùng mục tiêu sau chỉnh sửa; các sửa này giữ nguyên quan hệ trước–sau.
+
+#### Bảng phủ cấp mạch
+
+| Mạch | Chức năng | Đầu vào | Đầu ra | Đóng góp cho vấn đề trung tâm và bằng chứng ranh giới |
+|---|---|---|---|---|---|
+| A | Xác lập bài toán và công cụ mô hình bước | Gradient, hàm bậc hai, cập nhật SGD | Sơ đồ thành phần; bước có phạt và điều kiện xác định dương | A03 cho thất bại của bước vô hướng, A04 giải bằng ma trận phạt; notes A05 đặt nhu cầu ước lượng thang từ lịch sử gradient. |
+| B | Dựng bước từ thống kê theo tọa độ | Mô hình A04 và gradient cho sẵn | AdaGrad, RMSProp, Adam; phân biệt hướng moment và giới hạn đường chéo | B08 dùng hạng tương tác ngoài đường chéo; notes B09 nối giới hạn này với Hessian ở C01. |
+| C | Dùng độ cong và giải hệ có kiểm soát | Giới hạn đường chéo; Hessian và xác định dương | Hướng Newton, giảm chấn, CG, phép kiểm phần dư/hướng | C07–C08 nêu toán tử cố định, điều kiện SPD và giới hạn khi thiếu tích Hessian–vectơ; D01 nhận trực tiếp giới hạn này. |
+| D | Xấp xỉ độ cong từ gradient | Gradient hai điểm cùng mục tiêu; thiếu toán tử độ cong | Cát tuyến, BFGS, bảo toàn SPD, chi phí và kiểm cặp | Notes D04–D05 nói rõ phương pháp mới chỉ thay cách sinh bước; E01 gọi lại thành phần mô hình, khối và đầu ra. |
+| E | Phân biệt phép tính mô hình, biến được cập nhật và đầu ra | Giới hạn của can thiệp bước | Chuẩn hóa theo lô, hạ khối, trung bình, đường truyền gradient cùng điều kiện riêng | E03 sửa giả thiết mục tiêu độc lập mẫu; E08 đóng bốn phép kiểm, rồi mở điểm đầu/mục tiêu/phân phối theo giai đoạn. |
+| F | Tổ chức các giai đoạn theo đối tượng thay | Điểm đầu, mục tiêu, dữ liệu đích | Phép chuyển tham số, họ mục tiêu, lịch phân phối, hồ sơ đánh giá | F06 đối chiếu đích và toàn ngân sách; notes F07 đưa kết quả vào lựa chọn phối hợp ở G01. |
+| G | Tổng hợp điều kiện lựa chọn và kiểm chuyển giao | Các cơ chế, giả thiết, giới hạn A–F | Phương án có dữ kiện, cơ chế, điều kiện, chi phí, phép kiểm | G01 tái dùng đúng sơ đồ A02; G02 kiểm ba tình huống có ràng buộc thay vì xếp hạng tên thuật toán; G03 cung cấp đường truy nguyên. |
+
+#### Bảng phủ 45 trang
+
+Mỗi hàng xác định vai trò, kết nối vào, bước mới hoặc kết quả cần đạt và kết nối ra. Quyết định trong phạm vi mạch lập luận: giữ cả 45 trang; không đề xuất thêm, bỏ, gộp, tách hoặc đổi thứ tự.
+
+| Trang | Vai trò trong lập luận | Kết nối vào | Kết quả cần đạt | Kết nối ra |
+|---|---|---|---|---|
+| A01 | Xác lập phạm vi | Tiên quyết Bài 05 được nêu trong notes | Phân biệt thống kê, độ cong và tổ chức huấn luyện | A02 chuyển phạm vi thành các quyết định học tập. |
+| A02 | Luận đề và sơ đồ chung | Phạm vi A01 | Lựa chọn thành phần cần điều chỉnh với ba nhóm mục tiêu | A03 xét cụ thể giới hạn bước vô hướng. |
+| A03 | Nhu cầu và ví dụ sai lệch thang | Quyết định cập nhật ở A02 | Hai bước cùng gradient có hệ quả khác do độ cong | A04 thay hệ số chung bằng ma trận phạt. |
+| A04 | Suy ra công cụ chung B–D | Hàm và gradient A03 | Bước duy nhất dưới SPD; tách gradient đầy đủ/lô | A05 kiểm công thức và giả thiết. |
+| A05 | Kiểm đầu mạch | Công thức và dạng toàn phương A04 | Tính hai bước; bác ma trận khiến bài toán không bị chặn | Notes tạo nhu cầu ước lượng thang ở B01. |
+| B01 | Giới thiệu thống kê có căn cứ | Chưa biết ma trận phạt thích hợp | Bình phương tránh triệt tiêu dấu; tích lũy theo tọa độ | B02 dùng đúng dãy số. |
+| B02 | Tính bước AdaGrad | Dãy gradient B01 | Phân biệt thống kê, tốc độ hiệu dụng và độ dài bước | B03 tổng quát và xử lý mẫu bằng không. |
+| B03 | Thuật toán và giới hạn tích lũy | Phép tính B02 | Quy tắc khép kín, ma trận phạt, chi phí, ứng dụng tọa độ thưa | Thống kê không quên đặt nhu cầu RMSProp B04. |
+| B04 | Ví dụ thay cơ chế nhớ | Giới hạn tích lũy B03 | Trọng số suy giảm làm khác thống kê trên cùng dãy | B05 tổng quát hóa độ trễ. |
+| B05 | RMSProp và hệ quả bộ nhớ | Ví dụ trung bình mũ B04 | Quy tắc, trọng số, thống kê khi vắng gradient | B06 thêm moment bậc nhất và hiệu chỉnh. |
+| B06 | Ví dụ hiệu chỉnh | Tổng trọng số trung bình mũ chưa bằng một | Moment thô và đã hiệu chỉnh ở vòng đầu | B07 hoàn thiện Adam. |
+| B07 | Adam và giới hạn hướng | Cơ chế hiệu chỉnh B06; momentum tiên quyết | Phân biệt moment bậc hai thô/phương sai và moment/gradient hiện tại | B08 chuyển sang giới hạn khác: tương tác tọa độ. |
+| B08 | Chuẩn bị nhu cầu độ cong đầy đủ | Ma trận chuẩn hóa đường chéo B01–B07 | Hạng tương tác không thể được tái tạo bằng dạng đường chéo | B09 kiểm thống kê; C01 tiếp nhận đúng ma trận nghiêng. |
+| B09 | Kiểm cơ chế trạng thái | Ba thuật toán đã hoàn chỉnh | Tính vòng hai, giải thích Adam còn dịch chuyển | Notes gọi lại tương tác để vào C01. |
+| C01 | Hình học độ cong tương tác | Ma trận B08 | Gradient âm không hướng thẳng tới nghiệm | C02 giải hệ dùng toàn bộ ma trận. |
+| C02 | Ví dụ Newton | Hessian/gradient C01 | Bước chính xác của mô hình bậc hai | C03 tổng quát và hạn chế kết quả một bước. |
+| C03 | Newton và các giả thiết | Phép giải hệ C02; mô hình A04 | SPD cho hướng giảm; tốc độ bậc hai cần điều kiện cục bộ | C04 phá giả thiết SPD để kiểm giới hạn. |
+| C04 | Phản ví dụ và giảm chấn | Điều kiện hướng giảm C03 | Hessian khả nghịch chưa đủ; dịch trị riêng để có SPD | Hệ hợp lệ cần cách giải qua tích ma trận ở C05. |
+| C05 | Ví dụ CG | Hệ SPD C04 | Phần dư, bước tìm kiếm, hướng liên hợp, hai vòng số | C06 tổng quát cùng ký hiệu vòng trong. |
+| C06 | Bộ giải tuyến tính có dừng | Phép tính C05 | Toán tử cố định; truy hồi đầy đủ; dừng trước chia; chi phí | C07 gắn bộ giải vào vòng Newton ngoài. |
+| C07 | Ghép Newton và CG | Hệ SPD cùng bộ giải C06 | Tách phần dư khỏi kiểm hướng, xử lý gradient bằng không | C08 kiểm hệ và phần dư; D01 thay nguồn độ cong. |
+| C08 | Kiểm giả thiết rồi tính | C04–C07 | Chọn giảm chấn hợp lệ và quyết định chưa đạt dung sai | Notes nêu trường hợp thiếu toán tử dẫn vào D01. |
+| D01 | Nguồn độ cong thay thế | Hạn chế toán tử ở C07–C08 | Sai phân cùng mục tiêu cho cát tuyến; một hướng chưa đủ Hessian | D02 kiểm một cập nhật cụ thể. |
+| D02 | Ví dụ hai yêu cầu ma trận | Cát tuyến D01 | Kiểm cát tuyến và SPD riêng; xấp xỉ khác nghịch đảo thật | D03 cho công thức bảo toàn hai yêu cầu. |
+| D03 | Kết quả BFGS | Điều kiện số D02 | Cát tuyến và SPD dưới điều kiện độ cong dương | D04 dùng ma trận tạo hướng và quản lý cặp. |
+| D04 | Thuật toán và tài nguyên | Cập nhật hợp lệ D03 | Hướng, bước giảm, nhận/bỏ cặp, chi phí BFGS/L-BFGS | D05 kiểm độc lập cặp và hướng; notes mở các thành phần còn lại. |
+| D05 | Kiểm điều kiện | D03–D04 | Phân biệt nhận cặp với dùng ma trận đã có tạo hướng | Notes nối việc chỉ thay bước với nhu cầu E01. |
+| E01 | Gọi lại cơ sở toàn bài | Nhóm cập nhật B–D đã hoàn tất | Định vị phép tính, biến cập nhật, đầu ra | Nhu cầu thang đặc trưng dẫn E02. |
+| E02 | Ví dụ BN và phụ thuộc lô | Phép tính tầng E01 | Dịch chung vẫn cùng chuẩn hóa; cùng giá trị có đầu ra tùy lô | E03 định nghĩa và sửa giả thiết mục tiêu. |
+| E03 | BN cùng hai chế độ | Trung bình/phương sai E02 | Phương sai có epsilon; học/suy luận; mục tiêu theo lô | Notes phân biệt thay phép tính với thay tập biến E04. |
+| E04 | Ví dụ bài toán con | Thành phần tập biến từ E01/E03 | Một tọa độ làm bài toán dễ giải; dùng giá trị mới | E05 tổng quát thành hạ khối. |
+| E05 | Quy tắc và tính không tăng | Lượt cập nhật E04 | Điều kiện khả thi và nghiệm con đủ để không tăng | Quỹ đạo sinh ra dẫn tới quy tắc trả về E06. |
+| E06 | Đầu ra trung bình và giới hạn | Quỹ đạo đã có | Tính trung bình đều; phản ví dụ phi lồi; không đồng nhất với momentum | Notes nhắc đầu ra không sửa đạo hàm do kiến trúc tạo ở E07. |
+| E07 | Yếu tố kiến trúc trước cập nhật | Giới hạn của thay bước/đầu ra | Tích đạo hàm chỉ là thừa số; nối tắt có giới hạn theo độ sâu | E08 kiểm cùng ba can thiệp trước; notes nối kiến trúc/điểm đầu. |
+| E08 | Kiểm phân biệt can thiệp | E02–E07 | Phương sai, điều kiện không tăng, phản ví dụ trung bình, giới hạn nối tắt | Notes chuyển tới điểm đầu, mục tiêu và phân phối ở F. |
+| F01 | Ví dụ điểm đầu có tín hiệu | E07–E08 xác định vai trò điểm đầu | Chuyển tham số phụ tạo gradient khác và bước tinh chỉnh tính được | F02 tổng quát phép chuyển. |
+| F02 | Quy trình tiền huấn luyện | Ví dụ chuyển hệ số F01 | Phần giữ/mới, nhiệm vụ phụ/đích, tinh chỉnh, ngân sách | Notes đối chiếu với giữ không gian tham số nhưng đổi mục tiêu F03. |
+| F03 | Họ mục tiêu có cấu trúc nghiệm thay đổi | Can thiệp mục tiêu thay cho chỉ điểm đầu | Đồ thị/phép tính tạo giả thuyết truyền nghiệm cần kiểm | F04 kiểm đường điểm dừng thay vì suy ưu thế từ hình. |
+| F04 | Tiếp diễn và phản ví dụ đường đi | Họ mục tiêu F03 | Điểm dừng có thể giữ nguyên dù mất tính cực tiểu | Notes đổi cơ chế tạo họ mục tiêu sang lấy mẫu F05. |
+| F05 | Phân phối sinh mục tiêu | Ý tưởng họ mục tiêu F04 | Trọng số dữ liệu đổi nghiệm; phân phối cuối phải đúng đích | F06 thống nhất điều kiện đánh giá ba cơ chế. |
+| F06 | Hồ sơ đánh giá giai đoạn | Phép chuyển, họ hàm, phân phối F01–F05 | Ghi đúng đối tượng thay, đích, dữ liệu và toàn chi phí | F07 kiểm bằng ba dữ kiện số. |
+| F07 | Kiểm cơ chế giai đoạn | F01–F06 | Bước tinh chỉnh, mắc điểm dừng, sai mục tiêu cuối | Notes đưa kết quả vào lựa chọn phối hợp G01. |
+| G01 | Trả lời vấn đề mở đầu | Cơ chế/giới hạn A–F | Bảng dữ kiện–cơ chế–giả thiết–phép kiểm theo đúng sơ đồ A02 | G02 yêu cầu lập phương án có điều kiện. |
+| G02 | Minh chứng tổng hợp | Bảng lựa chọn G01; toàn bộ công cụ đã dạy | Chọn theo bộ nhớ, giải hệ có kiểm, sửa phân phối đích; không dùng trung bình để sửa sai mục tiêu | G03 chỉ đường đối chiếu và tự học. |
+| G03 | Truy nguyên kết quả | G02 hoàn tất nội dung đánh giá | Vị trí nguồn để kiểm biến thể/giả thiết | Kết thúc tuyến; không đưa kết quả toán mới chưa chuẩn bị. |
+
+#### Mở bài, kết luận và câu hỏi
+
+A02 nêu bài toán lựa chọn thành phần khi tốc độ học vô hướng chưa đủ; G01 giữ đúng sơ đồ và bổ sung bảng điều kiện, G02 buộc sử dụng bảng đó trên dữ kiện cụ thể. Vì vậy kết luận giải quyết vấn đề mở đầu bằng phương án có điều kiện, không khẳng định có một bộ tối ưu tốt nhất.
+
+Bảy trang kiểm tra A05, B09, C08, D05, E08, F07 và G02 đều sử dụng công cụ đã được giới thiệu. A05 đo tính hợp lệ của mô hình bước; B09 đo trạng thái thay vì chỉ nhận dạng tên; C08 yêu cầu chọn SPD trước khi tính CG; D05 tách cặp độ cong và hướng; E08 kiểm các giới hạn khác nhau; F07 kiểm điểm đầu và đích; G02 tích hợp nguồn lực với phép kiểm. L-BFGS chỉ dùng ở mức chi phí, không có bài tập đòi đệ quy chưa dạy. G02 không đòi nội dung Wolfe để trả lời. Chưa phát hiện tiên quyết ẩn khiến người học phải dùng kết quả ngoài tuyến.
+
+Ranh giới dễ đứt D→E và E→F đều có câu nối cụ thể trong notes. Việc E06→E07 quay từ đầu ra về kiến trúc được giải thích bằng quan hệ nhân quả: đổi đầu ra không thay các đạo hàm của mô hình. B08 và C01 cùng dùng ma trận nghiêng nhưng không lặp chức năng: B08 chứng minh giới hạn của biểu diễn đường chéo; C01 lập mục tiêu và gradient để chuẩn bị hệ Newton.
+
+#### Phát hiện có cấu trúc
+
+| Mã | Mức độ | Vị trí | Vấn đề và bằng chứng | Vai trò / kết nối vào / kết nối ra / kết quả cần đạt | Đề xuất |
+|---|---|---|---|---|---|
+| ARG-01 | Nhẹ | `outline.md`, phần Thông tin chung; `storyboard.md`, Phạm vi | Dàn ý ghi “Bản này chỉ là kế hoạch mới; HTML và tài liệu công khai hiện có chưa đồng bộ”; storyboard ghi “Bản này chưa đồng bộ RevealJS.” HTML hiện đã chứa đủ đúng 45 mã và tuyến 7 mạch được mô tả. Đây là trạng thái hồ sơ lỗi thời, chưa phải lỗi nội dung bài. | Vai trò: xác định phiên bản được kiểm. Kết nối vào: kế hoạch đã chốt. Kết nối ra: bản HTML đang được rà. Kết quả cần đạt: người đọc nhận biết rõ nội dung nào đã triển khai và bước kiểm nào còn chờ. | Cập nhật riêng trạng thái triển khai RevealJS và trạng thái kiểm định/tài liệu công khai; giữ lịch sử kiểm định cũ trong review-log. Không cần đổi trang hoặc mạch. |
+
+Không có phát hiện nội dung nào cần sửa bắt buộc thuộc vai này. Có thể chấp nhận tuyến hiện tại trong khi sửa ARG-01 và hoàn tất các vai kiểm định khác.
+
+#### no-ai-slop Detect
+
+Phạm vi: toàn bộ tiêu đề, nội dung và ghi chú 45 trang. Không phát hiện đoạn dẫn rỗng, ca tụng, suy diễn ý nghĩa không có cơ chế, câu kết kịch tính hoặc thay từ đồng nghĩa làm mơ hồ đối tượng toán học. Các đối chiếu “không phải”, “chưa bảo đảm” ở B07, C04, E06 và F04 có chức năng phân biệt toán học; không đề nghị xóa theo quy tắc văn phong máy móc. Các câu nối giữ đối tượng, giả thiết và kết quả cụ thể; không biến thành lời điều phối giảng viên. Không dùng điểm phát hiện AI hoặc suy đoán tác giả.
+
+Điều phối viên cần ghi phạm vi, kết quả Detect và ARG-01 vào review-log.md; tác tử chỉ đọc không chỉnh nhật ký trong kho.
+
+#### Tái kiểm sau biên tập cuối ngày 2026-09-27
+
+Bản được kiểm có SHA-256 `6561e164fdcc24f84a7b6bccff2cb171142b5e7ac3a040d77521f4c5979396e4`, xác nhận trực tiếp bằng `sha256sum`. Giữ nguyên toàn bộ báo cáo trước làm lịch sử. Lượt này chỉ đọc bản HTML và các đoạn hồ sơ liên quan; chưa cần dựa vào báo cáo biên tập để kết luận.
+
+Phạm vi bao gồm các trang sửa C05, E03, F04, F05, F06, G02 và ít nhất hai trang lân cận mỗi phía: C03–C07, toàn bộ E01–E08, F01–F07, G01–G03. Đọc lại A02 để đối chiếu luận đề với G01–G02. Phân tích cấu trúc HTML xác nhận vẫn 45 trang trong 7 mạch với cùng thứ tự mã. Các ranh giới E→F, F→G đã được rà đầy đủ qua notes và nội dung.
+
+| Trang hoặc cụm | Vai trò và kết nối vào | Kết quả sửa và kết nối ra | Kết luận hồi quy |
+|---|---|---|---|
+| C03–C07, trọng tâm C05 | C03–C04 tạo hệ SPD cần giải; C05 cung cấp ví dụ trước thuật toán | C05 đã định nghĩa ngay $d_k$, $r_k$, $p_k$; công thức $\alpha_0$ và cách tạo $p_1$ xuất hiện trên trang. Notes giữ suy ra hệ số $9/25$ từ điều kiện liên hợp, giá trị vectơ $p_1$ và vòng hai. C06 dùng chính các đại lượng này trong truy hồi; C07 giữ ứng dụng Newton–CG. | Không mất bước lập luận khi chuyển kết quả số vòng hai vào notes. Vai trò nhu cầu → ví dụ → thuật toán → ứng dụng được giữ; ký hiệu dễ nhận biết hơn. |
+| E01–E05, trọng tâm E03 | E01 xác định phép tính mô hình; E02 tạo dữ kiện hai lô | Nhãn mới “Phương sai lô của $\widehat a$” chỉ đúng đại lượng trước phép biến đổi affine. Notes vẫn điều chỉnh giả thiết mục tiêu độc lập mẫu. E04–E05 chuyển sang chọn khối cập nhật trên mục tiêu đã xác định. | Không đổi kết quả BN hoặc quan hệ sang hạ khối. Không tạo tiên quyết mới. |
+| E06–F02 | Đầu ra trung bình và kiến trúc là hai thành phần khác nhau; E08 kiểm phân biệt | Notes E08 còn nêu điểm đầu, mục tiêu và phân phối là đối tượng theo giai đoạn; F01 cụ thể hóa bằng gradient tại hai điểm đầu, F02 quy định phép chuyển và tinh chỉnh. | Ranh giới E→F giữ đủ điểm vào/đầu ra. Thuật ngữ “xác thực” trong F02 không đổi vai trò chọn tham số trên nhiệm vụ đích. |
+| F02–F06, trọng tâm F04–F05 | F02 thay điểm đầu; F03 tạo họ mục tiêu trên cùng không gian tham số | “Giải gần đúng” ở F04 diễn đạt đúng thao tác bộ giải con, không thay kết luận về điểm dừng $0$. F05 xác định rõ hai mẫu là $(x,y)$ và $q=P(H)$; cùng các giá trị đó tiếp tục sinh $F_q$ và nghiệm theo phân phối. | Không đổi chuỗi phép chuyển → họ mục tiêu → phân phối; không phát sinh mâu thuẫn với F07. |
+| F04–G01, trọng tâm notes F06 | Ba cơ chế giai đoạn đã có ví dụ và giới hạn | Câu mới “Bước tinh chỉnh được kiểm trên mất mát đích; truyền nghiệm cần kiểm điểm dừng; lịch lấy mẫu cần đạt phân phối cuối” nêu ba quan hệ học thuật cụ thể. F07 áp dụng đúng ba quan hệ; G01 dùng chúng làm tiêu chí chọn thành phần. | Câu nối rõ hơn và không còn nhận xét về việc tổ chức câu hỏi. Ranh giới F→G không bị đứt. |
+| F07–G03, trọng tâm G02 | G01 tổng hợp theo cùng sơ đồ A02; G02 đo khả năng sử dụng kết quả | G02 chỉ làm rõ nhãn hai mẫu $(x,y)$ trước biểu thức mục tiêu. Câu hỏi vẫn yêu cầu sửa lịch tới phân phối đích và phân biệt trung bình tham số với thay mục tiêu. Đáp án và kết luận giữ nguyên. | G02 không đổi luận đề, phạm vi hay kết luận cuối bài; không cần mở lại toàn bộ 45 trang sau lượt rà toàn bài trước. |
+
+ARG-01 được **đóng**. Dàn ý hiện ghi “HTML đã được triển khai đủ 45 trang và 7 mạch theo kế hoạch này”; storyboard hiện ghi “RevealJS đã được triển khai đủ 45 trang theo thứ tự này ngày 2026-09-27”. Cả hai chuyển trạng thái rà soát sang review-log.md, nên đã phân biệt triển khai với kiểm định. Bằng chứng này thay trạng thái mở trong bảng phát hiện trước, không xóa lịch sử.
+
+no-ai-slop Detect cho phạm vi tái kiểm: không phát hiện thêm đoạn cần sửa. Câu nối F06 đã thay nhận xét về hoạt động kiểm tra bằng đối tượng và điều kiện học thuật cụ thể; giả thiết, ký hiệu, nguồn và giới hạn được giữ.
+
+Kết quả tái kiểm: không có hồi quy về mạch lập luận, không còn phát hiện mở thuộc vai này và không cần sửa thêm. Kết luận chỉ chứng nhận phạm vi nội dung/quan hệ học thuật đã rà, không thay kiểm định hình thức hiển thị hoặc độ chính xác toán học độc lập.
+
+
+### Rà soát Bài 06 — góc nhìn sinh viên
+
+Ngày: 2026-09-27. Vai trò độc lập, chỉ đọc. Không sửa tệp trong kho. Đã đọc AGENTS.md và kỹ năng no-ai-slop; áp dụng chế độ Detect. Báo cáo này không thay rà soát toán học, chuyên gia hoặc kiểm thử trình duyệt.
+
+#### Kết luận
+
+Không phát hiện lỗi **chặn bàn giao** hoặc **nghiêm trọng** mới trong phạm vi góc nhìn sinh viên. Bản gồm 45 trang, 7 mạch, phù hợp cấu trúc được giao. Có hai lưu ý trung bình và hai lưu ý nhẹ dưới đây. Các sửa C06, D01, D04 do tác tử biên tập đang thực hiện cần được kiểm tra lại trên ảnh mới; ảnh đã xem vẫn chứa bản trước những sửa này.
+
+Mặt trang rộng có chữ và công thức đọc được, không thấy chồng lấn hoặc cắt nội dung ở 45 ảnh được ghép. Những trang được chỉ định có mật độ cao C06, D03, D04, E07, F01, F05 vẫn phân biệt rõ dữ kiện, phép tính và kết luận ở bản rộng. Ảnh không chứng nhận khoảng cách đọc thực trong giảng đường.
+
+#### Phạm vi đã kiểm tra
+
+- Đọc toàn bộ 45 trang và 45 phần ghi chú trong `2627-1/lecture-06-toi-uu-mang-sau.html`.
+- Đọc phần cơ sở chung, tiên quyết, bản đồ 7 mạch, phân bổ 2 tiết lý thuyết + 1 tiết bài tập, bản đồ hành trình và các mục từng trang trong outline/storyboard. Không quy đổi tiết sang phút.
+- Đối chiếu có chọn lọc tài liệu công khai: phần chuẩn bị, §3.3–3.5 về gradient liên hợp và Newton–CG; cấu trúc các mục cùng bài tập. Không tuyên bố đã rà toàn bộ học liệu công khai trong vai này.
+- Xem trực tiếp đủ `/tmp/lec06-qa/contact/01.png` đến `12.png`, bao phủ lần lượt 45 trang.
+- Xem riêng ảnh rộng: `20-C06.png`, `25-D03.png`, `26-D04.png`, `34-E07.png`, `36-F01.png`, `40-F05.png` trong `/tmp/lec06-qa/deck/wide/`.
+- Xem riêng ảnh hẹp đầu/cuối: C05, C06, D04, E07, F01, F05, G01; D03 chỉ có một ảnh. Tổng cộng 15 ảnh trong `/tmp/lec06-qa/deck/narrow/`.
+- Không thao tác trực tiếp trình duyệt hoặc bàn phím trong vòng này. Đã đối chiếu mã HTML cho các vùng cuộn ngang và ghi rõ giới hạn của kết luận.
+
+#### Danh sách vấn đề
+
+| Mức độ | Trang | Vấn đề | Bằng chứng | Đề xuất sửa |
+|---|---|---|---|---|
+| Trung bình | C05–C06 | Nhiều ký hiệu mới xuất hiện đồng thời; sinh viên chỉ xem mặt trang có thể chép các hệ số mà chưa biết ý nghĩa của chúng. | C05 hiện cùng lúc $d_k,r_k,p_k,\alpha_k,\beta_k$. Mặt trang cho $\alpha_0=2/5$, $\beta_0=9/25$ nhưng phần giải thích “$d_k$ là xấp xỉ nghiệm, $r_k$ là phần dư, $p_k$ là hướng tìm kiếm” và cách xác định hai hệ số chỉ ở notes. Tài liệu công khai §3.3 đã có định nghĩa rõ. | Khi có vòng sửa nội dung tiếp theo, đưa một dòng nhãn ngắn cho $d_k,r_k,p_k$ lên C05, hoặc thay một dòng tính sẵn bằng ý nghĩa của hệ số bước. Giữ chứng minh và vòng hai ở ghi chú; không cần thêm trang. |
+| Trung bình | D03, E07, F01, F05, G01; tương tự C05 | Nội dung quan trọng ở bên phải vùng cuộn ngang khó được nhận ra trên điện thoại. | Ảnh D03 dừng giữa công thức BFGS; E07 chỉ thấy đến $h_2$, chưa thấy hai tích cuối; F01 chưa thấy hết gradient; F05 chưa thấy hạng mất mát thứ hai và các cột cuối; G01 chưa thấy đủ cột giả thiết/phép kiểm. HTML có vùng cuộn, tabindex và xử lý phím, nên đây chưa phải bằng chứng mất nội dung. Tuy nhiên ảnh ban đầu không có chỉ dấu cuộn ngang rõ. | Bổ sung dấu ↔ hoặc biên thị giác cho vùng tràn ngang ở chế độ hẹp; không cần lời hướng dẫn giảng viên hay văn nói. Kiểm và ghi nhận người dùng nhìn thấy thanh cuộn/điểm nhận tiêu điểm. Giữ bố cục rộng. Cần ảnh sau khi cuộn ngang hoặc kiểm bàn phím để đóng nhận xét khả dụng này. |
+| Nhẹ | F05 | Hai cặp dữ liệu và tiêu chí “dễ/khó” chỉ được giải mã đầy đủ trong ghi chú. | Mặt trang viết “$E=(1,1)$, $H=(3,1)$” rồi dùng mô hình và lịch lấy mẫu; không ghi ngay hai thành phần là $(x,y)$. Notes mới nêu độ cong $1$ và $9$, cùng giới hạn của cách gọi độ khó. | Ghi “hai mẫu $(x,y)$” trước $E,H$. Nếu còn chỗ, gọi $H$ là mẫu có độ nhạy cao hơn trong ví dụ. Không cần thêm định nghĩa độ khó chung. |
+| Nhẹ | E03 | Nhãn phương sai có thể bị đọc là phương sai của đầu ra cuối $z$, dù công thức đang nói về $\widehat a$. | Mặt trang đặt $z_i=\gamma\widehat a_i+\beta$ ngay trước dòng “Phương sai sau chuẩn hóa: $\sigma_{\mathcal B}^2/(\sigma_{\mathcal B}^2+\varepsilon)$”. Notes giải thích đúng phép chia và E08 chọn $\gamma=1$, nhưng sinh viên đọc nhanh có thể quên phép co giãn. | Đổi nhãn thành “Phương sai của $\widehat a$” trong lần sửa nội dung tiếp theo. Không cần thêm công thức mới. |
+
+#### Những phần hỗ trợ người học
+
+Tiên quyết phù hợp với tuyến: gradient, Hessian, xác định dương, quy tắc dây chuyền và các quy tắc SGD/momentum đã học. Các phép tính B02–B07 giữ cùng dãy gradient, nên thay đổi thống kê được so sánh bằng cùng dữ kiện. C01–C04 phân biệt hướng giảm với độ dài bước; C08 có dữ kiện đủ để tự kiểm. D02 kiểm cát tuyến và xác định dương trước công thức tổng quát, D05 tách phép kiểm cặp với phép tạo hướng.
+
+Bảy mạch có điểm vào/ra nhận ra được. Sơ đồ A02 được dùng lại ở E01 và G01, giúp người học phân biệt thay quy tắc cập nhật với thay mô hình, điểm đầu, mục tiêu và đầu ra. E06 và F04 có phản ví dụ cụ thể, tránh việc học tên chiến lược như một bảo đảm cải thiện. E08 và F07 đã cung cấp đủ dữ kiện trung gian để người học tập trung vào kết luận cần kiểm. G02 yêu cầu lựa chọn có điều kiện, thay vì chỉ nhắc tên thuật toán.
+
+Ghi chú diễn giả bổ sung đáp án, phân biệt dễ nhầm và quan hệ suy luận. Không thấy mã trang nội bộ hoặc chỉ dẫn điều phối lớp trên mặt trang hay trong ghi chú đã đọc. Chứng minh CG/BFGS cần học liệu đi kèm để tự học đầy đủ; mặt trang phù hợp làm điểm tựa cho buổi học, không phải toàn bộ giáo trình.
+
+#### no-ai-slop — Detect
+
+Đã rà tiêu đề, nội dung hiển thị và toàn bộ 45 notes. Không phát hiện câu dẫn rỗng, lời ca tụng, kết luận kịch tính hoặc nhịp khẩu hiệu đủ rõ để lập lỗi riêng. Các mẫu “không bảo đảm” xuất hiện nhiều nhưng đều giới hạn một kết luận cụ thể: hướng giảm, tối ưu toàn cục, trung bình tham số, tiếp diễn hoặc kiến trúc. Không đề xuất xóa chúng vì chức năng toán học và học tập rõ. Các nhãn “Câu hỏi”, “Giả thiết”, “Kết quả” được giữ theo chức năng. Không dùng điểm phát hiện AI hoặc suy đoán tác giả.
+
+#### Giới hạn và công việc bàn giao lại
+
+Các ảnh được cung cấp là ảnh bản trước chỉnh sửa D01, D04, C06; cần điều phối viên xem lại đúng những trang đổi sau khi biên tập. Nhận xét cuộn ngang là vấn đề về dấu hiệu hiển thị, không phải kết luận tính năng cuộn thất bại. Chưa chứng nhận điều hướng trực tiếp, tương phản đo được hoặc sự phù hợp thời lượng qua diễn tập. Với 2 tiết lý thuyết + 1 tiết bài tập, rủi ro nhịp tập trung ở C05–D04 vì CG và BFGS đều được dạy mới. Cần quan sát mức hoàn thành C08 và D05 trong diễn tập; việc chưa có phép đo này không đủ để kết luận bộ trang chiếu vượt thời lượng.
+
+Tại thời điểm báo cáo, số lỗi chặn bàn giao/nghiêm trọng mới trong vai này: **0**. Có thể tiếp tục bàn giao sau khi hợp nhất kết quả các vai còn lại và kiểm lại các sửa đang thực hiện. Phạm vi cùng kết quả no-ai-slop cần được điều phối viên đưa vào review-log.md; tác tử này không sửa kho theo nhiệm vụ chỉ đọc.
+
+#### Tái kiểm cuối ngày 2026-09-27 — sau vòng biên tập hợp nhất
+
+Phần này bổ sung trạng thái mới; giữ nguyên các nhận xét lịch sử ở trên. Đã đối chiếu hash tại thời điểm tái kiểm:
+
+```text
+6561e164fdcc24f84a7b6bccff2cb171142b5e7ac3a040d77521f4c5979396e4  lecture-06-toi-uu-mang-sau.html
+14d4f69d56769e9eb55c9832acb0af0dbccb5c79a4ce4111c66d9faa4dd14611  lecture-style.css
+```
+
+##### Bằng chứng đã đọc và xem lại
+
+Đã đọc báo cáo `/tmp/lec06-deck-editor-final.md`, nội dung HTML cùng notes ở C05, C06, D03, D04, E03, E07, F01, F05, G01, G02; đọc dữ liệu `/tmp/lec06-final-scroll-qa.json`. Đã mở trực tiếp 9 ảnh rộng của C05, C06, D03, D04, E03, E07, F01, F05, G01 trong `/tmp/lec06-qa/deck/wide/`; mở 9 ảnh hẹp tương ứng và 3 ảnh cuối trang C06, D04, E03 trong `/tmp/lec06-qa/deck/narrow/`; mở đủ 6 ảnh `/tmp/lec06-scroll-{C05,D03,E07,F01,F05,G01}-right.png`.
+
+Tổng ảnh xem trực tiếp trong lần tái kiểm này: 27. Đây là các ảnh mới sau sửa. Kết quả 90 lượt toàn bộ do điều phối viên thực hiện không được tính thành phép kiểm do tác tử này tự chạy.
+
+##### Trạng thái bốn nhận xét
+
+| Nhận xét trước | Trạng thái | Bằng chứng tái kiểm |
+|---|---|---|
+| Trung bình: tải ký hiệu C05–C06 | **Đóng** | C05 định danh $d_k$ là nghiệm gần đúng, $r_k=b-Ad_k$ là phần dư, $p_k$ là hướng tìm kiếm trước chuỗi tính số. Phép thế tạo $\alpha_0$ và quan hệ $p_1=r_1+(9/25)p_0$ nối ví dụ với thuật toán C06. Bản rộng đủ nội dung, không chồng lấn. Notes giữ cách suy ra hệ số và vòng hai. C06 ghi rõ miền vòng $k=0,\ldots,K-1$. |
+| Trung bình: dấu hiệu nhận biết cuộn ngang | **Đóng** | Ảnh hẹp hiện dấu ↔ và biên màu tại đúng vùng tràn. Ảnh tận phải cho thấy phần cuối công thức BFGS, hai tích $10^{-5}$ và $1{,}61051$, gradient $(-1,-2)$, hạng mất mát thứ hai, cột nghiệm và cột giả thiết/phép kiểm. Khung tiêu điểm nhìn rõ. JSON ghi mọi vùng tràn có chỉ dấu, tabindex 0; vị trí cuộn sau thao tác đạt đúng `scroll-client`; khung ngoài vẫn 390px; khi rộng 1600px, không có chỉ dấu tràn. Sáu danh sách lỗi đều rỗng. Kết luận dựa trên ảnh và bản ghi kiểm thử được cung cấp, không tự nhận đã thao tác bàn phím. |
+| Nhẹ: định danh cặp mẫu F05 | **Đóng** | F05 và G02 ghi rõ “Hai mẫu $(x,y)$” trước $E,H$; $q=P(H)$ hiện cùng dữ kiện. F05 rộng/hẹp đọc được. Giới hạn cách gọi độ khó tiếp tục nằm trong notes. |
+| Nhẹ: nhãn phương sai E03 | **Đóng** | Nhãn đổi thành “Phương sai lô của $\widehat a$”, nhìn rõ trên ảnh rộng và ảnh cuối trang hẹp. Không còn khả năng gán trực tiếp công thức đó cho $z$ từ nhãn. |
+
+D04 hiện yêu cầu tìm bước làm giảm cùng mục tiêu $F$; nội dung vẫn vừa ảnh rộng và đọc được qua ảnh hẹp đầu/cuối. D03, E07, F01, F05, G01 giữ cấu trúc mặt trang rộng; các phần chưa nhìn thấy tại vị trí đầu trên màn hình hẹp là nội dung cuộn được, không phải dữ liệu bị mất. C05 tăng thông tin định danh nhưng đã bỏ phần lặp ở khung cuối, nên không tạo lỗi mật độ mới trên màn hình rộng.
+
+Áp dụng lại no-ai-slop Detect cho các đoạn nội dung vừa sửa: không phát hiện mẫu câu rỗng hoặc bình luận ngoài nội dung học thuật cần lập lỗi mới. Không đề nghị xóa giả thiết, giới hạn hoặc các nhãn phục vụ học tập.
+
+**Trạng thái cuối trong vai sinh viên:** không còn nhận xét mở thuộc bốn mục của báo cáo; không có lỗi chặn bàn giao/nghiêm trọng. Rủi ro nhịp khi giảng thực tế và khoảng cách đọc cuối giảng đường vẫn là giới hạn bằng chứng, không phải lỗi đang mở. Vòng tái kiểm này không thay kiểm tra trực tiếp bằng Browser Codex/Codex Slides và không chứng nhận rằng việc đó đã được thực hiện. Không sửa tệp trong kho.
+
+
+### Phản biện chuyên gia Bài giảng 06
+
+Ngày rà: 2026-09-27. Tác tử: `lec06_deck_expert`. Vai trò: chuyên gia độc lập, chỉ đọc kho; không thay vai toán học, sinh viên, phản biện giảng dạy hoặc mạch lập luận. Đã đọc `AGENTS.md` và `/home/tqlong/.codex/skills/no-ai-slop/SKILL.md`, áp dụng chế độ Detect. Báo cáo này chỉ ghi nhận kết quả kiểm tra nội dung; không chứng nhận kiểm định trình duyệt hoặc Codex Slides.
+
+#### Kết luận
+
+Không phát hiện lỗi **chặn bàn giao** hoặc **nghiêm trọng** trong phạm vi chuyên gia. Bộ trang chiếu bao phủ đủ LLO14–16 của Buổi 6, có chiều sâu phù hợp để tính, vận dụng và kiểm điều kiện. Sáu chiến lược trong LLO16 đều có cơ chế và minh chứng đánh giá, không chỉ được nêu tên. Thông tin trạng thái cũ trong kế hoạch đã được root sửa và tái kiểm trong vòng rà; còn một đề xuất nhẹ về nhất quán thuật ngữ.
+
+Bản HTML đã rà có SHA-256 `bd98ed3b877c625828b9d9ba558bac15797a238a5b8ac35bc1307c4f652c9101`, gồm đúng 45 trang và 7 mạch. Đã đọc toàn văn hiển thị và ghi chú diễn giả của A01–A05, B01–B09, C01–C08, D01–D05, E01–E08, F01–F07, G01–G03; đối chiếu `outline.md`, `storyboard.md`, toàn bộ `lecture-note.md` và 12 bài trong `exercises.md`.
+
+#### Nguồn và phạm vi đối chiếu
+
+Đã giải nén và đọc `word/document.xml` của đề cương chính thức `sources/UET_Đề cương học phần_UET.AI2012_Cơ sở toán học của Trí tuệ nhân tạo_7460108.01.24.2506 (3).docx`. Buổi 6 quy định ba nhóm nội dung: thuật toán thích ứng; Newton, gradient liên hợp và BFGS; các chiến lược tối ưu. Ánh xạ LLO14→CLO2,3; LLO15→CLO2,3; LLO16→CLO3,4 trong kế hoạch khớp văn bản. Phần tổ chức giảng dạy ghi 2 tiết lý thuyết và 1 tiết bài tập mỗi buổi.
+
+Đã mở nguồn chính thức [Deep Learning, Chương 8](https://www.deeplearningbook.org/contents/optimization.html) và kiểm trực tiếp các đoạn liên quan §8.5.1–8.5.3, §8.6.2, §8.7.3–8.7.6. Sự phân biệt giữa trung bình đều và trung bình mũ, giữa CG tuyến tính và vai trò giải hệ trong Newton, cùng phạm vi các chiến lược phù hợp với cách bài giảng sử dụng nguồn. Báo cáo không xác nhận lại toàn bộ PDF bổ sung: vị trí nguồn chuyên biệt được đối chiếu trong danh mục của outline và nguồn dẫn từng trang. Không tải nguồn MIT hoặc tài sản bên thứ ba mới.
+
+#### Bao phủ 45 trang và 7 mạch
+
+| Mạch và các trang đã đọc | Kết quả chuyên môn | Minh chứng đánh giá và chiều sâu |
+|---|---|---|
+| A: A01, A02, A03, A04, A05 | Thiết lập được bài toán trung tâm và các thành phần huấn luyện. Mô hình có phạt SPD là sườn cho nhóm tạo bước; không bị dùng như một lý thuyết bao trùm sai cho các chiến lược còn lại. | A03 có số kiểm được; A04 nêu miền, giả thiết và suy ra nghiệm; A05 kiểm cả bước hợp lệ lẫn ma trận làm bài toán không bị chặn dưới. |
+| B: B01, B02, B03, B04, B05, B06, B07, B08, B09 | Bao phủ đầy đủ LLO14. Tách tổng tích lũy, trung bình mũ, moment bậc nhất và moment bậc hai thô. Không đồng nhất thống kê gradient với Hessian hay phương sai. | Có tính tay hai vòng; điều kiện không chệch được giới hạn đúng; B07 nêu giới hạn hướng moment, B08 nêu giới hạn tương tác tọa độ; B09 đo cả trạng thái lẫn giải thích. |
+| C: C01, C02, C03, C04, C05, C06, C07, C08 | Newton nối tiếp đúng giới hạn đường chéo. Hessian SPD, giảm chấn, toán tử cố định và phần dư được phân biệt. CG tuyến tính được dạy trước khi dùng trong Newton–CG. | Có ví dụ giải hệ, phản ví dụ hướng tăng, hai vòng CG, giả mã khép kín và xử lý phần dư ban đầu bằng không. C08 đo chọn hệ hợp lệ rồi chạy và kiểm một vòng. |
+| D: D01, D02, D03, D04, D05 | Cặp sai phân gradient cung cấp đầu vào thay thế toán tử độ cong. Phân biệt xấp xỉ Hessian và nghịch đảo; điều kiện cát tuyến khác điều kiện SPD. | BFGS có kiểm số, công thức, chứng minh SPD trong notes, quy trình nhận/bỏ cập nhật và so bộ nhớ với L-BFGS. D05 dùng gradient mới, không chỉ chép phép kiểm cát tuyến. |
+| E: E01, E02, E03, E04, E05, E06, E07, E08 | Ba chiến lược BN, hạ theo khối và Polyak được phân biệt bằng đối tượng thay. E07 bổ sung thiết kế đường truyền gradient, phù hợp §8.7.5. | BN có phụ thuộc lô, epsilon và học/suy luận; hạ khối có điều kiện không tăng; Polyak có phản ví dụ phi lồi; nối tắt có giới hạn theo độ sâu. E08 kiểm bốn cơ chế với dữ kiện đã có. |
+| F: F01, F02, F03, F04, F05, F06, F07 | Ba chiến lược còn lại thay điểm đầu, họ mục tiêu và phân phối. Tiền huấn luyện không bị đồng nhất với mọi trường hợp học từng tầng; tiếp diễn không bị gán bảo đảm toàn cục. | Có bước tinh chỉnh tính được; kiểm điểm dừng qua lịch; nghiệm theo phân phối và sai khác đích. F06 yêu cầu tính toàn ngân sách và tách dữ liệu đánh giá; F07 đo vận dụng. |
+| G: G01, G02, G03 | Kết luận trả lời vấn đề mở bài bằng dữ kiện, điều kiện và phép kiểm; không đưa bảng xếp hạng vô điều kiện. Nguồn đọc tiếp truy nguyên được. | G02 kết hợp bộ nhớ, toán tử SPD, kiểm hướng và mục tiêu đích. Đây là minh chứng tổng hợp cho ba LLO. |
+
+#### Học liệu, liên kết AI và thời lượng
+
+`lecture-note.md` mở rộng thực chất các phép suy ra: bước có phạt, kỳ vọng moment, bất biến CG, cát tuyến BFGS, phương sai BN, tính không tăng theo khối, Jensen và các điểm dừng của họ tiếp diễn. Tài liệu không đơn thuần chép notes. Quy ước chỉ số, ma trận và ví dụ tương thích với HTML. Phần CG nêu rõ tính hữu hạn vòng chỉ áp dụng số học chính xác; phần Newton–CG phân biệt dấu hướng và sai lệch giải hệ. Chứng minh dài nằm ở học liệu nên không làm tăng nghĩa vụ trình bày trên mặt trang.
+
+`exercises.md` có mức nhận biết (Bài 1), tính toán/chứng minh (Bài 2–8), vận dụng vào mô hình và thiết kế huấn luyện (Bài 9–12). Bài 10 kiểm thêm trường hợp biên $\lambda=2$ bằng đa thức đã học; không đưa kỹ thuật chưa chuẩn bị. Bài 12 về BN và trung bình tham số có căn cứ ở mục 5.3 của ghi chú, do đó người học có tài liệu chuẩn bị cho yêu cầu này.
+
+Liên kết AI hiện diện trong mục tiêu theo lô, đặc trưng thưa, bộ nhớ trạng thái, toán tử Hessian–vectơ, biến đổi tầng BN, đường truyền gradient, chuyển tham số và đánh giá phân phối đích. Các ví dụ nhỏ được ghi đúng là minh họa tính toán, không giả làm bằng chứng thực nghiệm mạng sâu. Ánh xạ CLO3 được hỗ trợ qua phạm vi ứng dụng và giới hạn; bài này không tự đại diện toàn bộ CLO3 của học phần.
+
+Phân bổ 2 tiết lý thuyết và 1 tiết bài tập đúng đề cương và tổng trong kế hoạch. Khối lượng khá chặt, đặc biệt C05–C07 và E08/F07/G02. Cách giảm tải hiện tại hợp lý: dùng cùng dữ kiện, cho sẵn kết quả trung gian ở câu hỏi tổng hợp, đặt chứng minh dài trong notes và ghi chú học tập. Nhận định phù hợp thời lượng dựa trên thiết kế này; chưa có bằng chứng thực dạy hoặc tập giảng. Không diễn giải bộ 12 bài tập công khai là tất cả phải hoàn thành trong một tiết trên lớp.
+
+#### Danh sách vấn đề
+
+| Mã | Mức độ | Trang/vị trí | Vấn đề và bằng chứng | Đề xuất sửa | Trạng thái |
+|---|---|---|---|---|---|
+| EX-01 | Trung bình | `outline.md` phần Thông tin chung, Tự kiểm, Phân tích nguồn §1 và đoạn cuối; `storyboard.md` phần mở đầu | Lần đọc đầu còn các câu “Bản này chưa đồng bộ RevealJS”, “Sản phẩm hiện tại chỉ gồm tài liệu lập kế hoạch” trong khi đã có HTML 45 trang và hai học liệu tương ứng. Đây là thông tin trạng thái không còn đúng. | Cập nhật trạng thái hiện hành; bảo toàn các nhận xét chưa kiểm ở dạng lịch sử có mốc hoặc dẫn `review-log.md`. | Đã sửa. Root cập nhật các đoạn đầu/cuối và bổ sung sửa dòng 668, 752, 821. Tái đọc trực tiếp xác nhận dòng 668 ghi sản phẩm đã triển khai; dòng 752 ghi chín SVG đã vẽ; đoạn cuối dẫn nhật ký vòng triển khai, không tự chứng nhận các kiểm định. Giữ finding này làm lịch sử. |
+| EX-02 | Nhẹ | B03/B05/B07 notes; `lecture-note.md` §1.1, §6.4; `exercises.md` Bài 9 | Thuật ngữ cùng chức năng chọn mô hình đổi giữa “tiêu chí kiểm định”, “tập xác thực”, “quy tắc xác thực”. Không gây sai công thức, nhưng chưa nhất quán về cùng một khâu đánh giá. | Chọn một cách gọi cho dữ liệu/tiêu chí xác thực và dùng nhất quán; giữ “tập kiểm tra” cho báo cáo cuối. Không thay các phép kiểm đại số bằng thuật ngữ xác thực. | Đề xuất biên tập nhẹ, không chặn. |
+
+#### Kiểm tra no-ai-slop ở chế độ Detect
+
+Đã rà tiêu đề, phần hiển thị, notes và hai học liệu. Không thấy lời ca tụng, kết luận kịch tính, gán nguồn mơ hồ, câu dẫn rỗng hoặc câu hỏi tu từ cần chặn. Các đối chiếu “moment khác phương sai”, “hướng giảm khác bước giảm” và các phủ định bảo đảm tổng quát có chức năng toán học nên cần giữ. Câu hỏi học tập và tổng kết có chức năng đánh giá rõ, không bị xem là khuôn sáo.
+
+EX-02 là trường hợp nhẹ của đổi cách gọi cùng một đối tượng (synonym cycling), có trích đoạn và đề xuất cụ thể. Không dùng điểm từ bộ phát hiện AI hoặc suy đoán tác giả. Tác tử chỉ đọc không ghi `review-log.md`; điều phối viên cần nhập kết luận cùng trạng thái xử lý vào nhật ký.
+
+**Còn lỗi chặn bàn giao/nghiêm trọng trong phạm vi chuyên gia: 0/0.** Đây là kết quả một vai độc lập, không phải chứng nhận hoàn tất năm vai hoặc kiểm định kỹ thuật.
+
+
+### Phản biện học thuật và giảng dạy Bài 06
+
+Ngày rà: 2026-09-27. Vai: `/root/lec06_deck_academic`, chỉ đọc kho. Đã đọc `AGENTS.md` và kỹ năng `no-ai-slop`, áp dụng chế độ Detect; không chấm điểm phát hiện AI, không suy đoán tác giả. Không sửa tệp trong kho.
+
+#### Phạm vi và kết luận
+
+Đã rà toàn bộ 45 trang cùng 45 ghi chú của `2627-1/lecture-06-toi-uu-mang-sau.html`, hai học liệu `materials/lec-06/lecture-note.md` và `exercises.md`, đối chiếu dàn bài và 14 cụm KN0–KN13 trong storyboard. HTML lúc rà có SHA-256 `bd98ed3b877c625828b9d9ba558bac15797a238a5b8ac35bc1307c4f652c9101`.
+
+Không phát hiện lỗi **chặn bàn giao** hoặc **nghiêm trọng** về học thuật và giảng dạy trong bản đã đọc. Có một điểm mức vừa cần làm rõ ở phần dẫn nhập CG, hai điểm nhẹ về định danh đại lượng, một điểm nhẹ về diễn đạt ghi chú và một điểm vừa về trạng thái tài liệu kế hoạch. Báo cáo này không chứng nhận chất lượng hiển thị, trạng thái Codex Slides hay nghiệm thu kỹ thuật; đó là các phép kiểm riêng.
+
+Sườn chung phù hợp với phạm vi bài: quá trình huấn luyện gồm dữ liệu/mô hình, mục tiêu/điểm đầu, quy tắc cập nhật/quỹ đạo, quy tắc trả về. Mô hình bước có ma trận phạt nối nhóm thích ứng với nhóm độ cong; phần chiến lược huấn luyện sử dụng sơ đồ thành phần chung, không bị ép vào cùng một công thức bước. Bảy mạch có chức năng riêng và có câu nối theo đối tượng hoặc giả thiết thay đổi. Không thấy trang chỉ tồn tại để đủ số lượng.
+
+#### Các điểm cần xử lý
+
+| Mã | Mức độ | Vị trí | Bằng chứng và tác động | Đề xuất sửa |
+|---|---|---|---|---|
+| AC01 | Vừa | C05, mặt trang; KN5 | Trang đưa ngay `$r_0=p_0=b$`, `$\alpha_0=2/5$`, `$\beta_0=9/25$`, `$p_1=(24/25,-6/25)^\top$`. Người học chưa được giả định biết CG; ý nghĩa phần dư, hướng và hệ số mới có trong notes, còn công thức sinh hệ số ở trang C06 phía sau. Storyboard nêu C05 phải cho thấy hệ số và hướng được sinh ra, nhưng mặt trang hiện chủ yếu đưa đáp số. | Đưa một dòng định danh `$r_k=b-Ad_k$` là phần dư, `$p_k$` là hướng; thay các đáp số hệ số đơn lẻ bằng phép thế ngắn `$\alpha_0=(r_0^\top r_0)/(p_0^\top Ap_0)=2/5$` và `$p_1=r_1+(9/25)p_0$`. Giữ phép suy ra điều kiện liên hợp trong notes; tránh tăng mật độ bằng cách chuyển kết quả vòng hai sang notes nếu cần. |
+| AC02 | Nhẹ | E03, mặt trang; KN7 | Sau khi giới thiệu cả `$\widehat a_i$` và `$z_i=\gamma\widehat a_i+\beta$`, câu cuối ghi “Phương sai sau chuẩn hóa: …”. Người học có thể hiểu đó là phương sai đầu ra `$z$`, trong khi công thức là của `$\widehat a$`. Học liệu §5.1 đã phân biệt đầy đủ. | Ghi rõ “Phương sai lô của `$\widehat a$`: …”. Có thể giữ công thức phương sai của `$z$` trong notes/học liệu. |
+| AC03 | Nhẹ | F05 và dữ kiện nhắc lại G02; KN13 | Mặt trang viết “`$E=(1,1)$`, `$H=(3,1)$`, `$f_\theta(x)=\theta x$`” mà chưa nói hai cặp là `$(x,y)$`. Công thức mất mát cho phép suy ra, nhưng vai trò dữ kiện nên có trước công thức. | Ghi “Hai mẫu `$(x,y)$`: `$E=(1,1)$`, `$H=(3,1)$`”. Không đổi quy ước độ khó theo độ cong hay phân phối đích. |
+| AC04 | Nhẹ | F06, notes | “Các phép kiểm số tiếp theo xác nhận bước tinh chỉnh, điểm dừng và mục tiêu đích, thay vì chỉ nhận dạng tên chiến lược.” Đây là **interpretive metadiscourse** theo kỹ năng: bình luận về cách tổ chức đánh giá thay cho quan hệ học thuật; không sai toán học. | Bỏ câu hoặc thay bằng quan hệ cụ thể: “Bước tinh chỉnh được kiểm trên mất mát đích; truyền nghiệm cần kiểm điểm dừng; lịch lấy mẫu cần đạt phân phối cuối.” Không cần sửa câu hỏi đánh giá ở F07. |
+| AC05 | Vừa, tài liệu quy trình | `outline.md`: 668, 752, 821 | Còn “Sản phẩm hiện tại chỉ gồm tài liệu lập kế hoạch… chưa được đồng bộ”, “Hình chưa được tạo vì phạm vi chỉ lập dàn bài”, và “Rà trực quan RevealJS… thuộc bước triển khai sau”. Các câu này không còn phản ánh bản HTML/học liệu đang được rà. | Chuyển thành ghi nhận lịch sử có ngày hoặc cập nhật trạng thái triển khai, dẫn `review-log.md`; không biến cập nhật trạng thái thành tuyên bố nghiệm thu. Đầu/cuối chính của outline và storyboard đã được điều phối viên sửa trong lượt rà; ba vị trí tích hợp cuối outline nêu trên vẫn còn lúc kiểm lại. |
+
+AC01–AC03 trùng một phần với phản hồi sinh viên đã được điều phối viên thông báo; nên hợp nhất thành một lần sửa và một lần kiểm lại. Không cần đổi thứ tự 45 trang để xử lý chúng. **AC05 đã được điều phối viên sửa và tác tử phản biện đọc kiểm lại trước bàn giao:** cả ba đoạn còn lại đã ghi trạng thái triển khai và dẫn nhật ký; không còn dùng trạng thái lập kế hoạch để mô tả sản phẩm hiện tại. Giữ dòng finding để truy nguyên.
+
+#### Đối chiếu 14 hành trình khái niệm
+
+Ký hiệu trong cột tuyến lần lượt là nhu cầu → trực quan/ví dụ → hình thức → ứng dụng → kiểm tra. Các nhiệm vụ kiểm tra đã có lời giải trong notes và được mở rộng trong học liệu.
+
+| Cụm | Tuyến thực tế và tiên quyết | Đánh giá đóng vòng, liên hệ chuẩn đầu ra |
+|---|---|---|
+| KN0: bước cục bộ | A03 cho sai lệch thang đo bằng hình và số; A04 suy ra bước từ ma trận phạt; áp lại cùng `$g=(1,9)$`; A05 kiểm hai ma trận hợp lệ và một ma trận bất định. Dùng gradient/dạng toàn phương đã học. | Đạt MT1–MT2. Phân biệt nghiệm phương trình dừng với cực tiểu, hướng giảm với bước hữu hạn được giữ. |
+| KN1: AdaGrad | A05 cần ước lượng thang; B01 cho lịch sử tọa độ, B02 tính hai vòng, B03 nêu thuật toán và tốc độ hiệu dụng của đặc trưng thưa; B09 tính lại trường hợp gradient hiện tại bằng không. | Đạt MT1. Ký hiệu thống nhất; không suy độ dài bước luôn giảm từ thống kê tăng. |
+| KN2: RMSProp | Notes B03 nêu hạn chế tích lũy, B04 thay bằng trọng số suy giảm với cùng dãy, B05 nêu thuật toán và hệ quả `$\rho^k$`; B09 kiểm thống kê. | Đạt MT1. Nhu cầu có trước thuật toán; hình trọng số ở B05 hỗ trợ tổng quát hóa. Storyboard gọi “hình trọng số B04” chưa sát dạng bảng thực tế, nhưng không gây đảo tuyến học. |
+| KN3: Adam | B05 đặt nhu cầu bộ nhớ hướng và hiệu chỉnh; B06 có bảng thô/hiệu chỉnh, B07 tổng quát và kiểm giới hạn hướng moment; B09 kiểm dịch chuyển khi gradient bằng không. Momentum là tiên quyết đã nêu. | Đạt MT1. Phân biệt chuẩn hóa tổng trọng số với tính không chệch dưới giả thiết moment không đổi; không đồng nhất moment bậc hai với phương sai. |
+| KN4: Newton | B08–C01 tạo nhu cầu tương tác tọa độ; C02 giải hệ số; C03 mô hình Taylor và hướng giảm; C04 phản ví dụ Hessian bất định cùng giảm chấn; C08 chọn hệ hợp lệ. | Đạt MT2. Cầu nối ma trận phạt/Hessian rõ; điều kiện hội tụ cục bộ và giới hạn ví dụ yên ngựa đúng phạm vi. |
+| KN5: CG tuyến tính | Chi phí C03–C04 tạo nhu cầu; C05 có quỹ đạo hai bước và ví dụ; C06 giả mã; C07 Newton–CG; C08 kiểm phần dư, G02 kiểm hướng và trường hợp `$g=0$`. | Đạt nội dung MT2 với điểm cần gia cố AC01. Không dùng kiến thức CG như tiên quyết ngầm của C08 vì C06 đã dạy đầy đủ. |
+| KN6: BFGS | C07/C08 kết bằng thiếu toán tử độ cong; D01 dùng chênh lệch gradient, D02 kiểm cặp số, D03 cập nhật và chứng minh trong notes, D04 thuật toán/chi phí, D05 kiểm dấu và hướng. | Đạt MT2. Phương trình cát tuyến xuất hiện trước phép cập nhật là hợp lý: nó xác lập yêu cầu cần thỏa, không đưa công thức BFGS trước động cơ. L-BFGS được rút gọn rõ và bài tập không đòi đệ quy chưa dạy. |
+| KN7: chuẩn hóa theo lô | E01 nêu thang đầu vào tầng; E02 so hai lô dịch chuyển; E03 công thức và hai chế độ; E08 tính phương sai. Tiên quyết là trung bình/phương sai. | Đạt MT3, cần định danh AC02. Notes và học liệu điều chỉnh mục tiêu khi đầu ra phụ thuộc lô, không giữ ngầm mục tiêu tách độc lập từng mẫu. |
+| KN8: hạ theo khối | E03 kết bằng thay tập biến; E04 giải bài toán con và đường gấp khúc, E05 tổng quát rồi thực hiện lượt tiếp; E08 nêu điều kiện không tăng. | Đạt MT3. Nhu cầu bài toán con dễ giải nằm trong notes E04; không đồng nhất không tăng với hội tụ tham số hay tối ưu toàn cục. |
+| KN9: trung bình Polyak | E05 cho quỹ đạo và nhu cầu chọn đầu ra; E06 bắt đầu bằng bốn điểm số rồi định nghĩa, kiểm phản ví dụ phi lồi; E08 yêu cầu chỉ ra bảo đảm bị bác bỏ. | Đạt MT3. Gộp chu trình được chấp nhận vì trung bình là tiên quyết; phản ví dụ là ứng dụng kiểm phạm vi. Học liệu mở rộng Jensen và trạng thái BN, không chép nguyên notes. |
+| KN10: đường truyền gradient | E06 kết bằng yếu tố kiến trúc; E07 sơ đồ và quy tắc dây chuyền đã học, tích số và giới hạn độ sâu; E08 kiểm kết luận bị chặn. | Đạt vai trò hỗ trợ MT3 theo chu trình rút gọn đã ghi. Hệ số truyền qua khối được phân biệt với gradient tham số đầy đủ. |
+| KN11: tiền huấn luyện | E07 nối kiến trúc/điểm đầu; F01 đối chiếu điểm mất gradient với tham số chuyển và tính bước; F02 quy trình; F06 điều kiện đánh giá; F07 tính tinh chỉnh. | Đạt MT3. Phân biệt nhãn phụ/đích, khởi tạo/tinh chỉnh và cập nhật đồng thời/theo khối. Không suy ưu thế trước mọi khởi tạo ngẫu nhiên. |
+| KN12: tiếp diễn | F02 phân biệt đổi điểm đầu với đổi mục tiêu; F03 ba đồ thị cùng không gian, F04 lịch và điểm dừng tồn tại; F06 đích/cuối; F07 kiểm việc giữ nguyên không. | Đạt MT3. Nhu cầu giản hóa mục tiêu thể hiện qua trường hợp đơn cực tiểu; ví dụ kiểm giới hạn được duy trì. Không gán họ phạt cho phép chập Gauss. |
+| KN13: học theo chương trình | F04 dẫn thay phân phối; F05 dùng hai mẫu và bảng xác suất/nghiệm rồi tổng có trọng số; F06 phép đánh giá, F07/G02 đối chiếu đích. | Đạt MT3 với AC03. Gộp hợp lý vì kỳ vọng có trọng số và hồi quy một biến đã có; độ khó được quy ước theo độ cong, không tuyên bố định nghĩa phổ quát. |
+
+G01 tổng hợp điều kiện lựa chọn theo sườn A02; G02 yêu cầu phương pháp, điều kiện và phép kiểm, nên phần kết luận không chỉ nhắc danh sách thuật toán. G03 không đưa tiên quyết mới. Các câu hỏi A05/B09/C08/D05/E08/F07/G02 dùng kiến thức trước đó và đánh giá đúng mục tiêu tương ứng. Hai học liệu có tính toán, chứng minh, phản ví dụ và vận dụng; không thấy bài tập đòi một định lý ngoài tuyến bắt buộc.
+
+#### Rà ngôn ngữ theo no-ai-slop Detect
+
+Phạm vi: tiêu đề, mặt trang, 45 notes, toàn văn ghi chú bài giảng và bài tập/lời giải. Tiêu đề gọi tên đối tượng hoặc nhiệm vụ học thuật; không có câu cảm thán, quảng bá, câu hỏi tu từ hoặc lời chỉ dẫn giảng viên kiểu “chúng ta hãy nhìn”. Không phát hiện chuỗi câu dẫn rỗng, đổi tên thuật ngữ tùy tiện hoặc kết luận kịch tính cần sửa diện rộng.
+
+Mẫu có bằng chứng cần biên tập cục bộ là **interpretive metadiscourse** tại AC04. “Gần giải từng bài toán” ở F04 là diễn đạt kém tự nhiên nhưng không phải bằng chứng của một mẫu AI; có thể đổi thành “giải gần đúng từng bài toán”. Các cấu trúc lặp trong giả mã và nhãn câu hỏi phục vụ chức năng học tập, không phải lý do loại bỏ.
+
+Các phủ định như “không phải Hessian”, “chưa bảo đảm bước hữu hạn giảm”, “không tự bảo đảm nghiệm toàn cục”, “khác phương sai”, “khác gradient tham số” là phân biệt toán học có đối tượng và hệ quả rõ. Không đề xuất xóa theo quy tắc chống đối lập hình thức của kỹ năng. Tương tự, bảng tổng kết và câu hỏi kiểm tra có chức năng đo chuẩn đầu ra nên được giữ.
+
+#### Trạng thái bàn giao vai phản biện
+
+Không còn lỗi chặn/nghiêm trọng được phát hiện trong phạm vi học thuật của bản đã đọc. Điều phối viên cần hợp nhất AC01–AC04, ghi quyết định vào `review-log.md`, và kiểm lại riêng C05/E03/F05 nếu được sửa; AC05 đã đóng. Rà lại kỹ thuật hoặc Codex Slides không thuộc bằng chứng của báo cáo này. Không sửa repo trong lượt phản biện.
+
+#### Tái kiểm sau biên tập cuối ngày 2026-09-27
+
+Đã đọc trực tiếp các trang và notes C05, E03, F04, F05, F06, G02 trên HTML có SHA-256 `6561e164fdcc24f84a7b6bccff2cb171142b5e7ac3a040d77521f4c5979396e4`. Phạm vi tái kiểm là các finding đã nêu; không thay thế các bằng chứng rà toàn tuyến trước đó.
+
+| Finding hoặc phạm vi | Bằng chứng sau sửa | Kết quả |
+|---|---|---|
+| AC01, C05 | Mặt trang định nghĩa nghiệm gần đúng, phần dư và hướng; hệ số đầu có phép thế $\alpha_0=(r_0^\top r_0)/(p_0^\top Ap_0)=2/5$; $p_1=r_1+(9/25)p_0$ gắn trực tiếp điều kiện liên hợp. Notes giữ phép suy ra $9/25$ và vòng hai. | Đóng. Ví dụ chuẩn bị được ký hiệu và thao tác cho C06; không phát hiện đảo trình tự hoặc giả định CG như tiên quyết. |
+| AC02, E03 | Câu cuối đã ghi “Phương sai lô của $\widehat a$”. | Đóng. Đại lượng được phân biệt với đầu ra affine $z$. |
+| AC03, F05/G02 | Cả lần giới thiệu và đề tổng hợp đều ghi “Hai mẫu $(x,y)$”. | Đóng. Công thức mất mát và vai trò dữ kiện thống nhất. |
+| AC04, F06 | Notes đã thay bình luận về phép kiểm bằng “Bước tinh chỉnh được kiểm trên mất mát đích; truyền nghiệm cần kiểm điểm dừng; lịch lấy mẫu cần đạt phân phối cuối.” | Đóng. Câu nối thể hiện quan hệ học thuật, không còn mẫu interpretive metadiscourse đã chỉ ra. |
+| Diễn đạt F04 | Đã dùng “giải gần đúng từng bài toán và chuyển nghiệm”. | Đạt; giữ nguyên nội dung và điều kiện của tiếp diễn. |
+| Thuật ngữ xác thực | HTML và hai học liệu không còn “kiểm định” để gọi validation; các vị trí liên quan dùng “xác thực”. | Đạt tính nhất quán trong phạm vi thay thuật ngữ. |
+
+Tái kiểm `no-ai-slop` Detect ở sáu trang bị ảnh hưởng không phát hiện mẫu mới cần sửa. Những phủ định về bảo đảm, điểm dừng, mục tiêu đích và phương sai vẫn phục vụ phân biệt toán học nên được giữ. AC01–AC05 đều đã đóng; không còn finding mở hoặc lỗi chặn/nghiêm trọng trong phạm vi phản biện học thuật này. Không sửa tệp trong kho.
+
+
+---
+
 ## Vòng xây dựng lại dàn bài, 2026-09-26
 
 **Trạng thái:** đã chốt dàn bài mới sau cổng storyboard, năm báo cáo độc lập, chỉnh sửa riêng và tái kiểm toán học, học thuật, mạch lập luận. Bản 45 trang/7 mạch đã được lưu trong Codex Slides và đối chiếu trạng thái dự án. Phạm vi chỉ là kế hoạch nội dung; HTML, ghi chú và bài tập công khai chưa đồng bộ. Chưa kiểm trực quan bằng Browser.
