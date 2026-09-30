@@ -642,19 +642,14 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RR07">
-<h2>Kiểm tra hai dạng hệ Newton</h2>
+<h2>Bước Newton cho phần dư KKT</h2>
 <div class="question">
-<p><strong>Câu hỏi:</strong> Với $u=(1,8)^T$, $\nu=4$, giải thích vì sao vế phải tọa độ hai của hàng gradient là $-44$ và vế phải hàng ràng buộc là $5$. $\eta=-20$ có phải là $\Delta\nu$ không? Nêu hai điều kiện phải kiểm để dừng.</p>
+<p><strong>Câu hỏi:</strong> Với VD3 tại $u=(4,2)^T$, $\nu=2$: tính $r_d$, $r_p$; giải hệ Newton cho $d$, $\Delta\nu$; tính $(u^+,\nu^+)$ với $t=1$. Số nào là nhân tử của nghiệm: $\Delta\nu$ hay $\nu^+$?</p>
 </div>
-<div class="lec-grid">
-<div>
-<p><strong>Lỗi cần sửa:</strong> lấy vế phải tọa độ hai là $-40$ (bỏ $A^T\nu$).</p>
+<div class="question">
+<p><strong>Câu hỏi:</strong> Với bước $t=1/2$ từ cùng điểm: tính $r^+$ và so với $(1-\alpha t)\|r\|_2$ khi $\alpha=0{,}1$. Nêu hai điều kiện phải kiểm để dừng.</p>
 </div>
-<div>
-<p><strong>Lỗi cần sửa:</strong> lấy vế phải hàng ràng buộc là $-5$ thay vì $5$.</p>
-</div>
-</div>
-<aside class="notes">Tọa độ hai của gradient là 40, cộng $A^T\nu$ cho thêm 4, nên phần dư đối ngẫu là 44 và vế phải là $-44=-(40+4)$; bỏ mất $A^T\nu$ sẽ ra $-40$, sai. Phần dư khả thi là $-5$, nên vế phải của hệ là $5=-(-5)$; quên trừ dấu là lỗi thứ hai. Về ẩn: giải hệ cho $\Delta\nu=-24$, còn $\eta=\nu+\Delta\nu=4-24=-20$ là nhân tử của bài con mở rộng; hai số này khác nhau và không thay thế nhau. Để dừng, phải kiểm đồng thời cả hai điều kiện: $\|r_p\|_2\le\varepsilon_p$ và $\|r_d\|_2\le\varepsilon_d$; chỉ kiểm một trong hai là chưa đủ vì mỗi phần dư ứng với một nhóm KKT. Hai phương pháp phân biệt điểm đầu khả thi và chưa khả thi. Dung sai phần dư chứng nhận mức độ thỏa KKT; cận sai số mục tiêu cần thêm quan hệ giữa mô hình cục bộ và hàm gốc. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<aside class="notes">Câu 1. Tại $u=(4,2)^T$: $g=(2u_1,5u_2)^T=(8,10)^T$, cộng $A^T\nu=(2,2)^T$ được $r_d=(10,12)^T$; $r_p=4+2-14=-8$. Hệ Newton gồm $2d_1+\Delta\nu=-10$, $5d_2+\Delta\nu=-12$, $d_1+d_2=8$; vế phải là $-r_d$ và $-r_p$. Trừ hai hàng đầu được $2d_1-5d_2=2$; thế $d_2=8-d_1$ cho $7d_1=42$, nên $d=(6,2)^T$ và $\Delta\nu=-10-12=-22$. Bước đầy đủ cho $u^+=(10,4)^T$ và $\nu^+=2-22=-20$, trùng nghiệm $(10,4)^T$ và nhân tử $\nu^*=-20$. Nhân tử của nghiệm là $\nu^+=\nu+\Delta\nu$, không phải số gia $\Delta\nu=-22$. Hai lỗi thường gặp: bỏ $A^T\nu$ khi lập $r_d$, cho vế phải $-8$ và $-10$; và lấy vế phải hàng ràng buộc là $r_p=-8$ thay vì $-r_p=8$. Câu 2. Với $t=1/2$: $u^+=(7,3)^T$, $\nu^+=2-11=-9$; $\nabla F(u^+)=(14,15)^T$ nên $r_d^+=(5,6)^T$, và $r_p^+=10-14=-4$. Vậy $r^+=(5,6,-4)^T=\tfrac12r$ và $\|r^+\|_2=\tfrac12\|r\|_2$. Vì $F$ bậc hai, phần dư tuyến tính theo $(u,\nu)$ và co đúng theo hệ số $1-t$. Với $\alpha=0{,}1$, ngưỡng là $0{,}95\|r\|_2$, nên bước được nhận. Để dừng, phải kiểm đồng thời $\|r_p\|_2\le\varepsilon_p$ và $\|r_d\|_2\le\varepsilon_d$, vì mỗi phần dư ứng với một nhóm điều kiện KKT. Phần dư nhỏ chứng nhận gần thỏa KKT theo dung sai; vấn đề còn mở từ phần Newton là điều kiện để độ giảm Newton cho cận sai số của giá trị mục tiêu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3; Bài giảng 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17; ví dụ số tự xây dựng.</aside>
 </section>
 </section>
 <section>

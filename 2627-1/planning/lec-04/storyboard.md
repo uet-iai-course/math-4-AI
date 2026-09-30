@@ -494,13 +494,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 7/120 LT + 0 BT (LT xấp xỉ 0.0583; dùng phân số để cộng chính xác).
 
-### RR07 — Kiểm tra hai dạng hệ Newton
+### RR07 — Bước Newton cho phần dư KKT
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu E12. Kiểm các nhầm lẫn có đáp số khác nhau thật sự; buộc dùng KKT chứ không chỉ nhớ số.
-- **Nội dung trên trang:** Câu hỏi: với u=(1,8),ν=4, giải thích vì sao vế phải tọa độ hai là−44, hàng ràng buộc là 5; η=−20 có phải Δν không? Nêu hai điều kiện phải kiểm để dừng.
-- **Bố cục chọn:** Hai cột lỗi cần sửa/giải thích bằng công thức; đáp án−24,−20 nằm trong ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Kiểm tra hai dạng hệ Newton" (kể nhiệm vụ) thành "Bước Newton cho phần dư KKT"; hai câu hỏi dùng dữ kiện mới thay cho đọc lại RR01/RR04; bỏ hai khung "Lỗi cần sửa" in sẵn đáp án, chuyển lỗi thường gặp vào ghi chú. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
+- **Nội dung trên trang:** Câu 1: VD3 tại $u=(4,2)^T$, $\nu=2$: tính $r_d$, $r_p$, giải hệ Newton, tính $(u^+,\nu^+)$ với $t=1$, xác định nhân tử của nghiệm. Đáp án: $r_d=(10,12)^T$, $r_p=-8$, $d=(6,2)^T$, $\Delta\nu=-22$, $u^+=(10,4)^T$, $\nu^+=-20=\nu^*$. Câu 2: bước $t=1/2$: $r^+=(5,6,-4)^T=\tfrac12r$, so với $0{,}95\|r\|_2$ nên nhận; hai điều kiện dừng.
+- **Bố cục chọn:** Hai khung câu hỏi; lời giải và lỗi thường gặp trong ghi chú. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 708 px (phương án "Bước Newton từ điểm chưa khả thi" kết thúc ở 786 px nên không dùng).
 - **Lý do bố cục cho sinh viên năm 3:** Kiểm các nhầm lẫn có đáp số khác nhau thật sự; buộc dùng KKT chứ không chỉ nhớ số.
-- **Vào → ra:** Đầu vào: Hệ theo $(d,\Delta\nu)$ dùng phần dư hiện tại, còn hệ theo $(d,\eta)$ dùng gradient và quan hệ $\eta=\nu+\Delta\nu$. Đầu ra: Dung sai phần dư đo mức thỏa KKT; cận sai số mục tiêu từ đại lượng Newton cần điều kiện riêng về độ cong.
+- **Vào → ra:** Đầu vào: hệ Newton RR03, cập nhật RR04, tiêu chí $\|r\|_2$ RR05–RR06. Đầu ra: người học tự lập và giải hệ tại điểm mới, phân biệt $\Delta\nu$ với $\nu^+$, áp dụng tiêu chí nhận bước; vấn đề cận sai số chuyển sang phần tự điều chỉnh.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; sản phẩm và đáp án kiểm tra ở dàn ý §7.
 - **Số liệu:** VD3 phần dư, dàn ý §6: ghi rõ điểm đầu, g, r_d, r_p, η và Δν theo thứ tự đã định nghĩa. RR05 đổi điểm đầu có chủ ý để kiểm giới hạn.
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Dung sai phần dư đo mức thỏa KKT; cận sai số từ độ giảm Newton của bài không ràng buộc cần điều kiện riêng về độ cong. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
