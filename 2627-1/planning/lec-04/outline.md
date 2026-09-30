@@ -1010,15 +1010,19 @@ Theo yêu cầu người dùng, phần tự điều chỉnh (RS01–RS05, mở �
 
 ### Thêm phần tự học về hội tụ của giảm gradient — 2026-10-01
 
-Theo yêu cầu người dùng, thêm cụm tự học RG12–RG17 sau câu hỏi kiểm tra RG11, trong cùng mạch hướng giảm và bước (mạch vẫn là 7). Sườn: gradient $L$-Lipschitz và cận trên bậc hai → bổ đề giảm với $t=1/L$ → bất đẳng thức một bước (thêm tính lồi và $x^*$) → định lý $f(x^k)-f^*\le L\|x^0-x^*\|_2^2/(2k)$ → hội tụ với quay lui Armijo ($\alpha=1/2$, $t_{\min}=\min(1,\beta/L)$) → câu hỏi so cận với thực tế trên VD1. Ví dụ dùng VD1 ($L=7$, $\|x^0-x^*\|^2=20$). Chứng minh đầy đủ ở ghi chú bài giảng mục B.
+Theo yêu cầu người dùng, thêm cụm tự học RG12–RG18 sau câu hỏi kiểm tra RG11, trong cùng mạch hướng giảm và bước (mạch vẫn là 7). Sườn: gradient $L$-Lipschitz và cận trên bậc hai → bổ đề giảm với $t=1/L$ → bất đẳng thức một bước (thêm tính lồi và $x^*$) → định lý $f(x^k)-f^*\le L\|x^0-x^*\|_2^2/(2k)$ → hội tụ với quay lui Armijo ($\alpha=1/2$, $t_{\min}=\min(1,\beta/L)$) → câu hỏi so cận với thực tế trên VD1. Ví dụ dùng VD1 ($L=7$, $\|x^0-x^*\|^2=20$). Chứng minh đầy đủ ở ghi chú bài giảng mục B.
 
 - RG12 Gradient Lipschitz: định nghĩa, cận trên bậc hai, hình mất mát logistic.
 - RG13 Bổ đề giảm: $f(x-g/L)\le f(x)-\|g\|^2/(2L)$; VD1 $96/49\le24/7$.
 - RG14 Bất đẳng thức một bước: thêm tính lồi và $x^*$; $f(x^+)-f^*\le\tfrac L2(\|x-x^*\|^2-\|x^+-x^*\|^2)$.
 - RG15 Tốc độ hội tụ $O(1/k)$: định lý, chứng minh cộng dồn, VD1 cận $70/k$.
 - RG16 Hội tụ với quay lui: bước được nhận $t\ge\min(1,\beta/L)$; định lý $\alpha=\tfrac12$: $\|x^0-x^*\|^2/(2t_{\min}k)$; VD1 $t=1/8$, cận $140/k$.
-- RG17 Hội tụ của giảm gradient: ba câu hỏi (cận và thực tế trên VD1; ngưỡng $2/L$; quay lui $\beta=1/4$ cho cận $280/k$); ghi chú kết bằng nhu cầu thước đo theo Hessian.
+- RG18 Hội tụ của giảm gradient: ba câu hỏi (cận và thực tế trên VD1; ngưỡng $2/L$; quay lui $\beta=1/4$ cho cận $280/k$); ghi chú kết bằng nhu cầu thước đo theo Hessian.
 
 ### Thêm trang tự học tốc độ hội tụ của Newton — 2026-10-01
 
 Theo yêu cầu người dùng, chèn RN07 "Tốc độ hội tụ của Newton" (tự học, không chứng minh) sau RN06 "Thuật toán Newton". Trang câu hỏi cũ đổi mã RN07 → RN08 và đổi tiêu đề thành "Hội tụ bậc hai trên VD2"; mọi mã RN07 trong dàn ý trước ngày này chỉ trang câu hỏi, nay là RN08. Nội dung RN07: định nghĩa hội tụ bậc hai; bảng bậc hai / cục bộ / toàn cục (lồi mạnh, Hessian Lipschitz, quay lui) / tự điều chỉnh; số bước $(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$; nhận xét Hessian không xác định dương; so sánh với giảm gradient. Hằng số theo BV §9.5.3 và §9.6.4.
+
+### Thêm trang tự học hội tụ tuyến tính — 2026-10-01
+
+Theo yêu cầu người dùng, chèn RG17 "Hội tụ tuyến tính" (lồi mạnh và gradient Lipschitz) sau RG16; trang câu hỏi đổi mã RG17 → RG18 (mọi mã RG17 trong dàn ý trước ngày này chỉ trang câu hỏi, nay là RG18). Nội dung: định nghĩa lồi mạnh, $\|\nabla f\|^2\ge2\mu(f-f^*)$, định lý $e_k\le(1-\mu/L)^ke_0$, VD1 $62(4/7)^k$ cần 16 bước, số bước $\kappa\log(e_0/\varepsilon)$. Mạch có 18 trang; tổng 54 trang.

@@ -13,7 +13,7 @@ KKT là điều kiện Karush–Kuhn–Tucker đã học ở Bài 03; LLO là ch
 | Mạch | Trang | Chức năng, đầu vào | Đầu ra cho mạch sau | LT + BT | Kiểm tra |
 |---|---|---|---|---|---|
 | Mở đầu: dùng lại điều kiện tối ưu | RP00–RP04 (5) | KKT và hồi quy Bài 03 | Hai dạng KKT và nhiệm vụ tạo bước | 0.15 + 0.10 | RP04 |
-| Hướng giảm, bước và thước đo (RG12–RG17 tự học từ 2026-10-01) | RG01–RG17 (17) | Điều kiện dừng không ràng buộc | Bài con chọn hướng, thuật toán gradient và giới hạn W cố định | 0.50 + 0.15 | RG11 |
+| Hướng giảm, bước và thước đo (RG12–RG18 tự học từ 2026-10-01) | RG01–RG18 (18) | Điều kiện dừng không ràng buộc | Bài con chọn hướng, thuật toán gradient và giới hạn W cố định | 0.50 + 0.15 | RG11 |
 | Newton từ mô hình và phương trình tối ưu (RN07 tự học từ 2026-10-01) | RN01–RN08 (8) | Hướng theo W và quy tắc nhận bước | Hướng Newton, phân biệt mô hình và bài gốc; câu hỏi về cận sai số | 0.40 + 0.15 | RN08 |
 | Newton giữ đẳng thức | RE01–RE08 (8) | Mô hình Newton có thể phá tính khả thi | KKT bài con, hệ khối và khử biến tương đương | 0.35 + 0.15 | RE08 |
 | Newton phục hồi điều kiện KKT | RR01–RR07 (7) | Thuật toán trước cần điểm đầu khả thi | Tuyến tính hóa phần dư, cập nhật hai biến, nhận bước theo phần dư | 0.35 + 0.20 | RR07 |
@@ -22,7 +22,7 @@ KKT là điều kiện Karush–Kuhn–Tucker đã học ở Bài 03; LLO là ch
 
 Đổi riêng điểm đầu khả thi VD3 thành (16,−2), giữ F,A,b và nghiệm. Các hình RE02/RE05 cần cả phần tọa độ âm; không thêm ràng buộc dấu. Cả hệ khối và hệ rút gọn dùng cùng điểm mới.
 
-Số trang (từ 2026-10-01): 5 + 17 + 8 + 8 + 7 + 5 + 3 = **53**, trong đó RG12–RG17 và RN07 là trang tự học thêm theo yêu cầu người dùng (RN07 cũ đổi mã thành RN08); trước đó: 5 + 11 + 7 + 8 + 7 + 5 + 3 = 46. Gộp mạch A/B cũ vì cùng xây dựng hướng và bước; tách E cũ vì giữ khả thi và phục hồi KKT có điều kiện đầu vào, ẩn và tiêu chí tiến triển khác nhau. Dời D cũ sau hai loại Newton để không ngắt chuỗi suy ra phương pháp. Kết luận vẫn là ứng dụng kiến thức đã học, không mở mạch mới.
+Số trang (từ 2026-10-01): 5 + 18 + 8 + 8 + 7 + 5 + 3 = **54**, trong đó RG12–RG18 và RN07 là trang tự học thêm theo yêu cầu người dùng (RN07 cũ đổi mã thành RN08); trước đó: 5 + 11 + 7 + 8 + 7 + 5 + 3 = 46. Gộp mạch A/B cũ vì cùng xây dựng hướng và bước; tách E cũ vì giữ khả thi và phục hồi KKT có điều kiện đầu vào, ẩn và tiêu chí tiến triển khác nhau. Dời D cũ sau hai loại Newton để không ngắt chuỗi suy ra phương pháp. Kết luận vẫn là ứng dụng kiến thức đã học, không mở mạch mới.
 
 ## Bản đồ hành trình khái niệm
 
@@ -30,7 +30,7 @@ Số trang (từ 2026-10-01): 5 + 17 + 8 + 8 + 7 + 5 + 3 = **53**, trong đó RG
 |---|---|---|---|---|---|---|---|
 | Gradient và bước, LLO6/8 | RG01 cần chọn hướng | RG01 đường mức, RG03 tia cập nhật | VD1 tại RG01, RG03 | RG02 bài con; RG03 điều kiện hướng; RG04 Armijo | RG05 một lượt, RG06 vòng lặp | RG11 | Giữ x,g,d; chọn hướng chưa quyết định t. RG01 gộp nhu cầu + ví dụ dẫn nhập + trực quan vì đều giải thích tác dụng của gᵀd; từ 2026-09-30 RG01 cũng nêu định nghĩa đạo hàm hướng theo chu trình rút gọn cho kiến thức tiên quyết (Bài giảng 00, B05). |
 | Chuẩn bậc hai, LLO6/8 | RG07 đường đi phụ thuộc cách đo | RG07, elip RG08 | VD1: W, elip và đường tuyến tính RG08 trước Lagrange | RG08–RG09 KKT | RG10 đổi độ dài và giải hệ | RG11 | Giữ g từ VD1, thêm W trước chỗ dùng; nghiệm chuẩn hóa phải được đổi độ dài để cập nhật. |
-| Hội tụ của giảm gradient, LLO8/CLO2 (tự học từ 2026-10-01; chu trình rút gọn nhu cầu → hình thức → kiểm tra) | RG12: bước cố định cần chặn độ cong | RG12 parabol cận trên và tiếp tuyến | VD1 tại RG13, RG15, RG16 | RG12 định nghĩa, RG13 bổ đề giảm, RG14 bất đẳng thức một bước, RG15 định lý $O(1/k)$, RG16 quay lui | Không áp dụng riêng: kết quả là bảo đảm cho thuật toán RG06 | RG17 | Giữ $x,g,t,L$, VD1 và $x^*=0$; chu trình rút gọn vì là phần tự học chứng minh cho thuật toán đã có, không giới thiệu phương pháp mới |
+| Hội tụ của giảm gradient, LLO8/CLO2 (tự học từ 2026-10-01; chu trình rút gọn nhu cầu → hình thức → kiểm tra) | RG12: bước cố định cần chặn độ cong | RG12 parabol cận trên và tiếp tuyến | VD1 tại RG13, RG15, RG16 | RG12 định nghĩa, RG13 bổ đề giảm, RG14 bất đẳng thức một bước, RG15 định lý $O(1/k)$, RG16 quay lui, RG17 hội tụ tuyến tính khi lồi mạnh | Không áp dụng riêng: kết quả là bảo đảm cho thuật toán RG06 | RG18 | Giữ $x,g,t,L$, VD1 và $x^*=0$; chu trình rút gọn vì là phần tự học chứng minh cho thuật toán đã có, không giới thiệu phương pháp mới |
 | Newton, LLO6/8 | RN01 W cố định chưa dùng độ cong hiện tại | RN01 hàm thật và parabol | RN01 dữ kiện φ; RN02 phép tính g,H,d | RN02 KKT bài con, RN03 tuyến tính hóa, RN04 độ giảm | RN05 nhận bước; RN06 thuật toán | RN08 | φ,g,H,d giữ nguyên; ≈ của phương trình thật dẫn đến phân biệt sai số. Ví dụ dẫn nhập RN01 làm cụ thể nhu cầu xấp xỉ, phép tính RN02 đặt cạnh hình thức hóa cùng một thao tác. |
 | Tốc độ hội tụ của Newton, LLO8/CLO2 (tự học từ 2026-10-01; chu trình rút gọn nhu cầu → hình thức → kiểm tra) | RN07: thuật toán RN06 chưa có phát biểu tốc độ | Không áp dụng: trang tổng hợp kết quả không chứng minh | VD1 (một bước), VD2 ở RN08 | RN07 bảng bốn trường hợp | Không áp dụng riêng | RN08 câu 2 | Định nghĩa hội tụ bậc hai truyền sang RN08; chu trình rút gọn vì người dùng yêu cầu nêu kết quả không chứng minh |
 | Newton khả thi, LLO9/10 | RE01 phải giữ tổng; RE02 hướng cũ phá tổng | RE01–RE02 đường khả thi | RE01 mốc nghiệm, RE02 điểm đầu VD3 | RE03 Lagrange, RE04 hệ | RE05 giải bước, RE06 giải bằng khử, RE07 thuật toán | RE08 | Truyền F,u,A,b,g,H; thêm η khi lập bài con. RE01 gộp nhu cầu, hình và KKT bài gốc đã học, không giới thiệu phương pháp trước nhu cầu. |
@@ -246,12 +246,12 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RG12 — Gradient Lipschitz
 
-- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ và tốc độ hội tụ của giảm gradient cho hàm lồi có gradient Lipschitz. Mở cụm tự học RG12–RG17, đặt sau câu hỏi kiểm tra RG11 và trước phần Newton; có nhãn "Tự học" như phần tự điều chỉnh (ngoại lệ có chủ ý theo chỉ dẫn người dùng).
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ và tốc độ hội tụ của giảm gradient cho hàm lồi có gradient Lipschitz. Mở cụm tự học RG12–RG18, đặt sau câu hỏi kiểm tra RG11 và trước phần Newton; có nhãn "Tự học" như phần tự điều chỉnh (ngoại lệ có chủ ý theo chỉ dẫn người dùng).
 - **Nội dung trên trang:** Nhu cầu: bước cố định $t=1/L$ chỉ an toàn khi độ cong bị chặn trên. Định nghĩa gradient $L$-Lipschitz; hệ quả cận trên bậc hai $f(y)\le f(x)+\nabla f(x)^T(y-x)+\tfrac L2\|y-x\|_2^2$; với $f$ lồi $C^2$: $\nabla^2f\preceq LI$; VD1 $L=7$.
 - **Bố cục chọn:** Lưới 40–60: trái hình SVG tự vẽ `img/lec-04/lipschitz-upper-bound.svg` (mất mát logistic, parabol cận trên $L=1/4$, tiếp tuyến tại $s=1$, có chú giải); phải khung định nghĩa và hệ quả.
 - **Lý do tồn tại:** RG06 dùng $t=1/L$ và nêu tốc độ trong ghi chú mà không có giả thiết hay chứng minh trên mặt trang; khái niệm $L$ cần được định nghĩa trước bổ đề giảm.
 - **Vào → ra:** Đầu vào: thuật toán giảm gradient và bước cố định (RG06), VD1. Đầu ra: cận trên bậc hai, dùng để chứng minh bổ đề giảm (RG13); tiếp tuyến dưới $f$ (tính lồi) dùng ở RG14.
-- **Chuẩn và minh chứng:** LLO8 / CLO2 (phân tích tốc độ hội tụ); tự học, kiểm ở RG17.
+- **Chuẩn và minh chứng:** LLO8 / CLO2 (phân tích tốc độ hội tụ); tự học, kiểm ở RG18.
 - **Số liệu:** VD1: $\nabla^2f=\operatorname{diag}(3,7)$, $L=7$. Hình: $f(s)=\log(1+e^s)$, $f''\le1/4$, $f(1)\approx1{,}313$, $f'(1)\approx0{,}731$.
 - **Nguồn, ghi chú soạn:** BV §9.1.2 (hằng số $M$), §9.3; MIT 6.079 lec16; chứng minh cận trên bằng tích phân dọc đoạn và Cauchy–Schwarz trong ghi chú.
 
@@ -262,7 +262,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Bố cục chọn:** Một cột: dòng thế, phép cộng hai số hạng, khung bổ đề, dòng VD1, kết luận.
 - **Lý do tồn tại:** Mức giảm bảo đảm là bước đầu của mọi chứng minh tốc độ; tách khỏi trang định nghĩa để mỗi trang một luận điểm.
 - **Vào → ra:** Đầu vào: cận trên bậc hai (RG12). Đầu ra: $f(x^k)$ không tăng và mức giảm $\|g\|^2/(2L)$, dùng ở RG14 và RG15; liên hệ Armijo với $\alpha\le1/2$ dùng ở RG16.
-- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG17.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG18.
 - **Số liệu:** VD1: $\|g\|^2=820$, $x^1=(8/7,0)^T$, $f(x^1)=96/49$, cận $24/7$ (tính bằng phân số).
 - **Nguồn, ghi chú soạn:** BV §9.3; MIT 6.079 lec16.
 
@@ -273,7 +273,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Bố cục chọn:** Một cột: dòng giả thiết, danh sách ba bước, công thức nhấn, kết luận.
 - **Lý do tồn tại:** Đây là bước duy nhất dùng tính lồi; tách riêng để chỉ rõ chỗ dùng từng giả thiết trước khi cộng dồn.
 - **Vào → ra:** Đầu vào: bổ đề giảm (RG13), tiếp tuyến dưới $f$ (RG12). Đầu ra: bất đẳng thức dạng hiệu, cộng dồn ở RG15; khoảng cách tới $x^*$ không tăng.
-- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG17.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG18.
 - **Số liệu:** Không có số mới; đại số khai triển trong ghi chú.
 - **Nguồn, ghi chú soạn:** BV §9.3; ghi chú bài giảng mục B.
 
@@ -283,8 +283,8 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nội dung trên trang:** Định lý (giả thiết: lồi, khả vi, gradient $L$-Lipschitz, có $x^*$; bước $1/L$): $f(x^k)-f^*\le L\|x^0-x^*\|^2/(2k)$, $k\ge1$; chứng minh ý chính (cộng dồn, đơn điệu); VD1: cận $70/k$; kết luận: $k\ge LR^2/(2\varepsilon)$, tốc độ dưới tuyến tính, cận trường hợp xấu nhất.
 - **Bố cục chọn:** Lưới hai cột: trái khung định lý, phải chứng minh ý chính và VD1; kết luận dưới.
 - **Lý do tồn tại:** Kết quả chính của cụm tự học; trả lời câu hỏi bước cố định hội tụ nhanh đến đâu.
-- **Vào → ra:** Đầu vào: bất đẳng thức một bước (RG14), đơn điệu (RG13). Đầu ra: tốc độ $O(1/k)$ với $L$ đã biết; nhu cầu xử lý khi không biết $L$ (RG16); so sánh với thực tế ở RG17.
-- **Chuẩn và minh chứng:** LLO8 / CLO2 (phân tích tốc độ hội tụ); tự học, kiểm ở RG17.
+- **Vào → ra:** Đầu vào: bất đẳng thức một bước (RG14), đơn điệu (RG13). Đầu ra: tốc độ $O(1/k)$ với $L$ đã biết; nhu cầu xử lý khi không biết $L$ (RG16); so sánh với thực tế ở RG18.
+- **Chuẩn và minh chứng:** LLO8 / CLO2 (phân tích tốc độ hội tụ); tự học, kiểm ở RG18.
 - **Số liệu:** VD1: $\|x^0-x^*\|^2=20$, $L=7$, cận $70/k$; $\varepsilon=0{,}01$ cần $k\ge7000$ theo cận.
 - **Nguồn, ghi chú soạn:** BV §9.3; ghi chú bài giảng mục B (định lý cận $O(1/k)$, định lý tuyến tính khi lồi mạnh).
 
@@ -294,14 +294,25 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nội dung trên trang:** Nhu cầu: định lý $O(1/k)$ cần biết $L$. Bổ đề: với $\alpha\le\tfrac12$, $t\le1/L$ thì Armijo đúng; quay lui dừng với $t\ge t_{\min}=\min(1,\beta/L)$. Định lý ($\alpha=\tfrac12$): $f(x^k)-f^*\le\|x^0-x^*\|^2/(2t_{\min}k)$. VD1 $\alpha=\beta=\tfrac12$: nhận $t=1/8$, $t_{\min}=1/14$, cận $140/k$. Kết luận: giá phải trả khi không biết $L$ là tối đa $1/\beta$ lần trong hằng số.
 - **Bố cục chọn:** Dòng nhu cầu; lưới hai khung (bổ đề, định lý kèm VD1); kết luận.
 - **Lý do tồn tại:** Thuật toán RG06 dùng quay lui, không dùng bước $1/L$; cần bảo đảm cho đúng thuật toán đã học.
-- **Vào → ra:** Đầu vào: cận trên bậc hai, bất đẳng thức một bước, định lý $O(1/k)$ (RG12–RG15), quy tắc Armijo (RG04). Đầu ra: cận $O(1/k)$ không cần biết $L$; câu hỏi so sánh ở RG17.
-- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG17.
+- **Vào → ra:** Đầu vào: cận trên bậc hai, bất đẳng thức một bước, định lý $O(1/k)$ (RG12–RG15), quy tắc Armijo (RG04). Đầu ra: cận $O(1/k)$ không cần biết $L$; câu hỏi so sánh ở RG18.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG18.
 - **Số liệu:** VD1: ngưỡng $62-410t$, nhận khi $t\le205/1399$; thử $1,\tfrac12,\tfrac14$ loại, $\tfrac18$ nhận ($103/32\le43/4$); $t_{\min}=1/14$; cận $140/k$ (tính bằng phân số).
 - **Nguồn, ghi chú soạn:** BV §§9.2–9.3 (§9.3.1 cho trường hợp lồi mạnh với $\alpha$ tổng quát); định lý chỉ phát biểu cho $\alpha=\tfrac12$, không nêu hằng số cho $\alpha<\tfrac12$.
 
-### RG17 — Hội tụ của giảm gradient
+### RG17 — Hội tụ tuyến tính
 
-- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ của giảm gradient (có quay lui); trang kiểm tra khép cụm tự học.
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu "thêm một slide Tự học về tốc độ hội tụ của giảm gradient cho hàm lồi mạnh + Lipschitz". Có nhãn "Tự học".
+- **Nội dung trên trang:** Nhu cầu: cận $O(1/k)$ cần 7000 bước trên VD1, thực tế 6; VD1 lồi mạnh. Định nghĩa lồi mạnh dạng bậc nhất; hệ quả $\|\nabla f\|^2\ge2\mu(f-f^*)$. Định lý bước $1/L$: $e_k\le(1-\mu/L)^ke_0$ với $e_k=f(x^k)-f^*$; ý chính; VD1 ($\mu=3$, $L=7$): $62(4/7)^k\le0{,}01$ khi $k\ge16$. Kết luận: $k\ge\kappa\log(e_0/\varepsilon)$, $\kappa=L/\mu$.
+- **Bố cục chọn:** Dòng nhu cầu; lưới hai khung (định nghĩa và bất đẳng thức gradient; định lý, ý chính, VD1); kết luận.
+- **Lý do tồn tại:** Trả lời chênh lệch giữa cận $O(1/k)$ và hành vi thật trên VD1; cho tốc độ tuyến tính dùng trong câu hỏi RG18 và bảng so sánh ở RN07.
+- **Vào → ra:** Đầu vào: bổ đề giảm (RG13), định lý $O(1/k)$ và quay lui (RG15–RG16), VD1. Đầu ra: tốc độ tuyến tính $(1-\mu/L)^k$, số bước $\kappa\log(e_0/\varepsilon)$; ghi chú nối với bước tối ưu $2/(\mu+L)$ ở trang độ cong không đồng đều.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG18 câu 1.
+- **Số liệu:** $\mu=3$, $L=7$, $\kappa=7/3$; $62(4/7)^k\le0{,}01\Leftrightarrow k\ge\log6200/\log(7/4)\approx15{,}6$, tức $k=16$; điều kiện đủ $\kappa\log6200\approx20{,}4$ cho $k\ge21$; bước $2/(\mu+L)=1/5$ cho hệ số co khoảng cách $(\kappa-1)/(\kappa+1)=2/5$ (hàm bậc hai, lập luận theo giá trị riêng).
+- **Nguồn, ghi chú soạn:** Ghi chú bài giảng mục B (định lý tốc độ tuyến tính với bước $1/L$); quay lui: BV §9.3.1 tr. 468–469, $c=1-\min\{2m\alpha,2\beta\alpha m/M\}$ (đọc trực tiếp từ `sources/bv_cvxbook.pdf`).
+
+### RG18 — Hội tụ của giảm gradient
+
+- **Quyết định:** `sửa` ngày 2026-10-01 (lần 2): đổi mã RG17 → RG18 vì chèn trang tự học "Hội tụ tuyến tính" (RG17 mới) trước trang này; đáp án câu 1 trong ghi chú dẫn chiếu định lý ở trang trước. Trước đó: `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ của giảm gradient (có quay lui); trang kiểm tra khép cụm tự học.
 - **Nội dung trên trang:** Ba câu hỏi (nhãn "Câu hỏi:"): so cận $70/k$ với số bước thực tế trên VD1 ($t=1/7$, $f(x^k)=6(16/49)^k$); vì sao $t>2/L$ phân kỳ; quay lui với $\alpha=\tfrac12$, $\beta=\tfrac14$ nhận $t$ nào và cận nào. Đáp án trong ghi chú.
 - **Bố cục chọn:** Ba khung câu hỏi xếp dọc.
 - **Lý do tồn tại:** Bài tập của cụm tự học; đo khả năng dùng cận trên dữ kiện cụ thể, phân biệt cận trường hợp xấu nhất với hành vi thật, và chuyển giao sang tham số $\beta$ mới.

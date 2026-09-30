@@ -1,5 +1,15 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Thêm trang tự học hội tụ tuyến tính của giảm gradient — 2026-10-01
+
+**Yêu cầu người dùng:** "thêm một slide Tự học về tốc độ hội tụ của giảm gradient cho hàm lồi mạnh + Lipschitz". Tác tử soạn: fork của điều phối viên, Claude Opus 5.5 (kế thừa).
+
+- **Ánh xạ mã:** RG17 mới = "Hội tụ tuyến tính"; RG17 cũ "Hội tụ của giảm gradient" (câu hỏi) → RG18. Các mục nhật ký trước mục này nhắc RG17 là chỉ trang câu hỏi, nay là RG18; không sửa lịch sử. `storyboard.md` và `outline.md` đã đổi RG17 → RG18 rồi thêm mục RG17 mới.
+- **Số liệu kiểm lại:** $62(4/7)^k\le0{,}01$ khi $k\ge\log6200/\log(7/4)\approx15{,}60$, nên $k=16$, khớp đáp án câu 1 của RG18; $(1-1/\kappa)^k\le e^{-k/\kappa}$ vì $1-u\le e^{-u}$; điều kiện đủ $k\ge\kappa\log6200\approx20{,}4$; bước $2/(\mu+L)=1/5$ cho $|1-3/5|=|1-7/5|=2/5=(\kappa-1)/(\kappa+1)$.
+- **Nguồn quay lui:** BV §9.3.1 (tr. 468–469), đọc trực tiếp: $f(x^{(k)})-p^\star\le c^k(f(x^{(0)})-p^\star)$, $c=1-\min\{2m\alpha,2\beta\alpha m/M\}$; chỉ nêu trong ghi chú.
+- **Đồng bộ:** ghi chú RG15 chỉ tới trang tự học hội tụ tuyến tính; ghi chú RG16 thêm câu nối; đáp án câu 1 của RG18 dẫn chiếu định lý ở trang trước; hàng RZ03 "hội tụ của giảm gradient (tự học)" đã bao phủ trang mới; RN07 dùng cùng ký hiệu $(1-\mu/L)^k$.
+- **Kiểm tra trình duyệt:** RG17 1600×900 đáy nội dung 784/829 px, tiêu đề kết thúc 524 px; RG18 678/829 px; không lỗi KaTeX/console; 390×844 cuộn dọc, công thức định nghĩa cuộn ngang trong `.formula`.
+
 ## Rà soát các trang tự học về hội tụ (RG12–RG17, RN07) — 2026-10-01
 
 Người rà soát: fork chỉ đọc của điều phối viên, Claude Opus 5.5 (kế thừa), gộp vai toán học, mạch lập luận và kiểm định storyboard. Kết luận: 0 chặn bàn giao, 0 nghiêm trọng, 3 trung bình, 9 nhẹ (và một mục chấp nhận không sửa); mọi số liệu và hằng số BV đã được tính lại, đúng. Cổng storyboard chấp nhận các quyết định `thêm`. Tác tử sửa: fork của điều phối viên, Claude Opus 5.5 (kế thừa).
