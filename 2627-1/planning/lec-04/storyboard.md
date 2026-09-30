@@ -160,14 +160,14 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RG05 — Ví dụ quay lui Armijo
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu A06. Phép tính xác định bước được nhận đầu tiên, phân biệt hệ số co với bước thử và cung cấp một lượt cập nhật cho thuật toán RG06.
-- **Nội dung trên trang:** Cho $f_0=62$, $g^Td=-820$, $\alpha=1/10$, $\beta=1/2$. Với $t=1,1/2,1/4$, các điểm thử lần lượt là $(-4,-24)^T$, $(-1,-10)^T$, $(1/2,-3)^T$; giá trị hàm $2040,703/2,255/8$; ngưỡng $-20,21,83/2$. Nhận ngay $t=1/4$, không thử tiếp.
-- **Bố cục chọn:** Bảng toàn chiều ngang, từng hàng xuất hiện theo lần thử; hàng nhận có chữ “nhận”, không chỉ đổi màu.
-- **Lý do bố cục cho sinh viên năm 3:** Phép tính xác định bước được nhận đầu tiên, phân biệt hệ số co với bước thử và cung cấp một lượt cập nhật cho thuật toán RG06.
-- **Vào → ra:** Đầu vào: Hướng $d_G$ cho ngưỡng $62-82t$ trong VD1. Đầu ra: Bước $t=1/4$ thỏa $255/8\le83/2$ và xác định điểm lặp mới $(1/2,-3)^T$.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** VD1, dàn ý §6: giữ x, g; ghi riêng W khi dùng; phân biệt v, d, t và các cấu hình bước.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; dòng dữ kiện nêu đủ $x^0$ và hướng $d=d_G$; cột ngưỡng viết cụ thể $62-82t$; thêm dòng kết quả $x^1$, $f(x^1)$ là đầu ra của bước lặp. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** VD1: $x^0=(2,4)^T$, $d=d_G=(-6,-28)^T$, $f(x^0)=62$, $g^Td=-820$, $\alpha=1/10$, $\beta=1/2$. Bảng ba lần thử $t=1,1/2,1/4$ với điểm thử $x^0+td$, giá trị $f$, ngưỡng $62-82t$: $2040>-20$ loại; $703/2>21$ loại; $255/8\le83/2$ nhận. Dòng kết quả: $x^1=(1/2,-3)^T$, $f(x^1)=255/8$; lượt sau tính lại gradient tại $x^1$.
+- **Bố cục chọn:** Dòng dữ kiện, bảng hiện từng hàng, dòng kết quả hiện sau cùng. Đo ở 1600×900: đáy nội dung 583 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Mỗi lần thử so hai số cụ thể; ngưỡng không cần tự thay tham số.
+- **Vào → ra:** Đầu vào: thủ tục và điều kiện Armijo (RG04); vùng nhận $0<t\le369/1399$. Đầu ra: bước $t=1/4$, điểm $x^1$ và $g(x^1)=(3/2,-21)^T$ cho lượt sau; các thành phần được ghép thành thuật toán ở RG06.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RG11.
+- **Số liệu:** Tính lại bằng phân số: $f(-4,-24)=2040$, $f(-1,-10)=703/2$, $f(1/2,-3)=255/8$; ngưỡng $-20,21,83/2$.
+- **Nguồn, ghi chú soạn:** BV §§9.2–9.3; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG06 — Thuật toán giảm gradient
