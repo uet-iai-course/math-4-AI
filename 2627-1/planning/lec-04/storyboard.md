@@ -266,16 +266,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
-### RN03 — Tuyến tính hóa phương trình tối ưu
+### RN03 — Tuyến tính hóa điều kiện dừng
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu C03. Chuẩn bị chính xác thao tác tuyến tính hóa hệ KKT ở phần R; không đánh đồng giải mô hình với giải xong bài gốc.
-- **Nội dung trên trang:** Đích bài gốc: $\nabla f(x+d)=0$. Tuyến tính hóa $\nabla f(x+d)\approx g+Hd$, rồi giải mô hình $g+Hd=0$. VD2 sau bước có $\varphi'(7/16)=-9/7\ne0$.
-- **Bố cục chọn:** Hai hàng “phương trình thật” và “mô hình tuyến tính”; ký hiệu ≈ nổi rõ; ô kiểm đạo hàm thật đặt dưới.
-- **Lý do bố cục cho sinh viên năm 3:** Chuẩn bị chính xác thao tác tuyến tính hóa hệ KKT ở phần R; không đánh đồng giải mô hình với giải xong bài gốc.
-- **Vào → ra:** Đầu vào: Khai triển gradient tại $x$ cho $\nabla f(x+d)\approx g+Hd$. Đầu ra: Vì gradient thật tại $7/16$ còn bằng $-9/7$, mức giảm mô hình cần được phân biệt với sai số mục tiêu.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RN07.
-- **Số liệu:** VD2, dàn ý §6; riêng RN04 so lại VD1 phải ghi rõ đổi ví dụ. Phân biệt δ, δ² và ba phép trừ.
-- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Tuyến tính hóa phương trình tối ưu" thành "Tuyến tính hóa điều kiện dừng" (dùng thuật ngữ đã có của bài); thêm phép tuyến tính hóa trên VD2 cho cùng $d=3/16$; ghi chú nêu lý do cần cách nhìn thứ hai (áp dụng cho hệ KKT có ràng buộc). Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Khung 1: điều kiện dừng của bài gốc tại điểm mới $\nabla f(x+d)=0$. Khung 2: $\nabla f(x+d)\approx g+Hd\Rightarrow g+Hd=0$; VD2: $\varphi'(1/4+d)\approx-3+16d=0$, cùng $d=3/16$. Kết luận: $\varphi'(7/16)=-9/7\ne0$; điểm cực tiểu của mô hình chưa thỏa điều kiện dừng của hàm gốc.
+- **Bố cục chọn:** Hai khung xếp dọc, khung kết luận dưới. Đo ở 1600×900: đáy nội dung 810 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Phương trình phi tuyến và bản tuyến tính hóa đặt liền nhau; ví dụ số cho thấy hai cách suy ra trùng nhau và giới hạn của một bước.
+- **Vào → ra:** Đầu vào: $d=3/16$, $s^+=7/16$ và câu hỏi về điều kiện dừng (RN02). Đầu ra: một bước Newton giải hệ tuyến tính thay hệ phi tuyến; cách nhìn này dùng lại cho hệ KKT (RR02); nhu cầu đo mức giảm mô hình dự báo (RN04).
+- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RN07.
+- **Số liệu:** VD2: $\varphi'(7/16)=-9/7$.
+- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
 ### RN04 — Độ giảm của mô hình Newton

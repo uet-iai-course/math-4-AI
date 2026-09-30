@@ -349,14 +349,15 @@ Parabol dựng tại điểm hiện tại được cực tiểu hóa theo $d$. �
 </section>
 
 <section data-slide-id="RN03">
-<h2>Tuyến tính hóa phương trình tối ưu</h2>
-<div class="panel"><p><strong>Điều kiện tối ưu của bài toán gốc tại điểm mới:</strong></p>
+<h2>Tuyến tính hóa điều kiện dừng</h2>
+<div class="panel"><p><strong>Điều kiện dừng của bài gốc tại điểm mới:</strong></p>
 <div class="formula" tabindex="0">$$\nabla f(x+d)=0.$$</div></div>
 <div class="panel"><p><strong>Mô hình tuyến tính của vế trái:</strong></p>
-<div class="formula emphasis" tabindex="0">$$\nabla f(x+d)\approx g+Hd\quad\Longrightarrow\quad g+Hd=0.$$</div></div>
-<div class="takeaway">Kiểm VD2: $\varphi'(7/16)=1-16/7=-9/7\ne0$. Điểm cực tiểu của mô hình chưa thỏa điều kiện tối ưu của hàm gốc.</div>
+<div class="formula emphasis" tabindex="0">$$\nabla f(x+d)\approx g+Hd\quad\Longrightarrow\quad g+Hd=0.$$</div>
+<p>VD2: <span class="math-nowrap">$\varphi'(1/4+d)\approx-3+16d=0$,</span> cùng $d=3/16$.</p></div>
+<div class="takeaway">Kiểm VD2: $\varphi'(7/16)=1-16/7=-9/7\ne0$. Điểm cực tiểu của mô hình chưa thỏa điều kiện dừng của hàm gốc.</div>
 <aside class="notes">
-Hướng Newton còn được suy ra bằng tuyến tính hóa phương trình tối ưu $\nabla f(x+d)=0$ bằng khai triển $\nabla f(x+d)\approx g+Hd$, rồi giải đẳng thức $g+Hd=0$. Cực tiểu hóa mô hình bậc hai và tuyến tính hóa phương trình gradient cho cùng một hướng. Trong ví dụ logarit, $\varphi'(s)=1-1/s$ nên $\varphi'(7/16)=1-16/7=-9/7$, khác không. Phương trình gradient được xấp xỉ bậc nhất; nghiệm chính xác của bài con có thể chưa thỏa phương trình của hàm gốc. Với mô hình lồi, KKT đủ cho nghiệm của mô hình, nhưng chứng nhận đó không tự động chuyển sang điểm mới của hàm thật. Độ giảm từ bước bằng không đến cực tiểu mô hình là đại lượng tính được; quan hệ của nó với sai số mục tiêu của bài gốc cần được xác định riêng. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Điểm $s^+=7/16$ nhận được từ mô hình được kiểm trên điều kiện dừng của bài gốc. Hướng Newton còn thu được bằng cách viết điều kiện dừng tại điểm mới, $\nabla f(x+d)=0$, rồi thay vế trái bằng khai triển bậc nhất $\nabla f(x+d)\approx g+Hd$; phương trình tuyến tính $g+Hd=0$ trùng hệ Newton. Cực tiểu hóa mô hình bậc hai của $f$ và tuyến tính hóa phương trình gradient cho cùng một hướng. Với VD2, $\varphi'(s)=1-1/s$ và $\varphi''(1/4)=16$, nên $\varphi'(1/4+d)\approx-3+16d$, cho lại $d=3/16$. Vì chỉ vế trái được xấp xỉ, nghiệm của phương trình tuyến tính không thỏa phương trình phi tuyến: $\varphi'(7/16)=-9/7\ne0$. Cách nhìn thứ hai áp dụng cho mọi hệ điều kiện tối ưu viết dưới dạng phương trình, kể cả hệ KKT khi có ràng buộc đẳng thức. Mô hình bậc hai cũng cho một đại lượng tính được: mức giảm mà mô hình dự báo khi đi từ $d=0$ tới nghiệm Newton. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
 </aside>
 </section>
 

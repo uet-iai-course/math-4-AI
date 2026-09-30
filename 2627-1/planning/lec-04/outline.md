@@ -970,3 +970,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RG11 đổi tên thành "Hướng và độ dài bước"; hai câu hỏi dùng dữ kiện mới: giải $Q_W$ tại $x^1=(1/2,-3)^T$ và quay lui với $\alpha=3/10$ (thay mô tả RG11 trong bảng dữ kiện câu hỏi ở phần trước).
 - RN01 giữ tiêu đề; thêm dòng nhu cầu từ VD1 ($W=\nabla^2f$ cho nghiệm sau một bước) và phép đổi $W=H=\nabla^2f(x)$; khung VD2 nêu lý do dùng ví dụ không bậc hai.
 - RN02 đổi tên thành "Hướng Newton"; giả thiết $H\succ0$ và $W=H$ nêu trước phép giải; thêm $g^Td=-d^THd<0$ (hướng giảm); VD2 nêu bước đầy đủ $t=1$.
+- RN03 đổi tên thành "Tuyến tính hóa điều kiện dừng"; thêm phép tuyến tính hóa trên VD2 cho cùng $d=3/16$.
