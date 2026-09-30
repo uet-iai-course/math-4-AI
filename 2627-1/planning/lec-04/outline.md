@@ -983,3 +983,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RE05 giữ tiêu đề; định nghĩa $\delta_{eq}$ chuyển sang RE07; dòng kiểm nêu mức giảm thật $126=\tfrac12d^THd$; ghi chú nêu $\eta=-20=\nu^*$.
 - RE06 đổi tên thành "Hệ Newton rút gọn"; thêm dòng nhu cầu so với hệ khối và kết luận $N^THN\succ0$ khi $H\succ0$.
 - RE07 giữ tiêu đề; định nghĩa $\delta_{eq}^2=d^THd$ là độ giảm Newton của bài con; thêm đầu vào, đầu ra, điều kiện áp dụng; hai tính chất giữ khả thi và hướng giảm được gắn nhãn.
+- RE08 đổi tên thành "Bước Newton khả thi"; hai câu hỏi dùng điểm đầu khả thi mới $(8,6)^T$ (hệ khối cho $d=(2,-2)^T$, $\eta=-20$; hệ rút gọn $\Delta z=-2$); bỏ ba ô trang trí.

@@ -542,17 +542,14 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
   <aside class="notes">Hai trang trước cho hai cách giải cùng một bước: hệ khối và hệ rút gọn. Thuật toán lặp lại bước đó từ một điểm đầu khả thi. Đại lượng $\delta_{eq}^2=d^THd$ đóng vai trò của độ giảm Newton $\delta_N^2$ ở phần không ràng buộc: $\delta_{eq}^2/2$ là mức giảm mà mô hình dự báo trên tập khả thi. Tính khả thi được bảo toàn vì $Ad=0$ cho $A(u+td)=Au+tAd=b$ với mọi $t$. Nhân hàng dừng $g+Hd+A^T\eta=0$ với $d^T$ và dùng $Ad=0$ để triệt số hạng $d^TA^T\eta$ được $g^Td=-d^THd$, âm khi $d\ne0$; hướng là hướng giảm của $F$, nên thủ tục quay lui Armijo dừng sau hữu hạn lần co. Khi tính số, sai lệch $Au-b$ có thể tích lũy do sai số máy và cần được kiểm. Giả thiết $H\succ0$ và $A$ đủ hạng hàng bảo đảm hệ khối khả nghịch; có thể thay $H\succ0$ bằng điều kiện yếu hơn là $H$ xác định dương trên $\ker A$. Hệ khối đặc cỡ $n+p$ có chi phí giải cỡ $O((n+p)^3)$; hệ rút gọn cỡ $n-p$ có thể rẻ hơn tùy cấu trúc. Hội tụ bậc hai cục bộ được xét trên hàm rút gọn $\psi(z)=F(\hat u+Nz)$, với Hessian rút gọn Lipschitz gần nghiệm, xác định dương tại nghiệm và điểm đầu đủ gần. Như ở bài không ràng buộc, tiêu chí $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$ là tiêu chí của mô hình, chưa phải cận sai số tới nghiệm. Các bước của thuật toán được kiểm lại bằng việc tự lập hệ KKT của bài con và hệ rút gọn. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE08">
-  <h2>Kiểm tra hệ Newton khả thi</h2>
+  <h2>Bước Newton khả thi</h2>
   <div class="question">
-    <p><strong>Câu hỏi:</strong> Từ $Q(d)=g^Td+\tfrac12d^THd$ với $Ad=0$: viết $L_m$, lấy hai đạo hàm rồi xếp ma trận; nhân $N^T$ cho hệ nào?</p>
-    <p>Dữ kiện VD3 để kiểm $d$ nếu cần: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$, $A=[1\ 1]$, $b=14$, điểm đầu $(16,-2)^T$.</p>
+    <p><strong>Câu hỏi:</strong> Với VD3 tại điểm khả thi $u=(8,6)^T$: lập hệ khối của bài con, giải $d$ và $\eta$; kiểm $Ad=0$, tính $u+d$ và mức giảm của $F$.</p>
   </div>
-  <div class="lec-grid lec-grid--three">
-    <div class="flow-node">Lagrange</div>
-    <div class="flow-node">Dừng và khả thi</div>
-    <div class="flow-node">Hệ rút gọn</div>
+  <div class="question">
+    <p><strong>Câu hỏi:</strong> Với $N=(-1,1)^T$, giải <span class="math-nowrap">$N^THN\Delta z=-N^Tg$</span> và so với câu trên. Giải thích vì sao $\eta$ lại bằng $-20$.</p>
   </div>
-  <aside class="notes">Đáp án: $L_m=g^Td+\tfrac12d^THd+\eta^TAd$; đạo hàm theo $d$ cho $g+Hd+A^T\eta=0$, đạo hàm theo $\eta$ cho $Ad=0$; xếp hai hàng thành $\begin{bmatrix}H&amp;A^T\\A&amp;0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$. Nhân $N^T$ với $N^TA^T=0$ khử nhân tử, cho hệ rút gọn $N^THN\Delta z=-N^Tg$. Trên VD3, cả hai cách cho $d=(-6,6)^T$, $\eta=-20$. Vế phải hàng khả thi bằng $0$ vì bài con bảo toàn một đẳng thức đã được thỏa. Khi điểm đầu chưa khả thi, hướng phải hiệu chỉnh sai lệch đẳng thức thay vì giữ nguyên sai lệch đó. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Hai câu hỏi dùng thuật toán Newton khả thi trên VD3 với một điểm đầu khả thi mới, $u=(8,6)^T$, thỏa $8+6=14$. Đáp án câu 1: $g=(2u_1,5u_2)^T=(16,30)^T$ và $H=\operatorname{diag}(2,5)$. Hệ khối gồm $2d_1+\eta=-16$, $5d_2+\eta=-30$, $d_1+d_2=0$; trừ hai hàng đầu được $2d_1-5d_2=14$, thay $d_2=-d_1$ được $7d_1=14$, nên $d=(2,-2)^T$ và $\eta=-16-4=-20$. Kiểm $Ad=2-2=0$; điểm mới $u+d=(10,4)^T$ là nghiệm tham chiếu. Giá trị $F(8,6)=\tfrac12(128+180)=154$, sau bước là $140$, nên $F$ giảm $14=\tfrac12d^THd=\tfrac12(2\cdot4+5\cdot4)$. Đáp án câu 2: $N^THN=2+5=7$, $N^Tg=-16+30=14$, nên $7\Delta z=-14$, $\Delta z=-2$ và $d=N\Delta z=(2,-2)^T$, trùng câu 1. Vì $F$ bậc hai, mô hình trùng hàm và một bước đầy đủ từ mọi điểm khả thi tới đúng nghiệm; khi đó hàng dừng của bài con là hàng dừng của bài gốc tại nghiệm, nên $\eta=\nu^*=-20$ với mọi điểm đầu khả thi. Thuật toán này cần điểm đầu thỏa $Au=b$. Khi điểm đầu chưa khả thi, giữ $Ad=0$ sẽ giữ nguyên sai lệch $Au-b$, nên bước phải hiệu chỉnh cả sai lệch đó. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; ví dụ số tự xây dựng.</aside>
 </section>
 </section>
 <section>

@@ -410,13 +410,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RE08 — Kiểm tra hệ Newton khả thi
+### RE08 — Bước Newton khả thi
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu E12. Đo khả năng suy ra phương pháp, không chỉ nhận ra dạng ma trận hay nhớ vế phải0.
-- **Nội dung trên trang:** Câu hỏi: từ Q(d) với Ad=0, viết L_m, lấy hai đạo hàm rồi xếp ma trận; nhân Nᵀ cho hệ nào? Dữ kiện VD3 để kiểm d nếu cần.
-- **Bố cục chọn:** Trên là đề bài con; dưới ba ô trống có nhãn Lagrange/điều kiện/hệ rút gọn; đáp án trong ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: tiêu đề kể nhiệm vụ; câu hỏi chép lại chuỗi RE03–RE06 với cùng dữ kiện nên chỉ đo khả năng đọc lại; ba ô trang trí không có nội dung. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Câu 1 (tính toán, dữ kiện mới): VD3 tại điểm khả thi $u=(8,6)^T$, lập hệ khối, giải $d,\eta$, kiểm $Ad=0$, tính $u+d$ và mức giảm $F$ (đáp án $g=(16,30)^T$, $d=(2,-2)^T$, $\eta=-20$, $u+d=(10,4)^T$, giảm $154-140=14=\tfrac12d^THd$). Câu 2: hệ rút gọn với $N=(-1,1)^T$ ($7\Delta z=-14$, $\Delta z=-2$), giải thích $\eta=\nu^*=-20$. Lời giải trong ghi chú; ghi chú kết bằng nhu cầu điểm đầu chưa khả thi.
+- **Bố cục chọn:** Hai khung câu hỏi xếp dọc; bỏ ba ô trang trí. Đo 1600×900: đáy nội dung 514/829, tiêu đề kết thúc ở 492 px; 390×844: vừa khung.
 - **Lý do bố cục cho sinh viên năm 3:** Đo khả năng suy ra phương pháp, không chỉ nhận ra dạng ma trận hay nhớ vế phải0.
-- **Vào → ra:** Đầu vào: Lagrange của mô hình cho hai hàng của hệ Newton và phép khử cho hệ giảm chiều. Đầu ra: Nếu $Au-b\ne0$, điều kiện $Ad=0$ giữ nguyên sai lệch thay vì khôi phục đẳng thức.
+- **Vào → ra:** Đầu vào: thuật toán Newton khả thi (RE07), hệ khối (RE04), hệ rút gọn (RE06), nghiệm tham chiếu (RE01). Đầu ra: minh chứng tái tạo và chuyển giao hệ bước khả thi sang điểm đầu mới; nhu cầu xử lý điểm đầu chưa khả thi ở RR01.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; sản phẩm và đáp án kiểm tra ở dàn ý §7.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
