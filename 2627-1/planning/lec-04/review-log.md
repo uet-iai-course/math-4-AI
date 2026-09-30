@@ -55,6 +55,24 @@ Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus
 | G-S9 | nhẹ | outline.md | Mục "A04 — Hướng giảm và độ dài bước" có thể gây nhầm | Không cần sửa: mục nằm trong phần "Bản đang triển khai trước đề xuất — lưu để đối chiếu" (bản lập kế hoạch 2026-09-24) đã được đánh dấu lịch sử. |
 
 Kiểm tra lại sau sửa (Playwright qua `reloadserver` 8765): RG03, RG04, RG06, RG07, RG08, RG10, RG11 ở 1600×900 đều vừa khung (RG08 bản nháp tràn 12 px do câu VD1 dài, đã rút gọn: đáy 790/829 px); 390×844 vừa khung cuộn; 0 lỗi KaTeX/console.
+### Rà soát độc lập phần N (RN01–RN07) và xử lý — 2026-09-30
+
+Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus 5.5 kế thừa. Kết quả: 0 chặn bàn giao, 0 nghiêm trọng, 2 trung bình, 7 nhẹ; mọi số liệu được tính lại và khớp. Tác tử chỉnh sửa (nhánh của điều phối viên, Claude Opus 5.5 kế thừa) xử lý trong một commit sau RE08.
+
+| Mã | Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|---|
+| N-S1 | trung bình | RN07 | Hội tụ bậc hai chỉ được định nghĩa trong ghi chú RN06, câu 2 dựa vào thuật ngữ này | Đã sửa: dòng "Hội tụ bậc hai: $\|1-s^{k+1}\|\le c\,\|1-s^k\|^2$" trên mặt trang, cùng dòng vấn đề mở. |
+| N-S2 | trung bình | RN07 | Câu 2 in sẵn dãy $3/4,9/16,81/256$, lộ đáp án câu 1 | Đã sửa: "Nhận xét dãy khoảng cách tới nghiệm $1-s^k$, $k=0,1,2$, từ câu trên". |
+| N-S3 | nhẹ | RN07 | "Sai số" dùng cho cả khoảng cách điểm và sai số giá trị hàm | Đã sửa: $1-s^k$ gọi là khoảng cách tới nghiệm; "sai số tối ưu" dành cho giá trị hàm (mặt trang câu 1 và ghi chú). |
+| N-S4 | nhẹ | RN01 | Tiêu đề chạm nút điều hướng | Đã sửa: "Mô hình bậc hai cục bộ"; không còn tham chiếu tiêu đề cũ trong trang chiếu và học liệu. |
+| N-S5 | nhẹ | RN07 ghi chú | Câu cuối nối sang ràng buộc đẳng thức chưa nêu cận sai số được xét sau | Đã sửa theo đề xuất. |
+| N-M1 | nhẹ | RN06 ghi chú | Nhận bước đầy đủ $t=1$ cần $\alpha<1/2$ | Đã sửa: nêu $\alpha<1/2$, BV §9.5.3, $f$ lồi mạnh và điểm lặp gần nghiệm. |
+| N-M2 | nhẹ | RN07 ghi chú | Chưa nêu trường hợp $s^0\ge2$ | Đã sửa: bước đầy đủ cho $s^+=s^0(2-s^0)\le0$, ra ngoài miền; quay lui xử lý. |
+| N-S6 | nhẹ | outline.md | Mô tả RN07 cũ ở bảng câu hỏi và mục ghi chú | Đã sửa: gắn nhãn "(bản trước 2026-09-30)"; mô tả hiện hành ở mục duyệt từng trang. |
+| N-S7 | nhẹ | RN01 | Dòng mở cần nêu rõ lựa chọn $W=H$ tại điểm hiện tại | Đã sửa: "VD1 bậc hai: $W=\nabla^2f$ cho nghiệm sau một bước. Hàm tổng quát: $W=H=\nabla^2f(x)$ tại điểm hiện tại." Câu dài hơn làm trang tràn 1 px nên được rút gọn. |
+
+Kiểm tra trình duyệt sau sửa (1600×900 và 390×844, cuộn `.lecture-viewport` tới cuối): RN01 đáy 828/829, tiêu đề kết thúc ở 532 px; RN06 đáy 778/829; RN07 đáy 570/829; không lỗi KaTeX hay console.
+
 ## Sửa RG01 theo yêu cầu người dùng — 2026-09-30
 
 **Trạng thái: đã sửa theo yêu cầu và theo vòng rà toán học–mạch lập luận được điều phối viên duyệt; không còn lỗi chặn bàn giao hoặc nghiêm trọng.**

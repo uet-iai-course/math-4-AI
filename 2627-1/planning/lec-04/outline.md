@@ -224,8 +224,8 @@ Mỗi mạch có một trang kiểm tra riêng. Thời gian nghĩ/chữa là ph�
 |---|---|---|
 | RP04 | $L=F+\nu^T(Au-b)$; $\nabla F+A^T\nu=0$, $Au=b$; $\nu$ tự do; $Ad=d_1+d_2$; hướng giữ khả thi khi $d_1+d_2=0$ | Đúng hai nhóm, dấu nhân tử và tự tìm điều kiện của hướng. |
 | RG11 | $Wd=-g$, $d=(-2,-4)^T$; $\|v\|_W=1$ với $v=d/\sqrt{124}$. Armijo dừng thử ngay khi nhận $1/4$, không thử tiếp $1/8$ | Phân biệt hướng/chuẩn hóa/bước; tự suy ra hệ từ $Q_W$. |
-| RN07 | $d=3/16$, $s^+=7/16$, $\varphi'=-9/7$; $9/32$ là giảm mô hình, không là sai số thật $\log4-3/4$ | Không suy nghiệm của bài gốc từ nghiệm mô hình; nêu đúng phép trừ. |
-| RE08 | $L_m=g^Td+d^THd/2+\eta^TAd$; hai đạo hàm cho hệ khối; dùng $N^TA^T=0$ được $N^THN\Delta z=-N^Tg$ | Viết và giải thích nguồn gốc từng hàng, không chỉ chép ma trận. |
+| RN07 (bản trước 2026-09-30) | $d=3/16$, $s^+=7/16$, $\varphi'=-9/7$; $9/32$ là giảm mô hình, không là sai số thật $\log4-3/4$ | Không suy nghiệm của bài gốc từ nghiệm mô hình; nêu đúng phép trừ. |
+| RE08 (bản trước 2026-09-30) | $L_m=g^Td+d^THd/2+\eta^TAd$; hai đạo hàm cho hệ khối; dùng $N^TA^T=0$ được $N^THN\Delta z=-N^Tg$ | Viết và giải thích nguồn gốc từng hàng, không chỉ chép ma trận. |
 | RR07 | $-44=-(40+4)$, $5=-(-5)$; $\Delta\nu=-24$ còn $\eta=4-24=-20$. Dừng cần cả $\|r_p\|\le\varepsilon_p$, $\|r_d\|\le\varepsilon_d$ | Không lẫn gradient/phần dư, nhân tử/số gia; kiểm cả hai điều kiện KKT. |
 | RS05 | $-\log s$ giảm không bị chặn dưới, không có cực tiểu; $s-\log s$ đạt min tại 1. Không thay $\delta$ bằng $\delta^2$ trong biểu thức cận. Riêng điều kiện $\delta<1$ và $\delta^2<1$ tương đương vì $\delta\ge0$ | Phân biệt điều kiện tồn tại nghiệm, giảm mô hình, cận sai số và cách đọc ký hiệu. |
 | RZ02 | Với $M\in\mathbb R^{m\times n}$, $y\in\mathbb R^m$, $A\in\mathbb R^{p\times n}$ đủ hạng hàng, $\rho>0$: $g=M^T(Mw-y)+\rho w$, $H=M^TM+\rho I\succ0$; KKT $g+A^T\nu=0,Aw=b$; $r_d=g+A^T\nu,r_p=Aw-b$; dùng hệ RR03 | Tự chuyển quy trình sang mô hình học, có kích thước và giả thiết; không cần đã học thuật toán mới. |
@@ -243,7 +243,7 @@ Bản nháp ngày 2026-09-26 đã cập nhật văn bản HTML và hai Markdown;
 ### Đợt biên tập học thuật 2026-09-26
 
 - Toàn bộ 46 ghi chú được viết bằng phát biểu về giả thiết, đại lượng, phép suy ra, kết quả và quan hệ với phương pháp kế tiếp. Bỏ lời điều phối lớp, lời nhấn mạnh và tham chiếu “trang trước/trang sau”; giữ giải thích và đáp án.
-- RN03 xác định đúng độ giảm từ bước bằng không tới cực tiểu mô hình, không hỏi khoảng cách tới nghiệm mô hình đã giải. RN07 chỉ kiểm đạo hàm và ba phép trừ đã học; điều kiện cho cận sai số là vấn đề cần nghiên cứu, không phải yêu cầu chấm trước phần tự điều chỉnh.
+- RN03 xác định đúng độ giảm từ bước bằng không tới cực tiểu mô hình, không hỏi khoảng cách tới nghiệm mô hình đã giải. RN07 (bản trước 2026-09-30) chỉ kiểm đạo hàm và ba phép trừ đã học; điều kiện cho cận sai số là vấn đề cần nghiên cứu, không phải yêu cầu chấm trước phần tự điều chỉnh.
 - RR05 và học liệu phần E dùng độ giảm chuẩn phần dư ghép; không suy rằng chuẩn từng thành phần phải giảm đơn điệu. Hai dung sai vẫn được kiểm riêng khi dừng.
 - RS01 phân biệt Hessian không bị chặn trên toàn miền với cận trên tập mức. RS04 phân biệt bảo toàn lớp hàm qua hợp affine với bất biến Newton khi hệ tính bước khả nghịch.
 - RG01 mô tả hình bằng dấu đạo hàm hướng và tiếp tuyến, không dùng góc trên ảnh có tỷ lệ hai trục khác nhau. RG08–RG09 tách vai trò tính lồi, Slater và tính compact.
@@ -984,3 +984,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RE06 đổi tên thành "Hệ Newton rút gọn"; thêm dòng nhu cầu so với hệ khối và kết luận $N^THN\succ0$ khi $H\succ0$.
 - RE07 giữ tiêu đề; định nghĩa $\delta_{eq}^2=d^THd$ là độ giảm Newton của bài con; thêm đầu vào, đầu ra, điều kiện áp dụng; hai tính chất giữ khả thi và hướng giảm được gắn nhãn.
 - RE08 đổi tên thành "Bước Newton khả thi"; hai câu hỏi dùng điểm đầu khả thi mới $(8,6)^T$ (hệ khối cho $d=(2,-2)^T$, $\eta=-20$; hệ rút gọn $\Delta z=-2$); bỏ ba ô trang trí.
+- Sửa theo rà soát phần N: RN01 đổi tên thành "Mô hình bậc hai cục bộ"; RN07 định nghĩa hội tụ bậc hai trên mặt trang, câu 2 không in sẵn dãy số và dùng "khoảng cách tới nghiệm" cho $1-s^k$; ghi chú RN06 nêu $\alpha<1/2$ để nhận bước đầy đủ.

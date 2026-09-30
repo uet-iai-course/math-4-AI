@@ -323,8 +323,8 @@ Hai câu hỏi kiểm tra hai thành phần của một bước lặp trên dữ
 </section>
 <section>
 <section data-slide-id="RN01">
-<h2>Mô hình bậc hai tại điểm hiện tại</h2>
-<p>VD1 bậc hai: $W=\nabla^2f$ cho nghiệm sau một bước. Tổng quát: $W=H=\nabla^2f(x)$.</p>
+<h2>Mô hình bậc hai cục bộ</h2>
+<p>VD1 bậc hai: $W=\nabla^2f$ cho nghiệm sau một bước. Hàm tổng quát: <span class="math-nowrap">$W=H=\nabla^2f(x)$</span> tại điểm hiện tại.</p>
 <div class="lec-grid ratio60"><div>
 <img class="plot" src="img/lec-04/phi-local-model.svg" alt="Hàm φ(s)=s−log s, tiếp tuyến và parabol bậc hai tại s=1/4; parabol khớp gần điểm hiện tại rồi tách khỏi hàm thật.">
 </div><div class="panel"><p><strong>VD2</strong> (không bậc hai, một biến): <span class="math-nowrap">$\varphi(s)=s-\log s$,</span> $s&gt;0$; độ cong $\varphi''(s)=1/s^2$ đổi theo $s$; nghiệm $s^\star=1$.</p>
@@ -407,7 +407,7 @@ Mức giảm mô hình $\delta_N^2/2$ được đặt cạnh hai phép trừ tr�
 <p><strong>Chi phí mỗi lượt:</strong> Hessian và hệ $n\times n$, cỡ $O(n^3)$ khi đặc.</p></div></div>
 <div class="takeaway">Tiêu chí $\delta_N^2/2$ tính được tại điểm hiện tại nhưng chưa chứng nhận sai số tối ưu (VD2: $9/32$ so với $0{,}636$).</div>
 <aside class="notes">
-Thuật toán ghép các thành phần đã xây dựng: gradient và Hessian tại điểm hiện tại, hướng Newton từ hệ $Hd=-g$, độ giảm Newton, quay lui Armijo và phép cập nhật; cấu trúc giống thuật toán giảm gradient, chỉ khác hướng và tiêu chí dừng. Vì $\delta_N^2=g^TH^{-1}g$ với $H\succ0$, $\delta_N=0$ khi và chỉ khi $g=0$; tiêu chí dừng là một thước đo vi phạm điều kiện dừng $\nabla f(x^*)=0$, đo gradient theo chuẩn do $H^{-1}$ xác định. Tiêu chí này là dung sai trên mô hình; VD2 cho thấy nó không phải chứng nhận sai số so với nghiệm. Điều kiện áp dụng: $H\succ0$ tại từng điểm lặp để hệ giải được và mô hình lồi chặt. Chi phí mỗi lượt gồm tính Hessian và giải hệ $n\times n$, cỡ $O(n^3)$ với ma trận đặc, so với một vectơ gradient ở phương pháp gradient. Về hội tụ: dãy lặp hội tụ bậc hai nếu $\|x^{k+1}-x^\star\|\le c\|x^k-x^\star\|^2$ với hằng số $c$ khi $k$ đủ lớn; Newton đạt tính chất này cục bộ khi Hessian Lipschitz trong lân cận nghiệm, Hessian tại nghiệm xác định dương và điểm lặp đủ gần nghiệm, và khi đó quay lui nhận bước đầy đủ $t=1$. Việc chuyển tiêu chí trên mô hình thành cận sai số cần một giả thiết kiểm soát độ cong. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16.
+Thuật toán ghép các thành phần đã xây dựng: gradient và Hessian tại điểm hiện tại, hướng Newton từ hệ $Hd=-g$, độ giảm Newton, quay lui Armijo và phép cập nhật; cấu trúc giống thuật toán giảm gradient, chỉ khác hướng và tiêu chí dừng. Vì $\delta_N^2=g^TH^{-1}g$ với $H\succ0$, $\delta_N=0$ khi và chỉ khi $g=0$; tiêu chí dừng là một thước đo vi phạm điều kiện dừng $\nabla f(x^*)=0$, đo gradient theo chuẩn do $H^{-1}$ xác định. Tiêu chí này là dung sai trên mô hình; VD2 cho thấy nó không phải chứng nhận sai số so với nghiệm. Điều kiện áp dụng: $H\succ0$ tại từng điểm lặp để hệ giải được và mô hình lồi chặt. Chi phí mỗi lượt gồm tính Hessian và giải hệ $n\times n$, cỡ $O(n^3)$ với ma trận đặc, so với một vectơ gradient ở phương pháp gradient. Về hội tụ: dãy lặp hội tụ bậc hai nếu $\|x^{k+1}-x^\star\|\le c\|x^k-x^\star\|^2$ với hằng số $c$ khi $k$ đủ lớn; Newton đạt tính chất này cục bộ khi Hessian Lipschitz trong lân cận nghiệm, Hessian tại nghiệm xác định dương và điểm lặp đủ gần nghiệm, và khi đó quay lui với $\alpha&lt;1/2$ nhận bước đầy đủ $t=1$ (Boyd và Vandenberghe, §9.5.3, với $f$ lồi mạnh và điểm lặp gần nghiệm). Việc chuyển tiêu chí trên mô hình thành cận sai số cần một giả thiết kiểm soát độ cong. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 
@@ -415,15 +415,15 @@ Thuật toán ghép các thành phần đã xây dựng: gradient và Hessian t�
 <h2>Bước Newton và tốc độ hội tụ</h2>
 <div class="lec-grid lec-grid--60-40">
 <div class="question">
-<p><strong>Câu hỏi:</strong> Với VD2, thực hiện bước Newton đầy đủ thứ hai từ $s^1=7/16$: tính $g$, $H$, $d$, $s^2$ và $\delta_N^2/2$; so với sai số $\varphi(s^1)-\varphi(1)$.</p>
+<p><strong>Câu hỏi:</strong> Với VD2, thực hiện bước Newton đầy đủ thứ hai từ $s^1=7/16$: tính $g$, $H$, $d$, $s^2$ và $\delta_N^2/2$; so với sai số tối ưu $\varphi(s^1)-\varphi(1)$.</p>
 </div>
 <div class="question">
-<p><strong>Câu hỏi:</strong> Chứng minh với VD2, bước Newton đầy đủ cho <span class="math-nowrap">$1-s^+=(1-s)^2$.</span> Nhận xét dãy sai số $3/4,\ 9/16,\ 81/256$.</p>
+<p><strong>Câu hỏi:</strong> Chứng minh với VD2, bước Newton đầy đủ cho <span class="math-nowrap">$1-s^+=(1-s)^2$.</span> Nhận xét dãy khoảng cách tới nghiệm $1-s^k$, $k=0,1,2$, từ câu trên.</p>
 </div>
 </div>
-<p><strong>Vấn đề:</strong> điều kiện để $\delta_N^2$ cho cận sai số mục tiêu.</p>
+<p>Hội tụ bậc hai: <span class="math-nowrap">$|1-s^{k+1}|\le c\,|1-s^k|^2$.</span> <strong>Vấn đề:</strong> điều kiện để $\delta_N^2$ cho cận sai số mục tiêu.</p>
 <aside class="notes">
-Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bước thứ hai và quy luật của sai số. Đáp án câu 1: tại $s^1=7/16$, $g=\varphi'(s^1)=1-16/7=-9/7$, $H=\varphi''(s^1)=(16/7)^2=256/49$; $d=-g/H=63/256$, $s^2=7/16+63/256=175/256$. Độ giảm Newton $\delta_N^2=g^2/H=81/256$, nên giảm mô hình là $81/512\approx0{,}158$; sai số tối ưu tại $s^1$ là $\varphi(7/16)-\varphi(1)=\log(16/7)-9/16\approx0{,}264$. Như ở bước đầu, giảm mô hình nhỏ hơn sai số tối ưu. Đáp án câu 2: $s^+=s-\varphi'(s)/\varphi''(s)=s-(1-1/s)s^2=2s-s^2$, nên $1-s^+=1-2s+s^2=(1-s)^2$. Dãy sai số $1-s^k$ là $3/4$, $9/16$, $81/256$: mỗi bước bình phương sai số trước, đúng định nghĩa hội tụ bậc hai với $c=1$; với $s^0\in(0,2)$, $|1-s^0|&lt;1$ nên dãy hội tụ về $s^\star=1$. Hội tụ nhanh về nghiệm vẫn chưa trả lời câu hỏi dừng lúc nào với bảo đảm sai số, vì $\delta_N^2/2$ không phải cận sai số khi thiếu giả thiết về độ cong. Khi bài gốc có ràng buộc đẳng thức, hướng Newton không ràng buộc còn có thể phá tính khả thi. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
+Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bước thứ hai và quy luật của khoảng cách tới nghiệm. Đáp án câu 1: tại $s^1=7/16$, $g=\varphi'(s^1)=1-16/7=-9/7$, $H=\varphi''(s^1)=(16/7)^2=256/49$; $d=-g/H=63/256$, $s^2=7/16+63/256=175/256$. Độ giảm Newton $\delta_N^2=g^2/H=81/256$, nên giảm mô hình là $81/512\approx0{,}158$; sai số tối ưu tại $s^1$ là $\varphi(7/16)-\varphi(1)=\log(16/7)-9/16\approx0{,}264$. Như ở bước đầu, giảm mô hình nhỏ hơn sai số tối ưu. Đáp án câu 2: $s^+=s-\varphi'(s)/\varphi''(s)=s-(1-1/s)s^2=2s-s^2$, nên $1-s^+=1-2s+s^2=(1-s)^2$. Dãy khoảng cách tới nghiệm $1-s^k$ là $3/4$, $9/16$, $81/256$: mỗi bước bình phương khoảng cách trước, đúng định nghĩa hội tụ bậc hai với $c=1$; với $s^0\in(0,2)$, $|1-s^0|&lt;1$ nên dãy hội tụ về $s^\star=1$. Với $s^0\ge2$, bước đầy đủ cho $s^+=s^0(2-s^0)\le0$, ra ngoài miền; quay lui xử lý trường hợp này. Hội tụ nhanh về nghiệm vẫn chưa trả lời câu hỏi dừng lúc nào với bảo đảm sai số, vì $\delta_N^2/2$ không phải cận sai số khi thiếu giả thiết về độ cong. Cận sai số được xét sau khi xây dựng phương pháp cho ràng buộc đẳng thức; trước đó, khi bài gốc có ràng buộc đẳng thức, hướng Newton không ràng buộc có thể phá tính khả thi. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
 </aside>
 </section>
 </section>
