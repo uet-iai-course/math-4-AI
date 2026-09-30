@@ -278,16 +278,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
-### RN04 — Độ giảm của mô hình Newton
+### RN04 — Độ giảm Newton
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu C04. Nguồn gốc tiêu chí dừng được tính ra, còn trùng số trong hàm bậc hai được giải thích bằng cấu trúc.
-- **Nội dung trên trang:** Định nghĩa độ giảm Newton $\delta_N=\sqrt{d^THd}\ge0$. Từ $Hd=-g$ suy ra $\delta_N^2=d^THd=-g^Td$ và $Q_H(0)-Q_H(d)=\delta_N^2/2$. VD2: $\delta_N^2=9/16$, giảm mô hình $9/32$. Hộp đối chiếu VD1 ghi $W=H$ có chủ ý, nên hướng W trùng Newton và độ giảm của mô hình và độ giảm thật đều bằng 62.
-- **Bố cục chọn:** Trái 60% hai phép biến đổi ngắn; phải bảng “mô hình/đại lượng/giá trị”; hộp riêng dưới cùng ghi đối chiếu VD1, không trộn số 62 vào bảng VD2.
-- **Lý do bố cục cho sinh viên năm 3:** Nguồn gốc tiêu chí dừng được tính ra, còn trùng số trong hàm bậc hai được giải thích bằng cấu trúc.
-- **Vào → ra:** Đầu vào: Từ $Hd=-g$ suy ra $d^THd=-g^Td$. Đầu ra: Đại lượng $\delta_N^2/2$ đo $Q_H(0)-Q_H(d)$; hai giá trị của hàm thật cho mức giảm và sai số khác.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RN07.
-- **Số liệu:** VD2, dàn ý §6; riêng RN04 so lại VD1 phải ghi rõ đổi ví dụ. Phân biệt δ, δ² và ba phép trừ.
-- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Độ giảm của mô hình Newton" thành "Độ giảm Newton" (thống nhất với RS03); đặt phép tính mức giảm mô hình trước định nghĩa để định nghĩa có nhu cầu; nêu thuật ngữ gốc (Newton decrement) ở lần đầu; bảng VD2 và khung VD1 ghi rõ đại lượng. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Mức giảm mô hình dự báo, dùng $Hd=-g$: $Q_H(0)-Q_H(d)=-g^Td-\tfrac12d^THd=\tfrac12d^THd$. Định nghĩa: độ giảm Newton $\delta_N=\sqrt{d^THd}=\sqrt{-g^Td}\ge0$. Bảng VD2: $\delta_N^2=9/16$, giảm mô hình $9/32$. Khung VD1: $W=H$, giảm mô hình $124/2$ và giảm thật đều bằng $62$.
+- **Bố cục chọn:** `ratio60`: trái phép tính và định nghĩa, phải bảng VD2; khung VD1 dưới. Đo ở 1600×900: đáy nội dung 733 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Đại lượng được đặt tên sau khi đã tính ra; VD1 là trường hợp mô hình trùng hàm.
+- **Vào → ra:** Đầu vào: hệ $Hd=-g$ (RN02) và giới hạn của một bước (RN03). Đầu ra: $\delta_N^2/2$ là mức giảm mô hình, cần so với mức giảm thật và sai số tối ưu (RN05).
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN07.
+- **Số liệu:** VD2: $\delta_N^2=16\cdot(3/16)^2=9/16$; VD1: $d^THd=124$.
+- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
 ### RN05 — Mức giảm hàm mục tiêu và sai số tối ưu

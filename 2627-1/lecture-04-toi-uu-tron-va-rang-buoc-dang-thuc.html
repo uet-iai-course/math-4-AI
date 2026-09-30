@@ -362,16 +362,17 @@ Parabol dựng tại điểm hiện tại được cực tiểu hóa theo $d$. �
 </section>
 
 <section data-slide-id="RN04">
-<h2>Độ giảm của mô hình Newton</h2>
-<p><strong>Định nghĩa:</strong> $\delta_N=\sqrt{d^THd}\ge0$.</p>
+<h2>Độ giảm Newton</h2>
 <div class="lec-grid ratio60"><div>
-<div class="formula" tabindex="0">$$\delta_N^2=d^THd=-g^Td.$$</div>
-<div class="formula" tabindex="0">$$\begin{aligned}Q_H(0)-Q_H(d)&amp;=-g^Td-\tfrac12d^THd\\&amp;=\tfrac12\delta_N^2.\end{aligned}$$</div></div>
+<p>Mức giảm mô hình dự báo, dùng $Hd=-g$:</p>
+<div class="formula" tabindex="0">$$\begin{aligned}Q_H(0)-Q_H(d)&amp;=-g^Td-\tfrac12d^THd\\&amp;=\tfrac12d^THd.\end{aligned}$$</div>
+<p><strong>Định nghĩa.</strong> Độ giảm Newton (Newton decrement):</p>
+<div class="formula emphasis" tabindex="0">$$\delta_N=\sqrt{d^THd}=\sqrt{-g^Td}\ge0.$$</div></div>
 <div><table><thead><tr><th>VD2</th><th>Giá trị</th></tr></thead><tbody>
-<tr><td>$d^THd$</td><td>$9/16$</td></tr><tr><td>Giảm mô hình</td><td>$9/32$</td></tr></tbody></table></div></div>
-<div class="panel"><strong>Đối chiếu VD1:</strong> với $W=H$, hướng theo $W$ trùng Newton. Hàm bậc hai trùng mô hình: giảm mô hình và giảm thật đều bằng $62$.</div>
+<tr><td>$\delta_N^2=d^THd$</td><td>$9/16$</td></tr><tr><td>Giảm mô hình $\delta_N^2/2$</td><td>$9/32$</td></tr></tbody></table></div></div>
+<div class="panel"><strong>Đối chiếu VD1:</strong> với $W=H$, hướng theo $W$ trùng Newton. Hàm bậc hai trùng mô hình: giảm mô hình $124/2$ và giảm thật đều bằng $62$.</div>
 <aside class="notes">
-Định nghĩa $\delta_N$ là căn bậc hai không âm của $d^THd$; vì $H\succ0$ nên $\delta_N\ge0$ luôn đúng, và $\delta_N^2$ là đại lượng dùng trong tiêu chí. Từ $Hd=-g$ nhân trái với $d^T$ thu được $\delta_N^2=d^THd=-g^Td$, cũng bằng $g^TH^{-1}g$. Giá trị mô hình tại bước bằng không là $Q_H(0)=f(x)$, tại hướng Newton là $Q_H(d)=f(x)-\tfrac12\delta_N^2$, nên độ giảm mô hình đúng bằng $\delta_N^2/2$; với ví dụ, $\delta_N^2=9/16$ và giảm mô hình $9/32$. Riêng ví dụ hàm bậc hai, số $62$ trùng vì $W=H$ có chủ ý, mô hình trùng hàm thật. Với hàm phi bậc hai, độ giảm mô hình, mức giảm mục tiêu sau một bước và sai số so với cực tiểu là ba phép trừ riêng. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Điểm cực tiểu của mô hình chưa là nghiệm của hàm gốc, nhưng mô hình cho một đại lượng tính được ngay tại điểm hiện tại: mức giảm nó dự báo khi đi từ $d=0$ tới hướng Newton. Vì $Q_H(0)=f(x)$ và $Q_H(d)=f(x)+g^Td+\tfrac12d^THd$, thay $g^Td=-d^THd$ (nhân hệ $Hd=-g$ với $d^T$) được $Q_H(0)-Q_H(d)=\tfrac12d^THd$. Đại lượng $\delta_N=\sqrt{d^THd}$ gọi là độ giảm Newton; vì $H\succ0$ nên $\delta_N\ge0$, bằng không khi và chỉ khi $g=0$, và $\delta_N^2=-g^Td=g^TH^{-1}g$. Mức giảm mô hình là $\delta_N^2/2$. Với VD2, $\delta_N^2=16\cdot(3/16)^2=9/16$ và mức giảm mô hình là $9/32$. Với VD1, chọn $W=H$ có chủ ý nên $d^THd=124$, mức giảm mô hình $62$ trùng mức giảm thật $f(x^0)-f(0)=62$ vì mô hình trùng hàm bậc hai. Với hàm không bậc hai, mức giảm mô hình, mức giảm thật sau một bước và sai số so với cực tiểu là ba phép trừ khác nhau. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
 </aside>
 </section>
 
