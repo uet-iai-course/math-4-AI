@@ -598,13 +598,15 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RR04">
-<h2>Bước Newton của điểm và nhân tử</h2>
+<h2>Cập nhật điểm và nhân tử</h2>
+<p>Tại $u=(1,8)^T$, $\nu=4$: $r_d=(6,44)^T$, $r_p=-5$ cho vế phải $-6$, $-44$, $5$.</p>
 <div class="lec-grid ratio60"><div>
 <div class="formula" tabindex="0">$$\begin{aligned}2d_1+\Delta\nu&amp;=-6,\\5d_2+\Delta\nu&amp;=-44,\\d_1+d_2&amp;=5.\end{aligned}$$</div>
-<p>Trừ hai hàng đầu: $2d_1-5d_2=38$.</p>
-<p>Thế $d_2=5-d_1$: $7d_1=63$.</p><div class="formula" tabindex="0">$$d=(9,-4)^T,\quad\Delta\nu=-24.$$</div></div>
-<div class="panel"><p><strong>Bước đầy đủ:</strong></p><p>$u^+=(1,8)^T+d=(10,4)^T$.</p><p>$\nu^+=4-24=-20$.</p><p><strong>Kiểm:</strong> $r_p^+=10+4-14=0$.</p><div class="formula" tabindex="0">$$\begin{aligned}r_d^+&amp;=(20,20)^T\\&amp;\quad+(-20,-20)^T=0.\end{aligned}$$</div></div></div>
-<aside class="notes">Với ví dụ bậc hai, một bước là đủ. Hệ ba phương trình gồm hai phương trình gradient cho $2d_1+\Delta\nu=-6$ và $5d_2+\Delta\nu=-44$, cùng phương trình ràng buộc $d_1+d_2=5$ (vế phải bằng đối của $r_p=-5$). Trừ hai hàng đầu được $2d_1-5d_2=38$; thế $d_2=5-d_1$ cho $7d_1=63$. Suy ra $d=(9,-4)$ và $\Delta\nu=-24$; cập nhật điểm thành $(10,4)$ và nhân tử thành $4-24=-20$. Thế lại cả ba phương trình: phần dư khả thi bằng 0 và phần dư đối ngẫu $(20,20)+(-20,-20)$ cũng bằng 0, đúng nghiệm $(10,4)$ với giá trị 140. $-24$ là số gia, còn $-20$ là nhân tử cuối; hai số này không thay thế nhau. Với hàm tổng quát hoặc bước chưa đầy đủ, mức tiến triển được đánh giá bằng chuẩn phần dư ghép. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<p>Trừ hai hàng đầu: $2d_1-5d_2=38$.</p><p>Thế $d_2=5-d_1$: $7d_1=63$.</p>
+<div class="formula" tabindex="0">$$d=(9,-4)^T,\quad\Delta\nu=-24.$$</div></div>
+<div class="panel"><p><strong>Bước đầy đủ:</strong></p><p>$u^+=(1,8)^T+d=(10,4)^T$.</p><p>$\nu^+=4-24=-20$.</p><p><strong>Kiểm:</strong> $r_p^+=10+4-14=0$;</p><p class="math-nowrap">$r_d^+=(20,20)^T-20\,(1,1)^T=0$.</p></div></div>
+<div class="takeaway">$F$ bậc hai nên bước đầy đủ cho nghiệm; $\nu^+=\nu+\Delta\nu=-20=\nu^*$.</div>
+<aside class="notes">Hệ khối của RR03 được giải tại $u=(1,8)^T$, $\nu=4$, nơi $r_d=(6,44)^T$ và $r_p=-5$. Vế phải là $-r_d$ và $-r_p$, nên hai hàng gradient cho $2d_1+\Delta\nu=-6$, $5d_2+\Delta\nu=-44$, còn hàng ràng buộc cho $d_1+d_2=5$. Trừ hai hàng đầu được $2d_1-5d_2=38$; thế $d_2=5-d_1$ cho $7d_1=63$, nên $d=(9,-4)^T$ và $\Delta\nu=-6-18=-24$. Bước đầy đủ cho $u^+=(10,4)^T$ và $\nu^+=4-24=-20$. Kiểm lại: $r_p^+=10+4-14=0$; $\nabla F(u^+)=(20,20)^T$ và $A^T\nu^+=(-20,-20)^T$ nên $r_d^+=0$. Điểm mới là nghiệm $(10,4)^T$ với $F^\star=140$. Một bước là đủ vì $F$ bậc hai: phép tuyến tính hóa ở RR02 là chính xác. Số $-24$ là số gia, còn $-20$ là nhân tử mới; theo quan hệ ở RR03, $\nu+\Delta\nu$ là nhân tử của hàng dừng, và tại nghiệm nó trùng $\nu^*$ đã tìm ở RE01. Với $F$ không bậc hai, hoặc khi phải dùng bước $t&lt;1$, một bước không đưa phần dư về 0; cần một đại lượng đo tiến triển để quyết định nhận bước. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài giảng 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR05">

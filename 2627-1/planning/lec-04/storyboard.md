@@ -458,13 +458,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 7/120 LT + 0 BT (LT xấp xỉ 0.0583; dùng phân số để cộng chính xác).
 
-### RR04 — Bước Newton của điểm và nhân tử
+### RR04 — Cập nhật điểm và nhân tử
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu E09. Phép giải và cập nhật phân biệt số gia nhân tử −24 với nhân tử mới −20; việc triệt tiêu phần dư trong trường hợp bậc hai dẫn tới nhu cầu kiểm tiến triển cho hàm tổng quát ở RR05.
+- **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Bước Newton của điểm và nhân tử" (chạm nút điều hướng) thành "Cập nhật điểm và nhân tử"; dòng mở nêu nguồn của vế phải từ $r_d$, $r_p$; phép kiểm $r_d^+$ viết một dòng; thêm kết luận $F$ bậc hai và $\nu^+=\nu+\Delta\nu=\nu^*$. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
 - **Nội dung trên trang:** VD3:2d1+Δν=−6,5d2+Δν=−44,d1+d2=5. Giải được(9,−4,−24); u+=(10,4),ν+=4−24=−20. Thế lại cả ba phương trình và hai phần dư mới.
-- **Bố cục chọn:** Trái 60% hai bước khử ra d; phải cập nhật u vàν theo hai hàng riêng; phép kiểm đặt dưới tương ứng.
+- **Bố cục chọn:** Dòng mở nêu vế phải; trái 60% hệ ba phương trình và phép khử; phải khung bước đầy đủ và phép kiểm; kết luận dưới. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 599 px.
 - **Lý do bố cục cho sinh viên năm 3:** Phép giải và cập nhật phân biệt số gia nhân tử −24 với nhân tử mới −20; việc triệt tiêu phần dư trong trường hợp bậc hai dẫn tới nhu cầu kiểm tiến triển cho hàm tổng quát ở RR05.
-- **Vào → ra:** Đầu vào: Vế phải $-r_d=(-6,-44)^T$ và $-r_p=5$ xác định hệ số của VD3. Đầu ra: Ví dụ bậc hai triệt tiêu cả hai phần dư với bước đầy đủ; trường hợp tổng quát cần tiêu chí nhận bước dựa trên phần dư.
+- **Vào → ra:** Đầu vào: hệ khối của RR03 tại $u=(1,8)^T$, $\nu=4$. Đầu ra: $d=(9,-4)^T$, $\Delta\nu=-24$, $(u^+,\nu^+)=((10,4)^T,-20)$ là nghiệm vì $F$ bậc hai; nhu cầu một đại lượng đo tiến triển khi $F$ không bậc hai hoặc $t<1$ (RR05).
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RR07.
 - **Số liệu:** VD3 phần dư, dàn ý §6: ghi rõ điểm đầu, g, r_d, r_p, η và Δν theo thứ tự đã định nghĩa. RR05 đổi điểm đầu có chủ ý để kiểm giới hạn.
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
