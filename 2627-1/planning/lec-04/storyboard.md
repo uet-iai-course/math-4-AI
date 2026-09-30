@@ -592,11 +592,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RZ03 — Bài tập và tài liệu đọc
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu Z03. Kết thúc bằng năng lực quan sát được và nguồn để tự lấp chi tiết chứng minh.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thay bảng ba nhiệm vụ chung chung bằng bảng ánh xạ sáu phần của bài sang Bài 1–8 của tệp bài tập chính thức; tài liệu đọc thêm ghi chú bài giảng; ghi chú nêu bước đo của từng bài và câu nối sang Bài giảng 05. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu Z03. Kết thúc bằng năng lực quan sát được và nguồn để tự lấp chi tiết chứng minh.
 - **Nội dung trên trang:** Giao ba sản phẩm: tự suy ra hướng từ bài con; tái tạo một lượt quay lui; suy ra và kiểm hai hệ Newton có đẳng thức. Boyd–Vandenberghe §5.5.3, §§9.2–9.6, 10.1–10.3; MIT lec16 rồi lec17.
 - **Bố cục chọn:** Bảng nhiệm vụ/sản phẩm ba hàng; dưới tài liệu ngắn; không thêm chủ đề hoặc sơ đồ mới.
 - **Lý do bố cục cho sinh viên năm 3:** Kết thúc bằng năng lực quan sát được và nguồn để tự lấp chi tiết chứng minh.
-- **Vào → ra:** Đầu vào: Các bài tập yêu cầu suy ra hướng, thực hiện quay lui và lập hai hệ Newton có đẳng thức. Đầu ra: Nguồn đọc tương ứng là Boyd–Vandenberghe §5.5.3, §§9.2–9.6, 10.1–10.3 và MIT 6.079, bài giảng 16 rồi 17.
+- **Vào → ra:** (2026-09-30) Đầu vào: khung chung (RZ01) và ứng dụng (RZ02). Đầu ra: bài tập khớp tệp `exercises.md` (Bài 1–8) và tài liệu đọc; nối sang tối ưu bậc nhất cho học máy ở Bài giảng 05. Mô tả trước: Đầu vào: Các bài tập yêu cầu suy ra hướng, thực hiện quay lui và lập hai hệ Newton có đẳng thức. Đầu ra: Nguồn đọc tương ứng là Boyd–Vandenberghe §5.5.3, §§9.2–9.6, 10.1–10.3 và MIT 6.079, bài giảng 16 rồi 17.
 - **Chuẩn và minh chứng:** LLO6–10 / CLO1–2; củng cố kết quả đã kiểm tại RZ02 và giao nhiệm vụ tự học tương ứng LLO6–10.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §5.5.3, §§9.2–9.6, 10.1–10.3; Bài 03 S05-06a/b; đề cương buổi 4. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.

@@ -739,14 +739,16 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 <section data-slide-id="RZ03">
 <h2>Bài tập và tài liệu đọc</h2>
-<div class="table-scroll" tabindex="0"><table><thead><tr><th>Nhiệm vụ</th><th>Sản phẩm cần có</th></tr></thead><tbody>
-<tr><td>Suy ra hướng từ bài con</td><td>Lagrange hoặc điều kiện dừng; giả thiết; hướng giải được.</td></tr>
-<tr><td>Tái tạo một lượt quay lui</td><td>Bảng điểm thử, giá trị thật, ngưỡng và bước nhận đầu tiên.</td></tr>
-<tr><td>Suy ra hai hệ Newton đẳng thức</td><td>Hai hàng phương trình; ẩn và vế phải; phép giải số rồi kiểm lại.</td></tr>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Phần của bài</th><th>Bài tập</th></tr></thead><tbody>
+<tr><td>Hướng giảm, quay lui Armijo, hướng dốc nhất</td><td>Bài 1, 2</td></tr>
+<tr><td>Newton và độ giảm Newton</td><td>Bài 3, 4</td></tr>
+<tr><td>Newton khả thi và khử biến</td><td>Bài 5</td></tr>
+<tr><td>Newton từ điểm chưa khả thi</td><td>Bài 6</td></tr>
+<tr><td>Tự điều chỉnh và cận sai số</td><td>Bài 7</td></tr>
+<tr><td>Hồi quy ridge có ràng buộc</td><td>Bài 8</td></tr>
 </tbody></table></div>
-<p><strong>Tài liệu đọc:</strong> Boyd và Vandenberghe, <em>Convex Optimization</em> (2004), §5.5.3, §§9.2–9.6, 10.1–10.3.</p>
-<p>MIT 6.079, mùa thu 2009: bài giảng 16, sau đó bài giảng 17.</p>
-<aside class="notes"><p>Ba loại bài tập kiểm tra khả năng lập và giải bài con, xác định bước được nhận và đánh giá điều kiện tối ưu của bài gốc. Khi giải Newton khả thi, ẩn thứ hai là nhân tử $\eta$ của mô hình; khi giải hệ phần dư, ẩn thứ hai là số gia nhân tử. Với bước đầy đủ, nhân tử cập nhật bằng $\eta$; khi giảm bước phải cập nhật cả điểm và nhân tử theo cùng $t$. Bài tập chính thức có gợi ý và lời giải gập để đối chiếu kết quả; ghi chú mở rộng các chứng minh và giả thiết. Khi gradient toàn lô được thay bằng ước lượng từ lô nhỏ, phép kiểm giảm mục tiêu cần xét thêm nhiễu; với mục tiêu phi lồi, điều kiện dừng cần được phân biệt với chứng nhận tối ưu toàn cục. Nguồn: Boyd và Vandenberghe (2004), §5.5.3 về KKT, chương 9 về tối ưu không ràng buộc, chương 10 về đẳng thức; MIT 6.079, bài giảng 16 rồi 17.</p></aside>
+<p><strong>Tài liệu đọc:</strong> Boyd và Vandenberghe, <em>Convex Optimization</em> (2004), §5.5.3, §§9.2–9.6, 10.1–10.3; MIT 6.079, mùa thu 2009, bài giảng 16 rồi 17; ghi chú bài giảng: chứng minh các định lý.</p>
+<aside class="notes"><p>Tám bài tập chính thức đi theo các phần của bài giảng và đo từng bước của khung chung. Bài 1 và 2 đo việc lập bài con, suy ra hướng và chạy quay lui Armijo. Bài 3 và 4 đo hướng Newton, độ giảm Newton và sự khác nhau giữa giảm mô hình, mức giảm thật và sai số tối ưu. Bài 5 đo hệ khối và hệ rút gọn của Newton khả thi; bài 6 đo hệ Newton cho phần dư KKT và việc cập nhật đồng thời điểm và nhân tử. Bài 7 đo việc kiểm giả thiết tự điều chỉnh và áp dụng cận $-\delta-\log(1-\delta)$ với đúng $\delta$. Bài 8 áp dụng toàn bộ khung vào hồi quy ridge có ràng buộc đẳng thức. Mỗi bài có gợi ý và lời giải gập để đối chiếu; ghi chú bài giảng trình bày chứng minh của các định lý dùng trong bài. Bài giảng 05 xét trường hợp gradient được ước lượng từ lô nhỏ và mục tiêu phi lồi; khi đó phép kiểm Armijo trên giá trị mục tiêu và chứng nhận tối ưu bằng KKT của bài này cần được điều chỉnh. Nguồn: Boyd và Vandenberghe (2004), §5.5.3 về KKT, chương 9 về tối ưu không ràng buộc, chương 10 về ràng buộc đẳng thức; MIT 6.079, bài giảng 16 rồi 17.</p></aside>
 </section>
 </section>
 <div class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 04</div>
