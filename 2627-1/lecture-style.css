@@ -101,12 +101,20 @@
 
 .reveal .self-study-badge {
     display: inline-block;
-    background: #90A4AE;
+    background: #546E7A;
     color: white;
-    font-size: 0.42em;
+    font-size: 0.5em;
     padding: 3px 10px;
     border-radius: 16px;
     font-weight: 600;
+    vertical-align: middle;
+    margin-left: 0.4em;
+    white-space: nowrap;
+}
+
+.reveal .slide-badge-row .self-study-badge {
+    font-size: 0.66em;
+    margin-left: 0;
 }
 
 .reveal .advanced-badge {

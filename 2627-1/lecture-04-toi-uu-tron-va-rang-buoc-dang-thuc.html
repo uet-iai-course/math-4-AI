@@ -654,7 +654,7 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 <section>
 <section data-slide-id="RS01">
-  <h2>Biến thiên độ cong</h2>
+  <h2>Biến thiên độ cong <span class="self-study-badge">Tự học</span></h2>
   <div class="lec-grid ratio60">
     <div>
       <img class="plot" src="img/lec-04/log-curvature.svg" alt="Đồ thị độ cong bậc hai của hàm s − log s trên s &gt; 0: đường cong 1/s² tăng vô hạn khi s tiến về 0 và giảm về 0 khi s lớn, cho thấy Hessian không bị chặn trên toàn miền.">
@@ -666,11 +666,11 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
       <p class="takeaway">Cần giả thiết so tốc độ thay đổi của độ cong, $|\varphi'''|$, với chính độ cong, $(\varphi'')^{3/2}$.</p>
     </div>
   </div>
-  <aside class="notes">Vấn đề còn mở từ phần Newton: với $\varphi(s)=s-\log s$ tại $s=1/4$, giảm mô hình $\delta_N^2/2=9/32\approx0{,}28125$ nhỏ hơn sai số mục tiêu $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$, nên $\delta_N$ chưa cho cận sai số nếu không có thêm giả thiết. Từ đây viết $\delta=\delta_N=\sqrt{d^THd}\ge0$; với VD2, $\delta_N^2=9/16$ nên $\delta=3/4$. Các cận cổ điển cho phương pháp Newton dùng hằng số lồi mạnh $m$ và hằng số Lipschitz $L$ của Hessian trên tập mức; các hằng số này thay đổi khi đổi hệ tọa độ, trong khi bước Newton thì không. Hình bên vẽ $\varphi''=1/s^2$: độ cong tăng vô hạn khi $s$ tiến về biên $s=0$, nên không có hằng số chặn độ cong trên toàn miền. Một giả thiết không phụ thuộc hệ tọa độ phải so đạo hàm bậc ba với chính độ cong. Khi đổi biến $s=a\sigma$ với $a&gt;0$, $\varphi''$ nhân với $a^2$ và $\varphi'''$ nhân với $a^3$, nên tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ không đổi; đó là lý do dùng số mũ $3/2$. Trang sau định nghĩa lớp hàm có tỷ số này bị chặn. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.3, 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009.</aside>
+  <aside class="notes">Phần tự điều chỉnh là phần tự học; phần tổng hợp chỉ dùng từ phần này cận sai số $f(x)-f^*\le-\delta-\log(1-\delta)$ cùng các giả thiết của nó. Vấn đề còn mở từ phần Newton: với $\varphi(s)=s-\log s$ tại $s=1/4$, giảm mô hình $\delta_N^2/2=9/32\approx0{,}28125$ nhỏ hơn sai số mục tiêu $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$, nên $\delta_N$ chưa cho cận sai số nếu không có thêm giả thiết. Từ đây viết $\delta=\delta_N=\sqrt{d^THd}\ge0$; với VD2, $\delta_N^2=9/16$ nên $\delta=3/4$. Các cận cổ điển cho phương pháp Newton dùng hằng số lồi mạnh $m$ và hằng số Lipschitz $L$ của Hessian trên tập mức; các hằng số này thay đổi khi đổi hệ tọa độ, trong khi bước Newton thì không. Hình bên vẽ $\varphi''=1/s^2$: độ cong tăng vô hạn khi $s$ tiến về biên $s=0$, nên không có hằng số chặn độ cong trên toàn miền. Một giả thiết không phụ thuộc hệ tọa độ phải so đạo hàm bậc ba với chính độ cong. Khi đổi biến $s=a\sigma$ với $a&gt;0$, $\varphi''$ nhân với $a^2$ và $\varphi'''$ nhân với $a^3$, nên tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ không đổi; đó là lý do dùng số mũ $3/2$. Trang sau định nghĩa lớp hàm có tỷ số này bị chặn. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.3, 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009.</aside>
 </section>
 
 <section data-slide-id="RS02">
-  <h2>Hàm tự điều chỉnh</h2>
+  <h2>Hàm tự điều chỉnh <span class="self-study-badge">Tự học</span></h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
       <img class="plot" src="img/lec-04/self-concordance-ratio.svg" alt="Đồ thị tỷ số trị tuyệt đối đạo hàm bậc ba chia lũy thừa ba phần hai của đạo hàm bậc hai của hàm s − log s trên s &gt; 0: đường nằm ngang ở mức 2, minh họa bất đẳng thức |φ'''| ≤ 2(φ'')^{3/2} đúng với mọi s.">
@@ -687,6 +687,7 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RS03">
+<div class="slide-badge-row"><span class="self-study-badge">Tự học</span></div>
 <h2>Cận sai số theo độ giảm Newton</h2>
 <div class="panel"><p><strong>Định lý.</strong> Giả sử $f$ tự điều chỉnh, $\nabla^2f\succ0$ trên miền, $f$ đạt cực tiểu $f^*$ trong miền và $\delta&lt;1$. Khi đó</p>
 <div class="formula emphasis" tabindex="0">$$f(x)-f^*\le-\delta-\log(1-\delta).$$</div></div>
@@ -696,7 +697,7 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RS04">
-  <h2>Cận sai số với đẳng thức</h2>
+  <h2>Cận sai số với đẳng thức <span class="self-study-badge">Tự học</span></h2>
   <div class="lec-flow"><div class="flow-node">$z$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$u=\hat u+Nz$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$\psi(z)=F(u)$</div></div>
   <p>$\hat u$ khả thi, cột của $N$ là cơ sở $\ker A$. $F$ tự điều chỉnh $\Rightarrow$ $\psi$ tự điều chỉnh (hợp với phép affine).</p>
   <p>Độ giảm Newton của $\psi$ tại $z$ bằng $\delta_{eq}$ tại $u$: <span class="math-nowrap">$\Delta z^T(N^THN)\Delta z=d^THd$.</span></p>
@@ -707,7 +708,7 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RS05">
-<h2>Giả thiết của cận sai số</h2>
+<h2>Giả thiết của cận sai số <span class="self-study-badge">Tự học</span></h2>
 <div class="question"><p><strong>Câu hỏi:</strong> Hai hàm $-\log s$ và $s-\log s$ trên $s&gt;0$ có cùng $\varphi''$ và $\varphi'''$. Hàm nào thỏa đủ giả thiết của định lý cận sai số?</p></div>
 <div class="question"><p><strong>Câu hỏi:</strong> Với VD2 tại $s=3/2$: tính $\delta$, cận $-\delta-\log(1-\delta)$, sai số $\varphi(s)-\varphi^*$ và giảm mô hình $\delta^2/2$. So sánh với trường hợp $s=1/4$.</p></div>
 <aside class="notes">Câu 1. Hai hàm khác nhau một số hạng tuyến tính nên có cùng $\varphi''=1/s^2$ và $|\varphi'''|=2/s^3$; cả hai đều tự điều chỉnh. Hàm $-\log s$ giảm đơn điệu và không bị chặn dưới trên $s&gt;0$, nên không có cực tiểu và không thỏa giả thiết đạt cực tiểu trong miền. Hàm $s-\log s$ có $\varphi'(s)=1-1/s$ triệt tiêu tại $s=1$ và đạt cực tiểu $\varphi^*=1$. Tính tự điều chỉnh vì vậy không bảo đảm tồn tại nghiệm; giả thiết này phải kiểm riêng. Câu 2. Tại $s=3/2$: $g=1-2/3=1/3$, $H=1/s^2=4/9$, nên $\delta^2=g^2/H=(1/9)/(4/9)=1/4$ và $\delta=1/2$. Cận bằng $-1/2-\log(1/2)=\log2-1/2\approx0{,}19315$. Sai số thật là $3/2-\log(3/2)-1=1/2-\log(3/2)\approx0{,}09453$. Giảm mô hình là $\delta^2/2=1/8$. Thứ tự $0{,}09453&lt;0{,}125&lt;0{,}19315$ cho thấy cận đúng nhưng không chặt, và ở điểm này giảm mô hình lớn hơn sai số. Với VD2, $\delta^2=(1-s)^2$ với mọi $s&gt;0$; cận trùng sai số khi $s&lt;1$, còn khi $1&lt;s&lt;2$ (để $\delta&lt;1$) cận lớn hơn hẳn sai số. Dấu bằng ở $s=1/4$ vì vậy là trường hợp riêng. Phần tổng hợp tiếp theo đặt cận này cạnh các tiêu chí dừng của từng phương pháp. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; ví dụ số tự xây dựng.</aside>
@@ -744,7 +745,7 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 <tr><td>Newton và độ giảm Newton</td><td>Bài 3, 4</td></tr>
 <tr><td>Newton khả thi và khử biến</td><td>Bài 5</td></tr>
 <tr><td>Newton từ điểm chưa khả thi</td><td>Bài 6</td></tr>
-<tr><td>Tự điều chỉnh và cận sai số</td><td>Bài 7</td></tr>
+<tr><td>Tự điều chỉnh và cận sai số</td><td>Bài 7 (tự học)</td></tr>
 <tr><td>Hồi quy ridge có ràng buộc</td><td>Bài 8</td></tr>
 </tbody></table></div>
 <p><strong>Tài liệu đọc:</strong> Boyd và Vandenberghe, <em>Convex Optimization</em> (2004), §5.5.3, §§9.2–9.6, 10.1–10.3; MIT 6.079, mùa thu 2009, bài giảng 16 rồi 17; ghi chú bài giảng: chứng minh các định lý.</p>

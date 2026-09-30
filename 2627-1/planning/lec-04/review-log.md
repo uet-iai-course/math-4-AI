@@ -1,5 +1,17 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Đánh dấu Tự học cho phần tự điều chỉnh — 2026-10-01
+
+- **Yêu cầu người dùng:** "phần Biến thiên độ cong đánh dấu 'Tự học'". Phạm vi: RS01–RS05 (phần mở đầu bằng trang "Biến thiên độ cong").
+- **Ngoại lệ có chủ ý:** AGENTS.md cấm hiển thị nhãn quy trình như "Tự học" trên mặt trang. Theo thứ tự ưu tiên, chỉ dẫn cụ thể của người dùng cho bộ trang chiếu đang làm đứng trước quy ước chung, nên nhãn được hiển thị. Tuyến trình chiếu vẫn liên tục; không thêm cơ chế điều hướng hay tuyến riêng.
+- **Thay đổi trên trang:** nhãn "Tự học" trên RS01–RS05. RS01, RS02, RS04, RS05 đặt nội dòng cuối `<h2>`; RS03 đặt trong `.slide-badge-row` vì nhãn nội dòng kết thúc ở 854 px, đè nút điều hướng (≈782 px). RZ03: "Bài 7 (tự học)". Ghi chú RS01 thêm một câu: phần tổng hợp chỉ dùng cận $-\delta-\log(1-\delta)$ cùng giả thiết.
+- **Thay đổi CSS chung (`lecture-style.css`):** `.self-study-badge` đổi nền `#90A4AE` → `#546E7A` (tương phản chữ trắng 2,59:1 → 5,40:1), cỡ `0.42em` → `0.5em`, thêm `vertical-align: middle`, `margin-left: 0.4em`, `white-space: nowrap`; thêm quy tắc `.slide-badge-row .self-study-badge { font-size: 0.66em; margin-left: 0; }`. `.advanced-badge` giữ nguyên.
+- **Phạm vi hồi quy:** `grep -l 'self-study-badge\|slide-badge-row' 2627-1/*.html` trước khi sửa chỉ trả về `lecture-01-…backup-2026-09-05.html` (bản sao lưu, ngoài phạm vi phát hành). Sau khi sửa, chỉ Bài 04 dùng hai lớp này, nên hồi quy giới hạn ở Bài 04.
+- **Kiểm tra trình duyệt** (Playwright, `reloadserver` 8765):
+  - 1600×900: RS01–RS05 và RZ03 vừa khung 674/674, không lỗi KaTeX hay console. Nhãn cỡ 21,12 px. Mép phải nhãn: RS01 563 px, RS02 554 px, RS04 681 px, RS05 651 px (trước nút điều hướng); RS03 nhãn ở góc phải 1463–1560 px, tiêu đề kết thúc trước 780 px, đáy nội dung 758/829 px.
+  - 390×844: nhãn 16,2 px (RS03 trong hàng nhãn 15,84 px), không lỗi KaTeX hay console; nội dung cuộn dọc trong `.lecture-viewport`.
+- **Tác tử:** tác tử chỉnh sửa là fork của điều phối viên, Claude Opus 5.5 kế thừa từ phiên; không có định nghĩa `.claude/agents/`.
+
 ## Duyệt từng trang theo yêu cầu người dùng — 2026-09-30
 
 **Trạng thái: hoàn tất cho RG02–RZ03 (2026-09-30).** Mọi trang từ RG02 đến RZ03 đã được duyệt, sửa, kiểm trên trình duyệt ở 1600×900 và 390×844, commit và push riêng; năm lượt rà độc lập theo phần (G, N, E, RR) và rà cuối toàn bộ đã được xử lý, bảng phát hiện ở các mục dưới.

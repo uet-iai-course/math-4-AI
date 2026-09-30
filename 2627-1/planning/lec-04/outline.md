@@ -1003,3 +1003,7 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RZ03 giữ tiêu đề; bảng ánh xạ phần của bài sang Bài 1–8 của tệp bài tập (Bài 1–2 hướng giảm, 3–4 Newton, 5 Newton khả thi, 6 điểm chưa khả thi, 7 tự điều chỉnh, 8 hồi quy ridge); tài liệu đọc thêm ghi chú bài giảng.
 - Sửa theo rà soát phần RR: ghi chú RR02–RR06 bỏ mã trang; RR01 nêu điểm đầu cần thỏa đồng thời $Au^0=b$ và $u^0\in\operatorname{dom}F$; RR03 ghi "Điều kiện đủ"; RR05 nêu $r\in\mathbb R^{n+p}$; RR06 kết luận hướng trùng Newton khả thi nhưng nhận bước vẫn theo $\|r\|_2$; toàn bộ trang chiếu dùng $^*$ cho nghiệm.
 - Sửa theo rà soát cuối: RP03 đổi tên "Mục tiêu học tập", RP04 đổi tên "KKT với ràng buộc đẳng thức"; RP00–RP04 dùng "Bài giảng 03"; RS04 thêm giả thiết $N^THN\succ0$ và dòng "$\hat u$ khả thi, cột của $N$ là cơ sở $\ker A$"; RZ01 và RS04 dùng $\varepsilon_{\mathrm{model}}$; ghi chú RS03 thêm cận $-\delta-\log(1-\delta)\le\delta^2$ khi $\delta\le0{,}68$.
+
+### Đánh dấu Tự học — 2026-10-01
+
+Theo yêu cầu người dùng, phần tự điều chỉnh (RS01–RS05, mở đầu bằng "Biến thiên độ cong") là phần tự học. Mỗi trang có nhãn "Tự học" (lớp chung `.self-study-badge`); RS01, RS02, RS04, RS05 đặt nhãn cuối tiêu đề, RS03 đặt trong `.slide-badge-row` vì tiêu đề dài. Bảng bài tập ở RZ03 ghi "Bài 7 (tự học)". Ghi chú RS01 nêu phần tổng hợp chỉ dùng cận $f(x)-f^*\le-\delta-\log(1-\delta)$ cùng giả thiết. Nội dung toán, thứ tự trang và điều hướng không đổi.
