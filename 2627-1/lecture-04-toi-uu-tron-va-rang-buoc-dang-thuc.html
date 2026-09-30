@@ -246,23 +246,22 @@ Thuật toán giảm gradient trên VD1 được xét với bước giữ cố �
 </section>
 
 <section data-slide-id="RG08">
-<h2>Hướng giảm dốc nhất có chuẩn đơn vị</h2>
+<h2>Bài toán hướng giảm dốc nhất</h2>
 <div class="lec-grid lec-grid--45-55">
 <div>
 <img class="plot" src="img/lec-04/weighted-unit.svg" alt="Elip 3v1²+7v2²=1 và các đường mức tuyến tính 6v1+28v2=c trên VD1 với W=diag(3,7); điểm tiếp xúc cho giá trị gᵀv nhỏ nhất">
+<p>VD1, $W=\operatorname{diag}(3,7)$: nghiệm là điểm tiếp xúc của elip $3v_1^2+7v_2^2=1$ với đường mức $6v_1+28v_2=c$ thấp nhất.</p>
 </div>
 <div>
-<div class="panel">
-<p>VD1: chọn $W=\operatorname{diag}(3,7)$ theo các hệ số độ cong $3,7$. Tìm điểm tiếp xúc của elip với đường mức $g^Tv=c$ có $c$ nhỏ nhất.</p>
-</div>
-<p>$W\succ0$, $g\ne0$, $v\in\mathbb R^n$.</p><div class="formula" tabindex="0">$\|v\|_W=\sqrt{v^TWv}$.</div>
+<p>Chuẩn theo độ cong: <span class="math-nowrap">$\|v\|_W=\sqrt{v^TWv}$,</span> <span class="math-nowrap">$W\succ0$.</span></p>
+<p>Hướng giảm dốc nhất chuẩn hóa ($g\ne0$): $g^Tv$ nhỏ nhất trên các hướng có độ dài không quá 1.</p>
 <div class="formula emphasis" tabindex="0">$$\min_v\ g^Tv\quad\text{với}\quad v^TWv\le 1.$$</div>
-<p>Lagrange với nhân tử $\zeta\ge0$:</p>
+<p>Lagrange, nhân tử <span class="math-nowrap">$\zeta\ge0$:</span></p>
 <div class="formula" tabindex="0">$$L_s(v,\zeta)=g^Tv+\zeta\,(v^TWv-1).$$</div>
 </div>
 </div>
 <aside class="notes">
-Để phản ánh độ cong khác nhau theo các phương, xét chuẩn bậc hai $\|v\|_W=\sqrt{v^TWv}$ với $W\succ0$. Việc chọn $W=\operatorname{diag}(3,7)$ theo độ cong là một quyết định mô hình, không phải kết quả do KKT bắt buộc. Với hàm bậc hai của VD1, lựa chọn này trùng Hessian. Với VD1, $g=(6,28)^T$ nên đường mức là $6v_1+28v_2=c$; elip $3v_1^2+7v_2^2=1$ là biên tập khả thi. Giá trị $g^Tv$ nhỏ nhất đạt tại điểm tiếp xúc, nơi gradient của mục tiêu song song với gradient của ràng buộc. Bài con này giống dạng giới hạn chuẩn đã học ở Bài 03, với biến $v$ và mục tiêu tuyến tính. Nhân tử $\zeta$ là nhân tử bất đẳng thức của bài con, khác $\lambda$ của Bài 03. Tính lồi bảo đảm KKT đủ; $v=0$ thỏa Slater bảo đảm chiều cần và sự tồn tại nhân tử. Tập khả thi đóng, bị chặn và mục tiêu liên tục nên bài con có nghiệm. Với chuẩn bất kỳ, hướng chuẩn hóa giải $\min_{\|v\|\le1}g^Tv$ và $\|g\|_*=\max_{\|v\|\le1}g^Tv$ là chuẩn đối ngẫu. Quy ước hướng không chuẩn hóa là $d=\|g\|_*v$. Công thức dùng $W^{-1}$ chỉ dành cho chuẩn bậc hai. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Độ cong không đồng đều đòi hỏi đo độ dài bước bằng một chuẩn có trọng số theo từng phương thay cho chuẩn Euclid. Với $W\succ0$, $\|v\|_W=\sqrt{v^TWv}$ là một chuẩn; quả cầu đơn vị của nó là elip, dẹt theo phương có trọng số lớn. "Dốc nhất" nghĩa là mức giảm bậc một $g^Tv$ lớn nhất trên mỗi đơn vị độ dài; nếu không giới hạn độ dài thì $g^Tv$ không bị chặn dưới, nên bài con có ràng buộc $v^TWv\le1$. Với $W=I$, nghiệm là $v=-g/\|g\|_2$, cùng phương với hướng gradient; chuẩn có trọng số tổng quát hóa trường hợp này. Chọn $W=\operatorname{diag}(3,7)$ theo độ cong là quyết định mô hình, không phải kết quả do KKT bắt buộc; với hàm bậc hai của VD1, lựa chọn này trùng Hessian. Với $g=(6,28)^T$, các đường mức là $6v_1+28v_2=c$; giá trị nhỏ nhất đạt tại điểm tiếp xúc với biên elip, nơi gradient của mục tiêu song song với gradient của ràng buộc. Nhân tử $\zeta$ là nhân tử bất đẳng thức của bài con, khác $\lambda$ của Bài giảng 03. Tập khả thi đóng, bị chặn và mục tiêu liên tục nên bài con có nghiệm; bài con lồi nên KKT đủ, và $v=0$ thỏa Slater nên KKT cũng cần. Với chuẩn bất kỳ, hướng chuẩn hóa giải $\min_{\|v\|\le1}g^Tv$ và $\|g\|_*=\max_{\|v\|\le1}g^Tv$ là chuẩn đối ngẫu; công thức dùng $W^{-1}$ ở các bước sau chỉ dành cho chuẩn bậc hai. Hệ KKT của bài con được giải từ hàm Lagrange $L_s$. Nguồn: Boyd và Vandenberghe (2004), §9.4; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 

@@ -194,16 +194,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.3–9.4.1; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RG08 — Hướng giảm dốc nhất có chuẩn đơn vị
+### RG08 — Bài toán hướng giảm dốc nhất
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu B02, B03. Dùng lại một mẫu bài toán quen thuộc để sinh viên tự viết Lagrange; không đưa công thức hướng chuẩn hóa trước bài toán.
-- **Nội dung trên trang:** Trên VD1, chọn $W=\operatorname{diag}(3,7)$ theo hai hệ số độ cong $3,7$; ghi rõ đây là quyết định chọn thước đo, không do KKT tự xác định; hình elip $3v_1^2+7v_2^2=1$ và các đường $6v_1+28v_2=c$ làm rõ việc tìm điểm tiếp xúc. Sau ví dụ hình học, giới thiệu $W\succ0$, $g\ne0$, $\min_v g^Tv$ với $v^TWv\le1$. Nhắc dạng giới hạn chuẩn ở S05-06 của bài 03, nhưng biến bây giờ là v và mục tiêu tuyến tính. Lập $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$, $\zeta\ge0$.
-- **Bố cục chọn:** Trái 45% elip và các đường mức tuyến tính; phải bài con và Lagrange, cùng thứ tự màu/nhãn; biểu thức W được định nghĩa trước hình.
-- **Lý do bố cục cho sinh viên năm 3:** Dùng lại một mẫu bài toán quen thuộc để sinh viên tự viết Lagrange; không đưa công thức hướng chuẩn hóa trước bài toán.
-- **Vào → ra:** Đầu vào: Ràng buộc $v^TWv\le1$ xác định các hướng có độ dài không quá một theo chuẩn $W$. Đầu ra: Điểm cực tiểu của $g^Tv$ được xác định bằng bốn nhóm KKT của bài con này.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** VD1, dàn ý §6: giữ x, g; ghi riêng W khi dùng; phân biệt v, d, t và các cấu hình bước.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Hướng giảm dốc nhất có chuẩn đơn vị" thành "Bài toán hướng giảm dốc nhất" (ngắn hơn, không trùng RG10, nêu đúng việc trang làm là lập bài toán); thêm câu định nghĩa "dốc nhất" để ràng buộc độ dài không xuất hiện đột ngột; sắp lại thứ tự: chuẩn → định nghĩa → bài toán → hàm Lagrange ở cột phải, ví dụ VD1 dưới hình ở cột trái; bỏ dòng giả thiết đứng rời. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Chuẩn theo độ cong $\|v\|_W=\sqrt{v^TWv}$, $W\succ0$. Hướng giảm dốc nhất chuẩn hóa ($g\ne0$): $g^Tv$ nhỏ nhất trên các hướng có độ dài không quá 1; $\min_v g^Tv$ với $v^TWv\le1$. Hàm Lagrange với $\zeta\ge0$: $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$. VD1, $W=\operatorname{diag}(3,7)$: nghiệm là điểm tiếp xúc của elip $3v_1^2+7v_2^2=1$ với đường mức $6v_1+28v_2=c$ thấp nhất.
+- **Bố cục chọn:** Trái 45%: hình elip–đường mức và câu VD1; phải: chuẩn, định nghĩa, bài toán, hàm Lagrange. Đo ở 1600×900: đáy nội dung 793 px, đáy trang 829 px (bản nháp đặt VD1 trong khung ở cột phải bị tràn 44 px nên chuyển sang cột trái).
+- **Lý do bố cục cho sinh viên năm 3:** Bài toán được phát biểu sau khi đã có chuẩn và nghĩa của "dốc nhất"; hình và ví dụ đứng cạnh nhau.
+- **Vào → ra:** Đầu vào: RG07 cho thấy chuẩn Euclid trong bài con đo mọi phương như nhau. Đầu ra: bài con lồi có ràng buộc bất đẳng thức, hàm Lagrange $L_s$ để lập KKT ở RG09; ghi chú nêu $W=I$ cho lại $v=-g/\|g\|_2$.
+- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RG11.
+- **Số liệu:** VD1: $g=(6,28)^T$, $W=\operatorname{diag}(3,7)$.
+- **Nguồn, ghi chú soạn:** BV §9.4; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG09 — Điều kiện KKT của hướng chuẩn hóa
