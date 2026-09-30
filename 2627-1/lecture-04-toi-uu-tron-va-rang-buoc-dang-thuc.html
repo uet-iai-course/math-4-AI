@@ -654,19 +654,19 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 <section>
 <section data-slide-id="RS01">
-  <h2>Độ cong và sai số của mô hình Newton</h2>
+  <h2>Biến thiên độ cong</h2>
   <div class="lec-grid ratio60">
     <div>
       <img class="plot" src="img/lec-04/log-curvature.svg" alt="Đồ thị độ cong bậc hai của hàm s − log s trên s &gt; 0: đường cong 1/s² tăng vô hạn khi s tiến về 0 và giảm về 0 khi s lớn, cho thấy Hessian không bị chặn trên toàn miền.">
     </div>
     <div>
-      <p>Ký hiệu $\delta=\delta_N=\sqrt{d^THd}\ge0$.</p>
-      <p>Với VD2: $\delta_N^2=9/16$, nên $\delta=3/4$.</p>
-      <p>Với $\varphi(s)=s-\log s$: $\varphi''=1/s^2$ không bị chặn trên toàn miền $s&gt;0$.</p>
-      <p class="takeaway">Cần kiểm biến thiên độ cong tương đối để có một cận sai số.</p>
+      <p><strong>Vấn đề:</strong> VD2 tại $s=1/4$ có giảm mô hình $9/32$ nhỏ hơn sai số <span class="math-nowrap">$\log4-3/4$;</span> cần điều kiện để $\delta_N$ cho cận sai số.</p>
+      <p>Ký hiệu $\delta=\delta_N=\sqrt{d^THd}$; VD2: $\delta=3/4$.</p>
+      <p>$\varphi''=1/s^2\to\infty$ khi $s\to0^+$: độ cong không bị chặn trên miền.</p>
+      <p class="takeaway">Cần giả thiết so tốc độ thay đổi của độ cong, $|\varphi'''|$, với chính độ cong, $(\varphi'')^{3/2}$.</p>
     </div>
   </div>
-  <aside class="notes">Xét lại độ giảm Newton của bài toán không ràng buộc: với $\varphi(s)=s-\log s$ tại $s=1/4$, giảm mô hình $9/32$ nhỏ hơn sai số mục tiêu $\log4-3/4$. Cận cần xây dựng dùng độ giảm Newton của bài toán này, không dùng chuẩn phần dư tại điểm chưa khả thi. Phép khử đẳng thức sẽ chuyển kết quả sang hàm rút gọn trên tập khả thi. Ký hiệu $\delta=\delta_N=\sqrt{d^THd}$, tức căn không âm của độ giảm Newton bình phương; với ví dụ Newton phi bậc hai, $\delta_N^2=9/16$ nên $\delta=3/4$. Hình bên vẽ $\varphi''=1/s^2$ của $\varphi(s)=s-\log s$: độ cong tăng vô hạn khi $s$ tiến về biên $s=0$, nên Hessian không bị chặn trên toàn miền. Phân tích trên tập mức vẫn có thể dùng cận riêng; tính tự điều chỉnh cung cấp một cách khác, dựa trên biến thiên độ cong tương đối. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+  <aside class="notes">Vấn đề còn mở từ phần Newton: với $\varphi(s)=s-\log s$ tại $s=1/4$, giảm mô hình $\delta_N^2/2=9/32\approx0{,}28125$ nhỏ hơn sai số mục tiêu $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$, nên $\delta_N$ chưa cho cận sai số nếu không có thêm giả thiết. Từ đây viết $\delta=\delta_N=\sqrt{d^THd}\ge0$; với VD2, $\delta_N^2=9/16$ nên $\delta=3/4$. Các cận cổ điển cho phương pháp Newton dùng hằng số lồi mạnh $m$ và hằng số Lipschitz $L$ của Hessian trên tập mức; các hằng số này thay đổi khi đổi hệ tọa độ, trong khi bước Newton thì không. Hình bên vẽ $\varphi''=1/s^2$: độ cong tăng vô hạn khi $s$ tiến về biên $s=0$, nên không có hằng số chặn độ cong trên toàn miền. Một giả thiết không phụ thuộc hệ tọa độ phải so đạo hàm bậc ba với chính độ cong. Khi đổi biến $s=a\sigma$ với $a&gt;0$, $\varphi''$ nhân với $a^2$ và $\varphi'''$ nhân với $a^3$, nên tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ không đổi; đó là lý do dùng số mũ $3/2$. Trang sau định nghĩa lớp hàm có tỷ số này bị chặn. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.3, 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009.</aside>
 </section>
 
 <section data-slide-id="RS02">
