@@ -518,13 +518,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** Ghi chú gọi rõ độ giảm Newton của bài toán không ràng buộc và đối chiếu $9/32$ với $\log4-3/4$; phép khử chuyển cận sang điểm khả thi, không dùng chuẩn phần dư tại điểm chưa khả thi. Hessian không bị chặn toàn miền không loại trừ phân tích trên tập mức có cận riêng.  BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RS02 — Định nghĩa hàm tự điều chỉnh
+### RS02 — Hàm tự điều chỉnh
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu D02, D03. Tách chứng minh cho mọi s khỏi kiểm tra tại một điểm; không để con số128 thay lập luận.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Hàm tự điều chỉnh"; dòng mở nêu tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ đo gì; định nghĩa có đủ lượng từ $x\in\operatorname{dom}f$, $v\in\mathbb R^n$, $x+tv\in\operatorname{dom}f$ và thuật ngữ gốc self-concordant; phép thử tại $s=1/4$ chuyển vào ghi chú. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu D02, D03. Tách chứng minh cho mọi s khỏi kiểm tra tại một điểm; không để con số128 thay lập luận.
 - **Nội dung trên trang:** Bắt đầu từ VD2: $\varphi^{\prime\prime}=1/s^2$, $|\varphi^{\prime\prime\prime}|=2/s^3$ nên tỷ số bằng 2 trên toàn miền; tại $1/4$ có $128=2\cdot16^{3/2}$. Khái quát: hàm lồi $C^3$ trên miền mở lồi là tự điều chỉnh khi mọi hạn chế lên đường thẳng thỏa $|h^{\prime\prime\prime}|\le2(h^{\prime\prime})^{3/2}$.
 - **Bố cục chọn:** Trái 45% tỷ số độ cong tương đối của ví dụ; phải định nghĩa tổng quát, hiện sau phép kiểm toàn miền. Một dòng kiểm số ở chân; không dùng số 128 làm chứng minh.
 - **Lý do bố cục cho sinh viên năm 3:** Tách chứng minh cho mọi s khỏi kiểm tra tại một điểm; không để con số128 thay lập luận.
-- **Vào → ra:** Đầu vào: Với $s-\log s$, tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ bằng $2$ với mọi $s>0$. Đầu ra: Bất đẳng thức này cho phép chặn sai số mục tiêu bằng độ giảm Newton khi thỏa thêm các giả thiết của cận.
+- **Vào → ra:** (2026-09-30) Đầu vào: nhu cầu so tốc độ thay đổi độ cong với chính độ cong (RS01). Đầu ra: lớp hàm tự điều chỉnh, VD2 đạt tỷ số 2, dùng cho cận ở RS03. Mô tả trước: Đầu vào: Với $s-\log s$, tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ bằng $2$ với mọi $s>0$. Đầu ra: Bất đẳng thức này cho phép chặn sai số mục tiêu bằng độ giảm Newton khi thỏa thêm các giả thiết của cận.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; chuẩn bị thao tác được đo tại RS05.
 - **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.

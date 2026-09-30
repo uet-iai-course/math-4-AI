@@ -670,20 +670,20 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RS02">
-  <h2>Định nghĩa hàm tự điều chỉnh</h2>
+  <h2>Hàm tự điều chỉnh</h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
       <img class="plot" src="img/lec-04/self-concordance-ratio.svg" alt="Đồ thị tỷ số trị tuyệt đối đạo hàm bậc ba chia lũy thừa ba phần hai của đạo hàm bậc hai của hàm s − log s trên s &gt; 0: đường nằm ngang ở mức 2, minh họa bất đẳng thức |φ'''| ≤ 2(φ'')^{3/2} đúng với mọi s.">
     </div>
     <div>
-      <p>Với $\varphi(s)=s-\log s$: $\varphi''=1/s^2$, $|\varphi'''|=2/s^3$, nên $|\varphi^{\prime\prime\prime}|/(\varphi^{\prime\prime})^{3/2}=2$ trên toàn miền.</p>
-      <p>Kiểm tại $s=1/4$: $128=2\cdot16^{3/2}$.</p>
+      <p>Với hàm một biến, tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ đo tốc độ thay đổi của độ cong theo thang của chính độ cong.</p>
+      <p>VD2: $\varphi''=1/s^2$, $|\varphi'''|=2/s^3$, nên tỷ số bằng $2$ với mọi $s&gt;0$.</p>
       <div class="panel fragment">
-        <p><strong>Định nghĩa.</strong> Hàm lồi $C^3$ trên miền mở lồi là <em>tự điều chỉnh</em> khi mọi hàm $h(t)=f(x+tv)$ trên miền tương ứng thỏa $|h'''|\le2(h'')^{3/2}$.</p>
+        <p><strong>Định nghĩa.</strong> Hàm lồi $f\in C^3$ trên miền mở lồi là <em>tự điều chỉnh</em> (self-concordant) nếu với mọi $x\in\operatorname{dom}f$, $v\in\mathbb R^n$, hàm $h(t)=f(x+tv)$ thỏa $|h'''(t)|\le2\,h''(t)^{3/2}$ khi $x+tv\in\operatorname{dom}f$.</p>
       </div>
     </div>
   </div>
-  <aside class="notes">Với ví dụ logarit, $\varphi''=1/s^2$ và $|\varphi'''|=2/s^3$, nên tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ bằng đúng $2$ với mọi $s&gt;0$; hình bên cho thấy đường tỷ số nằm ngang ở mức 2. Nếu chỉ kiểm tại $s=1/4$, thu được $128=2\cdot16^{3/2}$; phép thử số này không thay cho chứng minh với mọi $s$. Khái quát: một hàm lồi $C^3$ trên miền mở lồi gọi là tự điều chỉnh khi mọi hạn chế của nó lên đường thẳng đều thỏa $|h'''|\le2(h'')^{3/2}$. Điều kiện trên các hạn chế đường thẳng kiểm soát sai lệch khỏi mô hình bậc hai, từ đó cho cận sai số theo độ giảm Newton khi các giả thiết bổ sung được thỏa. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+  <aside class="notes">Nhu cầu từ trang trước là một giả thiết so tốc độ thay đổi của độ cong với chính độ cong mà không phụ thuộc hệ tọa độ. Tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ đáp ứng nhu cầu này vì nó không đổi khi đổi thang biến. Với ví dụ logarit, $\varphi''=1/s^2$ và $|\varphi'''|=2/s^3$, nên tỷ số bằng đúng $2$ với mọi $s&gt;0$; hình bên cho thấy đường tỷ số nằm ngang ở mức 2. Phép thử tại một điểm, chẳng hạn $s=1/4$ cho $128=2\cdot16^{3/2}$, không thay cho phép tính với mọi $s$. Định nghĩa khái quát yêu cầu bất đẳng thức trên mọi đường thẳng qua miền: với mọi $x\in\operatorname{dom}f$ và mọi hướng $v$, hàm một biến $h(t)=f(x+tv)$ thỏa $|h'''(t)|\le2h''(t)^{3/2}$ tại mọi $t$ mà $x+tv\in\operatorname{dom}f$. Hằng số $2$ là quy ước chuẩn hóa; hàm $-\log s$ đạt đúng dấu bằng. Hàm $-\log s$ và $s-\log s$ khác nhau một số hạng tuyến tính nên có cùng đạo hàm bậc hai và bậc ba; cả hai đều tự điều chỉnh. Trang sau dùng giả thiết này để chặn sai số mục tiêu bằng độ giảm Newton. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1; bài giảng 16, MIT 6.079, mùa thu 2009.</aside>
 </section>
 
 <section data-slide-id="RS03">
