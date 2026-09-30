@@ -687,13 +687,12 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RS03">
-<h2>Cận sai số từ độ giảm Newton</h2>
-<div class="panel"><p><strong>Giả thiết:</strong> hàm tự điều chỉnh, lồi chặt, $H\succ0$, đạt cực tiểu trong miền.</p>
-<div class="formula emphasis" tabindex="0">$$f(x)-f^\star\le-\delta-\log(1-\delta)\quad\text{khi }\delta&lt;1.$$</div></div>
-<p><strong>VD2 tại $s=1/4$:</strong> $\delta=3/4$.</p>
-<div class="lec-grid"><div class="panel"><strong>Cận sai số mục tiêu:</strong><div class="formula" tabindex="0">$$-\tfrac34-\log\tfrac14=\log4-\tfrac34$$</div><p>$\approx0{,}63629$; đúng bằng sai số ở ví dụ này.</p></div>
-<div class="panel"><strong>Giảm mô hình:</strong><div class="formula" tabindex="0">$$\delta^2/2=9/32\approx0{,}28125.$$</div><p>Độ giảm mô hình nhỏ hơn sai số mục tiêu trong ví dụ này.</p></div></div>
-<aside class="notes">Cận sai số theo độ giảm Newton yêu cầu các giả thiết sau: hàm phải tự điều chỉnh, lồi chặt, Hessian xác định dương và đạt cực tiểu hữu hạn trong miền; thêm điều kiện $\delta&lt;1$. Khi đó $f-f^*\le-\delta-\log(1-\delta)$. Áp vào $\varphi(s)=s-\log s$ tại $s=1/4$ với $\delta=3/4$: cận bằng $\log4-3/4\approx0{,}63629$, và với ví dụ log này cận trùng đúng sai số thật. Giá trị $9/32$ là độ giảm của mô hình bậc hai, nhỏ hơn sai số mục tiêu trong ví dụ này. Sự bằng nhau giữa cận và sai số thật chỉ được xác nhận cho ví dụ log này, không phải tính chất chung. Cận này còn áp dụng cho bài toán sau khử đẳng thức nếu hàm rút gọn thỏa đầy đủ giả thiết. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+<h2>Cận sai số theo độ giảm Newton</h2>
+<div class="panel"><p><strong>Định lý.</strong> Giả sử $f$ tự điều chỉnh, $\nabla^2f\succ0$ trên miền, $f$ đạt cực tiểu $f^*$ trong miền và $\delta&lt;1$. Khi đó</p>
+<div class="formula emphasis" tabindex="0">$$f(x)-f^*\le-\delta-\log(1-\delta).$$</div></div>
+<p><strong>VD2 tại $s=1/4$:</strong> $\delta=3/4$; <span class="math-nowrap">cận $\log4-3/4\approx0{,}63629$</span> bằng sai số; <span class="math-nowrap">giảm mô hình $9/32\approx0{,}28125$.</span></p>
+<div class="takeaway">Vì $-\delta-\log(1-\delta)=\tfrac{\delta^2}{2}+\tfrac{\delta^3}{3}+\cdots$, khi $\delta$ nhỏ tiêu chí dừng $\delta^2/2\le\varepsilon$ gần đúng chứng nhận sai số.</div>
+<aside class="notes">Giả thiết tự điều chỉnh vừa định nghĩa trả lời vấn đề mở: khi $f$ tự điều chỉnh, Hessian xác định dương trên miền, $f$ đạt cực tiểu $f^*$ trong miền và $\delta&lt;1$, sai số mục tiêu bị chặn bởi $-\delta-\log(1-\delta)$. Điều kiện Hessian xác định dương đã kéo theo lồi chặt. Áp vào $\varphi(s)=s-\log s$ tại $s=1/4$: $\delta=3/4$, cận bằng $-3/4-\log(1/4)=\log4-3/4\approx0{,}63629$, đúng bằng sai số $\varphi(1/4)-\varphi(1)$. Tổng quát cho ví dụ này, $g=1-1/s$ và $H=1/s^2$ nên $\delta^2=g^2/H=(1-s)^2$; với $s\in(0,1)$, $\delta=1-s$ và cận $-(1-s)-\log s$ trùng sai số $s-\log s-1$. Sự trùng nhau này là tính chất của ví dụ, không phải của mọi hàm tự điều chỉnh. Giảm mô hình $\delta^2/2=9/32$ là số hạng đầu của khai triển $-\delta-\log(1-\delta)=\delta^2/2+\delta^3/3+\delta^4/4+\cdots$; khi $\delta$ nhỏ, các số hạng bậc cao không đáng kể, nên tiêu chí dừng $\delta^2/2\le\varepsilon$ của thuật toán Newton gần đúng chứng nhận sai số. Với $\delta=3/4$, các số hạng bậc cao còn lớn, nên giảm mô hình chỉ bằng khoảng $44\%$ cận. Kết quả này phát biểu cho bài toán không ràng buộc; trang sau xét điều kiện để dùng cho bài toán có đẳng thức. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009.</aside>
 </section>
 
 <section data-slide-id="RS04">

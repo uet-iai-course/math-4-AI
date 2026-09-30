@@ -530,13 +530,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RS03 — Cận sai số từ độ giảm Newton
+### RS03 — Cận sai số theo độ giảm Newton
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu D04. Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN07 bằng đúng ví dụ cũ.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Cận sai số theo độ giảm Newton"; kết quả gắn nhãn "Định lý", bỏ giả thiết thừa "lồi chặt" (đã kéo theo từ $\nabla^2f\succ0$), dùng $f^*$; VD2 gọn một dòng; kết luận mới dùng khai triển $-\delta-\log(1-\delta)=\delta^2/2+\delta^3/3+\cdots$ để trả lời vấn đề tiêu chí dừng; bỏ hai khung lặp kết luận RN05. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu D04. Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN07 bằng đúng ví dụ cũ.
 - **Nội dung trên trang:** Kết quả cho hàm tự điều chỉnh lồi chặt (còn gọi là lồi nghiêm ngặt), $H\succ0$, có nghiệm cực tiểu trong miền: nếu $\delta<1$ thì $f-f^*\le-\delta-\log(1-\delta)$. Với $\varphi$ tại $1/4$, $\delta=3/4$, cận $=\log4-3/4\approx0{,}63629$; $9/32$ chỉ là giảm mô hình. Sự bằng nhau giữa cận và sai số thật chỉ được xác nhận cho ví dụ log này.
 - **Bố cục chọn:** Trên là hộp giả thiết và một bất đẳng thức; dưới thayδ=3/4 rồi so hai đại lượng bằng nhãn; chứng minh cận để ghi chú/tài liệu.
 - **Lý do bố cục cho sinh viên năm 3:** Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN07 bằng đúng ví dụ cũ.
-- **Vào → ra:** Đầu vào: Với hàm tự điều chỉnh có Hessian xác định dương và đạt cực tiểu, điều kiện $\delta<1$ cho cận $-\delta-\log(1-\delta)$. Đầu ra: Phép khử đẳng thức tạo hàm hợp affine; tính tự điều chỉnh của hàm rút gọn cho phép xét cùng cận trên các điểm khả thi.
+- **Vào → ra:** (2026-09-30) Đầu vào: lớp hàm tự điều chỉnh (RS02) và $\delta$ của VD2. Đầu ra: cận sai số; khi $\delta$ nhỏ tiêu chí $\delta^2/2\le\varepsilon$ gần đúng chứng nhận sai số; câu hỏi dùng cận cho bài có đẳng thức (RS04). Mô tả trước: Đầu vào: Với hàm tự điều chỉnh có Hessian xác định dương và đạt cực tiểu, điều kiện $\delta<1$ cho cận $-\delta-\log(1-\delta)$. Đầu ra: Phép khử đẳng thức tạo hàm hợp affine; tính tự điều chỉnh của hàm rút gọn cho phép xét cùng cận trên các điểm khả thi.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; chuẩn bị thao tác được đo tại RS05.
 - **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
