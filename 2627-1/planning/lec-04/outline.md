@@ -985,3 +985,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RE07 giữ tiêu đề; định nghĩa $\delta_{eq}^2=d^THd$ là độ giảm Newton của bài con; thêm đầu vào, đầu ra, điều kiện áp dụng; hai tính chất giữ khả thi và hướng giảm được gắn nhãn.
 - RE08 đổi tên thành "Bước Newton khả thi"; hai câu hỏi dùng điểm đầu khả thi mới $(8,6)^T$ (hệ khối cho $d=(2,-2)^T$, $\eta=-20$; hệ rút gọn $\Delta z=-2$); bỏ ba ô trang trí.
 - Sửa theo rà soát phần N: RN01 đổi tên thành "Mô hình bậc hai cục bộ"; RN07 định nghĩa hội tụ bậc hai trên mặt trang, câu 2 không in sẵn dãy số và dùng "khoảng cách tới nghiệm" cho $1-s^k$; ghi chú RN06 nêu $\alpha<1/2$ để nhận bước đầy đủ.
+- RR01 đổi tên thành "Phần dư KKT"; mặt trang nêu nhu cầu từ RE08, định nghĩa $r_d$, $r_p$ và tương đương với KKT trước số liệu VD3; ghi chú giải thích chỉ số $d$ (đối ngẫu) khác hướng $d$ và vai trò ước lượng của $\nu=4$.

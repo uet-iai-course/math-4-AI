@@ -554,15 +554,17 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 <section>
 <section data-slide-id="RR01">
-<h2>Hai phần dư của điều kiện KKT</h2>
-<p><strong>Điểm đầu mới:</strong> $u=(1,8)^T$, $\nu=4$; giữ VD3 với $A=[1\ 1]$, $b=14$.</p>
+<h2>Phần dư KKT</h2>
+<p>Newton khả thi cần $Au^0=b$; tại điểm chưa khả thi, $Ad=0$ giữ nguyên sai lệch $Au-b$.</p>
 <div class="lec-grid ratio55"><div>
-<div class="panel"><p><strong>Điều kiện dừng:</strong></p><div class="formula" tabindex="0">$$\underbrace{\nabla F(u)+A^T\nu}_{r_d}=0.$$</div></div>
-<div class="panel"><p><strong>Khả thi:</strong></p><div class="formula" tabindex="0">$$\underbrace{Au-b}_{r_p}=0.$$</div></div></div>
-<div><p>Gradient $g=(2,40)^T$.</p><div class="formula" tabindex="0">$$r_d=(2,40)^T+(4,4)^T=(6,44)^T.$$</div>
+<div class="panel"><p><strong>Định nghĩa.</strong> Với $u\in\operatorname{dom}F$, $\nu\in\mathbb R^p$:</p>
+<div class="formula" tabindex="0">$$r_d=\nabla F(u)+A^T\nu,\qquad r_p=Au-b.$$</div>
+<p>$(u,\nu)$ thỏa KKT khi và chỉ khi $r_d=0$ và $r_p=0$.</p></div></div>
+<div><p><strong>VD3:</strong> $u=(1,8)^T$, $\nu=4$; $g=(2,40)^T$.</p>
+<div class="formula" tabindex="0">$$r_d=(2,40)^T+(4,4)^T=(6,44)^T.$$</div>
 <div class="formula" tabindex="0">$$r_p=1+8-14=-5.$$</div></div></div>
-<div class="takeaway">Giữ $Ad=0$ sẽ giữ nguyên sai lệch $r_p$; cần sửa cả hai phương trình KKT.</div>
-<aside class="notes">Xét ví dụ có ràng buộc $u_1+u_2=14$, tại điểm đầu $(1,8)$ với nhân tử $\nu=4$, nên $Au-b=-5$: điểm chưa khả thi. Gradient tại đó là $(2,40)$, cộng $A^T\nu=(4,4)$ cho phần dư đối ngẫu $(6,44)$. Số 40 nằm trong gradient, còn 44 là thành phần của phần dư sau khi cộng $A^T\nu$; hai đại lượng có vai trò riêng trong hệ Newton. Mỗi phần dư đo sai lệch của đúng một phương trình KKT đã viết ở Bài 03, nên nhiệm vụ của bước mới là đưa cả hai về 0 đồng thời; không thể dùng điều kiện $Ad=0$ của điểm khả thi để sửa phần dư khả thi. Tuyến tính hóa hai phương trình cho hệ xác định bước; chuẩn phần dư ghép sẽ được dùng để kiểm tiến triển. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<div class="takeaway">Bước mới phải đưa đồng thời $r_d$ và $r_p$ về 0.</div>
+<aside class="notes">Thuật toán Newton khả thi cần một điểm đầu thỏa $Au^0=b$. Với một ràng buộc như VD3, điểm như vậy dễ tìm; với nhiều ràng buộc, tìm điểm khả thi đã là giải một hệ tuyến tính và dữ liệu ban đầu thường không thỏa ràng buộc. Tại điểm chưa khả thi, mọi hướng có $Ad=0$ giữ nguyên sai lệch $Au-b$, nên không thể dùng lại bài con của phần trước. Hai phương trình KKT của bài gốc được đo bằng hai phần dư (residual): phần dư đối ngẫu $r_d=\nabla F(u)+A^T\nu$ ứng với nhóm dừng, phần dư khả thi $r_p=Au-b$ ứng với nhóm khả thi. Chỉ số $d$ trong $r_d$ viết tắt "đối ngẫu" (dual), không phải hướng $d$; chỉ số $p$ viết tắt "gốc" (primal). Cặp $(u,\nu)$ thỏa KKT khi và chỉ khi cả hai phần dư bằng 0. Nhân tử $\nu=4$ là ước lượng ban đầu và được cập nhật cùng $u$. Với VD3, $F=\tfrac12(2u_1^2+5u_2^2)$ nên $g=(2u_1,5u_2)^T=(2,40)^T$ tại $(1,8)^T$; cộng $A^T\nu=(4,4)^T$ được $r_d=(6,44)^T$. Số 40 thuộc gradient, số 44 thuộc phần dư. Ràng buộc cho $r_p=1+8-14=-5$. Bước kế tiếp tuyến tính hóa cả hai phương trình quanh $(u,\nu)$, theo cùng cách nhìn đã dùng khi tuyến tính hóa điều kiện dừng của Newton không ràng buộc. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR02">

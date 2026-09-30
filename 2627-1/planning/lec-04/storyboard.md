@@ -422,13 +422,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
 - **Dự toán nội bộ:** 0 LT + 3/20 BT; suy nghĩ 3/50 BT, chữa 9/100 BT.
 
-### RR01 — Hai phần dư của điều kiện KKT
+### RR01 — Phần dư KKT
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu E08. Mỗi phần dư có nguồn gốc và nhiệm vụ cụ thể, tránh tạo ký hiệu mới không gắn điều kiện cũ.
-- **Nội dung trên trang:** Giữ VD3 nhưng u=(1,8),ν=4. r_d=∇F(u)+Aᵀν=(6,44),r_p=Au−b=−5. Mỗi phần dư ứng với một phương trình RP02; không thể dùng Ad=0 để sửa r_p.
-- **Bố cục chọn:** Trái 55% hai phương trình KKT với vế trái đóng khung; phải thay số ở đúng hai hàng; nhãn “điểm đầu mới” trên cùng.
+- **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Hai phần dư của điều kiện KKT" thành "Phần dư KKT"; đưa nhu cầu từ RE08 lên mặt trang, định nghĩa hai phần dư và tương đương với KKT trước số liệu. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
+- **Nội dung trên trang:** Dòng nhu cầu: Newton khả thi cần $Au^0=b$; tại điểm chưa khả thi, $Ad=0$ giữ nguyên $Au-b$. Định nghĩa $r_d=\nabla F(u)+A^T\nu$, $r_p=Au-b$; $(u,\nu)$ thỏa KKT khi và chỉ khi $r_d=0$, $r_p=0$. VD3 tại $u=(1,8)^T$, $\nu=4$: $g=(2,40)^T$, $r_d=(6,44)^T$, $r_p=-5$. Kết luận: bước mới phải đưa đồng thời hai phần dư về 0.
+- **Bố cục chọn:** Dòng nhu cầu trên cùng; trái 55% khung định nghĩa; phải số liệu VD3; kết luận dưới. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 319 px.
 - **Lý do bố cục cho sinh viên năm 3:** Mỗi phần dư có nguồn gốc và nhiệm vụ cụ thể, tránh tạo ký hiệu mới không gắn điều kiện cũ.
-- **Vào → ra:** Đầu vào: Tại $u=(1,8)^T$, $\nu=4$, sai lệch khả thi là $-5$ và sai lệch điều kiện dừng là $(6,44)^T$. Đầu ra: Tuyến tính hóa hai phương trình KKT xác định hướng của điểm và số gia nhân tử; chuẩn phần dư ghép đo mức tiến triển.
+- **Vào → ra:** Đầu vào: nhu cầu điểm đầu chưa khả thi ở RE08 ($Ad=0$ không sửa được $Au-b$). Đầu ra: hai phần dư làm thước đo KKT; RR02 tuyến tính hóa cả hai phương trình như cách nhìn ở RN03.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RR07.
 - **Số liệu:** VD3 đổi điểm đầu: chỉ u, ν, g, r_d, r_p; chưa đưa Δν vào mặt trang. Các số 2/40 và 6/44 phải ở hai hàng gradient/phần dư khác nhau.
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
