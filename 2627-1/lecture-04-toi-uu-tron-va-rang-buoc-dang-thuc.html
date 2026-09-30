@@ -475,20 +475,22 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
   <aside class="notes">Trang trước cho điều kiện hướng khả thi $Ad=0$. Mô hình bậc hai của phần Newton tại điểm hiện tại là $F(u)+g^Td+\tfrac12d^THd$; bỏ hằng số $F(u)$ không đổi nghiệm, và thêm ràng buộc $Ad=0$ được bài con có đẳng thức theo biến $d\in\mathbb R^n$, với $A\in\mathbb R^{p\times n}$. Bài con có ràng buộc affine nên hệ KKT gồm hai nhóm: dừng và khả thi gốc; không có nhóm khả thi đối ngẫu hay bù trừ. Nhân tử $\eta\in\mathbb R^p$ của bài con tự do dấu vì ràng buộc là đẳng thức; ký hiệu $\eta$ dành cho bài con, còn $\nu$ dành cho bài gốc. Đạo hàm theo $d$ cho $g+Hd+A^T\eta=0$: gradient của mô hình cân bằng với tổ hợp các pháp tuyến của ràng buộc. Đạo hàm theo $\eta$ trả lại đúng $Ad=0$. Hai phương trình tuyến tính theo $(d,\eta)$, nên xếp được thành một hệ ma trận khối. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE04">
-  <h2>Hệ Newton từ KKT của bài toán con</h2>
+  <h2>Hệ Newton có đẳng thức</h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
+      <p><strong>Hàng 1</strong>, nhóm dừng:</p>
       <div class="formula" tabindex="0">$$g+Hd+A^T\eta=0$$</div>
+      <p><strong>Hàng 2</strong>, nhóm khả thi:</p>
       <div class="formula" tabindex="0">$$Ad=0$$</div>
     </div>
     <div>
-      <p>Dạng ma trận của hai phương trình:</p>
+      <p>Hệ khối cỡ $(n+p)\times(n+p)$:</p>
       <div class="formula emphasis" tabindex="0">$$\begin{bmatrix}H&amp;A^T\\A&amp;0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$$</div>
     </div>
   </div>
-  <p>Kích thước: $H$ cấp $n\times n$, $A$ cấp $p\times n$, $\eta\in\mathbb R^p$. Với $H\succ0$ và $A$ đủ hạng hàng, ma trận khối khả nghịch.</p>
-  <div class="takeaway">KKT bài con chứng nhận bước tối ưu cho mô hình; chưa chứng nhận điểm mới tối ưu cho $F$ tổng quát.</div>
-  <aside class="notes">Hàng đầu của hệ chính là đạo hàm theo $d$: khối $H$ nhân $d$, khối $A^T$ nhân $\eta$, vế phải là $-g$. Hàng thứ hai là đạo hàm theo $\eta$: khối $A$ nhân $d$, vế phải $0$. Ma trận khối khả nghịch theo giả thiết nhưng không xác định dương, nên không dùng phân rã Cholesky trực tiếp cho toàn ma trận. Tính đủ của KKT áp dụng cho bài con lồi chặt; với $F$ tổng quát hai lần khả vi, nghiệm mô hình chỉ là bước, chưa phải nghiệm bài gốc. Với gradient và Hessian của ví dụ bậc hai, hệ này xác định đồng thời hướng khả thi và nhân tử mô hình. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <p>Với $H\succ0$ và $A$ đủ hạng hàng, ma trận khối khả nghịch: nghiệm $(d,\eta)$ duy nhất.</p>
+  <div class="takeaway">Nghiệm $d$ là bước tối ưu của mô hình; với $F$ không bậc hai, $u+d$ chưa phải nghiệm bài gốc.</div>
+  <aside class="notes">Hai phương trình của bài con ở trang trước tuyến tính theo $(d,\eta)$. Hàng đầu của hệ khối là nhóm dừng: khối $H$ nhân $d$, khối $A^T$ nhân $\eta$, vế phải $-g$. Hàng thứ hai là nhóm khả thi: khối $A$ nhân $d$, vế phải $0$. Tính khả nghịch: giả sử $Hd+A^T\eta=0$ và $Ad=0$; nhân hàng đầu với $d^T$ và dùng $Ad=0$ được $d^THd=0$, nên $d=0$ vì $H\succ0$; khi đó $A^T\eta=0$, và $A$ đủ hạng hàng cho $\eta=0$. Hệ thuần nhất chỉ có nghiệm không, nên ma trận khối khả nghịch. Ma trận này đối xứng nhưng không xác định dương, vì khối góc dưới bằng $0$; do đó không áp dụng trực tiếp phân rã Cholesky cho toàn ma trận. Tính đủ của KKT áp dụng cho bài con lồi chặt, nên $d$ là bước tối ưu của mô hình; với $F$ tổng quát hai lần khả vi, mô hình chỉ đúng cục bộ và $u+d$ chưa là nghiệm bài gốc. Với gradient và Hessian của VD3 tại điểm đầu khả thi, hệ khối xác định đồng thời hướng và nhân tử của bài con. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE05">
   <h2>Ví dụ Newton khả thi</h2>

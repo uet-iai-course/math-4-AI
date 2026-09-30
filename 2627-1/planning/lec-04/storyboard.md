@@ -362,13 +362,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RE04 — Hệ Newton từ KKT của bài toán con
+### RE04 — Hệ Newton có đẳng thức
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu E06. Bố cục thể hiện nguồn gốc từng khối, thay việc đưa ma trận hoàn chỉnh rồi yêu cầu nhớ.
-- **Nội dung trên trang:** Xếp hai phương trình của RE03 thành [H Aᵀ;A0][d;η]=−[g;0]. H n×n,A p×n,η∈R^p; H≻0 và A đủ hạng hàng bảo đảm hệ khả nghịch. KKT chứng nhận nghiệm của mô hình, chưa của F.
-- **Bố cục chọn:** Trái 45% hai phương trình; phải cùng các hạng được xếp vào ma trận; nối từng hàng bằng nhãn văn bản.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: tiêu đề kể cách suy ra và chạm nút điều hướng (802 px); cột trái chép lại hai phương trình mà không gắn hàng ma trận với nhóm KKT; điều kiện khả nghịch thiếu lý do; câu kết luận khó đọc. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Trái: Hàng 1 nhóm dừng $g+Hd+A^T\eta=0$; Hàng 2 nhóm khả thi $Ad=0$. Phải: hệ khối cỡ $(n+p)\times(n+p)$. Dòng giả thiết: $H\succ0$, $A$ đủ hạng hàng nên ma trận khối khả nghịch, $(d,\eta)$ duy nhất. Kết luận: $d$ là bước tối ưu của mô hình; với $F$ không bậc hai, $u+d$ chưa là nghiệm bài gốc. Ghi chú: chứng minh khả nghịch qua $d^THd=0$ và đủ hạng hàng; ma trận không xác định dương.
+- **Bố cục chọn:** Trái 45% hai hàng có nhãn nhóm KKT; phải hệ khối nhấn mạnh; dòng giả thiết và kết luận toàn chiều rộng. Đo 1600×900: đáy nội dung 669/829, tiêu đề kết thúc ở 571 px; 390×844: vừa khi cuộn, không cuộn ngang.
 - **Lý do bố cục cho sinh viên năm 3:** Bố cục thể hiện nguồn gốc từng khối, thay việc đưa ma trận hoàn chỉnh rồi yêu cầu nhớ.
-- **Vào → ra:** Đầu vào: Hàng dừng cung cấp các khối $H,A^T$; hàng khả thi cung cấp $A,0$. Đầu ra: Với $H\succ0$ và $A$ đủ hạng hàng, hệ xác định duy nhất hướng $d$ và nhân tử mô hình $\eta$.
+- **Vào → ra:** Đầu vào: hai phương trình KKT của bài con (RE03). Đầu ra: hệ khối khả nghịch dưới $H\succ0$ và $A$ đủ hạng hàng; giải trên VD3 ở RE05.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.

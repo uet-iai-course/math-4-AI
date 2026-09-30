@@ -979,3 +979,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RE01 đổi tên thành "Bài toán có ràng buộc đẳng thức"; mặt trang nêu dạng $\min_u F(u)$ với $Au=b$, $A\in\mathbb R^{p\times n}$ và điểm đầu khả thi $(16,-2)^T$ của VD3; ghi chú nêu nhu cầu từ phần Newton và lý do chọn VD3.
 - RE02 đổi tên thành "Hướng khả thi"; dữ kiện $g,H$ đặt trước bước Newton không ràng buộc; khung kết luận định nghĩa $\ker A=\{d:Ad=0\}$.
 - RE03 đổi tên thành "Bài toán con có đẳng thức"; dòng mở nêu $g=\nabla F(u)$, $H=\nabla^2F(u)$ tại điểm khả thi và bài con là $Q_H$ thêm $Ad=0$; hai phương trình được gọi là nhóm dừng và nhóm khả thi.
+- RE04 đổi tên thành "Hệ Newton có đẳng thức"; hai hàng của hệ khối được gắn nhãn nhóm dừng và nhóm khả thi; ghi chú thêm chứng minh tính khả nghịch dưới $H\succ0$ và $A$ đủ hạng hàng.
