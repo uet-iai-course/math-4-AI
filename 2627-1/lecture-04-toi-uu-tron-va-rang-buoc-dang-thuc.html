@@ -446,20 +446,20 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
   <aside class="notes">Phương pháp Newton đã hoàn chỉnh cho bài toán không ràng buộc. Lớp thứ hai trong phần mở đầu là cực tiểu $F(u)$ trên tập affine $\{u:Au=b\}$, với $u\in\mathbb R^n$, $A\in\mathbb R^{p\times n}$ và $b\in\mathbb R^p$; ký hiệu $F,u$ thay cho $f,x$ để phân biệt với bài không ràng buộc. VD3 được chọn vì là hàm bậc hai với một ràng buộc: hệ KKT giải được bằng tay, nên nghiệm $(10,4)^T$ là mốc để kiểm các bước Newton về sau. Hệ KKT cân bằng gradient mục tiêu với tổ hợp các pháp tuyến của đẳng thức; nhân tử $\nu$ tự do dấu vì ràng buộc là đẳng thức. Trừ hai hàng đầu được $2u_1-5u_2=0$, thay vào hàng thứ ba được $u_1=10$, $u_2=4$, $\nu=-20$ và $F^*=\tfrac12(200+80)=140$. Điểm $(16,-2)^T$ thỏa $u_1+u_2=14$; tọa độ âm hợp lệ vì bài toán không có điều kiện không âm. Vì $F$ lồi chặt và ràng buộc affine, KKT là điều kiện cần và đủ, nên nghiệm này là nghiệm toàn cục duy nhất. Xuất phát từ điểm khả thi, một bước Newton cần giữ $Au=b$; điều kiện cho hướng bước được xác định từ phép tính $A(u+td)$. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức Lagrange và KKT đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE02">
-  <h2>Hướng bảo toàn ràng buộc đẳng thức</h2>
+  <h2>Hướng khả thi</h2>
   <div class="lec-grid ratio60">
     <div>
       <img class="plot" src="img/lec-04/equality-violation.svg" alt="Hai trục u1, u2, đường tổng u1 + u2 = 14, miền nhìn từ −3 tới 17, mũi tên từ điểm (16, −2) về gốc vi phạm đường tổng 14; không có điều kiện không âm.">
     </div>
     <div>
-      <p>$A=[1\ 1]$, $b=14$. Tại $u=(16,-2)^T$: bước Newton không ràng buộc $(-16,2)^T$ đưa điểm về gốc, vi phạm đẳng thức.</p>
-      <p>Dữ kiện: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$.</p>
+      <p>VD3 tại $u=(16,-2)^T$: <span class="math-nowrap">$g=(32,-10)^T$,</span> <span class="math-nowrap">$H=\operatorname{diag}(2,5)$.</span></p>
+      <p>Bước Newton không ràng buộc $-H^{-1}g=(-16,2)^T$ có $Ad=-14$: điểm mới là gốc, vi phạm đẳng thức.</p>
       <div class="formula" tabindex="0">$$A(u+td)=Au+tAd=b+tAd$$</div>
-      <p>Giữ $Au=b$ sau mọi bước $t$ khi và chỉ khi $Ad=0$.</p>
+      <p>Giữ $Au=b$ với mọi bước $t$ khi và chỉ khi $Ad=0$.</p>
     </div>
   </div>
-  <div class="takeaway">Hướng khả thi phải nằm trong $\ker A$: với $A=[1\ 1]$ thì $d_1+d_2=0$.</div>
-  <aside class="notes">Không gian hạt nhân của $A$ được ký hiệu $\ker A=\operatorname{null}A=\{v:Av=0\}$. Bước Newton không ràng buộc tại điểm này là $d=-H^{-1}g=(-16,2)^T$. Vì $A d=(-16)+2=-14$, sau bước đầy đủ tổng trở thành $0$, không còn là $14$. Hướng Newton không ràng buộc không bảo toàn đẳng thức. Ngược lại, phép tính $A(u+td)=b+tAd$ cho thấy điều kiện đủ và cần để mọi bước $t$ đều khả thi là $Ad=0$. $u\in\mathbb R^2$ và không có điều kiện không âm, nên tọa độ âm của điểm hiện tại không phải lỗi. Điều kiện $Ad=0$ xác định ràng buộc của mô hình Newton theo biến bước. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <div class="takeaway">Hướng khả thi: $d\in\ker A=\{d:Ad=0\}$; với $A=[1\ 1]$ là $d_1+d_2=0$.</div>
+  <aside class="notes">Trang trước cho điểm đầu khả thi $(16,-2)^T$ và nghiệm tham chiếu $(10,4)^T$ của VD3. Tại điểm đầu, $g=\nabla F(u)=(2u_1,5u_2)^T=(32,-10)^T$ và $H=\nabla^2F=\operatorname{diag}(2,5)$. Bước Newton của bài không ràng buộc là $d=-H^{-1}g=(-16,2)^T$; vì $Ad=-16+2=-14$, sau bước đầy đủ tổng hai tọa độ bằng $0$ thay vì $14$. Hướng Newton không ràng buộc vì vậy không bảo toàn đẳng thức. Phép tính $A(u+td)=b+tAd$ cho điều kiện cần và đủ để mọi bước $t$ đều khả thi: $Ad=0$. Tập các hướng này là không gian hạt nhân $\ker A=\operatorname{null}A=\{d:Ad=0\}$; với $A=[1\ 1]$, đó là đường $d_1+d_2=0$, song song với đường khả thi. Tọa độ âm của điểm hiện tại hợp lệ vì $u\in\mathbb R^2$ và bài toán không có điều kiện không âm. Điều kiện $Ad=0$ trở thành ràng buộc của mô hình bậc hai theo biến bước. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE03">
   <h2>Hàm Lagrange của mô hình có đẳng thức</h2>

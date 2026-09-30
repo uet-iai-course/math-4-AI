@@ -338,13 +338,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Liên kết ghi chú: hướng Newton cần nằm trong không gian hạt nhân để bảo toàn đẳng thức. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RE02 — Hướng bảo toàn ràng buộc đẳng thức
+### RE02 — Hướng khả thi
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu E01, E02. Nhìn thấy hạn chế của công cụ Newton vừa học trước khi thêm nhân tử vào bài con.
-- **Nội dung trên trang:** Tại điểm khả thi $u=(16,-2)^T$, bước Newton không ràng buộc $(-16,2)^T$ đi về gốc và phá tổng. $u\in\mathbb R^2$, không có điều kiện không âm. Muốn $u+td$ giữ đẳng thức khi $Au=b$ cần $Ad=0$. Dữ kiện: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$.
-- **Bố cục chọn:** Trái 60% hình hai trục $u_1,u_2$, đường tổng $u_1+u_2=14$, miền nhìn từ $-3$ tới $17$ để hiện điểm $(16,-2)$ và nghiệm $(10,4)$; ghi rõ không có điều kiện không âm. Phải phép tính $A(u+td)=b+tAd$.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: tiêu đề dài vượt nút điều hướng; bước Newton không ràng buộc được tính trước khi nêu dữ kiện $g,H$; khung kết luận dùng $\ker A$ chưa định nghĩa trên mặt trang; ghi chú chưa mở bằng đầu vào từ RE01. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
+- **Nội dung trên trang:** Dữ kiện VD3 tại $u=(16,-2)^T$: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$. Bước Newton không ràng buộc $-H^{-1}g=(-16,2)^T$ có $Ad=-14$, tới gốc, vi phạm đẳng thức. $A(u+td)=b+tAd$; giữ $Au=b$ với mọi $t$ khi và chỉ khi $Ad=0$. Kết luận: hướng khả thi $d\in\ker A=\{d:Ad=0\}$, với $A=[1\ 1]$ là $d_1+d_2=0$.
+- **Bố cục chọn:** Trái 60% hình bước vi phạm từ $(16,-2)$ về gốc; phải: dữ kiện → bước Newton tự do và $Ad=-14$ → $A(u+td)=b+tAd$ → điều kiện $Ad=0$; định nghĩa hướng khả thi ở chân. Đo 1600×900: đáy nội dung 744/829, tiêu đề kết thúc ở 346 px; 390×844: vừa khi cuộn, công thức cuộn ngang nhẹ trong `.formula`.
 - **Lý do bố cục cho sinh viên năm 3:** Nhìn thấy hạn chế của công cụ Newton vừa học trước khi thêm nhân tử vào bài con.
-- **Vào → ra:** Đầu vào: Tại $(16,-2)^T$, hướng Newton không ràng buộc $(-16,2)^T$ có $Ad=-14$. Đầu ra: Ràng buộc $Ad=0$ đưa trực tiếp yêu cầu bảo toàn đẳng thức vào mô hình theo biến $d$.
+- **Vào → ra:** Đầu vào: điểm đầu khả thi $(16,-2)^T$ và nghiệm tham chiếu $(10,4)^T$ (RE01); hướng Newton $-H^{-1}g$ của phần Newton. Đầu ra: điều kiện hướng khả thi $Ad=0$, $d\in\ker A$, dùng làm ràng buộc của mô hình bậc hai ở RE03.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** VD3 khả thi, dàn ý §6: F, u, A, b; g, H ở RE02; d, η ở RE05; N, Δz ở RE06. Chỉ đưa ký hiệu đã dùng trên trang, chưa đưa phần dư hoặc số gia nhân tử.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
