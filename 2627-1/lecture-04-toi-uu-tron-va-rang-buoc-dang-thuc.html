@@ -367,6 +367,24 @@ Cận trên bậc hai vừa suy ra đúng với mọi cặp điểm; chọn $y$ 
 Bổ đề giảm so $f(x^+)$ với $f(x)$; để so với $f^*$ cần thêm tính lồi và sự tồn tại của một điểm cực tiểu $x^*$. Bước 1 dùng giả thiết gradient Lipschitz qua bổ đề giảm. Bước 2 dùng tính lồi khả vi: $f(x^*)\ge f(x)+g^T(x^*-x)$, tức tiếp tuyến tại $x$ nằm dưới $f$, như trong hình mất mát logistic; ghép hai bước được $f(x^+)-f^*\le g^T(x-x^*)-\tfrac1{2L}\|g\|_2^2$. Bước 3 là đại số thuần túy: $\|x^+-x^*\|_2^2=\|x-x^*-\tfrac1Lg\|_2^2=\|x-x^*\|_2^2-\tfrac2Lg^T(x-x^*)+\tfrac1{L^2}\|g\|_2^2$; nhân hai vế với $L/2$ và chuyển vế cho đúng đẳng thức ở bước 3. Vì vế trái $f(x^+)-f^*\ge0$, hệ quả là $\|x^+-x^*\|_2\le\|x-x^*\|_2$: khoảng cách tới $x^*$ không tăng qua mỗi bước. Mỗi bước cho một bất đẳng thức có dạng hiệu của hai số hạng liên tiếp; cộng các bất đẳng thức này theo $k$ bước cho định lý tốc độ. Nguồn: Boyd và Vandenberghe (2004), §9.3; ghi chú bài giảng, mục B, định lý cận $O(1/k)$.
 </aside>
 </section>
+
+<section data-slide-id="RG15">
+<h2>Tốc độ hội tụ $O(1/k)$ <span class="self-study-badge">Tự học</span></h2>
+<div class="lec-grid">
+<div class="panel">
+<p><strong>Định lý.</strong> Cho $f$ lồi, khả vi trên $\mathbb R^n$, $\nabla f$ là <span class="math-nowrap">$L$-Lipschitz,</span> $f$ đạt cực tiểu tại $x^*$. Với <span class="math-nowrap">$x^{k+1}=x^k-\tfrac1L\nabla f(x^k)$</span> và mọi $k\ge1$:</p>
+<div class="formula emphasis" tabindex="0">$$f(x^k)-f^*\le\frac{L\|x^0-x^*\|_2^2}{2k}.$$</div>
+</div>
+<div>
+<p><strong>Chứng minh (ý chính).</strong> Cộng bất đẳng thức một bước với $j=0,\dots,k-1$; vế phải rút gọn còn <span class="math-nowrap">$\le\tfrac L2\|x^0-x^*\|_2^2$.</span> Vì $f(x^j)$ không tăng, <span class="math-nowrap">$k\,(f(x^k)-f^*)\le\sum_{j=1}^{k}(f(x^j)-f^*)$.</span></p>
+<p><strong>VD1:</strong> $\|x^0-x^*\|_2^2=20$, $L=7$: cận $70/k$.</p>
+</div>
+</div>
+<div class="takeaway">Để có $f(x^k)-f^*\le\varepsilon$ đủ lấy $k\ge LR^2/(2\varepsilon)$ với $R=\|x^0-x^*\|_2$: tốc độ dưới tuyến tính, và là cận cho trường hợp xấu nhất trong lớp hàm.</div>
+<aside class="notes">
+Bất đẳng thức một bước chặn sai số mục tiêu bằng hiệu hai bình phương khoảng cách liên tiếp; cộng theo các bước làm các số hạng giữa triệt tiêu. Cụ thể, với $j=0,\dots,k-1$: $\sum_{j=0}^{k-1}\big(f(x^{j+1})-f^*\big)\le\tfrac L2\big(\|x^0-x^*\|_2^2-\|x^k-x^*\|_2^2\big)\le\tfrac L2\|x^0-x^*\|_2^2$. Theo bổ đề giảm, $f(x^1)\ge f(x^2)\ge\dots\ge f(x^k)$, nên mỗi số hạng trong tổng không nhỏ hơn $f(x^k)-f^*$, và tổng không nhỏ hơn $k(f(x^k)-f^*)$; chia cho $k$ được định lý. Giả thiết được dùng: gradient Lipschitz trong bổ đề giảm, tính lồi trong bước tiếp tuyến, sự tồn tại $x^*$ để định nghĩa $f^*$ và khoảng cách ban đầu. Tốc độ $O(1/k)$ gọi là dưới tuyến tính: giảm sai số mười lần cần tăng số bước khoảng mười lần. Với VD1, $x^*=0$ nên $\|x^0-x^*\|_2^2=4+16=20$ và cận là $7\cdot20/(2k)=70/k$; muốn sai số không quá $\varepsilon=0{,}01$, cận yêu cầu $k\ge7000$. Cận đúng cho mọi hàm lồi có gradient $L$-Lipschitz, kể cả hàm không lồi mạnh, nên với một hàm cụ thể như VD1 có thể rất bi quan; khi $f$ lồi mạnh với hằng số $\mu$, ghi chú bài giảng chứng minh cận tuyến tính $(1-\mu/L)^k(f(x^0)-f^*)$. Định lý giả sử biết $L$ để đặt bước; khi không biết $L$, bước được chọn bằng quay lui. Nguồn: Boyd và Vandenberghe (2004), §9.3; ghi chú bài giảng, mục B.
+</aside>
+</section>
 </section>
 <section>
 <section data-slide-id="RN01">

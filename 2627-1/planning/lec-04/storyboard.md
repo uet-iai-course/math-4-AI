@@ -276,6 +276,17 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Số liệu:** Không có số mới; đại số khai triển trong ghi chú.
 - **Nguồn, ghi chú soạn:** BV §9.3; ghi chú bài giảng mục B.
 
+### RG15 — Tốc độ hội tụ $O(1/k)$
+
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ và tốc độ hội tụ của giảm gradient.
+- **Nội dung trên trang:** Định lý (giả thiết: lồi, khả vi, gradient $L$-Lipschitz, có $x^*$; bước $1/L$): $f(x^k)-f^*\le L\|x^0-x^*\|^2/(2k)$, $k\ge1$; chứng minh ý chính (cộng dồn, đơn điệu); VD1: cận $70/k$; kết luận: $k\ge LR^2/(2\varepsilon)$, tốc độ dưới tuyến tính, cận trường hợp xấu nhất.
+- **Bố cục chọn:** Lưới hai cột: trái khung định lý, phải chứng minh ý chính và VD1; kết luận dưới.
+- **Lý do tồn tại:** Kết quả chính của cụm tự học; trả lời câu hỏi bước cố định hội tụ nhanh đến đâu.
+- **Vào → ra:** Đầu vào: bất đẳng thức một bước (RG14), đơn điệu (RG13). Đầu ra: tốc độ $O(1/k)$ với $L$ đã biết; nhu cầu xử lý khi không biết $L$ (RG16); so sánh với thực tế ở RG17.
+- **Chuẩn và minh chứng:** LLO8 / CLO2 (phân tích tốc độ hội tụ); tự học, kiểm ở RG17.
+- **Số liệu:** VD1: $\|x^0-x^*\|^2=20$, $L=7$, cận $70/k$; $\varepsilon=0{,}01$ cần $k\ge7000$ theo cận.
+- **Nguồn, ghi chú soạn:** BV §9.3; ghi chú bài giảng mục B (định lý cận $O(1/k)$, định lý tuyến tính khi lồi mạnh).
+
 ### RN01 — Mô hình bậc hai cục bộ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm dòng nhu cầu nhận đầu ra của RG11 (VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước) và nêu phép đổi ký hiệu $W\to H=\nabla^2f(x)$; khung VD2 nêu lý do đổi ví dụ (không bậc hai, độ cong $1/s^2$ đổi theo $s$, một biến $s$ thay $x$, nghiệm $s^\star=1$); khung kết luận nêu cụ thể tính cục bộ của parabol. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): đổi tiêu đề thành "Mô hình bậc hai cục bộ" để không chạm nút điều hướng; dòng mở nêu $W=H=\nabla^2f(x)$ tại điểm hiện tại.
