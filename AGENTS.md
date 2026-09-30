@@ -55,16 +55,15 @@ Phải giữ thứ tự, bố cục, mức độ chi tiết và mạch nội dun
 
 ## Công nghệ bắt buộc
 
-- Sử dụng plugin Codex Slides cho khâu tiếp nhận tài liệu, xây dựng dàn ý, tham chiếu phong cách, rà soát trực quan và kiểm định sau chỉnh sửa.
-- Với bộ trang chiếu mới, mở Codex Slides trước, tạo dự án bền vững, đưa các trang chiếu mẫu và tài liệu bổ sung vào đúng vai trò nguồn nội dung, mẫu bố cục, tài sản thương hiệu hoặc tham chiếu trực quan.
+- Rà soát trực quan bằng trình duyệt trên bộ RevealJS chạy tại máy chủ cục bộ theo lệnh ở phần kiểm định. Lưu ảnh chụp màn hình ở khung 16:9 và màn hình hẹp làm bằng chứng cho các trang bị ảnh hưởng.
 - Sản phẩm trong kho phải là RevealJS. Dùng `2526-2-another-course/lecture-template.html` và CSS tương ứng làm mẫu cấu trúc, giao diện và cơ sở để triển khai; không liên kết bộ trang chiếu học kỳ trực tiếp tới tài sản chạy của thư mục mẫu.
 - Bộ trang chiếu trong học kỳ `2627-1/` phải chạy bằng tài sản cục bộ của chính thư mục học kỳ: `2627-1/lecture-style.css`, `2627-1/revealjs/`, `2627-1/plugin/` và `2627-1/vendor/katex/`. Mọi đường dẫn trong HTML phải là đường dẫn tương đối hợp lệ từ `2627-1/`; không phụ thuộc runtime chéo sang `2526-2-another-course/` hoặc một kho học phần khác.
 - Tất cả bộ trang chiếu đang phát hành của học phần phải dùng duy nhất một tệp CSS tự viết chung, hiện là `2627-1/lecture-style.css`. Không tạo CSS riêng từng bài, sao chép thành một nhánh CSS mới, đặt khối `<style>` hoặc thuộc tính `style` tĩnh trong HTML, hay dùng JavaScript để chèn kiểu trình bày tĩnh thay cho tệp chung. CSS của RevealJS, theme, Highlight, KaTeX và các thư viện phụ thuộc vẫn được giữ riêng theo thư viện; không hợp nhất mã thư viện vào CSS học phần. Thuộc tính style do RevealJS hoặc KaTeX sinh khi chạy để bố trí và điều khiển trạng thái không thuộc lệnh cấm này.
 - Ưu tiên dùng lại thành phần CSS chung. Kiểu chỉ phục vụ một bài hoặc một trang phải nằm trong tệp chung và được giới hạn bằng `data-lecture="NN"` trên thẻ `html`, kết hợp lớp có ý nghĩa hoặc `data-slide-id` khi cần. Dùng `:where()` cho điều kiện phạm vi khi cần giữ độ ưu tiên của selector cũ; không dùng mã trang đơn lẻ làm selector toàn học phần vì mã có thể trùng giữa các bài. Khi hợp nhất hoặc sửa CSS chung, phải giữ đúng thứ tự cascade, kiểm tra mọi bộ đang phát hành ở màn hình rộng và hẹp, và ghi phạm vi hồi quy trong nhật ký. Bản sao lưu, kho lưu trữ và thư mục mẫu không thuộc phạm vi bộ đang phát hành.
 - Dùng KaTeX qua `RevealMath.KaTeX` cho công thức, `RevealNotes` cho ghi chú diễn giả, `RevealHighlight` cho mã nguồn và `hash: true` để liên kết trực tiếp đến trang chiếu.
 - Giữ `lang="vi"`; dùng `<section>` ngoài cho từng phần và `<section>` trong cho từng trang chiếu; đặt chân trang ở cuối `.slides`. Cấu hình mặc định gồm `controlsLayout: "edges"`, `slideNumber: true`, `hashOneBasedIndex: true` và `hash: true`.
-- Không thay Codex Slides bằng công cụ trình chiếu khác. Không để kết quả chỉ tồn tại trong dự án Codex Slides; các thay đổi đã duyệt phải được phản ánh trong tệp RevealJS của kho.
-- Nếu Codex Slides không khả dụng, báo rõ giới hạn, tiếp tục bằng RevealJS và thực hiện đầy đủ các vòng rà soát cục bộ. Không tuyên bố đã kiểm tra bằng Codex Slides khi chưa thực hiện.
+- Không thay RevealJS bằng công cụ trình chiếu khác. Mọi thay đổi đã duyệt phải nằm trong tệp RevealJS của kho.
+- Nếu không mở được trình duyệt để rà soát trực quan, báo rõ giới hạn và thực hiện đầy đủ các kiểm tra tĩnh còn lại. Không tuyên bố đã kiểm tra trực quan khi chưa thực hiện.
 
 ## Ghi chú bài giảng và bài tập web tĩnh
 
@@ -185,7 +184,7 @@ Tác tử điều phối thực hiện các việc sau:
 - Xác nhận thư mục học kỳ, số bài, tên tệp đầu ra và thứ tự các mẫu trước khi soạn. Nếu người dùng chưa cung cấp mẫu đã hứa cung cấp, dừng ở bước kiểm kê và yêu cầu mẫu; không tự chọn mẫu thay thế.
 - Chỉ hỏi người dùng khi thiếu thông tin làm thay đổi đáng kể kết quả, chẳng hạn buổi học, thời lượng, đối tượng, phạm vi hoặc mẫu bắt buộc.
 - Giao việc lập kế hoạch cho tác tử lập kế hoạch; điều phối viên kiểm tra và phê duyệt kế hoạch trước khi triển khai.
-- Mở dự án Codex Slides và duy trì dự án này trong quá trình làm. Với mỗi thay đổi bằng công cụ, kiểm tra lại trạng thái bền vững và bề mặt hiển thị tương ứng.
+- Sau mỗi thay đổi bộ trang chiếu, kiểm tra lại tệp trong kho và trang chiếu tương ứng trên trình duyệt.
 
 ### 2. Tác tử lập kế hoạch
 
@@ -294,7 +293,7 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 - Tại thư mục gốc của kho, chạy `python3 -m reloadserver 8765`. Cổng là đối số vị trí; không dùng tùy chọn `--port`. Không thay đổi cổng nếu người dùng không yêu cầu. Ví dụ truy cập Bài giảng 01 qua `http://localhost:8765/2627-1/lecture-01-<chu-de>.html`.
 - Mở đúng URL, duyệt mọi trang chiếu và các trang chiếu dọc; kiểm tra tràn chữ, chữ quá nhỏ, phần tử chồng lấn, công thức lỗi, ảnh vỡ, tương phản và điều hướng bàn phím.
 - Kiểm tra riêng ở tỷ lệ 16:9 và một màn hình hẹp; tách hoặc rút gọn nội dung nếu có tràn.
-- Dùng Codex Slides để rà soát trực quan sau cùng. Sau mọi chỉnh sửa hoặc kết xuất, xác minh thay đổi vừa bền vững trong dự án vừa hiển thị đúng ở trang chiếu tương ứng.
+- Rà soát trực quan sau cùng bằng trình duyệt. Sau mọi chỉnh sửa, xác minh thay đổi đã được lưu trong tệp của kho và hiển thị đúng ở trang chiếu tương ứng.
 - Lặp lại vòng chỉnh sửa nếu còn lỗi chặn bàn giao hoặc nghiêm trọng. Không bàn giao chỉ dựa trên việc tệp HTML mở được.
 
 ## Cập nhật `index.html`
@@ -310,7 +309,7 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 
 - Phiên Claude Code chính giữ vai trò điều phối viên và chạy **Claude Opus 5.5** (`claude-opus-5-5`) với mức suy luận (reasoning effort) `high`: phân rã công việc, duyệt kế hoạch, hợp nhất kết quả và kiểm định đầu ra. Nếu phiên đang chạy mô hình hoặc mức suy luận khác, báo rõ trước khi giao việc; không tự coi phiên đó là điều phối viên hợp lệ.
 - Mọi tác tử con, kể cả tác tử do tác tử con tạo tiếp, phải dùng **Claude Opus 5.5** với mức suy luận `high` qua cơ chế tác tử gốc của Claude Code. Tạo tác tử bằng công cụ `Agent` với loại tác tử có định nghĩa trong `.claude/agents/` khai báo mô hình `claude-opus-5-5` và mức suy luận `high`; tác tử loại `fork` kế thừa mô hình của điều phối viên. Không giao vai trong quy trình cho loại tác tử cố định mô hình hoặc mức suy luận khác. Tiếp tục nhiệm vụ của tác tử đã tạo bằng `SendMessage`; lời gọi `Agent` mới tạo một tác tử mới.
-- Không dùng OpenRouter, cầu nối trong `openrouter-mcp/`, các script OpenRouter, Codex hoặc lời gọi mô hình qua API/CLI để thay cơ chế tác tử gốc của Claude Code. Các ủy quyền OpenRouter và GPT-6-Astra trong hồ sơ lịch sử không áp dụng cho quy trình hiện hành.
+- Không dùng OpenRouter, cầu nối trong `openrouter-mcp/`, các script OpenRouter hoặc lời gọi mô hình qua API/CLI để thay cơ chế tác tử gốc của Claude Code. Các ủy quyền OpenRouter và GPT-6-Astra trong hồ sơ lịch sử không áp dụng cho quy trình hiện hành.
 - Không đọc, nạp hoặc gửi `.env`, `.env.*` ở bất kỳ thư mục nào; không dùng khóa API hay bí mật để tạo hoặc xác thực tác tử. Không đưa bí mật, kể cả trong tệp có tên thông thường, vào lời nhắc, tệp đính kèm, kết quả công cụ hoặc nhật ký.
 - Mỗi nhiệm vụ phải có vai trò, đầu vào, đầu ra, phạm vi tệp và điều kiện hoàn thành cụ thể. Tác tử chỉ đọc có thể chạy song song trong giới hạn khả dụng; mặc định chỉ một tác tử được ghi tệp tại một thời điểm. Điều phối viên phải chấp nhận hoặc bác bỏ kết quả trước giai đoạn phụ thuộc.
 - Ghi tên tác tử, vai trò, loại tác tử, mô hình và mức suy luận đã chỉ định từ lời gọi công cụ hoặc định nghĩa tác tử trong nhật ký. Chỉ ghi mô hình thực chạy hoặc tuyến xác thực khi công cụ cung cấp bằng chứng; không coi lời tự khai của tác tử là bằng chứng runtime.
@@ -343,7 +342,7 @@ Chỉ coi bộ trang chiếu hoàn thành khi:
 - Các công thức, ví dụ số, giả thiết và nguồn đã được kiểm tra.
 - Bộ trang chiếu chạy tại cổng `8765`, không có tài nguyên hỏng hoặc lỗi hiển thị nghiêm trọng.
 - `2627-1/index.html` liên kết đúng tới bài đã hoàn thành, dùng cấu trúc chỉ mục quy định và không lộ tài liệu quy trình nội bộ.
-- Bản RevealJS trong kho và phiên bản đã rà soát trong Codex Slides phản ánh cùng nội dung được duyệt.
+- Bản RevealJS trong kho là đúng phiên bản đã được rà soát trực quan trên trình duyệt.
 - Bộ trang chiếu có các commit riêng theo mốc thay đổi, phạm vi commit đã được kiểm tra, mọi commit thuộc phần việc đã được đẩy thành công lên upstream của nhánh hiện tại và đã được xác minh có trên upstream.
 
 Khi bàn giao, nêu ngắn gọn: tệp trang chiếu, URL xem cục bộ, nguồn chính, nguồn MIT OpenCourseWare bổ sung nếu có, hình đã vẽ lại và ngoại lệ raster, các kiểm tra đã chạy, sai khác có chủ ý so với mẫu, hash và thông điệp commit, nhánh cùng upstream đã đẩy, kết quả xác minh sau push và các giới hạn còn lại. Nếu push thất bại, không bàn giao như một bộ trang chiếu đã hoàn thành; báo hash commit cục bộ, lỗi và hướng xử lý đề xuất.
