@@ -85,9 +85,9 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** Bài 03 S02-04, S05-03, S05-05b, S05-06a/b; đề cương buổi 4. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 3/80 LT + 0 BT (LT xấp xỉ 0.0375; dùng phân số để cộng chính xác).
 
-### RP03 — Mục tiêu học tập và cấu trúc phương pháp
+### RP03 — Mục tiêu học tập
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu P01, P03. Bản đồ thể hiện quan hệ phụ thuộc; ngăn hiểu nhầm rằng KKT tự cho một thuật toán duy nhất.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo rà soát cuối: đổi tiêu đề thành "Mục tiêu học tập" (tiêu đề cũ 946 px đè nút điều hướng). Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu P01, P03. Bản đồ thể hiện quan hệ phụ thuộc; ngăn hiểu nhầm rằng KKT tự cho một thuật toán duy nhất.
 - **Nội dung trên trang:** Mục tiêu diễn đạt bằng động từ theo MT1–MT5; mã MT chỉ ở kế hoạch và tuyến: KKT → mô hình chọn hướng → Newton → giữ/phục hồi đẳng thức → bảo đảm sai số. KKT xác định đích; lựa chọn mô hình và quy tắc bước là thiết kế thêm.
 - **Bố cục chọn:** Một sơ đồ ngang ở nửa trên; dưới là ba đầu ra đánh giá: tự suy ra hệ, thực hiện một bước, kiểm đúng tiêu chí. Thời lượng và mã chỉ nằm trong kế hoạch.
 - **Lý do bố cục cho sinh viên năm 3:** Bản đồ thể hiện quan hệ phụ thuộc; ngăn hiểu nhầm rằng KKT tự cho một thuật toán duy nhất.
@@ -97,9 +97,9 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** Bài 03 S02-04, S05-03, S05-05b, S05-06a/b; đề cương buổi 4. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 3/80 LT + 0 BT (LT xấp xỉ 0.0375; dùng phân số để cộng chính xác).
 
-### RP04 — Điều kiện KKT và hướng bảo toàn đẳng thức
+### RP04 — KKT với ràng buộc đẳng thức
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu P04. Kiểm trực tiếp kết quả bài 03 trước khi dùng vào bài con, đồng thời giữ kiểm tra đại số cần thiết.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo rà soát cuối: đổi tiêu đề thành "KKT với ràng buộc đẳng thức" (tiêu đề cũ 986 px đè nút điều hướng; nguồn ghi "Bài giảng 03"; ghi chú "Số hạng $A^T\nu$"). Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu P04. Kiểm trực tiếp kết quả bài 03 trước khi dùng vào bài con, đồng thời giữ kiểm tra đại số cần thiết.
 - **Nội dung trên trang:** Câu hỏi: với bài lồi chỉ có $Au=b$, viết Lagrange và hai phương trình KKT; có cần $\nu\ge0$ không? Với $A=[1\;1]$, $d=(d_1,d_2)^T$, tính $Ad$ và tìm điều kiện trên $d$ để giữ tính khả thi. Chưa cho hướng số sẽ suy ra ở phần Newton khả thi.
 - **Bố cục chọn:** Hai ô: trái điền công thức KKT, phải phép nhân ngắn; chừa vùng dưới để tính. Đáp án trong ghi chú.
 - **Lý do bố cục cho sinh viên năm 3:** Kiểm trực tiếp kết quả bài 03 trước khi dùng vào bài con, đồng thời giữ kiểm tra đại số cần thiết.

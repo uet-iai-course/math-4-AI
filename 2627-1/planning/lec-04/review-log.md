@@ -2,6 +2,8 @@
 
 ## Duyệt từng trang theo yêu cầu người dùng — 2026-09-30
 
+**Trạng thái: hoàn tất cho RG02–RZ03 (2026-09-30).** Mọi trang từ RG02 đến RZ03 đã được duyệt, sửa, kiểm trên trình duyệt ở 1600×900 và 390×844, commit và push riêng; năm lượt rà độc lập theo phần (G, N, E, RR) và rà cuối toàn bộ đã được xử lý, bảng phát hiện ở các mục dưới.
+
 Yêu cầu: duyệt lần lượt từng trang từ RG02, xác định trang muốn nói gì, đề xuất rồi sửa để tiêu đề ngắn gọn, học thuật, mạch lập luận chặt và khái niệm không xuất hiện đột ngột; commit và push sau mỗi trang. Tác tử chỉnh sửa: nhánh (fork) của điều phối viên, Claude Opus 5.5 kế thừa từ phiên điều phối; áp dụng `no-ai-slop` chế độ Edit và tự đối chiếu `eval.md`. Kiểm tra trình duyệt: Playwright Chromium qua `python3 -m reloadserver 8765`, khung 1600×900 và 390×844 (cuộn `.lecture-viewport` tới cuối). Rà toán và mạch lập luận độc lập theo phần do điều phối viên giao sau lượt sửa.
 
 | Trang | Trang muốn nói gì | Vấn đề | Thay đổi | Kiểm tra trình duyệt |
@@ -130,6 +132,26 @@ Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus
 | R-S8 | nhẹ | RR03 (ghi chú) | Câu "không phải một hệ khác" dùng phủ định | Đã sửa: "phương pháp mới mở rộng phương pháp cũ: khi $r_p=0$ hai hệ trùng nhau" |
 
 Kiểm tra lại: RR01, RR03, RR04, RR05, RR06 và các trang đổi ký hiệu (RG06, RN01, RN05, RN06, RN07) ở 1600×900 đều 674/674, không lỗi KaTeX hay lỗi console; 390×844 vừa khi cuộn, chỉ `.formula` và `.table-scroll` cuộn ngang theo cơ chế sẵn có. RR06 lần đầu tràn 30 px sau khi thêm "tại điểm thử"; rút gọn bước 3 và kết luận để vừa khung.
+
+### Rà soát cuối toàn bộ bộ trang chiếu và xử lý — 2026-09-30
+
+Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus 5.5 kế thừa. Kết quả: 0 chặn bàn giao, 0 nghiêm trọng, 2 trung bình, 9 nhẹ; mọi số liệu tính lại đúng; sáu ranh giới giữa bảy mạch đạt. Tác tử chỉnh sửa (nhánh của điều phối viên, Claude Opus 5.5 kế thừa) sửa trong hai commit: trang chiếu và học liệu.
+
+| Mã | Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|---|
+| F-M1 | trung bình | RS04 | Phát biểu cận thiếu giả thiết $N^THN\succ0$ | Đã sửa: "Nếu $u$ khả thi, $N^THN\succ0$, $\psi$ đạt cực tiểu và $\delta_{eq}<1$" |
+| F-M2 | trung bình | RS03 (ghi chú) | Chưa nêu cận định lượng cho tiêu chí dừng | Đã sửa: với $\delta\le0{,}68$, $-\delta-\log(1-\delta)\le\delta^2$ (BV §9.6.3), nên dừng khi $\delta^2\le\varepsilon$ bảo đảm $f-f^*\le\varepsilon$ |
+| F-S1 | nhẹ | RP03, RP04, RP02 | Tiêu đề RP03 (946 px), RP04 (986 px) đè nút điều hướng; RP02 sát mép | Đã sửa: RP03 "Mục tiêu học tập" (396 px); RP04 "KKT với ràng buộc đẳng thức" (662 px); RP02 đo 779,5 px sau khi chuyển trang ổn định, giữ nguyên |
+| F-S2 | nhẹ | RP00–RP04 | "Bài 03"/"bài 03" thay vì "Bài giảng 03" | Đã sửa trên mặt trang và ghi chú |
+| F-S3 | nhẹ | RP04 (ghi chú) | "Hạng $A^T\nu$" dễ đọc thành hạng ma trận | Đã sửa: "Số hạng $A^T\nu$" |
+| F-S4 | nhẹ | RZ01 | Dung sai $\varepsilon$ khác tên $\varepsilon_{\mathrm{model}}$ ở RN06, RE07 | Đã sửa ở RZ01 và kết luận RS04 |
+| F-S5 | nhẹ | các tiêu đề gần trùng | Một số tiêu đề gần nhau về chữ | Giữ nguyên: phân biệt được theo chức năng trang |
+| F-S6 | nhẹ | RZ02 | Tiêu đề dùng "ridge" | Giữ nguyên để vừa độ rộng; mặt trang giải nghĩa "hệ số chính quy hóa (ridge)" |
+| F-S7 | nhẹ | học liệu | Ký hiệu ghi chú bài giảng phần đẳng thức lệch trang chiếu; "độ giảm khả thi"; "Bài 03" | Xử lý trong commit học liệu riêng |
+| F-S8 | nhẹ | RS04 | Chưa nêu $\hat u$, $N$ trên mặt trang | Đã sửa: "$\hat u$ khả thi, cột của $N$ là cơ sở $\ker A$" |
+| F-S9 | nhẹ | RZ02 (ghi chú) | Câu cuối dài | Đã sửa: "$\nu$ là nhân tử đẳng thức, tự do dấu." |
+
+Kiểm tra lại: RP02, RP03, RP04, RS03, RS04, RZ01, RZ02 ở 1600×900 đều 674/674, không lỗi KaTeX hay lỗi console; 390×844 vừa khi cuộn.
 ### Yêu cầu và thay đổi
 
 - **Yêu cầu:** người dùng hỏi trang "Đạo hàm hướng và biến thiên cục bộ" muốn nói gì. Điều phối viên xác định luận điểm (dấu của $g^Td$ quyết định $f$ giảm hay tăng khi bước dương đủ nhỏ) chỉ nằm trong ghi chú; mặt trang có hình, bảng bốn dữ kiện và kết luận, không có định nghĩa hay phép tính $g^Td$. Người dùng duyệt phương án sửa.
