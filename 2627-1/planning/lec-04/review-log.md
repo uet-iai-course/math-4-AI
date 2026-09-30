@@ -80,6 +80,25 @@ Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus
 
 Kiểm tra trình duyệt sau sửa (1600×900 và 390×844, cuộn `.lecture-viewport` tới cuối): RN01 đáy 828/829, tiêu đề kết thúc ở 532 px; RN06 đáy 778/829; RN07 đáy 570/829; không lỗi KaTeX hay console.
 
+
+### Rà soát độc lập phần E (RE01–RE08) và xử lý — 2026-09-30
+
+Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus 5.5 kế thừa. Kết quả: 0 chặn bàn giao, 0 nghiêm trọng, 1 trung bình, 9 nhẹ; mọi số liệu tính lại đúng. Các sửa gộp một commit sau RR07.
+
+| Mã | Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|---|
+| E-S1 | trung bình | RE07, bài tập Bài 5 | Bài tập gọi $\delta_{eq}$ là "độ giảm khả thi", trang chiếu gọi "độ giảm Newton của bài con" | Đã sửa: `exercises.md` Bài 5 (đề và lời giải) dùng "độ giảm Newton của bài con"; chạy đồng bộ và `--check` |
+| E-S2 | nhẹ | RE06 | Hai dòng căn theo dấu bằng đọc như hai đẳng thức song song, thiếu phép suy ra | Đã sửa: dòng đầu viết $N^T(g+HN\Delta z+A^T\eta)=0$, dòng sau mở bằng $\Rightarrow$ |
+| E-S3 | nhẹ | RE06 | Dòng nhu cầu chưa nói hệ quả tính toán của việc ma trận khối không xác định dương | Đã sửa: "…nên không giải được bằng phân rã Cholesky; … hệ cỡ $n-p$ xác định dương" |
+| E-M1 | nhẹ | RE07 | "Điều kiện" chưa nói là điều kiện đủ | Đã sửa: "Điều kiện (đủ)"; RR06 dùng cùng nhãn |
+| E-M2 | nhẹ | RE06 | Cỡ $n\times(n-p)$ của $N$ cần $A$ đủ hạng hàng | Đã sửa: thêm "($A$ đủ hạng hàng)" |
+| E-S4 | nhẹ | RE03 | Không nói bài con là $Q_H$ bỏ hằng số $F(u)$ | Đã sửa: "(bỏ hằng số $F(u)$)" |
+| E-S5 | nhẹ | RE04 | Cột trái có thể gọn hơn (tùy chọn) | Giữ nguyên: bố cục hiện vừa khung và gắn nhãn hàng rõ |
+| E-S6 | nhẹ | RE08 | Câu hỏi về $\eta$ tách ở câu 2 dù thuộc câu 1 | Đã sửa: cuối câu 1 hỏi vì sao $\eta$ trùng $\nu^*$; câu 2 chỉ còn hệ rút gọn |
+| E-S7 | nhẹ | `equality-start-new.svg` (RE01) | Nhãn "F = 140" nằm giữa hai elip; "F = 266" không nằm trên elip của nó | Đã sửa: "F = 140" hạ xuống $y=185$; "F = 266" đặt tại $(505,205)$ trên elip ngoài (vị trí $y=138$ đề xuất bị đường khả thi cắt qua); dữ liệu không đổi |
+| E-S8 | nhẹ | RR01 (ranh giới RE08→RR01) | Ghi chú cần mở bằng nhu cầu từ RE08, nêu lý do $\nu$ thành một phần của điểm lặp, dùng "Bài giảng 03", bỏ câu độn | Đã sửa trong lượt duyệt RR01 (`e4ab485`, `9c6655a`) |
+
+Kiểm tra lại: RE01, RE03, RE06, RE07, RE08 ở 1600×900 đều 674/674, không lỗi KaTeX hay lỗi console; 390×844 vừa khi cuộn, chỉ `.formula` cuộn ngang theo cơ chế sẵn có.
 ## Sửa RG01 theo yêu cầu người dùng — 2026-09-30
 
 **Trạng thái: đã sửa theo yêu cầu và theo vòng rà toán học–mạch lập luận được điều phối viên duyệt; không còn lỗi chặn bàn giao hoặc nghiêm trọng.**
