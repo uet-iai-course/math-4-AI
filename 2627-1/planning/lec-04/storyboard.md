@@ -436,11 +436,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RR02 — Tuyến tính hóa hệ KKT
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu E10. Dùng lại RN03 cho một hệ hai nhóm, làm rõ hàng nào là xấp xỉ và hàng nào đúng chính xác.
+- **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): giữ tiêu đề; thêm dòng nối với phép tuyến tính hóa điều kiện dừng của Newton không ràng buộc; gắn nhãn "Xấp xỉ bậc một" và "Đúng (ràng buộc affine)" cho hai công thức. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
 - **Nội dung trên trang:** r_d(u+d,ν+Δν)≈r_d+Hd+AᵀΔν; r_p(u+d)=r_p+Ad chính xác. Đặt hai biểu thức mô hình bằng 0.
-- **Bố cục chọn:** Một cột hai cặp dòng thật/mô hình; dấu≈ chỉ ở hàng gradient, dấu= ở hàng đẳng thức; số gia Δν nhấn bằng chữ.
+- **Bố cục chọn:** Dòng mở nối RN03 và khai báo số gia; khung hai công thức có nhãn vai trò; khung nhấn hai biểu thức mô hình bằng 0. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 525 px.
 - **Lý do bố cục cho sinh viên năm 3:** Dùng lại RN03 cho một hệ hai nhóm, làm rõ hàng nào là xấp xỉ và hàng nào đúng chính xác.
-- **Vào → ra:** Đầu vào: Phần dư đối ngẫu phụ thuộc vào gradient và nhân tử; phần dư khả thi là hàm affine. Đầu ra: Đặt hai biểu thức tuyến tính bằng không cho hệ có vế phải $-[r_d;r_p]$.
+- **Vào → ra:** Đầu vào: hai phần dư $r_d$, $r_p$ của RR01 và cách tuyến tính hóa điều kiện dừng ở RN03. Đầu ra: hai nhóm phương trình tuyến tính theo $(d,\Delta\nu)$ với vế phải $-r_d$, $-r_p$; RR03 viết dạng ma trận.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RR07.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.

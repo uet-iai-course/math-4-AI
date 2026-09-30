@@ -986,3 +986,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RE08 đổi tên thành "Bước Newton khả thi"; hai câu hỏi dùng điểm đầu khả thi mới $(8,6)^T$ (hệ khối cho $d=(2,-2)^T$, $\eta=-20$; hệ rút gọn $\Delta z=-2$); bỏ ba ô trang trí.
 - Sửa theo rà soát phần N: RN01 đổi tên thành "Mô hình bậc hai cục bộ"; RN07 định nghĩa hội tụ bậc hai trên mặt trang, câu 2 không in sẵn dãy số và dùng "khoảng cách tới nghiệm" cho $1-s^k$; ghi chú RN06 nêu $\alpha<1/2$ để nhận bước đầy đủ.
 - RR01 đổi tên thành "Phần dư KKT"; mặt trang nêu nhu cầu từ RE08, định nghĩa $r_d$, $r_p$ và tương đương với KKT trước số liệu VD3; ghi chú giải thích chỉ số $d$ (đối ngẫu) khác hướng $d$ và vai trò ước lượng của $\nu=4$.
+- RR02 giữ tiêu đề; dòng mở nối phép tuyến tính hóa $\nabla f(x+d)=0$ của Newton không ràng buộc; hai công thức có nhãn "Xấp xỉ bậc một" ($\nabla F$ phi tuyến, $r_d$ tuyến tính theo $\nu$) và "Đúng" (ràng buộc affine); ghi chú nêu với VD3 bậc hai xấp xỉ trở thành đẳng thức.

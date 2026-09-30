@@ -569,14 +569,16 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 
 <section data-slide-id="RR02">
 <h2>Tuyến tính hóa hệ KKT</h2>
-<p>Số gia $d\in\mathbb R^n$, $\Delta\nu\in\mathbb R^p$; $H=\nabla^2F(u)$.</p>
+<p>Như với $\nabla f(x+d)=0$ ở Newton không ràng buộc: tuyến tính hóa hai phần dư quanh $(u,\nu)$ theo số gia $d\in\mathbb R^n$, $\Delta\nu\in\mathbb R^p$; $H=\nabla^2F(u)$.</p>
 <div class="panel">
+<p><strong>Xấp xỉ bậc một</strong> ($\nabla F$ phi tuyến; $r_d$ tuyến tính theo $\nu$):</p>
 <div class="formula" tabindex="0"><p>$r_d(u+d,\nu+\Delta\nu)\approx r_d+Hd+A^T\Delta\nu$</p></div>
+<p><strong>Đúng</strong> (ràng buộc affine):</p>
 <div class="formula" tabindex="0"><p>$r_p(u+d)=r_p+Ad$</p></div>
 </div>
 <p>Đặt hai biểu thức mô hình bằng 0:</p>
 <div class="formula emphasis" tabindex="0"><p>$r_d+Hd+A^T\Delta\nu=0,\qquad r_p+Ad=0.$</p></div>
-<aside class="notes">Hệ Newton được xây bằng tuyến tính hóa từng phần dư quanh điểm hiện tại. Do $\nabla F$ có thể phi tuyến, phần dư đối ngẫu tại nhân tử cố định được xấp xỉ bởi $r_d+Hd$; biến thiên nhân tử bổ sung số hạng $A^T\Delta\nu$. Hàng ràng buộc thì chính xác: vì ràng buộc là affine, $A(u+d)-b=r_p+Ad$ là đẳng thức, không phải xấp xỉ. Dấu xấp xỉ thuộc phần dư chứa gradient; dấu bằng thuộc phần dư affine. Số gia $\Delta\nu$ là ẩn mới, khác $\nu$ hiện tại. Đặt cả hai biểu thức mô hình bằng 0, thu được vế phải $-r_d$ và $-r_p$ cùng hai ẩn $d$ và $\Delta\nu$ của hệ Newton. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<aside class="notes">Hai phần dư $r_d$ và $r_p$ của RR01 cần được đưa đồng thời về 0; hệ $r_d=0$, $r_p=0$ phi tuyến theo $u$ khi $\nabla F$ phi tuyến. Newton không ràng buộc đã giải bài toán tương tự cho một phương trình: tuyến tính hóa $\nabla f(x+d)=0$ cho $Hd=-g$. Ở đây áp dụng cùng phép tuyến tính hóa cho cả hệ KKT, với hai ẩn là số gia $d$ của điểm và số gia $\Delta\nu$ của nhân tử. Trong $r_d=\nabla F(u)+A^T\nu$, chỉ $\nabla F$ phi tuyến; khai triển bậc một cho $\nabla F(u+d)\approx\nabla F(u)+Hd$, còn $A^T(\nu+\Delta\nu)=A^T\nu+A^T\Delta\nu$ là đẳng thức vì $r_d$ tuyến tính theo $\nu$. Hàng ràng buộc cũng chính xác: $A(u+d)-b=r_p+Ad$ vì ràng buộc affine. Dấu xấp xỉ vì vậy chỉ đến từ $\nabla F$. Với VD3, $F$ bậc hai nên $H$ không đổi và xấp xỉ trở thành đẳng thức; một bước đầy đủ sẽ đưa cả hai phần dư về 0. Số gia $\Delta\nu$ là ẩn mới, khác nhân tử hiện tại $\nu$. Đặt hai biểu thức mô hình bằng 0 cho hai nhóm phương trình tuyến tính theo $(d,\Delta\nu)$, với vế phải $-r_d$ và $-r_p$; dạng ma trận của hệ này là hệ Newton cho hai phần dư. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài giảng 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR03">
