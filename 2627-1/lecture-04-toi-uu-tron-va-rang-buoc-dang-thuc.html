@@ -620,25 +620,25 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RR06">
-<h2>Thuật toán Newton từ điểm chưa khả thi</h2>
-<p>Dừng khi $\|r_p\|_2\le\varepsilon_p$ và $\|r_d\|_2\le\varepsilon_d$.</p>
-<div class="lec-grid lec-grid--65-35">
-<div>
+<h2>Newton từ điểm chưa khả thi</h2>
+<div class="lec-grid">
+<div class="panel">
 <ol class="steps">
-<li>Tính $r_d,r_p$; kiểm hai dung sai để dừng.</li>
+<li>Tính $r_d$, $r_p$; dừng khi <span class="math-nowrap">$\|r_p\|_2\le\varepsilon_p$</span> và <span class="math-nowrap">$\|r_d\|_2\le\varepsilon_d$.</span></li>
 <li>Giải hệ Newton cho $d$, $\Delta\nu$.</li>
-<li>Quay lui: kiểm miền và tiêu chí $\|r_{new}\|_2\le(1-\alpha t)\|r\|_2$.</li>
-<li>Cập nhật $u+td$, $\nu+t\Delta\nu$.</li>
-<li>Lặp lại với điểm và nhân tử mới.</li>
+<li>Quay lui từ $t=1$: nhận $t$ khi $u+td\in\operatorname{dom}F$ và <span class="math-nowrap">$\|r(u+td,\nu+t\Delta\nu)\|_2\le(1-\alpha t)\|r\|_2$.</span></li>
+<li>Cập nhật $u\leftarrow u+td$, $\nu\leftarrow\nu+t\Delta\nu$; lặp lại.</li>
 </ol>
 </div>
-<div>
-<div class="formula" tabindex="0"><p>$r_p^+=(1-t)r_p$</p></div>
-<div class="formula" tabindex="0"><p>$\nu^+=(1-t)\nu+t\eta$</p></div>
-<p>Bước đầy đủ $t=1$ cho $\nu^+=\eta$.</p>
+<div class="panel">
+<p><strong>Đầu vào:</strong> <span class="math-nowrap">$u^0\in\operatorname{dom}F$,</span> $\nu^0$, <span class="math-nowrap">$\varepsilon_p,\varepsilon_d&gt;0$,</span> <span class="math-nowrap">$\alpha,\beta$.</span></p>
+<p><strong>Đầu ra:</strong> $(u,\nu)$ đạt hai dung sai.</p>
+<p><strong>Điều kiện (đủ):</strong> <span class="math-nowrap">$H\succ0$,</span> $A$ đủ hạng hàng.</p>
+<p><strong>Sau bước $t$:</strong> <span class="math-nowrap">$r_p^+=(1-t)r_p$;</span> bước $t=1$ cho <span class="math-nowrap">$Au^+=b$.</span></p>
 </div>
 </div>
-<aside class="notes">Đầu vòng lặp, tính hai phần dư và kiểm đồng thời hai dung sai trước khi giải hệ. Nếu chưa đạt, giải hướng rồi quay lui và cập nhật đồng thời hai biến. Đầu vào gồm điểm trong miền, nhân tử ban đầu, hai dung sai dương và tham số Armijo. Đạo hàm âm tại $t=0$ bảo đảm tồn tại bước dương đủ nhỏ thỏa tiêu chí, nhưng không bảo đảm mọi $t$ đều được nhận, nên phải thử giảm bước. Khi chỉ đi một phần bước $t&lt;1$, phần dư khả thi còn $(1-t)r_p$ và nhân tử mới là $(1-t)\nu+t\eta$, không phải giá trị nhân tử đầy đủ $\eta$; với $t=1$, $\nu^+=\eta$ và đẳng thức được khôi phục chính xác theo số học lý tưởng. Hệ khối đặc có chi phí $O((n+p)^3)$; cấu trúc thưa có thể giảm chi phí. Cần $H\succ0$, $A$ đủ hạng hàng; phát biểu hội tụ bậc hai chỉ cục bộ, khi Jacobian KKT khả nghịch tại nghiệm, Lipschitz gần nghiệm và bắt đầu đủ gần. Với VD3, $t=1/2$ cho $\nu^+=-8$, $r_p^+=-5/2$ và $r_d^+=(3,22)^T$: phần dư chưa triệt tiêu. Phần dư nhỏ chỉ là chứng nhận gần thỏa KKT theo dung sai, chưa tự là cận sai số mục tiêu. Hai dung sai tương ứng hai nhóm điều kiện KKT và cần được kiểm riêng khi dừng. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<div class="takeaway">Sau một bước đầy đủ, $r_p=0$ và thuật toán trùng Newton khả thi.</div>
+<aside class="notes">Chuẩn phần dư ghép $\|r\|_2$ của RR05 thay giá trị $F$ trong quy tắc nhận bước. Mỗi vòng lặp tính hai phần dư và kiểm đồng thời hai dung sai trước khi giải hệ; hai dung sai ứng với hai nhóm điều kiện KKT, nên phải kiểm cả hai. Nếu chưa đạt, giải hệ Newton cho $(d,\Delta\nu)$, quay lui trên $\|r\|_2$ và cập nhật đồng thời điểm và nhân tử. Tiêu chí $\|r(u+td,\nu+t\Delta\nu)\|_2\le(1-\alpha t)\|r\|_2$ có dạng Armijo: đạo hàm của $\|r\|_2$ theo $t$ tại $0$ bằng $-\|r\|_2$, nên tồn tại bước dương đủ nhỏ thỏa tiêu chí, nhưng không bảo đảm mọi $t$ đều được nhận. Vì ràng buộc affine và $Ad=-r_p$, phần dư khả thi sau bước $t$ là $r_p+tAd=(1-t)r_p$; nhân tử mới là $\nu+t\Delta\nu=(1-t)\nu+t\eta$ với $\eta=\nu+\Delta\nu$. Khi một bước $t=1$ được nhận, $Au=b$ đúng từ đó về sau, hàng thứ hai của hệ trở thành $Ad=0$ và thuật toán trùng Newton khả thi. Với VD3 tại $(1,8)^T$, $\nu=4$, bước $t=1/2$ cho $u^+=(11/2,6)^T$, $\nu^+=-8$, $r_p^+=-5/2$ và $r_d^+=(11,30)^T+(-8,-8)^T=(3,22)^T$: phần dư chưa triệt tiêu. Hệ khối đặc có chi phí $O((n+p)^3)$ mỗi vòng; cấu trúc thưa có thể giảm chi phí. Điều kiện $H\succ0$ và $A$ đủ hạng hàng là đủ để hệ có nghiệm duy nhất; hội tụ bậc hai chỉ là phát biểu cục bộ, khi Jacobian KKT khả nghịch tại nghiệm, Lipschitz gần nghiệm và điểm đầu đủ gần. Phần dư nhỏ chứng nhận gần thỏa KKT theo dung sai, chưa là cận sai số mục tiêu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.2; Bài giảng 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR07">

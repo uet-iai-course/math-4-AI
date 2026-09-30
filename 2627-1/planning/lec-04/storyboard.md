@@ -482,13 +482,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** Độ giảm chuẩn phần dư ghép không suy ra chuẩn của từng thành phần giảm đơn điệu.  BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 7/120 LT + 0 BT (LT xấp xỉ 0.0583; dùng phân số để cộng chính xác).
 
-### RR06 — Thuật toán Newton từ điểm chưa khả thi
+### RR06 — Newton từ điểm chưa khả thi
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu E10. Làm rõ ảnh hưởng của giảm bước và tránh dùng giá trị nhân tử đầy đủ khi chỉ đi một phần bước.
+- **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Thuật toán Newton từ điểm chưa khả thi" (đè nút điều hướng) thành "Newton từ điểm chưa khả thi"; gộp dòng dừng vào bước 1, định nghĩa rõ phần dư sau bước trong tiêu chí quay lui, bốn bước thay năm; thêm khung đầu vào, đầu ra, điều kiện (đủ) theo mẫu RE07; kết luận nối với Newton khả thi. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
 - **Nội dung trên trang:** Tính hai phần dư; giải hệ; quay lui bằng cách kiểm miền và tiêu chí $\|r_{new}\|_2\le(1-\alpha t)\|r\|_2$; cập nhật $u+td$, $\nu+t\Delta\nu$. Dừng khi cả hai chuẩn phần dư đạt dung sai. Đạo hàm âm bảo đảm có bước dương đủ nhỏ thỏa tiêu chí, không bảo đảm mọi t đều được nhận. $r_p^+=(1-t)r_p$ và $\nu^+=(1-t)\nu+t\eta$; với $t=1$ ta có $\nu^+=\eta$.
-- **Bố cục chọn:** Trái 65% giả mã năm bước; phải hai công thức cập nhật phần dư/nhân tử, t=1 được đánh dấu bằng chữ.
+- **Bố cục chọn:** Lưới 50–50: trái khung bốn bước; phải khung đầu vào, đầu ra, điều kiện và tính chất sau bước $t$; kết luận dưới. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 666 px.
 - **Lý do bố cục cho sinh viên năm 3:** Làm rõ ảnh hưởng của giảm bước và tránh dùng giá trị nhân tử đầy đủ khi chỉ đi một phần bước.
-- **Vào → ra:** Đầu vào: Quay lui nhận bước khi điểm thử thuộc miền và chuẩn phần dư giảm đủ. Đầu ra: Sau cập nhật, cả phần dư khả thi và phần dư đối ngẫu phải đạt dung sai tương ứng để dừng.
+- **Vào → ra:** Đầu vào: tiêu chí $\|r\|_2$ của RR05 và hệ Newton RR03. Đầu ra: thuật toán với hai dung sai; $r_p$ co theo $1-t$, sau bước đầy đủ thuật toán trùng Newton khả thi; RR07 kiểm tra lập hệ và điều kiện dừng.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RR07.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
