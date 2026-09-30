@@ -582,18 +582,19 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RR03">
-<h2>Hệ Newton cho hai phần dư</h2>
+<h2>Hệ Newton cho phần dư KKT</h2>
 <div class="formula emphasis" tabindex="0"><p>$\begin{bmatrix}H&amp;A^T\\A&amp;0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}r_d\\r_p\end{bmatrix}.$</p></div>
 <div class="table-scroll" tabindex="0">
 <table>
-<tr><th>Đối chiếu</th><th>Hệ khả thi</th><th>Hệ phần dư</th></tr>
+<tr><th>Đối chiếu</th><th>Điểm khả thi</th><th>Điểm chưa khả thi</th></tr>
 <tr><td>Ẩn thứ hai</td><td>nhân tử $\eta$</td><td>số gia $\Delta\nu$</td></tr>
 <tr><td>Vế phải</td><td>$-[g;0]$</td><td>$-[r_d;r_p]$</td></tr>
 <tr><td>Giả thiết</td><td>$H\succ0$, $A$ đủ hạng hàng</td><td>giữ nguyên</td></tr>
 </table>
 </div>
-<p>Với bài con mở rộng $Ad=-r_p$, nhân tử của nó thỏa $\eta=\nu+\Delta\nu$.</p>
-<aside class="notes">Ma trận giữ nguyên hình dạng như hệ ở điểm khả thi, nhưng hai chỗ khác: ẩn thứ hai là số gia $\Delta\nu$, không phải nhân tử $\eta$, và vế phải gồm cả hai sai lệch $r_d$ và $r_p$. Thay $r_d=g+A^T\nu$ vào hàng đầu cho $g+Hd+A^T(\nu+\Delta\nu)=0$. Vì vậy $\eta=\nu+\Delta\nu$ là nhân tử của bài con mở rộng, còn $\Delta\nu$ chỉ là bước dịch của nhân tử hiện tại. Quan hệ này đối chiếu hai dạng hệ tại cùng điểm và cùng mô hình tuyến tính hóa. Giả thiết $H$ xác định dương và $A$ đủ hạng hàng vẫn giữ nguyên để hệ có nghiệm duy nhất. Phép giải số xác định số gia; nhân tử mới còn phụ thuộc nhân tử hiện tại và độ dài bước. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<p>Thay $r_d=g+A^T\nu$ vào hàng 1: <span class="math-nowrap">$g+Hd+A^T(\nu+\Delta\nu)=0$.</span></p>
+<div class="takeaway">Khi $r_p=0$, hệ trùng hệ Newton có đẳng thức với $\eta=\nu+\Delta\nu$.</div>
+<aside class="notes">Hai phương trình của RR02, $r_d+Hd+A^T\Delta\nu=0$ và $r_p+Ad=0$, xếp thành hệ khối với ma trận của hệ Newton có đẳng thức. Hai hệ khác nhau ở ẩn thứ hai và vế phải: ở điểm chưa khả thi, ẩn là số gia $\Delta\nu$ của nhân tử hiện tại, và vế phải chứa cả hai sai lệch $r_d$, $r_p$. Thay $r_d=g+A^T\nu$ vào hàng đầu được $g+Hd+A^T(\nu+\Delta\nu)=0$, cùng dạng hàng dừng của hệ có đẳng thức khi đặt $\eta=\nu+\Delta\nu$; hàng thứ hai thành $Ad=-r_p$. Khi điểm đã khả thi, $r_p=0$ và hàng thứ hai trở lại $Ad=0$, nên hai phương pháp cho cùng hướng $d$; phương pháp mới là mở rộng của phương pháp cũ, không phải một hệ khác. Giả thiết $H$ xác định dương và $A$ đủ hạng hàng giữ nguyên, và chứng minh khả nghịch của ma trận khối không phụ thuộc vế phải, nên hệ có nghiệm duy nhất. Giải hệ trên VD3 tại $(1,8)^T$, $\nu=4$ cho bước của điểm và số gia nhân tử. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài giảng 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR04">

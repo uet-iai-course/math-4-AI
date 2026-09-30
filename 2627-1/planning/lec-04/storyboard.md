@@ -446,13 +446,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 7/120 LT + 0 BT (LT xấp xỉ 0.0583; dùng phân số để cộng chính xác).
 
-### RR03 — Hệ Newton cho hai phần dư
+### RR03 — Hệ Newton cho phần dư KKT
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu E10. Tránh đồng nhất η với Δν khi hình dạng ma trận giống nhau; nói rõ cùng điểm và cùng mô hình khi so sánh.
+- **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Hệ Newton cho hai phần dư" thành "Hệ Newton cho phần dư KKT" cho khớp RR01; cột bảng đổi thành "Điểm khả thi"/"Điểm chưa khả thi"; thay dòng "bài con mở rộng" bằng phép thay $r_d=g+A^T\nu$; thêm kết luận trường hợp $r_p=0$. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
 - **Nội dung trên trang:** [H Aᵀ;A0][d;Δν]=−[r_d;r_p]. So với RE04: ma trận giữ nguyên, ẩn thứ hai là số gia, vế phải gồm cả hai sai lệch. Với bài con mở rộng Ad=−r_p, nhân tử η=ν+Δν.
-- **Bố cục chọn:** Trên ma trận toàn chiều ngang; dưới bảng ba hàng đối chiếu hệ khả thi/hệ phần dư về ẩn, vế phải và giả thiết.
+- **Bố cục chọn:** Hệ khối trên cùng; bảng đối chiếu ba hàng; dòng thay $r_d$ vào hàng 1; kết luận trường hợp $r_p=0$. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 659 px.
 - **Lý do bố cục cho sinh viên năm 3:** Tránh đồng nhất η với Δν khi hình dạng ma trận giống nhau; nói rõ cùng điểm và cùng mô hình khi so sánh.
-- **Vào → ra:** Đầu vào: Hai ẩn của hệ là $d$ và $\Delta\nu$, vì điểm và nhân tử đều được cập nhật. Đầu ra: Thay $r_d=g+A^T\nu$ cho thấy nhân tử bài con mở rộng là $\eta=\nu+\Delta\nu$.
+- **Vào → ra:** Đầu vào: hai phương trình tuyến tính hóa của RR02. Đầu ra: hệ khối theo $(d,\Delta\nu)$, trùng hệ Newton có đẳng thức khi $r_p=0$ với $\eta=\nu+\Delta\nu$; RR04 giải hệ trên VD3.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RR07.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
