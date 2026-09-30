@@ -218,16 +218,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §9.4; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RG10 — Hướng giảm dốc nhất theo chuẩn bậc hai
+### RG10 — Hướng dốc nhất theo chuẩn bậc hai
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu B04, B02. Ghi rõ bước đổi độ dài, tránh sự xuất hiện đột ngột của Wd=-g; giải hệ thay lập nghịch đảo khi tính.
-- **Nội dung trên trang:** Giới thiệu chuẩn đối ngẫu bằng độ dốc hướng lớn nhất trên quả cầu đơn vị: $\|g\|_{W,*}=\max_{\|v\|_W\le1}g^Tv=\sqrt{g^TW^{-1}g}$. Tính đối xứng nối giá trị lớn nhất với âm giá trị nhỏ nhất vừa tìm; đổi độ dài $d=\|g\|_{W,*}v$ cho $Wd=-g$. VD1 với $W=\operatorname{diag}(3,7)$: $d=(-2,-4)^T$, $v=d/\sqrt{124}$. Mô hình tương ứng $Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$, thu được bằng thay $I$ của RG02 bằng $W$; điều kiện dừng của mô hình cũng là $g+Wd=0$.
-- **Bố cục chọn:** Trái 55%: định nghĩa chuẩn đối ngẫu trên các dòng toán riêng, rồi chuỗi v → nhân độ dài → d → hệ tuyến tính; phải phép thế hai phương trình. Mô hình $Q_W$ hiện tường minh trước khi sang RG11; giữ cỡ chữ, không dồn định nghĩa vào dòng dài.
-- **Lý do bố cục cho sinh viên năm 3:** Ghi rõ bước đổi độ dài, tránh sự xuất hiện đột ngột của Wd=-g; giải hệ thay lập nghịch đảo khi tính.
-- **Vào → ra:** Đầu vào: Chuẩn đối ngẫu là $\|g\|_{W,*}=\sqrt{g^TW^{-1}g}$. Đầu ra: Hệ $Wd=-g$ cũng là điều kiện dừng của $Q_W$, cho phép đối chiếu cách chọn hướng theo chuẩn với cách cực tiểu mô hình.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** VD1, dàn ý §6: giữ x, g; ghi riêng W khi dùng; phân biệt v, d, t và các cấu hình bước.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Hướng giảm dốc nhất theo chuẩn bậc hai" thành "Hướng dốc nhất theo chuẩn bậc hai" (ngắn hơn, cùng thuật ngữ với RG09); nêu lý do của quy ước độ dài (với $W=I$ cho $d=-g$) để chuẩn đối ngẫu không xuất hiện như quy ước tùy ý; đưa kết nối $Q_W$ từ dòng chân trang lên khung kết luận; chuyển dòng "$v$ có chuẩn 1…" (bị ngắt giữa công thức) vào ghi chú. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Quy ước độ dài: nhân $v$ với chuẩn đối ngẫu $\|g\|_{W,*}=\max_{\|v\|_W\le1}g^Tv=\sqrt{g^TW^{-1}g}$; $d=\|g\|_{W,*}v=-W^{-1}g$, tức $Wd=-g$; với $W=I$, $d=-g$. Khung VD1: $3d_1=-6$, $7d_2=-28$, $d=(-2,-4)^T$, $d^TWd=124$, $v=d/\sqrt{124}$. Kết luận: $Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$ cho cùng hệ $g+Wd=0$; hướng dốc nhất theo $\|\cdot\|_W$ là nghiệm của mô hình bậc hai với $I$ thay bằng $W$.
+- **Bố cục chọn:** `ratio55`: trái quy ước và hai công thức, phải khung VD1; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 730 px, đáy trang 829 px (trước sửa 822 px).
+- **Lý do bố cục cho sinh viên năm 3:** Quy ước độ dài được kiểm bằng trường hợp đã biết $W=I$; kết nối với mô hình bậc hai được đọc như kết luận chính.
+- **Vào → ra:** Đầu vào: nghiệm chuẩn hóa $v$ và $g^TW^{-1}g$ ở RG09. Đầu ra: $Wd=-g$ và mô hình $Q_W$; ghi chú nêu $W$ trùng Hessian ở VD1, chuẩn bị Newton (RN01–RN02).
+- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RG11.
+- **Số liệu:** VD1: $d=(-2,-4)^T$, $d^TWd=124$, $Q_W(0)-Q_W(d)=62$ (ghi chú).
+- **Nguồn, ghi chú soạn:** BV §9.4; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG11 — Kiểm tra hướng theo chuẩn và quy tắc bước

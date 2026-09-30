@@ -291,18 +291,18 @@ Hàm Lagrange $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$ của bài con cho bốn nhóm 
 </section>
 
 <section data-slide-id="RG10">
-<h2>Hướng giảm dốc nhất theo chuẩn bậc hai</h2>
+<h2>Hướng dốc nhất theo chuẩn bậc hai</h2>
 <div class="lec-grid ratio55">
-<div><p>Chuẩn đối ngẫu đo độ dốc lớn nhất trên quả cầu đơn vị:</p>
-<div class="formula" tabindex="0">$$\begin{aligned}\|g\|_{W,*}&amp;=\max_{\|v\|_W\le1}g^Tv\\&amp;=\sqrt{g^TW^{-1}g}.\end{aligned}$$</div>
-<div class="formula emphasis" tabindex="0">$$\begin{aligned}d&amp;=\|g\|_{W,*}v\\&amp;=-W^{-1}g,\quad Wd=-g.\end{aligned}$$</div>
-<p>$v$ có chuẩn bằng $1$; $d$ là hướng để cập nhật $x^+=x+td$.</p></div>
+<div><p>Quy ước độ dài: nhân $v$ với chuẩn đối ngẫu</p>
+<div class="formula" tabindex="0">$$\|g\|_{W,*}=\max_{\|v\|_W\le1}g^Tv=\sqrt{g^TW^{-1}g}.$$</div>
+<div class="formula emphasis" tabindex="0">$$\begin{aligned}d&amp;=\|g\|_{W,*}\,v=-W^{-1}g,\\ \text{tức}\quad Wd&amp;=-g.\end{aligned}$$</div>
+<p>Với $W=I$: $d=-g$, đúng hướng gradient.</p></div>
 <div class="panel"><p><strong>VD1:</strong> $W=\operatorname{diag}(3,7)$, $g=(6,28)^T$.</p>
 <div class="formula" tabindex="0">$$\begin{aligned}3d_1&amp;=-6,\quad7d_2=-28\\d&amp;=(-2,-4)^T,\quad d^TWd=124\\v&amp;=d/\sqrt{124}.\end{aligned}$$</div></div>
 </div>
-<div class="formula" tabindex="0">Mô hình $Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$ cho cùng hệ $g+Wd=0$.</div>
+<div class="takeaway">$Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$ cho cùng hệ $g+Wd=0$: hướng dốc nhất theo $\|\cdot\|_W$ là nghiệm của mô hình bậc hai với $I$ thay bằng $W$.</div>
 <aside class="notes">
-Quả cầu $\|v\|_W\le1$ đối xứng qua gốc nên giá trị nhỏ nhất của $g^Tv$ bằng âm giá trị lớn nhất; vì thế bài con chọn hướng nối trực tiếp với chuẩn đối ngẫu. Với $W\succ0$, $W^{1/2}$ là căn bậc hai đối xứng xác định dương của $W$, còn $W^{-1/2}=(W^{1/2})^{-1}$. Bất đẳng thức Cauchy–Schwarz cho $g^Tv=(W^{-1/2}g)^T(W^{1/2}v)\ge-\sqrt{g^TW^{-1}g}\,\|v\|_W$. Nghiệm chuẩn hóa đã tìm đạt dấu bằng, nên giá trị nhỏ nhất là $-\sqrt{g^TW^{-1}g}$ và chuẩn đối ngẫu là $\sqrt{g^TW^{-1}g}$. Do đó, nghiệm chuẩn hóa $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$ có chuẩn bằng một; nhân với độ dài $\|g\|_{W,*}=\sqrt{g^TW^{-1}g}$ được $d=\|g\|_{W,*}v=-W^{-1}g$, tức $Wd=-g$. $v$ và $d$ khác độ dài ($\|v\|_W=1$, còn $d^TWd=124$), và $t$ là bước số nhận sau; ba đại lượng này không thể hoán đổi. Khi tính, giải hệ $Wd=-g$ bằng thay trực tiếp từng phương trình, không lập $W^{-1}$ tường minh. Mô hình $Q_W$ thu được bằng cách thay ma trận $I$ trong mô hình bậc hai đã chọn bằng $W\succ0$; điều kiện dừng $g+Wd=0$ chính là hệ vừa giải. $d^TWd=124$ là bình phương độ dài theo $W$, còn giảm mô hình $Q_W(0)-Q_W(d)=124/2=62$. Ký hiệu $\delta_N^2$ áp dụng khi chọn $W=H$. Trong VD1, ma trận $W$ được chọn trùng Hessian; một thước đo cố định bất kỳ không có tính chất này. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Nghiệm chuẩn hóa $v$ có độ dài một theo $\|\cdot\|_W$; hướng dùng trong phép cập nhật $x^+=x+td$ cần một quy ước độ dài, và quy ước chuẩn của Boyd và Vandenberghe là nhân $v$ với chuẩn đối ngẫu. Quy ước này cho $d=-g$ khi $W=I$, nên khớp với hướng gradient đã có. Quả cầu $\|v\|_W\le1$ đối xứng qua gốc nên giá trị nhỏ nhất của $g^Tv$ bằng âm giá trị lớn nhất; vì thế bài con chọn hướng nối trực tiếp với chuẩn đối ngẫu. Với $W\succ0$, $W^{1/2}$ là căn bậc hai đối xứng xác định dương của $W$, còn $W^{-1/2}=(W^{1/2})^{-1}$. Bất đẳng thức Cauchy–Schwarz cho $g^Tv=(W^{-1/2}g)^T(W^{1/2}v)\ge-\sqrt{g^TW^{-1}g}\,\|v\|_W$. Nghiệm chuẩn hóa đã tìm đạt dấu bằng, nên giá trị nhỏ nhất là $-\sqrt{g^TW^{-1}g}$ và chuẩn đối ngẫu là $\sqrt{g^TW^{-1}g}$. Do đó, nghiệm chuẩn hóa $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$ có chuẩn bằng một; nhân với độ dài $\|g\|_{W,*}=\sqrt{g^TW^{-1}g}$ được $d=\|g\|_{W,*}v=-W^{-1}g$, tức $Wd=-g$. $v$ và $d$ khác độ dài ($\|v\|_W=1$, còn $d^TWd=124$), và $t$ là bước số nhận sau; ba đại lượng này không thể hoán đổi. Khi tính, giải hệ $Wd=-g$ bằng thay trực tiếp từng phương trình, không lập $W^{-1}$ tường minh. Mô hình $Q_W$ thu được bằng cách thay ma trận $I$ trong mô hình bậc hai đã chọn bằng $W\succ0$; điều kiện dừng $g+Wd=0$ chính là hệ vừa giải. $d^TWd=124$ là bình phương độ dài theo $W$, còn giảm mô hình $Q_W(0)-Q_W(d)=124/2=62$. Ký hiệu $\delta_N^2$ áp dụng khi chọn $W=H$. Trong VD1, ma trận $W$ được chọn trùng Hessian; một thước đo cố định bất kỳ không có tính chất này. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 
