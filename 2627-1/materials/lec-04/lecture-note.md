@@ -329,7 +329,7 @@ Với $W=\operatorname{diag}(3,7)$, ta còn có $d^TWd=124$ và $Q_W(0)-Q_W(d)=6
 
 **Ý nghĩa và ứng dụng trong AI.** Tiền điều kiện có thể giảm ảnh hưởng của khác biệt đơn vị và độ cong. Các phương pháp thích nghi ở bài sau cũng thay đổi tỷ lệ tọa độ, nhưng có cơ chế và bảo đảm khác; không đồng nhất chúng với Newton.
 
-**Điểm dễ nhầm.** $W\approx H$ là một quyết định mô hình hoặc tính toán, không phải đẳng thức bắt buộc. Câu “hội tụ tuyến tính” phải nêu đại lượng; dưới định lý bên dưới, đó là sai số mục tiêu $f(x^{(k)})-p^*$.
+**Điểm dễ nhầm.** $W\approx H$ là một quyết định mô hình hoặc tính toán, không phải đẳng thức bắt buộc. Câu “hội tụ tuyến tính” phải nêu đại lượng; dưới định lý bên dưới, đó là sai số mục tiêu $f(x^{(k)})-f^*$.
 
 **Câu hỏi:** Với $W=\operatorname{diag}(2,8)$ và $g=(4,8)^T$, hãy giải $Wd=-g$ mà không lập nghịch đảo.
 
@@ -469,10 +469,10 @@ $$
 **Kết luận.** Với mọi $k$,
 
 $$
-f(x^{(k)})-p^*
+f(x^{(k)})-f^*
 \le
 \left(1-\frac\mu L\right)^k
-\bigl(f(x^{(0)})-p^*\bigr).
+\bigl(f(x^{(0)})-f^*\bigr).
 $$
 
 ::: proof
@@ -486,15 +486,15 @@ $$
 Tính lồi mạnh cho cận Polyak–Łojasiewicz trong trường hợp này:
 
 $$
-\|g\|_2^2\ge2\mu(f(x)-p^*).
+\|g\|_2^2\ge2\mu(f(x)-f^*).
 $$
 
 Thế vào bất đẳng thức giảm,
 
 $$
-f(x^+)-p^*
+f(x^+)-f^*
 \le
-\left(1-\frac\mu L\right)(f(x)-p^*).
+\left(1-\frac\mu L\right)(f(x)-f^*).
 $$
 
 Lặp bất đẳng thức theo $k$ cho kết luận. Hệ số phụ thuộc $\kappa=L/\mu$; định lý không được suy chỉ từ tính lồi.
@@ -514,10 +514,10 @@ và dùng bước $t=1/L$. Hệ số co của cận sai số mục tiêu là $1-
 
 **Giả thiết.** $f:\mathbb R^n\to\mathbb R$ lồi, khả vi, có gradient $L$-Lipschitz với $L>0$ và đạt cực tiểu tại $x^*$. Dùng bước cố định $x^{k+1}=x^k-\nabla f(x^k)/L$.
 
-**Kết luận.** Với $p^*=f(x^*)$ và mọi $k\ge1$,
+**Kết luận.** Với $f^*=f(x^*)$ và mọi $k\ge1$,
 
 $$
-f(x^k)-p^*\le\frac{L\|x^0-x^*\|_2^2}{2k}.
+f(x^k)-f^*\le\frac{L\|x^0-x^*\|_2^2}{2k}.
 $$
 
 Đây là bảo đảm cho sai số mục tiêu. Tính lồi mạnh cho cận tuyến tính ở định lý trước; chỉ tính lồi và tính trơn chưa cho phép dùng hệ số $1-\mu/L$.
@@ -526,12 +526,54 @@ $$
 Bổ đề giảm và tính lồi cho, với $g_j=\nabla f(x^j)$,
 
 $$
-f(x^{j+1})-p^*
+f(x^{j+1})-f^*
 \le g_j^T(x^j-x^*)-\frac{\|g_j\|_2^2}{2L}
 =\frac L2\bigl(\|x^j-x^*\|_2^2-\|x^{j+1}-x^*\|_2^2\bigr).
 $$
 
-Cộng từ $j=0$ đến $k-1$, dùng $f(x^{j+1})\ge f(x^k)$ do bước $1/L$ làm hàm không tăng, suy ra $k(f(x^k)-p^*)\le L\|x^0-x^*\|_2^2/2$.
+Cộng từ $j=0$ đến $k-1$, dùng $f(x^{j+1})\ge f(x^k)$ do bước $1/L$ làm hàm không tăng, suy ra $k(f(x^k)-f^*)\le L\|x^0-x^*\|_2^2/2$.
+:::
+
+### Bổ đề: bước được nhận của quay lui Armijo
+
+**Giả thiết.** $f$ khả vi trên $\mathbb R^n$ có gradient $L$-Lipschitz; hướng $d=-g$ với $g=\nabla f(x)$; tham số quay lui $0<\alpha\le1/2$ và $0<\beta<1$; thử lần lượt $t=1,\beta,\beta^2,\dots$
+
+**Kết luận.** Điều kiện Armijo $f(x-tg)\le f(x)-\alpha t\|g\|_2^2$ đúng với mọi $t\in(0,1/L]$, nên bước được nhận thỏa
+
+$$
+t\ge t_{\min}=\min(1,\beta/L).
+$$
+
+::: proof
+Cận trên bậc hai với $y=x-tg$ cho
+
+$$
+f(x-tg)\le f(x)-t\Bigl(1-\frac{Lt}{2}\Bigr)\|g\|_2^2.
+$$
+
+Khi $t\le1/L$ thì $1-Lt/2\ge1/2\ge\alpha$, nên điều kiện Armijo đúng. Quay lui dừng ở giá trị thử đầu tiên thỏa điều kiện: hoặc $t=1$, hoặc giá trị thử trước đó $t/\beta$ bị loại; trường hợp sau buộc $t/\beta>1/L$, tức $t>\beta/L$. Vậy $t\ge\min(1,\beta/L)$.
+:::
+
+### Định lý: cận $O(1/k)$ với quay lui Armijo
+
+**Giả thiết.** Như định lý cận $O(1/k)$ ở trên: $f$ lồi, khả vi, gradient $L$-Lipschitz, đạt cực tiểu tại $x^*$. Mỗi bước dùng $d=-\nabla f(x^k)$ và chọn $t_k$ bằng quay lui Armijo với $\alpha=1/2$, $0<\beta<1$.
+
+**Kết luận.** Với $t_{\min}=\min(1,\beta/L)$ và mọi $k\ge1$,
+
+$$
+f(x^k)-f^*\le\frac{\|x^0-x^*\|_2^2}{2\,t_{\min}\,k}.
+$$
+
+Khi $L\ge\beta$, hằng số lớn hơn hằng số của bước cố định $1/L$ nhiều nhất $1/\beta$ lần; thuật toán không cần biết $L$.
+
+::: proof
+Với $\alpha=1/2$, bước được nhận thỏa $f(x^+)\le f(x)-\frac{t}{2}\|g\|_2^2$, tức bổ đề giảm với $1/L$ thay bằng $t$. Kết hợp với tính lồi $f(x)\le f^*+g^T(x-x^*)$ và khai triển $\|x^+-x^*\|_2^2=\|x-x^*\|_2^2-2t\,g^T(x-x^*)+t^2\|g\|_2^2$,
+
+$$
+f(x^+)-f^*\le\frac1{2t}\bigl(\|x-x^*\|_2^2-\|x^+-x^*\|_2^2\bigr).
+$$
+
+Vế trái không âm nên hiệu trong ngoặc không âm; vì $t\ge t_{\min}$, có thể thay $1/(2t)$ bằng $1/(2t_{\min})$. Cộng từ $j=0$ đến $k-1$ và dùng tính không tăng của $f(x^j)$ như chứng minh trước cho kết luận. Với $\alpha<1/2$, chặn $t\ge t_{\min}$ vẫn đúng; cận tuyến tính trong trường hợp lồi mạnh với $\alpha$ tổng quát được trình bày trong Boyd và Vandenberghe (2004), §9.3.1.
 :::
 
 ## C. Newton không ràng buộc
