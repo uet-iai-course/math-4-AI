@@ -68,7 +68,7 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
   - sources go in the notes or on a references slide.
 - **Questions on slides** use the label **"Câu hỏi:"**.
 - **Speaker notes** are short academic explanation: the assumptions, what a formula or figure means, easy confusions, the link to the next result, and hints or solutions. They must not just repeat the slide.
-- **no-ai-slop is mandatory.** The skill lives at `~/.codex/skills/no-ai-slop/`; read `SKILL.md` and `eval.md` first.
+- **no-ai-slop is mandatory.** It is installed as the user-level Claude skill `no-ai-slop` (`~/.claude/skills/no-ai-slop/`). Load it with the `Skill` tool, or read `SKILL.md` and `eval.md` there, before editing or reviewing text. Sub-agents must load it too.
   - Editors use Edit mode, then self-check against `eval.md`.
   - Read-only reviewers use Detect mode: quote the problem line and propose a fix.
   - Academic register and mathematical precision take priority over the skill's voice and humour advice.
