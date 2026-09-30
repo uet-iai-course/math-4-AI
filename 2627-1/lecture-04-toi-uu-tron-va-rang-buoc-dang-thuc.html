@@ -377,7 +377,7 @@ Parabol dựng tại điểm hiện tại được cực tiểu hóa theo $d$. �
 </section>
 
 <section data-slide-id="RN05">
-<h2>Mức giảm hàm mục tiêu và sai số tối ưu</h2>
+<h2>Giảm mô hình và sai số tối ưu</h2>
 <p>Ba phép trừ khác nhau trên cùng ví dụ $\varphi(s)=s-\log s$, $s^0=1/4$, $d=3/16$, $s^+=7/16$:</p>
 <div class="table-scroll" tabindex="0">
 <table>
@@ -389,9 +389,10 @@ Parabol dựng tại điểm hiện tại được cực tiểu hóa theo $d$. �
 </tbody>
 </table>
 </div>
-<p>Nhận bước với $\alpha=1/10$: bước đầy đủ cần giảm ít nhất $\alpha(-g^Td)=9/160$; giảm thật $0{,}37212$ vượt ngưỡng này nên bước được nhận.</p>
+<p>Armijo, $\alpha=1/10$, $t=1$: ngưỡng giảm $\alpha(-g^Td)=9/160&lt;0{,}37212$, nhận bước đầy đủ.</p>
+<div class="takeaway fragment">$\delta_N^2/2=9/32&lt;\log4-3/4$: nếu không có giả thiết thêm về độ cong, giảm mô hình không phải cận sai số tối ưu.</div>
 <aside class="notes">
-Ba hàng của bảng là ba phép trừ khác nhau, không thể hoán đổi. Hàng đầu đo trên mô hình: $Q_H(0)-Q_H(d)=\delta_N^2/2=9/32$. Hàng giữa đo trên hàm thật sau một bước: $\varphi(1/4)-\varphi(7/16)=(1/4-\log(1/4))-(7/16-\log(7/16))=\log(7/4)-3/16\approx0{,}37212$. Hàng cuối là sai số tối ưu tại điểm đầu so với nghiệm $s=1$: $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$. Sai số mục tiêu tại điểm đầu lớn hơn giảm mô hình $9/32$ trong ví dụ này. Về nhận bước: đạo hàm hướng cho $-g^Td=9/16$, nên với $\alpha=1/10$ ngưỡng Armijo là $\alpha(-g^Td)=9/160\approx0{,}05625$; giảm thật $0{,}37212$ vượt ngưỡng nên bước đầy đủ được nhận. Ngưỡng này được tính từ đạo hàm hướng, không phải từ giảm mô hình $9/32$. Tiêu chuẩn dừng dựa trên giảm mô hình vì vậy cần được phân biệt với chứng nhận sai số mục tiêu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Mức giảm mô hình $\delta_N^2/2$ được đặt cạnh hai phép trừ trên hàm thật của cùng VD2. Hàng đầu đo trên mô hình: $Q_H(0)-Q_H(d)=\delta_N^2/2=9/32$. Hàng giữa đo trên hàm thật sau một bước: $\varphi(1/4)-\varphi(7/16)=(1/4-\log(1/4))-(7/16-\log(7/16))=\log(7/4)-3/16\approx0{,}37212$. Hàng cuối là sai số tối ưu tại điểm đầu so với nghiệm $s^\star=1$: $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$. Ba số khác nhau và không thể hoán đổi; trong ví dụ này sai số tối ưu lớn hơn hai lần giảm mô hình, nên $\delta_N^2/2$ không cho cận trên của sai số nếu không có giả thiết kiểm soát độ cong thay đổi. Về nhận bước: $-g^Td=\delta_N^2=9/16$, nên với $\alpha=1/10$ và $t=1$, điều kiện Armijo đòi mức giảm ít nhất $9/160\approx0{,}05625$; mức giảm thật $0{,}37212$ vượt ngưỡng, bước đầy đủ được nhận. Ngưỡng này tính từ đạo hàm hướng, không từ giảm mô hình $9/32$. Thuật toán Newton vẫn dùng $\delta_N^2/2$ làm tiêu chí dừng vì nó tính được ngay tại điểm hiện tại; ý nghĩa của tiêu chí này đối với sai số cần một giả thiết riêng. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
 </aside>
 </section>
 

@@ -290,16 +290,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
-### RN05 — Mức giảm hàm mục tiêu và sai số tối ưu
+### RN05 — Giảm mô hình và sai số tối ưu
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu C07. Các số đi cùng định nghĩa phép trừ, tránh chỉ phân biệt bằng tên hoặc màu.
-- **Nội dung trên trang:** VD2: giảm mô hình $9/32\approx0{,}28125$; giảm thật một bước $\log(7/4)-3/16\approx0{,}37212$; sai số tại $s^0$ là $\log4-3/4\approx0{,}63629$. Với $\alpha=1/10$, bước đầy đủ cần giảm ít nhất $\alpha(-g^Td)=9/160$ nên được nhận.
-- **Bố cục chọn:** Bảng ba hàng, cột “hai giá trị được trừ” và “kết quả”; lần lượt hiện từng hàng, dòng Armijo dưới.
-- **Lý do bố cục cho sinh viên năm 3:** Các số đi cùng định nghĩa phép trừ, tránh chỉ phân biệt bằng tên hoặc màu.
-- **Vào → ra:** Đầu vào: Trên VD2, giảm mô hình, giảm một bước và sai số tại điểm đầu là ba phép trừ xác định. Đầu ra: Armijo quyết định nhận bước bằng mức giảm hàm mục tiêu; tiêu chuẩn $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$ kiểm mức giảm còn dự kiến của mô hình.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RN07.
-- **Số liệu:** VD2, dàn ý §6; riêng RN04 so lại VD1 phải ghi rõ đổi ví dụ. Phân biệt δ, δ² và ba phép trừ.
-- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Mức giảm hàm mục tiêu và sai số tối ưu" thành "Giảm mô hình và sai số tối ưu" (ngắn hơn, nêu đúng cặp đại lượng được so); đưa luận điểm trung tâm (giảm mô hình không phải cận sai số khi thiếu giả thiết) từ ghi chú lên khung kết luận, hiện sau bảng; rút gọn dòng Armijo. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Bảng ba phép trừ trên VD2 ($s^0=1/4$, $d=3/16$, $s^+=7/16$): giảm mô hình $9/32\approx0{,}28125$; giảm thật một bước $\log(7/4)-3/16\approx0{,}37212$; sai số tối ưu tại điểm đầu $\log4-3/4\approx0{,}63629$. Armijo, $\alpha=1/10$, $t=1$: ngưỡng $9/160<0{,}37212$, nhận bước đầy đủ. Kết luận: $\delta_N^2/2=9/32<\log4-3/4$; nếu không có giả thiết thêm về độ cong, giảm mô hình không phải cận sai số tối ưu.
+- **Bố cục chọn:** Dòng dữ kiện, bảng hiện từng hàng, dòng Armijo, khung kết luận hiện sau cùng. Đo ở 1600×900: đáy nội dung 732 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Ba số được so trực tiếp; kết luận đọc từ bảng, không từ ghi chú.
+- **Vào → ra:** Đầu vào: $\delta_N^2/2$ (RN04), bước $s^+$ (RN02). Đầu ra: tiêu chí dừng theo $\delta_N^2/2$ tính được nhưng chưa là chứng nhận sai số (RN06); nhu cầu giả thiết kiểm soát độ cong (RS).
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN07.
+- **Số liệu:** Tính lại: $\log(7/4)-3/16=0{,}372116$, $\log4-3/4=0{,}636294$, $9/32=0{,}28125$; $9/160=0{,}05625$.
+- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
 ### RN06 — Thuật toán Newton và điều kiện áp dụng
