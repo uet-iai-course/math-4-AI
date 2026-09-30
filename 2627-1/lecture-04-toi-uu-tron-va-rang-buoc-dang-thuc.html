@@ -696,18 +696,14 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RS04">
-  <h2>Tính tự điều chỉnh sau khử đẳng thức</h2>
-  <div class="lec-grid lec-grid--45-55">
-    <div>
-      <div class="panel"><div class="lec-flow"><div class="flow-node">$z$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$u=\hat u+Nz$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$\psi(z)=F(u)$</div></div></div>
-    </div>
-    <div>
-      <p>Nếu $F$ tự điều chỉnh thì $\psi(z)=F(\hat u+Nz)$ cũng tự điều chỉnh trên miền tiền ảnh của phép khử đẳng thức.</p>
-      <p><strong>Điều kiện dùng cận cho hàm rút gọn:</strong> $\psi$ lồi chặt, Hessian xác định dương, đạt cực tiểu trong miền, và độ giảm Newton của $\psi$ nhỏ hơn $1$.</p>
-      <p class="takeaway">Bảo toàn lớp hàm qua hợp thành affine khác tính bất biến của Newton dưới phép đổi tọa độ affine khả nghịch.</p>
-    </div>
-  </div>
-  <aside class="notes">Phép khử biến chọn $\hat u$ khả thi, ma trận $N$ có các cột là cơ sở $\ker A$, và xét $\psi(z)=F(\hat u+Nz)$. Nếu $F$ tự điều chỉnh thì $\psi$ cũng tự điều chỉnh trên miền tiền ảnh, vì hợp thành affine bảo toàn lớp hàm. Nhưng để dùng cận sai số cho hàm rút gọn, phải kiểm đủ các giả thiết còn lại: $\psi$ lồi chặt, Hessian xác định dương, đạt cực tiểu trong miền, và độ giảm Newton của $\psi$ nhỏ hơn 1. Bất biến của Newton qua đổi tọa độ affine khả nghịch là tính chất riêng, áp dụng khi Hessian hoặc hệ xác định bước khả nghịch; tính chất này không đòi hỏi hàm tự điều chỉnh. Khi $\delta&lt;1$ và các giả thiết trên được thỏa, tiêu chuẩn dừng của bài rút gọn có thể sử dụng cận sai số mục tiêu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.1 và 9.6.3 (phương trình 9.49); bài giảng 16, MIT 6.079, mùa thu 2009; phép khử biến ở mục 10.1 của Boyd–Vandenberghe.</aside>
+  <h2>Cận sai số với đẳng thức</h2>
+  <div class="lec-flow"><div class="flow-node">$z$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$u=\hat u+Nz$</div><div class="arrow" aria-hidden="true">→</div><div class="flow-node">$\psi(z)=F(u)$</div></div>
+  <p>$F$ tự điều chỉnh $\Rightarrow$ $\psi$ tự điều chỉnh (hợp với phép affine).</p>
+  <p>Độ giảm Newton của $\psi$ tại $z$ bằng $\delta_{eq}$ tại $u$: <span class="math-nowrap">$\Delta z^T(N^THN)\Delta z=d^THd$.</span></p>
+  <p>Nếu $u$ khả thi, $\psi$ đạt cực tiểu và $\delta_{eq}&lt;1$:</p>
+  <div class="formula emphasis" tabindex="0">$$F(u)-F^*\le-\delta_{eq}-\log(1-\delta_{eq}).$$</div>
+  <p class="takeaway">Tiêu chí dừng $\delta_{eq}^2/2\le\varepsilon$ của Newton khả thi có cùng bảo đảm; tại điểm chưa khả thi, cận không dùng cho $\|r\|_2$.</p>
+  <aside class="notes">Cận ở trang trước phát biểu cho bài toán không ràng buộc. Phép khử biến đưa bài có đẳng thức về dạng đó: chọn $\hat u$ khả thi, $N$ có các cột là cơ sở của $\ker A$, và xét $\psi(z)=F(\hat u+Nz)$ trên tiền ảnh của miền. Hợp của hàm tự điều chỉnh với một phép affine vẫn tự điều chỉnh, vì hạn chế của $\psi$ lên một đường thẳng là hạn chế của $F$ lên một đường thẳng. Bước Newton của $\psi$ là $\Delta z=-(N^THN)^{-1}N^Tg$, và $d=N\Delta z$ chính là bước Newton khả thi; do đó độ giảm Newton của $\psi$ bằng $\Delta z^TN^THN\Delta z=d^THd=\delta_{eq}^2$. Vì $F(u)-F^*=\psi(z)-\psi^*$ tại mọi điểm khả thi $u=\hat u+Nz$, định lý ở trang trước cho $F(u)-F^*\le-\delta_{eq}-\log(1-\delta_{eq})$ khi $\psi$ đạt cực tiểu, $N^THN\succ0$ và $\delta_{eq}&lt;1$. Kiểm trên VD3 tại $(16,-2)^T$: $N^Tg=-42$, $N^THN=7$ nên độ giảm Newton bình phương của $\psi$ là $42^2/7=252$, trùng $d^THd=72+180=252$; vì $\delta_{eq}=\sqrt{252}&gt;1$, cận chưa áp dụng tại điểm này. Tại điểm chưa khả thi, $F(u)$ không so được với $F^*$ và chuẩn phần dư không phải độ giảm Newton, nên cận không chuyển sang $\|r\|_2$. Tính bất biến của bước Newton dưới phép đổi tọa độ affine khả nghịch là một tính chất riêng, không đòi hỏi hàm tự điều chỉnh. Trang sau kiểm các giả thiết của cận. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.6.3, 10.1.1 và 10.2.3; bài giảng 17, MIT 6.079, mùa thu 2009.</aside>
 </section>
 
 <section data-slide-id="RS05">

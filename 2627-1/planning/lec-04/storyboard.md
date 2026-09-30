@@ -542,13 +542,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RS04 — Tính tự điều chỉnh sau khử đẳng thức
+### RS04 — Cận sai số với đẳng thức
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu D03, D04. Kết nối phần bảo đảm với phép khử đã dùng, tránh định nghĩa tự điều chỉnh đứng riêng.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Cận sai số với đẳng thức" (tiêu đề cũ đè nút điều hướng); thêm mắt xích độ giảm Newton của $\psi$ bằng $\delta_{eq}$ ($\Delta z^TN^THN\Delta z=d^THd$) và phát biểu cận cho $F(u)-F^*$; kết luận nối tiêu chí dừng của Newton khả thi và nêu cận không dùng cho $\|r\|_2$; câu về bất biến affine chuyển vào ghi chú; bố cục một cột với sơ đồ ngang. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu D03, D04. Kết nối phần bảo đảm với phép khử đã dùng, tránh định nghĩa tự điều chỉnh đứng riêng.
 - **Nội dung trên trang:** Nếu $F$ tự điều chỉnh thì $\psi(z)=F(\hat u+Nz)$ cũng tự điều chỉnh trên miền tiền ảnh; đây chính là bài rút gọn đã học. Cận sai số chỉ dùng khi độ giảm Newton của hàm rút gọn nhỏ hơn 1 và thỏa các giả thiết của cận ở RS03: hàm rút gọn lồi chặt, Hessian xác định dương, đạt cực tiểu trong miền; tham chiếu dàn ý §5.7. Phân biệt bảo toàn lớp hàm qua hợp thành affine với tính bất biến của Newton dưới phép đổi tọa độ affine khả nghịch; tính bất biến sau không chỉ có ở hàm tự điều chỉnh.
 - **Bố cục chọn:** Trái 45% sơ đồ z→u=û+Nz→F; phải điều kiện hàm rút gọn và liên hệ tiêu chí dừng khả thi; không đưa hệ số hội tụ mới.
 - **Lý do bố cục cho sinh viên năm 3:** Kết nối phần bảo đảm với phép khử đã dùng, tránh định nghĩa tự điều chỉnh đứng riêng.
-- **Vào → ra:** Đầu vào: Hàm rút gọn $\psi(z)=F(\hat u+Nz)$ kế thừa tính tự điều chỉnh từ $F$. Đầu ra: Tính tự điều chỉnh chưa bảo đảm tồn tại nghiệm; các giả thiết về Hessian, nghiệm và độ giảm phải được kiểm riêng.
+- **Vào → ra:** (2026-09-30) Đầu vào: định lý cận sai số (RS03), phép khử biến (RE06) và $\delta_{eq}$ (RE07). Đầu ra: cận $F(u)-F^*\le-\delta_{eq}-\log(1-\delta_{eq})$ tại điểm khả thi; câu hỏi kiểm giả thiết (RS05). Mô tả trước: Đầu vào: Hàm rút gọn $\psi(z)=F(\hat u+Nz)$ kế thừa tính tự điều chỉnh từ $F$. Đầu ra: Tính tự điều chỉnh chưa bảo đảm tồn tại nghiệm; các giả thiết về Hessian, nghiệm và độ giảm phải được kiểm riêng.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; chuẩn bị thao tác được đo tại RS05.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** Bất biến Newton cần điều kiện khả nghịch của Hessian hoặc hệ tính bước; hợp affine bảo toàn lớp hàm là kết quả riêng.  BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
