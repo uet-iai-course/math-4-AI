@@ -266,27 +266,27 @@ Thuật toán giảm gradient trên VD1 được xét với bước giữ cố �
 </section>
 
 <section data-slide-id="RG09">
-<h2>Điều kiện KKT của hướng chuẩn hóa</h2>
-<div class="lec-grid lec-grid--70-30">
-<div>
-<p><strong>Bước 1 — nhóm dừng:</strong> từ $g+2\zeta Wv=0$ và $g\ne0$ suy ra $\zeta>0$ (nếu $\zeta=0$ thì $g=0$, mâu thuẫn).</p>
-<p><strong>Bước 2 — nhóm bù trừ:</strong> vì $\zeta>0$, điều kiện $\zeta(v^TWv-1)=0$ buộc $v^TWv=1$: ràng buộc hoạt động.</p>
-<p><strong>Bước 3 — giải:</strong> thay $v=-\tfrac{1}{2\zeta}W^{-1}g$ vào $v^TWv=1$:</p>
-<div class="formula" tabindex="0">$$\zeta=\tfrac12\sqrt{g^TW^{-1}g},\qquad v=-\frac{W^{-1}g}{\sqrt{g^TW^{-1}g}}.$$</div>
-</div>
+<h2>Hệ KKT của hướng dốc nhất</h2>
+<div class="lec-grid lec-grid--40-60">
 <div class="panel">
-<p><strong>Bốn nhóm KKT:</strong></p>
+<p><strong>Bốn nhóm KKT của bài con:</strong></p>
 <ul class="steps">
-<li>Dừng:<br>$g+2\zeta Wv=0$</li>
+<li>Dừng: $g+2\zeta Wv=0$</li>
 <li>Khả thi gốc: $v^TWv\le1$</li>
 <li>Khả thi đối ngẫu: $\zeta\ge0$</li>
-<li>Bù trừ:<br>$\zeta(v^TWv-1)=0$</li>
+<li>Bù trừ: $\zeta(v^TWv-1)=0$</li>
 </ul>
 </div>
+<div>
+<p><strong>Bước 1 (dừng):</strong> nếu $\zeta=0$ thì $g=0$, trái giả thiết $g\ne0$; vậy $\zeta&gt;0$.</p>
+<p><strong>Bước 2 (bù trừ):</strong> $\zeta&gt;0$ buộc $v^TWv=1$; ràng buộc hoạt động.</p>
+<p><strong>Bước 3 (giải):</strong> từ nhóm dừng, $v=-\tfrac{1}{2\zeta}W^{-1}g$; thay vào $v^TWv=1$:</p>
+<div class="formula" tabindex="0">$$\zeta=\tfrac12\sqrt{g^TW^{-1}g},\qquad v=-\frac{W^{-1}g}{\sqrt{g^TW^{-1}g}}.$$</div>
 </div>
-<div class="takeaway">Nghiệm trên biên elip xác định hướng giảm dốc nhất có chuẩn đơn vị.</div>
+</div>
+<div class="takeaway">VD1: $W^{-1}g=(2,4)^T$, $g^TW^{-1}g=124$, $v=-(2,4)^T/\sqrt{124}$ nằm trên biên elip.</div>
 <aside class="notes">
-Bài con lồi nên KKT đủ cho tối ưu toàn cục; $v=0$ thỏa Slater nên KKT cũng cần. Tính compact của tập khả thi và tính liên tục của mục tiêu bảo đảm nghiệm tồn tại. Phương trình dừng $g+2\zeta Wv=0$ với $\zeta=0$ sẽ cho $g=0$, trái giả thiết $g\ne0$. Trường hợp $g=0$ là điều kiện dừng, không áp dụng công thức chia cho chuẩn gradient. Nhân tử dương và điều kiện bù trừ buộc ràng buộc hoạt động, nên nghiệm nằm trên biên elip tại điểm tiếp xúc với đường mức của mục tiêu tuyến tính. Từ phương trình dừng, $v=-\tfrac{1}{2\zeta}W^{-1}g$; thay vào $v^TWv=1$ được $g^TW^{-1}g/(4\zeta^2)=1$, tức $4\zeta^2=g^TW^{-1}g$. Với $W=\operatorname{diag}(3,7)$, bình phương chuẩn đối ngẫu là $g^TW^{-1}g=36/3+784/7=12+112=124$. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Hàm Lagrange $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$ của bài con cho bốn nhóm KKT; đạo hàm theo $v$ cho nhóm dừng $g+2\zeta Wv=0$. Bài con lồi nên KKT đủ cho tối ưu toàn cục; $v=0$ thỏa Slater nên KKT cũng cần; tập khả thi compact và mục tiêu liên tục nên nghiệm tồn tại. Với $\zeta=0$, nhóm dừng cho $g=0$, trái giả thiết; trường hợp $g=0$ là điều kiện dừng của thuật toán, không áp dụng công thức chia cho $\sqrt{g^TW^{-1}g}$. Nhân tử dương cùng điều kiện bù trừ buộc ràng buộc hoạt động, nên nghiệm nằm trên biên elip, tại điểm tiếp xúc với đường mức thấp nhất của mục tiêu tuyến tính. Từ nhóm dừng, $v=-\tfrac{1}{2\zeta}W^{-1}g$; thay vào $v^TWv=1$ được $g^TW^{-1}g/(4\zeta^2)=1$, tức $\zeta=\tfrac12\sqrt{g^TW^{-1}g}$ vì $\zeta&gt;0$. Với $W=\operatorname{diag}(3,7)$ và $g=(6,28)^T$: $W^{-1}g=(2,4)^T$, $g^TW^{-1}g=12+112=124$, nên $v=-(2,4)^T/\sqrt{124}$; kiểm lại $v^TWv=(3\cdot4+7\cdot16)/124=1$. Vectơ $v$ có độ dài một theo $\|\cdot\|_W$; hướng dùng trong phép cập nhật $x^+=x+td$ cần một quy ước về độ dài. Nguồn: Boyd và Vandenberghe (2004), §9.4; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 

@@ -206,16 +206,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §9.4; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RG09 — Điều kiện KKT của hướng chuẩn hóa
+### RG09 — Hệ KKT của hướng dốc nhất
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu B03. Sinh viên nhìn thấy điểm dùng dừng, dấu nhân tử và bù trừ; mỗi dòng trả lời một bước còn thiếu ở bản cũ.
-- **Nội dung trên trang:** Hiện đủ bốn nhóm KKT. Từ $g+2\zeta Wv=0$ và $g\ne0$ suy ra $\zeta>0$; bù trừ cho $v^TWv=1$. Suy ra $\zeta=\tfrac12\sqrt{g^TW^{-1}g}$ và $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$.
-- **Bố cục chọn:** Một cột suy diễn ba bước; bốn nhóm KKT ở dải bên 30%; mỗi bước có nhãn nhóm được sử dụng. Đại số thay chuẩn vào bình phương để trong ghi chú.
-- **Lý do bố cục cho sinh viên năm 3:** Sinh viên nhìn thấy điểm dùng dừng, dấu nhân tử và bù trừ; mỗi dòng trả lời một bước còn thiếu ở bản cũ.
-- **Vào → ra:** Đầu vào: Phương trình $g+2\zeta Wv=0$ với $g\ne0$ buộc $\zeta>0$. Đầu ra: Nghiệm $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$ có chuẩn $W$ bằng một; nhân với chuẩn đối ngẫu cho hướng không chuẩn hóa.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** VD1, dàn ý §6: giữ x, g; ghi riêng W khi dùng; phân biệt v, d, t và các cấu hình bước.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Điều kiện KKT của hướng chuẩn hóa" thành "Hệ KKT của hướng dốc nhất" (ngắn hơn, không chạm nút điều hướng, dùng cùng thuật ngữ với RG08); đặt khung bốn nhóm KKT ở cột trái để các bước giải đọc sau; bước 3 nêu $v$ rút từ nhóm dừng; nhãn bước dùng ngoặc thay gạch dài; khung kết luận nêu kết quả số VD1. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Khung trái: bốn nhóm KKT của bài con (dừng $g+2\zeta Wv=0$, khả thi gốc $v^TWv\le1$, khả thi đối ngẫu $\zeta\ge0$, bù trừ $\zeta(v^TWv-1)=0$). Cột phải: bước 1 (dừng) $\zeta=0\Rightarrow g=0$, trái giả thiết, nên $\zeta>0$; bước 2 (bù trừ) $v^TWv=1$; bước 3 (giải) $v=-\tfrac1{2\zeta}W^{-1}g$, thay vào ràng buộc cho $\zeta=\tfrac12\sqrt{g^TW^{-1}g}$, $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$. Kết luận VD1: $W^{-1}g=(2,4)^T$, $g^TW^{-1}g=124$, $v=-(2,4)^T/\sqrt{124}$ nằm trên biên elip.
+- **Bố cục chọn:** `lec-grid--40-60`: trái khung KKT, phải ba bước và công thức; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 736 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Hệ điều kiện được đọc trước khi dùng; mỗi bước ghi rõ nhóm KKT được dùng.
+- **Vào → ra:** Đầu vào: bài con và hàm Lagrange $L_s$ ở RG08. Đầu ra: nghiệm chuẩn hóa $v$ và nhân tử $\zeta$; ghi chú nêu hướng dùng trong cập nhật cần quy ước độ dài (RG10).
+- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RG11.
+- **Số liệu:** VD1: $W^{-1}g=(2,4)^T$, $g^TW^{-1}g=124$, $v^TWv=(12+112)/124=1$ (tính lại).
+- **Nguồn, ghi chú soạn:** BV §9.4; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG10 — Hướng giảm dốc nhất theo chuẩn bậc hai
