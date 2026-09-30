@@ -554,13 +554,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** Bất biến Newton cần điều kiện khả nghịch của Hessian hoặc hệ tính bước; hợp affine bảo toàn lớp hàm là kết quả riêng.  BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RS05 — Kiểm tra giả thiết của cận sai số
+### RS05 — Giả thiết của cận sai số
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu D05. Chống đồng nhất tính tự điều chỉnh với tồn tại nghiệm và phân biệtδ vớiδ².
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Giả thiết của cận sai số"; giữ câu hỏi về tồn tại cực tiểu ($-\log s$ và $s-\log s$); thay hai câu đọc lại ($9/32$, thay $\delta$ bằng $\delta^2$) bằng câu chuyển giao tại điểm mới $s=3/2$ ($\delta=1/2$, cận $\log2-1/2$, sai số $1/2-\log\tfrac32$, giảm mô hình $1/8$); bỏ hai ô trang trí lặp tên hàm. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu D05. Chống đồng nhất tính tự điều chỉnh với tồn tại nghiệm và phân biệtδ vớiδ².
 - **Nội dung trên trang:** Câu hỏi: $-\log s$ và $s-\log s$ có cùng đạo hàm bậc hai, ba; hàm nào đạt cực tiểu hữu hạn? Có được dùng $9/32$ làm cận sai số hoặc thay $\delta$ bằng $\delta^2$ trong biểu thức cận không?
 - **Bố cục chọn:** Hai cột hai hàm, dưới là hai kết luận cần kiểm; đáp án nêu miền và tính đơn điệu của−log s.
 - **Lý do bố cục cho sinh viên năm 3:** Chống đồng nhất tính tự điều chỉnh với tồn tại nghiệm và phân biệtδ vớiδ².
-- **Vào → ra:** Đầu vào: Hai hàm $-\log s$ và $s-\log s$ có cùng đạo hàm bậc hai, bậc ba nhưng khác tính đạt cực tiểu. Đầu ra: Mỗi kết luận về bước lặp hoặc sai số phải đi kèm bài toán, đại lượng đo và giả thiết áp dụng.
+- **Vào → ra:** (2026-09-30) Đầu vào: định lý cận sai số (RS03) và VD2. Đầu ra: phân biệt giả thiết tồn tại nghiệm với tính tự điều chỉnh; cận đúng nhưng không chặt khi $s>1$; dẫn sang phần tổng hợp (RZ01). Mô tả trước: Đầu vào: Hai hàm $-\log s$ và $s-\log s$ có cùng đạo hàm bậc hai, bậc ba nhưng khác tính đạt cực tiểu. Đầu ra: Mỗi kết luận về bước lặp hoặc sai số phải đi kèm bài toán, đại lượng đo và giả thiết áp dụng.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; sản phẩm và đáp án kiểm tra ở dàn ý §7.
 - **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
