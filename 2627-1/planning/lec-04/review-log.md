@@ -1,5 +1,18 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Thêm phần tự học về hội tụ của giảm gradient — 2026-10-01
+
+**Yêu cầu người dùng:** "sau các slide về giảm gradient và 'Hướng và độ dài bước' hãy thêm một số slide tự học về chứng minh hội tụ và tốc độ hội tụ của giảm gradient cho hàm lồi Lipschitz"; bổ sung sau đó: gồm cả quay lui Armijo. Tác tử soạn: fork của điều phối viên, Claude Opus 5.5 (kế thừa phiên điều phối; không có định nghĩa `.claude/agents/`).
+
+| Trang | Nội dung | Kiểm tra trình duyệt | Commit |
+|---|---|---|---|
+| RG12 Gradient Lipschitz | Định nghĩa, cận trên bậc hai, hình SVG tự vẽ (mất mát logistic, $L=1/4$), VD1 $L=7$ | 1600×900 vừa khung, không lỗi KaTeX/console; 390×844 cuộn dọc | xem git log |
+
+- Tài sản mới: `img/lec-04/lipschitz-upper-bound.svg`, tự vẽ bằng Python từ công thức; `role="img"`, `title`, `desc`, chú giải bằng kiểu nét (không chỉ dùng màu).
+- Rà soát toán học: *chờ*.
+- Rà soát mạch lập luận: *chờ*.
+- Kiểm định storyboard: *chờ*.
+
 ## Đánh dấu Tự học cho phần tự điều chỉnh — 2026-10-01
 
 - **Yêu cầu người dùng:** "phần Biến thiên độ cong đánh dấu 'Tự học'". Phạm vi: RS01–RS05 (phần mở đầu bằng trang "Biến thiên độ cong").

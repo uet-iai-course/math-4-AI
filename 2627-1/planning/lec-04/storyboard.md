@@ -13,7 +13,7 @@ KKT là điều kiện Karush–Kuhn–Tucker đã học ở Bài 03; LLO là ch
 | Mạch | Trang | Chức năng, đầu vào | Đầu ra cho mạch sau | LT + BT | Kiểm tra |
 |---|---|---|---|---|---|
 | Mở đầu: dùng lại điều kiện tối ưu | RP00–RP04 (5) | KKT và hồi quy Bài 03 | Hai dạng KKT và nhiệm vụ tạo bước | 0.15 + 0.10 | RP04 |
-| Hướng giảm, bước và thước đo | RG01–RG11 (11) | Điều kiện dừng không ràng buộc | Bài con chọn hướng, thuật toán gradient và giới hạn W cố định | 0.50 + 0.15 | RG11 |
+| Hướng giảm, bước và thước đo (RG12–RG17 tự học từ 2026-10-01) | RG01–RG17 (17) | Điều kiện dừng không ràng buộc | Bài con chọn hướng, thuật toán gradient và giới hạn W cố định | 0.50 + 0.15 | RG11 |
 | Newton từ mô hình và phương trình tối ưu | RN01–RN07 (7) | Hướng theo W và quy tắc nhận bước | Hướng Newton, phân biệt mô hình và bài gốc; câu hỏi về cận sai số | 0.40 + 0.15 | RN07 |
 | Newton giữ đẳng thức | RE01–RE08 (8) | Mô hình Newton có thể phá tính khả thi | KKT bài con, hệ khối và khử biến tương đương | 0.35 + 0.15 | RE08 |
 | Newton phục hồi điều kiện KKT | RR01–RR07 (7) | Thuật toán trước cần điểm đầu khả thi | Tuyến tính hóa phần dư, cập nhật hai biến, nhận bước theo phần dư | 0.35 + 0.20 | RR07 |
@@ -30,6 +30,7 @@ Số trang: 5 + 11 + 7 + 8 + 7 + 5 + 3 = **46**. Gộp mạch A/B cũ vì cùng 
 |---|---|---|---|---|---|---|---|
 | Gradient và bước, LLO6/8 | RG01 cần chọn hướng | RG01 đường mức, RG03 tia cập nhật | VD1 tại RG01, RG03 | RG02 bài con; RG03 điều kiện hướng; RG04 Armijo | RG05 một lượt, RG06 vòng lặp | RG11 | Giữ x,g,d; chọn hướng chưa quyết định t. RG01 gộp nhu cầu + ví dụ dẫn nhập + trực quan vì đều giải thích tác dụng của gᵀd; từ 2026-09-30 RG01 cũng nêu định nghĩa đạo hàm hướng theo chu trình rút gọn cho kiến thức tiên quyết (Bài giảng 00, B05). |
 | Chuẩn bậc hai, LLO6/8 | RG07 đường đi phụ thuộc cách đo | RG07, elip RG08 | VD1: W, elip và đường tuyến tính RG08 trước Lagrange | RG08–RG09 KKT | RG10 đổi độ dài và giải hệ | RG11 | Giữ g từ VD1, thêm W trước chỗ dùng; nghiệm chuẩn hóa phải được đổi độ dài để cập nhật. |
+| Hội tụ của giảm gradient, LLO8/CLO2 (tự học từ 2026-10-01; chu trình rút gọn nhu cầu → hình thức → kiểm tra) | RG12: bước cố định cần chặn độ cong | RG12 parabol cận trên và tiếp tuyến | VD1 tại RG13, RG15, RG16 | RG12 định nghĩa, RG13 bổ đề giảm, RG14 bất đẳng thức một bước, RG15 định lý $O(1/k)$, RG16 quay lui | Không áp dụng riêng: kết quả là bảo đảm cho thuật toán RG06 | RG17 | Giữ $x,g,t,L$, VD1 và $x^*=0$; chu trình rút gọn vì là phần tự học chứng minh cho thuật toán đã có, không giới thiệu phương pháp mới |
 | Newton, LLO6/8 | RN01 W cố định chưa dùng độ cong hiện tại | RN01 hàm thật và parabol | RN01 dữ kiện φ; RN02 phép tính g,H,d | RN02 KKT bài con, RN03 tuyến tính hóa, RN04 độ giảm | RN05 nhận bước; RN06 thuật toán | RN07 | φ,g,H,d giữ nguyên; ≈ của phương trình thật dẫn đến phân biệt sai số. Ví dụ dẫn nhập RN01 làm cụ thể nhu cầu xấp xỉ, phép tính RN02 đặt cạnh hình thức hóa cùng một thao tác. |
 | Newton khả thi, LLO9/10 | RE01 phải giữ tổng; RE02 hướng cũ phá tổng | RE01–RE02 đường khả thi | RE01 mốc nghiệm, RE02 điểm đầu VD3 | RE03 Lagrange, RE04 hệ | RE05 giải bước, RE06 giải bằng khử, RE07 thuật toán | RE08 | Truyền F,u,A,b,g,H; thêm η khi lập bài con. RE01 gộp nhu cầu, hình và KKT bài gốc đã học, không giới thiệu phương pháp trước nhu cầu. |
 | Newton phần dư, LLO9/10 | RR01 điểm đầu không thỏa KKT | RR01 hai phương trình và độ lệch đặt cùng hàng | RR01 tính hai phần dư VD3 | RR02 tuyến tính hóa; RR03 hệ | RR04 giải số; RR05 biện minh thước đo; RR06 thuật toán | RR07 | Truyền F,A,b, đổi rõ u,ν; r_d,r_p là vế trái của KKT, không phải ký hiệu tùy ý. RR05 là kết quả hỗ trợ theo chu trình nhu cầu → phản ví dụ → lập luận đạo hàm → dùng ở RR06. |
@@ -241,6 +242,17 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Số liệu:** Câu 1: $g(x^1)=(3/2,-21)^T$, $d=(-1/2,3)^T$, $x^1+d=(0,0)^T$, $\|d\|_W^2=255/4$. Câu 2: ngưỡng $62-246t$; $t=1$: $2040>-184$; $t=1/2$: $703/2>-61$; $t=1/4$: $255/8>1/2$; $t=1/8$: $103/32\le125/4$, nhận (tính lại bằng phân số).
 - **Nguồn, ghi chú soạn:** BV §§9.2–9.4; MIT lec16.
 - **Dự toán nội bộ:** 0.15 BT (giữ theo điều chỉnh RZ02).
+
+### RG12 — Gradient Lipschitz
+
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ và tốc độ hội tụ của giảm gradient cho hàm lồi có gradient Lipschitz. Mở cụm tự học RG12–RG17, đặt sau câu hỏi kiểm tra RG11 và trước phần Newton; có nhãn "Tự học" như phần tự điều chỉnh (ngoại lệ có chủ ý theo chỉ dẫn người dùng).
+- **Nội dung trên trang:** Nhu cầu: bước cố định $t=1/L$ chỉ an toàn khi độ cong bị chặn trên. Định nghĩa gradient $L$-Lipschitz; hệ quả cận trên bậc hai $f(y)\le f(x)+\nabla f(x)^T(y-x)+\tfrac L2\|y-x\|_2^2$; với $f$ lồi $C^2$: $\nabla^2f\preceq LI$; VD1 $L=7$.
+- **Bố cục chọn:** Lưới 40–60: trái hình SVG tự vẽ `img/lec-04/lipschitz-upper-bound.svg` (mất mát logistic, parabol cận trên $L=1/4$, tiếp tuyến tại $s=1$, có chú giải); phải khung định nghĩa và hệ quả.
+- **Lý do tồn tại:** RG06 dùng $t=1/L$ và nêu tốc độ trong ghi chú mà không có giả thiết hay chứng minh trên mặt trang; khái niệm $L$ cần được định nghĩa trước bổ đề giảm.
+- **Vào → ra:** Đầu vào: thuật toán giảm gradient và bước cố định (RG06), VD1. Đầu ra: cận trên bậc hai, dùng để chứng minh bổ đề giảm (RG13); tiếp tuyến dưới $f$ (tính lồi) dùng ở RG14.
+- **Chuẩn và minh chứng:** LLO8 / CLO2 (phân tích tốc độ hội tụ); tự học, kiểm ở RG17.
+- **Số liệu:** VD1: $\nabla^2f=\operatorname{diag}(3,7)$, $L=7$. Hình: $f(s)=\log(1+e^s)$, $f''\le1/4$, $f(1)\approx1{,}313$, $f'(1)\approx0{,}731$.
+- **Nguồn, ghi chú soạn:** BV §9.1.2 (hằng số $M$), §9.3; MIT 6.079 lec16; chứng minh cận trên bằng tích phân dọc đoạn và Cauchy–Schwarz trong ghi chú.
 
 ### RN01 — Mô hình bậc hai cục bộ
 

@@ -1007,3 +1007,9 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 ### Đánh dấu Tự học — 2026-10-01
 
 Theo yêu cầu người dùng, phần tự điều chỉnh (RS01–RS05, mở đầu bằng "Biến thiên độ cong") là phần tự học. Mỗi trang có nhãn "Tự học" (lớp chung `.self-study-badge`); RS01, RS02, RS04, RS05 đặt nhãn cuối tiêu đề, RS03 đặt trong `.slide-badge-row` vì tiêu đề dài. Bảng bài tập ở RZ03 ghi "Bài 7 (tự học)". Ghi chú RS01 nêu phần tổng hợp chỉ dùng cận $f(x)-f^*\le-\delta-\log(1-\delta)$ cùng giả thiết. Nội dung toán, thứ tự trang và điều hướng không đổi.
+
+### Thêm phần tự học về hội tụ của giảm gradient — 2026-10-01
+
+Theo yêu cầu người dùng, thêm cụm tự học RG12–RG17 sau câu hỏi kiểm tra RG11, trong cùng mạch hướng giảm và bước (mạch vẫn là 7). Sườn: gradient $L$-Lipschitz và cận trên bậc hai → bổ đề giảm với $t=1/L$ → bất đẳng thức một bước (thêm tính lồi và $x^*$) → định lý $f(x^k)-f^*\le L\|x^0-x^*\|_2^2/(2k)$ → hội tụ với quay lui Armijo ($\alpha=1/2$, $t_{\min}=\min(1,\beta/L)$) → câu hỏi so cận với thực tế trên VD1. Ví dụ dùng VD1 ($L=7$, $\|x^0-x^*\|^2=20$). Chứng minh đầy đủ ở ghi chú bài giảng mục B.
+
+- RG12 Gradient Lipschitz: định nghĩa, cận trên bậc hai, hình mất mát logistic.
