@@ -182,16 +182,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.2–9.3; MIT lec16; KKT trong Bài giảng 03.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RG07 — Ảnh hưởng của thước đo
+### RG07 — Độ cong không đồng đều
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu B01. Hai hệ số co theo tọa độ làm cụ thể ảnh hưởng của độ cong khi giữ bước cố định; sự khác biệt này tạo nhu cầu chọn thước đo theo chuẩn bậc hai ở RG08.
-- **Nội dung trên trang:** Minh họa riêng bước cố định $t=1/4$: $x_1^+=x_1/4$, $x_2^+=-3x_2/4$. Đây là thí nghiệm giữ t cố định, không phải chuỗi bước của quay lui. Nhu cầu: đo độ dài phù hợp các tọa độ.
-- **Bố cục chọn:** Trái 65% đường đi; phải hai công thức co tọa độ, phía trên ghi “bước cố định t=1/4”; không đặt nhiều quy tắc t cạnh nhau.
-- **Lý do bố cục cho sinh viên năm 3:** Hai hệ số co theo tọa độ làm cụ thể ảnh hưởng của độ cong khi giữ bước cố định; sự khác biệt này tạo nhu cầu chọn thước đo theo chuẩn bậc hai ở RG08.
-- **Vào → ra:** Đầu vào: Trong cấu hình bước cố định $t=1/4$, hai tọa độ tuân theo hai hệ số cập nhật khác nhau. Đầu ra: Chuẩn bậc hai với $W=\operatorname{diag}(3,7)$ phản ánh các hệ số độ cong khi xác định hướng giảm dốc nhất.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** VD1, dàn ý §6: giữ x, g; ghi riêng W khi dùng; phân biệt v, d, t và các cấu hình bước.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Ảnh hưởng của thước đo" thành "Độ cong không đồng đều" vì trang chưa bàn tới thước đo mà cho thấy hệ số co khác nhau do độ cong; nêu lý do chọn $t=1/4$ (bước Armijo đã nhận ở lượt đầu); viết hệ số co dạng $1-3t$, $1-7t$; bỏ câu "cấu hình bước cố định tách ảnh hưởng của độ cong khỏi quy tắc quay lui"; khung kết luận nối nguyên nhân với số hạng phạt $\tfrac12\|d\|_2^2$ của RG02 thay cho câu "chuẩn bậc hai phản ánh độ cong" xuất hiện đột ngột. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Hình đường đi với bước cố định $t=1/4$ trên VD1. Khung: giữ bước $t=1/4$ đã nhận ở lượt đầu; $d_G=-(3x_1,7x_2)^T$; $x_1^+=(1-3t)x_1=\tfrac14x_1$, $x_2^+=(1-7t)x_2=-\tfrac34x_2$. Kết luận: cùng một bước $t$, hai tọa độ co theo $1-3t$ và $1-7t$; số hạng phạt $\tfrac12\|d\|_2^2$ đo mọi phương như nhau nên hướng $-g$ không tính đến độ cong khác nhau.
+- **Bố cục chọn:** Trái 65% hình; phải khung cập nhật; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 761 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Hai hệ số co được đọc trực tiếp từ đường đi trên hình; nguyên nhân được quy về đúng thành phần của bài con đã học.
+- **Vào → ra:** Đầu vào: thuật toán giảm gradient (RG06), bước $t=1/4$ (RG05), bài con $Q_I$ (RG02). Đầu ra: nhu cầu thay chuẩn Euclid trong bài con chọn hướng bằng chuẩn có trọng số theo độ cong (RG08).
+- **Chuẩn và minh chứng:** LLO6 / CLO1.
+- **Số liệu:** VD1: $x_2$: $4\to-3\to9/4\to\cdots$; bước cố định tối ưu $t=1/5$ cho hệ số $2/5=(\kappa-1)/(\kappa+1)$, $\kappa=7/3$ (ghi chú, tính lại).
+- **Nguồn, ghi chú soạn:** BV §§9.3–9.4.1; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG08 — Hướng giảm dốc nhất có chuẩn đơn vị

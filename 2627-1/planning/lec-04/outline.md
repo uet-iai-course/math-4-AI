@@ -963,3 +963,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RG04 giữ tiêu đề "Quay lui Armijo"; điều kiện giảm đủ đặt trước thủ tục, kèm diễn giải phần $\alpha$ của mức giảm dự báo; thủ tục gộp ba bước.
 - RG05 giữ tiêu đề; dữ kiện nêu $x^0$, $d=d_G$; ngưỡng viết $62-82t$; thêm dòng kết quả $x^1=(1/2,-3)^T$, $f(x^1)=255/8$.
 - RG06 giữ tiêu đề; thêm đầu ra; khung kết luận nối tiêu chí dừng với KKT $\nabla f(x^*)=0$. Cấu hình bước cố định $1/L$ và các cận hội tụ chỉ còn trong ghi chú (thay mô tả "ghi tên cấu hình trên mặt trang" cho RG06).
+- RG07 đổi tên thành "Độ cong không đồng đều"; hệ số co viết $1-3t$, $1-7t$; khung kết luận quy nguyên nhân về số hạng phạt $\tfrac12\|d\|_2^2$ của bài con, thay cho câu về chuẩn bậc hai.

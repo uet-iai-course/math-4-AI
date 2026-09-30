@@ -226,23 +226,22 @@
 <aside class="notes">Thuật toán ghép các thành phần đã xây dựng: gradient tại điểm hiện tại, hướng $d=-g$ từ bài con bậc hai, bước $t$ từ quay lui Armijo và phép cập nhật; lượt đầu trên VD1 cho $x^1=(1/2,-3)^T$. Tiêu chí dừng được kiểm trước khi tính hướng, nên nếu $\|g\|_2\le\varepsilon_g$ ngay tại $x^0$ thì thuật toán dừng mà không cập nhật. Tiêu chí này đo mức vi phạm điều kiện dừng $\nabla f(x^*)=0$ của bài gốc; chuẩn gradient nhỏ không tự cho cận sai số mục tiêu. Nếu $f$ lồi mạnh với hệ số $\mu&gt;0$ thì $f(x)-f^\star\le\|g\|_2^2/(2\mu)$. Chi phí mỗi lượt chủ yếu là một lần tính gradient và vài lần đánh giá hàm khi thử bước. Về hội tụ, kết quả chuẩn được phát biểu cho bước cố định. Hằng số $L&gt;0$ thỏa $\|\nabla f(x)-\nabla f(y)\|_2\le L\|x-y\|_2$ với mọi $x,y\in\mathbb R^n$ gọi là hằng số Lipschitz của gradient; với VD1, $L=7$ là giá trị riêng lớn nhất của $\operatorname{diag}(3,7)$. Với $f$ lồi khả vi trên $\mathbb R^n$, gradient $L$-Lipschitz và nghiệm $x^\star$ tồn tại, bước cố định $t=1/L$ cho $f(x^k)-f^\star\le L\|x^0-x^\star\|_2^2/(2k)$ khi $k\ge1$; nếu thêm tính lồi mạnh với hệ số $\mu&gt;0$, sai số giảm không quá $(1-\mu/L)^k[f(x^0)-f^\star]$. Các cận này thuộc cấu hình bước cố định và không tự động áp dụng cho quay lui. Giữ $t$ cố định cũng làm phép cập nhật trên hàm bậc hai tách thành các hệ số nhân riêng theo từng tọa độ, nên ảnh hưởng của độ cong được quan sát tách khỏi quy tắc chọn bước. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.3; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RG07">
-<h2>Ảnh hưởng của thước đo</h2>
+<h2>Độ cong không đồng đều</h2>
 <div class="lec-grid lec-grid--65-35">
 <div>
 <img class="plot" src="img/lec-04/gradient-fixed-step.svg" alt="Đường đi của phương pháp gradient với bước cố định t=1/4 trên VD1: các điểm co dần theo tọa độ, x1 nhân 1/4 và x2 nhân −3/4 sau mỗi bước">
 </div>
 <div>
 <div class="panel">
-<p><strong>Cấu hình:</strong> bước cố định $t=1/4$, hướng gradient $d_G=-g$.</p>
-<div class="formula" tabindex="0">$x_1^+=x_1-\tfrac14\cdot 3x_1=\tfrac14 x_1$</div>
-<div class="formula" tabindex="0">$x_2^+=x_2-\tfrac14\cdot 7x_2=-\tfrac34 x_2$</div>
-</div>
-<p>Cấu hình bước cố định tách ảnh hưởng của độ cong khỏi quy tắc quay lui.</p>
+<p>Giữ bước $t=1/4$ đã nhận ở lượt đầu; <span class="math-nowrap">$d_G=-(3x_1,7x_2)^T$.</span></p>
+<div class="formula" tabindex="0">$x_1^+=(1-3t)\,x_1=\tfrac14 x_1$</div>
+<div class="formula" tabindex="0">$x_2^+=(1-7t)\,x_2=-\tfrac34 x_2$</div>
 </div>
 </div>
-<div class="takeaway">Hai tọa độ có hệ số co khác nhau; chuẩn bậc hai phản ánh độ cong theo từng phương.</div>
+</div>
+<div class="takeaway">Cùng một bước $t$, hai tọa độ co theo $1-3t$ và $1-7t$; số hạng phạt $\tfrac12\|d\|_2^2$ đo mọi phương như nhau nên hướng $-g$ không tính đến độ cong khác nhau.</div>
 <aside class="notes">
-Với $f=\tfrac12(3x_1^2+7x_2^2)$ tại $x^0=(2,4)^T$, gradient là $g=(6,28)^T$. Giữ bước $t=1/4$ và hướng $d_G=-g$, cập nhật $x^+=x+t\,d_G$ cho $x_1^+=x_1/4$ và $x_2^+=-3x_2/4$: tại mỗi điểm phải tính lại $g=(3x_1,7x_2)^T$. Thành phần thứ hai đổi dấu và co chậm hơn, với hệ số độ lớn $3/4$ so với $1/4$. Phân tích này giữ cố định $t$, khác với tìm bước bằng quay lui qua các mức $t=1,1/2,1/4$. Tọa độ $x_2$ đổi dấu qua mỗi lượt, còn $x_1$ giữ dấu; các điểm tiến dần về gốc. Hai hệ số co xuất phát từ độ cong khác nhau theo hai phương. Chuẩn bậc hai với ma trận chọn theo độ cong thay đổi thước đo dùng để xác định hướng giảm dốc nhất. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Thuật toán giảm gradient trên VD1 được xét với bước giữ cố định để thấy riêng tác động của hướng. Bước $t=1/4$ là bước Armijo đã nhận ở lượt đầu. Với $f=\tfrac12(3x_1^2+7x_2^2)$, gradient là $g=(3x_1,7x_2)^T$ và được tính lại tại mỗi điểm; cập nhật $x^+=x-tg$ cho $x_1^+=(1-3t)x_1$ và $x_2^+=(1-7t)x_2$. Với $t=1/4$, $x_1$ nhân $1/4$ và giữ dấu, còn $x_2$ nhân $-3/4$, đổi dấu qua mỗi lượt và co chậm hơn; đường đi trên hình dao động theo phương $x_2$. Không có bước cố định nào làm cả hai tọa độ co nhanh: hệ số lớn nhất $\max\{|1-3t|,|1-7t|\}$ nhỏ nhất tại $t=1/5$ và bằng $2/5$, đúng bằng $(\kappa-1)/(\kappa+1)$ với $\kappa=7/3$ là tỷ số giữa độ cong lớn nhất và nhỏ nhất. Nguyên nhân nằm ở bài con chọn hướng: số hạng $\tfrac12\|d\|_2^2$ phạt độ dài bước như nhau theo mọi phương, trong khi hàm cong gấp $7/3$ lần theo $x_2$ so với $x_1$. Thay chuẩn Euclid bằng một chuẩn có trọng số theo độ cong cho một bài con chọn hướng khác. Nguồn: Boyd và Vandenberghe (2004), §§9.3–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 
