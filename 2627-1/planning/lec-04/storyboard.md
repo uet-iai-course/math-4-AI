@@ -386,13 +386,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RE06 — Khử biến và hệ Newton rút gọn
+### RE06 — Hệ Newton rút gọn
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu E03, E04. Đặt khử biến như cách giải cùng một hệ, thay vì một nhánh xuất hiện trước rồi bị bỏ lại.
-- **Nội dung trên trang:** Chọn $A\hat u=b$, các cột của $N\in\mathbb R^{n\times(n-p)}$ là cơ sở $\ker A$, nên mọi hướng khả thi có dạng $d=N\Delta z$. Nhân $N^T$ vào hàng dừng KKT được $N^THN\Delta z=-N^Tg$. VD3: $N=(-1,1)^T$, $N^THN=7$, $N^Tg=-42$, $\Delta z=6$, nên $d=(-6,6)^T$. $\psi(z)=196-28z+7z^2/2$ đặt trong ghi chú.
-- **Bố cục chọn:** Hai cột 50/50: trái khử nhân tử trong hệ KKT, phải phép tính giảm chiều; d ở chân nối hai cách.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: mặt trang chưa nêu vì sao cần cách giải thứ hai; tiêu đề gộp phương pháp với kết quả; ghi chú chưa mở bằng nghiệm RE05 và chưa nối sang thuật toán. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Dòng nhu cầu: hệ khối cỡ $n+p$ không xác định dương; tham số hóa tập khả thi cho hệ cỡ $n-p$ không chứa nhân tử. $u=\hat u+Nz$, $d=N\Delta z$; khử nhân tử bằng $N^TA^T=0$, được $N^THN\Delta z=-N^Tg$. VD3: $N=(-1,1)^T$, $N^THN=7$, $N^Tg=-42$, $\Delta z=6$. Kết luận: cùng $d=(-6,6)^T$; với $H\succ0$, $N^THN\succ0$. Ghi chú: chứng minh $N^THN\succ0$, $\psi(z)=196-28z+7z^2/2$.
+- **Bố cục chọn:** Hai dòng mở toàn chiều rộng (nhu cầu, tham số hóa); lưới hai cột: khử nhân tử | khung VD3; kết luận ở chân. Đo 1600×900: đáy nội dung 707/829, tiêu đề kết thúc ở 450 px; 390×844: vừa khi cuộn.
 - **Lý do bố cục cho sinh viên năm 3:** Đặt khử biến như cách giải cùng một hệ, thay vì một nhánh xuất hiện trước rồi bị bỏ lại.
-- **Vào → ra:** Đầu vào: Đặt $d=N\Delta z$ với $AN=0$ và nhân hàng dừng với $N^T$ để khử $\eta$. Đầu ra: Hệ rút gọn cho cùng hướng khả thi, cùng độ giảm mô hình và cùng quy tắc nhận bước trên $F$.
+- **Vào → ra:** Đầu vào: nghiệm $d=(-6,6)^T$, $\eta=-20$ của hệ khối (RE05); $\ker A$ (RE02). Đầu ra: hệ rút gọn cỡ $n-p$, xác định dương, cho cùng bước; thuật toán ở RE07 dùng một trong hai cách giải.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** VD3 khả thi, dàn ý §6: F, u, A, b; g, H ở RE02; d, η ở RE05; N, Δz ở RE06. Chỉ đưa ký hiệu đã dùng trên trang, chưa đưa phần dư hoặc số gia nhân tử.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.

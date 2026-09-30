@@ -981,3 +981,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RE03 đổi tên thành "Bài toán con có đẳng thức"; dòng mở nêu $g=\nabla F(u)$, $H=\nabla^2F(u)$ tại điểm khả thi và bài con là $Q_H$ thêm $Ad=0$; hai phương trình được gọi là nhóm dừng và nhóm khả thi.
 - RE04 đổi tên thành "Hệ Newton có đẳng thức"; hai hàng của hệ khối được gắn nhãn nhóm dừng và nhóm khả thi; ghi chú thêm chứng minh tính khả nghịch dưới $H\succ0$ và $A$ đủ hạng hàng.
 - RE05 giữ tiêu đề; định nghĩa $\delta_{eq}$ chuyển sang RE07; dòng kiểm nêu mức giảm thật $126=\tfrac12d^THd$; ghi chú nêu $\eta=-20=\nu^*$.
+- RE06 đổi tên thành "Hệ Newton rút gọn"; thêm dòng nhu cầu so với hệ khối và kết luận $N^THN\succ0$ khi $H\succ0$.
