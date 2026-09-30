@@ -350,13 +350,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RE03 — Hàm Lagrange của mô hình có đẳng thức
+### RE03 — Bài toán con có đẳng thức
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu E05. Sinh viên tự tái tạo hai hàng hệ Newton bằng thao tác đã dùng ở bài 03.
-- **Nội dung trên trang:** Chọn min_d g^Td+1/2d^THd với Ad=0. L_m(d,η)=g^Td+1/2d^THd+η^TAd. Điều kiện dừng theo d là g+Hd+A^Tη=0; theo η là Ad=0.
-- **Bố cục chọn:** Một cột ba tầng bài con → Lagrange → hai đạo hàm; nhãn biến d và nhân tử η đặt cạnh biểu thức.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: tiêu đề dài vượt nút điều hướng và cụm "mô hình có đẳng thức" tối nghĩa; bài con chưa được nối với mô hình $Q_H$ của phần Newton và điều kiện $Ad=0$ của RE02; chưa nêu $g,H$ tại điểm khả thi; nhãn đạo hàm chưa gọi tên nhóm KKT. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Dòng mở: tại $u$ khả thi, $g=\nabla F(u)$, $H=\nabla^2F(u)$; mô hình $Q_H$ của phần Newton thêm ràng buộc $Ad=0$. Khung: bài con $\min_d g^Td+\tfrac12d^THd$ với $Ad=0$, nhân tử $\eta\in\mathbb R^p$; $L_m(d,\eta)$; Dừng $g+Hd+A^T\eta=0$; Khả thi $Ad=0$. Ghi chú: bỏ hằng số $F(u)$, hai nhóm KKT của bài con affine, phân biệt $\eta$ với $\nu$.
+- **Bố cục chọn:** Dòng mở toàn chiều rộng; khung panel: bài con → $L_m$ → Dừng → Khả thi. Đo 1600×900: đáy nội dung 787/829, tiêu đề kết thúc ở 600 px; 390×844: vừa khi cuộn, $L_m$ cuộn ngang trong `.formula`.
 - **Lý do bố cục cho sinh viên năm 3:** Sinh viên tự tái tạo hai hàng hệ Newton bằng thao tác đã dùng ở bài 03.
-- **Vào → ra:** Đầu vào: Mô hình bậc hai được cực tiểu hóa trên các hướng thỏa $Ad=0$. Đầu ra: Hai điều kiện $g+Hd+A^T\eta=0$ và $Ad=0$ tạo thành hệ tuyến tính theo $(d,\eta)$.
+- **Vào → ra:** Đầu vào: điều kiện hướng khả thi $Ad=0$ (RE02); mô hình $Q_H$ và hệ $Hd=-g$ của phần Newton. Đầu ra: hai phương trình KKT tuyến tính theo $(d,\eta)$, xếp thành hệ khối ở RE04.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.

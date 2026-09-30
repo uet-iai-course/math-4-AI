@@ -462,18 +462,17 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
   <aside class="notes">Trang trước cho điểm đầu khả thi $(16,-2)^T$ và nghiệm tham chiếu $(10,4)^T$ của VD3. Tại điểm đầu, $g=\nabla F(u)=(2u_1,5u_2)^T=(32,-10)^T$ và $H=\nabla^2F=\operatorname{diag}(2,5)$. Bước Newton của bài không ràng buộc là $d=-H^{-1}g=(-16,2)^T$; vì $Ad=-16+2=-14$, sau bước đầy đủ tổng hai tọa độ bằng $0$ thay vì $14$. Hướng Newton không ràng buộc vì vậy không bảo toàn đẳng thức. Phép tính $A(u+td)=b+tAd$ cho điều kiện cần và đủ để mọi bước $t$ đều khả thi: $Ad=0$. Tập các hướng này là không gian hạt nhân $\ker A=\operatorname{null}A=\{d:Ad=0\}$; với $A=[1\ 1]$, đó là đường $d_1+d_2=0$, song song với đường khả thi. Tọa độ âm của điểm hiện tại hợp lệ vì $u\in\mathbb R^2$ và bài toán không có điều kiện không âm. Điều kiện $Ad=0$ trở thành ràng buộc của mô hình bậc hai theo biến bước. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE03">
-  <h2>Hàm Lagrange của mô hình có đẳng thức</h2>
-  <p>$d,g\in\mathbb R^n$, $H\in\mathbb R^{n\times n}$, $A\in\mathbb R^{p\times n}$; nhân tử $\eta\in\mathbb R^p$.</p>
+  <h2>Bài toán con có đẳng thức</h2>
+  <p>Tại $u$ khả thi, <span class="math-nowrap">$g=\nabla F(u)$,</span> <span class="math-nowrap">$H=\nabla^2F(u)$:</span> mô hình $Q_H$ của phần Newton thêm ràng buộc $Ad=0$.</p>
   <div class="panel">
-    <p><strong>Bài con:</strong> $\min_d\ g^Td+\tfrac12d^THd$ với $Ad=0$.</p>
+    <p><strong>Bài con:</strong> $\min_d\ g^Td+\tfrac12d^THd$ với $Ad=0$; nhân tử <span class="math-nowrap">$\eta\in\mathbb R^p$.</span></p>
     <div class="formula" tabindex="0">$$L_m(d,\eta)=g^Td+\tfrac12d^THd+\eta^TAd$$</div>
-    <p><strong>Đạo hàm theo $d$:</strong></p>
+    <p><strong>Dừng</strong> (đạo hàm theo $d$):</p>
     <div class="formula" tabindex="0">$$g+Hd+A^T\eta=0$$</div>
-    <p><strong>Đạo hàm theo $\eta$:</strong></p>
+    <p><strong>Khả thi</strong> (đạo hàm theo $\eta$):</p>
     <div class="formula" tabindex="0">$$Ad=0$$</div>
   </div>
-
-  <aside class="notes">Hàm Lagrange của bài con kết hợp mô hình bậc hai với ràng buộc bảo toàn đẳng thức. Nhân tử $\eta$ của bài con tự do dấu vì ràng buộc là đẳng thức. Ký hiệu $\eta$ chỉ nhân tử của bài con, còn $\nu$ chỉ nhân tử của bài gốc. Đạo hàm theo $d$ cho $g+Hd+A^T\eta=0$: gradient mô hình cộng với tổ hợp pháp tuyến của ràng buộc bằng không. Đạo hàm theo $\eta$ trả lại đúng $Ad=0$, tức điều kiện để hướng bảo toàn đẳng thức. Hai phương trình là điều kiện dừng và khả thi của bài con; dạng ma trận của chúng cho hệ Newton có đẳng thức. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Trang trước cho điều kiện hướng khả thi $Ad=0$. Mô hình bậc hai của phần Newton tại điểm hiện tại là $F(u)+g^Td+\tfrac12d^THd$; bỏ hằng số $F(u)$ không đổi nghiệm, và thêm ràng buộc $Ad=0$ được bài con có đẳng thức theo biến $d\in\mathbb R^n$, với $A\in\mathbb R^{p\times n}$. Bài con có ràng buộc affine nên hệ KKT gồm hai nhóm: dừng và khả thi gốc; không có nhóm khả thi đối ngẫu hay bù trừ. Nhân tử $\eta\in\mathbb R^p$ của bài con tự do dấu vì ràng buộc là đẳng thức; ký hiệu $\eta$ dành cho bài con, còn $\nu$ dành cho bài gốc. Đạo hàm theo $d$ cho $g+Hd+A^T\eta=0$: gradient của mô hình cân bằng với tổ hợp các pháp tuyến của ràng buộc. Đạo hàm theo $\eta$ trả lại đúng $Ad=0$. Hai phương trình tuyến tính theo $(d,\eta)$, nên xếp được thành một hệ ma trận khối. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE04">
   <h2>Hệ Newton từ KKT của bài toán con</h2>
