@@ -302,16 +302,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
-### RN06 — Thuật toán Newton và điều kiện áp dụng
+### RN06 — Thuật toán Newton
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu C05, C06. Phân biệt cơ chế đã suy ra với điều kiện bảo đảm hoạt động; đủ đầu vào để sinh viên thực hiện lại một vòng.
-- **Nội dung trên trang:** Tính $g,H$; giải $Hd=-g$; tính $\delta_N^2$; nếu $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$ thì dừng theo dung sai mô hình, nếu chưa thì quay lui và cập nhật. Điều này chưa chứng nhận sai số mục tiêu. Yêu cầu $H\succ0$ tại điểm lặp; chi phí giải hệ đặc $O(n^3)$. Hội tụ bậc hai chỉ cục bộ với Hessian Lipschitz gần nghiệm, Hessian tại nghiệm xác định dương và điểm đầu đủ gần; phát biểu đầy đủ ở ghi chú.
-- **Bố cục chọn:** Trái 65% giả mã năm bước; phải ba ô đầu vào/điều kiện/chi phí. Chỉ một câu về hội tụ ở chân; không nhồi định lý dài.
-- **Lý do bố cục cho sinh viên năm 3:** Phân biệt cơ chế đã suy ra với điều kiện bảo đảm hoạt động; đủ đầu vào để sinh viên thực hiện lại một vòng.
-- **Vào → ra:** Đầu vào: Mỗi điểm lặp xác định một Hessian và một mô hình $Q_H$ mới. Đầu ra: Điểm dừng theo dung sai mô hình chỉ được đánh giá về sai số mục tiêu khi có giả thiết bổ sung.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RN07.
-- **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
-- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Thuật toán Newton và điều kiện áp dụng" thành "Thuật toán Newton" (song song RG06); thêm đầu ra; đặt tên dung sai $\varepsilon_{\mathrm{model}}$ trong đầu vào; gộp ba khung bên thành một khung đầu vào–đầu ra–điều kiện–chi phí; thay câu "hội tụ bậc hai cần giả thiết cục bộ" (khái niệm chưa định nghĩa) bằng kết luận về tiêu chí dừng có số liệu VD2; định nghĩa hội tụ bậc hai và giả thiết cục bộ chuyển vào ghi chú. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Năm bước: tính $g,H$; giải $Hd=-g$; tính $\delta_N^2=d^THd$; dừng nếu $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$; nếu chưa, chọn $t$ bằng Armijo và cập nhật. Khung: đầu vào $x^0\in\operatorname{dom}f$, $\varepsilon_{\mathrm{model}}>0$, $\alpha,\beta$; đầu ra $x$ với $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$; điều kiện $f$ hai lần khả vi, $H\succ0$ tại điểm lặp; chi phí mỗi lượt Hessian và hệ $n\times n$, $O(n^3)$ khi đặc. Kết luận: tiêu chí $\delta_N^2/2$ tính được tại điểm hiện tại nhưng chưa chứng nhận sai số tối ưu (VD2: $9/32$ so với $0{,}636$).
+- **Bố cục chọn:** `lec-grid--60-40`: trái thủ tục, phải một khung bốn mục; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 778 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Cùng khuôn với thuật toán giảm gradient để thấy hai phương pháp chỉ khác hướng và tiêu chí dừng.
+- **Vào → ra:** Đầu vào: hướng Newton (RN02), độ giảm Newton (RN04), so sánh ba phép trừ (RN05), Armijo (RG04). Đầu ra: thuật toán hoàn chỉnh; tiêu chí dừng chưa là cận sai số, dẫn tới câu hỏi RN07 và phần cận sai số (RS).
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN07.
+- **Số liệu:** VD2: $9/32$, $\log4-3/4\approx0{,}636$; $\delta_N^2=g^TH^{-1}g$ (ghi chú).
+- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
 ### RN07 — Kiểm tra mô hình và điều kiện tối ưu

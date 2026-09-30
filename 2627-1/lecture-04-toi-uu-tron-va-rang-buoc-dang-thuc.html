@@ -397,16 +397,17 @@ Mức giảm mô hình $\delta_N^2/2$ được đặt cạnh hai phép trừ tr�
 </section>
 
 <section data-slide-id="RN06">
-<h2>Thuật toán Newton và điều kiện áp dụng</h2>
-<div class="lec-grid lec-grid--65-35"><div class="panel"><ol class="steps">
+<h2>Thuật toán Newton</h2>
+<div class="lec-grid lec-grid--60-40"><div class="panel"><ol class="steps">
 <li>Tính $g=\nabla f(x)$, $H=\nabla^2f(x)$.</li><li>Giải hệ $Hd=-g$.</li><li>Tính $\delta_N^2=d^THd$.</li>
 <li>Nếu $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$: dừng.</li><li>Nếu chưa: chọn $t$ bằng Armijo, rồi $x\leftarrow x+td$.</li>
-</ol></div><div><div class="panel"><strong>Đầu vào:</strong> $x^0$ trong miền, dung sai dương, $\alpha,\beta$.</div>
-<div class="panel"><strong>Điều kiện:</strong> $f$ hai lần khả vi, $H\succ0$ tại điểm lặp.</div>
-<div class="panel"><strong>Chi phí:</strong> hệ đặc cỡ $O(n^3)$.</div></div></div>
-<div class="takeaway">Dừng theo mô hình chưa chứng nhận sai số thật. Hội tụ bậc hai cần giả thiết cục bộ tại nghiệm.</div>
+</ol></div><div class="panel"><p><strong>Đầu vào:</strong> <span class="math-nowrap">$x^0\in\operatorname{dom}f$,</span> <span class="math-nowrap">$\varepsilon_{\mathrm{model}}&gt;0$,</span> $\alpha,\beta$.</p>
+<p><strong>Đầu ra:</strong> $x$ với $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$.</p>
+<p><strong>Điều kiện:</strong> $f$ hai lần khả vi, <span class="math-nowrap">$H\succ0$</span> tại điểm lặp.</p>
+<p><strong>Chi phí mỗi lượt:</strong> Hessian và hệ $n\times n$, cỡ $O(n^3)$ khi đặc.</p></div></div>
+<div class="takeaway">Tiêu chí $\delta_N^2/2$ tính được tại điểm hiện tại nhưng chưa chứng nhận sai số tối ưu (VD2: $9/32$ so với $0{,}636$).</div>
 <aside class="notes">
-Thuật toán gồm tính gradient và Hessian, giải hệ $Hd=-g$, đo độ giảm mô hình qua $\delta_N^2$, dừng nếu $\delta_N^2/2$ dưới dung sai mô hình, nếu chưa thì quay lui và cập nhật. Điều kiện dừng này chỉ là dung sai trên mô hình; nó không phải chứng nhận sai số thật so với nghiệm bài gốc. Điều kiện dùng: cần $H\succ0$ tại từng điểm lặp để hệ giải được và mô hình lồi chặt; chi phí giải hệ đặc tổng quát cỡ $O(n^3)$. Về hội tụ: Newton hội tụ bậc hai cục bộ khi Hessian Lipschitz trong lân cận nghiệm, Hessian tại nghiệm xác định dương và điểm đầu đủ gần; trong lân cận thích hợp, quay lui nhận bước đầy đủ. Kết quả cục bộ này dựa trên tính chính quy của Hessian và vị trí điểm đầu. Dung sai mô hình vẫn cần được đối chiếu với điều kiện tối ưu và sai số của hàm gốc. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009.
+Thuật toán ghép các thành phần đã xây dựng: gradient và Hessian tại điểm hiện tại, hướng Newton từ hệ $Hd=-g$, độ giảm Newton, quay lui Armijo và phép cập nhật; cấu trúc giống thuật toán giảm gradient, chỉ khác hướng và tiêu chí dừng. Vì $\delta_N^2=g^TH^{-1}g$ với $H\succ0$, $\delta_N=0$ khi và chỉ khi $g=0$; tiêu chí dừng là một thước đo vi phạm điều kiện dừng $\nabla f(x^*)=0$, đo gradient theo chuẩn do $H^{-1}$ xác định. Tiêu chí này là dung sai trên mô hình; VD2 cho thấy nó không phải chứng nhận sai số so với nghiệm. Điều kiện áp dụng: $H\succ0$ tại từng điểm lặp để hệ giải được và mô hình lồi chặt. Chi phí mỗi lượt gồm tính Hessian và giải hệ $n\times n$, cỡ $O(n^3)$ với ma trận đặc, so với một vectơ gradient ở phương pháp gradient. Về hội tụ: dãy lặp hội tụ bậc hai nếu $\|x^{k+1}-x^\star\|\le c\|x^k-x^\star\|^2$ với hằng số $c$ khi $k$ đủ lớn; Newton đạt tính chất này cục bộ khi Hessian Lipschitz trong lân cận nghiệm, Hessian tại nghiệm xác định dương và điểm lặp đủ gần nghiệm, và khi đó quay lui nhận bước đầy đủ $t=1$. Việc chuyển tiêu chí trên mô hình thành cận sai số cần một giả thiết kiểm soát độ cong. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 
