@@ -566,13 +566,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
 - **Dự toán nội bộ:** 0 LT + 1/10 BT; suy nghĩ 1/25 BT, chữa 3/50 BT.
 
-### RZ01 — Tổng hợp các phương pháp tối ưu
+### RZ01 — Khung chung của bước lặp
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu Z01. Thu hồi chung một cách xây dựng phương pháp, thay bảng tên phương pháp như các lựa chọn rời nhau.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Khung chung của bước lặp" (tiêu đề cũ chung chung, 817 px đè nút điều hướng); dòng mở nêu khung mô hình → KKT bài con → nhận bước → dừng; bảng bốn phương pháp với cột Dừng, gộp hàng chuẩn $W$ vào nhãn $W=I$, $W=H$; kết luận phân biệt cận theo độ giảm Newton (không cần hằng số), cận $\|g\|_2^2/(2\mu)$ (cần $\mu$) và $\|r\|_2$ (chỉ đo mức thỏa KKT). Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu Z01. Thu hồi chung một cách xây dựng phương pháp, thay bảng tên phương pháp như các lựa chọn rời nhau.
 - **Nội dung trên trang:** Bảng: điều kiện tối ưu/bài con được chọn/hệ giải/đại lượng nhận bước. Các hàng gradient, chuẩn W, Newton, Newton khả thi, Newton phần dư; KKT đủ để chứng nhận nghiệm tối ưu trong lớp lồi. Dung sai mô hình hoặc phần dư chưa tự cho cận sai số; các giả thiết tự điều chỉnh đã nêu cho phép suy cận từ độ giảm Newton.
 - **Bố cục chọn:** Bảng toàn chiều ngang, chỉ một công thức ngắn mỗi ô; giả thiết chi tiết tham chiếu lại nội dung đã học trong ghi chú.
 - **Lý do bố cục cho sinh viên năm 3:** Thu hồi chung một cách xây dựng phương pháp, thay bảng tên phương pháp như các lựa chọn rời nhau.
-- **Vào → ra:** Đầu vào: Gradient, giảm dốc nhất và Newton khác nhau ở bài toán chọn hướng; hai dạng Newton đẳng thức khác nhau ở ẩn và vế phải. Đầu ra: Với mô hình bình phương tối thiểu có điều chuẩn và đẳng thức, gradient và Hessian cung cấp trực tiếp các khối của hệ KKT.
+- **Vào → ra:** (2026-09-30) Đầu vào: bốn phương pháp và cận sai số của phần tự điều chỉnh. Đầu ra: trả lời vấn đề trung tâm (bước lặp từ KKT bài con; tiêu chí dừng nào chứng nhận sai số); dẫn sang ứng dụng mô hình học (RZ02). Mô tả trước: Đầu vào: Gradient, giảm dốc nhất và Newton khác nhau ở bài toán chọn hướng; hai dạng Newton đẳng thức khác nhau ở ẩn và vế phải. Đầu ra: Với mô hình bình phương tối thiểu có điều chuẩn và đẳng thức, gradient và Hessian cung cấp trực tiếp các khối của hệ KKT.
 - **Chuẩn và minh chứng:** LLO6–10 / CLO1–2; chuẩn bị thao tác được đo tại RZ02.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §5.5.3, §§9.2–9.6, 10.1–10.3; Bài 03 S05-06a/b; đề cương buổi 4. Ghi chú thu hồi cận $-\delta-\log(1-\delta)$ với $\delta<1$ và đủ giả thiết: hàm lồi chặt $C^3$, tự điều chỉnh chuẩn trên miền mở lồi, Hessian xác định dương trên miền, đạt cực tiểu hữu hạn trong miền. Cận dùng độ giảm Newton của bài không ràng buộc hoặc hàm rút gọn khả thi đúng giả thiết; không chuyển trực tiếp chuẩn phần dư thành cận sai số.
