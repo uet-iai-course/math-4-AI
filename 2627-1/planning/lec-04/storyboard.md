@@ -385,6 +385,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RN07 — Tốc độ hội tụ của Newton
 
 - **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu "sau slide 'Thuật toán Newton', thêm một slide Tự học về tốc độ hội tụ của thuật toán trong các trường hợp (không cần chứng minh)". Có nhãn "Tự học".
+- **Sửa sau rà soát 2026-10-01:** định nghĩa hội tụ bậc hai thêm "khi $k$ đủ lớn"; hàng tự điều chỉnh ghi "(định nghĩa sau)" và "tập mức đóng"; dòng toàn cục định nghĩa $\gamma$, $\varepsilon_0$; câu "số chữ số đúng gấp đôi" chuyển vào ghi chú.
 - **Nội dung trên trang:** Định nghĩa hội tụ bậc hai (chuyển từ trang câu hỏi). Bảng bốn trường hợp: bậc hai lồi chặt (một bước), cục bộ ($\nabla^2f(x^*)\succ0$, Hessian Lipschitz; bậc hai khi gần), toàn cục (lồi mạnh, Hessian Lipschitz; pha tắt dần rồi bậc hai), tự điều chỉnh (hằng số chỉ theo $\alpha,\beta$). Số bước toàn cục $\le(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$. Kết luận: Hessian không xác định dương thì hướng có thể không giảm; so với giảm gradient $O(1/k)$ hoặc $(1-\mu/L)^k$.
 - **Bố cục chọn:** Dòng định nghĩa; bảng ba cột; dòng số bước; kết luận. Hằng số chính xác ở ghi chú.
 - **Lý do tồn tại:** Thuật toán Newton vừa hoàn chỉnh chưa có phát biểu về tốc độ; trang câu hỏi kế tiếp dùng khái niệm hội tụ bậc hai.

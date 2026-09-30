@@ -1,5 +1,27 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Rà soát các trang tự học về hội tụ (RG12–RG17, RN07) — 2026-10-01
+
+Người rà soát: fork chỉ đọc của điều phối viên, Claude Opus 5.5 (kế thừa), gộp vai toán học, mạch lập luận và kiểm định storyboard. Kết luận: 0 chặn bàn giao, 0 nghiêm trọng, 3 trung bình, 9 nhẹ (và một mục chấp nhận không sửa); mọi số liệu và hằng số BV đã được tính lại, đúng. Cổng storyboard chấp nhận các quyết định `thêm`. Tác tử sửa: fork của điều phối viên, Claude Opus 5.5 (kế thừa).
+
+| Vai | Mã | Mức độ | Trang | Vấn đề | Quyết định/trạng thái |
+|---|---|---|---|---|---|
+| Toán | C-M1 | trung bình | RG06 ghi chú | Câu cũ "kết quả chuẩn được phát biểu cho bước cố định" mâu thuẫn với trang quay lui | Đã sửa: xóa câu, giữ chỉ dẫn tới các trang tự học |
+| Mạch | C-S1 | trung bình | Ghi chú bài giảng mục B | Định lý hội tụ với quay lui chưa có trong học liệu | Đã sửa ở commit học liệu riêng |
+| Mạch | C-S2 | trung bình | RN07 | $\gamma$, $\varepsilon_0$ chưa định nghĩa; tính tự điều chỉnh xuất hiện trước khi định nghĩa | Đã sửa: dòng toàn cục nêu $\gamma$ là mức giảm tối thiểu mỗi bước tắt dần, $\gamma,\varepsilon_0$ theo $m,M,L_H,\alpha,\beta$; hàng bảng ghi "Tự điều chỉnh (định nghĩa sau)" |
+| Toán | C-M2 | nhẹ | RN07 | Thiếu "tập mức đóng" và "khi $k$ đủ lớn" | Đã sửa; câu "số chữ số đúng gấp đôi" chuyển vào ghi chú để vừa khung |
+| Toán | C-M3 | nhẹ | RG12 | Câu nhu cầu diễn đạt "an toàn" chưa chính xác | Đã sửa: "Bước cố định $t=1/L$ cần một hằng số $L$ chặn trên độ cong của $f$." |
+| Mạch | C-S3 | nhẹ | RG16 | Vai trò của $\alpha$ không hiện trên mặt trang | Đã sửa: thêm dòng $\le f(x)-\alpha t\|g\|_2^2$; chuỗi bất đẳng thức tách ba dòng; nhãn rút gọn "Bổ đề." để vừa khung |
+| Mạch | C-S4 | nhẹ | RG14 | Thiếu bước ghép trước kết luận | Đã sửa: mục 4 "Ghép 1–2 rồi dùng 3" |
+| Mạch | C-S5 | nhẹ | RN01 ghi chú | Câu mở dẫn chiếu "ở cuối phần gradient" không còn đúng sau khi chèn cụm tự học | Đã sửa: "trong phần gradient" |
+| Mạch | C-S6 | nhẹ | RN01 mặt trang | Sửa N-S7 trước đó chưa được áp dụng | Đã sửa và kiểm bằng grep: "Với VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước; với hàm tổng quát, chọn $W=H=\nabla^2f(x)$ tại điểm hiện tại." Đáy nội dung 830/829 px (vượt 1 px do làm tròn, không chồng chân trang) |
+| Trình bày | C-S7 | nhẹ | `lipschitz-upper-bound.svg` | Thiếu nhãn trục đứng; vạch trục ngang không đều | Đã sửa: nhãn "giá trị hàm"; vạch $-4,-2,0,2,4$, điểm $s=1$ giữ nhãn riêng; dữ liệu không đổi |
+| Mạch | C-S8 | nhẹ | RZ03 | Trang tự học Newton chưa có trong bảng | Đã sửa: hàng Newton thêm "; tốc độ hội tụ Newton (tự học)"; đáy 820/829 px |
+| Mạch | C-S9 | nhẹ | RG11 ghi chú | Câu về nhu cầu hàm không bậc hai trùng vai với trang kiểm tra cuối cụm tự học | Đã sửa: bỏ câu, ghi chú kết bằng dẫn vào cụm tự học |
+| — | C-S10 | nhẹ | — | Theo báo cáo rà soát | Chấp nhận không sửa theo quyết định của điều phối viên |
+
+Kiểm tra trình duyệt sau sửa (1600×900 và 390×844, xem ảnh rộng): RG12 824/829, RG14 735/829, RG16 791/829, RN01 830/829, RN07 813/829, RZ03 820/829 px; không lỗi KaTeX hoặc console; công thức RG16 không còn tràn ngang ở khung rộng.
+
 ## Thêm trang tự học tốc độ hội tụ của Newton — 2026-10-01
 
 **Yêu cầu người dùng:** "sau slide 'Thuật toán Newton', thêm một slide Tự học về tốc độ hội tụ của thuật toán trong các trường hợp (không cần chứng minh)". Tác tử soạn: fork của điều phối viên, Claude Opus 5.5 (kế thừa).
@@ -8,7 +30,7 @@
 - **Đối chiếu nguồn:** đọc trực tiếp `sources/bv_cvxbook.pdf` (trích văn bản bằng pdftotext): §9.5.3 (tr. 488–491): giả thiết $mI\preceq\nabla^2f\preceq MI$ trên tập mức, Hessian Lipschitz hằng số $L$; $\eta=\min\{1,3(1-2\alpha)\}m^2/L$, $\gamma=\alpha\beta\eta^2m/M^2$; số bước (9.36) $(f(x^0)-p^*)/\gamma+\log_2\log_2(\epsilon_0/\epsilon)$, $\epsilon_0=2m^3/L^2$. §9.6.4 (tr. 503–505): $f$ tự điều chỉnh lồi chặt, tập mức ban đầu đóng, bị chặn dưới; $\eta=(1-2\alpha)/4$, $\gamma=\alpha\beta\eta^2/(1+\eta)$; (9.53), (9.56) hệ số $(20-8\alpha)/(\alpha\beta(1-2\alpha)^2)$; $\alpha=0{,}1$, $\beta=0{,}8$ cho $375$ (tính lại: $19{,}2/0{,}0512=375$).
 - **Mặt trang:** định nghĩa hội tụ bậc hai chuyển từ trang câu hỏi (sửa N-S1 trước đó) sang RN07; RN08 câu 2 dẫn chiếu "theo định nghĩa hội tụ bậc hai".
 - **Kiểm tra trình duyệt:** RN07 1600×900 đáy nội dung 813/829 px, tiêu đề kết thúc 706 px; RN08 620/829 px; không lỗi KaTeX/console; 390×844 cuộn dọc, bảng cuộn ngang trong `.table-scroll`.
-- Rà soát toán học, mạch lập luận, kiểm định storyboard: *chờ*.
+- Rà soát toán học, mạch lập luận, kiểm định storyboard: đạt, xem mục "Rà soát các trang tự học về hội tụ".
 
 ## Thêm phần tự học về hội tụ của giảm gradient — 2026-10-01
 
@@ -24,9 +46,7 @@
 | RG17 Hội tụ của giảm gradient | Ba câu hỏi, đáp án trong ghi chú; nối sang phần Newton | 1600×900 vừa khung, không lỗi KaTeX/console; 390×844 cuộn dọc | xem git log |
 
 - Tài sản mới: `img/lec-04/lipschitz-upper-bound.svg`, tự vẽ bằng Python từ công thức; `role="img"`, `title`, `desc`, chú giải bằng kiểu nét (không chỉ dùng màu).
-- Rà soát toán học: *chờ*.
-- Rà soát mạch lập luận: *chờ*.
-- Kiểm định storyboard: *chờ*.
+- Rà soát toán học, mạch lập luận, kiểm định storyboard: đạt, xem mục "Rà soát các trang tự học về hội tụ".
 
 ## Đánh dấu Tự học cho phần tự điều chỉnh — 2026-10-01
 
