@@ -254,16 +254,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
-### RN02 — Hướng Newton từ điều kiện dừng
+### RN02 — Hướng Newton
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu C02, C03. Dùng lại đúng thao tác RG02 và thay I/W bằng H, làm rõ lý do thống nhất các phương pháp.
-- **Nội dung trên trang:** $Q_H(d)=f(x)+g^Td+\tfrac12d^THd$; H≻0. Lấy đạo hàm theo d: $g+Hd=0$. Với VD2, $16d=3$, nên d=3/16 và s+=7/16. Đây là KKT của bài con không ràng buộc.
-- **Bố cục chọn:** Trên là Q_H, giữa ba dòng biến đổi căn dấu bằng, dưới phép thế VD2; bên lề chỉ ghi giả thiết H≻0.
-- **Lý do bố cục cho sinh viên năm 3:** Dùng lại đúng thao tác RG02 và thay I/W bằng H, làm rõ lý do thống nhất các phương pháp.
-- **Vào → ra:** Đầu vào: Chọn $B=H$ trong mô hình bậc hai cho $Q_H(d)=f(x)+g^Td+d^THd/2$. Đầu ra: Phương trình $g+Hd=0$ đồng thời là xấp xỉ tuyến tính của phương trình tối ưu $\nabla f(x+d)=0$.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RN07.
-- **Số liệu:** VD2, dàn ý §6; riêng RN04 so lại VD1 phải ghi rõ đổi ví dụ. Phân biệt δ, δ² và ba phép trừ.
-- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Hướng Newton từ điều kiện dừng" thành "Hướng Newton" (gọi tên khái niệm); nêu giả thiết $H\succ0$ và phép đặt $W=H$ trong dòng mở, trước phép giải; thêm tính giảm $g^Td=-d^THd<0$ để nối với tiêu chuẩn dấu và Armijo; nêu bước đầy đủ $t=1$ khi tính $s^+$. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Với $g=\nabla f(x)\in\mathbb R^n$, $H=\nabla^2f(x)\succ0$, dùng $Q_W$ với $W=H$: $Q_H(d)=f(x)+g^Td+\tfrac12d^THd$; $\nabla_dQ_H=g+Hd=0\Rightarrow Hd=-g$. VD2: $16d=3$, $d=3/16$; bước đầy đủ $t=1$ cho $s^+=7/16$. Khung: $H\succ0$ cho nghiệm duy nhất; $g^Td=-d^THd<0$ khi $g\ne0$ nên $d$ là hướng giảm.
+- **Bố cục chọn:** Dòng giả thiết, công thức mô hình; `lec-grid--65-35`: trái phép giải và VD2, phải khung tính chất. Đo ở 1600×900: đáy nội dung 574 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Giả thiết đọc trước phép giải; hướng Newton được đặt vào cùng khuôn mẫu $Q_W$ và cùng tiêu chuẩn hướng giảm của phần gradient.
+- **Vào → ra:** Đầu vào: parabol tại $s^0$ (RN01), mô hình $Q_W$ (RG10), tiêu chuẩn dấu (RG01). Đầu ra: $d=3/16$, $s^+=7/16$; câu hỏi $s^+$ có thỏa $\varphi'(s)=0$ không (RN03).
+- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RN07.
+- **Số liệu:** VD2: $g\,d=-9/16$, $d^THd=9/16$.
+- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
 ### RN03 — Tuyến tính hóa phương trình tối ưu

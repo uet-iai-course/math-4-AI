@@ -336,15 +336,15 @@ Câu hỏi kiểm tra ở cuối phần gradient cho thấy với VD1, chọn $W
 </section>
 
 <section data-slide-id="RN02">
-<h2>Hướng Newton từ điều kiện dừng</h2>
-<p>Với $g=\nabla f(x)\in\mathbb R^n$, $H=\nabla^2 f(x)\in\mathbb R^{n\times n}$, chọn:</p>
+<h2>Hướng Newton</h2>
+<p>Với $g=\nabla f(x)\in\mathbb R^n$, $H=\nabla^2 f(x)\succ0$, dùng mô hình $Q_W$ với $W=H$:</p>
 <div class="formula emphasis" tabindex="0">$$Q_H(d)=f(x)+g^Td+\tfrac12d^THd.$$</div>
-<div class="lec-grid lec-grid--75-25"><div>
-<div class="formula fragment" tabindex="0">$$\begin{aligned}\nabla_dQ_H(d)&amp;=0\\g+Hd&amp;=0\\Hd&amp;=-g.\end{aligned}$$</div>
-<p><strong>VD2:</strong> $16d=3\Rightarrow d=3/16$, $s^+=1/4+d=7/16$.</p></div>
-<div class="panel"><p>$H\succ0$: bài con lồi chặt, nghiệm duy nhất.</p></div></div>
+<div class="lec-grid lec-grid--65-35"><div>
+<div class="formula fragment" tabindex="0">$$\nabla_dQ_H(d)=g+Hd=0\quad\Longrightarrow\quad Hd=-g.$$</div>
+<p><strong>VD2:</strong> $16d=3$, $d=3/16$; bước đầy đủ $t=1$ cho <span class="math-nowrap">$s^+=1/4+3/16=7/16$.</span></p></div>
+<div class="panel"><p>$H\succ0$: nghiệm duy nhất.</p><p><span class="math-nowrap">$g^Td=-d^THd&lt;0$</span> khi $g\ne0$: $d$ là hướng giảm.</p></div></div>
 <aside class="notes">
-Mô hình bậc hai dùng Hessian $H$ tại điểm hiện tại thay cho ma trận đơn vị hoặc thước đo cố định. Với ví dụ, phương trình $g+Hd=0$ thành $-3+16d=0$, tức $16d=3$, nên $d=3/16$ và điểm mới $s^+=1/4+3/16=7/16$. Vì $H\succ0$, bài con lồi chặt nên điều kiện dừng cần và đủ cho nghiệm mô hình; đây là KKT của bài con không ràng buộc. Nghiệm này là nghiệm của mô hình, chưa phải nghiệm của hàm thật. Cùng hệ phương trình còn thu được khi tuyến tính hóa điều kiện tối ưu của bài gốc. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Parabol dựng tại điểm hiện tại được cực tiểu hóa theo $d$. Đây là mô hình $Q_W$ đã dùng cho hướng dốc nhất, với $W$ thay bằng Hessian $H$ tại điểm hiện tại. Điều kiện dừng $\nabla_dQ_H(d)=g+Hd=0$ cho hệ Newton $Hd=-g$. Vì $H\succ0$, $Q_H$ lồi chặt nên điều kiện dừng là KKT cần và đủ của bài con không ràng buộc, và nghiệm duy nhất. Nhân hệ với $d^T$ được $g^Td=-d^THd$, âm khi $g\ne0$; theo tiêu chuẩn dấu của đạo hàm hướng, hướng Newton là hướng giảm, nên quy tắc Armijo áp dụng được. Với VD2: $-3+16d=0$, $d=3/16$, $g\,d=-9/16&lt;0$; bước đầy đủ $t=1$ cho $s^+=7/16$. Nghiệm $d$ là nghiệm của mô hình; điểm $s^+$ chưa chắc thỏa điều kiện tối ưu $\varphi'(s)=0$ của hàm gốc. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
 </aside>
 </section>
 
