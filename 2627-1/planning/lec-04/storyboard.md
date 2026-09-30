@@ -397,6 +397,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Số liệu:** VD3 khả thi, dàn ý §6: F, u, A, b; g, H ở RE02; d, η ở RE05; N, Δz ở RE06. Chỉ đưa ký hiệu đã dùng trên trang, chưa đưa phần dư hoặc số gia nhân tử.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
+- **Cập nhật theo rà soát phần E (`2d750fc`):** dòng nhu cầu thêm "nên không giải được bằng phân rã Cholesky"; chỗ đưa $N\in\mathbb R^{n\times(n-p)}$ ghi "($A$ đủ hạng hàng)"; dòng thứ hai của khối căn mở bằng $\Rightarrow$ để thể hiện phép suy ra.
 
 ### RE07 — Thuật toán Newton khả thi
 
@@ -409,6 +410,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
+- **Cập nhật theo rà soát phần E (`2d750fc`):** khung điều kiện ghi "Điều kiện (đủ): $H\succ0$, $A$ đủ hạng hàng".
 
 ### RE08 — Bước Newton khả thi
 
@@ -421,6 +423,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
 - **Dự toán nội bộ:** 0 LT + 3/20 BT; suy nghĩ 3/50 BT, chữa 9/100 BT.
+- **Cập nhật theo rà soát phần E (`2d750fc`):** câu hỏi vì sao $\eta$ trùng nhân tử $\nu^*$ của nghiệm chuyển vào cuối câu 1; câu 2 chỉ còn hệ rút gọn.
 
 ### RR01 — Phần dư KKT
 

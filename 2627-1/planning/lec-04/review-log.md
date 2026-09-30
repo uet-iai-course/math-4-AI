@@ -111,6 +111,25 @@ Kiểm tra lại: RE01, RE03, RE06, RE07, RE08 ở 1600×900 đều 674/674, kh�
 
 **Trạng thái: đã sửa theo yêu cầu và theo vòng rà toán học–mạch lập luận được điều phối viên duyệt; không còn lỗi chặn bàn giao hoặc nghiêm trọng.**
 
+
+### Rà soát độc lập phần RR (RR01–RR07) và xử lý — 2026-09-30
+
+Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus 5.5 kế thừa. Kết quả: 0 chặn bàn giao, 0 nghiêm trọng, 3 trung bình, 7 nhẹ. Các sửa gộp một commit sau RZ03, do tác tử chỉnh sửa (nhánh của điều phối viên, Claude Opus 5.5 kế thừa) thực hiện.
+
+| Mã | Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|---|
+| R-S1 | trung bình | RR02, RR03, RR04, RR06 (ghi chú) | Ghi chú chứa mã trang (RR01, RR02, RR03, RR05, RE01) | Đã sửa: thay bằng mô tả nội dung ("hai phần dư vừa định nghĩa", "hệ khối ở trang trước", "nhân tử tìm được khi giải KKT của VD3", "tiêu chí chuẩn phần dư ghép"); quét regex toàn bộ ghi chú và mặt trang: không còn mã |
+| R-S2 | trung bình | RR01 | Nhu cầu trong ghi chú tự mâu thuẫn (điểm khả thi "dễ tìm" nhưng không có sẵn) | Đã sửa: điểm đầu phải thỏa đồng thời $Au^0=b$ và $u^0\in\operatorname{dom}F$; nghiệm của $Au=b$ có thể nằm ngoài miền; dòng nhu cầu trên mặt trang thêm "và $u^0\in\operatorname{dom}F$" |
+| R-M1 | trung bình | RR06 | "Thuật toán trùng Newton khả thi" sau bước đầy đủ bỏ qua khác biệt quy tắc nhận bước | Đã sửa: kết luận và ghi chú nói hướng trùng hướng Newton khả thi, quy tắc nhận bước vẫn dùng $\|r\|_2$ |
+| R-S3 | nhẹ | toàn bộ trang chiếu | Trộn ký hiệu nghiệm $^\star$ và $^*$ | Đã sửa: thay 12 lần $^\star$ bằng $^*$ (RG06, RN01, RN05, RN06, RN07, RR04 và các trang phần tự điều chỉnh); học liệu không có $\star$ |
+| R-S4 | nhẹ | storyboard RE06, RE07, RE08 | Mục storyboard chưa phản ánh commit `2d750fc` | Đã sửa: thêm dòng cập nhật (Cholesky và $A$ đủ hạng hàng ở RE06; "(đủ)" ở RE07; $\eta$ trùng $\nu^*$ ở câu 1 RE08) |
+| R-S5 | nhẹ | RR03 | Nhãn hàng "Giả thiết" chưa nói là điều kiện đủ | Đã sửa: "Điều kiện đủ" |
+| R-S6 | nhẹ | RR06 | Tiêu chí quay lui dài, chạm mép khung | Đã sửa: $u+td\in\operatorname{dom}F$ trong `math-nowrap`, tiêu chí viết $\|r^+\|_2\le(1-\alpha t)\|r\|_2$ với $r^+$ tại điểm thử |
+| R-S7 | nhẹ | RR05 | Ký hiệu gộp $[r_d;r_p]$ chưa nêu kích thước | Đã sửa: $r=(r_d,r_p)\in\mathbb R^{n+p}$, $\Delta=(d,\Delta\nu)$ (vectơ ghép) |
+| R-M2 | nhẹ | RR05 (ghi chú) | Ma trận Jacobi cần $F$ khả vi hai lần | Đã sửa: "Với $F$ khả vi hai lần, …" |
+| R-S8 | nhẹ | RR03 (ghi chú) | Câu "không phải một hệ khác" dùng phủ định | Đã sửa: "phương pháp mới mở rộng phương pháp cũ: khi $r_p=0$ hai hệ trùng nhau" |
+
+Kiểm tra lại: RR01, RR03, RR04, RR05, RR06 và các trang đổi ký hiệu (RG06, RN01, RN05, RN06, RN07) ở 1600×900 đều 674/674, không lỗi KaTeX hay lỗi console; 390×844 vừa khi cuộn, chỉ `.formula` và `.table-scroll` cuộn ngang theo cơ chế sẵn có. RR06 lần đầu tràn 30 px sau khi thêm "tại điểm thử"; rút gọn bước 3 và kết luận để vừa khung.
 ### Yêu cầu và thay đổi
 
 - **Yêu cầu:** người dùng hỏi trang "Đạo hàm hướng và biến thiên cục bộ" muốn nói gì. Điều phối viên xác định luận điểm (dấu của $g^Td$ quyết định $f$ giảm hay tăng khi bước dương đủ nhỏ) chỉ nằm trong ghi chú; mặt trang có hình, bảng bốn dữ kiện và kết luận, không có định nghĩa hay phép tính $g^Td$. Người dùng duyệt phương án sửa.
