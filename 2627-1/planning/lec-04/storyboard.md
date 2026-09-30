@@ -22,7 +22,7 @@ KKT là điều kiện Karush–Kuhn–Tucker đã học ở Bài 03; LLO là ch
 
 Đổi riêng điểm đầu khả thi VD3 thành (16,−2), giữ F,A,b và nghiệm. Các hình RE02/RE05 cần cả phần tọa độ âm; không thêm ràng buộc dấu. Cả hệ khối và hệ rút gọn dùng cùng điểm mới.
 
-Số trang: 5 + 11 + 7 + 8 + 7 + 5 + 3 = **46**. Gộp mạch A/B cũ vì cùng xây dựng hướng và bước; tách E cũ vì giữ khả thi và phục hồi KKT có điều kiện đầu vào, ẩn và tiêu chí tiến triển khác nhau. Dời D cũ sau hai loại Newton để không ngắt chuỗi suy ra phương pháp. Kết luận vẫn là ứng dụng kiến thức đã học, không mở mạch mới.
+Số trang (từ 2026-10-01): 5 + 17 + 7 + 8 + 7 + 5 + 3 = **52**, trong đó RG12–RG17 là cụm tự học thêm theo yêu cầu người dùng; trước đó: 5 + 11 + 7 + 8 + 7 + 5 + 3 = 46. Gộp mạch A/B cũ vì cùng xây dựng hướng và bước; tách E cũ vì giữ khả thi và phục hồi KKT có điều kiện đầu vào, ẩn và tiêu chí tiến triển khác nhau. Dời D cũ sau hai loại Newton để không ngắt chuỗi suy ra phương pháp. Kết luận vẫn là ứng dụng kiến thức đã học, không mở mạch mới.
 
 ## Bản đồ hành trình khái niệm
 
@@ -297,6 +297,17 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG17.
 - **Số liệu:** VD1: ngưỡng $62-410t$, nhận khi $t\le205/1399$; thử $1,\tfrac12,\tfrac14$ loại, $\tfrac18$ nhận ($103/32\le43/4$); $t_{\min}=1/14$; cận $140/k$ (tính bằng phân số).
 - **Nguồn, ghi chú soạn:** BV §§9.2–9.3 (§9.3.1 cho trường hợp lồi mạnh với $\alpha$ tổng quát); định lý chỉ phát biểu cho $\alpha=\tfrac12$, không nêu hằng số cho $\alpha<\tfrac12$.
+
+### RG17 — Hội tụ của giảm gradient
+
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ của giảm gradient (có quay lui); trang kiểm tra khép cụm tự học.
+- **Nội dung trên trang:** Ba câu hỏi (nhãn "Câu hỏi:"): so cận $70/k$ với số bước thực tế trên VD1 ($t=1/7$, $f(x^k)=6(16/49)^k$); vì sao $t>2/L$ phân kỳ; quay lui với $\alpha=\tfrac12$, $\beta=\tfrac14$ nhận $t$ nào và cận nào. Đáp án trong ghi chú.
+- **Bố cục chọn:** Ba khung câu hỏi xếp dọc.
+- **Lý do tồn tại:** Bài tập của cụm tự học; đo khả năng dùng cận trên dữ kiện cụ thể, phân biệt cận trường hợp xấu nhất với hành vi thật, và chuyển giao sang tham số $\beta$ mới.
+- **Vào → ra:** Đầu vào: RG13–RG16. Đầu ra: cận phụ thuộc độ cong lớn nhất $L$; nhu cầu thước đo theo độ cong tại từng điểm, nối sang phần Newton.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; minh chứng tự học.
+- **Số liệu:** Câu 1: $k\ge7000$ theo cận; thực tế $k=6$ ($k=5$: $\approx0{,}0223$; $k=6$: $\approx0{,}0073$); cận tuyến tính $62(4/7)^k$ cần $k\ge16$. Câu 2: hệ số $|1-7t|>1$. Câu 3: nhận $t=1/16$ ($2775/128\le291/8$), $t_{\min}=1/28$, cận $280/k$.
+- **Nguồn, ghi chú soạn:** BV §9.3; ghi chú bài giảng mục B.
 
 ### RN01 — Mô hình bậc hai cục bộ
 
@@ -651,7 +662,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RZ03 — Bài tập và tài liệu đọc
 
-- **Quyết định:** `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học; hàng "Tự điều chỉnh và cận sai số" ghi "Bài 7 (tự học)". Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thay bảng ba nhiệm vụ chung chung bằng bảng ánh xạ sáu phần của bài sang Bài 1–8 của tệp bài tập chính thức; tài liệu đọc thêm ghi chú bài giảng; ghi chú nêu bước đo của từng bài và câu nối sang Bài giảng 05. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu Z03. Kết thúc bằng năng lực quan sát được và nguồn để tự lấp chi tiết chứng minh.
+- **Quyết định:** `sửa` ngày 2026-10-01 (lần 2): dòng đầu bảng thêm "hội tụ của giảm gradient (tự học)" với nguồn "ghi chú bài giảng, mục B"; rút gọn dòng tài liệu đọc để vừa khung 16:9; ghi chú nêu phần tự học không có bài tập chính thức riêng. Trước đó: `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học; hàng "Tự điều chỉnh và cận sai số" ghi "Bài 7 (tự học)". Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thay bảng ba nhiệm vụ chung chung bằng bảng ánh xạ sáu phần của bài sang Bài 1–8 của tệp bài tập chính thức; tài liệu đọc thêm ghi chú bài giảng; ghi chú nêu bước đo của từng bài và câu nối sang Bài giảng 05. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu Z03. Kết thúc bằng năng lực quan sát được và nguồn để tự lấp chi tiết chứng minh.
 - **Nội dung trên trang:** Giao ba sản phẩm: tự suy ra hướng từ bài con; tái tạo một lượt quay lui; suy ra và kiểm hai hệ Newton có đẳng thức. Boyd–Vandenberghe §5.5.3, §§9.2–9.6, 10.1–10.3; MIT lec16 rồi lec17.
 - **Bố cục chọn:** Bảng nhiệm vụ/sản phẩm ba hàng; dưới tài liệu ngắn; không thêm chủ đề hoặc sơ đồ mới.
 - **Lý do bố cục cho sinh viên năm 3:** Kết thúc bằng năng lực quan sát được và nguồn để tự lấp chi tiết chứng minh.

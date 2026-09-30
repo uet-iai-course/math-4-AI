@@ -1017,3 +1017,4 @@ Theo yêu cầu người dùng, thêm cụm tự học RG12–RG17 sau câu hỏ
 - RG14 Bất đẳng thức một bước: thêm tính lồi và $x^*$; $f(x^+)-f^*\le\tfrac L2(\|x-x^*\|^2-\|x^+-x^*\|^2)$.
 - RG15 Tốc độ hội tụ $O(1/k)$: định lý, chứng minh cộng dồn, VD1 cận $70/k$.
 - RG16 Hội tụ với quay lui: bước được nhận $t\ge\min(1,\beta/L)$; định lý $\alpha=\tfrac12$: $\|x^0-x^*\|^2/(2t_{\min}k)$; VD1 $t=1/8$, cận $140/k$.
+- RG17 Hội tụ của giảm gradient: ba câu hỏi (cận và thực tế trên VD1; ngưỡng $2/L$; quay lui $\beta=1/4$ cho cận $280/k$); ghi chú kết bằng nhu cầu thước đo theo Hessian.
