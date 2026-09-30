@@ -147,7 +147,7 @@ Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus
 | F-S4 | nhẹ | RZ01 | Dung sai $\varepsilon$ khác tên $\varepsilon_{\mathrm{model}}$ ở RN06, RE07 | Đã sửa ở RZ01 và kết luận RS04 |
 | F-S5 | nhẹ | các tiêu đề gần trùng | Một số tiêu đề gần nhau về chữ | Giữ nguyên: phân biệt được theo chức năng trang |
 | F-S6 | nhẹ | RZ02 | Tiêu đề dùng "ridge" | Giữ nguyên để vừa độ rộng; mặt trang giải nghĩa "hệ số chính quy hóa (ridge)" |
-| F-S7 | nhẹ | học liệu | Ký hiệu ghi chú bài giảng phần đẳng thức lệch trang chiếu; "độ giảm khả thi"; "Bài 03" | Xử lý trong commit học liệu riêng |
+| F-S7 | nhẹ | học liệu | Ký hiệu ghi chú bài giảng phần đẳng thức lệch trang chiếu; "độ giảm khả thi"; "Bài 03" | Đã sửa trong commit học liệu riêng: `lecture-note.md` dùng $F$, $u$, $Au=b$, $\ker A$ cho bài có đẳng thức (mở đầu, mục KKT, hai định lý phần D, mệnh đề phần E; chứng minh khả nghịch dùng $(v,\eta)$), "bình phương độ giảm Newton của bài con", "Bài giảng 03/04/05"; `exercises.md` đổi ba chỗ "Bài 03" chỉ bài giảng (giữ "Bài N" chỉ số bài tập); đồng bộ `material-local-data.js` và `--check` đạt; viewer hiển thị hai tệp ở 1600×900 và 390×844, 0 lỗi KaTeX (943 và 616 công thức) |
 | F-S8 | nhẹ | RS04 | Chưa nêu $\hat u$, $N$ trên mặt trang | Đã sửa: "$\hat u$ khả thi, cột của $N$ là cơ sở $\ker A$" |
 | F-S9 | nhẹ | RZ02 (ghi chú) | Câu cuối dài | Đã sửa: "$\nu$ là nhân tử đẳng thức, tự do dấu." |
 

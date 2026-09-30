@@ -16,7 +16,7 @@ Luyện tập theo từng phần trong [tập bài tập](material-viewer.html?d
 
 ## A. Điều kiện KKT và nhiệm vụ tính
 
-Các điều kiện tối ưu của Bài 03 là cơ sở để xây dựng bước lặp. Mỗi phương pháp cần xác định hướng, độ dài bước, phép cập nhật, tiêu chuẩn dừng và các giả thiết bảo đảm hội tụ.
+Các điều kiện tối ưu của Bài giảng 03 là cơ sở để xây dựng bước lặp. Mỗi phương pháp cần xác định hướng, độ dài bước, phép cập nhật, tiêu chuẩn dừng và các giả thiết bảo đảm hội tụ.
 
 Phạm vi chính là hàm lồi trơn và hai lớp bài toán
 
@@ -28,40 +28,40 @@ và
 
 $$
 \begin{aligned}
-\underset{x\in\mathbb R^n}{\operatorname{minimize}}\quad & f(x)\\
-\text{với}\quad & Ax=b,
+\underset{u\in\mathbb R^n}{\operatorname{minimize}}\quad & F(u)\\
+\text{với}\quad & Au=b,
 \end{aligned}
 $$
 
-trong đó $A\in\mathbb R^{p\times n}$ và $b\in\mathbb R^p$. Các ví dụ số được đồng bộ với trang chiếu: bậc hai tại $(2,4)$, hàm log tại $1/4$, và đẳng thức tổng bằng $14$. Các phần chứng minh mở rộng dưới đây là tài liệu tự học. Nguồn chính là Boyd và Vandenberghe (2004), Chương 9–10, cùng bài giảng 16–17 của MIT 6.079. Bài 05 sẽ thay gradient toàn lô xác định bằng thông tin từ dữ liệu hoặc lô nhỏ và xét cảnh quan phi lồi; các bảo đảm của bài này khi đó không còn áp dụng nguyên dạng.
+trong đó $A\in\mathbb R^{p\times n}$ và $b\in\mathbb R^p$. Như trên trang chiếu, bài toán có đẳng thức dùng $F$, $u$ để phân biệt với $f$, $x$ của bài toán không ràng buộc. Các ví dụ số được đồng bộ với trang chiếu: bậc hai tại $(2,4)$, hàm log tại $1/4$, và đẳng thức tổng bằng $14$. Các phần chứng minh mở rộng dưới đây là tài liệu tự học. Nguồn chính là Boyd và Vandenberghe (2004), Chương 9–10, cùng bài giảng 16–17 của MIT 6.079. Bài giảng 05 sẽ thay gradient toàn lô xác định bằng thông tin từ dữ liệu hoặc lô nhỏ và xét cảnh quan phi lồi; các bảo đảm của bài này khi đó không còn áp dụng nguyên dạng.
 
-### KKT từ Bài 03: hai dạng và vai trò trong bài này
+### KKT từ Bài giảng 03: hai dạng và vai trò trong bài này
 
-Hai dạng điều kiện KKT từ Bài 03 xác định hệ phương trình tối ưu cho các phương pháp trong bài này.
+Hai dạng điều kiện KKT từ Bài giảng 03 xác định hệ phương trình tối ưu cho các phương pháp trong bài này.
 
-Giả sử $f$ khả vi trên miền mở chứa điểm đang xét. Với bài toán không ràng buộc, điều kiện cần tại điểm tối ưu là
+Giả sử $f$ và $F$ khả vi trên miền mở chứa điểm đang xét. Với bài toán không ràng buộc, điều kiện cần tại điểm tối ưu là
 
 $$
 \nabla f(x)=0.
 $$
 
-Với bài toán có ràng buộc đẳng thức $Ax=b$, điều kiện cần là hệ
+Với bài toán cực tiểu $F(u)$ với ràng buộc đẳng thức $Au=b$, điều kiện cần là hệ
 
 $$
-\nabla f(x)+A^T\nu=0,
+\nabla F(u)+A^T\nu=0,
 \qquad
-Ax=b,
+Au=b,
 $$
 
-trong đó $\nu\in\mathbb R^p$ là nhân tử Lagrange, và $\nu$ không bị ràng buộc dấu. Khác với Bài 03, nơi nhân tử $\lambda$ của ràng buộc bất đẳng thức phải không âm, phần đẳng thức của bài này không đặt ràng buộc dấu cho $\nu$.
+trong đó $\nu\in\mathbb R^p$ là nhân tử Lagrange, và $\nu$ không bị ràng buộc dấu. Khác với Bài giảng 03, nơi nhân tử $\lambda$ của ràng buộc bất đẳng thức phải không âm, phần đẳng thức của bài này không đặt ràng buộc dấu cho $\nu$.
 
 KKT mô tả điều kiện tại nghiệm; một phương pháp tính cần bổ sung mô hình cục bộ, cách chọn bước, phép cập nhật và tiêu chuẩn dừng. Phần B chọn hướng bằng mô hình hoặc quả cầu đơn vị; phần C chọn mô hình bậc hai từ Hessian; phần D và E xử lý hai phương trình KKT có đẳng thức.
 
-Cần phân biệt hai chiều suy luận của Bài 03. Với bài toán lồi, một điểm thỏa KKT là nghiệm tối ưu toàn cục; chiều đủ này không cần Slater. Trong bài toán tổng quát, một điều kiện chính quy thích hợp bảo đảm chiều cần: cực tiểu thỏa KKT. Bản thân điều kiện chính quy không phải điều kiện cần để một điểm thỏa KKT. Với ràng buộc affine ở đây, hạng hàng đầy đủ của $A$ là giả thiết đủ thuận tiện để có nhân tử duy nhất và hệ Newton khả nghịch khi Hessian xác định dương. Ngược lại, KKT không tự chọn mô hình hay thuật toán, và cũng không tự chứng minh hội tụ; các bảo đảm tốc độ cần giả thiết riêng ở từng định lý.
+Cần phân biệt hai chiều suy luận của Bài giảng 03. Với bài toán lồi, một điểm thỏa KKT là nghiệm tối ưu toàn cục; chiều đủ này không cần Slater. Trong bài toán tổng quát, một điều kiện chính quy thích hợp bảo đảm chiều cần: cực tiểu thỏa KKT. Bản thân điều kiện chính quy không phải điều kiện cần để một điểm thỏa KKT. Với ràng buộc affine ở đây, hạng hàng đầy đủ của $A$ là giả thiết đủ thuận tiện để có nhân tử duy nhất và hệ Newton khả nghịch khi Hessian xác định dương. Ngược lại, KKT không tự chọn mô hình hay thuật toán, và cũng không tự chứng minh hội tụ; các bảo đảm tốc độ cần giả thiết riêng ở từng định lý.
 
-Trong toàn bài này, ký hiệu $g$ là gradient $\nabla f(x)$ tại điểm hiện hành; nó khác hàm đối ngẫu $g(\lambda,\nu)$ ở Bài 03.
+Trong toàn bài này, ký hiệu $g$ là gradient $\nabla f(x)$ tại điểm hiện hành; nó khác hàm đối ngẫu $g(\lambda,\nu)$ ở Bài giảng 03.
 
-**Đối chiếu với Bài 03.** Cho $X\in\mathbb R^{N\times d}$, $y\in\mathbb R^N$, $w\in\mathbb R^d$ và $\tau>0$. Xét lại bài toán hồi quy
+**Đối chiếu với Bài giảng 03.** Cho $X\in\mathbb R^{N\times d}$, $y\in\mathbb R^N$, $w\in\mathbb R^d$ và $\tau>0$. Xét lại bài toán hồi quy
 
 $$
 \min_w\;\frac12\|Xw-y\|_2^2
@@ -848,7 +848,7 @@ g\\
 \end{bmatrix}.
 $$
 
-Với các giả thiết trên, hệ có nghiệm duy nhất. Không gian hạt nhân của $A$ được ký hiệu $\ker A=\operatorname{null}A=\{v:Av=0\}$. Kết quả khả nghịch ở cuối phần này dùng giả thiết rộng hơn: chỉ cần $H$ xác định dương trên $\operatorname{null}A$. Điều kiện $Ad=0$ giữ mọi điểm thử $u+td$ khả thi.
+Với các giả thiết trên, hệ có nghiệm duy nhất. Không gian hạt nhân của $A$ được ký hiệu $\ker A=\{v:Av=0\}$. Kết quả khả nghịch ở cuối phần này dùng giả thiết rộng hơn: chỉ cần $H$ xác định dương trên $\ker A$. Điều kiện $Ad=0$ giữ mọi điểm thử $u+td$ khả thi.
 
 **Trực quan.** Newton không còn cực tiểu mô hình bậc hai trên toàn $\mathbb R^n$ mà chỉ trên không gian tiếp tuyến $Ad=0$. Biến phụ $\eta$ tạo lực pháp tuyến $A^T\eta$ để cân bằng gradient của mô hình; nó không phải là một bước cập nhật nhân tử khi thuật toán chỉ duy trì biến $u$.
 
@@ -871,7 +871,7 @@ $$
 \quad\Longrightarrow\quad d=(-6,6)^T,\quad\eta=-20.
 $$
 
-Kiểm tra $Ad=0$ và $Hd+g=(20,20)^T=-A^T\eta$. Mọi bước $u+td$ giữ đẳng thức vì $A(u+td)=Au+tAd=b$. Bước đầy đủ tới $u^*=(10,4)^T$, $F^*=140$. Bình phương độ giảm khả thi là $d^THd=252$; giảm mô hình $252/2=126$ bằng giảm thật $266-140$ vì hàm bậc hai.
+Kiểm tra $Ad=0$ và $Hd+g=(20,20)^T=-A^T\eta$. Mọi bước $u+td$ giữ đẳng thức vì $A(u+td)=Au+tAd=b$. Bước đầy đủ tới $u^*=(10,4)^T$, $F^*=140$. Bình phương độ giảm Newton của bài con là $d^THd=252$; giảm mô hình $252/2=126$ bằng giảm thật $266-140$ vì hàm bậc hai.
 
 ![Bước -6,6 đi từ 16,-2 tới 10,4 trên đường tổng bằng 14.](img/lec-04/equality-feasible-step.svg)
 
@@ -900,7 +900,7 @@ $$
 \qquad\text{với}\qquad Au=b,
 $$
 
-trong đó $A\in\mathbb R^{p\times n}$, $\operatorname{rank}A=p<n$, và tồn tại một điểm $\hat u$ thỏa $A\hat u=b$. Chọn $N\in\mathbb R^{n\times(n-p)}$ có các cột tạo thành một cơ sở của $\operatorname{null}A$. Khi đó mọi điểm khả thi và chỉ các điểm khả thi đều viết được dưới dạng
+trong đó $A\in\mathbb R^{p\times n}$, $\operatorname{rank}A=p<n$, và tồn tại một điểm $\hat u$ thỏa $A\hat u=b$. Chọn $N\in\mathbb R^{n\times(n-p)}$ có các cột tạo thành một cơ sở của $\ker A$. Khi đó mọi điểm khả thi và chỉ các điểm khả thi đều viết được dưới dạng
 
 $$
 u=Nz+\hat u,\qquad z\in\mathbb R^{n-p}.
@@ -937,28 +937,28 @@ Tại điểm đầu $u^0=(16,-2)^T$, ta có $z^0=-2$, $N^THN=7$ và $N^Tg=-42$.
 
 ### Định lý: tham số hóa đầy đủ tập nghiệm của đẳng thức
 
-**Giả thiết.** $A\in\mathbb R^{p\times n}$ có hạng hàng đầy đủ, $p<n$; $A\hat x=b$; các cột của $N\in\mathbb R^{n\times(n-p)}$ tạo một cơ sở của $\operatorname{null}A$.
+**Giả thiết.** $A\in\mathbb R^{p\times n}$ có hạng hàng đầy đủ, $p<n$; $A\hat u=b$; các cột của $N\in\mathbb R^{n\times(n-p)}$ tạo một cơ sở của $\ker A$.
 
 **Kết luận.** Ta có
 
 $$
-\{x\in\mathbb R^n:Ax=b\}
-=\{Nz+\hat x:z\in\mathbb R^{n-p}\}.
+\{u\in\mathbb R^n:Au=b\}
+=\{Nz+\hat u:z\in\mathbb R^{n-p}\}.
 $$
 
 ::: proof
-Nếu $x=Nz+\hat x$ thì
+Nếu $u=Nz+\hat u$ thì
 
 $$
-Ax=ANz+A\hat x=0+b=b,
+Au=ANz+A\hat u=0+b=b,
 $$
 
-nên $x$ khả thi. Ngược lại, nếu $Ax=b$ thì $A(x-\hat x)=0$, do đó $x-\hat x\in\operatorname{null}A$. Vì các cột của $N$ là một cơ sở của không gian này, tồn tại duy nhất $z\in\mathbb R^{n-p}$ sao cho $x-\hat x=Nz$. Suy ra $x=Nz+\hat x$.
+nên $u$ khả thi. Ngược lại, nếu $Au=b$ thì $A(u-\hat u)=0$, do đó $u-\hat u\in\ker A$. Vì các cột của $N$ là một cơ sở của không gian này, tồn tại duy nhất $z\in\mathbb R^{n-p}$ sao cho $u-\hat u=Nz$. Suy ra $u=Nz+\hat u$.
 :::
 
 ### Định lý: hệ Newton–KKT tương đương cực tiểu mô hình trên hướng khả thi
 
-**Giả thiết.** $H\in\mathbb S^n$ xác định dương trên $\operatorname{null}A$, và $A$ có hạng hàng đầy đủ. Xét mô hình
+**Giả thiết.** $H\in\mathbb S^n$ xác định dương trên $\ker A$, và $A$ có hạng hàng đầy đủ. Xét mô hình
 
 $$
 q(d)=g^Td+\frac12d^THd
@@ -966,15 +966,15 @@ $$
 
 trên tập $Ad=0$.
 
-**Kết luận.** Hướng $\Delta x$ là nghiệm duy nhất của bài toán trên khi và chỉ khi tồn tại $\eta\in\mathbb R^p$ sao cho
+**Kết luận.** Hướng $d$ là nghiệm duy nhất của bài toán trên khi và chỉ khi tồn tại $\eta\in\mathbb R^p$ sao cho
 
 $$
-H\Delta x+A^T\eta=-g,
-\qquad A\Delta x=0.
+Hd+A^T\eta=-g,
+\qquad Ad=0.
 $$
 
 ::: proof
-Đây là bài toán lồi chặt trên không gian khả thi vì $d^THd>0$ với mọi $d\in\operatorname{null}A\setminus\{0\}$. Điều kiện dừng của hàm Lagrange
+Đây là bài toán lồi chặt trên không gian khả thi vì $d^THd>0$ với mọi $d\in\ker A\setminus\{0\}$. Điều kiện dừng của hàm Lagrange
 
 $$
 q(d)+\eta^TAd
@@ -985,7 +985,7 @@ là $g+Hd+A^T\eta=0$, cùng với $Ad=0$. Các điều kiện này đủ do mô 
 
 ### Định lý: điều kiện khả nghịch của ma trận Newton–KKT
 
-**Giả thiết.** $A\in\mathbb R^{p\times n}$ có hạng hàng đầy đủ và $H\in\mathbb S^n$ xác định dương trên $\operatorname{null}A$.
+**Giả thiết.** $A\in\mathbb R^{p\times n}$ có hạng hàng đầy đủ và $H\in\mathbb S^n$ xác định dương trên $\ker A$.
 
 **Kết luận.** Ma trận
 
@@ -996,19 +996,19 @@ $$
 khả nghịch.
 
 ::: proof
-Giả sử $K(v,u)^T=0$. Khi đó
+Giả sử $K(v,\eta)^T=0$. Khi đó
 
 $$
-Hv+A^Tu=0,\qquad Av=0.
+Hv+A^T\eta=0,\qquad Av=0.
 $$
 
 Nhân phương trình đầu với $v^T$ và dùng $Av=0$ cho
 
 $$
-v^THv+v^TA^Tu=v^THv+(Av)^Tu=v^THv=0.
+v^THv+v^TA^T\eta=v^THv+(Av)^T\eta=v^THv=0.
 $$
 
-Do $v\in\operatorname{null}A$ và $H$ xác định dương trên không gian này, ta có $v=0$. Khi đó $A^Tu=0$. Hạng hàng đầy đủ của $A$ làm $A^T$ đơn ánh, nên $u=0$. Hạt nhân của $K$ chỉ chứa vectơ không; vì $K$ vuông nên $K$ khả nghịch.
+Do $v\in\ker A$ và $H$ xác định dương trên không gian này, ta có $v=0$. Khi đó $A^T\eta=0$. Hạng hàng đầy đủ của $A$ làm $A^T$ đơn ánh, nên $\eta=0$. Hạt nhân của $K$ chỉ chứa vectơ không; vì $K$ vuông nên $K$ khả nghịch.
 :::
 
 ## E. Newton phần dư từ điểm chưa khả thi
@@ -1115,25 +1115,25 @@ $$
 
 ### Mệnh đề: bước không khả thi là Newton cho hệ phần dư KKT
 
-**Giả thiết.** $f$ khả vi hai lần và đặt
+**Giả thiết.** $F$ khả vi hai lần và đặt
 
 $$
-R(x,\nu)=
+R(u,\nu)=
 \begin{bmatrix}
-\nabla f(x)+A^T\nu\\
-Ax-b
+\nabla F(u)+A^T\nu\\
+Au-b
 \end{bmatrix}.
 $$
 
-**Kết luận.** Phương trình Newton $DR(x,\nu)[\Delta x;\Delta\nu]=-R(x,\nu)$ chính là hệ Newton–KKT không khả thi.
+**Kết luận.** Phương trình Newton $DR(u,\nu)[d;\Delta\nu]=-R(u,\nu)$ chính là hệ Newton–KKT không khả thi.
 
 ::: proof
-Đạo hàm của $R$ theo $(x,\nu)$ là ma trận khối
+Đạo hàm của $R$ theo $(u,\nu)$ là ma trận khối
 
 $$
-DR(x,\nu)=
+DR(u,\nu)=
 \begin{bmatrix}
-\nabla^2f(x)&A^T\\
+\nabla^2F(u)&A^T\\
 A&0
 \end{bmatrix}.
 $$
@@ -1290,7 +1290,7 @@ $$
 =\begin{bmatrix}M^Ty\\b\end{bmatrix}.
 $$
 
-Không bỏ $M^Ty$ khi dữ liệu tổng quát khác không. Tham số $\rho$ đã cho điều khiển mức chính quy hóa; $\nu$ là nhân tử đẳng thức cần tìm; $\lambda$ của ví dụ chuẩn ở Bài 03 là nhân tử bất đẳng thức, có vai trò khác.
+Không bỏ $M^Ty$ khi dữ liệu tổng quát khác không. Tham số $\rho$ đã cho điều khiển mức chính quy hóa; $\nu$ là nhân tử đẳng thức cần tìm; $\lambda$ của ví dụ chuẩn ở Bài giảng 03 là nhân tử bất đẳng thức, có vai trò khác.
 
 **Tạo bước từ điều kiện đó.** Với cặp hiện tại $(w,\nu)$, đặt $r_d=g+A^T\nu$ và $r_p=Aw-b$. Tuyến tính hóa KKT cho
 
@@ -1329,10 +1329,10 @@ Hessian $H=M^TM+\rho I\succeq\rho I$ làm mục tiêu lồi mạnh, nên có nhi
 | Gradient theo chuẩn Euclid | $d=-\nabla f(x)$ | tìm kiếm đường chính xác hoặc Armijo | $\|\nabla f(x)\|_2$ nhỏ | bảo đảm tuyến tính cần chặn Hessian và quy tắc bước phù hợp |
 | Giảm dốc nhất theo chuẩn $W$ | giải $Wd=-\nabla f(x)$ | tìm kiếm đường chính xác hoặc Armijo | chuẩn đối ngẫu của gradient nhỏ | $W\succ0$; không lập $W^{-1}$ |
 | Newton không ràng buộc | giải $H\Delta x_N=-g$ | quay lui; bước đầy đủ gần nghiệm | $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$ khi giả thiết phù hợp | $H\succ0$ trên tuyến lồi; miền của $f$ |
-| Newton đẳng thức, điểm đầu khả thi | giải hệ KKT với vế phải $-(g,0)$ | quay lui trên đường khả thi | $\delta_{\mathrm{eq}}^2/2\le\varepsilon_{\mathrm{model}}$ | $Ax=b$, $\operatorname{rank}A=p$, $H\succ0$ trên $\operatorname{null}A$ |
+| Newton đẳng thức, điểm đầu khả thi | giải hệ KKT với vế phải $-(g,0)$ | quay lui trên đường khả thi | $\delta_{\mathrm{eq}}^2/2\le\varepsilon_{\mathrm{model}}$ | $Ax=b$, $\operatorname{rank}A=p$, $H\succ0$ trên $\ker A$ |
 | Newton đẳng thức, điểm đầu chưa khả thi | giải hệ phần dư với vế phải $-(r_d,r_p)$ | quay lui giảm phần dư và giữ miền | $\|r_d\|_2\le\varepsilon_d$, $\|r_p\|_2\le\varepsilon_p$ | hệ KKT khả nghịch; điểm thử thuộc $\operatorname{dom}f$ |
 
-Chuỗi quyết định của Bài 04 là:
+Chuỗi quyết định của Bài giảng 04 là:
 
 $$
 \text{mô hình và giả thiết}
@@ -1348,7 +1348,7 @@ $$
 
 **Ba cách diễn giải tiêu chuẩn dừng.** (i) Giảm mô hình: $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$ đo mức giảm của mô hình bậc hai, chỉ dùng khi các giả thiết phù hợp được thỏa. (ii) Phần dư KKT: $\|r_d\|_2$ và $\|r_p\|_2$ nhỏ chứng nhận gần thỏa điều kiện tối ưu có ràng buộc. (iii) Sai số mục tiêu $f(x)-p^*$ cần một định lý chuyển từ độ giảm Newton sang giá trị, như cận ở phần F. Ba đại lượng này đo các đối tượng khác nhau và không thay thế nhau.
 
-Bài 03 cung cấp điều kiện KKT như một chứng nhận tối ưu. Bài 04 chọn bài con rồi giải KKT của mô hình, hoặc tuyến tính hóa KKT của bài gốc để tạo bước; sau đó kiểm điểm mới, chọn bước và diễn giải tiêu chuẩn dừng. Bài 05 sẽ thay mô hình lồi trơn xác định bằng cảnh quan phi lồi và gradient có nhiễu; các chủ đề lô nhỏ, động lượng (momentum) và tối ưu học sâu chưa được đưa vào đây.
+Bài giảng 03 cung cấp điều kiện KKT như một chứng nhận tối ưu. Bài giảng 04 chọn bài con rồi giải KKT của mô hình, hoặc tuyến tính hóa KKT của bài gốc để tạo bước; sau đó kiểm điểm mới, chọn bước và diễn giải tiêu chuẩn dừng. Bài 05 sẽ thay mô hình lồi trơn xác định bằng cảnh quan phi lồi và gradient có nhiễu; các chủ đề lô nhỏ, động lượng (momentum) và tối ưu học sâu chưa được đưa vào đây.
 
 ### Tài liệu tham khảo
 

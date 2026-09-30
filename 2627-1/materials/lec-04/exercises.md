@@ -74,7 +74,7 @@ $$\min_{v}\; g^Tv \quad\text{với}\quad v^TWv\le 1.$$
 
 Nếu $\zeta=0$ thì (i) cho $g=0$, trái với $g\ne0$; vậy $\zeta>0$. Khi đó (iv) suy ra $v^TWv=1$. Từ (i), $v=-W^{-1}g/(2\zeta)$. Thay vào ràng buộc:
 $$1=v^TWv=\frac{g^TW^{-1}g}{4\zeta^2}\;\Rightarrow\; \zeta=\tfrac12\sqrt{g^TW^{-1}g}.$$
-Suy ra $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$ và giá trị $g^Tv=-\sqrt{g^TW^{-1}g}$. Bài toán lồi: mục tiêu tuyến tính và ràng buộc lồi do $W\succ0$. Bộ $(v,\zeta)$ vừa tìm thỏa đủ KKT, nên là nghiệm tối ưu toàn cục theo chiều đủ đã học ở Bài 03. Với $\|g\|_*=\sqrt{g^TW^{-1}g}$, hướng không chuẩn hóa $d=\|g\|_*\,v=-W^{-1}g$ thỏa $Wd=-g$; nếu $W$ được chọn bằng Hessian xác định dương tại điểm hiện tại, hướng này trùng hướng Newton.
+Suy ra $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$ và giá trị $g^Tv=-\sqrt{g^TW^{-1}g}$. Bài toán lồi: mục tiêu tuyến tính và ràng buộc lồi do $W\succ0$. Bộ $(v,\zeta)$ vừa tìm thỏa đủ KKT, nên là nghiệm tối ưu toàn cục theo chiều đủ đã học ở Bài giảng 03. Với $\|g\|_*=\sqrt{g^TW^{-1}g}$, hướng không chuẩn hóa $d=\|g\|_*\,v=-W^{-1}g$ thỏa $Wd=-g$; nếu $W$ được chọn bằng Hessian xác định dương tại điểm hiện tại, hướng này trùng hướng Newton.
 
 (c) $W^{-1}g=(2,4)^T$, $g^TW^{-1}g=6\cdot2+28\cdot4=124$, $\|g\|_*=\sqrt{124}$, $\zeta=\sqrt{124}/2$. Do đó
 $$d=(-2,-4)^T,\qquad v=\frac{d}{\sqrt{124}}=\frac{(-2,-4)^T}{\sqrt{124}}.$$
@@ -210,7 +210,7 @@ Nếu nhầm thay $\delta_N^2=9/16$ vào công thức thì được $-\frac{9}{1
 **Bài 8 (vận dụng).** Bài toán bình phương tối thiểu chính quy hóa có ràng buộc: cho dữ liệu $M\in\mathbb R^{m\times n}$, đích $y\in\mathbb R^m$, tham số chính quy hóa $\rho>0$ cho trước, ma trận ràng buộc $A\in\mathbb R^{p\times n}$ hạng hàng đầy đủ và $b\in\mathbb R^p$,
 đặt $J(w)=\tfrac12\|Mw-y\|_2^2+\tfrac{\rho}{2}\|w\|_2^2$ và xét
 $$\min_{w\in\mathbb R^n} J(w)\quad\text{với}\quad Aw=b.$$
-$A$ là ma trận ràng buộc kích thước $p\times n$, không phải Hessian. $\rho$ là tham số cho trước điều khiển mức chính quy hóa; $\nu$ là nhân tử đẳng thức cần tìm; $\lambda$ ở Bài 03 là nhân tử bất đẳng thức, vai trò khác.
+$A$ là ma trận ràng buộc kích thước $p\times n$, không phải Hessian. $\rho$ là tham số cho trước điều khiển mức chính quy hóa; $\nu$ là nhân tử đẳng thức cần tìm; $\lambda$ ở Bài giảng 03 là nhân tử bất đẳng thức, vai trò khác.
 
 **(a)** Tính gradient $g(w)$ và Hessian $H$ của hàm mục tiêu, nêu kích thước từng đại lượng. Chứng minh $H\succ0$ mà không cần $M$ hạng cột đầy đủ. Lập hàm Lagrange và điều kiện KKT (điều kiện dừng và tính khả thi), rồi viết hệ KKT dạng khối với ẩn $(w^*,\nu^*)$.
 
@@ -229,7 +229,7 @@ Với $v\ne0$: $v^THv=\|Mv\|_2^2+\rho\|v\|_2^2\ge\rho\|v\|_2^2>0$, nên $H\succ0
 $$g(w)+A^T\nu=0,\qquad Aw=b.$$
 Vì $g=Hw-M^Ty$, hệ KKT dạng khối với ẩn $(w^*,\nu^*)$ là
 $$\begin{bmatrix}H & A^T\\ A & 0\end{bmatrix}\begin{bmatrix}w^*\\ \nu^*\end{bmatrix}=\begin{bmatrix}M^Ty\\ b\end{bmatrix},$$
-khả nghịch vì $H\succ0$ và $A$ hạng hàng đầy đủ. Giữ $M^Ty$ khi $y\ne0$; $\rho$ là tham số cho trước, $\nu$ là nhân tử đẳng thức cần tìm, còn $\lambda$ ở Bài 03 là nhân tử bất đẳng thức.
+khả nghịch vì $H\succ0$ và $A$ hạng hàng đầy đủ. Giữ $M^Ty$ khi $y\ne0$; $\rho$ là tham số cho trước, $\nu$ là nhân tử đẳng thức cần tìm, còn $\lambda$ ở Bài giảng 03 là nhân tử bất đẳng thức.
 
 **(b) Điền phần dư vào mẫu hệ.** Lấy bộ số minh họa $M=\operatorname{diag}(1,2)$, $y=0$, $\rho=1$, $A=[1\;1]$, $b=14$, nên $H=\operatorname{diag}(2,5)$, $M^Ty=0$. Tại $w^0=(1,8)^T$, $\nu^0=4$ (chưa khả thi vì $Aw^0=9\ne14$):
 $$r_d=g(w^0)+A^T\nu^0=(2,40)^T+(4,4)^T=(6,44)^T,\qquad r_p=Aw^0-b=9-14=-5.$$
