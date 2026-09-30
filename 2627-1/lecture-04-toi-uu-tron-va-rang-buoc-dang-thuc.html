@@ -155,23 +155,20 @@
 </section>
 
 <section data-slide-id="RG03">
-<h2>Hướng giảm và độ dài bước</h2>
+<h2>Độ dài bước</h2>
 <div class="lec-grid ratio55">
 <div>
-<div class="table-scroll" tabindex="0">
-<table>
-<tr><th>Hướng</th><th>Đạo hàm hướng</th><th>Kết luận</th></tr>
-<tr><td>$d_G=(-6,-28)^T$</td><td><span class="math-nowrap">$g^Td_G=-820&lt;0$</span></td><td>giảm</td></tr>
-<tr><td>$\tilde d=(-2,1)^T$</td><td>$g^T\tilde d=16&gt;0$</td><td>tăng</td></tr>
-</table>
-</div>
-<div class="formula" tabindex="0">Cập nhật: $x^+=x+td$, $t&gt;0$.</div>
+<div class="formula" tabindex="0">Cập nhật: $x^+=x+td$, với hướng giảm $d$ và độ dài bước $t&gt;0$.</div>
+<p>VD1 với $d_G=(-6,-28)^T$, <span class="math-nowrap">$g^Td_G=-820&lt;0$:</span></p>
+<div class="formula" tabindex="0">$$f(x^0+td_G)=62-820t+2798t^2,$$</div>
+<p>nhỏ hơn $f(x^0)=62$ khi và chỉ khi <span class="math-nowrap">$0&lt;t&lt;410/1399\approx0{,}29$.</span></p>
+<div class="takeaway">Hướng giảm chỉ bảo đảm $f$ giảm khi $t$ đủ nhỏ; độ dài bước cần một quy tắc chọn.</div>
 </div>
 <div>
-<img class="plot" src="img/lec-04/descent-ray.svg" alt="Tia x+td theo hướng giảm với hai vị trí bước gần và xa trên đường mức">
+<img class="plot" src="img/lec-04/descent-ray.svg" alt="Tia x⁰+t·d_G trên các đường mức của VD1: t=1/4 cho điểm (1/2,−3) với f=255/8 nhỏ hơn 62; t=1/2 cho điểm (−1,−10) với f=703/2 lớn hơn 62">
 </div>
 </div>
-<aside class="notes">Hướng gradient $d_G=-g$ cho đạo hàm hướng $g^Td_G=-\|g\|^2=-820&lt;0$, cho giảm với bước dương đủ nhỏ. Hướng thử $\tilde d=(-2,1)^T$ cho $g^T\tilde d=16&gt;0$, làm $f$ tăng cục bộ, bị loại. Nhưng đạo hàm hướng âm chỉ bảo đảm giảm với bước dương đủ nhỏ: nếu $t$ quá lớn, độ cong có thể khiến giá trị tăng trở lại và $f(x+td)&gt;f(x)$. Trên tia $x+td$, một điểm thử ở xa có thể có giá trị mục tiêu lớn hơn điểm xuất phát. Bất đẳng thức Armijo kiểm mức giảm tại điểm thử để xác định $t$. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Hướng gradient $d_G=-g$ nhận từ bài con bậc hai có $g^Td_G=-\|g\|_2^2=-820&lt;0$, nên theo tiêu chuẩn dấu của đạo hàm hướng, $f$ giảm khi bước dương đủ nhỏ. Tiêu chuẩn này không cho biết "đủ nhỏ" là bao nhiêu. Trên tia $x^0+td_G$, hàm một biến $\varphi(t)=f(x^0+td_G)=\tfrac12[3(2-6t)^2+7(4-28t)^2]=62-820t+2798t^2$; hệ số $-820$ chính là $g^Td_G$, còn hệ số $2798=\tfrac12d_G^T\operatorname{diag}(3,7)d_G$ đến từ độ cong. Do đó $\varphi(t)&lt;62$ khi và chỉ khi $0&lt;t&lt;820/2798=410/1399$. Hình minh họa hai điểm trên tia: $t=1/4$ cho $(1/2,-3)^T$ với $f=255/8&lt;62$; $t=1/2$ cho $(-1,-10)^T$ với $f=703/2&gt;62$. Với hàm tổng quát, khoảng bước làm giảm $f$ không tính được dạng đóng như trên, nên cần một phép kiểm chỉ dùng giá trị $f$ tại điểm thử và $g^Td$. Bất đẳng thức Armijo là phép kiểm như vậy và cho quy tắc chọn $t$. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.</aside>
 </section>
 
 <section data-slide-id="RG04">

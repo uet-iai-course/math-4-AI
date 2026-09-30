@@ -134,16 +134,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RG03 — Hướng giảm và độ dài bước
+### RG03 — Độ dài bước
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu A03, A04. Nối kết quả RG02 với việc chọn t, đồng thời giữ phân biệt hướng và điểm mới.
-- **Nội dung trên trang:** Với VD1: $d_G=(-6,-28)^T$, $g^Td_G=-820<0$. Một hướng thử khác là $\tilde d=(-2,1)^T$, có $g^T\tilde d=16>0$. Cập nhật $x^+=x+td$; đạo hàm hướng âm chỉ bảo đảm giảm với bước dương đủ nhỏ.
-- **Bố cục chọn:** Trái bảng hai hướng và phép tính; phải tia $x+td$ có hai vị trí gần/xa; công thức cập nhật ở chân.
-- **Lý do bố cục cho sinh viên năm 3:** Nối kết quả RG02 với việc chọn t, đồng thời giữ phân biệt hướng và điểm mới.
-- **Vào → ra:** Đầu vào: Với VD1, hướng $d_G=(-6,-28)^T$ cho đạo hàm hướng $-820$. Đầu ra: Đạo hàm hướng âm bảo đảm giảm với bước dương đủ nhỏ; bất đẳng thức Armijo kiểm mức giảm tại điểm thử.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Hướng giảm và độ dài bước" thành "Độ dài bước" vì luận điểm mới của trang là nhu cầu chọn $t$; bỏ bảng xét dấu hai hướng (lặp phép xét dấu của RG01, hướng thử $\tilde d=(-2,1)^T$ không dùng về sau); đưa bằng chứng "bước xa làm $f$ tăng" lên mặt trang bằng hàm một biến trên tia. Trước đó: sửa văn phong ngày 2026-09-26; quyết định cấu trúc đã triển khai: gộp và sửa.
+- **Nội dung trên trang:** Cập nhật $x^+=x+td$ với hướng giảm $d$ và độ dài bước $t>0$. VD1 với $d_G=(-6,-28)^T$, $g^Td_G=-820<0$: $f(x^0+td_G)=62-820t+2798t^2$, nhỏ hơn $62$ khi và chỉ khi $0<t<410/1399\approx0{,}29$. Kết luận: hướng giảm chỉ bảo đảm $f$ giảm khi $t$ đủ nhỏ; độ dài bước cần một quy tắc chọn.
+- **Bố cục chọn:** Trái: công thức cập nhật, hàm trên tia, khoảng giảm, khung kết luận; phải: hình tia $x^0+td_G$ với $t=1/4$ ($f=255/8<62$) và $t=1/2$ ($f=703/2>62$). Đo ở 1600×900: đáy nội dung 666 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Luận điểm "bước xa có thể làm tăng" được kiểm bằng một đa thức bậc hai theo $t$, không chỉ khẳng định bằng lời.
+- **Vào → ra:** Đầu vào: RG02 cho $d_G=-g$ với $g^Td_G=-\|g\|_2^2<0$; RG01 cho tiêu chuẩn dấu. Đầu ra: khoảng bước làm giảm $f$ bị giới hạn bởi độ cong và nói chung không tính được dạng đóng, nên cần phép kiểm chỉ dùng $f$ tại điểm thử và $g^Td$ (Armijo, RG04).
 - **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** VD1, dàn ý §6: giữ x, g; ghi riêng W khi dùng; phân biệt v, d, t và các cấu hình bước.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Số liệu:** VD1: $\varphi(t)=62-820t+2798t^2$, $2798=\tfrac12d_G^T\operatorname{diag}(3,7)d_G$; $\varphi(1/4)=255/8$, $\varphi(1/2)=703/2$, $\varphi(410/1399)=62$ (tính lại bằng phân số).
+- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG04 — Quay lui Armijo

@@ -954,3 +954,9 @@ RP02 phát biểu hai bài toán trước khi nêu điều kiện: $\min_x f(x)$
 Quy ước $g$ ở §4 được đặt tại RG01 thay vì RP02: RP02 không dùng $g$, còn RG01 là chỗ dùng đầu tiên. Khung định nghĩa trên mặt RG01 nêu $g=\nabla f(x^0)$ là gradient, khác hàm đối ngẫu $g(\lambda,\nu)$ của Bài giảng 03; ghi chú RG01 nhắc lại phân biệt này. Yêu cầu "xuất hiện trước chỗ dùng, không chỉ trong ghi chú" vẫn được đáp ứng. Ký hiệu, giả thiết, hệ phương trình, số trang và thứ tự trang không đổi.
 
 RG01 đổi tên thành "Đạo hàm hướng" và đặt luận điểm lên mặt trang. Cột phải: **Định nghĩa** $f'(x^0;d)\triangleq\lim_{t\downarrow0}[f(x^0+td)-f(x^0)]/t$ với $d\in\mathbb R^n$; **Tính chất** khi $f$ khả vi tại $x^0$, $f'(x^0;d)=g^Td$ với $g=\nabla f(x^0)$, không phải $g(\lambda,\nu)$ của Bài giảng 03; ba trường hợp dấu, trường hợp âm gọi $d$ là hướng giảm. Cột trái: hình ba hướng và ví dụ VD1 với $d=(-1,0)^T$ cho $g^Td=-6<0$. Bảng dữ kiện VD1 và khung kết luận được bỏ; $f(x^0)=62$ được nêu tại RG05, nơi quay lui Armijo dùng nó. Hình ba hướng giữ nguyên; mô tả thay thế trong SVG được sửa vì câu cũ nhắc tới một mũi tên gradient không có trong hình. Đạo hàm hướng là đạo hàm theo hướng đã ôn ở Bài giảng 00 nên dùng chu trình rút gọn; nhu cầu ($\nabla f(x^0)\ne0$) và ý "tối thiểu hóa riêng $g^Td$ không bị chặn dưới, xét $d=-sg$" nằm trong ghi chú RG01, ý sau cũng có trên mặt RG02.
+
+### Duyệt từng trang theo yêu cầu người dùng — 2026-09-30
+
+Các thay đổi dưới đây thay các mô tả tương ứng ở phần trước khi mâu thuẫn; mã trang và thứ tự trang không đổi.
+- RG02 đổi tên thành "Hướng gradient"; mặt trang nêu $x$ là điểm hiện tại cố định (bước đầu $x=x^0$) và gọi $\tfrac12\|d\|_2^2$ là số hạng phạt độ dài bước.
+- RG03 đổi tên thành "Độ dài bước"; bảng xét dấu hai hướng được thay bằng hàm trên tia $f(x^0+td_G)=62-820t+2798t^2$ và khoảng giảm $0<t<410/1399$. Hướng thử $\tilde d=(-2,1)^T$ trong §6 không còn dùng trên mặt trang.
