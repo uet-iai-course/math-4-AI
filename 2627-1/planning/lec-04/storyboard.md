@@ -148,14 +148,14 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RG04 — Quay lui Armijo
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu A05. Bảo đảm giảm với bước đủ nhỏ chưa xác định bước có thể nhận; quy tắc Armijo cho phép kiểm từng điểm thử để chọn bước trong RG05.
-- **Nội dung trên trang:** Giả thiết $g^Td<0$, $0<\alpha<1/2$, $0<\beta<1$. Thử $t=1$, kiểm miền rồi $f(x+td)\le f(x)+\alpha t g^Td$; chưa đạt thì co t.
-- **Bố cục chọn:** Trái 60% lưu đồ bốn bước; phải đồ thị giá trị thật/ngưỡng; bất đẳng thức chung dưới.
-- **Lý do bố cục cho sinh viên năm 3:** Bảo đảm giảm với bước đủ nhỏ chưa xác định bước có thể nhận; quy tắc Armijo cho phép kiểm từng điểm thử để chọn bước trong RG05.
-- **Vào → ra:** Đầu vào: Với $g^Td<0$, ngưỡng Armijo yêu cầu một phần xác định của mức giảm tuyến tính. Đầu ra: Với $\alpha=1/10$, $\beta=1/2$, các bước thử là $1,1/2,1/4,\ldots$ cho tới lần đầu đạt.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề (tên thuật toán); đặt điều kiện giảm đủ lên trước thủ tục vì các bước cũ nhắc "ngưỡng bên dưới" trước khi điều kiện xuất hiện; thêm câu diễn giải "giảm đủ" để điều kiện không xuất hiện đột ngột; gộp thủ tục còn ba bước; sửa ghi chú nhắc tới tiếp tuyến không có trên hình. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Điều kiện giảm đủ (Armijo) với $0<\alpha<1/2$: $f(x+td)\le f(x)+\alpha t\,g^Td$; mức giảm thật đạt ít nhất phần $\alpha$ của mức giảm dự báo tuyến tính $-t\,g^Td$. Thủ tục: với hướng giảm $d$, đặt $t=1$; nếu $x+td$ thuộc miền và thỏa điều kiện thì nhận $t$; nếu không, $t\leftarrow\beta t$ ($0<\beta<1$) và kiểm lại.
+- **Bố cục chọn:** Trái 60%: điều kiện, diễn giải, khung thủ tục; phải: hình VD1 với $\alpha=1/10$. Đo ở 1600×900: đáy nội dung 757 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Điều kiện được đọc trước, thủ tục dùng điều kiện đó; hình kiểm vùng nhận bước bằng số của VD1.
+- **Vào → ra:** Đầu vào: RG03 cho thấy khoảng bước làm giảm $f$ bị giới hạn và nói chung không tính được dạng đóng. Đầu ra: thủ tục dừng sau hữu hạn lần co (vì $\alpha<1$); RG05 chạy thủ tục trên VD1 với $\beta=1/2$.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RG05, RG11.
+- **Số liệu:** VD1, $d=d_G$, $\alpha=1/10$: ngưỡng $62-82t$; vùng nhận $0<t\le369/1399\approx0{,}26$ (tính lại bằng phân số). Với hàm bậc hai lồi chặt và hướng Newton, $t=1$ được nhận khi và chỉ khi $\alpha\le1/2$ (ghi chú).
+- **Nguồn, ghi chú soạn:** BV §9.2; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG05 — Ví dụ quay lui Armijo

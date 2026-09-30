@@ -960,3 +960,4 @@ RG01 đổi tên thành "Đạo hàm hướng" và đặt luận điểm lên m�
 Các thay đổi dưới đây thay các mô tả tương ứng ở phần trước khi mâu thuẫn; mã trang và thứ tự trang không đổi.
 - RG02 đổi tên thành "Hướng gradient"; mặt trang nêu $x$ là điểm hiện tại cố định (bước đầu $x=x^0$) và gọi $\tfrac12\|d\|_2^2$ là số hạng phạt độ dài bước.
 - RG03 đổi tên thành "Độ dài bước"; bảng xét dấu hai hướng được thay bằng hàm trên tia $f(x^0+td_G)=62-820t+2798t^2$ và khoảng giảm $0<t<410/1399$. Hướng thử $\tilde d=(-2,1)^T$ trong §6 không còn dùng trên mặt trang.
+- RG04 giữ tiêu đề "Quay lui Armijo"; điều kiện giảm đủ đặt trước thủ tục, kèm diễn giải phần $\alpha$ của mức giảm dự báo; thủ tục gộp ba bước.

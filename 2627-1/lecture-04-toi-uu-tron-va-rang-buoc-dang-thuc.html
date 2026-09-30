@@ -175,22 +175,22 @@
 <h2>Quay lui Armijo</h2>
 <div class="lec-grid ratio60">
 <div>
+<p><strong>Điều kiện giảm đủ (Armijo),</strong> <span class="math-nowrap">$0&lt;\alpha&lt;1/2$:</span></p>
+<div class="formula emphasis" tabindex="0">$$f(x+td)\le f(x)+\alpha t\,g^Td.$$</div>
+<p>Mức giảm thật đạt ít nhất phần $\alpha$ của mức giảm dự báo tuyến tính $-t\,g^Td$.</p>
 <div class="panel">
 <ol class="steps">
-<li>Đặt $t=1$.</li>
-<li>Kiểm $x+td$ thuộc miền và thỏa ngưỡng bên dưới.</li>
-<li>Đạt thì nhận $t$.</li>
-<li>Chưa đạt thì co $t\leftarrow\beta t$, quay lại bước kiểm.</li>
+<li>Với hướng giảm $d$ ($g^Td&lt;0$), đặt $t=1$.</li>
+<li>Nếu $x+td$ thuộc miền và thỏa điều kiện thì nhận $t$.</li>
+<li>Nếu không, co $t\leftarrow\beta t$ ($0&lt;\beta&lt;1$) và kiểm lại.</li>
 </ol>
 </div>
-<p>$g^Td&lt;0$, $0&lt;\alpha&lt;1/2$, $0&lt;\beta&lt;1$.</p>
 </div>
 <div>
-<img class="plot" src="img/lec-04/armijo-window.svg" alt="Đồ thị hàm một biến t của f(x+td) so với đường ngưỡng f(x)+alpha t g^Td, vùng bước được nhận">
+<img class="plot" src="img/lec-04/armijo-window.svg" alt="VD1 với alpha=1/10: đồ thị f(x⁰+t·d_G)=62−820t+2798t² và đường ngưỡng Armijo 62−82t theo t; hai đường cắt nhau gần t≈0,26 và điểm t=1/4 nằm dưới ngưỡng">
 </div>
 </div>
-<div class="formula emphasis" tabindex="0">$$f(x+td)\le f(x)+\alpha t\,g^Td.$$</div>
-<aside class="notes">Quay lui yêu cầu $g^Td&lt;0$; rồi thử $t=1$; kiểm điểm thử thuộc miền trước khi đánh giá hàm và kiểm bất đẳng thức Armijo; nếu chưa đạt mới co bước theo hệ số $\beta$. Trên hình, đường thẳng ngưỡng $f(x)+\alpha t\,g^Td$ nằm trên tiếp tuyến khi $t&gt;0$, vì $g^Td&lt;0$ và $0&lt;\alpha&lt;1$; điểm $t$ được nhận khi đồ thị giá trị thật không vượt ngưỡng. Với hàm khả vi trên miền mở và hướng giảm, bước dương đủ nhỏ được nhận. Hình dùng VD1 với $\alpha=1/10$; điểm thử ngoài miền luôn bị loại. $\alpha$ là tham số ngưỡng, $\beta$ là hệ số co. Nếu $t=1$ thỏa điều kiện, thuật toán nhận ngay bước này; $t=\beta$ chỉ được thử sau khi bước đầy đủ bị loại. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Khoảng bước làm giảm $f$ nói chung không tính được dạng đóng, nên bước được chọn bằng một phép kiểm chỉ dùng giá trị $f$ tại điểm thử và số $g^Td$ đã có. Vế phải của điều kiện Armijo là đường thẳng qua $(0,f(x))$ với hệ số góc $\alpha\,g^Td$, thoải hơn hệ số góc $g^Td$ của xấp xỉ tuyến tính vì $0&lt;\alpha&lt;1$. Khi $t\downarrow0$, $f(x+td)=f(x)+t\,g^Td+o(t)$ và $t\,g^Td&lt;\alpha t\,g^Td$, nên mọi bước dương đủ nhỏ thỏa điều kiện; do đó thủ tục quay lui dừng sau hữu hạn lần co. Điểm thử ngoài miền của $f$ bị loại trước khi đánh giá hàm. Nếu $t=1$ thỏa điều kiện thì nhận ngay, không thử bước nhỏ hơn. Hình dùng VD1 với $d=d_G$ và $\alpha=1/10$: đường cong là $62-820t+2798t^2$, đường nét đứt là ngưỡng $62-82t$; bước được nhận khi và chỉ khi $0&lt;t\le369/1399\approx0{,}26$, nên $t=1/4$ nằm trong vùng nhận. Cận $\alpha&lt;1/2$ theo quy ước của Boyd và Vandenberghe: với hàm bậc hai lồi chặt và hướng Newton, bước đầy đủ $t=1$ thỏa điều kiện khi và chỉ khi $\alpha\le1/2$. Ví dụ quay lui với $\beta=1/2$ cho dãy thử $t=1,1/2,1/4$. Nguồn: Boyd và Vandenberghe (2004), §9.2; MIT 6.079, mùa thu 2009, bài giảng 16.</aside>
 </section>
 
 <section data-slide-id="RG05">
