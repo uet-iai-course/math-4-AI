@@ -230,17 +230,17 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §9.4; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RG11 — Kiểm tra hướng theo chuẩn và quy tắc bước
+### RG11 — Hướng và độ dài bước
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu A07, B06. Kiểm cả nguồn gốc hướng và cách nhận bước, không chỉ gắn tên thuật toán cho một vectơ.
-- **Nội dung trên trang:** Câu hỏi: VD1, $W=\operatorname{diag}(3,7)$. Viết điều kiện dừng của $Q_W$; phân biệt $d=(-2,-4)^T$ với $v=d/\sqrt{124}$. Nếu dùng hướng gradient trong bảng RG05, đã nhận $t=1/4$ thì có thử tiếp $t=1/8$ không?
-- **Bố cục chọn:** Hai vùng câu hỏi 60/40, mỗi vùng tối đa hai ý; đáp án và tiêu chí ở ghi chú.
-- **Lý do bố cục cho sinh viên năm 3:** Kiểm cả nguồn gốc hướng và cách nhận bước, không chỉ gắn tên thuật toán cho một vectơ.
-- **Vào → ra:** Đầu vào: Cùng dữ kiện $W,g$ xác định $d$ và $v$; quy tắc Armijo xác định $t$ riêng. Đầu ra: Ma trận cố định $W$ có thể được thay bằng Hessian tại từng điểm để mô hình phản ánh độ cong thay đổi.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; sản phẩm và đáp án kiểm tra ở dàn ý §7.
-- **Số liệu:** VD1, dàn ý §6: giữ x, g; ghi riêng W khi dùng; phân biệt v, d, t và các cấu hình bước.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
-- **Dự toán nội bộ:** 0 LT + 3/20 BT; suy nghĩ 3/50 BT, chữa 9/100 BT. Nhiệm vụ hướng theo chuẩn: 0.075 giờ BT; nhiệm vụ Armijo: 0.075 giờ BT.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Kiểm tra hướng theo chuẩn và quy tắc bước" thành "Hướng và độ dài bước" (gọi tên hai khái niệm được kiểm); thay hai câu hỏi chỉ đọc lại số liệu RG10 và quy tắc dừng thử bằng hai câu trên dữ kiện mới để đo khả năng chuyển giao: giải $Q_W$ tại $x^1$ và chạy quay lui với $\alpha=3/10$. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Câu hỏi 1: tại $x^1=(1/2,-3)^T$ của VD1, với $W=\operatorname{diag}(3,7)$, viết điều kiện dừng của $Q_W$, giải $d$, tính $x^1+d$ và $\|d\|_W^2$. Câu hỏi 2: quay lui trên VD1 từ $x^0$ theo $d_G$, với $\beta=1/2$ và $\alpha=3/10$; xác định bước được nhận.
+- **Bố cục chọn:** Hai khung câu hỏi `lec-grid--60-40`. Đo ở 1600×900: đáy nội dung 450 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Mỗi câu đo một thành phần của bước lặp (hướng từ điều kiện dừng của mô hình; bước từ điều kiện Armijo) trên dữ kiện chưa được giải sẵn.
+- **Vào → ra:** Đầu vào: hệ $g+Wd=0$ (RG10), điểm $x^1$ (RG05), điều kiện Armijo và hàm trên tia (RG03–RG04). Đầu ra: câu 1 cho $x^1+d=(0,0)^T$ vì $W$ trùng Hessian, chuẩn bị mô hình Newton dùng Hessian tại mỗi điểm (RN01).
+- **Chuẩn và minh chứng:** LLO6 / CLO1 (câu 1); LLO8 / CLO2 (câu 2).
+- **Số liệu:** Câu 1: $g(x^1)=(3/2,-21)^T$, $d=(-1/2,3)^T$, $x^1+d=(0,0)^T$, $\|d\|_W^2=255/4$. Câu 2: ngưỡng $62-246t$; $t=1$: $2040>-184$; $t=1/2$: $703/2>-61$; $t=1/4$: $255/8>1/2$; $t=1/8$: $103/32\le125/4$, nhận (tính lại bằng phân số).
+- **Nguồn, ghi chú soạn:** BV §§9.2–9.4; MIT lec16.
+- **Dự toán nội bộ:** 0.15 BT (giữ theo điều chỉnh RZ02).
 
 ### RN01 — Mô hình bậc hai tại điểm hiện tại
 

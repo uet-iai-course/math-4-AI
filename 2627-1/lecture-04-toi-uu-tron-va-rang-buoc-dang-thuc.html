@@ -307,17 +307,17 @@ Nghiệm chuẩn hóa $v$ có độ dài một theo $\|\cdot\|_W$; hướng dùn
 </section>
 
 <section data-slide-id="RG11">
-<h2>Kiểm tra hướng theo chuẩn và quy tắc bước</h2>
+<h2>Hướng và độ dài bước</h2>
 <div class="lec-grid lec-grid--60-40">
 <div class="question">
-<p><strong>Câu hỏi:</strong> Với $W=\operatorname{diag}(3,7)$, $g=(6,28)^T$: viết điều kiện dừng của $Q_W$ và giải ra $d$. Phân biệt $d$ với hướng chuẩn hóa $v=d/\sqrt{124}$.</p>
+<p><strong>Câu hỏi:</strong> Tại $x^1=(1/2,-3)^T$ của VD1, với <span class="math-nowrap">$W=\operatorname{diag}(3,7)$:</span> viết điều kiện dừng của $Q_W$, giải $d$, rồi tính $x^1+d$ và $\|d\|_W^2$.</p>
 </div>
 <div class="question">
-<p><strong>Câu hỏi:</strong> Với hướng gradient của VD1, Armijo đã nhận $t=1/4$. Xác định có cần thử tiếp $t=1/8$ và giải thích theo quy tắc quay lui.</p>
+<p><strong>Câu hỏi:</strong> Quay lui trên VD1 từ $x^0$ theo $d_G$, với $\beta=1/2$ nhưng $\alpha=3/10$. Xác định bước được nhận.</p>
 </div>
 </div>
 <aside class="notes">
-Đáp án về hướng: từ $Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$, đạo hàm theo $d$ và cho bằng 0 được $g+Wd=0$; giải hệ thay $3d_1=-6$, $7d_2=-28$ cho $d=(-2,-4)^T$. Phân biệt: $d$ là hướng không chuẩn hóa theo quy ước đã chọn, dùng trong cập nhật $x^+=x+t\,d$; $v=d/\sqrt{124}$ là nghiệm chuẩn hóa với $\|v\|_W=1$; $t$ là bước số do quy tắc nhận bước quyết định. Đáp án về bước: không. Quy tắc Armijo dừng thử ngay khi mức $t=1/4$ thỏa điều kiện giảm đủ; $t=1/8$ chỉ được thử khi $1/4$ bị loại. Điều kiện dừng của $Q_W$ xác định hướng; Armijo xác định độ dài bước. Thay ma trận cố định bằng Hessian tại mỗi điểm tạo mô hình phản ánh độ cong thay đổi. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16.
+Hai câu hỏi kiểm tra hai thành phần của một bước lặp trên dữ kiện mới: hướng được xác định bởi điều kiện dừng của mô hình bậc hai, độ dài bước được xác định bởi điều kiện Armijo. Đáp án câu về hướng: tại $x^1=(1/2,-3)^T$, $g=(3x_1,7x_2)^T=(3/2,-21)^T$. Đạo hàm $Q_W(d)=f(x^1)+g^Td+\tfrac12d^TWd$ theo $d$ và cho bằng 0 được $g+Wd=0$, tức $3d_1=-3/2$ và $7d_2=21$, nên $d=(-1/2,3)^T$. Khi đó $x^1+d=(0,0)^T$, đúng nghiệm tối ưu của VD1, vì $W$ trùng Hessian của hàm bậc hai. $\|d\|_W^2=d^TWd=3/4+63=255/4$; hướng chuẩn hóa là $v=d/\|d\|_W$ với $\|v\|_W=1$, còn $t$ là bước số do quy tắc nhận bước quyết định. Đáp án câu về bước: với $g^Td_G=-820$ và $\alpha=3/10$, ngưỡng là $62-246t$. Trên tia, $f(x^0+td_G)=62-820t+2798t^2$. Lần thử $t=1$: $2040&gt;-184$, loại; $t=1/2$: $703/2&gt;-61$, loại; $t=1/4$: $255/8&gt;1/2$, loại; $t=1/8$: $103/32\le125/4$, nhận. Tham số $\alpha$ lớn hơn làm ngưỡng chặt hơn, nên bước $1/4$ được nhận khi $\alpha=1/10$ nhưng bị loại khi $\alpha=3/10$. Thay ma trận cố định $W$ bằng Hessian tại mỗi điểm cho mô hình theo dõi độ cong thay đổi. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
 </section>

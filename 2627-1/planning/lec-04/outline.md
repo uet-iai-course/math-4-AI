@@ -967,3 +967,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RG08 đổi tên thành "Bài toán hướng giảm dốc nhất"; thêm câu định nghĩa "dốc nhất"; thứ tự chuẩn → định nghĩa → bài toán → Lagrange; ví dụ VD1 dưới hình.
 - RG09 đổi tên thành "Hệ KKT của hướng dốc nhất"; khung bốn nhóm KKT đặt trước các bước giải; kết luận nêu kết quả số VD1 $v=-(2,4)^T/\sqrt{124}$.
 - RG10 đổi tên thành "Hướng dốc nhất theo chuẩn bậc hai"; nêu quy ước độ dài và kiểm $W=I\Rightarrow d=-g$; kết nối $Q_W$ với hệ $g+Wd=0$ đặt thành khung kết luận.
+- RG11 đổi tên thành "Hướng và độ dài bước"; hai câu hỏi dùng dữ kiện mới: giải $Q_W$ tại $x^1=(1/2,-3)^T$ và quay lui với $\alpha=3/10$ (thay mô tả RG11 trong bảng dữ kiện câu hỏi ở phần trước).
