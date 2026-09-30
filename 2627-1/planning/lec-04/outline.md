@@ -1016,3 +1016,4 @@ Theo yêu cầu người dùng, thêm cụm tự học RG12–RG17 sau câu hỏ
 - RG13 Bổ đề giảm: $f(x-g/L)\le f(x)-\|g\|^2/(2L)$; VD1 $96/49\le24/7$.
 - RG14 Bất đẳng thức một bước: thêm tính lồi và $x^*$; $f(x^+)-f^*\le\tfrac L2(\|x-x^*\|^2-\|x^+-x^*\|^2)$.
 - RG15 Tốc độ hội tụ $O(1/k)$: định lý, chứng minh cộng dồn, VD1 cận $70/k$.
+- RG16 Hội tụ với quay lui: bước được nhận $t\ge\min(1,\beta/L)$; định lý $\alpha=\tfrac12$: $\|x^0-x^*\|^2/(2t_{\min}k)$; VD1 $t=1/8$, cận $140/k$.

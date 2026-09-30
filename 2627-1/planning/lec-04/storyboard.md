@@ -287,6 +287,17 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Số liệu:** VD1: $\|x^0-x^*\|^2=20$, $L=7$, cận $70/k$; $\varepsilon=0{,}01$ cần $k\ge7000$ theo cận.
 - **Nguồn, ghi chú soạn:** BV §9.3; ghi chú bài giảng mục B (định lý cận $O(1/k)$, định lý tuyến tính khi lồi mạnh).
 
+### RG16 — Hội tụ với quay lui
+
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng bổ sung yêu cầu hội tụ của giảm gradient với quay lui Armijo.
+- **Nội dung trên trang:** Nhu cầu: định lý $O(1/k)$ cần biết $L$. Bổ đề: với $\alpha\le\tfrac12$, $t\le1/L$ thì Armijo đúng; quay lui dừng với $t\ge t_{\min}=\min(1,\beta/L)$. Định lý ($\alpha=\tfrac12$): $f(x^k)-f^*\le\|x^0-x^*\|^2/(2t_{\min}k)$. VD1 $\alpha=\beta=\tfrac12$: nhận $t=1/8$, $t_{\min}=1/14$, cận $140/k$. Kết luận: giá phải trả khi không biết $L$ là tối đa $1/\beta$ lần trong hằng số.
+- **Bố cục chọn:** Dòng nhu cầu; lưới hai khung (bổ đề, định lý kèm VD1); kết luận.
+- **Lý do tồn tại:** Thuật toán RG06 dùng quay lui, không dùng bước $1/L$; cần bảo đảm cho đúng thuật toán đã học.
+- **Vào → ra:** Đầu vào: cận trên bậc hai, bất đẳng thức một bước, định lý $O(1/k)$ (RG12–RG15), quy tắc Armijo (RG04). Đầu ra: cận $O(1/k)$ không cần biết $L$; câu hỏi so sánh ở RG17.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG17.
+- **Số liệu:** VD1: ngưỡng $62-410t$, nhận khi $t\le205/1399$; thử $1,\tfrac12,\tfrac14$ loại, $\tfrac18$ nhận ($103/32\le43/4$); $t_{\min}=1/14$; cận $140/k$ (tính bằng phân số).
+- **Nguồn, ghi chú soạn:** BV §§9.2–9.3 (§9.3.1 cho trường hợp lồi mạnh với $\alpha$ tổng quát); định lý chỉ phát biểu cho $\alpha=\tfrac12$, không nêu hằng số cho $\alpha<\tfrac12$.
+
 ### RN01 — Mô hình bậc hai cục bộ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm dòng nhu cầu nhận đầu ra của RG11 (VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước) và nêu phép đổi ký hiệu $W\to H=\nabla^2f(x)$; khung VD2 nêu lý do đổi ví dụ (không bậc hai, độ cong $1/s^2$ đổi theo $s$, một biến $s$ thay $x$, nghiệm $s^\star=1$); khung kết luận nêu cụ thể tính cục bộ của parabol. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): đổi tiêu đề thành "Mô hình bậc hai cục bộ" để không chạm nút điều hướng; dòng mở nêu $W=H=\nabla^2f(x)$ tại điểm hiện tại.

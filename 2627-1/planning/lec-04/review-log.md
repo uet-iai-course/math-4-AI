@@ -10,6 +10,7 @@
 | RG13 Bổ đề giảm | Thế $y=x-g/L$; bổ đề giảm; VD1 $96/49\le24/7$; liên hệ Armijo $\alpha\le1/2$ trong ghi chú | 1600×900 vừa khung, không lỗi KaTeX/console; 390×844 cuộn dọc | xem git log |
 | RG14 Bất đẳng thức một bước | Ba bước có nhãn giả thiết; kết luận dạng hiệu; khoảng cách không tăng (ghi chú) | 1600×900 vừa khung, không lỗi KaTeX/console; 390×844 cuộn dọc | xem git log |
 | RG15 Tốc độ hội tụ $O(1/k)$ | Định lý với đủ giả thiết; chứng minh ý chính; VD1 $70/k$; $k\ge LR^2/(2\varepsilon)$ | 1600×900 vừa khung, không lỗi KaTeX/console; 390×844 cuộn dọc | xem git log |
+| RG16 Hội tụ với quay lui | Bổ đề bước được nhận; định lý với $\alpha=\tfrac12$; VD1 nhận $t=1/8$, cận $140/k$ | 1600×900 vừa khung, không lỗi KaTeX/console; 390×844 cuộn dọc | xem git log |
 
 - Tài sản mới: `img/lec-04/lipschitz-upper-bound.svg`, tự vẽ bằng Python từ công thức; `role="img"`, `title`, `desc`, chú giải bằng kiểu nét (không chỉ dùng màu).
 - Rà soát toán học: *chờ*.

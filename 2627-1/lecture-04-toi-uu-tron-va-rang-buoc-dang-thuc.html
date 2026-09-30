@@ -385,6 +385,27 @@ Bổ đề giảm so $f(x^+)$ với $f(x)$; để so với $f^*$ cần thêm tí
 Bất đẳng thức một bước chặn sai số mục tiêu bằng hiệu hai bình phương khoảng cách liên tiếp; cộng theo các bước làm các số hạng giữa triệt tiêu. Cụ thể, với $j=0,\dots,k-1$: $\sum_{j=0}^{k-1}\big(f(x^{j+1})-f^*\big)\le\tfrac L2\big(\|x^0-x^*\|_2^2-\|x^k-x^*\|_2^2\big)\le\tfrac L2\|x^0-x^*\|_2^2$. Theo bổ đề giảm, $f(x^1)\ge f(x^2)\ge\dots\ge f(x^k)$, nên mỗi số hạng trong tổng không nhỏ hơn $f(x^k)-f^*$, và tổng không nhỏ hơn $k(f(x^k)-f^*)$; chia cho $k$ được định lý. Giả thiết được dùng: gradient Lipschitz trong bổ đề giảm, tính lồi trong bước tiếp tuyến, sự tồn tại $x^*$ để định nghĩa $f^*$ và khoảng cách ban đầu. Tốc độ $O(1/k)$ gọi là dưới tuyến tính: giảm sai số mười lần cần tăng số bước khoảng mười lần. Với VD1, $x^*=0$ nên $\|x^0-x^*\|_2^2=4+16=20$ và cận là $7\cdot20/(2k)=70/k$; muốn sai số không quá $\varepsilon=0{,}01$, cận yêu cầu $k\ge7000$. Cận đúng cho mọi hàm lồi có gradient $L$-Lipschitz, kể cả hàm không lồi mạnh, nên với một hàm cụ thể như VD1 có thể rất bi quan; khi $f$ lồi mạnh với hằng số $\mu$, ghi chú bài giảng chứng minh cận tuyến tính $(1-\mu/L)^k(f(x^0)-f^*)$. Định lý giả sử biết $L$ để đặt bước; khi không biết $L$, bước được chọn bằng quay lui. Nguồn: Boyd và Vandenberghe (2004), §9.3; ghi chú bài giảng, mục B.
 </aside>
 </section>
+
+<section data-slide-id="RG16">
+<h2>Hội tụ với quay lui <span class="self-study-badge">Tự học</span></h2>
+<p>Định lý trước cần biết $L$ để đặt bước; quay lui Armijo với $d=-g$ chọn $t$ chỉ từ giá trị hàm.</p>
+<div class="lec-grid">
+<div class="panel">
+<p><strong>Bổ đề (bước được nhận).</strong> Với $0&lt;\alpha\le\tfrac12$ và $0&lt;t\le1/L$:</p>
+<div class="formula" tabindex="0">$$\begin{aligned}f(x-tg)&amp;\le f(x)-t\big(1-\tfrac{Lt}2\big)\|g\|_2^2\\&amp;\le f(x)-\tfrac t2\|g\|_2^2,\end{aligned}$$</div>
+<p>nên quay lui từ $t=1$ dừng với <span class="math-nowrap">$t\ge t_{\min}=\min(1,\beta/L)$.</span></p>
+</div>
+<div class="panel">
+<p><strong>Định lý ($\alpha=\tfrac12$).</strong> Cùng giả thiết của định lý $O(1/k)$, bước chọn bằng quay lui:</p>
+<div class="formula emphasis" tabindex="0">$$f(x^k)-f^*\le\frac{\|x^0-x^*\|_2^2}{2\,t_{\min}\,k}.$$</div>
+<p><strong>VD1</strong>, $\alpha=\beta=\tfrac12$: tại $x^0$ nhận $t=\tfrac18$; <span class="math-nowrap">$t_{\min}=\tfrac1{14}$,</span> cận $140/k$.</p>
+</div>
+</div>
+<div class="takeaway">Không cần biết $L$; khi $L\ge\beta$, hằng số của cận tăng nhiều nhất $1/\beta$ lần.</div>
+<aside class="notes">
+Định lý tốc độ $O(1/k)$ đặt bước $t=1/L$, nên cần biết $L$; quay lui Armijo chỉ dùng giá trị hàm. Bổ đề bước được nhận: thế $y=x-tg$ vào cận trên bậc hai được $f(x-tg)\le f(x)-t\|g\|_2^2+\tfrac{Lt^2}2\|g\|_2^2=f(x)-t(1-\tfrac{Lt}2)\|g\|_2^2$; khi $t\le1/L$ thì $1-\tfrac{Lt}2\ge\tfrac12$. Với $d=-g$, điều kiện Armijo là $f(x-tg)\le f(x)-\alpha t\|g\|_2^2$, nên đúng với mọi $t\in(0,1/L]$ khi $\alpha\le\tfrac12$. Quay lui thử $1,\beta,\beta^2,\dots$ và dừng ở giá trị đầu tiên thỏa điều kiện: hoặc $t=1$, hoặc giá trị thử trước $t/\beta$ đã bị loại, tức $t/\beta&gt;1/L$; vậy $t\ge\min(1,\beta/L)$. Chứng minh định lý với $\alpha=\tfrac12$: bước được nhận thỏa $f(x^+)\le f(x)-\tfrac t2\|g\|_2^2$, đúng dạng bổ đề giảm với $1/L$ thay bằng $t$. Lặp lại bất đẳng thức một bước được $f(x^+)-f^*\le\tfrac1{2t}\big(\|x-x^*\|_2^2-\|x^+-x^*\|_2^2\big)$. Vế trái không âm nên hiệu trong ngoặc không âm, và $\tfrac1{2t}\le\tfrac1{2t_{\min}}$; thay vào, cộng theo $k$ bước và dùng tính đơn điệu như định lý trước. Với VD1 và $\alpha=\beta=\tfrac12$: điều kiện $62-820t+2798t^2\le62-410t$ tương đương $t\le205/1399\approx0{,}147$; các lần thử $t=1,\tfrac12,\tfrac14$ bị loại ($2040&gt;-348$, $703/2&gt;-143$, $255/8&gt;-81/2$), $t=\tfrac18$ được nhận ($103/32\le43/4$). $t_{\min}=\min(1,1/14)=1/14\le1/8$, cận là $20\cdot14/(2k)=140/k$, gấp đôi cận $70/k$ của bước $1/L$. Định lý nêu cho $\alpha=\tfrac12$. Với $\alpha&lt;\tfrac12$, như $\alpha=1/10$ trong ví dụ quay lui, chặn $t\ge\min(1,\beta/L)$ vẫn đúng; cận tuyến tính cho trường hợp lồi mạnh với $\alpha$ tổng quát ở Boyd và Vandenberghe, §9.3.1. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.3; ghi chú bài giảng, mục B.
+</aside>
+</section>
 </section>
 <section>
 <section data-slide-id="RN01">
