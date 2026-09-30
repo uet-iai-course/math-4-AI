@@ -254,6 +254,17 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Số liệu:** VD1: $\nabla^2f=\operatorname{diag}(3,7)$, $L=7$. Hình: $f(s)=\log(1+e^s)$, $f''\le1/4$, $f(1)\approx1{,}313$, $f'(1)\approx0{,}731$.
 - **Nguồn, ghi chú soạn:** BV §9.1.2 (hằng số $M$), §9.3; MIT 6.079 lec16; chứng minh cận trên bằng tích phân dọc đoạn và Cauchy–Schwarz trong ghi chú.
 
+### RG13 — Bổ đề giảm
+
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ của giảm gradient; trang thứ hai của cụm tự học.
+- **Nội dung trên trang:** Thế $y=x-g/L$ vào cận trên; bổ đề $f(x-\tfrac1L\nabla f(x))\le f(x)-\tfrac1{2L}\|\nabla f(x)\|_2^2$; VD1 $t=1/7$: $x^1=(8/7,0)^T$, $f(x^1)=96/49\le24/7$; kết luận: bước cố định giảm ít nhất $\|g\|^2/(2L)$.
+- **Bố cục chọn:** Một cột: dòng thế, phép cộng hai số hạng, khung bổ đề, dòng VD1, kết luận.
+- **Lý do tồn tại:** Mức giảm bảo đảm là bước đầu của mọi chứng minh tốc độ; tách khỏi trang định nghĩa để mỗi trang một luận điểm.
+- **Vào → ra:** Đầu vào: cận trên bậc hai (RG12). Đầu ra: $f(x^k)$ không tăng và mức giảm $\|g\|^2/(2L)$, dùng ở RG14 và RG15; liên hệ Armijo với $\alpha\le1/2$ dùng ở RG16.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG17.
+- **Số liệu:** VD1: $\|g\|^2=820$, $x^1=(8/7,0)^T$, $f(x^1)=96/49$, cận $24/7$ (tính bằng phân số).
+- **Nguồn, ghi chú soạn:** BV §9.3; MIT 6.079 lec16.
+
 ### RN01 — Mô hình bậc hai cục bộ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm dòng nhu cầu nhận đầu ra của RG11 (VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước) và nêu phép đổi ký hiệu $W\to H=\nabla^2f(x)$; khung VD2 nêu lý do đổi ví dụ (không bậc hai, độ cong $1/s^2$ đổi theo $s$, một biến $s$ thay $x$, nghiệm $s^\star=1$); khung kết luận nêu cụ thể tính cục bộ của parabol. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): đổi tiêu đề thành "Mô hình bậc hai cục bộ" để không chạm nút điều hướng; dòng mở nêu $W=H=\nabla^2f(x)$ tại điểm hiện tại.

@@ -339,6 +339,19 @@ Hai câu hỏi kiểm tra hai thành phần của một bước lặp trên dữ
 Thuật toán giảm gradient dùng bước cố định $t=1/L$ ở phần phân tích, nhưng chưa nêu giả thiết khiến bước này an toàn. Giả thiết đó là gradient $L$-Lipschitz: gradient không thay đổi nhanh hơn $L$ lần khoảng cách giữa hai điểm. Cận trên bậc hai suy từ định nghĩa. Viết $f(y)-f(x)-\nabla f(x)^T(y-x)=\int_0^1\big(\nabla f(x+\tau(y-x))-\nabla f(x)\big)^T(y-x)\,d\tau$; theo Cauchy–Schwarz và tính Lipschitz, biểu thức dưới dấu tích phân không vượt quá $L\tau\|y-x\|_2^2$, và $\int_0^1\tau\,d\tau=1/2$. Như vậy parabol độ cong $L$ tựa tại $x$ nằm trên $f$; tính lồi cho tiếp tuyến tại $x$ nằm dưới $f$. Hình vẽ hàm mất mát logistic $f(s)=\log(1+e^s)$ của hồi quy logistic: $f''(s)=\sigma(s)(1-\sigma(s))\le1/4$ với $\sigma(s)=1/(1+e^{-s})$, nên $L=1/4$; parabol và tiếp tuyến dựng tại $s=1$. Với $f$ lồi và khả vi hai lần, gradient $L$-Lipschitz tương đương $\nabla^2f(x)\preceq LI$ tại mọi $x$; nếu $f$ không lồi, điều kiện là $-LI\preceq\nabla^2f(x)\preceq LI$. Với VD1, Hessian không đổi $\operatorname{diag}(3,7)$ nên $L=7$ là giá trị riêng lớn nhất. Thế $y=x-\nabla f(x)/L$ vào cận trên cho mức giảm bảo đảm của một bước gradient. Nguồn: Boyd và Vandenberghe (2004), §9.1.2 (hằng số $M$ ở đó đóng vai $L$) và §9.3; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
+
+<section data-slide-id="RG13">
+<h2>Bổ đề giảm <span class="self-study-badge">Tự học</span></h2>
+<p>Thế $y=x^+=x-\tfrac1Lg$, với $g=\nabla f(x)$, vào cận trên bậc hai:</p>
+<div class="formula" tabindex="0">$$f(x^+)\le f(x)-\tfrac1L\|g\|_2^2+\tfrac L2\cdot\tfrac1{L^2}\|g\|_2^2.$$</div>
+<div class="panel"><p><strong>Bổ đề giảm.</strong> Nếu $\nabla f$ là $L$-Lipschitz thì với mọi $x$:</p>
+<div class="formula emphasis" tabindex="0">$$f\big(x-\tfrac1L\nabla f(x)\big)\le f(x)-\frac1{2L}\|\nabla f(x)\|_2^2.$$</div></div>
+<p><strong>VD1</strong>, $t=1/7$: <span class="math-nowrap">$x^1=(8/7,0)^T$,</span> <span class="math-nowrap">$f(x^1)=96/49\approx1{,}96$</span> <span class="math-nowrap">$\le62-\tfrac{820}{14}=\tfrac{24}{7}\approx3{,}43$.</span></p>
+<div class="takeaway">Bước cố định $t=1/L$ làm $f$ giảm ít nhất $\|g\|_2^2/(2L)$ ở mỗi bước, không cần quay lui.</div>
+<aside class="notes">
+Cận trên bậc hai vừa suy ra đúng với mọi cặp điểm; chọn $y$ là điểm sau một bước gradient với $t=1/L$ cho một mức giảm bảo đảm. Với $y-x=-g/L$: số hạng bậc nhất bằng $-\|g\|_2^2/L$, số hạng bậc hai bằng $\tfrac L2\cdot\|g\|_2^2/L^2=\|g\|_2^2/(2L)$, tổng là $-\|g\|_2^2/(2L)$. Hệ quả: dãy $f(x^k)$ không tăng, và giảm thật sự khi $g\ne0$; bước $t=1/L$ cực tiểu hóa cận trên $f(x)-t\|g\|_2^2+\tfrac{Lt^2}2\|g\|_2^2$ theo $t$. Với VD1 tại $x^0=(2,4)^T$: $g=(6,28)^T$, $\|g\|_2^2=820$, $x^1=x^0-g/7=(8/7,0)^T$ và $f(x^1)=\tfrac12\cdot3\cdot(8/7)^2=96/49$; cận của bổ đề là $62-820/14=24/7$, lớn hơn giá trị thật. Tọa độ thứ hai về $0$ sau một bước vì $L=7$ trùng độ cong theo phương đó. Liên hệ với quay lui: với $d=-g$ và $t=1/L$, vế phải của điều kiện Armijo là $f(x)-\alpha\|g\|_2^2/L$; bổ đề cho mức giảm $\|g\|_2^2/(2L)$, nên điều kiện Armijo đúng khi $\alpha\le1/2$. Bổ đề chỉ cho biết $f$ giảm, chưa cho biết $f(x^k)$ tiến tới $f^*$ nhanh đến đâu; muốn so với $f^*$ cần thêm tính lồi và sự tồn tại nghiệm. Nguồn: Boyd và Vandenberghe (2004), §9.3; MIT 6.079, mùa thu 2009, bài giảng 16.
+</aside>
+</section>
 </section>
 <section>
 <section data-slide-id="RN01">

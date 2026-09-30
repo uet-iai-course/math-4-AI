@@ -1013,3 +1013,4 @@ Theo yêu cầu người dùng, phần tự điều chỉnh (RS01–RS05, mở �
 Theo yêu cầu người dùng, thêm cụm tự học RG12–RG17 sau câu hỏi kiểm tra RG11, trong cùng mạch hướng giảm và bước (mạch vẫn là 7). Sườn: gradient $L$-Lipschitz và cận trên bậc hai → bổ đề giảm với $t=1/L$ → bất đẳng thức một bước (thêm tính lồi và $x^*$) → định lý $f(x^k)-f^*\le L\|x^0-x^*\|_2^2/(2k)$ → hội tụ với quay lui Armijo ($\alpha=1/2$, $t_{\min}=\min(1,\beta/L)$) → câu hỏi so cận với thực tế trên VD1. Ví dụ dùng VD1 ($L=7$, $\|x^0-x^*\|^2=20$). Chứng minh đầy đủ ở ghi chú bài giảng mục B.
 
 - RG12 Gradient Lipschitz: định nghĩa, cận trên bậc hai, hình mất mát logistic.
+- RG13 Bổ đề giảm: $f(x-g/L)\le f(x)-\|g\|^2/(2L)$; VD1 $96/49\le24/7$.

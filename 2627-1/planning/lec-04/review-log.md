@@ -7,6 +7,7 @@
 | Trang | Nội dung | Kiểm tra trình duyệt | Commit |
 |---|---|---|---|
 | RG12 Gradient Lipschitz | Định nghĩa, cận trên bậc hai, hình SVG tự vẽ (mất mát logistic, $L=1/4$), VD1 $L=7$ | 1600×900 vừa khung, không lỗi KaTeX/console; 390×844 cuộn dọc | xem git log |
+| RG13 Bổ đề giảm | Thế $y=x-g/L$; bổ đề giảm; VD1 $96/49\le24/7$; liên hệ Armijo $\alpha\le1/2$ trong ghi chú | 1600×900 vừa khung, không lỗi KaTeX/console; 390×844 cuộn dọc | xem git log |
 
 - Tài sản mới: `img/lec-04/lipschitz-upper-bound.svg`, tự vẽ bằng Python từ công thức; `role="img"`, `title`, `desc`, chú giải bằng kiểu nét (không chỉ dùng màu).
 - Rà soát toán học: *chờ*.
