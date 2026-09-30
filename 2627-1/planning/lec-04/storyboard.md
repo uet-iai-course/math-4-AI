@@ -376,11 +376,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RE05 — Ví dụ Newton khả thi
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu E05. Giải ra hướng trước khi kiểm, để ví dụ không chỉ là thế nghiệm được cho sẵn.
-- **Nội dung trên trang:** Thế $g=(32,-10)^T$ vào hệ: $2d_1+\eta=-32$, $5d_2+\eta=10$, $d_1+d_2=0$. Thế $d_2=-d_1$ và trừ hai hàng được $7d_1=-42$, nên $d=(-6,6)^T$, $\eta=-20$. Kiểm $Ad=0$, $\delta_{eq}^2=252$; bước $t=1$ tới $(10,4)^T$, giảm $266-140=126$.
-- **Bố cục chọn:** Trái 60% ba phương trình và hai bước giải; phải đồ thị hai trục $u_1,u_2$, đường tổng $14$, miền nhìn $-3$ tới $17$, mũi tên từ $(16,-2)$ tới $(10,4)$; phép kiểm tổng và mục tiêu ở chân.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: giữ tiêu đề; bỏ câu "Đặt $\delta_{eq}$" xuất hiện đột ngột trên mặt trang (định nghĩa chuyển sang RE07, nối với $\delta_N$); dòng kiểm nêu mức giảm thật bằng $\tfrac12d^THd$; dữ kiện nêu điểm và $H$; ghi chú nêu $\eta=\nu^*$. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Dữ kiện VD3 tại $(16,-2)^T$, $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$; hệ ba phương trình; thế $d_2=-d_1$, $7d_1=-42$, $d=(-6,6)^T$, $\eta=-20$; kiểm $Ad=0$, bước $t=1$ tới $(10,4)^T$, $F$ giảm $266-140=126=\tfrac12d^THd$. Kết luận: một bước tới nghiệm vì hàm bậc hai. Ghi chú: $\eta=-20=\nu^*$; mức giảm thật bằng mức giảm mô hình, khác VD2.
+- **Bố cục chọn:** Trái 60% dữ kiện → hệ → phép thế → nghiệm → dòng kiểm; phải hình bước dọc đường khả thi; kết luận ở chân. Đo 1600×900: đáy nội dung 822/829, tiêu đề kết thúc ở 492 px; 390×844: vừa khi cuộn, hàng nghiệm cuộn ngang trong `.formula`.
 - **Lý do bố cục cho sinh viên năm 3:** Giải ra hướng trước khi kiểm, để ví dụ không chỉ là thế nghiệm được cho sẵn.
-- **Vào → ra:** Đầu vào: Thay gradient $(32,-10)^T$ và Hessian $\operatorname{diag}(2,5)$ vào hệ KKT cho ba phương trình đã nêu. Đầu ra: Hướng $(-6,6)^T$ thuộc $\ker A$, nên có thể biểu diễn bằng một tọa độ rút gọn trên không gian này.
+- **Vào → ra:** Đầu vào: hệ khối và điều kiện khả nghịch (RE04); điểm đầu và nghiệm tham chiếu (RE01). Đầu ra: $d=(-6,6)^T$, $\eta=-20$ để đối chiếu với cách giải rút gọn ở RE06.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** VD3 khả thi, dàn ý §6: F, u, A, b; g, H ở RE02; d, η ở RE05; N, Δz ở RE06. Chỉ đưa ký hiệu đã dùng trên trang, chưa đưa phần dư hoặc số gia nhân tử.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.

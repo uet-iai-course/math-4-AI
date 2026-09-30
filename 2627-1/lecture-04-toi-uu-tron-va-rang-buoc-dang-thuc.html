@@ -496,18 +496,18 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
   <h2>Ví dụ Newton khả thi</h2>
   <div class="lec-grid ratio60">
     <div>
-      <p>Với $g=(32,-10)^T$, hệ Newton là:</p>
+      <p>VD3 tại $(16,-2)^T$, $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$:</p>
       <div class="formula" tabindex="0">$$\begin{aligned}2d_1+\eta&amp;=-32,\\5d_2+\eta&amp;=10,\\d_1+d_2&amp;=0.\end{aligned}$$</div>
       <p>Thế $d_2=-d_1$ và trừ hai hàng:</p>
       <div class="formula" tabindex="0">$$7d_1=-42\ \Rightarrow\ d=(-6,6)^T,\ \eta=-20$$</div>
-      <p>Đặt $\delta_{eq}=\sqrt{d^THd}\ge0$. Kiểm: $Ad=0$, $\delta_{eq}^2=252$; bước $t=1$ tới $(10,4)^T$, giảm $266-140=126$.</p>
+      <p>Kiểm: $Ad=0$; bước $t=1$ tới $(10,4)^T$, $F$ giảm <span class="math-nowrap">$266-140=126=\tfrac12d^THd$.</span></p>
     </div>
     <div>
       <img class="plot" src="img/lec-04/equality-feasible-step.svg" alt="Hai trục u1, u2 với đường tổng u1 + u2 = 14, miền nhìn từ −3 tới 17, mũi tên bước từ điểm (16, −2) tới điểm (10, 4) dọc theo đường khả thi.">
     </div>
   </div>
   <div class="takeaway">Một bước đầy đủ đưa đúng tới nghiệm $(10,4)^T$ vì ví dụ là hàm bậc hai.</div>
-  <aside class="notes">Từ $d_1+d_2=0$ đặt $d_2=-d_1$; trừ $2d_1+\eta=-32$ cho $5d_2+\eta=10$ được $2d_1-5d_2=-42$, thay $d_2=-d_1$ được $7d_1=-42$, nên $d=(-6,6)^T$ và $\eta=-20$. Giá trị đầu là $F_0=266$; sau bước đầy đủ tới $(10,4)^T$ có $F=140$, giảm $126$. Kiểm $\delta_{eq}^2=(-6)^2\cdot2+6^2\cdot5=252$. $d_1=-d_2$ là cấu trúc bắt buộc của $Ad=0$, nên hai thành phần có cùng độ lớn và trái dấu. Ví dụ bậc hai giải xong trong một bước là trường hợp đặc biệt, không áp dụng cho $F$ tổng quát. Khử nhân tử bằng một cơ sở của không gian hạt nhân cho cách giải rút gọn của cùng hệ. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <aside class="notes">Hệ khối của trang trước, với $H=\operatorname{diag}(2,5)$, $A=[1\ 1]$ và $g=(32,-10)^T$ tại điểm đầu khả thi, gồm ba phương trình. Từ $d_1+d_2=0$ đặt $d_2=-d_1$; trừ $2d_1+\eta=-32$ cho $5d_2+\eta=10$ được $2d_1-5d_2=-42$, thay $d_2=-d_1$ được $7d_1=-42$, nên $d=(-6,6)^T$ và $\eta=-20$. Hai thành phần của $d$ có cùng độ lớn và trái dấu vì $Ad=0$. Giá trị đầu là $F(16,-2)=\tfrac12(512+20)=266$; sau bước đầy đủ tới $(10,4)^T$ có $F=140$, giảm $126$. Mức giảm mô hình dự báo là $\tfrac12d^THd=\tfrac12(2\cdot36+5\cdot36)=126$, trùng mức giảm thật vì $F$ bậc hai nên mô hình trùng hàm; với VD2 không bậc hai, hai số này khác nhau. Nhân tử bài con $\eta=-20$ trùng nhân tử $\nu^*$ của bài gốc ở VD3, vì điểm mới $u+d$ đã là nghiệm và hàng dừng của bài con trở thành hàng dừng của bài gốc tại nghiệm. Ví dụ giải xong trong một bước là trường hợp đặc biệt của hàm bậc hai. Cùng hệ này còn giải được bằng cách khử nhân tử qua một cơ sở của $\ker A$. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE06">
 <h2>Khử biến và hệ Newton rút gọn</h2>
