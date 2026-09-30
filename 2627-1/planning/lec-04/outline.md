@@ -1014,3 +1014,4 @@ Theo yêu cầu người dùng, thêm cụm tự học RG12–RG17 sau câu hỏ
 
 - RG12 Gradient Lipschitz: định nghĩa, cận trên bậc hai, hình mất mát logistic.
 - RG13 Bổ đề giảm: $f(x-g/L)\le f(x)-\|g\|^2/(2L)$; VD1 $96/49\le24/7$.
+- RG14 Bất đẳng thức một bước: thêm tính lồi và $x^*$; $f(x^+)-f^*\le\tfrac L2(\|x-x^*\|^2-\|x^+-x^*\|^2)$.

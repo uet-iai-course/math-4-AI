@@ -265,6 +265,17 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Số liệu:** VD1: $\|g\|^2=820$, $x^1=(8/7,0)^T$, $f(x^1)=96/49$, cận $24/7$ (tính bằng phân số).
 - **Nguồn, ghi chú soạn:** BV §9.3; MIT 6.079 lec16.
 
+### RG14 — Bất đẳng thức một bước
+
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ của giảm gradient.
+- **Nội dung trên trang:** Giả thiết thêm $f$ lồi, có $x^*$; ba bước có nhãn giả thiết (bổ đề giảm, tính lồi, khai triển); kết luận $f(x^+)-f^*\le\tfrac L2(\|x-x^*\|^2-\|x^+-x^*\|^2)$.
+- **Bố cục chọn:** Một cột: dòng giả thiết, danh sách ba bước, công thức nhấn, kết luận.
+- **Lý do tồn tại:** Đây là bước duy nhất dùng tính lồi; tách riêng để chỉ rõ chỗ dùng từng giả thiết trước khi cộng dồn.
+- **Vào → ra:** Đầu vào: bổ đề giảm (RG13), tiếp tuyến dưới $f$ (RG12). Đầu ra: bất đẳng thức dạng hiệu, cộng dồn ở RG15; khoảng cách tới $x^*$ không tăng.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG17.
+- **Số liệu:** Không có số mới; đại số khai triển trong ghi chú.
+- **Nguồn, ghi chú soạn:** BV §9.3; ghi chú bài giảng mục B.
+
 ### RN01 — Mô hình bậc hai cục bộ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm dòng nhu cầu nhận đầu ra của RG11 (VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước) và nêu phép đổi ký hiệu $W\to H=\nabla^2f(x)$; khung VD2 nêu lý do đổi ví dụ (không bậc hai, độ cong $1/s^2$ đổi theo $s$, một biến $s$ thay $x$, nghiệm $s^\star=1$); khung kết luận nêu cụ thể tính cục bộ của parabol. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): đổi tiêu đề thành "Mô hình bậc hai cục bộ" để không chạm nút điều hướng; dòng mở nêu $W=H=\nabla^2f(x)$ tại điểm hiện tại.

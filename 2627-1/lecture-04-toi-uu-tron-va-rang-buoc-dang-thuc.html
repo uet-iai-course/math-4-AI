@@ -352,6 +352,21 @@ Thuật toán giảm gradient dùng bước cố định $t=1/L$ ở phần phâ
 Cận trên bậc hai vừa suy ra đúng với mọi cặp điểm; chọn $y$ là điểm sau một bước gradient với $t=1/L$ cho một mức giảm bảo đảm. Với $y-x=-g/L$: số hạng bậc nhất bằng $-\|g\|_2^2/L$, số hạng bậc hai bằng $\tfrac L2\cdot\|g\|_2^2/L^2=\|g\|_2^2/(2L)$, tổng là $-\|g\|_2^2/(2L)$. Hệ quả: dãy $f(x^k)$ không tăng, và giảm thật sự khi $g\ne0$; bước $t=1/L$ cực tiểu hóa cận trên $f(x)-t\|g\|_2^2+\tfrac{Lt^2}2\|g\|_2^2$ theo $t$. Với VD1 tại $x^0=(2,4)^T$: $g=(6,28)^T$, $\|g\|_2^2=820$, $x^1=x^0-g/7=(8/7,0)^T$ và $f(x^1)=\tfrac12\cdot3\cdot(8/7)^2=96/49$; cận của bổ đề là $62-820/14=24/7$, lớn hơn giá trị thật. Tọa độ thứ hai về $0$ sau một bước vì $L=7$ trùng độ cong theo phương đó. Liên hệ với quay lui: với $d=-g$ và $t=1/L$, vế phải của điều kiện Armijo là $f(x)-\alpha\|g\|_2^2/L$; bổ đề cho mức giảm $\|g\|_2^2/(2L)$, nên điều kiện Armijo đúng khi $\alpha\le1/2$. Bổ đề chỉ cho biết $f$ giảm, chưa cho biết $f(x^k)$ tiến tới $f^*$ nhanh đến đâu; muốn so với $f^*$ cần thêm tính lồi và sự tồn tại nghiệm. Nguồn: Boyd và Vandenberghe (2004), §9.3; MIT 6.079, mùa thu 2009, bài giảng 16.
 </aside>
 </section>
+
+<section data-slide-id="RG14">
+<h2>Bất đẳng thức một bước <span class="self-study-badge">Tự học</span></h2>
+<p class="hypothesis">Giả thiết thêm: $f$ lồi và đạt cực tiểu tại $x^*$; $f^*=f(x^*)$; $x^+=x-\tfrac1Lg$.</p>
+<ol class="steps">
+<li><strong>Bổ đề giảm</strong> (gradient Lipschitz): $f(x^+)\le f(x)-\tfrac1{2L}\|g\|_2^2$.</li>
+<li><strong>Tính lồi</strong> (tiếp tuyến nằm dưới $f$): $f(x)\le f^*+g^T(x-x^*)$.</li>
+<li><strong>Khai triển</strong> $\|x^+-x^*\|_2^2$: $g^T(x-x^*)-\tfrac1{2L}\|g\|_2^2=\tfrac L2\big(\|x-x^*\|_2^2-\|x^+-x^*\|_2^2\big)$.</li>
+</ol>
+<div class="formula emphasis" tabindex="0">$$f(x^+)-f^*\le\frac L2\Big(\|x-x^*\|_2^2-\|x^+-x^*\|_2^2\Big).$$</div>
+<div class="takeaway">Sai số mục tiêu sau một bước bị chặn bởi mức giảm của bình phương khoảng cách <span class="math-nowrap">tới $x^*$.</span></div>
+<aside class="notes">
+Bổ đề giảm so $f(x^+)$ với $f(x)$; để so với $f^*$ cần thêm tính lồi và sự tồn tại của một điểm cực tiểu $x^*$. Bước 1 dùng giả thiết gradient Lipschitz qua bổ đề giảm. Bước 2 dùng tính lồi khả vi: $f(x^*)\ge f(x)+g^T(x^*-x)$, tức tiếp tuyến tại $x$ nằm dưới $f$, như trong hình mất mát logistic; ghép hai bước được $f(x^+)-f^*\le g^T(x-x^*)-\tfrac1{2L}\|g\|_2^2$. Bước 3 là đại số thuần túy: $\|x^+-x^*\|_2^2=\|x-x^*-\tfrac1Lg\|_2^2=\|x-x^*\|_2^2-\tfrac2Lg^T(x-x^*)+\tfrac1{L^2}\|g\|_2^2$; nhân hai vế với $L/2$ và chuyển vế cho đúng đẳng thức ở bước 3. Vì vế trái $f(x^+)-f^*\ge0$, hệ quả là $\|x^+-x^*\|_2\le\|x-x^*\|_2$: khoảng cách tới $x^*$ không tăng qua mỗi bước. Mỗi bước cho một bất đẳng thức có dạng hiệu của hai số hạng liên tiếp; cộng các bất đẳng thức này theo $k$ bước cho định lý tốc độ. Nguồn: Boyd và Vandenberghe (2004), §9.3; ghi chú bài giảng, mục B, định lý cận $O(1/k)$.
+</aside>
+</section>
 </section>
 <section>
 <section data-slide-id="RN01">
