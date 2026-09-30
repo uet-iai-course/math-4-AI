@@ -24,6 +24,29 @@ Yêu cầu: duyệt lần lượt từng trang từ RG02, xác định trang mu�
 | RN06 | Ghép Hessian, hệ Newton, độ giảm Newton, Armijo và cập nhật thành thuật toán, kèm điều kiện áp dụng và chi phí. | Tiêu đề dài; thiếu đầu ra; "dung sai dương" chưa gắn với $\varepsilon_{\mathrm{model}}$; "hội tụ bậc hai" lên mặt trang không định nghĩa; chi phí không so với gradient. | Tiêu đề "Thuật toán Newton"; khung bốn mục có đầu ra và $\varepsilon_{\mathrm{model}}$; kết luận về tiêu chí dừng với số liệu VD2; ghi chú định nghĩa hội tụ bậc hai, nêu $\delta_N^2=g^TH^{-1}g$ (bằng 0 khi và chỉ khi $g=0$) và so chi phí với gradient. | 1600×900: 674/674, đáy nội dung 778/829 px; 390×844: vừa khung cuộn; 0 lỗi KaTeX/console; không tràn ngang. |
 | RN07 | Kiểm tra thực hiện bước Newton và quan sát tốc độ hội tụ trên VD2; nêu vấn đề mở về cận sai số. | Khung dữ kiện chép đáp số; các ô trống đã có sẵn trên RN03, RN05 và trong Bài 3 của tập bài tập; tiêu đề dài, kể nhiệm vụ. | Tiêu đề "Bước Newton và tốc độ hội tụ"; câu 1: bước thứ hai từ $s^1=7/16$ ($s^2=175/256$, $81/512$ so với $0{,}264$); câu 2: chứng minh $1-s^+=(1-s)^2$; dòng vấn đề mở gọn; lời giải trong ghi chú, nối sang ràng buộc đẳng thức. | 1600×900: 674/674, đáy nội dung 516/829 px; 390×844: vừa khung cuộn; 0 lỗi KaTeX/console; không tràn ngang. |
 
+
+### Rà soát độc lập phần G (RG02–RG11) và xử lý — 2026-09-30
+
+Người rà: nhánh (fork) chỉ đọc của điều phối viên, Claude Opus 5.5 kế thừa. Kết quả: 0 chặn bàn giao, 0 nghiêm trọng, 3 trung bình, 10 nhẹ; mọi số liệu được tính lại và khớp. Tác tử chỉnh sửa xử lý sau khi xong phần Newton, trong một commit.
+
+| Mã | Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|---|
+| G-S1 | trung bình | RG08 (RG07) | Ghi chú chưa giải thích vì sao dùng dạng ràng buộc chuẩn hóa thay vì mô hình phạt | Đã sửa: ghi chú RG08 nêu dạng chuẩn hóa định nghĩa "dốc nhất" độc lập với độ dài bước, giải bằng KKT bất đẳng thức, trùng nghiệm $Q_W$ sau khi bỏ chuẩn hóa; khung kết luận RG07 thêm "cần đo độ dài bằng chuẩn có trọng số" (vừa khung, đáy 811/829 px). |
+| G-S2 | trung bình | RG11 → RN01 | Chưa nêu nhu cầu hàm không bậc hai trước phần Newton | Đã sửa: câu kết ghi chú RG11; ghi chú RN01 mở bằng cùng nhu cầu (commit `2ffe364`). |
+| G-M1 | trung bình | RG06 | Ghi chú khẳng định sai rằng cận hội tụ không áp dụng cho quay lui | Đã sửa: "Các cận trên phát biểu cho bước cố định $t=1/L$; BV §9.3.1 cho cận tuyến tính tương tự với quay lui khi $f$ lồi mạnh." |
+| G-M2 | nhẹ | RG06 | "Hàm bậc hai" cần giới hạn ở Hessian chéo | Đã sửa: "hàm bậc hai có Hessian chéo như VD1". |
+| G-M3 | nhẹ | RG06 | Đầu vào "trong miền mở" chưa nêu miền của $f$ | Đã sửa: $x^0\in\operatorname{dom}f$ (miền mở). |
+| G-M4 | nhẹ | RG10 | Ghi chú tham chiếu trước ký hiệu $\delta_N^2$ chưa định nghĩa | Đã sửa: diễn đạt lại không dùng ký hiệu. |
+| G-M5 | nhẹ | RG08 | "Chuẩn theo độ cong" gộp định nghĩa chuẩn với lựa chọn $W$ | Đã sửa: "Chuẩn có trọng số"; câu VD1 ghi "theo độ cong". |
+| G-S3 | nhẹ | RG08–RG10 | Hai tên gọi "hướng giảm dốc nhất"/"hướng dốc nhất" chưa được nối | Đã sửa: ghi chú RG08 định nghĩa "hướng giảm dốc nhất (gọi tắt: hướng dốc nhất)"; các trang sau dùng tên tắt. |
+| G-S4 | nhẹ | RG10 | Tiêu đề chạm nút điều hướng phía trên | Đã sửa: "Hướng dốc nhất có trọng số"; đã grep tên cũ (chỉ còn trong ghi chép lịch sử). |
+| G-S5 | nhẹ | RG03 | Dòng cập nhật trong `.formula` ngắt thành đoạn căn giữa | Đã sửa: chuyển thành `<p>`. |
+| G-S6 | nhẹ | RG03 | `descent-ray.svg`: nhãn chồng tia, vạch trục tung không đều | Đã sửa: vạch $-12,-8,-4,0,4$ (lưới dời theo), nhãn "t tăng", $t=1/4$, $t=1/2$ dời khỏi tia và trục; dữ liệu và ý nghĩa không đổi. |
+| G-S7 | nhẹ | RG04 | `armijo-window.svg`: phông của nhãn, thiếu khoảng trắng trong `<desc>` | `<desc>` đã sửa. Phông: không đổi — tệp đã dùng cùng khai báo `Arial, DejaVu Sans, sans-serif` với các SVG khác; dấu của "ngưỡng" lệch do bản Arial cục bộ của Chromium thiếu glyph đậm cho "ỡ", không do khai báo trong tệp. |
+| G-S8 | nhẹ | RG10 | "Quy ước chuẩn" dễ đọc thành quy ước về chuẩn | Đã sửa: "quy ước thông dụng". |
+| G-S9 | nhẹ | outline.md | Mục "A04 — Hướng giảm và độ dài bước" có thể gây nhầm | Không cần sửa: mục nằm trong phần "Bản đang triển khai trước đề xuất — lưu để đối chiếu" (bản lập kế hoạch 2026-09-24) đã được đánh dấu lịch sử. |
+
+Kiểm tra lại sau sửa (Playwright qua `reloadserver` 8765): RG03, RG04, RG06, RG07, RG08, RG10, RG11 ở 1600×900 đều vừa khung (RG08 bản nháp tràn 12 px do câu VD1 dài, đã rút gọn: đáy 790/829 px); 390×844 vừa khung cuộn; 0 lỗi KaTeX/console.
 ## Sửa RG01 theo yêu cầu người dùng — 2026-09-30
 
 **Trạng thái: đã sửa theo yêu cầu và theo vòng rà toán học–mạch lập luận được điều phối viên duyệt; không còn lỗi chặn bàn giao hoặc nghiêm trọng.**

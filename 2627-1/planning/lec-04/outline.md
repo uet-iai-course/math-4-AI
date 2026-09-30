@@ -975,3 +975,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RN05 đổi tên thành "Giảm mô hình và sai số tối ưu"; khung kết luận nêu $\delta_N^2/2=9/32<\log4-3/4$, không phải cận sai số khi thiếu giả thiết về độ cong.
 - RN06 đổi tên thành "Thuật toán Newton"; thêm đầu ra và $\varepsilon_{\mathrm{model}}$ trong đầu vào; hội tụ bậc hai chỉ còn trong ghi chú, kèm định nghĩa.
 - RN07 đổi tên thành "Bước Newton và tốc độ hội tụ"; hai câu hỏi dùng dữ kiện mới: bước Newton thứ hai từ $s^1=7/16$ và quy luật $1-s^+=(1-s)^2$.
+- Sửa theo rà soát phần G: RG10 đổi tên thành "Hướng dốc nhất có trọng số"; RG08 dùng "Chuẩn có trọng số" và định nghĩa "hướng giảm dốc nhất (gọi tắt: hướng dốc nhất)" trong ghi chú; RG03 và RG04 sửa hình `descent-ray.svg`, `armijo-window.svg` (không đổi dữ liệu).
