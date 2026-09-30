@@ -308,13 +308,13 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 
 ## Điều phối mô hình trong dự án
 
-- Codex chính giữ vai trò điều phối viên: phân rã công việc, duyệt kế hoạch, hợp nhất kết quả và kiểm định đầu ra.
-- Mọi tác tử con, kể cả tác tử do tác tử con tạo tiếp, phải dùng **GPT-6-Astra** qua cơ chế tác tử gốc của Codex trong phiên dùng gói thuê bao (subscription). Tạo tác tử bằng `collaboration.spawn_agent` với `model: "gpt-6-astra"`; chọn `fork_turns: "none"` hoặc số lượt phù hợp khi công cụ yêu cầu để đặt mô hình tường minh. Giao tiếp và tiếp tục nhiệm vụ bằng các công cụ `collaboration` tương ứng.
-- Không dùng OpenRouter, cầu nối trong `openrouter-mcp/`, các script OpenRouter hoặc lời gọi mô hình qua API/CLI để thay cơ chế tác tử gốc. Các ủy quyền OpenRouter trong hồ sơ lịch sử không áp dụng cho quy trình hiện hành.
+- Phiên Claude Code chính giữ vai trò điều phối viên và chạy **Claude Opus 5.5** (`claude-opus-5-5`) với mức suy luận (reasoning effort) `high`: phân rã công việc, duyệt kế hoạch, hợp nhất kết quả và kiểm định đầu ra. Nếu phiên đang chạy mô hình hoặc mức suy luận khác, báo rõ trước khi giao việc; không tự coi phiên đó là điều phối viên hợp lệ.
+- Mọi tác tử con, kể cả tác tử do tác tử con tạo tiếp, phải dùng **Claude Opus 5.5** với mức suy luận `high` qua cơ chế tác tử gốc của Claude Code. Tạo tác tử bằng công cụ `Agent` với loại tác tử có định nghĩa trong `.claude/agents/` khai báo mô hình `claude-opus-5-5` và mức suy luận `high`; tác tử loại `fork` kế thừa mô hình của điều phối viên. Không giao vai trong quy trình cho loại tác tử cố định mô hình hoặc mức suy luận khác. Tiếp tục nhiệm vụ của tác tử đã tạo bằng `SendMessage`; lời gọi `Agent` mới tạo một tác tử mới.
+- Không dùng OpenRouter, cầu nối trong `openrouter-mcp/`, các script OpenRouter, Codex hoặc lời gọi mô hình qua API/CLI để thay cơ chế tác tử gốc của Claude Code. Các ủy quyền OpenRouter và GPT-6-Astra trong hồ sơ lịch sử không áp dụng cho quy trình hiện hành.
 - Không đọc, nạp hoặc gửi `.env`, `.env.*` ở bất kỳ thư mục nào; không dùng khóa API hay bí mật để tạo hoặc xác thực tác tử. Không đưa bí mật, kể cả trong tệp có tên thông thường, vào lời nhắc, tệp đính kèm, kết quả công cụ hoặc nhật ký.
 - Mỗi nhiệm vụ phải có vai trò, đầu vào, đầu ra, phạm vi tệp và điều kiện hoàn thành cụ thể. Tác tử chỉ đọc có thể chạy song song trong giới hạn khả dụng; mặc định chỉ một tác tử được ghi tệp tại một thời điểm. Điều phối viên phải chấp nhận hoặc bác bỏ kết quả trước giai đoạn phụ thuộc.
-- Ghi tên tác tử, vai trò và mô hình đã chỉ định từ lời gọi công cụ trong nhật ký. Chỉ ghi mô hình thực chạy hoặc tuyến xác thực khi công cụ cung cấp bằng chứng; không coi lời tự khai của tác tử là bằng chứng runtime.
-- Nếu không tạo được tác tử GPT-6-Astra qua cơ chế gốc, báo rõ giới hạn và dừng phần việc phụ thuộc. Tiếp tục các việc độc lập đã được phép; không chuyển ngầm sang mô hình khác, OpenRouter hoặc script gọi mô hình.
+- Ghi tên tác tử, vai trò, loại tác tử, mô hình và mức suy luận đã chỉ định từ lời gọi công cụ hoặc định nghĩa tác tử trong nhật ký. Chỉ ghi mô hình thực chạy hoặc tuyến xác thực khi công cụ cung cấp bằng chứng; không coi lời tự khai của tác tử là bằng chứng runtime.
+- Nếu không tạo được tác tử Claude Opus 5.5 với mức suy luận `high` qua cơ chế gốc, báo rõ giới hạn và dừng phần việc phụ thuộc. Tiếp tục các việc độc lập đã được phép; không chuyển ngầm sang mô hình khác, OpenRouter hoặc script gọi mô hình.
 
 ## Quản lý phiên bản
 
