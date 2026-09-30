@@ -137,21 +137,21 @@
 </section>
 
 <section data-slide-id="RG02">
-<h2>Hướng gradient từ mô hình bậc hai</h2>
+<h2>Hướng gradient</h2>
 <div class="lec-grid lec-grid--75-25">
 <div>
-<div class="formula" tabindex="0">Xấp xỉ tuyến tính: $f(x+d)\approx f(x)+g^Td$. Mô hình không có cực tiểu hữu hạn khi $g\ne0$.</div>
-<div class="formula fragment" tabindex="0">Chọn mô hình bậc hai: $Q_I(d)=f(x)+g^Td+\tfrac12\|d\|_2^2$.</div>
+<div class="formula" tabindex="0">Xấp xỉ tuyến tính tại $x$: $f(x+d)\approx f(x)+g^Td$, không có cực tiểu hữu hạn khi $g\ne0$.</div>
+<div class="formula fragment" tabindex="0">Thêm số hạng phạt độ dài bước: $Q_I(d)=f(x)+g^Td+\tfrac12\|d\|_2^2$.</div>
 <div class="formula emphasis fragment" tabindex="0">KKT không ràng buộc theo biến $d$: $g+d=0\Rightarrow d_G=-g$.</div>
 </div>
 <div>
 <div class="panel">
-<p><strong>Bài con:</strong> biến là $d$; $x$ cố định.</p>
-<p>$I\succ0$ bảo đảm $Q_I$ lồi chặt (còn gọi là lồi nghiêm ngặt), nghiệm $d_G$ duy nhất.</p>
+<p><strong>Bài con:</strong> $x$ là điểm hiện tại, cố định (bước đầu $x=x^0$); biến là $d\in\mathbb R^n$.</p>
+<p>$\nabla^2Q_I=I\succ0$ nên $Q_I$ lồi chặt (còn gọi là lồi nghiêm ngặt); nghiệm $d_G$ duy nhất.</p>
 </div>
 </div>
 </div>
-<aside class="notes">Hướng gradient là nghiệm của bài toán con cực tiểu $Q_I(d)$ theo biến $d$, với $x$ giữ nguyên. Đạo hàm theo $d$ cho $g+d=0$, nên $d_G=-g$. Vì $I\succ0$, $Q_I$ lồi chặt nên nghiệm duy nhất; KKT khi đó vừa cần vừa đủ. Nghiệm $d_G$ là nghiệm của bài con, chưa phải nghiệm của bài gốc theo $x$; hai bài này khác biến và khác vai trò. Mô hình tuyến tính một mình không chọn được hướng vì $g^Td$ không bị chặn dưới khi $g\ne0$. Số hạng $\tfrac12\|d\|_2^2$ bảo đảm cực tiểu hữu hạn và duy nhất. Hướng thu được có đạo hàm hướng âm khi gradient khác không; độ dài bước cần được xác định riêng. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Cực tiểu riêng mô hình tuyến tính $g^Td$ không chọn được hướng, vì $d=-sg$ cho $g^Td=-s\|g\|_2^2\to-\infty$ khi $s\to\infty$. Xấp xỉ tuyến tính chỉ đáng tin khi $d$ nhỏ, nên mô hình được bổ sung số hạng $\tfrac12\|d\|_2^2$ phạt bước dài. Trong bài con, $x$ là điểm lặp hiện tại và được giữ cố định; ở bước đầu $x=x^0$, $g=\nabla f(x)$. Đạo hàm theo $d$ cho $g+d=0$, nên $d_G=-g$. Vì Hessian của $Q_I$ theo $d$ là $I\succ0$, $Q_I$ lồi chặt; KKT của bài con không ràng buộc vừa cần vừa đủ và nghiệm duy nhất. Nghiệm $d_G$ là nghiệm của bài con theo $d$, không phải nghiệm của bài gốc theo $x$. Chỉ số $I$ ghi ma trận của số hạng bậc hai; thay $I$ bằng ma trận $W\succ0$ sẽ cho các hướng khác trong cùng khuôn mẫu. Với VD1, $d_G=(-6,-28)^T$. Hướng này có $g^Td_G=-\|g\|_2^2&lt;0$ khi $g\ne0$, tức là hướng giảm theo tiêu chuẩn dấu của đạo hàm hướng; độ dài bước được xác định riêng. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài giảng 03.</aside>
 </section>
 
 <section data-slide-id="RG03">

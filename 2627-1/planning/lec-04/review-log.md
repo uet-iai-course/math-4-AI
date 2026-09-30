@@ -1,5 +1,13 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Duyệt từng trang theo yêu cầu người dùng — 2026-09-30
+
+Yêu cầu: duyệt lần lượt từng trang từ RG02, xác định trang muốn nói gì, đề xuất rồi sửa để tiêu đề ngắn gọn, học thuật, mạch lập luận chặt và khái niệm không xuất hiện đột ngột; commit và push sau mỗi trang. Tác tử chỉnh sửa: nhánh (fork) của điều phối viên, Claude Opus 5.5 kế thừa từ phiên điều phối; áp dụng `no-ai-slop` chế độ Edit và tự đối chiếu `eval.md`. Kiểm tra trình duyệt: Playwright Chromium qua `python3 -m reloadserver 8765`, khung 1600×900 và 390×844 (cuộn `.lecture-viewport` tới cuối). Rà toán và mạch lập luận độc lập theo phần do điều phối viên giao sau lượt sửa.
+
+| Trang | Trang muốn nói gì | Vấn đề | Thay đổi | Kiểm tra trình duyệt |
+|---|---|---|---|---|
+| RG02 | Hướng gradient là nghiệm của bài con bậc hai theo $d$: thêm $\tfrac12\|d\|_2^2$ vào xấp xỉ tuyến tính, KKT cho $d_G=-g$. | Tiêu đề kể tiến trình ("từ mô hình bậc hai"); $x$ dùng thay $x^0$ mà không nói là điểm hiện tại (S9 của lượt RG01); số hạng bậc hai xuất hiện không có lý do; ghi chú chưa mở bằng đầu vào từ RG01 và chưa nêu số liệu VD1. | Tiêu đề "Hướng gradient"; dòng 2 gọi tên "số hạng phạt độ dài bước"; khung bên nêu $x$ là điểm hiện tại cố định, bước đầu $x=x^0$, $d\in\mathbb R^n$, $\nabla^2Q_I=I\succ0$; ghi chú mở bằng $d=-sg$ không bị chặn, nêu vai trò chỉ số $I$, $d_G=(-6,-28)^T$, kết bằng tính giảm và nhu cầu chọn bước. | 1600×900: 674/674, đáy nội dung 739/829 px; 390×844: vừa khung cuộn; 0 lỗi KaTeX/console; không tràn ngang. |
+
 ## Sửa RG01 theo yêu cầu người dùng — 2026-09-30
 
 **Trạng thái: đã sửa theo yêu cầu và theo vòng rà toán học–mạch lập luận được điều phối viên duyệt; không còn lỗi chặn bàn giao hoặc nghiêm trọng.**

@@ -122,16 +122,16 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16; Bài giảng 00, B05. Đại số của khai triển bậc một và lý do dấu chiếm ưu thế nằm trong ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RG02 — Hướng gradient từ mô hình bậc hai
+### RG02 — Hướng gradient
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: thêm; đối chiếu khoảng trống chưa có trang riêng. Bước toán mới được suy ra từ điều kiện dừng đã học; phân biệt bài gốc theo x và bài con theo d.
-- **Nội dung trên trang:** Mô hình tuyến tính $g^Td$ không có cực tiểu hữu hạn khi $g\ne0$. Chọn $Q_I(d)=f(x)+g^Td+\tfrac12\|d\|_2^2$; KKT không ràng buộc theo biến $d$ cho $g+d=0$, nên $d_G=-g$. $I\succ0$ bảo đảm nghiệm duy nhất của bài con.
-- **Bố cục chọn:** Một cột ba dòng biến đổi, mỗi lần hiện một dòng; bên phải 25% ghi rõ “biến của bài con: d; x cố định”.
-- **Lý do bố cục cho sinh viên năm 3:** Bước toán mới được suy ra từ điều kiện dừng đã học; phân biệt bài gốc theo x và bài con theo d.
-- **Vào → ra:** Đầu vào: Mô hình $Q_I$ bổ sung số hạng $\|d\|_2^2/2$ vào xấp xỉ tuyến tính. Đầu ra: Nghiệm $d_G=-g$ thỏa $g^Td_G=-\|g\|_2^2<0$ khi $g\ne0$.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang của người dùng: đổi tiêu đề từ "Hướng gradient từ mô hình bậc hai" thành "Hướng gradient" (gọi tên khái niệm, không kể tiến trình); nêu $x$ là điểm hiện tại cố định (bước đầu $x=x^0$), đóng phát hiện S9 của lượt rà RG01; gọi tên vai trò của số hạng $\tfrac12\|d\|_2^2$ là phạt độ dài bước để mô hình bậc hai không xuất hiện đột ngột. Trước đó: sửa văn phong ngày 2026-09-26; quyết định cấu trúc đã triển khai: thêm.
+- **Nội dung trên trang:** Xấp xỉ tuyến tính tại $x$ không có cực tiểu hữu hạn khi $g\ne0$. Thêm số hạng phạt độ dài bước: $Q_I(d)=f(x)+g^Td+\tfrac12\|d\|_2^2$; KKT không ràng buộc theo $d$ cho $g+d=0$, nên $d_G=-g$. Khung bên: bài con có $x$ là điểm hiện tại cố định, biến $d\in\mathbb R^n$; $\nabla^2Q_I=I\succ0$ nên lồi chặt, nghiệm duy nhất.
+- **Bố cục chọn:** Một cột ba dòng biến đổi, mỗi lần hiện một dòng; bên phải 25% ghi vai trò của $x$ và $d$ cùng lý do nghiệm duy nhất. Đo ở 1600×900: đáy nội dung 739 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Bước toán mới được suy ra từ điều kiện dừng đã học; phân biệt bài gốc theo $x$ và bài con theo $d$.
+- **Vào → ra:** Đầu vào: từ RG01, cực tiểu riêng $g^Td$ không bị chặn dưới khi $g\ne0$; xấp xỉ tuyến tính chỉ đáng tin khi $d$ nhỏ. Đầu ra: $d_G=-g$ thỏa $g^Td_G=-\|g\|_2^2<0$ khi $g\ne0$, là hướng giảm; độ dài bước còn phải chọn (RG03).
 - **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** VD1, dàn ý §6: giữ x, g; ghi riêng W khi dùng; phân biệt v, d, t và các cấu hình bước.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Số liệu:** VD1: $d_G=(-6,-28)^T$ (trong ghi chú).
+- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG03 — Hướng giảm và độ dài bước
