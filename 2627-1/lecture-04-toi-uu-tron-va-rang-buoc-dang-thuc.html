@@ -521,26 +521,25 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 <section data-slide-id="RE07">
   <h2>Thuật toán Newton khả thi</h2>
-  <div class="lec-grid ratio60">
-    <div>
-      <div class="panel">
-        <ol class="steps">
-          <li>Điểm đầu thỏa $Au=b$.</li>
-          <li>Giải hệ KKT bài con, được $d$.</li>
-          <li>Tính $\delta_{eq}^2=d^THd$.</li>
-          <li>Nếu $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$: dừng theo mô hình.</li>
-          <li>Nếu chưa: Armijo trên $F$, cập nhật $u\leftarrow u+td$.</li>
-        </ol>
-      </div>
+  <div class="lec-grid">
+    <div class="panel">
+      <ol class="steps">
+        <li>Tính $g=\nabla F(u)$, $H=\nabla^2F(u)$.</li>
+        <li>Giải hệ KKT của bài con, được $d$.</li>
+        <li>Tính $\delta_{eq}^2=d^THd$, độ giảm Newton của bài con.</li>
+        <li>Nếu $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$: dừng.</li>
+        <li>Nếu chưa: chọn $t$ bằng Armijo trên $F$, rồi $u\leftarrow u+td$.</li>
+      </ol>
     </div>
-    <div>
-      <div class="formula" tabindex="0">$$A(u+td)=Au+tAd=b$$</div>
-      <div class="formula" tabindex="0">$$g^Td=-d^THd&lt;0\quad(d\ne0)$$</div>
-      <p>Khi tính số, kiểm thêm sai lệch $Au-b$.</p>
+    <div class="panel">
+      <p><strong>Đầu vào:</strong> $u^0$ với <span class="math-nowrap">$Au^0=b$,</span> <span class="math-nowrap">$\varepsilon_{\mathrm{model}}&gt;0$,</span> $\alpha,\beta$.</p>
+      <p><strong>Đầu ra:</strong> $u$ khả thi với <span class="math-nowrap">$\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$.</span></p>
+      <p><strong>Điều kiện:</strong> <span class="math-nowrap">$H\succ0$,</span> $A$ đủ hạng hàng.</p>
+      <p><strong>Mỗi bước:</strong> giữ khả thi <span class="math-nowrap">$A(u+td)=b$;</span> hướng giảm <span class="math-nowrap">$g^Td=-d^THd&lt;0$.</span></p>
     </div>
   </div>
-  <div class="takeaway">Dung sai mô hình chưa tự cho cận sai số mục tiêu.</div>
-  <aside class="notes">Điều kiện hướng giảm để dùng Armijo trên $F$ được suy ra bằng cách nhân hàng dừng với $d^T$ và dùng $Ad=0$ để triệt tiêu số hạng $d^TA^T\eta$ được $g^Td=-d^THd$, âm khi $d\ne0$, nên hướng là hướng giảm của $F$ thật, không chỉ của mô hình. Tính khả thi được bảo toàn bởi $Ad=0$. Khi tính số, cần kiểm thêm sai lệch $Au-b$ do sai số máy; tiêu chí $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$ chỉ là tiêu chí mô hình, chưa phải chứng nhận sai số thật tới nghiệm. Hệ khối đặc cỡ $n+p$ có chi phí giải thông thường $O((n+p)^3)$; hệ rút gọn cỡ $n-p$ có thể rẻ hơn tùy cấu trúc. Giả thiết gồm $H\succ0$, $A$ đủ hạng hàng. Hội tụ bậc hai cục bộ xét trên hàm rút gọn, cần Hessian rút gọn Lipschitz gần nghiệm và xác định dương tại nghiệm, điểm đầu đủ gần. Thuật toán yêu cầu điểm đầu khả thi; hệ Newton và quy tắc Armijo cùng dựa trên điều kiện hướng bảo toàn đẳng thức. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài 03.</aside>
+  <div class="takeaway">Như ở bài không ràng buộc, $\delta_{eq}^2/2$ chưa chứng nhận sai số tối ưu.</div>
+  <aside class="notes">Hai trang trước cho hai cách giải cùng một bước: hệ khối và hệ rút gọn. Thuật toán lặp lại bước đó từ một điểm đầu khả thi. Đại lượng $\delta_{eq}^2=d^THd$ đóng vai trò của độ giảm Newton $\delta_N^2$ ở phần không ràng buộc: $\delta_{eq}^2/2$ là mức giảm mà mô hình dự báo trên tập khả thi. Tính khả thi được bảo toàn vì $Ad=0$ cho $A(u+td)=Au+tAd=b$ với mọi $t$. Nhân hàng dừng $g+Hd+A^T\eta=0$ với $d^T$ và dùng $Ad=0$ để triệt số hạng $d^TA^T\eta$ được $g^Td=-d^THd$, âm khi $d\ne0$; hướng là hướng giảm của $F$, nên thủ tục quay lui Armijo dừng sau hữu hạn lần co. Khi tính số, sai lệch $Au-b$ có thể tích lũy do sai số máy và cần được kiểm. Giả thiết $H\succ0$ và $A$ đủ hạng hàng bảo đảm hệ khối khả nghịch; có thể thay $H\succ0$ bằng điều kiện yếu hơn là $H$ xác định dương trên $\ker A$. Hệ khối đặc cỡ $n+p$ có chi phí giải cỡ $O((n+p)^3)$; hệ rút gọn cỡ $n-p$ có thể rẻ hơn tùy cấu trúc. Hội tụ bậc hai cục bộ được xét trên hàm rút gọn $\psi(z)=F(\hat u+Nz)$, với Hessian rút gọn Lipschitz gần nghiệm, xác định dương tại nghiệm và điểm đầu đủ gần. Như ở bài không ràng buộc, tiêu chí $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$ là tiêu chí của mô hình, chưa phải cận sai số tới nghiệm. Các bước của thuật toán được kiểm lại bằng việc tự lập hệ KKT của bài con và hệ rút gọn. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE08">
   <h2>Kiểm tra hệ Newton khả thi</h2>

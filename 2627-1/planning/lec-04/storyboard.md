@@ -400,11 +400,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RE07 — Thuật toán Newton khả thi
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu E07. Sinh viên hiểu vì sao được tái dùng Armijo trên F và khi nào lập luận không còn đúng.
-- **Nội dung trên trang:** Điểm đầu thỏa $Au=b$; lặp giải hệ KKT bài con, tính $\delta_{eq}^2=d^THd$. Nếu $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$ thì dừng theo mô hình, nếu chưa thì Armijo trên $F$ rồi cập nhật $u$. Phép chứng minh $g^Td=-d^THd$ dùng $Ad=0$; khi tính số kiểm thêm sai lệch $Au-b$. Dung sai mô hình chưa tự cho cận sai số mục tiêu.
-- **Bố cục chọn:** Trái 60% giả mã; phải hai đẳng thức bảo toàn khả thi và hướng giảm; ghi chú tách lý thuyết chính xác khỏi dung sai máy.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: giữ tiêu đề (song song với "Thuật toán Newton"); $\delta_{eq}$ chưa được định nghĩa và chưa nối với $\delta_N$; thiếu đầu vào, đầu ra, điều kiện áp dụng trên mặt trang; hai công thức cột phải chưa có nhãn vai trò. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Trái: năm bước (tính $g,H$; giải hệ KKT bài con; $\delta_{eq}^2=d^THd$ là độ giảm Newton của bài con; dừng khi $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$; Armijo trên $F$ và cập nhật). Phải: Đầu vào $u^0$ với $Au^0=b$, $\varepsilon_{\mathrm{model}}$, $\alpha,\beta$; Đầu ra $u$ khả thi với $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$; Điều kiện $H\succ0$, $A$ đủ hạng hàng; Mỗi bước: giữ khả thi $A(u+td)=b$, hướng giảm $g^Td=-d^THd<0$. Kết luận: $\delta_{eq}^2/2$ chưa chứng nhận sai số tối ưu.
+- **Bố cục chọn:** Lưới 50–50: panel năm bước | panel đầu vào, đầu ra, điều kiện, tính chất mỗi bước; kết luận ở chân. Bản nháp 60–40 với hai dòng tính chất riêng tràn 67 px ở 16:9; gộp hai tính chất thành một dòng và đổi lưới 50–50. Đo 1600×900: đáy nội dung 723/829, tiêu đề kết thúc ở 623 px; 390×844: vừa khi cuộn.
 - **Lý do bố cục cho sinh viên năm 3:** Sinh viên hiểu vì sao được tái dùng Armijo trên F và khi nào lập luận không còn đúng.
-- **Vào → ra:** Đầu vào: Đẳng thức $Ad=0$ cho $g^Td=-d^THd$, nên hướng giảm mục tiêu nếu $d\ne0$. Đầu ra: Toàn bộ lập luận bảo toàn đẳng thức dùng giả thiết $Au=b$ tại điểm đầu.
+- **Vào → ra:** Đầu vào: hệ khối (RE04) và hệ rút gọn (RE06) cho cùng bước; độ giảm Newton $\delta_N$ và thuật toán Newton của phần không ràng buộc. Đầu ra: thuật toán Newton khả thi với tiêu chí dừng theo mô hình; câu hỏi cận sai số còn mở; kiểm tra tái tạo hệ ở RE08.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
