@@ -429,21 +429,21 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 <section>
 <section data-slide-id="RE01">
-  <h2>Điều kiện KKT với ràng buộc đẳng thức</h2>
+  <h2>Bài toán có ràng buộc đẳng thức</h2>
   <div class="lec-grid lec-grid--45-55">
     <div>
       <img class="plot" src="img/lec-04/equality-start-new.svg" alt="Hai trục u1, u2 với đường thẳng u1 + u2 = 14, điểm khả thi (16, −2) và điểm nghiệm (10, 4) nằm trên đường đó; không có điều kiện không âm.">
     </div>
     <div>
-      <p>Cực tiểu của mục tiêu trên đường $u_1+u_2=14$ phải đồng thời thỏa điều kiện dừng và khả thi.</p>
-      <p>VD3: $F=\tfrac12(2u_1^2+5u_2^2)$, ràng buộc $u_1+u_2=14$.</p>
+      <p>Bài toán: $\min_u F(u)$ với $Au=b$, <span class="math-nowrap">$A\in\mathbb R^{p\times n}$.</span></p>
+      <p>VD3: $F=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ 1]$, $b=14$; điểm đầu khả thi <span class="math-nowrap">$(16,-2)^T$.</span></p>
       <div class="formula" tabindex="0">$$L=F+\nu(u_1+u_2-14)$$</div>
       <div class="formula" tabindex="0">$$2u_1+\nu=0,\quad 5u_2+\nu=0,\quad u_1+u_2=14$$</div>
       <p>Ứng viên: $u=(10,4)^T$, $\nu=-20$, $F^*=140$.</p>
     </div>
   </div>
   <div class="takeaway">$F$ lồi chặt và KKT thỏa, nên $(10,4)^T$ là nghiệm duy nhất của bài toán bậc hai.</div>
-  <aside class="notes">Hệ KKT cân bằng gradient mục tiêu với tổ hợp các pháp tuyến của đẳng thức. Nhân tử $\nu$ của bài gốc tự do dấu, vì ràng buộc là đẳng thức. Hệ ba phương trình cho nghiệm duy nhất: trừ hai hàng đầu được $2u_1-5u_2=0$, thay vào hàng thứ ba được $u_1=10$, $u_2=4$, $\nu=-20$. Tọa độ $-2$ của điểm đầu ở hình là hợp lệ vì $u\in\mathbb R^2$ và bài toán không có điều kiện không âm. Vì $F$ lồi chặt và KKT đủ cả với bài gốc lồi khi đúng giả thiết, nghiệm này là nghiệm toàn cục. Một bước Newton xuất phát từ điểm khả thi phải được giới hạn trên các hướng bảo toàn đẳng thức. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức Lagrange và KKT đã học ở Bài 03.</aside>
+  <aside class="notes">Phương pháp Newton đã hoàn chỉnh cho bài toán không ràng buộc. Lớp thứ hai trong phần mở đầu là cực tiểu $F(u)$ trên tập affine $\{u:Au=b\}$, với $u\in\mathbb R^n$, $A\in\mathbb R^{p\times n}$ và $b\in\mathbb R^p$; ký hiệu $F,u$ thay cho $f,x$ để phân biệt với bài không ràng buộc. VD3 được chọn vì là hàm bậc hai với một ràng buộc: hệ KKT giải được bằng tay, nên nghiệm $(10,4)^T$ là mốc để kiểm các bước Newton về sau. Hệ KKT cân bằng gradient mục tiêu với tổ hợp các pháp tuyến của đẳng thức; nhân tử $\nu$ tự do dấu vì ràng buộc là đẳng thức. Trừ hai hàng đầu được $2u_1-5u_2=0$, thay vào hàng thứ ba được $u_1=10$, $u_2=4$, $\nu=-20$ và $F^*=\tfrac12(200+80)=140$. Điểm $(16,-2)^T$ thỏa $u_1+u_2=14$; tọa độ âm hợp lệ vì bài toán không có điều kiện không âm. Vì $F$ lồi chặt và ràng buộc affine, KKT là điều kiện cần và đủ, nên nghiệm này là nghiệm toàn cục duy nhất. Xuất phát từ điểm khả thi, một bước Newton cần giữ $Au=b$; điều kiện cho hướng bước được xác định từ phép tính $A(u+td)$. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization (2004), §§10.1–10.2.1; bài giảng MIT 6.079, lec17; kiến thức Lagrange và KKT đã học ở Bài giảng 03.</aside>
 </section>
 <section data-slide-id="RE02">
   <h2>Hướng bảo toàn ràng buộc đẳng thức</h2>

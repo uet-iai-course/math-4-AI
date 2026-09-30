@@ -326,13 +326,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** giữ như trước.
 
-### RE01 — Điều kiện KKT với ràng buộc đẳng thức
+### RE01 — Bài toán có ràng buộc đẳng thức
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu E01, E02, P02. Khôi phục cân bằng gradient của bài 03 trước khi xây dựng thuật toán giữ ràng buộc.
-- **Nội dung trên trang:** Nhu cầu: tối ưu trong khi giữ tổng $u_1+u_2=14$; nghiệm phải đồng thời thỏa điều kiện dừng và khả thi. VD3 $F=\tfrac12(2u_1^2+5u_2^2)$, $u_1+u_2=14$. L=F+ν(u1+u2−14). KKT: 2u1+ν=0,5u2+ν=0,u1+u2=14; nghiệm(10,4),ν=−20,F*=140. Nêu đây là mốc kiểm cho ví dụ bậc hai.
-- **Bố cục chọn:** Trái 45% đường khả thi/đường mức; phải Lagrange → ba phương trình → ứng viên; chứng nhận lồi+KKT ở chân.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: tiêu đề cũ dài, gần trùng tiêu đề RP02 và vượt nút điều hướng; mặt trang chưa nêu dạng tổng quát của lớp bài toán và điểm đầu khả thi; ghi chú chưa nêu nhu cầu và lý do chọn VD3. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26; đối chiếu E01, E02, P02.
+- **Nội dung trên trang:** Bài toán $\min_u F(u)$ với $Au=b$, $A\in\mathbb R^{p\times n}$ (lớp thứ hai của RP02). VD3 $F=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ 1]$, $b=14$, điểm đầu khả thi $(16,-2)^T$. $L=F+\nu(u_1+u_2-14)$; KKT $2u_1+\nu=0$, $5u_2+\nu=0$, $u_1+u_2=14$; ứng viên $(10,4)^T$, $\nu=-20$, $F^*=140$; kết luận lồi chặt + KKT cho nghiệm duy nhất. Ghi chú: nhu cầu (Newton không ràng buộc đã hoàn chỉnh, lớp thứ hai cần giữ $Au=b$), đổi ký hiệu $F,u$, lý do chọn VD3 (giải KKT bằng tay làm mốc kiểm).
+- **Bố cục chọn:** Trái 45% hình đường khả thi, đường mức, điểm đầu và nghiệm; phải: dạng bài toán → VD3 và điểm đầu → Lagrange → ba phương trình → ứng viên; kết luận ở chân. Đo 1600×900: nội dung 674/674, tiêu đề kết thúc trước nút điều hướng; 390×844: chỉ hàng ba phương trình cuộn ngang trong `.formula`.
 - **Lý do bố cục cho sinh viên năm 3:** Khôi phục cân bằng gradient của bài 03 trước khi xây dựng thuật toán giữ ràng buộc.
-- **Vào → ra:** Đầu vào: Ràng buộc $u_1+u_2=14$ giới hạn điểm tối ưu trên một đường thẳng. Đầu ra: Tại điểm khả thi khác nghiệm, bước Newton không ràng buộc có thể rời đường này; điều kiện trên hướng phải ngăn sai lệch đó.
+- **Vào → ra:** Đầu vào: Newton không ràng buộc đã hoàn chỉnh (RN01–RN07); lớp bài toán đẳng thức và hệ KKT của nó từ RP02. Đầu ra: nghiệm tham chiếu $(10,4)^T$, $\nu=-20$, $F^*=140$ và điểm đầu khả thi $(16,-2)^T$; câu hỏi hướng bước nào giữ $Au=b$.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** VD3 khả thi, dàn ý §6: F, u, A, b; g, H ở RE02; d, η ở RE05; N, Δz ở RE06. Chỉ đưa ký hiệu đã dùng trên trang, chưa đưa phần dư hoặc số gia nhân tử.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Liên kết ghi chú: hướng Newton cần nằm trong không gian hạt nhân để bảo toàn đẳng thức. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
