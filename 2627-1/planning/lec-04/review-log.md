@@ -1,5 +1,49 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Sửa RG01 theo yêu cầu người dùng — 2026-09-30
+
+**Trạng thái: đã sửa theo yêu cầu và theo vòng rà toán học–mạch lập luận được điều phối viên duyệt; không còn lỗi chặn bàn giao hoặc nghiêm trọng.**
+
+### Yêu cầu và thay đổi
+
+- **Yêu cầu:** người dùng hỏi trang "Đạo hàm hướng và biến thiên cục bộ" muốn nói gì. Điều phối viên xác định luận điểm (dấu của $g^Td$ quyết định $f$ giảm hay tăng khi bước dương đủ nhỏ) chỉ nằm trong ghi chú; mặt trang có hình, bảng bốn dữ kiện và kết luận, không có định nghĩa hay phép tính $g^Td$. Người dùng duyệt phương án sửa.
+- **Tiêu đề:** "Đạo hàm hướng". Chọn tên khái niệm theo quy định tiêu đề của `AGENTS.md`; "Dấu của đạo hàm hướng" bị loại vì gần với vai trò của RG03 "Hướng giảm và độ dài bước" và vì trang còn chứa định nghĩa, không chỉ phép xét dấu.
+- **Mặt trang (bản cuối sau vòng rà):** `lec-grid--45-55`. Trái: hình ba hướng giữ nguyên và dòng **Ví dụ** VD1 ($f=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$, $g=(6,28)^T$; $d=(-1,0)^T$ cho $g^Td=-6<0$). Phải: khung **Định nghĩa** "Với hướng $d\in\mathbb R^n$: $f'(x^0;d)\triangleq\lim_{t\downarrow0}[f(x^0+td)-f(x^0)]/t$" và **Tính chất** "Khi $f$ khả vi tại $x^0$, $f'(x^0;d)=g^Td$ với $g=\nabla f(x^0)$, không phải $g(\lambda,\nu)$ của Bài giảng 03"; dưới khung ba trường hợp: $g^Td<0$ cho $f(x^0+td)<f(x^0)$ khi $t>0$ đủ nhỏ và $d$ gọi là hướng giảm tại $x^0$; $g^Td>0$ cho $f(x^0+td)>f(x^0)$ khi $t>0$ đủ nhỏ; $g^Td=0$ thông tin bậc một chưa đủ kết luận. Bỏ bảng "Dữ kiện VD1" và khung kết luận.
+- **Bản nháp trước vòng rà:** khung "Định nghĩa" gộp giả thiết khả vi, quy ước $g$ và đẳng thức $=g^Td$ trong một công thức; dòng ví dụ ở cột phải; kết luận dưới hình "Nếu $g^Td<0$ thì $f(x^0+td)<f(x^0)$ với mọi $t>0$ đủ nhỏ; khi đó $d$ là hướng giảm tại $x^0$."
+- **Ghi chú:** mở bằng nhu cầu: khi $\nabla f(x^0)\ne0$, $x^0$ chưa thỏa điều kiện dừng, bước lặp cần một hướng làm $f$ giảm và dấu đạo hàm hướng kiểm được một hướng như vậy. Tiếp theo: khai triển $f(x^0+td)=f(x^0)+t\,g^Td+o(t)$ và lý do dấu của $g^Td$ quyết định khi $t$ nhỏ; trường hợp $g^Td=0$ phụ thuộc số hạng bậc cao; đạo hàm hướng là đạo hàm theo hướng ở Bài giảng 00 nhưng không chuẩn hóa $d$, tính thuần nhất dương cho thấy đổi độ dài $d$ không đổi dấu $f'(x^0;d)$; phép tính $\nabla f=(3x_1,7x_2)^T$, ba hướng $(-1,0)^T$, $(1,0)^T$, $(-28,6)^T$ cho $-6$, $6$, $0$; phân biệt $g$ với $g(\lambda,\nu)$; tỷ lệ hai trục khác nhau; tối thiểu hóa riêng $g^Td$ không bị chặn dưới khi $g\ne0$ vì $d=-sg$ cho $g^Td=-s\|g\|_2^2\to-\infty$, dẫn sang RG02; giữ dòng nguồn.
+- **Số $62$:** RG05 đã nêu "Cho $f(x^0)=62$" trên mặt trang, đúng chỗ Armijo dùng; không sửa RG03–RG05. $f$ và $x^0$ của VD1 vẫn có trên RG01 (dòng ví dụ) trước khi RG03 và RG05 dùng chúng.
+- **Hình:** kiểm tọa độ SVG theo tỷ lệ trục (39,85 px trên một đơn vị theo $x_1$, 28,70 px theo $x_2$): $x^0$ đúng tại $(2,4)$; mũi tên xanh lá xấp xỉ $d=(-1{,}2,-2{,}2)$ cho $g^Td<0$; mũi tên xanh dương xấp xỉ $(-2{,}8,0{,}6)\parallel(-28,6)$ cho $g^Td=0$; mũi tên đỏ xấp xỉ $(0{,}3,1{,}4)$ cho $g^Td>0$; đường mức 62 đi qua $x^0$. Không vẽ lại. Sửa `<desc>`: câu cũ nói "độ dài mũi tên gradient được co" trong khi hình không có mũi tên gradient, và thiếu khoảng trắng ở "mức15,35,62".
+- **Trang lân cận:** RP02, RG02–RG05 không sửa. RG02 tiếp tục nêu xấp xỉ tuyến tính và tính không bị chặn trên mặt trang. Mục RP02 bên dưới mô tả kết luận RG01 có mệnh đề về $g$; mệnh đề đó nay nằm trong dòng **Tính chất** của RG01 và khung kết luận đã bỏ.
+- **Học liệu:** `lecture-note.md` và `exercises.md` không có đoạn gắn riêng với RG01; ký hiệu $g$, $d$, $g^Td$ và kết luận hướng giảm khớp với bản sửa. Không sửa, không chạy đồng bộ.
+- **no-ai-slop:** tác tử chỉnh sửa nạp kỹ năng `no-ai-slop` của Claude (`~/.claude/skills/no-ai-slop/`) ở chế độ Edit và tự đối chiếu `eval.md` trên mặt trang và ghi chú RG01: không có câu dẫn rỗng, lời nhấn mạnh, câu lặp, đổi từ đồng nghĩa hay kết luận kịch tính; dấu hai chấm chỉ dùng cho nhãn trường hợp và dòng định nghĩa.
+- **Tác tử:** tác tử chỉnh sửa là tác tử loại `fork` của điều phối viên, mô hình Claude Opus 5.5 kế thừa; mức suy luận kế thừa, không khai báo riêng vì kho chưa có `.claude/agents/`.
+
+### Rà soát sau sửa
+
+- **Tác tử rà:** một tác tử loại `fork` chỉ đọc của điều phối viên đảm nhận rà toán học và rà mạch lập luận (RG01, lân cận RP03–RG03); mô hình Claude Opus 5.5 kế thừa, mức suy luận kế thừa. Điều phối viên bổ sung một phát hiện khi kiểm trình duyệt.
+- **Tổng hợp:** 0 chặn bàn giao, 0 nghiêm trọng, 1 trung bình, 8 nhẹ; điều phối viên thêm O1 (nâng từ nhẹ lên trung bình).
+- **Cổng storyboard:** quyết định `sửa` cho RG01 được chấp nhận với điều kiện xử lý M/S1 (nhu cầu từ RP04 phải có trong ghi chú). Điều kiện đã đạt: ghi chú RG01 mở bằng câu nhu cầu.
+
+| Vai | Mã | Mức độ | Trang | Vấn đề | Quyết định/trạng thái |
+|---|---|---|---|---|---|
+| Toán học + mạch lập luận | M/S1 | trung bình | RG01, ghi chú | Điểm vào từ RP04 thiếu: nhu cầu chọn hướng giảm khi $\nabla f(x^0)\ne0$ không có trong ghi chú | Đã sửa: ghi chú mở bằng "Khi $\nabla f(x^0)\ne0$, điểm $x^0$ chưa thỏa điều kiện dừng; một bước lặp cần một hướng $d$ làm $f$ giảm, và dấu của đạo hàm hướng cho phép kiểm một hướng như vậy." |
+| Toán học | M2 | nhẹ | RG01, mặt trang | Nhãn "Định nghĩa" chứa cả một kết quả ($=g^Td$ cần tính khả vi) | Đã sửa: tách **Định nghĩa** (giới hạn) và **Tính chất** (khi $f$ khả vi, $f'(x^0;d)=g^Td$, kèm quy ước $g$) |
+| Toán học | M3 | nhẹ | RG01, mặt trang | Ba trường hợp dấu phát biểu chưa chính xác; kết luận dài | Đã sửa: "$g^Td<0$: $f(x^0+td)<f(x^0)$ khi $t>0$ đủ nhỏ" và trường hợp "$>$" tương tự. Khung kết luận rút gọn thành định nghĩa hướng giảm, sau đó bị bỏ vì tràn khung; tên "hướng giảm" chuyển vào trường hợp thứ nhất |
+| Toán học | M4 | nhẹ | RG01, ghi chú | Tính không bị chặn chưa có lập luận | Đã sửa: $d=-sg$, $s>0$ cho $g^Td=-s\|g\|_2^2\to-\infty$ |
+| Mạch lập luận | S5 | nhẹ | RG01, ghi chú | Câu về độ dài $d$ mơ hồ | Đã sửa: "nên thay đổi độ dài của $d$ không làm đổi dấu của $f'(x^0;d)$" |
+| Mạch lập luận | S6 | nhẹ | RG01, ghi chú | Chưa nối rõ với thuật ngữ Bài giảng 00 | Đã sửa: "Đạo hàm hướng ở đây là đạo hàm theo hướng ở Bài giảng 00, nhưng không yêu cầu chuẩn hóa" |
+| Mạch lập luận | S7 | nhẹ | RG01, mặt trang | Quy ước $g$ chen trong câu định nghĩa | Đã sửa bằng việc tách M2: quy ước nằm ở dòng **Tính chất** |
+| Mạch lập luận | S8 | nhẹ | RG01, 390 px | Công thức định nghĩa cuộn ngang ở màn hình hẹp | Đã sửa cùng O1: sau khi tách, dòng $f'(x^0;d)=g^Td$ hiển thị đủ; chỉ công thức giới hạn còn cuộn ngang |
+| Mạch lập luận | S9 | nhẹ | RG02 | RG02 dùng $x$ thay cho $x^0$ | Hoãn: có từ trước thay đổi này, ngoài phạm vi; ghi lại cho vòng sau |
+| Điều phối | O1 | trung bình | RG01, 390 px | Ở 390 px, phần "$=g^Td$" nằm sau vùng cuộn ngang của công thức nên luận điểm chính bị ẩn | Đã sửa: tách tính chất khỏi định nghĩa, bọc $f'(x^0;d)=g^Td$ và $g=\nabla f(x^0)$ trong `math-nowrap`; kiểm ở 390×844: dòng tính chất nằm trọn trong khung, không tràn ngang |
+
+### Kiểm định trình duyệt
+
+- **Tác tử chỉnh sửa, Playwright Chromium qua `http://localhost:8765/2627-1/lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`, bản cuối:** ở 1600×900, RG01 có chiều cao nội dung bằng khung (674/674), đáy nội dung 812 px so với đáy trang 829 px, không tràn ngang, 0 lỗi KaTeX, cỡ chữ nhỏ nhất 32 px. Ở 390×844, 0 lỗi KaTeX, cỡ chữ nhỏ nhất 24 px; `.lecture-viewport` cuộn dọc (1097/716 px) và đã chụp cuối vùng cuộn. Dòng tính chất nằm trọn trong khung (mép phải cụm $f'(x^0;d)=g^Td$ ở 204 px, khung 366 px), không tràn ngang. Công thức định nghĩa rộng 376 px trong khung 308 px nên cuộn ngang trong `.formula`; ở bản trước, phím mũi tên phải khi `.formula` có tiêu điểm cuộn công thức mà không đổi trang. Không có lỗi JavaScript hoặc console.
+- **Cắt để vừa khung sau vòng rà:** tách định nghĩa–tính chất và câu trường hợp chính xác hơn làm cột phải vượt 90 px. Theo thứ tự điều phối viên cho phép: bỏ khung kết luận; chuyển dòng ví dụ sang cột trái vào chỗ khung kết luận (cột phải là cột quyết định chiều cao); rút câu dẫn định nghĩa thành "Với hướng $d\in\mathbb R^n$:". Nội dung ví dụ không bị rút. Không giảm cỡ chữ.
+- **Bản nháp trung gian:** bố cục `ratio55` với mệnh đề $g$ dài làm tràn 106 px và cắt công thức ở 16:9; chuyển sang `lec-grid--45-55`, gộp mệnh đề $g$ vào câu định nghĩa và bọc các cụm ví dụ bằng `math-nowrap`. Không giảm cỡ chữ.
+- **Ảnh:** `/tmp/claude-1000/lec04-rg01/RG01-1600.png`, `RG01-390.png`, `RG01-390-end.png`.
+
 ## Sửa RP02 theo yêu cầu người dùng — 2026-09-30
 
 **Trạng thái: đã sửa theo yêu cầu và theo hai vòng rà được điều phối viên duyệt; không còn lỗi chặn bàn giao hoặc nghiêm trọng.**

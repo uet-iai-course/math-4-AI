@@ -114,26 +114,26 @@
 </section>
 <section>
 <section data-slide-id="RG01">
-<h2>Đạo hàm hướng và biến thiên cục bộ</h2>
-<div class="lec-grid ratio55">
+<h2>Đạo hàm hướng</h2>
+<div class="lec-grid lec-grid--45-55">
 <div>
-<img class="plot" src="img/lec-04/descent-directions.svg" alt="Các đường mức của f và ba hướng tại x⁰=(2,4): giảm, tăng và có đạo hàm hướng bằng không">
-<div class="takeaway">Đạo hàm hướng $g^Td&lt;0$ bảo đảm $f$ giảm với bước dương đủ nhỏ; $g$ là gradient, không phải hàm đối ngẫu của Bài giảng 03.</div>
+<img class="plot" src="img/lec-04/descent-directions.svg" alt="Các đường mức của f và ba hướng tại x⁰=(2,4) với gᵀd âm, bằng không và dương">
+<p><strong>Ví dụ.</strong> <span class="math-nowrap">$f=\tfrac12(3x_1^2+7x_2^2)$,</span> <span class="math-nowrap">$x^0=(2,4)^T$,</span> <span class="math-nowrap">$g=(6,28)^T$;</span> với <span class="math-nowrap">$d=(-1,0)^T$,</span> <span class="math-nowrap">$g^Td=-6&lt;0$.</span></p>
 </div>
 <div>
 <div class="panel">
-<h3>Dữ kiện VD1</h3>
-<table>
-<tr><th>Đại lượng</th><th>Giá trị</th></tr>
-<tr><td>$f$</td><td>$\tfrac12(3x_1^2+7x_2^2)$</td></tr>
-<tr><td>$x^0$</td><td>$(2,4)^T$</td></tr>
-<tr><td>$g=\nabla f(x^0)$</td><td>$(6,28)^T$</td></tr>
-<tr><td>$f(x^0)$</td><td>$62$</td></tr>
-</table>
+<p><strong>Định nghĩa.</strong> Với hướng <span class="math-nowrap">$d\in\mathbb R^n$:</span></p>
+<div class="formula" tabindex="0">$$f'(x^0;d)\triangleq\lim_{t\downarrow0}\frac{f(x^0+td)-f(x^0)}{t}.$$</div>
+<p><strong>Tính chất.</strong> Khi $f$ khả vi tại $x^0$, <span class="math-nowrap">$f'(x^0;d)=g^Td$</span> với <span class="math-nowrap">$g=\nabla f(x^0)$,</span> không phải $g(\lambda,\nu)$ của Bài giảng 03.</p>
+</div>
+<ul>
+<li>$g^Td&lt;0$: $f(x^0+td)&lt;f(x^0)$ khi $t&gt;0$ đủ nhỏ; $d$ gọi là hướng giảm tại $x^0$.</li>
+<li>$g^Td&gt;0$: $f(x^0+td)&gt;f(x^0)$ khi $t&gt;0$ đủ nhỏ.</li>
+<li>$g^Td=0$: thông tin bậc một chưa đủ kết luận.</li>
+</ul>
 </div>
 </div>
-</div>
-<aside class="notes">Ba mũi tên trên hình biểu diễn hướng có đạo hàm hướng âm, dương và bằng không. Hướng tiếp tuyến với đường mức thỏa $g^Td=0$; dấu đạo hàm được xét theo tọa độ của bài toán. Tích vô hướng $g^Td$ chính là đạo hàm theo hướng của $f$ tại $x^0$ theo hướng $d$, nên dấu của nó quyết định giảm hay tăng cục bộ. Với VD1, $g=(6,28)^T$ và $f(x^0)=\tfrac12(3\cdot4+7\cdot16)=62$. Ký hiệu $g=\nabla f(x^0)$ là vectơ gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$ của Bài giảng 03; hướng cập nhật $d$ là biến cần xác định. Với $d=(1,0)^T$, tích $g^Td=6>0$ cho hướng tăng cục bộ. Khi gradient khác không, mục tiêu tuyến tính theo hướng không bị chặn dưới; số hạng bậc hai tạo bài toán chọn hướng có nghiệm hữu hạn. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Khi $\nabla f(x^0)\ne0$, điểm $x^0$ chưa thỏa điều kiện dừng; một bước lặp cần một hướng $d$ làm $f$ giảm, và dấu của đạo hàm hướng cho phép kiểm một hướng như vậy. Khai triển bậc một của hàm khả vi cho $f(x^0+td)=f(x^0)+t\,g^Td+o(t)$ khi $t\downarrow0$. Chia hai vế cho $t&gt;0$ và cho $t\downarrow0$ thu được $f'(x^0;d)=g^Td$. Đạo hàm hướng ở đây là đạo hàm theo hướng ở Bài giảng 00, nhưng không yêu cầu chuẩn hóa: Bài giảng 00 xét $D_{\mathbf u}h$ với $\|\mathbf u\|_2=1$, còn $d$ ở đây tùy ý, và $f'(x^0;sd)=s\,f'(x^0;d)$ với $s&gt;0$, nên thay đổi độ dài của $d$ không làm đổi dấu của $f'(x^0;d)$. Khi $g^Td\ne0$, số hạng $t\,g^Td$ lớn hơn phần dư $o(t)$ về trị tuyệt đối với mọi $t&gt;0$ đủ nhỏ, nên dấu của $g^Td$ quyết định $f$ giảm hay tăng dọc theo tia $x^0+td$. Khi $g^Td=0$, dấu của $f(x^0+td)-f(x^0)$ phụ thuộc các số hạng bậc cao. Với VD1, $\nabla f(x)=(3x_1,7x_2)^T$ nên $g=(6,28)^T$. Hướng $d=(-1,0)^T$ cho $g^Td=-6$, hướng giảm; $d=(1,0)^T$ cho $g^Td=6$, hướng tăng; $d=(-28,6)^T$ cho $g^Td=-168+168=0$, hướng tiếp xúc với đường mức qua $x^0$. Ký hiệu $g=\nabla f(x^0)$ là vectơ gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$ của Bài giảng 03; hướng $d$ là biến cần xác định. Hai trục của hình có tỷ lệ khác nhau, nên góc hiển thị giữa mũi tên và đường mức không dùng làm bằng chứng về tính trực giao; dấu của $g^Td$ được xác định bằng phép tính. Kết quả này chỉ kiểm tra một hướng cho trước. Để chọn hướng, tối thiểu hóa riêng $g^Td$ theo $d$ không có nghiệm hữu hạn khi $g\ne0$: với $d=-sg$, $s&gt;0$, ta có $g^Td=-s\|g\|_2^2\to-\infty$ khi $s\to\infty$; bài toán chọn hướng cần thêm một số hạng bậc hai. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài giảng 03.</aside>
 </section>
 
 <section data-slide-id="RG02">
