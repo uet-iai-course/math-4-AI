@@ -314,17 +314,17 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
-### RN07 — Kiểm tra mô hình và điều kiện tối ưu
+### RN07 — Bước Newton và tốc độ hội tụ
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu C08. Buộc đối chiếu KKT thật sau bước mô hình; thiết lập vấn đề về cận sai số sẽ được phần S giải quyết.
-- **Nội dung trên trang:** Câu hỏi: giải $16d=3$ được $s^+=7/16$; có suy ra đã đạt nghiệm không? Tính $\varphi^{\prime}(s^+)$ và giải thích vì sao $9/32$ không phải sai số thật.
-- **Bố cục chọn:** Trái 55% dữ kiện; phải hai chỗ điền; cuối trang nêu vấn đề cần nghiên cứu về điều kiện cho cận sai số, không chấm kiến thức tự điều chỉnh chưa được học.
-- **Lý do bố cục cho sinh viên năm 3:** Buộc đối chiếu KKT thật sau bước mô hình; thiết lập vấn đề về cận sai số sẽ được phần S giải quyết.
-- **Vào → ra:** Đầu vào: Giải đúng $16d=3$ vẫn cho $\varphi'(s^+)=-9/7\ne0$. Đầu ra: Với ràng buộc $Au=b$, bước cập nhật còn phải bảo toàn tính khả thi ngoài yêu cầu giảm mục tiêu.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; sản phẩm và đáp án kiểm tra ở dàn ý §7.
-- **Số liệu:** VD2, dàn ý §6; riêng RN04 so lại VD1 phải ghi rõ đổi ví dụ. Phân biệt δ, δ² và ba phép trừ.
-- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
-- **Dự toán nội bộ:** 0 LT + 3/20 BT; suy nghĩ 3/50 BT, chữa 9/100 BT.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Kiểm tra mô hình và điều kiện tối ưu" thành "Bước Newton và tốc độ hội tụ"; bỏ khung chép đáp số và các ô trống đã có sẵn trên RN03, RN05 (và trong Bài 3 của tập bài tập); thay bằng hai câu trên dữ kiện mới: bước Newton thứ hai từ $s^1=7/16$ và chứng minh $1-s^+=(1-s)^2$; giữ dòng vấn đề mở về cận sai số, viết gọn. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Câu hỏi 1: với VD2, bước Newton đầy đủ thứ hai từ $s^1=7/16$: tính $g,H,d,s^2$, $\delta_N^2/2$ và so với $\varphi(s^1)-\varphi(1)$. Câu hỏi 2: chứng minh bước Newton đầy đủ cho $1-s^+=(1-s)^2$; nhận xét dãy sai số $3/4, 9/16, 81/256$. Vấn đề: điều kiện để $\delta_N^2$ cho cận sai số mục tiêu.
+- **Bố cục chọn:** Hai khung câu hỏi `lec-grid--60-40`, dòng vấn đề dưới. Đo ở 1600×900: đáy nội dung 516 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Câu 1 đo khả năng thực hiện thuật toán trên điểm mới; câu 2 đo khả năng suy ra quy luật hội tụ từ công thức bước.
+- **Vào → ra:** Đầu vào: thuật toán Newton (RN06), VD2 và $s^1=7/16$ (RN02), định nghĩa hội tụ bậc hai (ghi chú RN06). Đầu ra: hội tụ nhanh nhưng $\delta_N^2/2$ vẫn chưa là cận sai số (nhu cầu cho RS); hướng Newton không ràng buộc có thể phá tính khả thi khi có đẳng thức (RE01).
+- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2.
+- **Số liệu:** Câu 1: $g=-9/7$, $H=256/49$, $d=63/256$, $s^2=175/256$, $\delta_N^2/2=81/512\approx0{,}158$, $\varphi(7/16)-\varphi(1)=\log(16/7)-9/16\approx0{,}264$. Câu 2: $s^+=2s-s^2$ (tính lại bằng phân số).
+- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
+- **Dự toán nội bộ:** giữ như trước.
 
 ### RE01 — Điều kiện KKT với ràng buộc đẳng thức
 

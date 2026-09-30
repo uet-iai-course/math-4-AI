@@ -412,12 +412,18 @@ Thuật toán ghép các thành phần đã xây dựng: gradient và Hessian t�
 </section>
 
 <section data-slide-id="RN07">
-<h2>Kiểm tra mô hình và điều kiện tối ưu</h2>
-<div class="lec-grid ratio55"><div class="panel"><p>$\varphi(s)=s-\log s$, $s&gt;0$.</p><p>Tại $s^0=1/4$: $g=-3$, $H=16$.</p><p>$16d=3$ cho $d=3/16$, $s^+=7/16$.</p><p>Giảm mô hình: $9/32$; nghiệm bài toán gốc: $s^\star=1$.</p></div>
-<div class="question"><p><strong>Câu hỏi:</strong> $s^+$ đã đạt nghiệm chưa?</p><p>$\varphi'(s^+)=$ ______</p><p>Sai số tại $s^0$:</p><p>$\varphi(1/4)-\varphi(1)=$ ______</p><p>Giải thích vai trò của $9/32$.</p></div></div>
-<p><strong>Vấn đề cần nghiên cứu:</strong> xác định điều kiện để độ giảm Newton cho một cận sai số mục tiêu.</p>
+<h2>Bước Newton và tốc độ hội tụ</h2>
+<div class="lec-grid lec-grid--60-40">
+<div class="question">
+<p><strong>Câu hỏi:</strong> Với VD2, thực hiện bước Newton đầy đủ thứ hai từ $s^1=7/16$: tính $g$, $H$, $d$, $s^2$ và $\delta_N^2/2$; so với sai số $\varphi(s^1)-\varphi(1)$.</p>
+</div>
+<div class="question">
+<p><strong>Câu hỏi:</strong> Chứng minh với VD2, bước Newton đầy đủ cho <span class="math-nowrap">$1-s^+=(1-s)^2$.</span> Nhận xét dãy sai số $3/4,\ 9/16,\ 81/256$.</p>
+</div>
+</div>
+<p><strong>Vấn đề:</strong> điều kiện để $\delta_N^2$ cho cận sai số mục tiêu.</p>
 <aside class="notes">
-Đáp án: $\varphi'(s)=1-1/s$ nên $\varphi'(7/16)=1-16/7=-9/7$, khác không, do đó $s^+$ chưa đạt nghiệm của bài gốc; nghiệm mô hình không tự động là nghiệm bài gốc phi bậc hai. Sai số thật tại điểm đầu là $\varphi(1/4)-\varphi(1)=\log4-3/4\approx0{,}63629$. Số $9/32$ chỉ là độ giảm của mô hình, tức $Q_H(0)-Q_H(d)$; nó không phải sai số thật và không được dùng làm cận cho $\log4-3/4$. Việc suy cận sai số từ độ giảm Newton cần một điều kiện bổ sung kiểm soát biến thiên độ cong. Một yêu cầu độc lập xuất hiện khi bài gốc có đẳng thức: hướng cực tiểu mô hình không ràng buộc có thể vi phạm tính khả thi. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bước thứ hai và quy luật của sai số. Đáp án câu 1: tại $s^1=7/16$, $g=\varphi'(s^1)=1-16/7=-9/7$, $H=\varphi''(s^1)=(16/7)^2=256/49$; $d=-g/H=63/256$, $s^2=7/16+63/256=175/256$. Độ giảm Newton $\delta_N^2=g^2/H=81/256$, nên giảm mô hình là $81/512\approx0{,}158$; sai số tối ưu tại $s^1$ là $\varphi(7/16)-\varphi(1)=\log(16/7)-9/16\approx0{,}264$. Như ở bước đầu, giảm mô hình nhỏ hơn sai số tối ưu. Đáp án câu 2: $s^+=s-\varphi'(s)/\varphi''(s)=s-(1-1/s)s^2=2s-s^2$, nên $1-s^+=1-2s+s^2=(1-s)^2$. Dãy sai số $1-s^k$ là $3/4$, $9/16$, $81/256$: mỗi bước bình phương sai số trước, đúng định nghĩa hội tụ bậc hai với $c=1$; với $s^0\in(0,2)$, $|1-s^0|&lt;1$ nên dãy hội tụ về $s^\star=1$. Hội tụ nhanh về nghiệm vẫn chưa trả lời câu hỏi dừng lúc nào với bảo đảm sai số, vì $\delta_N^2/2$ không phải cận sai số khi thiếu giả thiết về độ cong. Khi bài gốc có ràng buộc đẳng thức, hướng Newton không ràng buộc còn có thể phá tính khả thi. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
 </aside>
 </section>
 </section>
