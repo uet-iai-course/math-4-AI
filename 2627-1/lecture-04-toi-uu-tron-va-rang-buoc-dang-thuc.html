@@ -514,16 +514,32 @@ Thuật toán ghép các thành phần đã xây dựng: gradient và Hessian t�
 </section>
 
 <section data-slide-id="RN07">
-<h2>Bước Newton và tốc độ hội tụ</h2>
+<h2>Tốc độ hội tụ của Newton <span class="self-study-badge">Tự học</span></h2>
+<p><strong>Hội tụ bậc hai:</strong> <span class="math-nowrap">$\|x^{k+1}-x^*\|_2\le c\,\|x^k-x^*\|_2^2$;</span> số chữ số đúng xấp xỉ gấp đôi mỗi bước.</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Trường hợp</th><th>Giả thiết</th><th>Tốc độ</th></tr></thead><tbody>
+<tr><td>Bậc hai</td><td>$\nabla^2f\equiv H\succ0$</td><td>một bước tới $x^*$</td></tr>
+<tr><td>Cục bộ</td><td>$\nabla^2f(x^*)\succ0$, Hessian Lipschitz</td><td>bậc hai khi $x^0$ gần $x^*$</td></tr>
+<tr><td>Toàn cục</td><td>lồi mạnh, Hessian Lipschitz</td><td>pha tắt dần, rồi bậc hai</td></tr>
+<tr><td>Tự điều chỉnh</td><td>lồi chặt, bị chặn dưới</td><td>như trên, hằng số theo $\alpha,\beta$</td></tr>
+</tbody></table></div>
+<p>Toàn cục: $f(x)-f^*\le\varepsilon$ sau không quá <span class="math-nowrap">$(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$</span> bước.</p>
+<div class="takeaway">Nếu $\nabla^2f\not\succ0$, hướng Newton có thể không giảm. So sánh: giảm gradient đạt <span class="math-nowrap">$O(1/k)$</span> hoặc <span class="math-nowrap">$(1-\mu/L)^k$.</span></div>
+<aside class="notes">
+Thuật toán Newton vừa xây dựng dùng quay lui Armijo và dừng theo độ giảm Newton; các kết quả dưới đây cho biết số bước cần thiết trong từng lớp hàm, không kèm chứng minh. Hội tụ bậc hai nghĩa là tồn tại $c$ sao cho $\|x^{k+1}-x^*\|_2\le c\|x^k-x^*\|_2^2$ khi $k$ đủ lớn; nếu $c\|x^k-x^*\|_2\le1/2$ thì sai số giảm theo lũy thừa $(1/2)^{2^j}$ sau $j$ bước. Hàm bậc hai lồi chặt có mô hình bậc hai trùng hàm, nên một bước đầy đủ cho nghiệm, như VD1 với $W$ bằng Hessian. Kết quả cục bộ: nếu $\nabla^2f(x)\succeq\mu I$ và Hessian $L_H$-Lipschitz trong một lân cận của $x^*$, bước đầy đủ thỏa $\|x^+-x^*\|_2\le\frac{L_H}{2\mu}\|x-x^*\|_2^2$; ghi chú bài giảng, mục C, chứng minh điều này. Kết quả toàn cục (Boyd và Vandenberghe, §9.5.3, tr. 488–491, ký hiệu $L$ cho hằng số Lipschitz của Hessian): với $f$ lồi mạnh, $mI\preceq\nabla^2f\preceq MI$ trên tập mức ban đầu và Hessian $L_H$-Lipschitz, tồn tại $\eta=\min\{1,3(1-2\alpha)\}m^2/L_H$ và $\gamma=\alpha\beta\eta^2m/M^2$ sao cho: khi $\|\nabla f(x)\|_2\ge\eta$, mỗi bước giảm $f$ ít nhất $\gamma$ (pha tắt dần); khi $\|\nabla f(x)\|_2&lt;\eta$, quay lui nhận $t=1$ và hội tụ bậc hai. Tổng số bước để $f(x)-f^*\le\varepsilon$ không vượt quá $(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$ với $\varepsilon_0=2m^3/L_H^2$ (công thức 9.36). Với hàm tự điều chỉnh lồi chặt, tập mức ban đầu đóng và $f$ bị chặn dưới (§9.6.4, tr. 503–505), độ giảm Newton thay cho chuẩn gradient: $\eta=(1-2\alpha)/4$, $\gamma=\alpha\beta\eta^2/(1+\eta)$, và số bước không vượt quá $\frac{20-8\alpha}{\alpha\beta(1-2\alpha)^2}(f(x^0)-f^*)+\log_2\log_2(1/\varepsilon)$ (công thức 9.56); hằng số không phụ thuộc hệ tọa độ, ví dụ $\alpha=0{,}1$, $\beta=0{,}8$ cho hệ số $375$. Tính tự điều chỉnh được định nghĩa ở phần tự học về biến thiên độ cong cuối bài. Khi Hessian không xác định dương, $g^Td=-g^TH^{-1}g$ có thể không âm, nên hướng Newton không chắc là hướng giảm và các kết quả trên không áp dụng nếu không sửa phương pháp. So sánh với giảm gradient: cận $O(1/k)$ cho hàm lồi có gradient $L$-Lipschitz và cận tuyến tính $(1-\mu/L)^k$ khi thêm lồi mạnh; mỗi bước gradient chỉ cần một gradient, còn mỗi bước Newton cần Hessian và giải hệ cỡ $O(n^3)$ khi ma trận đặc. Trang tiếp theo kiểm tra hội tụ bậc hai trên VD2. Nguồn: Boyd và Vandenberghe (2004), §§9.5.3, 9.6.4; ghi chú bài giảng, mục B và C.
+</aside>
+</section>
+
+<section data-slide-id="RN08">
+<h2>Hội tụ bậc hai trên VD2</h2>
 <div class="lec-grid lec-grid--60-40">
 <div class="question">
 <p><strong>Câu hỏi:</strong> Với VD2, thực hiện bước Newton đầy đủ thứ hai từ $s^1=7/16$: tính $g$, $H$, $d$, $s^2$ và $\delta_N^2/2$; so với sai số tối ưu $\varphi(s^1)-\varphi(1)$.</p>
 </div>
 <div class="question">
-<p><strong>Câu hỏi:</strong> Chứng minh với VD2, bước Newton đầy đủ cho <span class="math-nowrap">$1-s^+=(1-s)^2$.</span> Nhận xét dãy khoảng cách tới nghiệm $1-s^k$, $k=0,1,2$, từ câu trên.</p>
+<p><strong>Câu hỏi:</strong> Chứng minh với VD2, bước Newton đầy đủ cho <span class="math-nowrap">$1-s^+=(1-s)^2$.</span> Nhận xét dãy khoảng cách tới nghiệm $1-s^k$, $k=0,1,2$, theo định nghĩa hội tụ bậc hai.</p>
 </div>
 </div>
-<p>Hội tụ bậc hai: <span class="math-nowrap">$|1-s^{k+1}|\le c\,|1-s^k|^2$.</span> <strong>Vấn đề:</strong> điều kiện để $\delta_N^2$ cho cận sai số mục tiêu.</p>
+<p><strong>Vấn đề còn mở:</strong> điều kiện để $\delta_N^2$ cho cận sai số mục tiêu.</p>
 <aside class="notes">
 Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bước thứ hai và quy luật của khoảng cách tới nghiệm. Đáp án câu 1: tại $s^1=7/16$, $g=\varphi'(s^1)=1-16/7=-9/7$, $H=\varphi''(s^1)=(16/7)^2=256/49$; $d=-g/H=63/256$, $s^2=7/16+63/256=175/256$. Độ giảm Newton $\delta_N^2=g^2/H=81/256$, nên giảm mô hình là $81/512\approx0{,}158$; sai số tối ưu tại $s^1$ là $\varphi(7/16)-\varphi(1)=\log(16/7)-9/16\approx0{,}264$. Như ở bước đầu, giảm mô hình nhỏ hơn sai số tối ưu. Đáp án câu 2: $s^+=s-\varphi'(s)/\varphi''(s)=s-(1-1/s)s^2=2s-s^2$, nên $1-s^+=1-2s+s^2=(1-s)^2$. Dãy khoảng cách tới nghiệm $1-s^k$ là $3/4$, $9/16$, $81/256$: mỗi bước bình phương khoảng cách trước, đúng định nghĩa hội tụ bậc hai với $c=1$; với $s^0\in(0,2)$, $|1-s^0|&lt;1$ nên dãy hội tụ về $s^*=1$. Với $s^0\ge2$, bước đầy đủ cho $s^+=s^0(2-s^0)\le0$, ra ngoài miền; quay lui xử lý trường hợp này. Hội tụ nhanh về nghiệm vẫn chưa trả lời câu hỏi dừng lúc nào với bảo đảm sai số, vì $\delta_N^2/2$ không phải cận sai số khi thiếu giả thiết về độ cong. Cận sai số được xét sau khi xây dựng phương pháp cho ràng buộc đẳng thức; trước đó, khi bài gốc có ràng buộc đẳng thức, hướng Newton không ràng buộc có thể phá tính khả thi. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
 </aside>

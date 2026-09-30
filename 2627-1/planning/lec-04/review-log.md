@@ -1,5 +1,15 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Thêm trang tự học tốc độ hội tụ của Newton — 2026-10-01
+
+**Yêu cầu người dùng:** "sau slide 'Thuật toán Newton', thêm một slide Tự học về tốc độ hội tụ của thuật toán trong các trường hợp (không cần chứng minh)". Tác tử soạn: fork của điều phối viên, Claude Opus 5.5 (kế thừa).
+
+- **Ánh xạ mã:** RN07 mới = "Tốc độ hội tụ của Newton"; RN07 cũ "Bước Newton và tốc độ hội tụ" → RN08 "Hội tụ bậc hai trên VD2". Các mục nhật ký trước ngày 2026-10-01 nhắc RN07 là chỉ trang câu hỏi, nay là RN08; không sửa lịch sử. `storyboard.md` và `outline.md` đã đổi toàn bộ RN07 → RN08 rồi thêm mục RN07 mới.
+- **Đối chiếu nguồn:** đọc trực tiếp `sources/bv_cvxbook.pdf` (trích văn bản bằng pdftotext): §9.5.3 (tr. 488–491): giả thiết $mI\preceq\nabla^2f\preceq MI$ trên tập mức, Hessian Lipschitz hằng số $L$; $\eta=\min\{1,3(1-2\alpha)\}m^2/L$, $\gamma=\alpha\beta\eta^2m/M^2$; số bước (9.36) $(f(x^0)-p^*)/\gamma+\log_2\log_2(\epsilon_0/\epsilon)$, $\epsilon_0=2m^3/L^2$. §9.6.4 (tr. 503–505): $f$ tự điều chỉnh lồi chặt, tập mức ban đầu đóng, bị chặn dưới; $\eta=(1-2\alpha)/4$, $\gamma=\alpha\beta\eta^2/(1+\eta)$; (9.53), (9.56) hệ số $(20-8\alpha)/(\alpha\beta(1-2\alpha)^2)$; $\alpha=0{,}1$, $\beta=0{,}8$ cho $375$ (tính lại: $19{,}2/0{,}0512=375$).
+- **Mặt trang:** định nghĩa hội tụ bậc hai chuyển từ trang câu hỏi (sửa N-S1 trước đó) sang RN07; RN08 câu 2 dẫn chiếu "theo định nghĩa hội tụ bậc hai".
+- **Kiểm tra trình duyệt:** RN07 1600×900 đáy nội dung 813/829 px, tiêu đề kết thúc 706 px; RN08 620/829 px; không lỗi KaTeX/console; 390×844 cuộn dọc, bảng cuộn ngang trong `.table-scroll`.
+- Rà soát toán học, mạch lập luận, kiểm định storyboard: *chờ*.
+
 ## Thêm phần tự học về hội tụ của giảm gradient — 2026-10-01
 
 **Yêu cầu người dùng:** "sau các slide về giảm gradient và 'Hướng và độ dài bước' hãy thêm một số slide tự học về chứng minh hội tụ và tốc độ hội tụ của giảm gradient cho hàm lồi Lipschitz"; bổ sung sau đó: gồm cả quay lui Armijo. Tác tử soạn: fork của điều phối viên, Claude Opus 5.5 (kế thừa phiên điều phối; không có định nghĩa `.claude/agents/`).

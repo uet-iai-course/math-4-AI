@@ -38,7 +38,7 @@ Mã ở cột đầu thuộc HTML trước sửa. Mã bắt đầu bằng R là 
 | E06 | Hệ khối được đưa như công thức hoàn chỉnh; thiếu nguồn gốc từng khối và ý nghĩa nhân tử của bài con. | RE04 đặt hai phương trình cạnh ma trận, ghi kích thước và giả thiết khả nghịch. |
 | E08–E10 | Hai phần dư và hệ cập nhật có mặt nhưng thiếu hai dòng tuyến tính hóa; nhận bước theo chuẩn phần dư chưa có lập luận trên mặt trang. | RR02 phân biệt xấp xỉ với đẳng thức chính xác; RR05 chứng minh đạo hàm âm của chuẩn phần dư và cho phản ví dụ dùng $F$. |
 | E05, E09–E10 | Phân biệt $\eta$ và $\Delta\nu$ bằng tên chưa đủ cho cập nhật giảm bước. | RR03 và RR06 dùng $\eta=\nu+\Delta\nu$, $\nu^+=(1-t)\nu+t\eta$. |
-| D01–D05, E01 | Tính tự điều chỉnh ngắt chuỗi xây dựng Newton; tính chất được kiểm nhưng chưa cho một đầu ra định lượng để sử dụng. | Chuyển thành RS01–RS05 sau hai hệ Newton, nối lại RN07 và dùng cận $-\delta-\log(1-\delta)$. |
+| D01–D05, E01 | Tính tự điều chỉnh ngắt chuỗi xây dựng Newton; tính chất được kiểm nhưng chưa cho một đầu ra định lượng để sử dụng. | Chuyển thành RS01–RS05 sau hai hệ Newton, nối lại RN08 và dùng cận $-\delta-\log(1-\delta)$. |
 | E11, Z01–Z02 | Ứng dụng học máy đến muộn, chưa đối chiếu nhân tử hồi quy Bài 03; tổng kết theo tên phương pháp. | RZ01 tổng hợp cách suy ra; RZ02 yêu cầu tự lập KKT, gradient, Hessian và hai phần dư của mô hình học. |
 
 ## 3. Phạm vi, chuẩn đầu ra và nguồn
@@ -47,8 +47,8 @@ Mã ở cột đầu thuộc HTML trước sửa. Mã bắt đầu bằng R là 
 
 | Mục tiêu đề xuất | Liên hệ chuẩn chính thức | Minh chứng |
 |---|---|---|
-| MT1: suy ra hướng gradient, hướng theo chuẩn bậc hai và Newton từ điều kiện tối ưu của bài con | LLO6 / CLO1 | RG11, RN07 |
-| MT2: giải một bước, nhận bước và phân biệt các tiêu chí dừng | LLO8 / CLO2 | RG05–RG06, RN05–RN07 |
+| MT1: suy ra hướng gradient, hướng theo chuẩn bậc hai và Newton từ điều kiện tối ưu của bài con | LLO6 / CLO1 | RG11, RN08 |
+| MT2: giải một bước, nhận bước và phân biệt các tiêu chí dừng | LLO8 / CLO2 | RG05–RG06, RN05–RN08 |
 | MT3: dùng tính tự điều chỉnh để kiểm điều kiện của một cận sai số | LLO7 / CLO1 | RS03, RS05 |
 | MT4: tự lập hai hệ Newton có đẳng thức và giải thích các ẩn | LLO9 / CLO1 | RE08, RR07 |
 | MT5: thực hiện và kiểm bước có đẳng thức, chuyển sang mô hình học | LLO10 / CLO2 | RE05, RR04, RZ02 |
@@ -224,7 +224,7 @@ Mỗi mạch có một trang kiểm tra riêng. Thời gian nghĩ/chữa là ph�
 |---|---|---|
 | RP04 | $L=F+\nu^T(Au-b)$; $\nabla F+A^T\nu=0$, $Au=b$; $\nu$ tự do; $Ad=d_1+d_2$; hướng giữ khả thi khi $d_1+d_2=0$ | Đúng hai nhóm, dấu nhân tử và tự tìm điều kiện của hướng. |
 | RG11 | $Wd=-g$, $d=(-2,-4)^T$; $\|v\|_W=1$ với $v=d/\sqrt{124}$. Armijo dừng thử ngay khi nhận $1/4$, không thử tiếp $1/8$ | Phân biệt hướng/chuẩn hóa/bước; tự suy ra hệ từ $Q_W$. |
-| RN07 (bản trước 2026-09-30) | $d=3/16$, $s^+=7/16$, $\varphi'=-9/7$; $9/32$ là giảm mô hình, không là sai số thật $\log4-3/4$ | Không suy nghiệm của bài gốc từ nghiệm mô hình; nêu đúng phép trừ. |
+| RN08 (bản trước 2026-09-30) | $d=3/16$, $s^+=7/16$, $\varphi'=-9/7$; $9/32$ là giảm mô hình, không là sai số thật $\log4-3/4$ | Không suy nghiệm của bài gốc từ nghiệm mô hình; nêu đúng phép trừ. |
 | RE08 (bản trước 2026-09-30) | $L_m=g^Td+d^THd/2+\eta^TAd$; hai đạo hàm cho hệ khối; dùng $N^TA^T=0$ được $N^THN\Delta z=-N^Tg$ | Viết và giải thích nguồn gốc từng hàng, không chỉ chép ma trận. |
 | RR07 | $-44=-(40+4)$, $5=-(-5)$; $\Delta\nu=-24$ còn $\eta=4-24=-20$. Dừng cần cả $\|r_p\|\le\varepsilon_p$, $\|r_d\|\le\varepsilon_d$ | Không lẫn gradient/phần dư, nhân tử/số gia; kiểm cả hai điều kiện KKT. |
 | RS05 | $-\log s$ giảm không bị chặn dưới, không có cực tiểu; $s-\log s$ đạt min tại 1. Không thay $\delta$ bằng $\delta^2$ trong biểu thức cận. Riêng điều kiện $\delta<1$ và $\delta^2<1$ tương đương vì $\delta\ge0$ | Phân biệt điều kiện tồn tại nghiệm, giảm mô hình, cận sai số và cách đọc ký hiệu. |
@@ -243,7 +243,7 @@ Bản nháp ngày 2026-09-26 đã cập nhật văn bản HTML và hai Markdown;
 ### Đợt biên tập học thuật 2026-09-26
 
 - Toàn bộ 46 ghi chú được viết bằng phát biểu về giả thiết, đại lượng, phép suy ra, kết quả và quan hệ với phương pháp kế tiếp. Bỏ lời điều phối lớp, lời nhấn mạnh và tham chiếu “trang trước/trang sau”; giữ giải thích và đáp án.
-- RN03 xác định đúng độ giảm từ bước bằng không tới cực tiểu mô hình, không hỏi khoảng cách tới nghiệm mô hình đã giải. RN07 (bản trước 2026-09-30) chỉ kiểm đạo hàm và ba phép trừ đã học; điều kiện cho cận sai số là vấn đề cần nghiên cứu, không phải yêu cầu chấm trước phần tự điều chỉnh.
+- RN03 xác định đúng độ giảm từ bước bằng không tới cực tiểu mô hình, không hỏi khoảng cách tới nghiệm mô hình đã giải. RN08 (bản trước 2026-09-30) chỉ kiểm đạo hàm và ba phép trừ đã học; điều kiện cho cận sai số là vấn đề cần nghiên cứu, không phải yêu cầu chấm trước phần tự điều chỉnh.
 - RR05 và học liệu phần E dùng độ giảm chuẩn phần dư ghép; không suy rằng chuẩn từng thành phần phải giảm đơn điệu. Hai dung sai vẫn được kiểm riêng khi dừng.
 - RS01 phân biệt Hessian không bị chặn trên toàn miền với cận trên tập mức. RS04 phân biệt bảo toàn lớp hàm qua hợp affine với bất biến Newton khi hệ tính bước khả nghịch.
 - RG01 mô tả hình bằng dấu đạo hàm hướng và tiếp tuyến, không dùng góc trên ảnh có tỷ lệ hai trục khác nhau. RG08–RG09 tách vai trò tính lồi, Slater và tính compact.
@@ -974,7 +974,7 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RN04 đổi tên thành "Độ giảm Newton"; phép tính mức giảm mô hình đặt trước định nghĩa $\delta_N$ (Newton decrement).
 - RN05 đổi tên thành "Giảm mô hình và sai số tối ưu"; khung kết luận nêu $\delta_N^2/2=9/32<\log4-3/4$, không phải cận sai số khi thiếu giả thiết về độ cong.
 - RN06 đổi tên thành "Thuật toán Newton"; thêm đầu ra và $\varepsilon_{\mathrm{model}}$ trong đầu vào; hội tụ bậc hai chỉ còn trong ghi chú, kèm định nghĩa.
-- RN07 đổi tên thành "Bước Newton và tốc độ hội tụ"; hai câu hỏi dùng dữ kiện mới: bước Newton thứ hai từ $s^1=7/16$ và quy luật $1-s^+=(1-s)^2$.
+- RN08 đổi tên thành "Bước Newton và tốc độ hội tụ"; hai câu hỏi dùng dữ kiện mới: bước Newton thứ hai từ $s^1=7/16$ và quy luật $1-s^+=(1-s)^2$.
 - Sửa theo rà soát phần G: RG10 đổi tên thành "Hướng dốc nhất có trọng số"; RG08 dùng "Chuẩn có trọng số" và định nghĩa "hướng giảm dốc nhất (gọi tắt: hướng dốc nhất)" trong ghi chú; RG03 và RG04 sửa hình `descent-ray.svg`, `armijo-window.svg` (không đổi dữ liệu).
 - RE01 đổi tên thành "Bài toán có ràng buộc đẳng thức"; mặt trang nêu dạng $\min_u F(u)$ với $Au=b$, $A\in\mathbb R^{p\times n}$ và điểm đầu khả thi $(16,-2)^T$ của VD3; ghi chú nêu nhu cầu từ phần Newton và lý do chọn VD3.
 - RE02 đổi tên thành "Hướng khả thi"; dữ kiện $g,H$ đặt trước bước Newton không ràng buộc; khung kết luận định nghĩa $\ker A=\{d:Ad=0\}$.
@@ -984,7 +984,7 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RE06 đổi tên thành "Hệ Newton rút gọn"; thêm dòng nhu cầu so với hệ khối và kết luận $N^THN\succ0$ khi $H\succ0$.
 - RE07 giữ tiêu đề; định nghĩa $\delta_{eq}^2=d^THd$ là độ giảm Newton của bài con; thêm đầu vào, đầu ra, điều kiện áp dụng; hai tính chất giữ khả thi và hướng giảm được gắn nhãn.
 - RE08 đổi tên thành "Bước Newton khả thi"; hai câu hỏi dùng điểm đầu khả thi mới $(8,6)^T$ (hệ khối cho $d=(2,-2)^T$, $\eta=-20$; hệ rút gọn $\Delta z=-2$); bỏ ba ô trang trí.
-- Sửa theo rà soát phần N: RN01 đổi tên thành "Mô hình bậc hai cục bộ"; RN07 định nghĩa hội tụ bậc hai trên mặt trang, câu 2 không in sẵn dãy số và dùng "khoảng cách tới nghiệm" cho $1-s^k$; ghi chú RN06 nêu $\alpha<1/2$ để nhận bước đầy đủ.
+- Sửa theo rà soát phần N: RN01 đổi tên thành "Mô hình bậc hai cục bộ"; RN08 định nghĩa hội tụ bậc hai trên mặt trang, câu 2 không in sẵn dãy số và dùng "khoảng cách tới nghiệm" cho $1-s^k$; ghi chú RN06 nêu $\alpha<1/2$ để nhận bước đầy đủ.
 - RR01 đổi tên thành "Phần dư KKT"; mặt trang nêu nhu cầu từ RE08, định nghĩa $r_d$, $r_p$ và tương đương với KKT trước số liệu VD3; ghi chú giải thích chỉ số $d$ (đối ngẫu) khác hướng $d$ và vai trò ước lượng của $\nu=4$.
 - RR02 giữ tiêu đề; dòng mở nối phép tuyến tính hóa $\nabla f(x+d)=0$ của Newton không ràng buộc; hai công thức có nhãn "Xấp xỉ bậc một" ($\nabla F$ phi tuyến, $r_d$ tuyến tính theo $\nu$) và "Đúng" (ràng buộc affine); ghi chú nêu với VD3 bậc hai xấp xỉ trở thành đẳng thức.
 - RR03 đổi tên thành "Hệ Newton cho phần dư KKT"; bảng đối chiếu điểm khả thi/chưa khả thi; dòng thay $r_d=g+A^T\nu$ vào hàng 1 thay cho "bài con mở rộng"; kết luận: khi $r_p=0$, hệ trùng hệ Newton có đẳng thức với $\eta=\nu+\Delta\nu$.
@@ -1018,3 +1018,7 @@ Theo yêu cầu người dùng, thêm cụm tự học RG12–RG17 sau câu hỏ
 - RG15 Tốc độ hội tụ $O(1/k)$: định lý, chứng minh cộng dồn, VD1 cận $70/k$.
 - RG16 Hội tụ với quay lui: bước được nhận $t\ge\min(1,\beta/L)$; định lý $\alpha=\tfrac12$: $\|x^0-x^*\|^2/(2t_{\min}k)$; VD1 $t=1/8$, cận $140/k$.
 - RG17 Hội tụ của giảm gradient: ba câu hỏi (cận và thực tế trên VD1; ngưỡng $2/L$; quay lui $\beta=1/4$ cho cận $280/k$); ghi chú kết bằng nhu cầu thước đo theo Hessian.
+
+### Thêm trang tự học tốc độ hội tụ của Newton — 2026-10-01
+
+Theo yêu cầu người dùng, chèn RN07 "Tốc độ hội tụ của Newton" (tự học, không chứng minh) sau RN06 "Thuật toán Newton". Trang câu hỏi cũ đổi mã RN07 → RN08 và đổi tiêu đề thành "Hội tụ bậc hai trên VD2"; mọi mã RN07 trong dàn ý trước ngày này chỉ trang câu hỏi, nay là RN08. Nội dung RN07: định nghĩa hội tụ bậc hai; bảng bậc hai / cục bộ / toàn cục (lồi mạnh, Hessian Lipschitz, quay lui) / tự điều chỉnh; số bước $(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$; nhận xét Hessian không xác định dương; so sánh với giảm gradient. Hằng số theo BV §9.5.3 và §9.6.4.

@@ -14,15 +14,15 @@ KKT là điều kiện Karush–Kuhn–Tucker đã học ở Bài 03; LLO là ch
 |---|---|---|---|---|---|
 | Mở đầu: dùng lại điều kiện tối ưu | RP00–RP04 (5) | KKT và hồi quy Bài 03 | Hai dạng KKT và nhiệm vụ tạo bước | 0.15 + 0.10 | RP04 |
 | Hướng giảm, bước và thước đo (RG12–RG17 tự học từ 2026-10-01) | RG01–RG17 (17) | Điều kiện dừng không ràng buộc | Bài con chọn hướng, thuật toán gradient và giới hạn W cố định | 0.50 + 0.15 | RG11 |
-| Newton từ mô hình và phương trình tối ưu | RN01–RN07 (7) | Hướng theo W và quy tắc nhận bước | Hướng Newton, phân biệt mô hình và bài gốc; câu hỏi về cận sai số | 0.40 + 0.15 | RN07 |
+| Newton từ mô hình và phương trình tối ưu (RN07 tự học từ 2026-10-01) | RN01–RN08 (8) | Hướng theo W và quy tắc nhận bước | Hướng Newton, phân biệt mô hình và bài gốc; câu hỏi về cận sai số | 0.40 + 0.15 | RN08 |
 | Newton giữ đẳng thức | RE01–RE08 (8) | Mô hình Newton có thể phá tính khả thi | KKT bài con, hệ khối và khử biến tương đương | 0.35 + 0.15 | RE08 |
 | Newton phục hồi điều kiện KKT | RR01–RR07 (7) | Thuật toán trước cần điểm đầu khả thi | Tuyến tính hóa phần dư, cập nhật hai biến, nhận bước theo phần dư | 0.35 + 0.20 | RR07 |
-| Tính tự điều chỉnh và cận sai số (tự học từ 2026-10-01) | RS01–RS05 (5) | Câu hỏi RN07 còn mở sau khi đã có các phương pháp | Cận sai số có giả thiết cho bài không ràng buộc và bài khử | 0.20 + 0.10 | RS05 |
+| Tính tự điều chỉnh và cận sai số (tự học từ 2026-10-01) | RS01–RS05 (5) | Câu hỏi RN08 còn mở sau khi đã có các phương pháp | Cận sai số có giả thiết cho bài không ràng buộc và bài khử | 0.20 + 0.10 | RS05 |
 | Tổng hợp và chuyển giao | RZ01–RZ03 (3) | Các hệ cập nhật và tiêu chí đã suy ra | Tự lập hệ cho mô hình học, nhận diện chứng nhận và dung sai | 0.05 + 0.15 | RZ02 |
 
 Đổi riêng điểm đầu khả thi VD3 thành (16,−2), giữ F,A,b và nghiệm. Các hình RE02/RE05 cần cả phần tọa độ âm; không thêm ràng buộc dấu. Cả hệ khối và hệ rút gọn dùng cùng điểm mới.
 
-Số trang (từ 2026-10-01): 5 + 17 + 7 + 8 + 7 + 5 + 3 = **52**, trong đó RG12–RG17 là cụm tự học thêm theo yêu cầu người dùng; trước đó: 5 + 11 + 7 + 8 + 7 + 5 + 3 = 46. Gộp mạch A/B cũ vì cùng xây dựng hướng và bước; tách E cũ vì giữ khả thi và phục hồi KKT có điều kiện đầu vào, ẩn và tiêu chí tiến triển khác nhau. Dời D cũ sau hai loại Newton để không ngắt chuỗi suy ra phương pháp. Kết luận vẫn là ứng dụng kiến thức đã học, không mở mạch mới.
+Số trang (từ 2026-10-01): 5 + 17 + 8 + 8 + 7 + 5 + 3 = **53**, trong đó RG12–RG17 và RN07 là trang tự học thêm theo yêu cầu người dùng (RN07 cũ đổi mã thành RN08); trước đó: 5 + 11 + 7 + 8 + 7 + 5 + 3 = 46. Gộp mạch A/B cũ vì cùng xây dựng hướng và bước; tách E cũ vì giữ khả thi và phục hồi KKT có điều kiện đầu vào, ẩn và tiêu chí tiến triển khác nhau. Dời D cũ sau hai loại Newton để không ngắt chuỗi suy ra phương pháp. Kết luận vẫn là ứng dụng kiến thức đã học, không mở mạch mới.
 
 ## Bản đồ hành trình khái niệm
 
@@ -31,12 +31,13 @@ Số trang (từ 2026-10-01): 5 + 17 + 7 + 8 + 7 + 5 + 3 = **52**, trong đó RG
 | Gradient và bước, LLO6/8 | RG01 cần chọn hướng | RG01 đường mức, RG03 tia cập nhật | VD1 tại RG01, RG03 | RG02 bài con; RG03 điều kiện hướng; RG04 Armijo | RG05 một lượt, RG06 vòng lặp | RG11 | Giữ x,g,d; chọn hướng chưa quyết định t. RG01 gộp nhu cầu + ví dụ dẫn nhập + trực quan vì đều giải thích tác dụng của gᵀd; từ 2026-09-30 RG01 cũng nêu định nghĩa đạo hàm hướng theo chu trình rút gọn cho kiến thức tiên quyết (Bài giảng 00, B05). |
 | Chuẩn bậc hai, LLO6/8 | RG07 đường đi phụ thuộc cách đo | RG07, elip RG08 | VD1: W, elip và đường tuyến tính RG08 trước Lagrange | RG08–RG09 KKT | RG10 đổi độ dài và giải hệ | RG11 | Giữ g từ VD1, thêm W trước chỗ dùng; nghiệm chuẩn hóa phải được đổi độ dài để cập nhật. |
 | Hội tụ của giảm gradient, LLO8/CLO2 (tự học từ 2026-10-01; chu trình rút gọn nhu cầu → hình thức → kiểm tra) | RG12: bước cố định cần chặn độ cong | RG12 parabol cận trên và tiếp tuyến | VD1 tại RG13, RG15, RG16 | RG12 định nghĩa, RG13 bổ đề giảm, RG14 bất đẳng thức một bước, RG15 định lý $O(1/k)$, RG16 quay lui | Không áp dụng riêng: kết quả là bảo đảm cho thuật toán RG06 | RG17 | Giữ $x,g,t,L$, VD1 và $x^*=0$; chu trình rút gọn vì là phần tự học chứng minh cho thuật toán đã có, không giới thiệu phương pháp mới |
-| Newton, LLO6/8 | RN01 W cố định chưa dùng độ cong hiện tại | RN01 hàm thật và parabol | RN01 dữ kiện φ; RN02 phép tính g,H,d | RN02 KKT bài con, RN03 tuyến tính hóa, RN04 độ giảm | RN05 nhận bước; RN06 thuật toán | RN07 | φ,g,H,d giữ nguyên; ≈ của phương trình thật dẫn đến phân biệt sai số. Ví dụ dẫn nhập RN01 làm cụ thể nhu cầu xấp xỉ, phép tính RN02 đặt cạnh hình thức hóa cùng một thao tác. |
+| Newton, LLO6/8 | RN01 W cố định chưa dùng độ cong hiện tại | RN01 hàm thật và parabol | RN01 dữ kiện φ; RN02 phép tính g,H,d | RN02 KKT bài con, RN03 tuyến tính hóa, RN04 độ giảm | RN05 nhận bước; RN06 thuật toán | RN08 | φ,g,H,d giữ nguyên; ≈ của phương trình thật dẫn đến phân biệt sai số. Ví dụ dẫn nhập RN01 làm cụ thể nhu cầu xấp xỉ, phép tính RN02 đặt cạnh hình thức hóa cùng một thao tác. |
+| Tốc độ hội tụ của Newton, LLO8/CLO2 (tự học từ 2026-10-01; chu trình rút gọn nhu cầu → hình thức → kiểm tra) | RN07: thuật toán RN06 chưa có phát biểu tốc độ | Không áp dụng: trang tổng hợp kết quả không chứng minh | VD1 (một bước), VD2 ở RN08 | RN07 bảng bốn trường hợp | Không áp dụng riêng | RN08 câu 2 | Định nghĩa hội tụ bậc hai truyền sang RN08; chu trình rút gọn vì người dùng yêu cầu nêu kết quả không chứng minh |
 | Newton khả thi, LLO9/10 | RE01 phải giữ tổng; RE02 hướng cũ phá tổng | RE01–RE02 đường khả thi | RE01 mốc nghiệm, RE02 điểm đầu VD3 | RE03 Lagrange, RE04 hệ | RE05 giải bước, RE06 giải bằng khử, RE07 thuật toán | RE08 | Truyền F,u,A,b,g,H; thêm η khi lập bài con. RE01 gộp nhu cầu, hình và KKT bài gốc đã học, không giới thiệu phương pháp trước nhu cầu. |
 | Newton phần dư, LLO9/10 | RR01 điểm đầu không thỏa KKT | RR01 hai phương trình và độ lệch đặt cùng hàng | RR01 tính hai phần dư VD3 | RR02 tuyến tính hóa; RR03 hệ | RR04 giải số; RR05 biện minh thước đo; RR06 thuật toán | RR07 | Truyền F,A,b, đổi rõ u,ν; r_d,r_p là vế trái của KKT, không phải ký hiệu tùy ý. RR05 là kết quả hỗ trợ theo chu trình nhu cầu → phản ví dụ → lập luận đạo hàm → dùng ở RR06. |
-| Tự điều chỉnh, LLO7 (tự học từ 2026-10-01) | RS01 thu hồi RN07 | RS01 độ cong gần biên, RS02 tỷ số tương đối | RS02 tính φ toàn miền | RS02 định nghĩa, RS03 cận có giả thiết | RS03 cận số, RS04 bài khử đẳng thức | RS05 | Giữ φ,s,δ từ RN; không đổi δ thành δ² trong công thức cận. RS02 hiện ví dụ trước định nghĩa. Theo yêu cầu người dùng ngày 2026-10-01, cả cụm là phần tự học, đánh dấu "Tự học" trên RS01–RS05; tuyến trình chiếu vẫn liên tục và phần tổng hợp chỉ dùng cận ở RS03 cùng giả thiết của nó. |
+| Tự điều chỉnh, LLO7 (tự học từ 2026-10-01) | RS01 thu hồi RN08 | RS01 độ cong gần biên, RS02 tỷ số tương đối | RS02 tính φ toàn miền | RS02 định nghĩa, RS03 cận có giả thiết | RS03 cận số, RS04 bài khử đẳng thức | RS05 | Giữ φ,s,δ từ RN; không đổi δ thành δ² trong công thức cận. RS02 hiện ví dụ trước định nghĩa. Theo yêu cầu người dùng ngày 2026-10-01, cả cụm là phần tự học, đánh dấu "Tự học" trên RS01–RS05; tuyến trình chiếu vẫn liên tục và phần tổng hợp chỉ dùng cận ở RS03 cùng giả thiết của nó. |
 
-Mở đầu và kết luận dùng chu trình rút gọn nhắc điều kiện/nhu cầu → tổ chức → kiểm tra vì không giới thiệu khái niệm toán mới; kiểm ở RP04 và RZ02. Khử biến ở RE06 là cách giải cùng hệ đã học: nhu cầu giảm chiều → khử nhân tử → kiểm cùng hướng → RE08; không cần dựng một chu trình sáu trang riêng. Cận hội tụ trong ghi chú là kết quả hỗ trợ đánh giá, không phải một thuật toán mới; phát biểu đầy đủ giả thiết ở dàn ý §5.7, kiểm không suy quá mức qua RN07/RZ02.
+Mở đầu và kết luận dùng chu trình rút gọn nhắc điều kiện/nhu cầu → tổ chức → kiểm tra vì không giới thiệu khái niệm toán mới; kiểm ở RP04 và RZ02. Khử biến ở RE06 là cách giải cùng hệ đã học: nhu cầu giảm chiều → khử nhân tử → kiểm cùng hướng → RE08; không cần dựng một chu trình sáu trang riêng. Cận hội tụ trong ghi chú là kết quả hỗ trợ đánh giá, không phải một thuật toán mới; phát biểu đầy đủ giả thiết ở dàn ý §5.7, kiểm không suy quá mức qua RN08/RZ02.
 
 Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ BT cho nhiệm vụ Armijo ở RG11. Cụm chuẩn bậc hai gồm RG07–RG10: 0.20 giờ LT + 0.075 giờ BT cho nhiệm vụ hướng theo chuẩn ở RG11. Hai nhiệm vụ của RG11 chia đều 0.15 giờ BT; tổng mạch RG vẫn là 0.50 giờ LT + 0.15 giờ BT, không cộng hai lần trang kiểm tra. Cụm khả thi gồm khử biến dùng chung thời lượng RE; các cụm còn lại bằng thời lượng mạch tương ứng. Câu nối và đầu ra từng trang được ghi dưới đây.
 
@@ -316,7 +317,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Bố cục chọn:** Dòng nhu cầu; `ratio60`: trái hình, phải khung VD2; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 778 px, đáy trang 829 px (bản nháp đầu tràn 1 px do công thức khối và dòng mở hai dòng; đã rút gọn).
 - **Lý do bố cục cho sinh viên năm 3:** Nhu cầu Newton được lấy từ bài tập vừa giải; ví dụ mới được giới thiệu cùng lý do cần nó.
 - **Vào → ra:** Đầu vào: câu hỏi 1 của RG11 ($x^1+d=0$ với $W=\nabla^2f$). Đầu ra: mô hình $q(s)=\varphi(1/4)-3(s-1/4)+8(s-1/4)^2$; cực tiểu của nó cho hướng Newton (RN02).
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RN07.
+- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RN08.
 - **Số liệu:** VD2: $\varphi'(1/4)=-3$, $\varphi''(1/4)=16$; cực tiểu parabol tại $7/16$.
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
@@ -328,7 +329,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Bố cục chọn:** Dòng giả thiết, công thức mô hình; `lec-grid--65-35`: trái phép giải và VD2, phải khung tính chất. Đo ở 1600×900: đáy nội dung 574 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Giả thiết đọc trước phép giải; hướng Newton được đặt vào cùng khuôn mẫu $Q_W$ và cùng tiêu chuẩn hướng giảm của phần gradient.
 - **Vào → ra:** Đầu vào: parabol tại $s^0$ (RN01), mô hình $Q_W$ (RG10), tiêu chuẩn dấu (RG01). Đầu ra: $d=3/16$, $s^+=7/16$; câu hỏi $s^+$ có thỏa $\varphi'(s)=0$ không (RN03).
-- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RN07.
+- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RN08.
 - **Số liệu:** VD2: $g\,d=-9/16$, $d^THd=9/16$.
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
@@ -340,7 +341,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Bố cục chọn:** Hai khung xếp dọc, khung kết luận dưới. Đo ở 1600×900: đáy nội dung 810 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Phương trình phi tuyến và bản tuyến tính hóa đặt liền nhau; ví dụ số cho thấy hai cách suy ra trùng nhau và giới hạn của một bước.
 - **Vào → ra:** Đầu vào: $d=3/16$, $s^+=7/16$ và câu hỏi về điều kiện dừng (RN02). Đầu ra: một bước Newton giải hệ tuyến tính thay hệ phi tuyến; cách nhìn này dùng lại cho hệ KKT (RR02); nhu cầu đo mức giảm mô hình dự báo (RN04).
-- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RN07.
+- **Chuẩn và minh chứng:** LLO6 / CLO1; đo tại RN08.
 - **Số liệu:** VD2: $\varphi'(7/16)=-9/7$.
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
@@ -352,7 +353,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Bố cục chọn:** `ratio60`: trái phép tính và định nghĩa, phải bảng VD2; khung VD1 dưới. Đo ở 1600×900: đáy nội dung 733 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Đại lượng được đặt tên sau khi đã tính ra; VD1 là trường hợp mô hình trùng hàm.
 - **Vào → ra:** Đầu vào: hệ $Hd=-g$ (RN02) và giới hạn của một bước (RN03). Đầu ra: $\delta_N^2/2$ là mức giảm mô hình, cần so với mức giảm thật và sai số tối ưu (RN05).
-- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN07.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN08.
 - **Số liệu:** VD2: $\delta_N^2=16\cdot(3/16)^2=9/16$; VD1: $d^THd=124$.
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
@@ -364,7 +365,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Bố cục chọn:** Dòng dữ kiện, bảng hiện từng hàng, dòng Armijo, khung kết luận hiện sau cùng. Đo ở 1600×900: đáy nội dung 732 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Ba số được so trực tiếp; kết luận đọc từ bảng, không từ ghi chú.
 - **Vào → ra:** Đầu vào: $\delta_N^2/2$ (RN04), bước $s^+$ (RN02). Đầu ra: tiêu chí dừng theo $\delta_N^2/2$ tính được nhưng chưa là chứng nhận sai số (RN06); nhu cầu giả thiết kiểm soát độ cong (RS).
-- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN07.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN08.
 - **Số liệu:** Tính lại: $\log(7/4)-3/16=0{,}372116$, $\log4-3/4=0{,}636294$, $9/32=0{,}28125$; $9/160=0{,}05625$.
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
@@ -375,15 +376,26 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nội dung trên trang:** Năm bước: tính $g,H$; giải $Hd=-g$; tính $\delta_N^2=d^THd$; dừng nếu $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$; nếu chưa, chọn $t$ bằng Armijo và cập nhật. Khung: đầu vào $x^0\in\operatorname{dom}f$, $\varepsilon_{\mathrm{model}}>0$, $\alpha,\beta$; đầu ra $x$ với $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$; điều kiện $f$ hai lần khả vi, $H\succ0$ tại điểm lặp; chi phí mỗi lượt Hessian và hệ $n\times n$, $O(n^3)$ khi đặc. Kết luận: tiêu chí $\delta_N^2/2$ tính được tại điểm hiện tại nhưng chưa chứng nhận sai số tối ưu (VD2: $9/32$ so với $0{,}636$).
 - **Bố cục chọn:** `lec-grid--60-40`: trái thủ tục, phải một khung bốn mục; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 778 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Cùng khuôn với thuật toán giảm gradient để thấy hai phương pháp chỉ khác hướng và tiêu chí dừng.
-- **Vào → ra:** Đầu vào: hướng Newton (RN02), độ giảm Newton (RN04), so sánh ba phép trừ (RN05), Armijo (RG04). Đầu ra: thuật toán hoàn chỉnh; tiêu chí dừng chưa là cận sai số, dẫn tới câu hỏi RN07 và phần cận sai số (RS).
-- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN07.
+- **Vào → ra:** Đầu vào: hướng Newton (RN02), độ giảm Newton (RN04), so sánh ba phép trừ (RN05), Armijo (RG04). Đầu ra: thuật toán hoàn chỉnh; tiêu chí dừng chưa là cận sai số, dẫn tới câu hỏi RN08 và phần cận sai số (RS).
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN08.
 - **Số liệu:** VD2: $9/32$, $\log4-3/4\approx0{,}636$; $\delta_N^2=g^TH^{-1}g$ (ghi chú).
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
-### RN07 — Bước Newton và tốc độ hội tụ
+### RN07 — Tốc độ hội tụ của Newton
 
-- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Kiểm tra mô hình và điều kiện tối ưu" thành "Bước Newton và tốc độ hội tụ"; bỏ khung chép đáp số và các ô trống đã có sẵn trên RN03, RN05 (và trong Bài 3 của tập bài tập); thay bằng hai câu trên dữ kiện mới: bước Newton thứ hai từ $s^1=7/16$ và chứng minh $1-s^+=(1-s)^2$; giữ dòng vấn đề mở về cận sai số, viết gọn. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): định nghĩa hội tụ bậc hai trên mặt trang; câu 2 không in sẵn dãy số; $1-s^k$ gọi là khoảng cách tới nghiệm; ghi chú thêm trường hợp $s^0\ge2$ và câu nối về cận sai số.
+- **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu "sau slide 'Thuật toán Newton', thêm một slide Tự học về tốc độ hội tụ của thuật toán trong các trường hợp (không cần chứng minh)". Có nhãn "Tự học".
+- **Nội dung trên trang:** Định nghĩa hội tụ bậc hai (chuyển từ trang câu hỏi). Bảng bốn trường hợp: bậc hai lồi chặt (một bước), cục bộ ($\nabla^2f(x^*)\succ0$, Hessian Lipschitz; bậc hai khi gần), toàn cục (lồi mạnh, Hessian Lipschitz; pha tắt dần rồi bậc hai), tự điều chỉnh (hằng số chỉ theo $\alpha,\beta$). Số bước toàn cục $\le(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$. Kết luận: Hessian không xác định dương thì hướng có thể không giảm; so với giảm gradient $O(1/k)$ hoặc $(1-\mu/L)^k$.
+- **Bố cục chọn:** Dòng định nghĩa; bảng ba cột; dòng số bước; kết luận. Hằng số chính xác ở ghi chú.
+- **Lý do tồn tại:** Thuật toán Newton vừa hoàn chỉnh chưa có phát biểu về tốc độ; trang câu hỏi kế tiếp dùng khái niệm hội tụ bậc hai.
+- **Vào → ra:** Đầu vào: thuật toán Newton (RN06), cận gradient (RG15, RG16, ghi chú mục B). Đầu ra: định nghĩa hội tụ bậc hai cho RN08; chỉ dẫn tới phần tự điều chỉnh (RS).
+- **Chuẩn và minh chứng:** LLO8 / CLO2 (tốc độ hội tụ); tự học, kiểm một phần ở RN08.
+- **Số liệu:** Hằng số đối chiếu Boyd và Vandenberghe (2004), bản trong `sources/bv_cvxbook.pdf`: §9.5.3 tr. 488–491 — $\eta=\min\{1,3(1-2\alpha)\}m^2/L$, $\gamma=\alpha\beta\eta^2m/M^2$, $\epsilon_0=2m^3/L^2$, (9.36); §9.6.4 tr. 503–505 — $\eta=(1-2\alpha)/4$, $\gamma=\alpha\beta\eta^2/(1+\eta)$, (9.53), (9.56) hệ số $(20-8\alpha)/(\alpha\beta(1-2\alpha)^2)$, ví dụ $\alpha=0{,}1,\beta=0{,}8$ cho $375$. Trên trang, hằng số Lipschitz của Hessian viết $L_H$ trong ghi chú để tránh trùng $L$ của gradient.
+- **Nguồn, ghi chú soạn:** BV §§9.5.3, 9.6.4; cận cục bộ $\|x^+-x^*\|\le\tfrac{L_H}{2\mu}\|x-x^*\|^2$ theo ghi chú bài giảng mục C. Không chứng minh theo yêu cầu người dùng.
+
+### RN08 — Hội tụ bậc hai trên VD2
+
+- **Quyết định:** `sửa` ngày 2026-10-01: đổi mã từ RN07 thành RN08 vì chèn trang tự học "Tốc độ hội tụ của Newton" (RN07 mới) trước trang này; đổi tiêu đề "Bước Newton và tốc độ hội tụ" thành "Hội tụ bậc hai trên VD2" để không trùng ý với RN07 mới; định nghĩa hội tụ bậc hai chuyển sang RN07, câu 2 dẫn chiếu định nghĩa đó; dòng cuối còn "Vấn đề còn mở". Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Kiểm tra mô hình và điều kiện tối ưu" thành "Bước Newton và tốc độ hội tụ"; bỏ khung chép đáp số và các ô trống đã có sẵn trên RN03, RN05 (và trong Bài 3 của tập bài tập); thay bằng hai câu trên dữ kiện mới: bước Newton thứ hai từ $s^1=7/16$ và chứng minh $1-s^+=(1-s)^2$; giữ dòng vấn đề mở về cận sai số, viết gọn. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): định nghĩa hội tụ bậc hai trên mặt trang; câu 2 không in sẵn dãy số; $1-s^k$ gọi là khoảng cách tới nghiệm; ghi chú thêm trường hợp $s^0\ge2$ và câu nối về cận sai số.
 - **Nội dung trên trang:** Câu hỏi 1: với VD2, bước Newton đầy đủ thứ hai từ $s^1=7/16$: tính $g,H,d,s^2$, $\delta_N^2/2$ và so với $\varphi(s^1)-\varphi(1)$. Câu hỏi 2: chứng minh bước Newton đầy đủ cho $1-s^+=(1-s)^2$; nhận xét dãy sai số $3/4, 9/16, 81/256$. Vấn đề: điều kiện để $\delta_N^2$ cho cận sai số mục tiêu.
 - **Bố cục chọn:** Hai khung câu hỏi `lec-grid--60-40`, dòng vấn đề dưới. Đo ở 1600×900: đáy nội dung 516 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Câu 1 đo khả năng thực hiện thuật toán trên điểm mới; câu 2 đo khả năng suy ra quy luật hội tụ từ công thức bước.
@@ -399,7 +411,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nội dung trên trang:** Bài toán $\min_u F(u)$ với $Au=b$, $A\in\mathbb R^{p\times n}$ (lớp thứ hai của RP02). VD3 $F=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ 1]$, $b=14$, điểm đầu khả thi $(16,-2)^T$. $L=F+\nu(u_1+u_2-14)$; KKT $2u_1+\nu=0$, $5u_2+\nu=0$, $u_1+u_2=14$; ứng viên $(10,4)^T$, $\nu=-20$, $F^*=140$; kết luận lồi chặt + KKT cho nghiệm duy nhất. Ghi chú: nhu cầu (Newton không ràng buộc đã hoàn chỉnh, lớp thứ hai cần giữ $Au=b$), đổi ký hiệu $F,u$, lý do chọn VD3 (giải KKT bằng tay làm mốc kiểm).
 - **Bố cục chọn:** Trái 45% hình đường khả thi, đường mức, điểm đầu và nghiệm; phải: dạng bài toán → VD3 và điểm đầu → Lagrange → ba phương trình → ứng viên; kết luận ở chân. Đo 1600×900: nội dung 674/674, tiêu đề kết thúc trước nút điều hướng; 390×844: chỉ hàng ba phương trình cuộn ngang trong `.formula`.
 - **Lý do bố cục cho sinh viên năm 3:** Khôi phục cân bằng gradient của bài 03 trước khi xây dựng thuật toán giữ ràng buộc.
-- **Vào → ra:** Đầu vào: Newton không ràng buộc đã hoàn chỉnh (RN01–RN07); lớp bài toán đẳng thức và hệ KKT của nó từ RP02. Đầu ra: nghiệm tham chiếu $(10,4)^T$, $\nu=-20$, $F^*=140$ và điểm đầu khả thi $(16,-2)^T$; câu hỏi hướng bước nào giữ $Au=b$.
+- **Vào → ra:** Đầu vào: Newton không ràng buộc đã hoàn chỉnh (RN01–RN08); lớp bài toán đẳng thức và hệ KKT của nó từ RP02. Đầu ra: nghiệm tham chiếu $(10,4)^T$, $\nu=-20$, $F^*=140$ và điểm đầu khả thi $(16,-2)^T$; câu hỏi hướng bước nào giữ $Au=b$.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** VD3 khả thi, dàn ý §6: F, u, A, b; g, H ở RE02; d, η ở RE05; N, Δz ở RE06. Chỉ đưa ký hiệu đã dùng trên trang, chưa đưa phần dư hoặc số gia nhân tử.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Liên kết ghi chú: hướng Newton cần nằm trong không gian hạt nhân để bảo toàn đẳng thức. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
@@ -578,11 +590,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RS01 — Biến thiên độ cong
 
-- **Quyết định:** `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học cho phần tự điều chỉnh; thêm nhãn "Tự học" (lớp chung `.self-study-badge`), đặt bằng nhãn nội dòng cuối tiêu đề. Đây là ngoại lệ có chủ ý theo chỉ dẫn cụ thể của người dùng đối với quy định AGENTS.md không hiển thị nhãn quy trình; không đổi nội dung toán, thứ tự hay điều hướng. Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề "Độ cong và sai số của mô hình Newton" thành "Biến thiên độ cong"; đưa vấn đề mở từ RN05/RN07/RR07 lên mặt trang; kết luận nêu rõ đại lượng được so sánh ($|arphi'''|$ với $(arphi'')^{3/2}$); ghi chú giải thích vì sao cận cổ điển cần hằng số $m,L$ và vì sao tỷ số với số mũ $3/2$ không đổi khi đổi thang. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu D01, C08. Phần tự điều chỉnh trả lời một vấn đề đã giữ lại, thay vì cắt ngang giữa hai loại Newton.
+- **Quyết định:** `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học cho phần tự điều chỉnh; thêm nhãn "Tự học" (lớp chung `.self-study-badge`), đặt bằng nhãn nội dòng cuối tiêu đề. Đây là ngoại lệ có chủ ý theo chỉ dẫn cụ thể của người dùng đối với quy định AGENTS.md không hiển thị nhãn quy trình; không đổi nội dung toán, thứ tự hay điều hướng. Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề "Độ cong và sai số của mô hình Newton" thành "Biến thiên độ cong"; đưa vấn đề mở từ RN05/RN08/RR07 lên mặt trang; kết luận nêu rõ đại lượng được so sánh ($|arphi'''|$ với $(arphi'')^{3/2}$); ghi chú giải thích vì sao cận cổ điển cần hằng số $m,L$ và vì sao tỷ số với số mũ $3/2$ không đổi khi đổi thang. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu D01, C08. Phần tự điều chỉnh trả lời một vấn đề đã giữ lại, thay vì cắt ngang giữa hai loại Newton.
 - **Nội dung trên trang:** (2026-09-30) Vấn đề: VD2 tại $s=1/4$ có giảm mô hình $9/32$ nhỏ hơn sai số $\log4-3/4$; ký hiệu $\delta=\delta_N$, VD2 $\delta=3/4$; $\varphi''=1/s^2\to\infty$ khi $s\to0^+$; kết luận: cần giả thiết so $|\varphi'''|$ với $(\varphi'')^{3/2}$. Mô tả trước: Trở lại phân biệt giảm mô hình và sai số thật. Từ đây viết $\delta=\delta_N=\sqrt{d^THd}\ge0$; VD2 có $\delta_N^2=9/16$ nên $\delta=3/4$. Với $\varphi(s)=s-\log s$, $\varphi''=1/s^2$ không bị chặn trên toàn miền $s>0$. Cần kiểm biến thiên độ cong tương đối để có một cận sai số.
 - **Bố cục chọn:** Trái 60% đồ thị $\varphi''$ có biên $s=0$; phải ba số đã biết và câu hỏi còn mở; không tạo ví dụ mới.
 - **Lý do bố cục cho sinh viên năm 3:** Phần tự điều chỉnh trả lời một vấn đề đã giữ lại, thay vì cắt ngang giữa hai loại Newton.
-- **Vào → ra:** (2026-09-30) Đầu vào: vấn đề mở từ RN05, RN07, RR07. Đầu ra: nhu cầu một giả thiết độ cong không phụ thuộc hệ tọa độ, định nghĩa ở RS02. Mô tả trước: Đầu vào: Trong VD2, $\delta_N^2/2=9/32$ nhỏ hơn sai số mục tiêu $\log4-3/4$. Đầu ra: Vì $\varphi''(s)=1/s^2$ không bị chặn trên toàn miền, điều kiện tự điều chỉnh kiểm soát độ biến thiên tương đối của độ cong.
+- **Vào → ra:** (2026-09-30) Đầu vào: vấn đề mở từ RN05, RN08, RR07. Đầu ra: nhu cầu một giả thiết độ cong không phụ thuộc hệ tọa độ, định nghĩa ở RS02. Mô tả trước: Đầu vào: Trong VD2, $\delta_N^2/2=9/32$ nhỏ hơn sai số mục tiêu $\log4-3/4$. Đầu ra: Vì $\varphi''(s)=1/s^2$ không bị chặn trên toàn miền, điều kiện tự điều chỉnh kiểm soát độ biến thiên tương đối của độ cong.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; chuẩn bị thao tác được đo tại RS05.
 - **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
 - **Nguồn, ghi chú soạn:** Ghi chú gọi rõ độ giảm Newton của bài toán không ràng buộc và đối chiếu $9/32$ với $\log4-3/4$; phép khử chuyển cận sang điểm khả thi, không dùng chuẩn phần dư tại điểm chưa khả thi. Hessian không bị chặn toàn miền không loại trừ phân tích trên tập mức có cận riêng.  BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
@@ -602,10 +614,10 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RS03 — Cận sai số theo độ giảm Newton
 
-- **Quyết định:** `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học cho phần tự điều chỉnh; thêm nhãn "Tự học" (lớp chung `.self-study-badge`), đặt bằng hàng nhãn `.slide-badge-row` phía trên tiêu đề, vì nhãn nội dòng kết thúc ở 854 px, đè nút điều hướng; trang còn dư 71 px nên vẫn vừa khung. Đây là ngoại lệ có chủ ý theo chỉ dẫn cụ thể của người dùng đối với quy định AGENTS.md không hiển thị nhãn quy trình; không đổi nội dung toán, thứ tự hay điều hướng. Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Cận sai số theo độ giảm Newton"; kết quả gắn nhãn "Định lý", bỏ giả thiết thừa "lồi chặt" (đã kéo theo từ $\nabla^2f\succ0$), dùng $f^*$; VD2 gọn một dòng; kết luận mới dùng khai triển $-\delta-\log(1-\delta)=\delta^2/2+\delta^3/3+\cdots$ để trả lời vấn đề tiêu chí dừng; bỏ hai khung lặp kết luận RN05. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu D04. Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN07 bằng đúng ví dụ cũ.
+- **Quyết định:** `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học cho phần tự điều chỉnh; thêm nhãn "Tự học" (lớp chung `.self-study-badge`), đặt bằng hàng nhãn `.slide-badge-row` phía trên tiêu đề, vì nhãn nội dòng kết thúc ở 854 px, đè nút điều hướng; trang còn dư 71 px nên vẫn vừa khung. Đây là ngoại lệ có chủ ý theo chỉ dẫn cụ thể của người dùng đối với quy định AGENTS.md không hiển thị nhãn quy trình; không đổi nội dung toán, thứ tự hay điều hướng. Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Cận sai số theo độ giảm Newton"; kết quả gắn nhãn "Định lý", bỏ giả thiết thừa "lồi chặt" (đã kéo theo từ $\nabla^2f\succ0$), dùng $f^*$; VD2 gọn một dòng; kết luận mới dùng khai triển $-\delta-\log(1-\delta)=\delta^2/2+\delta^3/3+\cdots$ để trả lời vấn đề tiêu chí dừng; bỏ hai khung lặp kết luận RN05. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu D04. Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN08 bằng đúng ví dụ cũ.
 - **Nội dung trên trang:** Kết quả cho hàm tự điều chỉnh lồi chặt (còn gọi là lồi nghiêm ngặt), $H\succ0$, có nghiệm cực tiểu trong miền: nếu $\delta<1$ thì $f-f^*\le-\delta-\log(1-\delta)$. Với $\varphi$ tại $1/4$, $\delta=3/4$, cận $=\log4-3/4\approx0{,}63629$; $9/32$ chỉ là giảm mô hình. Sự bằng nhau giữa cận và sai số thật chỉ được xác nhận cho ví dụ log này.
 - **Bố cục chọn:** Trên là hộp giả thiết và một bất đẳng thức; dưới thayδ=3/4 rồi so hai đại lượng bằng nhãn; chứng minh cận để ghi chú/tài liệu.
-- **Lý do bố cục cho sinh viên năm 3:** Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN07 bằng đúng ví dụ cũ.
+- **Lý do bố cục cho sinh viên năm 3:** Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN08 bằng đúng ví dụ cũ.
 - **Vào → ra:** (2026-09-30) Đầu vào: lớp hàm tự điều chỉnh (RS02) và $\delta$ của VD2. Đầu ra: cận sai số; khi $\delta$ nhỏ tiêu chí $\delta^2/2\le\varepsilon$ gần đúng chứng nhận sai số; câu hỏi dùng cận cho bài có đẳng thức (RS04). Mô tả trước: Đầu vào: Với hàm tự điều chỉnh có Hessian xác định dương và đạt cực tiểu, điều kiện $\delta<1$ cho cận $-\delta-\log(1-\delta)$. Đầu ra: Phép khử đẳng thức tạo hàm hợp affine; tính tự điều chỉnh của hàm rút gọn cho phép xét cùng cận trên các điểm khả thi.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; chuẩn bị thao tác được đo tại RS05.
 - **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
@@ -721,7 +733,7 @@ Mọi trang hiện hành đều có quyết định. Mã mới ở nhiều dòng
 | C05 | RN06 | Tách/gộp hoặc viết lại theo vai trò, nội dung và bố cục ghi ở các mục đích; không giữ thứ tự cũ mặc định. |
 | C06 | RN06 | Gộp điều kiện hội tụ/chi phí vào RN06; chi tiết cận đặt trong ghi chú, không bỏ giả thiết. |
 | C07 | RN01, RN05 | Tách/gộp hoặc viết lại theo vai trò, nội dung và bố cục ghi ở các mục đích; không giữ thứ tự cũ mặc định. |
-| C08 | RN07, RS01 | Tách/gộp hoặc viết lại theo vai trò, nội dung và bố cục ghi ở các mục đích; không giữ thứ tự cũ mặc định. |
+| C08 | RN08, RS01 | Tách/gộp hoặc viết lại theo vai trò, nội dung và bố cục ghi ở các mục đích; không giữ thứ tự cũ mặc định. |
 | D01 | RS01 | Chuyển sau hai hệ Newton, sửa vai trò thành bảo đảm sai số; giữ định nghĩa và kiểm điều kiện. |
 | D02 | RS02 | Chuyển sau hai hệ Newton, sửa vai trò thành bảo đảm sai số; giữ định nghĩa và kiểm điều kiện. |
 | D03 | RS02, RS04 | Chuyển sau hai hệ Newton, sửa vai trò thành bảo đảm sai số; giữ định nghĩa và kiểm điều kiện. |
