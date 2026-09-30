@@ -75,11 +75,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RP02 — Điều kiện KKT cho hai lớp bài toán
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu P03. Thực hiện phép chuyên biệt hóa ngay trên trang; tránh học thuộc ma trận khối mà chưa biết nguồn gốc.
-- **Nội dung trên trang:** Từ Lagrange bài 03: không ràng buộc còn $\nabla f(x^*)=0$; chỉ đẳng thức còn $\nabla F(u^*)+A^T\nu^*=0,\ Au^*=b$. Không còn $\lambda\ge0$ hay bù trừ vì không có bất đẳng thức trong bài gốc. Chốt miền mở lồi, khả vi; $\nu$ tự do dấu. Ghi $x,u\in\mathbb R^n$, $A\in\mathbb R^{p\times n}$, $b,\nu\in\mathbb R^p$; p là số hàng, ứng với r trong Bài 03.
-- **Bố cục chọn:** Dải trên là bốn nhóm KKT; hai cột dưới chỉ giữ các nhóm còn dùng, nối bằng đường dẫn có nhãn. Chân trang nội dung định nghĩa $g=\nabla f(x)$ và phân biệt với hàm đối ngẫu $g$ của bài 03.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu người dùng: phát biểu hai bài toán trước khi nêu điều kiện dừng. Khoảng trống được xử lý: bản trước nêu hệ KKT khi người học chưa thấy bài toán tối ưu mà hệ đó mô tả, nên biến $x,u$, ma trận $A$ và ràng buộc $Au=b$ xuất hiện trước đối tượng chứa chúng. Các lần sửa trước: sửa văn phong và liên kết toán học ngày 2026-09-26; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu P03. Thực hiện phép chuyên biệt hóa ngay trên trang; tránh học thuộc ma trận khối mà chưa biết nguồn gốc.
+- **Nội dung trên trang:** Dòng giả thiết "Giả thiết cho hai bài toán dưới đây": $f,F$ lồi, khả vi trên miền mở lồi trong $\mathbb R^n$; $A\in\mathbb R^{p\times n}$, $b\in\mathbb R^p$. Cột một: bài toán $\min_x f(x)$, điều kiện dừng $\nabla f(x^*)=0$. Cột hai: bài toán $\min_u F(u)$ với ràng buộc $Au=b$, điều kiện dừng và khả thi gốc $\nabla F(u^*)+A^T\nu^*=0,\ Au^*=b$ với $\nu\in\mathbb R^p$ tự do dấu. Dòng rút gọn: không có bất đẳng thức nên không có nhân tử $\lambda$; trong bốn nhóm KKT của Bài 03 chỉ còn khả thi gốc và dừng. Ghi chú nêu $p$ là số ràng buộc đẳng thức (số hàng của $A$, số thành phần của $b,\nu$) và tính cần và đủ của KKT cho hai bài toán lồi có ràng buộc affine trên miền mở.
+- **Bố cục chọn:** Dòng giả thiết gộp miền, tính lồi, khả vi và kích thước $A,b$. Hai cột song song, mỗi cột theo thứ tự tên lớp → `Bài toán:` → nhãn điều kiện → hệ điều kiện. Dòng dưới hai cột nêu phép rút gọn từ bốn nhóm KKT của Bài 03. Bỏ chân trang $g=\nabla f(x)$ ngày 2026-09-30: RP02 không dùng $g$; quy ước chuyển tới RG01, nơi $g=\nabla f(x^0)$ được dùng lần đầu.
 - **Lý do bố cục cho sinh viên năm 3:** Thực hiện phép chuyên biệt hóa ngay trên trang; tránh học thuộc ma trận khối mà chưa biết nguồn gốc.
-- **Vào → ra:** Đầu vào: Khi không có bất đẳng thức, không còn nhân tử bất đẳng thức và điều kiện bù trừ. Đầu ra: Các phương trình tối ưu xác định nghiệm cần đạt; mô hình theo biến bước $d$ xác định hướng cập nhật.
+- **Vào → ra:** Đầu vào: KKT đủ cho bài lồi (RP01); thu hẹp về lớp không có bất đẳng thức. Đầu ra: Hệ điều kiện xác định nghiệm cần đạt; các phương pháp sau thay bài gốc bằng mô hình theo bước $d$ và giải KKT của mô hình để lấy hướng.
 - **Chuẩn và minh chứng:** LLO6, LLO9 / CLO1; chuẩn bị thao tác được đo tại RP04.
 - **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
 - **Nguồn, ghi chú soạn:** Bài 03 S02-04, S05-03, S05-05b, S05-06a/b; đề cương buổi 4. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
@@ -111,9 +111,9 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RG01 — Đạo hàm hướng và biến thiên cục bộ
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu A01, A02, P02. Giảm lượng dữ kiện chưa dùng và gắn tích vô hướng với bài toán đang giải.
+- **Quyết định:** `sửa` ngày 2026-09-30: nhận quy ước $g$ chuyển từ RP02, vì đây là chỗ dùng $g$ đầu tiên. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu A01, A02, P02. Giảm lượng dữ kiện chưa dùng và gắn tích vô hướng với bài toán đang giải.
 - **Nội dung trên trang:** Giữ VD1 $f=\tfrac12(3x_1^2+7x_2^2),x^0=(2,4)^T,g=(6,28)^T,f_0=62$. Ba hướng minh họa dấu âm, dương và bằng không của $g^Td$. Tỷ lệ hai trục của hình khác nhau; không dùng góc hiển thị làm chứng cứ trực giao, không đồng nhất mũi tên giảm với $-g$. Nhu cầu: chọn một hướng thay vì chỉ kiểm một hướng được cho.
-- **Bố cục chọn:** Trái 55% đường mức và một hướng thử; phải bảng bốn dữ kiện; kết luận dưới hình. Chưa đặt Hessian vào bảng.
+- **Bố cục chọn:** Trái 55% đường mức và một hướng thử; phải bảng bốn dữ kiện; kết luận dưới hình. Chưa đặt Hessian vào bảng. Ngày 2026-09-30: nhận quy ước $g$ từ RP02; kết luận dưới hình thêm mệnh đề "$g$ là gradient, không phải hàm đối ngẫu của Bài giảng 03" và ghi chú thêm phân biệt với $g(\lambda,\nu)$. Đo ở 1600×900: đáy nội dung 811 px, đáy trang 829 px, không tràn.
 - **Lý do bố cục cho sinh viên năm 3:** Giảm lượng dữ kiện chưa dùng và gắn tích vô hướng với bài toán đang giải.
 - **Vào → ra:** Đầu vào: Tại $x^0=(2,4)^T$, gradient là $g=(6,28)^T$; ba mũi tên minh họa ba dấu của đạo hàm hướng, không biểu diễn góc Euclid theo tỷ lệ ảnh. Đầu ra: Tối thiểu hóa riêng $g^Td$ không cho nghiệm hữu hạn khi $g\ne0$; một số hạng bậc hai xác định bài toán chọn hướng có nghiệm.
 - **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
@@ -605,7 +605,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 | Trang | Quyết định giới hạn nội dung trên màn chiếu |
 |---|---|
-| RP02 | Bốn nhóm KKT ở dải trên chỉ là nhãn và ký hiệu ngắn; giữ hai hệ rút gọn ở vùng chính. Giả thiết đầy đủ được nói/ghi đúng nguồn, không lặp chứng minh Bài 03. |
+| RP02 | Bài toán đứng trước điều kiện trong từng cột; phép rút gọn từ bốn nhóm KKT là một dòng dưới hai cột; không còn chân trang $g$. Giữ hai hệ rút gọn ở vùng chính. Tính cần và đủ cùng giả thiết đầy đủ nằm trong ghi chú, không lặp chứng minh Bài 03. Đo 2026-09-30 ở 1600×900: đáy nội dung 820 px, đáy trang 829 px. |
 | RG09 | Dải phụ bốn nhóm KKT có cỡ chữ thân bài; vùng chính chỉ ba bước: ζ>0 → biên hoạt động → v. Phép tính 4ζ² nằm trong ghi chú hoặc hiện thay dòng giữa, không thêm cả đoạn suy diễn. |
 | RG10 | Vùng chính đổi độ dài từ v sang d; vùng dưới định nghĩa Q_W bằng một công thức và điều kiện dừng. Nếu hiện theo bước, thay nội dung cùng vùng sau khi đã đọc; không dồn hai chuỗi vào một thẻ hẹp. |
 | RE01 | Hiện nhu cầu và hình trước; Lagrange, ba phương trình và mốc nghiệm hiện lần lượt, không bày đồng thời mọi phép giải. Phép giải mốc nghiệm trong ghi chú; RE05 mới tập trung giải bước. |

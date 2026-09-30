@@ -47,23 +47,23 @@
 
 <section data-slide-id="RP02">
   <h2>Điều kiện KKT cho hai lớp bài toán</h2>
-  <p class="hypothesis">Giả thiết: $f,F$ lồi, khả vi trên miền mở lồi.</p>
-  <p class="dims">Kích thước: $x,u\in\mathbb R^n$, $A\in\mathbb R^{p\times n}$, $b,\nu\in\mathbb R^p$.</p>
-  <p>Bốn nhóm KKT: khả thi gốc · khả thi đối ngẫu $\lambda\ge0$ · bù trừ · dừng.</p>
+  <p class="hypothesis">Giả thiết cho hai bài toán dưới đây: $f,F$ lồi, khả vi trên miền mở lồi trong $\mathbb R^n$; <span class="math-nowrap">$A\in\mathbb R^{p\times n}$, $b\in\mathbb R^p$.</span></p>
   <div class="lec-grid">
     <div>
       <h3>Không ràng buộc</h3>
-      <p>Chỉ còn nhóm dừng:</p>
+      <p>Bài toán: $\displaystyle\min_{x}\ f(x)$.</p>
+      <p>Điều kiện dừng:</p>
       <div class="formula emphasis" tabindex="0">$$\nabla f(x^*)=0.$$</div>
     </div>
     <div>
       <h3>Chỉ ràng buộc đẳng thức</h3>
-      <p>Dừng và khả thi gốc; $\nu$ tự do dấu.</p>
+      <p>Bài toán: $\displaystyle\min_{u}\ F(u)$ với ràng buộc $Au=b$.</p>
+      <p>Điều kiện dừng và khả thi gốc <span class="math-nowrap">($\nu\in\mathbb R^p$</span> tự do dấu):</p>
       <div class="formula emphasis" tabindex="0">$$\begin{aligned}\nabla F(u^*)+A^T\nu^*&amp;=0,\\Au^*&amp;=b.\end{aligned}$$</div>
     </div>
   </div>
-  <div class="takeaway">$g=\nabla f(x)$ là gradient tại điểm hiện tại; phân biệt với hàm đối ngẫu $g(\lambda,\nu)$ của Bài 03.</div>
-  <aside class="notes"><p>Hai lớp bài toán không có bất đẳng thức nên không có nhóm khả thi đối ngẫu của nhân tử bất đẳng thức và điều kiện bù trừ. Nhân tử đẳng thức $\nu$ tự do dấu, còn nhân tử bất đẳng thức thỏa $\lambda\ge0$; tính đủ của KKT đến từ tính lồi của bài gốc đúng giả thiết. Kích thước: $p$ là số hàng của $A$, ứng với số thành phần của $\nu$ và $b$. Ký hiệu $g$ ở đây là gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$. Các phương trình tối ưu xác định nghiệm cần đạt; mô hình theo biến bước xác định hướng cập nhật. Nguồn: bài 03, mục "Bốn nhóm điều kiện KKT" và "Hàm Lagrange"; đề cương học phần và giáo trình.</p></aside>
+  <p>Không có bất đẳng thức nên không có nhân tử $\lambda$; trong bốn nhóm KKT của Bài 03 chỉ còn khả thi gốc và dừng.</p>
+  <aside class="notes"><p>Bài giảng này xét hai bài toán gốc. Bài toán không ràng buộc cực tiểu $f$ theo $x\in\mathbb R^n$ trên miền xác định của $f$. Bài toán chỉ có đẳng thức cực tiểu $F$ theo $u\in\mathbb R^n$ trên tập affine $\{u:Au=b\}$; $p$ là số ràng buộc đẳng thức, bằng số hàng của $A$ và số thành phần của $b$ và $\nu$. Tính khả vi bảo đảm gradient tồn tại; miền mở làm mọi điểm là điểm trong, nên điều kiện dừng không cần hiệu chỉnh tại biên. Bốn nhóm KKT của Bài giảng 03 gồm khả thi gốc, khả thi đối ngẫu $\lambda\ge0$, bù trừ và dừng. Khi không có bất đẳng thức, không có nhân tử $\lambda$ nên hai nhóm giữa không xuất hiện. Bài toán không ràng buộc chỉ còn $\nabla f(x^*)=0$, gồm $n$ phương trình theo $n$ ẩn. Bài toán đẳng thức còn $n$ phương trình dừng và $p$ phương trình khả thi theo $n+p$ ẩn $(u^*,\nu^*)$; nhân tử đẳng thức $\nu$ tự do dấu. Với bài toán lồi, một điểm thỏa KKT là nghiệm tối ưu toàn cục. Vì ràng buộc affine và miền mở, KKT cũng là điều kiện cần mà không cần Slater; do đó với hai bài toán lồi này, KKT là điều kiện cần và đủ. Hệ trên xác định nghiệm cần đạt; các phương pháp sau đó thay bài gốc bằng một mô hình theo bước $d$ và giải KKT của mô hình để lấy hướng. Nguồn: Bài giảng 03, mục "Bốn nhóm điều kiện KKT" và "Hàm Lagrange"; đề cương học phần và giáo trình.</p></aside>
 </section>
 
 <section data-slide-id="RP03">
@@ -118,7 +118,7 @@
 <div class="lec-grid ratio55">
 <div>
 <img class="plot" src="img/lec-04/descent-directions.svg" alt="Các đường mức của f và ba hướng tại x⁰=(2,4): giảm, tăng và có đạo hàm hướng bằng không">
-<div class="takeaway">Đạo hàm hướng $g^Td&lt;0$ bảo đảm $f$ giảm với bước dương đủ nhỏ.</div>
+<div class="takeaway">Đạo hàm hướng $g^Td&lt;0$ bảo đảm $f$ giảm với bước dương đủ nhỏ; $g$ là gradient, không phải hàm đối ngẫu của Bài giảng 03.</div>
 </div>
 <div>
 <div class="panel">
@@ -133,7 +133,7 @@
 </div>
 </div>
 </div>
-<aside class="notes">Ba mũi tên trên hình biểu diễn hướng có đạo hàm hướng âm, dương và bằng không. Hướng tiếp tuyến với đường mức thỏa $g^Td=0$; dấu đạo hàm được xét theo tọa độ của bài toán. Tích vô hướng $g^Td$ chính là đạo hàm theo hướng của $f$ tại $x^0$ theo hướng $d$, nên dấu của nó quyết định giảm hay tăng cục bộ. Với VD1, $g=(6,28)^T$ và $f(x^0)=\tfrac12(3\cdot4+7\cdot16)=62$. Gradient là vectơ đạo hàm tại điểm hiện tại; hướng cập nhật $d$ là biến cần xác định. Với $d=(1,0)^T$, tích $g^Td=6>0$ cho hướng tăng cục bộ. Khi gradient khác không, mục tiêu tuyến tính theo hướng không bị chặn dưới; số hạng bậc hai tạo bài toán chọn hướng có nghiệm hữu hạn. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
+<aside class="notes">Ba mũi tên trên hình biểu diễn hướng có đạo hàm hướng âm, dương và bằng không. Hướng tiếp tuyến với đường mức thỏa $g^Td=0$; dấu đạo hàm được xét theo tọa độ của bài toán. Tích vô hướng $g^Td$ chính là đạo hàm theo hướng của $f$ tại $x^0$ theo hướng $d$, nên dấu của nó quyết định giảm hay tăng cục bộ. Với VD1, $g=(6,28)^T$ và $f(x^0)=\tfrac12(3\cdot4+7\cdot16)=62$. Ký hiệu $g=\nabla f(x^0)$ là vectơ gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$ của Bài giảng 03; hướng cập nhật $d$ là biến cần xác định. Với $d=(1,0)^T$, tích $g^Td=6>0$ cho hướng tăng cục bộ. Khi gradient khác không, mục tiêu tuyến tính theo hướng không bị chặn dưới; số hạng bậc hai tạo bài toán chọn hướng có nghiệm hữu hạn. Nguồn: Boyd và Vandenberghe (2004), §§9.2–9.4.1; MIT 6.079, mùa thu 2009, bài giảng 16; điều kiện KKT trong Bài 03.</aside>
 </section>
 
 <section data-slide-id="RG02">

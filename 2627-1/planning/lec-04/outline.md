@@ -946,3 +946,9 @@ Chưa kiểm định hiển thị16:9, màn hình hẹp, KaTeX hay bàn phím v�
 ### Điều chỉnh cục bộ khi triển khai
 
 Giữ nguyên 46 trang và thứ tự. B04 bổ sung SVG đổi tọa độ đúng vai trò đã chốt. E11 giữ sơ đồ bốn bước nhưng đặt hai công thức dài g,H trong một dải chung bên dưới để đọc được ở cỡ chữ thân bài; dữ kiện ràng buộc được nêu rõ. Z03 trình bày ba nhiệm vụ thành bảng nhiệm vụ/sản phẩm để đối chiếu trực tiếp. C07 giảm khoảng đệm bảng và rút nhãn, không giảm cỡ chữ hoặc thêm hàng. E05 tăng cỡ nhãn trong SVG. Các thay đổi này giữ vai trò và kết nối của từng trang.
+
+### Điều chỉnh 2026-09-30
+
+RP02 phát biểu hai bài toán trước khi nêu điều kiện: $\min_x f(x)$ cho lớp không ràng buộc, $\min_u F(u)$ với ràng buộc $Au=b$ cho lớp chỉ có đẳng thức, theo thứ tự đã dùng ở §5.1. Dòng kích thước riêng được gộp vào dòng giả thiết "cho hai bài toán dưới đây"; phép rút gọn từ bốn nhóm KKT của Bài 03 chuyển xuống dưới hai cột. Ghi chú nêu KKT là điều kiện cần và đủ cho hai bài toán lồi này vì ràng buộc affine và miền mở.
+
+Quy ước $g$ ở §4 được đặt tại RG01 thay vì RP02: RP02 không dùng $g$, còn RG01 là chỗ dùng đầu tiên và định nghĩa $g=\nabla f(x^0)$ trong bảng dữ kiện. Kết luận trên mặt RG01 thêm mệnh đề phân biệt với hàm đối ngẫu của Bài giảng 03; ghi chú RG01 nêu rõ $g(\lambda,\nu)$. Yêu cầu "xuất hiện trước chỗ dùng, không chỉ trong ghi chú" vẫn được đáp ứng. Ký hiệu, giả thiết, hệ phương trình, số trang và thứ tự trang không đổi.

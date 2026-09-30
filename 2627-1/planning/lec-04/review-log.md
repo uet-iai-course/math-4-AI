@@ -1,5 +1,51 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Sửa RP02 theo yêu cầu người dùng — 2026-09-30
+
+**Trạng thái: đã sửa theo yêu cầu và theo hai vòng rà được điều phối viên duyệt; không còn lỗi chặn bàn giao hoặc nghiêm trọng.**
+
+### Yêu cầu và thay đổi
+
+- **Yêu cầu:** trang "Điều kiện KKT cho hai lớp bài toán" phải mô tả các bài toán trước khi nêu điều kiện dừng.
+- **RP02, mặt trang:** dòng "Giả thiết cho hai bài toán dưới đây" gộp dòng kích thước cũ ($f,F$ lồi, khả vi trên miền mở lồi trong $\mathbb R^n$; $A\in\mathbb R^{p\times n}$, $b\in\mathbb R^p$); cụm kích thước đặt trong `math-nowrap` để không ngắt giữa ký hiệu. Cột một: `Bài toán:` $\min_x f(x)$ → `Điều kiện dừng:` → $\nabla f(x^*)=0$. Cột hai: `Bài toán:` $\min_u F(u)$ với ràng buộc $Au=b$ → `Điều kiện dừng và khả thi gốc ($\nu\in\mathbb R^p$ tự do dấu):` → hệ hai phương trình. Dưới hai cột: "Không có bất đẳng thức nên không có nhân tử $\lambda$; trong bốn nhóm KKT của Bài 03 chỉ còn khả thi gốc và dừng." Bỏ chân trang $g=\nabla f(x)$. Tiêu đề, mã trang, hai hệ điều kiện và ký hiệu không đổi.
+- **RP02, ghi chú:** mô tả hai bài toán, miền và kích thước; tính khả vi cho gradient tồn tại, miền mở làm mọi điểm là điểm trong nên điều kiện dừng không cần hiệu chỉnh tại biên; KKT đủ cho bài lồi, và vì ràng buộc affine và miền mở nên KKT cũng cần mà không cần Slater; số phương trình và số ẩn; câu kết "Hệ trên xác định nghiệm cần đạt; các phương pháp sau đó thay bài gốc bằng một mô hình theo bước $d$ và giải KKT của mô hình để lấy hướng." Phân biệt "Bài giảng 03" với "bài toán". Giữ dòng nguồn.
+- **RG01:** nhận quy ước $g$. Kết luận dưới hình thành "Đạo hàm hướng $g^Td<0$ bảo đảm $f$ giảm với bước dương đủ nhỏ; $g$ là gradient, không phải hàm đối ngẫu của Bài giảng 03." Ghi chú: "Ký hiệu $g=\nabla f(x^0)$ là vectơ gradient tại điểm hiện tại, không phải hàm đối ngẫu $g(\lambda,\nu)$ của Bài giảng 03". Mệnh đề trên mặt trang được giữ vì RG01 vẫn vừa khung 1600×900 (đo bên dưới).
+- **Quyết định về $g$:** bản sửa đầu giữ chân trang $g$ trên RP02 theo dàn ý §4. Điều phối viên bác quyết định này: RP02 không dùng $g$, RG01 là chỗ dùng đầu tiên và tự định nghĩa $g=\nabla f(x^0)$. Chuyển quy ước sang RG01 vẫn đáp ứng yêu cầu §4 là xuất hiện trên mặt trang trước chỗ dùng.
+- **Trang lân cận:** RP01, RP03, RP04 dùng cùng ký hiệu $x,f$ và $u,F,A,b,\nu$; không sửa.
+- **Học liệu:** mục "KKT từ Bài 03: hai dạng và vai trò trong bài này" của `lecture-note.md` đã nêu bài toán trước điều kiện; không sửa. Mục này dùng $f,x$ với $Ax=b$ thay cho $F,u$ với $Au=b$; khác biệt có từ trước, để xét ở vòng sau. `exercises.md` không có đoạn tương ứng. Không chạy đồng bộ học liệu vì Markdown không đổi.
+
+### Rà soát sau sửa
+
+- **Tác tử:** tác tử chỉnh sửa và hai tác tử rà là tác tử loại `fork` của điều phối viên, mô hình Claude Opus 5.5 kế thừa từ phiên điều phối; hai tác tử rà chỉ đọc. Kho chưa có định nghĩa trong `.claude/agents/`, nên mức suy luận `high` của tác tử con là kế thừa, không được khai báo riêng.
+- **Tổng hợp:** rà toán học (RP02 và lân cận): 0 chặn bàn giao, 0 nghiêm trọng, 0 trung bình, 5 nhẹ. Rà mạch lập luận (RP00–RP04, RG01): 0 chặn bàn giao, 0 nghiêm trọng, 2 trung bình, 7 nhẹ. Điều phối viên bổ sung 1 phát hiện nhẹ khi kiểm trình duyệt.
+
+| Vai | Mã | Mức độ | Trang | Vấn đề | Quyết định/trạng thái |
+|---|---|---|---|---|---|
+| Toán học | M1 | nhẹ | RP02 | Miền xác định không ghi ở chỉ số dưới của $\min$ | Chấp nhận, không sửa: dòng giả thiết đã nêu miền mở lồi |
+| Toán học | M2 | nhẹ | RP02, ghi chú | Chưa nêu tính cần của KKT | Đã sửa: ràng buộc affine và miền mở cho KKT cần mà không cần Slater; với hai bài toán lồi, KKT cần và đủ |
+| Toán học | M3 | nhẹ | RP02, ghi chú | Vai trò của miền mở bị phát biểu sai | Đã sửa: khả vi cho gradient tồn tại; miền mở làm mọi điểm là điểm trong nên điều kiện dừng không cần hiệu chỉnh tại biên |
+| Toán học | M4 | nhẹ | RP02, mặt trang | Nhãn hai cột không song song; từ "mất" mang tính khẩu ngữ | Đã sửa: nhãn "Điều kiện dừng và khả thi gốc (…)"; câu rút gọn viết lại |
+| Toán học | M5 | nhẹ | RP02, ghi chú | Câu kết ghi chú mơ hồ | Đã sửa: "Hệ trên xác định nghiệm cần đạt; các phương pháp sau đó thay bài gốc bằng một mô hình theo bước $d$ và giải KKT của mô hình để lấy hướng." |
+| Mạch lập luận | S1 | trung bình | RP02 | Khung $g=\nabla f(x)$ lạc chỗ, không dùng trên RP02 | Đã sửa: bỏ khỏi RP02; chuyển quy ước sang kết luận và ghi chú RG01 |
+| Mạch lập luận | S2 | trung bình | RP02, ghi chú | Câu về miền mở không chính xác | Đã sửa, cùng cách sửa với M3 |
+| Mạch lập luận | S3 | nhẹ | RP02 | Giả thiết đứng trước bài toán mà chưa gắn với chúng | Đã sửa: "Giả thiết cho hai bài toán dưới đây" |
+| Mạch lập luận | S4 | nhẹ | RP02 | Nhãn cột và cách viết ràng buộc | Đã sửa: nhãn song song; "với ràng buộc $Au=b$" |
+| Mạch lập luận | S5 | nhẹ | RP02 | Cách diễn đạt câu rút gọn | Đã sửa: "Không có bất đẳng thức nên không có nhân tử $\lambda$; trong bốn nhóm KKT của Bài 03 chỉ còn khả thi gốc và dừng." |
+| Mạch lập luận | S6 | nhẹ | RP02, ghi chú | "Bài" mơ hồ giữa bài giảng và bài toán | Đã sửa: dùng "Bài giảng 03" và "bài toán" |
+| Mạch lập luận | S7 | nhẹ | storyboard RP02 | Mục storyboard không khớp HTML | Đã sửa: nội dung, đầu vào–ra, bố cục và hàng mật độ cập nhật theo HTML |
+| Mạch lập luận | S8 | nhẹ | RP02 | Mật độ sát giới hạn | Đã xử lý bằng việc bỏ khung $g$; RP02 vừa khung 674/674 ở 1600×900; đã kiểm cuối vùng cuộn ở màn hình hẹp |
+| Mạch lập luận | S9 | nhẹ | RP04 | RP04 nhắc lại nội dung RP02 | Chấp nhận, không sửa: RP04 là câu hỏi kiểm tra cố ý gọi lại RP02 |
+| Điều phối | O1 | nhẹ | RP02 | Ở 390 px, nhãn cột hai ngắt dòng sau "(", tách dấu ngoặc khỏi $\nu\in\mathbb R^p$ | Đã sửa: bọc "($\nu\in\mathbb R^p$" trong `math-nowrap`; kiểm lại ở 390×844 và 1600×900 |
+
+- **no-ai-slop:** tác tử chỉnh sửa tự đối chiếu `eval.md` (chế độ Edit) trên mặt trang và ghi chú RP02, RG01; không có câu dẫn rỗng, lời nhấn mạnh, câu lặp hay kết luận kịch tính. Kỹ năng đọc từ `~/.codex/skills/no-ai-slop/`.
+
+### Kiểm định trình duyệt
+
+- **Đính chính:** bản ghi trước nói không chạy được `reloadserver`. Điều này sai: `python3 -m reloadserver 8765` có sẵn và đang chạy tại thư mục gốc của kho. Lượt đo đầu của tác tử chỉnh sửa dùng máy chủ tĩnh tạm ở cổng 8791; các lượt đo cuối dùng `http://localhost:8765/2627-1/lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`.
+- **Điều phối viên:** kiểm RP02 bằng trình duyệt ở 1600×900 và 390×844, kể cả cuộn tới cuối `.lecture-viewport`; không có lỗi trang hoặc lỗi KaTeX.
+- **Tác tử chỉnh sửa, Playwright Chromium qua cổng 8765, bản cuối:** ở 1600×900, RP02 có chiều cao nội dung bằng khung (674/674), đáy nội dung 820 px so với đáy trang 829 px, không tràn ngang, 0 lỗi KaTeX. RG01 có 674/674, đáy nội dung 811 px so với 829 px, 0 lỗi KaTeX. Ở 390×844, cả hai trang không tràn ngang và không lỗi KaTeX; nội dung nằm trong vùng cuộn dọc. Sau sửa O1, RP02 được kiểm lại: 1600×900 vẫn 674/674 với đáy nội dung 820/829 px; ở 390×844 nhãn cột hai ngắt thành "Điều kiện dừng và khả thi gốc" / "($\nu\in\mathbb R^p$ tự do dấu):", và cuộn `.lecture-viewport` tới cuối (289 px) hiển thị đủ hệ hai phương trình và câu rút gọn. Không có lỗi JavaScript hoặc lỗi console. Bản nháp đầu với công thức khối cho bài toán tràn 77 px ở 16:9 và đã được thu gọn bằng công thức nội dòng, không giảm cỡ chữ.
+- **Tiêu đề cột lệch nhau:** do quy tắc CSS chung `align-items:center` của `.lec-grid` trong Bài 04; giữ nguyên, không sửa CSS chung cho một trang.
+
 ## Kiểm định cuối đợt biên tập — 2026-09-26
 
 **Kết luận: đạt các cổng nội dung, hiển thị, học liệu và đồng bộ Codex Slides; đủ điều kiện commit và phát hành.** Mục này chốt trạng thái của đợt 2026-09-26 và thay các trạng thái chờ ở hai mục tiến trình bên dưới. Không thêm, bỏ hoặc đổi thứ tự trang so với bản đầu đợt: 46 trang, 46 ghi chú, bảy mạch. Đã đổi 30 tiêu đề, biên tập toàn bộ ghi chú và đồng bộ hai học liệu; các hệ toán, bộ số và trình tự MIT lec16 rồi lec17 được giữ. Không dùng OpenRouter, script cầu nối hoặc tệp bí mật; các tác tử của đợt này được gọi native với GPT-6-Astra theo chỉ định của người dùng.
