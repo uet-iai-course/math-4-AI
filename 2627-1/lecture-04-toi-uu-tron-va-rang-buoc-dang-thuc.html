@@ -324,13 +324,14 @@ Hai câu hỏi kiểm tra hai thành phần của một bước lặp trên dữ
 <section>
 <section data-slide-id="RN01">
 <h2>Mô hình bậc hai tại điểm hiện tại</h2>
+<p>VD1 bậc hai: $W=\nabla^2f$ cho nghiệm sau một bước. Tổng quát: $W=H=\nabla^2f(x)$.</p>
 <div class="lec-grid ratio60"><div>
 <img class="plot" src="img/lec-04/phi-local-model.svg" alt="Hàm φ(s)=s−log s, tiếp tuyến và parabol bậc hai tại s=1/4; parabol khớp gần điểm hiện tại rồi tách khỏi hàm thật.">
-</div><div class="panel"><p><strong>VD2:</strong> $\varphi(s)=s-\log s$, $s&gt;0$; logarit tự nhiên.</p>
-<p>Điểm đầu: $s^0=1/4$.</p><div class="formula" tabindex="0">$$\begin{aligned}g&amp;=\varphi'(1/4)=-3,\\H&amp;=\varphi''(1/4)=16.\end{aligned}$$</div></div></div>
-<div class="takeaway">Thay thước đo cố định bằng Hessian tại điểm hiện tại: parabol chỉ mô tả độ cong cục bộ.</div>
+</div><div class="panel"><p><strong>VD2</strong> (không bậc hai, một biến): <span class="math-nowrap">$\varphi(s)=s-\log s$,</span> $s&gt;0$; độ cong $\varphi''(s)=1/s^2$ đổi theo $s$; nghiệm $s^\star=1$.</p>
+<p>Tại $s^0=1/4$: <span class="math-nowrap">$g=\varphi'(s^0)=-3$,</span> <span class="math-nowrap">$H=\varphi''(s^0)=16$.</span></p></div></div>
+<div class="takeaway">Parabol dùng $H$ tại $s^0$ khớp $\varphi$ gần $s^0$ rồi tách xa dần: mô hình chỉ đúng cục bộ.</div>
 <aside class="notes">
-Hàm $\varphi(s)=s-\log s$ với logarit tự nhiên có đạo hàm $\varphi'(s)=1-1/s$ và đạo hàm cấp hai $\varphi''(s)=1/s^2$. Tại $s^0=1/4$, $g=1-4=-3$ và $H=16$, đúng như hình: đường tiếp tuyến dốc âm qua điểm $(1/4,\varphi(1/4))$, còn parabol bậc hai với độ cong 16 xấp xỉ hàm gốc ngay quanh điểm đó rồi tách dần khi ra xa. Parabol là mô hình cục bộ của mục tiêu; độ chính xác giảm khi điểm thử rời xa điểm khai triển. Hessian tại điểm hiện tại thay cho thước đo cố định, và điều kiện dừng của mô hình xác định hướng Newton. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 9.5.1–9.5.3; bài giảng 16, khóa MIT 6.079, học kỳ thu 2009; ví dụ số tự xây dựng.
+Câu hỏi kiểm tra ở cuối phần gradient cho thấy với VD1, chọn $W$ bằng Hessian $\operatorname{diag}(3,7)$ đưa $x^1$ tới nghiệm $(0,0)^T$ sau đúng một bước. Điều này đúng vì VD1 là hàm bậc hai: Hessian không đổi và mô hình bậc hai trùng hàm thật. Với hàm tổng quát, Hessian thay đổi theo điểm, nên thước đo cố định $W$ được thay bằng $H=\nabla^2f(x)$ tính tại điểm hiện tại; ký hiệu $x$, $g=\nabla f(x)$ giữ nguyên, còn $W$ trở thành $H$. VD1 không cho thấy giới hạn của mô hình, nên cần một ví dụ không bậc hai. VD2 dùng $\varphi(s)=s-\log s$ với logarit tự nhiên, $s&gt;0$, một chiều ($n=1$, biến $s$ thay cho $x$): $\varphi'(s)=1-1/s$, $\varphi''(s)=1/s^2&gt;0$ nên $\varphi$ lồi chặt, cực tiểu tại $s^\star=1$. Tại $s^0=1/4$, $g=1-4=-3$ và $H=16$. Trên hình, tiếp tuyến dốc âm qua $(1/4,\varphi(1/4))$; parabol $q(s)=\varphi(1/4)-3(s-1/4)+8(s-1/4)^2$ khớp hàm gần $s^0$ rồi tách dần vì độ cong thật $1/s^2$ giảm khi $s$ tăng. Cực tiểu của parabol này cho hướng Newton. Nguồn: Boyd và Vandenberghe (2004), §§9.5.1–9.5.3; MIT 6.079, mùa thu 2009, bài giảng 16; ví dụ số tự xây dựng.
 </aside>
 </section>
 

@@ -968,3 +968,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RG09 đổi tên thành "Hệ KKT của hướng dốc nhất"; khung bốn nhóm KKT đặt trước các bước giải; kết luận nêu kết quả số VD1 $v=-(2,4)^T/\sqrt{124}$.
 - RG10 đổi tên thành "Hướng dốc nhất theo chuẩn bậc hai"; nêu quy ước độ dài và kiểm $W=I\Rightarrow d=-g$; kết nối $Q_W$ với hệ $g+Wd=0$ đặt thành khung kết luận.
 - RG11 đổi tên thành "Hướng và độ dài bước"; hai câu hỏi dùng dữ kiện mới: giải $Q_W$ tại $x^1=(1/2,-3)^T$ và quay lui với $\alpha=3/10$ (thay mô tả RG11 trong bảng dữ kiện câu hỏi ở phần trước).
+- RN01 giữ tiêu đề; thêm dòng nhu cầu từ VD1 ($W=\nabla^2f$ cho nghiệm sau một bước) và phép đổi $W=H=\nabla^2f(x)$; khung VD2 nêu lý do dùng ví dụ không bậc hai.

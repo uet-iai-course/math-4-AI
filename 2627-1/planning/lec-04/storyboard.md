@@ -244,14 +244,14 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RN01 — Mô hình bậc hai tại điểm hiện tại
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu C01, C07. Hàm không bậc hai tạo nhu cầu xấp xỉ trước công thức Newton và giúp phân biệt mô hình với hàm thật.
-- **Nội dung trên trang:** Đưa VD2 lên đầu Newton: $\varphi(s)=s-\log s$, $s>0$, $s^0=1/4$, $g=-3,H=16$. Hình tiếp tuyến và parabol cho nhu cầu thay W cố định bằng H tại điểm hiện tại.
-- **Bố cục chọn:** Trái 60% hàm thật/mô hình có nhãn rõ; phải dữ kiện s0,g,H; chưa hiện nghiệm mô hình.
-- **Lý do bố cục cho sinh viên năm 3:** Hàm không bậc hai tạo nhu cầu xấp xỉ trước công thức Newton và giúp phân biệt mô hình với hàm thật.
-- **Vào → ra:** Đầu vào: Với $\varphi(s)=s-\log s$, độ cong $\varphi''(s)=1/s^2$ thay đổi theo $s$. Đầu ra: Tại $s=1/4$, mô hình có gradient $-3$ và độ cong $16$; điều kiện dừng của nó xác định hướng Newton.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm dòng nhu cầu nhận đầu ra của RG11 (VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước) và nêu phép đổi ký hiệu $W\to H=\nabla^2f(x)$; khung VD2 nêu lý do đổi ví dụ (không bậc hai, độ cong $1/s^2$ đổi theo $s$, một biến $s$ thay $x$, nghiệm $s^\star=1$); khung kết luận nêu cụ thể tính cục bộ của parabol. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Dòng mở: VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước; tổng quát $W=H=\nabla^2f(x)$. Hình $\varphi$, tiếp tuyến và parabol tại $s^0=1/4$. Khung VD2: $\varphi(s)=s-\log s$, $s>0$, $\varphi''(s)=1/s^2$, $s^\star=1$; tại $s^0=1/4$: $g=-3$, $H=16$. Kết luận: parabol dùng $H$ tại $s^0$ khớp $\varphi$ gần $s^0$ rồi tách xa dần.
+- **Bố cục chọn:** Dòng nhu cầu; `ratio60`: trái hình, phải khung VD2; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 778 px, đáy trang 829 px (bản nháp đầu tràn 1 px do công thức khối và dòng mở hai dòng; đã rút gọn).
+- **Lý do bố cục cho sinh viên năm 3:** Nhu cầu Newton được lấy từ bài tập vừa giải; ví dụ mới được giới thiệu cùng lý do cần nó.
+- **Vào → ra:** Đầu vào: câu hỏi 1 của RG11 ($x^1+d=0$ với $W=\nabla^2f$). Đầu ra: mô hình $q(s)=\varphi(1/4)-3(s-1/4)+8(s-1/4)^2$; cực tiểu của nó cho hướng Newton (RN02).
 - **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RN07.
-- **Số liệu:** VD2, dàn ý §6; riêng RN04 so lại VD1 phải ghi rõ đổi ví dụ. Phân biệt δ, δ² và ba phép trừ.
-- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Số liệu:** VD2: $\varphi'(1/4)=-3$, $\varphi''(1/4)=16$; cực tiểu parabol tại $7/16$.
+- **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
 - **Dự toán nội bộ:** 1/15 LT + 0 BT (LT xấp xỉ 0.0667; dùng phân số để cộng chính xác).
 
 ### RN02 — Hướng Newton từ điều kiện dừng
