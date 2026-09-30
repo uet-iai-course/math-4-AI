@@ -470,13 +470,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 7/120 LT + 0 BT (LT xấp xỉ 0.0583; dùng phân số để cộng chính xác).
 
-### RR05 — Chuẩn phần dư và điều kiện nhận bước
+### RR05 — Chuẩn phần dư
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu E10. Thấy trực tiếp lý do bỏ F làm thước đo, rồi có lập luận cho thước đo thay thế.
+- **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Chuẩn phần dư và điều kiện nhận bước" (đè nút điều hướng) thành "Chuẩn phần dư"; nêu $J_r$ là ma trận khối của hệ Newton; gộp phép tính đạo hàm vào một khung; kết luận nêu quy tắc nhận bước dùng $\|r\|_2$ thay cho $F$. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
 - **Nội dung trên trang:** Trường hợp biên của VD3: $u=(0,0)^T$, $\nu=0$ có $F=0<140$ nhưng không khả thi. Đặt $\Delta=(d,\Delta\nu)$, $J_r$ là Jacobian của vectơ phần dư; hệ RR03 chính là $J_r\Delta=-r$. Với $r\ne0$, đạo hàm của $\|r((u,\nu)+t\Delta)\|_2$ tại $t=0$ bằng $-\|r\|_2$. Vì vậy dùng chuẩn phần dư để nhận bước.
-- **Bố cục chọn:** Trái 40% phản ví dụ0→140 có nhãn “đổi điểm đầu để kiểm giới hạn”; phải chuỗi J_rΔ=−r → đạo hàm âm; không thêm đồ thị trang trí.
+- **Bố cục chọn:** Trái 40% khung trường hợp $F$ phải tăng; phải 60% định nghĩa $r$, $\Delta$, $J_r\Delta=-r$ và phép tính đạo hàm một khung; kết luận dưới. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 371 px.
 - **Lý do bố cục cho sinh viên năm 3:** Thấy trực tiếp lý do bỏ F làm thước đo, rồi có lập luận cho thước đo thay thế.
-- **Vào → ra:** Đầu vào: Điểm $u=0$ có $F=0<F^\star$ nhưng không khả thi, nên giảm $F$ không đo được tiến triển tới nghiệm. Đầu ra: Đạo hàm $-\|r\|_2<0$ bảo đảm có bước dương đủ nhỏ thỏa tiêu chí giảm chuẩn phần dư.
+- **Vào → ra:** Đầu vào: nhu cầu đo tiến triển từ RR04 khi $F$ không bậc hai hoặc $t<1$. Đầu ra: $\|r\|_2$ giảm theo hướng Newton với $t>0$ đủ nhỏ, nên quay lui trên $\|r\|_2$ (RR06).
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RR07.
 - **Số liệu:** VD3 phần dư, dàn ý §6: ghi rõ điểm đầu, g, r_d, r_p, η và Δν theo thứ tự đã định nghĩa. RR05 đổi điểm đầu có chủ ý để kiểm giới hạn.
 - **Nguồn, ghi chú soạn:** Độ giảm chuẩn phần dư ghép không suy ra chuẩn của từng thành phần giảm đơn điệu.  BV §10.3.1; Bài 03 S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.

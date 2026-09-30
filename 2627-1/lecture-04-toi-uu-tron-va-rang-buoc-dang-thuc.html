@@ -610,12 +610,13 @@ Hai câu hỏi dùng thuật toán Newton trên VD2 với dữ kiện mới: bư
 </section>
 
 <section data-slide-id="RR05">
-<h2>Chuẩn phần dư và điều kiện nhận bước</h2>
-<div class="lec-grid lec-grid--40-60"><div class="panel"><p><strong>Trường hợp mục tiêu phải tăng:</strong> $u=(0,0)^T$, $\nu=0$.</p><p>$F=0&lt;140=F^\star$ nhưng $r_p=-14$.</p><p>Đến nghiệm khả thi đòi hỏi $F$ tăng.</p></div>
-<div><p>Gộp $r=[r_d;r_p]\ne0$, $\Delta=[d;\Delta\nu]$; $J_r$ là ma trận Jacobi của $r$.</p>
-<div class="formula" tabindex="0">$$J_r\Delta=-r.$$</div><div class="formula" tabindex="0">$$\left.\frac{d}{dt}\|r((u,\nu)+t\Delta)\|_2\right|_{t=0}$$</div><div class="formula" tabindex="0">$$=\frac{r^TJ_r\Delta}{\|r\|_2}=-\|r\|_2&lt;0.$$</div></div></div>
-<div class="takeaway">Đạo hàm âm của chuẩn phần dư là cơ sở cho quy tắc nhận bước.</div>
-<aside class="notes">Tại điểm đầu $(0,0)$ với $\nu=0$, giá trị hàm mục tiêu bằng 0, nhỏ hơn 140 của nghiệm, nhưng $Au-b=-14$: điểm không khả thi. Quá trình tiến đến nghiệm khả thi làm mục tiêu tăng trong trường hợp này; yêu cầu giảm $F$ không phù hợp để nhận bước. Lập luận thay thế: với $\Delta=(d,\Delta\nu)$, hệ Newton viết $J_r\Delta=-r$, nên đạo hàm của nửa bình phương chuẩn phần dư tại $t=0$ là $r^TJ_r\Delta=-\|r\|^2$, suy ra đạo hàm của chuẩn phần dư là $-\|r\|$. Kết luận này chỉ nói đạo hàm âm tại $t=0$ khi $r\ne0$, không suy ra mọi bước đều giảm chuẩn phần dư, cũng không khẳng định mọi bước đều được nhận. Đạo hàm âm bảo đảm tồn tại bước dương đủ nhỏ làm giảm chuẩn phần dư ghép. Điều này không có nghĩa chuẩn của từng thành phần phần dư đều giảm đơn điệu. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
+<h2>Chuẩn phần dư</h2>
+<div class="lec-grid lec-grid--40-60"><div class="panel"><p><strong>Trường hợp mục tiêu phải tăng:</strong> $u=(0,0)^T$, $\nu=0$.</p><p>$F=0&lt;140=F^*$ nhưng <span class="math-nowrap">$r_p=-14$.</span></p><p>Đến nghiệm khả thi đòi hỏi $F$ tăng.</p></div>
+<div><p>Gộp $r=[r_d;r_p]\ne0$, $\Delta=[d;\Delta\nu]$.</p>
+<p>Hệ Newton viết gọn $J_r\Delta=-r$; $J_r$ là ma trận khối của hệ, tức ma trận Jacobi của $r$.</p>
+<div class="formula" tabindex="0">$$\begin{aligned}\left.\frac{d}{dt}\|r((u,\nu)+t\Delta)\|_2\right|_{t=0}&amp;=\frac{r^TJ_r\Delta}{\|r\|_2}\\&amp;=-\|r\|_2&lt;0.\end{aligned}$$</div></div></div>
+<div class="takeaway">Với $t&gt;0$ đủ nhỏ, bước Newton làm giảm $\|r\|_2$; quy tắc nhận bước dùng $\|r\|_2$ thay cho $F$.</div>
+<aside class="notes">Với $F$ không bậc hai hoặc khi phải dùng bước $t&lt;1$, một bước không đưa phần dư về 0, nên cần một đại lượng quyết định có nhận bước hay không. Ở điểm khả thi, Armijo dùng giá trị $F$. Ở điểm chưa khả thi, tiêu chí này không phù hợp: tại $(0,0)$ với $\nu=0$, $F=0$ nhỏ hơn $F^*=140$, nhưng $Au-b=-14$; mọi quỹ đạo tới nghiệm khả thi phải làm $F$ tăng. Đại lượng thay thế là chuẩn của phần dư ghép $r=[r_d;r_p]$, bằng 0 đúng tại nghiệm KKT. Ma trận khối của hệ Newton là ma trận Jacobi của $r$ theo $(u,\nu)$, nên hệ viết gọn $J_r\Delta=-r$ với $\Delta=(d,\Delta\nu)$. Đạo hàm của $\tfrac12\|r\|_2^2$ theo $t$ tại $0$ là $r^TJ_r\Delta=-\|r\|_2^2$; chia cho $\|r\|_2$ khi $r\ne0$ được đạo hàm của $\|r\|_2$ bằng $-\|r\|_2$. Kết luận chỉ nói tồn tại bước dương đủ nhỏ làm giảm chuẩn phần dư ghép; không suy ra mọi bước đều được nhận, cũng không suy ra chuẩn của từng thành phần $r_d$, $r_p$ giảm đơn điệu. Thuật toán vì vậy dùng quay lui trên $\|r\|_2$ với tiêu chí dạng Armijo. Nguồn: Stephen Boyd và Lieven Vandenberghe, Convex Optimization, mục 10.3.1; Bài giảng 03, phần bốn nhóm điều kiện KKT; MIT 6.079, bài giảng 17.</aside>
 </section>
 
 <section data-slide-id="RR06">
