@@ -962,3 +962,4 @@ Các thay đổi dưới đây thay các mô tả tương ứng ở phần trư�
 - RG03 đổi tên thành "Độ dài bước"; bảng xét dấu hai hướng được thay bằng hàm trên tia $f(x^0+td_G)=62-820t+2798t^2$ và khoảng giảm $0<t<410/1399$. Hướng thử $\tilde d=(-2,1)^T$ trong §6 không còn dùng trên mặt trang.
 - RG04 giữ tiêu đề "Quay lui Armijo"; điều kiện giảm đủ đặt trước thủ tục, kèm diễn giải phần $\alpha$ của mức giảm dự báo; thủ tục gộp ba bước.
 - RG05 giữ tiêu đề; dữ kiện nêu $x^0$, $d=d_G$; ngưỡng viết $62-82t$; thêm dòng kết quả $x^1=(1/2,-3)^T$, $f(x^1)=255/8$.
+- RG06 giữ tiêu đề; thêm đầu ra; khung kết luận nối tiêu chí dừng với KKT $\nabla f(x^*)=0$. Cấu hình bước cố định $1/L$ và các cận hội tụ chỉ còn trong ghi chú (thay mô tả "ghi tên cấu hình trên mặt trang" cho RG06).

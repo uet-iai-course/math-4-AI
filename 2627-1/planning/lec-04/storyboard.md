@@ -172,14 +172,14 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RG06 — Thuật toán giảm gradient
 
-- **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu B05. Đặt thuật toán đầy đủ trước khi bàn về đường đi; không để sinh viên ghép thuật toán từ nhiều phần rời.
-- **Nội dung trên trang:** Lặp: tính g → nếu $\|g\|\le\varepsilon_g$ thì dừng → đặt d=-g → Armijo → cập nhật. Đầu vào x trong miền, dung sai và tham số quay lui; chi phí chính gradient/đánh giá hàm. Một ô riêng nhắc: bước cố định $1/L$ dùng hằng số Lipschitz $L$ của gradient và là cấu hình khác. Ghi chú định nghĩa $L>0$ qua $\|\nabla f(x)-\nabla f(y)\|_2\le L\|x-y\|_2$ trước khi nêu định lý.
-- **Bố cục chọn:** Trái 65% giả mã năm dòng; phải đầu vào, tiêu chí dừng và chi phí; chân trang chỉ ghi tên cấu hình hội tụ, giả thiết/cận ở ghi chú.
-- **Lý do bố cục cho sinh viên năm 3:** Đặt thuật toán đầy đủ trước khi bàn về đường đi; không để sinh viên ghép thuật toán từ nhiều phần rời.
-- **Vào → ra:** Đầu vào: Sau mỗi cập nhật, gradient được tính lại tại điểm mới trước khi chọn hướng. Đầu ra: Với hàm bậc hai, giữ $t$ cố định cho phép tính riêng hệ số co của từng tọa độ.
-- **Chuẩn và minh chứng:** LLO6 / CLO1; LLO8 / CLO2; chuẩn bị thao tác được đo tại RG11.
-- **Số liệu:** Không áp dụng: trang tổ chức/khái quát không dùng ví dụ số; ký hiệu và giả thiết vẫn phải được định nghĩa.
-- **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm đầu ra; thay khung kết luận về bước $1/L$ (đưa hằng số Lipschitz $L$ lên mặt trang đột ngột, chưa định nghĩa trên mặt trang nào) bằng câu nối tiêu chí dừng với điều kiện KKT $\nabla f(x^*)=0$ của sườn chung; chuyển định nghĩa $L$ và các cận hội tụ bước cố định vào ghi chú. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Nội dung trên trang:** Năm bước: tính $g=\nabla f(x)$; dừng nếu $\|g\|_2\le\varepsilon_g$; $d=-g$; chọn $t$ bằng quay lui Armijo; cập nhật $x\leftarrow x+td$. Khung phải: đầu vào ($x^0$ trong miền mở, $\varepsilon_g>0$, $\alpha,\beta$), đầu ra (điểm $x$ với $\|\nabla f(x)\|_2\le\varepsilon_g$), chi phí mỗi lượt. Kết luận: tiêu chí dừng là dạng xấp xỉ của KKT $\nabla f(x^*)=0$; với $f$ lồi, điểm thỏa đúng điều kiện là nghiệm tối ưu toàn cục.
+- **Bố cục chọn:** Trái 65% khung thủ tục; phải khung đầu vào–đầu ra–chi phí; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 755 px, đáy trang 829 px.
+- **Lý do bố cục cho sinh viên năm 3:** Thủ tục đầy đủ đặt cạnh đầu vào–đầu ra; tiêu chí dừng được nối với điều kiện tối ưu đã học thay vì một khái niệm mới.
+- **Vào → ra:** Đầu vào: hướng $d_G=-g$ (RG02), quay lui Armijo (RG04–RG05). Đầu ra: thuật toán hoàn chỉnh; ghi chú nêu kết quả hội tụ thuộc cấu hình bước cố định, và giữ $t$ cố định tách hệ số cập nhật theo tọa độ, làm cơ sở cho RG07.
+- **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RG11.
+- **Số liệu:** VD1: $L=7$ (ghi chú); lượt đầu cho $x^1=(1/2,-3)^T$.
+- **Nguồn, ghi chú soạn:** BV §§9.2–9.3; MIT lec16; KKT trong Bài giảng 03.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RG07 — Ảnh hưởng của thước đo
