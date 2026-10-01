@@ -16,7 +16,7 @@ Thiết lập quy trình huấn luyện từ dữ liệu hữu hạn, giải th�
 | B — Ước lượng gradient và phương pháp SGD | Mục tiêu dạng trung bình | Thay tính đủ bằng lấy mẫu có kỳ vọng xác định | $\widehat g_t$, bước học, quy trình theo dõi; nhiễu còn lại | 0.40 + 0.25 giờ |
 | C — Phương pháp momentum và Nesterov | Gradient từ B, Taylor/đường mức từ Bài 04 | Giải thích cách lịch sử và điểm đo thay cập nhật | Trạng thái $v_t$, điểm dự báo, quy trình còn cần $\theta_0$ | 0.50 + 0.25 giờ |
 | D — Khởi tạo tham số mạng nơ ron | Nhu cầu một điểm đầu phù hợp cho B/C | Xây mạng/dây chuyền, giải thích đối xứng và thang | Cách tạo $\theta_0$ và kiểm tín hiệu/gradient | 0.60 + 0.25 giờ |
-| E — Tổng hợp các phương pháp tối ưu | Toàn bộ đầu ra A–D | Phối hợp và kiểm tra chuyển giao; trả lại bài toán mở đầu | Một thiết lập huấn luyện có cơ chế và giới hạn | 0.15 + 0.15 giờ |
+| E — Phối hợp các thành phần của quy trình huấn luyện | Toàn bộ đầu ra A–D | Phối hợp và kiểm tra chuyển giao; trả lại bài toán mở đầu | Một thiết lập huấn luyện có cơ chế và giới hạn | 0.15 + 0.15 giờ |
 
 Tổng 2 giờ LT + 1 giờ BT; không có dữ kiện để quy đổi ra phút. BT được phân bổ vào A07/B08/C08/D11/E02. Bản trình chiếu hiện tại là một tuyến liên tục; mã và phân bổ nội bộ không được đưa lên mặt trang chiếu hoặc ghi chú diễn giả. Không tách thực hành riêng vì các thao tác cục bộ đã có trong từng phần, sản phẩm phối hợp thuộc E.
 
@@ -54,7 +54,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | Trang và tiêu đề | Lý do tồn tại / nhu cầu được giải quyết | Nhận → tạo cho trang sau | Minh chứng | Quyết định có căn cứ |
 |---|---|---|---|---|
 | A01 — Các phương pháp tối ưu trong huấn luyện mô hình học sâu | Định vị học phần và nhiệm vụ của buổi | Bài trước → chủ đề Bài 05 | MT1–MT3, định vị | Thêm mới; bắt buộc mở đầu |
-| A02 — Nội dung bài giảng | Cho người học biết các phần cùng giải quyết việc gì | Chủ đề → bản đồ năm thành phần | MT1–MT3 | Thêm mới; không biến thành danh sách tên thuật toán rời nhau |
+| A02 — Nội dung bài giảng | Cho người học biết các phần cùng giải quyết việc gì | Chủ đề → vấn đề trung tâm gồm ba quyết định và bản đồ năm thành phần | MT1–MT3 | Sửa 2026-10-01: thay khung kết quả bằng vấn đề trung tâm theo yêu cầu bản đồ nội dung; đổi tên mục E theo đúng chức năng phối hợp |
 | A03 — Bài toán huấn luyện mô hình | Tạo nhu cầu chọn tham số từ dữ liệu trước ký hiệu tổng quát | Ba quan sát → mất mát/$J$ | LLO11/CLO1 | Thêm mới; ví dụ tự xây dựng theo khung DL §5.10 |
 | A04 — Mất mát huấn luyện và rủi ro kỳ vọng | Ngăn đồng nhất tối ưu dữ liệu với mục tiêu dự báo | Cùng $f,\ell$ → $J$ và $R$ | A07, LLO11/CLO1 | Giữ ý §8.1, đổi $J^*$ sang $R$ để tránh xung đột |
 | A05 — Tiêu chí đánh giá mô hình | Biến phân biệt thành quyết định chọn mô hình | $J,R$ → mất mát thay thế/xác thực | A07, LLO11/CLO1 | Gộp §8.1.2 với nền §5.3, giữ ranh giới kiểm thử |

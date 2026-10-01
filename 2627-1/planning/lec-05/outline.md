@@ -110,7 +110,7 @@ Nguồn HT1–HT3: DL §§8.1, 8.3.1 và phép tính trực tiếp; HT4: BV §9.
 | B. Ước lượng gradient và phương pháp SGD | $J$ dạng trung bình → ước lượng, bước và nhiễu → luồng gradient cho C | B01–B08 | 0.40 giờ | 0.25 giờ | B08 |
 | C. Phương pháp momentum và Nesterov | Gradient và Taylor → trạng thái và điểm đánh giá → quy trình còn cần $\theta_0$ | C01–C08 | 0.50 giờ | 0.25 giờ | C08 |
 | D. Khởi tạo tham số mạng nơ ron | Quy trình cập nhật → mạng/dây chuyền → đối xứng và thang → $\theta_0$ có căn cứ | D01–D11 | 0.60 giờ | 0.25 giờ | D11 |
-| E. Tổng hợp các phương pháp tối ưu | Các kết quả A–D → một thiết lập huấn luyện và cách kiểm chứng | E01–E03 | 0.15 giờ | 0.15 giờ | E02 |
+| E. Phối hợp các thành phần của quy trình huấn luyện | Các kết quả A–D → một thiết lập huấn luyện và cách kiểm chứng | E01–E03 | 0.15 giờ | 0.15 giờ | E02 |
 | **Tổng** | **37 trang, tuyến liên tục** | **37** | **2.00 giờ** | **1.00 giờ** | **5 trang** |
 
 Không tách phần thực hành thứ sáu: các phép tính riêng đã có ở B–D; nhiệm vụ phối hợp chính là kiểm tra của phần E. Số 37 xuất phát từ tách các bước khó — gradient lấy mẫu, vị trí đo Nesterov, dây chuyền, phương sai tiến/lùi — và năm kiểm tra, không lấy số trang cũ làm chỉ tiêu.
@@ -145,6 +145,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Thời lượng:** 0.03 giờ LT.
 - **Ghi chú soạn:** Giải thích khởi tạo được học sau nhưng chạy trước trong thuật toán; không tạo một tuyến tự học khác.
 - **Bản triển khai sau rà 2026-09-26:** Mặt trang giữ bản đồ năm phần và nêu ba kết quả quan sát được: phân biệt mục tiêu/đánh giá, tính cập nhật, giải thích đối xứng/thang.
+- **Sửa ngày 2026-10-01:** Khung cuối trang nêu vấn đề trung tâm gồm ba quyết định: cực tiểu đại lượng nào, dùng gradient thế nào, bắt đầu từ tham số nào. Ghi chú ánh xạ A → đại lượng và tiêu chí, B/C → gradient, D → điểm khởi đầu, E → phối hợp. Mục E đổi thành “Phối hợp các thành phần của quy trình huấn luyện”.
 
 #### A03 — Bài toán huấn luyện mô hình
 
@@ -563,7 +564,7 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Tiêu chí đánh giá:** Có đúng các thừa số của dây chuyền và hai đạo hàm; nêu điều kiện đối xứng đầy đủ; đúng phương sai, biên, hai hệ số và giả thiết tuyến tính. Chỉ nhận diện gradient bằng nhau hoặc trả tên Glorot chưa đủ.
 - **Bản triển khai sau rà 2026-09-26:** Tiêu đề mới bao phủ hai nhiệm vụ. Mặt trang ghi hai tiểu bài toán độc lập; câu hỏi đối xứng giới hạn ở các bước khả vi.
 
-### E. Tổng hợp các phương pháp tối ưu
+### E. Phối hợp các thành phần của quy trình huấn luyện
 
 Chức năng: trở lại bài toán A03 và phối hợp các lựa chọn; không đưa khái niệm trọng tâm mới. MT1–MT3; 0.15 LT + 0.15 BT.
 

@@ -1,6 +1,6 @@
 # Bài 05 — Các phương pháp tối ưu trong huấn luyện mô hình học sâu
 
-Huấn luyện một mô hình từ dữ liệu hữu hạn đòi hỏi xác định hàm mục tiêu, xây dựng thông tin gradient, lựa chọn quy tắc cập nhật và khởi tạo tham số. Chất lượng dự đoán trên dữ liệu mới còn phụ thuộc tiêu chí đánh giá và cách sử dụng dữ liệu. Ghi chú này phát triển các phép tính và chứng minh của bài giảng theo năm phần; bộ bài tập đi kèm chứa các nhiệm vụ tính toán, chứng minh và vận dụng độc lập.
+Huấn luyện một mô hình từ dữ liệu hữu hạn đòi hỏi xác định hàm mục tiêu, xây dựng thông tin gradient, lựa chọn quy tắc cập nhật và khởi tạo tham số. Chất lượng dự đoán trên dữ liệu mới còn phụ thuộc tiêu chí đánh giá và cách sử dụng dữ liệu. Ba quyết định trung tâm là cực tiểu đại lượng nào, dùng gradient thế nào với chi phí chấp nhận được, và bắt đầu từ tham số nào. Phần A xác định đại lượng cần cực tiểu và tiêu chí chọn kết quả; phần B và C xử lý cách ước lượng và sử dụng gradient; phần D chọn điểm khởi đầu; phần E phối hợp các quyết định thành một quy trình. Bộ bài tập đi kèm chứa các nhiệm vụ tính toán, chứng minh và vận dụng độc lập.
 
 Kết quả cần đạt: phân biệt mục tiêu huấn luyện và đánh giá; tính gradient nhóm cùng bước SGD, momentum, Nesterov; giải thích đối xứng và tính thang khởi tạo theo giả thiết đã nêu.
 
