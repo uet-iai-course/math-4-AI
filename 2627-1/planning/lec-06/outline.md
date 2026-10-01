@@ -468,6 +468,7 @@ Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: C
 - **Nguồn:** DL, §8.7.2; ví dụ V10 tự xây dựng.
 - **Thời lượng:** 0,04 tiết lý thuyết + 0,03 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Nghiệm bài toán đầy đủ là (2/3,2/3); một lượt qua hai tọa độ chưa đạt nghiệm.
+- **Sửa ngày 2026-10-02:** Câu mở nêu nhu cầu: giữ các biến khác cố định, bài toán theo một biến thường giải được chính xác; dữ kiện mang nhãn Ví dụ.
 
 #### E05. Hạ theo tọa độ và theo khối
 

@@ -1118,3 +1118,5 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | storyboard C07, C08, D05 | thêm ghi chú đổi tiêu đề vào dòng quyết định. **Đã đóng.**
   - nhẹ | D05→E01 | ranh giới D→E → đã xử lý ở commit sửa E01. **Đã đóng.**
 - **E02 — sửa.** Nhu cầu và trực quan của chuẩn hóa chỉ có trong ghi chú; mặt trang mở thẳng bằng hai lô số. Thêm dòng **Trực quan** (trừ trung bình, chia độ lệch chuẩn của lô để thống nhất vị trí và thang); gộp dòng $\varepsilon\to0^+$ vào công thức để giữ chiều cao. Ghi chú bài giảng mục 5.1 thêm câu trực quan và tên tiếng Anh.
+- **E03 — giữ.** Định nghĩa chuẩn hóa theo lô nêu tên đầy đủ, công thức, chế độ huấn luyện/suy luận và phương sai sau chuẩn hóa.
+- **E04 — sửa.** Trang mở thẳng bằng hàm ví dụ, chưa nói vì sao cập nhật từng biến. Câu mở nêu nhu cầu: giữ các biến khác, bài toán theo một biến thường giải được chính xác. Ghi chú bài giảng mục 5.2 đã có câu nhu cầu tương ứng.

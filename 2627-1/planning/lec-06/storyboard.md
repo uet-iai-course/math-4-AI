@@ -401,7 +401,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Cần thấy vì sao chọn một nhóm biến có thể làm bài toán con dễ giải trước thuật toán hạ khối.
 - **Kế thừa, đầu ra và vị trí trong sườn:** E03 thay phép tính mạng; E04 chuyển sang tập biến cập nhật, E05 nêu quy trình và giới hạn.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN8; MT3.
-- **Quyết định và lý do:** Giữ hàm bậc hai hai biến và đường gấp khúc tính được. Đặc tả tại E04 trong outline.md.
+- **Quyết định và lý do:** Giữ hàm bậc hai hai biến và đường gấp khúc tính được. Sửa 2026-10-02: câu nhu cầu trên mặt trang (giữ biến khác, bài toán một biến thường giải được chính xác). Đặc tả tại E04 trong outline.md.
 - **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,03 tiết bài tập; tối thiểu lần lượt u,v và kiểm ba giá trị mục tiêu.
 
 ### E05. Hạ theo tọa độ và theo khối
