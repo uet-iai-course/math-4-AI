@@ -679,7 +679,7 @@ Nếu giải giai đoạn $\lambda=3$ đúng tới $0$, rồi khởi tạo hạ 
 
 ### 6.3. Học theo chương trình
 
-Học theo chương trình (curriculum learning) thay phân phối hoặc trọng số mẫu theo giai đoạn. Với phân phối $P_k$,
+Học theo chương trình (curriculum learning) thay phân phối hoặc trọng số mẫu theo giai đoạn, thường cho mẫu dễ trước và mẫu khó sau. Với phân phối $P_k$,
 
 $$
 F_k(\theta)=\mathbb E_{(x,y)\sim P_k}\ell(f_\theta(x),y).

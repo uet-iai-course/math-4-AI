@@ -473,7 +473,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Lịch lấy mẫu phải được viết thành mục tiêu trung bình để phân biệt thay phân phối với chỉ đổi thứ tự dữ liệu.
 - **Kế thừa, đầu ra và vị trí trong sườn:** F04 thay hàm trực tiếp; F05 thay trọng số mẫu, F06 so sánh các can thiệp theo đúng dữ kiện.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan, ví dụ và hình thức hóa KN13; MT3.
-- **Quyết định và lý do:** Giữ hai mẫu có độ nhạy tính được và phân phối đích xác định. Đặc tả tại F05 trong outline.md.
+- **Quyết định và lý do:** Giữ hai mẫu có độ nhạy tính được và phân phối đích xác định. Sửa 2026-10-02: câu định nghĩa nêu ý tưởng (thay phân phối lấy mẫu, mẫu dễ trước) trước dữ kiện. Đặc tả tại F05 trong outline.md.
 - **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,02 tiết bài tập; lập tổng có trọng số, tính nghiệm theo q và đối chiếu đích.
 
 ### F06. Điều kiện đánh giá huấn luyện theo giai đoạn

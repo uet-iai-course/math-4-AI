@@ -1130,3 +1130,5 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **F01 — sửa.** Trang mở thẳng bằng nhiệm vụ phụ, không nêu vì sao cần thay điểm đầu; tiêu đề không nói đối tượng bị thay. Tiêu đề mới “Điểm đầu từ nhiệm vụ phụ”; câu mở nêu điểm đầu quyết định gradient bước đầu. Ghi chú bài giảng thêm đoạn mở đầu mục 6 nối từ mục 5.
 - **F02 — giữ.** Thuật toán tiền huấn luyện có giám sát nêu đầu vào, ba bước, phép chuyển $T$ và ví dụ.
 - **F03 — sửa.** Họ mục tiêu xuất hiện không có ý tưởng tiếp diễn. Câu mở nêu giải mục tiêu dễ trước rồi chuyển dần về đích $\lambda=0$; khung rút gọn để trang không tràn, điều kiện kiểm đường điểm dừng chuyển vào ghi chú. Ghi chú bài giảng mục 6.2 thêm câu nhu cầu.
+- **F04 — giữ.** Phương pháp tiếp diễn nêu lịch, phép chuyển nghiệm, đạo hàm và giới hạn tại điểm dừng $0$.
+- **F05 — sửa.** Tên gọi xuất hiện không kèm ý tưởng. Dòng mở nêu học theo chương trình thay phân phối lấy mẫu theo giai đoạn, mẫu dễ trước, mẫu khó sau; dữ kiện xuống dòng riêng. Ghi chú bài giảng mục 6.3 thêm ý tưởng tương ứng.

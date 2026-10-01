@@ -592,6 +592,7 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 - **Nguồn:** DL, §8.7.6; CU, §2–3; ví dụ V15 tự xây dựng.
 - **Thời lượng:** 0,06 tiết lý thuyết + 0,02 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Quy ước độ khó chỉ phục vụ ví dụ. Nếu giữ q=0 thì giải mục tiêu khác phân phối đích; không khẳng định dễ đến khó luôn nhanh hơn lấy mẫu đều.
+- **Sửa ngày 2026-10-02:** Dòng mở nêu ý tưởng: thay phân phối lấy mẫu theo giai đoạn, mẫu dễ trước, mẫu khó sau; dữ kiện xuống dòng riêng.
 
 #### F06. Điều kiện đánh giá huấn luyện theo giai đoạn
 
