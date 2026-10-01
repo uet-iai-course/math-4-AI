@@ -188,7 +188,7 @@ $$
 
 Giảm bước một nửa làm phương sai cập nhật giảm bốn lần, đồng thời giảm độ dài thành phần có hướng. Một lịch bước học (learning-rate schedule) hữu hạn, chẳng hạn giảm từ $0.1$ xuống $0.05$ sau một ngân sách định trước, là lựa chọn vận hành; phép tính phương sai này chưa chứng minh hội tụ toàn cục cho mạng.
 
-**Câu hỏi:** Với nhóm gồm $y=-1$ và $y=1$ tại $\theta=1$, gradient nhóm, tham số mới và thay đổi $J$ bằng bao nhiêu khi $\eta=0.1$? Kỳ vọng trước khi biết nhóm khác giá trị của nhóm đã quan sát như thế nào?
+**Câu hỏi:** Với nhóm gồm $y=-1$ và $y=1$ tại $\theta=1$ và $\eta=0.1$, tính gradient nhóm, tham số mới và thay đổi của $J$. Tính kỳ vọng và phương sai của gradient nhóm trước khi biết nhóm, nêu điều kiện của phép tính và so sánh với giá trị của nhóm đã quan sát.
 
 ## C. Phương pháp momentum và Nesterov
 

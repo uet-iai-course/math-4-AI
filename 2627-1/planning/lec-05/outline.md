@@ -335,6 +335,8 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Kiến thức được đo:** Tính ước lượng, bước, phương sai và giải thích; tất cả đã có B02–B07.
 - **Tiêu chí đánh giá:** Đúng các giá trị và nêu điều kiện độc lập/có hoàn lại; không đồng nhất kỳ vọng với gradient của phân phối thực.
 
+- **Sửa ngày 2026-10-01 (B08):** Yêu cầu viết bằng “Tính… Nêu…”. Câu cuối ghi chú nối sang C: ngay cả với gradient đầy đủ, độ cong khác nhau theo các hướng làm hạ gradient tiến chậm hoặc vượt nghiệm.
+
 ### C. Phương pháp momentum và Nesterov
 
 Chức năng: dùng hình học đã biết để giải thích lịch sử cập nhật và vị trí đo gradient. Tạm dùng gradient đầy đủ để cô lập cơ chế, sau đó ghép lại nhóm nhỏ. MT1–MT2; 0.50 LT + 0.25 BT.
