@@ -224,7 +224,7 @@ Bước học vì vậy bị chặn bởi độ cong lớn. Với $\eta=1/20$, h
 
 ### Tích lũy hướng bằng momentum
 
-Từ đây, đối chứng ba phương pháp dùng cùng $\eta=0.05$, $\beta=0.5$, $\theta_0=(2,4)^T$, $v_0=0$. Cấu hình này khác bước $1/4$ ở phép phân tích trên.
+Gọi $v_t$ là bước dịch chuyển ở vòng $t$. Ý tưởng của momentum là giữ phần $\beta\in[0,1)$ của bước cũ rồi cộng bước âm gradient mới. Từ đây, đối chứng ba phương pháp dùng cùng bước học $\eta=0.05$ đã xét ở trên, $\beta=0.5$, $\theta_0=(2,4)^T$, $v_0=0$.
 
 Bước đầu cho $v_1=-0.05(6,28)^T=(-0.3,-1.4)^T$ và $\theta_1=(1.7,2.6)^T$. Tại điểm này, gradient bằng $(5.1,18.2)^T$. Giữ một nửa bước cũ rồi cộng bước âm gradient cho
 

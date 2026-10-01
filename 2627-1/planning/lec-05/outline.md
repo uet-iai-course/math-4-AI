@@ -382,6 +382,8 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Thời lượng:** 0.07 giờ LT.
 - **Ghi chú soạn:** Thành phần đổi dấu có thể triệt tiêu một phần; không nói mọi dao động đều bị loại. $v$ là bước dịch chuyển tích lũy, không một vị trí tham số khác.
 
+- **Sửa ngày 2026-10-01:** Câu “Trực quan” giải nghĩa $v_t$ là bước dịch chuyển, giữ phần $\beta\in[0,1)$ của bước cũ và cộng bước âm gradient mới. Dòng cấu hình ghi “bước học $\eta=1/20$ như trên” thay cho “Cấu hình mới”.
+
 #### C04 — Phương pháp momentum
 
 - **Vai trò và mục tiêu:** Hình thức và ứng dụng KN3; MT2.
