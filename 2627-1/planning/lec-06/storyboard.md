@@ -172,12 +172,12 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa sơ đồ ba nhánh thành sơ đồ thành phần, giữ ba nhóm mục tiêu và bổ sung LLO16. Sửa 2026-10-02: gắn mạch B–F vào các ô sơ đồ để trang làm bản đồ nội dung; khung cuối nêu vấn đề trung tâm nối với Bài 05; ghi chú giải nghĩa quy tắc trả về. Đặc tả tại A02 trong outline.md.
 - **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,00 tiết bài tập; đọc sơ đồ thành phần, phân biệt ba nhóm quyết định và tiên quyết.
 
-### A03. Sai lệch thang đo trong bước cập nhật
+### A03. Thang đo khác nhau giữa các tọa độ
 
 - **Lý do tồn tại và nhu cầu học tập:** Hai giá trị bước trên cùng hàm làm rõ hạn chế của tốc độ học vô hướng trước khi đưa ma trận phạt.
 - **Kế thừa, đầu ra và vị trí trong sườn:** A02 đặt nhiệm vụ chọn bước; các độ dài lệch nhau tạo nhu cầu về ma trận phạt tại A04.
 - **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3; LLO15/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ dẫn nhập cho HT1; MT1–MT2.
-- **Quyết định và lý do:** Sửa ký hiệu điểm hiện tại để không dùng một chỉ số cho cả tọa độ lẫn vòng lặp. Đặc tả tại A03 trong outline.md.
+- **Quyết định và lý do:** Sửa ký hiệu điểm hiện tại để không dùng một chỉ số cho cả tọa độ lẫn vòng lặp. Sửa 2026-10-02: tiêu đề gọi tên hiện tượng; nhãn ví dụ dẫn nhập; kết luận định lượng $\eta<2/9$, hệ số $1-\eta>7/9$, nối Bài 05. Đặc tả tại A03 trong outline.md.
 - **Thời lượng và hoạt động:** 0,08 tiết lý thuyết + 0,00 tiết bài tập; so sánh hai bước và ba giá trị mục tiêu trên đồ thị đồng mức.
 
 ### A04. Mô hình cục bộ của bước cập nhật

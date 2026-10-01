@@ -31,7 +31,7 @@ $$
 
 Khi dùng toàn bộ dữ liệu, $g_t=\nabla F(\theta_{t-1})$. Một gradient lô nhỏ khác gradient đầy đủ nói chung; chuẩn của một gradient lô nhỏ không đủ chứng nhận điểm dừng của $F$. Ngân sách, lịch tốc độ học, quy tắc chọn tham số trên tập xác thực và điều kiện dừng phải được định trước.
 
-### 1.2. Sai lệch thang đo
+### 1.2. Thang đo khác nhau giữa các tọa độ
 
 ::: example
 Xét $F(\theta)=\frac12(\theta_1^2+9\theta_2^2)$ tại $\theta=(1,1)^\top$. Gradient là $g=(1,9)^\top$ và $F(\theta)=5$.
@@ -41,7 +41,7 @@ Xét $F(\theta)=\frac12(\theta_1^2+9\theta_2^2)$ tại $\theta=(1,1)^\top$. Grad
 | $1/5$ | $(4/5,-4/5)^\top$ | $16/5=3{,}2$ |
 | $1$ | $(0,-8)^\top$ | $288$ |
 
-Độ cong theo tọa độ thứ hai bằng $9$, còn theo tọa độ thứ nhất bằng $1$. Một tốc độ học chung chịu giới hạn bởi hướng cong hơn. Với hạ gradient lặp trên hàm này, hai tọa độ nhân lần lượt với $1-\eta$ và $1-9\eta$ sau mỗi vòng. Để cả hai co về $0$ từ mọi điểm đầu, cần $0<\eta<2/9$.
+Độ cong theo tọa độ thứ hai bằng $9$, còn theo tọa độ thứ nhất bằng $1$. Một tốc độ học chung chịu giới hạn bởi hướng cong hơn. Với hạ gradient lặp trên hàm này, hai tọa độ nhân lần lượt với $1-\eta$ và $1-9\eta$ sau mỗi vòng. Để cả hai co về $0$ từ mọi điểm đầu, cần $0<\eta<2/9$, cùng giới hạn đã gặp ở Bài 05. Khi đó tọa độ thứ nhất co với hệ số $1-\eta>7/9$, tức rất chậm.
 :::
 
 Việc thay thang đo từng hướng có thể được mô tả bằng một mô hình cục bộ. Nguồn đối chiếu về điều kiện số là Goodfellow, Bengio và Courville (2016), §8.2.1; hướng theo chuẩn bậc hai được trình bày trong Boyd và Vandenberghe (2004), §9.4.1.

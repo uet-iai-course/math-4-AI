@@ -61,7 +61,7 @@ Chức năng: bài toán và mô hình bước cập nhật. Đầu vào: Gradie
 - **Ghi chú soạn:** Mục tiêu dùng động từ tính, phân biệt, lựa chọn kèm điều kiện; các định nghĩa mới được dạy tại chỗ.
 - **Sửa ngày 2026-10-02:** Các ô sơ đồ ghi mạch xử lý (E, F, B–D, E). Khung cuối: “Vấn đề trung tâm. Một tốc độ học chung bị chặn bởi hướng cong nhất (Bài 05). Cần xác định thành phần phải điều chỉnh: thang của bước, độ cong, hay mô hình, đầu ra và cách tổ chức huấn luyện.” Ghi chú định nghĩa quy tắc trả về và nối tốc độ học với “bước học” của Bài 05.
 
-#### A03. Sai lệch thang đo trong bước cập nhật
+#### A03. Thang đo khác nhau giữa các tọa độ
 
 - **Vai trò và mục tiêu:** Nhu cầu, trực quan và ví dụ dẫn nhập cho HT1; MT1–MT2.
 - **Luận điểm trung tâm:** Một tốc độ học vô hướng chịu chi phối bởi hướng có độ cong lớn.
@@ -72,6 +72,7 @@ Chức năng: bài toán và mô hình bước cập nhật. Đầu vào: Gradie
 - **Nguồn:** Ví dụ V1 tự xây dựng; DL, §8.2.1; ST, tr. 15–17.
 - **Thời lượng:** 0,08 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Hình chỉ minh họa hàm bậc hai xác định dương. Không suy rộng giá trị giảm này cho gradient lô nhỏ hoặc mạng phi lồi.
+- **Sửa ngày 2026-10-02:** Tiêu đề “Thang đo khác nhau giữa các tọa độ”; dòng dữ kiện mang nhãn Ví dụ dẫn nhập. Kết luận: tọa độ 2 chỉ co khi $\eta<2/9$, khi đó tọa độ 1 co với hệ số $1-\eta>7/9$; ghi chú nối với giới hạn bước học của Bài 05.
 
 #### A04. Mô hình cục bộ của bước cập nhật
 
