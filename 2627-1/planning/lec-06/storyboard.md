@@ -305,7 +305,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Sinh viên chưa học CG cần thấy hệ số và hướng thứ hai được sinh ra bằng phép tính, không chỉ nhận đáp số.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C04 tạo hệ A; C05 dùng một hệ SPD nhỏ, C06 tổng quát hóa cùng r,p,α,β.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN5; MT2.
-- **Quyết định và lý do:** Sửa để hiện nghĩa của $d_k,r_k,p_k$, tỷ số tạo $\alpha_0$, quan hệ $p_1=r_1+(9/25)p_0$ và điều kiện liên hợp. Phép suy ra $\beta_0$, tọa độ số của $p_1$ và phép tính vòng hai nằm trong ghi chú; giữ hình hai đoạn tới nghiệm. Các nhãn và phép thế làm rõ cơ chế trước thuật toán C06 mà không tăng mật độ trang. Đặc tả tại C05 trong outline.md.
+- **Quyết định và lý do:** Sửa để hiện nghĩa của $d_k,r_k,p_k$, tỷ số tạo $\alpha_0$, quan hệ $p_1=r_1+(9/25)p_0$ và điều kiện liên hợp. Phép suy ra $\beta_0$, tọa độ số của $p_1$ và phép tính vòng hai nằm trong ghi chú; giữ hình hai đoạn tới nghiệm. Các nhãn và phép thế làm rõ cơ chế trước thuật toán C06 mà không tăng mật độ trang. Sửa 2026-10-02: câu nhu cầu trên mặt trang (giải hệ đặc $O(p^3)$, CG chỉ cần tích $Av$); dữ kiện và ký hiệu tách dòng. Đặc tả tại C05 trong outline.md.
 - **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,07 tiết bài tập; tối thiểu trên đường, dùng điều kiện liên hợp, thế số và kiểm phần dư.
 
 ### C06. Thuật toán gradient liên hợp tuyến tính

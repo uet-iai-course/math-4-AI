@@ -297,6 +297,7 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Nguồn:** SH, §8, (45)–(49), tr. in 32/trang PDF 38; DL, §8.6.2 cho phạm vi; ví dụ V7 tự xây dựng.
 - **Thời lượng:** 0,05 tiết lý thuyết + 0,07 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Chỉ số k là vòng giải hệ bên trong, khác t của huấn luyện. CG tuyến tính được dạy mới, không giả định tiên quyết. Bản triển khai ghi nghĩa của $d_k,r_k,p_k$, tỷ số tạo $\alpha_0$, quan hệ sinh $p_1$ và điều kiện liên hợp trên mặt trang. Phép tính $\beta_0$, tọa độ số của $p_1$ và vòng hai nằm trong ghi chú; hình giữ quỹ đạo hai bước. Quyết định này làm rõ cơ chế trước khi tổng quát ở C06 mà không tăng mật độ trang.
+- **Sửa ngày 2026-10-02:** Dòng mở nêu nhu cầu: giải hệ đặc tốn $O(p^3)$, CG chỉ cần tích $Av$; dữ kiện mang nhãn Ví dụ; ký hiệu $d_k,r_k,p_k$ ở dòng riêng.
 
 #### C06. Thuật toán gradient liên hợp tuyến tính
 

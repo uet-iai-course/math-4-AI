@@ -293,7 +293,7 @@ Hệ đã giảm chấn cần một bộ giải. Với số tham số lớn, vi�
 
 ### 3.3. Gradient liên hợp tuyến tính
 
-Phương pháp gradient liên hợp (CG) giải hệ $Ad=b$, trong đó $A=A^\top\succ0$ cố định. Cùng hệ đó là điều kiện cực tiểu của
+Hệ giảm chấn $Ad=b$ với $A=H+\lambda I$, $b=-g$ có kích thước $p$. Lưu $A$ cần $O(p^2)$ số và khử Gauss cần $O(p^3)$ phép toán, quá lớn khi $p$ là số tham số của mạng. Phương pháp gradient liên hợp (conjugate gradient, CG) chỉ truy cập $A$ qua tích ma trận–vectơ. CG giải hệ $Ad=b$, trong đó $A=A^\top\succ0$ cố định. Cùng hệ đó là điều kiện cực tiểu của
 
 $$
 \varphi(d)=\frac12d^\top Ad-b^\top d.
