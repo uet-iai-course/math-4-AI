@@ -289,7 +289,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Cần nêu điều kiện nào biến nghiệm hệ thành hướng giảm và điều kiện nào chỉ bảo đảm hội tụ cục bộ.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C02 minh họa nghiệm mô hình; C04 kiểm tra giả thiết H xác định dương.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Hình thức hóa KN4/HT5; MT2.
-- **Quyết định và lý do:** Giữ phát biểu, chứng minh dấu và điều kiện hội tụ; không mở chứng minh tốc độ dài. Đặc tả tại C03 trong outline.md.
+- **Quyết định và lý do:** Giữ phát biểu, chứng minh dấu và điều kiện hội tụ; không mở chứng minh tốc độ dài. Sửa 2026-10-02: câu dẫn từ C02 (Hessian đổi theo $\theta$, dùng $M=H(\theta)$); nhãn Mệnh đề và Định lý cho hai kết quả. Đặc tả tại C03 trong outline.md.
 - **Thời lượng và hoạt động:** 0,08 tiết lý thuyết + 0,00 tiết bài tập; suy ra hệ từ Taylor và kiểm chỗ dùng Hessian xác định dương.
 
 ### C04. Giảm chấn cho hệ Newton

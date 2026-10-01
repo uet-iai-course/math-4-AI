@@ -271,6 +271,7 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Nguồn:** DL, §8.6.1. BV, §9.5.1 tr.484; §9.5.2 tr.487; §9.5.3 tr.488–489.
 - **Thời lượng:** 0,08 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Chứng minh dấu bằng biểu thức dạng toàn phương; phát biểu điều kiện hội tụ, không chứng minh dài. Chi phí lưu Hessian O(p²), giải hệ đặc O(p³).
+- **Sửa ngày 2026-10-02:** Câu dẫn: khi $F$ không bậc hai, Hessian đổi theo $\theta$; tại mỗi điểm dùng $M=H(\theta)$ cho mô hình Taylor bậc hai. Khung hướng giảm mang nhãn Mệnh đề; điều kiện hội tụ bậc hai mang nhãn Định lý (hội tụ cục bộ).
 
 #### C04. Giảm chấn cho hệ Newton
 

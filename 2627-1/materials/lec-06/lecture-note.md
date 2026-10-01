@@ -257,7 +257,7 @@ $$
 cho $d=(-1,0)^\top$. Bước đầy đủ đưa điểm hiện tại tới $0$. Thành phần $g_2=\theta_1+2\theta_2=1$ sinh ra từ phần tử ngoài đường chéo $Q_{12}=1$; giải hệ với toàn bộ $Q$ dùng thông tin tương tác này để phối hợp hai tọa độ.
 :::
 
-Tại một điểm $\theta$ của hàm khả vi hai lần, đặt $g=\nabla F(\theta)$ và $H=\nabla^2F(\theta)$. Mô hình Taylor bậc hai là
+Khi $F$ không phải hàm bậc hai, Hessian thay đổi theo $\theta$. Phương pháp Newton dùng ma trận phạt $M=\nabla^2F(\theta)$ tại điểm hiện tại, tức giải mô hình Taylor bậc hai cục bộ. Tại một điểm $\theta$ của hàm khả vi hai lần, đặt $g=\nabla F(\theta)$ và $H=\nabla^2F(\theta)$. Mô hình Taylor bậc hai là
 
 $$
 q(d)=F(\theta)+g^\top d+\frac12d^\top Hd.
