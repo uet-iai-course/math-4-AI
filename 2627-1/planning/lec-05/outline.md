@@ -368,7 +368,7 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Thời lượng:** 0.08 giờ LT.
 - **Ghi chú soạn:** Đây là kết quả chính xác riêng cho bậc hai xác định dương. Từ C03 dùng cấu hình đối chứng mới $\eta=1/20,\beta=1/2$ và công bố rõ sự thay đổi.
 
-- **Sửa ngày 2026-10-01:** Tiêu đề “Độ cong và bước học”. Đẳng thức Taylor chuyển vào ghi chú (mặt trang không dùng). Điều kiện viết $|1-\eta\lambda_i|<1\iff0<\eta<2/7$. Khối kết luận: bước học bị chặn bởi độ cong lớn; với $\eta=1/20$ hai hệ số $0.85$, $0.65$, không vượt trục nhưng hướng cong nhỏ co chậm. Ghi chú: $0.85^{10}\approx0.20$, hướng nhất quán là căn cứ của tích lũy.
+- **Sửa ngày 2026-10-01:** Tiêu đề “Độ cong và bước học”. Đẳng thức Taylor chuyển vào ghi chú (mặt trang không dùng). Điều kiện viết $|1-\eta\lambda_i|<1\iff0<\eta<2/7$. Khối kết luận: bước học bị chặn bởi độ cong lớn; với $\eta=1/20$ hai hệ số $0.85$, $0.65$, không vượt trục nhưng hướng cong nhỏ co chậm. Ghi chú: $0.85^{10}\approx0.20$; các bước liên tiếp cùng dấu ở cả hai tọa độ là căn cứ của tích lũy.
 
 #### C03 — Tích lũy hướng cập nhật
 
