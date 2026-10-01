@@ -420,6 +420,8 @@ $$
 | $1/16$ | 1 | $1/4$ | $1/16$ | $1/64$ |
 | $1/4$ | 1 | 1 | 1 | 1 |
 
+Với $s^2=1/16$, phương sai co bốn lần mỗi lớp, cùng hiện tượng của chuỗi vô hướng với $c_l=1/2$; với $s^2=1/4$, phương sai được giữ nguyên.
+
 Bảng là phép tính phương sai trong mô hình, không chứa số đo thực nghiệm. Đánh giá một mạng cụ thể còn cần đo kích hoạt, gradient và các giá trị không hữu hạn trên dữ liệu thực tế; phương sai thích hợp lúc khởi tạo chưa chứng nhận chất lượng sau huấn luyện.
 
 **Câu hỏi:** Lớp tuyến tính có 8 đầu vào, 4 đầu ra nhận phương sai, biên phân phối đều và hai hệ số truyền phương sai nào theo Glorot? Hai hệ số có đồng thời bằng 1 không?

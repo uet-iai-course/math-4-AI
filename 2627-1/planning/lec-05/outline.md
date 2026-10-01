@@ -604,6 +604,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Thời lượng:** 0.08 giờ LT.
 - **Ghi chú soạn:** Giảng viên tính lớp đầu, sinh viên dự đoán hai lớp sau rồi chữa. Đo độ lệch chuẩn kích hoạt/gradient trên nhóm dữ liệu và kiểm giá trị không hữu hạn là bước vận hành tiếp theo, chưa thực hiện ở trang này. Không cam kết mất mát hay khái quát hóa từ bảng phương sai của mô hình.
 
+- **Sửa ngày 2026-10-01:** Khối giả thiết chuyển lên trước công thức $q_l=4s^2q_{l-1}$ (trước đây đứng sau bảng). Chú thích nêu kết luận: $s^2=1/16$ co bốn lần mỗi lớp, $s^2=1/4$ giữ nguyên; giá trị tính theo mô hình.
+
 #### D11 — Đối xứng và thang khởi tạo
 
 - **Vai trò và mục tiêu:** Trang kiểm tra riêng D; MT3/KN4–KN5.
