@@ -132,7 +132,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | B04 | Hai cột; đồ thị hai mất mát và phép tính bước/giá trị. Giữ phản ví dụ nhìn và tính được. |
 | B05 | Đầu vào hai dòng có tên từng ký hiệu; hai cột cho thao tác cập nhật và khối “Dừng sớm theo xác thực”. |
 | B06 | Câu kế thừa và định nghĩa sai số chuẩn trên; hai cột hình trái, bảng và điều kiện phải; khối đánh đổi chi phí/sai số dưới. |
-| B07 | Hai cột; hình bước ngẫu nhiên và công thức phương sai cập nhật. Giữ cùng điểm để cô lập tác dụng của bước học. |
+| B07 | Câu nối từ chi phí của $b$ trên; hai cột hình bước ngẫu nhiên và công thức phương sai cập nhật. Giữ cùng điểm để cô lập tác dụng của bước học. |
 | B08 | Đề tự chứa phía trên, hai khối nhóm đã quan sát/trước lấy nhóm. Giữ phân biệt hiện thực và kỳ vọng. |
 | C01 | Câu mở gác nhiễu lấy mẫu; hai cột đường mức trái, hàm/Hessian/điểm đầu phải; khối so hướng $-g_0$ với hướng về cực tiểu dưới. Giải nghĩa số điều kiện trong notes. |
 | C02 | Hai cột; quỹ đạo trái, hai hệ số và điều kiện bước phải; công thức Taylor dưới. Giữ bước 1/4 được công bố. |

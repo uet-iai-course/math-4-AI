@@ -328,7 +328,7 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Câu hỏi / ý chính:** Cho $y=(-1,1,3)$, $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$ và $J(\theta)=\tfrac13\sum_{i=1}^3\ell_i(\theta)$. Tại $\theta=1$, lấy $b=2$ chỉ số độc lập đều có hoàn lại; lần này nhận $y=-1$ và $y=1$. Với $\eta=0.1$, tính hai gradient, gradient nhóm, tham số mới và thay đổi $J$. Tính kỳ vọng và phương sai của gradient nhóm trước khi biết hai chỉ số.
 - **Ví dụ/hình dự kiến:** Bảng trống bốn đại lượng; ghi quy tắc lấy mẫu ngay trên đề.
 - **Hình thức hóa:** HT2–HT3.
-- **Kết nối:** Dùng B02–B07; C xét cách sử dụng lịch sử gradient.
+- **Kết nối:** Dùng B02–B07; C bỏ nhiễu lấy mẫu, xét độ cong khác nhau theo các hướng với gradient đầy đủ; momentum là đáp ứng sau đó.
 - **Nguồn:** Bài tập tự xây dựng từ VD1.
 - **Thời lượng:** 0.25 giờ BT: 0.10 làm, 0.05 đối chiếu, 0.10 chữa.
 - **Ghi chú / đáp án:** Gradient $2,0$; trung bình 1; $\theta'=0.9$; $\Delta J=0.005$. Kỳ vọng 0, phương sai $4/3$. Kỳ vọng đúng không làm mọi hiện thực bằng 0 hoặc giảm $J$.

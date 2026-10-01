@@ -132,7 +132,7 @@ $$
 
 Tính không chệch ở đây hướng tới $\nabla J$, không mặc nhiên là $\nabla R$. Lấy mẫu không hoàn lại hoặc các chỉ số phụ thuộc cần phân tích riêng; công thức chia phương sai cho $b$ dùng tính độc lập.
 
-Ở ví dụ vô hướng tại $\theta=1$, gradient mẫu có kỳ vọng 0 và phương sai $\Sigma=(2^2+0^2+2^2)/3=8/3$. Gradient nhóm có phương sai $8/(3b)$.
+Ở ví dụ vô hướng tại $\theta=1$, gradient mẫu có kỳ vọng 0 và phương sai $\Sigma=\big(2^2+0^2+(-2)^2\big)/3=8/3$ (vì $\bar g=0$). Gradient nhóm có phương sai $8/(3b)$.
 
 ### Một bước gradient ngẫu nhiên
 
@@ -179,7 +179,7 @@ Kết quả $\operatorname{Cov}(\widehat g)=\Sigma/b$ cho phép chọn cỡ nhó
 
 Tăng nhóm bốn lần làm sai số chuẩn giảm hai lần và tăng số gradient mẫu cho mỗi ước lượng bốn lần. Bộ nhớ và khả năng xử lý song song còn ảnh hưởng thời gian thực tế. Các số trên được tính tại tham số cố định, không phải đường hội tụ.
 
-Giảm nhiễu bằng cách tăng $b$ làm tăng chi phí mỗi bước. Bước học cho một cách khác, không tốn thêm phép tính: tại $\theta_t=1$, cập nhật còn có phương sai
+Giảm nhiễu bằng cách tăng $b$ làm tăng chi phí mỗi bước. Bước học cho một cách khác, không thêm phép tính mỗi bước nhưng làm tiến triển chậm hơn: tại $\theta_t=1$, cập nhật còn có phương sai
 
 $$
 \operatorname{Var}(\theta_{t+1}\mid D,\theta_t=1)

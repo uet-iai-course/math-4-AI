@@ -225,3 +225,13 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần C
 
 - **C01 — sửa.** Câu gác nhiễu lấy mẫu chỉ có trong ghi chú; kết luận “gradient kết hợp độ lệch và độ cong” trừu tượng; tiêu đề chỉ nêu đối tượng. Tiêu đề mới “Hướng gradient trên hàm bậc hai”; câu mở nêu ranh giới B→C (gradient đầy đủ, hướng vẫn phụ thuộc độ cong); khối kết luận so $-g_0\propto(3,14)^T$ với hướng về cực tiểu $-\theta_0\propto(1,2)^T$. Đồng thời đóng phát hiện nhẹ “ranh giới B08→C01 chỉ nằm trong ghi chú” của tái kiểm mạch phần B. Ghi chú bài giảng đổi tiêu đề mục và thêm phép so hướng.
+- **Tái kiểm phần B.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5), tại commit `3cbf708`: tái kiểm toán học **PASS** (1 trung bình, 4 nhẹ); tái kiểm mạch lập luận **PASS có điều kiện** (2 trung bình, 5 nhẹ). Đã xử lý:
+  - trung bình | B05 | lý do trên mặt trang chỉ biện minh việc lưu bản tốt nhất, chưa biện minh dùng xác thực → “Một bước có thể làm $J$ tăng và $J$ khác $R$…”. **Đã đóng.**
+  - trung bình | B08 (outline) | trường Kết nối cũ mâu thuẫn câu nối mới → sửa theo độ cong với gradient đầy đủ. **Đã đóng.**
+  - trung bình | storyboard B07 | bảng bố cục chưa ghi câu nối → cập nhật. **Đã đóng.**
+  - nhẹ | B03 | phép tính $\Sigma$ bỏ dấu của $g_3$ → $\tfrac13\big(2^2+0^2+(-2)^2\big)$, ghi chú bài giảng nêu $\bar g=0$. **Đã đóng.**
+  - nhẹ | B07 | “không tốn thêm” dễ hiểu là không có giá; công thức thiếu $D$ trong điều kiện → “không thêm phép tính”, $\operatorname{Var}(\theta_{t+1}\mid D,\theta_t=1)$; câu mở thêm “cách”. **Đã đóng.**
+  - nhẹ | B05 | “Dừng khi đạt $K_{\rm stop}$” thiếu chủ ngữ → “khi bộ đếm đạt”. **Đã đóng.**
+  - nhẹ | B06 | chưa nối $b$ là đầu vào thuật toán B05 → thêm vào ghi chú. **Đã đóng.**
+  - nhẹ | B08 (ghi chú) | mẫu dấu hai chấm tiết lộ (no-ai-slop) → viết thành câu thường. **Đã đóng.**
+  - nhẹ | B08→C01 | ranh giới chỉ nằm trong ghi chú → đã xử lý ở commit sửa C01. **Đã đóng.**
