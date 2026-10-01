@@ -506,7 +506,7 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 
 - **Sửa ngày 2026-10-01:** Câu mở nối D02 (sáu đạo hàm bằng 2). Khối bất biến đổi nhãn thành Mệnh đề, thêm hệ quả mạng chỉ dùng được một đơn vị; câu hoán vị mang nhãn Nhận xét. Ghi chú: $f_\theta=(a_1+a_2)h$.
 
-#### D04 — Khởi tạo ngẫu nhiên và phá đối xứng
+#### D04 — Phá đối xứng bằng khởi tạo ngẫu nhiên
 
 - **Vai trò và mục tiêu:** Ứng dụng KN4; MT3.
 - **Luận điểm trung tâm:** Khởi tạo trọng số khác nhau tạo điều kiện để các đơn vị nhận vai trò và cập nhật khác nhau.
@@ -517,6 +517,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Nguồn:** DL §8.4, tr.301–302.
 - **Thời lượng:** 0.04 giờ LT.
 - **Ghi chú soạn:** Độ lệch có thể khởi tạo 0 khi trọng số đã phá đối xứng. Hai giá trị 0.8/1.2 là lựa chọn minh họa có chủ ý, không giả làm mẫu rút ngẫu nhiên thật.
+
+- **Sửa ngày 2026-10-01:** Tiêu đề “Phá đối xứng bằng khởi tạo ngẫu nhiên”. Khối kết luận thêm “hai đơn vị tách nhau sau một bước”. Dòng cuối mang nhãn Quy tắc và nêu lý do: phân phối liên tục cho trọng số khác nhau với xác suất 1.
 
 #### D05 — Độ nhạy qua nhiều lớp
 

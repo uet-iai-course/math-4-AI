@@ -317,7 +317,7 @@ Mỗi thừa số thể hiện độ nhạy trên đường từ tham số đế
 
 Tính gradient bằng dây chuyền và dùng gradient để cập nhật là hai phép toán riêng. SGD, momentum và Nesterov sử dụng gradient này theo các quy tắc khác nhau.
 
-### Đối xứng và khởi tạo khác nhau
+### Đối xứng và phá đối xứng bằng khởi tạo ngẫu nhiên
 
 Với bước hạ gradient $0.1$, cấu hình trên cho $a_j'=0.8$, $w_j'=0.8$, $b_j'=-0.2$ ở cả hai đơn vị. Hai nhánh tiếp tục biểu diễn cùng một hàm.
 
@@ -327,9 +327,9 @@ Với bước hạ gradient $0.1$, cấu hình trên cho $a_j'=0.8$, $w_j'=0.8$,
 Tham số vào và độ lệch bằng nhau tạo tiền kích hoạt và kích hoạt bằng nhau trên từng mẫu. Trọng số ra bằng nhau làm các đạo hàm theo tham số tương ứng bằng nhau qua công thức dây chuyền. Áp dụng cùng quy tắc với trạng thái bằng nhau cho tham số và trạng thái mới bằng nhau. Quy nạp theo bước bảo toàn tính đồng nhất. Lập luận giả sử không có nhiễu riêng làm phân biệt hai đơn vị.
 :::
 
-Hệ quả là hai đơn vị luôn tính cùng một hàm ẩn $h$, nên $f_\theta=(a_1+a_2)h$: mạng hai đơn vị chỉ biểu diễn được những hàm của mạng một đơn vị. Đổi nhóm dữ liệu chung chưa phá điều kiện đối xứng. Cùng trọng số vào nhưng khác trọng số ra cũng chưa thỏa toàn bộ giả thiết của mệnh đề.
+Hệ quả là hai đơn vị luôn tính cùng một hàm ẩn $h$, nên $f_\theta=(a_1+a_2)h$ và mạng hai đơn vị chỉ biểu diễn được những hàm của mạng một đơn vị. Đổi nhóm dữ liệu chung chưa phá điều kiện đối xứng. Cùng trọng số vào nhưng khác trọng số ra cũng chưa thỏa toàn bộ giả thiết của mệnh đề.
 
-Trong cấu hình $w_1=0.8,w_2=1.2$, $a_1=a_2=1$, $b_j=0$, $x=1,y=0$, đầu ra vẫn bằng 2. Gradient theo $a_1,a_2$ lần lượt bằng $1.6,2.4$, nên hai cập nhật khác nhau. Hai trọng số này được chọn có chủ ý cho ví dụ. Trong thực hành, lấy trọng số độc lập từ một phân phối liên tục là cách tạo khác biệt; độ lệch có thể bằng 0 khi trọng số đã phá đối xứng. Khác biệt giữa đơn vị chưa xác định độ lớn trọng số phù hợp.
+Trong cấu hình $w_1=0.8,w_2=1.2$, $a_1=a_2=1$, $b_j=0$, $x=1,y=0$, đầu ra vẫn bằng 2. Gradient theo $a_1,a_2$ lần lượt bằng $1.6,2.4$, nên hai cập nhật khác nhau. Hai trọng số này được chọn có chủ ý cho ví dụ. Trong thực hành, lấy trọng số độc lập từ một phân phối liên tục là cách tạo khác biệt, vì hai trọng số bằng nhau với xác suất 0; độ lệch có thể bằng 0 khi trọng số đã phá đối xứng. Khác biệt giữa đơn vị chưa xác định độ lớn trọng số phù hợp.
 
 ### Độ nhạy qua nhiều lớp và bão hòa
 
