@@ -8,7 +8,7 @@ Kiến thức chuẩn bị gồm gradient, Hessian, ma trận đối xứng xác
 
 ## 1. Bài toán và mô hình bước cập nhật
 
-### 1.1. Các thành phần của quá trình huấn luyện
+### 1.1. Vấn đề trung tâm và các thành phần huấn luyện
 
 Với dữ liệu $\mathcal D=\{(x_i,y_i)\}_{i=1}^n$, mô hình $f_\theta$ và tham số $\theta\in\mathbb R^p$, xét mục tiêu
 
@@ -482,7 +482,7 @@ Hai tích $y^\top s$ lần lượt bằng $2$ và $-1$, nên chỉ cặp thứ n
 
 ## 5. Phép tính mô hình, khối biến và đầu ra
 
-AdaGrad, RMSProp, Adam, Newton và BFGS chỉ thay cách dùng gradient đã có. Ba thành phần khác của quá trình huấn luyện cũng điều chỉnh được: phép tính mô hình (chuẩn hóa theo lô, đường truyền gradient), tập biến được cập nhật (hạ theo tọa độ, theo khối) và quy tắc trả về (trung bình Polyak). Gradient của một tầng tỷ lệ với thang đầu vào của tầng đó, và thang này do phép tính mô hình quyết định trước mọi quy tắc cập nhật.
+AdaGrad, RMSProp, Adam, Newton và BFGS chỉ thay cách dùng gradient đã có. Ba thành phần khác của quá trình huấn luyện cũng điều chỉnh được: phép tính mô hình (chuẩn hóa theo lô, đường truyền gradient), tập biến được cập nhật (hạ theo tọa độ, theo khối) và quy tắc trả về (trung bình Polyak). Với tầng tuyến tính $z=Wh$, $\nabla_W\mathcal L=\delta_zh^\top$ với $\delta_z=\nabla_z\mathcal L$, nên gradient theo trọng số tầng nhân với đầu vào $h$; thang của $h$ do phép tính mô hình quyết định trước mọi quy tắc cập nhật.
 
 ### 5.1. Chuẩn hóa theo lô
 
@@ -607,7 +607,7 @@ Nối tắt không bảo đảm hệ số bị chặn với mọi độ sâu: $1
 
 ## 6. Huấn luyện theo giai đoạn
 
-Các can thiệp ở mục 5 giữ nguyên điểm đầu và mục tiêu. Mục này thay hai thành phần đó theo giai đoạn: điểm đầu quyết định gradient ở bước đầu tiên, nên có thể lấy nó từ một nhiệm vụ phụ; mục tiêu và phân phối dữ liệu có thể thay dần trước khi đạt mục tiêu đích.
+Các can thiệp ở mục 5 giữ nguyên điểm đầu và không thay mục tiêu theo giai đoạn. Mục này thay hai thành phần đó theo giai đoạn: điểm đầu quyết định gradient ở bước đầu tiên, nên có thể lấy nó từ một nhiệm vụ phụ; mục tiêu và phân phối dữ liệu có thể thay dần trước khi đạt mục tiêu đích.
 
 ### 6.1. Tiền huấn luyện có giám sát
 

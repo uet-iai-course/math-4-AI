@@ -1140,3 +1140,15 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **G01 — sửa.** Trang lặp sơ đồ bốn ô lần thứ ba và không trả lời trực tiếp vấn đề trung tâm của A02. Sơ đồ thay bằng câu trả lời: thành phần cần điều chỉnh (thang, độ cong, hay mô hình, đầu ra và giai đoạn) được chọn theo dữ kiện sẵn có; tiêu đề rút thành “Lựa chọn phương pháp theo dữ kiện”. Ghi chú bài giảng mục 7 thêm câu trả lời và ánh xạ mục.
 - **G02 — sửa tiêu đề.** “Kiểm tra…” đổi thành “Phối hợp lựa chọn trong ba tình huống”; ba yêu cầu đã dùng động từ học tập.
 - **G03 — giữ.** Trang tài liệu đối chiếu đủ nguồn, mục và trang; đường dẫn trong ghi chú.
+- **Tái kiểm phần E–G và toàn bài.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5), tại commit `0ba5bb3`: tái kiểm toán học E–G **PASS** (2 trung bình, 3 nhẹ; mọi số liệu E07–G01 tính lại khớp); tái kiểm mạch toàn bài (bắt buộc vì mở bài và kết luận đổi) **PASS có điều kiện** (1 trung bình, 5 nhẹ). Toàn bài: 45 mã duy nhất, tiêu đề và thứ tự khớp storyboard và outline, vấn đề trung tâm của A02 được B–F xây dựng và G01–G02 trả lời; không có mã trang, thời lượng hay lời điều phối. Đã xử lý:
+  - trung bình | E01, ghi chú bài giảng mục 5 | “gradient của tầng tỷ lệ với thang đầu vào” chỉ đúng với gradient theo trọng số khi giữ $\delta_z$ → viết $\nabla_W\mathcal L=\delta_zh^\top$ với $\delta_z=\nabla_z\mathcal L$. **Đã đóng.**
+  - trung bình | E01 | câu mở “ba thành phần khác” mâu thuẫn hàng bảng “Quy tắc cập nhật” → hàng đổi thành “Tập biến cập nhật”, câu mở liệt kê ba can thiệp. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng mục 6 | BN thay mục tiêu → “không thay mục tiêu theo giai đoạn”. **Đã đóng.**
+  - nhẹ | F03 | thiếu miền $\theta\in\mathbb R$, $\lambda\ge0$ → bổ sung. **Đã đóng.**
+  - nhẹ | E06 | “làm giảm dao động” → “có thể giảm dao động”. **Đã đóng.**
+  - nhẹ | G02 | yêu cầu (c) dạng câu hỏi → “Nêu… Xác định…”. **Đã đóng.**
+  - nhẹ | G01 (ghi chú) | tham chiếu “sơ đồ mở đầu” → “các thành phần nêu ở phần mở đầu”. **Đã đóng.**
+  - nhẹ | F06 (ghi chú) | thiếu câu nối sang bài tập → thêm câu nêu ba phép kiểm áp dụng cho ba ví dụ. **Đã đóng.**
+  - nhẹ | storyboard KN10 | trực quan nay ở câu mở E07 → cập nhật. **Đã đóng.**
+  - ngoài phạm vi | ghi chú bài giảng mục 1.1 | tiêu đề trùng tiêu đề cũ của E01 → “Vấn đề trung tâm và các thành phần huấn luyện”. **Đã đóng.**
+- **Kiểm trình duyệt toàn bài.** Playwright Chromium qua `python3 -m reloadserver 8765`, đủ 45 trang tại 1600×900 và 390×844 (cuộn tới cuối vùng đọc hẹp): không lỗi JavaScript hoặc trang, không `.katex-error`, không tràn ngang tài liệu, cỡ chữ thân bài không dưới ngưỡng; nội dung khung rộng không chạm chân trang; ArrowRight điều hướng đúng. Ở khung hẹp, công thức và bảng rộng cuộn ngang bằng bàn phím như quy ước hiện hành.

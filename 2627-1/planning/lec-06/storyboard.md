@@ -118,7 +118,7 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 
 ### KN10. Thiết kế đường truyền gradient
 
-- **Sáu bước:** nhu cầu E07; trực quan Không áp dụng riêng; ví dụ E07; hình thức/toán học E07; ứng dụng E07; bài tập E08.
+- **Sáu bước:** nhu cầu và trực quan E07 (câu mở: tích đạo hàm, nối tắt cộng thêm 1); ví dụ E07; hình thức/toán học E07; ứng dụng E07; bài tập E08.
 - **Đầu vào và mục tiêu:** Quy tắc dây chuyền từ Bài 05; MT3. Xác định tích đạo hàm là một thừa số của gradient mất mát, kiểm giới hạn tăng theo độ sâu; kiểm ở E08.
 - **Ký hiệu/dữ kiện truyền tiếp:** h₀, h₅; tích 0,1⁵ và 1,1⁵ là hệ số trong ∂ℒ/∂h₀, rồi nhân ∂h₀/∂w để nhận gradient tham số tầng trước.
 - **Gộp hoặc rút gọn:** Chu trình hỗ trợ rút gọn nhu cầu → hình thức → kiểm; sơ đồ có trong ví dụ, không cần trang trực quan riêng.
