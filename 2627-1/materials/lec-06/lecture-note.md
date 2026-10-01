@@ -235,6 +235,8 @@ Các thuật toán thích ứng dừng khi hết ngân sách hoặc đạt tiêu
 
 ### 3.1. Bước Newton và hướng giảm
 
+Ma trận phạt đường chéo bỏ qua các phần tử ngoài đường chéo của Hessian. Ví dụ sau dùng chính ma trận nghiêng của mục 2.4 làm Hessian của mục tiêu.
+
 ::: example
 Xét
 
@@ -252,7 +254,7 @@ Qd=-g
 2d_1+d_2=-2,\quad d_1+2d_2=-1
 $$
 
-cho $d=(-1,0)^\top$. Bước đầy đủ đưa điểm hiện tại tới $0$. Các phần tử ngoài đường chéo của $Q$ được dùng trong việc phối hợp hai tọa độ.
+cho $d=(-1,0)^\top$. Bước đầy đủ đưa điểm hiện tại tới $0$. Thành phần $g_2=\theta_1+2\theta_2=1$ sinh ra từ phần tử ngoài đường chéo $Q_{12}=1$; giải hệ với toàn bộ $Q$ dùng thông tin tương tác này để phối hợp hai tọa độ.
 :::
 
 Tại một điểm $\theta$ của hàm khả vi hai lần, đặt $g=\nabla F(\theta)$ và $H=\nabla^2F(\theta)$. Mô hình Taylor bậc hai là

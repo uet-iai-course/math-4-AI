@@ -1075,3 +1075,7 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **B07 — giữ.** Thuật toán Adam nêu đủ giả thiết, hai moment, hiệu chỉnh, thứ tự cập nhật; khung phân biệt moment thô với phương sai và nêu giới hạn về hướng.
 - **B08 — sửa tiêu đề.** “Chuẩn hóa theo tọa độ” dễ lẫn với chuẩn hóa theo lô ở phần E; tiêu đề mới “Giới hạn của ma trận phạt đường chéo” nối trực tiếp với A04. Nội dung giữ nguyên vì đã nêu hạng tương tác $z_1z_2$ mà ma trận đường chéo không biểu diễn được và dẫn sang C01.
 - **B09 — sửa tiêu đề.** Bài tập đã dùng động từ học tập; tiêu đề “Kiểm tra…” đổi thành “So sánh AdaGrad, RMSProp và Adam”.
+
+### Phần C
+
+- **C01 — sửa.** Khung kết luận chung chung (“Hessian mô tả độ cong…”) và trang không nối với giới hạn đường chéo của B08. Khung nay chỉ ra $g_2=\theta_1+2\theta_2=1$ sinh ra từ phần tử ngoài đường chéo $Q_{12}=1$; ghi chú diễn giả mở bằng câu nối với B08 (câu nối đặt trong ghi chú vì mặt trang không đủ chỗ ở 1600×900). Ghi chú bài giảng mục 3.1 thêm câu dẫn và kết luận cụ thể.

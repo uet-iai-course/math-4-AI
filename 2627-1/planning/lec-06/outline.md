@@ -245,6 +245,7 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Nguồn:** DL, §8.6.1; ST, tr. 45–48; ví dụ V5 tự xây dựng.
 - **Thời lượng:** 0,05 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Hình dùng hàm bậc hai trơn; Hessian toàn cục này chỉ là mô hình minh họa cho mạng sâu.
+- **Sửa ngày 2026-10-02:** Khung kết luận cụ thể hóa: $g_2=\theta_1+2\theta_2=1$ sinh ra từ phần tử ngoài đường chéo $Q_{12}=1$; ghi chú mở bằng câu nối với B08.
 
 #### C02. Ví dụ bước Newton
 

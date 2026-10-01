@@ -273,7 +273,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Sau giới hạn đường chéo, cần một Hessian có tương tác thật để hình dung thông tin độ cong còn thiếu.
 - **Kế thừa, đầu ra và vị trí trong sườn:** B08 để lại tương tác ngoài đường chéo; C02 tính bước dùng toàn bộ Q.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Nhu cầu và trực quan KN4; MT2.
-- **Quyết định và lý do:** Giữ ma trận nghiêng thay ma trận chéo của mở bài; dữ kiện được định nghĩa lại đầy đủ. Đặc tả tại C01 trong outline.md.
+- **Quyết định và lý do:** Giữ ma trận nghiêng thay ma trận chéo của mở bài; dữ kiện được định nghĩa lại đầy đủ. Sửa 2026-10-02: khung kết luận chỉ ra $g_2$ sinh từ $Q_{12}=1$; ghi chú nối với giới hạn đường chéo của B08. Đặc tả tại C01 trong outline.md.
 - **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; xác định gradient, trục riêng và hướng tới nghiệm.
 
 ### C02. Ví dụ bước Newton
