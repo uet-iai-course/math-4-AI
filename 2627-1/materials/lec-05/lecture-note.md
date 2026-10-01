@@ -305,7 +305,7 @@ $$
 
 ![Mạng hai đơn vị ẩn với các trọng số đầu vào w, độ lệch b và trọng số đầu ra a.](img/lec-05/two-hidden-units.svg)
 
-Đặt $e=f_\theta-y$. Ở điểm khả vi của $\phi$, quy tắc dây chuyền cho
+Mọi quy tắc cập nhật đã học cần gradient của $\ell$ theo cả sáu tham số. Đặt sai số dự đoán $e=f_\theta-y$. Ở điểm khả vi của $\phi$, quy tắc dây chuyền cho mỗi đạo hàm dưới dạng tích các đạo hàm cục bộ dọc đường từ tham số đến mất mát:
 
 $$
 \frac{\partial\ell}{\partial a_j}=eh_j,\qquad

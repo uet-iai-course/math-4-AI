@@ -489,6 +489,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Ghi chú soạn:** Không mở toàn bộ thuật toán vi phân tự động. Giải thích mỗi thừa số và tham số đang lấy đạo hàm; không dùng bảng công thức mạng tổng quát trước ví dụ.
 - **Bản triển khai sau rà 2026-09-26:** Dãy nút chỉ gồm $w_j,z_j,h_j,f_\theta,\ell$; các đạo hàm $x,\phi^\prime(z_j),a_j,e$ nằm trên cạnh. Giữ ví dụ số trước quy tắc tổng quát.
 
+- **Sửa ngày 2026-10-01:** Dòng đầu gọi $e$ là sai số dự đoán; tiêu đề cột phải “Tích đạo hàm cục bộ, tại điểm khả vi”. Ghi chú mở bằng nhu cầu gradient theo sáu tham số. Không thêm dòng vì trang đã gần chân trang.
+
 #### D03 — Đối xứng giữa các đơn vị ẩn
 
 - **Vai trò và mục tiêu:** Nhu cầu khởi tạo khác nhau; MT1/MT3.

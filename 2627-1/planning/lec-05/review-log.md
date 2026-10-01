@@ -257,3 +257,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | ghi chú bài giảng C02 | mẫu dấu hai chấm tiết lộ → dấu chấm phẩy. **Đã đóng.**
   - nhẹ | storyboard bố cục C07 | thêm bước 3. **Đã đóng.**
   - ngoài phạm vi | D01 | thiếu nhu cầu chọn $\theta_0$ trên mặt trang → đã xử lý ở commit sửa D01. **Đã đóng.**
+- **D02 — sửa nhỏ.** $e$ xuất hiện không có tên; ý chính “tích các đạo hàm cục bộ dọc đường đi” chỉ hiện qua sơ đồ cuối. Dòng đầu gọi $e$ là sai số dự đoán; tiêu đề cột quy tắc thành “Tích đạo hàm cục bộ, tại điểm khả vi”; ghi chú diễn giả và ghi chú bài giảng mở bằng nhu cầu gradient theo sáu tham số. Không thêm dòng vì trang đã gần chân trang ở 1600×900.
