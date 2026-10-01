@@ -319,6 +319,8 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Một lịch hữu hạn được chọn để vận hành; điều kiện tổng bước vô hạn trong sách không tự thành định lý cho mạng. Theo dõi cả mất mát và xác thực như A05.
 
+- **Sửa ngày 2026-10-01:** Câu mở nối B06: giảm nhiễu bằng tăng $b$ tốn chi phí, giảm $\eta_t$ thu nhỏ bước ngẫu nhiên mà không tốn thêm. Ghi chú nêu lịch bước học (learning-rate schedule).
+
 #### B08 — Cập nhật từ một nhóm quan sát
 
 - **Vai trò và mục tiêu:** Trang kiểm tra riêng B; MT2/KN2.

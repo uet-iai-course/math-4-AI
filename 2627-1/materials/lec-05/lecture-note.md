@@ -179,14 +179,14 @@ Kết quả $\operatorname{Cov}(\widehat g)=\Sigma/b$ cho phép chọn cỡ nhó
 
 Tăng nhóm bốn lần làm sai số chuẩn giảm hai lần và tăng số gradient mẫu cho mỗi ước lượng bốn lần. Bộ nhớ và khả năng xử lý song song còn ảnh hưởng thời gian thực tế. Các số trên được tính tại tham số cố định, không phải đường hội tụ.
 
-Tại $\theta_t=1$, cập nhật còn có phương sai
+Giảm nhiễu bằng cách tăng $b$ làm tăng chi phí mỗi bước. Bước học cho một cách khác, không tốn thêm phép tính: tại $\theta_t=1$, cập nhật còn có phương sai
 
 $$
 \operatorname{Var}(\theta_{t+1}\mid D,\theta_t=1)
 =\eta_t^2\frac8{3b}.
 $$
 
-Giảm bước một nửa làm phương sai cập nhật giảm bốn lần, đồng thời giảm độ dài thành phần có hướng. Một lịch hữu hạn, chẳng hạn giảm từ $0.1$ xuống $0.05$ sau một ngân sách định trước, là lựa chọn vận hành; phép tính phương sai này chưa chứng minh hội tụ toàn cục cho mạng.
+Giảm bước một nửa làm phương sai cập nhật giảm bốn lần, đồng thời giảm độ dài thành phần có hướng. Một lịch bước học (learning-rate schedule) hữu hạn, chẳng hạn giảm từ $0.1$ xuống $0.05$ sau một ngân sách định trước, là lựa chọn vận hành; phép tính phương sai này chưa chứng minh hội tụ toàn cục cho mạng.
 
 **Câu hỏi:** Với nhóm gồm $y=-1$ và $y=1$ tại $\theta=1$, gradient nhóm, tham số mới và thay đổi $J$ bằng bao nhiêu khi $\eta=0.1$? Kỳ vọng trước khi biết nhóm khác giá trị của nhóm đã quan sát như thế nào?
 
