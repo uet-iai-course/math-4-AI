@@ -201,7 +201,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Ghi chú soạn:** Nhiều cực tiểu không mặc nhiên đều tốt; gradient lớn có thể đi kèm tiến triển chậm do độ cong. Chuyển đối xứng tham số sang D03, không giải thích mạng trước khi xây mạng.
 - **Sửa ngày 2026-10-01:** Tiêu đề “Điểm dừng của hàm không lồi”. Câu mở nhắc kết quả lồi của Bài 04 và nêu mất mát mạng nói chung không lồi. Khung kết luận chỉ giữ hai ý do $s$ và $r$ chứng minh; ý hoán đổi đơn vị ẩn ở lại ghi chú. Ghi chú nêu thuật ngữ điểm dừng (stationary point), điểm yên ngựa (saddle point).
 
-#### A07 — Đánh giá kết quả huấn luyện
+#### A07 — Chọn thời điểm lưu và phân loại điểm dừng
 
 - **Vai trò và mục tiêu:** Trang kiểm tra riêng phần A; MT1/KN1.
 - **Luận điểm trung tâm:** Chọn kết quả cần căn cứ mục đích đánh giá, không chỉ giá trị huấn luyện hoặc gradient.
@@ -214,6 +214,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Ghi chú / đáp án:** Chọn A theo tiêu chí đã cho; chưa tuyên bố chắc chắn tốt hơn trên mọi dữ liệu mới. Gốc là điểm yên ngựa vì $s(u,0)>0$ và $s(0,v)<0$ gần gốc.
 - **Kiến thức được đo:** Phân biệt tối ưu/đánh giá và điều kiện dừng; đã dạy A04–A06.
 - **Tiêu chí đánh giá:** Đúng lựa chọn và lý do; nhận diện yên ngựa bằng hai hướng. Chỉ nói “phi lồi” mà không xét ví dụ chưa đủ.
+- **Sửa ngày 2026-10-01:** Tiêu đề “Chọn thời điểm lưu và phân loại điểm dừng”; hai yêu cầu viết bằng “Xác định… Nêu…” và “Phân loại… Giải thích…”. Ghi chú nêu lỗi xác thực là tỷ lệ dự đoán sai, khác mất mát khả vi.
 
 ### B. Ước lượng gradient và phương pháp SGD
 

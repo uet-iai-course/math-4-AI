@@ -69,7 +69,7 @@ Hàm $r(u)=(u^2-1)^2$ có hai cực tiểu toàn cục tại $u=\pm1$, cùng gi�
 
 Gradient bằng không chưa chứng nhận cực tiểu; hướng giảm cục bộ cũng chưa bảo đảm nghiệm toàn cục hoặc chất lượng xác thực. Các ví dụ trên xác định giới hạn của từng kết luận, không mô tả mọi cực tiểu của mạng sâu.
 
-**Câu hỏi:** Hai thời điểm có mất mát huấn luyện $0.24,0.18$ và lỗi xác thực $0.12,0.16$. Thời điểm nào được chọn theo lỗi xác thực? Kết luận này cung cấp thông tin gì về $R$?
+**Câu hỏi:** Hai thời điểm có mất mát huấn luyện $0.24,0.18$ và lỗi xác thực $0.12,0.16$. Xác định thời điểm được lưu theo lỗi xác thực và nêu thông tin mà kết luận này cung cấp về $R$. Phân loại điểm $(0,0)$ của $s(u,v)=u^2-v^2$ và giải thích vì sao $\nabla s(0,0)=0$ chưa đủ để kết luận.
 
 ## B. Ước lượng gradient và phương pháp hạ gradient ngẫu nhiên
 
