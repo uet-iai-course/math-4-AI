@@ -447,7 +447,7 @@ Gradient nhóm lấy đều là một lựa chọn giảm số đánh giá mẫu
 Trong tiểu bài toán độc lập ở $\mathbb R^2$, trạng thái $\theta=(1,1)^T$, $v=(-0.2,0.2)^T$, $\beta=0.5$ cho điểm gradient Nesterov $(0.9,1.1)^T$. Vectơ hai chiều này không phải toàn bộ tham số của mạng vừa mô tả.
 :::
 
-Các phép tính trong bài cho phép kiểm một thiết lập huấn luyện mà không đồng nhất các loại kết luận: không chệch của gradient, thay đổi mất mát từng bước, thang khởi tạo và chất lượng xác thực là các thuộc tính khác nhau. Phạm vi Bài 06 tiếp tục với các thuật toán và chiến lược trong §§8.5–8.7 của *Deep Learning*.
+Ba câu hỏi mở đầu có câu trả lời kèm giới hạn. Huấn luyện cực tiểu $J$ và chọn bản lưu theo xác thực, nhưng $J$ nhỏ chưa kéo theo $R$ nhỏ. Gradient nhóm không chệch với phương sai $\Sigma/b$, momentum và Nesterov thay cách dùng gradient, nhưng không quy tắc nào bảo đảm giảm $J$ ở mỗi bước. Trọng số ngẫu nhiên phá đối xứng và thang Glorot giữ phương sai, nhưng thang được suy dưới mô hình tuyến tính với các giả thiết độc lập. Các phép tính trong bài cho phép kiểm một thiết lập huấn luyện mà không đồng nhất các loại kết luận: không chệch của gradient, thay đổi mất mát từng bước, thang khởi tạo và chất lượng xác thực là các thuộc tính khác nhau. Phạm vi Bài 06 tiếp tục với các thuật toán và chiến lược trong §§8.5–8.7 của *Deep Learning*.
 
 ## Tài liệu tham khảo
 

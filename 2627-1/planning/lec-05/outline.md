@@ -669,6 +669,7 @@ Chức năng: trở lại bài toán A03 và phối hợp các lựa chọn; kh�
 - **Nguồn:** DC; DL; BV/HI ghi trong ghi chú và danh mục nguồn khi triển khai.
 - **Thời lượng:** 0.07 giờ LT.
 - **Ghi chú soạn:** Nhắc những giới hạn đã kiểm: không giảm mỗi bước, không luôn gia tốc, không bảo đảm của công thức khởi tạo. Không kết luận phi lồi là không thể học.
+- **Sửa ngày 2026-10-01:** Bảng kết luận đổi thành ba hàng theo ba câu hỏi của A02 (cực tiểu gì, dùng gradient thế nào, bắt đầu từ đâu), mỗi hàng có kết quả và giới hạn; ba giới hạn trước đây chỉ ở ghi chú nay lên mặt trang.
 
 ## Tự kiểm của người soạn và giới hạn bàn giao
 

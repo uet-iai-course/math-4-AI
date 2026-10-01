@@ -89,7 +89,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | D11 — Đối xứng và thang khởi tạo | Đo tự tính đạo hàm, đối xứng và chuyển công thức sang kích thước mới | D02–D03/D07–D09 → hai đạo hàm và khởi tạo có điều kiện | Kiểm tra riêng D, LLO13/CLO2 | Đề tự chứa mạng, mất mát, dữ kiện mới và giả thiết tuyến tính; giữ tổng 0.25 BT. Sửa 2026-10-01: yêu cầu viết “Tính… Giải thích… Nêu…”; ghi chú nối hai tiểu bài toán với hai yêu cầu của $\theta_0$ |
 | E01 — Quy trình huấn luyện | Trả các kết quả về đúng thứ tự chạy | A–D → sơ đồ vận hành thống nhất | MT1–MT3 | Tổng hợp, không thêm kỹ thuật mới. Sửa 2026-10-01: rút tiêu đề; gắn mỗi quyết định với phần A–D; khối kết luận trả lời ba câu hỏi của A02 |
 | E02 — Chẩn đoán một phiên huấn luyện | Đo chuyển giao nhiều công cụ vào một tình huống | E01 → lựa chọn có lý do và điểm gradient | Kiểm tra riêng E, LLO11–13/CLO1–2 | Thêm nhiệm vụ mới, không đòi cỡ nhóm tối ưu thiếu dữ kiện. Sửa 2026-10-01: bốn yêu cầu viết bằng động từ học tập |
-| E03 — Kết luận và tài liệu đọc | Khép vấn đề/mục tiêu và ranh giới bài sau | Bằng chứng E02 → việc làm được và giới hạn | MT1–MT3 | Gộp tổng kết với nguồn đọc, không thêm luận điểm mới |
+| E03 — Kết luận và tài liệu đọc | Khép vấn đề/mục tiêu và ranh giới bài sau | Bằng chứng E02 → việc làm được và giới hạn | MT1–MT3 | Gộp tổng kết với nguồn đọc, không thêm luận điểm mới. Sửa 2026-10-01: bảng kết luận theo ba câu hỏi của A02, thêm cột giới hạn |
 
 ## Đặc tả hình và việc giữ đối chứng
 
@@ -155,6 +155,6 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | D11 | Nhãn câu hỏi ghi hai tiểu bài toán độc lập; hai khối đối xứng/thang với yêu cầu “Tính… Giải thích… Nêu…”. |
 | E01 | Sơ đồ vận hành trên, bảng quyết định (kèm phần A–D)/đối tượng/đại lượng, khối nối với ba câu hỏi mở đầu dưới. Giữ đúng thứ tự thực thi. |
 | E02 | Hai khối; dữ liệu/khởi tạo trái, bảng xác thực/tiểu bài vectơ phải. Giữ tách các mô hình trong đề. |
-| E03 | Bảng ba kết quả học tập, khối nguồn đọc dưới. Giữ đối chiếu mục tiêu và ranh giới bài sau. |
+| E03 | Bảng ba câu hỏi/kết quả/giới hạn, khối nguồn đọc dưới. Giữ ranh giới bài sau. |
 
 Đơn vị thời lượng được đính chính theo bảng “Số giờ/buổi” của đề cương DOCX: 2 giờ LT + 1 giờ BT; giữ nguyên mọi phân số phân bổ, không quy đổi phút. Các phát hiện SB01–SB03, M01–M06, AC01, SV01–SV03, ST01–ST04, EX01–EX05 và MM01–MM04 đã có quyết định sửa trong nhật ký; trạng thái hiện tại là tái kiểm đạt, đã đóng; xem mục kiểm định cuối trong nhật ký.
