@@ -81,7 +81,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | D03 — Đối xứng giữa các đơn vị ẩn | Dùng đạo hàm để giải thích sự đồng nhất | Gradient bằng nhau → cập nhật bằng nhau | D11/E02, LLO13/CLO2 | Nối §8.2.2 với §8.4 sau khi đã có mạng. Sửa 2026-10-01: câu nối D02; nhãn Mệnh đề kèm hệ quả “mạng chỉ dùng được một đơn vị”; nhãn Nhận xét cho hoán vị |
 | D04 — Phá đối xứng bằng khởi tạo ngẫu nhiên | Dùng HT7 cho quyết định khởi tạo khác nhau | Đối xứng → hai gradient ra khác nhau | D11/E02, LLO13/CLO2 | Giữ §8.4, không nói mọi độ lệch phải ngẫu nhiên. Sửa 2026-10-01: tiêu đề theo nhân quả; quy tắc nêu lý do xác suất 1 |
 | D05 — Độ nhạy qua nhiều lớp | Tạo nghĩa tính toán cho “độ sâu đồ thị” | Dây chuyền → tích $1/16$ hoặc 16 | LLO11/CLO1, LLO13/CLO2 | Dời §8.2.5 tới sau D02; công bố mô hình tuyến tính mới. Sửa 2026-10-01: câu nối từ D04 (độ lớn trọng số); kết luận định lượng $c^L$ |
-| D06 — Bão hòa của hàm kích hoạt | Ngăn giải pháp sai “cứ tăng trọng số” | Tích đạo hàm → giới hạn phi tuyến | D11, LLO11/CLO1 | Gộp nền tanh với cảnh báo §8.4; không thêm danh mục kích hoạt |
+| D06 — Bão hòa của hàm kích hoạt | Ngăn giải pháp sai “cứ tăng trọng số” | Tích đạo hàm → giới hạn phi tuyến | D11, LLO11/CLO1 | Gộp nền tanh với cảnh báo §8.4; không thêm danh mục kích hoạt. Sửa 2026-10-01: câu nhu cầu nối D05 trên mặt trang; bỏ khối lặp ý; khối kết luận là vùng gần tuyến tính dùng cho D07 |
 | D07 — Phương sai qua một lớp tuyến tính | Tạo cơ sở tính thang theo số đầu vào | Chuỗi D05 → tổng ngẫu nhiên và phương sai tiến | D11, LLO13/CLO2 | Bổ sung suy ngắn, nêu kích thước/độc lập trước công thức |
 | D08 — Phương sai của gradient truyền ngược | Tạo nhu cầu thỏa hiệp Glorot | Cùng $W$ → phương sai lùi và hai yêu cầu khác nhau | D11, LLO13/CLO2 | Tách hai chiều để không nhồi; nêu độc lập gradient là giả thiết |
 | D09 — Khởi tạo Glorot | Biến yêu cầu thang thành phân phối có thể dùng | $n_{in},n_{out}$ → $s^2,a$ | D10/D11, LLO13/CLO2 | Giữ (8.23), không thêm He thiếu nhu cầu/phạm vi |
@@ -147,7 +147,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | D03 | Bảng hai đơn vị trước/sau; khối bất biến và nhận xét hoán vị dưới. Sửa phạm vi khả vi trên mặt trang. |
 | D04 | Hai cột; hình mạng trái, cấu hình trọng số mới và đạo hàm đầu ra phải; kết luận phá đối xứng dưới. Giữ tính lại đạo hàm theo trọng số ra. |
 | D05 | Mô hình chuỗi trên; hình chuỗi và tích đạo hàm; hai cấu hình số. Giữ thông báo đổi mô hình. |
-| D06 | Hai cột; hình tanh/đạo hàm trái, công thức/bảng phải; xấp xỉ gần 0 dưới. Giữ cầu nối mô hình tuyến tính. |
+| D06 | Câu nhu cầu trên; hai cột hình tanh/đạo hàm trái, công thức/bảng phải; khối xấp xỉ gần 0 dưới. Giữ cầu nối mô hình tuyến tính. |
 | D07 | Nhu cầu và kích thước trên; giả thiết/ví dụ bốn đầu vào trái, hình lớp phải; công thức tổng quát cuối. Sửa trình tự để ví dụ chuẩn bị tổng quát hóa. |
 | D08 | Phụ thuộc mất mát/kích thước gradient trên; cột trái dây chuyền → giả thiết mô hình → phương sai; cột phải bảng 4→2 và kết luận xung đột. Sửa bố cục, bỏ hình mạng lùi trùng để đủ chữ 28 px. |
 | D09 | Hai cột; quy tắc phương sai/phân phối và ví dụ 4→2; định nghĩa phân phối đều dưới. Giữ thỏa hiệp sau bảng xung đột. |

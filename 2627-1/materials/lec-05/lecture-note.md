@@ -343,7 +343,7 @@ với $L$ là số lớp, $c_l\in\mathbb R$ là hệ số, $h^{(0)}$ là đầu 
 
 Đây là độ nhạy đầu ra theo đầu vào, chưa phải toàn bộ gradient mất mát theo mọi tham số. Khi mọi $c_l=c$, độ nhạy bằng $c^L$, nên phép nhân nhiều đạo hàm làm độ nhạy co hoặc phóng đại theo cấp số mũ của độ sâu; gradient lớn và vách dốc là những khó khăn có thể xuất hiện khi các tích này tăng mạnh.
 
-Với hàm kích hoạt khác $\phi(z)=\tanh z$,
+Một cách tránh co là tăng trọng số, nhưng khi đó tiền kích hoạt lớn. Với hàm kích hoạt bão hòa như $\phi(z)=\tanh z$,
 
 $$
 \phi'(z)=1-\tanh^2z,\qquad \phi'(0)=1,\qquad \phi'(3)\approx0.00987.

@@ -546,6 +546,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Thời lượng:** 0.04 giờ LT.
 - **Ghi chú soạn:** Đây là ví dụ về vùng phẳng do bão hòa, không nhận xét mọi hàm kích hoạt hay mọi gradient. Không biến thành bài phân loại toàn bộ hàm kích hoạt.
 
+- **Sửa ngày 2026-10-01:** Câu mở nối D05: tăng trọng số để tránh co làm tiền kích hoạt lớn, với hàm bão hòa $\phi'$ khi đó rất nhỏ. Bỏ khối “tiền kích hoạt lớn…” vì lặp câu mở; khối kết luận là vùng gần $0$ ($\tanh z\approx z$, $\phi'\approx1$) dùng cho mô hình tính thang.
+
 #### D07 — Phương sai qua một lớp tuyến tính
 
 - **Vai trò và mục tiêu:** Ví dụ và hình thức KN5; MT3.
