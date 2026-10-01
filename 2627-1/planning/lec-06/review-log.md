@@ -1102,3 +1102,7 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **D02 — sửa.** $P_1$ xuất hiện không nói từ đâu ra. Câu mở nay nêu BFGS sửa $P$ sau mỗi cặp và $P_1$ là kết quả của công thức ở trang sau; trang chỉ kiểm hai tính chất. Câu mở rút về hai dòng để trang không tràn. Ghi chú bài giảng mục 4.2 thêm câu nêu mục đích của cập nhật BFGS.
 - **D03, D04 — giữ.** D03 có giả thiết, công thức, hai kết luận có nhãn và chứng minh trong ghi chú; D04 có đầu vào, bốn bước, điều kiện $y^\top s>0$, chi phí BFGS/L-BFGS với tên đầy đủ.
 - **D05 — sửa tiêu đề.** “Kiểm tra…” đổi thành “Điều kiện độ cong của BFGS”.
+
+### Phần E
+
+- **E01 — sửa.** Trang mở thẳng bằng sơ đồ lặp A02; ranh giới D→E chỉ có trong ghi chú D05 (tái kiểm mạch C–D cũng nêu). Tiêu đề mới “Can thiệp ngoài quy tắc sinh bước”; câu mở nêu các phương pháp B–D chỉ thay cách dùng gradient; bỏ sơ đồ bốn ô (bảng đã liệt kê thành phần, trang tràn khi thêm câu mở); khung cuối viết cụ thể quan hệ thang đầu vào–gradient. Ghi chú bài giảng thêm đoạn mở đầu mục 5.

@@ -372,12 +372,12 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa đề ghi đầy đủ P₁ và đổi gradient thành (1,0) để tránh chép lại P₁y=s. Đặc tả tại D05 trong outline.md.
 - **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,09 tiết bài tập; kiểm dấu hai cặp, tính hướng mới và đạo hàm theo hướng.
 
-### E01. Các thành phần của quá trình huấn luyện
+### E01. Can thiệp ngoài quy tắc sinh bước
 
 - **Lý do tồn tại và nhu cầu học tập:** Sau nhóm thay bước, người học cần gọi lại các thành phần còn lại để hiểu ranh giới can thiệp mô hình, khối và đầu ra.
 - **Kế thừa, đầu ra và vị trí trong sườn:** D05 kết thúc thay bước; E02 xét đầu vào của các tầng trước khi có gradient.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu và bản đồ KN7–KN10; MT3.
-- **Quyết định và lý do:** Sửa thành hồi chiếu sơ đồ A02; đặt nhu cầu thang đầu vào tầng trước ví dụ BN. Đặc tả tại E01 trong outline.md.
+- **Quyết định và lý do:** Sửa thành hồi chiếu sơ đồ A02; đặt nhu cầu thang đầu vào tầng trước ví dụ BN. Sửa 2026-10-02: tiêu đề theo nhu cầu; câu mở nối từ B–D (chỉ thay cách dùng gradient); bỏ sơ đồ bốn ô lặp A02 vì bảng đã liệt kê thành phần và trang tràn; khung nêu quan hệ thang đầu vào–gradient. Đặc tả tại E01 trong outline.md.
 - **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,00 tiết bài tập; định vị ba can thiệp trên sơ đồ chung và nối độ nhạy tham số với phép tính tầng.
 
 ### E02. Ví dụ chuẩn hóa theo lô

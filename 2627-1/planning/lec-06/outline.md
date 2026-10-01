@@ -419,7 +419,7 @@ Chức năng: xấp xỉ độ cong từ gradient. Đầu vào: Chi phí cung c�
 
 Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: Các giới hạn của việc chỉ thay bước. Đầu ra: Phân biệt BN, hạ theo khối, Polyak và đường truyền gradient. Mục tiêu: MT3. Mạch học tập và ngoại lệ gộp được ghi trong storyboard. Thời lượng: 0,38 tiết lý thuyết, 0,15 tiết bài tập, gồm E08.
 
-#### E01. Các thành phần của quá trình huấn luyện
+#### E01. Can thiệp ngoài quy tắc sinh bước
 
 - **Vai trò và mục tiêu:** Nhu cầu và bản đồ KN7–KN10; MT3.
 - **Luận điểm trung tâm:** Quy tắc cập nhật chỉ tác động lên một phần của quá trình huấn luyện.
@@ -430,6 +430,7 @@ Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: C
 - **Nguồn:** DL, §8.7, tr.313–323.
 - **Thời lượng:** 0,03 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Giữ phân biệt tham số hóa với cập nhật. Các chiến lược có thể phối hợp nhưng hiệu quả cần kiểm định.
+- **Sửa ngày 2026-10-02:** Tiêu đề “Can thiệp ngoài quy tắc sinh bước”; câu mở: các phương pháp B–D chỉ thay cách dùng gradient, ba thành phần khác cũng điều chỉnh được. Bỏ sơ đồ bốn ô (đã có ở A02). Khung: gradient của tầng tỷ lệ với thang đầu vào, do phép tính mô hình quyết định.
 
 #### E02. Ví dụ chuẩn hóa theo lô
 

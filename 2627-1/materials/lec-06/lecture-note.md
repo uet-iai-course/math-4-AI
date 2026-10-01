@@ -482,6 +482,8 @@ Hai tích $y^\top s$ lần lượt bằng $2$ và $-1$, nên chỉ cặp thứ n
 
 ## 5. Phép tính mô hình, khối biến và đầu ra
 
+AdaGrad, RMSProp, Adam, Newton và BFGS chỉ thay cách dùng gradient đã có. Ba thành phần khác của quá trình huấn luyện cũng điều chỉnh được: phép tính mô hình (chuẩn hóa theo lô, đường truyền gradient), tập biến được cập nhật (hạ theo tọa độ, theo khối) và quy tắc trả về (trung bình Polyak). Gradient của một tầng tỷ lệ với thang đầu vào của tầng đó, và thang này do phép tính mô hình quyết định trước mọi quy tắc cập nhật.
+
 ### 5.1. Chuẩn hóa theo lô
 
 Chuẩn hóa theo lô (BN) thay phép tính biểu diễn. Với một đặc trưng có giá trị $a_1,\ldots,a_m\in\mathbb R$ trong lô $\mathcal B$, định nghĩa
