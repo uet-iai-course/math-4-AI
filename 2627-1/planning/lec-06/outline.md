@@ -59,6 +59,7 @@ Chức năng: bài toán và mô hình bước cập nhật. Đầu vào: Gradie
 - **Nguồn:** DC, LLO14–16; DL, §§8.5–8.7.
 - **Thời lượng:** 0,03 tiết lý thuyết + 0,00 tiết bài tập. Đọc sơ đồ thành phần, xác định ba nhóm quyết định và tiên quyết.
 - **Ghi chú soạn:** Mục tiêu dùng động từ tính, phân biệt, lựa chọn kèm điều kiện; các định nghĩa mới được dạy tại chỗ.
+- **Sửa ngày 2026-10-02:** Các ô sơ đồ ghi mạch xử lý (E, F, B–D, E). Khung cuối: “Vấn đề trung tâm. Một tốc độ học chung bị chặn bởi hướng cong nhất (Bài 05). Cần xác định thành phần phải điều chỉnh: thang của bước, độ cong, hay mô hình, đầu ra và cách tổ chức huấn luyện.” Ghi chú định nghĩa quy tắc trả về và nối tốc độ học với “bước học” của Bài 05.
 
 #### A03. Sai lệch thang đo trong bước cập nhật
 
