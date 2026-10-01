@@ -1132,3 +1132,5 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **F03 — sửa.** Họ mục tiêu xuất hiện không có ý tưởng tiếp diễn. Câu mở nêu giải mục tiêu dễ trước rồi chuyển dần về đích $\lambda=0$; khung rút gọn để trang không tràn, điều kiện kiểm đường điểm dừng chuyển vào ghi chú. Ghi chú bài giảng mục 6.2 thêm câu nhu cầu.
 - **F04 — giữ.** Phương pháp tiếp diễn nêu lịch, phép chuyển nghiệm, đạo hàm và giới hạn tại điểm dừng $0$.
 - **F05 — sửa.** Tên gọi xuất hiện không kèm ý tưởng. Dòng mở nêu học theo chương trình thay phân phối lấy mẫu theo giai đoạn, mẫu dễ trước, mẫu khó sau; dữ kiện xuống dòng riêng. Ghi chú bài giảng mục 6.3 thêm ý tưởng tương ứng.
+- **F06 — sửa tiêu đề.** “Điều kiện đánh giá huấn luyện theo giai đoạn” rút thành “Đánh giá huấn luyện theo giai đoạn”; bảng và khung giữ nguyên.
+- **F07 — sửa.** Tiêu đề “Kiểm tra…” đổi thành “Ba chiến lược huấn luyện theo giai đoạn”; yêu cầu (b), (c) viết bằng “Xác định…” thay cho câu hỏi.

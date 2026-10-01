@@ -594,7 +594,7 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 - **Ghi chú soạn:** Quy ước độ khó chỉ phục vụ ví dụ. Nếu giữ q=0 thì giải mục tiêu khác phân phối đích; không khẳng định dễ đến khó luôn nhanh hơn lấy mẫu đều.
 - **Sửa ngày 2026-10-02:** Dòng mở nêu ý tưởng: thay phân phối lấy mẫu theo giai đoạn, mẫu dễ trước, mẫu khó sau; dữ kiện xuống dòng riêng.
 
-#### F06. Điều kiện đánh giá huấn luyện theo giai đoạn
+#### F06. Đánh giá huấn luyện theo giai đoạn
 
 - **Vai trò và mục tiêu:** Ứng dụng KN11–KN13; MT3.
 - **Luận điểm trung tâm:** So sánh chiến lược đòi hỏi cùng mục tiêu đích và công bố chi phí của các giai đoạn.
@@ -605,8 +605,9 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 - **Nguồn:** DL, §8.7.4 và §8.7.6; CU, §2–3.
 - **Thời lượng:** 0,05 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Ngân sách và tập đánh giá phải giữ để không nhầm lợi ích với tăng tài nguyên hoặc dùng dữ liệu đánh giá trong huấn luyện.
+- **Sửa ngày 2026-10-02:** Tiêu đề rút gọn thành “Đánh giá huấn luyện theo giai đoạn”.
 
-#### F07. Kiểm tra huấn luyện theo giai đoạn
+#### F07. Ba chiến lược huấn luyện theo giai đoạn
 
 - **Vai trò và mục tiêu:** Kiểm tra riêng mạch F; MT3.
 - **Luận điểm trung tâm:** Phải xác định được điểm đầu, mục tiêu đang giải và mục tiêu cuối.
@@ -622,6 +623,8 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 - **Đáp án/gợi ý:** (a) (a,b)=(2,1;1,2), F=0,1152. (b) Không vì Fλ′(0)=0 với mọi λ. (c) Nghiệm lần lượt 1/2 và 2/5; q=1/4 còn khác mục tiêu đích q=1/2.
 - **Tiêu chí đánh giá:** Tính đúng gradient, cập nhật đồng thời và mất mát mới (1 nhóm ý); dùng đạo hàm đã cho để giải thích mắc điểm dừng (1 ý); phân biệt hai mục tiêu từ hai nghiệm và phân phối (1 ý).
 - **Thời gian hoạt động:** Suy nghĩ 0,04 tiết cho bước tinh chỉnh và hai đối chiếu; trình bày 0,01; chữa điểm dừng và mục tiêu đích 0,02. Đã tính trong thời lượng trang.
+- **Sửa ngày 2026-10-02:** Tiêu đề nêu nội dung kiểm; yêu cầu (b), (c) viết bằng “Xác định…”.
+
 
 ### Mạch G. Lựa chọn và đánh giá phương pháp
 

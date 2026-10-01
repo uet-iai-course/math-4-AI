@@ -476,20 +476,20 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Giữ hai mẫu có độ nhạy tính được và phân phối đích xác định. Sửa 2026-10-02: câu định nghĩa nêu ý tưởng (thay phân phối lấy mẫu, mẫu dễ trước) trước dữ kiện. Đặc tả tại F05 trong outline.md.
 - **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,02 tiết bài tập; lập tổng có trọng số, tính nghiệm theo q và đối chiếu đích.
 
-### F06. Điều kiện đánh giá huấn luyện theo giai đoạn
+### F06. Đánh giá huấn luyện theo giai đoạn
 
 - **Lý do tồn tại và nhu cầu học tập:** Ba chiến lược giai đoạn cần cùng tiêu chí đánh giá để không nhầm thay mục tiêu hoặc tăng ngân sách với cải thiện phương pháp.
 - **Kế thừa, đầu ra và vị trí trong sườn:** F02,F04,F05 cung cấp cơ chế; F07 kiểm áp dụng bằng số, G01 dùng hồ sơ để lựa chọn có điều kiện.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Ứng dụng KN11–KN13; MT3.
-- **Quyết định và lý do:** Giữ hồ sơ dữ liệu, mục tiêu và chi phí làm ứng dụng chung của ba cơ chế. Đặc tả tại F06 trong outline.md.
+- **Quyết định và lý do:** Giữ hồ sơ dữ liệu, mục tiêu và chi phí làm ứng dụng chung của ba cơ chế. Sửa 2026-10-02: rút gọn tiêu đề. Đặc tả tại F06 trong outline.md.
 - **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; đối chiếu đối tượng thay, tiêu chí chuyển và ngân sách toàn bộ.
 
-### F07. Kiểm tra huấn luyện theo giai đoạn
+### F07. Ba chiến lược huấn luyện theo giai đoạn
 
 - **Lý do tồn tại và nhu cầu học tập:** Cần kiểm phân biệt khởi tạo, điểm dừng và phân phối đích bằng dữ kiện thay vì tên chiến lược.
 - **Kế thừa, đầu ra và vị trí trong sườn:** F06 đặt điều kiện đánh giá; G01 tổng hợp theo giới hạn đã chứng minh.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Kiểm tra riêng mạch F; MT3.
-- **Quyết định và lý do:** Sửa đề tự đủ và giảm tính lặp: một bước tinh chỉnh, hai đối chiếu từ đạo hàm/nghiệm cho sẵn. Đặc tả tại F07 trong outline.md.
+- **Quyết định và lý do:** Sửa đề tự đủ và giảm tính lặp: một bước tinh chỉnh, hai đối chiếu từ đạo hàm/nghiệm cho sẵn. Sửa 2026-10-02: đổi tiêu đề; yêu cầu (b), (c) dùng động từ học tập. Đặc tả tại F07 trong outline.md.
 - **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,07 tiết bài tập; tính bước đích; giải thích mắc điểm dừng và sai khác mục tiêu cuối.
 
 ### G01. Lựa chọn phương pháp theo điều kiện bài toán
