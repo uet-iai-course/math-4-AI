@@ -621,6 +621,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Tiêu chí đánh giá:** Có đúng các thừa số của dây chuyền và hai đạo hàm; nêu điều kiện đối xứng đầy đủ; đúng phương sai, biên, hai hệ số và giả thiết tuyến tính. Chỉ nhận diện gradient bằng nhau hoặc trả tên Glorot chưa đủ.
 - **Bản triển khai sau rà 2026-09-26:** Tiêu đề mới bao phủ hai nhiệm vụ. Mặt trang ghi hai tiểu bài toán độc lập; câu hỏi đối xứng giới hạn ở các bước khả vi.
 
+- **Sửa ngày 2026-10-01 (D11):** Yêu cầu viết bằng “Tính… Giải thích… Nêu…”. Ghi chú nêu hai tiểu bài toán đo hai yêu cầu của điểm khởi đầu: khác nhau và đúng thang.
+
 ### E. Phối hợp các thành phần của quy trình huấn luyện
 
 Chức năng: trở lại bài toán A03 và phối hợp các lựa chọn; không đưa khái niệm trọng tâm mới. MT1–MT3; 0.15 LT + 0.15 BT.

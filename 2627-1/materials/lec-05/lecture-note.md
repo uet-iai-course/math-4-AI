@@ -424,7 +424,7 @@ Với $s^2=1/16$, phương sai co bốn lần mỗi lớp, cùng hiện tượng
 
 Bảng là phép tính phương sai trong mô hình, không chứa số đo thực nghiệm. Đánh giá một mạng cụ thể còn cần đo kích hoạt, gradient và các giá trị không hữu hạn trên dữ liệu thực tế; phương sai thích hợp lúc khởi tạo chưa chứng nhận chất lượng sau huấn luyện.
 
-**Câu hỏi:** Lớp tuyến tính có 8 đầu vào, 4 đầu ra nhận phương sai, biên phân phối đều và hai hệ số truyền phương sai nào theo Glorot? Hai hệ số có đồng thời bằng 1 không?
+**Câu hỏi:** Với lớp tuyến tính có 8 đầu vào và 4 đầu ra, tính phương sai trọng số, biên phân phối đều và hai hệ số truyền phương sai theo Glorot. Xác định hai hệ số có đồng thời bằng 1 không, và nêu giới hạn khi áp dụng cho ReLU.
 
 ## E. Phối hợp các thành phần của quy trình huấn luyện
 
