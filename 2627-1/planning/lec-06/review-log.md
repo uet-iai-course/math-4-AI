@@ -1106,3 +1106,14 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần E
 
 - **E01 — sửa.** Trang mở thẳng bằng sơ đồ lặp A02; ranh giới D→E chỉ có trong ghi chú D05 (tái kiểm mạch C–D cũng nêu). Tiêu đề mới “Can thiệp ngoài quy tắc sinh bước”; câu mở nêu các phương pháp B–D chỉ thay cách dùng gradient; bỏ sơ đồ bốn ô (bảng đã liệt kê thành phần, trang tràn khi thêm câu mở); khung cuối viết cụ thể quan hệ thang đầu vào–gradient. Ghi chú bài giảng thêm đoạn mở đầu mục 5.
+- **Tái kiểm phần C–D.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5), tại commit `181f26c`: tái kiểm toán học **PASS** (2 trung bình, 3 nhẹ; mọi số liệu C01–D05, kể cả $P_1$, tính lại khớp); tái kiểm mạch lập luận **PASS có điều kiện** (1 trung bình, 8 nhẹ). Đã xử lý:
+  - trung bình | C03 | định lý dùng “cần” cho điều kiện đủ, thiếu $\nabla F(\theta^*)=0$ và kết luận → phát biểu dạng “Nếu … thì $\|\theta_{t+1}-\theta^*\|\le C\|\theta_t-\theta^*\|^2$”; ghi chú bài giảng thống nhất nhãn “Định lý (hội tụ cục bộ)”. **Đã đóng.**
+  - trung bình | ghi chú bài giảng 3.1 | tham chiếu treo tới “ma trận nghiêng của mục 2.4” → viết lại không tham chiếu. **Đã đóng.**
+  - nhẹ | C03 | thêm “khi $H(\theta)\succ0$”; tách bước thuật toán khỏi nội dung mệnh đề. **Đã đóng.**
+  - nhẹ | C04 | “cần $H\succ0$” → “giả thiết $H\succ0$” (mặt trang và ghi chú bài giảng). **Đã đóng.**
+  - nhẹ | C05 | “Giải hệ đặc” → “Giải hệ giảm chấn đặc”. **Đã đóng.**
+  - nhẹ | C01 (ghi chú), D02 | câu dựa vào vị trí trang → gọi tên đối tượng; “công thức ở trang sau” → “công thức cập nhật BFGS”. **Đã đóng.**
+  - nhẹ | D04 (ghi chú) | câu tương phản phủ định (no-ai-slop) → “Một bước giảm tùy ý chưa bảo đảm $y^\top s>0$”. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng | BFGS dùng trước tên đầy đủ → nêu tên đầy đủ ở lần đầu (đoạn mở đầu). **Đã đóng.**
+  - nhẹ | storyboard C07, C08, D05 | thêm ghi chú đổi tiêu đề vào dòng quyết định. **Đã đóng.**
+  - nhẹ | D05→E01 | ranh giới D→E → đã xử lý ở commit sửa E01. **Đã đóng.**

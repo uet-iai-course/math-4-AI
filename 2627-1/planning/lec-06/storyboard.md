@@ -321,7 +321,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Bộ giải hệ chưa tự cho quy tắc bước ngoài; cần nối phần dư với hướng sử dụng trong Newton–CG.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C06 cung cấp bộ giải; D01 sẽ bỏ yêu cầu tích Hessian–vectơ và học độ cong từ chênh lệch gradient.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Ứng dụng KN4–KN5; MT2.
-- **Quyết định và lý do:** Sửa ứng dụng dùng d₀=0, xử lý g=0 và kiểm dấu hướng ngoài tiêu chí phần dư. Đặc tả tại C07 trong outline.md.
+- **Quyết định và lý do:** Sửa ứng dụng dùng d₀=0, xử lý g=0 và kiểm dấu hướng ngoài tiêu chí phần dư. Sửa 2026-10-02: đổi tiêu đề thành “Phương pháp Newton–CG”, câu mở nêu ghép giảm chấn với CG. Đặc tả tại C07 trong outline.md.
 - **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; phân biệt vòng trong/ngoài, giữ toán tử cố định và kiểm hướng trước tìm bước.
 
 ### C08. Giảm chấn và một vòng gradient liên hợp
@@ -329,7 +329,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Bài kiểm tra phải yêu cầu chọn hệ hợp lệ trước khi chạy CG và dùng phần dư để quyết định dừng.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C07 tạo nghiệm gần đúng; D01 đặt bài toán khi không có toán tử Hessian.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Kiểm tra riêng mạch C; MT2.
-- **Quyết định và lý do:** Giữ ma trận trùng ví dụ vì chọn giảm chấn và kiểm ngưỡng tạo nhiệm vụ mới. Đặc tả tại C08 trong outline.md.
+- **Quyết định và lý do:** Giữ ma trận trùng ví dụ vì chọn giảm chấn và kiểm ngưỡng tạo nhiệm vụ mới. Sửa 2026-10-02: đổi tiêu đề thành “Giảm chấn và một vòng gradient liên hợp”. Đặc tả tại C08 trong outline.md.
 - **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,12 tiết bài tập; chọn giảm chấn, tính một vòng và so chuẩn phần dư với ngưỡng.
 
 ### D01. Thông tin độ cong từ chênh lệch gradient
@@ -369,7 +369,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Cần tách khả năng nhận cặp độ cong khỏi khả năng tạo hướng bằng một gradient mới.
 - **Kế thừa, đầu ra và vị trí trong sườn:** D04 kết thúc nhóm cập nhật; E01 mở các thành phần còn lại của bài toán.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Kiểm tra riêng mạch D; MT2.
-- **Quyết định và lý do:** Sửa đề ghi đầy đủ P₁ và đổi gradient thành (1,0) để tránh chép lại P₁y=s. Đặc tả tại D05 trong outline.md.
+- **Quyết định và lý do:** Sửa đề ghi đầy đủ P₁ và đổi gradient thành (1,0) để tránh chép lại P₁y=s. Sửa 2026-10-02: đổi tiêu đề thành “Điều kiện độ cong của BFGS”. Đặc tả tại D05 trong outline.md.
 - **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,09 tiết bài tập; kiểm dấu hai cặp, tính hướng mới và đạo hàm theo hướng.
 
 ### E01. Can thiệp ngoài quy tắc sinh bước

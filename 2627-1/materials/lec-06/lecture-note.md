@@ -2,7 +2,7 @@
 
 Học phần: Cơ sở toán học cho AI.
 
-Tài liệu phát triển ba năng lực: tính và phân biệt các bước cập nhật AdaGrad, RMSProp, Adam; vận dụng Newton, gradient liên hợp và BFGS với đúng điều kiện; xác định thành phần huấn luyện bị thay đổi bởi chuẩn hóa, cập nhật theo khối, trung bình tham số và các chiến lược theo giai đoạn. Ba năng lực tương ứng với chuẩn đầu ra bài học (LLO) 14–16 và chuẩn đầu ra học phần (CLO) 2–4.
+Tài liệu phát triển ba năng lực: tính và phân biệt các bước cập nhật AdaGrad, RMSProp, Adam; vận dụng Newton, gradient liên hợp và Broyden–Fletcher–Goldfarb–Shanno (BFGS) với đúng điều kiện; xác định thành phần huấn luyện bị thay đổi bởi chuẩn hóa, cập nhật theo khối, trung bình tham số và các chiến lược theo giai đoạn. Ba năng lực tương ứng với chuẩn đầu ra bài học (LLO) 14–16 và chuẩn đầu ra học phần (CLO) 2–4.
 
 Kiến thức chuẩn bị gồm gradient, Hessian, ma trận đối xứng xác định dương, hàm bậc hai, quy tắc dây chuyền, kỳ vọng và giảm theo gradient ngẫu nhiên (SGD). Các ví dụ số trong tài liệu là ví dụ tự xây dựng để kiểm tra phép tính và giới hạn của kết luận; chúng không phải kết quả thực nghiệm trên mạng sâu.
 
@@ -235,7 +235,7 @@ Các thuật toán thích ứng dừng khi hết ngân sách hoặc đạt tiêu
 
 ### 3.1. Bước Newton và hướng giảm
 
-Ma trận phạt đường chéo bỏ qua các phần tử ngoài đường chéo của Hessian. Ví dụ sau dùng chính ma trận nghiêng của mục 2.4 làm Hessian của mục tiêu.
+Ma trận phạt đường chéo bỏ qua các phần tử ngoài đường chéo của Hessian. Ví dụ sau dùng làm Hessian một ma trận có phần tử ngoài đường chéo khác $0$.
 
 ::: example
 Xét
@@ -275,11 +275,11 @@ $$
 Tính dương xác định quyết định dấu. Nếu chỉ biết $H$ khả nghịch, bất đẳng thức này không được bảo đảm.
 :::
 
-**Kết quả cục bộ.** Giả sử $\theta_*$ là điểm dừng, Hessian xác định dương tại $\theta_*$ và Lipschitz trong một lân cận. Khi điểm đầu đủ gần $\theta_*$ và dùng bước Newton đầy đủ trong pha cục bộ, sai số thỏa $\|\theta_{t+1}-\theta_*\|\le C\|\theta_t-\theta_*\|^2$ với một hằng số $C$. Kết quả hội tụ bậc hai này không áp dụng từ mọi điểm đầu, cũng không tự giữ nguyên nếu cố định $\alpha<1$. Nguồn đối chiếu là Boyd và Vandenberghe, §9.5.1–9.5.3.
+**Định lý (hội tụ cục bộ).** Giả sử $\theta_*$ là điểm dừng, Hessian xác định dương tại $\theta_*$ và Lipschitz trong một lân cận. Khi điểm đầu đủ gần $\theta_*$ và dùng bước Newton đầy đủ trong pha cục bộ, sai số thỏa $\|\theta_{t+1}-\theta_*\|\le C\|\theta_t-\theta_*\|^2$ với một hằng số $C$. Kết quả hội tụ bậc hai này không áp dụng từ mọi điểm đầu, cũng không tự giữ nguyên nếu cố định $\alpha<1$. Nguồn đối chiếu là Boyd và Vandenberghe, §9.5.1–9.5.3.
 
 ### 3.2. Giảm chấn và Hessian bất định
 
-Mệnh đề hướng giảm ở mục 3.1 cần $H\succ0$, trong khi mất mát không lồi có thể có Hessian bất định. Với $F(\theta)=\frac12(\theta_1^2-\theta_2^2)$ tại $(0,1)^\top$, ta có $g=(0,-1)^\top$ và $H=\operatorname{diag}(1,-1)$. Newton cho $d=(0,-1)^\top$, nên $g^\top d=1>0$. Hàm này không có cực tiểu toàn cục.
+Mệnh đề hướng giảm ở mục 3.1 giả thiết $H\succ0$, trong khi mất mát không lồi có thể có Hessian bất định. Với $F(\theta)=\frac12(\theta_1^2-\theta_2^2)$ tại $(0,1)^\top$, ta có $g=(0,-1)^\top$ và $H=\operatorname{diag}(1,-1)$. Newton cho $d=(0,-1)^\top$, nên $g^\top d=1>0$. Hàm này không có cực tiểu toàn cục.
 
 Giảm chấn (damping) sửa hệ bằng $A=H+\lambda I\succ0$, tức dịch mọi trị riêng lên $\lambda$. Nếu $H$ đối xứng, trị riêng nhỏ nhất của $A$ bằng $\lambda_{\min}(H)+\lambda$. Do đó điều kiện là
 
@@ -420,7 +420,7 @@ Một cặp $(s,y)$ chỉ mô tả tác động của độ cong trên một hư
 
 ### 4.2. Công thức BFGS và bảo toàn tính dương xác định
 
-BFGS sửa xấp xỉ nghịch đảo $P$ sau mỗi cặp $(s,y)$ sao cho $P$ mới thỏa phương trình cát tuyến và vẫn xác định dương. Giả sử $P=P^\top\succ0$ và $y^\top s>0$. Đặt $\rho=1/(y^\top s)$. Công thức Broyden–Fletcher–Goldfarb–Shanno (BFGS) cho nghịch đảo là
+BFGS sửa xấp xỉ nghịch đảo $P$ sau mỗi cặp $(s,y)$ sao cho $P$ mới thỏa phương trình cát tuyến và vẫn xác định dương. Giả sử $P=P^\top\succ0$ và $y^\top s>0$. Đặt $\rho=1/(y^\top s)$. Công thức BFGS cho nghịch đảo là
 
 $$
 P^+=(I-\rho sy^\top)P(I-\rho ys^\top)+\rho ss^\top.
