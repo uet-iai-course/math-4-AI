@@ -57,9 +57,11 @@ Phân phối $P$ chưa biết nên $R$ không tính được; chỉ có thể ư
 
 Bảng chứa số liệu giả lập sư phạm; mỗi cột dùng cùng một thước đo ở hai thời điểm. Nếu tiêu chí lựa chọn là mất mát xác thực, thời điểm 1 được chọn. Mất mát huấn luyện thấp hơn ở thời điểm 2 chưa xác lập chất lượng dự đoán tốt hơn. Mất mát khả vi dùng trong cập nhật cũng có thể là đại lượng thay thế cho một tiêu chí khác, chẳng hạn lỗi phân loại 0–1.
 
-### Điểm dừng và nhiều cực tiểu
+### Điểm dừng của hàm không lồi
 
-Với $s(u,v)=u^2-v^2$, gradient bằng $(2u,-2v)^T$ và Hessian bằng $\operatorname{diag}(2,-2)$. Tại gốc, gradient bằng không. Tuy nhiên, $s(u,0)=u^2>0$ và $s(0,v)=-v^2<0$ khi tọa độ khác không, kể cả trong lân cận tùy ý nhỏ. Gốc là điểm yên ngựa.
+Với hàm lồi khả vi, điểm dừng (stationary point), tức điểm có gradient bằng 0, là cực tiểu toàn cục (Bài 04). Mất mát của mạng nơ ron nói chung không lồi, nên điều kiện cần này không còn là điều kiện đủ.
+
+Với $s(u,v)=u^2-v^2$, gradient bằng $(2u,-2v)^T$ và Hessian bằng $\operatorname{diag}(2,-2)$. Tại gốc, gradient bằng không. Tuy nhiên, $s(u,0)=u^2>0$ và $s(0,v)=-v^2<0$ khi tọa độ khác không, kể cả trong lân cận tùy ý nhỏ. Gốc là điểm yên ngựa (saddle point).
 
 Hàm $r(u)=(u^2-1)^2$ có hai cực tiểu toàn cục tại $u=\pm1$, cùng giá trị 0. Số bộ tham số cực tiểu không tự quyết định số mức chất lượng. Trong mạng, hoán đổi đơn vị ẩn cùng các trọng số tương ứng có thể giữ nguyên hàm dự đoán; phần D thiết lập một ví dụ cụ thể.
 

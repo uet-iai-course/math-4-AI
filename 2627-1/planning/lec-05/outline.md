@@ -188,7 +188,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Ghi chú soạn:** Phân biệt mất mát thay thế với sai số xác thực; không sử dụng tập kiểm thử để điều chỉnh siêu tham số. Hai số đo chưa chứng minh quá khớp trong mọi bối cảnh, chỉ tạo tình huống lựa chọn đã cho.
 - **Sửa ngày 2026-10-01:** Tiêu đề đổi thành “Tập xác thực và tập kiểm thử”. Câu mở: $P$ chưa biết nên $R$ không tính được; ước lượng $R$ trên dữ liệu không dùng để cập nhật. Thêm dòng đọc bảng: theo mất mát xác thực chọn thời điểm 1. Ghi chú: ước lượng không chệch tại $\theta$ cố định, lệch lạc quan sau khi chọn, lý do giữ tập kiểm thử.
 
-#### A06 — Điểm dừng và chất lượng nghiệm
+#### A06 — Điểm dừng của hàm không lồi
 
 - **Vai trò và mục tiêu:** Giới hạn chuyển từ tối ưu lồi sang huấn luyện; MT1.
 - **Luận điểm trung tâm:** Gradient bằng không và số lượng điểm cực tiểu không đủ quyết định chất lượng một mô hình.
@@ -199,6 +199,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Nguồn:** DL §§8.2.2–8.2.3, 8.2.7–8.2.8; ví dụ $s$ theo hình 4.5, $r$ tự xây dựng.
 - **Thời lượng:** 0.09 giờ LT.
 - **Ghi chú soạn:** Nhiều cực tiểu không mặc nhiên đều tốt; gradient lớn có thể đi kèm tiến triển chậm do độ cong. Chuyển đối xứng tham số sang D03, không giải thích mạng trước khi xây mạng.
+- **Sửa ngày 2026-10-01:** Tiêu đề “Điểm dừng của hàm không lồi”. Câu mở nhắc kết quả lồi của Bài 04 và nêu mất mát mạng nói chung không lồi. Khung kết luận chỉ giữ hai ý do $s$ và $r$ chứng minh; ý hoán đổi đơn vị ẩn ở lại ghi chú. Ghi chú nêu thuật ngữ điểm dừng (stationary point), điểm yên ngựa (saddle point).
 
 #### A07 — Đánh giá kết quả huấn luyện
 
