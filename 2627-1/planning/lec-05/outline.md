@@ -576,6 +576,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Ghi chú soạn:** Giả định gradient đầu ra độc lập với trọng số là đơn giản hóa phân tích; trong huấn luyện thật chúng có thể phụ thuộc. Phân biệt phương sai với mômen bậc hai khi bỏ điều kiện trung bình 0.
 - **Bản triển khai sau rà 2026-09-26:** Mất mát phụ thuộc $h$ qua $z=Wh$; giữ $W$ cố định khi đạo hàm. Cột trái chứa dây chuyền/giả thiết/phương sai; cột phải chứa bảng hai lựa chọn $4\to2$ và kết luận xung đột. Bỏ hình mạng lùi lặp để giữ chữ và toàn bộ hai hàng; D07 vẫn có hình lớp.
 
+- **Sửa ngày 2026-10-01:** Câu mở nêu nhu cầu: cập nhật dùng gradient truyền ngược qua lớp. Kết luận: khi $n_{\rm in}\ne n_{\rm out}$, không có $s^2$ giữ đồng thời hai phương sai. Ghi chú nêu backpropagation và hệ quả với độ lớn bước ở các lớp đầu.
+
 #### D09 — Khởi tạo Glorot
 
 - **Vai trò và mục tiêu:** Hình thức và ứng dụng KN5; MT3.

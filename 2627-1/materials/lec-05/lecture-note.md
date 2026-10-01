@@ -376,7 +376,7 @@ Với bốn đầu vào, $s^2=1$ nhân phương sai tín hiệu với 4, còn $s
 
 ### Phương sai của gradient truyền ngược
 
-Với mất mát vô hướng khả vi $\ell$ phụ thuộc $h$ thông qua $z=Wh$, giữ $W$ cố định khi lấy đạo hàm theo $h$ và đặt các gradient cột $\delta_z=\nabla_z\ell\in\mathbb R^{n_{\rm out}}$ và $\delta_h=\nabla_h\ell\in\mathbb R^{n_{\rm in}}$. Dây chuyền theo từng thành phần cho
+Các quy tắc cập nhật dùng gradient theo tham số, và gradient này được truyền ngược (backpropagation) qua từng lớp. Nếu phương sai của nó co hoặc phóng đại qua lớp, độ lớn bước cập nhật ở các lớp đầu cũng co hoặc phóng đại. Với mất mát vô hướng khả vi $\ell$ phụ thuộc $h$ thông qua $z=Wh$, giữ $W$ cố định khi lấy đạo hàm theo $h$ và đặt các gradient cột $\delta_z=\nabla_z\ell\in\mathbb R^{n_{\rm out}}$ và $\delta_h=\nabla_h\ell\in\mathbb R^{n_{\rm in}}$. Dây chuyền theo từng thành phần cho
 
 $$
 \delta_{h,i}=\sum_{j=1}^{n_{\rm out}}W_{ji}\delta_{z,j},\qquad
@@ -391,7 +391,7 @@ $$
 
 Giả thiết độc lập của gradient đầu ra với trọng số là đơn giản hóa phân tích. Gradient và trọng số trong mạng thực tế thường phụ thuộc nhau.
 
-Với $q,r>0$, bảo toàn phương sai tiến cần $s^2=1/n_{\rm in}$; bảo toàn chiều lùi cần $s^2=1/n_{\rm out}$. Ở lớp $4\to2$, lựa chọn $s^2=1/4$ cho hệ số tiến/lùi là $1,1/2$; lựa chọn $s^2=1/2$ cho $2,1$. Khi hai độ rộng khác nhau, hai yêu cầu không đồng thời thỏa mãn.
+Với $q,r>0$, bảo toàn phương sai tiến cần $s^2=1/n_{\rm in}$; bảo toàn chiều lùi cần $s^2=1/n_{\rm out}$. Ở lớp $4\to2$, lựa chọn $s^2=1/4$ cho hệ số tiến/lùi là $1,1/2$; lựa chọn $s^2=1/2$ cho $2,1$. Khi $n_{\rm in}\ne n_{\rm out}$, không có $s^2$ giữ đồng thời hai phương sai.
 
 ### Khởi tạo Glorot và thang qua nhiều lớp
 
