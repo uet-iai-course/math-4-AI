@@ -1095,3 +1095,10 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **C06 — giữ.** Thuật toán CG tuyến tính nêu đủ đầu vào, giả thiết $A\succ0$, ngưỡng dừng, thứ tự cập nhật; chi phí và giới hạn số học ở ghi chú.
 - **C07 — sửa.** Tiêu đề “Giải gần đúng hệ Newton” không gọi tên phương pháp mà G01 dùng (“Newton–CG”). Tiêu đề mới “Phương pháp Newton–CG”; câu mở nêu đây là ghép giảm chấn với CG. Ghi chú bài giảng mục 3.5 đã dùng tên này.
 - **C08 — sửa tiêu đề.** “Kiểm tra…” đổi thành “Giảm chấn và một vòng gradient liên hợp”; đề đã dùng động từ học tập.
+
+### Phần D
+
+- **D01 — giữ.** Trang có câu nhu cầu (tích Hessian–vectơ không sẵn có), định nghĩa cặp $(s,y)$, trường hợp bậc hai $y=Qs$ và phương trình cát tuyến.
+- **D02 — sửa.** $P_1$ xuất hiện không nói từ đâu ra. Câu mở nay nêu BFGS sửa $P$ sau mỗi cặp và $P_1$ là kết quả của công thức ở trang sau; trang chỉ kiểm hai tính chất. Câu mở rút về hai dòng để trang không tràn. Ghi chú bài giảng mục 4.2 thêm câu nêu mục đích của cập nhật BFGS.
+- **D03, D04 — giữ.** D03 có giả thiết, công thức, hai kết luận có nhãn và chứng minh trong ghi chú; D04 có đầu vào, bốn bước, điều kiện $y^\top s>0$, chi phí BFGS/L-BFGS với tên đầy đủ.
+- **D05 — sửa tiêu đề.** “Kiểm tra…” đổi thành “Điều kiện độ cong của BFGS”.

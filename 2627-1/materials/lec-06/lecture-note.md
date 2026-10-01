@@ -420,7 +420,7 @@ Một cặp $(s,y)$ chỉ mô tả tác động của độ cong trên một hư
 
 ### 4.2. Công thức BFGS và bảo toàn tính dương xác định
 
-Giả sử $P=P^\top\succ0$ và $y^\top s>0$. Đặt $\rho=1/(y^\top s)$. Công thức Broyden–Fletcher–Goldfarb–Shanno (BFGS) cho nghịch đảo là
+BFGS sửa xấp xỉ nghịch đảo $P$ sau mỗi cặp $(s,y)$ sao cho $P$ mới thỏa phương trình cát tuyến và vẫn xác định dương. Giả sử $P=P^\top\succ0$ và $y^\top s>0$. Đặt $\rho=1/(y^\top s)$. Công thức Broyden–Fletcher–Goldfarb–Shanno (BFGS) cho nghịch đảo là
 
 $$
 P^+=(I-\rho sy^\top)P(I-\rho ys^\top)+\rho ss^\top.

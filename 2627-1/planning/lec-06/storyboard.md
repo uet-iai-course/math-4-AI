@@ -345,7 +345,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Cần kiểm đồng thời cát tuyến và xác định dương bằng số trước cập nhật tổng quát.
 - **Kế thừa, đầu ra và vị trí trong sườn:** D01 cho cặp cát tuyến; D02 xác lập hai điều kiện, D03 giải thích phép cập nhật bảo toàn chúng.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Ví dụ KN6; MT2.
-- **Quyết định và lý do:** Giữ ma trận cho sẵn và chuẩn hóa thuật ngữ cát tuyến; không gọi kiểm ma trận là suy ra toàn bộ Hessian. Đặc tả tại D02 trong outline.md.
+- **Quyết định và lý do:** Giữ ma trận cho sẵn và chuẩn hóa thuật ngữ cát tuyến; không gọi kiểm ma trận là suy ra toàn bộ Hessian. Sửa 2026-10-02: câu mở nêu BFGS sửa $P$ sau mỗi cặp và $P_1$ đến từ công thức ở trang sau, để ma trận không xuất hiện đột ngột. Đặc tả tại D02 trong outline.md.
 - **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,03 tiết bài tập; nhân P₁y và kiểm hai định thức con đầu.
 
 ### D03. Cập nhật nghịch đảo BFGS
@@ -364,7 +364,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa lần đầu tên BFGS với bộ nhớ giới hạn; giữ nội dung hỗ trợ, không thêm đệ quy. Đặc tả tại D04 trong outline.md.
 - **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; theo dõi đầu vào, hướng, bước và bộ nhớ ma trận/cặp.
 
-### D05. Kiểm tra điều kiện BFGS
+### D05. Điều kiện độ cong của BFGS
 
 - **Lý do tồn tại và nhu cầu học tập:** Cần tách khả năng nhận cặp độ cong khỏi khả năng tạo hướng bằng một gradient mới.
 - **Kế thừa, đầu ra và vị trí trong sườn:** D04 kết thúc nhóm cập nhật; E01 mở các thành phần còn lại của bài toán.

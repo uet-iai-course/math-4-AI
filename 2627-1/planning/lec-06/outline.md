@@ -370,6 +370,7 @@ Chức năng: xấp xỉ độ cong từ gradient. Đầu vào: Chi phí cung c�
 - **Nguồn:** Ví dụ V8 tự xây dựng; CM, tr. 12–16.
 - **Thời lượng:** 0,04 tiết lý thuyết + 0,03 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Tính đầy đủ phép nhân và định thức; tránh tuyên bố một cặp đã xác định toàn bộ Hessian.
+- **Sửa ngày 2026-10-02:** Câu mở: BFGS sửa $P$ sau mỗi cặp $(s,y)$; với $P_0=I$ và cặp đã cho, công thức ở trang sau cho $P_1$. Trang chỉ kiểm hai tính chất của $P_1$.
 
 #### D03. Cập nhật nghịch đảo BFGS
 
@@ -395,7 +396,7 @@ Chức năng: xấp xỉ độ cong từ gradient. Đầu vào: Chi phí cung c�
 - **Thời lượng:** 0,07 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** L-BFGS là khái niệm hỗ trợ: giải thích đầu vào, chi phí, không triển khai đệ quy hai vòng trong tuyến chính. Với gradient lô nhỏ, cùng kiểm tra dấu chưa bảo đảm thông tin độ cong chính xác.
 
-#### D05. Kiểm tra điều kiện BFGS
+#### D05. Điều kiện độ cong của BFGS
 
 - **Vai trò và mục tiêu:** Kiểm tra riêng mạch D; MT2.
 - **Luận điểm trung tâm:** Điều kiện độ cong quyết định tính hợp lệ của cập nhật.
@@ -411,6 +412,8 @@ Chức năng: xấp xỉ độ cong từ gradient. Đầu vào: Chi phí cung c�
 - **Đáp án/gợi ý:** Chỉ cặp 1 có $y^\top s=2>0$; cặp 2 có $y^\top s=-1$. Với gradient được cho, $P_1g=(3/4,-1/2)^\top$, $d=(-3/4,1/2)^\top$, $g^\top d=-3/4<0$.
 - **Tiêu chí đánh giá:** Kiểm dấu hai cặp (2 ý); tính hướng và đạo hàm theo hướng (2 ý).
 - **Thời gian hoạt động:** Suy nghĩ 0,04 tiết; trình bày 0,02; chữa 0,03. Đã tính trong thời lượng trang.
+- **Sửa ngày 2026-10-02:** Tiêu đề nêu điều kiện được kiểm; đề và đáp án giữ nguyên.
+
 
 ### Mạch E. Phép tính mô hình, khối biến và đầu ra
 
