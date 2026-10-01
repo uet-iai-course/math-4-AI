@@ -192,7 +192,7 @@ Giảm bước một nửa làm phương sai cập nhật giảm bốn lần, đ
 
 ## C. Phương pháp momentum và Nesterov
 
-### Độ cong của hàm bậc hai
+### Hướng gradient trên hàm bậc hai
 
 Để tách tác dụng của quy tắc cập nhật khỏi nhiễu lấy mẫu, xét gradient đầy đủ của
 
@@ -201,7 +201,7 @@ q(\theta)=\frac12\left(3[\theta]_1^2+7[\theta]_2^2\right),\qquad
 \theta\in\mathbb R^2.
 $$
 
-Ở đây $[\theta]_i$ chỉ tọa độ thứ $i$; $\theta_t$ chỉ cả vectơ tại bước $t$. Hessian là $H=\operatorname{diag}(3,7)$ và $g=\nabla q(\theta)=H\theta$. Tại $\theta_0=(2,4)^T$, $g=(6,28)^T$. Tỷ số thành phần gradient $28/6=14/3$ khác tỷ số độ lệch $4/2=2$ vì gradient còn chứa độ cong. Số điều kiện của Hessian xác định dương là $\kappa(H)=\lambda_{\max}/\lambda_{\min}$. Tỷ số lớn làm bước bị giới hạn bởi hướng cong lớn, trong khi hướng cong nhỏ tiến chậm. Trong ví dụ, $\kappa(H)=7/3$ mô tả hai độ cong khác nhau, chưa đại diện cho một bài toán có điều kiện cực kỳ kém.
+Ở đây $[\theta]_i$ chỉ tọa độ thứ $i$; $\theta_t$ chỉ cả vectơ tại bước $t$. Hessian là $H=\operatorname{diag}(3,7)$ và $g=\nabla q(\theta)=H\theta$. Tại $\theta_0=(2,4)^T$, $g=(6,28)^T$. Tỷ số thành phần gradient $28/6=14/3$ khác tỷ số độ lệch $4/2=2$ vì gradient còn chứa độ cong: $-g_0\propto(3,14)^T$ lệch khỏi hướng về cực tiểu $-\theta_0\propto(1,2)^T$. Số điều kiện của Hessian xác định dương là $\kappa(H)=\lambda_{\max}/\lambda_{\min}$. Tỷ số lớn làm bước bị giới hạn bởi hướng cong lớn, trong khi hướng cong nhỏ tiến chậm. Trong ví dụ, $\kappa(H)=7/3$ mô tả hai độ cong khác nhau, chưa đại diện cho một bài toán có điều kiện cực kỳ kém.
 
 ![Đường mức của hàm bậc hai với hệ số 3 và 7, điểm ban đầu (2,4) và hướng âm gradient.](img/lec-05/quadratic-initial.svg)
 

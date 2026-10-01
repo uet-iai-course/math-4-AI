@@ -341,7 +341,7 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 
 Chức năng: dùng hình học đã biết để giải thích lịch sử cập nhật và vị trí đo gradient. Tạm dùng gradient đầy đủ để cô lập cơ chế, sau đó ghép lại nhóm nhỏ. MT1–MT2; 0.50 LT + 0.25 BT.
 
-#### C01 — Mặt mất mát bậc hai
+#### C01 — Hướng gradient trên hàm bậc hai
 
 - **Vai trò và mục tiêu:** Nhu cầu và trực quan KN3; MT1–MT2.
 - **Luận điểm trung tâm:** Gradient phụ thuộc cả độ lệch tham số và độ cong của hàm trong ví dụ bậc hai.
@@ -353,6 +353,8 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Tỷ số $7/3$ không phải điều kiện cực kỳ kém. Sơ đồ chỉ minh họa cơ chế có thể rõ hơn khi độ cong chênh lệch lớn.
 - **Bản triển khai sau rà 2026-09-26:** Ghi chú gọi $\kappa(H)=\lambda_{\max}/\lambda_{\min}$ là số điều kiện của Hessian xác định dương; hướng cong lớn giới hạn bước.
+
+- **Sửa ngày 2026-10-01:** Tiêu đề “Hướng gradient trên hàm bậc hai”. Câu mở: gác nhiễu lấy mẫu, với gradient đầy đủ hướng bước vẫn phụ thuộc độ cong. Khối dưới: $-g_0\propto(3,14)^T$ lệch khỏi hướng về cực tiểu $-\theta_0\propto(1,2)^T$. Ghi chú nói rõ $q$ và điểm đầu lấy từ Bài 04, cực tiểu duy nhất là gốc.
 
 #### C02 — Độ cong và độ dài bước
 
