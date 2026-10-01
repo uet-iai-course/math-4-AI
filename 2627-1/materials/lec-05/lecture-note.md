@@ -287,7 +287,7 @@ $$
 
 Ví dụ cho $v_2=(-0.3825,-1.365)^T$, $\theta_2=(1.3175,1.235)^T$, với $q(\theta_2)=7.941996875$. Giá trị này lớn hơn momentum sau bước thứ hai. Một gradient mỗi bước và một vectơ trạng thái vẫn đủ cho quy tắc Nesterov; đổi điểm đánh giá không tạo bảo đảm luôn tốt hơn. Bản hệ số cố định này cũng không tự có tốc độ $O(1/t^2)$ của các phương pháp gia tốc lồi với lịch hệ số và giả thiết riêng.
 
-**Câu hỏi:** Với $\theta=(1,1)^T$, $v=(-0.2,0.2)^T$, $\eta=0.05$, $\beta=0.5$, điểm gradient và tham số mới của momentum khác Nesterov như thế nào?
+**Câu hỏi:** Với $q$ như trên, $\theta=(1,1)^T$, $v=(-0.2,0.2)^T$, $\eta=0.05$, $\beta=0.5$, tính điểm đánh giá gradient, gradient, vận tốc mới và tham số mới của momentum và của Nesterov. Nêu giới hạn của kết luận so sánh sau một bước.
 
 ## D. Khởi tạo tham số mạng nơ ron
 

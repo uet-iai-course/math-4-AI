@@ -442,7 +442,7 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 
 - **Sửa ngày 2026-10-01:** Danh sách bước thêm bước 3: cập nhật $v$, rồi cộng vào $\theta_t$, không vào $\widetilde\theta_t$.
 
-#### C08 — Cập nhật có trạng thái trên hàm bậc hai
+#### C08 — Momentum và Nesterov từ cùng trạng thái
 
 - **Vai trò và mục tiêu:** Trang kiểm tra riêng C; MT2/KN3.
 - **Luận điểm trung tâm:** Nơi tính gradient và thứ tự cập nhật quyết định bước mới.
@@ -455,6 +455,8 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Ghi chú / đáp án:** Momentum: $g=(3,7)$, $v'=(-0.25,-0.25)$, $\theta'=(0.75,0.75)$. Nesterov: $\widetilde\theta=(0.9,1.1)$, $g=(2.7,7.7)$, $v'=(-0.235,-0.285)$, $\theta'=(0.765,0.715)$. Không suy bảo đảm chung từ một bước.
 - **Kiến thức được đo:** Tính đúng trạng thái và điểm gradient; nội dung C03–C07.
 - **Tiêu chí đánh giá:** Hai chuỗi tính đúng; không cập nhật từ $\widetilde\theta$ lần nữa; nêu giới hạn của so sánh.
+
+- **Sửa ngày 2026-10-01 (C08):** Tiêu đề “Momentum và Nesterov từ cùng trạng thái”; yêu cầu viết “Tính… Nêu…”. Câu nối sang D: cả hai quy tắc bắt đầu từ $\theta_0$; với mạng, chọn $\theta_0$ phụ thuộc cách gradient truyền qua cấu trúc mạng.
 
 ### D. Khởi tạo tham số mạng nơ ron
 
