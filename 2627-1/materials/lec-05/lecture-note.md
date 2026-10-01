@@ -95,6 +95,8 @@ Gradient trung bình bằng $J'(1)=0$, nhưng hai gradient mẫu khác 0; một 
 
 ### Tính không chệch và hiệp phương sai
 
+Từng gradient mẫu lệch khỏi gradient đầy đủ. Khi chỉ số được chọn ngẫu nhiên đều, mỗi $g_i$ có cùng xác suất góp vào nhóm; các độ lệch triệt tiêu theo kỳ vọng, và ước lượng có tính chất đó gọi là không chệch (unbiased).
+
 **Mệnh đề.** Cố định $D,\theta$; giả sử mọi $\ell_i$ khả vi tại $\theta$. Đặt $g_i=\nabla\ell_i(\theta)$, $\bar g=N^{-1}\sum_i g_i$ và
 
 $$
@@ -130,7 +132,7 @@ $$
 
 Tính không chệch ở đây hướng tới $\nabla J$, không mặc nhiên là $\nabla R$. Lấy mẫu không hoàn lại hoặc các chỉ số phụ thuộc cần phân tích riêng; công thức chia phương sai cho $b$ dùng tính độc lập.
 
-Ở ví dụ vô hướng tại $\theta=1$, gradient mẫu có kỳ vọng 0 và phương sai $(4+0+4)/3=8/3$. Gradient nhóm có phương sai $8/(3b)$.
+Ở ví dụ vô hướng tại $\theta=1$, gradient mẫu có kỳ vọng 0 và phương sai $\Sigma=(2^2+0^2+2^2)/3=8/3$. Gradient nhóm có phương sai $8/(3b)$.
 
 ### Một bước gradient ngẫu nhiên
 

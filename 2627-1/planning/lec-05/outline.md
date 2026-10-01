@@ -261,6 +261,8 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Ghi chú soạn:** Đích là $\nabla J$, không mặc nhiên $\nabla R$; xáo trộn không hoàn lại có quy luật khác, không áp máy móc công thức này.
 - **Bản triển khai sau rà 2026-09-26:** Mặt trang nêu $b\in\mathbb N_{>0}$, không giới hạn $b\le N$ vì có hoàn lại.
 
+- **Sửa ngày 2026-10-01:** Thêm câu trực quan “chọn chỉ số đều để mỗi $g_i$ có cùng xác suất góp vào nhóm”; gắn nhãn Mệnh đề; dòng ví dụ ghi $\Sigma=\tfrac13(2^2+0^2+2^2)=\tfrac83$ trước $\operatorname{Var}=8/(3b)$. Ghi chú nêu thuật ngữ không chệch (unbiased).
+
 #### B04 — Một bước gradient ngẫu nhiên
 
 - **Vai trò và mục tiêu:** Ví dụ cập nhật trước thuật toán; MT1–MT2.
