@@ -271,3 +271,12 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần E
 
 - **E01 — sửa.** Trang tổng hợp không quay lại vấn đề trung tâm nêu ở A02; khối dưới lặp sơ đồ vận hành. Tiêu đề rút thành “Quy trình huấn luyện”; mỗi quyết định ghi phần xây dựng nó (A–D, nhãn phần được phép); khối dưới nêu bốn quyết định trả lời ba câu hỏi mở đầu; câu vòng lặp chuyển vào ghi chú. Ghi chú bài giảng cập nhật bảng và câu dẫn.
+- **Tái kiểm phần D.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5), tại commit `e17d104`: tái kiểm toán học **PASS** (4 nhẹ; mọi số liệu D01–D11 tính lại khớp); tái kiểm mạch lập luận **PASS có điều kiện** (1 trung bình, 6 nhẹ). Đã xử lý:
+  - trung bình | storyboard bố cục D02–D05, D08, D11 | mô tả bố cục cũ → cập nhật sáu dòng. **Đã đóng.**
+  - nhẹ | D03 | hệ quả viết lỏng → “mạng tương đương một đơn vị”, ghi chú nêu trọng số ra $a_1+a_2$; ghi chú bài giảng sửa theo. **Đã đóng.**
+  - nhẹ | D04 | “hai đơn vị tách nhau” không chính xác vì $w_1\ne w_2$ từ đầu → “sau một bước hai trọng số ra cũng khác nhau”. **Đã đóng.**
+  - nhẹ | D05 | thiếu điều kiện $|c|\ne1$ → bổ sung trên mặt trang và ghi chú bài giảng. **Đã đóng.**
+  - nhẹ | D06, D07 | câu mở khó tách vế → viết lại thành quan hệ điều kiện và hai mệnh đề. **Đã đóng.**
+  - nhẹ | D09 | quy tắc Glorot không có nhãn, chưa nhắc xung đột từ D08 → “**Quy tắc.** Thỏa hiệp giữa $1/n_{\rm in}$ và $1/n_{\rm out}$…”. **Đã đóng.**
+  - nhẹ | D11→E01 | ranh giới D→E nằm giữa ghi chú D11 → câu nối chuyển xuống cuối ghi chú, nêu điểm khởi đầu hoàn tất các thành phần của quy trình; E01 đã gắn quyết định với phần A–D. **Đã đóng.**
+  - nhẹ | E01 (ghi chú) | câu kết chung chung theo no-ai-slop → bỏ. **Đã đóng.**

@@ -327,7 +327,7 @@ Với bước hạ gradient $0.1$, cấu hình trên cho $a_j'=0.8$, $w_j'=0.8$,
 Tham số vào và độ lệch bằng nhau tạo tiền kích hoạt và kích hoạt bằng nhau trên từng mẫu. Trọng số ra bằng nhau làm các đạo hàm theo tham số tương ứng bằng nhau qua công thức dây chuyền. Áp dụng cùng quy tắc với trạng thái bằng nhau cho tham số và trạng thái mới bằng nhau. Quy nạp theo bước bảo toàn tính đồng nhất. Lập luận giả sử không có nhiễu riêng làm phân biệt hai đơn vị.
 :::
 
-Hệ quả là hai đơn vị luôn tính cùng một hàm ẩn $h$, nên $f_\theta=(a_1+a_2)h$ và mạng hai đơn vị chỉ biểu diễn được những hàm của mạng một đơn vị. Đổi nhóm dữ liệu chung chưa phá điều kiện đối xứng. Cùng trọng số vào nhưng khác trọng số ra cũng chưa thỏa toàn bộ giả thiết của mệnh đề.
+Hệ quả là hai đơn vị luôn tính cùng một hàm ẩn $h$, nên $f_\theta=(a_1+a_2)h$ và mạng tương đương một đơn vị với trọng số ra $a_1+a_2$. Đổi nhóm dữ liệu chung chưa phá điều kiện đối xứng. Cùng trọng số vào nhưng khác trọng số ra cũng chưa thỏa toàn bộ giả thiết của mệnh đề.
 
 Trong cấu hình $w_1=0.8,w_2=1.2$, $a_1=a_2=1$, $b_j=0$, $x=1,y=0$, đầu ra vẫn bằng 2. Gradient theo $a_1,a_2$ lần lượt bằng $1.6,2.4$, nên hai cập nhật khác nhau. Hai trọng số này được chọn có chủ ý cho ví dụ. Trong thực hành, lấy trọng số độc lập từ một phân phối liên tục là cách tạo khác biệt, vì hai trọng số bằng nhau với xác suất 0; độ lệch có thể bằng 0 khi trọng số đã phá đối xứng. Khác biệt giữa đơn vị chưa xác định độ lớn trọng số phù hợp.
 
@@ -341,7 +341,7 @@ $$
 
 với $L$ là số lớp, $c_l\in\mathbb R$ là hệ số, $h^{(0)}$ là đầu vào. Dây chuyền cho $\partial h^{(L)}/\partial h^{(0)}=\prod_{l=1}^Lc_l$. Với $L=4$, mọi $c_l=1/2$ cho độ nhạy $1/16$, còn mọi $c_l=2$ cho 16. Khi $h^{(0)}=1$, hai đầu ra cũng nhận các giá trị tương ứng.
 
-Đây là độ nhạy đầu ra theo đầu vào, chưa phải toàn bộ gradient mất mát theo mọi tham số. Khi mọi $c_l=c$, độ nhạy bằng $c^L$, nên phép nhân nhiều đạo hàm làm độ nhạy co hoặc phóng đại theo cấp số mũ của độ sâu; gradient lớn và vách dốc là những khó khăn có thể xuất hiện khi các tích này tăng mạnh.
+Đây là độ nhạy đầu ra theo đầu vào, chưa phải toàn bộ gradient mất mát theo mọi tham số. Khi mọi $c_l=c$, độ nhạy bằng $c^L$, nên khi $|c|\ne1$, phép nhân nhiều đạo hàm làm độ nhạy co hoặc phóng đại theo cấp số mũ của độ sâu; gradient lớn và vách dốc là những khó khăn có thể xuất hiện khi các tích này tăng mạnh.
 
 Một cách tránh co là tăng trọng số, nhưng khi đó tiền kích hoạt lớn. Với hàm kích hoạt bão hòa như $\phi(z)=\tanh z$,
 

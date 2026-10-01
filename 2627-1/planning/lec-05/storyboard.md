@@ -143,16 +143,16 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | C07 | Lời mở nêu bước cố định; hai cột so điểm đo và trình tự ba bước, gồm cộng $v_{t+1}$ vào $\theta_t$; dừng/đầu ra dưới. Giữ gốc cập nhật rõ. |
 | C08 | Đề tự chứa và trạng thái mới; bảng đối chiếu các đại lượng cần tính của momentum/Nesterov. Giữ bài kiểm chuyển giao. |
 | D01 | Câu nhu cầu chọn $\theta_0$ trên; hai cột hình hai đơn vị trái, tham số/truyền xuôi/mất mát phải. Giữ nền mạng tối thiểu. |
-| D02 | Dữ kiện trên; hai cột ví dụ số/quy tắc; đường biến với đạo hàm trên cạnh dưới. Sửa sự lẫn nút biến và đạo hàm. |
-| D03 | Bảng hai đơn vị trước/sau; khối bất biến và nhận xét hoán vị dưới. Sửa phạm vi khả vi trên mặt trang. |
-| D04 | Hai cột; hình mạng trái, cấu hình trọng số mới và đạo hàm đầu ra phải; kết luận phá đối xứng dưới. Giữ tính lại đạo hàm theo trọng số ra. |
-| D05 | Mô hình chuỗi trên; hình chuỗi và tích đạo hàm; hai cấu hình số. Giữ thông báo đổi mô hình. |
+| D02 | Dữ kiện có tên sai số dự đoán $e$ trên; hai cột ví dụ số/tích đạo hàm cục bộ; đường biến với đạo hàm trên cạnh dưới. |
+| D03 | Câu nối từ D02; bảng hai đơn vị trước/sau; khối Mệnh đề kèm hệ quả tương đương một đơn vị; Nhận xét hoán vị dưới. |
+| D04 | Hai cột; hình mạng trái, cấu hình trọng số mới, đạo hàm đầu ra và kết luận phải; dòng Quy tắc khởi tạo ngẫu nhiên dưới. |
+| D05 | Câu nhu cầu và mô hình chuỗi một dòng trên; hình chuỗi và tích đạo hàm; hai cấu hình số; kết luận $c^L$. |
 | D06 | Câu nhu cầu trên; hai cột hình tanh/đạo hàm trái, công thức/bảng phải; khối xấp xỉ gần 0 dưới. Giữ cầu nối mô hình tuyến tính. |
 | D07 | Nhu cầu và kích thước trên; giả thiết/ví dụ bốn đầu vào trái, hình lớp phải; công thức tổng quát cuối. Sửa trình tự để ví dụ chuẩn bị tổng quát hóa. |
-| D08 | Phụ thuộc mất mát/kích thước gradient trên; cột trái dây chuyền → giả thiết mô hình → phương sai; cột phải bảng 4→2 và kết luận xung đột. Sửa bố cục, bỏ hình mạng lùi trùng để đủ chữ 28 px. |
+| D08 | Câu nhu cầu truyền ngược và kích thước gradient trên; cột trái dây chuyền → giả thiết mô hình → phương sai; cột phải bảng 4→2 và kết luận khi $n_{\rm in}\ne n_{\rm out}$. |
 | D09 | Hai cột; quy tắc phương sai, định nghĩa phân phối đều và phép suy biên $a$ trái, ví dụ 4→2 phải. Giữ thỏa hiệp sau bảng xung đột. |
 | D10 | Mạng và khối giả thiết trên, công thức lặp, bảng ba lớp, chú thích kết luận dưới. Giữ bảng mô hình có thể tính lại. |
-| D11 | Nhãn câu hỏi ghi hai tiểu bài toán độc lập; hai khối đối xứng/thang. Sửa duy nhất tiêu đề, thêm phạm vi khả vi; giữ mã/vị trí. |
+| D11 | Nhãn câu hỏi ghi hai tiểu bài toán độc lập; hai khối đối xứng/thang với yêu cầu “Tính… Giải thích… Nêu…”. |
 | E01 | Sơ đồ vận hành trên, bảng quyết định (kèm phần A–D)/đối tượng/đại lượng, khối nối với ba câu hỏi mở đầu dưới. Giữ đúng thứ tự thực thi. |
 | E02 | Hai khối; dữ liệu/khởi tạo trái, bảng xác thực/tiểu bài vectơ phải. Giữ tách các mô hình trong đề. |
 | E03 | Bảng ba kết quả học tập, khối nguồn đọc dưới. Giữ đối chiếu mục tiêu và ranh giới bài sau. |
