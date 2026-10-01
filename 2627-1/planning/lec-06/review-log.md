@@ -1120,3 +1120,5 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **E02 — sửa.** Nhu cầu và trực quan của chuẩn hóa chỉ có trong ghi chú; mặt trang mở thẳng bằng hai lô số. Thêm dòng **Trực quan** (trừ trung bình, chia độ lệch chuẩn của lô để thống nhất vị trí và thang); gộp dòng $\varepsilon\to0^+$ vào công thức để giữ chiều cao. Ghi chú bài giảng mục 5.1 thêm câu trực quan và tên tiếng Anh.
 - **E03 — giữ.** Định nghĩa chuẩn hóa theo lô nêu tên đầy đủ, công thức, chế độ huấn luyện/suy luận và phương sai sau chuẩn hóa.
 - **E04 — sửa.** Trang mở thẳng bằng hàm ví dụ, chưa nói vì sao cập nhật từng biến. Câu mở nêu nhu cầu: giữ các biến khác, bài toán theo một biến thường giải được chính xác. Ghi chú bài giảng mục 5.2 đã có câu nhu cầu tương ứng.
+- **E05 — giữ.** Thuật toán hạ theo khối nêu đủ bước, điều kiện không tăng và một lượt ví dụ.
+- **E06 — sửa.** Trung bình Polyak xuất hiện không có lý do. Câu mở nối dao động của SGD gần nghiệm (Bài 05) với việc lấy trung bình; khung kết luận chuyển vào ghi chú (thẻ phản ví dụ đã thể hiện giới hạn) để trang không tràn. Ghi chú bài giảng mục 5.3 thêm câu nhu cầu.

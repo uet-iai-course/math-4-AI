@@ -561,7 +561,7 @@ Nếu $F$ bị chặn dưới, dãy giá trị mục tiêu không tăng có gi�
 
 ### 5.3. Trung bình Polyak
 
-Cho quỹ đạo $\theta_1,\ldots,\theta_T$ trong cùng không gian tham số. Trung bình Polyak trong bài là trung bình đều
+Gần nghiệm, gradient ngẫu nhiên khiến quỹ đạo dao động quanh nghiệm (Bài 05); lấy trung bình các điểm làm giảm dao động mà không đổi quy tắc sinh quỹ đạo. Cho quỹ đạo $\theta_1,\ldots,\theta_T$ trong cùng không gian tham số. Trung bình Polyak trong bài là trung bình đều
 
 $$
 \bar\theta_T=\frac1T\sum_{t=1}^T\theta_t.

@@ -493,6 +493,7 @@ Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: C
 - **Nguồn:** DL, §8.7.3, tr. 318, đoạn định nghĩa trung bình đều không đánh số; ví dụ V11 tự xây dựng.
 - **Thời lượng:** 0,07 tiết lý thuyết + 0,03 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Phát biểu rõ các số bằng dấu chấm phẩy khi trình bày. Trung bình tham số khác trung bình dự đoán; không gọi là momentum, không bảo đảm cải thiện cho mọi mạng phi lồi.
+- **Sửa ngày 2026-10-02:** Câu mở: gần nghiệm, SGD dao động quanh nghiệm (Bài 05), lấy trung bình làm giảm dao động; dữ kiện mang nhãn Ví dụ. Khung kết luận chuyển vào ghi chú; thẻ phản ví dụ giữ giới hạn trên mặt trang.
 
 #### E07. Thiết kế đường truyền gradient
 

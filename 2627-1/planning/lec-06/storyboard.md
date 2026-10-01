@@ -417,7 +417,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Quỹ đạo có dao động tạo nhu cầu chọn đầu ra khác điểm cuối, nhưng trung bình cần được kiểm bằng phản ví dụ.
 - **Kế thừa, đầu ra và vị trí trong sườn:** E05 sinh quỹ đạo; E06 thay quy tắc trả về; E07 xét yếu tố trước cả gradient là kiến trúc.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan, ví dụ và hình thức hóa KN9; MT3.
-- **Quyết định và lý do:** Sửa nguồn trung bình đều; giữ gộp ví dụ/định nghĩa vì phép trung bình đã quen. Đặc tả tại E06 trong outline.md.
+- **Quyết định và lý do:** Sửa nguồn trung bình đều; giữ gộp ví dụ/định nghĩa vì phép trung bình đã quen. Sửa 2026-10-02: câu nhu cầu nối dao động của SGD (Bài 05); khung kết luận chuyển vào ghi chú để trang không tràn. Đặc tả tại E06 trong outline.md.
 - **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,03 tiết bài tập; tính trung bình, cập nhật trực tuyến và kiểm hai nghiệm khác miền.
 
 ### E07. Thiết kế đường truyền gradient
