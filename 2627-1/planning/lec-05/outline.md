@@ -175,7 +175,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Bản triển khai sau rà 2026-09-26:** Định nghĩa lại $\ell_i(\theta)=\ell(f_\theta(x_i),y_i)$ ngay trong khối huấn luyện, rồi dùng trung bình của $\ell_i$.
 - **Sửa ngày 2026-10-01:** Mở trang bằng nhu cầu “mô hình được dùng cho quan sát mới; dữ liệu huấn luyện chỉ là một mẫu hữu hạn”, rồi sơ đồ $P\to D$/quan sát mới, sau đó mới đến ký hiệu và hai định nghĩa. Ký hiệu $f_\theta,\ell,\theta,d,p,\mathcal Y,\mathcal Z$ gộp thành một đoạn hai dòng.
 
-#### A05 — Tiêu chí đánh giá mô hình
+#### A05 — Tập xác thực và tập kiểm thử
 
 - **Vai trò và mục tiêu:** Ứng dụng KN1; MT1.
 - **Luận điểm trung tâm:** Mất mát dùng để cập nhật và tiêu chí dùng chọn mô hình có thể khác nhau.
@@ -186,6 +186,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Nguồn:** DL §§5.3, 8.1.2.
 - **Thời lượng:** 0.07 giờ LT.
 - **Ghi chú soạn:** Phân biệt mất mát thay thế với sai số xác thực; không sử dụng tập kiểm thử để điều chỉnh siêu tham số. Hai số đo chưa chứng minh quá khớp trong mọi bối cảnh, chỉ tạo tình huống lựa chọn đã cho.
+- **Sửa ngày 2026-10-01:** Tiêu đề đổi thành “Tập xác thực và tập kiểm thử”. Câu mở: $P$ chưa biết nên $R$ không tính được; ước lượng $R$ trên dữ liệu không dùng để cập nhật. Thêm dòng đọc bảng: theo mất mát xác thực chọn thời điểm 1. Ghi chú: ước lượng không chệch tại $\theta$ cố định, lệch lạc quan sau khi chọn, lý do giữ tập kiểm thử.
 
 #### A06 — Điểm dừng và chất lượng nghiệm
 

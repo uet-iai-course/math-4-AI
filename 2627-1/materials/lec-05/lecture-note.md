@@ -46,7 +46,9 @@ $$
 
 trong đó $P$ là phân phối trên $\mathbb R^d\times\mathcal Y$ và giả sử $R(\theta)$ hữu hạn tại các tham số xét. Hai đại lượng dùng cùng mô hình và mất mát nhưng khác phép lấy trung bình. $J$ tính được từ dữ liệu đã có; $R$ phụ thuộc phân phối dữ liệu. Ký hiệu $R$ không chỉ giá trị nhỏ nhất của $J$.
 
-Tập xác thực cung cấp tiêu chí lựa chọn cấu hình hoặc thời điểm lưu mô hình. Tập kiểm thử dành cho đánh giá sau khi lựa chọn hoàn tất. Khi các tập đánh giá đại diện cho phân phối triển khai, kết quả của chúng cung cấp thông tin về chất lượng ngoài tập huấn luyện; một ước lượng hữu hạn vẫn có sai số.
+### Tập xác thực và tập kiểm thử
+
+Phân phối $P$ chưa biết nên $R$ không tính được; chỉ có thể ước lượng $R$ bằng mất mát trên dữ liệu không dùng để cập nhật tham số. Tại một tham số $\theta$ cố định, không phụ thuộc tập xác thực (validation set), mất mát trung bình trên tập này là ước lượng không chệch của $R(\theta)$. Tập xác thực được dùng để chọn cấu hình hoặc thời điểm lưu mô hình. Khi đã dùng nó để chọn giữa nhiều ứng viên, giá trị nhỏ nhất được chọn có xu hướng thấp hơn rủi ro thật; vì vậy tập kiểm thử (test set) được giữ riêng cho đánh giá sau khi lựa chọn hoàn tất. Khi các tập đánh giá đại diện cho phân phối triển khai, kết quả của chúng cung cấp thông tin về chất lượng ngoài tập huấn luyện; một ước lượng hữu hạn vẫn có sai số.
 
 | Thời điểm | Mất mát huấn luyện | Mất mát xác thực |
 |---|---:|---:|
