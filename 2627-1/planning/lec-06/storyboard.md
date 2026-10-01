@@ -492,20 +492,20 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa đề tự đủ và giảm tính lặp: một bước tinh chỉnh, hai đối chiếu từ đạo hàm/nghiệm cho sẵn. Sửa 2026-10-02: đổi tiêu đề; yêu cầu (b), (c) dùng động từ học tập. Đặc tả tại F07 trong outline.md.
 - **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,07 tiết bài tập; tính bước đích; giải thích mắc điểm dừng và sai khác mục tiêu cuối.
 
-### G01. Lựa chọn phương pháp theo điều kiện bài toán
+### G01. Lựa chọn phương pháp theo dữ kiện
 
 - **Lý do tồn tại và nhu cầu học tập:** Các kết quả riêng cần được chuyển thành tiêu chí lựa chọn trả lời vấn đề mở bài.
 - **Kế thừa, đầu ra và vị trí trong sườn:** F07 đã phân biệt các giai đoạn; G02 buộc phối hợp ba chuẩn đầu ra trong một tình huống.
 - **LLO/CLO hoặc minh chứng:** LLO14–16; CLO2–4. Vai trò đánh giá: Tổng hợp kết quả; MT1–MT3.
-- **Quyết định và lý do:** Sửa gọi lại cùng nhãn sơ đồ A02 để kết nối lựa chọn với thành phần huấn luyện. Đặc tả tại G01 trong outline.md.
+- **Quyết định và lý do:** Sửa gọi lại cùng nhãn sơ đồ A02 để kết nối lựa chọn với thành phần huấn luyện. Sửa 2026-10-02: thay sơ đồ lặp bằng câu trả lời vấn đề trung tâm của A02; rút tiêu đề. Đặc tả tại G01 trong outline.md.
 - **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,00 tiết bài tập; đối chiếu dữ kiện, cơ chế, giả thiết và phép kiểm trên sơ đồ chung.
 
-### G02. Kiểm tra lựa chọn phối hợp
+### G02. Phối hợp lựa chọn trong ba tình huống
 
 - **Lý do tồn tại và nhu cầu học tập:** Minh chứng cuối phải phối hợp chi phí, độ cong và mục tiêu đích trong một phương án có điều kiện.
 - **Kế thừa, đầu ra và vị trí trong sườn:** G01 cung cấp tiêu chí; G03 chỉ tài liệu để đối chiếu sau bài.
 - **LLO/CLO hoặc minh chứng:** LLO14–16; CLO2–4. Vai trò đánh giá: Kiểm tra riêng mạch G và tổng hợp; MT1–MT3.
-- **Quyết định và lý do:** Sửa đề bỏ mã ví dụ; thêm kiểm hướng và trường hợp g=0 cho Newton–CG. Đặc tả tại G02 trong outline.md.
+- **Quyết định và lý do:** Sửa đề bỏ mã ví dụ; thêm kiểm hướng và trường hợp g=0 cho Newton–CG. Sửa 2026-10-02: đổi tiêu đề. Đặc tả tại G02 trong outline.md.
 - **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,10 tiết bài tập; lập ba hàng phương án, trình bày điều kiện và đối chiếu phép kiểm.
 
 ### G03. Tài liệu đối chiếu

@@ -1134,3 +1134,9 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **F05 — sửa.** Tên gọi xuất hiện không kèm ý tưởng. Dòng mở nêu học theo chương trình thay phân phối lấy mẫu theo giai đoạn, mẫu dễ trước, mẫu khó sau; dữ kiện xuống dòng riêng. Ghi chú bài giảng mục 6.3 thêm ý tưởng tương ứng.
 - **F06 — sửa tiêu đề.** “Điều kiện đánh giá huấn luyện theo giai đoạn” rút thành “Đánh giá huấn luyện theo giai đoạn”; bảng và khung giữ nguyên.
 - **F07 — sửa.** Tiêu đề “Kiểm tra…” đổi thành “Ba chiến lược huấn luyện theo giai đoạn”; yêu cầu (b), (c) viết bằng “Xác định…” thay cho câu hỏi.
+
+### Phần G
+
+- **G01 — sửa.** Trang lặp sơ đồ bốn ô lần thứ ba và không trả lời trực tiếp vấn đề trung tâm của A02. Sơ đồ thay bằng câu trả lời: thành phần cần điều chỉnh (thang, độ cong, hay mô hình, đầu ra và giai đoạn) được chọn theo dữ kiện sẵn có; tiêu đề rút thành “Lựa chọn phương pháp theo dữ kiện”. Ghi chú bài giảng mục 7 thêm câu trả lời và ánh xạ mục.
+- **G02 — sửa tiêu đề.** “Kiểm tra…” đổi thành “Phối hợp lựa chọn trong ba tình huống”; ba yêu cầu đã dùng động từ học tập.
+- **G03 — giữ.** Trang tài liệu đối chiếu đủ nguồn, mục và trang; đường dẫn trong ghi chú.

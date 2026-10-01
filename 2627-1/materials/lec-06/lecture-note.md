@@ -734,7 +734,7 @@ Nếu lịch dừng ở $q=1/4$, cần đưa giai đoạn cuối tới $q=1/2$ v
 
 ## 7. Lựa chọn và đánh giá phương pháp
 
-Một lựa chọn cần nêu dữ kiện sẵn có, thành phần bị thay, điều kiện áp dụng và phép kiểm. Bảng dưới tổng hợp các kết quả đã xây dựng.
+Vấn đề nêu ở mục 1.1 được trả lời theo dữ kiện sẵn có: thành phần cần điều chỉnh có thể là thang của bước (mục 2), độ cong (mục 3–4), hay phép tính mô hình, đầu ra và giai đoạn huấn luyện (mục 5–6). Một lựa chọn cần nêu dữ kiện sẵn có, thành phần bị thay, điều kiện áp dụng và phép kiểm. Bảng dưới tổng hợp các kết quả đã xây dựng.
 
 | Dữ kiện hoặc khó khăn | Phương pháp có thể xét | Điều kiện và phép kiểm |
 |---|---|---|

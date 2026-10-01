@@ -630,7 +630,7 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 
 Chức năng: lựa chọn và đánh giá phương pháp. Đầu vào: Kết quả và giới hạn của sáu mạch trước. Đầu ra: Phương án có dữ kiện, điều kiện áp dụng và phép kiểm. Mục tiêu: MT1–MT3. Mạch học tập và ngoại lệ gộp được ghi trong storyboard. Thời lượng: 0,10 tiết lý thuyết, 0,10 tiết bài tập, gồm G02.
 
-#### G01. Lựa chọn phương pháp theo điều kiện bài toán
+#### G01. Lựa chọn phương pháp theo dữ kiện
 
 - **Vai trò và mục tiêu:** Tổng hợp kết quả; MT1–MT3.
 - **Luận điểm trung tâm:** Mỗi phương pháp đáp ứng một loại thông tin hoặc thay một thành phần huấn luyện.
@@ -641,8 +641,9 @@ Chức năng: lựa chọn và đánh giá phương pháp. Đầu vào: Kết qu
 - **Nguồn:** DL, §8.5.4 và §§8.6–8.7; tổng hợp sư phạm.
 - **Thời lượng:** 0,06 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Trở lại V1: sửa thang bước, dùng độ cong, hoặc thay biểu diễn là quyết định khác nhau; cần nêu chính xác đại lượng bị thay.
+- **Sửa ngày 2026-10-02:** Tiêu đề “Lựa chọn phương pháp theo dữ kiện”; thay sơ đồ bốn ô (lặp A02, E01) bằng câu trả lời vấn đề trung tâm: thành phần cần điều chỉnh được chọn theo dữ kiện sẵn có.
 
-#### G02. Kiểm tra lựa chọn phối hợp
+#### G02. Phối hợp lựa chọn trong ba tình huống
 
 - **Vai trò và mục tiêu:** Kiểm tra riêng mạch G và tổng hợp; MT1–MT3.
 - **Luận điểm trung tâm:** Một phương án huấn luyện phải gắn cơ chế với phép kiểm và giới hạn.
@@ -658,6 +659,7 @@ Chức năng: lựa chọn và đánh giá phương pháp. Đầu vào: Kết qu
 - **Đáp án/gợi ý:** (a) Adam dùng hai vectơ trạng thái hoặc AdaGrad/RMSProp dùng một, đáp ứng ngân sách; không có bảo đảm giảm $F$ từng bước. (b) Nếu $g=0$, dừng để kiểm điểm dừng. Nếu $g\ne0$, dùng CG từ $d_0=0$ giải $Ad=-g$, kiểm phần dư và ngân sách; kiểm $g^\top d<0$ trước tìm bước ngoài. Nếu kiểm hướng không đạt, siết dung sai/giải lại hoặc dùng $-g$ kèm tìm bước. (c) Đưa lịch tới $q=1/2$ và đánh giá mục tiêu đích; trung bình tham số không tự thay phân phối đích.
 - **Tiêu chí đánh giá:** Mỗi hàng phải nêu cơ chế, điều kiện và phép kiểm (3 nhóm ý); không chấp nhận “Adam luôn tốt nhất” hoặc “CG dùng được với mọi Hessian”.
 - **Thời gian hoạt động:** Làm nhóm 0,05 tiết; trình bày 0,02; đối chiếu 0,03. Đã tính trong thời lượng trang.
+- **Sửa ngày 2026-10-02:** Tiêu đề nêu nội dung kiểm; đề và đáp án giữ nguyên.
 
 #### G03. Tài liệu đối chiếu
 
