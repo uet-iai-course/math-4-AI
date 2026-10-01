@@ -474,6 +474,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Thời lượng:** 0.05 giờ LT.
 - **Ghi chú soạn:** Ghi tên “hàm tuyến tính chỉnh lưu (ReLU)” cạnh định nghĩa; không giả định người học đã biết mạng. Chỉ tính ở $z_j>0$, không cần chọn đạo hàm tại 0.
 
+- **Sửa ngày 2026-10-01:** Câu mở: mọi quy tắc cập nhật bắt đầu từ $\theta_0$; chọn $\theta_0$ cho mạng cần biết gradient truyền qua mạng ra sao. Mặt trang gọi tên $z_j$ (tiền kích hoạt), $h_j$ (kích hoạt), ReLU; khối dưới ghi “Truyền xuôi”. Ghi chú nêu hidden unit, pre-activation, forward pass.
+
 #### D02 — Quy tắc dây chuyền trong mạng
 
 - **Vai trò và mục tiêu:** Ví dụ rồi hình thức KN4; MT3.

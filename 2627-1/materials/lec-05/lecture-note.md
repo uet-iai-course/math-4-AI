@@ -293,7 +293,7 @@ Ví dụ cho $v_2=(-0.3825,-1.365)^T$, $\theta_2=(1.3175,1.235)^T$, với $q(\th
 
 ### Mạng hai đơn vị ẩn và đạo hàm tham số
 
-Một quy tắc cập nhật cần gradient theo tham số của mô hình cụ thể. Xét hai đơn vị ẩn, với $x,y\in\mathbb R$ và $j\in\{1,2\}$:
+Mọi quy tắc cập nhật ở phần B và C bắt đầu từ $\theta_0$. Với mạng nơ ron, $\theta_0$ quyết định giá trị của các thừa số trong gradient, nên việc chọn $\theta_0$ cần một mạng cụ thể để tính các thừa số đó. Xét mạng có hai đơn vị ẩn (hidden unit), với $x,y\in\mathbb R$ và $j\in\{1,2\}$:
 
 $$
 z_j=w_jx+b_j,\qquad h_j=\phi(z_j),\qquad
@@ -301,7 +301,7 @@ f_\theta(x)=a_1h_1+a_2h_2,\qquad
 \ell=\frac12(f_\theta(x)-y)^2.
 $$
 
-Hàm tuyến tính chỉnh lưu (ReLU) là $\phi(z)=\max(0,z)$. Sáu tham số thực $w_j,b_j,a_j$ tạo thành $\theta\in\mathbb R^6$. Tại $x=1,y=0,w_j=a_j=1,b_j=0$, mỗi $z_j=h_j=1$, đầu ra bằng 2 và mất mát bằng 2.
+Đại lượng $z_j$ là tiền kích hoạt (pre-activation), $h_j$ là kích hoạt; hàm tuyến tính chỉnh lưu (ReLU) là $\phi(z)=\max(0,z)$. Phép truyền xuôi (forward pass) tính lần lượt từ đầu vào đến mất mát. Sáu tham số thực $w_j,b_j,a_j$ tạo thành $\theta\in\mathbb R^6$. Tại $x=1,y=0,w_j=a_j=1,b_j=0$, mỗi $z_j=h_j=1$, đầu ra bằng 2 và mất mát bằng 2.
 
 ![Mạng hai đơn vị ẩn với các trọng số đầu vào w, độ lệch b và trọng số đầu ra a.](img/lec-05/two-hidden-units.svg)
 

@@ -243,3 +243,7 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **C07 — sửa nhỏ.** Trang đủ đầu vào, điểm đo, trình tự, chi phí và quy tắc dừng; tiêu đề đạt. Chi tiết dễ nhầm nhất (cộng $v_{t+1}$ vào $\theta_t$ chứ không vào $\widetilde\theta_t$) chỉ có trong ghi chú; nay thành bước 3 trên mặt trang. Ghi chú bài giảng đã nêu ý này, không cần sửa.
 - **C08 — sửa.** Yêu cầu cuối là cụm danh từ; câu nối sang D trong ghi chú chung chung. Tiêu đề mới “Momentum và Nesterov từ cùng trạng thái”; yêu cầu viết “Tính… Nêu…”; câu nối nêu cả hai quy tắc bắt đầu từ $\theta_0$, còn việc chọn $\theta_0$ cho mạng phụ thuộc cách gradient truyền qua cấu trúc mạng. Ghi chú bài giảng viết lại câu hỏi cuối phần C cho đủ dữ kiện và yêu cầu.
   - Bổ sung C08: ở khung hẹp, dòng dữ kiện cũ che $\eta,\beta$ sau thanh cuộn; dữ kiện tách thành hai công thức ngắn, $\eta,\beta$ chuyển vào câu yêu cầu. Khung rộng không chạm chân trang.
+
+### Phần D
+
+- **D01 — sửa.** Trang mở thẳng bằng hình mạng; nhu cầu chọn $\theta_0$ chỉ có trong ghi chú C08 (cũng được tái kiểm mạch phần C nêu). $z_j,h_j$ chưa có tên dù các trang sau dùng “tiền kích hoạt”. Câu mở nay nêu mọi quy tắc cập nhật bắt đầu từ $\theta_0$ và việc chọn $\theta_0$ cần biết gradient truyền qua mạng; mặt trang gọi tên tiền kích hoạt, kích hoạt, ReLU và truyền xuôi. Ghi chú diễn giả và ghi chú bài giảng thêm lập luận nhu cầu cùng thuật ngữ tiếng Anh ở lần đầu.

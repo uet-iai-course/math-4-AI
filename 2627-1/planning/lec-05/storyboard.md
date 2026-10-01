@@ -76,7 +76,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | C06 — Gradient tại điểm dự báo | Tạo nhu cầu hiệu chỉnh theo độ dốc thay đổi dọc dịch chuyển quán tính | $\theta,v$ → điểm đo mới và hiệu chỉnh | C08, LLO12/CLO2 | Tách ví dụ/nhìn hình trước giả mã; HI 20–21. Sửa 2026-10-01: tiêu đề gọi tên điểm dự báo; câu nhu cầu trên mặt trang; $v_2$ ghi rõ quy tắc |
 | C07 — Phương pháp Nesterov | Xác lập thứ tự cập nhật và ghép lại nhóm nhỏ | C06 → HT6, một điểm đo rõ ràng | C08/E02, LLO12/CLO2 | Giữ thuật toán 8.3, giới hạn bảo đảm được nói rõ. Sửa 2026-10-01: thêm bước 3 nêu cộng $v_{t+1}$ vào $\theta_t$, không vào điểm dự báo |
 | C08 — Momentum và Nesterov từ cùng trạng thái | Đo đúng trạng thái ở dữ kiện chưa tính | C03–C07 → hai phép cập nhật độc lập | Kiểm tra riêng C, LLO12/CLO2 | Thêm bài tập với $\theta=(1,1)$ và ghi nguyên hàm $q$ trên đề, tránh chép nguyên ví dụ. Sửa 2026-10-01: tiêu đề nêu nhiệm vụ; yêu cầu viết bằng động từ học tập; câu nối sang D nêu nhu cầu chọn $\theta_0$ |
-| D01 — Mạng hai đơn vị ẩn | Bổ sung tiên quyết chưa được dạy ở Bài 04 | Quy trình cần $\theta_0$ → mạng và tham số | LLO13/CLO2 | Thêm có căn cứ, rút nền chương 6 xuống mạng nhỏ |
+| D01 — Mạng hai đơn vị ẩn | Bổ sung tiên quyết chưa được dạy ở Bài 04 | Quy trình cần $\theta_0$ → mạng và tham số | LLO13/CLO2 | Thêm có căn cứ, rút nền chương 6 xuống mạng nhỏ. Sửa 2026-10-01: câu nhu cầu chọn $\theta_0$ trên mặt trang; gọi tên tiền kích hoạt, kích hoạt, truyền xuôi |
 | D02 — Quy tắc dây chuyền trong mạng | Cho thấy gradient sinh ra qua cấu trúc tầng | Truyền xuôi D01 → đạo hàm từng tham số | D11, LLO13/CLO2 | Tách khỏi công thức khởi tạo; ví dụ trước quy tắc |
 | D03 — Đối xứng giữa các đơn vị ẩn | Dùng đạo hàm để giải thích sự đồng nhất | Gradient bằng nhau → cập nhật bằng nhau | D11/E02, LLO13/CLO2 | Nối §8.2.2 với §8.4 sau khi đã có mạng |
 | D04 — Khởi tạo ngẫu nhiên và phá đối xứng | Dùng HT7 cho quyết định khởi tạo khác nhau | Đối xứng → hai gradient ra khác nhau | D11/E02, LLO13/CLO2 | Giữ §8.4, không nói mọi độ lệch phải ngẫu nhiên |
@@ -142,7 +142,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | C06 | Câu nhu cầu và trạng thái trên; hai cột hình điểm đo trái, điểm dự báo/gradient/cập nhật phải; đối chiếu giá trị dưới. Giữ đầy đủ phép tính Nesterov. |
 | C07 | Lời mở nêu bước cố định; hai cột so điểm đo và trình tự cập nhật; dừng/đầu ra dưới. Giữ gốc cập nhật rõ. |
 | C08 | Đề tự chứa và trạng thái mới; bảng đối chiếu các đại lượng cần tính của momentum/Nesterov. Giữ bài kiểm chuyển giao. |
-| D01 | Hai cột; hình hai đơn vị trái, tham số/truyền xuôi/mất mát phải. Giữ nền mạng tối thiểu. |
+| D01 | Câu nhu cầu chọn $\theta_0$ trên; hai cột hình hai đơn vị trái, tham số/truyền xuôi/mất mát phải. Giữ nền mạng tối thiểu. |
 | D02 | Dữ kiện trên; hai cột ví dụ số/quy tắc; đường biến với đạo hàm trên cạnh dưới. Sửa sự lẫn nút biến và đạo hàm. |
 | D03 | Bảng hai đơn vị trước/sau; khối bất biến và nhận xét hoán vị dưới. Sửa phạm vi khả vi trên mặt trang. |
 | D04 | Hai cột; hình mạng trái, cấu hình trọng số mới và đạo hàm đầu ra phải; kết luận phá đối xứng dưới. Giữ tính lại đạo hàm theo trọng số ra. |
