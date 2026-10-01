@@ -232,6 +232,8 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Thời lượng:** 0.04 giờ LT.
 - **Ghi chú soạn:** Phân biệt chi phí một bước với tổng chi phí đạt chất lượng mục tiêu; không kết luận nhóm nhỏ giờ kiệm đúng $N/b$ thời gian thực.
 
+- **Sửa ngày 2026-10-01:** Câu mở nêu hạ gradient Bài 04 cần $\nabla J(\theta_t)$ ở mọi bước. Chi phí $C$ được định nghĩa trước bảng; bỏ hộp sơ đồ $g_1,\ldots,g_N\to\nabla J$ vì lặp công thức và làm bảng chạm chân trang; câu về thời gian phần cứng chuyển vào ghi chú.
+
 #### B02 — Gradient của từng quan sát
 
 - **Vai trò và mục tiêu:** Trực quan và ví dụ KN2; MT2.

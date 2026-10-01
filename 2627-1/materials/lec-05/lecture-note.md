@@ -75,13 +75,13 @@ Gradient bằng không chưa chứng nhận cực tiểu; hướng giảm cục 
 
 ### Chi phí và gradient của từng quan sát
 
-Khi các $\ell_i$ khả vi, đặt $g_i(\theta)=\nabla\ell_i(\theta)\in\mathbb R^p$. Đạo hàm qua tổng hữu hạn cho
+Phương pháp hạ gradient của Bài 04 lặp $\theta_{t+1}=\theta_t-\eta\nabla J(\theta_t)$, nên cần $\nabla J$ ở mọi bước. Khi các $\ell_i$ khả vi, đặt $g_i(\theta)=\nabla\ell_i(\theta)\in\mathbb R^p$. Đạo hàm qua tổng hữu hạn cho
 
 $$
 \nabla J(\theta)=\frac1N\sum_{i=1}^Ng_i(\theta).
 $$
 
-Nếu mỗi gradient mẫu có chi phí $C$, một gradient đầy đủ cần khoảng $NC$ công việc, còn trung bình của $b$ gradient mẫu cần khoảng $bC$. Số phép đánh giá chưa xác định thời gian chạy trên phần cứng; chi phí mỗi bước cũng chưa xác định tổng chi phí đạt chất lượng mục tiêu.
+Nếu mỗi gradient mẫu có chi phí $C$, một gradient đầy đủ cần khoảng $NC$ công việc, còn trung bình của một nhóm nhỏ (minibatch) gồm $b$ gradient mẫu cần khoảng $bC$. Số phép đánh giá chưa xác định thời gian chạy trên phần cứng; chi phí mỗi bước cũng chưa xác định tổng chi phí đạt chất lượng mục tiêu.
 
 Trong ví dụ ba quan sát, $g_i(\theta)=\theta-y_i$. Tại $\theta=1$:
 
