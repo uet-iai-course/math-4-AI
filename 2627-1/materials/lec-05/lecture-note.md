@@ -355,7 +355,7 @@ Trọng số lớn có thể đưa tiền kích hoạt vào vùng bão hòa, nơ
 
 ### Phương sai qua lớp tuyến tính
 
-Xét mô hình phân tích $z=Wh$, với $h\in\mathbb R^{n_{\rm in}}$, $z\in\mathbb R^{n_{\rm out}}$ và $W\in\mathbb R^{n_{\rm out}\times n_{\rm in}}$. Hai kích thước là số nguyên dương. Từ đây, $q>0$ chỉ phương sai đầu vào, khác hàm mục tiêu $q(\theta)$ của phần C.
+Ở chuỗi vô hướng, độ lớn là một hệ số cố định. Với ma trận trọng số ngẫu nhiên, mỗi đầu ra là tổng ngẫu nhiên của nhiều số hạng, nên độ lớn của tín hiệu được đo bằng phương sai; mục tiêu là chọn thang trọng số để giữ phương sai qua lớp. Xét mô hình phân tích $z=Wh$, với $h\in\mathbb R^{n_{\rm in}}$, $z\in\mathbb R^{n_{\rm out}}$ và $W\in\mathbb R^{n_{\rm out}\times n_{\rm in}}$. Hai kích thước là số nguyên dương. Từ đây, $q>0$ chỉ phương sai đầu vào, khác hàm mục tiêu $q(\theta)$ của phần C.
 
 **Giả thiết.** Các trọng số $W_{ji}$ độc lập, trung bình 0, cùng phương sai $s^2$, độc lập với toàn bộ $h$. Mỗi $h_i$ có trung bình 0 và phương sai $q$.
 

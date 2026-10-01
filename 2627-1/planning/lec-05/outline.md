@@ -561,6 +561,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Ghi chú soạn:** Từ đây $q$ chỉ phương sai đầu vào, khác hàm $q(\theta)$ ở phần C. Không nói công thức chính xác cho đầu ra ReLU hoặc mọi mẫu trọng số đều giữ đúng chuẩn. Xấp xỉ tuyến tính chỉ cho thang xuất phát để kiểm tiếp trong mô hình phi tuyến.
 - **Bản triển khai sau rà 2026-09-26:** Thứ tự mặt trang: nhu cầu giữ phương sai → kích thước/giả thiết → ví dụ bốn đầu vào với $s^2=1,1/4$ bên hình → công thức tổng quát. $q>0$ được công bố là phương sai.
 
+- **Sửa ngày 2026-10-01:** Câu mở: với trọng số ngẫu nhiên, độ lớn tín hiệu đo bằng phương sai cần giữ qua lớp. Ví dụ $n_{\rm in}=4$ gộp một dòng, tiếp theo là nhãn Mệnh đề $\operatorname{Var}(z_j)=n_{\rm in}s^2q$; công thức cuối là phép suy.
+
 #### D08 — Phương sai của gradient truyền ngược
 
 - **Vai trò và mục tiêu:** Tái dùng phương sai và nêu xung đột hai mục tiêu; MT3.
