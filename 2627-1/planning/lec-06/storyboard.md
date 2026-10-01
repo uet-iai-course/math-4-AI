@@ -169,7 +169,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Người học cần biết đầy đủ các thành phần có thể điều chỉnh trước khi xét thuật toán; sơ đồ chung cho phép nối cả ba mục tiêu của bài.
 - **Kế thừa, đầu ra và vị trí trong sườn:** A01 xác lập phạm vi; sơ đồ thành phần là cơ sở toàn bài. A03–A04 xét riêng một bước trên quỹ đạo, E01 và G01 dùng lại cùng các thành phần để phân biệt can thiệp.
 - **LLO/CLO hoặc minh chứng:** LLO14–16; CLO2–4. Bản đồ nội dung; MT1–MT3.
-- **Quyết định và lý do:** Sửa sơ đồ ba nhánh thành sơ đồ thành phần, giữ ba nhóm mục tiêu và bổ sung LLO16. Đặc tả tại A02 trong outline.md.
+- **Quyết định và lý do:** Sửa sơ đồ ba nhánh thành sơ đồ thành phần, giữ ba nhóm mục tiêu và bổ sung LLO16. Sửa 2026-10-02: gắn mạch B–F vào các ô sơ đồ để trang làm bản đồ nội dung; khung cuối nêu vấn đề trung tâm nối với Bài 05; ghi chú giải nghĩa quy tắc trả về. Đặc tả tại A02 trong outline.md.
 - **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,00 tiết bài tập; đọc sơ đồ thành phần, phân biệt ba nhóm quyết định và tiên quyết.
 
 ### A03. Sai lệch thang đo trong bước cập nhật

@@ -18,7 +18,9 @@ $$
 
 Công thức này giả sử đầu ra của mỗi mẫu được xác định độc lập với các mẫu cùng lô. Chuẩn hóa theo lô ở mục 5 thay giả thiết đó. Nếu có số hạng chính quy hóa, phải đưa số hạng ấy vào mục tiêu và gradient trước khi áp dụng thuật toán.
 
-Một quá trình huấn luyện cần chỉ định dữ liệu và mô hình, mục tiêu và điểm đầu, quy tắc cập nhật và quy tắc trả về. Các phương pháp trong bài thay những thành phần khác nhau. AdaGrad, RMSProp, Adam, Newton và BFGS tạo bước cập nhật; trung bình Polyak chọn đầu ra từ quỹ đạo; tiền huấn luyện cung cấp điểm đầu; tiếp diễn và học theo chương trình tạo các mục tiêu theo giai đoạn.
+Bài 05 cho thấy một tốc độ học chung bị chặn bởi hướng cong nhất của mục tiêu. Bài này xác định thành phần cần điều chỉnh để vượt giới hạn đó: thang của bước, độ cong, hay phép tính mô hình, đầu ra và cách tổ chức huấn luyện.
+
+Một quá trình huấn luyện cần chỉ định dữ liệu và mô hình, mục tiêu và điểm đầu, quy tắc cập nhật và quy tắc trả về. Quy tắc trả về chọn tham số đầu ra từ quỹ đạo, chẳng hạn điểm cuối, điểm tốt nhất theo xác thực hoặc trung bình các điểm. Các phương pháp trong bài thay những thành phần khác nhau. AdaGrad, RMSProp, Adam, Newton và BFGS tạo bước cập nhật; trung bình Polyak chọn đầu ra từ quỹ đạo; tiền huấn luyện cung cấp điểm đầu; tiếp diễn và học theo chương trình tạo các mục tiêu theo giai đoạn.
 
 Quy ước vòng $t\ge1$: lấy lô $\mathcal B_t$, tính $g_t$ tại $\theta_{t-1}$ rồi nhận $\theta_t=\theta_{t-1}+d_t$. Với mục tiêu tách theo mẫu,
 

@@ -1051,3 +1051,12 @@ Các mục của những vòng trước được giữ nguyên để truy nguyê
 ### Bổ sung sau rà soát chéo toàn học phần
 
 - A03 được gắn nhãn “Ví dụ dẫn nhập” và nói rõ các trạng thái vòng đầu là kết quả cần được giải thích bằng quy tắc cập nhật; AdaGrad, RMSProp và Adam không còn xuất hiện như ký hiệu hình thức chưa định nghĩa.
+
+## Lượt duyệt từng trang ngày 2026-10-02
+
+Yêu cầu người dùng: duyệt lần lượt từng trang, xác định trang muốn nói gì, đề xuất rồi sửa để tiêu đề ngắn gọn, học thuật, mạch lập luận chặt chẽ và khái niệm không xuất hiện đột ngột; sau mỗi trang sửa phần ghi chú bài giảng tương ứng, rồi commit và push. Điều phối viên là phiên Claude Code chính, chạy Claude Opus 5.5 (`claude-opus-5-5`), đồng thời giữ vai biên tập cho các sửa một trang. Sau mỗi phần (hoặc cặp phần), hai tác tử `fork` chỉ đọc (kế thừa Opus 5.5) tái kiểm toán học và mạch lập luận trên các trang đã sửa. Văn bản tự kiểm theo `no-ai-slop`. Mỗi trang sửa được kiểm bằng Playwright Chromium tại 1600×900 và 390×844 (kể cả cuộn tới cuối vùng đọc hẹp) qua `python3 -m reloadserver 8765`.
+
+### Phần A
+
+- **A01 — giữ.** Trang định vị đúng học phần, số bài, chủ đề, ba nhóm nội dung và đơn vị.
+- **A02 — sửa.** Trang có mục tiêu và sơ đồ thành phần nhưng thiếu bản đồ mạch; bài toán chưa nối với kết luận của Bài 05; “quy tắc trả về” chưa được giải nghĩa. Các ô sơ đồ nay ghi mạch xử lý (E, F, B–D, E); khung cuối nêu vấn đề trung tâm xuất phát từ giới hạn của một tốc độ học chung (Bài 05); ghi chú diễn giả giải nghĩa quy tắc trả về, nêu chức năng từng mạch B–G và nối “tốc độ học” với “bước học” của Bài 05. Ghi chú bài giảng mục 1.1 thêm đoạn vấn đề trung tâm và định nghĩa quy tắc trả về.
