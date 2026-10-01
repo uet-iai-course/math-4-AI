@@ -607,6 +607,8 @@ Nối tắt không bảo đảm hệ số bị chặn với mọi độ sâu: $1
 
 ## 6. Huấn luyện theo giai đoạn
 
+Các can thiệp ở mục 5 giữ nguyên điểm đầu và mục tiêu. Mục này thay hai thành phần đó theo giai đoạn: điểm đầu quyết định gradient ở bước đầu tiên, nên có thể lấy nó từ một nhiệm vụ phụ; mục tiêu và phân phối dữ liệu có thể thay dần trước khi đạt mục tiêu đích.
+
 ### 6.1. Tiền huấn luyện có giám sát
 
 Tiền huấn luyện có giám sát dùng một nhiệm vụ phụ có nhãn để tạo tham số trước khi tối ưu mục tiêu đích. Cần xác định mô hình phụ, phép chuyển tham số $T$, phần mới được khởi tạo $\xi$ và các khối được tinh chỉnh:

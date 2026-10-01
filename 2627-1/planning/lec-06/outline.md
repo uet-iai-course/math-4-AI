@@ -531,7 +531,7 @@ Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: C
 
 Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục tiêu, dữ liệu và điểm đầu của bài toán. Đầu ra: Phân biệt chuyển tham số, họ mục tiêu, lịch phân phối; điều kiện mục tiêu đích. Mục tiêu: MT3. Mạch học tập và ngoại lệ gộp được ghi trong storyboard. Thời lượng: 0,30 tiết lý thuyết, 0,13 tiết bài tập, gồm F07.
 
-#### F01. Khởi tạo qua nhiệm vụ có nhãn
+#### F01. Điểm đầu từ nhiệm vụ phụ
 
 - **Vai trò và mục tiêu:** Nhu cầu, trực quan và ví dụ KN11; MT3.
 - **Luận điểm trung tâm:** Một nhiệm vụ phụ có nhãn có thể cung cấp tham số ban đầu cho mô hình đích.
@@ -542,6 +542,7 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 - **Nguồn:** DL, §8.7.4, Hình 8.7; ví dụ V13 tự xây dựng.
 - **Thời lượng:** 0,04 tiết lý thuyết + 0,02 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Không giả định sinh viên đã học chuyển giao. Ví dụ mạng tuyến tính để tính tay, không phải bằng chứng về độ chính xác mạng sâu. Đối chiếu với điểm đầu bằng 0 chỉ tạo nhu cầu chọn khởi tạo có tín hiệu gradient trong ví dụ; không chứng minh tiền huấn luyện hơn mọi khởi tạo ngẫu nhiên.
+- **Sửa ngày 2026-10-02:** Tiêu đề “Điểm đầu từ nhiệm vụ phụ”; câu mở: điểm đầu quyết định gradient bước đầu, có thể lấy từ nhiệm vụ phụ có nhãn. Dòng dữ kiện rút gọn.
 
 #### F02. Tiền huấn luyện có giám sát
 

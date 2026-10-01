@@ -436,12 +436,12 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa giảm tải: một phép tính BN, ba đối chiếu có kết quả trung gian và đề tự đủ. Sửa 2026-10-02: đổi tiêu đề; yêu cầu (c), (d) dùng động từ học tập. Đặc tả tại E08 trong outline.md.
 - **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,07 tiết bài tập; tính phương sai; giải thích không tăng, phản ví dụ trung bình và giới hạn nối tắt.
 
-### F01. Khởi tạo qua nhiệm vụ có nhãn
+### F01. Điểm đầu từ nhiệm vụ phụ
 
 - **Lý do tồn tại và nhu cầu học tập:** Điểm đầu có thể làm gradient mất tín hiệu ngay cả khi mô hình đã cố định; cần một phép chuyển tham số có thể kiểm bằng số.
 - **Kế thừa, đầu ra và vị trí trong sườn:** E07 cho vai trò kiến trúc; F01 dùng kiến trúc tăng dần để xây điểm đầu, F02 tổng quát hóa quy trình.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN11; MT3.
-- **Quyết định và lý do:** Sửa đối chiếu (0,0) với (2,1), giữ bước tinh chỉnh để minh họa quỹ đạo khác nhau. Đặc tả tại F01 trong outline.md.
+- **Quyết định và lý do:** Sửa đối chiếu (0,0) với (2,1), giữ bước tinh chỉnh để minh họa quỹ đạo khác nhau. Sửa 2026-10-02: tiêu đề nêu đối tượng thay (điểm đầu); câu nhu cầu trên mặt trang. Đặc tả tại F01 trong outline.md.
 - **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,02 tiết bài tập; tính hai gradient tại điểm đầu và một bước tinh chỉnh mục tiêu đích.
 
 ### F02. Tiền huấn luyện có giám sát
