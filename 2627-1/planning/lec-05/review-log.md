@@ -258,3 +258,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | storyboard bố cục C07 | thêm bước 3. **Đã đóng.**
   - ngoài phạm vi | D01 | thiếu nhu cầu chọn $\theta_0$ trên mặt trang → đã xử lý ở commit sửa D01. **Đã đóng.**
 - **D02 — sửa nhỏ.** $e$ xuất hiện không có tên; ý chính “tích các đạo hàm cục bộ dọc đường đi” chỉ hiện qua sơ đồ cuối. Dòng đầu gọi $e$ là sai số dự đoán; tiêu đề cột quy tắc thành “Tích đạo hàm cục bộ, tại điểm khả vi”; ghi chú diễn giả và ghi chú bài giảng mở bằng nhu cầu gradient theo sáu tham số. Không thêm dòng vì trang đã gần chân trang ở 1600×900.
+- **D03 — sửa.** Trang chưa nêu hệ quả của đối xứng nên chưa có lý do phải phá nó; khối bất biến là mệnh đề nhưng không có nhãn; câu hoán vị không có nhãn. Câu mở nối với D02; khối đổi thành **Mệnh đề** kèm hệ quả “mạng chỉ dùng được một đơn vị”; câu hoán vị mang nhãn **Nhận xét**. Ghi chú diễn giả và ghi chú bài giảng nêu $f_\theta=(a_1+a_2)h$.

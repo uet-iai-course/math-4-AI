@@ -504,6 +504,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Ghi chú soạn:** Cùng trọng số vào nhưng khác trọng số ra chưa thỏa điều kiện đối xứng đầy đủ. Nhóm dữ liệu ngẫu nhiên chung không tự phân hóa hai đơn vị đối xứng.
 - **Bản triển khai sau rà 2026-09-26:** Bất biến phát biểu ở các bước khả vi; tại tiền kích hoạt ReLU bằng 0 hai đơn vị phải dùng cùng quy ước đạo hàm.
 
+- **Sửa ngày 2026-10-01:** Câu mở nối D02 (sáu đạo hàm bằng 2). Khối bất biến đổi nhãn thành Mệnh đề, thêm hệ quả mạng chỉ dùng được một đơn vị; câu hoán vị mang nhãn Nhận xét. Ghi chú: $f_\theta=(a_1+a_2)h$.
+
 #### D04 — Khởi tạo ngẫu nhiên và phá đối xứng
 
 - **Vai trò và mục tiêu:** Ứng dụng KN4; MT3.
