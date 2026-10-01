@@ -173,6 +173,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Thời lượng:** 0.08 giờ LT.
 - **Ghi chú soạn:** $R$ không phải $\min J$; tập hữu hạn không cho phép tính đúng $R$. Đánh giá chỉ ước lượng hiệu quả trên phân phối phù hợp.
 - **Bản triển khai sau rà 2026-09-26:** Định nghĩa lại $\ell_i(\theta)=\ell(f_\theta(x_i),y_i)$ ngay trong khối huấn luyện, rồi dùng trung bình của $\ell_i$.
+- **Sửa ngày 2026-10-01:** Mở trang bằng nhu cầu “mô hình được dùng cho quan sát mới; dữ liệu huấn luyện chỉ là một mẫu hữu hạn”, rồi sơ đồ $P\to D$/quan sát mới, sau đó mới đến ký hiệu và hai định nghĩa. Ký hiệu $f_\theta,\ell,\theta,d,p,\mathcal Y,\mathcal Z$ gộp thành một đoạn hai dòng.
 
 #### A05 — Tiêu chí đánh giá mô hình
 

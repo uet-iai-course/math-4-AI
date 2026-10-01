@@ -33,9 +33,11 @@ Nghiệm của bài toán trung bình không buộc từng mất mát riêng b�
 
 ### Mất mát huấn luyện và rủi ro kỳ vọng
 
+Mô hình được chọn để dự đoán cả những quan sát chưa có, trong khi dữ liệu huấn luyện chỉ là một mẫu hữu hạn từ nguồn sinh dữ liệu. Ba quan sát ở trên là một mẫu như vậy. Cần phân biệt đại lượng tính trên mẫu với đại lượng lấy trung bình trên chính nguồn sinh dữ liệu.
+
 **Định nghĩa.** Cho $d,p,N$ là các số nguyên dương, lần lượt chỉ số đặc trưng, số tham số và số mẫu. Tham số là $\theta\in\mathbb R^p$; mô hình $f_\theta:\mathbb R^d\to\mathcal Z$ ánh xạ đặc trưng sang miền dự đoán $\mathcal Z$. Hàm mất mát $\ell:\mathcal Z\times\mathcal Y\to\mathbb R_{\ge0}$ so sánh dự đoán với nhãn thuộc $\mathcal Y$.
 
-Với tập dữ liệu $D=\{(x_i,y_i)\}_{i=1}^N$, đặt $\ell_i(\theta)=\ell(f_\theta(x_i),y_i)$. Mất mát huấn luyện và rủi ro kỳ vọng là
+Với tập dữ liệu $D=\{(x_i,y_i)\}_{i=1}^N$, đặt $\ell_i(\theta)=\ell(f_\theta(x_i),y_i)$. Mất mát huấn luyện và rủi ro kỳ vọng (expected risk) là
 
 $$
 J(\theta)=\frac1N\sum_{i=1}^N\ell_i(\theta),\qquad
