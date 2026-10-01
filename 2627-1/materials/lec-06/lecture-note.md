@@ -279,9 +279,9 @@ Tính dương xác định quyết định dấu. Nếu chỉ biết $H$ khả n
 
 ### 3.2. Giảm chấn và Hessian bất định
 
-Với $F(\theta)=\frac12(\theta_1^2-\theta_2^2)$ tại $(0,1)^\top$, ta có $g=(0,-1)^\top$ và $H=\operatorname{diag}(1,-1)$. Newton cho $d=(0,-1)^\top$, nên $g^\top d=1>0$. Hàm này không có cực tiểu toàn cục.
+Mệnh đề hướng giảm ở mục 3.1 cần $H\succ0$, trong khi mất mát không lồi có thể có Hessian bất định. Với $F(\theta)=\frac12(\theta_1^2-\theta_2^2)$ tại $(0,1)^\top$, ta có $g=(0,-1)^\top$ và $H=\operatorname{diag}(1,-1)$. Newton cho $d=(0,-1)^\top$, nên $g^\top d=1>0$. Hàm này không có cực tiểu toàn cục.
 
-Một cách sửa hệ là dùng $A=H+\lambda I\succ0$. Nếu $H$ đối xứng, trị riêng nhỏ nhất của $A$ bằng $\lambda_{\min}(H)+\lambda$. Do đó điều kiện là
+Giảm chấn (damping) sửa hệ bằng $A=H+\lambda I\succ0$, tức dịch mọi trị riêng lên $\lambda$. Nếu $H$ đối xứng, trị riêng nhỏ nhất của $A$ bằng $\lambda_{\min}(H)+\lambda$. Do đó điều kiện là
 
 $$
 \lambda>-\lambda_{\min}(H).

@@ -284,6 +284,7 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Nguồn:** DL, §8.6.1; HF, §3; ví dụ V6 tự xây dựng.
 - **Thời lượng:** 0,06 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Hàm ví dụ không có cực tiểu toàn cục; chỉ dùng kiểm tra hướng. Không hứa giảm thực tế chỉ từ dấu đạo hàm khi bước quá lớn.
+- **Sửa ngày 2026-10-02:** Câu mở: mệnh đề hướng giảm cần $H\succ0$, mất mát không lồi có thể có Hessian bất định; dữ kiện mang nhãn Ví dụ. Thẻ phải ghi $A=H+\lambda I$, $\lambda=2$.
 
 #### C05. Ví dụ gradient liên hợp
 

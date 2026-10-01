@@ -297,7 +297,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Hessian phi lồi có thể phá kết luận trước; phản ví dụ buộc kiểm giả thiết trước khi dùng Newton.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C03 cần SPD; C04 tạo hệ SPD nhưng chi phí lưu/giải còn lớn, dẫn đến C05.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Trường hợp biên và ứng dụng KN4; MT2.
-- **Quyết định và lý do:** Giữ yên ngựa và dịch trị riêng để tạo hệ hợp lệ cho CG. Đặc tả tại C04 trong outline.md.
+- **Quyết định và lý do:** Giữ yên ngựa và dịch trị riêng để tạo hệ hợp lệ cho CG. Sửa 2026-10-02: câu nhu cầu (giả thiết $H\succ0$ của C03 có thể bị vi phạm); ghi $A=H+\lambda I$, $\lambda=2$; thuật ngữ damping trong ghi chú. Đặc tả tại C04 trong outline.md.
 - **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,00 tiết bài tập; tính hai hướng, dấu đạo hàm và điều kiện giảm chấn.
 
 ### C05. Ví dụ gradient liên hợp
