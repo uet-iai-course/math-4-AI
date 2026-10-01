@@ -28,7 +28,7 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 
 ### KN0. Mô hình bước cục bộ
 
-- **Sáu bước:** nhu cầu A03; trực quan A03; ví dụ A03; hình thức/toán học A04; ứng dụng A04; bài tập A05.
+- **Sáu bước:** nhu cầu A03; trực quan A03 (thang khác nhau) và A04 (phạt đều thành phạt theo hướng); ví dụ A03; hình thức/toán học A04; ứng dụng A04; bài tập A05.
 - **Đầu vào và mục tiêu:** Gradient, Hessian và dạng toàn phương; MT1–MT2. Tính bước từ g, M, η và bác bỏ ma trận phạt làm bài toán không bị chặn dưới; kiểm ở A05.
 - **Ký hiệu/dữ kiện truyền tiếp:** θ=(1,1), g=(1,9), M=diag(1,9).
 - **Gộp hoặc rút gọn:** Nhu cầu và ví dụ dẫn nhập cùng A03: bước vô hướng không cân bằng hai tọa độ. Hình và phép tính dùng đúng một hàm.

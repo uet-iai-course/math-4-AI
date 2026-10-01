@@ -1079,3 +1079,12 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần C
 
 - **C01 — sửa.** Khung kết luận chung chung (“Hessian mô tả độ cong…”) và trang không nối với giới hạn đường chéo của B08. Khung nay chỉ ra $g_2=\theta_1+2\theta_2=1$ sinh ra từ phần tử ngoài đường chéo $Q_{12}=1$; ghi chú diễn giả mở bằng câu nối với B08 (câu nối đặt trong ghi chú vì mặt trang không đủ chỗ ở 1600×900). Ghi chú bài giảng mục 3.1 thêm câu dẫn và kết luận cụ thể.
+- **Tái kiểm phần A–B.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5), tại commit `8dc5110`: tái kiểm toán học **PASS** (2 trung bình, 4 nhẹ; mọi số liệu A03–B09 tính lại khớp); tái kiểm mạch lập luận **PASS có điều kiện** (1 trung bình, 5 nhẹ); lời hứa của A02 khớp các mạch C–G. Đã xử lý:
+  - trung bình | B01 | “tọa độ cong hơn có gradient lớn hơn” không đúng với mọi $\theta$ → thêm điều kiện “khi hai tọa độ lệch khỏi nghiệm cùng cỡ”; ghi chú nêu bảng dùng dãy minh họa. **Đã đóng.**
+  - trung bình | B04, ghi chú B03–B04, ghi chú bài giảng 2.2 | “$v_t$ chỉ tăng, bước hiệu dụng chỉ giảm” sai khi $g_t=0$ và lẫn độ dài bước với tốc độ học hiệu dụng → “$v_t$ không giảm và tốc độ học hiệu dụng $\eta/\sqrt{v_{t,j}}$ không tăng”. **Đã đóng.**
+  - nhẹ | A03 | “cùng giới hạn của Bài 05” dễ hiểu là cùng số → “cùng dạng $\eta<2/\lambda_{\max}$ (ở đó $2/7$)”. **Đã đóng.**
+  - nhẹ | B02 | $M_t$ thiếu $\varepsilon$ → $\operatorname{diag}(\sqrt{v_t}+\varepsilon)$; ghi chú bỏ câu tham chiếu “trên trang”. **Đã đóng.**
+  - nhẹ | B06 | mẫu số Adam là bản đã hiệu chỉnh; $m_t$ chuẩn hóa bởi $1-\beta_1$ → sửa mặt trang, ghi chú, ghi chú bài giảng. **Đã đóng.**
+  - nhẹ | storyboard KN0 | trực quan nay ở cả A04 → cập nhật sáu bước. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng 2.4 | tiêu đề mục theo B08 → “Giới hạn của ma trận phạt đường chéo”. **Đã đóng.**
+  - nhẹ | C01 | ranh giới B→C → đã xử lý ở commit sửa C01 (khung nêu phần tử ngoài đường chéo, ghi chú nối B08). **Đã đóng.**

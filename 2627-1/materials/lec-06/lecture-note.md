@@ -41,7 +41,7 @@ Xét $F(\theta)=\frac12(\theta_1^2+9\theta_2^2)$ tại $\theta=(1,1)^\top$. Grad
 | $1/5$ | $(4/5,-4/5)^\top$ | $16/5=3{,}2$ |
 | $1$ | $(0,-8)^\top$ | $288$ |
 
-Độ cong theo tọa độ thứ hai bằng $9$, còn theo tọa độ thứ nhất bằng $1$. Một tốc độ học chung chịu giới hạn bởi hướng cong hơn. Với hạ gradient lặp trên hàm này, hai tọa độ nhân lần lượt với $1-\eta$ và $1-9\eta$ sau mỗi vòng. Để cả hai co về $0$ từ mọi điểm đầu, cần $0<\eta<2/9$, cùng giới hạn đã gặp ở Bài 05. Khi đó tọa độ thứ nhất co với hệ số $1-\eta>7/9$, tức rất chậm.
+Độ cong theo tọa độ thứ hai bằng $9$, còn theo tọa độ thứ nhất bằng $1$. Một tốc độ học chung chịu giới hạn bởi hướng cong hơn. Với hạ gradient lặp trên hàm này, hai tọa độ nhân lần lượt với $1-\eta$ và $1-9\eta$ sau mỗi vòng. Để cả hai co về $0$ từ mọi điểm đầu, cần $0<\eta<2/9$, cùng dạng giới hạn $\eta<2/\lambda_{\max}$ của Bài 05 (ở đó là $2/7$). Khi đó tọa độ thứ nhất co với hệ số $1-\eta>7/9$, tức rất chậm.
 :::
 
 Việc thay thang đo từng hướng có thể được mô tả bằng một mô hình cục bộ. Nguồn đối chiếu về điều kiện số là Goodfellow, Bengio và Courville (2016), §8.2.1; hướng theo chuẩn bậc hai được trình bày trong Boyd và Vandenberghe (2004), §9.4.1.
@@ -93,7 +93,7 @@ Ma trận phạt là sườn so sánh các cách tạo bước ở mục 2–4. 
 
 ## 2. Thống kê gradient theo tọa độ
 
-Ma trận phạt đường chéo cần một thang cho mỗi tọa độ. Trên hàm mở đầu, $g=(\theta_1,9\theta_2)^\top$, nên tọa độ cong hơn có gradient lớn hơn. Độ lớn gradient tích lũy theo từng tọa độ cho một thang chỉ cần $p$ số, trong khi Hessian có $p^2$ phần tử. Bình phương được dùng thay cho gradient có dấu để các đóng góp trái dấu không triệt tiêu nhau.
+Ma trận phạt đường chéo cần một thang cho mỗi tọa độ. Trên hàm mở đầu, $g=(\theta_1,9\theta_2)^\top$; khi hai tọa độ lệch khỏi nghiệm cùng cỡ, chẳng hạn tại $(1,1)^\top$, tọa độ cong hơn có gradient lớn hơn. Độ lớn gradient tích lũy theo từng tọa độ cho một thang chỉ cần $p$ số, trong khi Hessian có $p^2$ phần tử. Bình phương được dùng thay cho gradient có dấu để các đóng góp trái dấu không triệt tiêu nhau.
 
 ### 2.1. AdaGrad
 
@@ -125,7 +125,7 @@ AdaGrad đường chéo tương ứng với ma trận phạt $M_t=\operatorname{
 
 ### 2.2. RMSProp
 
-AdaGrad cộng mọi bình phương với trọng số $1$, nên $v_t$ chỉ tăng và tốc độ học hiệu dụng chỉ giảm. Khi phân bố gradient thay đổi trong huấn luyện, thống kê này vẫn giữ các gradient cũ. RMSProp (tên lấy từ căn trung bình bình phương, root mean square) thay tổng tích lũy bằng trung bình mũ, quên dần gradient xa với hệ số nhớ $\rho$:
+AdaGrad cộng mọi bình phương với trọng số $1$, nên $v_t$ không giảm và tốc độ học hiệu dụng $\eta/\sqrt{v_{t,j}}$ không tăng. Khi phân bố gradient thay đổi trong huấn luyện, thống kê này vẫn giữ các gradient cũ. RMSProp (tên lấy từ căn trung bình bình phương, root mean square) thay tổng tích lũy bằng trung bình mũ, quên dần gradient xa với hệ số nhớ $\rho$:
 
 $$
 v_0=0,\qquad
@@ -164,7 +164,7 @@ khi $\eta=1$ và bỏ $\varepsilon$ để tính tay. Bộ nhớ và chi phí ngo
 
 ### 2.3. Adam và hiệu chỉnh trọng số
 
-Adam (ước lượng moment thích ứng, adaptive moment estimation) giữ mẫu số của RMSProp và thay tử $g_t$ bằng trung bình mũ $m_t$ của gradient, cùng vai trò tích lũy hướng như vận tốc của momentum ở Bài 05. Như vậy Adam lưu cả trung bình mũ của gradient và của bình phương gradient. Hai trung bình bắt đầu từ $0$ nên ở các vòng đầu có tổng trọng số nhỏ hơn $1$ và cần hiệu chỉnh. Với $m_0=v_0=0$, $0<\beta_1,\beta_2<1$,
+Adam (ước lượng moment thích ứng, adaptive moment estimation) dùng mẫu số kiểu RMSProp (sau hiệu chỉnh) và thay tử $g_t$ bằng trung bình mũ $m_t$ của gradient, cùng vai trò tích lũy hướng như vận tốc của momentum ở Bài 05. Như vậy Adam lưu cả trung bình mũ của gradient và của bình phương gradient. Hai trung bình bắt đầu từ $0$ nên ở các vòng đầu có tổng trọng số nhỏ hơn $1$ và cần hiệu chỉnh. Với $m_0=v_0=0$, $0<\beta_1,\beta_2<1$,
 
 $$
 \begin{aligned}
@@ -223,7 +223,7 @@ $$
 Moment bậc nhất còn giữ gradient trước nên Adam vẫn dịch chuyển.
 :::
 
-### 2.4. Giới hạn của thông tin đường chéo
+### 2.4. Giới hạn của ma trận phạt đường chéo
 
 Một ma trận đường chéo chỉ co giãn theo các trục tọa độ đã chọn. Nó không lưu các tương tác ngoài đường chéo của Hessian. AdaGrad và RMSProp còn dùng gradient lô nhỏ; Adam dùng moment thay gradient hiện tại. Vì vậy mệnh đề hướng giảm ở mục 1 không áp dụng trực tiếp cho mọi bước của ba thuật toán.
 
