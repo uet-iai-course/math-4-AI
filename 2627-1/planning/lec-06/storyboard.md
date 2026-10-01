@@ -428,12 +428,12 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa bổ sung h₀,h₅ vô hướng, mất mát ℒ và tham số tầng trước; giữ mức hỗ trợ quy tắc dây chuyền. Sửa 2026-10-02: câu nhu cầu nối Bài 05 và định nghĩa nối tắt trước hình; khung gradient theo $w$ vào ghi chú để trang không tràn. Đặc tả tại E07 trong outline.md.
 - **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; tính hai tích và xác định vị trí của chúng trong gradient tham số.
 
-### E08. Kiểm tra can thiệp trong huấn luyện
+### E08. Bốn can thiệp ngoài quy tắc sinh bước
 
 - **Lý do tồn tại và nhu cầu học tập:** Cần phân biệt bốn can thiệp bằng đầu ra và giới hạn riêng, không chỉ nhớ tên.
 - **Kế thừa, đầu ra và vị trí trong sườn:** E02–E07 cho công cụ; F01 mở các thay đổi theo giai đoạn.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Kiểm tra riêng mạch E; MT3.
-- **Quyết định và lý do:** Sửa giảm tải: một phép tính BN, ba đối chiếu có kết quả trung gian và đề tự đủ. Đặc tả tại E08 trong outline.md.
+- **Quyết định và lý do:** Sửa giảm tải: một phép tính BN, ba đối chiếu có kết quả trung gian và đề tự đủ. Sửa 2026-10-02: đổi tiêu đề; yêu cầu (c), (d) dùng động từ học tập. Đặc tả tại E08 trong outline.md.
 - **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,07 tiết bài tập; tính phương sai; giải thích không tăng, phản ví dụ trung bình và giới hạn nối tắt.
 
 ### F01. Khởi tạo qua nhiệm vụ có nhãn

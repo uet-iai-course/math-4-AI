@@ -508,7 +508,7 @@ Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: C
 - **Ghi chú soạn:** Chu trình rút gọn do đây là khái niệm hỗ trợ đã có quy tắc dây chuyền. Không suy ra nối tắt luôn chặn gradient; 1,1^L vẫn có thể tăng theo L. Tích đạo hàm là một thừa số của gradient tham số; các đạo hàm của mất mát và biểu diễn đầu khối còn tham gia. Ví dụ không chứng minh gradient tốt hơn cho mọi mạng.
 - **Sửa ngày 2026-10-02:** Câu mở: độ nhạy qua nhiều lớp là tích đạo hàm, co theo cấp số mũ (Bài 05); nối tắt $h_l=h_{l-1}+f_l(h_{l-1})$ cộng thêm 1 vào mỗi thừa số. Khung $\partial\mathcal L/\partial w$ chuyển vào ghi chú.
 
-#### E08. Kiểm tra can thiệp trong huấn luyện
+#### E08. Bốn can thiệp ngoài quy tắc sinh bước
 
 - **Vai trò và mục tiêu:** Kiểm tra riêng mạch E; MT3.
 - **Luận điểm trung tâm:** Mỗi can thiệp cần được kiểm bằng đại lượng mà nó thực sự thay đổi.
@@ -524,6 +524,8 @@ Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: C
 - **Đáp án/gợi ý:** (a) Trung bình 3, phương sai trước chuẩn hóa 4, nên phương sai sau là $4/(4+1)=4/5$. (b) Khối cũ khả thi và mỗi lần cập nhật giải bài toán con không tệ hơn điểm cũ. (c) Trung bình các nghiệm của hàm phi lồi không nhất thiết còn là nghiệm hoặc cho mất mát nhỏ hơn. (d) Không; hệ số đã cho tăng không bị chặn. Đây chỉ là một thừa số của gradient mất mát.
 - **Tiêu chí đánh giá:** Tính phương sai đúng và dùng mẫu số gồm epsilon (1 ý); nêu đủ điều kiện không tăng (1 ý); giải thích giới hạn trung bình tham số và nối tắt từ dữ kiện đã cho (2 ý).
 - **Thời gian hoạt động:** Suy nghĩ 0,04 tiết cho phép tính (a) và ba đối chiếu; trình bày 0,01; chữa điều kiện và giới hạn 0,02. Đã tính trong thời lượng trang.
+- **Sửa ngày 2026-10-02:** Tiêu đề nêu nội dung kiểm; yêu cầu (c), (d) viết bằng “Xác định…” thay cho câu hỏi.
+
 
 ### Mạch F. Huấn luyện theo giai đoạn
 

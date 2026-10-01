@@ -1123,3 +1123,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **E05 — giữ.** Thuật toán hạ theo khối nêu đủ bước, điều kiện không tăng và một lượt ví dụ.
 - **E06 — sửa.** Trung bình Polyak xuất hiện không có lý do. Câu mở nối dao động của SGD gần nghiệm (Bài 05) với việc lấy trung bình; khung kết luận chuyển vào ghi chú (thẻ phản ví dụ đã thể hiện giới hạn) để trang không tràn. Ghi chú bài giảng mục 5.3 thêm câu nhu cầu.
 - **E07 — sửa.** “Nối tắt” xuất hiện trong hình mà chưa được định nghĩa; trang không nối với độ nhạy dạng tích ở Bài 05. Câu mở nêu nhu cầu và định nghĩa $h_l=h_{l-1}+f_l(h_{l-1})$; khung $\partial\mathcal L/\partial w$ chuyển vào ghi chú để trang không tràn. Ghi chú diễn giả nêu thuật ngữ skip connection; ghi chú bài giảng mục 5.4 thêm định nghĩa và đạo hàm $1+f_l'$.
+- **E08 — sửa.** Tiêu đề “Kiểm tra…” không nêu nội dung; hai yêu cầu viết dạng câu hỏi. Tiêu đề mới “Bốn can thiệp ngoài quy tắc sinh bước”; yêu cầu (c), (d) dùng “Xác định…”.
