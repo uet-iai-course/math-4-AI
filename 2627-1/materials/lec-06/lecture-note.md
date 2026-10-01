@@ -486,7 +486,7 @@ AdaGrad, RMSProp, Adam, Newton và BFGS chỉ thay cách dùng gradient đã có
 
 ### 5.1. Chuẩn hóa theo lô
 
-Chuẩn hóa theo lô (BN) thay phép tính biểu diễn. Với một đặc trưng có giá trị $a_1,\ldots,a_m\in\mathbb R$ trong lô $\mathcal B$, định nghĩa
+Chuẩn hóa theo lô (batch normalization, BN) thay phép tính biểu diễn: trừ trung bình và chia độ lệch chuẩn của lô để thống nhất vị trí và thang của đầu vào tầng. Với một đặc trưng có giá trị $a_1,\ldots,a_m\in\mathbb R$ trong lô $\mathcal B$, định nghĩa
 
 $$
 \mu_\mathcal B=\frac1m\sum_{i=1}^m a_i,\qquad

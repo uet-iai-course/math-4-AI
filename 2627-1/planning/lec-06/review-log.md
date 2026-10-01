@@ -1117,3 +1117,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | ghi chú bài giảng | BFGS dùng trước tên đầy đủ → nêu tên đầy đủ ở lần đầu (đoạn mở đầu). **Đã đóng.**
   - nhẹ | storyboard C07, C08, D05 | thêm ghi chú đổi tiêu đề vào dòng quyết định. **Đã đóng.**
   - nhẹ | D05→E01 | ranh giới D→E → đã xử lý ở commit sửa E01. **Đã đóng.**
+- **E02 — sửa.** Nhu cầu và trực quan của chuẩn hóa chỉ có trong ghi chú; mặt trang mở thẳng bằng hai lô số. Thêm dòng **Trực quan** (trừ trung bình, chia độ lệch chuẩn của lô để thống nhất vị trí và thang); gộp dòng $\varepsilon\to0^+$ vào công thức để giữ chiều cao. Ghi chú bài giảng mục 5.1 thêm câu trực quan và tên tiếng Anh.

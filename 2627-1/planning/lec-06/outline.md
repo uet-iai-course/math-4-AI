@@ -443,6 +443,7 @@ Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: C
 - **Nguồn:** DL, §8.7.1; BN, thuật toán 1; ví dụ V9 tự xây dựng.
 - **Thời lượng:** 0,04 tiết lý thuyết + 0,02 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Đơn vị của đầu ra đổi theo γ,β. So sánh hai lô làm rõ vì sao mô hình huấn luyện phụ thuộc lô. Quan hệ kiểm được ở đây là tính bất biến với dịch chuyển chung của lô và sự phụ thuộc ngữ cảnh lô; không suy ra luôn cải thiện điều kiện hoặc tốc độ hội tụ.
+- **Sửa ngày 2026-10-02:** Dòng Trực quan: trừ trung bình và chia độ lệch chuẩn của lô để thống nhất vị trí và thang; dòng “Khi $\varepsilon\to0^+$” gộp vào công thức $\widehat a$.
 
 #### E03. Chuẩn hóa theo lô
 

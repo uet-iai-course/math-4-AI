@@ -385,7 +385,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Cần một nhiệm vụ chuẩn hóa có dữ kiện trước công thức BN; hai lô dịch chuyển cho phép kiểm cả quy ước chung và phụ thuộc lô.
 - **Kế thừa, đầu ra và vị trí trong sườn:** E01 xác định phép tính mô hình; E03 tổng quát hóa và phân biệt chế độ huấn luyện/suy luận.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN7; MT3.
-- **Quyết định và lý do:** Sửa nhu cầu/trực quan dùng a và a+4; không suy tốc độ hội tụ từ phép tính. Đặc tả tại E02 trong outline.md.
+- **Quyết định và lý do:** Sửa nhu cầu/trực quan dùng a và a+4; không suy tốc độ hội tụ từ phép tính. Sửa 2026-10-02: câu Trực quan trên mặt trang (trước đây nhu cầu chỉ ở ghi chú); gộp dòng $\varepsilon\to0^+$ vào công thức. Đặc tả tại E02 trong outline.md.
 - **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,02 tiết bài tập; tính trung bình, phương sai và so đầu ra cùng giá trị trong hai lô.
 
 ### E03. Chuẩn hóa theo lô
