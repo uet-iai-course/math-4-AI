@@ -209,7 +209,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Một cập nhật số giúp phân biệt tốc độ học hiệu dụng với độ dài bước trước khi đọc thuật toán.
 - **Kế thừa, đầu ra và vị trí trong sườn:** B01 cho dãy; B03 tổng quát hóa cùng $v_t$, $g_t$ và quy định xử lý mẫu bằng 0.
 - **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Ví dụ tính tay KN1; MT1.
-- **Quyết định và lý do:** Giữ riêng ví dụ hai vòng để thứ tự cập nhật thống kê có thể kiểm bằng tay. Đặc tả tại B02 trong outline.md.
+- **Quyết định và lý do:** Giữ riêng ví dụ hai vòng để thứ tự cập nhật thống kê có thể kiểm bằng tay. Sửa 2026-10-02: câu mở nối AdaGrad với ma trận phạt $M_t=\operatorname{diag}(\sqrt{v_t})$ của A04; gộp câu về $\varepsilon$ vào khung. Đặc tả tại B02 trong outline.md.
 - **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,03 tiết bài tập; tính v₁, v₂ và bước; đối chiếu tọa độ có gradient bằng 0.
 
 ### B03. Thuật toán AdaGrad

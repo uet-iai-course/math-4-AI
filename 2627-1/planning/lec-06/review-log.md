@@ -1067,3 +1067,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần B
 
 - **B01 — sửa.** Câu “Lịch sử gradient cung cấp thang đo mà không cần lưu Hessian” khẳng định mà không nêu vì sao gradient phản ánh thang đo. Câu mở nay nêu nhu cầu (ma trận phạt đường chéo cần một thang mỗi tọa độ) và trực quan trên hàm mở đầu ($g=(\theta_1,9\theta_2)$, tọa độ cong hơn có gradient lớn hơn); chi phí $p$ so với $p^2$ chuyển vào ghi chú. Ghi chú bài giảng thêm đoạn mở đầu mục 2.
+- **B02 — sửa.** Công thức AdaGrad xuất hiện không nối với ma trận phạt của A04, nên phép chia cho $\sqrt{v_t}$ trông tùy ý. Câu mở nêu AdaGrad chọn $M_t=\operatorname{diag}(\sqrt{v_t})$; câu bỏ $\varepsilon$ gộp vào khung để giữ chiều cao. Ghi chú diễn giả và ghi chú bài giảng mục 2.1 nêu tên đầy đủ gradient thích ứng (adaptive gradient) và mối nối với bước có phạt.

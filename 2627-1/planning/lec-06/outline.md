@@ -134,6 +134,7 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Nguồn:** Ví dụ V2 tự xây dựng; DL, thuật toán 8.4.
 - **Thời lượng:** 0,03 tiết lý thuyết + 0,03 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Chỉ bỏ epsilon để tính tay khi tất cả mẫu dùng đều dương. Trình tự cập nhật thống kê trước tham số phải được giữ.
+- **Sửa ngày 2026-10-02:** Câu mở: AdaGrad chọn ma trận phạt $M_t=\operatorname{diag}(\sqrt{v_t})$, $v_t$ là tổng bình phương gradient; dữ kiện xuống dòng riêng. Câu bỏ $\varepsilon$ gộp vào khung. Ghi chú nêu tên đầy đủ gradient thích ứng (adaptive gradient).
 
 #### B03. Thuật toán AdaGrad
 

@@ -97,7 +97,7 @@ Ma trận phạt đường chéo cần một thang cho mỗi tọa độ. Trên 
 
 ### 2.1. AdaGrad
 
-Khi không có Hessian, bình phương gradient cung cấp thống kê về độ lớn cập nhật của từng tọa độ. AdaGrad lưu tổng tích lũy
+Khi không có Hessian, bình phương gradient cung cấp thống kê về độ lớn cập nhật của từng tọa độ. AdaGrad (gradient thích ứng, adaptive gradient) chọn ma trận phạt $M_t=\operatorname{diag}(\sqrt{v_t}+\varepsilon)$ trong bước của mục 1.3, với $v_t$ là tổng tích lũy
 
 $$
 v_0=0,\qquad v_t=v_{t-1}+g_t\odot g_t,
