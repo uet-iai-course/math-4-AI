@@ -234,7 +234,7 @@ $$
 
 nên $\theta_2=(1.295,0.99)^T$.
 
-**Thuật toán.** Momentum dùng bước cố định $\eta>0$ và trạng thái dịch chuyển $v_t\in\mathbb R^p$:
+**Thuật toán.** Momentum dùng bước cố định $\eta>0$ và trạng thái dịch chuyển $v_t\in\mathbb R^p$, còn gọi là vận tốc (velocity):
 
 $$
 v_{t+1}=\beta v_t-\eta\widehat g_t,\qquad

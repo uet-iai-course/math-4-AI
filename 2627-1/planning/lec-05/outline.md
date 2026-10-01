@@ -397,6 +397,8 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Ghi chú soạn:** Tổng có trọng số chưa chuẩn hóa; không so phương sai $v$ với $g$ như thể cùng thang. Chi phí thêm một vectơ $p$ phần tử và phép cập nhật $O(p)$ ngoài gradient. Không phát biểu bảo đảm giảm mỗi bước.
 - **Bản triển khai sau rà 2026-09-26:** Đầu vào ghi bước cố định $\eta>0$; phiên bản của bài không dùng lịch $\eta_t$ như SGD.
 
+- **Rà ngày 2026-10-01:** Giữ mặt trang; ghi chú nối tên “bước dịch chuyển” của C03 với “vận tốc (velocity)”.
+
 #### C05 — Quỹ đạo của phương pháp momentum
 
 - **Vai trò và mục tiêu:** Ứng dụng và giới hạn KN3; MT2.
