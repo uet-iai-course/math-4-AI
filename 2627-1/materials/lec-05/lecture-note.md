@@ -136,7 +136,7 @@ Tính không chệch ở đây hướng tới $\nabla J$, không mặc nhiên l�
 
 ### Một bước gradient ngẫu nhiên
 
-Với $\theta=1$, chọn mẫu $y=-1$ và bước học $\eta=0.1$. Gradient của mẫu là 2, nên $\theta'=0.8$. Mất mát mẫu giảm từ 2 xuống $\tfrac12(0.8+1)^2=1.62$, nhưng
+Với $\theta=1$, chọn mẫu $y=-1$ và bước học (learning rate) $\eta=0.1$, hệ số nhân với gradient trong phép cập nhật. Gradient của mẫu là 2, nên $\theta'=0.8$. Mất mát mẫu giảm từ 2 xuống $\tfrac12(0.8+1)^2=1.62$, nhưng
 
 $$
 J(0.8)-J(1)=\frac12(0.8-1)^2=0.02.

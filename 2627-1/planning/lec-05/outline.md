@@ -275,6 +275,8 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Thời lượng:** 0.05 giờ LT.
 - **Ghi chú soạn:** Đây không phải lỗi dấu hay mâu thuẫn với tính không chệch. Không dùng Armijo trên từng nhóm làm định nghĩa SGD của bài.
 
+- **Sửa ngày 2026-10-01:** Mặt trang ghi “bước học $\eta=0.1$”; ghi chú nêu bước học (learning rate) là hệ số nhân với gradient, cùng vai trò như trong hạ gradient.
+
 #### B05 — Phương pháp hạ gradient ngẫu nhiên
 
 - **Vai trò và mục tiêu:** Hình thức thuật toán KN2; MT2.
