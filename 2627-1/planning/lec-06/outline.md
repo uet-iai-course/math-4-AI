@@ -198,7 +198,7 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Thời lượng:** 0,07 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Tại vòng t dùng gradient ở tham số t−1. Không đồng nhất moment với gradient hiện tại; chi phí ngoài gradient và bộ nhớ đều O(p). Phản ví dụ một chiều: $g_t=-1$, $\widehat m_t=1$, $\eta_t>0$ và mẫu dương cho $d_t<0$, nên $g_td_t>0$. Nguyên nhân là moment khác dấu gradient hiện tại; ví dụ một chiều không liên quan đến thiếu tương tác giữa tọa độ.
 
-#### B08. Giới hạn của chuẩn hóa theo tọa độ
+#### B08. Giới hạn của ma trận phạt đường chéo
 
 - **Vai trò và mục tiêu:** Giới hạn chung của thống kê đường chéo KN1–KN3; chuẩn bị Newton KN4; MT1–MT2.
 - **Luận điểm trung tâm:** Thống kê đường chéo không biểu diễn tương tác độ cong giữa các tọa độ.
@@ -209,8 +209,9 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Nguồn:** DL, §§8.5.4–8.6.1; ST, tr. 45–49; ma trận và hình minh họa tự xây dựng.
 - **Thời lượng:** 0,05 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Đánh giá thực nghiệm cần cùng dữ liệu, ngân sách, phép chọn siêu tham số; không chọn phương pháp chỉ từ một bước số học.
+- **Sửa ngày 2026-10-02:** Tiêu đề đổi từ “chuẩn hóa theo tọa độ” thành “ma trận phạt đường chéo” để tránh lẫn với chuẩn hóa theo lô và nối với A04.
 
-#### B09. Kiểm tra thuật toán thích ứng
+#### B09. So sánh AdaGrad, RMSProp và Adam
 
 - **Vai trò và mục tiêu:** Kiểm tra riêng mạch B; MT1.
 - **Luận điểm trung tâm:** Phải cập nhật đúng thống kê trước khi so sánh các bước.
@@ -226,6 +227,8 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Đáp án/gợi ý:** AdaGrad: $v_2=4,d_2=0$. RMSProp: $v_2=1,d_2=0$. Adam: $m_2=1/2,v_2=3/4$, $\widehat m_2=2/3,\widehat v_2=12/7$, $d_2=-(2/3)/\sqrt{12/7}\approx-0{,}5092$. Moment bậc nhất lưu gradient trước.
 - **Tiêu chí đánh giá:** Đúng thống kê (3 ý), hiệu chỉnh Adam (1 ý), giải thích dịch chuyển dù gradient hiện tại bằng 0 (1 ý).
 - **Thời gian hoạt động:** Suy nghĩ 0,06 tiết; trình bày 0,02; chữa 0,03. Đã tính trong thời lượng trang.
+- **Sửa ngày 2026-10-02:** Tiêu đề nêu ba thuật toán được so sánh; đề và đáp án giữ nguyên.
+
 
 ### Mạch C. Độ cong và hệ Newton
 

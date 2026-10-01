@@ -252,7 +252,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa ghi chú: nhận phản ví dụ dấu từ B08 và gắn nguyên nhân với bộ nhớ hướng. Đặc tả tại B07 trong outline.md.
 - **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; theo dõi lưu đồ cập nhật; kiểm phản ví dụ moment ngược gradient.
 
-### B08. Giới hạn của chuẩn hóa theo tọa độ
+### B08. Giới hạn của ma trận phạt đường chéo
 
 - **Lý do tồn tại và nhu cầu học tập:** Giới hạn của thống kê đường chéo tạo nhu cầu dùng thông tin tương tác độ cong ở C01.
 - **Kế thừa, đầu ra và vị trí trong sườn:** B07 cho công thức; B09 kiểm tra thống kê và C01 sử dụng tương tác độ cong còn thiếu.
@@ -260,7 +260,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa để chỉ xét hạng tương tác; chuyển phản ví dụ một chiều sang B07 vì khác nguyên nhân. Đặc tả tại B08 trong outline.md.
 - **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; đối chiếu dạng toàn phương có hạng chéo và elip nghiêng.
 
-### B09. Kiểm tra thuật toán thích ứng
+### B09. So sánh AdaGrad, RMSProp và Adam
 
 - **Lý do tồn tại và nhu cầu học tập:** Ba thuật toán dùng cùng gradient nhưng lưu trạng thái khác nhau; bài riêng kiểm được lỗi thứ tự và hiệu chỉnh.
 - **Kế thừa, đầu ra và vị trí trong sườn:** B08 giới hạn lựa chọn; C01 thay thống kê gradient bằng mô hình độ cong.
