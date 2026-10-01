@@ -214,3 +214,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | A05 | “thời điểm” chưa giải nghĩa → ghi chú: số bước cập nhật đã thực hiện. **Đã đóng.**
   - nhẹ | B01 | thiếu kết quả kế thừa → đã xử lý ở commit sửa B01. **Đã đóng.**
   - nhẹ | B02 | lặp dạng chính tắc của $J$ với A03 → xử lý khi duyệt B02.
+- **B02 — sửa.** Trang không nối với nhóm nhỏ ở B01 và lặp dạng chính tắc của $J$ đã có ở A03 (phát hiện nhẹ của tái kiểm mạch lập luận). Câu mở nay nêu nhóm nhỏ chỉ dùng một phần các $g_i$; dòng trung bình viết thành $J'(1)=\bar g=0$; bỏ dòng công thức cuối (vốn chạm chân trang sau khi thêm câu mở). Ghi chú diễn giả và ghi chú bài giảng nêu hệ quả: nhóm chỉ chứa mẫu $-1$ dịch tham số dù nghiệm đã đạt. **Phát hiện nhẹ B02 của tái kiểm phần A đã đóng.**

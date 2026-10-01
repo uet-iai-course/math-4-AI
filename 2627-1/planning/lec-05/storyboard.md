@@ -61,7 +61,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | A06 — Điểm dừng của hàm không lồi | Chặn suy luận sai khi chuyển từ lồi sang mạng | Kết quả lồi của Bài 04 → giới hạn điểm dừng khi bỏ tính lồi | A07, LLO11/CLO1 | Gộp các ý §8.2.2–8.2.3/8.2.7–8.2.8; giữ ví dụ kiểm được. Sửa 2026-10-01: tiêu đề nêu đúng phạm vi, thêm nhu cầu từ Bài 04, khung chỉ giữ kết luận hai ví dụ chứng minh |
 | A07 — Chọn thời điểm lưu và phân loại điểm dừng | Đo khả năng phân biệt trước học thuật toán mới | A04–A06 → tiêu chí chọn đã được kiểm | Kiểm tra riêng A, LLO11/CLO1 | Thêm bài tập mới, có lý do và đáp án. Sửa 2026-10-01: tiêu đề nêu hai kỹ năng được kiểm; yêu cầu viết bằng động từ học tập |
 | B01 — Chi phí của gradient đầy đủ | Tạo nhu cầu lấy mẫu có căn cứ tính toán | Phép lặp hạ gradient Bài 04 + $J$ dạng tổng → gradient dạng tổng, chi phí $NC$/$bC$ | LLO12/CLO2 | Giữ chuỗi §5.9/8.1.3, bỏ lời khẳng định tăng tốc phần cứng. Sửa 2026-10-01: mở bằng phép lặp hạ gradient; định nghĩa $C$ trước bảng; bỏ hộp sơ đồ lặp công thức |
-| B02 — Gradient của từng quan sát | Làm hiện rõ các đóng góp khác nhau tại cùng điểm | VD1 → $(2,0,-2)$ và trung bình | B08, LLO12/CLO2 | Thêm phép tính dùng lại VD1 |
+| B02 — Gradient của từng quan sát | Làm hiện rõ các đóng góp khác nhau tại cùng điểm | Nhóm nhỏ B01 + VD1 → $(2,0,-2)$ và trung bình $J'(1)=0$ | B08, LLO12/CLO2 | Thêm phép tính dùng lại VD1. Sửa 2026-10-01: thêm câu nối từ nhóm nhỏ; bỏ dạng chính tắc lặp A03 |
 | B03 — Ước lượng gradient không chệch | Nối thông tin mẫu với mục tiêu đúng | Gradient mẫu → kỳ vọng/hiệp phương sai | B08, LLO12/CLO2 | Chuẩn hóa giả thiết độc lập, phân phối đều có hoàn lại; không gộp với rủi ro tổng thể |
 | B04 — Một bước gradient ngẫu nhiên | Kiểm ranh giới của tính không chệch bằng phản ví dụ | Ước lượng → tham số 0.8, $J$ tăng 0.02 | B08, LLO11–12/CLO1–2 | Tách bước tính trước thuật toán; ví dụ mới |
 | B05 — Phương pháp hạ gradient ngẫu nhiên | Cho quy trình có thể thực hiện sau khi đã tính tay | B04 → đầu vào/lặp/dừng/đầu ra | B08/E02, LLO12/CLO2 | Giữ thuật toán 8.1, bổ sung cách theo dõi cụ thể |
@@ -127,7 +127,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | A06 | Câu nhu cầu từ kết quả lồi; hai cột hình hai loại điểm và công thức; khối kết luận dưới. Giữ hai phản ví dụ trong một luận điểm về giới hạn điểm dừng. |
 | A07 | Nhãn câu hỏi, bảng hai thời điểm rồi hai yêu cầu lựa chọn bản lưu/phân loại gốc. Giữ hai minh chứng đánh giá của phần A. |
 | B01 | Phép lặp hạ gradient và định nghĩa $g_i$ trên, công thức gradient đầy đủ, giả thiết chi phí $C$, bảng đối chiếu dưới. Giữ nhu cầu trước kỹ thuật lấy mẫu. |
-| B02 | Hai cột; hình âm gradient trái, công thức/bảng gradient phải. Giữ cùng điểm tham số khi so các mẫu. |
+| B02 | Câu nối trên; hai cột hình âm gradient trái, công thức/bảng gradient và $J'(1)=\bar g$ phải. Giữ cùng điểm tham số khi so các mẫu. |
 | B03 | Giả thiết và định nghĩa trên; hai khối kỳ vọng/hiệp phương sai; ví dụ vô hướng dưới. Sửa miền của cỡ nhóm. |
 | B04 | Hai cột; đồ thị hai mất mát và phép tính bước/giá trị. Giữ phản ví dụ nhìn và tính được. |
 | B05 | Đầu vào trên; hai cột cho thao tác cập nhật và theo dõi/dừng. Sửa miền nguyên dương trong đầu vào. |

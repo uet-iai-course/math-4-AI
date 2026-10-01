@@ -246,6 +246,8 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Thời lượng:** 0.05 giờ LT.
 - **Ghi chú soạn:** Phân biệt mũi tên gradient và mũi tên bước âm gradient. Gradient đầy đủ bằng 0 không làm từng gradient mẫu bằng 0.
 
+- **Sửa ngày 2026-10-01:** Câu mở nối với nhóm nhỏ ở B01. Dòng $J=\tfrac12(\theta-1)^2+\tfrac43$ bị bỏ vì A03 đã có; trung bình viết thành $J'(1)=\bar g=0$ để nêu kết quả kế thừa.
+
 #### B03 — Ước lượng gradient không chệch
 
 - **Vai trò và mục tiêu:** Hình thức KN2 sau ví dụ; MT2.

@@ -83,13 +83,13 @@ $$
 
 Nếu mỗi gradient mẫu có chi phí $C$, một gradient đầy đủ cần khoảng $NC$ công việc, còn trung bình của một nhóm nhỏ (minibatch) gồm $b$ gradient mẫu cần khoảng $bC$. Số phép đánh giá chưa xác định thời gian chạy trên phần cứng; chi phí mỗi bước cũng chưa xác định tổng chi phí đạt chất lượng mục tiêu.
 
-Trong ví dụ ba quan sát, $g_i(\theta)=\theta-y_i$. Tại $\theta=1$:
+Nhóm nhỏ chỉ dùng một phần các $g_i$, nên cần biết các $g_i$ khác $\nabla J$ đến mức nào tại cùng một tham số. Trong ví dụ ba quan sát, $g_i(\theta)=\theta-y_i$. Tại $\theta=1$:
 
 | $y_i$ | $-1$ | $1$ | $3$ |
 |---|---:|---:|---:|
 | $g_i(1)$ | $2$ | $0$ | $-2$ |
 
-Gradient trung bình bằng 0, nhưng hai gradient mẫu khác 0. Âm gradient của mẫu $-1$ hướng sang trái; âm gradient của mẫu $3$ hướng sang phải.
+Gradient trung bình bằng $J'(1)=0$, nhưng hai gradient mẫu khác 0; một nhóm chỉ chứa mẫu $-1$ sẽ dịch tham số sang trái dù nghiệm đã đạt. Âm gradient của mẫu $-1$ hướng sang trái; âm gradient của mẫu $3$ hướng sang phải.
 
 ![Các hướng âm gradient của ba mẫu tại cùng tham số θ=1; trung bình ba gradient bằng không.](img/lec-05/sample-directions.svg)
 
