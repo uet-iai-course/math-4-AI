@@ -69,7 +69,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | B07 — Bước học và dao động gần nghiệm | Giải thích điều chỉnh bước bằng nhiễu còn lại | B03/B06 → phương sai cập nhật tỷ lệ $\eta^2$ | B08, LLO12/CLO2 | Giữ động cơ §8.3.1; không đưa định lý thiếu giả thiết. Sửa 2026-10-01: thêm câu nối từ chi phí của $b$ sang bước học |
 | B08 — Cập nhật từ một nhóm quan sát | Đo phối hợp lấy mẫu, bước và kỳ vọng | B02–B07 → thao tác độc lập đã kiểm | Kiểm tra riêng B, LLO12/CLO2 | Thêm bài tập; đề chứa đủ $y=(-1,1,3)$, mất mát và $J$ trung bình trước dữ kiện nhóm. Sửa 2026-10-01: yêu cầu viết bằng động từ học tập; câu nối sang C nêu giới hạn độ cong với gradient đầy đủ |
 | C01 — Hướng gradient trên hàm bậc hai | Mở giới hạn hình học ngay cả khi gradient chính xác | Gradient B + B04 → hình/hàm cố định | LLO11–12/CLO1–2 | Giữ đúng VD2 B04; không gọi điều kiện cực kỳ kém. Sửa 2026-10-01: tiêu đề nêu điều trang chỉ ra; câu mở gác nhiễu lấy mẫu; khối kết luận so $-g_0$ với hướng về cực tiểu |
-| C02 — Độ cong và độ dài bước | Tái sử dụng Hessian để đọc chuyển động | VD2 → hai hệ số khác dấu với $\eta=1/4$ | C08, LLO11/CLO1 | Nhắc kết quả B04 trước cơ chế momentum |
+| C02 — Độ cong và bước học | Tái sử dụng Hessian để đọc chuyển động | VD2 → hai hệ số khác dấu với $\eta=1/4$ | C08, LLO11/CLO1 | Nhắc kết quả B04 trước cơ chế momentum. Sửa 2026-10-01: Taylor vào ghi chú; khối kết luận nêu chặn bước bởi độ cong lớn và hệ số $0.85/0.65$ của $\eta=1/20$, chuẩn bị C03 |
 | C03 — Tích lũy hướng cập nhật | Cho $v,\beta$ nghĩa tính toán trước quy tắc | Độ cong → hai vectơ và bước có lịch sử | C08, LLO12/CLO2 | Thêm tính tay; công bố đổi $\eta$ sang $1/20$ |
 | C04 — Phương pháp momentum | Tổng quát hóa bước cụ thể, có trạng thái/dừng | C03 → HT5 và giả mã | C08/E02, LLO12/CLO2 | Giữ §8.3.2, lược cơ học/lực cản dài |
 | C05 — Quỹ đạo của phương pháp momentum | Kiểm cùng bài toán khi thay quy tắc | HT5 → đối chứng quỹ đạo/giá trị hàm | LLO12/CLO2 | Kế thừa cách Boyd giữ ví dụ, không chọn hình có lợi riêng |
@@ -135,7 +135,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | B07 | Câu nối từ chi phí của $b$ trên; hai cột hình bước ngẫu nhiên và công thức phương sai cập nhật. Giữ cùng điểm để cô lập tác dụng của bước học. |
 | B08 | Đề tự chứa phía trên, hai khối nhóm đã quan sát/trước lấy nhóm. Giữ phân biệt hiện thực và kỳ vọng. |
 | C01 | Câu mở gác nhiễu lấy mẫu; hai cột đường mức trái, hàm/Hessian/điểm đầu phải; khối so hướng $-g_0$ với hướng về cực tiểu dưới. Giải nghĩa số điều kiện trong notes. |
-| C02 | Hai cột; quỹ đạo trái, hai hệ số và điều kiện bước phải; công thức Taylor dưới. Giữ bước 1/4 được công bố. |
+| C02 | Hai cột; quỹ đạo trái, hai hệ số và điều kiện bước phải; khối kết luận về chặn bước và $\eta=1/20$ dưới. Giữ bước 1/4 được công bố. |
 | C03 | Cấu hình trên; hai cột hình ghép vectơ và phép tính từng bước. Giữ ví dụ trước công thức momentum. |
 | C04 | Đầu vào trên; hai khối cập nhật/tổng tích lũy; chi phí và dừng dưới. Sửa bước cố định. |
 | C05 | Hai cột; quỹ đạo đối chứng trái, bảng kết quả phải; trường hợp gradient hằng dưới. Giữ cùng cấu hình. |

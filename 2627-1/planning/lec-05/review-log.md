@@ -235,3 +235,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | B06 | chưa nối $b$ là đầu vào thuật toán B05 → thêm vào ghi chú. **Đã đóng.**
   - nhẹ | B08 (ghi chú) | mẫu dấu hai chấm tiết lộ (no-ai-slop) → viết thành câu thường. **Đã đóng.**
   - nhẹ | B08→C01 | ranh giới chỉ nằm trong ghi chú → đã xử lý ở commit sửa C01. **Đã đóng.**
+- **C02 — sửa.** Đẳng thức Taylor ở cuối là luận điểm thứ hai không được dùng trên mặt trang; trang không nêu hệ quả dẫn sang C03, nên việc đổi sang $\eta=1/20$ ở C03 trông tùy ý. Tiêu đề mới “Độ cong và bước học”; Taylor chuyển vào ghi chú; khối kết luận nêu bước học bị chặn bởi độ cong lớn, và với $\eta=1/20$ hai hệ số $0.85$, $0.65$ (không vượt trục, hướng cong nhỏ co chậm). Ghi chú diễn giả và ghi chú bài giảng thêm $0.85^{10}\approx0.20$ và căn cứ cho việc tích lũy hướng.

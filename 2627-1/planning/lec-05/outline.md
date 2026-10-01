@@ -356,7 +356,7 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 
 - **Sửa ngày 2026-10-01:** Tiêu đề “Hướng gradient trên hàm bậc hai”. Câu mở: gác nhiễu lấy mẫu, với gradient đầy đủ hướng bước vẫn phụ thuộc độ cong. Khối dưới: $-g_0\propto(3,14)^T$ lệch khỏi hướng về cực tiểu $-\theta_0\propto(1,2)^T$. Ghi chú nói rõ $q$ và điểm đầu lấy từ Bài 04, cực tiểu duy nhất là gốc.
 
-#### C02 — Độ cong và độ dài bước
+#### C02 — Độ cong và bước học
 
 - **Vai trò và mục tiêu:** Ví dụ và hình thức về giới hạn bước; MT1.
 - **Luận điểm trung tâm:** Cùng một bước học tạo hệ số biến đổi khác nhau theo các hướng có độ cong khác nhau.
@@ -367,6 +367,8 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Nguồn:** B04; DL (4.9)/(8.10), hình 4.6.
 - **Thời lượng:** 0.08 giờ LT.
 - **Ghi chú soạn:** Đây là kết quả chính xác riêng cho bậc hai xác định dương. Từ C03 dùng cấu hình đối chứng mới $\eta=1/20,\beta=1/2$ và công bố rõ sự thay đổi.
+
+- **Sửa ngày 2026-10-01:** Tiêu đề “Độ cong và bước học”. Đẳng thức Taylor chuyển vào ghi chú (mặt trang không dùng). Điều kiện viết $|1-\eta\lambda_i|<1\iff0<\eta<2/7$. Khối kết luận: bước học bị chặn bởi độ cong lớn; với $\eta=1/20$ hai hệ số $0.85$, $0.65$, không vượt trục nhưng hướng cong nhỏ co chậm. Ghi chú: $0.85^{10}\approx0.20$, hướng nhất quán là căn cứ của tích lũy.
 
 #### C03 — Tích lũy hướng cập nhật
 
