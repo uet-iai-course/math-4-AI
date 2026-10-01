@@ -164,7 +164,7 @@ khi $\eta=1$ và bỏ $\varepsilon$ để tính tay. Bộ nhớ và chi phí ngo
 
 ### 2.3. Adam và hiệu chỉnh trọng số
 
-Adam lưu cả trung bình mũ của gradient và bình phương gradient. Với $m_0=v_0=0$, $0<\beta_1,\beta_2<1$,
+Adam (ước lượng moment thích ứng, adaptive moment estimation) giữ mẫu số của RMSProp và thay tử $g_t$ bằng trung bình mũ $m_t$ của gradient, cùng vai trò tích lũy hướng như vận tốc của momentum ở Bài 05. Như vậy Adam lưu cả trung bình mũ của gradient và của bình phương gradient. Hai trung bình bắt đầu từ $0$ nên ở các vòng đầu có tổng trọng số nhỏ hơn $1$ và cần hiệu chỉnh. Với $m_0=v_0=0$, $0<\beta_1,\beta_2<1$,
 
 $$
 \begin{aligned}

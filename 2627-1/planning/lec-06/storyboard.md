@@ -241,7 +241,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Moment khởi tạo bằng 0 cần được đối chiếu với tổng trọng số trước khi xuất hiện phép hiệu chỉnh Adam.
 - **Kế thừa, đầu ra và vị trí trong sườn:** B05 cung cấp moment bậc hai; B06 cần thêm moment bậc nhất và hiệu chỉnh, B07 nêu đầy đủ thứ tự.
 - **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN3; MT1.
-- **Quyết định và lý do:** Giữ bảng thô/hiệu chỉnh để tránh đưa toàn bộ giả mã trước nhu cầu. Đặc tả tại B06 trong outline.md.
+- **Quyết định và lý do:** Giữ bảng thô/hiệu chỉnh để tránh đưa toàn bộ giả mã trước nhu cầu. Sửa 2026-10-02: câu mở nêu Adam = mẫu số RMSProp + tử là trung bình mũ của gradient (nối momentum Bài 05), và lý do cần hiệu chỉnh. Đặc tả tại B06 trong outline.md.
 - **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,03 tiết bài tập; tính hai moment và hiệu chỉnh vòng đầu; phân biệt với giả thiết không chệch.
 
 ### B07. Thuật toán Adam

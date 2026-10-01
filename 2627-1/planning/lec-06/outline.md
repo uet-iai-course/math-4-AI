@@ -184,6 +184,7 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Nguồn:** DL, §8.5.3; AD, thuật toán 1 và §3; ví dụ V4 tự xây dựng.
 - **Thời lượng:** 0,05 tiết lý thuyết + 0,03 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Tham số chọn để tính tay, không phải mặc định triển khai. Cùng bước đầu trong ví dụ không có nghĩa ba thuật toán tương đương. Chia cho tổng trọng số 1−β^t loại ảnh hưởng khởi tạo 0; chỉ gọi không chệch đối với moment chung khi giả định moment đó không đổi.
+- **Sửa ngày 2026-10-02:** Câu mở: Adam giữ mẫu số RMSProp, thay tử $g_t$ bằng trung bình mũ $m_t$ như momentum (Bài 05); hai trung bình bắt đầu từ $0$ nên cần hiệu chỉnh. Ghi chú nêu tên đầy đủ adaptive moment estimation.
 
 #### B07. Thuật toán Adam
 
