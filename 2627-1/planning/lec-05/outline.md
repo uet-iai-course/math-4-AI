@@ -399,7 +399,7 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 
 - **Rà ngày 2026-10-01:** Giữ mặt trang; ghi chú nối tên “bước dịch chuyển” của C03 với “vận tốc (velocity)”.
 
-#### C05 — Quỹ đạo của phương pháp momentum
+#### C05 — Đối chứng momentum với hạ gradient
 
 - **Vai trò và mục tiêu:** Ứng dụng và giới hạn KN3; MT2.
 - **Luận điểm trung tâm:** Giữ hàm và cấu hình giúp quy khác biệt quỹ đạo cho trạng thái tích lũy.
@@ -410,6 +410,8 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Nguồn:** DL hình 8.5 và (8.17); tính VD2; cách đối chứng kế thừa BV/BS.
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Gradient hằng là trường hợp riêng, không giả thiết toàn quỹ đạo. Không lấy hai bước để kết luận thứ hạng phổ quát hoặc tuyên bố sửa được điểm yên ngựa/bão hòa.
+
+- **Sửa ngày 2026-10-01:** Tiêu đề “Đối chứng momentum với hạ gradient”. Dòng gradient hằng thêm giới hạn $-\eta g/(1-\beta)$, tức bước hiệu dụng $2\eta$ khi $\beta=1/2$.
 
 #### C06 — Điểm đánh giá gradient
 
