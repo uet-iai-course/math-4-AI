@@ -1,6 +1,6 @@
 # Storyboard Bài 05 — Các phương pháp tối ưu trong huấn luyện mô hình học sâu
 
-Bản mới ngày 2026-09-25, cập nhật triển khai ngày 2026-09-26. Bản RevealJS hiện có 37 trang, 5 phần ngoài; đã qua cổng storyboard, năm vai rà và tái kiểm độc lập; kiểm định cuối đạt. [Dàn bài](outline.md) chứa nguồn, công thức, dữ kiện, đáp án và thời lượng từng trang; [nhật ký](review-log.md) ghi trạng thái kiểm định. Không sử dụng nội dung dàn bài trước.
+Bản mới ngày 2026-09-25, cập nhật triển khai ngày 2026-09-26. Bản RevealJS hiện có 37 trang, 5 phần ngoài; đã qua cổng storyboard, năm vai rà và tái kiểm độc lập; kiểm định cuối đạt; duyệt lại từng trang ngày 2026-10-01 (xem review-log). [Dàn bài](outline.md) chứa nguồn, công thức, dữ kiện, đáp án và thời lượng từng trang; [nhật ký](review-log.md) ghi trạng thái kiểm định. Không sử dụng nội dung dàn bài trước.
 
 Quy ước thuật ngữ: lý thuyết (LT), bài tập (BT), chuẩn đầu ra bài học (LLO), chuẩn đầu ra học phần (CLO), phương pháp hạ gradient (GD), phương pháp hạ gradient ngẫu nhiên (SGD), phương pháp gradient gia tốc Nesterov (NAG), hàm tuyến tính chỉnh lưu (ReLU).
 
@@ -8,7 +8,7 @@ Quy ước ký hiệu: $\theta_t$ là vectơ ở vòng lặp $t$; $[\theta]_i$ l
 
 ## Vấn đề trung tâm và các kết nối lớn
 
-Thiết lập quy trình huấn luyện từ dữ liệu hữu hạn, giải thích cách lấy gradient, cập nhật tham số và khởi tạo; phân biệt giảm mất mát huấn luyện với dự đoán tốt. Năm phần đều có đầu vào, đầu ra và kiểm tra riêng:
+Huấn luyện mạng từ dữ liệu hữu hạn đòi hỏi ba quyết định: (1) cực tiểu đại lượng nào và chọn kết quả theo tiêu chí nào; (2) dùng gradient thế nào với chi phí chấp nhận được; (3) bắt đầu từ đâu ($\theta_0$). Phần A trả lời (1), B và C trả lời (2), D trả lời (3), E phối hợp ba câu trả lời cùng giới hạn của chúng; giảm mất mát huấn luyện được phân biệt với dự đoán tốt. Năm phần đều có đầu vào, đầu ra và kiểm tra riêng:
 
 | Phần | Nhận từ trước | Chức năng riêng | Đầu ra được phần sau dùng | LT + BT |
 |---|---|---|---|---|
@@ -115,7 +115,7 @@ Các phần sửa C01–C08 và D04–D11 cần tái kiểm toán học/mạch k
 
 ## Bố cục thực tế sau sửa ngày 2026-09-26
 
-Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang phía trên; không tạo thêm trang hoặc mã. Thứ tự nguồn đọc trên màn hình là từ trên xuống, rồi trái sang phải; ở khung hẹp các cột xếp dọc và vùng công thức/bảng cuộn ngang bằng bàn phím. Chỉ tiêu đề D11 thay đổi.
+Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang phía trên; không tạo thêm trang hoặc mã. Thứ tự nguồn đọc trên màn hình là từ trên xuống, rồi trái sang phải; ở khung hẹp các cột xếp dọc và vùng công thức/bảng cuộn ngang bằng bàn phím. Lượt duyệt từng trang ngày 2026-10-01 đổi tiêu đề A03, A05, A06, A07, B06, C01, C02, C05, C06, C08, D04, E01 và cập nhật các dòng bố cục tương ứng; chi tiết trong review-log.
 
 | Mã | Bố cục hiện tại và quyết định |
 |---|---|
@@ -153,7 +153,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | D09 | Hai cột; quy tắc phương sai, định nghĩa phân phối đều và phép suy biên $a$ trái, ví dụ 4→2 phải. Giữ thỏa hiệp sau bảng xung đột. |
 | D10 | Mạng và khối giả thiết trên, công thức lặp, bảng ba lớp, chú thích kết luận dưới. Giữ bảng mô hình có thể tính lại. |
 | D11 | Nhãn câu hỏi ghi hai tiểu bài toán độc lập; hai khối đối xứng/thang với yêu cầu “Tính… Giải thích… Nêu…”. |
-| E01 | Sơ đồ vận hành trên, bảng quyết định (kèm phần A–D)/đối tượng/đại lượng, khối nối với ba câu hỏi mở đầu dưới. Giữ đúng thứ tự thực thi. |
+| E01 | Sơ đồ vận hành (gắn $J$ với A) trên, bảng quyết định (kèm phần A–D)/đối tượng/đại lượng, khối nối với ba câu hỏi mở đầu dưới. Giữ đúng thứ tự thực thi. |
 | E02 | Hai khối; dữ liệu/khởi tạo trái, bảng xác thực/tiểu bài vectơ phải. Giữ tách các mô hình trong đề. |
 | E03 | Bảng ba câu hỏi/kết quả/giới hạn, khối nguồn đọc dưới. Giữ ranh giới bài sau. |
 

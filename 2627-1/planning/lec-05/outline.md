@@ -631,7 +631,7 @@ Chức năng: trở lại bài toán A03 và phối hợp các lựa chọn; kh�
 
 - **Vai trò và mục tiêu:** Tổng hợp và ứng dụng các kết quả A–D; MT1–MT3.
 - **Luận điểm trung tâm:** Chọn gradient, cập nhật và khởi tạo là các quyết định phối hợp nhưng có nhiệm vụ khác nhau.
-- **Ý chính:** Bảng ba quyết định: dữ liệu nào tạo gradient; có lưu vận tốc/đo tại đâu; tham số bắt đầu được tạo thế nào. Thêm tiêu chí xác thực và ngân sách để chọn kết quả.
+- **Ý chính:** Bảng bốn quyết định gắn với phần xây dựng chúng: nguồn gradient (B), quy tắc cập nhật (C), khởi tạo (D), lựa chọn kết quả (A, B); bốn quyết định trả lời ba câu hỏi của A02.
 - **Ví dụ/hình dự kiến:** Sơ đồ đúng thứ tự chạy: dữ liệu/mất mát → khởi tạo → lặp lấy nhóm/tính gradient/cập nhật → đánh giá. Bên cạnh ghi đối tượng được kiểm ở từng bước.
 - **Hình thức hóa:** Dùng lại $D,J,\theta_0,\widehat g_t,v_t$, không thêm công thức mới.
 - **Kết nối:** Nhận đầu ra D; E02 dùng các thành phần trên để chẩn đoán một tình huống.

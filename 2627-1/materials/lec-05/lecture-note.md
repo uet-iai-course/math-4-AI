@@ -1,6 +1,6 @@
 # Bài 05 — Các phương pháp tối ưu trong huấn luyện mô hình học sâu
 
-Huấn luyện một mô hình từ dữ liệu hữu hạn đòi hỏi xác định hàm mục tiêu, xây dựng thông tin gradient, lựa chọn quy tắc cập nhật và khởi tạo tham số. Chất lượng dự đoán trên dữ liệu mới còn phụ thuộc tiêu chí đánh giá và cách sử dụng dữ liệu. Ba quyết định trung tâm là cực tiểu đại lượng nào, dùng gradient thế nào với chi phí chấp nhận được, và bắt đầu từ tham số nào. Phần A xác định đại lượng cần cực tiểu và tiêu chí chọn kết quả; phần B và C xử lý cách ước lượng và sử dụng gradient; phần D chọn điểm khởi đầu; phần E phối hợp các quyết định thành một quy trình. Bộ bài tập đi kèm chứa các nhiệm vụ tính toán, chứng minh và vận dụng độc lập.
+Huấn luyện một mô hình từ dữ liệu hữu hạn đòi hỏi xác định hàm mục tiêu, xây dựng thông tin gradient, lựa chọn quy tắc cập nhật và khởi tạo tham số. Chất lượng dự đoán trên dữ liệu mới còn phụ thuộc tiêu chí đánh giá và cách sử dụng dữ liệu. Ba quyết định trung tâm là cực tiểu đại lượng nào, dùng gradient thế nào với chi phí chấp nhận được, và bắt đầu từ đâu ($\theta_0$). Phần A xác định đại lượng cần cực tiểu và tiêu chí chọn kết quả; phần B và C xử lý cách ước lượng và sử dụng gradient; phần D chọn điểm khởi đầu; phần E phối hợp các quyết định thành một quy trình. Bộ bài tập đi kèm chứa các nhiệm vụ tính toán, chứng minh và vận dụng độc lập.
 
 Kết quả cần đạt: phân biệt mục tiêu huấn luyện và đánh giá; tính gradient nhóm cùng bước SGD, momentum, Nesterov; giải thích đối xứng và tính thang khởi tạo theo giả thiết đã nêu.
 
@@ -435,7 +435,7 @@ Thứ tự thực thi bắt đầu từ dữ liệu và mất mát, tiếp đế
 | Nguồn gradient (B) | $D,b,\widehat g_t$ | Số phép đánh giá mẫu, phương sai, bộ nhớ |
 | Quy tắc cập nhật (C) | $\theta_t,v_t$, điểm gradient | Trạng thái, bước học, phép tính tại đúng vị trí |
 | Khởi tạo (D) | $\theta_0$ | Đối xứng và thang tín hiệu, gradient |
-| Lựa chọn kết quả (A) | Tiêu chí xác thực, ngân sách, bộ đếm | Giá trị tốt nhất đã thấy và điều kiện dừng |
+| Lựa chọn kết quả (A, B) | Tiêu chí xác thực, ngân sách, bộ đếm | Giá trị tốt nhất đã thấy và điều kiện dừng |
 
 Gradient nhóm nhỏ có thể giảm công việc mỗi bước. Momentum thay cách dùng lịch sử; Nesterov thêm thay đổi vị trí gradient. Khởi tạo trọng số khác nhau xử lý sự đồng nhất của đơn vị, còn thang trọng số liên quan tín hiệu và gradient qua lớp. Tiêu chí xác thực quyết định lựa chọn mô hình sau các cập nhật.
 
@@ -447,7 +447,7 @@ Gradient nhóm lấy đều là một lựa chọn giảm số đánh giá mẫu
 Trong tiểu bài toán độc lập ở $\mathbb R^2$, trạng thái $\theta=(1,1)^T$, $v=(-0.2,0.2)^T$, $\beta=0.5$ cho điểm gradient Nesterov $(0.9,1.1)^T$. Vectơ hai chiều này không phải toàn bộ tham số của mạng vừa mô tả.
 :::
 
-Ba câu hỏi mở đầu có câu trả lời kèm giới hạn. Huấn luyện cực tiểu $J$ và chọn bản lưu theo xác thực, nhưng $J$ nhỏ chưa kéo theo $R$ nhỏ. Gradient nhóm không chệch với phương sai $\Sigma/b$, momentum và Nesterov thay cách dùng gradient, nhưng không quy tắc nào bảo đảm giảm $J$ ở mỗi bước. Trọng số ngẫu nhiên phá đối xứng và thang Glorot giữ phương sai, nhưng thang được suy dưới mô hình tuyến tính với các giả thiết độc lập. Các phép tính trong bài cho phép kiểm một thiết lập huấn luyện mà không đồng nhất các loại kết luận: không chệch của gradient, thay đổi mất mát từng bước, thang khởi tạo và chất lượng xác thực là các thuộc tính khác nhau. Phạm vi Bài 06 tiếp tục với các thuật toán và chiến lược trong §§8.5–8.7 của *Deep Learning*.
+Huấn luyện cực tiểu $J$ và chọn bản lưu theo xác thực, nhưng $J$ nhỏ chưa kéo theo $R$ nhỏ. Khi lấy chỉ số đều và độc lập, gradient nhóm không chệch với hiệp phương sai $\Sigma/b$; momentum và Nesterov thay cách dùng gradient, nhưng ba quy tắc này không tự bảo đảm giảm $J$ ở mỗi bước. Trọng số ngẫu nhiên phá đối xứng và thang Glorot dung hòa phương sai chiều tiến và chiều lùi, nhưng thang được suy dưới mô hình tuyến tính với các giả thiết độc lập. Các phép tính trong bài cho phép kiểm một thiết lập huấn luyện mà không đồng nhất các loại kết luận: không chệch của gradient, thay đổi mất mát từng bước, thang khởi tạo và chất lượng xác thực là các thuộc tính khác nhau. Phạm vi Bài 06 tiếp tục với các thuật toán và chiến lược trong §§8.5–8.7 của *Deep Learning*.
 
 ## Tài liệu tham khảo
 
