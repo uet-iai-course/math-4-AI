@@ -567,6 +567,7 @@ Chức năng: huấn luyện theo giai đoạn. Đầu vào: Mô hình, mục ti
 - **Nguồn:** DL, §8.7.6; ví dụ V14 tự xây dựng.
 - **Thời lượng:** 0,04 tiết lý thuyết + 0,02 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Bậc bốn vẫn dùng đạo hàm một biến đã học. Các nghiệm được kiểm đại số ở F04; không đưa xác suất Gaussian làm tiên quyết mới.
+- **Sửa ngày 2026-10-02:** Câu mở: giải mục tiêu dễ trước rồi chuyển dần về đích, đích $\lambda=0$. Khung: nghiệm giai đoạn trước làm điểm đầu cho giai đoạn sau; điều kiện kiểm đường điểm dừng chuyển vào ghi chú.
 
 #### F04. Phương pháp tiếp diễn
 

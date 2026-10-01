@@ -457,7 +457,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Sau cách đổi điểm đầu, cần thấy một họ mục tiêu trên cùng tham số có cấu trúc nghiệm thay đổi theo lịch.
 - **Kế thừa, đầu ra và vị trí trong sườn:** F02 thay điểm đầu; F03 cho mục tiêu đổi có tham số λ, F04 kiểm điều kiện và giới hạn truyền nghiệm.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN12; MT3.
-- **Quyết định và lý do:** Giữ họ phạt tính được bằng đạo hàm một biến, không thêm xác suất Gaussian. Đặc tả tại F03 trong outline.md.
+- **Quyết định và lý do:** Giữ họ phạt tính được bằng đạo hàm một biến, không thêm xác suất Gaussian. Sửa 2026-10-02: câu mở nêu ý tưởng giải mục tiêu dễ trước rồi chuyển dần về đích; khung rút gọn, điều kiện kiểm đường điểm dừng vào ghi chú. Đặc tả tại F03 trong outline.md.
 - **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,02 tiết bài tập; so ba đồ thị và các điểm cực tiểu theo λ.
 
 ### F04. Phương pháp tiếp diễn

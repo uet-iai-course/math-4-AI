@@ -642,7 +642,7 @@ Ví dụ chứng minh hai điểm đầu tạo hành vi khác nhau. Nó không c
 
 ### 6.2. Phương pháp tiếp diễn
 
-Phương pháp tiếp diễn (continuation) dùng họ mục tiêu trên cùng không gian tham số, với lịch $F_{\lambda_0},\ldots,F_{\lambda_K}=F$ đích. Mỗi bài toán con được giải theo tiêu chí đã định, rồi kết quả giai đoạn trước làm điểm đầu giai đoạn sau:
+Khi mục tiêu đích có nhiều điểm dừng, có thể giải trước một mục tiêu dễ hơn, chẳng hạn chỉ có một cực tiểu, rồi chuyển dần về mục tiêu đích. Phương pháp tiếp diễn (continuation) dùng họ mục tiêu trên cùng không gian tham số, với lịch $F_{\lambda_0},\ldots,F_{\lambda_K}=F$ đích. Mỗi bài toán con được giải theo tiêu chí đã định, rồi kết quả giai đoạn trước làm điểm đầu giai đoạn sau:
 
 $$
 \theta_{k,0}=\theta_{k-1,\mathrm{out}}.
