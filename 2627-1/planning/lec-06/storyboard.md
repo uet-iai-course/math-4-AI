@@ -281,7 +281,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Giải một hệ cụ thể làm rõ vai trò của Hessian trước mô hình Taylor tổng quát.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C01 cho độ cong; C03 tổng quát hóa khi Hessian thay đổi theo tham số.
 - **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Ví dụ tính tay KN4; MT2.
-- **Quyết định và lý do:** Giữ phép khử ẩn riêng để không trộn suy diễn tổng quát với ví dụ số. Đặc tả tại C02 trong outline.md.
+- **Quyết định và lý do:** Giữ phép khử ẩn riêng để không trộn suy diễn tổng quát với ví dụ số. Sửa 2026-10-02: nêu hệ $Qd=-g$ là bước có phạt với $M=Q$, $\eta=1$, nối A04. Đặc tả tại C02 trong outline.md.
 - **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,03 tiết bài tập; giải hai phương trình và kiểm giá trị mục tiêu sau bước.
 
 ### C03. Phương pháp Newton

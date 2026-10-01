@@ -258,6 +258,7 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Nguồn:** Ví dụ V5 tự xây dựng; DL, §8.6.1.
 - **Thời lượng:** 0,04 tiết lý thuyết + 0,03 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Phân biệt giải hệ với tính tường minh nghịch đảo; kết quả một bước đòi hỏi hàm bậc hai và giải hệ chính xác.
+- **Sửa ngày 2026-10-02:** Thẻ trái mở bằng “Ma trận phạt bằng Hessian, $M=Q$, $\eta=1$” thay cho “Điều kiện dừng của mô hình bậc hai”, nối bước Newton với bước có phạt của A04.
 
 #### C03. Phương pháp Newton
 

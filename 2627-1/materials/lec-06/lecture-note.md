@@ -246,7 +246,7 @@ F(\theta)=\frac12\theta^\top Q\theta,
 \qquad\theta=(1,0)^\top.
 $$
 
-Gradient là $g=(2,1)^\top$. Hướng $-g$ không cùng phương với vectơ nối tới nghiệm $0$. Giải hệ
+Gradient là $g=(2,1)^\top$. Hướng $-g$ không cùng phương với vectơ nối tới nghiệm $0$. Lấy ma trận phạt của mục 1.3 bằng Hessian, $M=Q$, $\eta=1$, thì bước có phạt là nghiệm của hệ
 
 $$
 Qd=-g

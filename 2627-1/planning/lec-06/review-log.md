@@ -1088,3 +1088,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | storyboard KN0 | trực quan nay ở cả A04 → cập nhật sáu bước. **Đã đóng.**
   - nhẹ | ghi chú bài giảng 2.4 | tiêu đề mục theo B08 → “Giới hạn của ma trận phạt đường chéo”. **Đã đóng.**
   - nhẹ | C01 | ranh giới B→C → đã xử lý ở commit sửa C01 (khung nêu phần tử ngoài đường chéo, ghi chú nối B08). **Đã đóng.**
+- **C02 — sửa.** Hệ $Qd=-g$ được gọi là “điều kiện dừng của mô hình bậc hai” mà không nối với ma trận phạt vừa học. Thẻ trái nay nêu bước Newton là bước có phạt với $M=Q$, $\eta=1$; ghi chú diễn giả và ghi chú bài giảng mục 3.1 nêu mối nối này.
