@@ -167,9 +167,9 @@ với $\eta_t>0$ và các chỉ số mới được lấy độc lập đều c�
 
 Các bước 3–5 tạo thành quy tắc dừng sớm (early stopping). Quy tắc này cần thiết vì một bước ngẫu nhiên có thể làm tăng $J$, còn việc chọn tham số dựa vào ước lượng rủi ro trên tập xác thực. Một cải thiện dương nhưng không vượt $\delta$ vẫn được lưu và vẫn tăng bộ đếm. Quy tắc này xác định riêng việc chọn bản lưu và việc tiếp tục huấn luyện. Nó không phải định lý hội tụ. Một bước SGD cũng không đồng nghĩa một lượt qua dữ liệu: với lấy mẫu có hoàn lại, $N/b$ bước chỉ tương đương $N$ lần đánh giá mẫu, chưa bảo đảm đã gặp mọi mẫu.
 
-### Cỡ nhóm và bước học
+### Cỡ nhóm, sai số chuẩn và bước học
 
-Sai số chuẩn của ước lượng là căn bậc hai của phương sai của nó. Trong ví dụ ba quan sát, phương sai và sai số chuẩn của gradient nhóm tại $\theta=1$ là
+Kết quả $\operatorname{Cov}(\widehat g)=\Sigma/b$ cho phép chọn cỡ nhóm theo độ phân tán của ước lượng. Sai số chuẩn của ước lượng là căn bậc hai của phương sai của nó, cùng đơn vị với gradient. Trong ví dụ ba quan sát, phương sai và sai số chuẩn của gradient nhóm tại $\theta=1$ là
 
 | $b$ | Phương sai $8/(3b)$ | Sai số chuẩn $\sqrt{8/(3b)}$ |
 |---|---:|---:|

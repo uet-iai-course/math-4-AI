@@ -65,7 +65,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | B03 — Ước lượng gradient không chệch | Nối thông tin mẫu với mục tiêu đúng | Gradient mẫu → kỳ vọng/hiệp phương sai | B08, LLO12/CLO2 | Chuẩn hóa giả thiết độc lập, phân phối đều có hoàn lại; không gộp với rủi ro tổng thể. Sửa 2026-10-01: thêm câu trực quan về lấy đều, nhãn Mệnh đề, phép tính $\Sigma=8/3$ |
 | B04 — Một bước gradient ngẫu nhiên | Kiểm ranh giới của tính không chệch bằng phản ví dụ | Ước lượng → tham số 0.8, $J$ tăng 0.02 | B08, LLO11–12/CLO1–2 | Tách bước tính trước thuật toán; ví dụ mới. Sửa 2026-10-01: gọi tên bước học $\eta$ ở lần dùng đầu trong phép cập nhật ngẫu nhiên |
 | B05 — Phương pháp hạ gradient ngẫu nhiên | Cho quy trình có thể thực hiện sau khi đã tính tay | B04 → đầu vào/lặp/dừng/đầu ra | B08/E02, LLO12/CLO2 | Giữ thuật toán 8.1, bổ sung cách theo dõi cụ thể. Sửa 2026-10-01: gọi tên dừng sớm, nêu lý do từ B04/A05; đầu vào ghi tên từng ký hiệu |
-| B06 — Kích thước nhóm nhỏ | Dùng kết quả phương sai để chọn đánh đổi | HT2 → biến thiên/chi phí/bộ nhớ | B08/E02, LLO12/CLO2 | Gộp các yếu tố cần thiết §8.1.3, bỏ cỡ nhóm mặc định lịch sử |
+| B06 — Cỡ nhóm và sai số chuẩn | Dùng kết quả phương sai để chọn đánh đổi | HT2 → biến thiên/chi phí/bộ nhớ | B08/E02, LLO12/CLO2 | Gộp các yếu tố cần thiết §8.1.3, bỏ cỡ nhóm mặc định lịch sử. Sửa 2026-10-01: tiêu đề nêu quan hệ; định nghĩa sai số chuẩn và kết quả kế thừa B03 đứng trước bảng |
 | B07 — Bước học và dao động gần nghiệm | Giải thích điều chỉnh bước bằng nhiễu còn lại | B03/B06 → phương sai cập nhật tỷ lệ $\eta^2$ | B08, LLO12/CLO2 | Giữ động cơ §8.3.1; không đưa định lý thiếu giả thiết |
 | B08 — Cập nhật từ một nhóm quan sát | Đo phối hợp lấy mẫu, bước và kỳ vọng | B02–B07 → thao tác độc lập đã kiểm | Kiểm tra riêng B, LLO12/CLO2 | Thêm bài tập; đề chứa đủ $y=(-1,1,3)$, mất mát và $J$ trung bình trước dữ kiện nhóm |
 | C01 — Mặt mất mát bậc hai | Mở giới hạn hình học ngay cả khi gradient chính xác | Gradient B + B04 → hình/hàm cố định | LLO11–12/CLO1–2 | Giữ đúng VD2 B04; không gọi điều kiện cực kỳ kém |
@@ -131,7 +131,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | B03 | Câu trực quan lấy đều; nhãn Mệnh đề với giả thiết và định nghĩa trên; hai khối kỳ vọng/hiệp phương sai; ví dụ vô hướng dưới. Sửa miền của cỡ nhóm. |
 | B04 | Hai cột; đồ thị hai mất mát và phép tính bước/giá trị. Giữ phản ví dụ nhìn và tính được. |
 | B05 | Đầu vào hai dòng có tên từng ký hiệu; hai cột cho thao tác cập nhật và khối “Dừng sớm theo xác thực”. |
-| B06 | Hai cột; hình sai số chuẩn trái, bảng và định nghĩa phải; khối chi phí dưới. Sửa định nghĩa để nối trực tiếp với phương sai. |
+| B06 | Câu kế thừa và định nghĩa sai số chuẩn trên; hai cột hình trái, bảng và điều kiện phải; khối đánh đổi chi phí/sai số dưới. |
 | B07 | Hai cột; hình bước ngẫu nhiên và công thức phương sai cập nhật. Giữ cùng điểm để cô lập tác dụng của bước học. |
 | B08 | Đề tự chứa phía trên, hai khối nhóm đã quan sát/trước lấy nhóm. Giữ phân biệt hiện thực và kỳ vọng. |
 | C01 | Hai cột; đường mức trái, hàm/Hessian/điểm đầu phải; kết luận gradient dưới. Sửa tỷ lệ hình; giải nghĩa số điều kiện trong notes. |

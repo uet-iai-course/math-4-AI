@@ -292,7 +292,7 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 
 - **Sửa ngày 2026-10-01:** Đầu vào ghi tên từng ký hiệu (điểm đầu, cỡ nhóm, bước học, số bước tối đa, số lần chờ, ngưỡng cải thiện). Khối phải đổi thành “Dừng sớm theo xác thực”, câu đầu nêu lý do: một bước có thể làm $J$ tăng. Ghi chú nêu thuật ngữ dừng sớm (early stopping).
 
-#### B06 — Kích thước nhóm nhỏ
+#### B06 — Cỡ nhóm và sai số chuẩn
 
 - **Vai trò và mục tiêu:** Ứng dụng tính phương sai; MT2.
 - **Luận điểm trung tâm:** Nhóm lớn giảm biến thiên của ước lượng nhưng tăng công việc trong mỗi bước.
@@ -304,6 +304,8 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Không đưa cỡ nhóm “tốt nhất” phổ quát hoặc các con số phần cứng cũ làm khuyến nghị hiện hành. Đồ thị nếu dựng là minh họa tính toán, phải ghi rõ.
 - **Bản triển khai sau rà 2026-09-26:** Sai số chuẩn được định nghĩa là căn phương sai của ước lượng, tại tham số cố định; không gọi hình là đường hội tụ.
+
+- **Sửa ngày 2026-10-01:** Tiêu đề “Cỡ nhóm và sai số chuẩn”. Câu mở kế thừa $\operatorname{Cov}=\Sigma/b$ và định nghĩa sai số chuẩn trước bảng; khối dưới ghi đánh đổi: tăng $b$ bốn lần thì chi phí gấp bốn, sai số chuẩn giảm một nửa. Câu bộ nhớ/song song chỉ giữ trong ghi chú.
 
 #### B07 — Bước học và dao động gần nghiệm
 
