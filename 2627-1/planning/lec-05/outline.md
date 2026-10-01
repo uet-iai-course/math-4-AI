@@ -590,6 +590,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Không tuyên bố giữ đồng thời đúng 1 ở cả hai phía. Với mạng phi tuyến, nhất là ReLU, các giả thiết đổi; bản này không suy ra quy tắc He hay khẳng định Glorot tối ưu cho ReLU.
 
+- **Sửa ngày 2026-10-01:** Định nghĩa $U[-a,a]$, $a>0$, phương sai $a^2/3$ chuyển lên trước phép suy $a=\sqrt{3s^2}=\sqrt{6/(n_{\rm in}+n_{\rm out})}$; bỏ dòng định nghĩa ở cuối trang. Ghi chú nêu tên gọi khác là khởi tạo Xavier.
+
 #### D10 — Thang phương sai qua nhiều lớp
 
 - **Vai trò và mục tiêu:** Ứng dụng chẩn đoán có hướng dẫn, khác trang kiểm tra D11; MT3.

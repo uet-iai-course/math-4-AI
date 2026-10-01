@@ -395,7 +395,7 @@ Với $q,r>0$, bảo toàn phương sai tiến cần $s^2=1/n_{\rm in}$; bảo t
 
 ### Khởi tạo Glorot và thang qua nhiều lớp
 
-Khởi tạo Glorot lấy nghịch đảo số kết nối trung bình để dung hòa hai chiều:
+Khởi tạo Glorot, còn gọi là khởi tạo Xavier, lấy nghịch đảo số kết nối trung bình $(n_{\rm in}+n_{\rm out})/2$ để dung hòa hai chiều:
 
 $$
 s^2=\frac2{n_{\rm in}+n_{\rm out}}.

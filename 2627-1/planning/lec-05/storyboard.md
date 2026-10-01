@@ -84,7 +84,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | D06 — Bão hòa của hàm kích hoạt | Ngăn giải pháp sai “cứ tăng trọng số” | Tích đạo hàm → giới hạn phi tuyến | D11, LLO11/CLO1 | Gộp nền tanh với cảnh báo §8.4; không thêm danh mục kích hoạt. Sửa 2026-10-01: câu nhu cầu nối D05 trên mặt trang; bỏ khối lặp ý; khối kết luận là vùng gần tuyến tính dùng cho D07 |
 | D07 — Phương sai qua một lớp tuyến tính | Tạo cơ sở tính thang theo số đầu vào | Chuỗi D05 → tổng ngẫu nhiên và phương sai tiến | D11, LLO13/CLO2 | Bổ sung suy ngắn, nêu kích thước/độc lập trước công thức. Sửa 2026-10-01: câu nhu cầu nêu vì sao đo bằng phương sai; nhãn Mệnh đề sau ví dụ |
 | D08 — Phương sai của gradient truyền ngược | Tạo nhu cầu thỏa hiệp Glorot | Cùng $W$ → phương sai lùi và hai yêu cầu khác nhau | D11, LLO13/CLO2 | Tách hai chiều để không nhồi; nêu độc lập gradient là giả thiết. Sửa 2026-10-01: câu mở nêu cập nhật dùng gradient truyền ngược; kết luận nêu điều kiện $n_{\rm in}\ne n_{\rm out}$ |
-| D09 — Khởi tạo Glorot | Biến yêu cầu thang thành phân phối có thể dùng | $n_{in},n_{out}$ → $s^2,a$ | D10/D11, LLO13/CLO2 | Giữ (8.23), không thêm He thiếu nhu cầu/phạm vi |
+| D09 — Khởi tạo Glorot | Biến yêu cầu thang thành phân phối có thể dùng | $n_{in},n_{out}$ → $s^2,a$ | D10/D11, LLO13/CLO2 | Giữ (8.23), không thêm He thiếu nhu cầu/phạm vi. Sửa 2026-10-01: định nghĩa $U[-a,a]$ và phương sai $a^2/3$ trước khi suy ra $a$ |
 | D10 — Thang phương sai qua nhiều lớp | Ứng dụng có hướng dẫn khác kiểm tra cuối phần | HT9/HT10 → bảng hệ quả phương sai qua ba lớp | LLO13/CLO2 | Thêm mô hình tính được theo quy trình §8.4; không giả dữ liệu thực nghiệm |
 | D11 — Đối xứng và thang khởi tạo | Đo tự tính đạo hàm, đối xứng và chuyển công thức sang kích thước mới | D02–D03/D07–D09 → hai đạo hàm và khởi tạo có điều kiện | Kiểm tra riêng D, LLO13/CLO2 | Đề tự chứa mạng, mất mát, dữ kiện mới và giả thiết tuyến tính; giữ tổng 0.25 BT |
 | E01 — Cấu hình quy trình huấn luyện | Trả các kết quả về đúng thứ tự chạy | A–D → sơ đồ vận hành thống nhất | MT1–MT3 | Tổng hợp, không thêm kỹ thuật mới |
@@ -150,7 +150,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | D06 | Câu nhu cầu trên; hai cột hình tanh/đạo hàm trái, công thức/bảng phải; khối xấp xỉ gần 0 dưới. Giữ cầu nối mô hình tuyến tính. |
 | D07 | Nhu cầu và kích thước trên; giả thiết/ví dụ bốn đầu vào trái, hình lớp phải; công thức tổng quát cuối. Sửa trình tự để ví dụ chuẩn bị tổng quát hóa. |
 | D08 | Phụ thuộc mất mát/kích thước gradient trên; cột trái dây chuyền → giả thiết mô hình → phương sai; cột phải bảng 4→2 và kết luận xung đột. Sửa bố cục, bỏ hình mạng lùi trùng để đủ chữ 28 px. |
-| D09 | Hai cột; quy tắc phương sai/phân phối và ví dụ 4→2; định nghĩa phân phối đều dưới. Giữ thỏa hiệp sau bảng xung đột. |
+| D09 | Hai cột; quy tắc phương sai, định nghĩa phân phối đều và phép suy biên $a$ trái, ví dụ 4→2 phải. Giữ thỏa hiệp sau bảng xung đột. |
 | D10 | Giả thiết/mạng trên, công thức lặp và bảng ba lớp, khối độc lập dưới. Giữ bảng mô hình có thể tính lại. |
 | D11 | Nhãn câu hỏi ghi hai tiểu bài toán độc lập; hai khối đối xứng/thang. Sửa duy nhất tiêu đề, thêm phạm vi khả vi; giữ mã/vị trí. |
 | E01 | Sơ đồ vận hành trên, bảng quyết định/đối tượng/đại lượng, khối vòng lặp dưới. Giữ đúng thứ tự thực thi. |
