@@ -440,7 +440,7 @@ Thứ tự thực thi bắt đầu từ dữ liệu và mất mát, tiếp đế
 Gradient nhóm nhỏ có thể giảm công việc mỗi bước. Momentum thay cách dùng lịch sử; Nesterov thêm thay đổi vị trí gradient. Khởi tạo trọng số khác nhau xử lý sự đồng nhất của đơn vị, còn thang trọng số liên quan tín hiệu và gradient qua lớp. Tiêu chí xác thực quyết định lựa chọn mô hình sau các cập nhật.
 
 ::: example
-Một mô hình có $N=10^5$ mẫu và một gradient đầy đủ vượt ngân sách. Hai đơn vị ẩn có tham số vào/ra giống nhau, trạng thái momentum bằng 0. Hai thời điểm sau huấn luyện cho mất mát huấn luyện $0.22,0.17$ và lỗi xác thực $0.10,0.14$; đây là số liệu giả lập sư phạm.
+Tình huống sau dùng lại các quyết định trong bảng: chọn cách tính gradient, xác định vấn đề khởi tạo và cách sửa, chọn bản lưu, và tính điểm đánh giá gradient Nesterov. Một mô hình có $N=10^5$ mẫu và một gradient đầy đủ vượt ngân sách. Hai đơn vị ẩn có tham số vào/ra giống nhau, trạng thái momentum bằng 0. Hai thời điểm sau huấn luyện cho mất mát huấn luyện $0.22,0.17$ và lỗi xác thực $0.10,0.14$; đây là số liệu giả lập sư phạm.
 
 Gradient nhóm lấy đều là một lựa chọn giảm số đánh giá mẫu mỗi bước; dữ kiện chưa xác định một cỡ nhóm tối ưu. Trọng số ban đầu khác nhau có thể phá điều kiện đối xứng, trong khi thang cần được kiểm riêng. Theo lỗi xác thực, thời điểm đầu được lưu vì $0.10<0.14$.
 

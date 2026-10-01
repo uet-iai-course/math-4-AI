@@ -280,3 +280,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | D09 | quy tắc Glorot không có nhãn, chưa nhắc xung đột từ D08 → “**Quy tắc.** Thỏa hiệp giữa $1/n_{\rm in}$ và $1/n_{\rm out}$…”. **Đã đóng.**
   - nhẹ | D11→E01 | ranh giới D→E nằm giữa ghi chú D11 → câu nối chuyển xuống cuối ghi chú, nêu điểm khởi đầu hoàn tất các thành phần của quy trình; E01 đã gắn quyết định với phần A–D. **Đã đóng.**
   - nhẹ | E01 (ghi chú) | câu kết chung chung theo no-ai-slop → bỏ. **Đã đóng.**
+- **E02 — sửa.** Tiêu đề và dữ kiện đạt; bốn yêu cầu viết dạng cụm danh từ (“Lựa chọn cách tính gradient; vấn đề khởi tạo…”, “Điểm tính gradient Nesterov”). Nay dùng “Chọn… nêu căn cứ”, “Xác định… đề xuất cách sửa”, “Xác định bản lưu”, “Tính điểm đánh giá gradient Nesterov”. Ghi chú bài giảng thêm câu dẫn liệt kê bốn nhiệm vụ trước ví dụ.

@@ -656,6 +656,8 @@ Chức năng: trở lại bài toán A03 và phối hợp các lựa chọn; kh�
 - **Tiêu chí đánh giá:** Mỗi lựa chọn có cơ chế đúng; không đòi cỡ nhóm duy nhất; không dùng tập kiểm thử hoặc mất mát huấn luyện thấp hơn để thay tiêu chí đã cho.
 - **Bản triển khai sau rà 2026-09-26:** Ghi chú giới hạn bất biến đối xứng ở các bước khả vi và cùng quy ước đạo hàm ReLU tại 0.
 
+- **Sửa ngày 2026-10-01:** Bốn yêu cầu viết bằng “Chọn… nêu… Xác định… đề xuất… Xác định… Tính…”; dữ kiện và đáp án giữ nguyên.
+
 #### E03 — Kết luận và tài liệu đọc
 
 - **Vai trò và mục tiêu:** Đối chiếu mục tiêu và khép tuyến; MT1–MT3.
