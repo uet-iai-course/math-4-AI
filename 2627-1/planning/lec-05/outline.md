@@ -413,7 +413,7 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 
 - **Sửa ngày 2026-10-01:** Tiêu đề “Đối chứng momentum với hạ gradient”. Dòng gradient hằng thêm giới hạn $-\eta g/(1-\beta)$, tức bước hiệu dụng $2\eta$ khi $\beta=1/2$.
 
-#### C06 — Điểm đánh giá gradient
+#### C06 — Gradient tại điểm dự báo
 
 - **Vai trò và mục tiêu:** Nhu cầu hiệu chỉnh tại vị trí quán tính dự báo; trực quan và ví dụ Nesterov; MT2.
 - **Luận điểm trung tâm:** Phần dịch chuyển do vận tốc có thể làm đổi độ dốc; Nesterov tính hướng hiệu chỉnh tại vị trí dự báo đó.
@@ -424,6 +424,8 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Nguồn:** DL §8.3.3; HI trang 20–21.
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Điểm dự báo đã biết từ trạng thái cũ, không phải điểm tối ưu tương lai. Trong ví dụ này Nesterov không có $q$ nhỏ hơn momentum ở bước hai; giữ kết quả đó để tránh minh họa thiên lệch.
+
+- **Sửa ngày 2026-10-01:** Tiêu đề “Gradient tại điểm dự báo”. Câu nhu cầu: momentum luôn dịch thêm $\beta v_t$, gradient tại $\theta_t+\beta v_t$ đo độ dốc ở nơi tham số sắp tới. Dòng $v_2$ ghi $\beta v_1-\eta\nabla q(\widetilde\theta_1)$. Ghi chú nêu thuật ngữ điểm dự báo (look-ahead point).
 
 #### C07 — Phương pháp Nesterov
 

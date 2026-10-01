@@ -73,7 +73,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | C03 — Tích lũy hướng cập nhật | Cho $v,\beta$ nghĩa tính toán trước quy tắc | Độ cong → hai vectơ và bước có lịch sử | C08, LLO12/CLO2 | Thêm tính tay; công bố đổi $\eta$ sang $1/20$. Sửa 2026-10-01: thêm câu Trực quan giải nghĩa $v_t,\beta$ trước phép tính; $\eta=1/20$ được C02 chuẩn bị |
 | C04 — Phương pháp momentum | Tổng quát hóa bước cụ thể, có trạng thái/dừng | C03 → HT5 và giả mã | C08/E02, LLO12/CLO2 | Giữ §8.3.2, lược cơ học/lực cản dài |
 | C05 — Đối chứng momentum với hạ gradient | Kiểm cùng bài toán khi thay quy tắc | HT5 → đối chứng quỹ đạo/giá trị hàm | LLO12/CLO2 | Kế thừa cách Boyd giữ ví dụ, không chọn hình có lợi riêng. Sửa 2026-10-01: tiêu đề nêu phép đối chứng; dòng gradient hằng nêu giới hạn bước hiệu dụng $2\eta$ |
-| C06 — Điểm đánh giá gradient | Tạo nhu cầu hiệu chỉnh theo độ dốc thay đổi dọc dịch chuyển quán tính | $\theta,v$ → điểm đo mới và hiệu chỉnh | C08, LLO12/CLO2 | Tách ví dụ/nhìn hình trước giả mã; HI 20–21 |
+| C06 — Gradient tại điểm dự báo | Tạo nhu cầu hiệu chỉnh theo độ dốc thay đổi dọc dịch chuyển quán tính | $\theta,v$ → điểm đo mới và hiệu chỉnh | C08, LLO12/CLO2 | Tách ví dụ/nhìn hình trước giả mã; HI 20–21. Sửa 2026-10-01: tiêu đề gọi tên điểm dự báo; câu nhu cầu trên mặt trang; $v_2$ ghi rõ quy tắc |
 | C07 — Phương pháp Nesterov | Xác lập thứ tự cập nhật và ghép lại nhóm nhỏ | C06 → HT6, một điểm đo rõ ràng | C08/E02, LLO12/CLO2 | Giữ thuật toán 8.3, giới hạn bảo đảm được nói rõ |
 | C08 — Cập nhật có trạng thái trên hàm bậc hai | Đo đúng trạng thái ở dữ kiện chưa tính | C03–C07 → hai phép cập nhật độc lập | Kiểm tra riêng C, LLO12/CLO2 | Thêm bài tập với $\theta=(1,1)$ và ghi nguyên hàm $q$ trên đề, tránh chép nguyên ví dụ |
 | D01 — Mạng hai đơn vị ẩn | Bổ sung tiên quyết chưa được dạy ở Bài 04 | Quy trình cần $\theta_0$ → mạng và tham số | LLO13/CLO2 | Thêm có căn cứ, rút nền chương 6 xuống mạng nhỏ |
@@ -139,7 +139,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | C03 | Câu Trực quan và cấu hình trên; hai cột hình ghép vectơ và phép tính từng bước. Giữ ví dụ trước công thức momentum. |
 | C04 | Đầu vào trên; hai khối cập nhật/tổng tích lũy; chi phí và dừng dưới. Sửa bước cố định. |
 | C05 | Hai cột; quỹ đạo đối chứng trái, bảng kết quả phải; trường hợp gradient hằng dưới. Giữ cùng cấu hình. |
-| C06 | Hai cột; hình điểm đo trái, điểm dự báo/gradient/cập nhật phải; đối chiếu giá trị dưới. Giữ đầy đủ phép tính Nesterov. |
+| C06 | Câu nhu cầu và trạng thái trên; hai cột hình điểm đo trái, điểm dự báo/gradient/cập nhật phải; đối chiếu giá trị dưới. Giữ đầy đủ phép tính Nesterov. |
 | C07 | Lời mở nêu bước cố định; hai cột so điểm đo và trình tự cập nhật; dừng/đầu ra dưới. Giữ gốc cập nhật rõ. |
 | C08 | Đề tự chứa và trạng thái mới; bảng đối chiếu các đại lượng cần tính của momentum/Nesterov. Giữ bài kiểm chuyển giao. |
 | D01 | Hai cột; hình hai đơn vị trái, tham số/truyền xuôi/mất mát phải. Giữ nền mạng tối thiểu. |

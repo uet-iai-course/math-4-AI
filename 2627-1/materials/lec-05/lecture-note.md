@@ -264,9 +264,9 @@ Các gradient cùng hướng tích lũy; các thành phần trái dấu có th�
 
 Sau hai bước cùng cấu hình, hạ gradient cho $(1.445,1.69)^T$ và momentum cho $(1.295,0.99)^T$. Giá trị hàm lần lượt là $13.1283875$ và $5.9458875$. Kết quả xác định ảnh hưởng của trạng thái trong ví dụ; nó chưa chứng minh ưu thế chung hoặc khả năng khắc phục mọi điểm yên ngựa và vùng bão hòa.
 
-### Điểm dự báo của Nesterov
+### Gradient tại điểm dự báo
 
-Dịch chuyển quán tính $\beta v_t$ làm thay đổi vị trí trước khi hiệu chỉnh bằng gradient. Trên hàm bậc hai, thay đổi gradient được tính chính xác bằng $H\beta v_t$.
+Trong quy tắc momentum, phần quán tính $\beta v_t$ được cộng vào tham số bất kể gradient mới bằng bao nhiêu. Gradient tại $\theta_t$ vì vậy đo độ dốc ở vị trí mà tham số sắp rời đi. Điểm dự báo (look-ahead point) $\widetilde\theta_t=\theta_t+\beta v_t$ là nơi tham số sắp tới trước khi hiệu chỉnh bằng gradient. Trên hàm bậc hai, thay đổi gradient được tính chính xác bằng $H\beta v_t$.
 
 Ở trạng thái $\theta_1=(1.7,2.6)^T$, $v_1=(-0.3,-1.4)^T$, điểm dự báo là $\widetilde\theta_1=\theta_1+\beta v_1=(1.55,1.9)^T$. Gradient tại điểm hiện tại là $(5.1,18.2)^T$, còn tại điểm dự báo là $(4.65,13.3)^T$; hiệu bằng $(-0.45,-4.9)^T=H\beta v_1$.
 
