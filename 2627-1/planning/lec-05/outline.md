@@ -290,6 +290,8 @@ Chức năng: thay phép tính đắt bằng thông tin lấy mẫu có quan h�
 - **Ghi chú soạn:** Một bước không phải một lượt qua dữ liệu. Với lấy mẫu có hoàn lại, $N/b$ bước chỉ xử lý tương đương $N$ lần đánh giá, chưa bảo đảm gặp mọi mẫu. Không hứa hội tụ toàn cục.
 - **Bản triển khai sau rà 2026-09-26:** Miền đầu vào hiện rõ: $b,T,K_{\rm stop}\in\mathbb N_{>0}$.
 
+- **Sửa ngày 2026-10-01:** Đầu vào ghi tên từng ký hiệu (điểm đầu, cỡ nhóm, bước học, số bước tối đa, số lần chờ, ngưỡng cải thiện). Khối phải đổi thành “Dừng sớm theo xác thực”, câu đầu nêu lý do: một bước có thể làm $J$ tăng. Ghi chú nêu thuật ngữ dừng sớm (early stopping).
+
 #### B06 — Kích thước nhóm nhỏ
 
 - **Vai trò và mục tiêu:** Ứng dụng tính phương sai; MT2.

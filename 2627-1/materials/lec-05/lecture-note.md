@@ -146,7 +146,7 @@ $$
 
 Một hiện thực của gradient không chệch có thể làm tăng $J$. Phát biểu về kỳ vọng của hướng không phải phát biểu về dấu của thay đổi hàm sau mỗi bước.
 
-### Thuật toán và tiêu chí dừng
+### Thuật toán SGD và dừng sớm
 
 Phương pháp hạ gradient ngẫu nhiên (SGD) dùng
 
@@ -157,7 +157,7 @@ $$
 
 với $\eta_t>0$ và các chỉ số mới được lấy độc lập đều có hoàn lại, độc lập với lịch sử trước bước đó.
 
-Đầu vào gồm $D,f,\ell,\theta_0$, cỡ nhóm $b\in\mathbb N_{>0}$, lịch bước $\{\eta_t\}$, ngân sách số bước $T\in\mathbb N_{>0}$, tập xác thực, lịch đánh giá, số lần chờ $K_{\mathrm{stop}}\in\mathbb N_{>0}$ và ngưỡng cải thiện $\delta\ge0$. Ký hiệu $p$ tiếp tục chỉ số tham số.
+Đầu vào gồm $D,f,\ell,\theta_0$, cỡ nhóm $b\in\mathbb N_{>0}$, lịch bước học $\{\eta_t\}$, ngân sách số bước $T\in\mathbb N_{>0}$, tập xác thực, lịch đánh giá, số lần chờ $K_{\mathrm{stop}}\in\mathbb N_{>0}$ và ngưỡng cải thiện $\delta\ge0$. Ký hiệu $p$ tiếp tục chỉ số tham số.
 
 1. Đánh giá $\theta_0$, lưu tham số và giá trị xác thực ban đầu; đặt bộ đếm chờ bằng 0.
 2. Với $t=0,\ldots,T-1$, lấy nhóm, tính gradient tại $\theta_t$ và cập nhật.
@@ -165,7 +165,7 @@ với $\eta_t>0$ và các chỉ số mới được lấy độc lập đều c�
 4. Đặt lại bộ đếm chờ bằng 0 nếu mức giảm lớn hơn $\delta$ so với giá trị tốt nhất cũ; nếu không, tăng bộ đếm một đơn vị.
 5. Dừng khi bộ đếm đạt $K_{\mathrm{stop}}$ hoặc hết ngân sách $T$. Đầu ra là tham số có giá trị xác thực nhỏ nhất đã thấy.
 
-Một cải thiện dương nhưng không vượt $\delta$ vẫn được lưu và vẫn tăng bộ đếm. Quy tắc này xác định riêng việc chọn bản lưu và việc tiếp tục huấn luyện. Nó không phải định lý hội tụ. Một bước SGD cũng không đồng nghĩa một lượt qua dữ liệu: với lấy mẫu có hoàn lại, $N/b$ bước chỉ tương đương $N$ lần đánh giá mẫu, chưa bảo đảm đã gặp mọi mẫu.
+Các bước 3–5 tạo thành quy tắc dừng sớm (early stopping). Quy tắc này cần thiết vì một bước ngẫu nhiên có thể làm tăng $J$, còn việc chọn tham số dựa vào ước lượng rủi ro trên tập xác thực. Một cải thiện dương nhưng không vượt $\delta$ vẫn được lưu và vẫn tăng bộ đếm. Quy tắc này xác định riêng việc chọn bản lưu và việc tiếp tục huấn luyện. Nó không phải định lý hội tụ. Một bước SGD cũng không đồng nghĩa một lượt qua dữ liệu: với lấy mẫu có hoàn lại, $N/b$ bước chỉ tương đương $N$ lần đánh giá mẫu, chưa bảo đảm đã gặp mọi mẫu.
 
 ### Cỡ nhóm và bước học
 
