@@ -302,6 +302,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RG17 — Hội tụ tuyến tính
 
 - **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu "thêm một slide Tự học về tốc độ hội tụ của giảm gradient cho hàm lồi mạnh + Lipschitz". Có nhãn "Tự học".
+- **Sửa sau rà soát 2026-10-01:** "Ý chính" nêu rõ bất đẳng thức $\|\nabla f\|_2^2\ge2\mu(f-f^*)$; $\mu=3$ đưa lên dòng nhu cầu; định nghĩa đầy đủ (khả vi trên $\mathbb R^n$, mọi $x,y\in\mathbb R^n$), sự tồn tại duy nhất $x^*$ và câu nối sang trang câu hỏi nằm trong ghi chú.
 - **Nội dung trên trang:** Nhu cầu: cận $O(1/k)$ cần 7000 bước trên VD1, thực tế 6; VD1 lồi mạnh. Định nghĩa lồi mạnh dạng bậc nhất; hệ quả $\|\nabla f\|^2\ge2\mu(f-f^*)$. Định lý bước $1/L$: $e_k\le(1-\mu/L)^ke_0$ với $e_k=f(x^k)-f^*$; ý chính; VD1 ($\mu=3$, $L=7$): $62(4/7)^k\le0{,}01$ khi $k\ge16$. Kết luận: $k\ge\kappa\log(e_0/\varepsilon)$, $\kappa=L/\mu$.
 - **Bố cục chọn:** Dòng nhu cầu; lưới hai khung (định nghĩa và bất đẳng thức gradient; định lý, ý chính, VD1); kết luận.
 - **Lý do tồn tại:** Trả lời chênh lệch giữa cận $O(1/k)$ và hành vi thật trên VD1; cho tốc độ tuyến tính dùng trong câu hỏi RG18 và bảng so sánh ở RN07.
@@ -324,6 +325,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RN01 — Mô hình bậc hai cục bộ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm dòng nhu cầu nhận đầu ra của RG11 (VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước) và nêu phép đổi ký hiệu $W\to H=\nabla^2f(x)$; khung VD2 nêu lý do đổi ví dụ (không bậc hai, độ cong $1/s^2$ đổi theo $s$, một biến $s$ thay $x$, nghiệm $s^\star=1$); khung kết luận nêu cụ thể tính cục bộ của parabol. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): đổi tiêu đề thành "Mô hình bậc hai cục bộ" để không chạm nút điều hướng; dòng mở nêu $W=H=\nabla^2f(x)$ tại điểm hiện tại.
+- **Sửa 2026-10-01:** dòng mở chỉ nêu VD1; "Hàm tổng quát: $W=H=\nabla^2f(x)$" chuyển vào khung VD2; dòng VD2 rút gọn để nội dung vừa khung 16:9 (L-S1).
 - **Nội dung trên trang:** Dòng mở: VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước; tổng quát $W=H=\nabla^2f(x)$. Hình $\varphi$, tiếp tuyến và parabol tại $s^0=1/4$. Khung VD2: $\varphi(s)=s-\log s$, $s>0$, $\varphi''(s)=1/s^2$, $s^\star=1$; tại $s^0=1/4$: $g=-3$, $H=16$. Kết luận: parabol dùng $H$ tại $s^0$ khớp $\varphi$ gần $s^0$ rồi tách xa dần.
 - **Bố cục chọn:** Dòng nhu cầu; `ratio60`: trái hình, phải khung VD2; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 778 px, đáy trang 829 px (bản nháp đầu tràn 1 px do công thức khối và dòng mở hai dòng; đã rút gọn).
 - **Lý do bố cục cho sinh viên năm 3:** Nhu cầu Newton được lấy từ bài tập vừa giải; ví dụ mới được giới thiệu cùng lý do cần nó.

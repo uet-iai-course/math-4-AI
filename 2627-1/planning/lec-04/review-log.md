@@ -1,5 +1,19 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Rà soát trang hội tụ tuyến tính (RG17) — 2026-10-01
+
+Người rà soát: fork chỉ đọc của điều phối viên, Claude Opus 5.5 (kế thừa). Kết luận: 0 chặn bàn giao, 0 nghiêm trọng, 0 trung bình, 5 nhẹ; toán học đúng. Cổng storyboard chấp nhận quyết định `thêm` cho RG17. Tác tử sửa: fork của điều phối viên, Claude Opus 5.5 (kế thừa).
+
+| Vai | Mã | Mức độ | Trang | Vấn đề | Quyết định/trạng thái |
+|---|---|---|---|---|---|
+| Trình bày | L-S1 | nhẹ | RN01 | Nội dung vượt khung 1 px | Đã sửa: dòng mở chỉ còn "Với VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước."; "Hàm tổng quát: $W=H=\nabla^2f(x)$." chuyển vào khung VD2; dòng VD2 rút gọn. Chiều cao nội dung 674/674, đáy 778/829 px |
+| Mạch | L-S2 | nhẹ | RG17 | "cận bên trái" mơ hồ | Đã sửa: "bất đẳng thức $\|\nabla f\|_2^2\ge2\mu(f-f^*)$"; bỏ "($\mu=3$, $L=7$)" ở dòng VD1, thêm "$\mu=3$" vào dòng nhu cầu để vừa khung |
+| Toán | L-M1 | nhẹ | RG17 | Định nghĩa thiếu "khả vi trên $\mathbb R^n$" và miền của $x,y$ | Đưa vào ghi chú: bản đầy đủ trên mặt trang làm tràn khung (836/829 px) |
+| Toán | L-M2 | nhẹ | RG17 ghi chú | Chưa nêu sự tồn tại duy nhất của $x^*$ | Đã sửa: hàm lồi mạnh, liên tục trên $\mathbb R^n$ có duy nhất một điểm cực tiểu |
+| Mạch | L-S3 | nhẹ | RG17 ghi chú | Thiếu câu nối sang trang câu hỏi | Đã sửa: "Trang sau kiểm các cận vừa nêu trên dữ kiện của VD1." |
+
+Kiểm tra trình duyệt: RN01 và RG17 ở 1600×900 có chiều cao nội dung 674/674 (đáy 778 và 784/829 px), không lỗi KaTeX/console; 390×844 cuộn dọc.
+
 ## Thêm trang tự học hội tụ tuyến tính của giảm gradient — 2026-10-01
 
 **Yêu cầu người dùng:** "thêm một slide Tự học về tốc độ hội tụ của giảm gradient cho hàm lồi mạnh + Lipschitz". Tác tử soạn: fork của điều phối viên, Claude Opus 5.5 (kế thừa).

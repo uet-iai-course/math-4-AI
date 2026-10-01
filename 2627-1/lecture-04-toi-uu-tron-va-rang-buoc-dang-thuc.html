@@ -410,7 +410,7 @@ Bất đẳng thức một bước chặn sai số mục tiêu bằng hiệu hai
 
 <section data-slide-id="RG17">
 <h2>Hội tụ tuyến tính <span class="self-study-badge">Tự học</span></h2>
-<p>Trên VD1, cận $O(1/k)$ cần $7000$ bước cho sai số $0{,}01$, thực tế chỉ $6$; VD1 còn lồi mạnh.</p>
+<p>Trên VD1, cận $O(1/k)$ cần $7000$ bước cho sai số $0{,}01$, thực tế chỉ $6$; VD1 lồi mạnh, $\mu=3$.</p>
 <div class="lec-grid">
 <div class="panel">
 <p><strong>Định nghĩa.</strong> $f$ lồi mạnh với hằng số $\mu&gt;0$ nếu với mọi $x,y$:</p>
@@ -420,12 +420,12 @@ Bất đẳng thức một bước chặn sai số mục tiêu bằng hiệu hai
 <div class="panel">
 <p><strong>Định lý.</strong> $f$ lồi mạnh, gradient <span class="math-nowrap">$L$-Lipschitz,</span> bước $t=1/L$, <span class="math-nowrap">$e_k=f(x^k)-f^*$:</span></p>
 <div class="formula emphasis" tabindex="0">$$e_k\le(1-\mu/L)^k\,e_0.$$</div>
-<p><strong>Ý chính:</strong> bổ đề giảm và cận bên trái. VD1 <span class="math-nowrap">($\mu=3$, $L=7$):</span> <span class="math-nowrap">$62\,(4/7)^k\le0{,}01$ khi $k\ge16$.</span></p>
+<p><strong>Ý chính:</strong> bổ đề giảm và bất đẳng thức <span class="math-nowrap">$\|\nabla f\|_2^2\ge2\mu(f-f^*)$.</span> VD1: <span class="math-nowrap">$62\,(4/7)^k\le0{,}01$ khi $k\ge16$.</span></p>
 </div>
 </div>
 <div class="takeaway">Với $\kappa=L/\mu$, đủ lấy <span class="math-nowrap">$k\ge\kappa\log(e_0/\varepsilon)$:</span> số bước tăng theo $\log(1/\varepsilon)$ thay vì $1/\varepsilon$.</div>
 <aside class="notes">
-Cận $O(1/k)$ chỉ dùng tính lồi và hằng số $L$, nên trên VD1 nó yêu cầu $k\ge7000$ để sai số không quá $0{,}01$, trong khi bước cố định $t=1/7$ chỉ cần $6$ bước. VD1 thỏa thêm giả thiết lồi mạnh: $\nabla^2f=\operatorname{diag}(3,7)\succeq3I$, nên $\mu=3$, $L=7$, $\kappa=7/3$. Định nghĩa bậc nhất nói rằng $f$ nằm trên một parabol độ cong $\mu$ tựa tại mỗi điểm; với $f$ khả vi hai lần, điều kiện tương đương $\nabla^2f(x)\succeq\mu I$, và luôn có $\mu\le L$. Cực tiểu vế phải theo $y$ đạt tại $y=x-\nabla f(x)/\mu$ với giá trị $f(x)-\|\nabla f(x)\|_2^2/(2\mu)$; vì $f^*$ không nhỏ hơn cực tiểu của một cận dưới, được $\|\nabla f(x)\|_2^2\ge2\mu(f(x)-f^*)$. Chứng minh định lý: bổ đề giảm cho $f(x^+)-f^*\le f(x)-f^*-\|g\|_2^2/(2L)\le(1-\mu/L)(f(x)-f^*)$; lặp $k$ lần. Vì $1-u\le e^{-u}$, $(1-1/\kappa)^k\le e^{-k/\kappa}$, nên $k\ge\kappa\log\big((f(x^0)-f^*)/\varepsilon\big)$ bảo đảm sai số không quá $\varepsilon$; với VD1 điều kiện đủ này cho $k\ge21$, còn giải trực tiếp $62(4/7)^k\le0{,}01$ cho $k\ge\log6200/\log(7/4)\approx15{,}6$, tức $k=16$. Tốc độ này gọi là tuyến tính: sai số nhân với một hệ số nhỏ hơn $1$ ở mỗi bước. Liên hệ với trang độ cong không đồng đều: với hàm bậc hai có các giá trị riêng của Hessian nằm trong $[\mu,L]$, bước cố định $t$ nhân thành phần theo mỗi vectơ riêng với $1-t\lambda$; hệ số lớn nhất $\max_{\lambda\in[\mu,L]}|1-t\lambda|$ nhỏ nhất tại $t=2/(\mu+L)$ và bằng $(\kappa-1)/(\kappa+1)$. Với VD1, $t=2/10=1/5$ và hệ số co khoảng cách là $2/5$, đúng giá trị đã tính cho hai tọa độ. Với quay lui Armijo, Boyd và Vandenberghe, §9.3.1 (tr. 468–469), chứng minh $f(x^k)-f^*\le c^k(f(x^0)-f^*)$ với $c=1-\min\{2m\alpha,\,2\beta\alpha m/M\}$, trong đó $m$, $M$ là cận dưới và cận trên của Hessian, tương ứng $\mu$, $L$ ở đây. Nguồn: Boyd và Vandenberghe (2004), §9.3.1; ghi chú bài giảng, mục B, định lý tốc độ tuyến tính với bước $1/L$.
+Cận $O(1/k)$ chỉ dùng tính lồi và hằng số $L$, nên trên VD1 nó yêu cầu $k\ge7000$ để sai số không quá $0{,}01$, trong khi bước cố định $t=1/7$ chỉ cần $6$ bước. VD1 thỏa thêm giả thiết lồi mạnh: $\nabla^2f=\operatorname{diag}(3,7)\succeq3I$, nên $\mu=3$, $L=7$, $\kappa=7/3$. Định nghĩa đầy đủ: $f$ khả vi trên $\mathbb R^n$ và bất đẳng thức đúng với mọi $x,y\in\mathbb R^n$. Định nghĩa bậc nhất nói rằng $f$ nằm trên một parabol độ cong $\mu$ tựa tại mỗi điểm; với $f$ khả vi hai lần, điều kiện tương đương $\nabla^2f(x)\succeq\mu I$, và luôn có $\mu\le L$. Cực tiểu vế phải theo $y$ đạt tại $y=x-\nabla f(x)/\mu$ với giá trị $f(x)-\|\nabla f(x)\|_2^2/(2\mu)$; vì $f^*$ không nhỏ hơn cực tiểu của một cận dưới, được $\|\nabla f(x)\|_2^2\ge2\mu(f(x)-f^*)$. Chứng minh định lý: bổ đề giảm cho $f(x^+)-f^*\le f(x)-f^*-\|g\|_2^2/(2L)\le(1-\mu/L)(f(x)-f^*)$; lặp $k$ lần. Vì $1-u\le e^{-u}$, $(1-1/\kappa)^k\le e^{-k/\kappa}$, nên $k\ge\kappa\log\big((f(x^0)-f^*)/\varepsilon\big)$ bảo đảm sai số không quá $\varepsilon$; với VD1 điều kiện đủ này cho $k\ge21$, còn giải trực tiếp $62(4/7)^k\le0{,}01$ cho $k\ge\log6200/\log(7/4)\approx15{,}6$, tức $k=16$. Tốc độ này gọi là tuyến tính: sai số nhân với một hệ số nhỏ hơn $1$ ở mỗi bước. Hàm lồi mạnh, liên tục trên $\mathbb R^n$ có duy nhất một điểm cực tiểu $x^*$, nên $f^*$ trong định lý xác định. Liên hệ với trang độ cong không đồng đều: với hàm bậc hai có các giá trị riêng của Hessian nằm trong $[\mu,L]$, bước cố định $t$ nhân thành phần theo mỗi vectơ riêng với $1-t\lambda$; hệ số lớn nhất $\max_{\lambda\in[\mu,L]}|1-t\lambda|$ nhỏ nhất tại $t=2/(\mu+L)$ và bằng $(\kappa-1)/(\kappa+1)$. Với VD1, $t=2/10=1/5$ và hệ số co khoảng cách là $2/5$, đúng giá trị đã tính cho hai tọa độ. Với quay lui Armijo, Boyd và Vandenberghe, §9.3.1 (tr. 468–469), chứng minh $f(x^k)-f^*\le c^k(f(x^0)-f^*)$ với $c=1-\min\{2m\alpha,\,2\beta\alpha m/M\}$, trong đó $m$, $M$ là cận dưới và cận trên của Hessian, tương ứng $\mu$, $L$ ở đây. Trang sau kiểm các cận vừa nêu trên dữ kiện của VD1. Nguồn: Boyd và Vandenberghe (2004), §9.3.1; ghi chú bài giảng, mục B, định lý tốc độ tuyến tính với bước $1/L$.
 </aside>
 </section>
 
@@ -448,10 +448,11 @@ Ba câu hỏi kiểm tra cách đọc các cận vừa chứng minh trên dữ k
 <section>
 <section data-slide-id="RN01">
 <h2>Mô hình bậc hai cục bộ</h2>
-<p>Với VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước; với hàm tổng quát, chọn <span class="math-nowrap">$W=H=\nabla^2f(x)$</span> tại điểm hiện tại.</p>
+<p>Với VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước.</p>
 <div class="lec-grid ratio60"><div>
 <img class="plot" src="img/lec-04/phi-local-model.svg" alt="Hàm φ(s)=s−log s, tiếp tuyến và parabol bậc hai tại s=1/4; parabol khớp gần điểm hiện tại rồi tách khỏi hàm thật.">
-</div><div class="panel"><p><strong>VD2</strong> (không bậc hai, một biến): <span class="math-nowrap">$\varphi(s)=s-\log s$,</span> $s&gt;0$; độ cong $\varphi''(s)=1/s^2$ đổi theo $s$; nghiệm $s^*=1$.</p>
+</div><div class="panel"><p>Hàm tổng quát: <span class="math-nowrap">$W=H=\nabla^2f(x)$.</span></p>
+<p><strong>VD2</strong> (không bậc hai): <span class="math-nowrap">$\varphi(s)=s-\log s$,</span> $s&gt;0$; độ cong <span class="math-nowrap">$\varphi''(s)=1/s^2$;</span> nghiệm $s^*=1$.</p>
 <p>Tại $s^0=1/4$: <span class="math-nowrap">$g=\varphi'(s^0)=-3$,</span> <span class="math-nowrap">$H=\varphi''(s^0)=16$.</span></p></div></div>
 <div class="takeaway">Parabol dùng $H$ tại $s^0$ khớp $\varphi$ gần $s^0$ rồi tách xa dần: mô hình chỉ đúng cục bộ.</div>
 <aside class="notes">
