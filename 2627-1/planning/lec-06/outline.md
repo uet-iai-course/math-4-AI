@@ -311,7 +311,7 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Thời lượng:** 0,07 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Bảo đảm hữu hạn bước đòi hỏi số học chính xác. Phân biệt CG tuyến tính và biến thể phi tuyến trong giáo trình; không dùng công thức tuyến tính với Hessian đổi sau mỗi vòng k. Quy tắc dừng $\tau\max(1,\|b\|_2)$ là lựa chọn biên soạn; SH B2 dùng ngưỡng tương đối theo $\|r_0\|_2$ và tính lại phần dư định kỳ. SH §9, tr. in 32–34/PDF 38–40 nêu dừng hữu hạn trong số học chính xác và ảnh hưởng sai số làm tròn.
 
-#### C07. Giải gần đúng hệ Newton
+#### C07. Phương pháp Newton–CG
 
 - **Vai trò và mục tiêu:** Ứng dụng KN4–KN5; MT2.
 - **Luận điểm trung tâm:** Tích Hessian–vectơ cho phép giải gần đúng hệ mà không lưu toàn bộ Hessian.
@@ -322,8 +322,9 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Nguồn:** HF, §3–4; DL, §8.6.2.
 - **Thời lượng:** 0,05 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Không tuyên bố tích Hessian–vectơ miễn phí. Không gọi tất cả CG là phương pháp bậc hai; vai trò ở đây là giải hệ Newton. Phần dư đo sai lệch giải hệ; một ngưỡng phần dư cho sẵn không thay phát biểu hướng giảm của nghiệm chính xác. Khi g=0, không yêu cầu bất đẳng thức hướng giảm nghiêm và không kết luận đó là cực tiểu.
+- **Sửa ngày 2026-10-02:** Tiêu đề “Phương pháp Newton–CG” gọi tên phương pháp mà G01 dùng; câu mở nêu đây là ghép giảm chấn (C04) với CG (C05–C06).
 
-#### C08. Kiểm tra hệ Newton và phần dư
+#### C08. Giảm chấn và một vòng gradient liên hợp
 
 - **Vai trò và mục tiêu:** Kiểm tra riêng mạch C; MT2.
 - **Luận điểm trung tâm:** Chọn được hệ hợp lệ và kiểm tra nghiệm gần đúng là điều kiện áp dụng CG.
@@ -339,6 +340,8 @@ Chức năng: độ cong và hệ Newton. Đầu vào: Giới hạn của thốn
 - **Đáp án/gợi ý:** Chọn λ=2, A=diag(1,4). α₀=2/5, d₁=(2/5,2/5), r₁=(3/5,−3/5); chuẩn phần dư √0,72≈0,8485>0,1 nên chưa đạt.
 - **Tiêu chí đánh giá:** Chọn đúng và nêu trị riêng (1 ý); tính đúng bước và phần dư (2 ý); quyết định dừng đúng (1 ý).
 - **Thời gian hoạt động:** Suy nghĩ 0,06 tiết; trình bày 0,02; chữa 0,04. Đã tính trong thời lượng trang.
+- **Sửa ngày 2026-10-02:** Tiêu đề nêu hai thao tác được kiểm; đề và đáp án giữ nguyên.
+
 
 ### Mạch D. Xấp xỉ độ cong từ gradient
 

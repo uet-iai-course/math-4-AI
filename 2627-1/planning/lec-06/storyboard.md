@@ -316,7 +316,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa để giữ β,p trên mặt trang; dẫn SH cho đúng truy hồi và ghi biến thể ngưỡng dừng. Đặc tả tại C06 trong outline.md.
 - **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; đọc tuần tự giả mã, kiểm ngưỡng phần dư ban đầu, dừng trước phép chia và cập nhật hướng.
 
-### C07. Giải gần đúng hệ Newton
+### C07. Phương pháp Newton–CG
 
 - **Lý do tồn tại và nhu cầu học tập:** Bộ giải hệ chưa tự cho quy tắc bước ngoài; cần nối phần dư với hướng sử dụng trong Newton–CG.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C06 cung cấp bộ giải; D01 sẽ bỏ yêu cầu tích Hessian–vectơ và học độ cong từ chênh lệch gradient.
@@ -324,7 +324,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa ứng dụng dùng d₀=0, xử lý g=0 và kiểm dấu hướng ngoài tiêu chí phần dư. Đặc tả tại C07 trong outline.md.
 - **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; phân biệt vòng trong/ngoài, giữ toán tử cố định và kiểm hướng trước tìm bước.
 
-### C08. Kiểm tra hệ Newton và phần dư
+### C08. Giảm chấn và một vòng gradient liên hợp
 
 - **Lý do tồn tại và nhu cầu học tập:** Bài kiểm tra phải yêu cầu chọn hệ hợp lệ trước khi chạy CG và dùng phần dư để quyết định dừng.
 - **Kế thừa, đầu ra và vị trí trong sườn:** C07 tạo nghiệm gần đúng; D01 đặt bài toán khi không có toán tử Hessian.
