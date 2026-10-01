@@ -180,12 +180,12 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa ký hiệu điểm hiện tại để không dùng một chỉ số cho cả tọa độ lẫn vòng lặp. Sửa 2026-10-02: tiêu đề gọi tên hiện tượng; nhãn ví dụ dẫn nhập; kết luận định lượng $\eta<2/9$, hệ số $1-\eta>7/9$, nối Bài 05. Đặc tả tại A03 trong outline.md.
 - **Thời lượng và hoạt động:** 0,08 tiết lý thuyết + 0,00 tiết bài tập; so sánh hai bước và ba giá trị mục tiêu trên đồ thị đồng mức.
 
-### A04. Mô hình cục bộ của bước cập nhật
+### A04. Bước cập nhật với ma trận phạt
 
 - **Lý do tồn tại và nhu cầu học tập:** Cần một phép suy ra bước chung để đối chiếu các thuật toán B–D và chỉ ra nơi dùng tính xác định dương.
 - **Kế thừa, đầu ra và vị trí trong sườn:** A02 xác lập các thành phần huấn luyện; A03 cung cấp dữ kiện để xét một bước trên quỹ đạo. B dùng thống kê gradient để dựng ma trận đường chéo, C dùng Hessian; E–F gọi lại sơ đồ để thay thành phần khác.
 - **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3; LLO15/CLO2,3. Vai trò đánh giá: Hình thức hóa và ứng dụng HT1; MT1–MT2.
-- **Quyết định và lý do:** Sửa kết nối: mô hình này cụ thể hóa một bước của sơ đồ A02, không thay thế toàn bộ cơ sở huấn luyện. Đặc tả tại A04 trong outline.md.
+- **Quyết định và lý do:** Sửa kết nối: mô hình này cụ thể hóa một bước của sơ đồ A02, không thay thế toàn bộ cơ sở huấn luyện. Sửa 2026-10-02: tiêu đề gọi tên khái niệm; câu Trực quan (hạ gradient là trường hợp phạt đều) đứng trước bài toán hình thức; ví dụ nêu hệ quả đến nghiệm trên hàm mở đầu. Đặc tả tại A04 trong outline.md.
 - **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; đạo hàm theo d, kiểm nghiệm duy nhất và áp dụng ma trận phạt chéo.
 
 ### A05. Kiểm tra mô hình bước cập nhật

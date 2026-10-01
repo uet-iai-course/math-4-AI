@@ -74,7 +74,7 @@ Chức năng: bài toán và mô hình bước cập nhật. Đầu vào: Gradie
 - **Ghi chú soạn:** Hình chỉ minh họa hàm bậc hai xác định dương. Không suy rộng giá trị giảm này cho gradient lô nhỏ hoặc mạng phi lồi.
 - **Sửa ngày 2026-10-02:** Tiêu đề “Thang đo khác nhau giữa các tọa độ”; dòng dữ kiện mang nhãn Ví dụ dẫn nhập. Kết luận: tọa độ 2 chỉ co khi $\eta<2/9$, khi đó tọa độ 1 co với hệ số $1-\eta>7/9$; ghi chú nối với giới hạn bước học của Bài 05.
 
-#### A04. Mô hình cục bộ của bước cập nhật
+#### A04. Bước cập nhật với ma trận phạt
 
 - **Vai trò và mục tiêu:** Hình thức hóa và ứng dụng HT1; MT1–MT2.
 - **Luận điểm trung tâm:** Ma trận phạt xác định dương cho một cách điều chỉnh độ dài và hướng của bước.
@@ -85,6 +85,7 @@ Chức năng: bài toán và mô hình bước cập nhật. Đầu vào: Gradie
 - **Nguồn:** HT1 tự suy ra; DL, §§8.5–8.7. BV, §9.4.1, tr.476–477, hướng theo chuẩn bậc hai.
 - **Thời lượng:** 0,07 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Phân biệt độ đo của bước với Hessian. Khi Adam dùng moment thay $g_t$, công thức không bảo đảm hướng giảm của gradient hiện tại. E–F không buộc vào mô hình này.
+- **Sửa ngày 2026-10-02:** Tiêu đề “Bước cập nhật với ma trận phạt”. Câu Trực quan đứng đầu: bước $-\eta g$ cực tiểu $g^\top d+\|d\|^2/(2\eta)$, thay $\|d\|^2$ bằng $d^\top Md$ để phạt theo thang riêng. Khung ví dụ: trên hàm mở đầu, $M=\operatorname{diag}(1,9)$, $\eta=1$ đưa $(1,1)$ về nghiệm $0$.
 
 #### A05. Kiểm tra mô hình bước cập nhật
 

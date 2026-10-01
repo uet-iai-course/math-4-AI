@@ -46,7 +46,9 @@ Xét $F(\theta)=\frac12(\theta_1^2+9\theta_2^2)$ tại $\theta=(1,1)^\top$. Grad
 
 Việc thay thang đo từng hướng có thể được mô tả bằng một mô hình cục bộ. Nguồn đối chiếu về điều kiện số là Goodfellow, Bengio và Courville (2016), §8.2.1; hướng theo chuẩn bậc hai được trình bày trong Boyd và Vandenberghe (2004), §9.4.1.
 
-### 1.3. Bước có ma trận phạt
+### 1.3. Bước cập nhật với ma trận phạt
+
+Bước hạ gradient $-\eta g$ là nghiệm của bài toán cực tiểu $g^\top d+\|d\|^2/(2\eta)$: mô hình tuyến tính của mục tiêu cộng một mức phạt như nhau cho mọi hướng. Ví dụ ở mục 1.2 cần phạt hướng thứ hai mạnh gấp chín lần. Thay $\|d\|^2$ bằng $d^\top Md$ cho phép phạt mỗi hướng theo thang riêng; với $M=\operatorname{diag}(1,9)$ và $\eta=1$, bước từ $(1,1)^\top$ là $(-1,-1)^\top$ và đến ngay nghiệm $0$.
 
 **Mệnh đề.** Cho $g\in\mathbb R^p$, $\eta>0$ và ma trận đối xứng xác định dương (SPD) $M\in\mathbb R^{p\times p}$. Nghĩa là $M=M^\top$ và $z^\top Mz>0$ với mọi $z\ne0$. Bài toán
 
