@@ -247,3 +247,13 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần D
 
 - **D01 — sửa.** Trang mở thẳng bằng hình mạng; nhu cầu chọn $\theta_0$ chỉ có trong ghi chú C08 (cũng được tái kiểm mạch phần C nêu). $z_j,h_j$ chưa có tên dù các trang sau dùng “tiền kích hoạt”. Câu mở nay nêu mọi quy tắc cập nhật bắt đầu từ $\theta_0$ và việc chọn $\theta_0$ cần biết gradient truyền qua mạng; mặt trang gọi tên tiền kích hoạt, kích hoạt, ReLU và truyền xuôi. Ghi chú diễn giả và ghi chú bài giảng thêm lập luận nhu cầu cùng thuật ngữ tiếng Anh ở lần đầu.
+- **Tái kiểm phần C.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5), tại commit `d614663`: tái kiểm toán học **PASS** (4 nhẹ; mọi số liệu C01–C08 tính lại khớp); tái kiểm mạch lập luận **PASS có điều kiện** (1 trung bình, 6 nhẹ). Đã xử lý:
+  - trung bình | storyboard KN3a | bản đồ hành trình còn ghi $\eta=1/20$ công bố từ C03 → sửa theo C02 giới thiệu, C03 thêm $\beta$. **Đã đóng.**
+  - nhẹ | C02 | chưa gọi tên $\theta^+$ là bước hạ gradient → “Bước hạ gradient trên $q$: $\theta^+=\theta-\eta H\theta=(I_2-\eta H)\theta$”. **Đã đóng.**
+  - nhẹ | C03 | chỉ số mơ hồ → “Bước mới $v_{t+1}$ giữ phần $\beta$ của bước cũ $v_t$”; ghi chú bỏ câu lặp ý. **Đã đóng.**
+  - nhẹ | C05 | “bước hiệu dụng” chưa định nghĩa → “hệ số của $-g$ tiến tới $\eta/(1-\beta)=2\eta$” trên mặt trang, ghi chú bài giảng, outline, storyboard. **Đã đóng.**
+  - nhẹ | C06 | “nơi tham số sắp tới” bỏ qua hiệu chỉnh → “nơi tham số tới trước khi hiệu chỉnh”. **Đã đóng.**
+  - nhẹ | C08 (ghi chú) | “bắt đầu từ θ₀ và v₀=0” lẫn với đề có $v\ne0$ → “Khi chạy từ đầu, cả hai quy tắc cần θ₀ và v₀=0”. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng C02 | mẫu dấu hai chấm tiết lộ → dấu chấm phẩy. **Đã đóng.**
+  - nhẹ | storyboard bố cục C07 | thêm bước 3. **Đã đóng.**
+  - ngoài phạm vi | D01 | thiếu nhu cầu chọn $\theta_0$ trên mặt trang → đã xử lý ở commit sửa D01. **Đã đóng.**

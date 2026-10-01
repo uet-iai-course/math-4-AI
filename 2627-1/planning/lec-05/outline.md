@@ -411,7 +411,7 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Gradient hằng là trường hợp riêng, không giả thiết toàn quỹ đạo. Không lấy hai bước để kết luận thứ hạng phổ quát hoặc tuyên bố sửa được điểm yên ngựa/bão hòa.
 
-- **Sửa ngày 2026-10-01:** Tiêu đề “Đối chứng momentum với hạ gradient”. Dòng gradient hằng thêm giới hạn $-\eta g/(1-\beta)$, tức bước hiệu dụng $2\eta$ khi $\beta=1/2$.
+- **Sửa ngày 2026-10-01:** Tiêu đề “Đối chứng momentum với hạ gradient”. Dòng gradient hằng thêm giới hạn $-\eta g/(1-\beta)$, tức hệ số của $-g$ tiến tới $2\eta$ khi $\beta=1/2$.
 
 #### C06 — Gradient tại điểm dự báo
 

@@ -220,7 +220,7 @@ $$
 \quad\Longleftrightarrow\quad 0<\eta<\frac27.
 $$
 
-Bước học vì vậy bị chặn bởi độ cong lớn. Với $\eta=1/20$, hai hệ số là $0.85$ và $0.65$: tham số không vượt trục, nhưng tọa độ thứ nhất sau mười bước vẫn còn $0.85^{10}\approx0.20$ lần giá trị ban đầu. Các bước liên tiếp giữ cùng dấu ở cả hai tọa độ; momentum dùng tính nhất quán này bằng cách tích lũy một phần các bước trước.
+Bước học vì vậy bị chặn bởi độ cong lớn. Với $\eta=1/20$, hai hệ số là $0.85$ và $0.65$; tham số không vượt trục, nhưng tọa độ thứ nhất sau mười bước vẫn còn $0.85^{10}\approx0.20$ lần giá trị ban đầu. Các bước liên tiếp giữ cùng dấu ở cả hai tọa độ; momentum dùng tính nhất quán này bằng cách tích lũy một phần các bước trước.
 
 ### Tích lũy hướng bằng momentum
 
@@ -260,7 +260,7 @@ $$
 Quy nạp hoàn tất chứng minh.
 :::
 
-Các gradient cùng hướng tích lũy; các thành phần trái dấu có thể triệt tiêu một phần. Tổng trọng số hình học nói chung khác 1, nên biểu thức chưa phải trung bình chuẩn hóa. Nếu gradient luôn bằng vectơ $g$, trường hợp riêng là $v_{t+1}=-\eta(1-\beta^{t+1})g/(1-\beta)\to-\eta g/(1-\beta)$; với $\beta=1/2$, bước hiệu dụng tiến tới $2\eta$. Gradient hằng không phải giả thiết của toàn quỹ đạo thông thường.
+Các gradient cùng hướng tích lũy; các thành phần trái dấu có thể triệt tiêu một phần. Tổng trọng số hình học nói chung khác 1, nên biểu thức chưa phải trung bình chuẩn hóa. Nếu gradient luôn bằng vectơ $g$, trường hợp riêng là $v_{t+1}=-\eta(1-\beta^{t+1})g/(1-\beta)\to-\eta g/(1-\beta)$; với $\beta=1/2$, hệ số của $-g$ tiến tới $2\eta$. Gradient hằng không phải giả thiết của toàn quỹ đạo thông thường.
 
 Sau hai bước cùng cấu hình, hạ gradient cho $(1.445,1.69)^T$ và momentum cho $(1.295,0.99)^T$. Giá trị hàm lần lượt là $13.1283875$ và $5.9458875$. Kết quả xác định ảnh hưởng của trạng thái trong ví dụ; nó chưa chứng minh ưu thế chung hoặc khả năng khắc phục mọi điểm yên ngựa và vùng bão hòa.
 
