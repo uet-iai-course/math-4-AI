@@ -428,14 +428,14 @@ Bảng là phép tính phương sai trong mô hình, không chứa số đo th�
 
 ## E. Phối hợp các thành phần của quy trình huấn luyện
 
-Thứ tự thực thi bắt đầu từ dữ liệu và mất mát, tiếp đến khởi tạo, rồi lặp lấy nhóm, tính gradient và cập nhật. Đánh giá xác thực diễn ra theo lịch định trước. Trong cấu hình này, bốn nhóm quyết định có tác dụng riêng:
+Thứ tự thực thi bắt đầu từ dữ liệu và mất mát, tiếp đến khởi tạo, rồi lặp lấy nhóm, tính gradient và cập nhật. Đánh giá xác thực diễn ra theo lịch định trước. Bốn nhóm quyết định dưới đây trả lời ba câu hỏi mở đầu (cực tiểu gì, dùng gradient thế nào, bắt đầu từ đâu); chữ trong ngoặc chỉ phần xây dựng quyết định đó:
 
 | Quyết định | Đại lượng xác định | Căn cứ đánh giá |
 |---|---|---|
-| Nguồn gradient | $D,b,\widehat g_t$ | Số phép đánh giá mẫu, phương sai, bộ nhớ |
-| Quy tắc cập nhật | $\theta_t,v_t$, điểm gradient | Trạng thái, bước học, phép tính tại đúng vị trí |
-| Khởi tạo | $\theta_0$ | Đối xứng và thang tín hiệu, gradient |
-| Lựa chọn kết quả | Tiêu chí xác thực, ngân sách, bộ đếm | Giá trị tốt nhất đã thấy và điều kiện dừng |
+| Nguồn gradient (B) | $D,b,\widehat g_t$ | Số phép đánh giá mẫu, phương sai, bộ nhớ |
+| Quy tắc cập nhật (C) | $\theta_t,v_t$, điểm gradient | Trạng thái, bước học, phép tính tại đúng vị trí |
+| Khởi tạo (D) | $\theta_0$ | Đối xứng và thang tín hiệu, gradient |
+| Lựa chọn kết quả (A) | Tiêu chí xác thực, ngân sách, bộ đếm | Giá trị tốt nhất đã thấy và điều kiện dừng |
 
 Gradient nhóm nhỏ có thể giảm công việc mỗi bước. Momentum thay cách dùng lịch sử; Nesterov thêm thay đổi vị trí gradient. Khởi tạo trọng số khác nhau xử lý sự đồng nhất của đơn vị, còn thang trọng số liên quan tín hiệu và gradient qua lớp. Tiêu chí xác thực quyết định lựa chọn mô hình sau các cập nhật.
 

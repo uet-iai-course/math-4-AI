@@ -627,7 +627,7 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 
 Chức năng: trở lại bài toán A03 và phối hợp các lựa chọn; không đưa khái niệm trọng tâm mới. MT1–MT3; 0.15 LT + 0.15 BT.
 
-#### E01 — Cấu hình quy trình huấn luyện
+#### E01 — Quy trình huấn luyện
 
 - **Vai trò và mục tiêu:** Tổng hợp và ứng dụng các kết quả A–D; MT1–MT3.
 - **Luận điểm trung tâm:** Chọn gradient, cập nhật và khởi tạo là các quyết định phối hợp nhưng có nhiệm vụ khác nhau.
@@ -638,6 +638,8 @@ Chức năng: trở lại bài toán A03 và phối hợp các lựa chọn; kh�
 - **Nguồn:** DL §5.10, §§8.1–8.4; tổng hợp người soạn.
 - **Thời lượng:** 0.08 giờ LT.
 - **Ghi chú soạn:** Không cho rằng momentum sửa được tất cả khởi tạo xấu, hoặc gradient nhỏ chứng nhận chất lượng. Giữ riêng thời điểm chọn khởi tạo với thứ tự bài học.
+
+- **Sửa ngày 2026-10-01:** Tiêu đề “Quy trình huấn luyện”. Mỗi quyết định ghi phần xây dựng nó (B, C, D, A). Khối dưới nối với ba câu hỏi của A02; câu vòng lặp chuyển vào ghi chú.
 
 #### E02 — Chẩn đoán một phiên huấn luyện
 

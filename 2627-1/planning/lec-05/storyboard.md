@@ -87,7 +87,7 @@ Mọi trang mang quyết định **thêm mới** trong lần xây lại; lý do 
 | D09 — Khởi tạo Glorot | Biến yêu cầu thang thành phân phối có thể dùng | $n_{in},n_{out}$ → $s^2,a$ | D10/D11, LLO13/CLO2 | Giữ (8.23), không thêm He thiếu nhu cầu/phạm vi. Sửa 2026-10-01: định nghĩa $U[-a,a]$ và phương sai $a^2/3$ trước khi suy ra $a$ |
 | D10 — Thang phương sai qua nhiều lớp | Ứng dụng có hướng dẫn khác kiểm tra cuối phần | HT9/HT10 → bảng hệ quả phương sai qua ba lớp | LLO13/CLO2 | Thêm mô hình tính được theo quy trình §8.4; không giả dữ liệu thực nghiệm. Sửa 2026-10-01: giả thiết đứng trước công thức lặp; chú thích nêu kết luận đọc từ bảng |
 | D11 — Đối xứng và thang khởi tạo | Đo tự tính đạo hàm, đối xứng và chuyển công thức sang kích thước mới | D02–D03/D07–D09 → hai đạo hàm và khởi tạo có điều kiện | Kiểm tra riêng D, LLO13/CLO2 | Đề tự chứa mạng, mất mát, dữ kiện mới và giả thiết tuyến tính; giữ tổng 0.25 BT. Sửa 2026-10-01: yêu cầu viết “Tính… Giải thích… Nêu…”; ghi chú nối hai tiểu bài toán với hai yêu cầu của $\theta_0$ |
-| E01 — Cấu hình quy trình huấn luyện | Trả các kết quả về đúng thứ tự chạy | A–D → sơ đồ vận hành thống nhất | MT1–MT3 | Tổng hợp, không thêm kỹ thuật mới |
+| E01 — Quy trình huấn luyện | Trả các kết quả về đúng thứ tự chạy | A–D → sơ đồ vận hành thống nhất | MT1–MT3 | Tổng hợp, không thêm kỹ thuật mới. Sửa 2026-10-01: rút tiêu đề; gắn mỗi quyết định với phần A–D; khối kết luận trả lời ba câu hỏi của A02 |
 | E02 — Chẩn đoán một phiên huấn luyện | Đo chuyển giao nhiều công cụ vào một tình huống | E01 → lựa chọn có lý do và điểm gradient | Kiểm tra riêng E, LLO11–13/CLO1–2 | Thêm nhiệm vụ mới, không đòi cỡ nhóm tối ưu thiếu dữ kiện |
 | E03 — Kết luận và tài liệu đọc | Khép vấn đề/mục tiêu và ranh giới bài sau | Bằng chứng E02 → việc làm được và giới hạn | MT1–MT3 | Gộp tổng kết với nguồn đọc, không thêm luận điểm mới |
 
@@ -153,7 +153,7 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | D09 | Hai cột; quy tắc phương sai, định nghĩa phân phối đều và phép suy biên $a$ trái, ví dụ 4→2 phải. Giữ thỏa hiệp sau bảng xung đột. |
 | D10 | Mạng và khối giả thiết trên, công thức lặp, bảng ba lớp, chú thích kết luận dưới. Giữ bảng mô hình có thể tính lại. |
 | D11 | Nhãn câu hỏi ghi hai tiểu bài toán độc lập; hai khối đối xứng/thang. Sửa duy nhất tiêu đề, thêm phạm vi khả vi; giữ mã/vị trí. |
-| E01 | Sơ đồ vận hành trên, bảng quyết định/đối tượng/đại lượng, khối vòng lặp dưới. Giữ đúng thứ tự thực thi. |
+| E01 | Sơ đồ vận hành trên, bảng quyết định (kèm phần A–D)/đối tượng/đại lượng, khối nối với ba câu hỏi mở đầu dưới. Giữ đúng thứ tự thực thi. |
 | E02 | Hai khối; dữ liệu/khởi tạo trái, bảng xác thực/tiểu bài vectơ phải. Giữ tách các mô hình trong đề. |
 | E03 | Bảng ba kết quả học tập, khối nguồn đọc dưới. Giữ đối chiếu mục tiêu và ranh giới bài sau. |
 

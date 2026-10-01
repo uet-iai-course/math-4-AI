@@ -267,3 +267,7 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **D09 — sửa.** $U[-a,a]$ và phương sai $a^2/3$ được định nghĩa ở dòng cuối, sau khi đã dùng để suy ra $a$. Định nghĩa nay đứng trước phép suy $a=\sqrt{3s^2}=\sqrt{6/(n_{\rm in}+n_{\rm out})}$, tách thành dòng riêng để không bị cắt ở khung hẹp; dòng định nghĩa cuối trang bị bỏ. Ghi chú diễn giả và ghi chú bài giảng nêu tên gọi khác là khởi tạo Xavier.
 - **D10 — sửa.** Giả thiết độc lập giữa các lớp đứng sau bảng dù công thức lặp đã dùng nó; chú thích chỉ là lời rào đón, không nêu kết luận. Khối giả thiết chuyển lên trước công thức; chú thích nêu kết luận đọc từ bảng ($s^2=1/16$ co bốn lần mỗi lớp, $s^2=1/4$ giữ nguyên) và giữ ý “tính theo mô hình”. Ghi chú bài giảng thêm câu nối với chuỗi vô hướng $c_l=1/2$.
 - **D11 — sửa.** Hai yêu cầu viết dạng cụm danh từ (“Hai đạo hàm…; tác động của…”, “Glorot: $s^2$, biên $a$…”). Nay dùng “Tính… Giải thích… Nêu…”; tiêu đề và dữ kiện giữ nguyên. Ghi chú diễn giả nối hai tiểu bài toán với hai yêu cầu của điểm khởi đầu. Ghi chú bài giảng viết lại câu hỏi cuối phần D, thêm yêu cầu giới hạn với ReLU.
+
+### Phần E
+
+- **E01 — sửa.** Trang tổng hợp không quay lại vấn đề trung tâm nêu ở A02; khối dưới lặp sơ đồ vận hành. Tiêu đề rút thành “Quy trình huấn luyện”; mỗi quyết định ghi phần xây dựng nó (A–D, nhãn phần được phép); khối dưới nêu bốn quyết định trả lời ba câu hỏi mở đầu; câu vòng lặp chuyển vào ghi chú. Ghi chú bài giảng cập nhật bảng và câu dẫn.
