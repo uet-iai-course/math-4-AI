@@ -506,6 +506,7 @@ Chức năng: phép tính mô hình, khối biến và đầu ra. Đầu vào: C
 - **Nguồn:** DL, §8.7.5, tr.322–323; ví dụ V12 tự xây dựng.
 - **Thời lượng:** 0,07 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Chu trình rút gọn do đây là khái niệm hỗ trợ đã có quy tắc dây chuyền. Không suy ra nối tắt luôn chặn gradient; 1,1^L vẫn có thể tăng theo L. Tích đạo hàm là một thừa số của gradient tham số; các đạo hàm của mất mát và biểu diễn đầu khối còn tham gia. Ví dụ không chứng minh gradient tốt hơn cho mọi mạng.
+- **Sửa ngày 2026-10-02:** Câu mở: độ nhạy qua nhiều lớp là tích đạo hàm, co theo cấp số mũ (Bài 05); nối tắt $h_l=h_{l-1}+f_l(h_{l-1})$ cộng thêm 1 vào mỗi thừa số. Khung $\partial\mathcal L/\partial w$ chuyển vào ghi chú.
 
 #### E08. Kiểm tra can thiệp trong huấn luyện
 

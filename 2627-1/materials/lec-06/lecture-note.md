@@ -587,7 +587,7 @@ Trung bình đều khác trung bình mũ $\widetilde\theta_t=\rho\widetilde\thet
 
 ### 5.4. Thiết kế đường truyền gradient
 
-Kiến trúc xác định các tích đạo hàm mà thuật toán nhận được. Xét $h_0,\ldots,h_5\in\mathbb R$, với $h_0$ là đầu vào một khối và $h_5$ là đầu ra. Nếu $h_l=0{,}1h_{l-1}$ thì
+Kiến trúc xác định các tích đạo hàm mà thuật toán nhận được. Bài 05 cho thấy độ nhạy qua nhiều lớp là tích các đạo hàm, co theo cấp số mũ khi mỗi thừa số nhỏ hơn $1$. Nối tắt (skip connection) $h_l=h_{l-1}+f_l(h_{l-1})$ cộng thêm $1$ vào mỗi thừa số: $\partial h_l/\partial h_{l-1}=1+f_l'(h_{l-1})$. Xét $h_0,\ldots,h_5\in\mathbb R$, với $h_0$ là đầu vào một khối và $h_5$ là đầu ra. Nếu $h_l=0{,}1h_{l-1}$ thì
 
 $$
 \frac{\partial h_5}{\partial h_0}=0{,}1^5=10^{-5}.

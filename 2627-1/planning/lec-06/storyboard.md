@@ -425,7 +425,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Thay thuật toán không thay các đạo hàm do mô hình tạo; cần nối hệ số qua khối với gradient mất mát thực dùng.
 - **Kế thừa, đầu ra và vị trí trong sườn:** E06 thay đầu ra; E07 đặt giới hạn mà chỉ đổi thuật toán cập nhật chưa xử lý; F01 xét cách xây điểm đầu qua nhiệm vụ phụ.
 - **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Khái niệm hỗ trợ KN10; MT3.
-- **Quyết định và lý do:** Sửa bổ sung h₀,h₅ vô hướng, mất mát ℒ và tham số tầng trước; giữ mức hỗ trợ quy tắc dây chuyền. Đặc tả tại E07 trong outline.md.
+- **Quyết định và lý do:** Sửa bổ sung h₀,h₅ vô hướng, mất mát ℒ và tham số tầng trước; giữ mức hỗ trợ quy tắc dây chuyền. Sửa 2026-10-02: câu nhu cầu nối Bài 05 và định nghĩa nối tắt trước hình; khung gradient theo $w$ vào ghi chú để trang không tràn. Đặc tả tại E07 trong outline.md.
 - **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; tính hai tích và xác định vị trí của chúng trong gradient tham số.
 
 ### E08. Kiểm tra can thiệp trong huấn luyện
