@@ -532,6 +532,8 @@ Chức năng: chuẩn bị mạng và dây chuyền, rồi giải thích riêng 
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Việc chọn các $c_l$ bằng nhau chỉ là ví dụ; mạng truyền thẳng không nhất thiết dùng lại cùng ma trận ở mọi lớp. Liên hệ gradient bùng nổ và vách dốc, chưa dạy cắt gradient.
 
+- **Sửa ngày 2026-10-01:** Câu mở nối D04: phá đối xứng chưa xác định độ lớn trọng số, độ lớn quyết định các thừa số trong tích dây chuyền. Định nghĩa mô hình gộp một dòng. Kết luận: với mọi $c_l=c$, độ nhạy $c^L$ co hoặc phóng đại theo cấp số mũ.
+
 #### D06 — Bão hòa của hàm kích hoạt
 
 - **Vai trò và mục tiêu:** Trực quan và giới hạn của suy luận thang; MT1/MT3.

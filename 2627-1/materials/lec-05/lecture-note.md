@@ -333,7 +333,7 @@ Trong cấu hình $w_1=0.8,w_2=1.2$, $a_1=a_2=1$, $b_j=0$, $x=1,y=0$, đầu ra 
 
 ### Độ nhạy qua nhiều lớp và bão hòa
 
-Để phân tích độ lớn, chuyển sang chuỗi tuyến tính vô hướng
+Phá đối xứng chưa xác định độ lớn của trọng số, trong khi độ lớn này quyết định các thừa số trong tích dây chuyền. Để phân tích độ lớn, chuyển sang chuỗi tuyến tính vô hướng
 
 $$
 h^{(l)}=c_lh^{(l-1)},\qquad l=1,\ldots,L,
@@ -341,7 +341,7 @@ $$
 
 với $L$ là số lớp, $c_l\in\mathbb R$ là hệ số, $h^{(0)}$ là đầu vào. Dây chuyền cho $\partial h^{(L)}/\partial h^{(0)}=\prod_{l=1}^Lc_l$. Với $L=4$, mọi $c_l=1/2$ cho độ nhạy $1/16$, còn mọi $c_l=2$ cho 16. Khi $h^{(0)}=1$, hai đầu ra cũng nhận các giá trị tương ứng.
 
-Đây là độ nhạy đầu ra theo đầu vào, chưa phải toàn bộ gradient mất mát theo mọi tham số. Phép nhân nhiều đạo hàm có thể làm độ nhạy co hoặc phóng đại; gradient lớn và vách dốc là những khó khăn có thể xuất hiện khi các tích này tăng mạnh.
+Đây là độ nhạy đầu ra theo đầu vào, chưa phải toàn bộ gradient mất mát theo mọi tham số. Khi mọi $c_l=c$, độ nhạy bằng $c^L$, nên phép nhân nhiều đạo hàm làm độ nhạy co hoặc phóng đại theo cấp số mũ của độ sâu; gradient lớn và vách dốc là những khó khăn có thể xuất hiện khi các tích này tăng mạnh.
 
 Với hàm kích hoạt khác $\phi(z)=\tanh z$,
 
