@@ -87,7 +87,7 @@ Chức năng: bài toán và mô hình bước cập nhật. Đầu vào: Gradie
 - **Ghi chú soạn:** Phân biệt độ đo của bước với Hessian. Khi Adam dùng moment thay $g_t$, công thức không bảo đảm hướng giảm của gradient hiện tại. E–F không buộc vào mô hình này.
 - **Sửa ngày 2026-10-02:** Tiêu đề “Bước cập nhật với ma trận phạt”. Câu Trực quan đứng đầu: bước $-\eta g$ cực tiểu $g^\top d+\|d\|^2/(2\eta)$, thay $\|d\|^2$ bằng $d^\top Md$ để phạt theo thang riêng. Khung ví dụ: trên hàm mở đầu, $M=\operatorname{diag}(1,9)$, $\eta=1$ đưa $(1,1)$ về nghiệm $0$.
 
-#### A05. Kiểm tra mô hình bước cập nhật
+#### A05. Ma trận phạt và tính xác định dương
 
 - **Vai trò và mục tiêu:** Kiểm tra riêng mạch A; MT1–MT2.
 - **Luận điểm trung tâm:** Điều chỉnh thang đo phải gắn với dữ kiện và giả thiết.
@@ -103,6 +103,8 @@ Chức năng: bài toán và mô hình bước cập nhật. Đầu vào: Gradie
 - **Đáp án/gợi ý:** Hai bước là $(-1,-4)^\top$ và $(-1,-1)^\top$. Ma trận cuối không xác định dương; hàm theo $d$ không bị chặn dưới theo tọa độ thứ hai.
 - **Tiêu chí đánh giá:** Tính đúng hai bước (2 ý); giải thích bằng dấu của dạng toàn phương (1 ý).
 - **Thời gian hoạt động:** Suy nghĩ 0,04 tiết; trình bày 0,02; đối chiếu 0,02. Đã tính trong thời lượng trang.
+- **Sửa ngày 2026-10-02:** Đổi tiêu đề thành “Ma trận phạt và tính xác định dương” để nêu khái niệm được kiểm; đề, đáp án và câu nối sang thống kê gradient giữ nguyên.
+
 
 ### Mạch B. Thống kê gradient theo tọa độ
 

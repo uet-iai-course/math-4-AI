@@ -188,7 +188,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Quyết định và lý do:** Sửa kết nối: mô hình này cụ thể hóa một bước của sơ đồ A02, không thay thế toàn bộ cơ sở huấn luyện. Sửa 2026-10-02: tiêu đề gọi tên khái niệm; câu Trực quan (hạ gradient là trường hợp phạt đều) đứng trước bài toán hình thức; ví dụ nêu hệ quả đến nghiệm trên hàm mở đầu. Đặc tả tại A04 trong outline.md.
 - **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; đạo hàm theo d, kiểm nghiệm duy nhất và áp dụng ma trận phạt chéo.
 
-### A05. Kiểm tra mô hình bước cập nhật
+### A05. Ma trận phạt và tính xác định dương
 
 - **Lý do tồn tại và nhu cầu học tập:** Kiểm người học có tính được bước và phát hiện ma trận phạt không hợp lệ trước khi ước lượng thang đo từ dữ liệu.
 - **Kế thừa, đầu ra và vị trí trong sườn:** A04 cho công thức; kết quả A05 đặt nhu cầu ước lượng thang đo khi chưa biết Hessian tại B01.
