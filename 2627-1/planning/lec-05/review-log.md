@@ -203,3 +203,14 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần B
 
 - **B01 — sửa.** Chi phí của $\nabla J$ chưa thành nhu cầu vì trang không nhắc rằng hạ gradient của Bài 04 cần nó ở mọi bước; $C$ được định nghĩa sau bảng đã dùng nó. Câu mở nay nêu phép lặp hạ gradient; $C$ đứng trước bảng; câu rào đón về thời gian phần cứng vào ghi chú; thuật ngữ “nhóm nhỏ (minibatch)” nêu trong ghi chú. Hộp sơ đồ $g_1,\ldots,g_N\to\nabla J$ bị bỏ vì lặp công thức và làm hàng cuối của bảng chạm chân trang ở 1600×900. Ghi chú bài giảng thêm câu nhu cầu và thuật ngữ.
+- **Tái kiểm phần A.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5 từ phiên điều phối), tại commit `195acfd`: tái kiểm toán học **PASS** (1 trung bình, 4 nhẹ); tái kiểm mạch lập luận **PASS có điều kiện** (2 trung bình, 4 nhẹ). Đã xử lý:
+  - trung bình | A05 | ước lượng không chệch thiếu giả thiết quan sát xác thực có phân phối $P$; “xu hướng thấp hơn” chưa nói theo kỳ vọng → ghi chú diễn giả và ghi chú bài giảng nêu giả thiết và bất đẳng thức $\mathbb E\min_k\widehat R_k\le\min_kR(\theta_k)\le R(\theta_{\hat k})$. **Đã đóng.**
+  - trung bình | storyboard | bảng bố cục thực tế mô tả bố cục cũ của A02–A06, B01 → cập nhật các dòng tương ứng. **Đã đóng.**
+  - trung bình | A05→A06 | thiếu câu nối vì sao xét điểm dừng sau tiêu chí xác thực → ghi chú A06 và ghi chú bài giảng nêu tiêu chí dừng theo chuẩn gradient của Bài 04 và lý do chuyển sang xác thực. **Đã đóng.**
+  - nhẹ | A06 | thiếu cực đại địa phương trong danh sách điểm dừng → bổ sung. **Đã đóng.**
+  - nhẹ | A07 | “lỗi xác thực” giả định phân loại → ghi “trong bài toán phân loại”. **Đã đóng.**
+  - nhẹ | A04 | $d,p\ge1$ chưa nói là số nguyên → $d,p\in\mathbb N_{>0}$. **Đã đóng.**
+  - nhẹ | A03, A02 (ghi chú) | hai câu trừu tượng theo no-ai-slop → viết lại cụ thể. **Đã đóng.**
+  - nhẹ | A05 | “thời điểm” chưa giải nghĩa → ghi chú: số bước cập nhật đã thực hiện. **Đã đóng.**
+  - nhẹ | B01 | thiếu kết quả kế thừa → đã xử lý ở commit sửa B01. **Đã đóng.**
+  - nhẹ | B02 | lặp dạng chính tắc của $J$ với A03 → xử lý khi duyệt B02.

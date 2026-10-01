@@ -48,7 +48,7 @@ trong đó $P$ là phân phối trên $\mathbb R^d\times\mathcal Y$ và giả s�
 
 ### Tập xác thực và tập kiểm thử
 
-Phân phối $P$ chưa biết nên $R$ không tính được; chỉ có thể ước lượng $R$ bằng mất mát trên dữ liệu không dùng để cập nhật tham số. Tại một tham số $\theta$ cố định, không phụ thuộc tập xác thực (validation set), mất mát trung bình trên tập này là ước lượng không chệch của $R(\theta)$. Tập xác thực được dùng để chọn cấu hình hoặc thời điểm lưu mô hình. Khi đã dùng nó để chọn giữa nhiều ứng viên, giá trị nhỏ nhất được chọn có xu hướng thấp hơn rủi ro thật; vì vậy tập kiểm thử (test set) được giữ riêng cho đánh giá sau khi lựa chọn hoàn tất. Khi các tập đánh giá đại diện cho phân phối triển khai, kết quả của chúng cung cấp thông tin về chất lượng ngoài tập huấn luyện; một ước lượng hữu hạn vẫn có sai số.
+Phân phối $P$ chưa biết nên $R$ không tính được; chỉ có thể ước lượng $R$ bằng mất mát trên dữ liệu không dùng để cập nhật tham số. Giả sử các quan sát của tập xác thực (validation set) có phân phối $P$. Tại một tham số $\theta$ cố định, không phụ thuộc tập này, mất mát trung bình trên tập xác thực là ước lượng không chệch của $R(\theta)$. Tập xác thực được dùng để chọn cấu hình hoặc thời điểm lưu mô hình, tức số bước cập nhật đã thực hiện. Khi đã dùng nó để chọn giữa nhiều ứng viên $\theta_1,\ldots,\theta_K$ với giá trị xác thực $\widehat R_k$, ta có $\mathbb E\min_k\widehat R_k\le\min_k R(\theta_k)\le R(\theta_{\hat k})$, với $\hat k$ là chỉ số được chọn; giá trị xác thực của ứng viên được chọn vì vậy lệch về phía lạc quan; vì vậy tập kiểm thử (test set) được giữ riêng cho đánh giá sau khi lựa chọn hoàn tất. Khi các tập đánh giá đại diện cho phân phối triển khai, kết quả của chúng cung cấp thông tin về chất lượng ngoài tập huấn luyện; một ước lượng hữu hạn vẫn có sai số.
 
 | Thời điểm | Mất mát huấn luyện | Mất mát xác thực |
 |---|---:|---:|
@@ -59,7 +59,7 @@ Bảng chứa số liệu giả lập sư phạm; mỗi cột dùng cùng một 
 
 ### Điểm dừng của hàm không lồi
 
-Với hàm lồi khả vi, điểm dừng (stationary point), tức điểm có gradient bằng 0, là cực tiểu toàn cục (Bài 04). Mất mát của mạng nơ ron nói chung không lồi, nên điều kiện cần này không còn là điều kiện đủ.
+Với hàm lồi khả vi, điểm dừng (stationary point), tức điểm có gradient bằng 0, là cực tiểu toàn cục (Bài 04). Phép lặp của Bài 04 dừng khi chuẩn gradient đủ nhỏ. Mất mát của mạng nơ ron nói chung không lồi, nên điều kiện cần này không còn là điều kiện đủ: điểm dừng có thể là cực tiểu, cực đại địa phương hoặc điểm yên ngựa. Việc chọn kết quả vì vậy dựa vào tiêu chí xác thực.
 
 Với $s(u,v)=u^2-v^2$, gradient bằng $(2u,-2v)^T$ và Hessian bằng $\operatorname{diag}(2,-2)$. Tại gốc, gradient bằng không. Tuy nhiên, $s(u,0)=u^2>0$ và $s(0,v)=-v^2<0$ khi tọa độ khác không, kể cả trong lân cận tùy ý nhỏ. Gốc là điểm yên ngựa (saddle point).
 

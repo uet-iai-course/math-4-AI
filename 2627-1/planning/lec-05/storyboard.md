@@ -120,13 +120,13 @@ Bảng này bổ sung cột bố cục cho 37 mục ở bảng theo từng trang
 | Mã | Bố cục hiện tại và quyết định |
 |---|---|
 | A01 | Một cột; tiêu đề lớn trên, tên học phần/bài/đơn vị dưới. Giữ trang định vị ít nội dung. |
-| A02 | Một cột; danh sách năm phần, khối mục tiêu ba thao tác dưới. Sửa lời mục tiêu để đầu ra hiện trên màn chiếu. |
-| A03 | Câu nhu cầu trên; hai cột hình ba quan sát trái, mô hình/mất mát/trung bình/ví dụ phải. Sửa động cơ trước phép tính. |
-| A04 | Miền/ký hiệu và sơ đồ dữ liệu trên; hai khối huấn luyện/kỳ vọng dưới. Sửa khối trái để định nghĩa mất mát mẫu trước trung bình. |
-| A05 | Bảng hai thời điểm và khối lựa chọn; lời giải thích tiêu chí dưới. Giữ phép quyết định ngắn. |
-| A06 | Hai cột; hình hai loại điểm và các công thức/nhận xét tương ứng. Giữ hai phản ví dụ trong một luận điểm về giới hạn điểm dừng. |
+| A02 | Một cột; danh sách năm phần, khối vấn đề trung tâm (ba quyết định) dưới. Sửa 2026-10-01: thay khối mục tiêu bằng vấn đề trung tâm. |
+| A03 | Câu nhu cầu trên; hai cột hình ba quan sát trái, mô hình/mất mát/trung bình phải; khối dạng chính tắc và nghiệm $\theta^*=1$ dưới cột phải. |
+| A04 | Câu nhu cầu, sơ đồ dữ liệu, rồi đoạn ký hiệu hai dòng; hai khối huấn luyện/kỳ vọng dưới. Sửa 2026-10-01: nhu cầu và trực quan đứng trước ký hiệu. |
+| A05 | Câu nhu cầu ước lượng $R$; bảng hai thời điểm, chú thích, dòng đọc bảng; hai khối tập xác thực/kiểm thử dưới. |
+| A06 | Câu nhu cầu từ kết quả lồi; hai cột hình hai loại điểm và công thức; khối kết luận dưới. Giữ hai phản ví dụ trong một luận điểm về giới hạn điểm dừng. |
 | A07 | Nhãn câu hỏi, bảng hai thời điểm rồi hai yêu cầu lựa chọn bản lưu/phân loại gốc. Giữ hai minh chứng đánh giá của phần A. |
-| B01 | Công thức gradient đầy đủ trên, đối chiếu chi phí dưới. Giữ nhu cầu trước kỹ thuật lấy mẫu. |
+| B01 | Phép lặp hạ gradient và định nghĩa $g_i$ trên, công thức gradient đầy đủ, giả thiết chi phí $C$, bảng đối chiếu dưới. Giữ nhu cầu trước kỹ thuật lấy mẫu. |
 | B02 | Hai cột; hình âm gradient trái, công thức/bảng gradient phải. Giữ cùng điểm tham số khi so các mẫu. |
 | B03 | Giả thiết và định nghĩa trên; hai khối kỳ vọng/hiệp phương sai; ví dụ vô hướng dưới. Sửa miền của cỡ nhóm. |
 | B04 | Hai cột; đồ thị hai mất mát và phép tính bước/giá trị. Giữ phản ví dụ nhìn và tính được. |
