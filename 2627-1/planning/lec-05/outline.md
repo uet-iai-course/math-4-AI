@@ -440,6 +440,8 @@ Chức năng: dùng hình học đã biết để giải thích lịch sử cậ
 - **Ghi chú soạn:** Không cộng điểm dự báo hai lần. So hai thuật toán phải dùng cùng nhóm nếu muốn cô lập nơi lấy gradient. Bản hệ số cố định này không tự có bảo đảm $O(1/t^2)$ của các phương pháp gia tốc lồi với lịch/giả thiết tương ứng; không tuyên bố luôn nhanh hơn.
 - **Bản triển khai sau rà 2026-09-26:** Nêu bước cố định $\eta>0$ ngay lời mở thuật toán, cùng quy ước momentum.
 
+- **Sửa ngày 2026-10-01:** Danh sách bước thêm bước 3: cập nhật $v$, rồi cộng vào $\theta_t$, không vào $\widetilde\theta_t$.
+
 #### C08 — Cập nhật có trạng thái trên hàm bậc hai
 
 - **Vai trò và mục tiêu:** Trang kiểm tra riêng C; MT2/KN3.
