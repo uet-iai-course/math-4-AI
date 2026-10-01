@@ -159,6 +159,7 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Nguồn:** DL, §8.5.2; TO, tr. 29; ví dụ V3 tự xây dựng.
 - **Thời lượng:** 0,03 tiết lý thuyết + 0,03 tiết bài tập. Giải thích kết hợp tính tay và đối chiếu số; phần tính tay được tính vào bài tập.
 - **Ghi chú soạn:** Không so sánh độ lớn bước để kết luận thuật toán nào tốt hơn; hai thống kê có thang khác nhau.
+- **Sửa ngày 2026-10-02:** Câu mở nêu nhu cầu: AdaGrad cộng mọi bình phương nên $v_t$ chỉ tăng và bước hiệu dụng chỉ giảm; RMSProp thay tổng bằng trung bình mũ với hệ số nhớ $\rho$. Ghi chú nêu nguồn gốc tên gọi.
 
 #### B05. Thuật toán RMSProp
 

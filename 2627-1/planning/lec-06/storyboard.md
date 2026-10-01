@@ -225,7 +225,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Tổng tích lũy giữ thông tin quá khứ; ví dụ trọng số suy giảm chuẩn bị cơ chế quên của RMSProp.
 - **Kế thừa, đầu ra và vị trí trong sườn:** B03 tích lũy toàn lịch sử; B04 thay tổng bằng bộ nhớ suy giảm, B05 nêu thuật toán.
 - **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN2; MT1.
-- **Quyết định và lý do:** Giữ cùng dãy gradient để thay đổi duy nhất cách thống kê. Đặc tả tại B04 trong outline.md.
+- **Quyết định và lý do:** Giữ cùng dãy gradient để thay đổi duy nhất cách thống kê. Sửa 2026-10-02: câu nhu cầu trên mặt trang (AdaGrad chỉ tích lũy nên bước hiệu dụng chỉ giảm; RMSProp quên dần bằng trung bình mũ). Đặc tả tại B04 trong outline.md.
 - **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,03 tiết bài tập; tính trung bình mũ và đọc trọng số theo độ trễ.
 
 ### B05. Thuật toán RMSProp

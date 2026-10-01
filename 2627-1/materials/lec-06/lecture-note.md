@@ -125,7 +125,7 @@ AdaGrad đường chéo tương ứng với ma trận phạt $M_t=\operatorname{
 
 ### 2.2. RMSProp
 
-RMSProp thay tổng tích lũy bằng trung bình mũ:
+AdaGrad cộng mọi bình phương với trọng số $1$, nên $v_t$ chỉ tăng và tốc độ học hiệu dụng chỉ giảm. Khi phân bố gradient thay đổi trong huấn luyện, thống kê này vẫn giữ các gradient cũ. RMSProp (tên lấy từ căn trung bình bình phương, root mean square) thay tổng tích lũy bằng trung bình mũ, quên dần gradient xa với hệ số nhớ $\rho$:
 
 $$
 v_0=0,\qquad
