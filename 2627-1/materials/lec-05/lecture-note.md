@@ -8,9 +8,9 @@ Kiến thức nền gồm gradient, Hessian, khai triển Taylor bậc hai, kỳ
 
 ## A. Bài toán huấn luyện và tiêu chí đánh giá
 
-### Dữ liệu, mô hình và mất mát
+### Bài toán huấn luyện
 
-Một mô hình dự đoán hằng cung cấp ví dụ tối thiểu về việc chọn tham số từ dữ liệu. Cho ba quan sát $y=(-1,1,3)$ và dự đoán $f_\theta=\theta$, với $\theta\in\mathbb R$. Mất mát trên quan sát thứ $i$ là $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$; mất mát huấn luyện là trung bình ba mất mát.
+Một mô hình dự đoán hằng cung cấp ví dụ tối thiểu về việc chọn tham số từ dữ liệu. Cho ba quan sát $y=(-1,1,3)$ và dự đoán $f_\theta=\theta$, với $\theta\in\mathbb R$. Mất mát bình phương trên quan sát thứ $i$ là $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$; mất mát huấn luyện là trung bình ba mất mát. Huấn luyện là chọn $\theta$ cực tiểu đại lượng này.
 
 ::: derivation
 Khai triển các bình phương cho
@@ -24,7 +24,7 @@ J(\theta)
 \end{aligned}
 $$
 
-Do đó $J'(\theta)=\theta-1$. Nghiệm duy nhất là $\theta=1$, với $J(1)=4/3$. Ba sai số tại nghiệm là $2,0,-2$, nên các mất mát riêng bằng $2,0,2$.
+Do đó $J'(\theta)=\theta-1$. Nghiệm duy nhất là $\theta^*=1$, trung bình của ba quan sát, với $J(\theta^*)=4/3$. Ba sai số tại nghiệm là $2,0,-2$, nên các mất mát riêng bằng $2,0,2$.
 :::
 
 ![Ba quan sát −1, 1, 3 và các sai số có dấu của dự đoán chung bằng 1.](img/lec-05/observations.svg)

@@ -147,7 +147,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Bản triển khai sau rà 2026-09-26:** Mặt trang giữ bản đồ năm phần và nêu ba kết quả quan sát được: phân biệt mục tiêu/đánh giá, tính cập nhật, giải thích đối xứng/thang.
 - **Sửa ngày 2026-10-01:** Khung cuối trang nêu vấn đề trung tâm gồm ba quyết định: cực tiểu đại lượng nào, dùng gradient thế nào, bắt đầu từ tham số nào. Ghi chú ánh xạ A → đại lượng và tiêu chí, B/C → gradient, D → điểm khởi đầu, E → phối hợp. Mục E đổi thành “Phối hợp các thành phần của quy trình huấn luyện”.
 
-#### A03 — Bài toán huấn luyện mô hình
+#### A03 — Bài toán huấn luyện
 
 - **Vai trò và mục tiêu:** Nhu cầu và ví dụ dẫn nhập của KN1; MT1.
 - **Luận điểm trung tâm:** Dữ liệu, mô hình và mất mát biến một nhiệm vụ dự đoán thành bài toán tham số.
@@ -159,6 +159,7 @@ Chức năng: xác lập điều phải đạt trước cách tính; nhận tiê
 - **Thời lượng:** 0.06 giờ LT.
 - **Ghi chú soạn:** Ví dụ hằng chỉ cô lập việc lấy mẫu; không coi nó là mạng sâu hay bằng chứng khái quát hóa. Giữ nguyên dữ kiện sang B.
 - **Bản triển khai sau rà 2026-09-26:** Nhu cầu chọn dự đoán để mất mát trung bình nhỏ nhất hiện trước phép tính tại $\theta=1$.
+- **Sửa ngày 2026-10-01:** Tiêu đề rút thành “Bài toán huấn luyện”. Mặt trang ghi $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, nghiệm $\theta^*=1$ là trung bình mẫu và $J(\theta^*)=4/3>0$; ghi chú nêu phép khai triển.
 
 #### A04 — Mất mát huấn luyện và rủi ro kỳ vọng
 
