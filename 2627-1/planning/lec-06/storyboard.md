@@ -201,7 +201,7 @@ Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã l�
 - **Lý do tồn tại và nhu cầu học tập:** Cần quan sát tọa độ hoạt động nhiều hoặc ít để lựa chọn thống kê bình phương trước công thức AdaGrad.
 - **Kế thừa, đầu ra và vị trí trong sườn:** A05 cần ước lượng thang đo; B02 dùng chính dãy gradient để tính một bước AdaGrad.
 - **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Nhu cầu và trực quan KN1; MT1.
-- **Quyết định và lý do:** Giữ bảng hai gradient vì đủ tạo nhu cầu mà chưa thêm mô hình dữ liệu. Đặc tả tại B01 trong outline.md.
+- **Quyết định và lý do:** Giữ bảng hai gradient vì đủ tạo nhu cầu mà chưa thêm mô hình dữ liệu. Sửa 2026-10-02: câu mở nêu nhu cầu một thang cho mỗi tọa độ và trực quan “tọa độ cong hơn có gradient lớn hơn” trên hàm mở đầu; so sánh $p$ với $p^2$ vào ghi chú. Đặc tả tại B01 trong outline.md.
 - **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,00 tiết bài tập; lập bảng bình phương, tổng và tần suất hoạt động tọa độ.
 
 ### B02. Ví dụ cập nhật AdaGrad

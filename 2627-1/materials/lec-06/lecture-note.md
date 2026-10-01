@@ -93,6 +93,8 @@ Ma trận phạt là sườn so sánh các cách tạo bước ở mục 2–4. 
 
 ## 2. Thống kê gradient theo tọa độ
 
+Ma trận phạt đường chéo cần một thang cho mỗi tọa độ. Trên hàm mở đầu, $g=(\theta_1,9\theta_2)^\top$, nên tọa độ cong hơn có gradient lớn hơn. Độ lớn gradient tích lũy theo từng tọa độ cho một thang chỉ cần $p$ số, trong khi Hessian có $p^2$ phần tử. Bình phương được dùng thay cho gradient có dấu để các đóng góp trái dấu không triệt tiêu nhau.
+
 ### 2.1. AdaGrad
 
 Khi không có Hessian, bình phương gradient cung cấp thống kê về độ lớn cập nhật của từng tọa độ. AdaGrad lưu tổng tích lũy

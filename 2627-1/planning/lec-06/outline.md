@@ -121,6 +121,7 @@ Chức năng: thống kê gradient theo tọa độ. Đầu vào: Mô hình bư�
 - **Nguồn:** DL, §8.5.1; ST, tr. 30–34; DU, thuật toán AdaGrad đường chéo.
 - **Thời lượng:** 0,04 tiết lý thuyết + 0,00 tiết bài tập. Giải thích và đối chiếu.
 - **Ghi chú soạn:** Gradient là đầu vào minh họa, không khẳng định đây là quỹ đạo gradient của V1. Thang đo thống kê phụ thuộc đường đi.
+- **Sửa ngày 2026-10-02:** Câu mở: ma trận phạt đường chéo cần một thang cho mỗi tọa độ; trên hàm mở đầu $g=(\theta_1,9\theta_2)$ nên tọa độ cong hơn có gradient lớn hơn. Ghi chú nêu chi phí $p$ số so với $p^2$ phần tử Hessian.
 
 #### B02. Ví dụ cập nhật AdaGrad
 
