@@ -42,7 +42,7 @@ Mỗi thành phần của $\mathbf x$ là một đại lượng được lựa c
 | Giờ máy (giờ / nghìn hộp) | $1$ | $2$ | $54$ giờ |
 | Sản lượng tối đa (nghìn hộp) | $30$ | $20$ | — |
 
-Yêu cầu là chọn $x_1,x_2\ge0$ để tổng lợi ích lớn nhất mà không vượt giới hạn nào. Mỗi giới hạn cho một bất phương trình, nên bài toán là
+Yêu cầu là chọn $x_1,x_2\ge0$ để tổng lợi ích lớn nhất mà không vượt giới hạn nào. Mỗi giới hạn cho một bất phương trình có hai vế cùng đơn vị. Chẳng hạn, ràng buộc giờ máy cộng $1\cdot x_1$ giờ của loại 1 với $2x_2$ giờ của loại 2 và so với $54$ giờ. Bài toán là
 
 $$
 \begin{aligned}
