@@ -130,10 +130,12 @@
   </section>
   <section data-slide-id="B06">
     <h2>Nghiệm cơ sở khả thi</h2>
-    <p>Với $P=\{x:Ax=b,x\ge0\}$ và $\operatorname{rank}(A)=m$, chọn $B\subset\{1,\ldots,n\}$, $|B|=m$.</p>
-    <ol class="algorithm"><li>$A_B$ phải khả nghịch.</li><li>Đặt $x_N=0$ với $N=B^c$.</li><li>Tính $x_B=A_B^{-1}b$.</li><li>Nghiệm là <strong>cơ sở khả thi</strong> khi $x_B\ge0$.</li></ol>
-    <div class="box">Nghiệm cơ sở khả thi suy biến khi ít nhất một thành phần của $x_B$ bằng $0$; nhiều cơ sở có thể biểu diễn cùng một điểm.</div>
-    <aside class="notes"><p>Điều kiện $m\le n$ và hạng hàng đầy đủ là cần để chọn ma trận cơ sở vuông khả nghịch, nhưng chưa đủ cho tính khả thi. Phải kiểm $A_B^{-1}b\ge0$.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.2–2.3.</p></aside>
+    <p><strong>Trực quan.</strong> Cho $n-m$ biến bằng $0$, rồi giải $m$ biến còn lại từ một hệ vuông.</p>
+    <p><strong>Định nghĩa.</strong> Cho $P=\{x:Ax=b,\ x\ge0\}$, $\operatorname{rank}(A)=m$, và tập chỉ số $B\subset\{1,\ldots,n\}$, $|B|=m$, có ma trận cột $A_B$ khả nghịch. Véc-tơ</p>
+    <div class="formula">$$x_B=A_B^{-1}b,\qquad x_N=0\quad\big(N=\{1,\ldots,n\}\setminus B\big)$$</div>
+    <p>là <strong>nghiệm cơ sở</strong>; nếu $x_B\ge0$ thì là <strong>nghiệm cơ sở khả thi</strong> (basic feasible solution, BFS).</p>
+    <div class="box">BFS <strong>suy biến</strong> (degenerate) nếu có thành phần của $x_B$ bằng $0$; khi đó có thể có nhiều $B$ cho cùng một điểm.</div>
+    <aside class="notes"><p>Biến trong $B$ gọi là biến cơ sở, biến trong $N$ là biến ngoài cơ sở. Hạng hàng đầy đủ bảo đảm có ít nhất một $A_B$ khả nghịch, nhưng không bảo đảm mọi tập $m$ cột đều khả nghịch, và khả nghịch chưa bảo đảm khả thi: vẫn phải kiểm $A_B^{-1}b\ge0$. Khi một biến cơ sở bằng $0$, có thể đổi nó với một biến ngoài cơ sở mà điểm không đổi; đây là nguồn gốc của suy biến.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.2–2.3.</p></aside>
   </section>
   <section data-slide-id="B07">
     <h2>Nghiệm cơ sở của bài hộp hạt</h2>

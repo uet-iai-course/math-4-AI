@@ -277,9 +277,9 @@ $$
 \mathbf x_B=\mathbf A_B^{-1}\mathbf b.
 $$
 
-Véc-tơ thu được là một nghiệm cơ sở. Nó là **nghiệm cơ sở khả thi** (basic feasible solution, BFS) nếu $\mathbf x_B\ge\mathbf0$. BFS là **suy biến** nếu ít nhất một biến cơ sở bằng $0$.
+Véc-tơ thu được là một nghiệm cơ sở. Nó là **nghiệm cơ sở khả thi** (basic feasible solution, BFS) nếu $\mathbf x_B\ge\mathbf0$. BFS là **suy biến** (degenerate) nếu ít nhất một biến cơ sở bằng $0$.
 
-**Trực quan.** Chọn một cơ sở là chọn $m$ cột độc lập để giải hệ vuông, đồng thời ghim các biến còn lại về $0$. Trong trường hợp suy biến, nhiều lựa chọn cơ sở có thể cùng biểu diễn một điểm hình học.
+**Trực quan.** Chọn một cơ sở là cho $n-m$ biến bằng $0$, rồi giải $m$ biến còn lại từ hệ vuông với $m$ cột độc lập. Trong bài hộp hạt, $n-m=2$: cho hai biến bằng $0$ ứng với chọn hai ràng buộc chặt, và giao của chúng là một đỉnh nếu nghiệm không âm. Trong trường hợp suy biến, nhiều lựa chọn cơ sở có thể cùng biểu diễn một điểm hình học.
 
 **Hình minh họa.**
 
