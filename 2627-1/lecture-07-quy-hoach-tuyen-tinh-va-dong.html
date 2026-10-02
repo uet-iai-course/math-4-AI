@@ -88,9 +88,9 @@
   </section>
   <section data-slide-id="A08">
     <h2>Bài tập dựng mô hình</h2>
-    <div class="check"><strong>Câu hỏi:</strong> một hệ thống AI phân bổ thời gian xử lý cho hai luồng. Mỗi đơn vị $x_1,x_2$ cho lợi ích $4,5$; giới hạn $x_1\le8$, $x_2\le6$, $2x_1+x_2\le14$. Hãy viết LP đầy đủ.</div>
-    <ol class="algorithm"><li>Nêu biến và đơn vị.</li><li>Viết chiều cùng hàm mục tiêu.</li><li>Viết mọi ràng buộc và miền biến.</li><li>Kiểm tra điểm $(4,6)$.</li></ol>
-    <aside class="notes"><p>Đáp án: cực đại $4x_1+5x_2$ với ba giới hạn đã cho và $x\ge0$. Điểm $(4,6)$ khả thi vì $2\cdot4+6=14$; giá trị mục tiêu bằng $46$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo từ dữ kiện phân bổ tài nguyên.</p></aside>
+    <div class="check"><strong>Câu hỏi:</strong> hai luồng suy luận dùng chung một GPU trong một giờ. Mỗi nghìn yêu cầu của luồng 1 và luồng 2 đem lợi ích $4$ và $5$ đơn vị, dùng $2$ và $1$ phút GPU. GPU có $14$ phút; luồng 1 nhận tối đa $8$ nghìn, luồng 2 tối đa $6$ nghìn yêu cầu.</div>
+    <ol class="algorithm"><li>Nêu biến quyết định và đơn vị.</li><li>Viết hàm mục tiêu và chiều tối ưu.</li><li>Viết mọi ràng buộc và miền biến.</li><li>Kiểm tra tính khả thi và tính $z$ tại $(4,6)$.</li></ol>
+    <aside class="notes"><p>Đáp án: $x_1,x_2$ là số nghìn yêu cầu của luồng 1 và luồng 2. Mô hình: cực đại $4x_1+5x_2$ với $2x_1+x_2\le14$ (phút GPU), $x_1\le8$, $x_2\le6$ (nghìn yêu cầu), $x_1,x_2\ge0$. Điểm $(4,6)$ khả thi vì dùng $2\cdot4+6=14$ phút và thỏa hai giới hạn; $z=4\cdot4+5\cdot6=46$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo từ dữ kiện phân bổ tài nguyên.</p></aside>
   </section>
 </section>
 

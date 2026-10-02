@@ -79,7 +79,7 @@ Mỗi hàng của $\mathbf A$ ứng với một giới hạn; hàng thứ nhất
 
 **Điểm dễ nhầm.** Biểu thức tuyến tính chưa đủ để tạo LP liên tục nếu biến còn bị buộc nguyên. Tích $x_1x_2$ hoặc lũy thừa $x_1^2$ là phi tuyến. Một phương án có giá trị mục tiêu lớn nhưng vi phạm một ràng buộc không phải ứng viên tối ưu.
 
-**Câu hỏi kiểm tra.** Hai luồng xử lý có lợi ích $4$ và $5$ trên mỗi đơn vị, với $x_1\le8$, $x_2\le6$, $2x_1+x_2\le14$ và $x\ge0$. Hãy viết LP đầy đủ và kiểm tra điểm $(4,6)$.
+**Câu hỏi kiểm tra.** Hai luồng suy luận dùng chung một GPU trong một giờ. Mỗi nghìn yêu cầu của luồng 1 và luồng 2 đem lợi ích $4$ và $5$ đơn vị, dùng $2$ và $1$ phút GPU. GPU có $14$ phút; luồng 1 nhận tối đa $8$ nghìn, luồng 2 tối đa $6$ nghìn yêu cầu. Nêu biến và đơn vị, viết LP đầy đủ, rồi kiểm tra tính khả thi và tính giá trị mục tiêu tại $(4,6)$.
 
 ### 2. Mất mát từng đoạn và hồi quy chuẩn $L_1$ dưới dạng LP
 
