@@ -473,7 +473,7 @@ Hai kết quả cần dùng là:
 
 **Hình minh họa.**
 
-![Bốn kết cục của quy hoạch tuyến tính gồm không khả thi, mục tiêu không bị chặn, nghiệm tối ưu duy nhất và nhiều nghiệm tối ưu.](img/lec-07/lp-four-statuses.svg)
+![Bốn ô: hai nửa mặt phẳng không giao nhau (không khả thi); miền mở theo hướng c (mục tiêu không bị chặn); đường mức xa nhất chạm một đỉnh (tối ưu duy nhất); đường mức xa nhất trùng một cạnh (nhiều nghiệm tối ưu).](img/lec-07/lp-four-statuses.svg)
 
 ::: example
 **Ví dụ tính được.** Bốn bài toán một hoặc hai biến minh họa bốn kết cục:

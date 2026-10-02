@@ -1,11 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
   <title id="title">Bốn kết cục của quy hoạch tuyến tính</title>
-  <desc id="desc">Bốn ô minh họa bằng hình và nhãn: miền rỗng, mục tiêu không bị chặn, một điểm tối ưu duy nhất và cả một cạnh gồm nhiều nghiệm tối ưu.</desc>
-  <rect width="960" height="470" fill="#fff"/>
-  <g font-family="sans-serif" font-size="30" fill="#222" stroke-linecap="round" stroke-linejoin="round">
-    <g transform="translate(20 20)"><rect width="440" height="195" rx="12" fill="#fff6f3" stroke="#a33a1f" stroke-width="3"/><path d="M0 0H440V0L370 15L70 105L0 126Z" fill="#f3cfbf"/><path d="M0 176L70 155L370 65L440 44V195H0Z" fill="#dbe6fa"/><text x="20" y="38" font-size="34" font-weight="700">Không khả thi</text><line x1="70" y1="155" x2="370" y2="65" stroke="#2f3e7a" stroke-width="5"/><line x1="70" y1="105" x2="370" y2="15" stroke="#b15a2b" stroke-width="5"/><text x="375" y="42" font-size="22" fill="#8b431d">H1</text><text x="42" y="174" font-size="22" fill="#243f76">H2</text><text x="165" y="181" fill="#a33a1f">P rỗng</text></g>
-    <g transform="translate(500 20)"><rect width="440" height="195" rx="12" fill="#f2f6ff" stroke="#2f3e7a" stroke-width="3"/><text x="20" y="38" font-size="30" font-weight="700">Mục tiêu không bị chặn</text><path d="M65 160L170 75L430 75L430 160Z" fill="#e7eefb" stroke="none"/><path d="M65 160L170 75L405 75M65 160L405 160" fill="none" stroke="#2f3e7a" stroke-width="4"/><path d="M390 65L415 75L390 85M390 150L415 160L390 170" fill="none" stroke="#2f3e7a" stroke-width="4"/><path d="M235 145L355 95M355 95L330 93M355 95L340 116" stroke="#b15a2b" stroke-width="5"/></g>
-    <g transform="translate(20 245)"><rect width="440" height="195" rx="12" fill="#f3fbf4" stroke="#2e7d32" stroke-width="3"/><text x="20" y="38" font-size="34" font-weight="700">Tối ưu duy nhất</text><path d="M70 160L150 70L360 110L320 160Z" fill="#e6f4e8" stroke="#2f3e7a" stroke-width="4"/><circle cx="150" cy="70" r="11" fill="#2e7d32"/><text x="180" y="82" fill="#2e7d32">một điểm</text></g>
-    <g transform="translate(500 245)"><rect width="440" height="195" rx="12" fill="#fff9ed" stroke="#b15a2b" stroke-width="3"/><text x="20" y="38" font-size="34" font-weight="700">Nhiều tối ưu</text><path d="M70 160L150 70L360 70L320 160Z" fill="#fff1d6" stroke="#2f3e7a" stroke-width="4"/><line x1="150" y1="70" x2="360" y2="70" stroke="#b15a2b" stroke-width="10"/><text x="185" y="118" fill="#b15a2b">cả cạnh</text></g>
-  </g>
+  <desc id="desc">Bốn ô. Không khả thi: hai nửa mặt phẳng x2 lớn hơn hoặc bằng 2 và x2 nhỏ hơn hoặc bằng 1 không giao nhau, miền khả thi rỗng. Mục tiêu không bị chặn: miền mở về bên phải, véc-tơ c hướng sang phải, giá trị mục tiêu tăng mãi. Tối ưu duy nhất: đường mức xa nhất theo hướng c chỉ chạm miền tại một đỉnh. Nhiều tối ưu: đường mức xa nhất trùng một cạnh vuông góc với c.</desc>
+  <defs><marker id="ac" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0L9 4L0 8Z" fill="#b15a2b"/></marker></defs>
+  <rect width="920" height="520" fill="#fff"/>
+  <g fill="none" stroke-width="3"><rect x="10" y="10" width="440" height="240" rx="12" stroke="#a33a1f"/><rect x="470" y="10" width="440" height="240" rx="12" stroke="#2f3e7a"/><rect x="10" y="270" width="440" height="240" rx="12" stroke="#2e7d32"/><rect x="470" y="270" width="440" height="240" rx="12" stroke="#b15a2b"/></g>
+  <g font-family="sans-serif" font-size="26" font-weight="700" fill="#222"><text x="28" y="44">Không khả thi</text><text x="488" y="44">Mục tiêu không bị chặn</text><text x="28" y="304">Tối ưu duy nhất</text><text x="488" y="304">Nhiều nghiệm tối ưu</text></g>
+  <!-- 1 -->
+  <rect x="30" y="62" width="400" height="48" fill="#f2cdbd"/><line x1="30" y1="110" x2="430" y2="110" stroke="#a33a1f" stroke-width="3"/>
+  <rect x="30" y="180" width="400" height="56" fill="#dbe5f7"/><line x1="30" y1="180" x2="430" y2="180" stroke="#2f3e7a" stroke-width="3"/>
+  <g font-family="sans-serif" font-size="22"><text x="44" y="94" fill="#a33a1f">x₂ ≥ 2</text><text x="44" y="220" fill="#2f3e7a">x₂ ≤ 1</text><text x="230" y="154" text-anchor="middle" fill="#a33a1f" font-weight="700">giao rỗng</text></g>
+  <!-- 2 -->
+  <path d="M520 220L900 220L900 100Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="3"/>
+  <line x1="780" y1="80" x2="780" y2="240" stroke="#7a8aa8" stroke-width="2" stroke-dasharray="7 6"/><line x1="850" y1="80" x2="850" y2="240" stroke="#7a8aa8" stroke-width="2" stroke-dasharray="7 6"/>
+  <line x1="620" y1="200" x2="710" y2="200" stroke="#b15a2b" stroke-width="4" marker-end="url(#ac)"/>
+  <g font-family="sans-serif" font-size="22"><text x="652" y="188" fill="#b15a2b" font-weight="700">c</text><text x="490" y="80" fill="#55627e">z tăng mãi</text></g>
+  <!-- 3 -->
+  <path d="M60 480L280 480L330 400L190 340Z" fill="#e3f1e8" stroke="#2f3e7a" stroke-width="3"/>
+  <line x1="290" y1="320" x2="370" y2="480" stroke="#b15a2b" stroke-width="3" stroke-dasharray="8 6"/>
+  <line x1="120" y1="440" x2="190" y2="405" stroke="#b15a2b" stroke-width="4" marker-end="url(#ac)"/>
+  <circle cx="330" cy="400" r="10" fill="#2e7d32" stroke="#fff" stroke-width="3"/>
+  <g font-family="sans-serif" font-size="22"><text x="140" y="420" fill="#b15a2b" font-weight="700">c</text><text x="346" y="396" fill="#2e7d32" font-weight="700">một đỉnh</text></g>
+  <!-- 4 -->
+  <path d="M510 490L840 490L790 380L590 380Z" fill="#fdf0dc" stroke="#2f3e7a" stroke-width="3"/>
+  <line x1="530" y1="380" x2="870" y2="380" stroke="#b15a2b" stroke-width="2" opacity=".5"/>
+  <line x1="590" y1="380" x2="790" y2="380" stroke="#b15a2b" stroke-width="8"/>
+  <line x1="690" y1="470" x2="690" y2="410" stroke="#b15a2b" stroke-width="4" marker-end="url(#ac)"/>
+  <g font-family="sans-serif" font-size="22"><text x="702" y="452" fill="#b15a2b" font-weight="700">c</text><text x="690" y="362" text-anchor="middle" fill="#b15a2b" font-weight="700">cả cạnh tối ưu</text></g>
 </svg>

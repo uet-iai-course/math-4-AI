@@ -192,8 +192,9 @@
   </section>
   <section data-slide-id="C07">
     <h2>Bốn kết cục của quy hoạch tuyến tính</h2>
-    <div class="visual"><img src="img/lec-07/lp-four-statuses.svg" alt="Bốn kết cục: không khả thi với miền khả thi rỗng, mục tiêu không bị chặn, tối ưu duy nhất và nhiều nghiệm tối ưu trên một cạnh."/></div>
-    <aside class="notes"><p>Bốn kết cục dùng trong bài: không khả thi, tức miền khả thi rỗng; khả thi nhưng giá trị mục tiêu không bị chặn theo chiều tối ưu; có giá trị tối ưu hữu hạn với nghiệm duy nhất; có giá trị tối ưu hữu hạn với nhiều nghiệm. Trong hai trường hợp hữu hạn, ít nhất một điểm cực tối ưu tồn tại dưới dạng chuẩn.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§1.1, 2.5; hình tự vẽ.</p></aside>
+    <p>Định lý điểm cực tối ưu cần giá trị tối ưu hữu hạn. Mỗi LP rơi vào đúng một trong bốn <strong>kết cục</strong>; định lý áp dụng cho hai kết cục dưới.</p>
+    <div class="visual"><img src="img/lec-07/lp-four-statuses.svg" alt="Bốn ô. Không khả thi: hai nửa mặt phẳng x2 lớn hơn hoặc bằng 2 và x2 nhỏ hơn hoặc bằng 1 không giao nhau. Mục tiêu không bị chặn: miền mở theo hướng c, giá trị tăng mãi. Tối ưu duy nhất: đường mức xa nhất chạm miền tại một đỉnh. Nhiều nghiệm tối ưu: đường mức xa nhất trùng một cạnh vuông góc với c."/></div>
+    <aside class="notes"><p>Bốn kết cục: không khả thi (miền khả thi rỗng); khả thi nhưng mục tiêu không bị chặn theo chiều tối ưu; giá trị tối ưu hữu hạn với nghiệm duy nhất; giá trị tối ưu hữu hạn với nhiều nghiệm. Với LP, giá trị tối ưu hữu hạn luôn được đạt, nên không có kết cục thứ năm. Ví dụ một biến: $\max x$ với $x\le0$, $x\ge1$ không khả thi; $\max x$ với $x\ge0$ không bị chặn; $\max x$ với $0\le x\le1$ có nghiệm duy nhất $x^*=1$. Miền không bị chặn chưa kéo theo mục tiêu không bị chặn: điều đó còn phụ thuộc hướng $c$. Ở hai kết cục hữu hạn, nếu miền có điểm cực (chẳng hạn dạng chuẩn khác rỗng) thì có một điểm cực tối ưu.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§1.1, 2.5; hình tự vẽ.</p></aside>
   </section>
   <section data-slide-id="C08">
     <h2>Mô tả thuật toán ở mức ý niệm</h2>
