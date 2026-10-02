@@ -1,8 +1,8 @@
 # Bài 07 — Quy hoạch tuyến tính và quy hoạch động
 
-Bài 02 đã giới thiệu quy hoạch tuyến tính như một lớp bài toán lồi. Vấn đề chung của bài là tìm phương án tối ưu khi tập phương án quá lớn để duyệt hết. Miền khả thi của quy hoạch tuyến tính có vô số điểm, nhưng khi bài toán có nghiệm tối ưu và miền có điểm cực thì luôn có một đỉnh tối ưu. Một chuỗi $N$ quyết định, mỗi quyết định có $q$ lựa chọn, sinh $q^N$ chuỗi; quy hoạch động tránh liệt kê chúng bằng cách lưu chi phí tối ưu còn lại theo trạng thái. Ghi chú này đi sâu hơn vào cách dựng mô hình, hình học đa diện, dạng chuẩn, nghiệm cơ sở khả thi và điểm cực. Phần cuối giới thiệu quy hoạch động hữu hạn tất định cho quyết định theo chuỗi; đây là một lớp bài toán có cấu trúc khác, không phải một dạng của quy hoạch tuyến tính.
+Bài 02 đã giới thiệu quy hoạch tuyến tính như một lớp bài toán lồi. Vấn đề chung của bài là tìm phương án tối ưu khi tập phương án quá lớn để duyệt hết. Miền khả thi của quy hoạch tuyến tính có vô số điểm, nhưng khi bài toán có nghiệm tối ưu và miền có điểm cực thì luôn có một đỉnh (điểm cực) tối ưu. Một chuỗi $N$ quyết định, mỗi quyết định có $q$ lựa chọn, sinh $q^N$ chuỗi; quy hoạch động tránh liệt kê chúng bằng cách lưu chi phí tối ưu còn lại theo trạng thái. Ghi chú này đi sâu hơn vào cách dựng mô hình, hình học đa diện, dạng chuẩn, nghiệm cơ sở khả thi và điểm cực. Phần cuối giới thiệu quy hoạch động hữu hạn tất định cho quyết định theo chuỗi; lớp bài toán này khai thác cấu trúc theo giai đoạn, độc lập với hình học đa diện.
 
-Kiến thức cần có: hệ phương trình và bất phương trình tuyến tính, độc lập tuyến tính và hạng ma trận, tập lồi và tổ hợp lồi. Quy ước chính cho quy hoạch tuyến tính là $\max \mathbf c^T\mathbf x$ với $\mathbf A\mathbf x=\mathbf b$, $\mathbf x\ge0$ khi nói về dạng chuẩn. Ký hiệu $\mathbf A\in\mathbb R^{m\times n}$ có $\operatorname{rank}(\mathbf A)=m\le n$. Véc-tơ và ma trận được viết đậm; khi kiểu đại lượng đã rõ, $(x,c,A,b)$ được hiểu tương ứng với $(\mathbf x,\mathbf c,\mathbf A,\mathbf b)$. Trong phần quy hoạch động, chân trời là $k=0,\ldots,N$, tập trạng thái và tập điều khiển hữu hạn, chuyển trạng thái tất định và chi phí cộng theo giai đoạn.
+Kiến thức cần có: hệ phương trình và bất phương trình tuyến tính, độc lập tuyến tính và hạng ma trận, tập lồi và tổ hợp lồi. Quy ước chính cho quy hoạch tuyến tính là $\max \mathbf c^T\mathbf x$ với $\mathbf A\mathbf x=\mathbf b$, $\mathbf x\ge0$ khi nói về dạng chuẩn. Trong dạng chuẩn, $\mathbf A\in\mathbb R^{m\times n}$ có $\operatorname{rank}(\mathbf A)=m\le n$; điều kiện $m\le n$ chỉ áp dụng cho dạng chuẩn, khi đã thêm biến phụ. Véc-tơ và ma trận được viết đậm; khi kiểu đại lượng đã rõ, $(x,c,A,b)$ được hiểu tương ứng với $(\mathbf x,\mathbf c,\mathbf A,\mathbf b)$. Trong phần quy hoạch động, chân trời là $k=0,\ldots,N$, tập trạng thái và tập điều khiển hữu hạn, chuyển trạng thái tất định và chi phí cộng theo giai đoạn.
 
 Nguồn chính là Bertsimas và Tsitsiklis (1997), Chương 1–2, cho quy hoạch tuyến tính. Vanderbei (2014) bổ sung cách trình bày dạng chuẩn và nghiệm cơ sở. Phần quy hoạch động dựa trên MIT 15.093J/6.255J, Bài 16. Phương pháp đơn hình thuộc Bài 08; ở đây chỉ xét hình học của bước đi qua các đỉnh kề.
 
@@ -25,7 +25,7 @@ $$
 \end{aligned}
 $$
 
-Mỗi thành phần của $\mathbf x$ là một đại lượng được lựa chọn. Các ma trận, véc-tơ hệ số và cận là dữ kiện cố định. Chiều cực đại hoặc cực tiểu phải được ghi rõ. Các đại lượng cộng với nhau trong một ràng buộc phải dùng đơn vị tương thích.
+Mỗi thành phần của $\mathbf x$ là một đại lượng được lựa chọn. Một điểm $\mathbf x$ thỏa mọi ràng buộc gọi là phương án khả thi; tập các phương án khả thi là miền khả thi. Các ma trận, véc-tơ hệ số và cận là dữ kiện cố định. Chiều cực đại hoặc cực tiểu phải được ghi rõ. Các đại lượng cộng với nhau trong một ràng buộc phải dùng đơn vị tương thích.
 
 **Trực quan.** Mỗi bất đẳng thức tuyến tính giữ lại một nửa không gian. Phần giao của các nửa không gian và siêu phẳng là miền khả thi. Hàm mục tiêu tạo một họ đường mức song song; thay đổi giá trị mục tiêu tương ứng với tịnh tiến đường mức mà không làm đổi miền khả thi.
 
@@ -69,11 +69,11 @@ Bài toán hộp hạt có dạng $\max\mathbf c^T\mathbf x$ với $\mathbf A\ma
 
 $$
 \mathbf c=\begin{bmatrix}2\\3\end{bmatrix},\qquad
-\mathbf A=\begin{bmatrix}1&2\\1&0\\0&1\end{bmatrix},\qquad
-\mathbf b=\begin{bmatrix}54\\30\\20\end{bmatrix}.
+\mathbf A=\begin{bmatrix}1&0\\0&1\\1&2\end{bmatrix},\qquad
+\mathbf b=\begin{bmatrix}30\\20\\54\end{bmatrix}.
 $$
 
-Mỗi hàng của $\mathbf A$ ứng với một giới hạn; hàng thứ nhất là giờ máy.
+Mỗi hàng của $\mathbf A$ ứng với một giới hạn; hai hàng đầu là giới hạn sản lượng, hàng thứ ba là giờ máy.
 
 **Ý nghĩa và ứng dụng trong AI.** LP mô tả các quyết định phân bổ tài nguyên trong một lần, chẳng hạn chia thời gian xử lý, bộ nhớ hoặc thông lượng cho nhiều tác vụ khi lợi ích và mức dùng tài nguyên được xấp xỉ tuyến tính.
 
@@ -89,13 +89,13 @@ $$
 r_i=\mathbf a_i^T\mathbf x-b_i.
 $$
 
-Hồi quy chuẩn $L_1$ cực tiểu hóa $\sum_i|r_i|$. Với biến phụ $t_i\ge0$, điều kiện
+Hồi quy chuẩn $L_1$ cực tiểu hóa $\sum_i|r_i|$; mất mát này ít nhạy với ngoại lai (outlier) hơn bình phương nhưng không khả vi tại $r_i=0$. Với biến phụ $t_i\ge0$, điều kiện
 
 $$
 -t_i\le r_i\le t_i
 $$
 
-tương đương với $t_i\ge|r_i|$. Vì mục tiêu cực tiểu hóa tổng các $t_i$, ta được LP
+tương đương với $t_i\ge|r_i|$, nên điều kiện $t_i\ge0$ tự thỏa và chỉ được ghi ra để giữ quy ước biến phụ không âm. Vì mục tiêu cực tiểu hóa tổng các $t_i$, ta được LP
 
 $$
 \begin{aligned}

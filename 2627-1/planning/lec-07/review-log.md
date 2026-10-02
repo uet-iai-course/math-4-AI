@@ -228,3 +228,18 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 
 - **B01 — sửa.** Câu khung trừu tượng, không nối với khoảng trống của A04; tiêu đề “Dạng chuẩn và đa diện” ngược thứ tự trình bày. Tiêu đề mới “Đa diện và dạng chuẩn”; câu nhu cầu nêu “so sánh từng phương án không chứng minh được tối ưu; cần nhìn toàn bộ miền và tính được các đỉnh”; ba gạch có nhãn (đa diện, dạng chuẩn, nghiệm cơ sở khả thi). Ghi chú bài giảng: đoạn mở phần B viết lại theo nhu cầu và ánh xạ mục 3–5.
 - **B02 — sửa.** Hình có nhãn chồng lên nét (“mức 72”, “(14,20)”, “x2”); “đường mức” chưa được giải thích; gạch “đường mức cuối chạm tại $(30,12)$” mơ hồ. Vẽ lại `polyhedron-level-sets.svg`: đường mức $z=60$ đi qua hai đỉnh $(30,0)$, $(0,20)$ thay cho $z=72$, đường $z=96$ chỉ chạm đỉnh $(30,12)$, chỉ số dưới bằng `tspan`, không nhãn nào bị nét che. Ba gạch nêu đủ năm nửa không gian, định nghĩa đường mức và hướng tịnh tiến $(2,3)$, kết luận có số $z=96$. Ghi chú bài giảng mục 3: đoạn trực quan và alt hình viết lại theo hình mới.
+- **Tái kiểm phần P–A.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5, effort high), tại commit `0539e9d`: tái kiểm toán học **PASS có điều kiện** (1 trung bình, 6 nhẹ; mọi số liệu P00–A08 tính lại khớp); tái kiểm mạch và góc nhìn sinh viên **PASS có điều kiện** (3 trung bình, 6 nhẹ). Đã xử lý:
+  - trung bình | A05, A04, ghi chú bài giảng mục 1 | thứ tự hàng $A,b$ (giờ máy ở hàng 1) ngược với B05/B07 → $A=[1\ 0;0\ 1;1\ 2]$, $b=(30,20,54)^T$; mô hình A04 liệt kê $x_1\le30$, $x_2\le20$, giờ máy; thẻ A03 đổi thứ tự; ghi chú nêu “hàng thứ ba là giờ máy”. **Đã đóng.**
+  - trung bình | A03, A04, P01 | “khả thi”, “miền khả thi” dùng trước khi định nghĩa → câu mở A03 định nghĩa; ghi chú bài giảng mục 1 thêm định nghĩa. **Đã đóng.**
+  - trung bình | A08→B01 | B01 không kế thừa khoảng trống của A04 → đã xử lý ở commit sửa B01 (báo cáo đọc bản trước đó). **Đã đóng.**
+  - nhẹ | P03 | “chi phí còn lại” chưa giải nghĩa → “chi phí nhỏ nhất từ một nút đến đích”. **Đã đóng.**
+  - nhẹ | A04 | nguồn gốc hai điểm → cột “Giờ máy dùng”; lý do giao điểm giữ trong ghi chú diễn giả. **Đã đóng.**
+  - nhẹ | A07, P01 | kiểu $t_i$ lệch giữa trang, ghi chú và kế hoạch → $t_i\ge0$, ghi chú nêu điều kiện tự thỏa. **Đã đóng.**
+  - nhẹ | A07 | thiếu tên tiếng Anh “outlier” và vị trí không khả vi → bổ sung trên trang và ghi chú bài giảng. **Đã đóng.**
+  - nhẹ | A07 | ví dụ không nối với $a_i,b_i$ → ghi chú diễn giả nêu $n=1$, $a_1=a_2=1$, $b=(1,3)$. **Đã đóng.**
+  - nhẹ | A05 (ghi chú) | phép đưa về $Ax\le b$ thiếu trường hợp phương trình → thêm “thay mỗi phương trình bằng hai bất phương trình”. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng, đoạn ký hiệu | $m\le n$ dễ nhầm với $m=3>n=2$ của ví dụ → nêu rõ chỉ áp dụng cho dạng chuẩn. **Đã đóng**; phần B nêu ma trận $3\times5$.
+  - nhẹ | ghi chú P03, ghi chú bài giảng mở đầu | câu tương phản phủ định (no-ai-slop) → viết khẳng định “khai thác cấu trúc theo giai đoạn, độc lập với hình học đa diện”. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng mở đầu | dùng lẫn “đỉnh”, “điểm cực” → “đỉnh (điểm cực)”. **Đã đóng.**
+  - nhẹ | storyboard A01, A03, A05, A08 | chưa phản ánh lượt sửa → thêm “Sửa (2026-10-03)”. **Đã đóng.**
+  - nhẹ | P02 | “kết cục” dùng trước định nghĩa → **không sửa**: trang mục tiêu nêu tên sản phẩm học tập, thuật ngữ được định nghĩa ở phần C.
