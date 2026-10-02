@@ -25,7 +25,7 @@
 | A | A05 | Định nghĩa quy hoạch tuyến tính | Hình thức |
 | A | A07 | Hồi quy chuẩn $L_1$ dưới dạng LP | Nhu cầu, ứng dụng chuyển về LP và ví dụ kiểm tra |
 | A | A08 | Bài tập dựng mô hình | Bài tập LLO17 |
-| B | B01 | Dạng chuẩn và đa diện | Nhu cầu |
+| B | B01 | Đa diện và dạng chuẩn | Nhu cầu |
 | B | B02 | Đa diện và đường mức | Trực quan–ví dụ |
 | B | B03 | Định nghĩa đa diện | Hình thức hình học |
 | B | B04 | Dạng chuẩn | Hình thức đại số |

@@ -156,7 +156,7 @@ về LP với một biến phụ $t$, rồi xác định nghiệm và giá trị
 
 ## B. Hình học đa diện và dạng chuẩn
 
-Bài hộp hạt tiếp tục được dùng để chuyển từ danh sách ràng buộc sang đa diện, rồi mã hóa một đỉnh bằng nghiệm cơ sở khả thi.
+So sánh từng phương án không chứng minh được tối ưu, vì miền khả thi có vô số điểm. Phần này nhìn toàn bộ miền khả thi như một đa diện (mục 3), đưa bài toán về dạng chuẩn (mục 4), rồi tính một đỉnh bằng hệ phương trình vuông qua nghiệm cơ sở khả thi (mục 5). Bài hộp hạt tiếp tục là ví dụ xuyên suốt.
 
 ### 3. Đa diện, nửa không gian và đường mức
 
