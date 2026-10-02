@@ -342,7 +342,7 @@ Với cơ sở $B=\{1,2\}$, nghiệm cơ sở là $(x_1,x_2)=(1,0)$. Biến cơ 
 
 ## C. Điểm cực và logic tìm kiếm trên đa diện
 
-Định nghĩa hình học của điểm cực sẽ được nối với nghiệm cơ sở khả thi. Từ đó, ta xác định các giả thiết cho bảo đảm tối ưu và bước đi qua các đỉnh kề.
+Hình hai chiều gợi ý nghiệm tối ưu nằm ở một đỉnh, và nghiệm cơ sở khả thi cho cách tính đỉnh bằng đại số. Trong nhiều chiều, cần định nghĩa đỉnh chính xác (mục 6), chứng minh đỉnh và nghiệm cơ sở khả thi là một (mục 7), nêu điều kiện để có đỉnh tối ưu (mục 8) và điều kiện để dừng tại đó khi đi qua các đỉnh kề (mục 9).
 
 ### 6. Điểm cực và trường hợp nhiều nghiệm tối ưu
 
