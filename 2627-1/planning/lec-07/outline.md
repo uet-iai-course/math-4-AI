@@ -33,7 +33,7 @@
 | B | B06 | Nghiệm cơ sở khả thi | Điều kiện đại số và tiên quyết trực tiếp cho B07 |
 | B | B07 | Nghiệm cơ sở của bài hộp hạt | Bài tập LLO18 xuyên ví dụ |
 | C | C01 | Điểm cực và bảo đảm tối ưu | Nhu cầu |
-| C | C02 | Định nghĩa hình học của điểm cực | Hình thức hình học |
+| C | C02 | Điểm cực | Hình thức hình học |
 | C | C03 | Đặc trưng đại số | Tương đương điểm cực–BFS |
 | C | C04 | Ví dụ nhiều nghiệm tối ưu | Ví dụ và trường hợp biên |
 | C | C05 | Bảo đảm tồn tại điểm cực | Định lý tồn tại |

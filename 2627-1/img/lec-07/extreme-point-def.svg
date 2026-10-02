@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 200 700 290" role="img" aria-labelledby="title desc">
+  <title id="title">Điểm cực và điểm không phải điểm cực</title>
+  <desc id="desc">Miền khả thi của bài hộp hạt. Đỉnh v bằng (30,12) là điểm cực. Điểm u bằng (30,6) là trung điểm của hai đỉnh (30,0) và (30,12) nên không phải điểm cực. Điểm w bằng (10,10) ở bên trong là trung điểm của đoạn ngang từ (6,10) đến (14,10) nên cũng không phải điểm cực.</desc>
+  <rect x="40" y="200" width="700" height="290" fill="#fff"/>
+  <path d="M80 450L410 450L410 318L234 230L80 230Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="4"/>
+  <line x1="410" y1="450" x2="410" y2="318" stroke="#b15a2b" stroke-width="7"/>
+  <line x1="146" y1="340" x2="234" y2="340" stroke="#b15a2b" stroke-width="5" stroke-dasharray="9 6"/>
+  <g fill="#b15a2b"><circle cx="146" cy="340" r="6"/><circle cx="234" cy="340" r="6"/></g>
+  <g stroke="#fff" stroke-width="3"><circle cx="410" cy="450" r="9" fill="#2e7d32"/><circle cx="410" cy="318" r="12" fill="#2e7d32"/><circle cx="410" cy="384" r="10" fill="#b15a2b"/><circle cx="190" cy="340" r="10" fill="#b15a2b"/></g>
+  <g font-family="sans-serif" font-size="26">
+    <text x="430" y="312" fill="#2e7d32" font-weight="700">v = (30,12): điểm cực</text>
+    <text x="430" y="392" fill="#b15a2b" font-weight="700">u = (30,6)</text>
+    <text x="430" y="424" fill="#b15a2b">= ½(30,0) + ½(30,12)</text>
+    <text x="430" y="470" fill="#222">(30,0)</text>
+    <text x="168" y="378" fill="#b15a2b" font-weight="700">w</text>
+  </g>
+</svg>

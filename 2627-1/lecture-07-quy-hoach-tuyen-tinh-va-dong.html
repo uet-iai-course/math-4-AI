@@ -154,12 +154,10 @@
     <aside class="notes"><p>Phần đa diện cho cách tính đỉnh bằng nghiệm cơ sở khả thi, và hình đường mức gợi ý nghiệm tối ưu ở đỉnh. Hai điều đó chưa phải chứng minh: hình chỉ có hai chiều, và có bài toán mà cả một cạnh tối ưu. Kết luận đúng là “tồn tại một điểm cực tối ưu” dưới giả thiết nêu rõ, không phải “mọi nghiệm tối ưu đều là đỉnh”.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §§2.3–2.5.</p></aside>
   </section>
   <section data-slide-id="C02">
-    <h2>Định nghĩa hình học của điểm cực</h2>
-    <p><strong>Định nghĩa.</strong> $v\in P$ là điểm cực nếu</p>
-    <div class="math-large">$$v=\lambda y+(1-\lambda)z,\quad y,z\in P,\quad 0&lt;\lambda&lt;1$$</div>
-    <p>chỉ có thể xảy ra khi $y=z=v$.</p>
-    <div class="box">Điểm nằm trong đoạn thẳng không tầm thường của $P$ không phải điểm cực.</div>
-    <aside class="notes"><p>Điều kiện $0<\lambda<1$ loại hai đầu mút của tổ hợp. Trên đa giác hai chiều, điểm cực chính là đỉnh theo trực giác; định nghĩa vẫn đúng trong nhiều chiều.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.3.</p></aside>
+    <h2>Điểm cực</h2>
+    <p><strong>Trực quan.</strong> Đỉnh là điểm không nằm giữa hai điểm khác nhau của miền.</p>
+    <div class="responsive"><div class="visual"><img src="img/lec-07/extreme-point-def.svg" alt="Miền khả thi hộp hạt. Đỉnh v bằng (30,12) là điểm cực. Điểm u bằng (30,6) là trung điểm của (30,0) và (30,12); điểm w bên trong là trung điểm của một đoạn ngang; u và w không phải điểm cực."/></div><div><p><strong>Định nghĩa.</strong> Cho tập lồi $P$. Điểm $v\in P$ là <strong>điểm cực</strong> (extreme point) nếu đẳng thức</p><div class="formula">$$v=\lambda y+(1-\lambda)z,\qquad y,z\in P,\ 0&lt;\lambda&lt;1$$</div><p>chỉ xảy ra khi $y=z=v$.</p></div></div>
+    <aside class="notes"><p>Điều kiện $0<\lambda<1$ đòi $v$ nằm thật sự giữa $y$ và $z$. Trong hình, $u=(30,6)=\tfrac12(30,0)+\tfrac12(30,12)$ với $y\ne z$, nên $u$ không phải điểm cực; tương tự với điểm $w$ bên trong. Đỉnh $v=(30,12)$ không viết được như vậy: mọi đoạn trong miền đi qua $v$ đều có $v$ là đầu mút. Định nghĩa chỉ dùng tổ hợp lồi, nên áp dụng được trong mọi chiều, nơi không còn vẽ được hình.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.3.</p></aside>
   </section>
   <section data-slide-id="C03">
     <h2>Đặc trưng đại số</h2>

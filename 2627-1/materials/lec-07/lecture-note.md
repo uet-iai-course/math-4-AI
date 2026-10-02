@@ -346,7 +346,7 @@ Hình hai chiều gợi ý nghiệm tối ưu nằm ở một đỉnh, và nghi�
 
 ### 6. Điểm cực và trường hợp nhiều nghiệm tối ưu
 
-**Định nghĩa và giả thiết.** Cho tập lồi $P$. Điểm $\mathbf v\in P$ là một **điểm cực** nếu
+**Định nghĩa và giả thiết.** Cho tập lồi $P$. Điểm $\mathbf v\in P$ là một **điểm cực** (extreme point) nếu
 
 $$
 \mathbf v=\lambda\mathbf y+(1-\lambda)\mathbf z,
@@ -358,11 +358,11 @@ $$
 
 chỉ có thể xảy ra khi $\mathbf y=\mathbf z=\mathbf v$.
 
-**Trực quan.** Một điểm nằm trong phần trong của một đoạn thẳng không tầm thường thuộc $P$ không phải điểm cực. Trên một đa giác hai chiều, điểm cực trùng với trực giác về đỉnh; định nghĩa tổ hợp lồi vẫn dùng được trong nhiều chiều.
+**Trực quan.** Đỉnh là điểm không nằm giữa hai điểm khác nhau của miền. Trên miền hộp hạt, $(30,6)=\tfrac12(30,0)+\tfrac12(30,12)$ nằm giữa hai điểm khác nhau nên không phải điểm cực; điểm bên trong cũng vậy. Đỉnh $(30,12)$ là đầu mút của mọi đoạn trong miền đi qua nó. Định nghĩa tổ hợp lồi dùng được trong nhiều chiều, nơi không còn vẽ được hình.
 
 **Hình minh họa.**
 
-![Một cạnh tối ưu của đa diện cho thấy hai đầu mút là điểm cực còn các điểm ở giữa vẫn tối ưu nhưng không phải điểm cực.](img/lec-07/lp-four-statuses.svg)
+![Miền khả thi hộp hạt: đỉnh (30,12) là điểm cực; điểm (30,6) là trung điểm của (30,0) và (30,12); một điểm bên trong là trung điểm của một đoạn ngang; hai điểm sau không phải điểm cực.](img/lec-07/extreme-point-def.svg)
 
 ::: example
 **Ví dụ tính được.** Xét

@@ -253,3 +253,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần C
 
 - **C01 — sửa.** Câu khung trừu tượng, không nêu khoảng trống từ phần B. Câu nhu cầu mới: hình hai chiều gợi ý đỉnh tối ưu, nhưng trong nhiều chiều cần định nghĩa đỉnh và chứng minh khi nào có đỉnh tối ưu; ba gạch có nhãn (điểm cực, điểm cực và BFS, bảo đảm). Ghi chú bài giảng: đoạn mở phần C viết lại theo nhu cầu và ánh xạ mục 6–9, bỏ lối “ta xác định”.
+- **C02 — sửa.** Trang mở thẳng bằng định nghĩa tổ hợp lồi, không có trực quan hay ví dụ; khung “đoạn thẳng không tầm thường” khó hiểu. Tiêu đề mới “Điểm cực”; thêm dòng **Trực quan**; hình tự vẽ `extreme-point-def.svg` trên miền hộp hạt: đỉnh $(30,12)$ là điểm cực, $(30,6)=\tfrac12(30,0)+\tfrac12(30,12)$ và một điểm trong không phải; định nghĩa nêu tên tiếng Anh. Ghi chú bài giảng mục 6: trực quan viết lại theo ví dụ, hình đổi từ `lp-four-statuses.svg` sang hình mới.
