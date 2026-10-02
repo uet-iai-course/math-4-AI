@@ -270,3 +270,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | ghi chú A05 | thiếu đổi dấu mục tiêu → bổ sung. **Đã đóng.**
   - nhẹ | `polyhedron-level-sets.svg` | nhãn “z = 60” xa nét đứt → đặt sát phía trên nét. **Đã đóng**; nhãn “(14,20)” giữ dưới cạnh nghiêng vì vị trí gần hơn sẽ chạm cạnh.
   - nhẹ | ghi chú bài giảng mục 4 | câu tương phản (no-ai-slop) → viết khẳng định “phép bỏ tọa độ biến phụ là song ánh”. **Đã đóng.**
+- **C03 — sửa.** Tiêu đề “Đặc trưng đại số” chung chung; định lý không kèm ví dụ nên không thấy nối với phần B; ý chứng minh vắng. Tiêu đề mới “Điểm cực và nghiệm cơ sở khả thi”; định lý nêu kích thước $A$; dòng **Hệ quả** thêm “$P$ có hữu hạn điểm cực” (dùng ở C06); khung ví dụ áp dụng cho $x=(30,12,0,8,0)$. Ghi chú diễn giả có ý tưởng hai chiều chứng minh. Ghi chú bài giảng mục 7: hệ quả thêm tính hữu hạn.

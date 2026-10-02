@@ -160,11 +160,12 @@
     <aside class="notes"><p>Điều kiện $0<\lambda<1$ đòi $v$ nằm thật sự giữa $y$ và $z$. Trong hình, $u=(30,6)=\tfrac12(30,0)+\tfrac12(30,12)$ với $y\ne z$, nên $u$ không phải điểm cực; tương tự với điểm $w$ bên trong. Đỉnh $v=(30,12)$ không viết được như vậy: mọi đoạn trong miền đi qua $v$ đều có $v$ là đầu mút. Định nghĩa chỉ dùng tổ hợp lồi, nên áp dụng được trong mọi chiều, nơi không còn vẽ được hình.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.3.</p></aside>
   </section>
   <section data-slide-id="C03">
-    <h2>Đặc trưng đại số</h2>
-    <p><strong>Định lý.</strong> Với $P=\{x:Ax=b,x\ge0\}$, $x\in P$ và $\operatorname{rank}(A)=m$, các mệnh đề sau tương đương:</p>
+    <h2>Điểm cực và nghiệm cơ sở khả thi</h2>
+    <p><strong>Định lý.</strong> Cho $P=\{x:Ax=b,\ x\ge0\}$ với $A\in\mathbb R^{m\times n}$, $\operatorname{rank}(A)=m$, và $x\in P$. Ba mệnh đề sau tương đương:</p>
     <ol><li>$x$ là điểm cực của $P$;</li><li>$x$ là nghiệm cơ sở khả thi;</li><li>các cột $A_j$ ứng với $x_j&gt;0$ độc lập tuyến tính.</li></ol>
-    <div class="box">Một điểm cực có nhiều nhất $m$ thành phần dương.</div>
-    <aside class="notes"><p>Điểm suy biến có thể có ít hơn $m$ thành phần dương và tương ứng với nhiều cơ sở. Định lý chỉ áp dụng sau khi đã khóa dạng chuẩn và hạng hàng đầy đủ.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.3.</p></aside>
+    <p><strong>Hệ quả.</strong> Điểm cực có nhiều nhất $m$ thành phần dương; $P$ có hữu hạn điểm cực.</p>
+    <div class="box"><strong>Ví dụ.</strong> Bài hộp hạt dạng chuẩn, $x=(30,12,0,8,0)$: thành phần dương ở cột $1,2,4$; ba cột này có định thức $-2\ne0$, nên $x$ là điểm cực, ứng với đỉnh $(30,12)$.</div>
+    <aside class="notes"><p><strong>Ý tưởng (3)⇒(1):</strong> nếu $x=\tfrac12(y+z)$ với $y,z\in P$, thì $y,z$ bằng $0$ ở mọi chỗ $x$ bằng $0$, nên $A(y-z)=0$ chỉ dùng các cột dương; độc lập cột buộc $y=z$. <strong>(1)⇒(3):</strong> nếu các cột dương phụ thuộc, có $d\ne0$ chỉ khác $0$ ở các chỗ $x_j&gt;0$ với $Ad=0$; với $\varepsilon$ nhỏ, $x\pm\varepsilon d\in P$ và $x$ là trung điểm, mâu thuẫn. Bổ sung các cột dương thành $m$ cột độc lập cho (2). Có hữu hạn cách chọn $m$ cột nên có hữu hạn điểm cực. Điểm suy biến có ít hơn $m$ thành phần dương và có thể ứng với nhiều cơ sở.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.3.</p></aside>
   </section>
   <section data-slide-id="C04">
     <h2>Ví dụ nhiều nghiệm tối ưu</h2>

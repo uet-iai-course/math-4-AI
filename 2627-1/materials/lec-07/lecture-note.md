@@ -412,7 +412,7 @@ và $\mathbf x\in P$, ba mệnh đề sau tương đương:
 2. $\mathbf x$ là một nghiệm cơ sở khả thi;
 3. các cột $\mathbf A_j$ ứng với các chỉ số $j$ thỏa $x_j>0$ độc lập tuyến tính.
 
-Hệ quả là một điểm cực có nhiều nhất $m$ thành phần dương. Chứng minh đầy đủ được đặt ở phần định lý và chứng minh quan trọng.
+Hệ quả là một điểm cực có nhiều nhất $m$ thành phần dương, và vì chỉ có hữu hạn cách chọn $m$ cột, $P$ có hữu hạn điểm cực. Chứng minh đầy đủ được đặt ở phần định lý và chứng minh quan trọng.
 
 **Trực quan.** Điều kiện độc lập cột loại một hướng dịch chuyển hai phía vẫn giữ phương trình và tính không âm. Vì vậy điểm không thể nằm giữa một đoạn khả thi. Ngược lại, nếu các cột dương phụ thuộc, một nhiễu đủ nhỏ theo hai dấu tạo hai điểm khả thi khác nhau có trung điểm là $\mathbf x$.
 
