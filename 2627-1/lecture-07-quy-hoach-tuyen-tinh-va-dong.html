@@ -64,11 +64,12 @@
     <aside class="notes"><p>Ràng buộc giờ máy cộng $1\cdot x_1$ giờ của loại 1 với $2x_2$ giờ của loại 2, nên vế trái tính bằng giờ như vế phải. Đáp án câu hỏi: $(30,20)$ thỏa hai giới hạn sản lượng nhưng dùng $30+2\cdot20=70$ giờ máy, vượt $16$ giờ.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; phép tính kiểm tra trực tiếp.</p></aside>
   </section>
   <section data-slide-id="A04">
-    <h2>Mục tiêu và phương án ứng viên</h2>
-    <div class="math-large">$$\max\ z=2x_1+3x_2$$</div>
-    <div class="table-scroll"><table><thead><tr><th>Phương án</th><th>Khả thi</th><th>$z$</th></tr></thead><tbody><tr><td>$(30,12)$</td><td class="ok">có</td><td>$96$</td></tr><tr><td>$(14,20)$</td><td class="ok">có</td><td>$88$</td></tr><tr><td>$(30,20)$</td><td class="warn">không</td><td>không so sánh</td></tr></tbody></table></div>
-    <div class="box">Chỉ so sánh giá trị mục tiêu giữa các phương án khả thi.</div>
-    <aside class="notes"><p>Kiểm tra: $(30,12)$ dùng đúng $54$ giờ máy và cho $2\cdot30+3\cdot12=96$. Điểm $(14,20)$ cũng dùng đúng $54$ giờ nhưng chỉ cho $2\cdot14+3\cdot20=88$. Đây chưa phải chứng minh tối ưu; hình học sẽ cung cấp tập ứng viên hữu hạn.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; các đỉnh và giá trị được kiểm tra đại số.</p></aside>
+    <h2>Hàm mục tiêu và so sánh phương án</h2>
+    <p>Tổng lợi ích là $z=2x_1+3x_2$. Mô hình đầy đủ:</p>
+    <div class="formula">$$\max\ 2x_1+3x_2\quad\text{với}\quad x_1+2x_2\le54,\ \ x_1\le30,\ \ x_2\le20,\ \ x_1,x_2\ge0.$$</div>
+    <div class="table-scroll"><table><thead><tr><th>Phương án</th><th>Giờ máy</th><th>Khả thi</th><th>$z$</th></tr></thead><tbody><tr><td>$(30,12)$</td><td>$54$</td><td class="ok">có</td><td>$96$</td></tr><tr><td>$(14,20)$</td><td>$54$</td><td class="ok">có</td><td>$88$</td></tr><tr><td>$(30,20)$</td><td>$70$</td><td class="warn">không</td><td>không xét</td></tr></tbody></table></div>
+    <div class="box">Chỉ so sánh $z$ giữa các phương án khả thi. So sánh vài điểm chưa chứng minh được điểm nào tối ưu.</div>
+    <aside class="notes"><p>Điểm $(30,12)$ là giao của $x_1=30$ với đường giờ máy $x_1+2x_2=54$; điểm $(14,20)$ là giao của $x_2=20$ với cùng đường đó. Cả hai dùng hết $54$ giờ máy nhưng cho $z=2\cdot30+3\cdot12=96$ và $z=2\cdot14+3\cdot20=88$. Miền khả thi có vô số điểm, nên cần một lập luận chỉ ra tập ứng viên hữu hạn; phần hình học đa diện cung cấp lập luận đó.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; các đỉnh và giá trị được kiểm tra đại số.</p></aside>
   </section>
   <section data-slide-id="A05">
     <h2>Định nghĩa quy hoạch tuyến tính</h2>

@@ -21,7 +21,7 @@
 | A | A01 | Mô hình hóa quy hoạch tuyến tính | Nhu cầu |
 | A | A02 | Bài toán sản xuất hộp hạt | Ví dụ dẫn nhập |
 | A | A03 | Ràng buộc từ giới hạn | Trực quan theo đơn vị |
-| A | A04 | Mục tiêu và phương án ứng viên | Ví dụ tính được |
+| A | A04 | Hàm mục tiêu và so sánh phương án | Ví dụ tính được, mô hình đầy đủ |
 | A | A05 | Định nghĩa quy hoạch tuyến tính | Hình thức |
 | A | A07 | Hồi quy với mất mát chuẩn $L_1$ | Nhu cầu, ứng dụng chuyển về LP và ví dụ kiểm tra |
 | A | A08 | Bài tập dựng mô hình | Bài tập LLO17 |

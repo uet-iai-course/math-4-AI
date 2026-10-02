@@ -62,7 +62,7 @@ $$
 z=2\cdot30+3\cdot12=96.
 $$
 
-Điểm $(30,20)$ thỏa hai giới hạn sản lượng riêng nhưng dùng $70$ giờ máy, vượt giới hạn $16$ giờ máy. Vì không khả thi, giá trị mục tiêu của điểm này không được dùng để so sánh phương án.
+Điểm $(14,20)$ cũng dùng đúng $54$ giờ máy nhưng chỉ cho $z=2\cdot14+3\cdot20=88$. So sánh vài điểm như vậy chưa chứng minh được điểm nào tối ưu, vì miền khả thi có vô số điểm; phần B cung cấp lập luận hình học. Điểm $(30,20)$ thỏa hai giới hạn sản lượng riêng nhưng dùng $70$ giờ máy, vượt giới hạn $16$ giờ máy. Vì không khả thi, giá trị mục tiêu của điểm này không được dùng để so sánh phương án.
 :::
 
 **Ý nghĩa và ứng dụng trong AI.** LP mô tả các quyết định phân bổ tài nguyên trong một lần, chẳng hạn chia thời gian xử lý, bộ nhớ hoặc thông lượng cho nhiều tác vụ khi lợi ích và mức dùng tài nguyên được xấp xỉ tuyến tính.
