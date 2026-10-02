@@ -512,7 +512,7 @@ $$
 
 Đây là phát biểu hình học; chứng minh bằng nón tiếp xúc và hướng cạnh được đặt ở phần định lý riêng.
 
-**Trực quan.** Thay vì quét mọi điểm của miền khả thi, ta đi trên đồ thị các đỉnh và cạnh. Mỗi bước giữ tính khả thi và tăng nghiêm ngặt giá trị mục tiêu. Nếu không còn đỉnh kề cải thiện, bổ đề trên chứng nhận điểm hiện tại tối ưu dưới đúng giả thiết.
+**Trực quan.** Thay cho việc quét mọi điểm của miền khả thi, thuật toán đi trên đồ thị các đỉnh và cạnh: từ một điểm cực, chuyển sang một điểm cực kề có giá trị mục tiêu lớn hơn, và dừng khi không còn điểm cực kề nào tốt hơn. Mỗi bước giữ tính khả thi và tăng nghiêm ngặt giá trị mục tiêu, nên không quay lại đỉnh cũ; vì $P$ có hữu hạn điểm cực, thuật toán dừng sau hữu hạn bước. Khi dừng, bổ đề trên chứng nhận điểm hiện tại tối ưu.
 
 **Hình minh họa.**
 

@@ -39,7 +39,7 @@
 | C | C05 | Bảo đảm tồn tại điểm cực | Định lý tồn tại |
 | C | C06 | Điểm cực tối ưu và đỉnh kề | Định lý và bổ đề cầu nối đơn hình trên đa diện tổng quát |
 | C | C07 | Bốn kết cục của quy hoạch tuyến tính | Phân loại |
-| C | C08 | Mô tả thuật toán ở mức ý niệm | Cầu hình học tới phương pháp đơn hình |
+| C | C08 | Thuật toán đi qua đỉnh kề | Cầu hình học tới phương pháp đơn hình |
 | C | C09 | Đường đi qua các đỉnh kề | Trực quan thuật toán |
 | C | C10 | Bài tập chuyển giao về điểm cực | Bài tập LLO18 trên dữ kiện mới |
 | C | C11 | Bài tập tích hợp quy hoạch tuyến tính | Đánh giá LLO17–18 trước biên DP |
