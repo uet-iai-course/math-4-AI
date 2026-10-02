@@ -8,7 +8,7 @@ Nguồn chính là Bertsimas và Tsitsiklis (1997), Chương 1–2, cho quy ho�
 
 ## A. Từ quyết định đến quy hoạch tuyến tính
 
-Ta bắt đầu từ dữ kiện của một quyết định thực tế, viết chúng thành một quy hoạch tuyến tính, rồi kiểm tra cùng kỹ thuật trên một mất mát trong học máy.
+Muốn khai thác cấu trúc của tập phương án, trước hết phải viết quyết định thành mô hình gồm ba thành phần: biến quyết định có đơn vị, hàm mục tiêu và các ràng buộc. Khi cả ba đều tuyến tính, bài toán là một quy hoạch tuyến tính. Mục 1 dựng mô hình cho một bài toán sản xuất; mục 2 áp dụng cùng kỹ thuật cho một mất mát trong học máy.
 
 ### 1. Khuôn quy hoạch tuyến tính và mô hình hộp hạt
 
