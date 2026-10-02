@@ -254,3 +254,19 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 
 - **C01 — sửa.** Câu khung trừu tượng, không nêu khoảng trống từ phần B. Câu nhu cầu mới: hình hai chiều gợi ý đỉnh tối ưu, nhưng trong nhiều chiều cần định nghĩa đỉnh và chứng minh khi nào có đỉnh tối ưu; ba gạch có nhãn (điểm cực, điểm cực và BFS, bảo đảm). Ghi chú bài giảng: đoạn mở phần C viết lại theo nhu cầu và ánh xạ mục 6–9, bỏ lối “ta xác định”.
 - **C02 — sửa.** Trang mở thẳng bằng định nghĩa tổ hợp lồi, không có trực quan hay ví dụ; khung “đoạn thẳng không tầm thường” khó hiểu. Tiêu đề mới “Điểm cực”; thêm dòng **Trực quan**; hình tự vẽ `extreme-point-def.svg` trên miền hộp hạt: đỉnh $(30,12)$ là điểm cực, $(30,6)=\tfrac12(30,0)+\tfrac12(30,12)$ và một điểm trong không phải; định nghĩa nêu tên tiếng Anh. Ghi chú bài giảng mục 6: trực quan viết lại theo ví dụ, hình đổi từ `lp-four-statuses.svg` sang hình mới.
+- **Tái kiểm phần B.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5, effort high), tại commit `91a65ec`: tái kiểm toán học **PASS có điều kiện** (1 trung bình, 6 nhẹ; mọi số liệu B01–B07 và tọa độ SVG tính lại khớp); tái kiểm mạch và góc nhìn sinh viên **PASS có điều kiện** (4 trung bình, 4 nhẹ). Đã xử lý:
+  - trung bình | B04, ghi chú bài giảng mục 4 | “đỉnh là giao của các ràng buộc chặt” không chính xác (giao có thể là một cạnh) → trang viết “mỗi đỉnh là nghiệm duy nhất của một nhóm ràng buộc lấy dấu bằng”; ghi chú diễn giả và ghi chú bài giảng nêu “$n$ ràng buộc độc lập; trong mặt phẳng: hai đường biên cắt nhau”. **Đã đóng.**
+  - trung bình | B05, ghi chú bài giảng mục 4–5 | chữ $A$ chỉ cả ma trận $3\times2$ và $3\times5$ → B05 dùng $\bar A=[A\ I]$ và nêu thành phần; ghi chú bài giảng dùng $\bar{\mathbf A}$ ở mục 4 và nêu rõ quy ước ở ví dụ mục 5. **Đã đóng.**
+  - trung bình | C01 | không kế thừa kết quả B → đã xử lý ở commit sửa C01. **Đã đóng.**
+  - trung bình | C02 | thiếu trực quan và hình → đã xử lý ở commit sửa C02. **Đã đóng.**
+  - nhẹ | ghi chú B03 | “ở trang sau” → câu khẳng định không chỉ vị trí. **Đã đóng.**
+  - nhẹ | B02 | “nửa không gian” chưa giải nghĩa → ghi chú diễn giả định nghĩa $\{x:a^Tx\le\beta\}$. **Đã đóng.**
+  - nhẹ | B06 | suy biến không có ví dụ → ghi chú diễn giả thêm ví dụ $x_1+x_3=1$, $x_2+x_4=0$. **Đã đóng.**
+  - nhẹ | storyboard B01–B04, B06 | chưa ghi lượt sửa → bổ sung. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng mục 5 | thiếu điều kiện hai đường cắt nhau → thêm “$\mathbf A_B$ khả nghịch”. **Đã đóng.**
+  - nhẹ | B03 | ví dụ thiếu $\mathbb R^2$ → bổ sung. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng mục 4 | vế phải $b$ trùng ký hiệu véc-tơ → $\beta$. **Đã đóng.**
+  - nhẹ | B04 | chưa khai báo $b,c$ → bổ sung. **Đã đóng.**
+  - nhẹ | ghi chú A05 | thiếu đổi dấu mục tiêu → bổ sung. **Đã đóng.**
+  - nhẹ | `polyhedron-level-sets.svg` | nhãn “z = 60” xa nét đứt → đặt sát phía trên nét. **Đã đóng**; nhãn “(14,20)” giữ dưới cạnh nghiêng vì vị trí gần hơn sẽ chạm cạnh.
+  - nhẹ | ghi chú bài giảng mục 4 | câu tương phản (no-ai-slop) → viết khẳng định “phép bỏ tọa độ biến phụ là song ánh”. **Đã đóng.**

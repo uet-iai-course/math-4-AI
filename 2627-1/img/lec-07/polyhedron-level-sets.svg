@@ -18,7 +18,7 @@
     <text x="428" y="300" font-weight="700" fill="#2e7d32">(30,12)</text>
     <text x="228" y="288">(14,20)</text>
     <text x="92" y="220">(0,20)</text>
-    <text x="118" y="392" fill="#55627e">z = 60</text>
+    <text x="182" y="262" fill="#55627e">z = 60</text>
     <text x="560" y="404" fill="#b15a2b" font-weight="700">z = 96</text>
     <text x="520" y="196" fill="#b15a2b">tăng z</text>
   </g>

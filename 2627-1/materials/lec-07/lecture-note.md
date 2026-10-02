@@ -198,7 +198,7 @@ $$
 
 ### 4. Dạng chuẩn và các phép chuyển cơ bản
 
-**Nhu cầu.** Đỉnh của miền khả thi là giao của các ràng buộc chặt, tức các ràng buộc thỏa với dấu bằng. Muốn tính đỉnh bằng hệ phương trình, cần viết mọi ràng buộc thành phương trình.
+**Nhu cầu.** Đỉnh của miền khả thi là điểm duy nhất thỏa với dấu bằng một nhóm ràng buộc độc lập tuyến tính; trong mặt phẳng, đó là giao của hai đường biên cắt nhau. Muốn tính đỉnh bằng hệ phương trình, cần viết mọi ràng buộc thành phương trình.
 
 **Định nghĩa và giả thiết.** Trong ghi chú này, dạng chuẩn (standard form) của LP được quy ước là
 
@@ -214,8 +214,8 @@ $$
 
 trong đó $\mathbf A\in\mathbb R^{m\times n}$ có $\operatorname{rank}(\mathbf A)=m\le n$ sau khi bỏ các phương trình phụ thuộc. Ba phép chuyển thường dùng là:
 
-- $a^T x\le b$ trở thành $a^T x+s=b$ với biến phụ (slack variable) $s\ge0$;
-- $a^T x\ge b$ trở thành $a^T x-s=b$ với biến dư (surplus variable) $s\ge0$;
+- $a^T x\le \beta$ trở thành $a^T x+s=\beta$ với biến phụ (slack variable) $s\ge0$;
+- $a^T x\ge \beta$ trở thành $a^T x-s=\beta$ với biến dư (surplus variable) $s\ge0$;
 - biến tự do $x$ được thay bởi $x=x^+-x^-$ với $x^+,x^-\ge0$.
 
 Đổi cực tiểu thành cực đại bằng $\min c^Tx=-\max(-c^Tx)$.
@@ -244,12 +244,12 @@ $$
 (s_1,s_2,s_3)=(0,8,0).
 $$
 
-Các giá trị này cho biết giới hạn loại 1 và giới hạn giờ máy chặt, còn giới hạn loại 2 dư $8$ nghìn hộp. Hai biến phụ bằng $0$ ứng với hai đường $x_1=30$ và $x_1+2x_2=54$ cắt nhau tại đỉnh. Với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$, ma trận dạng chuẩn là $\mathbf A=[\,\mathbf A_0\ \ \mathbf I\,]\in\mathbb R^{3\times5}$, trong đó $\mathbf A_0$ là ma trận ràng buộc ban đầu cỡ $3\times2$; ba cột của $\mathbf I$ cho $\operatorname{rank}(\mathbf A)=3\le5$.
+Các giá trị này cho biết giới hạn loại 1 và giới hạn giờ máy chặt, còn giới hạn loại 2 dư $8$ nghìn hộp. Hai biến phụ bằng $0$ ứng với hai đường $x_1=30$ và $x_1+2x_2=54$ cắt nhau tại đỉnh. Với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$, ma trận dạng chuẩn là $\bar{\mathbf A}=[\,\mathbf A\ \ \mathbf I\,]\in\mathbb R^{3\times5}$, trong đó $\mathbf A$ là ma trận ràng buộc $3\times2$ của mô hình gốc; ba cột của $\mathbf I$ cho $\operatorname{rank}(\bar{\mathbf A})=3\le5$.
 :::
 
 **Ý nghĩa và ứng dụng trong AI.** Dạng chuẩn tạo một giao diện đại số thống nhất cho bộ giải. Sau phép chuyển, trạng thái của các giới hạn được thể hiện trực tiếp qua các biến phụ và có thể liên hệ với một cơ sở ma trận.
 
-**Điểm dễ nhầm.** Tài liệu khác có thể gọi $Ax\le b$ là dạng chuẩn; vì vậy phải nêu quy ước trước khi dùng. Thêm biến phụ không giữ nguyên tập khả thi trong cùng không gian biến, nhưng tạo một tương ứng một-một sau khi chiếu về biến gốc. Dấu của biến phụ và biến dư phụ thuộc chiều bất đẳng thức.
+**Điểm dễ nhầm.** Tài liệu khác có thể gọi $Ax\le b$ là dạng chuẩn; vì vậy phải nêu quy ước trước khi dùng. Thêm biến phụ đưa tập khả thi sang không gian nhiều biến hơn; phép bỏ các tọa độ biến phụ là song ánh giữa tập khả thi mới và tập khả thi gốc. Dấu của biến phụ và biến dư phụ thuộc chiều bất đẳng thức.
 
 **Câu hỏi kiểm tra.** Giả sử $x_1\ge0$ và $x_2$ tự do. Hãy chuyển
 
@@ -279,17 +279,17 @@ $$
 
 Véc-tơ thu được là một nghiệm cơ sở. Nó là **nghiệm cơ sở khả thi** (basic feasible solution, BFS) nếu $\mathbf x_B\ge\mathbf0$. BFS là **suy biến** (degenerate) nếu ít nhất một biến cơ sở bằng $0$.
 
-**Trực quan.** Chọn một cơ sở là cho $n-m$ biến bằng $0$, rồi giải $m$ biến còn lại từ hệ vuông với $m$ cột độc lập. Trong bài hộp hạt, $n-m=2$: cho hai biến bằng $0$ ứng với chọn hai ràng buộc chặt, và giao của chúng là một đỉnh nếu nghiệm không âm. Trong trường hợp suy biến, nhiều lựa chọn cơ sở có thể cùng biểu diễn một điểm hình học.
+**Trực quan.** Chọn một cơ sở là cho $n-m$ biến bằng $0$, rồi giải $m$ biến còn lại từ hệ vuông với $m$ cột độc lập. Trong bài hộp hạt, $n-m=2$: cho hai biến bằng $0$ ứng với chọn hai ràng buộc chặt, và giao của chúng là một đỉnh nếu hai đường biên cắt nhau ($\mathbf A_B$ khả nghịch) và nghiệm không âm. Trong trường hợp suy biến, nhiều lựa chọn cơ sở có thể cùng biểu diễn một điểm hình học.
 
 **Hình minh họa.**
 
 ![Một điểm cực của đa diện được nối với các cột cơ sở và nghiệm của hệ ma trận con.](img/lec-07/standard-form-basis.svg)
 
 ::: example
-**Ví dụ tính được.** Với thứ tự biến $(x_1,x_2,s_1,s_2,s_3)$ của bài hộp hạt,
+**Ví dụ tính được.** Với thứ tự biến $(x_1,x_2,s_1,s_2,s_3)$ của bài hộp hạt, ma trận dạng chuẩn (ở mục này ký hiệu là $\mathbf A$ theo quy ước chung của dạng chuẩn) là
 
 $$
-\mathbf A=
+\mathbf A=[\,\mathbf A_{\text{gốc}}\ \ \mathbf I\,]=
 \begin{bmatrix}
 1&0&1&0&0\\
 0&1&0&1&0\\
