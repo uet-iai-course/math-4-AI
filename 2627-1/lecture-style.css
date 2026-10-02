@@ -957,6 +957,7 @@
 :where(html[data-lecture="07"]) [data-slide-id="A07"] .visual img { max-height:220px; object-fit:contain; }
 :where(html[data-lecture="07"]) [data-slide-id="A07"] .responsive { grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); }
 :where(html[data-lecture="07"]) [data-slide-id="B02"] .responsive { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+:where(html[data-lecture="07"]) [data-slide-id="A05"] .grid2 { grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); }
 :where(html[data-lecture="07"]) .small-table { font-size:.9em!important; }
 :where(html[data-lecture="07"]) .responsive { display:grid; grid-template-columns:minmax(360px,1.15fr) minmax(0,.85fr); gap:.7em; align-items:center; }
 :where(html[data-lecture="07"]) .reveal .algorithm { font-size:.94em; text-align:left; background:#f5f7fb; border-radius:8px; padding:.5em .8em .5em 1.9em; margin-left:0; }
@@ -968,6 +969,9 @@
 :where(html[data-lecture="07"]) .reveal>.lecture-viewport { height:100%; }
 :where(html[data-lecture="07"]) .formula { max-width:100%; overflow-x:auto; overflow-y:hidden; }
 :where(html[data-lecture="07"]) .table-scroll { width:100%; max-width:100%; overflow-x:auto; }
+:where(html[data-lecture="07"]) .grid2>*,
+:where(html[data-lecture="07"]) .grid3>*,
+:where(html[data-lecture="07"]) .responsive>* { min-width:0; }
 :where(html[data-lecture="07"]) .reveal [tabindex="0"]:focus-visible { outline:3px solid #287c74; outline-offset:2px; }
 @media screen and (max-width:760px) {
   html:where([data-lecture="07"]),

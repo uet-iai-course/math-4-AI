@@ -29,7 +29,7 @@
 | B | B02 | Đa diện và đường mức | Trực quan–ví dụ |
 | B | B03 | Định nghĩa đa diện | Hình thức hình học |
 | B | B04 | Dạng chuẩn | Hình thức đại số |
-| B | B05 | Biến phụ cho hộp hạt | Ứng dụng chuyển dạng |
+| B | B05 | Dạng chuẩn của bài hộp hạt | Ứng dụng chuyển dạng |
 | B | B06 | Nghiệm cơ sở khả thi | Điều kiện đại số và tiên quyết trực tiếp cho B07 |
 | B | B07 | Nghiệm cơ sở của bài hộp hạt | Bài tập LLO18 xuyên ví dụ |
 | C | C01 | Điểm cực và bảo đảm tối ưu | Nhu cầu |

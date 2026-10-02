@@ -75,7 +75,7 @@
     <h2>Định nghĩa quy hoạch tuyến tính</h2>
     <p><strong>Định nghĩa.</strong> Quy hoạch tuyến tính (linear programming, LP) là bài toán tối ưu một hàm tuyến tính trên miền xác định bởi hữu hạn phương trình và bất phương trình tuyến tính. Dạng thường dùng, với $c\in\mathbb R^n$, $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$:</p>
     <div class="math-large">$$\max_{x\in\mathbb R^n}\ c^Tx\quad\text{với}\quad Ax\le b,\quad x\ge0.$$</div>
-    <div class="grid2"><div class="card"><strong>Ví dụ.</strong> Bài toán hộp hạt có $n=2$, $m=3$:<div class="formula">$$c=\begin{bmatrix}2\\3\end{bmatrix},\quad A=\begin{bmatrix}1&amp;0\\0&amp;1\\1&amp;2\end{bmatrix},\quad b=\begin{bmatrix}30\\20\\54\end{bmatrix}.$$</div></div><div class="card"><strong>Không phải LP:</strong><ul><li>có tích $x_1x_2$ hoặc lũy thừa $x_1^2$;</li><li>có điều kiện $x$ nguyên (quy hoạch nguyên).</li></ul></div></div>
+    <div class="grid2"><div class="card"><strong>Ví dụ.</strong> Hộp hạt: $n=2$, $m=3$,<div class="formula">$$c=\begin{bmatrix}2\\3\end{bmatrix},\quad A=\begin{bmatrix}1&amp;0\\0&amp;1\\1&amp;2\end{bmatrix},\quad b=\begin{bmatrix}30\\20\\54\end{bmatrix}.$$</div></div><div class="card"><strong>Không phải LP:</strong><ul><li>có tích $x_1x_2$ hoặc lũy thừa $x_1^2$;</li><li>có điều kiện $x$ nguyên (quy hoạch nguyên).</li></ul></div></div>
     <aside class="notes"><p>Dữ kiện của bài toán là $c,A,b$ và chiều tối ưu; $x$ là quyết định. Lời giải của một LP là giá trị tối ưu cùng một nghiệm tối ưu, hoặc kết luận bài toán không có nghiệm tối ưu. Dạng hiển thị chỉ là một quy ước: mọi LP đều đưa được về dạng này bằng cách đổi dấu hàng, thay mỗi phương trình bằng hai bất phương trình, hoặc tách biến tự do. Mỗi hàng của $A$ ứng với một giới hạn; trong ví dụ, hai hàng đầu là giới hạn sản lượng, hàng thứ ba là giờ máy. Điều kiện biến nguyên không làm biểu thức thành phi tuyến, nhưng làm miền quyết định rời rạc.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §1.1.</p></aside>
   </section>
   <section data-slide-id="A07">
@@ -122,11 +122,11 @@
     <aside class="notes"><p>Biến phụ (slack variable) đo phần giới hạn chưa dùng; biến dư (surplus variable) đo phần vượt trên cận dưới. Bài toán cực tiểu đổi sang cực đại bằng $\min c^Tx=-\max(-c^Tx)$. Tài liệu khác có thể gọi dạng $Ax\le b$ là dạng chuẩn; trong bài này, dạng chuẩn dùng phương trình và điều kiện không âm. Giả thiết $\operatorname{rank}(A)=m$ đạt được sau khi bỏ các phương trình phụ thuộc; nó bảo đảm chọn được $m$ cột độc lập, tức một ma trận vuông khả nghịch, ở định nghĩa nghiệm cơ sở.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2.</p></aside>
   </section>
   <section data-slide-id="B05">
-    <h2>Biến phụ cho hộp hạt</h2>
-    <div class="formula">$$\begin{aligned}x_1+s_1&=30,\\x_2+s_2&=20,\\x_1+2x_2+s_3&=54,\\x_1,x_2,s_1,s_2,s_3&\ge0.\end{aligned}$$</div>
-    <div class="grid2"><div class="card"><h3>Ý nghĩa</h3><p>$s_i$ là phần giới hạn thứ $i$ chưa dùng.</p></div><div class="card"><h3>Ví dụ</h3><p>Tại $(30,12)$: $(s_1,s_2,s_3)=(0,8,0)$.</p></div></div>
-    <p><strong>Hai phép đổi khác:</strong> $a^Tx\ge b\Rightarrow a^Tx-s=b$, $s\ge0$; biến tự do viết $x=x^+-x^-$ với $x^+,x^-\ge0$.</p>
-    <aside class="notes"><p>Mỗi bất phương trình kiểu “nhỏ hơn hoặc bằng” nhận một biến phụ không âm. Với bất phương trình “lớn hơn hoặc bằng”, dấu của biến dư phải được xử lý tương ứng.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2; ví dụ tự tạo.</p></aside>
+    <h2>Dạng chuẩn của bài hộp hạt</h2>
+    <p>Mỗi giới hạn nhận một biến phụ $s_i\ge0$, là phần giới hạn thứ $i$ chưa dùng.</p>
+    <div class="grid2"><div class="formula">$$\begin{aligned}x_1+s_1&amp;=30,\\x_2+s_2&amp;=20,\\x_1+2x_2+s_3&amp;=54,\\x_1,x_2,s_1,s_2,s_3&amp;\ge0.\end{aligned}$$</div><div><div class="formula">$$A=\begin{bmatrix}1&amp;0&amp;1&amp;0&amp;0\\0&amp;1&amp;0&amp;1&amp;0\\1&amp;2&amp;0&amp;0&amp;1\end{bmatrix},\quad b=\begin{bmatrix}30\\20\\54\end{bmatrix}$$</div><p>$m=3$, $n=5$; ba cột cuối cho $\operatorname{rank}(A)=3$.</p></div></div>
+    <div class="box">Tại đỉnh $(30,12)$: $(s_1,s_2,s_3)=(0,8,0)$. Hai biến phụ bằng $0$ ứng với hai ràng buộc chặt $x_1=30$ và $x_1+2x_2=54$, cắt nhau tại đỉnh.</div>
+    <aside class="notes"><p>Thứ tự cột là $(x_1,x_2,s_1,s_2,s_3)$. Ba cột của biến phụ tạo ma trận đơn vị, nên $A$ có hạng hàng đầy đủ mà không cần bỏ phương trình nào. Dạng chuẩn có $5$ biến và $3$ phương trình; một đỉnh của hình hai chiều ứng với việc cho $5-3=2$ biến bằng $0$. Tại $(30,12)$, giới hạn loại 2 còn dư $s_2=8$ nghìn hộp.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2; ví dụ tự tạo.</p></aside>
   </section>
   <section data-slide-id="B06">
     <h2>Nghiệm cơ sở khả thi</h2>

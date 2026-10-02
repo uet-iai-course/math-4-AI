@@ -244,7 +244,7 @@ $$
 (s_1,s_2,s_3)=(0,8,0).
 $$
 
-Các giá trị này cho biết giới hạn loại 1 và giới hạn giờ máy đang hoạt động, còn giới hạn loại 2 dư $8$ nghìn hộp.
+Các giá trị này cho biết giới hạn loại 1 và giới hạn giờ máy chặt, còn giới hạn loại 2 dư $8$ nghìn hộp. Hai biến phụ bằng $0$ ứng với hai đường $x_1=30$ và $x_1+2x_2=54$ cắt nhau tại đỉnh. Với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$, ma trận dạng chuẩn là $\mathbf A=[\,\mathbf A_0\ \ \mathbf I\,]\in\mathbb R^{3\times5}$, trong đó $\mathbf A_0$ là ma trận ràng buộc ban đầu cỡ $3\times2$; ba cột của $\mathbf I$ cho $\operatorname{rank}(\mathbf A)=3\le5$.
 :::
 
 **Ý nghĩa và ứng dụng trong AI.** Dạng chuẩn tạo một giao diện đại số thống nhất cho bộ giải. Sau phép chuyển, trạng thái của các giới hạn được thể hiện trực tiếp qua các biến phụ và có thể liên hệ với một cơ sở ma trận.

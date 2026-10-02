@@ -39,7 +39,7 @@
 | B02 | Cho thấy cùng miền khả thi, đỉnh và đường mức của ví dụ đã tính. | Nhu cầu → định nghĩa đa diện. | Trực giác LLO18. | thêm: SVG tự vẽ, không sao chép nguồn. |
 | B03 | Định nghĩa đa diện và phân biệt bị chặn/không bị chặn. | Hình → dạng chuẩn. | Hiểu đa diện LLO18. | giữ: khái niệm đề cương. |
 | B04 | Khóa một quy ước dạng chuẩn và giả thiết hạng đầy đủ. | Đa diện → biến phụ. | Dạng chuẩn LLO18. | sửa: nêu rõ quy ước thay vì dùng mơ hồ. |
-| B05 | Chuyển đúng ba bất phương trình hộp hạt và diễn giải biến phụ. | Dạng chuẩn → cơ sở. | Vận dụng dạng chuẩn LLO18. | thêm: ứng dụng cùng ký hiệu. |
+| B05 | Chuyển đúng ba bất phương trình hộp hạt và diễn giải biến phụ. | Dạng chuẩn → cơ sở. | Vận dụng dạng chuẩn LLO18. | thêm: ứng dụng cùng ký hiệu. Sửa (2026-10-03): tiêu đề “Dạng chuẩn của bài hộp hạt”; thêm ma trận $3\times5$ và câu nối biến phụ bằng $0$ với ràng buộc chặt tại đỉnh; phép đổi tổng quát chuyển sang B04. |
 | B06 | Nêu đủ điều kiện cơ sở, nghiệm cơ sở và tính khả thi; cung cấp tiên quyết trực tiếp cho B07. | Biến phụ → bài tập kiểm cơ sở trên cùng hệ. | BFS LLO18. | sửa: thêm $A_B^{-1}b\ge0$ và khóa quan hệ B06→B07. |
 | B07 | Buộc kiểm một BFS trên chính hệ hộp hạt thay vì hệ một phương trình rời rạc. | Kết B → nhu cầu điểm cực. | Bài tập LLO18/CLO1; nghiệm $(30,12,8)$. | sửa: truyền nguyên ký hiệu và dữ kiện B05. |
 | C01 | Miền vô hạn điểm cần một tập ứng viên có cấu trúc. | B07 → định nghĩa hình học. | Nhu cầu LLO18. | thêm: mở mạch bảo đảm. |
