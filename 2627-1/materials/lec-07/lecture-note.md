@@ -160,13 +160,13 @@ So sánh từng phương án không chứng minh được tối ưu, vì miền 
 
 ### 3. Đa diện, nửa không gian và đường mức
 
-**Định nghĩa và giả thiết.** Một đa diện là tập nghiệm của hữu hạn bất đẳng thức tuyến tính,
+**Định nghĩa và giả thiết.** Một đa diện (polyhedron) là tập nghiệm của hữu hạn bất đẳng thức tuyến tính,
 
 $$
 P=\{\mathbf x\in\mathbb R^n:\mathbf A\mathbf x\le\mathbf b\}.
 $$
 
-Các đẳng thức tuyến tính có thể được ghi bằng hai bất đẳng thức ngược chiều. Đa diện có thể rỗng, bị chặn hoặc không bị chặn.
+Các đẳng thức tuyến tính có thể được ghi bằng hai bất đẳng thức ngược chiều, nên tập $\{\mathbf x:\mathbf A\mathbf x=\mathbf b,\ \mathbf x\ge\mathbf0\}$ của dạng chuẩn cũng là đa diện. Đa diện $P$ **bị chặn** nếu có $K$ để $\|\mathbf x\|\le K$ với mọi $\mathbf x\in P$. Đa diện có thể rỗng, bị chặn hoặc không bị chặn; chẳng hạn miền hộp hạt bị chặn, còn $\{\mathbf x\in\mathbb R^2:\mathbf x\ge\mathbf0,\ x_1+x_2\ge1\}$ không bị chặn.
 
 **Trực quan.** Mỗi hàng của $\mathbf A\mathbf x\le\mathbf b$ tạo một nửa không gian. Miền khả thi là phần giao của chúng. Đường mức $\mathbf c^T\mathbf x=\alpha$ gồm các điểm có cùng giá trị mục tiêu; các đường mức song song vì cùng véc-tơ pháp tuyến $\mathbf c$, và tăng $\alpha$ tịnh tiến đường theo hướng $\mathbf c$. Đường mức xa nhất còn chạm miền cho biết vị trí tối ưu theo hình học.
 

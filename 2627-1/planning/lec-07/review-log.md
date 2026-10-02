@@ -243,3 +243,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | ghi chú bài giảng mở đầu | dùng lẫn “đỉnh”, “điểm cực” → “đỉnh (điểm cực)”. **Đã đóng.**
   - nhẹ | storyboard A01, A03, A05, A08 | chưa phản ánh lượt sửa → thêm “Sửa (2026-10-03)”. **Đã đóng.**
   - nhẹ | P02 | “kết cục” dùng trước định nghĩa → **không sửa**: trang mục tiêu nêu tên sản phẩm học tập, thuật ngữ được định nghĩa ở phần C.
+- **B03 — sửa.** “Bị chặn” định nghĩa bằng lời mơ hồ; không có ví dụ đa diện không bị chặn; thiếu cầu nối sang dạng chuẩn. Định nghĩa nay nêu tên tiếng Anh và kích thước $A,b$; gạch thứ hai định nghĩa bị chặn bằng $\|x\|\le K$ kèm ví dụ bị chặn/không bị chặn; gạch thứ ba nêu $\{x:Ax=b,\ x\ge0\}$ cũng là đa diện. Ghi chú bài giảng mục 3: thêm tên tiếng Anh, định nghĩa bị chặn, ví dụ và câu về tập dạng chuẩn.

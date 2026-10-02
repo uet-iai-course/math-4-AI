@@ -108,10 +108,10 @@
   </section>
   <section data-slide-id="B03">
     <h2>Định nghĩa đa diện</h2>
-    <p><strong>Định nghĩa.</strong> Đa diện là tập nghiệm của hữu hạn bất phương trình tuyến tính:</p>
+    <p><strong>Định nghĩa.</strong> Đa diện (polyhedron) là tập nghiệm của hữu hạn bất phương trình tuyến tính, với $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$:</p>
     <div class="math-large">$$P=\{x\in\mathbb R^n:Ax\le b\}.$$</div>
-    <ul><li>$P$ lồi vì là giao của các nửa không gian lồi.</li><li>$P$ có thể rỗng, bị chặn hoặc không bị chặn.</li><li><strong>Đa diện bị chặn</strong> không kéo dài vô hạn theo bất kỳ hướng nào.</li></ul>
-    <aside class="notes"><p>Không đồng nhất “đa diện” với “đa giác bị chặn”. Trong nhiều chiều, đa diện có thể kéo dài vô hạn. Tính lồi cho phép dùng tổ hợp lồi khi định nghĩa điểm cực.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.1.</p></aside>
+    <ul><li>$P$ lồi vì là giao của các nửa không gian.</li><li>$P$ <strong>bị chặn</strong> nếu có $K$ để $\|x\|\le K$ với mọi $x\in P$. Miền hộp hạt bị chặn; $\{x\ge0:\ x_1+x_2\ge1\}$ thì không.</li><li>Phương trình $a^Tx=\beta$ tương đương hai bất phương trình, nên $\{x:Ax=b,\ x\ge0\}$ cũng là đa diện.</li></ul>
+    <aside class="notes"><p>Đa diện có thể rỗng và có thể kéo dài vô hạn, nên “đa diện” rộng hơn “đa giác” quen thuộc. Bất phương trình $x_1+x_2\ge1$ viết lại $-x_1-x_2\le-1$ để đúng dạng $Ax\le b$. Tính lồi cho phép dùng tổ hợp lồi khi định nghĩa điểm cực. Gạch cuối cho phép áp dụng mọi kết quả về đa diện cho dạng chuẩn ở trang sau.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.1.</p></aside>
   </section>
   <section data-slide-id="B04">
     <h2>Dạng chuẩn</h2>
