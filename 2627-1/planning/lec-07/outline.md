@@ -19,7 +19,7 @@
 | P | P02 | Mục tiêu học tập | Khóa minh chứng |
 | P | P03 | Vấn đề trung tâm | Vấn đề trung tâm và hình hai cấu trúc |
 | A | A01 | Mô hình hóa quy hoạch tuyến tính | Nhu cầu |
-| A | A02 | Ví dụ hộp hạt | Ví dụ dẫn nhập |
+| A | A02 | Bài toán sản xuất hộp hạt | Ví dụ dẫn nhập |
 | A | A03 | Ràng buộc từ giới hạn | Trực quan theo đơn vị |
 | A | A04 | Mục tiêu và phương án ứng viên | Ví dụ tính được |
 | A | A05 | Định nghĩa quy hoạch tuyến tính | Hình thức |

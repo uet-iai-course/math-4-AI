@@ -34,7 +34,15 @@ Mỗi thành phần của $\mathbf x$ là một đại lượng được lựa c
 ![Từ dữ kiện và đơn vị của bài toán hộp hạt đến biến quyết định, ràng buộc và hàm mục tiêu tuyến tính.](img/lec-07/lp-model-units.svg)
 
 ::: example
-**Ví dụ tính được.** Một cơ sở đóng hai loại hộp hạt. Đặt $x_1,x_2$ là sản lượng, tính theo nghìn hộp loại 1 và loại 2. Mỗi nghìn hộp đem lại lợi ích lần lượt là $2$ và $3$ đơn vị. Các giới hạn cho bài toán
+**Ví dụ tính được.** Một cơ sở đóng hai loại hộp hạt. Đặt $x_1,x_2$ là sản lượng, tính theo nghìn hộp loại 1 và loại 2. Dữ kiện:
+
+| Dữ kiện | Loại 1 | Loại 2 | Giới hạn chung |
+|---|---:|---:|---:|
+| Lợi ích (đơn vị / nghìn hộp) | $2$ | $3$ | — |
+| Giờ máy (giờ / nghìn hộp) | $1$ | $2$ | $54$ giờ |
+| Sản lượng tối đa (nghìn hộp) | $30$ | $20$ | — |
+
+Yêu cầu là chọn $x_1,x_2\ge0$ để tổng lợi ích lớn nhất mà không vượt giới hạn nào. Mỗi giới hạn cho một bất phương trình, nên bài toán là
 
 $$
 \begin{aligned}

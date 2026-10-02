@@ -50,11 +50,11 @@
     <aside class="notes"><p>Bài toán phân bổ tài nguyên cho một danh sách dữ kiện: lợi ích trên mỗi đơn vị, mức tiêu hao và giới hạn. Danh sách này chưa phải mô hình. Mô hình xác định đại lượng nào được chọn (biến), đại lượng nào cố định (dữ kiện), và viết lợi ích cùng giới hạn thành biểu thức của biến. Khi cả ba thành phần đều tuyến tính, bài toán là một quy hoạch tuyến tính.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §1.1.</p></aside>
   </section>
   <section data-slide-id="A02">
-    <h2>Ví dụ hộp hạt</h2>
-    <p>Một cơ sở đóng hai loại hộp. Đặt $x_1,x_2$ là sản lượng, tính theo nghìn hộp loại 1 và 2.</p>
-    <table><thead><tr><th>Đại lượng</th><th>Loại 1</th><th>Loại 2</th><th>Giới hạn</th></tr></thead><tbody><tr><td>Sản lượng (nghìn hộp)</td><td>$x_1\le30$</td><td>$x_2\le20$</td><td>—</td></tr><tr><td>Giờ máy trên nghìn hộp</td><td>$1$</td><td>$2$</td><td>$54$ giờ</td></tr><tr><td>Lợi ích trên nghìn hộp</td><td>$2$</td><td>$3$</td><td>cực đại</td></tr></tbody></table>
-    <div class="box">Miền biến: $x_1,x_2\ge0$. Sản lượng được mô hình hóa liên tục; nếu quyết định là số lô nguyên thì cần quy hoạch nguyên.</div>
-    <aside class="notes"><p>Đơn vị nghìn hộp cho phép xem sản lượng là đại lượng liên tục ở mức lập kế hoạch. Các giới hạn $30,20,54$ được dùng xuyên bài. Nếu quyết định thực tế chỉ nhận số lô nguyên, mô hình phải chuyển sang quy hoạch nguyên.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo theo mô hình sản xuất trong Bertsimas và Tsitsiklis (1997), §1.2.</p></aside>
+    <h2>Bài toán sản xuất hộp hạt</h2>
+    <p>Một cơ sở đóng hai loại hộp hạt. <strong>Biến quyết định:</strong> $x_1,x_2$ là sản lượng loại 1 và loại 2, tính theo nghìn hộp.</p>
+    <div class="table-scroll"><table><thead><tr><th>Dữ kiện</th><th>Loại 1</th><th>Loại 2</th><th>Giới hạn chung</th></tr></thead><tbody><tr><td>Lợi ích (đơn vị / nghìn hộp)</td><td>$2$</td><td>$3$</td><td>—</td></tr><tr><td>Giờ máy (giờ / nghìn hộp)</td><td>$1$</td><td>$2$</td><td>$54$ giờ</td></tr><tr><td>Sản lượng tối đa (nghìn hộp)</td><td>$30$</td><td>$20$</td><td>—</td></tr></tbody></table></div>
+    <div class="box"><strong>Yêu cầu:</strong> chọn $x_1,x_2\ge0$ để tổng lợi ích lớn nhất mà không vượt giới hạn nào.</div>
+    <aside class="notes"><p>Đơn vị nghìn hộp cho phép xem sản lượng là đại lượng thực liên tục ở mức lập kế hoạch. Nếu quyết định chỉ nhận số lô nguyên, bài toán trở thành quy hoạch nguyên, nằm ngoài phạm vi bài. Các số $2,3$ (lợi ích), $1,2$ (giờ máy), $54$, $30$, $20$ được dùng xuyên bài.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo theo mô hình sản xuất trong Bertsimas và Tsitsiklis (1997), §1.2.</p></aside>
   </section>
   <section data-slide-id="A03">
     <h2>Ràng buộc từ giới hạn</h2>
@@ -65,7 +65,7 @@
   <section data-slide-id="A04">
     <h2>Mục tiêu và phương án ứng viên</h2>
     <div class="math-large">$$\max\ z=2x_1+3x_2$$</div>
-    <table><thead><tr><th>Phương án</th><th>Khả thi</th><th>$z$</th></tr></thead><tbody><tr><td>$(30,12)$</td><td class="ok">có</td><td>$96$</td></tr><tr><td>$(14,20)$</td><td class="ok">có</td><td>$88$</td></tr><tr><td>$(30,20)$</td><td class="warn">không</td><td>không so sánh</td></tr></tbody></table>
+    <div class="table-scroll"><table><thead><tr><th>Phương án</th><th>Khả thi</th><th>$z$</th></tr></thead><tbody><tr><td>$(30,12)$</td><td class="ok">có</td><td>$96$</td></tr><tr><td>$(14,20)$</td><td class="ok">có</td><td>$88$</td></tr><tr><td>$(30,20)$</td><td class="warn">không</td><td>không so sánh</td></tr></tbody></table></div>
     <div class="box">Chỉ so sánh giá trị mục tiêu giữa các phương án khả thi.</div>
     <aside class="notes"><p>Kiểm tra: $(30,12)$ dùng đúng $54$ giờ máy và cho $2\cdot30+3\cdot12=96$. Điểm $(14,20)$ cũng dùng đúng $54$ giờ nhưng chỉ cho $2\cdot14+3\cdot20=88$. Đây chưa phải chứng minh tối ưu; hình học sẽ cung cấp tập ứng viên hữu hạn.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo; các đỉnh và giá trị được kiểm tra đại số.</p></aside>
   </section>
@@ -174,7 +174,7 @@
   </section>
   <section data-slide-id="C05">
     <h2>Bảo đảm tồn tại điểm cực</h2>
-    <table><thead><tr><th>Phát biểu</th><th>Giả thiết</th><th>Kết luận</th></tr></thead><tbody><tr><td><strong>Định lý</strong></td><td>$P$ là đa diện không rỗng</td><td>$P$ có điểm cực $\Leftrightarrow$ $P$ không chứa đường thẳng</td></tr><tr><td><strong>Hệ quả dạng chuẩn</strong></td><td>$P=\{x:Ax=b,x\ge0\}$ không rỗng</td><td>$P$ có ít nhất một điểm cực</td></tr></tbody></table>
+    <div class="table-scroll"><table><thead><tr><th>Phát biểu</th><th>Giả thiết</th><th>Kết luận</th></tr></thead><tbody><tr><td><strong>Định lý</strong></td><td>$P$ là đa diện không rỗng</td><td>$P$ có điểm cực $\Leftrightarrow$ $P$ không chứa đường thẳng</td></tr><tr><td><strong>Hệ quả dạng chuẩn</strong></td><td>$P=\{x:Ax=b,x\ge0\}$ không rỗng</td><td>$P$ có ít nhất một điểm cực</td></tr></tbody></table></div>
     <div class="formula">$$P=\{x:Ax=b,\ x\ge0\},\ x\in P:\quad x+td\in P\ \forall t\in\mathbb R\Longrightarrow d=0.$$</div>
     <aside class="notes"><p><strong>Mục tiêu chứng minh:</strong> xác định khi một đa diện không rỗng có điểm cực và suy ra bảo đảm cho dạng chuẩn.</p><p><strong>Ý tưởng:</strong> một hướng đường thẳng hai phía ngăn mọi điểm là điểm cực; chiều ngược lại dùng cấu trúc hữu hạn của đa diện không chứa đường thẳng để thu được một điểm cực.</p><p><strong>Các bước:</strong> nếu đa diện chứa đường $x+td$, thì hướng $d\ne0$ thuộc không gian đường của đa diện; do đó với mọi $y\in P$, cả $y-d$ và $y+d$ đều thuộc $P$, nên $y$ không thể là điểm cực. Định lý đa diện cho chiều đảo. Với hệ quả dạng chuẩn, điều kiện $x+td\ge0$ cho cả $t$ dương lẫn âm buộc $d=0$.</p><p><strong>Điểm dùng giả thiết:</strong> tính không rỗng cần để kết luận tồn tại; cấu trúc đa diện hữu hạn cần cho chiều đảo; điều kiện $x\ge0$ loại mọi đường thẳng trong hệ quả.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.4.</p></aside>
   </section>
@@ -248,7 +248,7 @@
   <section data-slide-id="D06">
     <h2>Bài tập chuyển giao Bellman</h2>
     <div class="check"><strong>Câu hỏi:</strong> giữ đồ thị ví dụ đường đi theo tầng nhưng đổi $c(s,B)=3$ và $c(C,t)=0$. Các cạnh khác giữ nguyên. Hãy tính lại mọi $J$ và nêu đường tối ưu.</div>
-    <table><thead><tr><th>Tầng</th><th>Phép tính cần lập</th></tr></thead><tbody><tr><td>$C,D$</td><td>chi phí mới đến $t$</td></tr><tr><td>$A,B$</td><td>min qua $C,D$</td></tr><tr><td>$s$</td><td>min qua $A,B$ và tái tạo đường</td></tr></tbody></table>
+    <div class="table-scroll"><table><thead><tr><th>Tầng</th><th>Phép tính cần lập</th></tr></thead><tbody><tr><td>$C,D$</td><td>chi phí mới đến $t$</td></tr><tr><td>$A,B$</td><td>min qua $C,D$</td></tr><tr><td>$s$</td><td>min qua $A,B$ và tái tạo đường</td></tr></tbody></table></div>
     <aside class="notes"><p>Đáp án: $J(C)=0$, $J(D)=1$, $J(A)=\min\{4+0,2+1\}=3$, $J(B)=\min\{1+0,3+1\}=1$, $J(s)=\min\{2+3,3+1\}=4$. Đường tối ưu mới là $s\to B\to C\to t$. Đây là dữ kiện mới, nên người học phải tái tạo Bellman thay vì chép kết quả của ví dụ trước.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập chuyển giao tự tạo theo MIT 15.093J, Bài 16.</p></aside>
   </section>
 </section>
@@ -256,7 +256,7 @@
 <section>
   <section data-slide-id="Z01">
     <h2>Điều kiện cần giữ và cầu nối</h2>
-    <table><thead><tr><th>Chủ đề LP</th><th>Kết quả cần tạo</th><th>Điều kiện không được bỏ</th></tr></thead><tbody><tr><td>Mô hình hóa</td><td>biến, đơn vị, mục tiêu, ràng buộc</td><td>tuyến tính và miền biến</td></tr><tr><td>Dạng chuẩn</td><td>biến phụ, cơ sở khả thi</td><td>$\operatorname{rank}(A)=m$, $A_B^{-1}b\ge0$</td></tr><tr><td>Điểm cực</td><td>kết cục và đỉnh tối ưu</td><td>khả thi, giá trị hữu hạn</td></tr></tbody></table>
+    <div class="table-scroll"><table><thead><tr><th>Chủ đề LP</th><th>Kết quả cần tạo</th><th>Điều kiện không được bỏ</th></tr></thead><tbody><tr><td>Mô hình hóa</td><td>biến, đơn vị, mục tiêu, ràng buộc</td><td>tuyến tính và miền biến</td></tr><tr><td>Dạng chuẩn</td><td>biến phụ, cơ sở khả thi</td><td>$\operatorname{rank}(A)=m$, $A_B^{-1}b\ge0$</td></tr><tr><td>Điểm cực</td><td>kết cục và đỉnh tối ưu</td><td>khả thi, giá trị hữu hạn</td></tr></tbody></table></div>
     <div class="box"><strong>Hai cơ chế tránh duyệt vét cạn:</strong> LP dùng cấu trúc điểm cực; DP dùng trạng thái và phương trình Bellman.</div>
     <aside class="notes"><p>Trong LP, mô hình đúng đơn vị dẫn đến đa diện và dạng chuẩn; các giả thiết về hạng, tính khả thi và giá trị hữu hạn quyết định kết luận về điểm cực. Trong DP, trạng thái đủ cho phép thay toàn bộ lịch sử bằng chi phí tối ưu còn lại.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997); MIT 15.093J, Bài 16.</p></aside>
   </section>
