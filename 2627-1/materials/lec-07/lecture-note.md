@@ -168,11 +168,11 @@ $$
 
 Các đẳng thức tuyến tính có thể được ghi bằng hai bất đẳng thức ngược chiều. Đa diện có thể rỗng, bị chặn hoặc không bị chặn.
 
-**Trực quan.** Mỗi hàng của $\mathbf A\mathbf x\le\mathbf b$ tạo một nửa không gian. Miền khả thi là phần giao của chúng. Các đường mức $\mathbf c^T\mathbf x=\alpha$ song song khi $\alpha$ thay đổi; đường mức cuối cùng còn chạm miền cho biết vị trí tối ưu theo hình học.
+**Trực quan.** Mỗi hàng của $\mathbf A\mathbf x\le\mathbf b$ tạo một nửa không gian. Miền khả thi là phần giao của chúng. Đường mức $\mathbf c^T\mathbf x=\alpha$ gồm các điểm có cùng giá trị mục tiêu; các đường mức song song vì cùng véc-tơ pháp tuyến $\mathbf c$, và tăng $\alpha$ tịnh tiến đường theo hướng $\mathbf c$. Đường mức xa nhất còn chạm miền cho biết vị trí tối ưu theo hình học.
 
 **Hình minh họa.**
 
-![Miền khả thi của bài hộp hạt có năm đỉnh và các đường mức song song của hàm mục tiêu.](img/lec-07/polyhedron-level-sets.svg)
+![Miền khả thi của bài hộp hạt có năm đỉnh; đường mức z bằng 60 đi qua hai đỉnh (30,0) và (0,20); đường mức song song z bằng 96 chỉ chạm miền tại đỉnh (30,12).](img/lec-07/polyhedron-level-sets.svg)
 
 ::: example
 **Ví dụ tính được.** Miền khả thi của bài hộp hạt có năm đỉnh

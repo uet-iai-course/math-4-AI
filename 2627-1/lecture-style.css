@@ -954,6 +954,7 @@
 :where(html[data-lecture="07"]) [data-slide-id="A03"] .card .formula { margin-top:auto; }
 :where(html[data-lecture="07"]) [data-slide-id="A07"] .visual img { max-height:220px; object-fit:contain; }
 :where(html[data-lecture="07"]) [data-slide-id="A07"] .responsive { grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); }
+:where(html[data-lecture="07"]) [data-slide-id="B02"] .responsive { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
 :where(html[data-lecture="07"]) .small-table { font-size:.9em!important; }
 :where(html[data-lecture="07"]) .responsive { display:grid; grid-template-columns:minmax(360px,1.15fr) minmax(0,.85fr); gap:.7em; align-items:center; }
 :where(html[data-lecture="07"]) .reveal .algorithm { font-size:.94em; text-align:left; background:#f5f7fb; border-radius:8px; padding:.5em .8em .5em 1.9em; margin-left:0; }
