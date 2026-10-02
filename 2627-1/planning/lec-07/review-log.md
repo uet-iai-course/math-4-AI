@@ -209,3 +209,4 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 ### Phần P
 
 - **P00 — sửa.** Phụ đề “Hình học của quyết định tuyến tính” chỉ bao phần LP. Phụ đề mới “Đa diện, điểm cực và phương trình Bellman” nêu đủ hai phần. Ghi chú bỏ “hoàn tất quy hoạch tuyến tính” (phương pháp đơn hình còn ở Bài 08) và nêu phạm vi. Ghi chú bài giảng: đoạn mở đầu viết lại câu về quan hệ LP–DP.
+- **P01 — sửa.** Thẻ “Đầu vào” đổi thành “Kiến thức cần có”; mục “Giá trị nhỏ nhất và lớn nhất” không nêu kỹ năng cụ thể, thay bằng phép đổi chiều $\min f=-\max(-f)$. Ghi chú mở bằng lời điều phối “Kiểm tra người học…”, viết lại thành giải thích vai trò biến–dữ kiện và tác động của phép đổi chiều. Ghi chú bài giảng: đoạn ký hiệu thêm câu kiến thức cần có.
