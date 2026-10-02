@@ -195,3 +195,13 @@ Không xóa các nhận định trước. Bảng này ghi quyết định mới 
 
 - Lecture note công bố ánh xạ giữa ký hiệu in đậm $(\mathbf x,\mathbf c,\mathbf A,\mathbf b)$ và dạng lược kiểu đậm $(x,c,A,b)$ trên trang chiếu; kiểu và kích thước đại lượng không đổi.
 - Hậu kiểm toàn cục bỏ tham chiếu biên tập giữa hai bề mặt: lecture note nêu trực tiếp ánh xạ ký hiệu, còn ghi chú B04 phát biểu quy ước dạng chuẩn bằng `Trong bài này`.
+
+## Lượt duyệt từng trang ngày 2026-10-03
+
+Yêu cầu người dùng: duyệt lần lượt từng trang, xác định trang muốn nói gì và còn vấn đề gì, đề xuất rồi sửa để tiêu đề ngắn gọn, học thuật, mạch lập luận chặt chẽ, khái niệm không xuất hiện đột ngột; duyệt lại theo góc nhìn sinh viên; giảm chữ và giải thích dài; dùng hình để nhắc lại thay cho tham chiếu tới ví dụ ở trang trước; sau mỗi trang sửa phần ghi chú bài giảng tương ứng, gắn bài lên `index.html`, rồi commit và push. Điều phối viên là phiên Claude Code chính, chạy Claude Opus 5.5 (`claude-opus-5-5`), đồng thời giữ vai biên tập cho các sửa một trang. Sau mỗi phần (hoặc cặp phần), hai tác tử `fork` chỉ đọc (kế thừa Opus 5.5) tái kiểm toán học và mạch lập luận trên các trang đã sửa. Văn bản tự kiểm theo `no-ai-slop`. Mỗi trang sửa được kiểm bằng Playwright Chromium tại 1600×900 và 390×844 (kể cả cuộn tới cuối vùng đọc hẹp) qua `python3 -m reloadserver 8765`.
+
+### Hạ tầng hiển thị và trang chỉ mục
+
+- **Màn hẹp — sửa.** Bài 07 chưa có vùng đọc cuộn như Bài 04–06; ở 390×844 khung 16:9 bị thu nhỏ, chữ thân bài còn khoảng 10px. Bọc `.slides` trong `.lecture-viewport`, thêm `scrollActivationWidth:null`, quy tắc màn hẹp trong `lecture-style.css` (phạm vi `data-lecture="07"`), dấu cuộn ngang cho công thức/bảng tràn và xử lý phím cuộn trong vùng đọc. Khung rộng giữ nguyên bố cục. Chữ thân bài ở màn hẹp nay 22px.
+- **Chỉ mục — thêm.** `index.html` thêm thẻ Bài 07 với liên kết bài giảng và ghi chú bài giảng (Bài 07 chưa có tệp bài tập riêng).
+- **Phát hiện chờ xử lý theo trang:** A07 cao 737px ở khung 16:9 (vượt 720px); B05 (691px) và D01 (655px) sát khung.

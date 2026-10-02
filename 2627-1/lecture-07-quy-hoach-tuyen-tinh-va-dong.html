@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<div class="reveal"><div class="slides">
+<div class="reveal"><div class="lecture-viewport" tabindex="0" role="region" aria-label="Nội dung trang chiếu"><div class="slides">
 
 <section>
   <section data-slide-id="P00">
@@ -269,12 +269,49 @@
 </section>
 
 <div class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 07</div>
-</div></div>
+</div></div></div>
 <script src="revealjs/dist/reveal.js"></script>
 <script src="plugin/notes/notes.js"></script>
 <script src="plugin/markdown/markdown.js"></script>
 <script src="plugin/highlight/highlight.js"></script>
 <script src="plugin/math/math.js"></script>
-<script>Reveal.initialize({width:1280,height:720,margin:.04,controlsLayout:"edges",slideNumber:true,hashOneBasedIndex:true,hash:true,katex:{local:"vendor/katex"},plugins:[RevealMarkdown,RevealHighlight,RevealNotes,RevealMath.KaTeX]});</script>
+<script>Reveal.initialize({width:1280,height:720,margin:.04,controlsLayout:"edges",slideNumber:true,hashOneBasedIndex:true,hash:true,scrollActivationWidth:null,katex:{local:"vendor/katex"},plugins:[RevealMarkdown,RevealHighlight,RevealNotes,RevealMath.KaTeX]});</script>
+<script>
+Reveal.on("slidechanged",function(){document.querySelector(".lecture-viewport").scrollTop=0;});
+// Đánh dấu công thức hoặc bảng tràn ngang ở màn hẹp để người đọc biết cần cuộn.
+let scrollHintFrame;
+function updateScrollHints(){
+  const slide=Reveal.getCurrentSlide();
+  if(!slide) return;
+  const narrow=window.matchMedia('(max-width:760px)').matches;
+  slide.querySelectorAll('.formula,.math-large,.table-scroll').forEach(region=>{
+    const overflow=region.clientWidth>0 && region.scrollWidth>region.clientWidth+2;
+    region.classList.toggle('has-horizontal-overflow',narrow && overflow);
+    if(narrow && overflow) region.tabIndex=0; else region.removeAttribute('tabindex');
+  });
+}
+function scheduleScrollHints(){ cancelAnimationFrame(scrollHintFrame); scrollHintFrame=requestAnimationFrame(updateScrollHints); }
+Reveal.on('ready',scheduleScrollHints);
+Reveal.on('slidechanged',scheduleScrollHints);
+window.addEventListener('resize',scheduleScrollHints);
+document.fonts.ready.then(scheduleScrollHints);
+document.querySelectorAll('.slides img').forEach(img=>img.addEventListener('load',scheduleScrollHints));
+// Giữ phím cuộn trong vùng đang nhận tiêu điểm.
+document.querySelector(".lecture-viewport").addEventListener("keydown",function(event){
+  const region=event.target.closest('.formula,.math-large,.table-scroll,.lecture-viewport');
+  if(!region || event.altKey || event.ctrlKey || event.metaKey) return;
+  const horizontal=region.scrollWidth>region.clientWidth+2;
+  const vertical=region.scrollHeight>region.clientHeight+2;
+  if(horizontal && ["ArrowLeft","ArrowRight"].includes(event.key)){
+    event.preventDefault(); event.stopPropagation();
+    region.scrollLeft+=(event.key==="ArrowRight"?1:-1)*80;
+  } else if(vertical && ["ArrowUp","ArrowDown","PageUp","PageDown","Home","End"].includes(event.key)){
+    event.preventDefault(); event.stopPropagation();
+    if(event.key==="Home") region.scrollTop=0;
+    else if(event.key==="End") region.scrollTop=region.scrollHeight;
+    else region.scrollTop+=(event.key==="ArrowUp"||event.key==="PageUp"?-1:1)*(event.key.startsWith("Arrow")?60:region.clientHeight*.8);
+  }
+});
+</script>
 </body>
 </html>
