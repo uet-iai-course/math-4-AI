@@ -73,10 +73,10 @@
   </section>
   <section data-slide-id="A05">
     <h2>Định nghĩa quy hoạch tuyến tính</h2>
-    <p><strong>Định nghĩa.</strong> Một quy hoạch tuyến tính (LP) tối ưu hàm tuyến tính trên miền xác định bởi hữu hạn phương trình và bất phương trình tuyến tính.</p>
+    <p><strong>Định nghĩa.</strong> Quy hoạch tuyến tính (linear programming, LP) là bài toán tối ưu một hàm tuyến tính trên miền xác định bởi hữu hạn phương trình và bất phương trình tuyến tính. Dạng thường dùng, với $c\in\mathbb R^n$, $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$:</p>
     <div class="math-large">$$\max_{x\in\mathbb R^n}\ c^Tx\quad\text{với}\quad Ax\le b,\quad x\ge0.$$</div>
-    <div class="grid3"><div class="card"><strong>Đầu vào</strong><p>$A,b,c$ và chiều tối ưu.</p></div><div class="card"><strong>Đầu ra</strong><p>kết cục và nghiệm tối ưu nếu có.</p></div><div class="card"><strong>Ranh giới</strong><p>$x_1x_2$, $x_1^2$ là phi tuyến; điều kiện biến nguyên tạo lớp bài toán khác.</p></div></div>
-    <aside class="notes"><p>Dạng hiển thị là một quy ước, không phải dạng duy nhất. Hệ số và vế phải là dữ kiện; $x$ là quyết định. Các tích biến hoặc lũy thừa làm mất tính tuyến tính. Điều kiện biến nguyên không làm biểu thức thành phi tuyến, nhưng làm miền quyết định rời rạc và chuyển bài toán sang quy hoạch nguyên.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §1.1.</p></aside>
+    <div class="grid2"><div class="card"><strong>Ví dụ.</strong> Bài toán hộp hạt có $n=2$, $m=3$:<div class="formula">$$c=\begin{bmatrix}2\\3\end{bmatrix},\quad A=\begin{bmatrix}1&amp;2\\1&amp;0\\0&amp;1\end{bmatrix},\quad b=\begin{bmatrix}54\\30\\20\end{bmatrix}.$$</div></div><div class="card"><strong>Không phải LP:</strong><ul><li>có tích $x_1x_2$ hoặc lũy thừa $x_1^2$;</li><li>có điều kiện $x$ nguyên (quy hoạch nguyên).</li></ul></div></div>
+    <aside class="notes"><p>Dữ kiện của bài toán là $c,A,b$ và chiều tối ưu; $x$ là quyết định. Lời giải của một LP là giá trị tối ưu cùng một nghiệm tối ưu, hoặc kết luận bài toán không có nghiệm tối ưu. Dạng hiển thị chỉ là một quy ước: mọi LP đều đưa được về dạng này bằng cách đổi dấu hàng hoặc tách biến. Mỗi hàng của $A$ ứng với một giới hạn; trong ví dụ, hàng thứ nhất là giờ máy. Điều kiện biến nguyên không làm biểu thức thành phi tuyến, nhưng làm miền quyết định rời rạc.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §1.1.</p></aside>
   </section>
   <section data-slide-id="A07">
     <h2>Hồi quy với mất mát chuẩn $L_1$</h2>

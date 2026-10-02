@@ -12,7 +12,7 @@ Muốn khai thác cấu trúc của tập phương án, trước hết phải vi
 
 ### 1. Khuôn quy hoạch tuyến tính và mô hình hộp hạt
 
-**Định nghĩa và giả thiết.** Quy hoạch tuyến tính (LP) tối ưu một hàm tuyến tính trên một tập được xác định bởi hữu hạn phương trình và bất phương trình tuyến tính. Cho $\mathbf x,\mathbf c\in\mathbb R^n$, $\mathbf A\in\mathbb R^{p\times n}$, $\mathbf b\in\mathbb R^p$, $\mathbf G\in\mathbb R^{q\times n}$, $\mathbf h\in\mathbb R^q$ và các cận thành phần $\boldsymbol\ell,\mathbf u\in(\mathbb R\cup\{-\infty,+\infty\})^n$. Một khuôn thường dùng là
+**Định nghĩa và giả thiết.** Quy hoạch tuyến tính (linear programming, LP) tối ưu một hàm tuyến tính trên một tập được xác định bởi hữu hạn phương trình và bất phương trình tuyến tính. Cho $\mathbf x,\mathbf c\in\mathbb R^n$, $\mathbf A\in\mathbb R^{p\times n}$, $\mathbf b\in\mathbb R^p$, $\mathbf G\in\mathbb R^{q\times n}$, $\mathbf h\in\mathbb R^q$ và các cận thành phần $\boldsymbol\ell,\mathbf u\in(\mathbb R\cup\{-\infty,+\infty\})^n$. Một khuôn thường dùng là
 
 $$
 \begin{aligned}
@@ -64,6 +64,16 @@ $$
 
 Điểm $(14,20)$ cũng dùng đúng $54$ giờ máy nhưng chỉ cho $z=2\cdot14+3\cdot20=88$. So sánh vài điểm như vậy chưa chứng minh được điểm nào tối ưu, vì miền khả thi có vô số điểm; phần B cung cấp lập luận hình học. Điểm $(30,20)$ thỏa hai giới hạn sản lượng riêng nhưng dùng $70$ giờ máy, vượt giới hạn $16$ giờ máy. Vì không khả thi, giá trị mục tiêu của điểm này không được dùng để so sánh phương án.
 :::
+
+Bài toán hộp hạt có dạng $\max\mathbf c^T\mathbf x$ với $\mathbf A\mathbf x\le\mathbf b$, $\mathbf x\ge0$, trong đó $n=2$, $m=3$ và
+
+$$
+\mathbf c=\begin{bmatrix}2\\3\end{bmatrix},\qquad
+\mathbf A=\begin{bmatrix}1&2\\1&0\\0&1\end{bmatrix},\qquad
+\mathbf b=\begin{bmatrix}54\\30\\20\end{bmatrix}.
+$$
+
+Mỗi hàng của $\mathbf A$ ứng với một giới hạn; hàng thứ nhất là giờ máy.
 
 **Ý nghĩa và ứng dụng trong AI.** LP mô tả các quyết định phân bổ tài nguyên trong một lần, chẳng hạn chia thời gian xử lý, bộ nhớ hoặc thông lượng cho nhiều tác vụ khi lợi ích và mức dùng tài nguyên được xấp xỉ tuyến tính.
 
