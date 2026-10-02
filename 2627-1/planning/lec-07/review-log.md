@@ -205,3 +205,7 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **Màn hẹp — sửa.** Bài 07 chưa có vùng đọc cuộn như Bài 04–06; ở 390×844 khung 16:9 bị thu nhỏ, chữ thân bài còn khoảng 10px. Bọc `.slides` trong `.lecture-viewport`, thêm `scrollActivationWidth:null`, quy tắc màn hẹp trong `lecture-style.css` (phạm vi `data-lecture="07"`), dấu cuộn ngang cho công thức/bảng tràn và xử lý phím cuộn trong vùng đọc. Khung rộng giữ nguyên bố cục. Chữ thân bài ở màn hẹp nay 22px.
 - **Chỉ mục — thêm.** `index.html` thêm thẻ Bài 07 với liên kết bài giảng và ghi chú bài giảng (Bài 07 chưa có tệp bài tập riêng).
 - **Phát hiện chờ xử lý theo trang:** A07 cao 737px ở khung 16:9 (vượt 720px); B05 (691px) và D01 (655px) sát khung.
+
+### Phần P
+
+- **P00 — sửa.** Phụ đề “Hình học của quyết định tuyến tính” chỉ bao phần LP. Phụ đề mới “Đa diện, điểm cực và phương trình Bellman” nêu đủ hai phần. Ghi chú bỏ “hoàn tất quy hoạch tuyến tính” (phương pháp đơn hình còn ở Bài 08) và nêu phạm vi. Ghi chú bài giảng: đoạn mở đầu viết lại câu về quan hệ LP–DP.

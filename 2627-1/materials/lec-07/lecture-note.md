@@ -1,6 +1,6 @@
 # Bài 07 — Quy hoạch tuyến tính và quy hoạch động
 
-Bài 02 đã giới thiệu quy hoạch tuyến tính như một lớp bài toán lồi. Ghi chú này đi sâu hơn vào cách dựng mô hình, hình học đa diện, dạng chuẩn, nghiệm cơ sở khả thi và điểm cực. Phần cuối giới thiệu quy hoạch động hữu hạn tất định như một công cụ khác cho quyết định theo chuỗi; hai lớp bài toán không được đồng nhất.
+Bài 02 đã giới thiệu quy hoạch tuyến tính như một lớp bài toán lồi. Ghi chú này đi sâu hơn vào cách dựng mô hình, hình học đa diện, dạng chuẩn, nghiệm cơ sở khả thi và điểm cực. Phần cuối giới thiệu quy hoạch động hữu hạn tất định cho quyết định theo chuỗi; đây là một lớp bài toán có cấu trúc khác, không phải một dạng của quy hoạch tuyến tính.
 
 Quy ước chính cho quy hoạch tuyến tính là $\max \mathbf c^T\mathbf x$ với $\mathbf A\mathbf x=\mathbf b$, $\mathbf x\ge0$ khi nói về dạng chuẩn. Ký hiệu $\mathbf A\in\mathbb R^{m\times n}$ có $\operatorname{rank}(\mathbf A)=m\le n$. Véc-tơ và ma trận được viết đậm; khi kiểu đại lượng đã rõ, $(x,c,A,b)$ được hiểu tương ứng với $(\mathbf x,\mathbf c,\mathbf A,\mathbf b)$. Trong phần quy hoạch động, chân trời là $k=0,\ldots,N$, tập trạng thái và tập điều khiển hữu hạn, chuyển trạng thái tất định và chi phí cộng theo giai đoạn.
 
