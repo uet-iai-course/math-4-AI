@@ -952,6 +952,8 @@
 :where(html[data-lecture="07"]) [data-slide-id="P03"] .visual img { max-height:300px; object-fit:contain; }
 :where(html[data-lecture="07"]) [data-slide-id="A03"] .card { display:flex; flex-direction:column; }
 :where(html[data-lecture="07"]) [data-slide-id="A03"] .card .formula { margin-top:auto; }
+:where(html[data-lecture="07"]) [data-slide-id="A07"] .visual img { max-height:220px; object-fit:contain; }
+:where(html[data-lecture="07"]) [data-slide-id="A07"] .responsive { grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); }
 :where(html[data-lecture="07"]) .small-table { font-size:.9em!important; }
 :where(html[data-lecture="07"]) .responsive { display:grid; grid-template-columns:minmax(360px,1.15fr) minmax(0,.85fr); gap:.7em; align-items:center; }
 :where(html[data-lecture="07"]) .algorithm { font-size:.9em; text-align:left; background:#f5f7fb; border-radius:8px; padding:.5em .7em; }

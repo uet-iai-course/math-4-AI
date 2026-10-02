@@ -108,11 +108,11 @@ $$
 \end{aligned}
 $$
 
-**Trực quan.** Với mỗi phần dư, $t_i$ là độ cao nhỏ nhất nằm trên cả $r_i$ và $-r_i$. Hai bất đẳng thức tuyến tính dựng đúng đồ thị chữ V của trị tuyệt đối khi mục tiêu ép $t_i$ xuống thấp nhất.
+**Trực quan.** Với mỗi phần dư, $|r_i|=\min\{t:\ t\ge r_i,\ t\ge-r_i\}$: tập các $t$ thỏa hai bất đẳng thức tuyến tính là nửa đường thẳng phía trên đồ thị chữ V, và điểm thấp nhất của nó nằm trên chữ V. Khi mục tiêu ép $t_i$ xuống thấp nhất, $t_i$ bằng đúng $|r_i|$.
 
 **Hình minh họa.**
 
-![Đồ thị trị tuyệt đối và hai bất đẳng thức tuyến tính dùng biến phụ để biểu diễn mất mát chuẩn L1.](img/lec-07/l1-residual-slack.svg)
+![Đồ thị chữ V của t bằng trị tuyệt đối của r; vùng phía trên chữ V thỏa t lớn hơn hoặc bằng r và âm r; tại r cố định, t nhỏ nhất trong vùng bằng trị tuyệt đối của r.](img/lec-07/l1-residual-slack.svg)
 
 ::: example
 **Ví dụ tính được.** Với hai quan sát một chiều $b_1=1$, $b_2=3$ và $a_1=a_2=1$, bài toán là

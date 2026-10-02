@@ -23,7 +23,7 @@
 | A | A03 | Ràng buộc từ giới hạn | Trực quan theo đơn vị |
 | A | A04 | Hàm mục tiêu và so sánh phương án | Ví dụ tính được, mô hình đầy đủ |
 | A | A05 | Định nghĩa quy hoạch tuyến tính | Hình thức |
-| A | A07 | Hồi quy với mất mát chuẩn $L_1$ | Nhu cầu, ứng dụng chuyển về LP và ví dụ kiểm tra |
+| A | A07 | Hồi quy chuẩn $L_1$ dưới dạng LP | Nhu cầu, ứng dụng chuyển về LP và ví dụ kiểm tra |
 | A | A08 | Bài tập dựng mô hình | Bài tập LLO17 |
 | B | B01 | Dạng chuẩn và đa diện | Nhu cầu |
 | B | B02 | Đa diện và đường mức | Trực quan–ví dụ |

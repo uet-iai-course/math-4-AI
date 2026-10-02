@@ -33,7 +33,7 @@
 | A03 | Biến giới hạn thành bất phương trình và kiểm một điểm vi phạm. | Dữ kiện → mục tiêu. | Tái tạo ràng buộc LLO17. | thêm: trực quan theo đơn vị. |
 | A04 | Buộc so sánh đúng các phương án khả thi; khóa kết quả $96>88$. | Ràng buộc → định nghĩa LP. | Ví dụ tính được LLO17. | thêm: kiểm số học. Sửa (2026-10-03): tiêu đề “Hàm mục tiêu và so sánh phương án”; hiện mô hình đầy đủ, cột giờ máy và khoảng trống “so sánh vài điểm chưa chứng minh tối ưu”. |
 | A05 | Nêu định nghĩa, đầu vào, đầu ra và ranh giới tuyến tính. | Ví dụ → ứng dụng hồi quy $L_1$. | Hiểu định nghĩa LLO17. | giữ: khái niệm đề cương và mở bước ứng dụng A07. |
-| A07 | Chuyển hồi quy $L_1$ thành LP với đầy đủ kiểu và ví dụ kiểm được. | Định nghĩa LP → bài tập dựng mô hình. | Vận dụng mô hình hóa LLO17. | đổi mã và chuyển trước bài tập để giữ hình thức → ứng dụng → bài tập. |
+| A07 | Chuyển hồi quy $L_1$ thành LP với đầy đủ kiểu và ví dụ kiểm được. | Định nghĩa LP → bài tập dựng mô hình. | Vận dụng mô hình hóa LLO17. | đổi mã và chuyển trước bài tập để giữ hình thức → ứng dụng → bài tập. Sửa (2026-10-03): tiêu đề “Hồi quy chuẩn $L_1$ dưới dạng LP”; nhãn Nhu cầu/Trực quan trên trang, hình `l1-residual-slack.svg` vẽ lại; trang vừa khung 16:9. |
 | A08 | Đo khả năng dựng mô hình đầy đủ từ dữ kiện mới. | Ứng dụng hồi quy $L_1$ → nhu cầu hình học. | Bài tập LLO17/CLO1. | đổi mã: kết mạch A bằng minh chứng chuyển giao. |
 | B01 | Giải thích vì sao cần đa diện và dạng chuẩn trước điểm cực. | A08 → hình hộp hạt. | Nhu cầu LLO18. | thêm: nối đại số–hình học. |
 | B02 | Cho thấy cùng miền khả thi, đỉnh và đường mức của ví dụ đã tính. | Nhu cầu → định nghĩa đa diện. | Trực giác LLO18. | thêm: SVG tự vẽ, không sao chép nguồn. |
