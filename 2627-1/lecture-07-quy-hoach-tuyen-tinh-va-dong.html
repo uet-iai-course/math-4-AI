@@ -176,8 +176,10 @@
   </section>
   <section data-slide-id="C05">
     <h2>Bảo đảm tồn tại điểm cực</h2>
-    <div class="table-scroll"><table><thead><tr><th>Phát biểu</th><th>Giả thiết</th><th>Kết luận</th></tr></thead><tbody><tr><td><strong>Định lý</strong></td><td>$P$ là đa diện không rỗng</td><td>$P$ có điểm cực $\Leftrightarrow$ $P$ không chứa đường thẳng</td></tr><tr><td><strong>Hệ quả dạng chuẩn</strong></td><td>$P=\{x:Ax=b,x\ge0\}$ không rỗng</td><td>$P$ có ít nhất một điểm cực</td></tr></tbody></table></div>
-    <div class="formula">$$P=\{x:Ax=b,\ x\ge0\},\ x\in P:\quad x+td\in P\ \forall t\in\mathbb R\Longrightarrow d=0.$$</div>
+    <p><strong>Nhu cầu.</strong> Miền phải có điểm cực. Nửa mặt phẳng $\{x\in\mathbb R^2:x_2\ge0\}$ không có: mỗi điểm nằm giữa hai điểm khác trên một đường nằm ngang.</p>
+    <p><strong>Định nghĩa.</strong> $P$ <strong>chứa đường thẳng</strong> nếu có $x\in P$, $d\ne0$ với $x+td\in P$ mọi $t\in\mathbb R$.</p>
+    <div class="table-scroll"><table><thead><tr><th>Loại</th><th>Giả thiết</th><th>Kết luận</th></tr></thead><tbody><tr><td><strong>Định lý</strong></td><td>$P$ là đa diện không rỗng</td><td>$P$ có điểm cực $\Leftrightarrow$ $P$ không chứa đường thẳng</td></tr><tr><td><strong>Hệ quả</strong></td><td>$P=\{x:Ax=b,x\ge0\}$ không rỗng</td><td>$P$ có ít nhất một điểm cực</td></tr></tbody></table></div>
+    <div class="box">Lý do của hệ quả: $x+td\ge0$ với mọi $t\in\mathbb R$ buộc $d=0$.</div>
     <aside class="notes"><p><strong>Mục tiêu chứng minh:</strong> xác định khi một đa diện không rỗng có điểm cực và suy ra bảo đảm cho dạng chuẩn.</p><p><strong>Ý tưởng:</strong> một hướng đường thẳng hai phía ngăn mọi điểm là điểm cực; chiều ngược lại dùng cấu trúc hữu hạn của đa diện không chứa đường thẳng để thu được một điểm cực.</p><p><strong>Các bước:</strong> nếu đa diện chứa đường $x+td$, thì hướng $d\ne0$ thuộc không gian đường của đa diện; do đó với mọi $y\in P$, cả $y-d$ và $y+d$ đều thuộc $P$, nên $y$ không thể là điểm cực. Định lý đa diện cho chiều đảo. Với hệ quả dạng chuẩn, điều kiện $x+td\ge0$ cho cả $t$ dương lẫn âm buộc $d=0$.</p><p><strong>Điểm dùng giả thiết:</strong> tính không rỗng cần để kết luận tồn tại; cấu trúc đa diện hữu hạn cần cho chiều đảo; điều kiện $x\ge0$ loại mọi đường thẳng trong hệ quả.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.4.</p></aside>
   </section>
   <section data-slide-id="C06">

@@ -452,6 +452,8 @@ có định thức $-2$, nên độc lập tuyến tính. Theo định lý, $\ma
 
 ### 8. Tồn tại điểm cực, điểm cực tối ưu và bốn kết cục
 
+**Nhu cầu.** Tìm nghiệm ở điểm cực chỉ có nghĩa khi miền có điểm cực. Nửa mặt phẳng $\{\mathbf x\in\mathbb R^2:x_2\ge0\}$ không có điểm cực: mỗi điểm nằm giữa hai điểm khác trên một đường nằm ngang.
+
 **Định nghĩa và giả thiết.** Một đa diện $P$ chứa một đường thẳng nếu tồn tại $\mathbf x\in P$ và $\mathbf d\ne\mathbf0$ sao cho
 
 $$
