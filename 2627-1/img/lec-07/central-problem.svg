@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Hai tập phương án quá lớn để duyệt hết</title>
+  <desc id="desc">Bên trái: miền khả thi của một quy hoạch tuyến tính hai biến, tô kín, có năm đỉnh được đánh dấu. Bên phải: đồ thị ba tầng từ s đến t qua A, B rồi C, D; có bốn đường đi, mỗi nút giữ một chi phí còn lại.</desc>
+  <rect width="960" height="360" fill="#fff"/>
+  <g font-family="sans-serif" fill="#222">
+    <text x="230" y="34" text-anchor="middle" font-size="26" font-weight="700" fill="#2f3e7a">Một véc-tơ quyết định</text>
+    <text x="720" y="34" text-anchor="middle" font-size="26" font-weight="700" fill="#24714f">Một chuỗi quyết định</text>
+  </g>
+  <line x1="480" y1="20" x2="480" y2="340" stroke="#ddd" stroke-width="2"/>
+  <!-- trái: đa diện -->
+  <line x1="70" y1="300" x2="400" y2="300" stroke="#222" stroke-width="3"/>
+  <line x1="70" y1="300" x2="70" y2="62" stroke="#222" stroke-width="3"/>
+  <path d="M70 300L330 300L330 190L190 100L70 100Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="4"/>
+  <g fill="#9aa8c7"><circle cx="120" cy="250" r="4"/><circle cx="170" cy="200" r="4"/><circle cx="230" cy="260" r="4"/><circle cx="260" cy="200" r="4"/><circle cx="140" cy="150" r="4"/><circle cx="290" cy="250" r="4"/><circle cx="210" cy="150" r="4"/><circle cx="110" cy="190" r="4"/></g>
+  <g fill="#2e7d32" stroke="#fff" stroke-width="3"><circle cx="70" cy="300" r="10"/><circle cx="330" cy="300" r="10"/><circle cx="330" cy="190" r="10"/><circle cx="190" cy="100" r="10"/><circle cx="70" cy="100" r="10"/></g>
+  <g font-family="sans-serif" font-size="22">
+    <text x="200" y="335" text-anchor="middle" fill="#2f3e7a">vô số điểm khả thi</text>
+    <text x="345" y="175" fill="#2e7d32" font-weight="700">5 đỉnh</text>
+  </g>
+  <!-- phải: đồ thị tầng -->
+  <g stroke="#7a8aa8" stroke-width="3">
+    <line x1="560" y1="190" x2="660" y2="110"/><line x1="560" y1="190" x2="660" y2="270"/>
+    <line x1="660" y1="110" x2="780" y2="110"/><line x1="660" y1="110" x2="780" y2="270"/>
+    <line x1="660" y1="270" x2="780" y2="110"/><line x1="660" y1="270" x2="780" y2="270"/>
+    <line x1="780" y1="110" x2="880" y2="190"/><line x1="780" y1="270" x2="880" y2="190"/>
+  </g>
+  <g fill="#edf7f1" stroke="#24714f" stroke-width="3"><circle cx="560" cy="190" r="24"/><circle cx="660" cy="110" r="24"/><circle cx="660" cy="270" r="24"/><circle cx="780" cy="110" r="24"/><circle cx="780" cy="270" r="24"/><circle cx="880" cy="190" r="24"/></g>
+  <g font-family="sans-serif" font-size="24" font-weight="700" fill="#174936" text-anchor="middle">
+    <text x="560" y="198">s</text><text x="660" y="118">A</text><text x="660" y="278">B</text><text x="780" y="118">C</text><text x="780" y="278">D</text><text x="880" y="198">t</text>
+  </g>
+  <text x="720" y="335" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#24714f">4 đường đi s → t</text>
+</svg>

@@ -34,10 +34,11 @@
     <aside class="notes"><p>Hai mục tiêu đầu ứng với chuẩn đầu ra LLO17 và LLO18 của học phần. Mục tiêu thứ ba thuộc phần quy hoạch động: quyết định được chọn theo chuỗi và thông tin quá khứ được tóm tắt trong trạng thái.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, LLO17–18; MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="P03">
-    <h2>Bản đồ quyết định</h2>
-    <div class="flow"><div class="node"><strong>LP: mô hình</strong><br/>biến–mục tiêu–ràng buộc</div><div class="arrow">→</div><div class="node"><strong>LP: cấu trúc</strong><br/>đa diện–điểm cực–nghiệm cơ sở</div><div class="arrow">→</div><div class="node"><strong>LP: tìm kiếm</strong><br/>đỉnh kề cải thiện</div><div class="arrow">→</div><div class="node"><strong>Đổi đối tượng</strong><br/>véc-tơ → chuỗi quyết định</div><div class="arrow">→</div><div class="node"><strong>DP hữu hạn</strong><br/>trạng thái–Bellman</div></div>
-    <div class="check"><strong>Vấn đề trung tâm:</strong> khai thác cấu trúc nào để tránh duyệt mọi điểm khả thi của LP và mọi chuỗi quyết định của DP?</div>
-    <aside class="notes"><p>Ba nút đầu nối mô hình LP với hình học đa diện và bước đi qua các đỉnh kề. Nút thứ tư đổi đối tượng từ một véc-tơ sang một chuỗi quyết định; đây không phải phép biến đổi LP thành DP. Bellman chỉ được xét trong bài toán hữu hạn tất định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997), Chương 1–2; MIT 15.093J, Bài 16.</p></aside>
+    <h2>Vấn đề trung tâm</h2>
+    <div class="box">Tìm phương án tối ưu khi tập phương án quá lớn để duyệt hết.</div>
+    <div class="visual"><img src="img/lec-07/central-problem.svg" alt="Bên trái: miền khả thi tô kín có vô số điểm và năm đỉnh được đánh dấu. Bên phải: đồ thị ba tầng từ s qua A, B rồi C, D đến t, có bốn đường đi."/></div>
+    <div class="grid2"><div class="card"><strong>Quy hoạch tuyến tính:</strong> nếu miền có đỉnh và bài toán có nghiệm tối ưu thì có một đỉnh tối ưu.</div><div class="card"><strong>Quy hoạch động:</strong> chi phí còn lại chỉ phụ thuộc nút hiện tại; mỗi nút tính một lần.</div></div>
+    <aside class="notes"><p>Miền khả thi của quy hoạch tuyến tính có vô số điểm, nên không thể so sánh từng điểm. Phần A–C chứng minh rằng, khi miền có ít nhất một điểm cực và giá trị tối ưu hữu hạn, luôn có một điểm cực (đỉnh) tối ưu. Với chuỗi quyết định gồm $N$ giai đoạn, mỗi giai đoạn $q$ lựa chọn, số chuỗi là $q^N$. Quy hoạch động tránh liệt kê các chuỗi này bằng cách lưu chi phí tối ưu còn lại tại mỗi trạng thái. Hai cơ chế khác nhau; đây không phải phép biến đổi quy hoạch tuyến tính thành quy hoạch động.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997), Chương 1–2; MIT 15.093J, Bài 16.</p></aside>
   </section>
 </section>
 

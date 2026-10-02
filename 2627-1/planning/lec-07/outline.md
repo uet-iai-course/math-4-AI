@@ -17,7 +17,7 @@
 | P | P00 | Quy hoạch tuyến tính và quy hoạch động | Định danh |
 | P | P01 | Tiên quyết và quy ước | Khóa ký hiệu |
 | P | P02 | Mục tiêu học tập | Khóa minh chứng |
-| P | P03 | Bản đồ quyết định | Vấn đề trung tâm |
+| P | P03 | Vấn đề trung tâm | Vấn đề trung tâm và hình hai cấu trúc |
 | A | A01 | Mô hình hóa quy hoạch tuyến tính | Nhu cầu |
 | A | A02 | Ví dụ hộp hạt | Ví dụ dẫn nhập |
 | A | A03 | Ràng buộc từ giới hạn | Trực quan theo đơn vị |

@@ -949,6 +949,7 @@
 :where(html[data-lecture="07"]) .visual img { width:100%; height:auto; max-height:410px; }
 :where(html[data-lecture="07"]) .check { background:#edf4ff; border:2px solid #2f3e7a; border-radius:8px; padding:.42em .62em; }
 :where(html[data-lecture="07"]) .tight li { margin:.12em 0; }
+:where(html[data-lecture="07"]) [data-slide-id="P03"] .visual img { max-height:300px; object-fit:contain; }
 :where(html[data-lecture="07"]) .small-table { font-size:.9em!important; }
 :where(html[data-lecture="07"]) .responsive { display:grid; grid-template-columns:minmax(360px,1.15fr) minmax(0,.85fr); gap:.7em; align-items:center; }
 :where(html[data-lecture="07"]) .algorithm { font-size:.9em; text-align:left; background:#f5f7fb; border-radius:8px; padding:.5em .7em; }

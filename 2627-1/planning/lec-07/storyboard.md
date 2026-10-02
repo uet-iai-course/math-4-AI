@@ -27,7 +27,7 @@
 | P00 | Định danh đúng Buổi 7 và hai đối tượng LP–DP. | Mở bài → khóa tiên quyết. | Phạm vi đề cương và cấu trúc cập nhật. | thêm: trang tiêu đề bắt buộc. |
 | P01 | Nêu miền, kích thước và quy ước trước khi dùng. | Bài trước → mục tiêu đo được. | Tiên quyết LLO17–18. | thêm: tránh ký hiệu ngầm. |
 | P02 | Chuyển LLO17–18 thành sản phẩm có thể chấm và khai báo DP là cầu nối nội bộ. | Ký hiệu → vấn đề trung tâm. | Minh chứng CLO1; không tạo LLO DP. | sửa: ba thẻ phân biệt LP chính thức và DP nội bộ. |
-| P03 | Nối hai cơ chế tránh duyệt vét cạn mà không đồng nhất LP với DP. | Mục tiêu → nhu cầu mô hình hóa. | Bản đồ đánh giá tích hợp. | sửa: thêm ranh giới “véc-tơ → chuỗi quyết định”. |
+| P03 | Nêu vấn đề chung (tập phương án quá lớn để duyệt hết) và hai cấu trúc được khai thác: đỉnh của đa diện, chi phí còn lại theo trạng thái. | Mục tiêu → nhu cầu mô hình hóa. | Bản đồ đánh giá tích hợp. | sửa (2026-10-03): đổi tiêu đề “Bản đồ quyết định” thành “Vấn đề trung tâm”; thay sơ đồ năm nút bằng hình `central-problem.svg` và hai thẻ; vấn đề nêu dạng khẳng định. |
 | A01 | Một quyết định tài nguyên cần biến, mục tiêu và ràng buộc đồng nhất. | P03 → ví dụ hộp hạt. | Nhu cầu LLO17. | thêm: không mở bằng định nghĩa. |
 | A02 | Khóa dữ kiện và đơn vị dùng xuyên bài; $x_1,x_2$ là sản lượng tính theo nghìn hộp nên mô hình liên tục có nghĩa. | Nhu cầu → dựng ràng buộc. | Ví dụ dẫn nhập LLO17. | sửa: tránh gọi biến liên tục là số lô; lấp khoảng trống trước hình thức. |
 | A03 | Biến giới hạn thành bất phương trình và kiểm một điểm vi phạm. | Dữ kiện → mục tiêu. | Tái tạo ràng buộc LLO17. | thêm: trực quan theo đơn vị. |
