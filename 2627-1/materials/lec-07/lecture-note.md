@@ -338,7 +338,7 @@ Với cơ sở $B=\{1,2\}$, nghiệm cơ sở là $(x_1,x_2)=(1,0)$. Biến cơ 
 
 **Điểm dễ nhầm.** Điều kiện $\operatorname{rank}(\mathbf A)=m$ chưa bảo đảm mọi tập $m$ cột đều là cơ sở. Khả nghịch của $\mathbf A_B$ chưa bảo đảm tính khả thi; còn phải kiểm $\mathbf A_B^{-1}\mathbf b\ge0$. Suy biến không có nghĩa bài toán vô nghiệm hoặc có nhiều điểm khác nhau.
 
-**Câu hỏi kiểm tra.** Với cơ sở $B=\{1,2,4\}$ của bài hộp hạt, hãy nêu các biến ngoài cơ sở, tính nghiệm đầy đủ theo thứ tự $(x_1,x_2,s_1,s_2,s_3)$ và kiểm tính suy biến.
+**Câu hỏi kiểm tra.** Với cơ sở $B=\{1,2,4\}$ của bài hộp hạt, hãy nêu các biến ngoài cơ sở, tính nghiệm đầy đủ theo thứ tự $(x_1,x_2,s_1,s_2,s_3)$ và kiểm tính suy biến. Làm lại với $B=\{1,2,5\}$; giải thích vì sao nghiệm cơ sở thu được không khả thi và điểm $(x_1,x_2)$ tương ứng nằm ở đâu so với miền khả thi.
 
 ## C. Điểm cực và logic tìm kiếm trên đa diện
 

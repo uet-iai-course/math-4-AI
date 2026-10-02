@@ -139,10 +139,10 @@
   </section>
   <section data-slide-id="B07">
     <h2>Nghiệm cơ sở của bài hộp hạt</h2>
-    <div class="check"><strong>Câu hỏi:</strong> với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$, tại đỉnh $(30,12)$ hãy kiểm cơ sở chỉ số $B=\{1,2,4\}$, tương ứng $\{x_1,x_2,s_2\}$.</div>
-    <div class="formula">$$A_B=\begin{bmatrix}1&0&0\\0&1&1\\1&2&0\end{bmatrix},\qquad b=\begin{bmatrix}30\\20\\54\end{bmatrix}.$$</div>
-    <ol class="algorithm"><li>Kiểm $\det(A_B)\ne0$.</li><li>Đặt $s_1=s_3=0$.</li><li>Giải $A_B(x_1,x_2,s_2)^T=b$ và kiểm không âm.</li></ol>
-    <aside class="notes"><p>Ta có $\det(A_B)=-2\ne0$. Nghiệm cơ sở là $(x_1,x_2,s_2)=(30,12,8)$; cùng $s_1=s_3=0$, toàn bộ véc-tơ không âm. Vì vậy đây là nghiệm cơ sở khả thi của chính ví dụ xuyên bài, không phải một hệ rời rạc mới.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo theo Bertsimas và Tsitsiklis (1997), §2.2.</p></aside>
+    <div class="check"><strong>Câu hỏi:</strong> xét hệ dạng chuẩn với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$:</div>
+    <div class="formula">$$x_1+s_1=30,\qquad x_2+s_2=20,\qquad x_1+2x_2+s_3=54,\qquad x,s\ge0.$$</div>
+    <ol class="algorithm"><li>Với $B=\{1,2,4\}$: viết $A_B$, kiểm $\det(A_B)\ne0$, tính $x_B$, kiểm không âm và xác định điểm $(x_1,x_2)$ tương ứng.</li><li>Làm lại với $B=\{1,2,5\}$. Xác định vì sao nghiệm cơ sở này không khả thi.</li></ol>
+    <aside class="notes"><p>(a) $A_B$ gồm các cột $x_1,x_2,s_2$: $\begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;1\\1&amp;2&amp;0\end{bmatrix}$, $\det(A_B)=-2\ne0$. Đặt $s_1=s_3=0$ cho $x_1=30$, $x_2=12$, $s_2=8$: BFS không suy biến, ứng với đỉnh $(30,12)$.</p><p>(b) $A_B$ gồm các cột $x_1,x_2,s_3$, $\det(A_B)=1$. Đặt $s_1=s_2=0$ cho $x_1=30$, $x_2=20$, $s_3=54-70=-16&lt;0$. Đây là nghiệm cơ sở nhưng không khả thi: điểm $(30,20)$ là giao của hai đường $x_1=30$, $x_2=20$, nằm ngoài miền vì vượt $16$ giờ máy.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo theo Bertsimas và Tsitsiklis (1997), §2.2.</p></aside>
   </section>
 </section>
 
