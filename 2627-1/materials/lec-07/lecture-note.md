@@ -369,13 +369,17 @@ chỉ có thể xảy ra khi $\mathbf y=\mathbf z=\mathbf v$.
 
 $$
 \begin{aligned}
-\operatorname*{minimize}_{x_1,x_2}\quad&-x_1-x_2\\
+\operatorname*{maximize}_{x_1,x_2}\quad&x_1+x_2\\
 \text{với}\quad&x_1+x_2\le2,\\
 &x_1,x_2\ge0.
 \end{aligned}
 $$
 
-Giá trị nhỏ nhất là $-2$. Mọi điểm trên đoạn
+Giá trị lớn nhất là $2$; đường mức $x_1+x_2=2$ trùng với một cạnh của tam giác khả thi.
+
+![Tam giác khả thi với đỉnh (0,0), (2,0), (0,2); đường mức z bằng 2 trùng cạnh nối (2,0) và (0,2); điểm (1,1) ở giữa cạnh cũng tối ưu.](img/lec-07/multiple-optima.svg)
+
+ Mọi điểm trên đoạn
 
 $$
 \{(x_1,x_2):x_1+x_2=2,\ x_1,x_2\ge0\}

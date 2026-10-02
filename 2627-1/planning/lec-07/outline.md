@@ -35,7 +35,7 @@
 | C | C01 | Điểm cực và bảo đảm tối ưu | Nhu cầu |
 | C | C02 | Điểm cực | Hình thức hình học |
 | C | C03 | Điểm cực và nghiệm cơ sở khả thi | Tương đương điểm cực–BFS |
-| C | C04 | Ví dụ nhiều nghiệm tối ưu | Ví dụ và trường hợp biên |
+| C | C04 | Nhiều nghiệm tối ưu | Ví dụ và trường hợp biên |
 | C | C05 | Bảo đảm tồn tại điểm cực | Định lý tồn tại |
 | C | C06 | Điểm cực tối ưu và đỉnh kề | Định lý và bổ đề cầu nối đơn hình trên đa diện tổng quát |
 | C | C07 | Bốn kết cục của quy hoạch tuyến tính | Phân loại |
@@ -79,7 +79,7 @@ Không hiển thị phân bổ này trên trang chiếu hoặc trong ghi chú di
 - Ví dụ hộp hạt: $x_1,x_2$ là sản lượng tính theo nghìn hộp; $\max 2x_1+3x_2$ với $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$.
 - Các đỉnh: $(0,0),(30,0),(30,12),(14,20),(0,20)$; giá trị tương ứng $0,60,96,88,60$; nghiệm tối ưu duy nhất $(30,12)$.
 - Hồi quy $L_1$: $a_i\in\mathbb R^n$, $b_i\in\mathbb R$, $x\in\mathbb R^n$, $t_i\in\mathbb R_+$; ví dụ $\min_x|x-1|+|x-3|$ có tập nghiệm $[1,3]$.
-- Ví dụ điểm cực: $\min -x_1-x_2$ với $x_1+x_2\le2$, $x\ge0$; cả cạnh $x_1+x_2=2$ tối ưu.
+- Ví dụ điểm cực: $\max x_1+x_2$ với $x_1+x_2\le2$, $x\ge0$ (trước 2026-10-03 viết dạng tương đương $\min -x_1-x_2$); cả cạnh $x_1+x_2=2$ tối ưu.
 - Bài chuyển giao C10: $\max x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x\ge0$; đường đỉnh kề $(0,0)\to(2,0)\to(1{,}6,1{,}2)$ có giá trị $0\to2\to2{,}8$.
 - DP hữu hạn tất định: $x_{k+1}=f_k(x_k,u)$, $u\in U_k(x_k)$, chi phí $g_k$, chi phí cuối $g_N$, hàm giá trị $J_k$.
 - Đồ thị tầng: các cạnh có chi phí $s$–$A$: $2$, $s$–$B$: $5$, $A$–$C$: $4$, $A$–$D$: $2$, $B$–$C$: $1$, $B$–$D$: $3$, $C$–$t$: $3$, $D$–$t$: $1$. Khi giải ngược, $J(C)=3$, $J(D)=1$, $J(A)=3$, $J(B)=4$, $J(s)=5$; đường tối ưu là $s\to A\to D\to t$.

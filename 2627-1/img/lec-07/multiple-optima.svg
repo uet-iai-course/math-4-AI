@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" role="img" aria-labelledby="title desc">
+  <title id="title">Cả một cạnh tối ưu</title>
+  <desc id="desc">Tam giác khả thi với ba đỉnh (0,0), (2,0), (0,2). Đường mức x1 cộng x2 bằng 2 trùng với cạnh nối (2,0) và (0,2), nên mọi điểm trên cạnh đều tối ưu. Hai đầu mút là điểm cực tối ưu; điểm (1,1) ở giữa cạnh tối ưu nhưng không phải điểm cực. Đường mức nét đứt x1 cộng x2 bằng 1 nằm bên trong.</desc>
+  <defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0L9 4L0 8Z" fill="#b15a2b"/></marker></defs>
+  <rect width="520" height="420" fill="#fff"/>
+  <line x1="50" y1="360" x2="440" y2="360" stroke="#222" stroke-width="3"/>
+  <line x1="70" y1="380" x2="70" y2="30" stroke="#222" stroke-width="3"/>
+  <path d="M70 360L370 360L70 60Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="4"/>
+  <line x1="70" y1="210" x2="220" y2="360" stroke="#7a8aa8" stroke-width="3" stroke-dasharray="9 7"/>
+  <line x1="40" y1="30" x2="400" y2="390" stroke="#b15a2b" stroke-width="3" opacity=".5"/>
+  <line x1="70" y1="60" x2="370" y2="360" stroke="#b15a2b" stroke-width="8"/>
+  <line x1="300" y1="160" x2="340" y2="120" stroke="#b15a2b" stroke-width="4" marker-end="url(#arr)"/>
+  <g stroke="#fff" stroke-width="3"><circle cx="70" cy="360" r="9" fill="#2f3e7a"/><circle cx="370" cy="360" r="11" fill="#2e7d32"/><circle cx="70" cy="60" r="11" fill="#2e7d32"/><circle cx="220" cy="210" r="11" fill="#b15a2b"/></g>
+  <g font-family="sans-serif" font-size="24" fill="#222">
+    <text x="448" y="368">x<tspan font-size="17" dy="6">1</tspan></text>
+    <text x="80" y="38">x<tspan font-size="17" dy="6">2</tspan></text>
+    <text x="78" y="392">(0,0)</text>
+    <text x="340" y="392" fill="#2e7d32" font-weight="700">(2,0)</text>
+    <text x="90" y="66" fill="#2e7d32" font-weight="700">(0,2)</text>
+    <text x="236" y="206" fill="#b15a2b" font-weight="700">(1,1)</text>
+    <text x="140" y="240" fill="#55627e">z = 1</text>
+    <text x="300" y="250" fill="#b15a2b" font-weight="700">z = 2</text>
+    <text x="350" y="122" fill="#b15a2b">tăng z</text>
+  </g>
+</svg>

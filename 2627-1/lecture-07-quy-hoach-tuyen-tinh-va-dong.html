@@ -168,11 +168,11 @@
     <aside class="notes"><p><strong>Ý tưởng (3)⇒(1):</strong> nếu $x=\tfrac12(y+z)$ với $y,z\in P$, thì $y,z$ bằng $0$ ở mọi chỗ $x$ bằng $0$, nên $A(y-z)=0$ chỉ dùng các cột dương; độc lập cột buộc $y=z$. <strong>(1)⇒(3):</strong> nếu các cột dương phụ thuộc, có $d\ne0$ chỉ khác $0$ ở các chỗ $x_j&gt;0$ với $Ad=0$; với $\varepsilon$ nhỏ, $x\pm\varepsilon d\in P$ và $x$ là trung điểm, mâu thuẫn. Bổ sung các cột dương thành $m$ cột độc lập cho (2). Có hữu hạn cách chọn $m$ cột nên có hữu hạn điểm cực. Điểm suy biến có ít hơn $m$ thành phần dương và có thể ứng với nhiều cơ sở.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.3.</p></aside>
   </section>
   <section data-slide-id="C04">
-    <h2>Ví dụ nhiều nghiệm tối ưu</h2>
-    <div class="math-large">$$\min\ -x_1-x_2\quad\text{với}\quad x_1+x_2\le2,\quad x_1,x_2\ge0.$$</div>
-    <div class="grid2"><div class="card"><h3>Điểm cực</h3><p>$(0,0)$, $(2,0)$, $(0,2)$.</p></div><div class="card"><h3>Tập nghiệm tối ưu</h3><p>Mọi điểm trên $x_1+x_2=2$, $x\ge0$.</p></div></div>
-    <div class="box">Có điểm cực tối ưu, nhưng điểm $(1,1)$ tối ưu mà không phải điểm cực.</div>
-    <aside class="notes"><p>Giá trị nhỏ nhất là $-2$. Ví dụ phân biệt phát biểu đúng “tồn tại một điểm cực tối ưu” với phát biểu sai “mọi nghiệm tối ưu đều là điểm cực”.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo theo Bertsimas và Tsitsiklis (1997), §2.5.</p></aside>
+    <h2>Nhiều nghiệm tối ưu</h2>
+    <div class="formula">$$\max\ x_1+x_2\quad\text{với}\quad x_1+x_2\le2,\ \ x_1,x_2\ge0.$$</div>
+    <div class="responsive"><div class="visual"><img src="img/lec-07/multiple-optima.svg" alt="Tam giác khả thi với đỉnh (0,0), (2,0), (0,2). Đường mức z bằng 2 trùng cạnh nối (2,0) và (0,2): hai đầu mút là điểm cực tối ưu, điểm (1,1) ở giữa cạnh cũng tối ưu."/></div><div><ul><li>Điểm cực: $(0,0)$, $(2,0)$, $(0,2)$.</li><li>Đường mức $z=2$ trùng một cạnh: mọi điểm của cạnh tối ưu.</li><li>$(1,1)=\tfrac12(2,0)+\tfrac12(0,2)$ tối ưu nhưng không phải điểm cực.</li></ul></div></div>
+    <div class="box">Có điểm cực tối ưu, nhưng không phải mọi nghiệm tối ưu đều là điểm cực.</div>
+    <aside class="notes"><p>Giá trị tối ưu là $2$; tập nghiệm tối ưu là đoạn $\{x:x_1+x_2=2,\ x\ge0\}$. Khi véc-tơ mục tiêu vuông góc với một cạnh, đường mức cuối cùng chứa cả cạnh đó. Định lý về điểm cực tối ưu chỉ khẳng định tồn tại một điểm cực tối ưu; ví dụ này cho thấy không thể mạnh hơn.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự tạo theo Bertsimas và Tsitsiklis (1997), §2.5.</p></aside>
   </section>
   <section data-slide-id="C05">
     <h2>Bảo đảm tồn tại điểm cực</h2>
