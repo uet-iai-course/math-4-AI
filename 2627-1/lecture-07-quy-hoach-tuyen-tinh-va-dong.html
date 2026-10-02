@@ -115,11 +115,11 @@
   </section>
   <section data-slide-id="B04">
     <h2>Dạng chuẩn</h2>
-    <p><strong>Quy ước của bài.</strong></p>
-    <div class="math-large">$$\max\ c^Tx\quad\text{với}\quad Ax=b,\quad x\ge0,$$</div>
-    <p>trong đó $A\in\mathbb R^{m\times n}$ có $\operatorname{rank}(A)=m\le n$ sau khi bỏ các phương trình phụ thuộc.</p>
-    <div class="box">Đổi cực tiểu thành cực đại bằng $\min c^Tx=-\max(-c^Tx)$.</div>
-    <aside class="notes"><p>Có nhiều quy ước “dạng chuẩn” trong tài liệu. Trong bài này, dạng chuẩn dùng phương trình và điều kiện không âm. Điều kiện hạng đầy đủ theo hàng giúp định nghĩa cơ sở bằng ma trận vuông khả nghịch.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2.</p></aside>
+    <p><strong>Nhu cầu.</strong> Đỉnh là giao của các ràng buộc chặt (thỏa với dấu bằng). Muốn tính đỉnh bằng hệ phương trình, cần viết mọi ràng buộc thành phương trình.</p>
+    <p><strong>Quy ước.</strong> Dạng chuẩn (standard form), với $A\in\mathbb R^{m\times n}$, $\operatorname{rank}(A)=m\le n$:</p>
+    <div class="math-large">$$\max\ c^Tx\quad\text{với}\quad Ax=b,\quad x\ge0.$$</div>
+    <div class="table-scroll"><table><thead><tr><th>Dạng gốc</th><th>Dạng chuẩn</th></tr></thead><tbody><tr><td>$a^Tx\le\beta$</td><td>$a^Tx+s=\beta$, $s\ge0$ (biến phụ)</td></tr><tr><td>$a^Tx\ge\beta$</td><td>$a^Tx-s=\beta$, $s\ge0$ (biến dư)</td></tr><tr><td>$x_j$ tự do</td><td>$x_j=x_j^+-x_j^-$, $x_j^+,x_j^-\ge0$</td></tr></tbody></table></div>
+    <aside class="notes"><p>Biến phụ (slack variable) đo phần giới hạn chưa dùng; biến dư (surplus variable) đo phần vượt trên cận dưới. Bài toán cực tiểu đổi sang cực đại bằng $\min c^Tx=-\max(-c^Tx)$. Tài liệu khác có thể gọi dạng $Ax\le b$ là dạng chuẩn; trong bài này, dạng chuẩn dùng phương trình và điều kiện không âm. Giả thiết $\operatorname{rank}(A)=m$ đạt được sau khi bỏ các phương trình phụ thuộc; nó bảo đảm chọn được $m$ cột độc lập, tức một ma trận vuông khả nghịch, ở định nghĩa nghiệm cơ sở.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.2.</p></aside>
   </section>
   <section data-slide-id="B05">
     <h2>Biến phụ cho hộp hạt</h2>

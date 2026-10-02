@@ -198,7 +198,9 @@ $$
 
 ### 4. Dạng chuẩn và các phép chuyển cơ bản
 
-**Định nghĩa và giả thiết.** Trong ghi chú này, dạng chuẩn của LP được quy ước là
+**Nhu cầu.** Đỉnh của miền khả thi là giao của các ràng buộc chặt, tức các ràng buộc thỏa với dấu bằng. Muốn tính đỉnh bằng hệ phương trình, cần viết mọi ràng buộc thành phương trình.
+
+**Định nghĩa và giả thiết.** Trong ghi chú này, dạng chuẩn (standard form) của LP được quy ước là
 
 $$
 \begin{aligned}
@@ -212,8 +214,8 @@ $$
 
 trong đó $\mathbf A\in\mathbb R^{m\times n}$ có $\operatorname{rank}(\mathbf A)=m\le n$ sau khi bỏ các phương trình phụ thuộc. Ba phép chuyển thường dùng là:
 
-- $a^T x\le b$ trở thành $a^T x+s=b$ với $s\ge0$;
-- $a^T x\ge b$ trở thành $a^T x-s=b$ với $s\ge0$;
+- $a^T x\le b$ trở thành $a^T x+s=b$ với biến phụ (slack variable) $s\ge0$;
+- $a^T x\ge b$ trở thành $a^T x-s=b$ với biến dư (surplus variable) $s\ge0$;
 - biến tự do $x$ được thay bởi $x=x^+-x^-$ với $x^+,x^-\ge0$.
 
 Đổi cực tiểu thành cực đại bằng $\min c^Tx=-\max(-c^Tx)$.
