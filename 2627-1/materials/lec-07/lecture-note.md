@@ -540,6 +540,12 @@ Mỗi đoạn là một cạnh của đa diện và mỗi bước cải thiện 
 
 **Câu hỏi kiểm tra.** Vì sao tiêu chuẩn “không còn đỉnh kề cải thiện” không thể được dùng nếu bài toán không có điểm cực hoặc mục tiêu không có giá trị tối ưu hữu hạn? Hãy chỉ ra giả thiết bị thiếu trong mỗi trường hợp.
 
+**Bài tập.** Xét $\max\ x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x_1,x_2\ge0$. Vẽ miền khả thi và xác định bốn đỉnh; tính giá trị mục tiêu tại các đỉnh và xác định kết cục; từ $(0,0)$, viết một đường đi qua đỉnh kề có giá trị tăng nghiêm ngặt; nêu định lý bảo đảm có điểm cực tối ưu và kiểm từng giả thiết.
+
+::: solution
+Bốn đỉnh là $(0,0)$, $(2,0)$, $(0,2)$ và giao $(1{,}6;\,1{,}2)$ của $x_1+2x_2=4$ với $3x_1+x_2=6$. Giá trị mục tiêu lần lượt là $0$, $2$, $2$, $2{,}8$. Miền khác rỗng, bị chặn, nên giá trị tối ưu hữu hạn; nghiệm tối ưu duy nhất là $(1{,}6;\,1{,}2)$. Một đường đi hợp lệ là $(0,0)\to(2,0)\to(1{,}6;\,1{,}2)$ với giá trị $0\to2\to2{,}8$. Miền là đa diện có điểm cực và giá trị tối ưu hữu hạn, nên định lý điểm cực tối ưu áp dụng.
+:::
+
 ## D. Quy hoạch động hữu hạn tất định
 
 Quy hoạch tuyến tính gom quyết định vào một véc-tơ. Khi quyết định hiện tại làm thay đổi lựa chọn tương lai, mô hình cần thêm chỉ số giai đoạn và một trạng thái tóm tắt quá khứ.

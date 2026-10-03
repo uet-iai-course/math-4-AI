@@ -51,7 +51,7 @@
 | C07 | Phân loại đầy đủ không khả thi, không bị chặn, tối ưu duy nhất và nhiều tối ưu. | Định lý → thuật toán. | Chẩn đoán kết cục LLO18. | sửa: dùng “kết cục” để không lẫn với trạng thái của DP. |
 | C08 | Mô tả thuật toán ở mức ý niệm và gắn chuỗi hộp hạt $0\to60\to96$. | Kết cục → đường đi trực quan. | Mô tả ở mức ý niệm cho LLO18. | sửa: tên thuần Việt, thêm số cụ thể, không tableau/pivot. Sửa (2026-10-03): tiêu đề “Thuật toán đi qua đỉnh kề”; câu nối với bổ đề; lý do dừng hữu hạn; chuỗi số hộp hạt chuyển hẳn sang C09 để không lặp. |
 | C09 | Vẽ đúng đa diện hộp hạt và hai cạnh của chuỗi ở C08. | Thuật toán → bài tập. | Trực giác thuật toán LLO18. | sửa: thay đa giác trừu tượng bằng dữ kiện xuyên bài. |
-| C10 | Đo chuyển giao sang đa diện, đỉnh và đường đi mới; buộc nêu giả thiết định lý. | Thuật toán → bài tích hợp LP. | Giá trị $0,2,2{,}8,2$; LLO18/CLO1. | sửa: không lặp ví dụ C04. |
+| C10 | Đo chuyển giao sang đa diện, đỉnh và đường đi mới; buộc nêu giả thiết định lý. | Thuật toán → bài tích hợp LP. | Giá trị $0,2,2{,}8,2$; LLO18/CLO1. | sửa: không lặp ví dụ C04. Sửa (2026-10-03): tiêu đề “Bài tập về điểm cực và đỉnh kề”; người học tự xác định bốn đỉnh. |
 | C11 | Buộc nối mô hình, dạng chuẩn, đỉnh, kết cục và ba bước kiểm chứng của thuật toán ý niệm trước khi mở DP. | C10 → biên D01. | Bài tập tích hợp LLO17–18. | sửa tiêu chí thành đỉnh xuất phát → đỉnh kề cải thiện → tiêu chuẩn dừng. |
 | D01 | So sánh đúng cấu trúc LP và DP, đồng thời khóa phạm vi DP hữu hạn tất định. | C11 → nhu cầu DP. | Không gán LLO/CLO mới. | sửa: cầu nối cụ thể, không khẳng định tương đương LP–DP. |
 | D02 | Nêu vấn đề trùng lặp khi quyết định theo chuỗi và vai trò trạng thái. | Biên D01 → đồ thị tầng. | Mục tiêu nội bộ DP. | đổi mã từ D03. |
