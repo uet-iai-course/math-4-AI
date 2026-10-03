@@ -268,10 +268,10 @@
 
 <section>
   <section data-slide-id="Z01">
-    <h2>Điều kiện cần giữ và cầu nối</h2>
-    <div class="table-scroll"><table><thead><tr><th>Chủ đề LP</th><th>Kết quả cần tạo</th><th>Điều kiện không được bỏ</th></tr></thead><tbody><tr><td>Mô hình hóa</td><td>biến, đơn vị, mục tiêu, ràng buộc</td><td>tuyến tính và miền biến</td></tr><tr><td>Dạng chuẩn</td><td>biến phụ, cơ sở khả thi</td><td>$\operatorname{rank}(A)=m$, $A_B^{-1}b\ge0$</td></tr><tr><td>Điểm cực</td><td>kết cục và đỉnh tối ưu</td><td>khả thi, giá trị hữu hạn</td></tr></tbody></table></div>
-    <div class="box"><strong>Hai cơ chế tránh duyệt vét cạn:</strong> LP dùng cấu trúc điểm cực; DP dùng trạng thái và phương trình Bellman.</div>
-    <aside class="notes"><p>Trong LP, mô hình đúng đơn vị dẫn đến đa diện và dạng chuẩn; các giả thiết về hạng, tính khả thi và giá trị hữu hạn quyết định kết luận về điểm cực. Trong DP, trạng thái đủ cho phép thay toàn bộ lịch sử bằng chi phí tối ưu còn lại.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997); MIT 15.093J, Bài 16.</p></aside>
+    <h2>Tổng kết</h2>
+    <div class="table-scroll"><table><thead><tr><th>Chủ đề</th><th>Kết quả</th><th>Giả thiết không được bỏ</th></tr></thead><tbody><tr><td>Mô hình hóa</td><td>biến có đơn vị, mục tiêu, ràng buộc</td><td>tuyến tính; biến liên tục</td></tr><tr><td>Dạng chuẩn</td><td>biến phụ; nghiệm cơ sở khả thi</td><td>$\operatorname{rank}(A)=m$; $A_B^{-1}b\ge0$</td></tr><tr><td>Điểm cực</td><td>có điểm cực tối ưu; dừng ở đỉnh kề</td><td>miền có điểm cực; giá trị tối ưu hữu hạn</td></tr><tr><td>Quy hoạch động</td><td>phương trình Bellman; chính sách</td><td>trạng thái đủ; hữu hạn; chi phí cộng</td></tr></tbody></table></div>
+    <div class="box"><strong>Vấn đề trung tâm:</strong> quy hoạch tuyến tính chỉ cần đi qua hữu hạn đỉnh; quy hoạch động tính mỗi trạng thái một lần.</div>
+    <aside class="notes"><p>Trong quy hoạch tuyến tính, mô hình đúng đơn vị cho một đa diện; dạng chuẩn biến đỉnh thành nghiệm của hệ vuông; định lý điểm cực tối ưu và bổ đề đỉnh kề cải thiện cho phép tìm kiếm trên hữu hạn đỉnh, với điều kiện miền có điểm cực và giá trị tối ưu hữu hạn. Trong quy hoạch động, trạng thái đủ cho phép thay toàn bộ lịch sử bằng chi phí tối ưu còn lại, nên số phép tính tỉ lệ với số cặp trạng thái–điều khiển thay vì số chuỗi. Nếu biến buộc nguyên, mô hình chuyển sang quy hoạch nguyên; nếu chuyển tiếp ngẫu nhiên, phương trình Bellman cần kỳ vọng.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; Bertsimas và Tsitsiklis (1997); MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="Z02">
     <h2>Tài liệu và chuyển tiếp</h2>

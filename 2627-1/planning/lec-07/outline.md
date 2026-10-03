@@ -49,7 +49,7 @@
 | D | D04 | Phương trình Bellman | Quyết định ở $k=0,\ldots,N-1$; chi phí cuối ở $N$ |
 | D | D05 | Quy trình giải ngược | Ứng dụng DP |
 | D | D06 | Bài tập giải ngược Bellman | Bài tập DP với dữ kiện mới |
-| Z | Z01 | Điều kiện cần giữ và cầu nối | Tổng kết |
+| Z | Z01 | Tổng kết | Tổng kết |
 | Z | Z02 | Tài liệu và chuyển tiếp | Thu hồi DP, nguồn và cầu nối Bài 08 |
 
 ## Phân bổ nội bộ

@@ -1166,9 +1166,9 @@ Tập $U_k(x)$ hữu hạn và không rỗng nên dấu `min` được đạt. C
 - Một mô hình LP cần khóa biến, đơn vị, chiều tối ưu, mục tiêu, ràng buộc và miền biến trước khi giải.
 - Dạng chuẩn nối hình học đa diện với đại số của cơ sở. Điểm cực và nghiệm cơ sở khả thi là hai mô tả tương đương dưới giả thiết hạng đầy đủ theo hàng.
 - Miền không bị chặn không đồng nghĩa giá trị mục tiêu không bị chặn. Khi các giả thiết của định lý cơ bản được thỏa, tồn tại một điểm cực tối ưu.
-- Bước đi qua các đỉnh kề chỉ cung cấp trực giác hình học; phương pháp đơn hình đầy đủ thuộc Bài 08.
+- Thuật toán đi qua đỉnh kề dừng sau hữu hạn bước tại một điểm cực tối ưu khi miền có điểm cực và giá trị tối ưu hữu hạn; cách tìm đỉnh xuất phát và chọn đỉnh kề bằng đại số thuộc phương pháp đơn hình ở Bài 08.
 - Trong DP hữu hạn tất định, trạng thái đủ cho phép Bellman dùng lại bài toán con. Giải ngược tính giá trị; lượt xuôi khôi phục chính sách.
-- LP và DP phục vụ hai cấu trúc quyết định khác nhau; không chọn công cụ chỉ dựa trên tên miền ứng dụng.
+- Vấn đề trung tâm của bài có hai câu trả lời: quy hoạch tuyến tính chỉ cần đi qua hữu hạn đỉnh; quy hoạch động tính mỗi trạng thái một lần. Công cụ được chọn theo cấu trúc quyết định (một véc-tơ hay một chuỗi), không theo tên miền ứng dụng.
 
 ## Tài liệu tham khảo
 
