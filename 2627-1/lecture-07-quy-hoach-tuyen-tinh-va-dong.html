@@ -254,9 +254,9 @@
   </section>
   <section data-slide-id="D05">
     <h2>Quy trình giải ngược</h2>
-    <ol class="algorithm"><li><strong>Đầu vào:</strong> chân trời $N$, trạng thái, tập điều khiển không rỗng, chuyển trạng thái và chi phí cộng.</li><li>Khởi tạo $J_N=g_N$.</li><li>Với $k=N-1,\ldots,0$, tính $J_k$ bằng Bellman và lưu một điều khiển đạt min.</li><li><strong>Đầu ra:</strong> $J_0(x_0)$ và chính sách tối ưu.</li></ol>
-    <div class="box">Số cặp trạng thái–điều khiển được duyệt là $\sum_{k=0}^{N-1}\sum_{x\in X_k}|U_k(x)|$; bảng Bellman dùng lại mỗi bài toán con thay vì duyệt mọi chuỗi.</div>
-    <aside class="notes"><p>Trong đồ thị tầng, trạng thái là nút hiện tại, điều khiển là cạnh đi ra và chi phí giai đoạn là trọng số cạnh. Tính bảng từ tầng cuối về đầu tránh giải lại cùng bài toán con.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
+    <ol class="algorithm"><li><strong>Đầu vào:</strong> $N$; các tập $X_k$, $U_k(x)$ hữu hạn, khác rỗng; hàm $f_k$, $g_k$, $g_N$.</li><li>Đặt $J_N(x)=g_N(x)$ với mọi $x\in X_N$.</li><li>Với $k=N-1,\ldots,0$ và mỗi $x\in X_k$: tính $J_k(x)$ bằng phương trình Bellman, lưu một $u_k^*(x)$ đạt giá trị nhỏ nhất.</li><li><strong>Đầu ra:</strong> $J_0(x_0)$ và <strong>chính sách</strong> (policy) $u_k^*$; đường tối ưu dựng xuôi bằng $x_{k+1}=f_k(x_k,u_k^*(x_k))$.</li></ol>
+    <div class="box">Mỗi cặp $(x,u)$ được xét một lần: $\sum_{k=0}^{N-1}\sum_{x\in X_k}|U_k(x)|$ phép tính. Với $N$ tầng, mỗi tầng $q$ trạng thái nối đủ với tầng sau: cỡ $Nq^2$ phép tính, so với $q^N$ chuỗi.</div>
+    <aside class="notes"><p>Lượt ngược tính giá trị, lượt xuôi dựng đường từ các điều khiển đã lưu; giá trị và chính sách là hai sản phẩm khác nhau. Trong đồ thị tầng ví dụ: $u^*(s)=A$, $u^*(A)=D$, $u^*(D)=t$, cho đường $s\to A\to D\to t$. Khi nhiều điều khiển cùng đạt min (như tại $B$, hai lựa chọn cùng cho $4$), cần một quy tắc chọn. Với $q=2$, $N=20$: cỡ $80$ phép tính so với $2^{20}\approx10^6$ chuỗi.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
   </section>
   <section data-slide-id="D06">
     <h2>Bài tập chuyển giao Bellman</h2>
