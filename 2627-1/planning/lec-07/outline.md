@@ -46,7 +46,7 @@
 | D | D01 | Quy hoạch động | Biên LP hoàn tất–DP nội bộ |
 | D | D02 | Trạng thái và bài toán con | Nhu cầu DP |
 | D | D03 | Đường đi ngắn nhất theo tầng | Trực quan–ví dụ DP |
-| D | D04 | Phương trình Bellman hữu hạn tất định | Quyết định ở $k=0,\ldots,N-1$; chi phí cuối ở $N$ |
+| D | D04 | Phương trình Bellman | Quyết định ở $k=0,\ldots,N-1$; chi phí cuối ở $N$ |
 | D | D05 | Quy trình giải ngược | Ứng dụng DP |
 | D | D06 | Bài tập chuyển giao Bellman | Bài tập DP với dữ kiện mới |
 | Z | Z01 | Điều kiện cần giữ và cầu nối | Tổng kết |

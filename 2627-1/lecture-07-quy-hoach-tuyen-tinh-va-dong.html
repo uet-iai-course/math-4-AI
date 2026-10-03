@@ -245,11 +245,12 @@
     <aside class="notes"><p>Tính ngược: $J(C)=3$ và $J(D)=1$. Tại $A$, chọn $D$ vì $2+1=3$ nhỏ hơn $4+3=7$. Tại $B$, hai lựa chọn cùng cho $4$: $1+3=3+1=4$. Tại $s$, chọn $A$ vì $2+3=5$ nhỏ hơn $5+4=9$. Đường tối ưu là $s\to A\to D\to t$.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ và hình tự tạo theo khuôn đồ thị tầng của MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="D04">
-    <h2>Phương trình Bellman hữu hạn tất định</h2>
-    <p>Quyết định được chọn ở $k=0,\ldots,N-1$; giai đoạn $N$ chỉ mang chi phí cuối. Với trạng thái $x_k$, điều khiển $u\in U_k(x_k)$ và $x_{k+1}=f_k(x_k,u)$:</p>
+    <h2>Phương trình Bellman</h2>
+    <p><strong>Mô hình.</strong> Ở giai đoạn $k=0,\ldots,N-1$: trạng thái $x_k\in X_k$, điều khiển $u\in U_k(x_k)$ (hữu hạn, khác rỗng), trạng thái kế $x_{k+1}=f_k(x_k,u)$, chi phí $g_k(x_k,u)$; cuối cùng chịu chi phí $g_N(x_N)$.</p>
+    <p><strong>Định lý.</strong> Chi phí tối ưu còn lại $J_k(x)$ từ trạng thái $x$ ở giai đoạn $k$ thỏa</p>
     <div class="formula">$$J_N(x)=g_N(x),\qquad J_k(x)=\min_{u\in U_k(x)}\left\{g_k(x,u)+J_{k+1}(f_k(x,u))\right\}.$$</div>
-    <div class="box">Trong phạm vi bài, $U_k(x)$ hữu hạn và không rỗng nên giá trị nhỏ nhất được đạt.</div>
-    <aside class="notes"><p>Không mở rộng sang điều khiển liên tục, vô hạn ngẫu nhiên hoặc chân trời vô hạn. Trong đồ thị tầng, mỗi tập cạnh đi ra là hữu hạn; vì vậy phép lấy min chọn được ít nhất một cạnh.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 7–9.</p></aside>
+    <div class="box"><strong>Trong đồ thị tầng:</strong> $x_k$ là nút ở tầng $k$, $u$ là cạnh đi ra, $f_k$ cho nút cuối cạnh, $g_k$ là chi phí cạnh, $g_N(t)=0$.</div>
+    <aside class="notes"><p>Ý nghĩa: chi phí tối ưu còn lại bằng chi phí trả ngay cộng chi phí tối ưu còn lại từ trạng thái kế, lấy nhỏ nhất theo lựa chọn. Lý do: nếu phần đuôi của một chuỗi tối ưu chưa tối ưu, thay nó bằng phần đuôi tốt hơn sẽ làm cả chuỗi tốt hơn. $J_0(x_0)$ là chi phí tối ưu của toàn bài toán. Vì $U_k(x)$ hữu hạn và khác rỗng nên giá trị nhỏ nhất đạt được. Không mở rộng sang điều khiển liên tục, chuyển tiếp ngẫu nhiên hoặc chân trời vô hạn. Trong đồ thị tầng, mỗi tập cạnh đi ra là hữu hạn; vì vậy phép lấy min chọn được ít nhất một cạnh.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 7–9.</p></aside>
   </section>
   <section data-slide-id="D05">
     <h2>Quy trình giải ngược</h2>
