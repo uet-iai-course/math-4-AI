@@ -516,7 +516,7 @@ $$
 
 **Hình minh họa.**
 
-![Đường đi qua hai cạnh của đa diện hộp hạt từ gốc tọa độ đến đỉnh tối ưu, với giá trị mục tiêu tăng ở mỗi bước.](img/lec-07/conceptual-vertex-walk.svg)
+![Miền khả thi hộp hạt với giá trị z tại năm đỉnh; đường đi tô đậm từ (0,0) qua (30,0) đến (30,12), giá trị z tăng 0, 60, 96.](img/lec-07/conceptual-vertex-walk.svg)
 
 ::: example
 **Ví dụ tính được.** Trên đa diện hộp hạt, xét đường đi

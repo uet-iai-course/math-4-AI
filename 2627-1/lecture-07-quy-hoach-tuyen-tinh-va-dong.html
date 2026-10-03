@@ -205,8 +205,9 @@
   </section>
   <section data-slide-id="C09">
     <h2>Đường đi qua các đỉnh kề</h2>
-    <div class="responsive visual"><img src="img/lec-07/conceptual-vertex-walk.svg" alt="Miền khả thi hộp hạt và đường qua hai cạnh từ không, không đến ba mươi, không rồi ba mươi, mười hai; mục tiêu tăng từ không lên sáu mươi rồi chín mươi sáu."/><div><ul><li>$(0,0)$: $z=0$.</li><li>$(30,0)$: $z=60$.</li><li>$(30,12)$: $z=96$, tối ưu.</li></ul></div></div>
-    <aside class="notes"><p>Đây là đường đi cụ thể trên đúng đa diện hộp hạt. Hai đoạn được tô đậm là hai cạnh của miền khả thi. Hình không mô tả phép pivot; nó chỉ cung cấp trực giác hình học cho bước “đỉnh kề cải thiện”.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.5; hình tự vẽ từ dữ kiện hộp hạt.</p></aside>
+    <p>Bài hộp hạt, $\max z=2x_1+3x_2$, xuất phát từ đỉnh $(0,0)$:</p>
+    <div class="responsive visual"><img src="img/lec-07/conceptual-vertex-walk.svg" alt="Miền khả thi hộp hạt với giá trị z tại năm đỉnh. Đường đi tô đậm từ (0,0) có z bằng 0 sang (30,0) có z bằng 60 rồi lên (30,12) có z bằng 96; hai đỉnh còn lại (14,20) có z bằng 88 và (0,20) có z bằng 60."/><div><ul><li><strong>Bước 1:</strong> sang đỉnh kề $(30,0)$; $z$ tăng lên $60$.</li><li><strong>Bước 2:</strong> sang đỉnh kề $(30,12)$; $z$ tăng lên $96$.</li><li><strong>Dừng:</strong> hai đỉnh kề $(30,0)$ và $(14,20)$ có $z=60$, $88$, đều nhỏ hơn $96$.</li></ul></div></div>
+    <aside class="notes"><p>Hai đoạn tô đậm là hai cạnh của miền khả thi. Bước 1 cũng có thể đi lên $(0,20)$ với $z=60$; quy tắc chọn đỉnh kề không làm đổi kết luận, chỉ đổi đường đi. Thuật toán không cần xét đỉnh $(0,20)$ ở bước dừng vì nó không kề $(30,12)$. Hình không mô tả phép xoay cơ sở; nó chỉ cung cấp trực giác hình học cho bước “đỉnh kề cải thiện”.</p><p class="note-source"><strong>Nguồn:</strong> Bertsimas và Tsitsiklis (1997), §2.5; hình tự vẽ từ dữ kiện hộp hạt.</p></aside>
   </section>
   <section data-slide-id="C10">
     <h2>Bài tập chuyển giao về điểm cực</h2>
