@@ -558,7 +558,7 @@ Quy hoạch tuyến tính gom quyết định vào một véc-tơ. Nhiều bài 
 
 ### 10. Trạng thái, điều khiển, chuyển trạng thái và chi phí cộng
 
-**Định nghĩa và giả thiết.** Ở giai đoạn $k=0,\ldots,N-1$, hệ có trạng thái $x_k\in X_k$. Ta chọn điều khiển $u_k\in U_k(x_k)$, chịu chi phí $g_k(x_k,u_k)$ và chuyển tất định theo
+**Định nghĩa và giả thiết.** Ở giai đoạn $k=0,\ldots,N-1$, hệ có trạng thái $x_k\in X_k$. Điều khiển $u_k$ được chọn trong $U_k(x_k)$, chịu chi phí $g_k(x_k,u_k)$ và chuyển tất định theo
 
 $$
 x_{k+1}=f_k(x_k,u_k).
@@ -597,7 +597,7 @@ Một trạng thái là nút hiện tại. Chẳng hạn, mọi lịch sử đi 
 
 ### 11. Nguyên lý tối ưu và phương trình Bellman
 
-**Định nghĩa và giả thiết.** Hàm giá trị $J_k(x)$ là chi phí nhỏ nhất còn lại từ trạng thái $x$ ở giai đoạn $k$. Với các giả thiết hữu hạn ở Chủ đề 10,
+**Định nghĩa và giả thiết.** Hàm giá trị $J_k(x)$ là chi phí nhỏ nhất còn lại từ trạng thái $x$ ở giai đoạn $k$. Với các giả thiết hữu hạn ở mục 10,
 
 $$
 J_N(x)=g_N(x),
@@ -649,7 +649,7 @@ $$
 
 ## E. Giải ngược, chính sách và chi phí tính toán
 
-Phương trình Bellman cho giá trị tối ưu ở từng trạng thái. Để thực thi quyết định, ta còn phải lưu lựa chọn đạt cực tiểu và khôi phục chính sách theo chiều thời gian.
+Phương trình Bellman cho giá trị tối ưu ở từng trạng thái. Để thực thi quyết định, cần lưu thêm lựa chọn đạt cực tiểu và khôi phục chính sách theo chiều thời gian.
 
 ### 12. Giải ngược và khôi phục chính sách
 
@@ -675,7 +675,7 @@ $$
 s\to A\to D\to t
 $$
 
-với tổng chi phí $2+2+1=5$. Nếu đổi $c(s,B)=3$ và $c(C,t)=0$, ta có
+với tổng chi phí $2+2+1=5$. Nếu đổi $c(s,B)=3$ và $c(C,t)=0$, thì
 
 $$
 J(C)=0,\quad J(D)=1,\quad J(A)=3,\quad J(B)=1,\quad J(s)=4,

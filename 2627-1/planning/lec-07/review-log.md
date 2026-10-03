@@ -309,3 +309,28 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | ghi chú C01, C09 | câu tương phản phủ định (no-ai-slop) → viết khẳng định. **Đã đóng.**
   - nhẹ | storyboard C05, C08, C09, outline vai trò C07 | lỗi thời → cập nhật. **Đã đóng.**
   - nhẹ | C11→D01 | ranh giới sang DP → đã xử lý ở commit sửa D01. **Đã đóng.**
+
+### Tái kiểm cuối và kiểm định bàn giao
+
+- **Tái kiểm toán học D–Z (kèm C06–C07 sau đổi thứ tự).** Tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5, effort high), tại HEAD `1550646`–`7e81083`: **PASS** (8 nhẹ; cả hai bộ giá trị $J$, $q^N$, $Nq^2$, $80$ so với $2^{20}$, tọa độ ba hình đồ thị tầng tính lại khớp). Đã xử lý:
+  - nhẹ | Z01 | dòng quy hoạch động thiếu “tất định” → bổ sung. **Đã đóng.**
+  - nhẹ | Z02 | “bước sang đỉnh kề là đổi một cột cơ sở” sai khi suy biến → “mỗi bước đổi một cột cơ sở (khi không suy biến, bước đó sang một đỉnh kề)”. **Đã đóng.**
+  - nhẹ | D05 | đầu vào thiếu $x_0$ → bổ sung. **Đã đóng.**
+  - nhẹ | D03 | thiếu điều kiện biên $J(t)=0$ trên mặt trang → bổ sung ở câu mở. **Đã đóng.**
+  - nhẹ | ghi chú D04 | lý do mới một chiều → thêm chiều ghép lựa chọn với đuôi tối ưu. **Đã đóng.**
+  - nhẹ | alt D02 | “ba lịch sử” dễ hiểu sai → “các lịch sử, ví dụ…”. **Đã đóng.**
+  - nhẹ | ghi chú D06 | từ quy trình “chuyển giao” → bỏ. **Đã đóng.**
+  - nhẹ | ghi chú bài giảng mục 10–12 | “Chủ đề 10” và ngôi “ta” → “mục 10”, câu bị động hoặc “cần”. **Đã đóng.**
+  - nhẹ | ghi chú D01 | câu tương phản phủ định (no-ai-slop) → câu khẳng định. **Đã đóng.**
+- **Tái kiểm mạch toàn bài và góc nhìn sinh viên** (bắt buộc vì mở bài và kết luận đổi). Tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5, effort high), tại `7e81083`: **PASS có điều kiện** (1 trung bình, 8 nhẹ). Vấn đề trung tâm của P03 được A–D xây dựng và Z01 trả lời; mọi ranh giới mạch nêu kết quả kế thừa và khoảng trống; hành trình khái niệm đủ bước; 37 mã trong deck, outline và storyboard trùng tập và thứ tự. Đã xử lý:
+  - trung bình | C03 | ví dụ dựa vào thứ tự cột của phần B mà không nhắc lại → khung nêu thứ tự biến và ba cột dương; định lý viết (i)–(iii) trong một đoạn để trang không vượt khung. **Đã đóng.**
+  - nhẹ | C07 | cần biết $(30,0)$ kề $(30,12)$ → “nối bởi cạnh $x_1=30$”. **Đã đóng.**
+  - nhẹ | C07 | “cạnh” chưa định nghĩa trong nhiều chiều → “cạnh (mặt một chiều)”. **Đã đóng.**
+  - nhẹ | D01→D02 | “tình huống” và “trạng thái” chưa nối → thẻ DP ở D01 ghi “tình huống (trạng thái)”. **Đã đóng.**
+  - nhẹ | C08 | “cho ngay một quy trình” khẩu ngữ → “dẫn tới quy trình sau”. **Đã đóng.**
+  - nhẹ | storyboard dòng bản đồ cụm điểm cực | mô tả C08–C09 lỗi thời, thiếu C11 → cập nhật. **Đã đóng.**
+  - nhẹ | ghi chú D01, D06, ghi chú bài giảng mục 11 | trùng với báo cáo toán → đã đóng ở trên.
+  - ngoài phạm vi | A05, B03 | tiêu đề “Định nghĩa …” không cùng kiểu với C02 “Điểm cực” → **giữ**: B03 đổi thành “Đa diện” sẽ trùng gần với B01, B02; không ảnh hưởng mạch.
+- **Kiểm trình duyệt toàn bài.** Playwright Chromium qua `python3 -m reloadserver 8765`, đủ 37 trang tại 1600×900 và 390×844 (chụp cả khi cuộn tới cuối vùng đọc hẹp): không lỗi JavaScript hoặc trang, không `.katex-error`, không tràn ngang tài liệu; trang cao nhất ở khung 16:9 là 681px (D03), dưới 720px; cỡ chữ thân bài không dưới $0{,}75$em; ArrowRight điều hướng đúng. Ở khung hẹp, công thức và bảng rộng cuộn ngang trong vùng có dấu “↔”.
+- **Trình xem ghi chú bài giảng.** `material-viewer.html?doc=materials/lec-07/lecture-note.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html`: 582 nút KaTeX, không `.katex-error`, 16 hình Bài 07 đều tải, hai khối lời giải thu gọn. Lỗi CSP duy nhất trên bảng điều khiển là script tự tải lại do `reloadserver` chèn; Bài 06 cho cùng lỗi, không thuộc Bài 07.
+- **Chỉ mục.** `index.html` có thẻ Bài 07 với liên kết bài giảng và ghi chú bài giảng; không liên kết tới `planning/`.
