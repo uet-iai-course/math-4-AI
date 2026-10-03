@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
-  <title id="title">Đồ thị tầng với chi phí cạnh</title>
-  <desc id="desc">Đồ thị bốn tầng: s ở tầng 0; A, B ở tầng 1; C, D ở tầng 2; t ở tầng 3. Chi phí: s–A 2, s–B 5, A–C 4, A–D 2, B–C 1, B–D 3, C–t 3, D–t 1.</desc>
+  <title id="title">Giá trị Bellman trên đồ thị tầng</title>
+  <desc id="desc">Đồ thị tầng với chi phí s–A 2, s–B 5, A–C 4, A–D 2, B–C 1, B–D 3, C–t 3, D–t 1. Giá trị chi phí còn lại: J(t)=0, J(C)=3, J(D)=1, J(A)=3, J(B)=4, J(s)=5. Đường tối ưu s–A–D–t được tô đậm.</desc>
   <rect width="900" height="470" fill="#fff"/>
   <g font-family="sans-serif" font-size="24" fill="#6b7790" text-anchor="middle"><text x="100" y="50">k=0</text><text x="320" y="50">k=1</text><text x="580" y="50">k=2</text><text x="800" y="50">k=3</text></g>
-  <line x1="100" y1="260" x2="320" y2="150" stroke="#9aa8c7" stroke-width="3"/>
+  <line x1="100" y1="260" x2="320" y2="150" stroke="#b15a2b" stroke-width="7"/>
   <line x1="100" y1="260" x2="320" y2="370" stroke="#9aa8c7" stroke-width="3"/>
   <line x1="320" y1="150" x2="580" y2="150" stroke="#9aa8c7" stroke-width="3"/>
-  <line x1="320" y1="150" x2="580" y2="370" stroke="#9aa8c7" stroke-width="3"/>
+  <line x1="320" y1="150" x2="580" y2="370" stroke="#b15a2b" stroke-width="7"/>
   <line x1="320" y1="370" x2="580" y2="150" stroke="#9aa8c7" stroke-width="3"/>
   <line x1="320" y1="370" x2="580" y2="370" stroke="#9aa8c7" stroke-width="3"/>
   <line x1="580" y1="150" x2="800" y2="260" stroke="#9aa8c7" stroke-width="3"/>
-  <line x1="580" y1="370" x2="800" y2="260" stroke="#9aa8c7" stroke-width="3"/>
+  <line x1="580" y1="370" x2="800" y2="260" stroke="#b15a2b" stroke-width="7"/>
   <text x="210" y="213" font-family="sans-serif" font-size="28" font-weight="400" fill="#222" text-anchor="middle" stroke="#fff" stroke-width="7" paint-order="stroke">2</text>
   <text x="210" y="323" font-family="sans-serif" font-size="28" font-weight="400" fill="#222" text-anchor="middle" stroke="#fff" stroke-width="7" paint-order="stroke">5</text>
   <text x="450" y="144" font-family="sans-serif" font-size="28" font-weight="400" fill="#222" text-anchor="middle" stroke="#fff" stroke-width="7" paint-order="stroke">4</text>
@@ -25,4 +25,10 @@
   <circle cx="580" cy="150" r="30" fill="#fff" stroke="#2f3e7a" stroke-width="4"/><text x="580" y="159" font-family="sans-serif" font-size="28" text-anchor="middle" fill="#2f3e7a">C</text>
   <circle cx="580" cy="370" r="30" fill="#fff" stroke="#2f3e7a" stroke-width="4"/><text x="580" y="379" font-family="sans-serif" font-size="28" text-anchor="middle" fill="#2f3e7a">D</text>
   <circle cx="800" cy="260" r="30" fill="#fff" stroke="#2f3e7a" stroke-width="4"/><text x="800" y="269" font-family="sans-serif" font-size="28" text-anchor="middle" fill="#2f3e7a">t</text>
+  <text x="800" y="216" font-family="sans-serif" font-size="25" font-weight="700" fill="#2e7d32" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">J=0</text>
+  <text x="580" y="106" font-family="sans-serif" font-size="25" font-weight="700" fill="#2e7d32" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">J=3</text>
+  <text x="580" y="436" font-family="sans-serif" font-size="25" font-weight="700" fill="#2e7d32" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">J=1</text>
+  <text x="320" y="106" font-family="sans-serif" font-size="25" font-weight="700" fill="#2e7d32" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">J=3</text>
+  <text x="320" y="436" font-family="sans-serif" font-size="25" font-weight="700" fill="#2e7d32" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">J=4</text>
+  <text x="100" y="216" font-family="sans-serif" font-size="25" font-weight="700" fill="#2e7d32" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">J=5</text>
 </svg>

@@ -225,10 +225,11 @@
 
 <section>
   <section data-slide-id="D01">
-    <h1><span class="text-light">D.</span><br/>Quy hoạch động hữu hạn tất định</h1>
-    <div class="grid2"><div class="card"><h3>LP: một véc-tơ quyết định</h3><p>Cấu trúc đa diện thu hẹp việc tìm kiếm về các điểm cực và cơ sở.</p></div><div class="card"><h3>DP: một chuỗi quyết định</h3><p>Trạng thái thu hẹp việc tìm kiếm bằng cách dùng lại các bài toán con.</p></div></div>
-    <div class="box">Phạm vi DP: chân trời hữu hạn, trạng thái và điều khiển hữu hạn, chuyển trạng thái tất định, chi phí cộng.</div>
-    <aside class="notes"><p>Đây là phép so sánh hai cơ chế khai thác cấu trúc, không phải phát biểu LP và DP tương đương. LP dùng hình học đa diện của một véc-tơ quyết định; DP dùng trạng thái để tái sử dụng chi phí còn lại của một chuỗi quyết định.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; MIT 15.093J, Bài 16.</p></aside>
+    <h1><span class="text-light">D.</span><br/>Quy hoạch động</h1>
+    <div class="box">Nhiều bài toán gồm một chuỗi quyết định: lựa chọn hiện tại thay đổi các lựa chọn về sau. Với $N$ giai đoạn, mỗi giai đoạn $q$ lựa chọn, có $q^N$ chuỗi.</div>
+    <div class="grid2"><div class="card"><h3>Quy hoạch tuyến tính</h3><p>Một véc-tơ quyết định; chỉ cần xét các đỉnh của đa diện.</p></div><div class="card"><h3>Quy hoạch động (DP)</h3><p>Một chuỗi quyết định; tính chi phí tốt nhất từ mỗi tình huống một lần.</p></div></div>
+    <p><strong>Phạm vi:</strong> hữu hạn giai đoạn, tình huống và lựa chọn; chuyển tiếp tất định; chi phí cộng.</p>
+    <aside class="notes"><p>Quy hoạch động (dynamic programming, DP) không phải một dạng của LP; hai phần khai thác hai cấu trúc khác nhau. LP dùng hình học đa diện của một véc-tơ quyết định. DP dùng trạng thái, tức thông tin đủ để quyết định phần còn lại, để tính chi phí tối ưu còn lại một lần cho mỗi tình huống. Với $N=10$ và $q=2$ đã có $2^{10}=1024$ chuỗi. “Tất định” nghĩa là mỗi lựa chọn dẫn tới đúng một tình huống kế tiếp.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="D02">
     <h2>Nhu cầu của quyết định nhiều giai đoạn</h2>

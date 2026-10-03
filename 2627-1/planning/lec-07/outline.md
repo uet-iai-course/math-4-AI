@@ -43,7 +43,7 @@
 | C | C09 | Đường đi qua các đỉnh kề | Trực quan thuật toán |
 | C | C10 | Bài tập về điểm cực và đỉnh kề | Bài tập LLO18 trên dữ kiện mới |
 | C | C11 | Bài tập tổng hợp quy hoạch tuyến tính | Đánh giá LLO17–18 trước biên DP |
-| D | D01 | Quy hoạch động hữu hạn tất định | Biên LP hoàn tất–DP nội bộ |
+| D | D01 | Quy hoạch động | Biên LP hoàn tất–DP nội bộ |
 | D | D02 | Nhu cầu của quyết định nhiều giai đoạn | Nhu cầu DP |
 | D | D03 | Ví dụ đường đi theo tầng | Trực quan–ví dụ DP |
 | D | D04 | Phương trình Bellman hữu hạn tất định | Quyết định ở $k=0,\ldots,N-1$; chi phí cuối ở $N$ |

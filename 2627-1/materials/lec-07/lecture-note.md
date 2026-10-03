@@ -554,7 +554,7 @@ Giá trị tại $(0,0),(30,0),(30,12),(14,20),(0,20)$ là $0,60,108,108,80$. V�
 
 ## D. Quy hoạch động hữu hạn tất định
 
-Quy hoạch tuyến tính gom quyết định vào một véc-tơ. Khi quyết định hiện tại làm thay đổi lựa chọn tương lai, mô hình cần thêm chỉ số giai đoạn và một trạng thái tóm tắt quá khứ.
+Quy hoạch tuyến tính gom quyết định vào một véc-tơ. Nhiều bài toán gồm một chuỗi quyết định, trong đó lựa chọn hiện tại thay đổi các lựa chọn về sau; với $N$ giai đoạn, mỗi giai đoạn $q$ lựa chọn, có $q^N$ chuỗi. Quy hoạch động (dynamic programming, DP) tránh liệt kê các chuỗi bằng cách thêm chỉ số giai đoạn và một trạng thái tóm tắt quá khứ, rồi tính chi phí tốt nhất từ mỗi trạng thái một lần.
 
 ### 10. Trạng thái, điều khiển, chuyển trạng thái và chi phí cộng
 
