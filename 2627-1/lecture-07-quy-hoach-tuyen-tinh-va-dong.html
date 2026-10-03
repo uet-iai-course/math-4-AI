@@ -259,10 +259,10 @@
     <aside class="notes"><p>Lượt ngược tính giá trị, lượt xuôi dựng đường từ các điều khiển đã lưu; giá trị và chính sách là hai sản phẩm khác nhau. Trong đồ thị tầng ví dụ: $u^*(s)=A$, $u^*(A)=D$, $u^*(D)=t$, cho đường $s\to A\to D\to t$. Khi nhiều điều khiển cùng đạt min (như tại $B$, hai lựa chọn cùng cho $4$), cần một quy tắc chọn. Với $q=2$, $N=20$: cỡ $80$ phép tính so với $2^{20}\approx10^6$ chuỗi.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
   </section>
   <section data-slide-id="D06">
-    <h2>Bài tập chuyển giao Bellman</h2>
-    <div class="check"><strong>Câu hỏi:</strong> giữ đồ thị ví dụ đường đi theo tầng nhưng đổi $c(s,B)=3$ và $c(C,t)=0$. Các cạnh khác giữ nguyên. Hãy tính lại mọi $J$ và nêu đường tối ưu.</div>
-    <div class="table-scroll"><table><thead><tr><th>Tầng</th><th>Phép tính cần lập</th></tr></thead><tbody><tr><td>$C,D$</td><td>chi phí mới đến $t$</td></tr><tr><td>$A,B$</td><td>min qua $C,D$</td></tr><tr><td>$s$</td><td>min qua $A,B$ và tái tạo đường</td></tr></tbody></table></div>
-    <aside class="notes"><p>Đáp án: $J(C)=0$, $J(D)=1$, $J(A)=\min\{4+0,2+1\}=3$, $J(B)=\min\{1+0,3+1\}=1$, $J(s)=\min\{2+3,3+1\}=4$. Đường tối ưu mới là $s\to B\to C\to t$. Đây là dữ kiện mới, nên người học phải tái tạo Bellman thay vì chép kết quả của ví dụ trước.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập chuyển giao tự tạo theo MIT 15.093J, Bài 16.</p></aside>
+    <h2>Bài tập giải ngược Bellman</h2>
+    <div class="check"><strong>Câu hỏi:</strong> tìm đường $s\to t$ chi phí nhỏ nhất trên đồ thị tầng sau, bằng giải ngược Bellman.</div>
+    <div class="responsive"><div class="visual"><img src="img/lec-07/dp-layered-graph-new-costs.svg" alt="Đồ thị tầng với chi phí s–A 2, s–B 3, A–C 4, A–D 2, B–C 1, B–D 3, C–t 0, D–t 1; hai chi phí s–B và C–t được tô màu."/></div><ol class="algorithm"><li>Tính $J(C)$, $J(D)$.</li><li>Tính $J(A)$, $J(B)$; ghi điều khiển đạt min.</li><li>Tính $J(s)$ và dựng đường tối ưu bằng lượt xuôi.</li><li>Kiểm trực tiếp tổng chi phí của đường tìm được.</li></ol></div>
+    <aside class="notes"><p>Hai chi phí tô màu, $c(s,B)=3$ và $c(C,t)=0$, khác với ví dụ đường đi ngắn nhất. Đáp án: $J(C)=0$, $J(D)=1$, $J(A)=\min\{4+0,2+1\}=3$, $J(B)=\min\{1+0,3+1\}=1$, $J(s)=\min\{2+3,3+1\}=4$. Đường tối ưu mới là $s\to B\to C\to t$. Tổng chi phí trực tiếp: $3+1+0=4$. Đường $s\to A\to D\to t$ nay có chi phí $2+2+1=5$, không còn tối ưu: hai thay đổi cục bộ làm đổi lựa chọn ở cả tầng đầu.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập chuyển giao tự tạo theo MIT 15.093J, Bài 16.</p></aside>
   </section>
 </section>
 

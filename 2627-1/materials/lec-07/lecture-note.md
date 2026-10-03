@@ -687,7 +687,9 @@ và một đường tối ưu mới là $s\to B\to C\to t$.
 
 **Điểm dễ nhầm.** Chỉ lưu $J_k$ chưa chắc khôi phục được đúng chính sách khi không còn dữ kiện chuyển tiếp hoặc khi có nhiều phần tử trong $\operatorname*{argmin}$. Một thay đổi cục bộ về chi phí có thể đổi cả các lựa chọn ở những tầng trước.
 
-**Câu hỏi kiểm tra.** Với dữ kiện đã đổi, hãy kiểm trực tiếp hai tổng chi phí $s\to A\to D\to t$ và $s\to B\to C\to t$.
+![Đồ thị tầng với chi phí s–A 2, s–B 3, A–C 4, A–D 2, B–C 1, B–D 3, C–t 0, D–t 1; hai chi phí đã đổi được tô màu.](img/lec-07/dp-layered-graph-new-costs.svg)
+
+**Câu hỏi kiểm tra.** Với dữ kiện đã đổi trong hình, hãy kiểm trực tiếp hai tổng chi phí $s\to A\to D\to t$ và $s\to B\to C\to t$.
 
 ### 13. Dùng lại bài toán con và độ phức tạp
 
