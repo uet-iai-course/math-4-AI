@@ -574,7 +574,7 @@ Trong bài này, mỗi $X_k$ và $U_k(x)$ hữu hạn, $U_k(x)\ne\varnothing$, v
 
 **Trực quan.** Một cây lịch sử có thể chứa nhiều nhánh đi đến cùng một tình huống tương lai. Trạng thái đủ gộp các nhánh đó thành một nút, để phần còn lại chỉ cần giải một lần.
 
-![Đồ thị phân tầng biểu diễn trạng thái, lựa chọn và chi phí của một bài toán hữu hạn tất định.](img/lec-07/dp-layered-graph.svg)
+![Ba lịch sử khác nhau cùng đi tới nút C; từ C phần tương lai như nhau nên chi phí tốt nhất từ C được tính một lần.](img/lec-07/dp-state-sufficiency.svg)
 
 **Ví dụ tính được.** Xét đồ thị tầng với các chi phí
 

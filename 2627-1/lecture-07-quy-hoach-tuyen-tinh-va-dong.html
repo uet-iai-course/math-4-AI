@@ -232,10 +232,10 @@
     <aside class="notes"><p>Quy hoạch động (dynamic programming, DP) không phải một dạng của LP; hai phần khai thác hai cấu trúc khác nhau. LP dùng hình học đa diện của một véc-tơ quyết định. DP dùng trạng thái, tức thông tin đủ để quyết định phần còn lại, để tính chi phí tối ưu còn lại một lần cho mỗi tình huống. Với $N=10$ và $q=2$ đã có $2^{10}=1024$ chuỗi. “Tất định” nghĩa là mỗi lựa chọn dẫn tới đúng một tình huống kế tiếp.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012; MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="D02">
-    <h2>Nhu cầu của quyết định nhiều giai đoạn</h2>
-    <div class="flow"><div class="node"><strong>Trạng thái hiện tại</strong><br/>đủ tóm tắt quá khứ</div><div class="arrow">→</div><div class="node"><strong>Quyết định</strong><br/>chọn hành động khả thi</div><div class="arrow">→</div><div class="node"><strong>Trạng thái kế</strong><br/>theo chuyển trạng thái</div><div class="arrow">→</div><div class="node"><strong>Chi phí còn lại</strong><br/>giải ngược</div></div>
-    <div class="box">Liệt kê vét cạn mọi chuỗi quyết định sẽ giải lặp lại nhiều bài toán con giống nhau.</div>
-    <aside class="notes"><p>Quy hoạch động khai thác cấu trúc con tối ưu: một trạng thái phải lưu đủ thông tin ảnh hưởng đến tương lai, nhưng bỏ chi tiết quá khứ không còn liên quan.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
+    <h2>Trạng thái và bài toán con</h2>
+    <div class="responsive"><div class="visual"><img src="img/lec-07/dp-state-sufficiency.svg" alt="Ba lịch sử khác nhau, trong đó có s→A→C và s→B→C, cùng đi tới nút C. Từ C, phần tương lai như nhau, nên chi phí tốt nhất từ C, J(C)=3, được tính một lần rồi dùng lại."/></div><div><p><strong>Trực quan.</strong> Liệt kê chuỗi tính lại phần tương lai của $C$ cho mỗi lịch sử đi tới $C$.</p><p><strong>Trạng thái</strong> (state) là thông tin đủ để quyết định phần còn lại: biết trạng thái thì quá khứ không ảnh hưởng thêm.</p></div></div>
+    <div class="box">Chi phí tốt nhất từ một trạng thái tới đích là một <strong>bài toán con</strong>, chỉ cần giải một lần.</div>
+    <aside class="notes"><p>Trong bài toán đường đi theo tầng, trạng thái là nút hiện tại: mọi lịch sử tới $C$ chỉ còn cạnh $C\to t$ với chi phí $3$. Nếu chi phí từ $C$ còn phụ thuộc vào việc đã qua $A$ hay $B$, nút $C$ không còn là trạng thái đủ; khi đó phải mở rộng trạng thái thành cặp (nút, nút trước). Trạng thái càng nhỏ thì càng ít bài toán con.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
   </section>
   <section data-slide-id="D03">
     <h2>Ví dụ đường đi theo tầng</h2>
