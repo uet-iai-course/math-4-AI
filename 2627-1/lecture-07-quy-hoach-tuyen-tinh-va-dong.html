@@ -238,8 +238,10 @@
     <aside class="notes"><p>Trong bài toán đường đi theo tầng, trạng thái là nút hiện tại: mọi lịch sử tới $C$ chỉ còn cạnh $C\to t$ với chi phí $3$. Nếu chi phí từ $C$ còn phụ thuộc vào việc đã qua $A$ hay $B$, nút $C$ không còn là trạng thái đủ; khi đó phải mở rộng trạng thái thành cặp (nút, nút trước). Trạng thái càng nhỏ thì càng ít bài toán con.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, trang 6–9.</p></aside>
   </section>
   <section data-slide-id="D03">
-    <h2>Ví dụ đường đi theo tầng</h2>
-    <div class="visual"><img src="img/lec-07/dp-layered-graph.svg" alt="Đồ thị tầng có chi phí s–A bằng 2, s–B bằng 5, A–C bằng 4, A–D bằng 2, B–C bằng 1, B–D bằng 3, C–t bằng 3 và D–t bằng 1; đường ngắn nhất s–A–D–t có tổng chi phí 5."/></div>
+    <h2>Đường đi ngắn nhất theo tầng</h2>
+    <p>Tìm đường $s\to t$ chi phí nhỏ nhất. $J(v)$: chi phí nhỏ nhất từ nút $v$ tới $t$, tính ngược từ $t$.</p>
+    <div class="responsive"><div class="visual"><img src="img/lec-07/dp-bellman-values.svg" alt="Đồ thị tầng với chi phí s–A 2, s–B 5, A–C 4, A–D 2, B–C 1, B–D 3, C–t 3, D–t 1. Giá trị J(t)=0, J(C)=3, J(D)=1, J(A)=3, J(B)=4, J(s)=5; đường tối ưu s–A–D–t được tô đậm."/></div><div class="formula">$$\begin{aligned}J(C)&amp;=3,\quad J(D)=1,\\J(A)&amp;=\min\{4+3,\ 2+1\}=3,\\J(B)&amp;=\min\{1+3,\ 3+1\}=4,\\J(s)&amp;=\min\{2+3,\ 5+4\}=5.\end{aligned}$$</div></div>
+    <div class="box">Đường tối ưu $s\to A\to D\to t$, chi phí $5$; mỗi nút tính một lần.</div>
     <aside class="notes"><p>Tính ngược: $J(C)=3$ và $J(D)=1$. Tại $A$, chọn $D$ vì $2+1=3$ nhỏ hơn $4+3=7$. Tại $B$, hai lựa chọn cùng cho $4$: $1+3=3+1=4$. Tại $s$, chọn $A$ vì $2+3=5$ nhỏ hơn $5+4=9$. Đường tối ưu là $s\to A\to D\to t$.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ và hình tự tạo theo khuôn đồ thị tầng của MIT 15.093J, Bài 16.</p></aside>
   </section>
   <section data-slide-id="D04">

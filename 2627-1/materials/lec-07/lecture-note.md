@@ -617,7 +617,7 @@ Tập điều khiển hữu hạn và khác rỗng bảo đảm giá trị nhỏ
 
 **Trực quan.** Mỗi lựa chọn tách chi phí còn lại thành hai phần: chi phí trả ngay và chi phí tối ưu từ trạng thái kế tiếp. Nếu phần đuôi chưa tối ưu, thay nó bằng một đuôi tốt hơn sẽ làm cả chuỗi tốt hơn.
 
-![Giá trị Bellman được truyền từ đích về nguồn trên đồ thị phân tầng.](img/lec-07/dp-layered-graph.svg)
+![Đồ thị tầng với chi phí cạnh và giá trị J(t)=0, J(C)=3, J(D)=1, J(A)=3, J(B)=4, J(s)=5; đường tối ưu s–A–D–t được tô đậm.](img/lec-07/dp-bellman-values.svg)
 
 **Ví dụ tính được.** Đặt chi phí cuối tại $t$ bằng $0$. Từ phải sang trái,
 
