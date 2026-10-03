@@ -546,6 +546,12 @@ Mỗi đoạn là một cạnh của đa diện và mỗi bước cải thiện 
 Bốn đỉnh là $(0,0)$, $(2,0)$, $(0,2)$ và giao $(1{,}6;\,1{,}2)$ của $x_1+2x_2=4$ với $3x_1+x_2=6$. Giá trị mục tiêu lần lượt là $0$, $2$, $2$, $2{,}8$. Miền khác rỗng, bị chặn, nên giá trị tối ưu hữu hạn; nghiệm tối ưu duy nhất là $(1{,}6;\,1{,}2)$. Một đường đi hợp lệ là $(0,0)\to(2,0)\to(1{,}6;\,1{,}2)$ với giá trị $0\to2\to2{,}8$. Miền là đa diện có điểm cực và giá trị tối ưu hữu hạn, nên định lý điểm cực tối ưu áp dụng.
 :::
 
+**Bài tập tổng hợp.** Giữ miền khả thi của bài hộp hạt nhưng tăng lợi ích loại 2 lên $4$, tức $\max\ 2x_1+4x_2$. Viết dạng chuẩn; tính giá trị mục tiêu tại năm đỉnh; xác định kết cục và tập nghiệm tối ưu; chạy thuật toán đi qua đỉnh kề từ $(0,0)$ và xác định đỉnh dừng.
+
+::: solution
+Giá trị tại $(0,0),(30,0),(30,12),(14,20),(0,20)$ là $0,60,108,108,80$. Vì $2x_1+4x_2=2(x_1+2x_2)$, đường mức song song với ràng buộc giờ máy, nên giá trị tối ưu $108$ đạt trên cả cạnh nối $(30,12)$ và $(14,20)$: bài toán có nhiều nghiệm tối ưu. Đường đi $(0,0)\to(30,0)\to(30,12)$ có giá trị $0\to60\to108$; tại $(30,12)$, đỉnh kề $(14,20)$ cũng cho $108$ nên không cải thiện nghiêm ngặt, thuật toán dừng tại $(30,12)$. Đỉnh dừng là một điểm cực tối ưu nhưng không phải nghiệm tối ưu duy nhất.
+:::
+
 ## D. Quy hoạch động hữu hạn tất định
 
 Quy hoạch tuyến tính gom quyết định vào một véc-tơ. Khi quyết định hiện tại làm thay đổi lựa chọn tương lai, mô hình cần thêm chỉ số giai đoạn và một trạng thái tóm tắt quá khứ.

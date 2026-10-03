@@ -216,10 +216,10 @@
     <aside class="notes"><p>Bốn đỉnh: $(0,0)$, $(2,0)$, $(0,2)$ và giao của hai đường biên chéo $x_1+2x_2=4$, $3x_1+x_2=6$, tức $(1{,}6;\,1{,}2)$. Giá trị mục tiêu tại $(0,0),(2,0),(1{,}6;1{,}2),(0,2)$ lần lượt là $0,2,2{,}8,2$. Đường hợp lệ: $(0,0)\to(2,0)\to(1{,}6,1{,}2)$ với giá trị $0\to2\to2{,}8$. Miền là đa diện có các điểm cực đã liệt kê và mục tiêu có giá trị tối ưu hữu hạn; vì vậy định lý điểm cực tối ưu áp dụng. Nghiệm tối ưu duy nhất là $(1{,}6,1{,}2)$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tự tạo từ một đa diện hai chiều.</p></aside>
   </section>
   <section data-slide-id="C11">
-    <h2>Bài tập tích hợp quy hoạch tuyến tính</h2>
-    <div class="check"><strong>Câu hỏi:</strong> với bài hộp hạt, hãy hoàn tất chuỗi lập luận.</div>
-    <ol class="algorithm"><li>Viết LP và dạng chuẩn có biến phụ.</li><li>Liệt kê năm đỉnh và giá trị mục tiêu.</li><li>Phân loại kết cục của bài toán.</li><li>Nêu định lý bảo đảm có điểm cực tối ưu.</li><li>Nêu đỉnh xuất phát, bước sang đỉnh kề cải thiện và tiêu chuẩn dừng.</li></ol>
-    <aside class="notes"><p>Đáp án chính: các đỉnh có giá trị $0,60,96,88,60$; bài toán hữu hạn với nghiệm tối ưu duy nhất $(30,12)$. Mô tả ở mức ý niệm bắt đầu từ một đỉnh khả thi, chuyển qua đỉnh kề cải thiện nghiêm ngặt và dừng khi không còn đỉnh kề cải thiện. Bài tập khép phần LP trước khi đổi đối tượng sang chuỗi quyết định.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tích hợp từ ví dụ hộp hạt.</p></aside>
+    <h2>Bài tập tổng hợp quy hoạch tuyến tính</h2>
+    <div class="check"><strong>Câu hỏi:</strong> miền khả thi $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$ (năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$), mục tiêu $\max\ 2x_1+4x_2$.</div>
+    <ol class="algorithm"><li>Viết dạng chuẩn có biến phụ.</li><li>Tính $z$ tại năm đỉnh; xác định kết cục và tập nghiệm tối ưu.</li><li>Nêu định lý bảo đảm có điểm cực tối ưu và kiểm giả thiết.</li><li>Chạy thuật toán đi qua đỉnh kề từ $(0,0)$; xác định đỉnh dừng.</li></ol>
+    <aside class="notes"><p>Đáp án: dạng chuẩn giữ nguyên ba phương trình có $s_1,s_2,s_3$, mục tiêu $2x_1+4x_2$. Giá trị tại năm đỉnh là $0,60,108,108,80$. Vì $2x_1+4x_2=2(x_1+2x_2)$, đường mức song song với ràng buộc giờ máy; giá trị tối ưu $108$ đạt trên cả cạnh nối $(30,12)$ và $(14,20)$: kết cục nhiều nghiệm tối ưu. Miền là đa diện bị chặn, khác rỗng, có điểm cực, nên định lý áp dụng. Thuật toán: $(0,0)\to(30,0)\to(30,12)$ với $z:0\to60\to108$; tại $(30,12)$ đỉnh kề $(14,20)$ cũng cho $108$, không lớn hơn nghiêm ngặt, nên thuật toán dừng tại $(30,12)$, một điểm cực tối ưu. Đường đi qua $(0,20)$ dừng tại $(14,20)$.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập tổng hợp tự tạo từ ví dụ hộp hạt.</p></aside>
   </section>
 </section>
 
