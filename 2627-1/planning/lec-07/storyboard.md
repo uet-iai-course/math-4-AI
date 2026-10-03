@@ -60,7 +60,7 @@
 | D05 | Chuyển Bellman thành quy trình có đầu vào/ra và chiều tính. | Hình thức → bài tập. | Ứng dụng DP nội bộ. | đổi mã từ D06. Sửa (2026-10-03): định nghĩa chính sách và lượt dựng xuôi; so sánh $Nq^2$ với $q^N$. |
 | D06 | Buộc tính lại Bellman khi hai chi phí đổi, thay vì chép kết quả D03. | Kết D → tổng kết. | $J(C)=0$, $J(D)=1$, $J(A)=3$, $J(B)=1$, $J(s)=4$; đường $s\to B\to C\to t$. | sửa: bài chuyển giao trên dữ kiện mới. Sửa (2026-10-03): tiêu đề “Bài tập giải ngược Bellman”; đề dùng hình `dp-layered-graph-new-costs.svg` thay cho câu tham chiếu ví dụ trước. |
 | Z01 | Thu hồi các điều kiện toán học của LP và so sánh hai cơ chế tránh duyệt vét cạn. | A–D → tài liệu. | Tổng hợp LLO17–18/CLO1; DP nội bộ. | sửa: nội dung công khai nói trực tiếp về mô hình, dạng chuẩn, điểm cực và Bellman; dữ liệu chuẩn đầu ra chỉ giữ trong kế hoạch. Sửa (2026-10-03): tiêu đề “Tổng kết”; bảng thêm dòng quy hoạch động, giả thiết điểm cực ghi đủ; khung trả lời vấn đề trung tâm của P03. |
-| Z02 | Thu hồi ngắn vai trò trạng thái–Bellman, truy nguyên nguồn và nối bổ đề cơ sở C06 với phương pháp đơn hình Bài 08. | Khép bài → Bài 08. | Tự học. | sửa: kết luận DP trước khi tuyến chính quay lại LP. |
+| Z02 | Thu hồi ngắn vai trò trạng thái–Bellman, truy nguyên nguồn và nối bổ đề cơ sở C06 với phương pháp đơn hình Bài 08. | Khép bài → Bài 08. | Tự học. | sửa: kết luận DP trước khi tuyến chính quay lại LP. Sửa (2026-10-03): bỏ dòng “Thu hồi DP” (đã có ở Z01); khung chuyển tiếp nói bằng các khái niệm đã học (nghiệm cơ sở khả thi, đổi một cột cơ sở). |
 
 ## Quyết định cấu trúc
 
