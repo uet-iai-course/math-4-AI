@@ -293,3 +293,19 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 
 - **Z01 — sửa.** Tiêu đề “Điều kiện cần giữ và cầu nối” mơ hồ; bảng thiếu dòng quy hoạch động; giả thiết dòng điểm cực ghi “khả thi, giá trị hữu hạn”, thiếu “miền có điểm cực”; khung cuối không trả lời vấn đề trung tâm của P03. Tiêu đề mới “Tổng kết”; bảng bốn dòng (mô hình hóa, dạng chuẩn, điểm cực, quy hoạch động) với giả thiết đủ; khung trả lời vấn đề trung tâm. Ghi chú diễn giả tóm chuỗi lập luận và giới hạn áp dụng. Ghi chú bài giảng, mục Tóm tắt: hai gạch cuối viết lại theo kết luận mới.
 - **Z02 — sửa.** Dòng “Thu hồi DP” lặp Z01 và dùng từ quy trình; khung chuyển tiếp dùng “chọn cơ sở kề, cập nhật cơ sở” mà không nối với khái niệm đã học. Bỏ dòng thu hồi; khung Bài 08 nêu phương pháp đơn hình thực hiện thuật toán đi qua đỉnh kề bằng đại số (mỗi đỉnh là một BFS, bước sang đỉnh kề là đổi một cột cơ sở). Ghi chú diễn giả viết lại tương ứng. Ghi chú bài giảng: mục Tài liệu tham khảo không đổi.
+- **Tái kiểm phần C.** Hai tác tử `fork` chỉ đọc (kế thừa Claude Opus 5.5, effort high): tái kiểm toán học tại `224649a` **PASS có điều kiện** (2 trung bình, 6 nhẹ; mọi số liệu C03–C11 và tọa độ bốn hình tính lại khớp); tái kiểm mạch và góc nhìn sinh viên tại `f48fef3` **PASS có điều kiện** (3 trung bình, 7 nhẹ). Đã xử lý:
+  - trung bình | C06→C07→C08 | trang bốn kết cục chen giữa bổ đề và thuật toán → đặt bốn kết cục trước định lý và đổi mã: **C06 nay là “Bốn kết cục”, C07 là “Điểm cực tối ưu và đỉnh kề”**; câu dẫn bốn kết cục nêu cần biết bài toán có nghiệm tối ưu; outline và storyboard đổi thứ tự và tham chiếu mã. **Đã đóng.**
+  - trung bình | C02, C07–C11 | “đỉnh” và “điểm cực” dùng lẫn mà chưa nói là một → định nghĩa ghi “extreme point, gọi tắt là đỉnh”; ghi chú bài giảng mục 6 tương ứng. **Đã đóng.**
+  - trung bình | C04→C05 | ranh giới thiếu câu nối → nhu cầu C05: “kết luận ‘có điểm cực tối ưu’ chỉ có nghĩa khi miền có điểm cực”. **Đã đóng.**
+  - trung bình | hình bốn kết cục | miền “không bị chặn” vẽ thành tam giác đóng → bỏ viền phải, hai biên là tia có mũi tên. **Đã đóng.**
+  - trung bình | ghi chú C10, outline | “$(1{,}6,1{,}2)$” đọc như bốn thành phần → “$(1{,}6;\,1{,}2)$” ở mọi chỗ. **Đã đóng.**
+  - nhẹ | bốn kết cục | câu dẫn chỉ vị trí “hai kết cục dưới” và thiếu giả thiết có điểm cực → câu dẫn mới; giả thiết đầy đủ trong ghi chú. **Đã đóng.**
+  - nhẹ | C07, C09 | ví dụ bổ đề lặp bước kiểm dừng của C09 → ví dụ chiều thuận tại $(30,0)$. **Đã đóng.**
+  - nhẹ | C03 | thiếu nhu cầu → thêm dòng **Nhu cầu**. **Đã đóng.**
+  - nhẹ | C11 | bước “viết dạng chuẩn” lặp B05 → bỏ. **Đã đóng.**
+  - nhẹ | C08 | hữu hạn điểm cực mới phát biểu cho dạng chuẩn → ghi chú nêu lý do cho mọi đa diện. **Đã đóng.**
+  - nhẹ | ghi chú C04, C07 | phát biểu cạnh tối ưu và nón tiếp xúc chưa chuẩn → sửa; “phép xoay cơ sở (pivot)” ở lần đầu. **Đã đóng.**
+  - nhẹ | ghi chú C02 | `<` trần trong HTML → `&lt;`. **Đã đóng.**
+  - nhẹ | ghi chú C01, C09 | câu tương phản phủ định (no-ai-slop) → viết khẳng định. **Đã đóng.**
+  - nhẹ | storyboard C05, C08, C09, outline vai trò C07 | lỗi thời → cập nhật. **Đã đóng.**
+  - nhẹ | C11→D01 | ranh giới sang DP → đã xử lý ở commit sửa D01. **Đã đóng.**

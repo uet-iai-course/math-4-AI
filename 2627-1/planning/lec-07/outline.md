@@ -37,8 +37,8 @@
 | C | C03 | Điểm cực và nghiệm cơ sở khả thi | Tương đương điểm cực–BFS |
 | C | C04 | Nhiều nghiệm tối ưu | Ví dụ và trường hợp biên |
 | C | C05 | Bảo đảm tồn tại điểm cực | Định lý tồn tại |
-| C | C06 | Điểm cực tối ưu và đỉnh kề | Định lý và bổ đề cầu nối đơn hình trên đa diện tổng quát |
-| C | C07 | Bốn kết cục của quy hoạch tuyến tính | Phân loại |
+| C | C06 | Bốn kết cục của quy hoạch tuyến tính | Phân loại; nêu giả thiết giá trị hữu hạn cho định lý kế tiếp |
+| C | C07 | Điểm cực tối ưu và đỉnh kề | Định lý điểm cực tối ưu và bổ đề đỉnh kề cải thiện trên đa diện tổng quát |
 | C | C08 | Thuật toán đi qua đỉnh kề | Cầu hình học tới phương pháp đơn hình |
 | C | C09 | Đường đi qua các đỉnh kề | Trực quan thuật toán |
 | C | C10 | Bài tập về điểm cực và đỉnh kề | Bài tập LLO18 trên dữ kiện mới |
@@ -81,7 +81,7 @@ Không hiển thị phân bổ này trên trang chiếu hoặc trong ghi chú di
 - Hồi quy $L_1$: $a_i\in\mathbb R^n$, $b_i\in\mathbb R$, $x\in\mathbb R^n$, $t_i\in\mathbb R_+$; ví dụ $\min_x|x-1|+|x-3|$ có tập nghiệm $[1,3]$.
 - Ví dụ điểm cực: $\max x_1+x_2$ với $x_1+x_2\le2$, $x\ge0$ (trước 2026-10-03 viết dạng tương đương $\min -x_1-x_2$); cả cạnh $x_1+x_2=2$ tối ưu.
 - Bài tổng hợp C11: miền hộp hạt với $\max 2x_1+4x_2$; giá trị tại năm đỉnh $0,60,108,108,80$; cả cạnh $(30,12)$–$(14,20)$ tối ưu; thuật toán từ $(0,0)$ dừng tại $(30,12)$.
-- Bài chuyển giao C10: $\max x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x\ge0$; đường đỉnh kề $(0,0)\to(2,0)\to(1{,}6,1{,}2)$ có giá trị $0\to2\to2{,}8$.
+- Bài chuyển giao C10: $\max x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x\ge0$; đường đỉnh kề $(0,0)\to(2,0)\to(1{,}6;\,1{,}2)$ có giá trị $0\to2\to2{,}8$.
 - DP hữu hạn tất định: $x_{k+1}=f_k(x_k,u)$, $u\in U_k(x_k)$, chi phí $g_k$, chi phí cuối $g_N$, hàm giá trị $J_k$.
 - Đồ thị tầng: các cạnh có chi phí $s$–$A$: $2$, $s$–$B$: $5$, $A$–$C$: $4$, $A$–$D$: $2$, $B$–$C$: $1$, $B$–$D$: $3$, $C$–$t$: $3$, $D$–$t$: $1$. Khi giải ngược, $J(C)=3$, $J(D)=1$, $J(A)=3$, $J(B)=4$, $J(s)=5$; đường tối ưu là $s\to A\to D\to t$.
 - Bài chuyển giao D06 đổi $c(s,B)=3$, $c(C,t)=0$ và giữ các cạnh khác: $J(C)=0$, $J(D)=1$, $J(A)=3$, $J(B)=1$, $J(s)=4$; đường tối ưu là $s\to B\to C\to t$.

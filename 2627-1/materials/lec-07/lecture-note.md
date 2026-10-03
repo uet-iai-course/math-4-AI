@@ -346,7 +346,7 @@ Hình hai chiều gợi ý nghiệm tối ưu nằm ở một đỉnh, và nghi�
 
 ### 6. Điểm cực và trường hợp nhiều nghiệm tối ưu
 
-**Định nghĩa và giả thiết.** Cho tập lồi $P$. Điểm $\mathbf v\in P$ là một **điểm cực** (extreme point) nếu
+**Định nghĩa và giả thiết.** Cho tập lồi $P$. Điểm $\mathbf v\in P$ là một **điểm cực** (extreme point, gọi tắt là đỉnh) nếu
 
 $$
 \mathbf v=\lambda\mathbf y+(1-\lambda)\mathbf z,
