@@ -282,7 +282,7 @@ Không tạo tác tử chỉ để lặp lại nhiệm vụ đã có. Mỗi tác
 
 ### 9. Kiểm định cuối
 
-Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
+Một tác tử kiểm định Opus 5.5 thực hiện các bước dưới đây; điều phối viên Fable 5.1 rà bằng chứng (kết quả lệnh, ảnh chụp, diff) và ký duyệt bàn giao. Tác tử kiểm định phải:
 
 - Kiểm tra HTML, đường dẫn nội bộ, ảnh, plugin, KaTeX, ghi chú diễn giả, số trang chiếu và liên kết từ trang chỉ mục nếu có.
 - Kiểm tra mọi mã trang chiếu đều có đúng một mục trong `2627-1/planning/lec-NN/storyboard.md`, lý do tồn tại đã được tác tử storyboard chấp nhận, và quyết định biên tập khớp với bản RevealJS hiện tại.
@@ -307,13 +307,14 @@ Tác tử điều phối hoặc một tác tử kiểm định riêng phải:
 
 ## Điều phối mô hình trong dự án
 
-- Phiên Claude Code chính giữ vai trò điều phối viên và chạy **Claude Opus 5.5** (`claude-opus-5-5`) với mức suy luận (reasoning effort) `high`: phân rã công việc, duyệt kế hoạch, hợp nhất kết quả và kiểm định đầu ra. Nếu phiên đang chạy mô hình hoặc mức suy luận khác, báo rõ trước khi giao việc; không tự coi phiên đó là điều phối viên hợp lệ.
-- Mọi tác tử con, kể cả tác tử do tác tử con tạo tiếp, phải dùng **Claude Opus 5.5** với mức suy luận `high` qua cơ chế tác tử gốc của Claude Code. Tạo tác tử bằng công cụ `Agent` với loại tác tử có định nghĩa trong `.claude/agents/` khai báo mô hình `claude-opus-5-5` và mức suy luận `high`; tác tử loại `fork` kế thừa mô hình của điều phối viên. Không giao vai trong quy trình cho loại tác tử cố định mô hình hoặc mức suy luận khác. Tiếp tục nhiệm vụ của tác tử đã tạo bằng `SendMessage`; lời gọi `Agent` mới tạo một tác tử mới.
+- Phiên Claude Code chính giữ vai trò điều phối viên và kiểm soát chất lượng, chạy **Claude Fable 5.1** (`claude-fable-5-1`) với mức suy luận (reasoning effort) `medium`: phân rã công việc, viết giao việc, hợp nhất kết quả và chấp nhận hoặc bác bỏ mọi đầu ra của tác tử con. Điều phối viên không tự đảm nhận vai soạn, rà soát hay chỉnh sửa trong quy trình. Nếu phiên đang chạy mô hình hoặc mức suy luận khác, báo rõ trước khi giao việc và đề nghị người dùng chuyển mô hình; không tự coi phiên đó là điều phối viên hợp lệ.
+- Mọi tác tử con, kể cả tác tử do tác tử con tạo tiếp, phải dùng **Claude Opus 5.5** (`claude-opus-5-5`) với mức suy luận `high` qua cơ chế tác tử gốc của Claude Code. Tạo tác tử bằng công cụ `Agent` với `model: "opus"` và `effort: "high"`, loại `general-purpose` hoặc loại có định nghĩa trong `.claude/agents/` khai báo mô hình `claude-opus-5-5` và mức suy luận `high`. Không dùng loại `fork`, vì tác tử `fork` kế thừa mô hình của điều phối viên và bỏ qua tham số mô hình. Không giao vai trong quy trình cho loại tác tử cố định mô hình hoặc mức suy luận khác. Tiếp tục nhiệm vụ của tác tử đã tạo bằng `SendMessage`; lời gọi `Agent` mới tạo một tác tử mới.
+- Mọi đầu ra của tác tử con phải được điều phối viên Fable 5.1 rà trước khi chuyển sang giai đoạn sau, ghi vào tệp của kho hoặc gửi người dùng. Với kế hoạch và báo cáo: đối chiếu từng phát hiện với tệp và dòng được dẫn, tự kiểm lại phép tính và hằng số. Với tệp đã ghi: đọc diff và chạy các bước kiểm tra kỹ thuật, trực quan và đồng bộ học liệu. Ghi quyết định `chấp nhận | yêu cầu sửa | bác bỏ` kèm lý do trong `review-log.md`; yêu cầu sửa được gửi lại đúng tác tử bằng `SendMessage` và kết quả sửa được rà lại. Việc một tác tử con rà kết quả của tác tử con khác không thay thế bước duyệt của điều phối viên.
 - Không dùng OpenRouter, cầu nối trong `openrouter-mcp/`, các script OpenRouter hoặc lời gọi mô hình qua API/CLI để thay cơ chế tác tử gốc của Claude Code. Các ủy quyền OpenRouter và GPT-6-Astra trong hồ sơ lịch sử không áp dụng cho quy trình hiện hành.
 - Không đọc, nạp hoặc gửi `.env`, `.env.*` ở bất kỳ thư mục nào; không dùng khóa API hay bí mật để tạo hoặc xác thực tác tử. Không đưa bí mật, kể cả trong tệp có tên thông thường, vào lời nhắc, tệp đính kèm, kết quả công cụ hoặc nhật ký.
-- Mỗi nhiệm vụ phải có vai trò, đầu vào, đầu ra, phạm vi tệp và điều kiện hoàn thành cụ thể. Tác tử chỉ đọc có thể chạy song song trong giới hạn khả dụng; mặc định chỉ một tác tử được ghi tệp tại một thời điểm. Điều phối viên phải chấp nhận hoặc bác bỏ kết quả trước giai đoạn phụ thuộc.
-- Ghi tên tác tử, vai trò, loại tác tử, mô hình và mức suy luận đã chỉ định từ lời gọi công cụ hoặc định nghĩa tác tử trong nhật ký. Chỉ ghi mô hình thực chạy hoặc tuyến xác thực khi công cụ cung cấp bằng chứng; không coi lời tự khai của tác tử là bằng chứng runtime.
-- Nếu không tạo được tác tử Claude Opus 5.5 với mức suy luận `high` qua cơ chế gốc, báo rõ giới hạn và dừng phần việc phụ thuộc. Tiếp tục các việc độc lập đã được phép; không chuyển ngầm sang mô hình khác, OpenRouter hoặc script gọi mô hình.
+- Mỗi nhiệm vụ phải có vai trò, đầu vào, đầu ra, phạm vi tệp và điều kiện hoàn thành cụ thể. Tác tử chỉ đọc có thể chạy song song trong giới hạn khả dụng; mặc định chỉ một tác tử được ghi tệp tại một thời điểm. Điều phối viên Fable 5.1 phải chấp nhận hoặc bác bỏ kết quả trước giai đoạn phụ thuộc.
+- Ghi tên tác tử, vai trò, loại tác tử, mô hình và mức suy luận đã chỉ định từ lời gọi công cụ hoặc định nghĩa tác tử trong nhật ký, cùng quyết định rà của điều phối viên cho từng đầu ra. Chỉ ghi mô hình thực chạy hoặc tuyến xác thực khi công cụ cung cấp bằng chứng; không coi lời tự khai của tác tử là bằng chứng runtime.
+- Nếu không tạo được tác tử Claude Opus 5.5 với mức suy luận `high` qua cơ chế gốc, báo rõ giới hạn và dừng phần việc phụ thuộc. Tiếp tục các việc độc lập đã được phép; điều phối viên không tự làm thay phần việc phụ thuộc và không chuyển ngầm sang mô hình khác, OpenRouter hoặc script gọi mô hình.
 
 ## Quản lý phiên bản
 

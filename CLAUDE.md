@@ -103,7 +103,7 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
 
 `AGENTS.md` requires an orchestrator plus sub-agents; don't do the whole workflow in one role.
 
-This model assignment is a standing user instruction (2026-10-07). Where `AGENTS.md` §"Điều phối mô hình trong dự án" names Opus 5.5 as the orchestrator, this section wins.
+This model assignment is a standing user instruction (2026-10-07) and matches `AGENTS.md` §"Điều phối mô hình trong dự án".
 
 - **Master and quality controller:** this session runs Claude Fable 5.1 (`claude-fable-5-1`) at effort `medium`.
   - It splits the work, writes the briefs, merges results, and accepts or rejects every sub-agent output.
