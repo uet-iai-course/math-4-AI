@@ -297,7 +297,7 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 - **Hình thức hóa:** H0–H4 như mục "Giả thiết có tên". $f^*=p^*$ của Bài 02–03.
 - **Kết nối:** Nhận định nghĩa A04; B dùng H1–H3 để nối các dạng hội tụ.
 - **Nguồn:** BV §9.1.2; Bài 04, mục gradient Lipschitz và hội tụ tuyến tính.
-- **Ghi chú soạn:** Sau khi bỏ $f_{\inf}$, $a_k$, $G$, $\sigma^2$, $\Delta_0$, H5–H7, trang còn hai bảng ngắn. Nếu kiểm định trình duyệt vẫn cho thấy tràn ở 16:9, tách thành "Ký hiệu chung" và "Giả thiết có tên" (tổng 52 trang) và cập nhật storyboard; không thu nhỏ chữ. **Bản sửa 2026-10-08** (R49, R50): "$L$-trơn ($L$-smooth)"; "chặn chuẩn của dưới gradient" trong ghi chú.
+- **Ghi chú soạn:** Sau khi bỏ $f_{\inf}$, $a_k$, $G$, $\sigma^2$, $\Delta_0$, H5–H7, trang còn hai bảng ngắn. Nếu kiểm định trình duyệt vẫn cho thấy tràn ở 16:9, tách thành "Ký hiệu chung" và "Giả thiết có tên" (tổng 52 trang) và cập nhật storyboard; không thu nhỏ chữ. **Bản sửa 2026-10-08** (R49, R50): "$L$-trơn ($L$-smooth)"; "chặn chuẩn của dưới gradient" trong ghi chú. **Rà từng trang 2026-10-08:** bảng ký hiệu sáu dòng, hai cột "Ký hiệu", "Nghĩa" (cách viết ở Bài 04, 05, $p^*$ và chú thích tập dữ liệu $D$ của Bài 05 chuyển vào ghi chú); H3 dạng công thức trong khối hiển thị hai dòng; H4 "đạt giá trị nhỏ nhất"; câu kết "Trong H1–H3, $f$ khả vi… H5–H7 được nêu ở phần D, E, F"; ghi chú đối chiếu giả thiết của Boyd–Vandenberghe §9.1 với H1–H4.
 
 ### B. Bất đẳng thức cầu nối giữa các dạng hội tụ
 

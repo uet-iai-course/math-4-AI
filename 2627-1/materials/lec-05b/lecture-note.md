@@ -118,9 +118,9 @@ Chỉ số dưới $x_k$ được dùng để không lẫn với lũy thừa tro
 - **H1 (lồi).** $f$ khả vi và $f(y)\ge f(x)+\nabla f(x)^T(y-x)$.
 - **H2 ($L$-trơn, $L$-smooth).** $\lVert\nabla f(x)-\nabla f(y)\rVert\le L\lVert x-y\rVert$.
 - **H3 ($\mu$-lồi mạnh), $\mu>0$.** $f(y)\ge f(x)+\nabla f(x)^T(y-x)+\tfrac\mu2\lVert y-x\rVert^2$.
-- **H4.** $f$ đạt cực tiểu tại một điểm $x^*$.
+- **H4.** $f$ đạt giá trị nhỏ nhất tại một điểm $x^*$.
 
-Các giả thiết H5 (chặn chuẩn dưới gradient), H6, H6a, H6b (gradient ngẫu nhiên) và H7 (điều kiện Polyak–Łojasiewicz) được nêu ở phần dùng đến. Mỗi định lý dùng một tập con của các giả thiết này.
+Các giả thiết H5 (chặn chuẩn dưới gradient), H6, H6a, H6b (gradient ngẫu nhiên) và H7 (điều kiện Polyak–Łojasiewicz) được nêu ở phần dùng đến. Mỗi định lý dùng một tập con của các giả thiết này. Boyd và Vandenberghe (§9.1) giả thiết $f$ lồi, khả vi liên tục hai lần, có nghiệm và $\nabla^2f\succeq mI$ trên tập mức ban đầu $S$; từ đó suy ra $\nabla^2f\preceq MI$ trên $S$. Ở đây các giả thiết tương ứng là H1, H4, H3 (với $\mu=m$) và H2 (với $L=M$), đúng trên toàn $\mathbb R^n$ và không cần đạo hàm bậc hai.
 
 Bài tập 1, câu 3 phân loại bốn khẳng định hội tụ theo đại lượng được đo và kiểu giảm.
 
