@@ -208,6 +208,8 @@ Tại $x_0=(2,4)$: $f(x_0)=62$, $f_{\inf}=0$, $\nabla f(x_0)=(6,28)$, $\lVert\na
 
 ### Cận của hàm lồi mạnh
 
+BĐ1 với $x^*$ ở vị trí của $x$ chặn $e$ theo $d$, BĐ2 chặn $\lVert\nabla f\rVert$ theo $e$; thêm H3 cho các chiều ngược lại.
+
 **Bổ đề BĐ3 (cận của hàm lồi mạnh).** Giả sử H3, H4. Với mọi $x$, đặt $d=\lVert x-x^*\rVert$, $e=f(x)-f^*$. Khi đó
 
 $$
@@ -217,7 +219,7 @@ $$
 Ngoài ra $x^*$ là điểm cực tiểu duy nhất.
 
 ::: proof Chứng minh BĐ3
-(1) Vì $x^*$ là điểm cực tiểu của hàm khả vi, $\nabla f(x^*)=0$. H3 với điểm gốc $x^*$ cho $f(x)\ge f^*+\tfrac\mu2d^2$.
+(1) Vì $x^*$ là điểm cực tiểu của hàm khả vi, $\nabla f(x^*)=0$. H3 với $x^*$ ở vị trí của $x$ và $y=x$ cho $f(x)\ge f^*+\tfrac\mu2d^2$.
 
 (2) Với $x$ cố định, vế phải của H3, $q(y)=f(x)+\nabla f(x)^T(y-x)+\tfrac\mu2\lVert y-x\rVert^2$, là hàm bậc hai lồi theo $y$, đạt cực tiểu tại $y=x-\nabla f(x)/\mu$ với giá trị $f(x)-\tfrac1{2\mu}\lVert\nabla f(x)\rVert^2$. Vì $f(y)\ge q(y)$ với mọi $y$, lấy $y=x^*$: $f^*\ge f(x)-\tfrac1{2\mu}\lVert\nabla f(x)\rVert^2$.
 
@@ -229,7 +231,7 @@ Ngoài ra $x^*$ là điểm cực tiểu duy nhất.
 **Nhận xét sau BĐ3.** Bất đẳng thức trung gian của (3) là $e\le\lVert\nabla f(x)\rVert d-\tfrac\mu2d^2$. Cộng với $e\ge\tfrac\mu2d^2$ từ (1) được $\mu d^2\le\lVert\nabla f(x)\rVert d$, tức $\lVert\nabla f(x)\rVert\ge\mu d$: hằng số chặt hơn hai lần so với kết luận của BĐ3. Bất đẳng thức (2), viết lại thành $\tfrac12\lVert\nabla f(x)\rVert^2\ge\mu e$, là điều kiện Polyak–Łojasiewicz của phần F.
 
 ::: example Ví dụ C tại điểm đầu, với độ cong dưới
-Với $\mu=3$: $\tfrac32\cdot20=30\le62\le\tfrac{820}6\approx136{,}7$ và $d=\sqrt{20}\approx4{,}47\le\tfrac23\sqrt{820}\approx19{,}1$; hằng số chặt hơn cho $d\le\tfrac13\sqrt{820}\approx9{,}55$.
+Với $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $\mu=3$, tại $x_0=(2,4)$ có $d^2=20$, $e=62$, $\lVert\nabla f(x_0)\rVert^2=820$, nên $\tfrac32\cdot20=30\le62\le\tfrac{820}6\approx136{,}7$ và $d=\sqrt{20}\approx4{,}47\le\tfrac23\sqrt{820}\approx19{,}1$; hằng số chặt hơn cho $d\le\tfrac13\sqrt{820}\approx9{,}55$.
 :::
 
 ### Đồng nhất thức một bước
@@ -358,7 +360,7 @@ Mẫu 2 với $u_k=d_k^2$.
 
 Bước 1 (BĐ4, $\eta=\tfrac1L$): $d_{k+1}^2=d_k^2-\tfrac2L\nabla f(x_k)^T(x_k-x^*)+\tfrac1{L^2}\lVert\nabla f(x_k)\rVert^2$.
 
-Bước 2 (H3 tại điểm gốc $x_k$, với $y=x^*$): $f^*\ge f(x_k)+\nabla f(x_k)^T(x^*-x_k)+\tfrac\mu2d_k^2$, tức $\nabla f(x_k)^T(x_k-x^*)\ge e_k+\tfrac\mu2d_k^2$.
+Bước 2 (H3 tại $x_k$, với $y=x^*$): $f^*\ge f(x_k)+\nabla f(x_k)^T(x^*-x_k)+\tfrac\mu2d_k^2$, tức $\nabla f(x_k)^T(x_k-x^*)\ge e_k+\tfrac\mu2d_k^2$.
 
 Bước 3 (BĐ2, với $f_{\inf}=f^*$): $\lVert\nabla f(x_k)\rVert^2\le2L\,e_k$.
 
@@ -657,7 +659,7 @@ $$
 \mathbb E[d_{k+1}^2\mid\mathcal F_k]\le d_k^2-2\eta\nabla f(x_k)^T(x_k-x^*)+\eta^2\bigl(\lVert\nabla f(x_k)\rVert^2+\sigma^2\bigr).
 $$
 
-Bước 2: hai số hạng còn chứa $\nabla f(x_k)$ được chặn bằng hai bất đẳng thức của phần B. H3, viết tại điểm gốc $x_k$ với $y=x^*$, chặn tích vô hướng từ dưới bởi $e_k+\tfrac\mu2d_k^2$; BĐ2 (với $f_{\inf}=f^*$) chặn $\lVert\nabla f(x_k)\rVert^2$ từ trên bởi $2Le_k$. Thay vào:
+Bước 2: hai số hạng còn chứa $\nabla f(x_k)$ được chặn bằng hai bất đẳng thức của phần B. H3, viết tại $x_k$ với $y=x^*$, chặn tích vô hướng từ dưới bởi $e_k+\tfrac\mu2d_k^2$; BĐ2 (với $f_{\inf}=f^*$) chặn $\lVert\nabla f(x_k)\rVert^2$ từ trên bởi $2Le_k$. Thay vào:
 
 $$
 \mathbb E[d_{k+1}^2\mid\mathcal F_k]\le(1-\eta\mu)d_k^2-2\eta(1-\eta L)e_k+\eta^2\sigma^2.
@@ -753,7 +755,7 @@ $$
 \mathbb E[d_{k+1}^2\mid\mathcal F_k]\le d_k^2-2\eta_k\nabla f(x_k)^T(x_k-x^*)+\eta_k^2G^2.
 $$
 
-Tích vô hướng được chặn bằng H3 hai lần: H3 tại điểm gốc $x_k$ với $y=x^*$ cho $\ge e_k+\tfrac\mu2d_k^2$, rồi BĐ3 thay $e_k\ge\tfrac\mu2d_k^2$; tổng cộng $\nabla f(x_k)^T(x_k-x^*)\ge\mu d_k^2$. Khác T5, không cần giữ $e_k$ để triệt $\lVert\nabla f\rVert^2$, vì H6a đã chặn cả $\mathbb E\lVert g_k\rVert^2$; hệ số co vì vậy là $1-2\mu\eta_k$. Lấy kỳ vọng toàn phần:
+Tích vô hướng được chặn bằng H3 hai lần: H3 tại $x_k$ với $y=x^*$ cho $\ge e_k+\tfrac\mu2d_k^2$, rồi BĐ3 thay $e_k\ge\tfrac\mu2d_k^2$; tổng cộng $\nabla f(x_k)^T(x_k-x^*)\ge\mu d_k^2$. Khác T5, không cần giữ $e_k$ để triệt $\lVert\nabla f\rVert^2$, vì H6a đã chặn cả $\mathbb E\lVert g_k\rVert^2$; hệ số co vì vậy là $1-2\mu\eta_k$. Lấy kỳ vọng toàn phần:
 
 $$
 a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2=\Bigl(1-\frac2{k+1}\Bigr)a_k+\frac{C}{(k+1)^2},\qquad C=\frac{G^2}{\mu^2}.

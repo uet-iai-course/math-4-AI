@@ -176,7 +176,7 @@ $$
 \mathbb E[d_{k+1}^2\mid\mathcal F_k]\le d_k^2-2\eta_k\nabla f(x_k)^T(x_k-x^*)+\eta_k^2G^2.
 $$
 
-H3 tại điểm gốc $x_k$ với $y=x^*$ cho $\nabla f(x_k)^T(x_k-x^*)\ge e_k+\tfrac\mu2d_k^2$, và BĐ3 cho $e_k\ge\tfrac\mu2d_k^2$; cộng lại, tích vô hướng $\ge\mu d_k^2$. Lấy kỳ vọng toàn phần được kết luận. Bất đẳng thức đúng với mọi dấu của $1-2\mu\eta_k$.
+H3 tại $x_k$ với $y=x^*$ cho $\nabla f(x_k)^T(x_k-x^*)\ge e_k+\tfrac\mu2d_k^2$, và BĐ3 cho $e_k\ge\tfrac\mu2d_k^2$; cộng lại, tích vô hướng $\ge\mu d_k^2$. Lấy kỳ vọng toàn phần được kết luận. Bất đẳng thức đúng với mọi dấu của $1-2\mu\eta_k$.
 
 2. Đặt $C=G^2/\mu^2$. Thế $\eta_k$: $a_{k+1}\le\tfrac{k-1}{k+1}a_k+\tfrac C{(k+1)^2}$.
 
@@ -244,7 +244,7 @@ $$
 \lambda I\preceq\nabla^2f(x)\preceq\lambda I+\frac1{4N}\sum_iu_iu_i^T\preceq\Bigl(\lambda+\frac1{4N}\lambda_{\max}\bigl(\textstyle\sum_iu_iu_i^T\bigr)\Bigr)I.
 $$
 
-Với $h=y-x$, khai triển $f(y)=f(x)+\nabla f(x)^Th+\int_0^1(1-t)h^T\nabla^2f(x+th)h\,dt$ và cận dưới $\lambda\lVert h\rVert^2$ cho H3 với $\mu=\lambda$. $\nabla f(y)-\nabla f(x)=\int_0^1\nabla^2f(x+th)h\,dt$ và cận trên của chuẩn Hessian cho H2. Cuối cùng $\lambda_{\max}(\sum_iu_iu_i^T)\le\operatorname{tr}\sum_iu_iu_i^T=\sum_i\lVert u_i\rVert^2\le N\max_i\lVert u_i\rVert^2$. Theo H3 với điểm gốc $0$, $f(x)\ge f(0)+\nabla f(0)^Tx+\tfrac\lambda2\lVert x\rVert^2\to\infty$ khi $\lVert x\rVert\to\infty$; $f$ liên tục nên đạt cực tiểu trên một hình cầu đủ lớn chứa tập mức $\{f\le f(0)\}$, và điểm này là cực tiểu toàn cục.
+Với $h=y-x$, khai triển $f(y)=f(x)+\nabla f(x)^Th+\int_0^1(1-t)h^T\nabla^2f(x+th)h\,dt$ và cận dưới $\lambda\lVert h\rVert^2$ cho H3 với $\mu=\lambda$. $\nabla f(y)-\nabla f(x)=\int_0^1\nabla^2f(x+th)h\,dt$ và cận trên của chuẩn Hessian cho H2. Cuối cùng $\lambda_{\max}(\sum_iu_iu_i^T)\le\operatorname{tr}\sum_iu_iu_i^T=\sum_i\lVert u_i\rVert^2\le N\max_i\lVert u_i\rVert^2$. Theo H3 tại $0$ với $y=x$, $f(x)\ge f(0)+\nabla f(0)^Tx+\tfrac\lambda2\lVert x\rVert^2\to\infty$ khi $\lVert x\rVert\to\infty$; $f$ liên tục nên đạt cực tiểu trên một hình cầu đủ lớn chứa tập mức $\{f\le f(0)\}$, và điểm này là cực tiểu toàn cục.
 
 2. $\mu=0{,}1$. $\max_i\lVert u_i\rVert^2=\lVert u_2\rVert^2=4$, cận thô $L'=0{,}1+1=1{,}1$. $\sum_iu_iu_i^T=\begin{pmatrix}2&1\\1&5\end{pmatrix}$ có $\lambda_{\max}=\tfrac{7+\sqrt{13}}2\approx5{,}303$, nên $L=0{,}1+\tfrac{5{,}303}{12}\approx0{,}542$.
 

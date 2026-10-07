@@ -340,12 +340,12 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 
 - **Vai trò và mục tiêu:** Hình thức KN2 (BĐ3); MT1–MT2.
 - **Luận điểm trung tâm:** Lồi mạnh cho chiều ngược lại: khoảng cách và sai số giá trị bị chặn bởi chuẩn gradient.
-- **Ý chính:** **BĐ3.** Giả sử H3, H4. Với mọi $x$: $\frac\mu2d^2\le e\le\frac1{2\mu}\lVert\nabla f(x)\rVert^2$ và $d\le\frac2\mu\lVert\nabla f(x)\rVert$, với $d=\lVert x-x^*\rVert$, $e=f(x)-f^*$. H3 kéo theo $f$ lồi chặt (còn gọi là lồi nghiêm ngặt), nên $x^*$ duy nhất.
+- **Ý chính:** **BĐ3.** Giả sử H3, H4. Với mọi $x$: $\frac\mu2d^2\le e\le\frac1{2\mu}\lVert\nabla f(x)\rVert^2$ và $d\le\frac2\mu\lVert\nabla f(x)\rVert$, với $d=\lVert x-x^*\rVert$, $e=f(x)-f^*$. $x^*$ duy nhất.
 - **Ví dụ/hình dự kiến:** VD-C tại $x_0$ ($\mu=3$): $30\le62\le\frac{820}6\approx136{,}7$; $d=\sqrt{20}\approx4{,}47\le\frac23\sqrt{820}\approx19{,}1$.
 - **Hình thức hóa:** (i) H3 tại $x=x^*$, $\nabla f(x^*)=0$. (ii) Cực tiểu vế phải H3 theo $y$: $f^*\ge f(x)-\frac1{2\mu}\lVert\nabla f(x)\rVert^2$. (iii) H3 với $y=x^*$ và Cauchy–Schwarz: $f^*\ge f(x)-\lVert\nabla f(x)\rVert d+\frac\mu2d^2$, kết hợp $f^*\le f(x)$.
 - **Kết nối:** Nhận H3, BĐ1–BĐ2; C06 dùng (i)–(ii); F06 dùng (ii) làm ví dụ dương của PL.
 - **Nguồn:** BV §9.1.2, (9.8), (9.9), (9.11).
-- **Ghi chú soạn:** Lần xuất hiện đầu tiên của "lồi chặt" trong deck; dùng dạng đầy đủ. **Bản sửa 2026-10-08** (R32): ghi chú bỏ câu lặp, thêm hằng số chặt hơn $d\le\lVert\nabla f\rVert/\mu$.
+- **Ghi chú soạn:** **Bản sửa 2026-10-08** (R32): ghi chú bỏ câu lặp, thêm hằng số chặt hơn $d\le\lVert\nabla f\rVert/\mu$. **Rà từng trang 2026-10-08:** câu mở nêu chiều ngược bằng nội dung (BĐ1 tại $x^*$: $e$ theo $d$; BĐ2: $\lVert\nabla f\rVert$ theo $e$; H3 cho chiều ngược); nhãn "BĐ3 (cận của hàm lồi mạnh)", tính duy nhất đưa vào phát biểu, chứng minh trong ghi chú; bỏ câu "lồi chặt" (khái niệm không dùng ở nơi khác của deck); bước 1 kèm dòng tính duy nhất, bước 3 một dòng ($0\ge-\lVert\nabla f\rVert d+\frac\mu2d^2$), dạng đầy đủ trong ghi chú; Ví dụ C tự chứa ($f$, $\mu=3$, $x_0$, $d^2=20$, $e=62$, $\lVert\nabla f(x_0)\rVert^2=820$); không dùng hình; ghi chú nêu BV (9.9), hằng số chặt hơn với số $9{,}55$, PL, câu nối tới sơ đồ các dạng hội tụ.
 
 #### B05 — Đồng nhất thức một bước
 
