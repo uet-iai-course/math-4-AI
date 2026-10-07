@@ -103,15 +103,26 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
 
 `AGENTS.md` requires an orchestrator plus sub-agents; don't do the whole workflow in one role.
 
-- **Models:** the orchestrator is this session, running Claude Opus 5.5 (`claude-opus-5-5`) at effort `high`. Every sub-agent also runs Opus 5.5 at `high`.
-- **Creating agents:** use the `Agent` tool.
-  - `.claude/agents/` does not exist yet, so use `subagent_type: "fork"`; a fork inherits this session's model.
+This model assignment is a standing user instruction (2026-10-07). Where `AGENTS.md` §"Điều phối mô hình trong dự án" names Opus 5.5 as the orchestrator, this section wins.
+
+- **Master and quality controller:** this session runs Claude Fable 5.1 (`claude-fable-5-1`) at effort `medium`.
+  - It splits the work, writes the briefs, merges results, and accepts or rejects every sub-agent output.
+  - It does not take a sub-agent role itself. Drafting, reviewing and editing go to sub-agents.
+  - If the session runs another model or effort, say so before delegating, and ask the user to switch (`/model`, effort setting). Do not treat that session as a valid master.
+- **Sub-agents:** every workflow role, including agents spawned by sub-agents, runs Claude Opus 5.5 (`claude-opus-5-5`) at effort `high`.
+- **Quality control of every output:** no sub-agent output reaches the next stage, a repo file or the user until the Fable 5.1 master has reviewed it.
+  - **Plans and reports:** check every finding and claim against the cited file or line. Re-derive the maths and constants.
+  - **Written files:** read the diff. Run the checks listed in this file (visual check, `--check` sync, `git diff --check`).
+  - **Decision:** record `chấp nhận | yêu cầu sửa | bác bỏ` with a reason in `review-log.md`. Send the requested fixes back to the same agent with `SendMessage`, and review the result again.
+  - Only Fable 5.1 approval counts. A sub-agent reviewing another sub-agent does not count as quality control.
+- **Creating agents:** use the `Agent` tool with `model: "opus"` and `effort: "high"`.
+  - Do not use `subagent_type: "fork"`: a fork inherits the master's model (Fable) and ignores the model override. Use `general-purpose`, or a `.claude/agents/` definition pinned to `claude-opus-5-5` at `high` once one exists.
   - Never assign a workflow role to an agent type pinned to another model.
   - Continue an existing agent with `SendMessage` rather than spawning a new one.
-- **Stopping rule:** if no Opus 5.5 sub-agent can be created, say so and stop the dependent work.
+- **Stopping rule:** if no Opus 5.5 sub-agent can be created, say so and stop the dependent work. The master does not do that work itself.
 - **Concurrency:** read-only agents may run in parallel. **Only one agent writes files at a time.**
 - **Every brief states:** role, inputs, output, file scope, done condition, and "do not commit".
-- **Logging:** record each agent's role, type, model and effort in `review-log.md`, using the tool call as evidence rather than the agent's own claim.
+- **Logging:** record each agent's role, type, model and effort in `review-log.md`, using the tool call as evidence rather than the agent's own claim. Also record the master's review decision for each output.
 
 | Stage | Role(s) | Writes files? |
 |---|---|---|
@@ -122,7 +133,9 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
 | Review | Five independent roles: student, expert, math accuracy, academic/pedagogical critique, storyline and linking | No |
 | Revise | Editor merges the reports, fixes, records rejected suggestions | Yes |
 | Recheck | Math on changed content. Storyline on the changed slides, ±2 neighbours and section boundaries; the whole deck if the opening, conclusion or thesis changed | No |
-| Final check | Orchestrator or a verifier: technical, visual, planning sync, git | — |
+| Final check | Opus 5.5 verifier runs technical, visual, planning-sync and git checks; the Fable 5.1 master reviews the evidence and signs off | — |
+
+After every stage, the Fable 5.1 master reviews the output before the next stage starts.
 
 - **Report format:** reviews return findings as `mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa`.
   - Severities are `chặn bàn giao`, `nghiêm trọng`, `trung bình` and `nhẹ`.
