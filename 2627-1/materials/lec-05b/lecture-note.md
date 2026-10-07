@@ -236,23 +236,23 @@ Với $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $\mu=3$, tại $x_0=(2,4)$ có $d^2=20$, $
 
 ### Đồng nhất thức một bước
 
-**Bổ đề BĐ4 (đồng nhất thức một bước).** Với mọi $x,g,x^*\in\mathbb R^n$ và $\eta>0$,
+**Bổ đề BĐ4 (đồng nhất thức một bước).** Với mọi $x,g\in\mathbb R^n$ và $\eta>0$,
 
 $$
 \lVert x-\eta g-x^*\rVert^2=\lVert x-x^*\rVert^2-2\eta\,g^T(x-x^*)+\eta^2\lVert g\rVert^2.
 $$
 
-Đẳng thức có được khi khai triển $\lVert(x-x^*)-\eta g\rVert^2$, nên đúng với mọi vectơ $g$, kể cả khi $g$ không liên quan đến $f$. Các phần C–F chỉ khác nhau ở cách chặn hai số hạng cuối: một cận dưới cho $g^T(x-x^*)$ và một cận trên cho $\lVert g\rVert^2$, hoặc cho kỳ vọng của chúng.
+Đẳng thức có được khi khai triển $\lVert(x-x^*)-\eta g\rVert^2$, nên đúng với mọi vectơ $g$, kể cả khi $g$ không liên quan đến $f$, và $x^*$ ở đây có thể là điểm bất kỳ (tính tối ưu của $x^*$ chỉ dùng ở hệ quả của H1); vì vậy nó dùng được khi $g$ là gradient, dưới gradient hay gradient trên một nhóm mẫu. Các phần C–F chỉ khác nhau ở cách chặn hai số hạng cuối: một cận dưới cho $g^T(x-x^*)$ và một cận trên cho $\lVert g\rVert^2$, hoặc cho kỳ vọng của chúng.
 
 **Hệ quả của H1.** Với H1, H4: $\nabla f(x)^T(x-x^*)\ge f(x)-f^*$; thay $y=x^*$ vào H1 rồi chuyển vế. Hệ quả này là cận dưới cho tích vô hướng trong BĐ4 khi $g=\nabla f(x)$.
 
-Tích $g^T(x-x^*)$ dương khi bước $-\eta g$ hướng về phía $x^*$. Khi tích này dương và $\eta$ đủ nhỏ, số hạng $2\eta\,g^T(x-x^*)$ lớn hơn $\eta^2\lVert g\rVert^2$ và khoảng cách giảm.
+**Nhận xét (ý nghĩa hình học).** Khi $g^T(x-x^*)>0$, bước $-\eta g$ có thành phần hướng về $x^*$. Theo BĐ4, khoảng cách giảm khi và chỉ khi $\eta^2\lVert g\rVert^2<2\eta\,g^T(x-x^*)$, tức $0<\eta<2g^T(x-x^*)/\lVert g\rVert^2$; ở Ví dụ C ngưỡng này là $2\cdot124/820\approx0{,}30$.
 
 ::: example Ví dụ C, một bước bước 1/7
 $\nabla f(x_0)^T(x_0-x^*)=6\cdot2+28\cdot4=124\ge62=e_0$. BĐ4 cho $d_1^2=20-\tfrac27\cdot124+\tfrac1{49}\cdot820=20-\tfrac{1736}{49}+\tfrac{820}{49}=\tfrac{64}{49}$, khớp $x_1=(\tfrac87,0)$.
 :::
 
-![Với Ví dụ C: từ x = (2, 4) bước −ηg đưa tới (8/7, 0); khoảng cách tới nghiệm giảm từ căn 20 xuống 8/7.](img/lec-05b/one-step-geometry.svg)
+![Ví dụ C: từ x = (2, 4) bước −ηg với η = 1/7, g = (6, 28) đưa tới (8/7, 0); bình phương khoảng cách tới nghiệm giảm từ 20 xuống 64/49.](img/lec-05b/one-step-geometry.svg)
 
 ### Bản đồ các dạng hội tụ
 

@@ -356,7 +356,7 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** Khai triển bình phương chuẩn; hệ quả là H1 với $y=x^*$.
 - **Kết nối:** C04 ghép B03 và B05; D02 mở rộng hệ quả cho dưới gradient. B06 đặt BĐ1–BĐ4 vào một sơ đồ.
 - **Nguồn:** BV §9.3; SNW ch. 4 §4.1.2; Bài 04, bất đẳng thức một bước.
-- **Ghi chú soạn:** BĐ4 là đẳng thức, không cần giả thiết nào về $f$; mọi giả thiết vào ở bước chặn tích vô hướng và $\lVert g\rVert^2$. **Bản sửa 2026-10-08** (R33, R16): câu trực quan; "bước $\frac17$" và $d_1^2=\frac{64}{49}$ trong panel; ghi chú nêu BĐ4 không là mũi tên của bản đồ.
+- **Ghi chú soạn:** BĐ4 là đẳng thức, không cần giả thiết nào về $f$; mọi giả thiết vào ở bước chặn tích vô hướng và $\lVert g\rVert^2$. **Bản sửa 2026-10-08** (R33, R16): câu trực quan; "bước $\frac17$" và $d_1^2=\frac{64}{49}$ trong panel; ghi chú nêu BĐ4 không là mũi tên của bản đồ. **Rà từng trang 2026-10-08:** chú thích hình tự chứa ($f$, $x^*=0$, $\eta=\frac17$, $x=(2,4)$, $g=(6,28)$, $124\ge62$); nhãn "BĐ4 (đồng nhất thức một bước)", "với mọi $x,g$" ($x^*$ bất kỳ); "Nhận xét (ý nghĩa hình học)" chính xác hóa bằng ngưỡng $0<\eta<2g^T(x-x^*)/\lVert g\rVert^2$; khối Ví dụ C chuyển thành chú thích, phép kiểm BĐ4 bằng số vào ghi chú; ghi chú nêu BĐ4 đúng với mọi $g$ (gradient, dưới gradient, gradient trên một nhóm mẫu) và gọi "sơ đồ các dạng hội tụ" theo tên.
 
 #### B06 — Bản đồ các dạng hội tụ
 
