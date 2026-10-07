@@ -14,10 +14,10 @@ Lời giải cần nêu giả thiết được dùng ở từng bước. Số th
 Mức độ: nhận biết. LLO6, CLO1.
 
 ::: exercise Bài 1
-1. Kiểm BĐ2 cho $\phi(s)=\log(1+e^{-s})$ tại $s=0$ và giải thích vì sao bổ đề dùng $f_{\inf}$ thay cho $f^*$.
-2. Tính $\mu$, $L$ cho Ví dụ A và Ví dụ C. Kiểm chuỗi bất đẳng thức của bản đồ dạng hội tụ, $\tfrac\mu2d^2\le e\le\tfrac1{2\mu}\lVert\nabla f\rVert^2\le\tfrac L\mu e\le\tfrac{L^2}{2\mu}d^2$, tại $x=(1,-1)$ của Ví dụ C.
+1. Kiểm BĐ2 cho $\phi(s)=\log(1+e^{-s})$ (với $L=\tfrac14$) tại $s=0$ và giải thích vì sao bổ đề dùng $f_{\inf}$ thay cho $f^*$.
+2. Tính $\mu$, $L$ cho $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ (Ví dụ A) và $f(x)=\tfrac12(3x_1^2+7x_2^2)$ (Ví dụ C). Kiểm chuỗi bất đẳng thức của bản đồ dạng hội tụ, $\tfrac\mu2d^2\le e\le\tfrac1{2\mu}\lVert\nabla f\rVert^2\le\tfrac L\mu e\le\tfrac{L^2}{2\mu}d^2$, tại $x=(1,-1)$ của Ví dụ C.
 3. Phân loại bốn phát biểu theo dạng hội tụ, rồi nêu giả thiết để suy ra một dạng khác:
-   (a) $f(x_k)-f^*\le70/k$; (b) $\lVert x_k-x^*\rVert^2\le20(4/7)^k$; (c) $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le C/K$; (d) $\mathbb E(\theta_k-1)^2\le0{,}9^k+0{,}267$.
+   với $x_k$ là GD bước $\tfrac17$ trên Ví dụ C ở (a), (b): (a) $f(x_k)-f^*\le70/k$; (b) $\lVert x_k-x^*\rVert^2\le20(4/7)^k$; (c) $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le C/K$ với hằng số $C>0$; (d) $\mathbb E(\theta_k-1)^2\le0{,}9^k+0{,}267$, với $\theta_k$ là SGD trên Ví dụ A.
 :::
 
 ::: hint Gợi ý Bài 1
@@ -34,11 +34,11 @@ $$
 $$
 
 3. (a) Hội tụ theo giá trị, dưới tuyến tính $O(1/k)$. Dưới H3 (và H4), BĐ3 cho $d_k^2\le\tfrac2\mu e_k\le\tfrac2\mu\cdot\tfrac{70}k$.
-(b) Hội tụ theo dãy lặp, tuyến tính hệ số $\tfrac47$. Dưới H2, BĐ1 tại $x^*$ cho $e_k\le\tfrac L2d_k^2\le\tfrac L2\cdot20(\tfrac47)^k$.
-(c) Hội tụ tới điểm dừng, đo bằng giá trị nhỏ nhất trên $K$ bước đầu. Dưới H3, BĐ3 cho $e\le\tfrac1{2\mu}\lVert\nabla f\rVert^2$ tại bước đạt giá trị nhỏ nhất.
-(d) Hội tụ theo kỳ vọng của bình phương khoảng cách, với phần nhiễu $0{,}267$ không giảm theo $k$; đây là cận tuyến tính tới sàn nhiễu. Markov (BĐ6) chuyển nó thành cận xác suất.
+(b) Hội tụ theo dãy lặp, tuyến tính hệ số $\tfrac47$ cho $d_k^2$. Dưới H2, BĐ1 tại $x^*$ cho $e_k\le\tfrac L2d_k^2\le\tfrac L2\cdot20(\tfrac47)^k$.
+(c) Hội tụ tới điểm dừng, đo bằng giá trị nhỏ nhất trên $K$ bước đầu, tốc độ $O(1/K)$. Dưới H3, BĐ3 cho $e_k\le\tfrac1{2\mu}\lVert\nabla f(x_k)\rVert^2$ với mọi $k$, nên $\min_{k<K}e_k\le\tfrac{C}{2\mu K}$.
+(d) Hội tụ theo kỳ vọng của bình phương khoảng cách, với phần nhiễu $0{,}267$ không giảm theo $k$: phần $0{,}9^k$ giảm tuyến tính, phần còn lại thì không. Dưới H2, BĐ1 cho $\mathbb E\,e_k\le\tfrac L2\mathbb E\,d_k^2$; Markov (BĐ6) chuyển cận kỳ vọng thành cận xác suất.
 
-Trong ghi chú, (a), (b) là T1 và T2a trên Ví dụ C; (c) là dạng của T7; (d) là T5 trên Ví dụ A.
+Theo các phần C, E, F của ghi chú bài giảng: (a), (b) là T1, T2a trên Ví dụ C; (c) là dạng của T7; (d) là T5 trên Ví dụ A.
 :::
 
 ## Bài 2. Quay lui, co và ngưỡng bước
