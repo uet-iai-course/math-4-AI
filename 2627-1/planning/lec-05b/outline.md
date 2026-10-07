@@ -367,7 +367,7 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** Tổng hợp BĐ1–BĐ4; không có kết quả mới.
 - **Kết nối:** Nhận BĐ1–BĐ4; C dùng mũi tên để chuyển cận $e_k$ thành cận $d_k$ và ngược lại. Hai nút trung bình lặp và xác suất được thêm trong ghi chú D05, ghi chú E11 và dòng gom ở G01.
 - **Nguồn:** BV (9.8)–(9.14).
-- **Ghi chú soạn:** Bảng "đo được trong thực hành" đặt trong ghi chú diễn giả. Phản ví dụ VD-D để dành cho F06. **Bản sửa 2026-10-08** (R34): "ba đại lượng chặn lẫn nhau, sai khác hằng số".
+- **Ghi chú soạn:** Bảng "đo được trong thực hành" đặt trong ghi chú diễn giả. Phản ví dụ VD-D để dành cho F06. **Bản sửa 2026-10-08** (R34): "ba đại lượng chặn lẫn nhau, sai khác hằng số". **Rà từng trang 2026-10-08:** "Dưới H2, H3, H4"; chuỗi kẹp có nhãn BĐ3, BĐ3, BĐ2, BĐ1 trên từng dấu $\le$; nhãn mũi tên trong hình thêm tên bổ đề (BĐ1, H2), (BĐ2, H2), (BĐ3, H3); ba phản ví dụ tự chứa ($\phi(s)=\log(1+e^{-s})$ với GD bước 4; $f(x)=x_1^2$; $f(x)=x^4$, $x^*=0$); ghi chú nêu khớp nhãn chuỗi–hình, lý do $x^4$ thiếu H3, khả năng đo, hai nút thêm sau.
 
 #### B07 — Bất đẳng thức cầu nối trên hai ví dụ
 

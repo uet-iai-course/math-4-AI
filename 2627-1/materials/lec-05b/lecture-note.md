@@ -259,20 +259,20 @@ $\nabla f(x_0)^T(x_0-x^*)=6\cdot2+28\cdot4=124\ge62=e_0$. BĐ4 cho $d_1^2=20-\tf
 BĐ1 tại $x^*$ (với $\nabla f(x^*)=0$) cho $e\le\tfrac L2d^2$. Ghép với BĐ2, BĐ3: dưới H2, H3 và H4, với mọi $x$,
 
 $$
-\frac\mu2d^2\le e\le\frac1{2\mu}\lVert\nabla f(x)\rVert^2\le\frac L\mu\,e\le\frac{L^2}{2\mu}d^2.
+\frac\mu2d^2\overset{\text{BĐ3}}{\le}e\overset{\text{BĐ3}}{\le}\frac1{2\mu}\lVert\nabla f(x)\rVert^2\overset{\text{BĐ2}}{\le}\frac L\mu\,e\overset{\text{BĐ1}}{\le}\frac{L^2}{2\mu}d^2.
 $$
 
 Ba đại lượng $d^2$, $e$, $\lVert\nabla f\rVert^2$ vì vậy chặn lẫn nhau, sai khác hằng số. Bỏ một giả thiết thì có phản ví dụ:
 
 | Giả thiết thiếu | Phản ví dụ | Mũi tên mất |
 |---|---|---|
-| H4 | hàm logistic: $e_k\to0$ trong khi $s_k\to\infty$ | $e\Rightarrow d$ |
+| H4 | $\phi(s)=\log(1+e^{-s})$, GD bước $4$: $\phi(s_k)\to0$ trong khi $s_k\to\infty$ | $e\Rightarrow d$ |
 | H3 | $x_1^2$ trên $\mathbb R^2$: nghiệm không duy nhất | $e\Rightarrow d$ |
-| H3 | $x^4$ tại $x=0{,}1$: $\lvert f'(x)\rvert=0{,}004$ trong khi $d=0{,}1$ | $\lVert\nabla f\rVert\Rightarrow d$ |
+| H3 | $f(x)=x^4$, $x^*=0$, tại $x=0{,}1$: $\lvert f'(x)\rvert=0{,}004$ trong khi $d=0{,}1$ | $\lVert\nabla f\rVert\Rightarrow d$ |
 
-![Bản đồ ba dạng hội tụ: mũi tên giữa khoảng cách, sai số giá trị và chuẩn gradient, mỗi mũi tên ghi bất đẳng thức và giả thiết H2 hoặc H3.](img/lec-05b/convergence-map.svg)
+![Bản đồ ba dạng hội tụ: mũi tên giữa khoảng cách, sai số giá trị và chuẩn gradient, mỗi mũi tên ghi bất đẳng thức, bổ đề (BĐ1, BĐ2, BĐ3) và giả thiết H2 hoặc H3.](img/lec-05b/convergence-map.svg)
 
-Một mũi tên từ A sang B đọc là: mọi cận cho A sinh ra một cận cho B. Ba nút khác nhau về khả năng đo. Tính $d_k$ cần $x^*$; tính $e_k$ cần $f^*$ hoặc một cận đối ngẫu (Bài 03); $\lVert\nabla f(x_k)\rVert$ tính được tại mỗi bước. Vì vậy một cận cho $d_k$ hoặc $e_k$ thường chỉ kiểm được gián tiếp, qua chuẩn gradient và các mũi tên của bản đồ. Phần D thêm nút trung bình lặp (Jensen), phần E thêm nút xác suất (Markov).
+Một mũi tên từ A sang B đọc là: mọi cận cho A sinh ra một cận cho B. Với $x^4$, tỉ số $d/\lvert f'(x)\rvert=1/(4x^2)\to\infty$ khi $x\to0$, nên không có hằng số $c$ với $d\le c\lvert f'(x)\rvert$, và mũi tên từ $\lVert\nabla f\rVert$ sang $d$ mất. Ba nút khác nhau về khả năng đo. Tính $d_k$ cần $x^*$; tính $e_k$ cần $f^*$ hoặc một cận đối ngẫu (Bài 03); $\lVert\nabla f(x_k)\rVert$ tính được tại mỗi bước. Vì vậy một cận cho $d_k$ hoặc $e_k$ thường chỉ kiểm được gián tiếp, qua chuẩn gradient và các mũi tên của bản đồ. Phần D thêm nút trung bình lặp (Jensen), phần E thêm nút xác suất (Markov).
 
 Bài tập 1 kiểm BĐ2, chuỗi bất đẳng thức của bản đồ và phân loại bốn khẳng định hội tụ.
 
