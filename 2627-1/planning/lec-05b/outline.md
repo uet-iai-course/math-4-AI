@@ -312,7 +312,7 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** $\phi'(s)=-\frac1{1+e^s}<0$, $\phi''(s)=\frac{e^s}{(1+e^s)^2}\le\frac14$.
 - **Kết nối:** Nhận dạng $e_k$ và $d_k$ của A04. Câu nối sang B02: "Cận trên bậc hai và bổ đề giảm chặn $e$ và $\lVert\nabla f\rVert$ từ trên bằng $d$ và $e$; lồi mạnh cho chiều ngược lại."
 - **Nguồn:** Bài 04, mục gradient Lipschitz (hình mất mát logistic); tính trực tiếp.
-- **Ghi chú soạn:** Lập luận $s_k\to\infty$ trong ghi chú: $s_{k+1}=s_k+\frac4{1+e^{s_k}}>s_k$; nếu dãy bị chặn thì hội tụ tới $\bar s$ với $\phi'(\bar s)=0$, vô lý. Đây là mất mát logistic của phân loại tách được. **Bản sửa 2026-10-08** (R30, R17): panel nêu H2 và H3; ghi chú thêm câu nối A→B.
+- **Ghi chú soạn:** Lập luận $s_k\to\infty$ trong ghi chú: $s_{k+1}=s_k+\frac4{1+e^{s_k}}>s_k$; nếu dãy bị chặn thì hội tụ tới $\bar s$ với $\phi'(\bar s)=0$, vô lý. Đây là mất mát logistic của phân loại tách được. **Bản sửa 2026-10-08** (R30, R17): panel nêu H2 và H3; ghi chú thêm câu nối A→B. **Rà từng trang 2026-10-08:** hình vẽ lại thêm $s_{10}\approx3{,}8$, $s_{100}\approx6{,}0$, $s_{1000}\approx8{,}3$ và nhãn "$s_k\approx\ln(4k)\to\infty$" để thấy điểm lặp chạy ra xa; hai ví dụ có nhãn (mất mát logistic; nghiệm không duy nhất); "Ký hiệu. $f_{\inf}=\inf_xf(x)$ là cận dưới đúng (infimum)"; khung nêu chiều của từng giả thiết (H2: $e_k$ theo $d_k$; H3: chiều ngược lại và nghiệm duy nhất; H4: nghiệm tồn tại). Ghi chú: $s_k\approx\ln(4k)$, GD trên $x_1^2$ tới $(0,b)$, nguồn BV §9.1.2 cho chiều lồi mạnh.
 
 #### B02 — Cận trên bậc hai
 

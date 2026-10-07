@@ -137,12 +137,14 @@ Hai ví dụ cho thấy hội tụ giá trị không tự kéo theo hội tụ d
 ::: example Hàm logistic không đạt cực tiểu
 Cho $\phi(s)=\log(1+e^{-s})$ trên $\mathbb R$. Ta có $\phi'(s)=-1/(1+e^s)<0$ và $\phi''(s)=e^s/(1+e^s)^2\in(0,\tfrac14]$, nên $\phi$ lồi, gradient Lipschitz với $L=\tfrac14$, và $\inf\phi=0$ không đạt. GD bước $1/L=4$ từ $s_0=0$ cho $s_{k+1}=s_k+4/(1+e^{s_k})$, tức $s_1=2$, $s_2\approx2{,}48$, $s_3\approx2{,}79$.
 
-Dãy $(s_k)$ tăng ngặt. Nếu nó bị chặn, nó hội tụ tới $\bar s$ thỏa $\bar s=\bar s+4/(1+e^{\bar s})$, vô lý. Vậy $s_k\to\infty$ và $\phi(s_k)\to0$: giá trị hội tụ về cận dưới đúng trong khi dãy lặp không hội tụ. Đây là mất mát logistic của dữ liệu phân loại tách được.
+Dãy $(s_k)$ tăng ngặt. Nếu nó bị chặn, nó hội tụ tới $\bar s$ thỏa $\bar s=\bar s+4/(1+e^{\bar s})$, vô lý. Vậy $s_k\to\infty$ và $\phi(s_k)\to0$: giá trị hội tụ về cận dưới đúng trong khi dãy lặp không hội tụ. Từ $e^{s_{k+1}}\approx e^{s_k}+4$ suy ra $s_k\approx\ln(4k)$: $s_{10}\approx3{,}8$, $s_{100}\approx6{,}0$, $s_{1000}\approx8{,}3$, còn $\phi(s_{1000})\approx2{,}5\cdot10^{-4}$. Đây là mất mát logistic của dữ liệu phân loại tách được.
 :::
 
-![Đồ thị hàm logistic giảm dần về 0 nhưng không đạt 0; các điểm lặp của hạ gradient dịch dần sang phải.](img/lec-05b/logistic-no-minimizer.svg)
+![Đồ thị hàm logistic giảm dần về 0 nhưng không đạt 0; các điểm lặp s₀, s₁, s₁₀, s₁₀₀, s₁₀₀₀ của hạ gradient dịch dần sang phải, xấp xỉ ln(4k).](img/lec-05b/logistic-no-minimizer.svg)
 
-Với $f(x)=x_1^2$ trên $\mathbb R^2$, mọi điểm $(0,c)$ là điểm cực tiểu; khẳng định "$x_k\to x^*$" phụ thuộc cách chọn $x^*$. Nối $e_k$ với $d_k$ vì vậy cần nghiệm tồn tại (H4), duy nhất, và độ cong bị chặn trên (H2) và dưới (H3). Ký hiệu $f_{\inf}$ được dùng cho mọi hàm bị chặn dưới, kể cả khi cận dưới không đạt.
+**Ký hiệu.** $f_{\inf}=\inf_xf(x)$ là cận dưới đúng (infimum) của $f$. Ký hiệu này dùng cho mọi hàm bị chặn dưới, kể cả khi cận dưới không đạt; với $\phi$, $\phi_{\inf}=\inf_s\phi(s)=0$ không đạt.
+
+Với $f(x)=x_1^2$ trên $\mathbb R^2$, mọi điểm $(0,c)$ là điểm cực tiểu; khẳng định “$x_k\to x^*$” phụ thuộc cách chọn $x^*$. GD bước $\eta\in(0,1)$ từ $x_0=(a,b)$ cho $x_k=((1-2\eta)^ka,\,b)\to(0,b)$, nên nghiệm được tới do điểm đầu quyết định. Nối $e_k$ với $d_k$ vì vậy cần nghiệm tồn tại (H4) và độ cong bị chặn: chặn trên (H2) cho cận của $e_k$ theo $d_k$; chặn dưới $\mu>0$ (H3) đủ cho chiều ngược lại và kéo theo nghiệm duy nhất (Boyd và Vandenberghe, §9.1.2).
 
 ### Cận trên bậc hai
 
