@@ -389,11 +389,11 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Vai trò và mục tiêu:** Nhu cầu và ví dụ dẫn nhập của KN3; MT2.
 - **Luận điểm trung tâm:** Định lý $O(1/k)$ của Bài 04 còn ba khoảng trống; lấp chúng cần một khuôn chứng minh dùng lại được khi $g_k$ đổi.
 - **Ý chính:** Ví dụ C trong bảng đầu bài: cận $70/k$ của Bài 04 so với $e_k=6(16/49)^k$. Ba khoảng trống: (1) chưa có cận cho $d_k$ và chưa biết $d_k$ không tăng; (2) chưa có dạng bước $0<\eta\le1/L$, và trên trang Bài 04 chứng minh chỉ ở mức ý chính; (3) chưa chỉ ra giả thiết đạt cực tiểu được dùng ở bước nào, trong khi thiếu nó thì hàm logistic cho $e_k\to0$ mà $x_k\to\infty$.
-- **Ví dụ/hình dự kiến:** Không có bảng mới; dẫn lại bảng của A03.
+- **Ví dụ/hình dự kiến:** `vdc-measures.svg` (dùng lại từ A03) với câu dữ kiện tự chứa.
 - **Hình thức hóa:** GD: $x_{k+1}=x_k-\frac1L\nabla f(x_k)$; giả thiết đạt cực tiểu là H4.
 - **Kết nối:** Nhận BĐ1–BĐ4, bản đồ B06; C02 nêu khuôn.
 - **Nguồn:** Bài 04, định lý $O(1/k)$ và hội tụ tuyến tính; học liệu Bài 04 mục B.
-- **Ghi chú soạn:** Chứng minh đầy đủ của Bài 04 nằm trong học liệu Bài 04 mục B; C03–C04 đưa chứng minh lên trang, thêm $d_k$ và T1', và đánh dấu bước dùng H4. Không đưa cận $62(4/7)^k$ trước C05. Ký hiệu chuyển: Bài 04 $x^k$, $t$, $R$ → $x_k$, $\eta$, $D$ (ghi một lần). **Bản sửa 2026-10-08** (R22, R17, R52): câu đầu có vị ngữ; mục 2 "trang chiếu Bài 04 chỉ nêu ý chính"; câu cuối "Phần này xét … dưới H1, H2 và H4"; ghi chú câu nối B→C.
+- **Ghi chú soạn:** Chứng minh đầy đủ của Bài 04 nằm trong học liệu Bài 04 mục B; C03–C04 đưa chứng minh lên trang, thêm $d_k$ và T1', và đánh dấu bước dùng H4. Không đưa cận $62(4/7)^k$ trước C05. Ký hiệu chuyển: Bài 04 $x^k$, $t$, $R$ → $x_k$, $\eta$, $D$ (ghi một lần). **Bản sửa 2026-10-08** (R22, R17, R52): câu đầu có vị ngữ; mục 2 "trang chiếu Bài 04 chỉ nêu ý chính"; câu cuối "Phần này xét … dưới H1, H2 và H4"; ghi chú câu nối B→C. **Rà từng trang 2026-10-08:** câu mở tham chiếu "bảng đầu bài" thay bằng hình `vdc-measures.svg` (dùng lại từ A03) và một câu tự chứa (hàm, bước, điểm đầu, $e_k=6(16/49)^k$ so với $70/k$); khung ba khoảng trống toàn chiều rộng, mỗi khoảng trống một dòng (mục 3 có công thức $\phi$); ghi chú: câu nối B→C, cách phát biểu BV §9.3.1, số $e_5\approx0{,}022$ so với $14$, ký hiệu chuyển. Tiêu đề giữ.
 
 #### C02 — Khuôn một bước và tổng lồng
 

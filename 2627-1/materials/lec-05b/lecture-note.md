@@ -282,7 +282,7 @@ Với $f(x)=x^4$ trên $\mathbb R$, chỉ ra giả thiết nào trong H2, H3 sai
 
 ## C. Hội tụ của hạ gradient
 
-Phần này xét $x_{k+1}=x_k-\tfrac1L\nabla f(x_k)$ và biến thể bước $\eta\le1/L$, dưới H1, H2 và H4, rồi thêm H3. Ba khoảng trống của định lý $O(1/k)$ ở Bài 04 được lấp ở đây: cận và tính không tăng của $d_k$; dạng bước $0<\eta\le1/L$; chỗ dùng giả thiết đạt cực tiểu. Chứng minh đầy đủ của định lý $O(1/k)$ với bước $1/L$ có trong học liệu Bài 04, mục B; ở đây dùng ký hiệu $x_k$, $\eta$, $D$ thay cho $x^k$, $t$, $R$.
+Phần này xét $x_{k+1}=x_k-\tfrac1L\nabla f(x_k)$ và biến thể bước $\eta\le1/L$, dưới H1, H2, H4, rồi thêm H3. Ba khoảng trống của định lý $O(1/k)$ ở Bài 04 được lấp ở đây: tính không tăng của $d_k$ chưa được phát biểu như một kết luận; định lý chưa được phát biểu cho bước cố định $0<\eta\le1/L$; trường hợp thiếu H4 chưa được xét, trong khi với $\phi(s)=\log(1+e^{-s})$ thì $e_k\to0$, $s_k\to\infty$ và $D$ không xác định. Trên Ví dụ C, cận $70/k$ của định lý đó lớn hơn nhiều so với $e_k=6(16/49)^k$, chẳng hạn $14$ so với $0{,}022$ tại $k=5$. Chứng minh đầy đủ của định lý $O(1/k)$ với bước $1/L$ có trong học liệu Bài 04, mục B; ở đây dùng ký hiệu $x_k$, $\eta$, $D$ thay cho $x^k$, $t$, $R$.
 
 ### Khuôn một bước
 
