@@ -174,6 +174,8 @@ Khi H2 và H3 cùng đúng, BĐ1 và H3 cho $\tfrac\mu2\lVert y-x\rVert^2\le f(y
 
 ### Bổ đề giảm và cận chuẩn gradient
 
+Thế $y=x-\eta\nabla f(x)$ vào BĐ1 được bổ đề giảm; lấy $\eta=1/L$ và dùng $f_{\inf}\le f(y)$ được BĐ2.
+
 **Bổ đề giảm (descent lemma).** Giả sử H2 và $\eta>0$. Với mọi $x$,
 
 $$
@@ -197,11 +199,11 @@ $$
 f_{\inf}\le f\Bigl(x-\frac1L\nabla f(x)\Bigr)\le f(x)-\frac1{2L}\lVert\nabla f(x)\rVert^2.
 $$
 
-Chứng minh chỉ cần $f_{\inf}$ là cận dưới, không cần cận dưới đạt; vì vậy bổ đề đúng cả cho hàm logistic.
+Chứng minh chỉ cần $f_{\inf}$ là cận dưới, không cần cận dưới đạt; vì vậy bổ đề đúng cả cho hàm logistic. Cách nhìn khác, theo Boyd và Vandenberghe (9.14): vế phải BĐ1 đạt cực tiểu theo $y$ tại $y=x-\tfrac1L\nabla f(x)$ với giá trị $f(x)-\tfrac1{2L}\lVert\nabla f(x)\rVert^2$, còn vế trái không nhỏ hơn $f_{\inf}$.
 :::
 
 ::: example Ví dụ C tại điểm đầu
-Tại $x_0=(2,4)$: $\nabla f(x_0)=(6,28)$, $\lVert\nabla f(x_0)\rVert^2=820\le2\cdot7\cdot62=868$. Bổ đề giảm với bước $\tfrac17$ cho $f(x_1)\le62-\tfrac{820}{14}=\tfrac{24}7\approx3{,}43$; giá trị thật là $f(x_1)=f(\tfrac87,0)=\tfrac{96}{49}\approx1{,}96$.
+Tại $x_0=(2,4)$: $f(x_0)=62$, $f_{\inf}=0$, $\nabla f(x_0)=(6,28)$, $\lVert\nabla f(x_0)\rVert^2=820\le2L\bigl(f(x_0)-f_{\inf}\bigr)=2\cdot7\cdot62=868$. Bổ đề giảm với bước $\tfrac17$ cho $f(x_1)\le62-\tfrac{820}{14}=\tfrac{24}7\approx3{,}43$; giá trị thật là $f(x_1)=f(\tfrac87,0)=\tfrac{96}{49}\approx1{,}96$.
 :::
 
 ### Cận của hàm lồi mạnh

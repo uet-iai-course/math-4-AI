@@ -334,7 +334,7 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** Thế $y=x-\eta\nabla f(x)$ vào BĐ1. BĐ2: $f_{\inf}\le f(x-\frac1L\nabla f(x))\le f(x)-\frac1{2L}\lVert\nabla f(x)\rVert^2$.
 - **Kết nối:** Nhận BĐ1; dùng ở C04, C06, E07, F02, F03, F05. B04 thêm H3 để có chiều ngược lại.
 - **Nguồn:** BV §9.1.2, (9.14); Bài 04, bổ đề giảm.
-- **Ghi chú soạn:** Ngưỡng $2/L$ là điều kiện để bổ đề cho giảm; phân kỳ khi $\eta>2/L$ được kiểm trên hàm bậc hai ở bài tập C09 câu (3). BĐ2 không cần lồi.
+- **Ghi chú soạn:** Ngưỡng $2/L$ là điều kiện để bổ đề cho giảm; phân kỳ khi $\eta>2/L$ được kiểm trên hàm bậc hai ở bài tập C09 câu (3). BĐ2 không cần lồi. **Rà từng trang 2026-10-08:** câu mở "Thế $y=x-\eta\nabla f(x)$ vào BĐ1 được bổ đề giảm; lấy $\eta=1/L$ và dùng $f_{\inf}\le f(y)$ được BĐ2"; bổ đề giảm hiển thị hai dòng (dạng $\eta$ tổng quát; dòng $\eta\le1/L$); BĐ2 nhãn "(chặn chuẩn gradient)", nêu H0, H2; khối Ví dụ C tự chứa ($f$, $L=7$, $x_0$); ghi chú: điều kiện $2/L$, BĐ2 là cực tiểu vế phải BĐ1 theo $y$ (BV (9.14)), mũi tên $e\to\lVert\nabla f\rVert$ gọi theo tên sơ đồ, không theo trang. Tiêu đề giữ.
 
 #### B04 — Cận của hàm lồi mạnh
 
