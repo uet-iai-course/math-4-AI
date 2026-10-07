@@ -4,12 +4,12 @@ Quy ước thuật ngữ: chuẩn đầu ra bài học (LLO), chuẩn đầu ra 
 
 ## Phạm vi và quyết định thiết kế
 
-Bản đầu ngày 2026-10-07; bản sửa cùng ngày theo cổng kiểm định storyboard (SB01–SB15) và tái kiểm (SB16–SB29), xem [review-log.md](review-log.md). Bài gồm **51 trang thuộc 7 phần** (đúng 7 `<section>` ngoài): A5, B7, C9, D7, E12, F7, G4. Tệp liên quan: [storyboard.md](storyboard.md), [review-log.md](review-log.md).
+Bản đầu ngày 2026-10-07; bản sửa cùng ngày theo cổng kiểm định storyboard (SB01–SB15) và tái kiểm (SB16–SB29); bản sửa ngày 2026-10-08 theo năm vai rà soát (R01–R54), xem [review-log.md](review-log.md). Deck `lecture-05b-hoi-tu-ha-gradient-va-sgd.html` đã triển khai cùng ngày đủ 51 trang theo dàn bài này; các sai khác bố cục khi triển khai được ghi tại trang tương ứng (B02, C02, G01, G02) và trong review-log. Bài gồm **51 trang thuộc 7 phần** (đúng 7 `<section>` ngoài): A5, B7, C9, D7, E12, F7, G4. Tệp liên quan: [storyboard.md](storyboard.md), [review-log.md](review-log.md).
 
 - **Vị trí.** Bài bổ trợ đặt sau Bài 05, trước hoặc song song Bài 06; dùng được làm tài liệu cho Buổi 15 (ôn tập). **Bài không có buổi riêng trong đề cương.** Đề cương DOCX gắn LLO6, LLO8 với Buổi 04 và LLO11, LLO12 với Buổi 05; bài này đào sâu phần phân tích hội tụ của các chuẩn đầu ra đó.
 - **Thời lượng.** Không gán thời lượng cho bài, phần hay trang, vì đề cương không có buổi tương ứng. Không quy đổi sang phút.
 - **Tệp.** Deck `2627-1/lecture-05b-hoi-tu-ha-gradient-va-sgd.html`; `planning/lec-05b/`, `materials/lec-05b/`, `img/lec-05b/`. Nhãn trong `index.html`: "Bài 05b (bổ trợ)". Trên mặt trang chỉ ghi "Bài 05b".
-- **Luận đề.** Mọi bảo đảm được chứng minh trong bài đi ra từ một khuôn: bất đẳng thức một bước → đệ quy → tổng lồng hoặc giải đệ quy → chọn bước. Đổi giả thiết chỉ đổi bất đẳng thức một bước.
+- **Luận đề.** Mọi bảo đảm được chứng minh trong bài đi qua khuôn một bước: bất đẳng thức một bước → đệ quy → tổng lồng, co hoặc giải đệ quy → chọn bước. Khi giả thiết đổi, bất đẳng thức một bước đổi, và dạng của nó quyết định cách giải (tổng lồng, co hoặc giải đệ quy). Câu này trùng nguyên văn với A02 (R82).
 - **Mức trình bày.** Chứng minh đầy đủ trên trang: T1, T2a, T2b, T3, T4, T5, T7, T8. Chỉ phát biểu: T2', T5-pha, T6, T9. T1' suy từ chứng minh T1 trong ghi chú. Chứng minh quy nạp của T6 nằm trong học liệu và bài tập (quyết định người dùng số 3).
 - **Phần D** được giữ, 7 trang (quyết định người dùng số 4).
 - **Đổi tên nhãn so với kế hoạch** để không trùng mã trang: bổ đề B1–B6 gọi là **BĐ1–BĐ6**; khuôn lớn D1–D8 gọi là **KH1–KH8**.
@@ -28,7 +28,7 @@ Trong tài liệu lập kế hoạch, VD-A…VD-D là tên ngắn của "Ví d�
 | MT1 | Phân biệt bốn dạng hội tụ ($d_k$, $e_k$, chuẩn gradient, kỳ vọng) và ba tốc độ; suy quan hệ giữa các dạng từ giả thiết $L$-trơn, $\mu$-lồi mạnh, lồi | LLO6 → CLO1 |
 | MT2 | Chứng minh lại các định lý hội tụ của GD và phương pháp dưới gradient theo khuôn một bước; chỉ ra chỗ dùng từng giả thiết | LLO6 → CLO1 |
 | MT3 | Chọn bước, tính cận và số bước đạt sai số $\varepsilon$ cho một ví dụ cụ thể; đối chiếu cận với giá trị thật | LLO8 → CLO2 |
-| MT4 | Phát biểu và áp dụng định lý hội tụ của SGD cho hàm lồi, lồi mạnh và không lồi; giải thích cận dừng và lịch bước của Bài 05; nhận biết giới hạn của bảo đảm cho mục tiêu không lồi | LLO12 → CLO2; LLO11 → CLO1 (phần không lồi) |
+| MT4 | Phát biểu và áp dụng định lý hội tụ của SGD cho hàm lồi, lồi mạnh và không lồi; giải thích sàn nhiễu và lịch bước của Bài 05; nhận biết giới hạn của bảo đảm cho mục tiêu không lồi | LLO12 → CLO2; LLO11 → CLO1 (phần không lồi) |
 
 Tiên quyết: Bài 00 (kỳ vọng, phương sai, độc lập với biến rời rạc), Bài 01 (lồi bậc nhất), Bài 04 (GD, tiêu chí dừng, cụm hội tụ RG12–RG18), Bài 05 ($J$, gradient nhóm, $\Sigma/b$, lịch bước, điểm dừng không lồi).
 
@@ -40,7 +40,7 @@ Ngoài phạm vi: momentum, Nesterov, AdaGrad, RMSProp, Adam; chuẩn hóa theo 
 |---|---|---|---|
 | DC | Đề cương UET.AI2012, DOCX chính thức trong `sources/` | LLO6, LLO8 (Buổi 04), LLO11, LLO12 (Buổi 05), Buổi 15 ôn tập | Chuẩn đầu ra, phạm vi; xác nhận không có buổi riêng |
 | BV | Boyd, Vandenberghe, *Convex Optimization*, 2004, `sources/bv_cvxbook.pdf` | §9.1.2, (9.8)–(9.14); §9.3, §9.3.1 tr. 466–468 | BĐ1–BĐ3, T1, T2a, T2b, T2' |
-| SNW | Sra, Nowozin, Wright (biên tập), *Optimization for Machine Learning*, MIT Press, 2011 | Ch. 4 (Bertsekas), §4.1.2, Mệnh đề 4.5, 4.8; ch. 5 (Juditsky, Nemirovski), §5.5, Mệnh đề 5.5; ch. 13 (Bottou, Bousquet), §13.3 | T3, T4, Robbins–Monro, hội tụ gần như chắc chắn (chỉ nêu), chi phí GD so với SGD |
+| SNW | Sra, Nowozin, Wright (biên tập), *Optimization for Machine Learning*, MIT Press, 2011 | Ch. 4 (Bertsekas), §4.1.2, Mệnh đề 4.8; ch. 5 (Juditsky, Nemirovski), §5.2 Mệnh đề 5.1, (5.8); §5.4 Mệnh đề 5.4; §5.5 Mệnh đề 5.5; §5.8 ghi chú 4; ch. 13 (Bottou, Bousquet), §13.3 | T3 và D03–D06 (Mệnh đề 5.1); T4 (Mệnh đề 5.5); lịch theo pha (Mệnh đề 5.4, sơ đồ khởi động lại); lưu ý chọn $\mu$ cho T6 (§5.8); hội tụ gần như chắc chắn (Mệnh đề 4.8, chỉ nêu); chi phí GD so với SGD (ch. 13). T1, T1', T2a, T5, T6, T7, T8, T9 suy trực tiếp (R09); T2b, T2' theo BV §9.3.1 |
 | B04 | Bài 04: RevealJS, `planning/lec-04/outline.md` RG12–RG18, `materials/lec-04/lecture-note.md` mục B | Định lý $O(1/k)$, tuyến tính, quay lui; VD1 | Kết quả được chứng minh lại; VD-C |
 | B05 | Bài 05: A03, A06, B03–B07, E03 | VD1, hàm $r(u)=(u^2-1)^2$, gradient nhóm, $\Sigma/b$, lịch bước | VD-A; VD-D; H6; nhu cầu của phần E |
 | B06 | Bài 06: E06 (trung bình Polyak) | Chỉ là liên kết về sau | Bài 06 dùng lại T4 và Jensen; Bài 05b không lấy dữ kiện từ Bài 06 |
@@ -67,7 +67,7 @@ Không dẫn Boyd EE364b: tài liệu này không có trong `sources/`; nguồn 
 | $\mathcal F_k$ | Thông tin của $k$ nhóm đầu $I_0,\dots,I_{k-1}$ | Bài 05 "độc lập với lịch sử" | E02 |
 | $\sigma^2$ | Chặn phương sai; với gradient nhóm của Bài 05, $\sigma^2=\operatorname{tr}\Sigma/b$ | Bài 05 $\Sigma/b$ | E03 |
 | $a_k=\mathbb E d_k^2$ | Kỳ vọng bình phương khoảng cách | Chưa có | E05 |
-| $\Delta_0=f(x_0)-f_{\inf}$ | Sai số đầu khi không lồi | Chưa có | F02 |
+| $\Delta_0=f(x_0)-f_{\inf}$; $\Delta_k=f(x_k)-f_{\inf}$ | Sai số đầu khi không lồi; sai số theo $f_{\inf}$ (T9) | Chưa có | F02; F06 |
 
 Quy tắc chuyển: khi trích Bài 04 hoặc Bài 05, ghi ký hiệu gốc trong ngoặc một lần, ví dụ "$x_k$ (Bài 04 viết $x^k$)", "$\eta$ (Bài 04 viết $t$)", "$D$ (Bài 04 viết $R$)", "$K$ (Bài 05 viết $T$)". A05 và ghi chú E01 ghi: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu". Phần E viết "tập dữ liệu" bằng chữ, không dùng ký hiệu. Ở E–F, ví dụ một chiều giữ $\theta_k$ cho dãy lặp để khớp VD1 Bài 05; E01 nêu $\theta_k$ là trường hợp $n=1$ của $x_k$. Không dùng $R$ cho khoảng cách đầu vì Bài 05 dùng $R$ cho rủi ro kỳ vọng.
 
@@ -86,7 +86,7 @@ Có mười nhãn: H0–H7 cùng hai biến thể H6a, H6b. A05 nêu năm nhãn 
 | H6 | $\mathbb E[g_k\mid\mathcal F_k]=\nabla f(x_k)$ (hoặc $\in\partial f(x_k)$) | E03 |
 | H6a | $\mathbb E[\lVert g_k\rVert^2\mid\mathcal F_k]\le G^2$ | E03 |
 | H6b | $\mathbb E[\lVert g_k-\nabla f(x_k)\rVert^2\mid\mathcal F_k]\le\sigma^2$ | E03 |
-| H7 (PL) | $\frac12\lVert\nabla f(x)\rVert^2\ge\mu(f(x)-f^*)$ với mọi $x$ | F06 |
+| H7 (PL) | $\frac12\lVert\nabla f(x)\rVert^2\ge\mu(f(x)-f_{\inf})$ với mọi $x$ (bản sửa R47 dùng $f_{\inf}$) | F06 |
 
 Dưới H3, $\nabla f$ không bị chặn trên $\mathbb R^n$, nên H5 và H6a chỉ hợp lý trên một vùng chứa dãy lặp. Mọi trang dùng H6a cùng H3 phải nói rõ điều này.
 
@@ -100,16 +100,16 @@ Dưới H3, $\nabla f$ không bị chặn trên $\mathbb R^n$, nên H5 và H6a c
 
 ### Sợi chỉ chứng minh
 
-Sáu bậc; G02 trình bày lại bảng này trên mặt trang.
+Sáu bậc; G02 trình bày lại bảng này trên mặt trang thành tám dòng (T6, T9 tách riêng). Cột giả thiết đổi và cột cách giải đồng bộ với G02 (R77).
 
 | Bậc | Giả thiết đổi | Bất đẳng thức một bước | Cách giải | Kết quả | Giới hạn tạo nhu cầu |
 |---|---|---|---|---|---|
-| 1. GD lồi trơn (T1, T1') | H1, H2, H4; $\eta=1/L$ | $e_{k+1}\le\frac L2(d_k^2-d_{k+1}^2)$ | Tổng lồng + đơn điệu | $e_k\le\frac{LD^2}{2k}$ | Không dùng độ cong dưới; phải đúng cả cho $x_1^2$ |
-| 2. GD lồi mạnh (T2a, T2b, T2') | Thêm H3 | $d_{k+1}^2\le(1-\frac\mu L)d_k^2$; $e_{k+1}\le(1-\frac\mu L)e_k$ | Lặp | Tuyến tính | Cần $L$; trị tuyệt đối, hinge không có $L$ |
-| 3. Dưới gradient (T3) | Bỏ H2, H3; thêm H5; bước $\eta_k$ | $d_{k+1}^2\le d_k^2-2\eta_ke_k+\eta_k^2G^2$ | Tổng lồng có trọng số | $\frac{D^2+G^2\sum\eta_k^2}{2\sum\eta_k}$ | Cần dưới gradient của toàn bộ dữ liệu |
-| 4. SGD lồi (T4) | H5 → H6 + H6a | Cùng dòng dưới $\mathbb E[\cdot\mid\mathcal F_k]$ | Như bậc 3 | Cùng cận cho $\mathbb Ef(\bar x_K)-f^*$ | Chỉ trung bình lặp; $1/\sqrt K$ chậm; không giải thích mức dừng của điểm cuối |
-| 5. SGD lồi mạnh (T5, T5-pha, T6) | Thêm H2, H3; H6b | $a_{k+1}\le(1-\eta\mu)a_k+\eta^2\sigma^2$ | KT14 / KT15 | $(1-\eta\mu)^kD^2+\frac{\eta\sigma^2}\mu$; lịch chia đôi hoặc $\frac1{\mu(k+1)}$ | Cần lồi và $x^*$ |
-| 6. SGD không lồi (T7, T8, T9) | Bỏ H1, H3 | $\mathbb Ef(x_{k+1})\le\mathbb Ef(x_k)-\frac\eta2\mathbb E\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2$ | Tổng lồng hàm thế $f-f_{\inf}$ | $\frac{2\Delta_0}{\eta K}+L\eta\sigma^2$ | Chỉ điểm dừng; PL khôi phục tuyến tính |
+| 1. GD lồi trơn (T1, T1') | H1, H2, H4; $\eta\le1/L$ | $e_{k+1}\le\frac1{2\eta}(d_k^2-d_{k+1}^2)$ (R84) | Tổng lồng (kèm tính đơn điệu của $e_k$) | $e_k\le\frac{LD^2}{2k}$ | Không dùng độ cong dưới; phải đúng cả cho $x_1^2$ |
+| 2. GD lồi mạnh (T2a, T2b, T2') | Thêm H3 | $d_{k+1}^2\le(1-\frac\mu L)d_k^2$; $e_{k+1}\le(1-\frac\mu L)e_k$ | Co | Tuyến tính | Cần $L$; trị tuyệt đối, hinge không có $L$ |
+| 3. Dưới gradient (T3) | Bỏ H2, H3; thêm H5; bước $\eta_k$ | $d_{k+1}^2\le d_k^2-2\eta_ke_k+\eta_k^2G^2$ | Tổng lồng (có trọng số) | $\frac{D^2+G^2\sum\eta_k^2}{2\sum\eta_k}$ | Cần dưới gradient của toàn bộ dữ liệu |
+| 4. SGD lồi (T4) | H5 → H6 + H6a | Cùng dòng dưới $\mathbb E[\cdot\mid\mathcal F_k]$ | Tổng lồng | Cùng cận cho $\mathbb Ef(\bar x_K)-f^*$ | Chỉ trung bình lặp; $1/\sqrt K$ chậm; không giải thích mức dừng của điểm cuối |
+| 5. SGD lồi mạnh (T5, T5-pha, T6) | Thêm H2, H3; H6b | $a_{k+1}\le(1-\eta\mu)a_k+\eta^2\sigma^2$ | Giải đệ quy (T6 bằng quy nạp $C/k$) | $(1-\eta\mu)^kD^2+\frac{\eta\sigma^2}\mu$; lịch chia đôi hoặc $\frac1{\mu(k+1)}$ | Cần lồi và $x^*$ |
+| 6. SGD không lồi (T7, T8, T9) | Bỏ H1, H3, H4; thêm H0 | $\mathbb Ef(x_{k+1})\le\mathbb Ef(x_k)-\frac\eta2\mathbb E\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2$ | Tổng lồng hàm thế $f-f_{\inf}$ (T7, T8); giải đệ quy (T9) | $\frac{2\Delta_0}{\eta K}+L\eta\sigma^2$ | Chỉ điểm dừng; PL khôi phục tuyến tính |
 
 ## Ví dụ dẫn
 
@@ -117,7 +117,7 @@ Mọi ví dụ tự chứa; số đã kiểm trong kế hoạch, kiểm lại kh
 
 **VD-A** (từ VD1 Bài 05, ba quan sát $-1,1,3$): $J(\theta)=\frac12(\theta-1)^2+\frac43$, $\theta^*=1$, $f^*=\frac43$, $\mu=L=1$; $g=\theta-y_I$, $\sigma^2=\frac8{3b}$ không phụ thuộc $\theta$.
 - GD $\eta=1$: một bước tới nghiệm. GD $\eta=0{,}1$: $d_k=0{,}9^kd_0$.
-- SGD $\eta=0{,}1$, $b=1$, $\theta_0=0$ ($D=1$): $a_{k+1}=0{,}81a_k+\frac8{300}$ chính xác; $a_1\approx0{,}837$, $a_2\approx0{,}704$; giới hạn $\frac{8\eta}{3(2-\eta)}=\frac8{57}\approx0{,}140$; cận T5 $0{,}9^k+0{,}2667$. Tại $k=20$: thật $\approx0{,}153$, cận $\approx0{,}388$. Với $b=4$: giới hạn thật $\approx0{,}035$, cận dừng $0{,}0667$.
+- SGD $\eta=0{,}1$, $b=1$, $\theta_0=0$ ($D=1$): $a_{k+1}=0{,}81a_k+\frac8{300}$ chính xác; $a_1\approx0{,}837$, $a_2\approx0{,}704$; giới hạn $\frac{8\eta}{3(2-\eta)}=\frac8{57}\approx0{,}140$; cận T5 $0{,}9^k+0{,}2667$. Tại $k=20$: thật $\approx0{,}153$, cận $\approx0{,}388$. Với $b=4$: giới hạn thật $\approx0{,}035$, sàn nhiễu $0{,}0667$.
 - SGD $\eta_k=\frac1{k+1}$: $\theta_k=\frac1k\sum_{j<k}y_{I_j}$, $a_k=\frac8{3k}$ chính xác. So với giá trị giới hạn $8/57\approx0{,}1404$ của bước hằng $0{,}1$, lịch giảm nhỏ hơn từ $k\ge20$ (bằng nhau tại $k=19$); so với quỹ đạo thật từ $\theta_0=0$, nhỏ hơn từ $k\ge16$. Đề bài tập nói rõ so với giá trị nào.
 - Giá trị dừng thật $\frac{\eta\sigma^2}{\mu(2-\eta\mu)}\approx\frac{\eta\sigma^2}{2\mu}$ khác hằng số định lý $\frac{\eta\sigma^2}\mu$; E08 ghi cả hai.
 - VD-A thỏa PL với $\mu=1$ (dấu bằng).
@@ -138,10 +138,10 @@ Mọi ví dụ tự chứa; số đã kiểm trong kế hoạch, kiểm lại kh
 | A. Các dạng hội tụ của một dãy lặp | Đặt vấn đề; phân biệt $d_k$, $e_k$, chuẩn gradient, kỳ vọng; nêu luận đề; chốt ký hiệu và H0–H4 | Định lý của Bài 04; dao động SGD ở Bài 05; VD-A, VD-C | Định nghĩa bốn dạng, ba tốc độ; ký hiệu; H0–H4 | A01–A05 (5) |
 | B. Bất đẳng thức cầu nối giữa các dạng hội tụ | Bộ công cụ dùng chung; mũi tên suy ra giữa ba dạng tất định; đồng nhất thức một bước | Định nghĩa A; lồi bậc nhất (Bài 01); $L$-trơn, $\mu$-lồi mạnh (Bài 04) | BĐ1–BĐ4; bản đồ ba dạng có mũi tên | B01–B07 (7) |
 | C. Hội tụ của hạ gradient | Chứng minh đầy đủ hai định lý Bài 04 mới phác thảo; thêm dạng dãy lặp; lập khuôn lần đầu | BĐ1–BĐ4; GD và VD1 Bài 04 | Khuôn "một bước → tổng lồng" và "một bước → co"; T1, T1', T2a, T2b, T2' | C01–C09 (9) |
-| D. Phương pháp dưới gradient và trung bình lặp | Bỏ tính trơn; bước biến; lặp tốt nhất và trung bình lặp; Jensen; bước tối ưu; Robbins–Monro | BĐ4; lồi bậc nhất; giới hạn của C | T3, BĐ5 và cách chọn bước; khuôn bước biến dùng ở E | D01–D07 (7) |
-| E. SGD lồi và lồi mạnh theo kỳ vọng | Gradient nhóm; $\mathcal F_k$, tính chất tháp; ba định lý SGD; cận dừng và lịch bước của Bài 05; Markov | T3; Bài 05 (gradient nhóm, lịch bước) | Hội tụ theo kỳ vọng và xác suất; cận dừng $\eta\sigma^2/\mu$; cơ sở cho trung bình Polyak ở Bài 06 | E01–E12 (12) |
-| F. SGD không lồi và tiêu chí chuẩn gradient | Bỏ tính lồi; đo bằng chuẩn gradient; PL khôi phục tuyến tính | BĐ1–BĐ3 với $\eta\le1/L$; KT13; điểm dừng không lồi của Bài 05 | T7, T8, T9; bước $\eta\sim1/\sqrt K$ | F01–F07 (7) |
-| G. Bảng quyết định và giới hạn | Tổng hợp; bảng tra theo mục tiêu; ngoài phạm vi; câu hỏi tự kiểm; bài tập; tài liệu | T1–T9 | Bảng tra cho Bài 06 và Buổi 15 | G01–G04 (4) |
+| D. Dưới gradient và trung bình lặp | Bỏ tính trơn; bước biến; lặp tốt nhất và trung bình lặp; Jensen; bước tối ưu; Robbins–Monro | BĐ4; lồi bậc nhất; giới hạn của C | T3, BĐ5 và cách chọn bước; khuôn bước biến dùng ở E | D01–D07 (7) |
+| E. Hạ gradient ngẫu nhiên cho hàm lồi và lồi mạnh | Gradient nhóm; $\mathcal F_k$, tính chất tháp; ba định lý SGD; sàn nhiễu và lịch bước của Bài 05; Markov | T3; Bài 05 (gradient nhóm, lịch bước) | Hội tụ theo kỳ vọng và xác suất; sàn nhiễu $\eta\sigma^2/\mu$; cơ sở cho trung bình Polyak ở Bài 06 | E01–E12 (12) |
+| F. Mục tiêu không lồi và chuẩn gradient | Bỏ tính lồi; đo bằng chuẩn gradient; PL khôi phục tuyến tính | BĐ1–BĐ3 với $\eta\le1/L$; KT13; điểm dừng không lồi của Bài 05 | T7, T8, T9; bước $\eta\sim1/\sqrt K$ | F01–F07 (7) |
+| G. Bảng tra và giới hạn | Tổng hợp; bảng tra theo mục tiêu; ngoài phạm vi; câu hỏi tự kiểm; bài tập; tài liệu | T1–T9 | Bảng tra cho Bài 06 và Buổi 15 | G01–G04 (4) |
 | **Tổng** | | | | **51** |
 
 Mỗi định lý ở C và E có trang phát biểu và trang chứng minh riêng. Ở D, T3 cũng tách hai trang. Ở F, T7 ngắn nên phát biểu và chứng minh trên cùng một trang; T8 tách phát biểu (kèm hệ quả chọn bước) và chứng minh.
@@ -161,7 +161,7 @@ Mũi tên giữa ba dạng tất định (B02–B05, tổng hợp ở B06): H2 v
 $$\frac\mu2d^2\le e\le\frac1{2\mu}\lVert\nabla f\rVert^2\le\frac L\mu e\le\frac{L^2}{2\mu}d^2.$$
 Phản ví dụ: logistic ($e\to0$, $x_k\to\infty$); $f=x_1^2$ trên $\mathbb R^2$ (nghiệm không duy nhất); $x^4$ (gradient nhỏ không kéo theo gần $x^*$); VD-D ($\theta=0$ là cực đại địa phương, F06). Jensen (BĐ5, D05): $f(\bar x_K)\le\sum\lambda_kf(x_k)$. Ngẫu nhiên: kỳ vọng ⇒ xác suất (BĐ6, E11); gần như chắc chắn chỉ nêu (SNW ch. 4, Mệnh đề 4.8).
 
-Số bước đạt $\varepsilon$ (ghi chú A04, áp dụng ở C07, D06): tuyến tính $k\ge\kappa\ln(e_0/\varepsilon)$; $O(1/k)$: $k\ge LD^2/(2\varepsilon)$; $O(1/\sqrt K)$: $K\ge D^2G^2/\varepsilon^2$; SGD bước hằng: không xuống dưới cận dừng $\eta\sigma^2/\mu$.
+Số bước đạt $\varepsilon$ (ghi chú A04, áp dụng ở C07, D06): tuyến tính $k\ge\kappa\ln(e_0/\varepsilon)$; $O(1/k)$: $k\ge LD^2/(2\varepsilon)$; $O(1/\sqrt K)$: $K\ge D^2G^2/\varepsilon^2$; SGD bước hằng: không xuống dưới sàn nhiễu $\eta\sigma^2/\mu$.
 
 ## Khoảng trống hình thức hóa
 
@@ -180,7 +180,7 @@ Số bước đạt $\varepsilon$ (ghi chú A04, áp dụng ở C07, D06): tuy�
 | J11 | Không chệch, $\Sigma/b$ | Bài 05 B03 | $\mathcal F_k$, tháp, KT13, $\sigma^2$ | E02–E03 |
 | J12 | Một bước có thể tăng $J$ | Bài 05 B04 | Điều được bảo đảm theo kỳ vọng | E01, E05, F05 |
 | J13 | Thuật toán SGD | Bài 05 B05, HT3 | Định lý hội tụ | E04–E07, F04–F05 |
-| J14 | Phương sai cập nhật, lịch bước | Bài 05 B07 | Robbins–Monro; cận dừng; lý do giảm theo pha | D06, E08–E10 |
+| J14 | Phương sai cập nhật, lịch bước | Bài 05 B07 | Robbins–Monro; sàn nhiễu; lý do giảm theo pha | D06, E08–E10 |
 | J15 | Dẫn Boyd EE364b | Bài 05 E03 | Nguồn cục bộ: SNW ch. 5, Mệnh đề 5.5 | E04 |
 | J16 | Momentum, Nesterov | Bài 05 phần C | Ngoài phạm vi | G03 |
 | J17 | AdaGrad, RMSProp, Adam | Bài 06 | Ngoài phạm vi | G03 |
@@ -203,7 +203,7 @@ Số bước đạt $\varepsilon$ (ghi chú A04, áp dụng ở C07, D06): tuy�
 | T6 | H3, H4, H6 + H6a (chặn trên vùng chứa dãy lặp) | $\eta_k=\frac1{\mu(k+1)}$ | $a_k\le\frac{G^2}{\mu^2k}$ với $k\ge1$ | Chỉ phát biểu; quy nạp (KT15) trong học liệu và bài tập | E10 |
 | T7 | H0, H2 | $\eta=1/L$ | $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le\frac{2L\Delta_0}K$ | Đầy đủ trên trang | F03 |
 | T8 | H0, H2, H6 + H6b | $0<\eta\le1/L$ | $\frac1K\sum_{k<K}\mathbb E\lVert\nabla f(x_k)\rVert^2\le\frac{2\Delta_0}{\eta K}+L\eta\sigma^2$; $\eta=\min\{\frac1L,\sqrt{\frac{2\Delta_0}{L\sigma^2K}}\}$ cho $\frac{2L\Delta_0}K+\frac{2\sqrt{2L\Delta_0\sigma^2}}{\sqrt K}$ | Đầy đủ trên trang | F04, F05 |
-| T9 | H0, H2, H7, H6 + H6b | $0<\eta\le1/L$ | $\mathbb Ee_k\le(1-\eta\mu)^ke_0+\frac{L\eta\sigma^2}{2\mu}$ | Chỉ phát biểu | F06 |
+| T9 | H0, H2, H7, H6 + H6b | $0<\eta\le1/L$ | $\mathbb E\Delta_k\le(1-\eta\mu)^k\Delta_0+\frac{L\eta\sigma^2}{2\mu}$ | Chỉ phát biểu | F06 |
 
 Bổ đề cầu nối: BĐ1 cận trên bậc hai (B02); BĐ2 $\lVert\nabla f\rVert^2\le2L(f-f_{\inf})$ (B03); BĐ3 $\frac\mu2d^2\le e\le\frac1{2\mu}\lVert\nabla f\rVert^2$, $d\le\frac2\mu\lVert\nabla f\rVert$ (B04); BĐ4 đồng nhất thức khoảng cách (B05); BĐ5 Jensen hữu hạn (D05); BĐ6 Markov (E11).
 
@@ -228,9 +228,9 @@ Khuôn lớn: KH1 hiệu + tổng lồng; KH2 co + lặp; KH3 hàm thế không 
 | KT13 | Tách độ chệch và phương sai | $\mathbb E[\lVert g_k\rVert^2\mid\mathcal F_k]=\lVert\nabla f(x_k)\rVert^2+\mathbb E[\lVert g_k-\nabla f(x_k)\rVert^2\mid\mathcal F_k]$ | E03, E07, F05 | Đầy đủ |
 | KT14 | Giải đệ quy có số hạng cộng | $a_{k+1}\le(1-\eta\mu)a_k+\eta^2\sigma^2$ ⇒ $a_k\le(1-\eta\mu)^ka_0+\frac{\eta\sigma^2}\mu$ | E07 (ghi chú), F06 | Đầy đủ trong ghi chú |
 | KT15 | Quy nạp $C/k$ | $a_{k+1}\le(1-\frac2{k+1})a_k+\frac C{(k+1)^2}$ ⇒ $a_k\le C/k$ | E10 (T6) | Ghi chú và bài tập |
-| KT16 | Phản ví dụ | Logistic; $x_1^2$; $x^4$; VD-D; cận dừng VD-A | B01, B06, C04, C07, E08, F06 | Trên trang, ngắn |
+| KT16 | Phản ví dụ | Logistic; $x_1^2$; $x^4$; VD-D; sàn nhiễu VD-A | B01, B06, C04, C07, E08, F06 | Trên trang, ngắn |
 
-Hai trang đối chiếu bắt buộc: C07 (T1, T2a, T2b trên VD-C: để $e_k\le0{,}01$, T1 cần $7000$ bước, T2b cần $16$, thực tế $6$) và E08 (T5 trên VD-A: cận dừng $0{,}267$ so với giá trị dừng thật $0{,}140$; hệ số co thật $(1-\eta\mu)^2$ so với $(1-\eta\mu)$ của định lý vì chứng minh bỏ số hạng $-2\eta(1-\eta L)e_k$).
+Hai trang đối chiếu bắt buộc: C07 (T1, T2a, T2b trên VD-C: để $e_k\le0{,}01$, T1 cần $7000$ bước, T2b cần $16$, thực tế $6$) và E08 (T5 trên VD-A: sàn nhiễu $0{,}267$ so với giá trị giới hạn $0{,}140$; hệ số co thật $(1-\eta\mu)^2$ so với $(1-\eta\mu)$ của định lý vì chứng minh bỏ số hạng $-2\eta(1-\eta L)e_k$).
 
 ## Danh sách hình SVG
 
@@ -256,13 +256,13 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 #### A02 — Vấn đề trung tâm và nội dung bài
 
 - **Vai trò và mục tiêu:** Bản đồ nội dung, vấn đề trung tâm, mục tiêu; MT1–MT4.
-- **Luận điểm trung tâm:** Mọi bảo đảm được chứng minh trong bài đi qua cùng một khuôn: bất đẳng thức một bước → đệ quy → tổng lồng hoặc giải đệ quy → chọn bước.
+- **Luận điểm trung tâm:** Mọi bảo đảm được chứng minh trong bài đi qua khuôn một bước: bất đẳng thức một bước → đệ quy → tổng lồng, co hoặc giải đệ quy → chọn bước. Khi giả thiết đổi, bất đẳng thức một bước đổi, và dạng của nó quyết định cách giải (tổng lồng, co hoặc giải đệ quy). (R56, R72; luận đề đặt toàn chiều rộng dưới hai cột để vừa khung; mục D, F, G của lộ trình đổi tên theo R65.)
 - **Ý chính:** Khối vấn đề: "Với $x_{k+1}=x_k-\eta_kg_k$, xác định kèm chứng minh dãy hội tụ theo nghĩa nào, nhanh đến đâu, dưới giả thiết nào và với bước nào." Danh sách bảy phần (tên đầy đủ; viết "phương pháp hạ gradient (GD)", "phương pháp hạ gradient ngẫu nhiên (SGD)" trước khi dùng viết tắt). Bốn mục tiêu dạng hành vi.
 - **Ví dụ/hình dự kiến:** Không có hình; danh sách bảy mục.
 - **Hình thức hóa:** Công thức cập nhật chung với ba lựa chọn của $g_k$.
 - **Kết nối:** Sau tiêu đề; A03 đưa hai dãy số cụ thể để thấy cần nhiều thước đo.
 - **Nguồn:** DC; kế hoạch đã duyệt.
-- **Ghi chú soạn:** Câu luận đề viết một lần; G02 kiểm lại luận đề trên sáu bậc của sợi chỉ chứng minh.
+- **Ghi chú soạn:** Câu luận đề viết một lần; G02 kiểm lại luận đề trên sáu bậc của sợi chỉ chứng minh. **Bản sửa 2026-10-08** (R08, R49): luận đề nối "khi giả thiết đổi, chỉ bất đẳng thức một bước đổi"; "dưới gradient (subgradient)".
 
 #### A03 — Thước đo tiến triển của dãy lặp
 
@@ -273,7 +273,7 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 - **Hình thức hóa:** Chưa định nghĩa; chỉ quan sát số. Ghi rõ dãy $\mathbb E(\theta_k-1)^2$ tính chính xác bằng một đệ quy được suy ở phần E.
 - **Kết nối:** Nhận định lý Bài 04 (đo $e_k$) và quan sát dao động của Bài 05; A04 đặt tên các thước đo và tốc độ. C01 dẫn lại bảng này.
 - **Nguồn:** Bài 04, ví dụ bậc hai và định lý $O(1/k)$; Bài 05, ví dụ ba quan sát và mục bước học, dao động gần nghiệm; tính trực tiếp.
-- **Ghi chú soạn:** Ghi chú diễn giả nêu: $e_k$ của VD-C giảm theo hệ số $16/49$, còn cận Bài 04 giảm như $1/k$; dãy VD-A có giới hạn dương vì bước hằng. Không đưa cận tuyến tính $62(4/7)^k$ ở đây.
+- **Ghi chú soạn:** Ghi chú diễn giả nêu: $e_k$ của VD-C giảm theo hệ số $16/49$, còn cận Bài 04 giảm như $1/k$; dãy VD-A có giới hạn dương vì bước hằng. Không đưa cận tuyến tính $62(4/7)^k$ ở đây. **Bản sửa 2026-10-08** (R01, R07, R51): câu kết đổi thành "$e_k$ và $d_k^2$ cùng giảm theo tỉ số $\frac{16}{49}$, cận Bài 04 như $1/k$; ở Ví dụ A kỳ vọng dừng ở $0{,}140$"; thêm dòng ký hiệu $e_k$, $d_k$ (Ví dụ C: $x^*=0$, $f^*=0$) và quy tắc tên Ví dụ A–D; bảng Ví dụ C bỏ dòng $k=2$ để vừa khung.
 
 #### A04 — Dạng hội tụ và tốc độ hội tụ
 
@@ -284,7 +284,7 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 - **Hình thức hóa:** **Định nghĩa.** Dãy không âm $(u_k)$ hội tụ tuyến tính (linear convergence) với hệ số $q\in(0,1)$ nếu tồn tại $C>0$ với $u_k\le Cq^k$ mọi $k$; hội tụ $O(1/k^p)$, $p>0$, nếu $u_k\le C/k^p$ mọi $k\ge1$.
 - **Kết nối:** Dùng số A03 làm ví dụ cho từng dạng; A05 cố định ký hiệu và giả thiết cho các cận.
 - **Nguồn:** BV §9.3.1 (thuật ngữ hội tụ tuyến tính); SNW ch. 4 §4.1.
-- **Ghi chú soạn:** Công thức số bước đạt $u_k\le\varepsilon$ chỉ trong ghi chú: tuyến tính $k\ge\ln(C/\varepsilon)/\ln(1/q)$, với $q=1-1/\kappa$ đủ $k\ge\kappa\ln(C/\varepsilon)$ (dùng $\ln(1-1/\kappa)\le-1/\kappa$); $O(1/k)$: $k\ge C/\varepsilon$; $O(1/\sqrt k)$: $k\ge C^2/\varepsilon^2$. Định nghĩa tuyến tính theo nghĩa cận; dạng tỉ số $u_{k+1}\le qu_k$ chỉ trong ghi chú. Lặp tốt nhất và trung bình lặp định nghĩa ở D03.
+- **Ghi chú soạn:** Công thức số bước đạt $u_k\le\varepsilon$ chỉ trong ghi chú: tuyến tính $k\ge\ln(C/\varepsilon)/\ln(1/q)$, với $q=1-1/\kappa$ đủ $k\ge\kappa\ln(C/\varepsilon)$ (dùng $\ln(1-1/\kappa)\le-1/\kappa$); $O(1/k)$: $k\ge C/\varepsilon$; $O(1/\sqrt k)$: $k\ge C^2/\varepsilon^2$. Định nghĩa tuyến tính theo nghĩa cận; dạng tỉ số $u_{k+1}\le qu_k$ chỉ trong ghi chú. Lặp tốt nhất và trung bình lặp định nghĩa ở D03. **Bản sửa 2026-10-08** (R07, R48): nêu $x^*$ là một điểm cực tiểu, $f^*=f(x^*)$; "dưới tuyến tính (sublinear)"; ghi chú R-tuyến tính, Q-tuyến tính.
 
 #### A05 — Ký hiệu và giả thiết
 
@@ -295,7 +295,7 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 - **Hình thức hóa:** H0–H4 như mục "Giả thiết có tên". $f^*=p^*$ của Bài 02–03.
 - **Kết nối:** Nhận định nghĩa A04; B dùng H1–H3 để nối các dạng hội tụ.
 - **Nguồn:** BV §9.1.2; Bài 04, mục gradient Lipschitz và hội tụ tuyến tính.
-- **Ghi chú soạn:** Sau khi bỏ $f_{\inf}$, $a_k$, $G$, $\sigma^2$, $\Delta_0$, H5–H7, trang còn hai bảng ngắn. Nếu kiểm định trình duyệt vẫn cho thấy tràn ở 16:9, tách thành "Ký hiệu chung" và "Giả thiết có tên" (tổng 52 trang) và cập nhật storyboard; không thu nhỏ chữ.
+- **Ghi chú soạn:** Sau khi bỏ $f_{\inf}$, $a_k$, $G$, $\sigma^2$, $\Delta_0$, H5–H7, trang còn hai bảng ngắn. Nếu kiểm định trình duyệt vẫn cho thấy tràn ở 16:9, tách thành "Ký hiệu chung" và "Giả thiết có tên" (tổng 52 trang) và cập nhật storyboard; không thu nhỏ chữ. **Bản sửa 2026-10-08** (R49, R50): "$L$-trơn ($L$-smooth)"; "chặn chuẩn của dưới gradient" trong ghi chú.
 
 ### B. Bất đẳng thức cầu nối giữa các dạng hội tụ
 
@@ -310,18 +310,18 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** $\phi'(s)=-\frac1{1+e^s}<0$, $\phi''(s)=\frac{e^s}{(1+e^s)^2}\le\frac14$.
 - **Kết nối:** Nhận dạng $e_k$ và $d_k$ của A04. Câu nối sang B02: "Cận trên bậc hai và bổ đề giảm chặn $e$ và $\lVert\nabla f\rVert$ từ trên bằng $d$ và $e$; lồi mạnh cho chiều ngược lại."
 - **Nguồn:** Bài 04, mục gradient Lipschitz (hình mất mát logistic); tính trực tiếp.
-- **Ghi chú soạn:** Lập luận $s_k\to\infty$ trong ghi chú: $s_{k+1}=s_k+\frac4{1+e^{s_k}}>s_k$; nếu dãy bị chặn thì hội tụ tới $\bar s$ với $\phi'(\bar s)=0$, vô lý. Đây là mất mát logistic của phân loại tách được.
+- **Ghi chú soạn:** Lập luận $s_k\to\infty$ trong ghi chú: $s_{k+1}=s_k+\frac4{1+e^{s_k}}>s_k$; nếu dãy bị chặn thì hội tụ tới $\bar s$ với $\phi'(\bar s)=0$, vô lý. Đây là mất mát logistic của phân loại tách được. **Bản sửa 2026-10-08** (R30, R17): panel nêu H2 và H3; ghi chú thêm câu nối A→B.
 
 #### B02 — Cận trên bậc hai
 
 - **Vai trò và mục tiêu:** Trực quan và hình thức đầu tiên của KN2 (BĐ1); MT2.
 - **Luận điểm trung tâm:** Hàm $L$-trơn nằm dưới một parabol tiếp xúc tại mỗi điểm.
 - **Ý chính:** Trực quan "parabol kẹp": tại $x$, đồ thị $f$ nằm dưới parabol độ cong $L$; với $\mu$-lồi mạnh, nằm trên parabol độ cong $\mu$. **Bổ đề BĐ1.** Giả sử H2. Với mọi $x,y\in\mathbb R^n$: $f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac L2\lVert y-x\rVert^2$.
-- **Ví dụ/hình dự kiến:** `quadratic-sandwich.svg`: lát cắt một chiều của VD-C theo trục $x_2$, hai parabol $L=7$ và $\mu=3$ kẹp đồ thị tại một điểm.
+- **Ví dụ/hình dự kiến:** `quadratic-sandwich.svg`: lát cắt một chiều của VD-C theo hướng $(1,1)/\sqrt2$, $h(t)=2{,}5t^2$ (độ cong 5), hai parabol $L=7$ và $\mu=3$ kẹp đồ thị tại $t=1$. Khi soạn deck đổi từ lát cắt theo trục $x_2$ vì theo trục đó $h$ trùng parabol trên và hình không cho thấy khoảng kẹp; ghi chú diễn giả nêu dấu bằng theo trục $x_2$.
 - **Hình thức hóa:** Chứng minh: $f(y)-f(x)-\nabla f(x)^T(y-x)=\int_0^1(\nabla f(x+t(y-x))-\nabla f(x))^T(y-x)\,dt\le\int_0^1Lt\lVert y-x\rVert^2dt$ (Cauchy–Schwarz và H2).
 - **Kết nối:** Nhận H2 từ A05; B03 cực tiểu vế phải theo $y$.
 - **Nguồn:** BV §9.1.2, (9.13); Bài 04, mục gradient Lipschitz.
-- **Ghi chú soạn:** Với VD-C, BĐ1 xảy ra dấu bằng theo hướng $x_2$; parabol $\mu$ chỉ nhắc, chứng minh ở B04.
+- **Ghi chú soạn:** Với VD-C, BĐ1 xảy ra dấu bằng theo hướng $x_2$; parabol $\mu$ chỉ nhắc, chứng minh ở B04. **Bản sửa 2026-10-08** (R31, R35): "Bổ đề 1 (BĐ1)"; chứng minh viết đủ vế trái.
 
 #### B03 — Bổ đề giảm và cận chuẩn gradient
 
@@ -343,7 +343,7 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** (i) H3 tại $x=x^*$, $\nabla f(x^*)=0$. (ii) Cực tiểu vế phải H3 theo $y$: $f^*\ge f(x)-\frac1{2\mu}\lVert\nabla f(x)\rVert^2$. (iii) H3 với $y=x^*$ và Cauchy–Schwarz: $f^*\ge f(x)-\lVert\nabla f(x)\rVert d+\frac\mu2d^2$, kết hợp $f^*\le f(x)$.
 - **Kết nối:** Nhận H3, BĐ1–BĐ2; C06 dùng (i)–(ii); F06 dùng (ii) làm ví dụ dương của PL.
 - **Nguồn:** BV §9.1.2, (9.8), (9.9), (9.11).
-- **Ghi chú soạn:** Lần xuất hiện đầu tiên của "lồi chặt" trong deck; dùng dạng đầy đủ.
+- **Ghi chú soạn:** Lần xuất hiện đầu tiên của "lồi chặt" trong deck; dùng dạng đầy đủ. **Bản sửa 2026-10-08** (R32): ghi chú bỏ câu lặp, thêm hằng số chặt hơn $d\le\lVert\nabla f\rVert/\mu$.
 
 #### B05 — Đồng nhất thức một bước
 
@@ -354,7 +354,7 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** Khai triển bình phương chuẩn; hệ quả là H1 với $y=x^*$.
 - **Kết nối:** C04 ghép B03 và B05; D02 mở rộng hệ quả cho dưới gradient. B06 đặt BĐ1–BĐ4 vào một sơ đồ.
 - **Nguồn:** BV §9.3; SNW ch. 4 §4.1.2; Bài 04, bất đẳng thức một bước.
-- **Ghi chú soạn:** BĐ4 là đẳng thức, không cần giả thiết nào về $f$; mọi giả thiết vào ở bước chặn tích vô hướng và $\lVert g\rVert^2$.
+- **Ghi chú soạn:** BĐ4 là đẳng thức, không cần giả thiết nào về $f$; mọi giả thiết vào ở bước chặn tích vô hướng và $\lVert g\rVert^2$. **Bản sửa 2026-10-08** (R33, R16): câu trực quan; "bước $\frac17$" và $d_1^2=\frac{64}{49}$ trong panel; ghi chú nêu BĐ4 không là mũi tên của bản đồ.
 
 #### B06 — Bản đồ các dạng hội tụ
 
@@ -365,7 +365,7 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** Tổng hợp BĐ1–BĐ4; không có kết quả mới.
 - **Kết nối:** Nhận BĐ1–BĐ4; C dùng mũi tên để chuyển cận $e_k$ thành cận $d_k$ và ngược lại. Hai nút trung bình lặp và xác suất được thêm trong ghi chú D05, ghi chú E11 và dòng gom ở G01.
 - **Nguồn:** BV (9.8)–(9.14).
-- **Ghi chú soạn:** Bảng "đo được trong thực hành" đặt trong ghi chú diễn giả. Phản ví dụ VD-D để dành cho F06.
+- **Ghi chú soạn:** Bảng "đo được trong thực hành" đặt trong ghi chú diễn giả. Phản ví dụ VD-D để dành cho F06. **Bản sửa 2026-10-08** (R34): "ba đại lượng chặn lẫn nhau, sai khác hằng số".
 
 #### B07 — Bất đẳng thức cầu nối trên hai ví dụ
 
@@ -373,10 +373,10 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Luận điểm trung tâm:** Bài tập đo việc chứng minh BĐ2, tính hằng số $\mu$, $L$ và phân loại một khẳng định theo dạng hội tụ.
 - **Ý chính:** **Câu hỏi:** (1) Chứng minh BĐ2 từ BĐ1. (2) Tính $\mu$, $L$ cho $J$ của Ví dụ A và $f$ của Ví dụ C; kiểm chuỗi kẹp của bản đồ tại điểm $x=(1,-1)$ của Ví dụ C. (3) Phân loại bốn phát biểu theo dạng hội tụ và nêu giả thiết để suy ra một dạng khác: (a) $f(x_k)-f^*\le70/k$; (b) $\lVert x_k-x^*\rVert^2\le20(4/7)^k$; (c) $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le C/K$; (d) kỳ vọng $\mathbb E(\theta_k-1)^2\le0{,}9^k+0{,}267$.
 - **Ví dụ/hình dự kiến:** Không có hình; đề tự chứa hàm và dữ kiện.
-- **Hình thức hóa:** Đáp án trong ghi chú: (2) Ví dụ A $\mu=L=1$; Ví dụ C $\mu=3$, $L=7$; tại $(1,-1)$: $d^2=2$, $e=5$, $\nabla f=(3,-7)$, $\lVert\nabla f\rVert^2=58$; chuỗi $3\le5\le9{,}67\le11{,}67\le16{,}33$. (3) (a) giá trị, dưới tuyến tính; (b) dãy lặp, tuyến tính; (c) điểm dừng, lặp tốt nhất; (d) kỳ vọng của dãy lặp, có cận dừng.
+- **Hình thức hóa:** Đáp án trong ghi chú: (2) Ví dụ A $\mu=L=1$; Ví dụ C $\mu=3$, $L=7$; tại $(1,-1)$: $d^2=2$, $e=5$, $\nabla f=(3,-7)$, $\lVert\nabla f\rVert^2=58$; chuỗi $3\le5\le9{,}67\le11{,}67\le16{,}33$. (3) (a) giá trị, dưới tuyến tính; (b) dãy lặp, tuyến tính; (c) điểm dừng, lặp tốt nhất; (d) kỳ vọng của dãy lặp, có sàn nhiễu.
 - **Kết nối:** Kết thúc B; C chứng minh (a), (b).
 - **Nguồn:** Tự xây dựng; chuỗi số do điều phối viên kiểm.
-- **Ghi chú soạn:** Ba mức: nhận biết (3), tính toán (2), chứng minh (1). Câu (2) dùng điểm khác $x_0$ để không lặp số của B03–B04. Câu (c) viết hằng $C$ vì $\Delta_0$ chưa được đặt.
+- **Ghi chú soạn:** Ba mức: nhận biết (3), tính toán (2), chứng minh (1). Câu (2) dùng điểm khác $x_0$ để không lặp số của B03–B04. Câu (c) viết hằng $C$ vì $\Delta_0$ chưa được đặt. **Bản sửa 2026-10-08** (R13, R17, R10): câu (1) kiểm BĐ2 cho $\phi$ tại $s=0$ và lý do dùng $f_{\inf}$ (đáp án $0{,}25\le0{,}347$); (c) "giá trị nhỏ nhất trên $K$ bước đầu"; (d) "sàn nhiễu"; ghi chú nêu nơi chứng minh (a)–(d).
 
 ### C. Hội tụ của hạ gradient
 
@@ -391,18 +391,18 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** GD: $x_{k+1}=x_k-\frac1L\nabla f(x_k)$; giả thiết đạt cực tiểu là H4.
 - **Kết nối:** Nhận BĐ1–BĐ4, bản đồ B06; C02 nêu khuôn.
 - **Nguồn:** Bài 04, định lý $O(1/k)$ và hội tụ tuyến tính; học liệu Bài 04 mục B.
-- **Ghi chú soạn:** Chứng minh đầy đủ của Bài 04 nằm trong học liệu Bài 04 mục B; C03–C04 đưa chứng minh lên trang, thêm $d_k$ và T1', và đánh dấu bước dùng H4. Không đưa cận $62(4/7)^k$ trước C05. Ký hiệu chuyển: Bài 04 $x^k$, $t$, $R$ → $x_k$, $\eta$, $D$ (ghi một lần).
+- **Ghi chú soạn:** Chứng minh đầy đủ của Bài 04 nằm trong học liệu Bài 04 mục B; C03–C04 đưa chứng minh lên trang, thêm $d_k$ và T1', và đánh dấu bước dùng H4. Không đưa cận $62(4/7)^k$ trước C05. Ký hiệu chuyển: Bài 04 $x^k$, $t$, $R$ → $x_k$, $\eta$, $D$ (ghi một lần). **Bản sửa 2026-10-08** (R22, R17, R52): câu đầu có vị ngữ; mục 2 "trang chiếu Bài 04 chỉ nêu ý chính"; câu cuối "Phần này xét … dưới H1, H2 và H4"; ghi chú câu nối B→C.
 
 #### C02 — Khuôn một bước và tổng lồng
 
 - **Vai trò và mục tiêu:** Trực quan KN3 (KT5, KT8); MT2.
 - **Luận điểm trung tâm:** Một bất đẳng thức một bước được giải theo hai mẫu: chặn sai số bằng hiệu của một đại lượng không âm rồi cộng lại thành tổng lồng, hoặc chặn bằng một hệ số co rồi nhân lại thành lũy thừa.
-- **Ý chính:** Mẫu 1: $e_{k+1}\le c(u_k-u_{k+1})$, $u_k\ge0$ ⇒ $\sum_{j<k}e_{j+1}\le cu_0$. Mẫu 2: $u_{k+1}\le qu_k$ ⇒ $u_k\le q^ku_0$. **Nhận xét (hàm thế).** $u_k$ đóng vai hàm thế (potential function): $V_{k+1}\le V_k-\text{tiến bộ}+\text{nhiễu}$; các phần sau đổi $V$ và hai số hạng.
+- **Ý chính:** Mẫu 1: $e_{k+1}\le c(u_k-u_{k+1})$, $u_k\ge0$ ⇒ $\sum_{j<k}e_{j+1}\le cu_0$. Mẫu 2: $u_{k+1}\le qu_k$ ⇒ $u_k\le q^ku_0$. **Nhận xét (hàm thế).** $u_k$ đóng vai hàm thế (potential function): $V_{k+1}\le V_k-P_k+N_k$ với tiến bộ $P_k\ge0$ và nhiễu $N_k\ge0$; các phần sau đổi $V$, $P_k$, $N_k$ (deck dùng ký hiệu $P_k$, $N_k$ để không đặt chữ tiếng Việt trong công thức).
 - **Ví dụ/hình dự kiến:** `telescoping-stack.svg`: các đoạn $u_0-u_1,u_1-u_2,\dots$ xếp liền trên một cột cao $u_0$.
 - **Hình thức hóa:** Tổng lồng (telescoping sum) $\sum_{j<k}(u_j-u_{j+1})=u_0-u_k\le u_0$.
 - **Kết nối:** C03–C04 áp dụng mẫu 1 với $u_k=\frac L2d_k^2$; C05–C06 áp dụng mẫu 2.
 - **Nguồn:** SNW ch. 4 §4.1.2; tổng hợp sư phạm.
-- **Ghi chú soạn:** Nhận xét có nhãn, không phải định lý. Hình không chứa số liệu thật.
+- **Ghi chú soạn:** Nhận xét có nhãn, không phải định lý. Hình không chứa số liệu thật. **Bản sửa 2026-10-08** (R23): biến chung $p_{k+1}$; "$u_k$ đóng vai một hàm thế $V_k\ge0$".
 
 #### C03 — Định lý hội tụ dưới tuyến tính của hạ gradient
 
@@ -424,7 +424,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Bốn bước có nhãn, ghi giả thiết dùng ở từng bước.
 - **Kết nối:** Nhận C02 mẫu 1; C05 mở bằng nhu cầu dùng $\mu$ rồi thêm H3.
 - **Nguồn:** BV §9.3; học liệu Bài 04 mục B.
-- **Ghi chú soạn:** Bước $1/L$ làm hai số hạng $\lVert\nabla f\rVert^2$ triệt tiêu ở bước 3. Đơn điệu của $e_j$ đến từ bước 1. H4 dùng ở bước 2 và bước 3 (định nghĩa $x^*$, $f^*$). Trang chỉ chứng minh; nhu cầu dùng $\mu$ đặt ở đầu C05.
+- **Ghi chú soạn:** Bước $1/L$ làm hai số hạng $\lVert\nabla f\rVert^2$ triệt tiêu ở bước 3. Đơn điệu của $e_j$ đến từ bước 1. H4 dùng ở bước 2 và bước 3 (định nghĩa $x^*$, $f^*$). Trang chỉ chứng minh; nhu cầu dùng $\mu$ đặt ở đầu C05. **Bản sửa 2026-10-08** (R21, R37): dòng "Ý tưởng"; ghi chú về số hạng triệt tiêu và hằng số $1/(L\eta)$.
 
 #### C05 — Định lý hội tụ tuyến tính của hạ gradient
 
@@ -446,9 +446,9 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Hai khối, mỗi khối ghi giả thiết.
 - **Kết nối:** Nhận C02 mẫu 2; C07 so ba cận với giá trị thật.
 - **Nguồn:** BV §9.3.1, (9.9); SNW ch. 4.
-- **Ghi chú soạn:** Ghi chú: các số hạng $e_k$ triệt tiêu ở T2a ($-\frac2Le_k+\frac1{L^2}2Le_k=0$). Nhận xét PL trong ghi chú: chứng minh T2b chỉ dùng $\frac12\lVert\nabla f\rVert^2\ge\mu e$; F06 dùng lại.
+- **Ghi chú soạn:** Ghi chú: các số hạng $e_k$ triệt tiêu ở T2a ($-\frac2Le_k+\frac1{L^2}2Le_k=0$). Nhận xét PL trong ghi chú: chứng minh T2b chỉ dùng $\frac12\lVert\nabla f\rVert^2\ge\mu e$; F06 dùng lại. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng".
 
-#### C07 — Ba cận trên ví dụ bậc hai
+#### C07 — Ba cận trên ví dụ bậc hai (Ví dụ C)
 
 - **Vai trò và mục tiêu:** Ứng dụng KN3; trang đối chiếu bắt buộc (gộp đối chiếu T1 và so ba cận); MT3.
 - **Luận điểm trung tâm:** Trên Ví dụ C, cận $O(1/k)$ bi quan nhiều bậc vì bỏ qua $\mu$; cận tuyến tính đúng dạng nhưng hệ số co $4/7$ vẫn chậm hơn hệ số thật $16/49$.
@@ -457,7 +457,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** $70/k\le0{,}01\Leftrightarrow k\ge7000$; $62(4/7)^k\le0{,}01\Leftrightarrow k\ge\ln6200/\ln(7/4)\approx15{,}6$; $6(16/49)^k\le0{,}01\Leftrightarrow k\ge\ln600/\ln(49/16)\approx5{,}7$.
 - **Kết nối:** Nhận T1, T2. Câu nối sang C08: "T1 và T2 dùng bước $1/L$, tức phải biết $L$; quay lui Armijo chọn bước mà không cần biết $L$."
 - **Nguồn:** Tính trực tiếp; Bài 04, hội tụ tuyến tính.
-- **Ghi chú soạn:** "7000 so với 6" và "16" chỉ xuất hiện ở trang này. Số liệu bảng: $k=1$: $70$; $35{,}4$; $11{,}4$; $1{,}96$; $1{,}31$. $k=5$: $14$; $3{,}78$; $1{,}22$; $0{,}0223$; $0{,}0149$. $k=10$: $7$; $0{,}230$; $0{,}0742$; $8{,}3\cdot10^{-5}$; $5{,}5\cdot10^{-5}$. Hệ số sắc hơn $(\frac{L-\mu}{L+\mu})^k=(0{,}4)^k$ chỉ trong ghi chú.
+- **Ghi chú soạn:** "7000 so với 6" và "16" chỉ xuất hiện ở trang này. Số liệu bảng: $k=1$: $70$; $35{,}4$; $11{,}4$; $1{,}96$; $1{,}31$. $k=5$: $14$; $3{,}78$; $1{,}22$; $0{,}0223$; $0{,}0149$. $k=10$: $7$; $0{,}230$; $0{,}0742$; $8{,}3\cdot10^{-5}$; $5{,}5\cdot10^{-5}$. Hệ số sắc hơn $(\frac{L-\mu}{L+\mu})^k=(0{,}4)^k$ chỉ trong ghi chú. **Bản sửa 2026-10-08** (R27, R29): tiêu đề thêm "(Ví dụ C)"; ghi chú giải thích hệ số $\frac{16}{49}=(1-\mu/L)^2$ bằng BĐ2 không chặt; bỏ nhãn câu nối.
 
 #### C08 — Hội tụ tuyến tính với bước quay lui
 
@@ -479,9 +479,9 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Đáp án ghi chú: (1) $2\mu\alpha=1{,}5$, $2\beta\alpha\mu/L=\frac3{28}$, $c=\frac{25}{28}\approx0{,}893$; $62c^k\le0{,}01\Leftrightarrow k\ge78$. (2) $d_2^2=\frac{1024}{2401}\approx0{,}427\le20(\frac47)^2\approx6{,}53$; $d_3^2\approx0{,}139\le20(\frac47)^3\approx3{,}73$. (3) Hệ số $1-0{,}3\cdot7=-1{,}1$; $\eta>2/L=2/7$.
 - **Kết nối:** Kết thúc C.
 - **Nguồn:** Tự xây dựng; BV §9.3.1.
-- **Ghi chú soạn:** Ký hiệu tọa độ $[x]_i$ theo quy ước Bài 05. Câu (1) cho thấy cận quay lui ($78$ bước) yếu hơn cận bước $1/L$ ($16$ bước).
+- **Ghi chú soạn:** Ký hiệu tọa độ $[x]_i$ theo quy ước Bài 05. Câu (1) cho thấy cận quay lui ($78$ bước) yếu hơn cận bước $1/L$ ($16$ bước). **Bản sửa 2026-10-08** (R36): "tọa độ thứ hai"; đáp án (3) nêu $0{,}3>1/L$ và $>2/L$.
 
-### D. Phương pháp dưới gradient và trung bình lặp
+### D. Dưới gradient và trung bình lặp
 
 Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung bình lặp và Jensen. Nhận BĐ4 và giới hạn "cần $L$" của C; chuyển cho E T3, BĐ5 và dòng chứng minh tổng lồng có trọng số. MT2–MT3.
 
@@ -494,7 +494,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Độ dốc trên các khoảng: $-1,-\frac13,\frac13,1$.
 - **Kết nối:** Nhận giới hạn C08; D02 thay gradient bằng dưới gradient.
 - **Nguồn:** Tự xây dựng; Bài 05, ví dụ ba quan sát.
-- **Ghi chú soạn:** Cùng dữ liệu với VD-A để thấy chỉ đổi mất mát.
+- **Ghi chú soạn:** Cùng dữ liệu với VD-A để thấy chỉ đổi mất mát. **Bản sửa 2026-10-08** (R38): "hồi quy độ lệch tuyệt đối nhỏ nhất (least absolute deviations)".
 
 #### D02 — Dưới gradient
 
@@ -505,7 +505,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Với $f$ khả vi, $\partial f(x)=\{\nabla f(x)\}$ (chỉ nêu).
 - **Kết nối:** Nhận nhu cầu D01; D03 dùng một dưới gradient bất kỳ làm $g_k$.
 - **Nguồn:** SNW ch. 4 §4.1; Bài 01 (lồi bậc nhất).
-- **Ghi chú soạn:** Thứ tự trên trang: hình → ví dụ số → định nghĩa → H1 dạng dưới gradient. $\partial f(1)=\frac13(1+[-1,1]-1)$ trình bày trong ghi chú.
+- **Ghi chú soạn:** Thứ tự trên trang: hình → ví dụ số → định nghĩa → H1 dạng dưới gradient. $\partial f(1)=\frac13(1+[-1,1]-1)$ trình bày trong ghi chú. **Bản sửa 2026-10-08** (R24): H1 dạng dưới gradient nêu $\partial f(x)\neq\emptyset$ và cần H4.
 
 #### D03 — Phương pháp dưới gradient
 
@@ -538,7 +538,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Ba bước có nhãn, ghi giả thiết.
 - **Kết nối:** So với C04: không có bổ đề giảm, số hạng $\eta_k^2G^2$ không bị triệt tiêu. D06 cân bằng hai số hạng.
 - **Nguồn:** SNW ch. 4 §4.1.2; BĐ4.
-- **Ghi chú soạn:** Jensen hữu hạn chứng minh quy nạp theo $K$ trong ghi chú. Kiểm Jensen trong ghi chú trên VD-B, bước $4{,}5$: sai số tại trung bình $\frac1{12}$, trung bình các sai số $\frac14$. Với bước $\frac12$ của VD-B, Jensen xảy ra dấu bằng ($\frac14=\frac14$) vì $f$ tuyến tính trên $[-1,1]$; nêu trong ghi chú. Dòng chứng minh này được dùng lại ở E05.
+- **Ghi chú soạn:** Jensen hữu hạn chứng minh quy nạp theo $K$ trong ghi chú. Kiểm Jensen trong ghi chú trên VD-B, bước $4{,}5$: sai số tại trung bình $\frac1{12}$, trung bình các sai số $\frac14$. Với bước $\frac12$ của VD-B, Jensen xảy ra dấu bằng ($\frac14=\frac14$) vì $f$ tuyến tính trên $[-1,1]$; nêu trong ghi chú. Dòng chứng minh này được dùng lại ở E05. **Bản sửa 2026-10-08** (R08, R39): "khuôn một bước"; ghi chú bước quy nạp Jensen và câu bản đồ.
 
 #### D06 — Chọn bước cho phương pháp dưới gradient
 
@@ -549,20 +549,20 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Bất đẳng thức AM–GM hoặc đạo hàm theo $\eta$.
 - **Kết nối:** Nhận T3; E thay dưới gradient đầy đủ bằng ước lượng ngẫu nhiên.
 - **Nguồn:** SNW ch. 4 §4.1.2; tính trực tiếp.
-- **Ghi chú soạn:** Số bước $K\ge D^2G^2/\varepsilon^2$ trong ghi chú. Bước tối ưu cần biết $D$, $G$, $K$ trước. Hội tụ gần như chắc chắn chỉ nêu ở E11.
+- **Ghi chú soạn:** Số bước $K\ge D^2G^2/\varepsilon^2$ trong ghi chú. Bước tối ưu cần biết $D$, $G$, $K$ trước. Hội tụ gần như chắc chắn chỉ nêu ở E11. **Bản sửa 2026-10-08** (R25, R40): bảng có hàng "sai số $e$", cột ghi $x_3=\frac12$ và $\bar x_4=\frac14$; ghi chú về Robbins và Monro (1951).
 
 #### D07 — Phương pháp dưới gradient trên ví dụ trị tuyệt đối
 
 - **Vai trò và mục tiêu:** Bài tập KN4; MT2–MT3.
 - **Luận điểm trung tâm:** Bài tập đo việc chạy thuật toán, tính cận và phân tích lịch bước giảm.
-- **Ý chính:** **Câu hỏi:** (1) Ví dụ B từ $x_0=2$, $\eta=\frac12$, $K=4$: tính $x_0,\dots,x_3$, lặp tốt nhất, $\bar x_4$, so với cận T3. (2) Với $\eta_k=\frac c{\sqrt{k+1}}$: (a) chứng minh $\sum_{k<K}\eta_k\ge c\sqrt K$ và $\sum_{k<K}\eta_k^2\le c^2(1+\ln K)$, suy cận dạng $\ln K/\sqrt K$; (b) chỉ ra $\frac c{k+1}$ thỏa điều kiện Robbins–Monro còn $\frac c{\sqrt{k+1}}$ không, dù cận của (a) vẫn về 0. (3) Chỉ ra bước nào của chứng minh T3 cần tính lồi khi đầu ra là $\bar x_K$.
+- **Ý chính:** **Câu hỏi:** (1) Ví dụ B từ $x_0=2{,}5$, $\eta=2$, $K=4$ (lời giải đi qua điểm gãy): tính $x_0,\dots,x_3$, lặp tốt nhất, $\bar x_4$, so với cận T3. (2) Với $\eta_k=\frac c{\sqrt{k+1}}$: (a) chứng minh $\sum_{k<K}\eta_k\ge c\sqrt K$, $\sum_{k<K}\eta_k^2\le c^2(1+\ln K)$ và suy cận dạng $\ln K/\sqrt K$; (b) chỉ ra $\frac c{k+1}$ thỏa điều kiện Robbins–Monro còn $\frac c{\sqrt{k+1}}$ không, dù cận ở (a) vẫn về 0. (3) Chỉ ra bước nào của chứng minh T3 cần tính lồi khi đầu ra là $\bar x_K$.
 - **Ví dụ/hình dự kiến:** Không có hình.
-- **Hình thức hóa:** Đáp án ghi chú: (1) $2,\frac{11}6,\frac53,\frac32$; $f(\frac32)-f^*=\frac16$; $\bar x_4=\frac74$, sai số $\frac14$; cận $0{,}5$. (2b) $\sum\frac{c^2}{k+1}=\infty$. (3) Jensen và H1 dạng dưới gradient.
+- **Hình thức hóa:** Đáp án ghi chú (R41): (1) $x_k=\tfrac52,\tfrac{11}6,\tfrac76,\tfrac12$; sai số $\tfrac12,\tfrac5{18},\tfrac1{18},\tfrac16$; lặp tốt nhất $\tfrac76$ (sai số $\tfrac1{18}$); $\bar x_4=\tfrac32$ (sai số $\tfrac16$); cận T3 với $D=1{,}5$, $G=1$: $\tfrac{73}{64}\approx1{,}14$; bước tối ưu $0{,}75$. (3) Jensen và H1 dạng dưới gradient.
 - **Kết nối:** Kết thúc D.
 - **Nguồn:** Tự xây dựng.
-- **Ghi chú soạn:** Câu (1) tránh $x_0=3$ vì đó là điểm gãy.
+- **Ghi chú soạn:** Dữ kiện đổi ở bản sửa R41 để bước cuối đi qua điểm gãy $x=1$. **Bản sửa 2026-10-08** (R41): dữ kiện mới $x_0=2{,}5$, $\eta=2$.
 
-### E. SGD lồi và lồi mạnh theo kỳ vọng
+### E. Hạ gradient ngẫu nhiên cho hàm lồi và lồi mạnh
 
 Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\mathcal F_k$ và tính chất tháp; chứng minh T4, T5; phát biểu T5-pha, T6; Markov. Nhận T3 và gradient nhóm, lịch bước của Bài 05; chuyển cho F KT12, KT13 và giới hạn "cần lồi". MT4.
 
@@ -575,18 +575,18 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** $g_k=\frac1b\sum_r\nabla\ell_{I_{k,r}}(x_k)$; $x_{k+1}=x_k-\eta_kg_k$.
 - **Kết nối:** Nhận T3 và giới hạn D (chi phí $N$); E02 xây công cụ kỳ vọng có điều kiện.
 - **Nguồn:** Bài 05, mục ước lượng gradient không chệch, một bước gradient ngẫu nhiên, phương pháp SGD; SNW ch. 13 §13.3 (so chi phí GD và SGD).
-- **Ghi chú soạn:** Ghi chú diễn giả: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu." $\theta_1=0-0{,}1(0-y_I)=0{,}1y_I$.
+- **Ghi chú soạn:** Ghi chú diễn giả: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu." $\theta_1=0-0{,}1(0-y_I)=0{,}1y_I$. **Bản sửa 2026-10-08** (R42, R08, R09): định nghĩa $\ell_i$, $N$, $I_{k,r}$ trên trang; câu kết "có điều kiện theo các chỉ số nhóm đã chọn"; nguồn ch. 13 ghi đủ.
 
 #### E02 — Lịch sử và kỳ vọng có điều kiện
 
 - **Vai trò và mục tiêu:** Trực quan, ví dụ, hình thức KN5 ($\mathcal F_k$, KT12); MT4.
 - **Luận điểm trung tâm:** Lấy kỳ vọng có điều kiện theo lịch sử nghĩa là cố định nút hiện tại của cây và lấy trung bình theo nhóm mới.
-- **Ý chính:** Trực quan: cây lịch sử hai bước của Ví dụ A (3 nhánh, 9 lá). Ví dụ: tại nút $\theta_1=0{,}1$, $\mathbb E[g_1\mid\mathcal F_1]=\theta_1-1=-0{,}9=J'(\theta_1)$; $\mathbb E(\theta_1-1)^2=\frac13(1{,}21+0{,}81+0{,}49)\approx0{,}837$. **Định nghĩa.** $\mathcal F_k$ là thông tin của các chỉ số nhóm $I_0,\dots,I_{k-1}$; $x_k$ xác định bởi $\mathcal F_k$; $I_k$ độc lập với $\mathcal F_k$. **Tính chất.** $\mathbb E[\mathbb E[Z\mid\mathcal F_k]]=\mathbb EZ$ (tháp); đại lượng xác định bởi $\mathcal F_k$ ra ngoài kỳ vọng có điều kiện.
+- **Ý chính:** Trực quan: cây lịch sử hai bước của Ví dụ A (3 nhánh, 9 lá). Ví dụ: tại nút $\theta_1=0{,}1$, $\mathbb E[g_1\mid\mathcal F_1]=\theta_1-1=-0{,}9=J'(\theta_1)$; $\mathbb E(\theta_1-1)^2\approx0{,}837$ (phép tính $\frac13(1{,}21+0{,}81+0{,}49)$ trong ghi chú, R85). **Định nghĩa.** $\mathcal F_k$ là thông tin của các chỉ số nhóm $I_0,\dots,I_{k-1}$; $x_k$ xác định bởi $\mathcal F_k$; $I_k$ độc lập với $\mathcal F_k$. **Tính chất.** $\mathbb E[\mathbb E[Z\mid\mathcal F_k]]=\mathbb EZ$ (tháp); đại lượng xác định bởi $\mathcal F_k$ ra ngoài kỳ vọng có điều kiện.
 - **Ví dụ/hình dự kiến:** `history-tree.svg`.
 - **Hình thức hóa:** Với biến rời rạc, $\mathbb E[Z\mid\mathcal F_k]$ là trung bình của $Z$ trên các nhánh con của nút hiện tại. Ký hiệu $\sigma(I_0,\dots,I_{k-1})$ chỉ trong ghi chú.
 - **Kết nối:** Nhận nhu cầu E01 và mô hình lấy mẫu độc lập của Bài 05; E03 phát biểu giả thiết về $g_k$ theo $\mathcal F_k$.
 - **Nguồn:** Bài 00 (kỳ vọng); Bài 05, ước lượng gradient không chệch; SNW ch. 5 §5.5.
-- **Ghi chú soạn:** Không dùng lý thuyết độ đo trên mặt trang; mọi ví dụ là rời rạc hữu hạn.
+- **Ghi chú soạn:** Không dùng lý thuyết độ đo trên mặt trang; mọi ví dụ là rời rạc hữu hạn. **Bản sửa 2026-10-08** (R15): tên tiếng Anh; phép kiểm $\mathbb E[(\theta_2-1)^2\mid\theta_1]=1{,}007;\ 0{,}683;\ 0{,}424$, trung bình $0{,}704$; ghi chú bộ lọc thông tin và lấy mẫu có hoàn lại.
 
 #### E03 — Giả thiết về gradient ngẫu nhiên
 
@@ -597,7 +597,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Chứng minh bổ đề: khai triển $\lVert(g_k-\nabla f)+\nabla f\rVert^2$, số hạng chéo có kỳ vọng có điều kiện 0 theo H6.
 - **Kết nối:** Nhận $\mathcal F_k$ của E02; E04 dùng H6a, E06 dùng H6b.
 - **Nguồn:** Bài 05, ước lượng gradient không chệch; SNW ch. 5 §5.5.
-- **Ghi chú soạn:** Ví dụ ngẫu nhiên của VD-B không đặt ở đây (là bài tập E12 câu (3)). Lý do H6a hạn chế: VD-A có $\mathbb E[g^2\mid\theta]=(\theta-1)^2+\frac8{3b}$, không bị chặn trên $\mathbb R$.
+- **Ghi chú soạn:** Ví dụ ngẫu nhiên của VD-B không đặt ở đây (là bài tập E12 câu (3)). Lý do H6a hạn chế: VD-A có $\mathbb E[g^2\mid\theta]=(\theta-1)^2+\frac8{3b}$, không bị chặn trên $\mathbb R$. **Bản sửa 2026-10-08** (R43): điều kiện $\operatorname{tr}\Sigma(x)\le b\sigma^2$; ghi chú bình phương tối thiểu tổng quát.
 
 #### E04 — Định lý hội tụ của SGD cho hàm lồi
 
@@ -608,7 +608,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận T3, H6, H6a; E05 chứng minh. Liên kết về sau: Bài 06 gọi $\bar x_K$ với bước hằng là trung bình Polyak.
 - **Nguồn:** SNW ch. 5 §5.5, Mệnh đề 5.5.
-- **Ghi chú soạn:** Lặp tốt nhất không có trong kết luận vì cần tính $f$ trên toàn tập dữ liệu.
+- **Ghi chú soạn:** Lặp tốt nhất không có trong kết luận vì cần tính $f$ trên toàn tập dữ liệu. **Bản sửa 2026-10-08** (R44): ghi chú "trùng với cận của T3".
 
 #### E05 — Chứng minh định lý SGD lồi
 
@@ -619,18 +619,18 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Ba dòng có nhãn; đánh dấu chỗ dùng độc lập của $I_k$ với $\mathcal F_k$.
 - **Kết nối:** So sánh từng dòng với D05. Câu nối sang E06 nêu giới hạn của T4: chỉ chặn trung bình lặp; tốc độ $1/\sqrt K$; không giải thích vì sao điểm cuối của SGD bước hằng dừng ở một mức dương như Bài 05 quan sát. E06 thêm H2, H3 để trả lời.
 - **Nguồn:** SNW ch. 5 §5.5.
-- **Ghi chú soạn:** Bước cho trước (không phụ thuộc mẫu) cần để $\eta_k$ ra ngoài kỳ vọng.
+- **Ghi chú soạn:** Bước cho trước (không phụ thuộc mẫu) cần để $\eta_k$ ra ngoài kỳ vọng. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng".
 
 #### E06 — Định lý hội tụ của SGD cho hàm lồi mạnh
 
 - **Vai trò và mục tiêu:** Hình thức KN5 (T5); MT4.
-- **Luận điểm trung tâm:** Với lồi mạnh, trơn và bước hằng, sai số kỳ vọng của điểm cuối co tuyến tính tới một cận dừng tỉ lệ với bước.
-- **Ý chính:** **Định lý (T5).** Đầu vào: $f$ thỏa H2, H3, H4; $g_k$ thỏa H6, H6b; $0<\eta\le1/L$ hằng. Kết luận: $a_k\le(1-\eta\mu)^kD^2+\frac{\eta\sigma^2}\mu$ mọi $k\ge0$. Số hạng thứ nhất co; số hạng thứ hai là cận dừng (noise floor).
+- **Luận điểm trung tâm:** Với lồi mạnh, trơn và bước hằng, sai số kỳ vọng của điểm cuối co tuyến tính tới một sàn nhiễu tỉ lệ với bước.
+- **Ý chính:** **Định lý (T5).** Đầu vào: $f$ thỏa H2, H3, H4; $g_k$ thỏa H6, H6b; $0<\eta\le1/L$ hằng. Kết luận: $a_k\le(1-\eta\mu)^kD^2+\frac{\eta\sigma^2}\mu$ mọi $k\ge0$. Số hạng thứ nhất co; số hạng thứ hai là sàn nhiễu (noise floor).
 - **Ví dụ/hình dự kiến:** Không có hình.
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận giới hạn E05; khi $\sigma=0$, $\eta=1/L$ lấy lại T2a. E07 chứng minh.
 - **Nguồn:** Suy trực tiếp từ phép co của hạ gradient và bổ đề tách phương sai; bối cảnh SNW ch. 5 §5.4.
-- **Ghi chú soạn:** Không cần H6a, nên không vướng mâu thuẫn với H3. Nguồn cụ thể chờ xác nhận (N6).
+- **Ghi chú soạn:** Không cần H6a, nên không vướng mâu thuẫn với H3. Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R10, R09): "sàn nhiễu (noise floor)"; nguồn suy trực tiếp.
 
 #### E07 — Chứng minh định lý SGD lồi mạnh
 
@@ -641,40 +641,40 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Dòng thứ nhất dùng bổ đề tách phương sai, H3 tại $y=x^*$, BĐ2, H6b.
 - **Kết nối:** E08 kiểm hằng số trên VD-A, kể cả số hạng đã bỏ.
 - **Nguồn:** Chứng minh trực tiếp; SNW ch. 5 (bối cảnh).
-- **Ghi chú soạn:** Phần giải đệ quy chỉ trong ghi chú: quy nạp $a_k\le(1-\eta\mu)^ka_0+\eta^2\sigma^2\sum_{j<k}(1-\eta\mu)^j$ và $\sum_{j<k}q^j\le\frac1{1-q}$ với $q=1-\eta\mu$.
+- **Ghi chú soạn:** Phần giải đệ quy chỉ trong ghi chú: quy nạp $a_k\le(1-\eta\mu)^ka_0+\eta^2\sigma^2\sum_{j<k}(1-\eta\mu)^j$ và $\sum_{j<k}q^j\le\frac1{1-q}$ với $q=1-\eta\mu$. **Bản sửa 2026-10-08** (R21, R10): dòng "Ý tưởng"; "sàn nhiễu", "giá trị giới hạn".
 
 #### E08 — Đối chiếu cận lồi mạnh trên ví dụ ba quan sát
 
 - **Vai trò và mục tiêu:** Ứng dụng KN5; trang đối chiếu bắt buộc; MT3–MT4.
-- **Luận điểm trung tâm:** Trên Ví dụ A, cận T5 đúng dạng nhưng cận dừng gấp khoảng hai lần giá trị dừng thật, vì chứng minh bỏ số hạng $-2\eta(1-\eta L)e_k$.
-- **Ý chính:** $\eta=0{,}1$, $b=1$, $\theta_0=0$, $\mu=L=1$, $\sigma^2=\frac83$, $D=1$. Đệ quy chính xác $a_{k+1}=0{,}81a_k+\frac8{300}$; giới hạn $\frac8{57}\approx0{,}140$. Cận T5: $0{,}9^k+0{,}267$. $k=20$: thật $0{,}153$, cận $0{,}388$. $b=4$: giới hạn $0{,}035$, cận dừng $0{,}0667$. Giá trị dừng thật $\frac{\eta\sigma^2}{\mu(2-\eta\mu)}\approx\frac{\eta\sigma^2}{2\mu}$; hằng số định lý $\frac{\eta\sigma^2}\mu$.
+- **Luận điểm trung tâm:** Trên Ví dụ A, cận T5 đúng dạng nhưng sàn nhiễu gấp khoảng hai lần giá trị giới hạn, vì chứng minh bỏ số hạng $-2\eta(1-\eta L)e_k$.
+- **Ý chính:** $\eta=0{,}1$, $b=1$, $\theta_0=0$, $\mu=L=1$, $\sigma^2=\frac83$, $D=1$. Đệ quy chính xác $a_{k+1}=0{,}81a_k+\frac8{300}$; giới hạn $\frac8{57}\approx0{,}140$. Cận T5: $0{,}9^k+0{,}267$. $k=20$: thật $0{,}153$, cận $0{,}388$. $b=4$: giới hạn $0{,}035$, sàn nhiễu $0{,}0667$. Giá trị dừng thật $\frac{\eta\sigma^2}{\mu(2-\eta\mu)}\approx\frac{\eta\sigma^2}{2\mu}$; hằng số định lý $\frac{\eta\sigma^2}\mu$.
 - **Ví dụ/hình dự kiến:** `vda-sgd-bound-vs-exact.svg`: $a_k$ chính xác và cận T5 theo $k$, hai đường ngang $0{,}140$ và $0{,}267$.
 - **Hình thức hóa:** Với Ví dụ A, $e_k=\frac12d_k^2$ nên số hạng bị bỏ bằng $-\eta(1-\eta)d_k^2$; hệ số co thật $(1-\eta)^2=0{,}81$ so với $1-\eta=0{,}9$ của định lý.
-- **Kết nối:** Nhận T5; E09 dùng cận dừng tỉ lệ $\eta$ để thiết kế lịch bước.
+- **Kết nối:** Nhận T5; E09 dùng sàn nhiễu tỉ lệ $\eta$ để thiết kế lịch bước.
 - **Nguồn:** Tính trực tiếp; Bài 05, mục cỡ nhóm, bước học và dao động gần nghiệm.
-- **Ghi chú soạn:** Số kiểm: $0{,}81^{20}\approx0{,}0148$; $a_{20}\approx0{,}0148+0{,}1404\cdot0{,}9852\approx0{,}153$; $0{,}9^{20}\approx0{,}1216$.
+- **Ghi chú soạn:** Số kiểm: $0{,}81^{20}\approx0{,}0148$; $a_{20}\approx0{,}0148+0{,}1404\cdot0{,}9852\approx0{,}153$; $0{,}9^{20}\approx0{,}1216$. **Bản sửa 2026-10-08** (R26, R44, R54, R10): câu so sánh giá trị giới hạn và sàn nhiễu; dòng $b=4$ vào ghi chú; hình mở trục tới $1{,}4$; ghi chú nối về A03.
 
 #### E09 — Lịch giảm bước theo pha
 
 - **Vai trò và mục tiêu:** Ứng dụng KN5 (T5-pha); MT4.
-- **Luận điểm trung tâm:** Vì cận dừng tỉ lệ với bước, chia đôi bước mỗi khi số hạng co đã nhỏ cỡ cận dừng cho tổng số bước $O(1/\varepsilon)$.
-- **Ý chính:** **Hệ quả (T5-pha, chỉ phát biểu).** Giả thiết như T5; pha $i$ dùng $\eta_i=\eta_02^{-i}$ và kéo dài đến khi số hạng co của pha bằng cận dừng $\eta_i\sigma^2/\mu$. Tổng số bước để $a_k\le\varepsilon$: $O\big(\frac1{\mu\eta_0}\log\frac{D^2}\varepsilon+\frac{\sigma^2}{\mu^2\varepsilon}\big)$, tức $a_k=O(1/k)$. Ví dụ A: bước $0{,}1$ có cận dừng $0{,}267$; bước $0{,}05$ có cận dừng $0{,}133$.
+- **Luận điểm trung tâm:** Vì sàn nhiễu tỉ lệ với bước, chia đôi bước mỗi khi số hạng co đã nhỏ cỡ sàn nhiễu cho tổng số bước $O(1/\varepsilon)$.
+- **Ý chính:** **Hệ quả (T5-pha, chỉ phát biểu).** Giả thiết như T5; pha $i$ dùng $\eta_i=\eta_02^{-i}$ và kéo dài đến khi số hạng co của pha bằng sàn nhiễu $\eta_i\sigma^2/\mu$. Tổng số bước để $a_k\le\varepsilon$: $O\big(\frac1{\mu\eta_0}\log\frac{D^2}\varepsilon+\frac{\sigma^2}{\mu^2\varepsilon}\big)$, tức $a_k=O(1/k)$. Ví dụ A: bước $0{,}1$ có sàn nhiễu $0{,}267$; bước $0{,}05$ có sàn nhiễu $0{,}133$.
 - **Ví dụ/hình dự kiến:** `step-halving-schedule.svg`: bậc thang $\eta$ và cận $a_k$ giảm theo pha.
 - **Hình thức hóa:** Phát biểu bậc $O(\cdot)$; lập luận đầy đủ trong học liệu.
 - **Kết nối:** Nhận E08; trả lời lịch $0{,}1\to0{,}05$ của Bài 05; E10 xét lịch giảm liên tục.
 - **Nguồn:** Bài 05, mục bước học và dao động gần nghiệm; tổng hợp từ T5.
-- **Ghi chú soạn:** Không đặt hằng số cụ thể trên mặt trang ngoài hai cận dừng của VD-A.
+- **Ghi chú soạn:** Không đặt hằng số cụ thể trên mặt trang ngoài hai sàn nhiễu của VD-A. **Bản sửa 2026-10-08** (R10, R28, R09): "sàn nhiễu"; ghi chú pha kết thúc tại 10, 31, 75 theo nghiệm đúng và 13, 40, 95 theo dạng T5; nguồn SNW §5.4 Mệnh đề 5.4.
 
 #### E10 — Bước giảm dần cho hàm lồi mạnh
 
 - **Vai trò và mục tiêu:** Ứng dụng KN5 (T6); MT4.
-- **Luận điểm trung tâm:** Bước $\frac1{\mu(k+1)}$ bỏ cận dừng và cho $a_k=O(1/k)$, với điều kiện chặn mômen trên vùng chứa dãy lặp.
+- **Luận điểm trung tâm:** Bước $\frac1{\mu(k+1)}$ bỏ sàn nhiễu và cho $a_k=O(1/k)$, với điều kiện chặn mômen trên vùng chứa dãy lặp.
 - **Ý chính:** **Định lý (T6, chỉ phát biểu).** Đầu vào: H3, H4; H6, H6a trên vùng chứa dãy lặp; $\eta_k=\frac1{\mu(k+1)}$. Kết luận: $a_k\le\frac{G^2}{\mu^2k}$ mọi $k\ge1$. Ví dụ A với $\eta_k=\frac1{k+1}$: $\theta_k$ là trung bình $k$ mẫu đầu, $a_k=\frac8{3k}$ chính xác.
 - **Ví dụ/hình dự kiến:** Không có hình mới.
 - **Hình thức hóa:** Đệ quy $a_{k+1}\le(1-\frac2{k+1})a_k+\frac{G^2}{\mu^2(k+1)^2}$; quy nạp trong học liệu.
 - **Kết nối:** Nhận E09; E11 chuyển cận kỳ vọng sang xác suất.
 - **Nguồn:** Bối cảnh SNW ch. 5 §5.4; chứng minh quy nạp trong học liệu.
-- **Ghi chú soạn:** Ghi chú: với VD-A, $\theta_k\in[-1,3]$ nên H6a đúng trên vùng với $G^2=4+\frac83=\frac{20}3$; cận $\frac{20}{3k}$ so với giá trị chính xác $\frac8{3k}$ (N3). Không nêu điểm giao với bước hằng vì đó là bài tập E12. Nguồn cụ thể chờ xác nhận (N6).
+- **Ghi chú soạn:** Ghi chú: với VD-A, $\theta_k\in[-1,3]$ nên H6a đúng trên vùng với $G^2=4+\frac83=\frac{20}3$; cận $\frac{20}{3k}$ so với giá trị chính xác $\frac8{3k}$ (N3). Không nêu điểm giao với bước hằng vì đó là bài tập E12. Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R18): ghi chú so sánh lịch theo pha, T6 và T4; "tiến bộ $2\eta_k\mu a_k$".
 
 #### E11 — Bảo đảm theo xác suất
 
@@ -685,7 +685,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Markov từ $Z\ge\varepsilon\mathbf 1\{Z\ge\varepsilon\}$.
 - **Kết nối:** Nhận T4, T5; E12 kiểm phần E.
 - **Nguồn:** SNW ch. 4, Mệnh đề 4.8 (gần như chắc chắn); Bài 00 (kỳ vọng).
-- **Ghi chú soạn:** Cận Markov thường lỏng; ghi chú nêu đó là cận cho một lần chạy.
+- **Ghi chú soạn:** Cận Markov thường lỏng; ghi chú nêu đó là cận cho một lần chạy. **Bản sửa 2026-10-08** (R02): phát biểu hội tụ gần như chắc chắn đủ giả thiết, chỉ nêu.
 
 #### E12 — Hạ gradient ngẫu nhiên trên hai ví dụ
 
@@ -696,9 +696,9 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Đáp án ghi chú: (1) $0{,}837$; $0{,}704$. (2) $k=20$ (bằng nhau tại $k=19$); $k=16$. (3) $\eta=\frac1{10}$, cận $0{,}1$.
 - **Kết nối:** Kết thúc E.
 - **Nguồn:** Tự xây dựng.
-- **Ghi chú soạn:** Đề nói rõ so với giá trị nào (kế hoạch [SỬA]). E03 không nêu đáp án câu (3).
+- **Ghi chú soạn:** Đề nói rõ so với giá trị nào (kế hoạch [SỬA]). E03 không nêu đáp án câu (3). **Bản sửa 2026-10-08** (R45): câu (2) tách (a), (b).
 
-### F. SGD không lồi và tiêu chí chuẩn gradient
+### F. Mục tiêu không lồi và chuẩn gradient
 
 Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8; nêu PL và T9. Nhận BĐ1–BĐ3, KT12, KT13; chuyển cho G T7–T9 và các giới hạn của bảo đảm không lồi. MT4.
 
@@ -711,7 +711,7 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** $F'(\theta)=\theta^3-\theta$; điểm dừng $0,\pm1$.
 - **Kết nối:** Nhận giới hạn E (cần lồi); điểm dừng không lồi của Bài 05.
 - **Nguồn:** Bài 05, mục điểm dừng của hàm không lồi ($r(u)=(u^2-1)^2$); tính trực tiếp.
-- **Ghi chú soạn:** Số kiểm: $F'(-0{,}5)=0{,}375$, $\theta-x^*=-1{,}5$, $F(-0{,}5)=\frac14\cdot0{,}5625$. Với $x^*=-1$ bất đẳng thức đúng tại điểm này ($0{,}1875\ge0{,}1406$); ghi chú nêu hệ quả phụ thuộc cực tiểu được chọn. Bài 06 dùng lại hàm $r$ (liên kết về sau).
+- **Ghi chú soạn:** Số kiểm: $F'(-0{,}5)=0{,}375$, $\theta-x^*=-1{,}5$, $F(-0{,}5)=\frac14\cdot0{,}5625$. Với $x^*=-1$ bất đẳng thức đúng tại điểm này ($0{,}1875\ge0{,}1406$); ghi chú nêu hệ quả phụ thuộc cực tiểu được chọn. Bài 06 dùng lại hàm $r$ (liên kết về sau). **Bản sửa 2026-10-08** (R46, R04): dùng $\theta^*=1$; số kiểm vào ghi chú; panel câu đầy đủ; alt bỏ cụm hai bước.
 
 #### F02 — Hàm thế và điểm dừng
 
@@ -722,7 +722,7 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** Bổ đề giảm: $f(x_{k+1})\le f(x_k)-\frac1{2L}\lVert\nabla f(x_k)\rVert^2$, không cần lồi.
 - **Kết nối:** Nhận BĐ1, bổ đề giảm; F03 cộng các bất đẳng thức.
 - **Nguồn:** BV §9.1.2; tính trực tiếp.
-- **Ghi chú soạn:** $L=11$ chỉ đúng trên $[-2,2]$; ánh xạ $\theta\mapsto\theta-\frac1{11}F'(\theta)$ đơn điệu trên $[-2,2]$ và đưa $[-2,2]$ vào $[-\frac{16}{11},\frac{16}{11}]$, nên dãy GD ở lại vùng này.
+- **Ghi chú soạn:** $L=11$ chỉ đúng trên $[-2,2]$; ánh xạ $\theta\mapsto\theta-\frac1{11}F'(\theta)$ đơn điệu trên $[-2,2]$ và đưa $[-2,2]$ vào $[-\frac{16}{11},\frac{16}{11}]$, nên dãy GD ở lại vùng này. **Bản sửa 2026-10-08** (R04): alt "0,125".
 
 #### F03 — Hội tụ tới điểm dừng của hạ gradient
 
@@ -733,7 +733,7 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** Như trên; một trang vì chứng minh ba dòng.
 - **Kết nối:** Nhận F02; F04 thêm nhiễu.
 - **Nguồn:** SNW ch. 4; BV §9.1.2.
-- **Ghi chú soạn:** Kết luận chặn lặp tốt nhất theo chuẩn gradient, không chặn $x_K$.
+- **Ghi chú soạn:** Kết luận chặn lặp tốt nhất theo chuẩn gradient, không chặn $x_K$. **Bản sửa 2026-10-08** (R14, R09): câu về dãy GD ở lại $[-2,2]$; nguồn suy trực tiếp.
 
 #### F04 — Định lý SGD cho hàm không lồi
 
@@ -744,7 +744,7 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận T7 ($\sigma=0$, $\eta=1/L$ cho lại T7 dưới dạng trung bình); F05 chứng minh.
 - **Nguồn:** Suy trực tiếp từ BĐ1 và bổ đề tách phương sai; SNW ch. 13 §13.3 (bối cảnh).
-- **Ghi chú soạn:** Ghi chú: hai trường hợp của $\min$; chọn chỉ số $\tau$ đều trong $\{0,\dots,K-1\}$ thì $\mathbb E\lVert\nabla f(x_\tau)\rVert^2$ có cùng cận (không dùng chữ $R$). Nguồn cụ thể chờ xác nhận (N6).
+- **Ghi chú soạn:** Ghi chú: hai trường hợp của $\min$; chọn chỉ số $\tau$ đều trong $\{0,\dots,K-1\}$ thì $\mathbb E\lVert\nabla f(x_\tau)\rVert^2$ có cùng cận (không dùng chữ $R$). Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R09): nguồn suy trực tiếp.
 
 #### F05 — Chứng minh định lý SGD không lồi
 
@@ -755,18 +755,18 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** Ba dòng có nhãn.
 - **Kết nối:** Nhận T8; F06 hỏi khi nào khôi phục được tốc độ tuyến tính.
 - **Nguồn:** Suy trực tiếp từ bổ đề giảm và bổ đề tách phương sai.
-- **Ghi chú soạn:** So với F03: thêm một số hạng nhiễu $\frac{L\eta^2\sigma^2}2$ mỗi bước, cộng lại thành $\frac{KL\eta^2\sigma^2}2$.
+- **Ghi chú soạn:** So với F03: thêm một số hạng nhiễu $\frac{L\eta^2\sigma^2}2$ mỗi bước, cộng lại thành $\frac{KL\eta^2\sigma^2}2$. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng".
 
 #### F06 — Điều kiện Polyak–Łojasiewicz
 
 - **Vai trò và mục tiêu:** Nhu cầu, trực quan, ví dụ, hình thức và ứng dụng của tiểu khái niệm PL trong KN6 (H7, T9, KT7, KT16); MT4.
-- **Luận điểm trung tâm:** Bất đẳng thức PL nói gradient chỉ nhỏ khi giá trị đã gần tối ưu; với nó, SGD bước hằng lấy lại hội tụ tuyến tính tới một cận dừng mà không cần lồi.
+- **Luận điểm trung tâm:** Bất đẳng thức PL nói gradient chỉ nhỏ khi giá trị đã gần tối ưu; với nó, SGD bước hằng lấy lại hội tụ tuyến tính tới một sàn nhiễu mà không cần lồi.
 - **Ý chính:** Nhu cầu: T7, T8 chỉ cho tốc độ dưới tuyến tính của chuẩn gradient. Trực quan: trong Ví dụ D, $F'(0)=0$ trong khi $F(0)-F_{\inf}=\frac14$, nên gradient nhỏ không kéo theo giá trị gần tối ưu. Ví dụ dương: với Ví dụ C, $\lVert\nabla f\rVert^2=9x_1^2+49x_2^2\ge9x_1^2+21x_2^2=6e$ tại mọi điểm. **H7 (PL).** $\frac12\lVert\nabla f(x)\rVert^2\ge\mu(f(x)-f^*)$ với mọi $x$. **Định lý (T9, chỉ phát biểu).** H0, H2, H7, H6, H6b, $0<\eta\le1/L$: $\mathbb Ee_k\le(1-\eta\mu)^ke_0+\frac{L\eta\sigma^2}{2\mu}$.
 - **Ví dụ/hình dự kiến:** Không có hình.
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận nhận xét PL trong ghi chú C06 và BĐ3; G01 xếp T9 vào bảng; G03 nhận các giới hạn của bảo đảm không lồi.
 - **Nguồn:** BĐ3; T9 suy trực tiếp bằng cách giải đệ quy như T5.
-- **Ghi chú soạn:** Phép tính VD-C đứng trước H7 và không gọi tên PL; sau H7, ghi chú nêu VD-C thỏa H7 với $\mu=3$ (BĐ3). VD-A đặt trong ghi chú: $\frac12(\theta-1)^2=1\cdot e$, dấu bằng với $\mu=1$. Không nêu ví dụ hàm không lồi thỏa PL toàn cục vì không có nguồn cục bộ; bài tập F07 câu (2) cho PL trên một tập con. Trang gộp năm bước đầu của tiểu khái niệm theo đúng thứ tự. Nguồn cụ thể chờ xác nhận (N6).
+- **Ghi chú soạn:** Phép tính VD-C đứng trước H7 và không gọi tên PL; sau H7, ghi chú nêu VD-C thỏa H7 với $\mu=3$ (BĐ3). VD-A đặt trong ghi chú: $\frac12(\theta-1)^2=1\cdot e$, dấu bằng với $\mu=1$. Không nêu ví dụ hàm không lồi thỏa PL toàn cục vì không có nguồn cục bộ; bài tập F07 câu (2) cho PL trên một tập con. Trang gộp năm bước đầu của tiểu khái niệm theo đúng thứ tự. Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R19, R20, R47): bỏ kết luận Ví dụ D không thỏa PL; Ví dụ C viết thành phép tính trước H7, Ví dụ A vào ghi chú; câu trực quan dương trên trang; H7 và T9 dùng $f_{\inf}$, $\Delta_k$; T9 có nhãn Đầu vào/Kết luận.
 
 #### F07 — Bảo đảm điểm dừng trên ví dụ bậc bốn
 
@@ -777,9 +777,9 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** Đáp án ghi chú: (2) $F'(\theta)^2=\theta^2(\theta^2-1)^2=4\theta^2F(\theta)$; tại $\theta=0$, $F'(0)=0<\mu F(0)$ với mọi $\mu>0$. (3) $\eta=\sqrt{4{,}5/1100}\approx0{,}064<\frac1{11}$; $\frac{2\Delta_0}{\eta K}+L\eta\sigma^2=2\sqrt{2L\Delta_0\sigma^2/K}\approx1{,}41$.
 - **Kết nối:** Kết thúc F.
 - **Nguồn:** Tự xây dựng.
-- **Ghi chú soạn:** Câu (3) ghi "giả sử H2 với $L=11$" vì $L=11$ chỉ đúng trên $[-2,2]$, còn T8 cần H2 toàn cục (N2).
+- **Ghi chú soạn:** Câu (3) ghi "giả sử H2 với $L=11$" vì $L=11$ chỉ đúng trên $[-2,2]$, còn T8 cần H2 toàn cục (N2). **Bản sửa 2026-10-08** (R12): câu (1) dạng bước hằng $\eta\le1/L$; đáp án (3) nêu $1{,}41$ và $1{,}90$; đáp án (2) "$\frac12F'(0)^2=0<\mu F(0)$".
 
-### G. Bảng quyết định và giới hạn
+### G. Bảng tra và giới hạn
 
 Chức năng: tổng hợp T1–T9 thành bảng tra theo mục tiêu; kiểm luận đề; nêu giới hạn và ngoài phạm vi; câu hỏi tự kiểm, bài tập và tài liệu. Nhận toàn bộ C–F; chuyển cho Bài 06 và Buổi 15 bảng tra. MT1–MT4.
 
@@ -787,23 +787,23 @@ Chức năng: tổng hợp T1–T9 thành bảng tra theo mục tiêu; kiểm lu
 
 - **Vai trò và mục tiêu:** Tổng hợp; MT1–MT4.
 - **Luận điểm trung tâm:** Mỗi bảo đảm là một bộ (giả thiết, đại lượng, tốc độ, bước); chọn định lý bằng cách kiểm giả thiết trước.
-- **Ý chính:** Bảng mười hai dòng: T1, T1', T2a, T2b, T2', T3, T4, T5 (kèm hệ quả lịch theo pha), T6, T7, T8, T9; cột giả thiết | đại lượng | tốc độ | bước | mục tiêu học tập liên quan (ghi bằng hành vi, ví dụ "chứng minh", "chọn bước"). Cột giả thiết ghi "H1 (dạng dưới gradient)" cho T3 và T4. Một dòng tổng kết bốn mục tiêu của bài (phân biệt dạng hội tụ; chứng minh theo khuôn một bước; chọn bước và tính cận; áp định lý SGD và nêu giới hạn). Dòng gom các ký hiệu và giả thiết đã đặt rải rác: $f_{\inf}$, $G$, $\sigma^2$, $a_k$, $\Delta_0$, H5–H7, cùng hai nút trung bình lặp và xác suất của bản đồ dạng hội tụ.
+- **Ý chính:** Bảng sáu dòng gộp mười hai phát biểu (T1, T1'; T2a, T2b, T2'; T3, T4; T5, T6; T7, T8; T9), cột giả thiết | đại lượng | tốc độ; cột tốc độ của T5, T9 ghi "tuyến tính tới sàn nhiễu" (R71). Dòng dưới bảng là dòng bước: $\eta\le1/L$ (T1, T2, T5, T7–T9); $D/(G\sqrt K)$ (T3, T4); $\frac1{\mu(k+1)}$ (T6); quay lui (T2') (R19). Ánh xạ bốn mục tiêu nằm trong ghi chú.
 - **Ví dụ/hình dự kiến:** Bảng; không có hình.
 - **Hình thức hóa:** Không có kết quả mới.
 - **Kết nối:** Nhận C–F; G02 kiểm luận đề.
 - **Nguồn:** Sổ định lý.
-- **Ghi chú soạn:** Cột mục tiêu ghi hành vi, không ghi mã MT. Nếu bảng tràn, gộp T2a/T2b và T1/T1' thành một dòng (ghi rõ trong ô) hoặc chuyển cột bước sang ghi chú; không thu nhỏ chữ dưới 0,75em.
+- **Ghi chú soạn:** Cột mục tiêu ghi hành vi, không ghi mã MT. Nếu bảng tràn, gộp T2a/T2b và T1/T1' thành một dòng (ghi rõ trong ô) hoặc chuyển cột bước sang ghi chú; không thu nhỏ chữ dưới 0,75em. **Bản sửa 2026-10-08** (R19, R50, R10): dòng chú thích thành dòng bước; ánh xạ mục tiêu vào ghi chú; T6 "H6a trên vùng chứa dãy lặp"; "tới sàn nhiễu"; T9 đo $\mathbb E\Delta_k$.
 
 #### G02 — Khuôn chứng minh chung
 
 - **Vai trò và mục tiêu:** Tổng hợp luận đề; MT2.
 - **Luận điểm trung tâm:** Sáu bậc của sợi chỉ chứng minh khác nhau ở bất đẳng thức một bước; cách giải chỉ gồm tổng lồng, co hoặc giải đệ quy.
-- **Ý chính:** Bảng sáu bậc: giả thiết đổi | bất đẳng thức một bước | cách giải | định lý thu được (bậc 1: T1, T1'; bậc 2: T2a, T2b, T2'; bậc 3: T3; bậc 4: T4; bậc 5: T5, lịch theo pha, T6; bậc 6: T7, T8, T9).
+- **Ý chính:** Bảng tám dòng: giả thiết đổi | bất đẳng thức một bước (của định lý đầu dòng) | cách giải | thu được. Dòng 1: $e_{k+1}\le\frac1{2\eta}(d_k^2-d_{k+1}^2)$, $\eta\le1/L$, tổng lồng, T1, T1'; thêm H3: co, T2a, T2b, T2'; bỏ H2, H3, thêm H5: tổng lồng, T3; H5 → H6, H6a: tổng lồng, T4; thêm H2, H3, H6b: giải đệ quy, T5 và lịch theo pha; H3, H6a trên vùng: $a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2$, giải đệ quy (quy nạp), T6; bỏ H1, H3, H4, thêm H0: tổng lồng, T7, T8; thêm H7: $\mathbb E\Delta_{k+1}\le(1-\eta\mu)\mathbb E\Delta_k+\frac{L\eta^2\sigma^2}2$, giải đệ quy, T9. Câu kết trên mặt trang: "Tám dòng thuộc sáu bậc; T6, T9 là biến thể của bậc T5 và bậc T7–T8; T2', lịch pha, T6, T9 chỉ phát biểu. Dạng của bất đẳng thức một bước quyết định cách giải." (R56, R63, R72; câu "cột hai là bất đẳng thức của định lý đầu dòng" và "các bậc chỉ khác nhau ở bất đẳng thức một bước" chuyển vào ghi chú vì dòng thứ ba của chú thích chạm chân trang.)
 - **Ví dụ/hình dự kiến:** Bảng.
 - **Hình thức hóa:** Không áp dụng.
 - **Kết nối:** Nhận luận đề A02; G03 nêu giới hạn.
 - **Nguồn:** Tổng hợp.
-- **Ghi chú soạn:** Không lặp lại bảng G01; G02 xếp theo kỹ thuật, G01 theo kết luận. Tên khuôn không kèm mã KH.
+- **Ghi chú soạn:** Không lặp lại bảng G01; G02 xếp theo kỹ thuật, G01 theo kết luận. Tên khuôn không kèm mã KH. **Bản sửa 2026-10-08** (R03, R08): tám dòng, T6 và T9 dòng riêng; T2', T6, T9 đánh dấu chỉ phát biểu ở dòng chú thích; dùng chung quy tắc CSS giảm lề ô với G01.
 
 #### G03 — Phạm vi áp dụng của các bảo đảm
 
@@ -814,7 +814,7 @@ Chức năng: tổng hợp T1–T9 thành bảng tra theo mục tiêu; kiểm lu
 - **Hình thức hóa:** Không áp dụng.
 - **Kết nối:** Nhận G01–G02 và giới hạn F06; G04 giao câu hỏi và bài tập.
 - **Nguồn:** Bài 04 (Newton); Bài 05 (momentum, Nesterov); Bài 06; SNW ch. 13.
-- **Ghi chú soạn:** Không viết lời quảng bá cho phương pháp ngoài phạm vi.
+- **Ghi chú soạn:** Không viết lời quảng bá cho phương pháp ngoài phạm vi. **Bản sửa 2026-10-08** (R20): thêm gạch đầu dòng về cận bi quan; "bước cố định hoặc theo lịch cho trước"; tách danh sách ngoài phạm vi thành hai gạch; ghi chú PL toàn cục và lấy mẫu có hoàn lại.
 
 #### G04 — Câu hỏi tự kiểm, bài tập và tài liệu đọc
 
@@ -825,4 +825,4 @@ Chức năng: tổng hợp T1–T9 thành bảng tra theo mục tiêu; kiểm lu
 - **Hình thức hóa:** Đáp án ghi chú: (1) H2, H3 với $\mu=\lambda$: T2a, T2b (hoặc T5 nếu dùng SGD); (2) T8 nếu H0, H2, H6, H6b đúng; cần kiểm các giả thiết này trước; kể cả khi đúng, T8 không nói tới cực tiểu nào và không loại điểm yên ngựa; (3) Markov: $\le0{,}2$.
 - **Kết nối:** Kết thúc bài; liên kết về sau với Bài 06 (trung bình Polyak).
 - **Nguồn:** Tự xây dựng.
-- **Ghi chú soạn:** Câu (1) đo MT3; câu (2), (3) đo MT4. Danh sách bài tập học liệu phải gồm chứng minh T6 bằng quy nạp (quyết định người dùng số 3) và một bài áp dụng Markov. Câu (1) cần hằng số $L$ của mất mát logistic có chính quy; đáp án học liệu tính hằng số này từ ma trận dữ liệu, không đặt trên trang. Ba câu hỏi tự kiểm là nội dung mới của bản sửa (SB14), chờ kiểm toán.
+- **Ghi chú soạn:** Câu (1) đo MT3; câu (2), (3) đo MT4. Danh sách bài tập học liệu phải gồm chứng minh T6 bằng quy nạp (quyết định người dùng số 3) và một bài áp dụng Markov. Câu (1) cần hằng số $L$ của mất mát logistic có chính quy; đáp án học liệu tính hằng số này từ ma trận dữ liệu, không đặt trên trang. Ba câu hỏi tự kiểm là nội dung mới của bản sửa (SB14), chờ kiểm toán. **Bản sửa 2026-10-08** (R11): câu (3) viết lại; đáp án (2) nêu điều kiện của T8.

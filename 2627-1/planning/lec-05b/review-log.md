@@ -1,8 +1,12 @@
 # Nhật ký soạn và rà soát Bài 05b
 
-## Trạng thái ngày 2026-10-07
+## Trạng thái ngày 2026-10-08: chờ điều phối viên duyệt lượt R79–R86
 
-Bản sửa sau cổng kiểm định storyboard. [outline.md](outline.md) và [storyboard.md](storyboard.md) mô tả **51 trang, 7 phần ngoài** (A5, B7, C9, D7, E12, F7, G4). Mỗi mã trang trong outline có đúng một mục trong storyboard; đã kiểm bằng script so mã và tiêu đề. Cổng kiểm định storyboard lượt 1 cho SB01–SB15; tái kiểm (lượt 2) kết luận "đạt có điều kiện" và nêu SB16–SB29. Lượt 3 của tác tử soạn đã sửa SB16–SB28 trong phạm vi trang, không đổi số trang; SB29 do điều phối viên xử lý. Chưa có deck HTML, hình SVG, học liệu hay mục `index.html`.
+Bản sửa sau cổng kiểm định storyboard. [outline.md](outline.md) và [storyboard.md](storyboard.md) mô tả **51 trang, 7 phần ngoài** (A5, B7, C9, D7, E12, F7, G4). Mỗi mã trang trong outline có đúng một mục trong storyboard; đã kiểm bằng script so mã và tiêu đề. Cổng kiểm định storyboard lượt 1 cho SB01–SB15; tái kiểm (lượt 2) kết luận "đạt có điều kiện" và nêu SB16–SB29. Lượt 3 của tác tử soạn đã sửa SB16–SB28 trong phạm vi trang, không đổi số trang; SB29 do điều phối viên xử lý. Ba tệp planning được điều phối viên duyệt và commit (2cf44c3). Lượt 4 (2026-10-07) triển khai deck `lecture-05b-hoi-tu-ha-gradient-va-sgd.html` đủ 51 trang, 7 phần ngoài, và 14 SVG trong `img/lec-05b/`; chưa commit. Chưa có học liệu và mục `index.html`.
+
+Năm vai rà soát độc lập (SV, CG, TO, SP, MT) đã đọc deck; điều phối viên hợp nhất thành R01–R54. Tác tử chỉnh sửa đã sửa toàn bộ mục được chấp nhận, giữ 51 trang và mã trang; chỉ tiêu đề C07 đổi (thêm "(Ví dụ C)"). **Điều kiện bàn giao (R06):** học liệu `materials/lec-05b/lecture-note.md` và `exercises.md` phải có trước khi bàn giao, vì E09, E10 và G04 dẫn tới học liệu.
+
+Kiểm định cuối KĐ1 (2026-10-08) kết luận "chưa sẵn sàng commit"; điều phối viên chấp nhận toàn bộ phát hiện, mã R79–R86. Tác tử chỉnh sửa đã sửa cả tám mục (mục "Kiểm định cuối KĐ1"); chưa commit.
 
 Bài bổ trợ không có buổi riêng trong đề cương DOCX; không gán thời lượng ở bất kỳ cấp nào.
 
@@ -21,6 +25,21 @@ Cột "bằng chứng" ghi nguồn xác nhận vai và mô hình. Theo CLAUDE.md
 | (c) Soạn và triển khai, lượt 2 (bản sửa) | Cùng tác tử (c), tiếp tục qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Có | Như lượt 1; sửa theo SB01–SB15 | 2026-10-07 | Thông báo yêu cầu sửa của điều phối viên (`SendMessage`) | `chấp nhận` (2026-10-07). Điều phối viên kiểm: 51 mã khớp 51 mục; 7 phần; các số N10 tính lại đúng ($c=\frac{25}{28}$, $k\ge78$; $d_2^2,d_3^2$; $e_k$ VD-B và trung bình $\frac14$; PL cho VD-C). Gửi tái kiểm storyboard |
 | (d) Kiểm định storyboard, lượt 2 (tái kiểm) | Cùng tác tử (d), tiếp tục qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Ba tệp planning của bản sửa lượt 2 | 2026-10-07 | Thông báo của điều phối viên cho tác tử soạn | Kết luận của tác tử: "đạt có điều kiện". Điều phối viên: `chấp nhận` toàn bộ phát hiện còn lại SB16–SB29 |
 | (c) Soạn và triển khai, lượt 3 | Cùng tác tử (c), tiếp tục qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Có | Như lượt 1; sửa SB16–SB28 trong phạm vi trang, giữ 51 trang | 2026-10-07 | Thông báo yêu cầu sửa của điều phối viên (`SendMessage`) | `chấp nhận` (2026-10-07). Điều phối viên kiểm C01, C04/C05, D03/D06, E04, F06, F07, G01, G04 và các trường Nguồn; không còn mã trang ở trường lên mặt trang |
+| (c) Soạn và triển khai, lượt 4 (deck và hình) | Cùng tác tử (c), tiếp tục qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Có | Tạo deck HTML và 14 SVG; sửa `lecture-style.css` trong phạm vi Bài 05/05b; cập nhật ba tệp planning theo sai khác khi triển khai; không commit | 2026-10-07 | Thông báo giao việc của điều phối viên (`SendMessage`) | `chấp nhận` (2026-10-07). Điều phối viên đọc diff `lecture-style.css` (chỉ mở rộng bộ chọn `:where` sang `05b` và một quy tắc cho G01), xem ảnh A05, G01, D03, C04 (16:9) và E08 (hẹp), kiểm lại chứng minh C04 và các số N12 ($a_2\approx0{,}704$; $s_2\approx2{,}48$, $s_3\approx2{,}79$; $h(t)=2{,}5t^2$). Chuyển sang năm vai rà soát |
+| (e1) Rà soát, vai sinh viên | `general-purpose` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Deck 51 trang, 14 SVG, ba tệp planning (mã vai trong bảng R: SV) | 2026-10-07/08 | Lời gọi `Agent` của điều phối viên | Báo cáo được điều phối viên hợp nhất thành R01–R54; chấp nhận trừ hai mục bác bỏ |
+| (e2) Rà soát, vai chuyên gia | `general-purpose` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Deck 51 trang, 14 SVG, ba tệp planning (mã vai trong bảng R: CG) | 2026-10-07/08 | Lời gọi `Agent` của điều phối viên | Báo cáo được điều phối viên hợp nhất thành R01–R54; chấp nhận trừ hai mục bác bỏ |
+| (e3) Rà soát, vai độ chính xác toán học | `general-purpose` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Deck 51 trang, 14 SVG, ba tệp planning (mã vai trong bảng R: TO) | 2026-10-07/08 | Lời gọi `Agent` của điều phối viên | Báo cáo được điều phối viên hợp nhất thành R01–R54; chấp nhận trừ hai mục bác bỏ |
+| (e4) Rà soát, vai phản biện học thuật và giảng dạy | `general-purpose` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Deck 51 trang, 14 SVG, ba tệp planning (mã vai trong bảng R: SP) | 2026-10-07/08 | Lời gọi `Agent` của điều phối viên | Báo cáo được điều phối viên hợp nhất thành R01–R54; chấp nhận trừ hai mục bác bỏ |
+| (e5) Rà soát, vai mạch truyện và liên kết | `general-purpose` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Deck 51 trang, 14 SVG, ba tệp planning (mã vai trong bảng R: MT) | 2026-10-07/08 | Lời gọi `Agent` của điều phối viên | Báo cáo được điều phối viên hợp nhất thành R01–R54; chấp nhận trừ hai mục bác bỏ |
+| (f) Chỉnh sửa (AGENTS.md §7) | Cùng tác tử (c), tiếp tục qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Có | Deck, SVG trong `img/lec-05b/`, ba tệp planning; một quy tắc CSS phạm vi 05b mở rộng cho G02; không commit | 2026-10-08 | Thông báo giao việc của điều phối viên (`SendMessage`) | `chấp nhận` (2026-10-08, qua `SendMessage`); tái kiểm TO2, MT2 nêu R55–R72 |
+| (g1) Tái kiểm toán học (TO2) | `general-purpose` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Các trang đổi ở vòng R01–R54 và hình | 2026-10-08 | Lời gọi `Agent` của điều phối viên | Kết luận: "chưa đạt (trung bình)"; điều phối viên chấp nhận toàn bộ, mã R55–R72 |
+| (g2) Tái kiểm mạch (MT2) | `general-purpose` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Toàn deck (mở đầu, kết luận và luận đề có đổi) | 2026-10-08 | Lời gọi `Agent` của điều phối viên | Kết luận: "chưa đạt (trung bình)"; điều phối viên chấp nhận toàn bộ, mã R55–R72 |
+| (f) Chỉnh sửa, lượt 2 (R55–R72) | Cùng tác tử (c), tiếp tục qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Có | Deck, `convergence-map.svg`, ba tệp planning; không CSS; không commit | 2026-10-08 | Thông báo giao việc của điều phối viên (`SendMessage`) | `chấp nhận` (2026-10-08, qua `SendMessage`); TO3 đạt, MT3 nêu R73–R78 |
+| (g3) Tái kiểm toán học, lượt 2 (TO3) | Cùng tác tử (g1), qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Các trang đổi ở vòng R55–R72 | 2026-10-08 | Lời gọi của điều phối viên | Kết luận: "đạt" |
+| (g4) Tái kiểm mạch, lượt 2 (MT3) | Cùng tác tử (g2), qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Toàn deck và ba tệp planning | 2026-10-08 | Lời gọi của điều phối viên | Kết luận: "chưa đạt (một dòng planning)"; điều phối viên chấp nhận R73–R78 |
+| (f) Chỉnh sửa, lượt 3 (R73–R78) | Cùng tác tử (c), tiếp tục qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Có | Deck (A02, C06 ghi chú, G02 ghi chú), ba tệp planning; không CSS; không commit | 2026-10-08 | Thông báo giao việc của điều phối viên (`SendMessage`) | `chấp nhận` (2026-10-08, qua `SendMessage`); chuyển kiểm định cuối KĐ1 |
+| (h) Kiểm định cuối (KĐ1) | `general-purpose` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Không (chỉ đọc) | Deck, 14 SVG, `lecture-style.css`, ba tệp planning | 2026-10-08 | Thông báo của điều phối viên (`SendMessage`) nêu loại tác tử, mô hình và effort | Kết luận của tác tử: "chưa sẵn sàng commit". Điều phối viên: `chấp nhận` toàn bộ, mã R79–R86 |
+| (f) Chỉnh sửa, lượt 4 (R79–R86) | Cùng tác tử (c), tiếp tục qua `SendMessage` | Claude Opus 5.5 (`claude-opus-5-5`) | `high` | Có | Deck (E02; dấu câu sau công thức trên mặt trang), 14 SVG, `outline.md`, `review-log.md`; không CSS; không commit | 2026-10-08 | Thông báo giao việc của điều phối viên (`SendMessage`) | `chấp nhận` (2026-10-08). Điều phối viên kiểm mẫu di chuyển dấu câu (46 `\text{:}`, 306 dấu trong công thức, ghi chú không đổi) và chấp nhận sửa rộng; KĐ2 xác nhận số đo SVG |
 
 ## Bốn quyết định của người dùng (chốt ngày 2026-10-07)
 
@@ -43,41 +62,224 @@ Người dùng chấp nhận cả bốn khuyến nghị của kế hoạch. Khô
 6. Trên mặt trang A01 ghi "Bài 05b"; nhãn "bổ trợ" chỉ ở `index.html`.
 7. Bản sửa thêm mục "Quy ước nhãn" vào outline (SB09) và bảng đổi mã trang vào storyboard.
 
+## Triển khai deck và hình (lượt 4)
+
+**Tệp tạo mới.** `2627-1/lecture-05b-hoi-tu-ha-gradient-va-sgd.html` (51 trang, `<html lang="vi" data-lecture="05b">`, 7 `<section>` ngoài A–G, mỗi trang một `data-slide-id`, ghi chú diễn giả ở mọi trang); 14 SVG trong `2627-1/img/lec-05b/`, đều có `<title>`, `<desc>`, và `alt` khi chèn bằng `<img>`. Cấu hình Reveal, plugin và đoạn mã điều hướng màn hẹp chép từ deck Bài 05. Không `<style>`, không `style=""`, không tài nguyên ngoài `2627-1/`.
+
+**Thay đổi CSS dùng chung** (`2627-1/lecture-style.css`):
+
+1. Khối "Bài 05" được mở rộng cho `05b`: mọi bộ chọn `:where(html[data-lecture="05"])` thành `:where(html[data-lecture="05"], html[data-lecture="05b"])` (tương tự cho `:root:where(...)` và `html:where(...)`). Lý do: mọi quy tắc bố cục trong tệp đều gắn với mã bài; không có quy tắc này, deck `05b` mất toàn bộ bố cục và chế độ màn hẹp. Bài 05b là bài bổ trợ của Bài 05 nên dùng cùng bố cục. `:where` giữ độ ưu tiên bằng 0, nên deck Bài 05 không đổi.
+2. Thêm một quy tắc riêng: `:where(html[data-lecture="05b"]) .reveal section[data-slide-id="G01"]` giảm lề ô bảng (5px 10px) và lề bảng, để bảng tra vừa khung mà không giảm cỡ chữ.
+
+Hồi quy: deck Bài 05 đo lại sau khi sửa cho kết quả trùng khớp với lần đo trước khi sửa (37 trang; chiều cao nội dung, cỡ chữ nhỏ nhất và chiều cao cuộn ở màn hẹp không đổi ở trang nào). Các deck 00, 01, 02, 03, 04, 06, 07 không bị quy tắc mới chạm tới; đã chạy kiểm: không lỗi trang, không `.katex-error`. Bộ đo báo vài trang cao hơn khung ở deck 00 (B03D, B13, E05) và 01 (G03); đo lại với CSS gốc của HEAD cho cùng kết quả, nên đây là tình trạng có sẵn, không do thay đổi này.
+
+**Kiểm định trình duyệt** (Playwright Chromium, máy chủ `python3 -m reloadserver 8765`, chuyển trang bằng `Reveal.slide(h, v, 99)`, tắt hiệu ứng chuyển trang khi đo):
+
+| Hạng mục | Kết quả |
+|---|---|
+| Lỗi console, lỗi trang | 0, 0 (sau khi bỏ chữ tiếng Việt khỏi `\text{}` trong công thức) |
+| `.katex-error`; công thức chưa hiển thị (ký tự `$` hoặc `\` còn sót) | 0; 0 |
+| Tràn chiều cao ở 1600×900 (khung 675) | 0 trang; cao nhất G01 639, E08 631, A03 617 |
+| Vùng công thức hoặc bảng phải cuộn ngang ở 1600×900 | 0 |
+| Tràn ngang trang ở 390×844 | 0; công thức và bảng dài cuộn trong vùng riêng như deck Bài 05 |
+| Cỡ chữ thân bài | không nhỏ hơn 0,75 cỡ chữ trang ở mọi trang |
+| Phím điều hướng | ArrowDown từ trang đầu chuyển đúng sang trang thứ hai |
+
+Ảnh chụp ở `/tmp/claude-1000/lec-05b/` (mỗi trang một ảnh 1600×900, hai ảnh 390×844 đầu và cuối vùng cuộn, kèm các bảng ghép `sheet-*.png`); tác tử soạn đã xem ảnh của toàn bộ 51 trang.
+
+**Lỗi phát hiện và sửa khi kiểm:**
+
+- Ký tự `<` trong công thức nội dòng (ví dụ $\sum_{k<K}$) bị trình duyệt đọc là thẻ HTML, làm mất nội dung ở B07, C02, D04–D07, E04, F01, F03–F05. Sửa: viết `&lt;` trong mọi công thức; kiểm lại không còn công thức sót.
+- D03, G01, G02 tràn khung: D03 đặt thuật toán thành một khối ngang rồi hình và ví dụ hai cột; G01 gộp dòng, bỏ cột bước và cột mục tiêu (thay bằng dòng chú thích); G02 bỏ cột số bậc. Không giảm cỡ chữ.
+- B02, B05, E08 có công thức dài hơn cột: chuyển chứng minh của B02 ra toàn chiều rộng, ngắt dòng đồng nhất thức BĐ4, tách công thức E08 thành hai dòng.
+- Phân số `\dfrac` trong dòng chữ chồng lên dòng kế ở màn hẹp (E04): đổi sang `\tfrac` hoặc dạng gạch chéo.
+
+**Sai khác so với outline/storyboard khi triển khai** (đã ghi vào hai tệp): hình `quadratic-sandwich.svg` dùng lát cắt theo hướng $(1,1)/\sqrt2$ thay cho trục $x_2$; nhận xét hàm thế ở C02 dùng ký hiệu $P_k$, $N_k$; bảng G01, G02 rút gọn như trên. Không đổi số trang, mã hay tiêu đề trang; A05 không cần tách.
+
+## Vòng chỉnh sửa R01–R54 (2026-10-08)
+
+**Thay đổi CSS dùng chung.** Quy tắc riêng của Bài 05b cho G01 được mở rộng sang G02: `:where(html[data-lecture="05b"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"])` giảm lề ô bảng. Lý do: bảng tám dòng của G02 (R03) cao 884 px trong khung 675 khi giữ cỡ chữ. Deck Bài 05 đo lại không đổi ở trang nào.
+
+**Số đo cỡ chữ SVG (R05).** Đo bằng Playwright ở 1600×900: bề rộng hiển thị của mỗi `<img>` là 546 px theo đơn vị trang (khung 1200), quy ra màn hình nhân $\tfrac{1600}{1200}$. Cỡ chữ thân trang (lớp `dense`) là 28 px theo đơn vị trang.
+
+| Hình | viewBox | cỡ nhỏ nhất trong SVG | px theo đơn vị trang | px màn hình 1600×900 | tỉ lệ với cỡ chữ trang |
+|---|---|---|---|---|---|
+| `convergence-map.svg` (B06) | 820 | 24 (trước: 18 trên viewBox 720) | 16,0 | 21,3 | 0,57 |
+| `history-tree.svg` (E02) | 720 | 21 (trước: 18 trên 640) | 15,9 | 21,2 | 0,57 |
+| `step-halving-schedule.svg` (E09) | 640 | 20 | 17,1 | 22,8 | 0,61 |
+| `vdc-three-bounds.svg` (C07), `vda-sgd-bound-vs-exact.svg` (E08) | 640 | 19 | 16,2 | 21,6 | 0,58 |
+| các hình viewBox 600 (A04, B01, B02, C02, D01, D02, D03, F01, F02) | 600 | 19–20 | 17,3–18,2 | 23,1–24,3 | 0,62–0,65 |
+| `one-step-geometry.svg` (B05) | 600 | 22 | 20,0 | 26,7 | 0,72 |
+
+Mọi nhãn đạt ≥ 21 px màn hình theo đích của điều phối viên. Tỉ lệ so với cỡ chữ thân trang ở cùng thang đo là 0,57–0,72; đạt 0,75 theo nghĩa này cần cỡ chữ SVG 23–32 hoặc hình rộng hơn (nghi vấn N14). Bảng này đã được thay bằng số đo ở mục "Cỡ chữ SVG theo quyết định N14".
+
+**Kiểm định trình duyệt sau chỉnh sửa.** 51 trang; 0 lỗi console, 0 lỗi trang, 0 `.katex-error`, 0 công thức chưa hiển thị; không trang nào tràn ở 1600×900 (cao nhất G01 645, D01 639, G02 637, E02 635, G03 632); không vùng công thức hoặc bảng phải cuộn ngang ở 1600×900; không tràn ngang trang ở 390×844; phím điều hướng đúng. Ảnh chụp lại ở `/tmp/claude-1000/lec-05b/` (mọi trang; các bảng ghép `sel/sheet-wide-*.png` cho 28 trang đã đổi). `git diff --check` sạch.
+
+## Cỡ chữ SVG theo quyết định N14 (2026-10-08)
+
+Quyết định của điều phối viên: đo theo thang màn hình 1600×900. Nhãn mang nội dung (công thức, giá trị đánh dấu, chú giải, tên đại lượng) cần ≥ 0,65 cỡ chữ thân trang, khoảng 24 px. Số chia và nhãn trục được coi là chú thích ngắn, chấp nhận ≥ 0,58 (khoảng 21,5 px).
+
+Lượt đầu (KĐ1 bác, R79): `make_svgs.py` đặt cỡ nhỏ nhất theo bề rộng viewBox, $\lceil 24\cdot w/702\rceil$, với giả định ảnh luôn rộng 702 px màn hình. Trong trang có lớp `dense`, ảnh còn bị giới hạn bởi `max-height: 325px` và `object-fit: contain`, nên tỉ lệ hiển thị thực là $\min(\text{rộng}/w,\ \text{cao}/h)$; mười một hình có nhãn nội dung chỉ 21,9–23,6 px màn hình. Bảng đo của lượt đầu dùng sai tỉ lệ nên được thay bằng bảng dưới đây.
+
+Cách sửa (R79): `make_svgs.py` tính tỉ lệ hiển thị $s=1{,}2857\cdot\min(546/w,\ 325/h)$ px màn hình trên một đơn vị viewBox, trong đó 546×325 là khung ảnh theo đơn vị trang và 1,2857 là hệ số đổi đơn vị trang sang px màn hình ở 1600×900. Nhãn nội dung có cỡ ≥ $\lceil 24/s\rceil$ (23 cho viewBox 600×390 và 640×400, 25 cho 640×420, 26 cho 720×440, 29 cho 820×460); số chia và nhãn trục có cỡ ≥ $\max(20,\lceil 21{,}5/s\rceil)$ (21 hoặc 22). Không đổi tỉ lệ khung viewBox. Vẽ lại cả 14 hình. Dời nhãn bị đường cắt hoặc bị cắt mép sau khi tăng cỡ:
+
+- `convergence-map.svg` (B06): nhãn "(μ/2)d² ≤ e" dời vào giữa hai mũi tên trái và phải, không còn chạm mũi tên xanh lá; giãn dòng hai tầng nhãn từ 28 lên 32.
+- `quartic-two-wells.svg` (F01, F02): "cực tiểu" đặt cao hơn đáy trái ($F=0{,}30$), "cực đại địa phương" đặt ở $F=0{,}62$; đường cong không cắt chữ.
+- `vdb-subgradient-iterates.svg` (D03): nhãn "x₀, x₂" chuyển xuống dưới bên trái điểm, tránh cung xanh.
+- `vdc-three-bounds.svg` (C07): số chia trục tung cách trục 16 đơn vị, "100" không chạm điểm $k=0$; nhãn T2a dời trái, không chạm đường chấm; nhãn trục "k" đặt dưới trục, bên phải số chia 16.
+- `vda-sgd-bound-vs-exact.svg` (E08): "0,267" và "0,140" chuyển sang lề phải, ngang đầu hai đường giới hạn; hai đường chấm giới hạn bắt đầu từ $k=26$ để "0,153" không chạm đường cam; "giá trị chính xác" đặt giữa mức 0,140 và trục hoành, từ $k=1$.
+- Sửa thêm do tăng cỡ: `one-step-geometry.svg` (B05) dời khối ba đẳng thức xuống giữa hình vì dòng "‖x − ηg − x*‖² = 64/49" vượt mép phải; `vdb-objective.svg` (D01) chuyển nhãn "Ví dụ B: trị tuyệt đối (nét liền)" lên dưới nhãn Ví dụ A, trục tung tới 5,2 không có vạch 5, parabol vẽ trên $[-1{,}25;\ 3{,}25]$; `subgradient-supporting-lines.svg` (D02) nâng nhãn "0,6: không tựa" khỏi đường lưới 2; `rates-log-error.svg` (A04), `logistic-no-minimizer.svg` (B01), `step-halving-schedule.svg` (E09) đặt nhãn trục hoành dưới trục, bên phải số chia cuối, vì nhãn cũ chạm đầu đường dữ liệu; B01 giãn số chia trục tung để "0" không chạm "−2".
+
+Kiểm tự động: không nhãn chữ nào ra ngoài viewBox, không cặp nhãn chữ nào chồng nhau (so hộp bao `getBBox` từng cặp). Ảnh phóng to (hệ số điểm ảnh 2) của 14 hình ở `/tmp/claude-1000/lec-05b/svg79/`, đã xem từng ảnh.
+
+Số đo Playwright ở 1600×900 (chữ thân trang 36,0 px màn hình; tỉ lệ thực đo bằng `getBoundingClientRect` của ảnh và `naturalWidth`, `naturalHeight`, lấy min):
+
+| Hình (trang) | viewBox | tỉ lệ thực | cỡ nhỏ nhất nội dung | px màn hình | tỉ lệ với chữ thân | cỡ số chia trục | px màn hình | tỉ lệ với chữ thân |
+|---|---|---|---|---|---|---|---|---|
+| `rates-log-error.svg` (A04) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | 21 | 22,52 | 0,62 |
+| `logistic-no-minimizer.svg` (B01) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | 21 | 22,52 | 0,62 |
+| `quadratic-sandwich.svg` (B02) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | 21 | 22,52 | 0,62 |
+| `one-step-geometry.svg` (B05) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | — | — | — |
+| `convergence-map.svg` (B06) | 820×460 | 0,857 | 29 | 24,86 | 0,69 | — | — | — |
+| `telescoping-stack.svg` (C02) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | — | — | — |
+| `vdc-three-bounds.svg` (C07) | 640×420 | 0,996 | 25 | 24,89 | 0,69 | 22 | 21,90 | 0,61 |
+| `vdb-objective.svg` (D01) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | 21 | 22,52 | 0,62 |
+| `subgradient-supporting-lines.svg` (D02) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | 21 | 22,52 | 0,62 |
+| `vdb-subgradient-iterates.svg` (D03) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | 21 | 22,52 | 0,63 |
+| `history-tree.svg` (E02) | 720×440 | 0,950 | 26 | 24,71 | 0,69 | — | — | — |
+| `vda-sgd-bound-vs-exact.svg` (E08) | 640×400 | 1,045 | 23 | 24,04 | 0,67 | 21 | 21,95 | 0,61 |
+| `step-halving-schedule.svg` (E09) | 640×420 | 0,996 | 25 | 24,89 | 0,69 | 22 | 21,90 | 0,61 |
+| `quartic-two-wells.svg` (F01, F02) | 600×390 | 1,072 | 23 | 24,66 | 0,68 | 21 | 22,52 | 0,62 |
+
+Mọi nhãn nội dung ≥ 24 px màn hình (nhỏ nhất 24,04 ở E08); mọi số chia trục ≥ 21,5 px (nhỏ nhất 21,90 ở C07, E09). Không còn ngoại lệ.
+
+**Kiểm sau vòng R55–R72.** 51 trang; 0 lỗi console, 0 lỗi trang, 0 `.katex-error`, 0 công thức chưa hiển thị; không tràn ở 1600×900 (cao nhất G01 645, A03 644, A02 642, D01 639, G02 636); không tràn ngang ở 390×844; script so 51 mã outline–storyboard khớp. Ảnh A02, A03, B06, G01, G02, E10 ở `/tmp/claude-1000/lec-05b/` và `sel/sheet-wide-00.png`.
+
 ## Phát hiện rà soát
 
 Nguồn: tác tử kiểm định storyboard (d), lượt 1 cho SB01–SB15 và lượt 2 (tái kiểm) cho SB16–SB29; quyết định của điều phối viên. Với SB16–SB29, mã trang là mã của bản sửa lượt 2 (51 trang). Không xóa phát hiện đã xử lý. Mã trang trong cột "trang chiếu" là mã của bản đầu; mã mới ghi trong cột "đề xuất sửa" khi khác.
 
 | mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa | trạng thái | quyết định |
 |---|---|---|---|---|---|---|
-| chặn bàn giao (SB01) | A05, D02, D04, F06 | A05 đưa H1 dạng dưới gradient, H5, H7 trước khi có dưới gradient, chặn $G$ và nhu cầu PL | Outline bản đầu, A05 và mục "Giả thiết có tên": H0 "hoặc lồi khi dùng dưới gradient", H1 với $g\in\partial f(x)$ | A05: H1 dạng khả vi, bỏ mệnh đề dưới gradient khỏi H0, không đưa H5, H7. D02 mở rộng H1 cho $\partial f$; H5 vào phát biểu T3 (D04); H7 vào F06 | Đã sửa; chờ tái kiểm | Chấp nhận |
-| nghiêm trọng (SB02) | A05, F06 | PL thiếu nhu cầu, trực quan và ví dụ dương; F06 gộp PL với giới hạn không lồi | Bản đồ KN6 bản đầu; F06 mở bằng H7 | Bỏ PL khỏi A05. F06 đổi tiêu đề "Điều kiện Polyak–Łojasiewicz"; thêm trực quan (gradient chỉ nhỏ khi giá trị gần tối ưu, sai tại $\theta=0$ của VD-D) và ví dụ dương (VD-C với $\mu=3$, VD-A với $\mu=1$, theo BĐ3); chuyển giới hạn "không nói tới cực tiểu nào, không loại điểm yên ngựa" sang G03; cập nhật bản đồ KN6 | Đã sửa; chờ tái kiểm | Chấp nhận |
-| nghiêm trọng (SB03) | C01, C05, C08 | Số VD-C lặp ba lần; C01 nêu cận $62(4/7)^k$ trước khi T2 được phát biểu | Outline bản đầu C01 (bảng ba giá trị, hai cận), C05 (bảng bốn giá trị), C08 (bảng ba cận) | Phương án (a): gộp C05 vào C08 (mới là C07). C01 bỏ bảng, dẫn lại A03, chỉ nêu ba khoảng trống chứng minh. Nhu cầu dùng $\mu$ đến từ C04 với ví dụ $x_1^2$. "7000 so với 6" và "16" chỉ ở C07 | Đã sửa; chờ tái kiểm. Đánh lại mã C06→C05, C07→C06, C08→C07, C09→C08, C10→C09 | Chấp nhận, chọn phương án (a) |
-| trung bình (SB04) | A05 | Trang quá tải; "tám giả thiết" không khớp số nhãn | A05 bản đầu có 16 ký hiệu và tám dòng giả thiết; nhãn thực có mười (H0–H7, H6a, H6b) | Chỉ giữ ký hiệu và H0–H4 cho A–C; $f_{\inf}$ ở B01, $a_k,G,\sigma^2$ ở E, $\Delta_0$ ở F02; G01 gom lại. Ghi "mười nhãn; A05 nêu năm nhãn H0–H4". Tách A05 chỉ khi vẫn quá tải | Đã sửa; chưa tách; chờ kiểm định trình duyệt | Chấp nhận |
-| trung bình (SB05) | B06 | Jensen và Markov đặt ở B khi chưa có trung bình lặp và kỳ vọng | Outline bản đầu B06; Jensen dùng lần đầu ở D05, Markov ở E11 | Chuyển Jensen về D (nhu cầu ở D03, phát biểu ở D05), Markov về E11. B còn 7 trang; B07→B06, B08→B07 | Đã sửa; chờ tái kiểm | Chấp nhận |
-| trung bình (SB06) | D03 | Lượt chạy bước $\frac12$ đơn điệu, không cho thấy vì sao cần lặp tốt nhất và trung bình lặp | Bản đầu D03: $x_k=0,\frac16,\frac13,\frac12$ đều trên một khúc tuyến tính | Thêm lượt $x_0=0$, $\eta=4{,}5$: $x=0;1{,}5;0;1{,}5$, $f$ tăng từ $1{,}5$ lên $\frac53$, $\bar x_4=0{,}75$, sai số $\frac1{12}<\frac16$. Giữ $\eta=\frac12$ cho D06 | Đã sửa; chờ tái kiểm | Chấp nhận (số do điều phối viên kiểm) |
-| trung bình (SB07) | C09, C10 | T2' không có bài tập áp dụng; ví dụ ngưỡng lặp giữa C09 và C10 câu (3) | Bản đầu C09 có ví dụ $\frac L2x^2$; C10 câu (1) là chứng minh T1 với quay lui (đã có ở Bài 04) | C10 (mới C09) câu (1) áp T2' trên VD-C với $\alpha,\beta$ cho trước; bỏ ví dụ ngưỡng khỏi C09 (mới C08); C09 mới câu (3) giữ ngưỡng | Đã sửa; chờ tái kiểm | Chấp nhận |
-| trung bình (SB08) | D07 | Câu (2) dùng $\frac c{\sqrt{k+1}}$ mà không nối với điều kiện Robbins–Monro vừa học | Bản đầu D07 câu (2) | Thêm câu (2b): $\frac c{k+1}$ thỏa Robbins–Monro, $\frac c{\sqrt{k+1}}$ không, nhưng cận vẫn về 0 với tốc độ $\ln K/\sqrt K$ | Đã sửa; chờ tái kiểm | Chấp nhận |
-| trung bình (SB09) | Nhiều trang (trường "Ý chính") | Mã trang và nhãn planning (KT, mã trang Bài 04/05) nằm trong nội dung dự kiến lên mặt trang | Ví dụ bản đầu: A03 "Bài 05 B07", E03 "KT13", F05 "KT12, KT13" | Thay mã bằng tên kết quả; thêm mục "Quy ước nhãn" vào outline | Đã sửa; đã quét trường "Ý chính" bằng biểu thức chính quy, không còn mã; chờ tái kiểm | Chấp nhận |
-| trung bình (SB10) | A05, E01, phần E | $D$ của bài này trùng $D$ tập dữ liệu của Bài 05; thiếu cặp $K$/$T$ | Bài 05 HT1 dùng $D$ cho tập dữ liệu, $T$ cho số bước | A05 và ghi chú E01: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu"; phần E viết "tập dữ liệu" bằng chữ; thêm "$K$ (Bài 05 viết $T$)" | Đã sửa; chờ tái kiểm | Chấp nhận |
-| trung bình (SB11) | A04, E03, E07, F04, F05, C07 | Năm trang quá tải hoặc mang hai luận điểm | Bản đầu: A04 có công thức số bước; E03 có ví dụ VD-B; E07 có đại số giải đệ quy; F05 gộp chứng minh và chọn bước; C07 có nhận xét PL trên trang | A04 chuyển số bước vào ghi chú; E03 bỏ VD-B; E07 giải đệ quy vào ghi chú; F04 nhận hệ quả chọn bước, F05 chỉ chứng minh; C07 (mới C06) nhận xét PL vào ghi chú, T2b một dòng | Đã sửa; chờ tái kiểm | Chấp nhận |
-| trung bình (SB12) | B08, C10, E03, E12 | Bài tập lặp lại số đã giải trên trang; E03 lộ đáp án E12 câu (3) | B08 (2) kiểm tại $x_0$ như B03–B04; C10 (2) dùng $k=1,2$ như C08; E03 nêu VD-B ngẫu nhiên với $G=1$ | B08 (mới B07) câu (2) dùng $x=(1,-1)$: $3\le5\le9{,}67\le11{,}67\le16{,}33$; C10 (mới C09) câu (2) dùng $k=2,3$; E12 giữ, E03 không nêu đáp án | Đã sửa; chờ tái kiểm | Chấp nhận (chuỗi số do điều phối viên kiểm) |
-| trung bình (SB13) | B06, E04, F01, nguồn | Lấy dữ kiện từ Bài 06, bài học sau Bài 05b | Bản đầu B06 dùng bốn điểm của Bài 06 E06; VD-D dẫn Bài 06 E06 | Ví dụ tự chứa; VD-D lấy nguồn Bài 05 A06 ($r(u)=(u^2-1)^2$); Bài 06 chỉ là liên kết về sau | Đã sửa; chờ tái kiểm | Chấp nhận |
-| trung bình (SB14) | G01, G04 | Phần G không nối kết quả với mục tiêu; thiếu câu hỏi tự kiểm | Bản đầu G01 không có cột mục tiêu; G04 chỉ liệt kê nhóm bài | G01 thêm cột mục tiêu (ghi bằng hành vi); G04 thêm ba "Câu hỏi:" tự kiểm, đổi tiêu đề thành "Câu hỏi tự kiểm, bài tập và tài liệu đọc" | Đã sửa; ba câu hỏi là nội dung mới, chờ kiểm toán | Chấp nhận |
-| nhẹ (SB15) | B01, C02, C08, C10, E05, F01, F06, G01, G02, G03, A02 | Câu nối, tiêu đề và cách đếm chưa chính xác | Bản đầu: B01 tiêu đề chỉ một phản ví dụ; "sáu định lý" ở G02; tiêu đề C08, C10 gần nhau; F01, F06 thiếu LLO11 | Câu nối B01→B02 (cận trên rồi chiều ngược); câu nối E05→E06 nêu ba giới hạn của T4; tiêu đề B01 "Hội tụ giá trị và hội tụ dãy lặp", C09 mới "Quay lui, co và ngưỡng bước"; G01, G02 ghi đủ T1', T2'; "sáu bậc của sợi chỉ chứng minh"; A02 "mọi bảo đảm được chứng minh trong bài"; G03 nêu tên công cụ; C02 luận điểm bao hai mẫu; F01, F06 thêm LLO11/CLO1 | Đã sửa; chờ tái kiểm | Chấp nhận |
-| trung bình (SB16) | C01, J4 | Ba khoảng trống của C01 không khớp Bài 04: Bài 04 đã có chứng minh đầy đủ trong học liệu mục B | Học liệu Bài 04 mục B (định lý $O(1/k)$ có chứng minh); C01 lượt 2 nói "chứng minh mới ở mức ý chính" và "$\inf$ không đạt chưa được loại trừ" | Viết lại: (1) chưa có cận cho $d_k$ và tính không tăng của $d_k$; (2) chưa có dạng bước $\eta\le1/L$ (T1'), mặt trang Bài 04 chỉ nêu ý chính, chứng minh đầy đủ ở học liệu mục B; (3) chưa chỉ ra bước dùng giả thiết đạt cực tiểu (B01: thiếu nó thì $e_k\to0$ mà $x_k\to\infty$). Sửa J4 khớp | Đã sửa C01 (luận điểm, ý chính, hình thức hóa, ghi chú), J4; C04 ghi chú nêu bước dùng H4; chờ duyệt | Chấp nhận |
-| trung bình (SB17) | Storyboard câu nối C→D, D→E, KN2; outline B01, E07, các trường Nguồn | Mã trang trong văn bản sẽ chép sang ghi chú | "Hằng số $L$ vào chứng minh C04…", "Chứng minh D05…", "B02, B03 chặn…", "(E03)", "Bài 04 RG15" | Thay bằng tên kết quả hoặc mục học liệu; mở rộng "Quy ước nhãn" cho trường Hình thức hóa, câu nối trong Kết nối, Nguồn | Đã sửa; quét các trường Ý chính, Hình thức hóa, Nguồn và câu nối trong ngoặc kép: không còn mã trang, KT, KH, MT, N, VD-; mã KT và N6 trong Nguồn chuyển sang tên kết quả và Ghi chú soạn; câu nối E→F đổi "E" thành "SGD lồi"; chờ duyệt | Chấp nhận |
-| trung bình (SB18) | Sổ định lý, E04, G01 | T4 dùng dưới gradient nhưng ghi "H1" không kèm dạng như T3 | Sổ định lý lượt 2: T3 "H1 (dạng dưới gradient)", T4 "H1" | Ghi "H1 (dạng dưới gradient)" cho T4 ở sổ định lý, E04, G01 | Đã sửa; chờ duyệt | Chấp nhận |
-| trung bình (SB19) | F06, F07 | F06 kết luận "Ví dụ D không thỏa PL với mọi $\mu>0$" trùng đáp án F07 (2); bài tập chỉ phủ định | Outline lượt 2 F06 câu cuối Ý chính; F07 câu (2) | Bỏ câu kết luận khỏi F06; F07 (2): chứng minh $\frac12F'(\theta)^2=2\theta^2F(\theta)$, suy ra PL với $\mu=2c^2$ trên $\{\lvert\theta\rvert\ge c\}$, không đúng toàn cục | Đã sửa F06, F07 (ý chính, đáp án), VD-D, bản đồ KN6; đẳng thức do điều phối viên kiểm; chờ duyệt | Chấp nhận |
-| trung bình (SB20) | F06 | Trang quá tải; ví dụ dương viết "thỏa PL" trước khi phát biểu H7 | Outline lượt 2 F06: "Ví dụ C thỏa với $\mu=3$, Ví dụ A với $\mu=1$" đứng trước H7 | Ví dụ dương viết thành phép tính $\lVert\nabla f\rVert^2=9x_1^2+49x_2^2\ge6e$; VD-A vào ghi chú | Đã sửa F06 và bản đồ KN6; chờ duyệt | Chấp nhận |
-| trung bình (SB21) | C04, C05 | Dòng nhu cầu với $x_1^2$ đặt cuối trang chứng minh, làm C04 mang hai luận điểm | Outline lượt 2 C04 "Dòng cuối: cận phải đúng cho $x_1^2$…" | Chuyển dòng nhu cầu lên đầu C05 trước phát biểu T2; C04 chỉ chứng minh; sửa câu nối KN3 | Đã sửa C04, C05, storyboard C04, C05, KN3; chờ duyệt | Chấp nhận |
-| trung bình (SB22) | D03, D05, D06 | D03 mang hai lượt chạy; D05 mang phép kiểm Jensen trên trang | Outline lượt 2 D03 (bước $\frac12$ và $4{,}5$), D05 (kiểm Jensen) | D03 chỉ giữ lượt bước $4{,}5$; lượt bước $\frac12$ sang D06 (kiểm cận); phép kiểm Jensen ở D05 vào ghi chú | Đã sửa D03, D05, D06, hình `vdb-subgradient-iterates.svg`, bản đồ KN4; chờ duyệt | Chấp nhận |
-| nhẹ (SB23) | D03 | "nhỏ hơn sai số $\frac16$ của mọi điểm lặp" sai nghĩa vì các điểm lặp có sai số khác nhau | Sai số tại $0$ là $\frac13$, tại $1{,}5$ là $\frac16$ | "nhỏ hơn sai số của mọi điểm lặp (nhỏ nhất là $\frac16$)" | Đã sửa; chờ duyệt | Chấp nhận |
-| nhẹ (SB24) | Storyboard, khái niệm phụ | Markov và Jensen thiếu lý do riêng cho cách xử lý | Đoạn "Khái niệm phụ dùng chu trình rút gọn" lượt 2 | Markov ghi lý do riêng (công cụ xác suất tiên quyết, chứng minh một dòng, chỉ dùng ở E11); Jensen ghi hình D03 làm trực quan trong KN4 | Đã sửa đoạn khái niệm phụ và cột trực quan KN4; chờ duyệt | Chấp nhận |
-| nhẹ (SB25) | B06 | Câu "Trung bình lặp và xác suất được thêm vào bản đồ ở D và E" không chỉ nơi thực hiện | Outline lượt 2 B06 Kết nối | Ghi rõ: ghi chú D05, ghi chú E11, dòng gom G01 | Đã sửa outline B06, G01 và storyboard B06; chờ duyệt | Chấp nhận |
-| nhẹ (SB26) | G04 | Đáp án câu (2) áp T8 cho mạng nơ ron mà không nêu điều kiện | Outline lượt 2 G04 đáp án (2) "T8; …" | "T8 nếu H0, H2, H6, H6b đúng; cần kiểm các giả thiết này trước; kể cả khi đúng, T8 không nói tới cực tiểu nào…" | Đã sửa; chờ duyệt | Chấp nhận |
-| nhẹ (SB27) | G01, G04 | Thiếu ánh xạ câu hỏi tự kiểm sang mục tiêu; G01 thiếu dòng tổng kết mục tiêu | Storyboard lượt 2 G04 chỉ ghi LLO | Storyboard ghi câu (1) đo MT3, câu (2), (3) đo MT4; thêm dòng tổng kết bốn mục tiêu ở G01 | Đã sửa outline G01, G04 (ghi chú soạn), storyboard G04; chờ duyệt | Chấp nhận |
-| nhẹ (SB28) | C07 → C08 | Câu nối không nêu giới hạn tạo nhu cầu cho quay lui | Outline lượt 2 C07 Kết nối "C08 bỏ yêu cầu biết $L$" | Câu nối: "T1, T2 dùng bước $1/L$, tức phải biết $L$" | Đã sửa outline C07 và câu nối KN3; chờ duyệt | Chấp nhận |
+| chặn bàn giao (SB01) | A05, D02, D04, F06 | A05 đưa H1 dạng dưới gradient, H5, H7 trước khi có dưới gradient, chặn $G$ và nhu cầu PL | Outline bản đầu, A05 và mục "Giả thiết có tên": H0 "hoặc lồi khi dùng dưới gradient", H1 với $g\in\partial f(x)$ | A05: H1 dạng khả vi, bỏ mệnh đề dưới gradient khỏi H0, không đưa H5, H7. D02 mở rộng H1 cho $\partial f$; H5 vào phát biểu T3 (D04); H7 vào F06 | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| nghiêm trọng (SB02) | A05, F06 | PL thiếu nhu cầu, trực quan và ví dụ dương; F06 gộp PL với giới hạn không lồi | Bản đồ KN6 bản đầu; F06 mở bằng H7 | Bỏ PL khỏi A05. F06 đổi tiêu đề "Điều kiện Polyak–Łojasiewicz"; thêm trực quan (gradient chỉ nhỏ khi giá trị gần tối ưu, sai tại $\theta=0$ của VD-D) và ví dụ dương (VD-C với $\mu=3$, VD-A với $\mu=1$, theo BĐ3); chuyển giới hạn "không nói tới cực tiểu nào, không loại điểm yên ngựa" sang G03; cập nhật bản đồ KN6 | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| nghiêm trọng (SB03) | C01, C05, C08 | Số VD-C lặp ba lần; C01 nêu cận $62(4/7)^k$ trước khi T2 được phát biểu | Outline bản đầu C01 (bảng ba giá trị, hai cận), C05 (bảng bốn giá trị), C08 (bảng ba cận) | Phương án (a): gộp C05 vào C08 (mới là C07). C01 bỏ bảng, dẫn lại A03, chỉ nêu ba khoảng trống chứng minh. Nhu cầu dùng $\mu$ đến từ C04 với ví dụ $x_1^2$. "7000 so với 6" và "16" chỉ ở C07 | Đã sửa; tái kiểm cổng lượt 2: đạt (đánh lại mã C06→C05, C07→C06, C08→C07, C09→C08, C10→C09) | Chấp nhận, chọn phương án (a) |
+| trung bình (SB04) | A05 | Trang quá tải; "tám giả thiết" không khớp số nhãn | A05 bản đầu có 16 ký hiệu và tám dòng giả thiết; nhãn thực có mười (H0–H7, H6a, H6b) | Chỉ giữ ký hiệu và H0–H4 cho A–C; $f_{\inf}$ ở B01, $a_k,G,\sigma^2$ ở E, $\Delta_0$ ở F02; G01 gom lại. Ghi "mười nhãn; A05 nêu năm nhãn H0–H4". Tách A05 chỉ khi vẫn quá tải | Đã sửa; tái kiểm cổng lượt 2: đạt (chưa tách) | Chấp nhận |
+| trung bình (SB05) | B06 | Jensen và Markov đặt ở B khi chưa có trung bình lặp và kỳ vọng | Outline bản đầu B06; Jensen dùng lần đầu ở D05, Markov ở E11 | Chuyển Jensen về D (nhu cầu ở D03, phát biểu ở D05), Markov về E11. B còn 7 trang; B07→B06, B08→B07 | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| trung bình (SB06) | D03 | Lượt chạy bước $\frac12$ đơn điệu, không cho thấy vì sao cần lặp tốt nhất và trung bình lặp | Bản đầu D03: $x_k=0,\frac16,\frac13,\frac12$ đều trên một khúc tuyến tính | Thêm lượt $x_0=0$, $\eta=4{,}5$: $x=0;1{,}5;0;1{,}5$, $f$ tăng từ $1{,}5$ lên $\frac53$, $\bar x_4=0{,}75$, sai số $\frac1{12}<\frac16$. Giữ $\eta=\frac12$ cho D06 | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận (số do điều phối viên kiểm) |
+| trung bình (SB07) | C09, C10 | T2' không có bài tập áp dụng; ví dụ ngưỡng lặp giữa C09 và C10 câu (3) | Bản đầu C09 có ví dụ $\frac L2x^2$; C10 câu (1) là chứng minh T1 với quay lui (đã có ở Bài 04) | C10 (mới C09) câu (1) áp T2' trên VD-C với $\alpha,\beta$ cho trước; bỏ ví dụ ngưỡng khỏi C09 (mới C08); C09 mới câu (3) giữ ngưỡng | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| trung bình (SB08) | D07 | Câu (2) dùng $\frac c{\sqrt{k+1}}$ mà không nối với điều kiện Robbins–Monro vừa học | Bản đầu D07 câu (2) | Thêm câu (2b): $\frac c{k+1}$ thỏa Robbins–Monro, $\frac c{\sqrt{k+1}}$ không, nhưng cận vẫn về 0 với tốc độ $\ln K/\sqrt K$ | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| trung bình (SB09) | Nhiều trang (trường "Ý chính") | Mã trang và nhãn planning (KT, mã trang Bài 04/05) nằm trong nội dung dự kiến lên mặt trang | Ví dụ bản đầu: A03 "Bài 05 B07", E03 "KT13", F05 "KT12, KT13" | Thay mã bằng tên kết quả; thêm mục "Quy ước nhãn" vào outline | Đã sửa; tái kiểm cổng lượt 2: đạt (đã quét trường "Ý chính" bằng biểu thức chính quy, không còn mã) | Chấp nhận |
+| trung bình (SB10) | A05, E01, phần E | $D$ của bài này trùng $D$ tập dữ liệu của Bài 05; thiếu cặp $K$/$T$ | Bài 05 HT1 dùng $D$ cho tập dữ liệu, $T$ cho số bước | A05 và ghi chú E01: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu"; phần E viết "tập dữ liệu" bằng chữ; thêm "$K$ (Bài 05 viết $T$)" | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| trung bình (SB11) | A04, E03, E07, F04, F05, C07 | Năm trang quá tải hoặc mang hai luận điểm | Bản đầu: A04 có công thức số bước; E03 có ví dụ VD-B; E07 có đại số giải đệ quy; F05 gộp chứng minh và chọn bước; C07 có nhận xét PL trên trang | A04 chuyển số bước vào ghi chú; E03 bỏ VD-B; E07 giải đệ quy vào ghi chú; F04 nhận hệ quả chọn bước, F05 chỉ chứng minh; C07 (mới C06) nhận xét PL vào ghi chú, T2b một dòng | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| trung bình (SB12) | B08, C10, E03, E12 | Bài tập lặp lại số đã giải trên trang; E03 lộ đáp án E12 câu (3) | B08 (2) kiểm tại $x_0$ như B03–B04; C10 (2) dùng $k=1,2$ như C08; E03 nêu VD-B ngẫu nhiên với $G=1$ | B08 (mới B07) câu (2) dùng $x=(1,-1)$: $3\le5\le9{,}67\le11{,}67\le16{,}33$; C10 (mới C09) câu (2) dùng $k=2,3$; E12 giữ, E03 không nêu đáp án | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận (chuỗi số do điều phối viên kiểm) |
+| trung bình (SB13) | B06, E04, F01, nguồn | Lấy dữ kiện từ Bài 06, bài học sau Bài 05b | Bản đầu B06 dùng bốn điểm của Bài 06 E06; VD-D dẫn Bài 06 E06 | Ví dụ tự chứa; VD-D lấy nguồn Bài 05 A06 ($r(u)=(u^2-1)^2$); Bài 06 chỉ là liên kết về sau | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| trung bình (SB14) | G01, G04 | Phần G không nối kết quả với mục tiêu; thiếu câu hỏi tự kiểm | Bản đầu G01 không có cột mục tiêu; G04 chỉ liệt kê nhóm bài | G01 thêm cột mục tiêu (ghi bằng hành vi); G04 thêm ba "Câu hỏi:" tự kiểm, đổi tiêu đề thành "Câu hỏi tự kiểm, bài tập và tài liệu đọc" | Đã sửa; tái kiểm cổng lượt 2: đạt (ba câu hỏi là nội dung mới, TO xác nhận (N11)) | Chấp nhận |
+| nhẹ (SB15) | B01, C02, C08, C10, E05, F01, F06, G01, G02, G03, A02 | Câu nối, tiêu đề và cách đếm chưa chính xác | Bản đầu: B01 tiêu đề chỉ một phản ví dụ; "sáu định lý" ở G02; tiêu đề C08, C10 gần nhau; F01, F06 thiếu LLO11 | Câu nối B01→B02 (cận trên rồi chiều ngược); câu nối E05→E06 nêu ba giới hạn của T4; tiêu đề B01 "Hội tụ giá trị và hội tụ dãy lặp", C09 mới "Quay lui, co và ngưỡng bước"; G01, G02 ghi đủ T1', T2'; "sáu bậc của sợi chỉ chứng minh"; A02 "mọi bảo đảm được chứng minh trong bài"; G03 nêu tên công cụ; C02 luận điểm bao hai mẫu; F01, F06 thêm LLO11/CLO1 | Đã sửa; tái kiểm cổng lượt 2: đạt | Chấp nhận |
+| trung bình (SB16) | C01, J4 | Ba khoảng trống của C01 không khớp Bài 04: Bài 04 đã có chứng minh đầy đủ trong học liệu mục B | Học liệu Bài 04 mục B (định lý $O(1/k)$ có chứng minh); C01 lượt 2 nói "chứng minh mới ở mức ý chính" và "$\inf$ không đạt chưa được loại trừ" | Viết lại: (1) chưa có cận cho $d_k$ và tính không tăng của $d_k$; (2) chưa có dạng bước $\eta\le1/L$ (T1'), mặt trang Bài 04 chỉ nêu ý chính, chứng minh đầy đủ ở học liệu mục B; (3) chưa chỉ ra bước dùng giả thiết đạt cực tiểu (B01: thiếu nó thì $e_k\to0$ mà $x_k\to\infty$). Sửa J4 khớp | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (C01 (luận điểm, ý chính, hình thức hóa, ghi chú), J4; C04 ghi chú nêu bước dùng H4) | Chấp nhận |
+| trung bình (SB17) | Storyboard câu nối C→D, D→E, KN2; outline B01, E07, các trường Nguồn | Mã trang trong văn bản sẽ chép sang ghi chú | "Hằng số $L$ vào chứng minh C04…", "Chứng minh D05…", "B02, B03 chặn…", "(E03)", "Bài 04 RG15" | Thay bằng tên kết quả hoặc mục học liệu; mở rộng "Quy ước nhãn" cho trường Hình thức hóa, câu nối trong Kết nối, Nguồn | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (quét các trường Ý chính, Hình thức hóa, Nguồn và câu nối trong ngoặc kép: không còn mã trang, KT, KH, MT, N, VD-; mã KT và N6 trong Nguồn chuyển sang tên kết quả và Ghi chú soạn; câu nối E→F đổi "E" thành "SGD lồi") | Chấp nhận |
+| trung bình (SB18) | Sổ định lý, E04, G01 | T4 dùng dưới gradient nhưng ghi "H1" không kèm dạng như T3 | Sổ định lý lượt 2: T3 "H1 (dạng dưới gradient)", T4 "H1" | Ghi "H1 (dạng dưới gradient)" cho T4 ở sổ định lý, E04, G01 | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt | Chấp nhận |
+| trung bình (SB19) | F06, F07 | F06 kết luận "Ví dụ D không thỏa PL với mọi $\mu>0$" trùng đáp án F07 (2); bài tập chỉ phủ định | Outline lượt 2 F06 câu cuối Ý chính; F07 câu (2) | Bỏ câu kết luận khỏi F06; F07 (2): chứng minh $\frac12F'(\theta)^2=2\theta^2F(\theta)$, suy ra PL với $\mu=2c^2$ trên $\{\lvert\theta\rvert\ge c\}$, không đúng toàn cục | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (F06, F07 (ý chính, đáp án), VD-D, bản đồ KN6; đẳng thức do điều phối viên kiểm) | Chấp nhận |
+| trung bình (SB20) | F06 | Trang quá tải; ví dụ dương viết "thỏa PL" trước khi phát biểu H7 | Outline lượt 2 F06: "Ví dụ C thỏa với $\mu=3$, Ví dụ A với $\mu=1$" đứng trước H7 | Ví dụ dương viết thành phép tính $\lVert\nabla f\rVert^2=9x_1^2+49x_2^2\ge6e$; VD-A vào ghi chú | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (F06 và bản đồ KN6) | Chấp nhận |
+| trung bình (SB21) | C04, C05 | Dòng nhu cầu với $x_1^2$ đặt cuối trang chứng minh, làm C04 mang hai luận điểm | Outline lượt 2 C04 "Dòng cuối: cận phải đúng cho $x_1^2$…" | Chuyển dòng nhu cầu lên đầu C05 trước phát biểu T2; C04 chỉ chứng minh; sửa câu nối KN3 | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (C04, C05, storyboard C04, C05, KN3) | Chấp nhận |
+| trung bình (SB22) | D03, D05, D06 | D03 mang hai lượt chạy; D05 mang phép kiểm Jensen trên trang | Outline lượt 2 D03 (bước $\frac12$ và $4{,}5$), D05 (kiểm Jensen) | D03 chỉ giữ lượt bước $4{,}5$; lượt bước $\frac12$ sang D06 (kiểm cận); phép kiểm Jensen ở D05 vào ghi chú | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (D03, D05, D06, hình `vdb-subgradient-iterates.svg`, bản đồ KN4) | Chấp nhận |
+| nhẹ (SB23) | D03 | "nhỏ hơn sai số $\frac16$ của mọi điểm lặp" sai nghĩa vì các điểm lặp có sai số khác nhau | Sai số tại $0$ là $\frac13$, tại $1{,}5$ là $\frac16$ | "nhỏ hơn sai số của mọi điểm lặp (nhỏ nhất là $\frac16$)" | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt | Chấp nhận |
+| nhẹ (SB24) | Storyboard, khái niệm phụ | Markov và Jensen thiếu lý do riêng cho cách xử lý | Đoạn "Khái niệm phụ dùng chu trình rút gọn" lượt 2 | Markov ghi lý do riêng (công cụ xác suất tiên quyết, chứng minh một dòng, chỉ dùng ở E11); Jensen ghi hình D03 làm trực quan trong KN4 | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (đoạn khái niệm phụ và cột trực quan KN4) | Chấp nhận |
+| nhẹ (SB25) | B06 | Câu "Trung bình lặp và xác suất được thêm vào bản đồ ở D và E" không chỉ nơi thực hiện | Outline lượt 2 B06 Kết nối | Ghi rõ: ghi chú D05, ghi chú E11, dòng gom G01 | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (outline B06, G01 và storyboard B06) | Chấp nhận |
+| nhẹ (SB26) | G04 | Đáp án câu (2) áp T8 cho mạng nơ ron mà không nêu điều kiện | Outline lượt 2 G04 đáp án (2) "T8; …" | "T8 nếu H0, H2, H6, H6b đúng; cần kiểm các giả thiết này trước; kể cả khi đúng, T8 không nói tới cực tiểu nào…" | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt | Chấp nhận |
+| nhẹ (SB27) | G01, G04 | Thiếu ánh xạ câu hỏi tự kiểm sang mục tiêu; G01 thiếu dòng tổng kết mục tiêu | Storyboard lượt 2 G04 chỉ ghi LLO | Storyboard ghi câu (1) đo MT3, câu (2), (3) đo MT4; thêm dòng tổng kết bốn mục tiêu ở G01 | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (outline G01, G04 (ghi chú soạn), storyboard G04) | Chấp nhận |
+| nhẹ (SB28) | C07 → C08 | Câu nối không nêu giới hạn tạo nhu cầu cho quay lui | Outline lượt 2 C07 Kết nối "C08 bỏ yêu cầu biết $L$" | Câu nối: "T1, T2 dùng bước $1/L$, tức phải biết $L$" | Đã sửa ở lượt 3; điều phối viên duyệt (2026-10-07): đạt (outline C07 và câu nối KN3) | Chấp nhận |
 | nhẹ (SB29) | Nhật ký tác tử | Dòng bằng chứng của tác tử (d) | Do điều phối viên nêu | Điều phối viên tự sửa | Điều phối viên xử lý; tác tử soạn không sửa dòng này | Chấp nhận |
+
+### Vòng rà soát năm vai (2026-10-07/08)
+
+Nguồn: năm báo cáo độc lập, điều phối viên hợp nhất và quyết định. Mã trang theo bản 51 trang.
+
+| mã | vai nguồn | mức độ | trang chiếu | vấn đề | đề xuất sửa | trạng thái | quyết định |
+|---|---|---|---|---|---|---|---|
+| R01 | SV, CG, TO, SP, MT | nghiêm trọng | A03 | Câu "ba kiểu khác nhau" sai: $e_k=\frac32d_k^2$ cùng tỉ số $\frac{16}{49}$ | Thay câu kết; sửa câu nối KN1 | Đã sửa. TO2, MT2: đạt, điểm còn lại ở R60 | Chấp nhận |
+| R02 | CG, TO, SP | nghiêm trọng | E11 | Phát biểu hội tụ gần như chắc chắn thiếu giả thiết | Nêu đủ: lồi, H4, H6, H6a, Robbins–Monro; ghi chú phạm vi và nguồn | Đã sửa. TO2, MT2: đạt, điểm còn lại ở R58 | Chấp nhận |
+| R03 | SV, CG, TO, SP, MT | nghiêm trọng | G02 | T6, T9 gộp sai bậc; T2' chưa đánh dấu chỉ phát biểu | Tách T6, T9 thành dòng riêng; đánh dấu chỉ phát biểu; dòng chú thích | Đã sửa; thêm G02 vào quy tắc CSS giảm lề ô của G01 để vừa khung. TO2, MT2: đạt, điểm còn lại ở R56 | Chấp nhận |
+| R04 | SV, CG, TO, SP | nghiêm trọng | F01, F02 (alt) | Alt ghi $F(\theta_2)\approx0{,}168$, đúng là $0{,}125$; alt F01 nói về hai bước | Sửa alt F02; alt F01 bỏ cụm hai bước | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R05 | SP; điều phối viên đo | nghiêm trọng | B06, E02 (SVG) | Nhãn SVG hiển thị 17,6–19,8 px | Tăng cỡ nhãn; đo lại | Đã sửa; số đo ở mục "Cỡ chữ SVG theo quyết định N14". TO2, MT2: đạt; KĐ1 mở lại thành R79 | Chấp nhận |
+| R06 | SV, SP, TO | nghiêm trọng | E09, E10, G04 | Dẫn tới học liệu chưa có | Giữ lời dẫn; học liệu là điều kiện bàn giao | Điều kiện bàn giao, ghi ở mục trạng thái; TO2, MT2 giữ nguyên | Chấp nhận |
+| R07 | SV, SP, MT | trung bình | A03, A04 | Thiếu định nghĩa $e_k$, $d_k$, $x^*$ khi dùng | Thêm dòng ký hiệu và cụm "$x^*$ là một điểm cực tiểu" | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R08 | MT, SP | trung bình | A02, D05, E01, G02 | Luận đề thiếu vế "chỉ bất đẳng thức một bước đổi"; thuật ngữ không thống nhất | Nối luận đề; dùng "khuôn một bước" | Đã sửa. TO2, MT2: đạt, điểm còn lại ở R56, R72 | Chấp nhận |
+| R09 | CG | trung bình | Nguồn C03–C06, D03–D06, E01, E06, E09, E10, F03, F04 | Dẫn nguồn không khớp kết quả | Đổi theo danh sách của điều phối viên; đồng bộ bảng học liệu | Đã sửa. TO2, MT2: đạt, điểm còn lại ở R57, R62 | Chấp nhận |
+| R10 | CG | trung bình | B07, E06–E10, G01 | "Cận dừng" lẫn với "điểm dừng" | "Sàn nhiễu (noise floor)", "giá trị giới hạn" | Đã sửa (cả outline, storyboard, SVG E09). TO2, MT2: đạt, điểm còn lại ở R59 | Chấp nhận |
+| R11 | SV, SP, TO | trung bình | G04 | Câu (3) và đáp án (2) chưa chặt | Viết lại theo đề xuất | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R12 | SV, TO | trung bình | F07 | Đáp án (3) chỉ một số; câu (1) trùng chứng minh trên trang | Nêu 1,41 và 1,90; câu (1) dạng bước $\eta\le1/L$; sửa đáp án (2) | Đã sửa. TO2, MT2: đạt, điểm còn lại ở R61 | Chấp nhận |
+| R13 | SV, SP | trung bình | B07 | Câu (1) trùng gợi ý; (c) mơ hồ | Câu (1) kiểm BĐ2 cho $\phi$; (c) "giá trị nhỏ nhất trên $K$ bước đầu" | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R14 | SV | trung bình | F03 | Chưa nói vì sao bổ đề giảm áp dụng cho Ví dụ D | Thêm câu dãy GD ở lại $[-2,2]$ | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R15 | SV, CG | trung bình | E02 | Thiếu tên tiếng Anh và phép kiểm tháp | Thêm tên, phép kiểm $1{,}007;\ 0{,}683;\ 0{,}424$; ghi chú bộ lọc | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R16 | MT | trung bình | B05, B06 | BĐ4 không là mũi tên của bản đồ | Phương án (b): giữ thứ tự, ghi chú B05; đầu vào B06 = BĐ1–BĐ3 | Đã sửa. TO2, MT2: đạt, điểm còn lại ở R68 | Chấp nhận phương án (b) |
+| R17 | MT | trung bình | B01, B07, C01 | Câu nối A→B, B→C thiếu | Thêm câu nối vào ghi chú | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R18 | MT, CG, TO | trung bình | E10 | So sánh lịch bước thiếu; "tiến bộ" sai hệ số | Ghi chú so sánh; $2\eta_k\mu a_k$ | Đã sửa. TO2, MT2: đạt, điểm còn lại ở R57 | Chấp nhận |
+| R19 | MT, TO | trung bình | G01 | Dòng chú thích mục tiêu không giúp tra cứu | Thay bằng dòng bước; ánh xạ mục tiêu vào ghi chú; T6 "trên vùng" | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R20 | MT, CG, SP | trung bình | G03 | Thiếu giới hạn "cận bi quan"; "bước không thích nghi" chưa đúng | Thêm gạch đầu dòng; sửa cụm; tách gạch dài | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R21 | SP | trung bình | C04, C06, E05, E07, F05 | Trang chứng minh thiếu ý tưởng | Thêm dòng "Ý tưởng" | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R22 | SP | trung bình | C01 | Câu đầu thiếu vị ngữ; H4 chưa gắn khoảng trống 3 | Viết lại | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R23 | SV, SP, MT | trung bình | C02 | Biến $e_{k+1}$ trong mẫu 1 gây nhầm; câu hàm thế | $p_{k+1}$; "$u_k$ đóng vai một hàm thế $V_k\ge0$" | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R24 | SP | trung bình | D02 | H1 dạng dưới gradient chưa nêu $\partial f\neq\emptyset$ và H4 | Viết lại | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R25 | SV, SP, TO | trung bình | D06 | Bảng thiếu tên hàng và điểm | Hàng "sai số $e$"; cột ghi $x_3$, $\bar x_4$ | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R26 | SP, TO | trung bình | E08 | Câu so sánh chưa rõ; hình cắt cận tại $k=0$ | Câu mới; $b=4$ vào ghi chú; trục tới 1,4 | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R27 | TO, SV, SP, MT, CG | trung bình | C07 | Giải thích hệ số $\frac{16}{49}$ không đúng; nhãn câu nối | Thay theo đề xuất TO; bỏ nhãn | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R28 | TO, SV | trung bình | E09 | Điểm kết thúc pha phụ thuộc dạng cận | Ghi chú 10, 31, 75 (nghiệm đúng) và 13, 40, 95 (dạng T5); không vẽ lại | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R29 | SP | trung bình | C07, D07, E08, F07 | Tên ví dụ chưa thấy trên trang | C07 thêm "(Ví dụ C)" vào tiêu đề; D07, E08, F07 nêu tên ví dụ ở dòng đầu | Đã sửa. TO2, MT2: đạt | Chấp nhận |
+| R30–R54 | SV, CG, TO, SP, MT | nhẹ | Nhiều trang | 25 sửa nhỏ về câu chữ, thuật ngữ, nguồn, ghi chú (danh sách ở outline, "Bản sửa 2026-10-08" từng trang) | Theo danh sách của điều phối viên | Đã sửa, kể cả R41 (dữ kiện D07 mới, số ở N13). TO2, MT2: đạt | Chấp nhận |
+| R-X1 | SP | nhẹ | F01 | Đề xuất vẽ bản hình F01 riêng không có bước lặp | — | Không sửa | Bác bỏ: chỉ sửa alt (R04), tránh thêm hình trùng |
+| R-X2 | MT | trung bình | B05, B06 | Phương án (a) đổi chỗ B05/B06 | — | Không sửa | Bác bỏ: chọn phương án (b) để không đổi mã trang |
+
+### Vòng tái kiểm toán và mạch (2026-10-08)
+
+| mã | vai nguồn | mức độ | trang chiếu | vấn đề | đề xuất sửa | trạng thái | quyết định |
+|---|---|---|---|---|---|---|---|
+| R55 | TO2 | trung bình | B06 (hình) | Hai nhãn cạnh phải đặt ngược mũi tên | Đổi chỗ: nhãn xanh dương "‖∇f‖² ≤ 2Le (H2)" sát mũi tên e→∇f, nhãn xanh lá "e ≤ ‖∇f‖²/(2μ) (H3)" sát mũi tên ∇f→e | Đã sửa trong `make_svgs.py`, vẽ lại; cỡ chữ giữ theo N14. TO3: đạt; MT3: đạt | Chấp nhận |
+| R56 | MT2, TO2 | trung bình | A02, G02 | Luận đề và chú thích G02 không thống nhất; dòng 1, T6, T9, T7–T8 của G02 chưa đúng | Viết lại luận đề; dòng 1 dạng bước $\eta\le1/L$; T6 "giải đệ quy (quy nạp)"; T9 "giải đệ quy"; T7–T8 "bỏ H1, H3, H4; thêm H0"; chú thích mới | Đã sửa; chú thích G02 rút còn hai câu, phần còn lại vào ghi chú để không chạm chân trang. TO3: đạt; MT3: đạt, điểm còn lại ở R73, R74, R75 | Chấp nhận |
+| R57 | TO2, MT2 | trung bình | E10 (ghi chú) | Lý giải bỏ sàn nhiễu chưa đúng; nguồn độ nhạy theo $\mu$ | Câu cân bằng $a\approx\eta_kG^2/(2\mu)$; dẫn Nemirovski, Juditsky, Lan, Shapiro (2009), §1 | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R58 | TO2 | trung bình | E11 (ghi chú) | Nguồn hội tụ gần như chắc chắn | Phương án (b): giữ H6, H6a; nguồn Mệnh đề 4.8 và Robbins–Siegmund; "dùng thêm điều kiện" | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận phương án (b) |
+| R59 | TO2 | trung bình | E06 (ghi chú), planning | Còn "Cận dừng" | Đổi thành "Sàn nhiễu"; quét toàn deck và ba tệp planning | Đã sửa; deck không còn cụm này; trong planning chỉ còn trong trích dẫn của R10. TO3: đạt; MT3: đạt | Chấp nhận |
+| R60 | TO2 | trung bình | A03, E05 | Mô tả giảm chưa chính xác | "từ $k=1$"; "giảm về giá trị giới hạn dương"; E05 nêu $\mathbb Ed_k^2$ | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R61 | TO2 | trung bình | F07 | Câu (1) thiếu giả thiết | "Cho $f$ thỏa H0, H2 và bước hằng…" | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R62 | TO2 | trung bình | E09 (nguồn) | Mệnh đề 5.4 không phải chính kết quả này | "ý tưởng tương tự" | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R63 | MT2 | trung bình | Planning | Outline, storyboard lệch deck ở G01, G02, KN2, A02 | Đồng bộ | Đã sửa. TO3: đạt; MT3: đạt, điểm còn lại ở R77 | Chấp nhận |
+| R64 | MT2 | trung bình | B01 (ghi chú) | "trang trước" | "Định nghĩa dạng hội tụ" | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R65 | MT2 | trung bình | A02, planning | Tên phần lệch nhau | Mục 6 "Mục tiêu không lồi và chuẩn gradient", mục 7 "Bảng tra và giới hạn"; đồng bộ outline, storyboard | Đã sửa; mục 4 rút thành "Dưới gradient và trung bình lặp" để A02 vừa khung, mục 5 đồng bộ theo A02. TO3: đạt; MT3: đạt | Chấp nhận |
+| R66 | MT2 | trung bình | A04, B03, B07, E02 (ghi chú) | Dùng sớm thuật ngữ, ký hiệu | Thêm $\kappa=L/\mu$; "quan hệ giữa các đại lượng (sơ đồ ở cuối phần)"; "phần nhiễu"; "điều kiện không chệch" | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R67 | MT2 | trung bình | E01 | "$J$"; chỉ số mẫu | "làm tăng $f$"; $y_{I_{0,1}}$ | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R68 | MT2 | trung bình | B06 (ghi chú) | Câu về hai nút thêm | Viết lại theo đề xuất | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R69 | MT2 | trung bình | C06, C01 (ghi chú) | Lặp mặt trang | C06: "dạng PL của H3"; C01: "rồi thêm H3 ở định lý tuyến tính" | Đã sửa. TO3: đạt; MT3: đạt, điểm còn lại ở R76 | Chấp nhận |
+| R70 | MT2 | trung bình | D07 (ghi chú) | Đáp án (1) thiếu so sánh hai đầu ra | Thêm câu "không đầu ra nào luôn tốt hơn; T3 chặn cả hai" và ý phụ $x_k=1$ | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R71 | MT2 | trung bình | G01, G02 (ghi chú) | Cột tốc độ; "đổi một giả thiết" | "tuyến tính tới sàn nhiễu"; "đổi tập giả thiết" | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+| R72 | MT2 | trung bình | A02, G02 | Thuật ngữ "khuôn" | "khuôn một bước"; "sáu bậc của khuôn một bước" (ghi chú G02) | Đã sửa. TO3: đạt; MT3: đạt | Chấp nhận |
+
+### Vòng tái kiểm lượt 2 (2026-10-08)
+
+| mã | vai nguồn | mức độ | trang chiếu | vấn đề | đề xuất sửa | trạng thái | quyết định |
+|---|---|---|---|---|---|---|---|
+| R73 | MT3 | trung bình | Storyboard (vấn đề trung tâm), dòng A02 | Luận đề cũ còn trong storyboard | Thay bằng luận đề hai vế của A02; dòng A02 ghi R56, R72 | Đã sửa. KĐ1: đạt, điểm còn lại ở R82 | Chấp nhận |
+| R74 | TO3, MT3 | nhẹ | A02 | Chuỗi bước thiếu "co" | "→ tổng lồng, co hoặc giải đệ quy →"; A02 cao 642 | Đã sửa. KĐ1: đạt | Chấp nhận |
+| R75 | MT3 | trung bình | G02 (ghi chú) | Câu lặp, định nghĩa $\Delta_k$ hai lần | "giải đệ quy (với T6 bằng quy nạp $C/k$)"; bỏ câu lặp và định nghĩa thứ hai; câu cuối về dạng quyết định cách giải. Mặt trang thử "lịch theo pha": G02 cao 744, tràn, nên giữ "lịch pha" | Đã sửa. KĐ1: đạt | Chấp nhận |
+| R76 | MT3 | trung bình | C06 (ghi chú) | Nguồn của bất đẳng thức PL | "(hệ quả của H3 theo BĐ3)", "điều kiện Polyak–Łojasiewicz (PL)" | Đã sửa. KĐ1: đạt | Chấp nhận |
+| R77 | MT3 | trung bình | Outline, "Sợi chỉ chứng minh" | Lệch G02 ở cột giả thiết đổi và cách giải | Bậc 6 "bỏ H1, H3, H4; thêm H0"; cách giải tổng lồng / co / giải đệ quy, T6 quy nạp | Đã sửa. KĐ1: đạt, điểm còn lại ở R84 | Chấp nhận |
+| R78 | MT3 | trung bình | Ba tệp planning | Quét lần cuối so với deck | Tiêu đề, mã, tên phần, luận đề, 51 trang; trạng thái "chờ kiểm định cuối" | Đã quét: 51 mã và tiêu đề khớp deck, outline và storyboard; tên bảy phần khớp A02; luận đề khớp A02 ở outline và storyboard. KĐ1: đạt, điểm còn lại ở R82, R84 | Chấp nhận |
+
+### Kiểm định cuối KĐ1 (2026-10-08)
+
+Nguồn: tác tử kiểm định cuối (h), chỉ đọc; điều phối viên chấp nhận toàn bộ.
+
+| mã | vai nguồn | mức độ | trang chiếu | vấn đề | đề xuất sửa | trạng thái | quyết định |
+|---|---|---|---|---|---|---|---|
+| R79 | KĐ1 | nghiêm trọng | A04, B01, B02, B05, C02, C07, D01–D03, E02, E08, E09, F01, F02 (SVG); mở lại R05, N14 | Tỉ lệ hiển thị SVG thực là $\min(\text{rộng}/w,\ \text{cao}/h)$ do `max-height: 325px`; nhãn nội dung ở 11 hình chỉ 21,9–23,6 px; năm hình có nhãn bị đường cắt | Cỡ nhãn theo tỉ lệ thực; dời nhãn B06, F01, D03, C07, E08; đo lại theo `naturalWidth`, `naturalHeight`; xem ảnh phóng to | Đã sửa: cỡ nhỏ nhất ⌈24/s⌉ và ⌈21,5/s⌉; vẽ lại 14 hình; dời nhãn ở năm hình nêu và sáu hình khác (A04, B01, B05, D01, D02, E09); bảng mới ở mục "Cỡ chữ SVG theo quyết định N14"; nhỏ nhất 24,04 px (nội dung), 21,90 px (số chia) | Chấp nhận |
+| R80 | KĐ1 | trung bình | Nhật ký này | Trạng thái SB, R, N13 và quyết định các dòng (f) chưa cập nhật | Cập nhật theo kết quả tái kiểm | Đã sửa: SB01–SB15 "tái kiểm cổng lượt 2: đạt"; SB16–SB28 ghi "điều phối viên duyệt (2026-10-07): đạt" vì lượt 2 là lượt nêu các mục này, lượt 3 sửa; R01–R78 ghi kết quả TO2, MT2, TO3, MT3, KĐ1 và mã tiếp nối; N13 đóng; ba dòng (f) ghi `chấp nhận` | Chấp nhận |
+| R81 | KĐ1 | trung bình | Bảng nghi vấn | N2, N5–N8 còn "Mở" dù đã có quyết định | Đóng theo bảng quyết định của điều phối viên | Đã sửa; khôi phục bảng "Quyết định của điều phối viên (Fable 5.1, 2026-10-07)" dưới bảng nghi vấn (bảng bị mất khi tác tử soạn ghi lại tệp ở lượt 3); N11 giữ đóng một phần; R06 giữ là điều kiện bàn giao | Chấp nhận |
+| R82 | KĐ1 | trung bình | `outline.md` dòng luận đề | Luận đề cũ, thiếu "co" | Thay bằng luận đề hai vế của A02 | Đã sửa, trùng nguyên văn A02 | Chấp nhận |
+| R83 | KĐ1 | nhẹ | Bảng R | Dòng gộp ghi "30 sửa nhỏ"; hai mục bác bỏ không có mã | "25 sửa nhỏ"; mã R-X1, R-X2 | Đã sửa | Chấp nhận |
+| R84 | KĐ1 | nhẹ | `outline.md`, "Sợi chỉ chứng minh" bậc 1 | Lệch G02 | $\eta\le1/L$; $e_{k+1}\le\frac1{2\eta}(d_k^2-d_{k+1}^2)$ | Đã sửa | Chấp nhận |
+| R85 | KĐ1 | nhẹ | E02 | Dấu ":" rơi xuống đầu dòng | Viết lại để dấu câu không đứng đầu dòng | Đã sửa: "Ở mức $\theta_1$ có $\mathbb E(\theta_1-1)^2\approx0{,}837$"; phép tính $\frac13(1{,}21+0{,}81+0{,}49)$ chuyển vào ghi chú để trang không chạm chân trang (cao 635). Cùng lỗi gặp ở chín chỗ khác khi quét bằng Playwright (F06 ở 1600×900; B04, C02, C05, C06, D01, E04, F07, G04 ở 390×844), và ở các bề rộng 360, 430 chỗ khác lại xuất hiện. Sửa chung: trên mặt trang, dấu `.`, `,`, `;` ngay sau công thức nội dòng được đưa vào trong công thức, dấu `:` thành `\text{:}` trong công thức (315 chỗ; ghi chú diễn giả không đổi). Quét lại ở 1600×900, 390×844, 360×780, 430×932, 768×1024: không dấu câu nào đứng đầu dòng sau công thức | Chấp nhận |
+| R86 | KĐ1 | ghi nhận | Mục hạ tầng | Mã sinh SVG nằm ngoài kho | Ghi vị trí; lưu vào kho cần quyết định riêng | Đã ghi ở mục "Việc hạ tầng còn chờ" | Chấp nhận |
+
+**Kiểm sau lượt R79–R86.** 51 trang; 0 lỗi console, 0 lỗi trang, 0 `.katex-error`, 0 công thức chưa hiển thị; không trang nào tràn ở 1600×900 (cao nhất G01 645, A03 644, A02 642, D01 639, G02 636, E02 635); không tràn ngang ở 390×844; phím điều hướng đúng. Ảnh chụp mọi trang ở `/tmp/claude-1000/lec-05b/r79/` (E02 ở `r79e/`), đã xem E02, E08 (16:9) và D01, C05 (hẹp). `git diff --check` sạch. Không sửa CSS.
 
 ## Nghi vấn cần điều phối viên xác nhận
 
@@ -85,21 +287,39 @@ Tác tử soạn không phát hiện hằng số sai trong sổ định lý. Đ�
 
 | Mã | Nội dung | Đề xuất | Trạng thái |
 |---|---|---|---|
-| N1 | Kế hoạch ghi "T1 trên VD-C (7000 so với 6)" không giải thích. Tác tử soạn hiểu là số bước để $e_k\le0{,}01$: cận $70/k$ cần $7000$; giá trị thật cần $6$ ($6(16/49)^6\approx0{,}0073$, $6(16/49)^5\approx0{,}022$) | Xác nhận cách hiểu | Đã dùng ở C07 theo SB03; chờ xác nhận |
-| N2 | VD-D: $L=11$ chỉ đúng trên $[-2,2]$. T7 áp dụng được vì phép lặp bước $\frac1{11}$ đưa $[-2,2]$ vào $[-\frac{16}{11},\frac{16}{11}]$. T8, T9 cần H2 toàn cục, nên F07 câu (3) ghi "giả sử H2 với $L=11$" | Xác nhận cách ghi | Mở |
-| N3 | Số mới ở ghi chú E10: VD-A với $\eta_k=\frac1{k+1}$ có $\theta_k\in[-1,3]$, H6a đúng trên vùng với $G^2=\frac{20}3$; cận T6 $\frac{20}{3k}$ so với $\frac8{3k}$ | Xác nhận trước khi đưa vào ghi chú diễn giả | Mở |
-| N4 | Số mới do tác tử soạn tính ở bản đầu: B03 ($820\le868$; $f(x_1)\le\frac{24}7$); B04 ($30\le62\le136{,}7$; $d\le19{,}1$); B05 ($124\ge62$); B06 ($x^4$ tại $0{,}1$); C07 (bảng $k=1,5,10$, $k\ge15{,}6$); D07 ($x_0=2$: $2,\frac{11}6,\frac53,\frac32$; $\bar x_4=\frac74$); E02 ($\mathbb E[g_1\mid\mathcal F_1]=-0{,}9$); E11 ($\approx0{,}31$); E12 câu (3) ($\eta=0{,}1$, cận $0{,}1$); F01 ($-0{,}5625<0{,}1406$); F02 ($\theta_1=\frac{16}{11}$, $F(\theta_1)\approx0{,}311$); F07 ($\eta\approx0{,}064$, cận $\approx1{,}41$) | Giao tác tử toán kiểm lại | Điều phối viên đã kiểm toàn bộ, đúng; tác tử toán kiểm lại ở vòng rà soát |
-| N5 | A04 định nghĩa hội tụ tuyến tính theo nghĩa cận ($u_k\le Cq^k$); kế hoạch không chốt | Xác nhận | Mở |
-| N6 | Kế hoạch không chỉ nguồn cụ thể cho T5, T6, T8, T9; outline ghi "chứng minh trực tiếp" với bối cảnh SNW | Chọn nguồn hoặc chấp nhận "suy trực tiếp" | Mở |
-| N7 | Chưa đối chiếu SNW Mệnh đề 4.5 với T3; D04 chỉ dẫn §4.1.2 | Giao tác tử nguồn nếu cần số mệnh đề | Mở |
-| N8 | Dòng (a) ghi Claude Fable 5.1 effort `max` theo brief; CLAUDE.md hiện hành quy định tác tử con dùng Claude Opus 5.5 effort `high` | Điều phối viên quyết định có ghi ngoại lệ hay không | Mở |
+| N1 | Kế hoạch ghi "T1 trên VD-C (7000 so với 6)" không giải thích. Tác tử soạn hiểu là số bước để $e_k\le0{,}01$: cận $70/k$ cần $7000$; giá trị thật cần $6$ ($6(16/49)^6\approx0{,}0073$, $6(16/49)^5\approx0{,}022$) | Xác nhận cách hiểu | Đóng: TO xác nhận (2026-10-08) |
+| N2 | VD-D: $L=11$ chỉ đúng trên $[-2,2]$. T7 áp dụng được vì phép lặp bước $\frac1{11}$ đưa $[-2,2]$ vào $[-\frac{16}{11},\frac{16}{11}]$. T8, T9 cần H2 toàn cục, nên F07 câu (3) ghi "giả sử H2 với $L=11$" | Xác nhận cách ghi | Đóng theo quyết định điều phối viên 2026-10-07 |
+| N3 | Số mới ở ghi chú E10: VD-A với $\eta_k=\frac1{k+1}$ có $\theta_k\in[-1,3]$, H6a đúng trên vùng với $G^2=\frac{20}3$; cận T6 $\frac{20}{3k}$ so với $\frac8{3k}$ | Xác nhận trước khi đưa vào ghi chú diễn giả | Đóng: TO xác nhận; số giữ trong ghi chú E10 |
+| N4 | Số mới do tác tử soạn tính ở bản đầu: B03 ($820\le868$; $f(x_1)\le\frac{24}7$); B04 ($30\le62\le136{,}7$; $d\le19{,}1$); B05 ($124\ge62$); B06 ($x^4$ tại $0{,}1$); C07 (bảng $k=1,5,10$, $k\ge15{,}6$); D07 ($x_0=2$: $2,\frac{11}6,\frac53,\frac32$; $\bar x_4=\frac74$); E02 ($\mathbb E[g_1\mid\mathcal F_1]=-0{,}9$); E11 ($\approx0{,}31$); E12 câu (3) ($\eta=0{,}1$, cận $0{,}1$); F01 ($-0{,}5625<0{,}1406$); F02 ($\theta_1=\frac{16}{11}$, $F(\theta_1)\approx0{,}311$); F07 ($\eta\approx0{,}064$, cận $\approx1{,}41$) | Giao tác tử toán kiểm lại | Đóng: TO xác nhận |
+| N5 | A04 định nghĩa hội tụ tuyến tính theo nghĩa cận ($u_k\le Cq^k$); kế hoạch không chốt | Xác nhận | Đóng theo quyết định điều phối viên 2026-10-07 |
+| N6 | Kế hoạch không chỉ nguồn cụ thể cho T5, T6, T8, T9; outline ghi "chứng minh trực tiếp" với bối cảnh SNW | Chọn nguồn hoặc chấp nhận "suy trực tiếp" | Đóng theo quyết định điều phối viên 2026-10-07 |
+| N7 | Chưa đối chiếu SNW Mệnh đề 4.5 với T3; D04 chỉ dẫn §4.1.2 | Giao tác tử nguồn nếu cần số mệnh đề | Đóng theo quyết định điều phối viên 2026-10-07 |
+| N8 | Dòng (a) ghi Claude Fable 5.1 effort `max` theo brief; CLAUDE.md hiện hành quy định tác tử con dùng Claude Opus 5.5 effort `high` | Điều phối viên quyết định có ghi ngoại lệ hay không | Đóng: ngoại lệ được ghi nhận, lượt lập kế hoạch theo yêu cầu trực tiếp của người dùng |
 | N9 | Điều phối viên dự kiến 52 trang; áp SB03 và SB05 vào 53 trang cho 51 | Xác nhận 51 trang, hoặc chỉ ra trang cần thêm | Đóng: điều phối viên xác nhận 51 trang; ước tính 52 trước đó đã cộng thừa việc tách A05 |
-| N10 | Số mới của bản sửa (ngoài số điều phối viên đã kiểm): C09 câu (1) $c=\frac{25}{28}\approx0{,}893$ với $\alpha=\frac14$, $\beta=\frac12$ ($2\mu\alpha=1{,}5$, $2\beta\alpha\mu/L=\frac3{28}$), cần $k\ge78$ để $62c^k\le0{,}01$ ($62c^{77}\approx0{,}01006$, $62c^{78}\approx0{,}00898$); C09 câu (2) $d_2^2=\frac{1024}{2401}\approx0{,}427\le6{,}53$, $d_3^2\approx0{,}139\le3{,}73$; VD-B bước $\frac12$: $e_k=\frac13,\frac5{18},\frac29,\frac16$, trung bình $\frac14$ bằng sai số tại $\bar x_4$ (Jensen dấu bằng); VD-B bước $4{,}5$: trung bình các sai số $\frac14$ so với sai số $\frac1{12}$ tại $\bar x_4$; F06: VD-C có $\lVert\nabla f\rVert^2=9x_1^2+49x_2^2\ge9x_1^2+21x_2^2=2\cdot3\cdot e$ | Giao tác tử toán kiểm lại | Điều phối viên đã kiểm toàn bộ, đúng; tác tử toán kiểm lại ở vòng rà soát |
-| N11 | G04 có ba câu hỏi tự kiểm mới (logistic có chính quy; SGD cho mạng nơ ron; Markov với $\mathbb E\le0{,}2$, đáp án $0{,}2$). Câu (1) cần hằng số $L$ của logistic có chính quy, để trong học liệu | Kiểm nội dung và đáp án | Mở |
+| N10 | Số mới của bản sửa (ngoài số điều phối viên đã kiểm): C09 câu (1) $c=\frac{25}{28}\approx0{,}893$ với $\alpha=\frac14$, $\beta=\frac12$ ($2\mu\alpha=1{,}5$, $2\beta\alpha\mu/L=\frac3{28}$), cần $k\ge78$ để $62c^k\le0{,}01$ ($62c^{77}\approx0{,}01006$, $62c^{78}\approx0{,}00898$); C09 câu (2) $d_2^2=\frac{1024}{2401}\approx0{,}427\le6{,}53$, $d_3^2\approx0{,}139\le3{,}73$; VD-B bước $\frac12$: $e_k=\frac13,\frac5{18},\frac29,\frac16$, trung bình $\frac14$ bằng sai số tại $\bar x_4$ (Jensen dấu bằng); VD-B bước $4{,}5$: trung bình các sai số $\frac14$ so với sai số $\frac1{12}$ tại $\bar x_4$; F06: VD-C có $\lVert\nabla f\rVert^2=9x_1^2+49x_2^2\ge9x_1^2+21x_2^2=2\cdot3\cdot e$ | Giao tác tử toán kiểm lại | Đóng: TO xác nhận |
+| N11 | G04 có ba câu hỏi tự kiểm mới (logistic có chính quy; SGD cho mạng nơ ron; Markov với $\mathbb E\le0{,}2$, đáp án $0{,}2$). Câu (1) cần hằng số $L$ của logistic có chính quy, để trong học liệu | Kiểm nội dung và đáp án | Đóng một phần: TO xác nhận nội dung; chờ học liệu (hằng số $L$ của logistic có chính quy) |
+| N12 | Số mới của lượt 4, xuất hiện trong ghi chú hoặc hình: lịch theo pha trên Ví dụ A (cận đầu 1, $\sigma^2=\tfrac83$, $\eta_0=0{,}1$) kết thúc các pha tại $k=10$, $31$, $75$; logistic với bước 4 cho $s_2\approx2{,}48$, $s_3\approx2{,}79$; chín lá của cây lịch sử Ví dụ A cho $\mathbb E(\theta_2-1)^2\approx0{,}704$; lát cắt $h(t)=2{,}5t^2$ của Ví dụ C. Ghi chú E10 đã đưa số của N3 ($G^2=\tfrac{20}3$, cận $\tfrac{20}{3k}$) | Giao tác tử toán kiểm; nếu N3 bị bác, bỏ câu tương ứng khỏi ghi chú E10 | Đóng: TO xác nhận |
+| N13 | Số mới của vòng chỉnh sửa: D07 câu (1) với $x_0=2{,}5$, $\eta=2$, $K=4$: $x_k=\tfrac52,\tfrac{11}6,\tfrac76,\tfrac12$; sai số $\tfrac12,\tfrac5{18},\tfrac1{18},\tfrac16$; lặp tốt nhất $x_2=\tfrac76$ (sai số $\tfrac1{18}$); $\bar x_4=\tfrac32$ (sai số $\tfrac16$); cận T3 $\tfrac{2{,}25+16}{16}=\tfrac{73}{64}\approx1{,}14$; bước tối ưu $0{,}75$. E02: $\mathbb E[(\theta_2-1)^2\mid\theta_1]=1{,}007;\ 0{,}683;\ 0{,}424$, trung bình $0{,}704$. B07 câu (1): $\phi'(0)^2=0{,}25\le2\cdot\tfrac14\log2\approx0{,}347$. B04 ghi chú: $d\le\lVert\nabla f\rVert/\mu$ từ bước 1 và 3. G02: $a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2$ (đề xuất của điều phối viên) | Tái kiểm toán | Đóng: TO3 xác nhận |
+| N14 | Đích cỡ chữ SVG "≥ 0,75 cỡ chữ trang = 21 px" đặt 21 px màn hình ngang với 0,75 của 28 px đơn vị trang. Ở cùng thang đo, nhãn hiện đạt 0,57–0,72 cỡ chữ thân trang | Điều phối viên chọn thang đo; nếu cần 0,75 thật, tăng cỡ nhãn lên 23–32 hoặc cho hình chiếm cả bề rộng trang | Đóng: điều phối viên chọn thang màn hình (chữ thân ≈ 37 px). Mở lại theo R79 (tỉ lệ hiển thị đo sai), đã sửa lại; xem mục "Cỡ chữ SVG theo quyết định N14" |
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-07):**
+
+| Mã | Quyết định | Lý do |
+|---|---|---|
+| N1 | Xác nhận | Số bước để $e_k\le0{,}01$: $70/k$ cần $k\ge7000$; $6(16/49)^k$ cần $k=6$ ($6(16/49)^6\approx0{,}0073$) |
+| N2 | Xác nhận cách ghi "giả sử H2 với $L=11$" ở F07 câu (3); F03 ghi rõ T7 dùng được vì $\theta\mapsto\theta-F'(\theta)/11$ giữ $[-2,2]$ | Kiểm: $\theta=2\mapsto16/11$; $F''\le11$ trên $[-2,2]$ |
+| N3 | Xác nhận | $\theta_k\in[-1,3]$ vì là trung bình các mẫu; $\mathbb E[g^2\mid\theta]=(\theta-1)^2+\frac83\le4+\frac83=\frac{20}3$ |
+| N4 | Giao tác tử độ chính xác toán học ở vòng rà soát; điều phối viên đã kiểm B03 ($\lVert\nabla f(x_0)\rVert^2=820\le868$, $f(x_1)\le24/7$), B04, E02 ($a_1=2{,}51/3$), C08 ($k\ge15{,}6$), F07 | Các số kiểm trùng khớp |
+| N5 | Xác nhận định nghĩa tuyến tính theo cận $u_k\le Cq^k$; dạng tỉ số trong ghi chú | Khớp cách dùng ở T2a, T2b, T5 |
+| N6 | Chấp nhận ghi "suy trực tiếp từ BĐ1, KT13, KT14" cho T5, T6, T8, T9; bối cảnh SNW ch. 5 §5.4 | Không có nguồn cục bộ nêu đúng hằng số; không dẫn nguồn ngoài `sources/` |
+| N7 | D04 chỉ dẫn SNW §4.1.2, không dẫn số mệnh đề | Tránh dẫn mệnh đề chưa đối chiếu |
+| N8 | Ghi ngoại lệ: lượt lập kế hoạch dùng Fable 5.1 `max` theo yêu cầu trực tiếp của người dùng (trước khi quy tắc mô hình trong CLAUDE.md được đổi cùng ngày); các lượt sau theo quy tắc hiện hành | Yêu cầu người dùng được ưu tiên hơn CLAUDE.md |
+
+Bảng này do điều phối viên ghi ngày 2026-10-07, bị mất khi tác tử soạn ghi lại tệp, khôi phục nguyên văn theo R81. Mã trang trong bảng là mã của thời điểm quyết định.
 
 ## Tự kiểm no-ai-slop
 
-Phạm vi: `outline.md`, `storyboard.md`, nhật ký này, ba lượt. Chế độ Edit, đã đọc `SKILL.md` và `eval.md` trước mỗi lượt. Văn phong học thuật và độ chính xác toán học được ưu tiên hơn gợi ý về giọng nói.
+Phạm vi: `outline.md`, `storyboard.md`, nhật ký này, deck; các lượt 1–5. Chế độ Edit, đã đọc `SKILL.md` và `eval.md` trước mỗi lượt. Văn phong học thuật và độ chính xác toán học được ưu tiên hơn gợi ý về giọng nói.
 
 | Nhóm kiểm trong `eval.md` | Lượt 1 | Lượt 2 | Lượt 3 | Ghi chú |
 |---|---|---|---|---|
@@ -107,7 +327,7 @@ Phạm vi: `outline.md`, `storyboard.md`, nhật ký này, ba lượt. Chế đ�
 | Từ cấm, cụm rỗng, trạng từ rỗng | Đạt | Đạt | Đạt | Quét các cụm tiếng Việt: "quan trọng", "then chốt", "đáng chú ý", "lưu ý", "thực sự", "rất", "hoàn toàn", "nhấn mạnh", "chúng ta", "hãy": không có |
 | Câu cảm thán, câu hỏi tu từ, tiêu đề dạng câu hỏi, "Từ … đến …" | Đạt | Đạt | Đạt | Không có dấu chấm than hay dấu hỏi trong outline và storyboard; tiêu đề trang gọi tên khái niệm |
 | Đối lập nhị phân, câu dẫn rỗng, lời bình định hướng người đọc | Đạt | Đạt | Đạt | Câu nối nêu kết quả kế thừa, giả thiết đổi, giới hạn |
-| Đổi từ đồng nghĩa tùy tiện | Đạt | Đạt | Đạt | Một tên cho mỗi đối tượng: "trung bình lặp", "lặp tốt nhất", "cận dừng", "hàm thế", "dưới gradient", "bổ đề tách phương sai" |
+| Đổi từ đồng nghĩa tùy tiện | Đạt | Đạt | Đạt | Một tên cho mỗi đối tượng: "trung bình lặp", "lặp tốt nhất", "sàn nhiễu", "giá trị giới hạn", "hàm thế", "dưới gradient", "bổ đề tách phương sai" |
 | Nhịp câu khuôn mẫu | Đạt có điều kiện | Đạt có điều kiện | Đạt có điều kiện | Trường cố định của từng trang lặp cấu trúc theo mẫu `lec-05`. Lượt 2 viết luận điểm của năm trang bài tập theo kỹ năng được đo; mở đầu "Bài tập đo việc…" vẫn lặp theo trường cố định |
 | Định dạng, gạch ngang dài | Đạt | Đạt | Đạt | Gạch ngang dài chỉ trong định dạng "Mã — Tiêu đề" của mẫu |
 | Kết bằng điểm cụ thể | Đạt | Đạt | Đạt | Không có đoạn kết tóm tắt |
@@ -118,6 +338,12 @@ Sửa trong lượt 2: thay "bổ đề E03" trong trường "Ý chính" của F
 
 Sửa trong lượt 3: chuyển các mã trang, KT và N6 khỏi trường Nguồn, Hình thức hóa và câu nối trong ngoặc kép sang tên kết quả hoặc Ghi chú soạn; đổi "VD-A", "VD-C" trong đáp án sang "Ví dụ A", "Ví dụ C"; viết lại ba khoảng trống của C01 theo đúng nội dung Bài 04; tách câu kết luận PL của VD-D khỏi F06 để không lặp đáp án F07. Lượt 3 không có số mới; đẳng thức $\frac12F'^2=2\theta^2F$ do điều phối viên kiểm.
 
+Lượt 4 (deck): áp dụng cùng các nhóm kiểm cho văn bản trên mặt trang và ghi chú diễn giả. Quét deck không thấy mã trang, nhãn KT/KH/MT/J/KN/N/SB, "VD-", "Tự học", "bổ trợ", thời lượng, dấu chấm than, dấu hỏi, "chúng ta", "hãy", "nhấn mạnh", "quan trọng", "then chốt" hay gạch ngang dài. Câu hỏi dùng nhãn "Câu hỏi:". Ghi chú diễn giả giải thích giả thiết, ý nghĩa công thức và đáp án, không chép lại mặt trang; nguồn ghi bằng tên kết quả hoặc mục sách.
+
+Lượt 5 (chỉnh sửa R01–R54): đã tải lại kỹ năng ở chế độ Edit. Quét lại deck không thấy mã trang, nhãn lập kế hoạch, thuật ngữ cũ thay bằng "sàn nhiễu", "sợi chỉ chứng minh", "dòng chứng minh", nhãn "Câu nối sang trang sau", dấu chấm than, dấu hỏi, gạch ngang dài. Câu mới viết trực tiếp theo đối tượng và phép suy ra; các dòng "Ý tưởng" ở trang chứng minh là một câu nêu kỹ thuật, không lời bình.
+
+Lượt 6 (R79–R86): đã tải lại kỹ năng ở chế độ Edit. Văn bản mới gồm câu E02, một câu ghi chú E02, câu hỏi (1) của G04 tách thành hai câu, các mục nhật ký. Không dấu chấm than, dấu hỏi, "chúng ta", "hãy", gạch ngang dài; không mã trang trên mặt trang hay ghi chú.
+
 ## Việc hạ tầng còn chờ
 
 | Việc | Vị trí | Ghi chú |
@@ -125,5 +351,5 @@ Sửa trong lượt 3: chuyển các mã trang, KT và N6 khỏi trường Ngu�
 | Sửa bộ lọc học liệu để nhận `lec-05b` | `2627-1/scripts/sync-local-materials.py`, khoảng dòng 52–58 (kiểm `len(name) == 6` và hai chữ số) | Sau khi sửa chạy `--check` trên toàn bộ bài cũ; `material-viewer.html` không kiểm tên |
 | Thêm mục "Bài 05b (bổ trợ)" | `2627-1/index.html` | Chỉ thêm khi deck và học liệu hoàn tất; không liên kết `planning/` |
 | J10: ký hiệu $x^{(k)}$ và $x^k$ lẫn trong học liệu Bài 04 | `2627-1/materials/lec-04/lecture-note.md`, dòng 461–535 | Việc của Bài 04; nêu ở bàn giao, không sửa trong phạm vi Bài 05b |
-| Vẽ 14 SVG | `2627-1/img/lec-05b/` | Danh sách và alt trong storyboard |
+| Mã sinh 14 SVG (R86) | `/tmp/claude-1000/lec-05b-build/make_svgs.py`, ngoài kho | Hình đã vẽ ở lượt 4 và vẽ lại theo R79. Thư mục tạm có thể bị xóa; nếu người dùng muốn lưu mã sinh hình vào kho, cần quyết định riêng. Tác tử không tự thêm vào kho |
 | Soạn học liệu | `2627-1/materials/lec-05b/lecture-note.md`, `exercises.md` | Gồm chứng minh T1', T5-pha, T6 (quy nạp KT15), Jensen quy nạp; 8–10 bài tập ba mức, có một bài Markov; đáp án câu hỏi tự kiểm G04 |
