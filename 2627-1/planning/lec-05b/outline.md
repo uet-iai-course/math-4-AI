@@ -9,7 +9,7 @@ Bản đầu ngày 2026-10-07; bản sửa cùng ngày theo cổng kiểm địn
 - **Vị trí.** Bài bổ trợ đặt sau Bài 05, trước hoặc song song Bài 06; dùng được làm tài liệu cho Buổi 15 (ôn tập). **Bài không có buổi riêng trong đề cương.** Đề cương DOCX gắn LLO6, LLO8 với Buổi 04 và LLO11, LLO12 với Buổi 05; bài này đào sâu phần phân tích hội tụ của các chuẩn đầu ra đó.
 - **Thời lượng.** Không gán thời lượng cho bài, phần hay trang, vì đề cương không có buổi tương ứng. Không quy đổi sang phút.
 - **Tệp.** Deck `2627-1/lecture-05b-hoi-tu-ha-gradient-va-sgd.html`; `planning/lec-05b/`, `materials/lec-05b/`, `img/lec-05b/`. Nhãn trong `index.html`: "Bài 05b (bổ trợ)". Trên mặt trang chỉ ghi "Bài 05b".
-- **Luận đề.** Mọi bảo đảm được chứng minh trong bài đi qua khuôn một bước: bất đẳng thức một bước → đệ quy → tổng lồng, co hoặc giải đệ quy → chọn bước. Khi giả thiết đổi, bất đẳng thức một bước đổi, và dạng của nó quyết định cách giải (tổng lồng, co hoặc giải đệ quy). Câu này trùng nguyên văn với A02 (R82).
+- **Luận đề.** Mọi chứng minh hội tụ trong bài dùng một khuôn: lập bất đẳng thức giữa $x_k$ và $x_{k+1}$, nối các bất đẳng thức đó qua mọi bước, rồi chọn $\eta_k$. Giả thiết quyết định bất đẳng thức đó và cách nối. (Tên gọi "khuôn một bước" và "bất đẳng thức một bước" nêu trước trong ghi chú A02; C02 đặt tên hai cách nối tổng lồng và co; giải đệ quy xuất hiện ở chứng minh SGD cho hàm lồi mạnh.) Câu này trùng nguyên văn với A02 (R82).
 - **Mức trình bày.** Chứng minh đầy đủ trên trang: T1, T2a, T2b, T3, T4, T5, T7, T8. Chỉ phát biểu: T2', T5-pha, T6, T9. T1' suy từ chứng minh T1 trong ghi chú. Chứng minh quy nạp của T6 nằm trong học liệu và bài tập (quyết định người dùng số 3).
 - **Phần D** được giữ, 7 trang (quyết định người dùng số 4).
 - **Đổi tên nhãn so với kế hoạch** để không trùng mã trang: bổ đề B1–B6 gọi là **BĐ1–BĐ6**; khuôn lớn D1–D8 gọi là **KH1–KH8**.
@@ -258,13 +258,13 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 #### A02 — Vấn đề trung tâm và nội dung bài
 
 - **Vai trò và mục tiêu:** Bản đồ nội dung, vấn đề trung tâm, mục tiêu; MT1–MT4.
-- **Luận điểm trung tâm:** Mọi bảo đảm được chứng minh trong bài đi qua khuôn một bước: bất đẳng thức một bước → đệ quy → tổng lồng, co hoặc giải đệ quy → chọn bước. Khi giả thiết đổi, bất đẳng thức một bước đổi, và dạng của nó quyết định cách giải (tổng lồng, co hoặc giải đệ quy). (R56, R72; luận đề đặt toàn chiều rộng dưới hai cột để vừa khung; mục D, F, G của lộ trình đổi tên theo R65.)
+- **Luận điểm trung tâm:** Mọi chứng minh hội tụ trong bài dùng một khuôn: lập bất đẳng thức giữa $x_k$ và $x_{k+1}$, nối các bất đẳng thức đó qua mọi bước, rồi chọn $\eta_k$. Giả thiết quyết định bất đẳng thức đó và cách nối. (Tên gọi "khuôn một bước" và "bất đẳng thức một bước" nêu trước trong ghi chú A02; C02 đặt tên hai cách nối tổng lồng và co; giải đệ quy xuất hiện ở chứng minh SGD cho hàm lồi mạnh.) (R56, R72; luận đề đặt toàn chiều rộng dưới hai cột để vừa khung; mục D, F, G của lộ trình đổi tên theo R65.) **Rà từng trang 2026-10-08:** luận đề viết bằng lời thường, không dùng thuật ngữ chưa định nghĩa; khối vấn đề và đoạn $g_k$ ở cột trái, lộ trình ở cột phải (nêu bài toán trước lộ trình, theo cách mở chương 9 của Boyd–Vandenberghe); "gradient nhóm" thay bằng "gradient trên một nhóm mẫu (Bài 05)"; "dưới gradient ... khi $f$ lồi nhưng không khả vi" (tái kiểm A02).
 - **Ý chính:** Khối vấn đề: "Với $x_{k+1}=x_k-\eta_kg_k$, xác định kèm chứng minh dãy hội tụ theo nghĩa nào, nhanh đến đâu, dưới giả thiết nào và với bước nào." Danh sách bảy phần (tên đầy đủ; viết "phương pháp hạ gradient (GD)", "phương pháp hạ gradient ngẫu nhiên (SGD)" trước khi dùng viết tắt). Bốn mục tiêu dạng hành vi.
 - **Ví dụ/hình dự kiến:** Không có hình; danh sách bảy mục.
 - **Hình thức hóa:** Công thức cập nhật chung với ba lựa chọn của $g_k$.
 - **Kết nối:** Sau tiêu đề; A03 đưa hai dãy số cụ thể để thấy cần nhiều thước đo.
 - **Nguồn:** DC; kế hoạch đã duyệt.
-- **Ghi chú soạn:** Câu luận đề viết một lần; G02 kiểm lại luận đề trên sáu bậc của sợi chỉ chứng minh. **Bản sửa 2026-10-08** (R08, R49): luận đề nối "khi giả thiết đổi, chỉ bất đẳng thức một bước đổi"; "dưới gradient (subgradient)".
+- **Ghi chú soạn:** Ghi chú diễn giả nêu trước tên "khuôn một bước", "bất đẳng thức một bước" và ba cách nối (tổng lồng, co, giải đệ quy); phần C định nghĩa. Câu luận đề viết một lần; G02 kiểm lại luận đề trên sáu bậc của sợi chỉ chứng minh. **Bản sửa 2026-10-08** (R08, R49): luận đề nối "khi giả thiết đổi, chỉ bất đẳng thức một bước đổi"; "dưới gradient (subgradient)".
 
 #### A03 — Thước đo tiến triển của dãy lặp
 
