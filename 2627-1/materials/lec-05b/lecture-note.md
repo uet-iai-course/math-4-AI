@@ -148,7 +148,7 @@ Với $f(x)=x_1^2$ trên $\mathbb R^2$, mọi điểm $(0,c)$ là điểm cực 
 
 ### Cận trên bậc hai
 
-Tại mỗi điểm $x$, đồ thị của hàm có gradient Lipschitz nằm dưới một parabol độ cong $L$ tiếp xúc tại $x$, còn H3 đặt đồ thị trên parabol độ cong $\mu$. Hình lấy lát cắt của Ví dụ C theo hướng $(1,1)/\sqrt2$: $h(t)=f\bigl(t(1,1)/\sqrt2\bigr)=\tfrac12\cdot\tfrac{3+7}2t^2=2{,}5t^2$, độ cong $5$ nằm giữa $3$ và $7$. Theo trục $x_2$, độ cong bằng đúng $7$ và bất đẳng thức dưới đây xảy ra dấu bằng.
+Tại mỗi điểm $x$, đồ thị của hàm có gradient Lipschitz nằm dưới một parabol độ cong $L$ tiếp xúc tại $x$, còn H3 đặt đồ thị trên parabol độ cong $\mu$; bổ đề BĐ3 dùng chiều dưới này để chặn khoảng cách theo sai số giá trị. Hình lấy lát cắt của Ví dụ C theo hướng $(1,1)/\sqrt2$: $h(t)=f\bigl(t(1,1)/\sqrt2\bigr)=\tfrac12\cdot\tfrac{3+7}2t^2=2{,}5t^2$, độ cong $5$ nằm giữa $3$ và $7$. Theo trục $x_2$, độ cong bằng đúng $7$ và bất đẳng thức dưới đây xảy ra dấu bằng.
 
 ![Lát cắt h(t) = 2,5t² của hàm bậc hai Ví dụ C nằm giữa parabol trên độ cong 7 và parabol dưới độ cong 3, cả ba tiếp xúc tại t = 1.](img/lec-05b/quadratic-sandwich.svg)
 
@@ -159,14 +159,16 @@ f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac L2\lVert y-x\rVert^2.
 $$
 
 ::: proof Chứng minh BĐ1
-Đặt $h=y-x$ và $\psi(t)=f(x+th)$ với $t\in[0,1]$. Vì $f$ khả vi và $\nabla f$ liên tục (H2), $\psi'(t)=\nabla f(x+th)^Th$ và
+Đặt $u=y-x$ và $\psi(t)=f(x+tu)$ với $t\in[0,1]$. Vì $f$ khả vi và $\nabla f$ liên tục (H2), $\psi'(t)=\nabla f(x+tu)^Tu$ và
 
 $$
-f(y)-f(x)-\nabla f(x)^Th=\int_0^1\bigl(\nabla f(x+th)-\nabla f(x)\bigr)^Th\,dt.
+f(y)-f(x)-\nabla f(x)^Tu=\int_0^1\bigl(\nabla f(x+tu)-\nabla f(x)\bigr)^Tu\,dt.
 $$
 
-Theo Cauchy–Schwarz và H2, hàm dưới dấu tích phân không vượt $\lVert\nabla f(x+th)-\nabla f(x)\rVert\lVert h\rVert\le Lt\lVert h\rVert^2$. Tích phân $\int_0^1Lt\,dt=\tfrac L2$ cho kết luận.
+Theo Cauchy–Schwarz và H2, hàm dưới dấu tích phân không vượt $\lVert\nabla f(x+tu)-\nabla f(x)\rVert\lVert u\rVert\le Lt\lVert u\rVert^2$. Tích phân $\int_0^1Lt\,dt=\tfrac L2$ cho kết luận.
 :::
+
+Boyd và Vandenberghe (2004, (9.13)) suy cùng cận từ $\nabla^2f\preceq MI$ qua khai triển Taylor; chứng minh trên chỉ dùng H2, không cần đạo hàm bậc hai.
 
 Khi H2 và H3 cùng đúng, BĐ1 và H3 cho $\tfrac\mu2\lVert y-x\rVert^2\le f(y)-f(x)-\nabla f(x)^T(y-x)\le\tfrac L2\lVert y-x\rVert^2$, nên $\mu\le L$.
 

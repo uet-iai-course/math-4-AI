@@ -323,7 +323,7 @@ Chức năng: xây bộ bất đẳng thức chuyển giữa ba dạng hội t�
 - **Hình thức hóa:** Chứng minh: $f(y)-f(x)-\nabla f(x)^T(y-x)=\int_0^1(\nabla f(x+t(y-x))-\nabla f(x))^T(y-x)\,dt\le\int_0^1Lt\lVert y-x\rVert^2dt$ (Cauchy–Schwarz và H2).
 - **Kết nối:** Nhận H2 từ A05; B03 cực tiểu vế phải theo $y$.
 - **Nguồn:** BV §9.1.2, (9.13); Bài 04, mục gradient Lipschitz.
-- **Ghi chú soạn:** Với VD-C, BĐ1 xảy ra dấu bằng theo hướng $x_2$; parabol $\mu$ chỉ nhắc, chứng minh ở B04. **Bản sửa 2026-10-08** (R31, R35): "Bổ đề 1 (BĐ1)"; chứng minh viết đủ vế trái.
+- **Ghi chú soạn:** Với VD-C, BĐ1 xảy ra dấu bằng theo hướng $x_2$; parabol $\mu$ chỉ nhắc, chứng minh ở B04. **Bản sửa 2026-10-08** (R31, R35): "Bổ đề 1 (BĐ1)"; chứng minh viết đủ vế trái. **Rà từng trang 2026-10-08:** nhãn "Bổ đề BĐ1 (cận trên bậc hai). Giả sử $f$ khả vi và thỏa H2"; chú thích hình tự chứa (hàm $f$, hướng lát cắt, parabol độ cong $L=7$ tiếp xúc tại $t=1$) làm bước trực quan; chứng minh đặt $u=y-x$, ba dòng; ghi chú nêu định lý cơ bản của giải tích, bước Cauchy–Schwarz, khác biệt với BV (9.13) (Hessian so với chỉ H2), và gọi BĐ3 bằng tên thay "trang cận của hàm lồi mạnh".
 
 #### B03 — Bổ đề giảm và cận chuẩn gradient
 
