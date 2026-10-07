@@ -79,7 +79,7 @@ Mọi trang mang quyết định **thêm** vì đây là bài mới. Cột cuố
 
 | Trang và tiêu đề | Lý do tồn tại; nhu cầu hoặc khoảng trống được lấp | Đầu vào → đầu ra | Vị trí trong khung | LLO/CLO | Quyết định và lý do |
 |---|---|---|---|---|---|
-| A01 — Hội tụ của hạ gradient và hạ gradient ngẫu nhiên | Định vị bài 05b trong học phần | Bài 04, Bài 05 → chủ đề | VĐ | LLO6, LLO8, LLO12 | Thêm; trang tiêu đề bắt buộc. Giữ ở bản sửa |
+| A01 — Hội tụ của hạ gradient và hạ gradient ngẫu nhiên | Định vị bài 05b trong học phần | Bài 04, Bài 05 → chủ đề | VĐ | LLO6, LLO8, LLO12 | Thêm; trang tiêu đề bắt buộc. Giữ ở bản sửa. Rà từng trang 2026-10-08: giữ mặt trang; sửa ghi chú (nêu tên hai định lý của Bài 04, khoảng trống của Bài 05, liên kết Bài 06 cụ thể) |
 | A02 — Vấn đề trung tâm và nội dung bài | Người học cần biết câu hỏi trung tâm, luận đề và vai trò bảy phần trước khi vào chi tiết | Chủ đề → vấn đề trung tâm, luận đề, bản đồ bảy phần, mục tiêu | VĐ | LLO6, LLO8, LLO11, LLO12 | Thêm. Sửa: luận đề nói "mọi bảo đảm được chứng minh trong bài" (SB15). Sửa (R56, R72): luận đề hai vế mới; R74: chuỗi bước ghi "tổng lồng, co hoặc giải đệ quy" |
 | A03 — Thước đo tiến triển của dãy lặp | Bài 04 chỉ đo $e_k$, Bài 05 chỉ mô tả dao động; chưa có lý do để phân biệt thước đo | Hai dãy số VD-C, VD-A → nhu cầu đặt tên thước đo; bảng được C01 dẫn lại | VĐ | LLO6/CLO1 | Thêm; nhu cầu và ví dụ dẫn nhập KN1. Sửa: bỏ mã trang khỏi ý chính (SB09) |
 | A04 — Dạng hội tụ và tốc độ hội tụ | J4, J6: Bài 04 dùng "tuyến tính", "$O(1/k)$" chưa định nghĩa | Số A03 → định nghĩa bốn dạng, ba tốc độ | VĐ | LLO6/CLO1 | Thêm; gộp trực quan và định nghĩa. Sửa: công thức số bước chuyển vào ghi chú (SB11) |

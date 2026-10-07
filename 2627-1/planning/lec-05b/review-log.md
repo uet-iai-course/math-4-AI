@@ -350,6 +350,18 @@ Nguồn: hai báo cáo chỉ đọc (TO-M: toán, kết luận "đạt" với 7 
 
 **Kiểm sau lượt 6.** `sync-local-materials.py` và `--check` đạt (16 tệp). Playwright 1280×900 và 390×844: ghi chú 1282 công thức, bài tập 567 (sau khi viết lại bốn đoạn lời giải trùng ghi chú diễn giả), 0 `.katex-error`, 0 `$` sót; ghi chú có 20 khối ví dụ, 18 chứng minh, 1 suy diễn, 4 câu hỏi kiểm tra, 11 bảng đều có tiêu đề; bài tập 10 bài, 10 gợi ý, 10 lời giải, 20 khối `details` gập mặc định; ảnh có alt và tải được; không cuộn ngang trang. Ảnh mục "Dưới gradient" và một câu hỏi kiểm tra ở `/tmp/claude-1000/lec-05b-mat/m-*.png`. `git diff --check` sạch.
 
+## Rà từng trang 2026-10-08
+
+Tác tử chỉnh sửa từng trang (AGENTS.md §7), tiếp tục qua `SendMessage`, Claude Opus 5.5 (`claude-opus-5-5`), effort `high`; mỗi trang chờ điều phối viên duyệt trước trang kế.
+
+| Trang | Muốn nói gì | Vấn đề | Điều đã đổi | Lý do | Quyết định |
+|---|---|---|---|---|---|
+| A01 | Định vị bài: Bài 04 có định lý GD nhưng chỉ ý chính của chứng minh, Bài 05 dùng SGD chưa có định lý; bài này lấp khoảng trống đó | Mặt trang đạt (tiêu đề nêu khái niệm, khớp mẫu trang tiêu đề Bài 05). Ghi chú: "các bảo đảm đó" không có tiền ngữ rõ (Bài 05 không có bảo đảm nào); "trên trang" mơ hồ; không nêu tên hai định lý của Bài 04; câu Bài 06 chung chung | Mặt trang giữ nguyên. Ghi chú đoạn 1 viết lại: tên hai định lý ($O(1/k)$ cho hàm lồi có gradient Lipschitz, tuyến tính cho hàm lồi mạnh), GD/SGD viết đầy đủ kèm viết tắt, câu nêu việc bài làm (chứng minh đầy đủ hai định lý GD, phát biểu và chứng minh định lý cho dưới gradient và SGD, ghi giả thiết dùng ở bước nào). Câu cuối đoạn 2: "Trung bình Polyak ở Bài 06 dùng lại cận cho trung bình lặp chứng minh trong bài này". Lecture note câu mở đầu đồng bộ (tên hai định lý, "gradient nhóm và lịch bước"). Outline A01 "Ghi chú soạn" và storyboard dòng A01 cập nhật | Câu nêu vấn đề cần tiền ngữ đúng và dữ kiện tự chứa; đối chiếu Bài 04 (RG15 "Tốc độ hội tụ $O(1/k)$" ghi "Chứng minh (ý chính)"; RG17 "Hội tụ tuyến tính" ghi "Ý chính:"; RG16 là cận $O(1/k)$ với quay lui) và Bài 05 ("lịch hữu hạn này chưa tạo bảo đảm hội tụ"). Không lặp A02 (vấn đề trung tâm, luận đề để ở A02) | Chờ điều phối viên |
+
+Tái kiểm A01 (bốn mục, điều phối viên chấp nhận cả bốn; đã sửa): (1) trung bình — câu Bài 06 sai (Bài 06 E06 chỉ dùng Jensen): thay bằng "Trung bình Polyak ở Bài 06 là trung bình lặp với bước hằng; với mục tiêu lồi, T4 của bài này cho nó một cận", sửa cả câu tương ứng ở phần G của lecture-note; ghi chú G04 sửa khi tới G04. (2) nhẹ — Bài 04 có ba định lý (RG15, RG16, RG17); ghi chú nêu đủ ba, bài chứng minh T1, T2b, chỉ phát biểu T2' (quay lui); lecture-note câu mở đầu đồng bộ. (3) nhẹ — "mỗi chứng minh trên trang ghi rõ giả thiết dùng ở bước nào; T6 và T9 chỉ được phát biểu; chứng minh nằm trong học liệu". (4) nhẹ — trích Bài 04 ghi đúng từng trang.
+
+Tự kiểm no-ai-slop (A01): không từ cấm, không tương phản nhị phân, không lời dẫn kiểu văn nói; câu có chủ ngữ cụ thể (Bài 04, Bài 05, bài này); không câu tổng kết thừa.
+
 ## Nghi vấn cần điều phối viên xác nhận
 
 Tác tử soạn không phát hiện hằng số sai trong sổ định lý. Đã kiểm lại bằng phép tính tay và Python: T1, T1', T2a, T2b, T5 (đệ quy và chuỗi hình học), T6 (quy nạp với $a_1\le G^2/\mu^2$ và bước quy nạp $\frac{k-1}{k}+\frac1{k+1}\le1$), T8 (cả hai trường hợp của $\min$), chuỗi kẹp dưới H2 + H3, mọi số của VD-A, VD-B, VD-C, VD-D trong kế hoạch.

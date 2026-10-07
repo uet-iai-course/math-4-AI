@@ -1,6 +1,6 @@
 # Bài 05b — Hội tụ của hạ gradient và hạ gradient ngẫu nhiên
 
-Bài 04 phát biểu hai định lý hội tụ của phương pháp hạ gradient (GD); Bài 05 dùng phương pháp hạ gradient ngẫu nhiên (SGD) mà chưa có định lý hội tụ. Ghi chú này trả lời một câu hỏi cho phép lặp $x_{k+1}=x_k-\eta_kg_k$: dãy lặp hội tụ theo nghĩa nào, nhanh đến đâu, dưới giả thiết nào và với bước nào. Vectơ cập nhật $g_k$ là $\nabla f(x_k)$ trong GD, một dưới gradient (subgradient) trong phương pháp dưới gradient, hoặc gradient nhóm trong SGD.
+Bài 04 phát biểu ba định lý hội tụ của phương pháp hạ gradient (GD): cận $O(1/k)$ cho hàm lồi có gradient Lipschitz với bước $1/L$ và với quay lui, cận tuyến tính cho hàm lồi mạnh. Bài 05 dùng phương pháp hạ gradient ngẫu nhiên (SGD) với gradient nhóm và lịch bước nhưng chưa có định lý hội tụ. Ghi chú này trả lời một câu hỏi cho phép lặp $x_{k+1}=x_k-\eta_kg_k$: dãy lặp hội tụ theo nghĩa nào, nhanh đến đâu, dưới giả thiết nào và với bước nào. Vectơ cập nhật $g_k$ là $\nabla f(x_k)$ trong GD, một dưới gradient (subgradient) trong phương pháp dưới gradient, hoặc gradient nhóm trong SGD.
 
 Mọi bảo đảm trong bài đi qua cùng một khuôn một bước: bất đẳng thức một bước → đệ quy → tổng lồng (telescoping sum), co hoặc giải đệ quy → chọn bước. Khi giả thiết đổi, bất đẳng thức một bước đổi, và dạng của nó quyết định cách giải. Phần A định nghĩa các dạng hội tụ; phần B chứng minh các bất đẳng thức nối chúng; phần C, D, E, F lần lượt xét GD, phương pháp dưới gradient, SGD cho hàm lồi và lồi mạnh, SGD cho mục tiêu không lồi; phần G tổng hợp thành bảng tra.
 
@@ -974,7 +974,7 @@ Từ một dòng sang dòng kế, bất đẳng thức một bước đổi theo
 - Các định lý SGD giả sử lấy mẫu có hoàn lại và bước không phụ thuộc mẫu.
 - Ngoài phạm vi: momentum, Nesterov (Bài 05); AdaGrad, RMSProp, Adam, chuẩn hóa theo lô (batch normalization, Bài 06); cận dưới về độ phức tạp; giảm phương sai (SVRG, SAGA); phép chiếu cho ràng buộc; phương pháp Newton (Bài 04). Các phương pháp này có lý thuyết hội tụ riêng; bảng tra của bài không áp dụng trực tiếp cho chúng.
 
-Trước khi dùng một định lý, cần kiểm: giả thiết đúng toàn cục hay chỉ trên một vùng chứa dãy lặp; giả thiết nhiễu là chặn $G^2$ hay chặn $\sigma^2$; đại lượng được chặn là điểm cuối, lặp tốt nhất, trung bình lặp hay kỳ vọng. Bài 06 dùng lại T4 khi bàn về trung bình Polyak.
+Trước khi dùng một định lý, cần kiểm: giả thiết đúng toàn cục hay chỉ trên một vùng chứa dãy lặp; giả thiết nhiễu là chặn $G^2$ hay chặn $\sigma^2$; đại lượng được chặn là điểm cuối, lặp tốt nhất, trung bình lặp hay kỳ vọng. Trung bình Polyak ở Bài 06 là trung bình lặp với bước hằng; với mục tiêu lồi, T4 cho nó một cận.
 
 ## Tài liệu tham khảo
 

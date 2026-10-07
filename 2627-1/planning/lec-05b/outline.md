@@ -253,7 +253,7 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 - **Hình thức hóa:** Không áp dụng.
 - **Kết nối:** Nhận GD và cụm hội tụ của Bài 04, SGD của Bài 05; dẫn tới A02.
 - **Nguồn:** DC.
-- **Ghi chú soạn:** Ghi chú diễn giả nêu tiên quyết (Bài 00, 01, 04, 05) và quan hệ với Bài 06.
+- **Ghi chú soạn:** Ghi chú diễn giả nêu khoảng trống cụ thể (Bài 04: cận $O(1/k)$ và cận tuyến tính, chứng minh trên trang chỉ có ý chính; Bài 05: SGD chưa có định lý hội tụ), việc bài này làm, tiên quyết (Bài 00, 01, 04, 05) và liên kết về sau với trung bình Polyak ở Bài 06. Không lặp vấn đề trung tâm và luận đề của A02. (Rà từng trang 2026-10-08.)
 
 #### A02 — Vấn đề trung tâm và nội dung bài
 
