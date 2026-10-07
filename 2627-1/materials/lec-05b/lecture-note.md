@@ -346,14 +346,16 @@ T1 dùng ba giả thiết H1, H2, H4 và không dùng độ cong dưới. Đảo
 
 ### Định lý hội tụ tuyến tính
 
-Cận của T1 phải đúng cho $f(x)=x_1^2$ trên $\mathbb R^2$, hàm lồi, $L$-trơn nhưng không lồi mạnh, nên nó không thể chứa $\mu$. Với $\mu>0$ cần một bất đẳng thức một bước khác: thay cận tuyến tính của H1 bằng cận bậc hai của H3.
+T1' đúng cả cho $f(x)=x_1^2$ trên $\mathbb R^2$ ($L=2$, mọi $(0,c)$ là nghiệm); vì $x_1^2$ không có $\mu>0$, cận của T1' không thể dùng $\mu$. Thêm H3 làm bất đẳng thức một bước thành phép co: thay cận tuyến tính của H1 bằng cận bậc hai của H3.
 
-**Định lý (T2a, T2b).** Đầu vào: $f$ thỏa H2, H3, H4 với $0<\mu\le L$; điểm đầu $x_0$. Bước: $x_{k+1}=x_k-\tfrac1L\nabla f(x_k)$. Kết luận: với mọi $k\ge0$ và $\kappa=L/\mu$,
+**Định lý (T2a, T2b).** Đầu vào: $f$ thỏa H2, H3, H4 với $0<\mu\le L$; điểm đầu $x_0$, $D=\lVert x_0-x^*\rVert$, $e_0=f(x_0)-f^*$. Bước: $x_{k+1}=x_k-\tfrac1L\nabla f(x_k)$. Kết luận: với mọi $k\ge0$ và $\kappa=L/\mu$,
 
 $$
 \text{(T2a)}\quad d_k^2\le\Bigl(1-\frac1\kappa\Bigr)^kD^2,\qquad
 \text{(T2b)}\quad e_k\le\Bigl(1-\frac1\kappa\Bigr)^ke_0.
 $$
+
+Hệ số $q=1-\tfrac1\kappa\in[0,1)$. Với $\mu<L$, $d_k^2$ và $e_k$ hội tụ tuyến tính hệ số $q$; với $\mu=L$ ($q=0$), một bước đã tới nghiệm. Boyd và Vandenberghe (§9.3.1, (9.18)) phát biểu T2b với $m$, $M$ cho tìm bước chính xác, dùng mức giảm của bước $1/M$ làm cận; với bước cố định $1/L$ lập luận giống hệt. T2a suy trực tiếp từ BĐ4.
 
 ::: proof Chứng minh T2a
 Mẫu 2 với $u_k=d_k^2$.
@@ -381,7 +383,7 @@ e_{k+1}\le e_k-\frac1{2L}\lVert\nabla f(x_k)\rVert^2\le\Bigl(1-\frac\mu L\Bigr)e
 $$
 :::
 
-Ngoài bổ đề giảm, chứng minh T2b chỉ dùng vế thứ hai của BĐ3, tức $\tfrac12\lVert\nabla f\rVert^2\ge\mu e$; phần F lấy chính bất đẳng thức này làm giả thiết cho hàm không lồi. Theo bảng ở phần A, $k\ge\kappa\ln(e_0/\varepsilon)$ bước đủ để $e_k\le\varepsilon$. T2a kèm mũi tên $e\le\tfrac L2d^2$ cũng cho một cận tuyến tính cho $e_k$, với hằng số $\tfrac L2D^2$ thay cho $e_0$; ở Ví dụ C hằng số này là $70$, lớn hơn $e_0=62$.
+Ngoài bổ đề giảm, chứng minh T2b chỉ dùng vế thứ hai của BĐ3, tức $\tfrac12\lVert\nabla f\rVert^2\ge\mu e$; phần F lấy chính bất đẳng thức này làm giả thiết cho hàm không lồi. Vì $1-u\le e^{-u}$, $(1-\tfrac1\kappa)^ke_0\le e^{-k/\kappa}e_0$, nên $k\ge\kappa\ln(e_0/\varepsilon)$ bước đủ để $e_k\le\varepsilon$. T2a kèm mũi tên $e\le\tfrac L2d^2$ cũng cho một cận tuyến tính cho $e_k$, với hằng số $\tfrac L2D^2$ thay cho $e_0$; ở Ví dụ C hằng số này là $70$, lớn hơn $e_0=62$.
 
 ### Ba cận trên Ví dụ C
 

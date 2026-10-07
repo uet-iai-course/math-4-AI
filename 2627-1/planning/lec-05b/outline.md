@@ -437,7 +437,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận T1 và chứng minh C04; C06 chứng minh.
 - **Nguồn:** BV §9.3.1; Bài 04, hội tụ tuyến tính.
-- **Ghi chú soạn:** $\mu\le L$ vì BĐ1 và H3 cùng đúng. Số bước $k\ge\kappa\ln(e_0/\varepsilon)$ trong ghi chú. Mũi tên B06 chỉ cho $e_k\le\frac L2d_k^2$, yếu hơn T2b.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu mở dùng T1' và dữ kiện tự chứa ($x_1^2$ trên $\mathbb R^2$, $L=2$, mọi $(0,c)$ là nghiệm); đầu vào nêu $D$, $e_0$; dòng "Hệ số $q=1-\mu/L=1-1/\kappa\in[0,1)$, nên $d_k^2$ và $e_k$ hội tụ tuyến tính"; ghi chú: ý chứng minh một câu, số bước qua $1-u\le e^{-u}$, BV §9.3.1 (9.18) phát biểu T2b cho tìm bước chính xác với $m$, $M$, T2a suy trực tiếp. $\mu\le L$ vì BĐ1 và H3 cùng đúng. Số bước $k\ge\kappa\ln(e_0/\varepsilon)$ trong ghi chú. Mũi tên B06 chỉ cho $e_k\le\frac L2d_k^2$, yếu hơn T2b.
 
 #### C06 — Chứng minh định lý tuyến tính
 
