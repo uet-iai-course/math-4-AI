@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Sync local lecture materials into a single JS snapshot for file:// viewing.
 
-Scans <repo>/materials/lec-[0-9][0-9]/lecture-note.md and exercises.md
+Scans <repo>/materials/lec-[0-9][0-9][a-z]?/lecture-note.md and exercises.md
 (real files only, no symlinks) and generates
 <repo>/material-local-data.js containing:
 
@@ -25,6 +25,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -33,11 +34,14 @@ OUTPUT_PATH = TERMDIR / "material-local-data.js"
 HEADER_LINES = (
     "// AUTO-GENERATED FILE - DO NOT EDIT BY HAND.",
     "// Regenerate with: python3 scripts/sync-local-materials.py",
-    "// Snapshot of materials/lec-[0-9][0-9]/lecture-note.md and exercises.md",
+    "// Snapshot of materials/lec-[0-9][0-9][a-z]?/lecture-note.md and exercises.md",
     "// for offline file:// viewing; over HTTP the raw Markdown is fetched instead.",
 )
 MATERIALS_DIR = TERMDIR / "materials"
 BASENAMES = ("lecture-note.md", "exercises.md")
+# Thư mục bài: hai chữ số, có thể thêm một chữ thường cho bài bổ trợ (lec-05b).
+# Thứ tự sắp xếp theo tên cho lec-05 < lec-05b < lec-06.
+LECTURE_DIR_PATTERN = re.compile(r"lec-\d{2}[a-z]?")
 
 
 def collect_materials() -> dict[str, str]:
@@ -49,13 +53,8 @@ def collect_materials() -> dict[str, str]:
         if not lec_dir.is_dir() or lec_dir.is_symlink():
             continue
         name = lec_dir.name
-        # lec-[0-9][0-9]
-        if not (
-            name.startswith("lec-")
-            and len(name) == 6
-            and name[4].isdigit()
-            and name[5].isdigit()
-        ):
+        # lec-[0-9][0-9] hoặc bài bổ trợ lec-[0-9][0-9][a-z], ví dụ lec-05b
+        if not LECTURE_DIR_PATTERN.fullmatch(name):
             continue
         for base in BASENAMES:
             f = lec_dir / base

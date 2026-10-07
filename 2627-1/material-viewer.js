@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  const DOCUMENT_PATTERN = /^materials\/lec-(\d{2})\/(lecture-note|exercises)\.md$/;
-  const DECK_PATTERN = /^lecture-(\d{2})-[a-z0-9-]+\.html$/;
+  const DOCUMENT_PATTERN = /^materials\/lec-(\d{2}[a-z]?)\/(lecture-note|exercises)\.md$/;
+  const DECK_PATTERN = /^lecture-(\d{2}[a-z]?)-[a-z0-9-]+\.html$/;
   const DIRECTIVE_PATTERN = /^(example|derivation|proof|exercise|hint|solution)$/;
   const DIRECTIVE_LABELS = {
     example: "Ví dụ",

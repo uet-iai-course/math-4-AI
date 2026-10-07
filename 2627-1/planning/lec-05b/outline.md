@@ -47,6 +47,8 @@ Ngoài phạm vi: momentum, Nesterov, AdaGrad, RMSProp, Adam; chuẩn hóa theo 
 
 Không dẫn Boyd EE364b: tài liệu này không có trong `sources/`; nguồn thay thế cục bộ là SNW ch. 5, Mệnh đề 5.5 (J15). Tệp `MIT-Optimization-for-Machine-Learning.2012.pdf` trùng nội dung SNW 2011; chỉ dẫn bản 2011. Robbins và Monro được nêu tên cho điều kiện bước; không dẫn bài báo gốc vì không có trong `sources/`.
 
+Học liệu Bài 05b (soạn ngày 2026-10-08, sửa theo M01–M20): `materials/lec-05b/lecture-note.md` theo mạch A–G của deck, gồm H0–H7, BĐ1–BĐ6 và bổ đề tách phương sai có chứng minh, T1–T9 có chứng minh trừ T2' (chỉ phát biểu, dẫn BV §9.3.1), chứng minh đầy đủ cho các kết quả deck chỉ phát biểu hoặc để ghi chú (T1', lịch theo pha, T6 quy nạp, T9, Jensen quy nạp), một câu hỏi kiểm tra ngắn cuối mỗi phần A, B, D, E; `materials/lec-05b/exercises.md` gồm 10 bài ở ba mức: nhận biết (Bài 1: B07), tính toán hoặc chứng minh (Bài 2–7, 10: C09, bước $\frac1{14}$ với T1', D07, E12, T6 quy nạp, F07, bước $\frac2{L+\mu}$), vận dụng vào AI (Bài 8–9: logistic có chính quy với $\mu=\lambda$, $L\le\lambda+\frac14\max_i\lVert u_i\rVert^2$; Markov và câu hỏi G04).
+
 ## Ký hiệu và quy ước chuyển ký hiệu
 
 | Ký hiệu | Nghĩa | Ở bài trước | Giới thiệu ở |
@@ -820,7 +822,7 @@ Chức năng: tổng hợp T1–T9 thành bảng tra theo mục tiêu; kiểm lu
 
 - **Vai trò và mục tiêu:** Tự kiểm, bài tập, tài liệu; MT1–MT4.
 - **Luận điểm trung tâm:** Câu hỏi tự kiểm đo việc chọn định lý theo giả thiết; bài tập tổng hợp đo việc tái tạo chứng minh và áp dụng vào huấn luyện mô hình.
-- **Ý chính:** **Câu hỏi:** (1) Mất mát logistic có hệ số chính quy $\frac\lambda2\lVert x\rVert^2$, $\lambda>0$: chọn định lý cho GD và nêu đại lượng được chặn. (2) Mạng nơ ron huấn luyện bằng SGD bước hằng: định lý nào áp dụng và nó không nói gì. (3) Một lần chạy SGD có $\mathbb E(\theta_k-1)^2\le0{,}2$: chặn xác suất $(\theta_k-1)^2\ge1$. Bài tập tổng hợp 8–10 bài ba mức (nhận biết, tính toán hoặc chứng minh, vận dụng vào học máy), nội dung trong học liệu; trên trang chỉ nêu nhóm bài. Tài liệu đọc: BV §9.1.2, §9.3; SNW ch. 4, 5, 13; học liệu Bài 04 mục B; học liệu Bài 05b.
+- **Ý chính:** **Câu hỏi:** (1) Mất mát logistic có hệ số chính quy $\frac\lambda2\lVert x\rVert^2$, $\lambda>0$: chọn định lý cho GD và nêu đại lượng được chặn. (2) Mạng nơ ron huấn luyện bằng SGD bước hằng: định lý nào áp dụng và nó không nói gì. (3) Một lần chạy SGD có $\mathbb E(\theta_k-1)^2\le0{,}2$: chặn xác suất $(\theta_k-1)^2\ge1$. Bài tập tổng hợp 10 bài ba mức (nhận biết, tính toán hoặc chứng minh, vận dụng vào AI), nội dung trong học liệu; trên trang chỉ nêu nhóm bài. Tài liệu đọc: BV §9.1.2, §9.3; SNW ch. 4, 5, 13; học liệu Bài 04 mục B; học liệu Bài 05b.
 - **Ví dụ/hình dự kiến:** Không có hình.
 - **Hình thức hóa:** Đáp án ghi chú: (1) H2, H3 với $\mu=\lambda$: T2a, T2b (hoặc T5 nếu dùng SGD); (2) T8 nếu H0, H2, H6, H6b đúng; cần kiểm các giả thiết này trước; kể cả khi đúng, T8 không nói tới cực tiểu nào và không loại điểm yên ngựa; (3) Markov: $\le0{,}2$.
 - **Kết nối:** Kết thúc bài; liên kết về sau với Bài 06 (trung bình Polyak).
