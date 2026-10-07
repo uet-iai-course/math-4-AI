@@ -77,13 +77,15 @@ Một khẳng định hội tụ phải nêu đại lượng được đo và ki
 1. theo dãy lặp nếu $d_k=\lVert x_k-x^*\rVert\to0$;
 2. theo giá trị nếu $e_k=f(x_k)-f^*\to0$;
 3. tới điểm dừng nếu $\lVert\nabla f(x_k)\rVert\to0$;
-4. theo kỳ vọng nếu dãy là ngẫu nhiên và kỳ vọng của đại lượng tương ứng tiến về $0$.
+4. theo kỳ vọng nếu $x_k$ ngẫu nhiên và kỳ vọng của $d_k$, $e_k$ hoặc $\lVert\nabla f(x_k)\rVert$ (hay bình phương của chúng) tiến về $0$.
 
-Ba dãy $0{,}8^k$, $1/k$ và $1/\sqrt k$ đều tiến về $0$, nhưng số bước để xuống dưới $10^{-3}$ lần lượt là $31$, $1000$ và $10^6$. Trên thang logarit, dãy thứ nhất là đường thẳng độ dốc $\log0{,}8$; hai dãy còn lại cong và phẳng dần. Định nghĩa sau phân loại các kiểu giảm này.
+Vì $\mathbb E d_k\le\sqrt{\mathbb E d_k^2}$, chặn $\mathbb E d_k^2$ mạnh hơn chặn $\mathbb E d_k$: cận $\mathbb E d_k^2=O(1/k^p)$ chỉ cho $\mathbb E d_k=O(1/k^{p/2})$.
+
+Ba dãy $0{,}8^k$, $1/k$ và $1/\sqrt k$ đều tiến về $0$, nhưng số bước để không vượt $10^{-3}$ lần lượt là $31$, $1000$ và $10^6$. Trên thang logarit, dãy thứ nhất là đường thẳng độ dốc $\log0{,}8$; hai dãy còn lại cong và phẳng dần. Định nghĩa sau phân loại các kiểu giảm này.
 
 ![Ba đường sai số theo số bước trên thang logarit: đường 0,8 mũ k là đường thẳng; đường 1/k và 1/căn k cong và giảm chậm dần.](img/lec-05b/rates-log-error.svg)
 
-**Định nghĩa (tốc độ).** Dãy $u_k\ge0$ hội tụ tuyến tính (linear convergence) với hệ số $q\in(0,1)$ nếu tồn tại $C>0$ để $u_k\le Cq^k$ với mọi $k$; hội tụ dưới tuyến tính (sublinear) bậc $O(1/k^p)$, $p>0$, nếu $u_k\le C/k^p$ với mọi $k\ge1$.
+**Định nghĩa (tốc độ).** Dãy $u_k\ge0$ hội tụ tuyến tính (linear convergence) với hệ số $q\in(0,1)$ nếu tồn tại $C>0$ để $u_k\le Cq^k$ với mọi $k$; hội tụ với tốc độ $O(1/k^p)$, $p>0$, nếu có $C>0$ để $u_k\le C/k^p$ với mọi $k\ge1$; khi không có cận tuyến tính, tốc độ này gọi là dưới tuyến tính (sublinear convergence).
 
 Tài liệu dùng hai cách viết tốc độ tuyến tính: dạng cận $u_k\le Cq^k$ ở trên (R-tuyến tính) và dạng tỉ số $u_{k+1}\le qu_k$ (Q-tuyến tính). Nhân $k$ bất đẳng thức dạng tỉ số được $u_k\le q^ku_0$, nên dạng tỉ số kéo theo dạng cận với $C=u_0$. Chiều ngược sai: dãy $u_k=q^k$ với $k$ chẵn, $u_k=0$ với $k$ lẻ thỏa dạng cận với $C=1$, nhưng $u_{k+1}\le qu_k$ sai tại mọi $k$ lẻ. Vì cận đúng với mọi $k$, nó cho số bước đủ để đạt sai số $\varepsilon>0$:
 
@@ -93,6 +95,8 @@ Tài liệu dùng hai cách viết tốc độ tuyến tính: dạng cận $u_k\
 | $C(1-1/\kappa)^k$, $\kappa>1$ | $k\ge\kappa\ln(C/\varepsilon)$, vì $\ln(1-1/\kappa)\le-1/\kappa$ |
 | $C/k$ | $k\ge C/\varepsilon$ |
 | $C/\sqrt k$ | $k\ge C^2/\varepsilon^2$ |
+
+Áp dụng cho hai ví dụ dẫn: ở Ví dụ C, $e_k=6(16/49)^k$ và $d_k^2=4(16/49)^k$, nên dãy hội tụ theo giá trị và theo dãy lặp, tuyến tính với hệ số $\tfrac{16}{49}$; ở Ví dụ A với bước hằng $0{,}1$, $\mathbb E(\theta_k-1)^2\to\tfrac8{57}\approx0{,}140$, nên dãy không hội tụ theo kỳ vọng. Kỳ vọng của điểm lặp $\mathbb E\theta_k=1-0{,}9^k$ tiến về $1$, nhưng đó không phải hội tụ theo kỳ vọng theo định nghĩa trên.
 
 Hai cách đo khác, lặp tốt nhất (best iterate) và trung bình lặp (iterate averaging), được định nghĩa ở phần D.
 
