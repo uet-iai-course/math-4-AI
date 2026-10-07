@@ -284,9 +284,9 @@ Với $f(x)=x^4$ trên $\mathbb R$, chỉ ra giả thiết nào trong H2, H3 sai
 
 Phần này xét $x_{k+1}=x_k-\tfrac1L\nabla f(x_k)$ và biến thể bước $\eta\le1/L$, dưới H1, H2, H4, rồi thêm H3. Ba khoảng trống của định lý $O(1/k)$ ở Bài 04 được lấp ở đây: tính không tăng của $d_k$ chưa được phát biểu như một kết luận; định lý chưa được phát biểu cho bước cố định $0<\eta\le1/L$; trường hợp thiếu H4 chưa được xét, trong khi với $\phi(s)=\log(1+e^{-s})$ thì $e_k\to0$, $s_k\to\infty$ và $D$ không xác định. Trên Ví dụ C, cận $70/k$ của định lý đó lớn hơn nhiều so với $e_k=6(16/49)^k$, chẳng hạn $14$ so với $0{,}022$ tại $k=5$. Chứng minh đầy đủ của định lý $O(1/k)$ với bước $1/L$ có trong học liệu Bài 04, mục B; ở đây dùng ký hiệu $x_k$, $\eta$, $D$ thay cho $x^k$, $t$, $R$.
 
-### Khuôn một bước
+### Khuôn một bước: tổng lồng và co
 
-BĐ1–BĐ4 nói về một điểm hoặc một bước. Ghép chúng dọc dãy lặp dùng hai mẫu. Hình xếp các hiệu $u_0-u_1,\dots,u_3-u_4$ và phần còn lại $u_4$ thành một cột cao đúng $u_0$: tổng các hiệu không vượt giá trị đầu của một đại lượng không âm.
+BĐ1–BĐ4 nói về một điểm hoặc một bước. Một **bất đẳng thức một bước** liên hệ một đại lượng không âm $u_k$ tại hai bước liên tiếp; **khuôn một bước** nối các bất đẳng thức đó qua mọi bước theo một trong hai mẫu. Hình xếp các hiệu $u_0-u_1,\dots,u_3-u_4$ và phần còn lại $u_4$ thành một cột cao đúng $u_0$: tổng các hiệu không vượt giá trị đầu của một đại lượng không âm.
 
 ![Các hiệu u0 − u1, u1 − u2, u2 − u3, u3 − u4 và phần còn lại u4 xếp chồng thành một cột cao bằng u0.](img/lec-05b/telescoping-stack.svg)
 
@@ -298,7 +298,7 @@ $$
 
 **Mẫu 2 (co).** Nếu $u_{k+1}\le q\,u_k$ với $0\le q<1$ và $u_k\ge0$ thì $u_k\le q^ku_0$.
 
-Mẫu 1 cộng các bất đẳng thức một bước: vế phải triệt tiêu từng cặp và chỉ còn $u_0-u_k$. Mẫu 2 nhân các hệ số co. Trong cả hai, $u_k$ là một hàm thế (potential function) $V_k\ge0$ thỏa $V_{k+1}\le V_k-P_k+N_k$, với tiến bộ $P_k\ge0$ và nhiễu $N_k\ge0$. Các phần sau đổi $V$, $P_k$ và $N_k$.
+Mẫu 1 cộng các bất đẳng thức một bước: vế phải triệt tiêu từng cặp và chỉ còn $u_0-u_k$. Mẫu 2 nhân các hệ số co. Đại lượng không âm $u_k$ được chặn từ bước này sang bước sau gọi là hàm thế (potential function); dạng chung là $V_k\ge0$ thỏa $V_{k+1}\le V_k-P_k+N_k$, với tiến bộ $P_k\ge0$ và nhiễu $N_k\ge0$. Các phần sau đổi $V$, $P_k$ và $N_k$. Khi bất đẳng thức một bước có dạng $u_{k+1}\le q\,u_k+N_k$ (hệ số co cộng nhiễu), cách nối thứ ba là giải đệ quy; nó xuất hiện ở phần SGD cho hàm lồi mạnh.
 
 ### Định lý hội tụ dưới tuyến tính
 

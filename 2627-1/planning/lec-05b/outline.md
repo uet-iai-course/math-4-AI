@@ -395,7 +395,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Nguồn:** Bài 04, định lý $O(1/k)$ và hội tụ tuyến tính; học liệu Bài 04 mục B.
 - **Ghi chú soạn:** Chứng minh đầy đủ của Bài 04 nằm trong học liệu Bài 04 mục B; C03–C04 đưa chứng minh lên trang, thêm $d_k$ và T1', và đánh dấu bước dùng H4. Không đưa cận $62(4/7)^k$ trước C05. Ký hiệu chuyển: Bài 04 $x^k$, $t$, $R$ → $x_k$, $\eta$, $D$ (ghi một lần). **Bản sửa 2026-10-08** (R22, R17, R52): câu đầu có vị ngữ; mục 2 "trang chiếu Bài 04 chỉ nêu ý chính"; câu cuối "Phần này xét … dưới H1, H2 và H4"; ghi chú câu nối B→C. **Rà từng trang 2026-10-08:** câu mở tham chiếu "bảng đầu bài" thay bằng hình `vdc-measures.svg` (dùng lại từ A03) và một câu tự chứa (hàm, bước, điểm đầu, $e_k=6(16/49)^k$ so với $70/k$); khung ba khoảng trống toàn chiều rộng, mỗi khoảng trống một dòng (mục 3 có công thức $\phi$); ghi chú: câu nối B→C, cách phát biểu BV §9.3.1, số $e_5\approx0{,}022$ so với $14$, ký hiệu chuyển. Tiêu đề giữ.
 
-#### C02 — Khuôn một bước và tổng lồng
+#### C02 — Khuôn một bước: tổng lồng và co
 
 - **Vai trò và mục tiêu:** Trực quan KN3 (KT5, KT8); MT2.
 - **Luận điểm trung tâm:** Một bất đẳng thức một bước được giải theo hai mẫu: chặn sai số bằng hiệu của một đại lượng không âm rồi cộng lại thành tổng lồng, hoặc chặn bằng một hệ số co rồi nhân lại thành lũy thừa.
@@ -404,7 +404,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Tổng lồng (telescoping sum) $\sum_{j<k}(u_j-u_{j+1})=u_0-u_k\le u_0$.
 - **Kết nối:** C03–C04 áp dụng mẫu 1 với $u_k=\frac L2d_k^2$; C05–C06 áp dụng mẫu 2.
 - **Nguồn:** SNW ch. 4 §4.1.2; tổng hợp sư phạm.
-- **Ghi chú soạn:** Nhận xét có nhãn, không phải định lý. Hình không chứa số liệu thật. **Bản sửa 2026-10-08** (R23): biến chung $p_{k+1}$; "$u_k$ đóng vai một hàm thế $V_k\ge0$".
+- **Ghi chú soạn:** Nhận xét có nhãn, không phải định lý. Hình không chứa số liệu thật. **Bản sửa 2026-10-08** (R23): biến chung $p_{k+1}$; "$u_k$ đóng vai một hàm thế $V_k\ge0$". **Rà từng trang 2026-10-08:** tiêu đề "Khuôn một bước: tổng lồng và co" (bao cả hai mẫu); câu mở đặt tên "bất đẳng thức một bước" và "khuôn một bước" trên mặt trang; nhận xét hàm thế còn một câu, dạng $V_{k+1}\le V_k-P_k+N_k$ và cách nối thứ ba (giải đệ quy, phần SGD lồi mạnh) vào ghi chú; chú thích hình tự chứa; `telescoping-stack.svg` bỏ khoảng trắng trên (khung 600×340).
 
 #### C03 — Định lý hội tụ dưới tuyến tính của hạ gradient
 
