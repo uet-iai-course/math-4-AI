@@ -426,7 +426,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Bốn bước có nhãn, ghi giả thiết dùng ở từng bước.
 - **Kết nối:** Nhận C02 mẫu 1; C05 mở bằng nhu cầu dùng $\mu$ rồi thêm H3.
 - **Nguồn:** BV §9.3; học liệu Bài 04 mục B.
-- **Ghi chú soạn:** Bước $1/L$ làm hai số hạng $\lVert\nabla f\rVert^2$ triệt tiêu ở bước 3. Đơn điệu của $e_j$ đến từ bước 1. H4 dùng ở bước 2 và bước 3 (định nghĩa $x^*$, $f^*$). Trang chỉ chứng minh; nhu cầu dùng $\mu$ đặt ở đầu C05. **Bản sửa 2026-10-08** (R21, R37): dòng "Ý tưởng"; ghi chú về số hạng triệt tiêu và hằng số $1/(L\eta)$.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** chứng minh viết cho T1' với $0<\eta\le1/L$ và ký hiệu $g_k=\nabla f(x_k)$: (1) bổ đề giảm $-\frac\eta2\lVert g_k\rVert^2$; (2) hệ quả H1, đánh dấu chỗ dùng H4; (3) BĐ4 chia cho $2\eta$; (4) $e_{k+1}\le\frac1{2\eta}(d_k^2-d_{k+1}^2)$, $d_{k+1}\le d_k$; (5) $ke_k\le\frac{D^2}{2\eta}$; ghi chú kiểm đại số hệ số $\frac\eta2$, nguồn hằng số $\frac1{2\eta}$, trường hợp $\eta=1/L$; ghi chú C02 sửa "$u_k=d_k^2$, $c=\frac1{2\eta}$". Trang đổi sang cỡ chữ thường (không dense). Bước $1/L$ làm hai số hạng $\lVert\nabla f\rVert^2$ triệt tiêu ở bước 3. Đơn điệu của $e_j$ đến từ bước 1. H4 dùng ở bước 2 và bước 3 (định nghĩa $x^*$, $f^*$). Trang chỉ chứng minh; nhu cầu dùng $\mu$ đặt ở đầu C05. **Bản sửa 2026-10-08** (R21, R37): dòng "Ý tưởng"; ghi chú về số hạng triệt tiêu và hằng số $1/(L\eta)$.
 
 #### C05 — Định lý hội tụ tuyến tính của hạ gradient
 

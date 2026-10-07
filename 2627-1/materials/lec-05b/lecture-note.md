@@ -339,7 +339,7 @@ $$
 k\,e_k\le\sum_{j=1}^ke_j\le\frac1{2\eta}\bigl(d_0^2-d_k^2\bigr)\le\frac{D^2}{2\eta}.
 $$
 
-Phép ghép ở bước 4 cần bổ đề giảm và BĐ4 dùng cùng một bước $\eta$: số hạng $\tfrac\eta2\lVert\nabla f(x_k)\rVert^2$ xuất hiện với dấu ngược nhau ở bước 1 và ở vế trái của bước 3. Nếu bỏ H4 thì $x^*$, $f^*$ không tồn tại và bước 2, bước 3 không viết được; hàm logistic ở phần B là trường hợp đó.
+Phép ghép ở bước 4 cần bổ đề giảm và BĐ4 dùng cùng một bước $\eta$: số hạng $\tfrac\eta2\lVert\nabla f(x_k)\rVert^2$ xuất hiện với dấu ngược nhau ở bước 1 và ở vế trái của bước 3. Nếu bỏ H4 thì $x^*$, $f^*$ không tồn tại và bước 2 không viết được (ở bước 3, $x^*$ chỉ cần là một điểm cố định để $d_k$ đo khoảng cách tới nghiệm); $\phi(s)=\log(1+e^{-s})$ là trường hợp đó. Điều kiện $\eta\le1/L$ chỉ dùng ở bước 1, qua $\eta(1-\tfrac{L\eta}2)\ge\tfrac\eta2$; với $\eta=1/L$, hằng số $\tfrac1{2\eta}$ bằng $\tfrac L2$ và cho T1.
 :::
 
 T1 dùng ba giả thiết H1, H2, H4 và không dùng độ cong dưới. Đảo cận cho số bước: $k\ge LD^2/(2\varepsilon)$ đủ để $e_k\le\varepsilon$; với Ví dụ C và $\varepsilon=0{,}01$ là $7000$ bước. Với bước $\eta<1/L$, hằng số $\tfrac{D^2}{2\eta}$ lớn hơn $\tfrac{LD^2}2$ đúng $\tfrac1{L\eta}$ lần (Bài tập 3).
