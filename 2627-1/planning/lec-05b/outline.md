@@ -236,7 +236,7 @@ Hai trang đối chiếu bắt buộc: C07 (T1, T2a, T2b trên VD-C: để $e_k\
 
 ## Danh sách hình SVG
 
-Danh sách đầy đủ kèm alt dự kiến ở [storyboard.md](storyboard.md), mục "Hình cần vẽ" (14 hình). Mọi hình tự dựng từ công thức và số liệu của ví dụ; không sao chép hình nguồn; không dùng ảnh raster.
+Danh sách đầy đủ kèm alt dự kiến ở [storyboard.md](storyboard.md), mục "Hình cần vẽ" (16 hình). Mọi hình tự dựng từ công thức và số liệu của ví dụ; không sao chép hình nguồn; không dùng ảnh raster.
 
 ## Dàn bài từng trang
 
@@ -271,11 +271,11 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 - **Vai trò và mục tiêu:** Nhu cầu và ví dụ dẫn nhập của KN1; MT1.
 - **Luận điểm trung tâm:** Cùng một dãy lặp cho các đại lượng giảm với tốc độ khác nhau; một khẳng định "hội tụ" phải nói đại lượng nào.
 - **Ý chính:** Ví dụ C (hàm bậc hai của Bài 04), GD bước $1/7$: $e_k=6(16/49)^k$, $d_k^2=\frac{64}{49}(16/49)^{k-1}$ ($k\ge1$); định lý $O(1/k)$ của Bài 04 cho cận $70/k$. Ví dụ A (ba quan sát của Bài 05), SGD bước $0{,}1$, nhóm một mẫu, $\theta_0=0$: $\theta_k$ ngẫu nhiên; $\mathbb E(\theta_k-1)^2$ giảm từ $0{,}837$ ($k=1$) tới $0{,}153$ ($k=20$) và không xuống dưới $0{,}140$.
-- **Ví dụ/hình dự kiến:** Bảng nhỏ hai khối: VD-C với $k=1,2,5$ ($e_k$, $d_k^2$, cận $70/k$); VD-A với $k=1,20$ và giá trị giới hạn.
+- **Ví dụ/hình dự kiến:** Hai hình (rà từng trang 2026-10-08, thay hai bảng số): `vdc-measures.svg` ($e_k$, $d_k^2$, cận $70/k$ trên thang log, $k\le8$) và `vda-sgd-path.svg` (một lần chạy $(\theta_k-1)^2$ và kỳ vọng, giới hạn $0{,}140$). Số $1{,}96$; $1{,}31$; $0{,}0223$; $0{,}0149$; $14$; $0{,}837$; $0{,}153$ chuyển vào ghi chú.
 - **Hình thức hóa:** Chưa định nghĩa; chỉ quan sát số. Ghi rõ dãy $\mathbb E(\theta_k-1)^2$ tính chính xác bằng một đệ quy được suy ở phần E.
 - **Kết nối:** Nhận định lý Bài 04 (đo $e_k$) và quan sát dao động của Bài 05; A04 đặt tên các thước đo và tốc độ. C01 dẫn lại bảng này.
 - **Nguồn:** Bài 04, ví dụ bậc hai và định lý $O(1/k)$; Bài 05, ví dụ ba quan sát và mục bước học, dao động gần nghiệm; tính trực tiếp.
-- **Ghi chú soạn:** Ghi chú diễn giả nêu: $e_k$ của VD-C giảm theo hệ số $16/49$, còn cận Bài 04 giảm như $1/k$; dãy VD-A có giới hạn dương vì bước hằng. Không đưa cận tuyến tính $62(4/7)^k$ ở đây. **Bản sửa 2026-10-08** (R01, R07, R51): câu kết đổi thành "$e_k$ và $d_k^2$ cùng giảm theo tỉ số $\frac{16}{49}$, cận Bài 04 như $1/k$; ở Ví dụ A kỳ vọng dừng ở $0{,}140$"; thêm dòng ký hiệu $e_k$, $d_k$ (Ví dụ C: $x^*=0$, $f^*=0$) và quy tắc tên Ví dụ A–D; bảng Ví dụ C bỏ dòng $k=2$ để vừa khung.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dòng định nghĩa $e_k$, $d_k$ đặt trước hai ví dụ; dữ kiện mỗi ví dụ tự chứa (hàm, nghiệm, điểm đầu, bước, cỡ nhóm); câu kết rút còn hai dòng, giữ "Một khẳng định hội tụ phải nêu đại lượng được đo và kiểu giảm" làm đầu ra cho A04; quy tắc tên Ví dụ A–D và Ví dụ B, D chuyển vào ghi chú diễn giả. Ghi chú diễn giả nêu: $e_k$ của VD-C giảm theo hệ số $16/49$, còn cận Bài 04 giảm như $1/k$; dãy VD-A có giới hạn dương vì bước hằng. Không đưa cận tuyến tính $62(4/7)^k$ ở đây. **Bản sửa 2026-10-08** (R01, R07, R51): câu kết đổi thành "$e_k$ và $d_k^2$ cùng giảm theo tỉ số $\frac{16}{49}$, cận Bài 04 như $1/k$; ở Ví dụ A kỳ vọng dừng ở $0{,}140$"; thêm dòng ký hiệu $e_k$, $d_k$ (Ví dụ C: $x^*=0$, $f^*=0$) và quy tắc tên Ví dụ A–D; bảng Ví dụ C bỏ dòng $k=2$ để vừa khung.
 
 #### A04 — Dạng hội tụ và tốc độ hội tụ
 

@@ -45,7 +45,9 @@ $$
 | 5 | 0,0223 | 0,0149 | 14 |
 | 10 | $8{,}3\cdot10^{-5}$ | $5{,}5\cdot10^{-5}$ | 7 |
 
-Hai đại lượng giảm theo cấp số nhân cùng tỉ số $\tfrac{16}{49}$, còn cận của định lý $O(1/k)$ ở Bài 04, với $L=7$ và $D^2=\lVert x_0\rVert^2=20$, là $LD^2/(2k)=70/k$.
+Hai đại lượng giảm theo cấp số nhân cùng tỉ số $\tfrac{16}{49}$, còn cận của định lý $O(1/k)$ ở Bài 04, với $L=7$ và $D^2=\lVert x_0\rVert^2=20$, là $LD^2/(2k)=70/k$. Trên thang logarit, hai dãy là hai đường thẳng song song, còn cận giảm chậm.
+
+![Thang logarit, k từ 0 đến 8: sai số giá trị e_k và bình phương khoảng cách d_k² giảm theo hai đường thẳng song song, từ 1,96 và 1,31 tại k = 1; cận 70/k ở phía trên giảm chậm.](img/lec-05b/vdc-measures.svg)
 :::
 
 ::: example Ví dụ A: kỳ vọng giảm về một giá trị dương
@@ -61,7 +63,9 @@ $$
 a_{k+1}=0{,}81\,a_k+0{,}01\cdot\tfrac83=0{,}81\,a_k+\tfrac8{300},\qquad a_0=1.
 $$
 
-Do đó $a_1\approx0{,}837$, $a_2\approx0{,}704$, $a_{20}\approx0{,}153$ và $a_k\to\tfrac{8/300}{1-0{,}81}=\tfrac8{57}\approx0{,}140$. Kỳ vọng giảm về giá trị giới hạn dương; bước hằng giữ lại nhiễu của gradient mẫu.
+Do đó $a_1\approx0{,}837$, $a_2\approx0{,}704$, $a_{20}\approx0{,}153$ và $a_k\to\tfrac{8/300}{1-0{,}81}=\tfrac8{57}\approx0{,}140$. Kỳ vọng giảm về giá trị giới hạn dương; bước hằng giữ lại nhiễu của gradient mẫu. Một lần chạy riêng lẻ không hội tụ: $(\theta_k-1)^2$ dao động và không tiến về $0$, nên với SGD thước đo là kỳ vọng.
+
+![k từ 0 đến 40: bình phương sai lệch của một lần chạy dao động không về 0; kỳ vọng giảm từ 1 về giá trị giới hạn 0,140.](img/lec-05b/vda-sgd-path.svg)
 :::
 
 Một khẳng định hội tụ phải nêu đại lượng được đo và kiểu giảm: ở Ví dụ C, giá trị và khoảng cách giảm theo cấp số nhân; ở Ví dụ A, kỳ vọng của bình phương khoảng cách giảm về một hằng số dương.
