@@ -414,8 +414,8 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Ví dụ/hình dự kiến:** Không có hình.
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** C04 chứng minh.
-- **Nguồn:** BV §9.3; Bài 04, định lý $O(1/k)$; học liệu Bài 04 mục B.
-- **Ghi chú soạn:** Ghi chú nêu T1' suy ra bằng cách thay $1/L$ bằng $\eta$ trong C04; số bước $k\ge\frac{LD^2}{2\varepsilon}$.
+- **Nguồn:** Bài 04, định lý $O(1/k)$; học liệu Bài 04 mục B (BV §9.3 chỉ có trường hợp lồi mạnh).
+- **Ghi chú soạn:** Ghi chú nêu T1' suy ra bằng cách thay $1/L$ bằng $\eta$ trong C04; số bước $k\ge\frac{LD^2}{2\varepsilon}$. **Rà từng trang 2026-10-08:** phát biểu chính là T1' (bước $0<\eta\le1/L$, kết luận $d_{k+1}\le d_k$ và $e_k\le\frac{D^2}{2\eta k}$), T1 là trường hợp $\eta=1/L$; câu dẫn nêu hai điều định lý thêm so với Bài 04 (bước $1/L$ hoặc quay lui): bước hằng bất kỳ $0<\eta\le1/L$ và kết luận $d_{k+1}\le d_k$; số bước đạt $\varepsilon$ chỉ ở ghi chú, không dùng số 7000 của Ví dụ C (để C07 đối chiếu); nguồn bỏ BV §9.3.
 
 #### C04 — Chứng minh định lý dưới tuyến tính
 

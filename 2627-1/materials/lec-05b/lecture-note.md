@@ -302,15 +302,15 @@ Mẫu 1 cộng các bất đẳng thức một bước: vế phải triệt tiê
 
 ### Định lý hội tụ dưới tuyến tính
 
-**Định lý (T1).** Đầu vào: $f$ thỏa H1, H2, H4; điểm đầu $x_0$, $D=\lVert x_0-x^*\rVert$. Bước: $x_{k+1}=x_k-\tfrac1L\nabla f(x_k)$. Kết luận: với mọi $k\ge1$ và mọi $k'\ge0$,
+So với định lý $O(1/k)$ của Bài 04 (bước $1/L$ hoặc quay lui), phát biểu dưới đây cho bước hằng bất kỳ $0<\eta\le1/L$ và thêm kết luận $d_{k+1}\le d_k$. Chứng minh quay lui của Bài 04 dùng cùng bất đẳng thức một bước với bước $t$.
+
+**Định lý (T1').** Đầu vào: $f$ thỏa H1, H2, H4; điểm đầu $x_0$, $D=\lVert x_0-x^*\rVert$. Bước: $x_{k+1}=x_k-\eta\nabla f(x_k)$ với bước hằng $0<\eta\le1/L$. Kết luận: $d_{k+1}\le d_k$ với mọi $k\ge0$, và với mọi $k\ge1$,
 
 $$
-e_k=f(x_k)-f^*\le\frac{LD^2}{2k},\qquad d_{k'+1}\le d_{k'}.
+e_k=f(x_k)-f^*\le\frac{D^2}{2\eta k}.
 $$
 
-**Hệ quả (T1').** Cùng giả thiết, với bước hằng $0<\eta\le1/L$: $e_k\le\dfrac{D^2}{2\eta k}$ với mọi $k\ge1$, và $d_{k+1}\le d_k$.
-
-T1 là trường hợp $\eta=1/L$ của T1'. Chứng minh dưới đây viết cho T1'.
+**Trường hợp $\eta=1/L$ (T1).** $e_k\le\dfrac{LD^2}{2k}$ với mọi $k\ge1$. Chứng minh dưới đây viết cho T1'.
 
 ::: proof Chứng minh T1 và T1'
 *Ý tưởng.* Dùng BĐ4 đưa $e_{k+1}$ về hiệu $d_k^2-d_{k+1}^2$, rồi áp mẫu 1.
