@@ -234,15 +234,23 @@
   margin: 20px auto;
 }
 
-.markdown-body p:has(> img[src^="img/lec-"]) {
-  overflow-x: auto;
-  padding-bottom: 8px;
-}
-
 .markdown-body img[src^="img/lec-"] {
   width: 100%;
-  min-width: 900px;
-  max-width: none;
+  max-width: 100%;
+}
+
+/* Narrow screens: keep lecture figures at a readable 900px and let the
+   paragraph scroll horizontally instead of shrinking the labels. */
+@media (max-width: 1000px) {
+  .markdown-body p:has(> img[src^="img/lec-"]) {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .markdown-body img[src^="img/lec-"] {
+    min-width: 900px;
+    max-width: none;
+  }
 }
 
 .markdown-body .katex {
