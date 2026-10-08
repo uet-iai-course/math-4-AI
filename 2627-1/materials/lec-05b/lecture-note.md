@@ -561,13 +561,13 @@ Tính $\partial f(-1)$ và $\partial f(3)$ của Ví dụ B. Với $x_0=3$ và b
 
 ### Gradient ngẫu nhiên và kỳ vọng có điều kiện
 
-Mục tiêu học máy có dạng $f=\tfrac1N\sum_{i=1}^N\ell_i$, với $\ell_i$ là mất mát trên quan sát $i$. Một gradient hoặc dưới gradient đầy đủ cần $N$ phép tính mỗi bước. Bài 05 dùng gradient nhóm $b$ mẫu:
+Mục tiêu học máy có dạng $f=\tfrac1N\sum_{i=1}^N\ell_i$, với $\ell_i$ là mất mát trên quan sát $i$. Một gradient hoặc dưới gradient đầy đủ cần $N$ phép tính mỗi bước. SGD (như Bài 05) dùng gradient trên một nhóm $b$ mẫu:
 
 $$
 g_k=\frac1b\sum_{r=1}^b\nabla\ell_{I_{k,r}}(x_k),\qquad x_{k+1}=x_k-\eta_kg_k,
 $$
 
-với $I_{k,r}$ là chỉ số thứ $r$ của nhóm ở bước $k$, lấy đều có hoàn lại và độc lập. Một bước có thể làm tăng $f$. Chứng minh T3 chỉ dùng $g_k$ qua $g_k^T(x_k-x^*)$ và $\lVert g_k\rVert^2$; nếu kiểm soát được kỳ vọng của hai đại lượng này thì khuôn một bước vẫn áp dụng.
+với $I_{k,r}$ là chỉ số thứ $r$ của nhóm ở bước $k$, chọn ngẫu nhiên đều, độc lập, có hoàn lại trong $\{1,\dots,N\}$; khi $\ell_i$ không khả vi, thay $\nabla\ell_i$ bằng một dưới gradient của $\ell_i$. Một bước có thể làm tăng $f$: ở Ví dụ A ($\theta_k$ là $x_k$ khi $n=1$, theo ký hiệu của Bài 05) với $\theta_0=0$, bước $0{,}1$, nhóm một mẫu, nếu mẫu được chọn là $y=-1$ thì $J-\tfrac43$ tăng từ $0{,}5$ lên $0{,}605$. Chứng minh T3 chỉ dùng $g_k$ qua $g_k^T(x_k-x^*)$ và $\lVert g_k\rVert^2$; nếu $g_k$ là ước lượng không chệch của gradient và $\mathbb E\lVert g_k\rVert^2$ bị chặn thì khuôn một bước vẫn áp dụng sau khi lấy kỳ vọng. Mỗi bước SGD tốn $b$ phép tính thay vì $N$, nên với cùng ngân sách tính toán, SGD đi được nhiều bước hơn (Bottou và Bousquet).
 
 Cây lịch sử của Ví dụ A cho một hình ảnh cụ thể. Mỗi nút của cây là một lịch sử các nhóm đã chọn; các nhánh con là các khả năng của nhóm mới. Với bước $0{,}1$, nhóm một mẫu, $\theta_0=0$ và $g_k=\theta_k-y_{I_k}$: bước đầu cho $\theta_1=0{,}1\,y_{I_0}\in\{-0{,}1;\ 0{,}1;\ 0{,}3\}$, mỗi giá trị xác suất $\tfrac13$, và $\mathbb E(\theta_1-1)^2=\tfrac13(1{,}21+0{,}81+0{,}49)\approx0{,}837$. Tại nút $\theta_1=0{,}1$, ba nhánh con cho $g_1\in\{1{,}1;\ -0{,}9;\ -2{,}9\}$, trung bình $-0{,}9=J'(0{,}1)$: trung bình trên các nhánh con của một nút là gradient đầy đủ tại nút đó.
 

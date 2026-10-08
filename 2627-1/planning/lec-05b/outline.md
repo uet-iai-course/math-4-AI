@@ -577,7 +577,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** $g_k=\frac1b\sum_r\nabla\ell_{I_{k,r}}(x_k)$; $x_{k+1}=x_k-\eta_kg_k$.
 - **Kết nối:** Nhận T3 và giới hạn D (chi phí $N$); E02 xây công cụ kỳ vọng có điều kiện.
 - **Nguồn:** Bài 05, mục ước lượng gradient không chệch, một bước gradient ngẫu nhiên, phương pháp SGD; SNW ch. 13 §13.3 (so chi phí GD và SGD).
-- **Ghi chú soạn:** Ghi chú diễn giả: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu." $\theta_1=0-0{,}1(0-y_I)=0{,}1y_I$. **Bản sửa 2026-10-08** (R42, R08, R09): định nghĩa $\ell_i$, $N$, $I_{k,r}$ trên trang; câu kết "có điều kiện theo các chỉ số nhóm đã chọn"; nguồn ch. 13 ghi đủ.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu mở nêu chi phí $N$ phép tính và định nghĩa $f$, $\ell_i$, $N$, $b$; "$I_{k,r}$ … chọn ngẫu nhiên đều, độc lập, có hoàn lại trong $\{1,\dots,N\}$ (như Bài 05)" thay "lấy đều có hoàn lại"; Ví dụ A tự chứa ($J$, $y$, $\theta_0$, $\eta$, $b$) và dữ kiện một bước làm tăng $J-\frac43$ từ $0{,}5$ lên $0{,}605$; hai bullet cũ bỏ; câu kết giữ (đầu vào E02); ghi chú: cầu nối không chệch sang T4, lý do chi phí (Bottou–Bousquet). Trang đổi sang dense. Ghi chú diễn giả: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu." $\theta_1=0-0{,}1(0-y_I)=0{,}1y_I$. **Bản sửa 2026-10-08** (R42, R08, R09): định nghĩa $\ell_i$, $N$, $I_{k,r}$ trên trang; câu kết "có điều kiện theo các chỉ số nhóm đã chọn"; nguồn ch. 13 ghi đủ.
 
 #### E02 — Lịch sử và kỳ vọng có điều kiện
 
