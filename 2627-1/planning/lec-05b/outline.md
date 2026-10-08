@@ -529,7 +529,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Như trên; H5 được đặt tên tại đây.
 - **Kết nối:** D05 chứng minh; D06 chọn bước.
 - **Nguồn:** SNW ch. 4 §4.1.2.
-- **Ghi chú soạn:** Cận chặn $\min_{k<K}$ và trung bình của $x_0,\dots,x_{K-1}$, không chặn $x_K$.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn "Vì $f(x_k)$ có thể tăng, cận đặt cho lặp tốt nhất và cho trung bình lặp $\bar x_K$ (trọng số theo bước)"; phát biểu theo mẫu Đầu vào–Bước–Kết luận, H5 có tên "chặn chuẩn của dưới gradient"; dòng Ví dụ B tự chứa ($f$, $G=1$); ghi chú: ý chứng minh một câu, vì sao không chặn $x_K$, "hệ quả về chọn bước" thay "trang chọn bước". Cận chặn $\min_{k<K}$ và trung bình của $x_0,\dots,x_{K-1}$, không chặn $x_K$.
 
 #### D05 — Chứng minh định lý dưới gradient
 

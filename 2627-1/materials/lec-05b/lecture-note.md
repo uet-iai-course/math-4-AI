@@ -472,18 +472,20 @@ Lượt bước $4{,}5$ cho thấy $f(x_k)$ không đơn điệu. Với $g\in\pa
 
 ### Định lý hội tụ của phương pháp dưới gradient
 
-**Định lý (T3).** Đầu vào: $f$ lồi (H1 dạng dưới gradient), đạt cực tiểu tại $x^*$ (H4); các dưới gradient dùng tại điểm lặp thỏa
+Vì $f(x_k)$ có thể tăng, cận đặt cho lặp tốt nhất và cho trung bình lặp $\bar x_K$ (trọng số theo bước).
 
-- **H5.** $\lVert g_k\rVert\le G$ với mọi $k$;
+**Định lý (T3).** Đầu vào: $f$ lồi (H1 dạng dưới gradient), đạt giá trị nhỏ nhất tại $x^*$ (H4); điểm đầu $x_0$, $D=\lVert x_0-x^*\rVert$; dưới gradient tại các điểm lặp thỏa
 
-điểm đầu $x_0$, bước $\eta_k>0$, số bước $K\ge1$. Kết luận:
+- **H5 (chặn chuẩn của dưới gradient).** $\lVert g_k\rVert\le G$ với mọi $k$.
+
+Bước: $x_{k+1}=x_k-\eta_kg_k$, $g_k\in\partial f(x_k)$, bước $\eta_k>0$ cho trước, $K\ge1$ bước. Kết luận:
 
 $$
 \min_{k<K}e_k\ \le\ \frac{D^2+G^2\sum_{k<K}\eta_k^2}{2\sum_{k<K}\eta_k},\qquad
 f(\bar x_K)-f^*\ \le\ \frac{D^2+G^2\sum_{k<K}\eta_k^2}{2\sum_{k<K}\eta_k}.
 $$
 
-Cả hai cận dùng các điểm $x_0,\dots,x_{K-1}$; điểm cuối $x_K$ không được chặn, và ở lượt bước $4{,}5$ điểm lặp cuối là một trong hai điểm xấu nhất. Ở Ví dụ B, $\lvert g\rvert\le\tfrac13(1+1+1)=1$ với mọi dưới gradient, nên H5 đúng với $G=1$.
+Cả hai cận dùng các điểm $x_0,\dots,x_{K-1}$; điểm cuối $x_K$ không được chặn, và ở lượt bước $4{,}5$ điểm cuối $x_4=0$ có sai số $\tfrac13$, bằng sai số lớn nhất của dãy, trong khi cận chặn $\min_{k<4}e_k=\tfrac16$ và $f(\bar x_4)-f^*=\tfrac1{12}$. Ở Ví dụ B, $\lvert g\rvert\le\tfrac13(1+1+1)=1$ với mọi dưới gradient, nên H5 đúng với $G=1$.
 
 **Bổ đề BĐ5 (bất đẳng thức Jensen hữu hạn).** Cho $f$ lồi, $K\ge1$, $\lambda_k\ge0$ với $\sum_{k<K}\lambda_k=1$, và $x_0,\dots,x_{K-1}\in\mathbb R^n$. Khi đó $f\bigl(\sum_{k<K}\lambda_kx_k\bigr)\le\sum_{k<K}\lambda_kf(x_k)$.
 
