@@ -160,7 +160,7 @@ Known quirk: `.lec-grid` centres its columns vertically (`align-items: center`),
 
 ## Lecture notes and exercises
 
-- **Viewer contract:** `material-viewer.html?doc=materials/lec-NN/{lecture-note,exercises}.md&deck=lecture-NN-<chu-de>.html`, with both parameters naming the same lecture.
+- **Viewer contract:** `material-viewer.html?doc=materials/lec-NN/{lecture-note,exercises}.md&deck=lecture-NN-<chu-de>.html`, with both parameters naming the same lecture. The one exception is a supplementary lecture that has materials but no deck (currently 05c, listed in `DECKLESS_LECTURES` in `material-viewer.js`): it opens with `doc` alone.
 - **No build step:** no Node.js, no HTML generation. The pipeline is: protect maths → Marked → DOMPurify → restore maths → KaTeX.
 - **Blocks:** `::: example|derivation|proof|exercise|hint|solution`, not nested. `hint` and `solution` are collapsed by default.
 - **Format:** each file starts with one `#` heading. Tables need header rows, figures need alt text.
