@@ -620,10 +620,10 @@ Lấy $\mathbb E[\cdot\mid\mathcal F_k]$. Vectơ $\nabla f(x_k)$ xác định b�
 Gradient nhóm của Bài 05 thỏa H6. Bài 05 đã chứng minh hiệp phương sai của gradient nhóm bằng $\Sigma(x)/b$, với $\Sigma(x)$ là hiệp phương sai gradient một mẫu; vì $\mathbb E\lVert g_k-\nabla f\rVert^2$ là vết của hiệp phương sai, H6b đúng khi $\operatorname{tr}\Sigma(x)\le b\sigma^2$ với mọi $x$.
 
 ::: example Ví dụ A: hai hằng số của gradient ngẫu nhiên
-Gradient một mẫu tại $\theta$ là $\theta-y_I$, có kỳ vọng $\theta-1=J'(\theta)$ và phương sai bằng phương sai của $y_I$, tức $\tfrac83$. Với nhóm $b$ mẫu, phương sai là $\tfrac8{3b}$, nên H6b đúng toàn cục với $\sigma^2=\tfrac8{3b}$. Theo bổ đề tách phương sai, $\mathbb E[g^2\mid\theta]=(\theta-1)^2+\tfrac8{3b}$, không bị chặn trên $\mathbb R$; H6a chỉ đúng trên một đoạn chứa dãy lặp.
+Với $J(\theta)=\tfrac16\sum_i(\theta-y_i)^2$, $y=(-1,1,3)$, gradient một mẫu tại $\theta$ là $\theta-y_I$, có kỳ vọng $\theta-1=J'(\theta)$ và phương sai bằng phương sai của $y_I$, tức $\tfrac83$. Với nhóm $b$ mẫu, phương sai là $\tfrac8{3b}$, nên H6b đúng toàn cục với $\sigma^2=\tfrac8{3b}$. Theo bổ đề tách phương sai, $\mathbb E[g^2\mid\theta]=(\theta-1)^2+\tfrac8{3b}$, không bị chặn trên $\mathbb R$; H6a chỉ đúng trên một đoạn chứa dãy lặp.
 :::
 
-Dưới H3, $\lVert\nabla f\rVert$ không bị chặn trên $\mathbb R^n$ (nhận xét sau BĐ3 cho $\lVert\nabla f(x)\rVert\ge\mu d$), nên H6a chỉ hợp lý trên một vùng chứa dãy lặp. H6b tránh vấn đề này nhưng không phải lúc nào cũng đúng toàn cục: với bình phương tối thiểu tổng quát, mất mát $\tfrac12(u_i^Tx-y_i)^2$ với vectơ đặc trưng $u_i$, phương sai của gradient một mẫu tăng như $\lVert x\rVert^2$ khi các $u_i$ khác nhau. Ví dụ A là trường hợp mọi $u_i=1$.
+Dưới H3, $\lVert\nabla f\rVert$ không bị chặn trên $\mathbb R^n$ ($\lVert\nabla f(x)\rVert\ge\tfrac\mu2 d$ theo BĐ3), mà $\mathbb E[\lVert g_k\rVert^2\mid\mathcal F_k]\ge\lVert\nabla f(x_k)\rVert^2$ theo bổ đề tách phương sai, nên H6a chỉ hợp lý trên một vùng chứa dãy lặp; H6a và H3 không thể cùng đúng trên toàn $\mathbb R^n$. H6b tránh vấn đề này nhưng không phải lúc nào cũng đúng toàn cục: với bình phương tối thiểu tổng quát, mất mát $\tfrac12(u_i^Tx-y_i)^2$ với vectơ đặc trưng $u_i$, phương sai của gradient một mẫu tăng như $\lVert x\rVert^2$ khi các $u_i$ khác nhau. Ví dụ A là trường hợp mọi $u_i=1$. Với mất mát logistic, gradient một mẫu bị chặn bởi chuẩn của vectơ đặc trưng, nên H6b đúng toàn cục.
 
 ### Định lý hội tụ của SGD cho hàm lồi
 

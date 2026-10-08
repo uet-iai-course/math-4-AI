@@ -599,7 +599,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Chứng minh bổ đề: khai triển $\lVert(g_k-\nabla f)+\nabla f\rVert^2$, số hạng chéo có kỳ vọng có điều kiện 0 theo H6.
 - **Kết nối:** Nhận $\mathcal F_k$ của E02; E04 dùng H6a, E06 dùng H6b.
 - **Nguồn:** Bài 05, ước lượng gradient không chệch; SNW ch. 5 §5.5.
-- **Ghi chú soạn:** Ví dụ ngẫu nhiên của VD-B không đặt ở đây (là bài tập E12 câu (3)). Lý do H6a hạn chế: VD-A có $\mathbb E[g^2\mid\theta]=(\theta-1)^2+\frac8{3b}$, không bị chặn trên $\mathbb R$. **Bản sửa 2026-10-08** (R43): điều kiện $\operatorname{tr}\Sigma(x)\le b\sigma^2$; ghi chú bình phương tối thiểu tổng quát.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** ba giả thiết có tên (không chệch; chặn mômen bậc hai; chặn phương sai), mỗi dòng một giả thiết; bổ đề tách phương sai có nhãn, chứng minh vào ghi chú; khối Ví dụ A tự chứa ($J$, $y$, gradient một mẫu, kỳ vọng, phương sai $\frac83$, $\sigma^2=\frac8{3b}$); cảnh báo H6a một dòng; $\operatorname{tr}\Sigma(x)$ chuyển vào ghi chú; ghi chú: bình phương tối thiểu tổng quát không thỏa H6b toàn cục, logistic thỏa, H6a và H3 không cùng đúng toàn cục. Ví dụ ngẫu nhiên của VD-B không đặt ở đây (là bài tập E12 câu (3)). Lý do H6a hạn chế: VD-A có $\mathbb E[g^2\mid\theta]=(\theta-1)^2+\frac8{3b}$, không bị chặn trên $\mathbb R$. **Bản sửa 2026-10-08** (R43): điều kiện $\operatorname{tr}\Sigma(x)\le b\sigma^2$; ghi chú bình phương tối thiểu tổng quát.
 
 #### E04 — Định lý hội tụ của SGD cho hàm lồi
 
