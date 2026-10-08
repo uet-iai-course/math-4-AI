@@ -989,16 +989,18 @@ Phép chứng minh lặp lại T2b, cộng thêm $\tfrac{L\eta^2\sigma^2}2$ ở 
 
 | Định lý | Giả thiết | Đại lượng được chặn | Tốc độ | Bước |
 |---|---|---|---|---|
-| T1, T1' | H1, H2, H4 | $e_k$; $d_k$ không tăng | $O(1/k)$ | $\eta\le1/L$ |
+| T1, T1' | H1, H2, H4 | $e_k$; $d_k$ không tăng | $O(1/k)$ | $\eta\le1/L$ (T1'); $1/L$ (T1) |
 | T2a, T2b | H2, H3, H4 | $d_k^2$; $e_k$ | tuyến tính | $1/L$ |
 | T2' | H2, H3 trên tập mức | $e_k$ | tuyến tính | quay lui |
-| T3 | H1 (dạng dưới gradient), H4, H5 | $\min_ke_k$; $f(\bar x_K)-f^*$ | $O(1/\sqrt K)$ | $D/(G\sqrt K)$ |
-| T4 | H1 (dạng dưới gradient), H4, H6, H6a | $\mathbb Ef(\bar x_K)-f^*$ | $O(1/\sqrt K)$ | $D/(G\sqrt K)$ |
+| T3 | H1 (dạng dưới gradient), H4, H5 | $\min_ke_k$; $f(\bar x_K)-f^*$ | $O(1/\sqrt K)$ | $\eta_k>0$ tùy ý; hằng $D/(G\sqrt K)$ |
+| T4 | H1 (dạng dưới gradient), H4, H6, H6a | $\mathbb Ef(\bar x_K)-f^*$ | $O(1/\sqrt K)$ | $\eta_k>0$ tùy ý; hằng $D/(G\sqrt K)$ |
 | T5, lịch theo pha | H2, H3, H4, H6, H6b | $a_k$ | tuyến tính tới sàn nhiễu; $O(1/k)$ | $\eta\le1/L$; chia đôi theo pha |
 | T6 | H3, H4, H6, H6a trên vùng chứa dãy lặp | $a_k$ | $O(1/k)$ | $\frac1{\mu(k+1)}$ |
 | T7 | H0, H2 | $\min_k\lVert\nabla f(x_k)\rVert^2$ | $O(1/K)$ | $1/L$ |
-| T8 | H0, H2, H6, H6b | trung bình $\mathbb E\lVert\nabla f(x_k)\rVert^2$ | $O(1/\sqrt K)$ | $\min\{1/L,\sqrt{2\Delta_0/(L\sigma^2K)}\}$ |
+| T8 | H0, H2, H6, H6b | trung bình $\mathbb E\lVert\nabla f(x_k)\rVert^2$ | $O(1/\sqrt K)$ | $\eta\le1/L$; hệ quả: $\min\{1/L,\sqrt{2\Delta_0/(L\sigma^2K)}\}$ |
 | T9 | H0, H2, H7, H6, H6b | $\mathbb E\Delta_k$ | tuyến tính tới sàn nhiễu | $\eta\le1/L$ |
+
+Giả thiết tra nhanh: H0 khả vi và bị chặn dưới; H1 lồi; H2 $L$-trơn; H3 $\mu$-lồi mạnh; H4 đạt cực tiểu tại $x^*$; H5 $\lVert g_k\rVert\le G$; H6 $g_k$ không chệch; H6a chặn mômen bậc hai bởi $G^2$; H6b chặn phương sai bởi $\sigma^2$; H7 điều kiện PL.
 
 Trong cột tốc độ, "tuyến tính tới sàn nhiễu" chỉ cận dạng $q^kC+F$: phần $q^kC$ co tuyến tính, phần $F$ không phụ thuộc $k$, bằng $\eta\sigma^2/\mu$ ở T5 và $L\eta\sigma^2/(2\mu)$ ở T9. Khi dùng bảng, kiểm cột giả thiết trước, rồi đọc cột đại lượng được chặn để biết kết luận nói về điểm nào.
 
