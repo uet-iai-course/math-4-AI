@@ -527,24 +527,26 @@ Bước $4{,}5$: sai số tại trung bình là $\tfrac1{12}$, trung bình các 
 
 ### Chọn bước cho phương pháp dưới gradient
 
-Với bước hằng $\eta$ trong $K$ bước, cận của T3 bằng
+Trong cận của T3, phần $\tfrac{D^2}{2\sum\eta_k}$ nhỏ khi tổng bước lớn, còn phần $\tfrac{G^2\sum\eta_k^2}{2\sum\eta_k}$ nhỏ khi bước nhỏ.
+
+**Hệ quả 1 (bước hằng theo $K$).** Với bước hằng $\eta$ trong $K$ bước, cận của T3 bằng
 
 $$
 \frac{D^2+KG^2\eta^2}{2K\eta}=\frac{D^2}{2K\eta}+\frac{G^2\eta}2\ \ge\ 2\sqrt{\frac{D^2}{2K\eta}\cdot\frac{G^2\eta}2}=\frac{DG}{\sqrt K},
 $$
 
-theo bất đẳng thức giữa trung bình cộng và trung bình nhân; dấu bằng xảy ra khi hai số hạng bằng nhau, tức $\eta=D/(G\sqrt K)$. Đảo lại, $K\ge D^2G^2/\varepsilon^2$ bước đủ để cận không vượt $\varepsilon$; với Ví dụ B ($D=G=1$) và $\varepsilon=0{,}01$ là $10^4$ bước. Công thức bước tối ưu dùng cả $D$, $G$ và $K$, nên cần biết chúng trước khi chạy.
+theo bất đẳng thức giữa trung bình cộng và trung bình nhân; dấu bằng xảy ra khi hai số hạng bằng nhau, tức $\eta=D/(G\sqrt K)$; cũng có thể đặt đạo hàm theo $\eta$ của $\tfrac{D^2}{2K\eta}+\tfrac{G^2\eta}2$ bằng $0$. Đảo lại, $K\ge D^2G^2/\varepsilon^2$ bước đủ để cận không vượt $\varepsilon$; với Ví dụ B ($D=G=1$) và $\varepsilon=0{,}01$ là $10^4$ bước. Công thức bước tối ưu dùng cả $D$, $G$ và $K$, nên cần biết chúng trước khi chạy.
 
-Hai số hạng của tử số kéo bước theo hai chiều ngược nhau: $D^2$ giảm tương đối khi tổng bước tăng, còn $G^2\sum\eta_k^2$ lớn khi bước lớn. Với dãy bước thỏa điều kiện Robbins–Monro, $\sum_k\eta_k=\infty$ và $\sum_k\eta_k^2<\infty$ (ví dụ $\eta_k=\tfrac c{k+1}$), tử số bị chặn còn mẫu số tiến ra vô cùng, nên cận tiến về $0$. Riêng cho T3, $\eta_k\to0$ và $\sum\eta_k=\infty$ đã đủ: khi đó $\sum_{k<K}\eta_k^2/\sum_{k<K}\eta_k\to0$. Tên gọi đến từ phương pháp xấp xỉ ngẫu nhiên của Robbins và Monro (1951).
+**Hệ quả 2 (bước giảm dần).** Nếu $\eta_k\to0$ và $\sum_k\eta_k=\infty$ thì cận của T3 tiến về $0$. Với dãy bước thỏa điều kiện Robbins–Monro, $\sum_k\eta_k=\infty$ và $\sum_k\eta_k^2<\infty$ (ví dụ $\eta_k=\tfrac c{k+1}$), tử số bị chặn còn mẫu số tiến ra vô cùng, nên cận tiến về $0$. Riêng cho T3, $\eta_k\to0$ và $\sum\eta_k=\infty$ đã đủ: khi đó $\sum_{k<K}\eta_k^2/\sum_{k<K}\eta_k\to0$ (Stolz–Cesàro: tỉ số các số hạng là $\eta_k^2/\eta_k=\eta_k\to0$, mẫu số tiến ra vô cùng). Tên gọi đến từ phương pháp xấp xỉ ngẫu nhiên của Robbins và Monro (1951).
 
 ::: example Ví dụ B, bước tối ưu
-Với $x_0=0$: $D=1$, $G=1$, $K=4$, bước tối ưu $\eta=\tfrac12$, cận $\tfrac1{2\cdot4\cdot\frac12}+\tfrac14=0{,}5$.
+Với $f(x)=\tfrac13\sum_i\lvert x-y_i\rvert$, $y=(-1,1,3)$, $x_0=0$: $D=1$, $G=1$, $K=4$, bước tối ưu $\eta=\tfrac D{G\sqrt K}=\tfrac12$ cho $x_k=0,\tfrac16,\tfrac13,\tfrac12$, cận $\tfrac1{2\cdot4\cdot\frac12}+\tfrac14=0{,}5$.
 
-| Đầu ra | Điểm | Sai số $e$ |
-|---|---|---:|
-| Cận T3 | | $0{,}5$ |
-| Lặp tốt nhất | $x_3=\tfrac12$ | $\tfrac16$ |
-| Trung bình lặp | $\bar x_4=\tfrac14$ | $\tfrac14$ |
+| Đầu ra | Sai số $e$ |
+|---|---:|
+| lặp tốt nhất $x_3=\tfrac12$ | $\tfrac16$ |
+| trung bình lặp $\bar x_4=\tfrac14$ | $\tfrac14$ |
+| cận T3 | $0{,}5$ |
 :::
 
 Ở lượt bước $4{,}5$, trung bình lặp tốt hơn lặp tốt nhất; ở lượt bước $\tfrac12$ thì ngược lại. Không đầu ra nào luôn tốt hơn; T3 chặn cả hai. Phép cân bằng hai số hạng để chọn bước được dùng lại nguyên dạng cho T4.

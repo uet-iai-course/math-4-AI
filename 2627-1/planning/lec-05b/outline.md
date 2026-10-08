@@ -551,7 +551,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Bất đẳng thức AM–GM hoặc đạo hàm theo $\eta$.
 - **Kết nối:** Nhận T3; E thay dưới gradient đầy đủ bằng ước lượng ngẫu nhiên.
 - **Nguồn:** SNW ch. 4 §4.1.2; tính trực tiếp.
-- **Ghi chú soạn:** Số bước $K\ge D^2G^2/\varepsilon^2$ trong ghi chú. Bước tối ưu cần biết $D$, $G$, $K$ trước. Hội tụ gần như chắc chắn chỉ nêu ở E11. **Bản sửa 2026-10-08** (R25, R40): bảng có hàng "sai số $e$", cột ghi $x_3=\frac12$ và $\bar x_4=\frac14$; ghi chú về Robbins và Monro (1951).
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn nêu hai phần của cận kéo bước theo hai chiều; "Hệ quả 1 (bước hằng theo $K$)" và "Hệ quả 2 (bước giảm dần)" mỗi cái ≤ 2 dòng, Hệ quả 2 phát biểu điều kiện $\eta_k\to0$, $\sum\eta_k=\infty$, Robbins–Monro là đủ; khối Ví dụ B tự chứa, bảng cột lặp tốt nhất, trung bình lặp, cận T3; ghi chú: đạo hàm một biến cho cực tiểu, lý do Hệ quả 2, tên Robbins–Monro. Số bước $K\ge D^2G^2/\varepsilon^2$ trong ghi chú. Bước tối ưu cần biết $D$, $G$, $K$ trước. Hội tụ gần như chắc chắn chỉ nêu ở E11. **Bản sửa 2026-10-08** (R25, R40): bảng có hàng "sai số $e$", cột ghi $x_3=\frac12$ và $\bar x_4=\frac14$; ghi chú về Robbins và Monro (1951).
 
 #### D07 — Phương pháp dưới gradient trên ví dụ trị tuyệt đối
 
