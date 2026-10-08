@@ -540,7 +540,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Ba bước có nhãn, ghi giả thiết.
 - **Kết nối:** So với C04: không có bổ đề giảm, số hạng $\eta_k^2G^2$ không bị triệt tiêu. D06 cân bằng hai số hạng.
 - **Nguồn:** SNW ch. 4 §4.1.2; BĐ4.
-- **Ghi chú soạn:** Jensen hữu hạn chứng minh quy nạp theo $K$ trong ghi chú. Kiểm Jensen trong ghi chú trên VD-B, bước $4{,}5$: sai số tại trung bình $\frac1{12}$, trung bình các sai số $\frac14$. Với bước $\frac12$ của VD-B, Jensen xảy ra dấu bằng ($\frac14=\frac14$) vì $f$ tuyến tính trên $[-1,1]$; nêu trong ghi chú. Dòng chứng minh này được dùng lại ở E05. **Bản sửa 2026-10-08** (R08, R39): "khuôn một bước"; ghi chú bước quy nạp Jensen và câu bản đồ.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dòng Ý tưởng; BĐ5 (Jensen hữu hạn) có nhãn và giả thiết; sáu bước mỗi bước một dòng (BĐ4; hệ quả H1 cần H4 và H5; cộng với $d_K^2\ge0$; lặp tốt nhất; trung bình lặp qua BĐ5; chia cho $2\sum\eta_k$); câu "So với chứng minh T1" thay bằng nội dung (không có bổ đề giảm nên $e_k$ không đơn điệu, $\eta_k^2G^2$ không triệt tiêu, kết luận cho $\min_ke_k$ và $\bar x_K$); ghi chú: hai lần dùng tính lồi, bước quy nạp Jensen, nút trung bình lặp trên sơ đồ, kiểm Jensen trên Ví dụ B (bước $4{,}5$ và $\frac12$). Jensen hữu hạn chứng minh quy nạp theo $K$ trong ghi chú. Kiểm Jensen trong ghi chú trên VD-B, bước $4{,}5$: sai số tại trung bình $\frac1{12}$, trung bình các sai số $\frac14$. Với bước $\frac12$ của VD-B, Jensen xảy ra dấu bằng ($\frac14=\frac14$) vì $f$ tuyến tính trên $[-1,1]$; nêu trong ghi chú. Dòng chứng minh này được dùng lại ở E05. **Bản sửa 2026-10-08** (R08, R39): "khuôn một bước"; ghi chú bước quy nạp Jensen và câu bản đồ.
 
 #### D06 — Chọn bước cho phương pháp dưới gradient
 

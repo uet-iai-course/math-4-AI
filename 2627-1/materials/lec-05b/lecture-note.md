@@ -500,13 +500,13 @@ $$
 :::
 
 ::: proof Chứng minh T3
-Bước 1 (BĐ4, H1 dạng dưới gradient, H5):
+Bước 1 (BĐ4; hệ quả của H1 dạng dưới gradient, cần H4; H5):
 
 $$
 d_{k+1}^2=d_k^2-2\eta_kg_k^T(x_k-x^*)+\eta_k^2\lVert g_k\rVert^2\le d_k^2-2\eta_ke_k+\eta_k^2G^2.
 $$
 
-Bước 2 (tổng lồng có trọng số): cộng với $k=0,\dots,K-1$ và dùng $d_K^2\ge0$, $d_0=D$:
+Bước 2 (tổng lồng có trọng số như mẫu 1, thêm số hạng nhiễu $\eta_k^2G^2$): cộng với $k=0,\dots,K-1$ và dùng $d_K^2\ge0$, $d_0=D$:
 
 $$
 2\sum_{k<K}\eta_ke_k\le D^2+G^2\sum_{k<K}\eta_k^2.
@@ -516,7 +516,7 @@ Bước 3 (lặp tốt nhất): $\sum_{k<K}\eta_ke_k\ge\bigl(\sum_{k<K}\eta_k\bi
 
 Bước 4 (trung bình lặp): BĐ5 với $\lambda_k=\eta_k/\sum_{j<K}\eta_j$ cho $f(\bar x_K)-f^*\le\sum_k\lambda_k\bigl(f(x_k)-f^*\bigr)=\dfrac{\sum_{k<K}\eta_ke_k}{\sum_{k<K}\eta_k}$.
 
-Chia bất đẳng thức ở bước 2 cho $2\sum_k\eta_k$ được cả hai kết luận. So với chứng minh T1: không có bổ đề giảm, nên số hạng $\eta_k^2G^2$ không bị triệt tiêu. Tính lồi được dùng hai lần: ở bước 1 (chặn tích vô hướng) và ở bước 4 (Jensen).
+Chia bất đẳng thức ở bước 2 cho $2\sum_k\eta_k$ được cả hai kết luận. Không có bổ đề giảm nên không bảo đảm $e_k$ đơn điệu, và số hạng $\eta_k^2G^2$ không triệt tiêu; kết luận vì vậy đặt cho $\min_ke_k$ và cho $\bar x_K$, không cho $e_K$. Tính lồi được dùng hai lần: ở bước 1 (chặn tích vô hướng) và ở bước 4 (Jensen).
 :::
 
 Trên bản đồ dạng hội tụ, BĐ5 là mũi tên từ trung bình các sai số sang sai số tại trung bình lặp; ở lượt bước $4{,}5$ của Ví dụ B, hai đầu của mũi tên này là $\tfrac14$ và $\tfrac1{12}$.
