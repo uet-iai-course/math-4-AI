@@ -119,7 +119,7 @@ Mọi trang mang quyết định **thêm** vì đây là bài mới. Cột cuố
 | E10 — Bước giảm dần cho hàm lồi mạnh | Hoàn tất bức tranh bước giảm; T6 cần nêu với điều kiện vùng | E09 → T6 (phát biểu), $\frac8{3k}$ | ĐC | LLO12/CLO2 | Thêm; quyết định người dùng số 3. Giữ. Rà từng trang 2026-10-08: sửa — câu dẫn, mẫu Đầu vào–Bước–Kết luận, Ví dụ A tự chứa với cận, ghi chú gọi tên mục ghi chú bài giảng |
 | E11 — Bảo đảm theo xác suất | Kỳ vọng không phải một lần chạy; Markov cần nơi phát biểu và dùng | T4, T5 → BĐ6, cận xác suất | CC, ĐC | LLO12/CLO2 | Thêm. Sửa: nhận BĐ6 (Markov) từ B06 cũ (SB05). Rà từng trang 2026-10-08: sửa — câu dẫn, Markov có tên và lý do, Ví dụ A tự chứa, khối "Chỉ nêu" |
 | E12 — Hạ gradient ngẫu nhiên trên hai ví dụ | Minh chứng đánh giá cụm E | E01–E11 → bài làm | KH, ĐC | LLO12/CLO2 | Thêm. Giữ; đề ghi rõ giá trị so sánh (kế hoạch [SỬA]). Rà từng trang 2026-10-08: sửa — dòng dữ kiện tự chứa, bốn câu một ý mỗi câu, câu 1 so với cận T5 |
-| F01 — Mục tiêu không lồi | Giới hạn E; điểm dừng không lồi của Bài 05 | VD-D → nhu cầu thước đo chuẩn gradient | GH | LLO12/CLO2, LLO11/CLO1 | Thêm. Sửa: nguồn VD-D là hàm $r$ của Bài 05; thêm LLO11 (SB13, SB15) |
+| F01 — Mục tiêu không lồi | Giới hạn E; điểm dừng không lồi của Bài 05 | VD-D → nhu cầu thước đo chuẩn gradient | GH | LLO12/CLO2, LLO11/CLO1 | Thêm. Sửa: nguồn VD-D là hàm $r$ của Bài 05; thêm LLO11 (SB13, SB15). Rà từng trang 2026-10-08: sửa — câu dẫn, hình mới với tiếp tuyến, bullet ≤ 2 dòng, câu kết đầy đủ |
 | F02 — Hàm thế và điểm dừng | Cần trực quan trước T7 | Bổ đề giảm, VD-D → hàm thế, $\Delta_0$, một bước | CC | LLO12/CLO2 | Thêm. Sửa: đặt $\Delta_0$ tại đây (SB04) |
 | F03 — Hội tụ tới điểm dừng của hạ gradient | Định lý không lồi tất định chưa có | F02 → T7, cận VD-D | KH | LLO6/CLO1, LLO12/CLO2 | Thêm. Giữ |
 | F04 — Định lý SGD cho hàm không lồi | J13: bảo đảm SGD cho mục tiêu học sâu | T7, H6b → T8 và hệ quả chọn bước | KH, ĐC | LLO12/CLO2 | Thêm. Sửa: nhận hệ quả chọn bước (SB11) |
@@ -157,9 +157,10 @@ Mọi hình là SVG tự dựng từ công thức và số liệu của ví dụ
 | `history-tree.svg` | E02 | Cây hai bước của VD-A, ba nhánh mỗi nút, giá trị $\theta_1$, $\theta_2$ ở các nút; khung 720×440, nhãn nội dung cỡ ≥ 25 (R05, N14) | "Cây lịch sử hai bước của hạ gradient ngẫu nhiên: mỗi nút tách ba nhánh theo quan sát được chọn" |
 | `vda-sgd-bound-vs-exact.svg` | E08 | $a_k$ chính xác và cận T5 theo $k$, trục tung tới $1{,}4$ để chứa cận $1{,}267$ tại $k=0$ (R26); hai đường ngang $0{,}140$, $0{,}267$ | "Kỳ vọng bình phương sai lệch chính xác giảm về 0,140 trong khi cận của định lý giảm về 0,267" |
 | `step-halving-schedule.svg` | E09 | Bậc thang $\eta$ (chia đôi theo pha) và cận $a_k$ tương ứng | "Lịch bước chia đôi theo pha và cận sai số giảm theo từng pha" |
-| `quartic-two-wells.svg` | F01, F02 | $F(\theta)=\frac14(\theta^2-1)^2$ trên $[-2,2]$, điểm dừng $0,\pm1$, hai bước đầu từ $\theta_0=2$ | "Hàm bậc bốn hai đáy với hai cực tiểu tại âm một và một, cực đại địa phương tại 0, và hai bước hạ gradient từ 2" |
+| `quartic-nonconvex.svg` | F01 | $F(\theta)=\frac14(\theta^2-1)^2$ trên $[-1{,}6;1{,}6]$, hai cực tiểu, cực đại $0$, tiếp tuyến tại $-0{,}5$ có giá trị $\approx0{,}70$ tại $\theta^*=1$; khung 600×340 (thêm ở rà từng trang 2026-10-08) | "Hàm bậc bốn hai đáy với hai cực tiểu tại −1 và 1, cực đại địa phương tại 0; tiếp tuyến tại θ = −0,5 có giá trị khoảng 0,70 tại θ = 1, nằm trên đồ thị." |
+| `quartic-two-wells.svg` | F02 | $F(\theta)=\frac14(\theta^2-1)^2$ trên $[-2,2]$, điểm dừng $0,\pm1$, hai bước đầu từ $\theta_0=2$ | "Hàm bậc bốn hai đáy với hai cực tiểu tại âm một và một, cực đại địa phương tại 0, và hai bước hạ gradient từ 2" |
 
-Tổng 16 hình (bỏ `vdc-sublinear-bound.svg` khi gộp C05 cũ vào C07; thêm `vdc-measures.svg`, `vda-sgd-path.svg` cho A03 ở rà từng trang 2026-10-08). Phản ví dụ $x^4$ (B06) và các bảng số không cần hình riêng.
+Tổng 17 hình (bỏ `vdc-sublinear-bound.svg` khi gộp C05 cũ vào C07; thêm `vdc-measures.svg`, `vda-sgd-path.svg` cho A03 ở rà từng trang 2026-10-08; thêm `quartic-nonconvex.svg` cho F01). Phản ví dụ $x^4$ (B06) và các bảng số không cần hình riêng.
 
 ## Sai khác có chủ ý so với kế hoạch
 

@@ -236,7 +236,7 @@ Hai trang đối chiếu bắt buộc: C07 (T1, T2a, T2b trên VD-C: để $e_k\
 
 ## Danh sách hình SVG
 
-Danh sách đầy đủ kèm alt dự kiến ở [storyboard.md](storyboard.md), mục "Hình cần vẽ" (16 hình). Mọi hình tự dựng từ công thức và số liệu của ví dụ; không sao chép hình nguồn; không dùng ảnh raster.
+Danh sách đầy đủ kèm alt dự kiến ở [storyboard.md](storyboard.md), mục "Hình cần vẽ" (17 hình). Mọi hình tự dựng từ công thức và số liệu của ví dụ; không sao chép hình nguồn; không dùng ảnh raster.
 
 ## Dàn bài từng trang
 
@@ -713,7 +713,7 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** $F'(\theta)=\theta^3-\theta$; điểm dừng $0,\pm1$.
 - **Kết nối:** Nhận giới hạn E (cần lồi); điểm dừng không lồi của Bài 05.
 - **Nguồn:** Bài 05, mục điểm dừng của hàm không lồi ($r(u)=(u^2-1)^2$); tính trực tiếp.
-- **Ghi chú soạn:** Số kiểm: $F'(-0{,}5)=0{,}375$, $\theta-x^*=-1{,}5$, $F(-0{,}5)=\frac14\cdot0{,}5625$. Với $x^*=-1$ bất đẳng thức đúng tại điểm này ($0{,}1875\ge0{,}1406$); ghi chú nêu hệ quả phụ thuộc cực tiểu được chọn. Bài 06 dùng lại hàm $r$ (liên kết về sau). **Bản sửa 2026-10-08** (R46, R04): dùng $\theta^*=1$; số kiểm vào ghi chú; panel câu đầy đủ; alt bỏ cụm hai bước.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn nêu lý do từ AI và chỗ dùng hệ quả của H1; hình mới `quartic-nonconvex.svg` (hàm hai đáy, tiếp tuyến tại $-0{,}5$ có giá trị $0{,}70$ tại $\theta^*=1$) thay `quartic-two-wells.svg` có hai bước GD (để F02 dùng); Ví dụ D với $F^*=0$; hai bullet ≤ 2 dòng; câu kết "Chuẩn gradient $\lvert F'(\theta_k)\rvert$ vẫn dùng được làm thước đo, vì nó chỉ cần thông tin tại $\theta_k$"; ghi chú: $r(u)$ của Bài 05, $F''(0)=-1$, $F_{\inf}=0$, số kiểm, tiếp tuyến, câu nối sang hàm thế. Số kiểm: $F'(-0{,}5)=0{,}375$, $\theta-x^*=-1{,}5$, $F(-0{,}5)=\frac14\cdot0{,}5625$. Với $x^*=-1$ bất đẳng thức đúng tại điểm này ($0{,}1875\ge0{,}1406$); ghi chú nêu hệ quả phụ thuộc cực tiểu được chọn. Bài 06 dùng lại hàm $r$ (liên kết về sau). **Bản sửa 2026-10-08** (R46, R04): dùng $\theta^*=1$; số kiểm vào ghi chú; panel câu đầy đủ; alt bỏ cụm hai bước.
 
 #### F02 — Hàm thế và điểm dừng
 

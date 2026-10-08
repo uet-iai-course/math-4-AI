@@ -847,11 +847,11 @@ $F(\theta)=\tfrac14(\theta^2-1)^2$, bằng một phần tư hàm $r(u)=(u^2-1)^2
 
 - Khoảng cách $d_k$ không xác định duy nhất: nó đổi khi thay cực tiểu $\theta^*=1$ bằng $\theta^*=-1$.
 - Từ $\theta_0=0$, mọi bước GD giữ $\theta_k=0$ vì $F'(0)=0$; sai số giá trị đứng ở $\tfrac14$.
-- Hệ quả của H1 sai: với $\theta^*=1$, tại $\theta=-0{,}5$, $F'(-0{,}5)=0{,}375$ và $F'(\theta)(\theta-\theta^*)=0{,}375\cdot(-1{,}5)=-0{,}5625<F(-0{,}5)-F^*=0{,}140625$. Với $\theta^*=-1$, bất đẳng thức đúng tại điểm này ($0{,}1875\ge0{,}1406$), nên việc nó sai phụ thuộc cực tiểu được chọn.
+- Hệ quả của H1 sai: với $\theta^*=1$, tại $\theta=-0{,}5$, $F'(-0{,}5)=0{,}375$ và $F'(\theta)(\theta-\theta^*)=0{,}375\cdot(-1{,}5)=-0{,}5625<F(-0{,}5)-F^*=0{,}140625$. Với $\theta^*=-1$, bất đẳng thức đúng tại điểm này ($0{,}1875\ge0{,}1406$), nên việc nó sai phụ thuộc cực tiểu được chọn. Trên hình, tiếp tuyến tại $-0{,}5$ có giá trị khoảng $0{,}70$ tại $\theta^*=1$, trong khi $F(1)=0$: tiếp tuyến nằm trên đồ thị, điều không xảy ra với hàm lồi. Ví dụ D không lồi vì $F''(0)=-1<0$.
 
-![Hàm bậc bốn hai đáy F(θ) = ¼(θ² − 1)² với hai cực tiểu tại −1 và 1, cực đại địa phương tại 0; từ θ0 = 2, bước 1/11 cho θ1 ≈ 1,455 rồi θ2 ≈ 1,307, giá trị F giảm từ 2,25 xuống khoảng 0,311 rồi 0,125.](img/lec-05b/quartic-two-wells.svg)
+![Hàm bậc bốn hai đáy F(θ) = ¼(θ² − 1)² với hai cực tiểu tại −1 và 1, cực đại địa phương tại 0; tiếp tuyến tại θ = −0,5 có giá trị khoảng 0,70 tại θ = 1, nằm trên đồ thị.](img/lec-05b/quartic-nonconvex.svg)
 
-Chuẩn gradient chỉ dùng thông tin tại điểm lặp và không cần $x^*$; nó là tiêu chí dừng ở Bài 04 và là thước đo của phần này.
+Chuẩn gradient $\lvert F'(\theta_k)\rvert$ vẫn dùng được làm thước đo, vì nó chỉ cần thông tin tại $\theta_k$; nó là tiêu chí dừng ở Bài 04 và là thước đo của phần này. Phần này bỏ H1, H3, H4, chỉ giữ H0, H2; bổ đề giảm không cần lồi nên vẫn dùng được. Bài 06 dùng hàm $r=4F$ khi bàn về trung bình Polyak.
 
 ### Hàm thế và định lý điểm dừng
 
