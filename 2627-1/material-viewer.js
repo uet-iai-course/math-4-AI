@@ -3,6 +3,7 @@
 
   const DOCUMENT_PATTERN = /^materials\/lec-(\d{2}[a-z]?)\/(lecture-note|exercises)\.md$/;
   const DECK_PATTERN = /^lecture-(\d{2}[a-z]?)-[a-z0-9-]+\.html$/;
+  const DECKLESS_LECTURES = new Set(["05c"]);
   const DIRECTIVE_PATTERN = /^(example|derivation|proof|exercise|hint|solution)$/;
   const DIRECTIVE_LABELS = {
     example: "Ví dụ",
@@ -46,6 +47,16 @@
     const documentPath = parameters.get("doc") || "";
     const deckPath = parameters.get("deck") || "";
     const documentMatch = DOCUMENT_PATTERN.exec(documentPath);
+
+    if (documentMatch && !deckPath && DECKLESS_LECTURES.has(documentMatch[1])) {
+      return {
+        documentPath,
+        deckPath: null,
+        lecture: documentMatch[1],
+        kind: documentMatch[2]
+      };
+    }
+
     const deckMatch = DECK_PATTERN.exec(deckPath);
 
     if (!documentMatch || !deckMatch) {
@@ -316,7 +327,11 @@
       return;
     }
 
-    deckLink.href = request.deckPath;
+    if (request.deckPath === null) {
+      deckLink.remove();
+    } else {
+      deckLink.href = request.deckPath;
+    }
     sourceLink.href = request.documentPath;
     kindElement.textContent = request.kind === "lecture-note" ? `Ghi chú bài giảng · Bài ${request.lecture}` : `Bài tập · Bài ${request.lecture}`;
 
