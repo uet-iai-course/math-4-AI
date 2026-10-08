@@ -871,26 +871,26 @@ $F(2)=\tfrac94=\Delta_0$ (vì $F_{\inf}=0$), $F'(2)=6$. H2 không đúng trên $
 
 ![Hàm bậc bốn hai đáy F(θ) = ¼(θ² − 1)² trên đoạn từ −2 đến 2, hai cực tiểu tại −1 và 1, cực đại địa phương tại 0; từ θ0 = 2, bước 1/11 cho θ1 ≈ 1,455 rồi θ2 ≈ 1,307, giá trị F giảm từ 2,25 xuống khoảng 0,311 rồi 0,125.](img/lec-05b/quartic-two-wells.svg)
 
-**Định lý (T7).** Đầu vào: $f$ thỏa H0, H2; điểm đầu $x_0$; bước $\tfrac1L$. Kết luận: với mọi $K\ge1$,
+**Định lý (T7).** Đầu vào: $f$ thỏa H0, H2; điểm đầu $x_0\in\mathbb R^n$, $\Delta_0=f(x_0)-f_{\inf}$. Bước: $x_{k+1}=x_k-\tfrac1L\nabla f(x_k)$. Kết luận: với mọi $K\ge1$,
 
 $$
 \min_{k<K}\lVert\nabla f(x_k)\rVert^2\le\frac{2L\Delta_0}K.
 $$
 
 ::: proof Chứng minh T7
-Cộng bổ đề giảm $f(x_{k+1})\le f(x_k)-\tfrac1{2L}\lVert\nabla f(x_k)\rVert^2$ với $k=0,\dots,K-1$ và dùng $f(x_K)\ge f_{\inf}$:
+Bổ đề giảm theo hàm thế cho $\Delta_{k+1}\le\Delta_k-\tfrac1{2L}\lVert\nabla f(x_k)\rVert^2$. Cộng với $k=0,\dots,K-1$; H0 cho $\Delta_K\ge0$, rồi bỏ số hạng $-\Delta_K$:
 
 $$
-\frac K{2L}\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le\frac1{2L}\sum_{k<K}\lVert\nabla f(x_k)\rVert^2\le f(x_0)-f(x_K)\le\Delta_0.
+\frac K{2L}\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le\frac1{2L}\sum_{k<K}\lVert\nabla f(x_k)\rVert^2\le\Delta_0-\Delta_K\le\Delta_0.
 $$
 
-Đây là mẫu 1 với hàm thế $u_k=f(x_k)-f_{\inf}$.
+Đây là mẫu 1 (tổng lồng) với hàm thế $u_k=\Delta_k$.
 :::
 
-Định lý không cần lồi và không cần $x^*$; nó chặn lặp tốt nhất theo chuẩn gradient, không chặn điểm cuối. Tốc độ $O(1/K)$ cho bình phương chuẩn gradient tương ứng $O(1/\sqrt K)$ cho chính chuẩn gradient. Với bước hằng $0<\eta\le1/L$, cùng lập luận cho $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le\tfrac{2\Delta_0}{\eta K}$ (Bài tập 7).
+Định lý không cần lồi và không cần $x^*$; nó chặn lặp tốt nhất theo chuẩn gradient, không chặn điểm cuối. Kết luận chỉ nói có một lặp gần điểm dừng; điểm dừng đó có thể là cực đại địa phương hay điểm yên ngựa, nên định lý không bảo đảm tới gần cực tiểu. Tốc độ $O(1/K)$ cho bình phương chuẩn gradient tương ứng $O(1/\sqrt K)$ cho chính chuẩn gradient. Với bước hằng $0<\eta\le1/L$, cùng lập luận cho $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le\tfrac{2\Delta_0}{\eta K}$ (Bài tập 7).
 
 ::: example Ví dụ D: cận T7 và giá trị thật
-Vì dãy GD ở lại $[-2,2]$, T7 áp dụng với $L=11$, $\Delta_0=\tfrac94$: $\min_{k<K}F'(\theta_k)^2\le\tfrac{2\cdot11\cdot9/4}K=\tfrac{49{,}5}K$. Bước thứ hai cho $\theta_2\approx1{,}307$, $F(\theta_2)\approx0{,}125$. Giá trị thật của $\min_{k<K}F'(\theta_k)^2$ là $36$; $0{,}18$; $0{,}012$ với $K=1,5,10$, so với cận $49{,}5$; $9{,}9$; $4{,}95$.
+Vì dãy GD ở lại $[-2,2]$, T7 áp dụng với $L=11$, $\Delta_0=\tfrac94$: $\min_{k<K}F'(\theta_k)^2\le\tfrac{2\cdot11\cdot9/4}K=\tfrac{49{,}5}K$. Giá trị thật của $\min_{k<K}F'(\theta_k)^2$ là $36$; khoảng $0{,}18$; khoảng $0{,}012$ với $K=1,5,10$, so với cận $49{,}5$; $9{,}9$; $4{,}95$. Cận đúng nhưng lỏng vì dãy tới gần cực tiểu $1$, nơi $F''(1)=2$ nhỏ hơn nhiều so với $L=11$.
 :::
 
 ### Định lý SGD cho hàm không lồi

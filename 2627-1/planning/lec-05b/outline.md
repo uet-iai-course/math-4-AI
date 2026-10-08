@@ -735,7 +735,7 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** Như trên; một trang vì chứng minh ba dòng.
 - **Kết nối:** Nhận F02; F04 thêm nhiễu.
 - **Nguồn:** SNW ch. 4; BV §9.1.2.
-- **Ghi chú soạn:** Kết luận chặn lặp tốt nhất theo chuẩn gradient, không chặn $x_K$. **Bản sửa 2026-10-08** (R14, R09): câu về dãy GD ở lại $[-2,2]$; nguồn suy trực tiếp.
+- **Ghi chú soạn:** Kết luận chặn lặp tốt nhất theo chuẩn gradient, không chặn $x_K$. **Bản sửa 2026-10-08** (R14, R09): câu về dãy GD ở lại $[-2,2]$; nguồn suy trực tiếp. **Rà từng trang 2026-10-08:** định lý theo mẫu Đầu vào ($x_0$, $\Delta_0$) – Bước ($\eta=\frac1L$) – Kết luận; chứng minh ba bước đánh số theo $\Delta_k$ (bổ đề giảm, cộng và bỏ $\Delta_K\ge0$, chặn min); panel Ví dụ D tự chứa ($F$, $\theta_0=2$, $\Delta_0=\frac94$, $L=11$ vì dãy ở lại $[-2,2]$); lớp `dense`. Ghi chú: điểm dừng có thể là cực đại hay điểm yên ngựa; lặp tốt nhất, $O(1/\sqrt K)$ cho chuẩn; so sánh $36$; $0{,}18$; $0{,}012$ với cận $49{,}5$; $9{,}9$; $4{,}95$ và lý do cận lỏng ($F''(1)=2\ll11$).
 
 #### F04 — Định lý SGD cho hàm không lồi
 
