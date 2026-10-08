@@ -610,7 +610,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận T3, H6, H6a; E05 chứng minh. Liên kết về sau: Bài 06 gọi $\bar x_K$ với bước hằng là trung bình Polyak.
 - **Nguồn:** SNW ch. 5 §5.5, Mệnh đề 5.5.
-- **Ghi chú soạn:** Lặp tốt nhất không có trong kết luận vì cần tính $f$ trên toàn tập dữ liệu. **Bản sửa 2026-10-08** (R44): ghi chú "trùng với cận của T3".
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn "Thay dưới gradient xác định bằng ước lượng không chệch, cận của phương pháp dưới gradient giữ nguyên dạng, nhưng theo kỳ vọng"; phát biểu theo mẫu Đầu vào–Bước–Kết luận, nêu $x_0$, $D$, nhắc "$\bar x_K$ là trung bình lặp trọng số theo bước"; hệ quả bước hằng ngoài khung; ghi chú: ý chứng minh (kỳ vọng có điều kiện của bất đẳng thức một bước, tháp), cận trùng T3, lý do không có lặp tốt nhất ($N$ phép tính mỗi lần đánh giá $f$), bước không phụ thuộc mẫu; nguồn SNW §5.5 Mệnh đề 5.5 (5.30). Lặp tốt nhất không có trong kết luận vì cần tính $f$ trên toàn tập dữ liệu. **Bản sửa 2026-10-08** (R44): ghi chú "trùng với cận của T3".
 
 #### E05 — Chứng minh định lý SGD lồi
 

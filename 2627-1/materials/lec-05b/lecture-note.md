@@ -627,7 +627,9 @@ Dưới H3, $\lVert\nabla f\rVert$ không bị chặn trên $\mathbb R^n$ ($\lVe
 
 ### Định lý hội tụ của SGD cho hàm lồi
 
-**Định lý (T4).** Đầu vào: $f$ thỏa H1 (dạng dưới gradient), H4; $g_k$ thỏa H6, H6a; bước $\eta_k>0$ cho trước, không phụ thuộc mẫu; số bước $K\ge1$. Kết luận:
+Khi thay dưới gradient xác định bằng ước lượng không chệch có mômen bậc hai bị chặn (H5 → H6, H6a), cận của T3 giữ nguyên dạng và đúng theo kỳ vọng.
+
+**Định lý (T4).** Đầu vào: $f$ thỏa H1 (dạng dưới gradient), H4; điểm đầu $x_0$, $D=\lVert x_0-x^*\rVert$; $g_k$ thỏa H6, H6a. Bước: $x_{k+1}=x_k-\eta_kg_k$, bước $\eta_k>0$ cho trước, không phụ thuộc mẫu; số bước $K\ge1$. Kết luận, với $\bar x_K$ là trung bình lặp trọng số theo bước:
 
 $$
 \mathbb Ef(\bar x_K)-f^*\le\frac{D^2+G^2\sum_{k<K}\eta_k^2}{2\sum_{k<K}\eta_k}.
