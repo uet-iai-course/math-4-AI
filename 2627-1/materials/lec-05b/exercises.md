@@ -197,24 +197,27 @@ Nếu hệ số âm, phép thay $a_k$ bởi cận trên sẽ đổi chiều bấ
 
 ## Bài 7. Bảo đảm điểm dừng trên ví dụ bậc bốn
 
-Mức độ: tính toán hoặc chứng minh. LLO11, CLO1.
+Mức độ: chứng minh (câu 1), nhận biết và chứng minh (câu 2), vận dụng (câu 3). LLO11, CLO1.
 
 ::: exercise Bài 7
-1. Cho $f$ thỏa H0, H2 và bước hằng $0<\eta\le1/L$. Chứng minh $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le\dfrac{2\Delta_0}{\eta K}$.
-2. Cho Ví dụ D. Chứng minh $\tfrac12F'(\theta)^2=2\theta^2F(\theta)$; suy ra bất đẳng thức PL với $\mu=2c^2$ trên tập $\{\lvert\theta\rvert\ge c\}$, $c>0$, và chứng minh nó không đúng trên toàn $\mathbb R$.
-3. Giả sử $F$ thỏa H2 với $L=11$, $\Delta_0=\tfrac94$, $K=100$, và SGD có $\sigma^2=1$. Tính bước theo hệ quả của T8 và cận tương ứng.
+1. Cho $f$ thỏa H0, H2 và hạ gradient bước hằng $0<\eta\le1/L$. Chứng minh $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le\dfrac{2\Delta_0}{\eta K}$, với $\Delta_0=f(x_0)-f_{\inf}$.
+
+Hai câu sau dùng Ví dụ D: $F(\theta)=\tfrac14(\theta^2-1)^2$, $F_{\inf}=0$ đạt tại $\pm1$.
+
+2. Xác định các điểm dừng của $F$. Chứng minh $\tfrac12F'(\theta)^2=2\theta^2F(\theta)$; suy ra bất đẳng thức PL với $\mu=2c^2$ trên tập $\{\lvert\theta\rvert\ge c\}$, $c>0$, và chứng minh nó không đúng trên $\mathbb R$.
+3. Giả sử $F$ thỏa H2 toàn cục với $L=11$; $\Delta_0=\tfrac94$, $K=100$, SGD có $\sigma^2=1$. Tính bước $\eta=\min\bigl\{\tfrac1L,\sqrt{2\Delta_0/(L\sigma^2K)}\bigr\}$ của hệ quả T8, cận T8 tại bước đó và cận gộp của hệ quả.
 :::
 
 ::: hint Gợi ý Bài 7
-Ở câu 1, cộng bổ đề giảm dạng $f(x_{k+1})\le f(x_k)-\tfrac\eta2\lVert\nabla f(x_k)\rVert^2$ với $k<K$, như chứng minh T7. Ở câu 2, $F'(\theta)=\theta(\theta^2-1)$ và $F(\theta)=\tfrac14(\theta^2-1)^2$.
+Ở câu 1, cộng bất đẳng thức một bước $\Delta_{k+1}\le\Delta_k-\tfrac\eta2\lVert\nabla f(x_k)\rVert^2$ với $k<K$, rồi dùng $\Delta_K\ge0$ và chặn tổng bằng $K$ lần số hạng nhỏ nhất. Ở câu 2, $F'(\theta)=\theta(\theta^2-1)$ và $F(\theta)=\tfrac14(\theta^2-1)^2$.
 :::
 
 ::: solution Lời giải Bài 7
-1. Bổ đề giảm với $\eta\le1/L$ cho $\tfrac\eta2\lVert\nabla f(x_k)\rVert^2\le f(x_k)-f(x_{k+1})$. Cộng với $k<K$ và dùng $f(x_K)\ge f_{\inf}$: $\tfrac\eta2\sum_{k<K}\lVert\nabla f(x_k)\rVert^2\le\Delta_0$. Vế trái không nhỏ hơn $\tfrac{\eta K}2\min_{k<K}\lVert\nabla f(x_k)\rVert^2$.
+1. Bổ đề giảm với $\eta\le1/L$ cho $\Delta_{k+1}\le\Delta_k-\tfrac\eta2\lVert\nabla f(x_k)\rVert^2$. Cộng với $k<K$; H0 cho $\Delta_K\ge0$: $\tfrac\eta2\sum_{k<K}\lVert\nabla f(x_k)\rVert^2\le\Delta_0-\Delta_K\le\Delta_0$. Vế trái không nhỏ hơn $\tfrac{\eta K}2\min_{k<K}\lVert\nabla f(x_k)\rVert^2$.
 
-2. $F'(\theta)^2=\theta^2(\theta^2-1)^2=4\theta^2F(\theta)$, nên $\tfrac12F'(\theta)^2=2\theta^2F(\theta)$. Với $F_{\inf}=0$ và $\lvert\theta\rvert\ge c$: $\tfrac12F'(\theta)^2\ge2c^2\bigl(F(\theta)-F_{\inf}\bigr)$, tức PL với $\mu=2c^2$ trên tập đó. Tại $\theta=0$: $\tfrac12F'(0)^2=0<\mu F(0)=\tfrac\mu4$ với mọi $\mu>0$, nên PL không đúng trên $\mathbb R$. Điểm dừng $\theta=0$ không là cực tiểu, và PL loại trừ đúng loại điểm này.
+2. $F'(\theta)=\theta(\theta^2-1)$ nên điểm dừng là $-1,0,1$; $\pm1$ là cực tiểu, $0$ là cực đại địa phương. $F'(\theta)^2=\theta^2(\theta^2-1)^2=4\theta^2F(\theta)$, nên $\tfrac12F'(\theta)^2=2\theta^2F(\theta)$. Với $F_{\inf}=0$ và $\lvert\theta\rvert\ge c$: $\tfrac12F'(\theta)^2\ge2c^2\bigl(F(\theta)-F_{\inf}\bigr)$, tức PL với $\mu=2c^2$ trên tập đó. Tại $\theta=0$: $\tfrac12F'(0)^2=0<\mu F(0)=\tfrac\mu4$ với mọi $\mu>0$, nên PL không đúng trên $\mathbb R$. Điểm dừng $\theta=0$ không là cực tiểu, và PL loại trừ đúng loại điểm này.
 
-3. $\eta=\min\bigl\{\tfrac1{11},\sqrt{2\cdot\tfrac94/(11\cdot1\cdot100)}\bigr\}=\sqrt{4{,}5/1100}\approx0{,}0640<\tfrac1{11}\approx0{,}0909$. Tại bước này hai số hạng của T8 bằng nhau và cận là $\tfrac{2\Delta_0}{\eta K}+L\eta\sigma^2=2\sqrt{2L\Delta_0\sigma^2/K}=2\sqrt{0{,}495}\approx1{,}41$. Công thức gộp của hệ quả, $\tfrac{2L\Delta_0}K+\tfrac{2\sqrt{2L\Delta_0\sigma^2}}{\sqrt K}=0{,}495+1{,}41\approx1{,}90$, lớn hơn vì nó phủ cả trường hợp $\eta=1/L$. Câu này giả sử H2 toàn cục; với $F$, $L=11$ chỉ đúng trên $[-2,2]$, còn T8 cần H2 trên toàn miền vì dãy SGD có thể rời đoạn này.
+3. $\eta=\min\bigl\{\tfrac1{11},\sqrt{2\cdot\tfrac94/(11\cdot1\cdot100)}\bigr\}=\sqrt{4{,}5/1100}\approx0{,}0640<\tfrac1{11}\approx0{,}0909$, nên nhánh căn được chọn. Cận T8 tại bước này: hai số hạng $\tfrac{2\Delta_0}{\eta K}$ và $L\eta\sigma^2$ cùng bằng $\approx0{,}704$, tổng $2\sqrt{2L\Delta_0\sigma^2/K}=2\sqrt{0{,}495}\approx1{,}41$. Cận gộp của hệ quả, $\tfrac{2L\Delta_0}K+\tfrac{2\sqrt{2L\Delta_0\sigma^2}}{\sqrt K}=0{,}495+1{,}407\approx1{,}90$, lớn hơn vì nó cộng thêm $\tfrac{2L\Delta_0}K$ để bao cả trường hợp bước bị cắt tại $\tfrac1L$. Câu này giả sử H2 toàn cục; với $F$, $L=11$ chỉ đúng trên $[-2,2]$, còn T8 cần H2 trên toàn miền vì dãy SGD có thể rời đoạn này.
 :::
 
 ## Bài 8. Hồi quy logistic có chính quy
