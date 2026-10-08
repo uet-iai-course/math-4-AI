@@ -654,7 +654,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Với Ví dụ A, $e_k=\frac12d_k^2$ nên số hạng bị bỏ bằng $-\eta(1-\eta)d_k^2$; hệ số co thật $(1-\eta)^2=0{,}81$ so với $1-\eta=0{,}9$ của định lý.
 - **Kết nối:** Nhận T5; E09 dùng sàn nhiễu tỉ lệ $\eta$ để thiết kế lịch bước.
 - **Nguồn:** Tính trực tiếp; Bài 05, mục cỡ nhóm, bước học và dao động gần nghiệm.
-- **Ghi chú soạn:** Số kiểm: $0{,}81^{20}\approx0{,}0148$; $a_{20}\approx0{,}0148+0{,}1404\cdot0{,}9852\approx0{,}153$; $0{,}9^{20}\approx0{,}1216$. **Bản sửa 2026-10-08** (R26, R44, R54, R10): câu so sánh giá trị giới hạn và sàn nhiễu; dòng $b=4$ vào ghi chú; hình mở trục tới $1{,}4$; ghi chú nối về A03.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dữ kiện Ví dụ A tự chứa ($J$, $y$, $\theta_0$, $\eta$, $b$, $\mu=L$, $\sigma^2$, $D$); đệ quy và giới hạn trên một dòng hiển thị; câu luận điểm "Cận T5 (đứt) đúng nhưng bi quan khoảng hai lần … nguồn chênh là số hạng $-2\eta(1-\eta L)e_k$ bị bỏ" đặt dưới hình; dòng giá trị giới hạn cho hàm bậc hai một chiều giữ; hình: nhãn $k$ chuyển xuống dưới trục (không chạm nhãn $0{,}140$); ghi chú: đệ quy chính xác với kỳ vọng có điều kiện, xảy ra dấu bằng, các số $0{,}837$, $0{,}153$, $0{,}140$ gọi theo nội dung, $b=4$. Số kiểm: $0{,}81^{20}\approx0{,}0148$; $a_{20}\approx0{,}0148+0{,}1404\cdot0{,}9852\approx0{,}153$; $0{,}9^{20}\approx0{,}1216$. **Bản sửa 2026-10-08** (R26, R44, R54, R10): câu so sánh giá trị giới hạn và sàn nhiễu; dòng $b=4$ vào ghi chú; hình mở trục tới $1{,}4$; ghi chú nối về A03.
 
 #### E09 — Lịch giảm bước theo pha
 

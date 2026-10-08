@@ -698,7 +698,7 @@ Số hạng $-2\eta(1-\eta L)e_k$ bị bỏ ở bước 3 làm sàn nhiễu củ
 Khi đệ quy ở bước 3 xảy ra dấu bằng, nghiệm đúng là $q^k\bigl(a_0-\tfrac{\eta\sigma^2}\mu\bigr)+\tfrac{\eta\sigma^2}\mu$, và cận của T5 lớn hơn nghiệm đúng đúng $q^k\eta\sigma^2/\mu$. Khi $a_0<\eta\sigma^2/\mu$, nghiệm đúng tăng lên giá trị giới hạn $\eta\sigma^2/\mu$ của đệ quy, còn cận của T5 giảm về cùng giá trị đó.
 
 ::: example Ví dụ A: giá trị giới hạn và sàn nhiễu
-$\eta=0{,}1$, $b=1$, $\theta_0=0$, $\mu=L=1$, $\sigma^2=\tfrac83$, $D=1$. Cận T5 là $0{,}9^k+\tfrac{0{,}1\cdot8/3}1=0{,}9^k+0{,}267$. Đẳng thức chính xác ở phần A là $a_{k+1}=0{,}81a_k+\tfrac8{300}$, với nghiệm
+$J(\theta)=\tfrac16\sum_i(\theta-y_i)^2$ với $y=(-1,1,3)$; $\eta=0{,}1$, $b=1$, $\theta_0=0$, $\mu=L=1$, $\sigma^2=\tfrac83$, $D=1$. Cận T5 là $0{,}9^k+\tfrac{0{,}1\cdot8/3}1=0{,}9^k+0{,}267$. Đệ quy chính xác $a_{k+1}=0{,}81a_k+\tfrac8{300}$ (suy từ $\mathbb E[(\theta_{k+1}-1)^2\mid\mathcal F_k]=(1-\eta)^2(\theta_k-1)^2+\eta^2\sigma^2$, xảy ra dấu bằng) có nghiệm
 
 $$
 a_k=0{,}81^k+\frac8{57}\bigl(1-0{,}81^k\bigr)\to\frac8{57}\approx0{,}140.
@@ -706,12 +706,12 @@ $$
 
 Tại $k=20$: $0{,}81^{20}\approx0{,}0148$ nên $a_{20}\approx0{,}153$, còn cận là $0{,}9^{20}+0{,}267\approx0{,}1216+0{,}267\approx0{,}388$.
 
-Ở Ví dụ A, $e_k=\tfrac12d_k^2$ và $L=\mu=1$, nên số hạng $-2\eta(1-\eta L)e_k$ bị bỏ ở bước 3 bằng $-\eta(1-\eta)d_k^2$. Giữ nó lại, hệ số trước $d_k^2$ là $(1-\eta)-\eta(1-\eta)=(1-\eta)^2=0{,}81$, đúng hệ số của đẳng thức chính xác; T5 dùng $1-\eta=0{,}9$.
+Ở Ví dụ A, $e_k=\tfrac12d_k^2$ và $L=\mu=1$, nên số hạng $-2\eta(1-\eta L)e_k$ bị bỏ ở bước 3 bằng $-\eta(1-\eta)d_k^2$. Giữ nó lại, hệ số trước $d_k^2$ là $(1-\eta)-\eta(1-\eta)=(1-\eta)^2=0{,}81$, đúng hệ số của đệ quy chính xác; T5 dùng $1-\eta=0{,}9$. Cận đúng nhưng sàn nhiễu $0{,}267$ gấp khoảng hai lần giá trị giới hạn $0{,}140$; nguồn chênh là số hạng bị bỏ này.
 :::
 
 ![Kỳ vọng bình phương sai lệch chính xác giảm về giá trị giới hạn 0,140, cận của định lý giảm về sàn nhiễu 0,267; tại k = 20 lần lượt là 0,153 và 0,388.](img/lec-05b/vda-sgd-bound-vs-exact.svg)
 
-Tổng quát, với hàm bậc hai một chiều độ cong $\mu$ và nhiễu cộng phương sai $\sigma^2$, $\theta_{k+1}-\theta^*=(1-\eta\mu)(\theta_k-\theta^*)+\eta\xi_k$ cho $a_{k+1}=(1-\eta\mu)^2a_k+\eta^2\sigma^2$, với giá trị giới hạn
+Tổng quát, với hàm bậc hai một chiều độ cong $\mu$ và phương sai nhiễu không đổi $\sigma^2$, $\theta_{k+1}-\theta^*=(1-\eta\mu)(\theta_k-\theta^*)+\eta\xi_k$ cho $a_{k+1}=(1-\eta\mu)^2a_k+\eta^2\sigma^2$, với giá trị giới hạn
 
 $$
 \frac{\eta^2\sigma^2}{1-(1-\eta\mu)^2}=\frac{\eta\sigma^2}{\mu(2-\eta\mu)}\approx\frac{\eta\sigma^2}{2\mu}.
