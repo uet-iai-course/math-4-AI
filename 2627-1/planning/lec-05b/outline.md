@@ -518,7 +518,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Bước hằng cho trung bình đều.
 - **Kết nối:** Nhận định nghĩa D02; D04 phát biểu bảo đảm cho hai đầu ra; D05 dùng Jensen để giải thích trung bình lặp.
 - **Nguồn:** SNW ch. 4 §4.1.2; tính trực tiếp (lượt bước $4{,}5$ do điều phối viên kiểm).
-- **Ghi chú soạn:** $-g$ với $g\in\partial f(x)$ không nhất thiết là hướng giảm; điều được bảo đảm là $d_k$ giảm khi bước đủ nhỏ (D05). Lượt bước $\frac12$ đặt ở D06 để kiểm cận.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** hộp thuật toán ba dòng (Đầu vào; Bước; Đầu ra: lặp tốt nhất (best iterate) $\arg\min_{k<K}f(x_k)$ hoặc trung bình lặp (iterate averaging) $\bar x_K$); công thức $\bar x_K=\sum\eta_kx_k/\sum\eta_k$ đặt ở cột ví dụ; Ví dụ B tự chứa ($f$, $y$); câu "$-g_k$ không nhất thiết là hướng giảm"; ghi chú: điểm lặp không phải điểm gãy nên $g_k=\pm\frac13$, lý do chọn bước $4{,}5$, "như bước 1 trong chứng minh định lý T3" thay "hai trang sau". $-g$ với $g\in\partial f(x)$ không nhất thiết là hướng giảm; điều được bảo đảm là $d_k$ giảm khi bước đủ nhỏ (D05). Lượt bước $\frac12$ đặt ở D06 để kiểm cận.
 
 #### D04 — Định lý hội tụ của phương pháp dưới gradient
 

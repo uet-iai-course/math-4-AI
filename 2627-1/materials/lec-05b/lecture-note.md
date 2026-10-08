@@ -454,7 +454,7 @@ Ba số hạng $\lvert x+1\rvert$, $\lvert x-1\rvert$, $\lvert x-3\rvert$ có d�
 
 ### Phương pháp dưới gradient
 
-**Thuật toán.** Đầu vào: $x_0$, bước $\eta_k>0$, số bước $K\ge1$. Với $k=0,\dots,K-1$: chọn $g_k\in\partial f(x_k)$, đặt $x_{k+1}=x_k-\eta_kg_k$. Đầu ra: lặp tốt nhất $x_{k^\star}$ với $k^\star\in\arg\min_{k<K}f(x_k)$, hoặc trung bình lặp
+**Thuật toán.** Đầu vào: $x_0$, bước $\eta_k>0$, số bước $K\ge1$. Với $k=0,\dots,K-1$: chọn $g_k\in\partial f(x_k)$, đặt $x_{k+1}=x_k-\eta_kg_k$. Đầu ra: lặp tốt nhất (best iterate) $x_{k^\star}$ với $k^\star\in\arg\min_{k<K}f(x_k)$, hoặc trung bình lặp (iterate averaging)
 
 $$
 \bar x_K=\frac{\sum_{k<K}\eta_kx_k}{\sum_{k<K}\eta_k}.
@@ -463,7 +463,7 @@ $$
 Với bước hằng, $\bar x_K$ là trung bình đều của $x_0,\dots,x_{K-1}$.
 
 ::: example Ví dụ B, bước 4,5
-Từ $x_0=0$: tại $0$, $g=\tfrac13(1-1-1)=-\tfrac13$, nên $x_1=0+\tfrac{4{,}5}3=1{,}5$; tại $1{,}5$, $g=\tfrac13(1+1-1)=\tfrac13$, nên $x_2=0$; tiếp tục $x_3=1{,}5$. Sai số $e_k=\tfrac13,\tfrac16,\tfrac13,\tfrac16$: ở bước thứ hai $f$ tăng từ $1{,}5$ lên $\tfrac53$. Trung bình $\bar x_4=0{,}75$ có $f(0{,}75)=\tfrac13(1{,}75+0{,}25+2{,}25)=\tfrac{17}{12}$, sai số $\tfrac1{12}$, nhỏ hơn sai số của mọi điểm lặp.
+Với $f(x)=\tfrac13\sum_i\lvert x-y_i\rvert$, $y=(-1,1,3)$, chạy phương pháp dưới gradient từ $x_0=0$ với bước $4{,}5$; bước lớn này cho thấy dãy dao động qua điểm gãy $x=1$. Các điểm lặp $0$ và $1{,}5$ không phải điểm gãy, nên $\partial f$ tại đó chỉ có một phần tử: tại $0$, $g=\tfrac13(1-1-1)=-\tfrac13$, nên $x_1=0+\tfrac{4{,}5}3=1{,}5$; tại $1{,}5$, $g=\tfrac13(1+1-1)=\tfrac13$, nên $x_2=0$; tiếp tục $x_3=1{,}5$. Sai số $e_k=\tfrac13,\tfrac16,\tfrac13,\tfrac16$: ở bước thứ hai $f$ tăng từ $1{,}5$ lên $\tfrac53$. Trung bình đều $\bar x_4=\tfrac14(0+1{,}5+0+1{,}5)=0{,}75$ có $f(0{,}75)=\tfrac13(1{,}75+0{,}25+2{,}25)=\tfrac{17}{12}$, sai số $\tfrac1{12}$, nhỏ hơn sai số của mọi điểm lặp.
 :::
 
 ![Với bước 4,5, dãy dưới gradient của Ví dụ B dao động giữa 0 và 1,5 qua điểm gãy; trung bình lặp 0,75 nằm gần nghiệm 1 hơn mọi điểm lặp.](img/lec-05b/vdb-subgradient-iterates.svg)
