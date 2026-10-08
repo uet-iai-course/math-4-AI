@@ -632,7 +632,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận giới hạn E05; khi $\sigma=0$, $\eta=1/L$ lấy lại T2a. E07 chứng minh.
 - **Nguồn:** Suy trực tiếp từ phép co của hạ gradient và bổ đề tách phương sai; bối cảnh SNW ch. 5 §5.4.
-- **Ghi chú soạn:** Không cần H6a, nên không vướng mâu thuẫn với H3. Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R10, R09): "sàn nhiễu (noise floor)"; nguồn suy trực tiếp.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn (thêm H2, H3, H6a → H6b để chặn điểm cuối và giải thích mức dừng dương); phát biểu theo mẫu Đầu vào–Bước–Kết luận; dòng định nghĩa "Sàn nhiễu (noise floor) là số hạng $\frac{\eta\sigma^2}\mu$: tỉ lệ với bước và phương sai, nghịch với $\mu$" kèm số Ví dụ A $0{,}267$; ghi chú: ý chứng minh một câu, so với T4, cho lại T2a, quan sát Bài 05 (lịch $0{,}1\to0{,}05$), nguồn suy trực tiếp với bối cảnh SNW §5.4. Không cần H6a, nên không vướng mâu thuẫn với H3. Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R10, R09): "sàn nhiễu (noise floor)"; nguồn suy trực tiếp.
 
 #### E07 — Chứng minh định lý SGD lồi mạnh
 

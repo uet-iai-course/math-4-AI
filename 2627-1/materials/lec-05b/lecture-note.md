@@ -659,13 +659,15 @@ Giới hạn của T4: chỉ chặn trung bình lặp; tốc độ $1/\sqrt K$; 
 
 ### Định lý hội tụ của SGD cho hàm lồi mạnh
 
-**Định lý (T5).** Đầu vào: $f$ thỏa H2, H3, H4; $g_k$ thỏa H6, H6b; bước hằng $0<\eta\le1/L$. Kết luận: với mọi $k\ge0$,
+Thêm H2, H3, thay H6a bằng H6b và dùng bước hằng $\eta\le1/L$ thì chặn được điểm cuối và chặn giá trị giới hạn dương của $\mathbb Ed_k^2$.
+
+**Định lý (T5).** Đầu vào: $f$ thỏa H2, H3, H4; điểm đầu $x_0$, $D=\lVert x_0-x^*\rVert$; $g_k$ thỏa H6, H6b. Bước: $x_{k+1}=x_k-\eta g_k$, bước hằng $0<\eta\le1/L$. Kết luận: với mọi $k\ge0$,
 
 $$
 a_k=\mathbb E\lVert x_k-x^*\rVert^2\le(1-\eta\mu)^kD^2+\frac{\eta\sigma^2}\mu.
 $$
 
-Số hạng thứ nhất co tuyến tính; số hạng thứ hai là sàn nhiễu (noise floor), tỉ lệ với $\eta$. Khi $\sigma=0$ và $\eta=1/L$, định lý cho lại T2a. Định lý chặn điểm cuối $x_k$ và dùng H6b, nên không vướng việc $\nabla f$ không bị chặn dưới H3.
+Số hạng thứ nhất co tuyến tính; số hạng thứ hai, $\eta\sigma^2/\mu$, là sàn nhiễu (noise floor): tỉ lệ với bước và phương sai, nghịch với $\mu$. Ở Ví dụ A với $\eta=0{,}1$, $\sigma^2=\tfrac83$, $\mu=1$, sàn nhiễu là $\approx0{,}267$, là cận trên của giá trị giới hạn (giá trị thật $0{,}140$). Khi $\sigma=0$ và $\eta=1/L$, định lý cho lại T2a. Định lý chặn điểm cuối $x_k$ và dùng H6b, nên không vướng việc $\nabla f$ không bị chặn dưới H3.
 
 ::: proof Chứng minh T5
 *Ý tưởng.* Trong khuôn của T4, thay H6a bằng bổ đề tách phương sai và thay H1 bằng cận bậc hai của H3; được một đệ quy co có số hạng cộng.
