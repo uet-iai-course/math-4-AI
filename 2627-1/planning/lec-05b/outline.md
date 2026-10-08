@@ -621,7 +621,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Ba dòng có nhãn; đánh dấu chỗ dùng độc lập của $I_k$ với $\mathcal F_k$.
 - **Kết nối:** So sánh từng dòng với D05. Câu nối sang E06 nêu giới hạn của T4: chỉ chặn trung bình lặp; tốc độ $1/\sqrt K$; không giải thích vì sao điểm cuối của SGD bước hằng dừng ở một mức dương như Bài 05 quan sát. E06 thêm H2, H3 để trả lời.
 - **Nguồn:** SNW ch. 5 §5.5.
-- **Ghi chú soạn:** Bước cho trước (không phụ thuộc mẫu) cần để $\eta_k$ ra ngoài kỳ vọng. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng".
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dòng Ý tưởng bằng nội dung ("các bước cộng và Jensen giống chứng minh của phương pháp dưới gradient"); sáu bước mỗi bước một dòng ($a_k=\mathbb Ed_k^2$ đặt ở bước 3); khung "Giới hạn của T4" hai dòng, đầu ra cho E06; ghi chú: rút đại lượng đã biết, H6 dạng dưới gradient cho vectơ kỳ vọng, vì sao $\eta_k$ không phụ thuộc mẫu, số $0{,}140$ của Ví dụ A. Bước cho trước (không phụ thuộc mẫu) cần để $\eta_k$ ra ngoài kỳ vọng. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng".
 
 #### E06 — Định lý hội tụ của SGD cho hàm lồi mạnh
 

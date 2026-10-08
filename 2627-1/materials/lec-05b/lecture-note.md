@@ -638,9 +638,9 @@ $$
 Bước hằng $\eta=D/(G\sqrt K)$ cho $\mathbb Ef(\bar x_K)-f^*\le DG/\sqrt K$.
 
 ::: proof Chứng minh T4
-*Ý tưởng.* Lấy kỳ vọng có điều kiện từng dòng của chứng minh T3; khi biết $\mathcal F_k$, $x_k$ là hằng số.
+*Ý tưởng.* Lấy kỳ vọng có điều kiện của đẳng thức BĐ4, rồi dùng tính chất tháp; các bước cộng và Jensen giống chứng minh của phương pháp dưới gradient. Khi biết $\mathcal F_k$, $x_k$ là hằng số.
 
-Bước 1: BĐ4 với $g=g_k$, $\eta=\eta_k$ đúng cho từng hiện thực của nhóm $I_k$; ba số hạng của vế phải giống chứng minh T3, chỉ khác ở chỗ $g_k$ là ngẫu nhiên.
+Bước 1: BĐ4 với $g=g_k$, $\eta=\eta_k$ đúng cho từng hiện thực của nhóm $I_k$; chỉ khác chứng minh T3 ở chỗ $g_k$ là ngẫu nhiên.
 
 Bước 2: lấy $\mathbb E[\cdot\mid\mathcal F_k]$. Vì $x_k$ và $\eta_k$ xác định bởi $\mathcal F_k$, tính chất rút đại lượng đã biết ra ngoài cho $\mathbb E[g_k^T(x_k-x^*)\mid\mathcal F_k]=\mathbb E[g_k\mid\mathcal F_k]^T(x_k-x^*)$. Theo H6, $\mathbb E[g_k\mid\mathcal F_k]\in\partial f(x_k)$, nên H1 dạng dưới gradient chặn tích này từ dưới bởi $e_k$. H6a chặn số hạng cuối:
 
@@ -650,12 +650,12 @@ $$
 
 Bước 3: lấy kỳ vọng toàn phần và đặt $a_k=\mathbb Ed_k^2$; tính chất tháp cho $a_{k+1}\le a_k-2\eta_k\,\mathbb Ee_k+\eta_k^2G^2$.
 
-Bước 4: cộng với $k<K$ như bước 2 của T3: $2\sum_{k<K}\eta_k\mathbb Ee_k\le D^2+G^2\sum_{k<K}\eta_k^2$. Với mỗi hiện thực của dãy, BĐ5 cho $f(\bar x_K)-f^*\le\sum_k\lambda_ke_k$ với $\lambda_k=\eta_k/\sum_j\eta_j$; lấy kỳ vọng hai vế, vì $\lambda_k$ không ngẫu nhiên, được kết luận.
+Bước 4: cộng với $k<K$, dùng $a_0=D^2$ ($x_0$ tất định) và $a_K\ge0$: $2\sum_{k<K}\eta_k\mathbb Ee_k\le D^2+G^2\sum_{k<K}\eta_k^2$. Với mỗi hiện thực của dãy, BĐ5 cho $f(\bar x_K)-f^*\le\sum_k\lambda_ke_k$ với $\lambda_k=\eta_k/\sum_j\eta_j$; lấy kỳ vọng hai vế, vì $\lambda_k$ không ngẫu nhiên (bước cho trước, không phụ thuộc mẫu), rồi chia bước 4 cho $2\sum_{k<K}\eta_k$ được kết luận.
 :::
 
 So với T3, giả thiết H5 (chặn tất định $\lVert g_k\rVert\le G$) được nới thành H6a (chặn mômen bậc hai theo kỳ vọng), và cùng một vế phải giờ chặn $\mathbb Ef(\bar x_K)-f^*$. Ở Ví dụ B với gradient mẫu $\operatorname{sign}(x-y_I)$ (Bài tập 5), $K=100$ và bước $0{,}1$ cho cận $0{,}1$. Đầu ra lặp tốt nhất bị bỏ: tìm $\arg\min_kf(x_k)$ cần tính $f$ trên toàn tập dữ liệu ở mỗi bước, đúng chi phí mà SGD tránh.
 
-Giới hạn của T4: chỉ chặn trung bình lặp; tốc độ $1/\sqrt K$; không giải thích vì sao $\mathbb Ed_k^2$ của SGD bước hằng giảm về một giá trị giới hạn dương như ở Ví dụ A. Định lý tiếp theo thêm H2, H3 để chặn điểm cuối.
+Giới hạn của T4: chỉ chặn trung bình lặp; tốc độ $1/\sqrt K$; không giải thích vì sao $\mathbb Ed_k^2$ của SGD bước hằng dừng ở một giá trị giới hạn dương, chẳng hạn $0{,}140$ ở Ví dụ A với bước $0{,}1$. Định lý tiếp theo thêm H2, H3 để chặn điểm cuối.
 
 ### Định lý hội tụ của SGD cho hàm lồi mạnh
 
