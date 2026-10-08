@@ -904,27 +904,31 @@ $$
 $$
 
 ::: proof Chứng minh T8
-*Ý tưởng.* Lấy kỳ vọng có điều kiện của bổ đề giảm rồi cộng như chứng minh T7.
+*Ý tưởng.* Lấy kỳ vọng có điều kiện của BĐ1 tại $y=x_k-\eta g_k$, rồi cộng các mức hạ như ở định lý tất định.
 
-Bước 1: BĐ1 với $x=x_k$, $y=x_k-\eta g_k$: $f(x_{k+1})\le f(x_k)-\eta\nabla f(x_k)^Tg_k+\tfrac{L\eta^2}2\lVert g_k\rVert^2$. Lấy $\mathbb E[\cdot\mid\mathcal F_k]$, dùng H6 và bổ đề tách phương sai với H6b:
+Bước 1 (H2): BĐ1 với $x=x_k$, $y=x_{k+1}$ cho $f(x_{k+1})\le f(x_k)-\eta\nabla f(x_k)^Tg_k+\tfrac{L\eta^2}2\lVert g_k\rVert^2$.
 
-$$
-\mathbb E[f(x_{k+1})\mid\mathcal F_k]\le f(x_k)-\eta\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2}2\bigl(\lVert\nabla f(x_k)\rVert^2+\sigma^2\bigr).
-$$
+Bước 2 (H6, H6b): lấy $\mathbb E[\cdot\mid\mathcal F_k]$. Vì $x_k$ xác định bởi $\mathcal F_k$, $\nabla f(x_k)$ ra khỏi kỳ vọng có điều kiện và H6 cho $\nabla f(x_k)^T\mathbb E[g_k\mid\mathcal F_k]=\lVert\nabla f(x_k)\rVert^2$; bổ đề tách phương sai và H6b cho $\mathbb E[\lVert g_k\rVert^2\mid\mathcal F_k]\le\lVert\nabla f(x_k)\rVert^2+\sigma^2$.
 
-Bước 2: hệ số của $\lVert\nabla f(x_k)\rVert^2$ là $-\eta+\tfrac{L\eta^2}2=-\eta\bigl(1-\tfrac{L\eta}2\bigr)$, không vượt $-\tfrac\eta2$ khi $\eta\le1/L$, cùng phép tính như bổ đề giảm. Do đó
+Bước 3: ghép hai kết quả và trừ $f_{\inf}$ hai vế:
 
 $$
-\mathbb E[f(x_{k+1})\mid\mathcal F_k]\le f(x_k)-\frac\eta2\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2.
+\mathbb E[\Delta_{k+1}\mid\mathcal F_k]\le\Delta_k-\eta\Bigl(1-\frac{L\eta}2\Bigr)\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2.
 $$
 
-Bước 3: lấy kỳ vọng toàn phần (tính chất tháp), cộng với $k<K$, dùng $\mathbb Ef(x_K)\ge f_{\inf}$:
+Bước 4: khi $\eta\le1/L$ có $\eta\bigl(1-\tfrac{L\eta}2\bigr)\ge\tfrac\eta2$, cùng phép tính như bổ đề giảm. Lấy kỳ vọng toàn phần (tính chất tháp):
+
+$$
+\mathbb E\Delta_{k+1}\le\mathbb E\Delta_k-\frac\eta2\mathbb E\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2.
+$$
+
+Bước 5 (H0): cộng với $k<K$; $\Delta_0$ không ngẫu nhiên vì $x_0$ cố định, và $\mathbb E\Delta_K\ge0$:
 
 $$
 \frac\eta2\sum_{k<K}\mathbb E\lVert\nabla f(x_k)\rVert^2\le\Delta_0+\frac{KL\eta^2\sigma^2}2.
 $$
 
-Chia hai vế cho $\tfrac{\eta K}2$.
+Bước 6: chia hai vế cho $\tfrac{\eta K}2$ được kết luận của T8.
 :::
 
 Mỗi bước thêm một số hạng nhiễu $\tfrac{L\eta^2\sigma^2}2$; sau khi chia cho $\tfrac{\eta K}2$ còn $L\eta\sigma^2$, không giảm theo $K$. Hàm thế là $\Delta_k=f(x_k)-f_{\inf}$, không cần $x^*$. So với T7, kết luận dùng trung bình thay cho $\min$ và có kỳ vọng vì $x_k$ ngẫu nhiên; khi $\sigma=0$ và $\eta=1/L$, định lý cho lại T7 dưới dạng trung bình. Với bước hằng, vế phải không về $0$ khi $K\to\infty$; muốn cận về $0$ phải chọn bước theo $K$. Nếu chọn chỉ số $\tau$ đều trong $\{0,\dots,K-1\}$, độc lập với dãy, thì $\mathbb E\lVert\nabla f(x_\tau)\rVert^2$ có cùng cận.

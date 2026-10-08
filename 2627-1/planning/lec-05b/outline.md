@@ -757,7 +757,7 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** Ba dòng có nhãn.
 - **Kết nối:** Nhận T8; F06 hỏi khi nào khôi phục được tốc độ tuyến tính.
 - **Nguồn:** Suy trực tiếp từ bổ đề giảm và bổ đề tách phương sai.
-- **Ghi chú soạn:** So với F03: thêm một số hạng nhiễu $\frac{L\eta^2\sigma^2}2$ mỗi bước, cộng lại thành $\frac{KL\eta^2\sigma^2}2$. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng".
+- **Ghi chú soạn:** So với F03: thêm một số hạng nhiễu $\frac{L\eta^2\sigma^2}2$ mỗi bước, cộng lại thành $\frac{KL\eta^2\sigma^2}2$. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng". **Rà từng trang 2026-10-08:** dòng Ý tưởng nêu nội dung (kỳ vọng có điều kiện của BĐ1 tại $y=x_k-\eta g_k$, cộng các mức hạ như ở định lý tất định); sáu bước, mỗi bước một ý: BĐ1; kỳ vọng có điều kiện với H6 và bổ đề tách phương sai, H6b; ghép theo $\Delta_k$; $\eta\le1/L$ và tính chất tháp; cộng với $\mathbb E\Delta_K\ge0$; chia cho $\frac{\eta K}2$. Ghi chú: chỗ dùng H0, H2, H6, H6b; $\Delta_0$ không ngẫu nhiên; số hạng nhiễu cộng dồn; $\sigma=0$ trùng chứng minh T7; không lặp hệ quả chọn bước.
 
 #### F06 — Điều kiện Polyak–Łojasiewicz
 
