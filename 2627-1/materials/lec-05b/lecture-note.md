@@ -398,12 +398,19 @@ Với $L=7$, $\mu=3$, $D^2=20$, $e_0=62$: cận T1 là $70/k$, cận T2b là $62
 | 5 | 14 | 3,78 | 0,0223 | 1,22 | 0,0149 |
 | 10 | 7 | 0,230 | $8{,}3\cdot10^{-5}$ | 0,0742 | $5{,}5\cdot10^{-5}$ |
 
-Số bước để $e_k\le0{,}01$: theo T1, $70/k\le0{,}01$ khi $k\ge7000$; theo T2b, $62(\tfrac47)^k\le0{,}01$ khi $k\ge\ln6200/\ln\tfrac74\approx15{,}6$, tức $16$ bước; thực tế $6(\tfrac{16}{49})^k\le0{,}01$ khi $k\ge\ln600/\ln\tfrac{49}{16}\approx5{,}7$, tức $6$ bước ($e_5\approx0{,}0223$, $e_6\approx0{,}0073$).
+Số bước để $e_k\le0{,}01$: theo T1, $70/k\le0{,}01$ khi $k\ge7000$; theo T2b, $62(\tfrac47)^k\le0{,}01$ khi $k\ge\ln6200/\ln\tfrac74\approx15{,}6$, tức $16$ bước; thực tế $6(\tfrac{16}{49})^k\le0{,}01$ khi $k\ge\ln600/\ln\tfrac{49}{16}\approx5{,}7$, tức $6$ bước ($e_5\approx0{,}0223$, $e_6\approx0{,}0073$). Theo T2a, $20(\tfrac47)^k\le0{,}01$ khi $k\ge\ln2000/\ln\tfrac74\approx13{,}6$, tức $14$ bước, trong khi $d_k^2=4(\tfrac{16}{49})^k$ xuống dưới $0{,}01$ từ $k=6$.
+
+| Đại lượng | Số bước để $\le0{,}01$ |
+|---|---:|
+| T1: $e_k\le70/k$ | 7000 |
+| T2b: $e_k\le62(\tfrac47)^k$ | 16 |
+| T2a: $d_k^2\le20(\tfrac47)^k$ | 14 |
+| Thật: $e_k$, $d_k^2$ (cùng tỉ số $\tfrac{16}{49}$) | 6 |
 :::
 
 ![Trên thang logarit, cận 70/k giảm chậm, hai cận tuyến tính là đường thẳng, còn sai số giá trị và bình phương khoảng cách thật của Ví dụ C giảm nhanh hơn nhiều.](img/lec-05b/vdc-three-bounds.svg)
 
-Cận $O(1/k)$ bỏ qua $\mu=3$. Cận tuyến tính đúng dạng nhưng hệ số co $\tfrac47$ chậm hơn hệ số thật $\tfrac{16}{49}=(\tfrac47)^2$. Sau bước đầu, Ví dụ C chỉ còn hướng có độ cong $3$; theo hướng này $e=\tfrac\mu2d^2$, $\nabla f(x)^T(x-x^*)=\mu d^2$ và $\lVert\nabla f\rVert^2=\mu^2d^2=2\mu e$, không bằng $2Le$. Giữ các đẳng thức này trong bước 4 của T2a cho $d_{k+1}^2=\bigl(1-\tfrac{2\mu}L+\tfrac{\mu^2}{L^2}\bigr)d_k^2=(1-\mu/L)^2d_k^2$, tức hệ số $\tfrac{16}{49}$. Với bước $2/(L+\mu)$, khoảng cách co theo hệ số $(L-\mu)/(L+\mu)$ (Bài tập 10).
+Một cận bảo đảm cho cả lớp hàm nên có thể bi quan trên một hàm cụ thể. Cận $O(1/k)$ bỏ qua $\mu=3$. Cận tuyến tính đúng dạng nhưng hệ số co $\tfrac47$ chậm hơn hệ số thật $\tfrac{16}{49}=(\tfrac47)^2$. Sau bước đầu, Ví dụ C chỉ còn hướng có độ cong $3$; theo hướng này $e=\tfrac\mu2d^2$, $\nabla f(x)^T(x-x^*)=\mu d^2$ và $\lVert\nabla f\rVert^2=\mu^2d^2=2\mu e$, không bằng $2Le$. Trong chứng minh T2a, thay hai bất đẳng thức (H3 tại $y=x^*$ và BĐ2) bằng các đẳng thức này được $d_{k+1}^2=\bigl(1-\tfrac{2\mu}L+\tfrac{\mu^2}{L^2}\bigr)d_k^2=(1-\mu/L)^2d_k^2$, tức hệ số $\tfrac{16}{49}$. Với bước $2/(L+\mu)$, khoảng cách co theo hệ số $(L-\mu)/(L+\mu)$ (Bài tập 10).
 
 ### Hội tụ tuyến tính với bước quay lui
 
