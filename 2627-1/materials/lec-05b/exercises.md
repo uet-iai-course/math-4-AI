@@ -46,11 +46,11 @@ Theo các phần C, E, F của ghi chú bài giảng: (a), (b) là T1, T2a trên
 Mức độ: tính toán hoặc chứng minh. LLO6, LLO8, CLO1.
 
 ::: exercise Bài 2
-Cho Ví dụ C: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x_0=(2,4)$, $\mu=3$, $L=7$.
+Cho Ví dụ C: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x_0=(2,4)$, $\mu=3$, $L=7$, $D^2=20$, $e_0=62$. Ký hiệu $[x]_i$ là tọa độ thứ $i$ của $x$.
 
 1. Với quay lui Armijo $\alpha=\tfrac14$, $\beta=\tfrac12$: tính hệ số $c$ của T2' và số bước để cận bảo đảm $e_k\le0{,}01$.
-2. Với bước $\tfrac17$, kiểm cận T2a tại $k=2$ và $k=3$.
-3. Với bước $\eta=0{,}3$: chứng minh $\lvert[x_k]_2\rvert$ tăng theo $k$, và chỉ ra giả thiết về bước của T1 bị vi phạm. Ký hiệu $[x]_i$ là tọa độ thứ $i$.
+2. Với GD bước $\tfrac17$, kiểm cận T2a tại $k=2$ và $k=3$.
+3. Với GD bước hằng $\eta=0{,}3$ từ cùng $x_0$: chứng minh $\lvert[x_k]_2\rvert$ tăng theo $k$; chỉ ra giả thiết về bước của T1' bị vi phạm.
 :::
 
 ::: hint Gợi ý Bài 2
@@ -62,7 +62,7 @@ Cho Ví dụ C: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x_0=(2,4)$, $\mu=3$, $L=7$.
 
 2. Với bước $\tfrac17$, $x_k=\bigl(2(\tfrac47)^k,0\bigr)$ khi $k\ge1$. Do đó $d_2^2=4(\tfrac{16}{49})^2=\tfrac{1024}{2401}\approx0{,}427\le20(\tfrac47)^2\approx6{,}53$ và $d_3^2\approx0{,}139\le20(\tfrac47)^3\approx3{,}73$.
 
-3. $[x_{k+1}]_2=(1-0{,}3\cdot7)[x_k]_2=-1{,}1[x_k]_2$, nên $\lvert[x_k]_2\rvert=4\cdot1{,}1^k$ tăng $1{,}1$ lần mỗi bước. Bước $0{,}3>1/L=\tfrac17$ vi phạm điều kiện bước của T1 và T1'. Bước còn vượt $2/L=\tfrac27$, nên hệ số giảm của bổ đề giảm, $\eta(1-\tfrac{L\eta}2)$, âm; dãy phân kỳ theo tọa độ thứ hai, còn tọa độ thứ nhất co với hệ số $\lvert1-0{,}9\rvert=0{,}1$.
+3. $[x_{k+1}]_2=(1-0{,}3\cdot7)[x_k]_2=-1{,}1[x_k]_2$, nên $\lvert[x_k]_2\rvert=4\cdot1{,}1^k$ tăng $1{,}1$ lần mỗi bước. Bước $0{,}3>1/L=\tfrac17$ vi phạm điều kiện bước của T1 và T1'. Bước còn vượt $2/L=\tfrac27$, nên hệ số giảm của bổ đề giảm, $\eta(1-\tfrac{L\eta}2)$, âm và bổ đề không còn bảo đảm giảm; dãy phân kỳ theo tọa độ thứ hai, còn tọa độ thứ nhất co với hệ số $\lvert1-0{,}9\rvert=0{,}1$.
 :::
 
 ## Bài 3. Bước nhỏ hơn 1/L trong định lý dưới tuyến tính

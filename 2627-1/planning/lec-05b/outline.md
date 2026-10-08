@@ -481,7 +481,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Đáp án ghi chú: (1) $2\mu\alpha=1{,}5$, $2\beta\alpha\mu/L=\frac3{28}$, $c=\frac{25}{28}\approx0{,}893$; $62c^k\le0{,}01\Leftrightarrow k\ge78$. (2) $d_2^2=\frac{1024}{2401}\approx0{,}427\le20(\frac47)^2\approx6{,}53$; $d_3^2\approx0{,}139\le20(\frac47)^3\approx3{,}73$. (3) Hệ số $1-0{,}3\cdot7=-1{,}1$; $\eta>2/L=2/7$.
 - **Kết nối:** Kết thúc C.
 - **Nguồn:** Tự xây dựng; BV §9.3.1.
-- **Ghi chú soạn:** Ký hiệu tọa độ $[x]_i$ theo quy ước Bài 05. Câu (1) cho thấy cận quay lui ($78$ bước) yếu hơn cận bước $1/L$ ($16$ bước). **Bản sửa 2026-10-08** (R36): "tọa độ thứ hai"; đáp án (3) nêu $0{,}3>1/L$ và $>2/L$.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dòng dữ kiện chung đặt trước nhãn "Câu hỏi:" (thêm $D^2=20$, $e_0=62$ và định nghĩa $[x]_2$); câu (2) nêu "GD bước $\frac17$"; câu (3) "giả thiết về bước của T1'"; đáp án (3) thêm "bổ đề không còn bảo đảm giảm", bỏ "theo quy ước Bài 05"; exercises Bài 2 đồng bộ. Ký hiệu tọa độ $[x]_i$ theo quy ước Bài 05. Câu (1) cho thấy cận quay lui ($78$ bước) yếu hơn cận bước $1/L$ ($16$ bước). **Bản sửa 2026-10-08** (R36): "tọa độ thứ hai"; đáp án (3) nêu $0{,}3>1/L$ và $>2/L$.
 
 ### D. Dưới gradient và trung bình lặp
 
