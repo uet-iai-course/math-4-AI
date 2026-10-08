@@ -951,24 +951,24 @@ Trong cả hai trường hợp, tổng không vượt cận đã nêu. Bước $
 
 ### Điều kiện Polyak–Łojasiewicz
 
-T7, T8 chỉ cho tốc độ dưới tuyến tính của chuẩn gradient. Ở Ví dụ D, $F'(0)=0$ trong khi $F(0)-F_{\inf}=\tfrac14$: gradient nhỏ không kéo theo giá trị gần tối ưu. Cần một bất đẳng thức buộc gradient chỉ nhỏ khi giá trị đã gần tối ưu.
+T7, T8 chỉ cho tốc độ dưới tuyến tính và chỉ kết luận về điểm dừng. Tốc độ tuyến tính theo giá trị cần điều kiện buộc gradient chỉ nhỏ khi giá trị đã gần tối ưu. Tính chất này sai tại $\theta=0$ của Ví dụ D ($F=\tfrac14(\theta^2-1)^2$, $F_{\inf}=0$): $F'(0)=0$ nhưng $F(0)-F_{\inf}=\tfrac14$.
 
 ::: example Ví dụ C và Ví dụ A thỏa bất đẳng thức đó
-Ví dụ C: $\lVert\nabla f(x)\rVert^2=9x_1^2+49x_2^2\ge9x_1^2+21x_2^2=6\bigl(f(x)-f_{\inf}\bigr)$ tại mọi điểm. Ví dụ A: $\tfrac12J'(\theta)^2=\tfrac12(\theta-1)^2=J(\theta)-J_{\inf}$, dấu bằng.
+Ví dụ C, $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $f_{\inf}=0$: $\nabla f(x)=(3x_1,7x_2)$ và $\lVert\nabla f(x)\rVert^2=9x_1^2+49x_2^2\ge9x_1^2+21x_2^2=6\bigl(f(x)-f_{\inf}\bigr)$ tại mọi điểm. Ví dụ A, $J(\theta)=\tfrac16\sum_i(\theta-y_i)^2$ với $y=(-1,1,3)$, $J_{\inf}=\tfrac43$: $\tfrac12J'(\theta)^2=\tfrac12(\theta-1)^2=J(\theta)-J_{\inf}$, dấu bằng.
 :::
 
 **Giả thiết H7 (điều kiện Polyak–Łojasiewicz, PL).** Tồn tại $\mu>0$ để với mọi $x$: $\tfrac12\lVert\nabla f(x)\rVert^2\ge\mu\bigl(f(x)-f_{\inf}\bigr)$.
 
-Mọi hàm $\mu$-lồi mạnh thỏa H7 theo vế thứ hai của BĐ3, với $f_{\inf}=f^*$; Ví dụ C thỏa với $\mu=3$, Ví dụ A với $\mu=1$. H7 không đòi tính lồi. Ví dụ D không thỏa H7 trên $\mathbb R$ vì điểm dừng $\theta=0$ không là cực tiểu; nó thỏa H7 trên $\{\lvert\theta\rvert\ge c\}$ với $\mu=2c^2$ (Bài tập 7). Dưới H2 và H7, BĐ2 cho $2\mu(f-f_{\inf})\le\lVert\nabla f\rVert^2\le2L(f-f_{\inf})$, nên $\mu\le L$ trừ khi $f$ là hằng.
+Ký hiệu $\mu$ dùng chung với H3 vì quan hệ sau: dưới H3, H4, vế thứ hai của BĐ3 cho H7 với cùng $\mu$ và $f_{\inf}=f^*$; Ví dụ C thỏa với $\mu=3$, Ví dụ A với $\mu=1$. H7 không đòi tính lồi. Bài tập 7 xét Ví dụ D dưới điều kiện PL. Dưới H2 và H7, BĐ2 cho $2\mu(f-f_{\inf})\le\lVert\nabla f\rVert^2\le2L(f-f_{\inf})$, nên $\mu\le L$ trừ khi $f$ là hằng.
 
-**Định lý (T9).** Đầu vào: $f$ thỏa H0, H2, H7; $g_k$ thỏa H6, H6b; bước hằng $0<\eta\le1/L$. Kết luận: với $\Delta_k=f(x_k)-f_{\inf}$ và mọi $k\ge0$,
+**Định lý (T9).** Đầu vào: $f$ thỏa H0, H2, H7; $g_k$ thỏa H6, H6b; điểm đầu $x_0$; bước hằng $0<\eta\le1/L$. Kết luận: với $\Delta_k=f(x_k)-f_{\inf}$ và mọi $k\ge0$,
 
 $$
 \mathbb E\Delta_k\le(1-\eta\mu)^k\Delta_0+\frac{L\eta\sigma^2}{2\mu}.
 $$
 
 ::: proof Chứng minh T9
-Bước 2 của chứng minh T8 cho $\mathbb E[\Delta_{k+1}\mid\mathcal F_k]\le\Delta_k-\tfrac\eta2\lVert\nabla f(x_k)\rVert^2+\tfrac{L\eta^2\sigma^2}2$. H7 cho $\lVert\nabla f(x_k)\rVert^2\ge2\mu\Delta_k$, nên
+Bước 3 và hệ số ở bước 4 của chứng minh T8, trước khi lấy kỳ vọng toàn phần, cho $\mathbb E[\Delta_{k+1}\mid\mathcal F_k]\le\Delta_k-\tfrac\eta2\lVert\nabla f(x_k)\rVert^2+\tfrac{L\eta^2\sigma^2}2$. H7 cho $\lVert\nabla f(x_k)\rVert^2\ge2\mu\Delta_k$, nên
 
 $$
 \mathbb E[\Delta_{k+1}\mid\mathcal F_k]\le(1-\eta\mu)\Delta_k+\frac{L\eta^2\sigma^2}2.
