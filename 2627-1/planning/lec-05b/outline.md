@@ -746,7 +746,7 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận T7 ($\sigma=0$, $\eta=1/L$ cho lại T7 dưới dạng trung bình); F05 chứng minh.
 - **Nguồn:** Suy trực tiếp từ BĐ1 và bổ đề tách phương sai; SNW ch. 13 §13.3 (bối cảnh).
-- **Ghi chú soạn:** Ghi chú: hai trường hợp của $\min$; chọn chỉ số $\tau$ đều trong $\{0,\dots,K-1\}$ thì $\mathbb E\lVert\nabla f(x_\tau)\rVert^2$ có cùng cận (không dùng chữ $R$). Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R09): nguồn suy trực tiếp.
+- **Ghi chú soạn:** Ghi chú: hai trường hợp của $\min$; chọn chỉ số $\tau$ đều trong $\{0,\dots,K-1\}$ thì $\mathbb E\lVert\nabla f(x_\tau)\rVert^2$ có cùng cận (không dùng chữ $R$). Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R09): nguồn suy trực tiếp. **Rà từng trang 2026-10-08:** câu dẫn nêu số hạng nhiễu $\frac{L\eta^2\sigma^2}2$ khi thay $\nabla f$ bằng $g_k$; T8 theo mẫu Đầu vào ($x_0$, $\Delta_0$) – Bước ($x_{k+1}=x_k-\eta g_k$, $0<\eta\le1/L$) – Kết luận (với mọi $K\ge1$); hệ quả nêu $\sigma>0$ và tốc độ $O(1/\sqrt K)$ trong nhãn; lớp `dense`; không có ví dụ số (số của Ví dụ D để cho bài tập F07). Ghi chú: so với T7, bước hằng không cho cận về $0$, ý chứng minh một câu, hai nhánh của $\min$ ($\eta^\star$ cực tiểu hóa vế phải, nhánh $\frac1L$ do T8 đòi $\eta\le1/L$), chỉ số $\tau$; nguồn: suy trực tiếp từ bổ đề giảm và bổ đề tách phương sai.
 
 #### F05 — Chứng minh định lý SGD không lồi
 

@@ -895,7 +895,9 @@ Vì dãy GD ở lại $[-2,2]$, T7 áp dụng với $L=11$, $\Delta_0=\tfrac94$:
 
 ### Định lý SGD cho hàm không lồi
 
-**Định lý (T8).** Đầu vào: $f$ thỏa H0, H2; $g_k$ thỏa H6, H6b; bước hằng $0<\eta\le1/L$; $K\ge1$. Kết luận:
+Thay $\nabla f(x_k)$ bằng $g_k$ không chệch có phương sai không vượt $\sigma^2$ thì mức hạ kỳ vọng mỗi bước của $\Delta_k$ bớt số hạng nhiễu $L\eta^2\sigma^2/2$.
+
+**Định lý (T8).** Đầu vào: $f$ thỏa H0, H2; $g_k$ thỏa H6, H6b; điểm đầu $x_0$, $\Delta_0=f(x_0)-f_{\inf}$. Bước: $x_{k+1}=x_k-\eta g_k$ với bước hằng $0<\eta\le1/L$. Kết luận: với mọi $K\ge1$,
 
 $$
 \frac1K\sum_{k<K}\mathbb E\lVert\nabla f(x_k)\rVert^2\le\frac{2\Delta_0}{\eta K}+L\eta\sigma^2.
@@ -925,20 +927,22 @@ $$
 Chia hai vế cho $\tfrac{\eta K}2$.
 :::
 
-Mỗi bước thêm một số hạng nhiễu $\tfrac{L\eta^2\sigma^2}2$; sau khi chia cho $\tfrac{\eta K}2$ còn $L\eta\sigma^2$, không giảm theo $K$. Hàm thế là $f-f_{\inf}$, không cần $x^*$. Khi $\sigma=0$ và $\eta=1/L$, định lý cho lại T7 dưới dạng trung bình. Nếu chọn chỉ số $\tau$ đều trong $\{0,\dots,K-1\}$, độc lập với dãy, thì $\mathbb E\lVert\nabla f(x_\tau)\rVert^2$ có cùng cận.
+Mỗi bước thêm một số hạng nhiễu $\tfrac{L\eta^2\sigma^2}2$; sau khi chia cho $\tfrac{\eta K}2$ còn $L\eta\sigma^2$, không giảm theo $K$. Hàm thế là $\Delta_k=f(x_k)-f_{\inf}$, không cần $x^*$. So với T7, kết luận dùng trung bình thay cho $\min$ và có kỳ vọng vì $x_k$ ngẫu nhiên; khi $\sigma=0$ và $\eta=1/L$, định lý cho lại T7 dưới dạng trung bình. Với bước hằng, vế phải không về $0$ khi $K\to\infty$; muốn cận về $0$ phải chọn bước theo $K$. Nếu chọn chỉ số $\tau$ đều trong $\{0,\dots,K-1\}$, độc lập với dãy, thì $\mathbb E\lVert\nabla f(x_\tau)\rVert^2$ có cùng cận.
 
-**Hệ quả (chọn bước).** Với $\eta=\min\bigl\{\tfrac1L,\sqrt{2\Delta_0/(L\sigma^2K)}\bigr\}$,
+**Hệ quả (chọn bước).** Với $\sigma>0$ và $\eta=\min\bigl\{\tfrac1L,\sqrt{2\Delta_0/(L\sigma^2K)}\bigr\}$,
 
 $$
-\frac1K\sum_{k<K}\mathbb E\lVert\nabla f(x_k)\rVert^2\le\frac{2L\Delta_0}K+\frac{2\sqrt{2L\Delta_0\sigma^2}}{\sqrt K}.
+\frac1K\sum_{k<K}\mathbb E\lVert\nabla f(x_k)\rVert^2\le\frac{2L\Delta_0}K+\frac{2\sqrt{2L\Delta_0\sigma^2}}{\sqrt K},
 $$
+
+tức tốc độ $O(1/\sqrt K)$.
 
 ::: derivation Hai trường hợp của hệ quả
 Nếu $\eta=\sqrt{2\Delta_0/(L\sigma^2K)}\le\tfrac1L$, hai số hạng của T8 bằng nhau: $\tfrac{2\Delta_0}{\eta K}=L\eta\sigma^2=\sqrt{2L\Delta_0\sigma^2/K}$, tổng bằng $2\sqrt{2L\Delta_0\sigma^2/K}$.
 
 Nếu $\eta=\tfrac1L$, tức $\tfrac1L\le\sqrt{2\Delta_0/(L\sigma^2K)}$, bình phương hai vế cho $\sigma^2\le2L\Delta_0/K$. Khi đó cận của T8 bằng $\tfrac{2L\Delta_0}K+\sigma^2$, và $\sigma^2=\sqrt{\sigma^2\cdot\sigma^2}\le\sqrt{2L\Delta_0\sigma^2/K}$.
 
-Trong cả hai trường hợp, tổng không vượt cận đã nêu.
+Trong cả hai trường hợp, tổng không vượt cận đã nêu. Bước $\eta^\star=\sqrt{2\Delta_0/(L\sigma^2K)}$ là điểm cực tiểu của $\eta\mapsto\tfrac{2\Delta_0}{\eta K}+L\eta\sigma^2$; nhánh $\tfrac1L$ cần vì T8 đòi $\eta\le1/L$.
 :::
 
 ### Điều kiện Polyak–Łojasiewicz
