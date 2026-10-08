@@ -763,7 +763,7 @@ $\eta_0=0{,}1$, $\sigma^2=\tfrac83$, $\mu=1$: bước $0{,}1$ có sàn nhiễu $
 
 Lịch theo pha cần biết lúc chuyển pha. Một công thức bước cố định theo $k$ tránh việc đó. Với chặn mômen H6a, đệ quy của T5 thành $a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2$ (chứng minh dưới đây); điểm cân bằng tại bước $k$, nơi tiến bộ $2\mu\eta_ka$ bằng nhiễu $\eta_k^2G^2$, là $a=\eta_kG^2/(2\mu)$, giảm về $0$ cùng $\eta_k$.
 
-**Định lý (T6).** Đầu vào: $f$ thỏa H3, H4; $g_k$ thỏa H6, và H6a trên một vùng chứa dãy lặp; bước $\eta_k=\dfrac1{\mu(k+1)}$. Kết luận: với mọi $k\ge1$,
+**Định lý (T6).** Đầu vào: $f$ thỏa H3, H4 (không cần H2); $g_k$ thỏa H6, và H6a trên một vùng chứa dãy lặp. Bước: $x_{k+1}=x_k-\eta_kg_k$ với $\eta_k=\dfrac1{\mu(k+1)}$. Kết luận: với mọi $k\ge1$,
 
 $$
 a_k\le\frac{G^2}{\mu^2k}.
@@ -808,7 +808,7 @@ Bốn lịch bước của phần này khác nhau ở thông tin cần biết tr
 | $\frac1{\mu(k+1)}$ (T6) | $\mu$ | H3, H6a trên vùng chứa dãy lặp | $a_k\le G^2/(\mu^2k)$ |
 | $D/(G\sqrt K)$, trung bình lặp (T4) | $D$, $G$, $K$ | lồi, H6a | $\mathbb Ef(\bar x_K)-f^*\le DG/\sqrt K$ |
 
-Cận của T6 giả định biết đúng $\mu$. Nếu dùng $\eta_k=\tfrac1{\hat\mu(k+1)}$ với ước lượng $\hat\mu$ lớn hơn $\mu$ thật, tốc độ có thể chậm hơn nhiều so với $1/k$ (Nemirovski, Juditsky, Lan và Shapiro, 2009, §1).
+Cận của T6 giả định biết đúng $\mu$. Nếu dùng $\eta_k=\tfrac1{\hat\mu(k+1)}$ với ước lượng $\hat\mu$ lớn hơn $\mu$ thật, tốc độ có thể chậm hơn nhiều so với $1/k$ (Nemirovski, Juditsky, Lan và Shapiro, 2009, §1, dẫn theo Sra, Nowozin và Wright, 2011, ch. 5, §5.8).
 
 ### Bảo đảm theo xác suất
 

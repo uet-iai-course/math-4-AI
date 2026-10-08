@@ -676,7 +676,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Đệ quy $a_{k+1}\le(1-\frac2{k+1})a_k+\frac{G^2}{\mu^2(k+1)^2}$; quy nạp trong học liệu.
 - **Kết nối:** Nhận E09; E11 chuyển cận kỳ vọng sang xác suất.
 - **Nguồn:** Bối cảnh SNW ch. 5 §5.4; chứng minh quy nạp trong học liệu.
-- **Ghi chú soạn:** Ghi chú: với VD-A, $\theta_k\in[-1,3]$ nên H6a đúng trên vùng với $G^2=4+\frac83=\frac{20}3$; cận $\frac{20}{3k}$ so với giá trị chính xác $\frac8{3k}$ (N3). Không nêu điểm giao với bước hằng vì đó là bài tập E12. Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R18): ghi chú so sánh lịch theo pha, T6 và T4; "tiến bộ $2\eta_k\mu a_k$".
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn nêu nhu cầu (lịch theo pha phải biết thời điểm chuyển pha); T6 theo mẫu Đầu vào–Bước–Kết luận, ghi "không cần H2"; khối Ví dụ A tự chứa ($J$, $y$, $\mu$, $\eta_k$, $a_k=\frac8{3k}$ chính xác, $G^2=\frac{20}3$ trên $[-1,3]$, cận gấp $2{,}5$); ghi chú: đệ quy với tiến bộ và nhiễu, mức cân bằng, "ghi chú bài giảng, mục bước giảm dần cho hàm lồi mạnh" thay "học liệu", so với lịch theo pha và T4, độ nhạy theo $\mu$ (Nemirovski et al. 2009, §1, không chứng minh). Ghi chú: với VD-A, $\theta_k\in[-1,3]$ nên H6a đúng trên vùng với $G^2=4+\frac83=\frac{20}3$; cận $\frac{20}{3k}$ so với giá trị chính xác $\frac8{3k}$ (N3). Không nêu điểm giao với bước hằng vì đó là bài tập E12. Nguồn cụ thể chờ xác nhận (N6). **Bản sửa 2026-10-08** (R18): ghi chú so sánh lịch theo pha, T6 và T4; "tiến bộ $2\eta_k\mu a_k$".
 
 #### E11 — Bảo đảm theo xác suất
 
