@@ -133,23 +133,26 @@ $$
 Mức độ: tính toán hoặc chứng minh. LLO11, LLO12, CLO2.
 
 ::: exercise Bài 5
-1. Ví dụ A, bước $0{,}1$, nhóm một mẫu, $\theta_0=0$: tính $\mathbb E(\theta_1-1)^2$ và $\mathbb E(\theta_2-1)^2$ bằng cây lịch sử và bằng đệ quy.
-2. Với $\eta_k=\tfrac1{k+1}$, $\mathbb E(\theta_k-1)^2=\tfrac8{3k}$. Tìm $k$ nhỏ nhất để giá trị này nhỏ hơn
-   (a) giá trị giới hạn $\tfrac8{57}$ của bước hằng $0{,}1$;
-   (b) giá trị tương ứng của quỹ đạo bước hằng $0{,}1$ từ $\theta_0=0$.
-3. Ví dụ B với $g_k=\operatorname{sign}(x_k-y_{I_k})$, $I_k$ đều trên $\{1,2,3\}$, quy ước $\operatorname{sign}(0)=0$: kiểm H6, H6a với $G=1$; viết cận T4 với $x_0=0$, $K=100$ và bước hằng tối ưu.
+Ví dụ A: $J(\theta)=\tfrac16\sum_i(\theta-y_i)^2$, $y=(-1,1,3)$, $\theta_0=0$, nhóm một mẫu, $\sigma^2=\tfrac83$. Ví dụ B: $f(x)=\tfrac13\sum_i\lvert x-y_i\rvert$, $x_0=0$, $D=1$.
+
+1. Ví dụ A, bước $0{,}1$: tính $\mathbb E(\theta_1-1)^2$ và $\mathbb E(\theta_2-1)^2$ bằng cây lịch sử và bằng đệ quy; so với cận T5.
+2. Ví dụ A, $\eta_k=\tfrac1{k+1}$ cho $\mathbb E(\theta_k-1)^2=\tfrac8{3k}$. Tìm $k$ nhỏ nhất để giá trị này nhỏ hơn giá trị giới hạn $\tfrac8{57}$ của bước hằng $0{,}1$.
+3. Cùng lịch $\tfrac1{k+1}$, tìm $k$ nhỏ nhất để $\tfrac8{3k}$ nhỏ hơn $\mathbb E(\theta_k-1)^2$ của bước hằng $0{,}1$ tại cùng $k$.
+4. Ví dụ B, $g_k=\operatorname{sign}(x_k-y_{I_k})$, $I_k$ đều trên $\{1,2,3\}$, quy ước $\operatorname{sign}(0)=0$: kiểm H6, H6a với $G=1$; viết cận T4 cho $K=100$ với bước hằng tối ưu.
 :::
 
 ::: hint Gợi ý Bài 5
-Ở câu 1, viết $\theta_{k+1}-1=0{,}9(\theta_k-1)+0{,}1(y_{I_k}-1)$. Ở câu 2(b), quỹ đạo bước hằng là $a_k=0{,}81^k+\tfrac8{57}(1-0{,}81^k)$. Ở câu 3, so $\tfrac13\sum_i\operatorname{sign}(x-y_i)$ với dưới vi phân của Ví dụ B.
+Ở câu 1, viết $\theta_{k+1}-1=0{,}9(\theta_k-1)+0{,}1(y_{I_k}-1)$. Ở câu 3, giải đệ quy $a_{k+1}=0{,}81a_k+\tfrac8{300}$ với $a_0=1$, rồi so từng $k$ quanh $15$–$17$. Ở câu 4, so $\tfrac13\sum_i\operatorname{sign}(x-y_i)$ với dưới vi phân của Ví dụ B.
 :::
 
 ::: solution Lời giải Bài 5
-1. Cây: $\theta_1\in\{-0{,}1;\,0{,}1;\,0{,}3\}$ cho $(\theta_1-1)^2=1{,}21;\,0{,}81;\,0{,}49$, trung bình $\approx0{,}837$. Chín lá $\theta_2$ cho $(\theta_2-1)^2$ bằng $1{,}4161$; $0{,}9801$; $0{,}6241$; $1{,}0201$; $0{,}6561$; $0{,}3721$; $0{,}6889$; $0{,}3969$; $0{,}1849$, trung bình $\approx0{,}704$. Đệ quy: $a_{k+1}=0{,}81a_k+\tfrac8{300}$ với $a_0=1$ cho $a_1=0{,}81+0{,}0267\approx0{,}837$ và $a_2\approx0{,}81\cdot0{,}8367+0{,}0267\approx0{,}704$.
+1. Cây: $\theta_1\in\{-0{,}1;\,0{,}1;\,0{,}3\}$ cho $(\theta_1-1)^2=1{,}21;\,0{,}81;\,0{,}49$, trung bình $\approx0{,}837$. Chín lá $\theta_2$ cho $(\theta_2-1)^2$ bằng $1{,}4161$; $0{,}9801$; $0{,}6241$; $1{,}0201$; $0{,}6561$; $0{,}3721$; $0{,}6889$; $0{,}3969$; $0{,}1849$, trung bình $\approx0{,}704$. Đệ quy: $a_{k+1}=0{,}81a_k+\tfrac8{300}$ với $a_0=1$ cho $a_1=0{,}81+0{,}0267\approx0{,}837$ và $a_2\approx0{,}81\cdot0{,}8367+0{,}0267\approx0{,}704$. Cận T5 với $\mu=1$, $D=1$, sàn nhiễu $0{,}267$: $0{,}9+0{,}267=1{,}167$ và $0{,}81+0{,}267=1{,}077$.
 
-2. (a) Bất đẳng thức $\tfrac8{3k}<\tfrac8{57}$ tương đương $3k>57$, nên $k=20$; tại $k=19$ hai vế bằng nhau. (b) Quỹ đạo bước hằng có $a_k=0{,}81^k+\tfrac8{57}(1-0{,}81^k)$; so với $\tfrac8{3k}$: tại $k=15$, $0{,}178>0{,}177$; tại $k=16$, $0{,}167<0{,}170$. Vậy $k=16$.
+2. Bất đẳng thức $\tfrac8{3k}<\tfrac8{57}$ tương đương $3k>57$, nên $k=20$; tại $k=19$ hai vế bằng nhau.
 
-3. $\mathbb E[g_k\mid\mathcal F_k]=\tfrac13\sum_i\operatorname{sign}(x_k-y_i)$. Tại điểm không phải quan sát, đây là đạo hàm của $f$; tại $x_k=y_j$, số hạng thứ $j$ bằng $0\in[-1,1]$, nên vẫn thuộc $\partial f(x_k)$. Vậy H6 đúng ở dạng dưới gradient. $g_k^2\le1$ nên H6a đúng với $G=1$. Với $x_0=0$, $D=1$, $K=100$: bước tối ưu $\eta=D/(G\sqrt K)=\tfrac1{10}$ và $\mathbb Ef(\bar x_{100})-f^*\le DG/\sqrt K=0{,}1$.
+3. Quỹ đạo bước hằng có $a_k=0{,}81^k+\tfrac8{57}(1-0{,}81^k)$; so với $\tfrac8{3k}$: tại $k=15$, $0{,}178>0{,}177$; tại $k=16$, $0{,}167<0{,}170$. Vậy $k=16$.
+
+4. $\mathbb E[g_k\mid\mathcal F_k]=\tfrac13\sum_i\operatorname{sign}(x_k-y_i)$. Tại điểm không phải quan sát, đây là đạo hàm của $f$; tại $x_k=y_j$, số hạng thứ $j$ bằng $0\in[-1,1]$, nên vẫn thuộc $\partial f(x_k)$. Vậy H6 đúng ở dạng dưới gradient. $g_k^2\le1$ nên H6a đúng với $G=1$. Với $x_0=0$, $D=1$, $K=100$: bước tối ưu $\eta=D/(G\sqrt K)=\tfrac1{10}$ và $\mathbb Ef(\bar x_{100})-f^*\le DG/\sqrt K=0{,}1$.
 :::
 
 ## Bài 6. Chứng minh quy nạp cho bước giảm dần

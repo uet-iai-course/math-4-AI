@@ -698,7 +698,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Đáp án ghi chú: (1) $0{,}837$; $0{,}704$. (2) $k=20$ (bằng nhau tại $k=19$); $k=16$. (3) $\eta=\frac1{10}$, cận $0{,}1$.
 - **Kết nối:** Kết thúc E.
 - **Nguồn:** Tự xây dựng.
-- **Ghi chú soạn:** Đề nói rõ so với giá trị nào (kế hoạch [SỬA]). E03 không nêu đáp án câu (3). **Bản sửa 2026-10-08** (R45): câu (2) tách (a), (b).
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dòng dữ kiện chung (Ví dụ A: $J$, $y$, $\theta_0$, nhóm một mẫu, $\sigma^2$; Ví dụ B: $f$, $x_0$, $D$); bốn câu (2(a), 2(b) cũ tách thành câu 2, 3; câu 1 thêm "so với cận T5"); không lộ đáp án; đáp án ghi chú đủ ($0{,}837$; $0{,}704$; cận $1{,}167$; $1{,}077$; $k=20$; $k=16$; $G=1$, $\eta=0{,}1$, cận $0{,}1$); exercises Bài 5 đồng bộ. Đề nói rõ so với giá trị nào (kế hoạch [SỬA]). E03 không nêu đáp án câu (3). **Bản sửa 2026-10-08** (R45): câu (2) tách (a), (b).
 
 ### F. Mục tiêu không lồi và chuẩn gradient
 
