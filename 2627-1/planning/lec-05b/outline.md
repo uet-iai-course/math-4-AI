@@ -470,7 +470,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Như trên.
 - **Kết nối:** Nhận T2; giới hạn "không có $L$" mở phần D.
 - **Nguồn:** BV §9.3.1, tr. 466–468; Bài 04, hội tụ với quay lui.
-- **Ghi chú soạn:** Bài 04 dùng $\alpha=\frac12$ cho cận $O(1/k)$; T2' là trường hợp lồi mạnh với $\alpha<\frac12$ (J5). Ngưỡng $2/L$ không đặt ở trang này; bài tập C09 câu (3) đảm nhận.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu mở "T1', T2 dùng bước $\eta\le1/L$, tức phải biết $L$; quay lui chọn bước mà không cần $L$"; T2' theo mẫu Đầu vào–Bước–Kết luận, bước ghi quy tắc Armijo bằng công thức; khối "Giới hạn" có công thức mất mát bản lề $\max\{0,1-ys\}$ và $\lvert s\rvert$; ghi chú: nguồn chứng minh BV §9.3.1, $c>1-\mu/L$, Ví dụ C cho $c=\frac{25}{28}$, nghĩa của $y$, $s$. Trang giữ hai khối (T2' và giới hạn); khối giới hạn là đầu ra sang phần D. Bài 04 dùng $\alpha=\frac12$ cho cận $O(1/k)$; T2' là trường hợp lồi mạnh với $\alpha<\frac12$ (J5). Ngưỡng $2/L$ không đặt ở trang này; bài tập C09 câu (3) đảm nhận.
 
 #### C09 — Quay lui, co và ngưỡng bước
 

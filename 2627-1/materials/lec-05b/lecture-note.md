@@ -414,17 +414,17 @@ Một cận bảo đảm cho cả lớp hàm nên có thể bi quan trên một 
 
 ### Hội tụ tuyến tính với bước quay lui
 
-Bước $1/L$ của T1, T2 đòi biết $L$, mà với một mất mát cụ thể thường chỉ có cận thô; ở Bài tập 8, cận thô $1{,}1$ gấp khoảng hai lần giá trị theo trị riêng $0{,}542$. Quay lui Armijo tìm bước tại mỗi lần lặp: thử $t=1,\beta,\beta^2,\dots$ và nhận $t$ đầu tiên thỏa $f(x-t\nabla f(x))\le f(x)-\alpha t\lVert\nabla f(x)\rVert^2$.
+T1' (bước $\eta\le1/L$) và T2 (bước $1/L$) đều cần biết $L$, mà với một mất mát cụ thể thường chỉ có cận thô; ở Bài tập 8, cận thô $1{,}1$ gấp khoảng hai lần giá trị theo trị riêng $0{,}542$. Quay lui Armijo tìm bước tại mỗi lần lặp: thử $t=1,\beta,\beta^2,\dots$ và nhận $t$ đầu tiên thỏa $f(x-t\nabla f(x))\le f(x)-\alpha t\lVert\nabla f(x)\rVert^2$.
 
-**Định lý (T2', chỉ phát biểu).** Đầu vào: $f$ thỏa H2, H3 trên tập mức $\{x:f(x)\le f(x_0)\}$; quay lui Armijo với $0<\alpha<\tfrac12$, $0<\beta<1$. Kết luận: $e_k\le c^ke_0$ với
+**Định lý (T2', chỉ phát biểu).** Đầu vào: $f$ thỏa H2, H3 trên tập mức $\{x:f(x)\le f(x_0)\}$; hằng số $0<\alpha<\tfrac12$, $0<\beta<1$. Bước: $x_{k+1}=x_k-t_k\nabla f(x_k)$, với $t_k$ là số đầu tiên trong $1,\beta,\beta^2,\dots$ thỏa điều kiện Armijo. Kết luận: $e_k\le c^ke_0$ với
 
 $$
 c=1-\min\Bigl\{2\mu\alpha,\ \frac{2\beta\alpha\mu}L\Bigr\}<1.
 $$
 
-Chứng minh có trong Boyd và Vandenberghe (2004), §9.3.1, tr. 466–468. Hệ số $c$ kém hơn $1-\mu/L$ nhưng thuật toán không cần biết $L$. Với Ví dụ C, $\alpha=\tfrac14$, $\beta=\tfrac12$: $c=1-\min\{1{,}5;\tfrac3{28}\}=\tfrac{25}{28}\approx0{,}893$, và cận cần $78$ bước để bảo đảm $e_k\le0{,}01$ (Bài tập 2).
+Chứng minh có trong Boyd và Vandenberghe (2004), §9.3.1, tr. 466–468. Luôn có $c>1-\mu/L$, vì $\min\{\cdot\}\le\tfrac{2\beta\alpha\mu}L<\tfrac\mu L$ (do $2\beta\alpha<1$); cùng lý do cho $c>0$: hệ số kém hơn T2b nhưng thuật toán không cần biết $L$. Với Ví dụ C, $\alpha=\tfrac14$, $\beta=\tfrac12$: $c=1-\min\{1{,}5;\tfrac3{28}\}=\tfrac{25}{28}\approx0{,}893$, và cận cần $78$ bước để bảo đảm $e_k\le0{,}01$ (Bài tập 2).
 
-T1, T2 và T2' đều cần gradient Lipschitz. Hàm trị tuyệt đối và mất mát bản lề (hinge loss) không có hằng số $L$ hữu hạn; phần D thay gradient bằng dưới gradient.
+T1', T2 và T2' đều cần H2. Mất mát bản lề (hinge loss) $\max\{0,1-ys\}$, với nhãn $y\in\{-1,1\}$ và điểm số $s$, và trị tuyệt đối $\lvert s\rvert$ có điểm gãy, không có hằng số $L$ hữu hạn; phần D thay gradient bằng dưới gradient.
 
 ## D. Dưới gradient và trung bình lặp
 
