@@ -725,7 +725,7 @@ Với bước hằng, cận của T5 không xuống dưới $\eta\sigma^2/\mu$ d
 
 Ý chứng minh: trong mỗi pha, áp T5 với điểm đầu là điểm cuối của pha trước; độ dài pha được chọn để số hạng co không vượt sàn nhiễu, nên cuối pha sai số không quá hai lần sàn nhiễu, và sàn nhiễu giảm một nửa sau mỗi pha. Độ dài các pha tăng theo cấp số nhân, nên tổng độ dài bị chi phối bởi pha cuối.
 
-**Hệ quả (lịch theo pha).** Giả thiết như T5, với $\eta_0\le1/L$ và $0<\varepsilon<\tfrac{\eta_0\sigma^2}\mu$. Pha $i=0,1,2,\dots$ dùng bước $\eta_i=\eta_02^{-i}$; đặt $F_i=\eta_i\sigma^2/\mu$ là sàn nhiễu của pha $i$. Pha $0$ chạy $m_0=\bigl\lceil\ln(D^2/F_0)^+/(\eta_0\mu)\bigr\rceil$ bước; pha $i\ge1$ chạy $m_i=\bigl\lceil\ln4/(\eta_i\mu)\bigr\rceil$ bước. Khi đó cuối pha $i$ có $a\le2F_i$, và tổng số bước để $a_k\le\varepsilon$ không vượt
+**Hệ quả (lịch theo pha).** Dưới H2, H3, H4, H6, H6b, với $0<\eta_0\le1/L$ và $0<\varepsilon<\tfrac{\eta_0\sigma^2}\mu$. Pha $i=0,1,2,\dots$ dùng bước $\eta_i=\eta_02^{-i}$; đặt $F_i=\eta_i\sigma^2/\mu$ là sàn nhiễu của pha $i$. Pha $0$ chạy $m_0=\bigl\lceil\ln(D^2/F_0)^+/(\eta_0\mu)\bigr\rceil$ bước; pha $i\ge1$ chạy $m_i=\bigl\lceil\ln4/(\eta_i\mu)\bigr\rceil$ bước. Khi đó cuối pha $i$ có $a\le2F_i$, và tổng số bước để $a_k\le\varepsilon$ không vượt
 
 $$
 \frac{\ln(D^2/F_0)^+}{\eta_0\mu}+\frac{8\ln4\,\sigma^2}{\mu^2\varepsilon}+\log_2\frac{8F_0}\varepsilon

@@ -665,7 +665,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Phát biểu bậc $O(\cdot)$; lập luận đầy đủ trong học liệu.
 - **Kết nối:** Nhận E08; trả lời lịch $0{,}1\to0{,}05$ của Bài 05; E10 xét lịch giảm liên tục.
 - **Nguồn:** Bài 05, mục bước học và dao động gần nghiệm; tổng hợp từ T5.
-- **Ghi chú soạn:** Không đặt hằng số cụ thể trên mặt trang ngoài hai sàn nhiễu của VD-A. **Bản sửa 2026-10-08** (R10, R28, R09): "sàn nhiễu"; ghi chú pha kết thúc tại 10, 31, 75 theo nghiệm đúng và 13, 40, 95 theo dạng T5; nguồn SNW §5.4 Mệnh đề 5.4.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn nêu nhu cầu (sàn nhiễu tỉ lệ với bước; chia đôi bước khi số hạng co đã xuống tới sàn nhiễu); "Giả thiết như T5" thay bằng "Dưới H2, H3, H4, H6, H6b"; khối Ví dụ A nêu chuỗi sàn nhiễu $0{,}267\to0{,}133\to0{,}067\to0{,}033$ và tiêu chí kết thúc pha dùng trong hình; ghi chú: vì sao pha sau dài gấp đôi, "ghi chú bài giảng, mục lịch theo pha" thay "học liệu", pha kết thúc tại $10,31,75$ (nghiệm đúng) và $13,40,95$ (dạng T5), câu nối sang bước $\frac1{\mu(k+1)}$. Không đặt hằng số cụ thể trên mặt trang ngoài hai sàn nhiễu của VD-A. **Bản sửa 2026-10-08** (R10, R28, R09): "sàn nhiễu"; ghi chú pha kết thúc tại 10, 31, 75 theo nghiệm đúng và 13, 40, 95 theo dạng T5; nguồn SNW §5.4 Mệnh đề 5.4.
 
 #### E10 — Bước giảm dần cho hàm lồi mạnh
 
