@@ -438,15 +438,15 @@ Mất mát trị tuyệt đối và mất mát bản lề có điểm gãy: $f$ 
 
 ### Dưới gradient
 
-Tại điểm gãy $x=1$ của Ví dụ B, $f(x)\ge\tfrac43+s(x-1)$ với mọi $x$ khi và chỉ khi $s\in[-\tfrac13,\tfrac13]$: cả một chùm đường thẳng tựa nằm dưới đồ thị, độ dốc của chúng thay vai trò gradient. Đường độ dốc $0{,}6$ qua $(1,\tfrac43)$ cắt đồ thị nên không thuộc chùm này.
+Ví dụ B, $f(x)=\tfrac13\sum_i\lvert x-y_i\rvert$ với $y=(-1,1,3)$: tại điểm gãy $x=1$, $f(x)\ge\tfrac43+s(x-1)$ với mọi $x$ khi và chỉ khi $s\in[-\tfrac13,\tfrac13]$. Cả một chùm đường thẳng tựa nằm dưới đồ thị, độ dốc $s$ của chúng thay vai trò gradient. Đường độ dốc $0{,}6$ qua $(1,\tfrac43)$ cắt đồ thị nên không thuộc chùm này.
 
-![Tại điểm gãy x = 1 của Ví dụ B, các đường thẳng độ dốc −1/3, 0, 1/3 nằm dưới đồ thị; đường độ dốc 0,6 cắt đồ thị.](img/lec-05b/subgradient-supporting-lines.svg)
+![Tại điểm gãy x = 1 của Ví dụ B, các đường thẳng độ dốc 1/3, 0, −1/3 nằm dưới đồ thị; đường độ dốc 0,6 cắt đồ thị.](img/lec-05b/subgradient-supporting-lines.svg)
 
-**Định nghĩa.** Cho $f:\mathbb R^n\to\mathbb R$ lồi. Vectơ $g\in\mathbb R^n$ là một dưới gradient của $f$ tại $x$ nếu $f(y)\ge f(x)+g^T(y-x)$ với mọi $y\in\mathbb R^n$. Tập các dưới gradient tại $x$ là dưới vi phân (subdifferential) $\partial f(x)$.
+**Định nghĩa.** Cho $f:\mathbb R^n\to\mathbb R$ lồi. Vectơ $g\in\mathbb R^n$ là một dưới gradient (subgradient) của $f$ tại $x$ nếu $f(y)\ge f(x)+g^T(y-x)$ với mọi $y\in\mathbb R^n$. Tập các dưới gradient tại $x$ là dưới vi phân (subdifferential) $\partial f(x)$.
 
 Ba tính chất được dùng (chỉ nêu, trừ tính chất cuối): hàm lồi hữu hạn trên $\mathbb R^n$ có $\partial f(x)\neq\emptyset$ với mọi $x$; khi $f$ khả vi tại $x$, $\partial f(x)=\{\nabla f(x)\}$; $0\in\partial f(x^*)$ khi và chỉ khi $x^*$ là điểm cực tiểu, vì với $g=0$ định nghĩa trở thành $f(y)\ge f(x^*)$ với mọi $y$.
 
-**H1 dạng dưới gradient.** $f$ lồi trên $\mathbb R^n$. Cùng H4, mọi $g\in\partial f(x)$ thỏa $g^T(x-x^*)\ge f(x)-f^*$; đây là định nghĩa dưới gradient với $y=x^*$.
+**H1 dạng dưới gradient.** $f$ lồi trên $\mathbb R^n$; khi đó $\partial f(x)\neq\emptyset$ và, cùng H4, mọi $g\in\partial f(x)$ thỏa $g^T(x-x^*)\ge f(x)-f^*$; đây là định nghĩa dưới gradient với $y=x^*$.
 
 ::: example Ví dụ B: dưới vi phân tại điểm gãy
 Ba số hạng $\lvert x+1\rvert$, $\lvert x-1\rvert$, $\lvert x-3\rvert$ có dưới vi phân tại $x=1$ lần lượt là $\{1\}$, $[-1,1]$, $\{-1\}$. Dưới vi phân của tổng các hàm lồi hữu hạn là tổng các dưới vi phân (chỉ nêu), nên $\partial f(1)=\tfrac13\bigl(1+[-1,1]-1\bigr)=[-\tfrac13,\tfrac13]$, khớp với chùm đường tựa ở trên: hai khúc của $f$ kề $x=1$ có độ dốc $\pm\tfrac13$.

@@ -507,7 +507,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Với $f$ khả vi, $\partial f(x)=\{\nabla f(x)\}$ (chỉ nêu).
 - **Kết nối:** Nhận nhu cầu D01; D03 dùng một dưới gradient bất kỳ làm $g_k$.
 - **Nguồn:** SNW ch. 4 §4.1; Bài 01 (lồi bậc nhất).
-- **Ghi chú soạn:** Thứ tự trên trang: hình → ví dụ số → định nghĩa → H1 dạng dưới gradient. $\partial f(1)=\frac13(1+[-1,1]-1)$ trình bày trong ghi chú. **Bản sửa 2026-10-08** (R24): H1 dạng dưới gradient nêu $\partial f(x)\neq\emptyset$ và cần H4.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** cột trái: hình rồi đoạn "Trực quan" tự chứa (hàm và dữ liệu của Ví dụ B, chùm đường $\frac43+s(x-1)$, $s\in[-\frac13,\frac13]$) để thứ tự trực quan → định nghĩa giữ cả ở màn hẹp; cột phải: định nghĩa (dưới gradient, dưới vi phân), $\partial f(x)=\{\nabla f(x)\}$ tại điểm khả vi, $\partial f(1)=[-\frac13,\frac13]$, H1 dạng dưới gradient; phép tính $\partial f(1)$ và điều kiện $0\in\partial f(x^*)$ (khi và chỉ khi $x^*$ là điểm cực tiểu) chỉ ở ghi chú, khớp deck; hình: nhãn "độ dốc 1/3", "độ dốc −1/3" đặt cạnh hai đường tựa (nhãn "±1/3" cũ nằm trên đồ thị $f$), đường $0{,}6$ bắt đầu từ $x=0{,}6$, khung 600×330; nguồn SNW ch. 5 §5.2. Thứ tự trên trang: hình → ví dụ số → định nghĩa → H1 dạng dưới gradient. $\partial f(1)=\frac13(1+[-1,1]-1)$ trình bày trong ghi chú. **Bản sửa 2026-10-08** (R24): H1 dạng dưới gradient nêu $\partial f(x)\neq\emptyset$ và cần H4.
 
 #### D03 — Phương pháp dưới gradient
 
