@@ -1021,11 +1021,13 @@ Từ một dòng sang dòng kế, bất đẳng thức một bước đổi theo
 
 ### Phạm vi áp dụng
 
-- Các định lý là cận trên cho phương pháp bậc nhất, không ràng buộc, với bước cố định hoặc theo lịch cho trước; riêng T2' dùng quay lui.
-- Cận có thể bi quan: Ví dụ C đạt $e_k\le0{,}01$ sau $6$ bước, T2b bảo đảm $16$, T1 bảo đảm $7000$; ở Ví dụ A, giá trị giới hạn là $0{,}140$ còn sàn nhiễu là $0{,}267$.
-- Với mục tiêu không lồi, T7 và T8 không nói dãy tới cực tiểu nào và không loại điểm yên ngựa hay cực đại địa phương: dãy GD bắt đầu tại $0$ của Ví dụ D thỏa T7 mà không rời cực đại địa phương. Điều kiện PL toàn cục hiếm khi kiểm được.
-- Các định lý SGD giả sử lấy mẫu có hoàn lại và bước không phụ thuộc mẫu.
-- Ngoài phạm vi: momentum, Nesterov (Bài 05); AdaGrad, RMSProp, Adam, chuẩn hóa theo lô (batch normalization, Bài 06); cận dưới về độ phức tạp; giảm phương sai (SVRG, SAGA); phép chiếu cho ràng buộc; phương pháp Newton (Bài 04). Các phương pháp này có lý thuyết hội tụ riêng; bảng tra của bài không áp dụng trực tiếp cho chúng.
+- Các định lý là cận trên cho cả lớp hàm thỏa giả thiết, nên có thể bi quan trên một hàm cụ thể: cận đúng cho mọi hàm của lớp, kể cả hàm xấu nhất. Ví dụ C đạt $e_k\le0{,}01$ sau $6$ bước, trong khi T2b bảo đảm $16$ bước và T1 bảo đảm $7000$; ở Ví dụ A, giá trị giới hạn thật là $0{,}140$ còn sàn nhiễu của T5 là $0{,}267$.
+
+![Hai biểu đồ thanh. Ví dụ C, số bước để sai số giá trị không vượt 0,01 trên thang logarit có vạch 1, 10, 100, 1000, 10⁴: T1 bảo đảm 7000, T2b bảo đảm 16, thực tế 6. Ví dụ A, SGD bước 0,1: sàn nhiễu của cận T5 là 0,267, giá trị giới hạn thật là 0,140.](img/lec-05b/bounds-vs-actual.svg)
+
+- Với mục tiêu không lồi, T7 và T8 chỉ cho điểm dừng: không chỉ ra dãy tới cực tiểu nào và không loại điểm yên ngựa hay cực đại địa phương. Dãy GD bắt đầu tại $0$ của Ví dụ D thỏa T7 mà không rời cực đại địa phương. Điều kiện PL toàn cục hiếm khi kiểm được.
+- Phạm vi: phương pháp bậc nhất, không ràng buộc, bước cố định hoặc theo lịch cho trước; riêng T2' dùng quay lui. Các định lý SGD giả sử lấy mẫu có hoàn lại và bước không phụ thuộc mẫu.
+- Ngoài phạm vi: momentum, Nesterov (Bài 05); Adam, AdaGrad, RMSProp, chuẩn hóa theo lô (batch normalization) (Bài 06); phương pháp Newton (Bài 04); giảm phương sai (variance reduction), như SVRG, SAGA; cận dưới về độ phức tạp (lower complexity bounds); phép chiếu cho ràng buộc. Các phương pháp này có lý thuyết hội tụ riêng; bảng tra của bài không áp dụng trực tiếp cho chúng.
 
 Trước khi dùng một định lý, cần kiểm: giả thiết đúng toàn cục hay chỉ trên một vùng chứa dãy lặp; giả thiết nhiễu là chặn $G^2$ hay chặn $\sigma^2$; đại lượng được chặn là điểm cuối, lặp tốt nhất, trung bình lặp hay kỳ vọng. Trung bình Polyak ở Bài 06 là trung bình lặp với bước hằng; với mục tiêu lồi, T4 cho nó một cận.
 

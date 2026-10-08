@@ -236,7 +236,7 @@ Hai trang đối chiếu bắt buộc: C07 (T1, T2a, T2b trên VD-C: để $e_k\
 
 ## Danh sách hình SVG
 
-Danh sách đầy đủ kèm alt dự kiến ở [storyboard.md](storyboard.md), mục "Hình cần vẽ" (17 hình). Mọi hình tự dựng từ công thức và số liệu của ví dụ; không sao chép hình nguồn; không dùng ảnh raster.
+Danh sách đầy đủ kèm alt dự kiến ở [storyboard.md](storyboard.md), mục "Hình cần vẽ" (18 hình). Mọi hình tự dựng từ công thức và số liệu của ví dụ; không sao chép hình nguồn; không dùng ảnh raster.
 
 ## Dàn bài từng trang
 
@@ -816,7 +816,7 @@ Chức năng: tổng hợp T1–T9 thành bảng tra theo mục tiêu; kiểm lu
 - **Hình thức hóa:** Không áp dụng.
 - **Kết nối:** Nhận G01–G02 và giới hạn F06; G04 giao câu hỏi và bài tập.
 - **Nguồn:** Bài 04 (Newton); Bài 05 (momentum, Nesterov); Bài 06; SNW ch. 13.
-- **Ghi chú soạn:** Không viết lời quảng bá cho phương pháp ngoài phạm vi. **Bản sửa 2026-10-08** (R20): thêm gạch đầu dòng về cận bi quan; "bước cố định hoặc theo lịch cho trước"; tách danh sách ngoài phạm vi thành hai gạch; ghi chú PL toàn cục và lấy mẫu có hoàn lại.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** ba ý: (i) cận trên cho cả lớp hàm nên có thể bi quan, kèm hình mới `bounds-vs-actual.svg` (mã 18: Ví dụ C 7000/16/6 bước, thang log; Ví dụ A 0,267/0,140) thay câu tham chiếu số; (ii) không lồi chỉ cho điểm dừng, có thể là điểm yên ngựa; (iii) phạm vi phương pháp (bước cố định hoặc theo lịch, T2' quay lui) và một bullet ngoài phạm vi (momentum, Nesterov, Adam, Newton, giảm phương sai (variance reduction), cận dưới về độ phức tạp (lower complexity bounds)); dòng "Kiểm trước khi dùng một định lý" giữ làm kết. Ghi chú: nghĩa của "bi quan", số liệu hai ví dụ, Ví dụ D, PL cục bộ, lấy mẫu có hoàn lại, các phương pháp ngoài phạm vi còn lại. Nguồn SNW ch. 13 có trong `sources/`. Không viết lời quảng bá cho phương pháp ngoài phạm vi. **Bản sửa 2026-10-08** (R20): thêm gạch đầu dòng về cận bi quan; "bước cố định hoặc theo lịch cho trước"; tách danh sách ngoài phạm vi thành hai gạch; ghi chú PL toàn cục và lấy mẫu có hoàn lại.
 
 #### G04 — Câu hỏi tự kiểm, bài tập và tài liệu đọc
 
