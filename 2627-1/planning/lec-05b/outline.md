@@ -448,7 +448,7 @@ Chức năng: chứng minh đầy đủ T1, T2 với dạng dãy lặp; lập kh
 - **Hình thức hóa:** Hai khối, mỗi khối ghi giả thiết.
 - **Kết nối:** Nhận C02 mẫu 2; C07 so ba cận với giá trị thật.
 - **Nguồn:** BV §9.3.1, (9.9); SNW ch. 4.
-- **Ghi chú soạn:** Ghi chú: các số hạng $e_k$ triệt tiêu ở T2a ($-\frac2Le_k+\frac1{L^2}2Le_k=0$). Nhận xét PL trong ghi chú: chứng minh T2b chỉ dùng $\frac12\lVert\nabla f\rVert^2\ge\mu e$; F06 dùng lại. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng".
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** ký hiệu $g_k$, bước $\eta=\frac1L$ nêu ở dòng Ý tưởng; bước 2 "H3 tại $x_k$ với $y=x^*$ (cần H4)", bước 3 "BĐ2 với $f_{\inf}=f^*$", bước 4 viết rõ phép thế để thấy hai số hạng $\mp\frac2Le_k$ triệt tiêu; ghi chú liệt kê chỗ dùng H2, H3, H4 và $\eta=1/L$, nguồn BV (9.18). Ghi chú: các số hạng $e_k$ triệt tiêu ở T2a ($-\frac2Le_k+\frac1{L^2}2Le_k=0$). Nhận xét PL trong ghi chú: chứng minh T2b chỉ dùng $\frac12\lVert\nabla f\rVert^2\ge\mu e$; F06 dùng lại. **Bản sửa 2026-10-08** (R21): dòng "Ý tưởng".
 
 #### C07 — Ba cận trên ví dụ bậc hai (Ví dụ C)
 

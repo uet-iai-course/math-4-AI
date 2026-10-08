@@ -362,7 +362,7 @@ Mẫu 2 với $u_k=d_k^2$.
 
 Bước 1 (BĐ4, $\eta=\tfrac1L$): $d_{k+1}^2=d_k^2-\tfrac2L\nabla f(x_k)^T(x_k-x^*)+\tfrac1{L^2}\lVert\nabla f(x_k)\rVert^2$.
 
-Bước 2 (H3 tại $x_k$, với $y=x^*$): $f^*\ge f(x_k)+\nabla f(x_k)^T(x^*-x_k)+\tfrac\mu2d_k^2$, tức $\nabla f(x_k)^T(x_k-x^*)\ge e_k+\tfrac\mu2d_k^2$.
+Bước 2 (H3 tại $x_k$, với $y=x^*$; cần H4): $f^*\ge f(x_k)+\nabla f(x_k)^T(x^*-x_k)+\tfrac\mu2d_k^2$, tức $\nabla f(x_k)^T(x_k-x^*)\ge e_k+\tfrac\mu2d_k^2$.
 
 Bước 3 (BĐ2, với $f_{\inf}=f^*$): $\lVert\nabla f(x_k)\rVert^2\le2L\,e_k$.
 
@@ -372,7 +372,7 @@ $$
 d_{k+1}^2\le d_k^2-\frac2L\Bigl(e_k+\frac\mu2d_k^2\Bigr)+\frac{2L e_k}{L^2}=\Bigl(1-\frac\mu L\Bigr)d_k^2.
 $$
 
-Các số hạng chứa $e_k$ triệt tiêu. Mẫu 2 cho kết luận.
+Các số hạng chứa $e_k$ triệt tiêu. Mẫu 2 cho kết luận. Bước $\eta=1/L$ cần ở bước 4 để hệ số $\tfrac1{L^2}\cdot2L$ khớp $\tfrac2L$.
 :::
 
 ::: proof Chứng minh T2b
@@ -381,6 +381,8 @@ Mẫu 2 với $u_k=e_k$. Bổ đề giảm với $\eta=1/L$ và vế thứ hai c
 $$
 e_{k+1}\le e_k-\frac1{2L}\lVert\nabla f(x_k)\rVert^2\le\Bigl(1-\frac\mu L\Bigr)e_k.
 $$
+
+Mẫu 2 cho $e_k\le(1-\tfrac\mu L)^ke_0$; ở cả T2a và T2b, mẫu 2 cần $q=1-\tfrac\mu L\ge0$, đúng vì $\mu\le L$.
 :::
 
 Ngoài bổ đề giảm, chứng minh T2b chỉ dùng vế thứ hai của BĐ3, tức $\tfrac12\lVert\nabla f\rVert^2\ge\mu e$; phần F lấy chính bất đẳng thức này làm giả thiết cho hàm không lồi. Vì $1-u\le e^{-u}$, $(1-\tfrac1\kappa)^ke_0\le e^{-k/\kappa}e_0$, nên $k\ge\kappa\ln(e_0/\varepsilon)$ bước đủ để $e_k\le\varepsilon$. T2a kèm mũi tên $e\le\tfrac L2d^2$ cũng cho một cận tuyến tính cho $e_k$, với hằng số $\tfrac L2D^2$ thay cho $e_0$; ở Ví dụ C hằng số này là $70$, lớn hơn $e_0=62$.

@@ -153,15 +153,16 @@
 <aside class="notes"><p>Luôn có $\mu\le L$ vì BĐ1 và H3 cùng đúng, nên $q\ge0$; $\mu&gt;0$ cho $q&lt;1$. Ý chứng minh: thay cận tuyến tính của H1 trong bất đẳng thức một bước bằng cận bậc hai của H3, số hạng $\tfrac\mu2d_k^2$ thêm vào biến bất đẳng thức thành phép co $u_{k+1}\le q\,u_k$, rồi áp mẫu co. Số bước: vì $1-u\le e^{-u}$, $(1-\tfrac1\kappa)^ke_0\le e^{-k/\kappa}e_0$, nên $k\ge\kappa\ln(e_0/\varepsilon)$ đủ để $e_k\le\varepsilon$. Từ T2a và mũi tên $e\le\tfrac L2d^2$ cũng suy ra một cận tuyến tính cho $e_k$, nhưng với hằng số $\tfrac L2D^2$ thay cho $e_0$; T2b được chứng minh riêng.</p><p>Boyd và Vandenberghe (§9.3.1, (9.18)) phát biểu T2b với các hằng số $m$, $M$ (ở đây $\mu$, $L$) cho tìm bước chính xác, dùng mức giảm của bước $1/M$ làm cận; với bước cố định $1/L$ lập luận giống hệt. T2a không có trong Boyd và Vandenberghe; nó suy trực tiếp từ BĐ4.</p><p class="note-source"><strong>Nguồn:</strong> T2b: Boyd và Vandenberghe (2004), §9.3.1, (9.18); T2a suy trực tiếp; Bài 04, hội tụ tuyến tính.</p></aside></section>
 
 <section data-slide-id="C06" class="dense"><h2>Chứng minh định lý tuyến tính</h2>
-<p><b>Ý tưởng:</b> thay cận tuyến tính của H1 bằng cận bậc hai của H3, để bất đẳng thức một bước thành phép co.</p>
+<p><b>Ý tưởng:</b> thay cận tuyến tính của H1 bằng cận bậc hai của H3, để bất đẳng thức một bước thành phép co (mẫu 2). Viết $g_k=\nabla f(x_k),$ bước $\eta=\tfrac1L.$</p>
 <p><b>T2a</b> (mẫu 2 với $u_k=d_k^2$):</p>
-<ol class="steps"><li>BĐ4 với $\eta=\tfrac1L\text{:}$ $\;d_{k+1}^2=d_k^2-\tfrac2L\nabla f(x_k)^T(x_k-x^*)+\tfrac1{L^2}\lVert\nabla f(x_k)\rVert^2.$</li>
-<li>H3 tại $y=x^*\text{:}$ $\;\nabla f(x_k)^T(x_k-x^*)\ge e_k+\tfrac\mu2d_k^2.$</li>
-<li>BĐ2: $\;\lVert\nabla f(x_k)\rVert^2\le2L\,e_k.$</li>
-<li>Ghép 1–3: $\;d_{k+1}^2\le\bigl(1-\tfrac\mu L\bigr)d_k^2.$</li></ol>
-<p><b>T2b</b> (mẫu 2 với $u_k=e_k$): bổ đề giảm và BĐ3, $\lVert\nabla f(x_k)\rVert^2\ge2\mu e_k,$ cho</p>
-<div class="formula" tabindex="0">$$e_{k+1}\le e_k-\tfrac1{2L}\lVert\nabla f(x_k)\rVert^2\le\bigl(1-\tfrac\mu L\bigr)e_k.$$</div>
-<aside class="notes"><p>Ở bước 4 của T2a, các số hạng chứa $e_k$ triệt tiêu: $-\tfrac2Le_k+\tfrac1{L^2}\cdot2Le_k=0$, còn lại $d_k^2-\tfrac\mu Ld_k^2$.</p><p>T2b chỉ dùng $\tfrac12\lVert\nabla f\rVert^2\ge\mu e$ (hệ quả của H3 theo BĐ3); bất đẳng thức này được đặt tên là điều kiện Polyak–Łojasiewicz (PL) ở phần mục tiêu không lồi.</p><p class="note-source"><strong>Nguồn:</strong> T2b: Boyd và Vandenberghe (2004), §9.3.1, (9.9); T2a suy trực tiếp.</p></aside></section>
+<ol class="steps"><li>BĐ4 với $\eta=\tfrac1L\text{:}$ $\;d_{k+1}^2=d_k^2-\tfrac2L\,g_k^T(x_k-x^*)+\tfrac1{L^2}\lVert g_k\rVert^2.$</li>
+<li>H3 tại $x_k$ với $y=x^*$ (cần H4): $\;g_k^T(x_k-x^*)\ge e_k+\tfrac\mu2d_k^2.$</li>
+<li>BĐ2 với $f_{\inf}=f^*\text{:}$ $\;\lVert g_k\rVert^2\le2L\,e_k.$</li>
+<li>Thế 2, 3 vào 1: $\;d_{k+1}^2\le d_k^2-\tfrac2L\bigl(e_k+\tfrac\mu2d_k^2\bigr)+\tfrac2Le_k=\bigl(1-\tfrac\mu L\bigr)d_k^2.$</li></ol>
+<p><b>T2b</b> (mẫu 2 với $u_k=e_k$): bổ đề giảm với $\eta=\tfrac1L$ và BĐ3, $\lVert g_k\rVert^2\ge2\mu e_k,$ cho</p>
+<div class="formula" tabindex="0">$$e_{k+1}\le e_k-\tfrac1{2L}\lVert g_k\rVert^2\le\bigl(1-\tfrac\mu L\bigr)e_k.$$</div>
+<p>Mẫu 2 cho ${d_k^2\le(1-\tfrac\mu L)^kD^2}$ và ${e_k\le(1-\tfrac\mu L)^ke_0};$ mẫu 2 cần ${q=1-\tfrac\mu L\ge0},$ đúng vì $\mu\le L.$</p>
+<aside class="notes"><p>Ở bước 4 của T2a, các số hạng chứa $e_k$ triệt tiêu: $-\tfrac2Le_k+\tfrac1{L^2}\cdot2Le_k=0$, còn lại $d_k^2-\tfrac\mu Ld_k^2$. Chỗ dùng giả thiết: H3 ở bước 2 (cận bậc hai thay cận tuyến tính của H1) và trong BĐ3; H4 để có $x^*$, $f^*$ ở bước 2 và để $f_{\inf}=f^*$ ở bước 3; H2 trong BĐ2 và bổ đề giảm; bước $\eta=1/L$ để hệ số $\tfrac1{L^2}\cdot2L$ khớp $\tfrac2L$ ở bước 4 và để bổ đề giảm cho đúng $\tfrac1{2L}\lVert g_k\rVert^2$.</p><p>T2b chỉ dùng $\tfrac12\lVert g_k\rVert^2\ge\mu e_k$, hệ quả của H3 theo BĐ3; bất đẳng thức này được đặt tên là điều kiện Polyak–Łojasiewicz (PL) ở phần mục tiêu không lồi. Boyd và Vandenberghe (§9.3.1, (9.18)) dùng đúng chuỗi này cho tìm bước chính xác: mức giảm của tìm bước chính xác không nhỏ hơn mức giảm của bước $1/M$.</p><p class="note-source"><strong>Nguồn:</strong> T2b: Boyd và Vandenberghe (2004), §9.3.1, (9.9), (9.18); T2a suy trực tiếp.</p></aside></section>
 
 <section data-slide-id="C07" class="dense"><h2>Ba cận trên ví dụ bậc hai (Ví dụ C)</h2>
 <div class="cols"><div><figure><img src="img/lec-05b/vdc-three-bounds.svg" alt="Trên thang logarit, cận 70/k giảm chậm, hai cận tuyến tính là đường thẳng, còn sai số giá trị và bình phương khoảng cách thật của Ví dụ C giảm nhanh hơn nhiều." /></figure></div>
