@@ -496,7 +496,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Độ dốc trên các khoảng: $-1,-\frac13,\frac13,1$.
 - **Kết nối:** Nhận giới hạn C08; D02 thay gradient bằng dưới gradient.
 - **Nguồn:** Tự xây dựng; Bài 05, ví dụ ba quan sát.
-- **Ghi chú soạn:** Cùng dữ liệu với VD-A để thấy chỉ đổi mất mát. **Bản sửa 2026-10-08** (R38): "hồi quy độ lệch tuyệt đối nhỏ nhất (least absolute deviations)".
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu mở nêu nhu cầu (mất mát trị tuyệt đối và mất mát bản lề có điểm gãy, không có $L$, bổ đề giảm và T1', T2 không dùng được); Ví dụ B tự chứa (ba quan sát $-1,1,3$, công thức, nghiệm trung vị, $f^*$, điểm gãy, độ dốc); câu kết "Còn dùng được: BĐ4 (đúng với mọi vectơ $g$) và hệ quả của H1, nếu có một vectơ thay vai trò gradient"; "mất mát hinge" đổi thành "mất mát bản lề", câu hồi quy độ lệch tuyệt đối nhỏ nhất vào ghi chú; hình thêm nhãn "điểm gãy"; nguồn SNW ch. 5 §5.2. Cùng dữ liệu với VD-A để thấy chỉ đổi mất mát. **Bản sửa 2026-10-08** (R38): "hồi quy độ lệch tuyệt đối nhỏ nhất (least absolute deviations)".
 
 #### D02 — Dưới gradient
 

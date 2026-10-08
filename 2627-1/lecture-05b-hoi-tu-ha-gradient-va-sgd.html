@@ -186,12 +186,14 @@
 </section>
 <section>
 <section data-slide-id="D01" class="dense"><h2>Mục tiêu không khả vi</h2>
-<div class="cols"><div><figure><img src="img/lec-05b/vdb-objective.svg" alt="Hàm trị tuyệt đối trung bình gãy khúc tại −1, 1, 3 và hàm bình phương trung bình trơn, cả hai đạt cực tiểu 4/3 tại 1." /></figure></div>
-<div><p><b>Ví dụ B.</b> Cùng ba quan sát $-1,1,3$ của Ví dụ A, đổi mất mát:</p>
+<p>Mất mát trị tuyệt đối và mất mát bản lề có điểm gãy: $f$ không khả vi tại đó và không có hằng số $L,$ nên bổ đề giảm và T1', T2, T2' không dùng được.</p>
+<div class="cols"><div><figure><img src="img/lec-05b/vdb-objective.svg" alt="Hàm trị tuyệt đối trung bình gãy khúc tại −1, 1, 3 (điểm gãy được đánh dấu) và hàm bình phương trung bình trơn, cả hai đạt cực tiểu 4/3 tại 1." /></figure></div>
+<div><p><b>Ví dụ B</b> (trị tuyệt đối trên ba quan sát $-1,1,3,$ cùng dữ liệu với Ví dụ A)<b>.</b></p>
 <div class="formula" tabindex="0">$$f(x)=\tfrac13\bigl(\lvert x+1\rvert+\lvert x-1\rvert+\lvert x-3\rvert\bigr).$$</div>
-<ul><li>Bình phương cho trung bình $1;$ trị tuyệt đối cho trung vị $x^*=1,$ $f^*=\tfrac43.$</li><li>$f$ không khả vi tại $-1,1,3;$ độ dốc nhảy $-1,-\tfrac13,\tfrac13,1.$</li><li>Không có hằng số $L\text{:}$ định lý T1, T2 không áp dụng.</li></ul>
-<p>Hồi quy độ lệch tuyệt đối nhỏ nhất (least absolute deviations) và mất mát hinge có cùng cấu trúc.</p></div></div>
-<aside class="notes"><p>Giới hạn của phần trước: mọi bảo đảm cho hạ gradient đều đi qua bổ đề giảm, và bổ đề giảm cần gradient Lipschitz. Ví dụ B giữ nguyên dữ liệu và chỉ đổi mất mát, nên mọi khác biệt so với Ví dụ A đến từ tính không trơn. Trên mỗi khoảng giữa hai quan sát, $f$ tuyến tính; tại quan sát, đạo hàm trái và phải khác nhau. Cần một vectơ thay cho gradient và một bảo đảm không dựa vào bổ đề giảm.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự xây dựng; Bài 05, ví dụ ba quan sát.</p></aside></section>
+<ul><li>$f$ lồi (tổng các hàm lồi); nghiệm là trung vị ${x^*=1},$ ${f^*=\tfrac43}.$</li><li>Điểm gãy tại $-1,1,3;$ độ dốc lần lượt $-1,-\tfrac13,\tfrac13,1$ trên bốn khoảng.</li></ul>
+</div></div>
+<p>Còn dùng được: BĐ4 (đúng với mọi vectơ $g$) và hệ quả của H1, nếu có một vectơ thay vai trò gradient.</p>
+<aside class="notes"><p>Mọi bảo đảm cho hạ gradient (T1', T2, T2') đều đi qua bổ đề giảm, và bổ đề giảm cần H2. Ở Ví dụ B, quanh $x=1$ đạo hàm nhảy từ $-\tfrac13$ lên $\tfrac13$, nên tỉ số $\lvert f'(x)-f'(y)\rvert/\lvert x-y\rvert$ với $x&lt;1&lt;y$ không bị chặn khi $x,y\to1$. Ví dụ B giữ nguyên dữ liệu của Ví dụ A, $J(\theta)=\tfrac16\sum_i(\theta-y_i)^2$ với $y=(-1,1,3)$, và chỉ đổi mất mát, nên mọi khác biệt đến từ tính không trơn; mất mát bình phương cho trung bình, mất mát trị tuyệt đối cho trung vị, ở đây cùng bằng $1$. Hồi quy độ lệch tuyệt đối nhỏ nhất (least absolute deviations) và mất mát bản lề có cùng cấu trúc tuyến tính từng khúc. BĐ4 là khai triển bình phương chuẩn nên không cần gradient; hệ quả của H1, $g^T(x-x^*)\ge f(x)-f^*$, cần một vectơ $g$ thay gradient, và trang tiếp theo định nghĩa vectơ đó.</p><p class="note-source"><strong>Nguồn:</strong> Ví dụ tự xây dựng; Bài 05, ví dụ ba quan sát; Sra, Nowozin và Wright (2011), ch. 5, §5.2.</p></aside></section>
 
 <section data-slide-id="D02" class="dense"><h2>Dưới gradient</h2>
 <div class="cols"><div><figure><img src="img/lec-05b/subgradient-supporting-lines.svg" alt="Tại điểm gãy x = 1 của Ví dụ B, các đường thẳng độ dốc −1/3, 0, 1/3 nằm dưới đồ thị; đường độ dốc 0,6 cắt đồ thị." /></figure></div>

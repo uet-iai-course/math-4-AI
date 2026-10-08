@@ -430,11 +430,11 @@ T1', T2 và T2' đều cần H2. Mất mát bản lề (hinge loss) $\max\{0,1-y
 
 ### Mục tiêu không khả vi
 
-Ví dụ B giữ nguyên dữ liệu của Ví dụ A và chỉ đổi mất mát. Trên mỗi khoảng giữa hai quan sát, $f$ tuyến tính với độ dốc $-1,-\tfrac13,\tfrac13,1$ lần lượt trên $(-\infty,-1)$, $(-1,1)$, $(1,3)$, $(3,\infty)$; tại $-1,1,3$ đạo hàm trái và phải khác nhau. Mất mát bình phương cho nghiệm là trung bình $1$, mất mát trị tuyệt đối cho trung vị, cũng bằng $1$, với $f^*=\tfrac13(2+0+2)=\tfrac43$. Hồi quy độ lệch tuyệt đối nhỏ nhất (least absolute deviations) và mất mát bản lề có cùng cấu trúc.
+Mất mát trị tuyệt đối và mất mát bản lề có điểm gãy: $f$ không khả vi tại đó và không có hằng số $L$, nên bổ đề giảm và T1', T2, T2' không dùng được. Ví dụ B giữ nguyên dữ liệu của Ví dụ A và chỉ đổi mất mát; $f$ lồi vì là tổng các hàm lồi. Trên mỗi khoảng giữa hai quan sát, $f$ tuyến tính với độ dốc $-1,-\tfrac13,\tfrac13,1$ lần lượt trên $(-\infty,-1)$, $(-1,1)$, $(1,3)$, $(3,\infty)$; tại $-1,1,3$ đạo hàm trái và phải khác nhau. Mất mát bình phương cho nghiệm là trung bình $1$, mất mát trị tuyệt đối cho trung vị, cũng bằng $1$, với $f^*=\tfrac13(2+0+2)=\tfrac43$. Hồi quy độ lệch tuyệt đối nhỏ nhất (least absolute deviations) và mất mát bản lề có cùng cấu trúc.
 
-![Hàm trị tuyệt đối trung bình gãy khúc tại −1, 1, 3 và hàm bình phương trung bình trơn, cả hai đạt cực tiểu 4/3 tại 1.](img/lec-05b/vdb-objective.svg)
+![Hàm trị tuyệt đối trung bình gãy khúc tại −1, 1, 3 (điểm gãy được đánh dấu) và hàm bình phương trung bình trơn, cả hai đạt cực tiểu 4/3 tại 1.](img/lec-05b/vdb-objective.svg)
 
-Ở Ví dụ B, hằng số $L$ của H2 không tồn tại: quanh $x=1$, đạo hàm nhảy từ $-\tfrac13$ lên $\tfrac13$, nên tỉ số $\lvert f'(x)-f'(y)\rvert/\lvert x-y\rvert$ với $x<1<y$ không bị chặn khi $x,y\to1$. Bổ đề giảm, và cùng với nó T1, T2, T2', vì vậy không áp dụng. Phần này thay gradient bằng dưới gradient và thay bổ đề giảm bằng bất đẳng thức một bước cho $d_k$.
+Ở Ví dụ B, hằng số $L$ của H2 không tồn tại: quanh $x=1$, đạo hàm nhảy từ $-\tfrac13$ lên $\tfrac13$, nên tỉ số $\lvert f'(x)-f'(y)\rvert/\lvert x-y\rvert$ với $x<1<y$ không bị chặn khi $x,y\to1$. Bổ đề giảm, và cùng với nó T1, T2, T2', vì vậy không áp dụng. Hai công cụ vẫn dùng được: BĐ4, vì nó đúng với mọi vectơ $g$, và hệ quả của H1, nếu có một vectơ thay vai trò gradient. Phần này thay gradient bằng dưới gradient và thay bổ đề giảm bằng bất đẳng thức một bước cho $d_k$.
 
 ### Dưới gradient
 
