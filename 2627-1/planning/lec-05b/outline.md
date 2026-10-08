@@ -562,7 +562,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Hình thức hóa:** Đáp án ghi chú (R41): (1) $x_k=\tfrac52,\tfrac{11}6,\tfrac76,\tfrac12$; sai số $\tfrac12,\tfrac5{18},\tfrac1{18},\tfrac16$; lặp tốt nhất $\tfrac76$ (sai số $\tfrac1{18}$); $\bar x_4=\tfrac32$ (sai số $\tfrac16$); cận T3 với $D=1{,}5$, $G=1$: $\tfrac{73}{64}\approx1{,}14$; bước tối ưu $0{,}75$. (3) Jensen và H1 dạng dưới gradient.
 - **Kết nối:** Kết thúc D.
 - **Nguồn:** Tự xây dựng.
-- **Ghi chú soạn:** Dữ kiện đổi ở bản sửa R41 để bước cuối đi qua điểm gãy $x=1$. **Bản sửa 2026-10-08** (R41): dữ kiện mới $x_0=2{,}5$, $\eta=2$.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dòng dữ kiện chung ($f$, $y$, $x^*=1$, $f^*=\frac43$, $G=1$); bốn câu, mỗi câu một dòng: (1) chạy từ $x_0=2{,}5$; (2) lịch $c/\sqrt{k+1}$ với bất đẳng thức $\sum\frac1{k+1}\le1+\ln K$ cho sẵn; (3) Robbins–Monro; (4) chỗ dùng tính lồi (câu 2(a), 2(b) cũ tách thành câu 2, 3); đáp án ghi chú đánh số theo các bước của chứng minh T3 trên trang (bước 2, bước 5); "trang thuật toán" thay bằng "lượt bước $4{,}5$ từ $x_0=0$ trên cùng ví dụ"; exercises Bài 4 đồng bộ. Trang đổi sang cỡ chữ thường. Dữ kiện đổi ở bản sửa R41 để bước cuối đi qua điểm gãy $x=1$. **Bản sửa 2026-10-08** (R41): dữ kiện mới $x_0=2{,}5$, $\eta=2$.
 
 ### E. Hạ gradient ngẫu nhiên cho hàm lồi và lồi mạnh
 

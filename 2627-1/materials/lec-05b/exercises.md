@@ -100,33 +100,32 @@ Ta có $e_{13}\approx0{,}01135$ và $e_{14}\approx0{,}00701$, nên $k=14$. Dãy 
 Mức độ: tính toán hoặc chứng minh. LLO6, LLO8, CLO1.
 
 ::: exercise Bài 4
-Cho Ví dụ B, $f(x)=\tfrac13\bigl(\lvert x+1\rvert+\lvert x-1\rvert+\lvert x-3\rvert\bigr)$.
+Cho Ví dụ B, $f(x)=\tfrac13\bigl(\lvert x+1\rvert+\lvert x-1\rvert+\lvert x-3\rvert\bigr)$, với $x^*=1$, $f^*=\tfrac43$, $G=1$.
 
 1. Từ $x_0=2{,}5$, bước $\eta=2$, $K=4$: tính $x_0,\dots,x_3$, lặp tốt nhất và $\bar x_4$; so với cận T3.
-2. Với $\eta_k=\tfrac c{\sqrt{k+1}}$:
-   (a) chứng minh $\sum_{k<K}\eta_k\ge c\sqrt K$ và $\sum_{k<K}\eta_k^2\le c^2(1+\ln K)$, rồi suy ra cận dạng $\ln K/\sqrt K$;
-   (b) chỉ ra $\tfrac c{k+1}$ thỏa điều kiện Robbins–Monro còn $\tfrac c{\sqrt{k+1}}$ thì không, dù cận ở (a) vẫn tiến về $0$.
-3. Chỉ ra bước nào của chứng minh T3 cần tính lồi khi đầu ra là $\bar x_K$.
+2. Với $\eta_k=\tfrac c{\sqrt{k+1}}$, dùng $\sum_{k<K}\tfrac1{k+1}\le1+\ln K$ để suy ra cận T3 dạng $O(\ln K/\sqrt K)$.
+3. Chỉ ra $\tfrac c{k+1}$ thỏa điều kiện Robbins–Monro còn $\tfrac c{\sqrt{k+1}}$ thì không, dù cận ở câu 2 vẫn tiến về $0$.
+4. Chỉ ra bước nào của chứng minh T3 dùng tính lồi khi đầu ra là $\bar x_K$.
 :::
 
 ::: hint Gợi ý Bài 4
-Trên $(1,3)$ hai số hạng đầu có độ dốc $+1$ và số hạng cuối có độ dốc $-1$. Ở câu 2(a), chặn từng số hạng $1/\sqrt{k+1}$ từ dưới bởi $1/\sqrt K$, và so $\sum_{k<K}\tfrac1{k+1}$ với tích phân $\int_1^K\tfrac{dt}t$.
+Trên $(1,3)$ hai số hạng đầu có độ dốc $+1$ và số hạng cuối có độ dốc $-1$. Ở câu 2, chặn từng số hạng $1/\sqrt{k+1}$ từ dưới bởi $1/\sqrt K$, và chặn $\sum_{k<K}\eta_k^2$ bằng bất đẳng thức đã cho (so tổng với tích phân $\int_1^K\tfrac{dt}t$).
 :::
 
 ::: solution Lời giải Bài 4
-1. Trên khoảng $(1,3)$, hai số hạng đầu có độ dốc $+1$, số hạng cuối có độ dốc $-1$, nên $f'=\tfrac13$ và mỗi bước trừ $\eta g=\tfrac23$. Ba bước cho $x_1=\tfrac{11}6$, $x_2=\tfrac76$, $x_3=\tfrac12$; bước thứ ba vượt qua điểm gãy $x=1$. Các sai số $f(x_k)-\tfrac43$ lần lượt là $\tfrac12$, $\tfrac5{18}$, $\tfrac1{18}$, $\tfrac16$, nên lặp tốt nhất là $x_2=\tfrac76$ (sai số $\tfrac1{18}$). Trung bình lặp $\bar x_4=\tfrac14(\tfrac52+\tfrac{11}6+\tfrac76+\tfrac12)=\tfrac32$ có sai số $\tfrac16$. Với $D=1{,}5$, $G=1$, cận T3 là $\tfrac{2{,}25+4\cdot4}{2\cdot4\cdot2}=\tfrac{73}{64}\approx1{,}14$; bước tối ưu là $D/(G\sqrt K)=0{,}75$. Ở lượt này lặp tốt nhất tốt hơn trung bình lặp; ở lượt bước $4{,}5$ của ghi chú thì ngược lại. T3 chặn cả hai.
+1. Trên khoảng $(1,3)$, hai số hạng đầu có độ dốc $+1$, số hạng cuối có độ dốc $-1$, nên $f'=\tfrac13$ và mỗi bước trừ $\eta g=\tfrac23$. Ba bước cho $x_1=\tfrac{11}6$, $x_2=\tfrac76$, $x_3=\tfrac12$; bước thứ ba vượt qua điểm gãy $x=1$. Các sai số $f(x_k)-\tfrac43$ lần lượt là $\tfrac12$, $\tfrac5{18}$, $\tfrac1{18}$, $\tfrac16$, nên lặp tốt nhất là $x_2=\tfrac76$ (sai số $\tfrac1{18}$). Trung bình lặp $\bar x_4=\tfrac14(\tfrac52+\tfrac{11}6+\tfrac76+\tfrac12)=\tfrac32$ có sai số $\tfrac16$. Với $D=1{,}5$, $G=1$, cận T3 là $\tfrac{2{,}25+4\cdot4}{2\cdot4\cdot2}=\tfrac{73}{64}\approx1{,}14$; bước tối ưu là $D/(G\sqrt K)=0{,}75$. Ở lượt này lặp tốt nhất tốt hơn trung bình lặp; ở lượt bước $4{,}5$ từ $x_0=0$ trên cùng ví dụ thì ngược lại. T3 chặn cả hai.
 
 Trường hợp riêng: khi $x_k=1$, dưới vi phân là cả đoạn $[-\tfrac13,\tfrac13]$, và bước tiếp theo cho $x_{k+1}=1-\eta g_k\in[1-\tfrac\eta3,1+\tfrac\eta3]$: dãy có thể rời nghiệm, tùy dưới gradient được chọn; chỉ khi chọn $g_k=0$ thì dãy đứng yên.
 
-2. (a) Với $k<K$, $\tfrac1{\sqrt{k+1}}\ge\tfrac1{\sqrt K}$, nên $\sum_{k<K}\eta_k\ge Kc/\sqrt K=c\sqrt K$. Và $\sum_{k<K}\eta_k^2=c^2\sum_{j=1}^K\tfrac1j\le c^2\bigl(1+\int_1^K\tfrac{dt}t\bigr)=c^2(1+\ln K)$. Thế vào T3:
+2. Với $k<K$, $\tfrac1{\sqrt{k+1}}\ge\tfrac1{\sqrt K}$, nên $\sum_{k<K}\eta_k\ge Kc/\sqrt K=c\sqrt K$. Và $\sum_{k<K}\eta_k^2=c^2\sum_{j=1}^K\tfrac1j\le c^2\bigl(1+\int_1^K\tfrac{dt}t\bigr)=c^2(1+\ln K)$. Thế vào T3:
 
 $$
 \frac{D^2+G^2c^2(1+\ln K)}{2c\sqrt K}=O\Bigl(\frac{\ln K}{\sqrt K}\Bigr)\to0.
 $$
 
-(b) Với $\eta_k=\tfrac c{k+1}$: $\sum\tfrac c{k+1}=\infty$ (chuỗi điều hòa) và $\sum\tfrac{c^2}{(k+1)^2}=\tfrac{c^2\pi^2}6<\infty$. Với $\eta_k=\tfrac c{\sqrt{k+1}}$: $\sum\eta_k^2=c^2\sum\tfrac1{k+1}=\infty$, nên điều kiện thứ hai sai. Điều kiện Robbins–Monro là đủ, không cần, để cận T3 tiến về $0$.
+3. Với $\eta_k=\tfrac c{k+1}$: $\sum\tfrac c{k+1}=\infty$ (chuỗi điều hòa) và $\sum\tfrac{c^2}{(k+1)^2}=\tfrac{c^2\pi^2}6<\infty$. Với $\eta_k=\tfrac c{\sqrt{k+1}}$: $\sum\eta_k^2=c^2\sum\tfrac1{k+1}=\infty$, nên điều kiện thứ hai sai. Điều kiện Robbins–Monro là đủ, không cần, để cận T3 tiến về $0$.
 
-3. Tính lồi dùng ở hai chỗ: bước 1, chặn $g_k^T(x_k-x^*)\ge e_k$ (H1 dạng dưới gradient), và bước 4, Jensen (BĐ5) cho $f(\bar x_K)$. Đầu ra lặp tốt nhất chỉ cần bước 1.
+4. Tính lồi dùng ở hai chỗ của chứng minh T3: chặn $g_k^T(x_k-x^*)\ge e_k$ (hệ quả của H1 dạng dưới gradient) và Jensen (BĐ5) cho $f(\bar x_K)$. Đầu ra lặp tốt nhất chỉ cần chỗ thứ nhất.
 :::
 
 ## Bài 5. Hạ gradient ngẫu nhiên trên hai ví dụ
