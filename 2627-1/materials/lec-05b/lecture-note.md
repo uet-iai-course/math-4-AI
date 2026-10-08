@@ -1006,18 +1006,18 @@ Trong cột tốc độ, "tuyến tính tới sàn nhiễu" chỉ cận dạng $
 
 ### Khuôn chứng minh chung
 
-| Giả thiết đổi | Bất đẳng thức một bước | Cách giải | Thu được |
+| Đổi so với dòng trên | Bất đẳng thức một bước | Cách nối | Thu được |
 |---|---|---|---|
 | H1, H2, H4 | $e_{k+1}\le\frac1{2\eta}(d_k^2-d_{k+1}^2)$, $\eta\le\frac1L$ | tổng lồng | T1, T1' |
-| thêm H3 | $d_{k+1}^2\le(1-\frac\mu L)d_k^2$ | co | T2a, T2b, T2' |
+| thêm H3 | $d_{k+1}^2\le(1-\frac\mu L)d_k^2$, $\eta=\frac1L$ | co | T2a, T2b, T2' |
 | bỏ H2, H3; thêm H5 | $d_{k+1}^2\le d_k^2-2\eta_ke_k+\eta_k^2G^2$ | tổng lồng có trọng số | T3 |
 | H5 → H6, H6a | như trên, với $\mathbb E[\cdot\mid\mathcal F_k]$ | tổng lồng | T4 |
-| thêm H2, H3; H6b | $a_{k+1}\le(1-\eta\mu)a_k+\eta^2\sigma^2$ | giải đệ quy | T5, lịch theo pha |
-| H3, H6a trên vùng | $a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2$ | giải đệ quy (quy nạp $C/k$) | T6 |
-| bỏ H1, H3, H4; thêm H0 | $\mathbb E\Delta_{k+1}\le\mathbb E\Delta_k-\frac\eta2\mathbb E\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2$ | tổng lồng | T7, T8 |
+| thêm H2, H3; H6a → H6b | $a_{k+1}\le(1-\eta\mu)a_k+\eta^2\sigma^2$, $\eta\le\frac1L$ | giải đệ quy | T5, lịch theo pha |
+| bỏ H2; H6b → H6a trên vùng chứa dãy lặp | $a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2$ | giải đệ quy (quy nạp cận $C/k$) | T6 |
+| bỏ H1, H3, H4, H6a; thêm H0, H2, H6b | $\mathbb E\Delta_{k+1}\le\mathbb E\Delta_k-\frac\eta2\mathbb E\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2$, $\eta\le\frac1L$ | tổng lồng | T7, T8 |
 | thêm H7 | $\mathbb E\Delta_{k+1}\le(1-\eta\mu)\mathbb E\Delta_k+\frac{L\eta^2\sigma^2}2$ | giải đệ quy | T9 |
 
-Từ một dòng sang dòng kế, bất đẳng thức một bước đổi theo đúng giả thiết được thêm hoặc bớt: có H3 thì vế phải nhân một hệ số co thay vì trừ một hiệu; mất H2 thì số hạng $\eta_k^2G^2$ ở lại vì không còn bổ đề giảm để triệt nó; thay gradient bằng ước lượng không chệch thì mỗi dòng của chứng minh được lấy $\mathbb E[\cdot\mid\mathcal F_k]$; mất tính lồi thì hàm thế đổi từ $d^2$ sang $f-f_{\inf}$ vì $x^*$ không còn dùng được. Các kỹ thuật phụ gồm chọn tham số để cân bằng hai số hạng, Jensen cho trung bình lặp, Markov cho xác suất, và phản ví dụ cho mỗi giả thiết bị bỏ.
+Từ một dòng sang dòng kế, bất đẳng thức một bước đổi theo đúng giả thiết được thêm hoặc bớt: có H3 thì vế phải nhân một hệ số co thay vì trừ một hiệu; mất H2 thì số hạng $\eta_k^2G^2$ ở lại vì không còn bổ đề giảm để triệt nó; thay gradient bằng ước lượng không chệch thì mỗi dòng của chứng minh được lấy $\mathbb E[\cdot\mid\mathcal F_k]$; mất tính lồi thì hàm thế đổi từ $d^2$ sang $f-f_{\inf}$ vì $x^*$ không còn dùng được. Dạng của bất đẳng thức một bước quyết định cách nối. Các kỹ thuật phụ gồm chọn tham số để cân bằng hai số hạng, Jensen cho trung bình lặp, Markov cho xác suất, và phản ví dụ cho mỗi giả thiết bị bỏ.
 
 ### Phạm vi áp dụng
 

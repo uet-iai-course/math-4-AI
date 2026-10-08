@@ -102,16 +102,16 @@ Dưới H3, $\nabla f$ không bị chặn trên $\mathbb R^n$, nên H5 và H6a c
 
 ### Sợi chỉ chứng minh
 
-Sáu bậc; G02 trình bày lại bảng này trên mặt trang thành tám dòng (T6, T9 tách riêng). Cột giả thiết đổi và cột cách giải đồng bộ với G02 (R77).
+Sáu bậc; G02 trình bày lại bảng này trên mặt trang thành tám dòng (T6, T9 tách riêng). Cột giả thiết đổi và cột cách nối đồng bộ với G02 (R77; rà từng trang G02: cột một ghi thay đổi so với dòng trên, bậc 5 "thêm H2, H3; H6a → H6b", T6 "bỏ H2; H6b → H6a trên vùng", bậc 6 "bỏ H3, H4, H6a; thêm H0, H2, H6b").
 
-| Bậc | Giả thiết đổi | Bất đẳng thức một bước | Cách giải | Kết quả | Giới hạn tạo nhu cầu |
+| Bậc | Giả thiết đổi | Bất đẳng thức một bước | Cách nối | Kết quả | Giới hạn tạo nhu cầu |
 |---|---|---|---|---|---|
 | 1. GD lồi trơn (T1, T1') | H1, H2, H4; $\eta\le1/L$ | $e_{k+1}\le\frac1{2\eta}(d_k^2-d_{k+1}^2)$ (R84) | Tổng lồng (kèm tính đơn điệu của $e_k$) | $e_k\le\frac{LD^2}{2k}$ | Không dùng độ cong dưới; phải đúng cả cho $x_1^2$ |
 | 2. GD lồi mạnh (T2a, T2b, T2') | Thêm H3 | $d_{k+1}^2\le(1-\frac\mu L)d_k^2$; $e_{k+1}\le(1-\frac\mu L)e_k$ | Co | Tuyến tính | Cần $L$; trị tuyệt đối, hinge không có $L$ |
 | 3. Dưới gradient (T3) | Bỏ H2, H3; thêm H5; bước $\eta_k$ | $d_{k+1}^2\le d_k^2-2\eta_ke_k+\eta_k^2G^2$ | Tổng lồng (có trọng số) | $\frac{D^2+G^2\sum\eta_k^2}{2\sum\eta_k}$ | Cần dưới gradient của toàn bộ dữ liệu |
 | 4. SGD lồi (T4) | H5 → H6 + H6a | Cùng dòng dưới $\mathbb E[\cdot\mid\mathcal F_k]$ | Tổng lồng | Cùng cận cho $\mathbb Ef(\bar x_K)-f^*$ | Chỉ trung bình lặp; $1/\sqrt K$ chậm; không giải thích mức dừng của điểm cuối |
-| 5. SGD lồi mạnh (T5, T5-pha, T6) | Thêm H2, H3; H6b | $a_{k+1}\le(1-\eta\mu)a_k+\eta^2\sigma^2$ | Giải đệ quy (T6 bằng quy nạp $C/k$) | $(1-\eta\mu)^kD^2+\frac{\eta\sigma^2}\mu$; lịch chia đôi hoặc $\frac1{\mu(k+1)}$ | Cần lồi và $x^*$ |
-| 6. SGD không lồi (T7, T8, T9) | Bỏ H1, H3, H4; thêm H0 | $\mathbb Ef(x_{k+1})\le\mathbb Ef(x_k)-\frac\eta2\mathbb E\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2$ | Tổng lồng hàm thế $f-f_{\inf}$ (T7, T8); giải đệ quy (T9) | $\frac{2\Delta_0}{\eta K}+L\eta\sigma^2$ | Chỉ điểm dừng; PL khôi phục tuyến tính |
+| 5. SGD lồi mạnh (T5, T5-pha, T6) | Thêm H2, H3; H6a → H6b (T6: bỏ H2; H6b → H6a trên vùng) | $a_{k+1}\le(1-\eta\mu)a_k+\eta^2\sigma^2$ | Giải đệ quy (T6 bằng quy nạp $C/k$) | $(1-\eta\mu)^kD^2+\frac{\eta\sigma^2}\mu$; lịch chia đôi hoặc $\frac1{\mu(k+1)}$ | Cần lồi và $x^*$ |
+| 6. SGD không lồi (T7, T8, T9) | Bỏ H3, H4, H6a; thêm H0, H2, H6b (T9: thêm H7) | $\mathbb Ef(x_{k+1})\le\mathbb Ef(x_k)-\frac\eta2\mathbb E\lVert\nabla f(x_k)\rVert^2+\frac{L\eta^2\sigma^2}2$ | Tổng lồng hàm thế $f-f_{\inf}$ (T7, T8); giải đệ quy (T9) | $\frac{2\Delta_0}{\eta K}+L\eta\sigma^2$ | Chỉ điểm dừng; PL khôi phục tuyến tính |
 
 ## Ví dụ dẫn
 
@@ -799,8 +799,8 @@ Chức năng: tổng hợp T1–T9 thành bảng tra theo mục tiêu; kiểm lu
 #### G02 — Khuôn chứng minh chung
 
 - **Vai trò và mục tiêu:** Tổng hợp luận đề; MT2.
-- **Luận điểm trung tâm:** Sáu bậc của sợi chỉ chứng minh khác nhau ở bất đẳng thức một bước; cách giải chỉ gồm tổng lồng, co hoặc giải đệ quy.
-- **Ý chính:** Bảng tám dòng: giả thiết đổi | bất đẳng thức một bước (của định lý đầu dòng) | cách giải | thu được. Dòng 1: $e_{k+1}\le\frac1{2\eta}(d_k^2-d_{k+1}^2)$, $\eta\le1/L$, tổng lồng, T1, T1'; thêm H3: co, T2a, T2b, T2'; bỏ H2, H3, thêm H5: tổng lồng, T3; H5 → H6, H6a: tổng lồng, T4; thêm H2, H3, H6b: giải đệ quy, T5 và lịch theo pha; H3, H6a trên vùng: $a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2$, giải đệ quy (quy nạp), T6; bỏ H1, H3, H4, thêm H0: tổng lồng, T7, T8; thêm H7: $\mathbb E\Delta_{k+1}\le(1-\eta\mu)\mathbb E\Delta_k+\frac{L\eta^2\sigma^2}2$, giải đệ quy, T9. Câu kết trên mặt trang: "Tám dòng thuộc sáu bậc; T6, T9 là biến thể của bậc T5 và bậc T7–T8; T2', lịch pha, T6, T9 chỉ phát biểu. Dạng của bất đẳng thức một bước quyết định cách giải." (R56, R63, R72; câu "cột hai là bất đẳng thức của định lý đầu dòng" và "các bậc chỉ khác nhau ở bất đẳng thức một bước" chuyển vào ghi chú vì dòng thứ ba của chú thích chạm chân trang.)
+- **Luận điểm trung tâm:** Sáu bậc của sợi chỉ chứng minh khác nhau ở bất đẳng thức một bước; cách nối chỉ gồm tổng lồng, co hoặc giải đệ quy.
+- **Ý chính:** Bảng tám dòng: giả thiết đổi | bất đẳng thức một bước (của định lý đầu dòng) | cách nối | thu được. **Rà từng trang 2026-10-08:** tiêu đề cột một "Đổi so với dòng trên"; cột ba "Cách nối"; chuỗi giả thiết: H1, H2, H4 → thêm H3 → bỏ H2, H3, thêm H5 → H5 → H6, H6a → thêm H2, H3, H6a → H6b → bỏ H2, H6b → H6a trên vùng → bỏ H3, H4, H6a, thêm H0, H2, H6b → thêm H7; điều kiện bước chuyển vào ghi chú; chú thích một dòng "T2', lịch pha, T6, T9 chỉ phát biểu. Dạng của bất đẳng thức một bước quyết định cách nối."; ghi chú ba đoạn. Bản cũ: Dòng 1: $e_{k+1}\le\frac1{2\eta}(d_k^2-d_{k+1}^2)$, $\eta\le1/L$, tổng lồng, T1, T1'; thêm H3: co, T2a, T2b, T2'; bỏ H2, H3, thêm H5: tổng lồng, T3; H5 → H6, H6a: tổng lồng, T4; thêm H2, H3, H6b: giải đệ quy, T5 và lịch theo pha; H3, H6a trên vùng: $a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2$, giải đệ quy (quy nạp), T6; bỏ H1, H3, H4, thêm H0: tổng lồng, T7, T8; thêm H7: $\mathbb E\Delta_{k+1}\le(1-\eta\mu)\mathbb E\Delta_k+\frac{L\eta^2\sigma^2}2$, giải đệ quy, T9. Câu kết trên mặt trang: "Tám dòng thuộc sáu bậc; T6, T9 là biến thể của bậc T5 và bậc T7–T8; T2', lịch pha, T6, T9 chỉ phát biểu. Dạng của bất đẳng thức một bước quyết định cách giải." (R56, R63, R72; câu "cột hai là bất đẳng thức của định lý đầu dòng" và "các bậc chỉ khác nhau ở bất đẳng thức một bước" chuyển vào ghi chú vì dòng thứ ba của chú thích chạm chân trang.)
 - **Ví dụ/hình dự kiến:** Bảng.
 - **Hình thức hóa:** Không áp dụng.
 - **Kết nối:** Nhận luận đề A02; G03 nêu giới hạn.
