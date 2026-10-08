@@ -584,7 +584,7 @@ Trên cây, hai vế của tính chất tháp là hai thứ tự cộng trên c�
 ::: example Ví dụ A: kiểm tính chất tháp trên chín lá
 Chín lá $\theta_2$ và kỳ vọng có điều kiện tại ba nút mức một:
 
-| $\theta_1$ | ba giá trị $\theta_2$ | $\mathbb E[(\theta_2-1)^2\mid\theta_1]$ |
+| $\theta_1$ | ba giá trị $\theta_2$ | $\mathbb E[(\theta_2-1)^2\mid\mathcal F_1]$ |
 |---:|---|---:|
 | $-0{,}1$ | $-0{,}19$; $0{,}01$; $0{,}21$ | $1{,}007$ |
 | $0{,}1$ | $-0{,}01$; $0{,}19$; $0{,}39$ | $0{,}683$ |

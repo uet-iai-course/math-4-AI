@@ -588,7 +588,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Với biến rời rạc, $\mathbb E[Z\mid\mathcal F_k]$ là trung bình của $Z$ trên các nhánh con của nút hiện tại. Ký hiệu $\sigma(I_0,\dots,I_{k-1})$ chỉ trong ghi chú.
 - **Kết nối:** Nhận nhu cầu E01 và mô hình lấy mẫu độc lập của Bài 05; E03 phát biểu giả thiết về $g_k$ theo $\mathcal F_k$.
 - **Nguồn:** Bài 00 (kỳ vọng); Bài 05, ước lượng gradient không chệch; SNW ch. 5 §5.5.
-- **Ghi chú soạn:** Không dùng lý thuyết độ đo trên mặt trang; mọi ví dụ là rời rạc hữu hạn. **Bản sửa 2026-10-08** (R15): tên tiếng Anh; phép kiểm $\mathbb E[(\theta_2-1)^2\mid\theta_1]=1{,}007;\ 0{,}683;\ 0{,}424$, trung bình $0{,}704$; ghi chú bộ lọc thông tin và lấy mẫu có hoàn lại.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** cột trái: cây và chú thích tự chứa (Ví dụ A: $\theta_0=0$, $\theta_{k+1}=\theta_k-0{,}1(\theta_k-y)$, $y$ chọn đều trong $\{-1,1,3\}$; $\mathbb E(\theta_1-1)^2\approx0{,}837$); cột phải: bốn khối một ý mỗi khối (định nghĩa $\mathcal F_k$; kỳ vọng có điều kiện; tính chất tháp một dòng công thức; rút đại lượng đã biết) và dòng kiểm tháp trên cây; câu "trung bình ba nhánh $=J'(\theta_1)$" chỉ trong hình và ghi chú; ghi chú: $\sigma$-đại số, bộ lọc thông tin (filtration), độc lập đòi lấy mẫu có hoàn lại, xáo trộn theo lượt không thỏa điều kiện không chệch. Không tách trang (634–658/675). Không dùng lý thuyết độ đo trên mặt trang; mọi ví dụ là rời rạc hữu hạn. **Bản sửa 2026-10-08** (R15): tên tiếng Anh; phép kiểm $\mathbb E[(\theta_2-1)^2\mid\theta_1]=1{,}007;\ 0{,}683;\ 0{,}424$, trung bình $0{,}704$; ghi chú bộ lọc thông tin và lấy mẫu có hoàn lại.
 
 #### E03 — Giả thiết về gradient ngẫu nhiên
 
