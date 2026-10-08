@@ -812,6 +812,8 @@ Cận của T6 giả định biết đúng $\mu$. Nếu dùng $\eta_k=\tfrac1{\h
 
 ### Bảo đảm theo xác suất
 
+Các cận của SGD nói về kỳ vọng trên mọi lần chạy; một lần chạy chỉ là một hiện thực, nên cần chuyển cận kỳ vọng sang xác suất.
+
 **Bổ đề BĐ6 (bất đẳng thức Markov).** Cho $Z\ge0$ là biến ngẫu nhiên và $\varepsilon>0$. Khi đó $P(Z\ge\varepsilon)\le\mathbb EZ/\varepsilon$.
 
 ::: proof Chứng minh BĐ6
@@ -824,10 +826,10 @@ Với mọi kết cục, $Z\ge\varepsilon\,\mathbf 1\{Z\ge\varepsilon\}$: nếu 
 - T5: $P(d_k^2\ge\varepsilon)\le a_k/\varepsilon$.
 
 ::: example Ví dụ A, k = 20
-$P\bigl((\theta_{20}-1)^2\ge0{,}5\bigr)\le\tfrac{0{,}153}{0{,}5}\approx0{,}31$. Cận Markov thường lỏng: với $k=2$, chín lá của cây cho $P\bigl((\theta_2-1)^2\ge1\bigr)=\tfrac29\approx0{,}22$, trong khi Markov cho $0{,}704$.
+Với $y=(-1,1,3)$, nhóm một mẫu, $\theta_0=0$, $\eta=0{,}1$, đệ quy $a_{k+1}=0{,}81a_k+\tfrac8{300}$ cho $a_{20}\approx0{,}153$, nên $P\bigl((\theta_{20}-1)^2\ge0{,}5\bigr)\le\tfrac{0{,}153}{0{,}5}\approx0{,}31$. Cận Markov thường lỏng: với $k=2$, chín lá của cây cho $P\bigl((\theta_2-1)^2\ge1\bigr)=\tfrac29\approx0{,}22$, trong khi Markov cho $0{,}704$.
 :::
 
-Một kết quả mạnh hơn được nêu, không chứng minh: nếu $f$ lồi, đạt cực tiểu (H4), $g_k$ thỏa H6 và H6a, và bước thỏa điều kiện Robbins–Monro, thì $x_k$ hội tụ gần như chắc chắn (almost surely) tới một điểm cực tiểu. Chứng minh cần định lý siêu martingale Robbins–Siegmund, ngoài phạm vi bài; Sra, Nowozin và Wright (2011), ch. 4, Mệnh đề 4.8 nêu trường hợp dưới gradient thành phần bị chặn. Kết quả không áp dụng cho mục tiêu không lồi.
+Một kết quả mạnh hơn được nêu, không chứng minh: nếu $f$ lồi, đạt giá trị nhỏ nhất (H4), $g_k$ thỏa H6 và H6a, và bước thỏa điều kiện Robbins–Monro, thì $x_k$ hội tụ gần như chắc chắn (almost surely) tới một điểm cực tiểu. Chứng minh cần định lý siêu martingale Robbins–Siegmund, ngoài phạm vi bài; Sra, Nowozin và Wright (2011), ch. 4, Mệnh đề 4.8 nêu trường hợp dưới gradient thành phần bị chặn. Kết quả không áp dụng cho mục tiêu không lồi.
 
 Bài tập 5, 6 và 9 tính kỳ vọng trên cây, chứng minh T6 bằng quy nạp và chặn xác suất bằng Markov.
 

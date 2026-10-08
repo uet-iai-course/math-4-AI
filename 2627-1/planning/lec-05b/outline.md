@@ -687,7 +687,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Markov từ $Z\ge\varepsilon\mathbf 1\{Z\ge\varepsilon\}$.
 - **Kết nối:** Nhận T4, T5; E12 kiểm phần E.
 - **Nguồn:** SNW ch. 4, Mệnh đề 4.8 (gần như chắc chắn); Bài 00 (kỳ vọng).
-- **Ghi chú soạn:** Cận Markov thường lỏng; ghi chú nêu đó là cận cho một lần chạy. **Bản sửa 2026-10-08** (R02): phát biểu hội tụ gần như chắc chắn đủ giả thiết, chỉ nêu.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn nêu nhu cầu (cận theo kỳ vọng, một lần chạy là một thể hiện); BĐ6 có tên đầy đủ và lý do một dòng; hai bullet (T4, T5 gộp một dòng; Ví dụ A tự chứa với đệ quy và $a_{20}\approx0{,}153$); khối "Chỉ nêu" cho hội tụ gần như chắc chắn (almost surely); ghi chú: chứng minh Markov, ví dụ $k=2$ ($\frac29$ so với $0{,}704$), nghĩa của hội tụ gần như chắc chắn, Robbins–Siegmund ngoài phạm vi, không áp dụng cho không lồi. Cận Markov thường lỏng; ghi chú nêu đó là cận cho một lần chạy. **Bản sửa 2026-10-08** (R02): phát biểu hội tụ gần như chắc chắn đủ giả thiết, chỉ nêu.
 
 #### E12 — Hạ gradient ngẫu nhiên trên hai ví dụ
 
