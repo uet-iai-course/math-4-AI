@@ -1031,6 +1031,14 @@ Từ một dòng sang dòng kế, bất đẳng thức một bước đổi theo
 
 Trước khi dùng một định lý, cần kiểm: giả thiết đúng toàn cục hay chỉ trên một vùng chứa dãy lặp; giả thiết nhiễu là chặn $G^2$ hay chặn $\sigma^2$; đại lượng được chặn là điểm cuối, lặp tốt nhất, trung bình lặp hay kỳ vọng. Trung bình Polyak ở Bài 06 là trung bình lặp với bước hằng; với mục tiêu lồi, T4 cho nó một cận.
 
+### Câu hỏi tự kiểm và kết luận
+
+1. Mất mát logistic có thêm số hạng chính quy $\tfrac\lambda2\lVert x\rVert^2$, $\lambda>0$: kiểm H2, H3 với $\mu=\lambda$, chọn định lý cho GD và nêu đại lượng được chặn (lời giải chi tiết ở Bài tập 8).
+2. Mạng nơ ron huấn luyện bằng SGD bước hằng: chọn định lý, nêu giả thiết cần kiểm và điều định lý không nói. T8 áp dụng được nếu H0, H2, H6, H6b đúng; với mạng nơ ron, H2 toàn cục khó kiểm và thường chỉ đúng trên một vùng. Kể cả khi giả thiết đúng, T8 chỉ chặn trung bình của $\mathbb E\lVert\nabla f(x_k)\rVert^2$, không nói tới cực tiểu nào và không loại điểm yên ngựa (Bài tập 9, câu 4).
+3. SGD trên Ví dụ A ($\theta^*=1$) có $\mathbb E(\theta_k-1)^2\le0{,}2$ tại bước $k$: bất đẳng thức Markov cho $P\bigl((\theta_k-1)^2\ge1\bigr)\le0{,}2$ (Bài tập 9, câu 1).
+
+Kết luận: mọi bảo đảm của bài dùng một khuôn chứng minh; đổi giả thiết thì đổi bất đẳng thức một bước và cách nối.
+
 ## Tài liệu tham khảo
 
 1. Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Cambridge University Press, §9.1.2 (cận bậc hai, (9.8)–(9.14)), §9.3 và §9.3.1 (hội tụ của hạ gradient với bước chính xác và quay lui, tr. 466–468).
