@@ -643,7 +643,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Hình thức hóa:** Dòng thứ nhất dùng bổ đề tách phương sai, H3 tại $y=x^*$, BĐ2, H6b.
 - **Kết nối:** E08 kiểm hằng số trên VD-A, kể cả số hạng đã bỏ.
 - **Nguồn:** Chứng minh trực tiếp; SNW ch. 5 (bối cảnh).
-- **Ghi chú soạn:** Phần giải đệ quy chỉ trong ghi chú: quy nạp $a_k\le(1-\eta\mu)^ka_0+\eta^2\sigma^2\sum_{j<k}(1-\eta\mu)^j$ và $\sum_{j<k}q^j\le\frac1{1-q}$ với $q=1-\eta\mu$. **Bản sửa 2026-10-08** (R21, R10): dòng "Ý tưởng"; "sàn nhiễu", "giá trị giới hạn".
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dòng Ý tưởng nêu ba thành phần (H3 cho hệ số co $1-\eta\mu$, bổ đề tách phương sai cho nhiễu $\eta^2\sigma^2$, giải đệ quy là cách nối thứ ba) thay "trong khuôn của T4"; sáu bước một dòng (BĐ4; H6 và H3 cho tích vô hướng; tách phương sai, H6b, BĐ2 cho $\mathbb E\lVert g_k\rVert^2$; ghép; bỏ số hạng $e_k$ và tháp; giải đệ quy); ghi chú: chỗ dùng H4 và $\eta\le1/L$, tổng cấp số nhân, số hạng bị bỏ là nguồn chênh $0{,}267$ so với $0{,}140$, "trang đối chiếu với Ví dụ A" thay "trang sau". Phần giải đệ quy chỉ trong ghi chú: quy nạp $a_k\le(1-\eta\mu)^ka_0+\eta^2\sigma^2\sum_{j<k}(1-\eta\mu)^j$ và $\sum_{j<k}q^j\le\frac1{1-q}$ với $q=1-\eta\mu$. **Bản sửa 2026-10-08** (R21, R10): dòng "Ý tưởng"; "sàn nhiễu", "giá trị giới hạn".
 
 #### E08 — Đối chiếu cận lồi mạnh trên ví dụ ba quan sát
 

@@ -670,7 +670,7 @@ $$
 Số hạng thứ nhất co tuyến tính; số hạng thứ hai, $\eta\sigma^2/\mu$, là sàn nhiễu (noise floor): tỉ lệ với bước và phương sai, nghịch với $\mu$. Ở Ví dụ A với $\eta=0{,}1$, $\sigma^2=\tfrac83$, $\mu=1$, sàn nhiễu là $\approx0{,}267$, là cận trên của giá trị giới hạn (giá trị thật $0{,}140$). Khi $\sigma=0$ và $\eta=1/L$, định lý cho lại T2a. Định lý chặn điểm cuối $x_k$ và dùng H6b, nên không vướng việc $\nabla f$ không bị chặn dưới H3.
 
 ::: proof Chứng minh T5
-*Ý tưởng.* Trong khuôn của T4, thay H6a bằng bổ đề tách phương sai và thay H1 bằng cận bậc hai của H3; được một đệ quy co có số hạng cộng.
+*Ý tưởng.* Lấy kỳ vọng có điều kiện của BĐ4 với bước hằng; H3 (thay hệ quả của H1) cho hệ số co $1-\eta\mu$, bổ đề tách phương sai cho số hạng nhiễu $\eta^2\sigma^2$; rồi giải đệ quy, cách nối thứ ba của khuôn một bước. Bước 2 dùng H4 để có $x^*$, $f^*$; bước 3 cần $\eta\le1/L$.
 
 Bước 1: BĐ4, lấy $\mathbb E[\cdot\mid\mathcal F_k]$, H6, bổ đề tách phương sai và H6b:
 
@@ -691,6 +691,8 @@ Bước 4 (giải đệ quy): đặt $q=1-\eta\mu$; vì $\eta\mu\le\mu/L\le1$, $
 $$
 a_k\le q^ka_0+\eta^2\sigma^2\sum_{j<k}q^j\le q^kD^2+\frac{\eta^2\sigma^2}{1-q}=q^kD^2+\frac{\eta\sigma^2}\mu.
 $$
+
+Số hạng $-2\eta(1-\eta L)e_k$ bị bỏ ở bước 3 làm sàn nhiễu của định lý lớn hơn giá trị giới hạn thật; ở Ví dụ A với bước $0{,}1$, đó là khoảng cách giữa $0{,}267$ và $0{,}140$.
 :::
 
 Khi đệ quy ở bước 3 xảy ra dấu bằng, nghiệm đúng là $q^k\bigl(a_0-\tfrac{\eta\sigma^2}\mu\bigr)+\tfrac{\eta\sigma^2}\mu$, và cận của T5 lớn hơn nghiệm đúng đúng $q^k\eta\sigma^2/\mu$. Khi $a_0<\eta\sigma^2/\mu$, nghiệm đúng tăng lên giá trị giới hạn $\eta\sigma^2/\mu$ của đệ quy, còn cận của T5 giảm về cùng giá trị đó.
