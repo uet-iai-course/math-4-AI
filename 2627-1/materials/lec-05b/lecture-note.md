@@ -76,7 +76,7 @@ Một khẳng định hội tụ phải nêu đại lượng được đo và ki
 
 1. theo dãy lặp nếu $d_k=\lVert x_k-x^*\rVert\to0$;
 2. theo giá trị nếu $e_k=f(x_k)-f^*\to0$;
-3. tới điểm dừng nếu $\lVert\nabla f(x_k)\rVert\to0$;
+3. tới điểm dừng (stationary point) nếu $\lVert\nabla f(x_k)\rVert\to0$;
 4. theo kỳ vọng nếu $x_k$ ngẫu nhiên và kỳ vọng của $d_k$, $e_k$ hoặc $\lVert\nabla f(x_k)\rVert$ (hay bình phương của chúng) tiến về $0$.
 
 Vì $\mathbb E d_k\le\sqrt{\mathbb E d_k^2}$, chặn $\mathbb E d_k^2$ mạnh hơn chặn $\mathbb E d_k$: cận $\mathbb E d_k^2=O(1/k^p)$ chỉ cho $\mathbb E d_k=O(1/k^{p/2})$.
@@ -855,17 +855,21 @@ Chuẩn gradient $\lvert F'(\theta_k)\rvert$ vẫn dùng được làm thước 
 
 ### Hàm thế và định lý điểm dừng
 
-Bổ đề giảm không cần tính lồi: mỗi bước GD bước $\eta\le1/L$ hạ hàm thế $V_k=f(x_k)-f_{\inf}\ge0$ ít nhất $\tfrac\eta2\lVert\nabla f(x_k)\rVert^2$. Độ cao ban đầu
+Khi $f$ không lồi, không có $x^*$ để đo $d_k^2$; hàm thế $\Delta_k=f(x_k)-f_{\inf}$ thay cho $d_k^2$. Theo H0, $\Delta_k\ge0$. Bổ đề giảm không cần tính lồi: với H0, H2 và bước $\tfrac1L$, trừ hai vế của bổ đề giảm cho $f_{\inf}$ được
 
 $$
-\Delta_0=f(x_0)-f_{\inf}
+\Delta_{k+1}\le\Delta_k-\tfrac1{2L}\lVert\nabla f(x_k)\rVert^2.
 $$
 
-chặn tổng các lần hạ, nên chuẩn gradient không thể lớn mãi.
+Tiến bộ mỗi bước không chứa $x^*$. Độ cao ban đầu $\Delta_0=f(x_0)-f_{\inf}$ chặn tổng các mức hạ, nên chuẩn gradient không thể lớn mãi.
+
+**Định nghĩa (điểm dừng).** Điểm $\bar x$ với $\nabla f(\bar x)=0$ là điểm dừng của $f$. Điểm dừng gồm cực tiểu, cực đại địa phương và điểm yên ngựa; Ví dụ D có ba điểm dừng $-1,0,1$, trong đó $\theta=0$ là cực đại địa phương. Vì vậy các định lý không lồi kết luận về $\lVert\nabla f(x_k)\rVert$, không về $f(x_k)-f_{\inf}$, trừ khi có thêm giả thiết loại trừ điểm dừng không tối ưu.
 
 ::: example Ví dụ D từ θ₀ = 2: hằng số L trên một vùng
-$F(2)=\tfrac94=\Delta_0$ (vì $F_{\inf}=0$), $F'(2)=6$. H2 không đúng trên $\mathbb R$ vì $F''$ không bị chặn, nhưng trên $[-2,2]$ có $F''\in[-1,11]$, nên $\lvert F''\rvert\le11$. Ánh xạ bước $\theta\mapsto\theta-F'(\theta)/11=(12\theta-\theta^3)/11$ có đạo hàm $(12-3\theta^2)/11\ge0$ trên $[-2,2]$, nên đơn điệu và đưa $[-2,2]$ vào $[-\tfrac{16}{11},\tfrac{16}{11}]$. Dãy GD bước $\tfrac1{11}$ vì vậy ở lại vùng có hằng số $L=11$, và bổ đề giảm áp dụng được ở mọi bước. Bước đầu: $\theta_1=\tfrac{16}{11}\approx1{,}455$, $F(\theta_1)\approx0{,}311$; mức hạ $1{,}94\ge\tfrac{36}{22}\approx1{,}64$ như bổ đề giảm bảo đảm.
+$F(2)=\tfrac94=\Delta_0$ (vì $F_{\inf}=0$), $F'(2)=6$. H2 không đúng trên $\mathbb R$ vì $F''$ không bị chặn, nhưng trên $[-2,2]$ có $F''\in[-1,11]$, nên $\lvert F''\rvert\le11$. Ánh xạ bước $\theta\mapsto\theta-F'(\theta)/11=(12\theta-\theta^3)/11$ có đạo hàm $(12-3\theta^2)/11\ge0$ trên $[-2,2]$, nên đơn điệu và đưa $[-2,2]$ vào $[-\tfrac{16}{11},\tfrac{16}{11}]$. Dãy GD bước $\tfrac1{11}$ vì vậy ở lại vùng có hằng số $L=11$, và bổ đề giảm áp dụng được ở mọi bước. Bước đầu: $\theta_1=\tfrac{16}{11}\approx1{,}455$, $F(\theta_1)\approx0{,}311$; mức hạ $1{,}94\ge\tfrac1{22}F'(2)^2=\tfrac{36}{22}\approx1{,}64$ như bổ đề giảm bảo đảm. Bước tiếp: $\theta_2\approx1{,}307$, $F(\theta_2)\approx0{,}125$.
 :::
+
+![Hàm bậc bốn hai đáy F(θ) = ¼(θ² − 1)² trên đoạn từ −2 đến 2, hai cực tiểu tại −1 và 1, cực đại địa phương tại 0; từ θ0 = 2, bước 1/11 cho θ1 ≈ 1,455 rồi θ2 ≈ 1,307, giá trị F giảm từ 2,25 xuống khoảng 0,311 rồi 0,125.](img/lec-05b/quartic-two-wells.svg)
 
 **Định lý (T7).** Đầu vào: $f$ thỏa H0, H2; điểm đầu $x_0$; bước $\tfrac1L$. Kết luận: với mọi $K\ge1$,
 
