@@ -1567,3 +1567,37 @@ Vòng này không thêm, bỏ hoặc đổi thứ tự trang; giữ nguyên 40 s
 - Reviewer kết luận `PASS`, không có lỗi nghiêm trọng hoặc lỗi lớn. Các phép tính Armijo, Newton, Newton–KKT, cận hội tụ và điều kiện tự điều chỉnh được tính lại độc lập và đều khớp.
 - Sáu lỗi nhẹ đã được xử lý: A04 thống nhất ký hiệu $\kappa_2(H)$; B05 dùng $\nabla^2f(x)$ thay cho ký hiệu $H$ bị quá tải; C06 phát biểu rõ mức giảm cố định trong pha tắt dần; lecture note bỏ từ lặp; ghi chú P02 và Z03 bỏ lời biên tập; mục tổng hợp cùng nhóm định lý tương ứng của lecture note đổi từ `F` thành `Z` để khớp deck, outline và storyboard.
 - Rà soát độc lập sau chỉnh sửa phát hiện một nhãn `Nhóm F` còn sót trong phần định lý của lecture note. Nhãn đã đổi thành `Nhóm Z`; các kiểm tra cấu trúc, công thức, khối mở/đóng và tài nguyên cục bộ đều đạt.
+
+## 2026-10-09 — Bổ sung ghi chú diễn giả cho sinh viên tự đọc
+
+Người dùng phản ánh sinh viên thấy trang chiếu thiếu dẫn dắt, thiếu ngữ cảnh, thông tin bị cắt cụt, và yêu cầu bổ sung ghi chú diễn giả (phím S) cho mọi trang của Bài 01–07. Phạm vi lượt này: chỉ nội dung bên trong `<aside class="notes">` của 54 trang; mặt trang, cấu trúc section, `data-slide-id`, storyboard và dàn ý không đổi. Mỗi ghi chú viết lại theo bốn phần: dẫn dắt, diễn giải đủ ký hiệu, công thức, hình, bảng và lời giải câu hỏi, điểm dễ nhầm, kết nối trang sau bằng quan hệ suy luận. Độ dài sau sửa: 126–340 tiếng, trung vị 231.
+
+### Tác tử và quyết định của điều phối viên
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Tác tử con tạo bằng Agent tool, `subagent_type=general-purpose`, `model=opus` (Claude Opus 5.5), `effort=high`; chỉ một tác tử ghi tệp tại một thời điểm.
+
+| Vai | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|
+| Soạn ghi chú (54 trang) | Có, chỉ aside.notes | Đủ 54 ghi chú; sửa hai chỗ ký hiệu trùng trong ghi chú cũ (RN07 ngưỡng η của nguồn với nhân tử η; RS01 σ → τ); bỏ mã LLO/CLO, nhãn "tự học", câu kể thứ tự trang; liệt kê 19 lập luận mới để rà toán | yêu cầu sửa |
+| Rà chính xác toán học | Không | Tính lại toàn bộ số liệu (Armijo, các cận 70/k, 140/k, 280/k, k≥16, k≥21, Newton trên VD2, VD3, phần dư, tự điều chỉnh, hằng số B&V 9.36, 9.56, 375 đối chiếu PDF): đều đúng; 19 lập luận mới đúng. 1 trung bình (RG06 gán tốc độ tuyến tính cho cả quay lui, không rõ sai số gì), 5 nhẹ | chấp nhận |
+| Rà mạch truyện và tự đọc | Không | 4 trung bình (RG06/RG15 dùng μ, L, lồi mạnh trước định nghĩa; RS01 câu tiết lộ định lý RS03; RZ03 câu nối Bài 05 sai thuật ngữ; lặp câu kết trang k thành câu mở trang k+1 ở 9 cặp), 15 nhẹ; số dòng storyboard trích đã kiểm bằng grep | chấp nhận |
+| Soạn ghi chú, lượt sửa | Có, chỉ aside.notes | Sửa 4 mục bắt buộc và toàn bộ mục nhẹ; sửa thêm 14 cặp lặp câu tự phát hiện; nguồn thống nhất một dạng | chấp nhận, chờ tái kiểm |
+| Tái kiểm toán học | Không | Đạt; 2 nhẹ (RG16 thiếu "gradient L-Lipschitz"; RE07 hệ rút gọn không cho η trực tiếp) | chấp nhận; sửa ở lượt cuối |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình | RG06, RG15, RG16, RG17 | Dùng μ, L, lồi mạnh, hệ số 1−μ/L trước khi định nghĩa; gán tốc độ tuyến tính cho quay lui | đã sửa: RG06 chỉ nêu nhu cầu; RG17 phát biểu đủ (O(1/k) cho t=1/L và quay lui α=1/2; lồi mạnh với bước 1/L co theo 1−μ/L; quay lui hệ số c §9.3.1) |
+| trung bình | RS01 | Câu tiết lộ cận RS03 trước nhu cầu | đã sửa |
+| trung bình | RZ03 | Câu nối Bài 05 dùng "lô nhỏ", "phi lồi", hứa nội dung không có | đã sửa theo thuật ngữ deck 05 ("nhóm nhỏ (minibatch)", "không lồi") |
+| trung bình | 9 cặp trang kề (+14 cặp tự phát hiện) | Câu kết trang k chép thành câu mở trang k+1 | đã sửa |
+| nhẹ | 20 mục | Thuật ngữ tiếng Anh, mô tả hình RG08/RG12 khớp SVG, RN06/RN07 trùng lặp, nguồn thống nhất, câu kết nối, RP00/RP02 lặp | đã sửa |
+| ghi nhận | RE06 (mặt trang) | "không giải được bằng phân rã Cholesky": đúng với Cholesky; ghi chú viết "không áp dụng trực tiếp" | giữ mặt trang |
+| ghi nhận | lecture-note Bài 04 | dùng "lô nhỏ" (dòng 36, 207, 1393) trong khi deck Bài 05 dùng "nhóm nhỏ" | còn mở, ngoài phạm vi |
+
+### Kiểm tra của điều phối viên
+
+- `check-deck.py`: 54 trang, 54 ghi chú, không `$` lệch, không cụm chỉ đường; Chromium 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung ở 16:9. Ảnh RN05 chụp lần đầu bị cắt do chụp trong lúc chuyển trang; chụp lại và so với bản HEAD: hai bản giống hệt (section 1544×813, scale 1,206), mặt trang không đổi. Đã tăng thời gian chờ chụp trong script.
+- `git diff --check` sạch. Ghi chú bài giảng và bài tập không đổi vì mặt trang không đổi.
+- Tái kiểm mạch truyện (đọc lại cả 54 ghi chú vì 48 trang đổi): đạt; 6 nhẹ. Lượt sửa nhẹ cuối (RG16, RE07, RG08, RN07, RN04, RG14, RR01/RR02) đã thực hiện; điều phối viên chạy lại `check-deck.py`: đạt. Quyết định: chấp nhận, bàn giao Bài 04.
