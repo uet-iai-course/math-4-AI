@@ -28,35 +28,21 @@ Bảng liệt kê các ký hiệu dùng xuyên suốt chương; ký hiệu chỉ
 
 | Ký hiệu | Ý nghĩa | Miền hoặc kiểu |
 |---|---|---|
-| $x$ | biến quyết định của bài toán tổng quát (Mục 5 trở đi) | $\mathbb R^d$ |
+| $x$, $x^*$ | biến quyết định của bài toán tổng quát (Mục 5 trở đi) và một nghiệm tối ưu | $\mathbb R^d$ |
 | $f_0$ | hàm mục tiêu | $D\to\mathbb R$ |
 | $C$ | miền khả thi | tập con của $\mathbb R^d$ |
 | $p^*$ | giá trị tối ưu $\inf_{x\in C}f_0(x)$ | $\mathbb R\cup\{-\infty,+\infty\}$ |
 | $S^*$ | tập nghiệm tối ưu | tập con của $C$ |
-| $x^*,\ w^*,\ u^*$ | một nghiệm tối ưu hoặc một điểm ứng viên | phần tử của miền |
-| $x_0,\ x_1$ | trạng thái đầu và trạng thái sau một bước (Mục 2) | $\mathbb R$ |
-| $t$ | đích của ca điều khiển (Mục 2); tham số trên đường thẳng (Mục 7) | $\mathbb R$ |
-| $u$ | tác động điều khiển | $\mathbb R$ |
-| $u_{\max}$ | biên độ tác động lớn nhất | $u_{\max}\ge0$ |
-| $\lambda$ | trọng số của chi phí năng lượng | $\lambda\ge0$ |
+| $u$, $u_{\max}$, $\lambda$ | tác động điều khiển, biên độ lớn nhất của nó và trọng số chi phí năng lượng (Mục 2) | $\mathbb R$; $u_{\max}\ge0$; $\lambda\ge0$ |
 | $q$ | hàm chi phí của ca điều khiển | $\mathbb R\to\mathbb R$ |
-| $n$ | số mẫu dữ liệu | số nguyên dương |
-| $d$ | số chiều của biến quyết định hoặc số cột đặc trưng | số nguyên dương |
-| $X$ | ma trận thiết kế, hàng $i$ là $x_i^T$ | $\mathbb R^{n\times d}$ |
-| $x_i$ | vector đặc trưng của mẫu $i$ trong hồi quy tuyến tính | $\mathbb R^d$ |
+| $X$ | ma trận thiết kế, $n$ mẫu và $d$ cột đặc trưng, hàng $i$ là $x_i^T$ | $\mathbb R^{n\times d}$ |
 | $y$ | vector đầu ra quan sát (Mục 3, Tình huống 01.2) | $\mathbb R^n$ |
 | $w$ | vector tham số của mô hình | $\mathbb R^d$ |
-| $\widehat y$ | vector dự đoán $Xw$ | $\mathbb R^n$ |
 | $J$ | tổng bình phương phần dư $\lVert Xw-y\rVert_2^2$ | $\mathbb R^d\to\mathbb R$ |
-| $\mathcal R(X),\ \ker X,\ \operatorname{rank}X$ | không gian cột, hạt nhân, hạng của $X$ | tập con của $\mathbb R^n$; tập con của $\mathbb R^d$; số nguyên |
-| $a_i$ | vector đặc trưng của mẫu $i$ trong hồi quy logistic | $\mathbb R^d$ |
-| $y_i$ | nhãn của mẫu $i$ trong hồi quy logistic (Mục 4) | $\{-1,+1\}$ |
-| $m_i$ | biên có dấu $y_ia_i^Tw$ (Mục 4 trở đi) | $\mathbb R$ |
-| $\ell$ | mất mát logistic của một mẫu, $\ell(m)=\log(1+e^{-m})$ | $\mathbb R\to(0,\infty)$ |
+| $m_i$ | biên có dấu $y_ia_i^Tw$ của mẫu $(a_i,y_i)$, $y_i\in\{-1,+1\}$ (Mục 4 trở đi) | $\mathbb R$ |
+| $\ell$ | mất mát logistic của một mẫu, $\ell(m)=\log(1+e^{-m})$; $\sigma(s)=1/(1+e^{-s})$ là hàm sigmoid | $\mathbb R\to(0,\infty)$ |
 | $L$ | tổng mất mát logistic | $\mathbb R^d\to\mathbb R$ |
-| $\sigma$ | hàm sigmoid $\sigma(s)=1/(1+e^{-s})$ | $\mathbb R\to(0,1)$ |
 | $\theta$ | hệ số của tổ hợp lồi (Mục 6, 7); vector trọng số trộn (Tình huống 01.2) | $[0,1]$; $\Delta_3$ |
-| $A,\ b$ | ma trận và vector dữ kiện của ràng buộc tuyến tính hoặc ánh xạ affine (Mục 6, 7) | $\mathbb R^{k\times d}$, $\mathbb R^k$ |
 | $\Delta_k$ | đơn hình xác suất $\{\theta\in\mathbb R^k\mid\theta\ge0,\ \mathbf 1^T\theta=1\}$ | tập con của $\mathbb R^k$ |
 | $S_\alpha(f),\ \alpha$ | tập mức dưới $\{x\mid f(x)\le\alpha\}$ và mức $\alpha$ | tập con của $\mathbb R^d$; $\mathbb R$ |
 | $\nabla f,\ \nabla^2f$ | gradient và Hessian của $f$ | $\mathbb R^d$, $\mathbb R^{d\times d}$ |
@@ -200,7 +186,6 @@ Với $\Delta<0$, cả hai số hạng $-3\Delta$ và $\tfrac32\Delta^2$ đều 
 ::: example Ví dụ 01.2 (Ảnh hưởng của trọng số năng lượng)
 Giữ $x_0=0$, $t=3$, $u_{\max}=1$ và thay đổi $\lambda$. Theo (2.2), $u_{\mathrm{free}}=3/(1+\lambda)$, và $u_{\mathrm{free}}\le1$ khi và chỉ khi $\lambda\ge2$.
 
-| $\lambda$ | $u_{\mathrm{free}}$ | $u^*$ | $q(u^*)$ | $q'(u^*)$ | Vị trí của $u^*$ |
 |---:|---:|---:|---:|---:|---|
 | $0$ | $3$ | $1$ | $4$ | $-4$ | biên phải, ràng buộc chặn |
 | $1/2$ | $2$ | $1$ | $9/2$ | $-3$ | biên phải, ràng buộc chặn |
