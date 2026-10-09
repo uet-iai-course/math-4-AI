@@ -1303,3 +1303,38 @@ Xác minh bề mặt Codex Slides: chuyển từ Design Files sang mặt trình 
 ### Chấp thuận phát hành
 
 Ngày 2026-09-17, người dùng yêu cầu “commit / push” sau khi xem bản đề xuất. Yêu cầu này thay trạng thái chờ duyệt ở trên. Kiểm tra phạm vi chỉ gồm trang mới của Bài 02, CSS riêng, tài liệu quy trình và ảnh xem trước; kiểm định hiển thị đã hoàn tất ở lượt trước.
+
+## 2026-10-09 — Bổ sung ghi chú diễn giả cho sinh viên tự đọc
+
+Người dùng phản ánh sinh viên thấy trang chiếu thiếu dẫn dắt, thiếu ngữ cảnh, thông tin bị cắt cụt, và yêu cầu bổ sung ghi chú diễn giả (phím S) cho mọi trang của Bài 01–07. Phạm vi lượt này: chỉ nội dung bên trong `<aside class="notes">` của 74 trang; mặt trang, cấu trúc section, `data-slide-id`, storyboard và dàn ý không đổi. Mỗi ghi chú viết lại theo bốn phần: dẫn dắt, diễn giải đủ ký hiệu, công thức, hình, bảng và lời giải câu hỏi, điểm dễ nhầm, kết nối trang sau bằng quan hệ suy luận. Độ dài sau sửa: 189–356 tiếng, trung vị 275.
+
+### Tác tử và quyết định của điều phối viên
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Tác tử con tạo bằng Agent tool, `subagent_type=general-purpose`, `model=opus` (Claude Opus 5.5), `effort=high`; chỉ một tác tử ghi tệp tại một thời điểm. Lần chạy đầu của tác tử soạn bị ngắt do lỗi mạng API trước khi ghi tệp; tiếp tục bằng SendMessage.
+
+| Vai | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|
+| Soạn ghi chú (74 trang) | Có, chỉ aside.notes | Đủ 74 ghi chú; sửa bốn chỗ không nhất quán ở ghi chú cũ (S03-01 nhãn đáp án thừa; S06-01 chữ r trùng; S06-03 ví dụ "đã gặp" không có trong deck, thay bằng S03-09 câu 2; S03-04c nêu rõ hai cận 7 và 9) | yêu cầu sửa |
+| Rà chính xác toán học | Không | Tính lại LP pha trộn, dạng chuẩn, bốn tổ hợp chính quy hóa, QCQP, hộp, công suất, bản lề, gói dữ liệu, phản ví dụ bốn điểm: đều đúng. 3 trung bình (S03-04b khẳng định hệ số luôn giảm; S04-03 trùng ký hiệu c; S04-15 lời giải chưa trọn), 4 nhẹ | chấp nhận; điều phối viên kiểm lại phản ví dụ S04-15 |
+| Rà mạch truyện và tự đọc | Không | 1 "nghiêm trọng" (S02-03b nói đơn hình học ở buổi sau) với trích dẫn dòng 167 của planning/lec-07/outline.md; điều phối viên kiểm: tệp chỉ có 87 dòng, deck Bài 07 vẫn ghi đơn hình thuộc Bài 08, nên hạ xuống nhẹ và chọn cách viết không nêu thời điểm. 8 trung bình (thuật ngữ tạp âm nền/nhiễu; "thưa" dùng trước định nghĩa; S03-04d, S03-04e thiếu bước suy ra; S06-01 khẳng định mạnh; S05-12, S05-03b dài, lặp), 20 nhẹ | chấp nhận có điều chỉnh mức |
+| Soạn ghi chú, lượt sửa | Có, chỉ aside.notes | Sửa 10 mục bắt buộc và toàn bộ mục nhẹ; "Trang này" mở đầu giảm từ 53 xuống 18 ghi chú; không trang nào trên 360 tiếng | chấp nhận, chờ tái kiểm |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình | S03-04b, S03-06, S06-04 | "λ càng lớn hệ số càng về 0" mâu thuẫn với bảng (hệ số chặn tăng 0 → 1/8); "thưa" chưa định nghĩa | đã sửa |
+| trung bình | S04-03 | c vừa là hệ số vừa là cạnh hộp | đã sửa |
+| trung bình | S04-15 | Lời giải câu 1 thiếu phản ví dụ cụ thể | đã sửa: (1,4), (4,1), trung điểm; theo log cũng không lồi |
+| trung bình | S03-04d, S03-04e | Bước suy ra bị cắt (cận, miền a>1, công thức w_λ) | đã sửa |
+| trung bình | S04-10, S04-11, S04-14 | "nhiễu nền" lệch mặt trang ("tạp âm nền") | đã sửa |
+| trung bình | S06-01 | "GP không lồi theo biến gốc" mạnh hơn S04-04 | đã sửa: "nói chung" |
+| trung bình | S05-12, S05-03b | Dài, lặp trang lân cận, giọng khẩu hiệu | đã rút |
+| nhẹ | S02-03b | Mệnh đề thời điểm học đơn hình | đã bỏ; đơn hình (simplex method) nêu không kèm thời điểm |
+| nhẹ | 24 mục khác | Thuật ngữ tiếng Anh lần đầu, câu kết nối, câu chép mặt trang, nhịp mở đầu | đã sửa |
+
+### Kiểm tra của điều phối viên
+
+- `check-deck.py`: 74 trang, 74 ghi chú, không `$` lệch, không cụm chỉ đường; Chromium 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung ở 16:9 (lần chạy đầu lỗi tạm thời do máy chủ bận, chạy lại sạch). Đã xem ảnh S04-04 ở hai kích thước: mặt trang không đổi.
+- `git diff --check` sạch. Ghi chú bài giảng và bài tập không đổi vì mặt trang không đổi.
+- Tái kiểm toán học: đạt, 0 trung bình, 1 nhẹ tùy chọn (S05-06 thêm "khi λ>0"). Tái kiểm mạch truyện (58 ghi chú thay đổi, ranh giới phần ±2): đạt mức sinh viên tự đọc được; 3 nhẹ. Lượt sửa nhẹ cuối (S05-06, S05-02, S03-03, S05-09, S05-03b) đã thực hiện; điều phối viên chạy lại `check-deck.py`: đạt. Quyết định: chấp nhận, bàn giao Bài 02.
