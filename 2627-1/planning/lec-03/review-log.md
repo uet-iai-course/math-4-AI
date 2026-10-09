@@ -1299,3 +1299,39 @@ Người dùng yêu cầu gập chứng minh, rồi commit và push. Đổi đú
 Không cần sửa.
 
 Kiểm định cục bộ: nguồn chỉ đổi một dòng; bản đóng gói chỉ thay mục ghi chú Bài 03; sync-local-materials.py và --check đạt. Chromium kiểm tra file:// và HTTP tại 1280×720, 390×844: khối đóng mặc định, Enter mở/đóng, công thức đủ và không lỗi, không tràn ngang; beforeprint mở và afterprint khôi phục trạng thái. Ảnh và báo cáo tại /tmp/lec03-collapse/. Đồng bộ Codex Slides Design Files vào uploaded/lecture-note-12.md và xác minh khớp từng byte. Kiểm tra trực quan cách gập thực hiện tại viewer của kho.
+
+## 2026-10-09 — Bổ sung ghi chú diễn giả cho sinh viên tự đọc
+
+Người dùng phản ánh sinh viên thấy trang chiếu thiếu dẫn dắt, thiếu ngữ cảnh, thông tin bị cắt cụt, và yêu cầu bổ sung ghi chú diễn giả (phím S) cho mọi trang của Bài 01–07. Phạm vi lượt này: chỉ nội dung bên trong `<aside class="notes">` của 47 trang; mặt trang, cấu trúc section, `data-slide-id`, storyboard và dàn ý không đổi. Mỗi ghi chú viết lại theo bốn phần: dẫn dắt, diễn giải đủ ký hiệu, công thức, hình, bảng và lời giải câu hỏi, điểm dễ nhầm, kết nối trang sau bằng quan hệ suy luận. Độ dài sau sửa: 173–337 tiếng, trung vị 230.
+
+### Tác tử và quyết định của điều phối viên
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Tác tử con tạo bằng Agent tool, `subagent_type=general-purpose`, `model=opus` (Claude Opus 5.5), `effort=high`; chỉ một tác tử ghi tệp tại một thời điểm.
+
+| Vai | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|
+| Soạn ghi chú (47 trang) | Có, chỉ aside.notes | Đủ 47 ghi chú; sửa các điểm không nhất quán của ghi chú cũ (S02-06 gọi sai thứ tự bất đẳng thức; S01-02 bỏ mã chuẩn đầu ra; S02-07, S03-03b bỏ phần lặp; S03-06 dấu thập phân; S04-04 thống nhất "khoảng đối ngẫu tối ưu", "đường cận"); không thấy lỗi toán trên mặt trang | yêu cầu sửa |
+| Rà chính xác toán học | Không | Tính lại ví dụ xuyên suốt, hồi quy $X=I_2$, các lập luận mới (S01-02, S02-05b, S02-08, S03-01, S03-06, S04-01a, S05-05c, S05-07, S07-01): đều đúng. 3 trung bình (S03-02b nói sai số lần dùng $\bar x$; S03-03a câu kết mâu thuẫn đoạn Chuẩn bị; S03-03a mất giả thiết $p^*$ hữu hạn và "$B$ lồi"), 10 nhẹ | chấp nhận |
+| Rà mạch truyện và tự đọc | Không | 6 trung bình (S03-03a dùng định lý tách chưa phát biểu, dài 365; S04-01a/b "đường cận", "mặt phẳng giá trị" chưa giới thiệu; S02-05c "miền hữu hiệu"; S03-02b câu khó hiểu; S03-03c ký hiệu $r$ xung đột), 12 nhẹ; trích dẫn số dòng storyboard/outline đã kiểm bằng grep | chấp nhận |
+| Soạn ghi chú, lượt sửa | Có, chỉ aside.notes | Sửa 5 mục bắt buộc và toàn bộ mục nhẹ; S03-03a viết lại với bổ đề tách phát biểu trước, còn 337 tiếng | chấp nhận, chờ tái kiểm |
+| Tái kiểm toán học | Không | Đạt; ví dụ $\big(\max\{0,(x-2)(x-4)\}\big)^2\le0$ kiểm đúng (lồi, miền $[2,4]$, không có điểm Slater); 2 nhẹ (S03-03c ký hiệu $a_j$ vẫn trùng S03-03b; S03-02 câu chạm hai đầu đoạn) | chấp nhận; sửa ở lượt cuối |
+| Tái kiểm mạch truyện (32 trang sửa ± 2, hai cụm Slater và hình học đọc trọn) | Không | Đạt mức sinh viên tự đọc được; 2 nhẹ (S03-03c ký hiệu; S03-03a thêm $k=m+r+1$ và $\mu t\le c$) | chấp nhận; sửa ở lượt cuối |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình | S03-03a | Thiếu giả thiết $p^*$ hữu hạn, "$B$ lồi"; bổ đề tách chưa phát biểu; câu kết sai về số lần dùng $\bar x$; quá dài | đã sửa: giả thiết đầy đủ, bổ đề tách phát biểu trước, câu kết chỉ nói dấu nghiêm, 337 tiếng |
+| trung bình | S03-02b | "dùng $\bar x$ đúng một lần" sai; câu về điểm trong và Slater khó hiểu | đã sửa: "dấu nghiêm đúng một lần"; thêm ví dụ ràng buộc lồi không có điểm Slater |
+| trung bình | S03-03c | Ký hiệu hàng của $A$ xung đột ($r_j$, rồi $a_j$) | đã sửa lượt 1 thành $a_j$; lượt cuối bỏ ký hiệu riêng, diễn đạt bằng lời |
+| trung bình | S04-01, S04-01a, S04-01b | "mặt phẳng giá trị", "đường cận" dùng trước khi giới thiệu | đã sửa |
+| trung bình | S02-05c | "miền hữu hiệu" chưa định nghĩa | đã sửa |
+| nhẹ | 22 mục | Giả thiết lồi/$p^*$ hữu hạn/tồn tại nghiệm ở câu tóm tắt; thuật ngữ tiếng Anh; "ba vai trò"; câu kết nối; nhịp mở đầu; S07-03 câu khuyên | đã sửa |
+| ghi nhận | S03-05 (mặt trang) | "Ví dụ phản chứng" nên là "Phản ví dụ"; ghi chú đã đặt cạnh "phản ví dụ (counterexample)" | còn mở, ngoài phạm vi lượt ghi chú |
+| ghi nhận | S04-01b, hình S04-03 | mặt trang "độ dốc" khác outline "hệ số góc"; hình ghi "g(2) = 5,0" | giữ nguyên, ghi chú theo mặt trang |
+
+### Kiểm tra của điều phối viên
+
+- `check-deck.py`: 47 trang, 47 ghi chú, không `$` lệch, không cụm chỉ đường; Chromium 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung ở 16:9. Đã xem ảnh S03-04 ở hai kích thước: mặt trang không đổi.
+- `git diff --check` sạch. Ghi chú bài giảng và bài tập không đổi vì mặt trang không đổi.
+- Lượt sửa nhẹ cuối (cùng tác tử soạn): S03-03c diễn đạt tổ hợp hàng bằng lời, S03-03a thêm $k=m+r+1$ và $\mu t\le c$ (347 tiếng), S03-02 câu chạm hai đầu đoạn. Điều phối viên chạy lại `check-deck.py`: đạt. Quyết định: chấp nhận, bàn giao Bài 03.
