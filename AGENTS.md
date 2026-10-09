@@ -182,6 +182,20 @@ Các bước có thể gộp trong một tiểu mục nhưng không được đ�
 - Bảng có hàng tiêu đề; số liệu minh họa phải tính lại được từ dữ kiện trong chương và ghi rõ nếu là số liệu giả lập sư phạm.
 - Không chép nguyên ghi chú diễn giả, không chép nguyên nội dung trang chiếu. Ghi chú diễn giả có thể là nguồn ý nhưng phải được viết lại thành văn giáo trình.
 
+### Trình bày sáng sủa: chứng minh và diễn giải
+
+Yêu cầu người dùng 2026-10-09: chứng minh và đoạn diễn giải phải đọc được từng ý một; khi cần thì xuống dòng để tách các ý, không để nhiều ý dính vào nhau trong một đoạn hay một câu dài.
+
+- **Một ý một đoạn.** Đoạn văn diễn giải (sau định nghĩa, sau định lý, "Trong học máy", nhận xét, đọc hình) chỉ chứa một luận điểm và tối đa khoảng bốn câu. Luận điểm thứ hai bắt đầu đoạn mới. Không nối hai ý bằng dấu chấm phẩy hoặc "và" để tiết kiệm dòng.
+- **Chứng minh theo bước.** Mỗi chứng minh dài hơn ba câu được chia thành các bước có nhãn in đậm trên dòng riêng (`**Bước 1 (chặn dưới).**`), mỗi bước là một đoạn: câu đầu nêu điều bước này thiết lập, các câu sau là lập luận, câu cuối nêu căn cứ. Chuỗi biến đổi nhiều hơn hai dấu bằng hoặc bất đẳng thức đặt trong công thức hiển thị `$$...$$` với `\begin{aligned}`, mỗi dấu một dòng, căn cứ ghi ở cột phải bằng `&&\text{(...)}` hoặc ở câu ngay sau công thức.
+- **Trường hợp và điều kiện thành danh sách.** Phân chia trường hợp, kiểm tra nhiều điều kiện, hoặc nhiều kết luận (a), (b), (c) viết thành danh sách đánh số hoặc gạch đầu dòng, mỗi mục một dòng; không gói trong một câu dài có nhiều dấu chấm phẩy.
+- **Công thức quan trọng trên dòng riêng.** Công thức dài hơn nửa dòng, công thức được tham chiếu về sau, và kết luận của một bước luôn đặt ở `$$...$$`; công thức nội dòng chỉ cho ký hiệu và biểu thức ngắn.
+- **Tách phần của phát biểu.** Trong định lý, mệnh đề, bổ đề, hệ quả, bốn phần Giả thiết, Kết luận, Điều kiện áp dụng, Phạm vi mỗi phần là một đoạn riêng (đã quy định); trong định nghĩa, các đối tượng được định nghĩa liên tiếp tách dòng.
+- **Ví dụ và lời giải.** Trong ví dụ và lời giải, các giai đoạn (lập mô hình, kiểm giả thiết, tính, diễn giải, kiểm tra lại) mở bằng nhãn in đậm trên dòng riêng. Mỗi phép tính có kết quả trung gian được ghi, không gộp ba phép tính vào một câu.
+- **Hạn chế ngoặc đơn lồng.** Không quá một ngoặc đơn trong một câu; chú thích dài chuyển thành câu riêng.
+
+Tác tử rà mạch truyện kiểm tiêu chí này ở mọi khối `proof`, `derivation`, `solution` và mọi đoạn diễn giải; chỗ không đạt ghi mức `trung bình`.
+
 ### Kiểm định ghi chú bài giảng
 
 Trước khi công bố trên chỉ mục, tác tử rà soát lập bảng đối chiếu theo các mục sau, ghi kết quả vào `review-log.md`:
@@ -193,6 +207,7 @@ Trước khi công bố trên chỉ mục, tác tử rà soát lập bảng đ�
 - mỗi ví dụ có kết quả số và dòng kiểm tra lại; các con số được tính lại độc lập bởi tác tử rà toán;
 - mỗi bài tập có `hint` và `solution` đầy đủ;
 - không có tham chiếu "xem trang chiếu", không có câu mảnh, không có bước suy diễn bị bỏ;
+- chứng minh chia bước có nhãn, chuỗi biến đổi trong `aligned` mỗi dấu một dòng, trường hợp thành danh sách, đoạn diễn giải một ý một đoạn (mục "Trình bày sáng sủa");
 - số hiệu liên tục, tham chiếu chéo trỏ đúng, các khối không lồng nhau và render đúng ở màn rộng, màn hẹp;
 - mỗi định nghĩa có đoạn nêu quan hệ với khái niệm đã có; mỗi định lý có đoạn nêu quan hệ với định lý trước và đoạn "Trong học máy" nêu đúng đối tượng, giả thiết và kết luận; mỗi mục có chuỗi suy luận dẫn số hiệu; mở và kết chương có móc nối với bài trước và bài sau;
 - mỗi mục có đoạn kết nêu kết quả thu được, thiếu hụt còn lại và cách mục sau giải quyết; mỗi công thức có câu dẫn trước và câu đọc sau; mỗi ký hiệu được gọi tên tại lần xuất hiện đầu;
