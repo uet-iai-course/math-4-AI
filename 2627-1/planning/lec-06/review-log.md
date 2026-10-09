@@ -1152,3 +1152,38 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | storyboard KN10 | trực quan nay ở câu mở E07 → cập nhật. **Đã đóng.**
   - ngoài phạm vi | ghi chú bài giảng mục 1.1 | tiêu đề trùng tiêu đề cũ của E01 → “Vấn đề trung tâm và các thành phần huấn luyện”. **Đã đóng.**
 - **Kiểm trình duyệt toàn bài.** Playwright Chromium qua `python3 -m reloadserver 8765`, đủ 45 trang tại 1600×900 và 390×844 (cuộn tới cuối vùng đọc hẹp): không lỗi JavaScript hoặc trang, không `.katex-error`, không tràn ngang tài liệu, cỡ chữ thân bài không dưới ngưỡng; nội dung khung rộng không chạm chân trang; ArrowRight điều hướng đúng. Ở khung hẹp, công thức và bảng rộng cuộn ngang bằng bàn phím như quy ước hiện hành.
+
+## 2026-10-09 — Bổ sung ghi chú diễn giả cho sinh viên tự đọc
+
+Người dùng phản ánh sinh viên thấy trang chiếu thiếu dẫn dắt, thiếu ngữ cảnh, thông tin bị cắt cụt, và yêu cầu bổ sung ghi chú diễn giả (phím S) cho mọi trang của Bài 01–07. Phạm vi lượt này: chỉ nội dung bên trong `<aside class="notes">` của 45 trang; mặt trang, cấu trúc section, `data-slide-id`, storyboard và dàn ý không đổi. Mỗi ghi chú viết lại theo bốn phần: dẫn dắt, diễn giải đủ ký hiệu, công thức, hình, bảng và lời giải câu hỏi, điểm dễ nhầm, kết nối trang sau bằng quan hệ suy luận; giữ quy ước nguồn `<p><strong>Nguồn:</strong>…</p>` của deck. Độ dài sau sửa: 177–309 tiếng, trung vị 257.
+
+### Tác tử và quyết định của điều phối viên
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Tác tử con tạo bằng Agent tool, `subagent_type=general-purpose`, `model=opus` (Claude Opus 5.5), `effort=high`; chỉ một tác tử ghi tệp tại một thời điểm.
+
+| Vai | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|
+| Soạn ghi chú (45 trang) | Có, chỉ aside.notes | Đủ 45 ghi chú; bỏ mã LLO/CLO ở A02; "phi lồi (tức không lồi)" nêu một lần ở E06 rồi dùng "không lồi"; bổ sung nguồn GBC §8.2.3 (C04), thuật toán 8.5 (B05); liệt kê 36 lập luận mới | yêu cầu sửa |
+| Rà chính xác toán học | Không | Tính lại 36 lập luận mới và số liệu cũ: đúng; đối chiếu nguyên văn Goodfellow–Bengio–Courville chương 8 (pdftotext) và Martens (2010) tại máy: khớp; Kingma–Ba, Duchi, Shewchuk, Ioffe–Szegedy, Bengio 2009 chưa có bản tại máy. 1 trung bình (C03 đếm sai và gộp sai giả thiết hội tụ cục bộ), 12 nhẹ | chấp nhận |
+| Rà mạch truyện và tự đọc | Không | 10 trung bình (8 ghi chú thiếu câu dẫn dắt riêng; B01, C02, D04, G02 ký hiệu/tên trùng; E08 mâu thuẫn E03; D02 hoãn công thức $P_1$; C07 tính sẵn đáp án C08; A01/A02 thuật ngữ; E03 dài; C03), 18 nhẹ (trong đó F03 đưa kỳ vọng Gauss trái outline dòng 565, 569 và storyboard dòng 460) | chấp nhận |
+| Soạn ghi chú, lượt sửa | Có, chỉ aside.notes | Sửa 8 mục bắt buộc và toàn bộ mục nhẹ; đổi câu kết A02, B02, B06, D02, D03, C07 để không trùng câu mở mới; E05 đổi ví dụ sang $(u-v)^2+\kappa(u^2+v^2)$; F03 viết theo kế hoạch | chấp nhận, chờ tái kiểm |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình | C03 | Bốn thay vì năm giả thiết; chi phí gọi là giả thiết | đã sửa |
+| trung bình | A03, B03, B05, B07, D03, D04, E02, F04 | Thiếu câu dẫn dắt riêng | đã sửa |
+| trung bình | B01, C02, D04, G02 | $g_j$/$g_t$; $\theta_1$ hai nghĩa; "điều kiện độ cong" cho hai điều kiện; $m$, $H$ hai nghĩa | đã sửa |
+| trung bình | E08 | "Bốn can thiệp giữ mục tiêu cố định" mâu thuẫn E03 ($F_{BN}$) | đã sửa |
+| trung bình | D02 | Hoãn công thức $P_1$ sang mục khác | đã sửa: công thức $P^+$ với $\rho=1/2$ tại trang |
+| trung bình | C07 | Ví dụ số tính sẵn đáp án C08; thiếu hai cách xử lý khi kiểm hướng không đạt; Martens dùng Gauss–Newton | đã sửa |
+| trung bình | A01, A02, E03 | Thuật ngữ thiếu cầu nối/tiếng Anh; E03 dài, câu mơ hồ về "cơ chế" | đã sửa: internal covariate shift nêu tên là giả thuyết |
+| nhẹ | 30 mục | B07 giả thiết ví dụ, B06 "độ chệch", B08 đổi biến, F01 xác suất 1, E06, E07, F03 theo kế hoạch, ký hiệu $p$/$p_k$, $T$, $\alpha$, thuật ngữ tiếng Anh, trích dẫn rút gọn, G03 dòng nguồn rỗng | đã sửa |
+| ghi nhận | B03, B06, C04, E03, E05, E06, E07, F02, F03, F05 | Các nhận định gán cho giáo trình không ghi trong outline/storyboard; tác tử rà toán đã đối chiếu nguyên văn PDF tại máy, khớp | ghi nhận tại đây làm căn cứ |
+
+### Kiểm tra của điều phối viên
+
+- `check-deck.py`: 45 trang, 45 ghi chú, không `$` lệch, không cụm chỉ đường; Chromium 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung ở 16:9. Đã xem ảnh D01 ở hai kích thước: mặt trang không đổi.
+- `git diff --check` sạch. Học liệu Bài 06 không đổi vì mặt trang không đổi.
+- Tái kiểm toán học (39 trang đổi): đạt; 3 nhẹ (E08 nối tắt cũng đổi mô hình; B03, D04 mất chi tiết đúng). Tái kiểm mạch truyện: đạt mức sinh viên tự đọc được; 5 nhẹ. Lượt sửa nhẹ cuối (E08, B03, D04, E06, B06, A02, E03) đã thực hiện; điều phối viên chạy lại `check-deck.py`: đạt. Quyết định: chấp nhận, bàn giao Bài 06.
