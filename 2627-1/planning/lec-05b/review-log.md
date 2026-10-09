@@ -699,3 +699,37 @@ Lượt 6 (R79–R86): đã tải lại kỹ năng ở chế độ Edit. Văn b�
 | Nguồn của cận $O(1/k)$ trong deck Bài 04 | `2627-1/lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`, trang RG15 | RG15 dẫn Boyd và Vandenberghe §9.3 cho cận $O(1/k)$; BV §9.3 chỉ trình bày trường hợp lồi mạnh, nên đây là sai nguồn. Việc của Bài 04; nêu ở bàn giao, không sửa trong phạm vi Bài 05b (phát hiện ở tái kiểm C01) |
 | Mã sinh 14 SVG (R86); thêm hình 17 (`quartic-nonconvex.svg`) ở rà từng trang F01 (bản sao `make_svgs.py.bak-before-F01`); thêm hình 18 (`bounds-vs-actual.svg`) ở rà từng trang G03 (bản sao `make_svgs.py.bak-before-G03`); hình 14 (`quartic-two-wells.svg`) khung 600×350 ở rà từng trang F02 (bản sao `make_svgs.py.bak-before-F02`); hình 12 (`vda-sgd-bound-vs-exact.svg`) nhãn $k$ dưới trục ở rà từng trang E08 (bản sao `make_svgs.py.bak-before-E08`); hình 9 (`subgradient-supporting-lines.svg`) sửa nhãn và khung ở rà từng trang D02 (bản sao `make_svgs.py.bak-before-D02`); hình 8 (`vdb-objective.svg`) thêm nhãn điểm gãy ở rà từng trang D01 (bản sao `make_svgs.py.bak-before-D01`); hình 6 (`telescoping-stack.svg`) khung 600×340 ở rà từng trang C02 (bản sao `make_svgs.py.bak-before-C02`); hình 5 (`convergence-map.svg`) thêm tên bổ đề ở rà từng trang B06 (bản sao `make_svgs.py.bak-before-B06`); hình 3 (`quadratic-sandwich.svg`) sửa ở B02; hình 2 (`logistic-no-minimizer.svg`) vẽ lại ở rà từng trang B01, bản sao trước khi sửa `make_svgs.py.bak-before-B01`; thêm hình 15–16 (`vdc-measures.svg`, `vda-sgd-path.svg`) ở rà từng trang A03, bản sao trước khi thêm: `make_svgs.py.bak-before-A03`; chạy lại cho 14 hình cũ trùng từng byte | `/tmp/claude-1000/lec-05b-build/make_svgs.py`, ngoài kho | Hình đã vẽ ở lượt 4 và vẽ lại theo R79. Thư mục tạm có thể bị xóa; nếu người dùng muốn lưu mã sinh hình vào kho, cần quyết định riêng. Tác tử không tự thêm vào kho |
 | Soạn học liệu | `2627-1/materials/lec-05b/lecture-note.md`, `exercises.md` | Đã soạn ở lượt 5 (chứng minh T1', lịch theo pha, T6 quy nạp, T9, Jensen quy nạp; 10 bài ba mức, có bài Markov; đáp án G04); đã soạn (lượt 5), sửa M01–M20 (lượt 6); TO-M, SP-M, KĐ3 đạt |
+
+## 2026-10-09 — Bổ sung ghi chú diễn giả cho sinh viên tự đọc
+
+Người dùng phản ánh sinh viên thấy trang chiếu thiếu dẫn dắt, thiếu ngữ cảnh, thông tin bị cắt cụt, và yêu cầu bổ sung ghi chú diễn giả (phím S) cho mọi trang của Bài 01–07. Phạm vi lượt này: chỉ nội dung bên trong `<aside class="notes">` của 51 trang; mặt trang, cấu trúc section, `data-slide-id`, storyboard và dàn ý không đổi. Mỗi ghi chú viết lại theo bốn phần: dẫn dắt, diễn giải đủ ký hiệu, công thức, hình, bảng và lời giải câu hỏi, điểm dễ nhầm, kết nối trang sau bằng quan hệ suy luận; giữ quy ước `<p class="note-source">` của deck. Độ dài sau sửa: 198–298 tiếng, trung vị 258.
+
+### Tác tử và quyết định của điều phối viên
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Tác tử con tạo bằng Agent tool, `subagent_type=general-purpose`, `model=opus` (Claude Opus 5.5), `effort=high`; chỉ một tác tử ghi tệp tại một thời điểm.
+
+| Vai | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|
+| Soạn ghi chú (51 trang) | Có, chỉ aside.notes | Đủ 51 ghi chú; sửa ghi chú cũ A01 (bài chứng minh T1', T2a, T2b, bốn kết quả chỉ phát biểu), A02 (bỏ mã LLO/CLO), E03 (phương sai không bị chặn trừ khi mọi $u_iu_i^T$ bằng nhau), G02 ("cuối dòng"); bỏ lời chỉ thứ tự trang ở B01, C08, D01, E05; liệt kê 23 lập luận mới | yêu cầu sửa |
+| Rà chính xác toán học | Không | Tính lại toàn bộ số liệu (A03, A04, B01–B07, C03–C09, D01–D07, E02–E12, F01–F07) và đối chiếu path SVG: đúng. 1 nghiêm trọng (C07: bản mới nói cả hai bất đẳng thức của T2a không chặt; thực tế H3 tại $y=x^*$ xảy ra dấu bằng, chỉ BĐ2 lỏng; điều phối viên tự kiểm trên Ví dụ C), 3 trung bình (A04 lý do không hội tụ theo kỳ vọng; E08 mô tả hình sai điểm xuất phát đường đứt; E11 so sánh hội tụ gần như chắc chắn với cận Markov), 11 nhẹ, 6 ý cũ bị mất | chấp nhận |
+| Rà mạch truyện và tự đọc | Không | 4 trung bình (8 ghi chú mở bằng mô tả hình, thiếu câu dẫn dắt riêng; A01 dùng nhãn T2', T4, T6, T9 chưa giới thiệu; C06 dùng T5 trước 16 trang; "mức dừng"/"giá trị giới hạn"/"sàn nhiễu" lẫn), 21 nhẹ; số dòng học liệu và outline trích đã kiểm | chấp nhận |
+| Soạn ghi chú, lượt sửa | Có, chỉ aside.notes | Sửa C07 và 6 mục bắt buộc còn lại, gần hết mục nhẹ; đổi câu kết C01, E01, B05 để không trùng câu mở mới của C02, E02, B06; giữ nguồn "học liệu Bài 04, mục B" ở C01 (đúng nguồn) | chấp nhận, chờ tái kiểm |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | C07 | Giải thích sai hệ số co thật $(1-\mu/L)^2$ | đã sửa: H3 dấu bằng, BĐ2 lỏng ($\|g\|^2=2\mu e<2Le$) |
+| trung bình | A04 | Gắn "không hội tụ theo kỳ vọng" vào $\mathbb E\theta_k\to1$ | đã sửa: $\mathbb Ed_k^2\to0{,}140$, $\mathbb Ee_k\to0{,}070$, $\mathbb Ed_k$ không về 0; $\kappa$ định nghĩa tại chỗ; "cần"→"đủ" |
+| trung bình | E08 | Đường đứt cận T5 xuất phát từ $1{,}267$, không phải $a_0=1$; "tỉ lệ với η" | đã sửa |
+| trung bình | E11 | Hội tụ gần như chắc chắn "mạnh hơn" cận Markov | đã sửa: hai khẳng định không so sánh được |
+| trung bình | A04, B02, B06, C02, D02, E02, F02, G03 | Thiếu câu dẫn dắt riêng | đã sửa |
+| trung bình | A01, C06, B02 | Nhãn định lý dùng trước khi giới thiệu | đã sửa |
+| trung bình | A03, E05, E08, F06 | Thuật ngữ "mức dừng"/"giá trị giới hạn"/"sàn nhiễu" | đã sửa, thống nhất |
+| nhẹ | 32 mục | Stolz–Cesàro phát biểu, "lượt"/"lần chạy", ký hiệu θ của Bài 05, tên mục học liệu, thuật ngữ tiếng Anh, rút độ dài, khôi phục ý cũ (G01, A03, D04) | đã sửa |
+
+### Kiểm tra của điều phối viên
+
+- `check-deck.py`: 51 trang, 51 ghi chú, không `$` lệch, không cụm chỉ đường; Chromium 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung ở 16:9. Mặt trang không đổi (phần ngoài aside giống bản gốc theo verify của tác tử soạn; điều phối viên kiểm `git diff` chỉ nằm trong aside).
+- `git diff --check` sạch. Học liệu Bài 05b không đổi vì mặt trang không đổi.
+- Tái kiểm toán học: đạt (41 trang đổi đọc lại; C07, A04, E08, E11 đúng; 1 nhẹ E06). Tái kiểm mạch truyện (đọc lại cả 51 ghi chú): đạt; 7 nhẹ. Lượt sửa nhẹ cuối (E06, E07, G04, G03, C03/C04, B06, B04) đã thực hiện; điều phối viên chạy lại `check-deck.py`: đạt. Quyết định: chấp nhận, bàn giao Bài 05b.
