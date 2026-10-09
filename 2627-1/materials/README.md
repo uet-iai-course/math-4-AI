@@ -17,7 +17,7 @@ Nội dung định lý.
 :::
 ```
 
-Các loại khối gồm `definition`, `theorem`, `proposition`, `lemma`, `corollary`, `remark`, `algorithm`, `example`, `application`, `derivation`, `proof`, `exercise`, `hint` và `solution`. Khi có tiêu đề sau tên khối, tiêu đề thay cho nhãn mặc định (Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả, Nhận xét, Thuật toán, Ví dụ, Tình huống áp dụng, Suy diễn, Chứng minh, Bài tập, Gợi ý, Lời giải). Hai khối `hint` và `solution` được hiển thị dưới dạng nội dung gập; các khối còn lại luôn mở. Danh sách loại khối và nhãn nằm trong hằng `DIRECTIVE_LABELS` của `material-viewer.js`.
+Các loại khối gồm `definition`, `theorem`, `proposition`, `lemma`, `corollary`, `remark`, `algorithm`, `example`, `application`, `derivation`, `proof`, `exercise`, `hint` và `solution`. Khi có tiêu đề sau tên khối, tiêu đề thay cho nhãn mặc định (Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả, Nhận xét, Thuật toán, Ví dụ, Tình huống áp dụng, Suy diễn, Chứng minh, Bài tập, Gợi ý, Lời giải). Hai khối `proof`, `hint` và `solution` được hiển thị dưới dạng nội dung gập; các khối còn lại luôn mở. Danh sách loại khối và nhãn nằm trong hằng `DIRECTIVE_LABELS` của `material-viewer.js`.
 
 ## Xem cục bộ
 

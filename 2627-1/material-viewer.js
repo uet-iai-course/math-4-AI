@@ -21,7 +21,7 @@
     hint: "Gợi ý",
     solution: "Lời giải"
   });
-  const COLLAPSED_DIRECTIVES = new Set(["hint", "solution"]);
+  const COLLAPSED_DIRECTIVES = new Set(["proof", "hint", "solution"]);
   const DIRECTIVE_ALTERNATION = Object.keys(DIRECTIVE_LABELS).join("|");
   const DIRECTIVE_PATTERN = new RegExp(`^(?:${DIRECTIVE_ALTERNATION})$`);
   const DIRECTIVE_START_PATTERN = new RegExp(`^:::[ \\t]*(?:${DIRECTIVE_ALTERNATION})(?:\\s|$)`, "m");
