@@ -334,3 +334,35 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
 - **Kiểm trình duyệt toàn bài.** Playwright Chromium qua `python3 -m reloadserver 8765`, đủ 37 trang tại 1600×900 và 390×844 (chụp cả khi cuộn tới cuối vùng đọc hẹp): không lỗi JavaScript hoặc trang, không `.katex-error`, không tràn ngang tài liệu; trang cao nhất ở khung 16:9 là 681px (D03), dưới 720px; cỡ chữ thân bài không dưới $0{,}75$em; ArrowRight điều hướng đúng. Ở khung hẹp, công thức và bảng rộng cuộn ngang trong vùng có dấu “↔”.
 - **Trình xem ghi chú bài giảng.** `material-viewer.html?doc=materials/lec-07/lecture-note.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html`: 582 nút KaTeX, không `.katex-error`, 16 hình Bài 07 đều tải, hai khối lời giải thu gọn. Lỗi CSP duy nhất trên bảng điều khiển là script tự tải lại do `reloadserver` chèn; Bài 06 cho cùng lỗi, không thuộc Bài 07.
 - **Chỉ mục.** `index.html` có thẻ Bài 07 với liên kết bài giảng và ghi chú bài giảng; không liên kết tới `planning/`.
+
+## 2026-10-09 — Bổ sung ghi chú diễn giả cho sinh viên tự đọc
+
+Người dùng phản ánh sinh viên thấy trang chiếu thiếu dẫn dắt, thiếu ngữ cảnh, thông tin bị cắt cụt, và yêu cầu bổ sung ghi chú diễn giả (phím S) cho mọi trang của Bài 01–07. Phạm vi lượt này: chỉ nội dung bên trong `<aside class="notes">` của 37 trang; mặt trang (kể cả hộp "Bài 08" ở cuối deck), cấu trúc section, `data-slide-id`, storyboard và dàn ý không đổi. Mỗi ghi chú viết lại theo bốn phần: dẫn dắt, diễn giải đủ ký hiệu, công thức, hình, bảng và lời giải câu hỏi, điểm dễ nhầm, kết nối trang sau bằng quan hệ suy luận; giữ quy ước `<p class="note-source">` và các nhãn "Ý tưởng/Các bước/Điểm dùng giả thiết" của deck. Ghi chú không hứa thời điểm giảng dạy phương pháp đơn hình, chỉ nêu quan hệ nội dung.
+
+### Tác tử và quyết định của điều phối viên
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Tác tử con tạo bằng Agent tool, `subagent_type=general-purpose`, `model=opus` (Claude Opus 5.5), `effort=high`; chỉ một tác tử ghi tệp tại một thời điểm.
+
+| Vai | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|
+| Soạn ghi chú (37 trang) | Có, chỉ aside.notes | Đủ 37 ghi chú; sửa ghi chú cũ C03 (đánh số (i)–(iii) khớp mặt trang, chứng minh với λ tổng quát), C05 (phác thảo chứng minh thay "định lý đa diện"), P02 (bỏ LLO), P00/C08/C09 (bỏ lời hứa "Bài 08"); nêu nghi ngờ số mục Bertsimas–Tsitsiklis; liệt kê 24 lập luận mới | yêu cầu sửa |
+| Rà chính xác toán học | Không | Tính lại toàn bộ số liệu (hộp hạt, hồi quy ℓ1, định thức, đường đi, quy hoạch động) và đối chiếu SVG, MIT 15.093J lec16, slide Bertsimas, đề cương DOCX: 24 lập luận mới đúng. 1 nghiêm trọng (D04, từ ghi chú cũ: "Bellman không mở rộng sang ngẫu nhiên/liên tục/vô hạn" sai, mâu thuẫn Z01 và nguồn MIT có $E_{w_k}$), 3 trung bình (số mục B–T lệch một mục trên 12 trang; nguồn bổ đề đỉnh kề; B06 phản ví dụ đổi biến cơ sở và chiều nhân quả suy biến), 5 nhẹ | chấp nhận; điều phối viên xác nhận mục lục B–T chương 1–2 (§2.2 điểm cực/BFS, §2.3 dạng chuẩn, §2.4 suy biến, §2.5 tồn tại, §2.6 tối ưu tại điểm cực) |
+| Rà mạch truyện và tự đọc | Không | 1 nghiêm trọng (C07: "cạnh", "kề" không định nghĩa trong $\mathbb R^n$), 11 trung bình (nón tiếp xúc, pivot/cycling chưa giải thích; hữu hạn điểm cực dùng trước C08; điểm cực vs cực trị; không nối LP của Bài 02; chứng nhận B02/C10 cần hệ số không âm và cách tìm; $A$ vs $\bar A$; C05 thiếu kết nối; D05 sai số bước, "hàm giá trị"; D04 mâu thuẫn Z01), 19 nhẹ; số dòng outline/storyboard kiểm bằng cat -n | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | D04 | Phạm vi phương trình Bellman nói sai | yêu cầu sửa: hữu hạn tất định; ngẫu nhiên lấy kỳ vọng; liên tục inf; vô hạn điểm bất động |
+| nghiêm trọng | C07 | Cạnh, kề, nón hướng khả thi, pivot, cycling chưa định nghĩa | yêu cầu sửa |
+| trung bình | B04–C09 (12 trang) | Số mục Bertsimas–Tsitsiklis lệch | yêu cầu sửa theo ánh xạ |
+| trung bình | B06 | Đổi biến cơ sở không luôn giữ điểm; chiều nhân quả suy biến | yêu cầu sửa |
+| trung bình | C02, P00/A05/A07, B02/C10, B06/B07, C05, D05 | Như bảng rà mạch truyện | yêu cầu sửa |
+| nhẹ | 24 mục | Rút C03/C05/C07/C08, câu mở C04, D01/P03, thuật ngữ tiếng Anh, Z01, P02, B01, B02, B07 | yêu cầu sửa |
+
+### Lượt sửa và tái kiểm
+
+- Tác tử soạn (lượt sửa): thực hiện đủ 9 mục bắt buộc và toàn bộ mục nhẹ; C07 viết lại với định nghĩa cạnh, kề, nón hướng khả thi, pivot, cycling; số mục B–T theo ánh xạ; D04 phạm vi Bellman; B06; nối Bài 02–03 ở P00, A05, A07, B02, C10. Quyết định: chấp nhận, chờ tái kiểm.
+- Tái kiểm toán học: đạt; 4 nhẹ (định nghĩa cạnh cần nhóm cố định và số chiều 1; cơ sở khác một cột khi suy biến; B02 vế trái phải trùng $c^Tx$; A07 ngoại lệ dưới gradient Bài 05b). Tái kiểm mạch truyện (27 trang đổi ± 2, cụm C05→C11 đọc trọn): đạt; 1 trung bình mới (D04 mất câu kết nối), 5 nhẹ.
+- Lượt sửa cuối (D04, C07, B02, A07, D01, C04, P00): đã thực hiện; C07 và D04 đúng 350 tiếng. Điều phối viên chạy lại `check-deck.py`: 37 trang, 37 ghi chú, không lỗi console, không `.katex-error`, không tràn ở 16:9; đã xem ảnh C01 ở hai kích thước, mặt trang không đổi; `git diff --check` sạch. Quyết định: chấp nhận, bàn giao Bài 07.
+- Việc còn mở ngoài phạm vi: hộp "Bài 08" trên mặt trang Z02 và câu "Phương pháp đơn hình thuộc Bài 08" trên mặt trang (ghi chú không nhắc thời điểm); học liệu Bài 07 không đổi vì mặt trang không đổi.
