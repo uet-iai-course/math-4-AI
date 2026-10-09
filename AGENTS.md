@@ -79,6 +79,112 @@ Phải giữ thứ tự, bố cục, mức độ chi tiết và mạch nội dun
 - Mỗi tệp Markdown phải bắt đầu bằng một heading cấp một. Hình phải có văn bản thay thế; bảng phải có hàng tiêu đề; nguồn phải truy nguyên được theo cùng tiêu chuẩn của bộ trang chiếu.
 - Tài sản bên thứ ba cho viewer phải có phiên bản cố định, giấy phép cục bộ, URL tải chính thức, ngày tải, checksum SHA-256 và vai trò được ghi trong `YYZZ-H/vendor/materials/README.md`. Không dùng CDN cho thành phần cốt lõi.
 
+## Tiêu chuẩn giáo trình cho ghi chú bài giảng
+
+Mục này quy định `materials/lec-NN/lecture-note.md`. Ghi chú bài giảng là một chương giáo trình tự chứa: sinh viên đọc được trọn vẹn mà không cần mở bộ trang chiếu, không cần nghe giảng và không cần công cụ hỗ trợ bên ngoài. Bộ trang chiếu là bản tóm lược của ghi chú, không phải ngược lại. Khi hai bên mâu thuẫn, ghi chú là bản đầy đủ và phải được sửa trước.
+
+### Tiêu chuẩn thứ nhất: trình bày theo ngữ cảnh để hiểu được bằng cách đọc
+
+Phép thử duy nhất: một sinh viên có đủ kiến thức tiên quyết, đọc tệp từ đầu đến cuối theo thứ tự, không mở trang chiếu, không tra cứu ngoài và không dùng công cụ hỗ trợ, phải hiểu được từng câu tại chỗ câu đó xuất hiện. Mọi quy tắc dưới đây phục vụ phép thử này.
+
+- **Vấn đề đi trước công cụ.** Mỗi mục `##` mở bằng một đoạn nêu bài toán cụ thể (có dữ kiện, có số liệu khi được) mà công cụ hiện có chưa giải được, và nêu kết quả mục này sẽ cung cấp. Không mở mục bằng định nghĩa, công thức hay danh sách.
+- **Mỗi công thức được bao bởi lời.** Trước công thức có câu nói công thức tính gì và vì sao cần nó; sau công thức có câu đọc công thức bằng lời, nêu từng thành phần nghĩa là gì và đại lượng thu được dùng vào đâu. Không để hai công thức đứng liền nhau mà không có câu nối.
+- **Ký hiệu được gọi tên khi xuất hiện.** Lần đầu một ký hiệu xuất hiện, câu chứa nó nêu tên gọi, kiểu và chiều (`ma trận $A\in\mathbb R^{m\times n}$ chứa hệ số của $m$ ràng buộc đẳng thức`). Bảng ký hiệu ở đầu chương là chỗ tra lại, không thay cho câu giới thiệu tại chỗ.
+- **Mỗi bước suy diễn nêu lý do.** Trong suy diễn và chứng minh, mỗi dấu bằng hoặc bất đẳng thức đi kèm căn cứ: định nghĩa nào, giả thiết nào, kết quả số hiệu nào, phép biến đổi nào. Không có bước "dễ thấy", "suy ra ngay" hoặc dấu ba chấm.
+- **Phát biểu toán học có bản đọc bằng lời.** Sau mỗi định nghĩa và định lý có một đoạn nói lại nội dung bằng tiếng Việt thường, nêu vai trò từng giả thiết và điều xảy ra khi bỏ một giả thiết, kèm ít nhất một ví dụ và một phản ví dụ hoặc trường hợp giới hạn.
+- **Ví dụ cụ thể trước phát biểu tổng quát.** Mỗi khái niệm trọng tâm có một ví dụ với số liệu được tính tay xuất hiện trước định nghĩa hoặc định lý tổng quát, rồi được nhắc lại sau phát biểu để chỉ ra phát biểu tổng quát bao hàm ví dụ này ở chỗ nào.
+- **Nối mục bằng kết quả, không bằng lời dẫn.** Cuối mỗi mục có đoạn kết nêu ba điều: đã thu được kết quả gì (dẫn số hiệu), kết quả đó còn thiếu gì hoặc giả thiết nào còn hạn chế, và mục kế tiếp giải quyết thiếu hụt đó như thế nào. Đầu mục kế tiếp nhắc lại thiếu hụt này bằng một câu. Không dùng câu dẫn kiểu "tiếp theo ta xét".
+- **Không tham chiếu ra ngoài tệp mà không đủ nội dung.** Cấm "như trên trang chiếu", "đã nói trong bài", "xem bài giảng". Kết quả của bài trước được dẫn bằng số hiệu và được phát biểu lại trong một câu đủ để dùng ngay. Tham chiếu tiến ("sẽ chứng minh ở mục 4") phải nêu rõ điều đang được tạm chấp nhận.
+- **Câu đủ thành phần, đoạn có luận điểm.** Không chép câu mảnh kiểu gạch đầu dòng của trang chiếu thành văn ghi chú. Mỗi đoạn có một câu luận điểm và các câu còn lại chứng minh, minh họa hoặc giới hạn luận điểm đó. Danh sách chỉ dùng cho các mục thực sự song song (các bước thuật toán, các giả thiết, các trường hợp).
+- **Nhầm lẫn thường gặp được nói thẳng.** Ở mỗi khái niệm, nêu cách hiểu sai phổ biến và lý do nó sai, bằng phản ví dụ hoặc chỉ ra giả thiết bị vi phạm.
+- **Hình được đọc trong văn bản.** Mỗi hình có đoạn văn trước hoặc sau nói cần nhìn điều gì trên hình và điều đó ứng với công thức hay kết quả nào; `alt` mô tả đủ nội dung toán học để người không xem hình vẫn theo được.
+- **Độ dài phục vụ việc đọc hiểu.** Ghi chú viết cho người đọc lần đầu, ưu tiên rõ ràng hơn ngắn gọn, và phải dài hơn phần ghi chú diễn giả của cùng bài. Một chương thường dài 8 000 đến 20 000 từ; dưới 6 000 từ cần lý do ghi trong `review-log.md`.
+
+### Các nguyên tắc còn lại
+
+- **Tự chứa.** Mọi ký hiệu, giả thiết, đối tượng và kết quả được dùng phải được định nghĩa hoặc phát biểu trong cùng tệp, hoặc dẫn tới số hiệu cụ thể trong ghi chú của bài trước (`Định lý 02.3`) kèm phát biểu lại.
+- **Đầy đủ, không cắt cụt.** Mỗi lập luận được viết hết các bước; mỗi ví dụ tính đến kết quả số và kiểm tra lại; mỗi bài tập có lời giải.
+- **Hình thức.** Kiến thức được trình bày theo các môi trường có nhãn và số hiệu: Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả, Ví dụ, Nhận xét, Chứng minh, Thuật toán, Bài tập, Tình huống áp dụng. Không trộn định nghĩa vào giữa đoạn văn giải thích; không phát biểu kết quả bằng lời rồi bỏ qua dạng toán học.
+- **Giữ hành trình khái niệm.** Hành trình của bộ trang chiếu (nhu cầu → trực giác → ví dụ → phát biểu → ứng dụng → bài tập) được giữ đầy đủ trong ghi chú với mức chi tiết của giáo trình.
+
+### Đoạn văn móc nối: quan hệ giữa khái niệm, định lý và ứng dụng trong AI
+
+Ghi chú không phải danh mục các định nghĩa và định lý đứng cạnh nhau. Mỗi đối tượng mới phải được gắn vào mạng kiến thức đã có bằng những đoạn văn móc nối viết rõ, có tên quan hệ và có số hiệu. Các loại móc nối bắt buộc:
+
+- **Khái niệm với khái niệm.** Ngay sau một định nghĩa mới có đoạn nêu quan hệ của nó với các khái niệm đã định nghĩa: là trường hợp đặc biệt của gì, tổng quát hóa gì, đối ngẫu hay bổ sung cho gì, khác gì với khái niệm dễ nhầm. Quan hệ được phát biểu bằng toán học khi có thể (`mọi hàm lồi chặt đều lồi; chiều ngược lại sai, ví dụ $f(x)=|x|$`) và được dẫn số hiệu (`so với Định nghĩa 01.4`).
+- **Định lý với định lý.** Trước mỗi định lý có câu nêu định lý này cần kết quả nào trước đó làm giả thiết hay làm bước chứng minh; sau định lý có đoạn nêu nó mạnh hơn, yếu hơn hay mở rộng kết quả nào đã có, đổi giả thiết nào để đạt được điều đó, và trả giá bằng gì. Khi một định lý là hệ quả hay trường hợp riêng của định lý khác, viết thành `corollary` và chỉ ra bước suy ra.
+- **Chuỗi suy luận của chương.** Mỗi mục `##` có một đoạn (hoặc một hình SVG kèm đoạn đọc hình) vẽ lại chuỗi định nghĩa → bổ đề → định lý → hệ quả → phương pháp của mục, dẫn số hiệu, để người đọc thấy mỗi kết quả đứng ở đâu trong lập luận chung và kết quả nào là đích. Tóm tắt chương lặp lại chuỗi này cho toàn bài.
+- **Kết quả với ứng dụng trong AI.** Ngay sau mỗi định lý hoặc phương pháp chính có đoạn "Trong học máy" nêu cụ thể: đối tượng của định lý ứng với đối tượng nào trong bài toán học máy (hàm mất mát, tham số mô hình, tập dữ liệu, ràng buộc, bộ tối ưu), giả thiết của định lý được bảo đảm hay vi phạm ra sao trong thực tế (ví dụ mất mát mạng sâu không lồi, nên định lý về điểm dừng toàn cục không áp dụng), và kết luận của định lý cho phép làm gì hoặc giải thích hiện tượng gì đã quan sát. Đoạn này dẫn tới tình huống áp dụng ở cuối chương hoặc tới chương khác của học phần. Không viết câu chung chung kiểu "khái niệm này rất quan trọng trong học máy".
+- **Ứng dụng ngược về lý thuyết.** Mỗi tình huống áp dụng ở cuối chương dẫn ngược số hiệu của các định nghĩa và định lý mà nó dùng, và nêu bước nào của tình huống tương ứng với giả thiết nào.
+- **Móc nối với bài trước và bài sau.** Mở chương nêu kết quả cụ thể của bài trước mà chương này xây tiếp (số hiệu, phát biểu lại một câu) và giới hạn của kết quả đó mà chương này vượt qua. Kết chương nêu giới hạn còn lại và bài nào của học phần xử lý tiếp. Chỉ dẫn tới bài đã có trong kho hoặc trong đề cương.
+
+Mỗi đoạn móc nối là văn xuôi có luận điểm, không phải một dòng "Liên hệ: …". Tác tử rà mạch truyện kiểm tra sự có mặt và tính đúng của từng móc nối theo bảng kiểm ở mục "Kiểm định ghi chú bài giảng".
+
+### Cấu trúc bắt buộc của một chương
+
+1. **Tiêu đề** cấp một: `# Bài NN — Tên chủ đề`.
+2. **Giới thiệu chương**: bài toán trung tâm của bài trong một hoặc hai đoạn, vị trí trong học phần, kết quả chính sẽ đạt, cách chương được tổ chức.
+3. **Mục tiêu học tập**: danh sách kết quả quan sát được, ánh xạ sang LLO/CLO của đề cương.
+4. **Kiến thức tiên quyết**: kết quả cần dùng, mỗi mục dẫn số hiệu trong bài trước hoặc được phát biểu lại ngắn gọn ngay tại chỗ.
+5. **Bảng ký hiệu**: bảng ba cột `Ký hiệu | Ý nghĩa | Miền hoặc kiểu`, bao gồm mọi ký hiệu dùng trong chương.
+6. **Các mục nội dung** đánh số `## 1.`, `## 2.`, …; mỗi mục ứng với một mạch (strand) của bộ trang chiếu và tuân thủ mẫu ở phần "Mẫu trình bày một khái niệm".
+7. **Tình huống áp dụng và ứng dụng**: mục riêng ở cuối phần nội dung (xem dưới).
+8. **Tóm tắt chương**: danh sách các định nghĩa và định lý đã phát biểu kèm số hiệu, các công thức cần nhớ, các giả thiết hay bị bỏ quên.
+9. **Bài tập củng cố**: ít nhất một bài cho mỗi mục tiêu học tập, phân ba mức (nhận biết, tính toán hoặc chứng minh, vận dụng vào AI); mỗi bài có `hint` và `solution`. Tệp `exercises.md` chứa bộ bài giao chính thức; hai tệp không lặp đề bài.
+10. **Hướng dẫn đọc thêm và tài liệu tham khảo**: tác giả, năm, tên, chương hoặc mục; nêu mục nào của chương dựa trên nguồn nào.
+
+### Môi trường và đánh số
+
+- Số hiệu theo bài và thứ tự xuất hiện trong bài, dùng chung một bộ đếm cho Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả và Nhận xét (`Định nghĩa 03.1`, `Định lý 03.2`, `Nhận xét 03.3`), một bộ đếm riêng cho Ví dụ (`Ví dụ 03.1`) và một bộ đếm riêng cho Bài tập (`Bài tập 03.1`). Mọi tham chiếu chéo dùng số hiệu, không dùng "định lý ở trên".
+- Nhãn và số hiệu đặt ở tiêu đề khối: `::: theorem Định lý 03.2 (Đối ngẫu yếu)`. Tên gọi quen thuộc đặt trong ngoặc sau số hiệu.
+- Viewer phải hỗ trợ thêm các khối `definition`, `theorem`, `proposition`, `lemma`, `corollary`, `remark`, `algorithm` và `application` bên cạnh sáu khối hiện có; khối `proof` đi ngay sau kết quả mà nó chứng minh và kết thúc bằng dấu $\square$. Chứng minh dài hơn một trang được tách bổ đề. Khi viewer chưa hỗ trợ một loại khối, tạm dùng đoạn in đậm `**Định nghĩa 03.1.**` với cùng quy ước đánh số; không bỏ nhãn.
+
+### Mẫu trình bày một khái niệm
+
+Mỗi khái niệm trọng tâm đi qua đủ các bước sau, theo thứ tự này, trong một hoặc nhiều tiểu mục `###`:
+
+1. **Nhu cầu**: bài toán hoặc câu hỏi chưa trả lời được bằng công cụ trước đó, nêu bằng ví dụ cụ thể có số liệu khi có thể.
+2. **Trực giác**: mô tả bằng lời hoặc hình (SVG có `alt`) điều khái niệm nắm bắt; nêu rõ đây là trực giác, chưa phải định nghĩa.
+3. **Định nghĩa**: môi trường `definition`, ghi đủ miền, kiểu và chiều của mọi đối tượng, các giả thiết đặt ra, ký hiệu được đưa vào. Ngay sau đó là một đoạn diễn giải từng thành phần của định nghĩa và một hoặc hai ví dụ, phản ví dụ.
+4. **Kết quả**: môi trường `theorem`, `proposition` hoặc `lemma` theo mẫu bốn phần: giả thiết (đầu vào), kết luận (đầu ra), điều kiện áp dụng, phạm vi hoặc giới hạn. Phân biệt rõ $=$, $\approx$, $\propto$, hội tụ và tương đương. Với thuật toán, dùng `algorithm` ghi đầu vào, đầu ra, các bước đánh số, điều kiện dừng và chi phí mỗi bước.
+5. **Chứng minh**: môi trường `proof` viết đủ các bước; mỗi bước nêu quy tắc hoặc kết quả được dùng và chỉ ra chỗ giả thiết được sử dụng. Khi chứng minh vượt phạm vi học phần, ghi rõ "Chứng minh nằm ngoài phạm vi học phần" kèm nguồn có số trang và nêu ý tưởng chính trong một đoạn.
+6. **Ví dụ có lời giải**: môi trường `example` với dữ kiện đầy đủ, tính toán từng bước, kết quả số và một dòng kiểm tra lại (thế ngược, so với trường hợp đặc biệt, kiểm tra chiều). Ít nhất một ví dụ tính được bằng tay và một ví dụ có bối cảnh AI cho mỗi kết quả chính.
+7. **Nhận xét**: môi trường `remark` cho giới hạn áp dụng, nhầm lẫn thường gặp, quan hệ với kết quả trước, điều gì thay đổi khi bỏ một giả thiết.
+8. **Bài tập ngay sau mục**: một đến ba bài `exercise` kiểm tra đúng mục tiêu của tiểu mục, kèm `hint` và `solution` đầy đủ.
+
+Các bước có thể gộp trong một tiểu mục nhưng không được đổi thứ tự và không được bỏ bước. Không mở một khái niệm bằng định nghĩa khi chưa có nhu cầu và trực giác.
+
+### Tình huống áp dụng và ứng dụng
+
+- **Tình huống áp dụng** (`application`) là một bài toán AI cụ thể được giải trọn vẹn bằng công cụ của chương: nêu bài toán và dữ liệu, mô hình hóa thành đối tượng toán học của chương, xác minh các giả thiết của định lý được dùng, áp dụng kết quả, diễn giải kết luận trở lại bài toán ban đầu, nêu giới hạn của cách áp dụng. Mỗi chương có ít nhất hai tình huống, trong đó một tình huống nêu trường hợp giả thiết không thỏa và hậu quả.
+- **Ứng dụng** là danh mục ngắn các chỗ khái niệm xuất hiện trong học máy và học sâu (hàm mất mát, bộ tối ưu, chính quy hóa, SVM, mạng sâu, …), mỗi mục một hoặc hai câu nêu khái niệm nào của chương được dùng và dẫn tới chương hoặc nguồn tương ứng. Không liệt kê suông tên lĩnh vực.
+
+### Ngôn ngữ và trình bày
+
+- Tuân thủ mục "Ngôn ngữ và giọng văn" và kỹ năng `no-ai-slop`. Văn phong giáo trình: khách quan, câu đủ thành phần, không câu hỏi tu từ, không mệnh lệnh dẫn dắt, không lời bình về tiến trình bài giảng.
+- Công thức quan trọng đặt ở dòng riêng `$$...$$`; công thức được tham chiếu về sau đánh số ở cuối dòng bằng `\tag{3.4}` theo số mục.
+- Hình là SVG cục bộ trong `img/lec-NN/` với `alt` mô tả đủ nội dung toán học; mỗi hình có chú thích nêu điều cần nhìn thấy.
+- Bảng có hàng tiêu đề; số liệu minh họa phải tính lại được từ dữ kiện trong chương và ghi rõ nếu là số liệu giả lập sư phạm.
+- Không chép nguyên ghi chú diễn giả, không chép nguyên nội dung trang chiếu. Ghi chú diễn giả có thể là nguồn ý nhưng phải được viết lại thành văn giáo trình.
+
+### Kiểm định ghi chú bài giảng
+
+Trước khi công bố trên chỉ mục, tác tử rà soát lập bảng đối chiếu theo các mục sau, ghi kết quả vào `review-log.md`:
+
+- mỗi mục tiêu học tập có ít nhất một định lý hoặc ví dụ và một bài tập tương ứng;
+- mỗi khái niệm trọng tâm của `storyboard.md` đi đủ tám bước của mẫu trình bày;
+- mỗi ký hiệu dùng trong chương có mặt trong bảng ký hiệu;
+- mỗi định lý có đủ bốn phần và có chứng minh hoặc nguồn có số trang;
+- mỗi ví dụ có kết quả số và dòng kiểm tra lại; các con số được tính lại độc lập bởi tác tử rà toán;
+- mỗi bài tập có `hint` và `solution` đầy đủ;
+- không có tham chiếu "xem trang chiếu", không có câu mảnh, không có bước suy diễn bị bỏ;
+- số hiệu liên tục, tham chiếu chéo trỏ đúng, các khối không lồng nhau và render đúng ở màn rộng, màn hẹp;
+- mỗi định nghĩa có đoạn nêu quan hệ với khái niệm đã có; mỗi định lý có đoạn nêu quan hệ với định lý trước và đoạn "Trong học máy" nêu đúng đối tượng, giả thiết và kết luận; mỗi mục có chuỗi suy luận dẫn số hiệu; mở và kết chương có móc nối với bài trước và bài sau;
+- mỗi mục có đoạn kết nêu kết quả thu được, thiếu hụt còn lại và cách mục sau giải quyết; mỗi công thức có câu dẫn trước và câu đọc sau; mỗi ký hiệu được gọi tên tại lần xuất hiện đầu;
+- nội dung, ký hiệu và giả thiết nhất quán với bộ trang chiếu cùng bài; chỗ lệch được ghi và sửa ở bộ trang chiếu.
+
+Tiêu chuẩn này áp dụng cho ghi chú mới và là đích rà soát lại cho các ghi chú đã công bố. Việc nâng cấp một ghi chú đã có đi qua quy trình đa tác tử rút gọn: tác tử soạn viết lại theo mẫu, tác tử rà toán tính lại toàn bộ số liệu, tác tử rà mạch truyện kiểm tra tám bước và liên kết mục, điều phối viên duyệt rồi mới chạy đồng bộ và cập nhật chỉ mục.
+
 ## Cấu trúc bộ trang chiếu mặc định
 
 Nếu mẫu người dùng không quy định khác, bộ trang chiếu gồm:
