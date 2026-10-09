@@ -508,3 +508,44 @@ Lượt đầu trong sandbox gặp `api_transport_error`; kết nối được c
 - Bàn phím: từ tiêu đề, ArrowDown đến M01A rồi M01B. Viewer ghi chú/bài tập hoạt động ở 1280 × 720 và 390 × 844, không tràn trang hoặc lỗi công thức. Máy chủ dùng `python3 -m reloadserver 8765` tại gốc kho.
 - Codex Slides: đã mở và đọc dự án `20260905080627-b-i-gi-ng-01-gi-i-thi-u-t-i-u-t-p-l-i-v--bkkd`. Đã cập nhật Design Files của HTML, outline, storyboard và lecture-note; đọc lại cho kết quả trùng nội dung chính xác. Lưu hai ảnh chụp trang mới làm tài liệu rà soát. Dự án vẫn ở dạng nháp, chưa render; phiên không cung cấp Browser tích hợp nên không tuyên bố đã kiểm định hiển thị bằng Codex Slides. Kiểm định trực quan thực hiện trên RevealJS cục bộ.
 - Mọi lỗi chặn/nghiêm trọng trong phạm vi đã được xử lý hoặc được tái kiểm loại trừ bằng bằng chứng. `git diff --check` đạt trước staging; commit chỉ gồm bài giảng, ghi chú học tập và ba tệp quy trình của Bài 01.
+
+## 2026-10-09 — Bổ sung ghi chú diễn giả cho sinh viên tự đọc
+
+Người dùng phản ánh sinh viên thấy trang chiếu thiếu dẫn dắt, thiếu ngữ cảnh, thông tin bị cắt cụt, và yêu cầu bổ sung ghi chú diễn giả (phím S) cho mọi trang của Bài 01–07. Phạm vi lượt này: chỉ nội dung bên trong `<aside class="notes">` của 41 trang; mặt trang, cấu trúc section, `data-slide-id`, storyboard và dàn ý không đổi. Mỗi ghi chú viết lại theo bốn phần: dẫn dắt (vị trí trong mạch, kết quả và giả thiết kế thừa), diễn giải đủ ký hiệu, công thức, hình, bảng và lời giải câu hỏi, điểm dễ nhầm hoặc giới hạn, kết nối trang sau bằng quan hệ suy luận. Lời chỉ đường ("chuyển sang…"), chỉ dẫn giảng viên và mã chuẩn đầu ra bị loại khỏi ghi chú. Độ dài sau sửa: 162–323 âm tiết, trung vị 254.
+
+### Tác tử và quyết định của điều phối viên
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Mọi tác tử con tạo bằng Agent tool, `subagent_type=general-purpose`, `model=opus` (Claude Opus 5.5), `effort=high`; chỉ một tác tử ghi tệp tại một thời điểm.
+
+| Vai | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|
+| Soạn ghi chú (41 trang) | Có, chỉ aside.notes | Bản nháp đủ 41 ghi chú; script kiểm tra đạt; phát hiện 6 chỗ ký hiệu trùng trên mặt trang và hình (t, m_i, a_1/a_2, n/d ở T01, a,b,l,u ở F03, gạch đầu dòng D02) được giải thích trong ghi chú, không sửa mặt trang | yêu cầu sửa (theo hai báo cáo dưới) |
+| Rà chính xác toán học | Không | Tính lại L01, L03, L04, D03, D04, G02, G03, K03, K05, H02–H07, M01B theo đề cương DOCX: đều đúng. Phát hiện 3 trung bình (D04 mâu thuẫn duy nhất; L01 dấu phần dư ngược với L02/L03; H04 thiếu giả thiết lồi ở hệ quả gradient bằng 0), 8 nhẹ | chấp nhận báo cáo; điều phối viên kiểm chứng D04, H04 trực tiếp trên tệp |
+| Rà mạch truyện và tự đọc | Không | 1 nghiêm trọng (D04/T03), 7 trung bình (L01 dùng "bình phương nhỏ nhất" trước L02; dấu phần dư; ba nghĩa của "biên" ở G01–G03; G03 nhắc lịch sử hình; L04 thiếu hạng; M02 có mã LLO; mã trang trên mặt K02–K04), 15 nhẹ | chấp nhận báo cáo |
+| Soạn ghi chú, lượt sửa | Có, chỉ aside.notes | Sửa 7 mục bắt buộc và 19 mục nhẹ; "lồi chặt (còn gọi là lồi nghiêm ngặt)" đặt ở lần xuất hiện đầu (D04) | chấp nhận |
+| Tái kiểm toán học | Không | Đạt; 3 nhẹ (D04 gán tồn tại cho lồi chặt thay vì Weierstrass; T01 chữ m; K03 chữ A) | chấp nhận; sửa mục D04 ở lượt cuối |
+| Tái kiểm mạch truyện (29 trang sửa ± 2) | Không | Đạt mức sinh viên tự đọc được; 4 nhẹ (D04 tham chiếu tới trước; M03 "biên phân loại"; L04 lặp "tương đương"; G01 dài 323) | chấp nhận; sửa ở lượt cuối |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | D04, T03 | Ghi chú kết luận duy nhất chưa chứng minh ngay sau khi đã chứng minh; T03 khẳng định cả bốn kết luận | đã sửa: kiểm trực tiếp ở bộ số cụ thể, tiêu chuẩn tổng quát (Weierstrass, lồi chặt) ở K01–K04 |
+| trung bình | L01, M03 | Quy ước dấu phần dư ngược với L02, L03 | đã sửa: dự đoán trừ quan sát |
+| trung bình | L01 | Dùng "bình phương nhỏ nhất" trước khi định nghĩa | đã sửa: công thức a, b và câu quan hệ |
+| trung bình | H04 | Hệ quả gradient bằng 0 thiếu giả thiết lồi | đã sửa, thêm phản ví dụ x^3 |
+| trung bình | G01–G03 | "biên" ba nghĩa | đã sửa: biên quyết định, biên có dấu |
+| trung bình | G03 | Nhắc lịch sử hình | đã sửa |
+| trung bình | L04 | Thiếu hạng của X' | đã sửa |
+| trung bình | M02 | Mã LLO trong ghi chú | đã sửa |
+| trung bình | K02, K03, K04 (mặt trang) | Mặt trang ghi "Ví dụ L03", "Trong G03", "ví dụ G03" (mã trang) | còn mở, ngoài phạm vi lượt ghi chú; đề xuất sửa mặt trang trong một lượt riêng |
+| nhẹ | 19 mục ở lượt 1, 7 mục ở tái kiểm | Thuật ngữ, ký hiệu trùng, câu dài | đã sửa hoặc ghi nhận (T01 chữ m, K03 chữ A: giữ, nghĩa rõ trong ngữ cảnh) |
+
+Ký hiệu trùng trên mặt trang và hình (t ở L03, m_i ở G01 và L01, a_1/a_2 ở hình G01, n/d ở hình T01, a,b,l,u ở F03): ghi chú giải thích tại chỗ; không đổi mặt trang trong lượt này.
+
+### Kiểm tra của điều phối viên
+
+- `check-deck.py` (scratchpad): 41 trang, 41 ghi chú, không `$` lệch, không cụm chỉ đường; Chromium 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung ở 16:9. KaTeX dựng 38 ghi chú có công thức; `Reveal.getSlideNotes` trả HTML đã dựng.
+- Đã xem ảnh T02 ở hai kích thước: mặt trang không đổi.
+- `git diff --check` sạch. Ghi chú bài giảng và bài tập không đổi vì ký hiệu, giả thiết, ví dụ và kết luận trên mặt trang không đổi.
+- Lượt sửa nhẹ cuối (cùng tác tử soạn): D04 tách Weierstrass cho tồn tại và lồi chặt cho duy nhất; M03, L04, G01 (rút còn 290 âm tiết), K03 theo tái kiểm. Điều phối viên chạy lại `check-deck.py`: đạt. Quyết định: chấp nhận, bàn giao Bài 01.
