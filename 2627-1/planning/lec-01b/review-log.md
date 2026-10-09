@@ -189,3 +189,9 @@ Phát hiện nhẹ của lượt rà lại và xử lý:
 | nhẹ | Mục 7.5 | Trực giác bậc hai chưa đứng trước kết quả | chấp nhận | đã sửa ở lượt 2 (xem dòng trên) |
 
 Kiểm `no-ai-slop` cho văn bản mới của lượt 2 và lượt sửa nhẹ (chế độ Edit, đối chiếu `eval.md`): các đoạn thêm mới (Định nghĩa 01.10 và đoạn diễn giải, Mệnh đề 01.14, Nhận xét 01.15, Bài tập 01.5, 01.10, 01.21, Tình huống 01.2, các câu trực giác ở Mục 7, các đoạn "Trong học máy" mới, Định nghĩa 01.42) không có câu dẫn rỗng, lời nhấn mạnh, tương phản nhị phân hay kết luận kịch tính; gạch ngang dài chỉ ở tiêu đề cấp một. Đạt.
+
+## Sửa theo yêu cầu người dùng (2026-10-09, sau commit 93b1f05)
+
+| vị trí | thay đổi | lý do | quyết định |
+|---|---|---|---|
+| Ba đoạn mở đầu trước "Mục tiêu học tập" | Bỏ hẳn (giới thiệu chương, hai phần học phần, móc nối Bài 00) | Người dùng: "không cần đoạn dài trước Mục tiêu học tập". Thông tin Bài 00 đã có trong "Kiến thức tiên quyết" | Điều phối viên Fable 5.1 thực hiện trực tiếp (xóa văn bản, không sửa toán); kiểm lại: không còn tham chiếu tới phần giới thiệu; sync và trình duyệt đạt |
