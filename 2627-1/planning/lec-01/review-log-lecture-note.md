@@ -1,3 +1,5 @@
+> Ngày 2026-10-10: bản ghi chú này đã thay thế `materials/lec-01/lecture-note.md` cũ theo yêu cầu người dùng; thư mục `lec-01b` bị gỡ và nhật ký được chuyển về đây. Các đường dẫn `lec-01b` dưới đây là đường dẫn tại thời điểm rà soát.
+
 # Nhật ký rà soát Bài 01b: ghi chú bài giảng Bài 01 viết lại theo tiêu chuẩn giáo trình
 
 Tệp được rà: `materials/lec-01b/lecture-note.md`. Bản cũ `materials/lec-01/lecture-note.md`, bộ trang chiếu Bài 01 và `materials/lec-01/exercises.md` không bị sửa.

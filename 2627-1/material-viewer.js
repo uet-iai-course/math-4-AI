@@ -3,7 +3,7 @@
 
   const DOCUMENT_PATTERN = /^materials\/lec-(\d{2}[a-z]?)\/(lecture-note|exercises)\.md$/;
   const DECK_PATTERN = /^lecture-(\d{2}[a-z]?)-[a-z0-9-]+\.html$/;
-  const DECKLESS_LECTURES = new Set(["01b", "02b", "03b", "05c"]);
+  const DECKLESS_LECTURES = new Set(["05c"]);
   // Danh sách duy nhất các loại khối ::: và nhãn mặc định; mọi regex bên dưới sinh từ đây.
   const DIRECTIVE_LABELS = Object.freeze({
     definition: "Định nghĩa",

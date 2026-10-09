@@ -1,3 +1,5 @@
+> Ngày 2026-10-10: bản ghi chú này đã thay thế `materials/lec-02/lecture-note.md` cũ theo yêu cầu người dùng; thư mục `lec-02b` bị gỡ và nhật ký được chuyển về đây. Các đường dẫn `lec-02b` dưới đây là đường dẫn tại thời điểm rà soát.
+
 # Nhật ký rà soát Bài 02b — ghi chú bài giảng viết lại theo tiêu chuẩn giáo trình
 
 Tệp sản phẩm: `materials/lec-02b/lecture-note.md` (tệp mới, để so sánh với `materials/lec-02/lecture-note.md`). Bộ trang chiếu, `materials/lec-02/*` và `exercises.md` không bị sửa. Bản đóng gói `material-local-data.js` được cập nhật bằng `scripts/sync-local-materials.py`. Chưa commit.
