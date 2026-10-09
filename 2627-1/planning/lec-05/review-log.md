@@ -292,3 +292,41 @@ Yêu cầu người dùng: duyệt lần lượt từng trang, xác định tran
   - nhẹ | A02/E01/E03 | hai cách gọi câu hỏi thứ ba → thống nhất “bắt đầu từ đâu ($\theta_0$)” trên A02 và ghi chú bài giảng. **Đã đóng.**
   - nhẹ | storyboard | hai câu trạng thái cũ → cập nhật. **Đã đóng.**
 - **Kiểm trình duyệt toàn bài.** Playwright Chromium qua `python3 -m reloadserver 8765`, đủ 37 trang tại 1600×900 và 390×844 (cuộn tới cuối vùng đọc hẹp): không lỗi JavaScript hoặc trang, không `.katex-error`, không tràn ngang tài liệu, cỡ chữ thân bài nhỏ nhất 0.9em; ArrowRight điều hướng đúng. Ở 1600×900, nội dung mạch B–E không chạm mép trên chân trang. Chân trang bị ẩn (`display:none`) khi đang ở mạch A; hiện tượng có từ trước lượt sửa này và không gây chồng lấn, nên không sửa CSS dùng chung. A05 được rút một dòng (gộp chú thích số liệu giả lập vào dòng đọc bảng) để đáy nội dung thấp hơn mép khung.
+
+## 2026-10-09 — Bổ sung ghi chú diễn giả cho sinh viên tự đọc
+
+Người dùng phản ánh sinh viên thấy trang chiếu thiếu dẫn dắt, thiếu ngữ cảnh, thông tin bị cắt cụt, và yêu cầu bổ sung ghi chú diễn giả (phím S) cho mọi trang của Bài 01–07. Phạm vi lượt này: nội dung bên trong `<aside class="notes">` của 37 trang, cộng một sửa mặt trang được điều phối viên cho phép riêng (C01, hai dấu trừ). Cấu trúc section, `data-slide-id`, storyboard và dàn ý không đổi. Mỗi ghi chú viết lại theo bốn phần: dẫn dắt, diễn giải đủ ký hiệu, công thức, hình, bảng và lời giải câu hỏi, điểm dễ nhầm, kết nối trang sau bằng quan hệ suy luận. Độ dài sau sửa: 142–334 tiếng, trung vị 244.
+
+### Tác tử và quyết định của điều phối viên
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Tác tử con tạo bằng Agent tool, `subagent_type=general-purpose`, `model=opus` (Claude Opus 5.5), `effort=high`; chỉ một tác tử ghi tệp tại một thời điểm.
+
+| Vai | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|
+| Soạn ghi chú (37 trang) | Có, chỉ aside.notes | Đủ 37 ghi chú; bỏ câu sai của ghi chú cũ A06 ("với hàm lồi, chuẩn gradient nhỏ chứng nhận gần tối ưu": sai khi không lồi mạnh), bỏ mã LLO/CLO ở A02; khôi phục hai câu cũ bị cắt cụt vì ký tự `<` chưa thoát (A07, C02); liệt kê các lập luận mới để rà toán | yêu cầu sửa |
+| Rà chính xác toán học | Không | Tính lại A03, B01–B08, C01–C08, D02–D11, E02 và đối chiếu SVG: đều đúng; các lập luận mới đúng. 3 trung bình (C01 mặt trang và ghi chú viết $-g_0\propto(3,14)^T$, $-\theta_0\propto(1,2)^T$ với hằng số âm; A07 sai cơ chế vì sao lỗi 0–1 không dùng để cập nhật; D03 khẳng định mạnh hơn chứng minh), 11 nhẹ, 5 ý cũ bị mất | chấp nhận; điều phối viên kiểm mặt trang C01 và cho phép sửa đúng hai dấu trừ |
+| Rà mạch truyện và tự đọc | Không | 1 nghiêm trọng (câu kết trang k chép thành câu mở trang k+1 ở 26/36 chỗ chuyển trang), 5 trung bình (điểm dừng A05/A06 lẫn với thời điểm ngừng lặp; "quá khớp" chưa định nghĩa; A06 mất mắt xích tiêu chí xác thực; E01 chưa ghép bốn quyết định với ba câu hỏi; 8 trang dài), 24 nhẹ; câu thêm ở E03 có căn cứ outline dòng 101, 671 | chấp nhận |
+| Soạn ghi chú, lượt sửa | Có, aside.notes + hai dấu trừ C01 | Sửa mục 0, 8 mục bắt buộc và toàn bộ mục nhẹ; diff ngoài aside chỉ gồm hai dấu trừ (điều phối viên kiểm bằng difflib) | chấp nhận, chờ tái kiểm |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | 26 chỗ chuyển trang | Lặp câu kết trang trước thành câu mở trang sau | đã sửa; kiểm 8-gram chỉ còn trùng câu "Nguồn: Goodfellow…" |
+| trung bình | C01 (mặt trang + ghi chú) | $-g_0\propto(3,14)^T$, $-\theta_0\propto(1,2)^T$ sai dấu hướng | đã sửa mặt trang thành $\propto-(3,14)^T$, $\propto-(1,2)^T$; ghi chú viết $-\theta_0=-2(1,2)^T$, $-g_0=-2(3,14)^T$ |
+| trung bình | A07 | Lỗi 0–1 "không khả vi nên không cập nhật" | đã sửa: hàm hằng từng khúc, gradient 0 nơi tồn tại |
+| trung bình | D03 | "Các điều kiện đều cần" | đã sửa: mỗi giả thiết được dùng; ví dụ cần $e\,x\,\phi'(z_j)\ne0$ |
+| trung bình | A05, A06 | Điểm dừng/ngừng lặp; quá khớp; mắt xích tiêu chí xác thực | đã sửa |
+| trung bình | E01 | Chưa ghép bốn quyết định với ba câu hỏi | đã sửa |
+| trung bình | A05, A06, C01, D04, D05, D08, D10, E01 | Dài trên 280 do lặp | đã rút, đều dưới 280 |
+| nhẹ | 35 mục | Thuật ngữ tiếng Anh lần đầu, ký hiệu trùng ($s$, $r$, $b$), B03 hiệp phương sai không hoàn lại, C07 giả thiết $O(1/t^2)$, D09/E02 ReLU, khôi phục ý cũ (A03, A04, B06, D08), E03 viết lại câu thêm | đã sửa |
+| ghi nhận | C01 (màn hẹp) | Dòng `H=diag(3,7), g=∇q(θ)=Hθ` bị cắt bên phải ở 390 px; tình trạng có sẵn, không thuộc hai chỗ sửa | còn mở, ngoài phạm vi |
+| ghi nhận | C03/C08 (mặt trang) | $v_t$ gọi là "bước" ở C03, "vận tốc" ở C08; ghi chú nêu "vận tốc (velocity)" một lần rồi dùng thống nhất | giữ mặt trang |
+
+### Kiểm tra của điều phối viên
+
+- `check-deck.py`: 37 trang, 37 ghi chú, không `$` lệch, không cụm chỉ đường; Chromium 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung ở 16:9. Đã xem ảnh C01 ở hai kích thước sau khi sửa mặt trang: hộp kết luận xuống hai dòng và vừa khung ở 16:9.
+- Diff ngoài aside (difflib sau khi bỏ aside): đúng hai chèn dấu "-" ở C01.
+- `git diff --check` sạch. Ghi chú bài giảng Bài 05: cần rà câu tương ứng về hướng $-g_0$, $-\theta_0$ nếu có (xem mục đồng bộ dưới).
+- Tái kiểm toán học: 2 trung bình mới (A05 định nghĩa quá khớp đồng nhất với dấu hiệu; D05 câu mới sai "mạng thật không dùng chung trọng số"), 3 nhẹ. Tái kiểm mạch truyện (đọc lại 37 ghi chú): đạt mức sinh viên tự đọc được; cùng phát hiện D05, 7 nhẹ. Lượt sửa cuối (D05, A05, C07, D10, A04, A06, E01/E03, C06, D03/C02) đã thực hiện; điều phối viên chạy lại `check-deck.py`: đạt. Quyết định: chấp nhận, bàn giao Bài 05.
+- Việc còn mở (ngoài phạm vi lượt này): `materials/lec-05/lecture-note.md` dòng 204 có cùng cách viết $-g_0\propto(3,14)^T$, $-\theta_0\propto(1,2)^T$ cần sửa dấu như mặt trang C01; chưa sửa vì script đồng bộ gom cả `materials/lec-01b/` đang được một phiên khác soạn và `material-local-data.js` đang có thay đổi chưa commit của phiên đó.
