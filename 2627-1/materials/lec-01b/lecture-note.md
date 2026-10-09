@@ -24,18 +24,14 @@ Chương dùng các kết quả sau, đều đã có trong Bài 00 hoặc trong 
 
 ## Bảng ký hiệu
 
-Bảng dưới đây dùng để tra lại. Mỗi ký hiệu còn được giới thiệu bằng lời ở lần xuất hiện đầu tiên. Khác với Bài 00, chương này viết vector và ma trận bằng chữ thường, không in đậm. Một vài chữ cái mang nghĩa khác nhau ở các mục khác nhau; cột thứ hai ghi rõ phạm vi. Các ký hiệu chỉ dùng trong một chứng minh, một ví dụ hay một bài tập được ghi "nêu tại chỗ".
+Bảng liệt kê các ký hiệu dùng xuyên suốt chương; ký hiệu chỉ dùng trong một ví dụ hoặc một chứng minh được giới thiệu tại chỗ. Khác với Bài 00, chương này viết vector và ma trận bằng chữ thường, không in đậm. Một vài chữ cái mang nghĩa khác nhau ở các mục khác nhau; cột thứ hai ghi rõ phạm vi. Các ký hiệu chỉ dùng trong một chứng minh, một ví dụ hay một bài tập được ghi "nêu tại chỗ".
 
 | Ký hiệu | Ý nghĩa | Miền hoặc kiểu |
 |---|---|---|
 | $x$ | biến quyết định của bài toán tổng quát (Mục 5 trở đi) | $\mathbb R^d$ |
 | $f_0$ | hàm mục tiêu | $D\to\mathbb R$ |
-| $D$ | miền xác định của các hàm trong bài toán | tập con của $\mathbb R^d$ |
-| $f_i,\ h_j$ | hàm ràng buộc bất đẳng thức $f_i(x)\le0$ và đẳng thức $h_j(x)=0$ (Mục 5) | $D\to\mathbb R$ |
-| $k,\ k'$ | số ràng buộc bất đẳng thức và đẳng thức (Mục 5); số hàng của $A$ (Mục 6, 7) | số nguyên dương |
 | $C$ | miền khả thi | tập con của $\mathbb R^d$ |
 | $p^*$ | giá trị tối ưu $\inf_{x\in C}f_0(x)$ | $\mathbb R\cup\{-\infty,+\infty\}$ |
-| $\inf,\ \min$ | cận dưới đúng, giá trị nhỏ nhất (Định nghĩa 01.10) | số thực hoặc $\pm\infty$ |
 | $S^*$ | tập nghiệm tối ưu | tập con của $C$ |
 | $x^*,\ w^*,\ u^*$ | một nghiệm tối ưu hoặc một điểm ứng viên | phần tử của miền |
 | $x_0,\ x_1$ | trạng thái đầu và trạng thái sau một bước (Mục 2) | $\mathbb R$ |
@@ -44,66 +40,28 @@ Bảng dưới đây dùng để tra lại. Mỗi ký hiệu còn được giớ
 | $u_{\max}$ | biên độ tác động lớn nhất | $u_{\max}\ge0$ |
 | $\lambda$ | trọng số của chi phí năng lượng | $\lambda\ge0$ |
 | $q$ | hàm chi phí của ca điều khiển | $\mathbb R\to\mathbb R$ |
-| $u_{\mathrm{free}}$ | nghiệm khi bỏ ràng buộc | $\mathbb R$ |
-| $\operatorname{clip}(s,[\alpha,\beta])$ | điểm của đoạn $[\alpha,\beta]$ gần $s$ nhất | $\mathbb R$ |
-| $\Delta$ | dịch chuyển khả thi từ một điểm (Mục 2) | $\mathbb R$ |
-| $m_i,\ h_i$ | cân nặng (kg) và chiều cao (cm) của mẫu $i$ (Mục 3) | $\mathbb R$ |
-| $b,\ a$ | hệ số chặn và hệ số góc của đường hồi quy (Mục 3) | $\mathbb R$ |
-| $s_i$ | đầu vào của mẫu $i$ trong Ví dụ 01.4 | $\mathbb R$ |
 | $n$ | số mẫu dữ liệu | số nguyên dương |
 | $d$ | số chiều của biến quyết định hoặc số cột đặc trưng | số nguyên dương |
-| $X,\ X'$ | ma trận thiết kế, hàng $i$ là $x_i^T$; $X'$ là ma trận có hai cột trùng nhau ở Ví dụ 01.5 | $\mathbb R^{n\times d}$ |
+| $X$ | ma trận thiết kế, hàng $i$ là $x_i^T$ | $\mathbb R^{n\times d}$ |
 | $x_i$ | vector đặc trưng của mẫu $i$ trong hồi quy tuyến tính | $\mathbb R^d$ |
 | $y$ | vector đầu ra quan sát (Mục 3, Tình huống 01.2) | $\mathbb R^n$ |
-| $w,\ w'$ | vector tham số của mô hình; $w'$ ứng với $X'$ | $\mathbb R^d$ |
+| $w$ | vector tham số của mô hình | $\mathbb R^d$ |
 | $\widehat y$ | vector dự đoán $Xw$ | $\mathbb R^n$ |
 | $J$ | tổng bình phương phần dư $\lVert Xw-y\rVert_2^2$ | $\mathbb R^d\to\mathbb R$ |
-| $r$ | vector phần dư (chứng minh Mệnh đề 01.5), sai lệch $\alpha\tanh\beta-\tfrac12$ (Tình huống 01.3); bán kính của lân cận hoặc quả cầu | nêu tại chỗ |
-| $\mathbf 1$ | vector có mọi thành phần bằng $1$ | $\mathbb R^n$ |
-| $I_d$ | ma trận đơn vị cấp $d$ | $\mathbb R^{d\times d}$ |
-| $\lVert X\rVert_F$ | chuẩn Frobenius của ma trận | số không âm |
 | $\mathcal R(X),\ \ker X,\ \operatorname{rank}X$ | không gian cột, hạt nhân, hạng của $X$ | tập con của $\mathbb R^n$; tập con của $\mathbb R^d$; số nguyên |
-| $V^\perp$ | phần bù trực giao của không gian con $V$ | không gian con |
-| $z_1,\ z_2$ | tỉ lệ hai kích thước chính và phần trăm diện tích vết sẫm của quả cam | $z_1\ge1$, $z_2\in[0,100]$ |
-| $d_{\max},\ d_{\min},\ A_{\mathrm{spot}},\ A_{\mathrm{fruit}}$ | kích thước lớn nhất, nhỏ nhất của quả cam; diện tích vết sẫm, diện tích quả trên ảnh | số dương |
 | $a_i$ | vector đặc trưng của mẫu $i$ trong hồi quy logistic | $\mathbb R^d$ |
 | $y_i$ | nhãn của mẫu $i$ trong hồi quy logistic (Mục 4) | $\{-1,+1\}$ |
 | $m_i$ | biên có dấu $y_ia_i^Tw$ (Mục 4 trở đi) | $\mathbb R$ |
 | $\ell$ | mất mát logistic của một mẫu, $\ell(m)=\log(1+e^{-m})$ | $\mathbb R\to(0,\infty)$ |
 | $L$ | tổng mất mát logistic | $\mathbb R^d\to\mathbb R$ |
 | $\sigma$ | hàm sigmoid $\sigma(s)=1/(1+e^{-s})$ | $\mathbb R\to(0,1)$ |
-| $P(y\mid a)$ | xác suất của nhãn $y$ khi biết đặc trưng $a$ theo mô hình | $[0,1]$ |
-| $\eta$ | cỡ bước hạ gradient (Mục 4) | $\eta>0$ |
 | $\theta$ | hệ số của tổ hợp lồi (Mục 6, 7); vector trọng số trộn (Tình huống 01.2) | $[0,1]$; $\Delta_3$ |
-| $z_\theta$ | điểm $\theta x+(1-\theta)y$ trên đoạn nối $x$ và $y$ | $\mathbb R^d$ |
 | $A,\ b$ | ma trận và vector dữ kiện của ràng buộc tuyến tính hoặc ánh xạ affine (Mục 6, 7) | $\mathbb R^{k\times d}$, $\mathbb R^k$ |
-| $a,\ \beta$ | vector pháp tuyến và hằng số của nửa không gian (Mệnh đề 01.19) | $\mathbb R^d$, $\mathbb R$ |
-| $\alpha_j,\ \beta_j$ | cận dưới và cận trên của tọa độ $j$ trong một hộp | $\mathbb R$ |
-| $B(c,r),\ c$ | quả cầu Euclid đóng tâm $c$ bán kính $r$ | tập con của $\mathbb R^d$ |
-| $C_\gamma,\ \Gamma,\ E$ | họ tập lồi, tập chỉ số và một tập lồi trong $\mathbb R^k$ (Mệnh đề 01.20) | nêu tại chỗ |
 | $\Delta_k$ | đơn hình xác suất $\{\theta\in\mathbb R^k\mid\theta\ge0,\ \mathbf 1^T\theta=1\}$ | tập con của $\mathbb R^k$ |
-| $W$ | tập các bộ phân loại tuyến tính có lề ít nhất $1$ (Ví dụ 01.10) | tập con của $\mathbb R^d$ |
-| $\varepsilon,\ \delta$ | ngân sách nhiễu và vector nhiễu đối kháng (Ví dụ 01.10) | $\varepsilon>0$; $\mathbb R^d$ |
-| $\epsilon,\ c$ | ngưỡng cắt xác suất và hằng số cắt trọng số (đoạn "Trong học máy" ở Mục 2) | số dương |
 | $S_\alpha(f),\ \alpha$ | tập mức dưới $\{x\mid f(x)\le\alpha\}$ và mức $\alpha$ | tập con của $\mathbb R^d$; $\mathbb R$ |
 | $\nabla f,\ \nabla^2f$ | gradient và Hessian của $f$ | $\mathbb R^d$, $\mathbb R^{d\times d}$ |
 | $Q,\ Q\succeq0,\ Q\succ0$ | ma trận đối xứng; nửa xác định dương, xác định dương | $\mathbb R^{d\times d}$ |
-| $\lambda_{\min}$ | giá trị riêng nhỏ nhất của một ma trận đối xứng | $\mathbb R$ |
-| $v$ | vector hướng | $\mathbb R^d$ |
-| $\varphi,\ T_{x,v}$ | hạn chế $\varphi(t)=f(x+tv)$ của $f$ lên một đường thẳng và khoảng xác định của nó (Bổ đề 01.28, 01.29) | nêu tại chỗ |
-| $T,\ c_k,\ \gamma,\ E$ | số giờ, giá điện giờ $k$, hệ số phạt thay đổi công suất, tổng năng lượng (bài tập củng cố về sạc pin) | nêu tại chỗ |
-| $s,\ \xi$ | biến vô hướng phụ; điểm trung gian của định lý giá trị trung bình | $\mathbb R$ |
-| $g$ | hàm lồi trong Định lý 01.31; hàm dự đoán $g(a;w)$ của mô hình (Mục 7.6); hàm phụ trong chứng minh | nêu tại chỗ |
-| $h$ | mất mát bản lề $h(m)=\max(0,1-m)$ (Ví dụ 01.14) | $\mathbb R\to\mathbb R$ |
-| $p$ | số chiều của không gian ảnh trong Định lý 01.31 | số nguyên dương |
-| $M,\ R$ | hằng số trong định nghĩa tập bị chặn và hàm bức; $R$ còn là bán kính ràng buộc trong một bài tập củng cố | số thực |
-| $K$ | tập mức dưới dùng trong chứng minh Định lý 01.38 | tập con của $C$ |
 | $\mu$ | hệ số chính quy hóa hoặc hằng số lồi mạnh | $\mu>0$ |
-| $F,\ F_\mu,\ L_\mu,\ R_\mu,\ G$ | hàm mục tiêu của các ví dụ và bài tập; chỉ số $\mu$ chỉ hàm đã chính quy hóa (Định nghĩa 01.42) | nêu tại chỗ |
-| $P$ | ma trận dự đoán của ba mô hình (Tình huống 01.2) | $\mathbb R^{3\times3}$ |
-| $\alpha,\ \beta,\ \beta_0,\ P_1,\ P_2$ | trọng số ra, trọng số vào của mạng một nơ-ron ẩn, $\beta_0=\operatorname{artanh}\tfrac12$ và hai nghiệm của mạng (Tình huống 01.3) | $\mathbb R$; $\mathbb R^2$ |
-| $w_a,\ w_b$ | hai tham số được lấy trung bình trong một bài tập củng cố | $\mathbb R$ |
-| $\triangleq$ | "được định nghĩa bằng" | |
 
 ## 1. Ba quyết định cần tối ưu
 
