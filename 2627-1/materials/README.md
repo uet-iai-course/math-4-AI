@@ -9,15 +9,15 @@ Sao chép mẫu tương ứng từ `_templates/` khi bắt đầu một tài li�
 
 ## Khối nội dung
 
-Trình đọc hỗ trợ sáu khối không lồng nhau:
+Trình đọc hỗ trợ mười bốn loại khối không lồng nhau, viết theo cú pháp `::: <loại> Tiêu đề tùy chọn` và đóng bằng `:::`:
 
 ```markdown
-::: example
-Nội dung ví dụ.
+::: theorem Định lý 03.2 (Đối ngẫu yếu)
+Nội dung định lý.
 :::
 ```
 
-Thay `example` bằng `derivation`, `proof`, `exercise`, `hint` hoặc `solution`. Có thể đặt tiêu đề sau tên khối, chẳng hạn `::: proof Chiều thuận`. Hai khối `hint` và `solution` được hiển thị dưới dạng nội dung gập.
+Các loại khối gồm `definition`, `theorem`, `proposition`, `lemma`, `corollary`, `remark`, `algorithm`, `example`, `application`, `derivation`, `proof`, `exercise`, `hint` và `solution`. Khi có tiêu đề sau tên khối, tiêu đề thay cho nhãn mặc định (Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả, Nhận xét, Thuật toán, Ví dụ, Tình huống áp dụng, Suy diễn, Chứng minh, Bài tập, Gợi ý, Lời giải). Hai khối `hint` và `solution` được hiển thị dưới dạng nội dung gập; các khối còn lại luôn mở. Danh sách loại khối và nhãn nằm trong hằng `DIRECTIVE_LABELS` của `material-viewer.js`.
 
 ## Xem cục bộ
 
@@ -37,7 +37,7 @@ URL có dạng:
 http://localhost:8765/2627-1/material-viewer.html?doc=materials/lec-03/lecture-note.md&deck=lecture-03-doi-ngau-lagrange.html
 ```
 
-Bài bổ trợ chỉ có học liệu, không có bộ trang chiếu (hiện là Bài 05c), mở với riêng tham số `doc`, ví dụ `material-viewer.html?doc=materials/lec-05c/lecture-note.md`; danh sách các bài này nằm trong hằng `DECKLESS_LECTURES` của `material-viewer.js`.
+Bài bổ trợ chỉ có học liệu hoặc bản ghi chú viết lại để so sánh, không có bộ trang chiếu (hiện là 05c và 01b), mở với riêng tham số `doc`, ví dụ `material-viewer.html?doc=materials/lec-05c/lecture-note.md`; danh sách các bài này nằm trong hằng `DECKLESS_LECTURES` của `material-viewer.js`.
 
 Khi mở bằng `file://`, trình đọc dùng bản sao Markdown trong `material-local-data.js` để tránh hạn chế đọc tệp của trình duyệt. Khi mở qua HTTP/HTTPS, trình đọc vẫn tải Markdown gốc. Cả hai chế độ đều bảo toàn công thức, chuyển Markdown, làm sạch HTML rồi render KaTeX bằng cùng quy trình.
 

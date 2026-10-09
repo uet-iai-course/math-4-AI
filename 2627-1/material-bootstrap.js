@@ -34,8 +34,8 @@
   async function start() {
     try {
       for (const asset of assets) await loadAsset(asset);
-      if (local) await loadAsset(["script", "material-local-data.js?v=20261008-05c"]);
-      await loadAsset(["script", "material-viewer.js?v=20261008-05c"]);
+      if (local) await loadAsset(["script", "material-local-data.js?v=20261009-blocks"]);
+      await loadAsset(["script", "material-viewer.js?v=20261009-blocks"]);
     } catch (error) {
       const status = document.getElementById("material-status");
       status.hidden = false;

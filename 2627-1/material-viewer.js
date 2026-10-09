@@ -3,16 +3,31 @@
 
   const DOCUMENT_PATTERN = /^materials\/lec-(\d{2}[a-z]?)\/(lecture-note|exercises)\.md$/;
   const DECK_PATTERN = /^lecture-(\d{2}[a-z]?)-[a-z0-9-]+\.html$/;
-  const DECKLESS_LECTURES = new Set(["05c"]);
-  const DIRECTIVE_PATTERN = /^(example|derivation|proof|exercise|hint|solution)$/;
-  const DIRECTIVE_LABELS = {
+  const DECKLESS_LECTURES = new Set(["01b", "05c"]);
+  // Danh sách duy nhất các loại khối ::: và nhãn mặc định; mọi regex bên dưới sinh từ đây.
+  const DIRECTIVE_LABELS = Object.freeze({
+    definition: "Định nghĩa",
+    theorem: "Định lý",
+    proposition: "Mệnh đề",
+    lemma: "Bổ đề",
+    corollary: "Hệ quả",
+    remark: "Nhận xét",
+    algorithm: "Thuật toán",
     example: "Ví dụ",
+    application: "Tình huống áp dụng",
     derivation: "Suy diễn",
     proof: "Chứng minh",
     exercise: "Bài tập",
     hint: "Gợi ý",
     solution: "Lời giải"
-  };
+  });
+  const COLLAPSED_DIRECTIVES = new Set(["hint", "solution"]);
+  const DIRECTIVE_ALTERNATION = Object.keys(DIRECTIVE_LABELS).join("|");
+  const DIRECTIVE_PATTERN = new RegExp(`^(?:${DIRECTIVE_ALTERNATION})$`);
+  const DIRECTIVE_START_PATTERN = new RegExp(`^:::[ \\t]*(?:${DIRECTIVE_ALTERNATION})(?:\\s|$)`, "m");
+  const DIRECTIVE_BLOCK_PATTERN = new RegExp(
+    `^:::[ \\t]*(${DIRECTIVE_ALTERNATION})(?:[ \\t]+([^\\n]+))?[ \\t]*\\n([\\s\\S]*?)\\n:::[ \\t]*(?:\\n|$)`
+  );
 
   const statusElement = document.getElementById("material-status");
   const layoutElement = document.getElementById("material-layout");
@@ -161,11 +176,11 @@
       name: "materialDirective",
       level: "block",
       start(source) {
-        const index = source.match(/^:::[ \t]*(?:example|derivation|proof|exercise|hint|solution)(?:\s|$)/m)?.index;
+        const index = source.match(DIRECTIVE_START_PATTERN)?.index;
         return typeof index === "number" ? index : undefined;
       },
       tokenizer(source) {
-        const match = /^:::[ \t]*(example|derivation|proof|exercise|hint|solution)(?:[ \t]+([^\n]+))?[ \t]*\n([\s\S]*?)\n:::[ \t]*(?:\n|$)/.exec(source);
+        const match = DIRECTIVE_BLOCK_PATTERN.exec(source);
         if (!match) {
           return undefined;
         }
@@ -181,7 +196,7 @@
         const label = DIRECTIVE_LABELS[token.kind];
         const title = escapeHtml(token.title || label);
         const body = this.parser.parse(token.tokens);
-        if (token.kind === "hint" || token.kind === "solution") {
+        if (COLLAPSED_DIRECTIVES.has(token.kind)) {
           return `<details class="material-block material-block--${token.kind}"><summary>${title}</summary><div class="material-block__body">${body}</div></details>`;
         }
         return `<section class="material-block material-block--${token.kind}"><h3>${title}</h3><div class="material-block__body">${body}</div></section>`;
