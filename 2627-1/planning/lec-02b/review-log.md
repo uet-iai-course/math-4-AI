@@ -166,3 +166,39 @@ Phát hiện deck-side theo quyết định 3:
 | Ví dụ | mới: Ví dụ 02.13 (phạt một hệ số), Ví dụ 02.26 (bản lề trên dữ liệu tách được). 02.1–02.12 giữ nguyên; 02.13–02.24→02.14–02.25; 02.25–02.27→02.27–02.29. |
 | Bài tập | mới: Bài tập 02.1 (kiểm (1.3) cho $x=e^z$). 02.1–02.16→02.2–02.17. |
 | Tình huống, thuật toán | không đổi. |
+
+## Chỉnh sửa trình bày sáng sủa 2026-10-09
+
+Yêu cầu người dùng: "trình bày các chứng minh và diễn giải sáng sủa hơn, cần thì xuống dòng để tách các ý ra không bị dính vào nhau"; tiêu chí ở tiểu mục "Trình bày sáng sủa: chứng minh và diễn giải" của `AGENTS.md`.
+
+**Tác tử.** Tác tử chỉnh sửa (editor), loại `general-purpose`, mô hình Claude Opus 5.5 (`claude-opus-5-5`), effort `high`, theo brief của điều phối viên Fable 5.1. Phạm vi ghi: `materials/lec-02b/lecture-note.md` và nhật ký này.
+
+**Phạm vi thay đổi.** Chỉ bố cục và tách câu; không đổi nội dung toán học, căn cứ, số liệu, số hiệu, tiêu đề khối hay thứ tự khối; không thêm hay bớt bước lập luận.
+
+| loại khối | số khối đã bố cục lại / tổng |
+|---|---|
+| proof | 20 / 20 (chia bước có nhãn in đậm; chứng minh ngắn của Hệ quả 02.3 chuyển thành danh sách ba phần) |
+| solution | 17 / 17 |
+| example | 29 / 29 (nhãn Lập mô hình, Kiểm giả thiết, Tính, Diễn giải, Kiểm tra lại; phép tính có kết quả trung gian dài đặt trên dòng riêng) |
+| remark | 13 / 13 (nhầm lẫn "Thứ nhất, thứ hai…" thành danh sách đánh số) |
+| exercise (đề) | 15 / 17 |
+| proposition, theorem, corollary, definition | 9, 2, 1, 6 (danh sách kết luận (a), (b), (c) mỗi mục một dòng hoặc mỗi mục một đoạn khi có công thức hiển thị) |
+| application | 3 / 3 (giai đoạn "Áp dụng" tách thành các nhãn con) |
+
+Số liệu khác: đoạn văn ngoài khối từ 143 lên 236 (khoảng 93 lần tách đoạn diễn giải); mục danh sách từ 36 lên 265; công thức hiển thị từ 62 lên 110, khối `aligned` từ 10 lên 24; 85 nhãn bước. Số từ: 30 704 → 31 840.
+
+**Kiểm tra đã chạy.**
+
+- Script so sánh bản trước và sau (bản sao trong thư mục tạm của phiên): số khối `:::` và dãy nhãn khối (loại, tên, số hiệu) giống hệt, cùng thứ tự; số dòng đóng `:::` bằng số khối; số `$$` chẵn; không có `\text{}` chứa chữ có dấu; tập tham chiếu chéo (Định nghĩa, Mệnh đề, Định lý, Hệ quả, Bổ đề, Ví dụ, Nhận xét, Bài tập, Tình huống, Thuật toán kèm số hiệu) và tập số hiệu công thức không mất mục nào; tập các con số trong văn bản không mất số nào (số thêm vào chỉ là số thứ tự của nhãn bước và mục danh sách).
+- So sánh tập từ (chữ thường, ngoài công thức): từ mất đi chỉ là từ nối ("nên", "và", "với", "thứ nhất/hai/ba") do tách câu và chuyển thành danh sách; từ thêm vào là nhãn ("Bước", "phần", "Lập mô hình", "Tính", "Kiểm tra lại", "Diễn giải"). Công thức nội dòng mất đi đều đã chuyển sang công thức hiển thị.
+- `git diff --check` trên hai tệp: đạt.
+- Playwright Chromium qua `python3 -m reloadserver 8765`, `material-viewer.html?doc=materials/lec-NN/lecture-note.md`, ở 1600×900 và 390×844, so với bản trước (bản trước được phục vụ qua chặn yêu cầu, không ghi vào kho): không `pageerror`; `.katex-error` = 0; dòng trạng thái cảnh báo của trình đọc ẩn (không có công thức lỗi); `scrollWidth` của trang nhỏ hơn bề rộng khung nhìn ở cả hai cỡ; số `.material-block` bằng số khối. Lỗi console CSP về script nội dòng có ở cả bản trước và bản sau, không do nội dung ghi chú.
+- Ảnh chụp một khối chứng minh đã mở ở hai cỡ màn hình, đã tự xem; công thức `aligned` canh dấu đúng, nhãn bước in đậm đứng đầu đoạn.
+- `no-ai-slop` (chế độ Edit, đối chiếu `eval.md`): chỉ tách câu, đổi bố cục và thêm nhãn; không thêm câu dẫn, lời nhấn mạnh hay kết luận; nhãn bước nêu nội dung bước, không trang trí. Đạt.
+- Không chạy `scripts/sync-local-materials.py`, không sửa `material-local-data.js` (theo brief; tệp này đang có thay đổi của tác tử khác). Không commit.
+
+**Điểm còn phân vân (chuyển điều phối viên).**
+
+- Hai đoạn "Định nghĩa." và "Kết quả." của Tóm tắt chương là danh mục ngăn bằng dấu chấm phẩy; giữ nguyên vì là danh mục tra cứu.
+- Bước 8 của Thuật toán 02.1 và các dòng "Dẫn ngược lý thuyết" vẫn liệt kê bằng dấu chấm phẩy; giữ nguyên vì là bước thuật toán và danh mục dẫn chiếu.
+- Ở 390×844, 91/110 công thức hiển thị cuộn ngang trong khung riêng (bản trước 55/62); trang không tràn ngang.

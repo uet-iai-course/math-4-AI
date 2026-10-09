@@ -197,3 +197,39 @@ Kiểm `no-ai-slop` cho văn bản mới của lượt 2 và lượt sửa nhẹ
 | Ba đoạn mở đầu trước "Mục tiêu học tập" | Bỏ hẳn (giới thiệu chương, hai phần học phần, móc nối Bài 00) | Người dùng: "không cần đoạn dài trước Mục tiêu học tập". Thông tin Bài 00 đã có trong "Kiến thức tiên quyết" | Điều phối viên Fable 5.1 thực hiện trực tiếp (xóa văn bản, không sửa toán); kiểm lại: không còn tham chiếu tới phần giới thiệu; sync và trình duyệt đạt |
 | Bảng ký hiệu | Rút từ 76 dòng còn 34 dòng, rồi còn 20 dòng theo yêu cầu "tầm 20 dòng": giữ ký hiệu dùng xuyên suốt (bài toán tổng quát, ba ca, tính lồi, đạo hàm); bỏ ký hiệu cục bộ của từng ví dụ, chứng minh, tình huống; gộp $X'$, $w'$ vào câu giới thiệu tại chỗ | Người dùng: "Bảng ký hiệu quá dài, chỉ cần các dòng quan trọng" | Điều phối viên thực hiện trực tiếp (xóa dòng bảng, không sửa toán); câu dẫn bảng ghi rõ ký hiệu cục bộ được giới thiệu tại chỗ; sync và trình duyệt đạt |
 | `img/lec-01/m03-control-target.svg` | Vẽ lại: luồng x0 → u → x1 → (x1 − t)² trên một hàng, λu² thẳng dưới u, t thẳng dưới x1 với nét đứt "so với đích", ràng buộc đặt ngay trên hộp u; mũi tên dùng marker đơn vị cố định | Người dùng: "các mũi tên, text lộn xộn" (mũi tên hụt mép, xuất phát từ khoảng trống, nhãn rời) | Điều phối viên thực hiện trực tiếp; kiểm bằng ảnh render SVG, trang chiếu M03 của deck Bài 01 và trang 01b ở 1600×900 |
+
+## Chỉnh sửa trình bày sáng sủa 2026-10-09
+
+Yêu cầu người dùng: "trình bày các chứng minh và diễn giải sáng sủa hơn, cần thì xuống dòng để tách các ý ra không bị dính vào nhau"; tiêu chí ở tiểu mục "Trình bày sáng sủa: chứng minh và diễn giải" của `AGENTS.md`.
+
+**Tác tử.** Tác tử chỉnh sửa (editor), loại `general-purpose`, mô hình Claude Opus 5.5 (`claude-opus-5-5`), effort `high`, theo brief của điều phối viên Fable 5.1. Phạm vi ghi: `materials/lec-01b/lecture-note.md` và nhật ký này.
+
+**Phạm vi thay đổi.** Chỉ bố cục và tách câu; không đổi nội dung toán học, căn cứ, số liệu, số hiệu, tiêu đề khối hay thứ tự khối; không thêm hay bớt bước lập luận.
+
+| loại khối | số khối đã bố cục lại / tổng |
+|---|---|
+| proof | 23 / 23 (chia bước có nhãn in đậm; hai chứng minh ngắn của Mệnh đề 01.25 và Hệ quả 01.34 chỉ chuyển chuỗi biến đổi sang `aligned` hoặc các trường hợp sang danh sách) |
+| solution | 21 / 21 |
+| example | 15 / 15 (nhãn Lập mô hình, Tính, Diễn giải, Kiểm tra lại) |
+| remark | 10 / 10 |
+| exercise (đề) | 15 / 21 (các câu (a), (b), (c) xuống dòng) |
+| proposition, theorem, lemma, definition | 7, 2, 1, 6 (danh sách kết luận (a), (b), (c) mỗi mục một dòng; các đối tượng được định nghĩa tách dòng; phần Giả thiết, Điều kiện áp dụng, Phạm vi giữ nguyên chữ) |
+| application | 3 / 3 |
+
+Số liệu khác: đoạn văn ngoài khối từ 146 lên 255 (khoảng 109 lần tách đoạn diễn giải); mục danh sách từ 39 lên 255 (trường hợp, điều kiện, chuỗi suy luận cuối mục); công thức hiển thị từ 37 lên 90, trong đó 15 khối `aligned` mỗi dấu một dòng; 81 nhãn bước. Số từ: 31 601 → 32 676.
+
+**Kiểm tra đã chạy.**
+
+- Script so sánh bản trước và sau (bản sao trong thư mục tạm của phiên): số khối `:::` và dãy nhãn khối (loại, tên, số hiệu) giống hệt, cùng thứ tự; số dòng đóng `:::` bằng số khối; số `$$` chẵn; không có `\text{}` chứa chữ có dấu; tập tham chiếu chéo (Định nghĩa, Mệnh đề, Định lý, Hệ quả, Bổ đề, Ví dụ, Nhận xét, Bài tập, Tình huống, Thuật toán kèm số hiệu) và tập số hiệu công thức không mất mục nào; tập các con số trong văn bản không mất số nào (số thêm vào chỉ là số thứ tự của nhãn bước và mục danh sách).
+- So sánh tập từ (chữ thường, ngoài công thức): từ mất đi chỉ là từ nối ("nên", "và", "với", "thứ nhất/hai/ba") do tách câu và chuyển thành danh sách; từ thêm vào là nhãn ("Bước", "phần", "Lập mô hình", "Tính", "Kiểm tra lại", "Diễn giải"). Công thức nội dòng mất đi đều đã chuyển sang công thức hiển thị.
+- `git diff --check` trên hai tệp: đạt.
+- Playwright Chromium qua `python3 -m reloadserver 8765`, `material-viewer.html?doc=materials/lec-NN/lecture-note.md`, ở 1600×900 và 390×844, so với bản trước (bản trước được phục vụ qua chặn yêu cầu, không ghi vào kho): không `pageerror`; `.katex-error` = 0; dòng trạng thái cảnh báo của trình đọc ẩn (không có công thức lỗi); `scrollWidth` của trang nhỏ hơn bề rộng khung nhìn ở cả hai cỡ; số `.material-block` bằng số khối. Lỗi console CSP về script nội dòng có ở cả bản trước và bản sau, không do nội dung ghi chú.
+- Ảnh chụp một khối chứng minh đã mở ở hai cỡ màn hình, đã tự xem; công thức `aligned` canh dấu đúng, nhãn bước in đậm đứng đầu đoạn.
+- `no-ai-slop` (chế độ Edit, đối chiếu `eval.md`): chỉ tách câu, đổi bố cục và thêm nhãn; không thêm câu dẫn, lời nhấn mạnh hay kết luận; nhãn bước nêu nội dung bước, không trang trí. Đạt.
+- Không chạy `scripts/sync-local-materials.py`, không sửa `material-local-data.js` (theo brief; tệp này đang có thay đổi của tác tử khác). Không commit.
+
+**Điểm còn phân vân (chuyển điều phối viên).**
+
+- Bảng trong Ví dụ 01.2 thiếu hàng tiêu đề từ bản đầu (commit 93b1f05): dòng đầu của bảng là dòng căn lề `|---:|...`, nên Marked không dựng bảng. Không sửa vì ngoài phạm vi bố cục; đề xuất thêm hàng tiêu đề `| $\lambda$ | $u_{\mathrm{free}}$ | $u^*$ | $q(u^*)$ | $q'(u^*)$ | vị trí nghiệm |`.
+- Hai đoạn "Định nghĩa." và "Kết quả." của Tóm tắt chương là danh mục ngăn bằng dấu chấm phẩy; giữ nguyên vì là danh mục tra cứu, không phải đoạn diễn giải.
+- Ở 390×844, 68/90 công thức hiển thị cuộn ngang trong khung riêng (bản trước 27/37); tỷ lệ tương đương, trang không tràn ngang.
