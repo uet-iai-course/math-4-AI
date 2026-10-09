@@ -1,9 +1,5 @@
 # Bài NN — Tên chủ đề
 
-Giới thiệu chương: bài toán trung tâm của bài, vị trí trong học phần, kết quả chính sẽ đạt và cách chương được tổ chức. Viết thành đoạn văn đầy đủ, một hoặc hai đoạn.
-
-Móc nối với bài trước: kết quả cụ thể của bài trước mà chương này xây tiếp (số hiệu, phát biểu lại một câu) và giới hạn của kết quả đó mà chương này vượt qua.
-
 ## Mục tiêu học tập
 
 - Mục tiêu quan sát hoặc đánh giá được, ghi LLO/CLO tương ứng.
@@ -18,6 +14,8 @@ Móc nối với bài trước: kết quả cụ thể của bài trước mà c
 |---|---|---|
 | $x$ | biến quyết định | $\mathbb R^n$ |
 | $f$ | hàm mục tiêu | $\mathbb R^n\to\mathbb R$ |
+
+Khoảng 20 dòng; chỉ ký hiệu dùng xuyên suốt chương.
 
 ## 1. Tên mục (một mạch của bộ trang chiếu)
 

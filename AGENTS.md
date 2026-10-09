@@ -70,7 +70,7 @@ Phải giữ thứ tự, bố cục, mức độ chi tiết và mạch nội dun
 - Theo yêu cầu người dùng, tài liệu phải mở được cả khi nhấp `index.html` bằng `file://` và trên GitHub Pages. Markdown vẫn là nguồn; `material-local-data.js` là bản đóng gói cho chế độ mở trực tiếp. Sau mọi lần sửa ghi chú hoặc bài tập, chạy `python3 2627-1/scripts/sync-local-materials.py`, kiểm tra bằng `--check` và commit bản đóng gói cùng Markdown. Người đọc không cần chạy lệnh. Đây là ngoại lệ đóng gói dữ liệu cho `file://`; không sinh HTML hoặc dùng Node.js.
 
 - Không dùng Node.js, trình sinh trang hoặc bước build cho ghi chú bài giảng và bài tập. Tệp Markdown được tải khi chạy bởi `YYZZ-H/material-viewer.html`; JavaScript và CSS cần thiết phải được lưu cục bộ trong thư mục học kỳ.
-- URL viewer chỉ nhận hai tham số cùng bài: `doc=materials/lec-NN/lecture-note.md` hoặc `doc=materials/lec-NN/exercises.md`, và `deck=lecture-NN-<chu-de>.html`. Viewer phải từ chối đường dẫn ngoài quy ước, số bài không khớp và tài nguyên khác nguồn. Ngoại lệ duy nhất: bài bổ trợ chỉ có học liệu hoặc bản ghi chú viết lại để so sánh, không có bộ trang chiếu (hiện là 05c và 01b, khai báo trong `DECKLESS_LECTURES` của `material-viewer.js`), mở với riêng tham số `doc`.
+- URL viewer chỉ nhận hai tham số cùng bài: `doc=materials/lec-NN/lecture-note.md` hoặc `doc=materials/lec-NN/exercises.md`, và `deck=lecture-NN-<chu-de>.html`. Viewer phải từ chối đường dẫn ngoài quy ước, số bài không khớp và tài nguyên khác nguồn. Ngoại lệ duy nhất: bài bổ trợ chỉ có học liệu hoặc bản ghi chú viết lại để so sánh, không có bộ trang chiếu (hiện là 05c, 01b và 02b, khai báo trong `DECKLESS_LECTURES` của `material-viewer.js`), mở với riêng tham số `doc`.
 - Thứ tự xử lý bắt buộc là bảo toàn công thức → chuyển Markdown bằng Marked → làm sạch HTML bằng DOMPurify → khôi phục công thức dưới dạng nút văn bản → render bằng KaTeX. Không chèn trực tiếp HTML chưa làm sạch vào DOM.
 - Chỉ dùng `$...$` và `$$...$$`; cấu hình auto-render phải xử lý `$$` trước `$` và bỏ qua `pre`, `code`, `script`, `style`, `textarea`, `noscript` và `option`.
 - Hỗ trợ mười bốn loại khối không lồng nhau bằng cú pháp `::: <loại> Tiêu đề tùy chọn` … `:::`: `definition`, `theorem`, `proposition`, `lemma`, `corollary`, `remark`, `algorithm`, `example`, `application`, `derivation`, `proof`, `exercise`, `hint` và `solution`. Khi có tiêu đề, tiêu đề thay cho nhãn mặc định của loại khối. Danh sách loại khối và nhãn tiếng Việt nằm ở một chỗ duy nhất, hằng `DIRECTIVE_LABELS` trong `material-viewer.js`. `proof`, `hint` và `solution` phải gập mặc định, dùng được bằng bàn phím và được mở khi in; các khối còn lại luôn mở.
@@ -107,6 +107,21 @@ Phép thử duy nhất: một sinh viên có đủ kiến thức tiên quyết, 
 - **Hình thức.** Kiến thức được trình bày theo các môi trường có nhãn và số hiệu: Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả, Ví dụ, Nhận xét, Chứng minh, Thuật toán, Bài tập, Tình huống áp dụng. Không trộn định nghĩa vào giữa đoạn văn giải thích; không phát biểu kết quả bằng lời rồi bỏ qua dạng toán học.
 - **Giữ hành trình khái niệm.** Hành trình của bộ trang chiếu (nhu cầu → trực giác → ví dụ → phát biểu → ứng dụng → bài tập) được giữ đầy đủ trong ghi chú với mức chi tiết của giáo trình.
 
+### Tham khảo cách diễn giải của giáo trình
+
+Khi soạn hoặc sửa một ghi chú, tác tử soạn phải đối chiếu với cách các giáo trình chuẩn trình bày cùng chủ đề và ghi vào `review-log.md` giáo trình nào, mục nào đã được tham khảo cho từng mục của chương. Giáo trình chuẩn của học phần: Boyd và Vandenberghe (2004) *Convex Optimization* cho tối ưu lồi; Nocedal và Wright (2006) *Numerical Optimization* cho phương pháp số; Goodfellow, Bengio và Courville (2016) *Deep Learning* cho huấn luyện mạng; Wasserman (2004) *All of Statistics* và Blitzstein và Hwang (2019) *Introduction to Probability* cho xác suất; Strang (2016) *Introduction to Linear Algebra* cho đại số tuyến tính. Các PDF MIT OCW trong `sources/MIT` được dùng cùng cách.
+
+Những điều cần học từ giáo trình và chuyển vào ghi chú:
+
+- **Thứ tự dẫn dắt**: giáo trình đưa khái niệm nào trước, nêu nhu cầu bằng ví dụ nào, chỗ nào dừng lại giải thích trước khi phát biểu tổng quát. Khi ghi chú đổi thứ tự so với giáo trình, ghi lý do.
+- **Cách đọc một định nghĩa hoặc định lý bằng lời**: câu diễn giải sau phát biểu, vai trò từng giả thiết, trường hợp đặc biệt và phản ví dụ mà giáo trình chọn. Ưu tiên dùng lại các ví dụ chuẩn của giáo trình (đã trở thành ví dụ kinh điển của lĩnh vực) hơn là bịa ví dụ mới, trừ khi ví dụ mới phục vụ ba ca xuyên suốt của bài.
+- **Hình vẽ chuẩn**: hình giáo trình dùng để minh họa khái niệm (dây cung của hàm lồi, tiếp tuyến nằm dưới đồ thị, tập mức, nửa không gian, điểm yên ngựa). Vẽ lại bằng SVG cục bộ với số liệu của chương, không sao chép hình.
+- **Thuật ngữ và ký hiệu**: dùng thuật ngữ tiếng Việt đã quy ước trong học phần, ghi thuật ngữ gốc của giáo trình trong ngoặc ở lần đầu, giữ ký hiệu gần với giáo trình khi không xung đột với ký hiệu của bài.
+- **Nhận xét và cảnh báo**: những điểm giáo trình nêu dưới dạng remark, footnote hoặc exercise có lời giải mà sinh viên hay hiểu sai.
+- **Mức chặt chẽ**: theo mức giáo trình chọn cho đối tượng đại học; khi giáo trình bỏ qua một chứng minh, ghi chú hoặc bổ sung chứng minh ở mức đó hoặc dẫn nguồn có số trang, không phát biểu như thể đã chứng minh.
+
+Giới hạn: tham khảo cách diễn giải, không dịch hoặc chép đoạn văn của giáo trình. Mọi câu trong ghi chú là văn viết lại bằng tiếng Việt theo mục "Ngôn ngữ và giọng văn". Trích dẫn nguồn theo tác giả, năm, mục và trang trong "Hướng dẫn đọc thêm và tài liệu tham khảo", và dẫn tại chỗ khi một lập luận, ví dụ hay hình lấy ý từ giáo trình.
+
 ### Đoạn văn móc nối: quan hệ giữa khái niệm, định lý và ứng dụng trong AI
 
 Ghi chú không phải danh mục các định nghĩa và định lý đứng cạnh nhau. Mỗi đối tượng mới phải được gắn vào mạng kiến thức đã có bằng những đoạn văn móc nối viết rõ, có tên quan hệ và có số hiệu. Các loại móc nối bắt buộc:
@@ -123,10 +138,10 @@ Mỗi đoạn móc nối là văn xuôi có luận điểm, không phải một 
 ### Cấu trúc bắt buộc của một chương
 
 1. **Tiêu đề** cấp một: `# Bài NN — Tên chủ đề`.
-2. **Giới thiệu chương**: bài toán trung tâm của bài trong một hoặc hai đoạn, vị trí trong học phần, kết quả chính sẽ đạt, cách chương được tổ chức.
+2. **Giới thiệu chương**: tối đa một đoạn ngắn, hoặc bỏ hẳn (quyết định người dùng 2026-10-09 với Bài 01b: không có đoạn dài trước mục tiêu học tập). Bài toán trung tâm được nêu ở đầu mục nội dung thứ nhất.
 3. **Mục tiêu học tập**: danh sách kết quả quan sát được, ánh xạ sang LLO/CLO của đề cương.
 4. **Kiến thức tiên quyết**: kết quả cần dùng, mỗi mục dẫn số hiệu trong bài trước hoặc được phát biểu lại ngắn gọn ngay tại chỗ.
-5. **Bảng ký hiệu**: bảng ba cột `Ký hiệu | Ý nghĩa | Miền hoặc kiểu`, bao gồm mọi ký hiệu dùng trong chương.
+5. **Bảng ký hiệu**: bảng ba cột `Ký hiệu | Ý nghĩa | Miền hoặc kiểu`, khoảng 20 dòng, chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu chỉ dùng trong một ví dụ, chứng minh hay tình huống được giới thiệu tại chỗ, không đưa vào bảng.
 6. **Các mục nội dung** đánh số `## 1.`, `## 2.`, …; mỗi mục ứng với một mạch (strand) của bộ trang chiếu và tuân thủ mẫu ở phần "Mẫu trình bày một khái niệm".
 7. **Tình huống áp dụng và ứng dụng**: mục riêng ở cuối phần nội dung (xem dưới).
 8. **Tóm tắt chương**: danh sách các định nghĩa và định lý đã phát biểu kèm số hiệu, các công thức cần nhớ, các giả thiết hay bị bỏ quên.
@@ -181,6 +196,7 @@ Trước khi công bố trên chỉ mục, tác tử rà soát lập bảng đ�
 - số hiệu liên tục, tham chiếu chéo trỏ đúng, các khối không lồng nhau và render đúng ở màn rộng, màn hẹp;
 - mỗi định nghĩa có đoạn nêu quan hệ với khái niệm đã có; mỗi định lý có đoạn nêu quan hệ với định lý trước và đoạn "Trong học máy" nêu đúng đối tượng, giả thiết và kết luận; mỗi mục có chuỗi suy luận dẫn số hiệu; mở và kết chương có móc nối với bài trước và bài sau;
 - mỗi mục có đoạn kết nêu kết quả thu được, thiếu hụt còn lại và cách mục sau giải quyết; mỗi công thức có câu dẫn trước và câu đọc sau; mỗi ký hiệu được gọi tên tại lần xuất hiện đầu;
+- mỗi mục có ghi trong `review-log.md` giáo trình và mục đã tham khảo cách diễn giải; ví dụ, hình và nhận xét lấy ý từ giáo trình được dẫn tại chỗ; không có đoạn dịch hoặc chép;
 - nội dung, ký hiệu và giả thiết nhất quán với bộ trang chiếu cùng bài; chỗ lệch được ghi và sửa ở bộ trang chiếu.
 
 Tiêu chuẩn này áp dụng cho ghi chú mới và là đích rà soát lại cho các ghi chú đã công bố. Việc nâng cấp một ghi chú đã có đi qua quy trình đa tác tử rút gọn: tác tử soạn viết lại theo mẫu, tác tử rà toán tính lại toàn bộ số liệu, tác tử rà mạch truyện kiểm tra tám bước và liên kết mục, điều phối viên duyệt rồi mới chạy đồng bộ và cập nhật chỉ mục.
