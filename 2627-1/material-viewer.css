@@ -265,6 +265,18 @@
   padding: 0.35em 0;
 }
 
+/* Tagged display formulas (\tag{...}): KaTeX positions the tag absolutely at
+   the right edge of .katex-html. When the formula is wider than the column,
+   let that box grow to the content width (plus room for the tag) so the tag
+   scrolls with the formula instead of overlapping its last symbols. */
+.katex-display > .katex > .katex-html:has(> .tag) {
+  display: inline-block;
+  width: max-content;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding-right: 3.2em;
+}
+
 .material-block {
   margin: 1.4em 0;
   padding: 18px 20px;
