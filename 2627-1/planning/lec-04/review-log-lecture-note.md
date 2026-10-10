@@ -239,3 +239,66 @@ Bài tập trong ghi chú không trùng đề với tám bài giao: các bài d�
 8. **Trùng lặp với `exercises.md`.** Đã có quyết định E1: chấp nhận, chờ đổi dữ liệu `exercises.md`.
 9. **Độ dài lượt 2.** 31 346 từ; xem mục D và danh sách ứng viên cắt thêm.
 10. **Mệnh đề 04.55(d).** Phát biểu "không có hàm $\omega$ với $\omega(0)=0$ cho mọi bài" được chứng minh bằng họ $\tfrac\varepsilon2u^2$, $p=0$; cần rà toán xác nhận cách phát biểu đủ chính xác.
+
+
+## Lượt sửa ví dụ tự chứa (2026-10-10)
+
+**Tác tử.** Chỉnh sửa, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high, theo brief của điều phối viên Fable 5.1. Bản kiểm kê đầu vào do tác tử rà soát chỉ đọc cùng mô hình lập. Căn cứ: `AGENTS.md`, mục "Ví dụ và bài tập tự chứa tại chỗ" (yêu cầu người dùng 2026-10-10). Mọi giá trị trong đoạn "Dữ kiện" được đối chiếu với khối nguồn trong cùng tệp trước khi chèn; không đổi số hiệu, không đổi kết quả, không sửa phần ngoài các khối được kiểm kê.
+
+| Khối | Khối bị tham chiếu | Cách xử lý | Sai lệch so với đề xuất kiểm kê |
+|---|---|---|---|
+| Ví dụ 04.4 | VD1, Định nghĩa 04.8, (2.1) | Đoạn Dữ kiện | Không |
+| Ví dụ 04.5 | VD1, Ví dụ 04.4 | Đoạn Dữ kiện | Không |
+| Ví dụ 04.6 | VD1, Ví dụ 04.5 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 04.7 | VD1, Ví dụ 04.6 | Đoạn Dữ kiện | Không |
+| Ví dụ 04.9 | VD1, Định nghĩa 04.14, Mệnh đề 04.15 | Bổ sung đoạn Dữ kiện có sẵn | Thêm Mệnh đề 04.9(c) |
+| Bài tập 04.3 | VD1, Ví dụ 04.6, (2.1) | Đoạn Dữ kiện | Bỏ Mệnh đề 04.9(c) vì bài không dùng |
+| Ví dụ 04.10 | VD1, Bổ đề 04.20 | Đoạn Dữ kiện | Không |
+| Ví dụ 04.11 | VD1, Ví dụ 04.10, (2.4) | Đoạn Dữ kiện | Không |
+| Ví dụ 04.12 | VD1, Ví dụ 04.5, Bổ đề 04.23, Định lý 04.24 | Đoạn Dữ kiện | Không |
+| Bài tập 04.4 | VD1, Ví dụ 04.11, Nhận xét 04.13 | Đoạn Dữ kiện | Thêm công thức bước tối ưu của Nhận xét 04.13 |
+| Ví dụ 04.13 | VD2 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 04.14 | VD2, Ví dụ 04.13, (3.1) | Đoạn Dữ kiện | Không |
+| Ví dụ 04.15 | VD2, Ví dụ 04.14, 04.9 | Đoạn Dữ kiện | Không |
+| Ví dụ 04.16 | Định lý 04.34, (3.2) | Đoạn Dữ kiện và chèn vào Kiểm tra lại | Kiểm kê chỉ đề xuất chèn vào Kiểm tra lại; thêm đoạn Dữ kiện (VD2, Định nghĩa 04.33) vì khối không nêu $\varphi$ và $s^*$ |
+| Bài tập 04.5 | VD2, Thuật toán 04.2 | Đoạn Dữ kiện | Không |
+| Bài tập 04.6 | Ví dụ 04.15 | Chèn vào câu cuối lời giải | Không |
+| Ví dụ 04.17 | VD3 | Đoạn Dữ kiện | Thêm (1.2) |
+| Ví dụ 04.18 | VD3, Ví dụ 04.17 | Đoạn Dữ kiện | Thêm (4.1) |
+| Ví dụ 04.19 | VD3, Ví dụ 04.18 | Đoạn Dữ kiện | Thêm (4.2) |
+| Bài tập 04.7 | VD3, Ví dụ 04.18, (4.1), (4.2) | Đoạn Dữ kiện | Không |
+| Ví dụ 04.20 | VD3, Định nghĩa 04.43 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 04.21 | VD3, Ví dụ 04.20 | Đoạn Dữ kiện | Thêm (5.1) |
+| Ví dụ 04.22 | VD3 | Thay đoạn Dữ kiện có sẵn | Thêm (5.1) và Mệnh đề 04.44(c), (d), dùng ở Kiểm tra lại |
+| Bài tập 04.9 | VD3, (5.1), Thuật toán 04.4 | Đoạn Dữ kiện | Thêm quy tắc nhận bước của Thuật toán 04.4, dùng ở câu (b) |
+| Ví dụ 04.23 | VD2, Định nghĩa 04.47 | Đoạn Dữ kiện | Không |
+| Ví dụ 04.24 | VD2, Ví dụ 04.15, (6.1) | Đoạn Dữ kiện | Không |
+| Bài tập 04.11 (vii) | VD2 | Chèn vào lời giải | Không |
+| Bài tập 04.14 | Tình huống 04.3, VD1, Bổ đề 04.20 | Đoạn Dữ kiện | Không |
+| Bài tập 04.1 (phụ) | (1.1), (1.2) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 04.8, 04.13 (phụ) | (4.1), (4.2), Định lý 04.39 | Viết lại tại chỗ dẫn | Không |
+| Bài tập 04.10 (phụ) | (6.1), Mệnh đề 04.48 | Viết lại tại chỗ dẫn | Chép thêm nội dung Mệnh đề 04.48 |
+| Bài tập 04.12 (phụ) | (1.2), (4.1), Hệ quả 04.52 | Viết lại tại chỗ dẫn | Không |
+
+Ký hiệu ma trận đơn vị giữ $I$ như tệp. Tổng: 28 khối bảng chính, 5 khối bảng phụ; không khối nào bỏ qua; không phát hiện giá trị sai trong đề xuất kiểm kê.
+
+**Kiểm tra kỹ thuật.** Playwright Chromium, `material-viewer.html?doc=materials/lec-04/lecture-note.md&deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`, ở 1600×900 và 390×844: 3905 phần tử `.katex`, 0 `.katex-error`, 0 phần tử KaTeX tô đỏ (`rgb(204, 0, 0)`), 0 lỗi trang (lỗi CSP duy nhất trên console đến từ đoạn script do `reloadserver` chèn, không thuộc trang), không tràn ngang trang; số khối `:::` không đổi (159). Quét lệnh LaTeX trong mọi dòng mới: chỉ dùng lệnh chuẩn, không có `\text{}`. `python3 2627-1/scripts/sync-local-materials.py` rồi `--check`: OK; `git diff --check`: sạch.
+
+**Số từ.** Trước 31727, sau 32707 (`wc -w`).
+
+Quyết định của điều phối viên:
+
+
+### Rà soát độc lập và lượt sửa bổ sung (2026-10-10)
+
+**Tác tử rà soát.** Chỉ đọc, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high; đối chiếu 146 đoạn của Bài 01–05 với khối nguồn: mọi số liệu khớp. Điều phối viên Fable 5.1 xác nhận các phát hiện dưới đây và quyết định: yêu cầu sửa nhỏ rồi chấp nhận. Tác tử chỉnh sửa (như trên) thực hiện các sửa đổi.
+
+| Mức độ | Khối | Vấn đề | Đề xuất sửa | Trạng thái |
+|---|---|---|---|---|
+| trung bình | Bài tập 04.2(c) | (2.2) chỉ dẫn số | Chép $f(x+td)\le f(x)+\alpha t\,g^Td$ | đã sửa |
+| nhẹ | Ví dụ 04.21 | Bước Lập hệ lặp giá trị đã có trong Dữ kiện | Rút thành "Với các giá trị trên, hệ (5.1) là" | đã sửa |
+| nhẹ | Bài tập 04.10(a) | Mệnh đề 04.48 chép với $f$, trùng hàm $f$ của đề | Dùng $h$, $h_1$, $h_2$ | đã sửa |
+
+**Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (159). Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 32708.
+
+Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.

@@ -235,3 +235,58 @@ Số liệu khác: đoạn văn ngoài khối từ 146 lên 255 (khoảng 109 l�
 - Bảng trong Ví dụ 01.2 thiếu hàng tiêu đề từ bản đầu (commit 93b1f05): dòng đầu của bảng là dòng căn lề `|---:|...`, nên Marked không dựng bảng. Không sửa vì ngoài phạm vi bố cục; đề xuất thêm hàng tiêu đề `| $\lambda$ | $u_{\mathrm{free}}$ | $u^*$ | $q(u^*)$ | $q'(u^*)$ | vị trí nghiệm |`.
 - Hai đoạn "Định nghĩa." và "Kết quả." của Tóm tắt chương là danh mục ngăn bằng dấu chấm phẩy; giữ nguyên vì là danh mục tra cứu, không phải đoạn diễn giải.
 - Ở 390×844, 68/90 công thức hiển thị cuộn ngang trong khung riêng (bản trước 27/37); tỷ lệ tương đương, trang không tràn ngang.
+
+
+## Lượt sửa ví dụ tự chứa (2026-10-10)
+
+**Tác tử.** Chỉnh sửa, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high, theo brief của điều phối viên Fable 5.1. Bản kiểm kê đầu vào do tác tử rà soát chỉ đọc cùng mô hình lập. Căn cứ: `AGENTS.md`, mục "Ví dụ và bài tập tự chứa tại chỗ" (yêu cầu người dùng 2026-10-10). Mọi giá trị trong đoạn "Dữ kiện" được đối chiếu với khối nguồn trong cùng tệp trước khi chèn; không đổi số hiệu, không đổi kết quả, không sửa phần ngoài các khối được kiểm kê.
+
+| Khối | Khối bị tham chiếu | Cách xử lý | Sai lệch so với đề xuất kiểm kê |
+|---|---|---|---|
+| Ví dụ 01.1 | (2.2), (2.3), (2.4) | Đoạn Dữ kiện | Thêm Định nghĩa 01.1 ($q$, $C$, $x_1$) |
+| Ví dụ 01.2 | Ví dụ 01.1, (2.2), (2.4) | Đoạn Dữ kiện | Thêm (2.3) và $q'(u)$ vì bảng dùng cả hai |
+| Bài tập 01.1 | Định nghĩa 01.1, (2.2)–(2.4) | Đoạn Dữ kiện | Không |
+| Ví dụ 01.3 | Bảng đầu Mục 3, (3.3) | Đoạn Dữ kiện | Thêm (3.1) và Mệnh đề 01.6(c) dùng ở bước Tính |
+| Ví dụ 01.5 | Ví dụ 01.4 | Đoạn Dữ kiện | Thêm Mệnh đề 01.6(b) |
+| Ví dụ 01.7 | Ví dụ 01.6 | Đoạn Dữ kiện | Thêm $\sigma$ dùng ở phần Diễn giải |
+| Ví dụ 01.9 | Ví dụ 01.1, 01.5, 01.6 | Đoạn Dữ kiện dạng danh sách | Không |
+| Ví dụ 01.11 | Bài tập 01.8, (7.1) | Đoạn Dữ kiện | Thêm định nghĩa lồi chặt |
+| Ví dụ 01.12 | Ví dụ 01.4, Hệ quả 01.27 | Đoạn Dữ kiện đầu khối | Kiểm kê chỉ nêu phần (b); đoạn đặt đầu khối, phục vụ cả ba phần |
+| Ví dụ 01.13 | Định nghĩa 01.1, Ví dụ 01.1 | Đoạn Dữ kiện | Thêm Định lý 01.30(a), (b) và $\ell$ |
+| Ví dụ 01.14 | Ví dụ 01.11, 01.13, Định lý 01.31 | Đoạn Dữ kiện | Định lý 01.31(a) chép thêm vế lồi chặt, dùng ở phần (d) |
+| Bài tập 01.4 | Định nghĩa 01.8, Mệnh đề 01.9 | Đoạn Dữ kiện | Không |
+| Bài tập 01.13 | Ví dụ 01.4, (7.3) | Đoạn Dữ kiện | Thêm Mệnh đề 01.16(b) dùng ở gợi ý |
+| Bài tập 01.19 | Ví dụ 01.4, Định nghĩa 01.42 | Đoạn Dữ kiện | Không |
+| Bài tập 01.20 | Ví dụ 01.6, Tình huống 01.3 | Đoạn Dữ kiện | Không chép $F(0,0)$ vì đó là đại lượng bài tập yêu cầu tính |
+| Bài tập 01.21 | Ví dụ 01.6, Tình huống 01.1, (7.3) | Đoạn Dữ kiện | Thêm $\sigma$ |
+| Bài tập 01.3 (phụ) | (3.1) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 01.6 (phụ) | (5.1), Mệnh đề 01.16(a) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 01.7, 01.8 (phụ) | (6.1), Định nghĩa 01.18 | Viết lại tại chỗ dẫn | Không |
+| Bài tập 01.9 (phụ) | (7.1), Mệnh đề 01.25 | Viết lại tại chỗ dẫn | Không |
+| Bài tập 01.10 (phụ) | (7.2), (7.3) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 01.16 (phụ) | (7.3), (2.4) | Viết lại tại chỗ dẫn | Thêm (2.2) trong đề |
+
+Tổng: 16 khối bảng chính, 7 khối bảng phụ; không khối nào bỏ qua; không phát hiện giá trị sai trong đề xuất kiểm kê.
+
+**Kiểm tra kỹ thuật.** Playwright Chromium, `material-viewer.html?doc=materials/lec-01/lecture-note.md&deck=lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html`, ở 1600×900 và 390×844: 3155 phần tử `.katex`, 0 `.katex-error`, 0 phần tử KaTeX tô đỏ (`rgb(204, 0, 0)`), 0 lỗi trang (lỗi CSP duy nhất trên console đến từ đoạn script do `reloadserver` chèn, không thuộc trang), không tràn ngang trang; số khối `:::` không đổi (151). Quét lệnh LaTeX trong mọi dòng mới: chỉ dùng lệnh chuẩn, không có `\text{}`. `python3 2627-1/scripts/sync-local-materials.py` rồi `--check`: OK; `git diff --check`: sạch.
+
+**Số từ.** Trước 32691, sau 33489 (`wc -w`).
+
+Quyết định của điều phối viên:
+
+
+### Rà soát độc lập và lượt sửa bổ sung (2026-10-10)
+
+**Tác tử rà soát.** Chỉ đọc, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high; đối chiếu 146 đoạn của Bài 01–05 với khối nguồn: mọi số liệu khớp. Điều phối viên Fable 5.1 xác nhận các phát hiện dưới đây và quyết định: yêu cầu sửa nhỏ rồi chấp nhận. Tác tử chỉnh sửa (như trên) thực hiện các sửa đổi.
+
+| Mức độ | Khối | Vấn đề | Đề xuất sửa | Trạng thái |
+|---|---|---|---|---|
+| nhẹ | Ví dụ 01.9 | Viết "$\min q(u)=$ biểu thức", gộp hàm và giá trị | Viết "$\min_{u\in[-1,1]}q(u)$ với $q(u)=\ldots$", tương tự cho $L$ | đã sửa |
+| nhẹ | Bài tập 01.3 | Như trên với $J$ | "$\min J(w)$ với $J(w)=\lVert Xw-y\rVert_2^2$" | đã sửa |
+| nhẹ | Ví dụ 01.2 | Câu đầu thân khối lặp đoạn Dữ kiện | Rút thành "Giữ các dữ kiện trên và thay đổi $\lambda$" | đã sửa |
+| nhẹ | Ví dụ 01.14 | Kiểm tra lại thiếu nhãn | Thêm $y_1=+1$, $y_2=-1$ | đã sửa |
+| nhẹ | Tình huống 01.2 | Đơn hình $\Delta_3$ chỉ dẫn số | Thêm $\Delta_3=\{\theta\in\mathbb R^3\mid\theta\succeq0,\ \sum_j\theta_j=1\}$ | đã sửa |
+
+**Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (151). Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 33498.
+
+Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.

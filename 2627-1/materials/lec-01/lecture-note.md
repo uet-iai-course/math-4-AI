@@ -213,6 +213,8 @@ Giả thiết $u_{\max}\ge0$ dùng để $C$ không rỗng. Với $u_{\max}<0$, 
 Mệnh đề 01.2 cho biết phép cắt cho đúng nghiệm khi mục tiêu là bậc hai một biến. Phần Phạm vi của mệnh đề cảnh báo rằng với nhiều tham số liên kết, cắt nghiệm tự do không thay được việc giải bài toán có ràng buộc. Tình huống 01.2 giải một bài toán có ràng buộc trên đơn hình bằng điều kiện (7.3).
 
 ::: example Ví dụ 01.1 (Bộ số chuẩn của ca điều khiển)
+**Dữ kiện.** Bài toán điều khiển một bước (Định nghĩa 01.1) cực tiểu $q(u)=(x_0+u-t)^2+\lambda u^2$ trên $C=[-u_{\max},u_{\max}]$, với trạng thái mới $x_1=x_0+u$. Mệnh đề 01.2 cho nghiệm tự do $u_{\mathrm{free}}=\frac{t-x_0}{1+\lambda}$ (2.2), nghiệm $u^*=\operatorname{clip}(u_{\mathrm{free}},[-u_{\max},u_{\max}])$ (2.3) và dạng bù bình phương $q(u)=(1+\lambda)(u-u_{\mathrm{free}})^2+\frac{\lambda(t-x_0)^2}{1+\lambda}$ (2.4).
+
 **Lập mô hình.** Cho $x_0=0$, $t=3$, $\lambda=1/2$ và $u_{\max}=1$. Thay vào Định nghĩa 01.1:
 
 $$
@@ -251,7 +253,9 @@ Khi $q$ lồi, điều kiện này cũng đủ: Hệ quả 01.27 ở Mục 7 t�
 :::
 
 ::: example Ví dụ 01.2 (Ảnh hưởng của trọng số năng lượng)
-Giữ $x_0=0$, $t=3$, $u_{\max}=1$ và thay đổi $\lambda$. Theo (2.2), $u_{\mathrm{free}}=3/(1+\lambda)$, và $u_{\mathrm{free}}\le1$ khi và chỉ khi $\lambda\ge2$.
+**Dữ kiện.** Với $x_0=0$, $t=3$, $u_{\max}=1$ (Ví dụ 01.1), hàm chi phí của Định nghĩa 01.1 là $q(u)=(u-3)^2+\lambda u^2$ trên $C=[-1,1]$, với $q'(u)=2(u-3)+2\lambda u$. Nghiệm tự do là $u_{\mathrm{free}}=\frac3{1+\lambda}$ (2.2), nghiệm là $u^*=\operatorname{clip}(u_{\mathrm{free}},[-1,1])$ (2.3), và $q(u)=(1+\lambda)(u-u_{\mathrm{free}})^2+\frac{9\lambda}{1+\lambda}$ (2.4).
+
+Giữ các dữ kiện trên và thay đổi $\lambda$. Khi đó $u_{\mathrm{free}}\le1$ khi và chỉ khi $\lambda\ge2$.
 
 | $\lambda$ | $u_{\mathrm{free}}$ | $u^*$ | $q(u^*)$ | $q'(u^*)$ | Vị trí nghiệm |
 |---:|---:|---:|---:|---:|---|
@@ -272,6 +276,8 @@ Giữ $x_0=0$, $t=3$, $u_{\max}=1$ và thay đổi $\lambda$. Theo (2.2), $u_{\m
 Bảng của Ví dụ 01.2 phân biệt hai hiện tượng thường bị gộp làm một. Nghiệm nằm trên biên không đồng nghĩa với đạo hàm khác không: tại $\lambda=2$, nghiệm nằm ở biên mà $q'(u^*)=0$. Ràng buộc có hiệu lực (làm thay đổi nghiệm) khi và chỉ khi $u_{\mathrm{free}}\notin C$, tức $\lambda<2$ với bộ số này.
 
 ::: exercise Bài tập 01.1
+**Dữ kiện.** Bài toán điều khiển một bước (Định nghĩa 01.1): chọn $u\in C=[-u_{\max},u_{\max}]$ cực tiểu $q(u)=(x_0+u-t)^2+\lambda u^2$; trạng thái mới là $x_1=x_0+u$. Mệnh đề 01.2 cho $u_{\mathrm{free}}=\frac{t-x_0}{1+\lambda}$ (2.2), $u^*=\operatorname{clip}(u_{\mathrm{free}},[-u_{\max},u_{\max}])$ (2.3) và $q(u)=(1+\lambda)(u-u_{\mathrm{free}})^2+\frac{\lambda(t-x_0)^2}{1+\lambda}$ (2.4).
+
 Cho $x_0=1$, $t=-2$ và $\lambda=1$ trong Định nghĩa 01.1.
 
 (a) Với $u_{\max}=2$, tính $u_{\mathrm{free}}$, $u^*$, $x_1$ và $q(u^*)$.
@@ -485,6 +491,8 @@ Hậu quả quan sát được là các hệ số mô hình thay đổi lớn gi
 Có hai cách khắc phục: bỏ một cột, hoặc chính quy hóa, tức cộng vào hàm mục tiêu một hạng phạt độ lớn của tham số như $\mu\lVert w\rVert_2^2$ với $\mu>0$. Mục 8 định nghĩa chính quy hóa bậc hai (Định nghĩa 01.42) và Ví dụ 01.15 chứng nhận cách thứ hai.
 
 ::: example Ví dụ 01.3 (Đường hồi quy cho dữ liệu cân nặng – chiều cao)
+**Dữ kiện.** Năm người ở bảng đầu Mục 3 có cân nặng $m_1,\ldots,m_5$ lần lượt là $50,55,60,65,70$ (kg) và chiều cao $h_1,\ldots,h_5$ lần lượt là $158,162,164,169,172$ (cm). Mô hình là $\widehat h_i=b+am_i$: ma trận thiết kế $X$ có hàng $x_i^T=[1\ \ m_i]$, $y=h$, $w=(b,a)^T$ và $J(w)=\lVert Xw-y\rVert_2^2$ (3.1). Nghiệm thỏa phương trình chuẩn $X^TXw^*=X^Ty$ (3.3) và duy nhất khi $\operatorname{rank}X=2$ (Mệnh đề 01.6(c)).
+
 **Lập mô hình.** Với $x_i^T=[1\ \ m_i]$, các tổng cần dùng là
 
 $$
@@ -559,6 +567,8 @@ $$
 :::
 
 ::: example Ví dụ 01.5 (Hai cột trùng nhau)
+**Dữ kiện.** Ví dụ 01.4 có $X=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix}$, $y=(1,2,2)^T$, $J(w)=\lVert Xw-y\rVert_2^2$, nghiệm $w^*=(7/6,1/2)^T$, dự đoán $Xw^*=(7/6,5/3,13/6)^T$ và $J(w^*)=\tfrac16$. Mệnh đề 01.6(b): nếu $w^*$ là một nghiệm thì tập nghiệm là $\{w^*+v\mid v\in\ker X\}$, và mọi nghiệm cho cùng dự đoán.
+
 **Lập mô hình.** Thêm vào $X$ của Ví dụ 01.4 một cột thứ ba trùng cột thứ hai:
 
 $$
@@ -613,7 +623,7 @@ Với một cột đặc trưng và cột hệ số chặn, điều kiện là c
 :::
 
 ::: exercise Bài tập 01.3
-Cho $X\in\mathbb R^{n\times d}$ có cột thứ nhất là $\mathbf 1$, và $w^*$ là một nghiệm bất kỳ của (3.1). Chứng minh rằng tổng các phần dư $\sum_i(x_i^Tw^*-y_i)$ bằng $0$, và tổng có trọng số $\sum_i X_{ij}(x_i^Tw^*-y_i)$ bằng $0$ với mọi cột $j$. Kết luận còn đúng không khi $w^*$ không duy nhất.
+Cho $X\in\mathbb R^{n\times d}$ có cột thứ nhất là $\mathbf 1$, và $w^*$ là một nghiệm bất kỳ của bài toán bình phương nhỏ nhất (3.1), $\min_{w\in\mathbb R^d}J(w)$ với $J(w)=\lVert Xw-y\rVert_2^2$. Chứng minh rằng tổng các phần dư $\sum_i(x_i^Tw^*-y_i)$ bằng $0$, và tổng có trọng số $\sum_i X_{ij}(x_i^Tw^*-y_i)$ bằng $0$ với mọi cột $j$. Kết luận còn đúng không khi $w^*$ không duy nhất.
 :::
 
 ::: hint
@@ -790,6 +800,8 @@ Hình trên đọc Ví dụ 01.6 bằng đồ thị. Phần trái cho thấy hai
 Miền của bài toán là toàn $\mathbb R$. Nếu thêm ràng buộc nhân tạo $\lvert w\rvert\le1$, nghiệm sẽ tồn tại tại $w=1$, nhưng đó là một bài toán khác.
 
 ::: example Ví dụ 01.7 (Dữ liệu không tách được, có nghiệm)
+**Dữ kiện.** Với $d=1$, biên có dấu là $m_i=y_ia_iw$ và $L(w)=\sum_i\log(1+e^{-m_i})$ (Định nghĩa 01.8); hàm sigmoid là $\sigma(s)=1/(1+e^{-s})$. Ví dụ 01.6 có hai mẫu $(a_1,y_1)=(1,+1)$ và $(a_2,y_2)=(-1,-1)$, với $m_1=m_2=w$.
+
 **Lập mô hình.** Thêm vào Ví dụ 01.6 mẫu thứ ba $(a_3,y_3)=(1,-1)$. Hai mẫu tại $a=1$ có nhãn trái nhau, nên không $w$ nào phân loại đúng cả ba mẫu. Biên có dấu là $m_1=m_2=w$ và $m_3=-w$, nên
 
 $$
@@ -851,6 +863,8 @@ Nhầm lẫn thường gặp là coi việc giá trị mất mát giảm đều 
 Đây là tình huống thường gặp khi phân loại văn bản với hàng chục nghìn đặc trưng từ vựng và vài nghìn mẫu. Hậu quả quan sát được là chuẩn của tham số tăng không giới hạn trong quá trình huấn luyện và xác suất dự đoán bị đẩy về $0$ hoặc $1$. Tình huống 01.1 ở cuối chương chứng nhận cách khắc phục bằng chính quy hóa.
 
 ::: exercise Bài tập 01.4
+**Dữ kiện.** Với $d=1$, biên có dấu là $m_i=y_ia_iw$ và $L(w)=\sum_i\ell(m_i)$, $\ell(m)=\log(1+e^{-m})$ (Định nghĩa 01.8). Mệnh đề 01.9: (a) $\ell(m)>0$; (b) $\ell'(m)=-\frac1{1+e^m}$, nên $\ell$ giảm chặt; (c) $\ell''(m)=\frac{e^m}{(1+e^m)^2}>0$; (d) $\ell(m)\to0$ khi $m\to+\infty$.
+
 Dữ liệu một chiều, không có hệ số chặn.
 
 (a) Với hai mẫu $(a_1,y_1)=(1,+1)$ và $(a_2,y_2)=(2,+1)$, viết $L(w)$, xác định $\inf_wL(w)$ và cho biết bài toán có nghiệm không.
@@ -1093,6 +1107,12 @@ Mệnh đề 01.16 giải thích hai hiện tượng đã gặp.
 - Ở Ví dụ 01.2 với $\lambda=5$, nghiệm tự do $u_{\mathrm{free}}=\tfrac12$ nằm trong $C$, nên theo (b) nó là nghiệm của bài toán có ràng buộc mà không cần tính thêm.
 
 ::: example Ví dụ 01.9 (Bốn loại kết luận trên ba ca)
+**Dữ kiện.** Ba ca đã giải:
+
+- Ví dụ 01.1: $\min_{u\in[-1,1]}q(u)$ với $q(u)=\tfrac32u^2-6u+9$, nghiệm $u^*=1$, giá trị tối ưu $\tfrac92$;
+- Ví dụ 01.5: $\min_{w'}\lVert X'w'-y\rVert_2^2$ với $X'=\begin{bmatrix}1&0&0\\1&1&1\\1&2&2\end{bmatrix}$, $y=(1,2,2)^T$, giá trị tối ưu $\tfrac16$, tập nghiệm $\{(7/6,s,1/2-s)^T\mid s\in\mathbb R\}$;
+- Ví dụ 01.6: $\min_{w\in\mathbb R}L(w)$ với $L(w)=2\log(1+e^{-w})$, $\inf L=0$ không được đạt.
+
 Bốn loại kết luận về một bài toán là:
 
 1. một điểm khả thi;
@@ -1131,13 +1151,13 @@ Câu 2 được xét trước câu 3 vì định nghĩa hàm lồi ở Mục 7 c
 ::: exercise Bài tập 01.6
 Ba hộ dân ở các vị trí $p_1=(0,0)$, $p_2=(4,0)$, $p_3=(0,2)$ trên mặt phẳng (đơn vị km). Cần đặt một trạm cấp nước tại $x\in\mathbb R^2$ để tổng bình phương khoảng cách $f(x)=\sum_{i=1}^3\lVert x-p_i\rVert_2^2$ nhỏ nhất, với quy hoạch yêu cầu trạm nằm trong nửa mặt phẳng $x_1\le1$.
 
-(a) Chỉ ra dữ kiện, biến quyết định, hàm mục tiêu, miền khả thi và viết bài toán theo dạng (5.1).
+(a) Chỉ ra dữ kiện, biến quyết định, hàm mục tiêu, miền khả thi và viết bài toán theo dạng (5.1), $\min_{x\in C}f_0(x)$ với $C=\{x\in D\mid f_i(x)\le0,\ h_j(x)=0\}$.
 
 (b) Chứng minh $f(x)=3\lVert x-c\rVert_2^2+\tfrac{40}3$ với $c=(\tfrac43,\tfrac23)$.
 
 (c) Tìm nghiệm và giá trị tối ưu khi bỏ ràng buộc và khi có ràng buộc.
 
-(d) Kiểm tra kết quả với Mệnh đề 01.16.
+(d) Kiểm tra kết quả với Mệnh đề 01.16(a): nếu $C'\subseteq C$ thì $p^*(C)\le p^*(C')$, với $p^*(C)=\inf_{x\in C}f_0(x)$.
 :::
 
 ::: hint
@@ -1373,7 +1393,7 @@ Tính lồi độc lập với tính đóng và tính bị chặn: nửa không 
 Mệnh đề 01.19 và 01.20 cho phép chứng nhận các miền này lồi mà không tính trực tiếp (6.1). Kết luận đó là một nửa giả thiết của Định lý 01.33 ở Mục 8.
 
 ::: exercise Bài tập 01.7
-Xác định tập nào sau đây lồi; với tập lồi, nêu căn cứ theo Mệnh đề 01.19 và 01.20; với tập không lồi, cho bộ $x,y,\theta$ vi phạm (6.1).
+Xác định tập nào sau đây lồi; với tập lồi, nêu căn cứ theo Mệnh đề 01.19 và 01.20; với tập không lồi, cho bộ $x,y,\theta$ vi phạm điều kiện (6.1), $\theta x+(1-\theta)y\in C$ với mọi $x,y\in C$, $\theta\in[0,1]$.
 
 (a) $\{x\in\mathbb R^2\mid\lvert x_1\rvert+\lvert x_2\rvert\le1\}$.
 
@@ -1395,7 +1415,7 @@ Xác định tập nào sau đây lồi; với tập lồi, nêu căn cứ theo 
 :::
 
 ::: exercise Bài tập 01.8
-Chứng minh trực tiếp từ Định nghĩa 01.18 rằng tập $P=\{x\in\mathbb R^2\mid x_2\ge x_1^2\}$, phần mặt phẳng nằm trên parabol, là tập lồi.
+Chứng minh trực tiếp từ Định nghĩa 01.18 (tập $C$ lồi nếu $\theta x+(1-\theta)y\in C$ với mọi $x,y\in C$, $\theta\in[0,1]$) rằng tập $P=\{x\in\mathbb R^2\mid x_2\ge x_1^2\}$, phần mặt phẳng nằm trên parabol, là tập lồi.
 :::
 
 ::: hint
@@ -1482,6 +1502,8 @@ Giả thiết $C$ lồi là cần thiết: nếu thiếu nó, điểm $\theta x+
 Trong định nghĩa lồi chặt, hai trường hợp $x=y$ và $\theta\in\{0,1\}$ bị loại vì khi đó hai vế luôn bằng nhau. Từ đây trở đi chỉ dùng "lồi chặt".
 
 ::: example Ví dụ 01.11 (Kiểm tra bằng định nghĩa)
+**Dữ kiện.** Điều kiện lồi (7.1): $f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$ với mọi $x,y\in C$, $\theta\in[0,1]$; lồi chặt khi bất đẳng thức chặt với mọi $x\ne y$, $\theta\in(0,1)$. Đồng nhất thức trong lời giải Bài tập 01.8: $\theta x^2+(1-\theta)y^2-(\theta x+(1-\theta)y)^2=\theta(1-\theta)(x-y)^2$.
+
 **(a) Hàm $x^2$.** $f(x)=x^2$ lồi chặt trên $\mathbb R$: theo phép tính trong lời giải Bài tập 01.8, vế phải trừ vế trái của (7.1) bằng $\theta(1-\theta)(x-y)^2$, dương khi $x\ne y$ và $\theta\in(0,1)$.
 
 **(b) Hàm affine.** Hàm affine $f(x)=a^Tx+\beta$ vừa lồi vừa lõm, và không lồi chặt: hai vế của (7.1) bằng nhau với mọi $x,y,\theta$, vì $f$ giữ nguyên tổ hợp lồi.
@@ -1547,7 +1569,7 @@ Kết luận của nó yếu hơn tính lồi: tính lồi của mọi tập m�
 **Trong học máy.** Mệnh đề 01.25 chứng nhận các ràng buộc dạng "một hàm lồi không vượt ngưỡng". Ràng buộc chuẩn trọng số $\lVert w\rVert_2\le r$ là tập mức dưới của hàm lồi $\lVert w\rVert_2$ (Ví dụ 01.11(c)), nên lồi. Ràng buộc "mất mát logistic trên một tập dữ liệu kiểm định không vượt $\alpha$", tức $\{w\mid L(w)\le\alpha\}$, lồi khi $L$ lồi, điều sẽ được chứng nhận ở Ví dụ 01.14.
 
 ::: exercise Bài tập 01.9
-Cho $f(x)=\sqrt{\lvert x\rvert}$ trên $\mathbb R$. Chứng minh mọi tập mức dưới $S_\alpha(f)$ đều lồi, nhưng $f$ không lồi. Kết quả này nói gì về chiều ngược của Mệnh đề 01.25.
+Cho $f(x)=\sqrt{\lvert x\rvert}$ trên $\mathbb R$. Chứng minh mọi tập mức dưới $S_\alpha(f)$ đều lồi, nhưng $f$ không lồi. Kết quả này nói gì về chiều ngược của Mệnh đề 01.25 (với $f$ lồi trên tập lồi $C$, mọi tập mức dưới $S_\alpha(f)=\{x\in C\mid f(x)\le\alpha\}$ đều lồi).
 :::
 
 ::: hint
@@ -1560,7 +1582,7 @@ Với $\alpha\ge0$, giải $\sqrt{\lvert x\rvert}\le\alpha$. Để bác bỏ tí
 - Với $\alpha<0$, $S_\alpha(f)=\varnothing$, lồi.
 - Với $\alpha\ge0$, $\sqrt{\lvert x\rvert}\le\alpha$ tương đương $\lvert x\rvert\le\alpha^2$, nên $S_\alpha(f)=[-\alpha^2,\alpha^2]$, một đoạn, lồi.
 
-**Bước 2 (hàm không lồi).** Với $x=0$, $y=1$, $\theta=\tfrac12$: $f(\tfrac12)=\sqrt{1/2}\approx0{,}707>\tfrac12f(0)+\tfrac12f(1)=0{,}5$, vi phạm (7.1).
+**Bước 2 (hàm không lồi).** Với $x=0$, $y=1$, $\theta=\tfrac12$: $f(\tfrac12)=\sqrt{1/2}\approx0{,}707>\tfrac12f(0)+\tfrac12f(1)=0{,}5$, vi phạm (7.1), $f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$.
 
 **Kết luận.** Tập mức dưới lồi không kéo theo hàm lồi; Mệnh đề 01.25 không đảo được.
 :::
@@ -1664,6 +1686,8 @@ Hệ quả 01.27 là bước suy ra đầu tiên từ tính lồi tới tính t�
 Cái giá là giả thiết lồi. Với $f(x)=x^3$ trên $\mathbb R$, $f'(0)=0$ nhưng $0$ không phải cực tiểu; giả thiết lồi bị vi phạm theo Nhận xét 01.32.
 
 ::: example Ví dụ 01.12 (Điều kiện bậc nhất trên ba ca)
+**Dữ kiện.** Hệ quả 01.27: nếu $f$ lồi, khả vi trên một tập mở lồi $D\supseteq C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$ (7.3), thì $x^*$ là cực tiểu toàn cục của $f$ trên $C$. Ví dụ 01.4: $J(w)=\lVert Xw-y\rVert_2^2$ với $X=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix}$, $y=(1,2,2)^T$, $\nabla J(w)=2X^T(Xw-y)$; tại $w^*=(7/6,1/2)^T$, $Xw^*-y=(1/6,-1/3,1/6)^T$ và $X^T(Xw^*-y)=0$.
+
 **(a) Ca điều khiển, Ví dụ 01.1.** Hàm $q(u)=\tfrac32u^2-6u+9$ xác định và khả vi trên miền mở $D=\mathbb R$, và lồi trên $\mathbb R$ (Ví dụ 01.13(a) dưới đây chứng nhận). Tại $u^*=1$, $q'(1)=-3$, và với mọi $u\in C=[-1,1]$, $q'(1)(u-1)=-3(u-1)\ge0$ vì $u-1\le0$. Theo Hệ quả 01.27, $u^*=1$ là cực tiểu toàn cục trên $C$. Đây là phiên bản tổng quát của lập luận trong Nhận xét 01.3.
 
 **(b) Hồi quy tuyến tính, Ví dụ 01.4.** Tại $w^*=(7/6,1/2)^T$, $\nabla J(w^*)=2X^T(Xw^*-y)=0$ theo phần kiểm tra lại của Ví dụ 01.4. Vì $J$ lồi (Ví dụ 01.13(c) dưới đây chứng nhận bằng Hessian), $w^*$ là cực tiểu toàn cục trên $\mathbb R^2$. Kết luận trùng với Mệnh đề 01.5(c), nhưng lần này chỉ dùng tính lồi, không dùng đẳng thức khai triển (3.2).
@@ -1793,6 +1817,8 @@ Hình trên đặt hai tiêu chuẩn cạnh nhau. Khung trái minh họa (7.2). 
 Trong hình, $d$ là vector hướng, đóng vai trò của $v$ trong Định lý 01.30 (không phải số chiều). $H(x)$ là Hessian, và chữ viết tắt PSD nghĩa là nửa xác định dương (positive semidefinite).
 
 ::: example Ví dụ 01.13 (Điều kiện bậc hai trên các hàm của chương)
+**Dữ kiện.** Định lý 01.30, cho $f$ khả vi hai lần trên tập mở lồi: (a) $f$ lồi khi và chỉ khi $\nabla^2f(x)\succeq0$ với mọi $x$; (b) nếu $\nabla^2f(x)\succ0$ với mọi $x$ thì $f$ lồi chặt. Các hàm được xét: $q(u)=(x_0+u-t)^2+\lambda u^2$ với $\lambda\ge0$ (Định nghĩa 01.1), bằng $\tfrac32u^2-6u+9$ với bộ số của Ví dụ 01.1 ($x_0=0$, $t=3$, $\lambda=\tfrac12$); $J(w)=\lVert Xw-y\rVert_2^2$ với $X\in\mathbb R^{n\times d}$ (Định nghĩa 01.4); $\ell(m)=\log(1+e^{-m})$ (Định nghĩa 01.8).
+
 **(a) Ca điều khiển.** Trên $\mathbb R$, $q''(u)=2(1+\lambda)\ge2>0$ khi $\lambda\ge0$, nên $q$ lồi chặt trên $\mathbb R$ theo Định lý 01.30(b), và do đó lồi chặt trên đoạn $C$.
 
 **(b) Dạng toàn phương.** Với $Q\in\mathbb R^{d\times d}$ đối xứng, $c\in\mathbb R^d$ và $f(x)=\tfrac12x^TQx+c^Tx$, ta có $\nabla^2f(x)=Q$. Vậy $f$ lồi khi và chỉ khi $Q\succeq0$, và lồi chặt khi $Q\succ0$. Với $Q=\begin{bmatrix}3&1\\1&2\end{bmatrix}$,
@@ -1815,9 +1841,9 @@ nên $Q\succ0$.
 Ví dụ 01.13(e) chỉ ra một khoảng trống thật của Định lý 01.30: Hessian suy biến tại một điểm không ngăn hàm lồi chặt. Khoảng trống này không gây hại cho chương, vì mọi hàm cần chứng nhận lồi chặt ở đây đều có Hessian xác định dương.
 
 ::: exercise Bài tập 01.10
-(a) Dùng điều kiện (7.2) chứng minh $f(x)=e^x$ lồi chặt trên $\mathbb R$.
+(a) Dùng điều kiện bậc nhất (7.2), $f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y$ (dấu $>$ khi $x\ne y$ cho lồi chặt), chứng minh $f(x)=e^x$ lồi chặt trên $\mathbb R$.
 
-(b) Cho $f(x)=(x_1-2)^2+(x_2+1)^2$ trên hộp $C=[0,1]^2$. Dùng điều kiện (7.3) chứng minh $x^*=(1,0)$ là nghiệm và tính giá trị tối ưu; chứng minh nghiệm duy nhất.
+(b) Cho $f(x)=(x_1-2)^2+(x_2+1)^2$ trên hộp $C=[0,1]^2$. Dùng điều kiện (7.3), $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$ (đủ cho tối ưu khi $f$ lồi, khả vi), chứng minh $x^*=(1,0)$ là nghiệm và tính giá trị tối ưu; chứng minh nghiệm duy nhất.
 :::
 
 ::: hint
@@ -1898,6 +1924,8 @@ Khi mô hình tuyến tính theo tham số, $g(a_i;w)=a_i^Tw$, mỗi hạng là 
 Khi $g$ phi tuyến theo tham số, như ở mạng nơ-ron, phép hợp ở (b) không còn affine và kết luận mất (Tình huống 01.3).
 
 ::: example Ví dụ 01.14 (Chứng nhận tính lồi của các hàm mất mát)
+**Dữ kiện.** Các hàm mất mát: $J(w)=\sum_i(x_i^Tw-y_i)^2$ (Định nghĩa 01.4); $L(w)=\sum_i\ell(y_ia_i^Tw)$ với $\ell(m)=\log(1+e^{-m})$, $\ell''(m)=\frac{e^m}{(1+e^m)^2}>0$ (Định nghĩa 01.8, Mệnh đề 01.9(c)). Định lý 01.31: (a) tổng với hệ số không âm của các hàm lồi là lồi, và lồi chặt nếu có một hạng lồi chặt với hệ số dương; (b) $x\mapsto g(Ax+b)$ lồi khi $g$ lồi; (c) cực đại từng điểm của các hàm lồi là lồi.
+
 **(a) Hồi quy tuyến tính.** Hàm $s\mapsto s^2$ lồi (Ví dụ 01.11(a)) và $w\mapsto x_i^Tw-y_i$ affine, nên mỗi $(x_i^Tw-y_i)^2$ lồi theo Định lý 01.31(b). $J$ là tổng với hệ số $1$, lồi theo (a). Kết luận trùng với Ví dụ 01.13(c).
 
 **(b) Hồi quy logistic.** $\ell$ lồi theo Ví dụ 01.13(d) và $w\mapsto y_ia_i^Tw$ tuyến tính, nên mỗi $\ell(y_ia_i^Tw)$ lồi theo (b), và $L$ lồi theo (a). Hessian xác nhận điều này:
@@ -1912,7 +1940,7 @@ vì $y_i^2=1$. Đây là tổng không âm của các ma trận nửa xác đị
 
 **(d) Chính quy hóa.** Hàm $L(w)+\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$, được ký hiệu $L_\mu$ ở Định nghĩa 01.42 của Mục 8, lồi chặt theo (a). Lý do là $L$ lồi và $\tfrac\mu2\lVert w\rVert_2^2=\tfrac\mu2\sum_jw_j^2$ lồi chặt (Hessian $\mu I_d\succ0$).
 
-**Kiểm tra lại.** Với Ví dụ 01.6 ($d=1$, $a_1=1$, $a_2=-1$): công thức ở (b) cho $L''(w)=\ell''(w)\cdot1+\ell''(w)\cdot1=2e^w/(1+e^w)^2$, trùng với đạo hàm của $L'(w)=-2/(1+e^w)$.
+**Kiểm tra lại.** Với Ví dụ 01.6 ($d=1$, $a_1=1$, $y_1=+1$, $a_2=-1$, $y_2=-1$): công thức ở (b) cho $L''(w)=\ell''(w)\cdot1+\ell''(w)\cdot1=2e^w/(1+e^w)^2$, trùng với đạo hàm của $L'(w)=-2/(1+e^w)$.
 :::
 
 ::: remark Nhận xét 01.32 (Các phép không giữ tính lồi)
@@ -2413,6 +2441,8 @@ Quy trình đã dùng cho ba ca được viết lại thành một thuật toán
 :::
 
 ::: exercise Bài tập 01.13
+**Dữ kiện.** Ví dụ 01.4: $X=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix}$ (hàng $(1,s_i)$ với $s=(0,1,2)$), $J(w)=\lVert Xw-y\rVert_2^2$, $X^TX=\begin{bmatrix}3&3\\3&5\end{bmatrix}$; với $y=(1,2,2)^T$, nghiệm không ràng buộc là $w^*=(7/6,1/2)^T$ và $J(w^*)=\tfrac16$. Mệnh đề 01.16(b): nghiệm trên miền lớn mà thuộc miền con thì là nghiệm trên miền con. Hệ quả 01.27: với $J$ lồi khả vi, $w^*\in C$ thỏa $\nabla J(w^*)^T(w-w^*)\ge0$ với mọi $w\in C$ (7.3) là nghiệm trên $C$.
+
 Bài toán bình phương nhỏ nhất với tham số không âm: $\min_{w\ge0}\lVert Xw-y\rVert_2^2$ với $X$ của Ví dụ 01.4.
 
 (a) Áp dụng Thuật toán 01.1 khi $\operatorname{rank}X=d$, nêu căn cứ cho tồn tại và duy nhất.
@@ -2534,7 +2564,7 @@ $$
 P=\begin{bmatrix}0&2&3\\2&0&3\\1&1&0\end{bmatrix},
 $$
 
-trong đó hàng $i$ là mẫu, cột $j$ là mô hình. Biến quyết định là $\theta\in\mathbb R^3$; mục tiêu $f(\theta)=\lVert P\theta-y\rVert_2^2$; miền là đơn hình $\Delta_3$ của Ví dụ 01.10(d).
+trong đó hàng $i$ là mẫu, cột $j$ là mô hình. Biến quyết định là $\theta\in\mathbb R^3$; mục tiêu $f(\theta)=\lVert P\theta-y\rVert_2^2$; miền là đơn hình $\Delta_3=\{\theta\in\mathbb R^3\mid\theta\succeq0,\ \sum_j\theta_j=1\}$ của Ví dụ 01.10(d).
 
 **Xác minh giả thiết.**
 
@@ -2744,7 +2774,7 @@ Mỗi phát biểu ứng với một trong các kết quả của Mục 7 và M�
 ### Mức tính toán hoặc chứng minh
 
 ::: exercise Bài tập 01.16 (Tính toán: điều khiển với cận không đối xứng)
-Bộ chấp hành chỉ cho phép $u\in[-1,2]$. Cho $x_0=2$, $t=-4$, $\lambda=1$ và $q(u)=(x_0+u-t)^2+\lambda u^2$. Tính $u_{\mathrm{free}}$, đoán nghiệm $u^*$ bằng quy tắc cắt về đầu mút gần nhất, rồi chứng minh nó là nghiệm bằng điều kiện (7.3); tính $x_1$ và $q(u^*)$.
+Bộ chấp hành chỉ cho phép $u\in[-1,2]$. Cho $x_0=2$, $t=-4$, $\lambda=1$ và $q(u)=(x_0+u-t)^2+\lambda u^2$. Tính $u_{\mathrm{free}}=\frac{t-x_0}{1+\lambda}$ (2.2), đoán nghiệm $u^*$ bằng quy tắc cắt về đầu mút gần nhất, rồi chứng minh nó là nghiệm bằng điều kiện (7.3), $q'(u^*)(u-u^*)\ge0$ với mọi $u\in[-1,2]$; tính $x_1=x_0+u^*$ và $q(u^*)$.
 :::
 
 ::: hint
@@ -2756,7 +2786,7 @@ Tính $q'(u^*)$ và xác định chiều dịch chuyển được phép từ đ�
 
 **Kiểm (7.3).** $q'(u)=2(x_0+u-t)+2\lambda u$ cho $q'(-1)=2\cdot5-2=8$. Với $u\in[-1,2]$, $q'(-1)(u+1)=8(u+1)\ge0$. Theo Hệ quả 01.27 ($q$ lồi trên $\mathbb R$), $u^*=-1$ là nghiệm, duy nhất vì $q$ lồi chặt.
 
-**Tính và kiểm tra lại.** $q(-1)=(2-1+4)^2+1=26$. Kiểm tra theo (2.4): $2(-1+3)^2+\tfrac{1\cdot36}2=8+18=26$.
+**Tính và kiểm tra lại.** $q(-1)=(2-1+4)^2+1=26$. Kiểm tra theo (2.4), $q(u)=(1+\lambda)(u-u_{\mathrm{free}})^2+\frac{\lambda(t-x_0)^2}{1+\lambda}$: $2(-1+3)^2+\tfrac{1\cdot36}2=8+18=26$.
 :::
 
 ::: exercise Bài tập 01.17 (Chứng minh: Hessian xác định dương nhưng không có nghiệm)
@@ -2804,6 +2834,8 @@ Tách chứng minh thành ba phần: lồi chặt (Định lý 01.31), liên t�
 ### Mức vận dụng vào AI
 
 ::: exercise Bài tập 01.19 (Vận dụng: hồi quy với chính quy hóa bậc hai)
+**Dữ kiện.** Ví dụ 01.4: $X=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix}$, $y=(1,2,2)^T$, $J(w)=\lVert Xw-y\rVert_2^2$, nghiệm $w^*=(7/6,1/2)^T$ với $J(w^*)=\tfrac16$. Định nghĩa 01.42: $J_\mu(w)=J(w)+\tfrac\mu2\lVert w\rVert_2^2$.
+
 Với dữ liệu của Ví dụ 01.4, xét $R_\mu(w)=\lVert Xw-y\rVert_2^2+\mu\lVert w\rVert_2^2$ với $\mu=1$, tức $R_\mu=J_{2\mu}$ theo Định nghĩa 01.42.
 
 (a) Chứng minh với mọi $X$ và mọi $\mu>0$, $R_\mu$ có đúng một nghiệm, nghiệm của $(X^TX+\mu I_d)w=X^Ty$.
@@ -2836,6 +2868,8 @@ $$
 :::
 
 ::: exercise Bài tập 01.20 (Vận dụng: trung bình hai mô hình)
+**Dữ kiện.** Ví dụ 01.6: $L(0)=2\log2\approx1{,}3863$, $L(1)\approx0{,}6265$, $L(2)\approx0{,}2539$. Tình huống 01.3: mạng $\widehat y=\alpha\tanh(\beta z)$, một mẫu $(z,y)=(1,\tfrac12)$, mất mát $F(\alpha,\beta)=(\alpha\tanh\beta-\tfrac12)^2$; hai nghiệm $P_1=(1,\beta_0)$, $P_2=(-1,-\beta_0)$ với $\beta_0=\operatorname{artanh}\tfrac12\approx0{,}5493$, $F(P_1)=F(P_2)=0$.
+
 (a) Với $L(w)=2\log(1+e^{-w})$ của Ví dụ 01.6 và hai mô hình $w_a=0$, $w_b=2$, so sánh trực tiếp $L(\tfrac{w_a+w_b}2)$ với $\tfrac12L(w_a)+\tfrac12L(w_b)$ và chỉ ra định nghĩa nào bảo đảm chiều bất đẳng thức.
 
 (b) Với mạng của Tình huống 01.3, lấy trung bình hai nghiệm $P_1$, $P_2$ và tính mất mát.
@@ -2856,6 +2890,8 @@ Dùng bảng của Ví dụ 01.6 và giá trị $F(0,0)$ trong Tình huống 01.
 :::
 
 ::: exercise Bài tập 01.21 (Vận dụng: ràng buộc chuẩn thay cho chính quy hóa)
+**Dữ kiện.** Ví dụ 01.6: hai mẫu $(1,+1)$, $(-1,-1)$, $L(w)=2\log(1+e^{-w})$, $L(2)\approx0{,}2539$. Tình huống 01.1: $L_\mu(w)=L(w)+\tfrac\mu2w^2$; với $\mu=0{,}1$, nghiệm $w^*_\mu\approx2{,}1280$ và $\sigma(w^*_\mu)\approx0{,}8936$, trong đó $\sigma(s)=1/(1+e^{-s})$. Điều kiện (7.3) trên đoạn: $L'(w^*)(w-w^*)\ge0$ với mọi $w\in[-R,R]$.
+
 Với dữ liệu tách được của Ví dụ 01.6, thay vì chính quy hóa, giới hạn độ lớn tham số: $\min_{\lvert w\rvert\le R}L(w)$ với $L(w)=2\log(1+e^{-w})$ và $R>0$.
 
 (a) Chứng nhận bài toán có đúng một nghiệm với mọi $R>0$.

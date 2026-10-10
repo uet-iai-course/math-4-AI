@@ -180,3 +180,56 @@ Số trang là số trang in của Boyd và Vandenberghe (2004), đọc từ `so
 | M1, M2 (rà lại 2) | mục 3, 1 lượt 2 | đã sửa |
 
 Quyết định cuối của điều phối viên: chấp nhận bản lượt 3 (29 125 từ; ngoại lệ độ dài giữ nguyên). Kiểm tra cuối do điều phối viên chạy: sync `--check` OK, `git diff --check` sạch, Playwright 1600×900 và 390×844: 131 khối, 0 lỗi KaTeX, 11/11 hình, không tràn ngang, không lỗi trang.
+
+
+## Lượt sửa ví dụ tự chứa (2026-10-10)
+
+**Tác tử.** Chỉnh sửa, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high, theo brief của điều phối viên Fable 5.1. Bản kiểm kê đầu vào do tác tử rà soát chỉ đọc cùng mô hình lập. Căn cứ: `AGENTS.md`, mục "Ví dụ và bài tập tự chứa tại chỗ" (yêu cầu người dùng 2026-10-10). Mọi giá trị trong đoạn "Dữ kiện" được đối chiếu với khối nguồn trong cùng tệp trước khi chèn; không đổi số hiệu, không đổi kết quả, không sửa phần ngoài các khối được kiểm kê.
+
+| Khối | Khối bị tham chiếu | Cách xử lý | Sai lệch so với đề xuất kiểm kê |
+|---|---|---|---|
+| Ví dụ 03.1 | (1.1) | Đoạn Dữ kiện | Không |
+| Ví dụ 03.2 | (1.1), Ví dụ 03.1 | Đoạn Dữ kiện | Không |
+| Ví dụ 03.3 | (1.1), (2.2), Ví dụ 03.2 | Đoạn Dữ kiện | Không |
+| Ví dụ 03.4 | Ví dụ 03.1, 03.3, (2.4) | Đoạn Dữ kiện | Thêm Hệ quả 03.10(c), dùng ở bước Chứng nhận |
+| Ví dụ 03.9 | (1.1), Ví dụ 03.6, (3.1) | Đoạn Dữ kiện | Thêm Định lý 03.15(a) |
+| Ví dụ 03.12 | Ví dụ 03.2, 03.3 | Đoạn Dữ kiện | Không |
+| Ví dụ 03.14 | Ví dụ 03.4, (4.2), (4.3) | Đoạn Dữ kiện | Không |
+| Ví dụ 03.15 | Ví dụ 03.5, (4.2), Mệnh đề 03.11 | Đoạn Dữ kiện | Thêm Hệ quả 03.10(c) |
+| Ví dụ 03.16 | (1.1), Ví dụ 03.2, 03.5, Mệnh đề 03.27 | Đoạn Dữ kiện | Không |
+| Ví dụ 03.17 | (1.1) | Đoạn Dữ kiện | Không |
+| Bài tập 03.6 | Định nghĩa $G$, (4.2), (4.3) | Đoạn Dữ kiện | Không |
+| Bài tập 03.9 | Mệnh đề 03.34 | Đoạn Dữ kiện | Không |
+| Tình huống 03.1 | (5.2), Mệnh đề 03.36 | Đoạn Dữ kiện | Không |
+| Tình huống 03.2 | Thuật toán 03.1 | Đoạn Dữ kiện | Đề xuất thiếu bước 1 (trả về $\lambda=0$ khi nghiệm bình phương nhỏ nhất thỏa trần) và điều kiện dừng; đã bổ sung theo nguồn, thêm Mệnh đề 03.35 ($\varphi$ giảm chặt) |
+| Bài tập 03.11 (viii) | (1.1), Ví dụ 03.3 | Chèn vào lời giải | Không |
+| Bài tập 03.16 | (5.2), Mệnh đề 03.36 | Đoạn Dữ kiện | Chép đầy đủ phần 3 thay vì "như ở Tình huống 03.1" |
+| Bài tập 03.2 (phụ) | Hệ quả 03.10(c) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 03.3 (phụ) | Mệnh đề 03.11 | Viết lại tại chỗ dẫn | Không |
+| Bài tập 03.4 (phụ) | (3.1), Định lý 03.15 | Viết lại tại chỗ dẫn | Thêm dạng yếu của điều kiện Slater |
+
+Nhãn "**Dữ kiện.**" đặt trên dòng riêng như các nhãn giai đoạn khác của tệp. Tổng: 16 khối bảng chính, 3 khối bảng phụ; không khối nào bỏ qua; không phát hiện giá trị sai trong đề xuất kiểm kê.
+
+**Kiểm tra kỹ thuật.** Playwright Chromium, `material-viewer.html?doc=materials/lec-03/lecture-note.md&deck=lecture-03-doi-ngau-lagrange.html`, ở 1600×900 và 390×844: 3391 phần tử `.katex`, 0 `.katex-error`, 0 phần tử KaTeX tô đỏ (`rgb(204, 0, 0)`), 0 lỗi trang (lỗi CSP duy nhất trên console đến từ đoạn script do `reloadserver` chèn, không thuộc trang), không tràn ngang trang; số khối `:::` không đổi (131). Quét lệnh LaTeX trong mọi dòng mới: chỉ dùng lệnh chuẩn, không có `\text{}`. `python3 2627-1/scripts/sync-local-materials.py` rồi `--check`: OK; `git diff --check`: sạch.
+
+**Số từ.** Trước 29127, sau 29866 (`wc -w`).
+
+Quyết định của điều phối viên:
+
+
+### Rà soát độc lập và lượt sửa bổ sung (2026-10-10)
+
+**Tác tử rà soát.** Chỉ đọc, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high; đối chiếu 146 đoạn của Bài 01–05 với khối nguồn: mọi số liệu khớp. Điều phối viên Fable 5.1 xác nhận các phát hiện dưới đây và quyết định: yêu cầu sửa nhỏ rồi chấp nhận. Tác tử chỉnh sửa (như trên) thực hiện các sửa đổi.
+
+| Mức độ | Khối | Vấn đề | Đề xuất sửa | Trạng thái |
+|---|---|---|---|---|
+| nghiêm trọng | Bài tập 03.4 | Slater dạng yếu chép thiếu, mạnh hơn nguồn | "dạng yếu nới thành $f_i(\bar x)\le0$ cho các $f_i$ affine, vẫn giữ $f_i(\bar x)<0$ cho các $f_i$ còn lại và $A\bar x=b$" | đã sửa |
+| trung bình | Ví dụ 03.16 | Mệnh đề 03.27 chép thiếu giả thiết | Thêm "$x^*$ nghiệm gốc, $(\lambda^*,\nu^*)$ nghiệm đối ngẫu, $f_0(x^*)=g(\lambda^*,\nu^*)$" | đã sửa |
+| nhẹ | Ví dụ 03.14, Bài tập 03.6 | (4.3) chép thiếu giả thiết khả vi | Thêm "khi $p^*$ khả vi tại $0$" | đã sửa |
+| nhẹ | Bài tập 03.6 | Chưa nêu nghĩa tọa độ của $G$ | Thêm "điểm $(u,t)\in G$ có $u=f_1(x)$, $t=f_0(x)$" | đã sửa |
+| nhẹ | Ví dụ 03.1 | "Xét (1.1)." thừa sau Dữ kiện | Bỏ câu | đã sửa |
+| nhẹ | Ví dụ 03.3 | $\inf_{x\in D}$ trong khi $D$ chưa nêu | Viết $\inf_{x\in\mathbb R}$ | đã sửa |
+
+**Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (131). Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 29908.
+
+Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.

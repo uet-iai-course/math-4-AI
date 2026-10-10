@@ -77,7 +77,11 @@ $$
 Một điểm khả thi cho một cận trên của giá trị tối ưu: theo định nghĩa cận dưới đúng (Định nghĩa 01.10), $p^*\le f_0(x)$ với mọi $x$ khả thi. Cận dưới thì khác: muốn biết $f_0$ không thể nhỏ hơn một số $\ell$, phải nói được điều gì đó về mọi điểm khả thi cùng lúc. Bài toán (1.1) đủ nhỏ để giải trực tiếp, và chương dùng nó làm ví dụ xuyên suốt để kiểm tra mọi công cụ mới trên một đáp án đã biết.
 
 ::: example Ví dụ 03.1 (Bài toán xuyên suốt)
-Bài toán là Bài tập 5.1 của Boyd và Vandenberghe (2004, tr. 273); mọi con số dưới đây được tính lại. Xét (1.1).
+**Dữ kiện.**
+
+Bài (1.1): $\min_{x\in\mathbb R}f_0(x)=x^2+1$ với $f_1(x)=(x-2)(x-4)\le0$.
+
+Bài toán là Bài tập 5.1 của Boyd và Vandenberghe (2004, tr. 273); mọi con số dưới đây được tính lại.
 
 **Tập khả thi.**
 
@@ -101,6 +105,10 @@ Hình trên cho thấy nghiệm nằm ở biên của tập khả thi, nơi $f_0
 Trên tập khả thi, $f_1(x)\le0$. Với một số $\lambda\ge0$, tích $\lambda f_1(x)$ vì vậy không dương, và hàm $f_0+\lambda f_1$ không vượt $f_0$ tại mọi điểm khả thi. Nếu biết một số $\ell$ không vượt $f_0+\lambda f_1$ tại mọi điểm của $\mathbb R$ thì $\ell$ cũng không vượt $f_0$ tại mọi điểm khả thi. Đây là trực giác, chưa phải định nghĩa: nó gợi ý rằng mỗi giá trị $\lambda\ge0$ cho một cận dưới, và việc tìm cận dưới của $f_0+\lambda f_1$ trên cả $\mathbb R$ là một bài toán không ràng buộc, dễ hơn bài gốc.
 
 ::: example Ví dụ 03.2 (Hai cận dưới cho bài toán xuyên suốt)
+**Dữ kiện.**
+
+Bài (1.1): $\min_{x\in\mathbb R}f_0(x)=x^2+1$ với $f_1(x)=(x-2)(x-4)\le0$. Tập khả thi $C=[2,4]$, nghiệm $x^*=2$, $p^*=5$ (Ví dụ 03.1).
+
 **Với $\lambda=1$.**
 
 Khai triển $f_1(x)=x^2-6x+8$ và cộng vào $f_0$:
@@ -306,6 +314,10 @@ Ví dụ tiếp theo tính $g$ của bài (1.1) đến công thức tường min
 Hàm đối ngẫu là hàm của nhân tử, còn hàm Lagrange là hàm của cả biến và nhân tử; $g$ có được từ $L$ bằng phép "lấy cận dưới đúng theo $x$", cùng phép đã định nghĩa $p^*$ từ $f_0$ (Định nghĩa 01.12), nhưng trên $D$ thay vì trên $C$. Vì $C\subseteq D$, cận dưới đúng của $L$ trên $D$ không vượt cận dưới đúng trên $C$ (Mệnh đề 01.16(a)); Định lý 03.8 khai thác đúng bất đẳng thức này.
 
 ::: example Ví dụ 03.3 (Hàm đối ngẫu của bài toán xuyên suốt)
+**Dữ kiện.**
+
+Bài (1.1): $\min_{x\in\mathbb R}f_0(x)=x^2+1$ với $f_1(x)=(x-2)(x-4)\le0$. Hàm Lagrange (2.2) là $L(x,\lambda)=f_0(x)+\lambda f_1(x)$, hàm đối ngẫu (2.3) là $g(\lambda)=\inf_{x\in\mathbb R}L(x,\lambda)$. Ví dụ 03.2: $\lambda=1$ cho cận dưới $4{,}5$, đạt tại $x=1{,}5$; $\lambda=2$ cho cận dưới $5$, đạt tại $x=2$.
+
 Với bài (1.1), $D=\mathbb R$ và $L(x,\lambda)=(1+\lambda)x^2-6\lambda x+1+8\lambda$. Xét ba trường hợp theo dấu của hệ số $1+\lambda$ của $x^2$.
 
 **Trường hợp $\lambda>-1$.**
@@ -500,6 +512,10 @@ Hệ quả 03.10(c) là Mệnh đề 03.2(b) với cận dưới $\ell=g(\lambda
 Phần (b) là cách đọc kết quả của một bộ giải khi chưa có chứng nhận: độ dài $f_0(x)-g(\lambda,\nu)$ của đoạn gọi là khoảng đối ngẫu của cặp $(x,(\lambda,\nu))$ (Định nghĩa 03.12 đặt tên chính thức).
 
 ::: example Ví dụ 03.4 (Bài toán đối ngẫu của bài toán xuyên suốt)
+**Dữ kiện.**
+
+Bài (1.1): $\min_{x\in\mathbb R}f_0(x)=x^2+1$ với $f_1(x)=(x-2)(x-4)\le0$. Ví dụ 03.3: $L(x,\lambda)=(1+\lambda)x^2-6\lambda x+1+8\lambda$ và $g(\lambda)=10-\lambda-\frac9{1+\lambda}$ với $\lambda>-1$. Đối ngẫu yếu (2.4): với $x$ khả thi và $\lambda\ge0$, $g(\lambda)\le L(x,\lambda)\le f_0(x)$. Hệ quả 03.10(c): nếu $x$ khả thi, $(\lambda,\nu)$ khả thi đối ngẫu và $f_0(x)=g(\lambda,\nu)$ thì $x$ là nghiệm của bài gốc, $(\lambda,\nu)$ là nghiệm đối ngẫu và $p^*=d^*$. Ví dụ 03.1: $x^*=2$, $p^*=5$.
+
 **Lập bài đối ngẫu.**
 
 Theo Ví dụ 03.3, bài đối ngẫu của (1.1) là $\max_{\lambda\ge0}\ g(\lambda)=10-\lambda-\frac9{1+\lambda}$.
@@ -635,7 +651,7 @@ Xét $\min_{x\in\mathbb R^2}x_1+x_2$ với $f_1(x)=x_1^2+x_2^2-2\le0$.
 
 - (a) Lập $L(x,\lambda)$ và tính $g(\lambda)$ với mọi $\lambda\in\mathbb R$; xác định $\operatorname{dom}g$.
 - (b) Giải bài đối ngẫu.
-- (c) Tìm một điểm khả thi đạt cận và kết luận bằng Hệ quả 03.10.
+- (c) Tìm một điểm khả thi đạt cận và kết luận bằng Hệ quả 03.10. Hệ quả 03.10(c): nếu $x$ khả thi, $(\lambda,\nu)$ khả thi đối ngẫu và $f_0(x)=g(\lambda,\nu)$ thì $x$ là nghiệm của bài gốc, $(\lambda,\nu)$ là nghiệm đối ngẫu và $p^*=d^*$.
 :::
 
 ::: hint
@@ -665,7 +681,7 @@ Theo Cauchy–Schwarz, $x_1+x_2\ge-\sqrt2\,\lVert x\rVert_2\ge-\sqrt2\cdot\sqrt2
 ::: exercise Bài tập 03.3
 Xét quy hoạch tuyến tính $\min x_1+2x_2$ với $x_1+x_2\ge2$, $x_1\ge0$, $x_2\ge0$.
 
-- (a) Dùng Mệnh đề 03.11 viết bài đối ngẫu.
+- (a) Dùng Mệnh đề 03.11 viết bài đối ngẫu. Mệnh đề này phát biểu: với các ràng buộc viết ở dạng $\beta_i-a_i^Tx\le0$, bài đối ngẫu của $\min c^Tx$ là $\max_\lambda\beta^T\lambda$ với $\sum_i\lambda_ia_i=c$, $\lambda\succeq0$.
 - (b) Giải bài đối ngẫu và tìm điểm gốc chứng nhận.
 - (c) Nhân tử nào bằng $0$, và ràng buộc tương ứng có chặt tại nghiệm không.
 :::
@@ -970,6 +986,10 @@ So với Định lý 03.8, Định lý 03.15 cho kết luận mạnh hơn, gồm
 So với Mệnh đề 02.11, định lý trả lời câu hỏi thứ hai Bài 02 để lại. Với quy hoạch tuyến tính khả thi có giá trị tối ưu hữu hạn, phần (b) cho các hệ số chứng nhận luôn tồn tại. Phần (b) được dẫn từ Boyd và Vandenberghe (2004, tr. 226–227) và không được chứng minh ở đây.
 
 ::: example Ví dụ 03.9 (Kiểm tra điều kiện Slater cho hai bài đã giải)
+**Dữ kiện.**
+
+Bài (1.1): $\min_{x\in\mathbb R}f_0(x)=x^2+1$ với $f_1(x)=(x-2)(x-4)\le0$, với $p^*=5$, $\lambda^*=2$ (Ví dụ 03.1, 03.4). Bài hai chiều (Ví dụ 03.6): $\min\tfrac12(x_1^2+x_2^2)$ với $f_1(x)=1-x_1\le0$, $f_2(x)=2-x_2\le0$, $p^*=\tfrac52$. Điều kiện Slater (3.1): có $\bar x$ với $f_i(\bar x)<0$ với mọi $i$ và $A\bar x=b$. Định lý 03.15(a): bài lồi dạng chuẩn với $D=\mathbb R^n$, $p^*$ hữu hạn và thỏa (3.1) thì $d^*=p^*$ và bài đối ngẫu đạt nghiệm.
+
 **Bài (1.1).**
 
 $f_0''(x)=2>0$ và $f_1''(x)=2>0$, nên hai hàm lồi trên $\mathbb R$ (Định lý 01.30). Điểm $\bar x=3$ cho $f_1(3)=1\cdot(-1)=-1<0$. Giá trị $p^*=5$ hữu hạn (Ví dụ 03.1). Định lý 03.15(a) cho $d^*=5$ và có $\lambda^*$; Ví dụ 03.4 đã tìm được $\lambda^*=2$.
@@ -1049,7 +1069,7 @@ Ngược lại, khi ràng buộc đặt trên đầu ra của một mạng sâu,
 Một bộ tối ưu lặp chỉ cho một điểm $\theta_k$ với $L(\theta_k,\lambda)\ge g(\lambda)$. Giá trị thu được vì vậy là ước lượng trên của $g(\lambda)$, không phải một cận dưới đã chứng nhận của $p^*$.
 
 ::: exercise Bài tập 03.4
-Với mỗi bài sau, xác định bài có ở dạng chuẩn lồi không, có thỏa điều kiện Slater (3.1) không, có thỏa dạng yếu không, và Định lý 03.15 kết luận được gì.
+Với mỗi bài sau, xác định bài có ở dạng chuẩn lồi không, có thỏa điều kiện Slater (3.1) không, có thỏa dạng yếu không, và Định lý 03.15 kết luận được gì. Điều kiện Slater (3.1) đòi một điểm $\bar x$ với $f_i(\bar x)<0$ cho mọi $i$ và $A\bar x=b$; dạng yếu nới thành $f_i(\bar x)\le0$ cho các $f_i$ affine, vẫn giữ $f_i(\bar x)<0$ cho các $f_i$ còn lại và $A\bar x=b$. Định lý 03.15: với bài lồi dạng chuẩn, $D=\mathbb R^n$ và $p^*$ hữu hạn, điều kiện Slater hoặc dạng yếu của nó kéo theo $d^*=p^*$ và bài đối ngẫu đạt nghiệm.
 
 - (a) $\min x_1^2+x_2^2$ với $1-x_1-x_2\le0$ và $x_1-x_2=0$.
 - (b) $\min x_1$ với $x_1+x_2\le0$ và $-x_1-x_2\le0$.
@@ -1254,6 +1274,10 @@ Cố định hệ số góc $-\lambda$. Trượt đường thẳng $t=c-\lambda 
 So với Định lý 03.8, mệnh đề không thêm kết luận mới mà đổi ngôn ngữ. Đổi lại, hình học làm rõ vì sao điểm chạm của đường đỡ không cần khả thi: lập luận cận dưới chỉ dùng vị trí của đường, không dùng điểm chạm.
 
 ::: example Ví dụ 03.12 (Hai đường đỡ của bài toán xuyên suốt)
+**Dữ kiện.**
+
+Bài (1.1): $f_0(x)=x^2+1$, $f_1(x)=(x-2)(x-4)$; tập giá trị $G=\{(f_1(x),f_0(x))\mid x\in\mathbb R\}$. Ví dụ 03.3: $g(1)=4{,}5$, đạt tại $x=1{,}5$; $g(2)=5$, đạt tại $x=2$. Ví dụ 03.2: $f_0(x)+2f_1(x)=3(x-2)^2+5$.
+
 **Đường với $\lambda=1$.**
 
 Theo Ví dụ 03.3, $g(1)=4{,}5$, nên đường đỡ là $t=4{,}5-u$. Điểm chạm ứng với điểm đạt $x(1)=1{,}5$:
@@ -1485,6 +1509,10 @@ Hệ quả 03.24 cho nhân tử một nghĩa đo được: $\lambda_i^*$ là m�
 Nhân tử của bất đẳng thức không âm vì nới một bất đẳng thức không làm giá trị tối ưu tăng. Nhân tử của đẳng thức có dấu tùy ý vì dịch một đẳng thức theo một chiều có thể có lợi, theo chiều kia có thể có hại.
 
 ::: example Ví dụ 03.14 (Hàm giá trị của bài toán xuyên suốt)
+**Dữ kiện.**
+
+Bài (1.1): $\min_{x\in\mathbb R}f_0(x)=x^2+1$ với $f_1(x)=(x-2)(x-4)\le0$, với $p^*=5$, $\lambda^*=2$ (Ví dụ 03.4). Bài nhiễu thay ràng buộc bằng $f_1(x)\le u$, với hàm giá trị $p^*(u)$. Với một ràng buộc, (4.2) là $p^*(u)\ge p^*-\lambda^*u$, và khi $p^*$ khả vi tại $0$, (4.3) là $\lambda^*=-p^{*\prime}(0)$.
+
 **Bài nhiễu.**
 
 Ràng buộc $(x-2)(x-4)\le u$, tức $(x-3)^2\le1+u$.
@@ -1531,6 +1559,10 @@ Hình trên vẽ $p^*(u)$ cùng đường $5-2u$. Đường thẳng vừa là ti
 Tại $u=8$, đầu mút trái của tập khả thi chạm đỉnh parabol $x=0$, nơi $f_0'(0)=0$; ràng buộc vẫn hoạt động nhưng nhân tử của bài nhiễu bằng $0$. Hiện tượng "hoạt động nhưng nhân tử bằng $0$" được nghiên cứu ở Nhận xét 03.28.
 
 ::: example Ví dụ 03.15 (Giá bóng của yêu cầu dinh dưỡng trong bài pha trộn)
+**Dữ kiện.**
+
+Bài pha trộn (Ví dụ 03.5): $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x\ge0$; nghiệm $x^*=(1,2)$, $p^*=7$, nhân tử $\lambda^*=(\tfrac43,\tfrac13,0,0)$. Khả thi đối ngẫu (Mệnh đề 03.11): $\lambda\succeq0$ và $\sum_i\lambda_ia_i=c$; khi đó $g(\lambda)=\beta^T\lambda$. Bất đẳng thức (4.2): $p^*(u)\ge p^*-\lambda^{*T}u$. Hệ quả 03.10(c): điểm khả thi $x$ và nhân tử khả thi đối ngẫu $\lambda$ với $f_0(x)=g(\lambda)$ là cặp nghiệm.
+
 **Bài nhiễu và cận.**
 
 Tăng yêu cầu nitơ của bài pha trộn từ $4$ lên $4+\delta$ gam, tức $u_1=-\delta$ trong ràng buộc $4-(2x_1+x_2)\le u_1$. Với $\lambda_1^*=\tfrac43$ của Ví dụ 03.5, (4.2) cho $p^*\ge7+\tfrac43\delta$.
@@ -1565,6 +1597,10 @@ Giả thiết khả vi thỏa trong các ví dụ của Mục 5 và Tình huốn
 Cùng cách đọc áp dụng cho ràng buộc ngân sách tính toán hay ràng buộc công bằng: nhân tử lớn chỉ ra ràng buộc đang kìm hãm mất mát nhiều nhất (Bài tập 03.17).
 
 ::: exercise Bài tập 03.6
+**Dữ kiện.**
+
+Tập giá trị của bài một ràng buộc là $G=\{(f_1(x),f_0(x))\mid x\in\mathbb R\}$: điểm $(u,t)\in G$ có $u=f_1(x)$, $t=f_0(x)$. Với bài nhiễu $f_1(x)\le u$ có hàm giá trị $p^*(u)$ và nhân tử tối ưu $\lambda^*$: (4.2) là $p^*(u)\ge p^*-\lambda^*u$, và khi $p^*$ khả vi tại $0$, (4.3) là $\lambda^*=-p^{*\prime}(0)$.
+
 Xét $\min_{x\in\mathbb R}x^2$ với $f_1(x)=1-x\le0$.
 
 - (a) Mô tả tập giá trị $G$ bằng một phương trình giữa $u$ và $t$.
@@ -1703,6 +1739,10 @@ Phần 3 là phiên bản "theo cặp" của Hệ quả 03.10(c): không cần t
 **Trong học máy.** Bù trừ cho biết ràng buộc nào không ảnh hưởng tới nghiệm. Trong máy vector hỗ trợ, ràng buộc lề của một mẫu nằm ngoài lề không hoạt động, nên nhân tử của mẫu đó bằng $0$ và mẫu không góp phần vào $w$ (Mệnh đề 03.36). Trong hồi quy có trần, trần không hoạt động thì nhân tử bằng $0$ và nghiệm trùng nghiệm không phạt (Mệnh đề 03.34). Giả thiết của Mệnh đề 03.27 được bảo đảm trong cả hai bài nhờ điều kiện Slater và nghiệm gốc tồn tại (Mệnh đề 02.39(b) cho máy vector hỗ trợ khi có cả hai nhãn; Định lý 01.36 cho hồi quy có trần).
 
 ::: example Ví dụ 03.16 (Bù trừ trong hai bài đã giải)
+**Dữ kiện.**
+
+Bài (1.1): $f_1(x)=(x-2)(x-4)$, $x^*=2$, $\lambda^*=2$, và $L(x,2)=3(x-2)^2+5$ (Ví dụ 03.2). Bài pha trộn (Ví dụ 03.5): ràng buộc $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$, nghiệm $x^*=(1,2)$, $\lambda^*=(\tfrac43,\tfrac13,0,0)$. Mệnh đề 03.27: nếu $x^*$ là nghiệm gốc, $(\lambda^*,\nu^*)$ là nghiệm đối ngẫu và $f_0(x^*)=g(\lambda^*,\nu^*)$, thì (1) $\lambda_i^*f_i(x^*)=0$ với mọi $i$; (2) $x^*$ cực tiểu hóa $L(\cdot,\lambda^*,\nu^*)$ trên $D$.
+
 **Bài (1.1).**
 
 $\lambda^*=2>0$, nên theo phần 1 ràng buộc phải hoạt động tại $x^*$: $f_1(2)=0$, đúng. Theo phần 2, $x^*=2$ cực tiểu hóa $L(\cdot,2)$, đúng vì $L(x,2)=3(x-2)^2+5$ theo Ví dụ 03.2.
@@ -1840,6 +1880,10 @@ Với bài lồi khả vi thỏa Slater, hai chiều gộp lại: $x^*$ là nghi
 Giả thiết lồi của Định lý 03.32 thỏa với hồi quy có trần, hồi quy LASSO (least absolute shrinkage and selection operator) và máy vector hỗ trợ, nên một bộ KKT là chứng nhận toàn cục. Với mất mát của mạng sâu, giả thiết đó vi phạm: một điểm có gradient bằng $0$ của hàm Lagrange có thể chỉ là điểm yên ngựa (saddle point) hay cực tiểu địa phương (Bài 06).
 
 ::: example Ví dụ 03.17 (Giải bài toán xuyên suốt bằng hệ KKT)
+**Dữ kiện.**
+
+Bài (1.1): $\min_{x\in\mathbb R}f_0(x)=x^2+1$ với $f_1(x)=(x-2)(x-4)\le0$.
+
 **Lập hệ.**
 
 $f_0'(x)=2x$, $f_1'(x)=2x-6$. Hệ KKT gồm $(x-2)(x-4)\le0$, $\lambda\ge0$, $\lambda(x-2)(x-4)=0$ và
@@ -2226,6 +2270,10 @@ Dừng tại $(\tfrac12,1)$ với $\lambda=(0,1)$: $2(-\tfrac12)+0+1=0$ và $0+0
 :::
 
 ::: exercise Bài tập 03.9
+**Dữ kiện.**
+
+Mệnh đề 03.34: nếu $\ell$, $R$ lồi, có $\bar w$ với $R(\bar w)<r$ và $w^*$ là nghiệm của $\min\ell(w)$ với $R(w)\le r$, thì có $\lambda^*\ge0$ để $w^*$ là nghiệm của $\min_w\ell(w)+\lambda^*R(w)$ và $\lambda^*(R(w^*)-r)=0$.
+
 Hồi quy $\min_{w\in\mathbb R^3}\tfrac12\lVert w-y\rVert_2^2$ với $\lVert w\rVert_2^2\le1$ và $y=(1,2,2)$.
 
 - (a) Giải bằng KKT.
@@ -2400,6 +2448,10 @@ Dừng: $2(-0{,}5)+1=0$ và $2(-0{,}5)+1=0$.
 ## Tình huống áp dụng và ứng dụng
 
 ::: application Tình huống 03.1 (Máy vector hỗ trợ lề mềm: đọc vector hỗ trợ từ nhân tử)
+**Dữ kiện.**
+
+Bài toán (5.2) với $d=1$: $\min_{w,b,\xi}\frac\rho2w^2+\sum_i\xi_i$ với $1-y_i(wz_i+b)-\xi_i\le0$, $-\xi_i\le0$; Tình huống 02.2 ký hiệu hệ số $\rho$ là $\lambda$. Mệnh đề 03.36 phần 3: $(w,b,\xi)$ là nghiệm khi và chỉ khi có $\alpha$ với $0\le\alpha_i\le1$, $\sum_i\alpha_iy_i=0$, $\rho w=\sum_i\alpha_iy_iz_i$, $\xi_i=\max(0,1-m_i)$, trong đó $m_i=y_i(wz_i+b)$, và với mọi $i$: $m_i>1\Rightarrow\alpha_i=0$, $m_i<1\Rightarrow\alpha_i=1$, $0<\alpha_i<1\Rightarrow m_i=1$. Giá trị đối ngẫu là $h(\alpha)=\sum_i\alpha_i-\frac1{2\rho}\bigl(\sum_i\alpha_iy_iz_i\bigr)^2$ (5.3).
+
 **Bài toán và dữ liệu.**
 
 Dữ liệu của Tình huống 02.2: bốn khung hình với đặc trưng $z=(-2,-1,1,2)$ và nhãn $y=(-1,-1,+1,+1)$ (số liệu minh họa). Tình huống 02.2 tìm nghiệm $(w,b)=(1,0)$ với $\rho=1$ và $(\tfrac12,0)$ với $\rho=4$ bằng lập luận đối xứng. Câu hỏi mới: mẫu nào quyết định nghiệm, và chứng nhận tối ưu bằng gì.
@@ -2452,6 +2504,10 @@ Mệnh đề 03.36 (bài đối ngẫu, phân loại mẫu) dựa trên Định 
 :::
 
 ::: application Tình huống 03.2 (Hồi quy có trần trên dữ liệu chung: từ trần tới hệ số phạt)
+**Dữ kiện.**
+
+$\varphi(\lambda)=\lVert w(\lambda)\rVert_2^2$, với $w(\lambda)$ là nghiệm của $(X^TX+\lambda I)w=X^Ty$; $\varphi$ giảm chặt (Mệnh đề 03.35). Thuật toán 03.1: nếu nghiệm bình phương nhỏ nhất thỏa trần thì trả về $\lambda=0$; ngược lại đặt $\lambda_{\mathrm{lo}}=0$, $\lambda_{\mathrm{hi}}=1$ và nhân đôi $\lambda_{\mathrm{hi}}$ tới khi $\varphi(\lambda_{\mathrm{hi}})\le\tau$; sau đó lặp $c=\frac{\lambda_{\mathrm{lo}}+\lambda_{\mathrm{hi}}}2$, gán $\lambda_{\mathrm{lo}}=c$ nếu $\varphi(c)>\tau$ và $\lambda_{\mathrm{hi}}=c$ trong trường hợp ngược lại, dừng khi $\lambda_{\mathrm{hi}}-\lambda_{\mathrm{lo}}\le\varepsilon$ và trả về $\lambda_{\mathrm{hi}}$.
+
 **Bài toán và dữ liệu.**
 
 Dữ liệu chung của Bài 02: đặc trưng $s=(-2,-1,0,1,2)$, mà Bài 02 viết là $u$, đầu ra $y=(-2,-1,3,1,2)$, mô hình $\hat y=as+b$, $w=(a,b)$. Theo Ví dụ 02.11, $X^TX=\operatorname{diag}(10,5)$ và $X^Ty=(10,3)$, nên
@@ -2696,7 +2752,7 @@ Mệnh đề 03.27 phần 1: $\lambda_i^*f_i(x^*)=0$ với $\lambda_i^*>0$ cho $
 
 **(viii) Sai.**
 
-Theo Hệ quả 03.10(b), khoảng của cặp chỉ là cận trên của khoảng tối ưu: $p^*-d^*\le0{,}5$. Ở bài (1.1), cặp $(2,1)$ có khoảng $0{,}5$ mà khoảng tối ưu bằng $0$.
+Theo Hệ quả 03.10(b), khoảng của cặp chỉ là cận trên của khoảng tối ưu: $p^*-d^*\le0{,}5$. Ở bài (1.1), $\min x^2+1$ với $(x-2)(x-4)\le0$, điểm $x=2$ khả thi với $f_0(2)=5$ và $g(1)=4{,}5$ (Ví dụ 03.3), nên cặp $(2,1)$ có khoảng $0{,}5$, trong khi $p^*=d^*=5$ và khoảng tối ưu bằng $0$.
 :::
 
 ::: exercise Bài tập 03.12 (Nhận biết: tìm lỗi trong một lời giải)
@@ -2826,6 +2882,10 @@ $\tfrac47+\tfrac27+\tfrac17=1$ và $0\cdot\tfrac47+1\cdot\tfrac27+2\cdot\tfrac17
 :::
 
 ::: exercise Bài tập 03.16 (Vận dụng: máy vector hỗ trợ trên ba mẫu)
+**Dữ kiện.**
+
+Bài toán (5.2) với $d=1$: $\min_{w,b,\xi}\frac\rho2w^2+\sum_i\xi_i$ với $1-y_i(wz_i+b)-\xi_i\le0$, $-\xi_i\le0$. Mệnh đề 03.36 phần 3: $(w,b,\xi)$ là nghiệm khi và chỉ khi có $\alpha$ với $0\le\alpha_i\le1$, $\sum_i\alpha_iy_i=0$, $\rho w=\sum_i\alpha_iy_iz_i$, $\xi_i=\max(0,1-m_i)$, trong đó $m_i=y_i(wz_i+b)$, và với mọi $i$: $m_i>1\Rightarrow\alpha_i=0$, $m_i<1\Rightarrow\alpha_i=1$, $0<\alpha_i<1\Rightarrow m_i=1$.
+
 Ba mẫu một chiều $z=(0,2,3)$ với nhãn $y=(-1,+1,+1)$.
 
 - (a) Với $\rho=1$, chứng minh $(w,b)=(1,-1)$ là nghiệm của (5.2) bằng cách tìm $\alpha$ thỏa Mệnh đề 03.36 phần 3.

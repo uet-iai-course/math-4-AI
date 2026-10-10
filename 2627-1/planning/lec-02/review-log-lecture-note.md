@@ -204,3 +204,72 @@ Số liệu khác: đoạn văn ngoài khối từ 143 lên 236 (khoảng 93 l�
 - Hai đoạn "Định nghĩa." và "Kết quả." của Tóm tắt chương là danh mục ngăn bằng dấu chấm phẩy; giữ nguyên vì là danh mục tra cứu.
 - Bước 8 của Thuật toán 02.1 và các dòng "Dẫn ngược lý thuyết" vẫn liệt kê bằng dấu chấm phẩy; giữ nguyên vì là bước thuật toán và danh mục dẫn chiếu.
 - Ở 390×844, 91/110 công thức hiển thị cuộn ngang trong khung riêng (bản trước 55/62); trang không tràn ngang.
+
+
+## Lượt sửa ví dụ tự chứa (2026-10-10)
+
+**Tác tử.** Chỉnh sửa, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high, theo brief của điều phối viên Fable 5.1. Bản kiểm kê đầu vào do tác tử rà soát chỉ đọc cùng mô hình lập. Căn cứ: `AGENTS.md`, mục "Ví dụ và bài tập tự chứa tại chỗ" (yêu cầu người dùng 2026-10-10). Mọi giá trị trong đoạn "Dữ kiện" được đối chiếu với khối nguồn trong cùng tệp trước khi chèn; không đổi số hiệu, không đổi kết quả, không sửa phần ngoài các khối được kiểm kê.
+
+| Khối | Khối bị tham chiếu | Cách xử lý | Sai lệch so với đề xuất kiểm kê |
+|---|---|---|---|
+| Ví dụ 02.1 | Bài toán đầu Mục 1 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.7 | (2.1), Mệnh đề 02.11 | Đoạn Dữ kiện | Kiểm kê xếp vào bảng phụ; khối không nêu bài toán nên được nâng thành đoạn Dữ kiện |
+| Ví dụ 02.8 | Dữ liệu chung | Đoạn Dữ kiện | Không |
+| Ví dụ 02.9 | Ví dụ 02.8 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.10, 02.11 | Dữ liệu chung | Đoạn Dữ kiện | Không |
+| Ví dụ 02.12 | Ví dụ 02.11, (3.2), (1.2) | Đoạn Dữ kiện | Thêm $u$, $y$, $X$ |
+| Ví dụ 02.14 | Ví dụ 02.8 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.15 | Ví dụ 02.14 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.16 | Bổ đề 02.22 | Đoạn Dữ kiện | Thêm dữ liệu chung và (3.2), dùng ở bước tách biến |
+| Ví dụ 02.17 | Ví dụ 02.11, 02.13, (3.2) | Đoạn Dữ kiện | Thêm $u$, $y$ |
+| Ví dụ 02.18 | Ví dụ 02.17, Mệnh đề 02.26 | Đoạn Dữ kiện | Thêm $X^TX$, $X^Ty$, $y^Ty$ vì phần lập mô hình dùng $P_0$, $q_0$, $s_0$ |
+| Ví dụ 02.19 | Đầu Mục 4.1 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.20 | Ví dụ 02.19 | Đoạn Dữ kiện | Thêm tóm tắt Định lý 02.33 |
+| Ví dụ 02.21 | Mục 4.4 | Đoạn Dữ kiện | Thêm Mệnh đề 02.30(c) |
+| Ví dụ 02.22 | Ví dụ 02.21, Mục 4.4 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.24 | Đầu Mục 5.1 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.25 | Ví dụ 02.24 | Đoạn Dữ kiện | Thêm Mệnh đề 02.36(c) |
+| Ví dụ 02.26 | Định nghĩa 02.35 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.27 | Đầu Mục 5.4 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.28 | Ví dụ 02.27, Mệnh đề 02.42(d) | Đoạn Dữ kiện | Không |
+| Bài tập 02.8 | Ví dụ 02.24 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.29 | Đầu Mục 6, (6.1), (6.2) | Đoạn Dữ kiện | Không |
+| Bài tập 02.14 | Tình huống 02.1 | Đoạn Dữ kiện | Không |
+| Ví dụ 02.6 (phụ) | (2.1), (2.3) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 02.3 (phụ) | (2.3), Mệnh đề 02.11 | Viết lại tại chỗ dẫn | Không |
+| Bài tập 02.1, 02.13 (phụ) | (1.3), Mệnh đề 02.6 | Viết lại tại chỗ dẫn | Ở Bài tập 02.13, (1.3) viết bằng lời vì ký hiệu $g$ đã dùng cho hàm khác trong lời giải |
+| Bài tập 02.2, 02.6 (phụ) | (1.1), (1.2) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 02.5 (phụ) | Bổ đề 02.22, (3.2) | Viết lại tại chỗ dẫn | Thêm (3.2) trong đề |
+| Bài tập 02.7 (phụ) | (4.1), Mệnh đề 02.30 | Viết lại tại chỗ dẫn | Không |
+| Bài tập 02.9 (phụ) | Mệnh đề 02.42 | Viết lại tại chỗ dẫn | Không |
+| Bài tập 02.10, 02.12 (phụ) | Bảng nhận dạng, bảng kiểm Mục 6.1 | Viết lại tại chỗ dẫn | Bài tập 02.10 chép bốn lớp của bảng; Bài tập 02.12 chép dòng "Thêm biến phụ" |
+
+Các đoạn Dữ kiện dùng "Trên dữ liệu chung" đều chép lại $u$, $y$. Tổng: 23 khối bảng chính (cộng Ví dụ 02.7 nâng từ bảng phụ), 11 khối bảng phụ; không khối nào bỏ qua; không phát hiện giá trị sai trong đề xuất kiểm kê.
+
+**Kiểm tra kỹ thuật.** Playwright Chromium, `material-viewer.html?doc=materials/lec-02/lecture-note.md&deck=lecture-02-cac-bai-toan-toi-uu-loi.html`, ở 1600×900 và 390×844: 3601 phần tử `.katex`, 0 `.katex-error`, 0 phần tử KaTeX tô đỏ (`rgb(204, 0, 0)`), 0 lỗi trang (lỗi CSP duy nhất trên console đến từ đoạn script do `reloadserver` chèn, không thuộc trang), không tràn ngang trang; số khối `:::` không đổi (150). Khối Ví dụ 02.27 có `scrollWidth` lớn hơn `clientWidth` vài điểm ảnh ở 390×844; hiện tượng có sẵn ở bản gốc (đã chạy cùng phép đo trên bản sao bản gốc), do công thức (5.2) có `\tag`, không do đoạn mới. Quét lệnh LaTeX trong mọi dòng mới: chỉ dùng lệnh chuẩn, không có `\text{}`. `python3 2627-1/scripts/sync-local-materials.py` rồi `--check`: OK; `git diff --check`: sạch.
+
+**Số từ.** Trước 31841, sau 33187 (`wc -w`).
+
+Quyết định của điều phối viên:
+
+
+### Rà soát độc lập và lượt sửa bổ sung (2026-10-10)
+
+**Tác tử rà soát.** Chỉ đọc, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high; đối chiếu 146 đoạn của Bài 01–05 với khối nguồn: mọi số liệu khớp. Điều phối viên Fable 5.1 xác nhận các phát hiện dưới đây và quyết định: yêu cầu sửa nhỏ rồi chấp nhận. Tác tử chỉnh sửa (như trên) thực hiện các sửa đổi.
+
+| Mức độ | Khối | Vấn đề | Đề xuất sửa | Trạng thái |
+|---|---|---|---|---|
+| nghiêm trọng | Ví dụ 02.7, Bài tập 02.3(b) | Mệnh đề 02.11(c) chép thiếu điều kiện "khi đó", mạnh hơn nguồn | "(c) khi có điểm khả thi đạt cận này, mọi ràng buộc có $\mu_i>0$ chặt tại mọi nghiệm" | đã sửa |
+| trung bình | Ví dụ 02.2 | Dẫn (1.1), (1.2) chưa viết lại | Chép (1.1) ngắn và (1.2) $f_0'(x^*)(x-x^*)\ge0$ | đã sửa |
+| nhẹ | Bài tập 02.13 (gợi ý) | (7.1) chỉ dẫn số | Chép $g(\theta x+(1-\theta)y)\le\theta g(x)+(1-\theta)g(y)$ | đã sửa |
+| nhẹ | Bài tập 02.8 (gợi ý) | Mệnh đề 01.9 chỉ dẫn số | Thêm $\ell_e''(r)=e^r/(1+e^r)^2>0$ | đã sửa |
+| nhẹ | Ví dụ 02.24 | (7.1) dùng $\theta$, $y$ trùng ký hiệu ngưỡng và nhãn | Viết $f(\tfrac12s+\tfrac12s')\le\tfrac12f(s)+\tfrac12f(s')$ | đã sửa |
+| nhẹ | Ví dụ 02.6 | Phát biểu (2.1), (2.3) chèn vào câu gốc | Tách thành đoạn Dữ kiện, khôi phục câu gốc | đã sửa |
+| nhẹ | Bài tập 02.9, 02.10 | Phần chép dài nằm trong đề | Chuyển thành đoạn Dữ kiện dạng danh sách, khôi phục đề gốc | đã sửa |
+| nhẹ | Bài tập 02.7 | (4.1) viết theo $x$, trùng biến $x$ của đề | Viết theo biến $v$ | đã sửa |
+| nhẹ | Ví dụ 02.1 | "Xét bài toán ở đầu mục." thừa sau Dữ kiện | Bỏ câu | đã sửa |
+| nhẹ | Bài tập 02.5(a) | "tức như" lủng củng | "là dạng $E(w)=\ldots$ của dữ liệu chung" | đã sửa |
+
+**Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (150); Ví dụ 02.27 vẫn rộng hơn khung vài điểm ảnh ở 390×844 như bản gốc. Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 33247.
+
+Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.

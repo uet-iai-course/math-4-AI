@@ -306,3 +306,59 @@ Lượt 1: bản lượt 1 có 32 180 từ, vượt trần 30 000 của brief kh
 7. **Nguồn chưa kiểm số trang.** Nocedal và Wright mục 3.3; Wasserman chương 3, 6; các bài báo Polyak, Nesterov, Sutskever, Glorot, He, Lessard, Bottou; DL mục 4.3 tr. 82–86 và 6.5 tr. 204 (trang đầu mục đọc từ PDF, trang cuối chưa kiểm).
 8. **Trùng lặp với `exercises.md`.** Như bảng trên; chờ quyết định.
 9. **Độ dài.** 32 180 từ; xem mục "Độ dài".
+
+
+## Lượt sửa ví dụ tự chứa (2026-10-10)
+
+**Tác tử.** Chỉnh sửa, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high, theo brief của điều phối viên Fable 5.1. Bản kiểm kê đầu vào do tác tử rà soát chỉ đọc cùng mô hình lập. Căn cứ: `AGENTS.md`, mục "Ví dụ và bài tập tự chứa tại chỗ" (yêu cầu người dùng 2026-10-10). Mọi giá trị trong đoạn "Dữ kiện" được đối chiếu với khối nguồn trong cùng tệp trước khi chèn; không đổi số hiệu, không đổi kết quả, không sửa phần ngoài các khối được kiểm kê.
+
+| Khối | Khối bị tham chiếu | Cách xử lý | Sai lệch so với đề xuất kiểm kê |
+|---|---|---|---|
+| Bài tập 05.1 | Mệnh đề 05.2, (1.4) | Đoạn Dữ kiện | Không |
+| Ví dụ 05.8 | Ví dụ 05.1, (1.1) | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 05.10 | Ví dụ 05.1, (1.1) | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 05.11 | Ví dụ 05.8, Mệnh đề 05.14 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Bài tập 05.3 | Ví dụ 05.1, 05.8, 05.9, Mệnh đề 05.14 | Đoạn Dữ kiện | Không |
+| Ví dụ 05.14 | Ví dụ 05.8, 05.9, 05.11 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Bài tập 05.4 | Ví dụ 05.14 | Đoạn Dữ kiện | Không |
+| Ví dụ 05.15 | (3.1) | Thay "Hàm (3.1)" bằng công thức | Không |
+| Ví dụ 05.16 | (3.1), Mệnh đề 05.17 | Đoạn Dữ kiện | Không |
+| Ví dụ 05.17 | (3.1), Thuật toán 05.2 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 05.18 | (3.1), Thuật toán 05.2 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 05.19 | Ví dụ 05.17, 05.18, (3.4), Định lý 05.21(c) | Bổ sung đoạn Dữ kiện có sẵn | Không; giữ ký hiệu $Z_t=[\chi_t]_1$ của tệp |
+| Ví dụ 05.20 | (3.1), Thuật toán 05.3, Ví dụ 05.17, 05.18 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 05.21 | Ví dụ 05.18, 05.20, (3.6), hình bán kính phổ | Thay đoạn Dữ kiện có sẵn | Không; bán kính phổ $0{,}652$, $0{,}707$, $0{,}85$ được tính lại từ hai đa thức đặc trưng trước khi chép |
+| Bài tập 05.5 (gợi ý) | (3.4), (3.6), Định lý 05.21(b), 05.23(b) | Chèn vào gợi ý | Không |
+| Ví dụ 05.23 | Ví dụ 05.22, Định nghĩa 05.25 | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Ví dụ 05.24 | Ví dụ 05.22, (4.1) | Bổ sung đoạn Dữ kiện có sẵn | Không |
+| Bài tập 05.6 | Định nghĩa 05.25, (4.1) | Đoạn Dữ kiện | Không |
+| Ví dụ 05.26 | (4.2) | Đoạn Dữ kiện | Không |
+| Ví dụ 05.28 | Định nghĩa 05.36, Mệnh đề 05.37 | Đoạn Dữ kiện | Đề xuất gán công thức $\alpha$ cho Mệnh đề 05.37(d); nguồn định nghĩa $\alpha$ là Định nghĩa 05.36, đoạn mới dẫn Định nghĩa 05.36 |
+| Bài tập 05.8 | Định nghĩa 05.36, Mệnh đề 05.37 | Đoạn Dữ kiện | Chép đầy đủ thay vì "như Ví dụ 05.28" |
+| Ví dụ 05.4 (phụ) | (1.5) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 05.7 (c) (phụ) | (4.2) | Viết lại tại chỗ dẫn | Không |
+| Bài tập 05.9 (gợi ý, phụ) | (1.5), (2.4), (2.5) | Viết lại tại chỗ dẫn | Không |
+
+Tổng: 21 khối bảng chính, 3 khối bảng phụ; không khối nào bỏ qua.
+
+**Kiểm tra kỹ thuật.** Playwright Chromium, `material-viewer.html?doc=materials/lec-05/lecture-note.md&deck=lecture-05-toi-uu-bac-nhat-cho-hoc-may.html`, ở 1600×900 và 390×844: 3520 phần tử `.katex`, 0 `.katex-error`, 0 phần tử KaTeX tô đỏ (`rgb(204, 0, 0)`), 0 lỗi trang (lỗi CSP duy nhất trên console đến từ đoạn script do `reloadserver` chèn, không thuộc trang), không tràn ngang trang; số khối `:::` không đổi (133). Quét lệnh LaTeX trong mọi dòng mới: chỉ dùng lệnh chuẩn, không có `\text{}`. `python3 2627-1/scripts/sync-local-materials.py` rồi `--check`: OK; `git diff --check`: sạch.
+
+**Số từ.** Trước 33604, sau 34282 (`wc -w`).
+
+Quyết định của điều phối viên:
+
+
+### Rà soát độc lập và lượt sửa bổ sung (2026-10-10)
+
+**Tác tử rà soát.** Chỉ đọc, loại `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort high; đối chiếu 146 đoạn của Bài 01–05 với khối nguồn: mọi số liệu khớp. Điều phối viên Fable 5.1 xác nhận các phát hiện dưới đây và quyết định: yêu cầu sửa nhỏ rồi chấp nhận. Tác tử chỉnh sửa (như trên) thực hiện các sửa đổi.
+
+| Mức độ | Khối | Vấn đề | Đề xuất sửa | Trạng thái |
+|---|---|---|---|---|
+| trung bình | Bài tập 05.7 | (4.2) chép trong câu (c), thiếu mô hình chuỗi | Thêm đoạn Dữ kiện đầu khối ($h^{(k)}=\phi(\gamma_kh^{(k-1)})$ và (4.2)); câu (c) chỉ giữ quy ước ReLU | đã sửa |
+| nhẹ | Ví dụ 05.11 | "dấu bằng xảy ra" lặp hai lần, (2.4) chép sau khi đã dùng | Chép (2.4) và (b) trước, rồi "$J''=L=1$, nên (b) áp dụng" | đã sửa |
+| nhẹ | Bài tập 05.6(b) | Quy tắc momentum chưa viết lại | Chép $v_{t+1}=\beta v_t-\eta\nabla\ell(\theta_t)$, $\theta_{t+1}=\theta_t+v_{t+1}$ | đã sửa |
+| nhẹ | Ví dụ 05.21 | Ba quy tắc dồn trong một câu | Tách thành danh sách | đã sửa |
+
+**Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (133). Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 34292.
+
+Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.

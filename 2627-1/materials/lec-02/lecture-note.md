@@ -79,7 +79,9 @@ Hai biểu diễn trên hình mô tả cùng một tia khả thi, nhưng chỉ b
 Trực giác dẫn tới định nghĩa của mục, chưa phải định nghĩa: một bài toán được gọi là lồi khi mỗi dòng của nó đã mang chứng nhận riêng, gồm mục tiêu lồi, bất đẳng thức dạng "hàm lồi không vượt quá $0$" và đẳng thức affine. Khi đó tính lồi của toàn bài suy ra từ các chứng nhận từng dòng.
 
 ::: example Ví dụ 02.1 (Viết lại hai ràng buộc thành dạng affine)
-Ví dụ phỏng theo Boyd và Vandenberghe (2004, mục 4.2.1) và MIT 6.079, Bài giảng 4, tr. 4–7. Xét bài toán ở đầu mục. Gọi $C_1$ là tập khả thi theo biểu diễn ban đầu và $C_2=\{x\in\mathbb R^2\mid x_1\le0,\ x_1+x_2=0\}$.
+**Dữ kiện.** Bài toán ở đầu mục là $\min_{x\in\mathbb R^2}x_1^2+x_2^2$ với hai ràng buộc $\frac{x_1}{1+x_2^2}\le0$ và $(x_1+x_2)^2=0$.
+
+Ví dụ phỏng theo Boyd và Vandenberghe (2004, mục 4.2.1) và MIT 6.079, Bài giảng 4, tr. 4–7. Gọi $C_1$ là tập khả thi theo biểu diễn ban đầu và $C_2=\{x\in\mathbb R^2\mid x_1\le0,\ x_1+x_2=0\}$.
 
 **Chứng minh $C_1=C_2$.**
 
@@ -304,9 +306,9 @@ Khi người dùng thay mất mát đếm lỗi bằng mất mát bản lề, kh
 ::: exercise Bài tập 02.1
 Cho $(\mathrm P)$: $\min_{x>0}\ x+1/x$ và $(\mathrm Q)$: $\min_{z\in\mathbb R}\ \log(e^z+e^{-z})$.
 
-(a) Chỉ ra $\varphi$, $\psi$, $T$ cho bằng công thức thỏa (1.3).
+(a) Chỉ ra $\varphi$, $\psi$ và hàm tăng chặt $T$ cho bằng công thức thỏa (1.3), tức $g(\varphi(x))\le T(f(x))$ với mọi $x$ khả thi của $(\mathrm P)$ và $T(f(\psi(z)))\le g(z)$ với mọi $z$ khả thi của $(\mathrm Q)$, trong đó $f$, $g$ là hai hàm mục tiêu.
 
-(b) Giải $(\mathrm Q)$ và suy ra nghiệm, giá trị tối ưu của $(\mathrm P)$ bằng Mệnh đề 02.6.
+(b) Giải $(\mathrm Q)$ và suy ra nghiệm, giá trị tối ưu của $(\mathrm P)$ bằng Mệnh đề 02.6: nếu $z^*$ là nghiệm của $(\mathrm Q)$ thì $\psi(z^*)$ là nghiệm của $(\mathrm P)$, và nghiệm $x^*$ của $(\mathrm P)$ thỏa $g(\varphi(x^*))=T(f(x^*))$.
 :::
 
 ::: hint
@@ -335,11 +337,11 @@ Ba ví dụ sau có mục tiêu lồi trên miền lồi nhưng cho ba kết lu�
 ::: example Ví dụ 02.2 (Hàm bậc hai trên đoạn: nghiệm trên biên)
 Một thông số kỹ thuật có giá trị lý tưởng bằng $2$, nhưng thiết bị chỉ cho phép đặt trong đoạn $[0,1]$. Đo độ lệch bằng bình phương, ta có bài toán $\min_{0\le x\le1}(x-2)^2$.
 
-**Chứng nhận.** Miền $D=\mathbb R$; $f_0''(x)=2>0$ nên $f_0$ lồi chặt (Định lý 01.30(b)); hai ràng buộc $-x\le0$, $x-1\le0$ affine. Bài toán ở dạng (1.1).
+**Chứng nhận.** Miền $D=\mathbb R$; $f_0''(x)=2>0$ nên $f_0$ lồi chặt (Định lý 01.30(b)); hai ràng buộc $-x\le0$, $x-1\le0$ affine. Bài toán ở dạng chuẩn (1.1), $\min_{x\in D}f_0(x)$ với $f_i(x)\le0$ lồi và $Ax=b$.
 
 Tập khả thi $[0,1]$ không rỗng, đóng, bị chặn và $f_0$ liên tục, nên nghiệm tồn tại (Định lý 01.36) và duy nhất (Định lý 01.35).
 
-**Tìm nghiệm.** Nghiệm của bài không ràng buộc là $x=2\notin[0,1]$. Ứng viên là đầu mút gần $2$ nhất, $x^*=1$. Kiểm tra (1.2): $f_0'(1)=2(1-2)=-2$, và với mọi $x\in[0,1]$,
+**Tìm nghiệm.** Nghiệm của bài không ràng buộc là $x=2\notin[0,1]$. Ứng viên là đầu mút gần $2$ nhất, $x^*=1$. Kiểm tra (1.2), ở đây là $f_0'(x^*)(x-x^*)\ge0$ với mọi $x$ khả thi: $f_0'(1)=2(1-2)=-2$, và với mọi $x\in[0,1]$,
 
 $$
 f_0'(1)(x-1)=-2(x-1)=2(1-x)\ge0 .
@@ -405,11 +407,11 @@ Một bài dạng (1.1) rơi vào đúng một trong bốn trạng thái:
 ::: exercise Bài tập 02.2
 Cho bài toán $\min\ (x_1-3)^2+x_2^2$ với ràng buộc $x_1^2+x_2^2\le4$.
 
-(a) Đưa bài toán về dạng (1.1) và chứng nhận từng thành phần.
+(a) Đưa bài toán về dạng chuẩn (1.1), $\min_{x\in D}f_0(x)$ với $f_i(x)\le0$, $Ax=b$, trong đó $D$ lồi và $f_0,f_i$ lồi, và chứng nhận từng thành phần.
 
 (b) Chứng minh bài toán có đúng một nghiệm.
 
-(c) Chứng minh $x^*=(2,0)$ là nghiệm bằng điều kiện (1.2), và tính $p^*$.
+(c) Chứng minh $x^*=(2,0)$ là nghiệm bằng điều kiện (1.2), $\nabla f_0(x^*)^T(x-x^*)\ge0$ với mọi $x$ khả thi, và tính $p^*$.
 :::
 
 ::: hint
@@ -571,6 +573,8 @@ Mệnh đề 02.10 cho phép coi hai dạng (2.2) và (2.3) như một lớp: m�
 Biến $\sigma$ được gọi là biến dư (slack variable). Thành phần $\sigma_i$ đo khoảng cách còn lại tới giới hạn thứ $i$, và $\sigma_i=0$ nghĩa là ràng buộc $i$ đang chặt.
 
 ::: example Ví dụ 02.6 (Dạng chuẩn của bài pha trộn)
+**Dữ kiện.** Bài pha trộn (2.1): $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$. Dạng chuẩn (2.3): $\min\tilde c^Tz$ với $Bz=e$, $z\succeq0$.
+
 **Lập dạng chuẩn.** Trong (2.1), hai biến đã không âm nên không cần tách. Thêm biến dư $\sigma_1,\sigma_2\ge0$ cho hai ràng buộc dinh dưỡng, viết ở dạng "$\ge$": $2x_1+x_2-\sigma_1=4$ và $x_1+2x_2-\sigma_2=5$. Với $z=(x_1,x_2,\sigma_1,\sigma_2)$, dạng chuẩn là
 
 $$
@@ -634,6 +638,8 @@ Mệnh đề 02.11 biến việc chứng minh tối ưu thành việc tìm các 
 Các $\mu_i$ là nhân tử Lagrange của Bài 03, nơi chúng được tìm có hệ thống qua bài toán đối ngẫu.
 
 ::: example Ví dụ 02.7 (Nghiệm của bài pha trộn)
+**Dữ kiện.** Bài pha trộn (2.1): $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$. Mệnh đề 02.11: với các ràng buộc $a_i^Tx\ge\beta_i$ và $\mu\succeq0$ thỏa $c=\sum_i\mu_ia_i$, (a) mọi $x$ khả thi có $c^Tx\ge\sum_i\mu_i\beta_i$; (b) điểm khả thi đạt cận này là nghiệm; (c) khi có điểm khả thi đạt cận này, mọi ràng buộc có $\mu_i>0$ chặt tại mọi nghiệm.
+
 **Tìm ứng viên.** Ứng viên là giao của hai biên dinh dưỡng: hệ $2x_1+x_2=4$, $x_1+2x_2=5$. Nhân phương trình đầu với $2$ rồi trừ phương trình sau: $3x_1=3$, nên $x_1=1$ và $x_2=4-2=2$.
 
 **Tìm hệ số $\mu$.** Viết bốn ràng buộc ở dạng $a_i^Tx\ge\beta_i$:
@@ -774,6 +780,8 @@ Chiều cực tiểu và $\gamma_i\ge0$ dùng ở chỗ suy từ $t_i\ge\max_kg_
 Hồi quy minimax ứng với tiêu chí trường hợp xấu nhất, như sai số trên mọi nhóm người dùng (Bài tập 02.17).
 
 ::: example Ví dụ 02.8 (Nghiệm hồi quy sai số tuyệt đối)
+**Dữ kiện.** Dữ liệu chung (Mục 2.4): $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$. Mô hình $\hat y=au+b$, ma trận thiết kế $X$ có hàng $(u_i,1)$, $w=(a,b)$, phần dư $r=Xw-y$ với $r_i=au_i+b-y_i$.
+
 **Lập mô hình.** Theo Định lý 02.15, bài $\min_w\lVert Xw-y\rVert_1$ trên dữ liệu chung tương đương với quy hoạch tuyến tính
 
 $$
@@ -822,6 +830,8 @@ nên $\delta=0$. Theo Định lý 02.15(b), nghiệm của quy hoạch tuyến t
 Trên hình, nghiệm khớp chính xác bốn điểm và chấp nhận sai số $3$ tại $(0,3)$.
 
 ::: example Ví dụ 02.9 (Nghiệm hồi quy minimax)
+**Dữ kiện.** Dữ liệu chung (Mục 2.4): $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, $X$ có hàng $(u_i,1)$, $w=(a,b)$, $r_i=au_i+b-y_i$. Với $\delta=a-1$: $r_1=b-2\delta$, $r_2=b-\delta$, $r_3=b-3$, $r_4=b+\delta$, $r_5=b+2\delta$ (Ví dụ 02.8). Nghiệm sai số tuyệt đối $w=(1,0)$ có $r=(0,0,-3,0,0)$, nên $\lVert r\rVert_1=3$ và $\lVert r\rVert_\infty=3$ (Ví dụ 02.8).
+
 **Lập mô hình.** Theo Định lý 02.15(c), bài $\min_w\lVert Xw-y\rVert_\infty$ tương đương với quy hoạch tuyến tính $\min_{w,t}t$ với $-t\mathbf 1\preceq Xw-y\preceq t\mathbf 1$, có $3$ biến và $10$ ràng buộc. Ta chứng minh nghiệm duy nhất là $w^*=(1,\tfrac32)$ với $t^*=\tfrac32$.
 
 **Bước 1 (cận dưới).** Với $\delta=a-1$ như trên, nếu mọi $\lvert r_i\rvert\le t$ thì
@@ -859,9 +869,9 @@ Trên hình, nghiệm minimax dời đường lên $1{,}5$ đơn vị để chia
 ::: exercise Bài tập 02.3
 Một nhóm thuê hai loại máy để tiền xử lý dữ liệu huấn luyện. Mỗi giờ, máy loại I xử lý $3$ nghìn ảnh và $1$ nghìn đoạn âm thanh với giá $4$ trăm nghìn đồng; máy loại II xử lý $1$ nghìn ảnh và $2$ nghìn đoạn âm thanh với giá $3$ trăm nghìn đồng. Cần xử lý ít nhất $6$ nghìn ảnh và $7$ nghìn đoạn âm thanh; số giờ thuê là số thực không âm (số liệu minh họa).
 
-(a) Lập quy hoạch tuyến tính và viết dạng chuẩn (2.3) của nó.
+(a) Lập quy hoạch tuyến tính và viết dạng chuẩn (2.3) của nó, $\min\tilde c^Tz$ với $Bz=e$, $z\succeq0$.
 
-(b) Chứng minh phương án $x^*=(1,3)$ là nghiệm duy nhất bằng Mệnh đề 02.11, và tính chi phí.
+(b) Chứng minh phương án $x^*=(1,3)$ là nghiệm duy nhất bằng Mệnh đề 02.11, và tính chi phí. Mệnh đề 02.11: với các ràng buộc $a_i^Tx\ge\beta_i$ và $\mu\succeq0$ thỏa $c=\sum_i\mu_ia_i$, mọi $x$ khả thi có $c^Tx\ge\sum_i\mu_i\beta_i$, điểm khả thi đạt cận này là nghiệm, và khi có điểm khả thi đạt cận này, mọi ràng buộc có $\mu_i>0$ chặt tại mọi nghiệm.
 :::
 
 ::: hint
@@ -947,6 +957,8 @@ $$
 Hàm $E$ cộng bình phương của từng độ lệch, nên một độ lệch lớn bị phạt nặng hơn nhiều so với vài độ lệch nhỏ.
 
 ::: example Ví dụ 02.10 (Hai đường ứng viên dưới tiêu chí bình phương)
+**Dữ kiện.** Dữ liệu chung: $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$; phần dư $r_i=au_i+b-y_i$ và $E(w)=\lVert Xw-y\rVert_2^2=\sum_ir_i^2$.
+
 **Đường thứ nhất.** Đường $\hat y=u$ ($a=1$, $b=0$) có $r=(0,0,-3,0,0)$ và $E=9$.
 
 **Đường thứ hai.** Đường $\hat y=u+\tfrac35$ ($a=1$, $b=\tfrac35$) có
@@ -1038,6 +1050,8 @@ $$
 Giả thiết $P\succ0$ bị vi phạm khi đặc trưng phụ thuộc tuyến tính; Mục 3.3 khôi phục nó bằng chính quy hóa.
 
 ::: example Ví dụ 02.11 (Nghiệm bình phương nhỏ nhất trên dữ liệu chung)
+**Dữ kiện.** Dữ liệu chung: $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$; $X$ có hàng $(u_i,1)$, $w=(a,b)$, $E(w)=\lVert Xw-y\rVert_2^2$.
+
 **Các tổng cần thiết.**
 
 $$
@@ -1069,6 +1083,8 @@ với hằng số $19-10-\tfrac95=\tfrac{36}5$. Hai bình phương không âm v�
 :::
 
 ::: example Ví dụ 02.12 (Bình phương nhỏ nhất với ràng buộc hệ số góc)
+**Dữ kiện.** Trên dữ liệu chung $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, với $X$ có hàng $(u_i,1)$ và $w=(a,b)$: $E(w)=10(a-1)^2+5(b-\tfrac35)^2+\tfrac{36}5$ (3.2); nghiệm không ràng buộc là $(1,\tfrac35)$ với $E=\tfrac{36}5$ (Ví dụ 02.11). Điều kiện (1.2): $\nabla E(w^*)^T(w-w^*)\ge0$ với mọi $w$ khả thi.
+
 **Lập mô hình.** Thêm ràng buộc $a\le\tfrac12$, chẳng hạn vì một hiểu biết chuyên môn cho rằng đầu ra không tăng nhanh hơn một nửa đầu vào. Bài toán vẫn là quy hoạch bậc hai với $G=[1\ \ 0]$, $h=\tfrac12$. Nghiệm không ràng buộc $(1,\tfrac35)$ vi phạm ràng buộc.
 
 **Tìm ứng viên.** Theo (3.2), với mỗi $a$ cố định, hạng $5(b-\tfrac35)^2$ nhỏ nhất tại $b=\tfrac35$. Hạng $10(a-1)^2$ giảm khi $a$ tăng về $1$, nên trên $a\le\tfrac12$ nhỏ nhất tại $a=\tfrac12$. Ứng viên $w^*=(\tfrac12,\tfrac35)$, với
@@ -1229,6 +1245,8 @@ Với chính quy hóa bậc hai, bài một biến $\alpha(s-m)^2+\lambda s^2$ c
 LASSO ($\ell_2^2+\ell_1$) dùng để chọn đặc trưng: Bổ đề 02.22 cho hệ số bằng đúng $0$ khi tương quan của đặc trưng với đầu ra yếu so với $\lambda$ (Tình huống 02.1). Các mệnh đề của mục chỉ bảo đảm bài toán với một $\lambda$ đã chọn là lồi và có nghiệm.
 
 ::: example Ví dụ 02.14 (Tổ hợp $\ell_1+\ell_1$: nghiệm và tập nghiệm)
+**Dữ kiện.** Dữ liệu chung: $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$. Với $\delta=a-1$: $r_1=b-2\delta$, $r_2=b-\delta$, $r_3=b-3$, $r_4=b+\delta$, $r_5=b+2\delta$ (Ví dụ 02.8); $\lVert y\rVert_1=9$.
+
 **Bước 1 (cận dưới chung).** Xét $\min_w\lVert r\rVert_1+\lambda(\lvert a\rvert+\lvert b\rvert)$ trên dữ liệu chung. Với $\delta=a-1$ như Ví dụ 02.8, bất đẳng thức tam giác áp dụng cho hiệu của hai cặp đối xứng cho
 
 $$
@@ -1259,6 +1277,8 @@ Ngược lại, một nghiệm có mục tiêu $9$ phải làm cận chặt, t�
 :::
 
 ::: example Ví dụ 02.15 (Tổ hợp $\ell_1+\ell_2^2$ với $\lambda=4$)
+**Dữ kiện.** Dữ liệu chung: $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$. Với $\delta=a-1$: $r_1=b-2\delta$, $r_2=b-\delta$, $r_3=b-3$, $r_4=b+\delta$, $r_5=b+2\delta$ (Ví dụ 02.8). Ví dụ 02.14 áp dụng bất đẳng thức tam giác cho hai cặp $(r_2,r_4)$, $(r_1,r_5)$ và nhận được $\lVert r\rVert_1\ge6\lvert a-1\rvert+\lvert b-3\rvert$.
+
 **Kiểm giả thiết.** Mục tiêu $\Phi(w)=\lVert r\rVert_1+4(a^2+b^2)$ lồi chặt, nên có đúng một nghiệm (Mệnh đề 02.21(c)).
 
 **Bước 1 (cận dưới).** Từ Ví dụ 02.14, $\lVert r\rVert_1\ge6\lvert a-1\rvert+\lvert b-3\rvert\ge6\lvert a-1\rvert+3-b$, nên
@@ -1289,6 +1309,8 @@ Tổng trị tuyệt đối $\tfrac{5+3+23+1+3}8=\tfrac{35}8$, phạt $4(\tfrac9
 :::
 
 ::: example Ví dụ 02.16 (Tổ hợp $\ell_2^2+\ell_1$: LASSO trên dữ liệu chung)
+**Dữ kiện.** Trên dữ liệu chung $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, với $X$ có hàng $(u_i,1)$ và $w=(a,b)$: $E(w)=10(a-1)^2+5(b-\tfrac35)^2+\tfrac{36}5$ (3.2). Bổ đề 02.22 (ngưỡng mềm): với $\alpha>0$, $\lambda\ge0$, hàm $\alpha(s-m)^2+\lambda\lvert s\rvert$ có cực tiểu duy nhất $s^*=\operatorname{sign}(m)\max\bigl(\lvert m\rvert-\frac\lambda{2\alpha},0\bigr)$ (3.3).
+
 **Tách biến.** Theo (3.2),
 
 $$
@@ -1313,6 +1335,8 @@ $$
 :::
 
 ::: example Ví dụ 02.17 (Tổ hợp $\ell_2^2+\ell_2^2$: hồi quy ridge với $\lambda=10$)
+**Dữ kiện.** Trên dữ liệu chung $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, với $X$ có hàng $(u_i,1)$ và $w=(a,b)$: $X^TX=\operatorname{diag}(10,5)$, $X^Ty=(10,3)$ và $E(w)=10(a-1)^2+5(b-\tfrac35)^2+\tfrac{36}5$ (3.2); nghiệm bình phương nhỏ nhất là $(1,\tfrac35)$ (Ví dụ 02.11). Với $a=1$ cố định, phạt $\lambda b^2$ cho $b=\frac3{5+\lambda}$ (Ví dụ 02.13).
+
 **Tính nghiệm.** Mục tiêu $E(w)+10\lVert w\rVert_2^2$ có gradient $2(X^TX+10I)w-2X^Ty$. Theo Mệnh đề 02.21, nghiệm duy nhất thỏa $(X^TX+10I)w=X^Ty$, tức $20a=10$ và $15b=3$: $w^*=(\tfrac12,\tfrac15)$.
 
 **Tính giá trị.** Theo (3.2),
@@ -1419,6 +1443,8 @@ trong đó bất đẳng thức cuối dùng $\lambda\ge0$ và $R(w_\lambda)-R(w
 :::
 
 ::: example Ví dụ 02.18 (Trần $\lVert w\rVert_2^2\le\tfrac{29}{100}$)
+**Dữ kiện.** Trên dữ liệu chung $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, với $X$ có hàng $(u_i,1)$ và $w=(a,b)$: $X^TX=\operatorname{diag}(10,5)$, $X^Ty=(10,3)$, $y^Ty=19$ và $E(w)=10(a-1)^2+5(b-\tfrac35)^2+\tfrac{36}5$ (3.2). Nghiệm của $\min_wE(w)+10\lVert w\rVert_2^2$ là $w_{10}=(\tfrac12,\tfrac15)$, với $E(w_{10})=\tfrac{21}2$ (Ví dụ 02.17). Mệnh đề 02.26: nếu $w_\lambda$ là nghiệm của $\min_wL(w)+\lambda R(w)$ với $\lambda\ge0$ thì $w_\lambda$ là nghiệm của $\min_wL(w)$ với ràng buộc $R(w)\le R(w_\lambda)$.
+
 **Lập mô hình.** Bài toán $\min_wE(w)$ với $\lVert w\rVert_2^2\le\tfrac{29}{100}$ là QCQP với $P_0=2X^TX=\operatorname{diag}(20,10)$, $q_0=(-20,-6)$, $s_0=19$, $P_1=2I$, $q_1=0$, $s_1=-\tfrac{29}{100}$. Mọi $P_i\succ0$, nên bài lồi và có nghiệm (Mệnh đề 02.25).
 
 **Chứng nhận.** Theo Ví dụ 02.17, $w_{10}=(\tfrac12,\tfrac15)$ là nghiệm của bài có phạt với $\lambda=10$, và $\lVert w_{10}\rVert_2^2=\tfrac14+\tfrac1{25}=\tfrac{29}{100}$. Mệnh đề 02.26 với $L=E$, $R=\lVert\cdot\rVert_2^2$ cho $w^*=(\tfrac12,\tfrac15)$ là nghiệm của bài có trần, với $E(w^*)=\tfrac{21}2$. Nghiệm duy nhất vì $E$ lồi chặt.
@@ -1455,7 +1481,7 @@ Bài con này lồi khi Hessian của mô hình nửa xác định dương, và 
 ::: exercise Bài tập 02.5
 Cho ba quan sát $u=(-1,0,1)$, $y=(0,1,5)$, mô hình $\hat y=au+b$, $X$ với hàng $(u_i,1)$ và $E(w)=\lVert Xw-y\rVert_2^2$.
 
-(a) Tính $X^TX$, $X^Ty$, viết $E$ ở dạng bù bình phương như (3.2), và tìm nghiệm bình phương nhỏ nhất.
+(a) Tính $X^TX$, $X^Ty$, viết $E$ ở dạng bù bình phương như (3.2), là dạng $E(w)=10(a-1)^2+5(b-\tfrac35)^2+\tfrac{36}5$ của dữ liệu chung, và tìm nghiệm bình phương nhỏ nhất.
 
 (b) Giải hồi quy ridge với $\lambda=1$.
 
@@ -1463,7 +1489,7 @@ Cho ba quan sát $u=(-1,0,1)$, $y=(0,1,5)$, mô hình $\hat y=au+b$, $X$ với h
 :::
 
 ::: hint
-$X^TX$ chéo. Áp dụng Bổ đề 02.22 cho từng hệ số với $(\alpha,m)$ đọc từ dạng bù bình phương.
+$X^TX$ chéo. Áp dụng Bổ đề 02.22 cho từng hệ số với $(\alpha,m)$ đọc từ dạng bù bình phương: hàm $\alpha(s-m)^2+\lambda\lvert s\rvert$ với $\alpha>0$ có cực tiểu duy nhất $s^*=\operatorname{sign}(m)\max\bigl(\lvert m\rvert-\frac\lambda{2\alpha},0\bigr)$.
 :::
 
 ::: solution
@@ -1497,7 +1523,7 @@ Chứng nhận bài toán $\min x_1+x_2$ với $x_1^2+x_2^2\le2$ là QCQP lồi,
 :::
 
 ::: hint
-Dùng (1.2) và bất đẳng thức $x_1+x_2\ge-\sqrt2\,\lVert x\rVert_2$.
+Dùng (1.2), $\nabla f_0(x^*)^T(x-x^*)\ge0$ với mọi $x$ khả thi, và bất đẳng thức $x_1+x_2\ge-\sqrt2\,\lVert x\rVert_2$.
 :::
 
 ::: solution
@@ -1535,6 +1561,8 @@ Mục này định nghĩa quy hoạch hình học (geometric programming, GP), c
 Lấy $1\,\mathrm{dm}$ làm đơn vị và gọi $a,b,c>0$ là số đo của ba cạnh; nhờ đó các đại lượng là số không thứ nguyên và lấy logarit được. Diện tích là $S(a,b,c)=2(ab+ac+bc)$ và thể tích là $abc$.
 
 ::: example Ví dụ 02.19 (Mô hình hộp không lồi theo kích thước)
+**Dữ kiện.** Hộp kín có ba cạnh $a,b,c>0$ (đơn vị dm), thể tích $abc=8$, diện tích $S(a,b,c)=2(ab+ac+bc)$. Hai hộp ở đầu mục là $1\times2\times4$ và $2\times2\times2$.
+
 Mô hình là $\min_{a,b,c>0}2(ab+ac+bc)$ với $abc=8$.
 
 **Tập khả thi không lồi.** Hai hộp $(1,2,4)$ và $(4,2,1)$ khả thi vì tích bằng $8$. Trung điểm $(\tfrac52,2,\tfrac52)$ có tích $\tfrac52\cdot2\cdot\tfrac52=\tfrac{25}2\ne8$, nên không khả thi. Đẳng thức $abc=8$ không affine, nên không thỏa Định nghĩa 02.1.
@@ -1803,6 +1831,8 @@ Vậy $\varphi$ ánh xạ tập khả thi của (4.1) vào tập khả thi của
 Biến dương làm phép đổi biến song ánh, hệ số dương cho phép lấy logarit. Bỏ biến dương, bài $\min x$ trên $[0,1]$ có nghiệm $0$, nhưng sau khi đặt $x=e^z$ thì cận dưới $0$ không đạt.
 
 ::: example Ví dụ 02.20 (Bài hộp sau đổi biến logarit)
+**Dữ kiện.** Bài hộp (Ví dụ 02.19): $\min_{a,b,c>0}2(ab+ac+bc)$ với $abc=8$. Định lý 02.33: với $x=e^z$, lấy logarit mục tiêu và ràng buộc của quy hoạch hình học cho một bài toán lồi tương đương, trong đó đơn thức thành hàm affine và tổng đơn thức dương thành hàm $\log\sum_ke^{\alpha_k^Tz+\beta_k}$.
+
 **Đổi biến.** Đặt $z_a=\log a$, $z_b=\log b$, $z_c=\log c$. Theo Định lý 02.33, bài hộp tương đương với
 
 $$
@@ -1869,6 +1899,8 @@ S_1(p)=\frac{p_1}{1+p_2/4},\qquad S_2(p)=\frac{p_2}{1+3p_1/2}.
 $$
 
 ::: example Ví dụ 02.21 (Mô hình phân bổ công suất và cải dạng)
+**Dữ kiện.** Công suất phát $p=(p_1,p_2)\in\mathbb R^2_{++}$, ngân sách $p_1+p_2\le6$; chất lượng hai đường là $S_1(p)=\frac{p_1}{1+p_2/4}$ và $S_2(p)=\frac{p_2}{1+3p_1/2}$ (Mục 4.4). Mệnh đề 02.30(c): cực đại đơn thức $g$ có cùng tập nghiệm với cực tiểu $1/g$.
+
 **Lập mô hình.** Bài toán là cực đại $\min\{S_1(p),S_2(p)\}$ theo $p\in\mathbb R^2_{++}$ với $p_1+p_2\le6$. Chia đều $(3,3)$ cho $S_1=3/(1+\tfrac34)=\tfrac{12}7$ và $S_2=3/(1+\tfrac92)=\tfrac6{11}$: đường $2$ yếu vì chịu nhiễu với hệ số $\tfrac32$.
 
 **Cải dạng bằng ngưỡng.** Thêm biến $t>0$ đóng vai chặn dưới của chất lượng. Ta có $t\le S_1(p)$ khi và chỉ khi $t(1+p_2/4)\le p_1$, và chia cho $p_1>0$ cho $tp_1^{-1}+\tfrac14tp_2p_1^{-1}\le1$; tương tự với đường $2$. Theo Mệnh đề 02.30(c), cực đại $t$ thành cực tiểu $t^{-1}$. Bài toán
@@ -1900,6 +1932,8 @@ Mục tiêu affine, ba ràng buộc log-sum-exp lồi.
 :::
 
 ::: example Ví dụ 02.22 (Nghiệm phân bổ công suất)
+**Dữ kiện.** $S_1(p)=\frac{p_1}{1+p_2/4}$, $S_2(p)=\frac{p_2}{1+3p_1/2}$, $p\in\mathbb R^2_{++}$, $p_1+p_2\le6$; bài toán cực đại $t=\min\{S_1(p),S_2(p)\}$. Dạng tổng quát $S_i(p)=\frac{\eta_{ii}p_i}{\nu_i+\sum_{j\ne i}\eta_{ij}p_j}$ với $\eta_{11}=\eta_{22}=1$, $\eta_{12}=\tfrac14$, $\eta_{21}=\tfrac32$, $\nu_1=\nu_2=1$ (Mục 4.4). Dạng lồi (Ví dụ 02.21): với $z_i=\log p_i$, $\tau=\log t$, bài toán là $\min-\tau$ với các ràng buộc log-sum-exp.
+
 Chứng minh nghiệm là $p^*=(2,4)$ với chất lượng tối ưu $t^*=1$.
 
 **Bước 1 (không phương án nào đạt chất lượng lớn hơn $1$).** Giả sử $t>1$ và $(p,t)$ khả thi. Từ $t\le S_1$ và $1+p_2/4>0$: $p_1\ge t(1+p_2/4)>1+p_2/4$; tương tự $p_2>1+\tfrac32p_1$. Thế bất đẳng thức thứ hai vào thứ nhất:
@@ -1960,7 +1994,7 @@ cho $e^z=20$. Vậy $N_p^*=20$, $N_d^*=5$, giá trị $2/\sqrt{20}+1/\sqrt5=2/\s
 **Trong học máy.** Ví dụ 02.23 là phiên bản thu nhỏ của bài chọn kích thước mô hình tối ưu theo tính toán. Khi các hằng số của luật tỷ lệ dương, Định lý 02.33 bảo đảm bài toán lồi sau khi lấy logarit, nên nghiệm tìm bằng phương pháp cục bộ là toàn cục. Luật tỷ lệ chỉ là xấp xỉ thực nghiệm trong một phạm vi kích thước.
 
 ::: exercise Bài tập 02.7
-Với $x,y,z>0$, xác định ràng buộc nào đưa được về dạng (4.1) và viết dạng đó:
+Với $x,y,z>0$, xác định ràng buộc nào đưa được về dạng (4.1), $\min f_0(v)$ với $f_i(v)\le1$, $g_j(v)=1$ theo biến $v\in\mathbb R^n_{++}$, trong đó $f_i$ là tổng đơn thức dương và $g_j$ là đơn thức, và viết dạng đó:
 
 (a) $x^2+3y/z\le\sqrt y$ (phỏng theo Boyd và Vandenberghe 2004, tr. 161);
 
@@ -1974,7 +2008,7 @@ Với $x,y,z>0$, xác định ràng buộc nào đưa được về dạng (4.1)
 :::
 
 ::: hint
-Dùng Mệnh đề 02.30; khai triển $(x+y)^2$ trước khi chia.
+Dùng Mệnh đề 02.30: với $f$ là tổng đơn thức dương và $g$ là đơn thức, $f\le g$ tương đương $f/g\le1$; cực đại đơn thức $g$ tương đương cực tiểu $1/g$. Khai triển $(x+y)^2$ trước khi chia.
 :::
 
 ::: solution
@@ -2010,6 +2044,8 @@ Với ngưỡng $\theta$, điểm số của ảnh $i$ là $u_i-\theta$, và bi�
 Số lỗi là $\operatorname{err}(\theta)=\sum_{i=1}^4\ell_{01}(r_i(\theta))$, với $\ell_{01}(r)=1$ khi $r\le0$ và $\ell_{01}(r)=0$ khi $r>0$.
 
 ::: example Ví dụ 02.24 (Bảng số lỗi theo ngưỡng)
+**Dữ kiện.** Bốn ảnh ở đầu Mục 5: $u=(-2,-1,1,2)$, $y=(-1,+1,-1,+1)$; ảnh được xếp vào nhóm $+1$ khi $u>\theta$; biên có dấu $r_i(\theta)=y_i(u_i-\theta)$; $\ell_{01}(r)=1$ khi $r\le0$ và $\ell_{01}(r)=0$ khi $r>0$; số lỗi $\operatorname{err}(\theta)=\sum_i\ell_{01}(r_i(\theta))$. Điều kiện lồi (7.1) của Bài 01 với trọng số $\tfrac12$: $f(\tfrac12s+\tfrac12s')\le\tfrac12f(s)+\tfrac12f(s')$.
+
 **Biên có dấu.** Bốn biên có dấu là $r_1=(-1)(-2-\theta)=2+\theta$, $r_2=-1-\theta$, $r_3=(-1)(1-\theta)=\theta-1$, $r_4=2-\theta$. Do đó:
 
 - ảnh $1$ sai khi $\theta\le-2$;
@@ -2090,6 +2126,8 @@ Kết quả sau dùng Định lý 01.31 cho tính lồi và Định lý 02.15 ch
 Mệnh đề 02.36 chỉ cho bảo đảm một chiều: từ $\operatorname{err}\le H$ không suy ra được điểm cực tiểu của $H$ là điểm cực tiểu của $\operatorname{err}$ (Ví dụ 02.25).
 
 ::: example Ví dụ 02.25 (Nghiệm của hàm thay thế và số lỗi tại nghiệm)
+**Dữ kiện.** Dữ liệu của Ví dụ 02.24: $u=(-2,-1,1,2)$, $y=(-1,+1,-1,+1)$; ảnh được xếp vào nhóm $+1$ khi $u>\theta$; biên có dấu $r_i(\theta)=y_i(u_i-\theta)$; $\ell_{01}(r)=1$ khi $r\le0$ và $\ell_{01}(r)=0$ khi $r>0$. Bảng của Ví dụ 02.24: $\operatorname{err}=2$ trên $(-\infty,-2]$, $[-1,1]$ và $[2,\infty)$; $\operatorname{err}=1$ trên $(-2,-1)$ và $(1,2)$. Mệnh đề 02.36: (b) $\operatorname{err}\le H$ tại mọi điểm; (c) $\min H$ tương đương với quy hoạch tuyến tính $\min\sum_i\xi_i$ với $\xi_i\ge1-r_i$, $\xi_i\ge0$.
+
 **Lập hàm thay thế.** Với dữ liệu của Ví dụ 02.24, $1-r_1=-1-\theta$, $1-r_2=2+\theta$, $1-r_3=2-\theta$, $1-r_4=\theta-1$, nên
 
 $$
@@ -2135,6 +2173,8 @@ Với nhiều đặc trưng, cực tiểu riêng $H(w,b)$ có một nhược đi
 Một hạng phạt bậc hai lên $w$ chọn nghiệm có $\lVert w\rVert_2$ nhỏ, tức khoảng cách $1/\lVert w\rVert_2$ từ biên quyết định (decision boundary) $w^Tu+b=0$ tới các mặt $w^Tu+b=\pm1$ lớn.
 
 ::: example Ví dụ 02.26 (Mất mát bản lề không xác định nghiệm trên dữ liệu tách được)
+**Dữ kiện.** Với một đặc trưng, tổng mất mát bản lề là $H(w,b)=\sum_i\max\bigl(0,1-y_i(wu_i+b)\bigr)$ (Định nghĩa 02.35).
+
 **Không có hạng phạt.** Hai mẫu $u=-1$ với nhãn $-1$ và $u=1$ với nhãn $+1$. Với $b=0$, $H(w,0)=2\max(0,1-w)$ bằng $0$ với mọi $w\ge1$, nên mọi $(w,0)$ với $w\ge1$ là nghiệm của $\min H$. Nhân nghiệm $(1,0)$ với $2$ hay $10$ vẫn cho $H=0$.
 
 **Thêm hạng phạt.** Thêm $\tfrac\lambda2w^2$ với $0<\lambda\le2$.
@@ -2237,6 +2277,8 @@ Một nhóm phát triển mô hình nhận diện người đi bộ cần mua �
 Mua cả ba tốn $6$ triệu đồng; cần cách mua rẻ nhất.
 
 ::: example Ví dụ 02.27 (Mô hình nhị phân của bài chọn gói)
+**Dữ kiện.** Ba bối cảnh ngày khô, đêm khô, trời mưa; ba gói bán nguyên gói, mỗi gói $2$ triệu đồng: gói $1$ gồm ngày khô và đêm khô, gói $2$ gồm đêm khô và trời mưa, gói $3$ gồm ngày khô và trời mưa. Cần mua rẻ nhất sao cho mỗi bối cảnh có trong ít nhất một gói.
+
 **Lập mô hình.** Biến $x_j=1$ nếu mua gói $j$ và $x_j=0$ nếu không. Mỗi bối cảnh phải có ít nhất một gói chứa nó:
 
 $$
@@ -2306,6 +2348,8 @@ Mệnh đề 02.42 là Mệnh đề 01.16 dùng theo hướng mới: lấy cận
 Phần (d) là cách dùng thực tế: bộ giải trả về phương án khả thi $\hat x$ cùng cận $p^*_{\tilde F}$, và hiệu $f(\hat x)-p^*_{\tilde F}$ đo mức có thể còn cải thiện.
 
 ::: example Ví dụ 02.28 (Nghiệm của nới lỏng tuyến tính và chứng nhận $p^*=4$)
+**Dữ kiện.** Bài chọn gói (5.2): $\min2(x_1+x_2+x_3)$ với $x_1+x_3\ge1$, $x_1+x_2\ge1$, $x_2+x_3\ge1$, $x\in\{0,1\}^3$; liệt kê cho $p^*=4$ (Ví dụ 02.27). Mệnh đề 02.42(d): nếu $(\mathrm P_{\tilde F})$ là nới lỏng của $(\mathrm P_F)$ (cùng mục tiêu $f$, $F\subseteq\tilde F$) thì với mọi $\hat x\in F$, $p^*_{\tilde F}\le p^*_F\le f(\hat x)$.
+
 **Giải nới lỏng.** Nới lỏng tuyến tính của (5.2) thay $x\in\{0,1\}^3$ bằng $0\le x_j\le1$. Cộng ba ràng buộc phủ: $(x_1+x_3)+(x_1+x_2)+(x_2+x_3)\ge3$, tức
 
 $$
@@ -2355,6 +2399,8 @@ Chiều của cận phụ thuộc chiều tối ưu: với bài cực đại, n�
 Mệnh đề 02.42 cho cận và tiêu chí dừng: khi $f(\hat x)-p^*_{\tilde F}$ nhỏ, phương án đã gần tối ưu. Nghiệm nới lỏng không được bảo đảm nguyên (Tình huống 02.3).
 
 ::: exercise Bài tập 02.8
+**Dữ kiện.** Dữ liệu của Ví dụ 02.24: $u=(-2,-1,1,2)$, $y=(-1,+1,-1,+1)$; ảnh được xếp vào nhóm $+1$ khi $u>\theta$; biên có dấu $r_i(\theta)=y_i(u_i-\theta)$; $\ell_{01}(r)=1$ khi $r\le0$ và $\ell_{01}(r)=0$ khi $r>0$. Hàm thay thế lồi của $\ell_{01}$ là một hàm lồi $\ell$ thỏa $\ell\ge\ell_{01}$ (Định nghĩa 02.35). Ví dụ 02.24: $\operatorname{err}(0)=2$ và $\operatorname{err}(-\tfrac32)=1$.
+
 Cho $\ell(r)=\log_2(1+e^{-r})$.
 
 (a) Chứng minh $\ell$ là hàm thay thế lồi của $\ell_{01}$.
@@ -2365,7 +2411,7 @@ Cho $\ell(r)=\log_2(1+e^{-r})$.
 :::
 
 ::: hint
-Ở (a), $\ell(r)=\log(1+e^{-r})/\log2$ và dùng Mệnh đề 01.9 của Bài 01. Ở (c), phép đổi $(u,y)\mapsto(-u,-y)$ hoán vị bốn mẫu.
+Ở (a), $\ell(r)=\log(1+e^{-r})/\log2$ và dùng Mệnh đề 01.9 của Bài 01: $\ell_e(r)=\log(1+e^{-r})$ có $\ell_e''(r)=e^r/(1+e^r)^2>0$. Ở (c), phép đổi $(u,y)\mapsto(-u,-y)$ hoán vị bốn mẫu.
 :::
 
 ::: solution
@@ -2398,6 +2444,13 @@ Các tổng được tính từ giá trị chưa làm tròn, nên có thể lệ
 :::
 
 ::: exercise Bài tập 02.9
+**Dữ kiện.** Mệnh đề 02.42, cho nới lỏng $(\mathrm P_{\tilde F})$ của $(\mathrm P_F)$, tức cùng mục tiêu $f$ và $F\subseteq\tilde F$:
+
+- (a) $p^*_{\tilde F}\le p^*_F$;
+- (b) nếu $\tilde F$ rỗng thì $F$ rỗng;
+- (c) nếu một nghiệm của $(\mathrm P_{\tilde F})$ thuộc $F$ thì nó là nghiệm của $(\mathrm P_F)$ và $p^*_F=p^*_{\tilde F}$;
+- (d) với mọi $\hat x\in F$, $p^*_{\tilde F}\le p^*_F\le f(\hat x)$.
+
 Bốn bối cảnh $A,B,C,D$ và bốn gói giá $1$: gói $1$ có $\{A,B\}$, gói $2$ có $\{B,C\}$, gói $3$ có $\{C,D\}$, gói $4$ có $\{D,A\}$. Viết nới lỏng tuyến tính của bài chọn gói rẻ nhất phủ đủ bốn bối cảnh, chứng minh giá trị của nó là $2$, và kết luận về bài nhị phân bằng Mệnh đề 02.42.
 :::
 
@@ -2541,6 +2594,8 @@ $$
 Theo Định lý 02.15, (6.2) là quy hoạch tuyến tính với biến $(w,b,\xi,v)$: $\min\mathbf 1^T\xi+\lambda\mathbf 1^Tv$ với $\xi_i\ge1-y_i(w^Tu_i+b)$, $\xi_i\ge0$, $-v\preceq w\preceq v$. Đây là phép thay ràng buộc bằng hình phạt của Nhận xét 02.43, nên cần kiểm tra lại ràng buộc gốc tại nghiệm.
 
 ::: example Ví dụ 02.29 (Hình phạt chuẩn một không bảo đảm số đặc trưng)
+**Dữ kiện.** Bốn mẫu ở đầu Mục 6: $u_1=(1,0)$, $u_2=(-1,0)$, $u_3=(0,1)$, $u_4=(0,-1)$, nhãn $y=(+1,-1,+1,-1)$; $H(w,b)=\sum_{i=1}^4\max\bigl(0,1-y_i(w^Tu_i+b)\bigr)$. Bài (6.1) là $\min H(w,b)$ với $\lVert w\rVert_0\le k$, ở đây $k=1$; bài (6.2) là $\min_{w,b}H(w,b)+\lambda\lVert w\rVert_1$.
+
 Với bốn mẫu ở đầu mục và $\lambda=1$, chứng minh (6.2) có nghiệm duy nhất $w=(1,1)$, $b=0$, giá trị $2$.
 
 **Bước 1 (cận cho từng cặp mẫu).** Mẫu $1$ và $2$ cho hai hạng bản lề $\max(0,\eta_1)+\max(0,\eta_2)$ với $\eta_1=1-w_1-b$ và $\eta_2=1-(-1)(-w_1+b)=1-w_1+b$, nên $\eta_1+\eta_2=2(1-w_1)$. Vì $\max(0,\eta)\ge0$ và $\max(0,\eta)\ge\eta$, tổng hai hạng không nhỏ hơn $\max(0,\eta_1+\eta_2)=2\max(0,1-w_1)$. Tương tự, mẫu $3$ và $4$ cho tổng không nhỏ hơn $2\max(0,1-w_2)$. Vậy
@@ -2577,6 +2632,13 @@ Tương đương giữa (6.2) và quy hoạch tuyến tính của nó là chính
 Mệnh đề 02.45 giải thích vì sao chọn đặc trưng chính xác không đưa được về một bài lồi duy nhất: lời giải chính xác cần liệt kê $\sum_{j\le k}\binom dj$ bài lồi. Ví dụ 02.29 giải thích vì sao mọi phương pháp thay thế phải được kiểm tra lại bằng phép đếm.
 
 ::: exercise Bài tập 02.10
+**Dữ kiện.** Các lớp trong bảng của Mục 6.1, với $f_i(x)=\tfrac12x^TP_ix+q_i^Tx+s_i$:
+
+- quy hoạch tuyến tính: mục tiêu $c^Tx$, ràng buộc $Gx\preceq h$, $Ax=b$;
+- quy hoạch bậc hai: mục tiêu $f_0$ với $P_0\succeq0$, cùng loại ràng buộc;
+- QCQP: mục tiêu $f_0$, ràng buộc $f_i(x)\le0$, $Ax=b$, với $P_i\succeq0$ cho mọi $i$;
+- quy hoạch hình học: mục tiêu là tổng đơn thức dương, ràng buộc tổng đơn thức dương $\le1$ và đơn thức $=1$, $x\succ0$.
+
 Dùng bảng của Mục 6.1 để xếp lớp, sau các phép biến đổi cần thiết, cho mỗi bài toán sau; nêu phép biến đổi và kết quả được dùng.
 
 (a) $\min_x\lVert Mx-g\rVert_\infty$ với $M\in\mathbb R^{k\times n}$, $g\in\mathbb R^k$.
@@ -2589,7 +2651,7 @@ Dùng bảng của Mục 6.1 để xếp lớp, sau các phép biến đổi c�
 :::
 
 ::: hint
-Với (c), thử hai điểm đối xứng trên biên. Với (d), dùng Mệnh đề 02.30(c).
+Với (c), thử hai điểm đối xứng trên biên. Với (d), dùng Mệnh đề 02.30(c): cực đại đơn thức $g$ có cùng tập nghiệm với cực tiểu đơn thức $1/g$.
 :::
 
 ::: solution
@@ -2893,7 +2955,7 @@ Một người lập mô hình đưa ra hai cải dạng.
 
 (ii) Bài $\min_{-1\le x\le1}x^2-\lvert x\rvert$ được viết thành $\min_{x,t}x^2-t$ với $t\ge x$, $t\ge-x$, $-1\le x\le1$.
 
-(a) Giải hai bài gốc. (b) Chỉ ra hai bài cải dạng không bị chặn. (c) Với mỗi trường hợp, chỉ ra dòng nào của bảng kiểm ở Mục 6.1 bị vi phạm và sửa lại.
+(a) Giải hai bài gốc. (b) Chỉ ra hai bài cải dạng không bị chặn. (c) Với mỗi trường hợp, chỉ ra điều kiện nào của bảng kiểm ở Mục 6.1 bị vi phạm và sửa lại. Dòng "Thêm biến phụ" của bảng kiểm yêu cầu: bài toán là cực tiểu và mọi hệ số trước cực đại không âm; ràng buộc biến phụ có đủ mọi nhánh của cực đại.
 :::
 
 ::: hint
@@ -2927,7 +2989,7 @@ Cho $\ell(r)=\max(0,1-r)^2$.
 :::
 
 ::: hint
-Nếu $g\ge0$ lồi thì $g^2$ lồi: bình phương hai vế không âm của (7.1) rồi dùng tính lồi của $s\mapsto s^2$.
+Nếu $g\ge0$ lồi thì $g^2$ lồi: bình phương hai vế không âm của (7.1), $g(\theta x+(1-\theta)y)\le\theta g(x)+(1-\theta)g(y)$, rồi dùng tính lồi của $s\mapsto s^2$.
 :::
 
 ::: solution
@@ -2947,7 +3009,7 @@ bước cuối dùng tính lồi của $s^2$ (Ví dụ 01.11(a) của Bài 01).
 - Nếu $r\le0$ thì $g(r)\ge1$ và $\ell(r)\ge1$.
 - Nếu $r>0$ thì $\ell(r)\ge0$.
 
-**(b) Hai chiều của (1.3).** Dùng Mệnh đề 02.6 với $T(s)=s$. Đặt $m_i=y_i(w^Tu_i+b)$.
+**(b) Hai chiều của (1.3).** Dùng Mệnh đề 02.6 với $T(s)=s$. Theo (1.3), cần hai chiều: giá trị của bài mới tại $\varphi(w,b)$ không lớn hơn giá trị bài gốc tại $(w,b)$, và giá trị bài gốc tại $\psi(w,b,\xi)$ không lớn hơn giá trị bài mới tại $(w,b,\xi)$; khi đó hai bài có cùng giá trị tối ưu và nghiệm chuyển qua lại. Đặt $m_i=y_i(w^Tu_i+b)$.
 
 - Ánh xạ $\varphi(w,b)=(w,b,\xi)$ với $\xi_i=\max(0,1-m_i)$ cho điểm khả thi với cùng giá trị.
 - Ngược lại, nếu $(w,b,\xi)$ khả thi thì $\xi_i\ge\max(0,1-m_i)\ge0$, và vì bình phương tăng trên $[0,\infty)$, $\xi_i^2\ge\ell(m_i)$. Vậy giá trị của bài gốc tại $\psi(w,b,\xi)=(w,b)$ không lớn hơn.
@@ -2956,6 +3018,8 @@ bước cuối dùng tính lồi của $s^2$ (Ví dụ 01.11(a) của Bài 01).
 :::
 
 ::: exercise Bài tập 02.14 (Tính toán: đường đi nghiệm của LASSO)
+**Dữ kiện.** Tình huống 02.1 có bốn lần chạy $(x_1,x_2,x_3;\,y)$: $(+1,+1,+1;\,3)$, $(+1,-1,-1;\,1{,}5)$, $(-1,+1,-1;\,-1{,}5)$, $(-1,-1,+1;\,-2)$. LASSO là $\min_{b,w}\lVert y-b\mathbf 1-Xw\rVert_2^2+\lambda\lVert w\rVert_1$, hệ số chặn không bị phạt. Vì các cột $\mathbf 1,x_1,x_2,x_3$ đôi một trực giao với bình phương chuẩn $4$, mục tiêu bằng $4(b-\tfrac14)^2+\sum_j\bigl[4(w_j-c_j)^2+\lambda\lvert w_j\rvert\bigr]$ với $c=(2,\tfrac12,\tfrac14)$.
+
 Với dữ liệu của Tình huống 02.1:
 
 (a) xác định các khoảng của $\lambda>0$ ứng với mô hình giữ lại $3$, $2$, $1$ và $0$ thiết lập;

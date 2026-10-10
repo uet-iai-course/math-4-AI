@@ -261,8 +261,8 @@ Nghiệm của bài con chỉ là ứng viên cho bước. Điểm $x^k+d^k$ th�
 :::
 
 ::: exercise Bài tập 04.1
-- (a) Viết hệ (1.1) cho $f(x)=x_1^2+x_1x_2+x_2^2-3x_1$ trên $\mathbb R^2$, giải và chứng minh nghiệm thu được là cực tiểu toàn cục.
-- (b) Viết hàm Lagrange và hệ (1.2) cho bài $\min\tfrac12(u_1^2+4u_2^2)$ với $u_1+u_2=5$; giải hệ.
+- (a) Viết hệ (1.1), $\nabla f(x^*)=0$, cho $f(x)=x_1^2+x_1x_2+x_2^2-3x_1$ trên $\mathbb R^2$, giải và chứng minh nghiệm thu được là cực tiểu toàn cục.
+- (b) Viết hàm Lagrange và hệ (1.2), $\nabla F(u^*)+A^T\nu^*=0$, $Au^*=b$, cho bài $\min\tfrac12(u_1^2+4u_2^2)$ với $u_1+u_2=5$; giải hệ.
 - (c) Nghiệm $\nu^*$ ở câu (b) có dấu gì; điều đó có mâu thuẫn với Mệnh đề 04.2 không.
 :::
 
@@ -452,6 +452,10 @@ Dòng thứ hai dùng Bước 2. Thay $d=-W^{-1}g$ được $d^TWd=g^TW^{-1}WW^{
 Mệnh đề 04.9 biến việc chọn hướng thành việc giải hệ tuyến tính (2.1). Hệ này là điều kiện KKT của một bài con không ràng buộc, đúng khuôn của Nhận xét 04.5: bài gốc theo $x$, bài con theo $d$, và hệ của bài con giải được bằng một phép giải hệ tuyến tính. Với $W=I$, hướng gradient là $-g$, ngược chiều gradient. Phần (c) cho mức giảm mà mô hình dự báo; đại lượng này sẽ trở thành tiêu chí dừng của Newton ở Mục 3.
 
 ::: example Ví dụ 04.4 (Hướng gradient của VD1 và độ tin cậy của mô hình)
+**Dữ kiện.**
+
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $\nabla f(x)=(3x_1,7x_2)^T$, Hessian $\operatorname{diag}(3,7)$, $x^0=(2,4)^T$, $f(x^0)=62$, $g=\nabla f(x^0)=(6,28)^T$. Mô hình bậc hai tại $x^0$: $Q_W(d)=f(x^0)+g^Td+\tfrac12d^TWd$; với $W=I$, hệ (2.1) $Wd=-g$ cho $d_G=-g$.
+
 **Tính hướng.**
 
 Với $g=(6,28)^T$, hệ (2.1) với $W=I$ cho $d_G=(-6,-28)^T$. Theo Mệnh đề 04.9(b), $g^Td_G=-\lVert g\rVert_2^2=-(36+784)=-820<0$.
@@ -472,6 +476,10 @@ Ví dụ 04.4 là một trường hợp của Nhận xét 04.5: nghiệm của b
 Hướng giảm chỉ bảo đảm $f$ giảm khi $t$ đủ nhỏ (Mệnh đề 04.7(b)). Trên VD1 có thể tính chính xác "đủ nhỏ" là bao nhiêu, và phép tính đó gợi ra một phép kiểm dùng được cho hàm tổng quát.
 
 ::: example Ví dụ 04.5 (VD1 trên tia cập nhật)
+**Dữ kiện.**
+
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$, $f(x^0)=62$, $g=(6,28)^T$; hướng gradient $d_G=(-6,-28)^T$ với $g^Td_G=-820$ (Ví dụ 04.4).
+
 **Lập hàm một biến.**
 
 Đặt $h(t)=f(x^0+td_G)$ với $d_G=(-6,-28)^T$:
@@ -540,7 +548,7 @@ Dãy thử $\beta^j$ giảm về $0$, nên có chỉ số nhỏ nhất $j$ với
 ::: example Ví dụ 04.6 (Quay lui Armijo trên VD1)
 **Dữ kiện.**
 
-$x^0=(2,4)^T$, $d=d_G=(-6,-28)^T$, $f(x^0)=62$, $g^Td=-820$, $\alpha=\tfrac1{10}$, $\beta=\tfrac12$. Ngưỡng Armijo là $62+\tfrac1{10}t(-820)=62-82t$.
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$, $d=d_G=(-6,-28)^T$, $f(x^0)=62$, $g^Td=-820$, $\alpha=\tfrac1{10}$, $\beta=\tfrac12$. Ngưỡng Armijo (2.2) là $62+\tfrac1{10}t(-820)=62-82t$. Dọc tia, $h(t)=f(x^0+td_G)=62-820t+2798t^2$ (Ví dụ 04.5).
 
 **Các lần thử.**
 
@@ -602,6 +610,10 @@ Tiêu chí dừng $\lVert g\rVert_2\le\varepsilon_g$ được kiểm trước kh
 Quay lui chọn được bước, nhưng hướng $-g$ chưa tính đến hình dạng của $f$. Trên VD1, độ cong theo $x_2$ gấp $\tfrac73$ lần độ cong theo $x_1$. Ví dụ sau giữ bước cố định để tách riêng tác động của hướng.
 
 ::: example Ví dụ 04.7 (Giảm gradient với bước cố định trên VD1)
+**Dữ kiện.**
+
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $\nabla f(x)=(3x_1,7x_2)^T$, $x^0=(2,4)^T$, $f(x^0)=62$. Ví dụ 04.6: quay lui Armijo nhận bước $t=\tfrac14$, cho $x^1=(\tfrac12,-3)^T$ với $f(x^1)=\tfrac{255}8$.
+
 **Công thức lặp.**
 
 Với $g=(3x_1,7x_2)^T$ và bước cố định $t$, cập nhật $x^+=x-tg$ cho
@@ -662,7 +674,7 @@ Cho $f(x)=x_1^2+4x_2^2$ trên $\mathbb R^2$ và $x^0=(2,1)^T$.
 
 - (a) Tính $g=\nabla f(x^0)$, hướng gradient $d_G$ và $g^Td_G$.
 - (b) Với $\alpha=\tfrac14$, $\beta=\tfrac12$, chạy quay lui Armijo theo $d_G$: lập bảng các lần thử, nêu bước được nhận và điểm mới.
-- (c) Xác định chính xác tập các bước thỏa (2.2) và đối chiếu với kết quả (b).
+- (c) Xác định chính xác tập các bước thỏa (2.2), $f(x+td)\le f(x)+\alpha t\,g^Td$, và đối chiếu với kết quả (b).
 :::
 
 ::: hint
@@ -814,7 +826,7 @@ Mệnh đề 04.15 nối hai cách nhìn của cùng một hướng: hướng d�
 ::: example Ví dụ 04.9 (Hướng dốc nhất trên VD1 với trọng số theo độ cong)
 **Dữ kiện.**
 
-$g=(6,28)^T$ tại $x^0=(2,4)^T$; chọn $W=\operatorname{diag}(3,7)$, trùng Hessian của VD1. Lựa chọn này là một quyết định mô hình; hệ KKT không bắt buộc nó.
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$, $f(x^0)=62$, nghiệm $x^*=0$; $g=(6,28)^T$ tại $x^0$; chọn $W=\operatorname{diag}(3,7)$, trùng Hessian của VD1. Với $W\succ0$: $d$ giải $Wd=-g$ (2.1); $\lVert g\rVert_{W,*}=\sqrt{g^TW^{-1}g}$ và $v_W=-\frac{W^{-1}g}{\lVert g\rVert_{W,*}}$ (Định nghĩa 04.14, Mệnh đề 04.15); mức giảm mô hình là $\tfrac12d^TWd$ (Mệnh đề 04.9(c)). Lựa chọn này là một quyết định mô hình; hệ KKT không bắt buộc nó.
 
 **Tính.**
 
@@ -846,6 +858,10 @@ Hình giải thích vì sao Ví dụ 04.9 kết thúc sau một bước. Phép �
 Phép trừ trung bình của từng cột thì kéo theo một phép đổi biến affine giữa trọng số và hệ số chặn, nên chỉ cho bài tương đương khi mô hình có hệ số chặn không bị chính quy hóa. Với mô hình phi tuyến như mạng sâu, chuẩn hóa dữ liệu không còn là một phép đổi biến của tham số, và các bộ tối ưu có tốc độ học thích nghi theo từng tham số dùng một ma trận đường chéo thay đổi theo lượt (Goodfellow, Bengio và Courville 2016, mục 8.5, tr. 306–310).
 
 ::: exercise Bài tập 04.3
+**Dữ kiện.**
+
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $\nabla f(x)=(3x_1,7x_2)^T$; Ví dụ 04.6 cho $x^1=(\tfrac12,-3)^T$ với $f(x^1)=\tfrac{255}8$. Mô hình bậc hai tại $x^1$: $Q_W(d)=f(x^1)+g^Td+\tfrac12d^TWd$, có điều kiện dừng (2.1) $Wd=-g$. Chuẩn có trọng số $\lVert d\rVert_W^2=d^TWd$; chuẩn đối ngẫu $\lVert g\rVert_{W,*}=\sqrt{g^TW^{-1}g}$; hướng dốc nhất chuẩn hóa $v_W=-\frac{W^{-1}g}{\lVert g\rVert_{W,*}}$ (Định nghĩa 04.14, Mệnh đề 04.15).
+
 Tại điểm $x^1=(\tfrac12,-3)^T$ của VD1, nhận được sau lượt quay lui ở Ví dụ 04.6:
 
 - (a) tính $g=\nabla f(x^1)$;
@@ -982,6 +998,10 @@ Bổ đề 04.20 có hai hệ quả trực tiếp:
 2. với $d=-g$, vế phải của (2.2) là $f(x)-\alpha t\lVert g\rVert_2^2$, nên mọi bước $t\le\tfrac1L$ thỏa (2.2) khi $\alpha\le\tfrac12$, điều Bổ đề 04.23 dùng.
 
 ::: example Ví dụ 04.10 (Bước cố định $1/L$ trên VD1)
+**Dữ kiện.**
+
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $\nabla f(x)=(3x_1,7x_2)^T$, $x^0=(2,4)^T$, $f(x^0)=62$, $g=\nabla f(x^0)=(6,28)^T$. Gradient của VD1 là $L$-Lipschitz với $L=\lambda_{\max}(\operatorname{diag}(3,7))=7$. Bổ đề 04.20 với $t=\tfrac1L$: $f(x-\tfrac1Lg)\le f(x)-\frac1{2L}\lVert g\rVert_2^2$.
+
 **Tính.**
 
 $L=7$, $g=(6,28)^T$, $\lVert g\rVert_2^2=820$. Bước $x^1=x^0-\tfrac17g=(2-\tfrac67,\,4-4)^T=(\tfrac87,0)^T$, với $f(x^1)=\tfrac12\cdot3\cdot\tfrac{64}{49}=\tfrac{96}{49}\approx1{,}96$.
@@ -1091,6 +1111,10 @@ Ghép hai bước và chia cho $k$ được (2.4). Điều kiện $\frac{LR^2}{2
 Bổ đề 04.20 so $f(x^{k+1})$ với $f(x^k)$; định lý so $f(x^k)$ với $f^*$, nhờ thêm tính lồi và sự tồn tại của $x^*$. Cận cùng dạng có trong Beck (2017, Định lý 10.21); Boyd và Vandenberghe (2004, mục 9.3.1) chỉ chứng minh trường hợp lồi mạnh.
 
 ::: example Ví dụ 04.11 (Cận $O(1/k)$ trên VD1)
+**Dữ kiện.**
+
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$, nghiệm $x^*=0$, $f^*=0$, $L=7$. Cận (2.4) cho bước $\tfrac1L$: $f(x^k)-f^*\le\frac{L\lVert x^0-x^*\rVert_2^2}{2k}$. Ví dụ 04.10: bước $t=\tfrac17$ cho $x^1=(\tfrac87,0)^T$ với $f(x^1)=\tfrac{96}{49}$.
+
 **Cận.**
 
 $x^*=0$, $\lVert x^0-x^*\rVert_2^2=4+16=20$, $L=7$. Cận (2.4) là $\frac{7\cdot20}{2k}=\frac{70}k$; để sai số không quá $0{,}01$, cận yêu cầu $k\ge7000$.
@@ -1167,6 +1191,10 @@ Cộng theo $j=0,\ldots,k-1$ và dùng $f(x^{j+1})\le f(x^j)$, từ (2.2), như 
 :::
 
 ::: example Ví dụ 04.12 (Quay lui với $\alpha=\beta=\tfrac12$ trên VD1)
+**Dữ kiện.**
+
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$, $f(x^0)=62$, $d_G=(-6,-28)^T$, $\lVert g\rVert_2^2=820$, $L=7$, $x^*=0$, $\lVert x^0-x^*\rVert_2^2=20$. Dọc tia, $f(x^0+td_G)=62-820t+2798t^2$ (Ví dụ 04.5), bằng $2040$, $\tfrac{703}2$, $\tfrac{255}8$ tại $t=1$, $\tfrac12$, $\tfrac14$. Điều kiện Armijo (2.2): $f(x+td)\le f(x)+\alpha t\,g^Td$. Bổ đề 04.23: bước được nhận thỏa $t\ge t_{\min}=\min\{1,\beta/L\}$. Định lý 04.24 (với $\alpha=\tfrac12$): $f(x^k)-f^*\le\frac{\lVert x^0-x^*\rVert_2^2}{2t_{\min}k}$.
+
 **Bước được nhận tại $x^0$.**
 
 Ngưỡng là $62-\tfrac12\cdot820t=62-410t$. Các lần thử: $t=1$ cho $2040>-348$; $t=\tfrac12$ cho $\tfrac{703}2>-143$; $t=\tfrac14$ cho $\tfrac{255}8>-\tfrac{81}2$; ba bước bị loại. $t=\tfrac18$ cho điểm $(\tfrac54,\tfrac12)^T$ với $f=\tfrac12(\tfrac{75}{16}+\tfrac74)=\tfrac{103}{32}$, không vượt ngưỡng $\tfrac{43}4$, được nhận.
@@ -1283,6 +1311,10 @@ Cận tuyến tính gần thực tế hơn vì dùng thêm $\mu=3$, nhưng mọi
 Với mạng sâu, mất mát không lồi và gradient thường không Lipschitz trên toàn không gian tham số, nên các định lý của mục này không áp dụng; Bài 05b xét các dạng hội tụ yếu hơn cho trường hợp đó.
 
 ::: exercise Bài tập 04.4
+**Dữ kiện.**
+
+VD1: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $\nabla f(x)=(3x_1,7x_2)^T$, $x^0=(2,4)^T$, $f(x^0)=62$; giảm gradient với bước cố định $t$ là $x^{k+1}=x^k-t\nabla f(x^k)$. Nhận xét 04.13: với hàm bậc hai có các độ cong $\lambda_{\min}=3$, $\lambda_{\max}=7$, bước cố định tối ưu là $t=\frac2{\lambda_{\min}+\lambda_{\max}}$. Ví dụ 04.11: với $t=\tfrac17$ cần $6$ bước để $f(x^k)\le0{,}01$.
+
 Trên VD1 với bước cố định $t$:
 
 - (a) chứng minh rằng với $t>\tfrac27$ dãy $x^k$ phân kỳ, và với $\tfrac23<t$ cả hai tọa độ phân kỳ;
@@ -1334,7 +1366,7 @@ Trực giác, chưa phải định nghĩa: tại mỗi điểm, thay $f$ bằng 
 ::: example Ví dụ 04.13 (Mô hình bậc hai của VD2 tại $s^0=\tfrac14$)
 **Dữ kiện.**
 
-$\varphi(\tfrac14)=\tfrac14-\log\tfrac14=\tfrac14+\log4\approx1{,}6363$; $g=\varphi'(\tfrac14)=1-4=-3$; $H=\varphi''(\tfrac14)=16$.
+VD2: $\varphi(s)=s-\log s$ trên $s>0$, $\varphi'(s)=1-\tfrac1s$, $\varphi''(s)=\tfrac1{s^2}$, điểm đầu $s^0=\tfrac14$, nghiệm $s^*=1$ với $\varphi(1)=1$. $\varphi(\tfrac14)=\tfrac14-\log\tfrac14=\tfrac14+\log4\approx1{,}6363$; $g=\varphi'(\tfrac14)=1-4=-3$; $H=\varphi''(\tfrac14)=16$.
 
 **Mô hình.**
 
@@ -1400,6 +1432,10 @@ Hai cách đọc (a) và (d) là hai con đường tới cùng một hệ. Cách
 Hướng Newton giữ hai tính chất của hướng gradient ở Mệnh đề 04.9, tính duy nhất và tính giảm, nhưng dùng ma trận thay đổi theo điểm thay cho ma trận cố định. Mỗi lượt vì vậy phải tính Hessian và giải một hệ $n\times n$.
 
 ::: example Ví dụ 04.14 (Một bước Newton trên VD2)
+**Dữ kiện.**
+
+VD2: $\varphi(s)=s-\log s$ trên $s>0$, $\varphi'(s)=1-\tfrac1s$, $\varphi''(s)=\tfrac1{s^2}$. Tại $s^0=\tfrac14$: $g=-3$, $H=16$; mô hình $q(s)=\varphi(\tfrac14)-3(s-\tfrac14)+8(s-\tfrac14)^2$ có đáy tại $\tfrac7{16}$ (Ví dụ 04.13). Hệ Newton (3.1): $Hd=-g$.
+
 **Hệ Newton.**
 
 $16d=3$, nên $d=\tfrac3{16}$ và $s^1=s^0+d=\tfrac7{16}$, đúng đáy parabol của Ví dụ 04.13.
@@ -1489,6 +1525,10 @@ Phần (c) gọi là tính bất biến affine của phương pháp Newton. Nế
 Giảm gradient không có tính chất này: Ví dụ 04.9 và Nhận xét 04.16 cho thấy đổi biến $x=W^{-1/2}y$ biến giảm gradient thành một phương pháp khác. Tính bất biến affine là lý do Mục 6 tìm một giả thiết về độ cong không phụ thuộc hệ tọa độ.
 
 ::: example Ví dụ 04.15 (Ba phép trừ trên VD2)
+**Dữ kiện.**
+
+VD2: $\varphi(s)=s-\log s$ trên $s>0$, $s^0=\tfrac14$, $g=-3$, $H=16$; hướng Newton $d=\tfrac3{16}$ và $s^1=\tfrac7{16}$ (Ví dụ 04.14); nghiệm $s^*=1$ với $\varphi(1)=1$. Độ giảm Newton thỏa $\delta^2=Hd^2=g^2/H$, và mức giảm mô hình là $\tfrac12\delta^2$. Ví dụ 04.9: với VD1, $f(x)=\tfrac12(3x_1^2+7x_2^2)$, và $W=\operatorname{diag}(3,7)$, bước đầy đủ từ $x^0=(2,4)^T$ tới đúng $x^*=0$, với mức giảm mô hình $62$.
+
 **Giảm mô hình.**
 
 $\delta^2=Hd^2=16\cdot\tfrac9{256}=\tfrac9{16}$, nên $\delta=\tfrac34$ và giảm mô hình $\tfrac12\delta^2=\tfrac9{32}=0{,}28125$.
@@ -1623,6 +1663,10 @@ Nếu $\lVert e\rVert_2\le\min\{\vartheta,\mu/L_H\}$ thì (3.2) cho $\lVert x^+-
 Định lý 04.34 đổi phạm vi lấy tốc độ: tốc độ bậc hai thay cho tốc độ tuyến tính của Định lý 04.26, nhưng chỉ khi điểm đầu gần nghiệm. Để có tốc độ đó, phương pháp phải tính Hessian ở mỗi bước, và định lý cần thêm tính Lipschitz của Hessian, một giả thiết về đạo hàm bậc ba.
 
 ::: example Ví dụ 04.16 (Hội tụ bậc hai trên VD2)
+**Dữ kiện.**
+
+VD2: $\varphi(s)=s-\log s$ trên $s>0$, $\varphi'(s)=1-\tfrac1s$, $\varphi''(s)=\tfrac1{s^2}$, điểm đầu $s^0=\tfrac14$, nghiệm $s^*=1$. Hội tụ bậc hai (Định nghĩa 04.33): có $C>0$ để $\lvert s^{k+1}-s^*\rvert\le C\lvert s^k-s^*\rvert^2$ từ một chỉ số trở đi.
+
 **Công thức một bước.**
 
 Với $\varphi'(s)=1-\tfrac1s$ và $\varphi''(s)=\tfrac1{s^2}$, bước đầy đủ là
@@ -1655,7 +1699,7 @@ Với $s^0\in(0,2)$, $\lvert1-s^0\rvert<1$, nên $\lvert1-s^k\rvert=\lvert1-s^0\
 
 **Kiểm tra lại.**
 
-$1-\tfrac{175}{256}=\tfrac{81}{256}=(\tfrac9{16})^2$. Định lý 04.34 trên $B=[\tfrac7{16},\tfrac{25}{16}]$, hình cầu bán kính $\tfrac9{16}$ quanh $1$, có $\mu=(\tfrac{16}{25})^2\approx0{,}41$ và $L_H=\max2/s^3=2(\tfrac{16}7)^3\approx23{,}9$, nên $C\approx29$: cận (3.2) đúng nhưng rất bi quan so với $C=1$ thực tế.
+$1-\tfrac{175}{256}=\tfrac{81}{256}=(\tfrac9{16})^2$. Định lý 04.34 khẳng định: trên hình cầu $B$ quanh $x^*$ mà ở đó $\nabla^2f\succeq\mu I$ và Hessian $L_H$-Lipschitz, bước Newton đầy đủ thỏa (3.2), $\lVert x^+-x^*\rVert_2\le\frac{L_H}{2\mu}\lVert x-x^*\rVert_2^2$, tức $C=\frac{L_H}{2\mu}$. Áp dụng định lý trên $B=[\tfrac7{16},\tfrac{25}{16}]$, hình cầu bán kính $\tfrac9{16}$ quanh $1$, có $\mu=(\tfrac{16}{25})^2\approx0{,}41$ và $L_H=\max2/s^3=2(\tfrac{16}7)^3\approx23{,}9$, nên $C\approx29$: cận (3.2) đúng nhưng rất bi quan so với $C=1$ thực tế.
 :::
 
 Định lý 04.34 cần điểm đầu gần nghiệm. Kết quả toàn cục dưới đây ghép quay lui với hội tụ bậc hai; chứng minh dài và được dẫn nguồn.
@@ -1706,6 +1750,10 @@ Với mạng sâu, số tham số lên tới hàng triệu hoặc hơn, nên kh�
 Phương pháp không lập Hessian (Hessian-free) của Martens (2010) giải gần đúng một hệ dạng (3.1) bằng gradient liên hợp (conjugate gradient). Phương pháp này chỉ cần tích của ma trận Gauss–Newton, một xấp xỉ nửa xác định dương của Hessian, với vector; Goodfellow, Bengio và Courville (2016, mục 8.6, tr. 310–317) trình bày nhóm phương pháp này.
 
 ::: exercise Bài tập 04.5
+**Dữ kiện.**
+
+VD2: $\varphi(s)=s-\log s$ trên $s>0$, $\varphi'(s)=1-\tfrac1s$, $\varphi''(s)=\tfrac1{s^2}$, nghiệm $s^*=1$. Thuật toán 04.2: tại $s$ tính $g$, $H$, hướng Newton $d=-g/H$ và $\delta^2=-g\,d$; quay lui từ $t=1$, nhân $t$ với $\beta$ cho tới khi $s+td>0$ và $\varphi(s+td)\le\varphi(s)+\alpha t\,g\,d$; cập nhật $s^+=s+td$.
+
 Chạy Thuật toán 04.2 trên VD2 từ $s^0=3$ với $\alpha=\tfrac1{10}$, $\beta=\tfrac12$.
 
 - (a) Tính $g$, $H$, hướng Newton $d$ và $\delta^2$ tại $s^0$.
@@ -1776,7 +1824,7 @@ $\lvert w^0-w^*\rvert\approx0{,}6931$, $\lvert w^1-w^*\rvert\approx0{,}02648$, $
 
 **Kiểm tra lại.**
 
-$\log\tfrac{32}{27}=\log32-\log27\approx3{,}4657-3{,}2958=0{,}1699$. Ở bài này giảm mô hình $0{,}1667$ gần sai số mục tiêu $0{,}1699$, khác với VD2 ở Ví dụ 04.15.
+$\log\tfrac{32}{27}=\log32-\log27\approx3{,}4657-3{,}2958=0{,}1699$. Ở bài này giảm mô hình $0{,}1667$ gần sai số mục tiêu $0{,}1699$, khác với VD2 ở Ví dụ 04.15, nơi giảm mô hình là $0{,}28125$ còn sai số mục tiêu là $0{,}63629$.
 :::
 
 **Chuỗi suy luận của mục.**
@@ -1804,6 +1852,10 @@ tức $A=[1\ \ 1]$, $b=14$, $n=2$, $p=1$. Bài này bậc hai, nên hệ (1.2) g
 ### 4.1 Hướng khả thi
 
 ::: example Ví dụ 04.17 (VD3: nghiệm tham chiếu và hướng Newton không ràng buộc)
+**Dữ kiện.**
+
+VD3: $\min F(u)=\tfrac12(2u_1^2+5u_2^2)$ với $u_1+u_2=14$, tức $A=[1\ \ 1]$, $b=14$; $\nabla F(u)=(2u_1,5u_2)^T$, $\nabla^2F=\operatorname{diag}(2,5)$. Hệ (1.2): $\nabla F(u^*)+A^T\nu^*=0$, $Au^*=b$.
+
 **Nghiệm tham chiếu.**
 
 Hàm Lagrange $F(u)+\nu(u_1+u_2-14)$ cho hệ (1.2):
@@ -1931,6 +1983,10 @@ Mệnh đề 04.37 với $Ad=0$. $\square$
 **Trong học máy.** Khi các tham số của một mô hình phải thỏa một đẳng thức tuyến tính, như trọng số trộn $w_1+\cdots+w_K=1$ hay một ràng buộc cân bằng giữa các nhóm dữ liệu, mỗi bước Newton khả thi giải hệ (4.1) với $H$ là Hessian của mất mát. Về lý thuyết, ràng buộc được giữ chính xác ở mọi bước, không phải phạt hay chiếu lại sau mỗi bước; Nhận xét 04.42 bàn ảnh hưởng của sai số máy. Nhân tử $\eta$ hội tụ về $\nu^*$, đo độ nhạy của mất mát tối ưu theo vế phải $b$ (Hệ quả 03.24); Tình huống 04.2 đọc nhân tử này cho bài trọng số trộn.
 
 ::: example Ví dụ 04.18 (Một bước Newton khả thi trên VD3)
+**Dữ kiện.**
+
+VD3: $F(u)=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ \ 1]$, $b=14$, $\nabla F(u)=(2u_1,5u_2)^T$; nghiệm $u^*=(10,4)^T$, $\nu^*=-20$, $F^*=140$; điểm khả thi $u^0=(16,-2)^T$ với $F(u^0)=266$ (Ví dụ 04.17). Hệ Newton khả thi (4.1): $\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$.
+
 **Lập hệ.**
 
 Tại $u^0=(16,-2)^T$: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$. Hệ (4.1) gồm ba phương trình:
@@ -2029,6 +2085,10 @@ Mệnh đề 04.41 cho hai cách tính cùng một bước. Hệ khối (4.1) gi
 Phần (d) còn cho một kết luận lý thuyết: Newton khả thi chính là Newton không ràng buộc trên hàm rút gọn $\psi$. Mọi kết quả của Mục 3 cho bài không ràng buộc, như Định lý 04.34, áp dụng được cho bài có đẳng thức qua $\psi$; Mục 6 dùng điều này cho cận sai số.
 
 ::: example Ví dụ 04.19 (Khử biến trên VD3)
+**Dữ kiện.**
+
+VD3: $F(u)=\tfrac12(2u_1^2+5u_2^2)$, ràng buộc $u_1+u_2=14$; tại $u^0=(16,-2)^T$: $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$. Ví dụ 04.18: hướng Newton khả thi $d=(-6,6)^T$, $\delta_{eq}^2=d^THd=252$. Hệ rút gọn (4.2): $N^THN\,\Delta z=-N^Tg$, $d=N\Delta z$, với các cột của $N$ là một cơ sở của $\ker A$.
+
 **Tham số hóa.**
 
 $\hat u=(14,0)^T$ thỏa $A\hat u=14$; $N=(-1,1)^T$ thỏa $AN=0$. Điểm khả thi $u(z)=(14-z,z)^T$, và $u^0=(16,-2)^T$ ứng với $z^0=-2$.
@@ -2078,6 +2138,10 @@ Ghép bài con, quy tắc nhận bước trên $F$ và tiêu chí dừng theo $\
 **Trong học máy.** Bài phân bổ tài nguyên $\min\sum_if_i(x_i)$ với $\sum_ix_i=b$, ví dụ phân bổ một ngân sách tính toán cho các mô hình con, có $A=\mathbf 1^T$ và Hessian đường chéo với phần tử $h_i=f_i''(x_i)$ (MIT 6.079, bài giảng 17, tr. 5). Khi mỗi $f_i$ có $f_i''>0$, thì $h_i>0$ và hệ (4.1) giải được bằng một phép khử khối: $d_i=-(g_i+\eta)/h_i$, rồi $\eta$ xác định từ $\sum_id_i=0$. Chi phí tỷ lệ với $n$ thay vì $n^3$.
 
 ::: exercise Bài tập 04.7
+**Dữ kiện.**
+
+VD3: $\min F(u)=\tfrac12(2u_1^2+5u_2^2)$ với $u_1+u_2=14$; $\nabla F(u)=(2u_1,5u_2)^T$, $H=\operatorname{diag}(2,5)$, $A=[1\ \ 1]$. Hệ (4.1): $\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$; hệ rút gọn (4.2): $N^THN\,\Delta z=-N^Tg$, $d=N\Delta z$, với các cột của $N$ là một cơ sở của $\ker A$. Ví dụ 04.18: tại $u^0=(16,-2)^T$, $d=(-6,6)^T$ và $\eta=-20$.
+
 Với VD3 tại điểm khả thi $u=(8,6)^T$:
 
 - (a) lập hệ (4.1), giải $d$ và $\eta$, kiểm $Ad=0$, tính $u+d$ và mức giảm của $F$;
@@ -2110,8 +2174,8 @@ $\nabla F(10,4)-20(1,1)^T=(20-20,20-20)^T=0$.
 ::: exercise Bài tập 04.8
 Xét $\min F(u)=\tfrac12(u_1^2+2u_2^2+2u_3^2)$ với $u_1+u_2+u_3=5$, điểm đầu khả thi $u^0=(5,0,0)^T$.
 
-- (a) Giải hệ (4.1) tại $u^0$.
-- (b) Với $N=\begin{bmatrix}-1&-1\\1&0\\0&1\end{bmatrix}$, kiểm $AN=0$, lập và giải (4.2), so với (a).
+- (a) Giải hệ (4.1): $\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$ tại $u^0$.
+- (b) Với $N=\begin{bmatrix}-1&-1\\1&0\\0&1\end{bmatrix}$, kiểm $AN=0$, lập và giải hệ rút gọn (4.2): $N^THN\,\Delta z=-N^Tg$, $d=N\Delta z$, với các cột của $N$ là một cơ sở của $\ker A$; so với (a).
 - (c) Tính $F(u^0)$, $F(u^0+d)$ và $\tfrac12\delta_{eq}^2$.
 :::
 
@@ -2171,7 +2235,7 @@ Khác với Mục 4, nhân tử $\nu$ ở đây là một phần của điểm l
 ::: example Ví dụ 04.20 (Phần dư của VD3 tại một điểm chưa khả thi)
 **Dữ kiện.**
 
-$u=(1,8)^T$, ước lượng ban đầu $\nu=4$.
+VD3: $F(u)=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ \ 1]$, $b=14$. Phần dư (Định nghĩa 04.43): $r_d=\nabla F(u)+A^T\nu$, $r_p=Au-b$. Điểm $u=(1,8)^T$, ước lượng ban đầu $\nu=4$.
 
 **Tính.**
 
@@ -2269,9 +2333,13 @@ Mệnh đề 04.44 nói rằng phương pháp mới chứa Newton khả thi làm
 Phần (c) cho thấy sai lệch ràng buộc co đúng theo hệ số $1-t$, bất kể $F$. Nếu một bước $t=1$ được nhận, điểm lặp khả thi từ đó về sau, và theo (b) hướng trùng hướng Newton khả thi.
 
 ::: example Ví dụ 04.21 (Một bước Newton cho phần dư trên VD3)
+**Dữ kiện.**
+
+VD3: $F(u)=\tfrac12(2u_1^2+5u_2^2)$, $\nabla F(u)=(2u_1,5u_2)^T$, $u_1+u_2=14$; nghiệm $u^*=(10,4)^T$, $\nu^*=-20$, $F^*=140$. Tại $u=(1,8)^T$, $\nu=4$: $r_d=(6,44)^T$, $r_p=-5$ (Ví dụ 04.20). Hệ Newton cho phần dư (5.1): $\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}r_d\\r_p\end{bmatrix}$.
+
 **Lập hệ.**
 
-Tại $u=(1,8)^T$, $\nu=4$: $r_d=(6,44)^T$, $r_p=-5$ (Ví dụ 04.20). Hệ (5.1):
+Với các giá trị trên, hệ (5.1) là
 
 $$
 \begin{aligned}
@@ -2301,7 +2369,7 @@ Tại điểm khả thi, quy tắc Armijo đòi $F$ giảm. Tại điểm chưa 
 ::: example Ví dụ 04.22 (Mục tiêu phải tăng trên đường tới nghiệm)
 **Dữ kiện.**
 
-VD3 tại $u=(0,0)^T$, $\nu=0$.
+VD3: $\min F(u)=\tfrac12(2u_1^2+5u_2^2)$ với $u_1+u_2=14$; $\nabla F(u)=(2u_1,5u_2)^T$, $H=\operatorname{diag}(2,5)$; $F^*=140$ tại $u^*=(10,4)^T$. Phần dư $r_d=\nabla F(u)+A^T\nu$, $r_p=u_1+u_2-14$; hệ (5.1): $\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}r_d\\r_p\end{bmatrix}$. Mệnh đề 04.44(c), (d): $r_p(u+td)=(1-t)r_p$, và với $F$ bậc hai, $r(u+td,\nu+t\Delta\nu)=(1-t)\,r(u,\nu)$. Điểm xét: $u=(0,0)^T$, $\nu=0$.
 
 **Tính.**
 
@@ -2390,6 +2458,10 @@ Hai dung sai được kiểm đồng thời vì mỗi phần dư ứng với m�
 **Trong học máy.** Thuật toán 04.4 cho phép khởi đầu huấn luyện một mô hình có ràng buộc đẳng thức từ một điểm bất kỳ thuộc miền của mất mát, chẳng hạn trọng số khởi tạo không thỏa $\sum_iw_i=1$, mà không cần bước chiếu riêng. Việc cập nhật đồng thời tham số và nhân tử là dạng đơn giản nhất của phương pháp gốc – đối ngẫu (primal-dual method). Phương pháp này là nền của các phương pháp điểm trong trong bộ giải tối ưu lồi; xem Boyd và Vandenberghe (2004, mục 10.3.1, tr. 532–533, và chương 11).
 
 ::: exercise Bài tập 04.9
+**Dữ kiện.**
+
+VD3: $\min F(u)=\tfrac12(2u_1^2+5u_2^2)$ với $u_1+u_2=14$; $\nabla F(u)=(2u_1,5u_2)^T$, $H=\operatorname{diag}(2,5)$, $A=[1\ \ 1]$; $r_d=\nabla F(u)+A^T\nu$, $r_p=Au-b$. Hệ (5.1): $\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}r_d\\r_p\end{bmatrix}$. Thuật toán 04.4 nhận bước $t$ khi $\lVert r(u+td,\nu+t\Delta\nu)\rVert_2\le(1-\alpha t)\lVert r(u,\nu)\rVert_2$, với $r=(r_d,r_p)$.
+
 Với VD3 tại $u=(4,2)^T$, $\nu=2$:
 
 - (a) tính $r_d$, $r_p$; giải (5.1); tính $(u^+,\nu^+)$ với $t=1$ và chỉ ra số nào là nhân tử của nghiệm;
@@ -2440,6 +2512,10 @@ Hình cho thấy độ cong của VD2 không bị chặn trên miền, nên khô
 Số mũ của thang được chọn để giả thiết không phụ thuộc đơn vị đo. Đổi biến $s=a\tau$ với $a>0$ và đặt $\tilde\varphi(\tau)=\varphi(a\tau)$: $\tilde\varphi''=a^2\varphi''$ và $\tilde\varphi'''=a^3\varphi'''$. Tỷ số $\lvert\tilde\varphi'''\rvert/(\tilde\varphi'')^{3/2}=a^3\lvert\varphi'''\rvert/(a^3(\varphi'')^{3/2})$ không đổi; số mũ $\tfrac32$ là số mũ duy nhất làm $a$ triệt tiêu.
 
 ::: example Ví dụ 04.23 (Tỷ số độ cong của VD2)
+**Dữ kiện.**
+
+VD2: $\varphi(s)=s-\log s$ trên $s>0$. Định nghĩa 04.47, dạng một biến: hàm lồi $\varphi$ là tự điều chỉnh nếu $\lvert\varphi'''(s)\rvert\le2\varphi''(s)^{3/2}$ với mọi $s$ trong miền.
+
 **Tính.**
 
 $\varphi''(s)=s^{-2}$, $\varphi'''(s)=-2s^{-3}$, nên $\lvert\varphi'''(s)\rvert=2s^{-3}$ và $\varphi''(s)^{3/2}=s^{-3}$. Tỷ số bằng $2$ với mọi $s>0$.
@@ -2628,6 +2704,10 @@ Số hạng đầu là giảm mô hình $\tfrac12\delta^2$. Khi $\delta$ nhỏ, 
 Cận (2.5) của Mệnh đề 04.25(b) cần hằng số lồi mạnh $\mu$; cận (6.1) không cần hằng số nào, đổi lại phải kiểm tính tự điều chỉnh. Boyd và Vandenberghe (2004, mục 9.6.3, tr. 501–502, công thức 9.49) chứng minh cùng cận theo cùng ý, tham số hóa theo hướng thay vì theo điểm.
 
 ::: example Ví dụ 04.24 (Cận sai số trên VD2 tại hai điểm)
+**Dữ kiện.**
+
+VD2: $\varphi(s)=s-\log s$ trên $s>0$, nghiệm $s^*=1$, $\varphi^*=1$; $g=1-\tfrac1s$, $H=\tfrac1{s^2}$, $\delta^2=g^2/H$. Tại $s=\tfrac14$: $\delta=\tfrac34$ và giảm mô hình $0{,}28125$ (Ví dụ 04.15). Cận (6.1): với $\delta<1$, $\varphi(s)-\varphi^*\le-\delta-\log(1-\delta)$.
+
 **Tại $s=\tfrac14$.**
 
 $\delta=\tfrac34$ (Ví dụ 04.15). Cận (6.1): $-\tfrac34-\log\tfrac14=\log4-\tfrac34\approx0{,}63629$, đúng bằng sai số $\varphi(\tfrac14)-1$. Giảm mô hình $0{,}28125$ chỉ bằng khoảng $44\%$ cận.
@@ -2740,8 +2820,8 @@ $$
 ::: exercise Bài tập 04.10
 Xét $f(s)=-\log s-\log(1-s)$ trên $(0,1)$.
 
-- (a) Dùng Mệnh đề 04.48 chứng minh $f$ tự điều chỉnh; tìm $s^*$ và $f^*$.
-- (b) Tại $s=\tfrac14$, tính $g$, $H$, $\delta$ và cận (6.1).
+- (a) Dùng Mệnh đề 04.48 chứng minh $f$ tự điều chỉnh; tìm $s^*$ và $f^*$. Mệnh đề 04.48: nếu $h$, $h_1$, $h_2$ tự điều chỉnh thì $ah$ với $a\ge1$, $h_1+h_2$ và $y\mapsto h(By+c)$ tự điều chỉnh.
+- (b) Tại $s=\tfrac14$, tính $g$, $H$, $\delta$ và cận (6.1), $f(s)-f^*\le-\delta-\log(1-\delta)$ khi $\delta<1$.
 - (c) So cận với sai số thật $f(\tfrac14)-f^*$ và với giảm mô hình $\tfrac12\delta^2$.
 :::
 
@@ -3216,7 +3296,7 @@ Mỗi câu đối chiếu với một kết quả có số hiệu: 04.7, 04.3, 0
 - (iv) Sai. $-\log s$ tự điều chỉnh, không bị chặn dưới.
 - (v) Đúng. Mô hình trùng hàm, nên bước giải đúng (1.2) (Ví dụ 04.18, Bài tập 04.7).
 - (vi) Sai. Nhân tử mới là $\nu+\Delta\nu$ (Nhận xét 04.46).
-- (vii) Sai. Cận là $-\tfrac12-\log\tfrac12\approx0{,}193$, không phải $\tfrac12\delta^2=\tfrac18$. Phản ví dụ: VD2 tại $s=\tfrac12$ có $\delta=1-s=\tfrac12$ và sai số $\tfrac12+\log2-1\approx0{,}193>\tfrac18$.
+- (vii) Sai. Cận là $-\tfrac12-\log\tfrac12\approx0{,}193$, không phải $\tfrac12\delta^2=\tfrac18$. Phản ví dụ: VD2, $\varphi(s)=s-\log s$ với $\varphi^*=1$ và $\delta=\lvert1-s\rvert$, tại $s=\tfrac12$ có $\delta=1-s=\tfrac12$ và sai số $\tfrac12+\log2-1\approx0{,}193>\tfrac18$.
 
 **Kiểm tra lại.**
 
@@ -3228,9 +3308,9 @@ Câu (vii): Hệ quả 04.51 cho cận $\delta^2=\tfrac14$, cũng không phải 
 ::: exercise Bài tập 04.12 (Tính toán: Newton khả thi cho bài tâm giải tích)
 Xét $\min F(u)=-\log u_1-\log u_2$ với $u_1+2u_2=4$, trên miền $u>0$.
 
-- (a) Giải (1.2) để tìm $u^*$, $\nu^*$, $F^*$.
-- (b) Từ $u^0=(3,\tfrac12)^T$, giải (4.1); tính $u^0+d$ và $\delta_{eq}$.
-- (c) Áp dụng Hệ quả 04.52 và so với sai số thật.
+- (a) Giải (1.2), $\nabla F(u^*)+A^T\nu^*=0$, $Au^*=b$, để tìm $u^*$, $\nu^*$, $F^*$.
+- (b) Từ $u^0=(3,\tfrac12)^T$, giải (4.1), $\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$; tính $u^0+d$ và $\delta_{eq}=\sqrt{d^THd}$.
+- (c) Áp dụng Hệ quả 04.52 và so với sai số thật. Hệ quả 04.52: với $F$ tự điều chỉnh, tại điểm khả thi có $\delta_{eq}<1$, $F(u)-F^*\le-\delta_{eq}-\log(1-\delta_{eq})$.
 :::
 
 ::: hint
@@ -3258,9 +3338,9 @@ $A d=-\tfrac35+\tfrac35=0$. $\delta_{eq}\le0{,}68$ nên Hệ quả 04.51 cho th�
 :::
 
 ::: exercise Bài tập 04.13 (Chứng minh: ma trận khối khi $H$ không xác định dương)
-- (a) Với $H=\operatorname{diag}(1,-1)$, $A=[0\ \ 1]$ và $g=(1,1)^T$, chứng minh ma trận của (4.1) khả nghịch và giải (4.1).
+- (a) Với $H=\operatorname{diag}(1,-1)$, $A=[0\ \ 1]$ và $g=(1,1)^T$, chứng minh ma trận của (4.1), $\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\eta\end{bmatrix}=-\begin{bmatrix}g\\0\end{bmatrix}$, khả nghịch và giải (4.1).
 - (b) Với cùng $H$, $g$ nhưng $A=[1\ \ 0]$, chứng minh ma trận vẫn khả nghịch, nhưng nghiệm $d$ không cực tiểu hóa mô hình trên $\ker A$.
-- (c) Rút ra vai trò của giả thiết "$H$ xác định dương trên $\ker A$" trong Định lý 04.39.
+- (c) Rút ra vai trò của giả thiết "$H$ xác định dương trên $\ker A$" trong Định lý 04.39. Định lý này phát biểu: nếu $A$ đủ hạng hàng và $d^THd>0$ với mọi $d\in\ker A$, $d\ne0$, thì ma trận khối của (4.1) khả nghịch và $d$ là nghiệm duy nhất của bài con $\min_d\,g^Td+\tfrac12d^THd$ với $Ad=0$.
 :::
 
 ::: hint
@@ -3286,6 +3366,10 @@ Khả nghịch chỉ cho nghiệm duy nhất của hệ KKT bài con; tính cự
 :::
 
 ::: exercise Bài tập 04.14 (Chứng minh: giảm gradient không cần tính lồi)
+**Dữ kiện.**
+
+Tình huống 04.3: $f(a,b)=\tfrac12(ab-1)^2$, $\nabla f=(ab-1)(b,a)^T$, $\nabla^2f=\begin{bmatrix}b^2&2ab-1\\2ab-1&a^2\end{bmatrix}$, $f^*=0$ trên tập $\{ab=1\}$; giảm gradient từ $(1,-1)$ với bước $\tfrac14$ giữ $a_k=-b_k$, với $a_k\in(0,1]$ giảm về $0$, $\lVert\nabla f\rVert_2\to0$ và $f\to\tfrac12$. Bổ đề 04.20 (không dùng tính lồi): với gradient $L$-Lipschitz, $\frac1{2L}\lVert\nabla f(x)\rVert_2^2\le f(x)-f(x-\tfrac1L\nabla f(x))$. Số liệu VD1 dùng ở phần kiểm tra: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $L=7$, $f(x^0)-f^*=62$, $\lVert\nabla f(x^0)\rVert_2^2=820$.
+
 Cho $f$ khả vi trên $\mathbb R^n$, gradient $L$-Lipschitz, bị chặn dưới bởi $f^*$, và $x^{k+1}=x^k-\tfrac1L\nabla f(x^k)$. Chứng minh
 
 $$
