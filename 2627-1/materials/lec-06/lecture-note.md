@@ -21,7 +21,7 @@ Sau chương này, người học có thể:
 
 ## Kiến thức tiên quyết
 
-Số hiệu `04.k` và `05.k` chỉ ghi chú Bài 04 và Bài 05. Ghi chú bổ trợ Bài 05b dùng nhãn riêng như "Bổ đề BĐ5", được giữ nguyên khi dẫn.
+Số hiệu `04.k`, `05.k` và `05b.k` chỉ ghi chú Bài 04, Bài 05 và ghi chú bổ trợ Bài 05b.
 
 - **Đại số tuyến tính.** Ma trận đối xứng $A\in\mathbb R^{p\times p}$ có phân tích phổ $A=U\Lambda U^T$ với $U$ trực giao và $\Lambda$ chéo chứa các giá trị riêng thực. Ma trận đối xứng $A$ gọi là xác định dương, viết $A\succ0$, nếu $z^TAz>0$ với mọi $z\ne0$; điều này tương đương mọi giá trị riêng dương, và khi đó $A^{-1}\succ0$. Với ma trận $2\times2$ đối xứng, $A\succ0$ khi và chỉ khi $A_{11}>0$ và $\det A>0$ (tiêu chuẩn Sylvester). Ma trận đơn vị viết $\mathrm I$.
 - **Đạo hàm theo hướng** (Mệnh đề 04.7). Nếu $F$ khả vi tại $\theta$ với $g=\nabla F(\theta)$ và $g^Td<0$ thì có $\bar\alpha>0$ để $F(\theta+\alpha d)<F(\theta)$ với mọi $\alpha\in(0,\bar\alpha]$; vectơ $d$ như vậy gọi là hướng giảm. Mệnh đề không cho biết $\bar\alpha$ lớn bao nhiêu.
@@ -32,7 +32,7 @@ Số hiệu `04.k` và `05.k` chỉ ghi chú Bài 04 và Bài 05. Ghi chú bổ 
 - **Bước gradient trên hàm bậc hai** (Mệnh đề 05.17). Với Hessian hằng có giá trị riêng $\lambda_j>0$, bước cố định $\eta$ nhân thành phần theo vectơ riêng thứ $j$ với $1-\eta\lambda_j$; dãy hội tụ với mọi điểm đầu khi và chỉ khi $0<\eta<2/\lambda_{\max}$.
 - **Momentum** (Thuật toán 05.2, Mệnh đề 05.18, Định lý 05.23). Vận tốc là tổng các gradient cũ với trọng số giảm theo cấp số nhân; Nesterov trên hàm bậc hai co theo hệ số $1-1/\sqrt\kappa$.
 - **Nhiễu gần nghiệm và độ nhạy qua chuỗi** (Ví dụ 05.14, Mệnh đề 05.31, Mệnh đề 05.32). Với bước học cố định, SGD dao động quanh nghiệm ở một mức không giảm theo số vòng. Trọng số ngẫu nhiên theo phân phối liên tục khác nhau với xác suất $1$. Độ nhạy của đầu ra một chuỗi lớp theo đầu vào là tích các đạo hàm của từng lớp.
-- **Bất đẳng thức Jensen hữu hạn** (Bài 05b, Bổ đề BĐ5). Với $F$ lồi và trọng số không âm có tổng bằng $1$, $F\bigl(\sum_k\upsilon_kz_k\bigr)\le\sum_k\upsilon_kF(z_k)$ với mọi điểm $z_k$ và trọng số $\upsilon_k$.
+- **Bất đẳng thức Jensen hữu hạn** (Bổ đề 05b.25). Với $F$ lồi và trọng số không âm có tổng bằng $1$, $F\bigl(\sum_k\upsilon_kz_k\bigr)\le\sum_k\upsilon_kF(z_k)$ với mọi điểm $z_k$ và trọng số $\upsilon_k$.
 
 ## Bảng ký hiệu
 
@@ -1773,7 +1773,7 @@ Công thức trực tuyến suy từ $t\bar\theta_t=(t-1)\bar\theta_{t-1}+\theta
 :::
 
 ::: proof Chứng minh Hệ quả 06.33
-Bổ đề BĐ5 của Bài 05b nói: với $F$ lồi và trọng số không âm $\upsilon_t$ có tổng bằng $1$, $F\bigl(\sum_t\upsilon_t\theta_t\bigr)\le\sum_t\upsilon_tF(\theta_t)$. Áp với $\upsilon_t=\tfrac1T$. $\square$
+Bổ đề 05b.25 nói: với $F$ lồi và trọng số không âm $\upsilon_t$ có tổng bằng $1$, $F\bigl(\sum_t\upsilon_t\theta_t\bigr)\le\sum_t\upsilon_tF(\theta_t)$. Áp với $\upsilon_t=\tfrac1T$. $\square$
 :::
 
 Khi bỏ giả thiết lồi, kết luận sai. Với $F(\theta)=(\theta^2-1)^2$, hai điểm $-1$ và $1$ đều là cực tiểu toàn cục với $F=0$, nhưng trung bình $0$ của chúng là cực đại địa phương với $F(0)=1$. Trung bình chỉ hợp lý khi các điểm cùng nằm trong một miền quanh một nghiệm.
@@ -2622,4 +2622,4 @@ Số trang của Goodfellow, Bengio và Courville là trang in của bản MIT P
 - Yosinski, J., Clune, J., Bengio, Y. và Lipson, H. (2014), "How transferable are features in deep neural networks?", *Advances in Neural Information Processing Systems* 27: học chuyển giao, Mục 6.1; dẫn qua Goodfellow, Bengio và Courville (2016, tr. 325).
 - Zaremba, W. và Sutskever, I. (2014), "Learning to execute", arXiv:1410.4615: chương trình ngẫu nhiên, Mục 6.3; dẫn qua Goodfellow, Bengio và Courville (2016, tr. 329).
 - Bengio, Y., Louradour, J., Collobert, R. và Weston, J. (2009), "Curriculum learning", *Proceedings of the 26th International Conference on Machine Learning*, mục 2–3: Mục 6.3.
-- Ghi chú Bài 04 (phương pháp Newton, quay lui Armijo, Tình huống 04.3) và Bài 05 (SGD, momentum, Tình huống 05.2, Ví dụ 05.14) là tiên quyết trực tiếp; Bài 05b (Bổ đề BĐ5) cho bất đẳng thức Jensen.
+- Ghi chú Bài 04 (phương pháp Newton, quay lui Armijo, Tình huống 04.3) và Bài 05 (SGD, momentum, Tình huống 05.2, Ví dụ 05.14) là tiên quyết trực tiếp; Bài 05b (Bổ đề 05b.25) cho bất đẳng thức Jensen.

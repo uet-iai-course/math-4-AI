@@ -19,10 +19,10 @@ Sau chương này, người học có thể:
 
 ## Kiến thức tiên quyết
 
-Số hiệu `01.k` và `04.k` chỉ ghi chú Bài 01 và Bài 04. Ghi chú Bài 00 không đánh số, nên các kết quả của nó được phát biểu lại; ghi chú bổ trợ Bài 05b, 05c dùng nhãn riêng như "Định lý T5", "Định lý E.9", được giữ nguyên khi dẫn.
+Số hiệu `01.k`, `04.k`, `05b.k` và `05c.k` chỉ ghi chú Bài 01, Bài 04 và hai ghi chú bổ trợ Bài 05b, Bài 05c. Ghi chú Bài 00 không đánh số, nên các kết quả của nó được phát biểu lại.
 
 - **Giải tích** (Bài 00). Với $F:\mathbb R^p\to\mathbb R$ khả vi hai lần liên tục, $F(\theta+\Delta)=F(\theta)+\nabla F(\theta)^T\Delta+\tfrac12\Delta^T\nabla^2F(\theta)\Delta+o(\lVert\Delta\rVert_2^2)$, và với $F$ bậc hai đẳng thức đúng không có phần dư. Đạo hàm của hàm hợp là tích các đạo hàm dọc chuỗi hợp (quy tắc dây chuyền). Nếu $\theta$ là cực tiểu địa phương của $F$ khả vi thì $\nabla F(\theta)=0$.
-- **Xác suất** (Bài 00; Bài 05c, Định lý E.9). Kỳ vọng tuyến tính; $\operatorname{Var}(aX)=a^2\operatorname{Var}X$; nếu $X$, $Y$ độc lập thì $\mathbb E[XY]=\mathbb EX\,\mathbb EY$. Hiệp phương sai của vectơ ngẫu nhiên $U$ là $\mathbb E[(U-\mathbb EU)(U-\mathbb EU)^T]$, có vết bằng $\mathbb E\lVert U-\mathbb EU\rVert_2^2$. Trung bình của $n$ biến không tương quan đôi một, cùng kỳ vọng và cùng phương sai có cùng kỳ vọng và phương sai chia cho $n$.
+- **Xác suất** (Bài 00; Định lý 05c.35). Kỳ vọng tuyến tính; $\operatorname{Var}(aX)=a^2\operatorname{Var}X$; nếu $X$, $Y$ độc lập thì $\mathbb E[XY]=\mathbb EX\,\mathbb EY$. Hiệp phương sai của vectơ ngẫu nhiên $U$ là $\mathbb E[(U-\mathbb EU)(U-\mathbb EU)^T]$, có vết bằng $\mathbb E\lVert U-\mathbb EU\rVert_2^2$. Trung bình của $n$ biến không tương quan đôi một, cùng kỳ vọng và cùng phương sai có cùng kỳ vọng và phương sai chia cho $n$.
 - **Số phức.** Số phức $\zeta=\operatorname{Re}\zeta+\mathrm i\operatorname{Im}\zeta$, với $\mathrm i$ là đơn vị ảo, $\mathrm i^2=-1$, có môđun $\lvert\zeta\rvert=\sqrt{(\operatorname{Re}\zeta)^2+(\operatorname{Im}\zeta)^2}$ và viết được dưới dạng $\lvert\zeta\rvert(\cos\varpi+\mathrm i\sin\varpi)$, với $\varpi$ là góc của $\zeta$; môđun của tích bằng tích các môđun. Đa thức bậc hai hệ số thực có hai nghiệm phức liên hợp khi biệt thức âm.
 - **Tính lồi** (Hệ quả 01.27, Định lý 01.30, Định nghĩa 01.39, Nhận xét 01.40, Mệnh đề 04.2(a)). Với $F$ lồi khả vi trên $\mathbb R^p$, $\nabla F(\theta^*)=0$ vừa cần vừa đủ cho cực tiểu toàn cục. Hàm khả vi hai lần là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi mạnh với hằng số $\mu>0$ khi và chỉ khi $\nabla^2F\succeq\mu \mathrm I$ mọi nơi.
 - **Mất mát logistic** (Định nghĩa 01.8, Mệnh đề 01.9). Với biên có dấu $m$, mất mát $\log(1+\exp(-m))$ có đạo hàm bậc hai thuộc $(0,\tfrac14]$.
@@ -207,7 +207,7 @@ Như ở Ví dụ 05.2, $R(\theta)=\tfrac12(\theta-\mathbb EY)^2+\tfrac12\operat
 
 **Bước 2 (rủi ro của nghiệm).**
 
-Thay $\theta=\widehat\theta$ vào biểu thức của Bước 1 rồi lấy kỳ vọng. Theo Định lý E.9 của Bài 05c, $\mathbb E\widehat\theta=\mathbb EY$ và $\operatorname{Var}\widehat\theta=\operatorname{Var}Y/N$, nên $\mathbb E(\widehat\theta-\mathbb EY)^2=\operatorname{Var}Y/N$. Do đó
+Thay $\theta=\widehat\theta$ vào biểu thức của Bước 1 rồi lấy kỳ vọng. Theo Định lý 05c.35, $\mathbb E\widehat\theta=\mathbb EY$ và $\operatorname{Var}\widehat\theta=\operatorname{Var}Y/N$, nên $\mathbb E(\widehat\theta-\mathbb EY)^2=\operatorname{Var}Y/N$. Do đó
 
 $$
 \mathbb E\,R(\widehat\theta)=\frac12\cdot\frac{\operatorname{Var}Y}N+\frac12\operatorname{Var}Y=\frac{N+1}{2N}\operatorname{Var}Y .
@@ -317,7 +317,7 @@ Khi biết $\theta$, mỗi số hạng $\ell(f_\theta(x'_i),y'_i)$ có kỳ vọ
 
 **Bước 2 (phương sai).**
 
-Các số hạng độc lập, cùng phương sai $V_\ell(\theta)$, nên theo Định lý E.9 của Bài 05c, phương sai của trung bình bằng $V_\ell(\theta)/N_{\rm val}$.
+Các số hạng độc lập, cùng phương sai $V_\ell(\theta)$, nên theo Định lý 05c.35, phương sai của trung bình bằng $V_\ell(\theta)/N_{\rm val}$.
 
 **Bước 3 (cận dưới cho giá trị được chọn).**
 
@@ -648,7 +648,7 @@ là hiệp phương sai của $g_{I_1}$ khi $I_1$ phân phối đều.
 
 Định nghĩa có ba thành phần. Phép lấy mẫu là nguồn ngẫu nhiên duy nhất: dữ liệu và tham số được giữ cố định. Gradient nhóm là trung bình cộng của $b$ gradient mẫu được rút, cùng kích thước với $\theta$. Ma trận $\Sigma(\theta)$ có phần tử $(k,l)$ bằng trung bình của tích độ lệch tọa độ $k$ với độ lệch tọa độ $l$; nó không phụ thuộc $b$ và đo mức khác nhau giữa các gradient mẫu tại $\theta$.
 
-Gradient nhóm là trường hợp vectơ của trung bình mẫu ở Định lý E.9 của Bài 05c, với $X_r=g_{I_r}$ và $n=b$. Trường hợp $b=N$ không cho gradient đầy đủ, vì lấy có hoàn lại vẫn có thể lặp chỉ số. Phản ví dụ cho việc bỏ giả thiết phân phối đều: ở Ví dụ 05.8, nếu chỉ số $3$ được chọn với xác suất $\tfrac12$ và hai chỉ số còn lại với xác suất $\tfrac14$, thì kỳ vọng của $g_{I_1}(1)$ là $\tfrac14\cdot2+\tfrac14\cdot0+\tfrac12\cdot(-2)=-\tfrac12\ne0=J'(1)$.
+Gradient nhóm là trường hợp vectơ của trung bình mẫu ở Định lý 05c.35, với $X_r=g_{I_r}$ và $n=b$. Trường hợp $b=N$ không cho gradient đầy đủ, vì lấy có hoàn lại vẫn có thể lặp chỉ số. Phản ví dụ cho việc bỏ giả thiết phân phối đều: ở Ví dụ 05.8, nếu chỉ số $3$ được chọn với xác suất $\tfrac12$ và hai chỉ số còn lại với xác suất $\tfrac14$, thì kỳ vọng của $g_{I_1}(1)$ là $\tfrac14\cdot2+\tfrac14\cdot0+\tfrac12\cdot(-2)=-\tfrac12\ne0=J'(1)$.
 
 Định lý sau chỉ cần tính tuyến tính của kỳ vọng và tính độc lập giữa các lần rút.
 
@@ -751,7 +751,7 @@ Phần (b) gọi là phân tích phương sai của mômen bậc hai: bình phư
 :::
 
 ::: remark Nhận xét 05.13 (Rút không hoàn lại và đích của ước lượng)
-**Không hoàn lại.** Khi $b\le N$ chỉ số khác nhau được rút đều trong mọi bộ $b$ chỉ số, gradient nhóm vẫn không chệch, còn hiệp phương sai nhân thêm hệ số $\tfrac{N-b}{N-1}$, theo Mệnh đề E.10 của Bài 05c phát biểu cho từng tọa độ. Hệ số này gần $1$ khi $b\ll N$ và bằng $0$ khi $b=N$, lúc nhóm là toàn bộ dữ liệu.
+**Không hoàn lại.** Khi $b\le N$ chỉ số khác nhau được rút đều trong mọi bộ $b$ chỉ số, gradient nhóm vẫn không chệch, còn hiệp phương sai nhân thêm hệ số $\tfrac{N-b}{N-1}$, theo Mệnh đề 05c.36 phát biểu cho từng tọa độ. Hệ số này gần $1$ khi $b\ll N$ và bằng $0$ khi $b=N$, lúc nhóm là toàn bộ dữ liệu.
 
 **Đích là $\nabla J$.** Định lý 05.11 nói về gradient của mất mát huấn luyện. Nếu mỗi quan sát trong nhóm là một lần rút mới từ $P$ và chưa từng được dùng, thì cùng lập luận cho gradient nhóm là ước lượng không chệch của $\nabla R$; điều này chỉ đúng trong lượt đầu qua dữ liệu, trước khi quan sát được dùng lại (Goodfellow, Bengio và Courville 2016, mục 8.1.3, tr. 280).
 
@@ -977,7 +977,7 @@ Thuật toán 05.1 còn để mở hai đầu vào số: cỡ nhóm $b$ và bư�
 Đồ thị là phép tính tại một tham số cố định, không phải đường hội tụ qua các bước. Độ dốc giảm dần của đường cong là nội dung của Ví dụ 05.13: mỗi gradient mẫu thêm vào mang lại ít độ chính xác hơn gradient mẫu trước.
 
 ::: remark Nhận xét 05.15 (Ngân sách cố định và phần cứng)
-**Ngân sách cố định.** Với ngân sách $B_{\rm tot}$ gradient mẫu, cỡ nhóm $b$ cho khoảng $B_{\rm tot}/b$ bước. Nhóm lớn cho ít bước chính xác, nhóm nhỏ cho nhiều bước nhiễu; Bài 05c, mục "Cỡ nhóm dưới ngân sách tính toán cố định", tính trên ví dụ ba quan sát rằng sai số cuối cùng có dạng chữ U theo $b$, với đáy ở $b=75$ khi $B_{\rm tot}=3000$ và bước học $0{,}1$.
+**Ngân sách cố định.** Với ngân sách $B_{\rm tot}$ gradient mẫu, cỡ nhóm $b$ cho khoảng $B_{\rm tot}/b$ bước. Nhóm lớn cho ít bước chính xác, nhóm nhỏ cho nhiều bước nhiễu; Bài 05c, Mục 6.6 (Mệnh đề 05c.57, Ví dụ 05c.39), tính trên ví dụ ba quan sát rằng sai số cuối cùng có dạng chữ U theo $b$, với đáy ở $b=75$ khi $B_{\rm tot}=3000$ và bước học $0{,}1$.
 
 **Phần cứng.** Khi $b$ chưa vượt mức song song của phần cứng, một nhóm $b$ quan sát tốn thời gian gần bằng một quan sát (Goodfellow, Bengio và Courville 2016, mục 8.1.3, tr. 279). Ngưỡng (2.5) cho cỡ nhóm tối thiểu tại điểm hiện tại; các công thức không xác định một cỡ nhóm tốt nhất cho mọi bài toán.
 :::
@@ -1044,12 +1044,12 @@ và $\mathrm{MSE}_t-\mathrm{MSE}_\infty=(1-\eta)^{2t}(\mathrm{MSE}_0-\mathrm{MSE
 ::: remark Nhận xét 05.16 (Bảo đảm hội tụ của Bài 05b và lịch bước học)
 Hai định lý của Bài 05b, phát biểu lại theo ký hiệu của chương này với giả thiết $\operatorname{tr}\Sigma(\theta)\le\Gamma$ với mọi $\theta$:
 
-- **Định lý T5 (lồi mạnh).** Nếu $J$ lồi mạnh với hằng số $\mu$, gradient $L$-Lipschitz và $0<\eta\le\tfrac1L$, thì SGD bước học cố định thỏa $\mathbb E\lVert\theta_t-\theta^*\rVert_2^2\le(1-\eta\mu)^t\lVert\theta_0-\theta^*\rVert_2^2+\tfrac{\eta\Gamma}{\mu b}$.
-- **Định lý T8 (không lồi).** Nếu $J$ bị chặn dưới, gradient $L$-Lipschitz và $0<\eta\le\tfrac1L$, thì $\tfrac1T\sum_{t<T}\mathbb E\lVert\nabla J(\theta_t)\rVert_2^2\le\tfrac{2(J(\theta_0)-\inf J)}{\eta T}+\tfrac{L\eta\Gamma}b$.
+- **Định lý 05b.36 (lồi mạnh).** Nếu $J$ lồi mạnh với hằng số $\mu$, gradient $L$-Lipschitz và $0<\eta\le\tfrac1L$, thì SGD bước học cố định thỏa $\mathbb E\lVert\theta_t-\theta^*\rVert_2^2\le(1-\eta\mu)^t\lVert\theta_0-\theta^*\rVert_2^2+\tfrac{\eta\Gamma}{\mu b}$.
+- **Định lý 05b.43 (không lồi).** Nếu $J$ bị chặn dưới, gradient $L$-Lipschitz và $0<\eta\le\tfrac1L$, thì $\tfrac1T\sum_{t<T}\mathbb E\lVert\nabla J(\theta_t)\rVert_2^2\le\tfrac{2(J(\theta_0)-\inf J)}{\eta T}+\tfrac{L\eta\Gamma}b$.
 
-Cả hai cận có một số hạng không giảm theo số vòng lặp, tỷ lệ với $\eta\Gamma/b$; Ví dụ 05.14 là trường hợp tính được chính xác, với $\mu=L=1$, $\Gamma=\tfrac83$, cho mức giới hạn thật $\tfrac8{57}$ dưới cận $\tfrac{8\eta}{3b}=\tfrac4{15}$ của T5 khi $\eta=0{,}1$. Lịch bước học (learning-rate schedule), quy định $\eta_t$ giảm theo $t$, là cách đưa số hạng đó về $0$; Bài 05b chứng minh các lịch cụ thể, chương này không chứng minh lại.
+Cả hai cận có một số hạng không giảm theo số vòng lặp, tỷ lệ với $\eta\Gamma/b$; Ví dụ 05.14 là trường hợp tính được chính xác, với $\mu=L=1$, $\Gamma=\tfrac83$, cho mức giới hạn thật $\tfrac8{57}$ dưới cận $\tfrac{8\eta}{3b}=\tfrac4{15}$ của Định lý 05b.36 khi $\eta=0{,}1$. Lịch bước học (learning-rate schedule), quy định $\eta_t$ giảm theo $t$, là cách đưa số hạng đó về $0$; Bài 05b chứng minh các lịch cụ thể, chương này không chứng minh lại.
 
-**Nhầm lẫn thường gặp.** Định lý T8 chỉ kết luận về chuẩn gradient, không về giá trị $J$ hay chất lượng nghiệm, phù hợp với Mệnh đề 05.8: với hàm không lồi, gradient nhỏ không chứng nhận cực tiểu.
+**Nhầm lẫn thường gặp.** Định lý 05b.43 chỉ kết luận về chuẩn gradient, không về giá trị $J$ hay chất lượng nghiệm, phù hợp với Mệnh đề 05.8: với hàm không lồi, gradient nhỏ không chứng nhận cực tiểu.
 :::
 
 ::: exercise Bài tập 05.4
@@ -2975,4 +2975,4 @@ Mỗi lớp có trung bình hai hệ số bằng $1$: $\tfrac{1{,}51+0{,}49}2=1$
 - Glorot, X. và Bengio, Y. (2010), "Understanding the difficulty of training deep feedforward neural networks", *Proceedings of the 13th International Conference on Artificial Intelligence and Statistics*, tr. 249–256: Định nghĩa 05.36.
 - He, K., Zhang, X., Ren, S. và Sun, J. (2015), "Delving deep into rectifiers", *Proceedings of the IEEE International Conference on Computer Vision*, tr. 1026–1034: khởi tạo cho ReLU, đọc sau Nhận xét 05.39.
 - Hinton, G., Srivastava, N. và Swersky, K. (2012), *Neural Networks for Machine Learning*, Lecture 6, Đại học Toronto, tr. 17–21: hình học của momentum và Nesterov.
-- Ghi chú bổ trợ Bài 05b (Định lý T5, T8) và Bài 05c (Định lý E.9, Mệnh đề E.10, phân tích cỡ nhóm dưới ngân sách cố định).
+- Ghi chú bổ trợ Bài 05b (Định lý 05b.36, 05b.43) và Bài 05c (Định lý 05c.35, Mệnh đề 05c.36, Mục 6.6 về cỡ nhóm dưới ngân sách cố định).
