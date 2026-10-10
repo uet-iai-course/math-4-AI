@@ -104,6 +104,7 @@ Phép thử duy nhất: một sinh viên có đủ kiến thức tiên quyết, 
 
 - **Tự chứa.** Mọi ký hiệu, giả thiết, đối tượng và kết quả được dùng phải được định nghĩa hoặc phát biểu trong cùng tệp, hoặc dẫn tới số hiệu cụ thể trong ghi chú của bài trước (`Định lý 02.3`) kèm phát biểu lại.
 - **Đầy đủ, không cắt cụt.** Mỗi lập luận được viết hết các bước; mỗi ví dụ tính đến kết quả số và kiểm tra lại; mỗi bài tập có lời giải.
+- **Ví dụ và bài tập tự chứa tại chỗ** (yêu cầu người dùng 2026-10-10). Mỗi khối `example`, `application`, `exercise` nêu lại đầy đủ dữ kiện ngay trong khối: hàm, số liệu, điểm đầu, tham số, kết quả của bước trước mà khối dùng tới. Không viết "với dữ liệu của Ví dụ 04.2", "tiếp tục Ví dụ 05.9", "điểm $x^1$ nhận được ở Ví dụ 04.6" rồi để sinh viên tua lại; nếu ví dụ nối tiếp một ví dụ trước, mở bằng một đoạn "Dữ kiện" chép lại các giá trị cần dùng kèm số hiệu nguồn trong ngoặc. Dẫn số hiệu định nghĩa, định lý vẫn được phép, nhưng công thức hay giả thiết được áp dụng phải được viết lại trong khối.
 - **Hình thức.** Kiến thức được trình bày theo các môi trường có nhãn và số hiệu: Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả, Ví dụ, Nhận xét, Chứng minh, Thuật toán, Bài tập, Tình huống áp dụng. Không trộn định nghĩa vào giữa đoạn văn giải thích; không phát biểu kết quả bằng lời rồi bỏ qua dạng toán học.
 - **Giữ hành trình khái niệm.** Hành trình của bộ trang chiếu (nhu cầu → trực giác → ví dụ → phát biểu → ứng dụng → bài tập) được giữ đầy đủ trong ghi chú với mức chi tiết của giáo trình.
 
