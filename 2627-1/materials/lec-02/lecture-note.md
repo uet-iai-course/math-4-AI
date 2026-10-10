@@ -504,7 +504,7 @@ Miền khả thi trên hình là giao của bốn nửa mặt phẳng, một đa
 
 Bài (2.1) có ràng buộc "$\ge$" và biến không âm; bài khác có thể có đẳng thức, ràng buộc "$\le$" và biến tự do. Một định nghĩa chung cần bao mọi cách viết đó.
 
-Ngoài ra, phương pháp đơn hình (simplex method, Bài 07) chỉ làm việc với một dạng chuẩn gồm đẳng thức và điều kiện không âm, nên cần cả dạng đó và phép chuyển giữa hai dạng.
+Ngoài ra, phương pháp đơn hình (simplex method), thuộc Buổi 8 (Chương 11) của đề cương, chỉ làm việc với một dạng chuẩn gồm đẳng thức và điều kiện không âm, nên cần cả dạng đó và phép chuyển giữa hai dạng.
 
 ::: definition Định nghĩa 02.9 (Quy hoạch tuyến tính)
 Cho $c\in\mathbb R^n$, $G\in\mathbb R^{m\times n}$, $h\in\mathbb R^m$, $A\in\mathbb R^{p\times n}$, $b\in\mathbb R^p$. Quy hoạch tuyến tính dạng bất đẳng thức là
@@ -665,7 +665,7 @@ $$
 ::: remark Nhận xét 02.12 (Nhiều nghiệm, biến nguyên và đỉnh của đa diện)
 **Nhiều nghiệm.** Nếu giá nguyên liệu I tăng lên $4$, thì $4x_1+2x_2=2(2x_1+x_2)\ge8$ với $\mu=(2,0,0,0)$. Cả $(0,4)$ và $(1,2)$ đạt $8$, nên mọi điểm của đoạn nối chúng là nghiệm (Hệ quả 02.3(b)). Nghiệm của quy hoạch tuyến tính có thể không duy nhất vì mục tiêu tuyến tính không lồi chặt.
 
-**Đỉnh của đa diện.** Khi có nghiệm và đa diện có đỉnh, luôn có một nghiệm tại đỉnh (Bertsimas và Tsitsiklis 1997, mục 2.6). Đó là cơ sở của phương pháp đơn hình ở Bài 07.
+**Đỉnh của đa diện.** Khi có nghiệm và đa diện có đỉnh, luôn có một nghiệm tại đỉnh (Bertsimas và Tsitsiklis 1997, mục 2.6). Kết quả này được chứng minh ở Định lý 07.23; phương pháp đơn hình thuộc Buổi 8 (Chương 11) của đề cương.
 
 **Biến nguyên.** Nếu buộc $x$ nguyên, Mệnh đề 02.11 vẫn cho cận dưới $7$, nhưng nghiệm nguyên phải tìm riêng (Mục 5).
 :::
@@ -2905,7 +2905,7 @@ Các dòng lần lượt là:
 - tìm có hệ thống các hệ số $\mu$ của Mệnh đề 02.11 và biết khi nào chúng tồn tại;
 - thay (1.2) bằng một điều kiện kiểm tra được khi tập khả thi phức tạp.
 
-Bài 03 (Đối ngẫu Lagrange và điều kiện tối ưu) trả lời cả hai bằng hàm Lagrange, bài toán đối ngẫu, đối ngẫu mạnh dưới điều kiện Slater và điều kiện Karush–Kuhn–Tucker (KKT). Bài 04 xây phương pháp Newton để tìm nghiệm khi không có công thức đóng; Bài 07 trình bày phương pháp đơn hình cho quy hoạch tuyến tính.
+Bài 03 (Đối ngẫu Lagrange và điều kiện tối ưu) trả lời cả hai bằng hàm Lagrange, bài toán đối ngẫu, đối ngẫu mạnh dưới điều kiện Slater và điều kiện Karush–Kuhn–Tucker (KKT). Bài 04 xây phương pháp Newton để tìm nghiệm khi không có công thức đóng; Bài 07 trình bày quy hoạch tuyến tính, với kết quả điểm cực tối ưu ở Định lý 07.23; phương pháp đơn hình thuộc Buổi 8 (Chương 11) của đề cương.
 
 ## Bài tập củng cố
 
@@ -3155,4 +3155,4 @@ $$
 - Robert Tibshirani (1996), "Regression shrinkage and selection via the lasso", *Journal of the Royal Statistical Society, Series B* 58(1), 267–288, cho Mục 3.3.
 - Jordan Hoffmann và cộng sự (2022), "Training compute-optimal large language models", mục 3.3, cho dạng luật tỷ lệ ở Mục 4.5; số liệu của Ví dụ 02.23 là giả lập.
 - Trường Đại học Công nghệ, Đại học Quốc gia Hà Nội, đề cương học phần UET.AI2012 *Cơ sở toán học của Trí tuệ nhân tạo*: buổi 2, chuẩn đầu ra LLO3 và CLO1.
-- Đọc tiếp trong học phần: Bài 01 cho tập lồi, hàm lồi và các kết quả toàn cục, tồn tại, duy nhất được dẫn trong chương; Bài 03 cho đối ngẫu Lagrange và điều kiện KKT; Bài 04 cho phương pháp Newton; Bài 07 cho phương pháp đơn hình.
+- Đọc tiếp trong học phần: Bài 01 cho tập lồi, hàm lồi và các kết quả toàn cục, tồn tại, duy nhất được dẫn trong chương; Bài 03 cho đối ngẫu Lagrange và điều kiện KKT; Bài 04 cho phương pháp Newton; Bài 07 cho quy hoạch tuyến tính, với kết quả điểm cực tối ưu được chứng minh ở Định lý 07.23, còn phương pháp đơn hình thuộc Buổi 8 (Chương 11) của đề cương.
