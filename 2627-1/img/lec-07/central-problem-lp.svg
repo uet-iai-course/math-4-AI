@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 350" role="img" aria-labelledby="title desc">
+  <title id="title">Một véc-tơ quyết định: miền khả thi có vô số điểm và năm đỉnh</title>
+  <desc id="desc">Miền khả thi của một quy hoạch tuyến tính hai biến, tô kín, chứa vô số điểm khả thi; năm đỉnh của miền được đánh dấu.</desc>
+  <rect width="420" height="350" fill="#fff"/>
+  <text x="210" y="34" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="700" fill="#2f3e7a">Một véc-tơ quyết định</text>
+  <line x1="30" y1="300" x2="360" y2="300" stroke="#222" stroke-width="3"/>
+  <line x1="30" y1="300" x2="30" y2="62" stroke="#222" stroke-width="3"/>
+  <path d="M30 300L290 300L290 180L150 100L30 100Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="4"/>
+  <g fill="#9aa8c7"><circle cx="80" cy="250" r="4"/><circle cx="130" cy="200" r="4"/><circle cx="190" cy="260" r="4"/><circle cx="220" cy="200" r="4"/><circle cx="100" cy="150" r="4"/><circle cx="250" cy="250" r="4"/><circle cx="170" cy="150" r="4"/><circle cx="70" cy="190" r="4"/></g>
+  <g fill="#2e7d32" stroke="#fff" stroke-width="3"><circle cx="30" cy="300" r="10"/><circle cx="290" cy="300" r="10"/><circle cx="290" cy="180" r="10"/><circle cx="150" cy="100" r="10"/><circle cx="30" cy="100" r="10"/></g>
+  <g font-family="sans-serif" font-size="22">
+    <text x="160" y="335" text-anchor="middle" fill="#2f3e7a">vô số điểm khả thi</text>
+    <text x="308" y="172" fill="#2e7d32" font-weight="700">5 đỉnh</text>
+  </g>
+</svg>

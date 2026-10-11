@@ -1017,3 +1017,55 @@
   :where(html[data-lecture="07"]) .reveal .slide-number { position:fixed; bottom:10px; left:10px; right:auto; font-size:17px; }
   :where(html[data-lecture="07"]) .reveal .progress { position:fixed; bottom:92px; z-index:31; }
 }
+
+/* Bài 00–03: màn hẹp đọc theo vùng cuộn dọc thay cho thu nhỏ khung 16:9, cùng cơ chế với Bài 04–07.
+   Ở màn rộng chỉ có lớp bao .lecture-viewport cao 100%, bố cục khung 1280×720 giữ nguyên. */
+:where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal>.lecture-viewport { height:100%; }
+@media screen and (max-width:760px) {
+  html:where([data-lecture="00"], [data-lecture="01"], [data-lecture="02"], [data-lecture="03"]),
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) body { height:100dvh; overflow:hidden; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal { font-size:24px; height:100dvh; overflow:visible; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal>.lecture-viewport { height:calc(100dvh - 94px); overflow-y:auto; overflow-x:hidden; touch-action:pan-y; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .lecture-viewport:focus-visible { outline:3px solid #b15a2b; outline-offset:-3px; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides { position:relative!important; top:0!important; left:0!important; transform:none!important; width:100%!important; height:auto!important; margin:0!important; perspective:none!important; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides>section.present { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; padding:0; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides section[data-slide-id] { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; min-height:calc(100dvh - 94px); font-size:22px!important; padding:22px 18px 38px!important; box-sizing:border-box; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides>section:not(.present),
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides>section>section:not(.present) { display:none!important; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal h1 { font-size:34px; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal h2 { font-size:30px; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal h3 { font-size:24px; }
+  /* Mọi lưới của bốn bài xếp một cột; !important thắng các tỉ lệ cột riêng theo trang (Bài 00 A02, A08; Bài 03 .example-grid; Bài 02 .ap-cards). */
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .grid2,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .grid3,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .grid4,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .split-6040,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .example-grid,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .ap-cards,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .stack-cards { grid-template-columns:minmax(0,1fr)!important; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) :is(.grid2, .grid3, .grid4, .split-6040, .example-grid, .ap-cards, .stack-cards)>* { min-width:0; }
+  /* Chuỗi bước của Bài 01 xếp dọc; mũi tên của chuỗi hiện lại (quy tắc chung ở 680 px ẩn mọi .arrow). */
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .route { flex-direction:column; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .arrow { display:inline; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .route>.arrow { transform:rotate(90deg); align-self:center; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .route .stage { width:100%; max-width:none; box-sizing:border-box; }
+  /* Hình lấy chiều cao theo tỉ lệ của bề rộng cột thay cho chiều cao cố định của khung 16:9. */
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides section[data-slide-id] img,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides section[data-slide-id] figure svg,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides section[data-slide-id] .mini-figure svg,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides section[data-slide-id] .projection-figure svg { width:100%; height:auto!important; max-height:none!important; max-width:100%; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .mini-figure { max-width:100%!important; }
+  /* Công thức hiển thị và bảng rộng hơn màn hình cuộn ngang tại chỗ; trang không tràn ngang. */
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .math-large,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .math-mid { font-size:22px; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .katex-display { max-width:100%; overflow-x:auto; overflow-y:hidden; padding:2px 0; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slides section[data-slide-id] table { display:block; width:auto!important; max-width:100%; overflow-x:auto; font-size:20px; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal td,
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal th { padding:.25em .3em; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .has-horizontal-overflow { border-block:2px solid #b15a2b; box-sizing:border-box; scrollbar-color:#b15a2b #f7efe6; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .has-horizontal-overflow:focus-visible { outline:3px solid #b15a2b; outline-offset:2px; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .footer { display:none!important; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .controls[data-controls-layout] { position:fixed; top:auto; left:auto; bottom:8px; right:10px; z-index:31; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slide-number { position:fixed; bottom:10px; left:10px; right:auto; font-size:17px; }
+  :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .progress { position:fixed; bottom:92px; z-index:31; }
+}

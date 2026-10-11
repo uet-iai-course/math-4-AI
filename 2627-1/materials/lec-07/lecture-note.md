@@ -75,9 +75,11 @@ Trong Bài 02, chúng ta đã xếp bài toán loại này vào quy hoạch tuy�
 
 Trong chương này, chúng ta chứng minh rằng, dưới hai giả thiết nêu rõ, chỉ cần xét hữu hạn điểm gọi là đỉnh, các đỉnh tính được bằng đại số, và có thể đi từ đỉnh này sang đỉnh khác. Phần cuối chương xét các quyết định chọn theo chuỗi.
 
-![Hai ô cạnh nhau. Ô trái, nhãn "Một véc-tơ quyết định": miền khả thi của một quy hoạch tuyến tính hai biến được tô kín, ghi "vô số điểm khả thi", có năm đỉnh được đánh dấu, ghi "5 đỉnh". Ô phải, nhãn "Một chuỗi quyết định": đồ thị ba tầng đi từ nút s qua A, B rồi C, D tới nút t, ghi "4 đường đi s → t".](img/lec-07/central-problem.svg)
+![Ô "Một véc-tơ quyết định": miền khả thi của một quy hoạch tuyến tính hai biến được tô kín, ghi "vô số điểm khả thi", có năm đỉnh được đánh dấu, ghi "5 đỉnh".](img/lec-07/central-problem-lp.svg)
 
-Hình trên đặt hai cấu trúc của chương cạnh nhau. Ở ô trái, miền phẳng có vô số điểm nhưng chỉ năm đỉnh, và ở Mục 3–4, chúng ta chứng minh rằng khi bài toán có nghiệm tối ưu và miền có đỉnh thì có một đỉnh tối ưu. Ở ô phải, mỗi phương án là một đường đi qua nhiều tầng. Ở Mục 5–6, chúng ta chỉ ra rằng chi phí nhỏ nhất từ một nút tới đích không phụ thuộc đường dẫn tới nút đó, nên mỗi nút chỉ cần tính một lần.
+![Ô "Một chuỗi quyết định": đồ thị ba tầng đi từ nút s qua A, B rồi C, D tới nút t, ghi "4 đường đi s → t".](img/lec-07/central-problem-dp.svg)
+
+Hai hình trên minh họa hai cấu trúc của chương. Ở hình thứ nhất, miền phẳng có vô số điểm nhưng chỉ năm đỉnh, và ở Mục 3–4, chúng ta chứng minh rằng khi bài toán có nghiệm tối ưu và miền có đỉnh thì có một đỉnh tối ưu. Ở hình thứ hai, mỗi phương án là một đường đi qua nhiều tầng. Ở Mục 5–6, chúng ta chỉ ra rằng chi phí nhỏ nhất từ một nút tới đích không phụ thuộc đường dẫn tới nút đó, nên mỗi nút chỉ cần tính một lần.
 
 ### 1.1 Biến, đơn vị và ràng buộc
 

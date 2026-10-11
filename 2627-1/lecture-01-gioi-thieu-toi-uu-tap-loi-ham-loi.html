@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="reveal">
-  <div class="slides">
+  <div class="lecture-viewport" tabindex="0" role="region" aria-label="Nội dung trang chiếu"><div class="slides">
 
     <section>
       <section data-slide-id="M01">
@@ -894,7 +894,7 @@
     </section>
 
     <div class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 01</div>
-  </div>
+  </div></div>
 </div>
 
 <script src="revealjs/dist/reveal.js"></script>
@@ -910,10 +910,59 @@
     controlsLayout: "edges",
     slideNumber: true,
     hashOneBasedIndex: true,
-    hash: true,
+    hash: true, scrollActivationWidth: null,
     katex: { local: "vendor/katex" },
     plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
   });
+</script>
+<script>
+// Màn hẹp (≤ 760 px): nội dung trang chiếu đọc trong vùng cuộn dọc .lecture-viewport thay cho khung 16:9 thu nhỏ.
+const readingRegion=document.querySelector('.lecture-viewport');
+const isNarrow=()=>matchMedia('(max-width:760px)').matches;
+// Cử chỉ chạm trong vùng đọc thuộc về thanh cuộn của trình duyệt, không chuyển trang.
+['touchstart','touchmove','touchend','touchcancel'].forEach(type=>{
+  readingRegion.addEventListener(type,event=>{ if(isNarrow()) event.stopPropagation(); },{passive:true});
+});
+['pointerdown','pointermove','pointerup','pointercancel'].forEach(type=>{
+  readingRegion.addEventListener(type,event=>{ if(event.pointerType==='touch' && isNarrow()) event.stopPropagation(); },{passive:true});
+});
+// Đánh dấu công thức hoặc bảng tràn ngang ở màn hẹp để người đọc biết cần cuộn.
+let scrollHintFrame;
+function updateScrollHints(){
+  const slide=Reveal.getCurrentSlide();
+  if(!slide) return;
+  const narrow=isNarrow();
+  slide.querySelectorAll('.katex-display,table').forEach(region=>{
+    const overflow=region.clientWidth>0 && region.scrollWidth>region.clientWidth+2;
+    region.classList.toggle('has-horizontal-overflow',narrow && overflow);
+    if(narrow && overflow) region.tabIndex=0; else region.removeAttribute('tabindex');
+  });
+}
+function scheduleScrollHints(){ cancelAnimationFrame(scrollHintFrame); scrollHintFrame=requestAnimationFrame(updateScrollHints); }
+Reveal.on('ready',scheduleScrollHints);
+window.addEventListener('resize',scheduleScrollHints);
+document.fonts.ready.then(scheduleScrollHints);
+document.fonts.addEventListener('loadingdone',scheduleScrollHints);
+if('ResizeObserver' in window) new ResizeObserver(scheduleScrollHints).observe(document.querySelector('.reveal .slides'));
+document.querySelectorAll('.slides img').forEach(img=>img.addEventListener('load',scheduleScrollHints));
+// Phím mũi tên ngang cuộn vùng công thức hoặc bảng đang nhận tiêu điểm; phím dọc cuộn vùng đọc khi vùng đọc nhận tiêu điểm.
+readingRegion.addEventListener('keydown',event=>{
+  if(!isNarrow() || event.altKey || event.ctrlKey || event.metaKey) return;
+  const region=event.target.closest('.katex-display,table');
+  if(region && ['ArrowLeft','ArrowRight'].includes(event.key) && region.scrollWidth>region.clientWidth+2){
+    event.preventDefault(); event.stopPropagation();
+    region.scrollBy({left:(event.key==='ArrowRight'?1:-1)*Math.max(40,Math.round(region.clientWidth/4)),behavior:'auto'});
+    return;
+  }
+  if(event.target!==readingRegion || readingRegion.scrollHeight<=readingRegion.clientHeight+2) return;
+  const steps={ArrowUp:-64,ArrowDown:64,PageUp:-readingRegion.clientHeight*.8,PageDown:readingRegion.clientHeight*.8};
+  if(!(event.key in steps) && event.key!=='Home' && event.key!=='End') return;
+  event.preventDefault(); event.stopPropagation();
+  if(event.key==='Home') readingRegion.scrollTop=0;
+  else if(event.key==='End') readingRegion.scrollTop=readingRegion.scrollHeight;
+  else readingRegion.scrollBy({top:steps[event.key],behavior:'auto'});
+});
+Reveal.on('slidechanged',()=>{ if(isNarrow()) readingRegion.scrollTo(0,0); scheduleScrollHints(); setTimeout(scheduleScrollHints,300); });
 </script>
 </body>
 </html>
