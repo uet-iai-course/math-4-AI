@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
   <title id="title">Hàm đối ngẫu của ví dụ xuyên suốt</title>
-  <desc id="desc">Đồ thị lấy mẫu từ g lambda bằng âm lambda bình cộng 9 lambda cộng 1, chia cho 1 cộng lambda. Miền hữu hiệu lớn hơn âm một, miền khả thi đối ngẫu không âm, và cực đại đúng tại lambda bằng 2, g bằng 5.</desc>
+  <desc id="desc">Đồ thị lấy mẫu từ g lambda bằng âm lambda bình cộng 9 lambda cộng 1, chia cho 1 cộng lambda. Miền hữu hiệu lớn hơn âm một, có tiệm cận đứng tại lambda bằng âm một; miền khả thi đối ngẫu không âm được tô nền; cực đại đúng tại lambda bằng 2, g bằng 5; khoảng từ g(0) bằng 1 tới p sao bằng 5 là 4.</desc>
   <rect width="720" height="320" fill="#fff"/>
   <rect x="200" y="30" width="480" height="245" fill="#f7f9fc"/>
-  <path d="M70 275H690M120 300V24" stroke="#222" stroke-width="2.5" fill="none"/>
+  <path d="M70 275H690M200 275V24M120 275v8" stroke="#222" stroke-width="2.5" fill="none"/>
   <line x1="120" y1="30" x2="120" y2="275" stroke="#a33a1f" stroke-width="2" stroke-dasharray="7 5"/>
-  <polyline points="184,311.8 200,240 220,185.8 240,152.5 260,131.3 280,117.5 300,108.8 320,103.5 340,100.8 360,100 380,100.7 400,102.5 440,108.8 480,117.5 520,128 560,139.8 600,152.5 640,166 680,180" fill="none" stroke="#2f3e7a" stroke-width="4"/>
+  <polyline points="184.0,311.8 188.0,290.3 192.0,271.5 196.0,254.8 200.0,240.0 204.0,226.8 208.0,214.9 212.0,204.2 216.0,194.5 220.0,185.8 224.0,177.8 228.0,170.6 232.0,164.0 236.0,158.0 240.0,152.5 244.0,147.5 248.0,142.9 252.0,138.7 256.0,134.8 260.0,131.2 264.0,128.0 268.0,125.0 272.0,122.3 276.0,119.8 280.0,117.5 284.0,115.4 288.0,113.5 292.0,111.8 296.0,110.2 300.0,108.7 304.0,107.5 308.0,106.3 312.0,105.2 316.0,104.3 320.0,103.5 324.0,102.8 328.0,102.2 332.0,101.6 336.0,101.2 340.0,100.8 344.0,100.5 348.0,100.3 352.0,100.1 356.0,100.0 360.0,100.0 364.0,100.0 368.0,100.1 372.0,100.2 376.0,100.4 380.0,100.7 384.0,101.0 388.0,101.3 392.0,101.6 396.0,102.1 400.0,102.5 404.0,103.0 408.0,103.5 412.0,104.1 416.0,104.6 420.0,105.2 424.0,105.9 428.0,106.6 432.0,107.3 436.0,108.0 440.0,108.7 444.0,109.5 448.0,110.3 452.0,111.2 456.0,112.0 460.0,112.9 464.0,113.8 468.0,114.7 472.0,115.6 476.0,116.5 480.0,117.5 484.0,118.5 488.0,119.5 492.0,120.5 496.0,121.5 500.0,122.6 504.0,123.6 508.0,124.7 512.0,125.8 516.0,126.9 520.0,128.0 524.0,129.1 528.0,130.3 532.0,131.4 536.0,132.6 540.0,133.7 544.0,134.9 548.0,136.1 552.0,137.3 556.0,138.5 560.0,139.8 564.0,141.0 568.0,142.2 572.0,143.5 576.0,144.8 580.0,146.0 584.0,147.3 588.0,148.6 592.0,149.9 596.0,151.2 600.0,152.5 604.0,153.8 608.0,155.1 612.0,156.5 616.0,157.8 620.0,159.1 624.0,160.5 628.0,161.9 632.0,163.2 636.0,164.6 640.0,166.0 644.0,167.3 648.0,168.7 652.0,170.1 656.0,171.5 660.0,172.9 664.0,174.3 668.0,175.7 672.0,177.2 676.0,178.6 680.0,180.0" fill="none" stroke="#2f3e7a" stroke-width="4"/>
   <circle cx="360" cy="100" r="7" fill="#2e7d32"/>
   <line x1="360" y1="100" x2="360" y2="275" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 5"/>
   <line x1="200" y1="100" x2="360" y2="100" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6 5"/>
   <text x="372" y="94" font-size="19" fill="#2e7d32">λ*=2, d*=5</text>
-  <circle cx="200" cy="240" r="5" fill="#fff" stroke="#b15a2b" stroke-width="3"/><line x1="200" y1="105" x2="200" y2="235" stroke="#b15a2b" stroke-width="2" stroke-dasharray="6 5"/>
-  <text x="210" y="127" font-size="16" fill="#b15a2b">p*−g(0)=4</text><text x="208" y="94" font-size="16" fill="#2e7d32">p*=5</text>
+  <path d="M198 100H188V240H198" fill="none" stroke="#b15a2b" stroke-width="2"/><circle cx="200" cy="240" r="5" fill="#fff" stroke="#b15a2b" stroke-width="3"/>
+  <text x="184" y="166" text-anchor="end" font-size="14" fill="#b15a2b">p*−g(0)</text><text x="184" y="184" text-anchor="end" font-size="14" fill="#b15a2b">= 4</text><text x="208" y="94" font-size="16" fill="#2e7d32">p*=5</text>
   <text x="468" y="52" font-size="16" fill="#16706a">x=3: f₁(x)=−1&lt;0 ⇒ Slater</text>
-  <text x="76" y="50" font-size="16" fill="#a33a1f">g(λ)→−∞ khi λ↓−1</text>
-  <text x="242" y="50" font-size="18">miền đối ngẫu: λ≥0</text>
-  <text x="112" y="300" font-size="17">−1</text><text x="194" y="300" font-size="17">0</text><text x="354" y="300" font-size="17">2</text>
-  <text x="692" y="300" font-size="18">λ</text><text x="152" y="25" font-size="18">g(λ)</text>
+  <text x="112" y="62" text-anchor="end" font-size="16" fill="#a33a1f">g(λ)→−∞</text><text x="112" y="82" text-anchor="end" font-size="16" fill="#a33a1f">khi λ↓−1</text>
+  <text x="262" y="56" font-size="18">miền đối ngẫu: λ≥0</text>
+  <text x="120" y="300" text-anchor="middle" font-size="17">−1</text><text x="200" y="300" text-anchor="middle" font-size="17">0</text><text x="360" y="300" text-anchor="middle" font-size="17">2</text>
+  <text x="692" y="300" font-size="18">λ</text><text x="208" y="24" font-size="18">g(λ)</text>
 </svg>
