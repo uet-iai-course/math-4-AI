@@ -36,7 +36,7 @@ Trong chương này, chúng ta dùng các kết quả sau. Số hiệu `01.k` ch
 
 ## Bảng ký hiệu
 
-Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của một ví dụ, một chứng minh hay một tình huống được giới thiệu tại chỗ. Bài không ràng buộc dùng cặp $(f,x)$; bài có đẳng thức dùng cặp $(F,u)$ để hai lớp bài không lẫn nhau.
+Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của một ví dụ, một chứng minh hay một tình huống được giới thiệu tại chỗ. Bài không ràng buộc dùng cặp $(f,x)$; bài có đẳng thức dùng cặp $(F,u)$ để phân biệt hai lớp bài toán.
 
 | Ký hiệu | Ý nghĩa | Miền hoặc kiểu |
 |---|---|---|
@@ -73,7 +73,7 @@ Trong cả chương, $\log$ là logarit tự nhiên. Mọi bộ số của ba v�
 
 ## 1. Điều kiện tối ưu và nhiệm vụ tạo bước lặp
 
-Trong Bài 03, chúng ta đã có một công cụ chứng nhận nghiệm: theo Định lý 03.32, với bài lồi khả vi, một bộ thỏa hệ KKT cho nghiệm toàn cục. Ví dụ 03.19 dùng công cụ này để giải bài hồi quy có trần bằng tay, trong đó điều kiện dừng $(w-y)+2\lambda w=0$ cho $w=y/(1+2\lambda)$, rồi điều kiện bù trừ cho $\lambda^*=2$ và $w^*=(0{,}6;\,0{,}8)$. Phép giải thành công vì điều kiện dừng là một hệ tuyến tính theo $w$ khi $\lambda$ cố định. Tuy nhiên, với hồi quy logistic có chính quy hóa trên dữ liệu của Ví dụ 01.7, tham số là một số thực $w$, hệ số chính quy hóa là $\mu>0$, và điều kiện dừng là phương trình
+Trong Bài 03, chúng ta đã có một công cụ chứng nhận nghiệm: theo Định lý 03.32, với bài lồi khả vi, một bộ thỏa hệ KKT cho nghiệm toàn cục. Ví dụ 03.19 dùng công cụ này để giải trực tiếp bài hồi quy có trần, trong đó điều kiện dừng $(w-y)+2\lambda w=0$ cho $w=y/(1+2\lambda)$, rồi điều kiện bù trừ cho $\lambda^*=2$ và $w^*=(0{,}6;\,0{,}8)$. Lời giải trực tiếp thực hiện được vì điều kiện dừng là một hệ tuyến tính theo $w$ khi $\lambda$ cố định. Tuy nhiên, với hồi quy logistic có chính quy hóa trên dữ liệu của Ví dụ 01.7, tham số là một số thực $w$, hệ số chính quy hóa là $\mu>0$, và điều kiện dừng là phương trình
 
 $$
 \frac{e^w-2}{1+e^w}+\mu w=0,
@@ -83,9 +83,9 @@ trong đó số hạng thứ nhất là đạo hàm của mất mát logistic tr
 
 Khi hệ điều kiện tối ưu không giải được dạng đóng, chúng ta cần một phương pháp lặp, tức một quy tắc sinh ra dãy điểm tiến tới nghiệm của hệ. Chương này xây dựng các phương pháp lặp như vậy cho bài không ràng buộc và bài chỉ có ràng buộc đẳng thức. Đó là giảm gradient (Mục 2), phương pháp Newton (Mục 3), Newton cho ràng buộc đẳng thức từ điểm khả thi và từ điểm chưa khả thi (Mục 4 và Mục 5), cùng cận sai số cho hàm tự điều chỉnh (Mục 6). Trong mục này, chúng ta viết lại hệ KKT cho hai lớp bài toán này, chứng minh rằng ở đây hệ đó vừa cần vừa đủ, rồi nêu cấu trúc chung của một bước lặp.
 
-### 1.1 Biết đích nhưng chưa có cách tới
+### 1.1 Bài toán tìm nghiệm khi đã có điều kiện tối ưu
 
-Hệ KKT mô tả nghiệm bằng phương trình. Khi phương trình phi tuyến, chúng ta cần một dãy điểm $x^0,x^1,x^2,\ldots$ mà mỗi điểm được tính từ điểm trước bằng phép tính hữu hạn và dãy tiến dần tới nghiệm. Trên bài hồi quy logistic ở trên, ví dụ sau đo khoảng cách giữa việc mô tả nghiệm và việc tìm ra nghiệm.
+Hệ KKT mô tả nghiệm bằng phương trình. Khi phương trình phi tuyến, chúng ta cần một dãy điểm $x^0,x^1,x^2,\ldots$ mà mỗi điểm được tính từ điểm trước bằng phép tính hữu hạn và dãy tiến dần tới nghiệm. Trên bài hồi quy logistic ở trên, ví dụ sau phân biệt việc mô tả nghiệm với việc tìm nghiệm.
 
 ::: example Ví dụ 04.1 (Điều kiện dừng không có nghiệm dạng đóng)
 **Dữ kiện.**
@@ -135,7 +135,7 @@ Bài toán tổng quát (2.1) của Bài 03 có miền $D$, $m$ ràng buộc b�
 
 Ví dụ, $f(x)=\tfrac12(3x_1^2+7x_2^2)$ trên $\mathbb R^2$ là bài không ràng buộc, còn $\varphi(s)=s-\log s$ có miền mở $(0,\infty)$, nên điều kiện $s>0$ là miền chứ không phải ràng buộc bất đẳng thức. Phản ví dụ là bài $\min x$ với $x\ge0$: nó không thuộc hai lớp này vì nghiệm $x=0$ nằm trên biên của tập khả thi và đạo hàm tại đó bằng $1\ne0$.
 
-Câu hỏi đặt ra là mọi phương pháp của chương nhắm tới hệ phương trình nào. Mệnh đề sau trả lời câu hỏi đó, và chứng minh của nó chỉ cần điều kiện cần bậc nhất của Bài 00, Hệ quả 01.27 cùng một sự kiện đại số tuyến tính về không gian hạt nhân.
+Mọi phương pháp của chương hướng tới việc giải một hệ phương trình, và mệnh đề sau xác định hệ đó. Chứng minh của mệnh đề chỉ cần điều kiện cần bậc nhất của Bài 00, Hệ quả 01.27 cùng một sự kiện đại số tuyến tính về không gian hạt nhân.
 
 ::: proposition Mệnh đề 04.2 (Hệ KKT rút gọn là điều kiện cần và đủ)
 **Giả thiết.** Hai bài toán của Định nghĩa 04.1.
@@ -192,17 +192,17 @@ Giả sử $u^*$ là nghiệm và lấy $d\in\ker A$ bất kỳ. Vì miền mở
 Nếu $\nu_1$, $\nu_2$ cùng thỏa (1.2) thì $A^T(\nu_1-\nu_2)=0$, và vì các hàng của $A$ độc lập tuyến tính, $\nu_1=\nu_2$. $\square$
 :::
 
-Mệnh đề 04.2 cho thấy ở hai lớp bài của chương, giải bài tối ưu và giải hệ (1.1) hoặc (1.2) là một việc. Hệ (1.1) gồm $n$ phương trình theo $n$ ẩn, còn hệ (1.2) gồm $n$ phương trình dừng và $p$ phương trình khả thi theo $n+p$ ẩn $(u^*,\nu^*)$.
+Mệnh đề 04.2 cho thấy ở hai lớp bài của chương, giải bài toán tối ưu tương đương với giải hệ (1.1) hoặc (1.2). Hệ (1.1) gồm $n$ phương trình theo $n$ ẩn, còn hệ (1.2) gồm $n$ phương trình dừng và $p$ phương trình khả thi theo $n+p$ ẩn $(u^*,\nu^*)$.
 
-Vai trò riêng của mỗi giả thiết lộ ra khi bỏ từng giả thiết:
+Vai trò của mỗi giả thiết thể hiện khi lần lượt bỏ từng giả thiết:
 
-- bỏ tính lồi thì chiều đủ hỏng: $f(x)=x^3$ có $f'(0)=0$ nhưng $0$ không là cực tiểu;
-- bỏ miền mở thì chiều cần hỏng, như phản ví dụ $\min x$ với $x\ge0$ ở trên;
+- bỏ tính lồi thì chiều đủ không còn đúng: $f(x)=x^3$ có $f'(0)=0$ nhưng $0$ không là cực tiểu;
+- bỏ miền mở thì chiều cần không còn đúng, như phản ví dụ $\min x$ với $x\ge0$ ở trên;
 - bỏ giả thiết $A$ đủ hạng hàng thì $\nu^*$ không duy nhất: với hai hàng trùng nhau $u_1+u_2=14$ và $u_1+u_2=14$, mọi cặp $(\nu_1,\nu_2)$ có cùng tổng đều dùng được.
 
-Chiều đủ của Mệnh đề 04.2(b) là trường hợp riêng của Định lý 03.32. Trong khi chiều cần ở Bài 03 đi qua đối ngẫu mạnh và điều kiện Slater (Hệ quả 03.31) thì ở đây nó được chứng minh trực tiếp bằng hướng khả thi. Cách chứng minh này dùng được vì ràng buộc affine cho phép đi theo mọi hướng của $\ker A$ mà vẫn khả thi. Lập luận hướng khả thi này cũng là nền của phương pháp Newton khả thi ở Mục 4.
+Chiều đủ của Mệnh đề 04.2(b) là trường hợp riêng của Định lý 03.32. Trong khi chiều cần ở Bài 03 dựa trên đối ngẫu mạnh và điều kiện Slater (Hệ quả 03.31) thì ở đây nó được chứng minh trực tiếp bằng hướng khả thi. Cách chứng minh này dùng được vì ràng buộc affine cho phép đi theo mọi hướng của $\ker A$ mà vẫn khả thi. Lập luận hướng khả thi này cũng là cơ sở của phương pháp Newton khả thi ở Mục 4.
 
-**Trong học máy.** Huấn luyện một mô hình không có ràng buộc, như hồi quy logistic có chính quy hóa, là bài không ràng buộc với biến là vector tham số $w$ và $f$ là mất mát huấn luyện. Mệnh đề 04.2(a) đặt đích của thuật toán huấn luyện là $\nabla f=0$ khi mất mát lồi; việc dừng khi gradient đủ nhỏ còn cần giả thiết về độ cong để chặn sai số (Mục 2.6). Ràng buộc đẳng thức xuất hiện khi tham số phải thỏa một đẳng thức tuyến tính, như trọng số trộn của nhiều mô hình có tổng bằng 1 (Tình huống 04.2). Với mạng sâu, mất mát không lồi, nên $\nabla f=0$ chỉ là điều kiện cần (Tình huống 04.3).
+**Trong học máy.** Huấn luyện một mô hình không có ràng buộc, như hồi quy logistic có chính quy hóa, là bài không ràng buộc với biến là vector tham số $w$ và $f$ là mất mát huấn luyện. Mệnh đề 04.2(a) xác định mục tiêu của thuật toán huấn luyện là giải $\nabla f=0$ khi mất mát lồi; việc dừng khi gradient đủ nhỏ còn cần giả thiết về độ cong để chặn sai số (Mục 2.6). Ràng buộc đẳng thức xuất hiện khi tham số phải thỏa một đẳng thức tuyến tính, như trọng số trộn của nhiều mô hình có tổng bằng 1 (Tình huống 04.2). Với mạng sâu, mất mát không lồi, nên $\nabla f=0$ chỉ là điều kiện cần (Tình huống 04.3).
 
 ::: example Ví dụ 04.2 (Hệ KKT rút gọn của hai bài nhỏ)
 **Bài không ràng buộc (VD1).**
@@ -234,7 +234,7 @@ Nhầm lẫn thường gặp là đòi $\nu^*\succeq0$ theo thói quen của rà
 
 ### 1.3 Cấu trúc một bước lặp
 
-Hệ (1.1) và (1.2) xác định đích, nhưng để tới đích, một phương pháp lặp cần thêm ba thành phần do người thiết kế chọn. Ba thành phần này được đặt tên theo định nghĩa sau.
+Hệ (1.1) và (1.2) xác định nghiệm cần tìm, nhưng để tính được nghiệm đó, một phương pháp lặp cần thêm ba thành phần do người thiết kế chọn. Ba thành phần này được đặt tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 04.4 (Phương pháp giảm)
 Cho bài không ràng buộc của Định nghĩa 04.1 và điểm đầu $x^0\in\operatorname{dom}f$. Một phương pháp giảm (descent method) sinh dãy
@@ -250,7 +250,7 @@ trong đó:
 - **tiêu chí dừng** là một bất đẳng thức tính được tại $x^k$ đo mức vi phạm của (1.1).
 :::
 
-Ba thành phần của Định nghĩa 04.4 độc lập với nhau: bài con quyết định phương, quy tắc nhận bước quyết định đi bao xa theo phương đó, còn tiêu chí dừng quyết định khi nào trả kết quả. Ở Mục 2 và Mục 3, chúng ta thay đổi bài con và giữ quy tắc nhận bước. Ở Mục 4 và Mục 5, chúng ta thêm ràng buộc vào bài con và thay quy tắc nhận bước khi cần.
+Ba thành phần của Định nghĩa 04.4 độc lập với nhau: bài con quyết định phương, quy tắc nhận bước xác định độ dài bước theo phương đó, còn tiêu chí dừng quyết định khi nào trả kết quả. Ở Mục 2 và Mục 3, chúng ta thay đổi bài con và giữ quy tắc nhận bước. Ở Mục 4 và Mục 5, chúng ta thêm ràng buộc vào bài con và thay quy tắc nhận bước khi cần.
 
 Lưu ý rằng hướng $d^k$ là nghiệm của bài con chứ không phải nghiệm của bài gốc, vì bài con có biến là bước $d$ và được lập tại một điểm cố định. Quan hệ giữa hai bài được nêu trong nhận xét sau.
 
@@ -290,17 +290,17 @@ $\nu^*=-4<0$. Không mâu thuẫn: theo Nhận xét 04.3, nhân tử của đẳ
 
 Xuất phát từ nhu cầu tìm nghiệm của một phương trình phi tuyến, chúng ta đã cố định hai lớp bài toán cùng giả thiết chung (Định nghĩa 04.1). Trên hai lớp này, Mệnh đề 04.2 chứng minh hệ (1.1) và (1.2) vừa cần vừa đủ, và Nhận xét 04.3 giải thích vì sao nhân tử của đẳng thức tự do dấu. Như vậy, đích của mọi phương pháp trong chương là hệ (1.1) hoặc (1.2), còn mỗi bước lặp gồm bài con, quy tắc nhận bước và tiêu chí dừng (Định nghĩa 04.4).
 
-Đến đây, chúng ta chưa có bài con cụ thể nào, chưa có quy tắc nhận bước, và chưa biết một hướng $d$ phải thỏa điều gì để $f$ giảm. Câu hỏi cuối được trả lời trong Mục 2.
+Đến đây, chúng ta chưa có bài con cụ thể nào, chưa có quy tắc nhận bước, và chưa có điều kiện để một hướng $d$ làm $f$ giảm. Điều kiện này được xây dựng trong Mục 2.
 
 ## 2. Hướng giảm, độ dài bước và thước đo
 
-Xét VD1, $f(x)=\tfrac12(3x_1^2+7x_2^2)$, tại $x^0=(2,4)^T$ với $f(x^0)=\tfrac12(12+112)=62$. Gradient $g=\nabla f(x^0)=(6,28)^T\ne0$, nên $x^0$ chưa là nghiệm, và câu hỏi đặt ra là từ $x^0$ đi theo hướng nào thì $f$ giảm.
+Xét VD1, $f(x)=\tfrac12(3x_1^2+7x_2^2)$, tại $x^0=(2,4)^T$ với $f(x^0)=\tfrac12(12+112)=62$. Gradient $g=\nabla f(x^0)=(6,28)^T\ne0$, nên $x^0$ chưa là nghiệm, và cần xác định các hướng $d$ mà dọc theo đó $f$ giảm khi rời $x^0$.
 
 Đầu tiên, chúng ta dùng đạo hàm hướng để nhận biết một hướng giảm, sau đó dùng mô hình bậc hai để chọn hướng và quy tắc quay lui Armijo để chọn độ dài bước. Ghép ba công cụ này lại, ta được thuật toán giảm gradient. Cuối mục, chúng ta chứng minh các cận hội tụ của thuật toán và chỉ ra giới hạn của nó khi độ cong khác nhau theo từng phương.
 
 ### 2.1 Đạo hàm hướng và hướng giảm
 
-Tại $x^0$ của VD1 có vô số hướng để đi. Một cách trực quan, hướng tốt là hướng mà dọc theo nó đồ thị của $f$ đi xuống ngay khi rời $x^0$. Mô tả này chưa phải định nghĩa. Để biến nó thành một phép kiểm, ta cần đo độ dốc của đồ thị dọc một hướng bằng một giới hạn một phía theo định nghĩa sau.
+Tại $x^0$ của VD1 có vô số hướng dịch chuyển. Một cách trực quan, hướng cần tìm là hướng mà dọc theo đó $f$ giảm ngay khi rời $x^0$. Mô tả này chưa phải định nghĩa. Để biến nó thành một phép kiểm, ta cần đo độ dốc của đồ thị dọc một hướng bằng một giới hạn một phía theo định nghĩa sau.
 
 ::: definition Định nghĩa 04.6 (Đạo hàm hướng và hướng giảm)
 Cho $f:\operatorname{dom}f\to\mathbb R$ với $\operatorname{dom}f\subseteq\mathbb R^n$ mở, một điểm $x\in\operatorname{dom}f$ và một vector $d\in\mathbb R^n$.
@@ -356,7 +356,7 @@ Dòng thứ hai dùng cận của $\xi(t)/t$; dòng thứ ba dùng $g^Td=-\lvert
 
 Mệnh đề 04.7 cho thấy dấu của một tích vô hướng quyết định $f$ tăng hay giảm ngay khi rời $x$ theo $d$. Do hệ số $s>0$ không đổi dấu, tính chất "là hướng giảm" thuộc về phương và chiều của $d$ và không phụ thuộc độ dài.
 
-Khi $g^Td=0$, thông tin bậc một thật sự không đủ để kết luận, như hai hàm sau cho thấy:
+Khi $g^Td=0$, thông tin bậc một không đủ để kết luận, như hai hàm sau cho thấy:
 
 - với $f(x)=x_1^2-x_2^2$ tại $x=(1,0)^T$, $g=(2,0)^T$, hướng $d=(0,1)^T$ có $g^Td=0$ và $f(x+td)=1-t^2<f(x)$;
 - với $f(x)=x_1^2+x_2^2$, cùng điểm và hướng cho $f(x+td)=1+t^2>f(x)$.
@@ -381,11 +381,11 @@ Theo hướng thứ nhất, $f(x^0+td)=\tfrac12(3(2-t)^2+112)$, giảm khi $0<t<
 
 Trên hình, các hướng có $g^Td<0$ chỉ vào phía trong elip qua $x^0$, nơi $f<62$. Hướng có $g^Td=0$ tiếp xúc với elip. Hai trục được vẽ với tỷ lệ khác nhau, nên góc nhìn thấy giữa mũi tên và đường mức không dùng để kết luận tính trực giao; dấu được xác định bằng phép tính của Ví dụ 04.3.
 
-Tuy nhiên, có vô số hướng giảm và tiêu chuẩn dấu không chọn ra được hướng nào. Cực tiểu hóa riêng $g^Td$ theo $d$ cũng không có nghiệm, vì với $d=-sg$, $g^Td=-s\lVert g\rVert_2^2\to-\infty$ khi $s\to\infty$. Do đó, bài con chọn hướng cần thêm một số hạng ngăn bước dài vô hạn.
+Tuy nhiên, có vô số hướng giảm và tiêu chuẩn dấu không chọn ra được hướng nào. Cực tiểu hóa riêng $g^Td$ theo $d$ cũng không có nghiệm, vì với $d=-sg$, $g^Td=-s\lVert g\rVert_2^2\to-\infty$ khi $s\to\infty$. Do đó, bài con chọn hướng cần thêm một số hạng ngăn độ dài bước tăng không giới hạn.
 
 ### 2.2 Hướng gradient từ một bài con bậc hai
 
-Xấp xỉ bậc một $f(x+d)\approx f(x)+g^Td$ chỉ đáng tin khi $d$ nhỏ. Về mặt ý tưởng, ta cộng vào xấp xỉ này một số hạng phạt độ dài bước, để bài con cân bằng giữa mức giảm dự báo và độ tin cậy của dự báo. Số hạng phạt đơn giản nhất là $\tfrac12\lVert d\rVert_2^2$. Định nghĩa sau cho phép một ma trận trọng số tổng quát, vì ở Mục 2.5 và Mục 3, chúng ta sẽ thay ma trận đơn vị bằng ma trận khác.
+Xấp xỉ bậc một $f(x+d)\approx f(x)+g^Td$ chỉ chính xác khi $d$ nhỏ. Về mặt ý tưởng, ta cộng vào xấp xỉ này một số hạng phạt độ dài bước, để bài con cân bằng giữa mức giảm dự báo và độ tin cậy của dự báo. Số hạng phạt đơn giản nhất là $\tfrac12\lVert d\rVert_2^2$. Định nghĩa sau cho phép một ma trận trọng số tổng quát, vì ở Mục 2.5 và Mục 3, chúng ta sẽ thay ma trận đơn vị bằng ma trận khác.
 
 ::: definition Định nghĩa 04.8 (Mô hình bậc hai và hướng gradient)
 Cho $x\in\operatorname{dom}f$ cố định, $g=\nabla f(x)$ và ma trận đối xứng $W\in\mathbb R^{n\times n}$, $W\succ0$. Mô hình bậc hai của $f$ tại $x$ với ma trận $W$ là hàm của bước $d\in\mathbb R^n$:
@@ -397,7 +397,7 @@ $$
 Với $W=I$, mô hình là $Q_I(d)=f(x)+g^Td+\tfrac12\lVert d\rVert_2^2$, và nghiệm của bài con $\min_dQ_I(d)$ gọi là **hướng gradient**, ký hiệu $d_G$.
 :::
 
-Trong định nghĩa trên, điểm $x$ được giữ cố định, nên $f(x)$ và $g$ là hằng số và biến duy nhất là $d$. Ba số hạng của $Q_W$ có ba vai trò: $f(x)$ là giá trị hiện tại, $g^Td$ là thay đổi bậc một dự báo, còn $\tfrac12d^TWd$ là cái giá của việc đi xa. Chỉ số dưới của $Q$ ghi ma trận của số hạng bậc hai.
+Trong định nghĩa trên, điểm $x$ được giữ cố định, nên $f(x)$ và $g$ là hằng số và biến duy nhất là $d$. Ba số hạng của $Q_W$ có ba vai trò: $f(x)$ là giá trị hiện tại, $g^Td$ là thay đổi bậc một dự báo, còn $\tfrac12d^TWd$ phạt độ dài của bước. Chỉ số dưới của $Q$ ghi ma trận của số hạng bậc hai.
 
 Mô hình $Q_W$ khác khai triển Taylor bậc hai ở chỗ $W$ là một ma trận được chọn, không nhất thiết bằng Hessian. Khi $W=\nabla^2f(x)$, $Q_W$ trùng khai triển Taylor bậc hai, và đó là mô hình Newton của Mục 3. Bài con được giải cho mọi $W\succ0$ cùng một lúc theo mệnh đề sau.
 
@@ -465,11 +465,11 @@ Mô hình dự báo $Q_I(d_G)=62-820+\tfrac12\cdot820=-348$. Giá trị thật t
 Mô hình $Q_I$ dùng độ cong $1$ theo mọi phương, trong khi độ cong thật của VD1 là $3$ theo $x_1$ và $7$ theo $x_2$. Với $d=d_G$: $\tfrac12d_G^T\operatorname{diag}(3,7)d_G=\tfrac12(108+5488)=2798$, nên $f(x^0+d_G)=62-820+2798=2040$, khớp phép tính trực tiếp.
 :::
 
-Ví dụ 04.4 minh họa Nhận xét 04.5: nghiệm của bài con là một hướng tốt, nhưng bước đầy đủ $t=1$ theo hướng đó làm $f$ tăng từ $62$ lên $2040$. Độ dài bước vì vậy cần một quy tắc riêng.
+Ví dụ 04.4 minh họa Nhận xét 04.5: nghiệm của bài con là một hướng giảm, nhưng bước đầy đủ $t=1$ theo hướng đó làm $f$ tăng từ $62$ lên $2040$. Độ dài bước vì vậy cần một quy tắc riêng.
 
 ### 2.3 Độ dài bước và quay lui Armijo
 
-Hướng giảm chỉ bảo đảm $f$ giảm khi $t$ đủ nhỏ (Mệnh đề 04.7(b)). Trên VD1 có thể tính chính xác "đủ nhỏ" là bao nhiêu, và phép tính đó gợi ra một phép kiểm dùng được cho hàm tổng quát.
+Hướng giảm chỉ bảo đảm $f$ giảm khi $t$ đủ nhỏ (Mệnh đề 04.7(b)). Trên VD1 có thể tính chính xác ngưỡng của $t$ để $f$ giảm, và phép tính đó gợi ý một phép kiểm áp dụng được cho hàm tổng quát.
 
 ::: example Ví dụ 04.5 (VD1 trên tia cập nhật)
 **Dữ kiện.**
@@ -502,7 +502,7 @@ $t=\tfrac14$ cho điểm $(\tfrac12,-3)^T$ và $f=\tfrac12(\tfrac34+63)=\tfrac{2
 
 Tia cập nhật trên hình đi vào vùng $f<62$ rồi ra khỏi nó: điểm ứng với $t=\tfrac14$ còn ở trong vùng, còn điểm ứng với $t=\tfrac12$ đã vượt sang phía bên kia của elip. Với hàm tổng quát, vùng giảm không tính được dạng đóng, nên chúng ta cần một phép kiểm chỉ dùng giá trị $f$ tại điểm thử và số $g^Td$ đã có.
 
-Một cách trực quan, phép kiểm đó so mức giảm thật $f(x)-f(x+td)$ với mức giảm mà xấp xỉ tuyến tính dự báo, $-t\,g^Td$. Bước được nhận nếu mức giảm thật đạt ít nhất một phần cố định của dự báo, và ý tưởng này được viết thành điều kiện chính xác trong định nghĩa sau.
+Một cách trực quan, phép kiểm đó so sánh mức giảm thật $f(x)-f(x+td)$ với mức giảm mà xấp xỉ tuyến tính dự báo, $-t\,g^Td$. Bước được nhận nếu mức giảm thật đạt ít nhất một phần cố định của dự báo, và ý tưởng này được viết thành điều kiện chính xác trong định nghĩa sau.
 
 ::: definition Định nghĩa 04.10 (Điều kiện Armijo và quay lui)
 Cho $x\in\operatorname{dom}f$, hướng giảm $d$ với $g^Td<0$ và hai tham số $\alpha\in(0,\tfrac12]$, $\beta\in(0,1)$.
@@ -517,9 +517,9 @@ $$
 - **Quay lui Armijo** (backtracking line search) là thủ tục: đặt $t=1$; trong khi $x+td\notin\operatorname{dom}f$ hoặc (2.2) sai, gán $t\leftarrow\beta t$; trả về $t$.
 :::
 
-Ở định nghĩa này, vế phải của (2.2) là một đường thẳng theo $t$, đi qua điểm $(0,f(x))$ với hệ số góc $\alpha g^Td$. Đường này thoải hơn tiếp tuyến của $h(t)=f(x+td)$ tại $0$, có hệ số góc $g^Td$, vì $0<\alpha<1$. Bước được nhận khi đồ thị $h$ nằm dưới đường thẳng đó. Quay lui thử lần lượt $t=1,\beta,\beta^2,\ldots$ và dừng ở giá trị đầu tiên được nhận; điểm thử nằm ngoài miền bị loại trước khi tính $f$.
+Ở định nghĩa này, vế phải của (2.2) là một đường thẳng theo $t$, đi qua điểm $(0,f(x))$ với hệ số góc $\alpha g^Td$. Do $0<\alpha<1$, hệ số góc của đường này nhỏ hơn về trị tuyệt đối so với hệ số góc $g^Td$ của tiếp tuyến của $h(t)=f(x+td)$ tại $0$. Bước được nhận khi đồ thị $h$ nằm dưới đường thẳng đó. Quay lui thử lần lượt $t=1,\beta,\beta^2,\ldots$ và kết thúc ở giá trị đầu tiên được nhận; điểm thử nằm ngoài miền bị loại trước khi tính $f$.
 
-Điều kiện (2.2) đòi nhiều hơn tính giảm của Mệnh đề 04.7(b): mức giảm phải tỷ lệ với $t\lvert g^Td\rvert$. Một quy tắc chỉ đòi $f(x+td)<f(x)$ có thể nhận những bước làm $f$ giảm rất ít, và dãy lặp có thể dừng lại ở một điểm không phải nghiệm. Với điều kiện chặt hơn này, câu hỏi đặt ra là quay lui có luôn tìm được bước hay không, và mệnh đề sau khẳng định điều đó.
+Điều kiện (2.2) đòi hỏi nhiều hơn tính giảm của Mệnh đề 04.7(b): mức giảm phải tỷ lệ với $t\lvert g^Td\rvert$. Một quy tắc chỉ yêu cầu $f(x+td)<f(x)$ có thể nhận những bước làm $f$ giảm rất ít, và dãy lặp có thể hội tụ tới một điểm không phải nghiệm. Với điều kiện chặt hơn này, câu hỏi đặt ra là quay lui có luôn tìm được bước hay không, và mệnh đề sau khẳng định điều đó.
 
 ::: proposition Mệnh đề 04.11 (Quay lui Armijo kết thúc sau hữu hạn lần co)
 **Giả thiết.** $f$ khả vi trên miền mở $\operatorname{dom}f$; $x\in\operatorname{dom}f$; $g^Td<0$; $\alpha\in(0,1)$, $\beta\in(0,1)$.
@@ -538,7 +538,7 @@ Như Bước 1 của chứng minh Mệnh đề 04.7, $f(x+td)=f(x)+t\,g^Td+\xi(t
 
 **Bước 2 (quay lui dừng).**
 
-Dãy thử $\beta^j$ giảm về $0$, nên có chỉ số nhỏ nhất $j$ với $\beta^j\le\bar t$, và $\beta^j$ thỏa (2.2) theo Bước 1. Thủ tục dừng ở lần thử thứ $j$ hoặc sớm hơn. Nếu nó dừng ở $t=\beta^i$ với $i\ge1$ thì $\beta^{i-1}$ đã bị loại, nên $\beta^{i-1}>\bar t$, và $t=\beta\cdot\beta^{i-1}>\beta\bar t$. $\square$
+Dãy thử $\beta^j$ giảm về $0$, nên có chỉ số nhỏ nhất $j$ với $\beta^j\le\bar t$, và $\beta^j$ thỏa (2.2) theo Bước 1. Thủ tục kết thúc ở lần thử thứ $j$ hoặc sớm hơn. Nếu nó kết thúc ở $t=\beta^i$ với $i\ge1$ thì $\beta^{i-1}$ đã bị loại, nên $\beta^{i-1}>\bar t$, và $t=\beta\cdot\beta^{i-1}>\beta\bar t$. $\square$
 :::
 
 ::: example Ví dụ 04.6 (Quay lui Armijo trên VD1)
@@ -597,9 +597,9 @@ Ghép các bước tính gradient, đặt $d=-g$, quay lui và cập nhật, ta 
 **Chi phí mỗi lượt.** Một lần tính gradient và một số lần tính $f$ khi thử bước.
 :::
 
-Tiêu chí dừng $\lVert g\rVert_2\le\varepsilon_g$ được kiểm trước khi tính hướng, nên nếu điểm đầu đã đạt dung sai thì thuật toán dừng mà không cập nhật. Tiêu chí này đo mức vi phạm của (1.1): theo Mệnh đề 04.2(a), với $f$ lồi, điểm có $\nabla f=0$ là nghiệm. Chuẩn gradient nhỏ chưa cho cận của $f(x)-f^*$; cận đó cần giả thiết về độ cong và được chứng minh ở Mục 2.6 (Mệnh đề 04.25(b)).
+Tiêu chí dừng $\lVert g\rVert_2\le\varepsilon_g$ được kiểm tra trước khi tính hướng, nên nếu điểm đầu đã đạt dung sai thì thuật toán dừng mà không cập nhật. Tiêu chí này đo mức vi phạm của (1.1): theo Mệnh đề 04.2(a), với $f$ lồi, điểm có $\nabla f=0$ là nghiệm. Chuẩn gradient nhỏ chưa cho cận của $f(x)-f^*$; cận đó cần giả thiết về độ cong và được chứng minh ở Mục 2.6 (Mệnh đề 04.25(b)).
 
-**Trong học máy.** Thuật toán 04.1 là giảm gradient toàn lô: mỗi lượt tính gradient của mất mát trên toàn bộ dữ liệu huấn luyện. Độ dài bước $t$ là tốc độ học (learning rate); quay lui chọn nó tự động, với điều kiện giá trị mất mát tính được chính xác tại mỗi điểm thử. Khi dữ liệu lớn, Bài 05 thay gradient đầy đủ bằng gradient trên một nhóm nhỏ mẫu; giá trị mất mát lúc đó chỉ là ước lượng, nên phép kiểm (2.2) không áp dụng nguyên dạng và tốc độ học thường được chọn theo lịch cố định.
+**Trong học máy.** Thuật toán 04.1 là giảm gradient toàn lô: mỗi lượt tính gradient của mất mát trên toàn bộ dữ liệu huấn luyện. Độ dài bước $t$ là tốc độ học (learning rate); quay lui chọn nó tự động, với điều kiện giá trị mất mát tính được chính xác tại mỗi điểm thử. Khi dữ liệu lớn, Bài 05 thay gradient đầy đủ bằng gradient trên một nhóm nhỏ mẫu; giá trị mất mát khi đó chỉ là ước lượng, nên phép kiểm (2.2) không áp dụng nguyên dạng và tốc độ học thường được chọn theo lịch cố định.
 
 ### 2.4 Độ cong không đồng đều
 
@@ -622,7 +622,7 @@ $$
 
 $x_1$ nhân $\tfrac14$ và giữ dấu; $x_2$ nhân $-\tfrac34$, đổi dấu ở mỗi lượt. Năm điểm đầu là $(2,4)$, $(\tfrac12,-3)$, $(\tfrac18,\tfrac94)$, $(\tfrac1{32},-\tfrac{27}{16})$, $(\tfrac1{128},\tfrac{81}{64})$, với $f$ lần lượt $62$, $\tfrac{255}8$, $\tfrac{2271}{128}\approx17{,}7$, $\tfrac{20415}{2048}\approx9{,}97$, $\tfrac{183711}{32768}\approx5{,}61$.
 
-**Bước cố định tốt nhất.**
+**Bước cố định tối ưu.**
 
 Tốc độ co chậm nhất là $\max\{\lvert1-3t\rvert,\lvert1-7t\rvert\}$. Hàm này nhỏ nhất khi $1-3t=7t-1$, tức $t=\tfrac15$, với giá trị $\tfrac25$.
 
@@ -706,13 +706,13 @@ $\tfrac14=0{,}25>0{,}221$ bị loại và $\tfrac18=0{,}125<0{,}221$ được nh
 
 ### 2.5 Hướng giảm dốc nhất theo chuẩn có trọng số
 
-Trong Ví dụ 04.7 và 04.8, hướng $-g$ đo độ dài bước bằng chuẩn Euclid, một thước đo như nhau theo mọi phương. Một cách trực quan, nếu đo độ dài bằng một thước có trọng số lớn theo phương có độ cong lớn thì một bước "dài một đơn vị" theo thước mới sẽ ngắn theo phương cong nhiều và dài theo phương cong ít. Đây mới là hình dung, chưa phải định nghĩa. Nó cho thấy câu hỏi "hướng nào giảm $f$ nhanh nhất trên mỗi đơn vị độ dài" có câu trả lời phụ thuộc vào thước đo được chọn.
+Trong Ví dụ 04.7 và 04.8, hướng $-g$ đo độ dài bước bằng chuẩn Euclid, một thước đo như nhau theo mọi phương. Một cách trực quan, nếu độ dài được đo bằng một chuẩn có trọng số lớn theo phương có độ cong lớn thì quả cầu đơn vị của chuẩn đó ngắn theo phương có độ cong lớn và dài theo phương có độ cong nhỏ. Mô tả này chưa phải định nghĩa. Nó cho thấy câu hỏi "hướng nào giảm $f$ nhanh nhất trên mỗi đơn vị độ dài" có câu trả lời phụ thuộc vào thước đo được chọn.
 
 ![Hình tròn đơn vị v1 bình phương cộng v2 bình phương không quá 1 trong mặt phẳng (v1, v2), cùng một đường thẳng có pháp tuyến g bằng (6, 28) tiếp xúc với hình tròn. Tiếp điểm là hướng làm g chuyển vị v nhỏ nhất trên hình tròn, nằm ngược chiều g.](img/lec-04/euclidean-unit.svg)
 
 ![Elip 3 v1 bình phương cộng 7 v2 bình phương không quá 1, dẹt theo trục v2, cùng một đường thẳng 6 v1 cộng 28 v2 bằng hằng số tiếp xúc với elip. Tiếp điểm là hướng làm g chuyển vị v nhỏ nhất trên elip; hướng này không ngược chiều g mà lệch về phía trục v1.](img/lec-04/weighted-unit.svg)
 
-Hai hình đặt cùng gradient $g=(6,28)^T$ của VD1 lên hai tập đơn vị. Trên hình tròn, tiếp điểm với đường mức thấp nhất của hàm tuyến tính $g^Tv$ nằm ngược chiều $g$. Trên elip $3v_1^2+7v_2^2\le1$, tiếp điểm lệch về phía trục $v_1$, phương mà VD1 cong ít. Định nghĩa sau làm chính xác thước đo và bài toán chọn hướng.
+Hai hình đặt cùng gradient $g=(6,28)^T$ của VD1 lên hai tập đơn vị. Trên hình tròn, tiếp điểm với đường mức thấp nhất của hàm tuyến tính $g^Tv$ nằm ngược chiều $g$. Trên elip $3v_1^2+7v_2^2\le1$, tiếp điểm lệch về phía trục $v_1$, phương có độ cong nhỏ của VD1. Định nghĩa sau làm chính xác thước đo và bài toán chọn hướng.
 
 ::: definition Định nghĩa 04.14 (Chuẩn có trọng số, hướng dốc nhất và chuẩn đối ngẫu)
 Cho ma trận đối xứng $W\in\mathbb R^{n\times n}$, $W\succ0$, và $g\in\mathbb R^n$, $g\ne0$.
@@ -732,9 +732,9 @@ Trong định nghĩa trên, $\lVert\cdot\rVert_W$ là một chuẩn vì $\lVert 
 
 Với $W=I$, chuẩn có trọng số là chuẩn Euclid, chuẩn đối ngẫu là $\lVert g\rVert_2$ theo Cauchy–Schwarz, và hướng chuẩn hóa là $-g/\lVert g\rVert_2$; khi đó $d=-g=d_G$. Khái niệm vì vậy tổng quát hóa hướng gradient của Định nghĩa 04.8.
 
-Boyd và Vandenberghe (2004, mục 9.4, tr. 475–481) định nghĩa hướng dốc nhất cho một chuẩn bất kỳ; với chuẩn $\ell_1$, nghiệm là một vector đơn vị tọa độ và phương pháp thành giảm theo tọa độ. Trong chương này, chúng ta chỉ dùng chuẩn bậc hai, trường hợp mà bài con có nghiệm dạng đóng.
+Boyd và Vandenberghe (2004, mục 9.4, tr. 475–481) định nghĩa hướng dốc nhất cho một chuẩn bất kỳ; với chuẩn $\ell_1$, nghiệm là một vector đơn vị tọa độ và phương pháp trở thành giảm theo tọa độ. Trong chương này, chúng ta chỉ dùng chuẩn bậc hai, trường hợp mà bài con có nghiệm dạng đóng.
 
-Mệnh đề sau giải bài con bằng hệ KKT của Bài 03. Do bài con có một ràng buộc bất đẳng thức, đây là chỗ duy nhất trong chương dùng đủ bốn nhóm điều kiện.
+Mệnh đề sau giải bài con bằng hệ KKT của Bài 03. Do bài con có một ràng buộc bất đẳng thức, đây là kết quả duy nhất trong chương dùng đủ bốn nhóm điều kiện.
 
 ::: proposition Mệnh đề 04.15 (Hướng dốc nhất theo chuẩn có trọng số)
 **Giả thiết.** $W$ đối xứng, $W\succ0$; $g\ne0$.
@@ -815,9 +815,9 @@ Trong đó, dòng đầu là Định nghĩa 04.14, còn dòng thứ hai thay k�
 Theo Mệnh đề 04.9(a), đây là nghiệm duy nhất của $\min Q_W$. $\square$
 :::
 
-Ngoài cách dùng KKT, phần (b) còn kiểm được trực tiếp. Viết $g^Tv=(W^{-1/2}g)^T(W^{1/2}v)$, theo Cauchy–Schwarz ta có $\lvert g^Tv\rvert\le\lVert W^{-1/2}g\rVert_2\lVert W^{1/2}v\rVert_2=\sqrt{g^TW^{-1}g}\,\lVert v\rVert_W$. Vế phải bằng $\sqrt{g^TW^{-1}g}$ khi $\lVert v\rVert_W=1$, và $v=-v_W$ đạt dấu bằng. Chuẩn đối ngẫu vì vậy là hằng số tốt nhất trong bất đẳng thức Cauchy–Schwarz suy rộng $\lvert g^Tv\rvert\le\lVert g\rVert_{W,*}\lVert v\rVert_W$.
+Ngoài cách dùng KKT, phần (b) còn kiểm tra được trực tiếp. Viết $g^Tv=(W^{-1/2}g)^T(W^{1/2}v)$, theo Cauchy–Schwarz ta có $\lvert g^Tv\rvert\le\lVert W^{-1/2}g\rVert_2\lVert W^{1/2}v\rVert_2=\sqrt{g^TW^{-1}g}\,\lVert v\rVert_W$. Vế phải bằng $\sqrt{g^TW^{-1}g}$ khi $\lVert v\rVert_W=1$, và $v=-v_W$ đạt dấu bằng. Chuẩn đối ngẫu vì vậy là hằng số tốt nhất trong bất đẳng thức Cauchy–Schwarz suy rộng $\lvert g^Tv\rvert\le\lVert g\rVert_{W,*}\lVert v\rVert_W$.
 
-Mệnh đề 04.15 nối hai cách nhìn của cùng một hướng: hướng dốc nhất theo chuẩn $\lVert\cdot\rVert_W$ là nghiệm của mô hình bậc hai $Q_W$. Mọi hướng của Mục 2 và Mục 3 vì vậy có chung một khuôn: chọn $W\succ0$, giải $Wd=-g$. Với $W=I$ được hướng gradient; với $W$ cố định khác được hướng dốc nhất có trọng số; với $W$ bằng Hessian tại điểm hiện tại được hướng Newton.
+Mệnh đề 04.15 liên hệ hai cách diễn giải của cùng một hướng: hướng dốc nhất theo chuẩn $\lVert\cdot\rVert_W$ là nghiệm của mô hình bậc hai $Q_W$. Mọi hướng của Mục 2 và Mục 3 vì vậy có chung một khuôn: chọn $W\succ0$, giải $Wd=-g$. Với $W=I$ được hướng gradient; với $W$ cố định khác được hướng dốc nhất có trọng số; với $W$ bằng Hessian tại điểm hiện tại được hướng Newton.
 
 ::: example Ví dụ 04.9 (Hướng dốc nhất trên VD1 với trọng số theo độ cong)
 **Dữ kiện.**
@@ -889,9 +889,9 @@ Theo Mệnh đề 04.9(c), mức giảm mô hình ở (b) là $\tfrac12\cdot\tfr
 
 ### 2.6 Hội tụ của giảm gradient
 
-Thuật toán 04.1 dừng khi $\lVert g\rVert_2\le\varepsilon_g$, nhưng chưa có bảo đảm nào rằng nó dừng, cũng chưa biết sau $k$ lượt thì $f(x^k)-f^*$ nhỏ đến đâu. Ví dụ 04.7 cho thấy bước cố định quá lớn làm dãy phân kỳ: với $t>\tfrac27$, $\lvert1-7t\rvert>1$ và $\lvert x_2^k\rvert\to\infty$, trong đó ngưỡng $\tfrac27$ do độ cong lớn nhất $7$ quyết định. Trong Mục 2.6, chúng ta phát biểu giả thiết chặn trên độ cong, chứng minh ba cận hội tụ, rồi đọc chúng trên VD1.
+Thuật toán 04.1 dừng khi $\lVert g\rVert_2\le\varepsilon_g$, nhưng chưa có kết quả bảo đảm thuật toán dừng, cũng chưa có cận cho $f(x^k)-f^*$ sau $k$ lượt. Ví dụ 04.7 cho thấy bước cố định quá lớn làm dãy phân kỳ: với $t>\tfrac27$, $\lvert1-7t\rvert>1$ và $\lvert x_2^k\rvert\to\infty$, trong đó ngưỡng $\tfrac27$ do độ cong lớn nhất $7$ quyết định. Trong Mục 2.6, chúng ta phát biểu giả thiết chặn trên độ cong, chứng minh ba cận hội tụ, rồi áp dụng chúng cho VD1.
 
-Về mặt hình học, nếu độ cong của $f$ không vượt $L$ ở mọi nơi thì tại mỗi điểm, đồ thị của $f$ nằm dưới một parabol độ cong $L$ tiếp xúc với nó. Cực tiểu hóa parabol đó cho một bước có mức giảm bảo đảm. Hình dung này chưa phải định nghĩa, và giả thiết chặn trên độ cong được phát biểu chính xác trong định nghĩa sau.
+Về mặt hình học, nếu độ cong của $f$ không vượt $L$ ở mọi nơi thì tại mỗi điểm, đồ thị của $f$ nằm dưới một parabol độ cong $L$ tiếp xúc với nó. Cực tiểu hóa parabol đó cho một bước có mức giảm bảo đảm. Mô tả này chưa phải định nghĩa, và giả thiết chặn trên độ cong được phát biểu chính xác trong định nghĩa sau.
 
 ::: definition Định nghĩa 04.17 (Gradient Lipschitz)
 Hàm $f:\mathbb R^n\to\mathbb R$ khả vi có gradient $L$-Lipschitz, với hằng số $L>0$, nếu
@@ -1011,7 +1011,7 @@ Cận của Bổ đề 04.20 là $62-\frac{820}{14}=\frac{24}7\approx3{,}43$.
 $\tfrac{96}{49}\le\tfrac{24}7=\tfrac{168}{49}$. Tọa độ thứ hai về $0$ sau một bước vì $L=7$ trùng độ cong theo $x_2$; tọa độ thứ nhất nhân $1-\tfrac37=\tfrac47$.
 :::
 
-Bổ đề giảm cho biết $f$ giảm ít nhất bao nhiêu, nhưng chưa cho biết $f(x^k)$ tới $f^*$ nhanh đến đâu. Để so với $f^*$, chúng ta cần thêm tính lồi, dưới dạng tiếp tuyến nằm dưới đồ thị, và sự tồn tại một điểm cực tiểu. Thêm hai giả thiết này vào bổ đề giảm, ta được bất đẳng thức một bước sau.
+Bổ đề giảm cho biết $f$ giảm ít nhất bao nhiêu, nhưng chưa cho biết tốc độ $f(x^k)$ tiến về $f^*$. Để so sánh với $f^*$, chúng ta cần thêm tính lồi, dưới dạng tiếp tuyến nằm dưới đồ thị, và sự tồn tại một điểm cực tiểu. Thêm hai giả thiết này vào bổ đề giảm, ta được bất đẳng thức một bước sau.
 
 ::: lemma Bổ đề 04.21 (Bất đẳng thức một bước)
 **Giả thiết.** $f$ lồi, khả vi trên $\mathbb R^n$, gradient $L$-Lipschitz; $f$ đạt cực tiểu tại $x^*$, $f^*=f(x^*)$; $x\in\mathbb R^n$, $g=\nabla f(x)$, $x^+=x-\tfrac1Lg$.
@@ -1076,7 +1076,7 @@ Do đó $f(x^k)-f^*\le\varepsilon$ khi $k\ge\frac{LR^2}{2\varepsilon}$, với $R
 
 **Điều kiện áp dụng.** Cần biết $L$ để đặt bước; cần tính lồi và sự tồn tại của một điểm cực tiểu.
 
-**Phạm vi.** Cận đúng cho mọi hàm của lớp, nên có thể rất bi quan cho một hàm cụ thể. Định lý không nói gì về $\lVert x^k-x^*\rVert_2$ ngoài tính không tăng.
+**Phạm vi.** Cận đúng cho mọi hàm của lớp, nên có thể lớn hơn nhiều so với sai số thực của một hàm cụ thể. Định lý không nói gì về $\lVert x^k-x^*\rVert_2$ ngoài tính không tăng.
 :::
 
 ::: proof Chứng minh Định lý 04.22
@@ -1151,7 +1151,7 @@ Với $t\le\tfrac1L$, Bổ đề 04.20 cho $f(x-tg)\le f(x)-\tfrac t2\lVert g\rV
 
 **Bước 2 (chặn dưới).**
 
-Quay lui thử $1,\beta,\beta^2,\ldots$ và dừng ở giá trị đầu tiên thỏa (2.2). Nếu bước trả về là $t=1$ thì $t\ge t_{\min}$. Nếu không, giá trị thử trước đó $t/\beta$ đã bị loại, nên theo Bước 1, $t/\beta>\tfrac1L$, tức $t>\tfrac\beta L\ge t_{\min}$. Bất đẳng thức của bước được nhận là chính (2.2). $\square$
+Quay lui thử $1,\beta,\beta^2,\ldots$ và kết thúc ở giá trị đầu tiên thỏa (2.2). Nếu bước trả về là $t=1$ thì $t\ge t_{\min}$. Nếu không, giá trị thử trước đó $t/\beta$ đã bị loại, nên theo Bước 1, $t/\beta>\tfrac1L$, tức $t>\tfrac\beta L\ge t_{\min}$. Bất đẳng thức của bước được nhận là chính (2.2). $\square$
 :::
 
 ::: theorem Định lý 04.24 (Tốc độ $O(1/k)$ với quay lui)
@@ -1299,10 +1299,10 @@ Thêm giả thiết lồi mạnh, Định lý 04.26 đổi cận $O(1/k)$ của 
 ::: remark Nhận xét 04.27 (Ba cận trên VD1 và độ chặt)
 Với VD1, $e_0=62$ và hệ số $1-\tfrac37=\tfrac47$. Cận (2.6) cho $62(\tfrac47)^k\le0{,}01$ khi $k\ge\frac{\log6200}{\log(7/4)}\approx15{,}6$, tức $16$ bước; điều kiện đủ $k\ge\kappa\log(e_0/\varepsilon)=\tfrac73\log6200\approx20{,}4$ cho $21$ bước. Hai cận $O(1/k)$ cho $7000$ và $14000$ bước. Số bước thật với $t=\tfrac17$ là $6$ (Ví dụ 04.11).
 
-Cận tuyến tính gần thực tế hơn vì dùng thêm $\mu=3$, nhưng mọi cận đều bi quan vì đúng cho mọi hàm của lớp. Một cận trên số bước chỉ cho biết thuật toán không chậm hơn mức đó, còn số bước thật có thể ít hơn nhiều.
+Cận tuyến tính gần thực tế hơn vì dùng thêm $\mu=3$, nhưng mọi cận đều lớn hơn nhiều so với sai số thực vì đúng cho mọi hàm của lớp. Một cận trên số bước chỉ cho biết thuật toán không chậm hơn mức đó, còn số bước thật có thể ít hơn nhiều.
 :::
 
-**Trong học máy.** Với hồi quy logistic trên dữ liệu $X\in\mathbb R^{N_s\times n}$ của Nhận xét 04.19 và chính quy hóa $\tfrac\mu2\lVert w\rVert_2^2$, nhận xét đó cho $L=\tfrac14\lambda_{\max}(X^TX)+\mu$, và mất mát lồi mạnh với hằng số $\mu$. Định lý 04.26 áp dụng với $\kappa\le1+\lambda_{\max}(X^TX)/(4\mu)$, nên chính quy hóa yếu hoặc đặc trưng có thang đo lớn làm giảm gradient chậm (Tình huống 04.1). Tốc độ học $\tfrac1L$ an toàn theo Bổ đề 04.20; tốc độ học lớn hơn $\tfrac2L$ có thể làm dãy phân kỳ như $x_2$ ở Ví dụ 04.7.
+**Trong học máy.** Với hồi quy logistic trên dữ liệu $X\in\mathbb R^{N_s\times n}$ của Nhận xét 04.19 và chính quy hóa $\tfrac\mu2\lVert w\rVert_2^2$, nhận xét đó cho $L=\tfrac14\lambda_{\max}(X^TX)+\mu$, và mất mát lồi mạnh với hằng số $\mu$. Định lý 04.26 áp dụng với $\kappa\le1+\lambda_{\max}(X^TX)/(4\mu)$, nên chính quy hóa yếu hoặc đặc trưng có thang đo lớn làm phương pháp giảm gradient hội tụ chậm (Tình huống 04.1). Theo Bổ đề 04.20, tốc độ học $\tfrac1L$ bảo đảm mất mát không tăng; tốc độ học lớn hơn $\tfrac2L$ có thể làm dãy phân kỳ như $x_2$ ở Ví dụ 04.7.
 
 Với mạng sâu, mất mát không lồi và gradient thường không Lipschitz trên toàn không gian tham số, nên các định lý của mục này không áp dụng; Bài 05b xét các dạng hội tụ yếu hơn cho trường hợp đó.
 
@@ -1337,19 +1337,19 @@ Bước $\tfrac15$ nhanh hơn $t=\tfrac17$ một bước; lợi thế nhỏ vì 
 $k=4$: $62\cdot0{,}16^4\approx0{,}0406>0{,}01$; $k=5$: $\approx0{,}0065\le0{,}01$.
 :::
 
-Tóm lại, dấu của $g^Td$ quyết định hướng giảm (Định nghĩa 04.6, Mệnh đề 04.7), bài con bậc hai $Q_W$ cho hướng $Wd=-g$ (Định nghĩa 04.8, Mệnh đề 04.9), và quay lui Armijo luôn tìm được bước (Định nghĩa 04.10, Mệnh đề 04.11). Với $W=I$, hướng thu được là hướng gradient, và ghép hướng này với quay lui cho Thuật toán 04.1. Hướng $-g$ chậm khi số điều kiện lớn (Nhận xét 04.13), còn Định nghĩa 04.14 và Mệnh đề 04.15 đổi thước đo và cho hướng dốc nhất, cũng là nghiệm của $Wd=-g$.
+Tóm lại, dấu của $g^Td$ quyết định hướng giảm (Định nghĩa 04.6, Mệnh đề 04.7), bài con bậc hai $Q_W$ cho hướng $Wd=-g$ (Định nghĩa 04.8, Mệnh đề 04.9), và quay lui Armijo luôn tìm được bước (Định nghĩa 04.10, Mệnh đề 04.11). Với $W=I$, hướng thu được là hướng gradient, và ghép hướng này với quay lui cho Thuật toán 04.1. Phương pháp dùng hướng $-g$ hội tụ chậm khi số điều kiện lớn (Nhận xét 04.13), còn Định nghĩa 04.14 và Mệnh đề 04.15 đổi thước đo và cho hướng dốc nhất, cũng là nghiệm của $Wd=-g$.
 
-Từ gradient Lipschitz (Định nghĩa 04.17), qua cận trên bậc hai, bổ đề giảm và bất đẳng thức một bước (Bổ đề 04.18, 04.20, 04.21), ta được ba bảo đảm cho giảm gradient: tốc độ $O(1/k)$ với bước $1/L$ và với quay lui (Định lý 04.22, 04.24), và tốc độ tuyến tính khi hàm lồi mạnh (Mệnh đề 04.25, Định lý 04.26). Tuy nhiên, mọi cận đều phụ thuộc số điều kiện $\kappa$ hoặc hằng số $L$. Ví dụ 04.9 cho thấy chọn $W$ trùng Hessian xóa hẳn ảnh hưởng của $\kappa$ trên hàm bậc hai, nhưng với hàm không bậc hai, Hessian thay đổi theo điểm nên không có $W$ cố định nào làm được điều đó.
+Từ gradient Lipschitz (Định nghĩa 04.17), qua cận trên bậc hai, bổ đề giảm và bất đẳng thức một bước (Bổ đề 04.18, 04.20, 04.21), ta được ba bảo đảm cho giảm gradient: tốc độ $O(1/k)$ với bước $1/L$ và với quay lui (Định lý 04.22, 04.24), và tốc độ tuyến tính khi hàm lồi mạnh (Mệnh đề 04.25, Định lý 04.26). Tuy nhiên, mọi cận đều phụ thuộc số điều kiện $\kappa$ hoặc hằng số $L$. Ví dụ 04.9 cho thấy chọn $W$ bằng Hessian loại bỏ hoàn toàn ảnh hưởng của $\kappa$ trên hàm bậc hai, nhưng với hàm không bậc hai, Hessian thay đổi theo điểm nên không có $W$ cố định nào làm được điều đó.
 
 ## 3. Phương pháp Newton không ràng buộc
 
-Cuối Mục 2, chúng ta thấy một ma trận trọng số cố định không theo kịp độ cong khi Hessian thay đổi theo điểm. Xét VD2, $\varphi(s)=s-\log s$ trên $s>0$. Ta có $\varphi'(s)=1-\tfrac1s$ và $\varphi''(s)=\tfrac1{s^2}>0$, nên $\varphi$ lồi chặt và có nghiệm duy nhất $s^*=1$, với $\varphi^*=1$. Độ cong $\tfrac1{s^2}$ bằng $16$ tại $s=\tfrac14$, bằng $1$ tại nghiệm, và không bị chặn khi $s\to0$. Do đó không có hằng số $L$ của Định nghĩa 04.17, và các cận của Mục 2.6 không áp dụng.
+Cuối Mục 2, chúng ta thấy một ma trận trọng số cố định không phản ánh được độ cong khi Hessian thay đổi theo điểm. Xét VD2, $\varphi(s)=s-\log s$ trên $s>0$. Ta có $\varphi'(s)=1-\tfrac1s$ và $\varphi''(s)=\tfrac1{s^2}>0$, nên $\varphi$ lồi chặt và có nghiệm duy nhất $s^*=1$, với $\varphi^*=1$. Độ cong $\tfrac1{s^2}$ bằng $16$ tại $s=\tfrac14$, bằng $1$ tại nghiệm, và không bị chặn khi $s\to0$. Do đó không có hằng số $L$ của Định nghĩa 04.17, và các cận của Mục 2.6 không áp dụng.
 
-Với độ cong thay đổi mạnh như vậy, chúng ta dùng chính Hessian tại điểm hiện tại làm ma trận của bài con, và phương pháp thu được là phương pháp Newton. Đầu tiên, chúng ta đọc hướng thu được theo bốn cách, sau đó định nghĩa độ giảm Newton và phát biểu tốc độ hội tụ của phương pháp.
+Với độ cong thay đổi mạnh như vậy, chúng ta dùng chính Hessian tại điểm hiện tại làm ma trận của bài con, và phương pháp thu được là phương pháp Newton. Đầu tiên, chúng ta trình bày bốn cách diễn giải hướng thu được, sau đó định nghĩa độ giảm Newton và phát biểu tốc độ hội tụ của phương pháp.
 
 ### 3.1 Mô hình bậc hai cục bộ và hướng Newton
 
-Một cách trực quan, tại mỗi điểm ta thay $f$ bằng parabol có cùng giá trị, cùng độ dốc và cùng độ cong với $f$ tại điểm đó, rồi nhảy tới đáy parabol. Parabol này khớp $f$ tốt gần điểm hiện tại và tách dần khi đi xa. Mô tả này chưa phải định nghĩa, và ví dụ sau dựng parabol đó cho VD2.
+Một cách trực quan, tại mỗi điểm ta thay $f$ bằng parabol có cùng giá trị, cùng độ dốc và cùng độ cong với $f$ tại điểm đó, rồi chuyển tới điểm cực tiểu của parabol. Parabol này xấp xỉ tốt $f$ gần điểm hiện tại, và sai lệch tăng khi ra xa điểm đó. Mô tả này chưa phải định nghĩa, và ví dụ sau xây dựng parabol đó cho VD2.
 
 ::: example Ví dụ 04.13 (Mô hình bậc hai của VD2 tại $s^0=\tfrac14$)
 **Dữ kiện.**
@@ -1375,7 +1375,7 @@ $\varphi(\tfrac7{16})=\tfrac7{16}-\log\tfrac7{16}\approx0{,}4375+0{,}8267=1{,}26
 
 ![Đồ thị hàm phi của s bằng s trừ log s trên đoạn từ 0 đến khoảng 1,5 (nét liền), parabol bậc hai q dựng tại s0 bằng 1/4 (nét đứt) và tiếp tuyến tại s0 (nét chấm, dốc âm). Tại s0, g bằng âm 3 và H bằng 16. Parabol khớp hàm thật gần s0 rồi tách xa dần khi s tăng, vì độ cong thật 1 chia s bình phương giảm còn độ cong của parabol giữ bằng 16.](img/lec-04/phi-local-model.svg)
 
-Trên đồ thị, parabol bám $\varphi$ quanh $s^0=\tfrac14$ nhưng nằm cao hơn hẳn $\varphi$ khi $s$ tiến về $1$, do độ cong của parabol giữ bằng $16$ trong khi độ cong thật giảm từ $16$ xuống $1$. Đáy của parabol tại $\tfrac7{16}$ vì vậy nằm giữa điểm đầu và nghiệm. Định nghĩa sau gọi tên hướng đi tới đáy parabol.
+Trên đồ thị, parabol xấp xỉ sát $\varphi$ quanh $s^0=\tfrac14$ nhưng lớn hơn $\varphi$ đáng kể khi $s$ tiến về $1$, do độ cong của parabol giữ bằng $16$ trong khi độ cong thật giảm từ $16$ xuống $1$. Điểm cực tiểu của parabol tại $\tfrac7{16}$ vì vậy nằm giữa điểm đầu và nghiệm. Định nghĩa sau gọi tên hướng dẫn tới điểm cực tiểu của parabol.
 
 ::: definition Định nghĩa 04.28 (Hướng Newton)
 Cho $f$ khả vi hai lần tại $x\in\operatorname{dom}f$, với $g=\nabla f(x)$ và $H=\nabla^2f(x)\succ0$. Mô hình Newton của $f$ tại $x$ là mô hình bậc hai $Q_H(d)=f(x)+g^Td+\tfrac12d^THd$ của Định nghĩa 04.8 với $W=H$. Hướng Newton (Newton step) tại $x$ là nghiệm $d$ của hệ Newton
@@ -1415,18 +1415,18 @@ Cùng một hướng Newton có bốn cách đọc, được nêu trong mệnh �
 Ánh xạ $y\mapsto\nabla f(y)$ có ma trận Jacobi (Jacobian) tại $x$ là $H$, nên $\nabla f(x+d)=g+Hd+o(\lVert d\rVert_2)$. Bỏ số hạng $o(\lVert d\rVert_2)$ và đặt phần còn lại bằng $0$, ta được $g+Hd=0$, tức (3.1). $\square$
 :::
 
-Hai cách đọc (a) và (d) là hai con đường tới cùng một hệ. Cách (a) xấp xỉ hàm mục tiêu bằng parabol rồi cực tiểu hóa. Cách (d) xấp xỉ phương trình tối ưu (1.1) bằng phương trình tuyến tính rồi giải. Cách (d) dùng được cho mọi hệ phương trình chứ không chỉ cho điều kiện dừng của một hàm, và ở Mục 5, chúng ta áp nó cho hệ KKT (1.2).
+Hai cách đọc (a) và (d) là hai cách dẫn tới cùng một hệ. Cách (a) xấp xỉ hàm mục tiêu bằng parabol rồi cực tiểu hóa. Cách (d) xấp xỉ phương trình tối ưu (1.1) bằng phương trình tuyến tính rồi giải. Cách (d) dùng được cho mọi hệ phương trình chứ không chỉ cho điều kiện dừng của một hàm, và ở Mục 5, chúng ta áp dụng nó cho hệ KKT (1.2).
 
 Hướng Newton giữ hai tính chất của hướng gradient ở Mệnh đề 04.9, tính duy nhất và tính giảm, nhưng dùng ma trận thay đổi theo điểm thay cho ma trận cố định. Mỗi lượt vì vậy phải tính Hessian và giải một hệ $n\times n$.
 
 ::: example Ví dụ 04.14 (Một bước Newton trên VD2)
 **Dữ kiện.**
 
-VD2: $\varphi(s)=s-\log s$ trên $s>0$, $\varphi'(s)=1-\tfrac1s$, $\varphi''(s)=\tfrac1{s^2}$. Tại $s^0=\tfrac14$: $g=-3$, $H=16$; mô hình $q(s)=\varphi(\tfrac14)-3(s-\tfrac14)+8(s-\tfrac14)^2$ có đáy tại $\tfrac7{16}$ (Ví dụ 04.13). Hệ Newton (3.1): $Hd=-g$.
+VD2: $\varphi(s)=s-\log s$ trên $s>0$, $\varphi'(s)=1-\tfrac1s$, $\varphi''(s)=\tfrac1{s^2}$. Tại $s^0=\tfrac14$: $g=-3$, $H=16$; mô hình $q(s)=\varphi(\tfrac14)-3(s-\tfrac14)+8(s-\tfrac14)^2$ có điểm cực tiểu tại $\tfrac7{16}$ (Ví dụ 04.13). Hệ Newton (3.1): $Hd=-g$.
 
 **Hệ Newton.**
 
-$16d=3$, nên $d=\tfrac3{16}$ và $s^1=s^0+d=\tfrac7{16}$, đúng đáy parabol của Ví dụ 04.13.
+$16d=3$, nên $d=\tfrac3{16}$ và $s^1=s^0+d=\tfrac7{16}$, đúng điểm cực tiểu của parabol trong Ví dụ 04.13.
 
 **Hướng giảm.**
 
@@ -1443,13 +1443,13 @@ $\varphi'(\tfrac7{16})=1-\tfrac{16}7=-\tfrac97\ne0$: điểm mới chưa thỏa 
 
 ![Đồ thị phi của s bằng s trừ log s (nét liền) và mô hình bậc hai tại s0 bằng 1/4 (nét đứt). Ba điểm được đánh dấu trên trục s: điểm đầu s0 bằng 1/4, đáy của mô hình s1 bằng 7/16, và nghiệm của hàm thật s sao bằng 1.](img/lec-04/phi-newton.svg)
 
-Trên trục $s$ của hình có ba điểm $s^0=\tfrac14$, $s^1=\tfrac7{16}$ và $s^*=1$. Bước Newton đi đúng tới đáy mô hình, tức đi được $\tfrac3{16}$ trong khoảng cách $\tfrac34$ tới nghiệm, và Ví dụ 04.16 sẽ cho thấy khoảng cách còn lại co rất nhanh ở các bước sau.
+Trên trục $s$ của hình có ba điểm $s^0=\tfrac14$, $s^1=\tfrac7{16}$ và $s^*=1$. Bước Newton tới đúng điểm cực tiểu của mô hình và rút ngắn khoảng cách tới nghiệm từ $\tfrac34$ xuống $\tfrac9{16}$. Ví dụ 04.16 sẽ cho thấy khoảng cách còn lại giảm rất nhanh ở các bước sau.
 
 **Trong học máy.** Xét hồi quy logistic có chính quy hóa $J(w)=\sum_i\ell(m_i)+\tfrac\mu2\lVert w\rVert_2^2$ trên dữ liệu $X\in\mathbb R^{N_s\times n}$ với các hàng $a_i^T$, nhãn $y_i\in\{-1,+1\}$ và biên $m_i=y_ia_i^Tw$ (Nhận xét 04.19). Gradient là $\sum_i\ell'(m_i)y_ia_i+\mu w$ và Hessian là $X^TDX+\mu I$, với $D=\operatorname{diag}(\ell''(m_i))$; Hessian xác định dương vì $\mu>0$, nên hướng Newton luôn xác định. Hệ (3.1) có dạng một bài bình phương nhỏ nhất có trọng số $D$, nên phương pháp này còn gọi là bình phương nhỏ nhất có trọng số lặp (iteratively reweighted least squares). Tình huống 04.1 chạy phương pháp này trên dữ liệu cụ thể.
 
 ### 3.2 Độ giảm Newton
 
-Mức giảm mà mô hình Newton dự báo khi đi từ $d=0$ tới đáy tính được ngay tại điểm hiện tại, nên là ứng viên tự nhiên cho tiêu chí dừng. Căn bậc hai của hai lần mức giảm này được đặt tên theo định nghĩa sau.
+Mức giảm mà mô hình Newton dự báo khi chuyển từ $d=0$ tới điểm cực tiểu của mô hình tính được ngay tại điểm hiện tại, nên là ứng viên tự nhiên cho tiêu chí dừng. Căn bậc hai của hai lần mức giảm này được đặt tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 04.30 (Độ giảm Newton)
 Với $H=\nabla^2f(x)\succ0$ và hướng Newton $d$, độ giảm Newton (Newton decrement) tại $x$ là
@@ -1463,7 +1463,7 @@ Khi không gây nhầm lẫn, viết gọn $\delta=\delta_N(x)$.
 
 Trong định nghĩa trên, ba biểu thức bằng nhau theo Mệnh đề 04.29(b) và $d=-H^{-1}g$. Biểu thức đầu là độ dài của bước Newton theo chuẩn $\lVert\cdot\rVert_H$, còn biểu thức cuối là chuẩn đối ngẫu $\lVert g\rVert_{H,*}$ của gradient. Độ giảm Newton vì vậy là một chuẩn của gradient, với ma trận trọng số là nghịch đảo Hessian.
 
-Trong khi chuẩn gradient $\lVert g\rVert_2$ của Thuật toán 04.1 đo gradient bằng thước Euclid thì $\delta$ đo nó bằng thước của chính độ cong tại điểm đó. Hai đại lượng cùng bằng $0$ đúng khi $g=0$, nhưng chỉ $\delta$ không đổi khi đổi hệ tọa độ, như mệnh đề sau khẳng định.
+Trong khi chuẩn gradient $\lVert g\rVert_2$ của Thuật toán 04.1 đo gradient bằng chuẩn Euclid thì $\delta$ đo nó bằng chuẩn có trọng số là nghịch đảo Hessian tại điểm đó. Hai đại lượng cùng bằng $0$ đúng khi $g=0$, nhưng chỉ $\delta$ không đổi khi đổi hệ tọa độ, như mệnh đề sau khẳng định.
 
 ::: proposition Mệnh đề 04.31 (Tính chất của độ giảm Newton)
 **Giả thiết.** $f$ khả vi hai lần tại $x$, $H=\nabla^2f(x)\succ0$, $d$ là hướng Newton.
@@ -1571,7 +1571,7 @@ Dù vậy, $\tfrac12\delta^2$ tính được ngay tại điểm hiện tại t�
 **Chi phí mỗi lượt.** Tính Hessian và giải hệ $n\times n$: khoảng $\tfrac13n^3$ phép nhân với ma trận đặc, so với một vector gradient ở Thuật toán 04.1.
 :::
 
-Thuật toán 04.2 có cùng khung với Thuật toán 04.1 và chỉ khác ở hướng và tiêu chí dừng. Hệ được giải trực tiếp, không lập $H^{-1}$, vì giải hệ bằng phân rã Cholesky rẻ và ổn định hơn nghịch đảo ma trận.
+Thuật toán 04.2 có cùng khung với Thuật toán 04.1 và chỉ khác ở hướng và tiêu chí dừng. Hệ được giải trực tiếp, không lập $H^{-1}$, vì giải hệ bằng phân rã Cholesky có chi phí thấp hơn và ổn định số hơn việc lập nghịch đảo ma trận.
 
 ### 3.3 Tốc độ hội tụ của Newton
 
@@ -1687,7 +1687,7 @@ Với $s^0\in(0,2)$, $\lvert1-s^0\rvert<1$, nên $\lvert1-s^k\rvert=\lvert1-s^0\
 
 **Kiểm tra lại.**
 
-$1-\tfrac{175}{256}=\tfrac{81}{256}=(\tfrac9{16})^2$. Định lý 04.34 khẳng định: trên hình cầu $B$ quanh $x^*$ mà ở đó $\nabla^2f\succeq\mu I$ và Hessian $L_H$-Lipschitz, bước Newton đầy đủ thỏa (3.2), $\lVert x^+-x^*\rVert_2\le\frac{L_H}{2\mu}\lVert x-x^*\rVert_2^2$, tức $C=\frac{L_H}{2\mu}$. Áp dụng định lý trên $B=[\tfrac7{16},\tfrac{25}{16}]$, hình cầu bán kính $\tfrac9{16}$ quanh $1$, có $\mu=(\tfrac{16}{25})^2\approx0{,}41$ và $L_H=\max2/s^3=2(\tfrac{16}7)^3\approx23{,}9$, nên $C\approx29$: cận (3.2) đúng nhưng rất bi quan so với $C=1$ thực tế.
+$1-\tfrac{175}{256}=\tfrac{81}{256}=(\tfrac9{16})^2$. Định lý 04.34 khẳng định: trên hình cầu $B$ quanh $x^*$ mà ở đó $\nabla^2f\succeq\mu I$ và Hessian $L_H$-Lipschitz, bước Newton đầy đủ thỏa (3.2), $\lVert x^+-x^*\rVert_2\le\frac{L_H}{2\mu}\lVert x-x^*\rVert_2^2$, tức $C=\frac{L_H}{2\mu}$. Áp dụng định lý trên $B=[\tfrac7{16},\tfrac{25}{16}]$, hình cầu bán kính $\tfrac9{16}$ quanh $1$, có $\mu=(\tfrac{16}{25})^2\approx0{,}41$ và $L_H=\max2/s^3=2(\tfrac{16}7)^3\approx23{,}9$, nên $C\approx29$: cận (3.2) đúng nhưng lớn hơn nhiều so với $C=1$ thực tế.
 :::
 
 Do Định lý 04.34 cần điểm đầu gần nghiệm, chúng ta cần một kết quả toàn cục ghép quay lui với hội tụ bậc hai. Kết quả đó được phát biểu trong định lý sau, còn chứng minh dài nên được dẫn nguồn.
@@ -1821,13 +1821,13 @@ Tuy nhiên, còn hai thiếu hụt. Tiêu chí dừng $\tfrac12\delta^2$ chưa c
 
 ## 4. Newton khả thi cho ràng buộc đẳng thức
 
-Lớp bài thứ hai của Định nghĩa 04.1 có thêm ràng buộc $Au=b$, và Mệnh đề 04.2(b) cho đích là hệ (1.2) gồm $n+p$ phương trình. Xét VD3:
+Lớp bài thứ hai của Định nghĩa 04.1 có thêm ràng buộc $Au=b$, và Mệnh đề 04.2(b) xác định hệ cần giải là hệ (1.2) gồm $n+p$ phương trình. Xét VD3:
 
 $$
 \underset{u\in\mathbb R^2}{\operatorname{minimize}}\quad F(u)=\tfrac12(2u_1^2+5u_2^2)\qquad\text{subject to}\quad u_1+u_2=14,
 $$
 
-tức $A=[1\ \ 1]$, $b=14$, $n=2$, $p=1$. Bài này bậc hai, nên hệ (1.2) giải được bằng tay và nghiệm của nó làm mốc để kiểm các bước Newton, còn bài toán cần giải thật sự là trường hợp $F$ không bậc hai, nơi (1.2) phi tuyến. Đầu tiên, chúng ta chỉ ra rằng hướng Newton của Mục 3 phá ràng buộc, rồi thêm điều kiện giữ khả thi vào bài con. Sau đó, chúng ta giải bài con bằng hệ khối và bằng khử biến, và ghép các bước thành thuật toán Newton khả thi.
+tức $A=[1\ \ 1]$, $b=14$, $n=2$, $p=1$. Bài này bậc hai, nên hệ (1.2) giải trực tiếp được và nghiệm của nó dùng làm tham chiếu để kiểm tra các bước Newton, còn trường hợp cần đến các phương pháp của mục là $F$ không bậc hai, khi (1.2) phi tuyến. Đầu tiên, chúng ta chỉ ra rằng hướng Newton của Mục 3 vi phạm ràng buộc, rồi thêm điều kiện giữ khả thi vào bài con. Sau đó, chúng ta giải bài con bằng hệ khối và bằng khử biến, và ghép các bước thành thuật toán Newton khả thi.
 
 ### 4.1 Hướng khả thi
 
@@ -1881,7 +1881,7 @@ Tại $u^*$: $\nabla F(u^*)=(20,20)^T=-\nu^*A^T$, gradient vuông góc với đ�
 $A(u+td)=Au+tAd=b+tAd$. Vế phải bằng $b$ với mọi $t$ khi và chỉ khi $Ad=0$; chiều thuận lấy $t=1$. $\square$
 :::
 
-Theo Mệnh đề 04.37, hướng khả thi chỉ bị ràng buộc về phương, còn độ dài bước $t$ vẫn tự do. Với $A=[1\ \ 1]$, $\ker A$ là đường $d_1+d_2=0$, song song với đường khả thi, tức tọa độ này tăng bao nhiêu thì tọa độ kia giảm bấy nhiêu. Tập hướng khả thi $\ker A$ đã xuất hiện ở Bước 3 của chứng minh Mệnh đề 04.2, nơi gradient trực giao với $\ker A$ tại nghiệm.
+Theo Mệnh đề 04.37, hướng khả thi chỉ bị ràng buộc về phương, còn độ dài bước $t$ vẫn tự do. Với $A=[1\ \ 1]$, $\ker A$ là đường $d_1+d_2=0$, song song với đường khả thi, tức $d_2=-d_1$. Tập hướng khả thi $\ker A$ đã xuất hiện ở Bước 3 của chứng minh Mệnh đề 04.2, nơi gradient trực giao với $\ker A$ tại nghiệm.
 
 ### 4.2 Bài con có đẳng thức và hệ Newton khả thi
 
@@ -1962,7 +1962,7 @@ Nếu $\delta_{eq}=0$ thì $d=0$ vì $d\in\ker A$ và $H$ xác định dương t
 
 Định lý 04.39 là phiên bản có ràng buộc của Mệnh đề 04.29. Do phần (c) cho hướng giảm, quay lui Armijo trên $F$ dừng sau hữu hạn lần co (Mệnh đề 04.11), còn phần (e) bảo đảm mọi bước $t$ giữ khả thi. Giả thiết $H$ xác định dương trên $\ker A$ là điều kiện bậc hai của bài con, tức kết luận chỉ dùng độ cong theo các hướng khả thi.
 
-**Trong học máy.** Khi các tham số của một mô hình phải thỏa một đẳng thức tuyến tính, như trọng số trộn $w_1+\cdots+w_K=1$ hay một ràng buộc cân bằng giữa các nhóm dữ liệu, mỗi bước Newton khả thi giải hệ (4.1) với $H$ là Hessian của mất mát. Về lý thuyết, ràng buộc được giữ chính xác ở mọi bước mà không cần phạt hay chiếu lại, và Nhận xét 04.42 bàn ảnh hưởng của sai số máy. Nhân tử $\eta$ hội tụ về $\nu^*$, đo độ nhạy của mất mát tối ưu theo vế phải $b$ (Hệ quả 03.24); Tình huống 04.2 đọc nhân tử này cho bài trọng số trộn.
+**Trong học máy.** Khi các tham số của một mô hình phải thỏa một đẳng thức tuyến tính, như trọng số trộn $w_1+\cdots+w_K=1$ hay một ràng buộc cân bằng giữa các nhóm dữ liệu, mỗi bước Newton khả thi giải hệ (4.1) với $H$ là Hessian của mất mát. Về lý thuyết, ràng buộc được giữ chính xác ở mọi bước mà không cần phạt hay chiếu lại, và Nhận xét 04.42 phân tích ảnh hưởng của sai số máy. Nhân tử $\eta$ hội tụ về $\nu^*$, đo độ nhạy của mất mát tối ưu theo vế phải $b$ (Hệ quả 03.24); Tình huống 04.2 diễn giải nhân tử này cho bài trọng số trộn.
 
 ::: example Ví dụ 04.18 (Một bước Newton khả thi trên VD3)
 **Dữ kiện.**
@@ -1996,7 +1996,7 @@ $Ad=-6+6=0$. Tại điểm mới, $\nabla F=(20,20)^T$ và $\nabla F+A^T\eta=(0,
 
 ![Hai trục u1, u2 với đường u1 cộng u2 bằng 14 và miền nhìn từ âm 3 tới 17. Mũi tên d bằng (âm 6, 6) đi từ điểm (16, âm 2) tới điểm (10, 4) dọc theo đường khả thi; nhãn ghi A d bằng 0 và t bằng 1. Hai đường mức F bằng 266 và F bằng 140 đi qua hai điểm này.](img/lec-04/equality-feasible-step.svg)
 
-Bước Newton khả thi vẽ trên hình nằm trên đường khả thi và đi đúng tới nghiệm. Điều này xảy ra vì $F$ bậc hai, nên mô hình trùng hàm, $g+Hd=\nabla F(u+d)$, và hàng dừng của bài con là hàng dừng của bài gốc tại $u+d$. Với $F$ không bậc hai, mức giảm mô hình và mức giảm thật khác nhau như ở VD2, và một bước không kết thúc bài toán.
+Bước Newton khả thi vẽ trên hình nằm trên đường khả thi và dẫn đúng tới nghiệm. Điều này xảy ra vì $F$ bậc hai, nên mô hình trùng hàm, $g+Hd=\nabla F(u+d)$, và hàng dừng của bài con là hàng dừng của bài gốc tại $u+d$. Với $F$ không bậc hai, mức giảm mô hình và mức giảm thật khác nhau như ở VD2, và một bước không đủ để đạt nghiệm.
 
 ::: remark Nhận xét 04.40 (Cấu trúc của ma trận khối)
 **Không xác định dương.** Ma trận khối của (4.1) đối xứng nhưng không xác định dương: với $d=0$ và $\eta\ne0$, dạng toàn phương của nó bằng $2\eta^TA\cdot0+0=0$. Khi $A$ đủ hạng hàng và $H$ xác định dương trên $\ker A$, nó có đúng $p$ giá trị riêng âm (Nocedal và Wright 2006, mục 16.2). Do đó không áp dụng phân rã Cholesky cho cả ma trận; các bộ giải dùng phân rã đối xứng $LDL^T$ hoặc khử khối (Boyd và Vandenberghe 2004, mục 10.4, tr. 542–546).
@@ -2006,7 +2006,7 @@ Bước Newton khả thi vẽ trên hình nằm trên đường khả thi và đ
 
 ### 4.3 Khử biến và hệ rút gọn
 
-Hệ (4.1) có cỡ $n+p$ và không xác định dương. Về mặt hình học, tập khả thi là một mặt phẳng affine số chiều $n-p$. Nếu dùng tọa độ trên chính mặt phẳng đó thì ràng buộc biến mất và bài toán trở thành không ràng buộc với $n-p$ biến. Ý tưởng này được làm chính xác trong mệnh đề sau.
+Hệ (4.1) có cỡ $n+p$ và không xác định dương. Về mặt hình học, tập khả thi là một mặt phẳng affine số chiều $n-p$. Nếu dùng tọa độ trên chính mặt phẳng đó thì ràng buộc không còn và bài toán trở thành không ràng buộc với $n-p$ biến. Ý tưởng này được làm chính xác trong mệnh đề sau.
 
 ::: proposition Mệnh đề 04.41 (Khử biến và hệ Newton rút gọn)
 **Giả thiết.** $A$ đủ hạng hàng; $\hat u$ thỏa $A\hat u=b$; $N\in\mathbb R^{n\times(n-p)}$ có các cột là một cơ sở của $\ker A$; $u=\hat u+Nz$ khả thi; $H$ xác định dương trên $\ker A$.
@@ -2183,19 +2183,19 @@ $F(u^0)=\tfrac{25}2$. $u^0+d=(\tfrac52,\tfrac54,\tfrac54)^T$ và $F=\tfrac12(\tf
 Tại $u^0+d$: $\nabla F=(\tfrac52,\tfrac52,\tfrac52)^T$ và $\nabla F+\eta\mathbf1=0$, nên điểm mới thỏa (1.2) với $\nu^*=-\tfrac52$.
 :::
 
-Ví dụ 04.17 cho thấy hướng Newton không ràng buộc phá ràng buộc, và Mệnh đề 04.37 chỉ ra rằng các hướng giữ khả thi là $\ker A$. Bài con Newton với ràng buộc $Ad=0$ (Định nghĩa 04.38) có hệ KKT (4.1) khả nghịch và cho hướng giảm giữ khả thi (Định lý 04.39). Khử biến cho hệ rút gọn (4.2) với cùng bước, và Newton khả thi chính là Newton trên hàm rút gọn $\psi$ (Mệnh đề 04.41). Ghép các phần trên, ta được Thuật toán 04.3, giữ tính khả thi ở mọi bước và thừa hưởng các kết quả của Mục 3 qua hàm rút gọn.
+Ví dụ 04.17 cho thấy hướng Newton không ràng buộc vi phạm ràng buộc, và Mệnh đề 04.37 chỉ ra rằng các hướng giữ khả thi là $\ker A$. Bài con Newton với ràng buộc $Ad=0$ (Định nghĩa 04.38) có hệ KKT (4.1) khả nghịch và cho hướng giảm giữ khả thi (Định lý 04.39). Khử biến cho hệ rút gọn (4.2) với cùng bước, và Newton khả thi chính là Newton trên hàm rút gọn $\psi$ (Mệnh đề 04.41). Ghép các phần trên, ta được Thuật toán 04.3, giữ tính khả thi ở mọi bước và thừa hưởng các kết quả của Mục 3 qua hàm rút gọn.
 
-Tuy nhiên, Thuật toán 04.3 đòi điểm đầu thỏa $Au^0=b$ và nằm trong $\operatorname{dom}F$. Tại một điểm chưa khả thi, mọi hướng $d\in\ker A$ giữ nguyên sai lệch $Au-b$, nên phương pháp không bao giờ tới tập khả thi.
+Tuy nhiên, Thuật toán 04.3 đòi hỏi điểm đầu thỏa $Au^0=b$ và nằm trong $\operatorname{dom}F$. Tại một điểm chưa khả thi, mọi hướng $d\in\ker A$ giữ nguyên sai lệch $Au-b$, nên các điểm lặp không bao giờ thuộc tập khả thi.
 
-## 5. Newton từ điểm chưa khả thi
+## 5. Phương pháp Newton từ điểm chưa khả thi
 
-Một điểm vừa thỏa $Au=b$ vừa thuộc $\operatorname{dom}F$ không phải lúc nào cũng có sẵn. Với $F$ chứa $-\log u_i$, nghiệm của $Au=b$ tìm được bằng đại số tuyến tính có thể có thành phần âm, ngoài miền. Khi vế phải $b$ thay đổi, như khi cập nhật ngân sách, điểm tối ưu cũ không còn khả thi nhưng vẫn là một điểm đầu tốt.
+Một điểm vừa thỏa $Au=b$ vừa thuộc $\operatorname{dom}F$ không phải bao giờ cũng có sẵn. Với $F$ chứa $-\log u_i$, nghiệm của $Au=b$ tìm được bằng đại số tuyến tính có thể có thành phần âm, ngoài miền. Khi vế phải $b$ thay đổi, như khi cập nhật ngân sách, điểm tối ưu cũ không còn khả thi nhưng vẫn là một điểm xuất phát thích hợp.
 
 Tại VD3 với $u=(1,8)^T$, tổng tọa độ bằng $9\ne14$, và mọi bước theo $\ker A$ giữ tổng bằng $9$. Để xử lý điểm như vậy, chúng ta thay bài con bằng phép tuyến tính hóa toàn bộ hệ (1.2) theo cách đọc (d) của Mệnh đề 04.29, hiệu chỉnh đồng thời điều kiện dừng và sai lệch ràng buộc. Cụ thể, chúng ta đo mức vi phạm của cả hai nhóm phương trình (1.2), rồi thay quy tắc nhận bước trên $F$ bằng quy tắc trên chuẩn phần dư.
 
 ### 5.1 Phần dư KKT
 
-Về mặt ý tưởng, thay vì đòi điểm lặp thỏa sẵn một nhóm phương trình, ta đo xem mỗi nhóm đang lệch bao nhiêu, rồi tìm bước làm cả hai độ lệch về $0$. Định nghĩa sau gọi tên các độ lệch này.
+Về mặt ý tưởng, thay vì yêu cầu điểm lặp thỏa trước một nhóm phương trình, ta đo độ lệch của từng nhóm và tìm bước làm đồng thời cả hai độ lệch tiến về $0$. Định nghĩa sau gọi tên các độ lệch này.
 
 ::: definition Định nghĩa 04.43 (Phần dư KKT)
 Cho bài có đẳng thức của Định nghĩa 04.1, $u\in\operatorname{dom}F$ và $\nu\in\mathbb R^p$.
@@ -2229,7 +2229,7 @@ Số $40$ thuộc gradient, số $44$ thuộc phần dư; bỏ $A^T\nu$ khi lậ
 
 ### 5.2 Tuyến tính hóa hệ KKT
 
-Để tìm bước như vậy, ta áp cách đọc (d) của Mệnh đề 04.29 cho hệ $r(u,\nu)=0$, tức thay mỗi phần dư tại điểm mới $(u+d,\nu+\Delta\nu)$ bằng xấp xỉ bậc một của nó rồi đặt xấp xỉ bằng $0$. Hệ thu được và các tính chất của nó được nêu trong mệnh đề sau.
+Để tìm bước như vậy, ta áp dụng cách đọc (d) của Mệnh đề 04.29 cho hệ $r(u,\nu)=0$, tức thay mỗi phần dư tại điểm mới $(u+d,\nu+\Delta\nu)$ bằng xấp xỉ bậc một của nó rồi đặt xấp xỉ bằng $0$. Hệ thu được và các tính chất của nó được nêu trong mệnh đề sau.
 
 ::: proposition Mệnh đề 04.44 (Hệ Newton cho phần dư KKT)
 **Giả thiết.** $F$ khả vi hai lần tại $u\in\operatorname{dom}F$, $H=\nabla^2F(u)$; $A$ đủ hạng hàng; $H$ xác định dương trên $\ker A$.
@@ -2339,7 +2339,7 @@ $u^+=(10,4)^T$, $\nu^+=4-24=-20$.
 $r_p^+=10+4-14=0$; $r_d^+=(20,20)^T+(-20)(1,1)^T=(0,0)^T$. Điểm mới là nghiệm với $F^*=140$, đúng Mệnh đề 04.44(d). Với $\alpha=0{,}1$, $\lVert r^+\rVert_2=0\le(1-\alpha)\lVert r\rVert_2=0{,}9\sqrt{1997}$, nên quay lui của Thuật toán 04.4 nhận $t=1$. Số $-24$ là số gia; nhân tử của nghiệm là $\nu^+=\nu+\Delta\nu=-20=\nu^*$.
 :::
 
-### 5.3 Chuẩn phần dư làm thước đo tiến triển
+### 5.3 Chuẩn phần dư như thước đo tiến triển
 
 Tại điểm khả thi, quy tắc Armijo đòi $F$ giảm. Tại điểm chưa khả thi, quy tắc đó không dùng được, như ví dụ sau cho thấy.
 
@@ -2400,7 +2400,7 @@ Vì $\Phi(0)=\lVert r\rVert_2>0$, $\Phi$ khả vi tại $0$ và $\Phi'(0)=\frac{
 $\Phi(t)=\lVert r\rVert_2-t\lVert r\rVert_2+o(t)$. Vì $(1-\alpha)\lVert r\rVert_2>0$, có $\bar t$ sao cho $o(t)\le(1-\alpha)t\lVert r\rVert_2$ trên $(0,\bar t]$, cho $\Phi(t)\le(1-\alpha t)\lVert r\rVert_2$. $\square$
 :::
 
-Mệnh đề 04.45 đóng vai của Mệnh đề 04.11 cho phương pháp mới: hướng Newton là hướng giảm của $\lVert r\rVert_2$, và quy tắc dạng Armijo trên $\lVert r\rVert_2$ luôn tìm được bước. Hệ số $-\lVert r\rVert_2$ của đạo hàm đóng vai $g^Td$ trong (2.2). Ghép hệ (5.1) với quy tắc nhận bước trên $\lVert r\rVert_2$, ta được thuật toán sau.
+Mệnh đề 04.45 đóng vai trò của Mệnh đề 04.11 cho phương pháp mới: hướng Newton là hướng giảm của $\lVert r\rVert_2$, và quy tắc dạng Armijo trên $\lVert r\rVert_2$ luôn tìm được bước. Hệ số $-\lVert r\rVert_2$ của đạo hàm đóng vai trò của $g^Td$ trong (2.2). Ghép hệ (5.1) với quy tắc nhận bước trên $\lVert r\rVert_2$, ta được thuật toán sau.
 
 ::: algorithm Thuật toán 04.4 (Newton từ điểm chưa khả thi)
 **Đầu vào.** $u^0\in\operatorname{dom}F$, $\nu^0\in\mathbb R^p$; dung sai $\varepsilon_p,\varepsilon_d>0$; tham số $\alpha\in(0,\tfrac12)$, $\beta\in(0,1)$.
@@ -2420,7 +2420,7 @@ Mệnh đề 04.45 đóng vai của Mệnh đề 04.11 cho phương pháp mới:
 **Chi phí mỗi lượt.** Như Thuật toán 04.3, cộng các lần tính $r$ khi thử bước.
 :::
 
-Hai dung sai được kiểm đồng thời vì mỗi phần dư ứng với một nhóm của (1.2), nên một phần dư nhỏ không thay được cho phần dư kia. Điểm và nhân tử được cập nhật với cùng bước $t$. Theo Mệnh đề 04.44(c), sau bước $t$ phần dư khả thi là $(1-t)r_p$, nên ngay khi một bước $t=1$ được nhận, mọi điểm lặp sau đó khả thi và thuật toán chạy như Newton khả thi với quy tắc nhận bước trên $\lVert r\rVert_2$.
+Hai dung sai được kiểm tra đồng thời vì mỗi phần dư ứng với một nhóm của (1.2), nên một phần dư nhỏ không thay được cho phần dư kia. Điểm và nhân tử được cập nhật với cùng bước $t$. Theo Mệnh đề 04.44(c), sau bước $t$ phần dư khả thi là $(1-t)r_p$, nên ngay khi một bước $t=1$ được nhận, mọi điểm lặp sau đó khả thi và thuật toán trùng với Newton khả thi với quy tắc nhận bước trên $\lVert r\rVert_2$.
 
 ::: remark Nhận xét 04.46 (Số gia, nhân tử mới và ý nghĩa của phần dư nhỏ)
 **Số gia và nhân tử.** Trong (5.1), $\Delta\nu$ là số gia; nhân tử sau bước đầy đủ là $\nu+\Delta\nu$. Ở Ví dụ 04.21, $\Delta\nu=-24$ còn $\nu^+=-20=\nu^*$.
@@ -2432,7 +2432,7 @@ Hai dung sai được kiểm đồng thời vì mỗi phần dư ứng với m�
 **Hai lỗi lập hệ thường gặp.** Lỗi thứ nhất là bỏ $A^T\nu$ khi lập $r_d$; lỗi thứ hai là lấy vế phải của hàng ràng buộc là $r_p$ thay vì $-r_p$.
 :::
 
-**Trong học máy.** Thuật toán 04.4 cho phép khởi đầu huấn luyện một mô hình có ràng buộc đẳng thức từ một điểm bất kỳ thuộc miền của mất mát, chẳng hạn trọng số khởi tạo không thỏa $\sum_iw_i=1$, mà không cần bước chiếu riêng. Việc cập nhật đồng thời tham số và nhân tử là dạng đơn giản nhất của phương pháp gốc – đối ngẫu (primal-dual method). Phương pháp này là nền của các phương pháp điểm trong trong bộ giải tối ưu lồi; xem Boyd và Vandenberghe (2004, mục 10.3.1, tr. 532–533, và chương 11).
+**Trong học máy.** Thuật toán 04.4 cho phép khởi đầu huấn luyện một mô hình có ràng buộc đẳng thức từ một điểm bất kỳ thuộc miền của mất mát, chẳng hạn trọng số khởi tạo không thỏa $\sum_iw_i=1$, mà không cần bước chiếu riêng. Việc cập nhật đồng thời tham số và nhân tử là dạng đơn giản nhất của phương pháp gốc – đối ngẫu (primal-dual method). Phương pháp này là cơ sở của các phương pháp điểm trong trong bộ giải tối ưu lồi; xem Boyd và Vandenberghe (2004, mục 10.3.1, tr. 532–533, và chương 11).
 
 ::: exercise Bài tập 04.9
 **Dữ kiện.**
@@ -2467,11 +2467,11 @@ $r_d^+$ tại $u^+=(10,4)^T$: $(20-20,20-20)^T=0$. Hệ số co $\tfrac12=1-t$ �
 
 Với hai phần dư $r_d$ và $r_p$ đo vi phạm của hai nhóm phương trình (1.2) (Định nghĩa 04.43), chúng ta đã tuyến tính hóa chúng thành hệ (5.1) (Mệnh đề 04.44). Hệ này chứa Newton khả thi làm trường hợp riêng và làm $r_p$ co theo hệ số $1-t$. Ví dụ 04.22 cho thấy $F$ không dùng được làm thước đo, còn Mệnh đề 04.45 chứng minh $\lVert r\rVert_2$ giảm dọc hướng Newton. Thuật toán 04.4 ghép các phần trên.
 
-Với hai thuật toán này, phương pháp Newton cho bài có đẳng thức đã hoàn chỉnh, từ điểm khả thi (Thuật toán 04.3) và từ điểm chưa khả thi (Thuật toán 04.4). Tuy nhiên, mọi tiêu chí dừng đến lúc này, gồm $\lVert g\rVert_2$, $\tfrac12\delta^2$, $\tfrac12\delta_{eq}^2$ và $\lVert r\rVert_2$, chỉ đo khoảng cách tới hệ KKT. Do đó, câu hỏi để ngỏ từ Nhận xét 04.32 vẫn còn: khi nào độ giảm Newton cho một cận trên của sai số mục tiêu. Tính tự điều chỉnh ở Mục 6 là công cụ để trả lời câu hỏi này.
+Với hai thuật toán này, phương pháp Newton cho bài có đẳng thức đã hoàn chỉnh, từ điểm khả thi (Thuật toán 04.3) và từ điểm chưa khả thi (Thuật toán 04.4). Tuy nhiên, mọi tiêu chí dừng đã xét, gồm $\lVert g\rVert_2$, $\tfrac12\delta^2$, $\tfrac12\delta_{eq}^2$ và $\lVert r\rVert_2$, chỉ đo khoảng cách tới hệ KKT. Do đó, câu hỏi để ngỏ từ Nhận xét 04.32 vẫn còn: khi nào độ giảm Newton cho một cận trên của sai số mục tiêu. Tính tự điều chỉnh ở Mục 6 là công cụ để trả lời câu hỏi này.
 
 ## 6. Tính tự điều chỉnh và cận sai số
 
-Trên VD2 tại $s=\tfrac14$, giảm mô hình $\tfrac12\delta^2=\tfrac9{32}\approx0{,}281$ nhỏ hơn sai số mục tiêu $\log4-\tfrac34\approx0{,}636$, nên tiêu chí dừng của Thuật toán 04.2 chưa chứng nhận điều gì về sai số (Nhận xét 04.32). Định lý 04.35 dùng các hằng số $\mu$, $L$, $L_H$ trên tập mức dưới $S$. Với VD2 từ $s^0=\tfrac14$, $S=\{s\mid\varphi(s)\le\varphi(\tfrac14)\}\approx[0{,}25;\,2{,}587]$, nên $\mu=1/2{,}587^2\approx0{,}149$, $L=16$ và $L_H=2\cdot4^3=128$. Các hằng số này tồn tại nhưng cho cận rất bi quan, và chúng thay đổi khi đổi hệ tọa độ, trong khi bước Newton thì không (Mệnh đề 04.31(c)).
+Trên VD2 tại $s=\tfrac14$, giảm mô hình $\tfrac12\delta^2=\tfrac9{32}\approx0{,}281$ nhỏ hơn sai số mục tiêu $\log4-\tfrac34\approx0{,}636$, nên tiêu chí dừng của Thuật toán 04.2 chưa chứng nhận điều gì về sai số (Nhận xét 04.32). Định lý 04.35 dùng các hằng số $\mu$, $L$, $L_H$ trên tập mức dưới $S$. Với VD2 từ $s^0=\tfrac14$, $S=\{s\mid\varphi(s)\le\varphi(\tfrac14)\}\approx[0{,}25;\,2{,}587]$, nên $\mu=1/2{,}587^2\approx0{,}149$, $L=16$ và $L_H=2\cdot4^3=128$. Các hằng số này tồn tại nhưng cho cận lớn hơn nhiều so với sai số thực, và chúng thay đổi khi đổi hệ tọa độ, trong khi bước Newton thì không (Mệnh đề 04.31(c)).
 
 Trong mục này, chúng ta tìm một giả thiết về độ cong không phụ thuộc hệ tọa độ, chứng minh dưới giả thiết đó cận sai số $f(x)-f^*\le-\delta-\log(1-\delta)$, rồi chuyển cận sang bài có đẳng thức qua hàm rút gọn.
 
@@ -2675,7 +2675,7 @@ $$
 
 Số hạng đầu là giảm mô hình $\tfrac12\delta^2$. Khi $\delta$ nhỏ, các số hạng sau nhỏ hơn nhiều so với số hạng đầu và tiêu chí dừng của Thuật toán 04.2 gần đúng chứng nhận sai số.
 
-Trong khi cận (2.5) của Mệnh đề 04.25(b) cần hằng số lồi mạnh $\mu$ thì cận (6.1) không cần hằng số nào, nhưng phải kiểm tính tự điều chỉnh. Boyd và Vandenberghe (2004, mục 9.6.3, tr. 501–502, công thức 9.49) chứng minh cùng cận theo cùng ý, tham số hóa theo hướng thay vì theo điểm.
+Trong khi cận (2.5) của Mệnh đề 04.25(b) cần hằng số lồi mạnh $\mu$ thì cận (6.1) không cần hằng số nào, nhưng phải kiểm tra tính tự điều chỉnh. Boyd và Vandenberghe (2004, mục 9.6.3, tr. 501–502, công thức 9.49) chứng minh cùng cận theo cùng ý, tham số hóa theo hướng thay vì theo điểm.
 
 ::: example Ví dụ 04.24 (Cận sai số trên VD2 tại hai điểm)
 **Dữ kiện.**
@@ -2776,7 +2776,7 @@ $$
 
 **Điều kiện áp dụng.** Hằng số chỉ phụ thuộc $\alpha$, $\beta$; không phụ thuộc hệ tọa độ hay hằng số nào của $f$.
 
-**Phạm vi.** Chứng minh nằm ngoài phạm vi học phần; xem Boyd và Vandenberghe (2004, mục 9.6.4, tr. 503–505, công thức 9.56). Hằng số rất bi quan; với $\alpha=0{,}1$ và $\beta=0{,}8$, hệ số bằng $375$.
+**Phạm vi.** Chứng minh nằm ngoài phạm vi học phần; xem Boyd và Vandenberghe (2004, mục 9.6.4, tr. 503–505, công thức 9.56). Hằng số này rất lớn; với $\alpha=0{,}1$ và $\beta=0{,}8$, hệ số bằng $375$.
 :::
 
 Định lý 04.53 thay ba hằng số $\mu$, $L$, $L_H$ của Định lý 04.35 bằng giả thiết tự điều chỉnh. Chúng ta không trình bày chứng minh, nhưng chứng minh đó chia hai trường hợp theo độ giảm Newton: khi $\delta>\bar\delta=(1-2\alpha)/4$, mỗi bước giảm $f$ ít nhất $\gamma_2=\alpha\beta\bar\delta^2/(1+\bar\delta)$; khi $\delta\le\bar\delta$, bước đầy đủ được nhận và $\delta$ co theo bậc hai.
@@ -2827,9 +2827,9 @@ Tuy nhiên, phạm vi của kết quả còn hẹp. Mất mát logistic không t
 
 ## 7. Tổng hợp: khung chung của bước lặp
 
-Câu hỏi còn lại là tiêu chí dừng nào chứng nhận điều gì, dưới giả thiết nào. Xét một mô hình hồi quy ridge hai hệ số trên ba mẫu, với ma trận dữ liệu $M=\begin{bmatrix}1&0\\1&1\\0&1\end{bmatrix}$, nhãn $y=(1,2,0)^T$, hệ số chính quy hóa $\rho=1$ và ràng buộc tổng hệ số $w_1+w_2=1$. Người huấn luyện khởi đầu từ $w=0$, một điểm không khả thi, nên cần chọn giữa Thuật toán 04.3 và 04.4, lập hệ của bước từ gradient và Hessian của mất mát, và biết khi dừng thì phần dư nhỏ nói gì về mất mát.
+Vấn đề còn lại là xác định điều mà mỗi tiêu chí dừng chứng nhận và giả thiết đi kèm. Xét một mô hình hồi quy ridge hai hệ số trên ba mẫu, với ma trận dữ liệu $M=\begin{bmatrix}1&0\\1&1\\0&1\end{bmatrix}$, nhãn $y=(1,2,0)^T$, hệ số chính quy hóa $\rho=1$ và ràng buộc tổng hệ số $w_1+w_2=1$. Người huấn luyện khởi đầu từ $w=0$, một điểm không khả thi, nên cần chọn giữa Thuật toán 04.3 và 04.4, lập hệ của bước từ gradient và Hessian của mất mát, và xác định ý nghĩa của phần dư nhỏ đối với mất mát khi thuật toán dừng.
 
-Mọi phương pháp của chương đi qua cùng bốn bước: lập mô hình bậc hai tại điểm hiện tại, viết KKT của bài con thành hệ tuyến tính, chọn bước, kiểm tiêu chí dừng. Trong mục này, chúng ta đặt bốn tiêu chí dừng và các phương pháp cạnh nhau trong một bảng, rồi phát biểu điều mỗi tiêu chí dừng chứng nhận dưới giả thiết nào (Mệnh đề 04.55). Sau đó, chúng ta áp dụng khung vào bài ridge trên (Ví dụ 04.25).
+Mọi phương pháp của chương gồm cùng bốn bước: lập mô hình bậc hai tại điểm hiện tại, viết KKT của bài con thành hệ tuyến tính, chọn bước, kiểm tra tiêu chí dừng. Trong mục này, chúng ta đặt bốn tiêu chí dừng và các phương pháp cạnh nhau trong một bảng, rồi phát biểu điều mỗi tiêu chí dừng chứng nhận dưới giả thiết nào (Mệnh đề 04.55). Sau đó, chúng ta áp dụng khung vào bài ridge trên (Ví dụ 04.25).
 
 | Phương pháp | Hệ của bước | Nhận bước | Dừng |
 |---|---|---|---|
@@ -2921,9 +2921,9 @@ $w^*=(\tfrac34,\tfrac14)^T$, $\nu^*=\tfrac12$. $\nabla J(w^*)=M^T(Mw^*-y)+w^*$ v
 - Riêng $\lVert r\rVert_2$ nhỏ tại một điểm chưa khả thi không cho cận của $J-J^*$ (Mệnh đề 04.55(d)).
 :::
 
-Bảng các phương pháp gom Thuật toán 04.1–04.4 theo hệ của bước, quy tắc nhận bước và tiêu chí dừng. Dựa trên Mệnh đề 04.25, Định lý 04.50, Hệ quả 04.51, 04.52 và Mệnh đề 04.2, Mệnh đề 04.55 cho bảng chứng nhận của các tiêu chí dừng. Ví dụ 04.25 chạy khung này trên hồi quy ridge có ràng buộc, qua đó cho cách lập hệ (5.1) của bước từ gradient và Hessian của mất mát trong một mô hình học có ràng buộc đẳng thức.
+Bảng các phương pháp gom Thuật toán 04.1–04.4 theo hệ của bước, quy tắc nhận bước và tiêu chí dừng. Dựa trên Mệnh đề 04.25, Định lý 04.50, Hệ quả 04.51, 04.52 và Mệnh đề 04.2, Mệnh đề 04.55 cho bảng chứng nhận của các tiêu chí dừng. Ví dụ 04.25 áp dụng khung này cho hồi quy ridge có ràng buộc, qua đó cho cách lập hệ (5.1) của bước từ gradient và Hessian của mất mát trong một mô hình học có ràng buộc đẳng thức.
 
-Còn lại hai thiếu hụt. Một tiêu chí dừng chỉ chứng nhận sai số khi giả thiết tương ứng đã được kiểm, và mọi kết quả cần mất mát lồi. Ba tình huống dưới đây áp dụng khung vào hai mô hình lồi và cho thấy điều xảy ra với một mô hình không lồi. Giới hạn về tính lồi được chuyển cho Bài 05b, còn Bài 05 xử lý gradient trên nhóm nhỏ mẫu.
+Còn lại hai thiếu hụt. Một tiêu chí dừng chỉ chứng nhận sai số khi giả thiết tương ứng đã được kiểm tra, và mọi kết quả cần mất mát lồi. Ba tình huống dưới đây áp dụng khung vào hai mô hình lồi và cho thấy điều xảy ra với một mô hình không lồi. Giới hạn về tính lồi được chuyển cho Bài 05b, còn Bài 05 xử lý gradient trên nhóm nhỏ mẫu.
 
 ## Tình huống áp dụng và ứng dụng
 
@@ -2979,7 +2979,7 @@ $L=\lambda_{\max}\approx24{,}08$, $\kappa=L/\mu\approx241$. Giảm gradient vớ
 
 **Diễn giải.**
 
-Nghiệm $w^*\approx(0{,}7246;\,-2{,}3249)$ cho xác suất đạt $0{,}5$ tại $a\approx3{,}21$ giờ. Theo (2.5), tại $k=3$ sai số không vượt $\lVert\nabla J\rVert_2^2/(2\mu)\approx1{,}3\cdot10^{-7}$, nên dừng ở đây có chứng nhận; sai số thật là $1{,}1\cdot10^{-9}$.
+Nghiệm $w^*\approx(0{,}7246;\,-2{,}3249)$ cho xác suất đạt $0{,}5$ tại $a\approx3{,}21$ giờ. Theo (2.5), tại $k=3$ sai số không vượt $\lVert\nabla J\rVert_2^2/(2\mu)\approx1{,}3\cdot10^{-7}$, nên dừng thuật toán tại bước này là có chứng nhận; sai số thật là $1{,}1\cdot10^{-9}$.
 
 **Kiểm tra lại.**
 
@@ -2987,7 +2987,7 @@ Tại $w^4$, $\lVert\nabla J\rVert_2\approx3\cdot10^{-9}$, và theo (2.5), $J(w^
 
 **Giới hạn.**
 
-Với $n$ đặc trưng, mỗi bước Newton giải hệ $n\times n$ với chi phí cỡ $n^3$, nên khi $n$ lớn các phương pháp bậc nhất của Bài 05 rẻ hơn. Mất mát logistic không tự điều chỉnh (Nhận xét 04.54), nên chứng nhận dùng (2.5) thay cho Định lý 04.50.
+Với $n$ đặc trưng, mỗi bước Newton giải hệ $n\times n$ với chi phí cỡ $n^3$, nên khi $n$ lớn các phương pháp bậc nhất của Bài 05 có chi phí thấp hơn. Mất mát logistic không tự điều chỉnh (Nhận xét 04.54), nên chứng nhận dùng (2.5) thay cho Định lý 04.50.
 
 **Dẫn ngược lý thuyết.**
 
@@ -3152,7 +3152,7 @@ Mạng thật có hàng triệu tham số và nhiều lớp phi tuyến, nhưng 
 Mệnh đề 04.2(a) và Định lý 04.22, 04.26 là các kết quả có giả thiết bị vi phạm; Mệnh đề 04.7(c), 04.29(b) và Nhận xét 04.36 giải thích hướng tăng; Định nghĩa 04.17 cho giả thiết Lipschitz bị vi phạm.
 :::
 
-Các khái niệm của chương xuất hiện trong học máy ở những chỗ sau.
+Các khái niệm của chương xuất hiện trong các vấn đề sau của học máy.
 
 - **Mô hình tuyến tính tổng quát.** Hồi quy logistic được huấn luyện bằng Newton, tức bình phương nhỏ nhất có trọng số lặp (Tình huống 04.1).
 - **Tốc độ học.** Bước $\tfrac1L$ của Bổ đề 04.20 bảo đảm mất mát giảm; với hàm bậc hai, bước lớn hơn $\tfrac2L$ làm dãy phân kỳ (Ví dụ 04.7, Nhận xét 04.13).
@@ -3163,7 +3163,7 @@ Các khái niệm của chương xuất hiện trong học máy ở những ch�
 
 ## Tóm tắt chương
 
-Chương này khởi đầu bằng nhu cầu tìm nghiệm của hệ điều kiện tối ưu khi hệ đó phi tuyến (Ví dụ 04.1), và Mệnh đề 04.2 đặt đích của mọi phương pháp là hệ (1.1) hoặc (1.2). Từ tiêu chuẩn dấu, bài con bậc hai và quay lui Armijo (Mệnh đề 04.7, 04.9, 04.11), chúng ta xây dựng giảm gradient (Thuật toán 04.1) rồi tổng quát hóa thành hệ $Wd=-g$ (Mệnh đề 04.15). Các Định lý 04.22, 04.24 và 04.26 cho bảo đảm hội tụ của giảm gradient. Lấy $W=H$, ta được phương pháp Newton (Mệnh đề 04.29, 04.31, Thuật toán 04.2), với tốc độ bậc hai cục bộ và hội tụ hai pha (Định lý 04.34, 04.35). Thêm ràng buộc $Ad=0$ vào bài con cho Newton khả thi (Định lý 04.39, Mệnh đề 04.41, Thuật toán 04.3), còn tuyến tính hóa cả hệ (1.2) cho phép xuất phát từ điểm chưa khả thi (Mệnh đề 04.44, 04.45, Thuật toán 04.4). Với hàm tự điều chỉnh, độ giảm Newton trở thành cận sai số (Định lý 04.50, Hệ quả 04.52). Cuối cùng, Mệnh đề 04.55 tổng hợp điều mà mỗi tiêu chí dừng chứng nhận.
+Chương này khởi đầu bằng nhu cầu tìm nghiệm của hệ điều kiện tối ưu khi hệ đó phi tuyến (Ví dụ 04.1), và Mệnh đề 04.2 xác định hệ cần giải của mọi phương pháp là hệ (1.1) hoặc (1.2). Từ tiêu chuẩn dấu, bài con bậc hai và quay lui Armijo (Mệnh đề 04.7, 04.9, 04.11), chúng ta xây dựng giảm gradient (Thuật toán 04.1) rồi tổng quát hóa thành hệ $Wd=-g$ (Mệnh đề 04.15). Các Định lý 04.22, 04.24 và 04.26 cho bảo đảm hội tụ của giảm gradient. Lấy $W=H$, ta được phương pháp Newton (Mệnh đề 04.29, 04.31, Thuật toán 04.2), với tốc độ bậc hai cục bộ và hội tụ hai pha (Định lý 04.34, 04.35). Thêm ràng buộc $Ad=0$ vào bài con cho Newton khả thi (Định lý 04.39, Mệnh đề 04.41, Thuật toán 04.3), còn tuyến tính hóa cả hệ (1.2) cho phép xuất phát từ điểm chưa khả thi (Mệnh đề 04.44, 04.45, Thuật toán 04.4). Với hàm tự điều chỉnh, độ giảm Newton trở thành cận sai số (Định lý 04.50, Hệ quả 04.52). Cuối cùng, Mệnh đề 04.55 tổng hợp điều mà mỗi tiêu chí dừng chứng nhận.
 
 **Định nghĩa và kết quả theo mục.**
 
@@ -3191,7 +3191,7 @@ $$
 
 Dòng đầu: hệ của bước, điều kiện Armijo, cận trên bậc hai. Dòng hai: ba cận của giảm gradient. Dòng ba: Newton, độ giảm Newton, hệ Newton cho phần dư (với $r_p=0$ và $\eta=\nu+\Delta\nu$ là hệ Newton khả thi), cận sai số.
 
-**Giả thiết hay bị bỏ quên.**
+**Giả thiết thường bị bỏ qua.**
 
 - Hướng giảm chỉ bảo đảm $f$ giảm với bước đủ nhỏ.
 - Các cận của giảm gradient cần gradient Lipschitz trên cả $\mathbb R^n$ và tính lồi; cận tuyến tính cần thêm lồi mạnh.
@@ -3199,7 +3199,7 @@ Dòng đầu: hệ của bước, điều kiện Armijo, cận trên bậc hai. 
 - Giảm mô hình $\tfrac12\delta^2$ không chặn sai số nếu không có tính tự điều chỉnh; cận (6.1) dùng $\delta$, không dùng $\delta^2$, và cần $\delta<1$ cùng $f^*>-\infty$.
 - Tại điểm chưa khả thi, $F(u)-F^*$ có thể âm.
 
-**Giới hạn còn lại và bài sau.** Trong chương này, chúng ta đã xây các phương pháp lặp cho hai lớp bài lồi của Định nghĩa 04.1 từ hệ KKT của Bài 03. Ba giới hạn còn lại được xử lý ở các bài sau.
+**Giới hạn còn lại và bài sau.** Trong chương này, chúng ta đã xây dựng các phương pháp lặp cho hai lớp bài lồi của Định nghĩa 04.1 từ hệ KKT của Bài 03. Ba giới hạn còn lại được xử lý ở các bài sau.
 
 1. Mọi phương pháp dùng gradient trên toàn bộ dữ liệu. Bài 05 (các phương pháp tối ưu trong huấn luyện mô hình học sâu) dùng gradient trên nhóm nhỏ mẫu cùng momentum và Nesterov, khi mất mát chỉ còn là ước lượng và quay lui Armijo không áp dụng nguyên dạng.
 2. Mất mát của mạng sâu không lồi, nên $\nabla f=0$ chỉ là điều kiện cần (Tình huống 04.3). Bài 05b (hội tụ của hạ gradient và hạ gradient ngẫu nhiên) chứng minh các dạng hội tụ cho hàm không lồi và gradient ngẫu nhiên, kế thừa Bổ đề 04.20 và Định lý 04.22, 04.26.

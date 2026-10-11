@@ -16,7 +16,7 @@ Kiến thức phổ thông (đại số phổ thông, hàm một biến, đạo 
 
 ## Đại số tuyến tính
 
-Câu hỏi đầu tiên của học máy là biểu diễn dữ liệu sao cho tính toán được. Đại số tuyến tính cung cấp các đối tượng và phép toán để đi từ một mẫu dữ liệu tới ma trận thiết kế, phép chiếu và phương trình chuẩn. Đầu tiên, chúng ta xét véc-tơ, ma trận và các phép toán, sau đó tới hạng, giá trị riêng và các phép phân rã.
+Câu hỏi đầu tiên của học máy là biểu diễn dữ liệu sao cho tính toán được. Đại số tuyến tính cung cấp các đối tượng và phép toán để biểu diễn một mẫu dữ liệu, xây dựng ma trận thiết kế, phép chiếu và phương trình chuẩn. Đầu tiên, chúng ta xét véc-tơ, ma trận và các phép toán, sau đó xét hạng, giá trị riêng và các phép phân rã.
 
 ### Số vô hướng
 
@@ -300,7 +300,7 @@ cột thứ hai bằng hai lần cột thứ nhất nên $\operatorname{rank}(\m
 
 ### Hệ phương trình tuyến tính
 
-Khớp đúng mô hình tuyến tính với mọi mẫu là giải một hệ tuyến tính.
+Bài toán khớp đúng mô hình tuyến tính với mọi mẫu là một hệ tuyến tính.
 
 **Định nghĩa.** Hệ $m$ phương trình tuyến tính theo $n$ ẩn được viết dưới dạng
 
@@ -326,7 +326,7 @@ Ma trận mở rộng $[\mathbf A\mid\mathbf b]\in\mathbb R^{m\times(n+1)}$ đư
 
 ### Định thức
 
-Với ma trận vuông, định thức cho biết bằng một con số ma trận có đủ hạng hay không.
+Với ma trận vuông, định thức là một số xác định ma trận có hạng đầy đủ hay không.
 
 **Định nghĩa.** Cho $\mathbf A=[a_{ij}]\in\mathbb R^{n\times n}$. Định thức $\det(\mathbf A)$ được định nghĩa đệ quy theo kích thước. Với $n=1$, $\det([a_{11}])=a_{11}$. Với $n\ge2$, gọi $\mathbf A_{1j}$ là ma trận $(n-1)\times(n-1)$ thu được bằng cách bỏ hàng thứ nhất và cột thứ $j$ của $\mathbf A$; khi đó
 
@@ -351,7 +351,7 @@ Khi đó $\mathbf A$ được gọi là **suy biến** hoặc **không đủ h�
 
 **Điểm dễ nhầm.** Quy tắc tính định thức bằng tích các phần tử trên đường chéo chính chỉ đúng cho ma trận tam giác, không đúng cho ma trận bất kỳ.
 
-**Ý nghĩa hình học và vai trò trong AI.** Phép biến đổi $\mathbf x\mapsto\mathbf A\mathbf x$ nhân thể tích $n$ chiều với hệ số $|\det(\mathbf A)|$. Định thức dương bảo toàn hướng, định thức âm đảo hướng, còn $\det(\mathbf A)=0$ làm không gian sụp xuống một tập có thể tích $n$ chiều bằng không. Trong AI, định thức của ma trận hiệp phương sai và logarit định thức xuất hiện trong mật độ Gauss nhiều biến và các phép đổi biến xác suất.
+**Ý nghĩa hình học và vai trò trong AI.** Phép biến đổi $\mathbf x\mapsto\mathbf A\mathbf x$ nhân thể tích $n$ chiều với hệ số $|\det(\mathbf A)|$. Định thức dương bảo toàn hướng, định thức âm đảo hướng, còn khi $\det(\mathbf A)=0$, ảnh của $\mathbb R^n$ có thể tích $n$ chiều bằng không. Trong AI, định thức của ma trận hiệp phương sai và logarit định thức xuất hiện trong mật độ Gauss nhiều biến và các phép đổi biến xác suất.
 
 ### Ma trận nghịch đảo
 
@@ -435,7 +435,7 @@ $$
 
 Giải phương trình đặc trưng này để tìm $\lambda$, rồi tìm một véc-tơ khác không trong $\operatorname{Ker}(\mathbf A-\lambda\mathbf I_n)$ để thu được $\mathbf v$.
 
-**Ý nghĩa hình học.** Đường thẳng sinh bởi $\mathbf v$ là một hướng bất biến dưới phép biến đổi $\mathbf x\mapsto\mathbf A\mathbf x$: trên hướng đó, phép biến đổi chỉ nhân với $\lambda$. Nếu $|\lambda|>1$, độ dài bị kéo giãn; nếu $0<|\lambda|<1$, độ dài bị co lại; nếu $\lambda<0$, hướng đồng thời bị đảo; nếu $\lambda=0$, hướng đó sụp về véc-tơ không.
+**Ý nghĩa hình học.** Đường thẳng sinh bởi $\mathbf v$ là một hướng bất biến dưới phép biến đổi $\mathbf x\mapsto\mathbf A\mathbf x$: trên hướng đó, phép biến đổi chỉ nhân với $\lambda$. Nếu $|\lambda|>1$, độ dài bị kéo giãn; nếu $0<|\lambda|<1$, độ dài bị co lại; nếu $\lambda<0$, hướng đồng thời bị đảo; nếu $\lambda=0$, hướng đó được ánh xạ về véc-tơ không.
 
 **Ví dụ.** Cho
 
@@ -629,11 +629,11 @@ $$
 
 Dạng toàn phương mô tả độ cong của hàm mất mát qua ma trận Hessian, xuất hiện trong bình phương tối thiểu với $\mathbf X^T\mathbf X$, và tạo hạng phạt trong điều chuẩn bậc hai.
 
-Như vậy, từ véc-tơ đặc trưng, chúng ta đã đi tới ma trận thiết kế $\mathbf X$ và dự đoán $\mathbf X\mathbf w$. Hạng cho biết hệ tuyến tính có nghiệm và nghiệm có duy nhất hay không. Ma trận $\mathbf X^T\mathbf X$ sẽ trở lại dưới vai trò Hessian của bình phương tối thiểu.
+Như vậy, từ véc-tơ đặc trưng, chúng ta đã xây dựng ma trận thiết kế $\mathbf X$ và dự đoán $\mathbf X\mathbf w$. Hạng cho biết hệ tuyến tính có nghiệm và nghiệm có duy nhất hay không. Ma trận $\mathbf X^T\mathbf X$ sẽ xuất hiện lại với vai trò Hessian của bình phương tối thiểu.
 
 ## Giải tích nhiều biến
 
-Đại số tuyến tính chưa cho biết phải đổi trọng số theo hướng nào để mất mát giảm. Chúng ta đi từ đạo hàm riêng và khả vi tới gradient, Jacobian và quy tắc dây chuyền, rồi tới Hessian, khai triển Taylor và điều kiện điểm dừng. Ba ví dụ nối các khái niệm trong mục này là hàm vô hướng $h(u,v)=u^2+uv+2v^2+u-2v$, ánh xạ véc-tơ $\mathbf F(u,v)=[u+v,uv,u-v]^T$ và bài toán bình phương tối thiểu của mô hình giá nhà.
+Đại số tuyến tính chưa cho biết phải đổi trọng số theo hướng nào để mất mát giảm. Chúng ta lần lượt xét đạo hàm riêng, tính khả vi, gradient, Jacobian, quy tắc dây chuyền, Hessian, khai triển Taylor và điều kiện điểm dừng. Ba ví dụ nối các khái niệm trong mục này là hàm vô hướng $h(u,v)=u^2+uv+2v^2+u-2v$, ánh xạ véc-tơ $\mathbf F(u,v)=[u+v,uv,u-v]^T$ và bài toán bình phương tối thiểu của mô hình giá nhà.
 
 ### Hàm vô hướng và ánh xạ véc-tơ
 
@@ -669,7 +669,7 @@ Trước khi lấy đạo hàm, chúng ta phân biệt hàm trả về một s�
 
 ### Đạo hàm riêng qua lát cắt một biến
 
-Lát cắt biến hàm nhiều biến thành hàm một biến, mà ta đã biết cách lấy đạo hàm.
+Lát cắt đưa hàm nhiều biến về hàm một biến, loại hàm đã có định nghĩa đạo hàm.
 
 **Định nghĩa.** Đạo hàm riêng theo biến $x_i$ tại $\mathbf x$ là đạo hàm của lát cắt khi chỉ thay đổi $x_i$ và giữ các biến còn lại cố định:
 
@@ -835,7 +835,7 @@ Trong mô hình lớn, phép tính thường chỉ cần tích của Jacobian v�
 
 **Định nghĩa.** Với $\mathbf J_F\in\mathbb R^{m\times n}$, tích Jacobian–véc-tơ (Jacobian–vector product, JVP) là $\mathbf J_F\mathbf d\in\mathbb R^m$. Theo quy ước véc-tơ cột, tích véc-tơ–Jacobian (vector–Jacobian product, VJP) được biểu diễn tương đương bởi $\mathbf J_F^T\mathbf a\in\mathbb R^n$.
 
-**Ý nghĩa hình học.** JVP đẩy một hướng tiếp tuyến từ đầu vào sang đầu ra, còn VJP kéo một độ nhạy từ đầu ra ngược về đầu vào.
+**Ý nghĩa hình học.** JVP truyền một hướng tiếp tuyến từ đầu vào sang đầu ra, còn VJP truyền một độ nhạy từ đầu ra ngược về đầu vào.
 
 **Ví dụ.** Với Jacobian trên, $\mathbf d=[1,0]^T$ cho $\mathbf J_F\mathbf d=[1,2,1]^T$. Với $\mathbf a=\mathbf F(1,2)=[3,2,-1]^T$, ta có $\mathbf J_F^T\mathbf a=[6,6]^T$.
 
@@ -849,7 +849,7 @@ Trong mô hình lớn, phép tính thường chỉ cần tích của Jacobian v�
 
 ### Đạo hàm riêng bậc hai và ma trận Hessian
 
-Để biết gradient thay đổi ra sao quanh một điểm, ta lấy đạo hàm thêm một lần.
+Để mô tả sự thay đổi của gradient, ta lấy đạo hàm thêm một lần.
 
 **Định nghĩa.** Với $h:\mathbb R^n\to\mathbb R$ khả vi hai lần, Hessian là
 
@@ -943,7 +943,7 @@ Gradient bằng không chưa phân biệt cực tiểu, cực đại và điểm
 
 **Định nghĩa.** Tại điểm dừng $\mathbf x^*$ của hàm $C^2$: nếu $\mathbf H_h(\mathbf x^*)\succ\mathbf0$ thì $\mathbf x^*$ là cực tiểu địa phương chặt; nếu $\mathbf H_h(\mathbf x^*)\prec\mathbf0$ thì đó là cực đại địa phương chặt; nếu Hessian bất định dấu thì đó là điểm yên ngựa.
 
-**Ý nghĩa hình học.** Hessian xác định dương tạo một chiếc bát cong lên theo mọi hướng, còn Hessian xác định âm tạo một mái vòm. Hessian bất định dấu cong lên ở một số hướng và cong xuống ở hướng khác.
+**Ý nghĩa hình học.** Hessian xác định dương làm đồ thị cong lên theo mọi hướng, còn Hessian xác định âm làm đồ thị cong xuống. Hessian bất định dấu cong lên ở một số hướng và cong xuống ở hướng khác.
 
 **Ví dụ.** Hessian của $h$ có hai giá trị riêng $3+\sqrt2$ và $3-\sqrt2$, đều dương, nên điểm dừng $(-6/7,5/7)$ là cực tiểu địa phương chặt.
 
@@ -1071,11 +1071,11 @@ Tại trọng số tối ưu, mô hình giá nhà vẫn để lại phần dư k
 
 ### Phép thử, không gian mẫu, biến cố và không gian xác suất
 
-Để gán xác suất cho đại lượng chưa biết trước, ta phải chỉ rõ những gì có thể xảy ra.
+Để gán xác suất, ta phải xác định tập các kết quả có thể của phép thử.
 
 **Định nghĩa.** Phép thử ngẫu nhiên là một quy trình có kết quả chưa biết trước. Không gian mẫu $\Omega$ chứa mọi kết quả có thể; biến cố là một phần tử $E$ của sigma-đại số $\mathcal F$. Không gian xác suất là bộ ba $(\Omega,\mathcal F,\Pr)$, trong đó $\Pr:\mathcal F\to[0,1]$ thỏa $\Pr(\Omega)=1$ và tính cộng đếm được trên các biến cố đôi một rời nhau.
 
-**Trực quan.** $\Omega$ là danh sách những gì có thể xảy ra, $E$ chọn các kết quả ta quan tâm, còn $\Pr$ phân bổ một đơn vị khối lượng xác suất trên toàn bộ không gian mẫu.
+**Trực quan.** $\Omega$ là tập mọi kết quả có thể, $E$ chọn các kết quả ta quan tâm, còn $\Pr$ phân bổ một đơn vị khối lượng xác suất trên toàn bộ không gian mẫu.
 
 **Ví dụ.** Khi gieo một xúc xắc đều, $\Omega=\{1,2,3,4,5,6\}$ và biến cố ra số chẵn là $E=\{2,4,6\}$, nên $\Pr(E)=1/2$. Tính ngẫu nhiên nằm ở việc không thể biết trước mặt nào xuất hiện trong một lần gieo, dù phân phối của phép thử đã biết.
 
@@ -1113,7 +1113,7 @@ $$
 
 Phân phối Bernoulli với tham số $\pi\in[0,1]$ có $p_X(1)=\pi$ và $p_X(0)=1-\pi$.
 
-**Trực quan.** PMF đặt các “cục” xác suất lên những giá trị riêng biệt; chiều cao tại $x$ chính là xác suất quan sát đúng giá trị đó.
+**Trực quan.** PMF tập trung khối lượng xác suất tại những giá trị riêng biệt, và chiều cao tại $x$ chính là xác suất quan sát đúng giá trị đó.
 
 **Ví dụ.** Nếu một bộ phân loại phát hiện thư rác có xác suất dương tính $0{,}3$ trên quần thể đang xét và $X$ là chỉ báo dương tính, thì $X\sim\operatorname{Bernoulli}(0{,}3)$. Một email cụ thể vẫn cho nhãn $0$ hoặc $1$; giá trị $0{,}3$ mô tả sự biến thiên giữa các email, không phải một “nhãn phân số”.
 
@@ -1147,7 +1147,7 @@ Hàm phân phối tích lũy mô tả mọi biến ngẫu nhiên theo cùng mộ
 
 **Định nghĩa.** Hàm phân phối tích lũy (CDF) của mọi biến ngẫu nhiên $X$ là $F_X(t)=\Pr(X\le t)$. Nó không giảm, liên tục phải, có giới hạn $0$ khi $t\to-\infty$ và $1$ khi $t\to\infty$. Với biến rời rạc, độ nhảy tại $x$ bằng $p_X(x)$; với PDF khả tích, $F_X(t)=\int_{-\infty}^t p_X(x)\,dx$ và $F_X'(t)=p_X(t)$ gần khắp nơi. Đặc biệt, đẳng thức đúng tại mọi điểm $t$ mà $p_X$ liên tục.
 
-**Trực quan.** CDF là đồng hồ cộng dồn khối lượng xác suất từ trái sang phải. PMF tạo các bước nhảy, còn PDF quyết định độ dốc của đường tích lũy.
+**Trực quan.** CDF tích lũy khối lượng xác suất từ trái sang phải. PMF tạo các bước nhảy, còn PDF quyết định độ dốc của đường tích lũy.
 
 **Ví dụ.** Với $U\sim\operatorname{Unif}(0,2)$, $F_U(t)=0$ khi $t<0$, bằng $t/2$ khi $0\le t\le2$, và bằng $1$ khi $t>2$. Vì vậy
 
@@ -1230,7 +1230,7 @@ $$
 \qquad r_i(\mathbf w)=\mathbf w^T\boldsymbol\phi_i-y_i.
 $$
 
-**Trực quan.** Nhiễu biểu diễn biến thiên chưa quan sát được quanh giá trị trung tâm của mô hình. Cực đại hàm hợp lý chọn tham số làm dữ liệu đã quan sát ít “bất ngờ” nhất. Dưới nhiễu Gauss, sai lệch lớn bị phạt theo bình phương.
+**Trực quan.** Nhiễu biểu diễn biến thiên chưa quan sát được quanh giá trị trung tâm của mô hình. Cực đại hàm hợp lý chọn tham số làm mật độ của dữ liệu đã quan sát lớn nhất. Dưới nhiễu Gauss, sai lệch lớn bị phạt theo bình phương.
 
 **Ví dụ.** Ở căn nhà thứ hai, giả sử giá trung tâm thật là $13$ nhưng quan sát được $12$, nên nhiễu ẩn là $\varepsilon_2=-1$. Nếu dùng đúng trọng số thật thì phần dư theo quy ước trên là $r_2=1=-\varepsilon_2$; với trọng số ước lượng khác, phần dư còn chứa sai số mô hình và không thể đồng nhất với nhiễu.
 
@@ -1242,7 +1242,7 @@ $$
 
 **Ý nghĩa và ứng dụng trong AI.** Mô hình Gauss giải thích bình phương tối thiểu như một phương pháp ước lượng hợp lý cực đại và cho phép tạo khoảng dự đoán. Nếu thay phân phối nhiễu, ta sẽ được một mất mát khác, chẳng hạn nhiễu đuôi dày làm giảm ảnh hưởng của ngoại lệ.
 
-Biến ngẫu nhiên, phân phối, kỳ vọng và phương sai đã dẫn chúng ta tới hàm hợp lý dưới nhiễu Gauss. Khi các nhiễu độc lập và cùng phân phối $\mathcal N(0,\sigma^2)$ với $\sigma^2$ cố định, cực đại hàm hợp lý và cực tiểu tổng bình phương phần dư có cùng nghiệm. Giả thiết này được nới ra ở mục sau.
+Biến ngẫu nhiên, phân phối, kỳ vọng và phương sai đã dẫn chúng ta tới hàm hợp lý dưới nhiễu Gauss. Khi các nhiễu độc lập và cùng phân phối $\mathcal N(0,\sigma^2)$ với $\sigma^2$ cố định, cực đại hàm hợp lý và cực tiểu tổng bình phương phần dư có cùng nghiệm. Giả thiết này được nới lỏng ở mục sau.
 
 ## Xác suất nhiều biến
 
@@ -1289,7 +1289,7 @@ $$
 
 với $p_V(v)>0$.
 
-**Trực quan.** Lấy biên là cộng bỏ một tọa độ, còn điều kiện hóa là phóng to và chuẩn hóa lại một lát của bảng. Công thức Bayes dùng bằng chứng mới để đổi trọng số giữa các khả năng ban đầu.
+**Trực quan.** Phân phối biên là tổng theo tọa độ còn lại, còn phân phối có điều kiện là một hàng hoặc cột của bảng đã chuẩn hóa. Công thức Bayes dùng bằng chứng mới để đổi trọng số giữa các khả năng ban đầu.
 
 **Ví dụ.** Từ bảng trên, $p_U(1)=0{,}50$, $p_V(1)=0{,}60$ và $p(V=1\mid U=1)=0{,}40/0{,}50=0{,}80$. Bayes cho $p(U=1\mid V=1)=0{,}80\cdot0{,}50/0{,}60=2/3$. Quan sát $V=1$ đã nâng xác suất của $U=1$ từ $1/2$ lên $2/3$.
 
@@ -1309,7 +1309,7 @@ Trong ví dụ trên, biết $V=1$ làm thay đổi xác suất của $U=1$, cò
 
 **Trực quan.** Độc lập nghĩa là biết một biến không làm thay đổi phân phối của biến kia. Độc lập có điều kiện nghĩa là sự phụ thuộc biến mất sau khi đã biết một biến giải thích chung.
 
-**Ví dụ.** Trong bảng trên, $p(1,1)=0{,}40\ne0{,}50\cdot0{,}60$, nên $U,V$ phụ thuộc. Hai kết quả xét nghiệm là một ví dụ ít hiển nhiên hơn. Chúng có thể phụ thuộc trong toàn dân vì cùng bị chi phối bởi trạng thái bệnh $W$. Nếu sai số của hai máy đo riêng biệt, chúng gần độc lập khi đã điều kiện trên $W$.
+**Ví dụ.** Trong bảng trên, $p(1,1)=0{,}40\ne0{,}50\cdot0{,}60$, nên $U,V$ phụ thuộc. Hai kết quả xét nghiệm là một ví dụ ít hiển nhiên hơn. Chúng có thể phụ thuộc trên toàn bộ quần thể vì cùng bị chi phối bởi trạng thái bệnh $W$. Nếu sai số của hai máy đo riêng biệt, chúng gần độc lập khi đã điều kiện trên $W$.
 
 **Điểm dễ nhầm.** Nói chung, không tương quan không suy ra độc lập. Chẳng hạn, nếu $U\sim\operatorname{Unif}[-1,1]$ và $V=U^2$ thì $\operatorname{Cov}(U,V)=0$ dù $V$ hoàn toàn do $U$ quyết định. Độc lập có điều kiện cũng không kéo theo độc lập không điều kiện.
 
@@ -1411,7 +1411,7 @@ $$
 \mathbf r=\mathbf X\mathbf w-\mathbf y.
 $$
 
-**Trực quan.** GLS không phạt mọi hướng phần dư như nhau. Một sai lệch dọc hướng nhiễu vốn biến thiên mạnh ít bất ngờ hơn sai lệch cùng chuẩn Euclid dọc hướng ổn định. Làm trắng phần dư biến bài toán GLS thành bình phương tối thiểu thông thường trong tọa độ mới.
+**Trực quan.** GLS không phạt mọi hướng phần dư như nhau. Một sai lệch dọc hướng nhiễu vốn biến thiên mạnh có mật độ lớn hơn sai lệch cùng chuẩn Euclid dọc hướng ổn định. Làm trắng phần dư biến bài toán GLS thành bình phương tối thiểu thông thường trong tọa độ mới.
 
 **Ví dụ.** Với
 
@@ -1432,7 +1432,7 @@ hai phần dư $\mathbf r_+=(1,1)^T$ và $\mathbf r_-=(1,-1)^T$ có cùng chuẩ
 
 Trong mục này, các phép toán xác suất được chuyển sang véc-tơ ngẫu nhiên, và ma trận hiệp phương sai mô tả các tọa độ cùng biến thiên. Khi nhiễu Gauss tương quan với ma trận hiệp phương sai đã biết, lập luận hợp lý cực đại cho bình phương tối thiểu tổng quát. Trong mục cuối, chúng ta dùng cả ba nền tảng trên mô hình giá nhà.
 
-## Ghép các công cụ vào mô hình giá nhà
+## Mô hình giá nhà với các công cụ đã ôn
 
 Chín bước dưới đây dùng cùng một bộ dữ liệu, trong đó đầu ra của bước trước trở thành đầu vào của bước sau. Giá được đo theo đơn vị $100$ triệu đồng; dữ liệu là ví dụ tổng hợp phục vụ tính toán, không phải số liệu thị trường.
 
@@ -1453,7 +1453,7 @@ Bốn bộ ba $(a_i,b_i,y_i)$ dùng cùng quy ước đơn vị.
 
 **Công cụ tái sử dụng.** Khái niệm vô hướng, véc-tơ dữ liệu và biến ngẫu nhiên giúp phân biệt giá trị đã quan sát $y_i$ với giá ngẫu nhiên $Y_i$ trước khi quan sát.
 
-**Diễn giải và giới hạn.** Bảng chỉ cho biết quan hệ quan sát được trên bốn căn. Nó chưa xác định quan hệ nhân quả và quá nhỏ để đại diện cho thị trường nhà ở.
+**Diễn giải và giới hạn.** Bảng chỉ cho biết quan hệ quan sát được trên bốn căn. Nó chưa xác định quan hệ nhân quả, và bốn căn không đại diện được cho thị trường nhà ở.
 
 ### Bước 2 — Tạo đặc trưng và chọn dạng mô hình
 
@@ -1513,7 +1513,7 @@ Toàn bộ mô hình trên bốn mẫu được viết gọn thành $\hat{\mathb
 
 *Mỗi mũi tên chỉ một đầu ra được tái sử dụng ở bước kế tiếp; ba nhánh đại số, giải tích và xác suất gặp nhau trong cùng một quy trình.*
 
-### Bước 4 — Đánh giá trọng số ban đầu và nhận ra hệ không tương thích
+### Bước 4 — Đánh giá trọng số ban đầu và tính không tương thích của hệ
 
 **Đầu vào.** $\mathbf X$, $\mathbf y$ và bộ trọng số thử $\mathbf w^{(0)}=(14,1,1)^T$.
 
