@@ -71,7 +71,7 @@ Học liệu Bài 05b (soạn ngày 2026-10-08, sửa theo M01–M20): `material
 | $a_k=\mathbb E d_k^2$ | Kỳ vọng bình phương khoảng cách | Chưa có | E05 |
 | $\Delta_0=f(x_0)-f_{\inf}$; $\Delta_k=f(x_k)-f_{\inf}$ | Sai số đầu khi không lồi; sai số theo $f_{\inf}$ (T9) | Chưa có | F02; F06 |
 
-Quy tắc chuyển: khi trích Bài 04 hoặc Bài 05, ghi ký hiệu gốc trong ngoặc một lần, ví dụ "$x_k$ (Bài 04 viết $x^k$)", "$\eta$ (Bài 04 viết $t$)", "$D$ (Bài 04 viết $R$)", "$K$ (Bài 05 viết $T$)". A05 và ghi chú E01 ghi: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu". Phần E viết "tập dữ liệu" bằng chữ, không dùng ký hiệu. Ở E–F, ví dụ một chiều giữ $\theta_k$ cho dãy lặp để khớp VD1 Bài 05; E01 nêu $\theta_k$ là trường hợp $n=1$ của $x_k$. Không dùng $R$ cho khoảng cách đầu vì Bài 05 dùng $R$ cho rủi ro kỳ vọng.
+Quy tắc chuyển: khi trích Bài 04 hoặc Bài 05, ghi ký hiệu gốc trong ngoặc một lần, ví dụ "$x_k$ (Bài 04 viết $x^k$)", "$\eta$ (Bài 04 viết $t$)", "$D$ (Bài 04 viết $R$)", "$K$ (Bài 05 viết $T$)". A05 và ghi chú E01 ghi: "Bài 06b dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu". Phần E viết "tập dữ liệu" bằng chữ, không dùng ký hiệu. Ở E–F, ví dụ một chiều giữ $\theta_k$ cho dãy lặp để khớp VD1 Bài 05; E01 nêu $\theta_k$ là trường hợp $n=1$ của $x_k$. Không dùng $R$ cho khoảng cách đầu vì Bài 05 dùng $R$ cho rủi ro kỳ vọng.
 
 ## Giả thiết có tên
 
@@ -253,7 +253,7 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 - **Hình thức hóa:** Không áp dụng.
 - **Kết nối:** Nhận GD và cụm hội tụ của Bài 04, SGD của Bài 05; dẫn tới A02.
 - **Nguồn:** DC.
-- **Ghi chú soạn:** Ghi chú diễn giả nêu khoảng trống cụ thể (Bài 04: cận $O(1/k)$ và cận tuyến tính, chứng minh trên trang chỉ có ý chính; Bài 05: SGD chưa có định lý hội tụ), việc bài này làm, tiên quyết (Bài 00, 01, 04, 05) và liên kết về sau với trung bình Polyak ở Bài 06. Không lặp vấn đề trung tâm và luận đề của A02. (Rà từng trang 2026-10-08.)
+- **Ghi chú soạn:** Ghi chú diễn giả nêu khoảng trống cụ thể (Bài 04: cận $O(1/k)$ và cận tuyến tính, chứng minh trên trang chỉ có ý chính; Bài 06: dẫn các định lý hội tụ của SGD mà không chứng minh lại), việc bài này làm, tiên quyết (Bài 00, 01, 04, 06) và liên kết về sau với trung bình Polyak ở Bài 06c. Đổi tên ngày 2026-10-12: Bài 05 cũ thành Bài 06b, Bài 06 cũ thành Bài 06c; ghi chú A01 nêu bài bổ trợ cho Bài 04 (hạ gradient) và Bài 06 (hạ gradient ngẫu nhiên nhóm nhỏ). Không lặp vấn đề trung tâm và luận đề của A02. (Rà từng trang 2026-10-08.)
 
 #### A02 — Vấn đề trung tâm và nội dung bài
 
@@ -270,11 +270,11 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 
 - **Vai trò và mục tiêu:** Nhu cầu và ví dụ dẫn nhập của KN1; MT1.
 - **Luận điểm trung tâm:** Cùng một dãy lặp cho các đại lượng giảm với tốc độ khác nhau; một khẳng định "hội tụ" phải nói đại lượng nào.
-- **Ý chính:** Ví dụ C (hàm bậc hai của Bài 04), GD bước $1/7$: $e_k=6(16/49)^k$, $d_k^2=\frac{64}{49}(16/49)^{k-1}$ ($k\ge1$); định lý $O(1/k)$ của Bài 04 cho cận $70/k$. Ví dụ A (ba quan sát của Bài 05), SGD bước $0{,}1$, nhóm một mẫu, $\theta_0=0$: $\theta_k$ ngẫu nhiên; $\mathbb E(\theta_k-1)^2$ giảm từ $0{,}837$ ($k=1$) tới $0{,}153$ ($k=20$) và không xuống dưới $0{,}140$.
+- **Ý chính:** Ví dụ C (hàm bậc hai của Bài 04), GD bước $1/7$: $e_k=6(16/49)^k$, $d_k^2=\frac{64}{49}(16/49)^{k-1}$ ($k\ge1$); định lý $O(1/k)$ của Bài 04 cho cận $70/k$. Ví dụ A (ba quan sát của Bài 06b), SGD bước $0{,}1$, nhóm một mẫu, $\theta_0=0$: $\theta_k$ ngẫu nhiên; $\mathbb E(\theta_k-1)^2$ giảm từ $0{,}837$ ($k=1$) tới $0{,}153$ ($k=20$) và không xuống dưới $0{,}140$.
 - **Ví dụ/hình dự kiến:** Hai hình (rà từng trang 2026-10-08, thay hai bảng số): `vdc-measures.svg` ($e_k$, $d_k^2$, cận $70/k$ trên thang log, $k\le8$) và `vda-sgd-path.svg` (một lần chạy $(\theta_k-1)^2$ và kỳ vọng, giới hạn $0{,}140$). Số $1{,}96$; $1{,}31$; $0{,}0223$; $0{,}0149$; $14$; $0{,}837$; $0{,}153$ chuyển vào ghi chú.
 - **Hình thức hóa:** Chưa định nghĩa; chỉ quan sát số. Ghi rõ dãy $\mathbb E(\theta_k-1)^2$ tính chính xác bằng một đệ quy được suy ở phần E.
 - **Kết nối:** Nhận định lý Bài 04 (đo $e_k$) và quan sát dao động của Bài 05; A04 đặt tên các thước đo và tốc độ. C01 dẫn lại bảng này.
-- **Nguồn:** Bài 04, ví dụ bậc hai và định lý $O(1/k)$; Bài 05, ví dụ ba quan sát và mục bước học, dao động gần nghiệm; tính trực tiếp.
+- **Nguồn:** Bài 04, ví dụ bậc hai và định lý $O(1/k)$; Bài 06b, ví dụ ba quan sát và mục bước học, dao động gần nghiệm; tính trực tiếp.
 - **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dòng định nghĩa $e_k$, $d_k$ đặt trước hai ví dụ; dữ kiện mỗi ví dụ tự chứa (hàm, nghiệm, điểm đầu, bước, cỡ nhóm); câu kết rút còn hai dòng, giữ "Một khẳng định hội tụ phải nêu đại lượng được đo và kiểu giảm" làm đầu ra cho A04; quy tắc tên Ví dụ A–D và Ví dụ B, D chuyển vào ghi chú diễn giả. Ghi chú diễn giả nêu: $e_k$ của VD-C giảm theo hệ số $16/49$, còn cận Bài 04 giảm như $1/k$; dãy VD-A có giới hạn dương vì bước hằng. Không đưa cận tuyến tính $62(4/7)^k$ ở đây. **Bản sửa 2026-10-08** (R01, R07, R51): câu kết đổi thành "$e_k$ và $d_k^2$ cùng giảm theo tỉ số $\frac{16}{49}$, cận Bài 04 như $1/k$; ở Ví dụ A kỳ vọng dừng ở $0{,}140$"; thêm dòng ký hiệu $e_k$, $d_k$ (Ví dụ C: $x^*=0$, $f^*=0$) và quy tắc tên Ví dụ A–D; bảng Ví dụ C bỏ dòng $k=2$ để vừa khung.
 
 #### A04 — Dạng hội tụ và tốc độ hội tụ
@@ -292,7 +292,7 @@ Chức năng: đặt vấn đề trung tâm, đặt tên các thước đo và t
 
 - **Vai trò và mục tiêu:** Quy ước ký hiệu trên mặt trang; năm giả thiết H0–H4 cho phần A–C; MT1–MT2.
 - **Luận điểm trung tâm:** Các định lý của phần A–C dùng chung một bộ ký hiệu; mỗi định lý chỉ khác ở tập giả thiết.
-- **Ý chính:** Bảng ký hiệu: $x_k,\eta_k,g_k,x^*,f^*,e_k,d_k,D,K,L,\mu,\kappa$, kèm cột ký hiệu gốc (Bài 04: $x^k$, $t$, $R$; Bài 05: $\theta_t$, $\widehat g_t$, $J$, $T$). Dòng chú thích: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu." Bảng H0–H4: H0 bằng lời ($f$ khả vi, bị chặn dưới), H1–H3 dạng công thức với gradient, H4 bằng lời. Một dòng: các giả thiết khác được nêu ở nơi dùng.
+- **Ý chính:** Bảng ký hiệu: $x_k,\eta_k,g_k,x^*,f^*,e_k,d_k,D,K,L,\mu,\kappa$, kèm cột ký hiệu gốc (Bài 04: $x^k$, $t$, $R$; Bài 06b: $\theta_t$, $\widehat g_t$, $J$, $T$). Dòng chú thích: "Bài 06b dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu." Bảng H0–H4: H0 bằng lời ($f$ khả vi, bị chặn dưới), H1–H3 dạng công thức với gradient, H4 bằng lời. Một dòng: các giả thiết khác được nêu ở nơi dùng.
 - **Ví dụ/hình dự kiến:** Hai bảng; không có hình.
 - **Hình thức hóa:** H0–H4 như mục "Giả thiết có tên". $f^*=p^*$ của Bài 02–03.
 - **Kết nối:** Nhận định nghĩa A04; B dùng H1–H3 để nối các dạng hội tụ.
@@ -495,7 +495,7 @@ Chức năng: bỏ tính trơn, đưa bước biến, lặp tốt nhất, trung 
 - **Ví dụ/hình dự kiến:** `vdb-objective.svg`: đồ thị $f$ của VD-B (gãy tại $-1,1,3$) cạnh $J$ của VD-A; cả hai cực tiểu tại 1.
 - **Hình thức hóa:** Độ dốc trên các khoảng: $-1,-\frac13,\frac13,1$.
 - **Kết nối:** Nhận giới hạn C08; D02 thay gradient bằng dưới gradient.
-- **Nguồn:** Tự xây dựng; Bài 05, ví dụ ba quan sát.
+- **Nguồn:** Tự xây dựng; Bài 06b, ví dụ ba quan sát.
 - **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu mở nêu nhu cầu (mất mát trị tuyệt đối và mất mát bản lề có điểm gãy, không có $L$, bổ đề giảm và T1', T2 không dùng được); Ví dụ B tự chứa (ba quan sát $-1,1,3$, công thức, nghiệm trung vị, $f^*$, điểm gãy, độ dốc); câu kết "Còn dùng được: BĐ4 (đúng với mọi vectơ $g$) và hệ quả của H1, nếu có một vectơ thay vai trò gradient"; "mất mát hinge" đổi thành "mất mát bản lề", câu hồi quy độ lệch tuyệt đối nhỏ nhất vào ghi chú; hình thêm nhãn "điểm gãy"; nguồn SNW ch. 5 §5.2. Cùng dữ liệu với VD-A để thấy chỉ đổi mất mát. **Bản sửa 2026-10-08** (R38): "hồi quy độ lệch tuyệt đối nhỏ nhất (least absolute deviations)".
 
 #### D02 — Dưới gradient
@@ -576,8 +576,8 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Ví dụ/hình dự kiến:** Không có hình mới; ba giá trị của $\theta_1$.
 - **Hình thức hóa:** $g_k=\frac1b\sum_r\nabla\ell_{I_{k,r}}(x_k)$; $x_{k+1}=x_k-\eta_kg_k$.
 - **Kết nối:** Nhận T3 và giới hạn D (chi phí $N$); E02 xây công cụ kỳ vọng có điều kiện.
-- **Nguồn:** Bài 05, mục ước lượng gradient không chệch, một bước gradient ngẫu nhiên, phương pháp SGD; SNW ch. 13 §13.3 (so chi phí GD và SGD).
-- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu mở nêu chi phí $N$ phép tính và định nghĩa $f$, $\ell_i$, $N$, $b$; "$I_{k,r}$ … chọn ngẫu nhiên đều, độc lập, có hoàn lại trong $\{1,\dots,N\}$ (như Bài 05)" thay "lấy đều có hoàn lại"; Ví dụ A tự chứa ($J$, $y$, $\theta_0$, $\eta$, $b$) và dữ kiện một bước làm tăng $J-\frac43$ từ $0{,}5$ lên $0{,}605$; hai bullet cũ bỏ; câu kết giữ (đầu vào E02); ghi chú: cầu nối không chệch sang T4, lý do chi phí (Bottou–Bousquet). Trang đổi sang dense. Ghi chú diễn giả: "Bài 05 dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu." $\theta_1=0-0{,}1(0-y_I)=0{,}1y_I$. **Bản sửa 2026-10-08** (R42, R08, R09): định nghĩa $\ell_i$, $N$, $I_{k,r}$ trên trang; câu kết "có điều kiện theo các chỉ số nhóm đã chọn"; nguồn ch. 13 ghi đủ.
+- **Nguồn:** Bài 06, mục ước lượng gradient không chệch, một bước gradient ngẫu nhiên, phương pháp SGD; SNW ch. 13 §13.3 (so chi phí GD và SGD).
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu mở nêu chi phí $N$ phép tính và định nghĩa $f$, $\ell_i$, $N$, $b$; "$I_{k,r}$ … chọn ngẫu nhiên đều, độc lập, có hoàn lại trong $\{1,\dots,N\}$ (như Bài 06)" thay "lấy đều có hoàn lại"; Ví dụ A tự chứa ($J$, $y$, $\theta_0$, $\eta$, $b$) và dữ kiện một bước làm tăng $J-\frac43$ từ $0{,}5$ lên $0{,}605$; hai bullet cũ bỏ; câu kết giữ (đầu vào E02); ghi chú: cầu nối không chệch sang T4, lý do chi phí (Bottou–Bousquet). Trang đổi sang dense. Ghi chú diễn giả: "Bài 06b dùng $D$ cho tập dữ liệu; ở bài này $D$ là khoảng cách đầu." $\theta_1=0-0{,}1(0-y_I)=0{,}1y_I$. **Bản sửa 2026-10-08** (R42, R08, R09): định nghĩa $\ell_i$, $N$, $I_{k,r}$ trên trang; câu kết "có điều kiện theo các chỉ số nhóm đã chọn"; nguồn ch. 13 ghi đủ.
 
 #### E02 — Lịch sử và kỳ vọng có điều kiện
 
@@ -587,7 +587,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Ví dụ/hình dự kiến:** `history-tree.svg`.
 - **Hình thức hóa:** Với biến rời rạc, $\mathbb E[Z\mid\mathcal F_k]$ là trung bình của $Z$ trên các nhánh con của nút hiện tại. Ký hiệu $\sigma(I_0,\dots,I_{k-1})$ chỉ trong ghi chú.
 - **Kết nối:** Nhận nhu cầu E01 và mô hình lấy mẫu độc lập của Bài 05; E03 phát biểu giả thiết về $g_k$ theo $\mathcal F_k$.
-- **Nguồn:** Bài 00 (kỳ vọng); Bài 05, ước lượng gradient không chệch; SNW ch. 5 §5.5.
+- **Nguồn:** Bài 00 (kỳ vọng); Bài 06, ước lượng gradient không chệch; SNW ch. 5 §5.5.
 - **Ghi chú soạn:** **Rà từng trang 2026-10-08:** cột trái: cây và chú thích tự chứa (Ví dụ A: $\theta_0=0$, $\theta_{k+1}=\theta_k-0{,}1(\theta_k-y)$, $y$ chọn đều trong $\{-1,1,3\}$; $\mathbb E(\theta_1-1)^2\approx0{,}837$); cột phải: bốn khối một ý mỗi khối (định nghĩa $\mathcal F_k$; kỳ vọng có điều kiện; tính chất tháp một dòng công thức; rút đại lượng đã biết) và dòng kiểm tháp trên cây; câu "trung bình ba nhánh $=J'(\theta_1)$" chỉ trong hình và ghi chú; ghi chú: $\sigma$-đại số, bộ lọc thông tin (filtration), độc lập đòi lấy mẫu có hoàn lại, xáo trộn theo lượt không thỏa điều kiện không chệch. Không tách trang (634–658/675). Không dùng lý thuyết độ đo trên mặt trang; mọi ví dụ là rời rạc hữu hạn. **Bản sửa 2026-10-08** (R15): tên tiếng Anh; phép kiểm $\mathbb E[(\theta_2-1)^2\mid\theta_1]=1{,}007;\ 0{,}683;\ 0{,}424$, trung bình $0{,}704$; ghi chú bộ lọc thông tin và lấy mẫu có hoàn lại.
 
 #### E03 — Giả thiết về gradient ngẫu nhiên
@@ -598,7 +598,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Ví dụ/hình dự kiến:** Không có hình.
 - **Hình thức hóa:** Chứng minh bổ đề: khai triển $\lVert(g_k-\nabla f)+\nabla f\rVert^2$, số hạng chéo có kỳ vọng có điều kiện 0 theo H6.
 - **Kết nối:** Nhận $\mathcal F_k$ của E02; E04 dùng H6a, E06 dùng H6b.
-- **Nguồn:** Bài 05, ước lượng gradient không chệch; SNW ch. 5 §5.5.
+- **Nguồn:** Bài 06, ước lượng gradient không chệch; SNW ch. 5 §5.5.
 - **Ghi chú soạn:** **Rà từng trang 2026-10-08:** ba giả thiết có tên (không chệch; chặn mômen bậc hai; chặn phương sai), mỗi dòng một giả thiết; bổ đề tách phương sai có nhãn, chứng minh vào ghi chú; khối Ví dụ A tự chứa ($J$, $y$, gradient một mẫu, kỳ vọng, phương sai $\frac83$, $\sigma^2=\frac8{3b}$); cảnh báo H6a một dòng; $\operatorname{tr}\Sigma(x)$ chuyển vào ghi chú; ghi chú: bình phương tối thiểu tổng quát không thỏa H6b toàn cục, logistic thỏa, H6a và H3 không cùng đúng toàn cục. Ví dụ ngẫu nhiên của VD-B không đặt ở đây (là bài tập E12 câu (3)). Lý do H6a hạn chế: VD-A có $\mathbb E[g^2\mid\theta]=(\theta-1)^2+\frac8{3b}$, không bị chặn trên $\mathbb R$. **Bản sửa 2026-10-08** (R43): điều kiện $\operatorname{tr}\Sigma(x)\le b\sigma^2$; ghi chú bình phương tối thiểu tổng quát.
 
 #### E04 — Định lý hội tụ của SGD cho hàm lồi
@@ -653,7 +653,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Ví dụ/hình dự kiến:** `vda-sgd-bound-vs-exact.svg`: $a_k$ chính xác và cận T5 theo $k$, hai đường ngang $0{,}140$ và $0{,}267$.
 - **Hình thức hóa:** Với Ví dụ A, $e_k=\frac12d_k^2$ nên số hạng bị bỏ bằng $-\eta(1-\eta)d_k^2$; hệ số co thật $(1-\eta)^2=0{,}81$ so với $1-\eta=0{,}9$ của định lý.
 - **Kết nối:** Nhận T5; E09 dùng sàn nhiễu tỉ lệ $\eta$ để thiết kế lịch bước.
-- **Nguồn:** Tính trực tiếp; Bài 05, mục cỡ nhóm, bước học và dao động gần nghiệm.
+- **Nguồn:** Tính trực tiếp; Bài 06b, mục cỡ nhóm, bước học và dao động gần nghiệm.
 - **Ghi chú soạn:** **Rà từng trang 2026-10-08:** dữ kiện Ví dụ A tự chứa ($J$, $y$, $\theta_0$, $\eta$, $b$, $\mu=L$, $\sigma^2$, $D$); đệ quy và giới hạn trên một dòng hiển thị; câu luận điểm "Cận T5 (đứt) đúng nhưng bi quan khoảng hai lần … nguồn chênh là số hạng $-2\eta(1-\eta L)e_k$ bị bỏ" đặt dưới hình; dòng giá trị giới hạn cho hàm bậc hai một chiều giữ; hình: nhãn $k$ chuyển xuống dưới trục (không chạm nhãn $0{,}140$); ghi chú: đệ quy chính xác với kỳ vọng có điều kiện, xảy ra dấu bằng, các số $0{,}837$, $0{,}153$, $0{,}140$ gọi theo nội dung, $b=4$. Số kiểm: $0{,}81^{20}\approx0{,}0148$; $a_{20}\approx0{,}0148+0{,}1404\cdot0{,}9852\approx0{,}153$; $0{,}9^{20}\approx0{,}1216$. **Bản sửa 2026-10-08** (R26, R44, R54, R10): câu so sánh giá trị giới hạn và sàn nhiễu; dòng $b=4$ vào ghi chú; hình mở trục tới $1{,}4$; ghi chú nối về A03.
 
 #### E09 — Lịch giảm bước theo pha
@@ -664,7 +664,7 @@ Chức năng: thay dưới gradient đầy đủ bằng gradient nhóm; đưa $\
 - **Ví dụ/hình dự kiến:** `step-halving-schedule.svg`: bậc thang $\eta$ và cận $a_k$ giảm theo pha.
 - **Hình thức hóa:** Phát biểu bậc $O(\cdot)$; lập luận đầy đủ trong học liệu.
 - **Kết nối:** Nhận E08; trả lời lịch $0{,}1\to0{,}05$ của Bài 05; E10 xét lịch giảm liên tục.
-- **Nguồn:** Bài 05, mục bước học và dao động gần nghiệm; tổng hợp từ T5.
+- **Nguồn:** Bài 06b, mục bước học và dao động gần nghiệm; tổng hợp từ T5.
 - **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn nêu nhu cầu (sàn nhiễu tỉ lệ với bước; chia đôi bước khi số hạng co đã xuống tới sàn nhiễu); "Giả thiết như T5" thay bằng "Dưới H2, H3, H4, H6, H6b"; khối Ví dụ A nêu chuỗi sàn nhiễu $0{,}267\to0{,}133\to0{,}067\to0{,}033$ và tiêu chí kết thúc pha dùng trong hình; ghi chú: vì sao pha sau dài gấp đôi, "ghi chú bài giảng, mục lịch theo pha" thay "học liệu", pha kết thúc tại $10,31,75$ (nghiệm đúng) và $13,40,95$ (dạng T5), câu nối sang bước $\frac1{\mu(k+1)}$. Không đặt hằng số cụ thể trên mặt trang ngoài hai sàn nhiễu của VD-A. **Bản sửa 2026-10-08** (R10, R28, R09): "sàn nhiễu"; ghi chú pha kết thúc tại 10, 31, 75 theo nghiệm đúng và 13, 40, 95 theo dạng T5; nguồn SNW §5.4 Mệnh đề 5.4.
 
 #### E10 — Bước giảm dần cho hàm lồi mạnh
@@ -712,8 +712,8 @@ Chức năng: bỏ tính lồi; đo bằng chuẩn gradient; chứng minh T7, T8
 - **Ví dụ/hình dự kiến:** `quartic-nonconvex.svg` (hàm hai đáy và tiếp tuyến tại $-0{,}5$).
 - **Hình thức hóa:** $F'(\theta)=\theta^3-\theta$; điểm dừng $0,\pm1$.
 - **Kết nối:** Nhận giới hạn E (cần lồi); điểm dừng không lồi của Bài 05.
-- **Nguồn:** Bài 05, mục điểm dừng của hàm không lồi ($r(u)=(u^2-1)^2$); tính trực tiếp.
-- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn nêu lý do từ AI và chỗ dùng hệ quả của H1; hình mới `quartic-nonconvex.svg` (hàm hai đáy, tiếp tuyến tại $-0{,}5$ có giá trị $0{,}70$ tại $\theta^*=1$) thay `quartic-two-wells.svg` có hai bước GD (để F02 dùng); Ví dụ D với $F^*=0$; hai bullet ≤ 2 dòng; câu kết "Chuẩn gradient $\lvert F'(\theta_k)\rvert$ vẫn dùng được làm thước đo, vì nó chỉ cần thông tin tại $\theta_k$"; ghi chú: $r(u)$ của Bài 05, $F''(0)=-1$, $F_{\inf}=0$, số kiểm, tiếp tuyến, câu nối sang hàm thế. Số kiểm: $F'(-0{,}5)=0{,}375$, $\theta-x^*=-1{,}5$, $F(-0{,}5)=\frac14\cdot0{,}5625$. Với $x^*=-1$ bất đẳng thức đúng tại điểm này ($0{,}1875\ge0{,}1406$); ghi chú nêu hệ quả phụ thuộc cực tiểu được chọn. Bài 06 dùng lại hàm $r$ (liên kết về sau). **Bản sửa 2026-10-08** (R46, R04): dùng $\theta^*=1$; số kiểm vào ghi chú; panel câu đầy đủ; alt bỏ cụm hai bước.
+- **Nguồn:** Bài 06b, mục điểm dừng của hàm không lồi ($r(u)=(u^2-1)^2$); tính trực tiếp.
+- **Ghi chú soạn:** **Rà từng trang 2026-10-08:** câu dẫn nêu lý do từ AI và chỗ dùng hệ quả của H1; hình mới `quartic-nonconvex.svg` (hàm hai đáy, tiếp tuyến tại $-0{,}5$ có giá trị $0{,}70$ tại $\theta^*=1$) thay `quartic-two-wells.svg` có hai bước GD (để F02 dùng); Ví dụ D với $F^*=0$; hai bullet ≤ 2 dòng; câu kết "Chuẩn gradient $\lvert F'(\theta_k)\rvert$ vẫn dùng được làm thước đo, vì nó chỉ cần thông tin tại $\theta_k$"; ghi chú: $r(u)$ của Bài 06b, $F''(0)=-1$, $F_{\inf}=0$, số kiểm, tiếp tuyến, câu nối sang hàm thế. Số kiểm: $F'(-0{,}5)=0{,}375$, $\theta-x^*=-1{,}5$, $F(-0{,}5)=\frac14\cdot0{,}5625$. Với $x^*=-1$ bất đẳng thức đúng tại điểm này ($0{,}1875\ge0{,}1406$); ghi chú nêu hệ quả phụ thuộc cực tiểu được chọn. Bài 06 dùng lại hàm $r$ (liên kết về sau). **Bản sửa 2026-10-08** (R46, R04): dùng $\theta^*=1$; số kiểm vào ghi chú; panel câu đầy đủ; alt bỏ cụm hai bước.
 
 #### F02 — Hàm thế và điểm dừng
 
@@ -815,7 +815,7 @@ Chức năng: tổng hợp T1–T9 thành bảng tra theo mục tiêu; kiểm lu
 - **Ví dụ/hình dự kiến:** Không có hình.
 - **Hình thức hóa:** Không áp dụng.
 - **Kết nối:** Nhận G01–G02 và giới hạn F06; G04 giao câu hỏi và bài tập.
-- **Nguồn:** Bài 04 (Newton); Bài 05 (momentum, Nesterov); Bài 06; SNW ch. 13.
+- **Nguồn:** Bài 04 (Newton); Bài 06b (momentum, Nesterov); Bài 06c; SNW ch. 13.
 - **Ghi chú soạn:** **Rà từng trang 2026-10-08:** ba ý: (i) cận trên cho cả lớp hàm nên có thể bi quan, kèm hình mới `bounds-vs-actual.svg` (mã 18: Ví dụ C 7000/16/6 bước, thang log; Ví dụ A 0,267/0,140) thay câu tham chiếu số; (ii) không lồi chỉ cho điểm dừng, có thể là điểm yên ngựa; (iii) phạm vi phương pháp (bước cố định hoặc theo lịch, T2' quay lui) và một bullet ngoài phạm vi (momentum, Nesterov, Adam, Newton, giảm phương sai (variance reduction), cận dưới về độ phức tạp (lower complexity bounds)); dòng "Kiểm trước khi dùng một định lý" giữ làm kết. Ghi chú: nghĩa của "bi quan", số liệu hai ví dụ, Ví dụ D, PL cục bộ, lấy mẫu có hoàn lại, các phương pháp ngoài phạm vi còn lại. Nguồn SNW ch. 13 có trong `sources/`. Không viết lời quảng bá cho phương pháp ngoài phạm vi. **Bản sửa 2026-10-08** (R20): thêm gạch đầu dòng về cận bi quan; "bước cố định hoặc theo lịch cho trước"; tách danh sách ngoài phạm vi thành hai gạch; ghi chú PL toàn cục và lấy mẫu có hoàn lại.
 
 #### G04 — Câu hỏi tự kiểm, bài tập và tài liệu đọc

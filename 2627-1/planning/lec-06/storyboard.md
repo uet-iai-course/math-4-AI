@@ -16,7 +16,7 @@ Storyboard lập ngày 2026-10-11 theo thiết kế Lecture B của người dù
 
 **Giới hạn áp dụng.** Mọi bảo đảm là về điểm dừng hoặc kỳ vọng; SGD không giảm $F$ theo kỳ vọng ở mọi bước; T7, T8 cần $F$ trơn, chặn bình phương chuẩn gradient của dãy lặp, không chặn khoảng cách tới cực tiểu hay $R$ của tham số chọn theo tập xác thực; các cận là cận trên, có thể bi quan nhiều bậc (D07, F01–F02); tương đương dừng sớm và chính quy hóa $\ell_2$ chỉ đúng cho mục tiêu bậc hai và gần đúng khi $\eta\alpha$ nhỏ ($\alpha$ là trị riêng); bảng chi phí bỏ hằng số và song song phần cứng.
 
-**Hình dùng lại (đường dẫn gốc).** `img/lec-05b/vda-sgd-bound-vs-exact.svg` (F01, dữ liệu Ví dụ A), `img/lec-05b/step-halving-schedule.svg` (F02, tùy chọn), `img/lec-05b/rates-log-error.svg` (F04, tùy chọn), `img/lec-05/risk-curves.svg` (F06). Theo quyết định Q4 của điều phối viên, các tệp được dùng sẽ được sao chép vào `img/lec-06/` ở giai đoạn dựng deck, kèm dòng xuất xứ trong `review-log.md`.
+**Hình dùng lại (đường dẫn gốc).** `img/lec-05b/vda-sgd-bound-vs-exact.svg` (F01, dữ liệu Ví dụ A), `img/lec-05b/step-halving-schedule.svg` (F02, tùy chọn), `img/lec-05b/rates-log-error.svg` (F04, tùy chọn), `img/lec-06b/risk-curves.svg` (F06). Theo quyết định Q4 của điều phối viên, các tệp được dùng sẽ được sao chép vào `img/lec-06/` ở giai đoạn dựng deck, kèm dòng xuất xứ trong `review-log.md`.
 
 ## Chức năng và ranh giới mạch
 
@@ -567,7 +567,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 
 - **Lý do tồn tại:** nêu quy tắc dừng sớm sau trực quan về đường mất mát huấn luyện và xác thực.
 - **Nhu cầu hoặc khoảng trống được lấp:** E02 và F05 cho thấy không cần cực tiểu chính xác và mức đủ dùng phải được quyết định bằng dữ liệu; cần quy tắc vận hành xác định điểm dừng.
-- **Đầu vào:** E02, F05; tập xác thực và tập kiểm thử của Bài 05 HQ05 (dẫn lại, không định nghĩa lại); quan sát số về dừng sớm ở Bài 05 KL01; quy tắc lưu tham số tốt nhất của E05; hình dùng lại, đường dẫn gốc `img/lec-05/risk-curves.svg`.
+- **Đầu vào:** E02, F05; tập xác thực và tập kiểm thử của Bài 05 HQ05 (dẫn lại, không định nghĩa lại); quan sát số về dừng sớm ở Bài 05 KL01; quy tắc lưu tham số tốt nhất của E05; hình dùng lại, đường dẫn gốc `img/lec-06b/risk-curves.svg`.
 - **Đầu ra:** quy tắc dừng (chu kỳ $s$, ngưỡng $K_{\text{stop}}$, trả về tham số tốt nhất); nhận xét tham số trả về nhắm tới $R$, khác dãy lặp mà T8 bảo đảm.
 - **Vị trí trong khung:** quy tắc dừng sớm (bước 5); khép lý do thống kê.
 - **LLO/CLO:** LLO11; CLO1, CLO2.

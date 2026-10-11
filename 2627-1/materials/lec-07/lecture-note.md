@@ -20,7 +20,7 @@ Sau chương này, người học có thể:
 
 ## Kiến thức tiên quyết
 
-Số hiệu `01.k`, `02.k`, `03.k`, `06.k` chỉ ghi chú Bài 01, Bài 02, Bài 03 và Bài 06.
+Số hiệu `01.k`, `02.k`, `03.k`, `06c.k` chỉ ghi chú Bài 01, Bài 02, Bài 03 và Bài 06c.
 
 - **Đại số tuyến tính.** Trong $\mathbb R^m$ có nhiều nhất $m$ véc-tơ độc lập tuyến tính; ma trận vuông có định thức khác $0$ thì khả nghịch và hệ tương ứng có nghiệm duy nhất. Định lý số chiều: hạng của các véc-tơ $a_i\in\mathbb R^n$, $i\in S$, cộng số chiều của không gian nghiệm $\{d\mid a_i^Td=0,\ i\in S\}$ bằng $n$; đặc biệt, hạng nhỏ hơn $n$ thì có $d\ne0$ với $a_i^Td=0$ cho mọi $i\in S$.
 - **Tập lồi** (Định nghĩa 01.18, Mệnh đề 01.19(c), 01.20(a)). Tập lồi chứa mọi tổ hợp lồi $\lambda x'+(1-\lambda)x''$, $\lambda\in[0,1]$, của hai điểm của nó; nửa không gian là tập lồi, và giao của các tập lồi là tập lồi.
@@ -28,7 +28,7 @@ Số hiệu `01.k`, `02.k`, `03.k`, `06.k` chỉ ghi chú Bài 01, Bài 02, Bài
 - **Quy hoạch tuyến tính** (Định nghĩa 02.9, Mệnh đề 02.10). Thêm biến phụ cho mỗi bất đẳng thức và tách biến tự do thành hiệu hai biến không âm đưa mọi quy hoạch tuyến tính về dạng chỉ có đẳng thức và điều kiện không âm, giữ giá trị mục tiêu.
 - **Chứng nhận bằng tổ hợp không âm** (Mệnh đề 02.11, 03.11, Định lý 03.15(b)). Với bài toán $\min c^Tx$ dưới $a_i^Tx\ge\beta_i$, nếu $\mu\ge0$ và $c=\sum_i\mu_ia_i$ thì $c^Tx\ge\sum_i\mu_i\beta_i$ tại mọi điểm khả thi. Bộ $\mu$ đó là điểm khả thi của bài toán đối ngẫu, và với quy hoạch tuyến tính khả thi có giá trị hữu hạn, hai giá trị tối ưu bằng nhau.
 - **Biến chặn cho cực đại affine** (Bổ đề 02.14, Định lý 02.15). Điều kiện $t\ge|r|$ tương đương với $t\ge r$ và $t\ge-r$; định lý được phát biểu lại ở Mục 1.3.
-- **Bước cập nhật cục bộ** (Định nghĩa 06.2, Mệnh đề 06.3). Các bộ tối ưu của Bài 04–06 sinh bước từ gradient và một ma trận tiền điều kiện xác định dương; bước đó là hướng giảm. Chúng cần mục tiêu khả vi và không có ràng buộc.
+- **Bước cập nhật cục bộ** (Định nghĩa 06c.2, Mệnh đề 06c.3). Các bộ tối ưu của Bài 04–06 sinh bước từ gradient và một ma trận tiền điều kiện xác định dương; bước đó là hướng giảm. Chúng cần mục tiêu khả vi và không có ràng buộc.
 
 ## Bảng ký hiệu
 
@@ -67,7 +67,7 @@ Bất đẳng thức giữa hai véc-tơ hiểu theo từng thành phần: $Ax\l
 
 ## 1. Mô hình hóa quy hoạch tuyến tính
 
-Trong Bài 06, chúng ta đã xây dựng các phương pháp tối ưu cho học sâu trên khung bước có tiền điều kiện (preconditioned step), với bước là hướng giảm khi ma trận tiền điều kiện xác định dương (Mệnh đề 06.3). Các phương pháp này, cũng như các phương pháp của Bài 04 và Bài 05, đi theo bước cục bộ. Tại điểm hiện tại, gradient của mục tiêu cho hướng, bước đủ ngắn làm mục tiêu giảm, và quá trình dừng gần điểm có gradient bằng $0$. Chúng cần mục tiêu khả vi và không có ràng buộc.
+Trong Bài 06c, chúng ta đã xây dựng các phương pháp tối ưu cho học sâu trên khung bước có tiền điều kiện (preconditioned step), với bước là hướng giảm khi ma trận tiền điều kiện xác định dương (Mệnh đề 06c.3). Các phương pháp này, cũng như các phương pháp của Bài 04 và Bài 05, đi theo bước cục bộ. Tại điểm hiện tại, gradient của mục tiêu cho hướng, bước đủ ngắn làm mục tiêu giảm, và quá trình dừng gần điểm có gradient bằng $0$. Chúng cần mục tiêu khả vi và không có ràng buộc.
 
 Bài toán sau có ràng buộc, và gradient của mục tiêu khác $0$ tại mọi điểm, nên không có điểm dừng nào để các phương pháp trên tiến tới. Một cơ sở đóng hai loại hộp hạt; mỗi nghìn hộp loại 1 mang lại $2$ đơn vị lợi ích và cần $1$ giờ máy, mỗi nghìn hộp loại 2 mang lại $3$ đơn vị lợi ích và cần $2$ giờ máy. Hai loại dùng chung $54$ giờ máy, và sản lượng tối đa của từng loại là $30$ và $20$ nghìn hộp. Lợi ích $2x_1+3x_2$ có gradient $(2,3)$ tại mọi điểm, nên phương án tối ưu do các giới hạn quyết định.
 
@@ -2438,4 +2438,4 @@ Lượt xuôi cho tập $\{1,2\}$, dùng $7$ GB, lợi ích $11$. Khi đó, tậ
 - Sutton, R. S. và Barto, A. G. (2018), *Reinforcement Learning: An Introduction*, ấn bản 2, MIT Press, chương 3–4, 6, 9: hướng mở rộng của Mục 5–6.
 - Peyré, G. và Cuturi, M. (2019), "Computational optimal transport", *Foundations and Trends in Machine Learning* 11(5–6), chương 3: mục Ứng dụng.
 - Đề cương học phần UET.AI2012: Buổi 7 (Chương 9–10, LLO17–LLO18) cho phạm vi chương; Buổi 8 (Chương 11, phương pháp đơn hình), Buổi 9 (Chương 12, bài toán luồng mạng) và Buổi 10 (Chương 13, quy hoạch nguyên) cho các giới hạn và hướng tiếp theo.
-- Ghi chú Bài 01, Bài 02, Bài 03 và Bài 06, với các số hiệu ở mục "Kiến thức tiên quyết", là tiên quyết trực tiếp.
+- Ghi chú Bài 01, Bài 02, Bài 03 và Bài 06c, với các số hiệu ở mục "Kiến thức tiên quyết", là tiên quyết trực tiếp.

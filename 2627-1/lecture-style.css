@@ -765,173 +765,173 @@
 :where(html[data-lecture="04"]) .math-nowrap { white-space:nowrap; }
 :where(html[data-lecture="04"]) .arrow-centered { text-align:center; }
 
-/* Bài 05 và Bài 05b (bổ trợ của Bài 05, dùng chung bố cục): bố cục và điều chỉnh riêng trong bảng kiểu chung. */
-:root:where([data-lecture="05"], [data-lecture="05b"]) { --accent:#B15A2B; --ink:#263238; --pale:#F7EFE6; --blue:#2F3E7A; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal { font-size:36px; color:var(--ink); }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides section[data-slide-id] { font-size:30px; line-height:1.3; padding:12px 10px 30px; box-sizing:border-box; text-align:left; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides section[data-slide-id].dense { font-size:28px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal h1,
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal h2,
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal h3 { color:var(--ink); font-family:inherit; text-transform:none; font-weight:650; line-height:1.12; letter-spacing:0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal h2 { font-size:42px; margin:0 0 20px; padding-bottom:12px; border-bottom:3px solid var(--accent); }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal h3 { font-size:30px; margin:5px 0 15px; color:var(--accent); }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal p { margin:12px 0; line-height:1.35; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal ul,
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal ol { display:block; margin:12px 0 12px 26px; padding-left:20px; line-height:1.35; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal li { margin:10px 0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .cols { display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:start; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .cols>div { min-width:0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .panel { background:var(--pale); border-left:5px solid var(--accent); border-radius:8px; padding:16px 19px; margin:12px 0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .panel p:first-child { margin-top:0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .panel p:last-child { margin-bottom:0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .formula { margin:13px 0; max-width:100%; overflow-x:auto; overflow-y:hidden; padding:3px 0; scrollbar-width:thin; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .katex { font-size:1.04em; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .katex-display { margin:0.1em 0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .katex-display>.katex { white-space:nowrap; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal figure { margin:0; width:100%; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal figure img { margin:0; width:100%; max-height:365px; object-fit:contain; box-shadow:none; background:white; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal table { font-size:inherit; width:100%; border-collapse:collapse; margin:14px 0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal table th { background:var(--pale); font-weight:650; border-bottom:2px solid var(--accent); }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal table th,
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal table td { padding:12px 13px; text-align:left; line-height:1.3; border-bottom:1px solid #d9d1c9; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal table tr:last-child td { border-bottom:1px solid #d9d1c9; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .table-scroll { overflow-x:auto; max-width:100%; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .caption { font-size:27px; text-align:left; font-style:normal; color:#596168; margin-top:10px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .flow { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:20px 0; padding:15px 17px; background:var(--pale); border-radius:8px; font-size:28px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .flow span { min-width:0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .question-label { color:var(--accent); font-weight:650; margin:12px 0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .roadmap { list-style-type:upper-alpha; margin-left:30px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .roadmap li { padding-left:8px; margin:15px 0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .reading { margin-top:25px; border-left:5px solid var(--accent); padding-left:22px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .footer { font-size:17px; color:#6b6b6b; bottom:2px; line-height:1.2; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides section.title-slide { padding-top:48px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .title-slide h2 { font-size:56px; line-height:1.13; border:0; padding:0; max-width:1150px; margin-bottom:40px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .title-slide .course { font-size:36px; color:var(--accent); }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .title-slide .lecture { font-size:32px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .title-rule { width:150px; height:5px; background:var(--accent); margin:30px 0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .title-slide p { font-size:29px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .dense .formula { margin:10px 0; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .dense .panel { padding:14px 17px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .dense figure img { max-height:325px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .dense table th,
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .dense table td { padding:10px 12px; }
-:where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal>.lecture-viewport { height:100%; }
+/* Bài 06b (bổ trợ, trước ngày 2026-10-12 là Bài 05), Bài 05b và hai bài dựng lại Bài 05, Bài 06 (từ 2026-10-12), dùng chung bố cục: bố cục và điều chỉnh riêng trong bảng kiểu chung. */
+:root:where([data-lecture="06b"], [data-lecture="05b"], [data-lecture="05"], [data-lecture="06"]) { --accent:#B15A2B; --ink:#263238; --pale:#F7EFE6; --blue:#2F3E7A; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal { font-size:36px; color:var(--ink); }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides section[data-slide-id] { font-size:30px; line-height:1.3; padding:12px 10px 30px; box-sizing:border-box; text-align:left; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides section[data-slide-id].dense { font-size:28px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal h1,
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal h2,
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal h3 { color:var(--ink); font-family:inherit; text-transform:none; font-weight:650; line-height:1.12; letter-spacing:0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal h2 { font-size:42px; margin:0 0 20px; padding-bottom:12px; border-bottom:3px solid var(--accent); }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal h3 { font-size:30px; margin:5px 0 15px; color:var(--accent); }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal p { margin:12px 0; line-height:1.35; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal ul,
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal ol { display:block; margin:12px 0 12px 26px; padding-left:20px; line-height:1.35; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal li { margin:10px 0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .cols { display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:start; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .cols>div { min-width:0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .panel { background:var(--pale); border-left:5px solid var(--accent); border-radius:8px; padding:16px 19px; margin:12px 0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .panel p:first-child { margin-top:0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .panel p:last-child { margin-bottom:0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .formula { margin:13px 0; max-width:100%; overflow-x:auto; overflow-y:hidden; padding:3px 0; scrollbar-width:thin; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .katex { font-size:1.04em; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .katex-display { margin:0.1em 0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .katex-display>.katex { white-space:nowrap; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal figure { margin:0; width:100%; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal figure img { margin:0; width:100%; max-height:365px; object-fit:contain; box-shadow:none; background:white; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal table { font-size:inherit; width:100%; border-collapse:collapse; margin:14px 0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal table th { background:var(--pale); font-weight:650; border-bottom:2px solid var(--accent); }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal table th,
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal table td { padding:12px 13px; text-align:left; line-height:1.3; border-bottom:1px solid #d9d1c9; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal table tr:last-child td { border-bottom:1px solid #d9d1c9; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .table-scroll { overflow-x:auto; max-width:100%; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .caption { font-size:27px; text-align:left; font-style:normal; color:#596168; margin-top:10px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .flow { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:20px 0; padding:15px 17px; background:var(--pale); border-radius:8px; font-size:28px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .flow span { min-width:0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .question-label { color:var(--accent); font-weight:650; margin:12px 0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .roadmap { list-style-type:upper-alpha; margin-left:30px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .roadmap li { padding-left:8px; margin:15px 0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .reading { margin-top:25px; border-left:5px solid var(--accent); padding-left:22px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .footer { font-size:17px; color:#6b6b6b; bottom:2px; line-height:1.2; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides section.title-slide { padding-top:48px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .title-slide h2 { font-size:56px; line-height:1.13; border:0; padding:0; max-width:1150px; margin-bottom:40px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .title-slide .course { font-size:36px; color:var(--accent); }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .title-slide .lecture { font-size:32px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .title-rule { width:150px; height:5px; background:var(--accent); margin:30px 0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .title-slide p { font-size:29px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .dense .formula { margin:10px 0; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .dense .panel { padding:14px 17px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .dense figure img { max-height:325px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .dense table th,
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .dense table td { padding:10px 12px; }
+:where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal>.lecture-viewport { height:100%; }
 @media screen and (max-width:760px) {
-  html:where([data-lecture="05"], [data-lecture="05b"]),
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) body { height:100dvh; overflow:hidden; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal { font-size:24px; height:100dvh; overflow:visible; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal>.lecture-viewport { height:calc(100dvh - 110px); overflow-y:auto; overflow-x:hidden; touch-action:pan-y; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides { position:relative!important; top:0!important; left:0!important; transform:none!important; width:100%!important; height:auto!important; margin:0!important; perspective:none!important; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides>section.present { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; padding:0; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides section[data-slide-id] { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; min-height:calc(100dvh - 110px); font-size:24px!important; padding:22px 22px 40px!important; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides>section:not(.present),
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides>section>section:not(.present) { display:none!important; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal h2 { font-size:32px; line-height:1.2; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal h3 { font-size:26px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .title-slide h2 { font-size:37px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .title-slide .course { font-size:28px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .title-slide p { font-size:24px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .cols { grid-template-columns:1fr; gap:12px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal figure img,
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .dense figure img { max-height:none; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .flow { flex-wrap:wrap; font-size:23px; justify-content:flex-start; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .caption { font-size:22px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .panel,
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .dense .panel { padding:14px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .footer { display:none; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal table { min-width:520px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .controls[data-controls-layout] { position:fixed; top:auto; left:auto; bottom:8px; right:10px; z-index:31; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slide-number { position:fixed; bottom:10px; left:10px; right:auto; font-size:17px; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .progress { position:fixed; bottom:108px; z-index:31; }
+  html:where([data-lecture="06b"], [data-lecture="05b"], [data-lecture="05"], [data-lecture="06"]),
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) body { height:100dvh; overflow:hidden; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal { font-size:24px; height:100dvh; overflow:visible; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal>.lecture-viewport { height:calc(100dvh - 110px); overflow-y:auto; overflow-x:hidden; touch-action:pan-y; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides { position:relative!important; top:0!important; left:0!important; transform:none!important; width:100%!important; height:auto!important; margin:0!important; perspective:none!important; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides>section.present { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; padding:0; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides section[data-slide-id] { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; min-height:calc(100dvh - 110px); font-size:24px!important; padding:22px 22px 40px!important; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides>section:not(.present),
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides>section>section:not(.present) { display:none!important; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal h2 { font-size:32px; line-height:1.2; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal h3 { font-size:26px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .title-slide h2 { font-size:37px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .title-slide .course { font-size:28px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .title-slide p { font-size:24px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .cols { grid-template-columns:1fr; gap:12px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal figure img,
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .dense figure img { max-height:none; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .flow { flex-wrap:wrap; font-size:23px; justify-content:flex-start; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .caption { font-size:22px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .panel,
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .dense .panel { padding:14px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .footer { display:none; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal table { min-width:520px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .controls[data-controls-layout] { position:fixed; top:auto; left:auto; bottom:8px; right:10px; z-index:31; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slide-number { position:fixed; bottom:10px; left:10px; right:auto; font-size:17px; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .progress { position:fixed; bottom:108px; z-index:31; }
 }
 @media print {
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .slides section[data-slide-id] { height:675px!important; }
-  :where(html[data-lecture="05"], html[data-lecture="05b"]) .reveal .footer { display:block; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .slides section[data-slide-id] { height:675px!important; }
+  :where(html[data-lecture="06b"], html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal .footer { display:block; }
 }
 
-/* Bài 05b: bảng tra ở phần kết dùng lề ô hẹp hơn để giữ cỡ chữ mà không tràn khung. */
-:where(html[data-lecture="05b"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"]) table th,
-:where(html[data-lecture="05b"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"]) table td { padding:5px 10px; }
-:where(html[data-lecture="05b"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"]) table { margin:8px 0; }
+/* Bài 05b (và Bài 05, Bài 06 mới, cùng khối): bảng tra ở trang G01, G02 dùng lề ô hẹp hơn để giữ cỡ chữ mà không tràn khung. */
+:where(html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"]) table th,
+:where(html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"]) table td { padding:5px 10px; }
+:where(html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"]) table { margin:8px 0; }
 
-/* Bài 06: bố cục và điều chỉnh riêng trong bảng kiểu chung. */
-:where(html[data-lecture="06"]) .reveal>.lecture-viewport { height:100%; }
-:where(html[data-lecture="06"]) .reveal .slides section[data-slide-id] { font-size:.80em; line-height:1.26; padding:16px 6px 28px; box-sizing:border-box; }
-:where(html[data-lecture="06"]) .reveal h2 { color:#2f3e7a; text-transform:none; font-size:1.40em; line-height:1.16; margin:0 0 .38em; }
-:where(html[data-lecture="06"]) .reveal p { margin:.38em 0; }
-:where(html[data-lecture="06"]) .reveal .title-slide h2 { font-size:1.8em; max-width:1050px; margin-bottom:.6em; }
-:where(html[data-lecture="06"]) .reveal .title-slide p { margin:.65em 0; }
-:where(html[data-lecture="06"]) .reveal .box { border-left:5px solid #b15a2b; background:#f7efe6; padding:.42em .62em; border-radius:8px; margin-top:.48em; }
-:where(html[data-lecture="06"]) .grid2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.65em; }
-:where(html[data-lecture="06"]) .grid3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.5em; }
-:where(html[data-lecture="06"]) .card { border:1px solid #d5dae3; border-radius:8px; padding:.38em .54em; min-width:0; }
-:where(html[data-lecture="06"]) .formula { position:relative; min-width:0; font-size:.95em; text-align:center; max-width:100%; overflow-x:auto; overflow-y:hidden; }
-:where(html[data-lecture="06"]) .formula .katex-display { margin:.42em 0; }
-:where(html[data-lecture="06"]) .check { background:#edf4ff; border:2px solid #2f3e7a; border-radius:8px; padding:.4em .6em; margin:.4em 0; }
-:where(html[data-lecture="06"]) .responsive { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.65em; align-items:center; }
-:where(html[data-lecture="06"]) .responsive>div { min-width:0; }
-:where(html[data-lecture="06"]) .reveal figure { margin:0; min-width:0; }
-:where(html[data-lecture="06"]) .reveal figure img { width:100%; height:auto; max-height:320px; margin:0; border:0; box-shadow:none; object-fit:contain; }
-:where(html[data-lecture="06"]) .reveal .chain-slide figure img { max-height:205px; }
-:where(html[data-lecture="06"]) .reveal ul,
-:where(html[data-lecture="06"]) .reveal ol { display:block; margin:.3em 0 .3em .9em; padding-left:.25em; line-height:1.28; }
-:where(html[data-lecture="06"]) .reveal li { margin:.32em 0; }
-:where(html[data-lecture="06"]) .algorithm { background:#f5f7fb; border-radius:8px; padding:.25em .65em .25em 1.2em!important; }
-:where(html[data-lecture="06"]) .reveal table { font-size:.95em; width:100%; margin:.42em 0; line-height:1.22; }
-:where(html[data-lecture="06"]) .reveal th { background:#f7efe6; }
-:where(html[data-lecture="06"]) .reveal td,
-:where(html[data-lecture="06"]) .reveal th { padding:.27em .38em; vertical-align:middle; }
-:where(html[data-lecture="06"]) .training-flow { display:grid; grid-template-columns:1fr auto 1fr auto 1.2fr auto 1fr; gap:.3em; align-items:center; margin:.45em 0 .65em; }
-:where(html[data-lecture="06"]) .training-flow div { border:1px solid #cbd3e2; border-radius:8px; padding:.35em; text-align:center; }
-:where(html[data-lecture="06"]) .training-flow span { color:#b15a2b; }
+/* Bài 06c (bổ trợ, trước ngày 2026-10-12 là Bài 06): bố cục và điều chỉnh riêng trong bảng kiểu chung. */
+:where(html[data-lecture="06c"]) .reveal>.lecture-viewport { height:100%; }
+:where(html[data-lecture="06c"]) .reveal .slides section[data-slide-id] { font-size:.80em; line-height:1.26; padding:16px 6px 28px; box-sizing:border-box; }
+:where(html[data-lecture="06c"]) .reveal h2 { color:#2f3e7a; text-transform:none; font-size:1.40em; line-height:1.16; margin:0 0 .38em; }
+:where(html[data-lecture="06c"]) .reveal p { margin:.38em 0; }
+:where(html[data-lecture="06c"]) .reveal .title-slide h2 { font-size:1.8em; max-width:1050px; margin-bottom:.6em; }
+:where(html[data-lecture="06c"]) .reveal .title-slide p { margin:.65em 0; }
+:where(html[data-lecture="06c"]) .reveal .box { border-left:5px solid #b15a2b; background:#f7efe6; padding:.42em .62em; border-radius:8px; margin-top:.48em; }
+:where(html[data-lecture="06c"]) .grid2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.65em; }
+:where(html[data-lecture="06c"]) .grid3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.5em; }
+:where(html[data-lecture="06c"]) .card { border:1px solid #d5dae3; border-radius:8px; padding:.38em .54em; min-width:0; }
+:where(html[data-lecture="06c"]) .formula { position:relative; min-width:0; font-size:.95em; text-align:center; max-width:100%; overflow-x:auto; overflow-y:hidden; }
+:where(html[data-lecture="06c"]) .formula .katex-display { margin:.42em 0; }
+:where(html[data-lecture="06c"]) .check { background:#edf4ff; border:2px solid #2f3e7a; border-radius:8px; padding:.4em .6em; margin:.4em 0; }
+:where(html[data-lecture="06c"]) .responsive { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.65em; align-items:center; }
+:where(html[data-lecture="06c"]) .responsive>div { min-width:0; }
+:where(html[data-lecture="06c"]) .reveal figure { margin:0; min-width:0; }
+:where(html[data-lecture="06c"]) .reveal figure img { width:100%; height:auto; max-height:320px; margin:0; border:0; box-shadow:none; object-fit:contain; }
+:where(html[data-lecture="06c"]) .reveal .chain-slide figure img { max-height:205px; }
+:where(html[data-lecture="06c"]) .reveal ul,
+:where(html[data-lecture="06c"]) .reveal ol { display:block; margin:.3em 0 .3em .9em; padding-left:.25em; line-height:1.28; }
+:where(html[data-lecture="06c"]) .reveal li { margin:.32em 0; }
+:where(html[data-lecture="06c"]) .algorithm { background:#f5f7fb; border-radius:8px; padding:.25em .65em .25em 1.2em!important; }
+:where(html[data-lecture="06c"]) .reveal table { font-size:.95em; width:100%; margin:.42em 0; line-height:1.22; }
+:where(html[data-lecture="06c"]) .reveal th { background:#f7efe6; }
+:where(html[data-lecture="06c"]) .reveal td,
+:where(html[data-lecture="06c"]) .reveal th { padding:.27em .38em; vertical-align:middle; }
+:where(html[data-lecture="06c"]) .training-flow { display:grid; grid-template-columns:1fr auto 1fr auto 1.2fr auto 1fr; gap:.3em; align-items:center; margin:.45em 0 .65em; }
+:where(html[data-lecture="06c"]) .training-flow div { border:1px solid #cbd3e2; border-radius:8px; padding:.35em; text-align:center; }
+:where(html[data-lecture="06c"]) .training-flow span { color:#b15a2b; }
 /* Bố cục kết quả giữ cỡ chữ và tách vùng cuộn khi cần. */
-:where(html[data-lecture="06"]) .curriculum-results { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:.65em; align-items:center; }
-:where(html[data-lecture="06"]) .curriculum-results>div { min-width:0; }
-:where(html[data-lecture="06"]) .table-scroll { position:relative; width:100%; min-width:0; max-width:100%; overflow-x:auto; }
-:where(html[data-lecture="06"]) .reveal .chain-scroll { overflow-x:auto; }
-:where(html[data-lecture="06"]) .reveal [tabindex="0"]:focus-visible { outline:3px solid #287c74; outline-offset:2px; }
-:where(html[data-lecture="06"]) .reveal [data-slide-id="C06"] .algorithm { margin-top:.18em; margin-bottom:.18em; }
-:where(html[data-lecture="06"]) .reveal [data-slide-id="C06"] .algorithm li { margin:.20em 0; }
-:where(html[data-lecture="06"]) .reveal [data-slide-id="C06"] .box { margin-top:.25em; }
-:where(html[data-lecture="06"]) .reveal .footer { font-size:16px; }
+:where(html[data-lecture="06c"]) .curriculum-results { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:.65em; align-items:center; }
+:where(html[data-lecture="06c"]) .curriculum-results>div { min-width:0; }
+:where(html[data-lecture="06c"]) .table-scroll { position:relative; width:100%; min-width:0; max-width:100%; overflow-x:auto; }
+:where(html[data-lecture="06c"]) .reveal .chain-scroll { overflow-x:auto; }
+:where(html[data-lecture="06c"]) .reveal [tabindex="0"]:focus-visible { outline:3px solid #287c74; outline-offset:2px; }
+:where(html[data-lecture="06c"]) .reveal [data-slide-id="C06"] .algorithm { margin-top:.18em; margin-bottom:.18em; }
+:where(html[data-lecture="06c"]) .reveal [data-slide-id="C06"] .algorithm li { margin:.20em 0; }
+:where(html[data-lecture="06c"]) .reveal [data-slide-id="C06"] .box { margin-top:.25em; }
+:where(html[data-lecture="06c"]) .reveal .footer { font-size:16px; }
 @media screen and (max-width:760px) {
-  html:where([data-lecture="06"]),
-  :where(html[data-lecture="06"]) body { height:100dvh; overflow:hidden; }
-  :where(html[data-lecture="06"]) .reveal { font-size:24px; height:100dvh; overflow:visible; }
-  :where(html[data-lecture="06"]) .reveal>.lecture-viewport { height:calc(100dvh - 94px); overflow-y:auto; overflow-x:hidden; touch-action:pan-y; }
-  :where(html[data-lecture="06"]) .reveal .slides { position:relative!important; top:0!important; left:0!important; transform:none!important; width:100%!important; height:auto!important; margin:0!important; perspective:none!important; }
-  :where(html[data-lecture="06"]) .reveal .slides>section.present { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; padding:0; }
-  :where(html[data-lecture="06"]) .reveal .slides section[data-slide-id] { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; min-height:calc(100dvh - 94px); font-size:24px!important; padding:22px 20px 38px!important; }
-  :where(html[data-lecture="06"]) .reveal .slides>section:not(.present),
-  :where(html[data-lecture="06"]) .reveal .slides>section>section:not(.present) { display:none!important; }
-  :where(html[data-lecture="06"]) .reveal h2 { font-size:32px; }
-  :where(html[data-lecture="06"]) .reveal .title-slide h2 { font-size:38px; }
-  :where(html[data-lecture="06"]) .responsive,
-  :where(html[data-lecture="06"]) .grid2,
-  :where(html[data-lecture="06"]) .grid3,
-  :where(html[data-lecture="06"]) .curriculum-results { grid-template-columns:1fr; gap:14px; }
-  :where(html[data-lecture="06"]) .reveal figure img,
-  :where(html[data-lecture="06"]) .reveal .chain-slide figure img { max-height:none; }
-  :where(html[data-lecture="06"]) .formula { position:relative; min-width:0; font-size:24px; text-align:left; }
-  :where(html[data-lecture="06"]) .formula .katex-display { text-align:left; }
-  :where(html[data-lecture="06"]) .has-horizontal-overflow { border-block:2px solid #b15a2b; box-sizing:border-box; scrollbar-width:auto; scrollbar-color:#b15a2b #f7efe6; }
-  :where(html[data-lecture="06"]) .has-horizontal-overflow::before { content:"↔"; display:block; position:sticky; left:0; width:100%; box-sizing:border-box; padding-right:6px; color:#2f3e7a; background:#f7efe6; text-align:right; font-size:24px; line-height:1.25; }
-  :where(html[data-lecture="06"]) .has-horizontal-overflow:focus-visible { outline:3px solid #287c74; outline-offset:2px; }
-  :where(html[data-lecture="06"]) .reveal table { display:table; max-width:none; font-size:24px; }
-  :where(html[data-lecture="06"]) .reveal .chain-scroll img { width:1120px; min-width:1120px; max-width:none; }
-  :where(html[data-lecture="06"]) .reveal .chain-scroll { touch-action:pan-x; }
-  :where(html[data-lecture="06"]) .reveal td,
-  :where(html[data-lecture="06"]) .reveal th { min-width:135px; }
-  :where(html[data-lecture="06"]) .training-flow { grid-template-columns:1fr; gap:.25em; }
-  :where(html[data-lecture="06"]) .training-flow span { transform:rotate(90deg); text-align:center; }
-  :where(html[data-lecture="06"]) .reveal .footer { display:none; }
-  :where(html[data-lecture="06"]) .reveal .controls[data-controls-layout] { position:fixed; top:auto; left:auto; bottom:8px; right:10px; z-index:31; }
-  :where(html[data-lecture="06"]) .reveal .slide-number { position:fixed; bottom:10px; left:10px; right:auto; font-size:17px; }
-  :where(html[data-lecture="06"]) .reveal .progress { position:fixed; bottom:92px; z-index:31; }
+  html:where([data-lecture="06c"]),
+  :where(html[data-lecture="06c"]) body { height:100dvh; overflow:hidden; }
+  :where(html[data-lecture="06c"]) .reveal { font-size:24px; height:100dvh; overflow:visible; }
+  :where(html[data-lecture="06c"]) .reveal>.lecture-viewport { height:calc(100dvh - 94px); overflow-y:auto; overflow-x:hidden; touch-action:pan-y; }
+  :where(html[data-lecture="06c"]) .reveal .slides { position:relative!important; top:0!important; left:0!important; transform:none!important; width:100%!important; height:auto!important; margin:0!important; perspective:none!important; }
+  :where(html[data-lecture="06c"]) .reveal .slides>section.present { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; padding:0; }
+  :where(html[data-lecture="06c"]) .reveal .slides section[data-slide-id] { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; min-height:calc(100dvh - 94px); font-size:24px!important; padding:22px 20px 38px!important; }
+  :where(html[data-lecture="06c"]) .reveal .slides>section:not(.present),
+  :where(html[data-lecture="06c"]) .reveal .slides>section>section:not(.present) { display:none!important; }
+  :where(html[data-lecture="06c"]) .reveal h2 { font-size:32px; }
+  :where(html[data-lecture="06c"]) .reveal .title-slide h2 { font-size:38px; }
+  :where(html[data-lecture="06c"]) .responsive,
+  :where(html[data-lecture="06c"]) .grid2,
+  :where(html[data-lecture="06c"]) .grid3,
+  :where(html[data-lecture="06c"]) .curriculum-results { grid-template-columns:1fr; gap:14px; }
+  :where(html[data-lecture="06c"]) .reveal figure img,
+  :where(html[data-lecture="06c"]) .reveal .chain-slide figure img { max-height:none; }
+  :where(html[data-lecture="06c"]) .formula { position:relative; min-width:0; font-size:24px; text-align:left; }
+  :where(html[data-lecture="06c"]) .formula .katex-display { text-align:left; }
+  :where(html[data-lecture="06c"]) .has-horizontal-overflow { border-block:2px solid #b15a2b; box-sizing:border-box; scrollbar-width:auto; scrollbar-color:#b15a2b #f7efe6; }
+  :where(html[data-lecture="06c"]) .has-horizontal-overflow::before { content:"↔"; display:block; position:sticky; left:0; width:100%; box-sizing:border-box; padding-right:6px; color:#2f3e7a; background:#f7efe6; text-align:right; font-size:24px; line-height:1.25; }
+  :where(html[data-lecture="06c"]) .has-horizontal-overflow:focus-visible { outline:3px solid #287c74; outline-offset:2px; }
+  :where(html[data-lecture="06c"]) .reveal table { display:table; max-width:none; font-size:24px; }
+  :where(html[data-lecture="06c"]) .reveal .chain-scroll img { width:1120px; min-width:1120px; max-width:none; }
+  :where(html[data-lecture="06c"]) .reveal .chain-scroll { touch-action:pan-x; }
+  :where(html[data-lecture="06c"]) .reveal td,
+  :where(html[data-lecture="06c"]) .reveal th { min-width:135px; }
+  :where(html[data-lecture="06c"]) .training-flow { grid-template-columns:1fr; gap:.25em; }
+  :where(html[data-lecture="06c"]) .training-flow span { transform:rotate(90deg); text-align:center; }
+  :where(html[data-lecture="06c"]) .reveal .footer { display:none; }
+  :where(html[data-lecture="06c"]) .reveal .controls[data-controls-layout] { position:fixed; top:auto; left:auto; bottom:8px; right:10px; z-index:31; }
+  :where(html[data-lecture="06c"]) .reveal .slide-number { position:fixed; bottom:10px; left:10px; right:auto; font-size:17px; }
+  :where(html[data-lecture="06c"]) .reveal .progress { position:fixed; bottom:92px; z-index:31; }
 }
 @media print {
-  :where(html[data-lecture="06"]) .reveal .slides section[data-slide-id] { height:720px!important; }
-  :where(html[data-lecture="06"]) .reveal .footer { display:block; }
+  :where(html[data-lecture="06c"]) .reveal .slides section[data-slide-id] { height:720px!important; }
+  :where(html[data-lecture="06c"]) .reveal .footer { display:block; }
 }
 
 /* Bài 07: bố cục và điều chỉnh riêng trong bảng kiểu chung. */

@@ -1475,7 +1475,7 @@ Bán kính được chọn bằng chuẩn của nghiệm ridge với $\lambda=10
 **Ràng buộc chặn chuẩn một.** Ràng buộc $\lVert w\rVert_1\le R$ cho hình thoi, lồi. Với biến phụ $-v\preceq w\preceq v$, $\mathbf 1^Tv\le R$, bài toán là quy hoạch bậc hai.
 :::
 
-**Trong học máy.** QCQP xuất hiện khi tham số bị giới hạn chuẩn, chẳng hạn chuẩn của vector trọng số đi vào mỗi nơ-ron. Nó cũng xuất hiện trong bài toán con miền tin cậy (trust region) của các phương pháp bậc hai: cực tiểu một mô hình bậc hai trên quả cầu $\lVert d\rVert_2\le\Delta$ (Bài 06).
+**Trong học máy.** QCQP xuất hiện khi tham số bị giới hạn chuẩn, chẳng hạn chuẩn của vector trọng số đi vào mỗi nơ-ron. Nó cũng xuất hiện trong bài toán con miền tin cậy (trust region) của các phương pháp bậc hai: cực tiểu một mô hình bậc hai trên quả cầu $\lVert d\rVert_2\le\Delta$ (Bài 06c).
 
 Bài toán con này lồi khi Hessian của mô hình nửa xác định dương, và không lồi khi Hessian có giá trị riêng âm, trường hợp thường gặp với mạng sâu. Trong cả hai trường hợp, Mệnh đề 02.26 liên hệ hình phạt với ràng buộc chặn chuẩn theo một chiều.
 

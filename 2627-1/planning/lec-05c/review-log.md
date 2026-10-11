@@ -374,3 +374,7 @@ Năm vai rà soát chỉ đọc chạy song song trên `lecture-note.md` (1 123 
 | Thẻ `index.html` | `2627-1/index.html`, sau thẻ Bài 05b | Đã thêm (lượt biên tập 2); chờ kiểm định cuối |
 | Theo dõi tệp planning | `planning/lec-05c/*.md` | Theo quyết định 9; `git add -f` khi commit |
 | Hạ tầng viewer | `material-viewer.js`, README, `AGENTS.md`, `CLAUDE.md` | Xong (acf3ff2, 716a049) |
+
+## Đổi tên Bài 05, 06 cũ thành Bài 06b, 06c (2026-10-12)
+
+Theo quyết định của người dùng ngày 2026-10-12, deck và học liệu Bài 05 cũ trở thành Bài 06b (bổ trợ), Bài 06 cũ trở thành Bài 06c (bổ trợ); số hiệu `05.k` của ghi chú cũ thành `06b.k`. Tác tử hạ tầng (công cụ Agent, `general-purpose`, `claude-opus-5-5`, high; điều phối viên Fable 5.1 duyệt) sửa các tham chiếu trong ghi chú Bài 05c theo nội dung: gradient lô nhỏ và SGD → Bài 06 (kế hoạch mới); ký hiệu $P$, $p$, Định lý 06b.11, Ví dụ 06b.14 và chứng minh trong ghi chú cũ → Bài 06b; thuật ngữ "lô nhỏ", trung bình Polyak, bộ tối ưu thích ứng, chuẩn hóa theo lô → Bài 06c. Các câu trích trong `outline.md` và `storyboard.md` được sửa theo; các mục lịch sử phía trên giữ tên bài như lúc ghi.

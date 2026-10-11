@@ -15,17 +15,17 @@ Sau chương này, người học có thể:
 
 ## Kiến thức tiên quyết
 
-Số hiệu `01.k`, `04.k`, `05.k`, `05c.k` chỉ ghi chú Bài 01, 04, 05 và 05c. Ghi chú Bài 00 được dẫn bằng tên khái niệm. Mỗi kết quả được phát biểu lại tại đây.
+Số hiệu `01.k`, `04.k`, `05c.k`, `06b.k` chỉ ghi chú Bài 01, 04, 05c và 06b. Ghi chú Bài 00 được dẫn bằng tên khái niệm. Mỗi kết quả được phát biểu lại tại đây.
 
 - **Xác suất rời rạc** (Bài 00; Định lý 05c.28, Định nghĩa 05c.30). Biến ngẫu nhiên $Z$ nhận hữu hạn giá trị $z_j$ có kỳ vọng $\mathbb EZ=\sum_jz_j\,\mathbb P(Z=z_j)$; kỳ vọng tuyến tính. Nếu $Z$, $W$ độc lập thì $\mathbb E[ZW]=\mathbb EZ\,\mathbb EW$. Phương sai là $\operatorname{Var}Z=\mathbb EZ^2-(\mathbb EZ)^2$.
 - **Kỳ vọng có điều kiện và bất đẳng thức Markov** (Định nghĩa 05c.37, Mệnh đề 05c.38, Định lý 05c.39). Các kết quả này được phát biểu lại ở dạng cần dùng tại Mục 5.2 và Mục 5.7.
 - **Cận dưới đúng, tính lồi, lồi mạnh** (Định nghĩa 01.10, 01.22, 01.39; Định lý 01.26; Hệ quả 01.41). $\inf_xf(x)$ có thể không đạt. Hàm khả vi $f$ lồi khi và chỉ khi $f(z)\ge f(x)+\nabla f(x)^T(z-x)$ với mọi $x,z$. $f$ lồi mạnh với hằng số $\mu>0$ khi $f-\tfrac\mu2\lVert\cdot\rVert^2$ lồi, tương đương $\nabla^2f\succeq\mu I$ khi $f$ khả vi hai lần (Nhận xét 01.40); khi đó $f$ có đúng một điểm cực tiểu.
 - **Mất mát logistic** (Mệnh đề 01.9). $\phi(s)=\log(1+\exp(-s))$ dương, $\phi'(s)=-1/(1+\exp(s))\in(-1,0)$, $\phi''(s)\in(0,\tfrac14]$, $\phi(s)\to0$ khi $s\to\infty$.
 - **Bài 04, Mục 2.6** (Định nghĩa 04.17; Bổ đề 04.18, 04.20, 04.21, 04.23; Định lý 04.22, 04.24, 04.26; Mệnh đề 04.25). Gradient $L$-Lipschitz cho cận trên bậc hai $f(z)\le f(x)+\nabla f(x)^T(z-x)+\tfrac L2\lVert z-x\rVert^2$ và mức giảm ít nhất $\tfrac t2\lVert\nabla f\rVert^2$ của một bước $t\le\tfrac1L$. Với $f$ lồi có điểm cực tiểu, bước $\tfrac1L$ cho $f(x^k)-f^*\le L\lVert x^0-x^*\rVert^2/(2k)$; thêm lồi mạnh thì $f(x)-f^*\le\tfrac1{2\mu}\lVert\nabla f(x)\rVert^2$ và sai số co theo hệ số $1-\mu/L$. Quay lui Armijo (Định nghĩa 04.10) nhận bước đầu tiên trong $1,\beta,\beta^2,\ldots$ thỏa $f(x-t\nabla f(x))\le f(x)-\alpha t\lVert\nabla f(x)\rVert^2$; bước được nhận không nhỏ hơn $\min\{1,\beta/L\}$.
-- **Điểm dừng** (Định nghĩa 05.7). Điểm $x^\circ$ với $\nabla f(x^\circ)=0$; có thể là cực tiểu, cực đại địa phương hoặc điểm yên ngựa.
-- **Gradient lô nhỏ (mini-batch)** (Định nghĩa 05.10, Định lý 05.11, Hệ quả 05.12, Mệnh đề 05.14). Với $f=\tfrac1N\sum_i\ell_i$ và $b$ chỉ số rút đều, độc lập, có hoàn lại, gradient lô không chệch, có hiệp phương sai $\Sigma(x)/b$ và sai số bình phương trung bình $\operatorname{tr}\Sigma(x)/b$.
+- **Điểm dừng** (Định nghĩa 06b.7). Điểm $x^\circ$ với $\nabla f(x^\circ)=0$; có thể là cực tiểu, cực đại địa phương hoặc điểm yên ngựa.
+- **Gradient lô nhỏ (mini-batch)** (Định nghĩa 06b.10, Định lý 06b.11, Hệ quả 06b.12, Mệnh đề 06b.14). Với $f=\tfrac1N\sum_i\ell_i$ và $b$ chỉ số rút đều, độc lập, có hoàn lại, gradient lô không chệch, có hiệp phương sai $\Sigma(x)/b$ và sai số bình phương trung bình $\operatorname{tr}\Sigma(x)/b$.
 
-Bài 04 viết dãy lặp là $x^k$, bước là $t$, khoảng cách đầu là $R$; Bài 05 viết $\theta_t$, $\eta_t$, $\widehat g_t$, $T$. Chương này dùng $x_k$ (chỉ số dưới, để không lẫn với lũy thừa $q^k$), $\eta_k$, $K$ và $D$.
+Bài 04 viết dãy lặp là $x^k$, bước là $t$, khoảng cách đầu là $R$; Bài 06b viết $\theta_t$, $\eta_t$, $\widehat g_t$, $T$. Chương này dùng $x_k$ (chỉ số dưới, để không lẫn với lũy thừa $q^k$), $\eta_k$, $K$ và $D$.
 
 ## Bảng ký hiệu
 
@@ -53,13 +53,13 @@ Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của m�
 | $N$, $\ell_i$, $b$ | số quan sát; mất mát trên quan sát $i$; kích thước lô | $N,b\ge1$; $\mathbb R^n\to\mathbb R$ |
 | $I_{k,j}$, $B_k$ | chỉ số thứ $j$ của lô ở bước $k$; lô $B_k=(I_{k,1},\ldots,I_{k,b})$ | $\{1,\ldots,N\}$; $\{1,\ldots,N\}^b$ |
 | $\mathcal F_k$, $\mathbb E[\cdot\mid\mathcal F_k]$ | lịch sử các lô đã rút trước bước $k$; kỳ vọng có điều kiện theo lịch sử đó | |
-| $\Sigma(x)$, $\sigma^2$ | hiệp phương sai của gradient một mẫu (Bài 05); cận của phương sai gradient ngẫu nhiên | ma trận $n\times n$; $\sigma^2\ge0$ |
+| $\Sigma(x)$, $\sigma^2$ | hiệp phương sai của gradient một mẫu (Bài 06); cận của phương sai gradient ngẫu nhiên | ma trận $n\times n$; $\sigma^2\ge0$ |
 | $\mathbb P$, $\mathbb E$ | xác suất; kỳ vọng | |
 | $\alpha$, $\beta$ | hai tham số của quay lui Armijo | $\beta\in(0,1)$; $\alpha\in(0,\tfrac12)$ theo Định nghĩa 04.10, mở rộng tới $\alpha=\tfrac12$ theo Bổ đề 04.23 |
 
 Bốn ví dụ xuyên suốt (running example) được dùng lại ở nhiều mục; mỗi khối ví dụ nêu lại dữ kiện của nó. Hình vẽ của chương giữ tên "Ví dụ A" đến "Ví dụ D".
 
-- **Ví dụ xuyên suốt A** (Ví dụ 05.1 của Bài 05): ba quan sát $y=(-1,1,3)$, mô hình hằng $\theta\in\mathbb R$, mất mát $J(\theta)=\tfrac16\sum_{i=1}^3(\theta-y_i)^2=\tfrac12(\theta-1)^2+\tfrac43$, nghiệm $\theta^*=1$. Tham số $\theta$ là $x$ khi $n=1$.
+- **Ví dụ xuyên suốt A** (Ví dụ 06b.1 của Bài 06b): ba quan sát $y=(-1,1,3)$, mô hình hằng $\theta\in\mathbb R$, mất mát $J(\theta)=\tfrac16\sum_{i=1}^3(\theta-y_i)^2=\tfrac12(\theta-1)^2+\tfrac43$, nghiệm $\theta^*=1$. Tham số $\theta$ là $x$ khi $n=1$.
 - **Ví dụ xuyên suốt B**: cùng ba quan sát với mất mát trị tuyệt đối $f(x)=\tfrac13\bigl(\lvert x+1\rvert+\lvert x-1\rvert+\lvert x-3\rvert\bigr)$, nghiệm $x^*=1$, $f^*=\tfrac43$.
 - **Ví dụ xuyên suốt C** (VD1 của Bài 04): $f(x)=\tfrac12\bigl(3[x]_1^2+7[x]_2^2\bigr)$ trên $\mathbb R^2$, $x^*=0$, $f^*=0$, điểm đầu $x_0=(2,4)$, $f(x_0)=62$.
 - **Ví dụ xuyên suốt D**: $F(\theta)=\tfrac14(\theta^2-1)^2$ trên $\mathbb R$, hai cực tiểu $\pm1$ và cực đại địa phương $0$.
@@ -69,7 +69,7 @@ Mọi số liệu của các ví dụ là số liệu sư phạm tự xây dựn
 
 ## 1. Các dạng hội tụ của một dãy lặp
 
-Trong Bài 04, chúng ta đã chứng minh ở Mục 2.6 rằng hạ gradient với bước $\tfrac1L$ trên một hàm lồi có gradient $L$-Lipschitz và có điểm cực tiểu cho sai số giá trị không vượt $L\lVert x_0-x^*\rVert^2/(2k)$ sau $k$ bước (Định lý 04.22). Trên hàm $f(x)=\tfrac12\bigl(3[x]_1^2+7[x]_2^2\bigr)$ từ $x_0=(2,4)$, cận đó bằng $70/k$ và đòi $7000$ bước để sai số không vượt $0{,}01$, trong khi dãy lặp thật chỉ cần $6$ bước. Trong Bài 05, chúng ta đã tính được rằng trên ví dụ ba quan sát, hạ gradient ngẫu nhiên (stochastic gradient descent, SGD) với bước cố định $0{,}1$ có kỳ vọng bình phương sai lệch tiến về một mức dương thay vì về $0$ (Ví dụ 05.14). Hai kết quả đo hai đại lượng khác nhau, với hai kiểu giảm khác nhau, nên chưa so được với nhau.
+Trong Bài 04, chúng ta đã chứng minh ở Mục 2.6 rằng hạ gradient với bước $\tfrac1L$ trên một hàm lồi có gradient $L$-Lipschitz và có điểm cực tiểu cho sai số giá trị không vượt $L\lVert x_0-x^*\rVert^2/(2k)$ sau $k$ bước (Định lý 04.22). Trên hàm $f(x)=\tfrac12\bigl(3[x]_1^2+7[x]_2^2\bigr)$ từ $x_0=(2,4)$, cận đó bằng $70/k$ và đòi $7000$ bước để sai số không vượt $0{,}01$, trong khi dãy lặp thật chỉ cần $6$ bước. Trong Bài 06b, chúng ta đã tính được rằng trên ví dụ ba quan sát, hạ gradient ngẫu nhiên (stochastic gradient descent, SGD) với bước cố định $0{,}1$ có kỳ vọng bình phương sai lệch tiến về một mức dương thay vì về $0$ (Ví dụ 06b.14). Hai kết quả đo hai đại lượng khác nhau, với hai kiểu giảm khác nhau, nên chưa so được với nhau.
 
 Câu hỏi đặt ra là vì sao cận $70/k$ lớn hơn sai số thật của dãy nhiều đến vậy, và khi dãy lặp là ngẫu nhiên thì "hội tụ" nói về đại lượng nào. Để trả lời, chúng ta cần nói rõ mỗi định lý hội tụ chặn đại lượng nào, với tốc độ nào và dưới giả thiết nào, tức là cần một phân tích hội tụ. Chương này xây dựng phân tích đó rồi chứng minh các định lý hội tụ của hạ gradient, phương pháp dưới gradient và SGD cho hàm lồi, lồi mạnh và không lồi.
 
@@ -126,7 +126,7 @@ Tính trực tiếp $f(x_1)=\tfrac12\cdot3\cdot\tfrac{64}{49}=\tfrac{96}{49}$, k
 
 Trên trục tung logarit, hai dãy của Ví dụ 05b.1 trở thành đường thẳng. Vì $\log e_k=\log6+k\log\tfrac{16}{49}$, dãy sai số có độ dốc $\log\tfrac{16}{49}$, còn dãy $d_k^2$ là đường thẳng song song nằm thấp hơn một khoảng $\log\tfrac32$. Đường cong $70/k$ nằm phía trên và giảm chậm dần, chẳng hạn tại $k=5$ cận bằng $14$ trong khi sai số thật bằng $0{,}0223$.
 
-Với SGD, bản thân dãy lặp là ngẫu nhiên, nên trong ví dụ thứ hai, đại lượng được theo dõi là kỳ vọng của bình phương sai lệch. Ví dụ sau chạy SGD trên ba quan sát của Bài 05.
+Với SGD, bản thân dãy lặp là ngẫu nhiên, nên trong ví dụ thứ hai, đại lượng được theo dõi là kỳ vọng của bình phương sai lệch. Ví dụ sau chạy SGD trên ba quan sát của Bài 06b.
 
 ::: example Ví dụ 05b.2 (Ví dụ xuyên suốt A: kỳ vọng giảm về một giá trị dương)
 **Dữ kiện.**
@@ -167,7 +167,7 @@ Các giá trị: $a_1\approx0{,}837$, $a_2\approx0{,}704$, $a_{20}\approx0{,}153
 
 **Kiểm tra lại.**
 
-Theo đệ quy, $a_1=0{,}81+\tfrac8{300}=0{,}8367$; theo công thức đóng, $\tfrac8{57}+\tfrac{49}{57}\cdot0{,}81=0{,}1404+0{,}6963=0{,}8367$. Giá trị giới hạn trùng mức $\mathrm{MSE}_\infty=\tfrac{8\eta}{3b(2-\eta)}=\tfrac8{57}$ của Ví dụ 05.14 với $\eta=0{,}1$, $b=1$.
+Theo đệ quy, $a_1=0{,}81+\tfrac8{300}=0{,}8367$; theo công thức đóng, $\tfrac8{57}+\tfrac{49}{57}\cdot0{,}81=0{,}1404+0{,}6963=0{,}8367$. Giá trị giới hạn trùng mức $\mathrm{MSE}_\infty=\tfrac{8\eta}{3b(2-\eta)}=\tfrac8{57}$ của Ví dụ 06b.14 với $\eta=0{,}1$, $b=1$.
 :::
 
 ![Đồ thị với k từ 0 đến 40. Đường mảnh dao động là bình phương sai lệch (θ_k − 1)² của một lần chạy SGD trên Ví dụ A, không tiến về 0. Đường đậm là kỳ vọng E(θ_k − 1)², giảm từ 1 về giá trị giới hạn 0,140, vẽ bằng nét đứt nằm ngang.](img/lec-05b/vda-sgd-path.svg)
@@ -194,7 +194,7 @@ Cho $f:\mathbb R^n\to\mathbb R$, một dãy $(x_k)_{k\ge0}$ trong $\mathbb R^n$,
 
 Trong định nghĩa trên, mỗi dạng hội tụ đưa một đại lượng không âm về $0$. Dạng theo dãy lặp cần một điểm $x^*$ cụ thể; khi $f$ có nhiều điểm cực tiểu, câu "$x_k\to x^*$" phụ thuộc điểm được chọn. Dạng theo giá trị cần $f^*$ hoặc $f_{\inf}$, không cần biết điểm đạt. Dạng tới điểm dừng chỉ dùng thông tin tại chính $x_k$, nên đo được trong khi chạy và vẫn có nghĩa khi $f$ không lồi.
 
-Dạng tới điểm dừng đưa khái niệm điểm dừng của Định nghĩa 05.7, điểm có gradient bằng $0$, về dạng giới hạn. Khi $f$ không lồi, đây là dạng yếu nhất trong ba dạng tất định, vì điểm dừng có thể là cực đại địa phương hoặc điểm yên ngựa (Mục 6).
+Dạng tới điểm dừng đưa khái niệm điểm dừng của Định nghĩa 06b.7, điểm có gradient bằng $0$, về dạng giới hạn. Khi $f$ không lồi, đây là dạng yếu nhất trong ba dạng tất định, vì điểm dừng có thể là cực đại địa phương hoặc điểm yên ngựa (Mục 6).
 
 Dạng theo kỳ vọng là phát biểu về trung bình trên mọi lần chạy. Để có phát biểu cho một lần chạy, trong Mục 5.7 chúng ta chuyển nó thành một phát biểu xác suất.
 
@@ -1218,7 +1218,7 @@ Với $t=\tfrac14$ tại $x_0$: điểm thử $(\tfrac12,-3)$ có $f=\tfrac12(\t
 
 Cận quay lui đòi $37$ bước, cận bước $\tfrac1L$ đòi $16$, còn dãy quay lui thật chỉ cần $4$ bước, ít hơn cả $6$ bước của bước $\tfrac17$. Như vậy, thứ tự giữa hai bảo đảm không quyết định thứ tự giữa hai dãy thật, vì quay lui có thể nhận bước dài hơn $\tfrac1L$ khi hàm cho phép, như $t=\tfrac14>\tfrac17$ ở bước thứ ba.
 
-**Trong học máy.** Quay lui cần giá trị $f$ tại các điểm thử, tức một lượt qua toàn bộ dữ liệu cho mỗi lần thử. Vì vậy nó dùng được trong tối ưu theo cả tập (full-batch), như L-BFGS của Bài 06, nhưng không dùng trong SGD.
+**Trong học máy.** Quay lui cần giá trị $f$ tại các điểm thử, tức một lượt qua toàn bộ dữ liệu cho mỗi lần thử. Vì vậy nó dùng được trong tối ưu theo cả tập (full-batch), như L-BFGS của Bài 06c, nhưng không dùng trong SGD.
 
 Mất mát bản lề (hinge loss) $\max\{0,1-ys\}$, với nhãn $y\in\{-1,1\}$ và điểm số $s$, và mất mát trị tuyệt đối có điểm gãy, nơi đạo hàm gián đoạn, nên không có hằng số $L$ hữu hạn. Với các mất mát này, H2 sai và ba định lý trên không áp dụng.
 
@@ -1589,7 +1589,7 @@ Bốn điểm $x_k=0,\tfrac16,\tfrac13,\tfrac12$ nằm trên khúc độ dốc $
 
 Bảng trên cho thấy không đầu ra nào luôn tốt hơn: trung bình lặp tốt hơn điểm lặp tốt nhất ở lượt bước $4{,}5$ nhưng kém hơn ở lượt bước $\tfrac12$. Định lý 05b.26 chặn cả hai bằng cùng một vế phải.
 
-**Trong học máy.** Máy vectơ tựa với mất mát bản lề, hồi quy độ lệch tuyệt đối nhỏ nhất và các bài toán có chính quy hóa $\lVert x\rVert_1$ đều có mục tiêu lồi, không khả vi; khi các đặc trưng bị chặn và không có số hạng chính quy bậc hai, mục tiêu Lipschitz và H5 đúng. Khi đó Định lý 05b.26 cho tốc độ $O(1/\sqrt K)$ với bước chọn theo Mục 4.5. Với bước hằng, trung bình lặp (4.2) là trung bình đều của các điểm lặp, trùng với trung bình Polyak (Polyak averaging) của Bài 06 sai khác một chỉ số (Bài 06 bỏ điểm đầu). Mạng nơ ron dùng hàm kích hoạt tuyến tính chỉnh lưu (ReLU) cũng có điểm gãy, nhưng mất mát của chúng không lồi, nên Định nghĩa 05b.21 và định lý này không áp dụng; giá trị mà thư viện gán cho đạo hàm của ReLU tại $0$ là một quy ước tính toán.
+**Trong học máy.** Máy vectơ tựa với mất mát bản lề, hồi quy độ lệch tuyệt đối nhỏ nhất và các bài toán có chính quy hóa $\lVert x\rVert_1$ đều có mục tiêu lồi, không khả vi; khi các đặc trưng bị chặn và không có số hạng chính quy bậc hai, mục tiêu Lipschitz và H5 đúng. Khi đó Định lý 05b.26 cho tốc độ $O(1/\sqrt K)$ với bước chọn theo Mục 4.5. Với bước hằng, trung bình lặp (4.2) là trung bình đều của các điểm lặp, trùng với trung bình Polyak (Polyak averaging) của Bài 06c sai khác một chỉ số (Bài 06c bỏ điểm đầu). Mạng nơ ron dùng hàm kích hoạt tuyến tính chỉnh lưu (ReLU) cũng có điểm gãy, nhưng mất mát của chúng không lồi, nên Định nghĩa 05b.21 và định lý này không áp dụng; giá trị mà thư viện gán cho đạo hàm của ReLU tại $0$ là một quy ước tính toán.
 
 ### 4.5 Quy tắc chọn bước cho phương pháp dưới gradient
 
@@ -1688,7 +1688,7 @@ Không cần H2, phương pháp dưới gradient vẫn có cận $O(1/\sqrt K)$ 
 
 ## 5. Hạ gradient ngẫu nhiên cho hàm lồi và lồi mạnh
 
-Phương pháp của Mục 4 dùng dưới gradient đúng của $f$ ở mỗi bước. Trong học máy, $f=\tfrac1N\sum_{i=1}^N\ell_i$, nên một gradient đúng tốn $N$ gradient mẫu. SGD của Bài 05 dùng gradient trên một lô $b$ mẫu, không chệch với hiệp phương sai $\Sigma(x)/b$ (Định lý 05.11), và Mệnh đề 05.14 cho kỳ vọng thay đổi của $f$ sau một bước. Ví dụ 05.14 tính được mức giới hạn $\tfrac8{57}\approx0{,}140$ của kỳ vọng bình phương sai lệch trên ba quan sát, nhưng Bài 05 chưa có định lý nào về dãy sau $K$ bước cho một mất mát tổng quát.
+Phương pháp của Mục 4 dùng dưới gradient đúng của $f$ ở mỗi bước. Trong học máy, $f=\tfrac1N\sum_{i=1}^N\ell_i$, nên một gradient đúng tốn $N$ gradient mẫu. SGD của Bài 06b dùng gradient trên một lô $b$ mẫu, không chệch với hiệp phương sai $\Sigma(x)/b$ (Định lý 06b.11), và Mệnh đề 06b.14 cho kỳ vọng thay đổi của $f$ sau một bước. Ví dụ 06b.14 tính được mức giới hạn $\tfrac8{57}\approx0{,}140$ của kỳ vọng bình phương sai lệch trên ba quan sát, nhưng Bài 06b chưa có định lý nào về dãy sau $K$ bước cho một mất mát tổng quát.
 
 Chứng minh của Định lý 05b.26 chỉ dùng $g_k$ qua $g_k^T(x_k-x^*)$ và $\lVert g_k\rVert^2$. Vì vậy, nó còn đúng khi thay $g_k$ bằng gradient trên một lô mẫu rút ngẫu nhiên rồi lấy kỳ vọng, với điều kiện gradient lô không chệch, có mômen bậc hai bị chặn, và có một công cụ tính kỳ vọng theo lịch sử. Dựa trên nhận xét đó, chúng ta lần lượt chứng minh các định lý hội tụ của SGD cho hàm lồi và cho hàm lồi mạnh, với bước hằng và với lịch giảm bước. Sau cùng, cận kỳ vọng được chuyển thành cận xác suất cho một lần chạy.
 
@@ -1738,7 +1738,7 @@ Về mặt trực quan, mọi lần chạy có thể của SGD xếp thành mộ
 
 ![Cây lịch sử hai bước của Ví dụ A. Gốc θ₀ = 0 tách ba nhánh theo quan sát được rút y = −1, 1, 3, cho θ₁ = −0,1; 0,1; 0,3. Mỗi nút mức một lại tách ba nhánh, cho chín giá trị θ₂: −0,19; 0,01; 0,21 / −0,01; 0,19; 0,39 / 0,17; 0,37; 0,57. Ghi chú tại θ₁ = 0,1: g₁ = θ₁ − y ∈ {1,1; −0,9; −2,9}, trung bình ba nhánh −0,9 = J′(θ₁).](img/lec-05b/history-tree.svg)
 
-Cây lịch sử trên vẽ hai bước của ví dụ xuyên suốt A với bước $0{,}1$ và lô một mẫu. Tại nút $\theta_1=0{,}1$, ba nhánh con cho ba gradient mẫu $1{,}1$; $-0{,}9$; $-2{,}9$, có trung bình $-0{,}9=J'(0{,}1)$. Đẳng thức này là một trường hợp của tính không chệch (Định lý 05.11): tại mọi nút, trung bình trên các nhánh con bằng gradient đầy đủ tại nút đó. Lịch sử và kỳ vọng có điều kiện được định nghĩa chính xác như sau.
+Cây lịch sử trên vẽ hai bước của ví dụ xuyên suốt A với bước $0{,}1$ và lô một mẫu. Tại nút $\theta_1=0{,}1$, ba nhánh con cho ba gradient mẫu $1{,}1$; $-0{,}9$; $-2{,}9$, có trung bình $-0{,}9=J'(0{,}1)$. Đẳng thức này là một trường hợp của tính không chệch (Định lý 06b.11): tại mọi nút, trung bình trên các nhánh con bằng gradient đầy đủ tại nút đó. Lịch sử và kỳ vọng có điều kiện được định nghĩa chính xác như sau.
 
 ::: definition Định nghĩa 05b.29 (Lịch sử và kỳ vọng có điều kiện)
 Xét Thuật toán 05b.2. Ký hiệu $B_j=(I_{j,1},\ldots,I_{j,b})$ là lô được rút ở bước $j$.
@@ -1847,12 +1847,12 @@ $$
 $\nabla f(x_k)$ xác định bởi $\mathcal F_k$, nên Mệnh đề 05b.30(b) đưa nó ra ngoài; H6 cho $\mathbb E[g_k-\nabla f(x_k)\mid\mathcal F_k]=0$, nên số hạng giữa có kỳ vọng có điều kiện bằng $0$. $\square$
 :::
 
-Đẳng thức (5.1) là Hệ quả 05.12(b) viết theo lịch sử, nói rằng mômen bậc hai bằng tín hiệu cộng nhiễu. Với Thuật toán 05b.2, tính không chệch H6 có được khi áp Định lý 05.11 tại $x_k$ cố định rồi dùng Mệnh đề 05b.30(c). Phần nhiễu bằng $\operatorname{tr}\Sigma(x_k)/b$ theo Hệ quả 05.12(a), nên H6b đúng khi và chỉ khi $\operatorname{tr}\Sigma(x)\le b\sigma^2$ tại mọi điểm lặp có thể.
+Đẳng thức (5.1) là Hệ quả 06b.12(b) viết theo lịch sử, nói rằng mômen bậc hai bằng tín hiệu cộng nhiễu. Với Thuật toán 05b.2, tính không chệch H6 có được khi áp Định lý 06b.11 tại $x_k$ cố định rồi dùng Mệnh đề 05b.30(c). Phần nhiễu bằng $\operatorname{tr}\Sigma(x_k)/b$ theo Hệ quả 06b.12(a), nên H6b đúng khi và chỉ khi $\operatorname{tr}\Sigma(x)\le b\sigma^2$ tại mọi điểm lặp có thể.
 
 ::: example Ví dụ 05b.17 (Hai hằng số của gradient ngẫu nhiên trên ví dụ xuyên suốt A)
 **Dữ kiện.**
 
-Ví dụ xuyên suốt A: $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, gradient mẫu $\theta-y_i$ với $y=(-1,1,3)$, lô $b$ mẫu có hoàn lại. Hệ quả 05.12(a): phần nhiễu bằng $\operatorname{tr}\Sigma(\theta)/b$. Bổ đề 05b.32: mômen bậc hai bằng tín hiệu cộng nhiễu.
+Ví dụ xuyên suốt A: $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, gradient mẫu $\theta-y_i$ với $y=(-1,1,3)$, lô $b$ mẫu có hoàn lại. Hệ quả 06b.12(a): phần nhiễu bằng $\operatorname{tr}\Sigma(\theta)/b$. Bổ đề 05b.32: mômen bậc hai bằng tín hiệu cộng nhiễu.
 
 **Phương sai của gradient một mẫu.**
 
@@ -1958,7 +1958,7 @@ Mô phỏng $10\,000$ lần chạy độc lập với $K=400$, $\eta=0{,}05$, h�
 $0{,}035\le0{,}05$, đúng chiều của (5.2). Cận đòi $K\ge(DG/\varepsilon)^2$, nên giảm sai số bảo đảm mười lần cần nhân $K$ lên một trăm lần.
 :::
 
-**Trong học máy.** Định lý 05b.34 áp dụng cho SGD trên mất mát lồi Lipschitz, như mất mát bản lề của SVM hay mất mát logistic, với gradient lô được rút có hoàn lại, khi mất mát có điểm cực tiểu (H4). Điều kiện này sai với logistic không chính quy trên dữ liệu tách được. Định lý chặn trung bình lặp và không nói gì về điểm cuối, nên không so sánh được hai đầu ra đó. Khi bước hằng, trung bình lặp trùng với trung bình Polyak của Bài 06 sai khác một chỉ số (Bài 06 bỏ điểm đầu). Mất mát của mạng sâu không lồi, nên Bước 2 của chứng minh, nơi Hệ quả 05b.23 được dùng, không còn đúng.
+**Trong học máy.** Định lý 05b.34 áp dụng cho SGD trên mất mát lồi Lipschitz, như mất mát bản lề của SVM hay mất mát logistic, với gradient lô được rút có hoàn lại, khi mất mát có điểm cực tiểu (H4). Điều kiện này sai với logistic không chính quy trên dữ liệu tách được. Định lý chặn trung bình lặp và không nói gì về điểm cuối, nên không so sánh được hai đầu ra đó. Khi bước hằng, trung bình lặp trùng với trung bình Polyak của Bài 06c sai khác một chỉ số (Bài 06c bỏ điểm đầu). Mất mát của mạng sâu không lồi, nên Bước 2 của chứng minh, nơi Hệ quả 05b.23 được dùng, không còn đúng.
 
 ### 5.5 SGD cho hàm lồi mạnh và mức nhiễu nền
 
@@ -2051,7 +2051,7 @@ Ví dụ xuyên suốt A, lô một mẫu, bước $\eta=0{,}1$, $\theta_0=0$: $
 
 **Kiểm tra giả thiết.**
 
-$\eta=0{,}1$ không vượt $\tfrac1L=1$; H2, H3 đúng với $L=\mu=1$; H6 đúng theo Định lý 05.11.
+$\eta=0{,}1$ không vượt $\tfrac1L=1$; H2, H3 đúng với $L=\mu=1$; H6 đúng theo Định lý 06b.11.
 
 **Cận và giá trị chính xác.**
 
@@ -2081,7 +2081,7 @@ $$
 Khi $\eta\mu$ nhỏ, giới hạn xấp xỉ $\tfrac{\eta\sigma^2}{2\mu}$, nửa mức nhiễu nền của (5.4). Thừa số $2$ bị bỏ ở Bước 3 của chứng minh, nơi số hạng $-2\eta(1-\eta L)e_k$ bị bỏ. Với lô $b=4$ ở ví dụ xuyên suốt A, $\sigma^2=\tfrac23$, giới hạn chính xác là $\tfrac{0{,}1\cdot2/3}{1{,}9}\approx0{,}0351$ và mức nhiễu nền là $\approx0{,}0667$: tăng kích thước lô bốn lần hạ cả hai bốn lần.
 :::
 
-**Trong học máy.** Mức nhiễu nền (5.4) giải thích quan sát của Bài 05: với bước học cố định, mất mát dao động quanh nghiệm ở một mức tỉ lệ với bước học và với phương sai của gradient lô, $\operatorname{tr}\Sigma/b$. Ba cách hạ mức đó tương ứng ba số hạng: giảm $\eta$, tăng $b$, hoặc tăng $\mu$ bằng chính quy hóa. H3 chỉ đúng với mô hình lồi mạnh như hồi quy logistic có chính quy hóa; với mạng sâu, chúng ta thay $d_k$ bằng chuẩn gradient ở Mục 6.
+**Trong học máy.** Mức nhiễu nền (5.4) giải thích quan sát của Bài 06b: với bước học cố định, mất mát dao động quanh nghiệm ở một mức tỉ lệ với bước học và với phương sai của gradient lô, $\operatorname{tr}\Sigma/b$. Ba cách hạ mức đó tương ứng ba số hạng: giảm $\eta$, tăng $b$, hoặc tăng $\mu$ bằng chính quy hóa. H3 chỉ đúng với mô hình lồi mạnh như hồi quy logistic có chính quy hóa; với mạng sâu, chúng ta thay $d_k$ bằng chuẩn gradient ở Mục 6.
 
 ### 5.6 Lịch giảm bước
 
@@ -2390,7 +2390,7 @@ $$
 \tag{6.1}
 $$
 
-Tiến bộ mỗi bước là bình phương chuẩn gradient, không chứa $x^*$. Độ cao ban đầu $\Delta_0$ chặn tổng các mức hạ, nên chuẩn gradient không thể giữ ở mức lớn qua mọi bước. Một điểm có $\nabla f=0$ là điểm dừng (Định nghĩa 05.7); với $F$ của ví dụ xuyên suốt D, các điểm dừng là $-1$, $0$, $1$, trong đó $0$ là cực đại địa phương.
+Tiến bộ mỗi bước là bình phương chuẩn gradient, không chứa $x^*$. Độ cao ban đầu $\Delta_0$ chặn tổng các mức hạ, nên chuẩn gradient không thể giữ ở mức lớn qua mọi bước. Một điểm có $\nabla f=0$ là điểm dừng (Định nghĩa 06b.7); với $F$ của ví dụ xuyên suốt D, các điểm dừng là $-1$, $0$, $1$, trong đó $0$ là cực đại địa phương.
 
 Bất đẳng thức (6.1) chỉ cần H2 trên đoạn nối $x_k$ với $x_{k+1}$, vì chứng minh của Bổ đề 04.18 lấy tích phân dọc đoạn đó. Ví dụ sau dùng điều này cho một hàm không thỏa H2 trên toàn $\mathbb R$.
 
@@ -2490,7 +2490,7 @@ Mất mát logistic của Ví dụ 05b.4 có $\phi'(s_k)\to0$ nhưng không có 
 
 ### 6.4 SGD trên hàm không lồi
 
-Khi thay $\nabla f(x_k)$ bằng một ước lượng không chệch có phương sai không vượt $\sigma^2$, mức hạ kỳ vọng mỗi bước của $\Delta_k$ bớt đi một số hạng nhiễu. Định lý sau là Định lý 05b.41 với số hạng nhiễu đó, và là dạng dãy của Mệnh đề 05.14.
+Khi thay $\nabla f(x_k)$ bằng một ước lượng không chệch có phương sai không vượt $\sigma^2$, mức hạ kỳ vọng mỗi bước của $\Delta_k$ bớt đi một số hạng nhiễu. Định lý sau là Định lý 05b.41 với số hạng nhiễu đó, và là dạng dãy của Mệnh đề 06b.14.
 
 ::: theorem Định lý 05b.43 (SGD trên hàm không lồi; T8)
 **Giả thiết.** $f$ thỏa H0 và H2 với hằng số $L$; $x_0$ tất định, $\Delta_0=f(x_0)-f_{\inf}$. Dãy của Thuật toán 05b.2 thỏa H6 và H6b, với bước hằng $0<\eta\le\tfrac1L$.
@@ -2752,7 +2752,7 @@ $x_1=x_0-\tfrac13(6,0)=(0,5)$, $f(x_1)=0$; dãy dừng tại $(0,5)$ sau một b
 $\Delta_0=f(2,5)=6$; sau một bước $\Delta_1=0$. Hàm này là trường hợp của Ví dụ 05b.5 với hằng số khác: H7 đúng ở nơi H3 sai.
 :::
 
-Trên hàm không lồi, Hệ quả 05b.10 và hàm thế $d_k^2$ mất nghĩa (Ví dụ 05b.23). Do Bổ đề 05b.6 không cần tính lồi, nó cho bất đẳng thức một bước (6.1) theo hàm thế $\Delta_k$, và tổng lồng cho Định lý 05b.41. Thêm Mệnh đề 05.14 dạng lịch sử (Bổ đề 05b.32, Mệnh đề 05b.30), ta được Định lý 05b.43 và Hệ quả 05b.44, bảo đảm dùng được cho mạng nơ ron. Định nghĩa 05b.45 và Mệnh đề 05b.46 tách bất đẳng thức của Bổ đề 05b.8(b) thành một giả thiết, rồi Bổ đề 05b.35 cho Định lý 05b.47, điều kiện để có lại tốc độ tuyến tính.
+Trên hàm không lồi, Hệ quả 05b.10 và hàm thế $d_k^2$ mất nghĩa (Ví dụ 05b.23). Do Bổ đề 05b.6 không cần tính lồi, nó cho bất đẳng thức một bước (6.1) theo hàm thế $\Delta_k$, và tổng lồng cho Định lý 05b.41. Thêm Mệnh đề 06b.14 dạng lịch sử (Bổ đề 05b.32, Mệnh đề 05b.30), ta được Định lý 05b.43 và Hệ quả 05b.44, bảo đảm dùng được cho mạng nơ ron. Định nghĩa 05b.45 và Mệnh đề 05b.46 tách bất đẳng thức của Bổ đề 05b.8(b) thành một giả thiết, rồi Bổ đề 05b.35 cho Định lý 05b.47, điều kiện để có lại tốc độ tuyến tính.
 
 Như vậy, hai bảo đảm theo chuẩn gradient chỉ cần H0 và H2, cùng H6 và H6b cho SGD, nhưng chỉ kết luận về điểm dừng, không phân biệt cực tiểu với điểm yên ngựa. Bảo đảm tuyến tính cần thêm điều kiện PL (H7) trên toàn không gian.
 
@@ -2804,7 +2804,7 @@ Hình trên đặt cạnh nhau hai so sánh đã tính. Bên trái, trên ví d�
 ::: remark Nhận xét 05b.48 (Phạm vi và bốn câu hỏi trước khi áp dụng một định lý)
 **Trong phạm vi.** Phương pháp bậc nhất, không ràng buộc, bước hằng hoặc theo lịch chọn trước; riêng Định lý 05b.20 dùng quay lui. Các định lý SGD giả sử lô được rút có hoàn lại và bước không phụ thuộc lô.
 
-**Ngoài phạm vi.** Momentum, Nesterov (Bài 05); Adam và các phương pháp bậc hai xấp xỉ (Bài 06); Newton (Bài 04); giảm phương sai (variance reduction); bài toán có ràng buộc. Các phương pháp này có lý thuyết hội tụ riêng.
+**Ngoài phạm vi.** Momentum, Nesterov (Bài 06b); Adam và các phương pháp bậc hai xấp xỉ (Bài 06c); Newton (Bài 04); giảm phương sai (variance reduction); bài toán có ràng buộc. Các phương pháp này có lý thuyết hội tụ riêng.
 
 **Bốn câu hỏi.** Trước khi dùng một định lý, cần trả lời:
 
@@ -2890,7 +2890,7 @@ Hessian $\tfrac1N\sum_ic_ic_i^T=\tfrac14\begin{pmatrix}3&0\\0&3\end{pmatrix}=0{,
 
 **Kiểm tra giả thiết.**
 
-1. H2, H3 đúng với $L=\mu=0{,}75$; H6 đúng theo Định lý 05.11.
+1. H2, H3 đúng với $L=\mu=0{,}75$; H6 đúng theo Định lý 06b.11.
 2. H6b không đúng toàn cục. Với $\zeta=x-x^*$, gradient mẫu trừ gradient đầy đủ là $(c_ic_i^T-0{,}75I)\zeta+\rho_ic_i$, nên phương sai $\tfrac1N\sum_i\lVert(c_ic_i^T-0{,}75I)\zeta+\rho_ic_i\rVert^2$ là một hàm bậc hai lồi của $x$, tăng không bị chặn.
 3. Dãy ở lại một bát giác. Gọi $\mathcal O$ là bát giác có đỉnh $(-1,1)$, $(0,0)$, $(1,0)$, $(\tfrac32,\tfrac12)$, $(\tfrac32,2)$, $(1,3)$, $(-\tfrac12,\tfrac52)$, $(-1,2)$, tức tập các $x$ thỏa tám bất đẳng thức
 
@@ -2985,7 +2985,7 @@ Lần B từ $x_0=(1;\,-0{,}8)$, $\Delta_0=\tfrac12(-0{,}8-1)^2=1{,}62$, cận $
 
 Cả hai lần chạy thỏa cận của Định lý 05b.41. Lần A hội tụ về điểm yên ngựa $0$ với $f\to\tfrac12$; lần B rời vùng yên ngựa và hội tụ về $(1{,}0547;\,0{,}9482)$ trên hyperbol, với $f(x_{20})\approx6{,}2\cdot10^{-5}$. Định lý không phân biệt hai kết cục: nó chỉ bảo đảm chuẩn gradient nhỏ, và chuẩn gradient tại điểm yên ngựa bằng $0$.
 
-Lần A khởi tạo trên đường chéo $[x]_1=-[x]_2$, một tập bất biến của phép lặp, nên dãy không rời đường chéo; hiện tượng cùng loại với đối xứng giữa hai đơn vị ẩn ở Định lý 05.28. Một khởi tạo theo phân phối liên tục rơi vào đường chéo với xác suất $0$, vì đường chéo là một tập có diện tích $0$ trong $\mathbb R^2$ (lập luận của Mệnh đề 05.31).
+Lần A khởi tạo trên đường chéo $[x]_1=-[x]_2$, một tập bất biến của phép lặp, nên dãy không rời đường chéo; hiện tượng cùng loại với đối xứng giữa hai đơn vị ẩn ở Định lý 06b.28. Một khởi tạo theo phân phối liên tục rơi vào đường chéo với xác suất $0$, vì đường chéo là một tập có diện tích $0$ trong $\mathbb R^2$ (lập luận của Mệnh đề 06b.31).
 
 **Kiểm tra lại.**
 
@@ -3003,7 +3003,7 @@ Với mạng có hàng triệu tham số, không tính được $L$ trên một 
 **Ứng dụng.** Các khái niệm của chương xuất hiện trong học máy qua các ứng dụng sau:
 
 - **Bước học từ hằng số trơn.** Với hồi quy tuyến tính và logistic theo cả tập, bước $\tfrac1L$ với $L$ tính từ dữ liệu được bảo đảm làm mất mát giảm (Bổ đề 05b.6); khi có thêm lồi mạnh, chẳng hạn nhờ chính quy hóa, nó cho tốc độ tuyến tính (Định lý 05b.18, Tình huống 05b.1).
-- **Mất mát không khả vi.** Máy vectơ tựa với mất mát bản lề và hồi quy độ lệch tuyệt đối có thể giải bằng phương pháp dưới gradient với trung bình lặp (Định lý 05b.26); với bước hằng, trung bình lặp trùng với trung bình Polyak của Bài 06, sai khác một chỉ số (Bài 06 bỏ điểm đầu).
+- **Mất mát không khả vi.** Máy vectơ tựa với mất mát bản lề và hồi quy độ lệch tuyệt đối có thể giải bằng phương pháp dưới gradient với trung bình lặp (Định lý 05b.26); với bước hằng, trung bình lặp trùng với trung bình Polyak của Bài 06c, sai khác một chỉ số (Bài 06c bỏ điểm đầu).
 - **Lịch bước học và kích thước lô.** Lịch giảm theo bậc thang (step decay) của các thư viện học sâu có cùng cấu trúc với Hệ quả 05b.38, nhưng độ dài bậc chọn theo kinh nghiệm; mức nhiễu nền (5.4) tỉ lệ với $\operatorname{tr}\Sigma/b$, và cách chọn $b$ dưới ngân sách cố định được Bài 05c phân tích.
 - **Tiêu chí dừng.** Chuẩn gradient chứng nhận sai số giá trị và khoảng cách khi mất mát lồi mạnh (chuỗi (2.5)); với mạng sâu nó chỉ chứng nhận điểm dừng (Định lý 05b.43, Tình huống 05b.3).
 
@@ -3057,7 +3057,7 @@ $$
 5. Bước chọn trước, không phụ thuộc lô được rút, và $x_0$ tất định.
 6. Đầu ra được chặn: điểm cuối, điểm lặp tốt nhất hay trung bình lặp.
 
-**Giới hạn còn lại và bài giảng tiếp theo.** Đến đây, hằng số $\sigma^2$ của H6b mới được giả thiết, chưa được ước lượng. Trong Bài 05c, chúng ta tính phương sai của gradient lô theo kích thước lô, so sánh rút có và không hoàn lại, và lập các bất đẳng thức tập trung (Chebyshev, Hoeffding) chặt hơn Markov. Các phương pháp có momentum (Bài 05), bước thích nghi theo tọa độ như Adam, và phương pháp bậc hai xấp xỉ nằm ngoài các định lý của chương. Hai nhóm phương pháp sau được trình bày ở Bài 06, nơi trung bình lặp của Định lý 05b.26 được dùng lại dưới tên trung bình Polyak.
+**Giới hạn còn lại và bài giảng tiếp theo.** Đến đây, hằng số $\sigma^2$ của H6b mới được giả thiết, chưa được ước lượng. Trong Bài 05c, chúng ta tính phương sai của gradient lô theo kích thước lô, so sánh rút có và không hoàn lại, và lập các bất đẳng thức tập trung (Chebyshev, Hoeffding) chặt hơn Markov. Các phương pháp có momentum (Bài 06b), bước thích nghi theo tọa độ như Adam, và phương pháp bậc hai xấp xỉ nằm ngoài các định lý của chương. Hai nhóm phương pháp sau được trình bày ở Bài 06c, nơi trung bình lặp của Định lý 05b.26 được dùng lại dưới tên trung bình Polyak.
 
 
 ## Bài tập củng cố
@@ -3223,6 +3223,6 @@ Vế phải của Hệ quả 05b.38(b) bằng khoảng $385$, không nhỏ hơn 
 - Herbert Robbins và Sutton Monro (1951), "A Stochastic Approximation Method", *Annals of Mathematical Statistics* 22(3), 400–407. Nguồn của điều kiện Robbins–Monro.
 - Ian Goodfellow, Yoshua Bengio và Aaron Courville (2016), *Deep Learning*, MIT Press, mục 8.3.1 (tr. 294–296: điều kiện bước của SGD, tốc độ $O(1/\sqrt k)$ và $O(1/k)$, nhận xét của Bottou và Bousquet về chi phí).
 - Yi-Shuai Niu (2024), *Optimization Methods for Machine Learning*, bài giảng BIMSA, Định lý 26–27 (tr. 96–98: hạ gradient trên hàm lồi và lồi mạnh) và Định lý 29 (tr. 114: SGD với hàm lồi mạnh).
-- Ghi chú Bài 01 (Định nghĩa 01.10, 01.22, 01.39; Định lý 01.26), Bài 04 (Mục 2.6: Bổ đề 04.18, 04.20, 04.21, 04.23; Định lý 04.22, 04.24, 04.26; Mệnh đề 04.25), Bài 05 (Mục 2: Định lý 05.11, Hệ quả 05.12, Mệnh đề 05.14, Ví dụ 05.14) và Bài 05c (kỳ vọng có điều kiện, bất đẳng thức tập trung) là tiên quyết trực tiếp.
+- Ghi chú Bài 01 (Định nghĩa 01.10, 01.22, 01.39; Định lý 01.26), Bài 04 (Mục 2.6: Bổ đề 04.18, 04.20, 04.21, 04.23; Định lý 04.22, 04.24, 04.26; Mệnh đề 04.25), Bài 06b (Mục 2: Định lý 06b.11, Hệ quả 06b.12, Mệnh đề 06b.14, Ví dụ 06b.14) và Bài 05c (kỳ vọng có điều kiện, bất đẳng thức tập trung) là tiên quyết trực tiếp.
 
 Các định lý của Mục 3, 5 và 6 được chứng minh trực tiếp từ các bổ đề của Mục 2 và 3; hằng số trong các phát biểu là hằng số của chứng minh trong ghi chú, có thể khác hằng số của nguồn. Mọi ví dụ số được tính từ công thức đã nêu; các con số có nhãn "mô phỏng" là ước lượng Monte Carlo với hạt giống ghi trong ví dụ.

@@ -1,4 +1,4 @@
-# Bài tập Bài giảng 06. Các phương pháp tối ưu trong học sâu
+# Bài tập Bài giảng 06c. Các phương pháp tối ưu trong học sâu
 
 Các bài tập dùng cùng ký hiệu với ghi chú bài giảng. Vòng $t\ge1$ lấy gradient tại $\theta_{t-1}$ rồi cập nhật $\theta_t$. Phép bình phương, căn và chia vector trong các thuật toán thích ứng thực hiện theo tọa độ. Ký hiệu đối xứng xác định dương (SPD) yêu cầu ma trận đối xứng và dạng toàn phương dương với mọi vector khác $0$.
 

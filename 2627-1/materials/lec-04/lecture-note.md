@@ -599,7 +599,7 @@ Ghép các bước tính gradient, đặt $d=-g$, quay lui và cập nhật, ta 
 
 Tiêu chí dừng $\lVert g\rVert_2\le\varepsilon_g$ được kiểm tra trước khi tính hướng, nên nếu điểm đầu đã đạt dung sai thì thuật toán dừng mà không cập nhật. Tiêu chí này đo mức vi phạm của (1.1): theo Mệnh đề 04.2(a), với $f$ lồi, điểm có $\nabla f=0$ là nghiệm. Chuẩn gradient nhỏ chưa cho cận của $f(x)-f^*$; cận đó cần giả thiết về độ cong và được chứng minh ở Mục 2.6 (Mệnh đề 04.25(b)).
 
-**Trong học máy.** Thuật toán 04.1 là hạ gradient toàn lô: mỗi lượt tính gradient của mất mát trên toàn bộ dữ liệu huấn luyện. Độ dài bước $t$ là tốc độ học (learning rate); quay lui chọn nó tự động, với điều kiện giá trị mất mát tính được chính xác tại mỗi điểm thử. Khi dữ liệu lớn, Bài 05 thay gradient đầy đủ bằng gradient trên một lô nhỏ mẫu; giá trị mất mát khi đó chỉ là ước lượng, nên phép kiểm tra (2.2) không áp dụng nguyên dạng và tốc độ học thường được chọn theo lịch cố định.
+**Trong học máy.** Thuật toán 04.1 là hạ gradient toàn lô: mỗi lượt tính gradient của mất mát trên toàn bộ dữ liệu huấn luyện. Độ dài bước $t$ là tốc độ học (learning rate); quay lui chọn nó tự động, với điều kiện giá trị mất mát tính được chính xác tại mỗi điểm thử. Khi dữ liệu lớn, Bài 06 thay gradient đầy đủ bằng gradient trên một lô nhỏ mẫu; giá trị mất mát khi đó chỉ là ước lượng, nên phép kiểm tra (2.2) không áp dụng nguyên dạng và tốc độ học thường được chọn theo lịch cố định.
 
 ### 2.4 Độ cong không đồng đều
 
@@ -2923,7 +2923,7 @@ $w^*=(\tfrac34,\tfrac14)^T$, $\nu^*=\tfrac12$. $\nabla J(w^*)=M^T(Mw^*-y)+w^*$ v
 
 Bảng các phương pháp gom Thuật toán 04.1–04.4 theo hệ của bước, quy tắc nhận bước và tiêu chí dừng. Dựa trên Mệnh đề 04.25, Định lý 04.50, Hệ quả 04.51, 04.52 và Mệnh đề 04.2, Mệnh đề 04.55 cho bảng chứng nhận của các tiêu chí dừng. Ví dụ 04.25 áp dụng khung này cho hồi quy ridge có ràng buộc, qua đó cho cách lập hệ (5.1) của bước từ gradient và Hessian của mất mát trong một mô hình học có ràng buộc đẳng thức.
 
-Còn lại hai thiếu hụt. Một tiêu chí dừng chỉ chứng nhận sai số khi giả thiết tương ứng đã được kiểm tra, và mọi kết quả cần mất mát lồi. Ba tình huống dưới đây áp dụng khung vào hai mô hình lồi và cho thấy điều xảy ra với một mô hình không lồi. Giới hạn về tính lồi được chuyển cho Bài 05b, còn Bài 05 xử lý gradient trên nhóm nhỏ mẫu.
+Còn lại hai thiếu hụt. Một tiêu chí dừng chỉ chứng nhận sai số khi giả thiết tương ứng đã được kiểm tra, và mọi kết quả cần mất mát lồi. Ba tình huống dưới đây áp dụng khung vào hai mô hình lồi và cho thấy điều xảy ra với một mô hình không lồi. Giới hạn về tính lồi được chuyển cho Bài 05b, còn Bài 06 xử lý gradient trên nhóm nhỏ mẫu.
 
 ## Tình huống áp dụng và ứng dụng
 
@@ -3145,7 +3145,7 @@ Tại $(0{,}5;\,-0{,}5)$: $ab-1=-1{,}25$, $f=\tfrac12\cdot1{,}5625=0{,}78125$, $
 
 **Giới hạn.**
 
-Mạng thật có hàng triệu tham số và nhiều lớp phi tuyến, nhưng điểm yên ngựa và Hessian không xác định dương vẫn xuất hiện (Goodfellow, Bengio và Courville 2016, mục 8.2.3, tr. 285–288). Bài 05 xét khởi tạo ngẫu nhiên để phá đối xứng.
+Mạng thật có hàng triệu tham số và nhiều lớp phi tuyến, nhưng điểm yên ngựa và Hessian không xác định dương vẫn xuất hiện (Goodfellow, Bengio và Courville 2016, mục 8.2.3, tr. 285–288). Bài 06b xét khởi tạo ngẫu nhiên để phá đối xứng.
 
 **Dẫn ngược lý thuyết.**
 
@@ -3201,7 +3201,7 @@ Dòng đầu: hệ của bước, điều kiện Armijo, cận trên bậc hai. 
 
 **Giới hạn còn lại và bài sau.** Trong chương này, chúng ta đã xây dựng các phương pháp lặp cho hai lớp bài toán lồi của Định nghĩa 04.1 từ hệ KKT của Bài 03. Ba giới hạn còn lại được xử lý ở các bài sau.
 
-1. Mọi phương pháp dùng gradient trên toàn bộ dữ liệu. Bài 05 (các phương pháp tối ưu trong huấn luyện mô hình học sâu) dùng gradient trên nhóm nhỏ mẫu cùng momentum và Nesterov, khi mất mát chỉ còn là ước lượng và quay lui Armijo không áp dụng nguyên dạng.
+1. Mọi phương pháp dùng gradient trên toàn bộ dữ liệu. Bài 06 (mở rộng mô hình và dữ liệu) dùng gradient trên nhóm nhỏ mẫu, khi mất mát chỉ còn là ước lượng và quay lui Armijo không áp dụng nguyên dạng; Bài 06b bổ sung momentum và Nesterov.
 2. Mất mát của mạng sâu không lồi, nên $\nabla f=0$ chỉ là điều kiện cần (Tình huống 04.3). Bài 05b (hội tụ của hạ gradient và hạ gradient ngẫu nhiên) chứng minh các dạng hội tụ cho hàm không lồi và gradient ngẫu nhiên, kế thừa Bổ đề 04.20 và Định lý 04.22, 04.26.
 3. Ràng buộc bất đẳng thức chưa được xử lý; hàm chắn log của Mục 6 là điểm xuất phát của phương pháp điểm trong (Boyd và Vandenberghe 2004, chương 11), ngoài phạm vi học phần.
 

@@ -1,4 +1,4 @@
-# Bài tập Bài 05 — Các phương pháp tối ưu trong huấn luyện mô hình học sâu
+# Bài tập Bài 06b — Các phương pháp tối ưu trong huấn luyện mô hình học sâu
 
 Bộ bài tập gồm các nhiệm vụ nhận biết, tính toán, chứng minh và vận dụng vào học máy. Chuẩn đầu ra bài học (LLO) 11 liên quan mục tiêu và thách thức tối ưu; LLO12 liên quan gradient và cập nhật; LLO13 liên quan khởi tạo tham số. Các bài tập dùng kiến thức và giả thiết đã trình bày trong ghi chú bài giảng.
 

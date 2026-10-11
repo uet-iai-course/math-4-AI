@@ -1772,7 +1772,7 @@ So với Định lý 01.26, Định lý 01.30 cần thêm giả thiết khả vi
 
 **Trong học máy.** Hessian của hàm mất mát theo tham số mô tả độ cong của bề mặt mất mát. Với hồi quy tuyến tính, Hessian $2X^TX$ không phụ thuộc tham số, và Định lý 01.30 chứng nhận tính lồi bằng một phép kiểm tra trên dữ liệu.
 
-Với mạng nơ-ron, Hessian thường có giá trị riêng âm tại một số điểm, và Định lý 01.30(a) cho thấy mất mát không lồi. Tình huống 01.3 tính một Hessian như vậy. Trong Bài 06, chúng ta dùng độ cong này để xây dựng các phương pháp bậc hai.
+Với mạng nơ-ron, Hessian thường có giá trị riêng âm tại một số điểm, và Định lý 01.30(a) cho thấy mất mát không lồi. Tình huống 01.3 tính một Hessian như vậy. Trong Bài 06c, chúng ta dùng độ cong này để xây dựng các phương pháp bậc hai.
 
 ![Hai khung. Khung trái: đồ thị một hàm lồi một biến luôn nằm trên tiếp tuyến tại x, minh họa f(y) lớn hơn hoặc bằng f(x) cộng gradient của f tại x nhân (y − x). Khung phải: các đường mức elip của một hàm hai biến và một lát cắt theo hướng d; hàm một biến phi(t) trên lát cắt cong lên, minh họa d chuyển vị H(x) d lớn hơn hoặc bằng 0 với mọi d, tương đương H(x) nửa xác định dương.](img/lec-01/first-second-order-convexity.svg)
 

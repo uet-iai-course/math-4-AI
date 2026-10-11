@@ -13,7 +13,7 @@ Bản đầu ngày 2026-10-08; bản sửa cùng ngày theo cổng storyboard (G
 - **Phần liên tục.** Chỉ định nghĩa mật độ, ví dụ phân phối đều trên $[0,1]$, phát biểu phân phối Gauss; mọi chứng minh viết cho trường hợp rời rạc, kèm nhận xét rằng kết quả vẫn đúng cho biến có mật độ khi thay tổng bằng tích phân (quyết định 2).
 - **Mức trình bày.** Chứng minh đầy đủ: mọi kết quả có cột CM là "có" trong danh mục kết quả. Chỉ phát biểu: Định nghĩa D.5 (phần Gauss), Mệnh đề D.7, phiên bản có mật độ của các kết quả (Định nghĩa D.5, D.6), Bổ đề F.7, Nhận xét F.10 (định lý giới hạn trung tâm), Nhận xét G.6 (Bottou và Bousquet).
 - **Độ dài.** Ghi chú 11 000–13 800 từ, bài tập 3 500–4 500 từ, đếm như `wc -w` (quyết định 3). Ví dụ tùy chọn VD-09 (ở §F.6), VD-11 (ở §E.2) giữ trong ghi chú, mỗi ví dụ không quá một đoạn; VD-23 chuyển vào BT5.
-- **Thuật ngữ nhóm nhỏ.** Dùng "nhóm nhỏ (minibatch)" như Bài 05 và 05b; một câu ở §A.3 nêu rằng Bài 06 gọi cùng đối tượng là "lô nhỏ". Không sửa Bài 06 (quyết định 5).
+- **Thuật ngữ nhóm nhỏ.** Dùng "nhóm nhỏ (minibatch)" như Bài 05 và 05b; một câu ở §A.3 nêu rằng Bài 06c gọi cùng đối tượng là "lô nhỏ". Không sửa Bài 06 (quyết định 5).
 - **Ví dụ trò chơi.** VD-08 là phép tính kỳ vọng thuần, không bình luận cờ bạc; quy ước "nhận 10 gồm cả tiền đặt" ghi rõ.
 
 ### Quy ước mã và nhãn
@@ -82,7 +82,7 @@ Theo bảng A.4 của kế hoạch, quyết định 4 và quyết định của 
 | $N$ | số mẫu của tập dữ liệu | như Bài 05, 05b; Bài 06 dùng $n$ | §A.1 |
 | $b$ | cỡ nhóm nhỏ; không dùng $b$ cho cận khoảng | như Bài 05, 05b | §A.1 |
 | $I$, $I_1,\dots,I_b$ | chỉ số mẫu ngẫu nhiên | như Bài 05 | §B.4 |
-| $\theta$, $d$ | tham số, số chiều của tham số | Bài 05 ký hiệu số chiều tham số là $p$ (và $d$ là số chiều đặc trưng); 05c dùng $d$ vì $p$ đã là xác suất Bernoulli, với một câu đối chiếu ở §G.2 | §A.1, §G.2 |
+| $\theta$, $d$ | tham số, số chiều của tham số | Bài 06b ký hiệu số chiều tham số là $p$ (và $d$ là số chiều đặc trưng); 05c dùng $d$ vì $p$ đã là xác suất Bernoulli, với một câu đối chiếu ở §G.2 | §A.1, §G.2 |
 | $g_i(\theta)=\nabla\ell_i(\theta)$, $\widehat g$ | gradient một mẫu, gradient nhóm (trung bình) | như Bài 05; 05b viết $g_k$ | §A.1, §G.2 |
 | $\widetilde J=NJ$, $\widetilde g=b\,\widehat g$ | mất mát tổng, gradient nhóm dạng tổng | | §G.4 |
 | $\Sigma(\theta)$ | hiệp phương sai gradient một mẫu; $\operatorname{tr}\Sigma$ là phương sai tổng | như Bài 05 | §G.2 |
@@ -96,7 +96,7 @@ Theo bảng A.4 của kế hoạch, quyết định 4 và quyết định của 
 | $[m_i,M_i]$ | khoảng chứa $X_i$ trong Hoeffding | tránh $[a,b]$ vì $b$ là cỡ nhóm | §F.5 |
 | $\lambda\ge0$ | tham số Chernoff, phạm vi cục bộ trong F | theo Boyd–Vandenberghe §7.4.2 | §F.4 |
 | $\varepsilon$, $\delta$ | độ lệch cho phép, xác suất thất bại | | §F.1, §F.5 |
-| $\mathcal P$ | phân phối sinh dữ liệu | Bài 05 viết $P$; §A.3 ghi ánh xạ một lần | §A.3, §G.1 |
+| $\mathcal P$ | phân phối sinh dữ liệu | Bài 06b viết $P$; §A.3 ghi ánh xạ một lần | §A.3, §G.1 |
 | $\mathcal E$, $\mathcal E_{\rm app}$, $\mathcal E_{\rm est}$, $\mathcal E_{\rm opt}$ | sai số dư và ba thành phần theo Bottou và Bousquet | SNW ch. 13 | §G.6 |
 | $\mathcal N(\mu,s^2)$ | phân phối Gauss; tham số $s^2$ để không trùng $\sigma_1^2$ | | §D.3 |
 
@@ -125,8 +125,8 @@ Nêu ở §H.2, mỗi giới hạn kèm tiểu mục đã gặp nó:
 - các kết quả về một tham số cố định (G4); khi $\theta$ được chọn từ chính dữ liệu, tính không chệch đối với $R$ mất (Bài 05 đã nêu). §G.6 vượt G4 vì $\theta_k$ phụ thuộc các nhóm trước; điều kiện thay thế là nhóm ở bước $k$ được rút mới, độc lập với lịch sử, tương ứng H6 của Bài 05b;
 - lấy mẫu không hoàn lại theo lượt (epoch) làm các chỉ số phụ thuộc nhau (§E.6); với xáo trộn theo lượt, H6 không đúng khi điều kiện theo lịch sử trong lượt, và từ lượt thứ hai gradient nhóm là ước lượng chệch của $\nabla R$ (GBC tr. 280–281);
 - VD-20 giữ $\eta$ cố định cho mọi $b$;
-- trung bình Polyak của Bài 06: các điểm lặp phụ thuộc nhau (chuyển từ §E.5 sang §H.2 theo R19);
-- chuẩn hóa theo lô (Bài 06) làm mất tính tách theo mẫu của mất mát;
+- trung bình Polyak của Bài 06c: các điểm lặp phụ thuộc nhau (chuyển từ §E.5 sang §H.2 theo R19);
+- chuẩn hóa theo lô (Bài 06c) làm mất tính tách theo mẫu của mất mát;
 - phân phối đuôi nặng phá G2 (VD-09 và Nhận xét F.11 ở §F.6);
 - định lý giới hạn trung tâm là phát biểu giới hạn, không cho cận với $n$ hữu hạn (Nhận xét F.10);
 - VD-20 có ba hạn chế: $\eta$ giữ cố định, và bảng mô tả một hướng có độ cong nhỏ so với $1/\eta$ (đoạn khung R3: hướng có độ cong $0{,}1L_{\max}$ khi bước bị chặn bởi $1/L_{\max}$, $\kappa=10$; với $\eta=1$, GD giải ví dụ một chiều trong một bước); rút có hoàn lại; mô hình chi phí chỉ đếm gradient mẫu, bỏ qua tính song song của phần cứng khi $b$ chưa vượt mức song song (GBC tr. 279).
@@ -188,7 +188,7 @@ Mỗi tiểu mục ứng với một tiêu đề `###`; storyboard có đúng m�
 |---|---|---|---|
 | §A.1 | Gradient nhóm trên ví dụ ba quan sát | VD-00: $y=(-1,1,3)$, $g_i(1)=2,0,-2$, $\nabla J(1)=0$; gradient một mẫu lệch khỏi $\nabla J$; câu hỏi: một nhóm $b=32$ chỉ số rút có hoàn lại từ $N=1000$ mẫu chứa chỉ số lặp với xác suất bao nhiêu; lập luận 100 so với 10 000 mẫu (Goodfellow et al. §8.1.3) | 300–350 |
 | §A.2 | Các câu hỏi về trung bình mẫu | $\mu=\mathbb EX$ trong bốn tình huống (rủi ro, gradient, cử tri, tỉ lệ lỗi); $\bar X_n$ không hình thức; Q1–Q4b và phần trả lời từng câu | 200–250 |
-| §A.3 | Ký hiệu, giả thiết và vị trí của bài | bảng ký hiệu rút gọn; ánh xạ $\mathcal P$ (05c) với $P$ (Bài 05); $\Pr$ của Bài 00; "lô nhỏ" của Bài 06; G1–G4 bằng lời; câu về đề cương và LLO | 200–250 |
+| §A.3 | Ký hiệu, giả thiết và vị trí của bài | bảng ký hiệu rút gọn; ánh xạ $\mathcal P$ (05c) với $P$ (Bài 06b); $\Pr$ của Bài 00; "lô nhỏ" của Bài 06c; G1–G4 bằng lời; câu về đề cương và LLO | 200–250 |
 
 ### B. Không gian xác suất, biến cố và phép đếm
 

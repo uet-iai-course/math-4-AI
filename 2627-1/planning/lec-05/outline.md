@@ -28,9 +28,9 @@ Dàn bài này lập ngày 2026-10-11 theo thiết kế hai bài do người dù
 
 Điều còn giữ được khi rời khung tất định (KL04, chính xác hóa sau cổng storyboard Bài 06): tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ (bổ đề giảm); với SGD, bất đẳng thức một bước có thêm số hạng nhiễu và các tốc độ theo kỳ vọng (Bài 05b T5, T6, T8); điểm dừng (T7, T8). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước.
 
-**Tệp kế hoạch cũ.** Dàn bài và storyboard của deck hiện hành (`lecture-05-toi-uu-bac-nhat-cho-hoc-may.html`, 37 trang) được lưu tại `outline.old-2026-10-01.md` và `storyboard.old-2026-10-01.md` trong cùng thư mục; `review-log.md` và `review-log-lecture-note.md` giữ nguyên và được nối thêm vòng mới.
+**Tệp kế hoạch cũ.** Dàn bài và storyboard của deck Bài 05 cũ (từ ngày 2026-10-12 là Bài 06b, `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html`, 37 trang) nằm ở `planning/lec-06b/outline.md` và `storyboard.md` (trước đó là `outline.old-2026-10-01.md` và `storyboard.old-2026-10-01.md` trong thư mục này); nhật ký cũ nằm ở `planning/lec-06b/review-log.md` và `review-log-lecture-note.md`, nhật ký của kế hoạch mới ở `planning/lec-05/review-log.md`.
 
-**Trạng thái.** Deck, ghi chú bài giảng, bài tập và chín SVG của Bài 05 chưa được dựng lại theo dàn bài này. Deck hiện hành và `materials/lec-05/` không bị sửa trong vòng này; `index.html` vẫn liên kết deck hiện hành. Việc giữ deck hiện hành làm bài bổ trợ là quyết định của người dùng (D2).
+**Trạng thái.** Deck, ghi chú bài giảng, bài tập và chín SVG của Bài 05 chưa được dựng lại theo dàn bài này. Deck hiện hành và `materials/lec-05/` (từ ngày 2026-10-12 là Bài 06b, `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html` và `materials/lec-06b/`) không bị sửa trong vòng này; `index.html` vẫn liên kết deck hiện hành. Việc giữ deck hiện hành làm bài bổ trợ là quyết định của người dùng (D2).
 
 ## Đối chiếu LLO/CLO
 
@@ -57,9 +57,9 @@ Danh sách tính từ phía Bài 05; kế hoạch Bài 06 bổ sung phần thu�
 
 | Nội dung đề cương (Goodfellow et al., ch. 8) | LLO | Gợi ý nơi đặt |
 |---|---|---|
-| §8.3.2–8.3.3 momentum, Nesterov | LLO12 | Bài bổ trợ mới "06b" tái dùng mạch C của deck Bài 05 hiện hành (`lecture-05-toi-uu-bac-nhat-cho-hoc-may.html`, C01–C08), đã kiểm định |
+| §8.3.2–8.3.3 momentum, Nesterov | LLO12 | Bài bổ trợ 06b (deck Bài 05 cũ, `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html`, mạch C, C01–C08), đã kiểm định |
 | §8.4 chiến lược khởi tạo | LLO13 | B1/B2 của Bài 06 có thể nêu phá đối xứng; phần thang Glorot tái dùng mạch D của deck Bài 05 hiện hành trong "06b" |
-| §8.5 AdaGrad, RMSProp, Adam | LLO14 | "06b" tái dùng các mạch tương ứng của deck Bài 06 hiện hành (`lecture-06-toi-uu-mang-sau.html`) |
+| §8.5 AdaGrad, RMSProp, Adam | LLO14 | Bài bổ trợ 06c (deck Bài 06 cũ, `lecture-06c-toi-uu-mang-sau.html`), các mạch tương ứng |
 | §8.6 gradient liên hợp, BFGS | LLO15 (phần còn lại) | "06b" tái dùng deck Bài 06 hiện hành; trong Bài 05 mới chỉ có một nhận xét ở ghi chú CP07 rằng các phương pháp này giảm chi phí $d^3$ của Newton |
 | §8.7 chuẩn hóa theo lô, hạ theo tọa độ, trung bình Polyak, tiền huấn luyện, phương pháp liên tục, curriculum | LLO16 | "06b"; trung bình lặp có trọng số đã có ở Bài 05b (D03, T3, T4) |
 | §8.2.2–8.2.5 nhiều cực tiểu, yên ngựa, vách dốc, độ sâu | LLO11 (phần còn lại) | B2 của Bài 06 mới |
@@ -969,7 +969,7 @@ Cột "Nhãn trên trang" là nhãn hiển thị trên mặt trang; mã KQ chỉ
 | Mã | Nội dung | Phương án đang dùng trong dàn bài | Trạng thái |
 |---|---|---|---|
 | D1 | Phụ đề. Phụ đề gốc "From convex regression to the limits of deterministic optimization" dịch sát sẽ thành dạng "Từ … đến …", bị quy tắc tiêu đề cấm | "Hồi quy lồi và giới hạn của tối ưu tất định", tạm dùng theo điểm hòa giải 7 | mở |
-| D2 | Deck và học liệu Bài 05 hiện hành (`lecture-05-toi-uu-bac-nhat-cho-hoc-may.html`, `materials/lec-05/`, `img/lec-05/`) đang được `index.html` liên kết. Phương án: (a) đổi tên thành bài bổ trợ (ví dụ "06b") và giữ để phủ LLO12–LLO13; (b) lưu trữ, gỡ khỏi chỉ mục; (c) xóa | Kế hoạch đề xuất (a), cùng với deck Bài 06 hiện hành cho LLO14–LLO16; hình mới đặt vào `img/lec-05/` với tiền tố `hq-`, `lg-`, `cp-`, `kl-`. Vòng này không đụng tới deck và học liệu hiện hành (điểm hòa giải 9) | mở |
+| D2 | Deck và học liệu Bài 05 cũ (từ ngày 2026-10-12 là `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html`, `materials/lec-06b/`, `img/lec-06b/`) đang được `index.html` liên kết. Phương án: (a) đổi tên thành bài bổ trợ (ví dụ "06b") và giữ để phủ LLO12–LLO13; (b) lưu trữ, gỡ khỏi chỉ mục; (c) xóa | Kế hoạch đề xuất (a), cùng với deck Bài 06 hiện hành cho LLO14–LLO16; hình mới đặt vào `img/lec-05/` với tiền tố `hq-`, `lg-`, `cp-`, `kl-`. Vòng này không đụng tới deck và học liệu hiện hành (điểm hòa giải 9) | mở |
 | D3 | LLO không được phủ (mục Nội dung đề cương không còn) | Điều phối viên trình bảng cho người dùng | mở |
 | D4 | Ký hiệu hệ số chặn | Gộp hệ số chặn vào $w$; không dùng $b$ (điểm hòa giải 1, đã thống nhất với Bài 06) | mở, chờ người dùng xác nhận |
 | D5 | "Hạ gradient" hay "giảm gradient" (Bài 04 và deck Bài 06 cũ viết "giảm gradient"; Bài 05 cũ, 05b, 05c viết "hạ gradient") | "hạ gradient" ở cả hai bài (điểm hòa giải 6) | mở, chờ người dùng xác nhận |

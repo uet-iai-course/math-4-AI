@@ -2625,7 +2625,7 @@ Dòng đầu là hàm Lagrange, hàm đối ngẫu và đối ngẫu yếu; dòn
 
 **Giới hạn còn lại và bài sau.** Hệ KKT của chương được giải trực tiếp theo từng nhánh, khả thi khi ít ràng buộc và khi hệ dừng tuyến tính.
 
-Trong Bài 04 (tối ưu không ràng buộc và ràng buộc đẳng thức), chúng ta xây dựng phương pháp Newton cho bài toán có đẳng thức khi không có công thức đóng, áp dụng cho loại hệ tuyến tính như Ví dụ 03.18(b). Bài 05 (phương pháp bậc nhất cho học máy) dành cho các bài toán không ràng buộc hoặc có phạt với số tham số rất lớn, nơi giải trực tiếp hệ điều kiện tối ưu không khả thi.
+Trong Bài 04 (tối ưu không ràng buộc và ràng buộc đẳng thức), chúng ta xây dựng phương pháp Newton cho bài toán có đẳng thức khi không có công thức đóng, áp dụng cho loại hệ tuyến tính như Ví dụ 03.18(b). Bài 05 (không gian đặc trưng nhiều chiều) dành cho các bài toán không ràng buộc hoặc có phạt với số tham số rất lớn, nơi giải trực tiếp hệ điều kiện tối ưu không khả thi.
 
 ## Bài tập củng cố
 

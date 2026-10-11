@@ -45,9 +45,9 @@ Ký hiệu hệ số chặn (điểm hòa giải 1): Bài 05 gộp hệ số ch�
 
 ### 1.3. Tệp lưu trữ và trạng thái
 
-- `outline.old-2026-10-02.md` và `storyboard.old-2026-10-02.md` (đổi tên bằng `git mv` ngày 2026-10-11) là kế hoạch của deck hiện hành `lecture-06-toi-uu-mang-sau.html` (“Các phương pháp tối ưu trong học sâu”, 45 trang, 7 mạch). Hai tệp được giữ để truy nguyên và làm đầu vào cho quyết định về bài bổ trợ (Q2).
+- `outline.old-2026-10-02.md` và `storyboard.old-2026-10-02.md` (đổi tên bằng `git mv` ngày 2026-10-11) là kế hoạch của deck Bài 06 cũ, từ ngày 2026-10-12 là Bài 06c (bổ trợ) `lecture-06c-toi-uu-mang-sau.html` (“Các phương pháp tối ưu trong học sâu”, 45 trang, 7 mạch); hai tệp nay là `planning/lec-06c/outline.md` và `storyboard.md`. Hai tệp được giữ để truy nguyên và làm đầu vào cho quyết định về bài bổ trợ (Q2).
 - `review-log.md` giữ nguyên; vòng lập lại kế hoạch được nối vào cuối tệp. `review-log-lecture-note.md` giữ nguyên.
-- Deck, ghi chú bài giảng và bài tập Bài 06 chưa được dựng lại theo kế hoạch này. Deck hiện hành và `materials/lec-06/` vẫn được `index.html` liên kết và không bị sửa trong vòng này (điểm hòa giải 9).
+- Deck, ghi chú bài giảng và bài tập Bài 06 chưa được dựng lại theo kế hoạch này. Deck cũ và học liệu cũ (từ ngày 2026-10-12 là `lecture-06c-toi-uu-mang-sau.html` và `materials/lec-06c/`) vẫn được `index.html` liên kết và không bị sửa trong vòng này (điểm hòa giải 9).
 
 ### 1.4. Điều chỉnh so với kế hoạch đã duyệt
 
@@ -604,7 +604,7 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 - **Điểm trung tâm:** Dừng sớm chọn tham số có lỗi xác thực nhỏ nhất; đây là một phần của phương pháp, không phải dấu hiệu chưa hội tụ.
 - **Mặt trang:** **Trực quan.** Hình đường mất mát huấn luyện và xác thực theo vòng lặp (định tính): mất mát huấn luyện giảm liên tục, mất mát xác thực đạt đáy rồi tăng. **Quy tắc.** Đánh giá $\widehat R$ trên tập xác thực mỗi $s$ bước; lưu $\theta$ tốt nhất; dừng khi $K_{\text{stop}}$ lần đánh giá liên tiếp không cải thiện; trả về $\theta$ đã lưu.
 - **Ghi chú diễn giả:** Tập xác thực và tập kiểm thử đã được định nghĩa ở Bài 05, phần hồi quy nhiều chiều (tập xác thực chọn $d$, $\lambda$, bước dừng; tập kiểm thử báo cáo $R$); trang này chỉ dẫn lại, không định nghĩa lại. Tập xác thực ước lượng $R$ không chệch tại $\theta$ cố định (Bài 05c, Định lý G.2), lệch lạc quan sau khi đã dùng để chọn; tập kiểm thử giữ riêng. Bài 05 đã có quan sát số về dừng sớm trên dữ liệu hồi quy nhiều chiều. Tham số trả về được chọn theo $R$ ước lượng, không phải dãy lặp mà T8 bảo đảm (F04). Đường trong hình là định tính.
-- **Hình:** dùng lại `img/lec-05/risk-curves.svg` (định tính; sao chép vào `img/lec-06/` như F01).
+- **Hình:** dùng lại `img/lec-06b/risk-curves.svg` (định tính; sao chép vào `img/lec-06/` như F01).
 - **Liên kết:** E02 và F05 cho lý do; F06 cho quy tắc vận hành; F07 giải thích tác dụng của quy tắc trên mục tiêu bậc hai.
 - **Quyết định:** thêm (tách từ F05 cũ theo kiểm định storyboard); quy tắc vận hành và phép so sánh định lượng là hai luận điểm.
 - **Hành trình:** KN9 trực quan + hình thức (quy tắc). **LLO/CLO:** LLO11; CLO1, CLO2. **Thời lượng:** 0,03 + 0,00.
@@ -782,7 +782,7 @@ Hình mới đặt ở `2627-1/img/lec-06/`. Thư mục này đang chứa 15 SVG
 | `early-stopping-shrinkage.svg` | F07 | Tỉ lệ giữ theo $k$ cho ba trị riêng $\alpha$, mức chính quy hóa nét đứt | 8.7 |
 | `budget-bounds.svg` (tùy chọn) | F05 | Cận GD và SGD theo ngân sách, log–log, $n=10^9$ | 8.6 |
 
-Dùng lại (không vẽ lại): `img/lec-05b/vda-sgd-bound-vs-exact.svg` (F01, dữ liệu Ví dụ A, ghi rõ trên chú thích), `img/lec-05b/step-halving-schedule.svg` (F02, tùy chọn), `img/lec-05b/rates-log-error.svg` (F04, tùy chọn), `img/lec-05/risk-curves.svg` (F06, định tính). Quyết định Q4 của điều phối viên (điểm hòa giải 8): ở giai đoạn dựng deck, sao chép các tệp được dùng vào `img/lec-06/` với cùng tên (đã kiểm: không trùng 15 tệp hiện có), ghi một dòng xuất xứ cho mỗi tệp trong `review-log.md`; storyboard ghi đường dẫn gốc.
+Dùng lại (không vẽ lại): `img/lec-05b/vda-sgd-bound-vs-exact.svg` (F01, dữ liệu Ví dụ A, ghi rõ trên chú thích), `img/lec-05b/step-halving-schedule.svg` (F02, tùy chọn), `img/lec-05b/rates-log-error.svg` (F04, tùy chọn), `img/lec-06b/risk-curves.svg` (F06, định tính). Quyết định Q4 của điều phối viên (điểm hòa giải 8): ở giai đoạn dựng deck, sao chép các tệp được dùng vào `img/lec-06/` với cùng tên (đã kiểm: không trùng 15 tệp hiện có), ghi một dòng xuất xứ cho mỗi tệp trong `review-log.md`; storyboard ghi đường dẫn gốc.
 
 Không vẽ: bảng chân trị, bảng chi phí, bảng sáu nhóm, bảng quyết định (HTML/KaTeX).
 
