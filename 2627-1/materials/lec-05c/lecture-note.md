@@ -336,9 +336,9 @@ Công thức (1.4) chính là công thức của bài toán sinh nhật với $3
 **Kiểm tra lại.** Với $b=2$, (1.4) cho $1-(1-\tfrac1N)=\tfrac1N$: chỉ số thứ hai trùng chỉ số thứ nhất với xác suất $\tfrac1N$.
 :::
 
-![Hai khung đồ thị. Khung trái: xác suất có hai người trùng ngày sinh theo số người n từ 0 đến 70, vượt 0,5 tại n = 23 với giá trị 0,507. Khung phải: xác suất lô b chỉ số rút có hoàn lại từ N = 1000 quan sát có chỉ số lặp, bằng 0,394 tại b = 32 và 0,873 tại b = 64.](img/lec-05c/birthday-and-batch-duplicates.svg)
+![Hai khung đồ thị. Khung trên: xác suất có hai người trùng ngày sinh theo số người n từ 0 đến 70, vượt 0,5 tại n = 23 với giá trị 0,507. Khung dưới: xác suất lô b chỉ số được rút có hoàn lại từ N = 1000 quan sát có chỉ số lặp, bằng 0,394 tại b = 32 và 0,873 tại b = 64.](img/lec-05c/birthday-and-batch-duplicates.svg)
 
-Hình trên minh họa cùng một hàm (1.4) ở hai khung, với $N=365$ và $N=1000$. Đường cong tăng nhanh ở đoạn đầu do số cặp vị trí $\binom b2$ tăng theo bình phương của $b$. Điểm đánh dấu $b=32$ ở khung phải ứng với số $0{,}394$ của Ví dụ 05c.4.
+Hình trên minh họa cùng một hàm (1.4) ở hai khung, với $N=365$ và $N=1000$. Đường cong tăng nhanh ở đoạn đầu do số cặp vị trí $\binom b2$ tăng theo bình phương của $b$. Điểm đánh dấu $b=32$ ở khung dưới ứng với số $0{,}394$ của Ví dụ 05c.4.
 
 **Trong học máy.** Các thư viện học sâu thường xáo trộn chỉ số theo một hoán vị ngẫu nhiên ở đầu mỗi lượt (epoch), tức một lần duyệt toàn bộ dữ liệu, rồi cắt hoán vị thành các lô liên tiếp (Goodfellow và cộng sự, 2016, mục 8.1.3, tr. 280–281). Mỗi lô khi đó được rút không hoàn lại và không có chỉ số lặp. Trong chương này, chúng ta dùng mô hình có hoàn lại vì công thức gọn hơn, và phần chênh lệch được tính ở Mục 4.6.
 
@@ -2446,9 +2446,9 @@ Câu hỏi "Kích thước lô" xuất phát từ nhận xét của Goodfellow v
 - $1{,}633$; $0{,}816$; $0{,}408$ với $b=1,4,16$, đúng bảng của Ví dụ 05.13;
 - $0{,}163$ với $b=100$ và $0{,}0163$ với $b=10\,000$.
 
-![Hai khung theo b trên thang logarit từ 1 đến 10 000. Khung trái: sai số chuẩn √(8/(3b)) giảm từ 1,63 tại b = 1 xuống 0,163 tại b = 100 và 0,0163 tại b = 10 000. Khung phải: chi phí tương đối b tăng tuyến tính. Chú thích: tăng b từ 1 lên 100 nhân chi phí với 100 và chia sai số chuẩn cho 10.](img/lec-05c/stderr-and-cost-vs-b.svg)
+![Hai khung theo b trên thang logarit từ 1 đến 10 000. Khung trên: sai số chuẩn √(8/(3b)) giảm từ 1,63 tại b = 1 xuống 0,163 tại b = 100 và 0,0163 tại b = 10 000. Khung dưới: chi phí tương đối b tăng tuyến tính. Chú thích: tăng b từ 1 lên 100 nhân chi phí với 100 và chia sai số chuẩn cho 10.](img/lec-05c/stderr-and-cost-vs-b.svg)
 
-Hai khung về sai số chuẩn và chi phí đặt cạnh nhau hai đại lượng theo $b$ trên thang logarit, trong đó sai số chuẩn có độ dốc $-\tfrac12$ còn chi phí có độ dốc $1$.
+Hai khung xếp trên dưới biểu diễn sai số chuẩn và chi phí theo cùng trục hoành $b$ trên thang logarit, trong đó sai số chuẩn có độ dốc $-\tfrac12$ còn chi phí có độ dốc $1$.
 
 Sai số của gradient lô phụ thuộc $b$ và $\Sigma(\theta)$, không phụ thuộc $N$. Ví dụ sau xét nhận xét này trong trường hợp cực đoan mà Goodfellow và cộng sự (2016, mục 8.1.3, tr. 278) nêu: dữ liệu gồm nhiều bản sao.
 
@@ -2565,9 +2565,9 @@ Công thức (6.6) tách sai số thành sai số của điểm đầu, co theo 
 **Kiểm tra lại.** Với $b=75$: $0{,}81^{40}\approx2{,}2\cdot10^{-4}$ và $\bar a_{75}=\tfrac8{4275}\approx0{,}00187$, nên $a_{40}\approx2{,}2\cdot10^{-4}\cdot0{,}998+0{,}00187\approx0{,}00209$.
 :::
 
-![Hai đường dạng chữ U của a_K theo b, thang logarit ở cả hai trục, K bằng phần nguyên của ngân sách chia b. Đường liền, ngân sách 3000: 0,140 tại b = 1, đáy 0,00209 tại b = 75, 0,00320 tại b = 100, 0,810 tại b = 3000 là một bước gradient đầy đủ. Đường đứt, ngân sách 300: 0,140 tại b = 1, đáy 0,0158 tại b = 10, 0,810 tại b = 300.](img/lec-05c/budget-u-curve.svg)
+![Hai đường dạng chữ U của a_K theo b, thang logarit ở cả hai trục, K bằng phần nguyên của ngân sách chia b. Đường liền, ngân sách 3000: 0,140 tại b = 1, điểm cực tiểu 0,00209 tại b = 75, 0,00320 tại b = 100, 0,810 tại b = 3000 là một bước gradient đầy đủ. Đường đứt, ngân sách 300: 0,140 tại b = 1, điểm cực tiểu 0,0158 tại b = 10, 0,810 tại b = 300.](img/lec-05c/budget-u-curve.svg)
 
-Hai đường chữ U ở trên biểu diễn hai cột cuối của bảng theo $b$ trên thang logarit. Nhánh trái của mỗi chữ U là mức nhiễu nền $\bar a_b$, một đường thẳng độ dốc $-1$, còn nhánh phải là số hạng $0{,}81^K$ tăng nhanh khi $K$ giảm. Đáy dịch sang trái khi ngân sách giảm, vì với ít bước hơn, sai số điểm đầu chiếm phần lớn.
+Hai đường chữ U ở trên biểu diễn hai cột cuối của bảng theo $b$ trên thang logarit. Nhánh trái của mỗi chữ U là mức nhiễu nền $\bar a_b$, một đường thẳng độ dốc $-1$, còn nhánh phải là số hạng $0{,}81^K$ tăng nhanh khi $K$ giảm. Điểm cực tiểu dịch sang trái khi ngân sách giảm, vì với ít bước hơn, sai số điểm đầu chiếm phần lớn.
 
 Ví dụ trên có ba hạn chế.
 
