@@ -273,3 +273,39 @@ Quyết định của điều phối viên:
 **Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (150); Ví dụ 02.27 vẫn rộng hơn khung vài điểm ảnh ở 390×844 như bản gốc. Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 33247.
 
 Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng: học cách hành văn, cách đặt vấn đề và cách dẫn dắt của giáo trình *Học máy thống kê* (`../SML-textbook-main.zip`) rồi chỉnh ghi chú Bài 01–07, 05b, 05c theo văn phong đó. Quy tắc và quyết định chung ghi ở nhật ký Bài 01 (mục cùng tên) và `style-guide.md` (scratchpad phiên). Phạm vi: `materials/lec-02/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt; giữ nguyên toán, công thức, `\tag`, số hiệu, 150 khối, hình, bảng, thuật ngữ, bài tập.
+
+Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium). Theo lời người dùng 2026-10-11, các tác tử sửa những tệp khác nhau được chạy song song; mỗi tệp chỉ có một tác tử ghi.
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-02/lecture-note.md | khoảng 200 đoạn; 5 tiêu đề `###` đổi từ nhãn khuôn; 6 kết mục thành văn xuôi; tóm tắt có đoạn kể; 33 308 → 34 507 từ | yêu cầu sửa |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 212 hunk đã rà; công thức và khối trùng khớp; 0 chặn, 1 nghiêm trọng, 9 trung bình, khoảng 20 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp dòng 1550, 1546, 201, 998, 2023 và câu mở Mục 3 |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | 57 thay thế, làm đủ 28 mục của `lec02-fixes.md`; 34 489 từ (+3,5 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | mở Mục 4 | "Ba lớp … không nhận ra được tính lồi của bài thiết kế" tạo tiền giả định sai: bài hộp không lồi theo biến ban đầu (Ví dụ 02.19) | đã sửa: "Bài thiết kế sau không lồi theo biến ban đầu, nên không thuộc ba lớp…" |
+| trung bình | kết Mục 3 | "không nhận ra bài có tích và tỷ số" thiếu tân ngữ, lặp với mở Mục 4 | đã sửa: tách câu |
+| trung bình | Mục 1.2 | "nên" đảo nhân quả ở Hệ quả 02.3 | đã sửa |
+| trung bình | Mục 3.2 | "nên" biến quy ước $P\succeq0$ thành nguyên nhân | đã sửa: tách câu |
+| trung bình | ba đoạn trực giác (Mục 3, 3.4, 3.6) | mất câu "chưa phải định nghĩa" | đã sửa: thêm câu |
+| trung bình | ranh giới Mục 1/2, 2/3 | nhịp lặp hai phía, lặp cụm | đã sửa: Mục 2 vào thẳng bài pha trộn, Mục 3 mở bằng dữ liệu |
+| trung bình | kết Mục 4 | Định nghĩa 02.29 và Mệnh đề 02.30 gán sai đối tượng | đã sửa |
+| trung bình | toàn tệp | "Hình trên minh họa/cho thấy" 17 lần; "Tuy nhiên" không tương phản ở Mục 5 | đã sửa: còn 7 và 9 |
+| nhẹ | 18 mục (câu dài, ", đó là", chủ ngữ treo, hai câu dẫn cho một định nghĩa, ngôi ở phần "bài sau") | | đã sửa toàn bộ |
+| nhẹ (có từ bản cũ) | câu dẫn Mệnh đề 02.30 | "chỉ dùng hai tính chất" trong khi Bước 3–4 dùng tính giảm chặt và liên tục của $1/s$ | đã sửa: phần (c) ghi thêm hai tính chất đó (tác tử kiểm chứng minh trước khi sửa) |
+
+Ghi nhận ngoài phạm vi: câu so sánh mất mát logistic của Ví dụ 01.6 với Ví dụ 02.4 ở đoạn "Trong học máy" Mục 1.2 được rà và xác nhận đúng (cả hai lồi chặt, cận dưới $0$ không đạt). Tác tử Bài 03 báo Mệnh đề 02.26 ghi chiều trần → phạt "nằm ngoài phạm vi học phần" trong khi Mệnh đề 03.34 chứng minh chiều đó; chưa sửa trong lượt này.
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `display_math`, `tags`, 150 khối, hình, bảng, nhãn bước, `\square` không đổi; `headings` khác ở 5 tiêu đề `###`; `numbered_labels` thêm một lần nhắc "Định nghĩa 02.29"; công thức nội dòng +1 ($s\mapsto1/s$).
+- grep: "Chuỗi suy luận", "Kết mục", "Đích của mục", "Mục này", "chúng tôi", "hãy" đều 0; "chúng ta" 28; "Tuy nhiên" 9; "Hình trên" 7.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-02/lecture-note.md&deck=lecture-02-…`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 150/150 khối, 14 `h2`, không tràn ngang; đã xem ảnh màn hẹp (mục lục hiện tiêu đề mới).
+- `material-local-data.js` tạo lại với lec-03…07 lấy từ HEAD (các bài đó đang biên tập). `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 02.
