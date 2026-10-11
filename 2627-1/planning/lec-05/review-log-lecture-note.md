@@ -362,3 +362,31 @@ Quyết định của điều phối viên:
 **Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (133). Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 34292.
 
 Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng và quy tắc chung: xem nhật ký Bài 01 (mục cùng tên) và `style-guide.md` (scratchpad phiên). Phạm vi: `materials/lec-05/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt; giữ nguyên toán, công thức, `\tag`, số hiệu, 133 khối, hình, bảng, thuật ngữ, bài tập. Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium); các tác tử sửa tệp khác nhau chạy song song, mỗi tệp một tác tử ghi.
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-05/lecture-note.md | 3 tiêu đề `###` đổi; 25 câu dẫn mới; 5 kết mục thành văn xuôi; mở chương sửa câu sai "Bài 04 kết thúc với…" (Bài 04 kết thúc ở Newton); 34 268 → 35 262 từ | yêu cầu sửa |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 77 hunk; 266 dòng `:::` trùng; mở chương khớp lec-04 HEAD; 0 chặn, 0 nghiêm trọng, 5 trung bình, 14 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp Bổ đề 05.20(d) và Nhận xét 05.9 |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | Làm đủ 19 mục của `lec05-fixes.md`; "Ví dụ sau" 28 → 10; 35 113 từ (+2,5 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình (có từ bản cũ) | sau Bổ đề 05.20 | "ngoài đĩa đơn vị, dãy không hội tụ" bỏ trường hợp $\lvert\zeta_1\rvert=1$ và đổi "không hội tụ về $0$" thành "không hội tụ" | đã sửa |
+| trung bình (có từ bản cũ) | mở Mục 4 | điểm yên ngựa gán cho Nhận xét 05.9 | đã sửa: dẫn Mục 1.4 và Tình huống 04.3 |
+| trung bình | mở chương, tóm tắt | momentum và Nesterov bị gán vào việc thay giả định gradient đầy đủ | đã sửa ở hai chỗ |
+| trung bình | Nhận xét 05.33 | "cân bằng hai yêu cầu" sai với Glorot (cân bằng phương sai trên mô hình tuyến tính) | đã sửa |
+| trung bình | toàn tệp | khuôn "Ví dụ sau …" 28 lần | đã sửa: còn 10 |
+| nhẹ | 14 mục (câu dẫn Định lý 05.11, "trỏ đúng hướng", dao động của momentum, hệ số Nesterov cần $\beta$ thích hợp, mở Mục 3, "Tóm lại" ×2, đoạn kể 9 câu) | | đã sửa toàn bộ |
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `display_math`, `tags`, 133 khối, hình, bảng, nhãn bước, `\square` không đổi; `headings` khác ở 3 tiêu đề `###`; `numbered_labels` chỉ đổi số lần nhắc; công thức nội dòng 3451 → 3452.
+- grep: "Chuỗi suy luận", "Kết mục", "Mục này", "Tóm lại" đều 0; "Ví dụ sau" 2 (viết hoa) + 8 (viết thường); "Tuy nhiên" 6.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-05/lecture-note.md&deck=lecture-05-toi-uu-bac-nhat-cho-hoc-may.html`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 133/133 khối, 13 `h2`, không tràn ngang.
+- `material-local-data.js` tạo lại với lec-05b, 05c lấy từ HEAD. `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 05.
