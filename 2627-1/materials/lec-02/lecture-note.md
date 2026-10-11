@@ -1428,7 +1428,7 @@ Hình phạt của Mục 3.3 và trần độ lớn liên hệ với nhau theo m
 
 **Điều kiện áp dụng.** $\lambda\ge0$.
 
-**Phạm vi.** Mệnh đề chỉ đi một chiều: từ một $\lambda$ cho trước suy ra một mức trần. Chiều ngược, mỗi mức trần ứng với một $\lambda$, cần thêm tính lồi và một điều kiện chính quy, và nằm ngoài phạm vi học phần (Boyd và Vandenberghe 2004, mục 4.7.4 về vô hướng hóa và mục 6.3.1–6.3.2).
+**Phạm vi.** Mệnh đề chỉ đi một chiều: từ một $\lambda$ cho trước suy ra một mức trần. Chiều ngược, mỗi mức trần ứng với một $\lambda$, cần thêm tính lồi và một điều kiện chính quy (có điểm Slater), và được chứng minh ở Bài 03 (Mệnh đề 03.34). Xem thêm Boyd và Vandenberghe (2004), mục 4.7.4 về vô hướng hóa và mục 6.3.1–6.3.2.
 :::
 
 ::: proof Chứng minh Mệnh đề 02.26
@@ -1465,7 +1465,7 @@ vì bất đẳng thức Cauchy–Schwarz cho $10a+4b\le\sqrt{116}\cdot\sqrt{0{,
 
 Nghiệm nằm trên biên của hình tròn, tại chỗ elip đồng mức $E=10{,}5$ tiếp xúc biên.
 
-Bán kính được chọn bằng chuẩn của nghiệm ridge với $\lambda=10$ để có thể chứng nhận bằng Mệnh đề 02.26. Với một bán kính tùy ý, chúng ta không đi sâu vào việc tìm $\lambda$ tương ứng, vì việc đó nằm ngoài phạm vi học phần.
+Bán kính được chọn bằng chuẩn của nghiệm ridge với $\lambda=10$ để có thể chứng nhận bằng Mệnh đề 02.26. Với một bán kính tùy ý, $\lambda$ tương ứng là nhân tử của trần (Mệnh đề 03.34) và được tìm bằng phép chia đôi ở Thuật toán 03.1 của Bài 03.
 
 ::: remark Nhận xét 02.27 (Hình phạt, trần và các biến thể không lồi)
 **Phạt và trần.** Hình phạt $\lambda$ là giá của độ lớn, trần $R^2$ là giới hạn cứng. Khi $R^2\ge\tfrac{34}{25}$, nghiệm bình phương nhỏ nhất khả thi nên là nghiệm của bài có trần (Mệnh đề 01.16(b)).
@@ -2257,7 +2257,7 @@ Giả thiết hai nhãn vì vậy là điều kiện đủ cho lập luận tín
 
 **Trong học máy.** Theo Mệnh đề 02.39, huấn luyện máy vector hỗ trợ lề mềm là quy hoạch bậc hai lồi với $d+1+N$ biến, có nghiệm và có $w$ duy nhất, nên mọi bộ giải trả về cùng một hướng của biên quyết định.
 
-Hệ số $\lambda$ điều khiển đánh đổi giữa lề rộng và tổng vi phạm (Tình huống 02.2). Chúng ta không đi sâu vào bài toán đối ngẫu của (5.1) và thủ thuật hạt nhân (kernel trick), vì chúng nằm ngoài phạm vi học phần.
+Hệ số $\lambda$ điều khiển đánh đổi giữa lề rộng và tổng vi phạm (Tình huống 02.2). Bài toán đối ngẫu của (5.1) được trình bày ở Bài 03 (Mệnh đề 03.36, Tình huống 03.1), còn thủ thuật hạt nhân (kernel trick) nằm ngoài phạm vi học phần.
 
 ### 5.4 Nới lỏng bài toán nhị phân
 
@@ -2765,7 +2765,7 @@ Trong cả hai trường hợp, $b^*=0$.
 
 Hệ số $\lambda$ lớn hơn đổi tổng vi phạm lấy lề rộng hơn.
 
-**Giới hạn.** Lời giải tay dựa vào tính đối xứng của dữ liệu. Với dữ liệu tổng quát và $d$ lớn, cần một bộ giải quy hoạch bậc hai; cách giải qua bài toán đối ngẫu nằm ngoài phạm vi học phần.
+**Giới hạn.** Lời giải tay dựa vào tính đối xứng của dữ liệu. Với dữ liệu tổng quát và $d$ lớn, cần một bộ giải quy hoạch bậc hai; cách giải qua bài toán đối ngẫu được trình bày ở Bài 03 (Mệnh đề 03.36, Tình huống 03.1), còn thủ thuật hạt nhân nằm ngoài phạm vi học phần.
 
 **Dẫn ngược lý thuyết.** Định nghĩa 02.38; Mệnh đề 02.39, với giả thiết hai nhãn dùng để chặn $b$; tính lồi theo (7.1) của Bài 01 cho phép rút gọn đối xứng; Mệnh đề 02.36(b).
 :::

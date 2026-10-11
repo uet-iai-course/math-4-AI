@@ -46,7 +46,7 @@ Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của m�
 | $g$, $H$ | gradient $\nabla f(x)$ và Hessian $\nabla^2f(x)$ tại điểm lặp hiện tại | $\mathbb R^n$; ma trận đối xứng $n\times n$ |
 | $d$, $t$, $x^+$ | hướng (bước) của bài con; độ dài bước; điểm mới $x+td$ | $\mathbb R^n$; $t>0$; $\mathbb R^n$ |
 | $h(t)$ | hàm một biến $f(x+td)$ dọc tia cập nhật hoặc dọc một đường thẳng | $\mathbb R\to\mathbb R$ |
-| $\alpha$, $\beta$ | tham số quay lui Armijo | $0<\alpha<\tfrac12$, $0<\beta<1$ |
+| $\alpha$, $\beta$ | tham số quay lui Armijo | $0<\alpha\le\tfrac12$, $0<\beta<1$; các thuật toán Newton dùng $\alpha<\tfrac12$ |
 | $W$, $Q_W(d)$ | ma trận trọng số; mô hình bậc hai $f(x)+g^Td+\tfrac12d^TWd$ | $W\succ0$; $\mathbb R^n\to\mathbb R$ |
 | $\lVert v\rVert_W$, $\lVert g\rVert_{W,*}$ | chuẩn có trọng số $\sqrt{v^TWv}$; chuẩn đối ngẫu $\sqrt{g^TW^{-1}g}$ | số không âm |
 | $L$, $\mu$, $\kappa$ | hằng số Lipschitz của gradient; hằng số lồi mạnh, cũng là hệ số chính quy hóa của hồi quy logistic; số điều kiện $L/\mu$ | $0<\mu\le L$; $\kappa\ge1$ |
@@ -505,7 +505,7 @@ Tia cập nhật trên hình đi vào vùng $f<62$ rồi ra khỏi nó: điểm 
 Một cách trực quan, phép kiểm đó so mức giảm thật $f(x)-f(x+td)$ với mức giảm mà xấp xỉ tuyến tính dự báo, $-t\,g^Td$. Bước được nhận nếu mức giảm thật đạt ít nhất một phần cố định của dự báo, và ý tưởng này được viết thành điều kiện chính xác trong định nghĩa sau.
 
 ::: definition Định nghĩa 04.10 (Điều kiện Armijo và quay lui)
-Cho $x\in\operatorname{dom}f$, hướng giảm $d$ với $g^Td<0$ và hai tham số $\alpha\in(0,\tfrac12)$, $\beta\in(0,1)$.
+Cho $x\in\operatorname{dom}f$, hướng giảm $d$ với $g^Td<0$ và hai tham số $\alpha\in(0,\tfrac12]$, $\beta\in(0,1)$.
 
 - Bước $t>0$ thỏa **điều kiện Armijo** (điều kiện giảm đủ, sufficient decrease condition) nếu $x+td\in\operatorname{dom}f$ và
 
@@ -568,7 +568,7 @@ Trên đồ thị, cả hai vế của (2.2) được vẽ theo $t$, và phần 
 ::: remark Nhận xét 04.12 (Vai trò của tham số $\alpha$ và ba nhầm lẫn)
 **Lý do của cận $\alpha<\tfrac12$.** Xét hàm bậc hai lồi chặt có Hessian $H$ và hướng $d=-H^{-1}g$, là hướng Newton của Mục 3. Hướng này cực tiểu hóa đúng hàm bậc hai, và theo Mệnh đề 04.9(c) với $W=H$, $f(x+d)=f(x)-\tfrac12d^THd=f(x)+\tfrac12g^Td$. Bước đầy đủ $t=1$ thỏa (2.2) khi và chỉ khi $\tfrac12g^Td\le\alpha g^Td$, tức $\alpha\le\tfrac12$ vì $g^Td<0$.
 
-Cận $\alpha<\tfrac12$ của Boyd và Vandenberghe (2004, mục 9.2, tr. 464) bảo đảm bước đầy đủ của Newton được nhận gần nghiệm.
+Cận $\alpha<\tfrac12$ của Boyd và Vandenberghe (2004, mục 9.2, tr. 464) bảo đảm bước đầy đủ của Newton được nhận gần nghiệm. Với hàm không bậc hai, cận này phải chặt: ngưỡng $\bar g$ của pha bậc hai trong Định lý 04.35 chứa thừa số $1-2\alpha$ và bằng $0$ khi $\alpha=\tfrac12$ (Boyd và Vandenberghe 2004, mục 9.5.3). Các thuật toán Newton của chương (Thuật toán 04.2, 04.3, 04.4) đều dùng $\alpha\in(0,\tfrac12)$, còn giảm gradient (Thuật toán 04.1) cho phép cả $\alpha=\tfrac12$.
 
 **Ảnh hưởng của $\alpha$.** Tham số $\alpha$ lớn làm ngưỡng chặt hơn: với $\alpha=\tfrac3{10}$ trên VD1, ngưỡng là $62-246t$ và bước $\tfrac14$ bị loại vì $\tfrac{255}8>\tfrac12$.
 
@@ -582,7 +582,7 @@ Cận $\alpha<\tfrac12$ của Boyd và Vandenberghe (2004, mục 9.2, tr. 464) b
 Ghép các bước tính gradient, đặt $d=-g$, quay lui và cập nhật, ta được thuật toán giảm gradient hoàn chỉnh như sau.
 
 ::: algorithm Thuật toán 04.1 (Giảm gradient với quay lui Armijo)
-**Đầu vào.** Điểm đầu $x^0\in\operatorname{dom}f$; dung sai $\varepsilon_g>0$; tham số $\alpha\in(0,\tfrac12)$, $\beta\in(0,1)$.
+**Đầu vào.** Điểm đầu $x^0\in\operatorname{dom}f$; dung sai $\varepsilon_g>0$; tham số $\alpha\in(0,\tfrac12]$, $\beta\in(0,1)$.
 
 **Lặp** với $k=0,1,2,\ldots$:
 
@@ -1139,7 +1139,7 @@ $$
 t\ge t_{\min}=\min\Bigl\{1,\frac\beta L\Bigr\},\qquad f(x-tg)\le f(x)-\alpha t\lVert g\rVert_2^2 .
 $$
 
-**Điều kiện áp dụng.** Đây là cùng thủ tục của Định nghĩa 04.10 với tham số mở rộng $\alpha\in(0,\tfrac12]$; Mệnh đề 04.11 chỉ cần $\alpha<1$, và lý do của cận $\alpha<\tfrac12$ trong Nhận xét 04.12 không áp dụng cho hướng $-g$.
+**Điều kiện áp dụng.** Bổ đề dùng thủ tục của Định nghĩa 04.10 với mọi $\alpha\in(0,\tfrac12]$, kể cả $\alpha=\tfrac12$; Mệnh đề 04.11 chỉ cần $\alpha<1$, và cận chặt $\alpha<\tfrac12$ của Nhận xét 04.12 chỉ cần cho các thuật toán Newton, không cần cho hướng $-g$.
 
 **Phạm vi.** Chặn $t_{\min}$ phụ thuộc $L$ dù thuật toán không dùng $L$.
 :::
@@ -1165,7 +1165,7 @@ $$
 
 **Điều kiện áp dụng.** Thuật toán không cần biết $L$. Khi $L\ge\beta$, $t_{\min}=\beta/L$ và hằng số của cận lớn hơn hằng số của (2.4) đúng $1/\beta$ lần.
 
-**Phạm vi.** Chứng minh dùng $\alpha=\tfrac12$. Với $\alpha<\tfrac12$, chặn $t\ge t_{\min}$ của Bổ đề 04.23 vẫn đúng, nhưng bất đẳng thức một bước dưới đây không còn suy ra trực tiếp.
+**Phạm vi.** Định lý áp dụng cho Thuật toán 04.1 chạy với $\alpha=\tfrac12$. Chương chỉ chứng minh với $\alpha=\tfrac12$: với $\alpha<\tfrac12$, chặn $t\ge t_{\min}$ của Bổ đề 04.23 vẫn đúng, nhưng bất đẳng thức một bước dưới đây không còn suy ra trực tiếp.
 :::
 
 ::: proof Chứng minh Định lý 04.24

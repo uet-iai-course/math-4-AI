@@ -309,3 +309,7 @@ Ghi nhận ngoài phạm vi: câu so sánh mất mát logistic của Ví dụ 01
 - grep: "Chuỗi suy luận", "Kết mục", "Đích của mục", "Mục này", "chúng tôi", "hãy" đều 0; "chúng ta" 28; "Tuy nhiên" 9; "Hình trên" 7.
 - Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-02/lecture-note.md&deck=lecture-02-…`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 150/150 khối, 14 `h2`, không tràn ngang; đã xem ảnh màn hẹp (mục lục hiện tiêu đề mới).
 - `material-local-data.js` tạo lại với lec-03…07 lấy từ HEAD (các bài đó đang biên tập). `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 02.
+
+### Sửa nội dung kèm theo (2026-10-11, sau lượt văn phong)
+
+Phát hiện của tác tử Bài 03 và tác tử rà Bài 03: phần Phạm vi của Mệnh đề 02.26 nói chiều trần → phạt "nằm ngoài phạm vi học phần" trong khi Mệnh đề 03.34 chứng minh chiều đó; tác tử Bài 02 còn thấy hai câu nói bài đối ngẫu của máy vector hỗ trợ "ngoài phạm vi" trong khi Bài 03 có Mệnh đề 03.36 và Tình huống 03.1 (chỉ thủ thuật hạt nhân là ngoài phạm vi). Điều phối viên kiểm trực tiếp ba số hiệu trong lec-03 rồi giao cùng tác tử biên tập Bài 02 (Claude Opus 5.5, general-purpose, high) sửa bốn câu: Phạm vi của Mệnh đề 02.26, câu sau Ví dụ 02.18, câu sau Mệnh đề 02.39, phần Giới hạn của Tình huống 02.2. Bộ trang chiếu Bài 02 không có câu "ngoài phạm vi" nên không phải sửa. Playwright hai kích thước: 0 lỗi, 150/150 khối. Quyết định: chấp nhận.
