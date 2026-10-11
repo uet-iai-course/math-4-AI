@@ -5,21 +5,21 @@
   <rect width="1000" height="470" rx="18" fill="#fbfaf8"/>
   <g font-family="DejaVu Sans, sans-serif" text-anchor="middle">
     <rect x="300" y="28" width="400" height="66" rx="15" fill="#fff" stroke="#455a64" stroke-width="3"/>
-    <text x="500" y="70" font-size="25" font-weight="bold" fill="#263238">Cần hướng p có xét độ cong</text>
-    <text x="500" y="130" font-size="20" fill="#455a64">chọn một nhánh theo cấu trúc và ngân sách</text>
+    <text x="500" y="70" font-size="22" font-weight="bold" fill="#263238">Cần hướng p có xét độ cong</text>
     <rect x="35" y="185" width="285" height="210" rx="14" fill="#e8edf8" stroke="#2f3e7a" stroke-width="3"/>
     <text x="178" y="229" font-size="27" font-weight="bold">Newton</text>
-    <text x="178" y="270" font-size="21">giải Hp=−g</text><text x="178" y="304" font-size="19">có thể lập H hoặc phân tích hệ</text>
+    <text x="178" y="270" font-size="21">giải Hp=−g</text><text x="178" y="304" font-size="17">có thể lập H hoặc phân tích hệ</text>
     <text x="178" y="351" font-size="20" font-weight="bold">nếu lưu H: O(d²)</text>
     <rect x="358" y="185" width="285" height="210" rx="14" fill="#f7efe6" stroke="#9a481f" stroke-width="3"/>
     <text x="501" y="229" font-size="27" font-weight="bold">HF + CG</text>
-    <text x="501" y="270" font-size="21">chỉ gọi v ↦ Bv</text><text x="501" y="304" font-size="19">B đối xứng dương xác định</text>
-    <text x="501" y="351" font-size="20" font-weight="bold">véc tơ CG: O(d)*</text>
+    <text x="501" y="270" font-size="21">chỉ gọi v ↦ Bv</text><text x="501" y="304" font-size="19">B đối xứng xác định dương</text>
+    <text x="501" y="351" font-size="20" font-weight="bold">vectơ CG: O(d)*</text>
     <rect x="680" y="185" width="285" height="210" rx="14" fill="#e8f5e9" stroke="#2e7d32" stroke-width="3"/>
     <text x="823" y="229" font-size="27" font-weight="bold">BFGS / L-BFGS</text>
     <text x="823" y="270" font-size="21">học M≈H⁻¹ từ (s,y)</text><text x="823" y="304" font-size="19">cần yᵀs&gt;0</text>
     <text x="823" y="342" font-size="19">BFGS: O(d²)</text><text x="823" y="369" font-size="19">L-BFGS: O(md)</text>
   </g>
   <g fill="none" stroke="#455a64" stroke-width="3" marker-end="url(#branch-arrow)"><path d="M500 94V150H178V173"/><path d="M500 94V173"/><path d="M500 94V150H823V173"/></g>
-  <text x="500" y="440" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#455a64">* Chỉ tính các véc tơ của CG; chưa tính bộ nhớ mô hình và vi phân tự động.</text>
+  <rect x="290" y="108" width="420" height="30" fill="#fbfaf8"/><text x="500" y="130" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#455a64" stroke="#fbfaf8" stroke-width="8" stroke-linejoin="round" paint-order="stroke">chọn một nhánh theo cấu trúc và ngân sách</text>
+  <text x="500" y="440" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#455a64">* Chỉ tính các vectơ của CG; chưa tính bộ nhớ mô hình và vi phân tự động.</text>
 </svg>
