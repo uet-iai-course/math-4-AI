@@ -302,3 +302,30 @@ Quyết định của điều phối viên:
 **Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (159). Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 32708.
 
 Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng và quy tắc chung: xem nhật ký Bài 01 (mục cùng tên) và `style-guide.md` (scratchpad phiên). Phạm vi: `materials/lec-04/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt; giữ nguyên toán, công thức, `\tag`, số hiệu, 159 khối, hình, bảng, thuật ngữ, bài tập. Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium); các tác tử sửa tệp khác nhau chạy song song, mỗi tệp một tác tử ghi.
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-04/lecture-note.md | 191 thay chuỗi; 1 tiêu đề `###` đổi; 7 kết mục thành văn xuôi; 9 câu dẫn mới; sửa câu sai về Bài 00 (đạo hàm theo hướng dùng $\mathbf d$, không phải $\mathbf u$); 32 708 → 33 746 từ | yêu cầu sửa |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 120 hunk; 86 `$$` và 159 khối trùng; 45 câu nối trong chứng minh không đổi căn cứ; 0 chặn, 0 nghiêm trọng, 2 trung bình, 12 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp dòng 1342 và tham số $\alpha$ ở Thuật toán 04.1, Định lý 04.24 |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | 38 thay thế, làm đủ 14 mục của `lec04-fixes.md`; 33 766 từ (+3,2 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình | kết Mục 2 | "ba bảo đảm cho Thuật toán 04.1" trong khi Định lý 04.22, 04.26 dùng bước $1/L$ và Định lý 04.24 dùng $\alpha=\tfrac12$ (thuật toán đòi $\alpha\in(0,\tfrac12)$); lỗi có từ bản cũ ("Đích của mục là Thuật toán 04.1 cùng ba bảo đảm") | đã sửa: gán cho giảm gradient, nêu rõ từng điều kiện |
+| trung bình | mở Mục 3 | mở ngay bằng "Xét VD2", thiếu câu nối; "hai cách" thay vì bốn cách đọc của Mệnh đề 04.29 | đã sửa |
+| nhẹ | 12 mục (Định lý 04.34 gán cho Thuật toán 04.2, câu dẫn Bổ đề 04.21 thiếu bổ đề giảm, lặp kế hoạch Mục 2 hai phía, lặp "tuyến tính hóa", "Câu hỏi còn lại" không có chỗ bám, câu dài, khuôn "Trong định nghĩa trên" 11 lần, "Trong đó, dòng" 13 lần) | | đã sửa toàn bộ; khuôn giảm còn 7 và 8 |
+
+Ghi nhận nội dung có sẵn, không thuộc lượt văn phong: Định lý 04.24 chứng minh với $\alpha=\tfrac12$ còn Thuật toán 04.1 đòi $\alpha\in(0,\tfrac12)$, nên định lý không phủ trực tiếp thuật toán (phần Phạm vi của định lý đã nêu). Để người dùng quyết có mở rộng định lý hay nới tham số thuật toán.
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `display_math`, `tags`, 159 khối, hình, bảng, nhãn bước, `\square` không đổi; `headings` khác ở 1 tiêu đề `###`; `numbered_labels` chỉ đổi số lần nhắc trong văn xuôi và danh mục; công thức nội dòng 3816 → 3821.
+- grep: "Chuỗi suy luận", "Kết mục", "Đích của mục", "Mục này", "ba bảo đảm cho Thuật toán" đều 0; "Tuy nhiên" 8; "Hình trên" 3.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-04/lecture-note.md&deck=lecture-04-…`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 159/159 khối, 15 `h2`, không tràn ngang.
+- `material-local-data.js` tạo lại với lec-05…07 lấy từ HEAD. `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 04.
