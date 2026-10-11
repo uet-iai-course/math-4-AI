@@ -2377,7 +2377,7 @@ $F'(-0{,}5)=-0{,}125+0{,}5=0{,}375$ và $F(-0{,}5)=\tfrac14(0{,}25-1)^2=0{,}1406
 $F''(0)=-1<0$, nên $F$ không lồi. Tiếp tuyến tại $-0{,}5$ có giá trị $0{,}140625+0{,}375\cdot1{,}5\approx0{,}70$ tại $\theta=1$, lớn hơn $F(1)=0$: tiếp tuyến nằm trên đồ thị ở đó, điều mà H1 cấm.
 :::
 
-![Đồ thị F(θ) = ¼(θ² − 1)² quanh đoạn từ −1 đến 1: hai cực tiểu tại −1 và 1, cực đại tại θ = 0 với giá trị 0,25. Tiếp tuyến tại θ = −0,5 được vẽ; tại θ = 1 nó có giá trị khoảng 0,70, nằm trên đồ thị.](img/lec-05b/quartic-nonconvex.svg)
+![Đồ thị F(θ) = ¼(θ² − 1)² quanh đoạn từ −1 đến 1: hai cực tiểu địa phương tại −1 và 1, cực đại tại θ = 0 với giá trị 0,25. Tiếp tuyến tại θ = −0,5 được vẽ; tại θ = 1 nó có giá trị khoảng 0,70, nằm trên đồ thị.](img/lec-05b/quartic-nonconvex.svg)
 
 Trên hình, tiếp tuyến tại $-0{,}5$ cắt lên trên đồ thị ở phía cực tiểu bên phải, trong khi với hàm lồi, mọi tiếp tuyến nằm dưới đồ thị (H1), và Hệ quả 05b.10(a) là bất đẳng thức đó viết tại điểm cực tiểu. Chuẩn gradient vẫn dùng được làm thước đo vì nó chỉ cần thông tin tại điểm hiện tại. Đại lượng này là tiêu chí dừng của Thuật toán 04.1 và là đại lượng được chặn trong mục này.
 
@@ -2416,7 +2416,7 @@ $\theta_1=\tfrac{16}{11}\approx1{,}455$, $F(\theta_1)\approx0{,}311$; $\theta_2\
 Mức hạ ở bước đầu là $2{,}25-0{,}311=1{,}939$, không nhỏ hơn $\tfrac1{22}F'(2)^2=\tfrac{36}{22}\approx1{,}636$ như (6.1) với $\eta=\tfrac1{11}$ bảo đảm.
 :::
 
-![Đồ thị F(θ) với θ từ −2 đến 2, hai cực tiểu tại −1 và 1, cực đại địa phương tại 0. Từ θ₀ = 2, hạ gradient bước 1/11 cho θ₁ ≈ 1,455 rồi θ₂ ≈ 1,307; giá trị F giảm từ 2,25 xuống khoảng 0,311 rồi 0,125.](img/lec-05b/quartic-two-wells.svg)
+![Đồ thị F(θ) với θ từ −2 đến 2, hai cực tiểu địa phương tại −1 và 1, cực đại địa phương tại 0. Từ θ₀ = 2, hạ gradient bước 1/11 cho θ₁ ≈ 1,455 rồi θ₂ ≈ 1,307; giá trị F giảm từ 2,25 xuống khoảng 0,311 rồi 0,125.](img/lec-05b/quartic-two-wells.svg)
 
 Đồ thị trên đánh dấu ba điểm lặp đầu. Bước đầu hạ $F$ nhiều vì gradient tại $\theta_0=2$ lớn; các bước sau hạ ít dần khi dãy tới gần điểm cực tiểu $1$, nơi gradient nhỏ.
 
