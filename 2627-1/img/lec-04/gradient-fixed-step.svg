@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" role="img" aria-labelledby="title desc"><title id="title">Đường đồng mức của hàm bậc hai</title><desc id="desc">Hàm f bằng một nửa của 3x₁² cộng 7x₂². Các đường mức15,35,62. Các mũi tên chỉ hướng; độ dài mũi tên gradient được co để đọc hình.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" role="img" aria-labelledby="title desc"><title id="title">Hạ gradient với bước cố định trên VD1</title><desc id="desc">Hàm f bằng một nửa của 3x₁² cộng 7x₂², các đường mức 15, 35, 62. Hạ gradient với bước cố định t=1/4 từ x⁰=(2,4) qua x¹=(1/2,−3), x²=(1/8,9/4), x³=(1/32,−27/16), x⁴=(1/128,81/64): thành phần x₁ co theo hệ số 1/4, thành phần x₂ đổi dấu và co theo hệ số 3/4.</desc>
 <defs><clipPath id="plot-area"><rect x="70" y="35" width="542" height="330"/></clipPath><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker></defs>
 <rect width="100%" height="100%" fill="white"/>
-<style>text{font-family:Arial,DejaVu Sans,sans-serif;font-size:24px;fill:#263044}.label{font-size:25px;font-weight:600}.small{font-size:21px}</style>
+<style>text{font-family:Arial,DejaVu Sans,sans-serif;font-size:24px;fill:#263044}.label{font-size:25px;font-weight:600;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}.small{font-size:21px;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}</style>
 <rect x="70" y="35" width="542" height="330" fill="none" stroke="#e7e9ef"/>
 <path d="M181.58823529411762,35V365" stroke="#e7e9ef"/>
 <text x="181.59" y="393.00" text-anchor="middle" class="small" style="fill:#687080">-4</text>
@@ -35,7 +35,7 @@
 <circle cx="345.982" cy="142.609" r="5" fill="#b15a2b" stroke="white" stroke-width="2"/>
 <text x="354.75" y="148.35" text-anchor="start" class="small" style="fill:#b15a2b">k=2</text>
 <circle cx="342.245" cy="255.598" r="5" fill="#b15a2b" stroke="white" stroke-width="2"/>
-<text x="351.01" y="261.34" text-anchor="start" class="small" style="fill:#b15a2b">k=3</text>
+<text x="333.00" y="252.00" text-anchor="end" class="small" style="fill:#b15a2b">k=3</text>
 <circle cx="341.311" cy="170.856" r="5" fill="#b15a2b" stroke="white" stroke-width="2"/>
-<text x="350.08" y="176.60" text-anchor="start" class="small" style="fill:#b15a2b">k=4</text>
+<text x="333.00" y="177.00" text-anchor="end" class="small" style="fill:#b15a2b">k=4</text>
 </svg>

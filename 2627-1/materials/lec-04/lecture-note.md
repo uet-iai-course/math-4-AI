@@ -599,7 +599,7 @@ Ghép các bước tính gradient, đặt $d=-g$, quay lui và cập nhật, ta 
 
 Tiêu chí dừng $\lVert g\rVert_2\le\varepsilon_g$ được kiểm tra trước khi tính hướng, nên nếu điểm đầu đã đạt dung sai thì thuật toán dừng mà không cập nhật. Tiêu chí này đo mức vi phạm của (1.1): theo Mệnh đề 04.2(a), với $f$ lồi, điểm có $\nabla f=0$ là nghiệm. Chuẩn gradient nhỏ chưa cho cận của $f(x)-f^*$; cận đó cần giả thiết về độ cong và được chứng minh ở Mục 2.6 (Mệnh đề 04.25(b)).
 
-**Trong học máy.** Thuật toán 04.1 là hạ gradient toàn lô: mỗi lượt tính gradient của mất mát trên toàn bộ dữ liệu huấn luyện. Độ dài bước $t$ là tốc độ học (learning rate); quay lui chọn nó tự động, với điều kiện giá trị mất mát tính được chính xác tại mỗi điểm thử. Khi dữ liệu lớn, Bài 05 thay gradient đầy đủ bằng gradient trên một nhóm nhỏ mẫu; giá trị mất mát khi đó chỉ là ước lượng, nên phép kiểm tra (2.2) không áp dụng nguyên dạng và tốc độ học thường được chọn theo lịch cố định.
+**Trong học máy.** Thuật toán 04.1 là hạ gradient toàn lô: mỗi lượt tính gradient của mất mát trên toàn bộ dữ liệu huấn luyện. Độ dài bước $t$ là tốc độ học (learning rate); quay lui chọn nó tự động, với điều kiện giá trị mất mát tính được chính xác tại mỗi điểm thử. Khi dữ liệu lớn, Bài 05 thay gradient đầy đủ bằng gradient trên một lô nhỏ mẫu; giá trị mất mát khi đó chỉ là ước lượng, nên phép kiểm tra (2.2) không áp dụng nguyên dạng và tốc độ học thường được chọn theo lịch cố định.
 
 ### 2.4 Độ cong không đồng đều
 
@@ -954,7 +954,7 @@ Bổ đề 04.18 cho thấy parabol $q(y)=f(x)+\nabla f(x)^T(y-x)+\tfrac L2\lVer
 **Dữ liệu nhiều mẫu.** Cho $N_s$ mẫu với đặc trưng $a_i\in\mathbb R^n$, xếp thành các hàng $a_i^T$ của ma trận $X\in\mathbb R^{N_s\times n}$, và nhãn $y_i\in\{-1,+1\}$. Mất mát logistic là tổng $\sum_{i=1}^{N_s}\ell(m_i)$ theo các biên $m_i=y_ia_i^Tw$. Hessian của tổng là $\sum_i\ell''(m_i)a_ia_i^T\preceq\tfrac14X^TX$, vì $y_i^2=1$, nên có thể lấy $L=\tfrac14\lambda_{\max}(X^TX)$.
 :::
 
-![Đồ thị hàm f của s bằng log của 1 cộng e mũ s trên đoạn từ âm 4 đến 4 (nét liền), parabol cận trên q với L bằng 1/4 dựng tại s bằng 1 (nét đứt) và tiếp tuyến tại s bằng 1 (nét chấm). Ba đường tiếp xúc nhau tại s bằng 1, nơi f bằng khoảng 1,313 và độ dốc bằng khoảng 0,731. Parabol nằm trên f, tiếp tuyến nằm dưới f.](img/lec-04/lipschitz-upper-bound.svg)
+![Đồ thị hàm f của s bằng log của 1 cộng e mũ s trên đoạn từ âm 4 đến 5 (nét liền), parabol cận trên q với L bằng 1/4 dựng tại s bằng 1 (nét đứt) và tiếp tuyến tại s bằng 1 (nét chấm). Ba đường tiếp xúc nhau tại s bằng 1, nơi f bằng khoảng 1,313 và độ dốc bằng khoảng 0,731. Parabol nằm trên f, tiếp tuyến nằm dưới f.](img/lec-04/lipschitz-upper-bound.svg)
 
 Hình trên vẽ hàm $f(s)=\log(1+e^s)$ cùng cả hai cận tại $s=1$, với $f(1)\approx1{,}3133$ và $f'(1)=\sigma(1)\approx0{,}7311$. Tại $s=-3$, ta có $f(-3)\approx0{,}0486$, parabol cho $1{,}3133-4\cdot0{,}7311+\tfrac18\cdot16\approx0{,}3890$, còn tiếp tuyến cho $\approx-1{,}6110$. Thứ tự $-1{,}6110\le0{,}0486\le0{,}3890$ khớp với hai cận.
 
@@ -1441,7 +1441,7 @@ $\varphi'(\tfrac14+d)\approx-3+16d$; đặt bằng $0$ được cùng $d=\tfrac3
 $\varphi'(\tfrac7{16})=1-\tfrac{16}7=-\tfrac97\ne0$: điểm mới chưa thỏa điều kiện dừng của bài toán gốc, vì chỉ vế trái của phương trình được xấp xỉ.
 :::
 
-![Đồ thị phi của s bằng s trừ log s (nét liền) và mô hình bậc hai tại s0 bằng 1/4 (nét đứt). Ba điểm được đánh dấu trên trục s: điểm đầu s0 bằng 1/4, đáy của mô hình s1 bằng 7/16, và nghiệm của hàm thật s sao bằng 1.](img/lec-04/phi-newton.svg)
+![Đồ thị phi của s bằng s trừ log s (nét liền) và mô hình bậc hai tại s0 bằng 1/4 (nét đứt). Ba điểm được đánh dấu trên trục s: điểm đầu s0 bằng 1/4, điểm cực tiểu của mô hình s1 bằng 7/16, và nghiệm của hàm thật s sao bằng 1.](img/lec-04/phi-newton.svg)
 
 Trên trục $s$ của hình có ba điểm $s^0=\tfrac14$, $s^1=\tfrac7{16}$ và $s^*=1$. Bước Newton tới đúng điểm cực tiểu của mô hình và rút ngắn khoảng cách tới nghiệm từ $\tfrac34$ xuống $\tfrac9{16}$. Ví dụ 04.16 sẽ cho thấy khoảng cách còn lại giảm rất nhanh ở các bước sau.
 

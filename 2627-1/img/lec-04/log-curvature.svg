@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" role="img" aria-labelledby="title desc"><title id="title">Độ cong tăng khi đến gần biên</title><desc id="desc">Độ cong củaφ(s)=s−log s là1/s², trên miền s&gt;0; tại1/4 độ cong bằng16. Biêns=0 không thuộc miền.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" role="img" aria-labelledby="title desc"><title id="title">Độ cong tăng khi đến gần biên</title><desc id="desc">Độ cong của φ(s)=s−log s là 1/s² trên miền s&gt;0; tại s=1/4 độ cong bằng 16. Biên s=0 không thuộc miền.</desc>
 <defs><clipPath id="plot-area"><rect x="70" y="35" width="542" height="330"/></clipPath><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker></defs>
 <rect width="100%" height="100%" fill="white"/>
-<style>text{font-family:Arial,DejaVu Sans,sans-serif;font-size:24px;fill:#263044}.label{font-size:25px;font-weight:600}.small{font-size:21px}</style>
+<style>text{font-family:Arial,DejaVu Sans,sans-serif;font-size:24px;fill:#263044}.label{font-size:25px;font-weight:600;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}.small{font-size:21px;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}</style>
 <rect x="70" y="35" width="542" height="330" fill="none" stroke="#e7e9ef"/>
 <path d="M70.0,35V365" stroke="#e7e9ef"/>
 <text x="70.00" y="393.00" text-anchor="middle" class="small" style="fill:#687080">0</text>
 <path d="M145.27777777777777,35V365" stroke="#e7e9ef"/>
-<text x="145.28" y="393.00" text-anchor="middle" class="small" style="fill:#687080">0.25</text>
+<text x="145.28" y="393.00" text-anchor="middle" class="small" style="fill:#687080">0,25</text>
 <path d="M371.11111111111114,35V365" stroke="#e7e9ef"/>
 <text x="371.11" y="393.00" text-anchor="middle" class="small" style="fill:#687080">1</text>
 <path d="M521.6666666666666,35V365" stroke="#e7e9ef"/>
-<text x="521.67" y="393.00" text-anchor="middle" class="small" style="fill:#687080">1.5</text>
+<text x="521.67" y="393.00" text-anchor="middle" class="small" style="fill:#687080">1,5</text>
 <path d="M70,365.0H612" stroke="#e7e9ef"/>
 <text x="60.00" y="373.00" text-anchor="end" class="small" style="fill:#687080">0</text>
 <path d="M70,267.22222222222223H612" stroke="#e7e9ef"/>

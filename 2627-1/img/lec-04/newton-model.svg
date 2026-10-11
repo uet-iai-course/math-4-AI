@@ -7,7 +7,8 @@
   <polyline points="126.0,40.4 143.0,68.4 160.0,95.0 177.0,120.4 194.0,144.4 211.0,167.2 228.0,188.6 245.0,208.8 262.0,227.6 279.0,245.2 296.0,261.4 313.0,276.4 330.0,290.0 347.0,302.4 364.0,313.4 381.0,323.1 398.0,331.6 415.0,338.8 432.0,344.6 449.0,349.1 466.0,352.4 483.0,354.4 500.0,355.0 517.0,354.4 534.0,352.4 551.0,349.1 568.0,344.6 585.0,338.8 602.0,331.6 619.0,323.1 636.0,313.4 653.0,302.4 670.0,290.0" fill="none" stroke="#b24a2b" stroke-width="4" stroke-dasharray="10 8"/>
   <circle cx="330" cy="290" r="9" fill="#2f3e7a"/><circle cx="500" cy="355" r="9" fill="#b24a2b"/>
   <line x1="330" y1="390" x2="500" y2="390" stroke="#333" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M339 290H548 M509 355H548" fill="none" stroke="#16706a" stroke-width="1.5" stroke-dasharray="3 4"/>
   <path d="M548 290h18M557 290v65M548 355h18" fill="none" stroke="#16706a" stroke-width="3"/>
-  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#333"/></marker></defs>
-  <g font-size="19" fill="#222"><text x="305" y="315">v=0 (x)</text><text x="475" y="382">v=Δx_N</text><text x="575" y="235" fill="#2f6f8f">f(x+v)</text><text x="610" y="320" fill="#b24a2b">mₓ(v)</text><text x="220" y="105">cùng giá trị, dốc và độ cong tại v=0</text><text x="345" y="270">H=mₓ″(0)&gt;0</text><text x="570" y="380" fill="#16706a">δ_N²/2</text><text x="805" y="448">v</text></g>
+  <defs><marker id="arrow" viewBox="0 0 9 6" markerWidth="4" markerHeight="3" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#333"/></marker></defs>
+  <g font-size="19" fill="#222"><text x="318" y="318" text-anchor="end">v=0 (x)</text><text x="506" y="404">v=Δx<tspan baseline-shift="sub" font-size="13">N</tspan></text><text x="575" y="235" fill="#2f6f8f">f(x+v)</text><text x="630" y="350" fill="#b24a2b">mₓ(v)</text><text x="220" y="105">cùng giá trị, dốc và độ cong tại v=0</text><text x="345" y="270">H=mₓ″(0)&gt;0</text><text x="572" y="378" fill="#16706a">δ<tspan baseline-shift="sub" font-size="13">N</tspan>²/2</text><text x="805" y="448">v</text></g>
 </svg>
