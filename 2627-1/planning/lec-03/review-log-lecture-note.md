@@ -233,3 +233,33 @@ Quyết định của điều phối viên:
 **Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (131). Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 29908.
 
 Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng và quy tắc chung: xem nhật ký Bài 01 (mục cùng tên) và `style-guide.md` (scratchpad phiên). Phạm vi: `materials/lec-03/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt; giữ nguyên toán, công thức, `\tag`, số hiệu, 131 khối, hình, bảng, thuật ngữ, bài tập. Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium); các tác tử sửa tệp khác nhau chạy song song, mỗi tệp một tác tử ghi.
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-03/lecture-note.md | 6 tiêu đề `###` đổi từ nhãn khuôn; 6 kết mục thành văn xuôi, ranh giới mục luân phiên một phía; tóm tắt có đoạn kể 8 câu; 29 908 → 30 534 từ | yêu cầu sửa |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 262 dòng `:::` và mọi `$$` trùng; mở chương khớp lec-02 dòng 615 và 2902–2906; 0 chặn, 0 nghiêm trọng, 5 trung bình, 19 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp dấu ở dòng 1154, 1633 với (4.3) |
+| Biên tập, lượt 2 và 3 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | Làm đủ 24 mục của `lec03-fixes.md`, rồi thêm câu dẫn cho đoạn mở Mục 5; 30 520 từ (+2,0 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình | Mục 3.1 | "các điểm đó có thể không có điểm chung" sai nghĩa (phải là các tập $\{f_i<0\}$ không giao nhau) | đã sửa |
+| trung bình | mở Mục 4 | nhân tử bị đồng nhất với hệ số góc đường đỡ (đúng là số đối, hệ số góc $-\lambda$) | đã sửa |
+| trung bình | kết Mục 4 | Hệ quả 03.24 bị đọc thành "nhân tử là độ dốc của hàm giá trị": mất dấu theo (4.3) và mất giả thiết khả vi | đã sửa |
+| trung bình | ranh giới Mục 4/5 | hai câu gần trùng chữ ở hai phía | đã sửa; lượt 3 thêm câu dẫn "Tính hàm đối ngẫu $g$ không phải lúc nào cũng dễ" vì Mục 5 mở bằng "Chẳng hạn" |
+| trung bình | mở Mục 4 | "Hình vẽ đó" trỏ tới hình chưa xuất hiện | đã sửa |
+| nhẹ | 19 mục ("nên"/"Vì vậy" không nhân quả, lặp ranh giới Mục 2/3, khuôn "kết quả chính của mục" ×4, "Hình trên" ×9, câu dài, ";" nối hai ý) | | đã sửa toàn bộ |
+
+Ghi nhận ngoài phạm vi: Bài 02, Mệnh đề 02.26 (Phạm vi) nói chiều trần → phạt "nằm ngoài phạm vi học phần" trong khi Mệnh đề 03.34 chứng minh chiều đó; đoạn mở chương Bài 03 nay viết "vì cần thêm tính lồi và một điều kiện chính quy" (đúng chữ lec-02 dòng 1430). Việc sửa câu "ngoài phạm vi" của Bài 02 để lại.
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `display_math`, `tags`, 131 khối, hình, bảng, nhãn bước, `\square` không đổi; `headings` khác ở 6 tiêu đề `###`; `numbered_labels` chỉ đổi số lần nhắc trong văn xuôi (bớt 6, thêm 10, tập khối không đổi); công thức nội dòng 3336 → 3331 (ký hiệu lặp trong các khối kết mục cũ).
+- grep: "Chuỗi suy luận", "Kết mục", "Đích của mục", "Mục này", "chúng tôi", "hãy" đều 0; "Hình trên" 5; "Tuy nhiên" 5.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-03/lecture-note.md&deck=lecture-03-doi-ngau-lagrange.html`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 131/131 khối, 14 `h2`, không tràn ngang.
+- `material-local-data.js` tạo lại với lec-04…07 lấy từ HEAD. `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 03.

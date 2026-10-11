@@ -59,22 +59,26 @@ Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của m�
 | $z_i$, $y_i$ | đặc trưng và nhãn của mẫu $i$ trong máy vector hỗ trợ (Bài 02 viết $u_i$) | $\mathbb R^d$, $\{-1,+1\}$ |
 | $\tau$, $\rho$ | trần của chuẩn bình phương; hệ số chính quy hóa (Bài 02 viết $\lambda$) | $\tau>0$; $\rho>0$ |
 
-Ký hiệu $\rho$ thay cho $\lambda$ của Bài 02 vì trong chương này $\lambda$ dành cho nhân tử; Mục 5 chứng minh rằng ở nghiệm, hai đại lượng này trùng nhau.
+Ký hiệu $\rho$ thay cho $\lambda$ của Bài 02 vì trong chương này $\lambda$ dành cho nhân tử. Ở Mục 5, chúng ta chứng minh rằng tại nghiệm, hai đại lượng này trùng nhau.
 
 ## 1. Chứng nhận tối ưu và cận dưới
 
-Mệnh đề 02.11 chứng nhận nghiệm của một quy hoạch tuyến tính bằng các hệ số $\mu_i\ge0$ sao cho vector chi phí bằng tổ hợp $\sum_i\mu_ia_i$ của các hàng ràng buộc. Bài 02 để lại hai thiếu hụt của công cụ này: các hệ số phải được đoán, và phép tính chỉ dùng được khi mục tiêu và ràng buộc tuyến tính. Xét bài toán một biến
+Trong Bài 02, chúng ta đã chứng nhận nghiệm của một quy hoạch tuyến tính bằng các hệ số $\mu_i\ge0$ sao cho vector chi phí bằng tổ hợp $\sum_i\mu_ia_i$ của các hàng ràng buộc (Mệnh đề 02.11). Công cụ này có hai thiếu hụt mà Bài 02 để ngỏ: các hệ số phải được đoán, và không có gì bảo đảm chúng tồn tại. Ngoài ra, phép chứng nhận đó chỉ dùng được khi mục tiêu và ràng buộc tuyến tính.
+
+Cách tiếp cận gán cho mỗi ràng buộc một hệ số, cộng vào mục tiêu, rồi chọn hệ số cho cận tốt nhất bằng một bài toán tối ưu khác được gọi là đối ngẫu Lagrange. Trong chương này, chúng ta xây hàm Lagrange và bài toán đối ngẫu, rồi tìm điều kiện để cận đối ngẫu khít. Sau đó, chúng ta đọc nghĩa hình học của nhân tử và thay việc tính hàm đối ngẫu bằng một hệ điều kiện tối ưu.
+
+Xét bài toán một biến
 
 $$
 \underset{x\in\mathbb R}{\operatorname{minimize}}\quad f_0(x)=x^2+1\qquad\text{subject to}\quad f_1(x)=(x-2)(x-4)\le0 .
 \tag{1.1}
 $$
 
-Điểm $x=2$ thỏa ràng buộc và cho giá trị $5$. Muốn khẳng định không điểm khả thi nào cho giá trị nhỏ hơn $5$, Mệnh đề 02.11 không áp dụng được: $x^2+1$ không phải tổ hợp tuyến tính của các vế trái ràng buộc. Mục này đặt tên cho đối tượng còn thiếu, một cận dưới của giá trị tối ưu, chứng minh rằng cận dưới bằng giá trị của một điểm khả thi là bằng chứng tối ưu, và chỉ ra rằng cộng một bội không âm của hàm ràng buộc vào mục tiêu sinh ra các cận dưới như vậy cho bài (1.1).
+Điểm $x=2$ thỏa ràng buộc và cho giá trị $5$. Để khẳng định không điểm khả thi nào cho giá trị nhỏ hơn $5$, ta không dùng được Mệnh đề 02.11, vì $x^2+1$ không phải tổ hợp tuyến tính của các vế trái ràng buộc. Trong mục này, chúng ta gọi đối tượng còn thiếu là cận dưới của giá trị tối ưu, và chứng minh rằng cận dưới bằng giá trị của một điểm khả thi là bằng chứng tối ưu. Chúng ta cũng thấy rằng cộng một bội không âm của hàm ràng buộc vào mục tiêu sinh ra các cận dưới như vậy cho bài (1.1).
 
-### 1.1 Nhu cầu: cận trên dễ, cận dưới khó
+### 1.1 Cận trên và cận dưới của giá trị tối ưu
 
-Một điểm khả thi cho một cận trên của giá trị tối ưu: theo định nghĩa cận dưới đúng (Định nghĩa 01.10), $p^*\le f_0(x)$ với mọi $x$ khả thi. Cận dưới thì khác: muốn biết $f_0$ không thể nhỏ hơn một số $\ell$, phải nói được điều gì đó về mọi điểm khả thi cùng lúc. Bài toán (1.1) đủ nhỏ để giải trực tiếp, và chương dùng nó làm ví dụ xuyên suốt để kiểm tra mọi công cụ mới trên một đáp án đã biết.
+Mỗi điểm khả thi cho một cận trên của giá trị tối ưu, vì theo định nghĩa cận dưới đúng (Định nghĩa 01.10), $p^*\le f_0(x)$ với mọi $x$ khả thi. Cận dưới khó hơn, vì muốn biết $f_0$ không thể nhỏ hơn một số $\ell$, ta phải nói được điều gì đó về mọi điểm khả thi cùng lúc. Bài toán (1.1) đủ nhỏ để giải trực tiếp, nên chúng ta dùng nó làm ví dụ xuyên suốt chương và kiểm tra mọi công cụ mới trên một đáp án đã biết.
 
 ::: example Ví dụ 03.1 (Bài toán xuyên suốt)
 **Dữ kiện.**
@@ -98,11 +102,13 @@ $f_0(3)=10>5$ và $f_0(4)=17>5$. Điểm $x=0$ cho $f_0(0)=1<5$ nhưng $f_1(0)=8
 
 ![Đồ thị parabol t bằng x bình phương cộng 1 trên trục x. Đoạn khả thi từ 2 đến 4 được tô; trên đoạn này đồ thị đi lên từ điểm (2, 5) tới điểm (4, 17). Điểm (2, 5) được đánh dấu là nghiệm tối ưu nằm ở biên trái của đoạn khả thi; đỉnh parabol tại (0, 1) nằm ngoài đoạn.](img/lec-03/intro-feasible.svg)
 
-Hình trên cho thấy nghiệm nằm ở biên của tập khả thi, nơi $f_0'(2)=4\ne0$. Lời giải của Ví dụ 03.1 dùng tính đơn điệu trên một đoạn, một lập luận không mở rộng được cho bài nhiều biến với nhiều ràng buộc phi tuyến. Điều cần là một cách sinh cận dưới chỉ dùng phép tính trên các hàm $f_0$, $f_1$, không phụ thuộc vào việc mô tả được tập khả thi.
+Hình trên cho thấy nghiệm nằm ở biên của tập khả thi, nơi $f_0'(2)=4\ne0$. Lời giải của Ví dụ 03.1 dựa vào tính đơn điệu trên một đoạn, nên không mở rộng được cho bài nhiều biến với nhiều ràng buộc phi tuyến. Do đó, chúng ta cần một cách sinh cận dưới chỉ dùng phép tính trên các hàm $f_0$, $f_1$, không phụ thuộc vào việc mô tả được tập khả thi.
 
-### 1.2 Trực giác: cộng một bội không âm của ràng buộc
+### 1.2 Cộng một bội không âm của ràng buộc
 
-Trên tập khả thi, $f_1(x)\le0$. Với một số $\lambda\ge0$, tích $\lambda f_1(x)$ vì vậy không dương, và hàm $f_0+\lambda f_1$ không vượt $f_0$ tại mọi điểm khả thi. Nếu biết một số $\ell$ không vượt $f_0+\lambda f_1$ tại mọi điểm của $\mathbb R$ thì $\ell$ cũng không vượt $f_0$ tại mọi điểm khả thi. Đây là trực giác, chưa phải định nghĩa: nó gợi ý rằng mỗi giá trị $\lambda\ge0$ cho một cận dưới, và việc tìm cận dưới của $f_0+\lambda f_1$ trên cả $\mathbb R$ là một bài toán không ràng buộc, dễ hơn bài gốc.
+Một cách trực quan, ràng buộc có thể được chuyển thành một khoản cộng vào mục tiêu. Trên tập khả thi, $f_1(x)\le0$, nên với một số $\lambda\ge0$, tích $\lambda f_1(x)$ không dương và hàm $f_0+\lambda f_1$ không vượt $f_0$ tại mọi điểm khả thi. Do đó, nếu biết một số $\ell$ không vượt $f_0+\lambda f_1$ tại mọi điểm của $\mathbb R$ thì $\ell$ cũng không vượt $f_0$ tại mọi điểm khả thi.
+
+Lập luận này chưa phải định nghĩa, nhưng gợi ý rằng mỗi giá trị $\lambda\ge0$ cho một cận dưới. Hơn nữa, tìm cận dưới của $f_0+\lambda f_1$ trên cả $\mathbb R$ là một bài toán không ràng buộc, dễ hơn bài gốc, như ví dụ sau cho thấy với hai giá trị của $\lambda$.
 
 ::: example Ví dụ 03.2 (Hai cận dưới cho bài toán xuyên suốt)
 **Dữ kiện.**
@@ -144,11 +150,11 @@ Tại $x=2$: $3\cdot0+5=5=f_0(2)$, và $f_1(2)=0$, nên hai vế của $f_0(2)\g
 
 ![Ba đường cong trên trục x. Đường xám là t bằng x bình phương cộng 1 (nhân tử 0) với cực tiểu 1 tại x bằng 0. Đường cam là L với nhân tử 1, bằng 2x bình phương trừ 6x cộng 9, cực tiểu 4,5 tại x bằng 1,5, nằm ngoài đoạn khả thi. Đường xanh đậm là L với nhân tử 2, bằng 3x bình phương trừ 12x cộng 17, cực tiểu 5 tại x bằng 2. Cả ba đường đi qua hai điểm (2, 5) và (4, 17), là hai đầu mút của đoạn khả thi [2, 4] được tô nền; trên đoạn đó hai đường cam và xanh nằm dưới đường xám. Điểm 3 trên trục được đánh dấu là điểm Slater.](img/lec-03/lagrangian-family.svg)
 
-Trên hình, ba hàm $f_0+\lambda f_1$ với $\lambda=0,1,2$ trùng nhau tại hai đầu mút $x=2$ và $x=4$, nơi $f_1=0$, và nằm dưới $f_0$ trên đoạn khả thi. Giá trị nhỏ nhất của mỗi đường là một cận dưới: $1$, $4{,}5$ và $5$. Chỉ đường $\lambda=2$ có điểm thấp nhất nằm trong đoạn khả thi và trùng với $f_0$ tại đó. Điểm Slater $x=3$ được đánh dấu sẵn cho Mục 3.
+Ba hàm $f_0+\lambda f_1$ với $\lambda=0,1,2$ trên hình trùng nhau tại hai đầu mút $x=2$ và $x=4$, nơi $f_1=0$, và nằm dưới $f_0$ trên đoạn khả thi. Giá trị nhỏ nhất của mỗi đường là một cận dưới, lần lượt bằng $1$, $4{,}5$ và $5$, nhưng chỉ đường $\lambda=2$ có điểm thấp nhất nằm trong đoạn khả thi và trùng với $f_0$ tại đó. Điểm Slater $x=3$ trên hình được dùng lại ở Mục 3.
 
-### 1.3 Định nghĩa cận dưới và chứng nhận
+### 1.3 Cận dưới và chứng nhận tối ưu
 
-Ví dụ 03.2 dùng hai khái niệm chưa được đặt tên: một số không vượt $f_0$ trên tập khả thi, và một điểm khả thi mà giá trị bằng số đó. Định nghĩa sau cố định chúng cho bài toán tối ưu tổng quát của Định nghĩa 01.12.
+Ví dụ 03.2 dùng hai khái niệm chưa có tên, đó là một số không vượt $f_0$ trên tập khả thi và một điểm khả thi có giá trị bằng số đó. Với bài toán tối ưu tổng quát của Định nghĩa 01.12, hai khái niệm này được đặt tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.1 (Cận dưới, chứng nhận tối ưu, khoảng chứng nhận)
 Cho bài toán tối ưu với tập khả thi $C\subseteq\mathbb R^n$, mục tiêu $f_0:C\to\mathbb R$ và giá trị tối ưu $p^*=\inf_{x\in C}f_0(x)$.
@@ -158,15 +164,15 @@ Cho bài toán tối ưu với tập khả thi $C\subseteq\mathbb R^n$, mục ti
 - **Chứng nhận tối ưu.** Khi khoảng chứng nhận bằng $0$, cận dưới $\ell$ gọi là một chứng nhận tối ưu (optimality certificate) cho $\hat x$.
 :::
 
-Định nghĩa có ba thành phần. Cận dưới $\ell$ là một số, không phụ thuộc vào điểm khả thi nào; nó là phát biểu "mọi điểm khả thi đều có giá trị ít nhất $\ell$". Khoảng chứng nhận đo độ lệch giữa giá trị một phương án đang có và cận dưới đang có, nên luôn không âm khi $\ell$ thật sự là cận dưới. Chứng nhận tối ưu là trường hợp khoảng này bằng $0$.
+Trong định nghĩa trên, cận dưới $\ell$ là một số không phụ thuộc vào điểm khả thi nào, và việc $\ell$ là cận dưới chính là phát biểu "mọi điểm khả thi đều có giá trị ít nhất $\ell$". Khoảng chứng nhận đo độ lệch giữa giá trị của phương án đang có và cận dưới đang có, nên luôn không âm khi $\ell$ thật sự là cận dưới. Chứng nhận tối ưu là trường hợp khoảng này bằng $0$.
 
-Ví dụ: với bài (1.1), số $4{,}5$ là một cận dưới, cặp $(\hat x,\ell)=(2;4{,}5)$ có khoảng chứng nhận $0{,}5$, còn số $5$ là chứng nhận tối ưu cho $\hat x=2$. Phản ví dụ: số $5{,}5$ không phải cận dưới, vì điểm khả thi $x=2$ có giá trị $5<5{,}5$.
+Chẳng hạn, với bài (1.1), số $4{,}5$ là một cận dưới, cặp $(\hat x,\ell)=(2;4{,}5)$ có khoảng chứng nhận $0{,}5$, còn số $5$ là chứng nhận tối ưu cho $\hat x=2$. Ngược lại, số $5{,}5$ không phải cận dưới, vì điểm khả thi $x=2$ có giá trị $5<5{,}5$.
 
 Theo Định nghĩa 01.10, $p^*$ là cận dưới lớn nhất, nên mọi cận dưới $\ell$ thỏa $\ell\le p^*$. Một bài toán có vô số cận dưới, và chỉ cận dưới bằng $p^*$ có thể là chứng nhận.
 
-Cận dưới khác cận trên $f_0(\hat x)$ ở chỗ cận trên đến từ một điểm, còn cận dưới là một khẳng định về toàn bộ tập khả thi. Quan hệ với chứng nhận của Bài 02 được nêu ở Nhận xét 03.3.
+Trong khi cận trên $f_0(\hat x)$ đến từ một điểm thì cận dưới là một khẳng định về toàn bộ tập khả thi. Quan hệ với chứng nhận của Bài 02 được nêu ở Nhận xét 03.3.
 
-Kết quả sau chỉ cần Định nghĩa 01.10 và Định nghĩa 03.1; nó cho biết một cặp (phương án, cận dưới) nói được gì về giá trị tối ưu chưa biết.
+Mệnh đề sau cho biết một cặp (phương án, cận dưới) nói gì về giá trị tối ưu chưa biết. Chứng minh chỉ cần Định nghĩa 01.10 và Định nghĩa 03.1.
 
 ::: proposition Mệnh đề 03.2 (Cận dưới chặn sai số và chứng nhận tối ưu)
 **Giả thiết.** Bài toán có tập khả thi $C\neq\varnothing$, $\hat x\in C$ và $\ell$ là một cận dưới theo Định nghĩa 03.1.
@@ -191,10 +197,10 @@ Vì $\ell\le f_0(x)$ với mọi $x\in C$, số $\ell$ là một cận dưới c
 Nếu $f_0(\hat x)=\ell$ thì chuỗi ở (a) thành $\ell\le p^*\le\ell$, nên $p^*=\ell=f_0(\hat x)$; một điểm khả thi có giá trị bằng $p^*$ là nghiệm theo Định nghĩa 01.12. $\square$
 :::
 
-Mệnh đề 03.2 tách việc chứng nhận tối ưu thành hai việc độc lập: tìm một phương án tốt và tìm một cận dưới tốt. Phần (a) dùng được cả khi chưa có chứng nhận: một bộ giải trả về phương án $\hat x$ và cận $\ell$ thì người dùng biết sai số không quá $f_0(\hat x)-\ell$ mà không cần biết $p^*$. Áp dụng vào Ví dụ 03.2: cặp $(2;\,4{,}5)$ cho sai số của phương án $x=2$ không quá $0{,}5$; cặp $(2;\,5)$ cho sai số bằng $0$. Trong Ví dụ 03.1, sai số thật bằng $0$, nên con số $0{,}5$ chỉ là cận trên của sai số.
+Theo Mệnh đề 03.2, việc chứng nhận tối ưu tách thành hai việc độc lập là tìm một phương án tốt và tìm một cận dưới tốt. Phần (a) dùng được cả khi chưa có chứng nhận, vì khi một bộ giải trả về phương án $\hat x$ và cận $\ell$, người dùng biết sai số không quá $f_0(\hat x)-\ell$ mà không cần biết $p^*$. Áp dụng vào Ví dụ 03.2, cặp $(2;\,4{,}5)$ cho sai số của phương án $x=2$ không quá $0{,}5$, còn cặp $(2;\,5)$ cho sai số bằng $0$. Trong Ví dụ 03.1, sai số thật bằng $0$, nên con số $0{,}5$ chỉ là cận trên của sai số.
 
 ::: remark Nhận xét 03.3 (Chứng nhận của Bài 02 và hai câu hỏi còn mở)
-Trong Mệnh đề 02.11, số $\sum_i\mu_i\beta_i$ là một cận dưới theo Định nghĩa 03.1, và phần (b) của mệnh đề đó là Mệnh đề 03.2(b). Ví dụ 03.2 dùng cùng ý nhưng không cần tuyến tính: cộng bội không âm $\lambda f_1$ rồi lấy cực tiểu trên toàn $\mathbb R$. Hai câu hỏi còn mở là chọn $\lambda$ thế nào và khi nào tồn tại $\lambda$ cho chứng nhận tối ưu. Mục 2 trả lời câu thứ nhất bằng bài toán đối ngẫu, Mục 3 trả lời câu thứ hai bằng điều kiện Slater.
+Trong Mệnh đề 02.11, số $\sum_i\mu_i\beta_i$ là một cận dưới theo Định nghĩa 03.1, và phần (b) của mệnh đề đó là Mệnh đề 03.2(b). Ví dụ 03.2 dùng cùng ý nhưng không cần tuyến tính: cộng bội không âm $\lambda f_1$ rồi lấy cực tiểu trên toàn $\mathbb R$. Hai câu hỏi còn mở là chọn $\lambda$ thế nào và khi nào tồn tại $\lambda$ cho chứng nhận tối ưu. Câu thứ nhất được trả lời ở Mục 2 bằng bài toán đối ngẫu, câu thứ hai ở Mục 3 bằng điều kiện Slater.
 
 Nhầm lẫn thường gặp là coi điểm đạt cực tiểu của $f_0+\lambda f_1$ là ứng viên nghiệm: với $\lambda=1$, điểm đó là $x=1{,}5$, không khả thi, nhưng cận $4{,}5$ vẫn đúng vì lập luận chỉ dùng giá trị nhỏ nhất, không dùng điểm đạt.
 :::
@@ -231,24 +237,17 @@ Theo Mệnh đề 03.2(b), $\hat x=1$ là nghiệm và $p^*=3$.
 Trên tập khả thi $[1,\infty)$, $f_0'(x)=2x+2>0$, nên $f_0$ tăng và nhỏ nhất tại $x=1$ với giá trị $3$, khớp kết luận.
 :::
 
-**Chuỗi suy luận của mục.** Mục đi từ nhu cầu khẳng định không phương án nào tốt hơn $x=2$ tới hai kết quả:
-
-1. Định nghĩa 03.1: cận dưới, khoảng chứng nhận, chứng nhận tối ưu;
-2. Mệnh đề 03.2: một cận dưới chặn sai số của mọi phương án, và một cận dưới bằng giá trị của một điểm khả thi là chứng nhận tối ưu.
-
-Ví dụ 03.2 cho thấy phép cộng $\lambda f_1$ với $\lambda\ge0$ sinh ra cận dưới cho bài (1.1).
-
-**Kết mục.** Phép cộng mới được làm cho một ràng buộc và một giá trị $\lambda$ đoán trước. Chưa có lập luận cho trường hợp tổng quát có nhiều bất đẳng thức, có đẳng thức, có miền khác $\mathbb R$.
-
-Mục 2 tổng quát hóa phép cộng thành hàm Lagrange, biến việc lấy cực tiểu thành hàm đối ngẫu, chứng minh mọi giá trị của hàm này là cận dưới, rồi chọn cận tốt nhất bằng một bài toán tối ưu mới.
+Xuất phát từ nhu cầu khẳng định không phương án nào tốt hơn $x=2$, chúng ta đã đặt tên cho cận dưới, khoảng chứng nhận và chứng nhận tối ưu (Định nghĩa 03.1). Theo Mệnh đề 03.2, một cận dưới chặn sai số của mọi phương án, và một cận dưới bằng giá trị của một điểm khả thi là chứng nhận tối ưu. Ví dụ 03.2 còn cho thấy phép cộng $\lambda f_1$ với $\lambda\ge0$ sinh ra cận dưới cho bài (1.1).
 
 ## 2. Hàm Lagrange, hàm đối ngẫu và đối ngẫu yếu
 
-Mục 1 sinh cận dưới cho bài (1.1) bằng cách cộng $\lambda f_1$ với một $\lambda\ge0$ đoán trước. Các bài toán của học phần có nhiều ràng buộc và có đẳng thức. Bài pha trộn của Bài 02 có bốn bất đẳng thức tuyến tính; bài $\min\tfrac12(x_1^2+x_2^2)$ với $x_1\ge1$, $x_2\ge2$ có hai bất đẳng thức, mỗi bất đẳng thức chặn một biến, nên một hệ số chung cho cả hai không đủ để cận chạm giá trị tối ưu $\tfrac52$ (Ví dụ 03.6 tính con số này). Mục này gán cho mỗi ràng buộc một nhân tử riêng, định nghĩa hàm Lagrange và hàm đối ngẫu, chứng minh rằng mọi giá trị hữu hạn của hàm đối ngẫu tại nhân tử không âm là một cận dưới (đối ngẫu yếu), và biến việc chọn nhân tử thành một bài toán tối ưu: bài toán đối ngẫu.
+Phép cộng $\lambda f_1$ ở Mục 1 mới được làm cho một ràng buộc với một giá trị $\lambda$ đoán trước. Chưa có lập luận cho trường hợp tổng quát có nhiều bất đẳng thức, có đẳng thức hay có miền khác $\mathbb R$, trong khi các bài toán của học phần có nhiều ràng buộc và có đẳng thức. Bài pha trộn của Bài 02 có bốn bất đẳng thức tuyến tính. Bài $\min\tfrac12(x_1^2+x_2^2)$ với $x_1\ge1$, $x_2\ge2$ có hai bất đẳng thức, mỗi bất đẳng thức chặn một biến, nên một hệ số chung cho cả hai không đủ để cận chạm giá trị tối ưu $\tfrac52$ (Ví dụ 03.6 tính con số này).
+
+Trong mục này, chúng ta tổng quát hóa phép cộng thành hàm Lagrange với một nhân tử riêng cho mỗi ràng buộc, rồi biến việc lấy cực tiểu thành hàm đối ngẫu. Chúng ta chứng minh rằng mọi giá trị hữu hạn của hàm đối ngẫu tại nhân tử không âm là một cận dưới (đối ngẫu yếu). Sau đó, cận tốt nhất được chọn bằng một bài toán tối ưu mới, gọi là bài toán đối ngẫu.
 
 ### 2.1 Bài toán gốc tổng quát
 
-Mọi kết quả của mục áp dụng cho bài toán sau, gọi là bài toán gốc (primal problem). Cho một tập không rỗng $D\subseteq\mathbb R^n$, các hàm $f_0,f_1,\ldots,f_m:D\to\mathbb R$, ma trận $A\in\mathbb R^{p\times n}$ và vector $b\in\mathbb R^p$; xét
+Mọi kết quả của mục này áp dụng cho bài toán sau, gọi là bài toán gốc (primal problem). Cho một tập không rỗng $D\subseteq\mathbb R^n$, các hàm $f_0,f_1,\ldots,f_m:D\to\mathbb R$, ma trận $A\in\mathbb R^{p\times n}$ và vector $b\in\mathbb R^p$; xét
 
 $$
 \begin{aligned}
@@ -259,11 +258,15 @@ $$
 \tag{2.1}
 $$
 
-với tập khả thi $C=\{x\in D\mid f_i(x)\le0,\ i=1,\ldots,m;\ Ax=b\}$ và giá trị tối ưu $p^*=\inf_{x\in C}f_0(x)$. Bài (2.1) có dạng của Định nghĩa 01.12 với các hàm đẳng thức affine; không giả thiết $D$ lồi, các $f_i$ lồi hay khả vi. Miền $D$ chứa những điều kiện không được đưa vào hàm Lagrange; trong hầu hết chương $D=\mathbb R^n$, còn Ví dụ 03.7 và Tình huống 03.3 dùng $D=\{0,1\}^n$. Một ràng buộc dạng $h(x)\ge c$ được viết lại thành $c-h(x)\le0$ trước khi gán nhân tử; Mục 1 đã thấy rằng dấu sai làm hỏng chiều của cận.
+với tập khả thi $C=\{x\in D\mid f_i(x)\le0,\ i=1,\ldots,m;\ Ax=b\}$ và giá trị tối ưu $p^*=\inf_{x\in C}f_0(x)$. Bài (2.1) có dạng của Định nghĩa 01.12 với các hàm đẳng thức affine, và ta không giả thiết $D$ lồi, các $f_i$ lồi hay khả vi.
+
+Miền $D$ chứa những điều kiện không được đưa vào hàm Lagrange. Trong hầu hết chương, $D=\mathbb R^n$, còn Ví dụ 03.7 và Tình huống 03.3 dùng $D=\{0,1\}^n$. Một ràng buộc dạng $h(x)\ge c$ được viết lại thành $c-h(x)\le0$ trước khi gán nhân tử, vì như ở Mục 1, dấu sai làm hỏng chiều của cận.
 
 ### 2.2 Hàm Lagrange
 
-Ví dụ 03.2 dùng hàm $f_0+\lambda f_1$. Với nhiều ràng buộc, mỗi bất đẳng thức $f_i\le0$ nhận một trọng số $\lambda_i\ge0$, như trong Mệnh đề 02.11 mỗi ràng buộc nhận một $\mu_i\ge0$. Một đẳng thức $a_j^Tx=b_j$ thì khác: tại mọi điểm khả thi, $a_j^Tx-b_j=0$, nên cộng $\nu_j(a_j^Tx-b_j)$ với $\nu_j$ âm hay dương đều không đổi giá trị tại điểm khả thi. Trực giác (chưa phải định nghĩa): hàm cần dựng là mục tiêu cộng tổng có trọng số các vế trái ràng buộc, với trọng số không âm cho bất đẳng thức và trọng số tự do cho đẳng thức.
+Ví dụ 03.2 dùng hàm $f_0+\lambda f_1$. Với nhiều ràng buộc, mỗi bất đẳng thức $f_i\le0$ nhận một trọng số $\lambda_i\ge0$, như trong Mệnh đề 02.11 mỗi ràng buộc nhận một $\mu_i\ge0$. Đẳng thức $a_j^Tx=b_j$ thì khác, vì tại mọi điểm khả thi $a_j^Tx-b_j=0$, nên cộng $\nu_j(a_j^Tx-b_j)$ với $\nu_j$ âm hay dương đều không đổi giá trị tại điểm khả thi.
+
+Về mặt ý tưởng, hàm cần dựng là mục tiêu cộng tổng có trọng số các vế trái ràng buộc, với trọng số không âm cho bất đẳng thức và trọng số tự do cho đẳng thức. Ý tưởng này chưa phải định nghĩa và được làm chính xác như sau.
 
 ::: definition Định nghĩa 03.4 (Hàm Lagrange và nhân tử)
 Cho bài toán (2.1). Hàm Lagrange (Lagrangian) của bài toán là $L:D\times\mathbb R^m\times\mathbb R^p\to\mathbb R$,
@@ -276,9 +279,9 @@ $$
 Số $\lambda_i$ là nhân tử Lagrange (Lagrange multiplier) của ràng buộc $f_i(x)\le0$, số $\nu_j$ là nhân tử của ràng buộc đẳng thức thứ $j$; $\lambda\in\mathbb R^m$ và $\nu\in\mathbb R^p$ gọi là các vector nhân tử.
 :::
 
-Hàm $L$ có ba nhóm số hạng. Số hạng $f_0(x)$ là mục tiêu gốc. Số hạng $\lambda_if_i(x)$ cộng thêm một khoản tỷ lệ với mức ràng buộc $f_i(x)$: khi $\lambda_i\ge0$ và $x$ thỏa ràng buộc, khoản này không dương; khi $x$ vi phạm ($f_i(x)>0$), khoản này dương và tăng theo mức vi phạm. Số hạng $\nu^T(Ax-b)$ bằng $0$ tại mọi $x$ thỏa đẳng thức, với mọi $\nu$.
+Trong định nghĩa trên, hàm $L$ có ba nhóm số hạng, trong đó $f_0(x)$ là mục tiêu gốc. Số hạng $\lambda_if_i(x)$ cộng thêm một khoản tỷ lệ với mức ràng buộc $f_i(x)$. Khi $\lambda_i\ge0$ và $x$ thỏa ràng buộc, khoản này không dương, còn khi $x$ vi phạm ($f_i(x)>0$), khoản này dương và tăng theo mức vi phạm. Số hạng $\nu^T(Ax-b)$ bằng $0$ tại mọi $x$ thỏa đẳng thức, với mọi $\nu$.
 
-Định nghĩa cho phép mọi $\lambda\in\mathbb R^m$; dấu $\lambda\succeq0$ là điều kiện của kết quả dùng $L$ (Định lý 03.8), không phải của bản thân $L$. Với bài (1.1), $m=1$, $p=0$ và
+Định nghĩa cho phép mọi $\lambda\in\mathbb R^m$, vì dấu $\lambda\succeq0$ là điều kiện của kết quả dùng $L$ (Định lý 03.8), còn bản thân $L$ không cần điều kiện này. Với bài (1.1), ta có $m=1$, $p=0$ và
 
 $$
 L(x,\lambda)=x^2+1+\lambda(x-2)(x-4)=(1+\lambda)x^2-6\lambda x+1+8\lambda ,
@@ -286,15 +289,15 @@ $$
 
 có được bằng cách khai triển $(x-2)(x-4)=x^2-6x+8$, nhân với $\lambda$ rồi gom hệ số theo lũy thừa của $x$. Với $\lambda=1$ và $\lambda=2$, biểu thức này trùng với hai hàm của Ví dụ 03.2.
 
-So với các khái niệm đã có, hàm Lagrange tổng quát hóa phép tổ hợp không âm của Mệnh đề 02.11: với quy hoạch tuyến tính $\min c^Tx$, $\beta_i-a_i^Tx\le0$, ta có $L(x,\lambda)=c^Tx+\sum_i\lambda_i(\beta_i-a_i^Tx)$, và Mệnh đề 03.11 dưới đây cho thấy hệ số $\mu_i$ của Bài 02 chính là $\lambda_i$.
+Hàm Lagrange tổng quát hóa phép tổ hợp không âm của Mệnh đề 02.11. Với quy hoạch tuyến tính $\min c^Tx$, $\beta_i-a_i^Tx\le0$, ta có $L(x,\lambda)=c^Tx+\sum_i\lambda_i(\beta_i-a_i^Tx)$, và Mệnh đề 03.11 dưới đây cho thấy hệ số $\mu_i$ của Bài 02 chính là $\lambda_i$.
 
-Hàm Lagrange khác hàm có phạt $\ell(w)+\rho R(w)$ của Mệnh đề 02.26 ở hai điểm: hạng phạt của Bài 02 thay ràng buộc bằng một chi phí với hệ số chọn trước, còn trong $L$ các nhân tử là biến của một bài toán mới (Định nghĩa 03.9); và $L$ cộng mức ràng buộc $f_i$ có dấu, chứ không cộng một độ đo không âm của vi phạm.
+Hàm Lagrange khác hàm có phạt $\ell(w)+\rho R(w)$ của Mệnh đề 02.26 ở hai điểm. Thứ nhất, hạng phạt của Bài 02 thay ràng buộc bằng một chi phí với hệ số chọn trước, còn trong $L$ các nhân tử là biến của một bài toán mới (Định nghĩa 03.9). Thứ hai, $L$ cộng mức ràng buộc $f_i$ có dấu, chứ không cộng một độ đo không âm của vi phạm.
 
-Nhầm lẫn thường gặp là cho rằng $L(x,\lambda,\nu)\le f_0(x)$ với mọi $x$. Bất đẳng thức chỉ đúng tại $x$ khả thi và $\lambda\succeq0$: với bài (1.1), $\lambda=1$ và $x=0$ cho $L(0,1)=9>1=f_0(0)$.
+Nhầm lẫn thường gặp là cho rằng $L(x,\lambda,\nu)\le f_0(x)$ với mọi $x$. Bất đẳng thức này chỉ đúng tại $x$ khả thi và $\lambda\succeq0$. Chẳng hạn, với bài (1.1), $\lambda=1$ và $x=0$ cho $L(0,1)=9>1=f_0(0)$.
 
 ### 2.3 Hàm đối ngẫu
 
-Ở Ví dụ 03.2, cận dưới là giá trị nhỏ nhất của $L(\cdot,\lambda)$ trên toàn $\mathbb R$. Khi $L$ không đạt cực tiểu, giá trị nhỏ nhất không tồn tại, nhưng cận dưới đúng vẫn tồn tại (Định nghĩa 01.10). Đối tượng cần định nghĩa vì vậy là cận dưới đúng của $L$ theo $x$, coi như một hàm của nhân tử.
+Ở Ví dụ 03.2, cận dưới là giá trị nhỏ nhất của $L(\cdot,\lambda)$ trên toàn $\mathbb R$. Khi $L$ không đạt cực tiểu, giá trị nhỏ nhất không tồn tại, nhưng cận dưới đúng vẫn tồn tại (Định nghĩa 01.10). Do đó, đối tượng cần định nghĩa là cận dưới đúng của $L$ theo $x$, coi như một hàm của nhân tử.
 
 ::: definition Định nghĩa 03.5 (Hàm đối ngẫu và miền hữu hiệu)
 Cho bài toán (2.1) với hàm Lagrange (2.2). Hàm đối ngẫu Lagrange (Lagrange dual function) là $g:\mathbb R^m\times\mathbb R^p\to\mathbb R\cup\{-\infty\}$,
@@ -307,11 +310,11 @@ $$
 Giá trị $g(\lambda,\nu)=-\infty$ khi $L(\cdot,\lambda,\nu)$ không bị chặn dưới trên $D$. Tập $\operatorname{dom}g=\{(\lambda,\nu)\mid g(\lambda,\nu)>-\infty\}$ gọi là miền hữu hiệu của $g$.
 :::
 
-Công thức (2.3) cố định nhân tử rồi lấy cận dưới đúng theo $x$ trên toàn miền $D$; các ràng buộc $f_i\le0$ và $Ax=b$ không được áp lại, vì chúng đã được đưa vào $L$ dưới dạng các số hạng có trọng số. Kết quả là một số phụ thuộc vào $(\lambda,\nu)$. Hàm $g$ không nhận giá trị $+\infty$: vì $D$ không rỗng, với một điểm $x_0\in D$ bất kỳ, $g(\lambda,\nu)\le L(x_0,\lambda,\nu)<+\infty$.
+Công thức (2.3) cố định nhân tử rồi lấy cận dưới đúng theo $x$ trên toàn miền $D$. Các ràng buộc $f_i\le0$ và $Ax=b$ không được áp lại, vì chúng đã được đưa vào $L$ dưới dạng các số hạng có trọng số. Kết quả là một số phụ thuộc vào $(\lambda,\nu)$. Hàm $g$ không nhận giá trị $+\infty$, vì $D$ không rỗng nên với một điểm $x_0\in D$ bất kỳ, $g(\lambda,\nu)\le L(x_0,\lambda,\nu)<+\infty$.
 
-Ví dụ tiếp theo tính $g$ của bài (1.1) đến công thức tường minh; ví dụ ngược là $\lambda=-1$, khi $L(x,-1)=6x-7$ không bị chặn dưới, nên $g(-1)=-\infty$ và $-1\notin\operatorname{dom}g$.
+Ví dụ tiếp theo tính $g$ của bài (1.1) đến công thức tường minh. Ngược lại, với $\lambda=-1$, hàm $L(x,-1)=6x-7$ không bị chặn dưới, nên $g(-1)=-\infty$ và $-1\notin\operatorname{dom}g$.
 
-Hàm đối ngẫu là hàm của nhân tử, còn hàm Lagrange là hàm của cả biến và nhân tử; $g$ có được từ $L$ bằng phép "lấy cận dưới đúng theo $x$", cùng phép đã định nghĩa $p^*$ từ $f_0$ (Định nghĩa 01.12), nhưng trên $D$ thay vì trên $C$. Vì $C\subseteq D$, cận dưới đúng của $L$ trên $D$ không vượt cận dưới đúng trên $C$ (Mệnh đề 01.16(a)); Định lý 03.8 khai thác đúng bất đẳng thức này.
+Hàm đối ngẫu là hàm của nhân tử, còn hàm Lagrange là hàm của cả biến và nhân tử. Ta thu được $g$ từ $L$ bằng phép "lấy cận dưới đúng theo $x$", cùng phép đã định nghĩa $p^*$ từ $f_0$ (Định nghĩa 01.12), nhưng lấy trên $D$ thay vì trên $C$. Vì $C\subseteq D$, cận dưới đúng của $L$ trên $D$ không vượt cận dưới đúng trên $C$ (Mệnh đề 01.16(a)), và Định lý 03.8 dùng đúng bất đẳng thức này.
 
 ::: example Ví dụ 03.3 (Hàm đối ngẫu của bài toán xuyên suốt)
 **Dữ kiện.**
@@ -351,9 +354,9 @@ $g(1)$ và $g(2)$ trùng với hai cận của Ví dụ 03.2. Điểm đạt $x(
 
 ![Đồ thị hàm g theo nhân tử lambda. Đường cong tiến về âm vô cực khi lambda giảm về âm 1, có tiệm cận đứng tại âm 1. Miền khả thi đối ngẫu lambda lớn hơn hoặc bằng 0 được tô nền. Đồ thị đi qua g(0) bằng 1, tăng tới cực đại 5 tại lambda bằng 2 rồi giảm. Một đường nét đứt nằm ngang ở mức p sao bằng 5 chạm đỉnh; khoảng cách từ g(0) tới 5 được ghi là 4. Góc trên ghi điểm x bằng 3 cho f1 bằng âm 1, nhỏ hơn 0, là điểm Slater.](img/lec-03/dual-function.svg)
 
-Hình trên vẽ $g$ trên $\operatorname{dom}g=(-1,\infty)$. Phần $-1<\lambda<0$ thuộc miền hữu hiệu nhưng giá trị ở đó không được bảo đảm là cận dưới, vì Định lý 03.8 dưới đây cần $\lambda\ge0$; phần nền tô là các nhân tử dùng được. Đỉnh của đồ thị tại $\lambda=2$ có độ cao $5=p^*$, và đồ thị lõm. Tính lõm này không phải đặc điểm riêng của ví dụ.
+Đồ thị của $g$ trên $\operatorname{dom}g=(-1,\infty)$ ở hình trên có phần nền tô là các nhân tử dùng được. Phần $-1<\lambda<0$ thuộc miền hữu hiệu, nhưng giá trị ở đó không được bảo đảm là cận dưới, vì Định lý 03.8 dưới đây cần $\lambda\ge0$. Đỉnh của đồ thị tại $\lambda=2$ có độ cao $5=p^*$, và đồ thị lõm. Tính lõm này không phải đặc điểm riêng của ví dụ.
 
-Kết quả sau cho biết cấu trúc của bài toán chọn nhân tử tốt nhất; nó chỉ dùng định nghĩa hàm lõm, tức Định nghĩa 01.22 áp cho $-g$, và định nghĩa cận dưới đúng. Lập luận theo Boyd và Vandenberghe (2004, mục 5.1.2, tr. 216).
+Mệnh đề sau cho biết cấu trúc của bài toán chọn nhân tử tốt nhất. Chứng minh chỉ dùng định nghĩa hàm lõm, tức Định nghĩa 01.22 áp cho $-g$, và định nghĩa cận dưới đúng, theo lập luận của Boyd và Vandenberghe (2004, mục 5.1.2, tr. 216).
 
 ::: proposition Mệnh đề 03.6 (Hàm đối ngẫu lõm)
 **Giả thiết.** Bài toán (2.1) với $D$ bất kỳ và các hàm $f_0,\ldots,f_m$ bất kỳ.
@@ -395,9 +398,9 @@ $$
 Vế phải là một số không phụ thuộc $x$ và là một cận dưới của $\{L(x,\theta_\alpha)\mid x\in D\}$, nên không vượt cận dưới lớn nhất $g(\theta_\alpha)$ (Định nghĩa 01.10). Đó là bất đẳng thức cần chứng minh. Vế phải hữu hạn, nên $g(\theta_\alpha)>-\infty$, tức $\theta_\alpha\in\operatorname{dom}g$: $\operatorname{dom}g$ lồi (Định nghĩa 01.18), và $-g$ thỏa định nghĩa hàm lồi trên tập lồi này. $\square$
 :::
 
-Mệnh đề 03.6 nói rằng $g$ là cận dưới đúng của một họ hàm affine theo nhân tử, một họ chỉ số bởi $x\in D$. Cận dưới đúng từng điểm của các hàm affine luôn lõm, bất kể họ đó sinh ra thế nào. Mệnh đề này là phần đối ngẫu của Định lý 01.31(c): cực đại từng điểm của các hàm lồi là lồi.
+Chứng minh trên cho thấy $g$ là cận dưới đúng của một họ hàm affine theo nhân tử, với chỉ số $x\in D$. Cận dưới đúng từng điểm của các hàm affine luôn lõm, bất kể họ đó sinh ra thế nào. Mệnh đề 03.6 là phần đối ngẫu của Định lý 01.31(c), theo đó cực đại từng điểm của các hàm lồi là lồi.
 
-Chứng minh không dùng tính lồi ở bất kỳ bước nào, nên kết luận đúng cả khi bài gốc không lồi. Ví dụ 03.7 với $D=\{0,1\}^3$ là một trường hợp như vậy: ở đó $g$ là cận dưới của tám hàm affine. Với bài (1.1), Mệnh đề 03.6 khớp với phép tính trực tiếp: $g''(\lambda)=-\frac{18}{(1+\lambda)^3}<0$ trên $(-1,\infty)$.
+Chứng minh không dùng tính lồi ở bất kỳ bước nào, nên kết luận đúng cả khi bài gốc không lồi. Ví dụ 03.7 với $D=\{0,1\}^3$ là một trường hợp như vậy, trong đó $g$ là cận dưới của tám hàm affine. Với bài (1.1), Mệnh đề 03.6 khớp với phép tính trực tiếp $g''(\lambda)=-\frac{18}{(1+\lambda)^3}<0$ trên $(-1,\infty)$.
 
 ::: remark Nhận xét 03.7 (Ba nhầm lẫn khi tính hàm đối ngẫu)
 1. **Thay cận dưới đúng bằng giá trị nhỏ nhất.** Với bài $\min e^x$ trên $\mathbb R$ không có ràng buộc, $g=\inf_xe^x=0$ dù không có $x$ đạt $0$. Viết "$g$ không xác định vì không có cực tiểu" là sai.
@@ -409,7 +412,7 @@ Chiều ngược lại cũng xảy ra: bài gốc khó mà $g$ dễ tính. Bài 
 
 ### 2.4 Đối ngẫu yếu
 
-Ví dụ 03.2 chứng minh riêng từng cận. Định lý sau chỉ cần Định nghĩa 03.5 và Định nghĩa 01.10; nó cho biết mọi giá trị của $g$ tại nhân tử có $\lambda\succeq0$ đều là cận dưới, và nêu chỗ dấu của nhân tử được dùng.
+Ở Ví dụ 03.2, ta chứng minh riêng từng cận. Định lý sau cho biết mọi giá trị của $g$ tại nhân tử có $\lambda\succeq0$ đều là cận dưới. Chứng minh chỉ cần Định nghĩa 03.5 và Định nghĩa 01.10, và chỉ rõ chỗ dấu của nhân tử được dùng.
 
 ::: theorem Định lý 03.8 (Đối ngẫu yếu)
 **Giả thiết.** Bài toán (2.1) với $D$ và $f_0,\ldots,f_m$ bất kỳ; $\lambda\in\mathbb R^m$ với $\lambda\succeq0$; $\nu\in\mathbb R^p$ bất kỳ.
@@ -444,21 +447,21 @@ Vì $x$ khả thi, $f_i(x)\le0$ với mọi $i$; vì $\lambda_i\ge0$, mỗi tíc
 Theo (2.4), $g(\lambda,\nu)$ không vượt $f_0(x)$ với mọi $x\in C$, nên là một cận dưới của $\{f_0(x)\mid x\in C\}$ và không vượt cận dưới lớn nhất $p^*$ (Định nghĩa 01.10). Nếu $C=\varnothing$, $p^*=+\infty$ và bất đẳng thức hiển nhiên. $\square$
 :::
 
-Đối ngẫu yếu (weak duality) gồm hai bước có căn cứ khác nhau. Bước đầu là tính chất của cận dưới đúng: lấy cận dưới đúng trên miền lớn $D$ cho số nhỏ hơn giá trị tại mọi điểm của miền nhỏ $C$. Bước sau dùng tính khả thi và dấu nhân tử.
+Định lý 03.8 được gọi là đối ngẫu yếu (weak duality), và chứng minh của nó gồm hai bước có căn cứ khác nhau. Bước đầu là tính chất của cận dưới đúng: lấy cận dưới đúng trên miền lớn $D$ cho một số không vượt giá trị tại mọi điểm của miền nhỏ $C$. Bước sau dùng tính khả thi và dấu nhân tử.
 
-Bỏ giả thiết $\lambda\succeq0$ thì bước sau hỏng. Với bài (1.1) và $\lambda=-\tfrac12\in\operatorname{dom}g$, $g(-\tfrac12)=10+\tfrac12-18=-7{,}5$ vẫn không vượt $5$, nhưng không có lý do tổng quát cho điều đó. Với cùng $\lambda$ và điểm khả thi $x=3$, $L(3,-\tfrac12)=10+\tfrac12=10{,}5>f_0(3)=10$, nên bất đẳng thức thứ hai của (2.4) sai.
+Nếu bỏ giả thiết $\lambda\succeq0$ thì bước sau hỏng. Với bài (1.1) và $\lambda=-\tfrac12\in\operatorname{dom}g$, giá trị $g(-\tfrac12)=10+\tfrac12-18=-7{,}5$ vẫn không vượt $5$, nhưng không có lý do tổng quát cho điều đó. Thật vậy, với cùng $\lambda$ và điểm khả thi $x=3$, ta có $L(3,-\tfrac12)=10+\tfrac12=10{,}5>f_0(3)=10$, nên bất đẳng thức thứ hai của (2.4) sai.
 
-So với Mệnh đề 02.11, Định lý 03.8 bỏ giả thiết tuyến tính và bỏ yêu cầu chi phí bằng đúng một tổ hợp các ràng buộc: thay vào đó, phần chênh lệch $f_0+\sum_i\lambda_if_i$ được xử lý bằng phép lấy cận dưới đúng. So với Mệnh đề 03.2, định lý cung cấp chính cái cận dưới $\ell$ mà Mệnh đề 03.2 giả thiết là đã có. Cái giá phải trả là phải tính một cận dưới đúng trên $D$, và cận thu được có thể không đạt $p^*$.
+So với Mệnh đề 02.11, Định lý 03.8 bỏ giả thiết tuyến tính và bỏ yêu cầu chi phí bằng đúng một tổ hợp các ràng buộc. Thay vào đó, phần chênh lệch $f_0+\sum_i\lambda_if_i$ được xử lý bằng phép lấy cận dưới đúng. Định lý cũng cung cấp chính cận dưới $\ell$ mà Mệnh đề 03.2 giả thiết là đã có. Tuy nhiên, để dùng định lý, ta phải tính một cận dưới đúng trên $D$, và cận thu được có thể không đạt $p^*$.
 
-**Trong học máy.** Đối ngẫu yếu là nền của phép nới lỏng Lagrange (Lagrangian relaxation) cho các bài chọn rời rạc như chọn tập dữ liệu để gán nhãn hay chọn đặc trưng: tập khả thi rời rạc không lồi, nhưng $g$ vẫn là cận dưới và Mệnh đề 03.6 vẫn cho bài chọn nhân tử lõm; Tình huống 03.3 tính cụ thể cận này.
+**Trong học máy.** Đối ngẫu yếu là nền của phép nới lỏng Lagrange (Lagrangian relaxation) cho các bài chọn rời rạc như chọn tập dữ liệu để gán nhãn hay chọn đặc trưng. Tập khả thi rời rạc không lồi, nhưng $g$ vẫn là cận dưới và Mệnh đề 03.6 vẫn cho bài chọn nhân tử lõm. Tình huống 03.3 tính cụ thể cận này.
 
-Trong các bộ giải lồi, mỗi lần lặp tạo một phương án khả thi $x^{(k)}$ và một nhân tử $(\lambda^{(k)},\nu^{(k)})$ với $\lambda^{(k)}\succeq0$; hiệu $f_0(x^{(k)})-g(\lambda^{(k)},\nu^{(k)})$ chặn trên sai số theo Mệnh đề 03.2(a), và bộ giải dừng khi hiệu này nhỏ hơn ngưỡng (Boyd và Vandenberghe 2004, mục 5.5.1, tr. 241–242).
+Trong các bộ giải lồi, mỗi lần lặp tạo một phương án khả thi $x^{(k)}$ và một nhân tử $(\lambda^{(k)},\nu^{(k)})$ với $\lambda^{(k)}\succeq0$. Hiệu $f_0(x^{(k)})-g(\lambda^{(k)},\nu^{(k)})$ chặn trên sai số theo Mệnh đề 03.2(a), và bộ giải dừng khi hiệu này nhỏ hơn ngưỡng (Boyd và Vandenberghe 2004, mục 5.5.1, tr. 241–242).
 
-Giả thiết $\lambda\succeq0$ phải được bảo đảm bởi bộ giải; nếu một nhân tử âm do sai số làm tròn, con số trả về không còn là cận dưới.
+Giả thiết $\lambda\succeq0$ phải được bộ giải bảo đảm, vì nếu một nhân tử âm do sai số làm tròn thì con số trả về không còn là cận dưới.
 
 ### 2.5 Bài toán đối ngẫu
 
-Mỗi $(\lambda,\nu)$ với $\lambda\succeq0$ cho một cận dưới, và cận tốt nhất là cận lớn nhất. Ở Ví dụ 03.3, $g(0)=1$, $g(1)=4{,}5$, $g(2)=5$; chọn nhân tử tốt nhất là cực đại $g$ trên tập $\lambda\ge0$.
+Mỗi $(\lambda,\nu)$ với $\lambda\succeq0$ cho một cận dưới, và cận tốt nhất là cận lớn nhất. Ở Ví dụ 03.3, $g(0)=1$, $g(1)=4{,}5$, $g(2)=5$. Chọn nhân tử tốt nhất vì vậy là cực đại $g$ trên tập $\lambda\ge0$. Bài toán chọn nhân tử này được định nghĩa như sau.
 
 ::: definition Định nghĩa 03.9 (Bài toán đối ngẫu)
 Cho bài toán (2.1) với hàm đối ngẫu $g$. Bài toán đối ngẫu Lagrange (Lagrange dual problem) là
@@ -475,9 +478,9 @@ Bài (2.5) có biến là nhân tử, mục tiêu là hàm đối ngẫu, và r�
 
 Theo Mệnh đề 03.6, nó là bài cực đại một hàm lõm trên tập lồi $\{\lambda\succeq0\}\cap\operatorname{dom}g$, tương đương bài cực tiểu hàm lồi $-g$ trên một tập lồi, tức một bài toán tối ưu lồi theo nghĩa tổng quát nêu trong Định nghĩa 02.1, kể cả khi bài gốc không lồi.
 
-Bài gốc có $n$ biến, bài đối ngẫu có $m+p$ biến; đối ngẫu là quan hệ giữa hai giá trị tối ưu $p^*$ và $d^*$, không phải một phép cải dạng tương đương theo Định nghĩa 02.5. Ví dụ ngược: hai cách viết tương đương của cùng một tập khả thi có thể cho hai bài đối ngẫu khác nhau (Bài tập 03.13).
+Bài gốc có $n$ biến, còn bài đối ngẫu có $m+p$ biến. Đối ngẫu là quan hệ giữa hai giá trị tối ưu $p^*$ và $d^*$, không phải một phép cải dạng tương đương theo Định nghĩa 02.5. Chẳng hạn, hai cách viết tương đương của cùng một tập khả thi có thể cho hai bài đối ngẫu khác nhau (Bài tập 03.13).
 
-Kết quả sau là hệ quả trực tiếp của Định lý 03.8: lấy cận trên đúng theo nhân tử ở vế trái của (2.4).
+Lấy cận trên đúng theo nhân tử ở vế trái của (2.4), ta được ngay hệ quả sau của Định lý 03.8.
 
 ::: corollary Hệ quả 03.10 (Đối ngẫu yếu cho giá trị tối ưu và chứng nhận từ một cặp)
 **Giả thiết.** Bài toán (2.1) và bài đối ngẫu (2.5).
@@ -507,9 +510,9 @@ Bất đẳng thức $g(\lambda,\nu)\le d^*$ là định nghĩa cận trên đú
 Khi hai đầu của chuỗi (b) bằng nhau, mọi bất đẳng thức trong chuỗi là đẳng thức: $f_0(x)=p^*$ nên $x$ là nghiệm, và $g(\lambda,\nu)=d^*$ nên $(\lambda,\nu)$ là nghiệm đối ngẫu. $\square$
 :::
 
-Hệ quả 03.10(c) là Mệnh đề 03.2(b) với cận dưới $\ell=g(\lambda,\nu)$, và cho thêm một kết luận về phía đối ngẫu: một cặp có khoảng đối ngẫu bằng $0$ chứng nhận đồng thời cả hai phía.
+Hệ quả 03.10(c) là Mệnh đề 03.2(b) với cận dưới $\ell=g(\lambda,\nu)$, cộng thêm một kết luận về phía đối ngẫu: một cặp có khoảng đối ngẫu bằng $0$ chứng nhận đồng thời cả hai phía.
 
-Phần (b) là cách đọc kết quả của một bộ giải khi chưa có chứng nhận: độ dài $f_0(x)-g(\lambda,\nu)$ của đoạn gọi là khoảng đối ngẫu của cặp $(x,(\lambda,\nu))$ (Định nghĩa 03.12 đặt tên chính thức).
+Phần (b) cho cách đọc kết quả của một bộ giải khi chưa có chứng nhận. Độ dài $f_0(x)-g(\lambda,\nu)$ của đoạn được gọi là khoảng đối ngẫu của cặp $(x,(\lambda,\nu))$, với tên chính thức được đặt ở Định nghĩa 03.12.
 
 ::: example Ví dụ 03.4 (Bài toán đối ngẫu của bài toán xuyên suốt)
 **Dữ kiện.**
@@ -535,9 +538,9 @@ Kết luận khớp Ví dụ 03.1. Tính trực tiếp từ (2.4) với $\lambda
 
 ![Đồ thị hàm đối ngẫu g theo lambda không âm. Đường cong đi lên từ g(0) bằng 1, đạt đỉnh 5 tại lambda bằng 2 rồi đi xuống. Một đường nằm ngang ở mức 5 ghi p sao. Các điểm ứng với lambda bằng 1 cho g bằng 4,5 được đánh dấu như một cận chưa khít.](img/lec-03/dual-bound.svg)
 
-Hình trên cho thấy mọi điểm của đồ thị nằm dưới đường ngang $p^*=5$, đúng với Định lý 03.8, và đồ thị chạm đường này tại đúng một nhân tử. Hệ quả 03.10 không bảo đảm sự chạm đó; Mục 3 trả lời khi nào nó xảy ra.
+Mọi điểm của đồ thị $g$ nằm dưới đường ngang $p^*=5$, đúng với Định lý 03.8, và đồ thị chạm đường này tại đúng một nhân tử. Hệ quả 03.10 không bảo đảm sự chạm đó, và câu hỏi khi nào nó xảy ra được trả lời ở Mục 3.
 
-Quan hệ giữa đối ngẫu và chứng nhận của Bài 02 được làm rõ bằng cách tính bài đối ngẫu của một quy hoạch tuyến tính, theo Boyd và Vandenberghe (2004, mục 5.1.5, tr. 218–219). Kết quả sau dùng Định nghĩa 03.5 và tính chất: một hàm affine $x\mapsto s^Tx+r$ trên $\mathbb R^n$ bị chặn dưới khi và chỉ khi $s=0$.
+Để thấy quan hệ giữa đối ngẫu và chứng nhận của Bài 02, ta tính bài đối ngẫu của một quy hoạch tuyến tính, theo Boyd và Vandenberghe (2004, mục 5.1.5, tr. 218–219). Mệnh đề sau dùng Định nghĩa 03.5 và tính chất một hàm affine $x\mapsto s^Tx+r$ trên $\mathbb R^n$ bị chặn dưới khi và chỉ khi $s=0$.
 
 ::: proposition Mệnh đề 03.11 (Đối ngẫu của quy hoạch tuyến tính)
 **Giả thiết.** Quy hoạch tuyến tính $\min_{x\in\mathbb R^n}c^Tx$ với các ràng buộc $\beta_i-a_i^Tx\le0$, $i=1,\ldots,k$, trong đó $a_i\in\mathbb R^n$, $\beta_i\in\mathbb R$; đặt $\beta=(\beta_1,\ldots,\beta_k)$.
@@ -587,7 +590,7 @@ nên $g(\lambda)=-\infty$. Căn cứ là Định nghĩa 03.5.
 Bài (2.5) chỉ có ý nghĩa trên $\operatorname{dom}g$, nên điều kiện $s=0$ trở thành ràng buộc của bài đối ngẫu. Với $\lambda\succeq0$ thỏa $\sum_i\lambda_ia_i=c$, Định lý 03.8 cho $c^Tx\ge g(\lambda)=\sum_i\lambda_i\beta_i$ với mọi $x$ khả thi, là Mệnh đề 02.11(a) với $\mu=\lambda$. $\square$
 :::
 
-Mệnh đề 03.11 trả lời câu hỏi thứ nhất Bài 02 để lại: các hệ số $\mu$ của Mệnh đề 02.11 không phải đoán, chúng là nghiệm của một quy hoạch tuyến tính khác, và hệ số tốt nhất cho cận lớn nhất. Ví dụ này cũng cho thấy vì sao $g$ thường nhận giá trị $-\infty$: miền hữu hiệu của $g$ là nơi các ràng buộc đẳng thức "ẩn" của bài đối ngẫu được thỏa.
+Mệnh đề 03.11 trả lời câu hỏi thứ nhất mà Bài 02 để lại. Các hệ số $\mu$ của Mệnh đề 02.11 không cần đoán, vì chúng là nghiệm của một quy hoạch tuyến tính khác, và hệ số tốt nhất cho cận lớn nhất. Trường hợp này cũng giải thích vì sao $g$ thường nhận giá trị $-\infty$, do miền hữu hiệu của $g$ là nơi các ràng buộc đẳng thức "ẩn" của bài đối ngẫu được thỏa.
 
 ::: example Ví dụ 03.5 (Đối ngẫu của bài pha trộn)
 **Lập bài đối ngẫu.**
@@ -611,7 +614,7 @@ Giải hệ hai ràng buộc chặt $2\lambda_1+\lambda_2=3$, $\lambda_1+2\lambd
 $\lambda_3=3-\tfrac83-\tfrac13=0$ và $\lambda_4=2-\tfrac43-\tfrac23=0$, không âm. Đây đúng là bộ hệ số $\mu$ của Ví dụ 02.7. Một điểm đối ngẫu khả thi khác, $\lambda=(0,1,2,0)$, cho $g=5\le7$, đúng với Định lý 03.8.
 :::
 
-Trong Ví dụ 03.5, việc giải hệ hai ràng buộc chặt của bài đối ngẫu đã dùng một trực giác chưa được chứng minh: ở nghiệm, ràng buộc nào có nhân tử dương thì chặt. Mục 5 chứng minh trực giác này dưới tên điều kiện bù trừ.
+Khi giải hệ hai ràng buộc chặt của bài đối ngẫu trong Ví dụ 03.5, ta đã dùng một trực giác chưa được chứng minh, rằng ở nghiệm, ràng buộc nào có nhân tử dương thì chặt. Trực giác này được chứng minh ở Mục 5 dưới tên điều kiện bù trừ.
 
 ::: example Ví dụ 03.6 (Bài toán hai chiều: hai nhân tử)
 **Lập hàm Lagrange.**
@@ -644,7 +647,7 @@ Biểu thức cuối không vượt $\tfrac52$ và bằng $\tfrac52$ tại $\lam
 Khai triển $\tfrac52-\tfrac12[(\lambda_1-1)^2+(\lambda_2-2)^2]=\tfrac52-\tfrac12\lambda_1^2+\lambda_1-\tfrac12-\tfrac12\lambda_2^2+2\lambda_2-2$, bằng biểu thức trước đó. Một nhân tử chung $\lambda_1=\lambda_2=s$ cho $g=3s-s^2$, lớn nhất $\tfrac94<\tfrac52$ tại $s=\tfrac32$: đúng nhận định ở đầu mục rằng một hệ số chung không đủ.
 :::
 
-**Trong học máy.** Bài đối ngẫu thường có cấu trúc khác hẳn bài gốc và đôi khi dễ giải hơn. Máy vector hỗ trợ lề mềm là ví dụ quen thuộc: bài gốc có $d+1+N$ biến $(w,b,\xi)$, bài đối ngẫu có $N$ biến, mỗi biến ứng với một mẫu, nằm trong đoạn $[0,1]$, và dữ liệu chỉ xuất hiện qua các tích vô hướng $z_i^Tz_j$ (Mệnh đề 03.36). Giả thiết của Định lý 03.8 luôn thỏa trong các trường hợp này; điều không được bảo đảm là cận đối ngẫu tốt nhất bằng mất mát tối ưu, câu hỏi của Mục 3.
+**Trong học máy.** Bài đối ngẫu thường có cấu trúc khác hẳn bài gốc và đôi khi dễ giải hơn. Máy vector hỗ trợ lề mềm là ví dụ quen thuộc. Bài gốc có $d+1+N$ biến $(w,b,\xi)$, còn bài đối ngẫu có $N$ biến, mỗi biến ứng với một mẫu, nằm trong đoạn $[0,1]$, và dữ liệu chỉ xuất hiện qua các tích vô hướng $z_i^Tz_j$ (Mệnh đề 03.36). Giả thiết của Định lý 03.8 luôn thỏa trong các trường hợp này, nhưng việc cận đối ngẫu tốt nhất bằng mất mát tối ưu thì không được bảo đảm, và đó là câu hỏi của Mục 3.
 
 ::: exercise Bài tập 03.2
 Xét $\min_{x\in\mathbb R^2}x_1+x_2$ với $f_1(x)=x_1^2+x_2^2-2\le0$.
@@ -708,25 +711,17 @@ $\lambda_2^*=0$ ứng với $x_1\ge0$, không chặt tại $x^*$ ($x_1^*=2>0$). 
 Mọi điểm khả thi có $x_1+2x_2=(x_1+x_2)+x_2\ge2+0$, đúng là tổ hợp với hệ số $\lambda_1^*=1$, $\lambda_3^*=1$.
 :::
 
-**Chuỗi suy luận của mục.**
+Như vậy, từ hàm Lagrange (Định nghĩa 03.4), chúng ta đã có hàm đối ngẫu (Định nghĩa 03.5), một hàm luôn lõm (Mệnh đề 03.6). Đối ngẫu yếu (Định lý 03.8) bảo đảm mọi giá trị của hàm này tại nhân tử không âm là cận dưới, và bài đối ngẫu (Định nghĩa 03.9) chọn cận tốt nhất. Hệ quả 03.10 cho thấy giá trị đối ngẫu tốt nhất $d^*$ không vượt $p^*$, và một cặp có khoảng bằng $0$ chứng nhận cả hai phía. Chứng nhận của Bài 02 là một trường hợp riêng của khuôn này (Mệnh đề 03.11).
 
-1. Định nghĩa 03.4: hàm Lagrange.
-2. Định nghĩa 03.5: hàm đối ngẫu; Mệnh đề 03.6: hàm này lõm.
-3. Định lý 03.8: đối ngẫu yếu.
-4. Định nghĩa 03.9: bài đối ngẫu; Hệ quả 03.10: chứng nhận từ một cặp.
-5. Mệnh đề 03.11: chứng nhận của Bài 02 là trường hợp riêng.
-
-Đích của mục là Hệ quả 03.10: giá trị đối ngẫu tốt nhất $d^*$ không vượt $p^*$, và một cặp có khoảng bằng $0$ chứng nhận cả hai phía.
-
-**Kết mục.** Trong bốn ví dụ của mục, khoảng $p^*-d^*$ đều bằng $0$, nhưng Định lý 03.8 không bảo đảm điều đó. Mục 3 đưa một bài toán có $d^*<p^*$, nêu điều kiện Slater kiểm tra được trước khi giải, và chứng minh rằng điều kiện đó cùng tính lồi bảo đảm $d^*=p^*$ và bài đối ngẫu đạt nghiệm.
+Trong cả bốn ví dụ của mục, khoảng $p^*-d^*$ đều bằng $0$, nhưng Định lý 03.8 không bảo đảm điều đó. Khi nào dấu bằng xảy ra, và khi nào có một nhân tử đạt cận, là nội dung của Mục 3.
 
 ## 3. Đối ngẫu mạnh và điều kiện Slater
 
-Mục 2 cho $d^*\le p^*$ với mọi bài toán, và trong bốn ví dụ của mục đó dấu bằng xảy ra. Dấu bằng không luôn xảy ra. Bài chọn gói của Bài 02 (Ví dụ 02.27), viết với miền rời rạc $D=\{0,1\}^3$, có $p^*=4$; ví dụ đầu tiên của mục này tính được $d^*=3$, nên mọi nhân tử chỉ chứng nhận được rằng chi phí ít nhất là $3$.
+Bài chọn gói của Bài 02 (Ví dụ 02.27), viết với miền rời rạc $D=\{0,1\}^3$, có $p^*=4$, trong khi Ví dụ 03.7 dưới đây tính được $d^*=3$. Do đó, mọi nhân tử chỉ chứng nhận được rằng chi phí ít nhất là $3$.
 
-Cần một điều kiện kiểm tra được trên dữ liệu của bài toán, trước khi giải, bảo đảm rằng cận đối ngẫu tốt nhất bằng $p^*$ và có một nhân tử đạt cận đó. Mục này định nghĩa đối ngẫu mạnh và khoảng đối ngẫu, chỉ ra rằng tính lồi chưa đủ, phát biểu điều kiện Slater, chứng minh định lý Slater bằng một bổ đề tách hai tập lồi, và nêu các giới hạn của định lý.
+Chúng ta cần một điều kiện kiểm tra được trên dữ liệu của bài toán, trước khi giải, bảo đảm rằng cận đối ngẫu tốt nhất bằng $p^*$ và có một nhân tử đạt cận đó. Đầu tiên, chúng ta định nghĩa đối ngẫu mạnh và khoảng đối ngẫu, chỉ ra rằng tính lồi chưa đủ, rồi phát biểu điều kiện Slater. Sau đó, chúng ta dùng một bổ đề tách hai tập lồi để chứng minh định lý Slater, theo đó điều kiện này cùng tính lồi bảo đảm $d^*=p^*$ và bài đối ngẫu đạt nghiệm. Cuối cùng, chúng ta nêu các giới hạn của định lý.
 
-### 3.1 Nhu cầu: khoảng đối ngẫu có thể dương
+### 3.1 Bài toán có khoảng đối ngẫu dương
 
 ::: example Ví dụ 03.7 (Khoảng đối ngẫu dương: bài chọn gói)
 Bài toán của Ví dụ 02.27: $\min2(x_1+x_2+x_3)$ trên $D=\{0,1\}^3$ với ba ràng buộc phủ:
@@ -737,7 +732,7 @@ Bài toán của Ví dụ 02.27: $\min2(x_1+x_2+x_3)$ trên $D=\{0,1\}^3$ với 
 
 Ví dụ 02.27 đã liệt kê tám phương án và cho $p^*=4$.
 
-Boyd và Vandenberghe (2004, Bài tập 5.13, tr. 276) viết điều kiện nhị phân thành ràng buộc đẳng thức $x_j(1-x_j)=0$ và gán nhân tử cho nó. Chương này đưa điều kiện đó vào miền $D$. Phần (b) của bài tập trên cho thấy hai cách cho cùng một cận đối ngẫu, bằng giá trị nới lỏng tuyến tính.
+Boyd và Vandenberghe (2004, Bài tập 5.13, tr. 276) viết điều kiện nhị phân thành ràng buộc đẳng thức $x_j(1-x_j)=0$ và gán nhân tử cho nó. Trong chương này, chúng ta đưa điều kiện đó vào miền $D$. Phần (b) của bài tập trên cho thấy hai cách cho cùng một cận đối ngẫu, bằng giá trị nới lỏng tuyến tính.
 
 **Hàm Lagrange.**
 
@@ -776,15 +771,15 @@ với mọi $\lambda$. Dòng thứ hai dùng $c_1+c_2+c_3=6-2(\lambda_1+\lambda_
 Con số $3$ trùng với giá trị của nới lỏng tuyến tính ở Ví dụ 02.28. Tại $\lambda=(1,1,1)$, $L(x,\lambda)=3$ với mọi $x\in\{0,1\}^3$, trong đó có ba nghiệm như $(1,1,0)$ với chi phí $4$; không có phương án khả thi nào với chi phí $3$, nên không cặp nào đạt khoảng $0$.
 :::
 
-Trong Ví dụ 03.7, tập $D$ không lồi. Định nghĩa sau đặt tên cho hiện tượng còn thiếu.
+Trong Ví dụ 03.7, tập $D$ không lồi và hai giá trị tối ưu không bằng nhau. Sự bằng nhau của hai giá trị này, cùng độ chênh giữa chúng, được đặt tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.12 (Đối ngẫu mạnh và khoảng đối ngẫu)
 Cho bài toán (2.1) với giá trị tối ưu $p^*$ và bài đối ngẫu (2.5) với giá trị tối ưu $d^*$. Khi $p^*$ và $d^*$ hữu hạn, hiệu $p^*-d^*\ge0$ gọi là khoảng đối ngẫu tối ưu (optimal duality gap). Bài toán có đối ngẫu mạnh (strong duality) nếu $d^*=p^*$. Với một điểm khả thi $x$ và một cặp khả thi đối ngẫu $(\lambda,\nu)$, hiệu $f_0(x)-g(\lambda,\nu)\ge0$ gọi là khoảng đối ngẫu của cặp (duality gap of the pair).
 :::
 
-Khoảng của một cặp và khoảng tối ưu là hai đại lượng khác nhau. Khoảng của cặp phụ thuộc vào phương án và nhân tử đang có, và luôn không nhỏ hơn khoảng tối ưu, vì $f_0(x)-g(\lambda,\nu)\ge p^*-d^*$ theo Hệ quả 03.10(b). Ví dụ: với bài (1.1), cặp $(x,\lambda)=(2,1)$ có khoảng $5-4{,}5=0{,}5$, còn khoảng tối ưu bằng $0$.
+Trong định nghĩa trên, khoảng của một cặp và khoảng tối ưu là hai đại lượng khác nhau. Khoảng của cặp phụ thuộc vào phương án và nhân tử đang có, và luôn không nhỏ hơn khoảng tối ưu, vì $f_0(x)-g(\lambda,\nu)\ge p^*-d^*$ theo Hệ quả 03.10(b). Chẳng hạn, với bài (1.1), cặp $(x,\lambda)=(2,1)$ có khoảng $5-4{,}5=0{,}5$, còn khoảng tối ưu bằng $0$.
 
-Ví dụ 03.7 có miền rời rạc, nên tính không lồi có thể là nguyên nhân của khoảng dương. Ví dụ sau cho thấy tính lồi chưa đủ: một bài lồi vẫn có thể có khoảng đối ngẫu dương.
+Ví dụ 03.7 có miền rời rạc, nên tính không lồi có thể là nguyên nhân của khoảng dương. Ví dụ sau cho thấy tính lồi chưa đủ, vì một bài lồi vẫn có thể có khoảng đối ngẫu dương.
 
 ::: example Ví dụ 03.8 (Bài toán lồi có khoảng đối ngẫu dương)
 Ví dụ là Bài tập 5.21 của Boyd và Vandenberghe (2004, tr. 280). Miền $D=\{(x,y)\in\mathbb R^2\mid y>0\}$, bài toán $\min e^{-x}$ với $f_1(x,y)=\frac{x^2}y\le0$.
@@ -806,19 +801,21 @@ Với $\lambda\ge0$, $L=e^{-x}+\lambda\frac{x^2}y\ge0$ trên $D$. Chọn $x=k$, 
 Không có điểm nào của $D$ có $\frac{x^2}y<0$, nên không có khoảng dư. Bài này vi phạm điều kiện Slater theo phiên bản cho miền tổng quát (Boyd và Vandenberghe 2004, mục 5.2.3, tr. 226), mà Định nghĩa 03.13 và Định lý 03.15 dưới đây phát biểu cho $D=\mathbb R^n$.
 :::
 
-### 3.2 Trực giác: khoảng dư tại một điểm
+### 3.2 Khoảng dư tại một điểm
 
-Trong bài (1.1), viết lại ràng buộc thành $f_1(x)=(x-3)^2-1\le0$, cùng tập khả thi $[2,4]$ vì $(x-2)(x-4)=(x-3)^2-1$. Tại $\bar x=3$, $f_1(3)=-1<0$: ràng buộc còn dư một đơn vị. Mọi điểm gần $3$ cũng thỏa chặt: nếu $\lvert x-3\rvert\le0{,}5$ thì $f_1(x)\le0{,}25-1=-0{,}75<0$.
+Trong bài (1.1), ta viết lại ràng buộc thành $f_1(x)=(x-3)^2-1\le0$, với cùng tập khả thi $[2,4]$ vì $(x-2)(x-4)=(x-3)^2-1$. Tại $\bar x=3$, $f_1(3)=-1<0$, tức ràng buộc còn dư một đơn vị. Mọi điểm gần $3$ cũng thỏa chặt, vì nếu $\lvert x-3\rvert\le0{,}5$ thì $f_1(x)\le0{,}25-1=-0{,}75<0$.
 
-Bài $\min x_1+x_2$ với $x_1^2+x_2^2\le0$ thì khác: tập khả thi chỉ gồm gốc tọa độ, và không điểm nào làm ràng buộc âm.
+Bài $\min x_1+x_2$ với $x_1^2+x_2^2\le0$ thì khác, vì tập khả thi chỉ gồm gốc tọa độ và không điểm nào làm ràng buộc âm.
 
-Trực giác (chưa phải định nghĩa): khi tập khả thi có một điểm mà mọi bất đẳng thức đều còn dư, nhiễu nhỏ trên ràng buộc không làm tập khả thi biến mất. Mục 4 dịch trực giác này sang hình học; ở đây nó chỉ được dùng để dẫn tới định nghĩa.
+Một cách trực quan, khi tập khả thi có một điểm mà mọi bất đẳng thức đều còn dư, nhiễu nhỏ trên ràng buộc không làm tập khả thi biến mất. Mô tả này chưa phải định nghĩa, và ở đây chỉ dùng để dẫn tới Định nghĩa 03.13. Trong Mục 4, chúng ta dịch nó sang hình học.
 
 ![Trục số với đoạn khả thi từ 2 đến 4 được tô. Điểm Slater 3 nằm giữa đoạn; một dải con từ 2,5 đến 3,5 quanh điểm 3 được tô đậm hơn, ghi chú rằng mọi điểm trong dải vẫn thỏa chặt ràng buộc (x trừ 3) bình phương trừ 1 nhỏ hơn 0. Nghiệm tối ưu 2 nằm ở biên trái của đoạn, khác điểm Slater.](img/lec-03/slater-interior.svg)
 
-Hình trên đặt điểm Slater $\bar x=3$ và nghiệm $x^*=2$ trên cùng trục. Điểm Slater dùng để kiểm tra giả thiết, không phải ứng viên nghiệm: $f_0(3)=10$, còn $f_0(2)=5$, và nghiệm nằm trên biên, nơi ràng buộc không còn dư.
+Hình trên đặt điểm Slater $\bar x=3$ và nghiệm $x^*=2$ trên cùng trục. Điểm Slater dùng để kiểm tra giả thiết, không phải ứng viên nghiệm. Ở đây $f_0(3)=10$ còn $f_0(2)=5$, và nghiệm nằm trên biên, nơi ràng buộc không còn dư.
 
 ### 3.3 Điều kiện Slater
+
+Khoảng dư tại một điểm được viết thành điều kiện trên các hàm ràng buộc theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.13 (Điều kiện Slater và dạng yếu)
 Cho bài toán (2.1) ở dạng chuẩn lồi của Định nghĩa 02.1 với $D=\mathbb R^n$. Bài toán thỏa điều kiện Slater (Slater's condition) nếu tồn tại $\bar x\in\mathbb R^n$ với
@@ -831,17 +828,17 @@ $$
 Điểm $\bar x$ gọi là điểm Slater, hay điểm khả thi chặt. Khi $f_1,\ldots,f_k$ là hàm affine, bài toán thỏa dạng yếu của điều kiện Slater nếu tồn tại $\bar x$ với $f_i(\bar x)\le0$ cho $i\le k$, $f_i(\bar x)<0$ cho $i>k$ và $A\bar x=b$.
 :::
 
-Điều kiện (3.1) đòi một điểm duy nhất làm mọi bất đẳng thức âm cùng lúc; mỗi bất đẳng thức âm tại một điểm riêng là chưa đủ, vì chúng có thể không có điểm chung. Đẳng thức không cần khoảng dư: chỉ cần $\bar x$ thỏa đúng $A\bar x=b$.
+Trong định nghĩa trên, điều kiện (3.1) đòi một điểm duy nhất làm mọi bất đẳng thức âm cùng lúc. Mỗi bất đẳng thức âm tại một điểm riêng là chưa đủ, vì các tập $\{x\mid f_i(x)<0\}$ có thể không giao nhau. Đẳng thức không cần khoảng dư, chỉ cần $\bar x$ thỏa đúng $A\bar x=b$.
 
-Dạng yếu bỏ yêu cầu khoảng dư cho các bất đẳng thức affine; khi mọi ràng buộc đều affine, dạng yếu chỉ còn đòi bài toán khả thi. Với miền $D$ tổng quát, $\bar x$ phải thuộc phần trong tương đối (relative interior) của $D$, tức là có một lân cận của $\bar x$ mà phần nằm trong bao affine của $D$ thuộc $D$; xem Boyd và Vandenberghe 2004, mục 2.1.3, tr. 23 và mục 5.2.3, tr. 226.
+Dạng yếu bỏ yêu cầu khoảng dư cho các bất đẳng thức affine, nên khi mọi ràng buộc đều affine, dạng yếu chỉ còn đòi bài toán khả thi. Với miền $D$ tổng quát, $\bar x$ phải thuộc phần trong tương đối (relative interior) của $D$, tức là có một lân cận của $\bar x$ mà phần nằm trong bao affine của $D$ thuộc $D$ (xem Boyd và Vandenberghe 2004, mục 2.1.3, tr. 23 và mục 5.2.3, tr. 226).
 
-Ví dụ: bài (1.1) với $\bar x=3$ thỏa (3.1). Phản ví dụ: bài $\min x_1+x_2$ với $x_1^2+x_2^2\le0$ không thỏa, vì $x_1^2+x_2^2\ge0$ mọi nơi.
+Chẳng hạn, bài (1.1) với $\bar x=3$ thỏa (3.1), còn bài $\min x_1+x_2$ với $x_1^2+x_2^2\le0$ không thỏa, vì $x_1^2+x_2^2\ge0$ mọi nơi.
 
-Điều kiện Slater là một điều kiện chính quy của ràng buộc (constraint qualification): nó chỉ nói về các hàm ràng buộc, không nói về mục tiêu, và kiểm tra bằng cách chỉ ra một điểm. Nó mạnh hơn tính khả thi, vốn chỉ đòi một $x$ với $f_i(x)\le0$.
+Điều kiện Slater là một điều kiện chính quy của ràng buộc (constraint qualification). Nó chỉ nói về các hàm ràng buộc, không nói về mục tiêu, và được kiểm tra bằng cách chỉ ra một điểm. Điều kiện này mạnh hơn tính khả thi, vốn chỉ đòi một $x$ với $f_i(x)\le0$.
 
-So với giả thiết "tập khả thi có điểm trong", điều kiện Slater là phát biểu về cách viết ràng buộc. Hai cách viết tương đương của cùng một tập có thể một cách thỏa, một cách không; Nhận xét 03.17 đưa ví dụ.
+So với giả thiết "tập khả thi có điểm trong", điều kiện Slater là phát biểu về cách viết ràng buộc. Vì vậy, hai cách viết tương đương của cùng một tập có thể một cách thỏa, một cách không (Nhận xét 03.17).
 
-Chứng minh định lý Slater cần một công cụ hình học: tách hai tập lồi rời nhau bằng một siêu phẳng. Trực giác: trong $\mathbb R$, hai đoạn rời nhau $[1,2]$ và $[-2,0]$ được tách bởi điểm $\tfrac12$, với $z\ge\tfrac12\ge w$ cho mọi $z\in[1,2]$, $w\in[-2,0]$; trong $\mathbb R^d$, điểm tách được thay bằng siêu phẳng $\{x\mid q^Tx=c\}$ với pháp tuyến $q\neq0$. Bổ đề sau chỉ cần dạng yếu của phép tách, với bất đẳng thức không chặt.
+Để chứng minh định lý Slater, chúng ta cần một công cụ hình học là phép tách hai tập lồi rời nhau bằng một siêu phẳng. Một cách dễ hình dung, trong $\mathbb R$, hai đoạn rời nhau $[1,2]$ và $[-2,0]$ được tách bởi điểm $\tfrac12$, với $z\ge\tfrac12\ge w$ cho mọi $z\in[1,2]$, $w\in[-2,0]$. Trong $\mathbb R^d$, điểm tách được thay bằng siêu phẳng $\{x\mid q^Tx=c\}$ với pháp tuyến $q\neq0$. Bổ đề sau chỉ cần dạng yếu của phép tách, với bất đẳng thức không chặt.
 
 ::: lemma Bổ đề 03.14 (Tách hai tập lồi, dạng yếu)
 **Giả thiết.** $\mathcal C,\mathcal B\subseteq\mathbb R^d$, $d\ge1$, là hai tập lồi, không rỗng, rời nhau.
@@ -863,7 +860,7 @@ Chứng minh dưới đây dùng ba tính chất của tập compact trong $\mat
 2. ảnh của tập compact qua ánh xạ liên tục là compact (Định lý 4.14, tr. 89);
 3. hàm liên tục trên tập compact không rỗng đạt giá trị nhỏ nhất, theo Định lý 01.36.
 
- Ý chính: tách gốc tọa độ khỏi tập hiệu $\mathcal C-\mathcal B$, trước hết cho mỗi tập con hữu hạn bằng điểm gần gốc nhất, rồi chuyển sang toàn bộ tập bằng tính compact của mặt cầu đơn vị.
+Về mặt ý tưởng, chứng minh tách gốc tọa độ khỏi tập hiệu $\mathcal C-\mathcal B$. Việc tách được làm trước hết cho mỗi tập con hữu hạn bằng điểm gần gốc nhất, rồi chuyển sang toàn bộ tập bằng tính compact của mặt cầu đơn vị.
 
 ::: proof Chứng minh Bổ đề 03.14
 **Bước 1 (tập hiệu).**
@@ -895,13 +892,13 @@ Giả sử $\bigcap_{e\in \mathcal E}H_e=\varnothing$. Khi đó họ $\{S\setmin
 Với $z\in\mathcal C$, $w\in\mathcal B$: $z-w\in \mathcal E$ nên $q^Tz\ge q^Tw$. Cố định $z_0\in\mathcal C$, $w_0\in\mathcal B$. Số $s=\sup_{w\in\mathcal B}q^Tw$ thỏa $s\le q^Tz_0<\infty$, số $t=\inf_{z\in\mathcal C}q^Tz$ thỏa $t\ge q^Tw_0>-\infty$, và $s\le t$ vì mọi $q^Tw$ không vượt mọi $q^Tz$. Chọn $c\in[s,t]$: $q^Tz\ge t\ge c$ với mọi $z\in\mathcal C$ và $q^Tw\le s\le c$ với mọi $w\in\mathcal B$. $\square$
 :::
 
-Bổ đề 03.14 biến một khẳng định về hai tập, rằng chúng không giao nhau, thành một khẳng định về hàm tuyến tính $q^Tx$: hàm này không nhỏ hơn $c$ trên tập thứ nhất và không lớn hơn $c$ trên tập thứ hai.
+Bổ đề 03.14 chuyển khẳng định hai tập không giao nhau thành một khẳng định về hàm tuyến tính $q^Tx$. Hàm này không nhỏ hơn $c$ trên tập thứ nhất và không lớn hơn $c$ trên tập thứ hai.
 
-Bất đẳng thức $q^Tz\ge c$ trên một tập có đúng dạng của một cận dưới. Định lý sau dùng nó, với tập thứ nhất là tập các mức ràng buộc và mục tiêu đạt được, để sinh ra nhân tử.
+Lưu ý rằng bất đẳng thức $q^Tz\ge c$ trên một tập có đúng dạng của một cận dưới. Định lý Slater dùng nó để sinh ra nhân tử, với tập thứ nhất là tập các mức ràng buộc và mục tiêu đạt được.
 
-Ví dụ $\mathcal C=(0,1)$, $\mathcal B=\{0\}$ cho thấy vì sao chỉ có tách yếu. Với $q=1$, $c=0$, hai tập được tách yếu. Giả sử có tách chặt $qz>c>q\cdot0=0$ với mọi $z\in(0,1)$; khi đó $c>0$, và $q>0$ vì $qz>0$ với $z>0$. Áp cho $z=\frac1k$ được $\frac qk>c$ với mọi $k\ge2$; cho $k\to\infty$ được $0\ge c$, mâu thuẫn.
+Ví dụ $\mathcal C=(0,1)$, $\mathcal B=\{0\}$ cho thấy vì sao chỉ có tách yếu. Với $q=1$, $c=0$, hai tập được tách yếu. Giả sử có tách chặt $qz>c>q\cdot0=0$ với mọi $z\in(0,1)$. Khi đó $c>0$, và $q>0$ vì $qz>0$ với $z>0$. Áp cho $z=\frac1k$, ta được $\frac qk>c$ với mọi $k\ge2$, rồi cho $k\to\infty$, ta được $0\ge c$, mâu thuẫn.
 
-Định lý sau cho biết khi nào $d^*=p^*$ và có nhân tử đạt cận; nó cần đối ngẫu yếu (Định lý 03.8), Bổ đề 03.14 và tính lồi của các hàm ràng buộc. Chứng minh theo cấu trúc của Boyd và Vandenberghe (2004, mục 5.3.2, tr. 234–236).
+Câu hỏi khi nào $d^*=p^*$ và có nhân tử đạt cận được trả lời bằng định lý sau. Chứng minh cần đối ngẫu yếu (Định lý 03.8), Bổ đề 03.14 và tính lồi của các hàm ràng buộc, theo cấu trúc của Boyd và Vandenberghe (2004, mục 5.3.2, tr. 234–236).
 
 ::: theorem Định lý 03.15 (Định lý Slater)
 **Giả thiết.** Bài toán (2.1) ở dạng chuẩn lồi (Định nghĩa 02.1) với $D=\mathbb R^n$: các hàm $f_0,f_1,\ldots,f_m:\mathbb R^n\to\mathbb R$ lồi, ràng buộc đẳng thức $Ax=b$; giá trị tối ưu $p^*$ hữu hạn.
@@ -929,7 +926,7 @@ $$
 \mathcal A=\{(u,v,t)\mid\exists x\in\mathbb R^n:\ f(x)\preceq u,\ Ax-b=v,\ f_0(x)\le t\},\qquad\mathcal B=\{(0,0,s)\mid s<p^*\}.
 $$
 
-Tập $\mathcal A$ gồm các bộ mức (ràng buộc, đẳng thức, mục tiêu) mà một điểm $x$ đáp ứng được; Mục 4 nghiên cứu lại tập này.
+Tập $\mathcal A$ gồm các bộ mức (ràng buộc, đẳng thức, mục tiêu) mà một điểm $x$ đáp ứng được. Tập này được nghiên cứu lại ở Mục 4.
 
 $\mathcal A$ không rỗng (chứa $(f(x),Ax-b,f_0(x))$ với mọi $x$) và lồi: lấy $(u_1,v_1,t_1)$, $(u_2,v_2,t_2)$ trong $\mathcal A$ với các điểm $x_1$, $x_2$, và $\alpha\in[0,1]$; đặt $x_\alpha=\alpha x_1+(1-\alpha)x_2$. Tính lồi của từng $f_i$ cho $f_i(x_\alpha)\le\alpha f_i(x_1)+(1-\alpha)f_i(x_2)\le\alpha u_{1,i}+(1-\alpha)u_{2,i}$; tương tự $f_0(x_\alpha)\le\alpha t_1+(1-\alpha)t_2$; tính affine cho $Ax_\alpha-b=\alpha v_1+(1-\alpha)v_2$. Vậy tổ hợp lồi của hai bộ thuộc $\mathcal A$ với điểm $x_\alpha$.
 
@@ -973,7 +970,7 @@ $$
 Dòng đầu vừa chứng minh, dòng thứ hai là định nghĩa của $d^*$, dòng thứ ba là đối ngẫu yếu. Hai đầu bằng nhau, nên mọi dấu là đẳng thức: $d^*=p^*$ và $(\lambda^*,\nu^*)$ là nghiệm đối ngẫu. Với hệ đẳng thức ban đầu, gán nhân tử $0$ cho các hàng đã bỏ; hàm Lagrange không đổi. $\square$
 :::
 
-Định lý Slater biến một điều kiện kiểm tra bằng một điểm thành một kết luận về hai giá trị tối ưu. Vai trò của từng giả thiết hiện rõ trong chứng minh:
+Định lý Slater chuyển một điều kiện kiểm tra bằng một điểm thành một kết luận về hai giá trị tối ưu, và vai trò của từng giả thiết hiện rõ trong chứng minh:
 
 - tính lồi dùng ở Bước 1 để $\mathcal A$ lồi, điều kiện cần cho Bổ đề 03.14;
 - khoảng dư dùng ở Bước 3 để loại trường hợp $\mu=0$, tức siêu phẳng tách thẳng đứng;
@@ -983,7 +980,9 @@ Ví dụ 03.7 vi phạm tính lồi và có khoảng $1$. Ví dụ 03.8 vi phạ
 
 So với Định lý 03.8, Định lý 03.15 cho kết luận mạnh hơn, gồm dấu bằng và nhân tử đạt, và đòi hai giả thiết mà đối ngẫu yếu không cần.
 
-So với Mệnh đề 02.11, định lý trả lời câu hỏi thứ hai Bài 02 để lại. Với quy hoạch tuyến tính khả thi có giá trị tối ưu hữu hạn, phần (b) cho các hệ số chứng nhận luôn tồn tại. Phần (b) được dẫn từ Boyd và Vandenberghe (2004, tr. 226–227) và không được chứng minh ở đây.
+Định lý 03.15 cũng trả lời câu hỏi thứ hai mà Bài 02 để lại về Mệnh đề 02.11. Với quy hoạch tuyến tính khả thi có giá trị tối ưu hữu hạn, phần (b) cho thấy các hệ số chứng nhận luôn tồn tại. Phần (b) được dẫn từ Boyd và Vandenberghe (2004, tr. 226–227) và không được chứng minh ở đây.
+
+Ví dụ sau kiểm tra giả thiết của định lý trên hai bài đã giải.
 
 ::: example Ví dụ 03.9 (Kiểm tra điều kiện Slater cho hai bài đã giải)
 **Dữ kiện.**
@@ -1005,6 +1004,8 @@ Trong cả hai bài, điểm Slater không phải nghiệm: $f_0(3)=10\neq5$ và
 
 ### 3.4 Giới hạn của điều kiện Slater
 
+Định lý 03.15 chỉ cho một điều kiện đủ. Hai ví dụ sau tách các phần trong kết luận của định lý khi điều kiện Slater không thỏa hoặc khi bài gốc không đạt nghiệm.
+
 ::: example Ví dụ 03.10 (Thiếu điều kiện Slater: đối ngẫu mạnh đạt hoặc không đạt)
 **Bài thứ nhất.**
 
@@ -1023,7 +1024,7 @@ Cùng ràng buộc, mục tiêu $x_1^2+x_2^2$. Vẫn $p^*=0$ và không có đi�
 Bài thứ nhất: $g(1)=-0{,}5$, $g(100)=-0{,}005$, tăng về $0$. Bài thứ hai: tại $\lambda=5$, $L(x,5)=6\lVert x\rVert_2^2\ge0$, bằng $0$ tại gốc.
 :::
 
-Ví dụ 03.10 cho thấy thiếu điều kiện Slater không kéo theo khoảng đối ngẫu dương; điều bị mất có thể chỉ là sự đạt nghiệm của bài đối ngẫu. Ví dụ sau chỉ ra phần định lý Slater không hứa.
+Ví dụ 03.10 cho thấy thiếu điều kiện Slater có thể chỉ làm mất nghiệm đối ngẫu. Ví dụ 03.11 dưới đây cho thấy định lý không bảo đảm nghiệm gốc.
 
 ::: example Ví dụ 03.11 (Điều kiện Slater thỏa nhưng bài gốc không đạt nghiệm)
 **Bài toán và giả thiết.**
@@ -1060,13 +1061,13 @@ Chứng nhận tối ưu theo Hệ quả 03.10(c) cần cả ba. Nhầm lẫn th
 **Nhầm lẫn thường gặp.** Kết luận "bài không lồi thì có khoảng đối ngẫu dương" là sai, vì Định lý 03.15 chỉ cho điều kiện đủ.
 :::
 
-**Trong học máy.** Quy hoạch bậc hai của máy vector hỗ trợ lề mềm trong Mệnh đề 02.39(a) có điểm Slater $w=0$, $b=0$, $\xi_i=2$: mọi ràng buộc $1-y_i(w^Tz_i+b)-\xi_i=-1<0$ và $-\xi_i=-2<0$. Mục tiêu lồi và $p^*\ge0$ hữu hạn, nên Định lý 03.15 cho $d^*=p^*$ và bài đối ngẫu đạt nghiệm. Giải bài đối ngẫu $N$ biến của Mệnh đề 03.36 vì vậy cho đúng mất mát tối ưu. Đây là cơ sở của các bộ giải theo bài đối ngẫu, như thuật toán tối ưu cực tiểu tuần tự (sequential minimal optimization, SMO) do Platt đề xuất năm 1998.
+**Trong học máy.** Quy hoạch bậc hai của máy vector hỗ trợ lề mềm trong Mệnh đề 02.39(a) có điểm Slater $w=0$, $b=0$, $\xi_i=2$, tại đó mọi ràng buộc $1-y_i(w^Tz_i+b)-\xi_i=-1<0$ và $-\xi_i=-2<0$. Mục tiêu lồi và $p^*\ge0$ hữu hạn, nên Định lý 03.15 cho $d^*=p^*$ và bài đối ngẫu đạt nghiệm. Vì vậy, giải bài đối ngẫu $N$ biến của Mệnh đề 03.36 cho đúng mất mát tối ưu. Đây là cơ sở của các bộ giải theo bài đối ngẫu, như thuật toán tối ưu cực tiểu tuần tự (sequential minimal optimization, SMO) do Platt đề xuất năm 1998.
 
-Hồi quy có trần $\lVert w\rVert_2^2\le\tau$ với $\tau>0$ có điểm Slater $w=0$.
+Tương tự, hồi quy có trần $\lVert w\rVert_2^2\le\tau$ với $\tau>0$ có điểm Slater $w=0$.
 
 Ngược lại, khi ràng buộc đặt trên đầu ra của một mạng sâu, chẳng hạn ràng buộc công bằng giữa các nhóm, hàm ràng buộc không lồi theo tham số $\theta$ và giả thiết của Định lý 03.15 vi phạm. Định lý 03.8 vẫn đúng, nhưng $g(\lambda)$ đòi cực tiểu toàn cục của $L(\cdot,\lambda)$ theo $\theta$, và với mạng sâu đại lượng này không tính được.
 
-Một bộ tối ưu lặp chỉ cho một điểm $\theta_k$ với $L(\theta_k,\lambda)\ge g(\lambda)$. Giá trị thu được vì vậy là ước lượng trên của $g(\lambda)$, không phải một cận dưới đã chứng nhận của $p^*$.
+Một bộ tối ưu lặp chỉ cho một điểm $\theta_k$ với $L(\theta_k,\lambda)\ge g(\lambda)$. Do đó, giá trị thu được là ước lượng trên của $g(\lambda)$, không phải một cận dưới đã chứng nhận của $p^*$.
 
 ::: exercise Bài tập 03.4
 Với mỗi bài sau, xác định bài có ở dạng chuẩn lồi không, có thỏa điều kiện Slater (3.1) không, có thỏa dạng yếu không, và Định lý 03.15 kết luận được gì. Điều kiện Slater (3.1) đòi một điểm $\bar x$ với $f_i(\bar x)<0$ cho mọi $i$ và $A\bar x=b$; dạng yếu nới thành $f_i(\bar x)\le0$ cho các $f_i$ affine, vẫn giữ $f_i(\bar x)<0$ cho các $f_i$ còn lại và $A\bar x=b$. Định lý 03.15: với bài lồi dạng chuẩn, $D=\mathbb R^n$ và $p^*$ hữu hạn, điều kiện Slater hoặc dạng yếu của nó kéo theo $d^*=p^*$ và bài đối ngẫu đạt nghiệm.
@@ -1138,35 +1139,23 @@ $g\le0=p^*$ khi $\sigma>0$, và $g(\tfrac12,0)=-\frac{(1-1)^2}{2}=0$. Vậy $d^*
 Tại $\lambda=(\tfrac12,0)$, $L=x_1+\tfrac12(x_1^2+x_2^2)-x_1=\tfrac12\lVert x\rVert_2^2\ge0$, bằng $0$ tại $(0,0)$, đúng điểm khả thi duy nhất.
 :::
 
-**Chuỗi suy luận của mục.**
-
-1. Ví dụ 03.7 và 03.8: khoảng dương khi thiếu tính lồi hoặc thiếu khoảng dư.
-2. Định nghĩa 03.12: đối ngẫu mạnh; Định nghĩa 03.13: điều kiện Slater.
-3. Bổ đề 03.14: tách hai tập lồi.
-4. Định lý 03.15: định lý Slater.
-5. Ví dụ 03.10, 03.11 và Nhận xét 03.17: phạm vi của định lý.
-
-Đích là Định lý 03.15: bài lồi có điểm Slater và $p^*$ hữu hạn thì có nhân tử $(\lambda^*,\nu^*)$ với $g(\lambda^*,\nu^*)=p^*$.
-
-**Kết mục.** Chứng minh dựa trên một siêu phẳng tách tập $\mathcal A$ khỏi nửa đường thẳng $\mathcal B$. Nó chưa cho thấy trực tiếp vì sao nhân tử là hệ số của siêu phẳng, vì sao Ví dụ 03.10 mất nghiệm đối ngẫu, và nhân tử đo điều gì.
-
-Mục 4 vẽ bài toán trên mặt phẳng giá trị. Ở đó hàm đối ngẫu là tung độ cắt của một đường đỡ, đối ngẫu mạnh có nghiệm đối ngẫu là sự tiếp xúc tại điểm $(0,p^*)$, và hệ số góc của đường đỡ là tốc độ thay đổi của giá trị tối ưu khi nới ràng buộc.
+Hai ví dụ đầu mục cho thấy khoảng đối ngẫu có thể dương khi thiếu tính lồi (Ví dụ 03.7) hoặc thiếu khoảng dư (Ví dụ 03.8). Sau khi định nghĩa đối ngẫu mạnh (Định nghĩa 03.12) và điều kiện Slater (Định nghĩa 03.13), chúng ta đã dùng phép tách hai tập lồi (Bổ đề 03.14) để chứng minh Định lý 03.15. Theo định lý này, bài lồi có điểm Slater và $p^*$ hữu hạn thì có nhân tử $(\lambda^*,\nu^*)$ với $g(\lambda^*,\nu^*)=p^*$. Phạm vi của định lý được vạch bởi Ví dụ 03.10, 03.11 và Nhận xét 03.17.
 
 ## 4. Hình học của đối ngẫu trên mặt phẳng giá trị
 
-Chứng minh Định lý 03.15 tách tập $\mathcal A$ khỏi nửa đường thẳng $\mathcal B$ bằng một siêu phẳng, rồi đọc nhân tử từ pháp tuyến của siêu phẳng đó. Với bài (1.1), có một ràng buộc và không có đẳng thức, nên $\mathcal A$ nằm trong mặt phẳng và có thể vẽ được.
+Chứng minh Định lý 03.15 tách tập $\mathcal A$ khỏi nửa đường thẳng $\mathcal B$ bằng một siêu phẳng, rồi đọc nhân tử từ pháp tuyến của siêu phẳng đó. Tuy nhiên, lập luận này chưa cho thấy trực tiếp vì sao nhân tử là hệ số của siêu phẳng.
 
-Mục 3 để lại ba điểm chưa được giải thích, và hình này giải thích cả ba:
+Với bài (1.1), có một ràng buộc và không có đẳng thức, nên $\mathcal A$ nằm trong mặt phẳng và có thể vẽ được. Hình vẽ của tập này ở Mục 4.1–4.2 giải thích điều đó, cùng ba điểm khác còn lại sau Mục 3:
 
 1. giá trị $g(1)=4{,}5$ là cận dưới dù điểm đạt $x=1{,}5$ không khả thi;
 2. bài thứ nhất của Ví dụ 03.10 có đối ngẫu mạnh nhưng mất nghiệm đối ngẫu;
 3. nhân tử $\lambda^*=2$ đo một đại lượng của bài toán chưa được gọi tên.
 
-Mục này định nghĩa tập giá trị và tập trên, chứng minh rằng hàm đối ngẫu là tung độ cắt của một đường đỡ, đặc trưng đối ngẫu mạnh bằng đường đỡ không thẳng đứng, và đọc nhân tử như độ nhạy của giá trị tối ưu.
+Trong mục này, chúng ta định nghĩa tập giá trị và tập trên, rồi chứng minh rằng hàm đối ngẫu là tung độ cắt của một đường đỡ. Sau đó, chúng ta đặc trưng đối ngẫu mạnh có nghiệm đối ngẫu bằng sự tiếp xúc của một đường đỡ không thẳng đứng tại điểm $(0,p^*)$. Cuối cùng, chúng ta đọc nhân tử, tức số đối của hệ số góc của đường đỡ, như độ nhạy của giá trị tối ưu khi nới ràng buộc.
 
-### 4.1 Nhu cầu và trực giác: mỗi phương án là một điểm
+### 4.1 Mỗi phương án là một điểm
 
-Hàm Lagrange $L(x,\lambda)=f_0(x)+\lambda f_1(x)$ chỉ phụ thuộc vào $x$ qua hai số: mức ràng buộc $u=f_1(x)$ và mức mục tiêu $t=f_0(x)$. Ghi mỗi phương án $x$ thành điểm $(u,t)$ thì mọi đại lượng của Mục 2 trở thành đại lượng hình học trên mặt phẳng $(u,t)$.
+Hàm Lagrange $L(x,\lambda)=f_0(x)+\lambda f_1(x)$ chỉ phụ thuộc vào $x$ qua hai số, mức ràng buộc $u=f_1(x)$ và mức mục tiêu $t=f_0(x)$. Nếu ghi mỗi phương án $x$ thành điểm $(u,t)$ thì mọi đại lượng của Mục 2 trở thành đại lượng hình học trên mặt phẳng $(u,t)$.
 
 Bảng sau ghi năm phương án của bài (1.1), với $u=(x-2)(x-4)$ và $t=x^2+1$.
 
@@ -1178,17 +1167,19 @@ Bảng sau ghi năm phương án của bài (1.1), với $u=(x-2)(x-4)$ và $t=x
 | $3$ | $-1$ | $10$ | có |
 | $4$ | $0$ | $17$ | có |
 
-Một phương án khả thi khi và chỉ khi điểm của nó có $u\le0$. Giá trị tối ưu là tung độ thấp nhất trong các điểm nằm bên trái trục tung hoặc trên trục tung; theo bảng, đó là điểm $(0,5)$.
+Một phương án khả thi khi và chỉ khi điểm của nó có $u\le0$. Giá trị tối ưu là tung độ thấp nhất trong các điểm nằm bên trái trục tung hoặc trên trục tung, và theo bảng, đó là điểm $(0,5)$.
 
-Trực giác (chưa phải định nghĩa): bài gốc là "tìm điểm thấp nhất của đường cong ở nửa mặt phẳng $u\le0$", còn mỗi giá trị $L=t+\lambda u$ là tung độ cắt trục $u=0$ của đường thẳng hệ số góc $-\lambda$ đi qua điểm $(u,t)$.
+Về mặt hình học, bài gốc là "tìm điểm thấp nhất của đường cong ở nửa mặt phẳng $u\le0$", còn mỗi giá trị $L=t+\lambda u$ là tung độ cắt trục $u=0$ của đường thẳng hệ số góc $-\lambda$ đi qua điểm $(u,t)$. Cách nhìn này chưa phải định nghĩa và được làm chính xác ở Mục 4.2.
 
 ![Mặt phẳng với trục ngang u bằng f1(x) và trục đứng t bằng f0(x). Đường cong G là một parabol mở theo hướng chéo lên phải, là tập các điểm (f1(x), f0(x)) khi x chạy trên trục số. Các điểm ứng với x bằng 2, 3, 4 lần lượt là (0, 5), (âm 1, 10), (0, 17), nằm ở nửa mặt phẳng u không dương, được tô nền là vùng khả thi. Điểm ứng với x bằng 0 là (8, 1), nằm ở nửa mặt phẳng u dương.](img/lec-03/value-plane-mapping.svg)
 
-Trên hình, đường cong $G$ là ảnh của trục số qua ánh xạ $x\mapsto(f_1(x),f_0(x))$. Phần của $G$ trong vùng tô nền ứng với đoạn khả thi $[2,4]$, đi từ $(0,5)$ qua $(-1,10)$ tới $(0,17)$.
+Đường cong $G$ trên hình là ảnh của trục số qua ánh xạ $x\mapsto(f_1(x),f_0(x))$. Phần của $G$ trong vùng tô nền ứng với đoạn khả thi $[2,4]$, đi từ $(0,5)$ qua $(-1,10)$ tới $(0,17)$.
 
-Cùng hoành độ $u=0$ có hai điểm $(0,5)$ và $(0,17)$, nên $t$ không phải hàm của $u$ trên $G$. Trung điểm $(0,11)$ của hai điểm đó không thuộc $G$, vì $u=0$ chỉ xảy ra tại $x=2$ và $x=4$; do đó $G$ không lồi dù bài (1.1) lồi.
+Cùng hoành độ $u=0$ có hai điểm $(0,5)$ và $(0,17)$, nên $t$ không phải hàm của $u$ trên $G$. Trung điểm $(0,11)$ của hai điểm đó không thuộc $G$, vì $u=0$ chỉ xảy ra tại $x=2$ và $x=4$. Do đó, $G$ không lồi dù bài (1.1) lồi.
 
 ### 4.2 Tập giá trị, tập trên và hàm đối ngẫu
+
+Với bài toán (2.1) tổng quát, ta ghi mỗi phương án thành một bộ gồm các mức ràng buộc và mức mục tiêu theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.18 (Tập giá trị và tập trên)
 Cho bài toán (2.1) với $f(x)=(f_1(x),\ldots,f_m(x))$.
@@ -1208,13 +1199,13 @@ $$
 Một điểm của các tập này viết là $(u,v,t)$, với $u\in\mathbb R^m$ là mức ràng buộc bất đẳng thức, $v\in\mathbb R^p$ là mức ràng buộc đẳng thức và $t\in\mathbb R$ là mức mục tiêu.
 :::
 
-Tập $G$ ghi đúng các bộ giá trị mà một phương án tạo ra. Tập $\mathcal A$ thêm vào mọi bộ "kém hơn" một bộ $(u,v,t)$ của $G$, tức mọi $(u',v,t')$ với cả hai điều kiện $u'\succeq u$ và $t'\ge t$. Vì vậy $G\subseteq\mathcal A$.
+Trong định nghĩa trên, tập $G$ ghi đúng các bộ giá trị mà một phương án tạo ra. Tập $\mathcal A$ thêm vào mọi bộ "kém hơn" một bộ $(u,v,t)$ của $G$, tức mọi $(u',v,t')$ với cả hai điều kiện $u'\succeq u$ và $t'\ge t$. Vì vậy, $G\subseteq\mathcal A$.
 
 Với $D=\mathbb R^n$, $\mathcal A$ chính là tập dùng trong chứng minh Định lý 03.15. Trong mặt phẳng của bài (1.1), $\mathcal A$ là phần nằm bên phải và phía trên đường cong $G$.
 
-Ví dụ: với bài (1.1), điểm $(8,1)$ thuộc $G$; điểm $(9,2)$ thuộc $\mathcal A$ mà không thuộc $G$. Phản ví dụ cho nhầm lẫn "$\mathcal A$ là nửa mặt phẳng $u\le0$": điểm $(-2,5)$ có $u\le0$ nhưng không thuộc $\mathcal A$, vì mọi $x$ có $f_1(x)\ge-1>-2$.
+Chẳng hạn, với bài (1.1), điểm $(8,1)$ thuộc $G$, còn điểm $(9,2)$ thuộc $\mathcal A$ mà không thuộc $G$. Nhầm lẫn thường gặp là coi $\mathcal A$ là nửa mặt phẳng $u\le0$, nhưng điểm $(-2,5)$ có $u\le0$ mà không thuộc $\mathcal A$, vì mọi $x$ có $f_1(x)\ge-1>-2$.
 
-Kết quả sau cần Định nghĩa 03.5 và Định nghĩa 03.18; nó dịch giá trị tối ưu và hàm đối ngẫu sang ngôn ngữ của hai tập này, theo Boyd và Vandenberghe (2004, mục 5.3.1, tr. 232–234).
+Mệnh đề sau dịch giá trị tối ưu và hàm đối ngẫu sang ngôn ngữ của hai tập này, theo Boyd và Vandenberghe (2004, mục 5.3.1, tr. 232–234). Chứng minh cần Định nghĩa 03.5 và Định nghĩa 03.18.
 
 ::: proposition Mệnh đề 03.19 (Bài gốc và hàm đối ngẫu trên mặt phẳng giá trị)
 **Giả thiết.** Bài toán (2.1) với $D$ và các hàm bất kỳ; $\lambda\succeq0$, $\nu\in\mathbb R^p$.
@@ -1265,13 +1256,13 @@ Phần 2 nói rằng $\lambda^Tu+\nu^Tv+t\ge g(\lambda,\nu)$ với mọi điểm
 Đây là Bước 1 của chứng minh Định lý 03.15, chỉ dùng tính lồi của các $f_i$ và tính affine của $Ax-b$. $\square$
 :::
 
-Phần 2 của Mệnh đề 03.19 nói rằng tính $g(\lambda,\nu)$ là cực tiểu hàm tuyến tính $(\lambda,\nu,1)^T(u,v,t)$ trên tập giá trị. Với một ràng buộc, đó là thao tác hình học sau.
+Theo phần 2 của Mệnh đề 03.19, tính $g(\lambda,\nu)$ tức là cực tiểu hàm tuyến tính $(\lambda,\nu,1)^T(u,v,t)$ trên tập giá trị. Với một ràng buộc, đó là thao tác hình học sau.
 
-Cố định hệ số góc $-\lambda$. Trượt đường thẳng $t=c-\lambda u$ từ dưới lên cho tới khi chạm $G$. Tung độ cắt trục $u=0$ tại vị trí đó là $g(\lambda)$.
+Ta cố định hệ số góc $-\lambda$ và trượt đường thẳng $t=c-\lambda u$ từ dưới lên cho tới khi chạm $G$. Tung độ cắt trục $u=0$ tại vị trí đó là $g(\lambda)$.
 
-Đối ngẫu yếu đọc được ngay trên hình. Mọi điểm khả thi có $u\le0$, nên với $\lambda\ge0$, tung độ của nó thỏa $t\ge g(\lambda)-\lambda u\ge g(\lambda)$; tung độ cắt vì vậy nằm dưới mọi điểm khả thi.
+Đối ngẫu yếu cũng đọc được ngay trên hình. Mọi điểm khả thi có $u\le0$, nên với $\lambda\ge0$, tung độ của nó thỏa $t\ge g(\lambda)-\lambda u\ge g(\lambda)$, tức tung độ cắt nằm dưới mọi điểm khả thi.
 
-So với Định lý 03.8, mệnh đề không thêm kết luận mới mà đổi ngôn ngữ. Đổi lại, hình học làm rõ vì sao điểm chạm của đường đỡ không cần khả thi: lập luận cận dưới chỉ dùng vị trí của đường, không dùng điểm chạm.
+So với Định lý 03.8, mệnh đề không thêm kết luận mới mà chỉ đổi ngôn ngữ. Bù lại, hình học làm rõ rằng điểm chạm của đường đỡ không cần khả thi, do lập luận cận dưới chỉ dùng vị trí của đường, không dùng điểm chạm.
 
 ::: example Ví dụ 03.12 (Hai đường đỡ của bài toán xuyên suốt)
 **Dữ kiện.**
@@ -1313,9 +1304,9 @@ Hình trên vẽ đường $\lambda=1$. Khoảng cách theo chiều đứng từ
 
 ![Mặt phẳng (u, t) với đường cong G và vùng khả thi u không dương được tô nền. Đường thẳng t bằng 5 trừ 2u có hệ số góc âm 2, nằm dưới G và tiếp xúc G đúng tại điểm (0, 5), ứng với x bằng 2, điểm khả thi thấp nhất.](img/lec-03/value-plane-2.svg)
 
-Hình thứ hai vẽ đường $\lambda=2$, tiếp xúc $G$ tại $(0,5)$. Tiếp xúc tại một điểm của trục tung là dấu hiệu hình học của đối ngẫu mạnh có nghiệm đối ngẫu; mệnh đề sau phát biểu chính xác điều đó cho tập $\mathcal A$.
+Hình thứ hai vẽ đường $\lambda=2$, tiếp xúc $G$ tại $(0,5)$. Sự tiếp xúc tại một điểm của trục tung là dấu hiệu hình học của đối ngẫu mạnh có nghiệm đối ngẫu.
 
-Kết quả sau mô tả trên hình trường hợp đối ngẫu mạnh có nghiệm đối ngẫu; nó dùng Mệnh đề 03.19 và Hệ quả 03.10, theo cách đọc của Boyd và Vandenberghe (2004, mục 5.3.1, tr. 232–234).
+Mệnh đề sau phát biểu chính xác điều đó cho tập $\mathcal A$. Chứng minh dùng Mệnh đề 03.19 và Hệ quả 03.10, theo cách đọc của Boyd và Vandenberghe (2004, mục 5.3.1, tr. 232–234).
 
 ::: proposition Mệnh đề 03.20 (Đối ngẫu mạnh là đường đỡ không thẳng đứng tại $(0,0,p^*)$)
 **Giả thiết.** Bài toán (2.1) với $p^*$ hữu hạn.
@@ -1358,13 +1349,13 @@ Thay $u=0$, $v=0$, $t=p^*$ vào phương trình siêu phẳng cho $p^*=p^*$. $\s
 
 Mệnh đề 03.20 cho cách đọc hình học của Định lý 03.15. Bước 3 của chứng minh định lý loại trường hợp hệ số $\mu$ của $t$ bằng $0$, tức siêu phẳng tách thẳng đứng. Mệnh đề 03.20 cho thấy loại trừ được trường hợp đó là đủ để có nghiệm đối ngẫu.
 
-**Trong học máy.** Với máy vector hỗ trợ lề mềm, mỗi phương án $(w,b,\xi)$ cho một điểm trong không gian giá trị $\mathbb R^{2N}\times\mathbb R$. Theo Định lý 03.15, với điểm Slater của Mục 3.4, bài lồi và $p^*$ hữu hạn, bài có nghiệm đối ngẫu $(\alpha,\beta)$. Mệnh đề 03.20 đọc nghiệm đó thành một siêu phẳng đỡ không thẳng đứng: hàm Lagrange tại mọi điểm, kể cả điểm không khả thi, không nhỏ hơn mất mát tối ưu. Tình huống 03.1 tính bộ nhân tử đó cho bốn khung hình.
+**Trong học máy.** Với máy vector hỗ trợ lề mềm, mỗi phương án $(w,b,\xi)$ cho một điểm trong không gian giá trị $\mathbb R^{2N}\times\mathbb R$. Theo Định lý 03.15, với điểm Slater của Mục 3.4, bài lồi và $p^*$ hữu hạn, bài có nghiệm đối ngẫu $(\alpha,\beta)$. Mệnh đề 03.20 đọc nghiệm đó thành một siêu phẳng đỡ không thẳng đứng, nghĩa là hàm Lagrange tại mọi điểm, kể cả điểm không khả thi, không nhỏ hơn mất mát tối ưu. Tình huống 03.1 tính bộ nhân tử đó cho bốn khung hình.
 
 ![Mặt phẳng (u, t). Đường cong G và tập mở rộng A bằng G cộng góc phần tư không âm, tô nhạt, trải sang phải và lên trên. Vùng u không dương ghi khả thi gốc. Điểm (0, p sao) bằng (0, 5) được đánh dấu; đường thẳng t bằng 5 trừ 2u đi qua điểm đó và nằm dưới toàn bộ A. Một mũi tên pháp tuyến (2, 1) xuất phát từ (0, 5), vuông góc với đường thẳng và hướng vào trong A.](img/lec-03/dual-geometry.svg)
 
-Hình trên vẽ tập $\mathcal A$ của bài (1.1). Pháp tuyến $(2,1)=(\lambda^*,1)$ của đường đỡ có thành phần thứ hai bằng $1$, đúng dạng của khẳng định 2.
+Hình trên thể hiện tập $\mathcal A$ của bài (1.1). Pháp tuyến $(2,1)=(\lambda^*,1)$ của đường đỡ có thành phần thứ hai bằng $1$, đúng dạng của khẳng định 2 trong Mệnh đề 03.20.
 
-Tập $\mathcal A$ lồi dù $G$ không lồi, như Mệnh đề 03.19 phần 4 bảo đảm. Đây là lý do chứng minh Định lý 03.15 tách $\mathcal A$ chứ không tách $G$.
+Tập $\mathcal A$ lồi dù $G$ không lồi, như Mệnh đề 03.19 phần 4 bảo đảm, nên chứng minh Định lý 03.15 tách $\mathcal A$ chứ không tách $G$. Ví dụ sau xét trường hợp không có đường đỡ không thẳng đứng nào tại $(0,p^*)$.
 
 ::: example Ví dụ 03.13 (Đường đỡ chỉ có thể thẳng đứng)
 **Bài toán.**
@@ -1394,7 +1385,7 @@ $$
 Với $\lambda=1$: điểm chạm $(\tfrac12,-1)$ thỏa $-1=-\sqrt{2\cdot\tfrac12}$, và tung độ cắt $-1+\tfrac12=-\tfrac12=g(1)$.
 :::
 
-Ví dụ 03.13 giải thích hình học của Ví dụ 03.10. Đối ngẫu mạnh vẫn đúng vì các đường đỡ có tung độ cắt tiến tới $0$. Nghiệm đối ngẫu không tồn tại vì đường đỡ tại $(0,0)$ thẳng đứng, ứng với "$\lambda=\infty$".
+Ví dụ 03.13 giải thích Ví dụ 03.10 bằng hình học. Đối ngẫu mạnh vẫn đúng vì các đường đỡ có tung độ cắt tiến tới $0$, còn nghiệm đối ngẫu không tồn tại vì đường đỡ tại $(0,0)$ thẳng đứng, ứng với "$\lambda=\infty$".
 
 ::: remark Nhận xét 03.21 (Ba nhầm lẫn khi đọc hình đối ngẫu)
 Thứ nhất, coi điểm chạm của đường đỡ là ứng viên nghiệm: với $\lambda=1$, điểm chạm không khả thi. Chứng nhận cần điểm chạm khả thi và có tung độ bằng tung độ cắt.
@@ -1406,7 +1397,7 @@ Thứ ba, kết luận tính lồi của bài toán từ hình: $G$ của bài (
 
 ### 4.3 Nhân tử như độ nhạy của giá trị tối ưu
 
-Tập trên $\mathcal A$ còn chứa thông tin khác. Với một mức ràng buộc $u$ cố định, điểm thấp nhất của $\mathcal A$ trên đường thẳng đứng qua $u$ là giá trị tối ưu của bài toán khi ràng buộc được đổi thành $f_1(x)\le u$. Câu hỏi thực tế đi kèm: nếu nới ràng buộc thêm một lượng nhỏ, giá trị tối ưu giảm bao nhiêu.
+Tập trên $\mathcal A$ còn chứa thông tin khác. Với một mức ràng buộc $u$ cố định, điểm thấp nhất của $\mathcal A$ trên đường thẳng đứng qua $u$ là giá trị tối ưu của bài toán khi ràng buộc được đổi thành $f_1(x)\le u$. Câu hỏi thực tế đi kèm là nếu nới ràng buộc thêm một lượng nhỏ thì giá trị tối ưu giảm bao nhiêu. Để trả lời câu hỏi này, ta xét bài toán có ràng buộc được nới theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.22 (Bài toán nhiễu và hàm giá trị)
 Cho bài toán (2.1). Với $u\in\mathbb R^m$ và $v\in\mathbb R^p$, bài toán nhiễu (perturbed problem) là
@@ -1419,11 +1410,11 @@ $$
 Giá trị tối ưu của (4.1), ký hiệu $p^*(u,v)\in\mathbb R\cup\{\pm\infty\}$, gọi là hàm giá trị (value function); $p^*(0,0)=p^*$.
 :::
 
-Thành phần $u_i>0$ nới ràng buộc $i$, thành phần $u_i<0$ siết nó. Theo Mệnh đề 01.16(a), nới ràng buộc mở rộng tập khả thi, nên $p^*(u,v)$ không tăng khi $u$ tăng.
+Ở bài nhiễu, thành phần $u_i>0$ nới ràng buộc $i$, còn thành phần $u_i<0$ siết nó. Nới ràng buộc mở rộng tập khả thi, nên theo Mệnh đề 01.16(a), $p^*(u,v)$ không tăng khi $u$ tăng.
 
-Theo Định nghĩa 03.18, $p^*(u,v)=\inf\{t\mid(u,v,t)\in\mathcal A\}$: đồ thị của hàm giá trị là biên dưới của $\mathcal A$. Hàm giá trị khác hàm đối ngẫu: $p^*(u,v)$ là hàm của mức ràng buộc, $g(\lambda,\nu)$ là hàm của nhân tử.
+Theo Định nghĩa 03.18, $p^*(u,v)=\inf\{t\mid(u,v,t)\in\mathcal A\}$, tức đồ thị của hàm giá trị là biên dưới của $\mathcal A$. Lưu ý rằng hàm giá trị khác hàm đối ngẫu, vì $p^*(u,v)$ là hàm của mức ràng buộc, còn $g(\lambda,\nu)$ là hàm của nhân tử.
 
-Kết quả sau chặn giá trị tối ưu của bài nhiễu cho mọi nhiễu, lớn hay nhỏ, khi có đối ngẫu mạnh và nghiệm đối ngẫu. Nó dùng định nghĩa nghiệm đối ngẫu (Định nghĩa 03.9) và Định nghĩa 03.5, theo Boyd và Vandenberghe (2004, mục 5.6.2, tr. 250).
+Khi có đối ngẫu mạnh và nghiệm đối ngẫu, giá trị tối ưu của bài nhiễu được chặn cho mọi nhiễu, lớn hay nhỏ, theo mệnh đề sau. Chứng minh dùng định nghĩa nghiệm đối ngẫu (Định nghĩa 03.9) và Định nghĩa 03.5, theo Boyd và Vandenberghe (2004, mục 5.6.2, tr. 250).
 
 ::: proposition Mệnh đề 03.23 (Bất đẳng thức độ nhạy toàn cục)
 **Giả thiết.** Bài toán (2.1) với $p^*$ hữu hạn, $d^*=p^*$, và $(\lambda^*,\nu^*)$ là một nghiệm đối ngẫu.
@@ -1464,16 +1455,14 @@ Dòng đầu là giả thiết $g(\lambda^*,\nu^*)=d^*=p^*$. Dòng thứ hai là
 Chuyển vế cho $f_0(x)\ge p^*-\lambda^{*T}u-\nu^{*T}v$ với mọi $x$ khả thi của (4.1). Lấy cận dưới đúng theo các $x$ đó cho (4.2) theo Định nghĩa 01.10. $\square$
 :::
 
-Bất đẳng thức (4.2) có hình ảnh trực tiếp. Với một ràng buộc, vế phải $p^*-\lambda^*u$ là đường đỡ của Mệnh đề 03.20, và đồ thị hàm giá trị, biên dưới của $\mathcal A$, nằm trên đường đó.
+Về mặt hình học, với một ràng buộc, vế phải $p^*-\lambda^*u$ của (4.2) là đường đỡ của Mệnh đề 03.20, và đồ thị hàm giá trị, tức biên dưới của $\mathcal A$, nằm trên đường đó.
 
 Xét nhiễu chỉ trên ràng buộc $i$, các nhiễu khác bằng $0$. Bất đẳng thức (4.2) cho hai kết luận chính xác:
 
 - siết ràng buộc $i$ một lượng $\lvert u_i\rvert$, với $u_i<0$, làm giá trị tối ưu tăng ít nhất $\lambda_i^*\lvert u_i\rvert$;
 - nới ràng buộc $i$ một lượng $u_i>0$ làm giá trị tối ưu giảm không quá $\lambda_i^*u_i$.
 
-Bất đẳng thức (4.2) không cho biết khi nới, giá trị tối ưu giảm ít nhất bao nhiêu. Tốc độ thay đổi tại nhiễu bằng $0$ là nội dung của Hệ quả 03.24.
-
-Kết quả sau là hệ quả của Mệnh đề 03.23 khi hàm giá trị khả vi: chia (4.2) cho nhiễu và lấy giới hạn hai phía.
+Tuy nhiên, (4.2) không cho biết khi nới thì giá trị tối ưu giảm ít nhất bao nhiêu. Tốc độ thay đổi tại nhiễu bằng $0$ là nội dung của hệ quả sau. Hệ quả này thu được từ Mệnh đề 03.23, khi hàm giá trị khả vi, bằng cách chia (4.2) cho nhiễu và lấy giới hạn hai phía.
 
 ::: corollary Hệ quả 03.24 (Độ nhạy địa phương: nhân tử là giá bóng)
 **Giả thiết.** Như Mệnh đề 03.23, và thêm: $p^*(u,v)$ khả vi tại $(0,0)$.
@@ -1504,7 +1493,7 @@ Với $s<0$, cùng bất đẳng thức chia cho $s<0$ đổi chiều: $\frac{p^
 Hai bước cho đẳng thức thứ nhất của (4.3); đẳng thức thứ hai chứng minh giống hệt với $(0,se_j)$, vì (4.2) đúng với mọi dấu của $v$. $\square$
 :::
 
-Hệ quả 03.24 cho nhân tử một nghĩa đo được: $\lambda_i^*$ là mức giảm của giá trị tối ưu trên mỗi đơn vị nới ràng buộc $i$, tính tại nhiễu bằng $0$. Trong kinh tế, đại lượng này gọi là giá bóng (shadow price) của ràng buộc. Cách đọc này theo Boyd và Vandenberghe (2004, mục 5.4.4, tr. 240–241; mục 5.6.3, tr. 251).
+Hệ quả 03.24 cho nhân tử một nghĩa đo được, vì $\lambda_i^*$ chính là mức giảm của giá trị tối ưu trên mỗi đơn vị nới ràng buộc $i$, tính tại nhiễu bằng $0$. Trong kinh tế, đại lượng này gọi là giá bóng (shadow price) của ràng buộc. Cách đọc này theo Boyd và Vandenberghe (2004, mục 5.4.4, tr. 240–241; mục 5.6.3, tr. 251).
 
 Nhân tử của bất đẳng thức không âm vì nới một bất đẳng thức không làm giá trị tối ưu tăng. Nhân tử của đẳng thức có dấu tùy ý vì dịch một đẳng thức theo một chiều có thể có lợi, theo chiều kia có thể có hại.
 
@@ -1554,9 +1543,9 @@ $p^*(0)=11-6=5$. $p^*(-0{,}75)=11-0{,}75-6\cdot0{,}5=7{,}25\ge6{,}5=5+1{,}5$. $p
 
 ![Đồ thị hàm giá trị p sao theo u trên đoạn từ âm 1 tới 8 rồi nằm ngang ở mức 1 khi u lớn hơn 8. Đường cong giảm, đi qua điểm (0, 5). Một đường nét đứt 5 trừ 2u tiếp xúc đường cong tại (0, 5) và nằm dưới đường cong. Ghi chú: u nhỏ hơn âm 1 thì bài nhiễu vô nghiệm; tại u bằng 8 ràng buộc hoạt động với nhân tử 0; u lớn hơn 8 ràng buộc không hoạt động.](img/lec-03/sensitivity-value.svg)
 
-Hình trên vẽ $p^*(u)$ cùng đường $5-2u$. Đường thẳng vừa là tiếp tuyến tại $u=0$, như Hệ quả 03.24 nói, vừa nằm dưới toàn bộ đồ thị, như Mệnh đề 03.23 nói.
+Hình trên đặt $p^*(u)$ cạnh đường $5-2u$. Đường thẳng vừa là tiếp tuyến tại $u=0$, như Hệ quả 03.24 nói, vừa nằm dưới toàn bộ đồ thị, như Mệnh đề 03.23 nói.
 
-Tại $u=8$, đầu mút trái của tập khả thi chạm đỉnh parabol $x=0$, nơi $f_0'(0)=0$; ràng buộc vẫn hoạt động nhưng nhân tử của bài nhiễu bằng $0$. Hiện tượng "hoạt động nhưng nhân tử bằng $0$" được nghiên cứu ở Nhận xét 03.28.
+Tại $u=8$, đầu mút trái của tập khả thi chạm đỉnh parabol $x=0$, nơi $f_0'(0)=0$. Ở đó, ràng buộc vẫn hoạt động nhưng nhân tử của bài nhiễu bằng $0$, một hiện tượng được nghiên cứu ở Nhận xét 03.28.
 
 ::: example Ví dụ 03.15 (Giá bóng của yêu cầu dinh dưỡng trong bài pha trộn)
 **Dữ kiện.**
@@ -1592,9 +1581,9 @@ Thứ ba, đổi dấu: nhân tử dương nghĩa là nới ràng buộc làm gi
 
 **Trong học máy.** Trong hồi quy với trần $\lVert w\rVert_2^2\le\tau$, nhân tử $\lambda^*$ của trần là tốc độ giảm của mất mát tối ưu khi trần tăng: $\frac{dp^*}{d\tau}=-\lambda^*$ theo (4.3), vì nới trần một lượng $u$ là đặt trần $\tau+u$.
 
-Giả thiết khả vi thỏa trong các ví dụ của Mục 5 và Tình huống 03.2. Kết luận cho phép đọc từ một lần giải duy nhất xem trần đang "đắt" đến đâu: Ví dụ 03.19 có $\lambda^*=2$, nên nới trần thêm $0{,}1$ giảm mất mát khoảng $0{,}2$.
+Giả thiết khả vi thỏa trong các ví dụ của Mục 5 và Tình huống 03.2. Kết luận này cho phép đọc từ một lần giải duy nhất xem trần đang "đắt" đến đâu. Chẳng hạn, Ví dụ 03.19 có $\lambda^*=2$, nên nới trần thêm $0{,}1$ giảm mất mát khoảng $0{,}2$.
 
-Cùng cách đọc áp dụng cho ràng buộc ngân sách tính toán hay ràng buộc công bằng: nhân tử lớn chỉ ra ràng buộc đang kìm hãm mất mát nhiều nhất (Bài tập 03.17).
+Cùng cách đọc áp dụng cho ràng buộc ngân sách tính toán hay ràng buộc công bằng, trong đó nhân tử lớn chỉ ra ràng buộc đang kìm hãm mất mát nhiều nhất (Bài tập 03.17).
 
 ::: exercise Bài tập 03.6
 **Dữ kiện.**
@@ -1641,33 +1630,21 @@ Kiểm tra (4.2): với $u\le1$, $(1-u)^2-(1-2u)=u^2\ge0$; với $u>1$, $1-2u<0$
 $p^*=1$ tại $x=1$, bằng $g(2)$; tại $\lambda=1$, điểm chạm $(\tfrac12,\tfrac14)$ thỏa $\tfrac14=(1-\tfrac12)^2$.
 :::
 
-**Chuỗi suy luận của mục.**
+Với tập giá trị và tập trên (Định nghĩa 03.18), mọi đại lượng đã gặp có nghĩa hình học. Hàm đối ngẫu $g(\lambda)$ là tung độ cắt của một đường đỡ có hệ số góc $-\lambda$ (Mệnh đề 03.19). Đối ngẫu mạnh có nghiệm đối ngẫu tương đương với một đường đỡ không thẳng đứng tiếp xúc tại $(0,p^*)$ (Mệnh đề 03.20). Qua hàm giá trị (Định nghĩa 03.22) và bất đẳng thức độ nhạy toàn cục (Mệnh đề 03.23), chúng ta đi tới kết quả chính của mục là Hệ quả 03.24. Theo hệ quả này, khi hàm giá trị khả vi, nhân tử tối ưu bằng số đối của đạo hàm hàm giá trị tại nhiễu $0$, tức giá bóng của ràng buộc.
 
-1. Định nghĩa 03.18: tập giá trị và tập trên.
-2. Mệnh đề 03.19: hàm đối ngẫu là tung độ cắt của đường đỡ.
-3. Mệnh đề 03.20: đối ngẫu mạnh có nghiệm đối ngẫu tương đương đường đỡ không thẳng đứng tại $(0,p^*)$.
-4. Định nghĩa 03.22: hàm giá trị.
-5. Mệnh đề 03.23: độ nhạy toàn cục; Hệ quả 03.24: nhân tử là giá bóng.
-
-Đích của mục là Hệ quả 03.24.
-
-**Kết mục.** Mục này cho nghĩa hình học của mọi đại lượng đã gặp: $g(\lambda)$ là tung độ cắt, $\lambda$ là hệ số góc, đối ngẫu mạnh có nghiệm đối ngẫu là sự tiếp xúc tại $(0,p^*)$, và nhân tử tối ưu là độ dốc của hàm giá trị.
-
-Thiếu hụt còn lại là tính toán. Mọi chứng nhận cho đến đây đều đi qua hàm $g$, tức một bài cực tiểu theo $x$ cho mỗi nhân tử, rồi một bài cực đại theo nhân tử. Với hồi quy có trần hay máy vector hỗ trợ, $g$ có công thức nhưng cồng kềnh.
-
-Mục 5 khai thác các dấu bằng trong chuỗi $g(\lambda^*,\nu^*)\le L(x^*,\lambda^*,\nu^*)\le f_0(x^*)$ để thay việc tính $g$ bằng một hệ điều kiện trên $(x,\lambda,\nu)$: điều kiện Karush–Kuhn–Tucker.
+Tuy nhiên, mọi chứng nhận cho đến đây đều đi qua hàm $g$, tức một bài cực tiểu theo $x$ cho mỗi nhân tử, rồi một bài cực đại theo nhân tử. Trong Mục 5, chúng ta khai thác các dấu bằng trong chuỗi $g(\lambda^*,\nu^*)\le L(x^*,\lambda^*,\nu^*)\le f_0(x^*)$ để thay việc tính $g$ bằng một hệ điều kiện trên $(x,\lambda,\nu)$, gọi là điều kiện Karush–Kuhn–Tucker.
 
 ## 5. Điều kiện Karush–Kuhn–Tucker
 
-Mục 4 cho nghĩa hình học của nhân tử, nhưng mọi chứng nhận vẫn đi qua hàm $g$. Với hồi quy có trần $\min\tfrac12\lVert w-y\rVert_2^2$, $\lVert w\rVert_2^2\le1$, $y=(3,4)$, tính $g(\lambda)$ đòi một bài cực tiểu theo $w$ cho mỗi $\lambda$, rồi một bài cực đại theo $\lambda$.
+Tính hàm đối ngẫu $g$ không phải lúc nào cũng dễ. Với hồi quy có trần $\min\tfrac12\lVert w-y\rVert_2^2$, $\lVert w\rVert_2^2\le1$, $y=(3,4)$, hay với máy vector hỗ trợ, $g$ có công thức nhưng cồng kềnh.
 
 Trong khi đó, Ví dụ 03.4 cho thấy tại cặp tối ưu $(x^*,\lambda^*)=(2,2)$ của bài (1.1), hai dấu bất đẳng thức trong (2.4) đều là dấu bằng. Hai dấu bằng đó là hai phương trình trên $(x,\lambda)$, giải được mà không cần biết $g$.
 
-Mục này biến hai dấu bằng thành điều kiện bù trừ và điều kiện dừng, gộp với hai điều kiện khả thi thành hệ Karush–Kuhn–Tucker (KKT), chứng minh hệ này cần khi có đối ngẫu mạnh và đủ khi bài toán lồi, rồi áp dụng cho hồi quy có trần và máy vector hỗ trợ.
+Trong mục này, chúng ta biến hai dấu bằng thành điều kiện bù trừ và điều kiện dừng, rồi gộp với hai điều kiện khả thi thành hệ Karush–Kuhn–Tucker (KKT). Sau khi chứng minh hệ này cần khi có đối ngẫu mạnh và đủ khi bài toán lồi, chúng ta áp dụng nó cho hồi quy có trần và máy vector hỗ trợ.
 
 ### 5.1 Điều kiện bù trừ
 
-Trực giác (chưa phải định nghĩa). Trong Ví dụ 03.5, ràng buộc $x_1\ge0$ không chặt tại nghiệm $(1,2)$ và có nhân tử $0$; hai ràng buộc dinh dưỡng chặt và có nhân tử dương. Theo nghĩa giá bóng của Hệ quả 03.24, một ràng buộc còn dư không có giá: nới nó không đổi nghiệm. Một ràng buộc có giá dương thì phải đang bị dùng hết.
+Trong Ví dụ 03.5, ràng buộc $x_1\ge0$ không chặt tại nghiệm $(1,2)$ và có nhân tử $0$, còn hai ràng buộc dinh dưỡng chặt và có nhân tử dương. Một cách trực quan, theo nghĩa giá bóng của Hệ quả 03.24, một ràng buộc còn dư không có giá, vì nới nó không đổi nghiệm. Ngược lại, một ràng buộc có giá dương thì phải đang bị dùng hết. Nhận xét này mới là trực giác, chưa phải định nghĩa, và được viết chính xác theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.26 (Ràng buộc hoạt động và điều kiện bù trừ)
 Cho bài toán (2.1) và một điểm khả thi $x$.
@@ -1677,17 +1654,17 @@ Ràng buộc $f_i(x)\le0$ hoạt động (active) tại $x$ nếu $f_i(x)=0$, kh
 Cặp $(x,\lambda)$ với $x$ khả thi và $\lambda\succeq0$ thỏa điều kiện bù trừ (complementary slackness) nếu $\lambda_if_i(x)=0$ với mọi $i=1,\ldots,m$.
 :::
 
-Mỗi tích $\lambda_if_i(x)$ là tích của một số không âm và một số không dương, nên bằng $0$ khi và chỉ khi ít nhất một thừa số bằng $0$. Điều kiện bù trừ vì vậy tương đương hai phép kéo theo:
+Mỗi tích $\lambda_if_i(x)$ là tích của một số không âm và một số không dương, nên bằng $0$ khi và chỉ khi ít nhất một thừa số bằng $0$. Do đó, điều kiện bù trừ tương đương hai phép kéo theo sau:
 
 $$
 \lambda_i>0\ \Longrightarrow\ f_i(x)=0,\qquad f_i(x)<0\ \Longrightarrow\ \lambda_i=0 .
 $$
 
-Ví dụ: $(x,\lambda)=(2,2)$ của bài (1.1) thỏa, vì $f_1(2)=0$. Phản ví dụ: $(x,\lambda)=(3,2)$ không thỏa, vì $\lambda f_1(3)=-2$.
+Chẳng hạn, cặp $(x,\lambda)=(2,2)$ của bài (1.1) thỏa điều kiện bù trừ vì $f_1(2)=0$, còn cặp $(x,\lambda)=(3,2)$ không thỏa vì $\lambda f_1(3)=-2$.
 
-Điều kiện bù trừ là phần (c) của Mệnh đề 02.11 viết thành điều kiện trên cặp: ở đó, ràng buộc có $\mu_i>0$ chặt tại nghiệm. Điều kiện này không nói ràng buộc hoạt động phải có nhân tử dương; chiều đó sai (Nhận xét 03.28).
+Trong Mệnh đề 02.11(c), ràng buộc có $\mu_i>0$ chặt tại nghiệm, và điều kiện bù trừ chính là phần này viết thành điều kiện trên cặp. Điều kiện này không nói ràng buộc hoạt động phải có nhân tử dương, vì chiều đó sai (Nhận xét 03.28).
 
-Kết quả sau đọc hai dấu bằng trong (2.4) tại một cặp tối ưu có khoảng bằng $0$; nó cần Hệ quả 03.10 và Định nghĩa 03.5, theo lập luận của Boyd và Vandenberghe (2004, mục 5.5.2, tr. 242–243).
+Mệnh đề sau đọc hai dấu bằng trong (2.4) tại một cặp tối ưu có khoảng bằng $0$. Chứng minh cần Hệ quả 03.10 và Định nghĩa 03.5, theo lập luận của Boyd và Vandenberghe (2004, mục 5.5.2, tr. 242–243).
 
 ::: proposition Mệnh đề 03.27 (Bù trừ và cực tiểu hóa hàm Lagrange tại nghiệm)
 **Giả thiết.** Bài toán (2.1); $x^*$ là nghiệm của bài gốc, $(\lambda^*,\nu^*)$ là nghiệm đối ngẫu, và $f_0(x^*)=g(\lambda^*,\nu^*)$.
@@ -1732,9 +1709,9 @@ Dòng thứ hai là định nghĩa cận dưới đúng. Dòng thứ ba dùng $A
 Nếu $x$ cực tiểu hóa $L(\cdot,\lambda,\nu)$ thì $g(\lambda,\nu)=L(x,\lambda,\nu)$. Bù trừ và $Ax=b$ cho $L(x,\lambda,\nu)=f_0(x)$. Vậy $f_0(x)=g(\lambda,\nu)$, và Hệ quả 03.10(c) cho kết luận của phần 3. $\square$
 :::
 
-Mệnh đề 03.27 tách điều kiện tối ưu thành hai mảnh có thể kiểm tra riêng. Mảnh bù trừ là điều kiện tổ hợp: mỗi ràng buộc hoặc có nhân tử $0$, hoặc hoạt động. Mảnh cực tiểu hóa là một bài không ràng buộc theo $x$.
+Mệnh đề 03.27 tách điều kiện tối ưu thành hai mảnh có thể kiểm tra riêng. Mảnh bù trừ là điều kiện tổ hợp, đòi mỗi ràng buộc hoặc có nhân tử $0$, hoặc hoạt động, còn mảnh cực tiểu hóa là một bài không ràng buộc theo $x$.
 
-Phần 3 là phiên bản "theo cặp" của Hệ quả 03.10(c): không cần tính $g$ tại mọi nhân tử, chỉ cần kiểm tra một điểm cực tiểu của một hàm.
+Phần 3 là phiên bản "theo cặp" của Hệ quả 03.10(c), trong đó ta không cần tính $g$ tại mọi nhân tử mà chỉ cần kiểm tra một điểm cực tiểu của một hàm.
 
 **Trong học máy.** Bù trừ cho biết ràng buộc nào không ảnh hưởng tới nghiệm. Trong máy vector hỗ trợ, ràng buộc lề của một mẫu nằm ngoài lề không hoạt động, nên nhân tử của mẫu đó bằng $0$ và mẫu không góp phần vào $w$ (Mệnh đề 03.36). Trong hồi quy có trần, trần không hoạt động thì nhân tử bằng $0$ và nghiệm trùng nghiệm không phạt (Mệnh đề 03.34). Giả thiết của Mệnh đề 03.27 được bảo đảm trong cả hai bài nhờ điều kiện Slater và nghiệm gốc tồn tại (Mệnh đề 02.39(b) cho máy vector hỗ trợ khi có cả hai nhãn; Định lý 01.36 cho hồi quy có trần).
 
@@ -1766,9 +1743,9 @@ Ví dụ 03.14 tại $u=8$ và Tình huống 03.1 với $\rho=4$ là hai trườ
 
 ### 5.2 Hệ điều kiện KKT
 
-Mệnh đề 03.27 phần 2 cho $x^*$ là điểm cực tiểu của $L(\cdot,\lambda^*,\nu^*)$ trên $D$. Khi $D=\mathbb R^n$ và các hàm khả vi, điều kiện cần bậc nhất cho cực tiểu không ràng buộc (Bài 00) biến khẳng định này thành một phương trình gradient.
+Theo Mệnh đề 03.27 phần 2, $x^*$ là điểm cực tiểu của $L(\cdot,\lambda^*,\nu^*)$ trên $D$. Khi $D=\mathbb R^n$ và các hàm khả vi, điều kiện cần bậc nhất cho cực tiểu không ràng buộc (Bài 00) biến khẳng định này thành một phương trình gradient.
 
-Trực giác (chưa phải định nghĩa): tại nghiệm của bài (1.1), $f_0'(2)=4$ và $\lambda^*f_1'(2)=2\cdot(2\cdot2-6)=-4$; gradient của mục tiêu bị gradient của ràng buộc, nhân với nhân tử, cân bằng đúng.
+Một cách dễ hình dung, tại nghiệm của bài (1.1), $f_0'(2)=4$ và $\lambda^*f_1'(2)=2\cdot(2\cdot2-6)=-4$, tức gradient của mục tiêu bị gradient của ràng buộc, nhân với nhân tử, cân bằng đúng. Quan sát này chưa phải định nghĩa. Gộp nó với điều kiện bù trừ và hai điều kiện khả thi, ta có hệ điều kiện theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.29 (Hệ điều kiện KKT)
 Cho bài toán (2.1) với $D=\mathbb R^n$ và $f_0,\ldots,f_m$ khả vi. Bộ $(x,\lambda,\nu)\in\mathbb R^n\times\mathbb R^m\times\mathbb R^p$ thỏa hệ điều kiện Karush–Kuhn–Tucker (KKT conditions) nếu bốn nhóm sau đúng.
@@ -1784,13 +1761,13 @@ $$
 $$
 :::
 
-Hệ KKT có $n+m+p$ ẩn. Nhóm 4 cho $n$ phương trình, nhóm 3 cho $m$ phương trình, đẳng thức $Ax=b$ cho $p$ phương trình; các bất đẳng thức của nhóm 1 và 2 dùng để loại nghiệm.
+Trong định nghĩa trên, hệ KKT có $n+m+p$ ẩn. Nhóm 4 cho $n$ phương trình, nhóm 3 cho $m$ phương trình, đẳng thức $Ax=b$ cho $p$ phương trình, còn các bất đẳng thức của nhóm 1 và 2 dùng để loại nghiệm.
 
-Hệ là tổng quát hóa của điều kiện $\nabla f_0(x)=0$ cho bài không ràng buộc: khi $m=p=0$, chỉ còn nhóm 4 với $\nabla f_0(x)=0$. Với đẳng thức mà không có bất đẳng thức, hệ là phương trình Lagrange cổ điển $\nabla f_0(x)+A^T\nu=0$, $Ax=b$, đối tượng của Bài 04.
+Hệ này tổng quát hóa điều kiện $\nabla f_0(x)=0$ cho bài không ràng buộc, vì khi $m=p=0$, chỉ còn nhóm 4 với $\nabla f_0(x)=0$. Với đẳng thức mà không có bất đẳng thức, hệ là phương trình Lagrange cổ điển $\nabla f_0(x)+A^T\nu=0$, $Ax=b$, đối tượng của Bài 04.
 
-Phản ví dụ cho nhầm lẫn "hệ KKT là điều kiện tối ưu": Nhận xét 03.33 có một bộ thỏa KKT mà không tối ưu, và một nghiệm không có bộ KKT nào.
+Nhầm lẫn thường gặp là coi hệ KKT là điều kiện tối ưu, trong khi Nhận xét 03.33 có một bộ thỏa KKT mà không tối ưu, và một nghiệm không có bộ KKT nào.
 
-Định lý sau cho biết khi nào một nghiệm bắt buộc phải thỏa KKT; nó cần Mệnh đề 03.27 và điều kiện cần bậc nhất của Bài 00, theo Boyd và Vandenberghe (2004, mục 5.5.3, tr. 243).
+Định lý sau cho biết khi nào một nghiệm bắt buộc phải thỏa KKT. Chứng minh cần Mệnh đề 03.27 và điều kiện cần bậc nhất của Bài 00, theo Boyd và Vandenberghe (2004, mục 5.5.3, tr. 243).
 
 ::: theorem Định lý 03.30 (KKT là điều kiện cần khi có đối ngẫu mạnh)
 **Giả thiết.** Bài toán (2.1) với $D=\mathbb R^n$ và $f_0,\ldots,f_m$ khả vi; $x^*$ là nghiệm gốc; $(\lambda^*,\nu^*)$ là nghiệm đối ngẫu; $p^*=d^*$ hữu hạn.
@@ -1816,7 +1793,7 @@ Vì $f_0(x^*)=p^*=d^*=g(\lambda^*,\nu^*)$, Mệnh đề 03.27 phần 1 cho nhóm
 Mệnh đề 03.27 phần 2 cho $x^*$ cực tiểu hóa hàm khả vi $L(\cdot,\lambda^*,\nu^*)$ trên tập mở $\mathbb R^n$. Theo điều kiện cần bậc nhất (Bài 00, Nhận xét 01.15), gradient tại $x^*$ bằng $0$; đó là (5.1). $\square$
 :::
 
-Áp dụng cho bài lồi, kết hợp với Định lý 03.15, cho kết quả thường dùng sau.
+Kết hợp Định lý 03.30 với Định lý 03.15 cho bài lồi, ta được kết quả thường dùng sau.
 
 ::: corollary Hệ quả 03.31 (Bài lồi có điểm Slater: mọi nghiệm có nhân tử KKT)
 **Giả thiết.** Bài toán ở dạng chuẩn lồi với $D=\mathbb R^n$, các $f_i$ khả vi, thỏa điều kiện Slater; $x^*$ là một nghiệm.
@@ -1838,7 +1815,7 @@ $p^*=f_0(x^*)$ hữu hạn. Định lý 03.15(a) cho $d^*=p^*$ và một nghiệ
 Các giả thiết của Định lý 03.30 thỏa, nên $(x^*,\lambda^*,\nu^*)$ thỏa KKT. $\square$
 :::
 
-Định lý sau cho chiều ngược, khi nào một bộ thỏa KKT là chứng nhận tối ưu; nó cần Định lý 01.31(a), Hệ quả 01.27 và Mệnh đề 03.27 phần 3, theo Boyd và Vandenberghe (2004, mục 5.5.3, tr. 244).
+Chiều ngược, tức khi nào một bộ thỏa KKT là chứng nhận tối ưu, được phát biểu trong định lý sau. Chứng minh cần Định lý 01.31(a), Hệ quả 01.27 và Mệnh đề 03.27 phần 3, theo Boyd và Vandenberghe (2004, mục 5.5.3, tr. 244).
 
 ::: theorem Định lý 03.32 (KKT là điều kiện đủ cho bài lồi)
 **Giả thiết.** Bài toán ở dạng chuẩn lồi với $D=\mathbb R^n$: $f_0,\ldots,f_m$ lồi, khả vi; $(\tilde x,\tilde\lambda,\tilde\nu)$ thỏa hệ KKT.
@@ -1873,7 +1850,7 @@ Mệnh đề đó cho kết luận. $\square$
 
 Hai định lý chia đôi vai trò. Định lý 03.30 đi từ nghiệm tới nhân tử và cần đối ngẫu mạnh có nghiệm đối ngẫu, nhưng không cần lồi. Định lý 03.32 đi từ một bộ KKT tới nghiệm và cần lồi, nhưng không cần Slater.
 
-Với bài lồi khả vi thỏa Slater, hai chiều gộp lại: $x^*$ là nghiệm khi và chỉ khi có $(\lambda,\nu)$ để $(x^*,\lambda,\nu)$ thỏa KKT. So với Hệ quả 01.27 của Bài 01, kết quả này thay điều kiện "$\nabla f_0(x^*)^T(x-x^*)\ge0$ với mọi $x$ khả thi", phải kiểm tra trên vô số điểm, bằng một hệ hữu hạn phương trình và bất phương trình.
+Với bài lồi khả vi thỏa Slater, hai chiều gộp lại thành một tương đương, theo đó $x^*$ là nghiệm khi và chỉ khi có $(\lambda,\nu)$ để $(x^*,\lambda,\nu)$ thỏa KKT. So với Hệ quả 01.27 của Bài 01, kết quả này thay điều kiện "$\nabla f_0(x^*)^T(x-x^*)\ge0$ với mọi $x$ khả thi", phải kiểm tra trên vô số điểm, bằng một hệ hữu hạn phương trình và bất phương trình.
 
 **Trong học máy.** Hầu hết bộ giải cho các bài lồi có ràng buộc của học máy được thiết kế như phương pháp giải hệ KKT. Boyd và Vandenberghe (2004, mục 5.5.3, tr. 244) nêu nhận xét này cho tối ưu lồi nói chung. Phương pháp điểm trong (interior-point method) thay bù trừ $\lambda_if_i(x)=0$ bằng $\lambda_if_i(x)=-\epsilon$ rồi giảm dần $\epsilon$. Thuật toán SMO của Platt dừng khi mọi mẫu vi phạm điều kiện KKT của Mệnh đề 03.36 ít hơn một ngưỡng cho trước.
 
@@ -1912,7 +1889,9 @@ Khớp Ví dụ 03.4. Ứng viên $x=4$ bị loại vì sai dấu nhân tử: t�
 
 ![Hai khung. Khung trái: đoạn khả thi từ 2 đến 4 với điểm khả thi chặt 3; hai ô so sánh ứng viên x bằng 2 (4 trừ 2 lambda bằng 0 cho lambda bằng 2, không âm, thỏa đủ bốn nhóm) và ứng viên x bằng 4 (8 cộng 2 lambda bằng 0 cho lambda bằng âm 4, sai dấu, bị loại). Khung phải: một nửa mặt phẳng khả thi được tô và một điểm Slater bên trong; nghiệm là hình chiếu của gốc tọa độ lên đường biên, nơi ràng buộc hoạt động; tại đó gradient của mục tiêu và gradient của ràng buộc nhân với nhân tử là hai vector ngược chiều, cân bằng nhau. Hàng dưới: bốn ô ghi bốn nhóm điều kiện khả thi gốc, khả thi đối ngẫu, bù trừ, dừng.](img/lec-03/kkt-active-projection.svg)
 
-Khung trái của hình tóm tắt Ví dụ 03.17. Khung phải minh họa cân bằng gradient tại một ràng buộc hoạt động cho bài chiếu gốc tọa độ lên một nửa mặt phẳng tổng quát; cần nhìn hai vector ngược chiều tại điểm chiếu. Ví dụ 03.18 dưới đây giải một bài chiếu với dữ liệu khác hình. Ô "Dừng" ở hàng dưới viết điều kiện dừng dạng tổng quát cho miền $D$ có biên, với nón pháp tuyến $N_D(x^*)$; khi $D=\mathbb R^n$ như trong chương này, nón đó chỉ gồm vector $0$, và ô này trở thành (5.1).
+Khung trái của hình trên tóm tắt Ví dụ 03.17. Khung phải thể hiện sự cân bằng gradient tại một ràng buộc hoạt động cho bài chiếu gốc tọa độ lên một nửa mặt phẳng tổng quát, qua hai vector ngược chiều tại điểm chiếu. Ví dụ 03.18 dưới đây giải một bài chiếu với dữ liệu khác hình.
+
+Ô "Dừng" ở hàng dưới viết điều kiện dừng dạng tổng quát cho miền $D$ có biên, với nón pháp tuyến $N_D(x^*)$. Khi $D=\mathbb R^n$ như trong chương này, nón đó chỉ gồm vector $0$, nên ô này trở thành (5.1).
 
 ::: example Ví dụ 03.18 (Chiếu lên nửa mặt phẳng và lên đường thẳng)
 **(a) Bất đẳng thức: lập hệ.**
@@ -1940,7 +1919,7 @@ Hai phương trình đầu cho $x=(-\frac\nu2,-\nu)$; thay vào phương trình 
 
 Cùng nghiệm, nhưng $\lambda=2\ge0$ ở (a) và $\nu=-2$ ở (b). Nhân tử đẳng thức được phép âm; dấu của nó chỉ phản ánh cách viết $x_1+2x_2-5=0$ hay $5-x_1-2x_2=0$.
 
-Phần (b) cho thấy với đẳng thức và mục tiêu bậc hai, KKT là một hệ phương trình tuyến tính. Bài 04 áp dụng phương pháp Newton cho loại hệ này khi mục tiêu không còn bậc hai.
+Phần (b) cho thấy với đẳng thức và mục tiêu bậc hai, KKT là một hệ phương trình tuyến tính. Trong Bài 04, chúng ta áp dụng phương pháp Newton cho loại hệ này khi mục tiêu không còn bậc hai.
 
 **Kiểm tra lại.**
 
@@ -1968,7 +1947,7 @@ Hàm $-x^2$ không lồi, nên Định lý 03.32 không áp dụng. Ở bài nà
 
 ### 5.3 Hồi quy có trần và quan hệ trần – hình phạt
 
-Mệnh đề 02.26 chỉ ra một chiều: nghiệm của bài có phạt $\ell(w)+\rho R(w)$ là nghiệm của bài có trần $R(w)\le R(w_\rho)$. Chiều ngược, mỗi mức trần ứng với một hệ số phạt, được Bài 02 để ngỏ vì cần đối ngẫu. Kết quả sau cần Định lý 03.15 và Mệnh đề 03.27.
+Trong Bài 02, chúng ta đã thấy nghiệm của bài có phạt $\ell(w)+\rho R(w)$ là nghiệm của bài có trần $R(w)\le R(w_\rho)$ (Mệnh đề 02.26). Chiều ngược, tức mỗi mức trần ứng với một hệ số phạt, được Bài 02 để ngỏ vì cần thêm tính lồi và một điều kiện chính quy. Mệnh đề sau cho chiều ngược này, với chứng minh cần Định lý 03.15 và Mệnh đề 03.27.
 
 ::: proposition Mệnh đề 03.34 (Trần sinh ra hệ số phạt bằng nhân tử)
 **Giả thiết.** $\ell,R:\mathbb R^d\to\mathbb R$ lồi; $r\in\mathbb R$ và có $\bar w$ với $R(\bar w)<r$; $w^*$ là nghiệm của $\min\ell(w)$ với $R(w)-r\le0$.
@@ -2033,11 +2012,11 @@ Theo Mệnh đề 03.34, $w^*$ cũng là nghiệm của bài có phạt $\tfrac1
 Bài có phạt: dừng $(w-y)+4w=0$ cho $w=\frac y5=(0{,}6;\,0{,}8)$. Bốn nhóm KKT: $\lVert w^*\rVert_2^2=0{,}36+0{,}64=1$; $\lambda^*=2\ge0$; $2\cdot0=0$; $(0{,}6-3)+4\cdot0{,}6=0$ và $(0{,}8-4)+4\cdot0{,}8=0$.
 :::
 
-Ví dụ 03.19 dùng $X=I$, nên nghiệm có công thức đóng. Với $X$ tổng quát, phần còn lại của mục dùng mục tiêu $E(w)=\lVert Xw-y\rVert_2^2$ như Bài 02, không có hệ số $\tfrac12$.
+Ví dụ 03.19 dùng $X=I$, nên nghiệm có công thức đóng. Với $X$ tổng quát, từ đây đến hết mục ta dùng mục tiêu $E(w)=\lVert Xw-y\rVert_2^2$ như Bài 02, không có hệ số $\tfrac12$.
 
 Với trần $\lVert w\rVert_2^2\le\tau$ và nhân tử $\lambda$, phương trình dừng của hệ KKT là $(X^TX+\lambda I)w=X^Ty$. Đó cũng là phương trình dừng của bài có phạt $E+\rho\lVert w\rVert_2^2$ với $\rho=\lambda$. Với mục tiêu có hệ số $\tfrac12$ như Ví dụ 03.19, phương trình dừng là $(X^TX+2\lambda I)w=X^Ty$, nên nhân tử của cách viết không có $\tfrac12$ bằng hai lần nhân tử của cách viết có $\tfrac12$.
 
-Nhân tử của trần vì vậy là nghiệm $\rho$ của phương trình một ẩn $\lVert w(\rho)\rVert_2^2=\tau$. Kết quả sau cho phép giải phương trình đó bằng chia đôi.
+Vì vậy, nhân tử của trần là nghiệm $\rho$ của phương trình một ẩn $\lVert w(\rho)\rVert_2^2=\tau$, và mệnh đề sau cho phép giải phương trình đó bằng chia đôi.
 
 ::: proposition Mệnh đề 03.35 (Chuẩn của nghiệm hồi quy ridge giảm theo hệ số phạt)
 **Giả thiết.** $X\in\mathbb R^{N\times d}$ có hạng cột đầy đủ, $y\in\mathbb R^N$ với $X^Ty\neq0$, $E(w)=\lVert Xw-y\rVert_2^2$. Với $\rho\ge0$, $w(\rho)$ là nghiệm của $\min_wE(w)+\rho\lVert w\rVert_2^2$.
@@ -2083,7 +2062,7 @@ Nhân phương trình $(X^TX+\rho I)w=X^Ty$ với $w^T$: $\lVert Xw\rVert_2^2+\r
 $\varphi$ liên tục, giảm chặt từ $\varphi(0)>\tau$ về giới hạn $0<\tau$, nên định lý giá trị trung gian cho đúng một $\rho^*>0$ với $\varphi(\rho^*)=\tau$. $\square$
 :::
 
-Thuật toán sau giải phương trình $\varphi(\rho)=\tau$; theo Mệnh đề 03.34, nghiệm $\rho^*$ là nhân tử $\lambda^*$ của trần.
+Ghép tính đơn điệu chặt của $\varphi$ với phép chia đôi, ta được thuật toán sau giải phương trình $\varphi(\rho)=\tau$. Theo Mệnh đề 03.34, nghiệm $\rho^*$ là nhân tử $\lambda^*$ của trần.
 
 ::: algorithm Thuật toán 03.1 (Chia đôi nhân tử cho hồi quy có trần)
 **Đầu vào.** $X$ có hạng cột đầy đủ, $y$ với $X^Ty\neq0$, trần $\tau>0$, sai số $\varepsilon>0$.
@@ -2106,7 +2085,7 @@ Theo (4.2) áp cho bài có trần $\varphi(\lambda_{\mathrm{hi}})$, mất mát 
 
 ### 5.4 Máy vector hỗ trợ lề mềm và vector hỗ trợ
 
-Mệnh đề 02.39 đưa máy vector hỗ trợ lề mềm về quy hoạch bậc hai, nhưng chưa cho biết mẫu nào quyết định nghiệm. Kết quả sau cần Định lý 03.15, Hệ quả 03.31 và Định lý 03.32; dạng bài theo Boyd và Vandenberghe (2004, mục 8.6.1, tr. 425–426).
+Trong Bài 02, Mệnh đề 02.39 đưa máy vector hỗ trợ lề mềm về quy hoạch bậc hai nhưng chưa cho biết mẫu nào quyết định nghiệm. Mệnh đề sau trả lời câu hỏi này bằng bài đối ngẫu và hệ KKT. Chứng minh cần Định lý 03.15, Hệ quả 03.31 và Định lý 03.32, với dạng bài theo Boyd và Vandenberghe (2004, mục 8.6.1, tr. 425–426).
 
 ::: proposition Mệnh đề 03.36 (Bài đối ngẫu và điều kiện KKT của máy vector hỗ trợ lề mềm)
 **Giả thiết.** Dữ liệu $(z_i,y_i)\in\mathbb R^d\times\{-1,+1\}$, $i=1,\ldots,N$; $\rho>0$. Bài gốc là quy hoạch bậc hai
@@ -2186,9 +2165,9 @@ Cho $(w,b,\xi)$ và $\alpha$ thỏa các điều kiện của phần 3. Đặt $
 Bài lồi và khả vi, nên Định lý 03.32 cho $(w,b,\xi)$ là nghiệm. $\square$
 :::
 
-Mệnh đề 03.36 phân loại các mẫu theo nhân tử. Mẫu có $\alpha_i=0$ có biên $m_i\ge1$ và không xuất hiện trong $w$. Bỏ nó khỏi tập huấn luyện, khi dữ liệu còn lại có cả hai nhãn, thì nghiệm cũ vẫn thỏa các điều kiện của phần 3 cho dữ liệu mới, nên vẫn là nghiệm, và $w$ không đổi vì $w$ duy nhất; hệ số chặn $b$ có thể không duy nhất.
+Mệnh đề 03.36 phân loại các mẫu theo nhân tử. Mẫu có $\alpha_i=0$ có biên $m_i\ge1$ và không xuất hiện trong $w$. Nếu bỏ mẫu đó khỏi tập huấn luyện, khi dữ liệu còn lại có cả hai nhãn, thì nghiệm cũ vẫn thỏa các điều kiện của phần 3 cho dữ liệu mới, nên vẫn là nghiệm. Khi đó $w$ không đổi vì $w$ duy nhất, còn hệ số chặn $b$ có thể không duy nhất.
 
-Mẫu có $\alpha_i>0$ gọi là vector hỗ trợ (support vector). Chúng thuộc một trong hai loại:
+Ta gọi mẫu có $\alpha_i>0$ là vector hỗ trợ (support vector). Các mẫu này thuộc một trong hai loại:
 
 - nằm đúng trên lề: $0<\alpha_i<1$ và $m_i=1$;
 - vi phạm lề hoặc nằm trên lề với nhân tử tối đa: $\alpha_i=1$ và $m_i\le1$.
@@ -2308,23 +2287,13 @@ $p^*(\tau)=\tfrac12(3-\sqrt\tau)^2$ với $\tau\le9$, nên $\frac{dp^*}{d\tau}=-
 $\lVert w^*\rVert_2^2=\tfrac{1+4+4}9=1$; dừng: $(\tfrac13-1)+2\cdot\tfrac13=0$.
 :::
 
-**Chuỗi suy luận của mục.**
-
-1. Định nghĩa 03.26: bù trừ; Mệnh đề 03.27: bù trừ và cực tiểu hóa $L$ tại nghiệm.
-2. Định nghĩa 03.29: hệ KKT.
-3. Định lý 03.30: tính cần; Hệ quả 03.31: bài lồi có điểm Slater; Định lý 03.32: tính đủ.
-4. Mệnh đề 03.34, 03.35 và Thuật toán 03.1: hồi quy có trần.
-5. Mệnh đề 03.36: máy vector hỗ trợ.
-
-Đích là cặp Định lý 03.30, 03.32.
-
-**Kết mục.** Mục này thay việc tính $g$ bằng việc giải một hệ hữu hạn điều kiện, và chỉ rõ giả thiết của mỗi chiều. Thiếu hụt còn lại là thứ tự sử dụng: với một bài toán mới, cần biết kiểm tra gì trước, khi nào dùng hàm đối ngẫu, khi nào dùng KKT, và kết luận nào đã được bảo đảm. Mục 6 gom các kết quả thành một quy trình và một bảng kiểm.
+Từ hai dấu bằng trong (2.4), chúng ta đã có điều kiện bù trừ (Định nghĩa 03.26) và tính chất nghiệm cực tiểu hóa $L$ (Mệnh đề 03.27), rồi gộp chúng thành hệ KKT (Định nghĩa 03.29). Kết quả chính của mục là cặp Định lý 03.30 và 03.32. Định lý thứ nhất cho tính cần khi có đối ngẫu mạnh và nghiệm đối ngẫu, định lý thứ hai cho tính đủ khi bài lồi, và Hệ quả 03.31 nối tính cần với điều kiện Slater cho bài lồi. Mệnh đề 03.34, 03.35 và Thuật toán 03.1 áp dụng hệ này cho hồi quy có trần, còn Mệnh đề 03.36 áp dụng cho máy vector hỗ trợ.
 
 ## 6. Tổng hợp: quy trình chứng nhận bằng đối ngẫu
 
-Xét bài chiếu điểm $(3,2)$ lên miền $\{x\in\mathbb R^2\mid x_1+x_2\le2,\ x_2\ge0\}$. Bài có hai ràng buộc, một trong hai có thể không hoạt động, và cần một chứng nhận cho nghiệm cùng giá bóng của từng ràng buộc. Các mục trước cho đủ công cụ, nhưng chưa nói dùng công cụ nào trước và kết luận nào được phép ở mỗi bước.
+Hệ KKT đã thay việc tính $g$ bằng việc giải một hệ hữu hạn điều kiện, với giả thiết được chỉ rõ cho mỗi chiều. Điều còn thiếu là thứ tự sử dụng. Với một bài toán mới, chúng ta cần biết kiểm tra gì trước, khi nào dùng hàm đối ngẫu, khi nào dùng KKT, và kết luận nào đã được bảo đảm.
 
-Các công cụ đó là:
+Chẳng hạn, xét bài chiếu điểm $(3,2)$ lên miền $\{x\in\mathbb R^2\mid x_1+x_2\le2,\ x_2\ge0\}$. Bài có hai ràng buộc, một trong hai có thể không hoạt động, và ta cần một chứng nhận cho nghiệm cùng giá bóng của từng ràng buộc. Các mục trước đã cho đủ công cụ, gồm:
 
 - hàm đối ngẫu, Định nghĩa 03.5;
 - đối ngẫu yếu, Định lý 03.8;
@@ -2332,7 +2301,7 @@ Các công cụ đó là:
 - hai chiều của KKT, Định lý 03.30 và 03.32;
 - độ nhạy, Mệnh đề 03.23.
 
- Mục này gom chúng thành một thuật toán và một bảng kiểm, rồi chạy thuật toán trên bài chiếu.
+Trong mục này, chúng ta gom các công cụ đó thành một thuật toán và một bảng kiểm, rồi chạy thuật toán trên bài chiếu.
 
 ::: algorithm Thuật toán 03.2 (Chứng nhận tối ưu bằng đối ngẫu)
 **Đầu vào.** Bài toán tối ưu có ràng buộc.
@@ -2436,14 +2405,9 @@ Giá bóng $\lambda^*=1$: nới ràng buộc thêm $u$ nhỏ giảm $p^*$ khoả
 Dừng: $2(-0{,}5)+1=0$ và $2(-0{,}5)+1=0$.
 :::
 
-**Chuỗi suy luận của mục.** Thuật toán 03.2 sắp xếp các kết quả của Mục 2–5 theo thứ tự dùng:
+Thuật toán 03.2 sắp xếp các kết quả của Mục 2–5 theo thứ tự dùng. Đối ngẫu yếu (Định lý 03.8) cho cận ở mọi bài, còn định lý Slater (Định lý 03.15) bảo đảm có nhân tử khi bài lồi có điểm Slater. Định lý 03.30 và 03.32 biến việc tìm nhân tử thành giải hệ KKT, và Hệ quả 03.24 đọc nghĩa của nhân tử.
 
-1. Định lý 03.8 cho cận ở mọi bài;
-2. Định lý 03.15 bảo đảm có nhân tử khi bài lồi có điểm Slater;
-3. Định lý 03.30 và 03.32 biến việc tìm nhân tử thành giải hệ KKT;
-4. Hệ quả 03.24 đọc nghĩa của nhân tử.
-
-**Kết mục.** Phần còn lại của chương áp dụng quy trình này vào ba bài toán học máy. Bài thứ ba vi phạm giả thiết của bước 3, và hậu quả của vi phạm đó được đo bằng số.
+Ở phần còn lại của chương, chúng ta áp dụng quy trình này vào ba bài toán học máy. Bài thứ ba vi phạm giả thiết ở bước 3 của Thuật toán 03.2 (tính lồi), và hậu quả của vi phạm đó được đo bằng số.
 
 ## Tình huống áp dụng và ứng dụng
 
@@ -2624,39 +2588,16 @@ Các khái niệm của chương xuất hiện trong học máy ở những ch�
 
 ## Tóm tắt chương
 
-**Định nghĩa.**
+Chương này khởi đầu bằng bài toán chứng nhận, trong đó một cận dưới bằng giá trị của một điểm khả thi chứng nhận tối ưu (Định nghĩa 03.1, Mệnh đề 03.2). Hàm Lagrange và hàm đối ngẫu (Định nghĩa 03.4, 03.5) sinh ra cận dưới cho mọi bài, với hàm đối ngẫu luôn lõm (Mệnh đề 03.6) và mọi giá trị của nó tại nhân tử không âm là cận dưới (Định lý 03.8). Bài toán đối ngẫu (Định nghĩa 03.9) cùng Hệ quả 03.10 chọn cận tốt nhất, còn Mệnh đề 03.11 cho thấy chứng nhận của Bài 02 là một trường hợp riêng. Dựa trên phép tách hai tập lồi (Bổ đề 03.14), định lý Slater (Định lý 03.15) bảo đảm cận khít và nhân tử đạt cho bài lồi có điểm Slater. Trên mặt phẳng giá trị, Mệnh đề 03.19, 03.20, 03.23 và Hệ quả 03.24 cho nhân tử nghĩa hình học và nghĩa độ nhạy. Chương cũng trình bày cách thay hàm đối ngẫu bằng hệ KKT qua Mệnh đề 03.27, Định lý 03.30, Hệ quả 03.31 và Định lý 03.32. Hệ này được áp dụng cho chính quy hóa và máy vector hỗ trợ (Mệnh đề 03.34, 03.35, Thuật toán 03.1, Mệnh đề 03.36). Cuối cùng, Thuật toán 03.2 gom các bước thành một quy trình chứng nhận.
 
-- Cận dưới và chứng nhận tối ưu (Định nghĩa 03.1);
-- Hàm Lagrange (Định nghĩa 03.4);
-- Hàm đối ngẫu (Định nghĩa 03.5);
-- Bài toán đối ngẫu (Định nghĩa 03.9);
-- Đối ngẫu mạnh và khoảng đối ngẫu (Định nghĩa 03.12);
-- Điều kiện Slater (Định nghĩa 03.13);
-- Tập giá trị và tập trên (Định nghĩa 03.18);
-- Hàm giá trị (Định nghĩa 03.22);
-- Ràng buộc hoạt động và bù trừ (Định nghĩa 03.26);
-- Hệ KKT (Định nghĩa 03.29).
+**Định nghĩa và kết quả theo mục.**
 
-**Kết quả chính.**
-
-- Mệnh đề 03.2: cận dưới chặn sai số và chứng nhận tối ưu.
-- Mệnh đề 03.6: hàm đối ngẫu lõm.
-- Định lý 03.8: đối ngẫu yếu.
-- Hệ quả 03.10: chứng nhận từ một cặp gốc – đối ngẫu.
-- Mệnh đề 03.11: đối ngẫu của quy hoạch tuyến tính.
-- Bổ đề 03.14: tách hai tập lồi, dạng yếu.
-- Định lý 03.15: định lý Slater.
-- Mệnh đề 03.19: hàm đối ngẫu trên mặt phẳng giá trị.
-- Mệnh đề 03.20: đối ngẫu mạnh và đường đỡ không thẳng đứng.
-- Mệnh đề 03.23: độ nhạy toàn cục.
-- Hệ quả 03.24: nhân tử là giá bóng.
-- Mệnh đề 03.27: bù trừ.
-- Định lý 03.30: KKT là điều kiện cần.
-- Hệ quả 03.31: bài lồi có điểm Slater.
-- Định lý 03.32: KKT là điều kiện đủ cho bài lồi.
-- Mệnh đề 03.34: trần sinh ra hệ số phạt.
-- Mệnh đề 03.35: chuẩn nghiệm ridge giảm theo hệ số phạt.
-- Mệnh đề 03.36: máy vector hỗ trợ lề mềm.
+- Mục 1: cận dưới và chứng nhận tối ưu (Định nghĩa 03.1); cận dưới chặn sai số và chứng nhận tối ưu (Mệnh đề 03.2).
+- Mục 2: hàm Lagrange (Định nghĩa 03.4); hàm đối ngẫu (Định nghĩa 03.5); hàm đối ngẫu lõm (Mệnh đề 03.6); đối ngẫu yếu (Định lý 03.8); bài toán đối ngẫu (Định nghĩa 03.9); chứng nhận từ một cặp gốc – đối ngẫu (Hệ quả 03.10); đối ngẫu của quy hoạch tuyến tính (Mệnh đề 03.11).
+- Mục 3: đối ngẫu mạnh và khoảng đối ngẫu (Định nghĩa 03.12); điều kiện Slater (Định nghĩa 03.13); tách hai tập lồi, dạng yếu (Bổ đề 03.14); định lý Slater (Định lý 03.15).
+- Mục 4: tập giá trị và tập trên (Định nghĩa 03.18); hàm đối ngẫu trên mặt phẳng giá trị (Mệnh đề 03.19); đối ngẫu mạnh và đường đỡ không thẳng đứng (Mệnh đề 03.20); hàm giá trị (Định nghĩa 03.22); độ nhạy toàn cục (Mệnh đề 03.23); nhân tử là giá bóng (Hệ quả 03.24).
+- Mục 5: ràng buộc hoạt động và bù trừ (Định nghĩa 03.26); bù trừ (Mệnh đề 03.27); hệ KKT (Định nghĩa 03.29); KKT là điều kiện cần (Định lý 03.30); bài lồi có điểm Slater (Hệ quả 03.31); KKT là điều kiện đủ cho bài lồi (Định lý 03.32); trần sinh ra hệ số phạt (Mệnh đề 03.34); chuẩn nghiệm ridge giảm theo hệ số phạt (Mệnh đề 03.35); chia đôi nhân tử cho hồi quy có trần (Thuật toán 03.1); máy vector hỗ trợ lề mềm (Mệnh đề 03.36).
+- Mục 6: chứng nhận tối ưu bằng đối ngẫu (Thuật toán 03.2).
 
 **Công thức cần nhớ.**
 
@@ -2674,20 +2615,17 @@ $$
 
 Dòng đầu là hàm Lagrange, hàm đối ngẫu và đối ngẫu yếu; dòng hai là điều kiện dừng và bù trừ; dòng ba là độ nhạy.
 
-**Giả thiết hay bị bỏ quên.** Dấu $\lambda\succeq0$ trong đối ngẫu yếu; cận dưới đúng lấy trên toàn $D$, không áp lại ràng buộc. Định lý Slater cần tính lồi, một điểm làm mọi bất đẳng thức chặt cùng lúc, và $p^*$ hữu hạn; nó không cho nghiệm gốc. KKT đủ cần lồi; KKT cần cần đối ngẫu mạnh có nghiệm đối ngẫu. Ràng buộc hoạt động không kéo theo nhân tử dương.
+**Giả thiết hay bị bỏ quên.**
 
-**Chuỗi suy luận của toàn chương.**
-
-1. Định nghĩa 03.1 và Mệnh đề 03.2 đặt bài toán chứng nhận: một cận dưới bằng giá trị của một điểm khả thi chứng nhận tối ưu.
-2. Định nghĩa 03.4, 03.5, Mệnh đề 03.6 và Định lý 03.8 sinh cận dưới cho mọi bài; Định nghĩa 03.9 và Hệ quả 03.10 chọn cận tốt nhất; Mệnh đề 03.11 chứa chứng nhận của Bài 02.
-3. Định lý 03.15, dựa trên Bổ đề 03.14, bảo đảm cận khít và nhân tử đạt cho bài lồi có điểm Slater.
-4. Mệnh đề 03.19, 03.20, 03.23 và Hệ quả 03.24 cho nghĩa hình học và nghĩa độ nhạy của nhân tử.
-5. Mệnh đề 03.27, Định lý 03.30, Hệ quả 03.31 và Định lý 03.32 thay hàm đối ngẫu bằng hệ KKT.
-6. Mệnh đề 03.34, 03.35, Thuật toán 03.1 và Mệnh đề 03.36 áp dụng hệ KKT cho chính quy hóa và máy vector hỗ trợ; Thuật toán 03.2 gom quy trình.
+- Dấu $\lambda\succeq0$ trong đối ngẫu yếu.
+- Cận dưới đúng lấy trên toàn $D$, không áp lại ràng buộc.
+- Định lý Slater cần tính lồi, một điểm làm mọi bất đẳng thức chặt cùng lúc, và $p^*$ hữu hạn, nhưng không cho nghiệm gốc.
+- Tính đủ của KKT cần tính lồi, còn tính cần của KKT cần đối ngẫu mạnh có nghiệm đối ngẫu.
+- Ràng buộc hoạt động không kéo theo nhân tử dương.
 
 **Giới hạn còn lại và bài sau.** Hệ KKT của chương được giải bằng tay theo nhánh, khả thi khi ít ràng buộc và khi hệ dừng tuyến tính.
 
-Bài 04 (tối ưu không ràng buộc và ràng buộc đẳng thức) xây phương pháp Newton cho bài có đẳng thức khi không có công thức đóng, áp dụng cho loại hệ tuyến tính như Ví dụ 03.18(b). Bài 05 (phương pháp bậc nhất cho học máy) xử lý các bài không ràng buộc hoặc có phạt với số tham số rất lớn, nơi giải trực tiếp hệ điều kiện tối ưu không khả thi.
+Trong Bài 04 (tối ưu không ràng buộc và ràng buộc đẳng thức), chúng ta xây phương pháp Newton cho bài có đẳng thức khi không có công thức đóng, áp dụng cho loại hệ tuyến tính như Ví dụ 03.18(b). Bài 05 (phương pháp bậc nhất cho học máy) dành cho các bài không ràng buộc hoặc có phạt với số tham số rất lớn, nơi giải trực tiếp hệ điều kiện tối ưu không khả thi.
 
 ## Bài tập củng cố
 
