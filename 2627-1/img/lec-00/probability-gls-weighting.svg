@@ -1,24 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
   <title id="title">So sánh cách đo phần dư của OLS và GLS</title>
-  <desc id="desc">OLS cho hai phần dư một một và một trừ một cùng chi phí bằng một theo quy ước một nửa bình phương chuẩn. Với hiệp phương sai có tương quan dương 0.5, GLS cho chi phí hai phần ba theo hướng cùng dấu và hai theo hướng trái dấu.</desc>
-  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker><style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.circle{fill:none;stroke:#315d92;stroke-width:4}.ellipse{fill:none;stroke:#6a45a5;stroke-width:4}.plus{stroke:#16706a;stroke-width:5;marker-end:url(#arrow)}.minus{stroke:#b44b20;stroke-width:5;marker-end:url(#arrow)}</style></defs>
+  <desc id="desc">OLS cho hai phần dư (1, 1) và (1, −1) cùng chi phí bằng 1 theo quy ước một nửa bình phương chuẩn, nên cả hai nằm trên cùng một đường tròn mức. Với hiệp phương sai có phương sai 1 và hiệp phương sai 0,5, GLS cho chi phí 2/3 theo hướng cùng dấu và 2 theo hướng trái dấu; hai phần dư nằm trên hai elip mức khác nhau. Hai khung dùng cùng tỉ lệ.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#16706a"/></marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b44b20"/></marker>
+    <style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.circle{fill:none;stroke:#315d92;stroke-width:4}.ellipse{fill:none;stroke:#6a45a5;stroke-width:4}.plus{stroke:#16706a;stroke-width:5;marker-end:url(#arrowTeal)}.minus{stroke:#b44b20;stroke-width:5;marker-end:url(#arrowOrange)}.c-teal{fill:#16706a}.c-orange{fill:#b44b20}</style>
+  </defs>
   <rect width="1200" height="560" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">GLS phạt phần dư theo cấu trúc tương quan, không chỉ theo độ dài Euclid</text>
   <rect class="panel" x="25" y="58" width="545" height="470" rx="14"/><text class="title" x="298" y="94" text-anchor="middle">OLS: đường đồng mức là đường tròn</text>
   <line class="axis" x1="95" y1="330" x2="500" y2="330"/><line class="axis" x1="298" y1="475" x2="298" y2="135"/>
-  <text class="small" x="500" y="352">r1</text><text class="small" x="310" y="137">r2</text>
-  <circle class="circle" cx="298" cy="330" r="125"/>
-  <line class="plus" x1="298" y1="330" x2="383" y2="245"/><line class="minus" x1="298" y1="330" x2="383" y2="415"/>
-  <text class="label" x="390" y="238">r+=(1,1)</text><text class="label" x="390" y="440">r−=(1,−1)</text>
-  <text class="label" x="298" y="155" text-anchor="middle">J_OLS=(1/2)||r||²</text>
-  <text class="small" x="298" y="496" text-anchor="middle">J_OLS(r+)=J_OLS(r−)=1: OLS coi hai hướng như nhau.</text>
+  <text class="small" x="500" y="352">r₁</text><text class="small" x="310" y="140">r₂</text>
+  <circle class="circle" cx="298" cy="330" r="91.9"/>
+  <line class="plus" x1="298" y1="330" x2="360" y2="268"/><line class="minus" x1="298" y1="330" x2="360" y2="392"/>
+  <text class="label c-teal" x="372" y="258">r<tspan baseline-shift="sub" font-size="13">+</tspan> = (1, 1)</text>
+  <text class="label c-orange" x="372" y="416">r<tspan baseline-shift="sub" font-size="13">−</tspan> = (1, −1)</text>
+  <text class="label" x="50" y="150">J<tspan baseline-shift="sub" font-size="12">OLS</tspan> = ½‖r‖²</text>
+  <text class="small" x="298" y="496" text-anchor="middle">J<tspan baseline-shift="sub" font-size="11">OLS</tspan>(r<tspan baseline-shift="sub" font-size="11">+</tspan>) = J<tspan baseline-shift="sub" font-size="11">OLS</tspan>(r<tspan baseline-shift="sub" font-size="11">−</tspan>) = 1: OLS coi hai hướng như nhau.</text>
 
   <rect class="panel" x="595" y="58" width="580" height="470" rx="14"/><text class="title" x="885" y="94" text-anchor="middle">GLS: đường đồng mức theo Σ</text>
-  <text class="label" x="885" y="132" text-anchor="middle">Σ=[[1,0.5],[0.5,1]]</text>
-  <line class="axis" x1="650" y1="350" x2="1120" y2="350"/><line class="axis" x1="885" y1="485" x2="885" y2="150"/>
-  <text class="small" x="1115" y="374">r1</text><text class="small" x="898" y="173">r2</text>
-  <path class="ellipse" d="M690 445 C735 505 1035 250 1080 190 C1035 130 735 385 690 445 Z"/>
-  <line class="plus" x1="885" y1="350" x2="985" y2="250"/><line class="minus" x1="885" y1="350" x2="985" y2="450"/>
-  <text class="label" x="995" y="238">r+: J=2/3</text><text class="label" x="995" y="476">r−: J=2</text>
-  <text class="small" x="680" y="175">J_GLS=(1/2)rᵀΣ⁻¹r</text>
-  <text class="small" x="885" y="510" text-anchor="middle">Tương quan dương làm sai số cùng dấu “ít bất thường” hơn.</text>
+  <text class="label" x="836" y="142" text-anchor="end">Σ₂ =</text>
+  <path d="M852 112h-6v40h6M930 112h6v40h-6" fill="none" stroke="#24324a" stroke-width="2"/>
+  <g class="small" text-anchor="end"><text x="878" y="128">1</text><text x="922" y="128">0,5</text><text x="878" y="147">0,5</text><text x="922" y="147">1</text></g>
+  <line class="axis" x1="650" y1="350" x2="1120" y2="350"/><line class="axis" x1="885" y1="485" x2="885" y2="165"/>
+  <text class="small" x="1112" y="374">r₁</text><text class="small" x="897" y="180">r₂</text>
+  <g class="ellipse" transform="rotate(-45 885 350)">
+    <ellipse cx="885" cy="350" rx="159.2" ry="91.9"/>
+    <ellipse cx="885" cy="350" rx="91.9" ry="53.1"/>
+  </g>
+  <line class="plus" x1="885" y1="350" x2="947" y2="288"/><line class="minus" x1="885" y1="350" x2="947" y2="412"/>
+  <text class="label c-teal" x="893" y="262">r<tspan baseline-shift="sub" font-size="13">+</tspan>: J = 2/3</text>
+  <text class="label c-orange" x="960" y="440">r<tspan baseline-shift="sub" font-size="13">−</tspan>: J = 2</text>
+  <text class="small" x="640" y="200">J<tspan baseline-shift="sub" font-size="11">GLS</tspan> = ½ r<tspan baseline-shift="super" font-size="11">T</tspan>Σ₂<tspan baseline-shift="super" font-size="11">−1</tspan>r</text>
+  <text class="small" x="885" y="510" text-anchor="middle">Với tương quan dương, phần dư cùng dấu có chi phí nhỏ hơn.</text>
 </svg>
