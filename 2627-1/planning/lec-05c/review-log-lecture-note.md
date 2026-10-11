@@ -391,3 +391,31 @@ Gói cắt thêm đề xuất cho điều phối viên, khoảng 3 000 từ, n�
 4. Hằng số Bài 05b được dẫn qua Nhận xét 05.16 của Bài 05 (dạng phát biểu lại của định lý lồi mạnh), không dẫn nhãn T5 của Bài 05b vì Bài 05b đang được viết lại.
 5. Bài 7 câu 1 của `exercises.md` gần trùng điều kiện dấu bằng trong Định lý 05c.39 (kế thừa bản cũ).
 6. `exercises.md` và `materials/lec-05/lecture-note.md` dẫn nhãn cũ; chưa sửa theo phạm vi brief.
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng và quy tắc chung: xem nhật ký Bài 01 (mục cùng tên) và `style-guide.md` (scratchpad phiên). Phạm vi: `materials/lec-05c/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt; giữ nguyên toán, số hiệu, 171 khối, hình, bảng, thuật ngữ, bài tập, trừ một sửa ký hiệu có chủ đích trong chứng minh Mệnh đề 05c.24. Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium); các tác tử sửa tệp khác nhau chạy song song, mỗi tệp một tác tử ghi.
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-05c/lecture-note.md | không đổi tiêu đề; 16 đoạn trực giác viết lại; 23 câu dẫn mới; 6 kết mục thành văn xuôi; mở chương nối Định lý 05.11; 33 225 → 34 403 từ | yêu cầu sửa |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 116 hunk; 342 khối trùng; tính lại 15 con số của chương (0,394; 0,873; 0,507; 0,366; 0,0509; 0,0187; 0,161; 0,265; $e^{-12{,}5}$; 2050; 0,736; 0,271; 0,9975; 0,81; 0,0021) đều đúng; 0 chặn, 0 nghiêm trọng, 5 trung bình, 15 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp dòng 1035 và câu trích ở Mục 3.5 (lec-05 không có câu đó) |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | Làm đủ 20 mục của `lec05c-fixes.md`; 34 508 từ (+3,9 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình (có từ bản cũ) | chứng minh Mệnh đề 05c.24, dòng cuối `aligned` | chỉ số trên của tích viết `K` thay vì `\kappa` ($K$ là số bước SGD trong chương) | đã sửa công thức; KaTeX dựng không lỗi |
+| trung bình (có từ bản cũ) | "Trong học máy" Mục 3.5 | câu trích trong ngoặc kép gán cho Bài 05 không có trong Bài 05 | đã sửa: dẫn Định nghĩa 05.10 và Bước 4 chứng minh Định lý 05.11 |
+| trung bình | mở Mục 6 | dẫn trước Ví dụ 05c.39 không nói rõ và gán sai vai trò Định lý 05.11 | đã sửa |
+| trung bình | Mục 4 | "mọi kết quả về phương sai của trung bình mẫu cần quan sát độc lập" mâu thuẫn Mệnh đề 05c.36 | đã sửa: chỉ công thức $\sigma_1^2/n$ |
+| trung bình | Mục 1 | bất đẳng thức hợp bị đọc như đẳng thức | đã sửa |
+| nhẹ | 15 mục ("Tóm lại" ×2, "kết quả chính" ×2, "Hình trên" ×7, hai "bài toán trung tâm", tài liệu làm chủ ngữ ở ba chỗ) | | đã sửa toàn bộ |
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `display_math` khác đúng một công thức (sửa `^K` → `^\kappa `); `tags`, 171 khối, hình, bảng, tiêu đề, nhãn bước, `\square` không đổi; `numbered_labels` chỉ đổi số lần nhắc; công thức nội dòng 3174 → 3172.
+- grep: "Chuỗi suy luận", "Kết mục", "Mục này", "Tóm lại", "kết quả chính", câu trích sai về Bài 05 đều 0; "Hình trên" 5.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-05c/lecture-note.md` (bài không có bộ trang chiếu): 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 171/171 khối, 14 `h2`, không tràn ngang.
+- `material-local-data.js` tạo lại với lec-05b lấy từ HEAD. `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 05c.
