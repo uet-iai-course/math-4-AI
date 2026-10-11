@@ -311,3 +311,31 @@ Lượt 1:
 - Tiêu đề Mục 3.2 ban đầu chứa công thức, hiển thị xấu trong mục lục ("η≤L1"); đã bỏ công thức khỏi tiêu đề.
 - Lệnh KaTeX dùng trong tệp (quét `\[a-zA-Z]+`): đều là lệnh có sẵn của KaTeX.
 - Chưa chạy `sync-local-materials.py` (theo brief).
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng và quy tắc chung: xem nhật ký Bài 01 (mục cùng tên) và `style-guide.md` (scratchpad phiên). Phạm vi: `materials/lec-05b/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt; giữ nguyên toán, công thức, `\tag`, số hiệu, 139 khối, hình, bảng, thuật ngữ, nhãn mã H0–H7 và T1′…T9 (exercises.md và SVG dùng), bài tập. Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium); các tác tử sửa tệp khác nhau chạy song song, mỗi tệp một tác tử ghi.
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-05b/lecture-note.md | 155 thay chuỗi; 5 tiêu đề `###` đổi; 7 kết mục thành văn xuôi; đoạn mở chương mới nối Định lý 04.22 và Ví dụ 05.14; 8 chỗ gọi tên nội dung trước nhãn mã; sửa "momentum (Bài 06)" thành "(Bài 05)"; 33 140 → 34 066 từ | yêu cầu sửa |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 80 hunk; con số $70/k$, 7000 bước, 6 bước, $8/57$ khớp lec-04, lec-05 và Ví dụ 05b.9; tên gọi trước nhãn khớp Định nghĩa 05b.5, 05b.31; 0 chặn, 1 nghiêm trọng (vị trí đoạn mở chương), 8 trung bình, 11 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp vị trí đoạn mở (dưới "## Mục tiêu học tập"), dòng 800 và giả thiết của Hệ quả 05b.10 (H1, H4) |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | Làm đủ 20 mục của `lec05b-fixes.md`; 33 923 từ (+2,4 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | đầu tệp | đoạn mở chương sáu câu đặt dưới "## Mục tiêu học tập" trước câu LLO, trái quyết định 3 và AGENTS.md (không đoạn dài trước mục tiêu học tập); Mục 1 phải nhắc lại cùng nội dung | đã sửa: chuyển vào đầu Mục 1; dưới mục tiêu chỉ còn câu ánh xạ LLO ngắn như bản gốc |
+| trung bình | mở chương | Ví dụ 05.14 bị đọc thành phát biểu chung về SGD, "dừng ở" thay vì tiến về giới hạn | đã sửa |
+| trung bình (có từ bản cũ) | kết Mục 2 | Hệ quả 05b.10 bị gán cho H3 (chỉ cần H1, H4; phần (b) cần H3) | đã sửa |
+| trung bình | tóm tắt | "tổng lồng" gán cho cả Định lý 05b.18, 05b.20 (dùng phép co); "cận Markov" thiếu số hiệu | đã sửa |
+| trung bình | ranh giới 1→2, 3→4, 5→6; 17 đoạn "Hình trên"; thiếu câu dẫn Định lý 05b.36; lượng từ ở câu về mất mát không lồi; đoạn PL ở Mục 6.5 (phản ví dụ $x^4$) | | đã sửa toàn bộ |
+| nhẹ | 11 mục (kỳ vọng so với hầu chắc chắn, điều kiện chuyển sang SGD thiếu H6/H6a, đuôi "theo … sau" ×6, câu dài) | | đã sửa toàn bộ |
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `display_math`, `tags`, 139 khối, hình, bảng, nhãn bước, `\square` không đổi; `headings` khác ở 5 tiêu đề `###`; `numbered_labels` chỉ đổi số lần nhắc (bớt 15 do bỏ nhắc lại ở đoạn kết thứ hai và đầu mục, thêm 4); công thức nội dòng 3554 → 3551.
+- grep: "Chuỗi suy luận", "Kết mục", "Mục này" đều 0; "Hình trên" 6; "Tuy nhiên" 2; nhãn mã H/T còn nguyên.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-05b/lecture-note.md&deck=lecture-05b-hoi-tu-ha-gradient-va-sgd.html`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 139/139 khối, 15 `h2`, không tràn ngang.
+- `sync-local-materials.py` chạy đầy đủ (không còn bài nào lấy từ HEAD) và `--check` đạt. `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 05b; đây là bài cuối của lượt biên tập văn phong chín bài.
