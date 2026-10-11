@@ -1,4 +1,4 @@
-# Bài tập Bài 05c — Xác suất cơ bản, bất đẳng thức tập trung và mất mát trung bình trên nhóm nhỏ
+# Bài tập Bài 05c — Xác suất cơ bản, bất đẳng thức tập trung và mất mát trung bình trên lô nhỏ
 
 Bộ bài tập gồm mười bài ở ba mức: nhận biết (Bài 1–3), tính toán hoặc chứng minh (Bài 4–8) và vận dụng vào AI (Bài 9–10). Ký hiệu và số hiệu kết quả (Định nghĩa 05c.1, Mệnh đề 05c.36, Định lý 05c.47…) theo ghi chú bài giảng. Ví dụ ba quan sát: $y=(-1,1,3)$, $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, gradient mẫu $g_i(\theta)=\theta-y_i$.
 
@@ -60,7 +60,7 @@ $$
 Mức độ: nhận biết.
 
 ::: exercise Bài 3
-1. Tung hai xúc xắc cân đối. Gọi $A$ là "xúc xắc 1 chẵn", $B$ là "xúc xắc 2 chẵn", $C$ là "tổng chẵn". Kiểm ba cặp biến cố độc lập. Ba biến cố có độc lập theo Định nghĩa 05c.12 không?
+1. Tung hai xúc xắc cân đối. Gọi $A$ là "xúc xắc 1 chẵn", $B$ là "xúc xắc 2 chẵn", $C$ là "tổng chẵn". Kiểm tra ba cặp biến cố độc lập. Ba biến cố có độc lập theo Định nghĩa 05c.12 không?
 2. Rút hai lần từ $\{1,2,3,4\}$ không hoàn lại, mọi cặp có thứ tự gồm hai số khác nhau đồng khả năng; $X_1,X_2$ là hai số rút được. Hai biến cố "$X_1$ chẵn" và "$X_2$ chẵn" có độc lập không? Hai biến $X_1,X_2$ có độc lập theo Định nghĩa 05c.23 không?
 :::
 
@@ -79,7 +79,7 @@ Mức độ: tính toán hoặc chứng minh.
 
 ::: exercise Bài 4
 1. Tung bốn đồng xu cân đối; $S$ là số mặt ngửa. Lập PMF và CDF của $S$, rồi tính $\mathbb ES$ theo Định nghĩa 05c.26 và theo Định lý 05c.28.
-2. Trò chơi St. Petersburg có trần: tung đồng xu tới lần đầu ra ngửa, ở lần thứ $G$; người chơi nhận $\min(2^G,2^{10})$. Tính kỳ vọng khoản nhận.
+2. Trò chơi St. Petersburg với khoản nhận bị cắt: tung đồng xu tới lần đầu ra ngửa, ở lần thứ $G$; người chơi nhận $\min(2^G,2^{10})$. Tính kỳ vọng khoản nhận.
 3. $G$ có phân phối hình học$(p)$, $0<p\le1$. Chứng minh $\mathbb EG=1/p$ bằng Mệnh đề 05c.38, phân hoạch theo kết quả lần thử đầu.
 4. Monty Hall với bốn cửa: người chơi chọn cửa 1; người dẫn biết vị trí xe, mở một cửa có dê trong ba cửa còn lại (chọn đều khi có nhiều cửa dê); người chơi đổi sang một trong hai cửa còn đóng, chọn đều. Tính xác suất thắng khi đổi bằng kỳ vọng toàn phần, và so với khi giữ.
 :::
@@ -95,14 +95,14 @@ Câu 1: $P(S=k)=\binom4k/16$ (Mệnh đề 05c.21). Câu 3: biết lần thử �
 4. Gọi $W$ là chỉ thị thắng khi đổi. Nếu xe ở cửa 1 (xác suất $\tfrac14$), $\mathbb E[W\mid\cdot]=0$. Nếu không (xác suất $\tfrac34$), xe nằm trong ba cửa còn lại, người dẫn mở một cửa dê, xe ở một trong hai cửa còn đóng, nên $\mathbb E[W\mid\cdot]=\tfrac12$. Mệnh đề 05c.38, phần 1: $\mathbb EW=\tfrac34\cdot\tfrac12=\tfrac38$, lớn hơn xác suất $\tfrac14$ khi giữ cửa 1.
 :::
 
-## Bài 5. Hàm chỉ thị và chỉ số trong nhóm nhỏ
+## Bài 5. Hàm chỉ thị và chỉ số trong lô nhỏ
 
 Mức độ: tính toán hoặc chứng minh.
 
 ::: exercise Bài 5
 Rút có hoàn lại từ $N$ mẫu.
 
-1. Một nhóm có $b$ chỉ số. Tính kỳ vọng số chỉ số khác nhau $U_b$; áp dụng cho $N=200$, $b=50$.
+1. Một lô nhỏ (mini-batch) có $b$ chỉ số. Tính kỳ vọng số chỉ số khác nhau $U_b$; áp dụng cho $N=200$, $b=50$.
 2. Sau $2N$ lần rút, tính kỳ vọng tỉ lệ mẫu chưa gặp; áp dụng cho $N=1000$ và tìm giới hạn khi $N\to\infty$.
 3. Gọi $T$ là số lần rút cần để gặp đủ $N$ mẫu. Chứng minh $\mathbb ET=N\sum_{k=1}^N\tfrac1k$ và tính cho $N=1000$.
 :::
@@ -126,7 +126,7 @@ Cho tập số $\{v_1,\dots,v_N\}$ với trung bình $\bar v$ và $\sigma_1^2=\f
 
 1. Gọi $Z_j$ là chỉ thị của biến cố phần tử $j$ được rút. Chứng minh $\mathbb EZ_j=\tfrac nN$ và, với $j\ne k$, $\mathbb E[Z_jZ_k]=\tfrac{n(n-1)}{N(N-1)}$.
 2. Viết $n\bar X_n=\sum_jv_jZ_j$ và chứng minh lại Mệnh đề 05c.36 bằng Mệnh đề 05c.33 áp cho các $v_jZ_j$, không dùng lập luận $n=N$ của ghi chú.
-3. Kiểm kết quả trên ví dụ ba quan sát tại $\theta=1$ ($v=(2,0,-2)$) với $n=2$ và $n=3$.
+3. Kiểm tra kết quả trên ví dụ ba quan sát tại $\theta=1$ ($v=(2,0,-2)$) với $n=2$ và $n=3$.
 4. Với $N=60\,000$ và $n=256$, tính hệ số $\frac{N-n}{N-1}$. Rút không hoàn lại thay cho rút có hoàn lại làm sai số chuẩn của $\bar X_n$ giảm bao nhiêu phần trăm?
 :::
 
@@ -190,15 +190,15 @@ $\mathbb ES=50$, $\operatorname{Var}S=25$. Với Định lý 05c.45, $S\ge k$ t�
 2. Chebyshev: $n\ge\tfrac{0{,}25}{0{,}05\cdot0{,}02^2}=12\,500$. Hệ quả 05c.48 với $[m,M]=[0,1]$: $n\ge\tfrac{\ln40}{2\cdot0{,}02^2}\approx4611{,}1$, tức $n\ge4612$.
 :::
 
-## Bài 9. Gradient nhóm trên ví dụ ba quan sát
+## Bài 9. Gradient lô trên ví dụ ba quan sát
 
 Mức độ: vận dụng vào AI. LLO12, CLO2.
 
 ::: exercise Bài 9
-1. Tại $\theta=0$, lập PMF của gradient nhóm $\widehat g$ với $b=3$ chỉ số rút có hoàn lại. Kiểm kỳ vọng và phương sai bằng Định lý 05c.53.
+1. Tại $\theta=0$, lập PMF của gradient lô $\widehat g$ với $b=3$ chỉ số rút có hoàn lại. Kiểm tra kỳ vọng và phương sai bằng Định lý 05c.53.
 2. So xác suất đúng $P(\lvert\widehat g-J'(0)\rvert\ge1)$ với cận Chebyshev trong hai trường hợp: $b=3$ có hoàn lại, và $b=2$ không hoàn lại (phương sai lấy từ Định lý 05c.53). Trường hợp nào xảy ra dấu bằng, và vì sao?
-3. Hồi quy logistic với nhãn $\pm1$ và đặc trưng trong $[-1,1]^d$ (ghi chú, Ví dụ 05c.36): chọn $b$ để với xác suất ít nhất $0{,}99$ mọi tọa độ của gradient nhóm lệch khỏi gradient đầy đủ dưới $0{,}05$, khi $d=100$.
-4. Với $b=3$ rút không hoàn lại tại $\theta=0$, gradient nhóm bằng bao nhiêu? Kiểm bằng hệ số $\frac{N-b}{N-1}$ của Định lý 05c.53.
+3. Hồi quy logistic với nhãn $\pm1$ và đặc trưng trong $[-1,1]^d$ (ghi chú, Ví dụ 05c.36): chọn $b$ để với xác suất ít nhất $0{,}99$ mọi tọa độ của gradient lô lệch khỏi gradient đầy đủ dưới $0{,}05$, khi $d=100$.
+4. Với $b=3$ rút không hoàn lại tại $\theta=0$, gradient lô bằng bao nhiêu? Kiểm tra bằng hệ số $\frac{N-b}{N-1}$ của Định lý 05c.53.
 :::
 
 ::: hint Gợi ý Bài 9
@@ -208,8 +208,8 @@ Câu 1: gradient mẫu tại $\theta=0$ là $1,-1,-3$, và $J'(0)=-1$. Viết $g
 ::: solution Lời giải Bài 9
 1. $\widehat g=-1+\tfrac23T$ với $T=u_1+u_2+u_3$. Số bộ ba cho $T=3,2,1,0,-1,-2,-3$ là $1,3,6,7,6,3,1$ trên 27, nên $\widehat g$ nhận các giá trị $1,\tfrac13,-\tfrac13,-1,-\tfrac53,-\tfrac73,-3$ với xác suất $\tfrac1{27},\tfrac3{27},\tfrac6{27},\tfrac7{27},\tfrac6{27},\tfrac3{27},\tfrac1{27}$. Kỳ vọng bằng $-1=J'(0)$ do đối xứng. $\mathbb ET^2=\tfrac{2(9\cdot1+4\cdot3+1\cdot6)}{27}=2$, nên $\operatorname{Var}\widehat g=\tfrac49\cdot2=\tfrac89=\tfrac{8/3}3$, khớp Định lý 05c.53 với $\operatorname{tr}\Sigma=\tfrac83$.
 2. $b=3$ có hoàn lại: $\lvert\widehat g+1\rvert\ge1$ khi $\lvert T\rvert\ge2$, nên xác suất đúng là $\tfrac{2(3+1)}{27}=\tfrac8{27}\approx0{,}296$, cận Chebyshev $\tfrac89\approx0{,}889$. $b=2$ không hoàn lại: ba cặp cho $\widehat g\in\{0,-1,-2\}$ đều, phương sai $\tfrac{8/3}2\cdot\tfrac{3-2}{3-1}=\tfrac23$ theo Định lý 05c.53; xác suất đúng $\tfrac23$, cận $\tfrac23$, dấu bằng. Lý do: $(\widehat g+1)^2\in\{0,1\}$, đúng điều kiện dấu bằng của Định lý 05c.39 với $\varepsilon=1$.
-3. Mỗi tọa độ của gradient mẫu thuộc $[-1,1]$. Định lý 05c.47 hai phía: $P(\lvert[\widehat g]_j-[\nabla J]_j\rvert\ge\varepsilon)\le2e^{-b\varepsilon^2/2}$. Mệnh đề 05c.7: xác suất có tọa độ lệch không vượt $2de^{-b\varepsilon^2/2}$. Điều kiện $2de^{-b\varepsilon^2/2}\le0{,}01$ cho $b\ge\tfrac{2\ln(2d/0{,}01)}{\varepsilon^2}=\tfrac{2\ln20\,000}{0{,}0025}\approx7922{,}8$, tức $b\ge7923$. Giả thiết: $\theta$ cố định, không phụ thuộc nhóm đang rút, và các chỉ số i.i.d. có hoàn lại (Định lý 05c.53, Hệ quả 05c.25). Số chiều chỉ ảnh hưởng tới cỡ nhóm qua $\ln d$: tăng $d$ từ 100 lên $10\,000$ chỉ thêm $2\ln100/0{,}0025\approx3684$ vào cận.
-4. Nhóm chứa cả ba mẫu nên $\widehat g=\tfrac{1-1-3}3=-1=J'(0)$ với xác suất 1. Hệ số $\tfrac{3-3}{3-1}=0$ cho phương sai 0, khớp. Đây là gradient đầy đủ, tính với chi phí $3C$.
+3. Mỗi tọa độ của gradient mẫu thuộc $[-1,1]$. Định lý 05c.47 hai phía: $P(\lvert[\widehat g]_j-[\nabla J]_j\rvert\ge\varepsilon)\le2e^{-b\varepsilon^2/2}$. Mệnh đề 05c.7: xác suất có tọa độ lệch không vượt $2de^{-b\varepsilon^2/2}$. Điều kiện $2de^{-b\varepsilon^2/2}\le0{,}01$ cho $b\ge\tfrac{2\ln(2d/0{,}01)}{\varepsilon^2}=\tfrac{2\ln20\,000}{0{,}0025}\approx7922{,}8$, tức $b\ge7923$. Giả thiết: $\theta$ cố định, không phụ thuộc lô đang được rút, và các chỉ số i.i.d. có hoàn lại (Định lý 05c.53, Hệ quả 05c.25). Số chiều chỉ ảnh hưởng tới kích thước lô (batch size) qua $\ln d$: tăng $d$ từ 100 lên $10\,000$ chỉ thêm $2\ln100/0{,}0025\approx3684$ vào cận.
+4. Lô chứa cả ba mẫu nên $\widehat g=\tfrac{1-1-3}3=-1=J'(0)$ với xác suất 1. Hệ số $\tfrac{3-3}{3-1}=0$ cho phương sai 0, khớp. Đây là gradient đầy đủ, tính với chi phí $3C$.
 :::
 
 ## Bài 10. Mất mát tổng, ngân sách và tập xác thực
@@ -217,16 +217,16 @@ Câu 1: gradient mẫu tại $\theta=0$ là $1,-1,-3$, và $J'(0)=-1$. Viết $g
 Mức độ: vận dụng vào AI. LLO11, LLO12, CLO1, CLO2.
 
 ::: exercise Bài 10
-Ví dụ ba quan sát, nhóm rút có hoàn lại.
+Ví dụ ba quan sát, lô được rút có hoàn lại.
 
-1. Dùng mất mát tổng trên nhóm với bước $\eta=0{,}05$. Viết $\theta^+-1$ theo $\theta-1$ và tìm các $b$ làm phần tất định phân kỳ. Bước nào với mất mát trung bình cho cùng phép cập nhật?
+1. Dùng mất mát tổng trên lô với bước $\eta=0{,}05$. Viết $\theta^+-1$ theo $\theta-1$ và tìm các $b$ làm phần tất định phân kỳ. Bước nào với mất mát trung bình cho cùng phép cập nhật?
 2. Mất mát trung bình, $\eta=0{,}1$, $\theta_0=0$, ngân sách $B_{\rm tot}=1200$ gradient mẫu, $K=\lfloor B_{\rm tot}/b\rfloor$. Tính $a_K=\mathbb E(\theta_K-1)^2$ cho $b\in\{1,20,40,60,1200\}$, với quy ước $b=1200$ là một bước gradient đầy đủ trên tập $N=1200$ gồm 400 bản sao mỗi giá trị. Giải thích dạng chữ U.
-3. Với mất mát 0–1, tìm cỡ tập xác thực để tỉ lệ lỗi đo được lệch khỏi tỉ lệ lỗi thật dưới $0{,}02$ với xác suất ít nhất $0{,}99$.
+3. Với mất mát 0–1, tìm kích thước tập xác thực để tỉ lệ lỗi đo được lệch khỏi tỉ lệ lỗi thật dưới $0{,}02$ với xác suất ít nhất $0{,}99$.
 4. SGD thực hành thường xáo trộn dữ liệu theo lượt và dùng tập xác thực để chọn thời điểm dừng. Nêu giả thiết của câu 2 và câu 3 bị vi phạm.
 :::
 
 ::: hint Gợi ý Bài 10
-Câu 1: gradient nhóm dạng tổng là $b(\theta-1)-\sum_r(y_{I_r}-1)$ (Mệnh đề 05c.55). Câu 2: đệ quy $a_{k+1}=(1-\eta)^2a_k+\eta^2\sigma_1^2/b$ của Mệnh đề 05c.57 với $\sigma_1^2=\tfrac83$. Câu 3: Định lý 05c.52 và Hệ quả 05c.48.
+Câu 1: gradient lô dạng tổng là $b(\theta-1)-\sum_r(y_{I_r}-1)$ (Mệnh đề 05c.55). Câu 2: đệ quy $a_{k+1}=(1-\eta)^2a_k+\eta^2\sigma_1^2/b$ của Mệnh đề 05c.57 với $\sigma_1^2=\tfrac83$. Câu 3: Định lý 05c.52 và Hệ quả 05c.48.
 :::
 
 ::: solution Lời giải Bài 10
@@ -238,9 +238,9 @@ Câu 1: gradient nhóm dạng tổng là $b(\theta-1)-\sum_r(y_{I_r}-1)$ (Mệnh
 | $K$ | 1 200 | 60 | 30 | 20 | 1 |
 | $a_K$ | $0{,}140$ | $0{,}00702$ | $0{,}00530$ | $0{,}0171$ | $0{,}810$ |
 
-Nhóm nhỏ: $0{,}81^K$ đã nhỏ nhưng giá trị giới hạn $\tfrac8{57b}$ lớn. Nhóm lớn: giá trị giới hạn nhỏ nhưng còn ít bước, số hạng $0{,}81^K$ lớn. Trên mọi $b$ nguyên, đáy ở $b=34$ ($K=35$, $a_K\approx0{,}00475$). Gradient đầy đủ dùng cả ngân sách cho một bước và cho sai số lớn nhất trong bảng. Kết luận phụ thuộc $\eta=0{,}1$ cố định, mô hình một hướng có độ cong $0{,}1L$ khi bước bị chặn bởi $1/L$ (ghi chú, Mục 6.6); trong chính bài toán một chiều này, $\eta=1$ cho gradient đầy đủ đạt nghiệm sau một bước.
+Lô có kích thước nhỏ: $0{,}81^K$ đã nhỏ nhưng giá trị giới hạn $\tfrac8{57b}$ lớn. Lô có kích thước lớn: giá trị giới hạn nhỏ nhưng còn ít bước, số hạng $0{,}81^K$ lớn. Trên mọi $b$ nguyên, đáy ở $b=34$ ($K=35$, $a_K\approx0{,}00475$). Gradient đầy đủ dùng cả ngân sách cho một bước và cho sai số lớn nhất trong bảng. Kết luận phụ thuộc $\eta=0{,}1$ cố định, mô hình một hướng có độ cong $0{,}1L$ khi bước bị chặn bởi $1/L$ (ghi chú, Mục 6.6); trong chính bài toán một chiều này, $\eta=1$ cho gradient đầy đủ đạt nghiệm sau một bước.
 3. Định lý 05c.52 với $\ell\in[0,1]$ và Hệ quả 05c.48: $N\ge\tfrac{\ln(2/0{,}01)}{2\cdot0{,}02^2}=\tfrac{\ln200}{0{,}0008}\approx6622{,}9$, tức $N\ge6623$.
-4. Câu 2 dùng giả thiết các lần rút độc lập cùng phân phối (Định nghĩa 05c.23) và điều kiện nhóm ở mỗi bước rút mới (Thuật toán 05c.1), độc lập với lịch sử; xáo trộn theo lượt làm các nhóm trong một lượt phụ thuộc nhau (một mẫu đã dùng không xuất hiện lại trong lượt), nên điều kiện rút mới không còn đúng khi điều kiện theo lịch sử trong lượt và đệ quy không còn đúng nguyên dạng. Câu 3 dùng giả thiết tham số cố định, không phụ thuộc tập xác thực (Định lý 05c.52); khi tập xác thực được dùng để chọn thời điểm dừng, tham số được chọn phụ thuộc tập đó, và tỉ lệ lỗi đo được thường thấp hơn tỉ lệ lỗi thật.
+4. Câu 2 dùng giả thiết các lần rút độc lập cùng phân phối (Định nghĩa 05c.23) và điều kiện lô ở mỗi bước được rút mới (Thuật toán 05c.1), độc lập với lịch sử; xáo trộn theo lượt làm các lô trong một lượt phụ thuộc nhau (một mẫu đã dùng không xuất hiện lại trong lượt), nên điều kiện rút mới không còn đúng khi điều kiện theo lịch sử trong lượt và đệ quy không còn đúng nguyên dạng. Câu 3 dùng giả thiết tham số cố định, không phụ thuộc tập xác thực (Định lý 05c.52); khi tập xác thực được dùng để chọn thời điểm dừng, tham số được chọn phụ thuộc tập đó, và tỉ lệ lỗi đo được thường thấp hơn tỉ lệ lỗi thật.
 :::
 
 ## Nguồn

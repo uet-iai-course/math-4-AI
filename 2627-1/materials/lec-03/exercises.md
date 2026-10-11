@@ -20,7 +20,7 @@ Xác định đúng hoặc sai; giải thích hoặc cho phản ví dụ.
 2. Sai. Chuỗi $g\le L\le f_0$ chỉ dùng định nghĩa $\inf$, tính khả thi và dấu nhân tử.
 3. Sai. $\min x$ với $x^2\le0$ có $p^*=d^*=0$ dù không có điểm khả thi nghiêm.
 4. Sai. $\min x^2$ với $x\le0$ có $(x^*,\lambda^*)=(0,0)$.
-5. Đúng trong dạng bài đang học: các hàm lồi khả vi trên toàn không gian, đẳng thức affine. Dừng làm $x^*$ cực tiểu hóa Lagrange; khả thi và bù trừ làm cận khít.
+5. Đúng trong dạng bài toán đang học: các hàm lồi khả vi trên toàn không gian, đẳng thức affine. Dừng làm $x^*$ cực tiểu hóa Lagrange; khả thi và bù trừ làm cận khít.
 6. Sai. Đây là đạo hàm tại một điểm, chỉ cho xấp xỉ với nhiễu nhỏ. Trong ví dụ chính, $p(1)=12-6\sqrt2\approx3{,}51472$, khác $5-2=3$.
 :::
 
@@ -106,7 +106,7 @@ Ta có $d^*=\sup g=0=p^*$, nhưng mọi $\lambda$ hữu hạn đều cho giá tr
 Trong ví dụ $f_0=x^2+1$, $f_1=(x-2)(x-4)$, đặt $u=f_1(x)$, $t=f_0(x)$.
 
 1. Tính $(u,t)$ tại $x=1{,}5$ và $x=2$; xác định điểm khả thi.
-2. Đường $t=4{,}5-u$ đỡ và chạm tập giá trị. Đọc $\lambda$, $g(\lambda)$ và chặn trên sai số của phương án chi phí $5$.
+2. Đường $t=4{,}5-u$ đỡ và tiếp xúc với tập giá trị. Đọc $\lambda$, $g(\lambda)$ và chặn trên sai số của phương án chi phí $5$.
 3. Chứng minh đường $t=5-2u$ tạo cận khít bằng một đẳng thức bình phương.
 4. Giải thích vì sao tiếp xúc tại một điểm của tập giá trị chưa đủ để chứng nhận nghiệm gốc.
 :::
@@ -114,7 +114,7 @@ Trong ví dụ $f_0=x^2+1$, $f_1=(x-2)(x-4)$, đặt $u=f_1(x)$, $t=f_0(x)$.
 ::: solution
 Với $x=1{,}5$, $(u,t)=(1{,}25;3{,}25)$, không khả thi vì $u>0$. Với $x=2$, $(u,t)=(0,5)$, khả thi.
 
-Đường thứ nhất có hệ số góc $-1$, tung độ cắt $4{,}5$: $\lambda=1$, $g(1)=4{,}5$. Theo đối ngẫu yếu, $4{,}5\le p^*\le5$, nên sai số của phương án không quá $0{,}5$. Không kết luận khoảng đối ngẫu tối ưu bằng $0{,}5$.
+Đường thứ nhất có hệ số góc $-1$, tung độ gốc $4{,}5$: $\lambda=1$, $g(1)=4{,}5$. Theo đối ngẫu yếu, $4{,}5\le p^*\le5$, nên sai số của phương án không quá $0{,}5$. Không kết luận khoảng đối ngẫu tối ưu bằng $0{,}5$.
 
 Ta có $t+2u-5=3(x-2)^2\ge0$, đạt dấu bằng tại $x=2$. Vì điểm này khả thi và $t=5=g(2)$, đó là chứng nhận tối ưu. Tiếp xúc riêng lẻ có thể ở điểm không khả thi, như với $\lambda=1$; còn muốn cận khít tại một điểm khả thi phải có thêm $f_0(x)=g(\lambda)$.
 :::
@@ -181,4 +181,4 @@ Chứng nhận: $L(x,1)=(x_1-1/2)^2+(x_2-1/2)^2+1/2\ge1/2$, bằng mục tiêu t
 
 ## Nguồn và phạm vi
 
-Các bài tập được biên soạn và tính lại cho bài giảng này; bài 2–7 dùng phép hoàn thành bình phương, đạo hàm và các định lý đã trình bày. Kiến thức nền: Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, chương 5, §5.1–5.3, §5.5. [Nguồn chính thức](https://web.stanford.edu/~boyd/cvxbook/). Không yêu cầu nội tương đối, nón pháp tuyến hoặc kỹ thuật tối ưu số để giải các bài trên.
+Các bài tập được biên soạn và tính lại cho bài giảng này; bài 2–7 dùng phép hoàn thành bình phương, đạo hàm và các định lý đã trình bày. Kiến thức nền: Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, chương 5, §5.1–5.3, §5.5. [Nguồn chính thức](https://web.stanford.edu/~boyd/cvxbook/). Không yêu cầu nội tương đối, nón pháp tuyến hoặc kỹ thuật tối ưu số để giải các bài toán trên.

@@ -1,6 +1,6 @@
 # Bài 04 — Tập bài tập: hướng giảm, Newton và ràng buộc đẳng thức
 
-Tập bài tập của Bài 04 gồm: hướng giảm và quay lui Armijo, hướng dốc nhất theo chuẩn $W$, Newton không ràng buộc, ví dụ hàm log, phương pháp khả thi và khử ràng buộc đẳng thức, Newton phần dư, tính tự điều chỉnh và vận dụng vào mô hình học. Mỗi bài có đủ dữ kiện ngay trong đề; các bộ số là ví dụ sư phạm tự xây dựng. Nguồn cơ chế toán: Boyd–Vandenberghe, *Convex Optimization* (2004), chương 9 (tr. 457–520) và chương 10 (tr. 521–560), [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/); MIT 6.079, bài giảng 16 và 17, [MIT 6.079, Fall 2009](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/).
+Tập bài tập của Bài 04 gồm: hướng giảm và quay lui Armijo, hướng dốc nhất theo chuẩn $W$, Newton không ràng buộc, ví dụ hàm log, phương pháp khả thi và khử ràng buộc đẳng thức, Newton phần dư, tính tự điều chỉnh (self-concordant) và vận dụng vào mô hình học. Mỗi bài có đủ dữ kiện ngay trong đề; các bộ số là ví dụ sư phạm tự xây dựng. Nguồn cơ chế toán: Boyd–Vandenberghe, *Convex Optimization* (2004), chương 9 (tr. 457–520) và chương 10 (tr. 521–560), [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/); MIT 6.079, bài giảng 16 và 17, [MIT 6.079, Fall 2009](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/).
 
 **Liên kết với bộ trang chiếu.** Bộ trang chiếu gồm bảy mạch, mở đầu bằng **điều kiện Karush–Kuhn–Tucker (KKT)** và việc xây dựng phương pháp tính từ điều kiện tối ưu. Bảng dưới dẫn tới trang mở đầu từng mạch và chỉ bài tập tương ứng.
 
@@ -54,13 +54,13 @@ $$\min_{v}\; g^Tv \quad\text{với}\quad v^TWv\le 1.$$
 
 (a) Nếu $g=0$, nêu cách chọn hướng mà không thực hiện phép chia cho $0$.
 
-(b) Với $g\ne0$, tự lập hàm Lagrange bằng nhân tử $\zeta$ và viết đủ bốn nhóm KKT: dừng, khả thi gốc, khả thi đối ngẫu, bù trừ. Dùng nhóm dừng để suy ra $\zeta>0$, rồi dùng bù trừ để suy ra $v^TWv=1$. Giải $\zeta$ và $v$; kiểm đủ bốn nhóm điều kiện tại nghiệm. Cuối cùng đổi độ dài theo $d=\|g\|_*v$, với $\|g\|_*=\sqrt{g^TW^{-1}g}$, rồi tìm hệ tuyến tính tính $d$ mà không lập nghịch đảo.
+(b) Với $g\ne0$, tự lập hàm Lagrange bằng nhân tử $\zeta$ và viết đủ bốn nhóm KKT: dừng, khả thi gốc, khả thi đối ngẫu, bù trừ. Dùng nhóm dừng để suy ra $\zeta>0$, rồi dùng bù trừ để suy ra $v^TWv=1$. Giải $\zeta$ và $v$; kiểm tra đủ bốn nhóm điều kiện tại nghiệm. Cuối cùng đổi độ dài theo $d=\|g\|_*v$, với $\|g\|_*=\sqrt{g^TW^{-1}g}$, rồi tìm hệ tuyến tính tính $d$ mà không lập nghịch đảo.
 
 (c) Với $W=\operatorname{diag}(3,7)$, $g=(6,28)^T$ và $Q_W(d)=62+g^Td+\tfrac12d^TWd$, tính $d$, $v$, $d^TWd$ và $Q_W(0)-Q_W(d)$. Hai đại lượng cuối có bằng nhau không? Cho $W^{1/2}=\operatorname{diag}(\sqrt3,\sqrt7)$ là căn bậc hai đối xứng xác định dương của $W$ và $W^{-1/2}=(W^{1/2})^{-1}$. Dùng Cauchy–Schwarz kiểm tra bổ sung rằng giá trị $g^Tv$ tìm được là nhỏ nhất trên quả cầu đơn vị theo chuẩn $W$.
 :::
 
 ::: hint
-(b) KKT: $g+2\zeta Wv=0$; $v^TWv\le1$; $\zeta\ge0$; $\zeta(v^TWv-1)=0$. Nếu $\zeta=0$ thì $g=0$, mâu thuẫn. Bù trừ với $\zeta>0$ cho $v^TWv=1$. Thay $v=-W^{-1}g/(2\zeta)$ vào ràng buộc để tìm $\zeta$. (c) $W^{-1}g=(2,4)^T$; $g^TW^{-1}g=124$. Kiểm Cauchy–Schwarz: $g^Tv=(W^{-1/2}g)^T(W^{1/2}v)\ge-\sqrt{g^TW^{-1}g}\,\|v\|_W$.
+(b) KKT: $g+2\zeta Wv=0$; $v^TWv\le1$; $\zeta\ge0$; $\zeta(v^TWv-1)=0$. Nếu $\zeta=0$ thì $g=0$, mâu thuẫn. Bù trừ với $\zeta>0$ cho $v^TWv=1$. Thay $v=-W^{-1}g/(2\zeta)$ vào ràng buộc để tìm $\zeta$. (c) $W^{-1}g=(2,4)^T$; $g^TW^{-1}g=124$. Kiểm tra Cauchy–Schwarz: $g^Tv=(W^{-1/2}g)^T(W^{1/2}v)\ge-\sqrt{g^TW^{-1}g}\,\|v\|_W$.
 :::
 
 ::: solution
@@ -78,7 +78,7 @@ Suy ra $v=-W^{-1}g/\sqrt{g^TW^{-1}g}$ và giá trị $g^Tv=-\sqrt{g^TW^{-1}g}$. 
 
 (c) $W^{-1}g=(2,4)^T$, $g^TW^{-1}g=6\cdot2+28\cdot4=124$, $\|g\|_*=\sqrt{124}$, $\zeta=\sqrt{124}/2$. Do đó
 $$d=(-2,-4)^T,\qquad v=\frac{d}{\sqrt{124}}=\frac{(-2,-4)^T}{\sqrt{124}}.$$
-Kiểm: $d^TWd=3\cdot4+7\cdot16=124$; độ thay đổi mô hình $Q_W(d)-Q_W(0)=g^Td+\tfrac12d^TWd=-124+62=-62$, nên mức giảm $Q_W(0)-Q_W(d)=62>0$. Bình phương độ dài $124$ khác mức giảm mô hình $62$. Kiểm bổ sung bằng Cauchy–Schwarz: với mọi $v$ khả thi,
+Kiểm tra: $d^TWd=3\cdot4+7\cdot16=124$; độ thay đổi mô hình $Q_W(d)-Q_W(0)=g^Td+\tfrac12d^TWd=-124+62=-62$, nên mức giảm $Q_W(0)-Q_W(d)=62>0$. Bình phương độ dài $124$ khác mức giảm mô hình $62$. Kiểm tra bổ sung bằng Cauchy–Schwarz: với mọi $v$ khả thi,
 $$g^Tv=(W^{-1/2}g)^T(W^{1/2}v)\ge-\|W^{-1/2}g\|_2\,\|W^{1/2}v\|_2\ge-\sqrt{g^TW^{-1}g},$$
 và đẳng thức đúng tại $v$ tìm được, xác nhận tối ưu.
 :::
@@ -125,25 +125,25 @@ Vì $H=16>0$, $Q_H$ lồi chặt (còn gọi là lồi nghiêm ngặt) nên đi�
 $$q(0)-q(d)=-g^Td-\tfrac12 d^THd=d^THd-\tfrac12 d^THd=\tfrac12 d^THd=\tfrac12\delta_N^2,$$
 với $\delta_N=\sqrt{d^THd}\ge0$ theo định nghĩa. Đây là mức giảm dự đoán của mô hình bậc hai.
 
-(d) Điều kiện tối ưu của bài toán mô hình là $\nabla q(d)=0$, tức $Hd=-g$, cho nghiệm bước $d=-H^{-1}g$. Điều kiện cần tại nghiệm $x^*$ của bài gốc là $\nabla f(x^*)=0$; trong bài toán lồi trên miền mở lồi, điều kiện này cũng đủ. Giải $Hd=-g$ chỉ giải mô hình tại $x$; không bảo đảm $\nabla f(x+d)=0$ hay tự bảo đảm hội tụ của cả dãy lặp. $H\succ0$ chỉ được dùng để bảo đảm mô hình có cực tiểu duy nhất và $d$ là hướng giảm của $f$ tại $x$; nó không thay thế điều kiện tối ưu của bài toán gốc.
+(d) Điều kiện tối ưu của bài toán mô hình là $\nabla q(d)=0$, tức $Hd=-g$, cho nghiệm bước $d=-H^{-1}g$. Điều kiện cần tại nghiệm $x^*$ của bài toán gốc là $\nabla f(x^*)=0$; trong bài toán lồi trên miền mở lồi, điều kiện này cũng đủ. Giải $Hd=-g$ chỉ giải mô hình tại $x$; không bảo đảm $\nabla f(x+d)=0$ hay tự bảo đảm hội tụ của cả dãy lặp. $H\succ0$ chỉ được dùng để bảo đảm mô hình có cực tiểu duy nhất và $d$ là hướng giảm của $f$ tại $x$; nó không thay thế điều kiện tối ưu của bài toán gốc.
 :::
 
 ## Bài 5 — Newton khả thi và khử biến
 
 ::: exercise
-**Bài 5 (tính toán).** Xét bài toán $\min_u F(u)$ với $F(u)=\tfrac12(2u_1^2+5u_2^2)$ và ràng buộc đẳng thức $u_1+u_2=14$, tức $A=\begin{bmatrix}1&1\end{bmatrix}$, $b=14$. Điểm xuất phát $u^0=(16,-2)^T$ thỏa $Au^0=b$. (a) Tự lập mô hình bậc hai $\min_d\; g^Td+\tfrac12d^THd$ với ràng buộc $Ad=0$; tự lập Lagrange $L_m$ với nhân tử $\eta$, lấy đạo hàm theo $d$ và $\eta$, xếp thành hệ điều kiện tối ưu dạng khối rồi tự giải để tìm bước $d$ và nhân tử $\eta$. Kiểm tra $Ad=0$, tính bình phương độ giảm Newton của bài con $\delta_{eq}^2=d^THd$, so sánh giảm mô hình $\delta_{eq}^2/2$ với giảm thật sau một bước đầy đủ, và cho biết điểm mới cùng giá trị $F$. (b) Đặt $N=(-1,1)^T$ và $\hat u=(14,0)^T$ với $A\hat u=b$, $AN=0$. Viết $u=\hat u+Nz$, lập hàm $\psi(z)=F(\hat u+Nz)$, tìm điểm cực tiểu $z^*$ và đối chiếu $\Delta z=z^*-z^0$ (với $z^0$ từ $u^0=\hat u+Nz^0$) với bước ở câu (a) qua hệ rút gọn $(N^THN)\Delta z=-N^Tg$.
+**Bài 5 (tính toán).** Xét bài toán $\min_u F(u)$ với $F(u)=\tfrac12(2u_1^2+5u_2^2)$ và ràng buộc đẳng thức $u_1+u_2=14$, tức $A=\begin{bmatrix}1&1\end{bmatrix}$, $b=14$. Điểm xuất phát $u^0=(16,-2)^T$ thỏa $Au^0=b$. (a) Tự lập mô hình bậc hai $\min_d\; g^Td+\tfrac12d^THd$ với ràng buộc $Ad=0$; tự lập Lagrange $L_m$ với nhân tử $\eta$, lấy đạo hàm theo $d$ và $\eta$, xếp thành hệ điều kiện tối ưu dạng khối rồi tự giải để tìm bước $d$ và nhân tử $\eta$. Kiểm tra $Ad=0$, tính bình phương độ giảm Newton của bài toán con $\delta_{eq}^2=d^THd$, so sánh giảm mô hình $\delta_{eq}^2/2$ với giảm thật sau một bước đầy đủ, và cho biết điểm mới cùng giá trị $F$. (b) Đặt $N=(-1,1)^T$ và $\hat u=(14,0)^T$ với $A\hat u=b$, $AN=0$. Viết $u=\hat u+Nz$, lập hàm $\psi(z)=F(\hat u+Nz)$, tìm điểm cực tiểu $z^*$ và đối chiếu $\Delta z=z^*-z^0$ (với $z^0$ từ $u^0=\hat u+Nz^0$) với bước ở câu (a) qua hệ rút gọn $(N^THN)\Delta z=-N^Tg$.
 :::
 
 ::: hint
-(a) Tính $g=\nabla F(u^0)$ và $F(u^0)$ trước; ràng buộc $Ad=0$ cho $d_1+d_2=0$. Lập Lagrange $L_m=g^Td+\tfrac12d^THd+\eta^TAd$, lấy đạo hàm theo $d$ và $\eta$ để được hai phương trình, xếp thành hệ khối ba ẩn $(d_1,d_2,\eta)$ rồi giải. Đặt $Q(d)=g^Td+\tfrac12d^THd$. Giảm mô hình là $Q(0)-Q(d)=\tfrac12d^THd$ (dương), có dấu ngược với $Q(d)-Q(0)$. (b) Thay $u=\hat u+Nz$ vào $F$ bằng quy tắc dây chuyền: $\psi'(z)=N^Tg$ tại điểm đang xét và $\psi''=N^THN$; giải $\psi'(z)=0$ rồi kiểm $\psi''>0$. Đối chiếu $\Delta z$ với nghiệm của $(N^THN)\Delta z=-N^Tg$.
+(a) Tính $g=\nabla F(u^0)$ và $F(u^0)$ trước; ràng buộc $Ad=0$ cho $d_1+d_2=0$. Lập Lagrange $L_m=g^Td+\tfrac12d^THd+\eta^TAd$, lấy đạo hàm theo $d$ và $\eta$ để được hai phương trình, xếp thành hệ khối ba ẩn $(d_1,d_2,\eta)$ rồi giải. Đặt $Q(d)=g^Td+\tfrac12d^THd$. Giảm mô hình là $Q(0)-Q(d)=\tfrac12d^THd$ (dương), có dấu ngược với $Q(d)-Q(0)$. (b) Thay $u=\hat u+Nz$ vào $F$ bằng quy tắc dây chuyền: $\psi'(z)=N^Tg$ tại điểm đang xét và $\psi''=N^THN$; giải $\psi'(z)=0$ rồi kiểm tra $\psi''>0$. Đối chiếu $\Delta z$ với nghiệm của $(N^THN)\Delta z=-N^Tg$.
 :::
 
 ::: solution
-(a) Tại $u^0=(16,-2)^T$: $g=\nabla F(u^0)=(2u_1,5u_2)^T=(32,-10)^T$, $H=\operatorname{diag}(2,5)$, $F(u^0)=\tfrac12(2\cdot256+5\cdot4)=266$. Đặt $Q(d)=g^Td+\tfrac12d^THd$. Bài con $\min_d Q(d)$ với $Ad=0$ có Lagrange $L_m=Q(d)+\eta^TAd$. Điều kiện dừng và khả thi là
+(a) Tại $u^0=(16,-2)^T$: $g=\nabla F(u^0)=(2u_1,5u_2)^T=(32,-10)^T$, $H=\operatorname{diag}(2,5)$, $F(u^0)=\tfrac12(2\cdot256+5\cdot4)=266$. Đặt $Q(d)=g^Td+\tfrac12d^THd$. Bài toán con $\min_d Q(d)$ với $Ad=0$ có Lagrange $L_m=Q(d)+\eta^TAd$. Điều kiện dừng và khả thi là
 $$\nabla_dL_m=g+Hd+A^T\eta=0,\qquad \nabla_\eta L_m=Ad=0.$$
 Vì $H\succ0$ và $A$ có hạng hàng đầy đủ, nghiệm KKT cho bước cực tiểu duy nhất. Xếp hai dòng thành hệ khối
 $$\begin{bmatrix}2&0&1\\0&5&1\\1&1&0\end{bmatrix}\begin{bmatrix}d_1\\d_2\\\eta\end{bmatrix}=-\begin{bmatrix}32\\-10\\0\end{bmatrix}.$$
-Hàng cuối cho $d_2=-d_1$; hai hàng đầu là $2d_1+\eta=-32$ và $5d_2+\eta=10$. Trừ rồi thế $d_2=-d_1$: $2d_1-5d_2=-42\Rightarrow 7d_1=-42$, nên $d=(-6,6)^T$, $\eta=-20$. Kiểm tra: $Ad=0$ và $Hd+g=(20,20)^T=-A^T\eta$. Mọi bước $u+td$ giữ $A(u+td)=Au^0+t\,Ad=b$. Bước đầy đủ tới $u^*=(10,4)^T$, $F^*=140$. Bình phương độ giảm Newton của bài con $\delta_{eq}^2=d^THd=2\cdot36+5\cdot36=252$; giảm mô hình $Q(0)-Q(d)=\tfrac12d^THd=126$ (dương), đúng bằng giảm thật $F(u^0)-F^*=266-140=126$ vì $F$ bậc hai nên $Q(d)=F(u^0+d)-F(u^0)$ chính xác.
+Hàng cuối cho $d_2=-d_1$; hai hàng đầu là $2d_1+\eta=-32$ và $5d_2+\eta=10$. Trừ rồi thế $d_2=-d_1$: $2d_1-5d_2=-42\Rightarrow 7d_1=-42$, nên $d=(-6,6)^T$, $\eta=-20$. Kiểm tra: $Ad=0$ và $Hd+g=(20,20)^T=-A^T\eta$. Mọi bước $u+td$ giữ $A(u+td)=Au^0+t\,Ad=b$. Bước đầy đủ tới $u^*=(10,4)^T$, $F^*=140$. Bình phương độ giảm Newton của bài toán con $\delta_{eq}^2=d^THd=2\cdot36+5\cdot36=252$; giảm mô hình $Q(0)-Q(d)=\tfrac12d^THd=126$ (dương), đúng bằng giảm thật $F(u^0)-F^*=266-140=126$ vì $F$ bậc hai nên $Q(d)=F(u^0+d)-F(u^0)$ chính xác.
 
 (b) Với $\hat u=(14,0)^T$, $N=(-1,1)^T$: $A\hat u=14$, $AN=0$, nên $u=(14-z,z)^T$ khả thi với mọi $z$. Thay vào $F$:
 $$\psi(z)=\tfrac12\big(2(14-z)^2+5z^2\big)=196-28z+\tfrac72 z^2.$$
@@ -157,7 +157,7 @@ Quy tắc dây chuyền cho $\psi'(z)=N^Tg$ và $\psi''=N^THN=7$. Giải $\psi'(
 :::
 
 ::: hint
-(a) Tính gradient trước, rồi cộng $A^T\nu^0$ vào để được $r_d$; riêng $r_p$ chỉ dùng $Au^0-b$. (b) Trong bài toán tổng quát, $r_d(u^0+d,\nu^0+\Delta\nu)\approx r_d+Hd+A^T\Delta\nu$, rồi đặt vế phải bằng $0$ để xác định bước; riêng ví dụ bậc hai này Taylor chính xác. Phương trình khả thi $r_p+Ad=0$ luôn chính xác vì ràng buộc affine; ghép thành hệ khối với $H$ và $A$. (c) Trừ hai hàng đầu để khử $\Delta\nu$, dùng hàng khối ràng buộc để biểu diễn một ẩn theo ẩn kia, rồi thay ngược; sau khi có nghiệm, thay vào từng hàng để kiểm. (d) $\eta$ là giá trị nhân tử mới ở bước đầy đủ, còn $\Delta\nu$ là số gia của nhân tử; với $t=\tfrac12$ nhân tử mới là trung bình cộng của $\nu^0$ và $\eta$, và phần dư khả thi tại điểm thử giảm đúng theo hệ số $(1-t)$. (e) Hai phần dư cần hai ngưỡng riêng; hãy tìm một điểm cụ thể thỏa $F(u)<140$ nhưng vi phạm $u_1+u_2=14$ để thấy mục tiêu thấp không nghĩa là gần nghiệm.
+(a) Tính gradient trước, rồi cộng $A^T\nu^0$ vào để được $r_d$; riêng $r_p$ chỉ dùng $Au^0-b$. (b) Trong bài toán tổng quát, $r_d(u^0+d,\nu^0+\Delta\nu)\approx r_d+Hd+A^T\Delta\nu$, rồi đặt vế phải bằng $0$ để xác định bước; riêng ví dụ bậc hai này Taylor chính xác. Phương trình khả thi $r_p+Ad=0$ luôn chính xác vì ràng buộc affine; ghép thành hệ khối với $H$ và $A$. (c) Trừ hai hàng đầu để khử $\Delta\nu$, dùng hàng khối ràng buộc để biểu diễn một ẩn theo ẩn kia, rồi thay ngược; sau khi có nghiệm, thay vào từng hàng để kiểm tra. (d) $\eta$ là giá trị nhân tử mới ở bước đầy đủ, còn $\Delta\nu$ là số gia của nhân tử; với $t=\tfrac12$ nhân tử mới là trung bình cộng của $\nu^0$ và $\eta$, và phần dư khả thi tại điểm thử giảm đúng theo hệ số $(1-t)$. (e) Hai phần dư cần hai ngưỡng riêng; hãy tìm một điểm cụ thể thỏa $F(u)<140$ nhưng vi phạm $u_1+u_2=14$ để thấy mục tiêu thấp không nghĩa là gần nghiệm.
 :::
 
 ::: solution
@@ -171,7 +171,7 @@ $$r_p(u^0+d)=r_p+Ad=0,$$
 (đẳng thức, vì $r_p$ affine). Với $H=\mathrm{diag}(2,5)$, $A=(1,1)$:
 $$\begin{bmatrix}2&0&1\\0&5&1\\1&1&0\end{bmatrix}\begin{bmatrix}d_1\\d_2\\\Delta\nu\end{bmatrix}=\begin{bmatrix}-6\\-44\\5\end{bmatrix}.$$
 
-**(c)** Trừ hai hàng đầu: $2d_1-5d_2=38$. Hàng khối: $d_2=5-d_1$, thay vào: $2d_1-5(5-d_1)=38\Rightarrow 7d_1=63$, suy ra $d=(9,-4)^T$, rồi $\Delta\nu=-6-2\cdot9=-24$. Kiểm từng hàng: $2\cdot9-24=-6$; $5\cdot(-4)-24=-44$; $9-4=5=-r_p$. Vậy $u^1=(10,4)^T$, $\nu^1=4-24=-20$; phần dư mới: $r_d^1=(20,20)^T+(-20,-20)^T=(0,0)^T$, $r_p^1=14-14=0$. Cả hai triệt tiêu sau một bước vì bài bậc hai.
+**(c)** Trừ hai hàng đầu: $2d_1-5d_2=38$. Hàng khối: $d_2=5-d_1$, thay vào: $2d_1-5(5-d_1)=38\Rightarrow 7d_1=63$, suy ra $d=(9,-4)^T$, rồi $\Delta\nu=-6-2\cdot9=-24$. Kiểm tra từng hàng: $2\cdot9-24=-6$; $5\cdot(-4)-24=-44$; $9-4=5=-r_p$. Vậy $u^1=(10,4)^T$, $\nu^1=4-24=-20$; phần dư mới: $r_d^1=(20,20)^T+(-20,-20)^T=(0,0)^T$, $r_p^1=14-14=0$. Cả hai triệt tiêu sau một bước vì bài toán bậc hai.
 
 **(d)** Đặt $\eta=\nu^0+\Delta\nu=-20$: $\eta$ là giá trị nhân tử ở bước đầy đủ, còn $\Delta\nu=-24$ là số gia. Với $t=\tfrac12$:
 $$\nu^+=(1-t)\nu^0+t\,\eta=\tfrac12(4-20)=-8,$$
@@ -207,7 +207,7 @@ Nếu nhầm thay $\delta_N^2=9/16$ vào công thức thì được $-\frac{9}{1
 ## Bài 8 — Mô hình học có ràng buộc
 
 ::: exercise
-**Bài 8 (vận dụng).** Bài toán bình phương tối thiểu chính quy hóa có ràng buộc: cho dữ liệu $M\in\mathbb R^{m\times n}$, đích $y\in\mathbb R^m$, tham số chính quy hóa $\rho>0$ cho trước, ma trận ràng buộc $A\in\mathbb R^{p\times n}$ hạng hàng đầy đủ và $b\in\mathbb R^p$,
+**Bài 8 (vận dụng).** Bài toán bình phương nhỏ nhất chính quy hóa có ràng buộc: cho dữ liệu $M\in\mathbb R^{m\times n}$, đích $y\in\mathbb R^m$, tham số chính quy hóa $\rho>0$ cho trước, ma trận ràng buộc $A\in\mathbb R^{p\times n}$ hạng hàng đầy đủ và $b\in\mathbb R^p$,
 đặt $J(w)=\tfrac12\|Mw-y\|_2^2+\tfrac{\rho}{2}\|w\|_2^2$ và xét
 $$\min_{w\in\mathbb R^n} J(w)\quad\text{với}\quad Aw=b.$$
 $A$ là ma trận ràng buộc kích thước $p\times n$, không phải Hessian. $\rho$ là tham số cho trước điều khiển mức chính quy hóa; $\nu$ là nhân tử đẳng thức cần tìm; $\lambda$ ở Bài giảng 03 là nhân tử bất đẳng thức, vai trò khác.
@@ -215,7 +215,7 @@ $A$ là ma trận ràng buộc kích thước $p\times n$, không phải Hessian
 **(a)** Tính gradient $g(w)$ và Hessian $H$ của hàm mục tiêu, nêu kích thước từng đại lượng. Chứng minh $H\succ0$ mà không cần $M$ hạng cột đầy đủ. Lập hàm Lagrange và điều kiện KKT (điều kiện dừng và tính khả thi), rồi viết hệ KKT dạng khối với ẩn $(w^*,\nu^*)$.
 
 **(b)** Cho $M=\operatorname{diag}(1,2)$, $y=(0,0)^T$, $\rho=1$, $A=\begin{bmatrix}1&1\end{bmatrix}$ và $b=14$. Tại điểm xuất phát $w^0=(1,8)^T$, $\nu^0=4$: tính hai phần dư $r_d=g(w^0)+A^T\nu^0$ và $r_p=Aw^0-b$, rồi điền chúng vào mẫu hệ tuyến tính hóa KKT
-$$\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}\square\\\square\end{bmatrix}.$$ Nêu rõ khác biệt giữa ẩn thứ hai $\Delta\nu$ của hệ phần dư và nhân tử $\nu$ trong hệ KKT gốc. Giải hệ, cập nhật cả hai biến ở bước đầy đủ và kiểm lại hai phần dư.
+$$\begin{bmatrix}H&A^T\\A&0\end{bmatrix}\begin{bmatrix}d\\\Delta\nu\end{bmatrix}=-\begin{bmatrix}\square\\\square\end{bmatrix}.$$ Nêu rõ khác biệt giữa ẩn thứ hai $\Delta\nu$ của hệ phần dư và nhân tử $\nu$ trong hệ KKT gốc. Giải hệ, cập nhật cả hai biến ở bước đầy đủ và kiểm tra lại hai phần dư.
 :::
 
 ::: hint
@@ -235,8 +235,8 @@ khả nghịch vì $H\succ0$ và $A$ hạng hàng đầy đủ. Giữ $M^Ty$ khi
 $$r_d=g(w^0)+A^T\nu^0=(2,40)^T+(4,4)^T=(6,44)^T,\qquad r_p=Aw^0-b=9-14=-5.$$
 Mẫu hệ tuyến tính hóa KKT cho ẩn $(d,\Delta\nu)$:
 $$\begin{bmatrix}H & A^T\\ A & 0\end{bmatrix}\begin{bmatrix}d\\ \Delta\nu\end{bmatrix}=-\begin{bmatrix}r_d\\ r_p\end{bmatrix}=-\begin{bmatrix}(6,44)^T\\ -5\end{bmatrix}.$$
-$\Delta\nu$ là số gia của nhân tử trong bước Newton, còn $\nu$ trong hệ KKT gốc là nhân tử tại nghiệm. Kiểm nghiệm: nghiệm của hệ KKT là $w^*=(10,4)^T$, $\nu^*=-20$, nên $d=(9,-4)^T$, $\Delta\nu=-24$; khi đó $Ad=5=-r_p$ và sau một bước cả hai phần dư triệt tiêu, đúng tính chất của Newton trên bài toán bậc hai. Gradient tại nghiệm có ràng buộc không bằng không: $g(w^*)=(20,20)^T$, nhưng $g(w^*)+A^T\nu^*=0$.
+$\Delta\nu$ là số gia của nhân tử trong bước Newton, còn $\nu$ trong hệ KKT gốc là nhân tử tại nghiệm. Kiểm tra nghiệm: nghiệm của hệ KKT là $w^*=(10,4)^T$, $\nu^*=-20$, nên $d=(9,-4)^T$, $\Delta\nu=-24$; khi đó $Ad=5=-r_p$ và sau một bước cả hai phần dư triệt tiêu, đúng tính chất của Newton trên bài toán bậc hai. Gradient tại nghiệm có ràng buộc không bằng không: $g(w^*)=(20,20)^T$, nhưng $g(w^*)+A^T\nu^*=0$.
 :::
 
 ---
-*Nguồn cơ chế: Boyd–Vandenberghe (2004), chương 9–10, [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/); MIT 6.079, bài giảng 16–17, [MIT 6.079, Fall 2009](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/). Các bộ số trong bài tập là ví dụ sư phạm tự xây dựng phục vụ tính tay.*
+*Nguồn cơ chế: Boyd–Vandenberghe (2004), chương 9–10, [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/); MIT 6.079, bài giảng 16–17, [MIT 6.079, Fall 2009](https://ocw.mit.edu/courses/6-079-introduction-to-convex-optimization-fall-2009/). Các bộ số trong bài tập là ví dụ sư phạm tự xây dựng phục vụ tính thủ công.*

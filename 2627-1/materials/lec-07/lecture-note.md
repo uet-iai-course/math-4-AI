@@ -5,17 +5,17 @@
 Bốn mục tiêu đầu là minh chứng cho hai chuẩn đầu ra bài học (LLO) của buổi 7, cả hai đóng góp chuẩn đầu ra học phần CLO1:
 
 - LLO17: hiểu định nghĩa quy hoạch tuyến tính và diễn đạt bài toán thực tế thành quy hoạch tuyến tính;
-- LLO18: xây dựng đa diện của quy hoạch tuyến tính, hiểu sự tồn tại và tính tối ưu của điểm cực, mô tả thuật toán đi qua đỉnh kề ở mức ý niệm.
+- LLO18: xây dựng đa diện của quy hoạch tuyến tính, hiểu sự tồn tại và tính tối ưu của điểm cực biên, mô tả thuật toán đi qua đỉnh kề ở mức ý niệm.
 
-Hai mục tiêu cuối thuộc phần quy hoạch động (dynamic programming), phần bổ trợ của bài; chúng không gắn với LLO hay CLO nào của đề cương.
+Hai mục tiêu cuối thuộc phần quy hoạch động (dynamic programming), phần bổ trợ của bài giảng; chúng không gắn với LLO hay CLO nào của đề cương.
 
 Sau chương này, người học có thể:
 
 1. Lập quy hoạch tuyến tính từ dữ kiện cho bằng bảng hoặc bằng lời, gồm biến có đơn vị, mục tiêu, ràng buộc và miền biến; đưa hồi quy $L_1$ về quy hoạch tuyến tính (LLO17; CLO1).
-2. Viết miền khả thi thành đa diện, chuyển về dạng chuẩn, tính nghiệm cơ sở và kiểm tính khả thi, suy biến (LLO18; CLO1).
-3. Nhận biết điểm cực bằng định nghĩa, bằng hạng các ràng buộc chặt và bằng nghiệm cơ sở khả thi; chứng minh các tương đương đó và điều kiện để đa diện có điểm cực (LLO18; CLO1).
-4. Xác định kết cục của một quy hoạch tuyến tính, áp dụng định lý điểm cực tối ưu sau khi kiểm giả thiết, và chạy thuật toán duyệt đỉnh kề kèm lý do dừng (LLO18; CLO1).
-5. Mô hình hóa bài toán quyết định theo giai đoạn bằng trạng thái, điều khiển, chuyển trạng thái và chi phí cộng; kiểm trạng thái có đủ hay không (bổ trợ).
+2. Viết miền khả thi thành đa diện, chuyển về dạng chuẩn, tính nghiệm cơ sở và kiểm tra tính khả thi, suy biến (LLO18; CLO1).
+3. Nhận biết điểm cực biên (extreme point) bằng định nghĩa, bằng hạng các ràng buộc chặt và bằng nghiệm cơ sở khả thi; chứng minh các tương đương đó và điều kiện để đa diện có điểm cực biên (LLO18; CLO1).
+4. Xác định kết cục của một quy hoạch tuyến tính, áp dụng định lý điểm cực biên tối ưu sau khi kiểm tra giả thiết, và chạy thuật toán duyệt đỉnh kề kèm lý do dừng (LLO18; CLO1).
+5. Mô hình hóa bài toán quyết định theo giai đoạn bằng trạng thái, điều khiển, chuyển trạng thái và chi phí cộng; kiểm tra trạng thái có đủ hay không (bổ trợ).
 6. Giải phương trình Bellman ngược, dựng chính sách và đường tối ưu, so số phép tính với liệt kê (bổ trợ).
 
 ## Kiến thức tiên quyết
@@ -24,11 +24,11 @@ Số hiệu `01.k`, `02.k`, `03.k`, `06.k` chỉ ghi chú Bài 01, Bài 02, Bài
 
 - **Đại số tuyến tính.** Trong $\mathbb R^m$ có nhiều nhất $m$ véc-tơ độc lập tuyến tính; ma trận vuông có định thức khác $0$ thì khả nghịch và hệ tương ứng có nghiệm duy nhất. Định lý số chiều: hạng của các véc-tơ $a_i\in\mathbb R^n$, $i\in S$, cộng số chiều của không gian nghiệm $\{d\mid a_i^Td=0,\ i\in S\}$ bằng $n$; đặc biệt, hạng nhỏ hơn $n$ thì có $d\ne0$ với $a_i^Td=0$ cho mọi $i\in S$.
 - **Tập lồi** (Định nghĩa 01.18, Mệnh đề 01.19(c), 01.20(a)). Tập lồi chứa mọi tổ hợp lồi $\lambda x'+(1-\lambda)x''$, $\lambda\in[0,1]$, của hai điểm của nó; nửa không gian là tập lồi, và giao của các tập lồi là tập lồi.
-- **Bài toán tối ưu, cực tiểu, hàm lồi** (Định nghĩa 01.12, 01.13, Định lý 01.31, Hệ quả 01.34, Định lý 01.35). Nghiệm là điểm khả thi đạt giá trị tối ưu; cực tiểu toàn cục là khái niệm về giá trị hàm, khác điểm cực của Mục 3. Tổng các hàm lồi và cực đại các hàm affine là hàm lồi; tập nghiệm của bài lồi là tập lồi, và hàm lồi chặt (còn gọi là lồi nghiêm ngặt) có nhiều nhất một điểm cực tiểu. Bài cực đại đổi về bài cực tiểu hàm đối dấu, giữ tập nghiệm.
+- **Bài toán tối ưu, cực tiểu, hàm lồi** (Định nghĩa 01.12, 01.13, Định lý 01.31, Hệ quả 01.34, Định lý 01.35). Nghiệm là điểm khả thi đạt giá trị tối ưu; cực tiểu toàn cục là khái niệm về giá trị hàm, khác điểm cực biên của Mục 3. Tổng các hàm lồi và cực đại các hàm affine là hàm lồi; tập nghiệm của bài toán lồi là tập lồi, và hàm lồi chặt (còn gọi là lồi nghiêm ngặt) có nhiều nhất một điểm cực tiểu. Bài toán cực đại đổi về bài toán cực tiểu hàm đối dấu, giữ tập nghiệm.
 - **Quy hoạch tuyến tính** (Định nghĩa 02.9, Mệnh đề 02.10). Thêm biến phụ cho mỗi bất đẳng thức và tách biến tự do thành hiệu hai biến không âm đưa mọi quy hoạch tuyến tính về dạng chỉ có đẳng thức và điều kiện không âm, giữ giá trị mục tiêu.
-- **Chứng nhận bằng tổ hợp không âm** (Mệnh đề 02.11, 03.11, Định lý 03.15(b)). Với bài $\min c^Tx$ dưới $a_i^Tx\ge\beta_i$, nếu $\mu\ge0$ và $c=\sum_i\mu_ia_i$ thì $c^Tx\ge\sum_i\mu_i\beta_i$ tại mọi điểm khả thi. Bộ $\mu$ đó là điểm khả thi của bài đối ngẫu, và với quy hoạch tuyến tính khả thi có giá trị hữu hạn, hai giá trị tối ưu bằng nhau.
+- **Chứng nhận bằng tổ hợp không âm** (Mệnh đề 02.11, 03.11, Định lý 03.15(b)). Với bài toán $\min c^Tx$ dưới $a_i^Tx\ge\beta_i$, nếu $\mu\ge0$ và $c=\sum_i\mu_ia_i$ thì $c^Tx\ge\sum_i\mu_i\beta_i$ tại mọi điểm khả thi. Bộ $\mu$ đó là điểm khả thi của bài toán đối ngẫu, và với quy hoạch tuyến tính khả thi có giá trị hữu hạn, hai giá trị tối ưu bằng nhau.
 - **Biến chặn cho cực đại affine** (Bổ đề 02.14, Định lý 02.15). Điều kiện $t\ge|r|$ tương đương với $t\ge r$ và $t\ge-r$; định lý được phát biểu lại ở Mục 1.3.
-- **Bước cập nhật cục bộ** (Định nghĩa 06.2, Mệnh đề 06.3). Các bộ tối ưu của Bài 04–06 sinh bước từ gradient và một ma trận phạt xác định dương; bước đó là hướng giảm. Chúng cần mục tiêu khả vi và không có ràng buộc.
+- **Bước cập nhật cục bộ** (Định nghĩa 06.2, Mệnh đề 06.3). Các bộ tối ưu của Bài 04–06 sinh bước từ gradient và một ma trận tiền điều kiện xác định dương; bước đó là hướng giảm. Chúng cần mục tiêu khả vi và không có ràng buộc.
 
 ## Bảng ký hiệu
 
@@ -36,10 +36,10 @@ Bảng chỉ gồm các ký hiệu dùng xuyên suốt chương; ký hiệu ch�
 
 | Ký hiệu | Ý nghĩa | Miền hoặc kiểu |
 |---|---|---|
-| $n$, $m$ | số biến; số hàng của ma trận ràng buộc của bài đang xét | số nguyên dương |
+| $n$, $m$ | số biến; số hàng của ma trận ràng buộc của bài toán đang xét | số nguyên dương |
 | $x$, $x_j$ | biến quyết định của quy hoạch tuyến tính; thành phần thứ $j$ | $\mathbb R^n$; $\mathbb R$ |
 | $c$ | véc-tơ hệ số của hàm mục tiêu | $\mathbb R^n$ |
-| $A$, $a_i^T$, $A_j$ | ma trận ràng buộc của bài đang xét; hàng thứ $i$ (chữ thường); cột thứ $j$ (chữ hoa) | $\mathbb R^{m\times n}$; $\mathbb R^{1\times n}$; $\mathbb R^m$ |
+| $A$, $a_i^T$, $A_j$ | ma trận ràng buộc của bài toán đang xét; hàng thứ $i$ (chữ thường); cột thứ $j$ (chữ hoa) | $\mathbb R^{m\times n}$; $\mathbb R^{1\times n}$; $\mathbb R^m$ |
 | $b$, $b_i$ | véc-tơ vế phải; thành phần thứ $i$ | $\mathbb R^m$; $\mathbb R$ |
 | $P$ | miền khả thi, trong chương luôn là một đa diện | tập con của $\mathbb R^n$ |
 | $z$, $z^*$ | giá trị mục tiêu $c^Tx$; giá trị tối ưu $\sup_{x\in P}c^Tx$ | $\mathbb R$; $\mathbb R\cup\{-\infty,+\infty\}$ |
@@ -48,10 +48,10 @@ Bảng chỉ gồm các ký hiệu dùng xuyên suốt chương; ký hiệu ch�
 | $B$, $B^{\mathrm c}$ | tập chỉ số cơ sở; phần bù của nó trong $\{1,\ldots,n\}$ | $\lvert B\rvert=m$ |
 | $A_B$, $x_B$, $x_{B^{\mathrm c}}$ | ma trận gồm các cột $A_j$, $j\in B$; biến cơ sở; biến ngoài cơ sở | $\mathbb R^{m\times m}$; $\mathbb R^m$; $\mathbb R^{n-m}$ |
 | $\mathcal I(x)$, $\operatorname{supp}(x)$ | tập chỉ số các ràng buộc chặt tại $x$; tập chỉ số $j$ với $x_j>0$ | tập con của $\{1,\ldots,m\}$; của $\{1,\ldots,n\}$ |
-| $v$, $w$ | điểm cực của $P$ | phần tử của $P$ |
+| $v$, $w$ | điểm cực biên của $P$ | phần tử của $P$ |
 | $x'$, $x''$, $\lambda$ | các điểm khác của $P$, chẳng hạn hai điểm trong một tổ hợp lồi; hệ số của tổ hợp | $P$; $[0,1]$ |
 | $d$, $\theta$, $\theta^*$ | hướng di chuyển; tham số dọc đường $x+\theta d$, là độ dài bước khi $\theta\ge0$; bước của phép thử tỉ số | $\mathbb R^n$; $\mathbb R$; $\theta^*\ge0$ |
-| $d^j$, $\bar c_j$ | hướng cơ sở ứng với biến ngoài cơ sở $j$; lợi ích rút gọn $c^Td^j$ | $\mathbb R^n$; $\mathbb R$ |
+| $d^j$, $\bar c_j$ | hướng cơ sở ứng với biến ngoài cơ sở $j$; chi phí rút gọn $c^Td^j$ | $\mathbb R^n$; $\mathbb R$ |
 | $\mu$ | hệ số nhân không âm của một chứng nhận cận trên | $\mathbb R^m$, $\mu\ge0$ |
 | $h_i$, $y_i$, $r_i$, $t_i$, $M$ | véc-tơ đặc trưng, giá trị đích, phần dư và biến chặn phần dư của mẫu $i$; số mẫu | $\mathbb R^n$; $\mathbb R$; $\mathbb R$; $\mathbb R$; số nguyên dương |
 | $N$, $k$ | số giai đoạn; chỉ số giai đoạn | $N\ge1$; $k\in\{0,\ldots,N\}$ |
@@ -63,15 +63,15 @@ Bảng chỉ gồm các ký hiệu dùng xuyên suốt chương; ký hiệu ch�
 | $q$ | số lựa chọn ở mỗi giai đoạn trong các phép đếm | số nguyên dương |
 | $\mathrm s$, $\mathrm A$, $\mathrm B$, $\mathrm C$, $\mathrm D$, $\mathrm t$ | tên các nút của đồ thị tầng | nhãn, không phải biến |
 
-Bất đẳng thức giữa hai véc-tơ hiểu theo từng thành phần: $Ax\le b$ là $m$ bất đẳng thức $a_i^Tx\le b_i$, và $x\ge0$ là $n$ điều kiện $x_j\ge0$. Ba chữ $n$, $m$, $A$ luôn chỉ số biến, số hàng và ma trận ràng buộc của bài đang xét: trong dạng (1.1), $A$ không gồm các hàng $-x_j\le0$; trong dạng chuẩn (2.2), $n$ đếm cả biến phụ thêm vào. Tên nút viết chữ đứng để phân biệt với ma trận $A$ và tập chỉ số $B$. Mọi bộ số của các ví dụ là số liệu sư phạm tự xây dựng.
+Bất đẳng thức giữa hai véc-tơ hiểu theo từng thành phần: $Ax\le b$ là $m$ bất đẳng thức $a_i^Tx\le b_i$, và $x\ge0$ là $n$ điều kiện $x_j\ge0$. Ba chữ $n$, $m$, $A$ luôn chỉ số biến, số hàng và ma trận ràng buộc của bài toán đang xét: trong dạng (1.1), $A$ không gồm các hàng $-x_j\le0$; trong dạng chuẩn (2.2), $n$ đếm cả biến phụ thêm vào. Tên nút viết chữ đứng để phân biệt với ma trận $A$ và tập chỉ số $B$. Mọi bộ số của các ví dụ là số liệu sư phạm tự xây dựng.
 
 ## 1. Mô hình hóa quy hoạch tuyến tính
 
-Trong Bài 06, chúng ta đã xây dựng các phương pháp tối ưu cho học sâu trên khung bước có phạt, với bước là hướng giảm khi ma trận phạt xác định dương (Mệnh đề 06.3). Các phương pháp này, cũng như các phương pháp của Bài 04 và Bài 05, đi theo bước cục bộ. Tại điểm hiện tại, gradient của mục tiêu cho hướng, bước đủ ngắn làm mục tiêu giảm, và quá trình dừng gần điểm có gradient bằng $0$. Chúng cần mục tiêu khả vi và không có ràng buộc.
+Trong Bài 06, chúng ta đã xây dựng các phương pháp tối ưu cho học sâu trên khung bước có tiền điều kiện (preconditioned step), với bước là hướng giảm khi ma trận tiền điều kiện xác định dương (Mệnh đề 06.3). Các phương pháp này, cũng như các phương pháp của Bài 04 và Bài 05, đi theo bước cục bộ. Tại điểm hiện tại, gradient của mục tiêu cho hướng, bước đủ ngắn làm mục tiêu giảm, và quá trình dừng gần điểm có gradient bằng $0$. Chúng cần mục tiêu khả vi và không có ràng buộc.
 
 Bài toán sau có ràng buộc, và gradient của mục tiêu khác $0$ tại mọi điểm, nên không có điểm dừng nào để các phương pháp trên tiến tới. Một cơ sở đóng hai loại hộp hạt; mỗi nghìn hộp loại 1 mang lại $2$ đơn vị lợi ích và cần $1$ giờ máy, mỗi nghìn hộp loại 2 mang lại $3$ đơn vị lợi ích và cần $2$ giờ máy. Hai loại dùng chung $54$ giờ máy, và sản lượng tối đa của từng loại là $30$ và $20$ nghìn hộp. Lợi ích $2x_1+3x_2$ có gradient $(2,3)$ tại mọi điểm, nên phương án tối ưu do các giới hạn quyết định.
 
-Trong Bài 02, chúng ta đã xếp bài toán loại này vào quy hoạch tuyến tính (Định nghĩa 02.9) và đưa nó về dạng chuẩn (Mệnh đề 02.10). Trong Bài 03, chúng ta đã chứng nhận một ứng viên là tối ưu bằng nhân tử không âm (Mệnh đề 03.11). Hai công cụ đó kiểm một ứng viên cho trước nhưng chưa cho biết ứng viên nằm ở đâu trong vô số điểm khả thi.
+Trong Bài 02, chúng ta đã xếp bài toán loại này vào quy hoạch tuyến tính (Định nghĩa 02.9) và đưa nó về dạng chuẩn (Mệnh đề 02.10). Trong Bài 03, chúng ta đã chứng nhận một ứng viên là tối ưu bằng nhân tử không âm (Mệnh đề 03.11). Hai công cụ đó kiểm tra một ứng viên cho trước nhưng chưa cho biết ứng viên nằm ở đâu trong vô số điểm khả thi.
 
 Trong chương này, chúng ta chứng minh rằng, dưới hai giả thiết nêu rõ, chỉ cần xét hữu hạn điểm gọi là đỉnh, các đỉnh tính được bằng đại số, và có thể đi từ đỉnh này sang đỉnh khác. Phần cuối chương xét các quyết định chọn theo chuỗi.
 
@@ -106,25 +106,25 @@ $$
 
 **Miền biến.** Sản lượng không âm: $x_1\ge0$, $x_2\ge0$.
 
-**Kiểm một phương án.** Phương án $(30,20)$ thỏa hai giới hạn sản lượng với dấu bằng. Nó dùng $30+2\cdot20=70$ giờ máy, vượt giới hạn $54$ giờ thêm $16$ giờ.
+**Kiểm tra một phương án.** Phương án $(30,20)$ thỏa hai giới hạn sản lượng với dấu bằng. Nó dùng $30+2\cdot20=70$ giờ máy, vượt giới hạn $54$ giờ thêm $16$ giờ.
 
 **Kiểm tra lại.** Phương án $(30,12)$ dùng $30+2\cdot12=54$ giờ, đúng bằng giới hạn, và $30\le30$, $12\le20$, nên thỏa mọi ràng buộc.
 :::
 
-Ví dụ 07.1 cho thấy tính khả thi phải được kiểm trên mọi ràng buộc cùng lúc, vì $(30,20)$ đặt mỗi loại ở mức tối đa riêng nhưng giờ máy dùng chung không đủ. Viết lại thành $x_1\le54-2x_2$, ràng buộc giờ máy cho thấy mỗi nghìn hộp loại 2 làm giảm $2$ nghìn hộp cận trên của loại 1.
+Ví dụ 07.1 cho thấy tính khả thi phải được kiểm tra trên mọi ràng buộc cùng lúc, vì $(30,20)$ đặt mỗi loại ở mức tối đa riêng nhưng giờ máy dùng chung không đủ. Viết lại thành $x_1\le54-2x_2$, ràng buộc giờ máy cho thấy mỗi nghìn hộp loại 2 làm giảm $2$ nghìn hộp cận trên của loại 1.
 
 Nếu thiếu điều kiện không âm, mô hình cho phép một giá trị $x_2$ âm "giải phóng" giờ máy cho loại 1. Nhầm lẫn thường gặp là coi miền biến là hiển nhiên và bỏ khỏi mô hình; miền khả thi khi đó đổi và có thể không còn bị chặn.
 
 ![Sơ đồ bốn khối nối từ trái sang phải. Khối "Dữ kiện": đơn vị nghìn hộp, giới hạn 30 và 20, nguồn 54 giờ máy, tiêu hao 1 và 2 giờ mỗi nghìn hộp. Khối "Biến": x1 là nghìn hộp loại 1, x2 là nghìn hộp loại 2, x1, x2 lớn hơn hoặc bằng 0. Khối "Ràng buộc": x1 ≤ 30, x2 ≤ 20, x1+2x2 ≤ 54. Khối "Mục tiêu": cực đại 2x1+3x2, đơn vị lợi ích. Dòng chú thích: chỉ cộng các đại lượng có đơn vị tương thích trong cùng một ràng buộc.](img/lec-07/lp-model-units.svg)
 
-Sơ đồ trên sắp các khối theo thứ tự dựng mô hình, gồm dữ kiện có đơn vị, biến, ràng buộc và mục tiêu. Dòng chú thích là phép kiểm đơn vị, chẳng hạn trong ràng buộc giờ máy, $1\cdot x_1$ và $2x_2$ đều tính bằng giờ.
+Sơ đồ trên sắp các khối theo thứ tự dựng mô hình, gồm dữ kiện có đơn vị, biến, ràng buộc và mục tiêu. Dòng chú thích là phép kiểm tra đơn vị, chẳng hạn trong ràng buộc giờ máy, $1\cdot x_1$ và $2x_2$ đều tính bằng giờ.
 
 ### 1.2 Hàm mục tiêu và định nghĩa quy hoạch tuyến tính
 
-Các ràng buộc chỉ cho biết phương án nào được phép. Để chọn giữa các phương án khả thi, ta cần một hàm đo lợi ích, mà với bài hộp hạt là tổng lợi ích $z=2x_1+3x_2$, tính bằng đơn vị lợi ích.
+Các ràng buộc chỉ cho biết phương án nào được phép. Để chọn giữa các phương án khả thi, ta cần một hàm đo lợi ích, mà với bài toán hộp hạt là tổng lợi ích $z=2x_1+3x_2$, tính bằng đơn vị lợi ích.
 
-::: example Ví dụ 07.2 (So sánh vài phương án của bài hộp hạt)
-**Dữ kiện.** Bài hộp hạt: cực đại $z=2x_1+3x_2$ dưới các ràng buộc $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$ (Ví dụ 07.1).
+::: example Ví dụ 07.2 (So sánh vài phương án của bài toán hộp hạt)
+**Dữ kiện.** Bài toán hộp hạt: cực đại $z=2x_1+3x_2$ dưới các ràng buộc $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$ (Ví dụ 07.1).
 
 **Hai phương án dùng hết giờ máy.**
 
@@ -169,17 +169,17 @@ Trong định nghĩa trên, bài toán có ba thành phần.
 - Quyết định: biến $x$, đại lượng được chọn.
 - Lời giải: giá trị tối ưu cùng một nghiệm tối ưu, hoặc kết luận rằng bài toán không có nghiệm tối ưu.
 
-Dạng (1.1) là một quy ước và không làm mất tính tổng quát: bất phương trình $\ge$ nhân với $-1$ thành $\le$, phương trình thành hai bất phương trình ngược chiều, biến tự do (free variable) thành hiệu của hai biến không âm, và bài cực tiểu đổi thành cực đại bằng $\min c^Tx=-\max(-c^Tx)$.
+Dạng (1.1) là một quy ước và không làm mất tính tổng quát: bất phương trình $\ge$ nhân với $-1$ thành $\le$, phương trình thành hai bất phương trình ngược chiều, biến tự do (free variable) thành hiệu của hai biến không âm, và bài toán cực tiểu đổi thành cực đại bằng $\min c^Tx=-\max(-c^Tx)$.
 
-Trong khi Định nghĩa 02.9 của Bài 02 viết bài toán ở chiều cực tiểu thì định nghĩa trên viết ở chiều cực đại, vì ví dụ chính của chương là bài lợi ích. Hai cách viết có cùng tập nghiệm và giá trị tối ưu trái dấu. Bertsimas và Tsitsiklis (1997, §1.1) cũng viết ở chiều cực tiểu, nên khi đối chiếu ta cần đổi dấu $c$.
+Trong khi Định nghĩa 02.9 của Bài 02 viết bài toán ở chiều cực tiểu thì định nghĩa trên viết ở chiều cực đại, vì ví dụ chính của chương là bài toán lợi ích. Hai cách viết có cùng tập nghiệm và giá trị tối ưu trái dấu. Bertsimas và Tsitsiklis (1997, §1.1) cũng viết ở chiều cực tiểu, nên khi đối chiếu ta cần đổi dấu $c$.
 
-Hai bài toán sau không phải quy hoạch tuyến tính, mỗi bài vì một lý do khác nhau.
+Hai bài toán sau không phải quy hoạch tuyến tính, với hai lý do khác nhau.
 
 - Mục tiêu $x_1x_2$ hoặc ràng buộc $x_1^2\le4$ không tuyến tính theo $x$.
-- Bài hộp hạt với thêm điều kiện $x_1,x_2$ nguyên có mọi biểu thức tuyến tính, nhưng miền quyết định rời rạc. Bài toán khi đó là quy hoạch nguyên (integer programming), nội dung Buổi 10 (Chương 13) của đề cương học phần.
+- Bài toán hộp hạt với thêm điều kiện $x_1,x_2$ nguyên có mọi biểu thức tuyến tính, nhưng miền quyết định rời rạc. Bài toán khi đó là quy hoạch nguyên (integer programming), nội dung Buổi 10 (Chương 13) của đề cương học phần.
 
-::: example Ví dụ 07.3 (Bài hộp hạt ở dạng (1.1))
-**Dữ kiện.** Bài hộp hạt: cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$.
+::: example Ví dụ 07.3 (Bài toán hộp hạt ở dạng (1.1))
+**Dữ kiện.** Bài toán hộp hạt: cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$.
 
 **Ánh xạ.** Có $n=2$ biến và $m=3$ giới hạn. Xếp các giới hạn theo thứ tự sản lượng loại 1, sản lượng loại 2, giờ máy:
 
@@ -199,7 +199,7 @@ Trước khi tìm kiếm trên miền khả thi, ta có thể loại ngay một 
 ::: proposition Mệnh đề 07.2 (Điểm trong không tối ưu)
 **Giả thiết.** $P\subseteq\mathbb R^n$ là một tập bất kỳ, $c\in\mathbb R^n$, $c\ne0$. Điểm $\hat x\in P$ là điểm trong của $P$: có $\varepsilon>0$ để mọi $x$ với $\lVert x-\hat x\rVert\le\varepsilon$ đều thuộc $P$, trong đó $\lVert\cdot\rVert$ là chuẩn Euclid.
 
-**Kết luận.** Điểm $\hat x'=\hat x+\varepsilon\,c/\lVert c\rVert$ thuộc $P$ và $c^T\hat x'=c^T\hat x+\varepsilon\lVert c\rVert>c^T\hat x$. Do đó $\hat x$ không phải nghiệm tối ưu của bài cực đại $c^Tx$ trên $P$.
+**Kết luận.** Điểm $\hat x'=\hat x+\varepsilon\,c/\lVert c\rVert$ thuộc $P$ và $c^T\hat x'=c^T\hat x+\varepsilon\lVert c\rVert>c^T\hat x$. Do đó $\hat x$ không phải nghiệm tối ưu của bài toán cực đại $c^Tx$ trên $P$.
 
 **Điều kiện áp dụng.** Chỉ cần $c\ne0$; không cần $P$ lồi hay là đa diện.
 
@@ -214,9 +214,9 @@ Trước khi tìm kiếm trên miền khả thi, ta có thể loại ngay một 
 
 Mệnh đề 07.2 cho thấy với mục tiêu tuyến tính khác $0$, từ mọi điểm trong ta đều tìm được một điểm khả thi có giá trị mục tiêu lớn hơn theo hướng $c$. Giả thiết $c\ne0$ là cần thiết, vì với $c=0$, mọi điểm khả thi đều tối ưu, kể cả điểm trong.
 
-Theo ngôn ngữ của Bài 04–06, đây là cách nói khác của sự kiện gradient $c$ của $c^Tx$ không bao giờ bằng $0$. Ở bài không ràng buộc, điều đó có nghĩa mục tiêu không có cực trị. Ở bài có ràng buộc, điều đó buộc nghiệm nằm trên biên, nơi một số ràng buộc thỏa với dấu bằng, và ở Mục 2–3, chúng ta làm chính xác ý "biên" thành khái niệm đỉnh.
+Theo ngôn ngữ của Bài 04–06, đây là cách nói khác của sự kiện gradient $c$ của $c^Tx$ không bao giờ bằng $0$. Ở bài toán không ràng buộc, điều đó có nghĩa mục tiêu không có cực trị. Ở bài toán có ràng buộc, điều đó buộc nghiệm nằm trên biên, nơi một số ràng buộc thỏa với dấu bằng, và ở Mục 2–3, chúng ta làm chính xác ý "biên" thành khái niệm đỉnh.
 
-**Trong học máy.** Bài phân bổ tài nguyên tính toán với lợi ích tuyến tính, chẳng hạn chia giờ chạy bộ xử lý đồ họa (graphics processing unit, GPU) giữa huấn luyện và phục vụ, có nghiệm tối ưu tại biên theo Mệnh đề 07.2, nơi ít nhất một giới hạn được dùng hết. Ở Tình huống 07.2, chúng ta đọc giới hạn đó từ các biến phụ. Mệnh đề không áp dụng khi lợi ích bão hòa theo giờ huấn luyện, vì mục tiêu khi đó không tuyến tính.
+**Trong học máy.** Bài toán phân bổ tài nguyên tính toán với lợi ích tuyến tính, chẳng hạn chia giờ chạy bộ xử lý đồ họa (graphics processing unit, GPU) giữa huấn luyện và phục vụ, có nghiệm tối ưu tại biên theo Mệnh đề 07.2, nơi ít nhất một giới hạn được dùng hết. Ở Tình huống 07.2, chúng ta đọc giới hạn đó từ các biến phụ. Mệnh đề không áp dụng khi lợi ích bão hòa theo giờ huấn luyện, vì mục tiêu khi đó không tuyến tính.
 
 Mệnh đề 07.2 và cả chương dựa trên tính tuyến tính của mô hình, và tính tuyến tính chứa những giả thiết về thực tế. Khi một giả thiết như vậy sai, mô hình tuyến tính trả lời một câu hỏi khác với câu hỏi ban đầu, nên chúng ta nêu rõ các giả thiết đó trong nhận xét sau.
 
@@ -234,7 +234,7 @@ Hai luồng suy luận dùng chung một GPU trong một giờ. Mỗi nghìn yê
 - (a) Nêu biến quyết định và đơn vị.
 - (b) Viết hàm mục tiêu và chiều tối ưu.
 - (c) Viết mọi ràng buộc và miền biến; viết bài toán ở dạng (1.1) với $c$, $A$, $b$ cụ thể.
-- (d) Kiểm tính khả thi của phương án $(4,6)$ và tính giá trị mục tiêu tại đó.
+- (d) Kiểm tra tính khả thi của phương án $(4,6)$ và tính giá trị mục tiêu tại đó.
 :::
 
 ::: hint
@@ -254,7 +254,7 @@ $$
 
 **Câu (d).** Phương án $(4,6)$ dùng $2\cdot4+6=14$ phút, đúng bằng ngân sách; $4\le8$ và $6\le6$. Vậy $(4,6)$ khả thi, với hai ràng buộc chặt là GPU và giới hạn luồng 2. Giá trị mục tiêu là $4\cdot4+5\cdot6=46$.
 
-**Kiểm tra lại.** Ba lỗi thường gặp: đảo hệ số thành $x_1+2x_2\le14$, dùng $60$ phút thay cho ngân sách $14$ phút, và quên miền biến. Với $Ax$ tại $(4,6)$: $(14,4,6)\le(14,8,6)$. Câu hỏi chỉ yêu cầu kiểm khả thi; kết luận $(4,6)$ có tối ưu hay không cần công cụ của Mục 4 (Bài tập 07.6 làm việc đó trên một đa giác khác).
+**Kiểm tra lại.** Ba lỗi thường gặp: đảo hệ số thành $x_1+2x_2\le14$, dùng $60$ phút thay cho ngân sách $14$ phút, và quên miền biến. Với $Ax$ tại $(4,6)$: $(14,4,6)\le(14,8,6)$. Câu hỏi chỉ yêu cầu kiểm tra khả thi; kết luận $(4,6)$ có tối ưu hay không cần công cụ của Mục 4 (Bài tập 07.6 làm việc đó trên một đa giác khác).
 :::
 
 ### 1.3 Hồi quy chuẩn $L_1$ dưới dạng quy hoạch tuyến tính
@@ -297,7 +297,7 @@ Giá trị tối ưu là $2$, đạt tại mọi $x\in[1,3]$.
 **Kiểm tra lại.** Tại $x=2$, chọn $t_1=3$, $t_2=1$ vẫn khả thi nhưng cho $4>2$; giảm $t_1$ về $|x-1|=1$ làm mục tiêu giảm. Nghiệm không duy nhất: $x=1$ và $x=3$ cùng cho $2$.
 :::
 
-Ví dụ 07.4 cho thấy hai bất phương trình tuyến tính thay được một trị tuyệt đối, và phép cực tiểu buộc biến chặn bằng trị tuyệt đối tại nghiệm. Phát biểu chung là một trường hợp riêng của Định lý 02.15 ở Bài 02. Ta viết lại định lý đó với ký hiệu cục bộ: tập $D\subseteq\mathbb R^n$, hàm $\phi:D\to\mathbb R$, các hàm affine $\ell_{ij}$ với $i=1,\ldots,M$ và $j$ chạy trên một tập chỉ số hữu hạn, và trọng số $\gamma_i\ge0$. Định lý so sánh hai bài
+Ví dụ 07.4 cho thấy hai bất phương trình tuyến tính thay được một trị tuyệt đối, và phép cực tiểu buộc biến chặn bằng trị tuyệt đối tại nghiệm. Phát biểu chung là một trường hợp riêng của Định lý 02.15 ở Bài 02. Ta viết lại định lý đó với ký hiệu cục bộ: tập $D\subseteq\mathbb R^n$, hàm $\phi:D\to\mathbb R$, các hàm affine $\ell_{ij}$ với $i=1,\ldots,M$ và $j$ chạy trên một tập chỉ số hữu hạn, và trọng số $\gamma_i\ge0$. Định lý so sánh hai bài toán
 
 $$
 \begin{aligned}
@@ -308,7 +308,7 @@ $$
 
 và kết luận hai điều sau.
 
-- (a) Hai bài có cùng giá trị tối ưu. Nếu $x^*$ là nghiệm của $(\mathrm P)$ thì $(x^*,t^*)$ với $t_i^*=\max_j\ell_{ij}(x^*)$ là nghiệm của $(\mathrm Q)$; nếu $(x^*,t^*)$ là nghiệm của $(\mathrm Q)$ thì $x^*$ là nghiệm của $(\mathrm P)$.
+- (a) Hai bài toán có cùng giá trị tối ưu. Nếu $x^*$ là nghiệm của $(\mathrm P)$ thì $(x^*,t^*)$ với $t_i^*=\max_j\ell_{ij}(x^*)$ là nghiệm của $(\mathrm Q)$; nếu $(x^*,t^*)$ là nghiệm của $(\mathrm Q)$ thì $x^*$ là nghiệm của $(\mathrm P)$.
 - (b) Khi $\gamma_i>0$, mọi nghiệm $(x^*,t^*)$ của $(\mathrm Q)$ có $t_i^*=\max_j\ell_{ij}(x^*)$.
 
 Áp dụng định lý này cho tổng các trị tuyệt đối của phần dư, ta được hệ quả sau.
@@ -328,36 +328,36 @@ $$
 
 Cụ thể:
 
-- (a) hai bài có cùng giá trị tối ưu;
-- (b) nếu $x^*$ là nghiệm của bài gốc thì $(x^*,t^*)$ với $t_i^*=|h_i^Tx^*-y_i|$ là nghiệm của (1.2);
-- (c) nếu $(x^*,t^*)$ là nghiệm của (1.2) thì $x^*$ là nghiệm của bài gốc và $t_i^*=|h_i^Tx^*-y_i|$ với mọi $i$.
+- (a) hai bài toán có cùng giá trị tối ưu;
+- (b) nếu $x^*$ là nghiệm của bài toán ban đầu thì $(x^*,t^*)$ với $t_i^*=|h_i^Tx^*-y_i|$ là nghiệm của (1.2);
+- (c) nếu $(x^*,t^*)$ là nghiệm của (1.2) thì $x^*$ là nghiệm của bài toán ban đầu và $t_i^*=|h_i^Tx^*-y_i|$ với mọi $i$.
 
-**Điều kiện áp dụng.** Bài cực tiểu; mỗi trị tuyệt đối có hệ số dương.
+**Điều kiện áp dụng.** Bài toán cực tiểu; mỗi trị tuyệt đối có hệ số dương.
 
-**Phạm vi.** Hệ quả không cho nghiệm duy nhất, và không áp dụng cho bài cực đại một tổng trị tuyệt đối.
+**Phạm vi.** Hệ quả không cho nghiệm duy nhất, và không áp dụng cho bài toán cực đại một tổng trị tuyệt đối.
 :::
 
 ::: proof Chứng minh Hệ quả 07.4
-**Bước 1 (đặt vào Định lý 02.15).** Lấy $D=\mathbb R^n$, $\phi=0$, $M$ hàm cực đại với $\gamma_i=1$, mỗi hàm cực đại của hai hàm affine $\ell_{i1}(x)=h_i^Tx-y_i$, $\ell_{i2}(x)=-(h_i^Tx-y_i)$. Vì $\max(r,-r)=|r|$, bài gốc là bài $(\mathrm P)$ ở trên.
+**Bước 1 (đặt vào Định lý 02.15).** Lấy $D=\mathbb R^n$, $\phi=0$, $M$ hàm cực đại với $\gamma_i=1$, mỗi hàm cực đại của hai hàm affine $\ell_{i1}(x)=h_i^Tx-y_i$, $\ell_{i2}(x)=-(h_i^Tx-y_i)$. Vì $\max(r,-r)=|r|$, bài toán ban đầu là bài toán $(\mathrm P)$ ở trên.
 
-**Bước 2 (đọc bài có biến chặn; kết luận (a), (c) của hệ quả).** Hai ràng buộc $\ell_{i1}(x)\le t_i$ và $\ell_{i2}(x)\le t_i$ chính là $-t_i\le h_i^Tx-y_i\le t_i$, nên bài $(\mathrm Q)$ là (1.2). Phần (a) của Định lý 02.15 cho cùng giá trị tối ưu và cho chiều từ nghiệm của (1.2) sang nghiệm của bài gốc; phần (b) của Định lý 02.15, với $\gamma_i=1>0$, cho $t_i^*=|h_i^Tx^*-y_i|$ tại mọi nghiệm của (1.2).
+**Bước 2 (đọc bài toán có biến chặn; kết luận (a), (c) của hệ quả).** Hai ràng buộc $\ell_{i1}(x)\le t_i$ và $\ell_{i2}(x)\le t_i$ chính là $-t_i\le h_i^Tx-y_i\le t_i$, nên bài toán $(\mathrm Q)$ là (1.2). Phần (a) của Định lý 02.15 cho cùng giá trị tối ưu và cho chiều từ nghiệm của (1.2) sang nghiệm của bài toán ban đầu; phần (b) của Định lý 02.15, với $\gamma_i=1>0$, cho $t_i^*=|h_i^Tx^*-y_i|$ tại mọi nghiệm của (1.2).
 
-**Bước 3 (chiều từ bài gốc sang (1.2); kết luận (b) của hệ quả).** Với nghiệm $x^*$ của bài gốc, điểm $(x^*,t^*)$ với $t_i^*=|h_i^Tx^*-y_i|$ khả thi cho (1.2) và có giá trị $\sum_i|h_i^Tx^*-y_i|$, bằng giá trị tối ưu chung, nên là nghiệm. $\square$
+**Bước 3 (chiều từ bài toán ban đầu sang (1.2); kết luận (b) của hệ quả).** Với nghiệm $x^*$ của bài toán ban đầu, điểm $(x^*,t^*)$ với $t_i^*=|h_i^Tx^*-y_i|$ khả thi cho (1.2) và có giá trị $\sum_i|h_i^Tx^*-y_i|$, bằng giá trị tối ưu chung, nên là nghiệm. $\square$
 :::
 
-Bài (1.2) có mục tiêu tuyến tính và $2M$ ràng buộc tuyến tính, nên là một quy hoạch tuyến tính theo Định nghĩa 07.1. Hai bất phương trình của mẫu $i$ tương đương với $t_i\ge|r_i|$, nên điều kiện $t_i\ge0$ không cần viết thêm.
+Bài toán (1.2) có mục tiêu tuyến tính và $2M$ ràng buộc tuyến tính, nên là một quy hoạch tuyến tính theo Định nghĩa 07.1. Hai bất phương trình của mẫu $i$ tương đương với $t_i\ge|r_i|$, nên điều kiện $t_i\ge0$ không cần viết thêm.
 
 Có hai nhầm lẫn thường gặp ở đây.
 
-- Hai bất phương trình chỉ cho $t_i\ge|r_i|$; dấu bằng tại nghiệm xuất hiện nhờ hệ số dương của $t_i$ trong mục tiêu cực tiểu. Nếu đổi sang cực đại $\sum_it_i$, bài (1.2) không bị chặn.
+- Hai bất phương trình chỉ cho $t_i\ge|r_i|$; dấu bằng tại nghiệm xuất hiện nhờ hệ số dương của $t_i$ trong mục tiêu cực tiểu. Nếu đổi sang cực đại $\sum_it_i$, bài toán (1.2) không bị chặn.
 - Không khả vi không có nghĩa không lồi: $\sum_i|r_i|$ lồi theo Định lý 01.31, nhưng gradient không xác định tại các điểm gãy.
 
-**Trong học máy.** Hồi quy $L_1$ ước lượng trung vị có điều kiện của giá trị đích, nên ít nhạy với ngoại lai hơn bình phương nhỏ nhất. Koenker và Bassett (1978) mở rộng nó thành hồi quy phân vị. Hệ quả 07.4 cho phép giải nó bằng một bộ giải quy hoạch tuyến tính với $n+M$ biến và $2M$ ràng buộc thay cho phương pháp gradient; Mệnh đề 07.25 ở Mục 4 chứng minh thêm rằng, khi các véc-tơ đặc trưng sinh $\mathbb R^n$, bài (1.2) có một nghiệm làm ít nhất $n$ phần dư bằng $0$. Ở Tình huống 07.1, chúng ta dùng điều đó trên một bộ dữ liệu có ngoại lai.
+**Trong học máy.** Hồi quy $L_1$ ước lượng trung vị có điều kiện của giá trị đích, nên ít nhạy với ngoại lai hơn bình phương nhỏ nhất. Koenker và Bassett (1978) mở rộng nó thành hồi quy phân vị. Hệ quả 07.4 cho phép giải nó bằng một bộ giải quy hoạch tuyến tính với $n+M$ biến và $2M$ ràng buộc thay cho phương pháp gradient; Mệnh đề 07.25 ở Mục 4 chứng minh thêm rằng, khi các véc-tơ đặc trưng sinh $\mathbb R^n$, bài toán (1.2) có một nghiệm làm ít nhất $n$ phần dư bằng $0$. Ở Tình huống 07.1, chúng ta dùng điều đó trên một bộ dữ liệu có ngoại lai.
 
 ::: exercise Bài tập 07.2 (Mô hình hằng với mất mát $L_1$)
 Ba mẫu có giá trị đích $y_1=0$, $y_2=2$, $y_3=6$; mô hình hằng dự đoán cùng một số $x\in\mathbb R$ cho mọi mẫu, tức $h_i=1$.
 
-- (a) Viết bài cực tiểu $\sum_i|x-y_i|$ thành quy hoạch tuyến tính dạng (1.2); nêu số biến và số ràng buộc.
+- (a) Viết bài toán cực tiểu $\sum_i|x-y_i|$ thành quy hoạch tuyến tính dạng (1.2); nêu số biến và số ràng buộc.
 - (b) Tìm nghiệm và giá trị tối ưu.
 - (c) Tìm nghiệm của bình phương nhỏ nhất $\sum_i(x-y_i)^2$, so với (b), và xác định mẫu làm nghiệm đó lệch khỏi trung vị nhiều nhất.
 :::
@@ -383,24 +383,24 @@ Hàm giảm tới $x=2$ rồi tăng, nên nghiệm duy nhất là $x^*=2$, trung
 **Kiểm tra lại.** Tại $x=2$: $|2-0|+|2-2|+|2-6|=6$; tại $x=\tfrac83$: $\tfrac83+\tfrac23+\tfrac{10}3=\tfrac{20}3>6$.
 :::
 
-Như vậy, xuất phát từ bảng dữ kiện của bài hộp hạt (Ví dụ 07.1 và Ví dụ 07.2), chúng ta đã tách phần chung thành dạng (1.1) của Định nghĩa 07.1. Ba giả thiết mô hình đi kèm dạng này được nêu ở Nhận xét 07.3. Mệnh đề 07.2 cho biết nghiệm tối ưu, nếu có, nằm trên biên của miền, còn Hệ quả 07.4 mở rộng phạm vi của định nghĩa sang hồi quy $L_1$. Đến đây, chúng ta đã có cách viết một bài toán quyết định thành quy hoạch tuyến tính.
+Như vậy, xuất phát từ bảng dữ kiện của bài toán hộp hạt (Ví dụ 07.1 và Ví dụ 07.2), chúng ta đã tách phần chung thành dạng (1.1) của Định nghĩa 07.1. Ba giả thiết mô hình đi kèm dạng này được nêu ở Nhận xét 07.3. Mệnh đề 07.2 cho biết nghiệm tối ưu, nếu có, nằm trên biên của miền, còn Hệ quả 07.4 mở rộng phạm vi của định nghĩa sang hồi quy $L_1$. Đến đây, chúng ta đã có cách viết một bài toán quyết định thành quy hoạch tuyến tính.
 
 Tuy nhiên, biên của miền vẫn có vô số điểm, nên chưa có tập ứng viên hữu hạn nào. Trong Mục 2, chúng ta mô tả miền khả thi bằng hữu hạn nửa không gian.
 
 ## 2. Đa diện, dạng chuẩn và nghiệm cơ sở
 
-Trên bài hộp hạt, phương án $(30,12)$ cho $z=96$, lớn hơn các phương án đã thử, nhưng chưa có lập luận nào loại vô số phương án còn lại. Đầu tiên, chúng ta chứng minh $2x_1+3x_2\le96$ trên toàn miền hộp hạt, sau đó tìm cách tính các điểm góc của miền chỉ bằng đại số, để dùng được khi có nhiều biến và không còn vẽ được hình.
+Trên bài toán hộp hạt, phương án $(30,12)$ cho $z=96$, lớn hơn các phương án đã thử, nhưng chưa có lập luận nào loại vô số phương án còn lại. Đầu tiên, chúng ta chứng minh $2x_1+3x_2\le96$ trên toàn miền hộp hạt, sau đó tìm cách tính các điểm góc của miền chỉ bằng đại số, để dùng được khi có nhiều biến và không còn vẽ được hình.
 
 ### 2.1 Đa diện và đường mức
 
 Trên mặt phẳng $(x_1,x_2)$, ta có thể vẽ cùng lúc miền khả thi và các đường trên đó mục tiêu nhận một giá trị cố định. Mỗi bất phương trình $a^Tx\le\beta$ giữ lại một nửa mặt phẳng nằm về một phía của đường biên $a^Tx=\beta$, và miền khả thi là phần chung của các nửa mặt phẳng đó.
 
-![Mặt phẳng x1, x2. Miền khả thi của bài hộp hạt là ngũ giác tô màu với năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Đường mức nét đứt z = 60 đi qua hai đỉnh (30,0) và (0,20). Đường mức song song z = 96 chỉ chạm miền tại đỉnh (30,12). Mũi tên ghi "tăng z" chỉ theo hướng véc-tơ (2,3).](img/lec-07/polyhedron-level-sets.svg)
+![Mặt phẳng x1, x2. Miền khả thi của bài toán hộp hạt là ngũ giác tô màu với năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Đường mức nét đứt z = 60 đi qua hai đỉnh (30,0) và (0,20). Đường mức song song z = 96 chỉ có điểm chung với miền tại đỉnh (30,12). Mũi tên ghi "tăng z" chỉ theo hướng véc-tơ (2,3).](img/lec-07/polyhedron-level-sets.svg)
 
-Giao của năm nửa mặt phẳng trên hình là ngũ giác có năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$; đường giờ máy cắt hai trục tại $(54,0)$ và $(0,27)$. Các đường $2x_1+3x_2=\alpha$, gọi là đường mức (level set) của mục tiêu, song song vì cùng véc-tơ pháp tuyến $c=(2,3)$. Tăng $\alpha$ tịnh tiến đường mức theo hướng $c$, và đường mức cuối cùng còn chạm miền là $z=96$, tại đúng một đỉnh.
+Giao của năm nửa mặt phẳng trên hình là ngũ giác có năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$; đường giờ máy cắt hai trục tại $(54,0)$ và $(0,27)$. Các đường $2x_1+3x_2=\alpha$, gọi là đường mức (level set) của mục tiêu, song song vì cùng véc-tơ pháp tuyến $c=(2,3)$. Tăng $\alpha$ tịnh tiến đường mức theo hướng $c$, và đường mức cuối cùng còn có điểm chung với miền là $z=96$, với điểm chung duy nhất là một đỉnh.
 
 ::: example Ví dụ 07.5 (Cận trên của mục tiêu hộp hạt)
-**Dữ kiện.** Bài hộp hạt: cực đại $z=2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$. Năm đỉnh của ngũ giác khả thi là $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$.
+**Dữ kiện.** Bài toán hộp hạt: cực đại $z=2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$. Năm đỉnh của ngũ giác khả thi là $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$.
 
 **Giá trị tại năm đỉnh.** Lần lượt là $0$, $60$, $96$, $88$, $60$. Đường mức $z=60$ cắt miền theo đoạn nối $(30,0)$ và $(0,20)$.
 
@@ -421,7 +421,7 @@ Dòng thứ hai dùng $x_1\le30$, $x_1+2x_2\le54$ và hai hệ số không âm.
 **Kiểm tra lại.** Hai hệ số cho $\tfrac12+\tfrac32=2$ ở $x_1$ và $\tfrac32\cdot2=3$ ở $x_2$. Tại $(14,20)$: $\tfrac12\cdot14+\tfrac32\cdot54=7+81=88$, khớp $z=88$ vì $x_1+2x_2=54$ chặt tại đó.
 :::
 
-Trong Ví dụ 07.5, cận $2x_1+3x_2\le96$ được chứng minh bằng cơ chế của Mệnh đề 02.11 viết cho chiều cực đại, trong đó hai hệ số $\tfrac12$, $\tfrac32$ là nhân tử của bài đối ngẫu (Mệnh đề 03.11). Tuy nhiên, cách làm này cần đoán đúng hai ràng buộc chặt tại nghiệm, điều mà hình vẽ gợi ý được trong mặt phẳng nhưng không gợi ý được trong nhiều chiều. Để có một cách tìm ứng viên có hệ thống, trước hết chúng ta mô tả miền khả thi trong mọi số chiều bằng các khái niệm của định nghĩa sau.
+Trong Ví dụ 07.5, cận $2x_1+3x_2\le96$ được chứng minh bằng cơ chế của Mệnh đề 02.11 viết cho chiều cực đại, trong đó hai hệ số $\tfrac12$, $\tfrac32$ là nhân tử của bài toán đối ngẫu (Mệnh đề 03.11). Tuy nhiên, cách làm này cần đoán đúng hai ràng buộc chặt tại nghiệm, điều mà hình vẽ gợi ý được trong mặt phẳng nhưng không gợi ý được trong nhiều chiều. Để có một cách tìm ứng viên có hệ thống, trước hết chúng ta mô tả miền khả thi trong mọi số chiều bằng các khái niệm của định nghĩa sau.
 
 ::: definition Định nghĩa 07.5 (Siêu phẳng, nửa không gian, đa diện)
 Cho $a\in\mathbb R^n$, $a\ne0$, và $\beta\in\mathbb R$.
@@ -463,7 +463,7 @@ Trong mặt phẳng, siêu phẳng là một đường thẳng và nửa không 
 **Bước 2 (phần (b)).** Phương trình $A'x=b'$ tương đương với hai bất phương trình $A'x\le b'$ và $-A'x\le-b'$, còn $x\ge0$ tương đương với $-x\le0$. Do đó $Q=\{x\mid\tilde Ax\le\tilde b\}$ với $\tilde A$ xếp chồng $A'$, $-A'$, $-I$ và $\tilde b$ xếp chồng $b'$, $-b'$, $0$. $\square$
 :::
 
-Phần (a) cho phép ta dùng tổ hợp lồi trên mọi miền khả thi của quy hoạch tuyến tính, và ở Mục 3, chúng ta dùng nó để định nghĩa điểm cực. Phần (b) cho biết mọi kết quả về đa diện dạng (2.1) vẫn áp dụng sau khi các bất phương trình được viết lại thành phương trình.
+Phần (a) cho phép ta dùng tổ hợp lồi trên mọi miền khả thi của quy hoạch tuyến tính, và ở Mục 3, chúng ta dùng nó để định nghĩa điểm cực biên. Phần (b) cho biết mọi kết quả về đa diện dạng (2.1) vẫn áp dụng sau khi các bất phương trình được viết lại thành phương trình.
 
 ::: example Ví dụ 07.6 (Đa diện bị chặn và không bị chặn)
 **Miền hộp hạt.** Mọi phương án khả thi có $0\le x_1\le30$ và $0\le x_2\le20$, nên $\lVert x\rVert\le\sqrt{30^2+20^2}=\sqrt{1300}\approx36{,}06$. Miền bị chặn với $K=\sqrt{1300}$.
@@ -473,9 +473,9 @@ Phần (a) cho phép ta dùng tổ hợp lồi trên mọi miền khả thi củ
 **Kiểm tra lại.** Tại $(\theta,0)$ với $\theta=5$: $5+0=5\ge1$, $5\ge0$, $0\ge0$.
 :::
 
-Nhầm lẫn thường gặp là đồng nhất "miền không bị chặn" với "mục tiêu không bị chặn". Trên $P_1$, bài cực đại $x_1$ không bị chặn trên, nhưng bài cực đại $-x_1-x_2$ có giá trị tối ưu $-1$, đạt trên cả đoạn $x_1+x_2=1$, $x\ge0$. Các khả năng này được phân loại đầy đủ ở Mục 4.
+Nhầm lẫn thường gặp là đồng nhất "miền không bị chặn" với "mục tiêu không bị chặn". Trên $P_1$, bài toán cực đại $x_1$ không bị chặn trên, nhưng bài toán cực đại $-x_1-x_2$ có giá trị tối ưu $-1$, đạt trên cả đoạn $x_1+x_2=1$, $x\ge0$. Các khả năng này được phân loại đầy đủ ở Mục 4.
 
-**Trong học máy.** Tập trọng số của một tổ hợp mười mô hình, $\{p\in\mathbb R^{10}\mid p\ge0,\ \sum_jp_j=1\}$, là đa diện dạng chuẩn theo Mệnh đề 07.6(b); giới hạn ngân sách tính toán, bộ nhớ hay độ trễ tuyến tính theo tài nguyên là các nửa không gian. Tính lồi ở phần (a) cho phép dùng các kết quả về bài lồi của Bài 01–03 trên các miền này.
+**Trong học máy.** Tập trọng số của một tổ hợp mười mô hình, $\{p\in\mathbb R^{10}\mid p\ge0,\ \sum_jp_j=1\}$, là đa diện dạng chuẩn theo Mệnh đề 07.6(b); giới hạn ngân sách tính toán, bộ nhớ hay độ trễ tuyến tính theo tài nguyên là các nửa không gian. Tính lồi ở phần (a) cho phép dùng các kết quả về bài toán lồi của Bài 01–03 trên các miền này.
 
 ### 2.2 Dạng chuẩn
 
@@ -500,20 +500,20 @@ Miền khả thi của nó là $P=\{x\in\mathbb R^n\mid Ax=b,\ x\ge0\}$.
 So với dạng chuẩn trong Định nghĩa 02.9, định nghĩa này viết ở chiều cực đại và thêm giả thiết hạng. Một số tài liệu gọi dạng $Ax\le b$ là "dạng chuẩn", còn trong chương này, dạng chuẩn luôn là (2.2). Mọi quy hoạch tuyến tính đưa được về dạng (2.2) theo mệnh đề sau, phiên bản chiều cực đại của Mệnh đề 02.10.
 
 ::: proposition Mệnh đề 07.8 (Đưa quy hoạch tuyến tính về dạng chuẩn)
-**Giả thiết.** Bài gốc: cực đại $c^Tx$ trên $P=\{x\in\mathbb R^n\mid Ax\le b\}$, với $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$. Đặt $\tilde x=(x^+,x^-,s)\in\mathbb R^{2n+m}$ và
+**Giả thiết.** Bài toán ban đầu: cực đại $c^Tx$ trên $P=\{x\in\mathbb R^n\mid Ax\le b\}$, với $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$. Đặt $\tilde x=(x^+,x^-,s)\in\mathbb R^{2n+m}$ và
 
 $$
 \tilde A=\begin{bmatrix}A&-A&I\end{bmatrix},\qquad\tilde c=\begin{bmatrix}c\\-c\\0\end{bmatrix}.
 $$
 
-Bài mới: cực đại $\tilde c^T\tilde x$ trên $\tilde P=\{\tilde x\mid\tilde A\tilde x=b,\ \tilde x\ge0\}$.
+Bài toán mới: cực đại $\tilde c^T\tilde x$ trên $\tilde P=\{\tilde x\mid\tilde A\tilde x=b,\ \tilde x\ge0\}$.
 
 **Kết luận.**
 
-- (a) $\operatorname{rank}(\tilde A)=m$, nên bài mới ở dạng chuẩn (2.2).
+- (a) $\operatorname{rank}(\tilde A)=m$, nên bài toán mới ở dạng chuẩn (2.2).
 - (b) Ánh xạ $\varphi(x)=(\max(x,0),\max(-x,0),b-Ax)$, với $\max$ lấy theo từng thành phần, đưa $P$ vào $\tilde P$ và $\tilde c^T\varphi(x)=c^Tx$.
 - (c) Ánh xạ $\psi(x^+,x^-,s)=x^+-x^-$ đưa $\tilde P$ vào $P$ và $c^T\psi(\tilde x)=\tilde c^T\tilde x$.
-- (d) Hai bài có cùng giá trị tối ưu; $\varphi$ biến nghiệm tối ưu của bài gốc thành nghiệm tối ưu của bài mới, và $\psi$ làm điều ngược lại.
+- (d) Hai bài toán có cùng giá trị tối ưu; $\varphi$ biến nghiệm tối ưu của bài toán ban đầu thành nghiệm tối ưu của bài toán mới, và $\psi$ làm điều ngược lại.
 
 **Điều kiện áp dụng.** Mọi dữ kiện. Biến nào đã có ràng buộc không âm thì không cần tách: chỉ thêm biến phụ cho các hàng còn lại.
 
@@ -536,10 +536,10 @@ và $\tilde c^T\varphi(x)=c^Tx^+-c^Tx^-=c^Tx$.
 
 **Bước 3 (phần (c)).** Với $\tilde x\in\tilde P$, đặt $x=x^+-x^-$. Phương trình $\tilde A\tilde x=b$ cho $Ax=b-s\le b$ vì $s\ge0$, nên $x\in P$, và $c^Tx=c^Tx^+-c^Tx^-=\tilde c^T\tilde x$.
 
-**Bước 4 (phần (d)).** Theo (b), mọi giá trị đạt được trên $P$ cũng đạt được trên $\tilde P$; theo (c), điều ngược lại cũng đúng. Hai tập giá trị bằng nhau, nên hai cận trên đúng bằng nhau. Nếu $x^*$ tối ưu cho bài gốc thì $\tilde c^T\varphi(x^*)=c^Tx^*$ bằng giá trị tối ưu chung, nên $\varphi(x^*)$ tối ưu; lập luận cho $\psi$ giống hệt. $\square$
+**Bước 4 (phần (d)).** Theo (b), mọi giá trị đạt được trên $P$ cũng đạt được trên $\tilde P$; theo (c), điều ngược lại cũng đúng. Hai tập giá trị bằng nhau, nên hai cận trên đúng bằng nhau. Nếu $x^*$ tối ưu cho bài toán ban đầu thì $\tilde c^T\varphi(x^*)=c^Tx^*$ bằng giá trị tối ưu chung, nên $\varphi(x^*)$ tối ưu; lập luận cho $\psi$ giống hệt. $\square$
 :::
 
-Mệnh đề 07.8 cho phép ta chứng minh một kết quả về sự tồn tại nghiệm cho dạng chuẩn rồi chuyển nó sang mọi quy hoạch tuyến tính. Chứng minh Định lý 07.26 ở Mục 4 đi theo đúng cách này. Bảng sau tóm tắt các phép chuyển theo từng loại ràng buộc, kể cả khi bài gốc có biến không âm sẵn hoặc có ràng buộc $\ge$.
+Mệnh đề 07.8 cho phép ta chứng minh một kết quả về sự tồn tại nghiệm cho dạng chuẩn rồi chuyển nó sang mọi quy hoạch tuyến tính. Chứng minh Định lý 07.26 ở Mục 4 đi theo đúng cách này. Bảng sau tóm tắt các phép chuyển theo từng loại ràng buộc, kể cả khi bài toán ban đầu có biến không âm sẵn hoặc có ràng buộc $\ge$.
 
 | Dạng gốc | Dạng trong (2.2) | Tên biến thêm |
 |---|---|---|
@@ -550,12 +550,12 @@ Mệnh đề 07.8 cho phép ta chứng minh một kết quả về sự tồn t�
 
 Biến phụ $s=\beta-a^Tx$ đo phần giới hạn chưa dùng; biến dư $e=a^Tx-\beta$ đo phần vượt trên một cận dưới. Ba phép đầu đều thêm biến, nên $n$ của dạng chuẩn đếm cả các biến mới. Biến chặn $t_i$ của hồi quy $L_1$ trong (1.2) cũng là biến thêm vào mô hình, nhưng nó chặn một trị tuyệt đối chứ không đo phần giới hạn chưa dùng. Vì vậy, trong chương, chỉ $s_i$ được gọi là biến phụ.
 
-::: remark Nhận xét 07.9 (Khi bài cho sẵn phương trình)
+::: remark Nhận xét 07.9 (Khi bài toán cho sẵn phương trình)
 Nếu hệ $A'x=b'$ có nghiệm nhưng các hàng phụ thuộc tuyến tính, bỏ các hàng phụ thuộc không làm đổi tập nghiệm: mỗi hàng bỏ đi là tổ hợp của các hàng giữ lại, và vì hệ có nghiệm, vế phải tương ứng là cùng tổ hợp đó (lập luận ở phần chuẩn bị của chứng minh Định lý 03.15). Sau bước này, giả thiết hạng của Định nghĩa 07.7 thỏa. Ví dụ, hệ $x_1+x_2=2$, $2x_1+2x_2=4$ thu về một phương trình $x_1+x_2=2$.
 :::
 
-::: example Ví dụ 07.7 (Dạng chuẩn của bài hộp hạt)
-**Dữ kiện.** Bài hộp hạt: cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$.
+::: example Ví dụ 07.7 (Dạng chuẩn của bài toán hộp hạt)
+**Dữ kiện.** Bài toán hộp hạt: cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$.
 
 **Thêm biến phụ.** Hai biến đã không âm nên không cần tách. Mỗi giới hạn nhận một biến phụ $s_i\ge0$:
 
@@ -587,7 +587,7 @@ với $A$ là ma trận $3\times2$ của Ví dụ 07.3. Dạng chuẩn có $m=3$
 
 Trong Ví dụ 07.7, mỗi đỉnh ứng với việc cho $5-3=2$ biến bằng $0$, và ba biến còn lại được xác định từ ba phương trình khi ma trận $3\times3$ tương ứng khả nghịch. Ở Mục 2.3, chúng ta phát biểu quy trình này cho mọi hệ dạng chuẩn.
 
-**Trong học máy.** Bộ giải quy hoạch tuyến tính tự thêm biến phụ, và giá trị biến phụ ở nghiệm cho biết tài nguyên nào còn dư; trong Tình huống 07.2, biến phụ bằng $0$ chỉ ra ngân sách đã dùng hết. Mệnh đề 07.8(d) bảo đảm nghiệm đọc ngược về bài gốc bằng $\psi$ là nghiệm đúng.
+**Trong học máy.** Bộ giải quy hoạch tuyến tính tự thêm biến phụ, và giá trị biến phụ ở nghiệm cho biết tài nguyên nào còn dư; trong Tình huống 07.2, biến phụ bằng $0$ chỉ ra ngân sách đã dùng hết. Mệnh đề 07.8(d) bảo đảm nghiệm đọc ngược về bài toán ban đầu bằng $\psi$ là nghiệm đúng.
 
 ### 2.3 Nghiệm cơ sở khả thi
 
@@ -612,18 +612,18 @@ là nghiệm cơ sở ứng với $B$.
 **Suy biến.** Nghiệm cơ sở khả thi là suy biến (degenerate) nếu có ít nhất một thành phần của $x_B$ bằng $0$.
 :::
 
-Công thức (2.3) có nghĩa như sau. Khi đặt các biến ngoài cơ sở bằng $0$, hệ $Ax=b$ thu về $A_Bx_B=b$, và do $A_B$ vuông, khả nghịch nên hệ có nghiệm duy nhất $x_B=A_B^{-1}b$. Nghiệm cơ sở luôn thỏa $Ax=b$, nên chỉ còn điều kiện $x\ge0$ phải kiểm.
+Công thức (2.3) có nghĩa như sau. Khi đặt các biến ngoài cơ sở bằng $0$, hệ $Ax=b$ thu về $A_Bx_B=b$, và do $A_B$ vuông, khả nghịch nên hệ có nghiệm duy nhất $x_B=A_B^{-1}b$. Nghiệm cơ sở luôn thỏa $Ax=b$, nên chỉ còn điều kiện $x\ge0$ phải kiểm tra.
 
 Có ba nhầm lẫn thường gặp với định nghĩa này.
 
 - Giả thiết hạng bảo đảm có ít nhất một cơ sở, nhưng không bảo đảm mọi tập $m$ cột đều khả nghịch.
-- Khả nghịch chưa bảo đảm khả thi: vẫn phải kiểm $A_B^{-1}b\ge0$.
+- Khả nghịch chưa bảo đảm khả thi: vẫn phải kiểm tra $A_B^{-1}b\ge0$.
 - Suy biến không có nghĩa bài toán vô nghiệm hay điểm không xác định; nó có nghĩa điểm có ít hơn $m$ thành phần dương, và một điểm như vậy có thể ứng với nhiều cơ sở.
 
-Số tập $B$ có $m$ phần tử là $\binom nm$, và mỗi tập cho nhiều nhất một nghiệm cơ sở, nên một hệ dạng chuẩn chỉ có hữu hạn nghiệm cơ sở. Với bài hộp hạt, ma trận của định nghĩa là $\bar A\in\mathbb R^{3\times5}$, không phải ma trận $3\times2$ của mô hình gốc, và có $\binom53=10$ cách chọn $B$.
+Số tập $B$ có $m$ phần tử là $\binom nm$, và mỗi tập cho nhiều nhất một nghiệm cơ sở, nên một hệ dạng chuẩn chỉ có hữu hạn nghiệm cơ sở. Với bài toán hộp hạt, ma trận của định nghĩa là $\bar A\in\mathbb R^{3\times5}$, không phải ma trận $3\times2$ của mô hình gốc, và có $\binom53=10$ cách chọn $B$.
 
-::: example Ví dụ 07.8 (Hai cơ sở của bài hộp hạt)
-**Dữ kiện.** Hệ dạng chuẩn của bài hộp hạt với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$: $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$, mọi biến không âm.
+::: example Ví dụ 07.8 (Hai cơ sở của bài toán hộp hạt)
+**Dữ kiện.** Hệ dạng chuẩn của bài toán hộp hạt với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$: $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$, mọi biến không âm.
 
 **Cơ sở $B=\{1,2,4\}$, tức các cột của $x_1$, $x_2$, $s_2$.**
 
@@ -656,13 +656,13 @@ Ba biến cơ sở đều dương: đây là nghiệm cơ sở khả thi không 
 **Kiểm tra lại.** Phương trình thứ hai cùng với $x_2,x_4\ge0$ buộc $x_2=x_4=0$ tại mọi điểm khả thi; miền khả thi là đoạn $\{(x_1,0,1-x_1,0)\mid0\le x_1\le1\}$, có hai đầu mút $(1,0,0,0)$ và $(0,0,1,0)$.
 :::
 
-Trong Ví dụ 07.9, một điểm ứng với hai cơ sở, và đây là đặc trưng của suy biến: khi một biến cơ sở bằng $0$, ta thường đổi được nó với một biến ngoài cơ sở mà điểm không đổi. Hệ quả của hiện tượng này đối với phép kiểm tối ưu được trình bày ở Mục 4.4.
+Trong Ví dụ 07.9, một điểm ứng với hai cơ sở, và đây là đặc trưng của suy biến: khi một biến cơ sở bằng $0$, ta thường đổi được nó với một biến ngoài cơ sở mà điểm không đổi. Hệ quả của hiện tượng này đối với phép kiểm tra tối ưu được trình bày ở Mục 4.4.
 
 ::: exercise Bài tập 07.3 (Đưa về dạng chuẩn khi có ràng buộc $\ge$ và biến tự do)
-Xét bài cực đại $3x_1+x_2$ dưới các ràng buộc $x_1-x_2\ge2$, $x_1+x_2\le6$, $x_1\ge0$, còn $x_2$ là biến tự do.
+Xét bài toán cực đại $3x_1+x_2$ dưới các ràng buộc $x_1-x_2\ge2$, $x_1+x_2\le6$, $x_1\ge0$, còn $x_2$ là biến tự do.
 
 - (a) Viết bài toán ở dạng chuẩn (2.2), nêu ma trận, vế phải và số biến.
-- (b) Kiểm tính khả thi của phương án $(x_1,x_2)=(4,-1)$ và viết một điểm của dạng chuẩn ứng với nó.
+- (b) Kiểm tra tính khả thi của phương án $(x_1,x_2)=(4,-1)$ và viết một điểm của dạng chuẩn ứng với nó.
 - (c) Chỉ ra hai điểm khác nhau của dạng chuẩn cùng ứng với $(4,-1)$.
 :::
 
@@ -686,8 +686,8 @@ có hai hàng độc lập (hai cột cuối là $(-1,0)^T$ và $(0,1)^T$), nên
 **Kiểm tra lại.** Tại $(4,2,3,3,3)$: $4-2+3-3=2$ và $4+2-3+3=6$; mục tiêu $12+2-3=11=3\cdot4+(-1)$.
 :::
 
-::: exercise Bài tập 07.4 (Mười cách chọn cơ sở của bài hộp hạt)
-Hệ dạng chuẩn của bài hộp hạt, thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$: $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$, mọi biến không âm.
+::: exercise Bài tập 07.4 (Mười cách chọn cơ sở của bài toán hộp hạt)
+Hệ dạng chuẩn của bài toán hộp hạt, thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$: $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$, mọi biến không âm.
 
 - (a) Liệt kê mười tập $B$ có ba phần tử. Với mỗi tập, xác định $A_B$ có khả nghịch không; nếu có, tính nghiệm cơ sở.
 - (b) Xác định các nghiệm cơ sở khả thi và điểm $(x_1,x_2)$ tương ứng. Đối chiếu với năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$.
@@ -724,38 +724,38 @@ Năm nghiệm cơ sở khả thi ứng đúng năm đỉnh, mỗi đỉnh một 
 **Kiểm tra lại.** Tại $(14,20,16,0,0)$: $14+16=30$, $20+0=20$, $14+40+0=54$. Tại $(0,27,30,-7,0)$: $27-7=20$ và $54+0=54$.
 :::
 
-Tóm lại, chúng ta đã chứng minh $z^*=96$ cho bài hộp hạt bằng một tổ hợp không âm của các ràng buộc (Ví dụ 07.5). Để thay phép đoán ràng buộc chặt bằng một quy trình, chúng ta mô tả miền khả thi như một đa diện lồi (Định nghĩa 07.5, Mệnh đề 07.6). Sau đó, mọi quy hoạch tuyến tính được đưa về dạng chuẩn (Định nghĩa 07.7, Mệnh đề 07.8). Trên dạng chuẩn, mỗi điểm ứng viên được tính từ một hệ vuông (Định nghĩa 07.10), và ta có một quy trình đại số hữu hạn sinh ứng viên.
+Tóm lại, chúng ta đã chứng minh $z^*=96$ cho bài toán hộp hạt bằng một tổ hợp không âm của các ràng buộc (Ví dụ 07.5). Để thay phép đoán ràng buộc chặt bằng một quy trình, chúng ta mô tả miền khả thi như một đa diện lồi (Định nghĩa 07.5, Mệnh đề 07.6). Sau đó, mọi quy hoạch tuyến tính được đưa về dạng chuẩn (Định nghĩa 07.7, Mệnh đề 07.8). Trên dạng chuẩn, mỗi điểm ứng viên được tính từ một hệ vuông (Định nghĩa 07.10), và ta có một quy trình đại số hữu hạn sinh ứng viên.
 
-Tuy nhiên, quan hệ giữa nghiệm cơ sở khả thi và đỉnh mới được kiểm trên một hình hai chiều.
+Tuy nhiên, quan hệ giữa nghiệm cơ sở khả thi và đỉnh mới được kiểm tra trên một hình hai chiều.
 
-## 3. Điểm cực và nghiệm cơ sở khả thi
+## 3. Điểm cực biên và nghiệm cơ sở khả thi
 
-Ở Mục 2, chúng ta đã thấy năm nghiệm cơ sở khả thi của bài hộp hạt trùng với năm đỉnh của ngũ giác. Điều đó mới được kiểm trực quan trên một hình phẳng, trong khi điểm $(30,12,0,8,0)$ của dạng chuẩn nằm trong $\mathbb R^5$. Để dùng được quan hệ này khi không còn vẽ được hình, chúng ta cần trả lời ba câu hỏi: định nghĩa đỉnh thế nào cho mọi số chiều, vì sao nghiệm cơ sở khả thi và đỉnh trùng nhau, và đa diện nào có đỉnh. Câu hỏi cuối là cần thiết vì nửa mặt phẳng $\{x\in\mathbb R^2\mid x_2\ge0\}$ không có đỉnh nào.
+Ở Mục 2, chúng ta đã thấy năm nghiệm cơ sở khả thi của bài toán hộp hạt trùng với năm đỉnh của ngũ giác. Điều đó mới được kiểm tra trực quan trên một hình phẳng, trong khi điểm $(30,12,0,8,0)$ của dạng chuẩn nằm trong $\mathbb R^5$. Để dùng được quan hệ này khi không còn vẽ được hình, chúng ta cần trả lời ba câu hỏi: định nghĩa đỉnh thế nào cho mọi số chiều, vì sao nghiệm cơ sở khả thi và đỉnh trùng nhau, và đa diện nào có đỉnh. Câu hỏi cuối là cần thiết vì nửa mặt phẳng $\{x\in\mathbb R^2\mid x_2\ge0\}$ không có đỉnh nào.
 
-### 3.1 Điểm cực
+### 3.1 Điểm cực biên
 
 Về mặt hình học, đỉnh của một miền lồi là điểm không nằm giữa hai điểm khác nhau của miền. Một điểm trên cạnh, không phải đầu mút, nằm giữa hai điểm khác của cạnh đó, còn một điểm bên trong nằm giữa hai điểm của một đoạn ngắn đi qua nó. Mô tả này mới là trực giác, chưa phải định nghĩa.
 
-![Ngũ giác khả thi của bài hộp hạt. Đỉnh có nhãn v = (30,12), ghi "điểm cực". Điểm có nhãn u = (30,6) nằm trên cạnh thẳng đứng x1 = 30, ghi u = ½(30,0) + ½(30,12). Điểm có nhãn w ở bên trong ngũ giác là trung điểm của một đoạn nằm ngang.](img/lec-07/extreme-point-def.svg)
+![Ngũ giác khả thi của bài toán hộp hạt. Đỉnh có nhãn v = (30,12), ghi "điểm cực biên". Điểm có nhãn u = (30,6) nằm trên cạnh thẳng đứng x1 = 30, ghi u = ½(30,0) + ½(30,12). Điểm có nhãn w ở bên trong ngũ giác là trung điểm của một đoạn nằm ngang.](img/lec-07/extreme-point-def.svg)
 
 Hình đánh dấu ba điểm trên miền hộp hạt; hai nhãn $u$, $w$ chỉ là tên điểm trên hình, và văn bản gọi các điểm đó bằng tọa độ. Điểm có nhãn $u$, tức $(30,6)$, là trung điểm của hai điểm khác nhau $(30,0)$ và $(30,12)$ của miền. Điểm có nhãn $w$, tức $(10,10)$, là trung điểm của đoạn nằm ngang từ $(6,10)$ đến $(14,10)$. Đỉnh $v=(30,12)$ không là trung điểm của đoạn nào trong miền, và định nghĩa sau làm chính xác tính chất đó.
 
-::: definition Định nghĩa 07.11 (Điểm cực)
-Cho tập lồi $C\subseteq\mathbb R^n$. Điểm $v\in C$ là một điểm cực (extreme point) của $C$ nếu từ
+::: definition Định nghĩa 07.11 (Điểm cực biên)
+Cho tập lồi $C\subseteq\mathbb R^n$. Điểm $v\in C$ là một điểm cực biên (extreme point) của $C$ nếu từ
 
 $$
 v=\lambda x'+(1-\lambda)x'',\qquad x',x''\in C,\quad0<\lambda<1
 \tag{3.1}
 $$
 
-suy ra $x'=x''=v$. Trong chương này, "đỉnh" (vertex) là tên gọi khác của điểm cực.
+suy ra $x'=x''=v$. Trong chương này, "đỉnh" (vertex) là tên gọi khác của điểm cực biên.
 :::
 
-Trong định nghĩa trên, điều kiện $0<\lambda<1$ đòi $v$ nằm thật sự giữa $x'$ và $x''$. Với $\lambda=0$ hoặc $\lambda=1$, đẳng thức (3.1) thỏa tầm thường khi chọn $x''=v$ hoặc $x'=v$, nên hai giá trị đó bị loại. Để chứng minh $v$ không phải điểm cực, chỉ cần một cặp điểm $x'\ne x''$ của $C$ và một $\lambda\in(0,1)$ thỏa (3.1); chọn $\lambda=\tfrac12$ thường đủ.
+Trong định nghĩa trên, điều kiện $0<\lambda<1$ đòi $v$ nằm thật sự giữa $x'$ và $x''$. Với $\lambda=0$ hoặc $\lambda=1$, đẳng thức (3.1) thỏa tầm thường khi chọn $x''=v$ hoặc $x'=v$, nên hai giá trị đó bị loại. Để chứng minh $v$ không phải điểm cực biên, chỉ cần một cặp điểm $x'\ne x''$ của $C$ và một $\lambda\in(0,1)$ thỏa (3.1); chọn $\lambda=\tfrac12$ thường đủ.
 
-Điểm cực là tính chất hình học của tập $C$, không phụ thuộc hàm mục tiêu. Nó khác khái niệm cực đại hay cực tiểu của một hàm ở Định nghĩa 01.13: điểm $(0,0)$ là điểm cực của ngũ giác hộp hạt, đồng thời là điểm có giá trị mục tiêu nhỏ nhất.
+Điểm cực biên là tính chất hình học của tập $C$, không phụ thuộc hàm mục tiêu. Nó khác khái niệm cực đại hay cực tiểu của một hàm ở Định nghĩa 01.13: điểm $(0,0)$ là điểm cực biên của ngũ giác hộp hạt, đồng thời là điểm có giá trị mục tiêu nhỏ nhất.
 
-Một tập lồi có thể có vô số điểm cực, chẳng hạn mọi điểm $v$ trên đường tròn biên của hình tròn đơn vị đều là điểm cực. Nếu $v=\lambda x'+(1-\lambda)x''$ với $\lVert x'\rVert,\lVert x''\rVert\le1$ và $0<\lambda<1$ thì
+Một tập lồi có thể có vô số điểm cực biên, chẳng hạn mọi điểm $v$ trên đường tròn biên của hình tròn đơn vị đều là điểm cực biên. Nếu $v=\lambda x'+(1-\lambda)x''$ với $\lVert x'\rVert,\lVert x''\rVert\le1$ và $0<\lambda<1$ thì
 
 $$
 \begin{aligned}
@@ -766,26 +766,26 @@ $$
 
 nên cả hai bất đẳng thức là đẳng thức. Bất đẳng thức thứ hai buộc $\lVert x'\rVert=\lVert x''\rVert=1$; bất đẳng thức thứ nhất là bất đẳng thức tam giác, và với chuẩn Euclid nó chỉ xảy ra dấu bằng khi $x'$, $x''$ cùng hướng. Hai véc-tơ cùng hướng, cùng chuẩn $1$ thì bằng nhau, nên $x'=x''=v$; tính chất này gọi là chuẩn Euclid lồi chặt.
 
-::: example Ví dụ 07.10 (Kiểm điểm cực trên ngũ giác hộp hạt)
+::: example Ví dụ 07.10 (Kiểm tra điểm cực biên trên ngũ giác hộp hạt)
 **Dữ kiện.** Miền hộp hạt $P$: $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$. Ba điểm $v=(30,12)$, $(30,6)$, $(10,10)$.
 
-**Điểm $(30,6)$.** $(30,6)=\tfrac12(30,0)+\tfrac12(30,12)$, với $(30,0)$ và $(30,12)$ khác nhau và thuộc $P$. Điểm này không phải điểm cực.
+**Điểm $(30,6)$.** $(30,6)=\tfrac12(30,0)+\tfrac12(30,12)$, với $(30,0)$ và $(30,12)$ khác nhau và thuộc $P$. Điểm này không phải điểm cực biên.
 
-**Điểm $(10,10)$.** $(10,10)=\tfrac12(6,10)+\tfrac12(14,10)$. Hai điểm thuộc $P$: tại $(14,10)$, $14+20=34\le54$; tại $(6,10)$, $6+20=26\le54$. Điểm này không phải điểm cực.
+**Điểm $(10,10)$.** $(10,10)=\tfrac12(6,10)+\tfrac12(14,10)$. Hai điểm thuộc $P$: tại $(14,10)$, $14+20=34\le54$; tại $(6,10)$, $6+20=26\le54$. Điểm này không phải điểm cực biên.
 
 **Điểm $v=(30,12)$.** Giả sử $v=\lambda x'+(1-\lambda)x''$ với $x',x''\in P$, $0<\lambda<1$.
 
 - Tọa độ thứ nhất: $x_1'\le30$, $x_1''\le30$ và $\lambda x_1'+(1-\lambda)x_1''=30$. Nếu một trong hai số nhỏ hơn $30$, tổ hợp với hệ số dương nhỏ hơn $30$; vậy $x_1'=x_1''=30$.
 - Ràng buộc giờ máy: $x_1'+2x_2'\le54$, $x_1''+2x_2''\le54$ và tổ hợp bằng $30+24=54$. Cùng lập luận cho $x_1'+2x_2'=x_1''+2x_2''=54$, nên $x_2'=x_2''=12$.
 
-Vậy $x'=x''=v$, và $v$ là điểm cực.
+Vậy $x'=x''=v$, và $v$ là điểm cực biên.
 
 **Kiểm tra lại.** Lập luận cho $v$ dùng đúng hai ràng buộc chặt tại $v$, có hàng $(1,0)$ và $(1,2)$ độc lập tuyến tính. Tại $(30,6)$ chỉ có một ràng buộc chặt, $x_1=30$.
 :::
 
 ### 3.2 Tiêu chuẩn hạng của các ràng buộc chặt
 
-Định nghĩa 07.11 không cho cách kiểm trực tiếp, vì nó đòi xét mọi cặp điểm của tập. Lập luận cho $v=(30,12)$ trong Ví dụ 07.10 gợi ý một cách kiểm khác: ràng buộc thỏa với dấu bằng tại $v$ cũng phải thỏa với dấu bằng tại hai điểm hai bên, và hai ràng buộc độc lập như vậy đủ để xác định một điểm duy nhất trong mặt phẳng. Để viết gợi ý này thành phép kiểm, trước hết ta gọi tên các ràng buộc thỏa với dấu bằng theo định nghĩa sau.
+Định nghĩa 07.11 không cho cách kiểm tra trực tiếp, vì nó đòi xét mọi cặp điểm của tập. Lập luận cho $v=(30,12)$ trong Ví dụ 07.10 gợi ý một cách kiểm tra khác: ràng buộc thỏa với dấu bằng tại $v$ cũng phải thỏa với dấu bằng tại hai điểm hai bên, và hai ràng buộc độc lập như vậy đủ để xác định một điểm duy nhất trong mặt phẳng. Để viết gợi ý này thành phép kiểm tra, trước hết ta gọi tên các ràng buộc thỏa với dấu bằng theo định nghĩa sau.
 
 ::: definition Định nghĩa 07.12 (Ràng buộc chặt)
 Cho đa diện $P=\{x\in\mathbb R^n\mid Ax\le b\}$ với hàng $a_i^T$, $i=1,\ldots,m$, và $x\in P$. Ràng buộc thứ $i$ chặt (active) tại $x$ nếu $a_i^Tx=b_i$. Tập chỉ số các ràng buộc chặt là
@@ -795,22 +795,22 @@ $$
 $$
 :::
 
-Ràng buộc không chặt có khoảng dư $b_i-a_i^Tx>0$; một bước đủ ngắn theo hướng bất kỳ giữ nó thỏa. Ràng buộc chặt thì không như vậy: mọi bước theo hướng $d$ với $a_i^Td>0$ đều vi phạm nó. Với dạng (1.1) của bài hộp hạt viết thành năm hàng, tập chỉ số chặt tại $(30,12)$ là hai hàng $x_1\le30$ và $x_1+2x_2\le54$.
+Ràng buộc không chặt có độ dư (slack) $b_i-a_i^Tx>0$; một bước đủ ngắn theo hướng bất kỳ giữ nó thỏa. Ràng buộc chặt thì không như vậy: mọi bước theo hướng $d$ với $a_i^Td>0$ đều vi phạm nó. Với dạng (1.1) của bài toán hộp hạt viết thành năm hàng, tập chỉ số chặt tại $(30,12)$ là hai hàng $x_1\le30$ và $x_1+2x_2\le54$.
 
-Tiêu chuẩn đại số cho điểm cực của một đa diện được phát biểu trong định lý sau. Chứng minh chỉ cần Định nghĩa 07.11, Định nghĩa 07.12 và một sự kiện của đại số tuyến tính: một hệ $n$ phương trình độc lập tuyến tính trong $\mathbb R^n$ có nhiều nhất một nghiệm.
+Tiêu chuẩn đại số cho điểm cực biên của một đa diện được phát biểu trong định lý sau. Chứng minh chỉ cần Định nghĩa 07.11, Định nghĩa 07.12 và một sự kiện của đại số tuyến tính: một hệ $n$ phương trình độc lập tuyến tính trong $\mathbb R^n$ có nhiều nhất một nghiệm.
 
-::: theorem Định lý 07.13 (Tiêu chuẩn hạng cho điểm cực)
+::: theorem Định lý 07.13 (Tiêu chuẩn hạng cho điểm cực biên)
 **Giả thiết.** $P=\{x\in\mathbb R^n\mid Ax\le b\}$ với hàng $a_1^T,\ldots,a_m^T$; $x\in P$.
 
-**Kết luận.** $x$ là điểm cực của $P$ khi và chỉ khi họ $\{a_i\mid i\in\mathcal I(x)\}$ có hạng $n$, tức trong các ràng buộc chặt tại $x$ có $n$ ràng buộc với hàng độc lập tuyến tính.
+**Kết luận.** $x$ là điểm cực biên của $P$ khi và chỉ khi họ $\{a_i\mid i\in\mathcal I(x)\}$ có hạng $n$, tức trong các ràng buộc chặt tại $x$ có $n$ ràng buộc với hàng độc lập tuyến tính.
 
 **Điều kiện áp dụng.** $P$ cho bởi hữu hạn bất phương trình; phương trình được viết thành hai bất phương trình.
 
-**Phạm vi.** Định lý nói về điểm của $P$. Một điểm ngoài $P$ có thể thỏa $n$ phương trình độc lập, như $(30,20)$ của bài hộp hạt, mà không phải điểm cực.
+**Phạm vi.** Định lý nói về điểm của $P$. Một điểm ngoài $P$ có thể thỏa $n$ phương trình độc lập, như $(30,20)$ của bài toán hộp hạt, mà không phải điểm cực biên.
 :::
 
 ::: proof Chứng minh Định lý 07.13
-**Bước 1 (hạng $n$ kéo theo điểm cực).** Giả sử họ $\{a_i\mid i\in\mathcal I(x)\}$ có hạng $n$ và $x=\lambda x'+(1-\lambda)x''$ với $x',x''\in P$, $0<\lambda<1$. Với mỗi $i\in\mathcal I(x)$, hai bất đẳng thức $a_i^Tx'\le b_i$, $a_i^Tx''\le b_i$ và
+**Bước 1 (hạng $n$ kéo theo điểm cực biên).** Giả sử họ $\{a_i\mid i\in\mathcal I(x)\}$ có hạng $n$ và $x=\lambda x'+(1-\lambda)x''$ với $x',x''\in P$, $0<\lambda<1$. Với mỗi $i\in\mathcal I(x)$, hai bất đẳng thức $a_i^Tx'\le b_i$, $a_i^Tx''\le b_i$ và
 
 $$
 \lambda a_i^Tx'+(1-\lambda)a_i^Tx''=a_i^Tx=b_i .
@@ -818,12 +818,12 @@ $$
 
 Nếu một trong hai số $a_i^Tx'$, $a_i^Tx''$ nhỏ hơn $b_i$, tổ hợp với hai hệ số dương nhỏ hơn $b_i$, mâu thuẫn. Vậy $x'$ và $x''$ cùng là nghiệm của hệ $\{a_i^T\zeta=b_i\mid i\in\mathcal I(x)\}$ với ẩn $\zeta\in\mathbb R^n$. Hệ này có hạng $n$ nên có nhiều nhất một nghiệm, và $x$ là một nghiệm, nên $x'=x''=x$.
 
-**Bước 2 (hạng nhỏ hơn $n$ kéo theo không phải điểm cực).** Giả sử họ có hạng nhỏ hơn $n$. Theo phần đại số tuyến tính của mục "Kiến thức tiên quyết", có $d\ne0$ với $a_i^Td=0$ cho mọi $i\in\mathcal I(x)$. Với $i\notin\mathcal I(x)$, khoảng dư $b_i-a_i^Tx$ dương; chọn $\varepsilon>0$ đủ nhỏ để $\varepsilon\lvert a_i^Td\rvert<b_i-a_i^Tx$ với mọi $i\notin\mathcal I(x)$, điều làm được vì chỉ có hữu hạn chỉ số. Khi đó $x\pm\varepsilon d\in P$:
+**Bước 2 (hạng nhỏ hơn $n$ kéo theo không phải điểm cực biên).** Giả sử họ có hạng nhỏ hơn $n$. Theo phần đại số tuyến tính của mục "Kiến thức tiên quyết", có $d\ne0$ với $a_i^Td=0$ cho mọi $i\in\mathcal I(x)$. Với $i\notin\mathcal I(x)$, độ dư $b_i-a_i^Tx$ dương; chọn $\varepsilon>0$ đủ nhỏ để $\varepsilon\lvert a_i^Td\rvert<b_i-a_i^Tx$ với mọi $i\notin\mathcal I(x)$, điều làm được vì chỉ có hữu hạn chỉ số. Khi đó $x\pm\varepsilon d\in P$:
 
 - với $i\in\mathcal I(x)$: $a_i^T(x\pm\varepsilon d)=b_i$;
 - với $i\notin\mathcal I(x)$: $a_i^T(x\pm\varepsilon d)\le a_i^Tx+\varepsilon\lvert a_i^Td\rvert<b_i$.
 
-Vì $x=\tfrac12(x+\varepsilon d)+\tfrac12(x-\varepsilon d)$ với hai điểm khác nhau của $P$, $x$ không phải điểm cực. $\square$
+Vì $x=\tfrac12(x+\varepsilon d)+\tfrac12(x-\varepsilon d)$ với hai điểm khác nhau của $P$, $x$ không phải điểm cực biên. $\square$
 :::
 
 Định lý 07.13 cho thấy một điểm của đa diện là đỉnh khi và chỉ khi có $n$ ràng buộc chặt độc lập tại điểm đó, tức điểm là nghiệm duy nhất của các phương trình chặt. Bước 1 của chứng minh dùng hai giả thiết, hệ số tổ hợp dương và điểm thuộc $P$, còn Bước 2 dùng tính hữu hạn của số ràng buộc để chọn được một $\varepsilon$ chung.
@@ -832,34 +832,34 @@ So với Định nghĩa 07.11, định lý thay một điều kiện trên mọi
 
 Một điểm có thể có nhiều hơn $n$ ràng buộc chặt. Chẳng hạn miền $x_1+x_2\le100$, $3x_1+x_2\le180$, $x_2\le60$, $x\ge0$ của Tình huống 07.2 có đỉnh $(40,60)$, nơi cả ba ràng buộc đầu chặt: $40+60=100$, $120+60=180$, $60=60$. Định lý vẫn áp dụng vì chỉ cần hạng bằng $n=2$. Đỉnh như vậy là đỉnh suy biến theo nghĩa hình học, và ở Mục 3.3, chúng ta nối nó với khái niệm suy biến của Định nghĩa 07.10.
 
-Từ Định lý 07.13, ta suy ra ngay tập điểm cực của một đa diện là hữu hạn, như hệ quả sau.
+Từ Định lý 07.13, ta suy ra ngay tập điểm cực biên của một đa diện là hữu hạn, như hệ quả sau.
 
-::: corollary Hệ quả 07.14 (Đa diện có hữu hạn điểm cực)
+::: corollary Hệ quả 07.14 (Đa diện có hữu hạn điểm cực biên)
 **Giả thiết.** $P=\{x\in\mathbb R^n\mid Ax\le b\}$ với $m$ hàng.
 
-**Kết luận.** Mỗi điểm cực của $P$ là nghiệm duy nhất của một hệ $a_i^Tx=b_i$, $i\in S$, với $S\subseteq\{1,\ldots,m\}$, $\lvert S\rvert=n$ và các hàng $a_i$, $i\in S$, độc lập tuyến tính. Do đó $P$ có nhiều nhất $\binom mn$ điểm cực.
+**Kết luận.** Mỗi điểm cực biên của $P$ là nghiệm duy nhất của một hệ $a_i^Tx=b_i$, $i\in S$, với $S\subseteq\{1,\ldots,m\}$, $\lvert S\rvert=n$ và các hàng $a_i$, $i\in S$, độc lập tuyến tính. Do đó $P$ có nhiều nhất $\binom mn$ điểm cực biên.
 
 **Điều kiện áp dụng.** Như Định lý 07.13.
 
-**Phạm vi.** Cận $\binom mn$ thường lớn hơn nhiều so với số điểm cực thật; nó chỉ khẳng định tính hữu hạn.
+**Phạm vi.** Cận $\binom mn$ thường lớn hơn nhiều so với số điểm cực biên thật; nó chỉ khẳng định tính hữu hạn.
 :::
 
 ::: proof Chứng minh Hệ quả 07.14
-**Bước 1 (chọn hệ $n$ phương trình).** Với điểm cực $v$, Định lý 07.13 cho $n$ chỉ số chặt có hàng độc lập; gọi tập đó là $S_v$. Hệ $a_i^Tx=b_i$, $i\in S_v$, có ma trận vuông khả nghịch nên có nghiệm duy nhất, và $v$ là nghiệm đó.
+**Bước 1 (chọn hệ $n$ phương trình).** Với điểm cực biên $v$, Định lý 07.13 cho $n$ chỉ số chặt có hàng độc lập; gọi tập đó là $S_v$. Hệ $a_i^Tx=b_i$, $i\in S_v$, có ma trận vuông khả nghịch nên có nghiệm duy nhất, và $v$ là nghiệm đó.
 
-**Bước 2 (đếm).** Hai điểm cực khác nhau không thể có cùng tập $S$, vì $S$ xác định nghiệm duy nhất. Vậy số điểm cực không vượt số tập con $n$ phần tử của $\{1,\ldots,m\}$, tức $\binom mn$. $\square$
+**Bước 2 (đếm).** Hai điểm cực biên khác nhau không thể có cùng tập $S$, vì $S$ xác định nghiệm duy nhất. Vậy số điểm cực biên không vượt số tập con $n$ phần tử của $\{1,\ldots,m\}$, tức $\binom mn$. $\square$
 :::
 
-Hệ quả 07.14 cho thấy tập ứng viên là hữu hạn, và đây là lý do đầu tiên để việc tìm kiếm trên các đỉnh có thể kết thúc. Hình tròn đơn vị không phải đa diện, nên việc nó có vô số điểm cực không mâu thuẫn với hệ quả.
+Hệ quả 07.14 cho thấy tập ứng viên là hữu hạn, và đây là lý do đầu tiên để việc tìm kiếm trên các đỉnh có thể kết thúc. Hình tròn đơn vị không phải đa diện, nên việc nó có vô số điểm cực biên không mâu thuẫn với hệ quả.
 
-**Trong học máy.** Định lý 07.13 cho một phép kiểm sau khi giải: lấy nghiệm do bộ giải trả về, liệt kê các ràng buộc chặt và tính hạng của chúng. Với hồi quy $L_1$ dạng (1.2), mỗi mẫu có phần dư bằng $0$ góp hai ràng buộc chặt, nên một nghiệm đỉnh phải nội suy đủ nhiều mẫu; Mệnh đề 07.25 ở Mục 4 làm chính xác điều này.
+**Trong học máy.** Định lý 07.13 cho một phép kiểm tra sau khi giải: lấy nghiệm do bộ giải trả về, liệt kê các ràng buộc chặt và tính hạng của chúng. Với hồi quy $L_1$ dạng (1.2), mỗi mẫu có phần dư bằng $0$ góp hai ràng buộc chặt, nên một nghiệm đỉnh phải nội suy đủ nhiều mẫu; Mệnh đề 07.25 ở Mục 4 làm chính xác điều này.
 
 ::: example Ví dụ 07.11 (Tiêu chuẩn hạng trên ba điểm)
 **Dữ kiện.** Miền hộp hạt viết thành năm hàng: (1) $x_1\le30$; (2) $x_2\le20$; (3) $x_1+2x_2\le54$; (4) $-x_1\le0$; (5) $-x_2\le0$; ở đây $n=2$.
 
-**Điểm $(30,12)$.** Hàng chặt: (1), (3), với $a_1=(1,0)$, $a_3=(1,2)$ độc lập. Hạng $2=n$: điểm cực.
+**Điểm $(30,12)$.** Hàng chặt: (1), (3), với $a_1=(1,0)$, $a_3=(1,2)$ độc lập. Hạng $2=n$: điểm cực biên.
 
-**Điểm $(30,6)$.** Chỉ hàng (1) chặt; hạng $1<2$: không phải điểm cực, khớp Ví dụ 07.10.
+**Điểm $(30,6)$.** Chỉ hàng (1) chặt; hạng $1<2$: không phải điểm cực biên, khớp Ví dụ 07.10.
 
 **Điểm $(30,20)$.** Hàng (1), (2) độc lập và thỏa với dấu bằng, nhưng $30+40=70>54$: điểm không thuộc $P$, nên định lý không áp dụng.
 
@@ -868,22 +868,22 @@ Hệ quả 07.14 cho thấy tập ứng viên là hữu hạn, và đây là lý
 **Kiểm tra lại.** Ba giao điểm loại bỏ vi phạm một hàng: $(30,20)$ vi phạm (3), $(0,27)$ vi phạm (2), $(54,0)$ vi phạm (1). Bảng mười cơ sở của Bài tập 07.4 cho cùng danh sách.
 :::
 
-### 3.3 Đồng nhất giữa nghiệm cơ sở khả thi và điểm cực
+### 3.3 Đồng nhất giữa nghiệm cơ sở khả thi và điểm cực biên
 
-Ví dụ 07.11 cho thấy trên bài hộp hạt, việc chọn $n$ ràng buộc chặt và việc chọn một cơ sở là cùng một phép chọn. Với dạng chuẩn, ràng buộc chặt có hai loại: các phương trình $Ax=b$ luôn chặt, và ràng buộc $x_j\ge0$ chặt khi $x_j=0$. Định lý sau phát biểu sự trùng khớp cho mọi đa diện dạng chuẩn, theo cách trình bày của Bertsimas và Tsitsiklis (1997, §2.2–2.3), và thêm một tiêu chuẩn thứ ba chỉ dùng các cột ứng với thành phần dương.
+Ví dụ 07.11 cho thấy trên bài toán hộp hạt, việc chọn $n$ ràng buộc chặt và việc chọn một cơ sở là cùng một phép chọn. Với dạng chuẩn, ràng buộc chặt có hai loại: các phương trình $Ax=b$ luôn chặt, và ràng buộc $x_j\ge0$ chặt khi $x_j=0$. Định lý sau phát biểu sự trùng khớp cho mọi đa diện dạng chuẩn, theo cách trình bày của Bertsimas và Tsitsiklis (1997, §2.2–2.3), và thêm một tiêu chuẩn thứ ba chỉ dùng các cột ứng với thành phần dương.
 
-::: theorem Định lý 07.15 (Điểm cực, nghiệm cơ sở khả thi và các cột dương)
+::: theorem Định lý 07.15 (Điểm cực biên, nghiệm cơ sở khả thi và các cột dương)
 **Giả thiết.** $P=\{x\in\mathbb R^n\mid Ax=b,\ x\ge0\}$ với $A\in\mathbb R^{m\times n}$, $\operatorname{rank}(A)=m$; $x\in P$. Đặt $\operatorname{supp}(x)=\{j\mid x_j>0\}$.
 
 **Kết luận.** Ba khẳng định sau tương đương:
 
-- (i) $x$ là điểm cực của $P$;
+- (i) $x$ là điểm cực biên của $P$;
 - (ii) $x$ là nghiệm cơ sở khả thi theo Định nghĩa 07.10;
 - (iii) các cột $A_j$, $j\in \operatorname{supp}(x)$, độc lập tuyến tính.
 
 **Điều kiện áp dụng.** Dạng chuẩn với giả thiết hạng; giả thiết hạng dùng ở chiều từ (iii) sang (ii).
 
-**Phạm vi.** Định lý không nói mỗi điểm cực ứng với đúng một cơ sở; khi suy biến, một điểm cực có thể ứng với nhiều cơ sở (Ví dụ 07.9).
+**Phạm vi.** Định lý không nói mỗi điểm cực biên ứng với đúng một cơ sở; khi suy biến, một điểm cực biên có thể ứng với nhiều cơ sở (Ví dụ 07.9).
 :::
 
 ::: proof Chứng minh Định lý 07.15
@@ -895,52 +895,52 @@ $$
 
 Tính độc lập của các cột trên $\operatorname{supp}(x)$ buộc $x_j'=x_j''$ với mọi $j\in \operatorname{supp}(x)$, nên $x'=x''$, và do đó cả hai bằng $x$.
 
-**Bước 2 (khẳng định (i) kéo theo (iii)).** Giả sử các cột trên $\operatorname{supp}(x)$ phụ thuộc tuyến tính: có các số $d_j$, $j\in \operatorname{supp}(x)$, không đồng thời bằng $0$, với $\sum_{j\in \operatorname{supp}(x)}d_jA_j=0$. Đặt $d_j=0$ cho $j\notin \operatorname{supp}(x)$, được $d\in\mathbb R^n$, $d\ne0$, $Ad=0$. Chọn $\varepsilon>0$ với $\varepsilon\lvert d_j\rvert<x_j$ cho mọi $j\in \operatorname{supp}(x)$. Khi đó $x\pm\varepsilon d$ thỏa $A(x\pm\varepsilon d)=b$ và không âm, vì thành phần dương vẫn dương và thành phần bằng $0$ không đổi. Điểm $x$ là trung điểm của hai điểm khác nhau của $P$, nên không phải điểm cực.
+**Bước 2 (khẳng định (i) kéo theo (iii)).** Giả sử các cột trên $\operatorname{supp}(x)$ phụ thuộc tuyến tính: có các số $d_j$, $j\in \operatorname{supp}(x)$, không đồng thời bằng $0$, với $\sum_{j\in \operatorname{supp}(x)}d_jA_j=0$. Đặt $d_j=0$ cho $j\notin \operatorname{supp}(x)$, được $d\in\mathbb R^n$, $d\ne0$, $Ad=0$. Chọn $\varepsilon>0$ với $\varepsilon\lvert d_j\rvert<x_j$ cho mọi $j\in \operatorname{supp}(x)$. Khi đó $x\pm\varepsilon d$ thỏa $A(x\pm\varepsilon d)=b$ và không âm, vì thành phần dương vẫn dương và thành phần bằng $0$ không đổi. Điểm $x$ là trung điểm của hai điểm khác nhau của $P$, nên không phải điểm cực biên.
 
 **Bước 3 (khẳng định (ii) kéo theo (iii)).** Nếu $x$ là nghiệm cơ sở khả thi theo cơ sở $B$, thì $x_j=0$ ngoài $B$, nên $\operatorname{supp}(x)\subseteq B$. Các cột của $A_B$ độc lập vì $A_B$ khả nghịch, và một họ con của họ độc lập cũng độc lập.
 
 **Bước 4 (khẳng định (iii) kéo theo (ii)).** Giả sử các cột trên $\operatorname{supp}(x)$ độc lập. Vì $\operatorname{rank}(A)=m$, các cột của $A$ sinh $\mathbb R^m$, nên bổ sung được các cột khác vào họ đó cho tới khi được $m$ cột độc lập; gọi tập chỉ số thu được là $B\supseteq \operatorname{supp}(x)$. Khi đó $A_B$ khả nghịch, $x_j=0$ với $j\in B^{\mathrm c}$ vì $B^{\mathrm c}\cap \operatorname{supp}(x)=\varnothing$, và $Ax=b$ thu về $A_Bx_B=b$, tức $x_B=A_B^{-1}b$. Vì $x\ge0$, đây là nghiệm cơ sở khả thi. $\square$
 :::
 
-Định lý 07.15 nối khái niệm hình học (điểm cực) với khái niệm tính toán (nghiệm cơ sở khả thi) qua một phép kiểm trung gian chỉ cần hạng của vài cột. Giả thiết hạng $\operatorname{rank}(A)=m$ chỉ được dùng ở Bước 4, để bổ sung đủ $m$ cột. Nếu bỏ giả thiết đó thì có thể không tồn tại cơ sở nào, dù điểm cực vẫn có.
+Định lý 07.15 nối khái niệm hình học (điểm cực biên) với khái niệm tính toán (nghiệm cơ sở khả thi) qua một phép kiểm tra trung gian chỉ cần hạng của vài cột. Giả thiết hạng $\operatorname{rank}(A)=m$ chỉ được dùng ở Bước 4, để bổ sung đủ $m$ cột. Nếu bỏ giả thiết đó thì có thể không tồn tại cơ sở nào, dù điểm cực biên vẫn có.
 
 So với Định lý 07.13, định lý này là trường hợp riêng cho đa diện dạng chuẩn, viết theo ngôn ngữ cột thay cho hàng. Hai cách nói tương đương: tại $x$, các ràng buộc chặt gồm $m$ phương trình và $n-\lvert \operatorname{supp}(x)\rvert$ ràng buộc $x_j=0$, và họ đó có hạng $n$ đúng khi các cột trên $\operatorname{supp}(x)$ độc lập. Từ các khẳng định (ii) và (iii), ta có ngay hai phép đếm trong hệ quả sau.
 
-::: corollary Hệ quả 07.16 (Số thành phần dương và số điểm cực của dạng chuẩn)
+::: corollary Hệ quả 07.16 (Số thành phần dương và số điểm cực biên của dạng chuẩn)
 **Giả thiết.** Như Định lý 07.15.
 
-**Kết luận.** Mỗi điểm cực của $P$ có nhiều nhất $m$ thành phần dương, và $P$ có nhiều nhất $\binom nm$ điểm cực.
+**Kết luận.** Mỗi điểm cực biên của $P$ có nhiều nhất $m$ thành phần dương, và $P$ có nhiều nhất $\binom nm$ điểm cực biên.
 
 **Điều kiện áp dụng.** Như Định lý 07.15.
 
-**Phạm vi.** Một điểm có không quá $m$ thành phần dương chưa chắc là điểm cực; cần các cột tương ứng độc lập.
+**Phạm vi.** Một điểm có không quá $m$ thành phần dương chưa chắc là điểm cực biên; cần các cột tương ứng độc lập.
 :::
 
 ::: proof Chứng minh Hệ quả 07.16
 **Bước 1 (thành phần dương).** Theo khẳng định (iii) của Định lý 07.15, các cột trên $\operatorname{supp}(x)$ là các véc-tơ độc lập trong $\mathbb R^m$, nên có nhiều nhất $m$ cột.
 
-**Bước 2 (số điểm cực).** Theo khẳng định (ii), mỗi điểm cực là nghiệm cơ sở khả thi của ít nhất một cơ sở, và mỗi cơ sở cho nhiều nhất một nghiệm cơ sở. Số cơ sở không vượt $\binom nm$. $\square$
+**Bước 2 (số điểm cực biên).** Theo khẳng định (ii), mỗi điểm cực biên là nghiệm cơ sở khả thi của ít nhất một cơ sở, và mỗi cơ sở cho nhiều nhất một nghiệm cơ sở. Số cơ sở không vượt $\binom nm$. $\square$
 :::
 
-::: example Ví dụ 07.12 (Kiểm điểm cực bằng cột dương)
-**Dữ kiện.** Hệ dạng chuẩn của bài hộp hạt, cột theo thứ tự $(x_1,x_2,s_1,s_2,s_3)$: $A_1=(1,0,1)^T$, $A_2=(0,1,2)^T$, $A_3=(1,0,0)^T$, $A_4=(0,1,0)^T$, $A_5=(0,0,1)^T$, $b=(30,20,54)^T$.
+::: example Ví dụ 07.12 (Kiểm tra điểm cực biên bằng cột dương)
+**Dữ kiện.** Hệ dạng chuẩn của bài toán hộp hạt, cột theo thứ tự $(x_1,x_2,s_1,s_2,s_3)$: $A_1=(1,0,1)^T$, $A_2=(0,1,2)^T$, $A_3=(1,0,0)^T$, $A_4=(0,1,0)^T$, $A_5=(0,0,1)^T$, $b=(30,20,54)^T$.
 
-**Điểm $(30,12,0,8,0)$.** $\operatorname{supp}(x)=\{1,2,4\}$. Ma trận gồm ba cột $A_1,A_2,A_4$ có định thức $-2\ne0$, nên ba cột độc lập và điểm là điểm cực, ứng với đỉnh $(30,12)$ của ngũ giác.
+**Điểm $(30,12,0,8,0)$.** $\operatorname{supp}(x)=\{1,2,4\}$. Ma trận gồm ba cột $A_1,A_2,A_4$ có định thức $-2\ne0$, nên ba cột độc lập và điểm là điểm cực biên, ứng với đỉnh $(30,12)$ của ngũ giác.
 
-**Điểm $(15,6,15,14,27)$.** Điểm này khả thi: $15+15=30$, $6+14=20$, $15+12+27=54$. Có năm thành phần dương, nhiều hơn $m=3$, nên theo Hệ quả 07.16 nó không phải điểm cực; về hình học, $(15,6)$ nằm bên trong ngũ giác.
+**Điểm $(15,6,15,14,27)$.** Điểm này khả thi: $15+15=30$, $6+14=20$, $15+12+27=54$. Có năm thành phần dương, nhiều hơn $m=3$, nên theo Hệ quả 07.16 nó không phải điểm cực biên; về hình học, $(15,6)$ nằm bên trong ngũ giác.
 
 **Kiểm tra lại.** Với $d=(1,0,-1,0,-1)$, $\bar Ad=(1-1,0,1-1)^T=0$, và $(15,6,15,14,27)$ là trung điểm của hai điểm khả thi $(16,6,14,14,26)$ và $(14,6,16,14,28)$.
 :::
 
-::: remark Nhận xét 07.17 (Điểm cực là duy nhất, cơ sở thì không)
-Theo Định lý 07.15, mỗi cơ sở khả thi cho một điểm cực và mỗi điểm cực có ít nhất một cơ sở; tương ứng là một-một khi không có suy biến, như bài hộp hạt. Khi suy biến, một điểm cực có thể ứng với nhiều cơ sở, như $(1,0,0,0)$ với $\{1,2\}$ và $\{1,4\}$ trong hệ $x_1+x_3=1$, $x_2+x_4=0$ của Ví dụ 07.9; một thuật toán đổi cơ sở khi đó có thể đổi cơ sở mà không di chuyển (Mục 4.4).
+::: remark Nhận xét 07.17 (Điểm cực biên là duy nhất, cơ sở thì không)
+Theo Định lý 07.15, mỗi cơ sở khả thi cho một điểm cực biên và mỗi điểm cực biên có ít nhất một cơ sở; tương ứng là một-một khi không có suy biến, như bài toán hộp hạt. Khi suy biến, một điểm cực biên có thể ứng với nhiều cơ sở, như $(1,0,0,0)$ với $\{1,2\}$ và $\{1,4\}$ trong hệ $x_1+x_3=1$, $x_2+x_4=0$ của Ví dụ 07.9; một thuật toán đổi cơ sở khi đó có thể đổi cơ sở mà không di chuyển (Mục 4.4).
 :::
 
-**Trong học máy.** Tính thưa của nghiệm quy hoạch tuyến tính được giải thích bằng Hệ quả 07.16: một nghiệm cơ sở khả thi của bài có $m$ phương trình có nhiều nhất $m$ thành phần khác $0$, bất kể số biến. Chọn trọng số trộn $p\in\mathbb R^{100}$ cho $100$ nguồn dữ liệu dưới $\sum_jp_j=1$ và một ràng buộc ngân sách gán nhãn, viết thành đẳng thức nhờ một biến phụ, cho $m=2$: một nghiệm đỉnh có nhiều nhất hai thành phần dương, tính cả biến phụ. Tính thưa này thuộc về nghiệm đỉnh, không thuộc về mọi nghiệm tối ưu.
+**Trong học máy.** Tính thưa của nghiệm quy hoạch tuyến tính được giải thích bằng Hệ quả 07.16: một nghiệm cơ sở khả thi của bài toán có $m$ phương trình có nhiều nhất $m$ thành phần khác $0$, bất kể số biến. Chọn trọng số trộn $p\in\mathbb R^{100}$ cho $100$ nguồn dữ liệu dưới $\sum_jp_j=1$ và một ràng buộc ngân sách gán nhãn, viết thành đẳng thức nhờ một biến phụ, cho $m=2$: một nghiệm đỉnh có nhiều nhất hai thành phần dương, tính cả biến phụ. Tính thưa này thuộc về nghiệm đỉnh, không thuộc về mọi nghiệm tối ưu.
 
-### 3.4 Sự tồn tại điểm cực
+### 3.4 Sự tồn tại điểm cực biên
 
-Nửa mặt phẳng $\{x\in\mathbb R^2\mid x_2\ge0\}$ không có điểm cực, vì điểm $(x_1,x_2)$ của nó là trung điểm của $(x_1-1,x_2)$ và $(x_1+1,x_2)$, cả hai đều thuộc miền. Trên miền như vậy, câu "có một đỉnh tối ưu" không thể đúng.
+Nửa mặt phẳng $\{x\in\mathbb R^2\mid x_2\ge0\}$ không có điểm cực biên, vì điểm $(x_1,x_2)$ của nó là trung điểm của $(x_1-1,x_2)$ và $(x_1+1,x_2)$, cả hai đều thuộc miền. Trên miền như vậy, câu "có một đỉnh tối ưu" không thể đúng.
 
 Về mặt trực quan, nửa mặt phẳng chứa trọn một đường thẳng nằm ngang, và từ mọi điểm có thể di chuyển dọc đường đó theo cả hai chiều mà vẫn ở trong miền. Ý này chưa phải định nghĩa, và khái niệm tập chứa một đường thẳng được phát biểu chính xác như sau.
 
@@ -948,9 +948,9 @@ Về mặt trực quan, nửa mặt phẳng chứa trọn một đường thẳn
 Tập $C\subseteq\mathbb R^n$ chứa một đường thẳng nếu có $x\in C$ và $d\in\mathbb R^n$, $d\ne0$, với $x+\theta d\in C$ cho mọi $\theta\in\mathbb R$.
 :::
 
-Định nghĩa đòi cả hai chiều $\theta>0$ và $\theta<0$. Một tia, tức chỉ $\theta\ge0$, không đủ: góc phần tư $\{x\ge0\}$ chứa tia $\{(\theta,0)\mid\theta\ge0\}$ nhưng không chứa đường thẳng nào, và có điểm cực $(0,0)$.
+Định nghĩa đòi cả hai chiều $\theta>0$ và $\theta<0$. Một tia, tức chỉ $\theta\ge0$, không đủ: góc phần tư $\{x\ge0\}$ chứa tia $\{(\theta,0)\mid\theta\ge0\}$ nhưng không chứa đường thẳng nào, và có điểm cực biên $(0,0)$.
 
-Chứng minh định lý tồn tại lặp lại nhiều lần cùng một thao tác: từ một điểm chưa phải điểm cực, ta đi theo một hướng giữ nguyên mọi ràng buộc chặt cho tới khi gặp một ràng buộc chặt mới. Ta tách thao tác đó thành bổ đề sau để dùng lại ở Mục 4.
+Chứng minh định lý tồn tại lặp lại nhiều lần cùng một thao tác: từ một điểm chưa phải điểm cực biên, ta đi theo một hướng giữ nguyên mọi ràng buộc chặt cho tới khi gặp một ràng buộc chặt mới. Ta tách thao tác đó thành bổ đề sau để dùng lại ở Mục 4.
 
 ::: lemma Bổ đề 07.19 (Bước tăng hạng)
 **Giả thiết.** $P=\{x\in\mathbb R^n\mid Ax\le b\}$, $x\in P$. Véc-tơ $d\in\mathbb R^n$ thỏa $a_i^Td=0$ với mọi $i\in\mathcal I(x)$, và có ít nhất một chỉ số $j$ với $a_j^Td>0$.
@@ -981,40 +981,40 @@ Khi đó $\theta^*>0$, điểm $x'=x+\theta^*d$ thuộc $P$, mọi ràng buộc 
 
 Trong Bổ đề 07.19, hướng $d$ giữ nguyên mọi ràng buộc đang chặt, và $\theta^*$ là độ dài bước tới ràng buộc mới đầu tiên trở thành chặt. Công thức (3.2) được gọi là phép thử tỉ số (ratio test), và ở Mục 4.4, ta dùng lại nó ở dạng chuẩn.
 
-Với Định lý 07.13 và Bổ đề 07.19, chúng ta trả lời được câu hỏi đa diện nào có điểm cực bằng ba điều kiện tương đương trong định lý sau. Điều kiện thứ ba kiểm được bằng một phép tính hạng.
+Với Định lý 07.13 và Bổ đề 07.19, chúng ta trả lời được câu hỏi đa diện nào có điểm cực biên bằng ba điều kiện tương đương trong định lý sau. Điều kiện thứ ba kiểm tra được bằng một phép tính hạng.
 
-::: theorem Định lý 07.20 (Tồn tại điểm cực)
+::: theorem Định lý 07.20 (Tồn tại điểm cực biên)
 **Giả thiết.** $P=\{x\in\mathbb R^n\mid Ax\le b\}$ khác rỗng.
 
 **Kết luận.** Ba khẳng định sau tương đương:
 
-- (i) $P$ có ít nhất một điểm cực;
+- (i) $P$ có ít nhất một điểm cực biên;
 - (ii) $P$ không chứa đường thẳng;
 - (iii) $\operatorname{rank}(A)=n$.
 
 **Điều kiện áp dụng.** $P$ khác rỗng và cho bởi hữu hạn bất phương trình.
 
-**Phạm vi.** Định lý không nói số điểm cực, cũng không nói điểm cực nào tối ưu cho một mục tiêu.
+**Phạm vi.** Định lý không nói số điểm cực biên, cũng không nói điểm cực biên nào tối ưu cho một mục tiêu.
 :::
 
 ::: proof Chứng minh Định lý 07.20
 **Bước 1 (đường thẳng trong $P$ và hạng).** Nếu $x+\theta d\in P$ với mọi $\theta\in\mathbb R$ thì $a_i^Tx+\theta a_i^Td\le b_i$ với mọi $\theta$. Nếu $a_i^Td\ne0$, chọn $\theta$ cùng dấu với $a_i^Td$ và đủ lớn thì bất đẳng thức sai; vậy $Ad=0$. Ngược lại, nếu $Ad=0$ với $d\ne0$ thì $a_i^T(x'+\theta d)=a_i^Tx'\le b_i$ với mọi $x'\in P$, $\theta\in\mathbb R$, nên $P$ chứa đường thẳng qua mọi điểm của nó. Do đó $P$ chứa đường thẳng khi và chỉ khi có $d\ne0$ với $Ad=0$, tức $\operatorname{rank}(A)<n$. Điều này cho (ii) tương đương (iii).
 
-**Bước 2 (khẳng định (i) kéo theo (iii)).** Nếu $v$ là điểm cực, Định lý 07.13 cho $n$ hàng chặt độc lập tại $v$, nên $\operatorname{rank}(A)\ge n$; hạng không vượt số cột $n$.
+**Bước 2 (khẳng định (i) kéo theo (iii)).** Nếu $v$ là điểm cực biên, Định lý 07.13 cho $n$ hàng chặt độc lập tại $v$, nên $\operatorname{rank}(A)\ge n$; hạng không vượt số cột $n$.
 
-**Bước 3 (khẳng định (iii) kéo theo (i): một bước).** Giả sử $\operatorname{rank}(A)=n$. Lấy $x\in P$ và gọi $\rho$ là hạng của họ hàng chặt tại $x$. Nếu $\rho=n$, $x$ là điểm cực theo Định lý 07.13. Nếu $\rho<n$, chọn $d\ne0$ vuông góc với mọi hàng chặt; vì $\operatorname{rank}(A)=n$, véc-tơ $Ad$ khác $0$, và đổi $d$ thành $-d$ nếu cần để có một $a_j^Td>0$.
+**Bước 3 (khẳng định (iii) kéo theo (i): một bước).** Giả sử $\operatorname{rank}(A)=n$. Lấy $x\in P$ và gọi $\rho$ là hạng của họ hàng chặt tại $x$. Nếu $\rho=n$, $x$ là điểm cực biên theo Định lý 07.13. Nếu $\rho<n$, chọn $d\ne0$ vuông góc với mọi hàng chặt; vì $\operatorname{rank}(A)=n$, véc-tơ $Ad$ khác $0$, và đổi $d$ thành $-d$ nếu cần để có một $a_j^Td>0$.
 
-**Bước 4 (lặp).** Bổ đề 07.19 cho điểm $x'\in P$ với hạng hàng chặt ít nhất $\rho+1$. Lặp lại từ $x'$; hạng tăng sau mỗi lần và không vượt $n$, nên sau nhiều nhất $n$ lần thu được một điểm có hạng $n$, tức một điểm cực. $\square$
+**Bước 4 (lặp).** Bổ đề 07.19 cho điểm $x'\in P$ với hạng hàng chặt ít nhất $\rho+1$. Lặp lại từ $x'$; hạng tăng sau mỗi lần và không vượt $n$, nên sau nhiều nhất $n$ lần thu được một điểm có hạng $n$, tức một điểm cực biên. $\square$
 :::
 
-Định lý 07.20 cho ba cách kiểm cùng một tính chất, trong đó khẳng định (iii) dễ kiểm nhất, (ii) trực quan nhất, còn (i) là điều các kết quả về tối ưu cần. Bước 3 và Bước 4 của chứng minh còn cho một thủ tục: từ một điểm khả thi bất kỳ, sau nhiều nhất $n$ bước tăng hạng, ta thu được một điểm cực.
+Định lý 07.20 cho ba cách kiểm tra cùng một tính chất, trong đó khẳng định (iii) dễ kiểm tra nhất, (ii) trực quan nhất, còn (i) là điều các kết quả về tối ưu cần. Bước 3 và Bước 4 của chứng minh còn cho một thủ tục: từ một điểm khả thi bất kỳ, sau nhiều nhất $n$ bước tăng hạng, ta thu được một điểm cực biên.
 
-Giả thiết khác rỗng là cần thiết vì tập rỗng không chứa đường thẳng mà cũng không có điểm cực. Tính hữu hạn của số ràng buộc được dùng trong Bổ đề 07.19, để bảo đảm có một ràng buộc mới đầu tiên khi đi theo $d$. Áp dụng Định lý 07.20 cho hai lớp đa diện thường gặp, ta được hệ quả sau.
+Giả thiết khác rỗng là cần thiết vì tập rỗng không chứa đường thẳng mà cũng không có điểm cực biên. Tính hữu hạn của số ràng buộc được dùng trong Bổ đề 07.19, để bảo đảm có một ràng buộc mới đầu tiên khi đi theo $d$. Áp dụng Định lý 07.20 cho hai lớp đa diện thường gặp, ta được hệ quả sau.
 
-::: corollary Hệ quả 07.21 (Hai lớp đa diện luôn có điểm cực)
+::: corollary Hệ quả 07.21 (Hai lớp đa diện luôn có điểm cực biên)
 **Giả thiết.** (a) $P=\{x\in\mathbb R^n\mid Ax=b,\ x\ge0\}$ khác rỗng. (b) $P=\{x\in\mathbb R^n\mid Ax\le b\}$ khác rỗng và bị chặn.
 
-**Kết luận.** Trong cả hai trường hợp, $P$ có ít nhất một điểm cực. Ở trường hợp (a), nếu thêm $\operatorname{rank}(A)=m$, điểm cực đó là một nghiệm cơ sở khả thi.
+**Kết luận.** Trong cả hai trường hợp, $P$ có ít nhất một điểm cực biên. Ở trường hợp (a), nếu thêm $\operatorname{rank}(A)=m$, điểm cực biên đó là một nghiệm cơ sở khả thi.
 
 **Điều kiện áp dụng.** Như Định lý 07.20.
 
@@ -1022,7 +1022,7 @@ Giả thiết khác rỗng là cần thiết vì tập rỗng không chứa đư
 :::
 
 ::: proof Chứng minh Hệ quả 07.21
-**Bước 1 (trường hợp (a)).** Theo Mệnh đề 07.6(b), $P$ là đa diện với các hàng gồm $-I$. Ma trận $-I$ có hạng $n$, nên khẳng định (iii) của Định lý 07.20 thỏa. Khi $\operatorname{rank}(A)=m$, Định lý 07.15 cho điểm cực đó là nghiệm cơ sở khả thi.
+**Bước 1 (trường hợp (a)).** Theo Mệnh đề 07.6(b), $P$ là đa diện với các hàng gồm $-I$. Ma trận $-I$ có hạng $n$, nên khẳng định (iii) của Định lý 07.20 thỏa. Khi $\operatorname{rank}(A)=m$, Định lý 07.15 cho điểm cực biên đó là nghiệm cơ sở khả thi.
 
 **Bước 2 (trường hợp (b)).** Nếu $P$ chứa đường $x+\theta d$ với $d\ne0$, thì $\lVert x+\theta d\rVert\ge\lvert\theta\rvert\lVert d\rVert-\lVert x\rVert\to\infty$, mâu thuẫn với tính bị chặn. Vậy khẳng định (ii) thỏa. $\square$
 :::
@@ -1032,25 +1032,25 @@ Phần (a) là lý do dạng chuẩn được ưa dùng, vì mọi quy hoạch t
 ::: example Ví dụ 07.13 (Áp dụng tiêu chuẩn tồn tại và chạy bước tăng hạng)
 **Dữ kiện.** Hai đa diện trong $\mathbb R^2$: nửa mặt phẳng $H=\{x\mid x_2\ge0\}$, viết thành một hàng $-x_2\le0$; và $P_1=\{x\mid x_1+x_2\ge1,\ x\ge0\}$, viết thành ba hàng (1) $-x_1-x_2\le-1$, (2) $-x_1\le0$, (3) $-x_2\le0$.
 
-**Nửa mặt phẳng.** Ma trận một hàng $(0,-1)$ có hạng $1<2$, nên $H$ không có điểm cực theo Định lý 07.20. Hướng $d=(1,0)$ thỏa $Ad=0$ và cho đường thẳng nằm ngang qua mọi điểm.
+**Nửa mặt phẳng.** Ma trận một hàng $(0,-1)$ có hạng $1<2$, nên $H$ không có điểm cực biên theo Định lý 07.20. Hướng $d=(1,0)$ thỏa $Ad=0$ và cho đường thẳng nằm ngang qua mọi điểm.
 
-**Đa diện $P_1$.** Ba hàng có hạng $2$, nên $P_1$ có điểm cực dù không bị chặn. Chạy Bước 3–4 của chứng minh từ $x=(2,3)$.
+**Đa diện $P_1$.** Ba hàng có hạng $2$, nên $P_1$ có điểm cực biên dù không bị chặn. Chạy Bước 3–4 của chứng minh từ $x=(2,3)$.
 
 - Tại $(2,3)$ không có ràng buộc chặt, hạng $0$. Chọn $d=(-1,0)$: $a_1^Td=1$, $a_2^Td=1$. Theo (3.2), $\theta^*=\min\{\tfrac{-1+5}1,\tfrac{0+2}1\}=2$, cho $x'=(0,3)$, với hàng (2) chặt.
 - Tại $(0,3)$, hạng $1$. Chọn $d=(0,-1)$, vuông góc với $a_2=(-1,0)$: $a_1^Td=1$, $a_3^Td=1$. Theo (3.2), $\theta^*=\min\{\tfrac{-1+3}1,\tfrac{0+3}1\}=2$, cho $x''=(0,1)$, với hàng (1), (2) chặt.
 
-Hai hàng $(-1,-1)$ và $(-1,0)$ độc lập, nên $(0,1)$ là điểm cực.
+Hai hàng $(-1,-1)$ và $(-1,0)$ độc lập, nên $(0,1)$ là điểm cực biên.
 
-**Kiểm tra lại.** $(0,1)$ thỏa $0+1=1\ge1$ với dấu bằng và $x_1=0$. Điểm cực còn lại của $P_1$ là $(1,0)$, giao của hàng (1) và (3).
+**Kiểm tra lại.** $(0,1)$ thỏa $0+1=1\ge1$ với dấu bằng và $x_1=0$. Điểm cực biên còn lại của $P_1$ là $(1,0)$, giao của hàng (1) và (3).
 :::
 
-**Trong học máy.** Bài (1.2) của hồi quy $L_1$ có biến tự do $x$, nên Hệ quả 07.21 không áp dụng trực tiếp. Theo Định lý 07.20, miền của (1.2) có điểm cực khi và chỉ khi ma trận ràng buộc có hạng $n+M$, và Mệnh đề 07.25 chỉ ra điều này tương đương với việc $h_1,\ldots,h_M$ sinh $\mathbb R^n$. Khi hai đặc trưng tỉ lệ với nhau, điều kiện bị vi phạm, miền chứa đường thẳng và tham số tối ưu không duy nhất.
+**Trong học máy.** Bài toán (1.2) của hồi quy $L_1$ có biến tự do $x$, nên Hệ quả 07.21 không áp dụng trực tiếp. Theo Định lý 07.20, miền của (1.2) có điểm cực biên khi và chỉ khi ma trận ràng buộc có hạng $n+M$, và Mệnh đề 07.25 chỉ ra điều này tương đương với việc $h_1,\ldots,h_M$ sinh $\mathbb R^n$. Khi hai đặc trưng tỉ lệ với nhau, điều kiện bị vi phạm, miền chứa đường thẳng và tham số tối ưu không duy nhất.
 
-::: exercise Bài tập 07.5 (Dải phẳng và điểm cực)
+::: exercise Bài tập 07.5 (Dải phẳng và điểm cực biên)
 Cho $P_2=\{x\in\mathbb R^2\mid -x_1+x_2\le1,\ x_1-x_2\le1\}$.
 
-- (a) Chứng minh $P_2$ chứa một đường thẳng và không có điểm cực, bằng khẳng định (ii) và (iii) của Định lý 07.20.
-- (b) Thêm ràng buộc $x_1\ge0$, được $P_3$. Xác định mọi điểm cực của $P_3$ bằng Định lý 07.13.
+- (a) Chứng minh $P_2$ chứa một đường thẳng và không có điểm cực biên, bằng khẳng định (ii) và (iii) của Định lý 07.20.
+- (b) Thêm ràng buộc $x_1\ge0$, được $P_3$. Xác định mọi điểm cực biên của $P_3$ bằng Định lý 07.13.
 :::
 
 ::: hint
@@ -1058,24 +1058,24 @@ Cho $P_2=\{x\in\mathbb R^2\mid -x_1+x_2\le1,\ x_1-x_2\le1\}$.
 :::
 
 ::: solution
-**Câu (a).** Ma trận có hai hàng $(-1,1)$ và $(1,-1)$, hạng $1<2$. Hướng $d=(1,1)$ thỏa $Ad=0$, nên $(0,0)+\theta(1,1)\in P_2$ với mọi $\theta$. Theo Định lý 07.20, $P_2$ không có điểm cực.
+**Câu (a).** Ma trận có hai hàng $(-1,1)$ và $(1,-1)$, hạng $1<2$. Hướng $d=(1,1)$ thỏa $Ad=0$, nên $(0,0)+\theta(1,1)\in P_2$ với mọi $\theta$. Theo Định lý 07.20, $P_2$ không có điểm cực biên.
 
 **Câu (b).** $P_3$ có ba hàng: (1) $-x_1+x_2\le1$, (2) $x_1-x_2\le1$, (3) $-x_1\le0$.
 
 - Cặp (1), (2): hai hàng song song, không có giao điểm duy nhất.
-- Cặp (1), (3): $x_1=0$, $x_2=1$; kiểm (2): $0-1=-1\le1$. Điểm $(0,1)$ là điểm cực.
-- Cặp (2), (3): $x_1=0$, $x_2=-1$; kiểm (1): $0-1=-1\le1$. Điểm $(0,-1)$ là điểm cực.
+- Cặp (1), (3): $x_1=0$, $x_2=1$; kiểm tra (2): $0-1=-1\le1$. Điểm $(0,1)$ là điểm cực biên.
+- Cặp (2), (3): $x_1=0$, $x_2=-1$; kiểm tra (1): $0-1=-1\le1$. Điểm $(0,-1)$ là điểm cực biên.
 
 **Kiểm tra lại.** Tại $(0,1)$: hàng (1) cho $-0+1=1$ và hàng (3) cho $0$, cả hai chặt; hai hàng $(-1,1)$, $(-1,0)$ độc lập. Tại $(0,-1)$: hàng (2) cho $0+1=1$, hàng (3) chặt; hai hàng $(1,-1)$, $(-1,0)$ độc lập.
 :::
 
-Xuất phát từ định nghĩa đỉnh bằng tổ hợp lồi (Định nghĩa 07.11), chúng ta đã đổi định nghĩa đó thành phép kiểm hạng các ràng buộc chặt (Định lý 07.13). Từ phép kiểm này, ta suy ra tập điểm cực là hữu hạn (Hệ quả 07.14). Với dạng chuẩn, các điểm cực chính là các nghiệm cơ sở khả thi (Định lý 07.15). Bổ đề 07.19 và Định lý 07.20 cho điều kiện để đa diện có điểm cực. Hệ quả 07.21, kết quả được dùng nhiều nhất về sau, khẳng định mọi dạng chuẩn khả thi và mọi đa diện khác rỗng, bị chặn đều có điểm cực.
+Xuất phát từ định nghĩa đỉnh bằng tổ hợp lồi (Định nghĩa 07.11), chúng ta đã đổi định nghĩa đó thành phép kiểm tra hạng các ràng buộc chặt (Định lý 07.13). Từ phép kiểm tra này, ta suy ra tập điểm cực biên là hữu hạn (Hệ quả 07.14). Với dạng chuẩn, các điểm cực biên chính là các nghiệm cơ sở khả thi (Định lý 07.15). Bổ đề 07.19 và Định lý 07.20 cho điều kiện để đa diện có điểm cực biên. Hệ quả 07.21, kết quả được dùng nhiều nhất về sau, khẳng định mọi dạng chuẩn khả thi và mọi đa diện khác rỗng, bị chặn đều có điểm cực biên.
 
-Như vậy, chúng ta đã có một tập ứng viên hữu hạn và tính được bằng đại số. Tuy nhiên, chưa có kết quả nào bảo đảm có một nghiệm tối ưu thuộc tập này. Trong Mục 4, chúng ta chứng minh điều đó khi giá trị tối ưu hữu hạn và miền có điểm cực, rồi phân loại mọi quy hoạch tuyến tính thành bốn kết cục. Sau cùng, chúng ta nêu cách tìm điểm cực tối ưu mà không cần liệt kê mọi điểm cực.
+Như vậy, chúng ta đã có một tập ứng viên hữu hạn và tính được bằng đại số. Tuy nhiên, chưa có kết quả nào bảo đảm có một nghiệm tối ưu thuộc tập này. Trong Mục 4, chúng ta chứng minh điều đó khi giá trị tối ưu hữu hạn và miền có điểm cực biên, rồi phân loại mọi quy hoạch tuyến tính thành bốn kết cục. Sau cùng, chúng ta nêu cách tìm điểm cực biên tối ưu mà không cần liệt kê mọi điểm cực biên.
 
-## 4. Kết cục, điểm cực tối ưu và thuật toán duyệt đỉnh kề
+## 4. Kết cục, điểm cực biên tối ưu và thuật toán duyệt đỉnh kề
 
-Tập ứng viên của Mục 3 chưa gắn với tính tối ưu. Hai bài toán nhỏ cho thấy việc nối tập điểm cực với tính tối ưu cần giả thiết. Bài cực đại $x_1+x_2$ dưới $x_1+x_2\le2$, $x\ge0$ có nghiệm tối ưu $(1,1)$ không phải điểm cực, còn bài cực đại $x_1$ trên $P_1=\{x\mid x_1+x_2\ge1,\ x\ge0\}$ có điểm cực nhưng không có nghiệm tối ưu, vì $x_1$ tăng không bị chặn trên miền.
+Tập ứng viên của Mục 3 chưa gắn với tính tối ưu. Hai bài toán nhỏ cho thấy việc nối tập điểm cực biên với tính tối ưu cần giả thiết. Bài toán cực đại $x_1+x_2$ dưới $x_1+x_2\le2$, $x\ge0$ có nghiệm tối ưu $(1,1)$ không phải điểm cực biên, còn bài toán cực đại $x_1$ trên $P_1=\{x\mid x_1+x_2\ge1,\ x\ge0\}$ có điểm cực biên nhưng không có nghiệm tối ưu, vì $x_1$ tăng không bị chặn trên miền.
 
 ### 4.1 Tập nghiệm tối ưu
 
@@ -1086,13 +1086,13 @@ Bài toán thứ nhất ở trên cho thấy câu "nghiệm tối ưu là đỉn
 ::: example Ví dụ 07.14 (Cả một cạnh tối ưu)
 **Dữ kiện.** Cực đại $z=x_1+x_2$ dưới $x_1+x_2\le2$, $x_1,x_2\ge0$.
 
-**Điểm cực.** Miền là tam giác với ba điểm cực $(0,0)$, $(2,0)$, $(0,2)$; giá trị tại đó là $0$, $2$, $2$.
+**Điểm cực biên.** Miền là tam giác với ba điểm cực biên $(0,0)$, $(2,0)$, $(0,2)$; giá trị tại đó là $0$, $2$, $2$.
 
 **Giá trị tối ưu.** Chính ràng buộc $x_1+x_2\le2$ cho $z\le2$ trên toàn miền, và $(2,0)$ đạt $2$. Vậy $z^*=2$, và tập nghiệm tối ưu là đoạn $\{x\mid x_1+x_2=2,\ x\ge0\}$.
 
-**Một nghiệm không phải điểm cực.** $(1,1)$ thuộc đoạn này nên tối ưu, nhưng $(1,1)=\tfrac12(2,0)+\tfrac12(0,2)$ nên không phải điểm cực.
+**Một nghiệm không phải điểm cực biên.** $(1,1)$ thuộc đoạn này nên tối ưu, nhưng $(1,1)=\tfrac12(2,0)+\tfrac12(0,2)$ nên không phải điểm cực biên.
 
-**Kiểm tra lại.** Tại $(\tfrac12,\tfrac32)$: $z=2$ và điểm là tổ hợp $\tfrac14(2,0)+\tfrac34(0,2)$, cũng tối ưu và không phải điểm cực.
+**Kiểm tra lại.** Tại $(\tfrac12,\tfrac32)$: $z=2$ và điểm là tổ hợp $\tfrac14(2,0)+\tfrac34(0,2)$, cũng tối ưu và không phải điểm cực biên.
 :::
 
 Đường mức nét đứt $z=1$ nằm bên trong tam giác, còn đường mức $z=2$ trùng một cạnh. Hiện tượng này xảy ra khi véc-tơ mục tiêu $c=(1,1)$ vuông góc với cạnh nằm trên đường mức xa nhất. Hình dạng của tập nghiệm tối ưu trong mọi trường hợp được mô tả trong mệnh đề sau.
@@ -1107,7 +1107,7 @@ Bài toán thứ nhất ở trên cho thấy câu "nghiệm tối ưu là đỉn
 
 **Điều kiện áp dụng.** $z^*$ hữu hạn; $P^*$ có thể rỗng nếu chưa biết giá trị tối ưu được đạt (Định lý 07.26 chứng minh nó luôn được đạt).
 
-**Phạm vi.** Mệnh đề không nói $P^*$ chứa điểm cực nào.
+**Phạm vi.** Mệnh đề không nói $P^*$ chứa điểm cực biên nào.
 :::
 
 ::: proof Chứng minh Mệnh đề 07.22
@@ -1116,92 +1116,92 @@ Bài toán thứ nhất ở trên cho thấy câu "nghiệm tối ưu là đỉn
 **Bước 2 (phần (b)).** Với $\lambda\in[0,1]$, điểm $\lambda x'+(1-\lambda)x''$ thuộc $P^*$ theo (a). Các điểm này đôi một khác nhau khi $\lambda$ thay đổi, vì $x'\ne x''$. $\square$
 :::
 
-Phần (b) của Mệnh đề 07.22 cho thấy số nghiệm tối ưu của một quy hoạch tuyến tính chỉ có thể là $0$, $1$ hoặc vô số. Phần (a) có cùng kết luận với Hệ quả 01.34 (tập nghiệm của bài lồi là tập lồi) và cho thêm rằng tập nghiệm là một đa diện. Do mục tiêu tuyến tính không lồi chặt, khác với bài lồi chặt của Định lý 01.35, nghiệm duy nhất không được bảo đảm.
+Phần (b) của Mệnh đề 07.22 cho thấy số nghiệm tối ưu của một quy hoạch tuyến tính chỉ có thể là $0$, $1$ hoặc vô số. Phần (a) có cùng kết luận với Hệ quả 01.34 (tập nghiệm của bài toán lồi là tập lồi) và cho thêm rằng tập nghiệm là một đa diện. Do mục tiêu tuyến tính không lồi chặt, khác với bài toán lồi chặt của Định lý 01.35, nghiệm duy nhất không được bảo đảm.
 
-### 4.2 Điểm cực tối ưu
+### 4.2 Điểm cực biên tối ưu
 
-Ví dụ 07.14 cho thấy phát biểu đúng chỉ có thể là "tồn tại một điểm cực tối ưu". Định lý sau, theo Bertsimas và Tsitsiklis (1997, §2.6, ở chiều cực tiểu), khẳng định điều đó khi miền có điểm cực và cho biết giá trị tối ưu hữu hạn luôn được đạt. Chứng minh dùng Bổ đề 07.19.
+Ví dụ 07.14 cho thấy phát biểu đúng chỉ có thể là "tồn tại một điểm cực biên tối ưu". Định lý sau, theo Bertsimas và Tsitsiklis (1997, §2.6, ở chiều cực tiểu), khẳng định điều đó khi miền có điểm cực biên và cho biết giá trị tối ưu hữu hạn luôn được đạt. Chứng minh dùng Bổ đề 07.19.
 
-::: theorem Định lý 07.23 (Điểm cực tối ưu)
-**Giả thiết.** $P=\{x\in\mathbb R^n\mid Ax\le b\}$ có ít nhất một điểm cực; $c\in\mathbb R^n$. Xét bài cực đại $c^Tx$ trên $P$.
+::: theorem Định lý 07.23 (Điểm cực biên tối ưu)
+**Giả thiết.** $P=\{x\in\mathbb R^n\mid Ax\le b\}$ có ít nhất một điểm cực biên; $c\in\mathbb R^n$. Xét bài toán cực đại $c^Tx$ trên $P$.
 
 **Kết luận.** Xảy ra đúng một trong hai trường hợp:
 
 - (a) $z^*=+\infty$;
-- (b) tồn tại một điểm cực $v^*$ của $P$ tối ưu, tức $c^Tv^*=z^*$.
+- (b) tồn tại một điểm cực biên $v^*$ của $P$ tối ưu, tức $c^Tv^*=z^*$.
 
-Đặc biệt, nếu $z^*$ hữu hạn thì nó được đạt, và được đạt tại một điểm cực.
+Đặc biệt, nếu $z^*$ hữu hạn thì nó được đạt, và được đạt tại một điểm cực biên.
 
-**Điều kiện áp dụng.** Cần $P$ có điểm cực; theo Định lý 07.20, điều này tương đương với $P\ne\varnothing$ và $\operatorname{rank}(A)=n$.
+**Điều kiện áp dụng.** Cần $P$ có điểm cực biên; theo Định lý 07.20, điều này tương đương với $P\ne\varnothing$ và $\operatorname{rank}(A)=n$.
 
-**Phạm vi.** Định lý không nói mọi nghiệm tối ưu là điểm cực (Ví dụ 07.14), cũng không cho cách tìm $v^*$ mà không liệt kê.
+**Phạm vi.** Định lý không nói mọi nghiệm tối ưu là điểm cực biên (Ví dụ 07.14), cũng không cho cách tìm $v^*$ mà không liệt kê.
 :::
 
 ::: proof Chứng minh Định lý 07.23
-**Bước 1 (một bước không làm giảm mục tiêu).** Theo Định lý 07.20, $\operatorname{rank}(A)=n$. Lấy $x\in P$ không phải điểm cực. Theo Định lý 07.13, họ hàng chặt tại $x$ có hạng nhỏ hơn $n$, nên có $d\ne0$ vuông góc với mọi hàng chặt. Đổi $d$ thành $-d$ nếu cần để $c^Td\ge0$. Xét hai trường hợp.
+**Bước 1 (một bước không làm giảm mục tiêu).** Theo Định lý 07.20, $\operatorname{rank}(A)=n$. Lấy $x\in P$ không phải điểm cực biên. Theo Định lý 07.13, họ hàng chặt tại $x$ có hạng nhỏ hơn $n$, nên có $d\ne0$ vuông góc với mọi hàng chặt. Đổi $d$ thành $-d$ nếu cần để $c^Td\ge0$. Xét hai trường hợp.
 
 - Có chỉ số $j$ với $a_j^Td>0$. Bổ đề 07.19 cho $x'=x+\theta^*d\in P$ với hạng hàng chặt tăng ít nhất $1$, và $c^Tx'=c^Tx+\theta^*c^Td\ge c^Tx$.
 - Mọi $a_j^Td\le0$. Khi đó $x+\theta d\in P$ với mọi $\theta\ge0$. Nếu $c^Td>0$, mục tiêu $c^Tx+\theta c^Td\to+\infty$, tức trường hợp (a). Nếu $c^Td=0$, thay $d$ bằng $-d$: vẫn $c^T(-d)=0$, và vì $Ad\ne0$ (hạng $n$) cùng mọi $a_j^Td\le0$, có $j$ với $a_j^T(-d)>0$; quay về trường hợp thứ nhất.
 
-**Bước 2 (một điểm cực có giá trị không nhỏ hơn).** Giả sử $z^*<+\infty$. Lặp Bước 1 từ một $x\in P$ bất kỳ; trường hợp (a) không xảy ra, hạng hàng chặt tăng sau mỗi lần và không vượt $n$. Sau nhiều nhất $n$ lần, thu được một điểm cực $w(x)$ với $c^Tw(x)\ge c^Tx$.
+**Bước 2 (một điểm cực biên có giá trị không nhỏ hơn).** Giả sử $z^*<+\infty$. Lặp Bước 1 từ một $x\in P$ bất kỳ; trường hợp (a) không xảy ra, hạng hàng chặt tăng sau mỗi lần và không vượt $n$. Sau nhiều nhất $n$ lần, thu được một điểm cực biên $w(x)$ với $c^Tw(x)\ge c^Tx$.
 
-**Bước 3 (điểm cực có giá trị lớn nhất là tối ưu).** Theo Hệ quả 07.14, $P$ có hữu hạn điểm cực, và theo giả thiết có ít nhất một. Chọn $v^*$ là điểm cực có $c^Tv^*$ lớn nhất trong số đó. Với mọi $x\in P$:
+**Bước 3 (điểm cực biên có giá trị lớn nhất là tối ưu).** Theo Hệ quả 07.14, $P$ có hữu hạn điểm cực biên, và theo giả thiết có ít nhất một. Chọn $v^*$ là điểm cực biên có $c^Tv^*$ lớn nhất trong số đó. Với mọi $x\in P$:
 
 $$
 c^Tx\le c^Tw(x)\le c^Tv^* .
 $$
 
-Trong đó, bất đẳng thức thứ nhất là kết luận của Bước 2, còn bất đẳng thức thứ hai đúng vì $w(x)$ là một điểm cực. Vậy $c^Tv^*=z^*$. $\square$
+Trong đó, bất đẳng thức thứ nhất là kết luận của Bước 2, còn bất đẳng thức thứ hai đúng vì $w(x)$ là một điểm cực biên. Vậy $c^Tv^*=z^*$. $\square$
 :::
 
 Hai giả thiết của định lý có vai trò riêng, và mỗi giả thiết bị bỏ đều có phản ví dụ.
 
-- Bỏ "có điểm cực": bài cực đại $-x_2$ trên nửa mặt phẳng $\{x_2\ge0\}$ có $z^*=0$, đạt trên cả đường $x_2=0$, nhưng miền không có điểm cực nào.
-- Bỏ "giá trị hữu hạn": bài cực đại $x_1$ trên $P_1=\{x_1+x_2\ge1,\ x\ge0\}$ có hai điểm cực $(1,0)$, $(0,1)$ nhưng $z^*=+\infty$.
+- Bỏ "có điểm cực biên": bài toán cực đại $-x_2$ trên nửa mặt phẳng $\{x_2\ge0\}$ có $z^*=0$, đạt trên cả đường $x_2=0$, nhưng miền không có điểm cực biên nào.
+- Bỏ "giá trị hữu hạn": bài toán cực đại $x_1$ trên $P_1=\{x_1+x_2\ge1,\ x\ge0\}$ có hai điểm cực biên $(1,0)$, $(0,1)$ nhưng $z^*=+\infty$.
 
-Trong chứng minh, Bước 1 dùng giả thiết hạng để có một ràng buộc mới khi $c^Td=0$, còn Bước 3 dùng tính hữu hạn của tập điểm cực.
+Trong chứng minh, Bước 1 dùng giả thiết hạng để có một ràng buộc mới khi $c^Td=0$, còn Bước 3 dùng tính hữu hạn của tập điểm cực biên.
 
-Ở Bài 02, kết quả này mới được nêu kèm nguồn trong Nhận xét 02.12 và chưa được chứng minh, còn ở đây định lý được chứng minh đầy đủ. Định lý mạnh hơn câu "nếu có nghiệm tối ưu và có điểm cực thì có điểm cực tối ưu" vì không giả sử trước nghiệm tối ưu tồn tại. Tuy nhiên, định lý cần giả thiết miền có điểm cực. Bước 3 của chứng minh còn cho ngay một cách tính giá trị tối ưu bằng liệt kê, phát biểu trong hệ quả sau.
+Ở Bài 02, kết quả này mới được nêu kèm nguồn trong Nhận xét 02.12 và chưa được chứng minh, còn ở đây định lý được chứng minh đầy đủ. Định lý mạnh hơn câu "nếu có nghiệm tối ưu và có điểm cực biên thì có điểm cực biên tối ưu" vì không giả sử trước nghiệm tối ưu tồn tại. Tuy nhiên, định lý cần giả thiết miền có điểm cực biên. Bước 3 của chứng minh còn cho ngay một cách tính giá trị tối ưu bằng liệt kê, phát biểu trong hệ quả sau.
 
-::: corollary Hệ quả 07.24 (Liệt kê điểm cực là đủ)
+::: corollary Hệ quả 07.24 (Liệt kê điểm cực biên là đủ)
 **Giả thiết.** Như Định lý 07.23, và $z^*<+\infty$.
 
-**Kết luận.** Gọi $V$ là tập điểm cực của $P$. Khi đó $z^*=\max_{v\in V}c^Tv$. Với bài dạng chuẩn (2.2) khả thi có giá trị tối ưu hữu hạn, $z^*$ bằng giá trị lớn nhất của $c^Tx$ trên các nghiệm cơ sở khả thi.
+**Kết luận.** Gọi $V$ là tập điểm cực biên của $P$. Khi đó $z^*=\max_{v\in V}c^Tv$. Với bài toán dạng chuẩn (2.2) khả thi có giá trị tối ưu hữu hạn, $z^*$ bằng giá trị lớn nhất của $c^Tx$ trên các nghiệm cơ sở khả thi.
 
 **Điều kiện áp dụng.** Như Định lý 07.23; với dạng chuẩn, cần giả thiết hạng của Định nghĩa 07.7.
 
-**Phạm vi.** Số nghiệm cơ sở khả thi có thể lên tới $\binom nm$, nên liệt kê chỉ dùng được cho bài nhỏ.
+**Phạm vi.** Số nghiệm cơ sở khả thi có thể lên tới $\binom nm$, nên liệt kê chỉ dùng được cho bài toán nhỏ.
 :::
 
 ::: proof Chứng minh Hệ quả 07.24
-**Bước 1 (đa diện tổng quát).** Theo Bước 3 của chứng minh Định lý 07.23, điểm cực có giá trị lớn nhất là tối ưu.
+**Bước 1 (đa diện tổng quát).** Theo Bước 3 của chứng minh Định lý 07.23, điểm cực biên có giá trị lớn nhất là tối ưu.
 
-**Bước 2 (dạng chuẩn).** Theo Hệ quả 07.21(a), đa diện dạng chuẩn khác rỗng có điểm cực; theo Định lý 07.15, các điểm cực là các nghiệm cơ sở khả thi. Áp dụng Bước 1. $\square$
+**Bước 2 (dạng chuẩn).** Theo Hệ quả 07.21(a), đa diện dạng chuẩn khác rỗng có điểm cực biên; theo Định lý 07.15, các điểm cực biên là các nghiệm cơ sở khả thi. Áp dụng Bước 1. $\square$
 :::
 
-::: example Ví dụ 07.15 (Kiểm giả thiết và áp dụng trên bài hộp hạt)
-**Dữ kiện.** Cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$; năm điểm cực $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$ (Ví dụ 07.11).
+::: example Ví dụ 07.15 (Kiểm tra giả thiết và áp dụng trên bài toán hộp hạt)
+**Dữ kiện.** Cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$; năm điểm cực biên $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$ (Ví dụ 07.11).
 
-**Kiểm giả thiết.**
+**Kiểm tra giả thiết.**
 
-1. Có điểm cực: năm hàng chứa $(1,0)$ và $(0,1)$, nên ma trận có hạng $2$; miền khác rỗng vì chứa $(0,0)$. Định lý 07.20 cho điểm cực.
+1. Có điểm cực biên: năm hàng chứa $(1,0)$ và $(0,1)$, nên ma trận có hạng $2$; miền khác rỗng vì chứa $(0,0)$. Định lý 07.20 cho điểm cực biên.
 2. Giá trị tối ưu hữu hạn: miền bị chặn ($0\le x_1\le30$, $0\le x_2\le20$), nên $2x_1+3x_2\le2\cdot30+3\cdot20=120$.
 
-**Áp dụng Hệ quả 07.24.** Giá trị tại năm điểm cực là $0$, $60$, $96$, $88$, $60$; lớn nhất là $96$ tại $(30,12)$.
+**Áp dụng Hệ quả 07.24.** Giá trị tại năm điểm cực biên là $0$, $60$, $96$, $88$, $60$; lớn nhất là $96$ tại $(30,12)$.
 
-**Kiểm tra lại.** Cận trên $96$ của Ví dụ 07.5 khớp. Cận $120$ ở bước kiểm giả thiết chỉ dùng để biết $z^*$ hữu hạn; nó không phải giá trị tối ưu.
+**Kiểm tra lại.** Cận trên $96$ của Ví dụ 07.5 khớp. Cận $120$ ở bước kiểm tra giả thiết chỉ dùng để biết $z^*$ hữu hạn; nó không phải giá trị tối ưu.
 :::
 
-**Trong học máy.** Bộ giải dựa trên đỉnh trả về một điểm cực tối ưu, nên nghiệm có cấu trúc của Định lý 07.23: nhiều ràng buộc chặt, và với dạng chuẩn, nhiều nhất $m$ thành phần khác $0$. Trên hồi quy $L_1$, cấu trúc đó được phát biểu thành mệnh đề sau.
+**Trong học máy.** Bộ giải dựa trên đỉnh trả về một điểm cực biên tối ưu, nên nghiệm có cấu trúc của Định lý 07.23: nhiều ràng buộc chặt, và với dạng chuẩn, nhiều nhất $m$ thành phần khác $0$. Trên hồi quy $L_1$, cấu trúc đó được phát biểu thành mệnh đề sau.
 
 ::: proposition Mệnh đề 07.25 (Hồi quy $L_1$ có nghiệm nội suy $n$ mẫu)
 **Giả thiết.** $M$ mẫu với $h_i\in\mathbb R^n$, $y_i\in\mathbb R$; các véc-tơ $h_1,\ldots,h_M$ sinh $\mathbb R^n$. Xét quy hoạch tuyến tính (1.2) theo biến $(x,t)\in\mathbb R^{n+M}$.
 
 **Kết luận.**
 
-- (a) Miền khả thi của (1.2) có điểm cực.
-- (b) Bài (1.2) có một điểm cực tối ưu $(x^*,t^*)$.
-- (c) Tại mọi điểm cực tối ưu, tập $Z=\{i\mid h_i^Tx^*=y_i\}$ các mẫu có phần dư bằng $0$ thỏa: các véc-tơ $h_i$, $i\in Z$, sinh $\mathbb R^n$. Đặc biệt có ít nhất $n$ mẫu được nội suy chính xác.
+- (a) Miền khả thi của (1.2) có điểm cực biên.
+- (b) Bài toán (1.2) có một điểm cực biên tối ưu $(x^*,t^*)$.
+- (c) Tại mọi điểm cực biên tối ưu, tập $Z=\{i\mid h_i^Tx^*=y_i\}$ các mẫu có phần dư bằng $0$ thỏa: các véc-tơ $h_i$, $i\in Z$, sinh $\mathbb R^n$. Đặc biệt có ít nhất $n$ mẫu được nội suy chính xác.
 
 **Điều kiện áp dụng.** Các $h_i$ sinh $\mathbb R^n$, tức ma trận có hàng $h_i^T$ có hạng $n$.
 
@@ -1211,22 +1211,22 @@ Trong chứng minh, Bước 1 dùng giả thiết hạng để có một ràng b
 ::: proof Chứng minh Mệnh đề 07.25
 **Bước 1 (viết thành đa diện).** Mẫu $i$ cho hai hàng theo biến $(x,t)$: $h_i^Tx-t_i\le y_i$ và $-h_i^Tx-t_i\le-y_i$. Một hướng $(\delta,\tau)\in\mathbb R^{n+M}$ vuông góc với cả hai hàng khi $h_i^T\delta-\tau_i=0$ và $-h_i^T\delta-\tau_i=0$, tức $\tau_i=0$ và $h_i^T\delta=0$.
 
-**Bước 2 (phần (a)).** Theo Bước 1, hướng vuông góc với mọi hàng thỏa $h_i^T\delta=0$ với mọi $i$, nên $\delta=0$ vì các $h_i$ sinh $\mathbb R^n$, và $\tau=0$. Ma trận ràng buộc có hạng $n+M$. Miền khác rỗng, chẳng hạn $x=0$, $t_i=\lvert y_i\rvert$. Định lý 07.20 cho điểm cực.
+**Bước 2 (phần (a)).** Theo Bước 1, hướng vuông góc với mọi hàng thỏa $h_i^T\delta=0$ với mọi $i$, nên $\delta=0$ vì các $h_i$ sinh $\mathbb R^n$, và $\tau=0$. Ma trận ràng buộc có hạng $n+M$. Miền khác rỗng, chẳng hạn $x=0$, $t_i=\lvert y_i\rvert$. Định lý 07.20 cho điểm cực biên.
 
-**Bước 3 (phần (b)).** Viết bài (1.2) thành cực đại $-\sum_it_i$. Vì $t_i\ge\lvert r_i\rvert\ge0$, mục tiêu không vượt $0$, nên $z^*\le0$ hữu hạn. Định lý 07.23 cho một điểm cực tối ưu.
+**Bước 3 (phần (b)).** Viết bài toán (1.2) thành cực đại $-\sum_it_i$. Vì $t_i\ge\lvert r_i\rvert\ge0$, mục tiêu không vượt $0$, nên $z^*\le0$ hữu hạn. Định lý 07.23 cho một điểm cực biên tối ưu.
 
-**Bước 4 (phần (c)).** Tại điểm cực tối ưu $(x^*,t^*)$, Hệ quả 07.4 cho $t_i^*=\lvert r_i^*\rvert$, nên mỗi mẫu có ít nhất một hàng chặt, và có cả hai hàng chặt đúng khi $r_i^*=0$, tức $i\in Z$. Theo Bước 1, một hướng vuông góc với mọi hàng chặt có $\tau_i$ xác định bởi $\delta$ với $i\notin Z$ (một phương trình $\tau_i=\pm h_i^T\delta$), và có $\tau_i=0$, $h_i^T\delta=0$ với $i\in Z$. Định lý 07.13 đòi hướng như vậy chỉ là $0$; điều đó xảy ra khi và chỉ khi $h_i^T\delta=0$ với mọi $i\in Z$ kéo theo $\delta=0$, tức các $h_i$, $i\in Z$, sinh $\mathbb R^n$. Một họ sinh $\mathbb R^n$ có ít nhất $n$ véc-tơ. $\square$
+**Bước 4 (phần (c)).** Tại điểm cực biên tối ưu $(x^*,t^*)$, Hệ quả 07.4 cho $t_i^*=\lvert r_i^*\rvert$, nên mỗi mẫu có ít nhất một hàng chặt, và có cả hai hàng chặt đúng khi $r_i^*=0$, tức $i\in Z$. Theo Bước 1, một hướng vuông góc với mọi hàng chặt có $\tau_i$ xác định bởi $\delta$ với $i\notin Z$ (một phương trình $\tau_i=\pm h_i^T\delta$), và có $\tau_i=0$, $h_i^T\delta=0$ với $i\in Z$. Định lý 07.13 đòi hướng như vậy chỉ là $0$; điều đó xảy ra khi và chỉ khi $h_i^T\delta=0$ với mọi $i\in Z$ kéo theo $\delta=0$, tức các $h_i$, $i\in Z$, sinh $\mathbb R^n$. Một họ sinh $\mathbb R^n$ có ít nhất $n$ véc-tơ. $\square$
 :::
 
-Với mô hình đường thẳng $h_i=(1,\nu_i)$, trong đó $\nu_i$ là giá trị đầu vào của mẫu $i$, phần (c) nói: có một đường thẳng $L_1$ tối ưu đi qua ít nhất hai điểm dữ liệu có đầu vào khác nhau. Bình phương nhỏ nhất không bảo đảm tính chất này. Ở Tình huống 07.1, chúng ta kiểm tính chất đó trên năm mẫu có một ngoại lai.
+Với mô hình đường thẳng $h_i=(1,\nu_i)$, trong đó $\nu_i$ là giá trị đầu vào của mẫu $i$, phần (c) nói: có một đường thẳng $L_1$ tối ưu đi qua ít nhất hai điểm dữ liệu có đầu vào khác nhau. Bình phương nhỏ nhất không bảo đảm tính chất này. Ở Tình huống 07.1, chúng ta kiểm tra tính chất đó trên năm mẫu có một ngoại lai.
 
 ### 4.3 Bốn kết cục của quy hoạch tuyến tính
 
-Định lý 07.23 cần miền có điểm cực. Mọi quy hoạch tuyến tính đều đưa được về dạng chuẩn, và dạng chuẩn khả thi luôn có điểm cực (Hệ quả 07.21). Ghép hai sự kiện đó, ta được một phân loại áp dụng cho mọi quy hoạch tuyến tính, không cần giả thiết nào.
+Định lý 07.23 cần miền có điểm cực biên. Mọi quy hoạch tuyến tính đều đưa được về dạng chuẩn, và dạng chuẩn khả thi luôn có điểm cực biên (Hệ quả 07.21). Ghép hai sự kiện đó, ta được một phân loại áp dụng cho mọi quy hoạch tuyến tính, không cần giả thiết nào.
 
-![Bốn ô. Ô "Không khả thi": hai nửa mặt phẳng x2 ≥ 2 và x2 ≤ 1 không giao nhau, ghi "giao rỗng". Ô "Mục tiêu không bị chặn": miền mở về bên phải, véc-tơ c hướng sang phải, ghi "z tăng mãi". Ô "Tối ưu duy nhất": đường mức xa nhất theo hướng c chạm miền tại một đỉnh. Ô "Nhiều nghiệm tối ưu": đường mức xa nhất trùng một cạnh vuông góc với c, ghi "cả cạnh tối ưu".](img/lec-07/lp-four-statuses.svg)
+![Bốn ô. Ô "Không khả thi": hai nửa mặt phẳng x2 ≥ 2 và x2 ≤ 1 không giao nhau, ghi "giao rỗng". Ô "Mục tiêu không bị chặn": miền mở về bên phải, véc-tơ c hướng sang phải, ghi "z tăng mãi". Ô "Tối ưu duy nhất": đường mức xa nhất theo hướng c chỉ có điểm chung với miền tại một đỉnh. Ô "Nhiều nghiệm tối ưu": đường mức xa nhất trùng một cạnh vuông góc với c, ghi "cả cạnh tối ưu".](img/lec-07/lp-four-statuses.svg)
 
-Bốn ô trên hình là bốn tình huống trong mặt phẳng. Ô thứ nhất có miền rỗng, ô thứ hai có miền kéo dài theo hướng $c$, còn ở hai ô cuối, đường mức xa nhất chạm miền tại một đỉnh hoặc trùng một cạnh. Không còn khả năng nào khác, như định lý sau khẳng định.
+Bốn ô trên hình là bốn tình huống trong mặt phẳng. Ô thứ nhất có miền rỗng, ô thứ hai có miền kéo dài theo hướng $c$, còn ở hai ô cuối, đường mức xa nhất chỉ có điểm chung với miền tại một đỉnh hoặc trùng một cạnh. Không còn khả năng nào khác, như định lý sau khẳng định.
 
 ::: theorem Định lý 07.26 (Bốn kết cục)
 **Giả thiết.** Một quy hoạch tuyến tính bất kỳ: cực đại $c^Tx$ trên $P=\{x\in\mathbb R^n\mid Ax\le b\}$, với $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$, $c\in\mathbb R^n$.
@@ -1240,66 +1240,66 @@ Bốn ô trên hình là bốn tình huống trong mặt phẳng. Ô thứ nhấ
 
 Đặc biệt, không có quy hoạch tuyến tính nào có giá trị tối ưu hữu hạn mà không được đạt.
 
-**Điều kiện áp dụng.** Mọi quy hoạch tuyến tính; bài cực tiểu, bài có phương trình hay biến không âm được viết về dạng của giả thiết như sau Định nghĩa 07.1.
+**Điều kiện áp dụng.** Mọi quy hoạch tuyến tính; bài toán cực tiểu, bài toán có phương trình hay biến không âm được viết về dạng của giả thiết như sau Định nghĩa 07.1.
 
-**Phạm vi.** Định lý chỉ phân loại; nó không cho cách xác định kết cục mà không giải bài toán. Kết luận không đúng cho bài lồi không tuyến tính (Nhận xét 07.27).
+**Phạm vi.** Định lý chỉ phân loại; nó không cho cách xác định kết cục mà không giải bài toán. Kết luận không đúng cho bài toán lồi không tuyến tính (Nhận xét 07.27).
 :::
 
 ::: proof Chứng minh Định lý 07.26
 **Bước 1 (bốn trường hợp loại trừ nhau).** Kết cục 1 và 2 tách nhau bởi $P$ rỗng hay không. Kết cục 3 và 4 có $z^*$ hữu hạn nên khác kết cục 2; chúng tách nhau bởi số nghiệm.
 
-**Bước 2 (giá trị hữu hạn thì được đạt).** Giả sử $P\ne\varnothing$ và $z^*<+\infty$. Theo Mệnh đề 07.8, bài mới ở dạng chuẩn có miền $\tilde P$ khác rỗng (chứa $\varphi(x)$ với $x\in P$) và cùng giá trị tối ưu $z^*$. Theo Hệ quả 07.21(a), $\tilde P$ có điểm cực. Theo Định lý 07.23 áp dụng cho $\tilde P$, viết thành đa diện dạng (2.1) bằng Mệnh đề 07.6(b), có $\tilde x^*\in\tilde P$ tối ưu. Theo Mệnh đề 07.8(d), $\psi(\tilde x^*)\in P$ tối ưu cho bài gốc.
+**Bước 2 (giá trị hữu hạn thì được đạt).** Giả sử $P\ne\varnothing$ và $z^*<+\infty$. Theo Mệnh đề 07.8, bài toán mới ở dạng chuẩn có miền $\tilde P$ khác rỗng (chứa $\varphi(x)$ với $x\in P$) và cùng giá trị tối ưu $z^*$. Theo Hệ quả 07.21(a), $\tilde P$ có điểm cực biên. Theo Định lý 07.23 áp dụng cho $\tilde P$, viết thành đa diện dạng (2.1) bằng Mệnh đề 07.6(b), có $\tilde x^*\in\tilde P$ tối ưu. Theo Mệnh đề 07.8(d), $\psi(\tilde x^*)\in P$ tối ưu cho bài toán ban đầu.
 
 **Bước 3 (số nghiệm).** Khi $z^*$ hữu hạn và được đạt, Mệnh đề 07.22(b) cho số nghiệm là $1$ hoặc vô số. Cùng với Bước 2, mọi bài toán khả thi có $z^*<+\infty$ thuộc kết cục 3 hoặc 4. $\square$
 :::
 
 Định lý 07.26 có thể đọc thành hai câu hỏi chẩn đoán: miền khả thi có rỗng không, và nếu không rỗng thì mục tiêu có bị chặn theo chiều tối ưu không. Nếu hai câu trả lời là "không rỗng" và "bị chặn" thì bài toán có nghiệm, và theo Định lý 07.23 áp dụng cho dạng chuẩn, có một nghiệm cơ sở khả thi tối ưu.
 
-So với Định lý 07.23, định lý này bỏ giả thiết "có điểm cực" nhưng chỉ kết luận nghiệm tối ưu tồn tại, không kết luận nó là điểm cực của miền gốc. Trên nửa mặt phẳng, bài cực đại $-x_2$ thuộc kết cục 4 dù miền không có đỉnh.
+So với Định lý 07.23, định lý này bỏ giả thiết "có điểm cực biên" nhưng chỉ kết luận nghiệm tối ưu tồn tại, không kết luận nó là điểm cực biên của miền gốc. Trên nửa mặt phẳng, bài toán cực đại $-x_2$ thuộc kết cục 4 dù miền không có đỉnh.
 
-::: example Ví dụ 07.16 (Bốn kết cục trên bài một biến)
-**Dữ kiện.** Bốn bài với biến $x\in\mathbb R$.
+::: example Ví dụ 07.16 (Bốn kết cục trên bài toán một biến)
+**Dữ kiện.** Bốn bài toán với biến $x\in\mathbb R$.
 
 1. Cực đại $x$ dưới $x\le0$ và $x\ge1$: miền rỗng, không khả thi.
 2. Cực đại $x$ dưới $x\ge0$: miền khác rỗng và $x$ nhận giá trị lớn tùy ý, không bị chặn.
 3. Cực đại $x$ dưới $0\le x\le1$: nghiệm duy nhất $x^*=1$, $z^*=1$.
 4. Cực đại $0\cdot x$ dưới $0\le x\le1$: mọi điểm đều tối ưu với $z^*=0$, vô số nghiệm.
 
-**Cùng miền, khác mục tiêu.** Trên miền $x\ge0$ của bài 2, bài cực đại $-x$ có nghiệm duy nhất $x^*=0$. Miền không bị chặn không kéo theo mục tiêu không bị chặn; kết cục phụ thuộc hướng $c$.
+**Cùng miền, khác mục tiêu.** Trên miền $x\ge0$ của bài 2, bài toán cực đại $-x$ có nghiệm duy nhất $x^*=0$. Miền không bị chặn không kéo theo mục tiêu không bị chặn; kết cục phụ thuộc hướng $c$.
 
 **Kiểm tra lại.** Ở bài 3, $x\le1$ cho $z\le1$ và $x=1$ khả thi. Ở bài 2, với mọi $K$, điểm $x=K+1$ khả thi và cho $z>K$.
 :::
 
-::: remark Nhận xét 07.27 (So với bài lồi tổng quát và ba nhầm lẫn)
-**So với Nhận xét 02.8.** Một bài lồi tổng quát có thêm kết cục "bị chặn nhưng không đạt" (Nhận xét 02.8 gọi các kết cục là "trạng thái"), chẳng hạn cực tiểu $\exp(x)$ trên $\mathbb R$ có cận dưới đúng $0$ không đạt. Định lý 07.26 loại kết cục đó cho quy hoạch tuyến tính; lý do nằm ở cấu trúc đa diện của miền, đi qua Định lý 07.23.
+::: remark Nhận xét 07.27 (So với bài toán lồi tổng quát và ba nhầm lẫn)
+**So với Nhận xét 02.8.** Một bài toán lồi tổng quát có thêm kết cục "bị chặn nhưng không đạt" (Nhận xét 02.8 gọi các kết cục là "trạng thái"), chẳng hạn cực tiểu $\exp(x)$ trên $\mathbb R$ có cận dưới đúng $0$ không đạt. Định lý 07.26 loại kết cục đó cho quy hoạch tuyến tính; lý do nằm ở cấu trúc đa diện của miền, đi qua Định lý 07.23.
 
 **Ba nhầm lẫn.**
 
-- "Miền không bị chặn thì mục tiêu không bị chặn": sai, như bài cực đại $-x$ trên $x\ge0$.
+- "Miền không bị chặn thì mục tiêu không bị chặn": sai, như bài toán cực đại $-x$ trên $x\ge0$.
 - "Nhiều nghiệm tối ưu nghĩa là hai nghiệm": sai, theo Mệnh đề 07.22(b) là vô số.
-- "Làm tròn nghiệm của quy hoạch tuyến tính cho nghiệm của bài có biến nguyên": sai. Bài cực đại $x$ dưới $2x\le1$, $x\ge0$ có nghiệm $\tfrac12$; làm tròn lên cho $1$, vi phạm $2x\le1$, còn bài có thêm điều kiện $x$ nguyên có nghiệm $0$. Quy hoạch nguyên cần công cụ khác.
+- "Làm tròn nghiệm của quy hoạch tuyến tính cho nghiệm của bài toán có biến nguyên": sai. Bài toán cực đại $x$ dưới $2x\le1$, $x\ge0$ có nghiệm $\tfrac12$; làm tròn lên cho $1$, vi phạm $2x\le1$, còn bài toán có thêm điều kiện $x$ nguyên có nghiệm $0$. Quy hoạch nguyên cần công cụ khác.
 :::
 
-**Trong học máy.** Bộ giải quy hoạch tuyến tính báo một trong bốn kết cục của Định lý 07.26, và mỗi kết cục chỉ về một loại lỗi mô hình: không khả thi do các yêu cầu mâu thuẫn, không bị chặn do quên một giới hạn tài nguyên, nhiều nghiệm do các cấu hình có cùng giá trị mục tiêu. Cả ba loại lỗi được chẩn đoán trên một bài phân bổ giờ GPU ở Tình huống 07.2.
+**Trong học máy.** Bộ giải quy hoạch tuyến tính báo một trong bốn kết cục của Định lý 07.26, và mỗi kết cục chỉ về một loại lỗi mô hình: không khả thi do các yêu cầu mâu thuẫn, không bị chặn do quên một giới hạn tài nguyên, nhiều nghiệm do các cấu hình có cùng giá trị mục tiêu. Cả ba loại lỗi được chẩn đoán trên một bài toán phân bổ giờ GPU ở Tình huống 07.2.
 
-### 4.4 Đỉnh kề và lợi ích rút gọn
+### 4.4 Đỉnh kề và chi phí rút gọn
 
-Theo Hệ quả 07.24, ta có thể liệt kê mọi điểm cực và chọn điểm có giá trị mục tiêu lớn nhất. Tuy nhiên, số điểm cực có thể lên tới $\binom nm$, chẳng hạn với $n=40$ biến và $m=20$ phương trình, $\binom{40}{20}=137\,846\,528\,820\approx1{,}38\cdot10^{11}$. Do đó, chúng ta cần một cách tìm kiếm cục bộ, trong đó từ một điểm cực, ta chỉ xét các điểm cực "bên cạnh" và chuyển sang một điểm có giá trị mục tiêu lớn hơn.
+Theo Hệ quả 07.24, ta có thể liệt kê mọi điểm cực biên và chọn điểm có giá trị mục tiêu lớn nhất. Tuy nhiên, số điểm cực biên có thể lên tới $\binom nm$, chẳng hạn với $n=40$ biến và $m=20$ phương trình, $\binom{40}{20}=137\,846\,528\,820\approx1{,}38\cdot10^{11}$. Do đó, chúng ta cần một cách tìm kiếm cục bộ, trong đó từ một điểm cực biên, ta chỉ xét các điểm cực biên "bên cạnh" và chuyển sang một điểm có giá trị mục tiêu lớn hơn.
 
 Trên ngũ giác hộp hạt, hai đỉnh "bên cạnh" khi nối với nhau bằng một cạnh của ngũ giác, tức cùng nằm trên một đường biên. Trong $\mathbb R^n$, một đỉnh là nghiệm duy nhất của $n$ ràng buộc chặt độc lập; hai đỉnh kề nhau khi chúng chung $n-1$ ràng buộc trong số đó. Quan hệ này được phát biểu chính xác như sau.
 
-::: definition Định nghĩa 07.28 (Điểm cực kề nhau, cạnh)
-Cho đa diện $P\subseteq\mathbb R^n$. Hai điểm cực khác nhau $v$, $w$ của $P$ kề nhau (adjacent) nếu có $n-1$ ràng buộc với hàng độc lập tuyến tính cùng chặt tại $v$ và tại $w$. Tập các điểm của $P$ thỏa $n-1$ ràng buộc đó với dấu bằng chứa đoạn nối $v$ và $w$, và được gọi là một cạnh (edge) của $P$.
+::: definition Định nghĩa 07.28 (Điểm cực biên kề nhau, cạnh)
+Cho đa diện $P\subseteq\mathbb R^n$. Hai điểm cực biên khác nhau $v$, $w$ của $P$ kề nhau (adjacent) nếu có $n-1$ ràng buộc với hàng độc lập tuyến tính cùng chặt tại $v$ và tại $w$. Tập các điểm của $P$ thỏa $n-1$ ràng buộc đó với dấu bằng chứa đoạn nối $v$ và $w$, và được gọi là một cạnh (edge) của $P$.
 :::
 
 Định nghĩa trên theo cách trình bày của Bertsimas và Tsitsiklis (1997, §2.2). Trong mặt phẳng, $n-1=1$: hai đỉnh kề nhau khi chung một đường biên chặt. Trên ngũ giác hộp hạt, $(30,0)$ và $(30,12)$ kề nhau vì cùng nằm trên $x_1=30$; $(30,12)$ và $(14,20)$ kề nhau qua đường giờ máy; còn $(0,0)$ và $(30,12)$ không chung đường biên nào nên không kề.
 
-Với dạng chuẩn, đỉnh kề có một mô tả qua cơ sở, phát biểu trong mệnh đề sau. Chứng minh cần Định lý 07.15 (nghiệm cơ sở khả thi là điểm cực) và định lý số chiều (hạng của một họ hàng cộng số chiều không gian nghiệm của hệ thuần nhất tương ứng bằng $n$).
+Với dạng chuẩn, đỉnh kề có một mô tả qua cơ sở, phát biểu trong mệnh đề sau. Chứng minh cần Định lý 07.15 (nghiệm cơ sở khả thi là điểm cực biên) và định lý số chiều (hạng của một họ hàng cộng số chiều không gian nghiệm của hệ thuần nhất tương ứng bằng $n$).
 
 ::: proposition Mệnh đề 07.29 (Hai cơ sở khác nhau một chỉ số)
-**Giả thiết.** Bài dạng chuẩn (2.2) với $\operatorname{rank}(A)=m$. Hai cơ sở $B$, $B'$ khác nhau đúng một chỉ số, tức $\lvert B\cap B'\rvert=m-1$, cho hai nghiệm cơ sở khả thi $v\ne w$.
+**Giả thiết.** Bài toán dạng chuẩn (2.2) với $\operatorname{rank}(A)=m$. Hai cơ sở $B$, $B'$ khác nhau đúng một chỉ số, tức $\lvert B\cap B'\rvert=m-1$, cho hai nghiệm cơ sở khả thi $v\ne w$.
 
-**Kết luận.** $v$ và $w$ là hai điểm cực kề nhau theo Định nghĩa 07.28.
+**Kết luận.** $v$ và $w$ là hai điểm cực biên kề nhau theo Định nghĩa 07.28.
 
 **Điều kiện áp dụng.** Hai điểm phải khác nhau; khi suy biến, hai cơ sở khác một chỉ số có thể cho cùng một điểm.
 
@@ -1307,16 +1307,16 @@ Với dạng chuẩn, đỉnh kề có một mô tả qua cơ sở, phát biểu
 :::
 
 ::: proof Chứng minh Mệnh đề 07.29
-**Bước 1 (hai điểm là điểm cực).** Theo Định lý 07.15, mỗi nghiệm cơ sở khả thi là điểm cực.
+**Bước 1 (hai điểm là điểm cực biên).** Theo Định lý 07.15, mỗi nghiệm cơ sở khả thi là điểm cực biên.
 
 **Bước 2 (ràng buộc chung).** Tập $B\cup B'$ có $m+1$ phần tử. Cả $v$ và $w$ thỏa $m$ phương trình $Ax=b$, và có $x_{j'}=0$ với mọi $j'\notin B\cup B'$, vì mỗi điểm bằng $0$ ngoài cơ sở của nó. Tổng cộng có $m+(n-m-1)=n-1$ ràng buộc cùng chặt tại hai điểm.
 
 **Bước 3 (hạng của các ràng buộc chung).** Hệ thuần nhất tương ứng là $Ay=0$, $y_{j'}=0$ với $j'\notin B\cup B'$. Nghiệm của nó tựa trên $B\cup B'$ và thỏa $\sum_{j'\in B\cup B'}y_{j'}A_{j'}=0$. Các cột trên $B\cup B'$ có hạng $m$ vì chứa $A_B$ khả nghịch, nên không gian nghiệm có chiều $(m+1)-m=1$.
 
-**Bước 4 (kết luận).** Theo định lý số chiều, $n-1$ ràng buộc ở Bước 2 có hạng $n-1$, tức độc lập tuyến tính. Hai điểm cực khác nhau cùng chặt $n-1$ ràng buộc độc lập, nên kề nhau theo Định nghĩa 07.28. $\square$
+**Bước 4 (kết luận).** Theo định lý số chiều, $n-1$ ràng buộc ở Bước 2 có hạng $n-1$, tức độc lập tuyến tính. Hai điểm cực biên khác nhau cùng chặt $n-1$ ràng buộc độc lập, nên kề nhau theo Định nghĩa 07.28. $\square$
 :::
 
-Mệnh đề 07.29 chuyển Định nghĩa 07.28, phát biểu bằng các hàng chặt, sang ngôn ngữ cột cơ sở, theo đó đổi một cột cơ sở là đi dọc một cạnh. Trong chương, ta chỉ dùng chiều này, còn chiều ngược, mọi cặp đỉnh kề có hai cơ sở khác một chỉ số, không được phát biểu. Trên bài hộp hạt, hai cơ sở $\{s_1,s_2,s_3\}$ và $\{x_1,s_2,s_3\}$ khác nhau ở một chỉ số và cho hai đỉnh kề $(0,0)$, $(30,0)$.
+Mệnh đề 07.29 chuyển Định nghĩa 07.28, phát biểu bằng các hàng chặt, sang ngôn ngữ cột cơ sở, theo đó đổi một cột cơ sở là đi dọc một cạnh. Trong chương, ta chỉ dùng chiều này, còn chiều ngược, mọi cặp đỉnh kề có hai cơ sở khác một chỉ số, không được phát biểu. Trên bài toán hộp hạt, hai cơ sở $\{s_1,s_2,s_3\}$ và $\{x_1,s_2,s_3\}$ khác nhau ở một chỉ số và cho hai đỉnh kề $(0,0)$, $(30,0)$.
 
 Để tìm đỉnh kề bằng đại số, ta cần biết đi theo hướng nào từ một nghiệm cơ sở khả thi. Trên dạng chuẩn hộp hạt, xét đỉnh $(0,0)$ với cơ sở $\{s_1,s_2,s_3\}$ và tăng $x_1$ thêm $\theta$ đơn vị, giữ $x_2=0$.
 
@@ -1326,15 +1326,15 @@ Mệnh đề 07.29 chuyển Định nghĩa 07.28, phát biểu bằng các hàng
 
 Hướng trong phép tính này tăng một biến ngoài cơ sở, giữ các biến ngoài cơ sở khác bằng $0$, và điều chỉnh các biến cơ sở để vẫn thỏa $Ax=b$. Hướng đó và mức tăng của mục tiêu được gọi tên theo định nghĩa sau.
 
-::: definition Định nghĩa 07.30 (Hướng cơ sở, lợi ích rút gọn)
-Cho bài dạng chuẩn (2.2), một cơ sở $B$ và $j\in B^{\mathrm c}$. Hướng cơ sở (basic direction) $d^j\in\mathbb R^n$ có các thành phần
+::: definition Định nghĩa 07.30 (Hướng cơ sở, chi phí rút gọn)
+Cho bài toán dạng chuẩn (2.2), một cơ sở $B$ và $j\in B^{\mathrm c}$. Hướng cơ sở (basic direction) $d^j\in\mathbb R^n$ có các thành phần
 
 $$
 d^j_j=1,\qquad d^j_{j'}=0\ \ (j'\in B^{\mathrm c},\ j'\ne j),\qquad d^j_B=-A_B^{-1}A_j .
 \tag{4.1}
 $$
 
-Lợi ích rút gọn (reduced cost, viết cho chiều cực đại) của biến $j$ là
+Chi phí rút gọn (reduced cost) của biến $j$ là
 
 $$
 \bar c_j=c^Td^j=c_j-c_B^TA_B^{-1}A_j .
@@ -1342,12 +1342,12 @@ $$
 $$
 :::
 
-Theo (4.1), hướng $d^j$ tăng $x_j$ một đơn vị, giữ các biến ngoài cơ sở khác bằng $0$, và điều chỉnh biến cơ sở để $Ad^j=A_B d^j_B+A_j=0$. Theo (4.2), $\bar c_j$ là mức thay đổi của mục tiêu trên một đơn vị dịch chuyển: lợi ích trực tiếp $c_j$ trừ phần lợi ích giảm do điều chỉnh các biến cơ sở. Bertsimas và Tsitsiklis (1997, §3.1) viết cho bài cực tiểu và gọi nó là chi phí rút gọn.
+Theo (4.1), hướng $d^j$ tăng $x_j$ một đơn vị, giữ các biến ngoài cơ sở khác bằng $0$, và điều chỉnh biến cơ sở để $Ad^j=A_B d^j_B+A_j=0$. Theo (4.2), $\bar c_j$ là mức thay đổi của mục tiêu trên một đơn vị dịch chuyển: lợi ích trực tiếp $c_j$ trừ phần lợi ích giảm do điều chỉnh các biến cơ sở. Tên "chi phí rút gọn" được giữ theo thuật ngữ chuẩn, dù trong chương $c$ là véc-tơ lợi ích. Bertsimas và Tsitsiklis (1997, §3.1) dùng cùng công thức cho bài toán cực tiểu, nên ở đó tiêu chuẩn tối ưu là $\bar c_j\ge0$, còn với bài toán cực đại của chương, tiêu chuẩn là $\bar c_j\le0$ (Mệnh đề 07.31).
 
 Với các hướng cơ sở, mọi điểm khả thi được biểu diễn qua nghiệm cơ sở hiện tại, và từ biểu diễn đó ta có tiêu chuẩn tối ưu sau.
 
-::: proposition Mệnh đề 07.31 (Tiêu chuẩn tối ưu theo lợi ích rút gọn)
-**Giả thiết.** Bài dạng chuẩn (2.2); $x$ là nghiệm cơ sở khả thi với cơ sở $B$.
+::: proposition Mệnh đề 07.31 (Tiêu chuẩn tối ưu theo chi phí rút gọn)
+**Giả thiết.** Bài toán dạng chuẩn (2.2); $x$ là nghiệm cơ sở khả thi với cơ sở $B$.
 
 **Kết luận.**
 
@@ -1356,7 +1356,7 @@ Với các hướng cơ sở, mọi điểm khả thi được biểu diễn qua
 
 **Điều kiện áp dụng.** Mọi nghiệm cơ sở khả thi, kể cả suy biến.
 
-**Phạm vi.** Chiều ngược của (b) sai khi $x$ suy biến: $x$ có thể tối ưu trong khi một lợi ích rút gọn dương (Tình huống 07.2).
+**Phạm vi.** Chiều ngược của (b) sai khi $x$ suy biến: $x$ có thể tối ưu trong khi một chi phí rút gọn dương (Tình huống 07.2).
 :::
 
 ::: proof Chứng minh Mệnh đề 07.31
@@ -1367,26 +1367,26 @@ Với các hướng cơ sở, mọi điểm khả thi được biểu diễn qua
 **Bước 3 (phần (b)).** Với $x'\in P$, mọi $x'_j\ge0$; nếu mọi $\bar c_j\le0$ thì tổng ở Bước 2 không dương, nên $c^Tx'\le c^Tx$. $\square$
 :::
 
-Mệnh đề 07.31 cho thấy mọi hướng từ $x$ vào miền khả thi là tổ hợp không âm của các hướng cơ sở, nên chỉ cần kiểm $n-m$ hướng. Tại cơ sở tối ưu $\{x_1,x_2,s_2\}$ của bài hộp hạt, các số $-\bar c_j$ của biến phụ ngoài cơ sở là hệ số nhân của Ví dụ 07.5 (kiểm ở Ví dụ 07.18), tức nhân tử đối ngẫu của Bài 03.
+Mệnh đề 07.31 cho thấy mọi hướng từ $x$ vào miền khả thi là tổ hợp không âm của các hướng cơ sở, nên chỉ cần kiểm tra $n-m$ hướng. Tại cơ sở tối ưu $\{x_1,x_2,s_2\}$ của bài toán hộp hạt, các số $-\bar c_j$ của biến phụ ngoài cơ sở là hệ số nhân của Ví dụ 07.5 (kiểm tra ở Ví dụ 07.18), tức nhân tử đối ngẫu của Bài 03.
 
-Tìm kiếm cục bộ dựa trên bổ đề sau. Phát biểu áp dụng cho mọi đa diện có điểm cực, còn chứng minh dưới đây viết cho dạng chuẩn với điểm cực không suy biến và dùng Định nghĩa 07.30, Mệnh đề 07.31 cùng Mệnh đề 07.29.
+Tìm kiếm cục bộ dựa trên bổ đề sau. Phát biểu áp dụng cho mọi đa diện có điểm cực biên, còn chứng minh dưới đây viết cho dạng chuẩn với điểm cực biên không suy biến và dùng Định nghĩa 07.30, Mệnh đề 07.31 cùng Mệnh đề 07.29.
 
 ::: lemma Bổ đề 07.32 (Đỉnh kề cải thiện)
-**Giả thiết.** $P$ là đa diện có ít nhất một điểm cực; $z^*=\sup_{x\in P}c^Tx$ hữu hạn; $v$ là điểm cực của $P$ với $c^Tv<z^*$.
+**Giả thiết.** $P$ là đa diện có ít nhất một điểm cực biên; $z^*=\sup_{x\in P}c^Tx$ hữu hạn; $v$ là điểm cực biên của $P$ với $c^Tv<z^*$.
 
-**Kết luận.** Có một điểm cực $w$ kề $v$ với $c^Tw>c^Tv$.
+**Kết luận.** Có một điểm cực biên $w$ kề $v$ với $c^Tw>c^Tv$.
 
-**Điều kiện áp dụng.** Đa diện bất kỳ có điểm cực, với giá trị tối ưu hữu hạn.
+**Điều kiện áp dụng.** Đa diện bất kỳ có điểm cực biên, với giá trị tối ưu hữu hạn.
 
 **Phạm vi.** Chương chứng minh bổ đề khi $P$ ở dạng chuẩn và $v$ không suy biến.
 
-*Quy về dạng chuẩn.* Cho $P=\{x\mid Ax\le b\}$ với $A\in\mathbb R^{m\times n}$ có điểm cực, nên $\operatorname{rank}(A)=n$ (Định lý 07.20). Gọi $W$ là ma trận có $m-n$ hàng lập thành một cơ sở của không gian nghiệm trái $\{y\mid y^TA=0\}$, và đặt $Q=\{s\in\mathbb R^m\mid s\ge0,\ Ws=Wb\}$, một đa diện dạng chuẩn. Ánh xạ $x\mapsto s=b-Ax$ là song ánh affine từ $P$ lên $Q$ (đơn ánh vì hạng $n$; $s\in b-\operatorname{Im}A$ khi và chỉ khi $Ws=Wb$), nên giữ điểm cực, và ràng buộc $a_i^Tx\le b_i$ chặt khi và chỉ khi $s_i=0$. Quan hệ kề cũng được giữ: với tập chỉ số chung $\mathcal J$, không gian nghiệm $\{d\mid a_i^Td=0,\ i\in\mathcal J\}$ được ánh xạ đơn ánh $d\mapsto\tilde d=-Ad$ lên $\{\tilde d\mid W\tilde d=0,\ \tilde d_i=0,\ i\in\mathcal J\}$, nên hai không gian cùng số chiều, và theo định lý số chiều, các ràng buộc chung có hạng $n-1$ trong $P$ khi và chỉ khi các ràng buộc chung (gồm $m-n$ hàng của $W$) có hạng $m-1$ trong $Q$.
+*Quy về dạng chuẩn.* Cho $P=\{x\mid Ax\le b\}$ với $A\in\mathbb R^{m\times n}$ có điểm cực biên, nên $\operatorname{rank}(A)=n$ (Định lý 07.20). Gọi $W$ là ma trận có $m-n$ hàng lập thành một cơ sở của không gian nghiệm trái $\{y\mid y^TA=0\}$, và đặt $Q=\{s\in\mathbb R^m\mid s\ge0,\ Ws=Wb\}$, một đa diện dạng chuẩn. Ánh xạ $x\mapsto s=b-Ax$ là song ánh affine từ $P$ lên $Q$ (đơn ánh vì hạng $n$; $s\in b-\operatorname{Im}A$ khi và chỉ khi $Ws=Wb$), nên giữ điểm cực biên, và ràng buộc $a_i^Tx\le b_i$ chặt khi và chỉ khi $s_i=0$. Quan hệ kề cũng được giữ: với tập chỉ số chung $\mathcal J$, không gian nghiệm $\{d\mid a_i^Td=0,\ i\in\mathcal J\}$ được ánh xạ đơn ánh $d\mapsto\tilde d=-Ad$ lên $\{\tilde d\mid W\tilde d=0,\ \tilde d_i=0,\ i\in\mathcal J\}$, nên hai không gian cùng số chiều, và theo định lý số chiều, các ràng buộc chung có hạng $n-1$ trong $P$ khi và chỉ khi các ràng buộc chung (gồm $m-n$ hàng của $W$) có hạng $m-1$ trong $Q$.
 
 *Trường hợp suy biến* nằm ngoài phạm vi học phần. Ý tưởng: từ cơ sở của $v$, chạy phương pháp đơn hình với một quy tắc chống quay vòng như quy tắc Bland; phương pháp không dừng tại $v$ vì $v$ không tối ưu, nên đến một bước nào đó nó đổi cơ sở mà điểm di chuyển, và điểm mới là một đỉnh kề có giá trị lớn hơn (Bertsimas và Tsitsiklis 1997, §3.2 và §3.4).
 :::
 
 ::: proof Chứng minh Bổ đề 07.32 (dạng chuẩn, $v$ không suy biến)
-**Bước 1 (có một lợi ích rút gọn dương).** Vì $c^Tv<z^*$, có $x'\in P$ với $c^Tx'>c^Tv$. Theo Mệnh đề 07.31(a), $\sum_{j\in B^{\mathrm c}}x'_j\bar c_j=c^Tx'-c^Tv>0$; vì mọi $x'_j\ge0$, có $j\in B^{\mathrm c}$ với $\bar c_j>0$.
+**Bước 1 (có một chi phí rút gọn dương).** Vì $c^Tv<z^*$, có $x'\in P$ với $c^Tx'>c^Tv$. Theo Mệnh đề 07.31(a), $\sum_{j\in B^{\mathrm c}}x'_j\bar c_j=c^Tx'-c^Tv>0$; vì mọi $x'_j\ge0$, có $j\in B^{\mathrm c}$ với $\bar c_j>0$.
 
 **Bước 2 (hướng $d^j$ không phải một tia khả thi).** Điểm $v+\theta d^j$ thỏa $A(v+\theta d^j)=b$ với mọi $\theta$. Nếu $d^j_B\ge0$, mọi thành phần của $v+\theta d^j$ không âm với $\theta\ge0$, nên nó thuộc $P$ và $c^T(v+\theta d^j)=c^Tv+\theta\bar c_j\to+\infty$, trái giả thiết $z^*$ hữu hạn. Vậy có $j'\in B$ với $d^j_{j'}<0$.
 
@@ -1398,14 +1398,14 @@ $$
 
 Vì $v$ không suy biến, mọi $v_{j'}>0$ với $j'\in B$, nên $\theta^*>0$. Điểm $w=v+\theta^*d^j$ không âm theo cách chọn $\theta^*$, thuộc $P$, và $c^Tw=c^Tv+\theta^*\bar c_j>c^Tv$.
 
-**Bước 4 ($w$ là điểm cực).** Gọi $l\in B$ là chỉ số đạt cực tiểu, nên $w_l=0$, và đặt $B'=(B\setminus\{l\})\cup\{j\}$. Véc-tơ $A_B^{-1}A_j=-d^j_B$ có thành phần ứng với $l$ khác $0$, nên thay cột $A_l$ bằng $A_j$ giữ $m$ cột độc lập: $A_{B'}$ khả nghịch. Các thành phần dương của $w$ nằm trong $B'$, nên $w$ là nghiệm cơ sở khả thi của $B'$ và là điểm cực theo Định lý 07.15.
+**Bước 4 ($w$ là điểm cực biên).** Gọi $l\in B$ là chỉ số đạt cực tiểu, nên $w_l=0$, và đặt $B'=(B\setminus\{l\})\cup\{j\}$. Véc-tơ $A_B^{-1}A_j=-d^j_B$ có thành phần ứng với $l$ khác $0$, nên thay cột $A_l$ bằng $A_j$ giữ $m$ cột độc lập: $A_{B'}$ khả nghịch. Các thành phần dương của $w$ nằm trong $B'$, nên $w$ là nghiệm cơ sở khả thi của $B'$ và là điểm cực biên theo Định lý 07.15.
 
 **Bước 5 ($w$ kề $v$).** Hai cơ sở $B$, $B'$ khác nhau đúng một chỉ số, và $w\ne v$ vì $\theta^*>0$, $d^j\ne0$. Theo Mệnh đề 07.29, $v$ và $w$ kề nhau. $\square$
 :::
 
 Bước 3 là bước duy nhất cần giả thiết không suy biến. Khi một biến cơ sở $x_{j'}$ bằng $0$ và $d^j_{j'}<0$, $\theta^*=0$: cơ sở đổi nhưng điểm không di chuyển, và một quy tắc chọn không phù hợp có thể quay lại một cơ sở cũ, hiện tượng gọi là quay vòng (cycling).
 
-::: example Ví dụ 07.17 (Hướng cơ sở tại đỉnh $(0,0)$ của bài hộp hạt)
+::: example Ví dụ 07.17 (Hướng cơ sở tại đỉnh $(0,0)$ của bài toán hộp hạt)
 **Dữ kiện.** Dạng chuẩn hộp hạt: cực đại $2x_1+3x_2$ (biến phụ có hệ số $0$), $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$, mọi biến không âm, thứ tự $(x_1,x_2,s_1,s_2,s_3)$. Nghiệm cơ sở khả thi $(0,0,30,20,54)$ với $B=\{s_1,s_2,s_3\}$, $A_B=I$.
 
 **Hướng tăng $x_1$.** $d_B=-A_1=-(1,0,1)$, nên $d^{x_1}=(1,0,-1,0,-1)$ và $\bar c_{x_1}=2>0$. Phép thử tỉ số: $s_1$ cho $\tfrac{30}1=30$, $s_3$ cho $\tfrac{54}1=54$; $\theta^*=30$. Điểm mới $(30,0,0,20,24)$, tức đỉnh $(30,0)$, với $z=60$.
@@ -1417,49 +1417,49 @@ Bước 3 là bước duy nhất cần giả thiết không suy biến. Khi mộ
 
 ### 4.5 Thuật toán duyệt đỉnh kề
 
-Bổ đề 07.32 dẫn tới một quy trình: tại một điểm cực, nếu tồn tại đỉnh kề có giá trị mục tiêu lớn hơn thì chuyển sang đỉnh đó, nếu không thì dừng. Ghi quy trình đó ở mức ý niệm, chưa nói cách tìm đỉnh kề trong mọi trường hợp, ta được thuật toán sau.
+Bổ đề 07.32 dẫn tới một quy trình: tại một điểm cực biên, nếu tồn tại đỉnh kề có giá trị mục tiêu lớn hơn thì chuyển sang đỉnh đó, nếu không thì dừng. Ghi quy trình đó ở mức ý niệm, chưa nói cách tìm đỉnh kề trong mọi trường hợp, ta được thuật toán sau.
 
 ::: algorithm Thuật toán 07.1 (Duyệt đỉnh kề)
-**Đầu vào.** Đa diện $P$ có điểm cực; véc-tơ $c$ với $z^*=\sup_{x\in P}c^Tx$ hữu hạn; một điểm cực xuất phát $v$.
+**Đầu vào.** Đa diện $P$ có điểm cực biên; véc-tơ $c$ với $z^*=\sup_{x\in P}c^Tx$ hữu hạn; một điểm cực biên xuất phát $v$.
 
 **Các bước.**
 
-1. Tìm một điểm cực $w$ kề $v$ với $c^Tw>c^Tv$.
+1. Tìm một điểm cực biên $w$ kề $v$ với $c^Tw>c^Tv$.
 2. Nếu có, gán $v\leftarrow w$ và quay lại bước 1.
 3. Nếu không có, dừng.
 
-**Đầu ra.** Điểm cực $v$ khi dừng.
+**Đầu ra.** Điểm cực biên $v$ khi dừng.
 
-**Chi phí mỗi bước.** Ở dạng chuẩn với $v$ không suy biến: tính $n-m$ lợi ích rút gọn (4.2) và một phép thử tỉ số, mỗi việc cần giải một hệ với ma trận $A_B$.
+**Chi phí mỗi bước.** Ở dạng chuẩn với $v$ không suy biến: tính $n-m$ chi phí rút gọn (4.2) và một phép thử tỉ số, mỗi việc cần giải một hệ với ma trận $A_B$.
 :::
 
 Tính dừng và tính đúng của thuật toán được khẳng định trong mệnh đề sau.
 
-::: proposition Mệnh đề 07.33 (Thuật toán dừng tại một điểm cực tối ưu)
+::: proposition Mệnh đề 07.33 (Thuật toán dừng tại một điểm cực biên tối ưu)
 **Giả thiết.** Như đầu vào của Thuật toán 07.1.
 
-**Kết luận.** Thuật toán dừng sau hữu hạn bước, và điểm cực trả về là nghiệm tối ưu.
+**Kết luận.** Thuật toán dừng sau hữu hạn bước, và điểm cực biên trả về là nghiệm tối ưu.
 
 **Điều kiện áp dụng.** Bước 1 tìm được đỉnh kề cải thiện khi có; điều này được Bổ đề 07.32 bảo đảm tồn tại.
 
-**Phạm vi.** Số bước bị chặn bởi số điểm cực, có thể lớn theo hàm mũ của số chiều.
+**Phạm vi.** Số bước bị chặn bởi số điểm cực biên, có thể lớn theo hàm mũ của số chiều.
 :::
 
 ::: proof Chứng minh Mệnh đề 07.33
-**Bước 1 (không thăm lại).** Mỗi lần lặp tăng $c^Tv$ nghiêm ngặt, nên không điểm cực nào được thăm hai lần.
+**Bước 1 (không thăm lại).** Mỗi lần lặp tăng $c^Tv$ nghiêm ngặt, nên không điểm cực biên nào được thăm hai lần.
 
-**Bước 2 (dừng).** Theo Hệ quả 07.14, $P$ có hữu hạn điểm cực, nên số lần lặp hữu hạn.
+**Bước 2 (dừng).** Theo Hệ quả 07.14, $P$ có hữu hạn điểm cực biên, nên số lần lặp hữu hạn.
 
 **Bước 3 (đúng).** Khi dừng, không có đỉnh kề nào có giá trị lớn hơn $c^Tv$. Nếu $c^Tv<z^*$, Bổ đề 07.32 cho một đỉnh kề có giá trị lớn hơn, mâu thuẫn. Vậy $c^Tv=z^*$. $\square$
 :::
 
-Đầu vào của thuật toán khớp giả thiết của Bổ đề 07.32, cộng thêm một điểm cực xuất phát. Tiêu chuẩn dừng dùng so sánh nghiêm ngặt, vì với so sánh không nghiêm ngặt, thuật toán có thể dao động giữa hai đỉnh cùng giá trị, như ở Bài tập 07.7.
+Đầu vào của thuật toán khớp giả thiết của Bổ đề 07.32, cộng thêm một điểm cực biên xuất phát. Tiêu chuẩn dừng dùng so sánh nghiêm ngặt, vì với so sánh không nghiêm ngặt, thuật toán có thể dao động giữa hai đỉnh cùng giá trị, như ở Bài tập 07.7.
 
-![Ngũ giác khả thi của bài hộp hạt với giá trị z ghi cạnh mỗi đỉnh: (0,0): 0; (30,0): 60; (30,12): 96; (14,20): 88; (0,20): 60. Hai đoạn tô đậm có nhãn "bước 1" từ (0,0) tới (30,0) dọc trục x1 và "bước 2" từ (30,0) lên (30,12) dọc cạnh x1 = 30.](img/lec-07/conceptual-vertex-walk.svg)
+![Ngũ giác khả thi của bài toán hộp hạt với giá trị z ghi cạnh mỗi đỉnh: (0,0): 0; (30,0): 60; (30,12): 96; (14,20): 88; (0,20): 60. Hai đoạn tô đậm có nhãn "bước 1" từ (0,0) tới (30,0) dọc trục x1 và "bước 2" từ (30,0) lên (30,12) dọc cạnh x1 = 30.](img/lec-07/conceptual-vertex-walk.svg)
 
 Trên hình, giá trị $z$ được ghi cạnh mỗi đỉnh của ngũ giác hộp hạt, và hai đoạn tô đậm "bước 1", "bước 2" là hai cạnh của miền mà thuật toán đi qua. Đường đi đó được tính bằng đại số của Mục 4.4 trong ví dụ sau.
 
-::: example Ví dụ 07.18 (Thuật toán trên bài hộp hạt)
+::: example Ví dụ 07.18 (Thuật toán trên bài toán hộp hạt)
 **Dữ kiện.** Dạng chuẩn hộp hạt: cực đại $2x_1+3x_2$, $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$, mọi biến không âm. Điểm xuất phát $(0,0)$, tức nghiệm cơ sở khả thi $(0,0,30,20,54)$ với $B=\{s_1,s_2,s_3\}$; nó khả thi vì $b\ge0$.
 
 **Bước 1.** Theo Ví dụ 07.17, $\bar c_{x_1}=2$, $\bar c_{x_2}=3$, và hai đỉnh kề là $(30,0)$, $(0,20)$, cùng $z=60$. Chọn $(30,0)$; cơ sở mới $\{x_1,s_2,s_3\}$, điểm $(30,0,0,20,24)$.
@@ -1471,12 +1471,12 @@ Trên hình, giá trị $z$ được ghi cạnh mỗi đỉnh của ngũ giác h
 
 Sang $(30,12)$ với $z=96$; cơ sở mới $\{x_1,x_2,s_2\}$.
 
-**Kiểm dừng.** Tại $(30,12)$, biến ngoài cơ sở là $s_1$, $s_3$.
+**Kiểm tra điều kiện dừng.** Tại $(30,12)$, biến ngoài cơ sở là $s_1$, $s_3$.
 
 - $d^{s_1}=(-1,\tfrac12,1,-\tfrac12,0)$ và $\bar c_{s_1}=-2+\tfrac32=-\tfrac12$.
 - $d^{s_3}=(0,-\tfrac12,0,\tfrac12,1)$ và $\bar c_{s_3}=-\tfrac32$.
 
-Mọi lợi ích rút gọn âm, nên theo Mệnh đề 07.31(b), $(30,12)$ tối ưu. Hai đỉnh kề $(30,0)$ và $(14,20)$ có $z=60$ và $88$, cùng nhỏ hơn $96$.
+Mọi chi phí rút gọn âm, nên theo Mệnh đề 07.31(b), $(30,12)$ tối ưu. Hai đỉnh kề $(30,0)$ và $(14,20)$ có $z=60$ và $88$, cùng nhỏ hơn $96$.
 
 **Kiểm tra lại.** Các số $-\bar c_{s_1}=\tfrac12$ và $-\bar c_{s_3}=\tfrac32$ trùng hai hệ số nhân $\mu_1$, $\mu_3$ của Ví dụ 07.5; giới hạn loại 2, có biến phụ $s_2$ trong cơ sở, nhận hệ số $0$. Đi theo $d^{s_1}$ với $\theta=16$ cho $(14,20,16,0,0)$, đúng đỉnh $(14,20)$.
 :::
@@ -1486,24 +1486,24 @@ Nếu bước 1 chọn $(0,20)$, đường đi là $(0,0)\to(0,20)\to(14,20)\to(
 ::: remark Nhận xét 07.34 (Từ thuật toán ý niệm tới phương pháp đơn hình)
 Thuật toán 07.1 để ngỏ bốn câu hỏi.
 
-1. Tìm điểm cực xuất phát thế nào khi $b$ có thành phần âm, nên $x=0$ không khả thi.
+1. Tìm điểm cực biên xuất phát thế nào khi $b$ có thành phần âm, nên $x=0$ không khả thi.
 2. Chọn đỉnh kề nào khi có nhiều đỉnh kề có giá trị lớn hơn.
 3. Tính đỉnh kề bằng đại số ra sao khi suy biến làm $\theta^*=0$.
 4. Tránh quay vòng thế nào.
 
-Phương pháp đơn hình (simplex method) trả lời bốn câu hỏi đó bằng phép tính trên cơ sở; đó là nội dung Buổi 8 (Chương 11) của đề cương học phần. Số bước của nó có thể tăng theo hàm mũ của số chiều trên những ví dụ được dựng riêng (Klee và Minty 1972), dù trên các bài thực tế số bước thường nhỏ.
+Phương pháp đơn hình (simplex method) trả lời bốn câu hỏi đó bằng phép tính trên cơ sở; đó là nội dung Buổi 8 (Chương 11) của đề cương học phần. Số bước của nó có thể tăng theo hàm mũ của số chiều trên những ví dụ được dựng riêng (Klee và Minty 1972), dù trên các bài toán thực tế số bước thường nhỏ.
 :::
 
-**Trong học máy.** Bộ giải quy hoạch tuyến tính cài đặt phương pháp đơn hình hoặc phương pháp điểm trong; hàm `linprog` của SciPy dùng bộ giải HiGHS, có cả hai loại. Khi có nhiều nghiệm tối ưu, bộ giải dựa trên đỉnh trả về một điểm cực, còn phương pháp điểm trong có thể trả về một điểm giữa cạnh tối ưu. Với hồi quy $L_1$ trên hai mẫu $y_1=1$, $y_2=3$ của Ví dụ 07.4, mọi $x\in[1,3]$ đều tối ưu: bộ giải dựa trên đỉnh trả về $x=1$ hoặc $x=3$, bộ giải điểm trong có thể trả về $x=2$, có cùng mất mát nhưng cho mô hình khác nhau.
+**Trong học máy.** Bộ giải quy hoạch tuyến tính cài đặt phương pháp đơn hình hoặc phương pháp điểm trong; hàm `linprog` của SciPy dùng bộ giải HiGHS, có cả hai loại. Khi có nhiều nghiệm tối ưu, bộ giải dựa trên đỉnh trả về một điểm cực biên, còn phương pháp điểm trong có thể trả về một điểm giữa cạnh tối ưu. Với hồi quy $L_1$ trên hai mẫu $y_1=1$, $y_2=3$ của Ví dụ 07.4, mọi $x\in[1,3]$ đều tối ưu: bộ giải dựa trên đỉnh trả về $x=1$ hoặc $x=3$, bộ giải điểm trong có thể trả về $x=2$, có cùng mất mát nhưng cho mô hình khác nhau.
 
-::: exercise Bài tập 07.6 (Điểm cực và đỉnh kề trên một đa giác mới)
-Xét bài cực đại $x_1+x_2$ dưới $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x_1,x_2\ge0$.
+::: exercise Bài tập 07.6 (Điểm cực biên và đỉnh kề trên một đa giác mới)
+Xét bài toán cực đại $x_1+x_2$ dưới $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x_1,x_2\ge0$.
 
 - (a) Vẽ miền khả thi và xác định bốn đỉnh bằng tiêu chuẩn hạng.
 - (b) Tính giá trị mục tiêu tại các đỉnh; xác định kết cục và nghiệm tối ưu.
 - (c) Từ $(0,0)$, viết một đường đi qua đỉnh kề có giá trị tăng nghiêm ngặt và nêu lý do dừng.
-- (d) Nêu định lý bảo đảm có điểm cực tối ưu và kiểm từng giả thiết.
-- (e) Viết dạng chuẩn với biến phụ $s_1$, $s_2$; tại $(1{,}6;\,1{,}2)$ với cơ sở $\{x_1,x_2\}$, tính hai lợi ích rút gọn $\bar c_{s_1}$, $\bar c_{s_2}$ theo (4.1)–(4.2) và kết luận bằng Mệnh đề 07.31.
+- (d) Nêu định lý bảo đảm có điểm cực biên tối ưu và kiểm tra từng giả thiết.
+- (e) Viết dạng chuẩn với biến phụ $s_1$, $s_2$; tại $(1{,}6;\,1{,}2)$ với cơ sở $\{x_1,x_2\}$, tính hai chi phí rút gọn $\bar c_{s_1}$, $\bar c_{s_2}$ theo (4.1)–(4.2) và kết luận bằng Mệnh đề 07.31.
 :::
 
 ::: hint
@@ -1529,7 +1529,7 @@ và dấu bằng chỉ khi cả hai ràng buộc chéo chặt, tức chỉ tại
 
 **Câu (d).** Định lý 07.23 cần hai giả thiết.
 
-1. Có điểm cực: miền khác rỗng (chứa $(0,0)$), và các hàng $-x_1\le0$, $-x_2\le0$ cho hạng $2$, nên theo Định lý 07.20 có điểm cực.
+1. Có điểm cực biên: miền khác rỗng (chứa $(0,0)$), và các hàng $-x_1\le0$, $-x_2\le0$ cho hạng $2$, nên theo Định lý 07.20 có điểm cực biên.
 2. Giá trị hữu hạn: $0\le x_1\le2$ và $0\le x_2\le2$, nên $z\le4$.
 
 **Câu (e).** Dạng chuẩn: $x_1+2x_2+s_1=4$, $3x_1+x_2+s_2=6$, mọi biến không âm, mục tiêu $x_1+x_2$. Tại $(1{,}6;\,1{,}2;\,0;\,0)$, $A_B=\begin{bmatrix}1&2\\3&1\end{bmatrix}$ có định thức $1-6=-5$.
@@ -1537,16 +1537,16 @@ và dấu bằng chỉ khi cả hai ràng buộc chéo chặt, tức chỉ tại
 - Hướng $d^{s_1}$: giải $A_Bd_B=-(1,0)^T$, tức $d_1+2d_2=-1$, $3d_1+d_2=0$, được $d_B=(\tfrac15,-\tfrac35)$; $\bar c_{s_1}=\tfrac15-\tfrac35=-\tfrac25$.
 - Hướng $d^{s_2}$: giải $A_Bd_B=-(0,1)^T$, tức $d_1+2d_2=0$, $3d_1+d_2=-1$, được $d_B=(-\tfrac25,\tfrac15)$; $\bar c_{s_2}=-\tfrac25+\tfrac15=-\tfrac15$.
 
-Hai lợi ích rút gọn âm, nên theo Mệnh đề 07.31(b) điểm tối ưu; $-\bar c_{s_1}=\tfrac25$ và $-\bar c_{s_2}=\tfrac15$ là hai hệ số nhân $\mu_1$, $\mu_2$ ở câu (b).
+Hai chi phí rút gọn âm, nên theo Mệnh đề 07.31(b) điểm tối ưu; $-\bar c_{s_1}=\tfrac25$ và $-\bar c_{s_2}=\tfrac15$ là hai hệ số nhân $\mu_1$, $\mu_2$ ở câu (b).
 
 **Kiểm tra lại.** Tại $(1{,}6;\,1{,}2)$: $1{,}6+2{,}4=4$ và $4{,}8+1{,}2=6$. Hai hệ số: $\tfrac25+\tfrac35=1$ và $\tfrac45+\tfrac15=1$. Hướng $d^{s_1}=(\tfrac15,-\tfrac35,1,0)$ thỏa $\tfrac15-\tfrac65+1=0$ và $\tfrac35-\tfrac35=0$.
 :::
 
-::: exercise Bài tập 07.7 (Bài tổng hợp: đổi lợi ích của bài hộp hạt)
+::: exercise Bài tập 07.7 (Bài tập tổng hợp: đổi lợi ích của bài toán hộp hạt)
 Miền khả thi $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$, với năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$. Mục tiêu mới: cực đại $2x_1+4x_2$.
 
 - (a) Tính $z$ tại năm đỉnh; xác định kết cục và tập nghiệm tối ưu.
-- (b) Nêu định lý bảo đảm có điểm cực tối ưu và kiểm giả thiết.
+- (b) Nêu định lý bảo đảm có điểm cực biên tối ưu và kiểm tra giả thiết.
 - (c) Chạy Thuật toán 07.1 từ $(0,0)$ theo hai đường khác nhau; xác định đỉnh dừng của mỗi đường.
 :::
 
@@ -1557,21 +1557,21 @@ So sánh véc-tơ $(2,4)$ với hàng $(1,2)$ của ràng buộc giờ máy.
 ::: solution
 **Câu (a).** Giá trị tại năm đỉnh: $0$; $2\cdot30=60$; $2\cdot30+4\cdot12=108$; $2\cdot14+4\cdot20=108$; $4\cdot20=80$. Vì $2x_1+4x_2=2(x_1+2x_2)\le2\cdot54=108$, đường mức song song với ràng buộc giờ máy, và giá trị tối ưu $108$ đạt trên cả cạnh nối $(30,12)$ và $(14,20)$. Trên đường $x_1+2x_2=54$, điều kiện $x_2\le20$ cho $x_1\ge14$ và $x_1\le30$, nên tập nghiệm tối ưu là $\{x\mid x_1+2x_2=54,\ 14\le x_1\le30\}$: kết cục nhiều nghiệm tối ưu.
 
-**Câu (b).** Định lý 07.23: miền khác rỗng, có điểm cực (hạng $2$), bị chặn nên $z\le2\cdot30+4\cdot20=140$; cả hai giả thiết thỏa.
+**Câu (b).** Định lý 07.23: miền khác rỗng, có điểm cực biên (hạng $2$), bị chặn nên $z\le2\cdot30+4\cdot20=140$; cả hai giả thiết thỏa.
 
 **Câu (c).**
 
 - Đường thứ nhất: $(0,0)\to(30,0)\to(30,12)$ với $z$: $0\to60\to108$. Tại $(30,12)$, đỉnh kề $(14,20)$ cũng cho $108$, không lớn hơn nghiêm ngặt, nên thuật toán dừng tại $(30,12)$.
 - Đường thứ hai: $(0,0)\to(0,20)\to(14,20)$ với $z$: $0\to80\to108$. Tại $(14,20)$, đỉnh kề $(30,12)$ không có giá trị lớn hơn nghiêm ngặt, nên thuật toán dừng tại $(14,20)$.
 
-Hai đỉnh dừng khác nhau cho cùng giá trị tối ưu. Thuật toán trả về một điểm cực tối ưu, không trả về cả cạnh; so sánh nghiêm ngặt ngăn thuật toán dao động giữa hai đỉnh cùng giá trị $108$.
+Hai đỉnh dừng khác nhau cho cùng giá trị tối ưu. Thuật toán trả về một điểm cực biên tối ưu, không trả về cả cạnh; so sánh nghiêm ngặt ngăn thuật toán dao động giữa hai đỉnh cùng giá trị $108$.
 
 **Kiểm tra lại.** Trung điểm $(22,16)$ của cạnh tối ưu: $22+32=54$, $z=44+64=108$, và $16\le20$.
 :::
 
 Sau khi mô tả tập nghiệm tối ưu (Mệnh đề 07.22), chúng ta đã chứng minh kết quả đích của tuyến quy hoạch tuyến tính, Định lý 07.23, dựa trên Bổ đề 07.19 và Hệ quả 07.14. Theo định lý này, khi miền có đỉnh và giá trị tối ưu hữu hạn thì có nghiệm tối ưu ở đỉnh. Hệ quả 07.24 biến kết quả này thành phép liệt kê, còn Định lý 07.26 phân loại mọi bài toán và cho thấy mọi quy hoạch tuyến tính khả thi và bị chặn đều có nghiệm tối ưu.
 
-Từ đỉnh kề, hướng cơ sở và lợi ích rút gọn (Định nghĩa 07.28, 07.30, Mệnh đề 07.29, 07.31), Bổ đề 07.32 dẫn tới Thuật toán 07.1. Mệnh đề 07.33 bảo đảm thuật toán này tìm được nghiệm tối ưu bằng cách đi qua các đỉnh kề. Tuy nhiên, các kết quả trên chỉ xét một quyết định chọn một lần.
+Từ đỉnh kề, hướng cơ sở và chi phí rút gọn (Định nghĩa 07.28, 07.30, Mệnh đề 07.29, 07.31), Bổ đề 07.32 dẫn tới Thuật toán 07.1. Mệnh đề 07.33 bảo đảm thuật toán này tìm được nghiệm tối ưu bằng cách đi qua các đỉnh kề. Tuy nhiên, các kết quả trên chỉ xét một quyết định chọn một lần.
 
 ## 5. Trạng thái và phương trình Bellman
 
@@ -1654,10 +1654,10 @@ So với quy hoạch tuyến tính, phương án ở đây là một chuỗi tha
 **Kiểm tra lại.** Bốn giả thiết thỏa: các tập hữu hạn, mỗi cạnh dẫn tới đúng một nút, tổng chi phí là tổng chi phí cạnh, và chi phí cạnh không phụ thuộc đường đã đi.
 :::
 
-Giả thiết trạng thái đủ là một yêu cầu về cách mô hình hóa, không phải tính chất tự có của bài toán. Nhận xét sau nêu cách kiểm nó và cách sửa khi nó sai.
+Giả thiết trạng thái đủ là một yêu cầu về cách mô hình hóa, không phải tính chất tự có của bài toán. Nhận xét sau nêu cách kiểm tra nó và cách sửa khi nó sai.
 
 ::: remark Nhận xét 07.36 (Trạng thái đủ và mở rộng trạng thái)
-**Kiểm.** Một lựa chọn trạng thái là đủ khi, biết trạng thái hiện tại, mọi chi phí và chuyển tiếp về sau không còn phụ thuộc vào lịch sử. Bài giảng số 16 của MIT 15.093J (trang 6) gọi trạng thái là bản tóm tắt các quyết định quá khứ còn liên quan và ghi rằng chọn trạng thái thường là bước khó nhất.
+**Kiểm tra.** Một lựa chọn trạng thái là đủ khi, biết trạng thái hiện tại, mọi chi phí và chuyển tiếp về sau không còn phụ thuộc vào lịch sử. Bài giảng số 16 của MIT 15.093J (trang 6) gọi trạng thái là bản tóm tắt các quyết định quá khứ còn liên quan và ghi rằng chọn trạng thái thường là bước khó nhất.
 
 **Một trường hợp nút không đủ.** Giả sử cạnh $\mathrm C\to\mathrm t$ có thêm chi phí $4$ khi nút $\mathrm C$ được đạt từ $\mathrm A$. Chi phí tương lai từ $\mathrm C$ khi đó là $7$ với lịch sử $\mathrm s\to\mathrm A\to\mathrm C$ và $3$ với lịch sử $\mathrm s\to\mathrm B\to\mathrm C$; nút $\mathrm C$ không còn là trạng thái đủ.
 
@@ -1792,7 +1792,7 @@ Chi phí giai đoạn là số giờ GPU: bước lớn $1$ giờ, bước nhỏ
 
 - (a) Nêu $N$, $X_k$, $U_k$, $f_k$, $g_k$, $g_N$ theo Định nghĩa 07.35.
 - (b) Tính $J_2$, $J_1$ và $J_0(3)$ bằng (5.3).
-- (c) Kiểm kết quả bằng liệt kê bốn chuỗi.
+- (c) Kiểm tra kết quả bằng liệt kê bốn chuỗi.
 :::
 
 ::: hint
@@ -1822,7 +1822,7 @@ Giai đoạn 0: $J_0(3)=\min\{1+J_1(2),\ 2+J_1(3)\}=\min\{1+2,\ 2+4\}$, tức $J
 **Kiểm tra lại.** Nhỏ nhất là $3$ với chuỗi $\eta_+,\eta_-$, khớp $J_0(3)$. Lịch giảm bước học sau giai đoạn đầu xuất hiện từ phép tính, không được giả định trước.
 :::
 
-Bắt đầu từ nhận xét rằng liệt kê tính lại các đoạn đuôi chung (Ví dụ 07.19), chúng ta đã đặt bài toán vào khung trạng thái, điều khiển, chuyển tiếp và chi phí cộng (Định nghĩa 07.35). Giả thiết trạng thái đủ của khung này được kiểm và sửa theo Nhận xét 07.36. Định nghĩa 07.37 đặt tên cho chi phí tối ưu còn lại, và kết quả đích của mục là Định lý 07.38, theo đó phương trình (5.3) xác định mọi $J_k$ từ cuối về đầu. Mệnh đề 07.39 là nguyên lý tối ưu.
+Bắt đầu từ nhận xét rằng liệt kê tính lại các đoạn đuôi chung (Ví dụ 07.19), chúng ta đã đặt bài toán vào khung trạng thái, điều khiển, chuyển tiếp và chi phí cộng (Định nghĩa 07.35). Giả thiết trạng thái đủ của khung này được kiểm tra và sửa theo Nhận xét 07.36. Định nghĩa 07.37 đặt tên cho chi phí tối ưu còn lại, và kết quả đích của mục là Định lý 07.38, theo đó phương trình (5.3) xác định mọi $J_k$ từ cuối về đầu. Mệnh đề 07.39 là nguyên lý tối ưu.
 
 Tuy nhiên, phương trình chỉ cho giá trị mà chưa cho chuỗi điều khiển, và trường hợp các lựa chọn có cùng giá trị như tại $\mathrm B$ chưa được xử lý. Số phép tính của cách làm này cũng chưa được đếm.
 
@@ -1966,7 +1966,7 @@ Theo Mệnh đề 07.42, số phép tính của giải ngược tăng tuyến t�
 - (a) Tính $J_2(\mathrm C)$, $J_2(\mathrm D)$.
 - (b) Tính $J_1(\mathrm A)$, $J_1(\mathrm B)$; ghi điều khiển đạt cực tiểu.
 - (c) Tính $J_0(\mathrm s)$ và dựng đường tối ưu bằng lượt xuôi.
-- (d) Kiểm trực tiếp tổng chi phí của đường tìm được và của ba đường còn lại.
+- (d) Kiểm tra trực tiếp tổng chi phí của đường tìm được và của ba đường còn lại.
 - (e) Tính $\sum_k\sum_{\xi\in X_k}\lvert U_k(\xi)\rvert$ cho đồ thị này và so với số đường đi. Làm lại cho một đồ thị cùng dạng với $N=10$ giai đoạn: nút $\mathrm s$, chín tầng giữa mỗi tầng hai nút, nút $\mathrm t$, mỗi nút nối với mọi nút của tầng sau; so với $q^N$ khi $q=2$.
 
 ![Đồ thị bốn tầng: s ở tầng 0; A, B ở tầng 1; C, D ở tầng 2; t ở tầng 3. Tám chi phí cạnh: s–A 2, s–B 3, A–C 4, A–D 2, B–C 1, B–D 3, C–t 0, D–t 1. Hai cạnh s–B và C–t được tô màu vì chi phí đã đổi.](img/lec-07/dp-layered-graph-new-costs.svg)
@@ -2003,23 +2003,23 @@ Với khái niệm chính sách (Định nghĩa 07.40), chúng ta đã ghép ph�
 
 ## Tình huống áp dụng và ứng dụng
 
-Hai tuyến của chương được áp dụng vào bốn bài toán học máy dưới đây, mỗi bài được giải trọn vẹn bằng công cụ của chương. Hai tình huống đầu dùng tuyến quy hoạch tuyến tính, còn hai tình huống sau dùng tuyến quy hoạch động, trong đó Tình huống 07.4 nêu một trường hợp giả thiết trạng thái đủ không thỏa.
+Hai tuyến của chương được áp dụng vào bốn bài toán học máy dưới đây, và mỗi tình huống được giải trọn vẹn bằng công cụ của chương. Hai tình huống đầu dùng tuyến quy hoạch tuyến tính, còn hai tình huống sau dùng tuyến quy hoạch động, trong đó Tình huống 07.4 nêu một trường hợp giả thiết trạng thái đủ không thỏa.
 
 ::: application Tình huống 07.1 (Hồi quy $L_1$ cho thời gian huấn luyện có một số đo sai lệch)
 **Bài toán và dữ liệu.**
 
-Một nhóm đo thời gian một lượt huấn luyện (epoch) theo cỡ tập dữ liệu. Năm số đo dưới đây là số liệu sư phạm.
+Một nhóm đo thời gian một lượt huấn luyện (epoch) theo kích thước tập dữ liệu. Năm số đo dưới đây là số liệu sư phạm.
 
 | Mẫu $i$ | $1$ | $2$ | $3$ | $4$ | $5$ |
 |---|---:|---:|---:|---:|---:|
-| Cỡ dữ liệu $\nu_i$ (chục nghìn mẫu) | $0$ | $1$ | $2$ | $3$ | $4$ |
+| Kích thước dữ liệu $\nu_i$ (chục nghìn mẫu) | $0$ | $1$ | $2$ | $3$ | $4$ |
 | Thời gian $y_i$ (phút) | $1$ | $2$ | $3$ | $4$ | $10$ |
 
-Số đo thứ năm bị sai lệch vì máy chủ bị chia sẻ trong khi đo; theo xu hướng, giá trị đúng là $5$. Cần một đường thẳng dự đoán thời gian theo cỡ dữ liệu, không bị ảnh hưởng bởi số đo sai lệch.
+Số đo thứ năm bị sai lệch vì máy chủ bị chia sẻ trong khi đo; theo xu hướng, giá trị đúng là $5$. Cần một đường thẳng dự đoán thời gian theo kích thước dữ liệu, không bị ảnh hưởng bởi số đo sai lệch.
 
-**Mô hình hóa.** Đặc trưng $h_i=(1,\nu_i)$, tham số $x=(x_1,x_2)$ gồm hệ số chặn và hệ số góc, phần dư $r_i=x_1+x_2\nu_i-y_i$. Theo Hệ quả 07.4, bài cực tiểu $\sum_i|r_i|$ là quy hoạch tuyến tính (1.2) với $7$ biến và $10$ ràng buộc.
+**Mô hình hóa.** Đặc trưng $h_i=(1,\nu_i)$, tham số $x=(x_1,x_2)$ gồm hệ số chặn và hệ số góc, phần dư $r_i=x_1+x_2\nu_i-y_i$. Theo Hệ quả 07.4, bài toán cực tiểu $\sum_i|r_i|$ là quy hoạch tuyến tính (1.2) với $7$ biến và $10$ ràng buộc.
 
-**Kiểm giả thiết.** Mệnh đề 07.25 cần các $h_i$ sinh $\mathbb R^2$: $h_1=(1,0)$ và $h_2=(1,1)$ độc lập. Mục tiêu không âm nên giá trị tối ưu hữu hạn.
+**Kiểm tra giả thiết.** Mệnh đề 07.25 cần các $h_i$ sinh $\mathbb R^2$: $h_1=(1,0)$ và $h_2=(1,1)$ độc lập. Mục tiêu không âm nên giá trị tối ưu hữu hạn.
 
 **Áp dụng.** Theo Mệnh đề 07.25, có một nghiệm tối ưu đi qua hai điểm dữ liệu có đầu vào khác nhau, nên chỉ cần xét $\binom52=10$ đường qua hai điểm.
 
@@ -2050,7 +2050,7 @@ Dấu bằng cần $|r_i|=\sigma_ir_i$; với $i=1,2,3$, $|\sigma_i|<1$ buộc b
 
 **Giới hạn.** Nghiệm $L_1$ có thể không duy nhất (Ví dụ 07.4), và khi nhiều số đo cùng sai lệch theo một hướng, đường $L_1$ cũng bị lệch.
 
-**Dẫn ngược lý thuyết.** Hệ quả 07.4; Mệnh đề 07.25, dựa trên Định lý 07.20, 07.23 (giả thiết các $h_i$ sinh $\mathbb R^2$ dùng ở bước kiểm); Mệnh đề 02.11.
+**Dẫn ngược lý thuyết.** Hệ quả 07.4; Mệnh đề 07.25, dựa trên Định lý 07.20, 07.23 (giả thiết các $h_i$ sinh $\mathbb R^2$ dùng ở bước kiểm tra); Mệnh đề 02.11.
 
 **Kiểm tra lại.** Tại $x=(1,1)$ chỉ $r_5=-5$ khác $0$, nên $\sum_i\sigma_ir_i=(-1)(-5)=5$, bằng $\sum_i|r_i|$.
 :::
@@ -2066,10 +2066,10 @@ Trong một tuần, một nhóm chia giờ GPU giữa $x_1$ giờ tinh chỉnh (
 
 **Mô hình hóa.** Dạng (1.1) với $c=(5,4)$, các hàng $(1,1)$, $(3,1)$, $(0,1)$ và $b=(100,180,60)$. Dạng chuẩn thêm biến phụ $s_1,s_2,s_3$; thứ tự biến $(x_1,x_2,s_1,s_2,s_3)$.
 
-**Kiểm giả thiết.**
+**Kiểm tra giả thiết.**
 
 1. Lợi ích và tiêu hao tỉ lệ với số giờ (Nhận xét 07.3).
-2. Có điểm cực: miền chứa $(0,0)$ và các hàng $-x_1\le0$, $-x_2\le0$ cho hạng $2$ (Định lý 07.20).
+2. Có điểm cực biên: miền chứa $(0,0)$ và các hàng $-x_1\le0$, $-x_2\le0$ cho hạng $2$ (Định lý 07.20).
 3. Giá trị hữu hạn: $x_1\le60$ (từ hàng năng lượng) và $x_2\le60$, nên $5x_1+4x_2\le540$.
 
 **Đỉnh.** Theo Định lý 07.13, các đỉnh là $(0,0)$, $(60,0)$, $(0,60)$, $(40,60)$, với $z$ lần lượt $0$, $300$, $240$, $440$. Tại $(40,60)$ cả ba giới hạn cùng chặt: $40+60=100$, $120+60=180$, $60=60$; đó là một đỉnh suy biến.
@@ -2079,9 +2079,9 @@ Trong một tuần, một nhóm chia giờ GPU giữa $x_1$ giờ tinh chỉnh (
 - Bước 1, tại $(0,0)$ với cơ sở $\{s_1,s_2,s_3\}$: hướng $d^{x_1}=(1,0,-1,-3,0)$, $\bar c_{x_1}=5$; phép thử tỉ số $s_1$: $100$, $s_2$: $\tfrac{180}3=60$; điểm mới $(60,0)$, $z=300$, cơ sở $\{x_1,s_1,s_3\}$.
 - Bước 2, tại $(60,0)$: hướng $d^{x_2}=(-\tfrac13,1,-\tfrac23,0,-1)$, $\bar c_{x_2}=\tfrac73$; phép thử tỉ số $s_1$: $\tfrac{40}{2/3}=60$, $s_3$: $60$, bằng nhau; điểm mới $(40,60)$, $z=440$, cả ba biến phụ bằng $0$.
 
-**Kiểm dừng khi suy biến.** Tại $(40,60)$ chỉ có hai thành phần dương, ít hơn $m=3$, và ba tập $\{x_1,x_2,s_i\}$, $i=1,2,3$, đều là cơ sở của cùng điểm.
+**Kiểm tra điều kiện dừng khi suy biến.** Tại $(40,60)$ chỉ có hai thành phần dương, ít hơn $m=3$, và ba tập $\{x_1,x_2,s_i\}$, $i=1,2,3$, đều là cơ sở của cùng điểm.
 
-| Cơ sở | Lợi ích rút gọn của hai biến ngoài cơ sở | Mệnh đề 07.31(b) |
+| Cơ sở | Chi phí rút gọn của hai biến ngoài cơ sở | Mệnh đề 07.31(b) |
 |---|---|---|
 | $\{x_1,x_2,s_1\}$ | $\bar c_{s_2}=-\tfrac53$, $\bar c_{s_3}=-\tfrac73$ | tối ưu |
 | $\{x_1,x_2,s_3\}$ | $\bar c_{s_1}=-\tfrac72$, $\bar c_{s_2}=-\tfrac12$ | tối ưu |
@@ -2143,7 +2143,7 @@ Cần chuỗi nhãn có xác suất lớn nhất, tức tổng chi phí nhỏ nh
 - Điều khiển ở giai đoạn $k$ là nhãn của từ thứ $k+1$; $f_k(\xi,u)=u$.
 - $g_0(\mathrm o,u)$ là chi phí bắt đầu cộng phát xạ từ thứ nhất; $g_k(\xi,u)$, $k=1,2$, là chi phí chuyển $\xi\to u$ cộng phát xạ từ thứ $k+1$; $g_3(\xi)$ là chi phí kết thúc.
 
-**Kiểm giả thiết.**
+**Kiểm tra giả thiết.**
 
 1. Hữu hạn, tất định: nhãn chọn xác định trạng thái kế.
 2. Chi phí cộng: $-\log_2$ của một tích là tổng các $-\log_2$.
@@ -2164,7 +2164,7 @@ Lượt xuôi: $\mathrm{NN}$, rồi $u_1^*(\mathrm{NN})=\mathrm{VB}$, rồi $u_2
 
 **Giới hạn.** Với câu dài $30$ từ và $40$ nhãn, giải ngược cần khoảng $30\cdot40^2=48\,000$ biểu thức (Mệnh đề 07.42) thay cho $40^{30}$ chuỗi. Bảo đảm chỉ đúng khi mô hình bậc nhất mô tả đúng ngôn ngữ; Tình huống 07.4 xét trường hợp không đúng.
 
-**Dẫn ngược lý thuyết.** Định nghĩa 07.35; Định lý 07.38 (bước kiểm 2 dùng cho chi phí cộng, bước kiểm 3 cho trạng thái đủ); Mệnh đề 07.41.
+**Dẫn ngược lý thuyết.** Định nghĩa 07.35; Định lý 07.38 (bước kiểm tra 2 dùng cho chi phí cộng, bước kiểm tra 3 cho trạng thái đủ); Mệnh đề 07.41.
 
 **Kiểm tra lại.** Liệt kê tám chuỗi:
 
@@ -2241,14 +2241,14 @@ Lượt xuôi: $\mathrm{NN}$, $\mathrm{NN}$, rồi từ $(\mathrm{NN},\mathrm{NN
 
 ## Tóm tắt chương
 
-Chương này khởi đầu bằng bài hộp hạt, một bài toán có ràng buộc nằm ngoài phạm vi các bước cục bộ của Bài 04–06, và viết nó thành quy hoạch tuyến tính (Định nghĩa 07.1). Hồi quy $L_1$ cũng đưa được về dạng này (Hệ quả 07.4), và mọi quy hoạch tuyến tính đưa được về dạng chuẩn (Mệnh đề 07.8). Điểm cực của đa diện (Định nghĩa 07.11) được nhận biết bằng hạng các ràng buộc chặt (Định lý 07.13), và trên dạng chuẩn, điểm cực chính là nghiệm cơ sở khả thi (Định lý 07.15). Tập ứng viên vì vậy hữu hạn, tính được bằng đại số, và khác rỗng dưới điều kiện của Định lý 07.20. Kết quả đích của tuyến thứ nhất là Định lý 07.23, theo đó có một điểm cực tối ưu khi miền có điểm cực và giá trị tối ưu hữu hạn. Định lý 07.26 phân loại mọi bài toán thành bốn kết cục, còn Bổ đề 07.32 cùng Thuật toán 07.1 biến kết quả đích thành một tìm kiếm cục bộ qua các đỉnh kề. Cuối cùng, với các quyết định theo giai đoạn, tuyến thứ hai đi từ Định nghĩa 07.35 qua phương trình Bellman (Định lý 07.38) tới Thuật toán 07.2 và Mệnh đề 07.41. Khi số trạng thái và số điều khiển ở mỗi giai đoạn cố định (Mệnh đề 07.42), số phép tính của tuyến này tăng tuyến tính theo số giai đoạn $N$, thay cho hàm mũ của phép liệt kê.
+Chương này khởi đầu bằng bài toán hộp hạt, một bài toán có ràng buộc nằm ngoài phạm vi các bước cục bộ của Bài 04–06, và viết nó thành quy hoạch tuyến tính (Định nghĩa 07.1). Hồi quy $L_1$ cũng đưa được về dạng này (Hệ quả 07.4), và mọi quy hoạch tuyến tính đưa được về dạng chuẩn (Mệnh đề 07.8). Điểm cực biên của đa diện (Định nghĩa 07.11) được nhận biết bằng hạng các ràng buộc chặt (Định lý 07.13), và trên dạng chuẩn, điểm cực biên chính là nghiệm cơ sở khả thi (Định lý 07.15). Tập ứng viên vì vậy hữu hạn, tính được bằng đại số, và khác rỗng dưới điều kiện của Định lý 07.20. Kết quả đích của tuyến thứ nhất là Định lý 07.23, theo đó có một điểm cực biên tối ưu khi miền có điểm cực biên và giá trị tối ưu hữu hạn. Định lý 07.26 phân loại mọi bài toán thành bốn kết cục, còn Bổ đề 07.32 cùng Thuật toán 07.1 biến kết quả đích thành một tìm kiếm cục bộ qua các đỉnh kề. Cuối cùng, với các quyết định theo giai đoạn, tuyến thứ hai đi từ Định nghĩa 07.35 qua phương trình Bellman (Định lý 07.38) tới Thuật toán 07.2 và Mệnh đề 07.41. Khi số trạng thái và số điều khiển ở mỗi giai đoạn cố định (Mệnh đề 07.42), số phép tính của tuyến này tăng tuyến tính theo số giai đoạn $N$, thay cho hàm mũ của phép liệt kê.
 
 **Định nghĩa và kết quả theo mục.**
 
 - Mục 1: quy hoạch tuyến tính (Định nghĩa 07.1); điểm trong không tối ưu khi $c\ne0$ (Mệnh đề 07.2); hồi quy $L_1$ là quy hoạch tuyến tính (Hệ quả 07.4).
 - Mục 2: đa diện (Định nghĩa 07.5) và tính lồi của đa diện (Mệnh đề 07.6); dạng chuẩn (Định nghĩa 07.7); mọi quy hoạch tuyến tính đưa được về dạng chuẩn, giữ giá trị tối ưu (Mệnh đề 07.8); nghiệm cơ sở khả thi (Định nghĩa 07.10).
-- Mục 3: điểm cực, ràng buộc chặt (Định nghĩa 07.11, 07.12); điểm cực ⇔ $n$ ràng buộc chặt độc lập (Định lý 07.13), nên đa diện có hữu hạn điểm cực (Hệ quả 07.14); điểm cực ⇔ nghiệm cơ sở khả thi (Định lý 07.15), với nhiều nhất $m$ thành phần dương (Hệ quả 07.16); tập chứa đường thẳng (Định nghĩa 07.18); có điểm cực ⇔ không chứa đường thẳng ⇔ $\operatorname{rank}(A)=n$ (Định lý 07.20); dạng chuẩn khả thi luôn có điểm cực (Hệ quả 07.21).
-- Mục 4: miền có điểm cực thì hoặc không bị chặn, hoặc có điểm cực tối ưu (Định lý 07.23); liệt kê điểm cực là đủ (Hệ quả 07.24); nghiệm đỉnh của hồi quy $L_1$ nội suy ít nhất $n$ mẫu (Mệnh đề 07.25); bốn kết cục, giá trị hữu hạn luôn được đạt (Định lý 07.26); điểm cực kề, hướng cơ sở, lợi ích rút gọn (Định nghĩa 07.28, 07.30); hai cơ sở khác một chỉ số cho đỉnh kề (Mệnh đề 07.29); lợi ích rút gọn không dương thì tối ưu (Mệnh đề 07.31); điểm cực chưa tối ưu có đỉnh kề với giá trị lớn hơn (Bổ đề 07.32); duyệt đỉnh kề (Thuật toán 07.1), dừng tại điểm cực tối ưu (Mệnh đề 07.33).
+- Mục 3: điểm cực biên, ràng buộc chặt (Định nghĩa 07.11, 07.12); điểm cực biên ⇔ $n$ ràng buộc chặt độc lập (Định lý 07.13), nên đa diện có hữu hạn điểm cực biên (Hệ quả 07.14); điểm cực biên ⇔ nghiệm cơ sở khả thi (Định lý 07.15), với nhiều nhất $m$ thành phần dương (Hệ quả 07.16); tập chứa đường thẳng (Định nghĩa 07.18); có điểm cực biên ⇔ không chứa đường thẳng ⇔ $\operatorname{rank}(A)=n$ (Định lý 07.20); dạng chuẩn khả thi luôn có điểm cực biên (Hệ quả 07.21).
+- Mục 4: miền có điểm cực biên thì hoặc không bị chặn, hoặc có điểm cực biên tối ưu (Định lý 07.23); liệt kê điểm cực biên là đủ (Hệ quả 07.24); nghiệm đỉnh của hồi quy $L_1$ nội suy ít nhất $n$ mẫu (Mệnh đề 07.25); bốn kết cục, giá trị hữu hạn luôn được đạt (Định lý 07.26); điểm cực biên kề, hướng cơ sở, chi phí rút gọn (Định nghĩa 07.28, 07.30); hai cơ sở khác một chỉ số cho đỉnh kề (Mệnh đề 07.29); chi phí rút gọn không dương thì tối ưu (Mệnh đề 07.31); điểm cực biên chưa tối ưu có đỉnh kề với giá trị lớn hơn (Bổ đề 07.32); duyệt đỉnh kề (Thuật toán 07.1), dừng tại điểm cực biên tối ưu (Mệnh đề 07.33).
 - Mục 5: bài toán quyết định hữu hạn tất định, chi phí tối ưu còn lại (Định nghĩa 07.35, 07.37); phương trình Bellman (Định lý 07.38); nguyên lý tối ưu (Mệnh đề 07.39).
 - Mục 6: chính sách (Định nghĩa 07.40); giải ngược Bellman (Thuật toán 07.2); chính sách đạt cực tiểu cho chuỗi tối ưu (Mệnh đề 07.41); số phép tính $\sum_k\sum_\xi\lvert U_k(\xi)\rvert$ (Mệnh đề 07.42).
 
@@ -2258,7 +2258,7 @@ $$
 \max c^Tx,\quad Ax=b,\ x\ge0;\qquad x_B=A_B^{-1}b,\ x_{B^{\mathrm c}}=0 .
 $$
 
-Hướng cơ sở, lợi ích rút gọn và phép thử tỉ số:
+Hướng cơ sở, chi phí rút gọn và phép thử tỉ số:
 
 $$
 d^j_B=-A_B^{-1}A_j,\qquad\bar c_j=c_j-c_B^TA_B^{-1}A_j,\qquad\theta^*=\min_{j'\in B,\ d^j_{j'}<0}\frac{x_{j'}}{-d^j_{j'}}.
@@ -2272,15 +2272,15 @@ $$
 
 **Giả thiết thường bị bỏ qua.**
 
-- Mô hình tuyến tính cần tỉ lệ, cộng tính và chia được; biến nguyên đưa bài ra khỏi quy hoạch tuyến tính.
+- Mô hình tuyến tính cần tỉ lệ, cộng tính và chia được; biến nguyên đưa bài toán ra khỏi quy hoạch tuyến tính.
 - Nghiệm cơ sở cần $A_B$ khả nghịch và, để khả thi, $A_B^{-1}b\ge0$; hạng $m$ không bảo đảm mọi tập $m$ cột là cơ sở.
-- "Có điểm cực tối ưu" cần miền có điểm cực và giá trị tối ưu hữu hạn; không phải mọi nghiệm tối ưu là điểm cực.
-- Lợi ích rút gọn có một số dương chưa chứng minh điểm chưa tối ưu khi nghiệm cơ sở suy biến.
+- "Có điểm cực biên tối ưu" cần miền có điểm cực biên và giá trị tối ưu hữu hạn; không phải mọi nghiệm tối ưu là điểm cực biên.
+- Chi phí rút gọn có một số dương chưa chứng minh điểm chưa tối ưu khi nghiệm cơ sở suy biến.
 - Phương trình Bellman cần trạng thái đủ, chi phí cộng, chuyển tiếp tất định và tập hữu hạn.
 
-![Sơ đồ phân nhánh với tiêu đề "Chọn theo cấu trúc quyết định". Nút trên cùng hỏi "Quyết định có cấu trúc nào?", ghi "Kiểm giả thiết trước khi chọn công cụ". Nhánh trái "một lần, tuyến tính" dẫn tới ô "Quy hoạch tuyến tính": một véc-tơ quyết định; mục tiêu và ràng buộc tuyến tính; đa diện, cơ sở, điểm cực. Nhánh phải "theo giai đoạn" dẫn tới ô "Quy hoạch động": chuỗi quyết định hữu hạn; trạng thái đủ và chi phí cộng; Bellman, giải ngược, chính sách. Dòng chú thích: biến nguyên hoặc chuyển ngẫu nhiên nằm ngoài phạm vi hai khuôn đang xét.](img/lec-07/lp-dp-decision-map.svg)
+![Sơ đồ phân nhánh với tiêu đề "Chọn theo cấu trúc quyết định". Nút trên cùng hỏi "Quyết định có cấu trúc nào?", ghi "Kiểm tra giả thiết trước khi chọn công cụ". Nhánh trái "một lần, tuyến tính" dẫn tới ô "Quy hoạch tuyến tính": một véc-tơ quyết định; mục tiêu và ràng buộc tuyến tính; đa diện, cơ sở, điểm cực biên. Nhánh phải "theo giai đoạn" dẫn tới ô "Quy hoạch động": chuỗi quyết định hữu hạn; trạng thái đủ và chi phí cộng; Bellman, giải ngược, chính sách. Dòng chú thích: biến nguyên hoặc chuyển ngẫu nhiên nằm ngoài phạm vi hai lớp mô hình đang xét.](img/lec-07/lp-dp-decision-map.svg)
 
-Sơ đồ trên tóm tắt cách chọn giữa hai tuyến. Câu hỏi ở nút trên cùng là về cấu trúc của quyết định: một véc-tơ chọn một lần với quan hệ tuyến tính dẫn sang quy hoạch tuyến tính, một chuỗi quyết định có trạng thái đủ dẫn sang quy hoạch động. Dòng chú thích dưới cùng ghi hai trường hợp nằm ngoài cả hai khuôn của chương.
+Sơ đồ trên tóm tắt cách chọn giữa hai tuyến. Câu hỏi ở nút trên cùng là về cấu trúc của quyết định: một véc-tơ chọn một lần với quan hệ tuyến tính dẫn sang quy hoạch tuyến tính, một chuỗi quyết định có trạng thái đủ dẫn sang quy hoạch động. Dòng chú thích dưới cùng ghi hai trường hợp nằm ngoài cả hai lớp mô hình của chương.
 
 **Giới hạn còn lại.** Trong chương này, chúng ta đã nâng các công cụ của Bài 02 và Bài 03 cho quy hoạch tuyến tính từ chứng nhận một ứng viên lên tìm ứng viên trong một tập hữu hạn. Chúng ta cũng thêm một cấu trúc khác với bước cục bộ của Bài 04–06 cho bài toán theo giai đoạn. Chương còn ba giới hạn sau:
 
@@ -2288,21 +2288,21 @@ Sơ đồ trên tóm tắt cách chọn giữa hai tuyến. Câu hỏi ở nút 
 - khi biến buộc nguyên, Định lý 07.23 không còn cho nghiệm, và cần quy hoạch nguyên, nội dung Buổi 10 (Chương 13) của đề cương;
 - khi chuyển tiếp ngẫu nhiên hoặc số giai đoạn vô hạn, phương trình Bellman cần kỳ vọng và thành phương trình điểm bất động, nền của học tăng cường.
 
-Trong bộ học liệu này, Bài 07 là bài cuối hiện có, và nguồn cho các hướng trên được dẫn ở mục cuối.
+Trong bộ học liệu này, Bài 07 là bài giảng cuối hiện có, và nguồn cho các hướng trên được dẫn ở mục cuối.
 
 ## Bài tập củng cố
 
-Mỗi mức có ít nhất một bài. Bài 07 không có tệp bài tập riêng, nên các bài trong mục và ba bài dưới đây là bộ bài tập của chương; mọi mục tiêu học tập có ít nhất một bài.
+Mỗi mức có ít nhất một bài tập. Bài 07 không có tệp bài tập riêng, nên các bài tập trong các mục và ba bài tập dưới đây là bộ bài tập của chương; mọi mục tiêu học tập có ít nhất một bài tập.
 
 ### Mức nhận biết
 
 ::: exercise Bài tập 07.10 (Nhận biết: đúng hay sai)
 Xác định đúng hay sai; giải thích bằng một kết quả có số hiệu hoặc một phản ví dụ.
 
-1. Bài cực đại $2x_1+3x_2$ dưới $x_1+2x_2\le54$, $x_1,x_2\ge0$, $x_1$ nguyên là một quy hoạch tuyến tính.
+1. Bài toán cực đại $2x_1+3x_2$ dưới $x_1+2x_2\le54$, $x_1,x_2\ge0$, $x_1$ nguyên là một quy hoạch tuyến tính.
 2. Mọi nghiệm cơ sở của một hệ dạng chuẩn đều khả thi.
 3. Nếu một quy hoạch tuyến tính có hai nghiệm tối ưu thì nó có vô số nghiệm tối ưu.
-4. Mọi đa diện khác rỗng đều có ít nhất một điểm cực.
+4. Mọi đa diện khác rỗng đều có ít nhất một điểm cực biên.
 5. Một quy hoạch tuyến tính khả thi có giá trị tối ưu hữu hạn luôn đạt giá trị đó tại một điểm khả thi.
 6. Trong bài toán quyết định hữu hạn tất định, $J_k(\xi)$ là chi phí của điều khiển rẻ nhất tại $\xi$.
 :::
@@ -2313,10 +2313,10 @@ Câu 2 dùng Ví dụ 07.8; câu 4 dùng nửa mặt phẳng; câu 6 so (5.2) v�
 
 ::: solution
 1. Sai. Điều kiện nguyên làm miền rời rạc; bài toán là quy hoạch nguyên (Định nghĩa 07.1 và đoạn sau nó).
-2. Sai. Với hệ $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$ của bài hộp hạt, cơ sở $\{x_1,x_2,s_3\}$ có ma trận khả nghịch và cho $x_1=30$, $x_2=20$, $s_3=54-70=-16$, một giá trị âm (Ví dụ 07.8).
+2. Sai. Với hệ $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$ của bài toán hộp hạt, cơ sở $\{x_1,x_2,s_3\}$ có ma trận khả nghịch và cho $x_1=30$, $x_2=20$, $s_3=54-70=-16$, một giá trị âm (Ví dụ 07.8).
 3. Đúng, theo Mệnh đề 07.22(b): cả đoạn nối hai nghiệm là tối ưu.
-4. Sai. Nửa mặt phẳng $\{x_2\ge0\}$ chứa đường thẳng nằm ngang và không có điểm cực (Định lý 07.20).
-5. Đúng, theo Định lý 07.26; đây là điểm khác với bài lồi tổng quát (Nhận xét 07.27).
+4. Sai. Nửa mặt phẳng $\{x_2\ge0\}$ chứa đường thẳng nằm ngang và không có điểm cực biên (Định lý 07.20).
+5. Đúng, theo Định lý 07.26; đây là điểm khác với bài toán lồi tổng quát (Nhận xét 07.27).
 6. Sai. $J_k(\xi)$ là tổng chi phí tối ưu của mọi giai đoạn còn lại. Trên đồ thị tầng với $g(\mathrm s,\mathrm A)=2$, $g(\mathrm s,\mathrm B)=5$, $g(\mathrm A,\mathrm C)=4$, $g(\mathrm A,\mathrm D)=2$, $g(\mathrm B,\mathrm C)=1$, $g(\mathrm B,\mathrm D)=3$, $g(\mathrm C,\mathrm t)=3$, $g(\mathrm D,\mathrm t)=1$, Ví dụ 07.21 cho $J_0(\mathrm s)=5$, trong khi cạnh rẻ nhất ra khỏi $\mathrm s$ có chi phí $2$.
 
 **Kiểm tra lại.** Câu 3: trong Ví dụ 07.14, ngoài hai đỉnh $(2,0)$, $(0,2)$, mọi điểm $(\lambda\cdot2,(1-\lambda)\cdot2)$ với $\lambda\in(0,1)$ cũng tối ưu.
@@ -2325,13 +2325,13 @@ Câu 2 dùng Ví dụ 07.8; câu 4 dùng nửa mặt phẳng; câu 6 so (5.2) v�
 ### Mức tính toán hoặc chứng minh
 
 ::: exercise Bài tập 07.11 (Quy hoạch tuyến tính trên đơn hình xác suất)
-Cho $P=\{p\in\mathbb R^3\mid p_1+p_2+p_3=1,\ p\ge0\}$ và bài cực đại $c^Tp$ trên $P$ với $c\in\mathbb R^3$.
+Cho $P=\{p\in\mathbb R^3\mid p_1+p_2+p_3=1,\ p\ge0\}$ và bài toán cực đại $c^Tp$ trên $P$ với $c\in\mathbb R^3$.
 
 - (a) Viết $P$ ở dạng chuẩn, nêu $m$, $n$; liệt kê mọi nghiệm cơ sở khả thi.
-- (b) Chứng minh bằng Định lý 07.15 rằng $(\tfrac12,\tfrac12,0)$ không phải điểm cực.
+- (b) Chứng minh bằng Định lý 07.15 rằng $(\tfrac12,\tfrac12,0)$ không phải điểm cực biên.
 - (c) Chứng minh $z^*=\max_jc_j$ bằng Hệ quả 07.24.
 - (d) Với $c=(1,1,0)$, xác định kết cục và tập nghiệm tối ưu.
-- (e) Chứng minh trực tiếp, không dùng Định lý 07.15, rằng $(1,0,0)$ là điểm cực của $P$; chỉ ra bước lập luận dùng tính độc lập của cột ứng với thành phần dương, tức chiều (iii) kéo theo (i) của định lý.
+- (e) Chứng minh trực tiếp, không dùng Định lý 07.15, rằng $(1,0,0)$ là điểm cực biên của $P$; chỉ ra bước lập luận dùng tính độc lập của cột ứng với thành phần dương, tức chiều (iii) kéo theo (i) của định lý.
 :::
 
 ::: hint
@@ -2341,9 +2341,9 @@ Ma trận ràng buộc là hàng $(1,1,1)$, nên $m=1$ và mỗi cơ sở gồm 
 ::: solution
 **Câu (a).** $A=(1,1,1)$, $b=1$, $m=1$, $n=3$, $\operatorname{rank}(A)=1$. Mỗi cơ sở là một chỉ số $j$, với $A_B=(1)$ khả nghịch và $p_j=1$, hai thành phần còn lại bằng $0$. Ba nghiệm cơ sở khả thi là $(1,0,0)$, $(0,1,0)$, $(0,0,1)$, không suy biến.
 
-**Câu (b).** $\operatorname{supp}(p)=\{1,2\}$ và hai cột $(1)$, $(1)$ của $A$ phụ thuộc tuyến tính, nên theo khẳng định (iii) của Định lý 07.15, điểm không phải điểm cực. Trực tiếp: $(\tfrac12,\tfrac12,0)=\tfrac12(1,0,0)+\tfrac12(0,1,0)$.
+**Câu (b).** $\operatorname{supp}(p)=\{1,2\}$ và hai cột $(1)$, $(1)$ của $A$ phụ thuộc tuyến tính, nên theo khẳng định (iii) của Định lý 07.15, điểm không phải điểm cực biên. Trực tiếp: $(\tfrac12,\tfrac12,0)=\tfrac12(1,0,0)+\tfrac12(0,1,0)$.
 
-**Câu (c).** $P$ khác rỗng, bị chặn ($0\le p_j\le1$), dạng chuẩn nên có điểm cực (Hệ quả 07.21), và $c^Tp\le\sum_j\lvert c_j\rvert$ nên giá trị hữu hạn. Theo Hệ quả 07.24, $z^*$ là giá trị lớn nhất của $c^Tp$ trên ba nghiệm cơ sở khả thi, tức $\max\{c_1,c_2,c_3\}$.
+**Câu (c).** $P$ khác rỗng, bị chặn ($0\le p_j\le1$), dạng chuẩn nên có điểm cực biên (Hệ quả 07.21), và $c^Tp\le\sum_j\lvert c_j\rvert$ nên giá trị hữu hạn. Theo Hệ quả 07.24, $z^*$ là giá trị lớn nhất của $c^Tp$ trên ba nghiệm cơ sở khả thi, tức $\max\{c_1,c_2,c_3\}$.
 
 **Câu (d).** $z^*=1$, đạt tại $(1,0,0)$ và $(0,1,0)$; theo Mệnh đề 07.22, tập nghiệm tối ưu là đoạn $\{(\lambda,1-\lambda,0)\mid\lambda\in[0,1]\}$: kết cục nhiều nghiệm tối ưu.
 
@@ -2352,9 +2352,9 @@ Ma trận ràng buộc là hàng $(1,1,1)$, nên $m=1$ và mỗi cơ sở gồm 
 - Thành phần thứ hai: $0=\lambda p_2'+(1-\lambda)p_2''$ với $p_2',p_2''\ge0$ và hai hệ số dương, nên $p_2'=p_2''=0$; tương tự $p_3'=p_3''=0$.
 - Hiệu $p'-p''$ chỉ có thể khác $0$ ở thành phần thứ nhất, và $A(p'-p'')=0$ cho $1\cdot(p_1'-p_1'')=0$. Cột $A_1=(1)$ khác $0$, tức họ cột trên $\operatorname{supp}=\{1\}$ độc lập, nên $p_1'=p_1''$.
 
-Vậy $p'=p''=(1,0,0)$, và điểm là điểm cực. Bước thứ hai là Bước 1 của chứng minh Định lý 07.15 với $m=1$.
+Vậy $p'=p''=(1,0,0)$, và điểm là điểm cực biên. Bước thứ hai là Bước 1 của chứng minh Định lý 07.15 với $m=1$.
 
-**Kiểm tra lại.** Tại $(\tfrac12,\tfrac12,0)$ với $c=(1,1,0)$: $c^Tp=1=z^*$, một nghiệm tối ưu không phải điểm cực. Trong học máy, câu (c) nói rằng cực đại một lợi ích kỳ vọng tuyến tính trên các phân phối xác suất đạt được tại một phân phối dồn toàn bộ khối lượng vào một lựa chọn.
+**Kiểm tra lại.** Tại $(\tfrac12,\tfrac12,0)$ với $c=(1,1,0)$: $c^Tp=1=z^*$, một nghiệm tối ưu không phải điểm cực biên. Trong học máy, câu (c) nói rằng cực đại một lợi ích kỳ vọng tuyến tính trên các phân phối xác suất đạt được tại một phân phối dồn toàn bộ khối lượng vào một lựa chọn.
 :::
 
 ### Mức vận dụng vào AI
@@ -2405,7 +2405,7 @@ Lượt xuôi: chọn mô hình 1 (còn $5$ GB); $\Lambda_1(5)=7=\Lambda_2(5)$ n
 
 Nghiệm này không duy nhất: mô hình 2 và 3 cùng tỉ số $1{,}5$, nên mọi cách lấp $5$ GB còn lại bằng $4x_2+2x_3=5$ với $x_2,x_3\in[0,1]$, chẳng hạn $x=(1;\,0{,}75;\,1;\,0)$, cũng cho $12{,}5$.
 
-So với (b): quy hoạch tuyến tính cho cận trên $12{,}5$ của bài có lựa chọn trọn vẹn và một nghiệm phân số không dùng được. Làm tròn $x_3$ xuống cho $\{1,2\}$ với lợi ích $11<12$. Khoảng cách này là lý do quy hoạch nguyên cần công cụ riêng.
+So với (b): quy hoạch tuyến tính cho cận trên $12{,}5$ của bài toán có lựa chọn trọn vẹn và một nghiệm phân số không dùng được. Làm tròn $x_3$ xuống cho $\{1,2\}$ với lợi ích $11<12$. Khoảng cách này là lý do quy hoạch nguyên cần công cụ riêng.
 
 **Câu (d).** Khi đó, chi phí của quyết định về mô hình 4 là $-4$ nếu mô hình 3 chưa được chọn và $-2$ nếu đã chọn. Hai lịch sử cùng còn $3$ GB trước giai đoạn 3, một có mô hình 3 và một không, có phần tương lai khác nhau, nên bộ nhớ còn lại không còn là trạng thái đủ (Nhận xét 07.36). Mở rộng trạng thái ở giai đoạn 3 thành cặp $(\xi,\iota)$, với $\iota=1$ khi mô hình 3 đã được chọn.
 
@@ -2424,7 +2424,7 @@ Lượt xuôi cho tập $\{1,2\}$, dùng $7$ GB, lợi ích $11$. Khi đó, tậ
 ## Hướng dẫn đọc thêm và tài liệu tham khảo
 
 - Bertsimas, D. và Tsitsiklis, J. N. (1997), *Introduction to Linear Optimization*, Athena Scientific, viết ở chiều cực tiểu. §1.1–1.4 cho Mục 1; §2.1–2.3 cho Mục 2 và Mục 3.1–3.3; §2.4–2.6 cho Mục 3.4 và Mục 4.1–4.3; §3.1–3.2, §3.4 cho Mục 4.4–4.5.
-- MIT OpenCourseWare 15.093J/6.255J *Optimization Methods* (2009), bài giảng số 2 "The Geometry of LO", trang 9–24: đa diện, điểm cực, tồn tại và tối ưu của đỉnh, thuật toán ý niệm; cho Mục 2–4.
+- MIT OpenCourseWare 15.093J/6.255J *Optimization Methods* (2009), bài giảng số 2 "The Geometry of LO", trang 9–24: đa diện, điểm cực biên, tồn tại và tối ưu của đỉnh, thuật toán ý niệm; cho Mục 2–4.
 - MIT OpenCourseWare 15.093J/6.255J *Optimization Methods* (2009), bài giảng số 16 "Dynamic Programming", trang 2–9: bài toán cái túi, chọn trạng thái, khung quy hoạch động có nhiễu, phương trình Bellman; cho Mục 5–6 và Bài tập 07.12.
 - Boyd, S. và Vandenberghe, L. (2004), *Convex Optimization*, Cambridge University Press. §2.2.4 (tr. 31–32) cho Mục 2.1; §4.3 (tr. 146–151) cho Mục 1–2; §5.1.5 (tr. 219) và §5.2.1 (tr. 224–225) cho đối ngẫu của quy hoạch tuyến tính dạng chuẩn, dùng trong Ví dụ 07.5 và Tình huống 07.2.
 - Bertsekas, D. P. (2017), *Dynamic Programming and Optimal Control*, tập I, ấn bản 4, Athena Scientific, chương 1–2: nguyên lý tối ưu, thuật toán quy hoạch động, mở rộng trạng thái, đường đi ngắn nhất; cho Mục 5–6 và Tình huống 07.4.

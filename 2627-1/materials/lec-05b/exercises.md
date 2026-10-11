@@ -1,6 +1,6 @@
 # Bài tập Bài 05b — Hội tụ của hạ gradient và hạ gradient ngẫu nhiên
 
-Bộ bài tập gồm mười bài ở ba mức: nhận biết (Bài 1), tính toán hoặc chứng minh (Bài 2–7, 10) và vận dụng vào AI (Bài 8–9). Các bài 1, 2, 4, 5, 7 và một phần Bài 9 là các câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ. Ký hiệu, giả thiết H0–H7 và số hiệu theo ghi chú bài giảng. Tên ngắn trên trang chiếu ứng với số hiệu như sau: T1, T1′ là Định lý 05b.16; T2a, T2b là Định lý 05b.18(a), (b); T2′ là Định lý 05b.20; T3 là Định lý 05b.26; T4 là Định lý 05b.34; T5 là Định lý 05b.36; T6 là Định lý 05b.39; T7 là Định lý 05b.41; T8 là Định lý 05b.43; T9 là Định lý 05b.47; BĐ1 là Bổ đề 04.18; BĐ2, BĐ3, BĐ4 là Bổ đề 05b.7, 05b.8, 05b.9; BĐ5 là Bổ đề 05b.25; BĐ6 là Bổ đề 05b.40. Bốn ví dụ dùng chung:
+Bộ bài tập gồm mười bài tập ở ba mức: nhận biết (Bài 1), tính toán hoặc chứng minh (Bài 2–7, 10) và vận dụng vào AI (Bài 8–9). Các bài 1, 2, 4, 5, 7 và một phần Bài 9 là các câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ. Ký hiệu, giả thiết H0–H7 và số hiệu theo ghi chú bài giảng. Tên ngắn trên trang chiếu ứng với số hiệu như sau: T1, T1′ là Định lý 05b.16; T2a, T2b là Định lý 05b.18(a), (b); T2′ là Định lý 05b.20; T3 là Định lý 05b.26; T4 là Định lý 05b.34; T5 là Định lý 05b.36; T6 là Định lý 05b.39; T7 là Định lý 05b.41; T8 là Định lý 05b.43; T9 là Định lý 05b.47; BĐ1 là Bổ đề 04.18; BĐ2, BĐ3, BĐ4 là Bổ đề 05b.7, 05b.8, 05b.9; BĐ5 là Bổ đề 05b.25; BĐ6 là Bổ đề 05b.40. Bốn ví dụ dùng chung:
 
 - Ví dụ A: $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ từ ba quan sát $y=(-1,1,3)$, gradient một mẫu $\theta-y_I$;
 - Ví dụ B: $f(x)=\tfrac13\bigl(\lvert x+1\rvert+\lvert x-1\rvert+\lvert x-3\rvert\bigr)$, $x^*=1$, $f^*=\tfrac43$;
@@ -9,13 +9,13 @@ Bộ bài tập gồm mười bài ở ba mức: nhận biết (Bài 1), tính t
 
 Lời giải cần nêu giả thiết được dùng ở từng bước. Số thập phân viết với dấu phẩy. Viết tắt: chuẩn đầu ra bài học (LLO), chuẩn đầu ra học phần (CLO), phương pháp hạ gradient (GD), hạ gradient ngẫu nhiên (SGD), điều kiện Polyak–Łojasiewicz (PL).
 
-## Bài 1. Bất đẳng thức cầu nối trên hai ví dụ
+## Bài 1. Bất đẳng thức liên hệ trên hai ví dụ
 
 Mức độ: nhận biết. LLO6, CLO1.
 
 ::: exercise Bài 1
-1. Kiểm Bổ đề 05b.7 cho $\phi(s)=\log(1+e^{-s})$ (với $L=\tfrac14$) tại $s=0$ và giải thích vì sao bổ đề dùng $f_{\inf}$ thay cho $f^*$.
-2. Tính $\mu$, $L$ cho $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ (Ví dụ A) và $f(x)=\tfrac12(3x_1^2+7x_2^2)$ (Ví dụ C). Kiểm chuỗi bất đẳng thức của bản đồ dạng hội tụ, $\tfrac\mu2d^2\le e\le\tfrac1{2\mu}\lVert\nabla f\rVert^2\le\tfrac L\mu e\le\tfrac{L^2}{2\mu}d^2$, tại $x=(1,-1)$ của Ví dụ C.
+1. Kiểm tra Bổ đề 05b.7 cho $\phi(s)=\log(1+e^{-s})$ (với $L=\tfrac14$) tại $s=0$ và giải thích vì sao bổ đề dùng $f_{\inf}$ thay cho $f^*$.
+2. Tính $\mu$, $L$ cho $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ (Ví dụ A) và $f(x)=\tfrac12(3x_1^2+7x_2^2)$ (Ví dụ C). Kiểm tra chuỗi bất đẳng thức của bản đồ dạng hội tụ, $\tfrac\mu2d^2\le e\le\tfrac1{2\mu}\lVert\nabla f\rVert^2\le\tfrac L\mu e\le\tfrac{L^2}{2\mu}d^2$, tại $x=(1,-1)$ của Ví dụ C.
 3. Phân loại bốn phát biểu theo dạng hội tụ, rồi nêu giả thiết để suy ra một dạng khác:
    với $x_k$ là GD bước $\tfrac17$ trên Ví dụ C ở (a), (b): (a) $f(x_k)-f^*\le70/k$; (b) $\lVert x_k-x^*\rVert^2\le20(4/7)^k$; (c) $\min_{k<K}\lVert\nabla f(x_k)\rVert^2\le C/K$ với hằng số $C>0$; (d) $\mathbb E(\theta_k-1)^2\le0{,}9^k+0{,}267$, với $\theta_k$ là SGD trên Ví dụ A.
 :::
@@ -49,7 +49,7 @@ Mức độ: tính toán hoặc chứng minh. LLO6, LLO8, CLO1.
 Cho Ví dụ C: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x_0=(2,4)$, $\mu=3$, $L=7$, $D^2=20$, $e_0=62$. Ký hiệu $[x]_i$ là tọa độ thứ $i$ của $x$.
 
 1. Với quay lui Armijo $\alpha=\tfrac14$, $\beta=\tfrac12$: tính hệ số $c$ của Định lý 05b.20 và số bước để cận bảo đảm $e_k\le0{,}01$.
-2. Với GD bước $\tfrac17$, kiểm cận của Định lý 05b.18(a) tại $k=2$ và $k=3$.
+2. Với GD bước $\tfrac17$, kiểm tra cận của Định lý 05b.18(a) tại $k=2$ và $k=3$.
 3. Với GD bước hằng $\eta=0{,}3$ từ cùng $x_0$: chứng minh $\lvert[x_k]_2\rvert$ tăng theo $k$; chỉ ra giả thiết về bước của Định lý 05b.16 bị vi phạm.
 :::
 
@@ -58,7 +58,7 @@ Cho Ví dụ C: $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x_0=(2,4)$, $\mu=3$, $L=7$, $D^
 :::
 
 ::: solution Lời giải Bài 2
-1. $2\mu\alpha=1{,}5$ và $2\beta\alpha\mu/L=\tfrac{2\cdot\frac12\cdot\frac14\cdot3}7=\tfrac3{28}$, nên $c=1-\tfrac3{28}=\tfrac{25}{28}\approx0{,}893$. Cận $e_k\le62c^k$ đạt $0{,}01$ khi $k\ge\ln6200/\ln\tfrac{28}{25}\approx77{,}05$; kiểm $62c^{77}\approx0{,}01006>0{,}01$ và $62c^{78}\approx0{,}00898$, nên cần $78$ bước. Cận bước $1/L$ (Định lý 05b.18(b)) cần $16$ bước; quay lui không cần biết $L$ nhưng hệ số co kém hơn.
+1. $2\mu\alpha=1{,}5$ và $2\beta\alpha\mu/L=\tfrac{2\cdot\frac12\cdot\frac14\cdot3}7=\tfrac3{28}$, nên $c=1-\tfrac3{28}=\tfrac{25}{28}\approx0{,}893$. Cận $e_k\le62c^k$ đạt $0{,}01$ khi $k\ge\ln6200/\ln\tfrac{28}{25}\approx77{,}05$; kiểm tra $62c^{77}\approx0{,}01006>0{,}01$ và $62c^{78}\approx0{,}00898$, nên cần $78$ bước. Cận bước $1/L$ (Định lý 05b.18(b)) cần $16$ bước; quay lui không cần biết $L$ nhưng hệ số co kém hơn.
 
 2. Với bước $\tfrac17$, $x_k=\bigl(2(\tfrac47)^k,0\bigr)$ khi $k\ge1$. Do đó $d_2^2=4(\tfrac{16}{49})^2=\tfrac{1024}{2401}\approx0{,}427\le20(\tfrac47)^2\approx6{,}53$ và $d_3^2\approx0{,}139\le20(\tfrac47)^3\approx3{,}73$.
 
@@ -72,7 +72,7 @@ Mức độ: tính toán hoặc chứng minh. LLO6, CLO1.
 ::: exercise Bài 3
 Chạy GD trên Ví dụ C với bước hằng $\eta=\tfrac1{14}$.
 
-1. Kiểm giả thiết của Định lý 05b.16 và viết cận của Định lý 05b.16. Tính số bước mà cận này cần để bảo đảm $e_k\le0{,}01$.
+1. Kiểm tra giả thiết của Định lý 05b.16 và viết cận của Định lý 05b.16. Tính số bước mà cận này cần để bảo đảm $e_k\le0{,}01$.
 2. Tính $x_k$ và $e_k$ dưới dạng đóng. Tìm $k$ nhỏ nhất để $e_k\le0{,}01$.
 3. So sánh với bước $\tfrac17$ (cận $70/k$, thực tế $6$ bước). Giải thích hệ số $2$ giữa hai cận.
 :::
@@ -102,7 +102,7 @@ Mức độ: tính toán hoặc chứng minh. LLO6, LLO8, CLO1.
 ::: exercise Bài 4
 Cho Ví dụ B, $f(x)=\tfrac13\bigl(\lvert x+1\rvert+\lvert x-1\rvert+\lvert x-3\rvert\bigr)$, với $x^*=1$, $f^*=\tfrac43$, $G=1$.
 
-1. Từ $x_0=2{,}5$, bước $\eta=2$, $K=4$: tính $x_0,\dots,x_3$, lặp tốt nhất và $\bar x_4$; so với cận của Định lý 05b.26.
+1. Từ $x_0=2{,}5$, bước $\eta=2$, $K=4$: tính $x_0,\dots,x_3$, điểm lặp tốt nhất (best iterate) và $\bar x_4$; so với cận của Định lý 05b.26.
 2. Với $\eta_k=\tfrac c{\sqrt{k+1}}$, dùng $\sum_{k<K}\tfrac1{k+1}\le1+\ln K$ để suy ra cận của Định lý 05b.26 dạng $O(\ln K/\sqrt K)$.
 3. Chỉ ra $\tfrac c{k+1}$ thỏa điều kiện Robbins–Monro còn $\tfrac c{\sqrt{k+1}}$ thì không, dù cận ở câu 2 vẫn tiến về $0$.
 4. Chỉ ra bước nào của chứng minh Định lý 05b.26 dùng tính lồi khi đầu ra là $\bar x_K$.
@@ -113,7 +113,7 @@ Trên $(1,3)$ hai số hạng đầu có độ dốc $+1$ và số hạng cuối
 :::
 
 ::: solution Lời giải Bài 4
-1. Trên khoảng $(1,3)$, hai số hạng đầu có độ dốc $+1$, số hạng cuối có độ dốc $-1$, nên $f'=\tfrac13$ và mỗi bước trừ $\eta g=\tfrac23$. Ba bước cho $x_1=\tfrac{11}6$, $x_2=\tfrac76$, $x_3=\tfrac12$; bước thứ ba vượt qua điểm gãy $x=1$. Các sai số $f(x_k)-\tfrac43$ lần lượt là $\tfrac12$, $\tfrac5{18}$, $\tfrac1{18}$, $\tfrac16$, nên lặp tốt nhất là $x_2=\tfrac76$ (sai số $\tfrac1{18}$). Trung bình lặp $\bar x_4=\tfrac14(\tfrac52+\tfrac{11}6+\tfrac76+\tfrac12)=\tfrac32$ có sai số $\tfrac16$. Với $D=1{,}5$, $G=1$, cận của Định lý 05b.26 là $\tfrac{2{,}25+4\cdot4}{2\cdot4\cdot2}=\tfrac{73}{64}\approx1{,}14$; bước tối ưu là $D/(G\sqrt K)=0{,}75$. Ở lượt này lặp tốt nhất tốt hơn trung bình lặp; ở lượt bước $4{,}5$ từ $x_0=0$ trên cùng ví dụ thì ngược lại. Định lý 05b.26 chặn cả hai.
+1. Trên khoảng $(1,3)$, hai số hạng đầu có độ dốc $+1$, số hạng cuối có độ dốc $-1$, nên $f'=\tfrac13$ và mỗi bước trừ $\eta g=\tfrac23$. Ba bước cho $x_1=\tfrac{11}6$, $x_2=\tfrac76$, $x_3=\tfrac12$; bước thứ ba vượt qua điểm gãy $x=1$. Các sai số $f(x_k)-\tfrac43$ lần lượt là $\tfrac12$, $\tfrac5{18}$, $\tfrac1{18}$, $\tfrac16$, nên điểm lặp tốt nhất là $x_2=\tfrac76$ (sai số $\tfrac1{18}$). Trung bình lặp $\bar x_4=\tfrac14(\tfrac52+\tfrac{11}6+\tfrac76+\tfrac12)=\tfrac32$ có sai số $\tfrac16$. Với $D=1{,}5$, $G=1$, cận của Định lý 05b.26 là $\tfrac{2{,}25+4\cdot4}{2\cdot4\cdot2}=\tfrac{73}{64}\approx1{,}14$; bước tối ưu là $D/(G\sqrt K)=0{,}75$. Ở lượt này điểm lặp tốt nhất tốt hơn trung bình lặp; ở lượt bước $4{,}5$ từ $x_0=0$ trên cùng ví dụ thì ngược lại. Định lý 05b.26 chặn cả hai.
 
 Trường hợp riêng: khi $x_k=1$, dưới vi phân là cả đoạn $[-\tfrac13,\tfrac13]$, và bước tiếp theo cho $x_{k+1}=1-\eta g_k\in[1-\tfrac\eta3,1+\tfrac\eta3]$: dãy có thể rời nghiệm, tùy dưới gradient được chọn; chỉ khi chọn $g_k=0$ thì dãy đứng yên.
 
@@ -125,7 +125,7 @@ $$
 
 3. Với $\eta_k=\tfrac c{k+1}$: $\sum\tfrac c{k+1}=\infty$ (chuỗi điều hòa) và $\sum\tfrac{c^2}{(k+1)^2}=\tfrac{c^2\pi^2}6<\infty$. Với $\eta_k=\tfrac c{\sqrt{k+1}}$: $\sum\eta_k^2=c^2\sum\tfrac1{k+1}=\infty$, nên điều kiện thứ hai sai. Điều kiện Robbins–Monro là đủ, không cần, để cận của Định lý 05b.26 tiến về $0$.
 
-4. Tính lồi dùng ở hai chỗ của chứng minh Định lý 05b.26: chặn $g_k^T(x_k-x^*)\ge e_k$ (Hệ quả 05b.23) và Jensen (Bổ đề 05b.25) cho $f(\bar x_K)$. Đầu ra lặp tốt nhất chỉ cần chỗ thứ nhất.
+4. Tính lồi dùng ở hai chỗ của chứng minh Định lý 05b.26: chặn $g_k^T(x_k-x^*)\ge e_k$ (Hệ quả 05b.23) và Jensen (Bổ đề 05b.25) cho $f(\bar x_K)$. Đầu ra điểm lặp tốt nhất chỉ cần chỗ thứ nhất.
 :::
 
 ## Bài 5. Hạ gradient ngẫu nhiên trên hai ví dụ
@@ -133,12 +133,12 @@ $$
 Mức độ: tính toán hoặc chứng minh. LLO11, LLO12, CLO2.
 
 ::: exercise Bài 5
-Ví dụ A: $J(\theta)=\tfrac16\sum_i(\theta-y_i)^2$, $y=(-1,1,3)$, $\theta_0=0$, nhóm một mẫu, $\sigma^2=\tfrac83$. Ví dụ B: $f(x)=\tfrac13\sum_i\lvert x-y_i\rvert$, $x_0=0$, $D=1$.
+Ví dụ A: $J(\theta)=\tfrac16\sum_i(\theta-y_i)^2$, $y=(-1,1,3)$, $\theta_0=0$, lô nhỏ (mini-batch) gồm một mẫu, $\sigma^2=\tfrac83$. Ví dụ B: $f(x)=\tfrac13\sum_i\lvert x-y_i\rvert$, $x_0=0$, $D=1$.
 
 1. Ví dụ A, bước $0{,}1$: tính $\mathbb E(\theta_1-1)^2$ và $\mathbb E(\theta_2-1)^2$ bằng cây lịch sử và bằng đệ quy; so với cận của Định lý 05b.36.
 2. Ví dụ A, $\eta_k=\tfrac1{k+1}$ cho $\mathbb E(\theta_k-1)^2=\tfrac8{3k}$. Tìm $k$ nhỏ nhất để giá trị này nhỏ hơn giá trị giới hạn $\tfrac8{57}$ của bước hằng $0{,}1$.
 3. Cùng lịch $\tfrac1{k+1}$, tìm $k$ nhỏ nhất để $\tfrac8{3k}$ nhỏ hơn $\mathbb E(\theta_k-1)^2$ của bước hằng $0{,}1$ tại cùng $k$.
-4. Ví dụ B, $g_k=\operatorname{sign}(x_k-y_{I_k})$, $I_k$ đều trên $\{1,2,3\}$, quy ước $\operatorname{sign}(0)=0$: kiểm H6, H6a với $G=1$; viết cận của Định lý 05b.34 cho $K=100$ với bước hằng tối ưu.
+4. Ví dụ B, $g_k=\operatorname{sign}(x_k-y_{I_k})$, $I_k$ đều trên $\{1,2,3\}$, quy ước $\operatorname{sign}(0)=0$: kiểm tra H6, H6a với $G=1$; viết cận của Định lý 05b.34 cho $K=100$ với bước hằng tối ưu.
 :::
 
 ::: hint Gợi ý Bài 5
@@ -146,7 +146,7 @@ Ví dụ A: $J(\theta)=\tfrac16\sum_i(\theta-y_i)^2$, $y=(-1,1,3)$, $\theta_0=0$
 :::
 
 ::: solution Lời giải Bài 5
-1. Cây: $\theta_1\in\{-0{,}1;\,0{,}1;\,0{,}3\}$ cho $(\theta_1-1)^2=1{,}21;\,0{,}81;\,0{,}49$, trung bình $\approx0{,}837$. Chín lá $\theta_2$ cho $(\theta_2-1)^2$ bằng $1{,}4161$; $0{,}9801$; $0{,}6241$; $1{,}0201$; $0{,}6561$; $0{,}3721$; $0{,}6889$; $0{,}3969$; $0{,}1849$, trung bình $\approx0{,}704$. Đệ quy: $a_{k+1}=0{,}81a_k+\tfrac8{300}$ với $a_0=1$ cho $a_1=0{,}81+0{,}0267\approx0{,}837$ và $a_2\approx0{,}81\cdot0{,}8367+0{,}0267\approx0{,}704$. Cận Định lý 05b.36 với $\mu=1$, $D=1$, sàn nhiễu $0{,}267$: $0{,}9+0{,}267=1{,}167$ và $0{,}81+0{,}267=1{,}077$.
+1. Cây: $\theta_1\in\{-0{,}1;\,0{,}1;\,0{,}3\}$ cho $(\theta_1-1)^2=1{,}21;\,0{,}81;\,0{,}49$, trung bình $\approx0{,}837$. Chín lá $\theta_2$ cho $(\theta_2-1)^2$ bằng $1{,}4161$; $0{,}9801$; $0{,}6241$; $1{,}0201$; $0{,}6561$; $0{,}3721$; $0{,}6889$; $0{,}3969$; $0{,}1849$, trung bình $\approx0{,}704$. Đệ quy: $a_{k+1}=0{,}81a_k+\tfrac8{300}$ với $a_0=1$ cho $a_1=0{,}81+0{,}0267\approx0{,}837$ và $a_2\approx0{,}81\cdot0{,}8367+0{,}0267\approx0{,}704$. Cận Định lý 05b.36 với $\mu=1$, $D=1$, mức nhiễu nền (noise floor) $0{,}267$: $0{,}9+0{,}267=1{,}167$ và $0{,}81+0{,}267=1{,}077$.
 
 2. Bất đẳng thức $\tfrac8{3k}<\tfrac8{57}$ tương đương $3k>57$, nên $k=20$; tại $k=19$ hai vế bằng nhau.
 
@@ -164,7 +164,7 @@ Giả sử $f$ thỏa H3, H4; $g_k$ thỏa H6 và $\mathbb E[\lVert g_k\rVert^2\
 
 1. Chứng minh $a_{k+1}\le(1-2\mu\eta_k)a_k+\eta_k^2G^2$ với mọi $k\ge0$.
 2. Chứng minh bằng quy nạp $a_k\le\dfrac{G^2}{\mu^2k}$ với mọi $k\ge1$ (Định lý 05b.39).
-3. Áp dụng cho Ví dụ A với nhóm một mẫu: chứng minh $\theta_k$ là trung bình của $k$ mẫu đầu, tính $a_k$ chính xác, xác định $G^2$ trên đoạn chứa dãy lặp và so với cận.
+3. Áp dụng cho Ví dụ A với lô một mẫu: chứng minh $\theta_k$ là trung bình của $k$ mẫu đầu, tính $a_k$ chính xác, xác định $G^2$ trên đoạn chứa dãy lặp và so với cận.
 :::
 
 ::: hint Gợi ý Bài 6
@@ -235,7 +235,7 @@ $$
 2. Tính $\mu$, cận thô $\lambda+\tfrac14\max_i\lVert u_i\rVert^2$ và giá trị $L$ theo trị riêng.
 3. Chọn định lý cho GD và nêu đại lượng được chặn. Với bước $1/L'$ theo cận thô $L'$, tính số bước mà định lý bảo đảm $e_k\le10^{-4}e_0$; làm lại với $L$ theo trị riêng.
 4. Chứng minh rằng khi $\lambda=0$, $f$ không đạt cực tiểu trên dữ liệu này, và nêu định lý nào không còn áp dụng.
-5. Với SGD một mẫu, $\ell_i(x)=\phi(y_iu_i^Tx)+\tfrac\lambda2\lVert x\rVert^2$, chứng minh H6b đúng với $\sigma^2=\tfrac1N\sum_i\lVert u_i\rVert^2$ và tính sàn nhiễu của Định lý 05b.36 với $\eta=0{,}1$.
+5. Với SGD một mẫu, $\ell_i(x)=\phi(y_iu_i^Tx)+\tfrac\lambda2\lVert x\rVert^2$, chứng minh H6b đúng với $\sigma^2=\tfrac1N\sum_i\lVert u_i\rVert^2$ và tính mức nhiễu nền của Định lý 05b.36 với $\eta=0{,}1$.
 :::
 
 ::: hint Gợi ý Bài 8
@@ -257,7 +257,7 @@ Với $h=y-x$, khai triển $f(y)=f(x)+\nabla f(x)^Th+\int_0^1(1-t)h^T\nabla^2f(
 
 4. Với $\hat x=(2,-1)$: $y_iu_i^T\hat x=2,\ 2,\ 1>0$. Khi $\lambda=0$, $f(t\hat x)=\tfrac13\sum_i\log(1+e^{-ty_iu_i^T\hat x})\to0$ khi $t\to\infty$, trong khi $f>0$ tại mọi điểm. Vậy $\inf f=0$ không đạt, H4 sai, và cũng không có H3. Định lý 05b.16, 05b.18 không áp dụng; như hàm logistic một chiều ở Ví dụ 05b.4, GD có thể cho $e_k\to0$ trong khi $\lVert x_k\rVert\to\infty$.
 
-5. $\nabla\ell_i(x)=v_i(x)+\lambda x$ với $v_i(x)=\phi'(y_iu_i^Tx)y_iu_i$ và $\lvert\phi'\rvert<1$. Gradient một mẫu $g=\nabla\ell_I$ có $\mathbb E[g]=\nabla f(x)$ (H6), và $g-\nabla f(x)=v_I-\bar v$, với $\bar v$ là trung bình của các $v_i$. Phương sai không vượt mômen bậc hai: $\mathbb E\lVert v_I-\bar v\rVert^2\le\mathbb E\lVert v_I\rVert^2\le\tfrac1N\sum_i\lVert u_i\rVert^2=\tfrac73$. Sàn nhiễu của Định lý 05b.36 với $\eta=0{,}1\le1/L$ là $\tfrac{\eta\sigma^2}\mu=\tfrac{0{,}1\cdot7/3}{0{,}1}\approx2{,}33$, đơn vị là bình phương khoảng cách tới $x^*$. Cận này lớn so với $\lVert x^*\rVert^2\approx2{,}71$, nên muốn một bảo đảm có ý nghĩa cần bước nhỏ hơn, lịch theo pha hoặc nhóm lớn hơn.
+5. $\nabla\ell_i(x)=v_i(x)+\lambda x$ với $v_i(x)=\phi'(y_iu_i^Tx)y_iu_i$ và $\lvert\phi'\rvert<1$. Gradient một mẫu $g=\nabla\ell_I$ có $\mathbb E[g]=\nabla f(x)$ (H6), và $g-\nabla f(x)=v_I-\bar v$, với $\bar v$ là trung bình của các $v_i$. Phương sai không vượt mômen bậc hai: $\mathbb E\lVert v_I-\bar v\rVert^2\le\mathbb E\lVert v_I\rVert^2\le\tfrac1N\sum_i\lVert u_i\rVert^2=\tfrac73$. Mức nhiễu nền của Định lý 05b.36 với $\eta=0{,}1\le1/L$ là $\tfrac{\eta\sigma^2}\mu=\tfrac{0{,}1\cdot7/3}{0{,}1}\approx2{,}33$, đơn vị là bình phương khoảng cách tới $x^*$. Cận này lớn so với $\lVert x^*\rVert^2\approx2{,}71$, nên muốn một bảo đảm có ý nghĩa cần bước nhỏ hơn, lịch theo pha hoặc lô lớn hơn.
 :::
 
 ## Bài 9. Bảo đảm theo xác suất và phạm vi của định lý
@@ -268,7 +268,7 @@ Mức độ: vận dụng vào AI. LLO12, CLO2.
 1. Giả sử $\mathbb E(\theta_k-1)^2\le0{,}2$. Chặn xác suất để một lần chạy có $(\theta_k-1)^2\ge1$.
 2. Với Ví dụ A, bước $0{,}1$, $k=2$: tính chính xác $P\bigl((\theta_2-1)^2\ge1\bigr)$ từ cây lịch sử và so với cận Markov.
 3. Với SGD trên Ví dụ B ở Bài 5, câu 3 ($K=100$, $\eta=0{,}1$): chặn $P\bigl(f(\bar x_{100})-f^*\ge0{,}5\bigr)$.
-4. Một mạng nơ ron được huấn luyện bằng SGD bước hằng. Nêu định lý của bài có thể áp dụng, các giả thiết cần kiểm, và những điều định lý không khẳng định.
+4. Một mạng nơ ron được huấn luyện bằng SGD bước hằng. Nêu định lý của bài giảng có thể áp dụng, các giả thiết cần kiểm tra, và những điều định lý không khẳng định.
 :::
 
 ::: hint Gợi ý Bài 9
@@ -282,7 +282,7 @@ Markov áp dụng cho biến không âm $Z$ bất kỳ có kỳ vọng hữu h�
 
 3. Định lý 05b.34 cho $\mathbb E\bigl(f(\bar x_{100})-f^*\bigr)\le0{,}1$; Markov cho $P\bigl(f(\bar x_{100})-f^*\ge0{,}5\bigr)\le\tfrac{0{,}1}{0{,}5}=0{,}2$.
 
-4. Mục tiêu không lồi, nên Định lý 05b.34, 05b.36, 05b.39 không áp dụng. Định lý 05b.43 áp dụng nếu H0 (khả vi, bị chặn dưới), H2 (gradient Lipschitz trên toàn miền), H6 (gradient nhóm không chệch, lấy mẫu có hoàn lại) và H6b (phương sai bị chặn) đúng; các giả thiết này cần kiểm trước, và H2, H6b toàn cục thường khó kiểm cho mạng sâu. Kể cả khi đúng, Định lý 05b.43 chỉ chặn trung bình của $\mathbb E\lVert\nabla f(x_k)\rVert^2$ trên $K$ bước đầu: nó không chặn điểm cuối, không nói dãy tới cực tiểu nào và không loại điểm yên ngựa hay cực đại địa phương. Định lý 05b.47 cho tốc độ tuyến tính tới sàn nhiễu chỉ khi có thêm H7, điều kiện hiếm khi kiểm được toàn cục.
+4. Mục tiêu không lồi, nên Định lý 05b.34, 05b.36, 05b.39 không áp dụng. Định lý 05b.43 áp dụng nếu H0 (khả vi, bị chặn dưới), H2 (gradient Lipschitz trên toàn miền), H6 (gradient lô không chệch, lấy mẫu có hoàn lại) và H6b (phương sai bị chặn) đúng; các giả thiết này cần kiểm tra trước, và H2, H6b toàn cục thường khó kiểm tra cho mạng sâu. Kể cả khi đúng, Định lý 05b.43 chỉ chặn trung bình của $\mathbb E\lVert\nabla f(x_k)\rVert^2$ trên $K$ bước đầu: nó không chặn điểm cuối, không nói dãy tới cực tiểu nào và không loại điểm yên ngựa hay cực đại địa phương. Định lý 05b.47 cho tốc độ tuyến tính tới mức nhiễu nền chỉ khi có thêm H7, điều kiện hiếm khi kiểm tra được toàn cục.
 :::
 
 ## Bài 10. Bước tối ưu cho hàm bậc hai
@@ -310,7 +310,7 @@ $$
 \rho^*=\frac{L-\mu}{L+\mu}=\frac{\kappa-1}{\kappa+1}.
 $$
 
-Định lý 05b.18(a) cho $d_k^2\le(1-\tfrac1\kappa)^kD^2$, tức $d_k$ co theo $\sqrt{1-1/\kappa}$. Với $\kappa>1$, $\tfrac{\kappa-1}{\kappa+1}<1-\tfrac1\kappa\le\sqrt{1-\tfrac1\kappa}$, vì $(\kappa-1)\kappa<(\kappa+1)(\kappa-1)$. Kết quả $\tfrac{\kappa-1}{\kappa+1}$ đúng cho mọi hàm thỏa H2, H3 với bước $\tfrac2{L+\mu}$; chứng minh tổng quát không trình bày trong bài.
+Định lý 05b.18(a) cho $d_k^2\le(1-\tfrac1\kappa)^kD^2$, tức $d_k$ co theo $\sqrt{1-1/\kappa}$. Với $\kappa>1$, $\tfrac{\kappa-1}{\kappa+1}<1-\tfrac1\kappa\le\sqrt{1-\tfrac1\kappa}$, vì $(\kappa-1)\kappa<(\kappa+1)(\kappa-1)$. Kết quả $\tfrac{\kappa-1}{\kappa+1}$ đúng cho mọi hàm thỏa H2, H3 với bước $\tfrac2{L+\mu}$; chứng minh tổng quát không trình bày trong bài giảng.
 
 3. Ví dụ C: $\mu=3$, $L=7$, bước tối ưu $\eta=0{,}2$ cho $\rho^*=\tfrac4{10}=0{,}4$; cả hai tọa độ co đúng hệ số $0{,}4$ ($1-0{,}6$ và $1-1{,}4$), nên $d_k^2=20\cdot0{,}16^k$. Khi đó $d_4^2\approx0{,}0131$, $d_5^2\approx0{,}0021$, nên $k=5$. Bước $\tfrac17$ cho $\rho=\max\{\tfrac47,0\}=\tfrac47$ và $d_k^2=4(\tfrac{16}{49})^k$ với $k\ge1$; $d_5^2\approx0{,}0148$, $d_6^2\approx0{,}0048$, nên $k=6$. Cận Định lý 05b.18(a), $20(\tfrac47)^k\le0{,}01$, cần $k\ge\ln2000/\ln\tfrac74\approx13{,}6$, tức $14$ bước.
 :::
@@ -319,6 +319,6 @@ $$
 
 - Bài 1, 2, 4, 5, 7 và các câu 1, 4 của Bài 9 lấy từ câu hỏi trên trang chiếu Bài 05b; lời giải mở rộng phần ghi chú diễn giả.
 - Bài 3, 6, 10 và các câu 2, 3 của Bài 9 tự xây dựng; số liệu tính trực tiếp từ công thức trong lời giải.
-- Bài 8 mở rộng câu hỏi thứ nhất của trang cuối (câu hỏi tự kiểm); số bước thực tế trong lời giải lấy từ một lần chạy GD trên dữ liệu của bài.
+- Bài 8 mở rộng câu hỏi thứ nhất của trang cuối (câu hỏi tự kiểm tra); số bước thực tế trong lời giải lấy từ một lần chạy GD trên dữ liệu của bài tập.
 - Boyd và Vandenberghe (2004), *Convex Optimization*, §9.1.2, §9.3 (cận Hessian, hội tụ của GD, quay lui).
 - Sra, Nowozin và Wright (biên tập, 2011), *Optimization for Machine Learning*, ch. 5, §5.2, §5.5 (phương pháp dưới gradient và xấp xỉ ngẫu nhiên).

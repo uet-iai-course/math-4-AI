@@ -5,13 +5,13 @@
 Các mục tiêu sau là minh chứng bộ phận của ba chuẩn đầu ra bài học (LLO) của buổi 5:
 
 - LLO11 đóng góp chuẩn đầu ra học phần CLO1: phân biệt mục tiêu huấn luyện với đánh giá và nhận diện các trở ngại của tối ưu trong học sâu;
-- LLO12 và LLO13 đóng góp CLO2: thực hiện các phép cập nhật bằng gradient nhóm, momentum, Nesterov và khởi tạo tham số có căn cứ.
+- LLO12 và LLO13 đóng góp CLO2: thực hiện các phép cập nhật bằng gradient trên lô nhỏ (mini-batch), momentum, Nesterov và khởi tạo tham số có căn cứ.
 
 Sau chương này, người học có thể:
 
 1. Phân biệt mất mát huấn luyện, rủi ro kỳ vọng, mất mát xác thực và mất mát kiểm thử; giải thích vì sao bản lưu được chọn theo tập xác thực và vì sao giá trị xác thực của bản được chọn lệch về phía lạc quan (LLO11; CLO1).
 2. Phân loại một điểm dừng của hàm không lồi bằng Hessian và nêu giới hạn của tiêu chí dừng theo chuẩn gradient (LLO11; CLO1).
-3. Tính gradient nhóm, chứng minh nó là ước lượng không chệch của gradient đầy đủ với hiệp phương sai $\Sigma/b$, tính sai số chuẩn, một bước hạ gradient ngẫu nhiên (stochastic gradient descent, SGD) và kỳ vọng thay đổi của mất mát sau bước đó (LLO12; CLO2).
+3. Tính gradient lô, chứng minh nó là ước lượng không chệch của gradient đầy đủ với hiệp phương sai $\Sigma/b$, tính sai số chuẩn, một bước hạ gradient ngẫu nhiên (stochastic gradient descent, SGD) và kỳ vọng thay đổi của mất mát sau bước đó (LLO12; CLO2).
 4. Xác định điều kiện co của bước gradient trên hàm bậc hai, tính các bước momentum và Nesterov, viết hai phương pháp thành hệ tuyến tính hai biến và xác định miền bước học làm hệ hội tụ (LLO11, LLO12; CLO1, CLO2).
 5. Tính đạo hàm của một mạng nhỏ bằng quy tắc dây chuyền, chứng minh tính đối xứng giữa hai đơn vị ẩn được bảo toàn qua các bước lặp và giải thích vì sao khởi tạo ngẫu nhiên phá được đối xứng (LLO13; CLO2).
 6. Suy ra phương sai của tín hiệu chiều tiến và của gradient chiều lùi qua một lớp tuyến tính, suy ra quy tắc khởi tạo Glorot và nêu các giả thiết của nó (LLO13; CLO2).
@@ -27,8 +27,8 @@ Số hiệu `01.k`, `04.k`, `05b.k` và `05c.k` chỉ ghi chú Bài 01, Bài 04 
 - **Tính lồi** (Hệ quả 01.27, Định lý 01.30, Định nghĩa 01.39, Nhận xét 01.40, Mệnh đề 04.2(a)). Với $F$ lồi khả vi trên $\mathbb R^p$, $\nabla F(\theta^*)=0$ vừa cần vừa đủ cho cực tiểu toàn cục. Hàm khả vi hai lần là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi mạnh với hằng số $\mu>0$ khi và chỉ khi $\nabla^2F\succeq\mu \mathrm I$ mọi nơi.
 - **Mất mát logistic** (Định nghĩa 01.8, Mệnh đề 01.9). Với biên có dấu $m$, mất mát $\log(1+\exp(-m))$ có đạo hàm bậc hai thuộc $(0,\tfrac14]$.
 - **Gradient Lipschitz** (Định nghĩa 04.17, Bổ đề 04.18, Nhận xét 04.19). $\nabla F$ là $L$-Lipschitz nếu $\lVert\nabla F(\theta)-\nabla F(\theta')\rVert_2\le L\lVert\theta-\theta'\rVert_2$ với mọi $\theta,\theta'$; khi đó $F(\theta')\le F(\theta)+\nabla F(\theta)^T(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert_2^2$. Với $F$ lồi khả vi hai lần, $\nabla^2F\preceq L\mathrm I$ mọi nơi là đủ.
-- **Giảm gradient** (Bổ đề 04.20, Định lý 04.26, Nhận xét 04.13). Với bước $\eta\in(0,\tfrac1L]$, một bước gradient làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F\rVert_2^2$; nếu thêm $F$ lồi mạnh thì bước $\tfrac1L$ cho sai số co theo hệ số $1-\mu/L$. Trên hàm bậc hai, bước cố định nhân thành phần theo vectơ riêng thứ $i$ của Hessian với $1-\eta\lambda_i$.
-- **Hai ví dụ của Bài 04.** Ví dụ 04.7 chạy bước $\tfrac14$ trên chính hàm $q$ của Mục 3. Tình huống 04.3 cho hàm $\tfrac12(ab-1)^2$ có gốc là điểm yên ngựa, nơi giảm gradient xuất phát trên đường chéo $a=-b$ dừng lại.
+- **Hạ gradient** (gradient descent; Bổ đề 04.20, Định lý 04.26, Nhận xét 04.13). Với bước $\eta\in(0,\tfrac1L]$, một bước gradient làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F\rVert_2^2$; nếu thêm $F$ lồi mạnh thì bước $\tfrac1L$ cho sai số co theo hệ số $1-\mu/L$. Trên hàm bậc hai, bước cố định nhân thành phần theo vectơ riêng thứ $i$ của Hessian với $1-\eta\lambda_i$.
+- **Hai ví dụ của Bài 04.** Ví dụ 04.7 chạy bước $\tfrac14$ trên chính hàm $q$ của Mục 3. Tình huống 04.3 cho hàm $\tfrac12(ab-1)^2$ có gốc là điểm yên ngựa, nơi hạ gradient xuất phát trên đường chéo $a=-b$ dừng lại.
 
 ## Bảng ký hiệu
 
@@ -43,9 +43,9 @@ Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của m�
 | $J$, $R$ | mất mát huấn luyện; rủi ro kỳ vọng | $\mathbb R^p\to\mathbb R_{\ge0}$ |
 | $F$ | hàm mục tiêu tổng quát trong các phát biểu không gắn với dữ liệu | $\mathbb R^p\to\mathbb R$ |
 | $P$, $(X,Y)$ | phân phối dữ liệu; một cặp ngẫu nhiên theo $P$ | trên $\mathbb R^d\times\mathcal Y$ |
-| $N_{\rm val}$, $\widehat R_{\rm val}$ | cỡ tập xác thực; mất mát xác thực | $N_{\rm val}\ge1$; $\mathbb R^p\to\mathbb R_{\ge0}$ |
-| $g_i$, $\bar g$, $\widehat g$, $\widehat g_t$ | gradient mẫu $\nabla\ell_i$; gradient đầy đủ $\nabla J$; gradient nhóm; gradient nhóm ở vòng $t$ | $\mathbb R^p$ |
-| $b$, $I_1,\ldots,I_b$, $C$ | cỡ nhóm; các chỉ số được rút; chi phí tính một gradient mẫu | $b\ge1$; $\{1,\ldots,N\}$; $C>0$ |
+| $N_{\rm val}$, $\widehat R_{\rm val}$ | kích thước tập xác thực; mất mát xác thực | $N_{\rm val}\ge1$; $\mathbb R^p\to\mathbb R_{\ge0}$ |
+| $g_i$, $\bar g$, $\widehat g$, $\widehat g_t$ | gradient mẫu $\nabla\ell_i$; gradient đầy đủ $\nabla J$; gradient lô; gradient lô ở vòng $t$ | $\mathbb R^p$ |
+| $b$, $I_1,\ldots,I_b$, $C$ | kích thước lô; các chỉ số được rút; chi phí tính một gradient mẫu | $b\ge1$; $\{1,\ldots,N\}$; $C>0$ |
 | $\Sigma(\theta)$ | hiệp phương sai của gradient một mẫu tại $\theta$ | ma trận $p\times p$, nửa xác định dương |
 | $\eta$, $\eta_t$, $T$, $K_{\rm stop}$, $\varepsilon$ | bước học (learning rate); bước học ở vòng $t$; số vòng lặp tối đa; số lần chờ và ngưỡng cải thiện của quy tắc dừng sớm | $\eta>0$; $T,K_{\rm stop}\ge1$; $\varepsilon\ge0$ |
 | $q$, $H$, $\lambda_i$ | hàm bậc hai ví dụ; Hessian của nó; giá trị riêng thứ $i$ của Hessian | $\mathbb R^p\to\mathbb R$; đối xứng; $\lambda_i>0$ |
@@ -70,11 +70,11 @@ Trong cả chương, $\log$ là logarit tự nhiên, $\exp$ là hàm mũ cơ s�
 
 ## 1. Bài toán huấn luyện và tiêu chí đánh giá
 
-Trong Bài 04, chúng ta đã xây dựng giảm gradient và phương pháp Newton cho một hàm $F$ cho trước. Với giảm gradient, Bổ đề 04.20 cho biết bước $\tfrac1L$ làm $F$ giảm ít nhất $\tfrac1{2L}\lVert\nabla F\rVert_2^2$, và Định lý 04.26 cho biết khi $F$ lồi mạnh, sai số co theo hệ số $1-\mu/L$ ở mỗi bước. Các kết quả đó dựa trên ba giả định ngầm: hàm cần cực tiểu đã được cho, gradient đầy đủ tính được ở mỗi bước, và điểm đầu không ảnh hưởng tới chất lượng của nghiệm vì hàm lồi.
+Trong Bài 04, chúng ta đã xây dựng hạ gradient và phương pháp Newton cho một hàm $F$ cho trước. Với hạ gradient, Bổ đề 04.20 cho biết bước $\tfrac1L$ làm $F$ giảm ít nhất $\tfrac1{2L}\lVert\nabla F\rVert_2^2$, và Định lý 04.26 cho biết khi $F$ lồi mạnh, sai số co theo hệ số $1-\mu/L$ ở mỗi bước. Các kết quả đó dựa trên ba giả định ngầm: hàm cần cực tiểu đã được cho, gradient đầy đủ tính được ở mỗi bước, và điểm đầu không ảnh hưởng tới chất lượng của nghiệm vì hàm lồi.
 
 Khi huấn luyện một mạng nơ ron, cả ba giả định đều phải xem lại. Hàm cần cực tiểu được dựng từ một tập dữ liệu hữu hạn, trong khi điều cần đạt là dự đoán tốt trên quan sát mới. Gradient đầy đủ là trung bình trên $N$ quan sát, với $N$ có thể tới hàng triệu. Mất mát của mạng không lồi, nên điểm đầu và cách tham số khởi đầu ảnh hưởng tới nơi thuật toán dừng lại.
 
-Bài toán chọn tham số của một mô hình bằng một phương pháp lặp trên dữ liệu hữu hạn như vậy được gọi là bài toán huấn luyện. Trong chương này, chúng ta thay từng giả định bằng một thành phần có căn cứ của quy trình huấn luyện. Giả định thứ nhất được thay bằng tiêu chí đánh giá ở Mục 1, và giả định thứ hai được thay bằng gradient trên nhóm nhỏ quan sát ở Mục 2. Ở Mục 3, chúng ta xét trở ngại còn lại ngay cả khi có gradient đầy đủ, là độ cong khác nhau theo các hướng, bằng momentum và Nesterov. Giả định thứ ba được thay bằng khởi tạo tham số ở Mục 4, và ở Mục 5, chúng ta ghép các thành phần đó theo thứ tự thực hiện của một chương trình huấn luyện.
+Bài toán chọn tham số của một mô hình bằng một phương pháp lặp trên dữ liệu hữu hạn như vậy được gọi là bài toán huấn luyện. Trong chương này, chúng ta thay từng giả định bằng một thành phần có căn cứ của quy trình huấn luyện. Giả định thứ nhất được thay bằng tiêu chí đánh giá ở Mục 1, và giả định thứ hai được thay bằng gradient trên một lô nhỏ các quan sát ở Mục 2. Ở Mục 3, chúng ta xét trở ngại còn lại ngay cả khi có gradient đầy đủ, là độ cong khác nhau theo các hướng, bằng momentum và Nesterov. Giả định thứ ba được thay bằng khởi tạo tham số ở Mục 4, và ở Mục 5, chúng ta ghép các thành phần đó theo thứ tự thực hiện của một chương trình huấn luyện.
 
 Để thay giả định thứ nhất, trước hết chúng ta định nghĩa chính xác đại lượng được cực tiểu và đại lượng cần đạt, rồi đo khoảng cách giữa chúng trên một mô hình nhỏ. Sau đó, chúng ta xây dựng một quy tắc chọn kết quả bằng dữ liệu tách riêng và phân loại các điểm có gradient bằng $0$ khi hàm không lồi.
 
@@ -279,7 +279,7 @@ Tập dữ liệu giữ riêng trong ví dụ trên, cùng tập thứ ba dùng 
 ::: definition Định nghĩa 05.4 (Tập xác thực, mất mát xác thực và tập kiểm thử)
 Cho $N_{\rm val}\ge1$ cặp $(x'_i,y'_i)$, $i=1,\ldots,N_{\rm val}$, không thuộc tập huấn luyện $D$ và không được dùng trong bất kỳ phép cập nhật tham số nào.
 
-**Tập xác thực.** Tập các cặp đó gọi là tập xác thực (validation set) khi được dùng để chọn cấu hình huấn luyện và chọn thời điểm lưu tham số. Cấu hình gồm các lựa chọn đặt trước khi huấn luyện như cỡ nhóm, bước học hay số lớp, gọi là siêu tham số (hyperparameter).
+**Tập xác thực.** Tập các cặp đó gọi là tập xác thực (validation set) khi được dùng để chọn cấu hình huấn luyện và chọn thời điểm lưu tham số. Cấu hình gồm các lựa chọn đặt trước khi huấn luyện như kích thước lô, bước học hay số lớp, gọi là siêu tham số (hyperparameter).
 
 **Mất mát xác thực.** Với tham số $\theta$,
 
@@ -428,7 +428,7 @@ nhỏ hơn rủi ro $2$ của mọi ứng viên, đúng chiều Mệnh đề 05.
 
 ### 1.4 Điểm dừng của hàm không lồi
 
-Thuật toán giảm gradient của Bài 04 dừng khi $\lVert\nabla F\rVert_2$ đủ nhỏ. Kết luận "điểm này gần nghiệm" dựa vào tính lồi: theo Mệnh đề 04.2(a), với $F$ lồi, $\nabla F=0$ là điều kiện đủ cho cực tiểu toàn cục. Tình huống 04.3 đã cho một hàm không lồi, $\tfrac12(ab-1)^2$, tại đó giảm gradient trượt về gốc, nơi gradient bằng $0$ nhưng giá trị bằng $\tfrac12$, trong khi giá trị nhỏ nhất bằng $0$. Do mất mát của mạng nơ ron nói chung không lồi, chúng ta cần biết một điểm có gradient bằng $0$ có thể là những loại điểm nào và phân biệt chúng bằng công cụ gì.
+Thuật toán hạ gradient của Bài 04 dừng khi $\lVert\nabla F\rVert_2$ đủ nhỏ. Kết luận "điểm này gần nghiệm" dựa vào tính lồi: theo Mệnh đề 04.2(a), với $F$ lồi, $\nabla F=0$ là điều kiện đủ cho cực tiểu toàn cục. Tình huống 04.3 đã cho một hàm không lồi, $\tfrac12(ab-1)^2$, tại đó hạ gradient trượt về gốc, nơi gradient bằng $0$ nhưng giá trị bằng $\tfrac12$, trong khi giá trị nhỏ nhất bằng $0$. Do mất mát của mạng nơ ron nói chung không lồi, chúng ta cần biết một điểm có gradient bằng $0$ có thể là những loại điểm nào và phân biệt chúng bằng công cụ gì.
 
 Về mặt hình học, tại một điểm có gradient bằng $0$, mặt đồ thị nằm ngang theo mọi hướng ở bậc nhất, nên hình dạng thật của nó được quyết định bởi độ cong theo từng hướng. Nếu mọi hướng đều cong lên thì điểm là đáy, còn nếu có hướng cong lên và hướng cong xuống thì điểm là yên ngựa. Mô tả này chưa phải phát biểu hình thức. Các loại điểm được định nghĩa chính xác như sau.
 
@@ -485,7 +485,7 @@ Ghép (a) cho vectơ riêng của $\lambda_{\min}$ và (b) cho vectơ riêng c�
 Với mọi $\Delta\in\mathbb R^p$, $\Delta^T\nabla^2F(\theta^\circ)\Delta\ge\lambda_{\min}\lVert\Delta\rVert_2^2$. Khai triển Taylor cho $F(\theta^\circ+\Delta)-F(\theta^\circ)\ge\tfrac{\lambda_{\min}}2\lVert\Delta\rVert_2^2+o(\lVert\Delta\rVert_2^2)$. Khi $\lVert\Delta\rVert_2$ đủ nhỏ, phần dư không vượt $\tfrac{\lambda_{\min}}4\lVert\Delta\rVert_2^2$, nên $F(\theta^\circ+\Delta)-F(\theta^\circ)\ge\tfrac{\lambda_{\min}}4\lVert\Delta\rVert_2^2>0$ với $\Delta\ne0$. $\square$
 :::
 
-Mệnh đề 05.8 thay câu hỏi "điểm dừng này là gì" bằng phép kiểm dấu các giá trị riêng của Hessian. Giá trị riêng âm chỉ ra một hướng mà dọc theo đó hàm cong xuống, nên đi theo hướng đó làm giá trị giảm dù gradient bằng $0$. Một thuật toán chỉ dùng gradient có thể tiến rất chậm trong nhiều bước gần điểm yên ngựa, vì gradient nhỏ ở cả vùng quanh điểm đó.
+Mệnh đề 05.8 thay câu hỏi "điểm dừng này là gì" bằng phép kiểm tra dấu các giá trị riêng của Hessian. Giá trị riêng âm chỉ ra một hướng mà dọc theo đó hàm cong xuống, nên đi theo hướng đó làm giá trị giảm dù gradient bằng $0$. Một thuật toán chỉ dùng gradient có thể tiến rất chậm trong nhiều bước gần điểm yên ngựa, vì gradient nhỏ ở cả vùng quanh điểm đó.
 
 So với Mệnh đề 04.2(a), mệnh đề này không cần tính lồi nhưng chỉ cho kết luận địa phương. Nói riêng, phần (d) không nói gì về cực tiểu toàn cục. Ví dụ 05.6 dưới đây có hai cực tiểu địa phương và cả hai là toàn cục, còn hàm $u^4-u^2+\tfrac u2$ có một cực tiểu địa phương không toàn cục.
 
@@ -516,12 +516,12 @@ Khung trái của hình là hai lát cắt của $\psi$ qua gốc, một parabol
 ::: remark Nhận xét 05.9 (Nhiều cực tiểu cùng giá trị và giới hạn của điểm dừng)
 **Đối xứng hoán vị.** Hoán đổi hai đơn vị ẩn cùng các trọng số vào và ra của chúng cho một bộ tham số khác có cùng hàm dự đoán, nên mất mát của mạng có nhiều cực tiểu cùng giá trị, giống $\omega$. Nhận xét 05.30 nêu lại đối xứng này trên mạng hai đơn vị ẩn.
 
-**Giới hạn của tiêu chí gradient nhỏ.** Với hàm không lồi, $\lVert\nabla J\rVert_2$ nhỏ không chứng nhận cực tiểu toàn cục, cũng không chứng nhận cực tiểu địa phương. Kiểm giá trị riêng của Hessian theo Mệnh đề 05.8 cần ma trận $p\times p$, không khả thi khi $p$ lên tới hàng triệu. Thực hành vì vậy chọn bản lưu theo tiêu chí xác thực (Mục 1.3), không theo phân loại điểm dừng.
+**Giới hạn của tiêu chí gradient nhỏ.** Với hàm không lồi, $\lVert\nabla J\rVert_2$ nhỏ không chứng nhận cực tiểu toàn cục, cũng không chứng nhận cực tiểu địa phương. Kiểm tra giá trị riêng của Hessian theo Mệnh đề 05.8 cần ma trận $p\times p$, không khả thi khi $p$ lên tới hàng triệu. Thực hành vì vậy chọn bản lưu theo tiêu chí xác thực (Mục 1.3), không theo phân loại điểm dừng.
 
 **Nhầm lẫn thường gặp.** Mất mát không lồi không có nghĩa huấn luyện thất bại. Mệnh đề 05.8 chỉ nói rằng gradient bằng $0$ không đủ để kết luận; nó không nói các điểm dừng gặp trong thực tế là xấu (Goodfellow, Bengio và Courville 2016, mục 8.2.2–8.2.3, tr. 283–288).
 :::
 
-**Trong học máy.** Đối tượng của Mệnh đề 05.8 là mất mát huấn luyện $J$ của một mạng, với $\theta$ là toàn bộ trọng số. Giả thiết khả vi hai lần bị vi phạm ở các điểm gãy của ReLU, nên mệnh đề chỉ áp dụng ở những vùng tham số mà mọi tiền kích hoạt trên dữ liệu khác $0$. Kết luận của nó giải thích hiện tượng mất mát gần như không đổi trong nhiều bước rồi tiếp tục giảm, khi quỹ đạo đi qua gần một điểm yên ngựa, nơi gradient nhỏ nhưng tồn tại hướng cong xuống. Tình huống 04.3 là một trường hợp tính được bằng tay.
+**Trong học máy.** Đối tượng của Mệnh đề 05.8 là mất mát huấn luyện $J$ của một mạng, với $\theta$ là toàn bộ trọng số. Giả thiết khả vi hai lần bị vi phạm ở các điểm gãy của ReLU, nên mệnh đề chỉ áp dụng ở những vùng tham số mà mọi tiền kích hoạt trên dữ liệu khác $0$. Kết luận của nó giải thích hiện tượng mất mát gần như không đổi trong nhiều bước rồi tiếp tục giảm, khi quỹ đạo đi qua gần một điểm yên ngựa, nơi gradient nhỏ nhưng tồn tại hướng cong xuống. Tình huống 04.3 là một trường hợp tính được thủ công.
 
 ::: exercise Bài tập 05.2
 Cho $F(u_1,u_2)=u_1^3-3u_1+u_2^2$ trên $\mathbb R^2$.
@@ -556,11 +556,11 @@ $F(0,0)=0$ tính trực tiếp từ công thức; $2-3+1=0$ khớp. Cực tiểu
 
 Xuất phát từ bài toán chọn tham số từ dữ liệu hữu hạn (Ví dụ 05.1), chúng ta đã tách mất mát huấn luyện $J$ khỏi rủi ro kỳ vọng $R$ (Định nghĩa 05.1). Mệnh đề 05.2 đo khoảng cách giữa hai đại lượng này trên mô hình hằng. Định nghĩa 05.4 và Mệnh đề 05.5 cho cách ước lượng $R$ bằng tập xác thực và chỉ ra độ lệch khi chính tập đó được dùng để chọn. Khi bỏ tính lồi, Định nghĩa 05.7 và Mệnh đề 05.8 phân loại điểm dừng bằng Hessian.
 
-Như vậy, mọi phương pháp của chương sẽ cực tiểu $J$ trong (1.2) bằng bộ tối ưu, còn bản lưu được chọn theo mất mát xác thực $\widehat R_{\rm val}$ (Định nghĩa 05.4, Mệnh đề 05.5). Tuy nhiên, chúng ta chưa xét chi phí tính $\nabla J(\theta_t)$, vectơ mà phương pháp giảm gradient của Bài 04 cần ở mỗi bước. Với $J(\theta)=\tfrac1N\sum_i\ell_i(\theta)$, theo tính tuyến tính của đạo hàm, $\nabla J$ là trung bình của $N$ gradient mẫu, nên mỗi bước tốn $N$ lần chi phí một gradient mẫu, tức một triệu lần khi $N=10^6$. Trong Mục 2, chúng ta thay trung bình đầy đủ bằng trung bình trên một nhóm nhỏ quan sát rút ngẫu nhiên, rồi tính kỳ vọng và phương sai của ước lượng thu được.
+Như vậy, mọi phương pháp của chương sẽ cực tiểu $J$ trong (1.2) bằng bộ tối ưu, còn bản lưu được chọn theo mất mát xác thực $\widehat R_{\rm val}$ (Định nghĩa 05.4, Mệnh đề 05.5). Tuy nhiên, chúng ta chưa xét chi phí tính $\nabla J(\theta_t)$, vectơ mà phương pháp hạ gradient của Bài 04 cần ở mỗi bước. Với $J(\theta)=\tfrac1N\sum_i\ell_i(\theta)$, theo tính tuyến tính của đạo hàm, $\nabla J$ là trung bình của $N$ gradient mẫu, nên mỗi bước tốn $N$ lần chi phí một gradient mẫu, tức một triệu lần khi $N=10^6$. Trong Mục 2, chúng ta thay trung bình đầy đủ bằng trung bình trên một lô nhỏ các quan sát rút ngẫu nhiên, rồi tính kỳ vọng và phương sai của ước lượng thu được.
 
 ## 2. Ước lượng gradient và hạ gradient ngẫu nhiên
 
-Chúng ta lần lượt chứng minh rằng trung bình của $b$ gradient mẫu rút ngẫu nhiên có kỳ vọng bằng $\nabla J$ và hiệp phương sai bằng $\Sigma/b$, rồi tính kỳ vọng thay đổi của $J$ sau một bước. Từ đó, chúng ta viết thuật toán hạ gradient ngẫu nhiên kèm quy tắc dừng sớm của Mục 1.3, và đọc vai trò của cỡ nhóm $b$ cùng bước học $\eta$.
+Chúng ta lần lượt chứng minh rằng trung bình của $b$ gradient mẫu rút ngẫu nhiên có kỳ vọng bằng $\nabla J$ và hiệp phương sai bằng $\Sigma/b$, rồi tính kỳ vọng thay đổi của $J$ sau một bước. Từ đó, chúng ta viết thuật toán hạ gradient ngẫu nhiên kèm quy tắc dừng sớm của Mục 1.3, và đọc vai trò của kích thước lô $b$ cùng bước học $\eta$.
 
 ### 2.1 Chi phí của gradient đầy đủ
 
@@ -583,13 +583,13 @@ Giả sử mỗi gradient mẫu tốn cùng một chi phí $C$, đo bằng số 
 | Một bước dùng | Số gradient mẫu | Chi phí |
 |---|---|---|
 | gradient đầy đủ | $10^6$ | $10^6C$ |
-| nhóm $b=100$ quan sát | $100$ | $100C$ |
+| lô $b=100$ quan sát | $100$ | $100C$ |
 
-Một nghìn bước giảm gradient tốn $10^9C$; cùng chi phí đó đủ cho $10^7$ bước với nhóm $100$ quan sát.
+Một nghìn bước hạ gradient tốn $10^9C$; cùng chi phí đó đủ cho $10^7$ bước với lô $100$ quan sát.
 
 **Diễn giải.**
 
-Tỷ số $10^{-4}$ là tỷ số số phép tính, chưa phải tỷ số thời gian trên phần cứng: các gradient trong một nhóm có thể tính song song. Tỷ số chi phí một bước cũng chưa phải tỷ số chi phí để đạt một mức chất lượng, vì bước rẻ hơn dùng thông tin không đầy đủ.
+Tỷ số $10^{-4}$ là tỷ số số phép tính, chưa phải tỷ số thời gian trên phần cứng: các gradient trong một lô có thể tính song song. Tỷ số chi phí một bước cũng chưa phải tỷ số chi phí để đạt một mức chất lượng, vì bước rẻ hơn dùng thông tin không đầy đủ.
 
 **Kiểm tra lại.**
 
@@ -614,20 +614,20 @@ Tuy nhiên, việc dùng $b$ thay cho $N$ gradient mẫu chỉ có căn cứ khi
 
 ![Trục θ với điểm θ = 1. Ba mũi tên biểu diễn hướng âm gradient của ba quan sát: quan sát y = −1 cho −g = −2, mũi tên sang trái; quan sát y = 1 cho −g = 0, không dịch chuyển; quan sát y = 3 cho −g = 2, mũi tên sang phải.](img/lec-05/sample-directions.svg)
 
-Các mũi tên trên hình là hướng âm gradient của từng quan sát tại nghiệm, tức hướng mà một bước cập nhật theo riêng quan sát đó sẽ đi. Dù nghiệm đã đạt, hai trong ba hướng khác $0$, nên một nhóm chỉ chứa quan sát $y=-1$ sẽ dịch tham số sang trái. Độ lệch này đến từ sự khác nhau giữa các quan sát, không từ việc tham số chưa tối ưu.
+Các mũi tên trên hình là hướng âm gradient của từng quan sát tại nghiệm, tức hướng mà một bước cập nhật theo riêng quan sát đó sẽ đi. Dù nghiệm đã đạt, hai trong ba hướng khác $0$, nên một lô chỉ chứa quan sát $y=-1$ sẽ dịch tham số sang trái. Độ lệch này đến từ sự khác nhau giữa các quan sát, không từ việc tham số chưa tối ưu.
 
 Một cách trực quan, nếu chọn ngẫu nhiên một chỉ số $I_1$ với cùng xác suất $\tfrac1N$ cho mỗi quan sát thì trung bình theo phép chọn của $g_{I_1}$ là trung bình cộng (2.1). Từng gradient mẫu có thể lệch khỏi trung bình, nhưng các độ lệch triệt tiêu theo kỳ vọng.
 
-### 2.2 Gradient nhóm và hiệp phương sai
+### 2.2 Gradient lô và hiệp phương sai
 
 Lập luận ở cuối Mục 2.1 mới là trực giác, chưa phải phát biểu hình thức. Để phát biểu chính xác, chúng ta cần nói rõ phép lấy mẫu và đại lượng đo mức khác nhau giữa các gradient mẫu, theo định nghĩa sau.
 
-::: definition Định nghĩa 05.10 (Gradient nhóm và hiệp phương sai của gradient mẫu)
+::: definition Định nghĩa 05.10 (Gradient lô và hiệp phương sai của gradient mẫu)
 Cố định tập huấn luyện $D$ và tham số $\theta\in\mathbb R^p$; giả sử mọi $\ell_i$ khả vi tại $\theta$, và viết $g_i=g_i(\theta)$, $\bar g=\nabla J(\theta)$.
 
-**Lấy mẫu.** Cho cỡ nhóm $b\ge1$. Các chỉ số $I_1,\ldots,I_b$ độc lập, mỗi chỉ số phân phối đều trên $\{1,\ldots,N\}$; nhóm được lấy có hoàn lại, nên một chỉ số có thể xuất hiện nhiều lần.
+**Lấy mẫu.** Cho kích thước lô $b\ge1$. Các chỉ số $I_1,\ldots,I_b$ độc lập, mỗi chỉ số phân phối đều trên $\{1,\ldots,N\}$; lô được lấy có hoàn lại, nên một chỉ số có thể xuất hiện nhiều lần.
 
-**Gradient nhóm.** Gradient nhóm (minibatch gradient) là
+**Gradient lô.** Gradient lô (minibatch gradient) là
 
 $$
 \widehat g=\frac1b\sum_{r=1}^bg_{I_r}\in\mathbb R^p .
@@ -643,13 +643,13 @@ $$
 là hiệp phương sai của $g_{I_1}$ khi $I_1$ phân phối đều.
 :::
 
-Trong định nghĩa trên, phép lấy mẫu là nguồn ngẫu nhiên duy nhất, còn dữ liệu và tham số được giữ cố định. Gradient nhóm là trung bình cộng của $b$ gradient mẫu được rút, cùng kích thước với $\theta$. Ma trận $\Sigma(\theta)$ có phần tử $(k,l)$ bằng trung bình của tích độ lệch tọa độ $k$ với độ lệch tọa độ $l$. Ma trận này không phụ thuộc $b$ và đo mức khác nhau giữa các gradient mẫu tại $\theta$.
+Trong định nghĩa trên, phép lấy mẫu là nguồn ngẫu nhiên duy nhất, còn dữ liệu và tham số được giữ cố định. Gradient lô là trung bình cộng của $b$ gradient mẫu được rút, cùng kích thước với $\theta$. Ma trận $\Sigma(\theta)$ có phần tử $(k,l)$ bằng trung bình của tích độ lệch tọa độ $k$ với độ lệch tọa độ $l$. Ma trận này không phụ thuộc $b$ và đo mức khác nhau giữa các gradient mẫu tại $\theta$.
 
-Gradient nhóm là trường hợp vectơ của trung bình mẫu ở Định lý 05c.35, với $X_r=g_{I_r}$ và $n=b$. Trường hợp $b=N$ không cho gradient đầy đủ, vì lấy có hoàn lại vẫn có thể lặp chỉ số. Giả thiết phân phối đều cũng không bỏ được. Chẳng hạn, ở Ví dụ 05.8, nếu chỉ số $3$ được chọn với xác suất $\tfrac12$ và hai chỉ số còn lại với xác suất $\tfrac14$, thì kỳ vọng của $g_{I_1}(1)$ là $\tfrac14\cdot2+\tfrac14\cdot0+\tfrac12\cdot(-2)=-\tfrac12\ne0=J'(1)$.
+Gradient lô là trường hợp vectơ của trung bình mẫu ở Định lý 05c.35, với $X_r=g_{I_r}$ và $n=b$. Trường hợp $b=N$ không cho gradient đầy đủ, vì lấy có hoàn lại vẫn có thể lặp chỉ số. Giả thiết phân phối đều cũng không bỏ được. Chẳng hạn, ở Ví dụ 05.8, nếu chỉ số $3$ được chọn với xác suất $\tfrac12$ và hai chỉ số còn lại với xác suất $\tfrac14$, thì kỳ vọng của $g_{I_1}(1)$ là $\tfrac14\cdot2+\tfrac14\cdot0+\tfrac12\cdot(-2)=-\tfrac12\ne0=J'(1)$.
 
-Kỳ vọng và hiệp phương sai của gradient nhóm được cho bởi định lý sau. Chứng minh chỉ cần tính tuyến tính của kỳ vọng và tính độc lập giữa các lần rút.
+Kỳ vọng và hiệp phương sai của gradient lô được cho bởi định lý sau. Chứng minh chỉ cần tính tuyến tính của kỳ vọng và tính độc lập giữa các lần rút.
 
-::: theorem Định lý 05.11 (Gradient nhóm không chệch, hiệp phương sai $\Sigma/b$)
+::: theorem Định lý 05.11 (Gradient lô không chệch, hiệp phương sai $\Sigma/b$)
 **Giả thiết.** Như Định nghĩa 05.10: $D$, $\theta$ cố định; mọi $\ell_i$ khả vi tại $\theta$; $I_1,\ldots,I_b$ độc lập, đều trên $\{1,\ldots,N\}$.
 
 **Kết luận.**
@@ -669,7 +669,7 @@ $$
 
 Với $I_1$ đều trên $\{1,\ldots,N\}$, định nghĩa kỳ vọng của biến rời rạc cho $\mathbb E[g_{I_1}\mid D,\theta]=\sum_{i=1}^N\tfrac1Ng_i$, và tổng này là $\bar g=\nabla J(\theta)$ theo (2.1). Tương tự, $\operatorname{Cov}(g_{I_1}\mid D,\theta)=\sum_i\tfrac1N(g_i-\bar g)(g_i-\bar g)^T=\Sigma(\theta)$ theo (2.2).
 
-**Bước 2 (kỳ vọng của gradient nhóm).**
+**Bước 2 (kỳ vọng của gradient lô).**
 
 Mỗi $I_r$ có cùng phân phối đều như $I_1$ ở Bước 1. Tính tuyến tính của kỳ vọng cho
 
@@ -694,9 +694,9 @@ $$
 Với $r\ne r'$, $\xi_r$ và $\xi_{r'}$ độc lập vì $I_r$ và $I_{r'}$ độc lập, nên $\mathbb E[\xi_r\xi_{r'}^T]=\mathbb E\xi_r\,(\mathbb E\xi_{r'})^T=0$. Với $r=r'$, $\mathbb E[\xi_r\xi_r^T]=\Sigma(\theta)$ theo Bước 1. Còn lại $b$ số hạng bằng $\Sigma(\theta)$, nên hiệp phương sai bằng $\tfrac{b\,\Sigma(\theta)}{b^2}=\tfrac{\Sigma(\theta)}b$. $\square$
 :::
 
-Định lý 05.11 có hai nửa với hai vai trò. Nửa thứ nhất cho thấy, trung bình trên mọi nhóm có thể, kỳ vọng của gradient nhóm bằng đúng gradient đầy đủ. Nửa thứ hai cho thấy độ phân tán quanh hướng đó giảm theo $\tfrac1b$, với hằng số $\Sigma(\theta)$ do dữ liệu và tham số quyết định.
+Định lý 05.11 có hai nửa với hai vai trò. Nửa thứ nhất cho thấy, trung bình trên mọi lô có thể, kỳ vọng của gradient lô bằng đúng gradient đầy đủ. Nửa thứ hai cho thấy độ phân tán quanh hướng đó giảm theo $\tfrac1b$, với hằng số $\Sigma(\theta)$ do dữ liệu và tham số quyết định.
 
-Lưu ý rằng không chệch là tính chất của trung bình trên mọi nhóm, nên một nhóm cụ thể vẫn có thể cho hướng lệch xa $-\nabla J$.
+Lưu ý rằng không chệch là tính chất của trung bình trên mọi lô, nên một lô cụ thể vẫn có thể cho hướng lệch xa $-\nabla J$.
 
 Để phân tích bước lặp, ta cần gom hiệp phương sai thành một số. Hệ quả sau làm việc đó và cho dạng được dùng trong mọi phân tích ở phần còn lại của chương.
 
@@ -711,7 +711,7 @@ Lưu ý rằng không chệch là tính chất của trung bình trên mọi nh�
 
 **Điều kiện áp dụng.** Như Định lý 05.11.
 
-**Phạm vi.** Sai số chuẩn đo độ phân tán điển hình; nó không chặn sai số của một nhóm cụ thể.
+**Phạm vi.** Sai số chuẩn đo độ phân tán điển hình; nó không chặn sai số của một lô cụ thể.
 :::
 
 ::: proof Chứng minh Hệ quả 05.12
@@ -728,38 +728,38 @@ Viết $\widehat g=\nabla J(\theta)+u$ và khai triển: $\lVert\widehat g\rVert
 Với $p=1$, hiệp phương sai là phương sai, và sai số chuẩn là căn bậc hai của phương sai. $\square$
 :::
 
-Phần (b) của hệ quả được gọi là phân tích phương sai của mômen bậc hai, theo đó bình phương chuẩn kỳ vọng của gradient nhóm bằng phần "tín hiệu" $\lVert\nabla J\rVert_2^2$ cộng phần "nhiễu" $\operatorname{tr}\Sigma/b$. Phần (c) cho quy luật căn bậc hai, tức muốn sai số chuẩn giảm một nửa thì cần tăng $b$ bốn lần.
+Phần (b) của hệ quả được gọi là phân tích phương sai của mômen bậc hai, theo đó bình phương chuẩn kỳ vọng của gradient lô bằng phần "tín hiệu" $\lVert\nabla J\rVert_2^2$ cộng phần "nhiễu" $\operatorname{tr}\Sigma/b$. Phần (c) cho quy luật căn bậc hai, tức muốn sai số chuẩn giảm một nửa thì cần tăng $b$ bốn lần.
 
-**Trong học máy.** Trong huấn luyện, $\theta$ là trọng số của mạng, $\ell_i$ là mất mát trên ảnh hay câu thứ $i$, và $\widehat g$ là vectơ mà mọi thư viện học sâu tính trên một nhóm (minibatch). Giả thiết lấy mẫu đều, độc lập, có hoàn lại thường được thay bằng việc xáo trộn dữ liệu rồi cắt thành các nhóm liên tiếp, tức lấy không hoàn lại trong một lượt. Nhận xét 05.13 nêu sự khác biệt. Kết luận (2.3) là lý do bộ tối ưu dùng được $\widehat g$ như thể nó là $\nabla J$ "trung bình", và Mệnh đề 05.14 dưới đây chỉ ra ảnh hưởng của phần nhiễu $\operatorname{tr}\Sigma/b$ lên mức giảm của $J$ (Goodfellow, Bengio và Courville 2016, mục 8.1.3, tr. 277–280).
+**Trong học máy.** Trong huấn luyện, $\theta$ là trọng số của mạng, $\ell_i$ là mất mát trên ảnh hay câu thứ $i$, và $\widehat g$ là vectơ mà mọi thư viện học sâu tính trên một lô. Giả thiết lấy mẫu đều, độc lập, có hoàn lại thường được thay bằng việc xáo trộn dữ liệu rồi cắt thành các lô liên tiếp, tức lấy không hoàn lại trong một lượt. Nhận xét 05.13 nêu sự khác biệt. Kết luận (2.3) là lý do bộ tối ưu dùng được $\widehat g$ như thể nó là $\nabla J$ "trung bình", và Mệnh đề 05.14 dưới đây chỉ ra ảnh hưởng của phần nhiễu $\operatorname{tr}\Sigma/b$ lên mức giảm của $J$ (Goodfellow, Bengio và Courville 2016, mục 8.1.3, tr. 277–280).
 
-Tại nghiệm của ví dụ ba quan sát, định lý cho kết quả tính được bằng tay.
+Tại nghiệm của ví dụ ba quan sát, định lý cho kết quả tính được thủ công.
 
-::: example Ví dụ 05.9 (Gradient nhóm trên ví dụ ba quan sát)
+::: example Ví dụ 05.9 (Gradient lô trên ví dụ ba quan sát)
 **Dữ kiện.** Ví dụ 05.8 tại $\theta=1$, với ba gradient mẫu $2,0,-2$.
 
 **Hiệp phương sai.** $p=1$ và $\bar g=0$, nên $\Sigma(1)=\tfrac13(2^2+0^2+(-2)^2)=\tfrac83$.
 
 **Áp dụng Định lý 05.11.** Với mọi $b$: $\mathbb E\widehat g=0$ và $\operatorname{Var}\widehat g=\tfrac8{3b}$. Với $b=4$, phương sai bằng $\tfrac23$ và sai số chuẩn bằng $\sqrt{2/3}\approx0{,}816$.
 
-**Diễn giải.** Tại nghiệm, gradient đầy đủ bằng $0$ nhưng gradient nhóm có độ lệch điển hình $0{,}816$ khi $b=4$. Mọi bước cập nhật tại đây do nhiễu lấy mẫu gây ra.
+**Diễn giải.** Tại nghiệm, gradient đầy đủ bằng $0$ nhưng gradient lô có độ lệch điển hình $0{,}816$ khi $b=4$. Mọi bước cập nhật tại đây do nhiễu lấy mẫu gây ra.
 
 **Kiểm tra lại.** Với $b=1$, $\widehat g$ nhận $2,0,-2$ với xác suất $\tfrac13$ mỗi giá trị; phương sai trực tiếp bằng $\tfrac13(4+0+4)=\tfrac83=\tfrac8{3\cdot1}$.
 :::
 
 ::: remark Nhận xét 05.13 (Rút không hoàn lại và đích của ước lượng)
-**Không hoàn lại.** Khi $b\le N$ chỉ số khác nhau được rút đều trong mọi bộ $b$ chỉ số, gradient nhóm vẫn không chệch, còn hiệp phương sai nhân thêm hệ số $\tfrac{N-b}{N-1}$, theo Mệnh đề 05c.36 phát biểu cho từng tọa độ. Hệ số này gần $1$ khi $b\ll N$ và bằng $0$ khi $b=N$, lúc nhóm là toàn bộ dữ liệu.
+**Không hoàn lại.** Khi $b\le N$ chỉ số khác nhau được rút đều trong mọi bộ $b$ chỉ số, gradient lô vẫn không chệch, còn hiệp phương sai nhân thêm hệ số $\tfrac{N-b}{N-1}$, theo Mệnh đề 05c.36 phát biểu cho từng tọa độ. Hệ số này gần $1$ khi $b\ll N$ và bằng $0$ khi $b=N$, lúc lô là toàn bộ dữ liệu.
 
-**Đích là $\nabla J$.** Định lý 05.11 nói về gradient của mất mát huấn luyện. Nếu mỗi quan sát trong nhóm là một lần rút mới từ $P$ và chưa từng được dùng, thì cùng lập luận cho gradient nhóm là ước lượng không chệch của $\nabla R$; điều này chỉ đúng trong lượt đầu qua dữ liệu, trước khi quan sát được dùng lại (Goodfellow, Bengio và Courville 2016, mục 8.1.3, tr. 280).
+**Đích là $\nabla J$.** Định lý 05.11 nói về gradient của mất mát huấn luyện. Nếu mỗi quan sát trong lô là một lần rút mới từ $P$ và chưa từng được dùng, thì cùng lập luận cho gradient lô là ước lượng không chệch của $\nabla R$; điều này chỉ đúng trong lượt đầu qua dữ liệu, trước khi quan sát được dùng lại (Goodfellow, Bengio và Courville 2016, mục 8.1.3, tr. 280).
 
 **Nhầm lẫn thường gặp.** Một cách hiểu sai là gọi $\widehat g$ là "gradient xấp xỉ có sai số nhỏ" mà không nêu $b$ và $\Sigma$. Sai số của nó là ngẫu nhiên, với độ lớn điển hình $\sqrt{\operatorname{tr}\Sigma/b}$ có thể lớn hơn cả $\lVert\nabla J\rVert_2$, như tại nghiệm của Ví dụ 05.9.
 :::
 
 ### 2.3 Một bước hạ gradient ngẫu nhiên
 
-Định lý 05.11 nói về gradient nhóm tại một điểm nhưng chưa cho biết mất mát thay đổi thế nào sau khi cập nhật theo nó. Đại lượng còn thiếu là thay đổi của $J$ sau một bước $\theta^+=\theta-\eta\widehat g$, với $\eta>0$ là bước học (learning rate), cùng vai trò với độ dài bước của Bài 04 (ở đó ký hiệu $t$). Chúng ta bắt đầu bằng một bước cụ thể trên ví dụ ba quan sát.
+Định lý 05.11 nói về gradient lô tại một điểm nhưng chưa cho biết mất mát thay đổi thế nào sau khi cập nhật theo nó. Đại lượng còn thiếu là thay đổi của $J$ sau một bước $\theta^+=\theta-\eta\widehat g$, với $\eta>0$ là bước học (learning rate), cùng vai trò với độ dài bước của Bài 04 (ở đó ký hiệu $t$). Chúng ta bắt đầu bằng một bước cụ thể trên ví dụ ba quan sát.
 
 ::: example Ví dụ 05.10 (Một bước làm mất mát huấn luyện tăng)
-**Dữ kiện.** Ví dụ 05.1: $y=(-1,1,3)$, $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$, $J(\theta)=\tfrac16\bigl[(\theta+1)^2+(\theta-1)^2+(\theta-3)^2\bigr]=\tfrac12(\theta-1)^2+\tfrac43$ (1.1), nghiệm $\theta=1$. Nhóm một phần tử, quan sát được rút là $y=-1$; bước học $\eta=0{,}1$.
+**Dữ kiện.** Ví dụ 05.1: $y=(-1,1,3)$, $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$, $J(\theta)=\tfrac16\bigl[(\theta+1)^2+(\theta-1)^2+(\theta-3)^2\bigr]=\tfrac12(\theta-1)^2+\tfrac43$ (1.1), nghiệm $\theta=1$. Lô một phần tử, quan sát được rút là $y=-1$; bước học $\eta=0{,}1$.
 
 **Bước.** Gradient mẫu $g=1-(-1)=2$. Tham số mới $\theta^+=1-0{,}1\cdot2=0{,}8$.
 
@@ -785,16 +785,16 @@ $$
 
 ![Hai đường cong theo θ: đường J(θ) có đáy tại θ = 1 và đường mất mát của quan sát y = −1. Mũi tên từ θ = 1 tới θ = 0,8 đi xuống trên đường mất mát mẫu nhưng đi lên trên đường J, với J tăng thêm 0,02.](img/lec-05/sample-step.svg)
 
-Hai đường cong trên hình được vẽ từ công thức, không phải đường học đo được, và mũi tên từ $1$ tới $0{,}8$ đi xuống trên đường mất mát mẫu nhưng đi lên trên $J$. Kết quả này không mâu thuẫn với Định lý 05.11, vì kỳ vọng được tính trước khi biết nhóm, còn bước này là một hiện thực.
+Hai đường cong trên hình được vẽ từ công thức, không phải đường học đo được, và mũi tên từ $1$ tới $0{,}8$ đi xuống trên đường mất mát mẫu nhưng đi lên trên $J$. Kết quả này không mâu thuẫn với Định lý 05.11, vì kỳ vọng được tính trước khi biết lô, còn bước này là một hiện thực.
 
 Kỳ vọng của thay đổi đó được chặn theo mệnh đề sau, bằng cách ghép cận trên bậc hai của Bổ đề 04.18 với Hệ quả 05.12.
 
 ::: proposition Mệnh đề 05.14 (Kỳ vọng mất mát sau một bước)
-**Giả thiết.** $J:\mathbb R^p\to\mathbb R$ khả vi với gradient $L$-Lipschitz (Định nghĩa 04.17). Tại $\theta$ cố định, $\widehat g$ là gradient nhóm của Định nghĩa 05.10 với cỡ nhóm $b$; bước học $\eta>0$; $\theta^+=\theta-\eta\widehat g$.
+**Giả thiết.** $J:\mathbb R^p\to\mathbb R$ khả vi với gradient $L$-Lipschitz (Định nghĩa 04.17). Tại $\theta$ cố định, $\widehat g$ là gradient lô của Định nghĩa 05.10 với kích thước lô $b$; bước học $\eta>0$; $\theta^+=\theta-\eta\widehat g$.
 
 **Kết luận.**
 
-- (a) Kỳ vọng theo phép rút nhóm thỏa
+- (a) Kỳ vọng theo phép rút lô thỏa
 
 $$
 \mathbb E\,J(\theta^+)\le J(\theta)-\eta\Bigl(1-\frac{L\eta}2\Bigr)\lVert\nabla J(\theta)\rVert_2^2+\frac{L\eta^2}2\cdot\frac{\operatorname{tr}\Sigma(\theta)}b .
@@ -806,11 +806,11 @@ $$
 
 **Điều kiện áp dụng.** Không cần tính lồi. Cần gradient Lipschitz trên đoạn nối $\theta$ với mọi điểm $\theta^+$ có thể.
 
-**Phạm vi.** Mệnh đề nói về kỳ vọng sau một bước; nó không chặn $J(\theta^+)$ với một nhóm cụ thể và không cho tốc độ hội tụ.
+**Phạm vi.** Mệnh đề nói về kỳ vọng sau một bước; nó không chặn $J(\theta^+)$ với một lô cụ thể và không cho tốc độ hội tụ.
 :::
 
 ::: proof Chứng minh Mệnh đề 05.14
-**Bước 1 (cận trên cho mỗi nhóm).**
+**Bước 1 (cận trên cho mỗi lô).**
 
 Áp dụng Bổ đề 04.18 với hai điểm $\theta$ và $\theta^+=\theta-\eta\widehat g$:
 
@@ -818,7 +818,7 @@ $$
 J(\theta^+)\le J(\theta)-\eta\nabla J(\theta)^T\widehat g+\frac{L\eta^2}2\lVert\widehat g\rVert_2^2 .
 $$
 
-Bất đẳng thức đúng với mọi giá trị của nhóm, vì bổ đề không dùng tính ngẫu nhiên.
+Bất đẳng thức đúng với mọi giá trị của lô, vì bổ đề không dùng tính ngẫu nhiên.
 
 **Bước 2 (lấy kỳ vọng).**
 
@@ -826,7 +826,7 @@ $\nabla J(\theta)$ cố định nên ra khỏi kỳ vọng. Theo (2.3), $\mathbb
 
 **Bước 3 (phần b).**
 
-Nếu $J(\theta)=J(\theta^*)+\tfrac L2\lVert\theta-\theta^*\rVert_2^2$ thì khai triển Taylor là đẳng thức, nên Bước 1 có dấu bằng với mọi nhóm, và Bước 2 giữ dấu bằng.
+Nếu $J(\theta)=J(\theta^*)+\tfrac L2\lVert\theta-\theta^*\rVert_2^2$ thì khai triển Taylor là đẳng thức, nên Bước 1 có dấu bằng với mọi lô, và Bước 2 giữ dấu bằng.
 
 **Bước 4 (phần c).**
 
@@ -842,9 +842,9 @@ b>\frac{\operatorname{tr}\Sigma(\theta)}{\lVert\nabla J(\theta)\rVert_2^2}.
 \tag{2.5}
 $$
 
-Vế phải của (2.5) là tỷ số nhiễu trên tín hiệu tại $\theta$. Khi xa nghiệm, $\lVert\nabla J\rVert_2$ lớn nên nhóm nhỏ đã đủ. Khi gần nghiệm, $\lVert\nabla J\rVert_2\to0$ trong khi $\operatorname{tr}\Sigma$ thường dương, nên không cỡ nhóm cố định nào thỏa (2.5) ở mọi bước. Trên ví dụ ba quan sát, (2.4) xảy ra dấu bằng và ngưỡng này tính được chính xác.
+Vế phải của (2.5) là tỷ số nhiễu trên tín hiệu tại $\theta$. Khi xa nghiệm, $\lVert\nabla J\rVert_2$ lớn nên lô nhỏ đã đủ. Khi gần nghiệm, $\lVert\nabla J\rVert_2\to0$ trong khi $\operatorname{tr}\Sigma$ thường dương, nên không kích thước lô cố định nào thỏa (2.5) ở mọi bước. Trên ví dụ ba quan sát, (2.4) xảy ra dấu bằng và ngưỡng này tính được chính xác.
 
-::: example Ví dụ 05.11 (Kiểm Mệnh đề 05.14 trên ví dụ ba quan sát)
+::: example Ví dụ 05.11 (Kiểm tra Mệnh đề 05.14 trên ví dụ ba quan sát)
 **Dữ kiện.** (2.4), Mệnh đề 05.14(a): với $J$ có gradient $L$-Lipschitz, $\mathbb EJ(\theta^+)\le J(\theta)-\eta\bigl(1-\frac{L\eta}2\bigr)\lVert\nabla J(\theta)\rVert_2^2+\frac{L\eta^2}2\cdot\frac{\operatorname{tr}\Sigma(\theta)}b$; Mệnh đề 05.14(b): dấu bằng xảy ra khi $J$ bậc hai với Hessian $L\mathrm I$. Ví dụ ba quan sát: $y=(-1,1,3)$, gradient mẫu $g_i(\theta)=\theta-y_i$ và $\Sigma=\tfrac83$ tại mọi $\theta$ (Ví dụ 05.8); $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ có $J''=L=1$, nên (b) áp dụng.
 
 **Công thức.**
@@ -857,17 +857,17 @@ $$
 
 **Ngưỡng giảm theo kỳ vọng.** Kỳ vọng giảm khi $(\theta-1)^2>\tfrac{\eta\cdot8/3}{(2-\eta)b}$. Với $\eta=0{,}1$, $b=1$: $(\theta-1)^2>\tfrac{8}{57}\approx0{,}140$, tức $\lvert\theta-1\rvert>0{,}375$.
 
-**Kiểm tra lại.** Liệt kê ba nhóm tại $\theta=1$: $\theta^+$ bằng $0{,}8$, $1$, $1{,}2$ với $J$ tăng $0{,}02$, $0$, $0{,}02$. Trung bình $\tfrac{0{,}04}3=\tfrac1{75}$, khớp công thức.
+**Kiểm tra lại.** Liệt kê ba lô tại $\theta=1$: $\theta^+$ bằng $0{,}8$, $1$, $1{,}2$ với $J$ tăng $0{,}02$, $0$, $0{,}02$. Trung bình $\tfrac{0{,}04}3=\tfrac1{75}$, khớp công thức.
 :::
 
-**Trong học máy.** Đối tượng của Mệnh đề 05.14 là một bước của bộ tối ưu SGD trên mất mát huấn luyện. Giả thiết gradient $L$-Lipschitz đúng với hồi quy tuyến tính và logistic (Nhận xét 04.19), nhưng với mạng sâu chỉ đúng cục bộ, trên một vùng tham số bị chặn; ngoài vùng đó (2.4) không được bảo đảm. Kết luận giải thích hai quan sát thực nghiệm: đường mất mát huấn luyện của SGD dao động chứ không giảm đơn điệu, và mức dao động giảm khi tăng cỡ nhóm hoặc giảm bước học. Tình huống 05.1 dùng (2.5) để chọn cỡ nhóm cho một bài hồi quy logistic.
+**Trong học máy.** Đối tượng của Mệnh đề 05.14 là một bước của bộ tối ưu SGD trên mất mát huấn luyện. Giả thiết gradient $L$-Lipschitz đúng với hồi quy tuyến tính và logistic (Nhận xét 04.19), nhưng với mạng sâu chỉ đúng cục bộ, trên một vùng tham số bị chặn; ngoài vùng đó (2.4) không được bảo đảm. Kết luận giải thích hai quan sát thực nghiệm: đường mất mát huấn luyện của SGD dao động chứ không giảm đơn điệu, và mức dao động giảm khi tăng kích thước lô hoặc giảm bước học. Tình huống 05.1 dùng (2.5) để chọn kích thước lô cho một bài toán hồi quy logistic.
 
 ### 2.4 Thuật toán và quy tắc dừng sớm
 
 Do một bước có thể làm $J$ tăng và $J$ khác $R$, thuật toán không thể mặc định trả về tham số cuối cùng. Nó phải theo dõi mất mát xác thực định kỳ và trả về bản lưu tốt nhất, đúng quy tắc chọn của Mục 1.3. Ghép bước cập nhật của Mục 2.3 với quy tắc này, ta được thuật toán sau.
 
 ::: algorithm Thuật toán 05.1 (Hạ gradient ngẫu nhiên với dừng sớm)
-**Đầu vào.** Dữ liệu $D$, mô hình $f_\theta$, mất mát $\ell$; điểm đầu $\theta_0$; cỡ nhóm $b$; lịch bước học $\eta_t>0$; số vòng lặp tối đa $T$; tập xác thực và lịch đánh giá định trước; số lần chờ $K_{\rm stop}\ge1$; ngưỡng cải thiện $\varepsilon\ge0$.
+**Đầu vào.** Dữ liệu $D$, mô hình $f_\theta$, mất mát $\ell$; điểm đầu $\theta_0$; kích thước lô $b$; lịch bước học $\eta_t>0$; số vòng lặp tối đa $T$; tập xác thực và lịch đánh giá định trước; số lần chờ $K_{\rm stop}\ge1$; ngưỡng cải thiện $\varepsilon\ge0$.
 
 **Khởi tạo.** Bản lưu $\theta_{\rm best}=\theta_0$, giá trị tốt nhất $\widehat R_{\rm val}(\theta_0)$, bộ đếm chờ bằng $0$.
 
@@ -909,13 +909,13 @@ Một lượt qua dữ liệu (epoch) thường được hiểu là $N/b$ vòng,
 :::
 
 ::: exercise Bài tập 05.3
-**Dữ kiện.** Ví dụ ba quan sát: $y=(-1,1,3)$, $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$, $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, $J''=L=1$; gradient mẫu $g_i(\theta)=\theta-y_i$, $\Sigma(\theta)=\tfrac83$ tại mọi $\theta$ (Ví dụ 05.1, 05.8, 05.9). Gradient nhóm $\widehat g=\tfrac1b\sum_{r=1}^bg_{I_r}(\theta)$ với các chỉ số rút đều, có hoàn lại; $\theta^+=\theta-\eta\widehat g$. (2.4), Mệnh đề 05.14(a): với $J$ có gradient $L$-Lipschitz, $\mathbb EJ(\theta^+)\le J(\theta)-\eta\bigl(1-\frac{L\eta}2\bigr)\lVert\nabla J(\theta)\rVert_2^2+\frac{L\eta^2}2\cdot\frac{\operatorname{tr}\Sigma(\theta)}b$; Mệnh đề 05.14(b): dấu bằng xảy ra khi $J$ bậc hai với Hessian $L\mathrm I$.
+**Dữ kiện.** Ví dụ ba quan sát: $y=(-1,1,3)$, $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$, $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, $J''=L=1$; gradient mẫu $g_i(\theta)=\theta-y_i$, $\Sigma(\theta)=\tfrac83$ tại mọi $\theta$ (Ví dụ 05.1, 05.8, 05.9). Gradient lô $\widehat g=\tfrac1b\sum_{r=1}^bg_{I_r}(\theta)$ với các chỉ số rút đều, có hoàn lại; $\theta^+=\theta-\eta\widehat g$. (2.4), Mệnh đề 05.14(a): với $J$ có gradient $L$-Lipschitz, $\mathbb EJ(\theta^+)\le J(\theta)-\eta\bigl(1-\frac{L\eta}2\bigr)\lVert\nabla J(\theta)\rVert_2^2+\frac{L\eta^2}2\cdot\frac{\operatorname{tr}\Sigma(\theta)}b$; Mệnh đề 05.14(b): dấu bằng xảy ra khi $J$ bậc hai với Hessian $L\mathrm I$.
 
-Trên ví dụ ba quan sát, xét tham số $\theta=0$, bước học $\eta=0{,}5$ và cỡ nhóm $b=2$ lấy có hoàn lại.
+Trên ví dụ ba quan sát, xét tham số $\theta=0$, bước học $\eta=0{,}5$ và kích thước lô $b=2$ lấy có hoàn lại.
 
-- (a) Một lần rút cho hai quan sát $y=3$ và $y=1$. Tính gradient nhóm, tham số mới và thay đổi của $J$.
+- (a) Một lần rút cho hai quan sát $y=3$ và $y=1$. Tính gradient lô, tham số mới và thay đổi của $J$.
 - (b) Tính $\mathbb E\,J(\theta^+)-J(0)$ bằng Mệnh đề 05.14.
-- (c) Xác định mọi cỡ nhóm $b$ để kỳ vọng của $J$ giảm tại $\theta=0$ với $\eta=0{,}5$.
+- (c) Xác định mọi kích thước lô $b$ để kỳ vọng của $J$ giảm tại $\theta=0$ với $\eta=0{,}5$.
 :::
 
 ::: hint
@@ -945,14 +945,14 @@ Kỳ vọng giảm khi $0{,}375>\tfrac{0{,}125\cdot8/3}{b}=\tfrac1{3b}$, tức $
 
 **Kiểm tra lại.**
 
-Ở (a), mức giảm $-\tfrac12$ của một nhóm cụ thể lớn hơn mức giảm kỳ vọng $0{,}208$; một nhóm khác, chẳng hạn hai lần $y=-1$, cho $\widehat g=1$, $\theta^+=-0{,}5$ và $J$ tăng $\tfrac12(1{,}5^2-1)=0{,}625$. Trung bình trên chín cặp chỉ số có thứ tự cho đúng $-\tfrac{5}{24}\approx-0{,}208$.
+Ở (a), mức giảm $-\tfrac12$ của một lô cụ thể lớn hơn mức giảm kỳ vọng $0{,}208$; một lô khác, chẳng hạn hai lần $y=-1$, cho $\widehat g=1$, $\theta^+=-0{,}5$ và $J$ tăng $\tfrac12(1{,}5^2-1)=0{,}625$. Trung bình trên chín cặp chỉ số có thứ tự cho đúng $-\tfrac{5}{24}\approx-0{,}208$.
 :::
 
-### 2.5 Cỡ nhóm và sai số chuẩn
+### 2.5 Kích thước lô và sai số chuẩn
 
-Thuật toán 05.1 còn để ngỏ hai đầu vào số là cỡ nhóm $b$ và bước học $\eta_t$. Để chọn $b$, Hệ quả 05.12(c) cho căn cứ định lượng, vì sai số chuẩn của gradient nhóm tỷ lệ với $1/\sqrt b$ trong khi chi phí tỷ lệ với $b$.
+Thuật toán 05.1 còn để ngỏ hai đầu vào số là kích thước lô $b$ và bước học $\eta_t$. Để chọn $b$, Hệ quả 05.12(c) cho căn cứ định lượng, vì sai số chuẩn của gradient lô tỷ lệ với $1/\sqrt b$ trong khi chi phí tỷ lệ với $b$.
 
-::: example Ví dụ 05.13 (Sai số chuẩn theo cỡ nhóm)
+::: example Ví dụ 05.13 (Sai số chuẩn theo kích thước lô)
 **Dữ kiện.** Ví dụ 05.9 tại $\theta=1$, $\Sigma=\tfrac83$, lấy có hoàn lại.
 
 **Tính.** Sai số chuẩn $\sqrt{8/(3b)}$:
@@ -973,9 +973,9 @@ Thuật toán 05.1 còn để ngỏ hai đầu vào số là cỡ nhóm $b$ và 
 Đồ thị trên là phép tính tại một tham số cố định, không phải đường hội tụ qua các bước. Độ dốc giảm dần của đường cong thể hiện kết luận của Ví dụ 05.13, tức mỗi gradient mẫu thêm vào mang lại ít độ chính xác hơn gradient mẫu trước.
 
 ::: remark Nhận xét 05.15 (Ngân sách cố định và phần cứng)
-**Ngân sách cố định.** Với ngân sách $B_{\rm tot}$ gradient mẫu, cỡ nhóm $b$ cho khoảng $B_{\rm tot}/b$ bước. Nhóm lớn cho ít bước chính xác, nhóm nhỏ cho nhiều bước nhiễu; Bài 05c, Mục 6.6 (Mệnh đề 05c.57, Ví dụ 05c.39), tính trên ví dụ ba quan sát rằng sai số cuối cùng có dạng chữ U theo $b$, với đáy ở $b=75$ khi $B_{\rm tot}=3000$ và bước học $0{,}1$.
+**Ngân sách cố định.** Với ngân sách $B_{\rm tot}$ gradient mẫu, kích thước lô $b$ cho khoảng $B_{\rm tot}/b$ bước. Lô lớn cho ít bước chính xác, lô nhỏ cho nhiều bước nhiễu; Bài 05c, Mục 6.6 (Mệnh đề 05c.57, Ví dụ 05c.39), tính trên ví dụ ba quan sát rằng sai số cuối cùng có dạng chữ U theo $b$, với đáy ở $b=75$ khi $B_{\rm tot}=3000$ và bước học $0{,}1$.
 
-**Phần cứng.** Khi $b$ chưa vượt mức song song của phần cứng, một nhóm $b$ quan sát tốn thời gian gần bằng một quan sát (Goodfellow, Bengio và Courville 2016, mục 8.1.3, tr. 279). Ngưỡng (2.5) cho cỡ nhóm tối thiểu tại điểm hiện tại; các công thức không xác định một cỡ nhóm tốt nhất cho mọi bài toán.
+**Phần cứng.** Khi $b$ chưa vượt mức song song của phần cứng, một lô $b$ quan sát tốn thời gian gần bằng một quan sát (Goodfellow, Bengio và Courville 2016, mục 8.1.3, tr. 279). Ngưỡng (2.5) cho kích thước lô tối thiểu tại điểm hiện tại; các công thức không xác định một kích thước lô tốt nhất cho mọi bài toán.
 :::
 
 ### 2.6 Bước học và dao động gần nghiệm
@@ -997,11 +997,11 @@ Trên hình, ba bước có thể là $-2\eta$, $0$, $2\eta$ với $b=1$, vẽ t
 Phép tính trên chỉ xét một bước. Khi lặp, nhiễu tích lũy, còn phần có hướng đưa tham số về gần nghiệm, và hai tác dụng cân bằng ở một mức xác định. Ví dụ sau tính mức đó chính xác.
 
 ::: example Ví dụ 05.14 (Sai số bình phương trung bình của SGD với bước học cố định)
-**Dữ kiện.** Ví dụ ba quan sát: $y=(-1,1,3)$, $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, gradient mẫu $g_i(\theta)=(\theta-1)-(y_i-1)$, $\Sigma=\tfrac83$ (Ví dụ 05.8, 05.9). Ví dụ 05.11: với $\eta=0{,}1$, $b=1$, kỳ vọng của $J$ giảm khi $(\theta-1)^2>\tfrac8{57}$. Điểm đầu $\theta_0=0$, bước học cố định $\eta\in(0,2)$, cỡ nhóm $b$; nhóm ở mỗi vòng độc lập với các nhóm trước. Đặt $\mathrm{MSE}_t=\mathbb E(\theta_t-1)^2$.
+**Dữ kiện.** Ví dụ ba quan sát: $y=(-1,1,3)$, $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, gradient mẫu $g_i(\theta)=(\theta-1)-(y_i-1)$, $\Sigma=\tfrac83$ (Ví dụ 05.8, 05.9). Ví dụ 05.11: với $\eta=0{,}1$, $b=1$, kỳ vọng của $J$ giảm khi $(\theta-1)^2>\tfrac8{57}$. Điểm đầu $\theta_0=0$, bước học cố định $\eta\in(0,2)$, kích thước lô $b$; lô ở mỗi vòng độc lập với các lô trước. Đặt $\mathrm{MSE}_t=\mathbb E(\theta_t-1)^2$.
 
 **Phương trình một bước.**
 
-Theo Ví dụ 05.8, $\widehat g_t=(\theta_t-1)-\xi_t$, với $\xi_t$ là trung bình của $y_{I_r}-1$ trên nhóm thứ $t$; $\xi_t$ có kỳ vọng $0$, phương sai $\tfrac8{3b}$, và độc lập với $\theta_t$ vì $\theta_t$ chỉ phụ thuộc các nhóm trước. Do đó
+Theo Ví dụ 05.8, $\widehat g_t=(\theta_t-1)-\xi_t$, với $\xi_t$ là trung bình của $y_{I_r}-1$ trên lô thứ $t$; $\xi_t$ có kỳ vọng $0$, phương sai $\tfrac8{3b}$, và độc lập với $\theta_t$ vì $\theta_t$ chỉ phụ thuộc các lô trước. Do đó
 
 $$
 \theta_{t+1}-1=(1-\eta)(\theta_t-1)+\eta\,\xi_t .
@@ -1049,12 +1049,12 @@ Cả hai cận có một số hạng không giảm theo số vòng lặp, tỷ l
 :::
 
 ::: exercise Bài tập 05.4
-**Dữ kiện.** Ví dụ ba quan sát: $y=(-1,1,3)$, nghiệm $\theta^*=1$, $\Sigma=\tfrac83$. Ví dụ 05.14: với bước học cố định $\eta\in(0,2)$, cỡ nhóm $b$ và nhóm độc lập giữa các vòng, $\mathrm{MSE}_t=\mathbb E(\theta_t-1)^2$ hội tụ về $\mathrm{MSE}_\infty=\frac{8\eta}{3b(2-\eta)}$.
+**Dữ kiện.** Ví dụ ba quan sát: $y=(-1,1,3)$, nghiệm $\theta^*=1$, $\Sigma=\tfrac83$. Ví dụ 05.14: với bước học cố định $\eta\in(0,2)$, kích thước lô $b$ và lô độc lập giữa các vòng, $\mathrm{MSE}_t=\mathbb E(\theta_t-1)^2$ hội tụ về $\mathrm{MSE}_\infty=\frac{8\eta}{3b(2-\eta)}$.
 
-Trên ví dụ ba quan sát với bước học cố định và nhóm độc lập giữa các vòng:
+Trên ví dụ ba quan sát với bước học cố định và lô độc lập giữa các vòng:
 
 - (a) Tính mức giới hạn $\mathrm{MSE}_\infty$ của Ví dụ 05.14 với $\eta=0{,}2$, $b=4$.
-- (b) Với $\eta=0{,}1$, tìm cỡ nhóm nhỏ nhất để $\mathrm{MSE}_\infty\le0{,}01$.
+- (b) Với $\eta=0{,}1$, tìm kích thước lô nhỏ nhất để $\mathrm{MSE}_\infty\le0{,}01$.
 :::
 
 ::: hint
@@ -1075,7 +1075,7 @@ $\tfrac{8\cdot0{,}1}{3b\cdot1{,}9}=\tfrac8{57b}\le0{,}01$ khi $b\ge\tfrac{800}{5
 Ở (b), $b=14$ cho $\approx0{,}01003$ và $b=15$ cho $\approx0{,}00936$.
 :::
 
-Xuất phát từ (2.1) và Ví dụ 05.8, chúng ta đã thấy gradient đầy đủ là trung bình của các gradient mẫu, vốn khác nhau ngay cả tại nghiệm. Định nghĩa 05.10, Định lý 05.11 và Hệ quả 05.12 thay trung bình đó bằng gradient nhóm không chệch với sai số bình phương trung bình $\operatorname{tr}\Sigma/b$. Mệnh đề 05.14 chuyển hai tính chất này thành kỳ vọng thay đổi của $J$ sau một bước, kèm ngưỡng cỡ nhóm (2.5), và Thuật toán 05.1 ghép bước cập nhật với quy tắc dừng sớm của Mục 1.3. Ví dụ 05.13 và 05.14 đo vai trò của $b$ và $\eta$, còn Nhận xét 05.16 dẫn tới các định lý hội tụ của Bài 05b.
+Xuất phát từ (2.1) và Ví dụ 05.8, chúng ta đã thấy gradient đầy đủ là trung bình của các gradient mẫu, vốn khác nhau ngay cả tại nghiệm. Định nghĩa 05.10, Định lý 05.11 và Hệ quả 05.12 thay trung bình đó bằng gradient lô không chệch với sai số bình phương trung bình $\operatorname{tr}\Sigma/b$. Mệnh đề 05.14 chuyển hai tính chất này thành kỳ vọng thay đổi của $J$ sau một bước, kèm ngưỡng kích thước lô (2.5), và Thuật toán 05.1 ghép bước cập nhật với quy tắc dừng sớm của Mục 1.3. Ví dụ 05.13 và 05.14 đo vai trò của $b$ và $\eta$, còn Nhận xét 05.16 dẫn tới các định lý hội tụ của Bài 05b.
 
 Với một nguồn gradient rẻ và không chệch (Định lý 05.11) cùng một quy trình dùng nó (Thuật toán 05.1), chúng ta đã có hai kết quả định lượng (2.3), (2.4) làm căn cứ để kiểm soát nhiễu lấy mẫu bằng $b$ và $\eta$. Tuy nhiên, kể cả khi nhiễu không còn, tức $b$ lớn, phép cập nhật $\theta-\eta\nabla J$ vẫn tiến chậm khi độ cong của $J$ khác nhau theo các hướng. Ví dụ 04.7 của Bài 04 đã cho thấy trên một hàm bậc hai, không bước cố định nào làm cả hai tọa độ co nhanh.
 
@@ -1125,7 +1125,7 @@ Các đường mức của $q$ trên hình là những elip dài theo trục $[\
 Mô tả này mới là trực giác, chưa phải phát biểu hình thức. Mệnh đề sau phát biểu chính xác ý đó cho mọi hàm bậc hai lồi chặt (còn gọi là lồi nghiêm ngặt), như một phiên bản chặt hơn của Nhận xét 04.13 với chứng minh đầy đủ.
 
 ::: proposition Mệnh đề 05.17 (Bước gradient trên hàm bậc hai)
-**Giả thiết.** $q(\theta)=\tfrac12(\theta-\theta^*)^TH(\theta-\theta^*)$, với $H\in\mathbb R^{p\times p}$ đối xứng xác định dương, có phân tích $H=Q\Lambda Q^T$ trong đó $Q$ trực giao và $\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_p)$; $\mu=\min_i\lambda_i$, $L=\max_i\lambda_i$, $\kappa=L/\mu$. Dãy giảm gradient $\theta_{t+1}=\theta_t-\eta\nabla q(\theta_t)$ với bước cố định $\eta>0$.
+**Giả thiết.** $q(\theta)=\tfrac12(\theta-\theta^*)^TH(\theta-\theta^*)$, với $H\in\mathbb R^{p\times p}$ đối xứng xác định dương, có phân tích $H=Q\Lambda Q^T$ trong đó $Q$ trực giao và $\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_p)$; $\mu=\min_i\lambda_i$, $L=\max_i\lambda_i$, $\kappa=L/\mu$. Dãy hạ gradient $\theta_{t+1}=\theta_t-\eta\nabla q(\theta_t)$ với bước cố định $\eta>0$.
 
 **Kết luận.**
 
@@ -1171,7 +1171,7 @@ Trong cả hai trường hợp, giá trị lớn nhất không nhỏ hơn $\tfra
 Mệnh đề đọc theo từng phần như sau.
 
 - Phần (a): một bước gradient làm $q$ giảm một lượng bậc nhất $\eta\lVert g\rVert_2^2$ và tăng một lượng bậc hai $\tfrac{\eta^2}2g^THg$; khi $\eta$ lớn, số hạng chứa $H$ chiếm ưu thế.
-- Phần (b): trong hệ tọa độ của các vectơ riêng, giảm gradient là $p$ phép nhân vô hướng độc lập, mỗi phép có hệ số co $1-\eta\lambda_i$.
+- Phần (b): trong hệ tọa độ của các vectơ riêng, hạ gradient là $p$ phép nhân vô hướng độc lập, mỗi phép có hệ số co $1-\eta\lambda_i$.
 - Phần (c) và (d): độ cong lớn nhất chặn bước học, còn độ cong nhỏ nhất quyết định tốc độ; với bước tối ưu, hệ số co là $\tfrac{\kappa-1}{\kappa+1}$, gần $1$ khi $\kappa$ lớn.
 
 So với Định lý 04.26, mệnh đề hẹp hơn vì chỉ xét hàm bậc hai nhưng chính xác hơn. Định lý 04.26 chỉ cho cận $1-\tfrac1\kappa$ với bước $\tfrac1L$, trong khi phần (b) cho đúng hệ số co của từng tọa độ, và phần (c) cho cả điều kiện cần, điều mà một cận trên không cho.
@@ -1188,11 +1188,11 @@ So với Định lý 04.26, mệnh đề hẹp hơn vì chỉ xét hàm bậc ha
 **Kiểm tra lại.** Theo (a) với $\eta=\tfrac14$ tại $\theta_0$: $q(\theta_0)=\tfrac12(12+112)=62$, $\lVert g_0\rVert_2^2=820$, $g_0^THg_0=3\cdot36+7\cdot784=5596$, nên $q(\theta_1)=62-205+\tfrac{5596}{32}=31{,}875$; tính trực tiếp $q(0{,}5;\,-3)=\tfrac12(0{,}75+63)=31{,}875$.
 :::
 
-![Hai bước giảm gradient với η = 1/4 trên các đường mức của q: từ (2, 4) tới (0,5; −3) rồi tới (0,125; 2,25). Tọa độ thứ hai đổi dấu qua các bước, quỹ đạo nhảy qua lại hai phía trục tọa độ thứ nhất.](img/lec-05/quadratic-step.svg)
+![Hai bước hạ gradient với η = 1/4 trên các đường mức của q: từ (2, 4) tới (0,5; −3) rồi tới (0,125; 2,25). Tọa độ thứ hai đổi dấu qua các bước, quỹ đạo nhảy qua lại hai phía trục tọa độ thứ nhất.](img/lec-05/quadratic-step.svg)
 
 Với $\eta=\tfrac14$, hai bước trên hình đưa tọa độ thứ nhất gần như về $0$ ngay, còn tọa độ thứ hai đổi dấu, lần lượt nằm ở hai phía trục $[\theta]_1$. Với $\eta=\tfrac1{20}$, các bước liên tiếp giữ cùng dấu ở cả hai tọa độ. Tính nhất quán đó gợi ý cộng một phần bước cũ vào bước mới để dịch chuyển dài hơn theo hướng mà các bước đồng thuận, và đó là ý tưởng của Mục 3.2.
 
-**Trong học máy.** Hàm bậc hai là mô hình cục bộ của mất mát gần một cực tiểu có Hessian xác định dương, nên Mệnh đề 05.17 mô tả hành vi của giảm gradient ở giai đoạn cuối huấn luyện. Với mạng sâu, Hessian không hằng và không biết trước, nên $L$ và $\kappa$ chỉ được ước lượng; hiện tượng mất mát dao động mạnh khi tăng bước học là phần (c) quan sát được trên một hướng có độ cong lớn (Goodfellow, Bengio và Courville 2016, mục 8.2.1, tr. 282–283). Với hồi quy tuyến tính và logistic, $\kappa$ lớn khi các đặc trưng có thang đo lệch nhau; Tình huống 05.2 tính trường hợp $\kappa=100$.
+**Trong học máy.** Hàm bậc hai là mô hình cục bộ của mất mát gần một cực tiểu có Hessian xác định dương, nên Mệnh đề 05.17 mô tả hành vi của hạ gradient ở giai đoạn cuối huấn luyện. Với mạng sâu, Hessian không hằng và không biết trước, nên $L$ và $\kappa$ chỉ được ước lượng; hiện tượng mất mát dao động mạnh khi tăng bước học là phần (c) quan sát được trên một hướng có độ cong lớn (Goodfellow, Bengio và Courville 2016, mục 8.2.1, tr. 282–283). Với hồi quy tuyến tính và logistic, $\kappa$ lớn khi các đặc trưng có thang đo lệch nhau; Tình huống 05.2 tính trường hợp $\kappa=100$.
 
 ### 3.2 Momentum và sự tích lũy hướng cập nhật
 
@@ -1201,7 +1201,7 @@ Ví dụ 05.16 đặt ra một mâu thuẫn, vì bước học lớn làm hướ
 ::: example Ví dụ 05.17 (Hai bước tích lũy trên $q$)
 **Dữ kiện.** $q(\theta)=\tfrac12(3[\theta]_1^2+7[\theta]_2^2)$ (3.1), $\nabla q(\theta)=(3[\theta]_1,7[\theta]_2)^T$, $\theta_0=(2,4)^T$, $\nabla q(\theta_0)=(6,28)^T$, bước học $\eta=0{,}05$, hệ số giữ lại $\beta=0{,}5$. Bước dịch chuyển ở vòng $t$, gọi là vận tốc $v_t$, bắt đầu từ $v_0=0$; quy tắc cập nhật là $v_{t+1}=\beta v_t-\eta\nabla q(\theta_t)$, $\theta_{t+1}=\theta_t+v_{t+1}$.
 
-**Vòng 1.** $v_1=0{,}5\cdot0-0{,}05\cdot(6,28)^T=(-0{,}3;\,-1{,}4)^T$ và $\theta_1=\theta_0+v_1=(1{,}7;\,2{,}6)^T$. Vì $v_0=0$, vòng này trùng một bước giảm gradient.
+**Vòng 1.** $v_1=0{,}5\cdot0-0{,}05\cdot(6,28)^T=(-0{,}3;\,-1{,}4)^T$ và $\theta_1=\theta_0+v_1=(1{,}7;\,2{,}6)^T$. Vì $v_0=0$, vòng này trùng một bước hạ gradient.
 
 **Vòng 2.** Gradient tại $\theta_1$ là $(3\cdot1{,}7;\,7\cdot2{,}6)^T=(5{,}1;\,18{,}2)^T$.
 
@@ -1209,12 +1209,12 @@ Ví dụ 05.16 đặt ra một mâu thuẫn, vì bước học lớn làm hướ
 - Phần gradient mới: $-0{,}05\cdot(5{,}1;\,18{,}2)^T=(-0{,}255;\,-0{,}91)^T$.
 - Tổng: $v_2=(-0{,}405;\,-1{,}61)^T$, và $\theta_2=\theta_1+v_2=(1{,}295;\,0{,}99)^T$.
 
-**Kiểm tra lại.** Giảm gradient cùng bước cho $\theta_2=(0{,}85^2\cdot2;\,0{,}65^2\cdot4)^T=(1{,}445;\,1{,}69)^T$. Hai thành phần của $\beta v_1$ cùng dấu với phần gradient mới, nên momentum đi xa hơn theo cả hai tọa độ.
+**Kiểm tra lại.** Hạ gradient cùng bước cho $\theta_2=(0{,}85^2\cdot2;\,0{,}65^2\cdot4)^T=(1{,}445;\,1{,}69)^T$. Hai thành phần của $\beta v_1$ cùng dấu với phần gradient mới, nên momentum đi xa hơn theo cả hai tọa độ.
 :::
 
 ![Từ điểm θ₁ = (1,7; 2,6), hai vectơ nối tiếp: trước là βv₁ = (−0,15; −0,7), sau là bước âm gradient −η∇q(θ₁) = (−0,255; −0,91). Điểm cuối là θ₂ = (1,295; 0,99), vẽ trên các đường mức của q.](img/lec-05/momentum-vectors.svg)
 
-Hình trên ghép hai vectơ nối tiếp từ $\theta_1$, gồm phần quán tính $\beta v_1$ rồi phần âm gradient tại $\theta_1$. Viết cấu trúc của hai vòng này cho mọi $t$ và cho phép gradient nhóm thay gradient đầy đủ, ta được thuật toán sau.
+Hình trên ghép hai vectơ nối tiếp từ $\theta_1$, gồm phần quán tính $\beta v_1$ rồi phần âm gradient tại $\theta_1$. Viết cấu trúc của hai vòng này cho mọi $t$ và cho phép gradient lô thay gradient đầy đủ, ta được thuật toán sau.
 
 ::: algorithm Thuật toán 05.2 (Momentum)
 **Đầu vào.** Như Thuật toán 05.1, với bước học cố định $\eta>0$; thêm hệ số momentum $0\le\beta<1$.
@@ -1223,13 +1223,13 @@ Hình trên ghép hai vectơ nối tiếp từ $\theta_1$, gồm phần quán t�
 
 **Các bước.** Với $t=0,1,\ldots$:
 
-1. Rút nhóm $I_1,\ldots,I_b$ như Thuật toán 05.1 và tính $\widehat g_t=\tfrac1b\sum_r\nabla\ell_{I_r}(\theta_t)$.
+1. Rút lô $I_1,\ldots,I_b$ như Thuật toán 05.1 và tính $\widehat g_t=\tfrac1b\sum_r\nabla\ell_{I_r}(\theta_t)$.
 2. Cập nhật vận tốc: $v_{t+1}=\beta v_t-\eta\widehat g_t$.
 3. Cập nhật tham số: $\theta_{t+1}=\theta_t+v_{t+1}$.
 
 Quy tắc dừng sớm, bản lưu và đầu ra giữ như Thuật toán 05.1.
 
-**Chi phí.** Một gradient nhóm mỗi vòng như SGD; thêm bộ nhớ cho $v_t$ gồm $p$ số và $O(p)$ phép tính cập nhật.
+**Chi phí.** Một gradient lô mỗi vòng như SGD; thêm bộ nhớ cho $v_t$ gồm $p$ số và $O(p)$ phép tính cập nhật.
 :::
 
 So với SGD, thuật toán chỉ đổi một điều là tham số dịch theo vận tốc $v_{t+1}$ thay vì theo $-\eta\widehat g_t$, trong đó vận tốc là tổng của phần vận tốc cũ được giữ lại và bước âm gradient mới. Khi $\beta=0$, quy tắc trở lại SGD. Tên gọi vận tốc theo Goodfellow, Bengio và Courville (2016, mục 8.3.2, tr. 296) xuất phát từ một cách đọc vật lý, trong đó $\theta$ là vị trí của một hạt, $-\widehat g$ là lực, và $1-\beta$ đóng vai lực cản.
@@ -1283,12 +1283,12 @@ Công thức (3.2) cho thấy gradient ở vòng $t'$ góp vào bước hiện t
 
 Nhầm lẫn thường gặp là gọi (3.2) là trung bình trượt của gradient. Các trọng số $\beta^{t-t'}$ có tổng $\tfrac{1-\beta^{t+1}}{1-\beta}$, khác $1$, nên $v_{t+1}$ không cùng thang với một gradient. Vì vậy, so phương sai của $v_t$ với phương sai của $\widehat g_t$ như hai đại lượng cùng thang là sai.
 
-::: example Ví dụ 05.18 (Đối chứng giảm gradient với momentum trong sáu bước)
-**Dữ kiện.** $q(\theta)=\tfrac12(3[\theta]_1^2+7[\theta]_2^2)$ (3.1), $\nabla q(\theta)=(3[\theta]_1,7[\theta]_2)^T$, $\theta_0=(2,4)^T$, $\eta=0{,}05$, gradient đầy đủ; momentum dùng $\beta=0{,}5$, $v_0=0$. Hai quy tắc: giảm gradient: $\theta_{t+1}=\theta_t-\eta\nabla q(\theta_t)$; momentum (Thuật toán 05.2, gradient đầy đủ): $v_{t+1}=\beta v_t-\eta\nabla q(\theta_t)$, $\theta_{t+1}=\theta_t+v_{t+1}$.
+::: example Ví dụ 05.18 (Đối chứng hạ gradient với momentum trong sáu bước)
+**Dữ kiện.** $q(\theta)=\tfrac12(3[\theta]_1^2+7[\theta]_2^2)$ (3.1), $\nabla q(\theta)=(3[\theta]_1,7[\theta]_2)^T$, $\theta_0=(2,4)^T$, $\eta=0{,}05$, gradient đầy đủ; momentum dùng $\beta=0{,}5$, $v_0=0$. Hai quy tắc: hạ gradient: $\theta_{t+1}=\theta_t-\eta\nabla q(\theta_t)$; momentum (Thuật toán 05.2, gradient đầy đủ): $v_{t+1}=\beta v_t-\eta\nabla q(\theta_t)$, $\theta_{t+1}=\theta_t+v_{t+1}$.
 
 **Kết quả.** Các giá trị $q(\theta_t)$, tính từ hai quy tắc và làm tròn bốn chữ số:
 
-| $t$ | Giảm gradient | Momentum |
+| $t$ | Hạ gradient | Momentum |
 |---|---|---|
 | $0$ | $62$ | $62$ |
 | $1$ | $27{,}995$ | $27{,}995$ |
@@ -1303,9 +1303,9 @@ Nhầm lẫn thường gặp là gọi (3.2) là trung bình trượt của grad
 **Kiểm tra lại.** Bước 2: $q(1{,}445;\,1{,}69)=\tfrac12(3\cdot2{,}088025+7\cdot2{,}8561)=13{,}1283875$; $q(1{,}295;\,0{,}99)=\tfrac12(3\cdot1{,}677025+7\cdot0{,}9801)=5{,}9458875$.
 :::
 
-![Quỹ đạo sáu bước trên các đường mức của q, cùng η = 0,05: giảm gradient nét đứt đi chậm dọc theo thung lũng; momentum với β = 0,5 nét liền đi xa hơn và vượt qua trục tọa độ thứ nhất ở bước 3 rồi quay lại.](img/lec-05/momentum-comparison.svg)
+![Quỹ đạo sáu bước trên các đường mức của q, cùng η = 0,05: hạ gradient nét đứt đi chậm dọc theo thung lũng; momentum với β = 0,5 nét liền đi xa hơn và vượt qua trục tọa độ thứ nhất ở bước 3 rồi quay lại.](img/lec-05/momentum-comparison.svg)
 
-Trên hình, đường nét đứt của giảm gradient luôn ở phía trên trục $[\theta]_1$ và đi chậm, còn đường nét liền của momentum đi nhanh hơn dọc thung lũng nhưng vượt qua trục $[\theta]_1$. Đó chính là hiện tượng không đơn điệu trong bảng ở trên.
+Trên hình, đường nét đứt của hạ gradient luôn ở phía trên trục $[\theta]_1$ và đi chậm, còn đường nét liền của momentum đi nhanh hơn dọc thung lũng nhưng vượt qua trục $[\theta]_1$. Đó chính là hiện tượng không đơn điệu trong bảng ở trên.
 
 ::: remark Nhận xét 05.19 (Hai giới hạn của đối chứng)
 **Một ví dụ không xếp hạng phương pháp.** Bảng của Ví dụ 05.18 dùng một hàm, một điểm đầu, một cặp $(\eta,\beta)$. Nó không chứng minh momentum luôn nhanh hơn, và kết quả tổng quát trên hàm bậc hai được trình bày ở Mục 3.3.
@@ -1394,9 +1394,9 @@ Vì $\pi(\nu)\ne0$, $\nu$ không là nghiệm. Nếu $\zeta_1\ne\zeta_2$, thì $
 Nếu $\zeta_1=\zeta_2=\zeta$ với $\lvert\zeta\rvert\ge1$, thì $\lvert Z_t\rvert\ge\lvert A+Bt\rvert$ với $A=Z_0\ne0$, và $A+Bt$ không tiến về $0$. $\square$
 :::
 
-Nhờ bổ đề, bài toán hội tụ tách thành hai việc: tìm hai nghiệm của một đa thức bậc hai, và kiểm hai bất đẳng thức của phần (b). Phần (d) cho chiều ngược cần thiết. Khi nghiệm có môđun lớn nhất không nhỏ hơn $1$, kể cả khi nghiệm nằm đúng trên đường tròn đơn vị, dãy không hội tụ về $0$, trừ trường hợp dữ kiện đầu loại bỏ đúng thành phần đó. Điều kiện $\pi(\nu)\ne0$ loại trừ trường hợp này.
+Nhờ bổ đề, bài toán hội tụ tách thành hai việc: tìm hai nghiệm của một đa thức bậc hai, và kiểm tra hai bất đẳng thức của phần (b). Phần (d) cho chiều ngược cần thiết. Khi nghiệm có môđun lớn nhất không nhỏ hơn $1$, kể cả khi nghiệm nằm đúng trên đường tròn đơn vị, dãy không hội tụ về $0$, trừ trường hợp dữ kiện đầu loại bỏ đúng thành phần đó. Điều kiện $\pi(\nu)\ne0$ loại trừ trường hợp này.
 
-Áp dụng bổ đề cho momentum trên hàm bậc hai, cùng phép đổi biến của Mệnh đề 05.17 để tách bài toán $p$ chiều thành $p$ bài một chiều, ta được định lý sau.
+Áp dụng bổ đề cho momentum trên hàm bậc hai, cùng phép đổi biến của Mệnh đề 05.17 để tách bài toán $p$ chiều thành $p$ bài toán một chiều, ta được định lý sau.
 
 ::: theorem Định lý 05.21 (Momentum trên hàm bậc hai)
 **Giả thiết.** $q$, $H=Q\Lambda Q^T$, $\mu$, $L$, $\kappa$ như Mệnh đề 05.17. Thuật toán 05.2 với gradient đầy đủ $\nabla q$, bước học $\eta>0$, hệ số $0\le\beta<1$, $v_0=0$. Đặt $\chi_t=Q^T(\theta_t-\theta^*)$.
@@ -1416,7 +1416,7 @@ với đa thức đặc trưng $\zeta^2-(1+\beta-\eta\lambda_i)\zeta+\beta$.
 
 **Điều kiện áp dụng.** Hàm bậc hai lồi chặt, gradient đầy đủ, $\eta$ và $\beta$ cố định.
 
-**Phạm vi.** Với hàm không bậc hai, định lý chỉ mô tả hệ tuyến tính hóa quanh một cực tiểu; với gradient nhóm, hệ có thêm một số hạng nhiễu và (b) chỉ nói về kỳ vọng của $\theta_t$.
+**Phạm vi.** Với hàm không bậc hai, định lý chỉ mô tả hệ tuyến tính hóa quanh một cực tiểu; với gradient lô, hệ có thêm một số hạng nhiễu và (b) chỉ nói về kỳ vọng của $\theta_t$.
 :::
 
 ::: proof Chứng minh Định lý 05.21
@@ -1445,7 +1445,7 @@ Với $t=0$, $v_0=0$ cho $Z_1=(1-\eta\lambda)Z_0$. Đệ quy (3.4) có dạng (3
 
 Giả sử $\eta L\ge2(1+\beta)$. Chọn $\theta_0-\theta^*$ là vectơ riêng của $L$, nên chỉ một tọa độ $Z_t$ của $\chi_t$ có $Z_0\ne0$. Với tọa độ đó, điều kiện của Bổ đề 05.20(b) sai, nên $\lvert\zeta_1\rvert\ge1$, và dữ kiện đầu là $Z_1=\nu Z_0$ với $\nu=1-\eta L$.
 
-Nếu $\beta=0$, momentum là giảm gradient và $\lvert Z_t\rvert=\lvert1-\eta L\rvert^t\lvert Z_0\rvert$ không giảm vì $\eta L\ge2$. Nếu $\beta>0$, thay $\nu$ vào đa thức:
+Nếu $\beta=0$, momentum là hạ gradient và $\lvert Z_t\rvert=\lvert1-\eta L\rvert^t\lvert Z_0\rvert$ không giảm vì $\eta L\ge2$. Nếu $\beta>0$, thay $\nu$ vào đa thức:
 
 $$
 \begin{aligned}
@@ -1477,7 +1477,7 @@ Trong cả ba trường hợp, cận đúng với $\Omega_i=\lvert A\rvert+\lver
 Định lý đọc theo từng phần như sau.
 
 - Phần (a): momentum trên hàm bậc hai là $p$ dao động tử độc lập, mỗi dao động tử nhớ hai giá trị trước, tức một hệ bậc nhất hai biến gồm tọa độ của $\chi_t$ và tọa độ của $Q^Tv_t$ cho mỗi hướng riêng.
-- Phần (b): momentum ổn định với $\eta$ tới gần $\tfrac{2(1+\beta)}L$, rộng hơn giới hạn $\tfrac2L$ của giảm gradient.
+- Phần (b): momentum ổn định với $\eta$ tới gần $\tfrac{2(1+\beta)}L$, rộng hơn giới hạn $\tfrac2L$ của hạ gradient.
 - Phần (c): trong một dải độ cong, tốc độ co không phụ thuộc $\lambda_i$ mà chỉ phụ thuộc $\beta$; mọi hướng co với cùng hệ số $\sqrt\beta$, và đó là cơ chế giúp hướng cong yếu không còn chậm.
 
 Khi $\beta=0$, định lý trở lại Mệnh đề 05.17, vì đa thức thành $\zeta(\zeta-(1-\eta\lambda_i))$ và điều kiện (b) thành $0<\eta L<2$. Tuy nhiên, khi $\beta>0$, momentum dao động. Trong dải của phần (c), hai nghiệm là phức liên hợp, nên $[\chi_t]_i$ đổi dấu theo chu kỳ, như ở bước 3–4 của Ví dụ 05.18. Trên tọa độ thứ nhất của $q$, nghiệm của (3.4) viết được ở dạng đóng.
@@ -1502,7 +1502,7 @@ $$
 Giá trị này khớp $[\theta_2]_1=1{,}295$ của Ví dụ 05.17. Biên độ không vượt $\rho^t\sqrt{4+1{,}661^2}\approx2{,}60\cdot0{,}7071^t$.
 :::
 
-Tọa độ thứ hai có $\eta\lambda=0{,}35$, cũng nằm trong dải, nên cũng co với môđun $\sqrt{0{,}5}$. Do đó, trong Ví dụ 05.18, momentum co mọi tọa độ với hệ số tiệm cận $0{,}707$ mỗi bước, còn giảm gradient co tọa độ chậm nhất với hệ số $0{,}85$. Tuy nhiên, Định lý 05.21 chưa cho biết cặp $(\eta,\beta)$ nào làm hệ số chung nhỏ nhất. Cặp đó được chọn trong hệ quả sau.
+Tọa độ thứ hai có $\eta\lambda=0{,}35$, cũng nằm trong dải, nên cũng co với môđun $\sqrt{0{,}5}$. Do đó, trong Ví dụ 05.18, momentum co mọi tọa độ với hệ số tiệm cận $0{,}707$ mỗi bước, còn hạ gradient co tọa độ chậm nhất với hệ số $0{,}85$. Tuy nhiên, Định lý 05.21 chưa cho biết cặp $(\eta,\beta)$ nào làm hệ số chung nhỏ nhất. Cặp đó được chọn trong hệ quả sau.
 
 ::: corollary Hệ quả 05.22 (Tham số momentum của Polyak cho hàm bậc hai)
 **Giả thiết.** Như Định lý 05.21, với $\kappa=L/\mu$. Chọn
@@ -1516,7 +1516,7 @@ $$
 
 **Điều kiện áp dụng.** Cần biết $\mu$ và $L$.
 
-**Phạm vi.** So với hệ số tốt nhất $\tfrac{\kappa-1}{\kappa+1}$ của giảm gradient (Mệnh đề 05.17(d)), hệ số mới thay $\kappa$ bằng $\sqrt\kappa$. Kết quả chỉ đúng cho hàm bậc hai; với hàm lồi mạnh tổng quát có gradient Lipschitz, Lessard, Recht và Packard (2016) cho một phản ví dụ mà momentum với tham số (3.5) không hội tụ.
+**Phạm vi.** So với hệ số tốt nhất $\tfrac{\kappa-1}{\kappa+1}$ của hạ gradient (Mệnh đề 05.17(d)), hệ số mới thay $\kappa$ bằng $\sqrt\kappa$. Kết quả chỉ đúng cho hàm bậc hai; với hàm lồi mạnh tổng quát có gradient Lipschitz, Lessard, Recht và Packard (2016) cho một phản ví dụ mà momentum với tham số (3.5) không hội tụ.
 :::
 
 ::: proof Chứng minh Hệ quả 05.22
@@ -1543,14 +1543,14 @@ $$
 vì $2\sqrt\beta<1+\beta$ khi $\beta<1$. Cộng các cận của từng tọa độ và dùng $\lVert\theta_t-\theta^*\rVert_2=\lVert\chi_t\rVert_2\le\sum_i\lvert[\chi_t]_i\rvert$ được kết luận với $\Omega=\sum_i\Omega_i$. $\square$
 :::
 
-Hệ quả cho thấy mức tăng tốc của momentum lớn dần theo $\kappa$. Số bước để sai số giảm $\mathrm e\approx2{,}72$ lần xấp xỉ $\tfrac1{-\log\rho}$, với $\rho$ là hệ số co. Chẳng hạn, với $\kappa=100$, giảm gradient với bước tối ưu theo Mệnh đề 05.17(d) có $\rho=\tfrac{99}{101}$ và cần khoảng $50$ bước, còn momentum với (3.5) có $\rho=\tfrac9{11}$ và cần khoảng $5$ bước. Phương pháp này còn gọi là phương pháp quả cầu nặng (heavy ball) của Polyak (1964).
+Hệ quả cho thấy mức tăng tốc của momentum lớn dần theo $\kappa$. Số bước để sai số giảm $\mathrm e\approx2{,}72$ lần xấp xỉ $\tfrac1{-\log\rho}$, với $\rho$ là hệ số co. Chẳng hạn, với $\kappa=100$, hạ gradient với bước tối ưu theo Mệnh đề 05.17(d) có $\rho=\tfrac{99}{101}$ và cần khoảng $50$ bước, còn momentum với (3.5) có $\rho=\tfrac9{11}$ và cần khoảng $5$ bước. Phương pháp này còn gọi là phương pháp quả cầu nặng (heavy ball) của Polyak (1964).
 
 **Trong học máy.** Thực hành chọn $\beta$ trong khoảng $0{,}5$ đến $0{,}99$ và không biết $\mu$, $L$ của mất mát mạng sâu, nên (3.5) không được dùng trực tiếp. Định lý 05.21 giải thích hai thói quen, theo Goodfellow, Bengio và Courville (2016, mục 8.3.2, tr. 296–298):
 
 - khi tăng $\beta$ thường giảm $\eta$, vì giới hạn ổn định trong (b) và dải của (c) cùng phụ thuộc $\eta\lambda$;
 - đường mất mát với momentum dao động hơn SGD, vì nghiệm phức sinh dao động.
 
-Với gradient nhóm, hệ có thêm nhiễu; theo (3.2), nhiễu ở mỗi vòng bị cộng dồn với trọng số $\beta^{t-t'}$, nên momentum không tự làm giảm phương sai của bước.
+Với gradient lô, hệ có thêm nhiễu; theo (3.2), nhiễu ở mỗi vòng bị cộng dồn với trọng số $\beta^{t-t'}$, nên momentum không tự làm giảm phương sai của bước.
 
 ### 3.4 Gradient tại điểm dự báo: phương pháp Nesterov
 
@@ -1582,7 +1582,7 @@ và $\theta_2=\theta_1+v_2=(1{,}3175;\,1{,}235)^T$.
 
 ![Trên các đường mức của q: từ θ₁ = (1,7; 2,6), đoạn dự báo βv₁ tới điểm θ̃₁ = (1,55; 1,9); từ đó đoạn hiệu chỉnh −η∇q(θ̃₁) dẫn tới θ₂ = (1,3175; 1,235).](img/lec-05/nesterov-points.svg)
 
-Hình trên đặt ba điểm $\theta_1$, $\widetilde\theta_1$, $\theta_2$ cùng hai đoạn mang nhãn dự báo và hiệu chỉnh. Do điểm dự báo đã gần đáy thung lũng hơn, gradient tại đó nhỏ hơn theo tọa độ thứ hai ($13{,}3$ so với $18{,}2$), nên phần hiệu chỉnh ngắn hơn theo hướng cong mạnh. Viết ba thao tác của ví dụ cho mọi $t$ với gradient nhóm, ta được thuật toán sau.
+Hình trên đặt ba điểm $\theta_1$, $\widetilde\theta_1$, $\theta_2$ cùng hai đoạn mang nhãn dự báo và hiệu chỉnh. Do điểm dự báo đã gần đáy thung lũng hơn, gradient tại đó nhỏ hơn theo tọa độ thứ hai ($13{,}3$ so với $18{,}2$), nên phần hiệu chỉnh ngắn hơn theo hướng cong mạnh. Viết ba thao tác của ví dụ cho mọi $t$ với gradient lô, ta được thuật toán sau.
 
 ::: algorithm Thuật toán 05.3 (Gradient gia tốc Nesterov)
 **Đầu vào.** Như Thuật toán 05.2.
@@ -1591,13 +1591,13 @@ Hình trên đặt ba điểm $\theta_1$, $\widetilde\theta_1$, $\theta_2$ cùng
 
 **Các bước.** Với $t=0,1,\ldots$:
 
-1. Rút nhóm $I_1,\ldots,I_b$ và tính điểm dự báo $\widetilde\theta_t=\theta_t+\beta v_t$.
-2. Tính gradient nhóm tại điểm dự báo, trên chính nhóm vừa rút: $\widehat g_t=\tfrac1b\sum_r\nabla\ell_{I_r}(\widetilde\theta_t)$.
+1. Rút lô $I_1,\ldots,I_b$ và tính điểm dự báo $\widetilde\theta_t=\theta_t+\beta v_t$.
+2. Tính gradient lô tại điểm dự báo, trên chính lô vừa rút: $\widehat g_t=\tfrac1b\sum_r\nabla\ell_{I_r}(\widetilde\theta_t)$.
 3. Cập nhật $v_{t+1}=\beta v_t-\eta\widehat g_t$ và $\theta_{t+1}=\theta_t+v_{t+1}$.
 
 Quy tắc dừng sớm, bản lưu và đầu ra giữ như Thuật toán 05.1.
 
-**Chi phí.** Như momentum: một gradient nhóm và $p$ số trạng thái mỗi vòng.
+**Chi phí.** Như momentum: một gradient lô và $p$ số trạng thái mỗi vòng.
 :::
 
 Phương pháp gradient gia tốc Nesterov (Nesterov accelerated gradient) chỉ đổi điểm tính gradient, còn mọi thành phần khác giữ như momentum. Vận tốc mới được cộng vào $\theta_t$ chứ không vào $\widetilde\theta_t$. Cộng vào điểm dự báo sẽ tính phần quán tính hai lần, vì $\widetilde\theta_t+v_{t+1}=\theta_t+2\beta v_t-\eta\widehat g_t$. Quy ước trạng thái này theo Goodfellow, Bengio và Courville (2016, thuật toán 8.3, tr. 300) và Sutskever cùng cộng sự (2013).
@@ -1622,7 +1622,7 @@ với đa thức đặc trưng $\zeta^2-(1+\beta)(1-\eta\lambda_i)\zeta+\beta(1-
 
 **Điều kiện áp dụng.** Như Định lý 05.21.
 
-**Phạm vi.** Miền ổn định (b) hẹp hơn miền $\tfrac2L$ của giảm gradient khi $\beta>0$. Bảo đảm $J(\theta_t)-\inf J=O(1/t^2)$ cho hàm lồi có gradient Lipschitz với lịch hệ số thích hợp là kết quả của Nesterov (1983), nằm ngoài phạm vi chương.
+**Phạm vi.** Miền ổn định (b) hẹp hơn miền $\tfrac2L$ của hạ gradient khi $\beta>0$. Bảo đảm $J(\theta_t)-\inf J=O(1/t^2)$ cho hàm lồi có gradient Lipschitz với lịch hệ số thích hợp là kết quả của Nesterov (1983), nằm ngoài phạm vi chương.
 :::
 
 ::: proof Chứng minh Định lý 05.23
@@ -1660,7 +1660,7 @@ $$
 \end{aligned}
 $$
 
-Nếu $\beta>0$, $\pi(\nu)\ne0$ vì $\nu\ne0$; Bổ đề 05.20(d) cho $Z_t$ không về $0$. Nếu $\beta=0$, quy tắc là giảm gradient với $\eta L\ge2$, đã xét ở Mệnh đề 05.17(c).
+Nếu $\beta>0$, $\pi(\nu)\ne0$ vì $\nu\ne0$; Bổ đề 05.20(d) cho $Z_t$ không về $0$. Nếu $\beta=0$, quy tắc là hạ gradient với $\eta L\ge2$, đã xét ở Mệnh đề 05.17(c).
 
 **Bước 4 (phần c).**
 
@@ -1688,27 +1688,27 @@ nên môđun không vượt $\tfrac{\sqrt\kappa-1}{\sqrt\kappa}=1-\tfrac1{\sqrt\
 
 Định lý 05.23 cho hai thông tin trái chiều.
 
-- Phần (b): miền bước học ổn định của Nesterov hẹp hơn của momentum, và hẹp hơn cả của giảm gradient; với $\beta=0{,}5$, giới hạn là $\eta L<1{,}5$, so với $3$ của momentum và $2$ của giảm gradient.
+- Phần (b): miền bước học ổn định của Nesterov hẹp hơn của momentum, và hẹp hơn cả của hạ gradient; với $\beta=0{,}5$, giới hạn là $\eta L<1{,}5$, so với $3$ của momentum và $2$ của hạ gradient.
 - Phần (c): với bước an toàn $\tfrac1L$ của Bổ đề 04.20 và một $\beta$ thích hợp, Nesterov đạt hệ số co $1-\tfrac1{\sqrt\kappa}$, cùng bậc $\sqrt\kappa$ với Hệ quả 05.22, mà không cần biết $\mu$ để chọn bước học.
 
 So với Định lý 05.21, điểm khác duy nhất trong đa thức là thừa số $1-\eta\lambda_i$ nhân vào cả hai hệ số. Thừa số này giảm biên độ của thành phần cong mạnh, vì khi $\eta\lambda_i$ gần $1$, cả hai nghiệm gần $0$ và hướng cong mạnh bị triệt tiêu nhanh thay vì dao động như ở momentum.
 
-![Ba đường bán kính phổ ρ theo tích ηλ trên đoạn từ 0 tới 3,2: giảm gradient |1 − ηλ| (nét đứt) vượt 1 tại ηλ = 2; momentum β = 0,5 (nét liền) bằng √0,5 ≈ 0,707 trên dải từ 0,086 tới 2,914 và vượt 1 tại ηλ = 3; Nesterov β = 0,5 (nét chấm gạch) bằng 0 tại ηλ = 1 và vượt 1 tại ηλ = 1,5. Hai vạch đứng đánh dấu ηλ = 0,15 và 0,35, hai độ cong của q khi η = 0,05.](img/lec-05/spectral-radius.svg)
+![Ba đường bán kính phổ ρ theo tích ηλ trên đoạn từ 0 tới 3,2: hạ gradient |1 − ηλ| (nét đứt) vượt 1 tại ηλ = 2; momentum β = 0,5 (nét liền) bằng √0,5 ≈ 0,707 trên dải từ 0,086 tới 2,914 và vượt 1 tại ηλ = 3; Nesterov β = 0,5 (nét chấm gạch) bằng 0 tại ηλ = 1 và vượt 1 tại ηλ = 1,5. Hai vạch đứng đánh dấu ηλ = 0,15 và 0,35, hai độ cong của q khi η = 0,05.](img/lec-05/spectral-radius.svg)
 
-Hình trên so bán kính phổ, tức môđun lớn nhất của hai nghiệm, theo tích $\eta\lambda$ cho ba phương pháp với $\beta=0{,}5$. Đường momentum nằm ngang ở $\sqrt{0{,}5}$ trên cả dải của Định lý 05.21(c) rồi vượt $1$ tại $\eta\lambda=3$, còn đường Nesterov thấp hơn ở vùng $\eta\lambda$ trung bình nhưng vượt $1$ sớm, tại $1{,}5$. Hai vạch đứng ứng với hai độ cong của $q$ khi $\eta=0{,}05$, tại đó Nesterov có $\rho\approx0{,}652$ và $0{,}570$, momentum có $0{,}707$, giảm gradient có $0{,}85$ và $0{,}65$.
+Hình trên so bán kính phổ, tức môđun lớn nhất của hai nghiệm, theo tích $\eta\lambda$ cho ba phương pháp với $\beta=0{,}5$. Đường momentum nằm ngang ở $\sqrt{0{,}5}$ trên cả dải của Định lý 05.21(c) rồi vượt $1$ tại $\eta\lambda=3$, còn đường Nesterov thấp hơn ở vùng $\eta\lambda$ trung bình nhưng vượt $1$ sớm, tại $1{,}5$. Hai vạch đứng ứng với hai độ cong của $q$ khi $\eta=0{,}05$, tại đó Nesterov có $\rho\approx0{,}652$ và $0{,}570$, momentum có $0{,}707$, hạ gradient có $0{,}85$ và $0{,}65$.
 
 ::: example Ví dụ 05.21 (Ba phương pháp trên $q$ trong sáu bước)
 **Dữ kiện.** $q(\theta)=\tfrac12(3[\theta]_1^2+7[\theta]_2^2)$, $\theta_0=(2,4)^T$, gradient đầy đủ, $\eta=0{,}05$, $\beta=0{,}5$, $v_0=0$. Ba quy tắc:
 
-- giảm gradient: $\theta_{t+1}=\theta_t-\eta\nabla q(\theta_t)$;
+- hạ gradient: $\theta_{t+1}=\theta_t-\eta\nabla q(\theta_t)$;
 - momentum (Thuật toán 05.2, gradient đầy đủ): $v_{t+1}=\beta v_t-\eta\nabla q(\theta_t)$, $\theta_{t+1}=\theta_t+v_{t+1}$;
 - Nesterov (Thuật toán 05.3, gradient đầy đủ): $v_{t+1}=\beta v_t-\eta\nabla q(\theta_t+\beta v_t)$, $\theta_{t+1}=\theta_t+v_{t+1}$.
 
-Theo (3.6), với $Z_t=[\chi_t]_i$ và $\lambda=\lambda_i$, Nesterov thỏa $Z_1=(1-\eta\lambda)Z_0$, $Z_{t+1}=(1+\beta)(1-\eta\lambda)Z_t-\beta(1-\eta\lambda)Z_{t-1}$. Ví dụ 05.20: $[\theta_2]_1=1{,}3175$ với Nesterov. Các hệ số tiệm cận là bán kính phổ ứng với $(\eta,\beta)$ này: $\max_i\lvert1-\eta\lambda_i\rvert=0{,}85$ cho giảm gradient, $\sqrt\beta\approx0{,}707$ cho momentum, và $\approx0{,}652$ cho Nesterov.
+Theo (3.6), với $Z_t=[\chi_t]_i$ và $\lambda=\lambda_i$, Nesterov thỏa $Z_1=(1-\eta\lambda)Z_0$, $Z_{t+1}=(1+\beta)(1-\eta\lambda)Z_t-\beta(1-\eta\lambda)Z_{t-1}$. Ví dụ 05.20: $[\theta_2]_1=1{,}3175$ với Nesterov. Các hệ số tiệm cận là bán kính phổ ứng với $(\eta,\beta)$ này: $\max_i\lvert1-\eta\lambda_i\rvert=0{,}85$ cho hạ gradient, $\sqrt\beta\approx0{,}707$ cho momentum, và $\approx0{,}652$ cho Nesterov.
 
 **Giá trị $q(\theta_t)$.**
 
-| $t$ | Giảm gradient | Momentum | Nesterov |
+| $t$ | Hạ gradient | Momentum | Nesterov |
 |---|---|---|---|
 | $2$ | $13{,}1284$ | $5{,}9459$ | $7{,}9420$ |
 | $3$ | $6{,}4864$ | $1{,}3016$ | $1{,}8261$ |
@@ -1735,21 +1735,21 @@ $$
 ::: remark Nhận xét 05.24 (Momentum và Nesterov ngoài hàm bậc hai)
 **Không phương pháp nào luôn tốt hơn.** Ví dụ 05.20 cho Nesterov giá trị lớn hơn momentum sau hai bước, Ví dụ 05.21 cho điều ngược lại sau bốn bước, và Định lý 05.23(b) cho thấy Nesterov kém ổn định hơn với bước học lớn.
 
-**Chi phí như nhau.** Hai phương pháp lưu một vectơ trạng thái $p$ phần tử và tính một gradient nhóm mỗi vòng.
+**Chi phí như nhau.** Hai phương pháp lưu một vectơ trạng thái $p$ phần tử và tính một gradient lô mỗi vòng.
 
-**Bảo đảm lý thuyết.** Với hàm lồi có gradient $L$-Lipschitz, gradient đầy đủ và lịch hệ số $\beta_t$ thích hợp, phương pháp gia tốc của Nesterov (1983) đạt $J(\theta_t)-\inf J=O(1/t^2)$, so với $O(1/t)$ của Định lý 04.22. Bản dùng gradient nhóm, hệ số cố định, trên mạng không lồi không có bảo đảm đó; Sutskever cùng cộng sự (2013) báo cáo lợi ích thực nghiệm khi huấn luyện mạng sâu với khởi tạo cẩn thận.
+**Bảo đảm lý thuyết.** Với hàm lồi có gradient $L$-Lipschitz, gradient đầy đủ và lịch hệ số $\beta_t$ thích hợp, phương pháp gia tốc của Nesterov (1983) đạt $J(\theta_t)-\inf J=O(1/t^2)$, so với $O(1/t)$ của Định lý 04.22. Bản dùng gradient lô, hệ số cố định, trên mạng không lồi không có bảo đảm đó; Sutskever cùng cộng sự (2013) báo cáo lợi ích thực nghiệm khi huấn luyện mạng sâu với khởi tạo cẩn thận.
 
 **Cách cài đặt trong thư viện.** Một số thư viện, chẳng hạn PyTorch và Keras, cài Nesterov theo một tham số hóa tương đương, lưu điểm dự báo thay cho $\theta_t$, tức Thuật toán 05.3 sau phép đổi biến $\theta\mapsto\theta+\beta v$.
 :::
 
-**Trong học máy.** Momentum và Nesterov là hai lựa chọn của tham số "momentum" và "nesterov" trong các bộ tối ưu SGD của thư viện học sâu. Định lý 05.21 và 05.23 áp dụng cho mất mát được xấp xỉ bằng hàm bậc hai quanh một cực tiểu, với $\lambda_i$ là các giá trị riêng của Hessian của mất mát; giả thiết hàm bậc hai và gradient đầy đủ đều bị vi phạm khi huấn luyện mạng, nên các định lý giải thích cơ chế chứ không cho tham số. Tình huống 05.2 áp dụng chúng cho một bài hồi quy tuyến tính có $\kappa=100$, nơi giả thiết thỏa đúng.
+**Trong học máy.** Momentum và Nesterov là hai lựa chọn của tham số "momentum" và "nesterov" trong các bộ tối ưu SGD của thư viện học sâu. Định lý 05.21 và 05.23 áp dụng cho mất mát được xấp xỉ bằng hàm bậc hai quanh một cực tiểu, với $\lambda_i$ là các giá trị riêng của Hessian của mất mát; giả thiết hàm bậc hai và gradient đầy đủ đều bị vi phạm khi huấn luyện mạng, nên các định lý giải thích cơ chế chứ không cho tham số. Tình huống 05.2 áp dụng chúng cho một bài toán hồi quy tuyến tính có $\kappa=100$, nơi giả thiết thỏa đúng.
 
 ::: exercise Bài tập 05.5
 Xét hàm một biến $2\theta^2$, tức hàm bậc hai với $\lambda=4$ và nghiệm $\theta^*=0$, điểm đầu $\theta_0=1$, gradient đầy đủ, $\eta=0{,}25$, $\beta=0{,}25$, $v_0=0$.
 
 - (a) Với momentum, tính $\theta_1,\theta_2,\theta_3,\theta_4$.
 - (b) Viết đa thức đặc trưng của momentum, tìm hai nghiệm và môđun của chúng.
-- (c) Với $\beta=0{,}25$, tìm mọi $\eta$ để momentum hội tụ với mọi điểm đầu, và so với giảm gradient.
+- (c) Với $\beta=0{,}25$, tìm mọi $\eta$ để momentum hội tụ với mọi điểm đầu, và so với hạ gradient.
 - (d) Với Nesterov và cùng $\eta$, $\beta$, tính $\theta_1,\theta_2$, giải thích vì sao $\theta_t=0$ với mọi $t\ge1$, và tìm mọi $\eta$ để Nesterov hội tụ khi $\beta=0{,}25$.
 :::
 
@@ -1772,7 +1772,7 @@ Vì $\eta\lambda=1$, $\theta_1=(1-1)\cdot1=0$, và (3.4) thành $\theta_{t+1}=0{
 
 **Câu (c).**
 
-Định lý 05.21(b) cho điều kiện $0<4\eta<2(1+0{,}25)$, tức $0<\eta<0{,}625$. Giảm gradient cần $0<4\eta<2$, tức $\eta<0{,}5$.
+Định lý 05.21(b) cho điều kiện $0<4\eta<2(1+0{,}25)$, tức $0<\eta<0{,}625$. Hạ gradient cần $0<4\eta<2$, tức $\eta<0{,}5$.
 
 **Câu (d).**
 
@@ -1781,7 +1781,7 @@ Theo (3.6), hai hệ số của đệ quy chứa thừa số $1-\eta\lambda=0$, 
 - vòng 1: điểm dự báo $\theta_0=1$, gradient $4$, $v_1=-1$, $\theta_1=0$;
 - vòng 2: điểm dự báo $0+0{,}25\cdot(-1)=-0{,}25$, gradient $-1$, $v_2=0{,}25\cdot(-1)-0{,}25\cdot(-1)=0$, $\theta_2=0$.
 
-Định lý 05.23(b) cho điều kiện $4\eta<\tfrac{2\cdot1{,}25}{1{,}5}=\tfrac53$, tức $0<\eta<\tfrac5{12}$, khoảng $0{,}417$: hẹp hơn cả momentum và giảm gradient.
+Định lý 05.23(b) cho điều kiện $4\eta<\tfrac{2\cdot1{,}25}{1{,}5}=\tfrac53$, tức $0<\eta<\tfrac5{12}$, khoảng $0{,}417$: hẹp hơn cả momentum và hạ gradient.
 
 **Kiểm tra lại.**
 
@@ -1794,7 +1794,7 @@ $v_3=0{,}25\cdot(-0{,}25)-0{,}25\cdot4\cdot(-0{,}25)=0{,}1875$, nên $\theta_3=-
 Tỷ số $\lvert\theta_4/\theta_2\rvert\approx0{,}19$ cùng bậc với $0{,}5^2=0{,}25$, khớp môđun $0{,}5$.
 :::
 
-Ví dụ 05.15 và Mệnh đề 05.17 cho thấy độ cong lớn nhất chặn bước học, còn số điều kiện quyết định tốc độ của giảm gradient. Thuật toán 05.2 thêm trạng thái vận tốc, và Mệnh đề 05.18 viết bước thành tổng có trọng số của các gradient. Bổ đề 05.20 và Định lý 05.21 viết momentum thành hệ tuyến tính hai biến, cho miền hội tụ $0<\eta L<2(1+\beta)$ và hệ số co $\sqrt\beta$, còn Hệ quả 05.22 chọn tham số cho hệ số $\tfrac{\sqrt\kappa-1}{\sqrt\kappa+1}$. Cuối cùng, Thuật toán 05.3 và Định lý 05.23 dời điểm tính gradient, cho miền hội tụ hẹp hơn và hệ số $1-\tfrac1{\sqrt\kappa}$ với bước $\tfrac1L$ và một $\beta$ thích hợp.
+Ví dụ 05.15 và Mệnh đề 05.17 cho thấy độ cong lớn nhất chặn bước học, còn số điều kiện quyết định tốc độ của hạ gradient. Thuật toán 05.2 thêm trạng thái vận tốc, và Mệnh đề 05.18 viết bước thành tổng có trọng số của các gradient. Bổ đề 05.20 và Định lý 05.21 viết momentum thành hệ tuyến tính hai biến, cho miền hội tụ $0<\eta L<2(1+\beta)$ và hệ số co $\sqrt\beta$, còn Hệ quả 05.22 chọn tham số cho hệ số $\tfrac{\sqrt\kappa-1}{\sqrt\kappa+1}$. Cuối cùng, Thuật toán 05.3 và Định lý 05.23 dời điểm tính gradient, cho miền hội tụ hẹp hơn và hệ số $1-\tfrac1{\sqrt\kappa}$ với bước $\tfrac1L$ và một $\beta$ thích hợp.
 
 Đến đây, hai quy tắc cập nhật (Thuật toán 05.2, 05.3) đã có phân tích đầy đủ trên hàm bậc hai (Định lý 05.21, 05.23, Hệ quả 05.22). Mọi kết quả đó đều giả định một điểm đầu tùy ý, và với hàm bậc hai lồi chặt, điểm đầu không ảnh hưởng tới nghiệm.
 
@@ -1823,7 +1823,7 @@ Mạng nhỏ nhất đủ để xét quan hệ giữa các đơn vị ẩn có h
 
 ![Sơ đồ mạng hai nhánh song song từ đầu vào x. Mỗi nhánh j có nhãn wj, bj trên cạnh vào, trong đó bj là độ lệch c_j của ghi chú, khối ReLU cho kích hoạt h_j, và trọng số ra a_j trên cạnh tới đầu ra f = a₁h₁ + a₂h₂. Mũi tên dưới cùng chỉ chiều truyền xuôi.](img/lec-05/two-hidden-units.svg)
 
-Trong sơ đồ trên, mỗi nhánh nhận cùng đầu vào $x$, tính một hàm affine rồi qua ReLU, và đóng góp vào đầu ra qua trọng số ra của nó. Nhãn $b_j$ trên hình ứng với độ lệch $c_j$ của ghi chú, vì chữ $b$ đã dành cho cỡ nhóm. Mạng này được định nghĩa tổng quát như sau.
+Trong sơ đồ trên, mỗi nhánh nhận cùng đầu vào $x$, tính một hàm affine rồi qua ReLU, và đóng góp vào đầu ra qua trọng số ra của nó. Nhãn $b_j$ trên hình ứng với độ lệch $c_j$ của ghi chú, vì chữ $b$ đã dành cho kích thước lô. Mạng này được định nghĩa tổng quát như sau.
 
 ::: definition Định nghĩa 05.25 (Mạng hai đơn vị ẩn)
 Cho hàm kích hoạt $\phi:\mathbb R\to\mathbb R$. Mạng hai đơn vị ẩn có tham số $\theta=(w_1,c_1,a_1,w_2,c_2,a_2)\in\mathbb R^6$ và, với đầu vào $x\in\mathbb R$,
@@ -1851,7 +1851,7 @@ $$
 
 **Điều kiện áp dụng.** Với ReLU, cần $z_j\ne0$; tại $z_j=0$ phải chọn một giá trị quy ước cho $\phi'(0)$.
 
-**Phạm vi.** Công thức cho đạo hàm trên một quan sát; với một nhóm, gradient nhóm là trung bình của (4.1) trên các quan sát.
+**Phạm vi.** Công thức cho đạo hàm trên một quan sát; với một lô, gradient lô là trung bình của (4.1) trên các quan sát.
 :::
 
 ::: proof Chứng minh Mệnh đề 05.26
@@ -1883,7 +1883,7 @@ Lưu ý rằng quy tắc dây chuyền chỉ tính gradient, không phải thu�
 
 Cả sáu đạo hàm bằng $2$.
 
-**Một bước giảm gradient với $\eta=0{,}1$.** Mỗi tham số giảm $0{,}2$:
+**Một bước hạ gradient với $\eta=0{,}1$.** Mỗi tham số giảm $0{,}2$:
 
 | Tham số | Đơn vị 1: trước → sau | Đơn vị 2: trước → sau |
 |---|---|---|
@@ -1918,9 +1918,9 @@ Trong mạng của Định nghĩa 05.25, hai đơn vị ẩn đối xứng tại
 **Giả thiết.**
 
 - Mạng của Định nghĩa 05.25, hai đơn vị dùng cùng hàm kích hoạt $\phi$.
-- Huấn luyện bằng Thuật toán 05.1 (gradient nhóm hoặc gradient đầy đủ), 05.2 hoặc 05.3, với nhóm quan sát chung cho cả mạng và $v_0=0$.
+- Huấn luyện bằng Thuật toán 05.1 (gradient lô hoặc gradient đầy đủ), 05.2 hoặc 05.3, với lô quan sát chung cho cả mạng và $v_0=0$.
 - Tại vòng $0$, hai đơn vị đối xứng.
-- Tại mọi vòng, mọi quan sát trong nhóm và điểm tính gradient, $\phi$ khả vi tại các tiền kích hoạt, hoặc hai đơn vị dùng cùng một giá trị quy ước cho $\phi'$ tại điểm không khả vi.
+- Tại mọi vòng, mọi quan sát trong lô và điểm tính gradient, $\phi$ khả vi tại các tiền kích hoạt, hoặc hai đơn vị dùng cùng một giá trị quy ước cho $\phi'$ tại điểm không khả vi.
 
 **Kết luận.** Với mọi $t\ge0$, hai đơn vị đối xứng tại trạng thái $(\theta_t,v_t)$, và $f_{\theta_t}(x)=2a_{1,t}\,\phi\bigl(w_{1,t}x+c_{1,t}\bigr)$ với mọi $x$, trong đó $a_{1,t}$, $w_{1,t}$, $c_{1,t}$ là giá trị của $a_1$, $w_1$, $c_1$ ở vòng $t$.
 
@@ -1940,11 +1940,11 @@ Với Thuật toán 05.1 và 05.2, gradient tính tại $\theta_t$. Với Thuậ
 
 **Bước 3 (gradient trên một quan sát).**
 
-Với một quan sát $(x,y)$ của nhóm: $z_1=z_2$ và $h_1=h_2$ vì tham số vào bằng nhau; do đó $f_\theta$ và $e$ là một số chung. Theo (4.1), mỗi đạo hàm của đơn vị $j$ là tích của các thừa số chung $e$, $x$ với các thừa số riêng $a_j$, $h_j$, $\phi'(z_j)$; các thừa số riêng bằng nhau giữa hai đơn vị, kể cả $\phi'$ tại điểm không khả vi nhờ quy ước chung. Vậy đạo hàm theo $(w_1,c_1,a_1)$ bằng đạo hàm theo $(w_2,c_2,a_2)$.
+Với một quan sát $(x,y)$ của lô: $z_1=z_2$ và $h_1=h_2$ vì tham số vào bằng nhau; do đó $f_\theta$ và $e$ là một số chung. Theo (4.1), mỗi đạo hàm của đơn vị $j$ là tích của các thừa số chung $e$, $x$ với các thừa số riêng $a_j$, $h_j$, $\phi'(z_j)$; các thừa số riêng bằng nhau giữa hai đơn vị, kể cả $\phi'$ tại điểm không khả vi nhờ quy ước chung. Vậy đạo hàm theo $(w_1,c_1,a_1)$ bằng đạo hàm theo $(w_2,c_2,a_2)$.
 
-**Bước 4 (gradient nhóm).**
+**Bước 4 (gradient lô).**
 
-Gradient nhóm là trung bình của các gradient trên từng quan sát của cùng một nhóm. Trung bình của các cặp bằng nhau là một cặp bằng nhau.
+Gradient lô là trung bình của các gradient trên từng quan sát của cùng một lô. Trung bình của các cặp bằng nhau là một cặp bằng nhau.
 
 **Bước 5 (cập nhật).**
 
@@ -1957,7 +1957,7 @@ Khi hai đơn vị đối xứng, $h_1=h_2=\phi(w_1x+c_1)$ với mọi $x$, nên
 
 Như vậy, thuật toán dựa trên gradient không tự tách hai đơn vị giống nhau. Khác các định lý của Mục 3, vốn mô tả giới hạn của dãy lặp, Định lý 05.28 cho biết tập tham số đối xứng là tập bất biến của mọi quy tắc trong chương. Hệ quả 05.29 lượng hóa hậu quả của tính bất biến này đối với mất mát.
 
-Nhóm dữ liệu thay đổi qua các vòng không phá được đối xứng, vì mỗi nhóm được dùng chung cho cả mạng nên Bước 4 áp dụng cho mọi nhóm. Momentum và Nesterov cũng không phá được, vì vận tốc của hai đơn vị bằng nhau.
+Lô dữ liệu thay đổi qua các vòng không phá được đối xứng, vì mỗi lô được dùng chung cho cả mạng nên Bước 4 áp dụng cho mọi lô. Momentum và Nesterov cũng không phá được, vì vận tốc của hai đơn vị bằng nhau.
 
 Nếu bỏ giả thiết cùng hàm kích hoạt, thừa số $\phi'(z_j)$ khác nhau. Nếu bỏ giả thiết quy ước chung tại điểm gãy của ReLU, một đơn vị có thể nhận đạo hàm $0$ còn đơn vị kia nhận $1$ tại $z_j=0$. Nếu bỏ giả thiết đối xứng ban đầu, Ví dụ 05.24 dưới đây cho thấy hai đơn vị tách nhau. Hệ quả sau so mất mát của mạng đối xứng với mất mát tốt nhất của một đơn vị.
 
@@ -2085,7 +2085,7 @@ Tham số vào khác nhau, nên giả thiết của Định nghĩa 05.27 sai; m�
 
 **Kiểm tra lại.**
 
-Ở (a), $\ell=\tfrac12\cdot0{,}5379^2\approx0{,}1447$. Một bước giảm gradient với $\eta=0{,}5$ cho $a_j\approx0{,}6243$, $w_j\approx0{,}6058$; khi đó tiền kích hoạt là $0{,}6058+0{,}1058\approx0{,}7116$, $f_\theta\approx2\cdot0{,}6243\cdot0{,}6116\approx0{,}7636$, và $\ell\approx0{,}028$, nhỏ hơn $0{,}1447$, với hai đơn vị vẫn bằng nhau.
+Ở (a), $\ell=\tfrac12\cdot0{,}5379^2\approx0{,}1447$. Một bước hạ gradient với $\eta=0{,}5$ cho $a_j\approx0{,}6243$, $w_j\approx0{,}6058$; khi đó tiền kích hoạt là $0{,}6058+0{,}1058\approx0{,}7116$, $f_\theta\approx2\cdot0{,}6243\cdot0{,}6116\approx0{,}7636$, và $\ell\approx0{,}028$, nhỏ hơn $0{,}1447$, với hai đơn vị vẫn bằng nhau.
 :::
 
 ### 4.3 Độ nhạy qua nhiều lớp và bão hòa
@@ -2169,12 +2169,12 @@ Trên hình, $\tanh z$ được đặt cạnh đạo hàm của nó. Gần $z=0$
 ::: remark Nhận xét 05.33 (Vùng gần tuyến tính và căn cứ của mô hình tuyến tính)
 **Hai yêu cầu ngược chiều.** Trọng số lớn làm thừa số $\gamma_k$ lớn nhưng đưa tiền kích hoạt vào vùng bão hòa; trọng số nhỏ giữ tanh gần tuyến tính nhưng làm tín hiệu co. Thang trọng số giữ phương sai tín hiệu không co, không phóng đại trên mô hình tuyến tính được xác định ở Mục 4.4 (Định nghĩa 05.36).
 
-**Mô hình tuyến tính.** Gần $z=0$, khai triển $\tanh z=z-\tfrac{z^3}3+\cdots$ cho $\tanh z\approx z$ và $\phi'\approx1$. Khi tiền kích hoạt nằm gần $0$, một lớp tanh xấp xỉ một lớp tuyến tính, và phép tính thang có thể thực hiện trên mô hình tuyến tính. Đây là căn cứ của Mục 4.4, với điều kiện cần kiểm: mô hình không bảo đảm mọi đơn vị thực tế ở trong vùng đó.
+**Mô hình tuyến tính.** Gần $z=0$, khai triển $\tanh z=z-\tfrac{z^3}3+\cdots$ cho $\tanh z\approx z$ và $\phi'\approx1$. Khi tiền kích hoạt nằm gần $0$, một lớp tanh xấp xỉ một lớp tuyến tính, và phép tính thang có thể thực hiện trên mô hình tuyến tính. Đây là căn cứ của Mục 4.4, với điều kiện cần kiểm tra: mô hình không bảo đảm mọi đơn vị thực tế ở trong vùng đó.
 
 **Phóng đại.** Khi tích (4.2) phóng đại, gradient rất lớn xuất hiện ở một số vùng tham số, tương ứng các vách dốc (cliff) trên mặt mất mát. Một bước gradient tại đó có thể đưa tham số ra xa vùng đang xét; Goodfellow, Bengio và Courville (2016, mục 8.2.4–8.2.5, tr. 288–290) mô tả hiện tượng này. Kỹ thuật cắt gradient xử lý hiện tượng này nằm ngoài phạm vi chương.
 :::
 
-**Trong học máy.** Đối tượng của Mệnh đề 05.32 là chuỗi các lớp mà gradient đi qua khi truyền ngược trong một mạng sâu, với $\gamma_k$ ứng với trọng số và $\phi'(z^{(k)})$ ứng với đạo hàm hàm kích hoạt tại tiền kích hoạt thật. Giả thiết chuỗi vô hướng không rẽ nhánh bị vi phạm ở mạng thật, nơi mỗi lớp là một ma trận; khi đó tích (4.2) thành tích các ma trận Jacobian, và độ lớn của nó do các giá trị kỳ dị (singular value) quyết định. Kết luận vẫn giải thích hiện tượng gradient tiêu biến hoặc bùng nổ (vanishing/exploding gradient) theo độ sâu, và cho biết phải kiểm cả thang trọng số lẫn vùng hoạt động của hàm kích hoạt.
+**Trong học máy.** Đối tượng của Mệnh đề 05.32 là chuỗi các lớp mà gradient đi qua khi truyền ngược trong một mạng sâu, với $\gamma_k$ ứng với trọng số và $\phi'(z^{(k)})$ ứng với đạo hàm hàm kích hoạt tại tiền kích hoạt thật. Giả thiết chuỗi vô hướng không rẽ nhánh bị vi phạm ở mạng thật, nơi mỗi lớp là một ma trận; khi đó tích (4.2) thành tích các ma trận Jacobian, và độ lớn của nó do các giá trị kỳ dị (singular value) quyết định. Kết luận vẫn giải thích hiện tượng gradient tiêu biến hoặc bùng nổ (vanishing/exploding gradient) theo độ sâu, và cho biết phải kiểm tra cả thang trọng số lẫn vùng hoạt động của hàm kích hoạt.
 
 ::: exercise Bài tập 05.7
 **Dữ kiện.** Chuỗi vô hướng $h^{(k)}=\phi(\gamma_kh^{(k-1)})$, $k=1,\ldots,M$, với tiền kích hoạt $z^{(k)}=\gamma_kh^{(k-1)}$. Độ nhạy (4.2): $\frac{\partial h^{(M)}}{\partial h^{(0)}}=\prod_{k=1}^M\gamma_k\phi'(z^{(k)})$.
@@ -2265,7 +2265,7 @@ Với $i\ne i'$: $\mathbb E[W_{ji}h_iW_{ji'}h_{i'}]=\mathbb E[W_{ji}W_{ji'}]\,\m
 $\operatorname{Var}z_j=\mathbb E[z_j^2]$ là tổng của $n_{\rm in}$ số hạng của Bước 2 và các hạng chéo của Bước 3, bằng $n_{\rm in}s^2V_h$. Với $j\ne j'$, $\mathbb E[z_jz_{j'}]=\sum_{i,i'}\mathbb E[W_{ji}W_{j'i'}]\mathbb E[h_ih_{i'}]=0$ vì hai phần tử ở hai hàng khác nhau độc lập, trung bình $0$. $\square$
 :::
 
-Công thức (4.3) cho thấy mỗi lớp nhân phương sai với hệ số $n_{\rm in}s^2$, gọi là hệ số phương sai chiều tiến. Để giữ phương sai qua lớp, cần $s^2=\tfrac1{n_{\rm in}}$, tức lớp càng nhiều đầu vào thì trọng số càng phải nhỏ, vì mỗi đầu ra cộng nhiều số hạng hơn. Kết quả này song song với Định lý 05.11, vì cả hai là phương sai của một tổng các số hạng không tương quan, chỉ khác ở chỗ số số hạng là $b$ ở gradient nhóm và $n_{\rm in}$ ở đây.
+Công thức (4.3) cho thấy mỗi lớp nhân phương sai với hệ số $n_{\rm in}s^2$, gọi là hệ số phương sai chiều tiến. Để giữ phương sai qua lớp, cần $s^2=\tfrac1{n_{\rm in}}$, tức lớp càng nhiều đầu vào thì trọng số càng phải nhỏ, vì mỗi đầu ra cộng nhiều số hạng hơn. Kết quả này song song với Định lý 05.11, vì cả hai là phương sai của một tổng các số hạng không tương quan, chỉ khác ở chỗ số số hạng là $b$ ở gradient lô và $n_{\rm in}$ ở đây.
 
 Bước cập nhật dùng gradient, và gradient đi qua cùng ma trận $W$ theo chiều ngược lại. Phương sai của nó được cho bởi mệnh đề sau.
 
@@ -2326,7 +2326,7 @@ Trong định nghĩa trên, (4.5) là nghịch đảo của số kết nối tru
 
 **Điều kiện áp dụng.** Mô hình tuyến tính của Mệnh đề 05.34 và 05.35.
 
-**Phạm vi.** Tính chất (a) là một tiêu chí thỏa hiệp, không phải nghiệm của một bài tối ưu được nêu trước; một tiêu chí khác, như cực tiểu tổng bình phương độ lệch của hai hệ số khỏi $1$, cho giá trị $s^2$ khác.
+**Phạm vi.** Tính chất (a) là một tiêu chí thỏa hiệp, không phải nghiệm của một bài toán tối ưu được nêu trước; một tiêu chí khác, như cực tiểu tổng bình phương độ lệch của hai hệ số khỏi $1$, cho giá trị $s^2$ khác.
 :::
 
 ::: proof Chứng minh Mệnh đề 05.37
@@ -2416,7 +2416,7 @@ Lặp đẳng thức của Bước 2 từ $k=1$ tới $M$ được dạng tích 
 
 **Giả thiết độc lập.** Mệnh đề 05.35(b) giả sử $\delta_z$ độc lập với $W$; trong mạng thật, $\delta_z$ được tính từ chính các trọng số của các lớp sau và từ dữ liệu. Phép suy cho thang hợp lý tại thời điểm khởi tạo, không cho bảo đảm trong lúc huấn luyện.
 
-**Điều cần đo.** Khi vận hành, các đại lượng cần kiểm trên một nhóm dữ liệu tại $\theta_0$ là độ lệch chuẩn của kích hoạt và của gradient theo từng lớp, cùng sự xuất hiện của giá trị không hữu hạn. Glorot là điểm xuất phát có căn cứ, không phải chứng nhận rằng thang đã đúng (Goodfellow, Bengio và Courville 2016, mục 8.4, tr. 303–305).
+**Điều cần đo.** Khi vận hành, các đại lượng cần kiểm tra trên một lô dữ liệu tại $\theta_0$ là độ lệch chuẩn của kích hoạt và của gradient theo từng lớp, cùng sự xuất hiện của giá trị không hữu hạn. Glorot là điểm xuất phát có căn cứ, không phải chứng nhận rằng thang đã đúng (Goodfellow, Bengio và Courville 2016, mục 8.4, tr. 303–305).
 :::
 
 **Trong học máy.** Đối tượng của Mệnh đề 05.34, 05.35 và Định nghĩa 05.36 là ma trận trọng số của một lớp kết nối đầy đủ, với $n_{\rm in}$, $n_{\rm out}$ là số đơn vị của hai lớp kề nhau. Các giả thiết tuyến tính, trung bình $0$ và độc lập đều bị vi phạm ở mạng thật: hàm kích hoạt phi tuyến, kích hoạt ReLU có trung bình dương, gradient phụ thuộc trọng số. Dù vậy, kết luận vẫn cho phép chọn thang ban đầu sao cho tín hiệu và gradient không co hay phóng đại theo cấp số mũ của độ sâu, như Ví dụ 05.29 tính. Một số thư viện, chẳng hạn Keras, dùng dạng đều của (4.5) làm khởi tạo mặc định cho lớp kết nối đầy đủ, không phụ thuộc hàm kích hoạt; thư viện khác dùng thang khác.
@@ -2427,7 +2427,7 @@ Lặp đẳng thức của Bước 2 từ $k=1$ tới $M$ được dạng tích 
 Một lớp tuyến tính được khởi tạo theo Glorot trong mô hình của Mệnh đề 05.34 và 05.35. Lớp có $n_{\rm out}=100$ đầu ra, và hệ số tiến cho trước là $n_{\rm in}s^2=1{,}5$.
 
 - (a) Tìm $n_{\rm in}$, $s^2$, biên $\alpha$ của dạng đều và hệ số lùi.
-- (b) Kiểm Mệnh đề 05.37(c) trên lớp này. Nếu dùng phân phối chuẩn thay cho phân phối đều, nêu độ lệch chuẩn cần dùng.
+- (b) Kiểm tra Mệnh đề 05.37(c) trên lớp này. Nếu dùng phân phối chuẩn thay cho phân phối đều, nêu độ lệch chuẩn cần dùng.
 - (c) Tìm $s^2$ cực tiểu $(n_{\rm in}s^2-1)^2+(n_{\rm out}s^2-1)^2$ và so với Glorot.
 :::
 
@@ -2469,18 +2469,18 @@ Trong mục này, chúng ta xếp các quyết định theo thứ tự thực hi
 
 ### 5.1 Thứ tự thực hiện và bốn quyết định thiết kế
 
-Một quy trình huấn luyện gồm bốn khâu theo thứ tự: dữ liệu và mất mát xác định $J$; khởi tạo sinh $\theta_0$ và $v_0=0$; vòng lặp rút nhóm, tính gradient và cập nhật; đánh giá xác thực theo lịch định trước quyết định bản lưu và thời điểm dừng. Bảng sau gắn mỗi quyết định với mục xây dựng nó và đại lượng cần kiểm.
+Một quy trình huấn luyện gồm bốn khâu theo thứ tự: dữ liệu và mất mát xác định $J$; khởi tạo sinh $\theta_0$ và $v_0=0$; vòng lặp rút lô, tính gradient và cập nhật; đánh giá xác thực theo lịch định trước quyết định bản lưu và thời điểm dừng. Bảng sau gắn mỗi quyết định với mục xây dựng nó và đại lượng cần kiểm tra.
 
-| Quyết định | Đối tượng | Kết quả căn cứ | Đại lượng cần kiểm |
+| Quyết định | Đối tượng | Kết quả căn cứ | Đại lượng cần kiểm tra |
 |---|---|---|---|
 | Đại lượng cực tiểu và tiêu chí chọn | $J$, $\widehat R_{\rm val}$ | Định nghĩa 05.1, 05.4; Mệnh đề 05.5 | khoảng cách $J$ và $\widehat R_{\rm val}$ |
 | Nguồn gradient | $D$, $b$, $\widehat g_t$ | Định lý 05.11; Mệnh đề 05.14 | chi phí $bC$; tỷ số $\operatorname{tr}\Sigma/(b\lVert\nabla J\rVert_2^2)$ |
 | Quy tắc cập nhật | $\theta_t$, $v_t$, $\eta$, $\beta$ | Định lý 05.21, 05.23 | độ ổn định theo $\eta L$; dao động của $J$ |
 | Khởi tạo | $\theta_0$ | Định lý 05.28; Định nghĩa 05.36 | đối xứng; phương sai kích hoạt và gradient theo lớp |
 
-Bốn hàng của bảng thay cho ba giả định ngầm của Bài 04 nêu ở đầu Mục 1. Hàng thứ nhất thay giả định "hàm cần cực tiểu đã được cho" bằng cặp $J$ và tiêu chí xác thực, còn hàng cuối thay giả định "điểm đầu không ảnh hưởng". Hàng thứ hai thay giả định "gradient đầy đủ tính được" bằng gradient nhóm. Hàng thứ ba là quy tắc cập nhật, được chọn tách rời nguồn gradient, vì cả momentum lẫn Nesterov dùng được với gradient đầy đủ và gradient nhóm.
+Bốn hàng của bảng thay cho ba giả định ngầm của Bài 04 nêu ở đầu Mục 1. Hàng thứ nhất thay giả định "hàm cần cực tiểu đã được cho" bằng cặp $J$ và tiêu chí xác thực, còn hàng cuối thay giả định "điểm đầu không ảnh hưởng". Hàng thứ hai thay giả định "gradient đầy đủ tính được" bằng gradient lô. Hàng thứ ba là quy tắc cập nhật, được chọn tách rời nguồn gradient, vì cả momentum lẫn Nesterov dùng được với gradient đầy đủ và gradient lô.
 
-Mỗi số đo dùng khi kiểm các quyết định trên chỉ chứng nhận một điều cụ thể, như nhận xét sau liệt kê.
+Mỗi số đo dùng khi kiểm tra các quyết định trên chỉ chứng nhận một điều cụ thể, như nhận xét sau liệt kê.
 
 ::: remark Nhận xét 05.40 (Điều mà mỗi kiểm tra chứng nhận)
 1. **$J$ giảm** chứng nhận bộ tối ưu tiến trên mất mát huấn luyện; nó không chứng nhận $R$ giảm (Mệnh đề 05.2, Nhận xét 05.3).
@@ -2502,11 +2502,11 @@ Trở lại phiên huấn luyện ở đầu mục, ví dụ sau dùng bảng c�
 **Dữ kiện.** Số liệu giả lập sư phạm.
 
 - Tập huấn luyện $N=2\cdot10^5$; ngân sách mỗi vòng tối đa $256$ gradient mẫu.
-- Ước lượng tại điểm hiện tại từ một nhóm thử lớn: $\lVert\nabla J\rVert_2^2\approx0{,}05$ và $\operatorname{tr}\Sigma\approx3{,}2$; bước học dùng $\eta=\tfrac1L$.
+- Ước lượng tại điểm hiện tại từ một lô thử lớn: $\lVert\nabla J\rVert_2^2\approx0{,}05$ và $\operatorname{tr}\Sigma\approx3{,}2$; bước học dùng $\eta=\tfrac1L$.
 - Lớp ẩn $784\to128$ được khởi tạo với mọi trọng số bằng $0{,}01$ và mọi độ lệch bằng $0$; lớp ra $128\to10$ kế tiếp cũng có mọi trọng số bằng $0{,}01$, nên các cột của ma trận trọng số lớp ra bằng nhau.
 - Quy tắc dừng sớm $K_{\rm stop}=3$, $\varepsilon=0{,}005$; giá trị tốt nhất ban đầu $0{,}700$; năm lần đánh giá cho $0{,}520$; $0{,}470$; $0{,}468$; $0{,}471$; $0{,}466$.
 
-**Nguồn gradient.** Gradient đầy đủ cần $2\cdot10^5$ gradient mẫu, vượt ngân sách, nên dùng gradient nhóm. Theo (2.5), kỳ vọng của $J$ giảm tại điểm hiện tại khi $b>\tfrac{3{,}2}{0{,}05}=64$. Chọn $b=128$, trong ngân sách; sai số chuẩn tổng hợp $\sqrt{3{,}2/128}\approx0{,}158$, nhỏ hơn $\lVert\nabla J\rVert_2\approx0{,}224$.
+**Nguồn gradient.** Gradient đầy đủ cần $2\cdot10^5$ gradient mẫu, vượt ngân sách, nên dùng gradient lô. Theo (2.5), kỳ vọng của $J$ giảm tại điểm hiện tại khi $b>\tfrac{3{,}2}{0{,}05}=64$. Chọn $b=128$, trong ngân sách; sai số chuẩn tổng hợp $\sqrt{3{,}2/128}\approx0{,}158$, nhỏ hơn $\lVert\nabla J\rVert_2\approx0{,}224$.
 
 **Khởi tạo.** Với mỗi cặp đơn vị của lớp ẩn, trọng số vào, độ lệch và trọng số ra tới mười đầu ra đều bằng nhau. Định lý 05.28 chứng minh cho hai đơn vị và một đầu ra; cùng lập luận quy nạp, với thừa số riêng của mỗi đơn vị là cột tương ứng của lớp ra, cho thấy $128$ đơn vị giữ bằng nhau qua mọi vòng, nên lớp ẩn hoạt động như một đơn vị và momentum không sửa được (Nhận xét 05.30). Sửa: lấy trọng số của cả hai lớp độc lập theo Glorot, độ lệch giữ bằng $0$.
 
@@ -2523,7 +2523,7 @@ Lớp ẩn ngẫu nhiên đã đủ phá đối xứng giữa các đơn vị �
 ::: exercise Bài tập 05.9
 Một nhóm báo cáo kết quả huấn luyện như sau, với số liệu giả lập.
 
-1. Họ thử $50$ cặp (bước học, cỡ nhóm) và báo cáo mất mát xác thực nhỏ nhất $0{,}12$ như kết quả cuối của mô hình.
+1. Họ thử $50$ cặp (bước học, kích thước lô) và báo cáo mất mát xác thực nhỏ nhất $0{,}12$ như kết quả cuối của mô hình.
 2. Tại điểm đầu, ước lượng $\operatorname{tr}\Sigma\approx12$ và $\lVert\nabla J\rVert_2^2\approx0{,}3$; họ dùng $b=16$ với $\eta=\tfrac1L$.
 
 Với mỗi điểm, nêu vấn đề, kết quả của chương làm căn cứ, và cách sửa có số liệu.
@@ -2547,16 +2547,16 @@ Ngưỡng (2.5) là $b>\tfrac{12}{0{,}3}=40$. Với $b=16$, Mệnh đề 05.14(c
 Ở điểm 2, thay $L\eta=0{,}571$: vế phải $\tfrac{2-0{,}571}{0{,}571}\cdot0{,}3\approx0{,}751$, gần đúng bằng $\tfrac{12}{16}=0{,}75$, tức đúng ngưỡng.
 :::
 
-Trong mục này, chúng ta không thêm định nghĩa hay định lý mới. Bảng ở Mục 5.1 sắp các kết quả của Mục 1–4 theo thứ tự thực hiện, và Nhận xét 05.40 nêu phạm vi chứng nhận của từng số đo. Ví dụ 05.30 áp dụng (2.5), Định lý 05.28, Định nghĩa 05.36 và Thuật toán 05.1 vào một phiên cụ thể, qua đó kiểm ba trong bốn quyết định của bảng. Quyết định còn lại, quy tắc cập nhật, được tính ở Tình huống 05.2.
+Trong mục này, chúng ta không thêm định nghĩa hay định lý mới. Bảng ở Mục 5.1 sắp các kết quả của Mục 1–4 theo thứ tự thực hiện, và Nhận xét 05.40 nêu phạm vi chứng nhận của từng số đo. Ví dụ 05.30 áp dụng (2.5), Định lý 05.28, Định nghĩa 05.36 và Thuật toán 05.1 vào một phiên cụ thể, qua đó kiểm tra ba trong bốn quyết định của bảng. Quyết định còn lại, quy tắc cập nhật, được tính ở Tình huống 05.2.
 
-Kết quả là một quy trình huấn luyện mà mỗi khâu có căn cứ và mỗi số đo có phạm vi chứng nhận rõ. Các giới hạn còn lại nằm ở giả thiết của từng kết quả: bảo đảm hội tụ chỉ có dưới giả thiết lồi hoặc gradient Lipschitz (Nhận xét 05.16), phân tích momentum chỉ chính xác trên hàm bậc hai, và thang Glorot dựa trên mô hình tuyến tính. Trong phần tình huống áp dụng dưới đây, chúng ta đặt ba bài toán cụ thể, trong đó một bài có giả thiết bị vi phạm, để đo các giới hạn đó bằng số.
+Kết quả là một quy trình huấn luyện mà mỗi khâu có căn cứ và mỗi số đo có phạm vi chứng nhận rõ. Các giới hạn còn lại nằm ở giả thiết của từng kết quả: bảo đảm hội tụ chỉ có dưới giả thiết lồi hoặc gradient Lipschitz (Nhận xét 05.16), phân tích momentum chỉ chính xác trên hàm bậc hai, và thang Glorot dựa trên mô hình tuyến tính. Trong phần tình huống áp dụng dưới đây, chúng ta đặt ba bài toán cụ thể, trong đó một bài toán có giả thiết bị vi phạm, để đo các giới hạn đó bằng số.
 
 ## Tình huống áp dụng và ứng dụng
 
-::: application Tình huống 05.1 (Chọn bước học và cỡ nhóm cho hồi quy logistic)
+::: application Tình huống 05.1 (Chọn bước học và kích thước lô cho hồi quy logistic)
 **Bài toán và dữ liệu.**
 
-Tám bài đánh giá có đặc trưng $x_i$, số giờ ôn tập đã chuẩn hóa, và nhãn $y_i\in\{-1,+1\}$, với $+1$ là đạt (số liệu giả lập sư phạm). Bốn bài có $x=2$, cả bốn đạt; bốn bài có $x=1$, hai đạt và hai không đạt. Mô hình dự báo xác suất đạt là $\sigma(\theta x)$, với $\sigma$ là hàm sigmoid, $\sigma(\varsigma)=1/(1+\exp(-\varsigma))$ cho mọi số thực $\varsigma$, và $\theta\in\mathbb R$; mô hình không có hệ số chặn để mọi phép tính làm được bằng tay. Chúng ta cần chọn bước học và cỡ nhóm cho SGD từ điểm đầu $\theta_0=0$.
+Tám bài đánh giá có đặc trưng $x_i$, số giờ ôn tập đã chuẩn hóa, và nhãn $y_i\in\{-1,+1\}$, với $+1$ là đạt (số liệu giả lập sư phạm). Bốn bài đánh giá có $x=2$, cả bốn đạt; bốn bài đánh giá có $x=1$, hai đạt và hai không đạt. Mô hình dự báo xác suất đạt là $\sigma(\theta x)$, với $\sigma$ là hàm sigmoid, $\sigma(\varsigma)=1/(1+\exp(-\varsigma))$ cho mọi số thực $\varsigma$, và $\theta\in\mathbb R$; mô hình không có hệ số chặn để mọi phép tính thực hiện được thủ công. Chúng ta cần chọn bước học và kích thước lô cho SGD từ điểm đầu $\theta_0=0$.
 
 **Mô hình hóa.**
 
@@ -2566,18 +2566,18 @@ $$
 J(\theta)=\frac18\sum_{i=1}^8\log\bigl(1+\exp(-m_i\theta)\bigr),
 $$
 
-bài không ràng buộc trên $\mathbb R$. Gradient mẫu là $g_i(\theta)=-m_i\,\sigma(-m_i\theta)$.
+bài toán không ràng buộc trên $\mathbb R$. Gradient mẫu là $g_i(\theta)=-m_i\,\sigma(-m_i\theta)$.
 
-**Kiểm giả thiết.**
+**Kiểm tra giả thiết.**
 
 1. Lồi: theo Mệnh đề 01.9(c), mỗi số hạng có đạo hàm bậc hai dương, nên $J$ lồi chặt.
 2. Gradient Lipschitz: $J''(\theta)=\tfrac18\sum_im_i^2\sigma(m_i\theta)\sigma(-m_i\theta)$, và mỗi tích $\sigma(m_i\theta)\sigma(-m_i\theta)$ không vượt $\tfrac14$, nên $J''(\theta)\le\tfrac14\cdot\tfrac{20}8=0{,}625$; theo Nhận xét 04.19, $L=0{,}625$.
 3. Tồn tại nghiệm: có biên dương và biên âm, nên $J(\theta)\to\infty$ khi $\theta\to\pm\infty$. Phương pháp Newton của Bài 04 cho $\theta^*\approx1{,}0120$ và $J(\theta^*)\approx0{,}47007$.
-4. Gradient nhóm không chệch theo Định lý 05.11 với chỉ số rút đều, độc lập, có hoàn lại.
+4. Gradient lô không chệch theo Định lý 05.11 với chỉ số rút đều, độc lập, có hoàn lại.
 
 **Bước học.** $\eta=\tfrac1L=1{,}6$, giá trị của Bổ đề 04.20 và Mệnh đề 05.14(c).
 
-**Cỡ nhóm tại điểm đầu.**
+**Kích thước lô tại điểm đầu.**
 
 Tại $\theta=0$, $\sigma(0)=\tfrac12$ nên $g_i(0)=-\tfrac{m_i}2$: bốn giá trị $-1$, hai giá trị $-0{,}5$, hai giá trị $0{,}5$.
 
@@ -2592,7 +2592,7 @@ Cận của Mệnh đề 05.14(c), với $J(0)=\log2\approx0{,}6931$:
 | $1$ | $0{,}7931$ | $0{,}6947$ |
 | $2$ | $0{,}6431$ | $0{,}5786$ |
 
-**Tính tay giá trị đúng với $b=1$.**
+**Tính thủ công giá trị đúng với $b=1$.**
 
 $\theta_1=-1{,}6\,g_{I_1}$ nhận $1{,}6$ với xác suất $\tfrac12$, $0{,}8$ với xác suất $\tfrac14$, $-0{,}8$ với xác suất $\tfrac14$. Từ định nghĩa của $J$: $J(1{,}6)\approx0{,}5119$, $J(0{,}8)\approx0{,}4775$, $J(-0{,}8)\approx1{,}2775$. Do đó
 
@@ -2610,9 +2610,9 @@ Với $b=1$, kỳ vọng của $J$ tăng sau một bước, đúng như (2.5) c�
 
 Tại $\theta^*$, gradient mẫu nhận ba giá trị:
 
-- $-0{,}2334$ ở bốn bài $x=2$;
-- $-0{,}2666$ ở hai bài đạt với $x=1$;
-- $0{,}7334$ ở hai bài không đạt.
+- $-0{,}2334$ ở bốn bài đánh giá có $x=2$;
+- $-0{,}2666$ ở hai bài đánh giá đạt với $x=1$;
+- $0{,}7334$ ở hai bài đánh giá không đạt.
 
 Trung bình bằng $0$ và $\Sigma(\theta^*)\approx0{,}1795$. Mọi bước khác $0$ làm $J$ tăng; mức tăng kỳ vọng sau một bước:
 
@@ -2636,23 +2636,23 @@ J(1{,}6)&=\tfrac18\bigl[4\log(1+\exp(-3{,}2))+2\log(1+\exp(-1{,}6))+2\log(1+\exp
 $$
  Độ cong thật tại nghiệm $J''(\theta^*)\approx0{,}304$ nhỏ hơn $L=0{,}625$, nên các cận dùng $L$ là bi quan, khớp việc cận lớn hơn giá trị đúng ở cả hai bảng.
 
-**Giới hạn.** Với $N$ lớn, $\Sigma$ và $\lVert\nabla J\rVert_2$ chỉ ước lượng được từ một nhóm thử, và ngưỡng (2.5) đổi theo $\theta$.
+**Giới hạn.** Với $N$ lớn, $\Sigma$ và $\lVert\nabla J\rVert_2$ chỉ ước lượng được từ một lô thử, và ngưỡng (2.5) đổi theo $\theta$.
 
-**Dẫn ngược lý thuyết.** Mệnh đề 01.9 và Nhận xét 04.19 ở bước kiểm giả thiết; Định lý 05.11 và Hệ quả 05.12 cho kỳ vọng, phương sai; Mệnh đề 05.14 và ngưỡng (2.5) cho cỡ nhóm; Ví dụ 05.14 và Nhận xét 05.16 cho hành vi gần nghiệm.
+**Dẫn ngược lý thuyết.** Mệnh đề 01.9 và Nhận xét 04.19 ở bước kiểm tra giả thiết; Định lý 05.11 và Hệ quả 05.12 cho kỳ vọng, phương sai; Mệnh đề 05.14 và ngưỡng (2.5) cho kích thước lô; Ví dụ 05.14 và Nhận xét 05.16 cho hành vi gần nghiệm.
 :::
 
 ::: application Tình huống 05.2 (Momentum trên hồi quy tuyến tính có số điều kiện 100)
 **Bài toán và dữ liệu.**
 
-Bốn quan sát có hai đặc trưng; đặc trưng thứ hai được đo theo đơn vị nhỏ hơn mười lần nên có giá trị lớn gấp mười. Các vectơ đặc trưng là $x_1=(1,10)^T$, $x_2=(1,-10)^T$, $x_3=(-1,10)^T$, $x_4=(-1,-10)^T$, và nhãn sinh từ $\theta^*=(1,1)^T$ không nhiễu: $y=(11,-9,9,-11)$. Chúng ta cần so giảm gradient, momentum và Nesterov từ $\theta_0=0$, với gradient đầy đủ.
+Bốn quan sát có hai đặc trưng; đặc trưng thứ hai được đo theo đơn vị nhỏ hơn mười lần nên có giá trị lớn gấp mười. Các vectơ đặc trưng là $x_1=(1,10)^T$, $x_2=(1,-10)^T$, $x_3=(-1,10)^T$, $x_4=(-1,-10)^T$, và nhãn sinh từ $\theta^*=(1,1)^T$ không nhiễu: $y=(11,-9,9,-11)$. Chúng ta cần so hạ gradient, momentum và Nesterov từ $\theta_0=0$, với gradient đầy đủ.
 
 **Mô hình hóa.**
 
 $J(\theta)=\tfrac14\sum_i\tfrac12(x_i^T\theta-y_i)^2$. Vì $y_i=x_i^T\theta^*$, $J(\theta)=\tfrac12(\theta-\theta^*)^TH(\theta-\theta^*)$ với $H=\tfrac14\sum_ix_ix_i^T=\operatorname{diag}(1,100)$; các hạng chéo triệt tiêu vì dấu của hai đặc trưng cân bằng.
 
-**Kiểm giả thiết.** $J$ là hàm bậc hai lồi chặt, $\mu=1$, $L=100$, $\kappa=100$, $Q=\mathrm I$; Mệnh đề 05.17, Định lý 05.21 và 05.23 áp dụng chính xác. $J(\theta_0)=\tfrac12(1+100)=50{,}5$.
+**Kiểm tra giả thiết.** $J$ là hàm bậc hai lồi chặt, $\mu=1$, $L=100$, $\kappa=100$, $Q=\mathrm I$; Mệnh đề 05.17, Định lý 05.21 và 05.23 áp dụng chính xác. $J(\theta_0)=\tfrac12(1+100)=50{,}5$.
 
-**Giảm gradient với $\eta=\tfrac1L=0{,}01$.** Tọa độ thứ hai có hệ số $0$, về đúng nghiệm sau một bước; tọa độ thứ nhất có hệ số $0{,}99$. Do đó $J(\theta_t)=\tfrac12\cdot0{,}99^{2t}$ với $t\ge1$, và $J\le10^{-4}$ cần $t\ge\tfrac{\log5000}{2\log(1/0{,}99)}\approx423{,}8$, tức $424$ bước.
+**Hạ gradient với $\eta=\tfrac1L=0{,}01$.** Tọa độ thứ hai có hệ số $0$, về đúng nghiệm sau một bước; tọa độ thứ nhất có hệ số $0{,}99$. Do đó $J(\theta_t)=\tfrac12\cdot0{,}99^{2t}$ với $t\ge1$, và $J\le10^{-4}$ cần $t\ge\tfrac{\log5000}{2\log(1/0{,}99)}\approx423{,}8$, tức $424$ bước.
 
 **Momentum với tham số Polyak (3.5).** $\sqrt\beta=\tfrac{10-1}{10+1}=\tfrac9{11}$, $\beta=\tfrac{81}{121}\approx0{,}669$, $\eta=\tfrac4{(10+1)^2}=\tfrac4{121}$, khoảng $0{,}0331$. Cả hai tọa độ nằm đúng ở hai đầu dải của Định lý 05.21(c), nên có nghiệm kép:
 
@@ -2663,13 +2663,13 @@ Biên độ tọa độ thứ hai $(1+\tfrac{20t}{11})(\tfrac9{11})^t$ bằng $2
 
 **Nesterov với $\eta=\tfrac1L$, $\beta=\tfrac9{11}$.** Theo Định lý 05.23(a), tọa độ thứ hai có $1-\eta\lambda=0$, nên $[\chi_t]_2=0$ với $t\ge1$. Tọa độ thứ nhất có đa thức $\zeta^2-1{,}8\zeta+0{,}81=(\zeta-0{,}9)^2$, nghiệm kép $0{,}9=1-\tfrac1{\sqrt\kappa}$, khớp Định lý 05.23(c); với $[\chi_1]_1=-0{,}99$, $[\chi_t]_1=-(1+0{,}1t)\,0{,}9^t$. Do đó $J(\theta_t)=\tfrac12(1+0{,}1t)^2\,0{,}81^t$, giảm đơn điệu vì $(1{,}1)^2\cdot0{,}81\approx0{,}98<1$, và đạt $J\le10^{-4}$ ở bước $59$.
 
-![Đồ thị log cơ số 10 của J theo số bước t từ 0 tới 120 cho ba phương pháp trên hồi quy có κ = 100: giảm gradient với bước 1/L giảm chậm theo đường thẳng có độ dốc ứng với hệ số 0,99² mỗi bước, tới khoảng 10⁻⁴ ở bước 424 (ngoài khung); momentum Polyak tăng lên khoảng 687 ở bước 4 rồi giảm nhanh, qua 10⁻⁴ ở bước 56; Nesterov giảm đơn điệu, qua 10⁻⁴ ở bước 59.](img/lec-05/ill-conditioned-runs.svg)
+![Đồ thị log cơ số 10 của J theo số bước t từ 0 tới 120 cho ba phương pháp trên hồi quy có κ = 100: hạ gradient với bước 1/L giảm chậm theo đường thẳng có độ dốc ứng với hệ số 0,99² mỗi bước, tới khoảng 10⁻⁴ ở bước 424 (ngoài khung); momentum Polyak tăng lên khoảng 687 ở bước 4 rồi giảm nhanh, qua 10⁻⁴ ở bước 56; Nesterov giảm đơn điệu, qua 10⁻⁴ ở bước 59.](img/lec-05/ill-conditioned-runs.svg)
 
-Hình trên so $\log_{10}J$ theo $t$ cho ba phương pháp. Hai phương pháp có momentum có độ dốc tiệm cận gần nhau, ứng với $\tfrac9{11}$ và $0{,}9$, dốc hơn nhiều so với $0{,}99$ của giảm gradient. Chỗ khác nhau nằm ở đầu quỹ đạo: momentum Polyak đi qua một đoạn tăng do thừa số $1+\tfrac{20t}{11}$ của nghiệm kép, còn Nesterov không.
+Hình trên so $\log_{10}J$ theo $t$ cho ba phương pháp. Hai phương pháp có momentum có độ dốc tiệm cận gần nhau, ứng với $\tfrac9{11}$ và $0{,}9$, dốc hơn nhiều so với $0{,}99$ của hạ gradient. Chỗ khác nhau nằm ở đầu quỹ đạo: momentum Polyak đi qua một đoạn tăng do thừa số $1+\tfrac{20t}{11}$ của nghiệm kép, còn Nesterov không.
 
 **Khi giả thiết của Định lý 05.21(b) bị vi phạm.** Giữ $\beta=\tfrac{81}{121}$ nhưng tăng $\eta$ lên $0{,}04$: $\eta L=4$, lớn hơn $2(1+\beta)\approx3{,}339$. Tọa độ thứ hai có đa thức $\zeta^2+2{,}331\zeta+0{,}669$ với nghiệm $\approx-1{,}995$ và $\approx-0{,}336$; theo Bổ đề 05.20(d), $[\chi_t]_2$ không về $0$, và thực tế $\lvert[\chi_t]_2\rvert$ tăng gần gấp đôi mỗi bước: $J\approx1{,}3\cdot10^8$ tại $t=10$.
 
-**Diễn giải.** Với $\kappa=100$, momentum và Nesterov cần khoảng $\sqrt\kappa$ lần ít bước hơn giảm gradient, đúng bậc của Hệ quả 05.22 và Định lý 05.23(c). Momentum Polyak có giai đoạn tăng đầu; Nesterov chọn bước học chỉ từ $L$. Cả hai cần $\mu$ để chọn hệ số $\beta$. Một bước học lớn hơn ngưỡng ổn định làm momentum phân kỳ dù hàm lồi chặt.
+**Diễn giải.** Với $\kappa=100$, momentum và Nesterov cần khoảng $\sqrt\kappa$ lần ít bước hơn hạ gradient, đúng bậc của Hệ quả 05.22 và Định lý 05.23(c). Momentum Polyak có giai đoạn tăng đầu; Nesterov chọn bước học chỉ từ $L$. Cả hai cần $\mu$ để chọn hệ số $\beta$. Một bước học lớn hơn ngưỡng ổn định làm momentum phân kỳ dù hàm lồi chặt.
 
 **Kiểm tra lại.** Tọa độ thứ nhất của momentum tại $t=1$:
 
@@ -2682,23 +2682,23 @@ $$
 
 đúng bằng $[\chi_1]_1$ theo (3.4). Tọa độ thứ hai tại $t=4$: $(1+\tfrac{80}{11})(\tfrac9{11})^4\approx8{,}273\cdot0{,}4481\approx3{,}707$, nên $J\approx\tfrac12\cdot100\cdot3{,}707^2\approx687$, khớp mô phỏng.
 
-**Giới hạn.** Với mô hình tuyến tính, chuẩn hóa đặc trưng thứ hai cho $H=\mathrm I$ và giảm gradient với $\eta=1$ tới nghiệm sau một bước, rẻ hơn mọi phương pháp gia tốc. Với mạng sâu, phân tích theo tọa độ riêng chỉ mô tả hành vi gần một cực tiểu.
+**Giới hạn.** Với mô hình tuyến tính, chuẩn hóa đặc trưng thứ hai cho $H=\mathrm I$ và hạ gradient với $\eta=1$ tới nghiệm sau một bước, rẻ hơn mọi phương pháp gia tốc. Với mạng sâu, phân tích theo tọa độ riêng chỉ mô tả hành vi gần một cực tiểu.
 
-**Dẫn ngược lý thuyết.** Mệnh đề 05.17 cho giảm gradient; Bổ đề 05.20, Định lý 05.21 và Hệ quả 05.22 cho momentum, kể cả trường hợp phân kỳ; Định lý 05.23 cho Nesterov.
+**Dẫn ngược lý thuyết.** Mệnh đề 05.17 cho hạ gradient; Bổ đề 05.20, Định lý 05.21 và Hệ quả 05.22 cho momentum, kể cả trường hợp phân kỳ; Định lý 05.23 cho Nesterov.
 :::
 
 ::: application Tình huống 05.3 (Mạng hai đơn vị với khởi tạo đối xứng: giả thiết không thỏa)
 **Bài toán và dữ liệu.**
 
-Ba quan sát $(x,y)$ là $(-1,1)$, $(1,1)$, $(2,2)$, lấy từ hàm $y=\lvert x\rvert$. Mạng hai đơn vị ẩn ReLU của Định nghĩa 05.25 biểu diễn đúng hàm này với $w=(1,-1)$, $c=(0,0)$, $a=(1,1)$, vì $\lvert x\rvert=\phi(x)+\phi(-x)$. Huấn luyện bằng giảm gradient với gradient đầy đủ, $\eta=0{,}1$, từ hai điểm đầu khác nhau.
+Ba quan sát $(x,y)$ là $(-1,1)$, $(1,1)$, $(2,2)$, lấy từ hàm $y=\lvert x\rvert$. Mạng hai đơn vị ẩn ReLU của Định nghĩa 05.25 biểu diễn đúng hàm này với $w=(1,-1)$, $c=(0,0)$, $a=(1,1)$, vì $\lvert x\rvert=\phi(x)+\phi(-x)$. Huấn luyện bằng hạ gradient với gradient đầy đủ, $\eta=0{,}1$, từ hai điểm đầu khác nhau.
 
 **Mô hình hóa.** $J(\theta)=\tfrac13\sum_{i=1}^3\tfrac12(f_\theta(x_i)-y_i)^2$, với $\theta\in\mathbb R^6$.
 
-**Kiểm giả thiết.** Định lý 05.28 cần đối xứng ban đầu và điểm khả vi. Mọi $x_i\ne0$ và độ lệch ban đầu bằng $0$, nên tiền kích hoạt ban đầu khác $0$; mô phỏng kiểm rằng không tiền kích hoạt nào bằng đúng $0$ trên quỹ đạo.
+**Kiểm tra giả thiết.** Định lý 05.28 cần đối xứng ban đầu và điểm khả vi. Mọi $x_i\ne0$ và độ lệch ban đầu bằng $0$, nên tiền kích hoạt ban đầu khác $0$; mô phỏng kiểm tra rằng không tiền kích hoạt nào bằng đúng $0$ trên quỹ đạo.
 
 **Khởi tạo đối xứng $w_j=0{,}5$, $c_j=0$, $a_j=0{,}5$.**
 
-Vòng đầu, tính tay:
+Vòng đầu, tính thủ công:
 
 - với $x=-1$: $z_j=-0{,}5$, $h_j=0$, $f=0$, $e=-1$;
 - với $x=1$: $z_j=0{,}5$, $h_j=0{,}5$, $f=0{,}5$, $e=-0{,}5$;
@@ -2722,7 +2722,7 @@ Hai đơn vị giống hệt nhau ở mọi vòng, và $J\to\tfrac16$: mạng kh
 
 Lớp vào có $n_{\rm in}=1$, $n_{\rm out}=2$ và lớp ra có $n_{\rm in}=2$, $n_{\rm out}=1$; cả hai cho $s^2=\tfrac23$ và $\alpha=\sqrt2\approx1{,}414$. Chọn sẵn một bộ giá trị trong đoạn $[-1{,}414;\,1{,}414]$, đóng vai một lần lấy mẫu để phép tính lặp lại được: $w=(0{,}9;\,-1{,}1)$, $a=(0{,}6;\,0{,}8)$, $c=(0,0)$.
 
-Vòng đầu, tính tay:
+Vòng đầu, tính thủ công:
 
 - với $x=-1$: $h=(0;\,1{,}1)$, $f=0{,}88$, $e=-0{,}12$;
 - với $x=1$: $h=(0{,}9;\,0)$, $f=0{,}54$, $e=-0{,}46$;
@@ -2761,7 +2761,7 @@ Khi đó $J\approx\tfrac16(1+0{,}149+0{,}639)\approx0{,}298$.
 
 Các khái niệm của chương xuất hiện trong học máy ở những chỗ sau.
 
-- **Bộ tối ưu SGD của thư viện học sâu.** Tham số cỡ nhóm, bước học, momentum và cờ Nesterov ứng với $b$, $\eta$, $\beta$ và lựa chọn giữa Thuật toán 05.2 và 05.3.
+- **Bộ tối ưu SGD của thư viện học sâu.** Tham số kích thước lô, bước học, momentum và cờ Nesterov ứng với $b$, $\eta$, $\beta$ và lựa chọn giữa Thuật toán 05.2 và 05.3.
 - **Dừng sớm và chọn siêu tham số.** Thuật toán 05.1 chọn bản lưu theo mất mát xác thực, và Mệnh đề 05.5 cho biết giá trị xác thực của bản được chọn là ước lượng lạc quan (Goodfellow, Bengio và Courville 2016, mục 7.8, tr. 246–252).
 - **Lịch bước học.** Ví dụ 05.14 và Nhận xét 05.16 giải thích vì sao bước học được giảm ở giai đoạn cuối.
 - **Khởi tạo mặc định.** Một số thư viện, chẳng hạn Keras, dùng dạng đều của Định nghĩa 05.36 làm mặc định cho lớp kết nối đầy đủ; Nhận xét 05.39 nêu giới hạn với ReLU.
@@ -2769,13 +2769,13 @@ Các khái niệm của chương xuất hiện trong học máy ở những ch�
 
 ## Tóm tắt chương
 
-Chương này khởi đầu bằng việc tách đại lượng được cực tiểu khỏi đại lượng cần đạt (Định nghĩa 05.1, Mệnh đề 05.2, 05.5) và phân loại điểm dừng của hàm không lồi bằng Hessian (Mệnh đề 05.8). Bộ tối ưu cực tiểu mất mát huấn luyện $J$, còn bản lưu được chọn theo mất mát xác thực $\widehat R_{\rm val}$. Để giảm chi phí của gradient đầy đủ, chúng ta thay $\nabla J$ bằng gradient nhóm không chệch có hiệp phương sai $\Sigma/b$ (Định lý 05.11). Ảnh hưởng của nhiễu được đo bằng kỳ vọng thay đổi của $J$ sau một bước (Mệnh đề 05.14), rồi Thuật toán 05.1 ghép bước cập nhật với quy tắc dừng sớm. Trên hàm bậc hai, độ cong chặn bước học và làm giảm gradient chậm khi số điều kiện lớn (Mệnh đề 05.17), còn momentum và Nesterov đưa hệ số co về bậc $\sqrt\kappa$ (Định lý 05.21, 05.23). Với mạng nơ ron, điểm đầu phải phá đối xứng giữa các đơn vị ẩn (Định lý 05.28, Mệnh đề 05.31). Do độ nhạy qua một chuỗi lớp là tích các thừa số (Mệnh đề 05.32), điểm đầu còn cần một thang mà quy tắc Glorot chọn bằng cách cân bằng hai hệ số phương sai tiến và lùi (Mệnh đề 05.34, 05.35, 05.37). Cuối cùng, Nhận xét 05.40 phối hợp các kết quả theo thứ tự thực hiện của một chương trình huấn luyện và nêu phạm vi chứng nhận của từng số đo.
+Chương này khởi đầu bằng việc tách đại lượng được cực tiểu khỏi đại lượng cần đạt (Định nghĩa 05.1, Mệnh đề 05.2, 05.5) và phân loại điểm dừng của hàm không lồi bằng Hessian (Mệnh đề 05.8). Bộ tối ưu cực tiểu mất mát huấn luyện $J$, còn bản lưu được chọn theo mất mát xác thực $\widehat R_{\rm val}$. Để giảm chi phí của gradient đầy đủ, chúng ta thay $\nabla J$ bằng gradient lô không chệch có hiệp phương sai $\Sigma/b$ (Định lý 05.11). Ảnh hưởng của nhiễu được đo bằng kỳ vọng thay đổi của $J$ sau một bước (Mệnh đề 05.14), rồi Thuật toán 05.1 ghép bước cập nhật với quy tắc dừng sớm. Trên hàm bậc hai, độ cong chặn bước học và làm phương pháp hạ gradient hội tụ chậm khi số điều kiện lớn (Mệnh đề 05.17), còn momentum và Nesterov đưa hệ số co về bậc $\sqrt\kappa$ (Định lý 05.21, 05.23). Với mạng nơ ron, điểm đầu phải phá đối xứng giữa các đơn vị ẩn (Định lý 05.28, Mệnh đề 05.31). Do độ nhạy qua một chuỗi lớp là tích các thừa số (Mệnh đề 05.32), điểm đầu còn cần một thang mà quy tắc Glorot chọn bằng cách cân bằng hai hệ số phương sai tiến và lùi (Mệnh đề 05.34, 05.35, 05.37). Cuối cùng, Nhận xét 05.40 phối hợp các kết quả theo thứ tự thực hiện của một chương trình huấn luyện và nêu phạm vi chứng nhận của từng số đo.
 
 **Định nghĩa và kết quả theo mục.**
 
 - Mục 1: mất mát huấn luyện và rủi ro kỳ vọng, tập xác thực, mất mát xác thực, tập kiểm thử, điểm dừng, cực tiểu địa phương, điểm yên ngựa (Định nghĩa 05.1, 05.4, 05.7); khoảng cách giữa $J$ và $R$ của mô hình hằng (Mệnh đề 05.2); mất mát xác thực không chệch khi tham số cố định và lạc quan khi được chọn (Mệnh đề 05.5); phân loại điểm dừng bằng dấu các giá trị riêng của Hessian (Mệnh đề 05.8).
-- Mục 2: gradient nhóm và hiệp phương sai của gradient mẫu (Định nghĩa 05.10); gradient nhóm không chệch, hiệp phương sai $\Sigma/b$ (Định lý 05.11, Hệ quả 05.12); kỳ vọng mất mát sau một bước và ngưỡng cỡ nhóm (Mệnh đề 05.14); SGD với dừng sớm (Thuật toán 05.1).
-- Mục 3: điều kiện co $0<\eta<\tfrac2L$ và hệ số $\tfrac{\kappa-1}{\kappa+1}$ của giảm gradient trên hàm bậc hai (Mệnh đề 05.17); momentum và Nesterov (Thuật toán 05.2, 05.3); vận tốc là tổng có trọng số (Mệnh đề 05.18); momentum trên hàm bậc hai (Bổ đề 05.20, Định lý 05.21, Hệ quả 05.22); Nesterov trên hàm bậc hai (Định lý 05.23).
+- Mục 2: gradient lô và hiệp phương sai của gradient mẫu (Định nghĩa 05.10); gradient lô không chệch, hiệp phương sai $\Sigma/b$ (Định lý 05.11, Hệ quả 05.12); kỳ vọng mất mát sau một bước và ngưỡng kích thước lô (Mệnh đề 05.14); SGD với dừng sớm (Thuật toán 05.1).
+- Mục 3: điều kiện co $0<\eta<\tfrac2L$ và hệ số $\tfrac{\kappa-1}{\kappa+1}$ của hạ gradient trên hàm bậc hai (Mệnh đề 05.17); momentum và Nesterov (Thuật toán 05.2, 05.3); vận tốc là tổng có trọng số (Mệnh đề 05.18); momentum trên hàm bậc hai (Bổ đề 05.20, Định lý 05.21, Hệ quả 05.22); Nesterov trên hàm bậc hai (Định lý 05.23).
 - Mục 4: mạng hai đơn vị ẩn, hai đơn vị đối xứng, khởi tạo Glorot (Định nghĩa 05.25, 05.27, 05.36); đạo hàm của mạng bằng quy tắc dây chuyền (Mệnh đề 05.26); đối xứng được bảo toàn (Định lý 05.28, Hệ quả 05.29); trọng số liên tục độc lập phá đối xứng (Mệnh đề 05.31); độ nhạy qua chuỗi (Mệnh đề 05.32); phương sai tiến và lùi (Mệnh đề 05.34, 05.35); tính chất của Glorot (Mệnh đề 05.37); phương sai qua nhiều lớp (Mệnh đề 05.38).
 
 **Công thức cần nhớ.**
@@ -2796,25 +2796,25 @@ $$
 \operatorname{Var}z_j=n_{\rm in}s^2V_h,\qquad\operatorname{Var}\delta_{h,i}=n_{\rm out}s^2V_\delta,\qquad s^2=\frac2{n_{\rm in}+n_{\rm out}},\qquad\alpha=\sqrt{\frac6{n_{\rm in}+n_{\rm out}}} .
 $$
 
-Dòng đầu: gradient nhóm và bước SGD. Dòng hai: momentum và điểm dự báo của Nesterov. Dòng ba: miền ổn định trên hàm bậc hai của giảm gradient, momentum và Nesterov. Dòng bốn: phương sai qua một lớp và quy tắc Glorot.
+Dòng đầu: gradient lô và bước SGD. Dòng hai: momentum và điểm dự báo của Nesterov. Dòng ba: miền ổn định trên hàm bậc hai của hạ gradient, momentum và Nesterov. Dòng bốn: phương sai qua một lớp và quy tắc Glorot.
 
 **Giả thiết thường bị bỏ qua.**
 
-- Gradient nhóm không chệch cho $\nabla J$, không cho $\nabla R$, và chỉ khi chỉ số rút đều.
+- Gradient lô không chệch cho $\nabla J$, không cho $\nabla R$, và chỉ khi chỉ số rút đều.
 - Không chệch không bảo đảm $J$ giảm ở từng bước; kỳ vọng giảm cần tín hiệu lớn hơn nhiễu theo (2.5).
 - Phân tích momentum và Nesterov chính xác chỉ trên hàm bậc hai với gradient đầy đủ.
-- Đối xứng chỉ bị phá khi trọng số ban đầu khác nhau; momentum và nhóm dữ liệu thay đổi không phá được nó.
+- Đối xứng chỉ bị phá khi trọng số ban đầu khác nhau; momentum và lô dữ liệu thay đổi không phá được nó.
 - Glorot dựa trên mô hình tuyến tính, trung bình $0$, độc lập; với ReLU hệ số chiều tiến khác.
 
-**Giới hạn còn lại và bài sau.** Trong chương này, chúng ta đã xây quy trình huấn luyện bằng gradient nhóm, momentum và khởi tạo, kế thừa giảm gradient và bổ đề giảm của Bài 04. Ba giới hạn còn lại được xử lý ở các bài khác.
+**Giới hạn còn lại và bài giảng sau.** Trong chương này, chúng ta đã xây quy trình huấn luyện bằng gradient lô, momentum và khởi tạo, kế thừa hạ gradient và bổ đề giảm của Bài 04. Ba giới hạn còn lại được xử lý ở các bài giảng khác.
 
-1. Các định lý hội tụ của SGD chỉ được phát biểu lại, không được chứng minh trong chương (Nhận xét 05.16). Bài 05b (hội tụ của hạ gradient và hạ gradient ngẫu nhiên) chứng minh chúng, gồm sàn nhiễu, lịch bước và điều kiện Polyak–Łojasiewicz.
-2. Các phép tính kỳ vọng, phương sai và độ lệch dùng xác suất ở mức tối thiểu. Bài 05c (xác suất cơ bản, bất đẳng thức tập trung và mất mát trung bình trên nhóm nhỏ) nên đọc trước hoặc song song với Mục 2: phần kỳ vọng, phương sai và trung bình mẫu là tiên quyết của Định lý 05.11, còn phần bất đẳng thức tập trung có thể đọc sau. Ghi chú đó cho cơ sở xác suất, các bất đẳng thức Markov, Chebyshev, Hoeffding và phân tích cỡ nhóm dưới ngân sách cố định.
+1. Các định lý hội tụ của SGD chỉ được phát biểu lại, không được chứng minh trong chương (Nhận xét 05.16). Bài 05b (hội tụ của hạ gradient và hạ gradient ngẫu nhiên) chứng minh chúng, gồm mức nhiễu nền (noise floor), lịch bước và điều kiện Polyak–Łojasiewicz.
+2. Các phép tính kỳ vọng, phương sai và độ lệch dùng xác suất ở mức tối thiểu. Bài 05c (xác suất cơ bản, bất đẳng thức tập trung và mất mát trung bình trên lô nhỏ) nên đọc trước hoặc song song với Mục 2: phần kỳ vọng, phương sai và trung bình mẫu là tiên quyết của Định lý 05.11, còn phần bất đẳng thức tập trung có thể đọc sau. Ghi chú đó cho cơ sở xác suất, các bất đẳng thức Markov, Chebyshev, Hoeffding và phân tích kích thước lô dưới ngân sách cố định.
 3. Một bước học chung cho mọi tọa độ là nguồn gốc của số điều kiện ở Mục 3. Bài 06, về các phương pháp tối ưu trong học sâu, dùng bước học thích nghi theo tọa độ như AdaGrad, RMSProp, Adam, các phương pháp bậc hai xấp xỉ như Newton–CG, BFGS, và chuẩn hóa theo lô, vốn thay đổi chính thang của tín hiệu mà ở Mục 4 chúng ta chỉ kiểm soát tại thời điểm khởi tạo.
 
 ## Bài tập củng cố
 
-Mỗi mức có một bài. Cùng với các bài trong mục, mọi mục tiêu học tập có ít nhất một bài tập. Các bài không trùng đề với bộ bài giao chính thức trong tệp bài tập của Bài 05.
+Mỗi mức có một bài tập. Cùng với các bài tập trong mục, mọi mục tiêu học tập có ít nhất một bài tập. Các bài tập không trùng đề với bộ bài tập giao chính thức trong tệp bài tập của Bài 05.
 
 ### Mức nhận biết
 
@@ -2824,8 +2824,8 @@ Xác định đúng hay sai, giải thích bằng một kết quả có số hi�
 - (i) Nếu mất mát huấn luyện tại nghiệm của $J$ nhỏ thì rủi ro kỳ vọng tại đó nhỏ.
 - (ii) Mất mát xác thực của bản lưu được chọn là ước lượng không chệch của rủi ro của bản đó.
 - (iii) Một điểm dừng mà Hessian có một giá trị riêng âm không thể là cực tiểu địa phương.
-- (iv) Gradient nhóm với chỉ số rút đều, có hoàn lại là ước lượng không chệch của $\nabla J$.
-- (v) Tăng cỡ nhóm từ $25$ lên $100$ làm sai số chuẩn của gradient nhóm giảm bốn lần.
+- (iv) Gradient lô với chỉ số rút đều, có hoàn lại là ước lượng không chệch của $\nabla J$.
+- (v) Tăng kích thước lô từ $25$ lên $100$ làm sai số chuẩn của gradient lô giảm bốn lần.
 - (vi) Trên mọi hàm bậc hai lồi chặt, momentum với $\beta=0{,}9$ hội tụ khi $\eta<\tfrac2L$.
 - (vii) Trên hàm bậc hai với $\eta L=1{,}8$, Nesterov với $\beta=0{,}5$ hội tụ với mọi điểm đầu.
 - (viii) Hai đơn vị khởi tạo giống nhau sẽ được tách ra nếu dùng Nesterov thay cho SGD.
@@ -2896,7 +2896,7 @@ Một mạng kết nối đầy đủ phân loại ảnh $28\times28$ có hai l�
 - (a) Tính $s^2$ và biên $\alpha$ của Glorot cho từng lớp.
 - (b) Tính hệ số tiến $n_{\rm in}s^2$ và hệ số lùi $n_{\rm out}s^2$ của từng lớp.
 - (c) Nếu có ReLU sau lớp thứ nhất, dùng Nhận xét 05.39 để tính hệ số mômen bậc hai chiều tiến của lớp thứ hai.
-- (d) Nêu hai đại lượng cần đo tại $\theta_0$ để kiểm thang trước khi huấn luyện.
+- (d) Nêu hai đại lượng cần đo tại $\theta_0$ để kiểm tra thang trước khi huấn luyện.
 :::
 
 ::: hint
@@ -2920,7 +2920,7 @@ Theo Nhận xét 05.39, hệ số mômen bậc hai chiều tiến của lớp th
 
 **Câu (d).**
 
-Độ lệch chuẩn của kích hoạt và của gradient theo trọng số ở từng lớp, đo trên một nhóm dữ liệu (Nhận xét 05.39).
+Độ lệch chuẩn của kích hoạt và của gradient theo trọng số ở từng lớp, đo trên một lô dữ liệu (Nhận xét 05.39).
 
 **Kiểm tra lại.**
 
@@ -2930,8 +2930,8 @@ Mỗi lớp có trung bình hai hệ số bằng $1$: $\tfrac{1{,}51+0{,}49}2=1$
 ## Hướng dẫn đọc thêm và tài liệu tham khảo
 
 - Goodfellow, I., Bengio, Y. và Courville, A. (2016), *Deep Learning*, MIT Press. Mục 5.2–5.3 (tr. 110–122) và 7.8 (tr. 246–252) cho Mục 1; mục 8.1 (tr. 274–281) cho Mục 1–2; mục 8.2 (tr. 282–294) cho Mục 1.4, 3.1, 4.3; mục 8.3 (tr. 294–301) cho Mục 2.4, 3.2, 3.4; mục 8.4 (tr. 301–306) cho Mục 4; mục 6.5 (từ tr. 204) cho truyền ngược.
-- Boyd, S. và Vandenberghe, L. (2004), *Convex Optimization*, Cambridge University Press, mục 9.2–9.3 (tr. 463–475): giảm gradient trên hàm bậc hai, Mục 3.1.
-- Nocedal, J. và Wright, S. J. (2006), *Numerical Optimization*, ấn bản 2, Springer, mục 3.3: tốc độ của giảm gradient trên hàm bậc hai, đối chiếu Mệnh đề 05.17.
+- Boyd, S. và Vandenberghe, L. (2004), *Convex Optimization*, Cambridge University Press, mục 9.2–9.3 (tr. 463–475): hạ gradient trên hàm bậc hai, Mục 3.1.
+- Nocedal, J. và Wright, S. J. (2006), *Numerical Optimization*, ấn bản 2, Springer, mục 3.3: tốc độ của hạ gradient trên hàm bậc hai, đối chiếu Mệnh đề 05.17.
 - Wasserman, L. (2004), *All of Statistics*, Springer, chương 3 và 6: kỳ vọng, phương sai và sai số chuẩn, Mục 2.2.
 - Bottou, L., Curtis, F. E. và Nocedal, J. (2018), "Optimization methods for large-scale machine learning", *SIAM Review* 60(2), tr. 223–311, mục 4.1: bất đẳng thức một bước của SGD, Mệnh đề 05.14.
 - Polyak, B. T. (1964), "Some methods of speeding up the convergence of iteration methods", *USSR Computational Mathematics and Mathematical Physics* 4(5), tr. 1–17: Hệ quả 05.22.
@@ -2941,4 +2941,4 @@ Mỗi lớp có trung bình hai hệ số bằng $1$: $\tfrac{1{,}51+0{,}49}2=1$
 - Glorot, X. và Bengio, Y. (2010), "Understanding the difficulty of training deep feedforward neural networks", *Proceedings of the 13th International Conference on Artificial Intelligence and Statistics*, tr. 249–256: Định nghĩa 05.36.
 - He, K., Zhang, X., Ren, S. và Sun, J. (2015), "Delving deep into rectifiers", *Proceedings of the IEEE International Conference on Computer Vision*, tr. 1026–1034: khởi tạo cho ReLU, đọc sau Nhận xét 05.39.
 - Hinton, G., Srivastava, N. và Swersky, K. (2012), *Neural Networks for Machine Learning*, Lecture 6, Đại học Toronto, tr. 17–21: hình học của momentum và Nesterov.
-- Ghi chú bổ trợ Bài 05b (Định lý 05b.36, 05b.43) và Bài 05c (Định lý 05c.35, Mệnh đề 05c.36, Mục 6.6 về cỡ nhóm dưới ngân sách cố định).
+- Ghi chú bổ trợ Bài 05b (Định lý 05b.36, 05b.43) và Bài 05c (Định lý 05c.35, Mệnh đề 05c.36, Mục 6.6 về kích thước lô dưới ngân sách cố định).

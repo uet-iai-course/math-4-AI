@@ -1,6 +1,6 @@
-# Bài 05c — Xác suất cơ bản, bất đẳng thức tập trung và mất mát trung bình trên nhóm nhỏ
+# Bài 05c — Xác suất cơ bản, bất đẳng thức tập trung và mất mát trung bình trên lô nhỏ
 
-Bài bổ trợ này không có buổi riêng trong đề cương; nội dung chỉ được trình bày dưới dạng học liệu đọc. Trong chương này, chúng ta dựng lại xác suất từ không gian mẫu để chứng minh các khẳng định về gradient nhóm nhỏ mà Bài 05 dùng, rồi từ đó trả lời định lượng hai câu hỏi: vì sao mất mát được lấy trung bình trên nhóm nhỏ (minibatch), và vì sao nhóm nhỏ được dùng thay cho toàn bộ tập dữ liệu.
+Bài bổ trợ này không có buổi riêng trong đề cương; nội dung chỉ được trình bày dưới dạng học liệu đọc. Trong chương này, chúng ta dựng lại xác suất từ không gian mẫu để chứng minh các khẳng định về gradient tính trên lô nhỏ (mini-batch) mà Bài 05 dùng, rồi từ đó trả lời định lượng hai câu hỏi: vì sao mất mát được lấy trung bình trên lô nhỏ, và vì sao lô nhỏ được dùng thay cho toàn bộ tập dữ liệu.
 
 ## Mục tiêu học tập
 
@@ -13,18 +13,18 @@ Sau chương này, người học có thể:
 3. Lập hàm khối xác suất và hàm phân phối tích lũy của một biến ngẫu nhiên, nhận ra các phân phối Bernoulli, nhị thức, đều, hình học, và biểu diễn gradient của một mẫu được rút như một biến ngẫu nhiên (Mục 3; LLO12, CLO2).
 4. Tính kỳ vọng, phương sai, hiệp phương sai; chứng minh trung bình mẫu là ước lượng không chệch với phương sai $\sigma_1^2/n$, tính hệ số hiệu chỉnh khi rút không hoàn lại, và tính kỳ vọng qua kỳ vọng có điều kiện (Mục 4; LLO12, CLO2).
 5. Chứng minh và áp dụng các bất đẳng thức Markov, Chebyshev, Chernoff và Hoeffding; tính cỡ mẫu và khoảng tin cậy cho một kỳ vọng (Mục 5; LLO11, CLO1; chuẩn bị LLO27).
-6. Chứng minh gradient nhóm là ước lượng không chệch với phương sai giảm theo cỡ nhóm, giải thích vì sao mất mát được lấy trung bình thay cho tổng, và chọn cỡ nhóm dưới một ngân sách tính toán cố định (Mục 6; LLO11, LLO12; CLO1, CLO2).
+6. Chứng minh gradient lô là ước lượng không chệch với phương sai giảm theo kích thước lô (batch size), giải thích vì sao mất mát được lấy trung bình thay cho tổng, và chọn kích thước lô dưới một ngân sách tính toán cố định (Mục 6; LLO11, LLO12; CLO1, CLO2).
 7. Nhận ra khi giả thiết độc lập bị vi phạm trong huấn luyện và đánh giá mô hình, và ước lượng hậu quả bằng số trên một trường hợp cụ thể (Tình huống áp dụng; LLO11, LLO12; CLO1, CLO2).
 
 ## Kiến thức tiên quyết
 
 Số hiệu `01.k`, `04.k` và `05.k` chỉ ghi chú Bài 01, Bài 04 và Bài 05. Ghi chú Bài 00 không đánh số, nên các kết quả của nó được dẫn theo tên mục. Ghi chú bổ trợ Bài 05b được dẫn bằng tên khái niệm kèm phát biểu lại.
 
-- **Ôn tập xác suất** (Bài 00, các mục "Xác suất một biến" và "Xác suất nhiều biến"). Bài 00 nêu định nghĩa không gian xác suất $(\Omega,\mathcal F,\Pr)$, biến ngẫu nhiên, hàm khối xác suất (PMF), mật độ, kỳ vọng, phương sai, độc lập và công thức Bayes, kèm ví dụ nhưng không chứng minh các quy tắc tính, và không nối chúng với gradient nhóm. Chương này chứng minh các quy tắc đó cho trường hợp rời rạc, thêm các bất đẳng thức tập trung, và dùng chúng để chứng minh các khẳng định về gradient nhóm của Bài 05.
+- **Ôn tập xác suất** (Bài 00, các mục "Xác suất một biến" và "Xác suất nhiều biến"). Bài 00 nêu định nghĩa không gian xác suất $(\Omega,\mathcal F,\Pr)$, biến ngẫu nhiên, hàm khối xác suất (PMF), mật độ, kỳ vọng, phương sai, độc lập và công thức Bayes, kèm ví dụ nhưng không chứng minh các quy tắc tính, và không nối chúng với gradient lô. Chương này chứng minh các quy tắc đó cho trường hợp rời rạc, thêm các bất đẳng thức tập trung, và dùng chúng để chứng minh các khẳng định về gradient lô của Bài 05.
 - **Giải tích một biến.** Tổng hữu hạn, chuỗi hình học $\sum_{k\ge0}r^k=\tfrac1{1-r}$ với $\lvert r\rvert<1$, hàm mũ và logarit tự nhiên $\ln$. Khai triển Taylor $e^x=\sum_{k\ge0}x^k/k!$ đúng với mọi $x$. Định lý Taylor với phần dư Lagrange: nếu $\varphi$ khả vi hai lần trên một khoảng chứa $0$ và $u$, thì có $\vartheta$ nằm giữa $0$ và $u$ để $\varphi(u)=\varphi(0)+\varphi'(0)u+\tfrac12\varphi''(\vartheta)u^2$. Tích phân một biến chỉ dùng ở Mục 3.3.
 - **Hàm lồi một biến** (Định nghĩa 01.22). Nếu $\varphi$ lồi trên đoạn $[m,M]$ thì đồ thị nằm dưới dây cung: $\varphi(y)\le\frac{M-y}{M-m}\varphi(m)+\frac{y-m}{M-m}\varphi(M)$ với mọi $y\in[m,M]$. Hàm mũ $y\mapsto e^{\lambda y}$ lồi với mọi $\lambda\in\mathbb R$.
 - **Mất mát huấn luyện, rủi ro kỳ vọng và ví dụ ba quan sát** (Định nghĩa 05.1, Ví dụ 05.1). Mất mát huấn luyện là trung bình $J(\theta)=\frac1N\sum_{i=1}^N\ell_i(\theta)$ của $N$ mất mát riêng; rủi ro kỳ vọng $R(\theta)$ là mất mát trung bình trên một quan sát mới rút từ phân phối sinh dữ liệu. Với ba quan sát $y=(-1,1,3)$, mô hình hằng $\theta\in\mathbb R$ và $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$, mất mát huấn luyện là $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ với nghiệm $\theta^*=1$.
-- **Gradient nhóm** (Định nghĩa 05.10, Định lý 05.11). Với các chỉ số $I_1,\ldots,I_b$ rút độc lập, đều trên $\{1,\ldots,N\}$, gradient nhóm $\widehat g=\frac1b\sum_{r=1}^b\nabla\ell_{I_r}(\theta)$ có kỳ vọng $\nabla J(\theta)$ và hiệp phương sai $\Sigma(\theta)/b$. Bài 05 chứng minh định lý này bằng tính tuyến tính của kỳ vọng và tính độc lập; Mục 4 và Mục 6 của chương này dựng hai công cụ đó từ đầu.
+- **Gradient lô** (Định nghĩa 05.10, Định lý 05.11). Với các chỉ số $I_1,\ldots,I_b$ rút độc lập, đều trên $\{1,\ldots,N\}$, gradient lô $\widehat g=\frac1b\sum_{r=1}^b\nabla\ell_{I_r}(\theta)$ có kỳ vọng $\nabla J(\theta)$ và hiệp phương sai $\Sigma(\theta)/b$. Bài 05 chứng minh định lý này bằng tính tuyến tính của kỳ vọng và tính độc lập; Mục 4 và Mục 6 của chương này dựng hai công cụ đó từ đầu.
 - **Gradient Lipschitz và bước $1/L$** (Định nghĩa 04.17, Bổ đề 04.20). Gradient $\nabla F$ là $L$-Lipschitz nếu $\lVert\nabla F(\theta)-\nabla F(\theta')\rVert\le L\lVert\theta-\theta'\rVert$ với mọi $\theta,\theta'$. Khi đó bước hạ gradient với độ dài bước $\eta\in(0,\tfrac1L]$ làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F(\theta)\rVert^2$.
 - **Hồi quy logistic** (Định nghĩa 01.8, Mệnh đề 01.9). Với nhãn $y\in\{-1,+1\}$, vectơ đặc trưng $a$ và tham số $\theta$, mất mát logistic là $\ln\bigl(1+\exp(-y\,a^T\theta)\bigr)$.
 
@@ -53,14 +53,14 @@ Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của m�
 | $\sigma_\ell^2(\theta)$ | phương sai của mất mát trên một quan sát mới tại tham số $\theta$ | số không âm |
 | $N$, $\ell_i$, $J$, $R$ | số quan sát huấn luyện; mất mát trên quan sát $i$; mất mát huấn luyện; rủi ro kỳ vọng | $N\ge1$; hàm của $\theta$ |
 | $\theta$, $d$ | tham số mô hình; số chiều của tham số | $\theta\in\mathbb R^d$ |
-| $b$, $I_1,\ldots,I_b$ | cỡ nhóm; các chỉ số được rút | $b\ge1$; $I_r\in\{1,\ldots,N\}$ |
-| $g_i$, $\widehat g$ | gradient mẫu $\nabla\ell_i(\theta)$; gradient nhóm | $\mathbb R^d$ |
-| $\gamma$ | hiệp phương sai chung của hai quan sát khác nhau trong một nhóm | $\gamma\in\mathbb R$ |
-| $\Sigma(\theta)$, $\sigma_b^2$ | hiệp phương sai của gradient một mẫu; phương sai $\sigma_1^2/b$ của gradient nhóm vô hướng | ma trận $d\times d$; số không âm |
-| $\sigma^2$ | hằng số chặn phương sai có điều kiện của gradient nhóm trong các định lý của Bài 05b | $\sigma^2\ge0$ |
+| $b$, $I_1,\ldots,I_b$ | kích thước lô; các chỉ số được rút | $b\ge1$; $I_r\in\{1,\ldots,N\}$ |
+| $g_i$, $\widehat g$ | gradient mẫu $\nabla\ell_i(\theta)$; gradient lô | $\mathbb R^d$ |
+| $\gamma$ | hiệp phương sai chung của hai quan sát khác nhau trong một lô | $\gamma\in\mathbb R$ |
+| $\Sigma(\theta)$, $\sigma_b^2$ | hiệp phương sai của gradient một mẫu; phương sai $\sigma_1^2/b$ của gradient lô vô hướng | ma trận $d\times d$; số không âm |
+| $\sigma^2$ | hằng số chặn phương sai có điều kiện của gradient lô trong các định lý của Bài 05b | $\sigma^2\ge0$ |
 | $\eta$, $L$ | độ dài bước (bước học); hằng số Lipschitz của gradient | $\eta>0$; $L>0$ |
 | $C$, $B_{\rm tot}$, $K$ | chi phí một gradient mẫu; ngân sách tính bằng số gradient mẫu; số bước | $C>0$; số nguyên dương |
-| $a_k$, $\bar a_b$ | sai số bình phương trung bình $\mathbb E(\theta_k-1)^2$ trên ví dụ ba quan sát; giá trị giới hạn của nó với cỡ nhóm $b$ | số không âm |
+| $a_k$, $\bar a_b$ | sai số bình phương trung bình $\mathbb E(\theta_k-1)^2$ trên ví dụ ba quan sát; giá trị giới hạn của nó với kích thước lô $b$ | số không âm |
 
 Ba ví dụ xuyên suốt được giới thiệu tại chỗ và dùng lại ở nhiều mục:
 
@@ -68,19 +68,19 @@ Ba ví dụ xuyên suốt được giới thiệu tại chỗ và dùng lại �
 - **ví dụ hai xúc xắc**: hai xúc xắc cân đối phân biệt, tổng hai mặt $S$;
 - **ví dụ xét nghiệm**: tỉ lệ mắc bệnh $0{,}001$, độ nhạy và độ đặc hiệu cùng bằng $0{,}95$.
 
-Bài 05 viết $P$ cho phân phối sinh dữ liệu; chương này viết phân phối đó là $\mathcal P$ để dành $P$ cho xác suất. Bài 00 viết xác suất là $\Pr$. Bài 05 ký hiệu số chiều tham số là $p$; chương này dùng $d$ vì $p$ đã là tham số Bernoulli. Bài 06 gọi nhóm nhỏ là "lô nhỏ".
+Bài 05 viết $P$ cho phân phối sinh dữ liệu; chương này viết phân phối đó là $\mathcal P$ để dành $P$ cho xác suất. Bài 00 viết xác suất là $\Pr$. Bài 05 ký hiệu số chiều tham số là $p$; chương này dùng $d$ vì $p$ đã là tham số Bernoulli. Thuật ngữ "lô nhỏ" và "kích thước lô" thống nhất với Bài 06.
 
 Trong cả chương, $\ln$ là logarit tự nhiên; mọi bộ số của các ví dụ là số liệu sư phạm tự xây dựng hoặc ví dụ kinh điển của giáo trình, không phải kết quả đo trên dữ liệu thật.
 
 ## 1. Ước lượng bằng trung bình và không gian xác suất
 
-Trong Bài 05, chúng ta đã thay gradient đầy đủ $\nabla J(\theta)$, trung bình trên $N$ quan sát, bằng gradient nhóm tính trên $b$ chỉ số rút ngẫu nhiên. Định lý 05.11 khẳng định gradient nhóm có kỳ vọng $\nabla J(\theta)$ với hiệp phương sai $\Sigma(\theta)/b$. Phát biểu đó dùng ba khái niệm mà Bài 05 chỉ nhắc lại là rút ngẫu nhiên, kỳ vọng và độc lập. Trong mục này, chúng ta nêu bài toán trung tâm của chương trên ví dụ ba quan sát, rồi dựng ngôn ngữ đầu tiên để phát biểu nó, gồm không gian mẫu, tiên đề xác suất, phép đếm và bất đẳng thức hợp.
+Trong Bài 05, chúng ta đã thay gradient đầy đủ $\nabla J(\theta)$, trung bình trên $N$ quan sát, bằng gradient lô tính trên $b$ chỉ số rút ngẫu nhiên. Định lý 05.11 khẳng định gradient lô có kỳ vọng $\nabla J(\theta)$ với hiệp phương sai $\Sigma(\theta)/b$. Phát biểu đó dùng ba khái niệm mà Bài 05 chỉ nhắc lại là rút ngẫu nhiên, kỳ vọng và độc lập. Trong mục này, chúng ta nêu bài toán trung tâm của chương trên ví dụ ba quan sát, rồi dựng ngôn ngữ đầu tiên để phát biểu nó, gồm không gian mẫu, tiên đề xác suất, phép đếm và bất đẳng thức hợp.
 
-### 1.1 Bài toán trung tâm: gradient nhóm trên ba quan sát
+### 1.1 Bài toán trung tâm: gradient lô trên ba quan sát
 
-Một bước của phương pháp hạ gradient ngẫu nhiên (stochastic gradient descent, SGD) dùng gradient tính trên một nhóm nhỏ các quan sát. Ví dụ sau tính các gradient mẫu của ví dụ ba quan sát và so chúng với gradient đầy đủ.
+Một bước của phương pháp hạ gradient ngẫu nhiên (stochastic gradient descent, SGD) dùng gradient tính trên một lô nhỏ các quan sát. Ví dụ sau tính các gradient mẫu của ví dụ ba quan sát và so chúng với gradient đầy đủ.
 
-::: example Ví dụ 05c.1 (Gradient mẫu và gradient nhóm trên ba quan sát)
+::: example Ví dụ 05c.1 (Gradient mẫu và gradient lô trên ba quan sát)
 **Dữ kiện.** Ba quan sát $y=(y_1,y_2,y_3)=(-1,1,3)$, mô hình hằng $\theta\in\mathbb R$, mất mát $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$ và mất mát huấn luyện $J(\theta)=\tfrac13\sum_{i=1}^3\ell_i(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ (Ví dụ 05.1).
 
 **Gradient mẫu.** Đạo hàm của $\ell_i$ là $g_i(\theta)=\theta-y_i$. Gradient đầy đủ là $J'(\theta)=\theta-1$, bằng trung bình cộng $\tfrac13\sum_ig_i(\theta)$. Tại nghiệm $\theta=1$:
@@ -89,31 +89,31 @@ Một bước của phương pháp hạ gradient ngẫu nhiên (stochastic gradi
 |---|---:|---:|---:|
 | $g_i(1)$ | $2$ | $0$ | $-2$ |
 
-**Gradient nhóm.** Một nhóm gồm $b$ chỉ số $I_1,\ldots,I_b$ cho gradient nhóm
+**Gradient lô.** Một lô gồm $b$ chỉ số $I_1,\ldots,I_b$ cho gradient lô
 
 $$
 \widehat g=\frac1b\sum_{r=1}^bg_{I_r}(\theta).
 \tag{1.1}
 $$
 
-Với $b=1$, gradient nhóm tại $\theta=1$ nhận một trong ba giá trị $2$, $0$, $-2$, trong khi $J'(1)=0$. Nếu một gradient mẫu tốn chi phí $C$, gradient đầy đủ tốn $NC=3C$ và gradient nhóm tốn $bC$.
+Với $b=1$, gradient lô tại $\theta=1$ nhận một trong ba giá trị $2$, $0$, $-2$, trong khi $J'(1)=0$. Nếu một gradient mẫu tốn chi phí $C$, gradient đầy đủ tốn $NC=3C$ và gradient lô tốn $bC$.
 
 **Kiểm tra lại.** Trung bình cộng của ba gradient mẫu tại $\theta=1$ là $\tfrac13(2+0-2)=0=J'(1)$.
 :::
 
-Trong công thức (1.1), $\widehat g$ là trung bình cộng của $b$ gradient mẫu được rút, cùng kiểu với $\theta$, và thay cho $\nabla J(\theta)$ trong bước cập nhật. Tại nghiệm, nhóm một phần tử chỉ chứa quan sát $y=-1$ cho $\widehat g=2$ và làm tham số rời khỏi nghiệm. Do một nhóm riêng lẻ có thể lệch như vậy, lý do dùng $\widehat g$ phải là một phát biểu về mọi nhóm có thể rút.
+Trong công thức (1.1), $\widehat g$ là trung bình cộng của $b$ gradient mẫu được rút, cùng kiểu với $\theta$, và thay cho $\nabla J(\theta)$ trong bước cập nhật. Tại nghiệm, lô một phần tử chỉ chứa quan sát $y=-1$ cho $\widehat g=2$ và làm tham số rời khỏi nghiệm. Do một lô riêng lẻ có thể lệch như vậy, lý do dùng $\widehat g$ phải là một phát biểu về mọi lô có thể được rút.
 
 Goodfellow, Bengio và Courville (2016, mục 8.1.3, tr. 278) so hai ước lượng gradient dùng $100$ và $10\,000$ mẫu, trong đó ước lượng thứ hai tốn gấp $100$ lần nhưng sai số chuẩn chỉ giảm $10$ lần. Để hiểu chính xác phát biểu này, chúng ta cần ba đại lượng chưa được định nghĩa là xác suất của một cách rút, giá trị trung bình của $\widehat g$ trên mọi cách rút, và sai số chuẩn.
 
-Gradient đầy đủ, rủi ro kỳ vọng và tỉ lệ lỗi phân loại đều là trung bình của một đại lượng theo một phân phối. Gọi đại lượng cần biết là $\mu$. Khi $\mu$ không tính được hoặc chi phí tính toán quá lớn, người ta ước lượng nó bằng trung bình $\bar X_n=\frac1n\sum_{i=1}^nX_i$ của $n$ quan sát $X_1,\ldots,X_n$. Gradient nhóm là một trường hợp của bài toán ước lượng một trung bình bằng trung bình mẫu, và chúng ta trả lời năm câu hỏi sau về ước lượng đó.
+Gradient đầy đủ, rủi ro kỳ vọng và tỉ lệ lỗi phân loại đều là trung bình của một đại lượng theo một phân phối. Gọi đại lượng cần biết là $\mu$. Khi $\mu$ không tính được hoặc chi phí tính toán quá lớn, người ta ước lượng nó bằng trung bình $\bar X_n=\frac1n\sum_{i=1}^nX_i$ của $n$ quan sát $X_1,\ldots,X_n$. Gradient lô là một trường hợp của bài toán ước lượng một trung bình bằng trung bình mẫu, và chúng ta trả lời năm câu hỏi sau về ước lượng đó.
 
 1. **Tâm.** Trung bình của $\bar X_n$ trên mọi cách rút có bằng $\mu$ không (Mục 4).
 2. **Sai số điển hình.** Độ phân tán của $\bar X_n$ quanh $\mu$ giảm theo $n$ như thế nào (Mục 4).
 3. **Xác suất sai lệch.** Xác suất để $\lvert\bar X_n-\mu\rvert\ge\varepsilon$ bị chặn bởi bao nhiêu, với $\varepsilon>0$ cho trước (Mục 5).
-4. **Trung bình hay tổng.** Mất mát trên nhóm nên được lấy trung bình hay tổng, và lựa chọn đó ảnh hưởng thế nào tới ngưỡng bước khi đổi $b$ hoặc $N$ (Mục 6).
-5. **Cỡ nhóm.** Khi chi phí mỗi bước tỉ lệ với $b$ và gradient được ước lượng lại ở mọi bước, chọn $b$ thế nào dưới một ngân sách tính toán cố định (Mục 6).
+4. **Trung bình hay tổng.** Mất mát trên lô nên được lấy trung bình hay tổng, và lựa chọn đó ảnh hưởng thế nào tới ngưỡng bước khi đổi $b$ hoặc $N$ (Mục 6).
+5. **Kích thước lô.** Khi chi phí mỗi bước tỉ lệ với $b$ và gradient được ước lượng lại ở mọi bước, chọn $b$ thế nào dưới một ngân sách tính toán cố định (Mục 6).
 
-Trước khi trả lời năm câu hỏi đó, chúng ta cần xác định "rút ngẫu nhiên" nghĩa là gì. Rút $b=32$ chỉ số có hoàn lại từ $N=1000$ quan sát có thể cho một nhóm chứa cùng một chỉ số hai lần. Xác suất của sự kiện này chưa có nghĩa khi tập các nhóm có thể rút và cách gán xác suất cho chúng chưa được xác định, và các tiểu mục tiếp theo xác định hai thành phần đó.
+Trước khi trả lời năm câu hỏi đó, chúng ta cần xác định "rút ngẫu nhiên" nghĩa là gì. Rút $b=32$ chỉ số có hoàn lại từ $N=1000$ quan sát có thể cho một lô chứa cùng một chỉ số hai lần. Xác suất của sự kiện này chưa có nghĩa khi tập các lô có thể được rút và cách gán xác suất cho chúng chưa được xác định, và các tiểu mục tiếp theo xác định hai thành phần đó.
 
 ### 1.2 Kết cục, không gian mẫu và biến cố
 
@@ -132,7 +132,7 @@ $$
 
 tức $6$ cặp.
 
-**Khối lượng.** Hai xúc xắc cân đối nên không cặp nào được ưu tiên; mỗi cặp nhận khối lượng $\tfrac1{36}$. Nhóm "tổng bằng 7" có khối lượng $\tfrac6{36}=\tfrac16$.
+**Khối lượng.** Hai xúc xắc cân đối nên không cặp nào được ưu tiên; mỗi cặp nhận khối lượng $\tfrac1{36}$. Lô "tổng bằng 7" có khối lượng $\tfrac6{36}=\tfrac16$.
 
 **Kiểm tra lại.** Tổng khối lượng của $36$ cặp là $36\cdot\tfrac1{36}=1$.
 :::
@@ -208,7 +208,7 @@ cho $P(A\cup B)=P(A)+P(B\setminus A)$ và $P(B)=P(A\cap B)+P(B\setminus A)$. Tr�
 
 Phần 2 thuận tiện khi biến cố cần tính có dạng "có ít nhất một", vì phần bù "không có phần tử nào" thường dễ đếm hơn. Phần 4 phải trừ phần giao do tổng $P(A)+P(B)$ đếm nó hai lần.
 
-Trên ví dụ hai xúc xắc, với $A$ là "tổng ít nhất bằng 10" và $B$ là "hai mặt bằng nhau", mỗi biến cố có $6$ cặp và phần giao gồm hai cặp $(5,5)$, $(6,6)$. Phần 4 cho $P(A\cup B)=\tfrac6{36}+\tfrac6{36}-\tfrac2{36}=\tfrac{10}{36}$, và phần 2 kiểm lại kết quả này, vì phần bù có $26$ cặp.
+Trên ví dụ hai xúc xắc, với $A$ là "tổng ít nhất bằng 10" và $B$ là "hai mặt bằng nhau", mỗi biến cố có $6$ cặp và phần giao gồm hai cặp $(5,5)$, $(6,6)$. Phần 4 cho $P(A\cup B)=\tfrac6{36}+\tfrac6{36}-\tfrac2{36}=\tfrac{10}{36}$, và phần 2 kiểm tra lại kết quả này, vì phần bù có $26$ cặp.
 
 ::: remark Nhận xét 05c.3 (Quan hệ với Bài 00 và với không gian không đếm được)
 **Đối chiếu Bài 00.** Mục "Phép thử, không gian mẫu, biến cố và không gian xác suất" của Bài 00 định nghĩa không gian xác suất là bộ ba $(\Omega,\mathcal F,\Pr)$, với $\mathcal F$ là họ các biến cố. Khi $\Omega$ hữu hạn hoặc đếm được, có thể lấy $\mathcal F$ là họ mọi tập con, và Định nghĩa 05c.1 là trường hợp riêng đó, viết $P$ thay cho $\Pr$.
@@ -218,7 +218,7 @@ Trên ví dụ hai xúc xắc, với $A$ là "tổng ít nhất bằng 10" và $
 
 ### 1.3 Phép đếm và mô hình đồng khả năng
 
-Với $23$ người, mỗi người một ngày sinh trong $365$ ngày, không gian mẫu gồm $365^{23}\approx10^{59}$ dãy ngày sinh. Với nhóm $32$ chỉ số rút từ $1000$ quan sát, không gian mẫu có $1000^{32}=10^{96}$ dãy. Do không thể liệt kê các tập này để áp dụng (1.3), chúng ta cần một quy tắc đếm.
+Với $23$ người, mỗi người một ngày sinh trong $365$ ngày, không gian mẫu gồm $365^{23}\approx10^{59}$ dãy ngày sinh. Với lô $32$ chỉ số rút từ $1000$ quan sát, không gian mẫu có $1000^{32}=10^{96}$ dãy. Do không thể liệt kê các tập này để áp dụng (1.3), chúng ta cần một quy tắc đếm.
 
 Một cách trực quan, ta xếp các lựa chọn thành một cây, tầng thứ $j$ ứng với lựa chọn thứ $j$. Nếu mọi nút ở cùng tầng có cùng số nhánh thì số lá bằng tích số nhánh của các tầng. Phần 1 (quy tắc nhân) của Mệnh đề 05c.4 dưới đây phát biểu chính xác mô tả trực giác này.
 
@@ -275,24 +275,24 @@ và chia hai vế cho $k!$ được phần 4. $\square$
 
 Phần 3 và phần 4 khác nhau ở việc thứ tự có được tính hay không, chẳng hạn hai dãy $(1,2)$ và $(2,1)$ khác nhau nhưng cho cùng một tập con. Blitzstein và Hwang (2019, mục 1.3–1.4) gọi mô hình đồng khả năng là định nghĩa ngây thơ của xác suất (naive definition of probability), chỉ đúng khi các kết cục cùng khối lượng.
 
-### 1.4 Chỉ số lặp trong nhóm rút có hoàn lại
+### 1.4 Chỉ số lặp trong lô được rút có hoàn lại
 
 Câu hỏi về chỉ số lặp ở cuối Mục 1.1 có cùng cấu trúc với bài toán sinh nhật, trong đó $N$ quan sát đóng vai $365$ ngày và $b$ chỉ số đóng vai $n$ người. Hai cách rút được xác định chính xác theo định nghĩa sau.
 
-::: definition Định nghĩa 05c.5 (Nhóm rút đều có hoàn lại và không hoàn lại)
-Cho $N\ge1$ quan sát được đánh chỉ số $1,\ldots,N$ và cỡ nhóm $b\ge1$.
+::: definition Định nghĩa 05c.5 (Lô được rút đều có hoàn lại và không hoàn lại)
+Cho $N\ge1$ quan sát được đánh chỉ số $1,\ldots,N$ và kích thước lô $b\ge1$.
 
-**Có hoàn lại** (sampling with replacement). Không gian mẫu là tập $\{1,\ldots,N\}^b$ các dãy chỉ số $(i_1,\ldots,i_b)$, cho phép lặp; mọi dãy đồng khả năng, mỗi dãy có xác suất $N^{-b}$. Chỉ số thứ $r$ của nhóm là $I_r=i_r$.
+**Có hoàn lại** (sampling with replacement). Không gian mẫu là tập $\{1,\ldots,N\}^b$ các dãy chỉ số $(i_1,\ldots,i_b)$, cho phép lặp; mọi dãy đồng khả năng, mỗi dãy có xác suất $N^{-b}$. Chỉ số thứ $r$ của lô là $I_r=i_r$.
 
 **Không hoàn lại** (sampling without replacement). Khi $b\le N$, không gian mẫu là tập các dãy $(i_1,\ldots,i_b)$ gồm các chỉ số đôi một khác nhau; mọi dãy đồng khả năng, mỗi dãy có xác suất $\dfrac1{N(N-1)\cdots(N-b+1)}$.
 :::
 
 Hai mô hình của định nghĩa khác nhau ở không gian mẫu, còn cả hai đều đồng khả năng. Mô hình không hoàn lại ứng với việc xáo trộn dữ liệu rồi lấy $b$ phần tử đầu, và theo phần 4 của Mệnh đề 05c.4, mỗi tập con $b$ phần tử có cùng xác suất $1/\binom Nb$. Với mô hình có hoàn lại, xác suất có lặp được tính như sau.
 
-::: proposition Mệnh đề 05c.6 (Xác suất nhóm có chỉ số lặp)
-**Giả thiết.** Nhóm $b\ge2$ chỉ số rút đều có hoàn lại từ $N$ quan sát (Định nghĩa 05c.5).
+::: proposition Mệnh đề 05c.6 (Xác suất lô có chỉ số lặp)
+**Giả thiết.** Lô $b\ge2$ chỉ số rút đều có hoàn lại từ $N$ quan sát (Định nghĩa 05c.5).
 
-**Kết luận.** Khi $b\le N$, biến cố "nhóm có ít nhất hai vị trí trùng chỉ số" có xác suất
+**Kết luận.** Khi $b\le N$, biến cố "lô có ít nhất hai vị trí trùng chỉ số" có xác suất
 
 $$
 1-\prod_{i=0}^{b-1}\Bigl(1-\frac iN\Bigr).
@@ -322,8 +322,8 @@ Phần 2 của Mệnh đề 05c.2 cho (1.4).
 
 Công thức (1.4) chính là công thức của bài toán sinh nhật với $365$ thay bằng $N$, và xác suất có lặp tăng theo $b$, giảm theo $N$.
 
-::: example Ví dụ 05c.4 (Chỉ số lặp trong nhóm 32 chỉ số)
-**Dữ kiện.** Nhóm rút đều có hoàn lại; công thức (1.4) của Mệnh đề 05c.6: xác suất có lặp bằng $1-\prod_{i=0}^{b-1}(1-i/N)$.
+::: example Ví dụ 05c.4 (Chỉ số lặp trong lô 32 chỉ số)
+**Dữ kiện.** Lô được rút đều có hoàn lại; công thức (1.4) của Mệnh đề 05c.6: xác suất có lặp bằng $1-\prod_{i=0}^{b-1}(1-i/N)$.
 
 **Tính.**
 
@@ -331,16 +331,16 @@ Công thức (1.4) chính là công thức của bài toán sinh nhật với $3
 - $N=1000$, $b=64$: xác suất có lặp là $0{,}873$.
 - $N=60\,000$, $b=256$: xác suất có lặp là $0{,}420$.
 
-**Diễn giải.** Khoảng hai trong năm nhóm $32$ chỉ số rút có hoàn lại từ $1000$ quan sát chứa ít nhất một quan sát dùng hai lần; nhóm đó có ít hơn $32$ gradient mẫu khác nhau. Với $60\,000$ quan sát, cỡ của một tập ảnh chữ số viết tay thông dụng, nhóm $256$ chỉ số vẫn có lặp với xác suất $0{,}42$.
+**Diễn giải.** Khoảng hai trong năm lô $32$ chỉ số rút có hoàn lại từ $1000$ quan sát chứa ít nhất một quan sát dùng hai lần; lô đó có ít hơn $32$ gradient mẫu khác nhau. Với $60\,000$ quan sát, kích thước của một tập ảnh chữ số viết tay thông dụng, lô $256$ chỉ số vẫn có lặp với xác suất $0{,}42$.
 
 **Kiểm tra lại.** Với $b=2$, (1.4) cho $1-(1-\tfrac1N)=\tfrac1N$: chỉ số thứ hai trùng chỉ số thứ nhất với xác suất $\tfrac1N$.
 :::
 
-![Hai khung đồ thị. Khung trái: xác suất có hai người trùng ngày sinh theo số người n từ 0 đến 70, vượt 0,5 tại n = 23 với giá trị 0,507. Khung phải: xác suất nhóm b chỉ số rút có hoàn lại từ N = 1000 quan sát có chỉ số lặp, bằng 0,394 tại b = 32 và 0,873 tại b = 64.](img/lec-05c/birthday-and-batch-duplicates.svg)
+![Hai khung đồ thị. Khung trái: xác suất có hai người trùng ngày sinh theo số người n từ 0 đến 70, vượt 0,5 tại n = 23 với giá trị 0,507. Khung phải: xác suất lô b chỉ số rút có hoàn lại từ N = 1000 quan sát có chỉ số lặp, bằng 0,394 tại b = 32 và 0,873 tại b = 64.](img/lec-05c/birthday-and-batch-duplicates.svg)
 
 Hình trên minh họa cùng một hàm (1.4) ở hai khung, với $N=365$ và $N=1000$. Đường cong tăng nhanh ở đoạn đầu do số cặp vị trí $\binom b2$ tăng theo bình phương của $b$. Điểm đánh dấu $b=32$ ở khung phải ứng với số $0{,}394$ của Ví dụ 05c.4.
 
-**Trong học máy.** Các thư viện học sâu thường xáo trộn chỉ số theo một hoán vị ngẫu nhiên ở đầu mỗi lượt (epoch), tức một lần duyệt toàn bộ dữ liệu, rồi cắt hoán vị thành các nhóm liên tiếp (Goodfellow và cộng sự, 2016, mục 8.1.3, tr. 280–281). Mỗi nhóm khi đó rút không hoàn lại và không có chỉ số lặp. Trong chương này, chúng ta dùng mô hình có hoàn lại vì công thức gọn hơn, và phần chênh lệch được tính ở Mục 4.6.
+**Trong học máy.** Các thư viện học sâu thường xáo trộn chỉ số theo một hoán vị ngẫu nhiên ở đầu mỗi lượt (epoch), tức một lần duyệt toàn bộ dữ liệu, rồi cắt hoán vị thành các lô liên tiếp (Goodfellow và cộng sự, 2016, mục 8.1.3, tr. 280–281). Mỗi lô khi đó được rút không hoàn lại và không có chỉ số lặp. Trong chương này, chúng ta dùng mô hình có hoàn lại vì công thức gọn hơn, và phần chênh lệch được tính ở Mục 4.6.
 
 ### 1.5 Bất đẳng thức hợp
 
@@ -390,13 +390,13 @@ $$
 
 Bất đẳng thức hợp chặn xác suất của một hợp bởi tổng của $q$ xác suất riêng. Cận tốt khi các biến cố hiếm và ít chồng nhau. Khi các biến cố chồng nhiều, cận lỏng, chẳng hạn với $A_1=A_2=A$, vế trái bằng $P(A)$ còn vế phải bằng $2P(A)$. Khi tổng vượt $1$, cận không cho thông tin.
 
-**Trong học máy.** Bất đẳng thức hợp chuyển bảo đảm cho từng đối tượng thành bảo đảm đồng thời. Ở Mục 6.3, chúng ta dùng nó cho mọi tọa độ của gradient nhóm, và ở Tình huống 05c.2, cho việc chọn trong nhiều mô hình. Số đối tượng $q$ đi vào cỡ mẫu qua $\ln q$, như Hệ quả 05c.54 cho thấy.
+**Trong học máy.** Bất đẳng thức hợp chuyển bảo đảm cho từng đối tượng thành bảo đảm đồng thời. Ở Mục 6.3, chúng ta dùng nó cho mọi tọa độ của gradient lô, và ở Tình huống 05c.2, cho việc chọn trong nhiều mô hình. Số đối tượng $q$ đi vào cỡ mẫu qua $\ln q$, như Hệ quả 05c.54 cho thấy.
 
 ::: exercise Bài tập 05c.1 (Cận hợp cho chỉ số lặp)
-Nhóm $b=32$ chỉ số rút đều có hoàn lại từ $N=1000$ quan sát.
+Lô $b=32$ chỉ số rút đều có hoàn lại từ $N=1000$ quan sát.
 
-1. Với hai vị trí $r<s$ của nhóm, tính xác suất của biến cố $A_{rs}$ "vị trí $r$ và vị trí $s$ có cùng chỉ số".
-2. Dùng Mệnh đề 05c.7 để chặn trên xác suất nhóm có chỉ số lặp. So cận với xác suất đúng $0{,}394$ của Ví dụ 05c.4.
+1. Với hai vị trí $r<s$ của lô, tính xác suất của biến cố $A_{rs}$ "vị trí $r$ và vị trí $s$ có cùng chỉ số".
+2. Dùng Mệnh đề 05c.7 để chặn trên xác suất lô có chỉ số lặp. So cận với xác suất đúng $0{,}394$ của Ví dụ 05c.4.
 :::
 
 ::: hint
@@ -413,7 +413,7 @@ Nhóm $b=32$ chỉ số rút đều có hoàn lại từ $N=1000$ quan sát.
 **Kiểm tra lại.** Với $b=2$, chỉ có một cặp và cận bằng xác suất đúng $\tfrac1N$.
 :::
 
-Xuất phát từ ngôn ngữ của Định nghĩa 05c.1, Mệnh đề 05c.2 suy ra các quy tắc tính từ hai tiên đề, và Mệnh đề 05c.4 cho cách đếm trong mô hình đồng khả năng. Áp phép đếm đó cho nhóm rút có hoàn lại (Định nghĩa 05c.5), Mệnh đề 05c.6 cho công thức (1.4), và Ví dụ 05c.4 tính được xác suất nhóm $32$ chỉ số có lặp là $0{,}394$. Mệnh đề 05c.7 chặn xác suất của một hợp bởi tổng các xác suất, và công cụ này được dùng lại ở Mục 5 và Mục 6.
+Xuất phát từ ngôn ngữ của Định nghĩa 05c.1, Mệnh đề 05c.2 suy ra các quy tắc tính từ hai tiên đề, và Mệnh đề 05c.4 cho cách đếm trong mô hình đồng khả năng. Áp phép đếm đó cho lô được rút có hoàn lại (Định nghĩa 05c.5), Mệnh đề 05c.6 cho công thức (1.4), và Ví dụ 05c.4 tính được xác suất lô $32$ chỉ số có lặp là $0{,}394$. Mệnh đề 05c.7 chặn xác suất của một hợp bởi tổng các xác suất, và công cụ này được dùng lại ở Mục 5 và Mục 6.
 
 Như vậy, tất cả các kết quả trên là xác suất của biến cố trước khi quan sát. Tuy nhiên, chúng ta chưa có cách cập nhật xác suất khi biết một phần kết cục, và tính chất "không ảnh hưởng nhau" mà phép đếm $N^b$ ngầm dùng chưa được định nghĩa. Trong Mục 2, chúng ta định nghĩa xác suất có điều kiện và tính độc lập, rồi chứng minh các lần rút có hoàn lại là độc lập.
 
@@ -647,7 +647,7 @@ Nhưng $A_1\cap A_2\cap A_3=\varnothing$, vì hai xu cùng ngửa thì không kh
 Với mô hình rút có hoàn lại, mệnh đề sau xác nhận ý tưởng ở đầu Mục 2.3 bằng cách chứng minh các biến cố, mỗi biến cố chỉ nói về một lần rút và các lần rút khác nhau, là độc lập.
 
 ::: proposition Mệnh đề 05c.14 (Các lần rút có hoàn lại độc lập)
-**Giả thiết.** Nhóm $b$ chỉ số $I_1,\ldots,I_b$ rút đều có hoàn lại từ $N$ quan sát (Định nghĩa 05c.5). Với mỗi $r$, $T_r\subseteq\{1,\ldots,N\}$ là một tập chỉ số và $A_r$ là biến cố $\{I_r\in T_r\}$.
+**Giả thiết.** Lô $b$ chỉ số $I_1,\ldots,I_b$ rút đều có hoàn lại từ $N$ quan sát (Định nghĩa 05c.5). Với mỗi $r$, $T_r\subseteq\{1,\ldots,N\}$ là một tập chỉ số và $A_r$ là biến cố $\{I_r\in T_r\}$.
 
 **Kết luận.**
 
@@ -673,7 +673,7 @@ $$
 **Bước 4 (không hoàn lại).** Với $N\ge2$, biến cố $\{I_1=1\}\cap\{I_2=1\}$ rỗng trong mô hình không hoàn lại, nên có xác suất $0\ne\tfrac1{N^2}$. $\square$
 :::
 
-Mệnh đề 05c.14 là nền xác suất của giả thiết "các chỉ số độc lập, đều trên $\{1,\ldots,N\}$" trong Định nghĩa 05.10. Mô hình không hoàn lại giữ phân phối đều của từng lần rút nhưng mất tính độc lập, và ở Mục 4.6, chúng ta sẽ thấy điều đó làm phương sai của gradient nhóm nhỏ đi.
+Mệnh đề 05c.14 là nền xác suất của giả thiết "các chỉ số độc lập, đều trên $\{1,\ldots,N\}$" trong Định nghĩa 05.10. Mô hình không hoàn lại giữ phân phối đều của từng lần rút nhưng mất tính độc lập, và ở Mục 4.6, chúng ta sẽ thấy điều đó làm phương sai của gradient lô giảm.
 
 **Trong học máy.** Giả thiết các quan sát huấn luyện là những lần rút độc lập từ cùng một phân phối là giả thiết chuẩn của học có giám sát (Goodfellow và cộng sự, 2016, mục 5.2, tr. 110–111). Nó bị vi phạm với chuỗi thời gian, với nhiều ảnh của cùng một bệnh nhân, hay với dữ liệu sắp theo nhãn mà không xáo trộn; Tình huống 05c.2 và Tình huống 05c.3 ước lượng hậu quả bằng số.
 
@@ -768,7 +768,7 @@ Như vậy, Định nghĩa 05c.8 chia lại khối lượng xác suất khi có 
 
 ## 3. Biến ngẫu nhiên và phân phối
 
-Ở Mục 2, các đối tượng của chúng ta vẫn là biến cố, trong khi gradient mẫu và tổng hai xúc xắc là những con số gán cho kết cục. Câu hỏi về gradient nhóm cũng là câu hỏi về một con số: tại $\theta=1$, gradient nhóm hai chỉ số nhận giá trị nào với xác suất bao nhiêu.
+Ở Mục 2, các đối tượng của chúng ta vẫn là biến cố, trong khi gradient mẫu và tổng hai xúc xắc là những con số gán cho kết cục. Câu hỏi về gradient lô cũng là câu hỏi về một con số: tại $\theta=1$, gradient lô hai chỉ số nhận giá trị nào với xác suất bao nhiêu.
 
 Biến ngẫu nhiên cho phép viết câu hỏi về giá trị của gradient thành câu hỏi về biến cố $\{g_I(\theta)\ge t\}$. Đầu tiên, chúng ta định nghĩa biến ngẫu nhiên và hàm khối xác suất, sau đó giới thiệu các phân phối rời rạc dùng trong chương cùng phần liên tục tối thiểu. Cuối cùng, chúng ta định nghĩa độc lập cho biến và đi tới mô tả tường minh phân phối của gradient mẫu được rút.
 
@@ -880,7 +880,7 @@ Cho $p\in[0,1]$ và các số nguyên dương $n$, $N$.
 4. **Hình học$(p)$, với $p>0$.** $G\in\{1,2,\ldots\}$ với $P(G=k)=(1-p)^{k-1}p$.
 :::
 
-Trong định nghĩa trên, phân phối Bernoulli mô tả một lần thử có hai kết quả, chẳng hạn một ảnh bị phân loại sai hay đúng (Goodfellow và cộng sự, 2016, mục 3.9.1, tr. 62). Phân phối nhị thức mô tả số lần thành công trong $n$ lần thử độc lập (Mệnh đề 05c.21). Mỗi $I_r$ của nhóm rút có hoàn lại có phân phối đều (Mệnh đề 05c.14), còn phân phối hình học mô tả số lần thử tới lần thành công đầu tiên.
+Trong định nghĩa trên, phân phối Bernoulli mô tả một lần thử có hai kết quả, chẳng hạn một ảnh bị phân loại sai hay đúng (Goodfellow và cộng sự, 2016, mục 3.9.1, tr. 62). Phân phối nhị thức mô tả số lần thành công trong $n$ lần thử độc lập (Mệnh đề 05c.21). Mỗi $I_r$ của lô được rút có hoàn lại có phân phối đều (Mệnh đề 05c.14), còn phân phối hình học mô tả số lần thử tới lần thành công đầu tiên.
 
 Tổng các xác suất của phân phối hình học bằng $1$ theo chuỗi hình học, vì $\sum_{k\ge1}(1-p)^{k-1}p=p\cdot\tfrac1{1-(1-p)}=1$. Đối chiếu Bài 00: mục "Biến rời rạc và hàm khối xác suất" ký hiệu tham số Bernoulli là $\pi$, còn ở đây ta dùng $p$ vì nó trùng với tỉ lệ lỗi $p$ ở Mục 5 và Mục 6.
 
@@ -1045,8 +1045,8 @@ Nhờ Mệnh đề 05c.24, các phép tính trên tổng và tích ở Mục 4, 
 
 Với các khái niệm của Mục 3.1–3.4, gradient của một mẫu được rút ngẫu nhiên trở thành một biến ngẫu nhiên có PMF tường minh. Ghép Mệnh đề 05c.14 với Mệnh đề 05c.24, ta được hệ quả sau.
 
-::: corollary Hệ quả 05c.25 (Gradient mẫu của nhóm có hoàn lại là i.i.d.)
-**Giả thiết.** Tập dữ liệu và tham số $\theta$ cố định; mọi $\ell_i$ khả vi tại $\theta$, với gradient mẫu $g_i=\nabla\ell_i(\theta)$. Nhóm $I_1,\ldots,I_b$ rút đều có hoàn lại từ $\{1,\ldots,N\}$.
+::: corollary Hệ quả 05c.25 (Gradient mẫu của lô có hoàn lại là i.i.d.)
+**Giả thiết.** Tập dữ liệu và tham số $\theta$ cố định; mọi $\ell_i$ khả vi tại $\theta$, với gradient mẫu $g_i=\nabla\ell_i(\theta)$. Lô $I_1,\ldots,I_b$ được rút đều có hoàn lại từ $\{1,\ldots,N\}$.
 
 **Kết luận.** $I_1,\ldots,I_b$ i.i.d. đều trên $\{1,\ldots,N\}$. Với mỗi tọa độ $j$, các số $[g_{I_1}]_j,\ldots,[g_{I_b}]_j$ là các biến ngẫu nhiên i.i.d., và
 
@@ -1055,7 +1055,7 @@ P\bigl([g_{I_r}]_j=v\bigr)=\frac{\lvert\{i:[g_i]_j=v\}\rvert}N,\qquad v\in\mathb
 \tag{3.6}
 $$
 
-**Điều kiện áp dụng.** $\theta$ không được phụ thuộc chính nhóm đang rút.
+**Điều kiện áp dụng.** $\theta$ không được phụ thuộc chính lô đang được rút.
 
 **Phạm vi.** Khi rút không hoàn lại, mỗi $[g_{I_r}]_j$ vẫn có PMF (3.6) nhưng các biến nói chung không độc lập.
 :::
@@ -1066,8 +1066,8 @@ $$
 **Bước 2 (các gradient mẫu).** Với $\theta$ cố định, $[g_{I_r}]_j=h(I_r)$ với hàm $h(i)=[g_i]_j$ không phụ thuộc $r$. Mệnh đề 05c.24 với các khối một phần tử $T_r=\{r\}$ cho tính độc lập. Cùng hàm $h$ áp lên các biến cùng PMF cho cùng PMF, và (3.2) cho (3.6). $\square$
 :::
 
-::: example Ví dụ 05c.16 (Phân phối của gradient mẫu và gradient nhóm hai chỉ số)
-**Dữ kiện.** Ví dụ ba quan sát: $y=(-1,1,3)$, $g_i(\theta)=\theta-y_i$; tại $\theta=1$ ba gradient mẫu là $2$, $0$, $-2$. Nhóm rút đều có hoàn lại.
+::: example Ví dụ 05c.16 (Phân phối của gradient mẫu và gradient lô hai chỉ số)
+**Dữ kiện.** Ví dụ ba quan sát: $y=(-1,1,3)$, $g_i(\theta)=\theta-y_i$; tại $\theta=1$ ba gradient mẫu là $2$, $0$, $-2$. Lô được rút đều có hoàn lại.
 
 **Một chỉ số.** Theo (3.6), $g_{I_1}(1)$ nhận $2$, $0$, $-2$, mỗi giá trị với xác suất $\tfrac13$.
 
@@ -1083,7 +1083,7 @@ $$
 **Kiểm tra lại.** $\widehat g=0$ khi hai gradient mẫu bằng nhau và bằng $0$, hoặc là cặp $\{2,-2\}$ theo hai thứ tự; tổng ba cặp, khớp bảng.
 :::
 
-**Trong học máy.** Hệ quả 05c.25 là nền xác suất của hai điều mà Định nghĩa 05.10 và Bước 4 trong chứng minh Định lý 05.11 sử dụng: gradient nhóm là trung bình cộng của $b$ gradient mẫu được rút, và các gradient mẫu này độc lập vì các chỉ số $I_r$ độc lập. Giả thiết "$\theta$ không phụ thuộc nhóm đang rút" đúng trong SGD khi nhóm ở bước $k$ được rút mới, độc lập với các nhóm đã quyết định $\theta_k$ (Thuật toán 05c.1). Khi dữ liệu được xáo trộn theo lượt, các nhóm trong cùng lượt phụ thuộc nhau, và Mục 6.7 xét trường hợp đó.
+**Trong học máy.** Hệ quả 05c.25 là nền xác suất của hai điều mà Định nghĩa 05.10 và Bước 4 trong chứng minh Định lý 05.11 sử dụng: gradient lô là trung bình cộng của $b$ gradient mẫu được rút, và các gradient mẫu này độc lập vì các chỉ số $I_r$ độc lập. Giả thiết "$\theta$ không phụ thuộc lô đang được rút" đúng trong SGD khi lô ở bước $k$ được rút mới, độc lập với các lô đã quyết định $\theta_k$ (Thuật toán 05c.1). Khi dữ liệu được xáo trộn theo lượt, các lô trong cùng lượt phụ thuộc nhau, và Mục 6.7 xét trường hợp đó.
 
 ::: exercise Bài tập 05c.3 (Bảng đồng thời của nhãn và dự đoán)
 Một mô hình phân loại nhị phân được đánh giá trên một quần thể. Nhãn thật $Y\in\{0,1\}$ và dự đoán $Z\in\{0,1\}$ có PMF đồng thời:
@@ -1115,13 +1115,13 @@ Cộng theo hàng và theo cột. Ở câu 4, ô $(y,z)$ của bảng mới bằ
 **Kiểm tra lại.** Tổng bốn ô của bảng cho trước là $1$; tổng bốn ô của bảng độc lập là $(0{,}2+0{,}8)(0{,}24+0{,}76)=1$.
 :::
 
-Như vậy, Định nghĩa 05c.17 và Định nghĩa 05c.18 biến câu hỏi về một con số thành câu hỏi về biến cố. Định nghĩa 05c.20 và Mệnh đề 05c.21 cho các PMF chuẩn, còn Định nghĩa 05c.22 mở rộng tối thiểu sang biến liên tục. Định nghĩa 05c.23 và Mệnh đề 05c.24 chuyển tính độc lập sang biến, và từ đó Hệ quả 05c.25 khẳng định các gradient mẫu trong một nhóm có hoàn lại là i.i.d. với PMF (3.6). Ví dụ 05c.16 dùng hệ quả này để lập PMF của gradient nhóm hai chỉ số.
+Như vậy, Định nghĩa 05c.17 và Định nghĩa 05c.18 biến câu hỏi về một con số thành câu hỏi về biến cố. Định nghĩa 05c.20 và Mệnh đề 05c.21 cho các PMF chuẩn, còn Định nghĩa 05c.22 mở rộng tối thiểu sang biến liên tục. Định nghĩa 05c.23 và Mệnh đề 05c.24 chuyển tính độc lập sang biến, và từ đó Hệ quả 05c.25 khẳng định các gradient mẫu trong một lô có hoàn lại là i.i.d. với PMF (3.6). Ví dụ 05c.16 dùng hệ quả này để lập PMF của gradient lô hai chỉ số.
 
 Tuy nhiên, số giá trị của PMF tăng theo $b$, và PMF chưa cho một số đo để so hai phân phối. Tóm tắt một phân phối bằng kỳ vọng và phương sai, rồi chứng minh trung bình mẫu có kỳ vọng $\mu$ và phương sai $\sigma_1^2/n$, là nội dung của Mục 4.
 
 ## 4. Kỳ vọng, phương sai và trung bình mẫu
 
-Tại $\theta=1$ trong ví dụ ba quan sát, gradient mẫu $g_I(1)$ nhận $2$, $0$, $-2$ với cùng xác suất $\tfrac13$ (Hệ quả 05c.25). Để so phân phối này với $J'(1)=0$ và với phân phối của gradient nhóm, chúng ta cần một số chỉ tâm và một số đo độ trải. Cuối mục, chúng ta bổ sung kỳ vọng có điều kiện, công cụ để tính qua nhiều bước SGD.
+Tại $\theta=1$ trong ví dụ ba quan sát, gradient mẫu $g_I(1)$ nhận $2$, $0$, $-2$ với cùng xác suất $\tfrac13$ (Hệ quả 05c.25). Để so phân phối này với $J'(1)=0$ và với phân phối của gradient lô, chúng ta cần một số chỉ tâm và một số đo độ trải. Cuối mục, chúng ta bổ sung kỳ vọng có điều kiện, công cụ để tính qua nhiều bước SGD.
 
 ### 4.1 Kỳ vọng
 
@@ -1199,7 +1199,7 @@ Dòng thứ hai thay $y$ bằng $h(x)$ trong mỗi số hạng; dòng thứ ba b
 
 ### 4.2 Tính tuyến tính và hàm chỉ thị
 
-Gọi $U_b$ là số chỉ số khác nhau trong nhóm $b$ chỉ số rút có hoàn lại. PMF của $U_b$ phức tạp, nhưng về mặt ý tưởng, $U_b$ là tổng, theo mọi quan sát $j$, của số $1$ khi $j$ xuất hiện và $0$ khi không. Nếu kỳ vọng của tổng bằng tổng các kỳ vọng thì kỳ vọng của $U_b$ là tổng các xác suất xuất hiện. Đẳng thức kỳ vọng của tổng sẽ được chứng minh ở Định lý 05c.28.
+Gọi $U_b$ là số chỉ số khác nhau trong lô $b$ chỉ số rút có hoàn lại. PMF của $U_b$ phức tạp, nhưng về mặt ý tưởng, $U_b$ là tổng, theo mọi quan sát $j$, của số $1$ khi $j$ xuất hiện và $0$ khi không. Nếu kỳ vọng của tổng bằng tổng các kỳ vọng thì kỳ vọng của $U_b$ là tổng các xác suất xuất hiện. Đẳng thức kỳ vọng của tổng sẽ được chứng minh ở Định lý 05c.28.
 
 ::: example Ví dụ 05c.18 (Tâm của tổng qua từng xúc xắc)
 **Dữ kiện.** Ví dụ hai xúc xắc; $X_1$, $X_2$ là mặt của hai xúc xắc, $S=X_1+X_2$.
@@ -1261,7 +1261,7 @@ Kỳ vọng của hàm chỉ thị và tính đơn điệu của kỳ vọng đ�
 
 **Điều kiện áp dụng.** Bất đẳng thức ở phần 2, 3 cần đúng trên mọi kết cục có xác suất dương.
 
-**Phạm vi.** Phần 1 là cầu nối giữa xác suất và kỳ vọng mà Mục 5 dùng trong mọi chứng minh.
+**Phạm vi.** Phần 1 liên hệ xác suất với kỳ vọng mà Mục 5 dùng trong mọi chứng minh.
 :::
 
 ::: proof Chứng minh Mệnh đề 05c.29
@@ -1275,7 +1275,7 @@ Kỳ vọng của hàm chỉ thị và tính đơn điệu của kỳ vọng đ�
 ::: example Ví dụ 05c.19 (Số chỉ số khác nhau và số quan sát chưa gặp)
 **Dữ kiện.** Rút có hoàn lại từ $N$ quan sát. Theo Mệnh đề 05c.14, các lần rút độc lập và mỗi lần trúng quan sát $j$ với xác suất $\tfrac1N$.
 
-**Số chỉ số khác nhau.** Gọi $A_j$ là biến cố "quan sát $j$ xuất hiện trong nhóm $b$ chỉ số". Biến cố $A_j^c$ là giao của $b$ biến cố độc lập "lần $r$ không trúng $j$", nên $P(A_j^c)=(1-\tfrac1N)^b$. Viết $U_b=\sum_{j=1}^N\mathbf 1_{A_j}$; Định lý 05c.28 và phần 1 của Mệnh đề 05c.29 cho
+**Số chỉ số khác nhau.** Gọi $A_j$ là biến cố "quan sát $j$ xuất hiện trong lô $b$ chỉ số". Biến cố $A_j^c$ là giao của $b$ biến cố độc lập "lần $r$ không trúng $j$", nên $P(A_j^c)=(1-\tfrac1N)^b$. Viết $U_b=\sum_{j=1}^N\mathbf 1_{A_j}$; Định lý 05c.28 và phần 1 của Mệnh đề 05c.29 cho
 
 $$
 \mathbb EU_b=\sum_{j=1}^NP(A_j)=N\Bigl(1-\bigl(1-\tfrac1N\bigr)^b\Bigr).
@@ -1289,18 +1289,18 @@ Với $N=1000$ và $b=32$, $\mathbb EU_{32}\approx31{,}51$.
 - $0{,}349$ khi $N=10$;
 - $0{,}3677$ khi $N=1000$, tiến tới $e^{-1}\approx0{,}3679$ khi $N\to\infty$.
 
-**Diễn giải.** Một nhóm $32$ chỉ số có lặp với xác suất $0{,}394$ (Ví dụ 05c.4), nhưng số gradient mẫu khác nhau trung bình chỉ giảm $0{,}49$. Sau $N$ lần rút có hoàn lại, tức $N/b$ bước SGD, trung bình khoảng $37\,\%$ quan sát chưa được dùng lần nào.
+**Diễn giải.** Một lô $32$ chỉ số có lặp với xác suất $0{,}394$ (Ví dụ 05c.4), nhưng số gradient mẫu khác nhau trung bình chỉ giảm $0{,}49$. Sau $N$ lần rút có hoàn lại, tức $N/b$ bước SGD, trung bình khoảng $37\,\%$ quan sát chưa được dùng lần nào.
 
 **Kiểm tra lại.** Với $N=3$, công thức cho $\mathbb ET_3=3\cdot(\tfrac23)^3=\tfrac89$. Đếm trực tiếp trên $27$ dãy: $6$ dãy gồm ba chỉ số khác nhau cho $T_3=0$, $18$ dãy gồm đúng hai chỉ số khác nhau cho $T_3=1$, $3$ dãy gồm một chỉ số cho $T_3=2$, nên $\mathbb ET_3=\tfrac{18+6}{27}=\tfrac89$.
 :::
 
 Các chỉ thị $\mathbf 1_{A_j}$ trong ví dụ phụ thuộc nhau, vì tổng của chúng không vượt $b$, nhưng Định lý 05c.28 không cần độc lập. Blitzstein và Hwang (2019, mục 4.4) dùng cùng kỹ thuật cho bài toán trả mũ ngẫu nhiên, trong đó $n$ người nhận lại mũ theo một hoán vị đều và mỗi người đúng mũ với xác suất $\tfrac1n$. Do đó số người đúng mũ có kỳ vọng $1$ với mọi $n$, dù các chỉ thị phụ thuộc mạnh.
 
-**Trong học máy.** Tính không chệch của gradient nhóm, nửa thứ nhất của Định lý 05.11, chỉ cần Định lý 05c.28 và phân phối đều của từng chỉ số. Vì vậy một nhóm cắt từ một hoán vị ngẫu nhiên vẫn cho gradient nhóm không chệch theo phân phối của riêng nhóm đó; tính độc lập chỉ cần cho hiệp phương sai (Mục 4.4, 4.6).
+**Trong học máy.** Tính không chệch của gradient lô, nửa thứ nhất của Định lý 05.11, chỉ cần Định lý 05c.28 và phân phối đều của từng chỉ số. Vì vậy một lô cắt từ một hoán vị ngẫu nhiên vẫn cho gradient lô không chệch theo phân phối của riêng lô đó; tính độc lập chỉ cần cho hiệp phương sai (Mục 4.4, 4.6).
 
 ### 4.3 Phương sai và hiệp phương sai
 
-Tại $\theta=1$, gradient một mẫu và gradient nhóm hai chỉ số của Ví dụ 05c.16 đều có kỳ vọng $0$. Tuy vậy, xác suất của hai giá trị $\pm2$ giảm từ $\tfrac23$ xuống $\tfrac29$, nên kỳ vọng không phân biệt được hai phân phối này. Một cách trực quan, độ trải đo được bằng trung bình của bình phương khoảng cách tới tâm. Đây mới là ý tưởng, chưa phải định nghĩa.
+Tại $\theta=1$, gradient một mẫu và gradient lô hai chỉ số của Ví dụ 05c.16 đều có kỳ vọng $0$. Tuy vậy, xác suất của hai giá trị $\pm2$ giảm từ $\tfrac23$ xuống $\tfrac29$, nên kỳ vọng không phân biệt được hai phân phối này. Một cách trực quan, độ trải đo được bằng trung bình của bình phương khoảng cách tới tâm. Đây mới là ý tưởng, chưa phải định nghĩa.
 
 ::: example Ví dụ 05c.20 (Độ trải của tổng hai xúc xắc)
 **Dữ kiện.** PMF của $S$ (Ví dụ 05c.11), $\mathbb ES=7$ (Ví dụ 05c.17).
@@ -1360,7 +1360,7 @@ Các công thức tính phương sai và hiệp phương sai thường dùng đ�
 
 **Điều kiện áp dụng.** Mômen bậc hai hữu hạn bảo đảm mọi kỳ vọng trong công thức tồn tại.
 
-**Phạm vi.** Phần 1 thuận tiện khi tính tay nhưng có thể mất độ chính xác số khi $\mathbb EX^2$ và $\mu^2$ gần nhau.
+**Phạm vi.** Phần 1 thuận tiện khi tính thủ công nhưng có thể mất độ chính xác số khi $\mathbb EX^2$ và $\mu^2$ gần nhau.
 :::
 
 ::: proof Chứng minh Mệnh đề 05c.31
@@ -1438,8 +1438,8 @@ So với Định lý 05c.28, Mệnh đề 05c.33 đòi thêm giả thiết, vì 
 
 Hai câu hỏi "Tâm" và "Sai số điển hình" của Mục 1.1 hỏi về kỳ vọng và phương sai của trung bình mẫu. Về mặt ý tưởng, khi lấy trung bình, các độ lệch ngược dấu bù trừ một phần, nên trung bình dao động ít hơn một quan sát. Nhận định này chưa phải một phát biểu chính xác.
 
-::: example Ví dụ 05c.21 (Phương sai của gradient nhóm theo cỡ nhóm)
-**Dữ kiện.** Ví dụ ba quan sát tại $\theta=1$: gradient mẫu nhận $2$, $0$, $-2$, mỗi giá trị với xác suất $\tfrac13$; nhóm rút có hoàn lại. PMF của gradient nhóm hai chỉ số (Ví dụ 05c.16): giá trị $2,1,0,-1,-2$ với xác suất $\tfrac19,\tfrac29,\tfrac39,\tfrac29,\tfrac19$.
+::: example Ví dụ 05c.21 (Phương sai của gradient lô theo kích thước lô)
+**Dữ kiện.** Ví dụ ba quan sát tại $\theta=1$: gradient mẫu nhận $2$, $0$, $-2$, mỗi giá trị với xác suất $\tfrac13$; lô được rút có hoàn lại. PMF của gradient lô hai chỉ số (Ví dụ 05c.16): giá trị $2,1,0,-1,-2$ với xác suất $\tfrac19,\tfrac29,\tfrac39,\tfrac29,\tfrac19$.
 
 **Tính.** Kỳ vọng bằng $0$ với mọi $b$ do PMF đối xứng, nên phương sai bằng $\mathbb E\widehat g^2$:
 
@@ -1452,9 +1452,9 @@ Hai câu hỏi "Tâm" và "Sai số điển hình" của Mục 1.1 hỏi về k�
 **Kiểm tra lại.** Với $b=4$, viết $\widehat g=\tfrac12(u_1+u_2+u_3+u_4)$ với $u_r\in\{1,0,-1\}$ đều và độc lập; mỗi $u_r$ có phương sai $\tfrac23$, nên Mệnh đề 05c.33 và phần 2 của Mệnh đề 05c.31 cho $\tfrac14\cdot4\cdot\tfrac23=\tfrac23$.
 :::
 
-![Ba biểu đồ cột cùng tâm 0 cho gradient nhóm tại θ = 1 trên ví dụ ba quan sát. b = 1: ba giá trị −2, 0, 2 cao bằng nhau, phương sai 8/3. b = 2: năm giá trị −2, −1, 0, 1, 2 với tần số 1, 2, 3, 2, 1, phương sai 4/3. b = 4: chín giá trị tập trung quanh 0, phương sai 2/3.](img/lec-05c/batch-gradient-pmf.svg)
+![Ba biểu đồ cột cùng tâm 0 cho gradient lô tại θ = 1 trên ví dụ ba quan sát. b = 1: ba giá trị −2, 0, 2 cao bằng nhau, phương sai 8/3. b = 2: năm giá trị −2, −1, 0, 1, 2 với tần số 1, 2, 3, 2, 1, phương sai 4/3. b = 4: chín giá trị tập trung quanh 0, phương sai 2/3.](img/lec-05c/batch-gradient-pmf.svg)
 
-Hình trên minh họa PMF của gradient nhóm với $b=1,2,4$ trên cùng trục. Khi $b$ tăng, khối lượng dồn về $0$, và phương sai ghi trên mỗi khung giảm một nửa mỗi lần $b$ gấp đôi. Định nghĩa và định lý sau đặt tên và chứng minh quy luật này.
+Hình trên minh họa PMF của gradient lô với $b=1,2,4$ trên cùng trục. Khi $b$ tăng, khối lượng dồn về $0$, và phương sai ghi trên mỗi khung giảm một nửa mỗi lần $b$ gấp đôi. Định nghĩa và định lý sau đặt tên và chứng minh quy luật này.
 
 ::: definition Định nghĩa 05c.34 (Ước lượng không chệch và sai số chuẩn)
 Cho một đại lượng cần ước lượng $\mu\in\mathbb R$ và một ước lượng $\widehat\mu$, là một biến ngẫu nhiên tính từ dữ liệu.
@@ -1499,7 +1499,7 @@ $$
 
 Theo Định lý 05c.35, trung bình mẫu không chệch và sai số chuẩn giảm theo $1/\sqrt n$. Đó là câu trả lời cho hai câu hỏi đầu của Mục 1.1. Muốn giảm sai số chuẩn $k$ lần, ta phải tăng số quan sát $k^2$ lần, và đây chính là phát biểu "$100$ mẫu so với $10\,000$ mẫu" của Goodfellow và cộng sự (2016, mục 8.1.3, tr. 278).
 
-Ví dụ 05c.21 là trường hợp $X_r=g_{I_r}(1)$, $n=b$ và $\sigma_1^2=\tfrac83$, trong đó các gradient mẫu i.i.d. theo Hệ quả 05c.25, nên phương sai của gradient nhóm là $\sigma_b^2=\sigma_1^2/b=\tfrac8{3b}$. Giả thiết không tương quan không bỏ được, vì nếu $X_1=\cdots=X_n$ thì trung bình bằng $X_1$ và phương sai vẫn là $\sigma_1^2$ với mọi $n$.
+Ví dụ 05c.21 là trường hợp $X_r=g_{I_r}(1)$, $n=b$ và $\sigma_1^2=\tfrac83$, trong đó các gradient mẫu i.i.d. theo Hệ quả 05c.25, nên phương sai của gradient lô là $\sigma_b^2=\sigma_1^2/b=\tfrac8{3b}$. Giả thiết không tương quan không bỏ được, vì nếu $X_1=\cdots=X_n$ thì trung bình bằng $X_1$ và phương sai vẫn là $\sigma_1^2$ với mọi $n$.
 
 ::: example Ví dụ 05c.22 (Sai số chuẩn của tỉ lệ lỗi đo trên tập kiểm thử)
 **Dữ kiện.** Một mô hình có tỉ lệ lỗi thật $p=0{,}1$. Tập kiểm thử gồm $n=1000$ quan sát i.i.d. theo phân phối dữ liệu, độc lập với dữ liệu huấn luyện. $X_i=1$ nếu quan sát $i$ bị phân loại sai, $X_i=0$ nếu đúng.
@@ -1513,18 +1513,18 @@ Ví dụ 05c.21 là trường hợp $X_r=g_{I_r}(1)$, $n=b$ và $\sigma_1^2=\tfr
 **Kiểm tra lại.** $p(1-p)$ đạt cực đại $\tfrac14$ tại $p=\tfrac12$, vì đạo hàm $1-2p$ đổi dấu tại đó.
 :::
 
-**Trong học máy.** Định lý 05c.35 là nền của Định lý 05.11, với gradient nhóm là trung bình mẫu của $n=b$ gradient mẫu. Giả thiết không tương quan được bảo đảm khi rút có hoàn lại (Hệ quả 05c.25) và bị vi phạm khi các quan sát trong nhóm tương quan, như các khung hình liên tiếp của một video; Bài tập 05c.5 tính phần phương sai khi đó không giảm theo $b$.
+**Trong học máy.** Định lý 05c.35 là nền của Định lý 05.11, với gradient lô là trung bình mẫu của $n=b$ gradient mẫu. Giả thiết không tương quan được bảo đảm khi rút có hoàn lại (Hệ quả 05c.25) và bị vi phạm khi các quan sát trong lô tương quan, như các khung hình liên tiếp của một video; Bài tập 05c.5 tính phần phương sai khi đó không giảm theo $b$.
 
 ### 4.6 Phép rút không hoàn lại
 
-Trong thực hành, người ta thường rút các chỉ số của một nhóm không hoàn lại (Mục 1.4). Theo Ví dụ 05c.9, khi đó các lần rút phụ thuộc nhau, nên giả thiết không tương quan của Định lý 05c.35 không thỏa, và ví dụ sau tính phương sai trực tiếp.
+Trong thực hành, người ta thường rút các chỉ số của một lô không hoàn lại (Mục 1.4). Theo Ví dụ 05c.9, khi đó các lần rút phụ thuộc nhau, nên giả thiết không tương quan của Định lý 05c.35 không thỏa, và ví dụ sau tính phương sai trực tiếp.
 
 ::: example Ví dụ 05c.23 (Hai chỉ số không hoàn lại)
-**Dữ kiện.** Ví dụ ba quan sát tại $\theta=1$, gradient mẫu $2$, $0$, $-2$; nhóm $b=2$ chỉ số rút không hoàn lại.
+**Dữ kiện.** Ví dụ ba quan sát tại $\theta=1$, gradient mẫu $2$, $0$, $-2$; lô $b=2$ chỉ số rút không hoàn lại.
 
-**Tính.** Ba tập con hai phần tử đồng khả năng cho gradient nhóm $\tfrac{2+0}2=1$, $\tfrac{2-2}2=0$, $\tfrac{0-2}2=-1$. Kỳ vọng bằng $0$ và phương sai bằng $\tfrac13(1+0+1)=\tfrac23$.
+**Tính.** Ba tập con hai phần tử đồng khả năng cho gradient lô $\tfrac{2+0}2=1$, $\tfrac{2-2}2=0$, $\tfrac{0-2}2=-1$. Kỳ vọng bằng $0$ và phương sai bằng $\tfrac13(1+0+1)=\tfrac23$.
 
-**Diễn giải.** Phương sai $\tfrac23$ bằng một nửa giá trị $\tfrac43$ khi rút có hoàn lại (Ví dụ 05c.21). Rút không hoàn lại loại các nhóm $\{2,2\}$ và $\{-2,-2\}$, nơi gradient nhóm xa tâm nhất.
+**Diễn giải.** Phương sai $\tfrac23$ bằng một nửa giá trị $\tfrac43$ khi rút có hoàn lại (Ví dụ 05c.21). Rút không hoàn lại loại các lô $\{2,2\}$ và $\{-2,-2\}$, nơi gradient lô xa tâm nhất.
 
 **Kiểm tra lại.** Kỳ vọng $\tfrac13(1+0-1)=0=J'(1)$: rút không hoàn lại vẫn không chệch.
 :::
@@ -1568,11 +1568,11 @@ Chia cho $n^2$ theo phần 2 của Mệnh đề 05c.31 được (4.8). $\square$
 
 Hệ số $\frac{N-n}{N-1}$ được gọi là hệ số hiệu chỉnh tổng thể hữu hạn (finite population correction). Hệ số này không vượt $1$, bằng $0$ khi $n=N$ và gần $1$ khi $n\ll N$. So với Định lý 05c.35, mệnh đề thay giả thiết không tương quan bằng giả thiết đối xứng, và hiệp phương sai âm $\gamma$ làm phương sai nhỏ đi.
 
-**Trong học máy.** Với $N=50\,000$ và nhóm $b=128$ cắt từ một hoán vị ngẫu nhiên, hệ số là $\tfrac{49\,872}{49\,999}\approx0{,}9975$, nên công thức $\sigma_1^2/b$ của mô hình có hoàn lại là xấp xỉ tốt khi $b\ll N$. Mệnh đề chỉ xử lý một nhóm; các nhóm liên tiếp trong cùng một lượt phụ thuộc nhau (Mục 6.7).
+**Trong học máy.** Với $N=50\,000$ và lô $b=128$ cắt từ một hoán vị ngẫu nhiên, hệ số là $\tfrac{49\,872}{49\,999}\approx0{,}9975$, nên công thức $\sigma_1^2/b$ của mô hình có hoàn lại là xấp xỉ tốt khi $b\ll N$. Mệnh đề chỉ xử lý một lô; các lô liên tiếp trong cùng một lượt phụ thuộc nhau (Mục 6.7).
 
 ### 4.7 Kỳ vọng có điều kiện và kỳ vọng toàn phần
 
-Trong SGD, tham số $\theta_1$ phụ thuộc nhóm thứ nhất, còn gradient ở bước hai phụ thuộc $\theta_1$ và nhóm thứ hai, tức đại lượng được tạo qua hai tầng ngẫu nhiên. Về mặt trực quan, kỳ vọng qua cây hai tầng được tính bằng trung bình trong từng nhánh, rồi trung bình các nhánh theo xác suất của nhánh, như Mệnh đề 05c.10 làm với xác suất. Cách tính này chưa phải định nghĩa.
+Trong SGD, tham số $\theta_1$ phụ thuộc lô thứ nhất, còn gradient ở bước hai phụ thuộc $\theta_1$ và lô thứ hai, tức đại lượng được tạo qua hai tầng ngẫu nhiên. Về mặt trực quan, kỳ vọng qua cây hai tầng được tính bằng trung bình trong từng nhánh, rồi trung bình các nhánh theo xác suất của nhánh, như Mệnh đề 05c.10 làm với xác suất. Cách tính này chưa phải định nghĩa.
 
 ::: example Ví dụ 05c.24 (Monty Hall theo nhánh)
 **Dữ kiện.** Ví dụ 05c.6: ba cửa, xe ở mỗi cửa với xác suất $\tfrac13$, người chơi chọn cửa 1, người dẫn biết vị trí xe và luôn mở một cửa có dê khác cửa 1.
@@ -1649,10 +1649,10 @@ $$
 trong đó đẳng thức thứ hai dùng tính độc lập của $I$ và $Y$. Tổng cuối là $\mathbb E\,h(y,I)$ theo (4.2). $\square$
 :::
 
-Phần 1 là dạng kỳ vọng của Mệnh đề 05c.10, vì với $X=\mathbf 1_A$ và $Y$ chỉ ra phần $B_j$ chứa kết cục, phần 1 trở thành (2.3). Phần 4 là công cụ chính của Mục 6. Khi $I$ là nhóm được rút mới và $Y$ là tham số hiện tại, phần 4 cho phép tính kỳ vọng theo nhóm như thể tham số cố định.
+Phần 1 là dạng kỳ vọng của Mệnh đề 05c.10, vì với $X=\mathbf 1_A$ và $Y$ chỉ ra phần $B_j$ chứa kết cục, phần 1 trở thành (2.3). Phần 4 là công cụ chính của Mục 6. Khi $I$ là lô mới được rút và $Y$ là tham số hiện tại, phần 4 cho phép tính kỳ vọng theo lô như thể tham số cố định.
 
 ::: example Ví dụ 05c.25 (Cây hai bước của SGD)
-**Dữ kiện.** Ví dụ ba quan sát: $g_i(\theta)=\theta-y_i$ với $y=(-1,1,3)$, $J'(\theta)=\theta-1$. SGD với điểm đầu $\theta_0=0$, bước $\eta=0{,}1$, nhóm một chỉ số rút đều; chỉ số $I_2$ của bước hai độc lập với chỉ số $I_1$ của bước một.
+**Dữ kiện.** Ví dụ ba quan sát: $g_i(\theta)=\theta-y_i$ với $y=(-1,1,3)$, $J'(\theta)=\theta-1$. SGD với điểm đầu $\theta_0=0$, bước $\eta=0{,}1$, lô một chỉ số rút đều; chỉ số $I_2$ của bước hai độc lập với chỉ số $I_1$ của bước một.
 
 **Bước một.** Tại $\theta_0=0$, gradient mẫu là $1$, $-1$, $-3$, nên $\theta_1=\theta_0-0{,}1\,g_{I_1}(\theta_0)$ nhận $-0{,}1$; $0{,}1$; $0{,}3$, mỗi giá trị với xác suất $\tfrac13$.
 
@@ -1669,10 +1669,10 @@ Ba nhánh cho $-1{,}1$; $-0{,}9$; $-0{,}7$.
 **Kiểm tra lại.** Cộng trực tiếp trên $9$ lá $(I_1,I_2)$ đồng khả năng: với mỗi $\theta_1$, ba giá trị $\theta_1-y_i$ có trung bình $\theta_1-1$, nên tổng chín lá chia $9$ cũng bằng $-0{,}9$. Cách khác: $\mathbb E\theta_1=0{,}1$ và $\mathbb E\theta_1-1=-0{,}9$.
 :::
 
-**Trong học máy.** Mệnh đề 05c.38 cho phép phân tích SGD từng bước: lấy kỳ vọng theo nhóm mới khi lịch sử cố định, rồi theo lịch sử; Bài 05b gọi phần 1 áp cho lịch sử là tính chất tháp (tower property). Giả thiết độc lập của phần 4 là việc nhóm ở mỗi bước được rút mới; Mục 6.6 dùng nó, và Tình huống 05c.3 cho thấy hậu quả khi nó bị vi phạm.
+**Trong học máy.** Mệnh đề 05c.38 cho phép phân tích SGD từng bước: lấy kỳ vọng theo lô mới khi lịch sử cố định, rồi theo lịch sử; Bài 05b gọi phần 1 áp cho lịch sử là tính chất tháp (tower property). Giả thiết độc lập của phần 4 là việc lô ở mỗi bước được rút mới; Mục 6.6 dùng nó, và Tình huống 05c.3 cho thấy hậu quả khi nó bị vi phạm.
 
 ::: exercise Bài tập 05c.4 (Sai số bình phương sau một bước SGD)
-**Dữ kiện.** Ví dụ 05c.25: ví dụ ba quan sát, $\theta_0=0$, $\eta=0{,}1$, nhóm một chỉ số; $\theta_1$ nhận $-0{,}1$; $0{,}1$; $0{,}3$, mỗi giá trị với xác suất $\tfrac13$. Gradient mẫu tại $\theta_0=0$ là $1$, $-1$, $-3$.
+**Dữ kiện.** Ví dụ 05c.25: ví dụ ba quan sát, $\theta_0=0$, $\eta=0{,}1$, lô một chỉ số; $\theta_1$ nhận $-0{,}1$; $0{,}1$; $0{,}3$, mỗi giá trị với xác suất $\tfrac13$. Gradient mẫu tại $\theta_0=0$ là $1$, $-1$, $-3$.
 
 Tính $\mathbb E(\theta_1-1)^2$ theo hai cách:
 
@@ -1696,7 +1696,7 @@ $$
 \end{aligned}
 $$
 
-**Kiểm tra lại.** Hai cách cho cùng kết quả. Số hạng $0{,}81=0{,}9^2$ là phần tất định, số hạng $0{,}0267$ là phần do nhiễu của nhóm; Mục 6.6 lặp phép tách này qua nhiều bước.
+**Kiểm tra lại.** Hai cách cho cùng kết quả. Số hạng $0{,}81=0{,}9^2$ là phần tất định, số hạng $0{,}0267$ là phần do nhiễu của lô; Mục 6.6 lặp phép tách này qua nhiều bước.
 :::
 
 ::: exercise Bài tập 05c.5 (Phương sai của trung bình khi các quan sát tương quan)
@@ -1704,7 +1704,7 @@ Cho $X_1,\ldots,X_b$ cùng kỳ vọng $\mu$, cùng phương sai $\sigma_1^2$, v
 
 1. Chứng minh $\operatorname{Var}\bar X_b=\dfrac{\sigma_1^2}b+\Bigl(1-\dfrac1b\Bigr)\gamma$.
 2. Với $\sigma_1^2=\tfrac83$ và $\gamma=\tfrac23$, tính $\operatorname{Var}\bar X_b$ khi $b=16$ và giới hạn khi $b\to\infty$. So với trường hợp $\gamma=0$.
-3. Giải thích vì sao tăng cỡ nhóm không đưa phương sai về $0$ khi các quan sát trong nhóm tương quan dương.
+3. Giải thích vì sao tăng kích thước lô không đưa phương sai về $0$ khi các quan sát trong lô tương quan dương.
 :::
 
 ::: hint
@@ -1720,7 +1720,7 @@ $$
 
 **Câu 2.** Với $b=16$: $\tfrac{8}{48}+\tfrac{15}{16}\cdot\tfrac23=0{,}1667+0{,}625=0{,}7917$. Khi $b\to\infty$, phương sai tiến tới $\gamma=\tfrac23$. Với $\gamma=0$, phương sai ở $b=16$ là $\tfrac16\approx0{,}1667$, nhỏ hơn gần năm lần.
 
-**Câu 3.** Số hạng $(1-\tfrac1b)\gamma$ tăng theo $b$ và tiến tới $\gamma>0$: phần nhiễu chung cho mọi quan sát trong nhóm không bị trung bình hóa. Chỉ số hạng $\sigma_1^2/b$ giảm theo $b$.
+**Câu 3.** Số hạng $(1-\tfrac1b)\gamma$ tăng theo $b$ và tiến tới $\gamma>0$: phần nhiễu chung cho mọi quan sát trong lô không bị trung bình hóa. Chỉ số hạng $\sigma_1^2/b$ giảm theo $b$.
 
 **Kiểm tra lại.** Với $\gamma=0$ công thức trở về (4.7). Với $\gamma=\sigma_1^2$, mọi quan sát trùng nhau theo nghĩa phương sai, và công thức cho $\sigma_1^2$ với mọi $b$.
 :::
@@ -1920,7 +1920,7 @@ với quy ước vế phải có thể bằng $+\infty$.
 
 Chứng minh của Định lý 05c.39, Hệ quả 05c.40 và Định lý 05c.43 cùng chặn trên hàm chỉ thị của biến cố bằng một hàm không âm có kỳ vọng tính được, rồi lấy kỳ vọng hai vế (Boyd và Vandenberghe, 2004, mục 7.4.2, tr. 379).
 
-![Ba khung đồ thị. Khung Markov: hàm bậc thang chỉ thị của z ≥ ε nằm dưới đường thẳng z/ε. Khung Chebyshev: chỉ thị của |x − μ| ≥ t nằm dưới parabol ((x − μ)/t)², chạm parabol tại μ ± t. Khung Chernoff: chỉ thị của x ≥ u nằm dưới hàm mũ exp(λ(x − u)), chạm tại x = u.](img/lec-05c/indicator-dominating-functions.svg)
+![Ba khung đồ thị. Khung Markov: hàm bậc thang chỉ thị của z ≥ ε nằm dưới đường thẳng z/ε. Khung Chebyshev: chỉ thị của |x − μ| ≥ t nằm dưới parabol ((x − μ)/t)², đạt dấu bằng tại μ ± t. Khung Chernoff: chỉ thị của x ≥ u nằm dưới hàm mũ exp(λ(x − u)), đạt dấu bằng tại x = u.](img/lec-05c/indicator-dominating-functions.svg)
 
 Trong ba khung về hàm chặn, cùng một bậc thang được chặn trên bởi một đường thẳng, một parabol và một hàm mũ. Hàm chặn càng sát bậc thang ở vùng có nhiều khối lượng thì cận càng chặt. Hàm mũ gần $0$ bên trái ngưỡng, và $\lambda$ trong (5.4) điều chỉnh độ dốc của nó.
 
@@ -2216,11 +2216,11 @@ Một mô hình có mất mát entropy chéo được cắt ở $5$, tức mất
 
 Mọi cận của mục đều xuất phát từ Định lý 05c.39. Áp nó cho $(X-\mu)^2$, ta được Hệ quả 05c.40, và ghép với Định lý 05c.35, ta được Định lý 05c.41. Áp nó cho $e^{\lambda X}$, ta được Định lý 05c.43, rồi Mệnh đề 05c.44 và Bổ đề 05c.46 biến cận đó thành Định lý 05c.47, với Định lý 05c.45 là trường hợp đồng xu. Cuối cùng, Hệ quả 05c.48 cho cỡ mẫu và khoảng tin cậy cho một kỳ vọng.
 
-Như vậy, với quan sát độc lập, bị chặn trong khoảng độ rộng $M-m$, trung bình mẫu lệch quá $\varepsilon$ với xác suất không quá $2e^{-2n\varepsilon^2/(M-m)^2}$ (Định lý 05c.47), và cỡ mẫu tăng theo $\ln(1/\delta)$ (Hệ quả 05c.48). Tuy nhiên, các kết quả này nói về một lần ước lượng, trong khi SGD ước lượng lại gradient ở mọi bước với chi phí tỉ lệ cỡ nhóm $b$. Trong Mục 6, chúng ta áp Mục 4 và Mục 5 cho mất mát và gradient.
+Như vậy, với quan sát độc lập, bị chặn trong khoảng độ rộng $M-m$, trung bình mẫu lệch quá $\varepsilon$ với xác suất không quá $2e^{-2n\varepsilon^2/(M-m)^2}$ (Định lý 05c.47), và cỡ mẫu tăng theo $\ln(1/\delta)$ (Hệ quả 05c.48). Tuy nhiên, các kết quả này nói về một lần ước lượng, trong khi SGD ước lượng lại gradient ở mọi bước với chi phí tỉ lệ kích thước lô $b$. Trong Mục 6, chúng ta áp Mục 4 và Mục 5 cho mất mát và gradient.
 
-## 6. Mất mát trung bình trên nhóm nhỏ
+## 6. Mất mát trung bình trên lô nhỏ
 
-Ở Mục 6.6, Ví dụ 05c.39 sẽ cho thấy một khác biệt lớn dưới cùng ngân sách. Với $3000$ gradient mẫu trên tập $3000$ quan sát gồm $1000$ bản sao mỗi giá trị của ví dụ ba quan sát, một bước gradient đầy đủ để lại sai số bình phương $0{,}81$, còn $40$ bước với nhóm $75$ chỉ số để lại $0{,}0021$ theo kỳ vọng. Để giải thích khác biệt này, trước hết chúng ta dựng lại Định lý 05.11 từ các công cụ của chương, rồi dùng nó trả lời hai câu hỏi còn lại: trung bình hay tổng, và cỡ nhóm nào dưới ngân sách cố định.
+Ở Mục 6.6, Ví dụ 05c.39 sẽ cho thấy một khác biệt lớn dưới cùng ngân sách. Với $3000$ gradient mẫu trên tập $3000$ quan sát gồm $1000$ bản sao mỗi giá trị của ví dụ ba quan sát, một bước gradient đầy đủ để lại sai số bình phương $0{,}81$, còn $40$ bước với lô $75$ chỉ số để lại $0{,}0021$ theo kỳ vọng. Để giải thích khác biệt này, trước hết chúng ta dựng lại Định lý 05.11 từ các công cụ của chương, rồi dùng nó trả lời hai câu hỏi còn lại: trung bình hay tổng, và kích thước lô nào dưới ngân sách cố định.
 
 ### 6.1 Rủi ro thực nghiệm tại một tham số cố định
 
@@ -2262,7 +2262,7 @@ $$
 **Bước 3 (kết luận 2).** Định lý 05c.47 với $[m_i,M_i]=[0,1]$ cho cận hai phía $2\exp(-2N^2\varepsilon^2/N)=2e^{-2N\varepsilon^2}$. $\square$
 :::
 
-::: example Ví dụ 05c.34 (Cỡ tập xác thực)
+::: example Ví dụ 05c.34 (Kích thước tập xác thực)
 **Dữ kiện.** Mất mát 0–1, tham số cố định trước khi đánh giá, các quan sát xác thực i.i.d. theo $\mathcal P$. Yêu cầu: tỉ lệ lỗi đo được lệch khỏi tỉ lệ lỗi thật dưới $\varepsilon=0{,}01$ với xác suất ít nhất $0{,}95$.
 
 **Hoeffding.** Mất mát nằm trong $[0,1]$, nên Hệ quả 05c.48 với $M-m=1$ cần $N\ge\ln(2/\delta)/(2\varepsilon^2)$. Với $\delta=0{,}05$, $\varepsilon=0{,}01$: $N\ge\frac{\ln40}{2\cdot10^{-4}}\approx18\,444{,}4$, tức $N\ge18\,445$.
@@ -2276,19 +2276,19 @@ $$
 
 **Trong học máy.** Định lý 05c.52 là căn cứ của việc báo cáo tỉ lệ lỗi trên tập kiểm thử. Giả thiết "$\theta$ không phụ thuộc các quan sát" bị vi phạm khi đánh giá trên tập huấn luyện, nơi $J(\widehat\theta)$ thường nhỏ hơn $R(\widehat\theta)$ (Mệnh đề 05.2), và khi tập xác thực dùng để chọn mô hình, nơi giá trị đo được của mô hình được chọn lệch về phía lạc quan (Mệnh đề 05.5). Tình huống 05c.2 sửa cận cho trường hợp thứ hai (Goodfellow và cộng sự, 2016, mục 5.3, tr. 121).
 
-### 6.2 Gradient nhóm không chệch
+### 6.2 Gradient lô không chệch
 
-Định lý 05.11 được chứng minh bằng tính tuyến tính và tính độc lập, hai công cụ đã được dựng ở Mục 3 và Mục 4 cùng biến thể không hoàn lại. Trên ví dụ ba quan sát, chúng ta đã có các con số sau: tại $\theta=1$, gradient nhóm có kỳ vọng $0=J'(1)$, phương sai $\tfrac8{3b}$ khi rút có hoàn lại (Ví dụ 05c.21) và $\tfrac23$ khi rút không hoàn lại hai chỉ số (Ví dụ 05c.23). Định lý sau phát biểu trường hợp tổng quát nhiều chiều.
+Định lý 05.11 được chứng minh bằng tính tuyến tính và tính độc lập, hai công cụ đã được dựng ở Mục 3 và Mục 4 cùng biến thể không hoàn lại. Trên ví dụ ba quan sát, chúng ta đã có các con số sau: tại $\theta=1$, gradient lô có kỳ vọng $0=J'(1)$, phương sai $\tfrac8{3b}$ khi rút có hoàn lại (Ví dụ 05c.21) và $\tfrac23$ khi rút không hoàn lại hai chỉ số (Ví dụ 05c.23). Định lý sau phát biểu trường hợp tổng quát nhiều chiều.
 
-::: theorem Định lý 05c.53 (Gradient nhóm nhỏ)
-**Giả thiết.** Tập dữ liệu $\xi_1,\ldots,\xi_N$ cố định; $\theta\in\mathbb R^d$ cố định, không phụ thuộc nhóm đang rút; mọi $\ell_i$ khả vi tại $\theta$, $g_i=\nabla\ell_i(\theta)$, và
+::: theorem Định lý 05c.53 (Gradient lô nhỏ)
+**Giả thiết.** Tập dữ liệu $\xi_1,\ldots,\xi_N$ cố định; $\theta\in\mathbb R^d$ cố định, không phụ thuộc lô đang được rút; mọi $\ell_i$ khả vi tại $\theta$, $g_i=\nabla\ell_i(\theta)$, và
 
 $$
 \Sigma(\theta)=\frac1N\sum_{i=1}^N\bigl(g_i-\nabla J(\theta)\bigr)\bigl(g_i-\nabla J(\theta)\bigr)^T .
 \tag{6.2}
 $$
 
-Gradient nhóm là $\widehat g=\frac1b\sum_{r=1}^bg_{I_r}$.
+Gradient lô là $\widehat g=\frac1b\sum_{r=1}^bg_{I_r}$.
 
 **Kết luận.**
 
@@ -2324,14 +2324,14 @@ Với $r\ne s$, hai số hạng là hàm của hai chỉ số độc lập, nên
 
 Định lý 05c.53 là Định lý 05.11 cộng biến thể không hoàn lại của Nhận xét 05.13, viết với số chiều $d$ thay cho $p$ của Bài 05. Giả thiết phân phối đều không bỏ được, vì tại $\theta=1$, nếu chỉ số $3$ được chọn với xác suất $\tfrac12$ và hai chỉ số còn lại với xác suất $\tfrac14$, thì kỳ vọng của gradient một mẫu là $\tfrac14\cdot2+\tfrac14\cdot0+\tfrac12\cdot(-2)=-\tfrac12\ne0$.
 
-**Trong học máy.** Kết luận 1 là lý do bộ tối ưu dùng được $\widehat g$ thay cho $\nabla J$. Khi mỗi quan sát trong nhóm là một lần rút mới từ $\mathcal P$ chưa từng được dùng, cùng lập luận cho ước lượng không chệch của $\nabla R$, điều chỉ đúng trong lượt đầu qua dữ liệu (Goodfellow và cộng sự, 2016, mục 8.1.3, tr. 280–281).
+**Trong học máy.** Kết luận 1 là lý do bộ tối ưu dùng được $\widehat g$ thay cho $\nabla J$. Khi mỗi quan sát trong lô là một lần rút mới từ $\mathcal P$ chưa từng được dùng, cùng lập luận cho ước lượng không chệch của $\nabla R$, điều chỉ đúng trong lượt đầu qua dữ liệu (Goodfellow và cộng sự, 2016, mục 8.1.3, tr. 280–281).
 
-### 6.3 Cận xác suất cho sai số gradient nhóm
+### 6.3 Cận xác suất cho sai số gradient lô
 
-Định lý 05c.53 cho sai số bình phương trung bình, trong khi với một bước SGD cụ thể, chúng ta cần biết xác suất gradient nhóm lệch xa gradient đầy đủ. Ví dụ sau so hai cận của Mục 5 với xác suất đúng trên ví dụ ba quan sát.
+Định lý 05c.53 cho sai số bình phương trung bình, trong khi với một bước SGD cụ thể, chúng ta cần biết xác suất gradient lô lệch xa gradient đầy đủ. Ví dụ sau so hai cận của Mục 5 với xác suất đúng trên ví dụ ba quan sát.
 
-::: example Ví dụ 05c.35 (Hai cận cho gradient nhóm)
-**Dữ kiện.** Ví dụ ba quan sát tại $\theta=1$: gradient mẫu $2$, $0$, $-2$, nằm trong $[-2,2]$, với phương sai $\sigma_1^2=\tfrac83$; $J'(1)=0$. Nhóm rút có hoàn lại, cần thiết vì $b>N=3$. Xét biến cố $\{\lvert\widehat g\rvert\ge1\}$.
+::: example Ví dụ 05c.35 (Hai cận cho gradient lô)
+**Dữ kiện.** Ví dụ ba quan sát tại $\theta=1$: gradient mẫu $2$, $0$, $-2$, nằm trong $[-2,2]$, với phương sai $\sigma_1^2=\tfrac83$; $J'(1)=0$. Lô được rút có hoàn lại, cần thiết vì $b>N=3$. Xét biến cố $\{\lvert\widehat g\rvert\ge1\}$.
 
 **Cận.** Chebyshev (Hệ quả 05c.40) với phương sai $\tfrac8{3b}$: $\tfrac8{3b}$. Hoeffding (Định lý 05c.47) với độ rộng $4$: $2\exp(-2b^2/(16b))=2e^{-b/8}$. Xác suất đúng tính bằng cách đếm $3^b$ dãy theo tổng.
 
@@ -2347,9 +2347,9 @@ Với $r\ne s$, hai số hạng là hàm của hai chỉ số độc lập, nên
 **Kiểm tra lại.** Với $b=4$, $\widehat g=\tfrac12\sum_ru_r$ với $u_r\in\{1,0,-1\}$; biến cố $\lvert\widehat g\rvert\ge1$ là $\lvert\sum_ru_r\rvert\ge2$, gồm $30$ trong $81$ dãy, tức $0{,}370$.
 :::
 
-Gradient có $d$ tọa độ, và một bước SGD đáng tin cậy đòi mọi tọa độ của gradient nhóm đều gần tọa độ tương ứng của gradient đầy đủ. Ghép Định lý 05c.47 cho từng tọa độ với Mệnh đề 05c.7 trên các tọa độ, ta được hệ quả sau.
+Gradient có $d$ tọa độ, và một bước SGD đáng tin cậy đòi mọi tọa độ của gradient lô đều gần tọa độ tương ứng của gradient đầy đủ. Ghép Định lý 05c.47 cho từng tọa độ với Mệnh đề 05c.7 trên các tọa độ, ta được hệ quả sau.
 
-::: corollary Hệ quả 05c.54 (Cỡ nhóm cho sai số đồng thời trên mọi tọa độ)
+::: corollary Hệ quả 05c.54 (Kích thước lô cho sai số đồng thời trên mọi tọa độ)
 **Giả thiết.** Như kết luận 1 của Định lý 05c.53, thêm: mọi tọa độ của mọi gradient mẫu nằm trong một khoảng độ rộng $w$, tức $[g_i]_j\in[m_j,m_j+w]$ cho mọi $i$, $j$. Cho $\varepsilon>0$, $\delta\in(0,1)$.
 
 **Kết luận.** Nếu
@@ -2372,7 +2372,7 @@ thì với xác suất ít nhất $1-\delta$, mọi tọa độ thỏa $\bigl\lv
 **Bước 2 (mọi tọa độ).** Biến cố "có ít nhất một tọa độ lệch" là hợp của $d$ biến cố ở Bước 1. Mệnh đề 05c.7 cho xác suất không vượt $2de^{-2b\varepsilon^2/w^2}$, và đại lượng này không vượt $\delta$ khi và chỉ khi (6.4) đúng. Phần bù cho kết luận. $\square$
 :::
 
-Số chiều $d$ đi vào cỡ nhóm qua $\ln d$, nên tăng số tham số từ $10^3$ lên $10^6$ chỉ làm thừa số logarit $\ln(2d/\delta)$ tăng thêm $\ln1000\approx6{,}9$. Để có cận đồng thời, ta thay thừa số $\ln(2/\delta)$ của Hệ quả 05c.48 bằng $\ln(2d/\delta)$.
+Số chiều $d$ đi vào kích thước lô qua $\ln d$, nên tăng số tham số từ $10^3$ lên $10^6$ chỉ làm thừa số logarit $\ln(2d/\delta)$ tăng thêm $\ln1000\approx6{,}9$. Để có cận đồng thời, ta thay thừa số $\ln(2/\delta)$ của Hệ quả 05c.48 bằng $\ln(2d/\delta)$.
 
 ::: example Ví dụ 05c.36 (Gradient hồi quy logistic trên nhiều tọa độ)
 **Dữ kiện.** Hồi quy logistic với nhãn $y_i\in\{-1,+1\}$, vectơ đặc trưng $a_i\in[-1,1]^d$ và mất mát $\ell_i(\theta)=\ln\bigl(1+\exp(-y_ia_i^T\theta)\bigr)$ (Định nghĩa 01.8). Yêu cầu: $d=1000$, $\varepsilon=0{,}1$, $\delta=0{,}05$.
@@ -2381,19 +2381,19 @@ Số chiều $d$ đi vào cỡ nhóm qua $\ln d$, nên tăng số tham số từ
 
 **Áp dụng Hệ quả 05c.54.** $b\ge\frac{4\ln(40\,000)}{2\cdot0{,}01}=200\ln(40\,000)$; với $\ln(40\,000)\approx10{,}597$, vế phải xấp xỉ $2119{,}3$, nên $b\ge2120$.
 
-**Diễn giải.** Để cả $1000$ tọa độ của gradient nhóm có sai số dưới $0{,}1$ với xác suất $0{,}95$, cận cần khoảng hai nghìn quan sát mỗi nhóm. Cận dùng độ rộng $2$; khi phương sai thật của các tọa độ nhỏ hơn nhiều so với $(w/2)^2=1$, cỡ nhóm cần thật sự nhỏ hơn.
+**Diễn giải.** Để cả $1000$ tọa độ của gradient lô có sai số dưới $0{,}1$ với xác suất $0{,}95$, cận cần khoảng hai nghìn quan sát mỗi lô. Cận dùng độ rộng $2$; khi phương sai thật của các tọa độ nhỏ hơn nhiều so với $(w/2)^2=1$, kích thước lô cần thật sự nhỏ hơn.
 
 **Kiểm tra lại.** $2\cdot1000\cdot e^{-2\cdot2120\cdot0{,}01/4}=2000e^{-10{,}6}$, xấp xỉ $0{,}0498\le0{,}05$.
 :::
 
 ### 6.4 Mất mát trung bình và mất mát tổng
 
-Mất mát trên nhóm có thể được cộng thay vì lấy trung bình, và khi đó gradient nhóm dạng tổng bằng $b\,\widehat g$. Một cách trực quan, với mất mát tổng, bước học $\eta$ tác dụng như bước $\eta b$ với mất mát trung bình, nên ngưỡng bước an toàn phụ thuộc $b$. Nhận định này chưa phải phát biểu chính xác.
+Mất mát trên lô có thể được cộng thay vì lấy trung bình, và khi đó gradient lô dạng tổng bằng $b\,\widehat g$. Một cách trực quan, với mất mát tổng, bước học $\eta$ tác dụng như bước $\eta b$ với mất mát trung bình, nên ngưỡng bước an toàn phụ thuộc $b$. Nhận định này chưa phải phát biểu chính xác.
 
 ::: example Ví dụ 05c.37 (Mất mát tổng trên ví dụ ba quan sát)
-**Dữ kiện.** Ví dụ ba quan sát: $g_i(\theta)=\theta-y_i$, $y=(-1,1,3)$, $J'(\theta)=\theta-1$, nên $J''=1$ và hằng số Lipschitz của $J'$ là $L=1$. Nhóm $b$ chỉ số rút có hoàn lại; bước $\eta=0{,}1$.
+**Dữ kiện.** Ví dụ ba quan sát: $g_i(\theta)=\theta-y_i$, $y=(-1,1,3)$, $J'(\theta)=\theta-1$, nên $J''=1$ và hằng số Lipschitz của $J'$ là $L=1$. Lô $b$ chỉ số rút có hoàn lại; bước $\eta=0{,}1$.
 
-**Cập nhật với mất mát tổng.** Gradient nhóm dạng tổng là $\sum_r(\theta-y_{I_r})=b(\theta-1)-\sum_r(y_{I_r}-1)$, nên
+**Cập nhật với mất mát tổng.** Gradient lô dạng tổng là $\sum_r(\theta-y_{I_r})=b(\theta-1)-\sum_r(y_{I_r}-1)$, nên
 
 $$
 \theta^+-1=(1-0{,}1b)(\theta-1)+0{,}1\sum_{r=1}^b(y_{I_r}-1).
@@ -2406,18 +2406,18 @@ $$
 **Kiểm tra lại.** Với $b=1$, mất mát tổng và mất mát trung bình trùng nhau và cùng cho hệ số $0{,}9$.
 :::
 
-![Hệ số co của phần tất định theo cỡ nhóm b từ 1 đến 32. Với mất mát tổng, hệ số 1 − 0,1b giảm tuyến tính, bằng 0 tại b = 10 khi ηb = 1/L, bằng −1 tại b = 20 khi ηbL = 2, và bằng −2,2 tại b = 32, ra khỏi dải trị tuyệt đối nhỏ hơn 1. Với mất mát trung bình, hệ số là đường ngang 0,9.](img/lec-05c/sum-vs-mean-contraction.svg)
+![Hệ số co của phần tất định theo kích thước lô b từ 1 đến 32. Với mất mát tổng, hệ số 1 − 0,1b giảm tuyến tính, bằng 0 tại b = 10 khi ηb = 1/L, bằng −1 tại b = 20 khi ηbL = 2, và bằng −2,2 tại b = 32, ra khỏi dải trị tuyệt đối nhỏ hơn 1. Với mất mát trung bình, hệ số là đường ngang 0,9.](img/lec-05c/sum-vs-mean-contraction.svg)
 
 Hình trên minh họa hai hệ số theo $b$ cùng dải nơi trị tuyệt đối của hệ số nhỏ hơn $1$, tức nơi phần tất định co. Đường mất mát tổng cắt mép dưới của dải tại $b=20$, còn đường mất mát trung bình nằm ngang trong dải. Mệnh đề sau phát biểu hiện tượng này cho hàm có gradient Lipschitz bất kỳ.
 
 ::: proposition Mệnh đề 05c.55 (Mất mát tổng và mất mát trung bình)
-**Giả thiết.** $J$ có gradient $L$-Lipschitz; $\widehat g$ là gradient nhóm của Định lý 05c.53. Đặt $\widetilde J=NJ$, mất mát tổng trên dữ liệu, và $\widetilde g=b\,\widehat g$, gradient nhóm dạng tổng.
+**Giả thiết.** $J$ có gradient $L$-Lipschitz; $\widehat g$ là gradient lô của Định lý 05c.53. Đặt $\widetilde J=NJ$, mất mát tổng trên dữ liệu, và $\widetilde g=b\,\widehat g$, gradient lô dạng tổng.
 
 **Kết luận.**
 
 1. Một bước độ dài $\eta$ theo $\widetilde g$ trùng một bước độ dài $\eta b$ theo $\widehat g$.
 2. $\nabla\widetilde J$ là $NL$-Lipschitz, nên điều kiện bước $\eta\le1/L$ của Bổ đề 04.20 áp cho $\widetilde J$ thành $\eta\le1/(NL)$.
-3. Với gradient nhóm dạng tổng, phần tất định $\mathbb E[\theta-\eta\widetilde g]$ là một bước hạ gradient trên $J$ với độ dài $\eta b$, nên cùng điều kiện thành $\eta\le1/(bL)$.
+3. Với gradient lô dạng tổng, phần tất định $\mathbb E[\theta-\eta\widetilde g]$ là một bước hạ gradient trên $J$ với độ dài $\eta b$, nên cùng điều kiện thành $\eta\le1/(bL)$.
 4. Trong trường hợp vô hướng, $\operatorname{Var}\widetilde g=b\,\sigma_1^2$ tăng theo $b$, trong khi $\operatorname{Var}\widehat g=\sigma_1^2/b$.
 
 **Điều kiện áp dụng.** Kết luận 3, 4 cần giả thiết của Định lý 05c.53.
@@ -2435,13 +2435,13 @@ Hình trên minh họa hai hệ số theo $b$ cùng dải nơi trị tuyệt đ�
 **Bước 4 (kết luận 4).** Phần 2 của Mệnh đề 05c.31 với $a=b$ và Định lý 05c.35: $\operatorname{Var}(b\widehat g)=b^2\sigma_1^2/b=b\sigma_1^2$. $\square$
 :::
 
-Mệnh đề 05c.55 trả lời câu hỏi "Trung bình hay tổng". Với mất mát trung bình, điều kiện ổn định $\eta\le1/L$ không phụ thuộc $b$, $N$, và phương sai giảm theo $1/b$. Với mất mát tổng, mỗi lần đổi cỡ nhóm hay cỡ dữ liệu phải chỉnh lại bước học. Ở Ví dụ 05c.37, mốc $b=10$ ứng với $\eta b=1/L$ và mốc $b=20$ ứng với $\eta bL=2$.
+Mệnh đề 05c.55 trả lời câu hỏi "Trung bình hay tổng". Với mất mát trung bình, điều kiện ổn định $\eta\le1/L$ không phụ thuộc $b$, $N$, và phương sai giảm theo $1/b$. Với mất mát tổng, mỗi lần đổi kích thước lô hay kích thước dữ liệu phải chỉnh lại bước học. Ở Ví dụ 05c.37, mốc $b=10$ ứng với $\eta b=1/L$ và mốc $b=20$ ứng với $\eta bL=2$.
 
-**Trong học máy.** Khi mất mát được lấy trung bình trên nhóm, bước học chọn ở một cỡ nhóm vẫn thỏa điều kiện ổn định khi đổi cỡ nhóm, theo kết luận 2, 3 của Mệnh đề 05c.55. Bước tối ưu vẫn có thể phụ thuộc $b$, và ở Mục 6.6, chúng ta sẽ thấy sai số giới hạn tỉ lệ $\eta/b$. Chúng ta không nêu quy tắc chỉnh $\eta$ theo $b$ vì các nguồn của học phần không chứng minh quy tắc nào.
+**Trong học máy.** Khi mất mát được lấy trung bình trên lô, bước học chọn ở một kích thước lô vẫn thỏa điều kiện ổn định khi đổi kích thước lô, theo kết luận 2, 3 của Mệnh đề 05c.55. Bước tối ưu vẫn có thể phụ thuộc $b$, và ở Mục 6.6, chúng ta sẽ thấy sai số giới hạn tỉ lệ $\eta/b$. Chúng ta không nêu quy tắc chỉnh $\eta$ theo $b$ vì các nguồn của học phần không chứng minh quy tắc nào.
 
-### 6.5 Quy luật hiệu suất giảm dần theo cỡ nhóm
+### 6.5 Quy luật hiệu suất giảm dần theo kích thước lô
 
-Câu hỏi "Cỡ nhóm" xuất phát từ nhận xét của Goodfellow và cộng sự ở Mục 1.1, rằng $10\,000$ mẫu tốn gấp $100$ lần $100$ mẫu nhưng chỉ giảm sai số chuẩn $10$ lần. Theo Định lý 05c.35, sai số chuẩn của $\widehat g$ tỉ lệ với $1/\sqrt b$ trong khi chi phí tỉ lệ với $b$. Trên ví dụ ba quan sát tại $\theta=1$, sai số chuẩn $\sqrt{8/(3b)}$ bằng:
+Câu hỏi "Kích thước lô" xuất phát từ nhận xét của Goodfellow và cộng sự ở Mục 1.1, rằng $10\,000$ mẫu tốn gấp $100$ lần $100$ mẫu nhưng chỉ giảm sai số chuẩn $10$ lần. Theo Định lý 05c.35, sai số chuẩn của $\widehat g$ tỉ lệ với $1/\sqrt b$ trong khi chi phí tỉ lệ với $b$. Trên ví dụ ba quan sát tại $\theta=1$, sai số chuẩn $\sqrt{8/(3b)}$ bằng:
 
 - $1{,}633$; $0{,}816$; $0{,}408$ với $b=1,4,16$, đúng bảng của Ví dụ 05.13;
 - $0{,}163$ với $b=100$ và $0{,}0163$ với $b=10\,000$.
@@ -2450,12 +2450,12 @@ Câu hỏi "Cỡ nhóm" xuất phát từ nhận xét của Goodfellow và cộn
 
 Hai khung về sai số chuẩn và chi phí đặt cạnh nhau hai đại lượng theo $b$ trên thang logarit, trong đó sai số chuẩn có độ dốc $-\tfrac12$ còn chi phí có độ dốc $1$.
 
-Sai số của gradient nhóm phụ thuộc $b$ và $\Sigma(\theta)$, không phụ thuộc $N$. Ví dụ sau xét nhận xét này trong trường hợp cực đoan mà Goodfellow và cộng sự (2016, mục 8.1.3, tr. 278) nêu: dữ liệu gồm nhiều bản sao.
+Sai số của gradient lô phụ thuộc $b$ và $\Sigma(\theta)$, không phụ thuộc $N$. Ví dụ sau xét nhận xét này trong trường hợp cực đoan mà Goodfellow và cộng sự (2016, mục 8.1.3, tr. 278) nêu: dữ liệu gồm nhiều bản sao.
 
 ::: example Ví dụ 05c.38 (Dữ liệu lặp)
 **Dữ kiện.** Tập $N=3\nu$ quan sát gồm $\nu$ bản sao của mỗi giá trị $-1$, $1$, $3$; mô hình hằng, mất mát bình phương như ví dụ ba quan sát.
 
-**Tính.** Tỉ lệ ba giá trị không đổi, nên $J$, $\nabla J$ và PMF (3.6) của gradient mẫu không phụ thuộc $\nu$; tại $\theta=1$, $\sigma_1^2=\tfrac83$. Với $\nu=10^6$ và $b=30$, gradient nhóm có sai số chuẩn $\sqrt{8/90}\approx0{,}298$ với chi phí $30C$, trong khi gradient đầy đủ tốn $3\cdot10^6C$.
+**Tính.** Tỉ lệ ba giá trị không đổi, nên $J$, $\nabla J$ và PMF (3.6) của gradient mẫu không phụ thuộc $\nu$; tại $\theta=1$, $\sigma_1^2=\tfrac83$. Với $\nu=10^6$ và $b=30$, gradient lô có sai số chuẩn $\sqrt{8/90}\approx0{,}298$ với chi phí $30C$, trong khi gradient đầy đủ tốn $3\cdot10^6C$.
 
 **Diễn giải.** Gradient đầy đủ trên ba triệu quan sát không chứa thêm thông tin nào so với trên ba quan sát, nhưng tốn gấp một triệu lần.
 
@@ -2467,7 +2467,7 @@ So sánh giữa sai số chuẩn và chi phí trong ví dụ có dạng tổng q
 ::: proposition Mệnh đề 05c.56 (Hiệu suất giảm dần)
 **Giả thiết.** Như kết luận 1 của Định lý 05c.53, trường hợp vô hướng, với phương sai gradient một mẫu $\sigma_1^2$; một gradient mẫu tốn $C$.
 
-**Kết luận.** Gradient nhóm có sai số chuẩn $\sigma_1/\sqrt b$ và chi phí $bC$. Nhân $b$ với $k^2$ nhân chi phí với $k^2$ và chia sai số chuẩn cho $k$.
+**Kết luận.** Gradient lô có sai số chuẩn $\sigma_1/\sqrt b$ và chi phí $bC$. Nhân $b$ với $k^2$ nhân chi phí với $k^2$ và chia sai số chuẩn cho $k$.
 
 **Điều kiện áp dụng.** Chi phí tỉ lệ với số gradient mẫu, không tính song song.
 
@@ -2478,18 +2478,18 @@ So sánh giữa sai số chuẩn và chi phí trong ví dụ có dạng tổng q
 Định lý 05c.35 với $n=b$ cho sai số chuẩn $\sigma_1/\sqrt b$; thay $b$ bằng $k^2b$ được $\sigma_1/(k\sqrt b)$. $\square$
 :::
 
-### 6.6 Cỡ nhóm dưới ngân sách tính toán cố định
+### 6.6 Kích thước lô dưới ngân sách tính toán cố định
 
-Mệnh đề 05c.56 chỉ so sánh một bước, trong khi với ngân sách $B_{\rm tot}$ gradient mẫu, cỡ nhóm $b$ cho $K=\lfloor B_{\rm tot}/b\rfloor$ bước. Định lý 05c.53 cần tham số cố định, còn $\theta_k$ phụ thuộc mọi nhóm trước. Điều kiện thay thế là nhóm ở mỗi bước được rút mới, và thuật toán sau ghi điều kiện đó.
+Mệnh đề 05c.56 chỉ so sánh một bước, trong khi với ngân sách $B_{\rm tot}$ gradient mẫu, kích thước lô $b$ cho $K=\lfloor B_{\rm tot}/b\rfloor$ bước. Định lý 05c.53 cần tham số cố định, còn $\theta_k$ phụ thuộc mọi lô trước. Điều kiện thay thế là lô ở mỗi bước được rút mới, và thuật toán sau ghi điều kiện đó.
 
-::: algorithm Thuật toán 05c.1 (SGD với nhóm nhỏ rút mới)
-**Đầu vào.** Điểm đầu $\theta_0$; bước học $\eta>0$; cỡ nhóm $b$; ngân sách $B_{\rm tot}$ gradient mẫu.
+::: algorithm Thuật toán 05c.1 (SGD với lô nhỏ mới được rút)
+**Đầu vào.** Điểm đầu $\theta_0$; bước học $\eta>0$; kích thước lô $b$; ngân sách $B_{\rm tot}$ gradient mẫu.
 
 **Khởi tạo.** $K=\lfloor B_{\rm tot}/b\rfloor$.
 
 **Các bước.** Với $k=0,1,\ldots,K-1$:
 
-1. Rút nhóm $I^{(k)}_1,\ldots,I^{(k)}_b$ đều có hoàn lại, độc lập với mọi nhóm trước.
+1. Rút lô $I^{(k)}_1,\ldots,I^{(k)}_b$ đều có hoàn lại, độc lập với mọi lô trước.
 2. Tính $\widehat g_k=\frac1b\sum_{r=1}^b\nabla\ell_{I^{(k)}_r}(\theta_k)$.
 3. Cập nhật $\theta_{k+1}=\theta_k-\eta\,\widehat g_k$.
 
@@ -2501,7 +2501,7 @@ Mệnh đề 05c.56 chỉ so sánh một bước, trong khi với ngân sách $B
 Mệnh đề sau tính chính xác sai số bình phương trung bình của Thuật toán 05c.1 trên ví dụ ba quan sát. Nó dùng Định lý 05c.53 tại tham số hiện tại và Mệnh đề 05c.38 để chuyển từ tham số cố định sang tham số ngẫu nhiên.
 
 ::: proposition Mệnh đề 05c.57 (Sai số bình phương trung bình của SGD trên ví dụ ba quan sát)
-**Giả thiết.** Ví dụ ba quan sát, $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, $\sigma_1^2=\tfrac83$. Thuật toán 05c.1 với $\theta_0$ cố định, $0<\eta<2$ và cỡ nhóm $b$. Đặt $a_k=\mathbb E(\theta_k-1)^2$.
+**Giả thiết.** Ví dụ ba quan sát, $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, $\sigma_1^2=\tfrac83$. Thuật toán 05c.1 với $\theta_0$ cố định, $0<\eta<2$ và kích thước lô $b$. Đặt $a_k=\mathbb E(\theta_k-1)^2$.
 
 **Kết luận.**
 
@@ -2517,7 +2517,7 @@ a_k=(1-\eta)^{2k}\bigl(a_0-\bar a_b\bigr)+\bar a_b .
 \tag{6.6}
 $$
 
-**Điều kiện áp dụng.** Cần nhóm ở mỗi bước rút mới, độc lập với lịch sử, và $0<\eta<2$ để $(1-\eta)^2<1$.
+**Điều kiện áp dụng.** Cần lô ở mỗi bước rút mới, độc lập với lịch sử, và $0<\eta<2$ để $(1-\eta)^2<1$.
 
 **Phạm vi.** Kết quả chính xác cho hàm bậc hai một chiều có độ cong $1$; với hàm tổng quát, các định lý của Bài 05b cho cận trên cùng dạng.
 :::
@@ -2529,7 +2529,7 @@ $$
 \theta_{k+1}-1=(1-\eta)(\theta_k-1)+\eta\,\zeta_k .
 $$
 
-**Bước 2 (tính chất của nhiễu).** $\zeta_k$ chỉ phụ thuộc nhóm thứ $k$ và là trung bình của $b$ biến i.i.d. đều trên $\{-2,0,2\}$, nên theo Định lý 05c.35 có kỳ vọng $0$ và phương sai $\sigma_1^2/b$. $\theta_k$ là hàm của các nhóm trước, nên độc lập với nhóm thứ $k$, và do đó với $\zeta_k$, theo Mệnh đề 05c.24.
+**Bước 2 (tính chất của nhiễu).** $\zeta_k$ chỉ phụ thuộc lô thứ $k$ và là trung bình của $b$ biến i.i.d. đều trên $\{-2,0,2\}$, nên theo Định lý 05c.35 có kỳ vọng $0$ và phương sai $\sigma_1^2/b$. $\theta_k$ là hàm của các lô trước, nên độc lập với lô thứ $k$, và do đó với $\zeta_k$, theo Mệnh đề 05c.24.
 
 **Bước 3 (lấy kỳ vọng).** Bình phương Bước 1:
 
@@ -2542,10 +2542,10 @@ Số hạng giữa có kỳ vọng $2\eta(1-\eta)\,\mathbb E(\theta_k-1)\,\mathb
 **Bước 4 (giải đệ quy).** $\bar a_b$ là điểm bất động của (6.5): $\bar a_b\bigl(1-(1-\eta)^2\bigr)=\eta^2\sigma_1^2/b$ và $1-(1-\eta)^2=\eta(2-\eta)$. Trừ hai đẳng thức $a_{k+1}=(1-\eta)^2a_k+\eta^2\sigma_1^2/b$ và $\bar a_b=(1-\eta)^2\bar a_b+\eta^2\sigma_1^2/b$ cho $a_{k+1}-\bar a_b=(1-\eta)^2(a_k-\bar a_b)$, và quy nạp cho (6.6). $\square$
 :::
 
-Công thức (6.6) tách sai số thành sai số của điểm đầu, co theo hàm mũ của số bước, và sàn nhiễu $\bar a_b$, không giảm theo số bước nhưng tỉ lệ nghịch với $b$. Với $\eta=0{,}1$, $\bar a_b=\frac{0{,}1\cdot8/3}{1{,}9\,b}=\frac8{57b}$, xấp xỉ $\frac{0{,}1404}b$. Ví dụ 05.14 của Bài 05 dẫn cùng đệ quy, và Bài tập 05c.4 là bước đầu với $a_0=1$, $b=1$, cho $a_1\approx0{,}8367$.
+Công thức (6.6) tách sai số thành sai số của điểm đầu, co theo hàm mũ của số bước, và mức nhiễu nền (noise floor) $\bar a_b$, không giảm theo số bước nhưng tỉ lệ nghịch với $b$. Với $\eta=0{,}1$, $\bar a_b=\frac{0{,}1\cdot8/3}{1{,}9\,b}=\frac8{57b}$, xấp xỉ $\frac{0{,}1404}b$. Ví dụ 05.14 của Bài 05 dẫn cùng đệ quy, và Bài tập 05c.4 là bước đầu với $a_0=1$, $b=1$, cho $a_1\approx0{,}8367$.
 
 ::: example Ví dụ 05c.39 (Sai số dưới ngân sách cố định)
-**Dữ kiện.** Tập dữ liệu lặp $N=3000$ quan sát, $1000$ bản sao mỗi giá trị $-1$, $1$, $3$, để $b$ chạy tới $3000$; theo Ví dụ 05c.38, phân phối của gradient nhóm không đổi. Thuật toán 05c.1 với $\theta_0=0$, nên $a_0=1$, bước $\eta=0{,}1$; $K=\lfloor B_{\rm tot}/b\rfloor$. Theo (6.6), $a_K=0{,}81^K(1-\bar a_b)+\bar a_b$ với $\bar a_b=\tfrac8{57b}$. Quy ước $b=3000$ là một bước gradient đầy đủ không nhiễu, $a_1=0{,}81$.
+**Dữ kiện.** Tập dữ liệu lặp $N=3000$ quan sát, $1000$ bản sao mỗi giá trị $-1$, $1$, $3$, để $b$ chạy tới $3000$; theo Ví dụ 05c.38, phân phối của gradient lô không đổi. Thuật toán 05c.1 với $\theta_0=0$, nên $a_0=1$, bước $\eta=0{,}1$; $K=\lfloor B_{\rm tot}/b\rfloor$. Theo (6.6), $a_K=0{,}81^K(1-\bar a_b)+\bar a_b$ với $\bar a_b=\tfrac8{57b}$. Quy ước $b=3000$ là một bước gradient đầy đủ không nhiễu, $a_1=0{,}81$.
 
 **Tính.**
 
@@ -2560,19 +2560,19 @@ Công thức (6.6) tách sai số thành sai số của điểm đầu, co theo 
 | $1000$ | $3$ | $0{,}532$ | không đủ ngân sách |
 | $3000$ | $1$ | $0{,}810$ | không đủ ngân sách |
 
-**Diễn giải.** Với $B_{\rm tot}=3000$, cực tiểu trên mọi $b$ nguyên đạt tại $b=75$, với $K=40$ và $a_K\approx0{,}00209$; một bước gradient đầy đủ cho $0{,}810$, lớn hơn gần bốn trăm lần. Với $B_{\rm tot}=300$, cực tiểu đạt tại $b=10$. Nhóm quá nhỏ làm $a_K$ gần bằng sàn nhiễu $\bar a_b$ lớn; nhóm quá lớn để lại ít bước, và số hạng $0{,}81^K$ lớn.
+**Diễn giải.** Với $B_{\rm tot}=3000$, cực tiểu trên mọi $b$ nguyên đạt tại $b=75$, với $K=40$ và $a_K\approx0{,}00209$; một bước gradient đầy đủ cho $0{,}810$, lớn hơn gần bốn trăm lần. Với $B_{\rm tot}=300$, cực tiểu đạt tại $b=10$. Lô quá nhỏ làm $a_K$ gần bằng mức nhiễu nền $\bar a_b$ lớn; lô quá lớn để lại ít bước, và số hạng $0{,}81^K$ lớn.
 
 **Kiểm tra lại.** Với $b=75$: $0{,}81^{40}\approx2{,}2\cdot10^{-4}$ và $\bar a_{75}=\tfrac8{4275}\approx0{,}00187$, nên $a_{40}\approx2{,}2\cdot10^{-4}\cdot0{,}998+0{,}00187\approx0{,}00209$.
 :::
 
 ![Hai đường dạng chữ U của a_K theo b, thang logarit ở cả hai trục, K bằng phần nguyên của ngân sách chia b. Đường liền, ngân sách 3000: 0,140 tại b = 1, đáy 0,00209 tại b = 75, 0,00320 tại b = 100, 0,810 tại b = 3000 là một bước gradient đầy đủ. Đường đứt, ngân sách 300: 0,140 tại b = 1, đáy 0,0158 tại b = 10, 0,810 tại b = 300.](img/lec-05c/budget-u-curve.svg)
 
-Hai đường chữ U ở trên biểu diễn hai cột cuối của bảng theo $b$ trên thang logarit. Nhánh trái của mỗi chữ U là sàn nhiễu $\bar a_b$, một đường thẳng độ dốc $-1$, còn nhánh phải là số hạng $0{,}81^K$ tăng nhanh khi $K$ giảm. Đáy dịch sang trái khi ngân sách giảm, vì với ít bước hơn, sai số điểm đầu chiếm phần lớn.
+Hai đường chữ U ở trên biểu diễn hai cột cuối của bảng theo $b$ trên thang logarit. Nhánh trái của mỗi chữ U là mức nhiễu nền $\bar a_b$, một đường thẳng độ dốc $-1$, còn nhánh phải là số hạng $0{,}81^K$ tăng nhanh khi $K$ giảm. Đáy dịch sang trái khi ngân sách giảm, vì với ít bước hơn, sai số điểm đầu chiếm phần lớn.
 
 Ví dụ trên có ba hạn chế.
 
 1. Bước $\eta$ cố định cho mọi $b$; hàm độ cong $1$ với $\eta=0{,}1$ mô hình một hướng có độ cong $0{,}1L$ của một bài toán nhiều chiều chạy với bước $1/L$. Trong chính bài toán một chiều này, bước $\eta=1$ đưa gradient đầy đủ tới nghiệm sau một bước.
-2. Các nhóm rút có hoàn lại.
+2. Các lô được rút có hoàn lại.
 3. Chi phí chỉ đếm gradient mẫu, trong khi phần cứng tính song song $b$ gradient gần bằng thời gian một gradient khi $b$ chưa vượt mức song song (Goodfellow và cộng sự, 2016, mục 8.1.3, tr. 279; Nhận xét 05.15).
 
 Định lý 05c.52 cho $J(\theta)$ lệch khỏi $R(\theta)$ ở bậc $1/\sqrt N$ tại một tham số cố định. Nhận xét sau nêu hệ quả của độ lệch đó cho việc phân bổ tính toán.
@@ -2585,34 +2585,34 @@ Ví dụ trên có ba hạn chế.
 **Phạm vi.** Đây là phát biểu về bậc của cận trên tiệm cận, không về một lần chạy; Bảng 13.2 so bốn thuật toán, và SGD ở đó dùng một quan sát mỗi vòng.
 :::
 
-**Trong học máy.** Dưới ngân sách cố định, sai số có dạng chữ U theo $b$ với đáy ở $b\ll N$, vì sai số chuẩn chỉ giảm theo $1/\sqrt b$ (Mệnh đề 05c.56) còn số bước giảm theo $1/b$. Nhận xét 05c.58 thêm lý do thứ ba: $J$ chỉ ước lượng $R$ với sai số ở bậc $1/\sqrt N$. Goodfellow và cộng sự (2016, mục 8.1.3, tr. 279–280) ghi nhận cỡ nhóm thực hành thường từ $32$ tới $256$, chọn theo bộ nhớ và mức song song của phần cứng.
+**Trong học máy.** Dưới ngân sách cố định, sai số có dạng chữ U theo $b$ với đáy ở $b\ll N$, vì sai số chuẩn chỉ giảm theo $1/\sqrt b$ (Mệnh đề 05c.56) còn số bước giảm theo $1/b$. Nhận xét 05c.58 thêm lý do thứ ba: $J$ chỉ ước lượng $R$ với sai số ở bậc $1/\sqrt N$. Goodfellow và cộng sự (2016, mục 8.1.3, tr. 279–280) ghi nhận kích thước lô thực hành thường từ $32$ tới $256$, chọn theo bộ nhớ và mức song song của phần cứng.
 
-### 6.7 Nhóm rút mới và các giả thiết của phân tích hội tụ
+### 6.7 Lô mới được rút và các giả thiết của phân tích hội tụ
 
-Các định lý hội tụ của SGD trong Bài 05b dùng hai giả thiết về gradient ngẫu nhiên, phát biểu theo lịch sử, tức các nhóm đã rút trước bước $k$. Theo ký hiệu của chương, hai giả thiết đó là:
+Các định lý hội tụ của SGD trong Bài 05b dùng hai giả thiết về gradient ngẫu nhiên, phát biểu theo lịch sử, tức các lô đã được rút trước bước $k$. Theo ký hiệu của chương, hai giả thiết đó là:
 
 - **gradient không chệch có điều kiện:** kỳ vọng của $\widehat g_k$ khi biết lịch sử bằng $\nabla J(\theta_k)$;
 - **phương sai bị chặn có điều kiện:** kỳ vọng của $\lVert\widehat g_k-\nabla J(\theta_k)\rVert^2$ khi biết lịch sử không vượt một hằng số $\sigma^2$.
 
-Khi nhóm ở mỗi bước rút mới, độc lập với lịch sử, phần 4 của Mệnh đề 05c.38, với $Y$ là lịch sử và $I$ là nhóm thứ $k$, đưa kỳ vọng có điều kiện về kỳ vọng tại tham số cố định $\theta=\theta_k$. Định lý 05c.53 khi đó cho giả thiết thứ nhất, và cho giả thiết thứ hai với $\sigma^2=\sup_\theta\operatorname{tr}\Sigma(\theta)/b$ khi cận trên này hữu hạn.
+Khi lô ở mỗi bước rút mới, độc lập với lịch sử, phần 4 của Mệnh đề 05c.38, với $Y$ là lịch sử và $I$ là lô thứ $k$, đưa kỳ vọng có điều kiện về kỳ vọng tại tham số cố định $\theta=\theta_k$. Định lý 05c.53 khi đó cho giả thiết thứ nhất, và cho giả thiết thứ hai với $\sigma^2=\sup_\theta\operatorname{tr}\Sigma(\theta)/b$ khi cận trên này hữu hạn.
 
 ::: remark Nhận xét 05c.59 (Ví dụ ba quan sát dưới các giả thiết của Bài 05b)
 **Hằng số phương sai.** Ở ví dụ ba quan sát, $g_i(\theta)-J'(\theta)=1-y_i$ không phụ thuộc $\theta$, nên $\operatorname{tr}\Sigma(\theta)=\tfrac83$ với mọi $\theta$ và $\sigma^2=\tfrac8{3b}$.
 
-**Sàn nhiễu.** Nhận xét 05.16 phát biểu lại định lý của Bài 05b cho hàm lồi mạnh: với hằng số lồi mạnh $\mu_{\rm c}$, gradient $L$-Lipschitz và $0<\eta\le1/L$, sai số bình phương trung bình bị chặn bởi $(1-\eta\mu_{\rm c})^k\lVert\theta_0-\theta^*\rVert^2+\eta\sigma^2/\mu_{\rm c}$. Ký hiệu $\mu_{\rm c}$ chỉ dùng trong nhận xét này; trong cả chương, $\mu$ là kỳ vọng. Ở ví dụ ba quan sát, $\mu_{\rm c}=L=1$.
+**Mức nhiễu nền.** Nhận xét 05.16 phát biểu lại định lý của Bài 05b cho hàm lồi mạnh: với hằng số lồi mạnh $\mu_{\rm c}$, gradient $L$-Lipschitz và $0<\eta\le1/L$, sai số bình phương trung bình bị chặn bởi $(1-\eta\mu_{\rm c})^k\lVert\theta_0-\theta^*\rVert^2+\eta\sigma^2/\mu_{\rm c}$. Ký hiệu $\mu_{\rm c}$ chỉ dùng trong nhận xét này; trong cả chương, $\mu$ là kỳ vọng. Ở ví dụ ba quan sát, $\mu_{\rm c}=L=1$.
 
-- Với $\eta=0{,}1$, sàn nhiễu của cận là $\eta\sigma^2/\mu_{\rm c}=\tfrac{0{,}1\cdot8}{3b}$, tức $\tfrac4{15b}$.
+- Với $\eta=0{,}1$, mức nhiễu nền của cận là $\eta\sigma^2/\mu_{\rm c}=\tfrac{0{,}1\cdot8}{3b}$, tức $\tfrac4{15b}$.
 - Giá trị giới hạn chính xác $\bar a_b=\tfrac8{57b}$ của Mệnh đề 05c.57 nhỏ hơn cận khoảng $1{,}9$ lần.
 - Với $b=4$, hai số là $0{,}0351$ và $0{,}0667$.
 
 **Markov.** Bài 05b dùng bất đẳng thức Markov để chuyển cận kỳ vọng thành cận xác suất; đó là Định lý 05c.39.
 :::
 
-Xáo trộn theo lượt vi phạm giả thiết gradient không chệch có điều kiện khi điều kiện theo lịch sử trong lượt. Ở ví dụ ba quan sát với $b=1$, nếu quan sát đầu được rút là $y=-1$, quan sát thứ hai rút đều từ $\{1,3\}$, và kỳ vọng có điều kiện của gradient mẫu là $\theta-2$ thay cho $J'(\theta)=\theta-1$. Tuy vậy, mỗi nhóm riêng lẻ vẫn không chệch theo phân phối của riêng nó (Mục 4.2), và tính không chệch chỉ không còn khi điều kiện theo các nhóm trước trong cùng lượt.
+Xáo trộn theo lượt vi phạm giả thiết gradient không chệch có điều kiện khi điều kiện theo lịch sử trong lượt. Ở ví dụ ba quan sát với $b=1$, nếu quan sát đầu được rút là $y=-1$, quan sát thứ hai rút đều từ $\{1,3\}$, và kỳ vọng có điều kiện của gradient mẫu là $\theta-2$ thay cho $J'(\theta)=\theta-1$. Tuy vậy, mỗi lô riêng lẻ vẫn không chệch theo phân phối của riêng nó (Mục 4.2), và tính không chệch chỉ không còn khi điều kiện theo các lô trước trong cùng lượt.
 
-Gradient nhóm là ước lượng không chệch của $\nabla R$ trong lượt đầu, khi mỗi quan sát là một lần rút mới từ $\mathcal P$; từ lượt thứ hai, nó trở thành ước lượng chệch của $\nabla R$ vì các quan sát được dùng lại (Goodfellow và cộng sự, 2016, mục 8.1.3, tr. 280–281).
+Gradient lô là ước lượng không chệch của $\nabla R$ trong lượt đầu, khi mỗi quan sát là một lần rút mới từ $\mathcal P$; từ lượt thứ hai, nó trở thành ước lượng chệch của $\nabla R$ vì các quan sát được dùng lại (Goodfellow và cộng sự, 2016, mục 8.1.3, tr. 280–281).
 
-::: exercise Bài tập 05c.7 (Một cỡ nhóm khác dưới cùng ngân sách)
+::: exercise Bài tập 05c.7 (Một kích thước lô khác dưới cùng ngân sách)
 **Dữ kiện.** Ví dụ 05c.39: ví dụ ba quan sát với tập lặp $N=3000$, $\theta_0=0$ nên $a_0=1$, $\eta=0{,}1$, ngân sách $B_{\rm tot}=3000$ gradient mẫu, $K=\lfloor B_{\rm tot}/b\rfloor$. Theo (6.6), $a_K=0{,}81^K(1-\bar a_b)+\bar a_b$ với $\bar a_b=\tfrac8{57b}$. Với $b=75$, $a_K\approx0{,}00209$.
 
 1. Tính $a_K$ khi $b=50$ và so với $b=75$.
@@ -2626,26 +2626,26 @@ Tính $K$, rồi $0{,}81^K$ và $\bar a_{50}$ riêng; so độ lớn hai số h�
 ::: solution
 **Câu 1.** $K=60$; $0{,}81^{60}\approx3{,}2\cdot10^{-6}$ và $\bar a_{50}=\tfrac8{2850}\approx0{,}00281$. Do đó $a_{60}\approx3{,}2\cdot10^{-6}+0{,}00281\approx0{,}00281$, lớn hơn $0{,}00209$ của $b=75$.
 
-**Câu 2.** Với $b=50$, số hạng điểm đầu chỉ ở bậc $10^{-6}$, nên $a_K$ gần bằng sàn nhiễu $\bar a_{50}$. Sàn nhiễu tỉ lệ $1/b$, nên tăng $b$ lên $75$ hạ sàn xuống $0{,}00187$; số hạng điểm đầu tăng lên $2{,}2\cdot10^{-4}$ vì $K$ giảm còn $40$, nhưng vẫn nhỏ hơn phần sàn đã giảm.
+**Câu 2.** Với $b=50$, số hạng điểm đầu chỉ ở bậc $10^{-6}$, nên $a_K$ gần bằng mức nhiễu nền $\bar a_{50}$. Mức nhiễu nền tỉ lệ $1/b$, nên tăng $b$ lên $75$ hạ mức nhiễu nền xuống $0{,}00187$; số hạng điểm đầu tăng lên $2{,}2\cdot10^{-4}$ vì $K$ giảm còn $40$, nhưng vẫn nhỏ hơn phần mức nhiễu nền đã giảm.
 
 **Kiểm tra lại.** $\ln0{,}81\approx-0{,}2107$; $60\cdot(-0{,}2107)\approx-12{,}64$ và $e^{-12{,}64}\approx3{,}2\cdot10^{-6}$.
 :::
 
-Với Định nghĩa 05c.51 và Định lý 05c.52, chúng ta đã áp Định lý 05c.35 và Định lý 05c.47 cho mất mát. Định lý 05c.53 áp chúng cho gradient, và Hệ quả 05c.54 thêm Mệnh đề 05c.7 để có bảo đảm cho mọi tọa độ. Mệnh đề 05c.55 trả lời câu hỏi "Trung bình hay tổng". Mệnh đề 05c.56, Thuật toán 05c.1 và Mệnh đề 05c.57 trả lời câu hỏi "Cỡ nhóm", với Mệnh đề 05c.38 làm cầu nối từ tham số cố định sang tham số ngẫu nhiên.
+Với Định nghĩa 05c.51 và Định lý 05c.52, chúng ta đã áp Định lý 05c.35 và Định lý 05c.47 cho mất mát. Định lý 05c.53 áp chúng cho gradient, và Hệ quả 05c.54 thêm Mệnh đề 05c.7 để có bảo đảm cho mọi tọa độ. Mệnh đề 05c.55 trả lời câu hỏi "Trung bình hay tổng". Mệnh đề 05c.56, Thuật toán 05c.1 và Mệnh đề 05c.57 trả lời câu hỏi "Kích thước lô", với Mệnh đề 05c.38 chuyển kết quả từ tham số cố định sang tham số ngẫu nhiên.
 
-Như vậy, mất mát được lấy trung bình vì khi đó điều kiện bước không phụ thuộc $b$, $N$ và phương sai giảm theo $1/b$ (Mệnh đề 05c.55). Nhóm nhỏ được dùng thay toàn bộ dữ liệu vì dưới ngân sách cố định, sai số có đáy ở $b\ll N$ (Mệnh đề 05c.57). Mọi kết quả này dựa trên giả thiết độc lập, gồm quan sát i.i.d. và nhóm rút mới ở mỗi bước. Hai trong ba tình huống dưới đây vi phạm giả thiết đó.
+Như vậy, mất mát được lấy trung bình vì khi đó điều kiện bước không phụ thuộc $b$, $N$ và phương sai giảm theo $1/b$ (Mệnh đề 05c.55). Lô nhỏ được dùng thay toàn bộ dữ liệu vì dưới ngân sách cố định, sai số có đáy ở $b\ll N$ (Mệnh đề 05c.57). Mọi kết quả này dựa trên giả thiết độc lập, gồm quan sát i.i.d. và lô mới được rút ở mỗi bước. Hai trong ba tình huống dưới đây vi phạm giả thiết đó.
 
 ## Tình huống áp dụng và ứng dụng
 
-::: application Tình huống 05c.1 (Chọn cỡ nhóm cho gradient hồi quy logistic)
-**Bài toán và dữ liệu.** Huấn luyện hồi quy logistic trên $N=50\,000$ quan sát với $d=20$ đặc trưng đã chuẩn hóa vào $[-1,1]$, nhãn $y_i\in\{-1,+1\}$. Yêu cầu: ở mỗi bước, với xác suất ít nhất $0{,}99$, mọi tọa độ của gradient nhóm lệch khỏi gradient đầy đủ dưới $\varepsilon=0{,}1$. Chúng ta cần chọn cỡ nhóm $b$.
+::: application Tình huống 05c.1 (Chọn kích thước lô cho gradient hồi quy logistic)
+**Bài toán và dữ liệu.** Huấn luyện hồi quy logistic trên $N=50\,000$ quan sát với $d=20$ đặc trưng đã chuẩn hóa vào $[-1,1]$, nhãn $y_i\in\{-1,+1\}$. Yêu cầu: ở mỗi bước, với xác suất ít nhất $0{,}99$, mọi tọa độ của gradient lô lệch khỏi gradient đầy đủ dưới $\varepsilon=0{,}1$. Chúng ta cần chọn kích thước lô $b$.
 
-**Mô hình hóa.** Tại tham số hiện tại $\theta_k$, gradient đầy đủ là $\nabla J(\theta_k)$, gradient nhóm là trung bình mẫu của $b$ gradient mẫu (Định lý 05c.53). Yêu cầu là biến cố "mọi tọa độ lệch dưới $\varepsilon$" có xác suất ít nhất $1-\delta$ với $\delta=0{,}01$.
+**Mô hình hóa.** Tại tham số hiện tại $\theta_k$, gradient đầy đủ là $\nabla J(\theta_k)$, gradient lô là trung bình mẫu của $b$ gradient mẫu (Định lý 05c.53). Yêu cầu là biến cố "mọi tọa độ lệch dưới $\varepsilon$" có xác suất ít nhất $1-\delta$ với $\delta=0{,}01$.
 
-**Kiểm giả thiết.**
+**Kiểm tra giả thiết.**
 
-1. Tham số cố định khi rút nhóm: $\theta_k$ xác định từ các nhóm trước, nhóm thứ $k$ rút mới (Thuật toán 05c.1); điều kiện theo lịch sử, phần 4 của Mệnh đề 05c.38 đưa về tham số cố định.
-2. Độc lập: nhóm rút đều có hoàn lại (Hệ quả 05c.25).
+1. Tham số cố định khi rút lô: $\theta_k$ xác định từ các lô trước, lô thứ $k$ được rút mới (Thuật toán 05c.1); điều kiện theo lịch sử, phần 4 của Mệnh đề 05c.38 đưa về tham số cố định.
+2. Độc lập: lô được rút đều có hoàn lại (Hệ quả 05c.25).
 3. Bị chặn: gradient mẫu là $\nabla\ell_i(\theta)=-y_i\,a_i\,s_i$ với $a_i\in[-1,1]^{20}$ là vectơ đặc trưng và $s_i=1/\bigl(1+\exp(y_ia_i^T\theta)\bigr)\in(0,1)$ (Ví dụ 05c.36), nên mọi tọa độ nằm trong $(-1,1)$, độ rộng $w=2$.
 
 **Áp dụng Hoeffding.** Hệ quả 05c.54:
@@ -2663,15 +2663,15 @@ tức $b\ge1659$, khoảng $3{,}3\,\%$ dữ liệu.
 
 Chỉ dùng tính bị chặn, $\varrho^2=(w/2)^2=1$, nên $b\ge20/(0{,}01\cdot0{,}01)=200\,000$, lớn hơn cả $N$.
 
-**Nhiều bước.** Để bảo đảm đồng thời cho $K=1000$ bước, Mệnh đề 05c.7 thay $\delta$ bằng $\delta/K=10^{-5}$: $b\ge200\ln(4\cdot10^6)\approx200\cdot15{,}20\approx3040{,}4$, tức $b\ge3041$. Số bước tăng $1000$ lần, cỡ nhóm chỉ tăng chưa tới hai lần.
+**Nhiều bước.** Để bảo đảm đồng thời cho $K=1000$ bước, Mệnh đề 05c.7 thay $\delta$ bằng $\delta/K=10^{-5}$: $b\ge200\ln(4\cdot10^6)\approx200\cdot15{,}20\approx3040{,}4$, tức $b\ge3041$. Số bước tăng $1000$ lần, kích thước lô chỉ tăng chưa tới hai lần.
 
-**Diễn giải.** Hoeffding cho cỡ nhóm nhỏ hơn khoảng $120$ lần so với Chebyshev, vì phụ thuộc $\delta$ và số tọa độ qua logarit. Cỡ nhóm $1659$ là cận đủ, không phải cỡ cần thiết, vì cận chỉ dùng độ rộng $w=2$.
+**Diễn giải.** Hoeffding cho kích thước lô nhỏ hơn khoảng $120$ lần so với Chebyshev, vì phụ thuộc $\delta$ và số tọa độ qua logarit. Kích thước lô $1659$ là cận đủ, không phải kích thước cần thiết, vì cận chỉ dùng độ rộng $w=2$.
 
 **Kiểm tra lại.** $2\cdot20\cdot e^{-1659\cdot0{,}01/2}=40e^{-8{,}295}$, xấp xỉ $0{,}0099\le0{,}01$.
 
-**Giới hạn.** Yêu cầu sai số dưới $0{,}1$ ở mọi tọa độ mạnh hơn điều SGD cần: Mục 6.6 cho thấy SGD hội tụ tới một sàn nhiễu tỉ lệ $1/b$ cả khi gradient nhóm rất nhiễu.
+**Giới hạn.** Yêu cầu sai số dưới $0{,}1$ ở mọi tọa độ mạnh hơn điều SGD cần: Mục 6.6 cho thấy SGD hội tụ tới một mức nhiễu nền tỉ lệ $1/b$ cả khi gradient lô rất nhiễu.
 
-**Dẫn ngược lý thuyết.** Định lý 05c.53 cho tính không chệch; Định lý 05c.47 và Mệnh đề 05c.7 qua Hệ quả 05c.54 cho cỡ nhóm; Hệ quả 05c.40 cho phép so sánh với Chebyshev; Mệnh đề 05c.38 cho phép áp kết quả tại tham số cố định cho từng bước.
+**Dẫn ngược lý thuyết.** Định lý 05c.53 cho tính không chệch; Định lý 05c.47 và Mệnh đề 05c.7 qua Hệ quả 05c.54 cho kích thước lô; Hệ quả 05c.40 cho phép so sánh với Chebyshev; Mệnh đề 05c.38 cho phép áp kết quả tại tham số cố định cho từng bước.
 :::
 
 ::: application Tình huống 05c.2 (Khoảng tin cậy cho độ chính xác và mẫu kiểm thử tương quan)
@@ -2679,7 +2679,7 @@ Chỉ dùng tính bị chặn, $\varrho^2=(w/2)^2=1$, nên $b\ge20/(0{,}01\cdot0
 
 **Mô hình hóa.** $X_i=1$ nếu quan sát $i$ được phân loại đúng; độ chính xác đo được là $\bar X_n$, độ chính xác thật là $\mu=\mathbb EX_i$.
 
-**Kiểm giả thiết.**
+**Kiểm tra giả thiết.**
 
 1. Tham số cố định: mô hình được huấn luyện trước, không chỉnh theo tập kiểm thử.
 2. Độc lập cùng phân phối: các quan sát kiểm thử rút độc lập từ phân phối triển khai.
@@ -2710,57 +2710,57 @@ nên khoảng tin cậy $95\,\%$ là $[0{,}8896;\,0{,}9504]$. Chebyshev với $\
 **Dẫn ngược lý thuyết.** Mệnh đề 05c.32 cho phép bác bỏ giả thiết độc lập khi hiệp phương sai khác $0$; Hệ quả 05c.48 cho khoảng; Mệnh đề 05c.7 cho hiệu chỉnh khi chọn mô hình; Định lý 05c.35 và Mệnh đề 05c.21 cho phương sai và xác suất thật dưới mô hình khối.
 :::
 
-::: application Tình huống 05c.3 (Dữ liệu không xáo trộn: các nhóm liên tiếp không ngẫu nhiên)
-**Bài toán và dữ liệu.** Tập lặp $N=3000$ của Ví dụ 05c.39: $1000$ bản sao mỗi giá trị $-1$, $1$, $3$, mô hình hằng, mất mát bình phương, nghiệm $\theta^*=1$. Dữ liệu được lưu theo thứ tự giá trị: $1000$ quan sát $-1$, rồi $1000$ quan sát $1$, rồi $1000$ quan sát $3$. Một chương trình cắt dữ liệu thành $30$ nhóm liên tiếp $b=100$ mà không xáo trộn, rồi chạy một lượt với $\theta_0=0$, $\eta=0{,}1$.
+::: application Tình huống 05c.3 (Dữ liệu không xáo trộn: các lô liên tiếp không ngẫu nhiên)
+**Bài toán và dữ liệu.** Tập lặp $N=3000$ của Ví dụ 05c.39: $1000$ bản sao mỗi giá trị $-1$, $1$, $3$, mô hình hằng, mất mát bình phương, nghiệm $\theta^*=1$. Dữ liệu được lưu theo thứ tự giá trị: $1000$ quan sát $-1$, rồi $1000$ quan sát $1$, rồi $1000$ quan sát $3$. Một chương trình cắt dữ liệu thành $30$ lô liên tiếp $b=100$ mà không xáo trộn, rồi chạy một lượt với $\theta_0=0$, $\eta=0{,}1$.
 
-**Mô hình hóa.** Theo Bước 1 trong chứng minh Mệnh đề 05c.57, $\theta_{k+1}-1=0{,}9(\theta_k-1)+0{,}1\,\zeta_k$, với $\zeta_k$ là trung bình của $y-1$ trên nhóm $k$. Mười nhóm đầu cho $\zeta_k=-2$, mười nhóm giữa $\zeta_k=0$, mười nhóm cuối $\zeta_k=2$.
+**Mô hình hóa.** Theo Bước 1 trong chứng minh Mệnh đề 05c.57, $\theta_{k+1}-1=0{,}9(\theta_k-1)+0{,}1\,\zeta_k$, với $\zeta_k$ là trung bình của $y-1$ trên lô $k$. Mười lô đầu cho $\zeta_k=-2$, mười lô giữa $\zeta_k=0$, mười lô cuối $\zeta_k=2$.
 
-**Kiểm giả thiết.** Nhóm không được rút ngẫu nhiên: mỗi nhóm chỉ chứa một giá trị, nên giả thiết phân phối đều của Định lý 05c.53 không thỏa và $\zeta_k$ không có kỳ vọng $0$. Các nhóm liên tiếp không độc lập: biết nhóm $k$ chứa giá trị $-1$ gần như xác định nhóm $k+1$, nên điều kiện rút mới của Thuật toán 05c.1 và phần 4 của Mệnh đề 05c.38 không áp dụng.
+**Kiểm tra giả thiết.** Lô không được rút ngẫu nhiên: mỗi lô chỉ chứa một giá trị, nên giả thiết phân phối đều của Định lý 05c.53 không thỏa và $\zeta_k$ không có kỳ vọng $0$. Các lô liên tiếp không độc lập: biết lô $k$ chứa giá trị $-1$ gần như xác định lô $k+1$, nên điều kiện rút mới của Thuật toán 05c.1 và phần 4 của Mệnh đề 05c.38 không áp dụng.
 
 **Tính.** Đặt $e_k=\theta_k-1$, $e_0=-1$, và dùng $0{,}9^{10}\approx0{,}3487$. Lặp đệ quy với $\zeta$ hằng trên mỗi đoạn mười bước cho $e_{k+10}=0{,}9^{10}e_k+(1-0{,}9^{10})\zeta$:
 
-- sau mười nhóm giá trị $-1$: $e_{10}=0{,}3487\cdot(-1)+0{,}6513\cdot(-2)\approx-1{,}651$, tức $\theta_{10}\approx-0{,}651$;
-- sau mười nhóm giá trị $1$: $e_{20}=0{,}3487\cdot(-1{,}651)\approx-0{,}576$, tức $\theta_{20}\approx0{,}424$;
-- sau mười nhóm giá trị $3$: $e_{30}=0{,}3487\cdot(-0{,}576)+0{,}6513\cdot2\approx1{,}102$, tức $\theta_{30}\approx2{,}102$.
+- sau mười lô giá trị $-1$: $e_{10}=0{,}3487\cdot(-1)+0{,}6513\cdot(-2)\approx-1{,}651$, tức $\theta_{10}\approx-0{,}651$;
+- sau mười lô giá trị $1$: $e_{20}=0{,}3487\cdot(-1{,}651)\approx-0{,}576$, tức $\theta_{20}\approx0{,}424$;
+- sau mười lô giá trị $3$: $e_{30}=0{,}3487\cdot(-0{,}576)+0{,}6513\cdot2\approx1{,}102$, tức $\theta_{30}\approx2{,}102$.
 
 Sai số bình phương sau một lượt là $e_{30}^2\approx1{,}214$, lớn hơn sai số ban đầu $1$.
 
-**So với nhóm rút mới.** Cùng $b=100$, $K=30$, Ví dụ 05c.39 cho $a_{30}\approx0{,}0032$. Sai số của dữ liệu không xáo trộn lớn hơn khoảng $380$ lần, và vì thứ tự lặp lại ở mọi lượt, tham số dao động theo chu kỳ thay vì hội tụ.
+**So với lô mới được rút.** Cùng $b=100$, $K=30$, Ví dụ 05c.39 cho $a_{30}\approx0{,}0032$. Sai số của dữ liệu không xáo trộn lớn hơn khoảng $380$ lần, và vì thứ tự lặp lại ở mọi lượt, tham số dao động theo chu kỳ thay vì hội tụ.
 
-![Quỹ đạo của tham số theta qua 30 bước SGD với nhóm 100 quan sát, bước 0,1, xuất phát từ 0. Đường gấp khúc của dữ liệu không xáo trộn đi xuống tới khoảng −0,65 sau 10 bước, lên 0,42 sau 20 bước và 2,10 sau 30 bước, vượt xa nghiệm 1. Đường của nhóm rút mới là kỳ vọng 1 − 0,9 mũ k tăng đều về 1, kèm dải một độ lệch chuẩn rộng không quá 0,04.](img/lec-05c/sorted-vs-shuffled.svg)
+![Quỹ đạo của tham số theta qua 30 bước SGD với lô 100 quan sát, bước 0,1, xuất phát từ 0. Đường gấp khúc của dữ liệu không xáo trộn đi xuống tới khoảng −0,65 sau 10 bước, lên 0,42 sau 20 bước và 2,10 sau 30 bước, vượt xa nghiệm 1. Đường của lô mới được rút là kỳ vọng 1 − 0,9 mũ k tăng đều về 1, kèm dải một độ lệch chuẩn rộng không quá 0,04.](img/lec-05c/sorted-vs-shuffled.svg)
 
-Hình trên đặt hai quỹ đạo trên cùng trục. Với nhóm rút mới, kỳ vọng $1-0{,}9^k$ tiến đều về nghiệm và dải một độ lệch chuẩn, rộng $\sqrt{\bar a_{100}(1-0{,}81^k)}\le0{,}038$, gần như không thấy. Với dữ liệu không xáo trộn, tham số dịch chuyển lần lượt về phía $-1$, $1$, $3$, giá trị của nhóm đang dùng.
+Hình trên đặt hai quỹ đạo trên cùng trục. Với lô mới được rút, kỳ vọng $1-0{,}9^k$ tiến đều về nghiệm và dải một độ lệch chuẩn, rộng $\sqrt{\bar a_{100}(1-0{,}81^k)}\le0{,}038$, gần như không thấy. Với dữ liệu không xáo trộn, tham số dịch chuyển lần lượt về phía $-1$, $1$, $3$, giá trị của lô đang dùng.
 
-**Diễn giải.** Mỗi nhóm của dữ liệu không xáo trộn có sai số $2$, $0$ hoặc $-2$ không triệt tiêu; Định lý 05c.53 chỉ bảo đảm triệt tiêu theo kỳ vọng khi nhóm được rút ngẫu nhiên. Xáo trộn đầu mỗi lượt khôi phục tính ngẫu nhiên của từng nhóm (Mục 4.2) và đưa sai số về bậc của Ví dụ 05c.39.
+**Diễn giải.** Mỗi lô của dữ liệu không xáo trộn có sai số $2$, $0$ hoặc $-2$ không triệt tiêu; Định lý 05c.53 chỉ bảo đảm triệt tiêu theo kỳ vọng khi lô được rút ngẫu nhiên. Xáo trộn đầu mỗi lượt khôi phục tính ngẫu nhiên của từng lô (Mục 4.2) và đưa sai số về bậc của Ví dụ 05c.39.
 
 **Kiểm tra lại.** Đệ quy từng bước cho $\theta_{10}=-0{,}6513$, $\theta_{20}=0{,}4242$, $\theta_{30}=2{,}1019$.
 
-**Giới hạn.** Ví dụ cực đoan vì mỗi nhóm chỉ có một giá trị; dữ liệu thực thường chỉ sắp một phần, theo thời gian hay theo nguồn, với hậu quả nhẹ hơn nhưng cùng bản chất.
+**Giới hạn.** Ví dụ cực đoan vì mỗi lô chỉ có một giá trị; dữ liệu thực thường chỉ sắp một phần, theo thời gian hay theo nguồn, với hậu quả nhẹ hơn nhưng cùng bản chất.
 
-**Dẫn ngược lý thuyết.** Định lý 05c.53 và Mệnh đề 05c.57 nêu giả thiết bị vi phạm; Mệnh đề 05c.36 và Mục 4.2 cho tính không chệch của nhóm cắt từ một hoán vị ngẫu nhiên; Ví dụ 05c.39 cho mức so sánh.
+**Dẫn ngược lý thuyết.** Định lý 05c.53 và Mệnh đề 05c.57 nêu giả thiết bị vi phạm; Mệnh đề 05c.36 và Mục 4.2 cho tính không chệch của lô cắt từ một hoán vị ngẫu nhiên; Ví dụ 05c.39 cho mức so sánh.
 :::
 
 **Ứng dụng.** Các khái niệm của chương xuất hiện trong học máy như sau.
 
-- **Bộ tối ưu ngẫu nhiên.** SGD, momentum và Adam dùng gradient nhóm; Định lý 05c.53 là giả thiết chung của các phân tích ở Bài 05b và Bài 06.
-- **Đánh giá mô hình.** Tỉ lệ lỗi trên tập kiểm thử là trung bình mẫu; Định lý 05c.52 và Hệ quả 05c.48 cho cỡ tập và khoảng tin cậy, Mệnh đề 05c.7 cho hiệu chỉnh khi chọn trong nhiều mô hình.
+- **Bộ tối ưu ngẫu nhiên.** SGD, momentum và Adam dùng gradient lô; Định lý 05c.53 là giả thiết chung của các phân tích ở Bài 05b và Bài 06.
+- **Đánh giá mô hình.** Tỉ lệ lỗi trên tập kiểm thử là trung bình mẫu; Định lý 05c.52 và Hệ quả 05c.48 cho kích thước tập và khoảng tin cậy, Mệnh đề 05c.7 cho hiệu chỉnh khi chọn trong nhiều mô hình.
 - **Phân loại xác suất.** Công thức Bayes (Định lý 05c.11) là nền của bộ phân loại Bayes ngây thơ và của việc hiệu chỉnh xác suất khi tỉ lệ lớp thay đổi ở giai đoạn triển khai.
 - **Suy diễn dựa trên mẫu.** Buổi 12 của học phần, về mô hình đồ thị xác suất, ước lượng kỳ vọng bằng trung bình mẫu; Hệ quả 05c.48 cho cỡ mẫu tương ứng (Koller và Friedman, 2009, mục 12.1.2).
 
 ## Tóm tắt chương
 
-Chương này khởi đầu từ định lý về gradient nhóm của Bài 05 và bài toán ước lượng một trung bình bằng trung bình mẫu. Mục 1 và Mục 2 xây xác suất trên không gian mẫu, đi kèm với phép đếm, bất đẳng thức hợp và công thức Bayes, rồi chứng minh các lần rút có hoàn lại độc lập (Mệnh đề 05c.14). Mục 3 biến gradient mẫu thành các biến i.i.d. (Hệ quả 05c.25), và Mục 4 cho kỳ vọng, phương sai của trung bình mẫu (Định lý 05c.35). Mục 5 chuyển các mômen này thành cận xác suất, từ Markov, Chebyshev tới Hoeffding, rồi suy ra cỡ mẫu và khoảng tin cậy (Định lý 05c.47, Hệ quả 05c.48). Cuối cùng, Mục 6 áp các kết quả cho mất mát và gradient (Định lý 05c.52, Định lý 05c.53). Từ đó, hai câu hỏi về trung bình hay tổng và về cỡ nhóm có câu trả lời (Mệnh đề 05c.55, Mệnh đề 05c.57). Hai trong ba tình huống áp dụng cho thấy các bảo đảm này không còn đúng khi mẫu kiểm thử tương quan hoặc dữ liệu không được xáo trộn.
+Chương này khởi đầu từ định lý về gradient lô của Bài 05 và bài toán ước lượng một trung bình bằng trung bình mẫu. Mục 1 và Mục 2 xây xác suất trên không gian mẫu, đi kèm với phép đếm, bất đẳng thức hợp và công thức Bayes, rồi chứng minh các lần rút có hoàn lại độc lập (Mệnh đề 05c.14). Mục 3 biến gradient mẫu thành các biến i.i.d. (Hệ quả 05c.25), và Mục 4 cho kỳ vọng, phương sai của trung bình mẫu (Định lý 05c.35). Mục 5 chuyển các mômen này thành cận xác suất, từ Markov, Chebyshev tới Hoeffding, rồi suy ra cỡ mẫu và khoảng tin cậy (Định lý 05c.47, Hệ quả 05c.48). Cuối cùng, Mục 6 áp các kết quả cho mất mát và gradient (Định lý 05c.52, Định lý 05c.53). Từ đó, hai câu hỏi về trung bình hay tổng và về kích thước lô có câu trả lời (Mệnh đề 05c.55, Mệnh đề 05c.57). Hai trong ba tình huống áp dụng cho thấy các bảo đảm này không còn đúng khi mẫu kiểm thử tương quan hoặc dữ liệu không được xáo trộn.
 
 **Định nghĩa và kết quả theo mục.**
 
-- Mục 1: không gian xác suất (Định nghĩa 05c.1), quy tắc tính và đếm (Mệnh đề 05c.2, Mệnh đề 05c.4), nhóm có lặp (Mệnh đề 05c.6), bất đẳng thức hợp (Mệnh đề 05c.7).
+- Mục 1: không gian xác suất (Định nghĩa 05c.1), quy tắc tính và đếm (Mệnh đề 05c.2, Mệnh đề 05c.4), lô có lặp (Mệnh đề 05c.6), bất đẳng thức hợp (Mệnh đề 05c.7).
 - Mục 2: xác suất có điều kiện, công thức Bayes, độc lập (Định nghĩa 05c.8, Định lý 05c.11, Định nghĩa 05c.12); các lần rút có hoàn lại độc lập (Mệnh đề 05c.14).
-- Mục 3: biến ngẫu nhiên, phân phối, độc lập của biến (Định nghĩa 05c.17, Định nghĩa 05c.20, Định nghĩa 05c.23); gradient mẫu của nhóm có hoàn lại là i.i.d. (Hệ quả 05c.25).
+- Mục 3: biến ngẫu nhiên, phân phối, độc lập của biến (Định nghĩa 05c.17, Định nghĩa 05c.20, Định nghĩa 05c.23); gradient mẫu của lô có hoàn lại là i.i.d. (Hệ quả 05c.25).
 - Mục 4: tính tuyến tính (Định lý 05c.28), phương sai của tổng (Mệnh đề 05c.33), trung bình mẫu (Định lý 05c.35), không hoàn lại (Mệnh đề 05c.36), kỳ vọng toàn phần (Mệnh đề 05c.38).
 - Mục 5: Markov, Chebyshev, luật số lớn yếu (Định lý 05c.39, Hệ quả 05c.40, Định lý 05c.41); Chernoff, Hoeffding (Định lý 05c.43, Bổ đề 05c.46, Định lý 05c.47); cỡ mẫu và khoảng tin cậy (Hệ quả 05c.48).
-- Mục 6: rủi ro thực nghiệm (Định lý 05c.52), gradient nhóm (Định lý 05c.53, Hệ quả 05c.54), tổng và trung bình (Mệnh đề 05c.55), hiệu suất giảm dần (Mệnh đề 05c.56), SGD dưới ngân sách (Thuật toán 05c.1, Mệnh đề 05c.57).
+- Mục 6: rủi ro thực nghiệm (Định lý 05c.52), gradient lô (Định lý 05c.53, Hệ quả 05c.54), tổng và trung bình (Mệnh đề 05c.55), hiệu suất giảm dần (Mệnh đề 05c.56), SGD dưới ngân sách (Thuật toán 05c.1, Mệnh đề 05c.57).
 
-**Công thức cần nhớ.** Trung bình mẫu và gradient nhóm:
+**Công thức cần nhớ.** Trung bình mẫu và gradient lô:
 
 $$
 \mathbb E\bar X_n=\mu,\qquad\operatorname{Var}\bar X_n=\frac{\sigma_1^2}n,\qquad\operatorname{Cov}\widehat g=\frac{\Sigma(\theta)}b ;
@@ -2790,13 +2790,13 @@ $$
 - Kỳ vọng cộng được không cần độc lập; phương sai cộng được chỉ khi các hiệp phương sai bằng $0$.
 - Markov cần biến không âm; Chebyshev cần phương sai hữu hạn; Hoeffding cần độc lập và bị chặn.
 - Mọi bảo đảm về rủi ro thực nghiệm cần tham số không phụ thuộc dữ liệu đánh giá.
-- Phân tích SGD nhiều bước cần nhóm rút mới, độc lập với lịch sử; dữ liệu không xáo trộn hoặc quan sát tương quan vi phạm giả thiết này.
+- Phân tích SGD nhiều bước cần lô mới được rút, độc lập với lịch sử; dữ liệu không xáo trộn hoặc quan sát tương quan vi phạm giả thiết này.
 
-**Giới hạn còn lại và bài sau.** Đến đây, chúng ta mới xét một tham số cố định hoặc một hàm bậc hai một chiều tính được chính xác. Bài 05b chứng minh hội tụ của SGD cho hàm lồi mạnh và hàm không lồi dưới hai giả thiết mà Mục 6.7 kiểm, với sàn nhiễu tỉ lệ $\eta\sigma^2$, và chỉ ra cách giảm bước học theo thời gian đưa sàn nhiễu về $0$. Bài 06 dùng gradient nhóm cho các bộ tối ưu thích ứng và cho chuẩn hóa theo lô, nơi mất mát của một quan sát phụ thuộc các quan sát khác trong nhóm nên Định lý 05c.53 không áp dụng nguyên dạng.
+**Giới hạn còn lại và bài giảng sau.** Đến đây, chúng ta mới xét một tham số cố định hoặc một hàm bậc hai một chiều tính được chính xác. Bài 05b chứng minh hội tụ của SGD cho hàm lồi mạnh và hàm không lồi dưới hai giả thiết mà Mục 6.7 kiểm tra, với mức nhiễu nền tỉ lệ $\eta\sigma^2$, và chỉ ra cách giảm bước học theo thời gian đưa mức nhiễu nền về $0$. Bài 06 dùng gradient lô cho các bộ tối ưu thích ứng và cho chuẩn hóa theo lô, nơi mất mát của một quan sát phụ thuộc các quan sát khác trong lô nên Định lý 05c.53 không áp dụng nguyên dạng.
 
 ## Bài tập củng cố
 
-Cùng với các bài trong mục, mọi mục tiêu học tập có ít nhất một bài tập. Các bài không trùng đề với bộ bài giao chính thức trong tệp bài tập của Bài 05c.
+Cùng với các bài tập trong mục, mọi mục tiêu học tập có ít nhất một bài tập. Các bài tập này không trùng đề với bộ bài tập giao chính thức trong tệp bài tập của Bài 05c.
 
 ### Mức nhận biết
 
@@ -2804,11 +2804,11 @@ Cùng với các bài trong mục, mọi mục tiêu học tập có ít nhất 
 Xác định đúng hay sai, giải thích bằng một kết quả có số hiệu hoặc một phản ví dụ.
 
 1. Nếu $P(A\cap B)=0$ và $P(A),P(B)>0$ thì $A$ và $B$ độc lập.
-2. Tính không chệch của gradient nhóm cần các chỉ số trong nhóm độc lập.
+2. Tính không chệch của gradient lô cần các chỉ số trong lô độc lập.
 3. Nếu $\operatorname{Cov}(X,Y)=0$ thì $X$ và $Y$ độc lập.
 4. Với $Z\ge0$ và $\mathbb EZ=2$, $P(Z\ge10)\le0{,}2$.
 5. Rút không hoàn lại làm phương sai của trung bình mẫu lớn hơn rút có hoàn lại.
-6. Với mất mát tổng trên nhóm, ngưỡng bước ổn định không phụ thuộc cỡ nhóm.
+6. Với mất mát tổng trên lô, ngưỡng bước ổn định không phụ thuộc kích thước lô.
 :::
 
 ::: hint
@@ -2828,7 +2828,7 @@ Câu 1 đối chiếu nhận xét sau Định nghĩa 05c.12; câu 2 đối chi�
 
 ### Mức tính toán hoặc chứng minh
 
-::: exercise Bài tập 05c.9 (Cỡ tập kiểm thử khi chọn trong nhiều mô hình)
+::: exercise Bài tập 05c.9 (Kích thước tập kiểm thử khi chọn trong nhiều mô hình)
 Cho $k$ mô hình cố định, xác định trước khi nhìn tập kiểm thử, mất mát 0–1, tập kiểm thử gồm $n$ quan sát i.i.d.
 
 1. Chứng minh: nếu $n\ge\frac{\ln(2k/\delta)}{2\varepsilon^2}$ thì với xác suất ít nhất $1-\delta$, tỉ lệ lỗi đo được của mọi mô hình đồng thời lệch khỏi tỉ lệ lỗi thật dưới $\varepsilon$.
@@ -2849,10 +2849,10 @@ Cho $k$ mô hình cố định, xác định trước khi nhìn tập kiểm th�
 
 ### Mức vận dụng vào AI
 
-::: exercise Bài tập 05c.10 (Cỡ nhóm cho một sai số chuẩn mục tiêu)
+::: exercise Bài tập 05c.10 (Kích thước lô cho một sai số chuẩn mục tiêu)
 **Dữ kiện.** Ví dụ ba quan sát tại $\theta=1$: gradient mẫu nhận $2$, $0$, $-2$, phương sai $\sigma_1^2=\tfrac83$; tập lặp gồm $\nu=10^6$ bản sao mỗi giá trị, nên $N=3\cdot10^6$.
 
-1. Tính sai số chuẩn của gradient nhóm $b=120$ rút có hoàn lại.
+1. Tính sai số chuẩn của gradient lô với $b=120$ chỉ số được rút có hoàn lại.
 2. Tìm $b$ nhỏ nhất để sai số chuẩn không vượt $0{,}1$.
 3. Với $b$ ở câu 2 rút không hoàn lại, tính hệ số hiệu chỉnh của Định lý 05c.53 và nhận xét độ lớn của nó.
 :::
@@ -2871,11 +2871,11 @@ Cho $k$ mô hình cố định, xác định trước khi nhìn tập kiểm th�
 **Kiểm tra lại.** Với $b=266$, $\sqrt{8/798}\approx0{,}1001>0{,}1$.
 :::
 
-::: exercise Bài tập 05c.11 (Ngân sách nhỏ và cỡ nhóm lớn)
+::: exercise Bài tập 05c.11 (Ngân sách nhỏ và kích thước lô lớn)
 **Dữ kiện.** Ví dụ ba quan sát với tập lặp; Thuật toán 05c.1 với $\theta_0=0$, $a_0=1$, $\eta=0{,}1$; theo (6.6), $a_K=0{,}81^K(1-\bar a_b)+\bar a_b$ với $\bar a_b=\tfrac8{57b}$, $K=\lfloor B_{\rm tot}/b\rfloor$. Ngân sách $B_{\rm tot}=600$ gradient mẫu.
 
 1. So $a_K$ của $b=10$ và $b=60$.
-2. Một nhóm phát triển chọn $b=60$ vì "gradient chính xác hơn". Dùng câu 1 để đánh giá lựa chọn này và nêu điều kiện để nhóm lớn hơn cho sai số nhỏ hơn.
+2. Một nhóm phát triển chọn $b=60$ vì "gradient chính xác hơn". Dùng câu 1 để đánh giá lựa chọn này và nêu điều kiện để lô lớn hơn cho sai số nhỏ hơn.
 :::
 
 ::: hint
@@ -2888,7 +2888,7 @@ Tính $K$, $0{,}81^K$ và $\bar a_b$ cho từng $b$.
 - $b=10$: $K=60$, $0{,}81^{60}\approx3{,}2\cdot10^{-6}$, $\bar a_{10}=\tfrac8{570}\approx0{,}01404$, nên $a_{60}\approx0{,}0140$.
 - $b=60$: $K=10$, $0{,}81^{10}\approx0{,}1216$, $\bar a_{60}=\tfrac8{3420}\approx0{,}00234$, nên $a_{10}\approx0{,}1216\cdot0{,}9977+0{,}00234\approx0{,}124$.
 
-**Câu 2.** Với $b=60$, sai số lớn hơn gần chín lần vì chỉ còn $10$ bước: số hạng điểm đầu $0{,}1216$ chiếm gần hết. Gradient chính xác hơn chỉ cho sai số nhỏ hơn khi ngân sách đủ để số hạng $0{,}81^K$ đã nhỏ hơn sàn nhiễu, như ở $B_{\rm tot}=3000$ của Ví dụ 05c.39; khi đó tăng $b$ hạ sàn nhiễu. Tính trên mọi $b$ nguyên với ngân sách $600$, cực tiểu đạt tại $b=18$, với $K=33$ và $a_K\approx0{,}0087$.
+**Câu 2.** Với $b=60$, sai số lớn hơn gần chín lần vì chỉ còn $10$ bước: số hạng điểm đầu $0{,}1216$ chiếm gần hết. Gradient chính xác hơn chỉ cho sai số nhỏ hơn khi ngân sách đủ để số hạng $0{,}81^K$ đã nhỏ hơn mức nhiễu nền, như ở $B_{\rm tot}=3000$ của Ví dụ 05c.39; khi đó tăng $b$ hạ mức nhiễu nền. Tính trên mọi $b$ nguyên với ngân sách $600$, cực tiểu đạt tại $b=18$, với $K=33$ và $a_K\approx0{,}0087$.
 
 **Kiểm tra lại.** $0{,}81^{10}=e^{10\ln0{,}81}$, xấp xỉ $e^{-2{,}107}\approx0{,}1216$.
 :::
@@ -2898,9 +2898,9 @@ Tính $K$, $0{,}81^K$ và $\bar a_b$ cho từng $b$.
 - **Koller và Friedman (2009)**, *Probabilistic Graphical Models*, MIT Press: mục 2.1 (tr. 15–34) cho Mục 1–4; Định lý 2.1 (tr. 33–34), mục 12.1.2 (tr. 490–491) và Phụ lục A.2 (tr. 1143–1146) cho Mục 5; mục 3.1.3 cho bộ phân loại Bayes ngây thơ.
 - **Wasserman (2004)**, *All of Statistics*, Springer: chương 1–3 cho Mục 1–4; chương 4 (Markov, Chebyshev, Hoeffding, khoảng tin cậy) và chương 5 (luật số lớn, định lý giới hạn trung tâm) cho Mục 5; dẫn theo số chương, số mục.
 - **Blitzstein và Hwang (2019)**, *Introduction to Probability*, ấn bản 2, CRC Press: chương 1–4, 7 cho thứ tự dẫn dắt và các ví dụ kinh điển của Mục 1–4 (sinh nhật, Monty Hall, trả mũ, St. Petersburg); chương 10 cho Mục 5.
-- **Goodfellow, Bengio và Courville (2016)**, *Deep Learning*, MIT Press: mục 3.2–3.11 (tr. 56–71) cho ôn tập xác suất; mục 5.2–5.4 (tr. 110–129) cho giả thiết i.i.d., ước lượng không chệch và sai số chuẩn; mục 8.1.3 (tr. 277–282) cho lập luận về gradient nhóm, hiệu suất giảm dần, phần cứng và xáo trộn theo lượt (Mục 6).
+- **Goodfellow, Bengio và Courville (2016)**, *Deep Learning*, MIT Press: mục 3.2–3.11 (tr. 56–71) cho ôn tập xác suất; mục 5.2–5.4 (tr. 110–129) cho giả thiết i.i.d., ước lượng không chệch và sai số chuẩn; mục 8.1.3 (tr. 277–282) cho lập luận về gradient lô, hiệu suất giảm dần, phần cứng và xáo trộn theo lượt (Mục 6).
 - **Boyd và Vandenberghe (2004)**, *Convex Optimization*, Cambridge University Press: mục 7.4 (tr. 374–383) cho bất đẳng thức Markov và cận Chernoff dưới góc nhìn tối ưu (Mục 5).
 - **Sra, Nowozin và Wright (biên tập, 2011)**, *Optimization for Machine Learning*, MIT Press: chương 13 của Bottou và Bousquet (tr. 352–362) cho phân tích sai số xấp xỉ, ước lượng và tối ưu (Nhận xét 05c.58).
-- **Học liệu của học phần.** Bài 00 (ôn tập xác suất một biến và nhiều biến), Bài 01 (hồi quy logistic, hàm lồi), Bài 04 (gradient Lipschitz và bước $1/L$), Bài 05 (gradient nhóm, SGD), Bài 05b (hội tụ của SGD), Bài 06 (bộ tối ưu thích ứng, chuẩn hóa theo lô).
+- **Học liệu của học phần.** Bài 00 (ôn tập xác suất một biến và nhiều biến), Bài 01 (hồi quy logistic, hàm lồi), Bài 04 (gradient Lipschitz và bước $1/L$), Bài 05 (gradient lô, SGD), Bài 05b (hội tụ của SGD), Bài 06 (bộ tối ưu thích ứng, chuẩn hóa theo lô).
 
 Mọi số liệu được tính bằng phân số chính xác hoặc đếm toàn bộ, không mô phỏng.

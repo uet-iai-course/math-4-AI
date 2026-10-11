@@ -11,7 +11,7 @@ Bộ bài tập đo khả năng nhận biết cơ chế, tính toán và chứng
 #### Thành phần được thay đổi
 
 ::: exercise
-Ghép mỗi thao tác với thành phần bị thay: dữ liệu hoặc phép tính mô hình; điểm đầu; mục tiêu; quy tắc cập nhật; quy tắc trả về. Nêu thêm một đại lượng cần kiểm.
+Ghép mỗi thao tác với thành phần bị thay: dữ liệu hoặc phép tính mô hình; điểm đầu; mục tiêu; quy tắc cập nhật; quy tắc trả về. Nêu thêm một đại lượng cần kiểm tra.
 
 1. Lưu trung bình mũ của bình phương gradient để điều chỉnh thang bước.
 2. Tính trung bình và phương sai của kích hoạt trong lô trước phép biến đổi affine.
@@ -23,13 +23,13 @@ Ghép mỗi thao tác với thành phần bị thay: dữ liệu hoặc phép t�
 :::
 
 ::: solution
-1. RMSProp thay quy tắc cập nhật; kiểm thống kê $v_t$ và mẫu số.
-2. Chuẩn hóa theo lô (BN) thay phép tính mô hình; kiểm chế độ học/suy luận và thống kê lô.
-3. Tiền huấn luyện thay điểm đầu; kiểm phép chuyển tham số và mất mát đích.
-4. Trung bình Polyak thay quy tắc trả về; kiểm mục tiêu tại tham số trung bình.
-5. Học theo chương trình thay phân phối dữ liệu và do đó mục tiêu kỳ vọng; kiểm phân phối cuối và mất mát trên phân phối đích cố định.
-6. Tiếp diễn thay mục tiêu; kiểm $\lambda$ cuối và điều kiện dừng của mục tiêu đích.
-7. Hạ theo khối thay quy tắc cập nhật; kiểm việc không tăng mục tiêu ở bài toán con và chi phí toàn chu kỳ.
+1. RMSProp thay quy tắc cập nhật; kiểm tra thống kê $v_t$ và mẫu số.
+2. Chuẩn hóa theo lô (BN) thay phép tính mô hình; kiểm tra chế độ học/suy luận và thống kê lô.
+3. Tiền huấn luyện thay điểm đầu; kiểm tra phép chuyển tham số và mất mát đích.
+4. Trung bình Polyak thay quy tắc trả về; kiểm tra mục tiêu tại tham số trung bình.
+5. Học theo chương trình thay phân phối dữ liệu và do đó mục tiêu kỳ vọng; kiểm tra phân phối cuối và mất mát trên phân phối đích cố định.
+6. Tiếp diễn thay mục tiêu; kiểm tra $\lambda$ cuối và điều kiện dừng của mục tiêu đích.
+7. Hạ theo khối thay quy tắc cập nhật; kiểm tra việc không tăng mục tiêu ở bài toán con và chi phí toàn chu kỳ.
 :::
 
 #### Phạm vi của các kết luận
@@ -150,7 +150,7 @@ $$
 $$
 
 1. Tính $\alpha_0,d_1,r_1,\beta_0,p_1$.
-2. Kiểm $p_0^\top Ap_1=0$ và $r_0^\top r_1=0$.
+2. Kiểm tra $p_0^\top Ap_1=0$ và $r_0^\top r_1=0$.
 3. Tính $\alpha_1,d_2,r_2$. Thuật toán cần xử lý thế nào trước khi tính vòng tiếp theo?
 4. Sau vòng đầu, ngưỡng phần dư tuyệt đối $1/10$ đạt chưa? Nếu hệ là hệ Newton với $g=-b$, hướng $d_1$ có giảm không?
 5. Nếu điểm đầu là $d_0=(1,1/4)^\top$, cần làm gì trước phép tính $\alpha_0$?
@@ -166,9 +166,9 @@ $$
 \quad p_1=(24/25,-6/25)^\top.
 $$
 
-Tích liên hợp là $24/25-24/25=0$; tích hai phần dư cũng bằng $0$. Vì $p_1^\top Ap_1=144/125$ và $r_1^\top r_1=18/25$, ta có $\alpha_1=5/8$, $d_2=(1,1/4)^\top$, $r_2=0$. Kiểm dừng trước phép chia tiếp theo để tránh trường hợp không xác định.
+Tích liên hợp là $24/25-24/25=0$; tích hai phần dư cũng bằng $0$. Vì $p_1^\top Ap_1=144/125$ và $r_1^\top r_1=18/25$, ta có $\alpha_1=5/8$, $d_2=(1,1/4)^\top$, $r_2=0$. Kiểm tra điều kiện dừng trước phép chia tiếp theo để tránh trường hợp không xác định.
 
-Sau vòng đầu, chuẩn phần dư là $\sqrt{18/25}\approx0{,}8485>0{,}1$, nhưng $g^\top d_1=-4/5<0$. Giải hệ đủ chính xác và tạo hướng giảm là hai phép kiểm khác nhau.
+Sau vòng đầu, chuẩn phần dư là $\sqrt{18/25}\approx0{,}8485>0{,}1$, nhưng $g^\top d_1=-4/5<0$. Giải hệ đủ chính xác và tạo hướng giảm là hai phép kiểm tra khác nhau.
 
 Điểm đầu ở phần 5 đã là nghiệm; phần dư bằng $0$. Thuật toán trả ngay điểm đầu, không tính thương $0/0$ trong $\alpha_0$.
 :::
@@ -182,7 +182,7 @@ $$
 P_1=(I-\rho sy^\top)P_0(I-\rho ys^\top)+\rho ss^\top.
 $$
 
-1. Tính $P_1$, kiểm $P_1y=s$ và tính xác định dương.
+1. Tính $P_1$, kiểm tra $P_1y=s$ và tính xác định dương.
 2. Với $g=(1,0)^\top$, tính $d=-P_1g$ và $g^\top d$.
 3. Thay $y$ bằng $(-1,1)^\top$. Chứng minh không thể có ma trận SPD $P$ thỏa $Py=s$.
 4. Chứng minh công thức BFGS bảo toàn SPD khi $P_0\succ0$ và $y^\top s>0$.
@@ -276,7 +276,7 @@ $$
 
 1. Tính nghiệm nhiệm vụ phụ. Mô tả phép chuyển tham số khi giữ $a$ và khởi tạo mới $b=1$.
 2. Tính gradient mục tiêu đích tại $(0,0)$ và tại điểm chuyển.
-3. Từ điểm chuyển, thực hiện một bước hạ gradient đồng thời với $\eta=1/10$ và tính $F$ mới.
+3. Từ điểm chuyển, thực hiện một bước hạ gradient (gradient descent) đồng thời với $\eta=1/10$ và tính $F$ mới.
 4. Nêu một kết luận được ví dụ chứng minh, một kết luận chưa được chứng minh và một yêu cầu để so sánh tiền huấn luyện với khởi tạo từ đầu.
 :::
 
@@ -294,9 +294,9 @@ Ví dụ cho thấy điểm đầu có thể thay đổi tín hiệu gradient v�
 Cho $F_\lambda(\theta)=(\theta^2-1)^2+\lambda\theta^2$, $\lambda\ge0$.
 
 1. Tìm mọi điểm dừng và phân loại với $\lambda=3$, $3/2$, $0$.
-2. Xét riêng $\lambda=2$, khi phép kiểm đạo hàm hai tại $0$ không quyết định. Xác định cực tiểu bằng biểu thức hàm.
+2. Xét riêng $\lambda=2$, khi phép kiểm tra đạo hàm hai tại $0$ không quyết định. Xác định cực tiểu bằng biểu thức hàm.
 3. Một quy trình giải đúng giai đoạn $\lambda=3$, rồi dùng nghiệm làm điểm đầu cho hạ gradient chính xác tại $\lambda=3/2$ và $0$. Chứng minh quy trình có thể giữ nguyên $0$.
-4. Nêu một thay đổi thuật toán có thể giúp rời điểm $0$ và điều vẫn phải kiểm ở giai đoạn cuối.
+4. Nêu một thay đổi thuật toán có thể giúp rời điểm $0$ và điều vẫn phải kiểm tra ở giai đoạn cuối.
 :::
 
 ::: solution
@@ -304,7 +304,7 @@ Ta có $F_\lambda'=\theta(4\theta^2+2\lambda-4)$ và $F_\lambda''=12\theta^2+2\l
 
 Tại $\lambda=2$, $F_2=\theta^4+1$ cho cực tiểu duy nhất $0$ dù $F_2''(0)=0$.
 
-Vì $F_\lambda'(0)=0$ ở mọi giai đoạn, bước gradient từ $0$ luôn bằng $0$. Thay lịch $\lambda$ không tự tạo dịch chuyển. Có thể thêm nhiễu phá đối xứng hoặc chọn một nhánh điểm đầu khác $0$ theo quy tắc đã định. Sau đó vẫn phải kiểm mục tiêu đích $F_0$, điều kiện dừng và ngân sách; không có bảo đảm toàn cục chỉ từ thao tác phá đối xứng.
+Vì $F_\lambda'(0)=0$ ở mọi giai đoạn, bước gradient từ $0$ luôn bằng $0$. Thay lịch $\lambda$ không tự tạo dịch chuyển. Có thể thêm nhiễu phá đối xứng hoặc chọn một nhánh điểm đầu khác $0$ theo quy tắc đã định. Sau đó vẫn phải kiểm tra mục tiêu đích $F_0$, điều kiện dừng và ngân sách; không có bảo đảm toàn cục chỉ từ thao tác phá đối xứng.
 :::
 
 ### Bài 11. Lịch phân phối và sai mục tiêu đích
@@ -341,7 +341,7 @@ Trung bình tham số chỉ đổi đầu ra, không tự sửa phân phối mà
 ### Bài 12. Phương án tối ưu có điều kiện
 
 ::: exercise
-Lập bảng phương án cho ba tình huống. Mỗi hàng phải có phương pháp, dữ kiện được dùng, điều kiện và phép kiểm.
+Lập bảng phương án cho ba tình huống. Mỗi hàng phải có phương pháp, dữ kiện được dùng, điều kiện và phép kiểm tra.
 
 1. Mô hình có $p=10^6$ tham số, chỉ cung cấp gradient lô nhỏ, không có toán tử Hessian; ngân sách trạng thái phụ lưu bền là $4p$ số thực, không tính tham số, gradient và vùng làm việc tạm.
 2. Mô hình trơn có $p=100$, gradient đầy đủ $g$ và toán tử cố định $A=H+\lambda I\succ0$. Cần một hướng cho bước ngoài. Xử lý riêng $g=0$ và $g\ne0$.
@@ -351,13 +351,13 @@ Không yêu cầu viết mã hoặc viện dẫn kết quả thực nghiệm ngo
 :::
 
 ::: solution
-| Tình huống | Phương án | Điều kiện và phép kiểm |
+| Tình huống | Phương án | Điều kiện và phép kiểm tra |
 |---|---|---|
-| Gradient lô nhỏ, trạng thái $4p$ | Adam với hai vectơ trạng thái, hoặc AdaGrad/RMSProp với một vectơ | Kiểm ngân sách thực tế của triển khai, cập nhật trạng thái và mất mát trên phân phối cố định; không bảo đảm giảm mục tiêu từng bước |
-| Toán tử SPD | Dùng CG từ $d_0=0$ để giải $Ad=-g$ | Khi $g=0$, kiểm điểm dừng. Khi $g\ne0$, kiểm phần dư, ngân sách, $g^\top d<0$ và tìm bước; giữ toán tử cùng dữ liệu cố định trong lần giải |
+| Gradient lô nhỏ, trạng thái $4p$ | Adam với hai vectơ trạng thái, hoặc AdaGrad/RMSProp với một vectơ | Kiểm tra ngân sách thực tế của triển khai, cập nhật trạng thái và mất mát trên phân phối cố định; không bảo đảm giảm mục tiêu từng bước |
+| Toán tử SPD | Dùng CG từ $d_0=0$ để giải $Ad=-g$ | Khi $g=0$, kiểm tra điểm dừng. Khi $g\ne0$, kiểm tra phần dư, ngân sách, $g^\top d<0$ và tìm bước; giữ toán tử cùng dữ liệu cố định trong lần giải |
 | BN và lịch sai phân phối | Hoàn tất lịch tới phân phối đích; xác định trạng thái BN của mô hình trả về | Đánh giá tham số trung bình với thống kê suy luận phù hợp, rồi đo trên phân phối đích cố định; trung bình không thay thế việc sửa lịch |
 
-Nếu kiểm dấu hướng của bộ giải gần đúng không đạt, có thể giải lại với dung sai chặt hơn hoặc dùng $-g$ kèm tìm bước. BN ở chế độ suy luận phải có thống kê đã xác định; không thể chỉ trung bình các trọng số và bỏ qua trạng thái đó. Dữ kiện của đề chưa đủ xếp hạng chất lượng cuối giữa mọi phương án hợp lệ.
+Nếu kiểm tra dấu hướng của bộ giải gần đúng không đạt, có thể giải lại với dung sai chặt hơn hoặc dùng $-g$ kèm tìm bước. BN ở chế độ suy luận phải có thống kê đã xác định; không thể chỉ trung bình các trọng số và bỏ qua trạng thái đó. Dữ kiện của đề chưa đủ xếp hạng chất lượng cuối giữa mọi phương án hợp lệ.
 :::
 
 ## Tài liệu đối chiếu

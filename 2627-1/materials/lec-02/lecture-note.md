@@ -5,10 +5,10 @@
 Mọi mục tiêu sau là minh chứng bộ phận của chuẩn đầu ra bài học LLO3 (buổi 2), gắn với CLO1: hiểu và đánh giá các thuật toán tối ưu, vận dụng kiến thức tối ưu để giải quyết bài toán thực tế.
 
 1. Chứng nhận từng dòng rằng một bài toán thuộc dạng chuẩn của tối ưu lồi, và tách kết luận "bài toán lồi" khỏi "bài toán có nghiệm" (LLO3, CLO1).
-2. Lập, chuẩn hóa và chứng nhận nghiệm quy hoạch tuyến tính; cải dạng hồi quy sai số tuyệt đối và minimax bằng biến phụ (LLO3, CLO1).
-3. Nhận dạng quy hoạch bậc hai và quy hoạch bậc hai có ràng buộc bậc hai, giải bốn tổ hợp sai số – hình phạt trên dữ liệu nhỏ, và phân biệt hình phạt với trần (LLO3, CLO1).
-4. Đưa bài toán chứa tích và tỷ số của đại lượng dương về quy hoạch hình học và đổi biến logarit để được bài lồi tương đương (LLO3, CLO1).
-5. Phân biệt cải dạng tương đương với hàm thay thế, hình phạt và nới lỏng; dùng nới lỏng tuyến tính để lấy cận (LLO3, CLO1).
+2. Lập, chuẩn hóa và chứng nhận nghiệm quy hoạch tuyến tính; biến đổi bài toán (reformulation) hồi quy sai số tuyệt đối và minimax bằng biến phụ (LLO3, CLO1).
+3. Nhận dạng quy hoạch bậc hai và quy hoạch bậc hai có ràng buộc bậc hai, giải bốn tổ hợp sai số – hình phạt trên dữ liệu nhỏ, và phân biệt hình phạt với ràng buộc chặn chuẩn (norm constraint) (LLO3, CLO1).
+4. Đưa bài toán chứa tích và tỷ số của đại lượng dương về quy hoạch hình học và đổi biến logarit để được bài toán lồi tương đương (LLO3, CLO1).
+5. Phân biệt biến đổi tương đương (equivalent reformulation) với hàm thay thế, hình phạt và nới lỏng; dùng nới lỏng tuyến tính để lấy cận (LLO3, CLO1).
 6. Vận dụng quy trình nhận dạng vào mô hình học máy mới và nêu hậu quả khi một giả thiết bị vi phạm (LLO3, CLO1).
 
 ## Kiến thức tiên quyết
@@ -18,7 +18,7 @@ Chúng ta dùng các kết quả sau của Bài 01 (ghi chú Bài 01, số hiệ
 - **Bài toán tối ưu** (Định nghĩa 01.12) và **miền lồng nhau** (Mệnh đề 01.16). Giá trị tối ưu là $p^*=\inf_{x\in C}f_0(x)$, bằng $+\infty$ khi $C$ rỗng và $-\infty$ khi $f_0$ không bị chặn dưới; $x^*\in C$ là nghiệm khi $f_0(x^*)=p^*$. Nếu $C'\subseteq C$ thì $\inf_Cf_0\le\inf_{C'}f_0$, và một nghiệm trên $C$ nằm trong $C'$ cũng là nghiệm trên $C'$.
 - **Tập lồi** (Định nghĩa 01.18, Mệnh đề 01.19, 01.20). Tập affine, nửa không gian, hộp, quả cầu Euclid đều lồi; giao của các tập lồi và nghịch ảnh của tập lồi qua ánh xạ affine đều lồi.
 - **Hàm lồi** (Định nghĩa 01.22). Trên tập lồi $C$, $f$ lồi nếu $f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$ với mọi $x,y\in C$, $\theta\in[0,1]$, bất đẳng thức (7.1) của Bài 01; $f$ lồi chặt (còn gọi là lồi nghiêm ngặt) khi bất đẳng thức chặt với $x\ne y$, $\theta\in(0,1)$. Hàm $f$ lõm nếu $-f$ lồi. Tập mức dưới $\{x\in C\mid f(x)\le\alpha\}$ của hàm lồi là lồi (Mệnh đề 01.25).
-- **Điều kiện bậc nhất, bậc hai, phép ghép** (Định lý 01.26, Hệ quả 01.27, Định lý 01.30, 01.31). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$; nếu $f$ lồi, khả vi trên một tập mở chứa $C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$ (điều kiện (7.3) của Bài 01) thì $x^*$ là nghiệm. Hàm khả vi hai lần lồi khi và chỉ khi Hessian $\succeq0$ mọi nơi, và lồi chặt nếu Hessian $\succ0$ mọi nơi. Tổng có hệ số không âm, hợp với ánh xạ affine và cực đại từng điểm của các hàm lồi là lồi.
+- **Điều kiện bậc nhất, bậc hai, phép bảo toàn tính lồi** (Định lý 01.26, Hệ quả 01.27, Định lý 01.30, 01.31). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$; nếu $f$ lồi, khả vi trên một tập mở chứa $C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$ (điều kiện (7.3) của Bài 01) thì $x^*$ là nghiệm. Hàm khả vi hai lần lồi khi và chỉ khi Hessian $\succeq0$ mọi nơi, và lồi chặt nếu Hessian $\succ0$ mọi nơi. Tổng có hệ số không âm, hợp với ánh xạ affine và cực đại từng điểm của các hàm lồi là lồi.
 - **Toàn cục, tồn tại, duy nhất** (Định lý 01.33, Hệ quả 01.34, Định lý 01.35, 01.36, 01.38). Với miền lồi và mục tiêu lồi, cực tiểu địa phương là toàn cục và tập nghiệm lồi; mục tiêu lồi chặt có nhiều nhất một nghiệm; hàm liên tục đạt cực tiểu trên tập không rỗng, đóng, bị chặn (Weierstrass), hoặc trên tập không rỗng, đóng nếu hàm bức, tức $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$.
 - **Bình phương nhỏ nhất và mất mát phân loại** (Mệnh đề 01.5, 01.6, 01.9, Ví dụ 01.14(c)). Hàm $\lVert Xw-y\rVert_2^2$ có gradient $2X^T(Xw-y)$, Hessian $2X^TX\succeq0$, luôn đạt cực tiểu, và $w^*$ là nghiệm khi và chỉ khi $X^TXw^*=X^Ty$. Hàm bản lề $\max(0,1-m)$ lồi; hàm $\log(1+e^{-m})$ có đạo hàm bậc hai $e^m/(1+e^m)^2>0$.
 - **Đại số tuyến tính** (Bài 00, mục "Phân rã trị riêng"). Ma trận đối xứng $P$ viết được thành $P=V\Lambda V^T$ với $V$ trực giao và $\Lambda$ chéo chứa các giá trị riêng; bất đẳng thức Cauchy–Schwarz $\lvert a^Tb\rvert\le\lVert a\rVert_2\lVert b\rVert_2$.
@@ -40,14 +40,14 @@ Bài toán tổng quát có $n$ biến, $m$ ràng buộc bất đẳng thức, $
 | $\preceq$, $\mathbf 1$ | so sánh từng thành phần giữa hai vector; vector có mọi thành phần bằng $1$ | quan hệ trên $\mathbb R^k$; $\mathbb R^k$ |
 | $P$, $q$, $s$ | ma trận, vector và hằng số của mục tiêu bậc hai $\tfrac12x^TPx+q^Tx+s$; chỉ số $i$ ($P_i,q_i,s_i$) cho ràng buộc bậc hai | $P$ đối xứng $n\times n$; $\mathbb R^n$; $\mathbb R$ |
 | $Q\succeq0$, $Q\succ0$ | ma trận đối xứng nửa xác định dương, xác định dương | $\mathbb R^{k\times k}$ |
-| $t$, $t_i$, $v_j$, $\xi_i$ | biến phụ (biến chặn trên) thêm vào khi cải dạng | $\mathbb R$ |
+| $t$, $t_i$, $v_j$, $\xi_i$ | biến phụ (biến chặn trên) thêm vào khi biến đổi bài toán | $\mathbb R$ |
 | $u_i$, $y_i$, $N$, $d$ | đặc trưng và nhãn hoặc đầu ra của mẫu $i$; số mẫu; số đặc trưng | $\mathbb R^d$ hoặc $\mathbb R$; $\mathbb R$ hoặc $\{-1,+1\}$ |
 | $X$, $w$ | ma trận thiết kế với hàng $i$ là đặc trưng của mẫu $i$; vector tham số (ở Mục 2–3, $w=(a,b)$ gồm hệ số góc và hệ số chặn) | $\mathbb R^{N\times d}$; $\mathbb R^d$ |
 | $r$ | vector phần dư $Xw-y$ | $\mathbb R^N$ |
 | $E(w)$ | tổng bình phương phần dư $\lVert Xw-y\rVert_2^2$ | $\mathbb R^d\to\mathbb R$ |
 | $L(w)$, $R(w)$, $\lambda$ | hàm sai số, hình phạt và hệ số của hạng chính quy hóa (Mục 3) | $\mathbb R^d\to\mathbb R$; $\lambda\ge0$ |
 | $\lVert\cdot\rVert_1$, $\lVert\cdot\rVert_2$, $\lVert\cdot\rVert_\infty$, $\lVert\cdot\rVert_0$ | tổng trị tuyệt đối, chuẩn Euclid, trị tuyệt đối lớn nhất, số thành phần khác không | hàm trên $\mathbb R^k$ |
-| $\varphi$, $\psi$, $T$ | ánh xạ đưa phương án gốc sang bài mới, ánh xạ khôi phục, hàm tăng chặt đổi giá trị trong một cải dạng tương đương | ánh xạ |
+| $\varphi$, $\psi$, $T$ | ánh xạ đưa phương án gốc sang bài toán mới, ánh xạ khôi phục, hàm tăng chặt đổi giá trị trong một biến đổi tương đương | ánh xạ |
 | $\mu$ | hệ số không âm trong chứng nhận bằng tổ hợp ràng buộc (Mục 2, 5, các bài tập) | $\mathbb R^k$, $\mu\succeq0$ |
 | $\operatorname{err}$, $H$ | số lỗi phân loại và tổng mất mát bản lề trên tập huấn luyện (Mục 5–6) | hàm thực |
 
@@ -68,17 +68,17 @@ Hàm ràng buộc thứ nhất không lồi trên $\mathbb R^2$, và hàm ràng 
 
 Ngoài ra, chúng ta cũng cần biết chính xác tính lồi bảo đảm điều gì, vì bài toán $\min_{x>0}1/x$ có hàm mục tiêu lồi trên một khoảng nhưng không có nghiệm.
 
-Đầu tiên, chúng ta phát biểu dạng chuẩn và chứng minh tập khả thi của nó lồi, sau đó chuyển các kết luận của Bài 01 sang dạng chuẩn và định nghĩa phép cải dạng tương đương dùng xuyên suốt chương.
+Đầu tiên, chúng ta phát biểu dạng chuẩn và chứng minh tập khả thi của nó lồi, sau đó chuyển các kết luận của Bài 01 sang dạng chuẩn và định nghĩa phép biến đổi tương đương dùng xuyên suốt chương.
 
 ### 1.1 Nhiều biểu diễn của cùng một tập khả thi
 
 Hình sau cho thấy hai ràng buộc ở đầu mục là cách viết phức tạp của hai điều kiện affine.
 
-![Hai khung nối bằng chữ tương đương. Khung trái: hai ràng buộc x1 chia (1 cộng x2 bình phương) nhỏ hơn hoặc bằng 0 và (x1 cộng x2) bình phương bằng 0, chú thích mẫu số luôn dương và bình phương bằng 0 khi cơ số bằng 0. Khung phải: dạng affine x1 nhỏ hơn hoặc bằng 0 và x1 cộng x2 bằng 0. Phía dưới: tập khả thi chung là tia (âm s, s), s không âm, qua (âm 1, 1) và (âm 2, 2). Dải cuối nhắc hai phép cải dạng khác: thêm biến dư và khử ràng buộc đẳng thức.](img/lec-02/reformulation-equivalence.svg)
+![Hai khung nối bằng chữ tương đương. Khung trái: hai ràng buộc x1 chia (1 cộng x2 bình phương) nhỏ hơn hoặc bằng 0 và (x1 cộng x2) bình phương bằng 0, chú thích mẫu số luôn dương và bình phương bằng 0 khi cơ số bằng 0. Khung phải: dạng affine x1 nhỏ hơn hoặc bằng 0 và x1 cộng x2 bằng 0. Phía dưới: tập khả thi chung là tia (âm s, s), s không âm, qua (âm 1, 1) và (âm 2, 2). Dải cuối nhắc hai phép biến đổi bài toán khác: thêm biến dư và khử ràng buộc đẳng thức.](img/lec-02/reformulation-equivalence.svg)
 
 Hai biểu diễn trên hình mô tả cùng một tia khả thi, nhưng chỉ biểu diễn bên phải cho thấy ngay tập đó lồi.
 
-Một cách trực quan, một bài toán nên được gọi là lồi khi mỗi dòng của nó đã mang chứng nhận riêng, gồm mục tiêu lồi, bất đẳng thức dạng "hàm lồi không vượt quá $0$" và đẳng thức affine. Khi đó, tính lồi của toàn bài suy ra từ các chứng nhận từng dòng. Mô tả này chưa phải định nghĩa và sẽ được làm chính xác ở Mục 1.2.
+Một cách trực quan, một bài toán nên được gọi là lồi khi mỗi dòng của nó đã mang chứng nhận riêng, gồm mục tiêu lồi, bất đẳng thức dạng "hàm lồi không vượt quá $0$" và đẳng thức affine. Khi đó, tính lồi của toàn bài toán suy ra từ các chứng nhận từng dòng. Mô tả này chưa phải định nghĩa và sẽ được làm chính xác ở Mục 1.2.
 
 ::: example Ví dụ 02.1 (Viết lại hai ràng buộc thành dạng affine)
 **Dữ kiện.** Bài toán ở đầu mục là $\min_{x\in\mathbb R^2}x_1^2+x_2^2$ với hai ràng buộc $\frac{x_1}{1+x_2^2}\le0$ và $(x_1+x_2)^2=0$.
@@ -135,7 +135,7 @@ Bài toán ở đầu mục có tập khả thi lồi nhưng không ở dạng (
 - $x_1/(1+x_2^2)$ không lồi trên $\mathbb R^2$. Hessian của nó có định thức $-4x_2^2/(1+x_2^2)^4<0$ khi $x_2\ne0$, nên có hai giá trị riêng trái dấu và không nửa xác định dương (Định lý 01.30(a)).
 - $(x_1+x_2)^2$ không affine.
 
-Mọi bài dạng (1.1) là bài toán tối ưu lồi (Mệnh đề 02.2 dưới đây), nhưng chiều ngược lại sai.
+Mọi bài toán dạng (1.1) là bài toán tối ưu lồi (Mệnh đề 02.2 dưới đây), nhưng chiều ngược lại sai.
 
 Mệnh đề sau khẳng định kiểm tra từng dòng là đủ. Chứng minh của nó cần Mệnh đề 01.25 (tập mức dưới của hàm lồi là lồi), Mệnh đề 01.19(b) (tập affine lồi) và Mệnh đề 01.20(a) (giao của các tập lồi là lồi).
 
@@ -200,7 +200,7 @@ Theo Mệnh đề 02.2, $C$ lồi và $f_0$ lồi trên $C$. Do đó, ba phần 
 
 Hệ quả 02.3 không mạnh hơn các kết quả của Bài 01. Điều hệ quả cho thấy là dạng chuẩn bảo đảm giả thiết của các kết quả đó. Nhờ vậy, điểm cực tiểu địa phương mà một thuật toán cục bộ tìm được là nghiệm toàn cục.
 
-**Trong học máy.** Huấn luyện hồi quy tuyến tính, hồi quy logistic và máy vector hỗ trợ là các bài dạng (1.1) với $x$ là vector tham số và $f_0$ là tổng mất mát cộng hạng chính quy hóa. Hệ quả 02.3(c) với $C=\mathbb R^n$ nói rằng điểm có gradient bằng không là nghiệm toàn cục, nên hạ gradient (gradient descent, Bài 05) có thể dừng tại điểm đó.
+**Trong học máy.** Huấn luyện hồi quy tuyến tính, hồi quy logistic và máy vector hỗ trợ là các bài toán dạng (1.1) với $x$ là vector tham số và $f_0$ là tổng mất mát cộng hạng chính quy hóa. Hệ quả 02.3(c) với $C=\mathbb R^n$ nói rằng điểm có gradient bằng không là nghiệm toàn cục, nên hạ gradient (gradient descent, Bài 05) có thể dừng tại điểm đó.
 
 Với dữ liệu tách được tuyến tính, mất mát logistic của Ví dụ 01.6 (Bài 01) lồi nhưng tập nghiệm rỗng, như Ví dụ 02.4. Với mạng nơ-ron nhiều tầng, mất mát không lồi theo tham số và các kết luận (a), (b) không còn được bảo đảm.
 
@@ -212,26 +212,26 @@ Thuật ngữ "bài toán lồi dạng chuẩn" gọi tên một cách viết m�
 3. Coi một đẳng thức của hàm lồi là chấp nhận được: $\lVert x\rVert_2^2=1$ cho đường tròn, không lồi vì cùng cặp điểm trên.
 :::
 
-### 1.3 Cải dạng tương đương
+### 1.3 Biến đổi tương đương
 
-Phép viết lại trong Ví dụ 02.1 giữ nguyên tập khả thi, nhưng các mục sau cần những phép biến đổi mạnh hơn, như thêm biến (Mục 2), đổi biến và lấy logarit mục tiêu (Mục 4). Khi đó, bài mới có biến trong $\mathbb R^{n'}$ với $n'$ có thể khác $n$.
+Phép viết lại trong Ví dụ 02.1 giữ nguyên tập khả thi, nhưng các mục sau cần những phép biến đổi mạnh hơn, như thêm biến (Mục 2), đổi biến và lấy logarit mục tiêu (Mục 4). Khi đó, bài toán mới có biến trong $\mathbb R^{n'}$ với $n'$ có thể khác $n$.
 
-Về mặt ý tưởng, hai bài toán tương đương khi mỗi điểm khả thi của bài toán thứ nhất cho một điểm khả thi của bài toán thứ hai có giá trị mục tiêu không lớn hơn, và ngược lại. Ý tưởng này chưa phải định nghĩa, vì chưa nói điểm mới được sinh ra bằng cách nào. Chẳng hạn, xét bài $\min_x\lvert x-2\rvert$ và bài $\min_{(x,t)}t$ với $t\ge x-2$, $t\ge2-x$.
+Về mặt ý tưởng, hai bài toán tương đương khi mỗi điểm khả thi của bài toán thứ nhất cho một điểm khả thi của bài toán thứ hai có giá trị mục tiêu không lớn hơn, và ngược lại. Ý tưởng này chưa phải định nghĩa, vì chưa nói điểm mới được sinh ra bằng cách nào. Chẳng hạn, xét bài toán $\min_x\lvert x-2\rvert$ và bài toán $\min_{(x,t)}t$ với $t\ge x-2$, $t\ge2-x$.
 
 - Từ $x$, chọn $t=\lvert x-2\rvert$.
 - Từ $(x,t)$ khả thi, giữ lại $x$, và $\lvert x-2\rvert\le t$.
 
 Hai phép chuyển này được viết thành hai ánh xạ theo định nghĩa sau.
 
-::: definition Định nghĩa 02.5 (Cải dạng tương đương)
-Cho hai bài toán $(\mathrm P)$: $\min_{x\in C}f(x)$ với $C\subseteq\mathbb R^n$, và $(\mathrm Q)$: $\min_{\zeta\in C'}g(\zeta)$ với $C'\subseteq\mathbb R^{n'}$. Bài $(\mathrm Q)$ là một cải dạng tương đương của $(\mathrm P)$ nếu có ánh xạ $\varphi:C\to C'$, ánh xạ $\psi:C'\to C$ và một hàm tăng chặt $T$ xác định trên một khoảng chứa các giá trị $f(x)$, $x\in C$, sao cho
+::: definition Định nghĩa 02.5 (Biến đổi tương đương)
+Cho hai bài toán $(\mathrm P)$: $\min_{x\in C}f(x)$ với $C\subseteq\mathbb R^n$, và $(\mathrm Q)$: $\min_{\zeta\in C'}g(\zeta)$ với $C'\subseteq\mathbb R^{n'}$. Bài toán $(\mathrm Q)$ là một biến đổi tương đương của $(\mathrm P)$ nếu có ánh xạ $\varphi:C\to C'$, ánh xạ $\psi:C'\to C$ và một hàm tăng chặt $T$ xác định trên một khoảng chứa các giá trị $f(x)$, $x\in C$, sao cho
 
 $$
 g(\varphi(x))\le T\bigl(f(x)\bigr)\quad\forall x\in C,\qquad T\bigl(f(\psi(\zeta))\bigr)\le g(\zeta)\quad\forall\zeta\in C'.
 \tag{1.3}
 $$
 
-Ánh xạ $\varphi$ đưa phương án gốc sang bài mới; ánh xạ $\psi$ khôi phục phương án gốc từ phương án của bài mới. Trường hợp thường gặp nhất là $T(s)=s$.
+Ánh xạ $\varphi$ đưa phương án gốc sang bài toán mới; ánh xạ $\psi$ khôi phục phương án gốc từ phương án của bài toán mới. Trường hợp thường gặp nhất là $T(s)=s$.
 :::
 
 Trong định nghĩa trên, $\varphi$ và $\psi$ không cần là nghịch đảo của nhau. Với ví dụ trước định nghĩa, ta có $\varphi(x)=(x,\lvert x-2\rvert)$, $\psi(x,t)=x$, $T(s)=s$.
@@ -239,20 +239,20 @@ Trong định nghĩa trên, $\varphi$ và $\psi$ không cần là nghịch đả
 - Điều kiện thứ nhất của (1.3) là một đẳng thức.
 - Điều kiện thứ hai là $\lvert x-2\rvert\le t$.
 
-Ánh xạ hợp $\varphi(\psi(x,t))=(x,\lvert x-2\rvert)$ có thể khác $(x,t)$. Hàm $T=\log$ xuất hiện ở Mục 4. Nghiệm chuyển được qua lại giữa hai bài theo mệnh đề sau.
+Ánh xạ hợp $\varphi(\psi(x,t))=(x,\lvert x-2\rvert)$ có thể khác $(x,t)$. Hàm $T=\log$ xuất hiện ở Mục 4. Nghiệm chuyển được qua lại giữa hai bài toán theo mệnh đề sau.
 
-::: proposition Mệnh đề 02.6 (Cải dạng tương đương giữ nghiệm)
-**Giả thiết.** $(\mathrm Q)$ là cải dạng tương đương của $(\mathrm P)$ theo Định nghĩa 02.5, với $\varphi$, $\psi$, $T$.
+::: proposition Mệnh đề 02.6 (Biến đổi tương đương giữ nghiệm)
+**Giả thiết.** $(\mathrm Q)$ là biến đổi tương đương của $(\mathrm P)$ theo Định nghĩa 02.5, với $\varphi$, $\psi$, $T$.
 
 **Kết luận.**
 
 - (a) Nếu $x^*$ là nghiệm của $(\mathrm P)$ thì $\varphi(x^*)$ là nghiệm của $(\mathrm Q)$ và $g(\varphi(x^*))=T(f(x^*))$.
 - (b) Nếu $\zeta^*$ là nghiệm của $(\mathrm Q)$ thì $\psi(\zeta^*)$ là nghiệm của $(\mathrm P)$.
-- (c) Khi $T(s)=s$, hai bài có cùng giá trị tối ưu, kể cả khi giá trị đó là $\pm\infty$.
+- (c) Khi $T(s)=s$, hai bài toán có cùng giá trị tối ưu, kể cả khi giá trị đó là $\pm\infty$.
 
 **Điều kiện áp dụng.** Cần cả hai bất đẳng thức của (1.3); một chiều không đủ.
 
-**Phạm vi.** Mệnh đề không khẳng định bài nào có nghiệm; nó chỉ chuyển nghiệm qua lại khi nghiệm có. Khi $T$ không phải hàm đồng nhất, giá trị tối ưu của hai bài liên hệ qua $T$, không bằng nhau.
+**Phạm vi.** Mệnh đề không khẳng định bài toán nào có nghiệm; nó chỉ chuyển nghiệm qua lại khi nghiệm có. Khi $T$ không phải hàm đồng nhất, giá trị tối ưu của hai bài toán liên hệ qua $T$, không bằng nhau.
 :::
 
 ::: proof Chứng minh Mệnh đề 02.6
@@ -293,17 +293,17 @@ Nếu $C$ rỗng thì $C'$ cũng rỗng, vì $\psi$ ánh xạ $C'$ vào $C$; khi
 
 Mệnh đề 02.6 là công cụ cho mọi chứng minh "tương đương hai chiều" trong chương, vì khi đó ta chỉ cần chỉ ra $\varphi$, $\psi$, $T$ và kiểm tra (1.3).
 
-Trong khi Mệnh đề 01.16 của Bài 01 so sánh hai bài có cùng mục tiêu trên hai miền lồng nhau thì mệnh đề này so sánh hai bài trên hai không gian khác nhau và cho kết luận mạnh hơn (cùng nghiệm). Tuy nhiên, để dùng được nó, ta phải xây dựng được hai ánh xạ.
+Trong khi Mệnh đề 01.16 của Bài 01 so sánh hai bài toán có cùng mục tiêu trên hai miền lồng nhau thì mệnh đề này so sánh hai bài toán trên hai không gian khác nhau và cho kết luận mạnh hơn (cùng nghiệm). Tuy nhiên, để dùng được nó, ta phải xây dựng được hai ánh xạ.
 
 ::: remark Nhận xét 02.7 (Tương đương là tính chất của cặp ánh xạ)
 Nếu cả $(\mathrm P)$ lẫn $(\mathrm Q)$ đều có nghiệm $x^*$, $\zeta^*$ với giá trị hữu hạn $p^*$, $q^*$, thì các ánh xạ hằng $\varphi\equiv\zeta^*$, $\psi\equiv x^*$ cùng $T(s)=s+q^*-p^*$ thỏa (1.3). Thật vậy, $g(\zeta^*)=q^*\le f(x)+q^*-p^*$ vì $f(x)\ge p^*$, và $T(f(x^*))=q^*\le g(\zeta)$. Cặp ánh xạ này mã hóa sẵn nghiệm, nên không cho thông tin gì.
 
 Định nghĩa 02.5 chỉ có ích khi $\varphi$, $\psi$, $T$ được cho bằng công thức dựng từ cấu trúc bài toán mà không dùng nghiệm, như tách $x=x^+-x^-$ (Mục 2.2), đặt $t_i=\max_kg_{ik}(x)$ (Mục 2.4) hay $z=\log x$ (Mục 4.3). Trong chương, "tương đương" luôn được hiểu là tương đương qua một cặp ánh xạ tường minh như vậy.
 
-Các phép thay mục tiêu (chính quy hóa ở Mục 3.3, hàm thay thế ở Mục 5) khác ở một điểm chứng minh được. Nghiệm của bài mới nói chung không là nghiệm của bài gốc, và không có công thức khôi phục biết trước. Ví dụ 02.25 cho một trường hợp: mọi nghiệm của bài thay thế có số lỗi $2$ trong khi số lỗi tối ưu là $1$. Nhận xét 02.43 so sánh các phép xử lý theo tiêu chí này.
+Các phép thay mục tiêu (chính quy hóa ở Mục 3.3, hàm thay thế ở Mục 5) khác ở một điểm chứng minh được. Nghiệm của bài toán mới nói chung không là nghiệm của bài toán gốc, và không có công thức khôi phục biết trước. Ví dụ 02.25 cho một trường hợp: mọi nghiệm của bài toán thay thế có số lỗi $2$ trong khi số lỗi tối ưu là $1$. Nhận xét 02.43 so sánh các phép xử lý theo tiêu chí này.
 :::
 
-**Trong học máy.** Các thư viện mô hình hóa tối ưu lồi như CVXPY nhận mô hình viết gần với bài gốc, chẳng hạn chứa chuẩn một hay hàm cực đại. Thư viện tự động cải dạng sang quy hoạch tuyến tính hoặc quy hoạch bậc hai, rồi trả về giá trị của các biến gốc, tức áp dụng $\psi$. Theo Mệnh đề 02.6, kết quả trả về là nghiệm của bài người dùng viết.
+**Trong học máy.** Các thư viện mô hình hóa tối ưu lồi như CVXPY nhận mô hình viết gần với bài toán gốc, chẳng hạn chứa chuẩn một hay hàm cực đại. Thư viện tự động biến đổi sang quy hoạch tuyến tính hoặc quy hoạch bậc hai, rồi trả về giá trị của các biến gốc, tức áp dụng $\psi$. Theo Mệnh đề 02.6, kết quả trả về là nghiệm của bài toán người dùng viết.
 
 Tuy nhiên, khi người dùng thay mất mát đếm lỗi bằng mất mát bản lề, không có công thức khôi phục như vậy (Nhận xét 02.7).
 
@@ -345,7 +345,7 @@ Một thông số kỹ thuật có giá trị lý tưởng bằng $2$, nhưng th
 
 Tập khả thi $[0,1]$ không rỗng, đóng, bị chặn và $f_0$ liên tục, nên nghiệm tồn tại (Định lý 01.36) và duy nhất (Định lý 01.35).
 
-**Tìm nghiệm.** Nghiệm của bài không ràng buộc là $x=2\notin[0,1]$. Ứng viên là đầu mút gần $2$ nhất, $x^*=1$. Kiểm tra (1.2), ở đây là $f_0'(x^*)(x-x^*)\ge0$ với mọi $x$ khả thi: $f_0'(1)=2(1-2)=-2$, và với mọi $x\in[0,1]$,
+**Tìm nghiệm.** Nghiệm của bài toán không ràng buộc là $x=2\notin[0,1]$. Ứng viên là đầu mút gần $2$ nhất, $x^*=1$. Kiểm tra (1.2), ở đây là $f_0'(x^*)(x-x^*)\ge0$ với mọi $x$ khả thi: $f_0'(1)=2(1-2)=-2$, và với mọi $x\in[0,1]$,
 
 $$
 f_0'(1)(x-1)=-2(x-1)=2(1-x)\ge0 .
@@ -369,14 +369,14 @@ Cùng giá trị lý tưởng $2$, nhưng đo độ lệch bằng trị tuyệt 
 
 Hàm không khả vi tại $x^*$: đạo hàm trái bằng $-1$, đạo hàm phải bằng $+1$. Vì vậy Hệ quả 02.3(c) không dùng được, và nghiệm được chứng nhận bằng bất đẳng thức trực tiếp.
 
-**Kiểm tra lại.** $\lvert1-2\rvert=\lvert3-2\rvert=1>0$. Bài cải dạng $\min t$ với $t\ge x-2$, $t\ge2-x$ có nghiệm $(x,t)=(2,0)$: cộng hai ràng buộc cho $2t\ge0$, nên $t\ge0$, và $(2,0)$ khả thi.
+**Kiểm tra lại.** $\lvert1-2\rvert=\lvert3-2\rvert=1>0$. Bài toán sau biến đổi $\min t$ với $t\ge x-2$, $t\ge2-x$ có nghiệm $(x,t)=(2,0)$: cộng hai ràng buộc cho $2t\ge0$, nên $t\ge0$, và $(2,0)$ khả thi.
 :::
 
 ![Đồ thị hình chữ V của hàm trị tuyệt đối của (x trừ 2), đỉnh tại (2, 0). Thanh mũi tên hai chiều dưới trục hoành biểu diễn tập khả thi là toàn trục số.](img/lec-02/note-absolute.svg)
 
 Đồ thị trên hình có một góc nhọn tại đỉnh. Tính lồi không đòi hỏi hàm trơn, và hàm của Ví dụ 02.3 không khả vi tại nghiệm, nên ví dụ này cần một cách xử lý điểm gãy mà không dùng đạo hàm.
 
-Phép cải dạng ở dòng kiểm tra lại, thay trị tuyệt đối bằng hai bất đẳng thức tuyến tính, là trường hợp riêng của Định lý 02.15 ở Mục 2.
+Phép biến đổi bài toán ở dòng kiểm tra lại, thay trị tuyệt đối bằng hai bất đẳng thức tuyến tính, là trường hợp riêng của Định lý 02.15 ở Mục 2.
 
 ::: example Ví dụ 02.4 (Hàm nghịch đảo: bài toán lồi không có nghiệm)
 Ví dụ lấy từ Boyd và Vandenberghe (2004), Ví dụ 4.1, tr. 128. Xét $\min_{x>0}1/x$, với miền $D=(0,\infty)$ và không có ràng buộc. Miền không thể thay bằng $x\ge0$, vì $1/x$ không xác định tại $0$.
@@ -398,7 +398,7 @@ Ví dụ lấy từ Boyd và Vandenberghe (2004), Ví dụ 4.1, tr. 128. Xét $\
 Hình trên cho thấy đường cong tiệm cận trục hoành nhưng không cắt trục hoành, tức cận dưới đúng $p^*=0$ không đạt tại điểm nào, đúng trạng thái thứ ba của Nhận xét 02.8.
 
 ::: remark Nhận xét 02.8 (Bốn trạng thái của một bài toán lồi)
-Một bài dạng (1.1) rơi vào đúng một trong bốn trạng thái:
+Một bài toán dạng (1.1) thuộc đúng một trong bốn trạng thái:
 
 1. không khả thi ($p^*=+\infty$), chẳng hạn $x\le-1$ và $-x\le-1$;
 2. không bị chặn dưới ($p^*=-\infty$), như $\min_{x>0}(-\log x)$;
@@ -434,7 +434,7 @@ Bài toán ở dạng (1.1) với $n=2$, $m=1$, $p=0$.
 
 **(b) Tồn tại và duy nhất.** Tập khả thi là hình tròn đóng bán kính $2$, không rỗng (chứa gốc), đóng và bị chặn; $f_0$ liên tục. Định lý 01.36 cho nghiệm tồn tại, Định lý 01.35 cho nghiệm duy nhất vì $f_0$ lồi chặt.
 
-**(c) Kiểm (1.2).** $\nabla f_0(x)=(2(x_1-3),\ 2x_2)$, nên $\nabla f_0(2,0)=(-2,0)$. Điểm $(2,0)$ khả thi vì $4\le4$. Với mọi $x$ khả thi,
+**(c) Kiểm tra (1.2).** $\nabla f_0(x)=(2(x_1-3),\ 2x_2)$, nên $\nabla f_0(2,0)=(-2,0)$. Điểm $(2,0)$ khả thi vì $4\le4$. Với mọi $x$ khả thi,
 
 $$
 \nabla f_0(2,0)^T(x-(2,0))=-2(x_1-2)=2(2-x_1),
@@ -445,7 +445,7 @@ và $x_1\le\sqrt{x_1^2+x_2^2}\le2$, nên biểu thức không âm. Theo Hệ qu�
 **Kiểm tra lại.** Điểm khả thi $(0,2)$ cho $9+4=13>1$. Điểm $(\sqrt2,\sqrt2)$ cho $(\sqrt2-3)^2+2\approx2{,}51+2=4{,}51>1$.
 :::
 
-Như vậy, Định nghĩa 02.1 và Mệnh đề 02.2 cho dạng chuẩn cùng tính lồi của tập khả thi, và Hệ quả 02.3 chuyển các kết quả của Bài 01 sang dạng chuẩn. Mệnh đề 02.6 cùng Nhận xét 02.7 cho phép cải dạng qua ánh xạ tường minh, còn Nhận xét 02.8 tách tính lồi khỏi sự tồn tại nghiệm.
+Như vậy, Định nghĩa 02.1 và Mệnh đề 02.2 cho dạng chuẩn cùng tính lồi của tập khả thi, và Hệ quả 02.3 chuyển các kết quả của Bài 01 sang dạng chuẩn. Mệnh đề 02.6 cùng Nhận xét 02.7 cho phép biến đổi bài toán qua ánh xạ tường minh, còn Nhận xét 02.8 tách tính lồi khỏi sự tồn tại nghiệm.
 
 Tuy nhiên, Định nghĩa 02.1 không giả thiết gì về cấu trúc của các $f_i$, nên chưa cho cách chứng nhận nghiệm cụ thể. Trong Mục 2, chúng ta xét lớp con nơi mọi hàm đều affine.
 
@@ -491,7 +491,7 @@ $$
 **Kiểm tra lại.** Phương án $(1,1)$ có nitơ $3<4$, không khả thi, dù chi phí $5$ thấp hơn.
 :::
 
-![Mặt phẳng x1, x2. Miền khả thi tô màu là giao của góc phần tư không âm với 2 x1 cộng x2 lớn hơn hoặc bằng 4 (biên nét liền) và x1 cộng 2 x2 lớn hơn hoặc bằng 5 (biên nét đứt), kéo dài vô hạn lên trên và sang phải. Hai biên cắt nhau tại (1, 2), nơi đường chi phí 3 x1 cộng 2 x2 bằng 7 chạm miền.](img/lec-02/lp-mixture.svg)
+![Mặt phẳng x1, x2. Miền khả thi tô màu là giao của góc phần tư không âm với 2 x1 cộng x2 lớn hơn hoặc bằng 4 (biên nét liền) và x1 cộng 2 x2 lớn hơn hoặc bằng 5 (biên nét đứt), kéo dài vô hạn lên trên và sang phải. Hai biên cắt nhau tại (1, 2), nơi đường chi phí 3 x1 cộng 2 x2 bằng 7 tiếp xúc với miền khả thi.](img/lec-02/lp-mixture.svg)
 
 Miền khả thi trên hình là giao của bốn nửa mặt phẳng, tức một đa giác lồi không bị chặn. Các đường chi phí $3x_1+2x_2=\alpha$ song song với nhau, và khi $\alpha$ giảm, đường chi phí tịnh tiến về phía gốc.
 
@@ -499,7 +499,7 @@ Một cách trực quan, phương án có chi phí nhỏ nhất là điểm cu�
 
 ### 2.2 Định nghĩa và dạng chuẩn
 
-Bài (2.1) có ràng buộc "$\ge$" và biến không âm, trong khi bài khác có thể có đẳng thức, ràng buộc "$\le$" và biến tự do, nên một định nghĩa chung cần bao quát mọi dạng đó.
+Bài toán (2.1) có ràng buộc "$\ge$" và biến không âm, trong khi bài toán khác có thể có đẳng thức, ràng buộc "$\le$" và biến tự do, nên một định nghĩa chung cần bao quát mọi dạng đó.
 
 Ngoài ra, phương pháp đơn hình (simplex method), thuộc Buổi 8 (Chương 11) của đề cương, chỉ làm việc với một dạng chuẩn gồm đẳng thức và điều kiện không âm, nên chúng ta cần cả dạng đó và phép chuyển giữa hai dạng. Hai dạng được định nghĩa như sau.
 
@@ -523,11 +523,11 @@ $$
 với dữ liệu $\tilde c\in\mathbb R^{n'}$, $B\in\mathbb R^{p'\times n'}$, $e\in\mathbb R^{p'}$.
 :::
 
-Trong định nghĩa trên, $c$ chứa chi phí trên một đơn vị của từng biến, mỗi hàng của $G$ cùng thành phần tương ứng của $h$ mô tả một giới hạn, và mỗi hàng của $A$ mô tả một cân bằng. Hằng số cộng vào mục tiêu không đổi nghiệm. Bài (2.1) thuộc dạng (2.2) sau khi đổi dấu, chẳng hạn $2x_1+x_2\ge4$ thành $-2x_1-x_2\le-4$.
+Trong định nghĩa trên, $c$ chứa chi phí trên một đơn vị của từng biến, mỗi hàng của $G$ cùng thành phần tương ứng của $h$ mô tả một giới hạn, và mỗi hàng của $A$ mô tả một cân bằng. Hằng số cộng vào mục tiêu không đổi nghiệm. Bài toán (2.1) thuộc dạng (2.2) sau khi đổi dấu, chẳng hạn $2x_1+x_2\ge4$ thành $-2x_1-x_2\le-4$.
 
-So với Định nghĩa 02.1, quy hoạch tuyến tính là trường hợp mọi $f_i$ affine và $D=\mathbb R^n$. Hàm affine vừa lồi vừa lõm (Ví dụ 01.11(b) của Bài 01), nên cực đại $c^Tx$ cũng là bài lồi sau khi đổi thành cực tiểu $-c^Tx$.
+So với Định nghĩa 02.1, quy hoạch tuyến tính là trường hợp mọi $f_i$ affine và $D=\mathbb R^n$. Hàm affine vừa lồi vừa lõm (Ví dụ 01.11(b) của Bài 01), nên cực đại $c^Tx$ cũng là bài toán lồi sau khi đổi thành cực tiểu $-c^Tx$.
 
-Lưu ý rằng quy hoạch tuyến tính không bao gồm bài có biến nguyên, do tập điểm nguyên không lồi, chẳng hạn $(1,2)$ và $(2,2)$ nguyên mà trung điểm $(\tfrac32,2)$ thì không.
+Lưu ý rằng quy hoạch tuyến tính không bao gồm bài toán có biến nguyên, do tập điểm nguyên không lồi, chẳng hạn $(1,2)$ và $(2,2)$ nguyên mà trung điểm $(\tfrac32,2)$ thì không.
 
 Quan hệ giữa hai dạng được phát biểu trong mệnh đề sau, với phần (a) dùng Định nghĩa 02.1 và phần (b) dùng Mệnh đề 02.6.
 
@@ -542,11 +542,11 @@ $$
 B=\begin{bmatrix}G&-G&I_m\\A&-A&0\end{bmatrix},\qquad e=\begin{bmatrix}h\\b\end{bmatrix},\qquad \tilde c=\begin{bmatrix}c\\-c\\0\end{bmatrix}.
 $$
 
-Bài toán dạng chuẩn (2.3) với dữ liệu này là một cải dạng tương đương của (2.2) theo Định nghĩa 02.5, với $T(s)=s$, $\varphi(x)=(\max(x,0),\max(-x,0),h-Gx)$ (lấy $\max$ theo từng thành phần) và $\psi(x^+,x^-,\sigma)=x^+-x^-$.
+Bài toán dạng chuẩn (2.3) với dữ liệu này là một biến đổi tương đương của (2.2) theo Định nghĩa 02.5, với $T(s)=s$, $\varphi(x)=(\max(x,0),\max(-x,0),h-Gx)$ (lấy $\max$ theo từng thành phần) và $\psi(x^+,x^-,\sigma)=x^+-x^-$.
 
 **Điều kiện áp dụng.** Mọi dữ liệu. Biến nào đã có ràng buộc không âm thì không cần tách thành hiệu.
 
-**Phạm vi.** Cải dạng ở (b) không một-một: cộng cùng một số dương vào $x^+_j$ và $x^-_j$ cho điểm khác của (2.3) mà $\psi$ ánh xạ về cùng $x$.
+**Phạm vi.** Phép biến đổi ở (b) không một-một: cộng cùng một số dương vào $x^+_j$ và $x^-_j$ cho điểm khác của (2.3) mà $\psi$ ánh xạ về cùng $x$.
 :::
 
 ::: proof Chứng minh Mệnh đề 02.10
@@ -569,8 +569,8 @@ Mệnh đề 02.10 cho phép coi hai dạng (2.2) và (2.3) như một lớp: m�
 
 Biến $\sigma$ được gọi là biến dư (slack variable). Thành phần $\sigma_i$ đo khoảng cách còn lại tới giới hạn thứ $i$, và $\sigma_i=0$ nghĩa là ràng buộc $i$ đang chặt.
 
-::: example Ví dụ 02.6 (Dạng chuẩn của bài pha trộn)
-**Dữ kiện.** Bài pha trộn (2.1): $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$. Dạng chuẩn (2.3): $\min\tilde c^Tz$ với $Bz=e$, $z\succeq0$.
+::: example Ví dụ 02.6 (Dạng chuẩn của bài toán pha trộn)
+**Dữ kiện.** Bài toán pha trộn (2.1): $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$. Dạng chuẩn (2.3): $\min\tilde c^Tz$ với $Bz=e$, $z\succeq0$.
 
 **Lập dạng chuẩn.** Trong (2.1), hai biến đã không âm nên không cần tách. Thêm biến dư $\sigma_1,\sigma_2\ge0$ cho hai ràng buộc dinh dưỡng, viết ở dạng "$\ge$": $2x_1+x_2-\sigma_1=4$ và $x_1+2x_2-\sigma_2=5$. Với $z=(x_1,x_2,\sigma_1,\sigma_2)$, dạng chuẩn là
 
@@ -588,7 +588,7 @@ $$
 
 ### 2.3 Chứng nhận nghiệm bằng tổ hợp không âm các ràng buộc
 
-Ở Mục 2.1, trực giác hình học cho ứng viên $(1,2)$ với chi phí $7$. Để chứng minh không phương án nào có chi phí thấp hơn, ta có thể viết chi phí thành một tổ hợp của các vế trái của ràng buộc. Với bài pha trộn, ta có
+Ở Mục 2.1, trực giác hình học cho ứng viên $(1,2)$ với chi phí $7$. Để chứng minh không phương án nào có chi phí thấp hơn, ta có thể viết chi phí thành một tổ hợp của các vế trái của ràng buộc. Với bài toán pha trộn, ta có
 
 $$
 3x_1+2x_2=\tfrac43(2x_1+x_2)+\tfrac13(x_1+2x_2),
@@ -634,8 +634,8 @@ Mệnh đề 02.11 cho thấy việc chứng minh tối ưu quy về việc tìm
 
 Các $\mu_i$ chính là nhân tử Lagrange của Bài 03, nơi chúng được tìm một cách có hệ thống qua bài toán đối ngẫu.
 
-::: example Ví dụ 02.7 (Nghiệm của bài pha trộn)
-**Dữ kiện.** Bài pha trộn (2.1): $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$. Mệnh đề 02.11: với các ràng buộc $a_i^Tx\ge\beta_i$ và $\mu\succeq0$ thỏa $c=\sum_i\mu_ia_i$, (a) mọi $x$ khả thi có $c^Tx\ge\sum_i\mu_i\beta_i$; (b) điểm khả thi đạt cận này là nghiệm; (c) khi có điểm khả thi đạt cận này, mọi ràng buộc có $\mu_i>0$ chặt tại mọi nghiệm.
+::: example Ví dụ 02.7 (Nghiệm của bài toán pha trộn)
+**Dữ kiện.** Bài toán pha trộn (2.1): $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$. Mệnh đề 02.11: với các ràng buộc $a_i^Tx\ge\beta_i$ và $\mu\succeq0$ thỏa $c=\sum_i\mu_ia_i$, (a) mọi $x$ khả thi có $c^Tx\ge\sum_i\mu_i\beta_i$; (b) điểm khả thi đạt cận này là nghiệm; (c) khi có điểm khả thi đạt cận này, mọi ràng buộc có $\mu_i>0$ chặt tại mọi nghiệm.
 
 **Tìm ứng viên.** Ứng viên là giao của hai biên dinh dưỡng: hệ $2x_1+x_2=4$, $x_1+2x_2=5$. Nhân phương trình đầu với $2$ rồi trừ phương trình sau: $3x_1=3$, nên $x_1=1$ và $x_2=4-2=2$.
 
@@ -701,7 +701,7 @@ Hồi quy minimax (còn gọi là xấp xỉ Chebyshev) là bài toán $\min_{w\
 
 Trong định nghĩa trên, hai bài toán chỉ khác cách gộp $N$ độ lệch, bài toán thứ nhất lấy tổng các độ lệch, bài toán thứ hai lấy độ lệch lớn nhất. Cả hai mục tiêu lồi theo $w$ (Định lý 01.31) và không khả vi tại điểm có phần dư bằng $0$, như Ví dụ 02.3.
 
-Cùng với bình phương nhỏ nhất của Bài 01 (Định nghĩa 01.4), ba bài dùng chung $X$, $y$, $r$ và khác hàm gộp $\lVert r\rVert_1$, $\lVert r\rVert_\infty$, $\lVert r\rVert_2^2$. Đổi hàm gộp tức là đổi bài toán. Ba nghiệm nói chung khác nhau (Ví dụ 02.8, 02.9, 02.11), và không có công thức chuyển nghiệm của bài toán này thành nghiệm của bài toán khác.
+Cùng với bình phương nhỏ nhất của Bài 01 (Định nghĩa 01.4), ba bài toán dùng chung $X$, $y$, $r$ và khác hàm gộp $\lVert r\rVert_1$, $\lVert r\rVert_\infty$, $\lVert r\rVert_2^2$. Đổi hàm gộp tức là đổi bài toán. Ba nghiệm nói chung khác nhau (Ví dụ 02.8, 02.9, 02.11), và không có công thức chuyển nghiệm của bài toán này thành nghiệm của bài toán khác.
 
 ![Mặt phẳng (r, t). Miền tô là tập các điểm thỏa t lớn hơn hoặc bằng trị tuyệt đối của r, nằm phía trên đồ thị hình chữ V của trị tuyệt đối. Miền này là giao của hai nửa mặt phẳng t lớn hơn hoặc bằng r và t lớn hơn hoặc bằng âm r.](img/lec-02/lp-epigraph.svg)
 
@@ -729,7 +729,7 @@ Từ Bổ đề 02.14 và Mệnh đề 02.6, ta tổng quát hóa được cách
 
 Kết quả được phát biểu cho một hàm $f$ tùy ý cộng với một tổng có trọng số của các cực đại affine trong định lý sau. Cách phát biểu này cho phép dùng lại định lý ở Mục 3 (hình phạt chuẩn một), Mục 5 (mất mát bản lề) và Mục 6.
 
-::: theorem Định lý 02.15 (Cải dạng bằng biến phụ)
+::: theorem Định lý 02.15 (Biến đổi bằng biến phụ)
 **Giả thiết.** $C\subseteq\mathbb R^n$ và $f:C\to\mathbb R$ tùy ý. Với $i=1,\ldots,M$ và $k=1,\ldots,K_i$, cho các hàm affine $g_{ik}(x)=\alpha_{ik}^Tx+\beta_{ik}$, và trọng số $\gamma_i\ge0$. Xét
 
 $$
@@ -739,7 +739,7 @@ $$
 \end{aligned}
 $$
 
-**Kết luận.** (a) $(\mathrm Q)$ là cải dạng tương đương của $(\mathrm P)$ theo Định nghĩa 02.5 với $T(s)=s$, $\varphi(x)=(x,(\max_kg_{ik}(x))_{i})$ và $\psi(x,t)=x$; do đó hai bài có cùng giá trị tối ưu và nghiệm của bài này cho nghiệm của bài kia.
+**Kết luận.** (a) $(\mathrm Q)$ là biến đổi tương đương của $(\mathrm P)$ theo Định nghĩa 02.5 với $T(s)=s$, $\varphi(x)=(x,(\max_kg_{ik}(x))_{i})$ và $\psi(x,t)=x$; do đó hai bài toán có cùng giá trị tối ưu và nghiệm của bài toán này cho nghiệm của bài toán kia.
 
 (b) Nếu $\gamma_i>0$ thì mọi nghiệm $(x^*,t^*)$ của $(\mathrm Q)$ có $t_i^*=\max_kg_{ik}(x^*)$.
 
@@ -770,18 +770,18 @@ $$
 
 Định lý 02.15 đổi hình thức của bài toán mà không làm nó lồi hơn. Mục tiêu không khả vi được thay bằng mục tiêu tuyến tính cộng các ràng buộc tuyến tính để bộ giải nhận được, với chi phí là thêm $M$ biến và $\sum_iK_i$ ràng buộc.
 
-Chiều cực tiểu và giả thiết $\gamma_i\ge0$ được dùng khi suy từ $t_i\ge\max_kg_{ik}(x)$ ra $\gamma_it_i\ge\gamma_i\max_kg_{ik}(x)$. Nếu $\gamma_i<0$, bài $(\mathrm Q)$ cho $t_i\to+\infty$ và giá trị $-\infty$.
+Chiều cực tiểu và giả thiết $\gamma_i\ge0$ được dùng khi suy từ $t_i\ge\max_kg_{ik}(x)$ ra $\gamma_it_i\ge\gamma_i\max_kg_{ik}(x)$. Nếu $\gamma_i<0$, bài toán $(\mathrm Q)$ cho $t_i\to+\infty$ và giá trị $-\infty$.
 
 **Trong học máy.** Với hồi quy sai số tuyệt đối trên $N$ mẫu và $d$ tham số, Định lý 02.15 cho một quy hoạch tuyến tính có $d+N$ biến và $2N$ ràng buộc. Hồi quy sai số tuyệt đối ước lượng trung vị có điều kiện, ít nhạy với ngoại lai hơn bình phương nhỏ nhất.
 
 Hồi quy minimax ứng với tiêu chí trường hợp xấu nhất, như sai số trên mọi nhóm người dùng (Bài tập 02.17).
 
-Hai ví dụ sau giải hai bài này trên dữ liệu chung của Mục 2.4.
+Hai ví dụ sau giải hai bài toán này trên dữ liệu chung của Mục 2.4.
 
 ::: example Ví dụ 02.8 (Nghiệm hồi quy sai số tuyệt đối)
 **Dữ kiện.** Dữ liệu chung (Mục 2.4): $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$. Mô hình $\hat y=au+b$, ma trận thiết kế $X$ có hàng $(u_i,1)$, $w=(a,b)$, phần dư $r=Xw-y$ với $r_i=au_i+b-y_i$.
 
-**Lập mô hình.** Theo Định lý 02.15, bài $\min_w\lVert Xw-y\rVert_1$ trên dữ liệu chung tương đương với quy hoạch tuyến tính
+**Lập mô hình.** Theo Định lý 02.15, bài toán $\min_w\lVert Xw-y\rVert_1$ trên dữ liệu chung tương đương với quy hoạch tuyến tính
 
 $$
 \underset{w\in\mathbb R^2,\ t\in\mathbb R^5}{\operatorname{minimize}}\quad\mathbf 1^Tt\qquad\text{subject to}\quad -t\preceq Xw-y\preceq t,
@@ -831,7 +831,7 @@ Trên hình, ta thấy nghiệm khớp chính xác bốn điểm và chấp nh�
 ::: example Ví dụ 02.9 (Nghiệm hồi quy minimax)
 **Dữ kiện.** Dữ liệu chung (Mục 2.4): $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, $X$ có hàng $(u_i,1)$, $w=(a,b)$, $r_i=au_i+b-y_i$. Với $\delta=a-1$: $r_1=b-2\delta$, $r_2=b-\delta$, $r_3=b-3$, $r_4=b+\delta$, $r_5=b+2\delta$ (Ví dụ 02.8). Nghiệm sai số tuyệt đối $w=(1,0)$ có $r=(0,0,-3,0,0)$, nên $\lVert r\rVert_1=3$ và $\lVert r\rVert_\infty=3$ (Ví dụ 02.8).
 
-**Lập mô hình.** Theo Định lý 02.15(c), bài $\min_w\lVert Xw-y\rVert_\infty$ tương đương với quy hoạch tuyến tính $\min_{w,t}t$ với $-t\mathbf 1\preceq Xw-y\preceq t\mathbf 1$, có $3$ biến và $10$ ràng buộc. Ta chứng minh nghiệm duy nhất là $w^*=(1,\tfrac32)$ với $t^*=\tfrac32$.
+**Lập mô hình.** Theo Định lý 02.15(c), bài toán $\min_w\lVert Xw-y\rVert_\infty$ tương đương với quy hoạch tuyến tính $\min_{w,t}t$ với $-t\mathbf 1\preceq Xw-y\preceq t\mathbf 1$, có $3$ biến và $10$ ràng buộc. Ta chứng minh nghiệm duy nhất là $w^*=(1,\tfrac32)$ với $t^*=\tfrac32$.
 
 **Bước 1 (cận dưới).** Với $\delta=a-1$ như trên, nếu mọi $\lvert r_i\rvert\le t$ thì
 
@@ -861,8 +861,8 @@ Nghiệm minimax trên hình dời đường lên $1{,}5$ đơn vị để chia 
 ::: remark Nhận xét 02.16 (Các lỗi thường gặp khi dùng biến phụ)
 1. Chỉ viết một phía $t_i\ge r_i$: với dữ liệu chung, $w=(0,-M)$ và $t_i=r_i=-M-y_i$ cho $\mathbf 1^Tt=-5M-3\to-\infty$.
 2. Coi $t_i=\lvert r_i\rvert$ tại mọi điểm khả thi: điểm $(w,t)=((1,0),(1,1,3,1,1))$ khả thi mà $t_1>\lvert r_1\rvert=0$. Đẳng thức chỉ đúng tại nghiệm (Định lý 02.15(b)).
-3. Dùng biến phụ cho bài cực đại: $\max_{-1\le x\le1}\lvert x\rvert=1$, còn "$\max t$ với $t\ge\pm x$" không bị chặn trên.
-4. Gọi việc chuyển từ $\lVert r\rVert_1$ sang $\lVert r\rVert_\infty$ là cải dạng (xem đoạn sau Định nghĩa 02.13).
+3. Dùng biến phụ cho bài toán cực đại: $\max_{-1\le x\le1}\lvert x\rvert=1$, còn "$\max t$ với $t\ge\pm x$" không bị chặn trên.
+4. Gọi việc chuyển từ $\lVert r\rVert_1$ sang $\lVert r\rVert_\infty$ là biến đổi tương đương (xem đoạn sau Định nghĩa 02.13).
 :::
 
 ::: exercise Bài tập 02.3
@@ -929,7 +929,7 @@ $$
 **Diễn giải.** Hai tiêu chí là hai bài toán khác nhau: trung vị không phụ thuộc độ lớn của quan sát $6$, còn trung điểm dịch về phía giá trị đó.
 :::
 
-Quy hoạch tuyến tính có hai dạng liên hệ qua cải dạng tương đương (Định nghĩa 02.9, Mệnh đề 02.10), và nghiệm của nó được chứng nhận bằng tổ hợp không âm của các ràng buộc (Mệnh đề 02.11). Kết quả chính của mục là Định lý 02.15, đưa tổng và cực đại của các hàm affine về quy hoạch tuyến tính.
+Quy hoạch tuyến tính có hai dạng liên hệ qua biến đổi tương đương (Định nghĩa 02.9, Mệnh đề 02.10), và nghiệm của nó được chứng nhận bằng tổ hợp không âm của các ràng buộc (Mệnh đề 02.11). Kết quả chính của mục là Định lý 02.15, đưa tổng và cực đại của các hàm affine về quy hoạch tuyến tính.
 
 Tuy nhiên, lớp này không biểu diễn được tổng bình phương sai số. Trong Mục 3, chúng ta giữ dữ liệu hồi quy và cho phép mục tiêu bậc hai lồi.
 
@@ -937,7 +937,7 @@ Tuy nhiên, lớp này không biểu diễn được tổng bình phương sai s
 
 Với năm điểm dữ liệu của Mục 2.4, tiêu chí thông dụng nhất là tổng bình phương phần dư. Trên dữ liệu này, đường $\hat y=u$ có tổng bình phương phần dư $9$, còn đường $\hat y=u+\tfrac35$ có $\tfrac{36}5$.
 
-Do đó, chúng ta cần một lớp bài toán cho phép mục tiêu bậc hai, cùng hai cách kiểm soát độ lớn của tham số là phạt trong mục tiêu và đặt trần trong ràng buộc.
+Do đó, chúng ta cần một lớp bài toán cho phép mục tiêu bậc hai, cùng hai cách kiểm soát độ lớn của tham số là phạt trong mục tiêu và chặn chuẩn trong ràng buộc.
 
 Đầu tiên, chúng ta định nghĩa quy hoạch bậc hai (quadratic programming, QP) và so sánh bốn tổ hợp sai số và hình phạt, sau đó định nghĩa quy hoạch bậc hai có ràng buộc bậc hai (quadratically constrained quadratic programming, QCQP).
 
@@ -993,7 +993,7 @@ $$
 $$
 :::
 
-Trong định nghĩa trên, phần bậc hai $\tfrac12x^TPx$ xác định độ cong, còn hệ số $\tfrac12$ là quy ước để gradient bằng $Px+q$. Điều kiện $P\succeq0$ là một phần của định nghĩa. Một bài cùng hình thức với $P$ không nửa xác định dương có mục tiêu không lồi và không thuộc Định nghĩa 02.17. Tập khả thi là một đa diện, như ở quy hoạch tuyến tính.
+Trong định nghĩa trên, phần bậc hai $\tfrac12x^TPx$ xác định độ cong, còn hệ số $\tfrac12$ là quy ước để gradient bằng $Px+q$. Điều kiện $P\succeq0$ là một phần của định nghĩa. Một bài toán cùng hình thức với $P$ không nửa xác định dương có mục tiêu không lồi và không thuộc Định nghĩa 02.17. Tập khả thi là một đa diện, như ở quy hoạch tuyến tính.
 
 Quy hoạch tuyến tính là trường hợp $P=0$ của (3.1).
 
@@ -1065,7 +1065,7 @@ $$
 X^TX=\begin{bmatrix}\sum u_i^2&\sum u_i\\ \sum u_i&5\end{bmatrix}=\begin{bmatrix}10&0\\0&5\end{bmatrix},\qquad X^Ty=\begin{bmatrix}\sum u_iy_i\\ \sum y_i\end{bmatrix}=\begin{bmatrix}10\\3\end{bmatrix},\qquad y^Ty=19 .
 $$
 
-**Kiểm giả thiết.** Bài toán là quy hoạch bậc hai với $P=2X^TX=\operatorname{diag}(20,10)\succ0$, $q=-2X^Ty=(-20,-6)$, $s=19$, nên có đúng một nghiệm theo Mệnh đề 02.18(b).
+**Kiểm tra giả thiết.** Bài toán là quy hoạch bậc hai với $P=2X^TX=\operatorname{diag}(20,10)\succ0$, $q=-2X^Ty=(-20,-6)$, $s=19$, nên có đúng một nghiệm theo Mệnh đề 02.18(b).
 
 **Tính.** Khai triển và bù bình phương, ta có
 
@@ -1109,7 +1109,7 @@ Nhầm lẫn thường gặp là suy ra có nghiệm chỉ từ $P\succeq0$; ph�
 
 ### 3.3 Chính quy hóa: bốn tổ hợp sai số và hình phạt
 
-Khi có nhiều đặc trưng và ít mẫu, hệ số bình phương nhỏ nhất có thể lớn, thay đổi mạnh theo dữ liệu, hoặc không duy nhất (Mệnh đề 01.6 của Bài 01). Một cách kiểm soát hiện tượng này là cộng vào mục tiêu một hạng phạt độ lớn của $w$, thường là $\lVert w\rVert_1=\lvert a\rvert+\lvert b\rvert$ hoặc $\lVert w\rVert_2^2=a^2+b^2$.
+Khi có nhiều đặc trưng và ít mẫu, hệ số bình phương nhỏ nhất có thể lớn, thay đổi mạnh theo dữ liệu, hoặc không duy nhất (Mệnh đề 01.6 của Bài 01). Một cách kiểm soát hiện tượng này là cộng vào mục tiêu một số hạng phạt độ lớn của $w$, thường là $\lVert w\rVert_1=\lvert a\rvert+\lvert b\rvert$ hoặc $\lVert w\rVert_2^2=a^2+b^2$.
 
 ![Mặt phẳng (a, b) với hai trục cùng tỷ lệ. Hình thoi là tập trị tuyệt đối của a cộng trị tuyệt đối của b bằng 0,8, có bốn đỉnh nằm trên hai trục. Đường tròn là tập a bình phương cộng b bình phương bằng 0,64, bán kính 0,8.](img/lec-02/qp-penalties.svg)
 
@@ -1146,11 +1146,11 @@ với hàm sai số $L(w)\in\{\lVert r\rVert_1,\ \lVert r\rVert_2^2\}$ và hình
 Bốn tổ hợp được ký hiệu $\ell_1+\ell_1$, $\ell_1+\ell_2^2$, $\ell_2^2+\ell_1$, $\ell_2^2+\ell_2^2$, theo thứ tự (sai số, hình phạt). Tổ hợp $\ell_2^2+\ell_1$ là LASSO (least absolute shrinkage and selection operator); tổ hợp $\ell_2^2+\ell_2^2$ là hồi quy ridge (chính quy hóa Tikhonov).
 :::
 
-Trong định nghĩa trên, $\lambda$ là dữ liệu do người lập mô hình chọn, và $\lambda=0$ cho lại bài không chính quy hóa.
+Trong định nghĩa trên, $\lambda$ là dữ liệu do người lập mô hình chọn, và $\lambda=0$ cho lại bài toán không chính quy hóa.
 
 Lưu ý rằng chính quy hóa đổi bài toán (Nhận xét 02.7), nên nghiệm của $L+\lambda R$ nói chung khác nghiệm của $L$ (Ví dụ 02.13), và hai giá trị không cùng thước đo.
 
-Tổ hợp $\ell_2^2+\ell_2^2$ là chính quy hóa bậc hai của Định nghĩa 01.42 trong Bài 01. Các ví dụ của mục phạt cả hệ số chặn $b$ để tính tay. Trong thực hành, người ta thường không phạt hệ số chặn (Tình huống 02.1).
+Tổ hợp $\ell_2^2+\ell_2^2$ là chính quy hóa bậc hai của Định nghĩa 01.42 trong Bài 01. Các ví dụ của mục phạt cả hệ số chặn $b$ để tính thủ công. Trong thực hành, người ta thường không phạt hệ số chặn (Tình huống 02.1).
 
 Bốn tổ hợp được phân lớp và chứng nhận nghiệm theo mệnh đề sau. Chứng minh dùng Định lý 02.15 cho các hạng chuẩn một, Mệnh đề 02.18 cho phần bậc hai, Định lý 01.38 cho sự tồn tại và Định lý 01.35 cho tính duy nhất.
 
@@ -1173,7 +1173,7 @@ Bốn tổ hợp được phân lớp và chứng nhận nghiệm theo mệnh đ
 
 **Bước 2 (phần (a): phân lớp từng tổ hợp).**
 
-- Với $\ell_1+\ell_1$, $f=0$ và mục tiêu mới $\mathbf 1^Tt+\lambda\mathbf 1^Tv$ tuyến tính, nên bài là quy hoạch tuyến tính.
+- Với $\ell_1+\ell_1$, $f=0$ và mục tiêu mới $\mathbf 1^Tt+\lambda\mathbf 1^Tv$ tuyến tính, nên bài toán là quy hoạch tuyến tính.
 - Với $\ell_1+\ell_2^2$, $f(w)=\lambda w^Tw$, và mục tiêu mới theo biến $(w,t)$ có ma trận bậc hai $\operatorname{diag}(2\lambda I_d,0)\succeq0$.
 - Với $\ell_2^2+\ell_1$, $f(w)=\lVert Xw-y\rVert_2^2$, và ma trận bậc hai theo $(w,v)$ là $\operatorname{diag}(2X^TX,0)\succeq0$.
 - Với $\ell_2^2+\ell_2^2$, khai triển cho $w^T(X^TX+\lambda I)w-2y^TXw+y^Ty$, nên $P=2(X^TX+\lambda I)$. Ngoài ra $v^T(X^TX+\lambda I)v=\lVert Xv\rVert_2^2+\lambda\lVert v\rVert_2^2>0$ khi $v\ne0$, nên $P\succ0$.
@@ -1198,7 +1198,7 @@ Mệnh đề 02.21 mở rộng Mệnh đề 02.18 theo hai hướng: mục tiêu
 
 Tuy nhiên, phần (c) chỉ cho tính duy nhất với ba tổ hợp. Chẳng hạn, với $\ell_2^2+\ell_1$, khi hai cột của $X$ trùng nhau, có thể chia hệ số cùng dấu giữa hai cột theo vô số cách mà không đổi sai số lẫn $\lVert w\rVert_1$.
 
-Với dữ liệu chung, $X^TX=\operatorname{diag}(10,5)$ chéo, và theo (3.2) mục tiêu của LASSO tách thành hai bài toán một biến độc lập, mỗi bài có dạng $\alpha(s-m)^2+\lambda\lvert s\rvert$. Bổ đề sau giải bài toán một biến đó.
+Với dữ liệu chung, $X^TX=\operatorname{diag}(10,5)$ chéo, và theo (3.2) mục tiêu của LASSO tách thành hai bài toán một biến độc lập, mỗi bài toán có dạng $\alpha(s-m)^2+\lambda\lvert s\rvert$. Bổ đề sau giải bài toán một biến đó.
 
 ::: lemma Bổ đề 02.22 (Ngưỡng mềm)
 **Giả thiết.** $\alpha>0$, $\lambda\ge0$, $m\in\mathbb R$ (ký hiệu cục bộ cho tâm của ngưỡng mềm, không phải số ràng buộc); $\phi(s)=\alpha(s-m)^2+\lambda\lvert s\rvert$ trên $\mathbb R$.
@@ -1212,7 +1212,7 @@ $$
 
 trong đó $\operatorname{sign}(m)$ bằng $1$, $0$, $-1$ khi $m>0$, $m=0$, $m<0$. Đặc biệt $s^*=0$ khi và chỉ khi $\lvert m\rvert\le\lambda/(2\alpha)$.
 
-**Điều kiện áp dụng.** Bài toán một biến; áp dụng cho nhiều biến khi mục tiêu tách thành tổng các bài một biến, như khi $X^TX$ chéo.
+**Điều kiện áp dụng.** Bài toán một biến; áp dụng cho nhiều biến khi mục tiêu tách thành tổng các bài toán một biến, như khi $X^TX$ chéo.
 
 **Phạm vi.** Khi $X^TX$ không chéo, các tọa độ liên kết với nhau, và áp dụng (3.3) cho từng tọa độ của nghiệm bình phương nhỏ nhất không cho nghiệm LASSO.
 :::
@@ -1237,9 +1237,9 @@ với các hằng số $c_\pm$ không phụ thuộc $s$. Trên mỗi nửa trụ
 
 Công thức (3.3) dịch nghiệm không phạt $m$ về phía $0$ một lượng $\lambda/(2\alpha)$ và cho giá trị $0$ khi $\lvert m\rvert\le\lambda/(2\alpha)$. Đây là cơ chế làm hệ số bằng $0$ của LASSO.
 
-Trong khi đó, với chính quy hóa bậc hai, bài một biến $\alpha(s-m)^2+\lambda s^2$ có nghiệm $\alpha m/(\alpha+\lambda)$, khác $0$ khi $m\ne0$.
+Trong khi đó, với chính quy hóa bậc hai, bài toán một biến $\alpha(s-m)^2+\lambda s^2$ có nghiệm $\alpha m/(\alpha+\lambda)$, khác $0$ khi $m\ne0$.
 
-**Trong học máy.** Hồi quy ridge ($\ell_2^2+\ell_2^2$) và suy giảm trọng số (weight decay) trong huấn luyện mạng dùng cùng hạng phạt, và Mệnh đề 02.21(c) cho nghiệm duy nhất kể cả khi đặc trưng phụ thuộc tuyến tính.
+**Trong học máy.** Hồi quy ridge ($\ell_2^2+\ell_2^2$) và suy giảm trọng số (weight decay) trong huấn luyện mạng dùng cùng số hạng phạt, và Mệnh đề 02.21(c) cho nghiệm duy nhất kể cả khi đặc trưng phụ thuộc tuyến tính.
 
 LASSO ($\ell_2^2+\ell_1$) được dùng để chọn đặc trưng, vì Bổ đề 02.22 cho hệ số bằng đúng $0$ khi tương quan của đặc trưng với đầu ra yếu so với $\lambda$ (Tình huống 02.1). Tuy nhiên, các mệnh đề của mục chỉ bảo đảm bài toán với một $\lambda$ đã chọn là lồi và có nghiệm.
 
@@ -1280,7 +1280,7 @@ Ngược lại, một nghiệm có mục tiêu $9$ phải làm cận chặt, t�
 ::: example Ví dụ 02.15 (Tổ hợp $\ell_1+\ell_2^2$ với $\lambda=4$)
 **Dữ kiện.** Dữ liệu chung: $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$. Với $\delta=a-1$: $r_1=b-2\delta$, $r_2=b-\delta$, $r_3=b-3$, $r_4=b+\delta$, $r_5=b+2\delta$ (Ví dụ 02.8). Ví dụ 02.14 áp dụng bất đẳng thức tam giác cho hai cặp $(r_2,r_4)$, $(r_1,r_5)$ và nhận được $\lVert r\rVert_1\ge6\lvert a-1\rvert+\lvert b-3\rvert$.
 
-**Kiểm giả thiết.** Mục tiêu $\Phi(w)=\lVert r\rVert_1+4(a^2+b^2)$ lồi chặt, nên có đúng một nghiệm (Mệnh đề 02.21(c)).
+**Kiểm tra giả thiết.** Mục tiêu $\Phi(w)=\lVert r\rVert_1+4(a^2+b^2)$ lồi chặt, nên có đúng một nghiệm (Mệnh đề 02.21(c)).
 
 **Bước 1 (cận dưới).** Từ Ví dụ 02.14, $\lVert r\rVert_1\ge6\lvert a-1\rvert+\lvert b-3\rvert\ge6\lvert a-1\rvert+3-b$, nên
 
@@ -1318,7 +1318,7 @@ $$
 E(w)+\lambda(\lvert a\rvert+\lvert b\rvert)=\bigl[10(a-1)^2+\lambda\lvert a\rvert\bigr]+\bigl[5(b-\tfrac35)^2+\lambda\lvert b\rvert\bigr]+\tfrac{36}5,
 $$
 
-tổng của hai bài một biến độc lập. Bổ đề 02.22 với $(\alpha,m)=(10,1)$ và $(5,\tfrac35)$ cho
+tổng của hai bài toán một biến độc lập. Bổ đề 02.22 với $(\alpha,m)=(10,1)$ và $(5,\tfrac35)$ cho
 
 $$
 a_\lambda=\max\Bigl(1-\frac{\lambda}{20},0\Bigr),\qquad b_\lambda=\max\Bigl(\frac35-\frac{\lambda}{10},0\Bigr).
@@ -1353,7 +1353,7 @@ Phạt bằng $10(\tfrac14+\tfrac1{25})=\tfrac{29}{10}$, và mục tiêu bằng 
 
 Bảng sau đặt bốn nghiệm cạnh nhau. Mỗi giá trị mục tiêu được tính theo mục tiêu của chính dòng đó, nên các con số ở cột cuối không cùng thước đo và không được so sánh với nhau.
 
-| Sai số + phạt | $\lambda$ | $w^*$ | Lớp sau cải dạng | Giá trị mục tiêu |
+| Sai số + phạt | $\lambda$ | $w^*$ | Lớp sau biến đổi | Giá trị mục tiêu |
 |---|---:|---|---|---:|
 | $\ell_1+\ell_1$ | $4$ | $(1,0)$ | quy hoạch tuyến tính | $7$ |
 | $\ell_1+\ell_2^2$ | $4$ | $(\tfrac34,\tfrac18)$ | quy hoạch bậc hai | $\tfrac{107}{16}$ |
@@ -1365,14 +1365,14 @@ Bảng sau đặt bốn nghiệm cạnh nhau. Mỗi giá trị mục tiêu đư�
 Hình trên cho thấy hai đường có sai số chuẩn một đi qua gần bốn điểm thẳng hàng, trong khi hai đường có sai số bình phương bị lệch lên do điểm $(0,3)$. Các giá trị $\lambda$ được chọn để minh họa, không qua kiểm định.
 
 ::: remark Nhận xét 02.23 (Ba nhầm lẫn về chính quy hóa)
-1. Coi chính quy hóa là một phép cải dạng (xem Nhận xét 02.7).
+1. Coi chính quy hóa là một phép biến đổi bài toán (xem Nhận xét 02.7).
 2. Cho rằng hình phạt chuẩn một luôn làm hệ số bằng $0$: với $\lambda=4$, Ví dụ 02.16 cho cả hai hệ số khác $0$; Bổ đề 02.22 cho đúng ngưỡng.
 3. Bỏ qua thang đo: đổi đơn vị một đặc trưng từ mét sang centimét chia hệ số của nó cho $100$ và đổi kết quả chọn đặc trưng của LASSO, nên đặc trưng thường được chuẩn hóa trước.
 :::
 
-### 3.4 Trần độ lớn hệ số và quy hoạch bậc hai có ràng buộc bậc hai
+### 3.4 Chặn độ lớn hệ số và quy hoạch bậc hai có ràng buộc bậc hai
 
-Hình phạt $\lambda\lVert w\rVert_2^2$ ở Mục 3.3 làm tăng giá trị mục tiêu khi hệ số lớn nhưng không loại các hệ số đó. Trong khi đó, yêu cầu chuẩn hệ số không vượt một mức cố định, chẳng hạn để chạy trên phần cứng có biên độ số giới hạn, là một ràng buộc cứng. Trên dữ liệu chung, trần $\lVert w\rVert_2^2\le\tfrac{29}{100}$ loại nghiệm bình phương nhỏ nhất, vốn có $\lVert w\rVert_2^2=\tfrac{34}{25}$.
+Hình phạt $\lambda\lVert w\rVert_2^2$ ở Mục 3.3 làm tăng giá trị mục tiêu khi hệ số lớn nhưng không loại các hệ số đó. Trong khi đó, yêu cầu chuẩn hệ số không vượt một mức cố định, chẳng hạn để chạy trên phần cứng có biên độ số giới hạn, là một ràng buộc cứng. Trên dữ liệu chung, ràng buộc chặn chuẩn $\lVert w\rVert_2^2\le\tfrac{29}{100}$ loại nghiệm bình phương nhỏ nhất, vốn có $\lVert w\rVert_2^2=\tfrac{34}{25}$.
 
 Về mặt hình học, tập $\{w\mid\lVert w\rVert_2^2\le R^2\}$ là hình tròn, lồi, nên chúng ta cần một lớp bài toán cho phép ràng buộc bậc hai lồi. Nhận xét này mới là trực giác, chưa phải định nghĩa. Lớp đó được định nghĩa như sau.
 
@@ -1391,7 +1391,7 @@ $$
 
 Trong định nghĩa trên, mỗi ràng buộc của (3.4) là một hàm bậc hai lồi không vượt $0$, và khi $P_i\succ0$, tập ứng với nó là một elip đặc (có thể rỗng hoặc suy biến thành một điểm).
 
-Quy hoạch bậc hai là trường hợp $P_1=\cdots=P_m=0$. Trần $\lVert w\rVert_2^2\le R^2$ có $P_1=2I$, $q_1=0$, $s_1=-R^2$.
+Quy hoạch bậc hai là trường hợp $P_1=\cdots=P_m=0$. Ràng buộc chặn chuẩn $\lVert w\rVert_2^2\le R^2$ có $P_1=2I$, $q_1=0$, $s_1=-R^2$.
 
 Điều kiện $P_i\succeq0$ không bỏ được, vì nếu bỏ nó thì tập khả thi có thể không lồi. Chẳng hạn $x_1^2-x_2^2\le1$ chứa $(2,\sqrt3)$ và $(2,-\sqrt3)$ (cả hai cho $4-3=1$) mà không chứa trung điểm $(2,0)$ (cho $4>1$).
 
@@ -1419,16 +1419,16 @@ $$
 nên $f_i(x)\le0$ kéo theo $\lVert x\rVert_2$ bị chặn. Tập khả thi đóng vì các $f_i$ liên tục. $\square$
 :::
 
-Hình phạt của Mục 3.3 và trần độ lớn liên hệ với nhau theo mệnh đề sau, và mệnh đề này không cần tính lồi.
+Hình phạt của Mục 3.3 và ràng buộc chặn độ lớn hệ số liên hệ với nhau theo mệnh đề sau, và mệnh đề này không cần tính lồi.
 
-::: proposition Mệnh đề 02.26 (Nghiệm của bài có phạt là nghiệm của bài có trần)
+::: proposition Mệnh đề 02.26 (Nghiệm của bài toán có phạt là nghiệm của bài toán có ràng buộc chuẩn)
 **Giả thiết.** $L,R:\mathbb R^d\to\mathbb R$ tùy ý, $\lambda\ge0$, và $w_\lambda$ là một nghiệm của $\min_w L(w)+\lambda R(w)$.
 
 **Kết luận.** $w_\lambda$ là nghiệm của $\min_wL(w)$ với ràng buộc $R(w)\le R(w_\lambda)$.
 
 **Điều kiện áp dụng.** $\lambda\ge0$.
 
-**Phạm vi.** Mệnh đề chỉ đi một chiều: từ một $\lambda$ cho trước suy ra một mức trần. Chiều ngược, mỗi mức trần ứng với một $\lambda$, cần thêm tính lồi và một điều kiện chính quy (có điểm Slater), và được chứng minh ở Bài 03 (Mệnh đề 03.34). Xem thêm Boyd và Vandenberghe (2004), mục 4.7.4 về vô hướng hóa và mục 6.3.1–6.3.2.
+**Phạm vi.** Mệnh đề chỉ đi một chiều: từ một $\lambda$ cho trước suy ra một mức chặn. Chiều ngược, mỗi mức chặn ứng với một $\lambda$, cần thêm tính lồi và một điều kiện chính quy (có điểm Slater), và được chứng minh ở Bài 03 (Mệnh đề 03.34). Xem thêm Boyd và Vandenberghe (2004), mục 4.7.4 về vô hướng hóa và mục 6.3.1–6.3.2.
 :::
 
 ::: proof Chứng minh Mệnh đề 02.26
@@ -1443,12 +1443,12 @@ $$
 trong đó bất đẳng thức cuối dùng $\lambda\ge0$ và $R(w_\lambda)-R(w)\ge0$. $\square$
 :::
 
-::: example Ví dụ 02.18 (Trần $\lVert w\rVert_2^2\le\tfrac{29}{100}$)
+::: example Ví dụ 02.18 (Ràng buộc chặn chuẩn $\lVert w\rVert_2^2\le\tfrac{29}{100}$)
 **Dữ kiện.** Trên dữ liệu chung $u=(-2,-1,0,1,2)$, $y=(-2,-1,3,1,2)$, với $X$ có hàng $(u_i,1)$ và $w=(a,b)$: $X^TX=\operatorname{diag}(10,5)$, $X^Ty=(10,3)$, $y^Ty=19$ và $E(w)=10(a-1)^2+5(b-\tfrac35)^2+\tfrac{36}5$ (3.2). Nghiệm của $\min_wE(w)+10\lVert w\rVert_2^2$ là $w_{10}=(\tfrac12,\tfrac15)$, với $E(w_{10})=\tfrac{21}2$ (Ví dụ 02.17). Mệnh đề 02.26: nếu $w_\lambda$ là nghiệm của $\min_wL(w)+\lambda R(w)$ với $\lambda\ge0$ thì $w_\lambda$ là nghiệm của $\min_wL(w)$ với ràng buộc $R(w)\le R(w_\lambda)$.
 
-**Lập mô hình.** Bài toán $\min_wE(w)$ với $\lVert w\rVert_2^2\le\tfrac{29}{100}$ là QCQP với $P_0=2X^TX=\operatorname{diag}(20,10)$, $q_0=(-20,-6)$, $s_0=19$, $P_1=2I$, $q_1=0$, $s_1=-\tfrac{29}{100}$. Mọi $P_i\succ0$, nên bài lồi và có nghiệm (Mệnh đề 02.25).
+**Lập mô hình.** Bài toán $\min_wE(w)$ với $\lVert w\rVert_2^2\le\tfrac{29}{100}$ là QCQP với $P_0=2X^TX=\operatorname{diag}(20,10)$, $q_0=(-20,-6)$, $s_0=19$, $P_1=2I$, $q_1=0$, $s_1=-\tfrac{29}{100}$. Mọi $P_i\succ0$, nên bài toán lồi và có nghiệm (Mệnh đề 02.25).
 
-**Chứng nhận.** Theo Ví dụ 02.17, $w_{10}=(\tfrac12,\tfrac15)$ là nghiệm của bài có phạt với $\lambda=10$, và $\lVert w_{10}\rVert_2^2=\tfrac14+\tfrac1{25}=\tfrac{29}{100}$. Mệnh đề 02.26 với $L=E$, $R=\lVert\cdot\rVert_2^2$ cho $w^*=(\tfrac12,\tfrac15)$ là nghiệm của bài có trần, với $E(w^*)=\tfrac{21}2$. Nghiệm duy nhất vì $E$ lồi chặt.
+**Chứng nhận.** Theo Ví dụ 02.17, $w_{10}=(\tfrac12,\tfrac15)$ là nghiệm của bài toán có phạt với $\lambda=10$, và $\lVert w_{10}\rVert_2^2=\tfrac14+\tfrac1{25}=\tfrac{29}{100}$. Mệnh đề 02.26 với $L=E$, $R=\lVert\cdot\rVert_2^2$ cho $w^*=(\tfrac12,\tfrac15)$ là nghiệm của bài toán có ràng buộc chuẩn, với $E(w^*)=\tfrac{21}2$. Nghiệm duy nhất vì $E$ lồi chặt.
 
 **Kiểm tra lại bằng (1.2).** $\nabla E(w^*)=(20(\tfrac12-1),\ 10(\tfrac15-\tfrac35))=(-10,-4)$. Với mọi $w$ khả thi,
 
@@ -1465,19 +1465,19 @@ vì bất đẳng thức Cauchy–Schwarz cho $10a+4b\le\sqrt{116}\cdot\sqrt{0{,
 
 Nghiệm nằm trên biên của hình tròn, tại chỗ elip đồng mức $E=10{,}5$ tiếp xúc biên.
 
-Bán kính được chọn bằng chuẩn của nghiệm ridge với $\lambda=10$ để có thể chứng nhận bằng Mệnh đề 02.26. Với một bán kính tùy ý, $\lambda$ tương ứng là nhân tử của trần (Mệnh đề 03.34) và được tìm bằng phép chia đôi ở Thuật toán 03.1 của Bài 03.
+Bán kính được chọn bằng chuẩn của nghiệm ridge với $\lambda=10$ để có thể chứng nhận bằng Mệnh đề 02.26. Với một bán kính tùy ý, $\lambda$ tương ứng là nhân tử của ràng buộc chặn chuẩn (Mệnh đề 03.34) và được tìm bằng phép chia đôi ở Thuật toán 03.1 của Bài 03.
 
-::: remark Nhận xét 02.27 (Hình phạt, trần và các biến thể không lồi)
-**Phạt và trần.** Hình phạt $\lambda$ là giá của độ lớn, trần $R^2$ là giới hạn cứng. Khi $R^2\ge\tfrac{34}{25}$, nghiệm bình phương nhỏ nhất khả thi nên là nghiệm của bài có trần (Mệnh đề 01.16(b)).
+::: remark Nhận xét 02.27 (Hình phạt, ràng buộc chặn chuẩn và các biến thể không lồi)
+**Phạt và ràng buộc chặn chuẩn.** Hình phạt $\lambda$ là giá của độ lớn, mức chặn $R^2$ là giới hạn cứng. Khi $R^2\ge\tfrac{34}{25}$, nghiệm bình phương nhỏ nhất khả thi nên là nghiệm của bài toán có ràng buộc chuẩn (Mệnh đề 01.16(b)).
 
-**Đổi chiều trần.** Đổi chiều thành $\lVert w\rVert_2^2\ge R^2$ cho phần ngoài hình tròn, không lồi: $(R,0)$ và $(-R,0)$ khả thi mà trung điểm $0$ thì không.
+**Đổi chiều ràng buộc.** Đổi chiều thành $\lVert w\rVert_2^2\ge R^2$ cho phần ngoài hình tròn, không lồi: $(R,0)$ và $(-R,0)$ khả thi mà trung điểm $0$ thì không.
 
-**Trần chuẩn một.** Trần $\lVert w\rVert_1\le R$ cho hình thoi, lồi. Với biến phụ $-v\preceq w\preceq v$, $\mathbf 1^Tv\le R$, bài là quy hoạch bậc hai.
+**Ràng buộc chặn chuẩn một.** Ràng buộc $\lVert w\rVert_1\le R$ cho hình thoi, lồi. Với biến phụ $-v\preceq w\preceq v$, $\mathbf 1^Tv\le R$, bài toán là quy hoạch bậc hai.
 :::
 
 **Trong học máy.** QCQP xuất hiện khi tham số bị giới hạn chuẩn, chẳng hạn chuẩn của vector trọng số đi vào mỗi nơ-ron. Nó cũng xuất hiện trong bài toán con miền tin cậy (trust region) của các phương pháp bậc hai: cực tiểu một mô hình bậc hai trên quả cầu $\lVert d\rVert_2\le\Delta$ (Bài 06).
 
-Bài con này lồi khi Hessian của mô hình nửa xác định dương, và không lồi khi Hessian có giá trị riêng âm, trường hợp thường gặp với mạng sâu. Trong cả hai trường hợp, Mệnh đề 02.26 liên hệ hình phạt với trần theo một chiều.
+Bài toán con này lồi khi Hessian của mô hình nửa xác định dương, và không lồi khi Hessian có giá trị riêng âm, trường hợp thường gặp với mạng sâu. Trong cả hai trường hợp, Mệnh đề 02.26 liên hệ hình phạt với ràng buộc chặn chuẩn theo một chiều.
 
 ::: exercise Bài tập 02.5
 Cho ba quan sát $u=(-1,0,1)$, $y=(0,1,5)$, mô hình $\hat y=au+b$, $X$ với hàng $(u_i,1)$ và $E(w)=\lVert Xw-y\rVert_2^2$.
@@ -1530,7 +1530,7 @@ Dùng (1.2), $\nabla f_0(x^*)^T(x-x^*)\ge0$ với mọi $x$ khả thi, và bất
 ::: solution
 **Chứng nhận.** $P_0=0$, $q_0=(1,1)$; $P_1=2I\succeq0$, $q_1=0$, $s_1=-2$: QCQP lồi theo Mệnh đề 02.25. Tập khả thi là đĩa đóng bán kính $\sqrt2$, không rỗng và bị chặn, nên nghiệm tồn tại.
 
-**Kiểm (1.2).** $\nabla f_0=(1,1)$, và với mọi $x$ khả thi,
+**Kiểm tra (1.2).** $\nabla f_0=(1,1)$, và với mọi $x$ khả thi,
 
 $$
 (1,1)^T(x-(-1,-1))=x_1+x_2+2\ge0,
@@ -1539,21 +1539,21 @@ $$
 vì Cauchy–Schwarz cho $x_1+x_2\ge-\sqrt2\lVert x\rVert_2\ge-\sqrt2\cdot\sqrt2=-2$. Điểm $(-1,-1)$ khả thi ($1+1=2$). Theo Hệ quả 02.3(c), nó là nghiệm, $p^*=-2$.
 :::
 
-Xuất phát từ tổng bình phương phần dư, chúng ta có lớp quy hoạch bậc hai và điều kiện để nó có đúng một nghiệm (Định nghĩa 02.17, Mệnh đề 02.18, Nhận xét 02.19). Định nghĩa 02.20, Mệnh đề 02.21 và Bổ đề 02.22 giải bốn tổ hợp chính quy hóa. Kết quả chính của mục là Mệnh đề 02.21: mỗi mô hình hồi quy có chính quy hóa thông dụng là quy hoạch tuyến tính hoặc quy hoạch bậc hai. Mệnh đề 02.25 và 02.26 đưa trần độ lớn hệ số vào khung lồi.
+Xuất phát từ tổng bình phương phần dư, chúng ta có lớp quy hoạch bậc hai và điều kiện để nó có đúng một nghiệm (Định nghĩa 02.17, Mệnh đề 02.18, Nhận xét 02.19). Định nghĩa 02.20, Mệnh đề 02.21 và Bổ đề 02.22 giải bốn tổ hợp chính quy hóa. Kết quả chính của mục là Mệnh đề 02.21: mỗi mô hình hồi quy có chính quy hóa thông dụng là quy hoạch tuyến tính hoặc quy hoạch bậc hai. Mệnh đề 02.25 và 02.26 đưa ràng buộc chặn độ lớn hệ số vào khung lồi.
 
 Các lớp này chỉ nhận ra tính lồi theo biến ban đầu. Bài toán có tích và tỷ số của các kích thước không lồi theo biến ban đầu, và kỹ thuật biến phụ không khắc phục được điều này. Trong Mục 4, chúng ta dùng phép đổi biến.
 
 ## 4. Quy hoạch hình học
 
-Bài thiết kế sau không lồi theo biến ban đầu, nên không thuộc ba lớp của Mục 2 và Mục 3.
+Bài toán thiết kế sau không lồi theo biến ban đầu, nên không thuộc ba lớp của Mục 2 và Mục 3.
 
 Xét bài toán thiết kế một hộp kín có thể tích $8\,\mathrm{dm}^3$, với chi phí vật liệu tỷ lệ với diện tích bề mặt, bỏ qua độ dày và mép ghép. Hộp $1\times2\times4$ (dm) có diện tích $28\,\mathrm{dm}^2$, hộp $2\times2\times2$ có $24\,\mathrm{dm}^2$. Để chứng minh một thiết kế là tối ưu, chúng ta không dùng trực tiếp được công cụ của Bài 01, vì cả tập khả thi lẫn mục tiêu đều không lồi theo kích thước.
 
-Trong mục này, chúng ta định nghĩa quy hoạch hình học (geometric programming, GP) và chứng minh phép đổi biến logarit biến nó thành bài toán lồi tương đương, rồi áp dụng cho ba bài thiết kế.
+Trong mục này, chúng ta định nghĩa quy hoạch hình học (geometric programming, GP) và chứng minh phép đổi biến logarit biến nó thành bài toán lồi tương đương, rồi áp dụng cho ba bài toán thiết kế.
 
 ### 4.1 Bài toán thiết kế hộp
 
-Ta lấy $1\,\mathrm{dm}$ làm đơn vị và gọi $a,b,c>0$ là số đo của ba cạnh; nhờ đó các đại lượng là số không thứ nguyên và lấy logarit được. Diện tích là $S(a,b,c)=2(ab+ac+bc)$ và thể tích là $abc$. Ví dụ sau kiểm tra rằng mô hình của bài hộp không lồi theo kích thước.
+Ta lấy $1\,\mathrm{dm}$ làm đơn vị và gọi $a,b,c>0$ là số đo của ba cạnh; nhờ đó các đại lượng là số không thứ nguyên và lấy logarit được. Diện tích là $S(a,b,c)=2(ab+ac+bc)$ và thể tích là $abc$. Ví dụ sau kiểm tra rằng mô hình của bài toán hộp không lồi theo kích thước.
 
 ::: example Ví dụ 02.19 (Mô hình hộp không lồi theo kích thước)
 **Dữ kiện.** Hộp kín có ba cạnh $a,b,c>0$ (đơn vị dm), thể tích $abc=8$, diện tích $S(a,b,c)=2(ab+ac+bc)$. Hai hộp ở đầu mục là $1\times2\times4$ và $2\times2\times2$.
@@ -1575,19 +1575,19 @@ với $\nabla^2S\,(1,-1,0)^T=(-2,2,0)^T=-2\,(1,-1,0)^T$, nên $-2$ là một gi�
 
 ![Sơ đồ một hộp chữ nhật kín có ba cạnh ký hiệu a, b, c và thể tích 8 đề-xi-mét khối; độ dày thành hộp và mép ghép được bỏ qua.](img/lec-02/gp-box.svg)
 
-Cả mục tiêu và ràng buộc của bài hộp trên hình đều chứa tích của các cạnh.
+Cả mục tiêu và ràng buộc của bài toán hộp trên hình đều chứa tích của các cạnh.
 
 Về mặt ý tưởng, logarit biến tích thành tổng, nên ràng buộc thể tích trở thành $\log a+\log b+\log c=\log8$, tuyến tính theo các logarit. Mỗi hạng $ab$ của diện tích trở thành $e^{\log a+\log b}$, hàm mũ của một hàm tuyến tính. Ý tưởng này chưa phải định nghĩa. Phép đổi biến chỉ dùng được khi các đại lượng và các hệ số đều dương.
 
 ![Hai khung nối bằng mũi tên đổi biến y1 bằng log x, y2 bằng log y. Khung trái: cực tiểu nghịch đảo của tích xy với x cộng y nhỏ hơn hoặc bằng 4, nghiệm (2; 2). Khung phải: mục tiêu âm y1 trừ y2 là affine, ràng buộc log của (e mũ y1 cộng e mũ y2) nhỏ hơn hoặc bằng log 4 cho tập lồi, nghiệm (log 2; log 2). Dòng dưới: đơn thức thành hàm affine, tổng đơn thức thành hàm log của tổng các hàm mũ.](img/lec-02/gp-log-transform.svg)
 
-Hình trên minh họa ý tưởng này trên một bài hai biến. Trong không gian ban đầu, các đường mức của tích $xy$ là các hyperbol. Trong không gian logarit, chúng thành đường thẳng, và ràng buộc $x+y\le4$ thành một tập lồi có biên cong.
+Hình trên minh họa ý tưởng này trên một bài toán hai biến. Trong không gian ban đầu, các đường mức của tích $xy$ là các hyperbol. Trong không gian logarit, chúng thành đường thẳng, và ràng buộc $x+y\le4$ thành một tập lồi có biên cong.
 
 Ký hiệu $y_1,y_2$ trên hình là biến logarit, không liên quan tới vector đầu ra $y$ của các mục trước.
 
 ### 4.2 Đơn thức, tổng đơn thức dương và dạng chuẩn
 
-Các hàm xuất hiện trong bài hộp có một cấu trúc đại số riêng, được gọi tên theo định nghĩa sau.
+Các hàm xuất hiện trong bài toán hộp có một cấu trúc đại số riêng, được gọi tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 02.28 (Đơn thức và tổng đơn thức dương)
 Trên $\mathbb R^n_{++}=\{x\in\mathbb R^n\mid x_i>0,\ i=1,\ldots,n\}$, một đơn thức (monomial) là hàm
@@ -1611,7 +1611,7 @@ Các quy tắc sau kiểm tra được trực tiếp từ định nghĩa (xem Bo
 - Tổng và tích của tổng đơn thức dương là tổng đơn thức dương.
 - Thương của tổng đơn thức dương cho một đơn thức là tổng đơn thức dương.
 
-Trong bài hộp, $2ab+2ac+2bc$ là tổng ba đơn thức và $abc/8$ là đơn thức. Với hai loại hàm này, quy hoạch hình học được định nghĩa như sau.
+Trong bài toán hộp, $2ab+2ac+2bc$ là tổng ba đơn thức và $abc/8$ là đơn thức. Với hai loại hàm này, quy hoạch hình học được định nghĩa như sau.
 
 ::: definition Định nghĩa 02.29 (Quy hoạch hình học)
 Theo Boyd và Vandenberghe (2004, mục 4.5). Cho các tổng đơn thức dương $f_0,f_1,\ldots,f_m$ và các đơn thức $g_1,\ldots,g_p$ trên $\mathbb R^n_{++}$. Quy hoạch hình học dạng chuẩn là
@@ -1653,12 +1653,12 @@ với $c_k/c>0$, là đơn thức.
 
 **Bước 2 (phần (b)).** Tương tự với đẳng thức, chia cho $g_2(x)>0$.
 
-**Bước 3 (phần (c), khi có nghiệm).** Hàm $s\mapsto1/s$ giảm chặt trên $(0,\infty)$, nên $g(x^*)\ge g(x)$ với mọi $x\in C$ khi và chỉ khi $1/g(x^*)\le1/g(x)$ với mọi $x\in C$. Hai bài có cùng nghiệm, và giá trị tối ưu của bài cực tiểu là $1/g(x^*)$.
+**Bước 3 (phần (c), khi có nghiệm).** Hàm $s\mapsto1/s$ giảm chặt trên $(0,\infty)$, nên $g(x^*)\ge g(x)$ với mọi $x\in C$ khi và chỉ khi $1/g(x^*)\le1/g(x)$ với mọi $x\in C$. Hai bài toán có cùng nghiệm, và giá trị tối ưu của bài toán cực tiểu là $1/g(x^*)$.
 
 **Bước 4 (phần (c), giá trị tối ưu nói chung).** Khi không có nghiệm, đặt $S=\sup_Cg\in(0,+\infty]$, hữu hạn hoặc không, với $C\ne\varnothing$. Hàm $s\mapsto1/s$ giảm chặt và liên tục trên $(0,\infty)$ (với quy ước $1/(+\infty)=0$), nên $1/g(x)\ge1/S$ với mọi $x\in C$. Với dãy $x_k\in C$ có $g(x_k)\to S$ thì $1/g(x_k)\to1/S$, tức cận trên đúng $S$ thành cận dưới đúng $1/S$. Hàm $1/g=c^{-1}\prod_ix_i^{-\alpha_i}$ là đơn thức. $\square$
 :::
 
-Với bài hộp, ràng buộc $abc=8$ trở thành $abc/8=1$ theo (b), và mục tiêu đã là tổng đơn thức dương, nên bài hộp là quy hoạch hình học dạng chuẩn.
+Với bài toán hộp, ràng buộc $abc=8$ trở thành $abc/8=1$ theo (b), và mục tiêu đã là tổng đơn thức dương, nên bài toán hộp là quy hoạch hình học dạng chuẩn.
 
 Một cận dưới đơn thức $g(x)\ge\ell$ với $\ell>0$ viết thành $\ell/g(x)\le1$, và một cận trên $f(x)\le U$ viết thành $f(x)/U\le1$.
 
@@ -1700,7 +1700,7 @@ và lấy logarit cho vế đầu của (4.2).
 
 Theo Bổ đề 02.31, đơn thức thành hàm affine, còn tổng đơn thức dương thành hàm $\log\sum_ke^{\alpha_k^Tz+\beta_k}$. Hàm $\operatorname{lse}(s)=\log\sum_ke^{s_k}$ được gọi là hàm log-sum-exp.
 
-Để thấy vì sao hàm này lồi, xét trường hợp $n=1$, $K=2$, $\alpha=(1,-1)$, $\beta=0$, khi hàm $F(z)=\log(e^z+e^{-z})$ tính được bằng tay. Đặt $\pi_1=e^z/(e^z+e^{-z})$, $\pi_2=1-\pi_1$, ta có
+Để thấy vì sao hàm này lồi, xét trường hợp $n=1$, $K=2$, $\alpha=(1,-1)$, $\beta=0$, khi hàm $F(z)=\log(e^z+e^{-z})$ tính thủ công được. Đặt $\pi_1=e^z/(e^z+e^{-z})$, $\pi_2=1-\pi_1$, ta có
 
 $$
 F'(z)=\pi_1-\pi_2,\qquad F''(z)=1-(\pi_1-\pi_2)^2=4\pi_1\pi_2>0 .
@@ -1799,7 +1799,7 @@ $$
 
 với $F_i(z)=\log\sum_ke^{\alpha_{ik}^Tz+\beta_{ik}}$, là bài toán tối ưu lồi dạng chuẩn.
 
-(b) (4.4) là cải dạng tương đương của (4.1) theo Định nghĩa 02.5 với $\varphi(x)=\log x$, $\psi(z)=e^z$ và $T=\log$.
+(b) (4.4) là biến đổi tương đương của (4.1) theo Định nghĩa 02.5 với $\varphi(x)=\log x$, $\psi(z)=e^z$ và $T=\log$.
 
 (c) Nếu $z^*$ là nghiệm của (4.4) thì $x^*=e^{z^*}$ là nghiệm của (4.1), và $f_0(x^*)=e^{F_0(z^*)}$.
 
@@ -1823,14 +1823,14 @@ Vậy $\varphi$ ánh xạ tập khả thi của (4.1) vào tập khả thi của
 **Bước 4 (phần (c) và phần Phạm vi).** Theo Mệnh đề 02.6(b), $\psi(z^*)=e^{z^*}$ là nghiệm của (4.1); theo phần (a) của cùng mệnh đề, $F_0(z^*)=\log f_0(x^*)$. Nếu mọi $f_i$ là đơn thức thì mọi $F_i$ affine theo Bổ đề 02.31, và (4.4) là quy hoạch tuyến tính. $\square$
 :::
 
-Định lý 02.33 cho thấy một lớp bài toán không lồi theo biến ban đầu vẫn tương đương với một bài lồi. So với Định lý 02.15, định lý này đổi biến thay vì thêm biến, và giá trị tối ưu biến đổi qua $T=\log$.
+Định lý 02.33 cho thấy một lớp bài toán không lồi theo biến ban đầu vẫn tương đương với một bài toán lồi. So với Định lý 02.15, định lý này đổi biến thay vì thêm biến, và giá trị tối ưu biến đổi qua $T=\log$.
 
-Giả thiết biến dương làm phép đổi biến song ánh, còn hệ số dương cho phép lấy logarit. Nếu bỏ giả thiết biến dương, bài $\min x$ trên $[0,1]$ có nghiệm $0$, nhưng sau khi đặt $x=e^z$ thì cận dưới $0$ không đạt. Ví dụ sau áp dụng định lý này cho bài hộp.
+Giả thiết biến dương làm phép đổi biến song ánh, còn hệ số dương cho phép lấy logarit. Nếu bỏ giả thiết biến dương, bài toán $\min x$ trên $[0,1]$ có nghiệm $0$, nhưng sau khi đặt $x=e^z$ thì cận dưới $0$ không đạt. Ví dụ sau áp dụng định lý này cho bài toán hộp.
 
-::: example Ví dụ 02.20 (Bài hộp sau đổi biến logarit)
-**Dữ kiện.** Bài hộp (Ví dụ 02.19): $\min_{a,b,c>0}2(ab+ac+bc)$ với $abc=8$. Định lý 02.33: với $x=e^z$, lấy logarit mục tiêu và ràng buộc của quy hoạch hình học cho một bài toán lồi tương đương, trong đó đơn thức thành hàm affine và tổng đơn thức dương thành hàm $\log\sum_ke^{\alpha_k^Tz+\beta_k}$.
+::: example Ví dụ 02.20 (Bài toán hộp sau đổi biến logarit)
+**Dữ kiện.** Bài toán hộp (Ví dụ 02.19): $\min_{a,b,c>0}2(ab+ac+bc)$ với $abc=8$. Định lý 02.33: với $x=e^z$, lấy logarit mục tiêu và ràng buộc của quy hoạch hình học cho một bài toán lồi tương đương, trong đó đơn thức thành hàm affine và tổng đơn thức dương thành hàm $\log\sum_ke^{\alpha_k^Tz+\beta_k}$.
 
-**Đổi biến.** Đặt $z_a=\log a$, $z_b=\log b$, $z_c=\log c$. Theo Định lý 02.33, bài hộp tương đương với
+**Đổi biến.** Đặt $z_a=\log a$, $z_b=\log b$, $z_c=\log c$. Theo Định lý 02.33, bài toán hộp tương đương với
 
 $$
 \underset{z_a,z_b,z_c\in\mathbb R}{\operatorname{minimize}}\quad\log\bigl(2e^{z_a+z_b}+2e^{z_a+z_c}+2e^{z_b+z_c}\bigr)\qquad\text{subject to}\quad z_a+z_b+z_c=\log8,
@@ -1871,7 +1871,7 @@ Trong tọa độ logarit trên hình, với trục $A$, $B$ là $z_a$, $z_b$ c�
 
 ::: remark Nhận xét 02.34 (Giới hạn của phép đổi biến logarit)
 1. Giá trị của (4.4) là $\log$ của giá trị (4.1): ở Ví dụ 02.20, $\log24\approx3{,}18$ không phải diện tích.
-2. Bài có hiệu hoặc biến được bằng $0$ không thuộc dạng (4.1): $x_1-x_2\le1$ affine, lồi theo $x$, mà không là quy hoạch hình học.
+2. Bài toán có hiệu hoặc biến được bằng $0$ không thuộc dạng (4.1): $x_1-x_2\le1$ affine, lồi theo $x$, mà không là quy hoạch hình học.
 3. Đẳng thức giữa hai tổng đơn thức dương không được phép: $x_1+x_2=1$ affine theo $x$ nhưng thành $\log(e^{z_1}+e^{z_2})=0$, không affine.
 
 Một ràng buộc có thể lồi theo $x$ mà không thuộc lớp quy hoạch hình học; hai cách nhận biết bổ sung cho nhau.
@@ -1879,11 +1879,11 @@ Một ràng buộc có thể lồi theo $x$ mà không thuộc lớp quy hoạch
 
 ### 4.4 Phân bổ công suất cho hai đường truyền
 
-Bài thiết kế thứ hai của mục đến từ truyền thông vô tuyến. Hai cặp phát – thu dùng chung một kênh, và tăng công suất phát của một đường làm tín hiệu có ích của nó mạnh lên, đồng thời gây nhiễu cho đường kia. Mục tiêu của bài toán là cải thiện đường yếu hơn.
+Bài toán thiết kế thứ hai của mục đến từ truyền thông vô tuyến. Hai cặp phát – thu dùng chung một kênh, và tăng công suất phát của một đường làm tín hiệu có ích của nó mạnh lên, đồng thời gây nhiễu cho đường kia. Mục tiêu của bài toán là cải thiện đường yếu hơn.
 
 ![Hai cặp phát – thu. Bộ phát 1 truyền tới bộ thu 1 và bộ phát 2 truyền tới bộ thu 2 với hệ số tín hiệu chính bằng 1 (đường liền). Bộ phát 2 gây nhiễu cho bộ thu 1 với hệ số 1/4 và bộ phát 1 gây nhiễu cho bộ thu 2 với hệ số 3/2 (đường đứt). Mỗi bộ thu có tạp âm nền bằng 1.](img/lec-02/gp-wireless.svg)
 
-Dữ liệu của bài, đọc từ hình, gồm:
+Dữ liệu của bài toán, đọc từ hình, gồm:
 
 - hệ số truyền từ bộ phát $j$ tới bộ thu $i$: $\eta_{11}=\eta_{22}=1$, $\eta_{12}=\tfrac14$, $\eta_{21}=\tfrac32$;
 - tạp âm nền $\nu_1=\nu_2=1$;
@@ -1897,12 +1897,12 @@ $$
 
 Ví dụ sau đưa bài toán cải thiện đường yếu hơn về quy hoạch hình học.
 
-::: example Ví dụ 02.21 (Mô hình phân bổ công suất và cải dạng)
+::: example Ví dụ 02.21 (Mô hình phân bổ công suất và phép biến đổi)
 **Dữ kiện.** Công suất phát $p=(p_1,p_2)\in\mathbb R^2_{++}$, ngân sách $p_1+p_2\le6$; chất lượng hai đường là $S_1(p)=\frac{p_1}{1+p_2/4}$ và $S_2(p)=\frac{p_2}{1+3p_1/2}$ (Mục 4.4). Mệnh đề 02.30(c): cực đại đơn thức $g$ có cùng tập nghiệm với cực tiểu $1/g$.
 
 **Lập mô hình.** Bài toán là cực đại $\min\{S_1(p),S_2(p)\}$ theo $p\in\mathbb R^2_{++}$ với $p_1+p_2\le6$. Chia đều $(3,3)$ cho $S_1=3/(1+\tfrac34)=\tfrac{12}7$ và $S_2=3/(1+\tfrac92)=\tfrac6{11}$: đường $2$ yếu vì chịu nhiễu với hệ số $\tfrac32$.
 
-**Cải dạng bằng ngưỡng.** Thêm biến $t>0$ đóng vai chặn dưới của chất lượng. Ta có $t\le S_1(p)$ khi và chỉ khi $t(1+p_2/4)\le p_1$, và chia cho $p_1>0$ cho $tp_1^{-1}+\tfrac14tp_2p_1^{-1}\le1$; tương tự với đường $2$. Theo Mệnh đề 02.30(c), cực đại $t$ thành cực tiểu $t^{-1}$. Bài toán
+**Biến đổi bằng ngưỡng.** Thêm biến $t>0$ đóng vai chặn dưới của chất lượng. Ta có $t\le S_1(p)$ khi và chỉ khi $t(1+p_2/4)\le p_1$, và chia cho $p_1>0$ cho $tp_1^{-1}+\tfrac14tp_2p_1^{-1}\le1$; tương tự với đường $2$. Theo Mệnh đề 02.30(c), cực đại $t$ thành cực tiểu $t^{-1}$. Bài toán
 
 $$
 \begin{aligned}
@@ -1914,9 +1914,9 @@ $$
 
 là quy hoạch hình học: mục tiêu là đơn thức, mỗi vế trái là tổng đơn thức dương.
 
-**Tương đương với bài gốc.** Theo Mệnh đề 02.6, bài gốc viết thành $\min1/\min\{S_1,S_2\}$, với $\varphi(p)=(p,\min\{S_1(p),S_2(p)\})$, $\psi(p,t)=p$, $T(s)=s$. Chiều thứ nhất là đẳng thức. Chiều thứ hai đúng vì $t\le\min\{S_1,S_2\}$ kéo theo $1/\min\{S_1,S_2\}\le1/t$.
+**Tương đương với bài toán gốc.** Theo Mệnh đề 02.6, bài toán gốc viết thành $\min1/\min\{S_1,S_2\}$, với $\varphi(p)=(p,\min\{S_1(p),S_2(p)\})$, $\psi(p,t)=p$, $T(s)=s$. Chiều thứ nhất là đẳng thức. Chiều thứ hai đúng vì $t\le\min\{S_1,S_2\}$ kéo theo $1/\min\{S_1,S_2\}\le1/t$.
 
-**Dạng lồi.** Với $z_i=\log p_i$, $\tau=\log t$, Định lý 02.33 cho bài $\min-\tau$ với các ràng buộc
+**Dạng lồi.** Với $z_i=\log p_i$, $\tau=\log t$, Định lý 02.33 cho bài toán $\min-\tau$ với các ràng buộc
 
 $$
 \log(e^{\tau-z_1}+\tfrac14e^{\tau+z_2-z_1})\le0,\qquad\log(e^{\tau-z_2}+\tfrac32e^{\tau+z_1-z_2})\le0,\qquad\log(e^{z_1}+e^{z_2})\le\log6 .
@@ -1964,7 +1964,7 @@ Trên hình, giá trị nhỏ nhất của hai SINR dọc đường ngân sách 
 
 ### 4.5 Chia ngân sách tính toán giữa kích thước mô hình và dữ liệu
 
-Bài thiết kế thứ ba đến từ huấn luyện mô hình ngôn ngữ lớn. Với các mô hình này, sai số kiểm định thường được mô tả bằng luật tỷ lệ (scaling law)
+Bài toán thiết kế thứ ba đến từ huấn luyện mô hình ngôn ngữ lớn. Với các mô hình này, sai số kiểm định thường được mô tả bằng luật tỷ lệ (scaling law)
 
 $$
 \mathcal L(N_p,N_d)=\mathcal E+\mathcal AN_p^{-\alpha}+\mathcal BN_d^{-\beta}.
@@ -1972,7 +1972,7 @@ $$
 
 Trong đó $N_p$ là số tham số, $N_d$ là số token huấn luyện, và các hằng số dương được ước lượng từ thí nghiệm. Token là đơn vị văn bản mà mô hình xử lý, thường là một từ hoặc một phần của từ. Chi phí tính toán xấp xỉ tỷ lệ với $N_pN_d$ (Hoffmann và cộng sự 2022, mục 3.3).
 
-Do mục tiêu là tổng đơn thức dương và ngân sách là một ràng buộc đơn thức, bài chia ngân sách là quy hoạch hình học.
+Do mục tiêu là tổng đơn thức dương và ngân sách là một ràng buộc đơn thức, bài toán chia ngân sách là quy hoạch hình học.
 
 ::: example Ví dụ 02.23 (Chia ngân sách theo luật tỷ lệ, số liệu giả lập)
 **Lập mô hình.** Lấy $\alpha=\beta=\tfrac12$, $\mathcal A=2$, $\mathcal B=1$ và ngân sách $N_pN_d\le100$ theo đơn vị chuẩn hóa; hằng số $\mathcal E$ không đổi nghiệm nên được bỏ. Bài toán là $\min2N_p^{-1/2}+N_d^{-1/2}$ với $\tfrac1{100}N_pN_d\le1$, một quy hoạch hình học. Chia đều $N_p=N_d=10$ cho $3/\sqrt{10}\approx0{,}949$.
@@ -1990,7 +1990,7 @@ cho $e^z=20$. Vậy $N_p^*=20$, $N_d^*=5$, giá trị $2/\sqrt{20}+1/\sqrt5=2/\s
 **Kiểm tra lại.** Tại nghiệm, hai hạng bằng nhau, $2/\sqrt{20}=1/\sqrt5$. Đây là điều kiện tối ưu của hai đơn thức có cùng số mũ khi tích bị cố định, tương tự hai SINR bằng nhau ở Ví dụ 02.22. Phương án $(40,\tfrac52)$ cho $2/\sqrt{40}+\sqrt{0{,}4}\approx0{,}316+0{,}632=0{,}949>0{,}894$.
 :::
 
-**Trong học máy.** Ví dụ 02.23 là phiên bản thu nhỏ của bài chọn kích thước mô hình tối ưu theo tính toán. Khi các hằng số của luật tỷ lệ dương, Định lý 02.33 bảo đảm bài toán lồi sau khi lấy logarit, nên nghiệm tìm bằng phương pháp cục bộ là toàn cục. Luật tỷ lệ chỉ là xấp xỉ thực nghiệm trong một phạm vi kích thước.
+**Trong học máy.** Ví dụ 02.23 là phiên bản thu nhỏ của bài toán chọn kích thước mô hình tối ưu theo tính toán. Khi các hằng số của luật tỷ lệ dương, Định lý 02.33 bảo đảm bài toán lồi sau khi lấy logarit, nên nghiệm tìm bằng phương pháp cục bộ là toàn cục. Luật tỷ lệ chỉ là xấp xỉ thực nghiệm trong một phạm vi kích thước.
 
 ::: exercise Bài tập 02.7
 Với $x,y,z>0$, xác định ràng buộc nào đưa được về dạng (4.1), $\min f_0(v)$ với $f_i(v)\le1$, $g_j(v)=1$ theo biến $v\in\mathbb R^n_{++}$, trong đó $f_i$ là tổng đơn thức dương và $g_j$ là đơn thức, và viết dạng đó:
@@ -2018,9 +2018,9 @@ Dùng Mệnh đề 02.30: với $f$ là tổng đơn thức dương và $g$ là 
 - **(e)** Chiều "tổng đơn thức dương $\ge$ đơn thức" không đưa được về dạng chuẩn: chia cho $z$ cho $x/z+y/z\ge1$, sai chiều.
 :::
 
-Từ đơn thức và tổng đơn thức dương (Định nghĩa 02.28), chúng ta đã xác định lớp quy hoạch hình học (Định nghĩa 02.29) cùng quy tắc đưa về dạng chuẩn (Mệnh đề 02.30). Bổ đề 02.31, Định lý 02.32 và Mệnh đề 02.6 cho kết quả chính của mục là Định lý 02.33, và ba ví dụ thiết kế áp dụng nó. Như vậy, bốn mục đầu cho bốn lớp bài toán và hai cách cải dạng giữ nghiệm là thêm biến và đổi biến.
+Từ đơn thức và tổng đơn thức dương (Định nghĩa 02.28), chúng ta đã xác định lớp quy hoạch hình học (Định nghĩa 02.29) cùng quy tắc đưa về dạng chuẩn (Mệnh đề 02.30). Bổ đề 02.31, Định lý 02.32 và Mệnh đề 02.6 cho kết quả chính của mục là Định lý 02.33, và ba ví dụ thiết kế áp dụng nó. Như vậy, bốn mục đầu cho bốn lớp bài toán và hai cách biến đổi giữ nghiệm là thêm biến và đổi biến.
 
-Tuy nhiên, số lỗi phân loại là hàm bậc thang, còn quyết định mua một gói dữ liệu là biến nhị phân, nên các bài này có miền hoặc tập nghiệm không lồi theo mọi cách viết đã gặp. Trong Mục 5, chúng ta thay mục tiêu hoặc mở rộng miền, và đánh giá sai lệch do phép thay thế gây ra.
+Tuy nhiên, số lỗi phân loại là hàm bậc thang, còn quyết định mua một gói dữ liệu là biến nhị phân, nên các bài toán này có miền hoặc tập nghiệm không lồi theo mọi cách viết đã gặp. Trong Mục 5, chúng ta thay mục tiêu hoặc mở rộng miền, và đánh giá sai lệch do phép thay thế gây ra.
 
 ## 5. Xấp xỉ lồi và nới lỏng bài toán không lồi
 
@@ -2028,7 +2028,7 @@ Bài toán phân loại sau có tập nghiệm không lồi, nên không có cá
 
 Một bộ phân loại ảnh dùng một đặc trưng đã chuẩn hóa $u$ và một ngưỡng $\theta$: ảnh được xếp vào nhóm cần tìm khi $u>\theta$. Bốn ảnh có $u=(-2,-1,1,2)$ với nhãn $y=(-1,+1,-1,+1)$, trong đó $+1$ là nhóm cần tìm. Nhãn xen kẽ nên không ngưỡng nào phân loại đúng cả bốn ảnh (số liệu minh họa tự xây dựng). Số ảnh bị phân loại sai là hàm bậc thang theo $\theta$, không lồi.
 
-Hai cách xử lý được xét ở đây gồm thay mục tiêu bằng một hàm thay thế lồi, và mở rộng miền của một bài nhị phân thành quy hoạch tuyến tính. Với mỗi cách, chúng ta chỉ ra điều được bảo đảm và điều phải kiểm tra lại trên bài gốc.
+Hai cách xử lý được xét ở đây gồm thay mục tiêu bằng một hàm thay thế lồi, và mở rộng miền của một bài toán nhị phân thành quy hoạch tuyến tính. Với mỗi cách, chúng ta chỉ ra điều được bảo đảm và điều phải kiểm tra lại trên bài toán gốc.
 
 ### 5.1 Mất mát đếm lỗi không lồi
 
@@ -2071,7 +2071,7 @@ Liệt kê các khoảng như trên là đủ cho bốn ảnh. Với nhiều đ�
 
 Về mặt ý tưởng, chúng ta thay hàm bậc thang $\ell_{01}$ bằng một hàm lồi nằm trên nó. Tổng của các hàm lồi theo $\theta$ là lồi, nên bài toán mới thuộc các lớp đã học, và do hàm mới nằm trên $\ell_{01}$, giá trị của nó chặn trên số lỗi. Ý tưởng này chưa phải định nghĩa.
 
-![Đồ thị theo biên có dấu r từ âm 2 đến 2. Mất mát đếm lỗi là hàm bậc thang bằng 1 khi r nhỏ hơn hoặc bằng 0 và bằng 0 khi r dương. Mất mát bản lề max(0, 1 trừ r) là đường gấp khúc giảm tuyến tính tới 0 tại r bằng 1 rồi nằm ngang; nó luôn nằm trên hoặc chạm hàm đếm lỗi.](img/lec-02/ap-hinge.svg)
+![Đồ thị theo biên có dấu r từ âm 2 đến 2. Mất mát đếm lỗi là hàm bậc thang bằng 1 khi r nhỏ hơn hoặc bằng 0 và bằng 0 khi r dương. Mất mát bản lề max(0, 1 trừ r) là đường gấp khúc giảm tuyến tính tới 0 tại r bằng 1 rồi nằm ngang; nó luôn nằm trên hoặc trùng với hàm đếm lỗi.](img/lec-02/ap-hinge.svg)
 
 Hình trên minh họa hai mất mát cạnh nhau. Mất mát bản lề phạt cả những mẫu đúng nhưng có biên nhỏ hơn $1$, và phạt tuyến tính các mẫu sai theo mức độ sai. Hai khái niệm được định nghĩa như sau.
 
@@ -2085,9 +2085,9 @@ Với bộ phân loại tuyến tính có tham số $(w,b)\in\mathbb R^d\times\m
 
 Hàm bản lề lồi vì là cực đại của hai hàm affine (Ví dụ 01.14(c) của Bài 01). Mất mát logistic cơ số $2$, $\log_2(1+e^{-r})$, là một hàm thay thế khác (Bài tập 02.8).
 
-Lưu ý rằng một hàm thay thế đổi mục tiêu, và quan hệ với bài gốc được nêu ở Nhận xét 02.7 và 02.43.
+Lưu ý rằng một hàm thay thế đổi mục tiêu, và quan hệ với bài toán gốc được nêu ở Nhận xét 02.7 và 02.43.
 
-Bảo đảm của hàm thay thế được phát biểu trong mệnh đề sau, với chứng minh dùng Định lý 01.31 cho tính lồi và Định lý 02.15 cho cải dạng tuyến tính.
+Bảo đảm của hàm thay thế được phát biểu trong mệnh đề sau, với chứng minh dùng Định lý 01.31 cho tính lồi và Định lý 02.15 cho phép biến đổi về quy hoạch tuyến tính.
 
 ::: proposition Mệnh đề 02.36 (Bảo đảm và giới hạn của hàm thay thế)
 **Giả thiết.** $\ell$ là hàm thay thế lồi; $H_\ell(w,b)=\sum_i\ell(y_i(w^Tu_i+b))$ và $\operatorname{err}(w,b)=\sum_i\ell_{01}(y_i(w^Tu_i+b))$.
@@ -2134,7 +2134,7 @@ $$
 
 Vậy $\min_\theta H=4$, đạt đúng trên đoạn $[-1,1]$. Theo Mệnh đề 02.36(c), quy hoạch tuyến tính $\min\sum_i\xi_i$ với $\xi_i\ge1-r_i(\theta)$, $\xi_i\ge0$ có cùng giá trị $4$.
 
-**Số lỗi tại các nghiệm của $H$.** Theo bảng của Ví dụ 02.24, $\operatorname{err}(\theta)=2$ với mọi $\theta\in[-1,1]$. Số lỗi nhỏ nhất là $1$, đạt chẳng hạn tại $\theta=-\tfrac32$, nơi $H(-\tfrac32)=\tfrac12+\tfrac12+\tfrac72+0=\tfrac92$. Vậy mọi nghiệm của bài thay thế có số lỗi gấp đôi số lỗi tối ưu.
+**Số lỗi tại các nghiệm của $H$.** Theo bảng của Ví dụ 02.24, $\operatorname{err}(\theta)=2$ với mọi $\theta\in[-1,1]$. Số lỗi nhỏ nhất là $1$, đạt chẳng hạn tại $\theta=-\tfrac32$, nơi $H(-\tfrac32)=\tfrac12+\tfrac12+\tfrac72+0=\tfrac92$. Vậy mọi nghiệm của bài toán thay thế có số lỗi gấp đôi số lỗi tối ưu.
 
 **Kiểm tra lại.** $H(0)=0+2+2+0=4$, và $\operatorname{err}(0)=2\le4$; $H(-\tfrac32)=4{,}5\ge\operatorname{err}(-\tfrac32)=1$. Hai cặp đều thỏa $\operatorname{err}\le H$ của Mệnh đề 02.36(b). Cận $\inf\operatorname{err}=1\le\inf H=4$ đúng nhưng cách xa.
 :::
@@ -2148,8 +2148,8 @@ Nghiệm của tổng bản lề là các ngưỡng ở giữa, nơi không ản
 ::: remark Nhận xét 02.37 (Hàm thay thế trong thiết kế phương pháp học)
 Mục đích của bộ phân loại là dự đoán đúng trên dữ liệu chưa thấy; số lỗi huấn luyện chỉ là đại diện. Dùng hàm thay thế dựa trên ba căn cứ:
 
-1. toán học: Mệnh đề 02.36 cho bài lồi kèm bảo đảm một chiều;
-2. tính toán: bài thay thế giải được bằng quy hoạch tuyến tính hoặc bậc hai;
+1. toán học: Mệnh đề 02.36 cho bài toán lồi kèm bảo đảm một chiều;
+2. tính toán: bài toán thay thế giải được bằng quy hoạch tuyến tính hoặc bậc hai;
 3. thực nghiệm: số lỗi của nghiệm phải được đo lại trên tập kiểm định độc lập.
 
 Ví dụ 02.25 cho thấy căn cứ thứ ba không bỏ được. Nhầm lẫn thường gặp là báo cáo giá trị $H$ như số lỗi.
@@ -2163,14 +2163,14 @@ Khi điểm số là đầu ra của mạng nơ-ron, ánh xạ từ tham số t�
 
 Mất mát bản lề áp dụng được cho bộ phân loại tuyến tính nhiều đặc trưng, nhưng cực tiểu riêng $H(w,b)$ có một nhược điểm. Khi dữ liệu tách được, nhân một nghiệm có $H=0$ với số lớn vẫn giữ $H=0$, nên nghiệm không xác định.
 
-Một hạng phạt bậc hai lên $w$ chọn nghiệm có $\lVert w\rVert_2$ nhỏ, tức khoảng cách $1/\lVert w\rVert_2$ từ biên quyết định (decision boundary) $w^Tu+b=0$ tới các mặt $w^Tu+b=\pm1$ lớn. Ví dụ sau minh họa cả hai điều này với một đặc trưng.
+Số hạng phạt bậc hai đặt lên $w$ chọn nghiệm có $\lVert w\rVert_2$ nhỏ, tức khoảng cách $1/\lVert w\rVert_2$ từ biên quyết định (decision boundary) $w^Tu+b=0$ tới các mặt $w^Tu+b=\pm1$ lớn. Ví dụ sau minh họa cả hai điều này với một đặc trưng.
 
 ::: example Ví dụ 02.26 (Mất mát bản lề không xác định nghiệm trên dữ liệu tách được)
 **Dữ kiện.** Với một đặc trưng, tổng mất mát bản lề là $H(w,b)=\sum_i\max\bigl(0,1-y_i(wu_i+b)\bigr)$ (Định nghĩa 02.35).
 
-**Không có hạng phạt.** Hai mẫu $u=-1$ với nhãn $-1$ và $u=1$ với nhãn $+1$. Với $b=0$, $H(w,0)=2\max(0,1-w)$ bằng $0$ với mọi $w\ge1$, nên mọi $(w,0)$ với $w\ge1$ là nghiệm của $\min H$. Nhân nghiệm $(1,0)$ với $2$ hay $10$ vẫn cho $H=0$.
+**Không có số hạng phạt.** Hai mẫu $u=-1$ với nhãn $-1$ và $u=1$ với nhãn $+1$. Với $b=0$, $H(w,0)=2\max(0,1-w)$ bằng $0$ với mọi $w\ge1$, nên mọi $(w,0)$ với $w\ge1$ là nghiệm của $\min H$. Nhân nghiệm $(1,0)$ với $2$ hay $10$ vẫn cho $H=0$.
 
-**Thêm hạng phạt.** Thêm $\tfrac\lambda2w^2$ với $0<\lambda\le2$.
+**Thêm số hạng phạt.** Thêm $\tfrac\lambda2w^2$ với $0<\lambda\le2$.
 
 - Trên $w\le1$, đạo hàm $\lambda w-2<0$.
 - Trên $w\ge1$, mục tiêu $\tfrac\lambda2w^2$ tăng.
@@ -2180,7 +2180,7 @@ Do đó nghiệm theo $w$ (với $b=0$) là $w=1$, giá trị $\tfrac\lambda2$.
 **Kiểm tra lại.** Với $\lambda=2$ và $w=1$, mục tiêu bằng $1=\tfrac\lambda2$; với $w=0{,}8$, nó bằng $0{,}64+0{,}4=1{,}04>1$.
 :::
 
-Ghép tổng mất mát bản lề với hạng phạt bậc hai, ta được mô hình theo định nghĩa sau.
+Ghép tổng mất mát bản lề với số hạng phạt bậc hai, ta được mô hình theo định nghĩa sau.
 
 ::: definition Định nghĩa 02.38 (Máy vector hỗ trợ lề mềm)
 Cho dữ liệu $(u_i,y_i)\in\mathbb R^d\times\{-1,+1\}$, $i=1,\ldots,N$, và $\lambda>0$. Máy vector hỗ trợ (support vector machine, SVM) lề mềm là bài toán
@@ -2219,7 +2219,7 @@ $$
 :::
 
 ::: proof Chứng minh Mệnh đề 02.39
-**Bước 1 (phần (a)).** Áp dụng Định lý 02.15 với $f(w,b)=\tfrac\lambda2\lVert w\rVert_2^2$, $C=\mathbb R^{d+1}$, $\gamma_i=1$. Theo thứ tự biến $(w,b,\xi)$, mục tiêu có ma trận bậc hai $\operatorname{diag}(\lambda I_d,0,0_N)\succeq0$, các ràng buộc affine, nên bài là quy hoạch bậc hai theo Định nghĩa 02.17.
+**Bước 1 (phần (a)).** Áp dụng Định lý 02.15 với $f(w,b)=\tfrac\lambda2\lVert w\rVert_2^2$, $C=\mathbb R^{d+1}$, $\gamma_i=1$. Theo thứ tự biến $(w,b,\xi)$, mục tiêu có ma trận bậc hai $\operatorname{diag}(\lambda I_d,0,0_N)\succeq0$, các ràng buộc affine, nên bài toán là quy hoạch bậc hai theo Định nghĩa 02.17.
 
 **Bước 2 (phần (b): chặn dưới theo $b$ và $w$).** Gọi $i_+$, $i_-$ là chỉ số của một mẫu nhãn $+1$ và một mẫu nhãn $-1$, và $M=\max_i\lVert u_i\rVert_2$. Mỗi hạng bản lề không nhỏ hơn biểu thức bên trong, và Cauchy–Schwarz cho $\lvert w^Tu_i\rvert\le M\lVert w\rVert_2$, nên
 
@@ -2271,7 +2271,7 @@ Một nhóm phát triển mô hình nhận diện người đi bộ cần mua �
 
 Phương án mua cả ba gói có chi phí $6$ triệu đồng, và bài toán đặt ra là tìm phương án có chi phí nhỏ nhất.
 
-::: example Ví dụ 02.27 (Mô hình nhị phân của bài chọn gói)
+::: example Ví dụ 02.27 (Mô hình nhị phân của bài toán chọn gói)
 **Dữ kiện.** Ba bối cảnh ngày khô, đêm khô, trời mưa; ba gói bán nguyên gói, mỗi gói $2$ triệu đồng: gói $1$ gồm ngày khô và đêm khô, gói $2$ gồm đêm khô và trời mưa, gói $3$ gồm ngày khô và trời mưa. Cần tìm cách mua có chi phí nhỏ nhất sao cho mỗi bối cảnh có trong ít nhất một gói.
 
 **Lập mô hình.** Biến $x_j=1$ nếu mua gói $j$ và $x_j=0$ nếu không. Mỗi bối cảnh phải có ít nhất một gói chứa nó:
@@ -2299,17 +2299,17 @@ Tập khả thi $F=\{(1,1,0),(1,0,1),(0,1,1),(1,1,1)\}$ và giá trị tối ưu
 
 Với ba gói, liệt kê là đủ, nhưng với $n$ gói, có $2^n$ phương án.
 
-Một cách trực quan, ta bỏ điều kiện nguyên và cho phép $x_j$ nhận mọi giá trị trong $[0,1]$. Bài mới là quy hoạch tuyến tính có tập khả thi chứa $F$, nên giá trị tối ưu của nó không lớn hơn $p^*$. Định nghĩa sau làm chính xác ý tưởng này.
+Một cách trực quan, ta bỏ điều kiện nguyên và cho phép $x_j$ nhận mọi giá trị trong $[0,1]$. Bài toán mới là quy hoạch tuyến tính có tập khả thi chứa $F$, nên giá trị tối ưu của nó không lớn hơn $p^*$. Định nghĩa sau làm chính xác ý tưởng này.
 
 ::: definition Định nghĩa 02.41 (Nới lỏng)
 Cho bài toán $(\mathrm P_F)$: $\min_{x\in F}f(x)$. Một bài toán $(\mathrm P_{\tilde F})$: $\min_{x\in\tilde F}f(x)$ với cùng mục tiêu và $F\subseteq\tilde F$ được gọi là một nới lỏng (relaxation) của $(\mathrm P_F)$.
 
-Với bài nhị phân có ràng buộc tuyến tính, $F=\{x\in\{0,1\}^n\mid Gx\preceq h\}$, nới lỏng tuyến tính là bài toán trên $\tilde F=\{x\in[0,1]^n\mid Gx\preceq h\}$.
+Với bài toán nhị phân có ràng buộc tuyến tính, $F=\{x\in\{0,1\}^n\mid Gx\preceq h\}$, nới lỏng tuyến tính là bài toán trên $\tilde F=\{x\in[0,1]^n\mid Gx\preceq h\}$.
 :::
 
-Nới lỏng khác cải dạng tương đương ở chỗ tập khả thi được mở rộng thực sự, và khác hàm thay thế ở chỗ mục tiêu giữ nguyên.
+Nới lỏng khác biến đổi tương đương ở chỗ tập khả thi được mở rộng thực sự, và khác hàm thay thế ở chỗ mục tiêu giữ nguyên.
 
-Nới lỏng tuyến tính của một bài nhị phân có mục tiêu tuyến tính là quy hoạch tuyến tính, vì $x_j\in[0,1]$ là hai bất đẳng thức tuyến tính. Ký hiệu $p^*_F$ và $p^*_{\tilde F}$ cho hai giá trị tối ưu.
+Nới lỏng tuyến tính của một bài toán nhị phân có mục tiêu tuyến tính là quy hoạch tuyến tính, vì $x_j\in[0,1]$ là hai bất đẳng thức tuyến tính. Ký hiệu $p^*_F$ và $p^*_{\tilde F}$ cho hai giá trị tối ưu.
 
 Từ Mệnh đề 01.16 về hai bài toán có miền lồng nhau, ta suy ra các cận và chứng nhận sau cho nới lỏng.
 
@@ -2323,9 +2323,9 @@ Từ Mệnh đề 01.16 về hai bài toán có miền lồng nhau, ta suy ra c�
 - (c) Nếu một nghiệm $\tilde x$ của $(\mathrm P_{\tilde F})$ thuộc $F$ thì $\tilde x$ là nghiệm của $(\mathrm P_F)$ và $p^*_F=p^*_{\tilde F}$.
 - (d) Với mọi $\hat x\in F$, $p^*_{\tilde F}\le p^*_F\le f(\hat x)$, nên khoảng cách từ $f(\hat x)$ tới giá trị tối ưu không vượt $f(\hat x)-p^*_{\tilde F}$.
 
-**Điều kiện áp dụng.** Cùng mục tiêu, $F\subseteq\tilde F$, bài toán cực tiểu. Với bài cực đại, giá trị của nới lỏng là cận trên.
+**Điều kiện áp dụng.** Cùng mục tiêu, $F\subseteq\tilde F$, bài toán cực tiểu. Với bài toán cực đại, giá trị của nới lỏng là cận trên.
 
-**Phạm vi.** Mệnh đề không cho cách biến nghiệm của nới lỏng thành phương án của bài gốc; nghiệm của nới lỏng có thể không thuộc $F$, và làm tròn nó có thể cho phương án không khả thi hoặc không tối ưu.
+**Phạm vi.** Mệnh đề không cho cách biến nghiệm của nới lỏng thành phương án của bài toán gốc; nghiệm của nới lỏng có thể không thuộc $F$, và làm tròn nó có thể cho phương án không khả thi hoặc không tối ưu.
 :::
 
 ::: proof Chứng minh Mệnh đề 02.42
@@ -2340,10 +2340,10 @@ Từ Mệnh đề 01.16 về hai bài toán có miền lồng nhau, ta suy ra c�
 
 Mệnh đề 02.42 dùng Mệnh đề 01.16 theo hướng mới, để nhận cận cho một bài toán khó từ một bài toán dễ giải hơn.
 
-Trong thực hành, người ta dùng phần (d), vì bộ giải trả về phương án khả thi $\hat x$ cùng cận $p^*_{\tilde F}$, và hiệu $f(\hat x)-p^*_{\tilde F}$ đo mức có thể còn cải thiện. Ví dụ sau áp dụng mệnh đề này cho bài chọn gói.
+Trong thực hành, người ta dùng phần (d), vì bộ giải trả về phương án khả thi $\hat x$ cùng cận $p^*_{\tilde F}$, và hiệu $f(\hat x)-p^*_{\tilde F}$ đo mức có thể còn cải thiện. Ví dụ sau áp dụng mệnh đề này cho bài toán chọn gói.
 
 ::: example Ví dụ 02.28 (Nghiệm của nới lỏng tuyến tính và chứng nhận $p^*=4$)
-**Dữ kiện.** Bài chọn gói (5.2): $\min2(x_1+x_2+x_3)$ với $x_1+x_3\ge1$, $x_1+x_2\ge1$, $x_2+x_3\ge1$, $x\in\{0,1\}^3$; liệt kê cho $p^*=4$ (Ví dụ 02.27). Mệnh đề 02.42(d): nếu $(\mathrm P_{\tilde F})$ là nới lỏng của $(\mathrm P_F)$ (cùng mục tiêu $f$, $F\subseteq\tilde F$) thì với mọi $\hat x\in F$, $p^*_{\tilde F}\le p^*_F\le f(\hat x)$.
+**Dữ kiện.** Bài toán chọn gói (5.2): $\min2(x_1+x_2+x_3)$ với $x_1+x_3\ge1$, $x_1+x_2\ge1$, $x_2+x_3\ge1$, $x\in\{0,1\}^3$; liệt kê cho $p^*=4$ (Ví dụ 02.27). Mệnh đề 02.42(d): nếu $(\mathrm P_{\tilde F})$ là nới lỏng của $(\mathrm P_F)$ (cùng mục tiêu $f$, $F\subseteq\tilde F$) thì với mọi $\hat x\in F$, $p^*_{\tilde F}\le p^*_F\le f(\hat x)$.
 
 **Giải nới lỏng.** Nới lỏng tuyến tính của (5.2) thay $x\in\{0,1\}^3$ bằng $0\le x_j\le1$. Cộng ba ràng buộc phủ: $(x_1+x_3)+(x_1+x_2)+(x_2+x_3)\ge3$, tức
 
@@ -2364,29 +2364,29 @@ Mọi điểm khả thi của nới lỏng có chi phí ít nhất $3$, và $\ti
 **Kiểm tra lại.** Kết luận khớp với liệt kê ở Ví dụ 02.27. Cận dưới $3$ không đạt được bởi phương án nhị phân nào, và chi phí $6$ của phương án làm tròn lên chỉ là một cận trên.
 :::
 
-![Ba thanh ứng với ba gói, mỗi thanh chỉ được tô một nửa chiều cao, biểu diễn nghiệm phân số x1 bằng x2 bằng x3 bằng một phần hai của bài nới lỏng. Chú thích nhắc rằng đây không phải một giao dịch được phép vì mỗi gói chỉ bán nguyên.](img/lec-02/ap-cover.svg)
+![Ba thanh ứng với ba gói, mỗi thanh chỉ được tô một nửa chiều cao, biểu diễn nghiệm phân số x1 bằng x2 bằng x3 bằng một phần hai của bài toán nới lỏng. Chú thích nhắc rằng đây không phải một giao dịch được phép vì mỗi gói chỉ bán nguyên.](img/lec-02/ap-cover.svg)
 
 Hình trên minh họa nghiệm phân số của nới lỏng. Giá trị $x_j=\tfrac12$ là giá trị của biến trong một bài toán khác, không có nghĩa là mua nửa gói hay mua với xác suất một nửa.
 
-Lưu ý rằng lập luận "bội của $2$" là bước riêng của bài này. Với giá khác nhau, khoảng $[p^*_{\tilde F},f(\hat x)]$ có thể chứa nhiều giá trị khả dĩ và cần liệt kê hoặc phương pháp khác (Tình huống 02.3).
+Lưu ý rằng lập luận "bội của $2$" là bước riêng của bài toán này. Với giá khác nhau, khoảng $[p^*_{\tilde F},f(\hat x)]$ có thể chứa nhiều giá trị khả dĩ và cần liệt kê hoặc phương pháp khác (Tình huống 02.3).
 
 ::: remark Nhận xét 02.43 (Bốn phép xử lý và ý nghĩa của nghiệm)
-Bảng sau phân biệt bốn phép xử lý của chương theo quan hệ giữa nghiệm của bài mới và bài gốc.
+Bảng sau phân biệt bốn phép xử lý của chương theo quan hệ giữa nghiệm của bài toán mới và bài toán gốc.
 
-| Phép xử lý | Quan hệ với bài gốc | Việc phải làm sau khi giải |
+| Phép xử lý | Quan hệ với bài toán gốc | Việc phải làm sau khi giải |
 |---|---|---|
-| Cải dạng tương đương (Định nghĩa 02.5): biến phụ, biến dư, đổi biến logarit | ánh xạ $\psi$ cho bằng công thức chuyển mọi nghiệm thành nghiệm gốc (Nhận xét 02.7) | áp dụng $\psi$ |
+| Biến đổi tương đương (Định nghĩa 02.5): biến phụ, biến dư, đổi biến logarit | ánh xạ $\psi$ cho bằng công thức chuyển mọi nghiệm thành nghiệm gốc (Nhận xét 02.7) | áp dụng $\psi$ |
 | Thay mất mát (Định nghĩa 02.35): số lỗi thành bản lề | chỉ có $\operatorname{err}\le H$; nghiệm nói chung không là nghiệm gốc (Ví dụ 02.25) | đo lại mục tiêu gốc tại nghiệm |
-| Thay ràng buộc bằng hình phạt (Mục 3.3, 6.2): trần hay giới hạn số đặc trưng thành hạng phạt | từ hình phạt chỉ suy ra một mức trần (Mệnh đề 02.26); ràng buộc gốc có thể bị vi phạm (Ví dụ 02.29) | kiểm tra lại ràng buộc gốc |
+| Thay ràng buộc bằng hình phạt (Mục 3.3, 6.2): ràng buộc chặn chuẩn hay giới hạn số đặc trưng thành số hạng phạt | từ hình phạt chỉ suy ra một mức chặn (Mệnh đề 02.26); ràng buộc gốc có thể bị vi phạm (Ví dụ 02.29) | kiểm tra lại ràng buộc gốc |
 | Nới lỏng (Định nghĩa 02.41): nhị phân thành khoảng | mục tiêu giữ nguyên, miền mở rộng; giá trị chỉ cho cận | khôi phục phương án khả thi, ghép cận |
 
 Ba nhầm lẫn thường gặp:
 
-1. gọi một phép ở ba dòng dưới là cải dạng;
-2. đọc giá trị của nới lỏng như giá trị của bài gốc;
+1. gọi một phép ở ba dòng dưới là biến đổi tương đương;
+2. đọc giá trị của nới lỏng như giá trị của bài toán gốc;
 3. coi một điểm khả thi của nới lỏng, như $(1,1,1)$ với chi phí $6$, là một cận dưới.
 
-Chiều của cận phụ thuộc chiều tối ưu: với bài cực đại, nới lỏng cho cận trên.
+Chiều của cận phụ thuộc chiều tối ưu: với bài toán cực đại, nới lỏng cho cận trên.
 :::
 
 **Trong học máy.** Nới lỏng tuyến tính dùng cho các quyết định rời rạc quanh một hệ học máy: chọn dữ liệu cần gán nhãn dưới ngân sách, chọn mô-đun đưa lên thiết bị dưới giới hạn bộ nhớ, chọn đặc trưng.
@@ -2446,7 +2446,7 @@ Các tổng được tính từ giá trị chưa làm tròn, nên có thể lệ
 - (c) nếu một nghiệm của $(\mathrm P_{\tilde F})$ thuộc $F$ thì nó là nghiệm của $(\mathrm P_F)$ và $p^*_F=p^*_{\tilde F}$;
 - (d) với mọi $\hat x\in F$, $p^*_{\tilde F}\le p^*_F\le f(\hat x)$.
 
-Bốn bối cảnh $A,B,C,D$ và bốn gói giá $1$: gói $1$ có $\{A,B\}$, gói $2$ có $\{B,C\}$, gói $3$ có $\{C,D\}$, gói $4$ có $\{D,A\}$. Viết nới lỏng tuyến tính của bài chọn gói có chi phí nhỏ nhất phủ đủ bốn bối cảnh, chứng minh giá trị của nó là $2$, và kết luận về bài nhị phân bằng Mệnh đề 02.42.
+Bốn bối cảnh $A,B,C,D$ và bốn gói giá $1$: gói $1$ có $\{A,B\}$, gói $2$ có $\{B,C\}$, gói $3$ có $\{C,D\}$, gói $4$ có $\{D,A\}$. Viết nới lỏng tuyến tính của bài toán chọn gói có chi phí nhỏ nhất phủ đủ bốn bối cảnh, chứng minh giá trị của nó là $2$, và kết luận về bài toán nhị phân bằng Mệnh đề 02.42.
 :::
 
 ::: hint
@@ -2458,16 +2458,16 @@ Cộng hai ràng buộc của $B$ và $D$.
 
 **Cận dưới.** Cộng ràng buộc của $B$ và $D$: $\sum_jx_j\ge2$.
 
-**Nghiệm.** Điểm $(1,0,1,0)$ khả thi (mỗi ràng buộc có đúng một hạng bằng $1$) với giá trị $2$, nên là nghiệm của nới lỏng. Nó nhị phân, nên theo Mệnh đề 02.42(c) nó là nghiệm của bài nhị phân và $p^*=2$.
+**Nghiệm.** Điểm $(1,0,1,0)$ khả thi (mỗi ràng buộc có đúng một hạng bằng $1$) với giá trị $2$, nên là nghiệm của nới lỏng. Nó nhị phân, nên theo Mệnh đề 02.42(c) nó là nghiệm của bài toán nhị phân và $p^*=2$.
 
 **So sánh.** Điểm $(\tfrac12,\tfrac12,\tfrac12,\tfrac12)$ cũng là nghiệm của nới lỏng. Với chu trình ba bối cảnh của Ví dụ 02.28, cận $3$ nhỏ hơn $p^*=4$.
 :::
 
-Xuất phát từ bài số lỗi không lồi của Ví dụ 02.24, Mệnh đề 02.36 cho bài thay thế lồi với bảo đảm một chiều $\operatorname{err}\le H$, và Ví dụ 02.25 đo khoảng cách giữa hai bài. Mệnh đề 02.39 mở rộng sang nhiều đặc trưng, Mệnh đề 02.42 cho cận từ nới lỏng, và kết quả chính của mục là Nhận xét 02.43.
+Xuất phát từ bài toán số lỗi không lồi của Ví dụ 02.24, Mệnh đề 02.36 cho bài toán thay thế lồi với bảo đảm một chiều $\operatorname{err}\le H$, và Ví dụ 02.25 đo khoảng cách giữa hai bài toán. Mệnh đề 02.39 mở rộng sang nhiều đặc trưng, Mệnh đề 02.42 cho cận từ nới lỏng, và kết quả chính của mục là Nhận xét 02.43.
 
 Các phép xử lý này mới được áp dụng cho các ví dụ có lớp bài toán đã biết trước. Chưa có quy trình xác định phép xử lý và bước kiểm tra cần dùng cho một mô hình mới. Trong Mục 6, chúng ta xây dựng quy trình đó.
 
-## 6. Tổng hợp: nhận dạng lớp bài toán và kiểm tra cải dạng
+## 6. Tổng hợp: nhận dạng lớp bài toán và kiểm tra phép biến đổi
 
 Ta xét một mô hình chưa biết trước thuộc lớp nào.
 
@@ -2487,32 +2487,32 @@ Bảng sau liệt kê các lớp đã gặp, theo biến $x\in\mathbb R^n$. Ký 
 | Quy hoạch hình học | tổng đơn thức dương | tổng đơn thức dương $\le1$, đơn thức $=1$, $x\succ0$ | lồi sau đổi biến $z=\log x$ | Định nghĩa 02.29, Định lý 02.33 |
 | Dạng chuẩn tổng quát | $f_0$ lồi | $f_i\le0$ với $f_i$ lồi, $Ax=b$ | từng dòng | Định nghĩa 02.1, Mệnh đề 02.2 |
 
-Trong bảng trên, ba lớp đầu lồng nhau và cùng nằm trong dạng chuẩn tổng quát, còn quy hoạch hình học chỉ tương đương với một bài dạng chuẩn sau đổi biến.
+Trong bảng trên, ba lớp đầu lồng nhau và cùng nằm trong dạng chuẩn tổng quát, còn quy hoạch hình học chỉ tương đương với một bài toán dạng chuẩn sau đổi biến.
 
 Các mục tiêu có tổng hoặc cực đại của hàm affine, như $\lVert r\rVert_1$, $\lVert r\rVert_\infty$ hay mất mát bản lề, thuộc các lớp trên sau khi thêm biến phụ.
 
-Quy trình đã dùng trong các ví dụ được viết lại thành thuật toán sau. Thuật toán này mở rộng Thuật toán 01.1 của Bài 01, vốn chứng nhận một mô hình đã cho, bằng các bước cải dạng, thay thế và nới lỏng.
+Quy trình đã dùng trong các ví dụ được viết lại thành thuật toán sau. Thuật toán này mở rộng Thuật toán 01.1 của Bài 01, vốn chứng nhận một mô hình đã cho, bằng các bước biến đổi bài toán, thay thế và nới lỏng.
 
 ::: algorithm Thuật toán 02.1 (Nhận dạng và đưa một mô hình về bài toán lồi)
 **Đầu vào.** Một mô hình tối ưu: dữ kiện, biến quyết định, mục tiêu, các ràng buộc.
 
 **Đầu ra.** Một bài toán thuộc một lớp của bảng trên cùng ánh xạ khôi phục nghiệm; hoặc một bài toán lồi thay thế hay nới lỏng cùng bảo đảm của nó; hoặc kết luận rằng không có cách nào trong chương áp dụng được.
 
-1. Ghi miền $D$, kiểu và chiều của mọi biến; đổi bài cực đại thành cực tiểu bằng cách đổi dấu mục tiêu, hoặc nghịch đảo một mục tiêu đơn thức (Mệnh đề 02.30(c)).
+1. Ghi miền $D$, kiểu và chiều của mọi biến; đổi bài toán cực đại thành cực tiểu bằng cách đổi dấu mục tiêu, hoặc nghịch đảo một mục tiêu đơn thức (Mệnh đề 02.30(c)).
 2. Kiểm tra từng dòng theo Định nghĩa 02.1: mục tiêu lồi; mỗi bất đẳng thức có dạng $f_i\le0$ với $f_i$ lồi; mỗi đẳng thức affine. Công cụ: Định lý 01.30, Định lý 01.31, Định lý 02.32.
 3. Với mỗi dòng không đạt, thử viết lại thành một dòng tương đương có cùng tập nghiệm, như Ví dụ 02.1.
 4. Nếu mục tiêu chứa tổng hoặc cực đại của hàm affine với hệ số không âm, thêm biến phụ theo Định lý 02.15.
 5. Nếu mọi biến dương và các hàm là đơn thức hoặc tổng đơn thức dương, chuẩn hóa theo Mệnh đề 02.30 và đổi biến theo Định lý 02.33.
 6. Nhận dạng lớp bằng bảng trên; kiểm tra tồn tại và duy nhất (Mệnh đề 02.18, 02.21, Định lý 01.36, 01.38).
 7. Nếu bước 2 đến bước 5 không cho dạng lồi, chọn một trong ba phép đổi bài toán của Nhận xét 02.43: thay mất mát bằng hàm thay thế lồi (Định nghĩa 02.35); thay ràng buộc bằng hình phạt (Mục 3.3, 6.2); hoặc nới lỏng miền (Định nghĩa 02.41). Ghi rõ bảo đảm của phép đã chọn (Mệnh đề 02.36, 02.26 hoặc 02.42).
-8. Sau khi giải: với cải dạng tương đương, áp dụng $\psi$ để lấy nghiệm gốc; với hàm thay thế, tính lại mục tiêu gốc tại nghiệm; với hình phạt, kiểm tra lại ràng buộc gốc; với nới lỏng, khôi phục một phương án khả thi và ghép cận theo Mệnh đề 02.42(d).
+8. Sau khi giải: với biến đổi tương đương, áp dụng $\psi$ để lấy nghiệm gốc; với hàm thay thế, tính lại mục tiêu gốc tại nghiệm; với hình phạt, kiểm tra lại ràng buộc gốc; với nới lỏng, khôi phục một phương án khả thi và ghép cận theo Mệnh đề 02.42(d).
 
 **Điều kiện dừng.** Quy trình dừng sau bước 8; hoặc ở bước 7 nếu không có hàm thay thế hay nới lỏng nào chấp nhận được với người dùng mô hình.
 
 **Chi phí.** Các bước 1 đến 7 là kiểm tra trên công thức. Bước 4 thêm một biến và $K_i$ ràng buộc cho mỗi hạng cực đại; bước 5 không đổi số biến.
 :::
 
-Trong thuật toán trên, bước 3 giữ tập nghiệm, còn bước 7 cố ý đổi bài toán, nên mỗi phép biến đổi cần được kiểm tra trước khi báo cáo kết quả. Bảng kiểm sau ghi câu hỏi cần trả lời cho từng phép.
+Trong thuật toán trên, bước 3 giữ tập nghiệm, còn bước 7 cố ý đổi bài toán, nên mỗi phép biến đổi cần được kiểm tra trước khi báo cáo kết quả. Bảng kiểm tra sau ghi câu hỏi cần trả lời cho từng phép.
 
 | Phép biến đổi | Câu hỏi kiểm tra | Căn cứ |
 |---|---|---|
@@ -2521,7 +2521,7 @@ Trong thuật toán trên, bước 3 giữ tập nghiệm, còn bước 7 cố �
 | Biến dư, tách biến tự do | ánh xạ khôi phục $\psi$ được nêu; không khẳng định tương ứng một – một | Mệnh đề 02.10 |
 | Chính quy hóa | báo cáo rằng bài toán đã đổi; không so sánh giá trị có phạt với giá trị không phạt | Nhận xét 02.23 |
 | Hàm thay thế | mục tiêu gốc được đo lại tại nghiệm trên dữ liệu độc lập | Mệnh đề 02.36, Nhận xét 02.37 |
-| Nới lỏng | phương án khôi phục khả thi cho bài gốc; cận đúng chiều | Mệnh đề 02.42, Nhận xét 02.43 |
+| Nới lỏng | phương án khôi phục khả thi cho bài toán gốc; cận đúng chiều | Mệnh đề 02.42, Nhận xét 02.43 |
 
 ### 6.2 Ràng buộc số đặc trưng
 
@@ -2572,7 +2572,7 @@ Khi $k=1$, phần chung rỗng, $w=e_1$, $w'=e_2$; chỉ số $k+1\le d$ hợp l
 
 Trường hợp $d=2$, $k=1$ của Mệnh đề 02.45 được vẽ trên hình. Do mục tiêu $H$ lồi nhưng miền không lồi, (6.1) không ở dạng chuẩn.
 
-Cách giải trực tiếp là liệt kê mọi tập chỉ số có tối đa $k$ phần tử và giải bài lồi trên mỗi tập. Tuy nhiên, số bài con $\sum_{j=0}^k\binom dj$ tăng nhanh, chẳng hạn $\binom{100}{5}\approx7{,}5\cdot10^7$.
+Cách giải trực tiếp là liệt kê mọi tập chỉ số có tối đa $k$ phần tử và giải bài toán lồi trên mỗi tập. Tuy nhiên, số bài toán con $\sum_{j=0}^k\binom dj$ tăng nhanh, chẳng hạn $\binom{100}{5}\approx7{,}5\cdot10^7$.
 
 Ngoài cách tiếp cận trên, theo bước 7 của Thuật toán 02.1, ta có thể thay ràng buộc đếm bằng hình phạt chuẩn một. Hình phạt này lồi và có xu hướng cho hệ số bằng $0$ (Mục 3.3). Ta được bài toán
 
@@ -2584,7 +2584,7 @@ $$
 Theo Định lý 02.15, (6.2) là quy hoạch tuyến tính với biến $(w,b,\xi,v)$: $\min\mathbf 1^T\xi+\lambda\mathbf 1^Tv$ với $\xi_i\ge1-y_i(w^Tu_i+b)$, $\xi_i\ge0$, $-v\preceq w\preceq v$. Do đây là phép thay ràng buộc bằng hình phạt của Nhận xét 02.43, ta cần kiểm tra lại ràng buộc gốc tại nghiệm, như ví dụ sau cho thấy.
 
 ::: example Ví dụ 02.29 (Hình phạt chuẩn một không bảo đảm số đặc trưng)
-**Dữ kiện.** Bốn mẫu ở đầu Mục 6: $u_1=(1,0)$, $u_2=(-1,0)$, $u_3=(0,1)$, $u_4=(0,-1)$, nhãn $y=(+1,-1,+1,-1)$; $H(w,b)=\sum_{i=1}^4\max\bigl(0,1-y_i(w^Tu_i+b)\bigr)$. Bài (6.1) là $\min H(w,b)$ với $\lVert w\rVert_0\le k$, ở đây $k=1$; bài (6.2) là $\min_{w,b}H(w,b)+\lambda\lVert w\rVert_1$.
+**Dữ kiện.** Bốn mẫu ở đầu Mục 6: $u_1=(1,0)$, $u_2=(-1,0)$, $u_3=(0,1)$, $u_4=(0,-1)$, nhãn $y=(+1,-1,+1,-1)$; $H(w,b)=\sum_{i=1}^4\max\bigl(0,1-y_i(w^Tu_i+b)\bigr)$. Bài toán (6.1) là $\min H(w,b)$ với $\lVert w\rVert_0\le k$, ở đây $k=1$; bài toán (6.2) là $\min_{w,b}H(w,b)+\lambda\lVert w\rVert_1$.
 
 Với bốn mẫu ở đầu mục và $\lambda=1$, ta chứng minh (6.2) có nghiệm duy nhất $w=(1,1)$, $b=0$, giá trị $2$.
 
@@ -2619,7 +2619,7 @@ Tương đương giữa (6.2) và quy hoạch tuyến tính của nó là chính
 
 **Trong học máy.** Ràng buộc số đặc trưng xuất hiện khi mô hình chạy trên thiết bị hạn chế tài nguyên hoặc cần dễ diễn giải; trong mạng sâu, phiên bản tương ứng là cắt tỉa (pruning) trọng số.
 
-Mệnh đề 02.45 giải thích vì sao chọn đặc trưng chính xác không đưa được về một bài lồi duy nhất, nên lời giải chính xác cần liệt kê $\sum_{j\le k}\binom dj$ bài lồi. Ví dụ 02.29 giải thích vì sao mọi phương pháp thay thế phải được kiểm tra lại bằng phép đếm.
+Mệnh đề 02.45 giải thích vì sao chọn đặc trưng chính xác không đưa được về một bài toán lồi duy nhất, nên lời giải chính xác cần liệt kê $\sum_{j\le k}\binom dj$ bài toán lồi. Ví dụ 02.29 giải thích vì sao mọi phương pháp thay thế phải được kiểm tra lại bằng phép đếm.
 
 ::: exercise Bài tập 02.10
 **Dữ kiện.** Các lớp trong bảng của Mục 6.1, với $f_i(x)=\tfrac12x^TP_ix+q_i^Tx+s_i$:
@@ -2654,9 +2654,9 @@ Với (c), thử hai điểm đối xứng trên biên. Với (d), dùng Mệnh 
 **(d)** Quy hoạch hình học: cực tiểu đơn thức $x_1^{-1}x_2^{-1}x_3^{-1}$ với $\tfrac13x_1+\tfrac13x_2+\tfrac13x_3\le1$. Dạng lồi theo Định lý 02.33 là $\min-(z_1+z_2+z_3)$ với $\log\sum_je^{z_j-\log3}\le0$. Nghiệm $x=(1,1,1)$, vì bất đẳng thức trung bình cộng – trung bình nhân cho $x_1x_2x_3\le(\tfrac13\sum x_j)^3\le1$.
 :::
 
-Tóm lại, bảng nhận dạng tập hợp Định nghĩa 02.9, 02.17, 02.24, 02.29 và 02.1, còn Thuật toán 02.1 sắp các công cụ cải dạng (Định lý 02.15, 02.33) và ba phép đổi bài toán thành một quy trình. Trên ràng buộc số đặc trưng, Mệnh đề 02.45 đặt bài toán vào bước 7, và Ví dụ 02.29 cho thấy bước 8 không bỏ được.
+Tóm lại, bảng nhận dạng tập hợp Định nghĩa 02.9, 02.17, 02.24, 02.29 và 02.1, còn Thuật toán 02.1 sắp các công cụ biến đổi bài toán (Định lý 02.15, 02.33) và ba phép đổi bài toán thành một quy trình. Trên ràng buộc số đặc trưng, Mệnh đề 02.45 đặt bài toán vào bước 7, và Ví dụ 02.29 cho thấy bước 8 không bỏ được.
 
-Quy trình này mới chỉ được thử trên ví dụ nhỏ tính tay. Trong phần sau, chúng ta áp dụng nó cho ba bài toán học máy có dữ liệu và yêu cầu triển khai cụ thể.
+Quy trình này mới chỉ được thử trên ví dụ nhỏ tính thủ công. Trong phần sau, chúng ta áp dụng nó cho ba bài toán học máy có dữ liệu và yêu cầu triển khai cụ thể.
 
 ## Tình huống áp dụng và ứng dụng
 
@@ -2765,7 +2765,7 @@ Trong cả hai trường hợp, $b^*=0$.
 
 Hệ số $\lambda$ lớn hơn đổi tổng vi phạm lấy lề rộng hơn.
 
-**Giới hạn.** Lời giải tay dựa vào tính đối xứng của dữ liệu. Với dữ liệu tổng quát và $d$ lớn, cần một bộ giải quy hoạch bậc hai; cách giải qua bài toán đối ngẫu được trình bày ở Bài 03 (Mệnh đề 03.36, Tình huống 03.1), còn thủ thuật hạt nhân nằm ngoài phạm vi học phần.
+**Giới hạn.** Lời giải thủ công dựa vào tính đối xứng của dữ liệu. Với dữ liệu tổng quát và $d$ lớn, cần một bộ giải quy hoạch bậc hai; cách giải qua bài toán đối ngẫu được trình bày ở Bài 03 (Mệnh đề 03.36, Tình huống 03.1), còn thủ thuật hạt nhân nằm ngoài phạm vi học phần.
 
 **Dẫn ngược lý thuyết.** Định nghĩa 02.38; Mệnh đề 02.39, với giả thiết hai nhãn dùng để chặn $b$; tính lồi theo (7.1) của Bài 01 cho phép rút gọn đối xứng; Mệnh đề 02.36(b).
 :::
@@ -2781,7 +2781,7 @@ Hệ số $\lambda$ lớn hơn đổi tổng vi phạm lấy lề rộng hơn.
 
 **Mô hình hóa.** Với $x_j\in\{0,1\}$ cho quyết định chọn tập $j$, bài toán là $\max\ 8x_A+5x_B+5x_C$ với $4x_A+3x_B+3x_C\le6$, một bài toán ba lô (knapsack) nhị phân. Tập khả thi không lồi, nên theo bước 7 của Thuật toán 02.1, ta dùng nới lỏng tuyến tính $0\le x_j\le1$.
 
-**Xác minh giả thiết.** Nới lỏng có cùng mục tiêu và miền chứa miền nhị phân, nên Mệnh đề 02.42 áp dụng, với chiều cận đảo lại cho bài cực đại. Giả thiết của Mệnh đề 02.42(c), nghiệm nới lỏng là nhị phân, bị vi phạm như phần sau cho thấy.
+**Xác minh giả thiết.** Nới lỏng có cùng mục tiêu và miền chứa miền nhị phân, nên Mệnh đề 02.42 áp dụng, với chiều cận đảo lại cho bài toán cực đại. Giả thiết của Mệnh đề 02.42(c), nghiệm nới lỏng là nhị phân, bị vi phạm như phần sau cho thấy.
 
 **Áp dụng: giải nới lỏng.** Với mọi $x$ khả thi của nới lỏng,
 
@@ -2809,14 +2809,14 @@ Liệt kê tám phương án nhị phân:
 
 Giá trị tối ưu $p^*=10$, đạt tại $\{B,C\}$.
 
-**Kiểm tra lại.** Theo Mệnh đề 02.42(d) cho bài cực đại, $8\le p^*\le\tfrac{34}3$; vì giá trị nhị phân là số nguyên, $p^*\le11$. Liệt kê cho $p^*=10$, nằm trong khoảng đó.
+**Kiểm tra lại.** Theo Mệnh đề 02.42(d) cho bài toán cực đại, $8\le p^*\le\tfrac{34}3$; vì giá trị nhị phân là số nguyên, $p^*\le11$. Liệt kê cho $p^*=10$, nằm trong khoảng đó.
 
-**Hậu quả của giả thiết bị vi phạm.** Nghiệm nới lỏng không nguyên nên không cho nghiệm bài gốc.
+**Hậu quả của giả thiết bị vi phạm.** Nghiệm nới lỏng không nguyên nên không cho nghiệm bài toán gốc.
 
 - Phương án làm tròn xuống, trùng với quy tắc tham lam theo tỷ số, cho $8$ nghìn mẫu, ít hơn tối ưu $20\%$.
 - Phương án tối ưu $\{B,C\}$ không chứa tập A, tập có trọng số $1$ trong nghiệm nới lỏng, nên thông tin đọc từ nghiệm phân số dẫn sai hướng.
 
-Cận $\tfrac{34}3$ vẫn đúng, nhưng chứng nhận $p^*=10$ cần liệt kê hoặc quy hoạch động cho bài ba lô. Khi chi phí là số nguyên, quy hoạch động cần $O(nK)$ phép tính với $n$ tập và ngân sách $K$ (Bertsimas, MIT 15.093J, Bài giảng 16, mục 2, trang 1).
+Cận $\tfrac{34}3$ vẫn đúng, nhưng chứng nhận $p^*=10$ cần liệt kê hoặc quy hoạch động cho bài toán ba lô. Khi chi phí là số nguyên, quy hoạch động cần $O(nK)$ phép tính với $n$ tập và ngân sách $K$ (Bertsimas, MIT 15.093J, Bài giảng 16, mục 2, trang 1).
 
 **Diễn giải.** Gán nhãn hai tập B và C cho $10$ nghìn mẫu hữu ích và dùng hết ngân sách; chọn tập A để lại $2$ triệu đồng không dùng được.
 
@@ -2836,13 +2836,13 @@ Các khái niệm của chương xuất hiện trong các vấn đề sau của 
 
 ## Tóm tắt chương
 
-Chương này khởi đầu bằng dạng chuẩn của bài toán tối ưu lồi (Định nghĩa 02.1), với Mệnh đề 02.2 biến việc chứng nhận tính lồi thành kiểm tra từng dòng của mô hình. Hệ quả 02.3 chuyển các kết quả của Bài 01 sang dạng chuẩn, còn Mệnh đề 02.6 cùng Nhận xét 02.7 cho phép cải dạng qua ánh xạ tường minh. Trên nền đó, Mệnh đề 02.11 và Định lý 02.15 xử lý quy hoạch tuyến tính, còn Mệnh đề 02.18 và 02.21 xử lý quy hoạch bậc hai và chính quy hóa. Định lý 02.32 và 02.33 đưa quy hoạch hình học về bài lồi bằng phép đổi biến logarit. Khi không có cải dạng tương đương, Mệnh đề 02.36 và 02.42 cho bài lồi thay thế hoặc nới lỏng kèm bảo đảm một chiều. Cuối cùng, Thuật toán 02.1 tập hợp mọi bước thành một quy trình nhận dạng có bước kiểm tra lại bắt buộc.
+Chương này khởi đầu bằng dạng chuẩn của bài toán tối ưu lồi (Định nghĩa 02.1), với Mệnh đề 02.2 biến việc chứng nhận tính lồi thành kiểm tra từng dòng của mô hình. Hệ quả 02.3 chuyển các kết quả của Bài 01 sang dạng chuẩn, còn Mệnh đề 02.6 cùng Nhận xét 02.7 cho phép biến đổi bài toán qua ánh xạ tường minh. Trên nền đó, Mệnh đề 02.11 và Định lý 02.15 xử lý quy hoạch tuyến tính, còn Mệnh đề 02.18 và 02.21 xử lý quy hoạch bậc hai và chính quy hóa. Định lý 02.32 và 02.33 đưa quy hoạch hình học về bài toán lồi bằng phép đổi biến logarit. Khi không có biến đổi tương đương, Mệnh đề 02.36 và 02.42 cho bài toán lồi thay thế hoặc nới lỏng kèm bảo đảm một chiều. Cuối cùng, Thuật toán 02.1 tập hợp mọi bước thành một quy trình nhận dạng có bước kiểm tra lại bắt buộc.
 
 **Định nghĩa và kết quả theo mục.**
 
-- Mục 1: bài toán tối ưu lồi dạng chuẩn (Định nghĩa 02.1); tập khả thi của dạng chuẩn lồi (Mệnh đề 02.2); các bảo đảm của tính lồi (Hệ quả 02.3); cải dạng tương đương (Định nghĩa 02.5); cải dạng tương đương giữ nghiệm (Mệnh đề 02.6).
-- Mục 2: quy hoạch tuyến tính, dạng bất đẳng thức và dạng chuẩn (Định nghĩa 02.9); quy hoạch tuyến tính lồi và dạng chuẩn (Mệnh đề 02.10); cận dưới từ tổ hợp không âm các ràng buộc (Mệnh đề 02.11); hồi quy sai số tuyệt đối và hồi quy minimax (Định nghĩa 02.13); chặn trên một cực đại (Bổ đề 02.14) và cải dạng bằng biến phụ (Định lý 02.15).
-- Mục 3: quy hoạch bậc hai (Định nghĩa 02.17); tồn tại và duy nhất cho quy hoạch bậc hai (Mệnh đề 02.18); hồi quy có chính quy hóa, bốn tổ hợp (Định nghĩa 02.20); phân lớp bốn tổ hợp chính quy hóa (Mệnh đề 02.21); ngưỡng mềm (Bổ đề 02.22); QCQP (Định nghĩa 02.24); tính lồi của QCQP (Mệnh đề 02.25); từ hình phạt tới trần (Mệnh đề 02.26).
+- Mục 1: bài toán tối ưu lồi dạng chuẩn (Định nghĩa 02.1); tập khả thi của dạng chuẩn lồi (Mệnh đề 02.2); các bảo đảm của tính lồi (Hệ quả 02.3); biến đổi tương đương (Định nghĩa 02.5); biến đổi tương đương giữ nghiệm (Mệnh đề 02.6).
+- Mục 2: quy hoạch tuyến tính, dạng bất đẳng thức và dạng chuẩn (Định nghĩa 02.9); quy hoạch tuyến tính lồi và dạng chuẩn (Mệnh đề 02.10); cận dưới từ tổ hợp không âm các ràng buộc (Mệnh đề 02.11); hồi quy sai số tuyệt đối và hồi quy minimax (Định nghĩa 02.13); chặn trên một cực đại (Bổ đề 02.14) và biến đổi bằng biến phụ (Định lý 02.15).
+- Mục 3: quy hoạch bậc hai (Định nghĩa 02.17); tồn tại và duy nhất cho quy hoạch bậc hai (Mệnh đề 02.18); hồi quy có chính quy hóa, bốn tổ hợp (Định nghĩa 02.20); phân lớp bốn tổ hợp chính quy hóa (Mệnh đề 02.21); ngưỡng mềm (Bổ đề 02.22); QCQP (Định nghĩa 02.24); tính lồi của QCQP (Mệnh đề 02.25); từ hình phạt tới ràng buộc chặn chuẩn (Mệnh đề 02.26).
 - Mục 4: đơn thức và tổng đơn thức dương (Định nghĩa 02.28); quy hoạch hình học (Định nghĩa 02.29); quy tắc chuẩn hóa quy hoạch hình học (Mệnh đề 02.30); đổi biến logarit (Bổ đề 02.31); hàm log-sum-exp lồi (Định lý 02.32); dạng lồi của quy hoạch hình học (Định lý 02.33).
 - Mục 5: hàm thay thế lồi và mất mát bản lề (Định nghĩa 02.35); bảo đảm của hàm thay thế (Mệnh đề 02.36); máy vector hỗ trợ lề mềm (Định nghĩa 02.38); máy vector hỗ trợ là quy hoạch bậc hai (Mệnh đề 02.39); nới lỏng (Định nghĩa 02.41); cận từ nới lỏng (Mệnh đề 02.42).
 - Mục 6: quy trình nhận dạng (Thuật toán 02.1); ràng buộc số đặc trưng (Định nghĩa 02.44); miền giới hạn số đặc trưng không lồi (Mệnh đề 02.45).
@@ -2881,7 +2881,7 @@ Các dòng lần lượt là:
 
 - Dạng chuẩn đòi "hàm lồi $\le0$" và đẳng thức affine (Nhận xét 02.4).
 - Tính lồi không bảo đảm có nghiệm (Nhận xét 02.8).
-- Biến phụ chỉ dùng cho bài cực tiểu với hệ số không âm (Nhận xét 02.16).
+- Biến phụ chỉ dùng cho bài toán cực tiểu với hệ số không âm (Nhận xét 02.16).
 - Quy hoạch bậc hai và QCQP cần mọi $P_i\succeq0$.
 - Quy hoạch hình học cần biến và hệ số dương (Nhận xét 02.34).
 - Thay mất mát, thay ràng buộc bằng hình phạt và nới lỏng đều đổi bài toán (Nhận xét 02.43).
@@ -2915,7 +2915,7 @@ Xác định mỗi khẳng định đúng hay sai, và nêu căn cứ hoặc ph�
 
 (b) Mọi quy hoạch tuyến tính có tập khả thi không rỗng đều có nghiệm.
 
-(c) Nếu nghiệm của nới lỏng tuyến tính của một bài nhị phân là vector nhị phân thì nó là nghiệm của bài nhị phân.
+(c) Nếu nghiệm của nới lỏng tuyến tính của một bài toán nhị phân là vector nhị phân thì nó là nghiệm của bài toán nhị phân.
 
 (d) Hàm $x_1x_2$ lồi trên $\mathbb R^2_{++}$.
 
@@ -2934,14 +2934,14 @@ Với (a), xét $x^2\ge1$. Với (d), tính Hessian.
 - **(e) Đúng**, theo Mệnh đề 02.36(b): $0\le\operatorname{err}\le H=0$.
 :::
 
-::: exercise Bài tập 02.12 (Nhận biết: kiểm tra một cải dạng sai)
-Một người lập mô hình đưa ra hai cải dạng.
+::: exercise Bài tập 02.12 (Nhận biết: kiểm tra một phép biến đổi sai)
+Một người lập mô hình đưa ra hai phép biến đổi.
 
 (i) Hồi quy không hệ số chặn $\hat y=au$ với dữ liệu $u=(0,1)$, $y=(0,2)$ và mục tiêu $\sum_i\lvert au_i-y_i\rvert$ được viết thành $\min_{a,t}t_1+t_2$ với $t_i\ge au_i-y_i$.
 
-(ii) Bài $\min_{-1\le x\le1}x^2-\lvert x\rvert$ được viết thành $\min_{x,t}x^2-t$ với $t\ge x$, $t\ge-x$, $-1\le x\le1$.
+(ii) Bài toán $\min_{-1\le x\le1}x^2-\lvert x\rvert$ được viết thành $\min_{x,t}x^2-t$ với $t\ge x$, $t\ge-x$, $-1\le x\le1$.
 
-(a) Giải hai bài gốc. (b) Chỉ ra hai bài cải dạng không bị chặn. (c) Với mỗi trường hợp, chỉ ra điều kiện nào của bảng kiểm ở Mục 6.1 bị vi phạm và sửa lại. Dòng "Thêm biến phụ" của bảng kiểm yêu cầu: bài toán là cực tiểu và mọi hệ số trước cực đại không âm; ràng buộc biến phụ có đủ mọi nhánh của cực đại.
+(a) Giải hai bài toán gốc. (b) Chỉ ra hai bài toán sau biến đổi không bị chặn. (c) Với mỗi trường hợp, chỉ ra điều kiện nào của bảng kiểm tra ở Mục 6.1 bị vi phạm và sửa lại. Dòng "Thêm biến phụ" của bảng kiểm tra yêu cầu: bài toán là cực tiểu và mọi hệ số trước cực đại không âm; ràng buộc biến phụ có đủ mọi nhánh của cực đại.
 :::
 
 ::: hint
@@ -2949,19 +2949,19 @@ Một người lập mô hình đưa ra hai cải dạng.
 :::
 
 ::: solution
-**(a) Giải hai bài gốc.**
+**(a) Giải hai bài toán gốc.**
 
 - (i) Mục tiêu $\lvert0\rvert+\lvert a-2\rvert$, nhỏ nhất tại $a=2$ với giá trị $0$.
 - (ii) Với $s=\lvert x\rvert\in[0,1]$, mục tiêu là $s^2-s$, nhỏ nhất tại $s=\tfrac12$; giá trị $-\tfrac14$, đạt tại $x=\pm\tfrac12$.
 
-**(b) Hai bài cải dạng không bị chặn.**
+**(b) Hai bài toán sau biến đổi không bị chặn.**
 
 - (i) Với $a=-M$, chọn $t_1=0$, $t_2=-M-2$: khả thi và $t_1+t_2=-M-2\to-\infty$.
 - (ii) Với $x=0$ và $t=M$, mọi ràng buộc thỏa và mục tiêu $-M\to-\infty$.
 
-**(c) Sửa (i).** Cải dạng (i) vi phạm điều kiện "đủ mọi nhánh của cực đại": cần thêm $t_i\ge y_i-au_i$. Khi đó bài là $\min t_1+t_2$ với $\lvert0\rvert\le t_1$, $\lvert a-2\rvert\le t_2$, giá trị $0$ tại $a=2$.
+**(c) Sửa (i).** Phép biến đổi (i) vi phạm điều kiện "đủ mọi nhánh của cực đại": cần thêm $t_i\ge y_i-au_i$. Khi đó bài toán là $\min t_1+t_2$ với $\lvert0\rvert\le t_1$, $\lvert a-2\rvert\le t_2$, giá trị $0$ tại $a=2$.
 
-**(c) Sửa (ii).** Cải dạng (ii) vi phạm điều kiện "mọi hệ số trước cực đại không âm": $-\lvert x\rvert=-\max(x,-x)$ có hệ số $-1$, và mục tiêu gốc không lồi. Sửa bằng cách tách hai trường hợp $0\le x\le1$ và $-1\le x\le0$. Mỗi trường hợp là quy hoạch bậc hai lồi ($\min x^2-x$, $\min x^2+x$) với nghiệm $\tfrac12$, $-\tfrac12$, giá trị $-\tfrac14$.
+**(c) Sửa (ii).** Phép biến đổi (ii) vi phạm điều kiện "mọi hệ số trước cực đại không âm": $-\lvert x\rvert=-\max(x,-x)$ có hệ số $-1$, và mục tiêu gốc không lồi. Sửa bằng cách tách hai trường hợp $0\le x\le1$ và $-1\le x\le0$. Mỗi trường hợp là quy hoạch bậc hai lồi ($\min x^2-x$, $\min x^2+x$) với nghiệm $\tfrac12$, $-\tfrac12$, giá trị $-\tfrac14$.
 :::
 
 ### Mức tính toán hoặc chứng minh
@@ -2995,10 +2995,10 @@ bước cuối dùng tính lồi của $s^2$ (Ví dụ 01.11(a) của Bài 01).
 - Nếu $r\le0$ thì $g(r)\ge1$ và $\ell(r)\ge1$.
 - Nếu $r>0$ thì $\ell(r)\ge0$.
 
-**(b) Hai chiều của (1.3).** Dùng Mệnh đề 02.6 với $T(s)=s$. Theo (1.3), cần hai chiều: giá trị của bài mới tại $\varphi(w,b)$ không lớn hơn giá trị bài gốc tại $(w,b)$, và giá trị bài gốc tại $\psi(w,b,\xi)$ không lớn hơn giá trị bài mới tại $(w,b,\xi)$; khi đó hai bài có cùng giá trị tối ưu và nghiệm chuyển qua lại. Đặt $m_i=y_i(w^Tu_i+b)$.
+**(b) Hai chiều của (1.3).** Dùng Mệnh đề 02.6 với $T(s)=s$. Theo (1.3), cần hai chiều: giá trị của bài toán mới tại $\varphi(w,b)$ không lớn hơn giá trị bài toán gốc tại $(w,b)$, và giá trị bài toán gốc tại $\psi(w,b,\xi)$ không lớn hơn giá trị bài toán mới tại $(w,b,\xi)$; khi đó hai bài toán có cùng giá trị tối ưu và nghiệm chuyển qua lại. Đặt $m_i=y_i(w^Tu_i+b)$.
 
 - Ánh xạ $\varphi(w,b)=(w,b,\xi)$ với $\xi_i=\max(0,1-m_i)$ cho điểm khả thi với cùng giá trị.
-- Ngược lại, nếu $(w,b,\xi)$ khả thi thì $\xi_i\ge\max(0,1-m_i)\ge0$, và vì bình phương tăng trên $[0,\infty)$, $\xi_i^2\ge\ell(m_i)$. Vậy giá trị của bài gốc tại $\psi(w,b,\xi)=(w,b)$ không lớn hơn.
+- Ngược lại, nếu $(w,b,\xi)$ khả thi thì $\xi_i\ge\max(0,1-m_i)\ge0$, và vì bình phương tăng trên $[0,\infty)$, $\xi_i^2\ge\ell(m_i)$. Vậy giá trị của bài toán gốc tại $\psi(w,b,\xi)=(w,b)$ không lớn hơn.
 
 **(b) Lớp bài toán.** Theo thứ tự $(w,b,\xi)$, $P=\operatorname{diag}(\lambda I_d,0,2I_N)\succeq0$ và các ràng buộc affine: quy hoạch bậc hai. Khác với bản lề thường, $\ell$ khả vi tại $r=1$.
 :::
@@ -3101,7 +3101,7 @@ cho $e^{2z}=\mathcal AK/\mathcal B$. Vậy $N_p^*=\sqrt{\mathcal AK/\mathcal B}$
 ::: exercise Bài tập 02.17 (Vận dụng: tối thiểu hóa mất mát của nhóm chịu thiệt nhất)
 Hai mô hình phân loại có tỷ lệ lỗi trên nhóm người dùng A và B như sau: mô hình 1 có $0{,}2$ trên A và $0{,}6$ trên B; mô hình 2 có $0{,}5$ trên A và $0{,}1$ trên B (số liệu giả lập). Hệ thống chọn mô hình 1 với xác suất $\theta\in[0,1]$ cho mỗi yêu cầu, nên tỷ lệ lỗi kỳ vọng trên A là $0{,}5-0{,}3\theta$ và trên B là $0{,}1+0{,}5\theta$.
 
-(a) Viết bài cực tiểu theo $\theta$ của tỷ lệ lỗi lớn hơn trong hai nhóm thành quy hoạch tuyến tính.
+(a) Viết bài toán cực tiểu theo $\theta$ của tỷ lệ lỗi lớn hơn trong hai nhóm thành quy hoạch tuyến tính.
 
 (b) Chứng minh nghiệm là $\theta^*=\tfrac12$ với giá trị $0{,}35$, bằng một tổ hợp không âm của hai ràng buộc.
 

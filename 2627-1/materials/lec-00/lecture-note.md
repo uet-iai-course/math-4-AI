@@ -232,7 +232,7 @@ $$
 
 **Điểm dễ nhầm.** Thứ tự nhân có ý nghĩa, vì nói chung $\mathbf A\mathbf B\ne\mathbf B\mathbf A$ ngay cả khi cả hai tích đều tồn tại.
 
-**Ý nghĩa và vai trò trong AI.** Tích ma trận–ma trận dùng để ghép các phép biến đổi tuyến tính, xử lý đồng thời một lô véc-tơ và tạo các ma trận như $\mathbf X^T\mathbf X$ trong bài toán bình phương tối thiểu.
+**Ý nghĩa và vai trò trong AI.** Tích ma trận–ma trận dùng để ghép các phép biến đổi tuyến tính, xử lý đồng thời một lô véc-tơ và tạo các ma trận như $\mathbf X^T\mathbf X$ trong bài toán bình phương nhỏ nhất (least squares).
 
 ### Không gian cột và hạt nhân
 
@@ -326,7 +326,7 @@ Ma trận mở rộng $[\mathbf A\mid\mathbf b]\in\mathbb R^{m\times(n+1)}$ đư
 
 ### Định thức
 
-Với ma trận vuông, định thức là một số xác định ma trận có hạng đầy đủ hay không.
+Với ma trận vuông, định thức là một số xác định ma trận có đủ hạng hay không.
 
 **Định nghĩa.** Cho $\mathbf A=[a_{ij}]\in\mathbb R^{n\times n}$. Định thức $\det(\mathbf A)$ được định nghĩa đệ quy theo kích thước. Với $n=1$, $\det([a_{11}])=a_{11}$. Với $n\ge2$, gọi $\mathbf A_{1j}$ là ma trận $(n-1)\times(n-1)$ thu được bằng cách bỏ hàng thứ nhất và cột thứ $j$ của $\mathbf A$; khi đó
 
@@ -355,7 +355,7 @@ Khi đó $\mathbf A$ được gọi là **suy biến** hoặc **không đủ h�
 
 ### Ma trận nghịch đảo
 
-Khi hệ vuông có nghiệm duy nhất, chúng ta muốn viết nghiệm bằng một công thức tường minh.
+Khi hệ vuông có nghiệm duy nhất, chúng ta muốn viết nghiệm bằng công thức tường minh.
 
 **Định nghĩa.** Với ma trận vuông $\mathbf A\in\mathbb R^{n\times n}$, ma trận nghịch đảo $\mathbf A^{-1}$ thỏa
 
@@ -526,7 +526,7 @@ ta có $\mathbf Q^T\mathbf Q=\mathbf I_2$ và $\mathbf Q\mathbf R=\mathbf A$.
 
 **Điểm dễ nhầm.** Trong QR rút gọn, $\mathbf Q$ không vuông khi $m>n$, nên $\mathbf Q\mathbf Q^T$ không nhất thiết bằng $\mathbf I_m$. Với ma trận thiếu hạng, ta cần QR có chọn cột trụ hoặc một cách xử lý riêng.
 
-**Ý nghĩa và vai trò trong AI.** Bài toán bình phương tối thiểu $\min_{\mathbf w}\lVert\mathbf A\mathbf w-\mathbf y\rVert_2^2$ được đưa về hệ tam giác $\mathbf R\mathbf w=\mathbf Q^T\mathbf y$. Cách này thường ổn định số hơn việc lập phương trình chuẩn $\mathbf A^T\mathbf A\mathbf w=\mathbf A^T\mathbf y$.
+**Ý nghĩa và vai trò trong AI.** Bài toán bình phương nhỏ nhất $\min_{\mathbf w}\lVert\mathbf A\mathbf w-\mathbf y\rVert_2^2$ được đưa về hệ tam giác $\mathbf R\mathbf w=\mathbf Q^T\mathbf y$. Cách này thường ổn định số hơn việc lập phương trình chuẩn $\mathbf A^T\mathbf A\mathbf w=\mathbf A^T\mathbf y$.
 
 #### Phân rã trị riêng
 
@@ -582,11 +582,11 @@ $$
 =\mathbf V_r\boldsymbol\Sigma_r^{-1}\mathbf U_r^T,
 $$
 
-dùng để mô tả nghiệm bình phương tối thiểu kể cả khi ma trận chữ nhật hoặc thiếu hạng.
+dùng để mô tả nghiệm bình phương nhỏ nhất kể cả khi ma trận chữ nhật hoặc thiếu hạng.
 
 ### Dạng toàn phương
 
-Mất mát bình phương tối thiểu chứa một biểu thức bậc hai theo véc-tơ tham số.
+Mất mát bình phương nhỏ nhất chứa một biểu thức bậc hai theo véc-tơ tham số.
 
 **Định nghĩa.** Cho ma trận đối xứng $\mathbf Q\in\mathbb R^{n\times n}$ và $\mathbf x\in\mathbb R^n$. Hàm vô hướng
 
@@ -627,13 +627,13 @@ $$
 \iff \operatorname{Ker}(\mathbf A)=\{\mathbf0\}.
 $$
 
-Dạng toàn phương mô tả độ cong của hàm mất mát qua ma trận Hessian, xuất hiện trong bình phương tối thiểu với $\mathbf X^T\mathbf X$, và tạo hạng phạt trong điều chuẩn bậc hai.
+Dạng toàn phương mô tả độ cong của hàm mất mát qua ma trận Hessian, xuất hiện trong bình phương nhỏ nhất với $\mathbf X^T\mathbf X$, và tạo số hạng phạt trong điều chuẩn bậc hai.
 
-Như vậy, từ véc-tơ đặc trưng, chúng ta đã xây dựng ma trận thiết kế $\mathbf X$ và dự đoán $\mathbf X\mathbf w$. Hạng cho biết hệ tuyến tính có nghiệm và nghiệm có duy nhất hay không. Ma trận $\mathbf X^T\mathbf X$ sẽ xuất hiện lại với vai trò Hessian của bình phương tối thiểu.
+Như vậy, từ véc-tơ đặc trưng, chúng ta đã xây dựng ma trận thiết kế $\mathbf X$ và dự đoán $\mathbf X\mathbf w$. Hạng cho biết hệ tuyến tính có nghiệm và nghiệm có duy nhất hay không. Ma trận $\mathbf X^T\mathbf X$ sẽ xuất hiện lại với vai trò Hessian của bình phương nhỏ nhất.
 
 ## Giải tích nhiều biến
 
-Đại số tuyến tính chưa cho biết phải đổi trọng số theo hướng nào để mất mát giảm. Chúng ta lần lượt xét đạo hàm riêng, tính khả vi, gradient, Jacobian, quy tắc dây chuyền, Hessian, khai triển Taylor và điều kiện điểm dừng. Ba ví dụ nối các khái niệm trong mục này là hàm vô hướng $h(u,v)=u^2+uv+2v^2+u-2v$, ánh xạ véc-tơ $\mathbf F(u,v)=[u+v,uv,u-v]^T$ và bài toán bình phương tối thiểu của mô hình giá nhà.
+Đại số tuyến tính chưa cho biết phải đổi trọng số theo hướng nào để mất mát giảm. Chúng ta lần lượt xét đạo hàm riêng, tính khả vi, gradient, Jacobian, quy tắc dây chuyền, Hessian, khai triển Taylor và điều kiện điểm dừng. Ba ví dụ nối các khái niệm trong mục này là hàm vô hướng $h(u,v)=u^2+uv+2v^2+u-2v$, ánh xạ véc-tơ $\mathbf F(u,v)=[u+v,uv,u-v]^T$ và bài toán bình phương nhỏ nhất của mô hình giá nhà.
 
 ### Hàm vô hướng và ánh xạ véc-tơ
 
@@ -895,7 +895,7 @@ $$
 
 **Điểm dễ nhầm.** Nếu nhân $\mathbf d$ với $c$ thì dạng toàn phương bị nhân với $c^2$. Vì vậy, muốn so sánh độ cong giữa các hướng, ta phải chuẩn hóa véc-tơ hướng.
 
-**Ý nghĩa và vai trò trong AI.** Độ cong theo hướng giúp giải thích vì sao cùng một kích thước bước có thể phù hợp theo hướng này nhưng quá lớn theo hướng khác.
+**Ý nghĩa và vai trò trong AI.** Độ cong theo hướng giúp giải thích vì sao cùng một độ dài bước (step length) có thể phù hợp theo hướng này nhưng quá lớn theo hướng khác.
 
 ### Khai triển Taylor bậc nhất và bậc hai
 
@@ -977,9 +977,9 @@ $$
 
 **Ý nghĩa và vai trò trong AI.** Tích phân biến mật độ thành xác suất, tạo kỳ vọng và xuất hiện khi lấy trung bình trên các biến ẩn hoặc nhiễu liên tục.
 
-### Gradient, Hessian và phương trình chuẩn của bình phương tối thiểu
+### Gradient, Hessian và phương trình chuẩn của bình phương nhỏ nhất
 
-Các công cụ trên cho gradient và Hessian của mất mát bình phương tối thiểu.
+Các công cụ trên cho gradient và Hessian của mất mát bình phương nhỏ nhất.
 
 **Định nghĩa.** Cho $\mathbf X\in\mathbb R^{m\times n}$, $\mathbf w\in\mathbb R^n$, $\mathbf y\in\mathbb R^m$, đặt
 
@@ -1015,11 +1015,11 @@ $$
 
 **Ý nghĩa và vai trò trong AI.** Quy tắc dây chuyền biến sai số dự đoán thành gradient theo tham số. Ma trận $\mathbf X^T\mathbf X$ cho biết độ cong và mức điều kiện của bài toán học.
 
-### Điều kiện tồn tại và tính duy nhất của nghiệm bình phương tối thiểu
+### Điều kiện tồn tại và tính duy nhất của nghiệm bình phương nhỏ nhất
 
 Trước khi giải phương trình chuẩn, chúng ta xác định khi nào nghiệm tồn tại và duy nhất.
 
-**Định nghĩa.** Nghiệm bình phương tối thiểu là phần tử của $\operatorname*{arg\,min}_{\mathbf w}\lVert\mathbf X\mathbf w-\mathbf y\rVert_2^2$. Trong không gian hữu hạn chiều, nghiệm luôn tồn tại. Trọng số tối ưu duy nhất khi và chỉ khi $\operatorname{rank}(\mathbf X)=n$, tương đương $\operatorname{Ker}(\mathbf X)=\{\mathbf0\}$.
+**Định nghĩa.** Nghiệm bình phương nhỏ nhất là phần tử của $\operatorname*{arg\,min}_{\mathbf w}\lVert\mathbf X\mathbf w-\mathbf y\rVert_2^2$. Trong không gian hữu hạn chiều, nghiệm luôn tồn tại. Trọng số tối ưu duy nhất khi và chỉ khi $\operatorname{rank}(\mathbf X)=n$, tương đương $\operatorname{Ker}(\mathbf X)=\{\mathbf0\}$.
 
 **Ý nghĩa hình học.** Hình chiếu $\hat{\mathbf y}$ của $\mathbf y$ lên $\operatorname{Col}(\mathbf X)$ là duy nhất. Nếu $\mathbf X$ thiếu hạng, nhiều véc-tơ trọng số có thể tạo cùng một hình chiếu.
 
@@ -1030,15 +1030,15 @@ $$
 =(\mathbf X^T\mathbf X)^{-1}\mathbf X^T\mathbf y.
 $$
 
-**Điểm dễ nhầm.** Hệ $\mathbf X\mathbf w=\mathbf y$ vô nghiệm chính xác không có nghĩa bài toán bình phương tối thiểu vô nghiệm. Công thức dùng nghịch đảo chỉ hợp lệ khi $\mathbf X$ có hạng cột đầy đủ. Trong trường hợp thiếu hạng, ta có thể dùng giả nghịch đảo hoặc SVD.
+**Điểm dễ nhầm.** Hệ $\mathbf X\mathbf w=\mathbf y$ vô nghiệm chính xác không có nghĩa bài toán bình phương nhỏ nhất vô nghiệm. Công thức dùng nghịch đảo chỉ hợp lệ khi $\mathbf X$ có hạng cột đầy đủ. Trong trường hợp thiếu hạng, ta có thể dùng giả nghịch đảo hoặc SVD.
 
 **Ý nghĩa và vai trò trong AI.** Điều kiện hạng phản ánh khả năng nhận dạng tham số. Các cột đặc trưng phụ thuộc tuyến tính làm trọng số không duy nhất và thường báo hiệu đa cộng tuyến hoặc nhu cầu điều chuẩn.
 
-### Một bước gradient và ảnh hưởng của kích thước bước
+### Một bước gradient và ảnh hưởng của độ dài bước
 
-Thay vì giải phương trình chuẩn, ta có thể giảm mất mát từng bước theo hướng đối gradient với kích thước bước phù hợp.
+Thay vì giải phương trình chuẩn, ta có thể giảm mất mát từng bước theo hướng đối gradient với độ dài bước phù hợp.
 
-**Định nghĩa.** Một bước hạ gradient với kích thước bước $\eta>0$ là
+**Định nghĩa.** Một bước hạ gradient (gradient descent) với độ dài bước $\eta>0$ là
 
 $$
 \mathbf w^+
@@ -1061,9 +1061,9 @@ $$
 
 **Điểm dễ nhầm.** Hướng đối gradient chỉ bảo đảm giảm đối với bước đủ nhỏ, và một $\eta$ quá lớn có thể làm mất mát tăng hoặc gây dao động. Việc một bước giảm hàm không chứng minh thuật toán đã hội tụ.
 
-**Ý nghĩa và vai trò trong AI.** Hạ gradient và các biến thể của nó là cơ chế cập nhật tham số phổ biến trong học máy. Chuẩn hóa đặc trưng và độ cong của mất mát ảnh hưởng mạnh đến lựa chọn kích thước bước.
+**Ý nghĩa và vai trò trong AI.** Hạ gradient và các biến thể của nó là cơ chế cập nhật tham số phổ biến trong học máy. Chuẩn hóa đặc trưng và độ cong của mất mát ảnh hưởng mạnh đến lựa chọn độ dài bước.
 
-Tóm lại, gradient và quy tắc dây chuyền cho độ nhạy của mất mát, còn Hessian và khai triển Taylor cho độ cong. Với bình phương tối thiểu, chúng cho phương trình chuẩn, điều kiện hạng cho nghiệm duy nhất và một bước gradient, cả ba được dùng lại ở Bước 6 của mục cuối.
+Tóm lại, gradient và quy tắc dây chuyền cho độ nhạy của mất mát, còn Hessian và khai triển Taylor cho độ cong. Với bình phương nhỏ nhất, chúng cho phương trình chuẩn, điều kiện hạng cho nghiệm duy nhất và một bước gradient, cả ba được dùng lại ở Bước 6.
 
 ## Xác suất một biến
 
@@ -1071,7 +1071,7 @@ Tại trọng số tối ưu, mô hình giá nhà vẫn để lại phần dư k
 
 ### Phép thử, không gian mẫu, biến cố và không gian xác suất
 
-Để gán xác suất, ta phải xác định tập các kết quả có thể của phép thử.
+Để gán xác suất, ta xác định tập các kết quả có thể của phép thử.
 
 **Định nghĩa.** Phép thử ngẫu nhiên là một quy trình có kết quả chưa biết trước. Không gian mẫu $\Omega$ chứa mọi kết quả có thể; biến cố là một phần tử $E$ của sigma-đại số $\mathcal F$. Không gian xác suất là bộ ba $(\Omega,\mathcal F,\Pr)$, trong đó $\Pr:\mathcal F\to[0,1]$ thỏa $\Pr(\Omega)=1$ và tính cộng đếm được trên các biến cố đôi một rời nhau.
 
@@ -1210,7 +1210,7 @@ $$
 
 **Ý nghĩa và ứng dụng trong AI.** Phương sai đo độ bất định của dự đoán, độ biến thiên của gradient ngẫu nhiên và độ ổn định của bộ ước lượng. Chuẩn hóa đặc trưng dùng trung bình và độ lệch chuẩn để đưa các tọa độ về thang so sánh được.
 
-### Nhiễu Gauss, hàm hợp lý và bình phương tối thiểu
+### Nhiễu Gauss, hàm hợp lý và bình phương nhỏ nhất
 
 Để chọn trọng số theo một nguyên tắc, ta cần giả thiết về cách giá quan sát lệch khỏi dự đoán.
 
@@ -1240,7 +1240,7 @@ $$
 
 **Điểm dễ nhầm.** Gauss là giả thiết mô hình, không phải kết luận suy ra từ bốn mẫu. Cực đại $L$ và cực tiểu tổng bình phương có cùng nghiệm dưới các giả thiết trên, nhưng hai hàm mục tiêu không bằng nhau. Hàm hợp lý là hàm của tham số khi dữ liệu đã cố định; nó không phải phân phối xác suất của tham số.
 
-**Ý nghĩa và ứng dụng trong AI.** Mô hình Gauss giải thích bình phương tối thiểu như một phương pháp ước lượng hợp lý cực đại và cho phép tạo khoảng dự đoán. Nếu thay phân phối nhiễu, ta sẽ được một mất mát khác, chẳng hạn nhiễu đuôi dày làm giảm ảnh hưởng của ngoại lệ.
+**Ý nghĩa và ứng dụng trong AI.** Mô hình Gauss giải thích bình phương nhỏ nhất như một phương pháp ước lượng hợp lý cực đại và cho phép tạo khoảng dự đoán. Nếu thay phân phối nhiễu, ta sẽ được một mất mát khác, chẳng hạn nhiễu đuôi dày làm giảm ảnh hưởng của ngoại lệ.
 
 Biến ngẫu nhiên, phân phối, kỳ vọng và phương sai đã dẫn chúng ta tới hàm hợp lý dưới nhiễu Gauss. Khi các nhiễu độc lập và cùng phân phối $\mathcal N(0,\sigma^2)$ với $\sigma^2$ cố định, cực đại hàm hợp lý và cực tiểu tổng bình phương phần dư có cùng nghiệm. Giả thiết này được nới lỏng ở mục sau.
 
@@ -1398,11 +1398,11 @@ Khoảng cách Mahalanobis bình phương là $d_M^2=(\mathbf z-\boldsymbol\mu)^
 
 **Ý nghĩa và ứng dụng trong AI.** Khoảng cách Mahalanobis tránh coi mọi hướng đặc trưng là có cùng độ tin cậy, còn làm trắng chuẩn hóa cấu trúc hiệp phương sai trước một số thuật toán học máy.
 
-### Nhiễu tương quan và bình phương tối thiểu tổng quát
+### Nhiễu tương quan và bình phương nhỏ nhất tổng quát
 
 Giả thiết nhiễu độc lập, cùng phương sai không đúng khi sai số tương quan.
 
-**Định nghĩa.** Với mô hình véc-tơ $\mathbf y=\mathbf X\mathbf w+\boldsymbol\varepsilon$ và $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_\varepsilon)$, giả sử $\boldsymbol\Sigma_\varepsilon\in\mathbb S_{++}^m$ đã biết và cố định. Ước lượng hợp lý cực đại tương ứng với bình phương tối thiểu tổng quát (GLS):
+**Định nghĩa.** Với mô hình véc-tơ $\mathbf y=\mathbf X\mathbf w+\boldsymbol\varepsilon$ và $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_\varepsilon)$, giả sử $\boldsymbol\Sigma_\varepsilon\in\mathbb S_{++}^m$ đã biết và cố định. Ước lượng hợp lý cực đại tương ứng với bình phương nhỏ nhất tổng quát (GLS):
 
 $$
 \min_{\mathbf w}\frac12\mathbf r^T
@@ -1411,7 +1411,7 @@ $$
 \mathbf r=\mathbf X\mathbf w-\mathbf y.
 $$
 
-**Trực quan.** GLS không phạt mọi hướng phần dư như nhau. Một sai lệch dọc hướng nhiễu vốn biến thiên mạnh có mật độ lớn hơn sai lệch cùng chuẩn Euclid dọc hướng ổn định. Làm trắng phần dư biến bài toán GLS thành bình phương tối thiểu thông thường trong tọa độ mới.
+**Trực quan.** GLS không phạt mọi hướng phần dư như nhau. Một sai lệch dọc hướng nhiễu vốn biến thiên mạnh có mật độ lớn hơn sai lệch cùng chuẩn Euclid dọc hướng ổn định. Làm trắng phần dư biến bài toán GLS thành bình phương nhỏ nhất thông thường trong tọa độ mới.
 
 **Ví dụ.** Với
 
@@ -1422,15 +1422,15 @@ $$
 
 hai phần dư $\mathbf r_+=(1,1)^T$ và $\mathbf r_-=(1,-1)^T$ có cùng chuẩn Euclid. Tuy nhiên, mục tiêu $J_2=\tfrac12\mathbf r^T\boldsymbol\Sigma_2^{-1}\mathbf r$ lần lượt bằng $2/3$ và $2$. Sai lệch ngược chiều hiếm hơn dưới nhiễu tương quan dương nên bị phạt mạnh hơn.
 
-![So sánh cách bình phương tối thiểu thông thường và bình phương tối thiểu tổng quát cân các hướng phần dư.](img/lec-00/probability-gls-weighting.svg)
+![So sánh cách bình phương nhỏ nhất thông thường và bình phương nhỏ nhất tổng quát cân các hướng phần dư.](img/lec-00/probability-gls-weighting.svg)
 
 *OLS dùng đường tròn mức; GLS dùng elip mức thích nghi với hiệp phương sai của nhiễu.*
 
-**Điểm dễ nhầm.** Không thể ước lượng đáng tin cậy một ma trận hiệp phương sai lớn chỉ từ vài phần dư rồi coi nó là đã biết. Khi $\boldsymbol\Sigma_\varepsilon=\sigma^2\mathbf I$, GLS và bình phương tối thiểu thông thường có cùng nghiệm vì hai mục tiêu chỉ khác một hệ số dương.
+**Điểm dễ nhầm.** Không thể ước lượng đáng tin cậy một ma trận hiệp phương sai lớn chỉ từ vài phần dư rồi coi nó là đã biết. Khi $\boldsymbol\Sigma_\varepsilon=\sigma^2\mathbf I$, GLS và bình phương nhỏ nhất thông thường có cùng nghiệm vì hai mục tiêu chỉ khác một hệ số dương.
 
 **Ý nghĩa và ứng dụng trong AI.** GLS phù hợp với dữ liệu chuỗi thời gian, cảm biến hoặc nhiều đầu ra có sai số tương quan. Hàm mất mát khi đó cân sai lệch theo cấu trúc nhiễu thay vì mặc định mọi sai lệch độc lập và có cùng độ tin cậy.
 
-Trong mục này, các phép toán xác suất được chuyển sang véc-tơ ngẫu nhiên, và ma trận hiệp phương sai mô tả các tọa độ cùng biến thiên. Khi nhiễu Gauss tương quan với ma trận hiệp phương sai đã biết, lập luận hợp lý cực đại cho bình phương tối thiểu tổng quát. Trong mục cuối, chúng ta dùng cả ba nền tảng trên mô hình giá nhà.
+Trong mục này, các phép toán xác suất được chuyển sang véc-tơ ngẫu nhiên, và ma trận hiệp phương sai mô tả các tọa độ cùng biến thiên. Khi nhiễu Gauss tương quan với ma trận hiệp phương sai đã biết, lập luận hợp lý cực đại cho bình phương nhỏ nhất tổng quát. Trong mục cuối, chúng ta dùng cả ba nền tảng trên mô hình giá nhà.
 
 ## Mô hình giá nhà với các công cụ đã ôn
 
@@ -1547,8 +1547,8 @@ Hệ không tương thích dẫn đến bài toán xấp xỉ với một thư�
 
 **Thao tác.** Chọn một trong hai nhánh:
 
-- Nếu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\sigma^2\mathbf I)$, các nhiễu độc lập và cùng phương sai, dùng bình phương tối thiểu thông thường (OLS): $\tfrac12\mathbf r^T\mathbf r$.
-- Nếu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_\varepsilon)$ với $\boldsymbol\Sigma_\varepsilon\in\mathbb S_{++}^4$ đã biết và cố định, dùng bình phương tối thiểu tổng quát (GLS): $\tfrac12\mathbf r^T\boldsymbol\Sigma_\varepsilon^{-1}\mathbf r$.
+- Nếu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\sigma^2\mathbf I)$, các nhiễu độc lập và cùng phương sai, dùng bình phương nhỏ nhất thông thường (OLS): $\tfrac12\mathbf r^T\mathbf r$.
+- Nếu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_\varepsilon)$ với $\boldsymbol\Sigma_\varepsilon\in\mathbb S_{++}^4$ đã biết và cố định, dùng bình phương nhỏ nhất tổng quát (GLS): $\tfrac12\mathbf r^T\boldsymbol\Sigma_\varepsilon^{-1}\mathbf r$.
 
 Với giả thiết nhiễu độc lập và cùng phương sai, chọn OLS:
 
@@ -1604,11 +1604,11 @@ Kết quả gồm trọng số tối ưu $\mathbf w_{\mathrm{LS}}$ và một bư
 
 **Công cụ tái sử dụng.** Lời giải dựa trên chuyển vị, tích ma trận, hạng, gradient, Hessian $\nabla^2f=\mathbf X^T\mathbf X$ và điều kiện dừng bậc nhất.
 
-![Hình chiếu bình phương tối thiểu và một bước gradient làm giảm mất mát.](img/lec-00/calculus-least-squares-projection-step.svg)
+![Hình chiếu bình phương nhỏ nhất và một bước gradient làm giảm mất mát.](img/lec-00/calculus-least-squares-projection-step.svg)
 
 *Trong không gian dữ liệu, OLS chiếu $\mathbf y$ lên $\operatorname{Col}(\mathbf X)$; trong không gian tham số, đối gradient chỉ hướng giảm cục bộ.*
 
-**Diễn giải và giới hạn.** Hạng cột đầy đủ làm trọng số tối ưu duy nhất. Trong bài toán lớn, người ta thường giải hệ hoặc dùng thuật toán lặp thay vì tạo $(\mathbf X^T\mathbf X)^{-1}$ tường minh. Kích thước bước quá lớn có thể làm mất mát tăng.
+**Diễn giải và giới hạn.** Hạng cột đầy đủ làm trọng số tối ưu duy nhất. Trong bài toán lớn, người ta thường giải hệ hoặc dùng thuật toán lặp thay vì tạo $(\mathbf X^T\mathbf X)^{-1}$ tường minh. Độ dài bước quá lớn có thể làm mất mát tăng.
 
 ### Bước 7 — Kiểm tra mô hình sau khi khớp
 
@@ -1691,7 +1691,7 @@ $$
 
 Hai mô hình có độ khớp huấn luyện và dự đoán ngoài bốn điểm khác nhau.
 
-**Công cụ tái sử dụng.** Phép so sánh dựa trên đặc trưng phi tuyến, hạng, bình phương tối thiểu, phần dư và phân biệt rủi ro thực nghiệm với rủi ro trên phân phối dữ liệu.
+**Công cụ tái sử dụng.** Phép so sánh dựa trên đặc trưng phi tuyến, hạng, bình phương nhỏ nhất, phần dư và phân biệt rủi ro thực nghiệm với rủi ro trên phân phối dữ liệu.
 
 ![So sánh mô hình ba trọng số với mô hình mở rộng nội suy đúng bốn mẫu.](img/lec-00/housing-model-comparison.svg)
 
@@ -1703,7 +1703,7 @@ Hai mô hình có độ khớp huấn luyện và dự đoán ngoài bốn đi�
 
 - Goodfellow, Ian; Bengio, Yoshua; Courville, Aaron (2016), *Deep Learning*, Chương 2, Mục 2.1–2.9 và 2.11; Chương 3, Mục 3.1–3.9; Chương 4, Mục 4.3–4.5; Chương 5, Mục 5.5; Chương 6, Mục 6.5.
 - Koller, Daphne; Friedman, Nir (2009), *Probabilistic Graphical Models: Principles and Techniques*, Chương 2, phần biểu diễn phân phối xác suất, điều kiện hóa, công thức Bayes và độc lập.
-- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Phụ lục A.4–A.5, phần vi phân, đạo hàm bậc hai và bình phương tối thiểu.
+- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Phụ lục A.4–A.5, phần vi phân, đạo hàm bậc hai và bình phương nhỏ nhất.
 - Stewart, James (2016), *Calculus*, ấn bản thứ 8, Mục 5.2–5.3, 14.1–14.7 và 15.1–15.2, phần tích phân một biến, hàm nhiều biến, đạo hàm và tích phân nhiều biến.
 - Strang, Gilbert (2016), *Introduction to Linear Algebra*, ấn bản thứ 5, Mục 2.6 và 4.4, phần phân rã LU, hệ trực chuẩn, Gram–Schmidt và phân rã QR.
 - Roe, David (2013), *Linear Methods (Math 211) — Lecture 2*, tr. 5–8, phần tính tương thích, hạng của ma trận mở rộng và số tham số của tập nghiệm: <https://math.mit.edu/~roed/courses/211/lectures/Sep-11.pdf>.

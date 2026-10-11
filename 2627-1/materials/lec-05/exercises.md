@@ -1,6 +1,6 @@
 # Bài tập Bài 05 — Các phương pháp tối ưu trong huấn luyện mô hình học sâu
 
-Bộ bài tập gồm các nhiệm vụ nhận biết, tính toán, chứng minh và vận dụng vào học máy. Chuẩn đầu ra bài học (LLO) 11 liên quan mục tiêu và thách thức tối ưu; LLO12 liên quan gradient và cập nhật; LLO13 liên quan khởi tạo tham số. Các bài dùng kiến thức và giả thiết đã trình bày trong ghi chú bài giảng.
+Bộ bài tập gồm các nhiệm vụ nhận biết, tính toán, chứng minh và vận dụng vào học máy. Chuẩn đầu ra bài học (LLO) 11 liên quan mục tiêu và thách thức tối ưu; LLO12 liên quan gradient và cập nhật; LLO13 liên quan khởi tạo tham số. Các bài tập dùng kiến thức và giả thiết đã trình bày trong ghi chú bài giảng.
 
 ## Bài 1. Mục tiêu huấn luyện và lựa chọn mô hình
 
@@ -31,7 +31,7 @@ Nghiệm duy nhất là $\theta=1$, giá trị cực tiểu $4/3$. Theo tiêu ch
 Với $s$, gradient ở gốc bằng không nhưng $s(u,0)=u^2>0$ và $s(0,v)=-v^2<0$ khi tọa độ khác không. Gốc là điểm yên ngựa, không phải cực tiểu.
 :::
 
-## Bài 2. Kỳ vọng và hiệp phương sai của gradient nhóm
+## Bài 2. Kỳ vọng và hiệp phương sai của gradient lô nhỏ (mini-batch)
 
 Mức độ: chứng minh. LLO12.
 
@@ -56,18 +56,18 @@ $$
 =\frac{b\Sigma}{b^2}.
 $$
 
-Cơ chế lấy mẫu quyết định việc triệt các hạng chéo. Công thức này không tự áp dụng cho một nhóm lấy không hoàn lại hoặc các mẫu có tương quan. Đích kỳ vọng là gradient của mục tiêu thực nghiệm $J$, không mặc nhiên là gradient của $R$.
+Cơ chế lấy mẫu quyết định việc triệt các hạng chéo. Công thức này không tự áp dụng cho một lô lấy không hoàn lại hoặc các mẫu có tương quan. Đích kỳ vọng là gradient của mục tiêu thực nghiệm $J$, không mặc nhiên là gradient của $R$.
 :::
 
 ## Bài 3. Một bước SGD tại nghiệm thực nghiệm
 
 Mức độ: tính toán và giải thích. LLO12.
 
-Cho $y=(-1,1,3)$, $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$ và $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$. Tại $\theta=1$, lấy hai chỉ số độc lập đều có hoàn lại. Ký hiệu $\widehat g$ là gradient trung bình của nhóm và cập nhật $\theta^+=1-0.1\widehat g$.
+Cho $y=(-1,1,3)$, $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$ và $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$. Tại $\theta=1$, lấy hai chỉ số độc lập đều có hoàn lại. Ký hiệu $\widehat g$ là gradient trung bình của lô và cập nhật $\theta^+=1-0.1\widehat g$.
 
 1. Xác định phân phối xác suất của $\widehat g$.
 2. Tính $\mathbb E\widehat g$, $\operatorname{Var}(\widehat g)$ và $\mathbb E[J(\theta^+)-J(1)]$.
-3. Trong lần lấy nhóm nhận $y=-1$ và $y=1$, tính $\widehat g$, $\theta^+$ và thay đổi $J$. Giải thích quan hệ với tính không chệch.
+3. Trong lần lấy lô nhận $y=-1$ và $y=1$, tính $\widehat g$, $\theta^+$ và thay đổi $J$. Giải thích quan hệ với tính không chệch.
 
 ::: solution
 Gradient của một mẫu nhận các giá trị $2,0,-2$, mỗi giá trị có xác suất $1/3$. Chín cặp có thứ tự đồng xác suất cho
@@ -84,7 +84,7 @@ J(\theta^+)-J(1)=\frac12(0.1\widehat g)^2,
 \mathbb E[J(\theta^+)-J(1)]=\frac1{150}.
 $$
 
-Nhóm đã cho có hai gradient $2,0$, nên $\widehat g=1$, $\theta^+=0.9$ và $\Delta J=0.005$. Tính không chệch quy định trung bình của hướng ước lượng; nó không bảo đảm giảm mất mát sau từng bước, cũng không bảo đảm giảm kỳ vọng mất mát tại nghiệm khi nhiễu còn dương.
+Lô đã cho có hai gradient $2,0$, nên $\widehat g=1$, $\theta^+=0.9$ và $\Delta J=0.005$. Tính không chệch quy định trung bình của hướng ước lượng; nó không bảo đảm giảm mất mát sau từng bước, cũng không bảo đảm giảm kỳ vọng mất mát tại nghiệm khi nhiễu còn dương.
 :::
 
 ## Bài 4. Độ cong và điều kiện co của bước gradient
@@ -171,7 +171,7 @@ Momentum có $g=(3,7)^T$, $v^+=(-0.25,-0.25)^T$, $\theta^+=(0.75,0.75)^T$.
 
 Nesterov có $\widetilde\theta=(0.9,1.1)^T$, $g=(2.7,7.7)^T$, $v^+=(-0.235,-0.285)^T$, $\theta^+=(0.765,0.715)^T$. Hiệu hai gradient là $(-0.3,0.7)^T$, đúng bằng $\operatorname{diag}(3,7)(-0.1,0.1)^T$.
 
-Khi $\beta=0$, điểm dự báo trùng $\theta$ và cả hai phương pháp trở thành hạ gradient thông thường; với gradient nhóm, chúng trở thành SGD. Vận tốc mới đã chứa $\beta v$, nên cập nhật từ $\widetilde\theta$ bằng cách cộng thêm $v^+$ sẽ cộng phần quán tính hai lần và tạo quy tắc khác.
+Khi $\beta=0$, điểm dự báo trùng $\theta$ và cả hai phương pháp trở thành hạ gradient thông thường; với gradient lô, chúng trở thành SGD. Vận tốc mới đã chứa $\beta v$, nên cập nhật từ $\widetilde\theta$ bằng cách cộng thêm $v^+$ sẽ cộng phần quán tính hai lần và tạo quy tắc khác.
 :::
 
 ## Bài 7. Quy tắc dây chuyền và đối xứng đơn vị ẩn
@@ -203,7 +203,7 @@ $$
 
 Sau bước cập nhật, $a_j^+=0.9$, $w_j^+=0.3$, $b_j^+=-0.1$ cho cả hai nhánh.
 
-Hai bộ tham số bằng nhau cho tiền kích hoạt và kích hoạt bằng nhau trên cùng mẫu. Các trọng số đầu ra bằng nhau làm các gradient theo tham số tương ứng bằng nhau qua công thức dây chuyền. Quy tắc và trạng thái cập nhật giống nhau tạo tham số và trạng thái mới giống nhau. Quy nạp theo bước cho bảo toàn đối xứng trong các điều kiện đã nêu. Thay nhóm dữ liệu chung không tự phá đối xứng ở các bước khả vi. Nếu tiền kích hoạt bằng 0, hai đơn vị phải dùng cùng quy ước đạo hàm ReLU tại 0.
+Hai bộ tham số bằng nhau cho tiền kích hoạt và kích hoạt bằng nhau trên cùng mẫu. Các trọng số đầu ra bằng nhau làm các gradient theo tham số tương ứng bằng nhau qua công thức dây chuyền. Quy tắc và trạng thái cập nhật giống nhau tạo tham số và trạng thái mới giống nhau. Quy nạp theo bước cho bảo toàn đối xứng trong các điều kiện đã nêu. Thay lô dữ liệu chung không tự phá đối xứng ở các bước khả vi. Nếu tiền kích hoạt bằng 0, hai đơn vị phải dùng cùng quy ước đạo hàm ReLU tại 0.
 
 Ở cấu hình cuối, đầu ra vẫn bằng 2, nên $e=2$. Gradient theo $a_1,a_2$ lần lượt là $2\times0.8=1.6$ và $2\times1.2=2.4$. Trọng số đầu vào khác nhau đã làm hai cập nhật đầu ra khác nhau; điều này không bảo đảm toàn bộ quá trình huấn luyện thành công.
 :::
@@ -274,13 +274,13 @@ Mức độ: vận dụng vào học máy. LLO11–13.
 
 Một mô hình có $N=10^5$ mẫu. Ngân sách mỗi bước cho phép tính tối đa 100 gradient mẫu. Các gradient mẫu được lấy đều độc lập có hoàn lại. Tại một tham số cố định đang khảo sát, gradient mẫu vô hướng có phương sai 8. Hai đơn vị ẩn ban đầu có toàn bộ tham số vào/ra giống nhau và trạng thái momentum bằng 0.
 
-1. Đề xuất gradient nhóm phù hợp ngân sách. Tính phương sai khi dùng $b=25$ và $b=100$; nêu điều chưa thể kết luận về tổng thời gian huấn luyện.
+1. Đề xuất gradient lô phù hợp ngân sách. Tính phương sai khi dùng $b=25$ và $b=100$; nêu điều chưa thể kết luận về tổng thời gian huấn luyện.
 2. Xác định vấn đề khởi tạo và một thay đổi có căn cứ. Phân biệt việc phá đối xứng với chọn thang trọng số.
 3. Quy tắc dừng dùng $K_{\mathrm{stop}}=2$, $\delta=0.01$. Trước chuỗi đánh giá, giá trị tốt nhất đã lưu là 0.40, bộ đếm chờ bằng 0. Luôn lưu mọi giá trị xác thực nhỏ hơn tốt nhất cũ; chỉ đặt lại bộ đếm khi mức giảm so với tốt nhất cũ lớn hơn $\delta$, nếu không tăng bộ đếm. Các giá trị tiếp theo lần lượt là 0.38, 0.375, 0.370, 0.360. Xác định diễn biến bộ đếm, thời điểm dừng và mô hình được trả về.
 4. Nêu vai trò của tập kiểm thử trong quy trình trên.
 
 ::: solution
-Một nhóm bất kỳ với $1\le b\le100$ đáp ứng giới hạn số gradient mỗi bước; chẳng hạn dùng $b=100$. Phương sai bằng $8/b$, nên hai lựa chọn cho $0.32$ và $0.08$. Nhóm lớn hơn giảm phương sai tại tham số cố định theo mô hình này. Chưa có dữ kiện để kết luận tổng thời gian đạt tiêu chí tốt hơn, vì số bước cần thiết, chi phí phần cứng và xử lý song song chưa được xác định.
+Một lô bất kỳ với $1\le b\le100$ đáp ứng giới hạn số gradient mỗi bước; chẳng hạn dùng $b=100$. Phương sai bằng $8/b$, nên hai lựa chọn cho $0.32$ và $0.08$. Lô lớn hơn giảm phương sai tại tham số cố định theo mô hình này. Chưa có dữ kiện để kết luận tổng thời gian đạt tiêu chí tốt hơn, vì số bước cần thiết, chi phí phần cứng và xử lý song song chưa được xác định.
 
 Hai đơn vị đối xứng có thể tiếp tục nhận cập nhật giống nhau. Khởi tạo trọng số khác nhau phá điều kiện đồng nhất; độ lệch có thể vẫn bằng 0. Việc chọn phương sai của trọng số giải quyết thang truyền tín hiệu và gradient, là yêu cầu riêng. Nếu áp dụng Glorot cần nêu kích thước lớp và phạm vi mô hình; không đủ dữ kiện để tính một phương sai cụ thể ở đây.
 
@@ -292,9 +292,9 @@ Hai đơn vị đối xứng có thể tiếp tục nhận cập nhật giống 
 
 Thuật toán dừng sau lần 3, trả mô hình có giá trị 0.370. Lần 4 không được thực hiện trong lần chạy đã dừng; con số giả định 0.360 không làm thay đổi quyết định trước đó. Mỗi cải thiện nhỏ vẫn được lưu, nhưng không đặt lại bộ đếm theo quy tắc đã cho.
 
-Tập kiểm thử dùng để đánh giá sau quá trình chọn mô hình, không dùng chọn cỡ nhóm, khởi tạo, bước học hoặc thời điểm dừng.
+Tập kiểm thử dùng để đánh giá sau quá trình chọn mô hình, không dùng chọn kích thước lô, khởi tạo, bước học hoặc thời điểm dừng.
 :::
 
 ## Nguồn
 
-Bài 1–3 và 10 dùng các khái niệm của Goodfellow, Bengio, Courville (2016), *Deep Learning*, §§8.1–8.3.1, với dữ kiện tự xây dựng. Bài 4 dùng phân tích gradient trên hàm bậc hai của Boyd và Vandenberghe (2004), *Convex Optimization*, §§9.1–9.3. Bài 5–6 dựa trên *Deep Learning*, §§8.3.2–8.3.3, công thức (8.15)–(8.22). Bài 7–9 dùng §§6.5,8.2.5,8.4 và công thức (8.23); phép tính, dữ kiện và chứng minh đã viết riêng cho tài liệu này. Các bài không sao chép nguyên đề từ nguồn bên thứ ba.
+Bài 1–3 và 10 dùng các khái niệm của Goodfellow, Bengio, Courville (2016), *Deep Learning*, §§8.1–8.3.1, với dữ kiện tự xây dựng. Bài 4 dùng phân tích gradient trên hàm bậc hai của Boyd và Vandenberghe (2004), *Convex Optimization*, §§9.1–9.3. Bài 5–6 dựa trên *Deep Learning*, §§8.3.2–8.3.3, công thức (8.15)–(8.22). Bài 7–9 dùng §§6.5,8.2.5,8.4 và công thức (8.23); phép tính, dữ kiện và chứng minh đã viết riêng cho tài liệu này. Các bài tập không sao chép nguyên đề từ nguồn bên thứ ba.
