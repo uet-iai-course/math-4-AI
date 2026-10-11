@@ -24,12 +24,12 @@ Sau chương này, người học có thể:
 Số hiệu `04.k`, `05.k` và `05b.k` chỉ ghi chú Bài 04, Bài 05 và ghi chú bổ trợ Bài 05b.
 
 - **Đại số tuyến tính.** Ma trận đối xứng $A\in\mathbb R^{p\times p}$ có phân tích phổ $A=U\Lambda U^T$ với $U$ trực giao và $\Lambda$ chéo chứa các giá trị riêng thực. Ma trận đối xứng $A$ gọi là xác định dương, viết $A\succ0$, nếu $z^TAz>0$ với mọi $z\ne0$; điều này tương đương mọi giá trị riêng dương, và khi đó $A^{-1}\succ0$. Với ma trận $2\times2$ đối xứng, $A\succ0$ khi và chỉ khi $A_{11}>0$ và $\det A>0$ (tiêu chuẩn Sylvester). Ma trận đơn vị viết $\mathrm I$.
-- **Đạo hàm theo hướng** (Mệnh đề 04.7). Nếu $F$ khả vi tại $\theta$ với $g=\nabla F(\theta)$ và $g^Td<0$ thì có $\bar\alpha>0$ để $F(\theta+\alpha d)<F(\theta)$ với mọi $\alpha\in(0,\bar\alpha]$; vectơ $d$ như vậy gọi là hướng giảm. Mệnh đề không cho biết giá trị của $\bar\alpha$.
+- **Đạo hàm theo hướng** (Mệnh đề 04.7). Nếu $F$ khả vi tại $\theta$ với $g=\nabla F(\theta)$ và $g^Td<0$ thì có $\bar\alpha>0$ để $F(\theta+\alpha d)<F(\theta)$ với mọi $\alpha\in(0,\bar\alpha]$; vector $d$ như vậy gọi là hướng giảm. Mệnh đề không cho biết giá trị của $\bar\alpha$.
 - **Mô hình bậc hai và tìm bước** (Định nghĩa 04.8, Mệnh đề 04.9, Định nghĩa 04.10, Mệnh đề 04.11). Với ma trận đối xứng $M\succ0$, hàm $d\mapsto g^Td+\tfrac12d^TMd$ có nghiệm duy nhất là nghiệm của $Md=-g$, và đó là hướng giảm khi $g\ne0$. Quay lui Armijo bắt đầu từ $\alpha=1$ và nhân $\alpha$ với một hệ số trong $(0,1)$ cho tới khi $F(\theta+\alpha d)\le F(\theta)+c_1\alpha\,g^Td$, với $c_1\in(0,1)$; Định nghĩa 04.10 lấy $c_1\in(0,\tfrac12)$, còn Mệnh đề 04.11 chỉ cần $c_1\in(0,1)$ để thủ tục kết thúc sau hữu hạn lần co khi $g^Td<0$.
 - **Số điều kiện và đổi biến** (Nhận xét 04.13, Nhận xét 04.16). Trên hàm bậc hai lồi chặt (còn gọi là lồi nghiêm ngặt), số điều kiện $\kappa=\lambda_{\max}/\lambda_{\min}$ của Hessian đo độ chậm của hạ gradient (gradient descent). Hướng $-M^{-1}g$ là hạ gradient trong hệ tọa độ đổi biến $\theta=M^{-1/2}\varphi$; phép đổi biến này gọi là tiền điều kiện.
 - **Phương pháp Newton** (Định nghĩa 04.28, Mệnh đề 04.29, Thuật toán 04.2, Định lý 04.34, Nhận xét 04.36). Với $H=\nabla^2F(\theta)\succ0$, hướng Newton là nghiệm của hệ $Hd=-g$ và là hướng giảm khi $g\ne0$. Bước đầy đủ hội tụ bậc hai khi điểm đầu đủ gần một cực tiểu có Hessian xác định dương và Hessian Lipschitz. Khi $H$ có giá trị riêng âm, hướng Newton có thể là hướng tăng (Tình huống 04.3, mạng tuyến tính hai lớp).
 - **Gradient lô nhỏ (mini-batch) và hạ gradient ngẫu nhiên (stochastic gradient descent, SGD)** (Định nghĩa 05.1, Định nghĩa 05.10, Định lý 05.11, Thuật toán 05.1). Mất mát huấn luyện là trung bình $J(\theta)=\tfrac1N\sum_i\ell_i(\theta)$; gradient lô trên các chỉ số rút đều, độc lập là ước lượng không chệch của $\nabla J(\theta)$, có hiệp phương sai giảm theo kích thước lô.
-- **Bước gradient trên hàm bậc hai** (Mệnh đề 05.17). Với Hessian hằng có giá trị riêng $\lambda_j>0$, bước cố định $\eta$ nhân thành phần theo vectơ riêng thứ $j$ với $1-\eta\lambda_j$; dãy hội tụ với mọi điểm đầu khi và chỉ khi $0<\eta<2/\lambda_{\max}$.
+- **Bước gradient trên hàm bậc hai** (Mệnh đề 05.17). Với Hessian hằng có giá trị riêng $\lambda_j>0$, bước cố định $\eta$ nhân thành phần theo vector riêng thứ $j$ với $1-\eta\lambda_j$; dãy hội tụ với mọi điểm đầu khi và chỉ khi $0<\eta<2/\lambda_{\max}$.
 - **Momentum** (Thuật toán 05.2, Mệnh đề 05.18, Định lý 05.23). Vận tốc là tổng các gradient cũ với trọng số giảm theo cấp số nhân; Nesterov trên hàm bậc hai co theo hệ số $1-1/\sqrt\kappa$.
 - **Nhiễu gần nghiệm và độ nhạy qua chuỗi** (Ví dụ 05.14, Mệnh đề 05.31, Mệnh đề 05.32). Với bước học cố định, SGD dao động quanh nghiệm ở một mức không giảm theo số vòng. Trọng số ngẫu nhiên theo phân phối liên tục khác nhau với xác suất $1$. Độ nhạy của đầu ra một chuỗi lớp theo đầu vào là tích các đạo hàm của từng lớp.
 - **Bất đẳng thức Jensen hữu hạn** (Bổ đề 05b.25). Với $F$ lồi và trọng số không âm có tổng bằng $1$, $F\bigl(\sum_k\upsilon_kz_k\bigr)\le\sum_k\upsilon_kF(z_k)$ với mọi điểm $z_k$ và trọng số $\upsilon_k$.
@@ -41,14 +41,14 @@ Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của m�
 | Ký hiệu | Ý nghĩa | Miền hoặc kiểu |
 |---|---|---|
 | $N$, $\ell_i$, $F$ | số quan sát huấn luyện; mất mát trên quan sát $i$; mục tiêu huấn luyện $F=\tfrac1N\sum_i\ell_i$ | $N\ge1$; $\mathbb R^p\to\mathbb R_{\ge0}$; $\mathbb R^p\to\mathbb R$ |
-| $p$, $\theta$, $[\theta]_j$ | số tham số; vectơ tham số; tọa độ thứ $j$ của nó | $p\ge1$; $\mathbb R^p$; $\mathbb R$ |
+| $p$, $\theta$, $[\theta]_j$ | số tham số; vector tham số; tọa độ thứ $j$ của nó | $p\ge1$; $\mathbb R^p$; $\mathbb R$ |
 | $\theta_t$, $\theta^*$, $t$, $T$ | tham số sau vòng $t$; một điểm cực tiểu; chỉ số vòng; số vòng tối đa | $\mathbb R^p$; $t\ge1$, $T\ge1$ |
 | $\mathcal B_t$, $\lvert\mathcal B_t\rvert$ | lô chỉ số dùng ở vòng $t$; kích thước lô | tập con của $\{1,\ldots,N\}$ |
 | $g_t$, $g$ | gradient lô tại $\theta_{t-1}$; gradient $\nabla F(\theta)$ tại điểm đang xét | $\mathbb R^p$ |
 | $H$, $\lambda_j$, $\lambda_{\min}$, $\lambda_{\max}$, $\kappa$ | Hessian tại điểm đang xét; giá trị riêng của một ma trận đối xứng; nhỏ nhất, lớn nhất; số điều kiện | ma trận đối xứng; số thực |
 | $d$, $d_t$, $\eta$, $\eta_t$, $\alpha$ | bước hoặc hướng; bước ở vòng $t$; bước học (learning rate); bước học ở vòng $t$; độ dài bước dọc một hướng | $\mathbb R^p$; số dương |
 | $M$, $M_t$, $\psi$ | ma trận tiền điều kiện; ma trận tiền điều kiện ở vòng $t$; mục tiêu của bài toán con có tiền điều kiện | ma trận đối xứng $p\times p$; $\mathbb R^p\to\mathbb R$ |
-| $\odot$, $\operatorname{diag}(\cdot)$ | tích theo tọa độ (căn và thương của hai vectơ cũng hiểu theo tọa độ); ma trận chéo có đường chéo là vectơ đã cho | phép toán trên $\mathbb R^p$ |
+| $\odot$, $\operatorname{diag}(\cdot)$ | tích theo tọa độ (căn và thương của hai vector cũng hiểu theo tọa độ); ma trận chéo có đường chéo là vector đã cho | phép toán trên $\mathbb R^p$ |
 | $v_t$, $m_t$, $\widehat v_t$, $\widehat m_t$ | thống kê bình phương gradient; moment bậc nhất; hai đại lượng sau hiệu chỉnh | $\mathbb R^p$ |
 | $\rho$, $\beta_1$, $\beta_2$, $\varepsilon$ | hệ số nhớ của RMSProp; hai hệ số nhớ của Adam; hằng số dương cộng vào mẫu số | $(0,1)$; $\varepsilon>0$ |
 | $Q$ | ma trận ví dụ $\begin{bmatrix}2&1\\1&2\end{bmatrix}$ | $\mathbb R^{2\times2}$, $Q\succ0$ |
@@ -56,11 +56,11 @@ Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của m�
 | $b$, $\phi$, $d_k$, $r_k$, $q_k$ | vế phải của hệ $Ad=b$; hàm $\tfrac12d^TAd-b^Td$; nghiệm gần đúng, phần dư, hướng tìm ở vòng trong $k$ của gradient liên hợp | $\mathbb R^p$; $\mathbb R^p\to\mathbb R$ |
 | $\alpha_k$, $\omega_k$, $K$, $\varepsilon_{\rm r}$ | độ dài bước và hệ số hướng của gradient liên hợp; số vòng trong tối đa; ngưỡng phần dư | số thực; $K\ge1$; $\varepsilon_{\rm r}>0$ |
 | $s$, $y$, $P$, $B$, $n_{\rm m}$ | bước $\theta^+-\theta$; sai phân gradient; xấp xỉ nghịch đảo Hessian; xấp xỉ Hessian; số cặp lưu của L-BFGS | $\mathbb R^p$; ma trận $p\times p$; $n_{\rm m}\ge1$ |
-| $\mathcal B$, $a_i$, $\widehat a_i$, $z_i$ | một lô khi chuẩn hóa; giá trị của một đặc trưng tại quan sát $i$; giá trị chuẩn hóa; đầu ra (chữ $z$ không chỉ số là một vectơ tùy ý trong các phát biểu về dạng toàn phương) | $i\in\mathcal B$; số thực |
+| $\mathcal B$, $a_i$, $\widehat a_i$, $z_i$ | một lô khi chuẩn hóa; giá trị của một đặc trưng tại quan sát $i$; giá trị chuẩn hóa; đầu ra (chữ $z$ không chỉ số là một vector tùy ý trong các phát biểu về dạng toàn phương) | $i\in\mathcal B$; số thực |
 | $\mu_{\mathcal B}$, $\sigma_{\mathcal B}^2$, $\gamma$, $\beta$ | trung bình và phương sai của lô; hệ số co giãn và độ dịch của chuẩn hóa theo lô | $\mathbb R$; $\sigma_{\mathcal B}^2\ge0$; $\gamma,\beta\in\mathbb R$ |
 | $\bar\theta_T$ | trung bình Polyak của $\theta_1,\ldots,\theta_T$ | $\mathbb R^p$ |
 | $h$, $h_l$, $L$ | đầu vào của một lớp; biểu diễn sau lớp $l$ của một chuỗi; số lớp của chuỗi | $\mathbb R^{n_{\rm in}}$; $\mathbb R^{n_{\rm in}}$, vô hướng trong Mục 5.4; $L\ge1$ |
-| $\mathcal T$, $\xi$, $F_c$, $c^{(n)}$, $\pi$, $\mathcal D$ | phép chuyển tham số; khởi tạo phần mới; họ mục tiêu tiếp diễn với tham số $c$; tham số ở giai đoạn $n$; xác suất lấy quan sát khó; phân phối lấy mẫu | ánh xạ; vectơ; $c\ge0$; $\pi\in[0,1]$; phân phối trên $\{1,\ldots,N\}$ |
+| $\mathcal T$, $\xi$, $F_c$, $c^{(n)}$, $\pi$, $\mathcal D$ | phép chuyển tham số; khởi tạo phần mới; họ mục tiêu tiếp diễn với tham số $c$; tham số ở giai đoạn $n$; xác suất lấy quan sát khó; phân phối lấy mẫu | ánh xạ; vector; $c\ge0$; $\pi\in[0,1]$; phân phối trên $\{1,\ldots,N\}$ |
 
 Trong cả chương, $\log$ là logarit tự nhiên và $\lVert\cdot\rVert$ là chuẩn Euclid. Chữ $v$ chỉ dùng cho thống kê bình phương gradient; vận tốc của Thuật toán 05.2 không được gọi bằng ký hiệu riêng. Chữ $\beta$ không chỉ số chỉ dùng cho độ dịch của chuẩn hóa theo lô, còn $\beta_1$, $\beta_2$ là hai hệ số của Adam. Mọi bộ số của các ví dụ là số liệu sư phạm tự xây dựng, không phải kết quả đo trên dữ liệu thật.
 
@@ -237,7 +237,7 @@ Dòng thứ hai khai triển $(d-d^*)^TM(d-d^*)=d^TMd-2(d^*)^TMd+(d^*)^TMd^*$.
 
 **Bước 3 (phần b).** $g^Td^*=-\eta\,g^TM^{-1}g$. Vì $M^{-1}\succ0$ và $g\ne0$, tích này âm. Theo Định nghĩa 04.6, $d^*$ là hướng giảm.
 
-**Bước 4 (phần c).** Gọi $u$ là vectơ riêng đơn vị ứng với giá trị riêng $\lambda<0$ của $M$. Với $\varsigma\in\mathbb R$,
+**Bước 4 (phần c).** Gọi $u$ là vector riêng đơn vị ứng với giá trị riêng $\lambda<0$ của $M$. Với $\varsigma\in\mathbb R$,
 
 $$
 \psi(\varsigma u)=\varsigma\,g^Tu+\frac{\lambda}{2\eta}\varsigma^2 .
@@ -318,7 +318,7 @@ Tuy nhiên, công thức bước chưa cho biết chọn $M$ thế nào khi khô
 
 ## 2. Thống kê gradient theo tọa độ
 
-Một mạng với $p=10^7$ tham số có Hessian gồm $10^{14}$ phần tử, trong khi một vectơ gradient chỉ có $10^7$ số. Trên hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$ của Ví dụ 06.1, thành phần gradient thứ $j$ bằng $\lambda_j[\theta]_j$ với $\lambda_1=1$, $\lambda_2=9$, và tại $(1,1)$, gradient $(1,9)$ có tỷ số hai thành phần đúng bằng tỷ số độ cong. Trong mục này, chúng ta dựng ma trận tiền điều kiện chéo từ độ lớn các gradient đã tính theo ba cách lưu lịch sử của AdaGrad, RMSProp và Adam, rồi chỉ ra điều một ma trận chéo không làm được.
+Một mạng với $p=10^7$ tham số có Hessian gồm $10^{14}$ phần tử, trong khi một vector gradient chỉ có $10^7$ số. Trên hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$ của Ví dụ 06.1, thành phần gradient thứ $j$ bằng $\lambda_j[\theta]_j$ với $\lambda_1=1$, $\lambda_2=9$, và tại $(1,1)$, gradient $(1,9)$ có tỷ số hai thành phần đúng bằng tỷ số độ cong. Trong mục này, chúng ta dựng ma trận tiền điều kiện chéo từ độ lớn các gradient đã tính theo ba cách lưu lịch sử của AdaGrad, RMSProp và Adam, rồi chỉ ra điều một ma trận chéo không làm được.
 
 ### 2.1 Thống kê độ lớn gradient theo từng tọa độ
 
@@ -342,7 +342,7 @@ Một mạng với $p=10^7$ tham số có Hessian gồm $10^{14}$ phần tử, t
 Ta dùng bình phương thay cho chính gradient vì hai gradient trái dấu triệt tiêu khi cộng, chẳng hạn dãy $2$, $-2$ có tổng $0$ nhưng tổng bình phương $8$. Về mặt trực quan, tọa độ có gradient lớn hoặc thường xuyên khác $0$ tích lũy thống kê lớn và nên nhận bước học nhỏ, còn tọa độ có gradient nhỏ hoặc hiếm khi khác $0$ nên nhận bước học lớn hơn. Quy tắc này mới ở mức trực giác. Định nghĩa sau biến một thống kê không âm thành ma trận tiền điều kiện chéo.
 
 ::: definition Định nghĩa 06.5 (Ma trận tiền điều kiện chéo từ thống kê bình phương và bước học hiệu dụng)
-Cho một vectơ thống kê $v\in\mathbb R^p$ với mọi tọa độ $[v]_j\ge0$, bước học $\eta>0$ và hằng số $\varepsilon>0$. Ma trận tiền điều kiện chéo ứng với $v$ là
+Cho một vector thống kê $v\in\mathbb R^p$ với mọi tọa độ $[v]_j\ge0$, bước học $\eta>0$ và hằng số $\varepsilon>0$. Ma trận tiền điều kiện chéo ứng với $v$ là
 
 $$
 M=\operatorname{diag}\bigl(\sqrt v+\varepsilon\bigr),
@@ -394,7 +394,7 @@ Cách đơn giản nhất để lập $v$ là cộng mọi bình phương gradie
 
 **Đầu ra.** $\theta_T$, hoặc điểm được chọn theo tiêu chí xác thực định trước.
 
-**Chi phí.** Ngoài phép tính gradient, mỗi vòng tốn $O(p)$ phép toán và lưu một vectơ trạng thái $v_t\in\mathbb R^p$.
+**Chi phí.** Ngoài phép tính gradient, mỗi vòng tốn $O(p)$ phép toán và lưu một vector trạng thái $v_t\in\mathbb R^p$.
 :::
 
 Bước 3 của thuật toán là (2.1) với $v=v_t$, tức bước có tiền điều kiện với $M_t=\operatorname{diag}(\sqrt{v_t}+\varepsilon)$. Các tính chất của AdaGrad được gom trong mệnh đề sau, dựa trên Mệnh đề 06.3 và trên việc $v_t$ là một tổng.
@@ -482,7 +482,7 @@ Bước vòng 1 của RMSProp dài gấp $\sqrt2$ lần bước của AdaGrad, v
 3. Cập nhật tham số: $\theta_t=\theta_{t-1}-\eta\,g_t/\bigl(\sqrt{v_t}+\varepsilon\bigr)$.
 4. Dừng nếu tiêu chí dừng đạt.
 
-**Đầu ra và chi phí.** Như Thuật toán 06.1: một vectơ trạng thái, $O(p)$ phép toán mỗi vòng ngoài gradient.
+**Đầu ra và chi phí.** Như Thuật toán 06.1: một vector trạng thái, $O(p)$ phép toán mỗi vòng ngoài gradient.
 :::
 
 Thuật toán chỉ đổi bước 2 so với AdaGrad. Mệnh đề sau khai triển bước này thành trung bình có trọng số và đo tốc độ quên.
@@ -578,7 +578,7 @@ Adam, tên lấy từ ước lượng moment thích ứng (adaptive moment estim
 
 **Đầu ra.** Như Thuật toán 06.1.
 
-**Chi phí.** Hai vectơ trạng thái $m_t$, $v_t$; $O(p)$ phép toán mỗi vòng ngoài gradient.
+**Chi phí.** Hai vector trạng thái $m_t$, $v_t$; $O(p)$ phép toán mỗi vòng ngoài gradient.
 :::
 
 Bước 4 của thuật toán dùng các lũy thừa $\beta_1^t$, $\beta_2^t$ của chỉ số vòng, nên $t$ phải bắt đầu từ $1$, và đây là lý do của quy ước chỉ số ở đầu chương. Bước 5 có dạng $-\eta_tM_t^{-1}\widehat m_t$ với $M_t=\operatorname{diag}(\sqrt{\widehat v_t}+\varepsilon)$, trong đó mẫu số là RMSProp có hiệu chỉnh còn tử số không còn là gradient hiện tại. Tác dụng của hiệu chỉnh và giả thiết cần cho nó được nêu trong mệnh đề sau.
@@ -675,7 +675,7 @@ Về hội tụ, Reddi, Kale và Kumar (2018) dựng một bài toán tối ưu 
 Ba phương pháp trên có chung một tính chất: chúng không phụ thuộc thang của từng thành phần gradient. Trên hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$ của Ví dụ 06.1 và hàm $G(\theta)=\tfrac12\lVert\theta\rVert^2$, cùng từ $(1,1)$, AdaGrad với $\eta=1$ nhận $g_1=(1,9)$ và $g_1=(1,1)$, nhưng cả hai lần đều cho $d_1=(-1,-1)$. Mệnh đề sau phát biểu tính chất này cho mọi vòng.
 
 ::: proposition Mệnh đề 06.11 (Bất biến theo thang của từng thành phần gradient)
-**Giả thiết.** Hai mục tiêu khả vi $F$, $G$ trên $\mathbb R^p$ và một vectơ $\varpi\in\mathbb R^p$ với mọi tọa độ dương sao cho $\nabla F(\theta)=\varpi\odot\nabla G(\theta)$ với mọi $\theta$. Chạy cùng một trong ba thuật toán AdaGrad, RMSProp, Adam, với gradient đầy đủ, cùng điểm đầu, cùng siêu tham số, và $\varepsilon=0$, trên $F$ và trên $G$; giả sử mọi mẫu số dương.
+**Giả thiết.** Hai mục tiêu khả vi $F$, $G$ trên $\mathbb R^p$ và một vector $\varpi\in\mathbb R^p$ với mọi tọa độ dương sao cho $\nabla F(\theta)=\varpi\odot\nabla G(\theta)$ với mọi $\theta$. Chạy cùng một trong ba thuật toán AdaGrad, RMSProp, Adam, với gradient đầy đủ, cùng điểm đầu, cùng siêu tham số, và $\varepsilon=0$, trên $F$ và trên $G$; giả sử mọi mẫu số dương.
 
 **Kết luận.** Hai quỹ đạo trùng nhau: $\theta_t^F=\theta_t^G$ với mọi $t$.
 
@@ -796,7 +796,7 @@ Như vậy, ba bộ tối ưu của mục chỉ cần gradient và $O(p)$ bộ n
 
 Trên $F(\theta)=\tfrac12\theta^TQ\theta$, từ $\theta_0=(1,0)^T$, hướng $-g=(-2,-1)^T$ lệch $26{,}6^\circ$ so với hướng tới nghiệm $(-1,0)^T$. Không ma trận chéo nào làm số điều kiện nhỏ hơn $\kappa(Q)$ (Mệnh đề 06.12), và tại $\theta_0=(1,0)^T$ của Ví dụ 06.10, không hướng $-D^{-1}g$ nào chỉ tới nghiệm. Để xử lý độ cong ghép này, ma trận tiền điều kiện phải có phần tử ngoài đường chéo, và ứng viên tự nhiên là chính Hessian.
 
-Đầu tiên, chúng ta dùng Hessian làm ma trận tiền điều kiện và được bước Newton, sau đó giải quyết hai trở ngại kéo theo. Hessian có thể bất định, và ta sửa điều này bằng giảm chấn. Giải hệ với Hessian tốn $O(p^3)$, và ta tránh chi phí này bằng gradient liên hợp, phương pháp chỉ cần tích ma trận với vectơ. Ghép các thành phần đó, ta được phương pháp Newton–CG.
+Đầu tiên, chúng ta dùng Hessian làm ma trận tiền điều kiện và được bước Newton, sau đó giải quyết hai trở ngại kéo theo. Hessian có thể bất định, và ta sửa điều này bằng giảm chấn. Giải hệ với Hessian tốn $O(p^3)$, và ta tránh chi phí này bằng gradient liên hợp, phương pháp chỉ cần tích ma trận với vector. Ghép các thành phần đó, ta được phương pháp Newton–CG.
 
 ### 3.1 Tương tác độ cong giữa các tọa độ
 
@@ -916,7 +916,7 @@ Hệ (3.2) là bài toán con (1.3) với $M=H+\tau\mathrm I$ và $\eta=1$; số
 
 **Kết luận.**
 
-- (a) $H+\tau\mathrm I$ có cùng các vectơ riêng $u_j$, với giá trị riêng $\lambda_j+\tau$.
+- (a) $H+\tau\mathrm I$ có cùng các vector riêng $u_j$, với giá trị riêng $\lambda_j+\tau$.
 - (b) $H+\tau\mathrm I\succ0$ khi và chỉ khi $\tau>-\lambda_{\min}(H)$.
 - (c) Với $\tau>\max\{0,-\lambda_{\min}(H)\}$, $d_\tau$ là hướng giảm, và
 
@@ -956,7 +956,7 @@ Phần (c) và (d) cho thấy $\tau$ điều khiển vị trí giữa hai phươ
 
 ### 3.4 Gradient liên hợp
 
-Bước Newton giảm chấn đòi giải một hệ $p\times p$ đối xứng xác định dương. Giải bằng phân tích tốn $O(p^3)$ và cần lập ma trận, trong khi vi phân tự động (automatic differentiation) tính được tích Hessian–vectơ $Hz$ với chi phí cùng bậc vài lần tính gradient, mà không lập $H$ (Pearlmutter 1994). Ta cần giải hệ $Ad=b$, với $A=H+\tau\mathrm I$, chỉ bằng các tích $Az$.
+Bước Newton giảm chấn đòi giải một hệ $p\times p$ đối xứng xác định dương. Giải bằng phân tích tốn $O(p^3)$ và cần lập ma trận, trong khi vi phân tự động (automatic differentiation) tính được tích Hessian–vector $Hz$ với chi phí cùng bậc vài lần tính gradient, mà không lập $H$ (Pearlmutter 1994). Ta cần giải hệ $Ad=b$, với $A=H+\tau\mathrm I$, chỉ bằng các tích $Az$.
 
 Giải hệ $Ad=b$ với $A\succ0$ tương đương cực tiểu hàm bậc hai
 
@@ -965,7 +965,7 @@ $$
 \tag{3.4}
 $$
 
-vì $\nabla\phi(d)=Ad-b$ bằng $0$ đúng tại nghiệm và $\phi$ lồi chặt. Vectơ $r=b-Ad=-\nabla\phi(d)$ gọi là phần dư (residual).
+vì $\nabla\phi(d)=Ad-b$ bằng $0$ đúng tại nghiệm và $\phi$ lồi chặt. Vector $r=b-Ad=-\nabla\phi(d)$ gọi là phần dư (residual).
 
 Hạ gradient trên $\phi$ với tìm bước chính xác, tức chọn độ dài bước cực tiểu $\phi$ dọc hướng đang xét, đi theo đường zích zắc. Mỗi hướng mới vuông góc với hướng cũ, và bước theo hướng mới phá vỡ tính cực tiểu đã đạt theo hướng cũ (Goodfellow, Bengio và Courville 2016, hình 8.6, tr. 314). Về mặt hình học, nếu chọn các hướng sao cho cực tiểu theo hướng mới giữ nguyên cực tiểu theo các hướng cũ, thì sau $p$ hướng độc lập ta đã cực tiểu trên toàn không gian. Nhận xét này mới ở mức trực giác, và Định lý 06.18 sẽ phát biểu nó chính xác.
 
@@ -1002,7 +1002,7 @@ trùng với $\tfrac{r_1^Tr_1}{r_0^Tr_0}=\tfrac{18/25}{2}$. Do đó $q_1=(\tfrac
 Hình vẽ đường gấp khúc $d_0\to d_1\to d_2$ trên các đường mức của $\phi$. Trên hình, hàm ký hiệu $q(d)$ chính là $\phi(d)$ của (3.4), và $(d)_1$, $(d)_2$ là hai tọa độ $[d]_1$, $[d]_2$. Đoạn thứ hai không vuông góc với đoạn thứ nhất theo nghĩa thông thường, nhưng liên hợp theo $A$, nhờ vậy đoạn thứ hai tới thẳng tâm elip thay vì đi zích zắc. Quan hệ giữa hai đoạn được gọi tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 06.17 (Hướng liên hợp)
-Cho $A\in\mathbb R^{p\times p}$ đối xứng xác định dương. Hai vectơ $q,q'\in\mathbb R^p$ gọi là liên hợp theo $A$ (conjugate) nếu $q^TAq'=0$.
+Cho $A\in\mathbb R^{p\times p}$ đối xứng xác định dương. Hai vector $q,q'\in\mathbb R^p$ gọi là liên hợp theo $A$ (conjugate) nếu $q^TAq'=0$.
 :::
 
 Liên hợp theo $A$ là trực giao theo tích vô hướng $\langle q,q'\rangle_A=q^TAq'$. Khi $A=\mathrm I$, liên hợp trùng trực giao thông thường; với $A\ne\mathrm I$, hai khái niệm khác nhau, như $q_0$, $q_1$ của Ví dụ 06.13. Các hướng khác $0$ đôi một liên hợp thì độc lập tuyến tính, vì nhân một tổ hợp bằng $0$ của chúng với $q_j^TA$ cho hệ số của $q_j$ bằng $0$. Thuật toán sau sinh các hướng liên hợp như vậy chỉ bằng tích $Az$.
@@ -1019,7 +1019,7 @@ Liên hợp theo $A$ là trực giao theo tích vô hướng $\langle q,q'\rangl
 3. Nếu $\lVert r_{k+1}\rVert\le\varepsilon_{\rm r}$ hoặc $k+1=K$: trả $d_{k+1}$.
 4. $\omega_k=\dfrac{r_{k+1}^Tr_{k+1}}{r_k^Tr_k}$ và $q_{k+1}=r_{k+1}+\omega_kq_k$.
 
-**Chi phí.** Mỗi vòng một tích $Aq_k$, dùng chung cho bước 1 và bước 2, cùng $O(p)$ phép toán vectơ; bộ nhớ phụ là bốn vectơ.
+**Chi phí.** Mỗi vòng một tích $Aq_k$, dùng chung cho bước 1 và bước 2, cùng $O(p)$ phép toán vector; bộ nhớ phụ là bốn vector.
 :::
 
 Bước 2 cập nhật phần dư bằng $r_{k+1}=r_k-\alpha_kAq_k$ thay cho $b-Ad_{k+1}$ để không tính thêm một tích. Bước 3 kiểm tra điều kiện dừng trước bước 4: nếu $r_{k+1}=0$ mà vẫn tính tiếp, $q_{k+1}=0$ và $\alpha_{k+1}$ là phép chia $0/0$. Ngưỡng tuyệt đối $\varepsilon_{\rm r}$ là một lựa chọn; Shewchuk (1994, phụ lục B2, tr. 50) so phần dư với phần dư ban đầu. Cơ sở của thuật toán là định lý sau, dựa trên định nghĩa liên hợp và tính xác định dương của $A$.
@@ -1078,7 +1078,7 @@ Thay $d=d_j$, $q=q_j$, $\alpha=\alpha_j$ và $q_j^Tr_j=r_j^Tr_j$ được (e).
 
 **Bước 5 (phần f).** Đặt $\Phi(\upsilon)=\phi\bigl(d_0+\sum_{i<j}[\upsilon]_iq_i\bigr)$ với $\upsilon\in\mathbb R^j$; $\Phi$ lồi vì là hợp của hàm lồi $\phi$ với một ánh xạ affine. Điểm $d_j$ ứng với $[\upsilon]_i=\alpha_i$. Theo quy tắc dây chuyền và (d), với $j\le k+1$, đạo hàm riêng thứ $i$ của $\Phi$ tại đó là $\nabla\phi(d_j)^Tq_i=-r_j^Tq_i=0$. Theo Hệ quả 01.27, điểm có gradient bằng $0$ của hàm lồi khả vi là cực tiểu, nên $d_j$ là cực tiểu của $\phi$ trên tập đã nêu.
 
-**Bước 6 (phần g).** Theo (b), các phần dư khác $0$ đôi một trực giao, nên độc lập tuyến tính; trong $\mathbb R^p$ có nhiều nhất $p$ vectơ như vậy. Nếu $r_0,\ldots,r_{p-1}$ đều khác $0$ thì chúng là một cơ sở, và $r_p$ trực giao với cả cơ sở, nên $r_p=0$. Với $K\ge p$, thuật toán không dừng vì ngân sách trước vòng thứ $p$; theo (a), $Ad_m=b$ tại chỉ số $m$ đầu tiên có $r_m=0$. $\square$
+**Bước 6 (phần g).** Theo (b), các phần dư khác $0$ đôi một trực giao, nên độc lập tuyến tính; trong $\mathbb R^p$ có nhiều nhất $p$ vector như vậy. Nếu $r_0,\ldots,r_{p-1}$ đều khác $0$ thì chúng là một cơ sở, và $r_p$ trực giao với cả cơ sở, nên $r_p=0$. Với $K\ge p$, thuật toán không dừng vì ngân sách trước vòng thứ $p$; theo (a), $Ad_m=b$ tại chỉ số $m$ đầu tiên có $r_m=0$. $\square$
 :::
 
 - Phần (b) và (c) là các bất biến mà thuật toán duy trì chỉ bằng hai hệ số vô hướng $\alpha_k$, $\omega_k$ mỗi vòng: phần dư trực giao, hướng liên hợp.
@@ -1099,7 +1099,7 @@ Thay $d=d_j$, $q=q_j$, $\alpha=\alpha_j$ và $q_j^Tr_j=r_j^Tr_j$ được (e).
 
 ### 3.5 Phương pháp Newton–CG
 
-Ở Mục 3.3, chúng ta có hệ (3.2) với ma trận xác định dương khi $\tau$ đủ lớn, và ở Mục 3.4, một cách giải hệ đó chỉ bằng tích ma trận–vectơ. Ghép hai thành phần này cùng quay lui Armijo, ta được phương pháp Newton–CG, mà Martens (2010) gọi là tối ưu không dùng Hessian (Hessian-free optimization). Khi gradient liên hợp dừng sớm, nghiệm gần đúng của nó vẫn là hướng giảm theo mệnh đề sau.
+Ở Mục 3.3, chúng ta có hệ (3.2) với ma trận xác định dương khi $\tau$ đủ lớn, và ở Mục 3.4, một cách giải hệ đó chỉ bằng tích ma trận–vector. Ghép hai thành phần này cùng quay lui Armijo, ta được phương pháp Newton–CG, mà Martens (2010) gọi là tối ưu không dùng Hessian (Hessian-free optimization). Khi gradient liên hợp dừng sớm, nghiệm gần đúng của nó vẫn là hướng giảm theo mệnh đề sau.
 
 ::: proposition Mệnh đề 06.20 (Nghiệm gần đúng của gradient liên hợp là hướng giảm)
 **Giả thiết.** $A\succ0$, $g\ne0$, $b=-g$, $d_0=0$; Thuật toán 06.4 trong số học chính xác cho $d_1,\ldots,d_k$ với $k\ge1$.
@@ -1132,7 +1132,7 @@ $$
 3. Kiểm tra hướng: nếu $g^Td\ge0$, tăng $\tau$ và quay lại bước 2, hoặc dùng $d=-g$.
 4. Chọn $\alpha$ bằng quay lui Armijo theo hướng $d$; đặt $\theta_t=\theta+\alpha d$.
 
-**Chi phí.** Mỗi vòng ngoài: một gradient, nhiều nhất $K$ tích Hessian–vectơ, các phép tính $F$ của quay lui.
+**Chi phí.** Mỗi vòng ngoài: một gradient, nhiều nhất $K$ tích Hessian–vector, các phép tính $F$ của quay lui.
 :::
 
 Bước 2 và bước 3 là hai phép kiểm tra khác nhau. Phần dư $\lVert r\rVert$ đo mức giải đúng hệ; dấu $g^Td$ đo hướng có giảm hay không. Mệnh đề 06.20 nói bước 3 luôn đạt khi $H+\tau\mathrm I\succ0$ và tính toán chính xác. Khi giả thiết đó không thỏa do $\tau$ chưa đủ lớn, do sai số làm tròn, hoặc do toán tử thay đổi giữa các vòng trong, bước 3 bảo vệ thuật toán. Dữ liệu được giữ cố định trong một lần giải vì Martens (2010, mục 4.3) ghi nhận đổi lô dữ liệu giữa các vòng gradient liên hợp làm mất các bất biến của Định lý 06.18.
@@ -1169,7 +1169,7 @@ Tại một điểm có $g=(2,0)^T$ và $H=\begin{bmatrix}2&3\\3&2\end{bmatrix}$
 :::
 
 ::: hint
-Thử các vectơ $(1,1)$ và $(1,-1)$ cho giá trị riêng. Ở (b), $A=\begin{bmatrix}4&3\\3&4\end{bmatrix}$ và $b=(-2,0)^T$.
+Thử các vector $(1,1)$ và $(1,-1)$ cho giá trị riêng. Ở (b), $A=\begin{bmatrix}4&3\\3&4\end{bmatrix}$ và $b=(-2,0)^T$.
 :::
 
 ::: solution
@@ -1195,26 +1195,26 @@ Hướng $q_1=r_1+\omega_0q_0$ dùng $\omega_0=\tfrac{9/4}{4}=\tfrac9{16}$. Tọ
 :::
 
 ::: exercise Bài tập 06.4
-Cho $A\in\mathbb R^{p\times p}$ đối xứng xác định dương, $b\ne0$ và $d_0=0$. Chứng minh rằng Thuật toán 06.4 cho $r_1=0$ khi và chỉ khi $b$ là một vectơ riêng của $A$. Áp vào hệ giảm chấn tại điểm có $g=(0,-1)^T$ và $H=\operatorname{diag}(1,-1)$ với $\tau=2$ (Ví dụ 06.12): giải thích vì sao gradient liên hợp tìm ra bước Newton giảm chấn sau một vòng.
+Cho $A\in\mathbb R^{p\times p}$ đối xứng xác định dương, $b\ne0$ và $d_0=0$. Chứng minh rằng Thuật toán 06.4 cho $r_1=0$ khi và chỉ khi $b$ là một vector riêng của $A$. Áp vào hệ giảm chấn tại điểm có $g=(0,-1)^T$ và $H=\operatorname{diag}(1,-1)$ với $\tau=2$ (Ví dụ 06.12): giải thích vì sao gradient liên hợp tìm ra bước Newton giảm chấn sau một vòng.
 :::
 
 ::: hint
-Viết $r_1=b-\alpha_0Ab$ và xét khi nào vectơ này bằng $0$; với chiều ngược lại, tính $\alpha_0$ khi $Ab=\lambda b$.
+Viết $r_1=b-\alpha_0Ab$ và xét khi nào vector này bằng $0$; với chiều ngược lại, tính $\alpha_0$ khi $Ab=\lambda b$.
 :::
 
 ::: solution
-**Chiều thuận.** Với $d_0=0$: $r_0=q_0=b$, và $r_1=b-\alpha_0Ab$ với $\alpha_0=\tfrac{b^Tb}{b^TAb}>0$. Nếu $r_1=0$ thì $Ab=\tfrac1{\alpha_0}b$, nên $b$ là vectơ riêng ứng với giá trị riêng $\tfrac1{\alpha_0}$.
+**Chiều thuận.** Với $d_0=0$: $r_0=q_0=b$, và $r_1=b-\alpha_0Ab$ với $\alpha_0=\tfrac{b^Tb}{b^TAb}>0$. Nếu $r_1=0$ thì $Ab=\tfrac1{\alpha_0}b$, nên $b$ là vector riêng ứng với giá trị riêng $\tfrac1{\alpha_0}$.
 
 **Chiều đảo.** Nếu $Ab=\lambda b$ thì $\lambda>0$ vì $A\succ0$, và $\alpha_0=\tfrac{b^Tb}{\lambda b^Tb}=\tfrac1\lambda$. Do đó $r_1=b-\tfrac1\lambda\lambda b=0$.
 
-**Áp dụng.** Ở Ví dụ 06.12 với $\tau=2$: $A=\operatorname{diag}(3,1)$ và $b=-g=(0,1)^T$, một vectơ riêng ứng với giá trị riêng $1$. Gradient liên hợp cho $\alpha_0=1$, $d_1=(0,1)^T$ và $r_1=0$ sau một vòng.
+**Áp dụng.** Ở Ví dụ 06.12 với $\tau=2$: $A=\operatorname{diag}(3,1)$ và $b=-g=(0,1)^T$, một vector riêng ứng với giá trị riêng $1$. Gradient liên hợp cho $\alpha_0=1$, $d_1=(0,1)^T$ và $r_1=0$ sau một vòng.
 
 **Kiểm tra lại.** $Ad_1=(0,1)^T=b$.
 :::
 
-Như vậy, Ví dụ 06.10 cho thấy ma trận tiền điều kiện cần phần tử ngoài đường chéo, và bước Newton (3.1), tức Mệnh đề 06.3 với $M=H$, đáp ứng đòi hỏi đó. Mệnh đề 06.13 giải thích điều này bằng tính bất biến affine. Hessian bất định được sửa bằng giảm chấn (Định nghĩa 06.15, Mệnh đề 06.16), còn hệ Newton được giải chỉ bằng tích ma trận–vectơ nhờ gradient liên hợp (Định nghĩa 06.17, Thuật toán 06.4, Định lý 06.18). Mệnh đề 06.20 bảo đảm nghiệm gần đúng của gradient liên hợp vẫn là hướng giảm, nên các thành phần ghép được thành Thuật toán 06.5.
+Như vậy, Ví dụ 06.10 cho thấy ma trận tiền điều kiện cần phần tử ngoài đường chéo, và bước Newton (3.1), tức Mệnh đề 06.3 với $M=H$, đáp ứng đòi hỏi đó. Mệnh đề 06.13 giải thích điều này bằng tính bất biến affine. Hessian bất định được sửa bằng giảm chấn (Định nghĩa 06.15, Mệnh đề 06.16), còn hệ Newton được giải chỉ bằng tích ma trận–vector nhờ gradient liên hợp (Định nghĩa 06.17, Thuật toán 06.4, Định lý 06.18). Mệnh đề 06.20 bảo đảm nghiệm gần đúng của gradient liên hợp vẫn là hướng giảm, nên các thành phần ghép được thành Thuật toán 06.5.
 
-Phương pháp thu được (Thuật toán 06.5) dùng đầy đủ độ cong mà không lập Hessian, kèm hai phép kiểm tra riêng cho phần dư và cho dấu của hướng. Tuy nhiên, phương pháp vẫn cần một toán tử $z\mapsto Hz$ và một hệ số $\tau$ đủ lớn. Trong Mục 4, chúng ta xét trường hợp chỉ có gradient, không có tích Hessian–vectơ, và rút thông tin độ cong từ hiệu của hai gradient.
+Phương pháp thu được (Thuật toán 06.5) dùng đầy đủ độ cong mà không lập Hessian, kèm hai phép kiểm tra riêng cho phần dư và cho dấu của hướng. Tuy nhiên, phương pháp vẫn cần một toán tử $z\mapsto Hz$ và một hệ số $\tau$ đủ lớn. Trong Mục 4, chúng ta xét trường hợp chỉ có gradient, không có tích Hessian–vector, và rút thông tin độ cong từ hiệu của hai gradient.
 
 ## 4. Thông tin độ cong từ sai phân gradient
 
@@ -1231,7 +1231,7 @@ Ví dụ sau tính hiệu của hai gradient trên hàm có Hessian $Q$ và so n
 
 **Đọc.** $y=Qs$: cặp $(s,y)$ cho biết tác động của Hessian lên một hướng $s$. Tích $s^Ty=2$ bằng $s^TQs$, độ cong của $F$ dọc $s$.
 
-**Kiểm tra lại.** Cộng vào $F$ một hàm tuyến tính của $\theta$ thì cả hai gradient cùng tăng một vectơ hằng, và $y$ không đổi.
+**Kiểm tra lại.** Cộng vào $F$ một hàm tuyến tính của $\theta$ thì cả hai gradient cùng tăng một vector hằng, và $y$ không đổi.
 :::
 
 Một cách trực quan, cặp $(s,y)$ là một phép đo Hessian theo một hướng, và ghép nhiều phép đo theo nhiều hướng cho một xấp xỉ của Hessian. Cách nhìn này mới là trực giác, chưa phải phát biểu hình thức. Một cặp chỉ cho $p$ phương trình, trong khi một ma trận đối xứng $p\times p$ có $p(p+1)/2$ ẩn, chẳng hạn với $p=2$, hai phương trình cho ba ẩn. Đòi hỏi một xấp xỉ tái tạo đúng phép đo được gọi tên theo định nghĩa sau.
@@ -1437,11 +1437,11 @@ Với $P\succ0$ và $g\ne0$, $g^Td=-g^TPg<0$, nên bước 2 có nghĩa. Theo M�
 **Kiểm tra lại.** Tìm bước chính xác thỏa (4.2) với mọi $c_2$, vì $\nabla F(\theta+\alpha d)^Td=0>c_2g^Td$, và thỏa bất đẳng thức đầu với mọi $c_1\le\tfrac12$, vì trên hàm bậc hai $F(\theta+\alpha d)=F(\theta)+\tfrac12\alpha g^Td$. Hai bước $s_1$, $s_2$ của hai vòng liên hợp theo $Q$: $s_1^TQs_2=y_1^Ts_2$, và $y_1^Ts_2=\tfrac{25}{14}\cdot\tfrac27-\tfrac{10}7\cdot\tfrac5{14}=0$.
 :::
 
-Ví dụ minh họa một kết quả chung: trên hàm bậc hai lồi chặt với tìm bước chính xác, BFGS cho các hướng liên hợp theo Hessian, đạt nghiệm sau nhiều nhất $p$ vòng và có $P_p$ bằng nghịch đảo Hessian (Nocedal và Wright 2006, chương 6; chúng ta không chứng minh kết quả này). Đó là cùng tính chất kết thúc hữu hạn của gradient liên hợp (Định lý 06.18(g)), đạt được mà không cần tích Hessian–vectơ. Trên hàm không bậc hai, kết quả tương ứng là hội tụ siêu tuyến tính gần một cực tiểu có Hessian xác định dương, dưới các giả thiết nêu ở Nocedal và Wright (2006, mục 6.4).
+Ví dụ minh họa một kết quả chung: trên hàm bậc hai lồi chặt với tìm bước chính xác, BFGS cho các hướng liên hợp theo Hessian, đạt nghiệm sau nhiều nhất $p$ vòng và có $P_p$ bằng nghịch đảo Hessian (Nocedal và Wright 2006, chương 6; chúng ta không chứng minh kết quả này). Đó là cùng tính chất kết thúc hữu hạn của gradient liên hợp (Định lý 06.18(g)), đạt được mà không cần tích Hessian–vector. Trên hàm không bậc hai, kết quả tương ứng là hội tụ siêu tuyến tính gần một cực tiểu có Hessian xác định dương, dưới các giả thiết nêu ở Nocedal và Wright (2006, mục 6.4).
 
 ### 4.4 BFGS với bộ nhớ giới hạn
 
-Thuật toán 06.6 lưu ma trận $P$ gồm $p^2$ số: với $p=10^6$, đó là $10^{12}$ số. BFGS với bộ nhớ giới hạn (limited-memory BFGS, L-BFGS) không lưu $P$ mà lưu $n_{\rm m}$ cặp $(s_i,y_i)$ gần nhất, tức $2n_{\rm m}p$ số, và tính trực tiếp tích $Pg$ từ các cặp. Ví dụ sau cho thấy tích đó chỉ cần tích vô hướng và cộng vectơ.
+Thuật toán 06.6 lưu ma trận $P$ gồm $p^2$ số: với $p=10^6$, đó là $10^{12}$ số. BFGS với bộ nhớ giới hạn (limited-memory BFGS, L-BFGS) không lưu $P$ mà lưu $n_{\rm m}$ cặp $(s_i,y_i)$ gần nhất, tức $2n_{\rm m}p$ số, và tính trực tiếp tích $Pg$ từ các cặp. Ví dụ sau cho thấy tích đó chỉ cần tích vô hướng và cộng vector.
 
 ::: example Ví dụ 06.18 (Tích $Pg$ từ một cặp, không lập $P$)
 **Dữ kiện.** Cặp $s=(1,0)^T$, $y=(2,1)^T$ với $y^Ts=2$ (Ví dụ 06.15); ma trận ban đầu $\mathrm I$; gradient $g=(1,1)^T$. Cập nhật (4.1) viết thành $P_1=V^TV+\tfrac{ss^T}{y^Ts}$ với $V=\mathrm I-\tfrac{ys^T}{y^Ts}$.
@@ -1452,7 +1452,7 @@ Thuật toán 06.6 lưu ma trận $P$ gồm $p^2$ số: với $p=10^6$, đó là
 
 **Cộng phần hạng một.** $\tfrac{s^Tg}{y^Ts}s=\tfrac12(1,0)^T$, nên $P_1g=(\tfrac14,\tfrac12)^T$.
 
-**Kiểm tra lại.** Với $P_1=\begin{bmatrix}\tfrac34&-\tfrac12\\-\tfrac12&1\end{bmatrix}$ của Ví dụ 06.16: $P_1(1,1)^T=(\tfrac14,\tfrac12)^T$. Phép tính không lập ma trận nào, chỉ dùng bốn tích vô hướng và ba phép cộng vectơ.
+**Kiểm tra lại.** Với $P_1=\begin{bmatrix}\tfrac34&-\tfrac12\\-\tfrac12&1\end{bmatrix}$ của Ví dụ 06.16: $P_1(1,1)^T=(\tfrac14,\tfrac12)^T$. Phép tính không lập ma trận nào, chỉ dùng bốn tích vô hướng và ba phép cộng vector.
 :::
 
 Với nhiều cặp, phép tính trên được tổ chức thành thuật toán sau, gọi là đệ quy hai vòng (two-loop recursion), và Mệnh đề 06.27 chứng tỏ nó cho đúng $Pg$.
@@ -1482,7 +1482,7 @@ Với nhiều cặp, phép tính trên được tổ chức thành thuật toán
 :::
 
 ::: proof Chứng minh Mệnh đề 06.27
-Chứng minh đầy đủ nằm ngoài phạm vi chương (Nocedal và Wright 2006, mục 7.2). Ý chính là quy nạp theo số cặp. Viết (4.1) thành $P_i=V_i^TP_{i-1}V_i+\tfrac{s_is_i^T}{y_i^Ts_i}$ với $V_i=\mathrm I-\tfrac{y_is_i^T}{y_i^Ts_i}$. Mỗi bước của vòng lùi thay vectơ hiện tại $u$ bằng $V_iu$, mỗi bước của vòng tiến thay $w$ bằng $V_i^Tw+\vartheta_is_i$, nên ghép hai vòng quanh phần giữa cho đúng biểu thức $V_i^T(P_{i-1}V_iu)+\tfrac{s_i^Tu}{y_i^Ts_i}s_i=P_iu$, lồng nhau từ cặp mới nhất tới cặp cũ nhất. $\square$
+Chứng minh đầy đủ nằm ngoài phạm vi chương (Nocedal và Wright 2006, mục 7.2). Ý chính là quy nạp theo số cặp. Viết (4.1) thành $P_i=V_i^TP_{i-1}V_i+\tfrac{s_is_i^T}{y_i^Ts_i}$ với $V_i=\mathrm I-\tfrac{y_is_i^T}{y_i^Ts_i}$. Mỗi bước của vòng lùi thay vector hiện tại $u$ bằng $V_iu$, mỗi bước của vòng tiến thay $w$ bằng $V_i^Tw+\vartheta_is_i$, nên ghép hai vòng quanh phần giữa cho đúng biểu thức $V_i^T(P_{i-1}V_iu)+\tfrac{s_i^Tu}{y_i^Ts_i}s_i=P_iu$, lồng nhau từ cặp mới nhất tới cặp cũ nhất. $\square$
 :::
 
 Áp Thuật toán 06.7 cho cặp $s=(1,0)^T$, $y=(2,1)^T$ với $P^\circ=\mathrm I$ và $g=(1,1)^T$: vòng lùi cho $\vartheta_1=\tfrac12$, vòng tiến cho $\vartheta'=\tfrac14$, và đầu ra $(\tfrac14,\tfrac12)^T$ trùng $P_1g$ của Ví dụ 06.18.
@@ -1913,7 +1913,7 @@ Hình đặt hai chuỗi song song; mỗi mũi tên mang đạo hàm của một
 
 Với $c_{\rm s}=0{,}1$ và $L=5$, chuỗi có nối tắt có hệ số trong $[0{,}9^5;\,1{,}1^5]\approx[0{,}590;\,1{,}611]$, còn chuỗi thường có hệ số không quá $10^{-5}$. Phần (a) không cho bảo đảm ổn định với mọi độ sâu, vì $1{,}1^L\to\infty$ khi $L\to\infty$, và $0{,}9^L\to0$. Nối tắt đổi tích của các số nhỏ thành tích của các số gần $1$. Goodfellow, Bengio và Courville (2016, mục 8.7.5, tr. 326) diễn đạt điều này là rút ngắn đường ngắn nhất từ tham số lớp dưới tới đầu ra.
 
-**Trong học máy.** Mạng phần dư (residual network) của He và cộng sự (2016) dùng khối (5.4) với $f_l$ gồm vài lớp tích chập; đó là trường hợp vectơ của Mệnh đề 06.36, với ma trận Jacobi $\mathrm I+J_{f_l}$ thay cho $1+f_l'$. Trong trường hợp vectơ, chuẩn toán tử của tích $\prod_l(\mathrm I+J_{f_l})$ bị chặn trên bởi $(1+c_{\rm s})^L$ khi mọi chuẩn $\lVert J_{f_l}\rVert$ không vượt $c_{\rm s}$, vì chuẩn toán tử của một tích không vượt tích các chuẩn và $\lVert\mathrm I+J\rVert\le1+\lVert J\rVert$; khi các chuẩn này không bị chặn, nối tắt không cho cận nào. Đầu phụ (auxiliary head), một bản sao của đầu ra gắn vào lớp giữa trong quá trình huấn luyện, là một cách khác rút ngắn đường truyền (Goodfellow, Bengio và Courville 2016, mục 8.7.5). Can thiệp này đổi mô hình, tức đổi mục tiêu $F$, một lần từ đầu quá trình huấn luyện.
+**Trong học máy.** Mạng phần dư (residual network) của He và cộng sự (2016) dùng khối (5.4) với $f_l$ gồm vài lớp tích chập; đó là trường hợp vector của Mệnh đề 06.36, với ma trận Jacobi $\mathrm I+J_{f_l}$ thay cho $1+f_l'$. Trong trường hợp vector, chuẩn toán tử của tích $\prod_l(\mathrm I+J_{f_l})$ bị chặn trên bởi $(1+c_{\rm s})^L$ khi mọi chuẩn $\lVert J_{f_l}\rVert$ không vượt $c_{\rm s}$, vì chuẩn toán tử của một tích không vượt tích các chuẩn và $\lVert\mathrm I+J\rVert\le1+\lVert J\rVert$; khi các chuẩn này không bị chặn, nối tắt không cho cận nào. Đầu phụ (auxiliary head), một bản sao của đầu ra gắn vào lớp giữa trong quá trình huấn luyện, là một cách khác rút ngắn đường truyền (Goodfellow, Bengio và Courville 2016, mục 8.7.5). Can thiệp này đổi mô hình, tức đổi mục tiêu $F$, một lần từ đầu quá trình huấn luyện.
 
 ::: exercise Bài tập 06.7
 - (a) Lô $(1,3,3,5)$, $\varepsilon=2$, $\gamma=3$, $\beta=-1$. Tính $\mu_{\mathcal B}$, $\sigma_{\mathcal B}^2$, $\widehat a$, $z$, rồi kiểm tra trung bình và phương sai của $z$ bằng Mệnh đề 06.29(a).
@@ -2230,7 +2230,7 @@ Nhận xét sau xếp mỗi phương pháp cạnh dữ kiện cần có, giả t
 | Dữ kiện sẵn có | Phương pháp | Giả thiết cần kiểm tra | Phép kiểm tra | Kết quả của chương |
 |---|---|---|---|---|
 | chỉ gradient lô; bộ nhớ $O(p)$ | AdaGrad, RMSProp, Adam | thang lệch chủ yếu theo trục tọa độ; lịch bước học | mất mát đích theo vòng; chi phí | Mệnh đề 06.6, Mệnh đề 06.7, Mệnh đề 06.9, Mệnh đề 06.11 |
-| gradient và tích Hessian–vectơ trên lô cố định | Newton–CG có giảm chấn | $H+\tau\mathrm I\succ0$ | phần dư; dấu $g^Td$; Armijo | Mệnh đề 06.16, Định lý 06.18, Mệnh đề 06.20 |
+| gradient và tích Hessian–vector trên lô cố định | Newton–CG có giảm chấn | $H+\tau\mathrm I\succ0$ | phần dư; dấu $g^Td$; Armijo | Mệnh đề 06.16, Định lý 06.18, Mệnh đề 06.20 |
 | gradient đầy đủ, ổn định; $p$ vừa phải | BFGS hoặc L-BFGS | $P\succ0$; $y^Ts>0$ | điều kiện Wolfe; ngưỡng nhận cặp | Định lý 06.23, Mệnh đề 06.26, Mệnh đề 06.27 |
 | tín hiệu đầu vào lớp lệch thang đo | chuẩn hóa theo lô | lô đủ lớn; chế độ suy luận | đầu ra khi suy luận từng quan sát | Mệnh đề 06.29 |
 | bài toán con theo khối giải được | hạ theo khối | giá trị cũ là một lựa chọn | $F$ không tăng; độ ghép giữa khối | Mệnh đề 06.31 |
@@ -2256,7 +2256,7 @@ Nhận xét sau xếp mỗi phương pháp cạnh dữ kiện cần có, giả t
 
 - cách 1 không còn đủ (Mệnh đề 06.12);
 - cách 2 vẫn cho một bước (Ví dụ 06.11);
-- cách 3 cần một phép quay trước khi đổi thang, tức cần biết các vectơ riêng.
+- cách 3 cần một phép quay trước khi đổi thang, tức cần biết các vector riêng.
 
 **Kiểm tra lại.** Với cách 3, điểm đầu là $\varphi=(1,3)$, gradient $(1,3)$, và $\varphi-1\cdot(1,3)=(0,0)$.
 :::
@@ -2279,21 +2279,21 @@ Ví dụ sau cho thấy bộ nhớ có thể loại bỏ một số phương ph�
 | L-BFGS, $n_{\rm m}=10$ | $2n_{\rm m}p=5\cdot10^8$ | $2$ GB |
 | BFGS đầy đủ | $p^2=6{,}25\cdot10^{14}$ | $2{,}5\cdot10^6$ GB |
 
-**Diễn giải.** BFGS đầy đủ bị loại bởi bộ nhớ, bất kể tốc độ. L-BFGS đáp ứng giới hạn bộ nhớ, nhưng cần gradient ổn định; với gradient lô, các cặp $(s,y)$ chứa cả hiệu giữa hai lô (Mệnh đề 06.22). Newton–CG lưu vài vectơ, tức $O(p)$, nhưng mỗi vòng ngoài cần tới $K$ tích Hessian–vectơ.
+**Diễn giải.** BFGS đầy đủ bị loại bởi bộ nhớ, bất kể tốc độ. L-BFGS đáp ứng giới hạn bộ nhớ, nhưng cần gradient ổn định; với gradient lô, các cặp $(s,y)$ chứa cả hiệu giữa hai lô (Mệnh đề 06.22). Newton–CG lưu vài vector, tức $O(p)$, nhưng mỗi vòng ngoài cần tới $K$ tích Hessian–vector.
 
 **Kiểm tra lại.** $p^2=6{,}25\cdot10^{14}$ số nhân $4$ byte là $2{,}5\cdot10^{15}$ byte, tức $2{,}5\cdot10^6$ GB.
 :::
 
 ::: exercise Bài tập 06.10
-Một mô hình trơn có $p=5\cdot10^6$ tham số. Có gradient đầy đủ và tích Hessian–vectơ trên toàn bộ dữ liệu, mỗi tích tốn khoảng hai lần tính gradient; Hessian có thể có giá trị riêng âm. Ngân sách bộ nhớ phụ là $10p$ số thực.
+Một mô hình trơn có $p=5\cdot10^6$ tham số. Có gradient đầy đủ và tích Hessian–vector trên toàn bộ dữ liệu, mỗi tích tốn khoảng hai lần tính gradient; Hessian có thể có giá trị riêng âm. Ngân sách bộ nhớ phụ là $10p$ số thực.
 
 - (a) Xác định các phương pháp trong Newton với Hessian đặc, BFGS, L-BFGS, Newton–CG đáp ứng ngân sách bộ nhớ, và $n_{\rm m}$ lớn nhất cho L-BFGS.
-- (b) Chọn một phương pháp dùng được tích Hessian–vectơ, và nêu hai phép kiểm tra phải có ở mỗi vòng ngoài.
+- (b) Chọn một phương pháp dùng được tích Hessian–vector, và nêu hai phép kiểm tra phải có ở mỗi vòng ngoài.
 - (c) Nêu điều phải làm khi phép kiểm tra dấu thất bại do Hessian bất định.
 :::
 
 ::: hint
-L-BFGS lưu $2n_{\rm m}p$ số; gradient liên hợp lưu bốn vectơ. Xem Thuật toán 06.5 và Mệnh đề 06.16.
+L-BFGS lưu $2n_{\rm m}p$ số; gradient liên hợp lưu bốn vector. Xem Thuật toán 06.5 và Mệnh đề 06.16.
 :::
 
 ::: solution
@@ -2301,9 +2301,9 @@ L-BFGS lưu $2n_{\rm m}p$ số; gradient liên hợp lưu bốn vectơ. Xem Thu�
 
 - Newton với Hessian đặc và BFGS cần $p^2=2{,}5\cdot10^{13}$ số, bị loại.
 - L-BFGS cần $2n_{\rm m}p\le10p$, nên $n_{\rm m}\le5$.
-- Newton–CG lưu vài vectơ, tức $O(p)$, đáp ứng.
+- Newton–CG lưu vài vector, tức $O(p)$, đáp ứng.
 
-**Câu (b).** Newton–CG (Thuật toán 06.5) dùng trực tiếp tích Hessian–vectơ. Hai phép kiểm tra ở mỗi vòng ngoài là phần dư của gradient liên hợp, đo mức giải đúng hệ, và dấu $g^Td<0$, đo hướng có giảm hay không.
+**Câu (b).** Newton–CG (Thuật toán 06.5) dùng trực tiếp tích Hessian–vector. Hai phép kiểm tra ở mỗi vòng ngoài là phần dư của gradient liên hợp, đo mức giải đúng hệ, và dấu $g^Td<0$, đo hướng có giảm hay không.
 
 **Câu (c).** Tăng $\tau$ rồi giải lại, vì theo Mệnh đề 06.16(b), $H+\tau\mathrm I\succ0$ khi $\tau>-\lambda_{\min}(H)$; hoặc dùng $d=-g$ kèm tìm bước.
 
@@ -2319,7 +2319,7 @@ Quy tắc này chưa được áp vào một bài toán học máy đầy đủ.
 ::: application Tình huống 06.1 (Adam và hạ gradient trên hồi quy có đặc trưng lệch thang đo)
 **Bài toán và dữ liệu.**
 
-Dữ liệu của Tình huống 05.2: bốn quan sát với vectơ đặc trưng $x_1=(1,10)^T$, $x_2=(1,-10)^T$, $x_3=(-1,10)^T$, $x_4=(-1,-10)^T$, nhãn sinh từ $\theta^*=(1,1)^T$ không nhiễu. Đặc trưng thứ hai có thang lớn gấp mười lần. Cần so hạ gradient với Adam từ $\theta_0=0$, gradient đầy đủ, và kiểm tra lợi thế của Adam có còn khi dữ liệu được quay hay không.
+Dữ liệu của Tình huống 05.2: bốn quan sát với vector đặc trưng $x_1=(1,10)^T$, $x_2=(1,-10)^T$, $x_3=(-1,10)^T$, $x_4=(-1,-10)^T$, nhãn sinh từ $\theta^*=(1,1)^T$ không nhiễu. Đặc trưng thứ hai có thang lớn gấp mười lần. Cần so hạ gradient với Adam từ $\theta_0=0$, gradient đầy đủ, và kiểm tra lợi thế của Adam có còn khi dữ liệu được quay hay không.
 
 **Mô hình hóa.**
 
@@ -2367,7 +2367,7 @@ Với gradient đầy đủ, sai số của Adam tiếp tục giảm sau khi qua
 ::: application Tình huống 06.2 (Newton–CG có giảm chấn trên mạng tuyến tính hai lớp: Hessian bất định)
 **Bài toán và dữ liệu.**
 
-Mạng tuyến tính hai lớp một đơn vị của Mệnh đề 06.37: một quan sát có đầu vào $1$ và nhãn $3$, dự đoán $w_2w_1$, mất mát $F(\theta)=\tfrac12(w_1w_2-3)^2$ với $\theta=(w_1,w_2)^T$. Gradient là $(w_1w_2-3)(w_2,w_1)^T$ và Hessian là $\begin{bmatrix}w_2^2&2w_1w_2-3\\2w_1w_2-3&w_1^2\end{bmatrix}$. Điểm đầu $\theta_0=(\tfrac12,1)^T$, một điểm ngoài đường $w_1=-w_2$. Cần một phương pháp dùng độ cong, chỉ với gradient và tích Hessian–vectơ.
+Mạng tuyến tính hai lớp một đơn vị của Mệnh đề 06.37: một quan sát có đầu vào $1$ và nhãn $3$, dự đoán $w_2w_1$, mất mát $F(\theta)=\tfrac12(w_1w_2-3)^2$ với $\theta=(w_1,w_2)^T$. Gradient là $(w_1w_2-3)(w_2,w_1)^T$ và Hessian là $\begin{bmatrix}w_2^2&2w_1w_2-3\\2w_1w_2-3&w_1^2\end{bmatrix}$. Điểm đầu $\theta_0=(\tfrac12,1)^T$, một điểm ngoài đường $w_1=-w_2$. Cần một phương pháp dùng độ cong, chỉ với gradient và tích Hessian–vector.
 
 **Mô hình hóa.**
 
@@ -2552,11 +2552,11 @@ Cho $A\in\mathbb R^{p\times p}$ đối xứng xác định dương có đúng ha
 :::
 
 ::: hint
-Ở (a), dùng phân tích phổ: mỗi vectơ riêng bị một trong hai thừa số triệt tiêu. Ở (b), chứng tỏ $\operatorname{span}\{q_0,q_1\}=\operatorname{span}\{b,Ab\}$ khi $r_1\ne0$.
+Ở (a), dùng phân tích phổ: mỗi vector riêng bị một trong hai thừa số triệt tiêu. Ở (b), chứng tỏ $\operatorname{span}\{q_0,q_1\}=\operatorname{span}\{b,Ab\}$ khi $r_1\ne0$.
 :::
 
 ::: solution
-**Câu (a).** Với vectơ riêng $u$ ứng với $\lambda_1$, $(A-\lambda_2\mathrm I)u=(\lambda_1-\lambda_2)u$ và $(A-\lambda_1\mathrm I)$ triệt tiêu nó; tương tự cho $\lambda_2$, và hai thừa số giao hoán. Các vectơ riêng tạo cơ sở, nên tích bằng $0$. Khai triển: $A^2-(\lambda_1+\lambda_2)A+\lambda_1\lambda_2\mathrm I=0$. Nhân với $A^{-1}$ rồi với $b$:
+**Câu (a).** Với vector riêng $u$ ứng với $\lambda_1$, $(A-\lambda_2\mathrm I)u=(\lambda_1-\lambda_2)u$ và $(A-\lambda_1\mathrm I)$ triệt tiêu nó; tương tự cho $\lambda_2$, và hai thừa số giao hoán. Các vector riêng tạo cơ sở, nên tích bằng $0$. Khai triển: $A^2-(\lambda_1+\lambda_2)A+\lambda_1\lambda_2\mathrm I=0$. Nhân với $A^{-1}$ rồi với $b$:
 
 $$
 A^{-1}b=\frac{(\lambda_1+\lambda_2)\,b-Ab}{\lambda_1\lambda_2}\in\operatorname{span}\{b,Ab\}.
@@ -2613,7 +2613,7 @@ Số trang của Goodfellow, Bengio và Courville là trang in của bản MIT P
 - Hinton, G., Srivastava, N. và Swersky, K. (2012), *Neural Networks for Machine Learning*, Lecture 6, Đại học Toronto: RMSProp, Mục 2.3.
 - Kingma, D. P. và Ba, J. (2015), "Adam: A method for stochastic optimization", *International Conference on Learning Representations*, thuật toán 1 và mục 3: Mục 2.4.
 - Reddi, S. J., Kale, S. và Kumar, S. (2018), "On the convergence of Adam and beyond", *International Conference on Learning Representations*: phạm vi của Adam, Mục 2.4.
-- Pearlmutter, B. A. (1994), "Fast exact multiplication by the Hessian", *Neural Computation* 6(1), tr. 147–160: tích Hessian–vectơ, Mục 3.4.
+- Pearlmutter, B. A. (1994), "Fast exact multiplication by the Hessian", *Neural Computation* 6(1), tr. 147–160: tích Hessian–vector, Mục 3.4.
 - Martens, J. (2010), "Deep learning via Hessian-free optimization", *Proceedings of the 27th International Conference on Machine Learning*, mục 3–4: Newton–CG, giảm chấn, Mục 3.5 và Tình huống 06.2.
 - Ioffe, S. và Szegedy, C. (2015), "Batch normalization: Accelerating deep network training by reducing internal covariate shift", *Proceedings of the 32nd International Conference on Machine Learning*, thuật toán 1–2: Mục 5.1.
 - Santurkar, S., Tsipras, D., Ilyas, A. và Madry, A. (2018), "How does batch normalization help optimization?", *Advances in Neural Information Processing Systems* 31: Nhận xét về cơ chế, Mục 5.1.

@@ -2,21 +2,23 @@
   <title id="title">Thư viện các tập lồi cơ bản</title>
   <desc id="desc">Năm khung minh họa nửa không gian, tập affine, quả cầu hoặc elip, đa diện và nón bậc hai. Nón bậc hai gồm các điểm u một, u hai, t thỏa chuẩn Euclid của u không vượt quá t; các lát cắt tại t dương là các đĩa và chỉ nhánh t không âm được giữ lại.</desc>
   <defs>
-    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker>
+    <marker id="arrow" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L12 5L0 10Z" fill="#24324a"/></marker>
     <style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.region{fill:#e9f1fb;stroke:#315d92;stroke-width:3}.affine{stroke:#6a45a5;stroke-width:6}.poly{fill:#eef4f3;stroke:#16706a;stroke-width:4}.boundary{stroke:#b44b20;stroke-width:4}.point{fill:#fff;stroke:#172033;stroke-width:3}.segment{stroke:#9b6b12;stroke-width:4}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.cone{fill:#f2edfa;stroke:#6a45a5;stroke-width:4}.slice{fill:#fff;fill-opacity:.75;stroke:#315d92;stroke-width:3}.guide{stroke:#91a4bd;stroke-width:2;stroke-dasharray:7 5}</style>
   </defs>
   <rect width="1200" height="820" fill="#f3f6fb"/>
-  <text class="title" x="600" y="34" text-anchor="middle">Nhận dạng tập lồi từ những khối xây dựng quen thuộc</text>
+  <text class="title" x="600" y="34" text-anchor="middle">Các tập lồi cơ bản dùng làm khối xây dựng</text>
 
   <rect class="panel" x="22" y="58" width="565" height="215" rx="14"/>
   <text class="title" x="304" y="91" text-anchor="middle">Nửa không gian</text>
-  <polygon class="region" points="55,250 55,125 375,250"/><line class="boundary" x1="40" y1="119" x2="400" y2="260"/>
+  <polygon class="region" points="55,250 55,125 375,250" style="stroke:none"/><line class="boundary" x1="40" y1="119" x2="400" y2="260"/>
   <circle class="point" cx="125" cy="205" r="7"/><circle class="point" cx="270" cy="230" r="7"/><line class="segment" x1="125" y1="205" x2="270" y2="230"/>
-  <text class="label" x="462" y="145" text-anchor="middle">aᵀx ≤ b</text><text class="small" x="462" y="180" text-anchor="middle">Một bất đẳng thức</text><text class="small" x="462" y="205" text-anchor="middle">tuyến tính.</text>
+  <text class="label" x="462" y="145" text-anchor="middle">aᵀx ≤ β</text><text class="small" x="462" y="180" text-anchor="middle">Một bất đẳng thức</text><text class="small" x="462" y="205" text-anchor="middle">tuyến tính.</text>
 
   <rect class="panel" x="613" y="58" width="565" height="215" rx="14"/>
   <text class="title" x="895" y="91" text-anchor="middle">Tập affine</text>
-  <line class="axis" x1="650" y1="240" x2="1135" y2="240"/><line class="affine" x1="700" y1="220" x2="1045" y2="120"/>
+  <line class="axis" x1="645" y1="255" x2="1000" y2="255"/><line class="axis" x1="670" y1="265" x2="670" y2="112"/><text class="small" x="656" y="252" text-anchor="end">0</text>
+  <line class="guide" x1="670" y1="255" x2="960" y2="170.9"/><text class="small" x="880" y="222" text-anchor="middle">Ax = 0</text>
+  <line class="affine" x1="700" y1="220" x2="1045" y2="120"/>
   <circle class="point" cx="760" cy="203" r="7"/><circle class="point" cx="970" cy="142" r="7"/><line class="segment" x1="760" y1="203" x2="970" y2="142"/>
   <text class="label" x="1080" y="145" text-anchor="middle">Ax=b</text><text class="small" x="1080" y="180" text-anchor="middle">Tịnh tiến của</text><text class="small" x="1080" y="205" text-anchor="middle">không gian con.</text>
 

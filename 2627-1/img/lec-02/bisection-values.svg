@@ -1,11 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title"><title id="title">Khoảng chặn giá trị sau ba lần chia đôi</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title desc"><title id="title">Khoảng chặn giá trị sau ba lần chia đôi</title><desc id="desc">Bốn khoảng chứa giá trị tối ưu p xấp xỉ 0,4721 theo số lần chia đôi k: [0; 1], [0; 0,5], [0,25; 0,5] và [0,375; 0,5]; mỗi lần chia đôi giữ nửa khoảng còn chứa p.</desc>
 <rect width="600" height="420" fill="#fff"/>
 <defs><clipPath id="plot"><rect x="70" y="38" width="300" height="300"/></clipPath><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10" fill="#333"/></marker></defs>
 <g font-family="Arial,sans-serif" font-size="24" fill="#222">
-<line x1="70.0" y1="338.0" x2="370.0" y2="338.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
-<line x1="70.0" y1="338.0" x2="70.0" y2="38.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
-<text x="402.00" y="346.00" text-anchor="start" fill="#222" font-size="24">t</text>
-<text x="84.00" y="30.00" text-anchor="start" fill="#222" font-size="24"></text>
+<line x1="70.0" y1="338.0" x2="392.0" y2="338.0" stroke="#333" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="398.00" y="346.00" text-anchor="start" fill="#222" font-size="24">t</text>
 <text x="70.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0</text>
 <text x="220.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0,5</text>
 <text x="370.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">1</text>
@@ -26,5 +24,6 @@
 <circle cx="220.0" cy="300.5" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
 <text x="60.00" y="307.50" text-anchor="end" fill="#222" font-size="22">k=3</text>
 <line x1="211.64078649987388" y1="338.0" x2="211.64078649987388" y2="38.0" stroke="#b15a2b" stroke-width="3" stroke-dasharray="6 5"/>
-<text x="300.00" y="406.00" text-anchor="middle" fill="#222" font-size="22">Vạch nét đứt: p* ≈ 0,4721; trục ngang là giá trị</text>
+<text x="211.6" y="30.00" text-anchor="middle" fill="#b15a2b" font-size="22">p*</text>
+<text x="300.00" y="406.00" text-anchor="middle" fill="#222" font-size="22">Đường nét đứt: p* ≈ 0,4721; trục ngang là giá trị t</text>
 </g></svg>

@@ -1,50 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc" font-family="DejaVu Sans">
   <title id="title">Momentum và điểm nhìn trước Nesterov</title>
-  <desc id="desc">Hai bảng dùng cùng bước quán tính từ theta t tới q t. Momentum đánh giá gradient tại theta t, còn Nesterov đánh giá tại q t; mỗi bảng chỉ rõ véc-tơ hiệu chỉnh, độ dời tổng và điểm theta t cộng một.</desc>
+  <desc id="desc">Hai bảng cùng một hàm bậc hai, đường mức elip quanh cực tiểu θ*, cùng điểm θ t và cùng bước quán tính β v t tới q t. Momentum cộng −η nhân gradient tại θ t, Nesterov cộng −η nhân gradient tại q t; hai bước hiệu chỉnh khác hướng nên θ t+1 khác nhau, và trong ví dụ này điểm của Nesterov gần θ* hơn.</desc>
   <rect width="900" height="500" fill="#ffffff"/>
-  <defs>
-    <marker id="blue-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2f3e7a"/></marker>
-    <marker id="orange-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#b24a2b"/></marker>
-    <marker id="teal-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#16706a"/></marker>
-  </defs>
-
+  <defs><marker id="blue" viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="2" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2f3e7a"/></marker><marker id="orange" viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="2" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b24a2b"/></marker><marker id="teal" viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="2" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#16706a"/></marker><clipPath id="clip0"><rect x="25" y="96" width="412" height="256"/></clipPath><clipPath id="clip438"><rect x="463" y="96" width="412" height="256"/></clipPath></defs>
   <text x="450" y="34" text-anchor="middle" font-size="24" font-weight="700" fill="#172033">Cùng quán tính, khác điểm đánh giá gradient</text>
-
   <rect x="24" y="52" width="414" height="362" rx="14" fill="#f7f9fc" stroke="#b9c5d8" stroke-width="2"/>
   <text x="231" y="84" text-anchor="middle" font-size="24" font-weight="700" fill="#172033">Momentum</text>
-  <circle cx="112" cy="236" r="11" fill="#222222" stroke="#b24a2b" stroke-width="4"/>
-  <text x="72" y="268" font-size="21" fill="#172033">θₜ</text>
-  <line x1="122" y1="232" x2="283" y2="158" stroke="#2f3e7a" stroke-width="7" marker-end="url(#blue-arrow)"/>
+  <g clip-path="url(#clip0)" fill="none" stroke="#d3d9e8" stroke-width="2"><ellipse cx="340" cy="290" rx="62.0" ry="40"/><ellipse cx="340" cy="290" rx="123.9" ry="80"/><ellipse cx="340" cy="290" rx="185.9" ry="120"/></g>
+  <path d="M333 283L347 297M333 297L347 283" stroke="#55607a" stroke-width="3"/><text x="352" y="297" font-size="18" fill="#55607a">θ*</text>
+  <line x1="112" y1="236" x2="337.3" y2="188.9" stroke="#16706a" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#teal)"/>
+  <line x1="112" y1="236" x2="282.0" y2="158.6" stroke="#2f3e7a" stroke-width="5" marker-end="url(#blue)"/>
+  <line x1="292" y1="154" x2="340.3" y2="181.5" stroke="#b24a2b" stroke-width="5" marker-end="url(#orange)"/>
+  <circle cx="112" cy="236" r="10" fill="#222" stroke="#b24a2b" stroke-width="4"/>
   <circle cx="292" cy="154" r="9" fill="#2f3e7a"/>
-  <text x="208" y="130" font-size="18" fill="#2f3e7a">βvₜ</text>
-  <text x="300" y="148" font-size="18" fill="#2f3e7a">qₜ</text>
-  <line x1="294" y1="165" x2="352" y2="294" stroke="#b24a2b" stroke-width="7" marker-end="url(#orange-arrow)"/>
-  <text x="303" y="225" font-size="18" fill="#b24a2b">−ηgₜ(θₜ)</text>
-  <circle cx="356" cy="304" r="10" fill="#b24a2b"/>
-  <text x="300" y="338" font-size="19" fill="#172033">θₜ₊₁ᴹ</text>
-  <line x1="120" y1="241" x2="345" y2="300" stroke="#16706a" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#teal-arrow)"/>
-  <text x="180" y="310" font-size="18" fill="#16706a">vₜ₊₁ᴹ</text>
+  <circle cx="349.0" cy="186.4" r="9" fill="#b24a2b"/>
+  <text x="98" y="244" text-anchor="end" font-size="21" fill="#172033" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">θₜ</text>
+  <text x="282" y="140" text-anchor="end" font-size="20" fill="#2f3e7a" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">qₜ</text>
+  <text x="196.0" y="181.0" text-anchor="end" font-size="18" fill="#2f3e7a" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">βvₜ</text>
+  <text x="334" y="158" font-size="18" fill="#b24a2b" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">−ηgₜ(θₜ)</text>
+  <text x="363" y="208" font-size="19" fill="#172033" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">θₜ₊₁ᴹ</text>
+  <text x="220" y="241" text-anchor="middle" font-size="18" fill="#16706a" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">vₜ₊₁ᴹ</text>
   <rect x="62" y="354" width="338" height="42" rx="8" fill="#fff3e9" stroke="#b24a2b"/>
   <text x="231" y="380" text-anchor="middle" font-size="17" fill="#7b321f">Điểm đánh giá gradient: θₜ</text>
-
   <rect x="462" y="52" width="414" height="362" rx="14" fill="#f7f9fc" stroke="#b9c5d8" stroke-width="2"/>
   <text x="669" y="84" text-anchor="middle" font-size="24" font-weight="700" fill="#172033">Nesterov</text>
-  <circle cx="550" cy="236" r="11" fill="#222222"/>
-  <text x="510" y="268" font-size="21" fill="#172033">θₜ</text>
-  <line x1="560" y1="232" x2="721" y2="158" stroke="#2f3e7a" stroke-width="7" marker-end="url(#blue-arrow)"/>
-  <circle cx="730" cy="154" r="11" fill="#2f3e7a" stroke="#b24a2b" stroke-width="4"/>
-  <text x="646" y="130" font-size="18" fill="#2f3e7a">βvₜ</text>
-  <text x="740" y="148" font-size="18" fill="#2f3e7a">qₜ</text>
-  <line x1="732" y1="165" x2="790" y2="294" stroke="#b24a2b" stroke-width="7" marker-end="url(#orange-arrow)"/>
-  <text x="741" y="225" font-size="18" fill="#b24a2b">−ηgₜ(qₜ)</text>
-  <circle cx="794" cy="304" r="10" fill="#b24a2b"/>
-  <text x="738" y="338" font-size="19" fill="#172033">θₜ₊₁ᴺ</text>
-  <line x1="558" y1="241" x2="783" y2="300" stroke="#16706a" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#teal-arrow)"/>
-  <text x="618" y="310" font-size="18" fill="#16706a">vₜ₊₁ᴺ</text>
+  <g clip-path="url(#clip438)" fill="none" stroke="#d3d9e8" stroke-width="2"><ellipse cx="778" cy="290" rx="62.0" ry="40"/><ellipse cx="778" cy="290" rx="123.9" ry="80"/><ellipse cx="778" cy="290" rx="185.9" ry="120"/></g>
+  <path d="M771 283L785 297M771 297L785 283" stroke="#55607a" stroke-width="3"/><text x="790" y="297" font-size="18" fill="#55607a">θ*</text>
+  <line x1="550" y1="236" x2="730.0" y2="235.6" stroke="#16706a" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#teal)"/>
+  <line x1="550" y1="236" x2="720.0" y2="158.6" stroke="#2f3e7a" stroke-width="5" marker-end="url(#blue)"/>
+  <line x1="730" y1="154" x2="740.5" y2="225.7" stroke="#b24a2b" stroke-width="5" marker-end="url(#orange)"/>
+  <circle cx="550" cy="236" r="10" fill="#222"/>
+  <circle cx="730" cy="154" r="9" fill="#2f3e7a" stroke="#b24a2b" stroke-width="4"/>
+  <circle cx="742.0" cy="235.6" r="9" fill="#b24a2b"/>
+  <text x="536" y="244" text-anchor="end" font-size="21" fill="#172033" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">θₜ</text>
+  <text x="720" y="140" text-anchor="end" font-size="20" fill="#2f3e7a" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">qₜ</text>
+  <text x="634.0" y="181.0" text-anchor="end" font-size="18" fill="#2f3e7a" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">βvₜ</text>
+  <text x="750" y="183" font-size="18" fill="#b24a2b" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">−ηgₜ(qₜ)</text>
+  <text x="756" y="258" font-size="19" fill="#172033" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">θₜ₊₁ᴺ</text>
+  <text x="636" y="266" text-anchor="middle" font-size="18" fill="#16706a" stroke="#f7f9fc" stroke-width="5" paint-order="stroke">vₜ₊₁ᴺ</text>
   <rect x="500" y="354" width="338" height="42" rx="8" fill="#fff3e9" stroke="#b24a2b"/>
   <text x="669" y="380" text-anchor="middle" font-size="17" fill="#7b321f">Điểm đánh giá gradient: qₜ</text>
-
-  <rect x="92" y="435" width="716" height="44" rx="9" fill="#eef7f3" stroke="#16706a" stroke-width="2"/>
-  <text x="450" y="455" text-anchor="middle" font-size="16" fill="#24324a">vₜ₊₁=βvₜ−ηgₜ(điểm đánh giá),  θₜ₊₁=θₜ+vₜ₊₁</text>
-  <text x="450" y="473" text-anchor="middle" font-size="15" fill="#24324a">Khi β=0, cả hai quy tắc thu về SGD.</text>
+  <rect x="92" y="430" width="716" height="56" rx="9" fill="#eef7f3" stroke="#16706a" stroke-width="2"/>
+  <text x="450" y="453" text-anchor="middle" font-size="17" fill="#24324a">vₜ₊₁=βvₜ−ηgₜ(điểm đánh giá),  θₜ₊₁=θₜ+vₜ₊₁</text>
+  <text x="450" y="476" text-anchor="middle" font-size="16" fill="#24324a">Khi β=0, cả hai quy tắc thu về SGD.</text>
 </svg>

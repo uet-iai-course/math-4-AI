@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
   <title id="title">Co giãn gradient theo lịch sử từng tọa độ</title>
-  <desc id="desc">Từ cùng một gradient thô, tọa độ theta một có lịch sử bình phương lớn nên thành phần bước theo phương ngang bị co mạnh hơn thành phần theo theta hai.</desc>
+  <desc id="desc">Từ cùng một gradient thô, tọa độ theta một có lịch sử bình phương lớn nên thành phần bước theo phương ngang bị co mạnh hơn thành phần theo theta hai. Hướng gradient thô vuông góc với đường mức qua theta t.</desc>
   <defs>
-    <marker id="axis-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#455a64"/></marker>
-    <marker id="raw-arrow" markerUnits="userSpaceOnUse" viewBox="0 0 8 8" markerWidth="26" markerHeight="26" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#2f3e7a"/></marker>
-    <marker id="scaled-arrow" markerUnits="userSpaceOnUse" viewBox="0 0 9 9" markerWidth="26" markerHeight="26" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#9a481f"/></marker>
+    <marker id="axis-arrow" markerUnits="userSpaceOnUse" viewBox="0 0 8 8" markerWidth="16" markerHeight="16" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#455a64"/></marker>
+    <marker id="raw-arrow" markerUnits="userSpaceOnUse" viewBox="0 0 8 8" markerWidth="16" markerHeight="16" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#2f3e7a"/></marker>
+    <marker id="scaled-arrow" markerUnits="userSpaceOnUse" viewBox="0 0 9 9" markerWidth="16" markerHeight="16" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#9a481f"/></marker>
   </defs>
   <rect width="900" height="430" rx="18" fill="#fbfaf8"/>
   <g font-family="DejaVu Sans, sans-serif">
@@ -13,14 +13,14 @@
     <text x="805" y="375" font-size="25" fill="#263238">θ₁</text><text x="48" y="62" font-size="25" fill="#263238">θ₂</text>
     <ellipse cx="450" cy="207" rx="270" ry="94" fill="none" stroke="#90a4ae" stroke-width="3"/>
     <ellipse cx="450" cy="207" rx="172" ry="58" fill="none" stroke="#c2ccd1" stroke-width="3" stroke-dasharray="8 7"/>
-    <circle cx="635" cy="286" r="9" fill="#263238"/><text x="654" y="276" font-size="22" fill="#263238">θₜ</text>
-    <line x1="635" y1="286" x2="475" y2="108" stroke="#2f3e7a" stroke-width="7" marker-end="url(#raw-arrow)"/>
-    <text x="392" y="82" font-size="23" font-weight="bold" fill="#2f3e7a">hướng −gₜ thô</text>
-    <line x1="635" y1="286" x2="585" y2="152" stroke="#9a481f" stroke-width="7" stroke-dasharray="15 7" marker-end="url(#scaled-arrow)"/>
-    <text x="610" y="145" font-size="22" font-weight="bold" fill="#7b3b1c">bước thích ứng</text>
-    <line x1="585" y1="152" x2="585" y2="286" stroke="#7b3b1c" stroke-width="2" stroke-dasharray="5 6"/>
-    <line x1="585" y1="286" x2="635" y2="286" stroke="#7b3b1c" stroke-width="5"/>
-    <text x="445" y="322" font-size="20" fill="#7b3b1c">thành phần 1 bị co mạnh</text>
+    <circle cx="702" cy="241" r="9" fill="#263238"/><text x="716" y="268" font-size="22" fill="#263238" stroke="#fbfaf8" stroke-width="5" paint-order="stroke">θₜ</text>
+    <line x1="702" y1="241" x2="574" y2="99" stroke="#2f3e7a" stroke-width="5" marker-end="url(#raw-arrow)"/>
+    <text x="560" y="88" text-anchor="end" font-size="23" font-weight="bold" fill="#2f3e7a">hướng −gₜ thô</text>
+    <line x1="702" y1="241" x2="662" y2="134" stroke="#9a481f" stroke-width="5" stroke-dasharray="12 6" marker-end="url(#scaled-arrow)"/>
+    <text x="676" y="132" font-size="22" font-weight="bold" fill="#7b3b1c">bước thích ứng</text>
+    <line x1="662" y1="134" x2="662" y2="241" stroke="#7b3b1c" stroke-width="2" stroke-dasharray="5 6"/>
+    <line x1="662" y1="241" x2="702" y2="241" stroke="#7b3b1c" stroke-width="5"/>
+    <text x="722" y="298" font-size="20" fill="#7b3b1c">thành phần 1</text><text x="722" y="322" font-size="20" fill="#7b3b1c">bị co mạnh</text>
     <rect x="155" y="357" width="590" height="52" rx="12" fill="#eef2f8" stroke="#2f3e7a" stroke-width="2"/>
     <text x="450" y="390" text-anchor="middle" font-size="19" fill="#263238">aₜ,₁ lớn hơn aₜ,₂  ⇒  |Δθ₁| bị giảm tương đối nhiều hơn |Δθ₂|</text>
   </g>

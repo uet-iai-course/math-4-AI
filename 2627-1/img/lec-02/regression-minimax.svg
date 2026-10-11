@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title"><title id="title">Hồi quy trên miền trọng số chuẩn hóa</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title desc"><title id="title">Hồi quy minimax trên miền trọng số</title><desc id="desc">Miền C là tam giác w không âm, w một cộng w hai không vượt quá 2. Các hình vuông tâm y bằng (2; 1) là đường mức của sai số lớn nhất; hình vuông nhỏ nhất chạm C có nửa cạnh 0,5 và chạm C tại góc w* bằng (1,5; 0,5).</desc>
 <rect width="600" height="420" fill="#fff"/>
 <defs><clipPath id="plot"><rect x="70" y="38" width="300" height="300"/></clipPath><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10" fill="#333"/></marker></defs>
 <g font-family="Arial,sans-serif" font-size="24" fill="#222">
@@ -21,5 +21,5 @@
 <path d="M220.000,288.000 L320.000,288.000 L320.000,188.000 L220.000,188.000 Z" fill="none" stroke="#b15a2b" stroke-width="3" stroke-dasharray="" clip-path="url(#plot)"/>
 <text x="300.00" y="406.00" text-anchor="middle" fill="#222" font-size="22">Hình vuông: cùng sai số lớn nhất</text>
 <circle cx="220.0" cy="288.0" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
-<text x="228.00" y="306.00" text-anchor="start" fill="#222" font-size="24" stroke="#fff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">w*</text>
+<text x="226.00" y="280.00" text-anchor="start" fill="#222" font-size="24">w*</text>
 </g></svg>

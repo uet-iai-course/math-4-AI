@@ -1,6 +1,6 @@
 # Bài tập Bài giảng 06. Các phương pháp tối ưu trong học sâu
 
-Các bài tập dùng cùng ký hiệu với ghi chú bài giảng. Vòng $t\ge1$ lấy gradient tại $\theta_{t-1}$ rồi cập nhật $\theta_t$. Phép bình phương, căn và chia vectơ trong các thuật toán thích ứng thực hiện theo tọa độ. Ký hiệu đối xứng xác định dương (SPD) yêu cầu ma trận đối xứng và dạng toàn phương dương với mọi vectơ khác $0$.
+Các bài tập dùng cùng ký hiệu với ghi chú bài giảng. Vòng $t\ge1$ lấy gradient tại $\theta_{t-1}$ rồi cập nhật $\theta_t$. Phép bình phương, căn và chia vector trong các thuật toán thích ứng thực hiện theo tọa độ. Ký hiệu đối xứng xác định dương (SPD) yêu cầu ma trận đối xứng và dạng toàn phương dương với mọi vector khác $0$.
 
 Bộ bài tập đo khả năng nhận biết cơ chế, tính toán và chứng minh điều kiện, vận dụng vào thiết kế tối ưu cho trí tuệ nhân tạo (AI). Mỗi kết luận cần kèm giả thiết; số gần đúng cần kèm biểu thức chính xác khi có thể. Gợi ý và lời giải nằm trong các khối có thể mở riêng.
 
@@ -353,7 +353,7 @@ Không yêu cầu viết mã hoặc viện dẫn kết quả thực nghiệm ngo
 ::: solution
 | Tình huống | Phương án | Điều kiện và phép kiểm tra |
 |---|---|---|
-| Gradient lô nhỏ, trạng thái $4p$ | Adam với hai vectơ trạng thái, hoặc AdaGrad/RMSProp với một vectơ | Kiểm tra ngân sách thực tế của triển khai, cập nhật trạng thái và mất mát trên phân phối cố định; không bảo đảm giảm mục tiêu từng bước |
+| Gradient lô nhỏ, trạng thái $4p$ | Adam với hai vector trạng thái, hoặc AdaGrad/RMSProp với một vector | Kiểm tra ngân sách thực tế của triển khai, cập nhật trạng thái và mất mát trên phân phối cố định; không bảo đảm giảm mục tiêu từng bước |
 | Toán tử SPD | Dùng CG từ $d_0=0$ để giải $Ad=-g$ | Khi $g=0$, kiểm tra điểm dừng. Khi $g\ne0$, kiểm tra phần dư, ngân sách, $g^\top d<0$ và tìm bước; giữ toán tử cùng dữ liệu cố định trong lần giải |
 | BN và lịch sai phân phối | Hoàn tất lịch tới phân phối đích; xác định trạng thái BN của mô hình trả về | Đánh giá tham số trung bình với thống kê suy luận phù hợp, rồi đo trên phân phối đích cố định; trung bình không thay thế việc sửa lịch |
 
