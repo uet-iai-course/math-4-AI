@@ -997,9 +997,10 @@
   :where(html[data-lecture="07"]) .reveal h1 { font-size:34px; }
   :where(html[data-lecture="07"]) .reveal h2 { font-size:30px; }
   :where(html[data-lecture="07"]) .reveal h3 { font-size:24px; }
-  :where(html[data-lecture="07"]) .responsive,
-  :where(html[data-lecture="07"]) .grid2,
-  :where(html[data-lecture="07"]) .grid3 { grid-template-columns:1fr; }
+  /* Xếp một cột cho cả các lưới có tỉ lệ cột riêng theo trang (A05, A07, B02, C02, C09, D03): bộ chọn [data-slide-id] nâng độ đặc hiệu ngang các quy tắc đó, nếu không hình chỉ còn khoảng 150 px. */
+  :where(html[data-lecture="07"]) [data-slide-id] .responsive,
+  :where(html[data-lecture="07"]) [data-slide-id] .grid2,
+  :where(html[data-lecture="07"]) [data-slide-id] .grid3 { grid-template-columns:1fr; }
   :where(html[data-lecture="07"]) .flow { display:grid; grid-template-columns:1fr; }
   :where(html[data-lecture="07"]) .flow .arrow { transform:rotate(90deg); justify-self:center; }
   :where(html[data-lecture="07"]) .visual img { max-height:none; }
