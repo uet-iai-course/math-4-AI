@@ -10,24 +10,24 @@
   <rect class="panel" x="20" y="10" width="370" height="340" rx="14"/>
   <text class="title" x="205" y="50" text-anchor="middle">Không đạt infimum</text>
   <text class="label" x="205" y="82" text-anchor="middle">min exp(x), x∈R</text>
-  <line class="axis" x1="62" y1="300" x2="348" y2="300"/><line class="axis" x1="80" y1="325" x2="80" y2="100"/>
-  <path class="curve" d="M70 286 C145 285 215 270 260 228 C300 190 325 135 345 90"/>
-  <line class="guide" x1="62" y1="286" x2="345" y2="286"/>
-  <text class="label" x="205" y="333" text-anchor="middle">inf = 0, không có nghiệm</text>
+  <line class="axis" x1="62" y1="300" x2="348" y2="300"/><line class="axis" x1="80" y1="300" x2="80" y2="100"/>
+  <path class="curve" d="M64 293 C145 290 215 272 260 230 C300 192 325 137 345 92"/>
+  <line class="guide" x1="62" y1="300" x2="330" y2="300"/>
+  <text class="label" x="205" y="340" text-anchor="middle">inf = 0, không có nghiệm</text>
 
   <rect class="panel" x="415" y="10" width="370" height="340" rx="14"/>
   <text class="title" x="600" y="50" text-anchor="middle">Nhiều nghiệm</text>
   <text class="label" x="600" y="82" text-anchor="middle">min 0, x∈[−1,1]</text>
-  <line class="axis" x1="457" y1="300" x2="743" y2="300"/><line class="axis" x1="475" y1="325" x2="475" y2="100"/>
-  <line x1="500" y1="240" x2="700" y2="240" stroke="#16706a" stroke-width="10"/>
-  <circle class="minimum" cx="500" cy="240" r="8"/><circle class="minimum" cx="600" cy="240" r="8"/><circle class="minimum" cx="700" cy="240" r="8"/>
-  <text class="label" x="600" y="333" text-anchor="middle">mọi x∈[−1,1] đều tối ưu</text>
+  <line class="axis" x1="457" y1="300" x2="743" y2="300"/><line class="axis" x1="475" y1="300" x2="475" y2="100"/>
+  <line x1="500" y1="300" x2="700" y2="300" stroke="#16706a" stroke-width="10"/>
+  <circle class="minimum" cx="500" cy="300" r="8"/><circle class="minimum" cx="600" cy="300" r="8"/><circle class="minimum" cx="700" cy="300" r="8"/>
+  <text class="label" x="600" y="340" text-anchor="middle">mọi x∈[−1,1] đều tối ưu</text>
 
   <rect class="panel" x="810" y="10" width="370" height="340" rx="14"/>
   <text class="title" x="995" y="50" text-anchor="middle">Một nghiệm</text>
   <text class="label" x="995" y="82" text-anchor="middle">min x², x∈R</text>
-  <line class="axis" x1="852" y1="300" x2="1138" y2="300"/><line class="axis" x1="870" y1="325" x2="870" y2="100"/>
-  <path class="curve" d="M885 115 Q995 390 1105 115"/>
-  <path class="minimum" d="M995 238 L1008 251 L995 264 L982 251 Z"/>
-  <text class="label" x="995" y="333" text-anchor="middle">nghiệm duy nhất x*=0</text>
+  <line class="axis" x1="852" y1="300" x2="1138" y2="300"/><line class="axis" x1="870" y1="300" x2="870" y2="100"/>
+  <path class="curve" d="M885 150 Q995 450 1105 150"/>
+  <path class="minimum" d="M995 287 L1008 300 L995 313 L982 300 Z"/>
+  <text class="label" x="995" y="340" text-anchor="middle">nghiệm duy nhất x*=0</text>
 </svg>

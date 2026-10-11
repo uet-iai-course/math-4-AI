@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
   <title id="title">Điều khiển một bước với đánh đổi bám đích và năng lượng</title>
-  <desc id="desc">Trạng thái ban đầu x không cộng tác động u tạo trạng thái kế tiếp x một. Một nhánh so sánh x một với đích t để tính sai lệch bình phương; nhánh còn lại tính năng lượng lambda nhân u bình phương. Hai hạng được cộng thành chi phí q của u, trong khi u phải nằm giữa hai cận.</desc>
+  <desc id="desc">Trạng thái ban đầu x không cộng tác động u tạo trạng thái kế tiếp x một. Một nhánh so sánh x một với đích t để tính sai lệch bình phương; nhánh còn lại tính năng lượng lambda nhân u bình phương. Hai số hạng được cộng thành chi phí q của u, trong khi u phải nằm giữa hai cận.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#24324a"/></marker>
     <style>
@@ -28,7 +28,7 @@
   <circle class="limit" cx="655" cy="430" r="48"/>
   <text class="title" x="655" y="439" text-anchor="middle">t</text>
   <path class="dash" d="M655 315 L655 374"/>
-  <text class="small" x="635" y="365" text-anchor="end">so với đích</text>
+  <text class="small" x="715" y="438">so với đích</text>
 
   <rect class="cost" x="840" y="112" width="285" height="125" rx="14"/>
   <text class="label" x="982" y="158" text-anchor="middle">Sai lệch bám đích</text>
@@ -38,7 +38,7 @@
   <rect class="cost" x="840" y="277" width="285" height="125" rx="14"/>
   <text class="label" x="982" y="323" text-anchor="middle">Năng lượng</text>
   <text class="title" x="982" y="368" text-anchor="middle">λu²</text>
-  <path class="arrow" d="M500 270 C635 350 720 350 830 338"/>
+  <path class="arrow" d="M500 272 C620 372 730 362 830 340"/>
 
   <rect class="limit" x="285" y="390" width="245" height="76" rx="12"/>
   <text class="label" x="407" y="423" text-anchor="middle">Giới hạn vật lý</text>

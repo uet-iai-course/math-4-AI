@@ -1196,7 +1196,7 @@ Trong mục này, chúng ta định nghĩa lớp tập không có khoảng trố
 
 Với hai phương án $x,y\in\mathbb R^d$ và một hệ số $\theta\in[0,1]$, điểm $z_\theta=\theta x+(1-\theta)y$ là phương án trộn $x$ với tỉ lệ $\theta$ và $y$ với tỉ lệ $1-\theta$. Với $\theta=1$ được $x$, với $\theta=0$ được $y$, với $\theta=\tfrac12$ được trung điểm. Khi $\theta$ chạy trên $[0,1]$, $z_\theta$ quét hết đoạn thẳng nối $x$ và $y$.
 
-![Hai khung. Khung trái: một tập lồi C hình bầu dục chứa hai điểm tròn x và y, một điểm thoi z bằng theta x cộng (1 − theta) y với theta từ 0 đến 1, và toàn bộ đoạn nối x với y đều nằm trong C. Khung phải: một tập không lồi D hình lưỡi liềm; đoạn nối hai điểm x và y của D có một phần nằm ngoài D. Chú thích: chỉ cần một cặp phản ví dụ để bác bỏ tính lồi.](img/lec-01/convex-set-and-combination.svg)
+![Hai khung. Khung trái: một tập lồi C hình elip chứa hai điểm tròn x và y, một điểm thoi z bằng theta x cộng (1 − theta) y với theta từ 0 đến 1, và toàn bộ đoạn nối x với y đều nằm trong C. Khung phải: một tập không lồi D gồm hai thùy nối với nhau qua một chỗ thắt; đoạn nối điểm x ở thùy trái với điểm y ở thùy phải đi qua chỗ thắt, và phần giữa của đoạn, vẽ nét đứt có một ô vuông, nằm ngoài D. Chú thích: chỉ cần một cặp phản ví dụ để bác bỏ tính lồi.](img/lec-01/convex-set-and-combination.svg)
 
 Hình trên so sánh hai tập: ở khung trái, mọi đoạn nối hai điểm của $C$ nằm trọn trong $C$, còn ở khung phải, có một đoạn nối đi ra ngoài $D$. Tập vùng chết ở đầu mục giống khung phải.
 

@@ -10,9 +10,9 @@
 
   <rect class="panel" x="22" y="58" width="565" height="215" rx="14"/>
   <text class="title" x="304" y="91" text-anchor="middle">Nửa không gian</text>
-  <polygon class="region" points="55,250 55,125 375,250"/><line class="boundary" x1="95" y1="115" x2="390" y2="250"/>
-  <circle class="point" cx="125" cy="205" r="7"/><circle class="point" cx="285" cy="220" r="7"/><line class="segment" x1="125" y1="205" x2="285" y2="220"/>
-  <text class="label" x="462" y="145" text-anchor="middle">a^T x≤b</text><text class="small" x="462" y="180" text-anchor="middle">Một bất đẳng thức</text><text class="small" x="462" y="205" text-anchor="middle">tuyến tính.</text>
+  <polygon class="region" points="55,250 55,125 375,250"/><line class="boundary" x1="40" y1="119" x2="400" y2="260"/>
+  <circle class="point" cx="125" cy="205" r="7"/><circle class="point" cx="270" cy="230" r="7"/><line class="segment" x1="125" y1="205" x2="270" y2="230"/>
+  <text class="label" x="462" y="145" text-anchor="middle">aᵀx ≤ b</text><text class="small" x="462" y="180" text-anchor="middle">Một bất đẳng thức</text><text class="small" x="462" y="205" text-anchor="middle">tuyến tính.</text>
 
   <rect class="panel" x="613" y="58" width="565" height="215" rx="14"/>
   <text class="title" x="895" y="91" text-anchor="middle">Tập affine</text>
@@ -24,7 +24,7 @@
   <text class="title" x="304" y="326" text-anchor="middle">Quả cầu và elip</text>
   <ellipse class="region" cx="205" cy="414" rx="125" ry="65"/>
   <circle class="point" cx="145" cy="430" r="7"/><circle class="point" cx="275" cy="389" r="7"/><line class="segment" x1="145" y1="430" x2="275" y2="389"/>
-  <text class="label" x="442" y="382" text-anchor="middle">||x−c||_2≤r</text><text class="small" x="442" y="419" text-anchor="middle">Biến đổi affine của</text><text class="small" x="442" y="444" text-anchor="middle">quả cầu tạo elip.</text>
+  <text class="label" x="442" y="382" text-anchor="middle">‖x − c‖₂ ≤ r</text><text class="small" x="442" y="419" text-anchor="middle">Biến đổi affine của</text><text class="small" x="442" y="444" text-anchor="middle">quả cầu tạo elip.</text>
 
   <rect class="panel" x="613" y="293" width="565" height="215" rx="14"/>
   <text class="title" x="895" y="326" text-anchor="middle">Đa diện</text>
@@ -35,15 +35,15 @@
   <rect class="panel" x="22" y="528" width="1156" height="255" rx="14"/>
   <text class="title" x="600" y="562" text-anchor="middle">Nón bậc hai: chuẩn của u không vượt quá t</text>
   <g aria-label="Nón bậc hai với các lát cắt tại t dương">
-    <path class="cone" d="M115 755 L300 610 L485 755 Z"/>
+    <path class="cone" d="M300 755 L115 610 L485 610 Z"/>
     <ellipse class="slice" cx="300" cy="610" rx="185" ry="30"/><ellipse class="slice" cx="300" cy="670" rx="108" ry="20"/>
     <circle cx="300" cy="755" r="7" fill="#fff" stroke="#6a45a5" stroke-width="4"/>
-    <line class="axis" x1="300" y1="765" x2="300" y2="580"/><line class="axis" x1="300" y1="755" x2="500" y2="755"/><line class="axis" x1="300" y1="755" x2="205" y2="790"/>
+    <line class="axis" x1="300" y1="765" x2="300" y2="580"/><line class="axis" x1="300" y1="755" x2="500" y2="755"/><line class="axis" x1="300" y1="755" x2="236" y2="778"/>
     <line class="guide" x1="115" y1="610" x2="485" y2="610"/><line class="guide" x1="192" y1="670" x2="408" y2="670"/>
-    <text class="label" x="316" y="587">t</text><text class="small" x="505" y="761">u1</text><text class="small" x="180" y="798">u2</text>
-    <text class="small" x="408" y="600">lát t=t2</text><text class="small" x="405" y="660">lát t=t1</text>
+    <text class="label" x="314" y="573">t</text><text class="small" x="505" y="761">u₁</text><text class="small" x="226" y="772" text-anchor="end">u₂</text>
+    <text class="small" x="494" y="615">lát t = t₂</text><text class="small" x="420" y="676">lát t = t₁</text>
   </g>
-  <text class="label" x="795" y="616" text-anchor="middle">||(u1,u2)||_2≤t</text>
+  <text class="label" x="795" y="616" text-anchor="middle">‖(u₁, u₂)‖₂ ≤ t</text>
   <text class="label" x="795" y="654" text-anchor="middle">t≥0: chỉ giữ nhánh phía trên</text>
   <text class="small" x="795" y="697" text-anchor="middle">Với t cố định, lát cắt là một đĩa bán kính t.</text>
   <text class="small" x="795" y="728" text-anchor="middle">Khi t tăng, đĩa mở rộng tuyến tính từ đỉnh nón.</text>
