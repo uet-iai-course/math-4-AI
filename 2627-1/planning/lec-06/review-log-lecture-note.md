@@ -308,3 +308,31 @@ Lượt 1: 32 134 từ, vượt đích 30 000 của brief khoảng 7%, cùng m�
 5. **Khẳng định về PyTorch.** Lỗi khi `BatchNorm` ở chế độ huấn luyện nhận một giá trị mỗi kênh (Tình huống 06.3) dẫn theo hiểu biết về thư viện, chưa chạy thử trong môi trường này (không cài PyTorch).
 6. **Trùng lặp với `exercises.md`.** Như bảng trên; chờ quyết định.
 7. **Độ dài.** 32 134 từ; xem mục "Độ dài".
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng và quy tắc chung: xem nhật ký Bài 01 (mục cùng tên) và `style-guide.md` (scratchpad phiên). Phạm vi: `materials/lec-06/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt; giữ nguyên toán, công thức, `\tag`, số hiệu, 146 khối, hình, bảng, thuật ngữ, bài tập. Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium); các tác tử sửa tệp khác nhau chạy song song, mỗi tệp một tác tử ghi.
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-06/lecture-note.md | 3 tiêu đề `###` đổi; 15 nhãn trực giác viết lại; 15 khối kết mục thành 7 cụm văn xuôi; 12 câu dẫn mới; mở chương nối Mệnh đề 05.17(c) và giới hạn 3 của Bài 05; 33 780 → 34 650 từ | yêu cầu sửa |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 119 hunk; `:::` và `$$` trùng; mở chương khớp lec-05 và lec-04 HEAD; 0 chặn, 1 nghiêm trọng (có từ bản cũ), 4 trung bình, 12 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp câu kết Mục 7 với ba khối application và dòng 793 |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | Làm đủ 16 mục của `lec06-fixes.md`; 34 652 từ (+2,6 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng (có từ bản cũ) | kết Mục 7 | "trong đó một tình huống có giả thiết không thỏa" sai: cả ba Tình huống 06.1–06.3 đều có phần giả thiết không thỏa | đã sửa: nêu đích danh ba giả thiết không thỏa |
+| trung bình | mở chương | câu gọi tên bài toán trung tâm hẹp hơn nội dung Mục 5–6 | đã sửa |
+| trung bình (có từ bản cũ) | kết Mục 2, tóm tắt | "mọi bước của mục là trường hợp của Mệnh đề 06.3" sai với Adam (Mệnh đề 06.10) | đã sửa ở hai chỗ |
+| trung bình | ranh giới Mục 2/3 | lặp ý hai phía; "không ma trận chéo nào tạo được hướng tới nghiệm" khái quát quá Mệnh đề 06.12 | đã sửa: Mục 3 mở bằng số liệu Ví dụ 06.10 |
+| trung bình | 6 kết mục | khuôn "kết quả chính của mục" ×6 | đã sửa: còn 1 |
+| nhẹ | 11 mục (lượng từ ở câu dẫn Mệnh đề 06.10, trực giác lặp 1.2/1.3, "Câu hỏi đặt ra" ×5, câu dài, thứ tự kể BFGS/L-BFGS) | | đã sửa toàn bộ |
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `display_math`, `tags`, 146 khối, hình, bảng, nhãn bước, `\square` không đổi; `headings` khác ở 3 tiêu đề `###`; `numbered_labels` chỉ đổi số lần nhắc (bớt 1, thêm 9, trong đó 5 từ câu do điều phối viên chỉ định); công thức nội dòng 3573 → 3576.
+- grep: "Chuỗi suy luận", "Kết mục", "Mục này", "mọi bước của mục là trường hợp" đều 0; "kết quả chính" 1; "Câu hỏi đặt ra" 1; "Tuy nhiên" 8.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-06/lecture-note.md&deck=lecture-06-toi-uu-mang-sau.html`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 146/146 khối, 15 `h2`, không tràn ngang.
+- `material-local-data.js` tạo lại với lec-05, 05b, 05c, 07 lấy từ HEAD. `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 06.

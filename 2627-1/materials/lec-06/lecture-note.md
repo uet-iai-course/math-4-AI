@@ -68,13 +68,17 @@ Quy ước chỉ số vòng của chương khác Bài 05 một đơn vị. Thu�
 
 ## 1. Bài toán và mô hình bước cập nhật
 
-Bài 05 kết thúc với một giới hạn của mọi phương pháp dùng một bước học chung. Theo Mệnh đề 05.17, trên hàm bậc hai có Hessian xác định dương, giảm gradient với bước $\eta$ hội tụ khi và chỉ khi $0<\eta<2/\lambda_{\max}$, và theo hướng có độ cong nhỏ nhất, sai số co theo hệ số $1-\eta\lambda_{\min}$. Với hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$, điều kiện ổn định là $\eta<\tfrac29$, và khi đó tọa độ thứ nhất co theo hệ số lớn hơn $\tfrac79$ ở mỗi bước; bước $\eta=1$ đưa tọa độ thứ nhất về đúng nghiệm trong một bước nhưng làm $F$ tăng từ $5$ lên $288$. Momentum và Nesterov của Bài 05 làm giảm số bước nhưng vẫn dùng một hệ số chung cho mọi tọa độ.
+Trong Bài 05, chúng ta đã xây quy trình huấn luyện từ gradient nhóm, momentum, Nesterov và khởi tạo tham số, và trong mọi phương pháp đó, một bước học chung được dùng cho mọi tọa độ của tham số. Ở cuối Bài 05, chúng ta đã gặp giới hạn của chính lựa chọn này. Theo Mệnh đề 05.17, trên hàm bậc hai có Hessian xác định dương, giảm gradient với bước $\eta$ hội tụ khi và chỉ khi $0<\eta<2/\lambda_{\max}$, và theo hướng có độ cong nhỏ nhất, sai số co theo hệ số $1-\eta\lambda_{\min}$.
 
-Bài 04 để lại một giới hạn khác cho phương pháp Newton, phương pháp dùng đúng độ cong: theo Nhận xét 04.36 và Tình huống 04.3, khi Hessian có giá trị riêng âm, hướng Newton có thể là hướng tăng. Mục này tách quá trình huấn luyện thành bốn thành phần và thay bước học vô hướng bằng một ma trận phạt; Mục 2–4 chọn ma trận đó từ thống kê gradient, từ Hessian và từ sai phân gradient, Mục 5–6 thay các thành phần còn lại.
+Với hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$, điều kiện ổn định là $\eta<\tfrac29$. Khi đó tọa độ thứ nhất co theo hệ số lớn hơn $\tfrac79$ ở mỗi bước. Bước $\eta=1$ đưa tọa độ thứ nhất về đúng nghiệm trong một bước nhưng làm $F$ tăng từ $5$ lên $288$. Momentum và Nesterov của Bài 05 làm giảm số bước nhưng vẫn dùng một hệ số chung cho mọi tọa độ.
+
+Phương pháp Newton của Bài 04, phương pháp dùng đúng độ cong, gặp một giới hạn khác. Theo Nhận xét 04.36 và Tình huống 04.3, khi Hessian có giá trị riêng âm, hướng Newton có thể là hướng tăng. Bài toán trung tâm của chương này là thiết kế quá trình huấn luyện, trước hết là bước cập nhật, cho mất mát của mạng sâu, vốn không lồi theo tham số và có thể có Hessian với giá trị riêng âm.
+
+Trong chương này, chúng ta tách quá trình huấn luyện thành bốn thành phần và thay bước học vô hướng bằng một ma trận phạt (Mục 1). Ma trận đó được chọn từ thống kê gradient ở Mục 2, từ Hessian ở Mục 3 và từ sai phân gradient ở Mục 4. Ở Mục 5 và Mục 6, chúng ta thay các thành phần còn lại của quá trình huấn luyện. Ở Mục 7, các điều kiện được gom thành một quy tắc chọn phương pháp.
 
 ### 1.1 Quá trình huấn luyện và các thành phần
 
-Một phương pháp tối ưu trong học sâu không chỉ là một công thức cập nhật. Trước khi so sánh các phương pháp, cần biết mỗi phương pháp thay đổi phần nào của quá trình huấn luyện, vì một số phương pháp ở Mục 5–6 không thay công thức cập nhật mà thay mô hình, điểm đầu hoặc tham số được trả về. Định nghĩa sau tách quá trình huấn luyện thành các thành phần như vậy.
+Trước khi so sánh các phương pháp tối ưu trong học sâu, chúng ta cần biết mỗi phương pháp thay đổi phần nào của quá trình huấn luyện. Một số phương pháp ở Mục 5–6 không thay công thức cập nhật mà thay mô hình, điểm đầu hoặc tham số được trả về. Quá trình huấn luyện được tách thành các thành phần như vậy theo định nghĩa sau.
 
 ::: definition Định nghĩa 06.1 (Bài toán huấn luyện và quá trình huấn luyện)
 **Bài toán huấn luyện.** Cho $N\ge1$ quan sát và một mô hình có tham số $\theta\in\mathbb R^p$. Với mỗi quan sát $i$, mất mát $\ell_i:\mathbb R^p\to\mathbb R_{\ge0}$ khả vi đo sai lệch của mô hình trên quan sát đó. Mục tiêu huấn luyện là
@@ -116,9 +120,9 @@ Giảm gradient, SGD, momentum và Nesterov của Bài 04 và Bài 05 đều ch�
 
 Nhầm lẫn thường gặp là đọc một gradient nhóm nhỏ như bằng chứng $\theta_{t-1}$ gần điểm dừng của $F$. Đại lượng $g_t$ chỉ là gradient của mất mát trung bình trên nhóm $\mathcal B_t$; nó có thể bằng $0$ trong khi $\nabla F(\theta_{t-1})\ne0$. Với ba quan sát $-1$, $1$, $3$ và mô hình hằng của Ví dụ 05.1, mất mát trên quan sát có giá trị $3$ là $\tfrac12(\theta-3)^2$; tại $\theta=3$, nhóm chỉ gồm quan sát đó cho gradient nhóm $\theta-3=0$, trong khi gradient đầy đủ là $\theta-1=2$.
 
-### 1.2 Nhu cầu: thang đo khác nhau giữa các tọa độ
+### 1.2 Thang đo khác nhau giữa các tọa độ
 
-Bài toán đặt ở đầu mục được tính đầy đủ dưới đây. Hai tọa độ của tham số có độ cong khác nhau chín lần, và câu hỏi là một bước học chung có cân bằng được chúng hay không.
+Hàm hai độ cong nêu ở đầu mục được tính đầy đủ trong ví dụ dưới đây. Hai tọa độ của tham số có độ cong khác nhau chín lần, và ví dụ kiểm xem một bước học chung có cân bằng được chúng hay không.
 
 ::: example Ví dụ 06.1 (Hai độ cong $1$ và $9$)
 **Dữ kiện.**
@@ -146,11 +150,11 @@ Theo Mệnh đề 05.17(b), tọa độ $j$ nhân với $1-\eta\lambda_j$. Với
 
 Hình có hai ô với thang trục khác nhau, nên độ dài mũi tên chỉ so được trong cùng một ô. Ô trái cho thấy các elip đồng mức hẹp theo trục thứ hai: dịch một đoạn ngắn theo trục đó đã đi qua nhiều đường mức. Ô phải cho thấy bước học $1$ đẩy tọa độ thứ hai ra xa gấp tám lần khoảng cách ban đầu. Trên hình, $\theta_1$ và $\theta_2$ là hai trục tọa độ, tức $[\theta]_1$ và $[\theta]_2$ của chương; chỉ số dưới trên hình không phải chỉ số vòng.
 
-Ví dụ cho một quy luật tổng quát. Theo Mệnh đề 05.17, tọa độ thứ $j$ co khi $\lvert1-\eta\lambda_j\rvert<1$, tức $0<\eta<2/\lambda_j$; điều kiện chung cho mọi tọa độ là $\eta<2/\lambda_{\max}=\tfrac29$, và trong khoảng đó tọa độ ít cong có hệ số $1-\eta\lambda_{\min}>\tfrac79$. Hai tọa độ cần hai bước học khác nhau. Trực giác, chưa phải phát biểu hình thức: thay hệ số $\eta$ bằng một ma trận cho phép chọn bước học khác nhau theo từng hướng.
+Ví dụ trên là trường hợp riêng của một quy luật tổng quát. Theo Mệnh đề 05.17, tọa độ thứ $j$ co khi $\lvert1-\eta\lambda_j\rvert<1$, tức $0<\eta<2/\lambda_j$; điều kiện chung cho mọi tọa độ là $\eta<2/\lambda_{\max}=\tfrac29$, và trong khoảng đó tọa độ ít cong có hệ số $1-\eta\lambda_{\min}>\tfrac79$. Như vậy, hai tọa độ cần hai bước học khác nhau.
 
 ### 1.3 Bước cập nhật với ma trận phạt
 
-Để thay $\eta$ bằng một ma trận theo cách có nguyên tắc, cần viết bước giảm gradient thành nghiệm của một bài toán con. Với gradient $g$ và bước học $\eta>0$, bước $d=-\eta g$ là điểm cực tiểu của hàm
+Để thay $\eta$ bằng một ma trận theo cách có nguyên tắc, trước hết ta viết bước giảm gradient thành nghiệm của một bài toán con. Với gradient $g$ và bước học $\eta>0$, bước $d=-\eta g$ là điểm cực tiểu của hàm
 
 $$
 d\mapsto g^Td+\frac1{2\eta}\lVert d\rVert^2,
@@ -158,7 +162,7 @@ $$
 
 vì gradient theo $d$ của hàm này là $g+d/\eta$, bằng $0$ đúng tại $d=-\eta g$. Số hạng tuyến tính $g^Td$ là ước lượng bậc nhất của thay đổi mục tiêu khi đi bước $d$; số hạng $\lVert d\rVert^2/(2\eta)$ phạt bước dài, vì ước lượng bậc nhất chỉ đúng gần điểm hiện tại. Mức phạt như nhau theo mọi hướng, nên mọi tọa độ chịu cùng một hệ số $\eta$.
 
-Trực giác, chưa phải phát biểu hình thức: thay $\lVert d\rVert^2=d^Td$ bằng $d^TMd$ với một ma trận $M$ cho phép phạt mỗi hướng theo một thang riêng. Ví dụ sau thử ý tưởng đó trên hàm của Ví dụ 06.1.
+Một cách trực quan, nếu thay $\lVert d\rVert^2=d^Td$ bằng $d^TMd$ với một ma trận $M$ thì mỗi hướng bị phạt theo một thang riêng. Đây mới là một gợi ý chưa được phát biểu chính xác, và ví dụ sau thử nó trên hàm của Ví dụ 06.1.
 
 ::: example Ví dụ 06.2 (Ma trận phạt trên hàm hai độ cong)
 **Dữ kiện.** Hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$, điểm đầu $\theta_0=(1,1)^T$, gradient $g=(1,9)^T$ (Ví dụ 06.1). Chọn $\eta=1$ và ma trận phạt $M=\operatorname{diag}(1,9)$.
@@ -170,7 +174,7 @@ Trực giác, chưa phải phát biểu hình thức: thay $\lVert d\rVert^2=d^T
 **Kiểm tra lại.** Theo công thức $d=-\eta M^{-1}g$, hai tọa độ là $-1/1$ và $-9/9$, tức $d=(-1,-1)^T$.
 :::
 
-Ma trận phạt trong ví dụ trùng Hessian của $F$, và bước tới nghiệm trong một lần. Định nghĩa sau đặt tên cho bài toán con với ma trận phạt tổng quát.
+Trong ví dụ trên, ma trận phạt trùng Hessian của $F$, và bước tới nghiệm chỉ trong một lần. Bài toán con với ma trận phạt tổng quát được phát biểu theo định nghĩa sau.
 
 ::: definition Định nghĩa 06.2 (Bài toán con có phạt và ma trận phạt)
 Cho gradient $g\in\mathbb R^p$, bước học $\eta>0$ và ma trận đối xứng $M\in\mathbb R^{p\times p}$, gọi là ma trận phạt. Bài toán con có phạt là
@@ -191,9 +195,11 @@ $$
 
 Với $M=\mathrm I$, (1.3) trở lại bài toán con của giảm gradient.
 
-Bài toán con (1.3) là mô hình bậc hai của Định nghĩa 04.8 với ma trận $M/\eta$, bỏ hằng số $F(\theta)$. Bài 04 dùng một ma trận cố định hoặc Hessian ở vị trí đó. Chương này tách $\eta$ khỏi $M$, vì các phương pháp thích ứng của Mục 2 giữ $\eta$ như một siêu tham số và chỉ học $M$. Ma trận phạt không nhất thiết là Hessian: Ví dụ 06.2 chọn $M$ trùng Hessian, nhưng $M$ của Mục 2 dựng từ độ lớn gradient.
+Bài toán con (1.3) là mô hình bậc hai của Định nghĩa 04.8 với ma trận $M/\eta$, bỏ hằng số $F(\theta)$. Ở Bài 04, vị trí đó là một ma trận cố định hoặc Hessian. Trong chương này, chúng ta tách $\eta$ khỏi $M$, vì các phương pháp thích ứng của Mục 2 giữ $\eta$ như một siêu tham số và chỉ học $M$.
 
-Mệnh đề sau trả lời khi nào (1.3) có nghiệm duy nhất, nghiệm đó có công thức nào, và nó có phải hướng giảm hay không. Nó cần các sự kiện về ma trận xác định dương ở mục "Kiến thức tiên quyết" và kết luận dấu của Mệnh đề 04.7.
+Ma trận phạt cũng không nhất thiết là Hessian. Ví dụ 06.2 chọn $M$ trùng Hessian, còn ở Mục 2, $M$ được dựng từ độ lớn gradient.
+
+Câu hỏi đặt ra là khi nào (1.3) có nghiệm duy nhất, nghiệm đó có công thức nào, và nó có phải hướng giảm hay không. Mệnh đề sau trả lời ba câu hỏi này, dựa trên các sự kiện về ma trận xác định dương ở mục "Kiến thức tiên quyết" và kết luận dấu của Mệnh đề 04.7.
 
 ::: proposition Mệnh đề 06.3 (Nghiệm của bài toán con có phạt)
 **Giả thiết.** $g\in\mathbb R^p$, $\eta>0$, $M$ đối xứng.
@@ -240,9 +246,9 @@ $$
 Hệ số của $\varsigma^2$ âm, nên $\psi(\varsigma u)\to-\infty$ khi $\lvert\varsigma\rvert\to\infty$. $\square$
 :::
 
-Phần (a) cho công thức của mọi bước trong Mục 2–4; mỗi bước xác định khi biết ma trận phạt. Phần (b) là lý do chỉ dùng ma trận xác định dương, vì khi đó bước luôn chỉ về phía làm mục tiêu giảm, dù ma trận khác Hessian bao nhiêu. Phần (c) liên quan tới một nhầm lẫn. Phương trình dừng $g+Md/\eta=0$ vẫn có nghiệm khi $M$ khả nghịch nhưng bất định, và nghiệm đó là điểm yên ngựa của $\psi$, không phải cực tiểu.
+Phần (a) cho công thức của mọi bước trong Mục 2–4, nên mỗi bước xác định khi biết ma trận phạt. Phần (b) là lý do chỉ dùng ma trận xác định dương, vì khi đó bước luôn chỉ về phía làm mục tiêu giảm, dù ma trận khác Hessian bao nhiêu. Phần (c) giúp tránh một nhầm lẫn thường gặp, vì phương trình dừng $g+Md/\eta=0$ vẫn có nghiệm khi $M$ khả nghịch nhưng bất định, và nghiệm đó là điểm yên ngựa của $\psi$, không phải cực tiểu.
 
-So với Mệnh đề 04.9, mệnh đề thêm phần (c) và tách bước học khỏi ma trận. Cái thêm này cần thiết vì ở Mục 3, ma trận ứng viên là Hessian của một hàm không lồi, có thể có giá trị riêng âm.
+So với Mệnh đề 04.9, Mệnh đề 06.3 có thêm phần (c) và tách bước học khỏi ma trận. Phần thêm này cần thiết vì ở Mục 3, ma trận ứng viên là Hessian của một hàm không lồi, có thể có giá trị riêng âm.
 
 ::: example Ví dụ 06.3 (Ba ma trận phạt cho cùng một gradient)
 **Dữ kiện.** $g=(4,2)^T$, $\eta=\tfrac12$, nên $\tfrac1{2\eta}=1$ và $\psi(d)=g^Td+d^TMd$.
@@ -264,7 +270,7 @@ So với Mệnh đề 04.9, mệnh đề thêm phần (c) và tách bước họ
 **Gradient nhóm.** Khi $g=g_t$ là gradient nhóm, phần (b) chỉ nói $d^*$ là hướng giảm của mất mát trung bình trên nhóm $\mathcal B_t$. Nếu $M$ cố định và không phụ thuộc nhóm, tính không chệch của Định lý 05.11 cho $\mathbb E[\nabla F(\theta)^Td^*]=-\eta\,\nabla F(\theta)^TM^{-1}\nabla F(\theta)<0$ khi $\nabla F(\theta)\ne0$; khi $M$ được tính từ chính $g_t$, như ở Mục 2, đẳng thức này không còn đúng.
 :::
 
-**Trong học máy.** Tham số $\theta$ là trọng số của mạng, $g_t$ là gradient của mất mát trên một nhóm dữ liệu, và mỗi bộ tối ưu của Mục 2–4 là một cách chọn $M_t$. AdaGrad, RMSProp dựng $M_t$ chéo từ các gradient đã tính; Newton dùng $M_t=H$; BFGS dùng $M_t=P^{-1}$ với $P$ học từ sai phân gradient. Adam không có dạng (1.3) chính xác, vì tử số của bước là moment $\widehat m_t$ thay cho $g_t$ (Mục 2.4). Mất mát của mạng sâu không lồi, nên Hessian có thể có giá trị riêng âm, và phần (c) của Mệnh đề 06.3 là lý do Mục 3 phải sửa Hessian trước khi dùng làm ma trận phạt.
+**Trong học máy.** Tham số $\theta$ là trọng số của mạng, $g_t$ là gradient của mất mát trên một nhóm dữ liệu, và mỗi bộ tối ưu của Mục 2–4 là một cách chọn $M_t$. AdaGrad, RMSProp dựng $M_t$ chéo từ các gradient đã tính; Newton dùng $M_t=H$; BFGS dùng $M_t=P^{-1}$ với $P$ học từ sai phân gradient. Adam không có dạng (1.3) chính xác, vì tử số của bước là moment $\widehat m_t$ thay cho $g_t$ (Mục 2.4). Mất mát của mạng sâu không lồi, nên Hessian có thể có giá trị riêng âm, và phần (c) của Mệnh đề 06.3 là lý do Hessian phải được sửa ở Mục 3 trước khi dùng làm ma trận phạt.
 
 ::: exercise Bài tập 06.1
 Cho $g=(3,-6)^T$ và $\eta=\tfrac13$.
@@ -306,17 +312,17 @@ Dòng thứ hai dùng tính không chệch; dòng thứ ba dùng $M^{-1}\succ0$ 
 **Kiểm tra lại.** Ở (a), với $M=\mathrm I$: $g^Td^*+\tfrac32\lVert d^*\rVert^2=(-3-12)+\tfrac32\cdot5=-7{,}5$. Với $M=\operatorname{diag}(1,4)$: $(-3-3)+\tfrac32(1+1)=-3$.
 :::
 
-**Chuỗi suy luận của mục.** Định nghĩa 06.1 tách quá trình huấn luyện thành bốn thành phần. Ví dụ 06.1 cho thấy một bước học chung bị chặn bởi hướng cong nhất. Định nghĩa 06.2 thay bước học bằng ma trận phạt, và Mệnh đề 06.3 là kết quả đích: ma trận phạt xác định dương cho bước duy nhất $-\eta M^{-1}g$ và hướng giảm, còn ma trận bất định làm bài toán con mất cực tiểu.
+Ví dụ 06.1 cho thấy một bước học chung bị chặn bởi hướng cong nhất. Xuất phát từ đó và từ bốn thành phần của quá trình huấn luyện (Định nghĩa 06.1), chúng ta đã thay bước học bằng ma trận phạt (Định nghĩa 06.2). Kết quả chính của mục là Mệnh đề 06.3. Theo mệnh đề này, ma trận phạt xác định dương, $M\succ0$, cho bước duy nhất $d=-\eta M^{-1}g$ và cho hướng giảm, còn ma trận bất định làm bài toán con mất cực tiểu.
 
-**Kết mục.** Mục đã thu được công thức bước $d=-\eta M^{-1}g$ và điều kiện $M\succ0$ (Mệnh đề 06.3). Công thức chưa nói chọn $M$ thế nào khi không biết Hessian: Ví dụ 06.2 dùng Hessian có sẵn, trong khi Hessian của một mạng có $p^2$ phần tử. Mục 2 dựng một ma trận phạt chéo chỉ từ các gradient đã tính, với $p$ số cho $p$ tọa độ.
+Tuy nhiên, công thức bước chưa cho biết chọn $M$ thế nào khi không biết Hessian. Ví dụ 06.2 dùng Hessian có sẵn, trong khi Hessian của một mạng có $p^2$ phần tử. Trong Mục 2, chúng ta dựng một ma trận phạt chéo chỉ từ các gradient đã tính, với $p$ số cho $p$ tọa độ.
 
 ## 2. Thống kê gradient theo tọa độ
 
-Mục 1 cho bước $d=-\eta M^{-1}g$ với mọi ma trận phạt $M\succ0$, nhưng chưa cho cách chọn $M$ khi Hessian không có sẵn. Một mạng với $p=10^7$ tham số có Hessian gồm $10^{14}$ phần tử, trong khi một vectơ gradient chỉ có $10^7$ số. Trên hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$ của Ví dụ 06.1, thành phần gradient thứ $j$ bằng $\lambda_j[\theta]_j$ với $\lambda_1=1$, $\lambda_2=9$; tại $(1,1)$, gradient $(1,9)$ có tỷ số hai thành phần đúng bằng tỷ số độ cong. Mục này dựng ma trận phạt chéo từ độ lớn các gradient đã tính, theo ba cách lưu lịch sử của AdaGrad, RMSProp và Adam, và chỉ ra điều một ma trận chéo không làm được.
+Một mạng với $p=10^7$ tham số có Hessian gồm $10^{14}$ phần tử, trong khi một vectơ gradient chỉ có $10^7$ số. Trên hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$ của Ví dụ 06.1, thành phần gradient thứ $j$ bằng $\lambda_j[\theta]_j$ với $\lambda_1=1$, $\lambda_2=9$, và tại $(1,1)$, gradient $(1,9)$ có tỷ số hai thành phần đúng bằng tỷ số độ cong. Trong mục này, chúng ta dựng ma trận phạt chéo từ độ lớn các gradient đã tính theo ba cách lưu lịch sử của AdaGrad, RMSProp và Adam, rồi chỉ ra điều một ma trận chéo không làm được.
 
-### 2.1 Nhu cầu: thống kê độ lớn gradient theo từng tọa độ
+### 2.1 Thống kê độ lớn gradient theo từng tọa độ
 
-Độ lớn gradient chứa một phần thông tin về thang của từng tọa độ, nhưng không thuần túy: thành phần $\lambda_j[\theta]_j$ còn phụ thuộc khoảng cách $\lvert[\theta]_j\rvert$ tới nghiệm. Vì vậy một thống kê dựa trên một gradient duy nhất không đủ; cần tích lũy qua nhiều vòng. Ví dụ sau tích lũy bình phương các thành phần qua hai vòng.
+Độ lớn gradient chứa một phần thông tin về thang của từng tọa độ, nhưng thông tin đó không thuần túy, vì thành phần $\lambda_j[\theta]_j$ còn phụ thuộc khoảng cách $\lvert[\theta]_j\rvert$ tới nghiệm. Do đó một thống kê dựa trên một gradient duy nhất không đủ, và ta cần tích lũy qua nhiều vòng. Ví dụ sau tích lũy bình phương các thành phần qua hai vòng.
 
 ::: example Ví dụ 06.4 (Tổng bình phương gradient qua hai vòng)
 **Dữ kiện.** Một dãy gradient minh họa $g_1=(2,1)^T$, $g_2=(2,0)^T$, không lấy từ một quỹ đạo cụ thể.
@@ -333,7 +339,7 @@ Mục 1 cho bước $d=-\eta M^{-1}g$ với mọi ma trận phạt $M\succ0$, nh
 **Kiểm tra lại.** Dấu $\odot$ là tích theo tọa độ: $(2,1)\odot(2,1)=(2\cdot2,\,1\cdot1)=(4,1)$.
 :::
 
-Bình phương được dùng thay cho chính gradient vì hai gradient trái dấu triệt tiêu khi cộng: dãy $2$, $-2$ có tổng $0$ nhưng tổng bình phương $8$. Trực giác, chưa phải phát biểu hình thức: tọa độ có gradient lớn hoặc thường xuyên khác $0$ tích lũy thống kê lớn và nên nhận bước học nhỏ; tọa độ có gradient nhỏ hoặc hiếm khi khác $0$ nên nhận bước học lớn hơn. Định nghĩa sau biến một thống kê không âm thành ma trận phạt chéo.
+Ta dùng bình phương thay cho chính gradient vì hai gradient trái dấu triệt tiêu khi cộng, chẳng hạn dãy $2$, $-2$ có tổng $0$ nhưng tổng bình phương $8$. Một cách dễ hình dung, tọa độ có gradient lớn hoặc thường xuyên khác $0$ tích lũy thống kê lớn và nên nhận bước học nhỏ, còn tọa độ có gradient nhỏ hoặc hiếm khi khác $0$ nên nhận bước học lớn hơn. Quy tắc này mới dừng ở mức trực giác. Định nghĩa sau biến một thống kê không âm thành ma trận phạt chéo.
 
 ::: definition Định nghĩa 06.5 (Ma trận phạt chéo từ thống kê bình phương và bước học hiệu dụng)
 Cho một vectơ thống kê $v\in\mathbb R^p$ với mọi tọa độ $[v]_j\ge0$, bước học $\eta>0$ và hằng số $\varepsilon>0$. Ma trận phạt chéo ứng với $v$ là
@@ -354,7 +360,7 @@ với phép chia theo tọa độ.
 
 Mỗi phần tử đường chéo của $M$ không nhỏ hơn $\varepsilon>0$, nên $M\succ0$ và (2.1) đúng là công thức (1.4) của Mệnh đề 06.3. Hằng số $\varepsilon$ chỉ để mẫu số dương khi $[v]_j=0$; các phép tính tay dưới đây bỏ $\varepsilon$ khi mọi mẫu số đã dương, và nói rõ khi làm vậy. Ba phương pháp của mục chỉ khác nhau ở cách cập nhật $v$, và Adam khác thêm ở tử số của (2.1).
 
-Ma trận chéo là trường hợp riêng của ma trận phạt tổng quát ở Định nghĩa 06.2: nó phạt từng tọa độ riêng, không phạt tổ hợp của hai tọa độ. Mục 2.5 chứng minh hạn chế này có giá thật.
+Ma trận chéo là trường hợp riêng của ma trận phạt tổng quát ở Định nghĩa 06.2, chỉ phạt từng tọa độ riêng mà không phạt tổ hợp của hai tọa độ. Ở Mục 2.5, chúng ta chứng minh rằng hạn chế này có cái giá thật.
 
 ### 2.2 AdaGrad
 
@@ -372,7 +378,7 @@ Cách đơn giản nhất để lập $v$ là cộng mọi bình phương gradie
 **Kiểm tra lại.** Thống kê được cập nhật trước phép chia; nếu chia cho $v_{t-1}$ thì ở vòng 1 mẫu số là $\sqrt{v_0}=0$. Độ dài bước ở mỗi tọa độ không vượt $\eta=1$: $\lvert-1\rvert\le1$, $0{,}7071\le1$.
 :::
 
-Tọa độ thứ hai có bước học hiệu dụng lớn nhất nhưng bước ở vòng 2 bằng $0$, vì gradient hiện tại bằng $0$. Độ dài bước phụ thuộc cả tử số $[g_t]_j$ lẫn mẫu số. Thuật toán sau ghép các vòng này thành quy trình.
+Ở vòng 2, tọa độ thứ hai có bước học hiệu dụng lớn nhất nhưng bước bằng $0$ vì gradient hiện tại bằng $0$. Như vậy, độ dài bước phụ thuộc cả tử số $[g_t]_j$ lẫn mẫu số. Ghép các vòng như trên, ta được thuật toán sau.
 
 ::: algorithm Thuật toán 06.1 (AdaGrad)
 **Đầu vào.** Điểm đầu $\theta_0$; bước học $\eta>0$; hằng số $\varepsilon>0$; cách chọn nhóm $\mathcal B_t$; ngân sách $T$ và tiêu chí dừng định trước.
@@ -391,7 +397,7 @@ Tọa độ thứ hai có bước học hiệu dụng lớn nhất nhưng bướ
 **Chi phí.** Ngoài phép tính gradient, mỗi vòng tốn $O(p)$ phép toán và lưu một vectơ trạng thái $v_t\in\mathbb R^p$.
 :::
 
-Bước 3 là (2.1) với $v=v_t$, tức bước có phạt với $M_t=\operatorname{diag}(\sqrt{v_t}+\varepsilon)$. Mệnh đề sau thu thập các tính chất của AdaGrad; chúng dựa trên Mệnh đề 06.3 và trên việc $v_t$ là một tổng.
+Bước 3 của thuật toán là (2.1) với $v=v_t$, tức bước có phạt với $M_t=\operatorname{diag}(\sqrt{v_t}+\varepsilon)$. Các tính chất của AdaGrad được gom trong mệnh đề sau, dựa trên Mệnh đề 06.3 và trên việc $v_t$ là một tổng.
 
 ::: proposition Mệnh đề 06.6 (Tính chất của AdaGrad)
 **Giả thiết.** Thuật toán 06.1 với $\eta$ cố định và một dãy gradient bất kỳ $g_1,g_2,\ldots$.
@@ -432,11 +438,13 @@ Phần (c) và (d) cho hai cách đọc bước học $\eta$ của AdaGrad. Theo
 
 Nhầm lẫn thường gặp là coi AdaGrad như phương pháp Newton với Hessian chéo. Trên hàm của Ví dụ 06.1, từ $\theta_0=(2,1)^T$ có $g_1=(2,9)^T$ và $v_1=(4,81)^T$; với $\eta=1$ và bỏ $\varepsilon$, $d_1=(-1,-1)^T$ và $\theta_1=(1,0)^T$, không phải nghiệm. Bước Newton chéo $-\operatorname{diag}(1,9)^{-1}g_1=(-2,-1)^T$ tới nghiệm ngay. Ở vòng đầu, AdaGrad đi một đoạn bằng $\eta$ theo dấu của mỗi thành phần gradient, không theo độ cong.
 
-**Trong học máy.** Ứng dụng điển hình của AdaGrad là đặc trưng thưa (sparse feature), chẳng hạn chỉ số của một từ hiếm trong mô hình văn bản: tham số gắn với đặc trưng chỉ nhận gradient khác $0$ ở các nhóm chứa từ đó. Theo Mệnh đề 06.6(a), tổng bình phương của tham số này tăng chậm, nên bước học hiệu dụng của nó giữ lớn hơn của các tham số gắn với từ phổ biến. Goodfellow, Bengio và Courville (2016, mục 8.5.1, tr. 307) ghi nhận rằng với mạng sâu, việc tích lũy từ đầu quá trình có thể làm bước học hiệu dụng giảm sớm và quá mức; đó là hệ quả trực tiếp của phần (c), và là nhu cầu của Mục 2.3.
+**Trong học máy.** Ứng dụng điển hình của AdaGrad là đặc trưng thưa (sparse feature), chẳng hạn chỉ số của một từ hiếm trong mô hình văn bản: tham số gắn với đặc trưng chỉ nhận gradient khác $0$ ở các nhóm chứa từ đó. Theo Mệnh đề 06.6(a), tổng bình phương của tham số này tăng chậm, nên bước học hiệu dụng của nó giữ lớn hơn của các tham số gắn với từ phổ biến. Goodfellow, Bengio và Courville (2016, mục 8.5.1, tr. 307) ghi nhận rằng với mạng sâu, việc tích lũy từ đầu quá trình có thể làm bước học hiệu dụng giảm sớm và quá mức, một hệ quả trực tiếp của phần (c).
 
 ### 2.3 RMSProp
 
-Phần (c) của Mệnh đề 06.6 là một ràng buộc khi quỹ đạo đi qua nhiều vùng khác nhau của mặt mất mát. Một tọa độ có gradient lớn ở vùng đầu giữ bước học nhỏ ngay cả khi quỹ đạo đã tới vùng mà gradient theo tọa độ đó nhỏ. Trực giác, chưa phải phát biểu hình thức: thay tổng bằng một trung bình có trọng số giảm dần theo tuổi của gradient, gọi là trung bình mũ (exponential moving average), để thống kê quên các gradient xa. Tên RMSProp lấy từ căn trung bình bình phương (root mean square), phương pháp được Hinton, Srivastava và Swersky (2012) trình bày trong một bài giảng.
+Phần (c) của Mệnh đề 06.6 trở thành một ràng buộc khi quỹ đạo đi qua nhiều vùng khác nhau của mặt mất mát. Khi đó, một tọa độ có gradient lớn ở vùng đầu giữ bước học nhỏ ngay cả khi quỹ đạo đã tới vùng mà gradient theo tọa độ đó nhỏ. Về mặt ý tưởng, ta thay tổng bằng một trung bình có trọng số giảm dần theo tuổi của gradient, gọi là trung bình mũ (exponential moving average), để thống kê quên các gradient xa. Đây là trực giác dẫn tới RMSProp, và các trọng số chính xác được tính ở Mệnh đề 06.7.
+
+Tên RMSProp lấy từ căn trung bình bình phương (root mean square), phương pháp được Hinton, Srivastava và Swersky (2012) trình bày trong một bài giảng. Ví dụ sau chạy hai vòng RMSProp trên cùng dãy gradient.
 
 ::: example Ví dụ 06.6 (Hai vòng RMSProp)
 **Dữ kiện.** Dãy gradient của Ví dụ 06.4: $g_1=(2,1)^T$, $g_2=(2,0)^T$; $v_0=0$, hệ số nhớ $\rho=\tfrac12$, $\eta=1$; bỏ $\varepsilon$ vì mẫu số dương.
@@ -460,7 +468,7 @@ Bước $d_2=(-2/\sqrt3,\;0)^T\approx(-1{,}1547;\,0)^T$.
 **Kiểm tra lại.** $\tfrac14(4,1)+\tfrac12(4,0)=(1+2,\;\tfrac14)=(3,\tfrac14)$, khớp $v_2$.
 :::
 
-Bước vòng 1 của RMSProp dài gấp $\sqrt2$ lần bước của AdaGrad, vì $v_1=(1-\rho)g_1\odot g_1$ nhỏ hơn $g_1\odot g_1$. Độ dài này đến từ khởi tạo $v_0=0$, không đến từ dữ kiện của bài toán.
+Bước vòng 1 của RMSProp dài gấp $\sqrt2$ lần bước của AdaGrad, vì $v_1=(1-\rho)g_1\odot g_1$ nhỏ hơn $g_1\odot g_1$. Độ dài này đến từ khởi tạo $v_0=0$ chứ không từ dữ kiện của bài toán. Quy trình đầy đủ của RMSProp như sau.
 
 ::: algorithm Thuật toán 06.2 (RMSProp)
 **Đầu vào.** Như Thuật toán 06.1, thêm hệ số nhớ $\rho\in(0,1)$.
@@ -526,7 +534,7 @@ Phần (a) cũng cho một khuyết điểm: tổng trọng số $1-\rho^t$ nh�
 
 ![Đồ thị trọng số (1 − ρ)ρ mũ k theo độ trễ k từ 0 đến 8 của gradient, trục tung từ 0 đến 0,5. Đường ρ = 0,5 bắt đầu ở 0,5 và giảm một nửa sau mỗi vòng, gần 0 từ k = 5. Đường ρ = 0,9 bắt đầu ở 0,1 và giảm chậm, vẫn khoảng 0,043 ở k = 8.](img/lec-06/rms-weights.svg)
 
-Hình vẽ trọng số của phần (a) theo độ trễ $\Delta$; trục $k$ trên hình là $\Delta$. Đường $\rho=0{,}5$ bắt đầu cao và rơi nhanh, nên thống kê gần như chỉ phản ánh hai, ba gradient cuối. Đường $\rho=0{,}9$ bắt đầu thấp và giảm chậm, nên các gradient cách tám vòng vẫn còn trọng số khoảng $0{,}1\cdot0{,}9^8\approx0{,}043$.
+Hình trên vẽ trọng số của phần (a) theo độ trễ $\Delta$, với trục $k$ trên hình là $\Delta$. Đường $\rho=0{,}5$ bắt đầu cao và rơi nhanh, nên thống kê gần như chỉ phản ánh hai, ba gradient cuối. Đường $\rho=0{,}9$ bắt đầu thấp và giảm chậm, nên các gradient cách tám vòng vẫn còn trọng số khoảng $0{,}1\cdot0{,}9^8\approx0{,}043$.
 
 **Trong học máy.** Hinton, Srivastava và Swersky (2012, Lecture 6) dùng hệ số nhớ $\rho=0{,}9$; `torch.optim.RMSprop` của PyTorch đặt mặc định $0{,}99$. Theo Goodfellow, Bengio và Courville (2016, tr. 307–308), lý do đổi tổng thành trung bình mũ là quỹ đạo huấn luyện mạng không lồi đi qua nhiều vùng có cấu trúc khác nhau trước khi tới một vùng gần lồi. Giả thiết ngầm của Mệnh đề 06.7 khi dùng thống kê như một thang của vùng hiện tại là gradient trong khoảng $\rho/(1-\rho)$ vòng gần nhất thuộc cùng một vùng; khi quỹ đạo đổi vùng nhanh hơn độ dài bộ nhớ đó, thống kê còn mang thang của vùng cũ.
 
@@ -538,9 +546,9 @@ Hình vẽ trọng số của phần (a) theo độ trễ $\Delta$; trục $k$ t
 
 ### 2.4 Adam
 
-RMSProp còn hai điều chưa có. Tổng trọng số $1-\rho^t$ chưa được hiệu chỉnh, nên các bước đầu bị phóng đại; và thống kê chỉ nhớ độ lớn, không nhớ hướng của gradient, trong khi momentum của Bài 05 cho thấy nhớ hướng giúp giảm dao động.
+RMSProp còn thiếu hai điều. Thứ nhất, tổng trọng số $1-\rho^t$ chưa được hiệu chỉnh, nên các bước đầu bị phóng đại. Thứ hai, thống kê chỉ nhớ độ lớn mà không nhớ hướng của gradient, trong khi momentum của Bài 05 cho thấy nhớ hướng giúp giảm dao động.
 
-Adam, tên lấy từ ước lượng moment thích ứng (adaptive moment estimation), của Kingma và Ba (2015), thêm cả hai. Trực giác, chưa phải phát biểu hình thức: tử số nhớ hướng gần đây của gradient như momentum, mẫu số nhớ độ lớn như RMSProp, và cả hai được chia cho tổng trọng số để không bị kéo về $0$ bởi khởi tạo. Ví dụ sau tính vòng đầu.
+Adam, tên lấy từ ước lượng moment thích ứng (adaptive moment estimation), của Kingma và Ba (2015), bổ sung cả hai điều này. Một cách dễ hình dung, tử số của Adam nhớ hướng gần đây của gradient như momentum, mẫu số nhớ độ lớn như RMSProp, và cả hai được chia cho tổng trọng số để không bị kéo về $0$ bởi khởi tạo. Mô tả trực giác này chưa phải phát biểu hình thức. Ví dụ sau tính vòng đầu, rồi Thuật toán 06.3 cho quy trình chính xác.
 
 ::: example Ví dụ 06.7 (Vòng đầu của Adam)
 **Dữ kiện.** $g_1=(2,1)^T$, $m_0=v_0=0$, $\beta_1=\tfrac12$, $\beta_2=\tfrac34$, $\eta=1$; bỏ $\varepsilon$ vì mẫu số dương.
@@ -573,7 +581,7 @@ Adam, tên lấy từ ước lượng moment thích ứng (adaptive moment estim
 **Chi phí.** Hai vectơ trạng thái $m_t$, $v_t$; $O(p)$ phép toán mỗi vòng ngoài gradient.
 :::
 
-Bước 4 dùng các lũy thừa $\beta_1^t$, $\beta_2^t$ của chỉ số vòng, nên $t$ phải bắt đầu từ $1$; đó là lý do của quy ước chỉ số ở đầu chương. Bước 5 có dạng $-\eta_tM_t^{-1}\widehat m_t$ với $M_t=\operatorname{diag}(\sqrt{\widehat v_t}+\varepsilon)$: mẫu số là RMSProp có hiệu chỉnh, tử số không còn là gradient hiện tại. Mệnh đề sau cho biết hiệu chỉnh đạt được gì và cần giả thiết nào.
+Bước 4 của thuật toán dùng các lũy thừa $\beta_1^t$, $\beta_2^t$ của chỉ số vòng, nên $t$ phải bắt đầu từ $1$, và đây là lý do của quy ước chỉ số ở đầu chương. Bước 5 có dạng $-\eta_tM_t^{-1}\widehat m_t$ với $M_t=\operatorname{diag}(\sqrt{\widehat v_t}+\varepsilon)$, trong đó mẫu số là RMSProp có hiệu chỉnh còn tử số không còn là gradient hiện tại. Hiệu chỉnh đạt được gì và cần giả thiết nào được trả lời trong mệnh đề sau.
 
 ::: proposition Mệnh đề 06.9 (Hiệu chỉnh moment của Adam)
 **Giả thiết.** Thuật toán 06.3 với $\beta_1,\beta_2\in(0,1)$ cố định và dãy gradient $g_1,g_2,\ldots$.
@@ -603,7 +611,7 @@ $$
 **Bước 4 (phần c).** Với $t=1$, tổng trong (a) chỉ có $i=1$ với $\varrho_1=1$. Khi $[g_1]_j\ne0$, $[d_1]_j=-\eta_1[g_1]_j/\lvert[g_1]_j\rvert=\mp\eta_1$. $\square$
 :::
 
-Phần (a) nói hiệu chỉnh làm gì. Sau khi chia, $\widehat m_t$ và $\widehat v_t$ là các trung bình có trọng số tổng bằng $1$, nên cùng thang với một gradient và một bình phương gradient.
+Theo phần (a), sau khi chia cho tổng trọng số, $\widehat m_t$ và $\widehat v_t$ là các trung bình có trọng số tổng bằng $1$, nên cùng thang với một gradient và một bình phương gradient.
 
 Phần (b) là lý do gọi chúng là ước lượng không chệch, nhưng chỉ khi kỳ vọng không đổi. Trong huấn luyện, tham số thay đổi qua các vòng, nên giả thiết này chỉ gần đúng khi các gradient trong bộ nhớ gần đây có phân phối gần nhau. Với hệ số nhớ $\beta_1$ hoặc $\beta_2$, ký hiệu chung là $\beta_i$, Mệnh đề 06.7(c) cho độ trễ trung bình $\beta_i/(1-\beta_i)$ vòng; thước đo $1/(1-\beta_i)$ vòng hay gặp trong tài liệu lớn hơn nó đúng $1$.
 
@@ -629,7 +637,7 @@ $$
 **Kiểm tra lại.** $[\widehat m_2]_2=\varrho_1\cdot1+\varrho_2\cdot0=\tfrac13$, khớp phần (a) của Mệnh đề 06.9. $\sqrt{21}/9=\sqrt{7/3}/3$, vì $\tfrac13\big/\sqrt{3/7}=\tfrac13\sqrt{7/3}$.
 :::
 
-Ở Ví dụ 06.8, tọa độ thứ hai dịch theo hướng giảm của gradient vòng trước. Trường hợp sau cho thấy tử số $\widehat m_t$ có thể chỉ ngược hướng giảm. Với hệ số mặc định $\beta_1=0{,}9$ và hai gradient một chiều $g_1=1$, $g_2=-0{,}05$: $m_2=0{,}9\cdot0{,}1-0{,}1\cdot0{,}05=0{,}085$, nên $\widehat m_2=0{,}085/0{,}19\approx0{,}447$ dương trong khi $g_2$ âm.
+Ở Ví dụ 06.8, tọa độ thứ hai dịch theo hướng giảm của gradient vòng trước. Tuy nhiên, tử số $\widehat m_t$ cũng có thể chỉ ngược hướng giảm. Với hệ số mặc định $\beta_1=0{,}9$ và hai gradient một chiều $g_1=1$, $g_2=-0{,}05$, ta có $m_2=0{,}9\cdot0{,}1-0{,}1\cdot0{,}05=0{,}085$, nên $\widehat m_2=0{,}085/0{,}19\approx0{,}447$ dương trong khi $g_2$ âm. Với mọi cặp hệ số $\beta_1,\beta_2\in(0,1)$, hiện tượng này xảy ra khi gradient thứ hai đổi dấu và có độ lớn nhỏ hơn $\beta_1$ lần gradient thứ nhất, theo mệnh đề sau, phát biểu với $g_1=1$.
 
 ::: proposition Mệnh đề 06.10 (Bước Adam không nhất thiết là hướng giảm)
 **Giả thiết.** $\beta_1\in(0,1)$, $\beta_2\in(0,1)$, $\varepsilon>0$, $\eta_2>0$; một tọa độ, với $g_1=1$ và $g_2=-\varsigma$, trong đó $0<\varsigma<\beta_1$.
@@ -656,7 +664,7 @@ vì $\beta_1<1$ và $\varsigma<\beta_1$. Do đó $\widehat m_2=m_2/(1-\beta_1^2)
 **Bước 2 (dấu).** Mẫu số $\sqrt{\widehat v_2}+\varepsilon>0$, nên $d_2=-\eta_2\widehat m_2/(\sqrt{\widehat v_2}+\varepsilon)<0$. Vì $g_2<0$, $g_2d_2>0$. $\square$
 :::
 
-Kết luận hướng giảm của Mệnh đề 06.3(b) cần tử số là gradient hiện tại; Adam thay tử số bằng một trung bình, nên kết luận đó không áp dụng. Đây là cùng cơ chế với momentum ở Bài 05, nơi Ví dụ 05.18 cho mất mát tăng ở bước 4 dù gradient đầy đủ.
+Kết luận hướng giảm của Mệnh đề 06.3(b) cần tử số là gradient hiện tại, còn Adam thay tử số bằng một trung bình, nên kết luận đó không áp dụng cho Adam. Momentum ở Bài 05 có cùng cơ chế, và Ví dụ 05.18 cho mất mát tăng ở bước 4 dù dùng gradient đầy đủ.
 
 **Trong học máy.** Kingma và Ba (2015, thuật toán 1) đề xuất mặc định $\eta=0{,}001$, $\beta_1=0{,}9$, $\beta_2=0{,}999$, $\varepsilon=10^{-8}$; `torch.optim.Adam` của PyTorch dùng cùng các giá trị mặc định và cộng $\varepsilon$ sau khi lấy căn của $\widehat v_t$. Với $\beta_2=0{,}999$, theo Mệnh đề 06.7(c) độ trễ trung bình của thống kê bình phương là $999$ vòng, nên hiệu chỉnh $1/(1-\beta_2^t)$ còn lớn sau $100$ vòng, khi $1-0{,}999^{100}\approx0{,}095$.
 
@@ -684,9 +692,9 @@ Ba phương pháp trên có chung một tính chất: chúng không phụ thuộ
 **Bước 3 (quy nạp).** Ở $t=0$, cùng điểm đầu và trạng thái bằng $0$ thỏa giả thiết của Bước 1. $\square$
 :::
 
-Áp vào hàm của Ví dụ 06.1: $\nabla F(\theta)=(1,9)^T\odot\nabla G(\theta)$ với $G(\theta)=\tfrac12\lVert\theta\rVert^2$, hàm có số điều kiện $1$. Theo mệnh đề, AdaGrad, RMSProp và Adam đi trên $F$ đúng như trên $G$: số điều kiện $9$, hay $10^4$, không ảnh hưởng tới quỹ đạo. Tình huống 06.1 kiểm điều này trên một bài hồi quy có số điều kiện $100$.
+Áp mệnh đề vào hàm của Ví dụ 06.1, ta có $\nabla F(\theta)=(1,9)^T\odot\nabla G(\theta)$ với $G(\theta)=\tfrac12\lVert\theta\rVert^2$, hàm có số điều kiện $1$. Do đó AdaGrad, RMSProp và Adam đi trên $F$ đúng như trên $G$, và số điều kiện $9$, hay $10^4$, không ảnh hưởng tới quỹ đạo. Tình huống 06.1 kiểm điều này trên một bài hồi quy có số điều kiện $100$.
 
-Điều kiện "thừa số theo tọa độ" là chỗ giới hạn. Khi Hessian có phần tử ngoài đường chéo, độ cong ghép các tọa độ lại với nhau, và không thừa số chéo nào gỡ được. Ví dụ sau dùng một ma trận như vậy, xuyên suốt Mục 3 và Mục 4.
+Tuy nhiên, điều kiện "thừa số theo tọa độ" cũng là chỗ giới hạn của mệnh đề. Khi Hessian có phần tử ngoài đường chéo, độ cong ghép các tọa độ lại với nhau, và không thừa số chéo nào gỡ được. Ví dụ sau dựng một ma trận như vậy, được dùng xuyên suốt Mục 3 và Mục 4.
 
 ::: example Ví dụ 06.9 (Dạng toàn phương nghiêng)
 **Dữ kiện.** $Q=\begin{bmatrix}2&1\\1&2\end{bmatrix}$ và dạng toàn phương $z^TQz$ trên $\mathbb R^2$.
@@ -702,7 +710,7 @@ Ba phương pháp trên có chung một tính chất: chúng không phụ thuộ
 
 ![Đường đồng mức elip nghiêng 45 độ của dạng toàn phương với ma trận Q có hàng (2,1) và (1,2), trên hai trục θ₁, θ₂ từ −1 đến 1. Hai trục riêng được vẽ và ghi nhãn (1; 1), hướng elip hẹp ứng với giá trị riêng 3, và (1; −1), hướng elip rộng ứng với giá trị riêng 1.](img/lec-06/tilted-curvature.svg)
 
-Hình vẽ các đường mức của $z^TQz$; hai trục $\theta_1$, $\theta_2$ trên hình ứng với $[z]_1$, $[z]_2$. Trục chính của các elip nằm theo hai hướng riêng, không song song trục tọa độ. Một ma trận chéo $\operatorname{diag}(a,b)$ cho dạng $a[z]_1^2+b[z]_2^2$ không có hạng chéo, nên đường mức của nó luôn có trục song song trục tọa độ; mệnh đề sau lượng hóa điều đó.
+Hình trên vẽ các đường mức của $z^TQz$, với hai trục $\theta_1$, $\theta_2$ ứng với $[z]_1$, $[z]_2$. Trục chính của các elip nằm theo hai hướng riêng, không song song trục tọa độ. Một ma trận chéo $\operatorname{diag}(a,b)$ cho dạng $a[z]_1^2+b[z]_2^2$ không có hạng chéo, nên đường mức của nó luôn có trục song song trục tọa độ. Mệnh đề sau lượng hóa sự khác biệt này.
 
 ::: proposition Mệnh đề 06.12 (Không thang chéo nào làm $Q$ cân hơn)
 **Giả thiết.** $Q$ như Ví dụ 06.9; $D=\operatorname{diag}(a,b)$ với $a,b>0$.
@@ -732,9 +740,9 @@ Dòng đầu là khai triển $(\lambda_{\max}+\lambda_{\min})^2$ chia cho tích
 **Bước 3 (chặn dưới).** Theo bất đẳng thức trung bình cộng và trung bình nhân, $(a+b)^2\ge4ab$, dấu bằng khi $a=b$. Do đó $\kappa+\tfrac1\kappa\ge\tfrac{16}3-2=\tfrac{10}3$. Hàm $\kappa\mapsto\kappa+\tfrac1\kappa$ đồng biến trên $[1,\infty)$ và bằng $\tfrac{10}3$ tại $\kappa=3$, nên $\kappa\ge3$. $\square$
 :::
 
-Mệnh đề nói rằng với ma trận nghiêng $Q$, đổi thang từng tọa độ theo bất kỳ cách nào cũng không làm bài toán cân hơn chính $Q$. Theo Nhận xét 04.16, giảm gradient với ma trận phạt $D$ là giảm gradient trong hệ tọa độ đổi biến $\theta=D^{-1/2}\varphi$, và Hessian trong hệ tọa độ đó là $D^{-1/2}QD^{-1/2}$. Vậy ba phương pháp của mục này, vốn dùng ma trận phạt chéo, không thể sửa độ cong ghép của $Q$; muốn sửa cần phần tử ngoài đường chéo.
+Mệnh đề 06.12 cho thấy với ma trận nghiêng $Q$, đổi thang từng tọa độ theo bất kỳ cách nào cũng không làm bài toán cân hơn chính $Q$. Theo Nhận xét 04.16, giảm gradient với ma trận phạt $D$ là giảm gradient trong hệ tọa độ đổi biến $\theta=D^{-1/2}\varphi$, và Hessian trong hệ tọa độ đó là $D^{-1/2}QD^{-1/2}$. Do đó ba phương pháp của mục này, vốn dùng ma trận phạt chéo, không thể sửa độ cong ghép của $Q$, và muốn sửa thì cần phần tử ngoài đường chéo.
 
-Theo Mệnh đề 06.11, thang đo khác nhau theo trục tọa độ không ảnh hưởng tới quỹ đạo của ba phương pháp. Theo Mệnh đề 06.12, độ cong nghiêng so với trục thì không thang chéo nào sửa được.
+Đặt hai mệnh đề cạnh nhau, ta thấy thang đo khác nhau theo trục tọa độ không ảnh hưởng tới quỹ đạo của ba phương pháp (Mệnh đề 06.11). Ngược lại, độ cong nghiêng so với trục thì không thang chéo nào sửa được (Mệnh đề 06.12).
 
 **Trong học máy.** Với hồi quy tuyến tính trên ma trận dữ liệu $X$ có $N$ hàng, Hessian của mất mát bình phương trung bình là $\tfrac1NX^TX$. Ma trận này chéo khi các cột đặc trưng trực giao, và có phần tử ngoài đường chéo khi hai đặc trưng tương quan. Đổi đơn vị đo một đặc trưng chỉ nhân cột tương ứng với một số, đúng loại thay đổi mà Mệnh đề 06.11 loại bỏ; đặc trưng tương quan tạo Hessian nghiêng, loại mà Mệnh đề 06.12 chỉ ra là thống kê chéo không sửa được. Tình huống 06.1 so hai trường hợp trên cùng một bài hồi quy.
 
@@ -780,17 +788,17 @@ Cận của Mệnh đề 06.7(d) là $\eta/\sqrt{1-\rho}=1/\sqrt{0{,}2}=\sqrt5$;
 **Kiểm tra lại.** Vòng 2: $m_2=0{,}5\cdot1{,}5+0{,}5\cdot(-1)=0{,}25$; $1-0{,}5^2=0{,}75$, nên $\widehat m_2=\tfrac13$. $v_2=0{,}8\cdot1{,}8+0{,}2\cdot1=1{,}64$; $1-0{,}8^2=0{,}36$, nên $\widehat v_2=\tfrac{1{,}64}{0{,}36}=\tfrac{41}9$. Vòng 3: $\widehat m_3=\tfrac{0{,}125}{0{,}875}=\tfrac17$, $\widehat v_3=\tfrac{1{,}312}{0{,}488}=\tfrac{164}{61}$.
 :::
 
-**Chuỗi suy luận của mục.** Định nghĩa 06.5 chuyển một thống kê không âm thành ma trận phạt chéo, nên mọi bước của mục là trường hợp của Mệnh đề 06.3. Thuật toán 06.1 và Mệnh đề 06.6 cho tổng tích lũy, với bước học hiệu dụng chỉ giảm. Thuật toán 06.2 và Mệnh đề 06.7 thay bằng trung bình mũ có tổng trọng số $1-\rho^t$.
+Với Định nghĩa 06.5, mọi thống kê không âm cho một ma trận phạt chéo, nên bước của AdaGrad và RMSProp là trường hợp của Mệnh đề 06.3, còn Adam chỉ giữ mẫu số dạng đó. AdaGrad (Thuật toán 06.1, Mệnh đề 06.6) dùng tổng tích lũy, với bước học hiệu dụng chỉ giảm. RMSProp (Thuật toán 06.2, Mệnh đề 06.7) thay tổng bằng trung bình mũ có tổng trọng số $1-\rho^t$. Adam (Thuật toán 06.3, Mệnh đề 06.9) hiệu chỉnh tổng trọng số và thêm moment bậc nhất, với cái giá là tử số mới có thể cho một bước không phải hướng giảm (Mệnh đề 06.10).
 
-Thuật toán 06.3 và Mệnh đề 06.9 hiệu chỉnh tổng trọng số và thêm moment bậc nhất; Mệnh đề 06.10 chỉ ra giới hạn của tử số mới. Kết quả đích là cặp Mệnh đề 06.11, Mệnh đề 06.12, cho phạm vi của thống kê chéo: thang đo theo trục được loại bỏ, độ cong ghép thì không.
-
-**Kết mục.** Mục đã cho ba bộ tối ưu chỉ cần gradient và $O(p)$ bộ nhớ, bất biến với thang theo tọa độ (Mệnh đề 06.11). Giới hạn còn lại là Mệnh đề 06.12, theo đó với Hessian nghiêng như $Q$, không ma trận chéo nào tạo được hướng tới nghiệm. Mục 3 dùng chính Hessian, gồm cả phần tử ngoài đường chéo, làm ma trận phạt, và giải quyết hai trở ngại kéo theo: Hessian có thể bất định, và giải hệ với Hessian tốn $O(p^3)$.
+Như vậy, ba bộ tối ưu của mục chỉ cần gradient và $O(p)$ bộ nhớ, và cặp Mệnh đề 06.11, Mệnh đề 06.12 cho biết phạm vi của thống kê chéo. Thống kê chéo loại bỏ được thang đo theo trục, tức ba phương pháp bất biến với thang theo tọa độ (Mệnh đề 06.11). Tuy nhiên, thống kê chéo không loại bỏ được độ cong ghép (Mệnh đề 06.12).
 
 ## 3. Độ cong và hệ Newton
 
-Theo Mệnh đề 06.12, trên dạng toàn phương nghiêng $Q$, không ma trận phạt chéo nào làm bài toán cân hơn: với $F(\theta)=\tfrac12\theta^TQ\theta$, từ $\theta_0=(1,0)^T$, hướng $-g=(-2,-1)^T$ lệch $26{,}6^\circ$ so với hướng tới nghiệm $(-1,0)^T$. Mục này dùng chính Hessian làm ma trận phạt: bước Newton, giảm chấn cho Hessian bất định, gradient liên hợp để giải hệ chỉ bằng tích ma trận với vectơ, và phương pháp Newton–CG ghép các thành phần đó.
+Trên $F(\theta)=\tfrac12\theta^TQ\theta$, từ $\theta_0=(1,0)^T$, hướng $-g=(-2,-1)^T$ lệch $26{,}6^\circ$ so với hướng tới nghiệm $(-1,0)^T$. Không ma trận chéo nào làm bài toán cân hơn chính $Q$ (Mệnh đề 06.12), và tại $\theta_0=(1,0)^T$ của Ví dụ 06.10, không hướng $-D^{-1}g$ nào chỉ tới nghiệm. Muốn sửa độ cong ghép này, ma trận phạt phải có phần tử ngoài đường chéo, và ứng viên tự nhiên là chính Hessian.
 
-### 3.1 Nhu cầu: tương tác độ cong giữa các tọa độ
+Đầu tiên, chúng ta dùng Hessian làm ma trận phạt và được bước Newton, sau đó giải quyết hai trở ngại kéo theo. Hessian có thể bất định, và ta sửa điều này bằng giảm chấn. Giải hệ với Hessian tốn $O(p^3)$, và ta tránh chi phí này bằng gradient liên hợp, phương pháp chỉ cần tích ma trận với vectơ. Ghép các thành phần đó, ta được phương pháp Newton–CG.
+
+### 3.1 Tương tác độ cong giữa các tọa độ
 
 Ví dụ sau đo độ lệch giữa hướng âm gradient và hướng tới nghiệm trên hàm có Hessian $Q$.
 
@@ -808,11 +816,11 @@ Ví dụ sau đo độ lệch giữa hướng âm gradient và hướng tới ng
 
 ![Đường đồng mức elip nghiêng của hàm bậc hai với ma trận Q, trên hai trục θ₁, θ₂ từ −1 đến 1. Điểm θ₀ nằm trên trục hoành tại (1, 0). Mũi tên ghi "hướng −g" chỉ theo phương (−2, −1), được thu ngắn theo tỷ lệ 5/8 để vừa khung; mũi tên ghi d chỉ từ θ₀ về gốc tọa độ theo phương (−1, 0).](img/lec-06/newton-direction.svg)
 
-Hình đặt hai mũi tên tại $\theta_0$; hai trục $\theta_1$, $\theta_2$ trên hình là $[\theta]_1$, $[\theta]_2$. Mũi tên $-g$ vuông góc với đường mức đi qua $\theta_0$ và chỉ chếch xuống, vì đường mức nghiêng. Mũi tên $d$ chỉ thẳng về nghiệm; mục tiếp theo tính nó từ $Q$.
+Hình đặt hai mũi tên tại $\theta_0$; hai trục $\theta_1$, $\theta_2$ trên hình là $[\theta]_1$, $[\theta]_2$. Mũi tên $-g$ vuông góc với đường mức đi qua $\theta_0$ và chỉ chếch xuống, vì đường mức nghiêng. Mũi tên $d$ chỉ thẳng về nghiệm, và ở Mục 3.2, ta tính nó từ $Q$.
 
 ### 3.2 Bước Newton
 
-Trực giác, chưa phải phát biểu hình thức: nếu ma trận phạt chứa đúng độ cong của hàm, kể cả phần ghép giữa các tọa độ, thì bài toán con (1.3) trùng với hàm cần cực tiểu, và nghiệm của bài toán con là nghiệm của hàm. Ví dụ sau thử điều đó.
+Về mặt ý tưởng, nếu ma trận phạt chứa đúng độ cong của hàm, kể cả phần ghép giữa các tọa độ, thì bài toán con (1.3) trùng với hàm cần cực tiểu, và nghiệm của bài toán con cũng là nghiệm của hàm. Lập luận này mới là trực giác, chưa phải phát biểu hình thức, và ví dụ sau kiểm nó trên hàm nghiêng.
 
 ::: example Ví dụ 06.11 (Một bước Newton trên hàm nghiêng)
 **Dữ kiện.** $F(\theta)=\tfrac12\theta^TQ\theta$ với $Q=\begin{bmatrix}2&1\\1&2\end{bmatrix}$, điểm đầu $\theta_0=(1,0)^T$ và gradient $g=Q\theta_0=(2,1)^T$ (Ví dụ 06.10). Chọn $M=Q$ và $\eta=1$ trong (1.3).
@@ -839,7 +847,7 @@ $$
 
 Theo Mệnh đề 06.3 với $M=H$, $\eta=1$, nó là nghiệm duy nhất của mô hình Taylor bậc hai và là hướng giảm khi $g\ne0$; Mệnh đề 04.29 còn cho một cách đọc khác: khi $g\ne0$, hướng Newton là hướng giảm dốc nhất theo chuẩn $\lVert d\rVert_H=\sqrt{d^THd}$. Thuật toán 04.2 lặp bước này với quay lui Armijo, và Định lý 04.34 cho hội tụ bậc hai cục bộ, với hằng số tỷ lệ thuận với hằng số Lipschitz $L_H$ của Hessian và tỷ lệ nghịch với cận dưới của các giá trị riêng của Hessian quanh nghiệm.
 
-Chương này thêm một tính chất giải thích vì sao Newton không gặp khó khăn của Mệnh đề 06.12; Boyd và Vandenberghe (2004, mục 9.5.1) gọi nó là tính bất biến affine. Một phép tính trên Ví dụ 06.11 cho thấy tính chất đó: quay hệ tọa độ $45^\circ$ biến $Q$ thành $\operatorname{diag}(3,1)$, và bước Newton trong hệ mới, quay ngược lại, vẫn là $(-1,0)^T$.
+Ngoài các kết quả của Bài 04, chúng ta cần thêm một tính chất giải thích vì sao Newton không gặp khó khăn của Mệnh đề 06.12. Boyd và Vandenberghe (2004, mục 9.5.1) gọi tính chất này là tính bất biến affine. Trên Ví dụ 06.11, quay hệ tọa độ $45^\circ$ biến $Q$ thành $\operatorname{diag}(3,1)$, và bước Newton trong hệ mới, quay ngược lại, vẫn là $(-1,0)^T$. Mệnh đề sau phát biểu tính chất này cho mọi phép đổi biến tuyến tính khả nghịch.
 
 ::: proposition Mệnh đề 06.13 (Bước Newton không phụ thuộc phép đổi biến tuyến tính)
 **Giả thiết.** $F$ khả vi hai lần tại $\theta$, $H=\nabla^2F(\theta)\succ0$. Ma trận $S\in\mathbb R^{p\times p}$ khả nghịch; đặt $G(\varphi)=F(S\varphi)$ và $\varphi=S^{-1}\theta$.
@@ -862,15 +870,15 @@ Chương này thêm một tính chất giải thích vì sao Newton không gặp
 **Bước 3 (phần b).** Bước trên $G$ là $-\eta S^Tg$; đổi về biến $\theta=S\varphi$ được $-\eta SS^Tg$. $\square$
 :::
 
-Phần (b) là cách viết khác của Nhận xét 04.16: giảm gradient trong hệ tọa độ đổi biến là giảm gradient với ma trận phạt $(SS^T)^{-1}$. Phần (a) nói Newton tự chọn ma trận phạt đúng trong mọi hệ tọa độ. Với $Q$ nghiêng, chọn $S$ là ma trận trực giao quay $45^\circ$ biến $Q$ thành $\operatorname{diag}(3,1)$; Newton cho cùng một bước trong cả hai hệ, còn thống kê chéo của Mục 2 cho các bước khác nhau.
+Phần (b) là cách viết khác của Nhận xét 04.16, theo đó giảm gradient trong hệ tọa độ đổi biến là giảm gradient với ma trận phạt $(SS^T)^{-1}$. Theo phần (a), Newton tự chọn ma trận phạt đúng trong mọi hệ tọa độ. Với $Q$ nghiêng, chọn $S$ là ma trận trực giao quay $45^\circ$ biến $Q$ thành $\operatorname{diag}(3,1)$; Newton cho cùng một bước trong cả hai hệ, còn thống kê chéo của Mục 2 cho các bước khác nhau.
 
 ::: remark Nhận xét 06.14 (Chi phí và phạm vi của bước Newton)
 **Chi phí.** Hessian đặc có $p^2$ phần tử, và giải (3.1) bằng phân tích Cholesky tốn khoảng $\tfrac13p^3$ phép tính dấu phẩy động; với $p=10^6$, chỉ lưu Hessian đã cần $10^{12}$ số thực (Goodfellow, Bengio và Courville 2016, mục 8.6.1, tr. 313).
 
-**Hội tụ cục bộ.** Định lý 04.34 không áp dụng khi điểm đầu xa nghiệm hoặc Hessian bất định; Mục 3.3 xét trường hợp sau.
+**Hội tụ cục bộ.** Định lý 04.34 không áp dụng khi điểm đầu xa nghiệm hoặc Hessian bất định; trường hợp sau được xét ở Mục 3.3.
 :::
 
-**Trong học máy.** Với hồi quy logistic có chính quy hóa, $F$ lồi mạnh và Hessian xác định dương ở mọi điểm; Tình huống 04.1 cho Newton hội tụ trong vài bước trên một bài hai tham số. Với mạng sâu, cả hai giả thiết của bước Newton bị vi phạm: $p$ quá lớn để lập $H$, và mất mát không lồi nên $H$ có thể có giá trị riêng âm. Mục 3.3 sửa giả thiết thứ hai, Mục 3.4–3.5 tránh việc lập $H$.
+**Trong học máy.** Với hồi quy logistic có chính quy hóa, $F$ lồi mạnh và Hessian xác định dương ở mọi điểm; Tình huống 04.1 cho Newton hội tụ trong vài bước trên một bài hai tham số. Với mạng sâu, cả hai giả thiết của bước Newton bị vi phạm: $p$ quá lớn để lập $H$, và mất mát không lồi nên $H$ có thể có giá trị riêng âm. Giả thiết thứ hai được sửa ở Mục 3.3, còn việc lập $H$ được tránh ở Mục 3.4–3.5.
 
 ### 3.3 Giảm chấn cho Hessian bất định
 
@@ -888,7 +896,7 @@ Mệnh đề 06.3(c) cảnh báo rằng ma trận phạt có giá trị riêng �
 **Kiểm tra lại.** Với $\tau=2$: $\operatorname{diag}(3,1)(0,1)^T=(0,1)^T=-g$.
 :::
 
-Bước Newton đầy đủ đưa tham số tới đúng điểm yên ngựa: hệ (3.1) tìm điểm dừng của mô hình bậc hai mà không phân biệt cực tiểu với điểm yên ngựa. Cộng một bội của ma trận đơn vị đổi dấu giá trị riêng âm, nhưng chỉ khi bội đó đủ lớn.
+Trong ví dụ, bước Newton đầy đủ đưa tham số tới đúng điểm yên ngựa, vì hệ (3.1) tìm điểm dừng của mô hình bậc hai mà không phân biệt cực tiểu với điểm yên ngựa. Cộng một bội của ma trận đơn vị đổi dấu giá trị riêng âm, nhưng chỉ khi bội đó đủ lớn, và cách sửa này được phát biểu theo định nghĩa sau.
 
 ::: definition Định nghĩa 06.15 (Hệ Newton giảm chấn)
 Cho $g=\nabla F(\theta)$, $H=\nabla^2F(\theta)$ đối xứng và hệ số giảm chấn (damping) $\tau\ge0$. Hệ Newton giảm chấn là
@@ -901,7 +909,7 @@ $$
 Khi $H+\tau\mathrm I\succ0$, nghiệm $d_\tau=-(H+\tau\mathrm I)^{-1}g$ gọi là bước Newton giảm chấn.
 :::
 
-Hệ (3.2) là bài toán con (1.3) với $M=H+\tau\mathrm I$ và $\eta=1$; số hạng $\tau\mathrm I$ cộng vào mức phạt $\tfrac\tau2\lVert d\rVert^2$ theo mọi hướng. Với $\tau=0$, (3.2) là hệ Newton (3.1). Cách sửa này có trong Goodfellow, Bengio và Courville (2016, công thức 8.28, tr. 312), nơi hệ số ký hiệu $\alpha$, và trong Nocedal và Wright (2006, mục 3.4).
+Hệ (3.2) là bài toán con (1.3) với $M=H+\tau\mathrm I$ và $\eta=1$; số hạng $\tau\mathrm I$ cộng vào mức phạt $\tfrac\tau2\lVert d\rVert^2$ theo mọi hướng. Với $\tau=0$, (3.2) là hệ Newton (3.1). Cách sửa này có trong Goodfellow, Bengio và Courville (2016, công thức 8.28, tr. 312), nơi hệ số ký hiệu $\alpha$, và trong Nocedal và Wright (2006, mục 3.4). Mệnh đề sau cho biết $\tau$ phải lớn đến đâu và bước thu được thay đổi thế nào theo $\tau$.
 
 ::: proposition Mệnh đề 06.16 (Giảm chấn và tính xác định dương)
 **Giả thiết.** $H$ đối xứng với phân tích phổ $H=\sum_{j=1}^p\lambda_ju_ju_j^T$, các $u_j$ trực chuẩn; $g\ne0$.
@@ -935,7 +943,7 @@ giảm thực sự theo $\tau$.
 **Bước 4 (phần d).** $\tau d_\tau=-\sum_j\frac{\tau}{\lambda_j+\tau}(u_j^Tg)u_j$, và mỗi hệ số $\tfrac\tau{\lambda_j+\tau}\to1$. $\square$
 :::
 
-Phần (b) cho điều kiện chọn $\tau$. Một số dương bất kỳ chưa đủ; $\tau$ phải vượt độ lớn của giá trị riêng âm nhất.
+Theo phần (b), một số dương $\tau$ bất kỳ chưa đủ, vì $\tau$ phải vượt độ lớn của giá trị riêng âm nhất.
 
 Phần (c) và (d) cho thấy $\tau$ điều khiển vị trí giữa hai phương pháp. Với $\tau$ nhỏ, bước gần bước Newton; với $\tau$ lớn, bước gần $-g/\tau$, tức giảm gradient với bước học $1/\tau$, và bước ngắn dần khi $\tau$ tăng.
 
@@ -948,7 +956,7 @@ Phần (c) và (d) cho thấy $\tau$ điều khiển vị trí giữa hai phươ
 
 ### 3.4 Gradient liên hợp
 
-Bước Newton giảm chấn đòi giải một hệ $p\times p$ đối xứng xác định dương. Giải bằng phân tích tốn $O(p^3)$ và cần lập ma trận; nhưng vi phân tự động (automatic differentiation) tính được tích Hessian–vectơ $Hz$ với chi phí cùng bậc vài lần tính gradient, mà không lập $H$ (Pearlmutter 1994). Câu hỏi là giải hệ $Ad=b$, với $A=H+\tau\mathrm I$, chỉ bằng các tích $Az$.
+Bước Newton giảm chấn đòi giải một hệ $p\times p$ đối xứng xác định dương. Giải bằng phân tích tốn $O(p^3)$ và cần lập ma trận, trong khi vi phân tự động (automatic differentiation) tính được tích Hessian–vectơ $Hz$ với chi phí cùng bậc vài lần tính gradient, mà không lập $H$ (Pearlmutter 1994). Ta cần giải hệ $Ad=b$, với $A=H+\tau\mathrm I$, chỉ bằng các tích $Az$.
 
 Giải hệ $Ad=b$ với $A\succ0$ tương đương cực tiểu hàm bậc hai
 
@@ -959,7 +967,7 @@ $$
 
 vì $\nabla\phi(d)=Ad-b$ bằng $0$ đúng tại nghiệm và $\phi$ lồi chặt. Vectơ $r=b-Ad=-\nabla\phi(d)$ gọi là phần dư (residual).
 
-Giảm gradient trên $\phi$ với tìm bước chính xác, tức chọn độ dài bước cực tiểu $\phi$ dọc hướng đang xét, đi theo đường zích zắc. Mỗi hướng mới vuông góc với hướng cũ, và bước theo hướng mới làm mất phần đã cực tiểu theo hướng cũ (Goodfellow, Bengio và Courville 2016, hình 8.6, tr. 314). Trực giác, chưa phải phát biểu hình thức: nếu chọn các hướng sao cho cực tiểu theo hướng mới giữ nguyên cực tiểu theo các hướng cũ, thì sau $p$ hướng độc lập ta đã cực tiểu trên toàn không gian.
+Giảm gradient trên $\phi$ với tìm bước chính xác, tức chọn độ dài bước cực tiểu $\phi$ dọc hướng đang xét, đi theo đường zích zắc. Mỗi hướng mới vuông góc với hướng cũ, và bước theo hướng mới làm mất phần đã cực tiểu theo hướng cũ (Goodfellow, Bengio và Courville 2016, hình 8.6, tr. 314). Về mặt hình học, nếu chọn các hướng sao cho cực tiểu theo hướng mới giữ nguyên cực tiểu theo các hướng cũ, thì sau $p$ hướng độc lập ta đã cực tiểu trên toàn không gian. Nhận xét này mới ở mức trực giác, và Định lý 06.18 sẽ phát biểu nó chính xác.
 
 ::: example Ví dụ 06.13 (Hai vòng gradient liên hợp)
 **Dữ kiện.** $A=\operatorname{diag}(1,4)$, $b=(1,1)^T$, điểm đầu $d_0=0$. Nghiệm chính xác $(1,\tfrac14)^T$. Chỉ số $k$ đếm vòng giải hệ, tách khỏi vòng huấn luyện $t$.
@@ -991,13 +999,13 @@ trùng với $\tfrac{r_1^Tr_1}{r_0^Tr_0}=\tfrac{18/25}{2}$. Do đó $q_1=(\tfrac
 
 ![Các đường đồng mức elip của q(d) = dᵀAd/2 − bᵀd với A = diag(1, 4), b = (1, 1), trên trục (d)₁ từ 0 đến 1 và trục (d)₂ từ 0 đến 0,5. Đường gấp khúc gradient liên hợp đi từ d₀ = 0 tới d₁ = (2/5; 2/5) rồi tới d₂ = (1; 1/4), tâm của các elip.](img/lec-06/cg-path.svg)
 
-Hình vẽ đường gấp khúc $d_0\to d_1\to d_2$ trên các đường mức của $\phi$. Trên hình, hàm ký hiệu $q(d)$ chính là $\phi(d)$ của (3.4), và $(d)_1$, $(d)_2$ là hai tọa độ $[d]_1$, $[d]_2$. Đoạn thứ hai không vuông góc với đoạn thứ nhất theo nghĩa thông thường, nhưng liên hợp theo $A$; nhờ vậy đoạn thứ hai tới thẳng tâm elip thay vì đi zích zắc.
+Hình vẽ đường gấp khúc $d_0\to d_1\to d_2$ trên các đường mức của $\phi$. Trên hình, hàm ký hiệu $q(d)$ chính là $\phi(d)$ của (3.4), và $(d)_1$, $(d)_2$ là hai tọa độ $[d]_1$, $[d]_2$. Đoạn thứ hai không vuông góc với đoạn thứ nhất theo nghĩa thông thường, nhưng liên hợp theo $A$, nhờ vậy đoạn thứ hai tới thẳng tâm elip thay vì đi zích zắc. Quan hệ giữa hai đoạn được gọi tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 06.17 (Hướng liên hợp)
 Cho $A\in\mathbb R^{p\times p}$ đối xứng xác định dương. Hai vectơ $q,q'\in\mathbb R^p$ gọi là liên hợp theo $A$ (conjugate) nếu $q^TAq'=0$.
 :::
 
-Liên hợp theo $A$ là trực giao theo tích vô hướng $\langle q,q'\rangle_A=q^TAq'$. Khi $A=\mathrm I$, liên hợp trùng trực giao thông thường; với $A\ne\mathrm I$, hai khái niệm khác nhau, như $q_0$, $q_1$ của Ví dụ 06.13. Các hướng khác $0$ đôi một liên hợp thì độc lập tuyến tính: nhân một tổ hợp bằng $0$ của chúng với $q_j^TA$ cho hệ số của $q_j$ bằng $0$.
+Liên hợp theo $A$ là trực giao theo tích vô hướng $\langle q,q'\rangle_A=q^TAq'$. Khi $A=\mathrm I$, liên hợp trùng trực giao thông thường; với $A\ne\mathrm I$, hai khái niệm khác nhau, như $q_0$, $q_1$ của Ví dụ 06.13. Các hướng khác $0$ đôi một liên hợp thì độc lập tuyến tính, vì nhân một tổ hợp bằng $0$ của chúng với $q_j^TA$ cho hệ số của $q_j$ bằng $0$. Thuật toán sau sinh các hướng liên hợp như vậy chỉ bằng tích $Az$.
 
 ::: algorithm Thuật toán 06.4 (Gradient liên hợp tuyến tính)
 **Đầu vào.** Một hàm tính $z\mapsto Az$ với $A$ đối xứng xác định dương, cố định trong suốt lần giải; vế phải $b$; điểm đầu $d_0$; ngưỡng $\varepsilon_{\rm r}>0$; số vòng tối đa $K\ge1$.
@@ -1014,7 +1022,7 @@ Liên hợp theo $A$ là trực giao theo tích vô hướng $\langle q,q'\rangl
 **Chi phí.** Mỗi vòng một tích $Aq_k$, dùng chung cho bước 1 và bước 2, cùng $O(p)$ phép toán vectơ; bộ nhớ phụ là bốn vectơ.
 :::
 
-Bước 2 cập nhật phần dư bằng $r_{k+1}=r_k-\alpha_kAq_k$ thay cho $b-Ad_{k+1}$ để không tính thêm một tích. Bước 3 kiểm dừng trước bước 4: nếu $r_{k+1}=0$ mà vẫn tính tiếp, $q_{k+1}=0$ và $\alpha_{k+1}$ là phép chia $0/0$. Ngưỡng tuyệt đối $\varepsilon_{\rm r}$ là một lựa chọn; Shewchuk (1994, phụ lục B2, tr. 50) so phần dư với phần dư ban đầu. Định lý sau là cơ sở của thuật toán; nó cần định nghĩa liên hợp và tính xác định dương của $A$.
+Bước 2 cập nhật phần dư bằng $r_{k+1}=r_k-\alpha_kAq_k$ thay cho $b-Ad_{k+1}$ để không tính thêm một tích. Bước 3 kiểm dừng trước bước 4: nếu $r_{k+1}=0$ mà vẫn tính tiếp, $q_{k+1}=0$ và $\alpha_{k+1}$ là phép chia $0/0$. Ngưỡng tuyệt đối $\varepsilon_{\rm r}$ là một lựa chọn; Shewchuk (1994, phụ lục B2, tr. 50) so phần dư với phần dư ban đầu. Cơ sở của thuật toán là định lý sau, dựa trên định nghĩa liên hợp và tính xác định dương của $A$.
 
 ::: theorem Định lý 06.18 (Tính chất của gradient liên hợp)
 **Giả thiết.** $A\in\mathbb R^{p\times p}$ đối xứng xác định dương; Thuật toán 06.4 chạy trong số học chính xác, không dừng theo ngưỡng; với một chỉ số $k$ nào đó, $r_0,\ldots,r_k$ đều khác $0$.
@@ -1077,7 +1085,7 @@ Thay $d=d_j$, $q=q_j$, $\alpha=\alpha_j$ và $q_j^Tr_j=r_j^Tr_j$ được (e).
 - Phần (e) cho $\phi$ giảm thực sự ở mỗi vòng, tính chất mà chuẩn phần dư không có. Martens (2010, mục 4.4) ghi nhận $\lVert r_k\rVert$ có thể dao động mạnh trong khi $\phi(d_k)$ giảm đều.
 - Theo phần (f) và (g), sau $j$ vòng, $d_j$ tốt nhất trên một không gian $j$ chiều; sau nhiều nhất $p$ vòng, không gian là toàn bộ $\mathbb R^p$.
 
-Áp vào Ví dụ 06.13, với $p=2$, nghiệm đạt sau hai vòng, đúng (g). Ba giá trị của $\phi$ là:
+Áp vào Ví dụ 06.13, với $p=2$, nghiệm đạt sau hai vòng, đúng như (g). Ba giá trị của $\phi$ là:
 
 - $\phi(d_0)=0$;
 - $\phi(d_1)=-\tfrac25$, khớp mức giảm $\tfrac{2^2}{2\cdot5}=\tfrac25$ của (e) ở vòng 0;
@@ -1091,7 +1099,7 @@ Thay $d=d_j$, $q=q_j$, $\alpha=\alpha_j$ và $q_j^Tr_j=r_j^Tr_j$ được (e).
 
 ### 3.5 Phương pháp Newton–CG
 
-Mục 3.3 cho hệ (3.2) với ma trận xác định dương khi $\tau$ đủ lớn; Mục 3.4 cho cách giải hệ đó chỉ bằng tích ma trận–vectơ. Ghép hai thành phần, cùng quay lui Armijo, được phương pháp Newton–CG, trong Martens (2010) gọi là tối ưu không dùng Hessian (Hessian-free optimization). Mệnh đề sau xét nghiệm gần đúng khi gradient liên hợp dừng sớm, và cho biết nó vẫn là hướng giảm.
+Ở Mục 3.3, chúng ta có hệ (3.2) với ma trận xác định dương khi $\tau$ đủ lớn, và ở Mục 3.4, một cách giải hệ đó chỉ bằng tích ma trận–vectơ. Ghép hai thành phần này cùng quay lui Armijo, ta được phương pháp Newton–CG, mà Martens (2010) gọi là tối ưu không dùng Hessian (Hessian-free optimization). Khi gradient liên hợp dừng sớm, nghiệm gần đúng của nó vẫn là hướng giảm theo mệnh đề sau.
 
 ::: proposition Mệnh đề 06.20 (Nghiệm gần đúng của gradient liên hợp là hướng giảm)
 **Giả thiết.** $A\succ0$, $g\ne0$, $b=-g$, $d_0=0$; Thuật toán 06.4 trong số học chính xác cho $d_1,\ldots,d_k$ với $k\ge1$.
@@ -1127,7 +1135,7 @@ $$
 **Chi phí.** Mỗi vòng ngoài: một gradient, nhiều nhất $K$ tích Hessian–vectơ, các phép tính $F$ của quay lui.
 :::
 
-Bước 2 và bước 3 là hai phép kiểm khác nhau. Phần dư $\lVert r\rVert$ đo mức giải đúng hệ; dấu $g^Td$ đo hướng có giảm hay không. Mệnh đề 06.20 nói bước 3 luôn đạt khi $H+\tau\mathrm I\succ0$ và tính toán chính xác; bước 3 bảo vệ trường hợp giả thiết đó không thỏa do $\tau$ chưa đủ lớn, do sai số làm tròn, hoặc do toán tử thay đổi giữa các vòng trong. Dữ liệu được giữ cố định trong một lần giải vì Martens (2010, mục 4.3) ghi nhận đổi nhóm dữ liệu giữa các vòng gradient liên hợp phá các bất biến của Định lý 06.18.
+Bước 2 và bước 3 là hai phép kiểm khác nhau. Phần dư $\lVert r\rVert$ đo mức giải đúng hệ; dấu $g^Td$ đo hướng có giảm hay không. Mệnh đề 06.20 nói bước 3 luôn đạt khi $H+\tau\mathrm I\succ0$ và tính toán chính xác. Khi giả thiết đó không thỏa do $\tau$ chưa đủ lớn, do sai số làm tròn, hoặc do toán tử thay đổi giữa các vòng trong, bước 3 bảo vệ thuật toán. Dữ liệu được giữ cố định trong một lần giải vì Martens (2010, mục 4.3) ghi nhận đổi nhóm dữ liệu giữa các vòng gradient liên hợp phá các bất biến của Định lý 06.18.
 
 ::: example Ví dụ 06.14 (Một vòng Newton–CG tại điểm có Hessian bất định)
 **Dữ kiện.** Tại một điểm có $g=(1,0)^T$ và Hessian $H=\begin{bmatrix}1&2\\2&1\end{bmatrix}$.
@@ -1204,15 +1212,13 @@ Viết $r_1=b-\alpha_0Ab$ và xét khi nào vectơ này bằng $0$; với chiề
 **Kiểm tra lại.** $Ad_1=(0,1)^T=b$.
 :::
 
-**Chuỗi suy luận của mục.** Ví dụ 06.10 cho thấy cần phần tử ngoài đường chéo. Bước Newton (3.1), tức Mệnh đề 06.3 với $M=H$, giải quyết điều đó, và Mệnh đề 06.13 giải thích vì sao bằng tính bất biến.
+Như vậy, Ví dụ 06.10 cho thấy ma trận phạt cần phần tử ngoài đường chéo, và bước Newton (3.1), tức Mệnh đề 06.3 với $M=H$, đáp ứng đòi hỏi đó. Mệnh đề 06.13 giải thích điều này bằng tính bất biến affine. Hessian bất định được sửa bằng giảm chấn (Định nghĩa 06.15, Mệnh đề 06.16), còn hệ Newton được giải chỉ bằng tích ma trận–vectơ nhờ gradient liên hợp (Định nghĩa 06.17, Thuật toán 06.4, Định lý 06.18). Mệnh đề 06.20 bảo đảm nghiệm gần đúng của gradient liên hợp vẫn là hướng giảm, nên các thành phần ghép được thành Thuật toán 06.5.
 
-Định nghĩa 06.15 và Mệnh đề 06.16 sửa Hessian bất định. Định nghĩa 06.17, Thuật toán 06.4 và Định lý 06.18 giải hệ chỉ bằng tích ma trận–vectơ. Kết quả đích là Mệnh đề 06.20, cho phép ghép thành Thuật toán 06.5 với nghiệm gần đúng vẫn là hướng giảm.
-
-**Kết mục.** Mục đã có phương pháp dùng đầy đủ độ cong mà không lập Hessian (Thuật toán 06.5), với hai phép kiểm riêng cho phần dư và cho dấu của hướng. Phương pháp vẫn cần một toán tử $z\mapsto Hz$ và một hệ số $\tau$ đủ lớn. Khi chỉ có gradient, không có tích Hessian–vectơ, Mục 4 rút thông tin độ cong từ hiệu của hai gradient.
+Phương pháp thu được (Thuật toán 06.5) dùng đầy đủ độ cong mà không lập Hessian, kèm hai phép kiểm riêng cho phần dư và cho dấu của hướng. Tuy nhiên, phương pháp vẫn cần một toán tử $z\mapsto Hz$ và một hệ số $\tau$ đủ lớn. Trong Mục 4, chúng ta xét trường hợp chỉ có gradient, không có tích Hessian–vectơ, và rút thông tin độ cong từ hiệu của hai gradient.
 
 ## 4. Thông tin độ cong từ sai phân gradient
 
-Mục 3 kết thúc với phương pháp Newton–CG, cần một toán tử $z\mapsto Hz$ ở mỗi vòng. Khi chỉ có hàm tính gradient, chẳng hạn mục tiêu là một chương trình mô phỏng mà vi phân tự động bậc hai không đi qua được, toán tử đó không có sẵn. Nhưng mọi phương pháp gradient đều tính gradient tại các điểm liên tiếp: trên hàm $\tfrac12\theta^TQ\theta$, hai gradient tại $(0,0)$ và $(1,0)$ là $(0,0)^T$ và $(2,1)^T$, và hiệu của chúng đúng bằng cột thứ nhất của $Q$. Mục này rút thông tin độ cong từ các hiệu gradient như vậy, dẫn tới phương pháp BFGS và bản bộ nhớ giới hạn L-BFGS.
+Khi chỉ có hàm tính gradient, chẳng hạn mục tiêu là một chương trình mô phỏng mà vi phân tự động bậc hai không đi qua được, toán tử $z\mapsto Hz$ mà Newton–CG cần ở mỗi vòng không có sẵn. Dù vậy, mọi phương pháp gradient đều tính gradient tại các điểm liên tiếp. Trên hàm $\tfrac12\theta^TQ\theta$, hai gradient tại $(0,0)$ và $(1,0)$ là $(0,0)^T$ và $(2,1)^T$, và hiệu của chúng đúng bằng cột thứ nhất của $Q$. Rút thông tin độ cong từ các hiệu gradient như vậy, ta đi tới phương pháp BFGS và bản bộ nhớ giới hạn L-BFGS, là nội dung của mục này.
 
 ### 4.1 Cặp độ cong và phương trình cát tuyến
 
@@ -1228,7 +1234,7 @@ Ví dụ sau tính hiệu của hai gradient trên hàm có Hessian $Q$ và so n
 **Kiểm tra lại.** Cộng vào $F$ một hàm tuyến tính của $\theta$ thì cả hai gradient cùng tăng một vectơ hằng, và $y$ không đổi.
 :::
 
-Trực giác, chưa phải phát biểu hình thức: cặp $(s,y)$ là một phép đo Hessian theo một hướng, và ghép nhiều phép đo theo nhiều hướng cho một xấp xỉ của Hessian. Một cặp cho $p$ phương trình, trong khi một ma trận đối xứng $p\times p$ có $p(p+1)/2$ ẩn; với $p=2$, hai phương trình cho ba ẩn. Định nghĩa sau đặt tên cho đòi hỏi một xấp xỉ tái tạo đúng phép đo.
+Một cách trực quan, cặp $(s,y)$ là một phép đo Hessian theo một hướng, và ghép nhiều phép đo theo nhiều hướng cho một xấp xỉ của Hessian. Cách nhìn này mới là trực giác, chưa phải phát biểu hình thức. Một cặp chỉ cho $p$ phương trình, trong khi một ma trận đối xứng $p\times p$ có $p(p+1)/2$ ẩn, chẳng hạn với $p=2$, hai phương trình cho ba ẩn. Đòi hỏi một xấp xỉ tái tạo đúng phép đo được gọi tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 06.21 (Phương trình cát tuyến và điều kiện độ cong)
 Cho một cặp $s,y\in\mathbb R^p$, $s\ne0$.
@@ -1262,10 +1268,9 @@ Phương trình cát tuyến tổng quát hóa phép tính của Ví dụ 06.15:
 **Bước 3 (phần c).** Vì $s=Py\ne0$, $y\ne0$. Do đó $s^Ty=(Py)^Ty=y^TPy$, dương theo $P\succ0$ và tính đối xứng của $P$. $\square$
 :::
 
-Phần (a) nói rằng một cặp không đo Hessian tại một điểm mà đo Hessian trung bình dọc bước vừa đi. Phần (c) là điều kiện cần: muốn một xấp xỉ nghịch đảo xác định dương tái tạo đúng cặp, cặp đó phải thỏa điều kiện độ cong của Định nghĩa 06.21.
+Theo phần (a), một cặp đo Hessian trung bình dọc bước vừa đi, chứ không đo Hessian tại một điểm. Phần (c) cho một điều kiện cần, theo đó muốn một xấp xỉ nghịch đảo xác định dương tái tạo đúng cặp thì cặp đó phải thỏa điều kiện độ cong của Định nghĩa 06.21.
 
-
-Phản ví dụ cho việc bỏ điều kiện độ cong: với $s=(1,0)^T$ và $y=(-1,2)^T$, $s^Ty=-1$, và theo Mệnh đề 06.22(c) không có $P\succ0$ nào thỏa $Py=s$.
+Điều kiện độ cong không bỏ được. Với $s=(1,0)^T$ và $y=(-1,2)^T$, ta có $s^Ty=-1$, và theo Mệnh đề 06.22(c), không có $P\succ0$ nào thỏa $Py=s$.
 
 ### 4.2 Cập nhật BFGS
 
@@ -1295,7 +1300,7 @@ $$
 **Kiểm tra lại.** Nghịch đảo thật $Q^{-1}=\tfrac13\begin{bmatrix}2&-1\\-1&2\end{bmatrix}$ cũng thỏa $Q^{-1}y=s$, nhưng $P_1-Q^{-1}=\begin{bmatrix}\tfrac1{12}&-\tfrac16\\-\tfrac16&\tfrac13\end{bmatrix}$; tích của hiệu này với $y$ là $(\tfrac16-\tfrac16,\;-\tfrac13+\tfrac13)^T=0$.
 :::
 
-Phép kiểm cuối cho thấy $P_1$ khác nghịch đảo thật chỉ theo những hướng mà cặp chưa đo. Định lý sau phát biểu các tính chất của phép cập nhật cho mọi $P\succ0$ và mọi cặp thỏa điều kiện độ cong; nó dùng Định nghĩa 06.21 và tính chất của dạng toàn phương.
+Phép kiểm cuối cho thấy $P_1$ khác nghịch đảo thật chỉ theo những hướng mà cặp chưa đo. Định lý sau phát biểu các tính chất của phép cập nhật cho mọi $P\succ0$ và mọi cặp thỏa điều kiện độ cong, dựa trên Định nghĩa 06.21 và tính chất của dạng toàn phương.
 
 ::: theorem Định lý 06.23 (Cập nhật nghịch đảo BFGS)
 **Giả thiết.** $P\in\mathbb R^{p\times p}$ đối xứng, $P\succ0$; $s,y\in\mathbb R^p$ với $y^Ts>0$. Đặt $V=\mathrm I-\dfrac{ys^T}{y^Ts}$ và
@@ -1355,9 +1360,9 @@ Khi bỏ giả thiết $y^Ts>0$, kết luận của Bước 2 không còn đúng
 
 ### 4.3 Thuật toán BFGS và điều kiện bước
 
-Thuật toán ghép phép cập nhật vào vòng lặp: sinh hướng từ $P$, tìm bước, rồi quyết định có nhận cặp.
+Thuật toán BFGS ghép phép cập nhật vào một vòng lặp gồm ba việc: sinh hướng từ $P$, tìm bước, rồi quyết định có nhận cặp hay không.
 
-Một bước chỉ làm $F$ giảm chưa bảo đảm $y^Ts>0$; điều kiện sau thêm một ràng buộc lên độ dốc tại điểm mới để bảo đảm điều đó. Trên $F(\theta)=\tfrac12\theta^TQ\theta$ từ $\theta=(1,0)^T$ theo $d=-g=(-2,-1)^T$, giá trị dọc tia là $1-5\alpha+7\alpha^2$ và độ dốc là $-5+14\alpha$. Với $c_1=0{,}1$, bước $\alpha=0{,}01$ cho giá trị $0{,}9507$, không lớn hơn $1-0{,}1\cdot0{,}01\cdot5=0{,}995$, nên được điều kiện Armijo nhận. Độ dốc tại đó là $-4{,}86$, còn gần độ dốc ban đầu $-5$; điều kiện thứ hai dưới đây với $c_2=0{,}9$ đòi độ dốc không nhỏ hơn $-4{,}5$ và loại bước này.
+Một bước chỉ làm $F$ giảm chưa bảo đảm $y^Ts>0$, nên ta cần thêm một ràng buộc lên độ dốc tại điểm mới. Trên $F(\theta)=\tfrac12\theta^TQ\theta$ từ $\theta=(1,0)^T$ theo $d=-g=(-2,-1)^T$, giá trị dọc tia là $1-5\alpha+7\alpha^2$ và độ dốc là $-5+14\alpha$. Với $c_1=0{,}1$, bước $\alpha=0{,}01$ cho giá trị $0{,}9507$, không lớn hơn $1-0{,}1\cdot0{,}01\cdot5=0{,}995$, nên được điều kiện Armijo nhận. Độ dốc tại đó là $-4{,}86$, còn gần độ dốc ban đầu $-5$; điều kiện thứ hai dưới đây với $c_2=0{,}9$ đòi độ dốc không nhỏ hơn $-4{,}5$ và loại bước này.
 
 ::: definition Định nghĩa 06.25 (Điều kiện Wolfe)
 Cho $\theta$, $g=\nabla F(\theta)$, hướng $d$ với $g^Td<0$ và hai hằng số $0<c_1<c_2<1$. Độ dài bước $\alpha>0$ thỏa điều kiện Wolfe (Nocedal và Wright 2006, mục 3.1) nếu cả hai bất đẳng thức sau cùng đúng:
@@ -1371,7 +1376,7 @@ F(\theta+\alpha d)&\le F(\theta)+c_1\alpha\,g^Td,\\
 $$
 :::
 
-Bất đẳng thức thứ nhất là điều kiện Armijo của Định nghĩa 04.10. Bất đẳng thức thứ hai đòi độ dốc dọc $d$ tại điểm mới bớt âm so với tại điểm cũ, nên loại các bước quá ngắn mà Armijo vẫn nhận.
+Bất đẳng thức thứ nhất là điều kiện Armijo của Định nghĩa 04.10. Bất đẳng thức thứ hai đòi độ dốc dọc $d$ tại điểm mới bớt âm so với tại điểm cũ, nên loại các bước quá ngắn mà Armijo vẫn nhận. Mệnh đề sau cho thấy bất đẳng thức thứ hai đủ để có điều kiện độ cong.
 
 ::: proposition Mệnh đề 06.26 (Điều kiện Wolfe bảo đảm điều kiện độ cong)
 **Giả thiết.** $g^Td<0$, $0<c_2<1$, và $\alpha>0$ thỏa bất đẳng thức thứ hai của (4.2). Đặt $s=\alpha d$, $y=\nabla F(\theta+s)-g$.
@@ -1432,7 +1437,7 @@ Với $P\succ0$ và $g\ne0$, $g^Td=-g^TPg<0$, nên bước 2 có nghĩa. Theo M�
 **Kiểm tra lại.** Tìm bước chính xác thỏa (4.2) với mọi $c_2$, vì $\nabla F(\theta+\alpha d)^Td=0>c_2g^Td$, và thỏa bất đẳng thức đầu với mọi $c_1\le\tfrac12$, vì trên hàm bậc hai $F(\theta+\alpha d)=F(\theta)+\tfrac12\alpha g^Td$. Hai bước $s_1$, $s_2$ của hai vòng liên hợp theo $Q$: $s_1^TQs_2=y_1^Ts_2$, và $y_1^Ts_2=\tfrac{25}{14}\cdot\tfrac27-\tfrac{10}7\cdot\tfrac5{14}=0$.
 :::
 
-Ví dụ minh họa một kết quả chung: trên hàm bậc hai lồi chặt với tìm bước chính xác, BFGS cho các hướng liên hợp theo Hessian, đạt nghiệm sau nhiều nhất $p$ vòng và có $P_p$ bằng nghịch đảo Hessian (Nocedal và Wright 2006, chương 6; ghi chú này không chứng minh). Đó là cùng tính chất kết thúc hữu hạn của gradient liên hợp (Định lý 06.18(g)), đạt được mà không cần tích Hessian–vectơ. Trên hàm không bậc hai, kết quả tương ứng là hội tụ siêu tuyến tính gần một cực tiểu có Hessian xác định dương, dưới các giả thiết nêu ở Nocedal và Wright (2006, mục 6.4).
+Ví dụ minh họa một kết quả chung: trên hàm bậc hai lồi chặt với tìm bước chính xác, BFGS cho các hướng liên hợp theo Hessian, đạt nghiệm sau nhiều nhất $p$ vòng và có $P_p$ bằng nghịch đảo Hessian (Nocedal và Wright 2006, chương 6; chúng ta không chứng minh kết quả này). Đó là cùng tính chất kết thúc hữu hạn của gradient liên hợp (Định lý 06.18(g)), đạt được mà không cần tích Hessian–vectơ. Trên hàm không bậc hai, kết quả tương ứng là hội tụ siêu tuyến tính gần một cực tiểu có Hessian xác định dương, dưới các giả thiết nêu ở Nocedal và Wright (2006, mục 6.4).
 
 ### 4.4 BFGS với bộ nhớ giới hạn
 
@@ -1450,7 +1455,7 @@ Thuật toán 06.6 lưu ma trận $P$ gồm $p^2$ số: với $p=10^6$, đó là
 **Kiểm tra lại.** Với $P_1=\begin{bmatrix}\tfrac34&-\tfrac12\\-\tfrac12&1\end{bmatrix}$ của Ví dụ 06.16: $P_1(1,1)^T=(\tfrac14,\tfrac12)^T$. Phép tính không lập ma trận nào, chỉ dùng bốn tích vô hướng và ba phép cộng vectơ.
 :::
 
-Thuật toán sau, gọi là đệ quy hai vòng (two-loop recursion), làm phép tính trên cho nhiều cặp; Mệnh đề 06.27 chứng tỏ nó cho đúng $Pg$.
+Với nhiều cặp, phép tính trên được tổ chức thành thuật toán sau, gọi là đệ quy hai vòng (two-loop recursion), và Mệnh đề 06.27 chứng tỏ nó cho đúng $Pg$.
 
 ::: algorithm Thuật toán 06.7 (Đệ quy hai vòng của L-BFGS)
 **Đầu vào.** Gradient $g$; các cặp $(s_1,y_1),\ldots,(s_{n_{\rm m}},y_{n_{\rm m}})$ theo thứ tự cũ đến mới, mỗi cặp có $y_i^Ts_i>0$; ma trận ban đầu $P^\circ\succ0$, thường là $\tfrac{s_{n_{\rm m}}^Ty_{n_{\rm m}}}{y_{n_{\rm m}}^Ty_{n_{\rm m}}}\mathrm I$.
@@ -1550,13 +1555,13 @@ Tập cần tìm là $\bigl[\tfrac1{34},\tfrac9{17}\bigr]$.
 **Kiểm tra lại.** Tại $\alpha=\tfrac9{17}$: $34\alpha^2=\tfrac{162}{17}$, nên $F_d=4-\tfrac{180}{17}+\tfrac{162}{17}=\tfrac{50}{17}$; vế phải của Armijo là $4-\tfrac{18}{17}=\tfrac{50}{17}$, nên Armijo đạt dấu bằng.
 :::
 
-**Chuỗi suy luận của mục.** Ví dụ 06.15 cho một cặp $(s,y)$; Định nghĩa 06.21 đặt phương trình cát tuyến và điều kiện độ cong; Mệnh đề 06.22 cho biết cặp đo Hessian trung bình dọc bước và điều kiện độ cong là cần cho một xấp xỉ xác định dương. Định lý 06.23 là kết quả đích: cập nhật (4.1) giữ phương trình cát tuyến và tính xác định dương. Định nghĩa 06.25 và Mệnh đề 06.26 cho cách chọn bước bảo đảm điều kiện độ cong, ghép thành Thuật toán 06.6. Ví dụ 06.18, Thuật toán 06.7 và Mệnh đề 06.27 đưa bộ nhớ từ $p^2$ xuống $2n_{\rm m}p$.
+Từ một cặp $(s,y)$ (Ví dụ 06.15), chúng ta đã đặt phương trình cát tuyến và điều kiện độ cong (Định nghĩa 06.21). Theo Mệnh đề 06.22, cặp đo Hessian trung bình dọc bước, và điều kiện độ cong là cần cho một xấp xỉ xác định dương. Trọng tâm của mục là Định lý 06.23, cho thấy cập nhật (4.1) giữ phương trình cát tuyến và tính xác định dương. Điều kiện Wolfe (Định nghĩa 06.25, Mệnh đề 06.26) cho cách chọn bước bảo đảm điều kiện độ cong, và ghép các phần này ta được Thuật toán 06.6.
 
-**Kết mục.** Mục đã có một bộ tối ưu chỉ cần gradient, dùng thông tin độ cong ngoài đường chéo và giữ hướng giảm (Định lý 06.23, Thuật toán 06.6). Giới hạn là giả thiết gradient ổn định của cùng một mục tiêu, mà huấn luyện mạng sâu với gradient nhóm không thỏa; và mọi phương pháp từ Mục 2 tới đây chỉ thay quy tắc cập nhật, giữ nguyên mô hình, điểm đầu và tham số trả về. Mục 5 xét các thay đổi ngoài quy tắc cập nhật.
+Với Thuật toán 06.6, chúng ta có một bộ tối ưu chỉ cần gradient, dùng thông tin độ cong ngoài đường chéo và giữ hướng giảm (Định lý 06.23). Bản bộ nhớ giới hạn (Ví dụ 06.18, Thuật toán 06.7, Mệnh đề 06.27) đưa bộ nhớ từ $p^2$ xuống $2n_{\rm m}p$. Tuy nhiên, cả BFGS và L-BFGS đều giả thiết gradient ổn định của cùng một mục tiêu, và huấn luyện mạng sâu với gradient nhóm không thỏa giả thiết đó.
 
 ## 5. Phép tính mô hình, khối biến và quy tắc trả về
 
-Mục 2–4 chỉ thay quy tắc cập nhật, tức cách biến gradient đã có thành bước; mô hình, cách chọn biến cập nhật và tham số trả về được giữ nguyên. Một số khó khăn nằm ở chính các thành phần đó. Với một lớp tuyến tính $a=Wh$, trong đó $h\in\mathbb R^{n_{\rm in}}$ là đầu vào của lớp, $W$ là ma trận trọng số và $a$ là tiền kích hoạt (pre-activation), quy tắc dây chuyền cho $\partial\ell/\partial W_{kj}=(\partial\ell/\partial[a]_k)\,[h]_j$, tức
+Từ Mục 2 tới Mục 4, chúng ta chỉ thay quy tắc cập nhật, tức cách biến gradient đã có thành bước, và giữ nguyên mô hình, điểm đầu, cách chọn biến cập nhật và tham số trả về. Một số khó khăn lại nằm ở chính các thành phần đó. Với một lớp tuyến tính $a=Wh$, trong đó $h\in\mathbb R^{n_{\rm in}}$ là đầu vào của lớp, $W$ là ma trận trọng số và $a$ là tiền kích hoạt (pre-activation), quy tắc dây chuyền cho $\partial\ell/\partial W_{kj}=(\partial\ell/\partial[a]_k)\,[h]_j$, tức
 
 $$
 \nabla_W\ell=\delta\,h^T,\qquad\delta=\nabla_a\ell .
@@ -1565,11 +1570,11 @@ $$
 
 Cột thứ $j$ của gradient tỷ lệ với $[h]_j$: với hàng thứ $k$ của $W$, $h=(1,100)^T$ và $[\delta]_k=0{,}5$, gradient theo hàng đó là $(0{,}5;\,50)$, lệch thang một trăm lần như Ví dụ 06.1.
 
-Phương pháp của Mục 2 chia gradient theo tọa độ sau khi gradient đã hình thành; chuẩn hóa tín hiệu đi vào lớp sửa thang trước khi gradient hình thành. Mục này xét bốn can thiệp ngoài quy tắc cập nhật, thay lần lượt phép tính mô hình, tập biến được cập nhật mỗi lần, quy tắc trả về và đường truyền gradient qua kiến trúc.
+Các phương pháp của Mục 2 chia gradient theo tọa độ sau khi gradient đã hình thành, còn chuẩn hóa tín hiệu đi vào lớp sửa thang trước khi gradient hình thành. Trong mục này, chúng ta xét bốn can thiệp ngoài quy tắc cập nhật, lần lượt thay phép tính mô hình, tập biến được cập nhật mỗi lần, quy tắc trả về và đường truyền gradient qua kiến trúc.
 
 ### 5.1 Chuẩn hóa theo lô
 
-Trực giác, chưa phải phát biểu hình thức: tiền kích hoạt của lớp $l$ được trừ trung bình và chia độ lệch chuẩn trên nhóm hiện tại, theo từng đặc trưng. Sau hàm kích hoạt, tín hiệu đó trở thành đầu vào $h$ của lớp $l+1$ trong (5.1), với thang ít phụ thuộc vào việc các lớp trước đã thay đổi. Tên phương pháp giữ chữ "lô" theo thuật ngữ đã quen; lô ở đây chính là nhóm $\mathcal B$ của gradient nhóm. Ví dụ sau áp phép chuẩn hóa cho hai nhóm của cùng một đặc trưng.
+Ý tưởng của chuẩn hóa theo lô, chưa ở dạng định nghĩa, là trừ trung bình và chia độ lệch chuẩn của tiền kích hoạt lớp $l$ trên nhóm hiện tại, theo từng đặc trưng. Sau hàm kích hoạt, tín hiệu đó trở thành đầu vào $h$ của lớp $l+1$ trong (5.1), với thang ít phụ thuộc vào việc các lớp trước đã thay đổi. Tên phương pháp giữ chữ "lô" theo thuật ngữ đã quen, và lô ở đây chính là nhóm $\mathcal B$ của gradient nhóm. Ví dụ sau áp phép chuẩn hóa cho hai nhóm của cùng một đặc trưng.
 
 ::: example Ví dụ 06.19 (Hai nhóm lệch nhau một phép dịch)
 **Dữ kiện.** Giá trị của một đặc trưng trên hai nhóm bốn quan sát: $(1,1,5,5)$ và $(5,5,9,9)$, nhóm sau là nhóm trước cộng $4$.
@@ -1587,7 +1592,7 @@ Trực giác, chưa phải phát biểu hình thức: tiền kích hoạt của 
 
 ![Hai trục số cùng thang từ 1 đến 9. Trục trên mang nhóm a gồm 1, 1, 5, 5 với μ = 3 và σ² = 4; trục dưới mang nhóm a + 4 gồm 5, 5, 9, 9 với μ = 7 và σ² = 4. Dòng cuối ghi đầu ra chung sau chuẩn hóa và co giãn z = (−1; −1; 3; 3) với γ = 2, β = 1, ε → 0⁺.](img/lec-06/batch-shift.svg)
 
-Hình đặt hai nhóm trên cùng một trục số; hai tâm $\mu=3$ và $\mu=7$ khác nhau, nhưng sau chuẩn hóa cả hai cho cùng một dãy đầu ra. Trên hình, $a$ là nhóm đầu, $\mu$, $\sigma^2$ là $\mu_{\mathcal B}$, $\sigma_{\mathcal B}^2$ của định nghĩa dưới đây. Hình cho cả hai mặt của phương pháp: đầu ra không phụ thuộc vị trí chung của nhóm, nhưng đầu ra của một quan sát phụ thuộc các quan sát khác trong nhóm.
+Hình trên đặt hai nhóm trên cùng một trục số, với hai tâm $\mu=3$ và $\mu=7$ khác nhau, nhưng sau chuẩn hóa cả hai cho cùng một dãy đầu ra. Trên hình, $a$ là nhóm đầu, còn $\mu$, $\sigma^2$ là $\mu_{\mathcal B}$, $\sigma_{\mathcal B}^2$ của định nghĩa dưới đây. Như vậy, phương pháp có hai mặt: đầu ra không phụ thuộc vị trí chung của nhóm, nhưng đầu ra của một quan sát lại phụ thuộc các quan sát khác trong nhóm.
 
 ::: definition Định nghĩa 06.28 (Chuẩn hóa theo lô)
 Cho một nhóm $\mathcal B$ gồm $\lvert\mathcal B\rvert\ge1$ quan sát và giá trị $a_i\in\mathbb R$ của một đặc trưng cố định tại quan sát $i\in\mathcal B$. Cho hằng số $\varepsilon>0$ và hai tham số học được $\gamma,\beta\in\mathbb R$.
@@ -1610,9 +1615,9 @@ $$
 Mỗi đặc trưng của lớp có cặp $\gamma,\beta$ riêng; chuẩn hóa theo lô (batch normalization) là phép biến đổi (5.2) áp cho từng đặc trưng.
 :::
 
-Định nghĩa đổi phép tính mô hình chứ không đổi bộ tối ưu: $\gamma$, $\beta$ là tham số mới của mô hình, được cập nhật bằng bất kỳ quy tắc nào của Mục 2–4. Khác với các ma trận phạt của Mục 2, chuẩn hóa tác động lên tiền kích hoạt của lớp $l$; sau hàm kích hoạt, đại lượng đó là đầu vào $h$ của lớp $l+1$ trong (5.1), nên thang của tín hiệu đi vào gradient ở lớp sau được ổn định trước khi gradient được tính. Ioffe và Szegedy (2015) đề xuất đặt phép biến đổi ngay sau phép nhân $Wh$, trước hàm kích hoạt, và bỏ độ lệch của lớp vì $\beta$ đã đảm nhận vai trò đó (Goodfellow, Bengio và Courville 2016, mục 8.7.1, tr. 320–321).
+Chuẩn hóa theo lô đổi phép tính mô hình chứ không đổi bộ tối ưu. Hai hệ số $\gamma$, $\beta$ là tham số mới của mô hình, được cập nhật bằng bất kỳ quy tắc nào của Mục 2–4. Khác với các ma trận phạt của Mục 2, chuẩn hóa tác động lên tiền kích hoạt của lớp $l$; sau hàm kích hoạt, đại lượng đó là đầu vào $h$ của lớp $l+1$ trong (5.1), nên thang của tín hiệu đi vào gradient ở lớp sau được ổn định trước khi gradient được tính. Ioffe và Szegedy (2015) đề xuất đặt phép biến đổi ngay sau phép nhân $Wh$, trước hàm kích hoạt, và bỏ độ lệch của lớp vì $\beta$ đã đảm nhận vai trò đó (Goodfellow, Bengio và Courville 2016, mục 8.7.1, tr. 320–321).
 
-Mệnh đề sau chỉ cần trung bình và phương sai của nhóm ở Định nghĩa 06.28; nó cho các tính chất của phép biến đổi (5.2).
+Các tính chất của phép biến đổi (5.2) được gom trong mệnh đề sau, chỉ dùng trung bình và phương sai của nhóm ở Định nghĩa 06.28.
 
 ::: proposition Mệnh đề 06.29 (Tính chất của chuẩn hóa theo lô)
 **Giả thiết.** Như Định nghĩa 06.28, với thống kê của nhóm.
@@ -1644,7 +1649,7 @@ Phần (a) cho thấy hằng số $\varepsilon$ làm phương sai chuẩn hóa n
 
 Phần (d) nói tham số hóa mới biểu diễn được mọi hàm của tham số hóa cũ, nên chuẩn hóa không làm mất khả năng biểu diễn. Theo phần (e), khi huấn luyện, đầu ra của một quan sát phụ thuộc các quan sát cùng nhóm.
 
-Hệ quả của (e) cho mục tiêu huấn luyện: mất mát trên một nhóm không còn là trung bình các mất mát độc lập của từng quan sát, nên công thức (1.1) không mô tả đúng điều đang được cực tiểu. Mục tiêu phù hợp là kỳ vọng $\mathbb E_{\mathcal B}\bigl[\ell_{\mathcal B}(\theta)\bigr]$ của mất mát $\ell_{\mathcal B}$ trên nhóm, với $\theta$ gồm cả $\gamma$, $\beta$ và phân phối lấy theo cách rút nhóm.
+Phần (e) có hệ quả cho chính mục tiêu huấn luyện. Mất mát trên một nhóm không còn là trung bình các mất mát độc lập của từng quan sát, nên công thức (1.1) không mô tả đúng điều đang được cực tiểu. Mục tiêu phù hợp là kỳ vọng $\mathbb E_{\mathcal B}\bigl[\ell_{\mathcal B}(\theta)\bigr]$ của mất mát $\ell_{\mathcal B}$ trên nhóm, với $\theta$ gồm cả $\gamma$, $\beta$ và phân phối lấy theo cách rút nhóm.
 
 ::: example Ví dụ 06.20 (Hằng số ổn định và phụ thuộc nhóm)
 **Dữ kiện.** Nhóm $(2,4,6,8)$, $\varepsilon=1$, $\gamma=1$, $\beta=0$.
@@ -1670,7 +1675,7 @@ Hệ quả của (e) cho mục tiêu huấn luyện: mất mát trên một nhó
 
 ### 5.2 Hạ theo tọa độ và theo khối
 
-Chuẩn hóa theo lô đổi phép tính mô hình và giữ nguyên tập biến được cập nhật. Một can thiệp khác làm ngược lại: giữ mục tiêu, nhưng mỗi lần chỉ cập nhật một tọa độ hoặc một nhóm tọa độ, khi bài toán con theo nhóm đó giải được chính xác hoặc rẻ hơn bài toán đầy đủ. Trực giác, chưa phải phát biểu hình thức: cực tiểu chính xác theo một tọa độ không bao giờ làm mục tiêu tăng, nhưng mỗi lần chỉ đi song song một trục. Ví dụ sau dùng một hàm có hạng ghép hai biến.
+Chuẩn hóa theo lô đổi phép tính mô hình và giữ nguyên tập biến được cập nhật. Một can thiệp khác làm ngược lại, giữ mục tiêu nhưng mỗi lần chỉ cập nhật một tọa độ hoặc một nhóm tọa độ, khi bài toán con theo nhóm đó giải được chính xác hoặc rẻ hơn bài toán đầy đủ. Một cách dễ hình dung, cực tiểu chính xác theo một tọa độ không bao giờ làm mục tiêu tăng, nhưng mỗi lần chỉ đi song song một trục. Nhận xét này còn ở mức trực giác, và ví dụ sau thử nó trên một hàm có hạng ghép hai biến.
 
 ::: example Ví dụ 06.21 (Một lượt hạ theo tọa độ)
 **Dữ kiện.** $F(\theta)=\tfrac12\bigl[([\theta]_1+[\theta]_2-2)^2+[\theta]_1^2+[\theta]_2^2\bigr]$ trên $\mathbb R^2$, điểm đầu $(0,0)$, $F(0,0)=2$.
@@ -1686,7 +1691,7 @@ Chuẩn hóa theo lô đổi phép tính mô hình và giữ nguyên tập biế
 
 ![Đường đồng mức của F trên hai trục u và v từ 0 đến 1. Đường gấp khúc gồm đoạn ngang ghi "giữ v" từ (0; 0) tới (1; 0) và đoạn dọc ghi "giữ u" từ (1; 0) tới (1; 1/2). Nghiệm chung (2/3; 2/3) được đánh dấu.](img/lec-06/coordinate-path.svg)
 
-Hình vẽ lượt cập nhật trên các đường mức; hai trục $u$, $v$ trên hình là $[\theta]_1$, $[\theta]_2$ của ví dụ. Mỗi đoạn song song một trục, nên một lượt chưa tới nghiệm. Mỗi đoạn dừng đúng tại điểm tiếp xúc với một đường mức, nơi mục tiêu nhỏ nhất dọc đoạn đó.
+Hình vẽ lượt cập nhật trên các đường mức; hai trục $u$, $v$ trên hình là $[\theta]_1$, $[\theta]_2$ của ví dụ. Mỗi đoạn song song một trục, nên một lượt chưa tới nghiệm. Mỗi đoạn dừng đúng tại điểm tiếp xúc với một đường mức, nơi mục tiêu nhỏ nhất dọc đoạn đó. Lặp các bài toán con như vậy theo từng khối, ta được thuật toán sau.
 
 ::: algorithm Thuật toán 06.8 (Hạ theo khối)
 **Đầu vào.** Phân hoạch tọa độ của $\theta$ thành $n_{\rm b}$ khối, $\theta=(\theta^{(1)},\ldots,\theta^{(n_{\rm b})})$; lịch chọn khối, tuần hoàn hoặc ngẫu nhiên; bộ giải cho bài toán con theo từng khối; điểm đầu, tiêu chí dừng và ngân sách.
@@ -1704,7 +1709,7 @@ Hình vẽ lượt cập nhật trên các đường mức; hai trục $u$, $v$ 
 
 Khi mỗi khối là một tọa độ, thuật toán là hạ theo tọa độ (coordinate descent); khối thứ $j$ tổng quát hóa tọa độ thứ $j$. Thuật toán thay tập biến được cập nhật mỗi lần, không thay mục tiêu.
 
-Mệnh đề sau cần cho phần (a) chỉ bước 2 của Thuật toán 06.8, và cho phần (b) thêm một hàm bậc hai lồi chặt hai biến, để tính được hệ số co.
+Mệnh đề sau có hai phần. Phần (a) chỉ cần bước 2 của Thuật toán 06.8, còn phần (b) cần thêm một hàm bậc hai lồi chặt hai biến để tính được hệ số co.
 
 ::: proposition Mệnh đề 06.31 (Tính không tăng và tốc độ trên hàm bậc hai hai biến)
 **Giả thiết.** (a) $F$ bất kỳ; Thuật toán 06.8 với bước 2 như đã nêu. (b) $F(\theta)=\tfrac12\theta^TA\theta-b^T\theta$ trên $\mathbb R^2$ với $A=\begin{bmatrix}a_{11}&a_{12}\\a_{12}&a_{22}\end{bmatrix}\succ0$; hạ theo tọa độ tuần hoàn với cực tiểu chính xác, mỗi lượt cập nhật $[\theta]_1$ rồi $[\theta]_2$; $\theta^*=A^{-1}b$.
@@ -1739,7 +1744,7 @@ Phần (a) chỉ dùng việc giá trị cũ là một lựa chọn của bài t
 
 ### 5.3 Trung bình Polyak
 
-Ba thành phần đã xét quyết định quỹ đạo $\theta_0,\theta_1,\ldots$; thành phần cuối chọn điểm nào làm đầu ra. Theo Ví dụ 05.14, với bước học cố định, SGD dao động quanh nghiệm ở một mức không giảm theo số vòng. Trực giác, chưa phải phát biểu hình thức: các điểm dao động ở hai phía của nghiệm, nên trung bình của chúng gần nghiệm hơn từng điểm.
+Ba thành phần đã xét quyết định quỹ đạo $\theta_0,\theta_1,\ldots$, còn thành phần cuối chọn điểm nào làm đầu ra. Theo Ví dụ 05.14, với bước học cố định, SGD dao động quanh nghiệm ở một mức không giảm theo số vòng. Về mặt ý tưởng, các điểm dao động ở hai phía của nghiệm, nên trung bình của chúng gần nghiệm hơn từng điểm. Lập luận này mới là trực giác, và hai kết quả dưới đây cho biết nó đúng trong điều kiện nào.
 
 ::: example Ví dụ 06.22 (Trung bình bốn điểm dao động)
 **Dữ kiện.** $F(\theta)=\tfrac12(\theta-2)^2$; bốn điểm cuối của một quỹ đạo: $1$; $3$; $1{,}5$; $2{,}5$.
@@ -1760,7 +1765,9 @@ $$
 tính trực tuyến bằng $\bar\theta_1=\theta_1$ và $\bar\theta_t=\bar\theta_{t-1}+(\theta_t-\bar\theta_{t-1})/t$.
 :::
 
-Công thức trực tuyến suy từ $t\bar\theta_t=(t-1)\bar\theta_{t-1}+\theta_t$ chia hai vế cho $t$, nên chỉ cần thêm $p$ số bộ nhớ. Trung bình Polyak thay quy tắc trả về và không thay quỹ đạo: dãy $\theta_t$ vẫn do quy tắc cập nhật sinh ra. Nó khác momentum, vốn thay chính bước cập nhật, và khác trung bình mũ của các điểm trên quỹ đạo ở Goodfellow, Bengio và Courville (2016, công thức 8.39, tr. 322), vốn có trọng số giảm theo tuổi của điểm.
+Công thức trực tuyến suy từ $t\bar\theta_t=(t-1)\bar\theta_{t-1}+\theta_t$ chia hai vế cho $t$, nên chỉ cần thêm $p$ số bộ nhớ. Trung bình Polyak thay quy tắc trả về và không thay quỹ đạo, vì dãy $\theta_t$ vẫn do quy tắc cập nhật sinh ra. Nó khác momentum, vốn thay chính bước cập nhật, và khác trung bình mũ của các điểm trên quỹ đạo ở Goodfellow, Bengio và Courville (2016, công thức 8.39, tr. 322), vốn có trọng số giảm theo tuổi của điểm.
+
+Với mục tiêu lồi, bất đẳng thức Jensen cho ngay một bảo đảm theo hệ quả sau.
 
 ::: corollary Hệ quả 06.33 (Trung bình Polyak với mục tiêu lồi)
 **Giả thiết.** $F$ lồi trên $\mathbb R^p$; $\theta_1,\ldots,\theta_T$ bất kỳ.
@@ -1776,9 +1783,9 @@ Công thức trực tuyến suy từ $t\bar\theta_t=(t-1)\bar\theta_{t-1}+\theta
 Bổ đề 05b.25 nói: với $F$ lồi và trọng số không âm $\upsilon_t$ có tổng bằng $1$, $F\bigl(\sum_t\upsilon_t\theta_t\bigr)\le\sum_t\upsilon_tF(\theta_t)$. Áp với $\upsilon_t=\tfrac1T$. $\square$
 :::
 
-Khi bỏ giả thiết lồi, kết luận sai. Với $F(\theta)=(\theta^2-1)^2$, hai điểm $-1$ và $1$ đều là cực tiểu toàn cục với $F=0$, nhưng trung bình $0$ của chúng là cực đại địa phương với $F(0)=1$. Trung bình chỉ hợp lý khi các điểm cùng nằm trong một miền quanh một nghiệm.
+Khi bỏ giả thiết lồi, kết luận không còn đúng. Với $F(\theta)=(\theta^2-1)^2$, hai điểm $-1$ và $1$ đều là cực tiểu toàn cục với $F=0$, nhưng trung bình $0$ của chúng là cực đại địa phương với $F(0)=1$. Trung bình chỉ hợp lý khi các điểm cùng nằm trong một miền quanh một nghiệm.
 
-Ở Ví dụ 06.22, hệ quả cho $F(2)=0\le0{,}3125$; trong ví dụ đó trung bình còn tốt hơn mọi điểm. Hệ quả 06.33 chưa nói trung bình tốt hơn điểm cuối. Mệnh đề sau trả lời điều đó trên mô hình nhiễu đơn giản nhất: hàm bậc hai một chiều với gradient có nhiễu cộng.
+Ở Ví dụ 06.22, hệ quả cho $F(2)=0\le0{,}3125$, và trong ví dụ đó trung bình còn tốt hơn mọi điểm. Tuy nhiên, Hệ quả 06.33 chưa nói trung bình tốt hơn điểm cuối. Mệnh đề sau trả lời câu hỏi đó trên mô hình nhiễu đơn giản nhất, là hàm bậc hai một chiều với gradient có nhiễu cộng.
 
 ::: proposition Mệnh đề 06.34 (Trung bình Polyak trên hàm bậc hai có gradient nhiễu)
 **Giả thiết.** $F(\theta)=\tfrac\lambda2(\theta-\theta^*)^2$ trên $\mathbb R$ với $\lambda>0$. Quy tắc cập nhật $\theta_t=\theta_{t-1}-\eta g_t$ với $g_t=\lambda(\theta_{t-1}-\theta^*)-\zeta_t$, trong đó $\zeta_1,\zeta_2,\ldots$ độc lập, kỳ vọng $0$, phương sai $V_\zeta$; $0<\eta\lambda\le1$; $\theta_0$ không ngẫu nhiên. Đặt $e_t=\theta_t-\theta^*$, $\nu=1-\eta\lambda\in[0,1)$, $\bar e_T=\bar\theta_T-\theta^*$.
@@ -1824,7 +1831,7 @@ $$
 Dòng hai dùng $1-\nu=\eta\lambda$. $\square$
 :::
 
-Phần (a) là mức dao động của Ví dụ 05.14: phương sai của điểm cuối dừng ở một mức tỷ lệ với $\eta$, không giảm theo số vòng. Phần (b) nói trung bình có độ lệch giảm như $1/T$ và phương sai giảm như $1/T$, với cận $V_\zeta/(\lambda^2T)$ không phụ thuộc $\eta$. Như vậy, trên mô hình này, trung bình Polyak đạt điều mà Bài 05 đòi lịch bước học giảm dần mới đạt được, trong khi quỹ đạo vẫn dùng bước học cố định.
+Phần (a) cho lại mức dao động của Ví dụ 05.14, với phương sai của điểm cuối dừng ở một mức tỷ lệ với $\eta$ và không giảm theo số vòng. Theo phần (b), trung bình có độ lệch giảm như $1/T$ và phương sai giảm như $1/T$, với cận $V_\zeta/(\lambda^2T)$ không phụ thuộc $\eta$. Như vậy, trên mô hình này, trung bình Polyak đạt điều mà Bài 05 đòi lịch bước học giảm dần mới đạt được, trong khi quỹ đạo vẫn dùng bước học cố định.
 
 ::: example Ví dụ 06.23 (Trung bình Polyak trên ví dụ ba quan sát của Bài 05)
 **Dữ kiện.** Ba quan sát $-1$, $1$, $3$ với mô hình hằng $\theta\in\mathbb R$ và mất mát bằng nửa bình phương hiệu giữa $\theta$ và giá trị quan sát (Ví dụ 05.1, 05.14); mỗi vòng rút đều một quan sát, nhóm cỡ $1$. Mục tiêu $F(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ có $\lambda=1$, $\theta^*=1$. Gradient của quan sát có giá trị $o$ là $\theta-o=(\theta-1)-(o-1)$, nên nhiễu $\zeta_t$ bằng giá trị quan sát được rút trừ $1$, nhận $-2$, $0$, $2$ với xác suất bằng nhau, và $V_\zeta=\tfrac{4+0+4}3=\tfrac83$. Điểm đầu $\theta_0=0$, nên $e_0=-1$; $\eta=0{,}1$, nên $\nu=0{,}9$.
@@ -1846,9 +1853,9 @@ Phần (a) là mức dao động của Ví dụ 05.14: phương sai của điể
 
 ### 5.4 Thiết kế đường truyền gradient
 
-Hạ theo khối và trung bình Polyak không đổi mô hình; chuẩn hóa theo lô đổi phép tính nhưng không đổi đường truyền gradient giữa các lớp. Theo Mệnh đề 05.32, độ nhạy qua một chuỗi lớp là tích các đạo hàm của từng lớp, và tích co theo cấp số mũ khi mỗi thừa số nhỏ hơn $1$. Gradient theo tham số của các lớp gần đầu vào chứa tích đó làm thừa số, nên co theo độ sâu; hiện tượng này gọi là gradient tiêu biến (vanishing gradient).
+Hạ theo khối và trung bình Polyak không đổi mô hình, còn chuẩn hóa theo lô đổi phép tính nhưng không đổi đường truyền gradient giữa các lớp. Theo Mệnh đề 05.32, độ nhạy qua một chuỗi lớp là tích các đạo hàm của từng lớp, và tích co theo cấp số mũ khi mỗi thừa số nhỏ hơn $1$. Gradient theo tham số của các lớp gần đầu vào chứa tích đó làm thừa số, nên co theo độ sâu; hiện tượng này gọi là gradient tiêu biến (vanishing gradient).
 
-Trực giác, chưa phải phát biểu hình thức: nếu mỗi lớp cộng thẳng đầu vào của nó vào đầu ra, mỗi thừa số của tích có thêm $1$ và không còn nhỏ. Định nghĩa sau đặt tên cho cấu trúc đó.
+Nói một cách trực quan, nếu mỗi lớp cộng thẳng đầu vào của nó vào đầu ra thì mỗi thừa số của tích có thêm $1$ và không còn nhỏ. Đây mới là trực giác, và cấu trúc tương ứng được định nghĩa như sau.
 
 ::: definition Định nghĩa 06.35 (Khối nối tắt)
 Cho hàm khả vi $f_l:\mathbb R^{n_{\rm in}}\to\mathbb R^{n_{\rm in}}$. Khối nối tắt, còn gọi là khối phần dư (residual block), tính
@@ -1883,7 +1890,7 @@ và với một tham số $w$ chỉ tác động qua $h_0$, còn nhân thêm $\p
 
 ![Hai chuỗi năm lớp vô hướng từ h₀ tới h₅. Chuỗi trên, hₗ = 0,1hₗ₋₁, mỗi mũi tên mang đạo hàm 0,1, tích bằng 10⁻⁵. Chuỗi dưới, hₗ = hₗ₋₁ + 0,1hₗ₋₁, mỗi mũi tên mang đạo hàm 1,1, tích bằng 1,61051.](img/lec-06/gradient-chain.svg)
 
-Hình đặt hai chuỗi song song; mỗi mũi tên mang đạo hàm của một lớp, và tích ở cuối mỗi dòng là $\partial h_5/\partial h_0$. Hai dòng chỉ khác nhau ở số hạng $h_{l-1}$ được cộng thẳng vào đầu ra của lớp, và số hạng đó cộng thêm $1$ vào mỗi thừa số.
+Hình đặt hai chuỗi song song; mỗi mũi tên mang đạo hàm của một lớp, và tích ở cuối mỗi dòng là $\partial h_5/\partial h_0$. Hai dòng chỉ khác nhau ở số hạng $h_{l-1}$ được cộng thẳng vào đầu ra của lớp, và số hạng đó cộng thêm $1$ vào mỗi thừa số. Mệnh đề sau cho cận của hệ số truyền với độ sâu $L$ bất kỳ.
 
 ::: proposition Mệnh đề 06.36 (Hệ số truyền qua chuỗi có nối tắt)
 **Giả thiết.** $L\ge1$ lớp vô hướng; các hàm $f_l$ khả vi với $\lvert f_l'\rvert\le c_{\rm s}$ trên toàn trục, $0\le c_{\rm s}<1$.
@@ -1904,7 +1911,7 @@ Hình đặt hai chuỗi song song; mỗi mũi tên mang đạo hàm của một
 **Bước 2 (cận).** Với nối tắt, mỗi thừa số thuộc $[1-c_{\rm s},1+c_{\rm s}]$ và dương; tích của $L$ số như vậy thuộc $[(1-c_{\rm s})^L,(1+c_{\rm s})^L]$. Không nối tắt, mỗi thừa số có trị tuyệt đối không quá $c_{\rm s}$. $\square$
 :::
 
-Với $c_{\rm s}=0{,}1$ và $L=5$: chuỗi có nối tắt có hệ số trong $[0{,}9^5;\,1{,}1^5]\approx[0{,}590;\,1{,}611]$, chuỗi thường có hệ số không quá $10^{-5}$. Phần (a) không cho bảo đảm ổn định với mọi độ sâu: $1{,}1^L\to\infty$ khi $L\to\infty$, và $0{,}9^L\to0$. Nối tắt đổi tích của các số nhỏ thành tích của các số gần $1$. Goodfellow, Bengio và Courville (2016, mục 8.7.5, tr. 326) diễn đạt điều này là rút ngắn đường ngắn nhất từ tham số lớp dưới tới đầu ra.
+Với $c_{\rm s}=0{,}1$ và $L=5$, chuỗi có nối tắt có hệ số trong $[0{,}9^5;\,1{,}1^5]\approx[0{,}590;\,1{,}611]$, còn chuỗi thường có hệ số không quá $10^{-5}$. Phần (a) không cho bảo đảm ổn định với mọi độ sâu, vì $1{,}1^L\to\infty$ khi $L\to\infty$, và $0{,}9^L\to0$. Nối tắt đổi tích của các số nhỏ thành tích của các số gần $1$. Goodfellow, Bengio và Courville (2016, mục 8.7.5, tr. 326) diễn đạt điều này là rút ngắn đường ngắn nhất từ tham số lớp dưới tới đầu ra.
 
 **Trong học máy.** Mạng phần dư (residual network) của He và cộng sự (2016) dùng khối (5.4) với $f_l$ gồm vài lớp tích chập; đó là trường hợp vectơ của Mệnh đề 06.36, với ma trận Jacobi $\mathrm I+J_{f_l}$ thay cho $1+f_l'$. Trong trường hợp vectơ, chuẩn toán tử của tích $\prod_l(\mathrm I+J_{f_l})$ bị chặn trên bởi $(1+c_{\rm s})^L$ khi mọi chuẩn $\lVert J_{f_l}\rVert$ không vượt $c_{\rm s}$, vì chuẩn toán tử của một tích không vượt tích các chuẩn và $\lVert\mathrm I+J\rVert\le1+\lVert J\rVert$; khi các chuẩn này không bị chặn, nối tắt không cho cận nào. Đầu phụ (auxiliary head), một bản sao của đầu ra gắn vào lớp giữa trong lúc huấn luyện, là một cách khác rút ngắn đường truyền (Goodfellow, Bengio và Courville 2016, mục 8.7.5). Can thiệp này đổi mô hình, tức đổi mục tiêu $F$, một lần từ đầu quá trình huấn luyện.
 
@@ -1955,26 +1962,26 @@ Hệ số $\tfrac{a_{12}^2}{a_{11}a_{22}}=\tfrac48=\tfrac12$: sai số của $[\
 **Kiểm tra lại.** Ở (a), $\eta\lambda=0{,}5$ và $2-\eta\lambda=1{,}5$. Ở (c), $\tfrac1{4\cdot30}=\tfrac1{120}$, đúng một phần mười của $\tfrac1{12}$.
 :::
 
-**Chuỗi suy luận của mục.** Công thức (5.1) chỉ ra chỗ thang của tín hiệu đi vào gradient. Định nghĩa 06.28 và Mệnh đề 06.29 chuẩn hóa tín hiệu đó, đổi lại sự phụ thuộc giữa các quan sát cùng nhóm.
+Công thức (5.1) chỉ ra chỗ thang của tín hiệu đi vào gradient, và chuẩn hóa theo lô (Định nghĩa 06.28, Mệnh đề 06.29) chuẩn hóa tín hiệu đó, đổi lại sự phụ thuộc giữa các quan sát cùng nhóm. Hạ theo khối (Thuật toán 06.8, Mệnh đề 06.31) đổi tập biến cập nhật, với tính không tăng không điều kiện và tốc độ phụ thuộc độ ghép.
 
-Thuật toán 06.8 và Mệnh đề 06.31 đổi tập biến cập nhật, với tính không tăng không điều kiện và tốc độ phụ thuộc độ ghép. Định nghĩa 06.32, Hệ quả 06.33 và Mệnh đề 06.34 đổi quy tắc trả về; kết quả đích của mục là Mệnh đề 06.34(b), phương sai của trung bình giảm như $1/T$ với bước học cố định. Định nghĩa 06.35 và Mệnh đề 06.36 đổi kiến trúc để tích đạo hàm gần $1$.
+Trung bình Polyak (Định nghĩa 06.32, Hệ quả 06.33, Mệnh đề 06.34) đổi quy tắc trả về, và Mệnh đề 06.34(b) cho thấy phương sai của trung bình giảm như $1/T$ với bước học cố định. Cuối cùng, nối tắt (Định nghĩa 06.35, Mệnh đề 06.36) đổi kiến trúc để tích đạo hàm gần $1$.
 
-**Kết mục.** Mục đã cho bốn can thiệp, mỗi can thiệp với giả thiết riêng:
+Mỗi can thiệp đi kèm một giả thiết riêng:
 
 - chuẩn hóa theo lô cần nhóm đại diện được phân phối (Mệnh đề 06.29);
 - hạ theo khối cần giá trị cũ là một lựa chọn của bài toán con (Mệnh đề 06.31);
 - trung bình Polyak cần các điểm cùng một miền lồi (Hệ quả 06.33);
 - nối tắt cần các đạo hàm lớp bị chặn (Mệnh đề 06.36).
 
-Không can thiệp nào đổi điểm đầu, và mục tiêu chỉ đổi một lần khi đổi mô hình. Mục 6 thay điểm đầu và mục tiêu theo giai đoạn.
+Không can thiệp nào đổi điểm đầu, và mục tiêu chỉ đổi một lần, khi đổi mô hình từ đầu quá trình huấn luyện, rồi giữ nguyên trong suốt quá trình. Thay điểm đầu và mục tiêu theo giai đoạn là nội dung của Mục 6.
 
 ## 6. Huấn luyện theo giai đoạn
 
-Mục 5 kết thúc với bốn can thiệp giữ nguyên điểm đầu và giữ nguyên mục tiêu trong suốt quá trình. Với một số bài toán, điểm đầu quyết định kết quả bất kể quy tắc cập nhật. Với mạng tuyến tính hai lớp một đơn vị, dự đoán $w_2w_1x$, một quan sát có đầu vào $1$ và nhãn $3$, mất mát $F(\theta)=\tfrac12(w_1w_2-3)^2$ với $\theta=(w_1,w_2)^T$ có gradient bằng $0$ tại gốc; mọi phương pháp gradient bắt đầu tại $(0,0)$ đứng yên ở đó, với $F=\tfrac92$, trong khi giá trị nhỏ nhất là $0$. Mục này thay điểm đầu, mục tiêu và phân phối lấy mẫu theo giai đoạn, bằng tiền huấn luyện, phương pháp tiếp diễn và học theo chương trình.
+Với một số bài toán, điểm đầu quyết định kết quả bất kể quy tắc cập nhật. Với mạng tuyến tính hai lớp một đơn vị, dự đoán $w_2w_1x$, một quan sát có đầu vào $1$ và nhãn $3$, mất mát $F(\theta)=\tfrac12(w_1w_2-3)^2$ với $\theta=(w_1,w_2)^T$ có gradient bằng $0$ tại gốc. Mọi phương pháp gradient bắt đầu tại $(0,0)$ đứng yên ở đó, với $F=\tfrac92$, trong khi giá trị nhỏ nhất là $0$. Ba chiến lược của mục này, tiền huấn luyện, phương pháp tiếp diễn và học theo chương trình, lần lượt thay điểm đầu, mục tiêu và phân phối lấy mẫu theo giai đoạn.
 
 ### 6.1 Tiền huấn luyện có giám sát
 
-Mệnh đề sau mô tả các điểm dừng của mục tiêu nêu ở đầu mục, để thấy điểm đầu quyết định điều gì. Mục tiêu này cùng dạng với Tình huống 04.3 của Bài 04, ở đó với nhãn $1$.
+Để thấy điểm đầu quyết định điều gì, chúng ta mô tả các điểm dừng của mục tiêu nêu ở đầu mục trong mệnh đề sau. Mục tiêu này cùng dạng với Tình huống 04.3 của Bài 04, nơi nhãn bằng $1$.
 
 ::: proposition Mệnh đề 06.37 (Điểm dừng của mạng tuyến tính hai lớp trên một quan sát)
 **Giả thiết.** $F(\theta)=\tfrac12(w_1w_2-3)^2$ trên $\mathbb R^2$, $\theta=(w_1,w_2)^T$; giảm gradient với bước học $\eta>0$ bất kỳ.
@@ -2001,7 +2008,9 @@ Mệnh đề sau mô tả các điểm dừng của mục tiêu nêu ở đầu 
 **Bước 4 (phần d).** Tại gốc, gradient bằng $0$, nên mọi bước bằng $0$. $\square$
 :::
 
-Theo phần (b) và (d), gốc không phải cực tiểu nhưng có gradient bằng $0$, nên giảm gradient bắt đầu tại đó không rời đi. Phần (c) mở rộng điều đó cho cả một đường. Một điểm đầu ngẫu nhiên theo phân phối liên tục, độc lập theo hai tọa độ, tránh đường $w_1=-w_2$ với xác suất $1$, cùng lập luận với Mệnh đề 05.31. Trực giác, chưa phải phát biểu hình thức: một phần của mô hình có thể học trên một nhiệm vụ dễ hơn, và tham số học được là một điểm đầu đã có tín hiệu gradient cho nhiệm vụ đích.
+Theo phần (b) và (d), gốc không phải cực tiểu nhưng có gradient bằng $0$, nên giảm gradient bắt đầu tại đó không rời đi. Phần (c) mở rộng điều đó cho cả một đường. Một điểm đầu ngẫu nhiên theo phân phối liên tục, độc lập theo hai tọa độ, tránh đường $w_1=-w_2$ với xác suất $1$, cùng lập luận với Mệnh đề 05.31.
+
+Ngoài khởi tạo ngẫu nhiên, điểm đầu còn có thể đến từ một nhiệm vụ khác. Một cách trực quan, một phần của mô hình có thể học trên một nhiệm vụ dễ hơn, và tham số học được là một điểm đầu đã có tín hiệu gradient cho nhiệm vụ đích. Ý tưởng này chưa phải định nghĩa, và ví dụ sau thử nó trên mục tiêu nêu ở đầu mục.
 
 ::: example Ví dụ 06.25 (Điểm đầu từ một nhiệm vụ phụ)
 **Dữ kiện.** Mục tiêu đích $F(\theta)=\tfrac12(w_1w_2-3)^2$ với $\theta=(w_1,w_2)^T$ và gradient $(w_1w_2-3)(w_2,w_1)^T$ (Mệnh đề 06.37).
@@ -2018,7 +2027,7 @@ Theo phần (b) và (d), gốc không phải cực tiểu nhưng có gradient b�
 **Kiểm tra lại.** $0{,}1152=\tfrac{72}{625}$, vì $0{,}48=\tfrac{12}{25}$ và $\tfrac12\cdot\tfrac{144}{625}=\tfrac{72}{625}$. Cập nhật đồng thời dùng gradient tại điểm cũ cho cả hai tọa độ.
 :::
 
-Ví dụ cho thấy một điểm đầu có tín hiệu gradient; nó không chứng minh tiền huấn luyện tốt hơn mọi khởi tạo ngẫu nhiên. Định nghĩa sau mô tả quy trình chung.
+Ví dụ trên cho một điểm đầu có tín hiệu gradient, nhưng không chứng minh tiền huấn luyện tốt hơn mọi khởi tạo ngẫu nhiên. Quy trình chung được mô tả trong định nghĩa sau.
 
 ::: definition Định nghĩa 06.38 (Tiền huấn luyện có giám sát)
 Cho một nhiệm vụ phụ có dữ liệu gán nhãn và mô hình phụ với tham số $\theta_{\rm aux}$, một mục tiêu đích $F$ trên $\mathbb R^p$, và một phép chuyển tham số
@@ -2041,7 +2050,7 @@ trong đó $\xi$ là khởi tạo cho phần tham số của mô hình đích kh
 
 ### 6.2 Phương pháp tiếp diễn
 
-Tiền huấn luyện thay điểm đầu và có thể đổi không gian tham số. Một cách khác giữ nguyên không gian tham số và thay chính mục tiêu. Trực giác, chưa phải phát biểu hình thức: giải một mục tiêu dễ trước, rồi dùng nghiệm của nó làm điểm đầu cho mục tiêu khó hơn, cho tới mục tiêu đích. Ví dụ sau dùng một họ mục tiêu bậc bốn.
+Tiền huấn luyện thay điểm đầu và có thể đổi không gian tham số. Một cách khác giữ nguyên không gian tham số và thay chính mục tiêu. Về mặt ý tưởng, ta giải một mục tiêu dễ trước, rồi dùng nghiệm của nó làm điểm đầu cho mục tiêu khó hơn, cho tới mục tiêu đích. Mô tả này còn ở mức trực giác, và Định nghĩa 06.39 làm chính xác nó sau ví dụ dưới đây về một họ mục tiêu bậc bốn.
 
 ::: example Ví dụ 06.26 (Họ mục tiêu bậc bốn)
 **Dữ kiện.** Họ $F_c(\theta)=(\theta^2-1)^2+c\,\theta^2$ trên $\mathbb R$, $c\ge0$; mục tiêu đích là $F_0$. Khai triển $F_c(\theta)=\theta^4+(c-2)\theta^2+1$: tham số $c$ chỉ đổi hệ số của $\theta^2$.
@@ -2065,7 +2074,7 @@ Hình vẽ ba thành viên của họ trên cùng hệ trục; tham số ký hi�
 Cho một họ mục tiêu $F_c$ trên cùng $\mathbb R^p$, một lịch $c^{(0)},c^{(1)},\ldots,c^{(\bar n)}$ với $F_{c^{(\bar n)}}$ là mục tiêu đích, và một bộ giải cục bộ. Phương pháp tiếp diễn (continuation) giải gần đúng $F_{c^{(0)}}$ từ một điểm đầu, rồi với $n=1,\ldots,\bar n$, giải gần đúng $F_{c^{(n)}}$ với điểm đầu là đầu ra của giai đoạn $n-1$.
 :::
 
-Mục tiêu của các giai đoạn đầu được chọn để bộ giải cục bộ dễ thành công trên đó, chẳng hạn lồi hoặc trơn hơn; đầu ra của giai đoạn trước là điểm đầu tốt cho giai đoạn sau khi nghiệm thay đổi liên tục theo $c$. Phương pháp thay thành phần "mục tiêu" của Định nghĩa 06.1 theo giai đoạn, giữ không gian tham số. Mệnh đề sau cho biết giả thiết "nghiệm thay đổi liên tục" có đúng cho họ của Ví dụ 06.26 không.
+Mục tiêu của các giai đoạn đầu được chọn để bộ giải cục bộ dễ thành công trên đó, chẳng hạn lồi hoặc trơn hơn; đầu ra của giai đoạn trước là điểm đầu tốt cho giai đoạn sau khi nghiệm thay đổi liên tục theo $c$. Phương pháp thay thành phần "mục tiêu" của Định nghĩa 06.1 theo giai đoạn, giữ không gian tham số. Mệnh đề sau kiểm giả thiết "nghiệm thay đổi liên tục" trên họ của Ví dụ 06.26.
 
 ::: proposition Mệnh đề 06.40 (Cấu trúc nghiệm của họ bậc bốn)
 **Giả thiết.** $F_c(\theta)=(\theta^2-1)^2+c\theta^2$, $c\ge0$.
@@ -2104,7 +2113,7 @@ Phần (e) cho cách rời điểm đó: một nhiễu nhỏ, chẳng hạn nhi�
 
 ### 6.3 Học theo chương trình
 
-Thay vì đổi hàm, có thể đổi dữ liệu: mất mát trung bình phụ thuộc phân phối lấy mẫu, nên đổi phân phối theo giai đoạn cũng sinh một họ mục tiêu. Trực giác, chưa phải phát biểu hình thức: cho mô hình gặp các quan sát dễ trước, các quan sát khó sau, như một chương trình học. Ví dụ sau dùng hai quan sát có độ nhạy khác nhau.
+Thay vì đổi hàm, ta có thể đổi dữ liệu. Do mất mát trung bình phụ thuộc phân phối lấy mẫu, đổi phân phối theo giai đoạn cũng sinh một họ mục tiêu. Một cách dễ hình dung, ta cho mô hình gặp các quan sát dễ trước, các quan sát khó sau, như một chương trình học. Hình ảnh này chưa phải định nghĩa, và ví dụ sau làm rõ nó bằng hai quan sát có độ nhạy khác nhau.
 
 ::: example Ví dụ 06.27 (Hai quan sát dễ và khó)
 **Dữ kiện.** Mô hình $f_\theta(x)=\theta x$, mất mát bằng nửa bình phương hiệu giữa dự đoán và nhãn; quan sát dễ có đầu vào $1$, nhãn $1$; quan sát khó có đầu vào $3$, nhãn $1$. Quan sát khó được lấy với xác suất $\pi$, nên mục tiêu kỳ vọng là
@@ -2127,13 +2136,13 @@ với $\theta_0^*=1$, $\theta_{1/4}^*=\tfrac12$, $\theta_{1/2}^*=\tfrac25$.
 **Kiểm tra lại.** $F_\pi''=1+8\pi>0$ với $\pi\in[0,1]$, nên nghiệm duy nhất. Tại $\pi=\tfrac14$: $\tfrac{1+1/2}{1+2}=\tfrac12$.
 :::
 
-Phân phối đích là phân phối đều trên hai quan sát, $\pi=\tfrac12$. Mỗi giá trị $\pi$ cho một mục tiêu khác, nên một lịch dừng trước $\pi=\tfrac12$ giải một bài toán khác bài toán đích.
+Phân phối đích là phân phối đều trên hai quan sát, $\pi=\tfrac12$. Mỗi giá trị $\pi$ cho một mục tiêu khác, nên một lịch dừng trước $\pi=\tfrac12$ giải một bài toán khác bài toán đích. Học theo chương trình được phát biểu chính xác theo định nghĩa sau.
 
 ::: definition Định nghĩa 06.41 (Học theo chương trình)
 Cho các mất mát $\ell_1,\ldots,\ell_N$ và một phân phối đích $\mathcal D$ trên $\{1,\ldots,N\}$, mục tiêu đích $F_{\mathcal D}(\theta)=\mathbb E_{i\sim\mathcal D}\,\ell_i(\theta)$. Học theo chương trình (curriculum learning) dùng một lịch phân phối $\mathcal D_0,\mathcal D_1,\ldots,\mathcal D_{\bar n}=\mathcal D$, thường tăng dần tỷ trọng của các quan sát khó theo một tiêu chí độ khó định trước, và ở giai đoạn $n$ tối ưu $F_{\mathcal D_n}$ từ đầu ra của giai đoạn $n-1$.
 :::
 
-Định nghĩa là trường hợp riêng của Định nghĩa 06.39, với tham số của họ là phân phối lấy mẫu; Bengio và cộng sự (2009) đưa ra cách đọc này. Nó khác việc đổi thứ tự trình bày các quan sát trong một lượt qua dữ liệu, vốn giữ nguyên phân phối và do đó giữ nguyên mục tiêu kỳ vọng.
+Định nghĩa là trường hợp riêng của Định nghĩa 06.39, với tham số của họ là phân phối lấy mẫu; Bengio và cộng sự (2009) đưa ra cách đọc này. Nó khác việc đổi thứ tự trình bày các quan sát trong một lượt qua dữ liệu, vốn giữ nguyên phân phối và do đó giữ nguyên mục tiêu kỳ vọng. Trên ví dụ hai quan sát, cái giá của một lịch dừng sớm được tính trong mệnh đề sau.
 
 ::: proposition Mệnh đề 06.42 (Nghiệm theo lịch và phần mất mát thừa)
 **Giả thiết.** Như Ví dụ 06.27; phân phối đích $\pi=\tfrac12$.
@@ -2203,17 +2212,19 @@ Ba chiến lược của mục thay ba đối tượng khác nhau, nên chúng c
 **Kiểm tra lại.** Ở (b), tại $\pi=0{,}458$, $\theta^*_\pi\approx1{,}2283$ và phần thừa $\approx1{,}0\cdot10^{-3}$. Ở (c), $2{,}7^2=7{,}29$.
 :::
 
-**Chuỗi suy luận của mục.** Mệnh đề 06.37 cho thấy điểm đầu có thể là điểm dừng không phải nghiệm, và Định nghĩa 06.38 thay điểm đầu bằng tham số học từ nhiệm vụ phụ. Định nghĩa 06.39 và Mệnh đề 06.40 thay mục tiêu theo giai đoạn, với giới hạn là điểm dừng truyền qua mọi giai đoạn. Định nghĩa 06.41 là trường hợp riêng với tham số là phân phối, và kết quả đích Mệnh đề 06.42 định lượng cái giá của một lịch không kết thúc ở phân phối đích. Nhận xét 06.43 gom ba điều kiện kết thúc.
+Với Mệnh đề 06.37, chúng ta đã thấy điểm đầu có thể là một điểm dừng không phải nghiệm, và tiền huấn luyện (Định nghĩa 06.38) thay điểm đầu đó bằng tham số học từ nhiệm vụ phụ. Phương pháp tiếp diễn (Định nghĩa 06.39, Mệnh đề 06.40) thay mục tiêu theo giai đoạn, với giới hạn là điểm dừng có thể truyền qua mọi giai đoạn. Học theo chương trình (Định nghĩa 06.41) là trường hợp riêng với tham số là phân phối, và kết quả chính của mục, Mệnh đề 06.42, định lượng cái giá của một lịch không kết thúc ở phân phối đích.
 
-**Kết mục.** Mục đã cho ba chiến lược thay điểm đầu, mục tiêu và phân phối, cùng điều kiện kết thúc của từng chiến lược (Nhận xét 06.43). Không chiến lược nào có định lý bảo đảm cải thiện; mỗi chiến lược chỉ được đánh giá trên mục tiêu đích với toàn bộ ngân sách. Mục 7 gom các điều kiện của mọi phương pháp trong chương thành một quy tắc chọn theo dữ kiện sẵn có.
+Ba chiến lược này cùng điều kiện kết thúc của từng chiến lược được gom ở Nhận xét 06.43. Không chiến lược nào có định lý bảo đảm cải thiện, và mỗi chiến lược chỉ được đánh giá trên mục tiêu đích với toàn bộ ngân sách.
 
 ## 7. Lựa chọn phương pháp theo dữ kiện
 
-Sáu mục trước cho các phương pháp thay từng thành phần của Định nghĩa 06.1, mỗi phương pháp với dữ kiện cần có, giả thiết và phép kiểm riêng. Khi bắt đầu một bài toán huấn luyện cụ thể, câu hỏi đặt ra theo chiều ngược lại: với số tham số, bộ nhớ, toán tử và phân phối dữ liệu sẵn có, thành phần nào cần điều chỉnh và bằng phương pháp nào. Chẳng hạn, một mô hình $2{,}5\cdot10^7$ tham số chỉ cung cấp gradient nhóm; BFGS đầy đủ cần lưu $6{,}25\cdot10^{14}$ số, còn Adam cần $5\cdot10^7$ số.
+Mỗi phương pháp của sáu mục trước thay một thành phần của Định nghĩa 06.1 và đi kèm dữ kiện cần có, giả thiết và phép kiểm riêng. Tuy nhiên, khi bắt đầu một bài toán huấn luyện cụ thể, câu hỏi đặt ra theo chiều ngược lại: với số tham số, bộ nhớ, toán tử và phân phối dữ liệu sẵn có, thành phần nào cần điều chỉnh và bằng phương pháp nào. Chẳng hạn, một mô hình $2{,}5\cdot10^7$ tham số chỉ cung cấp gradient nhóm, trong khi BFGS đầy đủ cần lưu $6{,}25\cdot10^{14}$ số, còn Adam cần $5\cdot10^7$ số.
 
-Mục này gom các điều kiện thành một bảng chọn, và minh họa cách đọc bảng trên hai ví dụ: ví dụ thang đo của Mục 1 giải theo ba cách, và một phép tính bộ nhớ.
+Để trả lời câu hỏi này, chúng ta gom các điều kiện của mọi phương pháp trong chương thành một bảng chọn theo dữ kiện sẵn có (Nhận xét 06.44). Cách đọc bảng được minh họa trên hai ví dụ, là ví dụ thang đo của Mục 1 giải theo ba cách và một phép tính bộ nhớ.
 
 ### 7.1 Bảng chọn theo dữ kiện
+
+Nhận xét sau xếp mỗi phương pháp cạnh dữ kiện cần có, giả thiết cần kiểm và phép kiểm tương ứng.
 
 ::: remark Nhận xét 06.44 (Dữ kiện, phương pháp và phép kiểm)
 | Dữ kiện sẵn có | Phương pháp | Giả thiết cần kiểm | Phép kiểm | Kết quả của chương |
@@ -2250,9 +2261,11 @@ Mục này gom các điều kiện thành một bảng chọn, và minh họa c�
 **Kiểm tra lại.** Với cách 3, điểm đầu là $\varphi=(1,3)$, gradient $(1,3)$, và $\varphi-1\cdot(1,3)=(0,0)$.
 :::
 
-Ba cách thay ba thành phần khác nhau của Định nghĩa 06.1, lần lượt là quy tắc cập nhật, nguồn thông tin độ cong và phép tính mô hình. Trên Hessian chéo, ba cách cho cùng kết quả; trên Hessian nghiêng, kết quả khác nhau, nên Nhận xét 06.44 bắt đầu từ dữ kiện của bài toán.
+Ba cách thay ba thành phần khác nhau của Định nghĩa 06.1, lần lượt là quy tắc cập nhật, nguồn thông tin độ cong và phép tính mô hình. Trên Hessian chéo, ba cách cho cùng kết quả, còn trên Hessian nghiêng, kết quả khác nhau, nên Nhận xét 06.44 bắt đầu từ dữ kiện của bài toán.
 
 ### 7.2 Bộ nhớ và chi phí
+
+Ví dụ sau cho thấy bộ nhớ có thể loại bỏ một số phương pháp trước khi xét tới tốc độ.
 
 ::: example Ví dụ 06.29 (Bộ nhớ trạng thái của bốn bộ tối ưu)
 **Dữ kiện.** Một mạng có $p=2{,}5\cdot10^7$ tham số, lưu bằng số thực $4$ byte.
@@ -2297,9 +2310,9 @@ L-BFGS lưu $2n_{\rm m}p$ số; gradient liên hợp lưu bốn vectơ. Xem Thu�
 **Kiểm tra lại.** $2\cdot5\cdot p=10p$, còn $2\cdot6\cdot p=12p>10p$.
 :::
 
-**Chuỗi suy luận của mục.** Nhận xét 06.44 gom mỗi phương pháp với dữ kiện, giả thiết và phép kiểm, dẫn về số hiệu của kết quả tương ứng. Ví dụ 06.28 cho thấy cùng một khó khăn có thể sửa ở ba thành phần, và Hessian nghiêng phân biệt chúng. Ví dụ 06.29 cho thấy bộ nhớ loại bỏ một số phương pháp trước khi xét tốc độ.
+Quy tắc chọn của Nhận xét 06.44 bắt đầu từ dữ kiện và dẫn mỗi phương pháp về giả thiết, phép kiểm và số hiệu của kết quả tương ứng. Ví dụ 06.28 cho thấy cùng một khó khăn có thể sửa ở ba thành phần, và Hessian nghiêng phân biệt chúng, còn Ví dụ 06.29 cho thấy bộ nhớ loại bỏ một số phương pháp trước khi xét tốc độ.
 
-**Kết mục.** Mục đã cho một quy tắc chọn bắt đầu từ dữ kiện (Nhận xét 06.44). Quy tắc chưa được áp vào một bài toán học máy đầy đủ; mục sau làm điều đó trên ba tình huống, trong đó một tình huống có giả thiết không thỏa.
+Quy tắc này chưa được áp vào một bài toán học máy đầy đủ. Trong phần tình huống áp dụng dưới đây, chúng ta áp nó vào ba tình huống, mỗi tình huống có một giả thiết không thỏa, gồm phép quay dữ liệu làm mất thừa số theo tọa độ ở Tình huống 06.1, Hessian bất định tại điểm đầu ở Tình huống 06.2 và nhóm một quan sát khi suy luận ở Tình huống 06.3.
 
 ## Tình huống áp dụng và ứng dụng
 
@@ -2454,26 +2467,16 @@ Tiền kích hoạt nhận $2,4,6,8$ với trung bình $5$ và phương sai $5$.
 
 ## Tóm tắt chương
 
-**Định nghĩa.**
+Chương này khởi đầu bằng bốn thành phần của quá trình huấn luyện (Định nghĩa 06.1) và bài toán con với ma trận phạt xác định dương (Mệnh đề 06.3). Trên khung đó, AdaGrad và RMSProp dựng ma trận phạt chéo từ gradient, còn Adam giữ mẫu số dạng đó với tử số là moment. Theo Mệnh đề 06.11 và Mệnh đề 06.12, các phương pháp này loại bỏ được thang đo theo trục nhưng không sửa được độ cong nghiêng. Để xử lý độ cong nghiêng, chúng ta dùng chính Hessian, sửa tính bất định bằng giảm chấn (Mệnh đề 06.16) và tránh lập Hessian bằng gradient liên hợp (Định lý 06.18, Mệnh đề 06.20). Khi chỉ có gradient, nghịch đảo Hessian được xấp xỉ từ sai phân gradient bằng cập nhật BFGS (Định lý 06.23). Các thành phần còn lại của Định nghĩa 06.1 được thay ở Mục 5 bằng chuẩn hóa theo lô, hạ theo khối, trung bình Polyak và nối tắt. Ở Mục 6, điểm đầu, mục tiêu và phân phối được thay bằng tiền huấn luyện, phương pháp tiếp diễn và học theo chương trình. Cuối cùng, Nhận xét 06.44 gom tất cả thành một quy tắc chọn theo dữ kiện, trong đó mỗi phương pháp chỉ mang bảo đảm dưới giả thiết riêng của nó.
 
-- Quá trình huấn luyện và bốn thành phần (Định nghĩa 06.1); bài toán con có phạt (Định nghĩa 06.2).
-- Ma trận phạt chéo và bước học hiệu dụng (Định nghĩa 06.5).
-- Hệ Newton giảm chấn (Định nghĩa 06.15); hướng liên hợp (Định nghĩa 06.17).
-- Phương trình cát tuyến và điều kiện độ cong (Định nghĩa 06.21); điều kiện Wolfe (Định nghĩa 06.25).
-- Chuẩn hóa theo lô (Định nghĩa 06.28); trung bình Polyak (Định nghĩa 06.32); khối nối tắt (Định nghĩa 06.35).
-- Tiền huấn luyện có giám sát (Định nghĩa 06.38); phương pháp tiếp diễn (Định nghĩa 06.39); học theo chương trình (Định nghĩa 06.41).
-- Thuật toán: Thuật toán 06.1, Thuật toán 06.2, Thuật toán 06.3, Thuật toán 06.4, Thuật toán 06.5, Thuật toán 06.6, Thuật toán 06.7, Thuật toán 06.8.
+**Định nghĩa, thuật toán và kết quả theo mục.**
 
-**Kết quả chính.**
-
-- Mệnh đề 06.3: ma trận phạt xác định dương cho bước $-\eta M^{-1}g$ duy nhất và hướng giảm; ma trận bất định làm bài toán con mất cực tiểu.
-- Mệnh đề 06.6, Mệnh đề 06.7, Mệnh đề 06.9: tính chất của tổng tích lũy, trung bình mũ và hiệu chỉnh moment; Mệnh đề 06.10: bước Adam có thể không là hướng giảm.
-- Mệnh đề 06.11 và Mệnh đề 06.12: thống kê chéo bất biến với thang theo trục và không sửa được độ cong nghiêng.
-- Mệnh đề 06.13: bước Newton bất biến với phép đổi biến tuyến tính; Mệnh đề 06.16: giảm chấn và ngưỡng $\tau>-\lambda_{\min}(H)$.
-- Định lý 06.18: trực giao, liên hợp, giảm $\phi$ và kết thúc sau nhiều nhất $p$ vòng; Mệnh đề 06.20: nghiệm gần đúng từ $d_0=0$ là hướng giảm.
-- Mệnh đề 06.22: cặp $(s,y)$ đo Hessian trung bình; Định lý 06.23: cập nhật BFGS giữ cát tuyến và tính xác định dương; Mệnh đề 06.26: Wolfe cho $s^Ty>0$; Mệnh đề 06.27: đệ quy hai vòng.
-- Mệnh đề 06.29, Mệnh đề 06.31, Hệ quả 06.33, Mệnh đề 06.34, Mệnh đề 06.36: bốn can thiệp ngoài quy tắc cập nhật.
-- Mệnh đề 06.37, Mệnh đề 06.40, Mệnh đề 06.42: điểm dừng tại điểm đầu, điểm dừng truyền qua các giai đoạn, phần mất mát thừa khi lịch không tới phân phối đích.
+- Mục 1: quá trình huấn luyện và bốn thành phần (Định nghĩa 06.1); bài toán con có phạt (Định nghĩa 06.2); Mệnh đề 06.3: ma trận phạt xác định dương cho bước $-\eta M^{-1}g$ duy nhất và hướng giảm, ma trận bất định làm bài toán con mất cực tiểu.
+- Mục 2: ma trận phạt chéo và bước học hiệu dụng (Định nghĩa 06.5); AdaGrad, RMSProp, Adam (Thuật toán 06.1, Thuật toán 06.2, Thuật toán 06.3); Mệnh đề 06.6, Mệnh đề 06.7, Mệnh đề 06.9: tính chất của tổng tích lũy, trung bình mũ và hiệu chỉnh moment; Mệnh đề 06.10: bước Adam có thể không là hướng giảm; Mệnh đề 06.11 và Mệnh đề 06.12: thống kê chéo bất biến với thang theo trục và không sửa được độ cong nghiêng.
+- Mục 3: hệ Newton giảm chấn (Định nghĩa 06.15); hướng liên hợp (Định nghĩa 06.17); gradient liên hợp và Newton–CG (Thuật toán 06.4, Thuật toán 06.5); Mệnh đề 06.13: bước Newton bất biến với phép đổi biến tuyến tính; Mệnh đề 06.16: giảm chấn và ngưỡng $\tau>-\lambda_{\min}(H)$; Định lý 06.18: trực giao, liên hợp, giảm $\phi$ và kết thúc sau nhiều nhất $p$ vòng; Mệnh đề 06.20: nghiệm gần đúng từ $d_0=0$ là hướng giảm.
+- Mục 4: phương trình cát tuyến và điều kiện độ cong (Định nghĩa 06.21); điều kiện Wolfe (Định nghĩa 06.25); BFGS và đệ quy hai vòng (Thuật toán 06.6, Thuật toán 06.7); Mệnh đề 06.22: cặp $(s,y)$ đo Hessian trung bình; Định lý 06.23: cập nhật BFGS giữ cát tuyến và tính xác định dương; Mệnh đề 06.26: Wolfe cho $s^Ty>0$; Mệnh đề 06.27: đệ quy hai vòng.
+- Mục 5: chuẩn hóa theo lô (Định nghĩa 06.28); hạ theo khối (Thuật toán 06.8); trung bình Polyak (Định nghĩa 06.32); khối nối tắt (Định nghĩa 06.35); Mệnh đề 06.29, Mệnh đề 06.31, Hệ quả 06.33, Mệnh đề 06.34, Mệnh đề 06.36: bốn can thiệp ngoài quy tắc cập nhật.
+- Mục 6: tiền huấn luyện có giám sát (Định nghĩa 06.38); phương pháp tiếp diễn (Định nghĩa 06.39); học theo chương trình (Định nghĩa 06.41); Mệnh đề 06.37, Mệnh đề 06.40, Mệnh đề 06.42: điểm dừng tại điểm đầu, điểm dừng truyền qua các giai đoạn, phần mất mát thừa khi lịch không tới phân phối đích.
 
 **Công thức cần nhớ.** Ba bước cập nhật của Mục 1–2:
 
@@ -2503,11 +2506,9 @@ $$
 - BFGS cần $y^Ts>0$ và hai gradient của cùng một mục tiêu.
 - Chuẩn hóa theo lô có hai chế độ; trung bình tham số cần các điểm cùng một miền; mọi chiến lược theo giai đoạn phải kết thúc ở mục tiêu đích.
 
-**Chuỗi suy luận của toàn chương.** Định nghĩa 06.1 và Mệnh đề 06.3 đặt khung: một bước là nghiệm của bài toán con với ma trận phạt xác định dương. Mục 2 chọn ma trận phạt chéo từ gradient, với phạm vi do Mệnh đề 06.11 và Mệnh đề 06.12 quy định.
+**Giới hạn còn lại và bài sau.** Trong chương này, chúng ta đã mở rộng giảm gradient và phương pháp Newton của Bài 04, cùng SGD và momentum của Bài 05. Kết quả là các bộ tối ưu dùng thống kê gradient, độ cong và cách tổ chức huấn luyện. Mọi phương pháp của chương xét bài toán không ràng buộc, với biến liên tục và mục tiêu khả vi, và đi theo các bước cục bộ.
 
-Mục 3 dùng Hessian, sửa tính bất định bằng Mệnh đề 06.16 và tránh lập Hessian bằng Định lý 06.18, Mệnh đề 06.20; Mục 4 xấp xỉ nghịch đảo Hessian từ sai phân gradient (Định lý 06.23). Mục 5–6 thay các thành phần còn lại của Định nghĩa 06.1, và Nhận xét 06.44 gom tất cả thành quy tắc chọn theo dữ kiện.
-
-**Giới hạn còn lại và bài sau.** Chương mở rộng giảm gradient và phương pháp Newton của Bài 04, cùng SGD và momentum của Bài 05, thành các bộ tối ưu dùng thống kê gradient, độ cong và cách tổ chức huấn luyện. Mọi phương pháp của chương xét bài toán không ràng buộc, với biến liên tục và mục tiêu khả vi, và đi theo các bước cục bộ. Bài 07 xét hai lớp bài toán có cấu trúc khác. Quy hoạch tuyến tính có ràng buộc, và khi có nghiệm tối ưu và miền có đỉnh, có một nghiệm tối ưu nằm ở một đỉnh của đa diện ràng buộc; quy hoạch động giải bài toán quyết định theo giai đoạn bằng phương trình Bellman thay cho gradient.
+Trong Bài 07, chúng ta xét hai lớp bài toán có cấu trúc khác. Quy hoạch tuyến tính là bài có ràng buộc. Khi bài có nghiệm tối ưu và miền có đỉnh, một nghiệm tối ưu nằm ở một đỉnh của đa diện ràng buộc. Quy hoạch động giải bài toán quyết định theo giai đoạn bằng phương trình Bellman thay cho gradient.
 
 ## Bài tập củng cố
 
