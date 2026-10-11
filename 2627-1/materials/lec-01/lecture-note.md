@@ -53,6 +53,8 @@ Khác với Bài 00, chương này viết vector và ma trận bằng chữ thư
 
 ## 1. Ba quyết định cần tối ưu
 
+Trong Bài 00, chúng ta đã ôn lại gradient, Hessian và điều kiện điểm dừng: nếu một hàm khả vi đạt cực tiểu địa phương tại một điểm nằm trong miền mở thì gradient tại đó bằng không. Điều kiện này chỉ là điều kiện cần và chỉ nói về điểm trong, nên nó không cho biết một điểm dừng có tốt nhất trên toàn miền hay không, cũng không nói gì khi nghiệm nằm trên biên hoặc khi không điểm nào đạt giá trị nhỏ nhất. Chọn tác động điều khiển hay chọn tham số cho một mô hình học máy đều là chọn một điểm làm nhỏ nhất một tiêu chí trên một miền cho phép. Bài toán này được gọi là bài toán tối ưu. Trong chương này, chúng ta viết ba quyết định cụ thể thành ba bài toán tối ưu, rồi xây dựng tập lồi và hàm lồi để chứng nhận khi nào nghiệm là toàn cục, tồn tại và duy nhất.
+
 Ba tình huống sau đây được dùng xuyên suốt chương. Mỗi tình huống có một đại lượng được chọn, một tiêu chí để so sánh các lựa chọn và có thể có giới hạn về lựa chọn.
 
 ![Trạng thái x0 cộng tác động u cho trạng thái x1, được so với đích t; hai hạng chi phí là (x1 − t) bình phương và lambda nhân u bình phương; tác động bị giới hạn bởi trị tuyệt đối của u không vượt quá u max.](img/lec-01/m03-control-target.svg)
@@ -61,7 +63,7 @@ Ba tình huống sau đây được dùng xuyên suốt chương. Mỗi tình hu
 
 ![Hai lớp điểm, một lớp hình tròn và một lớp hình vuông, được tách bởi một đường biên phân loại.](img/lec-01/m03-logistic-classes.svg)
 
-Ba hình trên, theo thứ tự, ứng với ba ca.
+Ba hình trên, theo thứ tự, minh họa ba ca.
 
 - **Ca điều khiển một bước.** Trạng thái $x_0$ nhận tác động $u$ và trở thành $x_1=x_0+u$. Người điều khiển muốn $x_1$ gần đích $t$, muốn tác động nhỏ để tiết kiệm năng lượng, và không được vượt giới hạn vật lý $u_{\max}$.
 - **Ca hồi quy tuyến tính.** Mỗi điểm là một quan sát gồm đầu vào và đầu ra. Một đường thẳng cho một dự đoán tại mỗi đầu vào, và đoạn thẳng đứng từ điểm tới đường là sai lệch. Đại lượng được chọn là hai hệ số của đường thẳng.
@@ -75,19 +77,17 @@ Trong cả ba ca, một đại lượng được chọn để làm nhỏ nhất 
 
 Ba khó khăn này dẫn tới ba câu hỏi chung: làm thế nào chứng nhận một điểm là tốt nhất trên toàn miền, khi nào nghiệm tồn tại, và khi nào nghiệm duy nhất.
 
-Chuỗi suy luận của mục này gồm một bước: ba quyết định cụ thể sinh ra ba khó khăn về nghiệm, và ba khó khăn đó là ba câu hỏi mà Mục 6 đến Mục 8 trả lời. Kết quả của mục là danh sách ba tình huống cần mô hình hóa.
-
-Mục chưa cho công thức nào, nên chưa thể tính nghiệm hay kiểm tra khó khăn nào xảy ra. Mục 2 lập mô hình đầy đủ cho ca đơn giản nhất, có một biến thực và một ràng buộc, để mọi tính toán làm được bằng giải tích một biến.
+Như vậy, ba quyết định cụ thể cho ba khó khăn về nghiệm, và ba khó khăn đó trở thành ba câu hỏi được trả lời ở Mục 6 đến Mục 8. Đến đây, chúng ta mới có ba tình huống cần mô hình hóa, chưa có công thức nào, nên chưa thể tính nghiệm hay kiểm tra khó khăn nào thực sự xảy ra. Trong Mục 2, chúng ta lập mô hình đầy đủ cho ca đơn giản nhất, có một biến thực và một ràng buộc, để mọi tính toán làm được bằng giải tích một biến.
 
 ## 2. Điều khiển một bước
 
-Một vật đang ở vị trí $x_0=0$ trên một trục thẳng và cần tới vị trí đích $t=3$ sau một bước điều khiển. Bộ chấp hành chỉ tạo được tác động có độ lớn không quá $u_{\max}=1$, và mỗi đơn vị tác động tiêu tốn năng lượng. Với dữ kiện đó, câu hỏi "nên chọn tác động bao nhiêu" chưa có câu trả lời, vì chưa có tiêu chí nào để so sánh hai tác động, chẳng hạn $u=0{,}5$ với $u=1$. Mục này lập tiêu chí đó, tính tác động tối ưu, và chỉ ra rằng tác động tối ưu nằm trên biên của miền cho phép, tại đó quy tắc "đạo hàm bằng không" không áp dụng được.
+Một vật đang ở vị trí $x_0=0$ trên một trục thẳng và cần tới vị trí đích $t=3$ sau một bước điều khiển. Bộ chấp hành chỉ tạo được tác động có độ lớn không quá $u_{\max}=1$, và mỗi đơn vị tác động tiêu tốn năng lượng. Với dữ kiện đó, câu hỏi "nên chọn tác động bao nhiêu" chưa có câu trả lời, vì chưa có tiêu chí nào để so sánh hai tác động, chẳng hạn $u=0{,}5$ với $u=1$. Trong mục này, chúng ta lập tiêu chí đó rồi tính tác động tối ưu, và kết quả cho thấy tác động tối ưu nằm trên biên của miền cho phép, tại đó quy tắc "đạo hàm bằng không" không áp dụng được.
 
-### 2.1 Nhu cầu và trực giác
+### 2.1 Bám đích hay tiết kiệm năng lượng
 
-Hai yêu cầu trong tình huống trên xung đột nhau. Muốn trạng thái mới gần đích thì cần tác động lớn. Muốn tiết kiệm năng lượng thì cần tác động nhỏ. Không có tác động nào thỏa tối đa cả hai yêu cầu, nên người lập mô hình phải chọn một cách gộp chúng thành một con số.
+Hai yêu cầu trong tình huống trên xung đột nhau: muốn trạng thái mới gần đích thì cần tác động lớn, còn muốn tiết kiệm năng lượng thì cần tác động nhỏ. Do không có tác động nào thỏa tối đa cả hai yêu cầu, người lập mô hình phải chọn một cách gộp chúng thành một con số.
 
-Cách gộp đơn giản nhất là cộng hai chi phí với một trọng số. Đây là trực giác dẫn tới mô hình, chưa phải định nghĩa: mỗi tác động $u$ sinh ra một chi phí bám đích và một chi phí năng lượng, và ta chọn $u$ có tổng chi phí nhỏ nhất trong các tác động được phép.
+Cách gộp đơn giản nhất là cộng hai chi phí với một trọng số. Một cách trực quan, mỗi tác động $u$ sinh ra một chi phí bám đích và một chi phí năng lượng, và ta chọn $u$ có tổng chi phí nhỏ nhất trong các tác động được phép. Mô tả này chưa phải định nghĩa. Trong Mục 2.2, chúng ta viết nó thành một bài toán chính xác.
 
 ![Sơ đồ đọc từ trái sang phải: trạng thái đầu x0 cộng tác động u cho trạng thái mới x1 bằng x0 cộng u. Nhánh trên so x1 với đích t để tính sai lệch bám đích (x1 − t) bình phương. Nhánh dưới tính năng lượng lambda nhân u bình phương. Hai hạng cộng lại thành chi phí q(u). Một khung ghi giới hạn vật lý: trị tuyệt đối của u không vượt quá u max.](img/lec-01/one-step-control.svg)
 
@@ -97,9 +97,9 @@ Hình trên tách ba thành phần của mô hình.
 - Hai nhánh ra từ $u$ là hai chi phí.
 - Khung giới hạn vật lý loại hẳn các tác động có $\lvert u\rvert>u_{\max}$ khỏi tập lựa chọn, thay vì cộng thêm một chi phí.
 
-### 2.2 Mô hình
+### 2.2 Bài toán điều khiển một bước
 
-Mô hình cần ghi rõ đại lượng nào đã biết, đại lượng nào được chọn, tiêu chí là gì và lựa chọn bị giới hạn ra sao.
+Để viết được bài toán, chúng ta cần tách rõ đại lượng nào đã biết, đại lượng nào được chọn, tiêu chí so sánh là gì và lựa chọn bị giới hạn ra sao. Bài toán điều khiển một bước được phát biểu theo định nghĩa sau.
 
 ::: definition Định nghĩa 01.1 (Bài toán điều khiển một bước)
 Cho các dữ kiện: trạng thái đầu $x_0\in\mathbb R$, đích $t\in\mathbb R$ (target), biên độ tác động lớn nhất $u_{\max}\ge0$ và trọng số năng lượng $\lambda\ge0$. Biến quyết định là tác động $u\in\mathbb R$, và trạng thái sau một bước là $x_1=x_0+u$. Hàm chi phí $q:\mathbb R\to\mathbb R$ là
@@ -116,13 +116,13 @@ $$
 $$
 :::
 
-Hạng thứ nhất $(x_0+u-t)^2=(x_1-t)^2$ là bình phương sai lệch giữa trạng thái mới và đích. Nó bằng $0$ khi $u=t-x_0$, tức khi tác động đưa vật đúng tới đích. Hạng thứ hai $\lambda u^2$ phạt độ lớn của tác động. Trọng số $\lambda$ đo mức ưu tiên tiết kiệm năng lượng so với bám đích, và khi $\lambda=0$, chỉ còn yêu cầu bám đích.
+Trong định nghĩa trên, hạng thứ nhất $(x_0+u-t)^2=(x_1-t)^2$ là bình phương sai lệch giữa trạng thái mới và đích, bằng $0$ khi $u=t-x_0$, tức khi tác động đưa vật đúng tới đích. Hạng thứ hai $\lambda u^2$ phạt độ lớn của tác động, trong đó trọng số $\lambda$ đo mức ưu tiên tiết kiệm năng lượng so với bám đích. Khi $\lambda=0$, chỉ còn yêu cầu bám đích.
 
-Ràng buộc $u\in C$ là ràng buộc cứng: mọi $u$ ngoài đoạn bị loại. Một hạng phạt trong $q$ thì khác, nó chỉ làm phương án kém đi mà vẫn cho phép chọn. Điều kiện $u_{\max}\ge0$ bảo đảm $C$ không rỗng, vì $0\in C$.
+Ràng buộc $u\in C$ là ràng buộc cứng, tức mọi $u$ ngoài đoạn bị loại, trong khi một hạng phạt trong $q$ chỉ làm phương án kém đi mà vẫn cho phép chọn. Điều kiện $u_{\max}\ge0$ bảo đảm $C$ không rỗng, vì $0\in C$.
 
 Hai tham số $\lambda$ và $u_{\max}$ dễ bị đồng nhất nhưng có vai trò khác nhau. Tăng $\lambda$ làm mọi tác động lớn tốn kém hơn nhưng không cấm tác động nào. Giảm $u_{\max}$ cấm thêm tác động nhưng không đổi chi phí của các tác động còn lại.
 
-Cách gộp bằng tổng có trọng số cũng là một lựa chọn của người lập mô hình. Chẳng hạn, chọn $\lvert x_1-t\rvert+\lambda\lvert u\rvert$ cho một mô hình khác với nghiệm khác. Cách gộp hai chi phí do người lập mô hình chọn; dữ kiện không quyết định nó.
+Lưu ý rằng cách gộp bằng tổng có trọng số là một lựa chọn của người lập mô hình, dữ kiện không quyết định nó. Chẳng hạn, chọn $\lvert x_1-t\rvert+\lambda\lvert u\rvert$ cho một mô hình khác với nghiệm khác.
 
 Hàm $q$ có quan hệ trực tiếp với bình phương nhỏ nhất của Mục 3. Với $X=(1,\sqrt\lambda)^T\in\mathbb R^{2\times1}$ và $y=(t-x_0,0)^T$, ta có
 
@@ -130,11 +130,11 @@ $$
 q(u)=(u-(t-x_0))^2+(\sqrt\lambda\,u-0)^2=\lVert Xu-y\rVert_2^2 .
 $$
 
-Vì vậy ca điều khiển là một bài toán bình phương nhỏ nhất một biến có thêm ràng buộc đoạn. Điểm khác biệt duy nhất với Mục 3 là ràng buộc.
+Như vậy, ca điều khiển có cùng thiết lập với bài toán bình phương nhỏ nhất của Mục 3 khi chỉ có một biến, và điểm khác duy nhất là ràng buộc đoạn.
 
 ### 2.3 Nghiệm tự do và quy tắc cắt
 
-Vì $q$ là đa thức bậc hai một biến, nghiệm của (2.1) tính được bằng phép bù bình phương, không cần công cụ nào ngoài đại số. Kết quả dưới đây dùng Định nghĩa 01.1 và trả lời câu hỏi nên chọn tác động bao nhiêu.
+Câu hỏi đặt ra ở đầu mục là nên chọn tác động bao nhiêu. Do $q$ là đa thức bậc hai một biến, nghiệm của (2.1) tính được bằng phép bù bình phương mà không cần công cụ nào ngoài đại số, và chỉ cần Định nghĩa 01.1. Câu trả lời được phát biểu trong mệnh đề sau.
 
 ::: proposition Mệnh đề 01.2 (Nghiệm tự do và quy tắc cắt)
 **Giả thiết.** Các dữ kiện $x_0,t,u_{\max},\lambda$ thỏa Định nghĩa 01.1.
@@ -161,7 +161,7 @@ trong đó, với $\alpha\le\beta$, $\operatorname{clip}(s,[\alpha,\beta])=\min(
 :::
 
 ::: proof Chứng minh Mệnh đề 01.2
-**Bước 1 (khai triển $q$).** Khai triển $q$ theo lũy thừa của $u$:
+**Bước 1 (khai triển $q$).** Khai triển $q$ theo lũy thừa của $u$, ta có
 
 $$
 \begin{aligned}
@@ -170,14 +170,14 @@ q(u)&=(u-(t-x_0))^2+\lambda u^2\\
 \end{aligned}
 $$
 
-**Bước 2 (bù bình phương).** Vì $1+\lambda>0$ theo điều kiện áp dụng, có thể bù bình phương với $u_{\mathrm{free}}$ cho bởi (2.2):
+**Bước 2 (bù bình phương).** Do $1+\lambda>0$ theo điều kiện áp dụng, ta có thể bù bình phương với $u_{\mathrm{free}}$ cho bởi (2.2) và thu được
 
 $$
 q(u)=(1+\lambda)\bigl(u-u_{\mathrm{free}}\bigr)^2+\frac{\lambda\,(t-x_0)^2}{1+\lambda}.
 \tag{2.4}
 $$
 
-Đẳng thức (2.4) kiểm tra được bằng cách khai triển vế phải:
+Để kiểm tra (2.4), ta khai triển vế phải:
 
 $$
 (1+\lambda)u^2-2(1+\lambda)u_{\mathrm{free}}u+(1+\lambda)u_{\mathrm{free}}^2+\lambda(t-x_0)^2/(1+\lambda).
@@ -200,17 +200,17 @@ $$
 Ba trường hợp trùng với ba nhánh của hàm $\operatorname{clip}$ trong (2.3). $\square$
 :::
 
-Mệnh đề 01.2 nói rằng tác động tối ưu là tác động mà ta sẽ chọn nếu không có giới hạn, sau khi bị kéo về đầu mút gần nhất của đoạn cho phép nếu nó vượt giới hạn.
+Mệnh đề 01.2 cho thấy tác động tối ưu chính là tác động ta sẽ chọn khi không có giới hạn, sau khi kéo nó về đầu mút gần nhất của đoạn cho phép nếu nó vượt giới hạn.
 
-Giả thiết $\lambda\ge0$ dùng ở đúng một chỗ: bảo đảm hệ số $1+\lambda$ dương, để $q$ là parabol hướng lên. Nếu bỏ giả thiết và cho $\lambda=-2$, hệ số bậc hai bằng $-1$ và parabol hướng xuống. Khi đó $q$ không bị chặn dưới trên $\mathbb R$, và trên đoạn $C$ cực tiểu nằm ở một đầu mút được chọn theo quy tắc khác hẳn (2.3).
+Giả thiết $\lambda\ge0$ chỉ được dùng ở một chỗ, đó là bảo đảm hệ số $1+\lambda$ dương để $q$ là parabol hướng lên. Nếu bỏ giả thiết và cho $\lambda=-2$, hệ số bậc hai bằng $-1$ và parabol hướng xuống. Khi đó $q$ không bị chặn dưới trên $\mathbb R$, và trên đoạn $C$ cực tiểu nằm ở một đầu mút được chọn theo quy tắc khác hẳn (2.3).
 
 Giả thiết $u_{\max}\ge0$ dùng để $C$ không rỗng. Với $u_{\max}<0$, đoạn $C$ rỗng và (2.1) không có phương án khả thi nào.
 
-Đạo hàm của $q$ đọc được từ (2.4): $q'(u)=2(1+\lambda)(u-u_{\mathrm{free}})$, nên $u_{\mathrm{free}}$ cũng là nghiệm duy nhất của phương trình $q'(u)=0$. Phép bù bình phương cho nhiều hơn phương trình đạo hàm: nó cho biết $q$ giảm bên trái và tăng bên phải $u_{\mathrm{free}}$. Thông tin này là cơ sở của phần (b) trong Mệnh đề 01.2, nơi có ràng buộc.
+Đạo hàm của $q$ đọc được từ (2.4): $q'(u)=2(1+\lambda)(u-u_{\mathrm{free}})$, nên $u_{\mathrm{free}}$ cũng là nghiệm duy nhất của phương trình $q'(u)=0$. Phép bù bình phương còn cho nhiều thông tin hơn phương trình đạo hàm, vì nó cho biết $q$ giảm bên trái và tăng bên phải $u_{\mathrm{free}}$. Chính thông tin này là cơ sở của phần (b) trong Mệnh đề 01.2, nơi có ràng buộc.
 
 **Trong học máy.** Hàm $\operatorname{clip}$ trong (2.3) là phép chiếu lên một đoạn. Nó xuất hiện khi một đại lượng của mô hình bị giới hạn trong một khoảng. Xác suất ước lượng được cắt về một đoạn $[\epsilon,1-\epsilon]$ trước khi lấy logarit trong mất mát entropy chéo. Trọng số của bộ phân biệt trong mạng đối sinh Wasserstein (WGAN) được cắt về $[-c,c]$ sau mỗi bước cập nhật.
 
-Mệnh đề 01.2 cho biết phép cắt cho đúng nghiệm khi mục tiêu là bậc hai một biến. Phần Phạm vi của mệnh đề cảnh báo rằng với nhiều tham số liên kết, cắt nghiệm tự do không thay được việc giải bài toán có ràng buộc. Tình huống 01.2 giải một bài toán có ràng buộc trên đơn hình bằng điều kiện (7.3).
+Theo Mệnh đề 01.2, phép cắt cho đúng nghiệm khi mục tiêu là bậc hai một biến. Tuy nhiên, như phần Phạm vi của mệnh đề đã nêu, với nhiều tham số liên kết, cắt nghiệm tự do không thay được việc giải bài toán có ràng buộc. Tình huống 01.2 giải một bài toán có ràng buộc trên đơn hình bằng điều kiện (7.3).
 
 ::: example Ví dụ 01.1 (Bộ số chuẩn của ca điều khiển)
 **Dữ kiện.** Bài toán điều khiển một bước (Định nghĩa 01.1) cực tiểu $q(u)=(x_0+u-t)^2+\lambda u^2$ trên $C=[-u_{\max},u_{\max}]$, với trạng thái mới $x_1=x_0+u$. Mệnh đề 01.2 cho nghiệm tự do $u_{\mathrm{free}}=\frac{t-x_0}{1+\lambda}$ (2.2), nghiệm $u^*=\operatorname{clip}(u_{\mathrm{free}},[-u_{\max},u_{\max}])$ (2.3) và dạng bù bình phương $q(u)=(1+\lambda)(u-u_{\mathrm{free}})^2+\frac{\lambda(t-x_0)^2}{1+\lambda}$ (2.4).
@@ -232,7 +232,7 @@ $$
 
 ![Đồ thị parabol q(u) bằng ba phần hai u bình phương trừ sáu u cộng chín. Dải tô từ u bằng âm một đến u bằng một là miền khả thi C. Điểm rỗng tại u bằng hai, giá trị ba, nằm ngoài dải: đó là nghiệm tự do. Điểm kín tại u bằng một, giá trị chín phần hai, nằm trên biên phải của dải: đó là nghiệm có ràng buộc.](img/lec-01/d03-cost-parabola-feasible.svg)
 
-Hình trên đặt kết quả của Ví dụ 01.1 lên đồ thị. Trên toàn bộ dải khả thi, parabol đang đi xuống, vì đáy của nó nằm ở $u=2$ bên phải dải. Do đó điểm thấp nhất của phần đồ thị trong dải là đầu mút phải.
+Hình trên đặt kết quả của Ví dụ 01.1 lên đồ thị. Do đáy của parabol nằm ở $u=2$, bên phải dải khả thi, parabol đi xuống trên toàn bộ dải, nên điểm thấp nhất của phần đồ thị trong dải là đầu mút phải.
 
 Ràng buộc làm giá trị tối ưu tăng từ $3$ lên $\tfrac92$. Chiều thay đổi này luôn không giảm, vì cực tiểu trên một tập con không thể nhỏ hơn cực tiểu trên tập chứa nó. Mệnh đề 01.16 ở Mục 5 phát biểu và chứng minh điều này cho bài toán tổng quát.
 
@@ -273,7 +273,7 @@ Giữ các dữ kiện trên và thay đổi $\lambda$. Khi đó $u_{\mathrm{fre
 **Kiểm tra lại.** Với $\lambda=2$ và $\lambda=5$, nghiệm trùng $u_{\mathrm{free}}$, nên theo (2.4) giá trị tối ưu bằng $\lambda(t-x_0)^2/(1+\lambda)$: $2\cdot9/3=6$ và $5\cdot9/6=15/2$, khớp với bảng. Khi $\lambda$ tăng, tác động tối ưu không tăng, đúng với vai trò phạt năng lượng của $\lambda$.
 :::
 
-Bảng của Ví dụ 01.2 phân biệt hai hiện tượng thường bị gộp làm một. Nghiệm nằm trên biên không đồng nghĩa với đạo hàm khác không: tại $\lambda=2$, nghiệm nằm ở biên mà $q'(u^*)=0$. Ràng buộc có hiệu lực (làm thay đổi nghiệm) khi và chỉ khi $u_{\mathrm{free}}\notin C$, tức $\lambda<2$ với bộ số này.
+Bảng của Ví dụ 01.2 cho thấy nghiệm nằm trên biên không đồng nghĩa với đạo hàm khác không, vì tại $\lambda=2$ nghiệm nằm ở biên mà $q'(u^*)=0$. Ràng buộc có hiệu lực (làm thay đổi nghiệm) khi và chỉ khi $u_{\mathrm{free}}\notin C$, tức $\lambda<2$ với bộ số này.
 
 ::: exercise Bài tập 01.1
 **Dữ kiện.** Bài toán điều khiển một bước (Định nghĩa 01.1): chọn $u\in C=[-u_{\max},u_{\max}]$ cực tiểu $q(u)=(x_0+u-t)^2+\lambda u^2$; trạng thái mới là $x_1=x_0+u$. Mệnh đề 01.2 cho $u_{\mathrm{free}}=\frac{t-x_0}{1+\lambda}$ (2.2), $u^*=\operatorname{clip}(u_{\mathrm{free}},[-u_{\max},u_{\max}])$ (2.3) và $q(u)=(1+\lambda)(u-u_{\mathrm{free}})^2+\frac{\lambda(t-x_0)^2}{1+\lambda}$ (2.4).
@@ -313,44 +313,35 @@ với mọi $\Delta\in(0,2]$.
 **(c)** Ràng buộc không đổi nghiệm khi $u_{\mathrm{free}}\in[-u_{\max},u_{\max}]$, tức $u_{\max}\ge\tfrac32$. Giá trị nhỏ nhất là $u_{\max}=\tfrac32$.
 :::
 
-Chuỗi suy luận của mục là:
+Xuất phát từ mô hình của Định nghĩa 01.1, phép bù bình phương (2.4) cho nghiệm chính xác của ca điều khiển với mọi bộ dữ kiện: nghiệm tồn tại, duy nhất và cho bởi quy tắc cắt (2.3) (Mệnh đề 01.2). Ví dụ 01.1 áp dụng Mệnh đề 01.2 cho bộ số chuẩn. Nhận xét 01.3 giải thích vì sao đạo hàm khác không tại nghiệm biên, tức phương trình $q'(u)=0$ không mô tả được nghiệm có ràng buộc.
 
-1. Định nghĩa 01.1 lập mô hình;
-2. phép bù bình phương (2.4) cho Mệnh đề 01.2;
-3. Ví dụ 01.1 áp dụng mệnh đề cho bộ số chuẩn;
-4. Nhận xét 01.3 giải thích vì sao nghiệm biên có đạo hàm khác không.
-
-Đích của mục là công thức (2.3) cùng nhận thức rằng phương trình $q'(u)=0$ không mô tả được nghiệm có ràng buộc.
-
-Mục này thu được nghiệm chính xác, có tồn tại và duy nhất, cho mọi bộ dữ kiện của ca điều khiển (Mệnh đề 01.2). Lập luận dựa hoàn toàn vào phép bù bình phương (2.4), vốn chỉ có cho hàm bậc hai, và vào việc biến chỉ có một chiều. Tính tối ưu tại biên được kiểm tra bằng tay cho một bộ số (Nhận xét 01.3), chưa có tiêu chuẩn chung.
-
-Mục 3 chuyển sang bài toán có nhiều biến và không có ràng buộc, nơi phép bù bình phương được thay bằng một đẳng thức khai triển cho hàm bậc hai nhiều biến. Ở đó xuất hiện một hiện tượng mới: nghiệm có thể không duy nhất.
+Tuy nhiên, lập luận trên dựa hoàn toàn vào phép bù bình phương (2.4), vốn chỉ có cho hàm bậc hai, và vào việc biến chỉ có một chiều. Tính tối ưu tại biên mới được kiểm tra bằng tay cho một bộ số (Nhận xét 01.3), chưa có tiêu chuẩn chung. Trong Mục 3, chúng ta chuyển sang bài toán nhiều biến, không ràng buộc, nơi phép bù bình phương được thay bằng một đẳng thức khai triển cho hàm bậc hai nhiều biến. Ở đó xuất hiện một hiện tượng mới là nghiệm có thể không duy nhất.
 
 ## 3. Hồi quy tuyến tính
 
-Mục 2 giải một bài toán một biến bằng phép bù bình phương. Bài toán của mục này có nhiều biến và đến từ dữ liệu. Năm người có cân nặng và chiều cao như trong bảng dưới (số liệu minh họa tự tạo, không phải kết quả đo).
+Bài toán của mục này có nhiều biến và được lập từ dữ liệu quan sát. Xét năm người có cân nặng và chiều cao như trong bảng dưới (số liệu minh họa tự tạo, không phải kết quả đo).
 
 | Cân nặng $m_i$ (kg) | 50 | 55 | 60 | 65 | 70 |
 |---:|---:|---:|---:|---:|---:|
 | Chiều cao $h_i$ (cm) | 158 | 162 | 164 | 169 | 172 |
 
-Cần một quy tắc dự đoán chiều cao từ cân nặng. Giả thuyết đơn giản nhất là chiều cao dự đoán $\widehat h_i$ phụ thuộc tuyến tính vào cân nặng, $\widehat h_i=b+am_i$, với hệ số chặn $b$ (cm) và hệ số góc $a$ (cm/kg). Mỗi cặp $(b,a)$ cho một đường thẳng, và không đường thẳng nào đi qua cả năm điểm. Mục này chọn một đại lượng đo độ khớp, lập bài toán bình phương nhỏ nhất cho số đặc trưng tùy ý, chứng minh bài toán luôn có nghiệm và xác định chính xác khi nào nghiệm duy nhất.
+Chúng ta cần một quy tắc dự đoán chiều cao từ cân nặng. Giả thuyết đơn giản nhất là chiều cao dự đoán $\widehat h_i$ phụ thuộc tuyến tính vào cân nặng, $\widehat h_i=b+am_i$, với hệ số chặn $b$ (cm) và hệ số góc $a$ (cm/kg). Mỗi cặp $(b,a)$ cho một đường thẳng, và không đường thẳng nào đi qua cả năm điểm. Đầu tiên, chúng ta chọn một đại lượng đo độ khớp và lập bài toán bình phương nhỏ nhất cho số đặc trưng tùy ý, sau đó chứng minh bài toán luôn có nghiệm và xác định chính xác khi nào nghiệm duy nhất.
 
-### 3.1 Nhu cầu và trực giác
+### 3.1 Đo độ khớp bằng phần dư
 
 ![Năm điểm dữ liệu cân nặng – chiều cao: (50; 158), (55; 162), (60; 164), (65; 169), (70; 172). Đường thẳng h mũ bằng 123 cộng 0,7 lần cân nặng đi qua vùng dữ liệu. Hình tròn là quan sát, hình vuông là dự đoán trên đường thẳng; ba đoạn nét đứt thẳng đứng tại 55, 60 và 65 ki-lô-gam biểu diễn phần dư.](img/lec-01/height-weight-regression.svg)
 
-Hình trên vẽ năm quan sát và một đường thẳng ứng viên $\widehat h=123+0{,}7m$. Tại mỗi cân nặng, đoạn thẳng đứng nối quan sát với dự đoán. Độ dài có dấu của đoạn này, dự đoán trừ quan sát, là phần dư. Tại $m=50$ và $m=70$, phần dư bằng $0$. Tại $m=55$, $60$, $65$, phần dư lần lượt là $-0{,}5$, $1$, $-0{,}5$.
+Hình trên minh họa năm quan sát và một đường thẳng ứng viên $\widehat h=123+0{,}7m$. Tại mỗi cân nặng, đoạn thẳng đứng nối quan sát với dự đoán, và độ dài có dấu của đoạn này, dự đoán trừ quan sát, được gọi là phần dư. Tại $m=50$ và $m=70$, phần dư bằng $0$. Tại $m=55$, $60$, $65$, phần dư lần lượt là $-0{,}5$, $1$, $-0{,}5$.
 
-Một đường thẳng tốt cần làm cả năm phần dư nhỏ cùng lúc. Trực giác dẫn tới mô hình là gộp các phần dư thành một số không âm và chọn đường thẳng có số đó nhỏ nhất.
+Một đường thẳng tốt cần làm cả năm phần dư nhỏ cùng lúc. Về mặt ý tưởng, ta gộp các phần dư thành một số không âm và chọn đường thẳng có số đó nhỏ nhất. Ý tưởng này chưa phải định nghĩa, vì chưa nói các phần dư được gộp bằng phép toán nào.
 
-Tổng các phần dư không dùng được, vì phần dư âm và dương triệt tiêu nhau. Tổng bình phương loại được dấu và cho một hàm khả vi của tham số; đó là lựa chọn của mục này.
+Tổng các phần dư không dùng được, vì phần dư âm và dương triệt tiêu nhau. Tổng bình phương thì loại được dấu và cho một hàm khả vi của tham số, nên chúng ta chọn cách gộp này.
 
 ### 3.2 Ma trận thiết kế và bài toán bình phương nhỏ nhất
 
-Giả thuyết $\widehat h_i=b+am_i$ viết được thành tích vô hướng. Đặt hàng đặc trưng $x_i^T=[1\ \ m_i]$ và vector tham số $w=(b,a)^T$. Khi đó $x_i^Tw=1\cdot b+m_i\cdot a=\widehat h_i$.
+Để cho gọn, ta viết giả thuyết $\widehat h_i=b+am_i$ thành tích vô hướng. Đặt hàng đặc trưng $x_i^T=[1\ \ m_i]$ và vector tham số $w=(b,a)^T$. Khi đó $x_i^Tw=1\cdot b+m_i\cdot a=\widehat h_i$.
 
-Thành phần hằng $1$ đưa hệ số chặn vào cùng vector tham số. Cách viết này giữ nguyên dạng khi có thêm đặc trưng, chẳng hạn tuổi hoặc chiều cao của cha mẹ: mỗi đặc trưng thêm một cột.
+Thành phần hằng $1$ đưa hệ số chặn vào cùng vector tham số. Cách viết này giữ nguyên dạng khi có thêm đặc trưng, chẳng hạn tuổi hoặc chiều cao của cha mẹ, vì mỗi đặc trưng chỉ thêm một cột. Bài toán tổng quát với $n$ mẫu và $d$ đặc trưng được phát biểu theo định nghĩa sau.
 
 ::: definition Định nghĩa 01.4 (Ma trận thiết kế và bài toán bình phương nhỏ nhất)
 Cho $n$ mẫu, mỗi mẫu có vector đặc trưng $x_i\in\mathbb R^d$ và đầu ra quan sát $y_i\in\mathbb R$, $i=1,\ldots,n$. Ma trận thiết kế $X\in\mathbb R^{n\times d}$ có hàng thứ $i$ là $x_i^T$, và $y=(y_1,\ldots,y_n)^T\in\mathbb R^n$. Với vector tham số $w\in\mathbb R^d$, vector dự đoán là $\widehat y=Xw\in\mathbb R^n$ và vector phần dư là $Xw-y$. Bài toán bình phương nhỏ nhất là
@@ -363,11 +354,11 @@ $$
 
 Trong Định nghĩa 01.4, hàng $i$ của $X$ chứa các đặc trưng của mẫu thứ $i$, còn cột $j$ chứa giá trị của đặc trưng thứ $j$ trên cả $n$ mẫu. Phép nhân $Xw$ gom $n$ dự đoán $x_i^Tw$ vào một phép toán. Kích thước khớp vì $(n\times d)(d\times1)$ cho $n\times1$. Với dữ liệu cân nặng, $n=5$, $d=2$, cột đầu của $X$ toàn số $1$ và $y=(158,162,164,169,172)^T$.
 
-Ký hiệu $\triangleq$ đọc là "được định nghĩa bằng". Miền của bài toán là toàn bộ $\mathbb R^d$: không có ràng buộc nào trên tham số. Hệ số $w_j$ là lượng thay đổi của dự đoán khi đặc trưng $j$ tăng một đơn vị và các đặc trưng khác giữ nguyên.
+Ký hiệu $\triangleq$ đọc là "được định nghĩa bằng". Miền của bài toán là toàn bộ $\mathbb R^d$, tức không có ràng buộc nào trên tham số. Hệ số $w_j$ là lượng thay đổi của dự đoán khi đặc trưng $j$ tăng một đơn vị và các đặc trưng khác giữ nguyên.
 
-Tổng giá trị tuyệt đối $\sum_i\lvert x_i^Tw-y_i\rvert$ là một cách đo sai số khác và cho đường thẳng khác. Bình phương phạt phần dư lớn mạnh hơn: phần dư gấp đôi bị phạt gấp bốn, nên một điểm ngoại lai (outlier) có ảnh hưởng lớn tới nghiệm.
+Tổng giá trị tuyệt đối $\sum_i\lvert x_i^Tw-y_i\rvert$ là một cách đo sai số khác và cho đường thẳng khác. So với giá trị tuyệt đối, bình phương phạt phần dư lớn mạnh hơn, vì phần dư gấp đôi bị phạt gấp bốn, nên một điểm ngoại lai (outlier) có ảnh hưởng lớn tới nghiệm.
 
-Hàm chi phí $q$ của Định nghĩa 01.1 là trường hợp $d=1$, $n=2$ của (3.1), như đã chỉ ra ở Mục 2.2. Hai bài toán chỉ khác nhau ở miền.
+Hàm chi phí $q$ của Định nghĩa 01.1 là trường hợp $d=1$, $n=2$ của (3.1), như ta đã thấy ở Mục 2.2, và hai bài toán chỉ khác nhau ở miền.
 
 ![Ba điểm dữ liệu tại đầu vào t bằng 0, 1, 2 với đầu ra 1, 2, 2. Đường hồi quy y mũ bằng bảy phần sáu cộng t chia hai. Ba đoạn nét đứt thẳng đứng là các phần dư một phần sáu, âm một phần ba và một phần sáu theo quy ước dự đoán trừ quan sát; tổng phần dư bằng 0 và tổng bình phương sai số bằng một phần sáu.](img/lec-01/linear-regression-fit.svg)
 
@@ -377,7 +368,7 @@ Các đoạn nét đứt đo sai lệch theo phương thẳng đứng, tức the
 
 ### 3.3 Phương trình chuẩn, tồn tại và tập nghiệm
 
-Với hàm bậc hai nhiều biến, phép bù bình phương của Mục 2 được thay bằng một đẳng thức khai triển chính xác. Kết quả sau chỉ dùng Định nghĩa 01.4 và các phép toán ma trận.
+Ở Mục 2, phép bù bình phương cho biết $q$ tăng dần khi đi xa khỏi $u_{\mathrm{free}}$, và từ đó ta đọc ra nghiệm. Với $J$ nhiều biến, công cụ đóng cùng vai trò là khai triển $J(w+v)$ theo độ dịch chuyển $v$, chính xác vì $J$ là hàm bậc hai. Từ khai triển này, ta đọc được gradient, Hessian và điều kiện cực tiểu toàn cục theo mệnh đề sau. Mệnh đề chỉ cần Định nghĩa 01.4 và các phép toán ma trận.
 
 ::: proposition Mệnh đề 01.5 (Khai triển của J và phương trình chuẩn)
 **Giả thiết.** $X\in\mathbb R^{n\times d}$, $y\in\mathbb R^n$ và $J$ như trong (3.1).
@@ -404,7 +395,7 @@ $$
 :::
 
 ::: proof Chứng minh Mệnh đề 01.5
-**Bước 1 (phần (a): khai triển).** Đặt $r=Xw-y$. Khi đó $X(w+v)-y=r+Xv$, và khai triển bình phương chuẩn cho
+**Bước 1 (phần (a): khai triển).** Đặt $r=Xw-y$. Khi đó $X(w+v)-y=r+Xv$, và khai triển bình phương chuẩn, ta có
 
 $$
 \begin{aligned}
@@ -413,7 +404,7 @@ $$
 \end{aligned}
 $$
 
-dùng $(Xv)^Tr=v^TX^Tr$.
+trong đó dòng thứ hai dùng $(Xv)^Tr=v^TX^Tr$.
 
 **Bước 2 (phần (b): gradient và Hessian).** Trong (3.2), hạng $2v^TX^T(Xw-y)$ tuyến tính theo $v$. Hạng dư thỏa
 
@@ -423,7 +414,7 @@ $$
 
 theo bất đẳng thức Cauchy–Schwarz áp dụng cho từng hàng, với $\lVert X\rVert_F$ là chuẩn Frobenius của $X$ (Bài 00, mục "Chuẩn ma trận"). Do đó hạng dư chia cho $\lVert v\rVert_2$ dần tới $0$ khi $v\to0$. Theo định nghĩa khả vi (Bài 00, mục "Khả vi của hàm nhiều biến"), $\nabla J(w)=2X^T(Xw-y)$. Ánh xạ $w\mapsto2X^TXw-2X^Ty$ là affine với ma trận $2X^TX$, nên $\nabla^2J(w)=2X^TX$.
 
-**Bước 3 (phần (c), chiều đủ).** Nếu $w^*$ thỏa (3.3) thì $X^T(Xw^*-y)=0$, và (3.2) với $w=w^*$ cho
+**Bước 3 (phần (c), chiều đủ).** Nếu $w^*$ thỏa (3.3) thì $X^T(Xw^*-y)=0$. Thay $w=w^*$ vào (3.2), ta có
 
 $$
 J(w^*+v)=J(w^*)+\lVert Xv\rVert_2^2\ge J(w^*)
@@ -431,21 +422,21 @@ $$
 
 với mọi $v$.
 
-**Bước 4 (phần (c), chiều cần).** Giả sử $w^*$ là điểm cực tiểu toàn cục và đặt $g=X^T(Xw^*-y)$. Với mọi $v$ và mọi số thực $s$, (3.2) cho
+**Bước 4 (phần (c), chiều cần).** Giả sử $w^*$ là điểm cực tiểu toàn cục và đặt $g=X^T(Xw^*-y)$. Với mọi $v$ và mọi số thực $s$, thay $w=w^*$ và thay $v$ bởi $sv$ vào (3.2), ta có
 
 $$
 0\le J(w^*+sv)-J(w^*)=2s\,v^Tg+s^2\lVert Xv\rVert_2^2 .
 $$
 
-- Chia cho $s>0$ rồi cho $s\to0^+$ được $v^Tg\ge0$.
-- Chia cho $s<0$ rồi cho $s\to0^-$ được $v^Tg\le0$.
+- Chia cho $s>0$ rồi cho $s\to0^+$, ta được $v^Tg\ge0$.
+- Chia cho $s<0$ rồi cho $s\to0^-$, ta được $v^Tg\le0$.
 
-Vậy $v^Tg=0$ với mọi $v$. Chọn $v=g$ được $\lVert g\rVert_2^2=0$, tức $g=0$, đó là (3.3). $\square$
+Suy ra $v^Tg=0$ với mọi $v$. Chọn $v=g$, ta được $\lVert g\rVert_2^2=0$, tức $g=0$, đó là (3.3). $\square$
 :::
 
-Mệnh đề 01.5 nói rằng với bình phương nhỏ nhất, điều kiện gradient bằng không vừa cần vừa đủ cho cực tiểu toàn cục. Đây là điều mà Bài 00 chưa khẳng định được: ở đó gradient bằng không chỉ là điều kiện cần.
+Mệnh đề 01.5 cho thấy với bình phương nhỏ nhất, điều kiện gradient bằng không vừa cần vừa đủ cho cực tiểu toàn cục, trong khi ở Bài 00 điều kiện này mới chỉ là điều kiện cần.
 
-Phần (c) mạnh hơn kết quả của Bài 00 vì dùng thêm cấu trúc bậc hai của $J$ qua (3.2), và trả giá bằng phạm vi hẹp: chứng minh không dùng được cho hàm mất mát khác. Mệnh đề chưa nói phương trình (3.3) có nghiệm hay không, và có bao nhiêu nghiệm.
+Phần (c) mạnh hơn kết quả của Bài 00 do dùng thêm cấu trúc bậc hai của $J$ qua (3.2). Đổi lại, phạm vi của nó hẹp, vì chứng minh không dùng được cho hàm mất mát khác. Mệnh đề này chưa cho biết phương trình (3.3) có nghiệm hay không và có bao nhiêu nghiệm, nên chúng ta cần mệnh đề sau.
 
 ::: proposition Mệnh đề 01.6 (Tồn tại và tập nghiệm của bình phương nhỏ nhất)
 **Giả thiết.** $X\in\mathbb R^{n\times d}$ và $y\in\mathbb R^n$ tùy ý.
@@ -476,19 +467,19 @@ Vậy $\mathcal R(X^TX)=\mathcal R(X^T)$, và $X^Ty\in\mathcal R(X^T)$ nên có 
 **Bước 4 (tính duy nhất; phần (c)).** Theo (b), $S^*$ có đúng một phần tử khi và chỉ khi $\ker X=\{0\}$, tức $\operatorname{rank}X=d$. Khi đó $X^TX\succ0$ (Bài 00, mục "Dạng toàn phương") nên khả nghịch, và (3.3) cho $w^*=(X^TX)^{-1}X^Ty$. Đó là (c). $\square$
 :::
 
-Về hình học, Mệnh đề 01.6 đọc như sau. Tập các vector dự đoán đạt được là không gian cột $\mathcal R(X)$, một không gian con của $\mathbb R^n$. Cực tiểu $\lVert Xw-y\rVert_2$ là tìm điểm của $\mathcal R(X)$ gần $y$ nhất, tức hình chiếu trực giao $\widehat y$ của $y$. Điểm này luôn tồn tại và duy nhất.
+Về mặt hình học, Mệnh đề 01.6 có cách đọc như sau. Tập các vector dự đoán đạt được là không gian cột $\mathcal R(X)$, một không gian con của $\mathbb R^n$. Cực tiểu $\lVert Xw-y\rVert_2$ là tìm điểm của $\mathcal R(X)$ gần $y$ nhất, tức hình chiếu trực giao $\widehat y$ của $y$. Điểm này luôn tồn tại và duy nhất.
 
 Tham số $w$ chỉ là tọa độ của $\widehat y$ theo các cột của $X$. Tọa độ đó duy nhất khi các cột độc lập tuyến tính, và có vô số lựa chọn khi các cột phụ thuộc tuyến tính.
 
-Như vậy (a) nói về sự tồn tại của dự đoán tốt nhất, còn (c) nói về khả năng xác định tham số từ dữ liệu. Hai kết luận cần hai giả thiết khác nhau: (a) không cần giả thiết gì, (c) cần hạng cột đầy đủ.
+Như vậy, (a) nói về sự tồn tại của dự đoán tốt nhất, còn (c) nói về khả năng xác định tham số từ dữ liệu. Hai kết luận này cần hai giả thiết khác nhau, vì (a) không cần giả thiết gì, còn (c) cần hạng cột đầy đủ.
 
 **Trong học máy.** Trong hồi quy tuyến tính, $X$ là bảng đặc trưng của tập huấn luyện, $w$ là tham số mô hình và $J$ là tổng bình phương sai số huấn luyện. Mệnh đề 01.6(a) bảo đảm bài toán huấn luyện luôn có nghiệm, bất kể dữ liệu.
 
-Giả thiết hạng cột đầy đủ của (c) thường bị vi phạm trong thực tế. Ví dụ điển hình là mã hóa một nóng (one-hot) một đặc trưng phân loại có $k$ giá trị bằng $k$ cột nhị phân, trong khi $X$ đã có cột hệ số chặn. Tổng $k$ cột nhị phân bằng cột toàn số $1$, nên $\ker X\ne\{0\}$ và tham số không duy nhất, dù dự đoán vẫn duy nhất.
+Tuy nhiên, giả thiết hạng cột đầy đủ của (c) thường bị vi phạm trong thực tế. Ví dụ điển hình là mã hóa một nóng (one-hot) một đặc trưng phân loại có $k$ giá trị bằng $k$ cột nhị phân, trong khi $X$ đã có cột hệ số chặn. Tổng $k$ cột nhị phân bằng cột toàn số $1$, nên $\ker X\ne\{0\}$ và tham số không duy nhất, dù dự đoán vẫn duy nhất.
 
 Hậu quả quan sát được là các hệ số mô hình thay đổi lớn giữa các lần huấn luyện mà sai số không đổi, nên không thể đọc hệ số như mức ảnh hưởng của đặc trưng.
 
-Có hai cách khắc phục: bỏ một cột, hoặc chính quy hóa, tức cộng vào hàm mục tiêu một hạng phạt độ lớn của tham số như $\mu\lVert w\rVert_2^2$ với $\mu>0$. Mục 8 định nghĩa chính quy hóa bậc hai (Định nghĩa 01.42) và Ví dụ 01.15 chứng nhận cách thứ hai.
+Có hai cách khắc phục: bỏ một cột, hoặc chính quy hóa, tức cộng vào hàm mục tiêu một hạng phạt độ lớn của tham số như $\mu\lVert w\rVert_2^2$ với $\mu>0$. Chính quy hóa bậc hai được định nghĩa ở Mục 8 (Định nghĩa 01.42), và Ví dụ 01.15 chứng nhận cách thứ hai.
 
 ::: example Ví dụ 01.3 (Đường hồi quy cho dữ liệu cân nặng – chiều cao)
 **Dữ kiện.** Năm người ở bảng đầu Mục 3 có cân nặng $m_1,\ldots,m_5$ lần lượt là $50,55,60,65,70$ (kg) và chiều cao $h_1,\ldots,h_5$ lần lượt là $158,162,164,169,172$ (cm). Mô hình là $\widehat h_i=b+am_i$: ma trận thiết kế $X$ có hàng $x_i^T=[1\ \ m_i]$, $y=h$, $w=(b,a)^T$ và $J(w)=\lVert Xw-y\rVert_2^2$ (3.1). Nghiệm thỏa phương trình chuẩn $X^TXw^*=X^Ty$ (3.3) và duy nhất khi $\operatorname{rank}X=2$ (Mệnh đề 01.6(c)).
@@ -636,27 +627,17 @@ Viết phương trình chuẩn (3.3) dưới dạng $X^T(Xw^*-y)=0$ và đọc t
 **Bước 2 (khi nghiệm không duy nhất).** Lập luận chỉ dùng phương trình chuẩn, nên đúng cho mọi nghiệm, kể cả khi nghiệm không duy nhất. Theo Mệnh đề 01.6(b), các nghiệm khác nhau còn có cùng vector phần dư, vì chúng cho cùng dự đoán.
 :::
 
-Chuỗi suy luận của mục là:
+Với mô hình của Định nghĩa 01.4, đẳng thức khai triển (3.2) cho Mệnh đề 01.5, theo đó phương trình chuẩn vừa cần vừa đủ cho cực tiểu toàn cục. Dựa trên đẳng thức $\ker(X^TX)=\ker X$, Mệnh đề 01.6 chứng minh nghiệm luôn tồn tại, còn nghiệm duy nhất khi và chỉ khi $X$ có hạng cột đầy đủ. Ví dụ 01.3 và 01.4 là trường hợp nghiệm duy nhất, Ví dụ 01.5 là trường hợp vô số nghiệm. Hai trường hợp này cho thấy tồn tại (luôn có) và duy nhất (cần hạng cột đầy đủ) là hai kết luận tách bạch.
 
-1. Định nghĩa 01.4 lập mô hình;
-2. đẳng thức khai triển (3.2) cho Mệnh đề 01.5, theo đó phương trình chuẩn vừa cần vừa đủ cho cực tiểu toàn cục;
-3. Mệnh đề 01.6 dùng $\ker(X^TX)=\ker X$ để chứng minh tồn tại luôn có và duy nhất khi và chỉ khi hạng cột đầy đủ.
-
-Ví dụ 01.3 và 01.4 là trường hợp duy nhất, Ví dụ 01.5 là trường hợp vô số nghiệm. Đích của mục là sự tách bạch giữa tồn tại (luôn có) và duy nhất (cần hạng cột đầy đủ).
-
-Kết quả của mục áp dụng cho mọi dữ liệu nhưng chỉ cho một hàm mục tiêu. Bằng chứng tối ưu toàn cục dựa vào đẳng thức (3.2), và bằng chứng tồn tại dựa vào cấu trúc tuyến tính của phương trình chuẩn. Một hàm mất mát không phải bậc hai không có đẳng thức khai triển chính xác, và gradient của nó không tuyến tính theo tham số.
-
-Mục 4 chuyển sang bài toán phân loại với mất mát logistic, nơi cả hai công cụ đều không còn, và cho thấy sự tồn tại nghiệm có thể thất bại.
+Các kết quả này đúng với mọi dữ liệu nhưng chỉ cho một hàm mục tiêu, vì bằng chứng tối ưu toàn cục dựa vào đẳng thức (3.2), còn bằng chứng tồn tại dựa vào cấu trúc tuyến tính của phương trình chuẩn. Một hàm mất mát không phải bậc hai không có đẳng thức khai triển chính xác, và gradient của nó không tuyến tính theo tham số. Trong Mục 4, chúng ta xét bài toán phân loại với mất mát logistic, nơi cả hai công cụ này đều không còn và sự tồn tại nghiệm có thể thất bại.
 
 ## 4. Hồi quy logistic
 
-Mục 3 chứng minh bài toán bình phương nhỏ nhất luôn có nghiệm, nhờ đẳng thức khai triển (3.2) và cấu trúc tuyến tính của phương trình chuẩn. Bài toán của mục này không có hai công cụ đó.
+Một dây chuyền đóng gói cần tách cam tốt khỏi cam xấu bằng camera. Từ ảnh mỗi quả cam, hệ thống đo được hai con số. Chúng ta cần một quy tắc biến hai con số đó thành quyết định "tốt" hoặc "xấu", và quy tắc này phải được học từ các quả cam đã gán nhãn.
 
-Một dây chuyền đóng gói cần tách cam tốt khỏi cam xấu bằng camera. Từ ảnh mỗi quả cam, hệ thống đo được hai con số. Cần một quy tắc biến hai con số đó thành quyết định "tốt" hoặc "xấu", và quy tắc phải được học từ các quả cam đã gán nhãn.
+Trong mục này, chúng ta lập mô hình hồi quy logistic cho bài toán đó. Chúng ta sẽ thấy một bộ dữ liệu hai mẫu (Ví dụ 01.6) trên đó mất mát giảm mãi về $0$ mà không tham số hữu hạn nào đạt $0$, và một bộ dữ liệu ba mẫu (Ví dụ 01.7) có nghiệm tính được.
 
-Mục này lập mô hình hồi quy logistic cho bài toán đó. Mục chỉ ra một bộ dữ liệu hai mẫu mà mất mát giảm mãi về $0$ nhưng không tham số hữu hạn nào đạt $0$, và một bộ dữ liệu ba mẫu mà nghiệm tồn tại và tính được.
-
-### 4.1 Nhu cầu: phân loại cam trên dây chuyền
+### 4.1 Phân loại cam trên dây chuyền
 
 ![Sơ đồ ba bước. Bước một: ba quả cam (tròn, méo, có vết) đi dưới camera trên dây chuyền. Bước hai: trích hai đặc trưng do con người chọn, z1 bằng d max chia d min (tỉ lệ hai kích thước chính) và z2 bằng 100 nhân diện tích vết chia diện tích quả (phần trăm diện tích vết sẫm). Bước ba: mặt phẳng đặc trưng với trục z1 từ 1,0 đến 1,4 và trục z2 từ 0 đến 20 phần trăm; cam tốt (nhãn +1) là hình tròn ở vùng gần gốc, cam xấu (nhãn −1) là hình vuông ở vùng xa; một đường biên tuyến tính minh họa ngăn hai vùng, vector w vuông góc với biên.](img/lec-01/g00-orange-quality-pipeline.svg)
 
@@ -670,30 +651,32 @@ Việc chọn hai đặc trưng này là một phần của mô hình do con ng�
 
 Trên mặt phẳng $(z_1,z_2)$, cam tốt tập trung gần góc $z_1\approx1$, $z_2\approx0$, còn cam xấu nằm xa góc đó. Câu hỏi đặt ra là có thể dùng một đường thẳng để tách hai nhóm không, và nếu có thì chọn đường thẳng nào từ dữ liệu.
 
-### 4.2 Trực giác: biên tuyến tính và biên có dấu
+### 4.2 Biên tuyến tính và biên có dấu
 
 Thêm thành phần hằng như ở Mục 3, mỗi quả cam $i$ có vector đặc trưng $a_i=(1,z_{i1},z_{i2})^T\in\mathbb R^3$. Một đường thẳng trong mặt phẳng $(z_1,z_2)$ có dạng $w_0+w_1z_1+w_2z_2=0$, tức $a^Tw=0$ với $w=(w_0,w_1,w_2)^T$. Đại lượng $a_i^Tw$ là điểm số (score) của mẫu $i$, và quy tắc phân loại dự đoán nhãn bằng dấu của điểm số. Ký hiệu $a_i$ được dùng thay cho $x_i$ của Mục 3 để phân biệt hai ca.
 
 ![Mặt phẳng hai trục a1 và a2 cắt nhau tại gốc. Đường a chuyển vị w bằng 0 đi qua gốc, chia mặt phẳng thành miền a chuyển vị w dương phía trên bên trái, chứa các điểm hình tròn thuộc lớp +1, và miền a chuyển vị w âm phía dưới bên phải, chứa các điểm hình vuông thuộc lớp −1. Vector w xuất phát từ gốc, vuông góc với đường biên và hướng vào miền dương.](img/lec-01/g01-linear-boundary-2d.svg)
 
-Hình trên vẽ một mặt phẳng đặc trưng tổng quát. Nhãn trục $a_1$, $a_2$ là hai tọa độ của một vector đặc trưng $a$, không phải mẫu thứ nhất và mẫu thứ hai.
+Hình trên vẽ một mặt phẳng đặc trưng tổng quát, trong đó nhãn trục $a_1$, $a_2$ là hai tọa độ của một vector đặc trưng $a$, không phải mẫu thứ nhất và mẫu thứ hai.
 
 Đường biên quyết định $a^Tw=0$ vuông góc với $w$. Nửa mặt phẳng mà $w$ chỉ tới có $a^Tw>0$ và được dự đoán là lớp $+1$. Nửa còn lại có $a^Tw<0$ và được dự đoán là lớp $-1$.
 
 Đường biên trong hình đi qua gốc vì hình không có thành phần hằng. Với thành phần hằng như ở cam, biên là một đường thẳng bất kỳ trong mặt phẳng $(z_1,z_2)$.
 
-Hai trường hợp đúng nhãn được gộp thành một điều kiện bằng cách nhân điểm số với nhãn.
+Để gộp hai trường hợp đúng nhãn thành một điều kiện, ta nhân điểm số với nhãn.
 
 - Nếu $y_i=+1$, dự đoán đúng khi $a_i^Tw>0$.
 - Nếu $y_i=-1$, dự đoán đúng khi $a_i^Tw<0$.
 
 Cả hai tương đương với $y_ia_i^Tw>0$. Đại lượng $y_ia_i^Tw$ dương và lớn nghĩa là mẫu nằm đúng phía và xa biên.
 
-Trực giác dẫn tới hàm mục tiêu là: học $w$ nghĩa là làm các đại lượng này lớn. Điều đó trở thành một bài toán cực tiểu khi có một hàm phạt giảm theo đại lượng đó.
+Về mặt ý tưởng, học $w$ có nghĩa là làm các đại lượng $y_ia_i^Tw$ lớn. Ý tưởng này chưa phải định nghĩa, và nó chỉ trở thành một bài toán cực tiểu khi có một hàm phạt giảm theo đại lượng đó.
 
 Bình phương nhỏ nhất của Mục 3 áp dụng trực tiếp cho nhãn $\pm1$ không phù hợp với mục đích này. Với $y_i=+1$ và điểm số $a_i^Tw=3$, mẫu được phân loại đúng với độ tin cậy cao, nhưng sai số bình phương $(3-1)^2=4$ vẫn phạt nó. Hàm phạt cần giảm khi biên tăng, kể cả khi biên đã lớn hơn $1$.
 
 ### 4.3 Mất mát logistic
+
+Hàm $m\mapsto\log(1+e^{-m})$ là một hàm phạt như vậy (Mệnh đề 01.9(b) chứng minh nó giảm chặt), và bài toán hồi quy logistic được phát biểu theo định nghĩa sau.
 
 ::: definition Định nghĩa 01.8 (Biên có dấu, mất mát logistic và bài toán hồi quy logistic)
 Cho $n$ mẫu với vector đặc trưng $a_i\in\mathbb R^d$ và nhãn $y_i\in\{-1,+1\}$, $i=1,\ldots,n$. Với vector tham số $w\in\mathbb R^d$, biên có dấu (signed margin) của mẫu $i$ là $m_i=y_ia_i^Tw\in\mathbb R$. Mất mát logistic của một biên $m\in\mathbb R$ là
@@ -712,17 +695,17 @@ $$
 
 Trong Định nghĩa 01.8, $a_i$ và $y_i$ là dữ kiện, $w$ là biến quyết định, và miền là toàn $\mathbb R^d$ như ở hồi quy tuyến tính. Từ mục này trở đi, $m_i$ là biên có dấu, không còn là cân nặng như ở Mục 3.
 
-Chữ "biên" mang ba nghĩa trong chương, phân biệt bằng từ đi kèm.
+Lưu ý rằng chữ "biên" mang ba nghĩa trong chương, được phân biệt bằng từ đi kèm.
 
 - Biên của miền khả thi là tập các điểm của miền không phải điểm trong, như hai đầu mút của đoạn ở Mục 2.
 - Biên quyết định là tập $\{a\mid a^Tw=0\}$ các vector đặc trưng có điểm số bằng $0$.
 - Biên có dấu $m_i$ là một số gắn với từng mẫu.
 
-Mất mát logistic có một cách đọc xác suất. Đặt hàm sigmoid $\sigma(s)=1/(1+e^{-s})$, có giá trị trong $(0,1)$ và thỏa $1-\sigma(s)=\sigma(-s)$. Nếu mô hình gán xác suất $P(y=+1\mid a)=\sigma(a^Tw)$ thì $P(y=-1\mid a)=\sigma(-a^Tw)$. Do đó trong cả hai trường hợp $P(y_i\mid a_i)=\sigma(y_ia_i^Tw)$, và $-\log\sigma(m)=\log(1+e^{-m})=\ell(m)$.
+Mất mát logistic còn có một cách đọc theo xác suất. Đặt hàm sigmoid $\sigma(s)=1/(1+e^{-s})$, có giá trị trong $(0,1)$ và thỏa $1-\sigma(s)=\sigma(-s)$. Nếu mô hình gán xác suất $P(y=+1\mid a)=\sigma(a^Tw)$ thì $P(y=-1\mid a)=\sigma(-a^Tw)$. Do đó trong cả hai trường hợp $P(y_i\mid a_i)=\sigma(y_ia_i^Tw)$, và $-\log\sigma(m)=\log(1+e^{-m})=\ell(m)$.
 
-Vậy $L(w)$ là âm logarit hàm hợp lý của dữ liệu khi các mẫu độc lập. Trong học máy nó còn được gọi là mất mát entropy chéo nhị phân (binary cross-entropy). Đây là chỗ đầu tiên trong học phần mà phần tối ưu hóa và phần mô hình xác suất gặp nhau.
+Như vậy, $L(w)$ là âm logarit hàm hợp lý của dữ liệu khi các mẫu độc lập, và trong học máy nó còn được gọi là mất mát entropy chéo nhị phân (binary cross-entropy). Trong Bài 00 (mục "Nhiễu Gauss, hàm hợp lý và bình phương tối thiểu"), bình phương nhỏ nhất cũng đã được đọc là ước lượng hợp lý cực đại dưới nhiễu Gauss; mất mát logistic là cách đọc tương tự cho nhãn nhị phân.
 
-So với Định nghĩa 01.4, Định nghĩa 01.8 giữ nguyên miền $\mathbb R^d$ và cấu trúc dữ liệu theo hàng, nhưng thay hàm bình phương của phần dư bằng hàm $\ell$ của biên. Hàm $L$ không phải đa thức bậc hai, nên không có đẳng thức khai triển chính xác kiểu (3.2), và gradient của nó không tuyến tính theo $w$.
+So với Định nghĩa 01.4, Định nghĩa 01.8 giữ nguyên miền $\mathbb R^d$ và cấu trúc dữ liệu theo hàng, nhưng thay hàm bình phương của phần dư bằng hàm $\ell$ của biên. Hàm $L$ không phải đa thức bậc hai, nên không có đẳng thức khai triển chính xác kiểu (3.2), và gradient của nó không tuyến tính theo $w$. Thay cho hai công cụ đó, chúng ta dùng các tính chất của hàm một biến $\ell$ trong mệnh đề sau.
 
 ::: proposition Mệnh đề 01.9 (Tính chất của mất mát logistic)
 **Giả thiết.** $\ell(m)=\log(1+e^{-m})$ với $m\in\mathbb R$.
@@ -765,7 +748,7 @@ và biểu thức này dần tới $\log1=0$.
 **Bước 5 (hệ quả).** Mỗi hạng của $L$ dương theo (a), nên tổng dương và $0$ là một cận dưới. $\square$
 :::
 
-Mệnh đề 01.9 nói rằng mất mát của một mẫu giảm khi biên tăng và tiến về $0$ khi mẫu được phân loại đúng với biên lớn. Khi mẫu bị phân loại sai với biên âm lớn, mất mát tăng gần như tuyến tính, với hệ số góc gần $1$. Độ cong $\ell''$ dương ở mọi nơi nhưng tắt dần ở hai đầu.
+Mệnh đề trên cho thấy mất mát của một mẫu giảm khi biên tăng và tiến về $0$ khi mẫu được phân loại đúng với biên lớn. Khi mẫu bị phân loại sai với biên âm lớn, mất mát tăng gần như tuyến tính, với hệ số góc gần $1$. Độ cong $\ell''$ dương ở mọi nơi nhưng tắt dần ở hai đầu.
 
 Trong Ví dụ 01.6 dưới đây, tính chất $\ell(m)\to0$ khi $m\to+\infty$ (Mệnh đề 01.9(d)) cùng với dữ liệu tách được là điều kiện để mất mát giảm mãi. Độ cong tắt dần khiến tính lồi chặt không ngăn được điều đó (Nhận xét 01.43).
 
@@ -780,7 +763,7 @@ $$
 L(w)=2\log\bigl(1+e^{-w}\bigr),\qquad L'(w)=-\frac{2}{1+e^w}<0 .
 $$
 
-Mọi $w>0$ phân loại đúng cả hai mẫu; dữ liệu tách được bằng một biên tuyến tính.
+Mọi $w>0$ phân loại đúng cả hai mẫu, nên dữ liệu tách được bằng một biên tuyến tính.
 
 **Tính.** Một số giá trị (làm tròn bốn chữ số thập phân):
 
@@ -795,7 +778,7 @@ Mọi $w>0$ phân loại đúng cả hai mẫu; dữ liệu tách được bằn
 
 ![Hình gồm hai phần. Phần trái: trục a với mẫu lớp +1 (hình tròn) tại a bằng 1 và mẫu lớp −1 (hình vuông) tại a bằng −1; cả hai biên có dấu bằng w, nên tăng w làm cả hai biên cùng tăng. Phần phải: đồ thị L(w) bằng 2 log(1 + e mũ âm w) theo w từ 0 đến khoảng 4, giảm dần và tiến sát đường nằm ngang L bằng 0 mà không chạm. Hai khung ghi: cận dưới đúng của L bằng 0 và có thể tiến gần tùy ý; giá trị nhỏ nhất không tồn tại vì không có w hữu hạn nào cho L(w) bằng 0.](img/lec-01/logistic-loss-convex-case.svg)
 
-Hình trên đọc Ví dụ 01.6 bằng đồ thị. Phần trái cho thấy hai mẫu cùng được phân loại đúng hơn khi $w$ tăng, vì $m_1=m_2=w$. Phần phải cho thấy đồ thị $L$ tiến sát đường $L=0$ nhưng mọi điểm hữu hạn của đồ thị đều nằm phía trên đường đó.
+Hình trên thể hiện Ví dụ 01.6 bằng đồ thị. Phần trái cho thấy hai mẫu cùng được phân loại đúng hơn khi $w$ tăng, vì $m_1=m_2=w$. Phần phải cho thấy đồ thị $L$ tiến sát đường $L=0$ nhưng mọi điểm hữu hạn của đồ thị đều nằm phía trên đường đó.
 
 Miền của bài toán là toàn $\mathbb R$. Nếu thêm ràng buộc nhân tạo $\lvert w\rvert\le1$, nghiệm sẽ tồn tại tại $w=1$, nhưng đó là một bài toán khác.
 
@@ -828,12 +811,12 @@ $$
 **Kiểm tra lại.** $L(0)=3\log2\approx2{,}0794$ và $L(1)=2\log(1+e^{-1})+\log(1+e)\approx0{,}6265+1{,}3133=1{,}9398$, cả hai lớn hơn $1{,}9095$.
 :::
 
-Ví dụ 01.6 và Ví dụ 01.7 có cùng hàm mất mát, cùng miền, và cùng tính chất $L''>0$ (Mệnh đề 01.9(c) cho mỗi hạng một độ cong dương). Kết luận về nghiệm lại trái ngược. Sự khác biệt đến từ dữ liệu.
+Ví dụ 01.6 và Ví dụ 01.7 có cùng hàm mất mát, cùng miền, và cùng tính chất $L''>0$ (Mệnh đề 01.9(c) cho mỗi hạng một độ cong dương). Hai ví dụ lại cho hai kết luận trái ngược về nghiệm, và sự khác biệt đến từ dữ liệu.
 
 - Trong Ví dụ 01.6, dữ liệu tách được nên mọi biên có dấu cùng tăng khi $w\to+\infty$ và mọi hạng dần về $0$.
 - Trong Ví dụ 01.7, mẫu thứ ba làm hạng $\log(1+e^w)$ tăng gần tuyến tính khi $w\to+\infty$, nên $L$ không thể giảm mãi theo hướng đó.
 
-Hai ví dụ trên dùng ba khái niệm cần được tách rõ: một số mà giá trị hàm tiến sát nhưng có thể không chạm, giá trị thực sự đạt được, và một dãy điểm dùng để tiến sát.
+Để phát biểu chính xác sự khác biệt này, chúng ta cần tách ba khái niệm mà hai ví dụ trên đã dùng: một số mà giá trị hàm tiến sát nhưng có thể không chạm, giá trị thực sự đạt được, và một dãy điểm dùng để tiến sát. Ba khái niệm này được định nghĩa như sau.
 
 ::: definition Định nghĩa 01.10 (Cận dưới đúng, giá trị nhỏ nhất, dãy tối ưu hóa)
 Cho tập không rỗng $C\subseteq\mathbb R^d$ và $f:C\to\mathbb R$.
@@ -845,7 +828,7 @@ Nếu có $x^*\in C$ với $f(x^*)=\inf_{x\in C}f(x)$ thì cận dưới đúng 
 Một dãy $x_k\in C$ với $f(x_k)\to\inf_{x\in C}f(x)$ là một dãy tối ưu hóa.
 :::
 
-Giá trị nhỏ nhất là trường hợp riêng của cận dưới đúng: khi tồn tại, hai số trùng nhau. Cận dưới đúng luôn tồn tại (có thể bằng $-\infty$), còn giá trị nhỏ nhất có thể không tồn tại. Hàm $x^2$ trên $\mathbb R$ có cận dưới đúng $0$ được đạt tại $0$. Hàm $L$ của Ví dụ 01.6 có cận dưới đúng $0$ không được đạt.
+Trong định nghĩa trên, giá trị nhỏ nhất là trường hợp riêng của cận dưới đúng, tức khi giá trị nhỏ nhất tồn tại thì hai số trùng nhau. Cận dưới đúng luôn tồn tại (có thể bằng $-\infty$), còn giá trị nhỏ nhất có thể không tồn tại. Hàm $x^2$ trên $\mathbb R$ có cận dưới đúng $0$ được đạt tại $0$. Hàm $L$ của Ví dụ 01.6 có cận dưới đúng $0$ không được đạt.
 
 Dãy tối ưu hóa luôn tồn tại khi $C$ không rỗng.
 
@@ -896,28 +879,19 @@ $$
 **(c)** Không có hệ số chặn, dấu dự đoán tại $a>0$ là dấu của $w$ cho mọi mẫu dương. Hai mẫu $a=1$ và $a=2$ có nhãn trái nhau nên không $w$ nào phân loại đúng cả hai. Với $w^*<0$, mẫu $(2,-1)$ được phân loại đúng và mẫu $(1,+1)$ bị phân loại sai. Mô hình ưu tiên mẫu $a=2$ vì biên của nó nhân đôi tác động của $w$.
 :::
 
-Chuỗi suy luận của mục là:
+Như vậy, từ biên có dấu, Định nghĩa 01.8 lập mô hình hồi quy logistic và Mệnh đề 01.9 cho các tính chất của $\ell$. Dùng tính chất (a) và (d), Ví dụ 01.6 chỉ ra một bài toán không có nghiệm, còn Ví dụ 01.7 dùng dấu của $L'$ để chỉ ra một bài toán có nghiệm duy nhất. Định nghĩa 01.10 tách cận dưới đúng khỏi giá trị nhỏ nhất, và Nhận xét 01.11 tách dãy tối ưu hóa khỏi nghiệm. Kết quả chính của mục là phản ví dụ hai mẫu này, theo đó một hàm mất mát có độ cong dương ở mọi nơi vẫn có thể không có nghiệm.
 
-1. Định nghĩa 01.8 lập mô hình từ biên có dấu;
-2. Mệnh đề 01.9 cho các tính chất của $\ell$;
-3. Ví dụ 01.6 dùng tính chất (a), (d) để chỉ ra một bài toán không có nghiệm, Ví dụ 01.7 dùng dấu của $L'$ để chỉ ra một bài toán có nghiệm duy nhất;
-4. Định nghĩa 01.10 tách cận dưới đúng khỏi giá trị nhỏ nhất, và Nhận xét 01.11 tách dãy tối ưu hóa khỏi nghiệm.
-
-Đích của mục là phản ví dụ Ví dụ 01.6: một hàm mất mát có độ cong dương ở mọi nơi vẫn có thể không có nghiệm.
-
-Ba mục vừa qua giải ba bài toán bằng ba công cụ riêng: phép bù bình phương, phương trình chuẩn, xét dấu đạo hàm một biến. Không công cụ nào dùng được cho bài toán kia, và kết luận về nghiệm khác nhau ở mỗi ca.
-
-Ở Ví dụ 01.7, việc xét dấu $L'$ chỉ làm được vì $d=1$; với $d\ge2$, không có "bên trái" và "bên phải" của một điểm. Mục 5 đặt ba ca vào một khuôn chung để các câu hỏi về nghiệm được phát biểu một lần cho mọi bài toán.
+Ba mục vừa qua giải ba bài toán bằng ba công cụ riêng là phép bù bình phương, phương trình chuẩn và xét dấu đạo hàm một biến. Không công cụ nào dùng được cho bài toán kia, và kết luận về nghiệm khác nhau ở mỗi ca. Ngay ở bộ dữ liệu ba mẫu, việc xét dấu $L'$ chỉ làm được vì $d=1$, còn với $d\ge2$ không có "bên trái" và "bên phải" của một điểm. Khuôn chung ở Mục 5 cho phép phát biểu các câu hỏi về nghiệm một lần cho mọi bài toán.
 
 ## 5. Khuôn chung của bài toán tối ưu
 
-Ba mục trước để lại ba kết quả rời.
+Sau Mục 2 đến Mục 4, chúng ta có ba kết quả rời nhau.
 
 - Ca điều khiển có nghiệm duy nhất nằm trên biên (Mệnh đề 01.2).
 - Hồi quy tuyến tính luôn có nghiệm nhưng có thể có vô số nghiệm (Mệnh đề 01.6).
 - Hồi quy logistic có thể không có nghiệm (Ví dụ 01.6).
 
-Cụm từ "giải được bài toán" mang ba nghĩa khác nhau trong ba câu đó. Mục này đặt ba mô hình vào cùng một khuôn gồm biến, mục tiêu và miền, định nghĩa chính xác các khái niệm nghiệm, và chuyển chúng thành sáu câu hỏi chứng nhận mà Mục 6 đến Mục 8 trả lời.
+Cụm từ "giải được bài toán" mang ba nghĩa khác nhau trong ba câu đó. Để so sánh được ba kết quả, trong mục này chúng ta đặt ba mô hình vào cùng một khuôn gồm biến, mục tiêu và miền, định nghĩa chính xác các khái niệm nghiệm, rồi chuyển chúng thành sáu câu hỏi chứng nhận được trả lời ở Mục 6 đến Mục 8.
 
 ### 5.1 Bài toán tối ưu tổng quát
 
@@ -925,7 +899,7 @@ Cụm từ "giải được bài toán" mang ba nghĩa khác nhau trong ba câu 
 
 Hình trên tách một mô hình tối ưu thành các khối. Dữ kiện xác định dạng của hàm mục tiêu và của các ràng buộc nhưng không bị thuật toán thay đổi. Ràng buộc xác định tập khả thi, còn hàm mục tiêu so sánh các điểm khả thi.
 
-Trong hình, số chiều của biến được ghi là $n$. Chương này dùng $d$ cho số chiều của biến và dành $n$ cho số mẫu dữ liệu.
+Trong hình, số chiều của biến được ghi là $n$. Trong chương này, $d$ là số chiều của biến và $n$ là số mẫu dữ liệu. Với quy ước đó, bài toán tối ưu tổng quát được phát biểu theo định nghĩa sau.
 
 ::: definition Định nghĩa 01.12 (Bài toán tối ưu, khả thi, giá trị tối ưu và nghiệm)
 Cho tập $D\subseteq\mathbb R^d$, hàm mục tiêu $f_0:D\to\mathbb R$, các hàm ràng buộc bất đẳng thức $f_i:D\to\mathbb R$, $i=1,\ldots,k$, và các hàm ràng buộc đẳng thức $h_j:D\to\mathbb R$, $j=1,\ldots,k'$. Tập khả thi là
@@ -950,9 +924,9 @@ Một điểm $x^*\in C$ là nghiệm tối ưu nếu $f_0(x^*)\le f_0(x)$ với
 Tập nghiệm là $S^*=\{x\in C\mid f_0(x)=p^*\}$.
 :::
 
-Định nghĩa 01.12 tách bốn thành phần của một mô hình: dữ kiện (những gì xác định $f_0$, $f_i$, $h_j$), biến quyết định $x$, hàm mục tiêu $f_0$ và miền khả thi $C$. Chỉ số $0$ dành cho hàm mục tiêu vì $f_1,\ldots,f_k$ đã dùng cho ràng buộc. Bài toán cực đại một hàm $g$ được đưa về khuôn (5.1) bằng cách cực tiểu $f_0=-g$. Nghiệm giữ nguyên và giá trị tối ưu đổi dấu.
+Định nghĩa 01.12 tách bốn thành phần của một mô hình: dữ kiện (những gì xác định $f_0$, $f_i$, $h_j$), biến quyết định $x$, hàm mục tiêu $f_0$ và miền khả thi $C$. Chỉ số $0$ dành cho hàm mục tiêu vì $f_1,\ldots,f_k$ đã dùng cho ràng buộc. Bài toán cực đại một hàm $g$ được đưa về khuôn (5.1) bằng cách cực tiểu $f_0=-g$, khi đó nghiệm giữ nguyên còn giá trị tối ưu đổi dấu.
 
-Bốn đối tượng $C$, $p^*$, $x^*$ và $S^*$ khác nhau về kiểu: $C$ và $S^*$ là tập, $p^*$ là một số (có thể bằng $\pm\infty$), $x^*$ là một điểm. Một điểm khả thi chưa chắc là nghiệm: trong Ví dụ 01.1, $u=0$ khả thi nhưng $q(0)=9>\tfrac92$.
+Bốn đối tượng $C$, $p^*$, $x^*$ và $S^*$ khác nhau về kiểu: $C$ và $S^*$ là tập, $p^*$ là một số (có thể bằng $\pm\infty$), $x^*$ là một điểm. Một điểm khả thi chưa chắc là nghiệm, chẳng hạn trong Ví dụ 01.1, $u=0$ khả thi nhưng $q(0)=9>\tfrac92$.
 
 Ba mô hình của Mục 2 đến Mục 4 là ba trường hợp riêng của Định nghĩa 01.12.
 
@@ -964,7 +938,7 @@ Ba mô hình của Mục 2 đến Mục 4 là ba trường hợp riêng của Đ
 
 Ca điều khiển có hai ràng buộc bất đẳng thức $f_1(u)=u-u_{\max}\le0$ và $f_2(u)=-u-u_{\max}\le0$. Hai ca hồi quy không có ràng buộc, nên $C=D=\mathbb R^d$.
 
-Cùng chữ $x$ trong khuôn chung có thể là tác động vật lý hoặc tham số của mô hình học máy; khuôn chỉ ghi nhận vai trò của đại lượng trong bài toán. Chữ $x$ ở đây cũng khác trạng thái $x_0$, $x_1$ của Mục 2 và hàng $x_i$ của Mục 3.
+Cùng chữ $x$ trong khuôn chung có thể là tác động vật lý hoặc tham số của mô hình học máy, vì khuôn chỉ ghi nhận vai trò của đại lượng trong bài toán. Chữ $x$ ở đây cũng khác trạng thái $x_0$, $x_1$ của Mục 2 và hàng $x_i$ của Mục 3.
 
 **Trong học máy.** Huấn luyện một mô hình có tham số là giải một bài toán dạng (5.1).
 
@@ -973,13 +947,13 @@ Cùng chữ $x$ trong khuôn chung có thể là tác động vật lý hoặc t
 - Dữ kiện là tập huấn luyện.
 - Miền thường là toàn không gian tham số, đôi khi có ràng buộc như giới hạn chuẩn của trọng số hoặc yêu cầu các trọng số trộn không âm và có tổng bằng $1$.
 
-Định nghĩa 01.12 tách tham số, thứ thuật toán được thay đổi, khỏi dữ liệu, thứ thuật toán không được thay đổi.
+Như vậy, Định nghĩa 01.12 tách tham số, thứ thuật toán được thay đổi, khỏi dữ liệu, thứ thuật toán không được thay đổi.
 
 ### 5.2 Cực tiểu địa phương và cực tiểu toàn cục
 
 Một thuật toán lặp chỉ quan sát được hàm mục tiêu quanh điểm hiện tại. Xét hàm $f(x)=x^3-3x$ trên đoạn $C=[-3,3]$. Đạo hàm $f'(x)=3x^2-3$ bằng $0$ tại $x=\pm1$.
 
-Tại $x=1$, $f(1)=-2$, và mọi điểm gần $1$ đều cho giá trị lớn hơn. Một thuật toán xuất phát gần $1$ và chỉ đi xuống sẽ dừng ở đó. Nhưng tại đầu mút trái, $f(-3)=-27+9=-18$, nhỏ hơn nhiều. Hai loại "tốt nhất" này cần hai tên khác nhau.
+Tại $x=1$, $f(1)=-2$, và mọi điểm gần $1$ đều cho giá trị lớn hơn. Một thuật toán xuất phát gần $1$ và chỉ đi xuống sẽ dừng ở đó. Nhưng tại đầu mút trái, $f(-3)=-27+9=-18$, nhỏ hơn nhiều. Như vậy, có hai loại "tốt nhất" khác nhau, và chúng ta phân biệt chúng bằng định nghĩa sau.
 
 ::: definition Định nghĩa 01.13 (Cực tiểu địa phương, cực tiểu toàn cục, cực tiểu chặt)
 Cho bài toán (5.1) và $x^*\in C$.
@@ -989,9 +963,9 @@ Cho bài toán (5.1) và $x^*\in C$.
 Điểm $x^*$ là cực tiểu toàn cục nếu $f_0(x^*)\le f_0(x)$ với mọi $x\in C$, và là cực tiểu toàn cục chặt nếu $f_0(x^*)<f_0(x)$ với mọi $x\in C$, $x\ne x^*$.
 :::
 
-Cực tiểu toàn cục trùng với nghiệm tối ưu của Định nghĩa 01.12. Cụm "tương đối với $C$" nghĩa là chỉ so sánh với các điểm vừa gần $x^*$ vừa khả thi. Một điểm trên biên của $C$ có thể là cực tiểu địa phương dù hàm tiếp tục giảm ra ngoài $C$. Số $r$ là bán kính của lân cận được xét.
+Trong định nghĩa trên, cực tiểu toàn cục trùng với nghiệm tối ưu của Định nghĩa 01.12, còn cụm "tương đối với $C$" nghĩa là chỉ so sánh với các điểm vừa gần $x^*$ vừa khả thi. Một điểm trên biên của $C$ có thể là cực tiểu địa phương dù hàm tiếp tục giảm ra ngoài $C$. Số $r$ là bán kính của lân cận được xét.
 
-Quan hệ giữa các loại cực tiểu, và quan hệ giữa chúng với tập nghiệm $S^*$, được gom trong mệnh đề sau. Mệnh đề chỉ dùng Định nghĩa 01.12 và 01.13.
+Câu hỏi đặt ra là các loại cực tiểu này quan hệ với nhau và với tập nghiệm $S^*$ ra sao. Chỉ từ Định nghĩa 01.12 và 01.13, ta có mệnh đề sau.
 
 ::: proposition Mệnh đề 01.14 (Quan hệ giữa các loại cực tiểu)
 **Giả thiết.** Bài toán (5.1) và một điểm $x^*\in C$.
@@ -1014,7 +988,7 @@ Quan hệ giữa các loại cực tiểu, và quan hệ giữa chúng với t�
 **Bước 3 (phần (b), chiều ngược).** Nếu $x^*$ là cực tiểu toàn cục chặt thì $f_0(x^*)=p^*$ và mọi điểm khác có giá trị lớn hơn $p^*$, nên $S^*=\{x^*\}$. $\square$
 :::
 
-Mệnh đề 01.14 cho phép dịch câu hỏi "nghiệm có duy nhất không" sang câu hỏi "có cực tiểu toàn cục chặt không". Phần Phạm vi của mệnh đề và Ví dụ 01.8 cho thấy chiều ngược của (a) sai. Vì vậy một kiểm tra địa phương chưa đủ để kết luận toàn cục khi không có thêm cấu trúc.
+Mệnh đề 01.14 cho phép dịch câu hỏi "nghiệm có duy nhất không" sang câu hỏi "có cực tiểu toàn cục chặt không". Tuy nhiên, như phần Phạm vi của mệnh đề đã nêu và Ví dụ 01.8 dưới đây cho thấy, chiều ngược của (a) sai, nên khi không có thêm cấu trúc, một kiểm tra địa phương chưa đủ để kết luận toàn cục.
 
 ::: example Ví dụ 01.8 (Cực tiểu địa phương không toàn cục)
 **Xét dấu đạo hàm.** Cho $f(x)=x^3-3x$ trên $C=[-3,3]$. Đạo hàm $f'(x)=3(x-1)(x+1)$ dương trên $[-3,-1)$, âm trên $(-1,1)$ và dương trên $(1,3]$. Do đó $f$ tăng trên $[-3,-1]$, giảm trên $[-1,1]$ và tăng trên $[1,3]$.
@@ -1080,7 +1054,7 @@ Vậy $f$ giảm trên $[-2,-1]$, tăng trên $[-1,0]$, giảm trên $[0,\tfrac1
 
 ### 5.3 Miền lồng nhau và bốn loại kết luận
 
-Trước khi xét cấu trúc của $f_0$ và $C$, một quan hệ đơn giản giữa các bài toán có miền lồng nhau được dùng nhiều lần trong chương.
+Trước khi xét cấu trúc của $f_0$ và $C$, chúng ta cần một quan hệ đơn giản giữa các bài toán có miền lồng nhau. Quan hệ này được dùng nhiều lần trong chương và được phát biểu trong mệnh đề sau.
 
 ::: proposition Mệnh đề 01.16 (So sánh hai bài toán có miền lồng nhau)
 **Giả thiết.** $C'\subseteq C\subseteq D$ và $f_0:D\to\mathbb R$. Ký hiệu $p^*(C)=\inf_{x\in C}f_0(x)$.
@@ -1143,9 +1117,9 @@ Bốn loại kết luận của Ví dụ 01.9 được chuyển thành sáu câu
 5. Nghiệm tối ưu có tồn tại không.
 6. Nếu tồn tại, nghiệm có duy nhất không.
 
-Câu 6 chỉ đặt ra khi câu 5 được trả lời khẳng định. Trả lời "có" cho câu 2 và câu 3 không suy ra câu trả lời cho câu 5: trong Ví dụ 01.6, miền $\mathbb R$ và hàm $L$ đều lồi (Mục 7 sẽ chứng minh) nhưng không có nghiệm.
+Câu 6 chỉ đặt ra khi câu 5 được trả lời khẳng định. Trả lời "có" cho câu 2 và câu 3 không suy ra câu trả lời cho câu 5: trong Ví dụ 01.6, miền $\mathbb R$ và hàm $L$ đều lồi (chứng minh ở Mục 7) nhưng không có nghiệm.
 
-Câu 2 được xét trước câu 3 vì định nghĩa hàm lồi ở Mục 7 cần điểm nằm giữa hai điểm khả thi còn khả thi, tức cần miền lồi. Mục 6 trả lời câu 2, Mục 7 trả lời câu 3, Mục 8 trả lời câu 4, 5 và 6.
+Câu 2 được xét trước câu 3 vì định nghĩa hàm lồi ở Mục 7 cần điểm nằm giữa hai điểm khả thi còn khả thi, tức cần miền lồi. Câu 2 được trả lời ở Mục 6, câu 3 ở Mục 7, còn câu 4, 5 và 6 ở Mục 8.
 :::
 
 ::: exercise Bài tập 01.6
@@ -1204,41 +1178,33 @@ f(1,\tfrac23)=(1+\tfrac49)+(9+\tfrac49)+(1+\tfrac{16}9)=11+\tfrac{24}9=\tfrac{41
 $$
 :::
 
-Chuỗi suy luận của mục là:
+Trong mục này, Định nghĩa 01.12 đặt ba mô hình vào khuôn chung (5.1), và Định nghĩa 01.13 tách cực tiểu địa phương khỏi cực tiểu toàn cục, với Ví dụ 01.8 làm phản ví dụ. Mệnh đề 01.14 cho quan hệ giữa các loại cực tiểu, Nhận xét 01.15 nêu hai nhầm lẫn về điểm dừng và cực tiểu trên biên, còn Mệnh đề 01.16 so sánh các bài toán có miền lồng nhau. Cuối cùng, Ví dụ 01.9 và Nhận xét 01.17 chuyển bốn loại kết luận thành sáu câu hỏi chứng nhận, và danh sách sáu câu hỏi đó là kết quả chính của mục.
 
-1. Định nghĩa 01.12 đặt ba mô hình vào khuôn (5.1);
-2. Định nghĩa 01.13 tách cực tiểu địa phương khỏi cực tiểu toàn cục, với Ví dụ 01.8 làm phản ví dụ;
-3. Mệnh đề 01.14 gom quan hệ giữa các loại cực tiểu và Nhận xét 01.15 nêu hai nhầm lẫn về điểm dừng và cực tiểu trên biên;
-4. Mệnh đề 01.16 so sánh các bài toán có miền lồng nhau;
-5. Ví dụ 01.9 và Nhận xét 01.17 chuyển bốn loại kết luận thành sáu câu hỏi.
-
-Đích của mục là danh sách sáu câu hỏi đó.
-
-Mục này cho một ngôn ngữ chung nhưng chưa cho công cụ trả lời câu hỏi nào trong sáu câu ngoài câu 1. Các lập luận ở Mục 2 đến Mục 4 trả lời được câu 4, 5, 6 cho từng ca nhờ cấu trúc riêng của ca đó. Ví dụ 01.8 cho thấy nếu không có thêm cấu trúc thì một cực tiểu địa phương có thể không toàn cục.
-
-Cấu trúc cần thêm gồm hai phần: hình dạng của miền và hình dạng của hàm mục tiêu. Mục 6 bắt đầu với miền.
+Khuôn chung cho chúng ta một ngôn ngữ nhưng chưa cho công cụ trả lời câu hỏi nào trong sáu câu ngoài câu 1. Các lập luận ở Mục 2 đến Mục 4 trả lời được câu 4, 5, 6 cho từng ca nhờ cấu trúc riêng của ca đó, và Ví dụ 01.8 cho thấy nếu không có thêm cấu trúc thì một cực tiểu địa phương có thể không toàn cục. Cấu trúc cần thêm gồm hai phần, hình dạng của miền được xét ở Mục 6 và hình dạng của hàm mục tiêu được xét ở Mục 7.
 
 ## 6. Tập lồi
 
-Mục 5 kết thúc với nhận định rằng kết luận toàn cục cần cấu trúc của miền. Một ví dụ cho thấy cấu trúc nào.
+Ví dụ sau gợi ý miền cần có cấu trúc nào.
 
 Giả sử bộ chấp hành của Mục 2 có vùng chết: nó tạo được tác động có độ lớn từ $\tfrac12$ đến $1$ nhưng không tạo được tác động nhỏ hơn $\tfrac12$, kể cả $0$. Miền khả thi là $C=[-1,-\tfrac12]\cup[\tfrac12,1]$. Hai tác động $-1$ và $1$ khả thi, nhưng tác động trung bình $\tfrac12(-1)+\tfrac12(1)=0$ không khả thi.
 
 Trên miền như vậy, hàm $u\mapsto u^2$ có hai nghiệm cách xa nhau $u=\pm\tfrac12$. Một phương pháp chỉ dịch chuyển dần từ một điểm khả thi không thể đi từ nhánh này sang nhánh kia.
 
-Mục này định nghĩa lớp tập không có "lỗ" như vậy, xây danh sách các tập cơ bản của lớp đó cùng các phép ghép giữ lớp, và chứng nhận miền của ba ca.
+Trong mục này, chúng ta định nghĩa lớp tập không có "lỗ" như vậy. Đầu tiên, chúng ta xây danh sách các tập cơ bản của lớp đó cùng các phép ghép giữ lớp, sau đó dùng chúng để chứng nhận miền của ba ca.
 
-### 6.1 Trực giác: đoạn nối giữa hai phương án
+### 6.1 Đoạn nối giữa hai phương án
 
 Với hai phương án $x,y\in\mathbb R^d$ và một hệ số $\theta\in[0,1]$, điểm $z_\theta=\theta x+(1-\theta)y$ là phương án trộn $x$ với tỉ lệ $\theta$ và $y$ với tỉ lệ $1-\theta$. Với $\theta=1$ được $x$, với $\theta=0$ được $y$, với $\theta=\tfrac12$ được trung điểm. Khi $\theta$ chạy trên $[0,1]$, $z_\theta$ quét hết đoạn thẳng nối $x$ và $y$.
 
 ![Hai khung. Khung trái: một tập lồi C hình bầu dục chứa hai điểm tròn x và y, một điểm thoi z bằng theta x cộng (1 − theta) y với theta từ 0 đến 1, và toàn bộ đoạn nối x với y đều nằm trong C. Khung phải: một tập không lồi D hình lưỡi liềm; đoạn nối hai điểm x và y của D có một phần nằm ngoài D. Chú thích: chỉ cần một cặp phản ví dụ để bác bỏ tính lồi.](img/lec-01/convex-set-and-combination.svg)
 
-Hình trên so sánh hai tập. Ở khung trái, mọi đoạn nối hai điểm của $C$ nằm trọn trong $C$. Ở khung phải, có một đoạn nối đi ra ngoài $D$.
+Hình trên so sánh hai tập: ở khung trái, mọi đoạn nối hai điểm của $C$ nằm trọn trong $C$, còn ở khung phải, có một đoạn nối đi ra ngoài $D$. Tập vùng chết ở đầu mục giống khung phải.
 
-Trực giác, chưa phải định nghĩa, là: một miền tốt cho tối ưu là miền chứa mọi phương án trộn của hai phương án khả thi. Tập vùng chết ở trên giống khung phải.
+Một cách dễ hình dung, một miền tốt cho tối ưu là miền chứa mọi phương án trộn của hai phương án khả thi. Đây mới là trực giác, chưa phải định nghĩa.
 
-### 6.2 Định nghĩa tập lồi
+### 6.2 Tổ hợp lồi và tập lồi
+
+Phương án trộn của hai điểm được gọi là tổ hợp lồi, và tập lồi được định nghĩa qua tổ hợp lồi như sau.
 
 ::: definition Định nghĩa 01.18 (Tổ hợp lồi của hai điểm và tập lồi)
 Cho $x,y\in\mathbb R^d$ và $\theta\in[0,1]$. Điểm $\theta x+(1-\theta)y$ là một tổ hợp lồi của $x$ và $y$; tập mọi tổ hợp lồi của $x$ và $y$ là đoạn thẳng nối $x$ và $y$.
@@ -1253,9 +1219,9 @@ $$
 
 Định nghĩa có hai lượng từ "với mọi": điều kiện phải đúng cho mọi cặp điểm của tập, và với mỗi cặp phải đúng cho toàn bộ $\theta$ trong $[0,1]$.
 
-Để chứng minh một tập lồi, lấy $x,y\in C$ và $\theta\in[0,1]$ tùy ý rồi suy ra $z_\theta\in C$. Để bác bỏ, chỉ cần một bộ $x,y,\theta$ với $z_\theta\notin C$. Theo định nghĩa, tập rỗng và tập một điểm đều lồi, vì không có cặp điểm nào vi phạm (6.1).
+Để chứng minh một tập lồi, ta lấy $x,y\in C$ và $\theta\in[0,1]$ tùy ý rồi suy ra $z_\theta\in C$, còn để bác bỏ, chỉ cần một bộ $x,y,\theta$ với $z_\theta\notin C$. Theo định nghĩa, tập rỗng và tập một điểm đều lồi, vì không có cặp điểm nào vi phạm (6.1).
 
-Hai ví dụ và hai phản ví dụ minh họa định nghĩa.
+Hai ví dụ và hai phản ví dụ sau minh họa định nghĩa.
 
 - Đoạn $C=[-u_{\max},u_{\max}]$ của ca điều khiển lồi. Nếu $\lvert u\rvert\le u_{\max}$ và $\lvert v\rvert\le u_{\max}$ thì theo bất đẳng thức tam giác $\lvert\theta u+(1-\theta)v\rvert\le\theta\lvert u\rvert+(1-\theta)\lvert v\rvert\le u_{\max}$.
 - Toàn không gian $\mathbb R^d$ lồi vì mọi tổ hợp của hai vector vẫn là một vector của $\mathbb R^d$.
@@ -1274,7 +1240,7 @@ Do đó mọi không gian con là tập affine, mọi tập affine là tập l�
 
 ### 6.3 Các tập lồi cơ bản và phép bảo toàn
 
-Kiểm tra (6.1) trực tiếp cho từng miền là việc lặp lại. Cách làm hiệu quả hơn là có sẵn một danh sách tập lồi cơ bản và một danh sách phép ghép giữ tính lồi, rồi nhận dạng miền như một kết quả ghép.
+Kiểm tra (6.1) trực tiếp cho từng miền là việc lặp lại. Thay vào đó, chúng ta lập sẵn một danh sách tập lồi cơ bản và một danh sách phép ghép giữ tính lồi, rồi nhận dạng miền như một kết quả ghép. Các tập lồi cơ bản cần cho chương được liệt kê trong mệnh đề sau.
 
 ::: proposition Mệnh đề 01.19 (Các tập lồi cơ bản)
 **Giả thiết.** $A\in\mathbb R^{k\times d}$, $b\in\mathbb R^k$; $a\in\mathbb R^d$, $a\ne0$, và $\beta\in\mathbb R$; các số $\alpha_j\le\beta_j$, $j=1,\ldots,d$; $c\in\mathbb R^d$ và $r\ge0$.
@@ -1316,6 +1282,8 @@ $$
 
 Trong chứng minh (b), đẳng thức đúng với mọi $\theta\in\mathbb R$, nên tập affine còn chứa cả đường thẳng qua hai điểm của nó. Trong (c), (d), (e), bước bất đẳng thức cần $\theta\in[0,1]$. Đó là chỗ hai lượng từ của Định nghĩa 01.18 được dùng.
 
+Từ các tập cơ bản, ta tạo được tập lồi mới bằng các phép ghép trong mệnh đề sau.
+
 ::: proposition Mệnh đề 01.20 (Các phép bảo toàn tính lồi của tập)
 **Giả thiết.** $C_\gamma\subseteq\mathbb R^d$ lồi với mọi $\gamma$ trong một tập chỉ số $\Gamma$ (hữu hạn hay vô hạn); $C\subseteq\mathbb R^d$ và $E\subseteq\mathbb R^k$ lồi; $A\in\mathbb R^{k\times d}$, $b\in\mathbb R^k$.
 
@@ -1342,7 +1310,7 @@ Gọi $z=\theta x+(1-\theta)y$ với $\theta\in[0,1]$.
 Trong cả (b) và (c), đẳng thức $A z+b=\theta(Ax+b)+(1-\theta)(Ay+b)$ dùng $\theta+(1-\theta)=1$ để tách hằng số $b$. $\square$
 :::
 
-Trong mô hình hóa, giao là phép được dùng nhiều nhất: một điểm thỏa đồng thời nhiều ràng buộc là một điểm thuộc giao của các tập ràng buộc.
+Trong mô hình hóa, giao là phép được dùng nhiều nhất, vì một điểm thỏa đồng thời nhiều ràng buộc là một điểm thuộc giao của các tập ràng buộc.
 
 Nghịch ảnh affine dùng khi ràng buộc đặt lên một đại lượng phụ thuộc affine vào biến, chẳng hạn dự đoán $Xw$ của một mô hình tuyến tính bị yêu cầu nằm trong một khoảng.
 
@@ -1390,7 +1358,7 @@ Tính lồi độc lập với tính đóng và tính bị chặn: nửa không 
 - Quả cầu chuẩn $\{w\mid\lVert w\rVert_2\le r\}$ là miền của tham số khi chuẩn trọng số bị giới hạn.
 - Hộp và giao của hộp với nghịch ảnh affine là miền của nhiễu đối kháng trong Ví dụ 01.10(c).
 
-Mệnh đề 01.19 và 01.20 cho phép chứng nhận các miền này lồi mà không tính trực tiếp (6.1). Kết luận đó là một nửa giả thiết của Định lý 01.33 ở Mục 8.
+Mệnh đề 01.19 và 01.20 cho phép chứng nhận các miền này lồi mà không tính trực tiếp (6.1), và kết luận đó là một nửa giả thiết của Định lý 01.33 ở Mục 8.
 
 ::: exercise Bài tập 01.7
 Xác định tập nào sau đây lồi; với tập lồi, nêu căn cứ theo Mệnh đề 01.19 và 01.20; với tập không lồi, cho bộ $x,y,\theta$ vi phạm điều kiện (6.1), $\theta x+(1-\theta)y\in C$ với mọi $x,y\in C$, $\theta\in[0,1]$.
@@ -1423,7 +1391,7 @@ Với hai số $s_1,s_2$ và $\theta\in[0,1]$, tính hiệu $\theta s_1^2+(1-\th
 :::
 
 ::: solution
-**Bước 1 (một bất đẳng thức cho hai số).** Khai triển cho
+**Bước 1 (một bất đẳng thức cho hai số).** Khai triển hiệu cần xét, ta có
 
 $$
 \begin{aligned}
@@ -1433,7 +1401,7 @@ $$
 \end{aligned}
 $$
 
-dùng $\theta-\theta^2=\theta(1-\theta)$ và $(1-\theta)-(1-\theta)^2=\theta(1-\theta)$.
+trong đó dòng thứ nhất dùng $\theta-\theta^2=\theta(1-\theta)$ và $(1-\theta)-(1-\theta)^2=\theta(1-\theta)$.
 
 **Bước 2 (kiểm tra (6.1)).** Lấy $x,y\in P$ và $z=\theta x+(1-\theta)y$. Khi đó
 
@@ -1450,25 +1418,17 @@ Bất đẳng thức thứ nhất dùng $x,y\in P$ và $\theta,1-\theta\ge0$. B�
 Phép tính ở Bước 1 cũng là phép kiểm tra hàm $s\mapsto s^2$ lồi theo định nghĩa ở Mục 7 (Ví dụ 01.11(a)).
 :::
 
-Chuỗi suy luận của mục là:
+Với định nghĩa tập lồi (Định nghĩa 01.18), Mệnh đề 01.19 cho danh sách tập cơ bản và Mệnh đề 01.20 cho các phép ghép giữ tính lồi. Ghép hai danh sách này, ta chứng nhận được miền của ba ca đều lồi (Ví dụ 01.10), và đó là câu trả lời cho câu hỏi 2 của Nhận xét 01.17.
 
-1. Định nghĩa 01.18 nêu tập lồi;
-2. Mệnh đề 01.19 cho danh sách tập cơ bản và Mệnh đề 01.20 cho các phép ghép;
-3. Ví dụ 01.10 chứng nhận miền của ba ca.
-
-Đích của mục là câu trả lời cho câu hỏi 2 của Nhận xét 01.17: miền của ba ca đều lồi.
-
-Miền lồi mới là một nửa của chứng nhận. Hàm $f(x)=x^3-3x$ trong Ví dụ 01.8 được xét trên đoạn $[-3,3]$, một tập lồi theo Mệnh đề 01.19(d), mà vẫn có cực tiểu địa phương $x=1$ không toàn cục.
-
-Như vậy hình dạng của miền không đủ; hàm mục tiêu cũng phải có hình dạng phù hợp. Mục 7 định nghĩa hình dạng đó và xây các tiêu chuẩn để kiểm tra nó.
+Tuy nhiên, miền lồi mới là một nửa của chứng nhận. Hàm $f(x)=x^3-3x$ trong Ví dụ 01.8 được xét trên đoạn $[-3,3]$, một tập lồi theo Mệnh đề 01.19(d), mà vẫn có cực tiểu địa phương $x=1$ không toàn cục, nên hình dạng của miền không đủ và hàm mục tiêu cũng phải có hình dạng phù hợp. Hình dạng đó, cùng các tiêu chuẩn để kiểm tra nó, là nội dung của Mục 7.
 
 ## 7. Hàm lồi
 
 Hàm $f(x)=x^3-3x$ trên $[-3,3]$ có hai "đáy": một đáy nông tại $x=1$ và một đáy sâu tại đầu mút $x=-3$. Giữa hai đáy, đồ thị đi lên qua đỉnh $x=-1$. Một hàm phù hợp cho tối ưu không được có đỉnh như vậy giữa hai điểm.
 
-Mục này định nghĩa hàm lồi, liên hệ nó với tập lồi qua tập mức dưới, chứng minh hai tiêu chuẩn vi phân (bậc nhất và bậc hai) và các phép ghép giữ tính lồi. Sau đó mục dùng các công cụ này để chứng nhận ba hàm $q$, $J$ và $L$ lồi.
+Trong mục này, chúng ta định nghĩa hàm lồi và liên hệ nó với tập lồi qua tập mức dưới. Sau đó, chúng ta chứng minh hai tiêu chuẩn vi phân (bậc nhất và bậc hai) cùng các phép ghép giữ tính lồi, rồi dùng các công cụ này để chứng nhận ba hàm $q$, $J$ và $L$ lồi.
 
-### 7.1 Trực giác: dây cung và đồ thị
+### 7.1 Dây cung và đồ thị
 
 Với $x,y$ trong một miền lồi $C$, dây cung (chord) là đoạn thẳng nối hai điểm $(x,f(x))$ và $(y,f(y))$ trên đồ thị. Tại $z=\theta x+(1-\theta)y$, độ cao của dây cung là $\theta f(x)+(1-\theta)f(y)$, trung bình có trọng số của hai giá trị hàm.
 
@@ -1478,11 +1438,13 @@ Ngược lại, hàm chi phí $q(u)=\tfrac32u^2-6u+9$ của Ví dụ 01.1 có d�
 
 ![Ba khung so sánh đồ thị với dây cung. Khung hàm lồi: đồ thị không vượt lên trên dây cung, cho phép dấu bằng trên một đoạn. Khung giữa: tại điểm trong của dây cung, đồ thị nằm hẳn dưới dây cung khi x khác y và 0 nhỏ hơn theta nhỏ hơn 1. Khung hàm lõm: đồ thị không thấp hơn dây cung, tương đương âm f là hàm lồi. Dòng chú thích: tính chất của khung giữa mạnh hơn tính chất của khung trái nhưng không tự động suy ra nghiệm tối ưu tồn tại.](img/lec-01/convex-concave-strict.svg)
 
-Hình trên cho ba hình dạng. Trực giác là: một hàm phù hợp cho tối ưu có đồ thị không bao giờ vượt lên trên dây cung, như khung trái. Khung giữa mạnh hơn: đồ thị nằm hẳn dưới mọi dây cung giữa hai điểm khác nhau, nên đồ thị không chứa đoạn thẳng nào. Khung phải là trường hợp ngược chiều.
+Hình trên cho thấy ba hình dạng. Một cách trực quan, một hàm phù hợp cho tối ưu có đồ thị không bao giờ vượt lên trên dây cung, như ở khung trái, và mô tả này chưa phải định nghĩa. Khung giữa cho một tính chất mạnh hơn, vì đồ thị nằm hẳn dưới mọi dây cung giữa hai điểm khác nhau nên không chứa đoạn thẳng nào. Khung phải là trường hợp ngược chiều.
 
 Dòng chú thích của hình khẳng định tính chất ở khung giữa không kéo theo sự tồn tại nghiệm. Khẳng định này được tạm chấp nhận ở đây, với Ví dụ 01.6 là một trường hợp đã tính, và được phát biểu chính xác ở Nhận xét 01.43 của Mục 8.
 
-### 7.2 Định nghĩa hàm lồi
+### 7.2 Hàm lồi và hàm lõm
+
+Điều kiện "đồ thị không vượt lên trên dây cung" được viết thành một bất đẳng thức theo định nghĩa sau.
 
 ::: definition Định nghĩa 01.22 (Hàm lồi, hàm lồi chặt, hàm lõm)
 Cho $C\subseteq\mathbb R^d$ lồi và $f:C\to\mathbb R$. Hàm $f$ là lồi nếu
@@ -1497,7 +1459,7 @@ Hàm $f$ là lồi chặt (còn gọi là lồi nghiêm ngặt) nếu bất đ�
 Hàm $f$ là lõm nếu $-f$ lồi.
 :::
 
-Giả thiết $C$ lồi là cần thiết: nếu thiếu nó, điểm $\theta x+(1-\theta)y$ có thể nằm ngoài miền và vế trái của (7.1) không xác định. Vế trái là giá trị của hàm tại điểm trộn. Vế phải là giá trị trộn của hàm, tức độ cao của dây cung.
+Trong định nghĩa trên, giả thiết $C$ lồi là cần thiết, vì nếu thiếu nó, điểm $\theta x+(1-\theta)y$ có thể nằm ngoài miền và vế trái của (7.1) không xác định. Vế trái là giá trị của hàm tại điểm trộn, còn vế phải là giá trị trộn của hàm, tức độ cao của dây cung.
 
 Trong định nghĩa lồi chặt, hai trường hợp $x=y$ và $\theta\in\{0,1\}$ bị loại vì khi đó hai vế luôn bằng nhau. Từ đây trở đi chỉ dùng "lồi chặt".
 
@@ -1517,7 +1479,7 @@ Trong định nghĩa lồi chặt, hai trường hợp $x=y$ và $\theta\in\{0,1
 
 Định nghĩa 01.22 có quan hệ chặt chẽ với các khái niệm đã có. Mọi hàm lồi chặt là hàm lồi; chiều ngược lại sai, với phản ví dụ $\lvert x\rvert$ ở Ví dụ 01.11(c).
 
-Định nghĩa 01.22 là phiên bản cho hàm của Định nghĩa 01.18: cả hai so sánh một đại lượng tại điểm trộn với đại lượng trộn. Mệnh đề 01.25 dưới đây chuyển tính lồi của hàm thành tính lồi của các tập mức dưới.
+Định nghĩa 01.22 là phiên bản cho hàm của Định nghĩa 01.18, vì cả hai so sánh một đại lượng tại điểm trộn với đại lượng trộn. Mệnh đề 01.25 dưới đây chuyển tính lồi của hàm thành tính lồi của các tập mức dưới.
 
 ::: remark Nhận xét 01.23 (Hạn chế hàm lồi xuống tập con lồi)
 Nếu $f$ lồi (lồi chặt) trên $C$ và $C'\subseteq C$ là tập lồi thì $f$ lồi (lồi chặt) trên $C'$, vì (7.1) đúng cho mọi cặp điểm của $C$ thì đúng cho mọi cặp điểm của $C'$.
@@ -1527,17 +1489,17 @@ Nhận xét này cho phép chứng nhận một hàm lồi trên một miền m�
 
 ### 7.3 Tập mức dưới
 
-Ràng buộc trong Định nghĩa 01.12 có dạng $f_i(x)\le0$. Để chứng nhận miền khả thi lồi, cần biết khi nào tập $\{x\mid f_i(x)\le0\}$ lồi.
+Ràng buộc trong Định nghĩa 01.12 có dạng $f_i(x)\le0$, nên để chứng nhận miền khả thi lồi, chúng ta cần biết khi nào tập $\{x\mid f_i(x)\le0\}$ lồi.
 
-Trực giác, chưa phải định nghĩa: cắt đồ thị của hàm bằng một mặt nằm ngang ở độ cao $\alpha$. Phần miền nằm dưới mặt cắt gồm các điểm có giá trị hàm không vượt $\alpha$. Với hàm có đồ thị không vượt lên trên dây cung, phần miền này không có lỗ, vì trên đoạn nối hai điểm của nó, đồ thị nằm dưới một dây cung có hai đầu không cao hơn $\alpha$. Định nghĩa sau gọi tên tập này.
+Để dễ hình dung, ta cắt đồ thị của hàm bằng một mặt nằm ngang ở độ cao $\alpha$, và phần miền nằm dưới mặt cắt gồm các điểm có giá trị hàm không vượt $\alpha$. Với hàm có đồ thị không vượt lên trên dây cung, phần miền này không có lỗ, vì trên đoạn nối hai điểm của nó, đồ thị nằm dưới một dây cung có hai đầu không cao hơn $\alpha$. Hình ảnh này chưa phải định nghĩa, và định nghĩa sau gọi tên tập đó.
 
 ::: definition Định nghĩa 01.24 (Tập mức dưới)
 Cho $C\subseteq\mathbb R^d$, $f:C\to\mathbb R$ và $\alpha\in\mathbb R$. Tập mức dưới (sublevel set) của $f$ ở mức $\alpha$ là $S_\alpha(f)=\{x\in C\mid f(x)\le\alpha\}$.
 :::
 
-Tập mức dưới là phần miền nơi $f$ không vượt mức $\alpha$, một tập con của $\mathbb R^d$, và là tập khả thi của một ràng buộc $f(x)\le\alpha$.
+Trong định nghĩa trên, tập mức dưới là phần miền nơi $f$ không vượt mức $\alpha$, một tập con của $\mathbb R^d$, và là tập khả thi của một ràng buộc $f(x)\le\alpha$.
 
-So với Định nghĩa 01.18, tập mức dưới là một cách sinh ra tập từ một hàm: với $f(x)=\lVert x-c\rVert_2$, tập $S_r(f)$ là quả cầu $B(c,r)$ của Mệnh đề 01.19(e). Một tập mức dưới có thể rỗng, chẳng hạn $S_{-1}(x^2)$.
+So với Định nghĩa 01.18, tập mức dưới là một cách sinh ra tập từ một hàm, chẳng hạn với $f(x)=\lVert x-c\rVert_2$, tập $S_r(f)$ là quả cầu $B(c,r)$ của Mệnh đề 01.19(e). Một tập mức dưới có thể rỗng, chẳng hạn $S_{-1}(x^2)$. Quan hệ giữa tính lồi của hàm và tính lồi của tập mức dưới được phát biểu trong mệnh đề sau.
 
 ::: proposition Mệnh đề 01.25 (Tập mức dưới của hàm lồi)
 **Giả thiết.** $C\subseteq\mathbb R^d$ lồi và $f:C\to\mathbb R$ lồi.
@@ -1559,12 +1521,12 @@ f(\theta x+(1-\theta)y)&\le\theta f(x)+(1-\theta)f(y)\\
 \end{aligned}
 $$
 
-Bất đẳng thức thứ hai dùng $f(x),f(y)\le\alpha$ và $\theta,1-\theta\ge0$. $\square$
+Trong đó, bất đẳng thức thứ hai dùng $f(x),f(y)\le\alpha$ và $\theta,1-\theta\ge0$. $\square$
 :::
 
 Mệnh đề 01.25 suy trực tiếp từ Định nghĩa 01.22 áp dụng cho hai điểm cùng nằm dưới mức $\alpha$, nên không cần kết quả nào khác.
 
-Kết luận của nó yếu hơn tính lồi: tính lồi của mọi tập mức dưới không kéo theo tính lồi của hàm (Bài tập 01.9). Vì vậy mệnh đề chỉ dùng được theo một chiều, từ hàm sang tập.
+Tuy nhiên, kết luận của nó yếu hơn tính lồi, vì tính lồi của mọi tập mức dưới không kéo theo tính lồi của hàm (Bài tập 01.9). Do đó, mệnh đề chỉ dùng được theo một chiều, từ hàm sang tập.
 
 **Trong học máy.** Mệnh đề 01.25 chứng nhận các ràng buộc dạng "một hàm lồi không vượt ngưỡng". Ràng buộc chuẩn trọng số $\lVert w\rVert_2\le r$ là tập mức dưới của hàm lồi $\lVert w\rVert_2$ (Ví dụ 01.11(c)), nên lồi. Ràng buộc "mất mát logistic trên một tập dữ liệu kiểm định không vượt $\alpha$", tức $\{w\mid L(w)\le\alpha\}$, lồi khi $L$ lồi, điều sẽ được chứng nhận ở Ví dụ 01.14.
 
@@ -1589,9 +1551,9 @@ Với $\alpha\ge0$, giải $\sqrt{\lvert x\rvert}\le\alpha$. Để bác bỏ tí
 
 ### 7.4 Điều kiện bậc nhất
 
-Kiểm tra (7.1) trực tiếp đòi hỏi xét mọi bộ $x,y,\theta$. Với hàm khả vi, có một tiêu chuẩn tương đương qua gradient, và tiêu chuẩn này còn biến điều kiện gradient bằng không thành điều kiện đủ cho cực tiểu toàn cục. Kết quả dưới đây dùng Định nghĩa 01.22 và khái niệm gradient của Bài 00.
+Kiểm tra (7.1) trực tiếp đòi hỏi xét mọi bộ $x,y,\theta$. Với hàm khả vi, có một tiêu chuẩn tương đương qua gradient, và tiêu chuẩn này còn biến điều kiện gradient bằng không thành điều kiện đủ cho cực tiểu toàn cục. Tiêu chuẩn này chỉ cần Định nghĩa 01.22 và khái niệm gradient của Bài 00.
 
-Trực giác, chưa phải định lý: với hàm có đồ thị không vượt lên trên dây cung, tiếp tuyến tại mọi điểm nằm dưới đồ thị. Phép tính tay với hàm $q(u)=\tfrac32u^2-6u+9$ của Ví dụ 01.1 tại $u=1$ minh họa điều này. Ta có $q(1)=\tfrac92$ và $q'(1)=-3$, nên tiếp tuyến là $T(u)=\tfrac92-3(u-1)$.
+Một cách trực quan, với hàm có đồ thị không vượt lên trên dây cung, tiếp tuyến tại mọi điểm nằm dưới đồ thị. Đây mới là quan sát, chưa phải định lý, và phép tính tay với hàm $q(u)=\tfrac32u^2-6u+9$ của Ví dụ 01.1 tại $u=1$ minh họa điều này. Ta có $q(1)=\tfrac92$ và $q'(1)=-3$, nên tiếp tuyến là $T(u)=\tfrac92-3(u-1)$.
 
 - Tại $u=-1$, $T(-1)=\tfrac92+6=\tfrac{21}2$ còn $q(-1)=\tfrac{33}2\ge\tfrac{21}2$.
 - Tại $u=3$, $T(3)=-\tfrac32$ còn $q(3)=\tfrac{27}2-18+9=\tfrac92\ge-\tfrac32$.
@@ -1628,7 +1590,7 @@ $$
 f(x+\theta(y-x))=f(\theta y+(1-\theta)x)\le f(x)+\theta(f(y)-f(x)).
 $$
 
-Trừ $f(x)$ hai vế và chia cho $\theta>0$:
+Trừ $f(x)$ ở hai vế rồi chia cho $\theta>0$, ta có
 
 $$
 \frac{f(x+\theta(y-x))-f(x)}{\theta}\le f(y)-f(x).
@@ -1636,13 +1598,13 @@ $$
 
 **Bước 2 (chiều thuận: qua giới hạn).** Khi $\theta\to0^+$, vế trái dần tới đạo hàm theo hướng $y-x$ tại $x$, bằng $\nabla f(x)^T(y-x)$ vì $f$ khả vi tại điểm trong $x$ (Bài 00, mục "Đạo hàm theo hướng"). Giới hạn giữ chiều bất đẳng thức, cho (7.2).
 
-**Bước 3 (chiều đảo).** Giả sử (7.2) đúng. Lấy $x,y\in C$, $\theta\in[0,1]$ và $z=\theta x+(1-\theta)y$, thuộc $C$ vì $C$ lồi. Áp dụng (7.2) tại điểm $z$ cho hai điểm $x$ và $y$:
+**Bước 3 (chiều đảo).** Giả sử (7.2) đúng. Lấy $x,y\in C$, $\theta\in[0,1]$ và $z=\theta x+(1-\theta)y$, thuộc $C$ vì $C$ lồi. Áp dụng (7.2) tại điểm $z$ cho hai điểm $x$ và $y$, ta có
 
 $$
 f(x)\ge f(z)+\nabla f(z)^T(x-z),\qquad f(y)\ge f(z)+\nabla f(z)^T(y-z).
 $$
 
-Nhân bất đẳng thức thứ nhất với $\theta\ge0$, thứ hai với $1-\theta\ge0$ và cộng lại:
+Nhân bất đẳng thức thứ nhất với $\theta\ge0$, bất đẳng thức thứ hai với $1-\theta\ge0$ rồi cộng lại, ta được
 
 $$
 \begin{aligned}
@@ -1656,9 +1618,9 @@ vì $\theta x+(1-\theta)y-z=0$. Đó là (7.1).
 **Bước 4 (trường hợp chặt).** Nếu (7.2) chặt với mọi cặp điểm khác nhau, thì với $x\ne y$ và $\theta\in(0,1)$, ta có $z\ne x$ và $z\ne y$. Do đó cả hai bất đẳng thức ở Bước 3 là chặt, và tổng với hệ số dương cho (7.1) chặt. $\square$
 :::
 
-Vế phải của (7.2) là xấp xỉ tuyến tính (khai triển Taylor bậc nhất) của $f$ quanh $x$, đánh giá tại $y$. Đồ thị của nó là siêu phẳng tiếp xúc với đồ thị $f$ tại $(x,f(x))$. Định lý 01.26 nói rằng $f$ lồi khi và chỉ khi mọi siêu phẳng tiếp xúc nằm dưới đồ thị. Trong một chiều, (7.2) là $f(y)\ge f(x)+f'(x)(y-x)$: tiếp tuyến nằm dưới đồ thị.
+Vế phải của (7.2) là xấp xỉ tuyến tính (khai triển Taylor bậc nhất) của $f$ quanh $x$, đánh giá tại $y$. Đồ thị của nó là siêu phẳng tiếp xúc với đồ thị $f$ tại $(x,f(x))$. Định lý 01.26 cho thấy $f$ lồi khi và chỉ khi mọi siêu phẳng tiếp xúc nằm dưới đồ thị. Trong một chiều, (7.2) là $f(y)\ge f(x)+f'(x)(y-x)$, tức tiếp tuyến nằm dưới đồ thị.
 
-So với Định nghĩa 01.22, điều kiện bậc nhất cần thêm giả thiết khả vi và miền mở. Đổi lại, nó cho một thông tin toàn cục từ đạo hàm tại một điểm: giá trị của $f$ ở mọi nơi bị chặn dưới bởi một hàm affine xác định tại $x$. Hệ quả sau khai thác đúng thông tin đó.
+So với Định nghĩa 01.22, điều kiện bậc nhất cần thêm giả thiết khả vi và miền mở. Bù lại, từ đạo hàm tại một điểm $x$, nó cho một thông tin toàn cục, đó là giá trị của $f$ ở mọi nơi bị chặn dưới bởi một hàm affine xác định tại $x$. Hệ quả sau dùng thông tin này để chứng nhận tối ưu toàn cục.
 
 ::: corollary Hệ quả 01.27 (Điều kiện đủ tối ưu cho hàm lồi khả vi)
 **Giả thiết.** $D\subseteq\mathbb R^d$ mở và lồi; $f:D\to\mathbb R$ lồi và khả vi; $C\subseteq D$; $x^*\in C$ thỏa
@@ -1683,7 +1645,7 @@ $$
 
 Hệ quả 01.27 là bước suy ra đầu tiên từ tính lồi tới tính tối ưu toàn cục. Nó mạnh hơn điều kiện "gradient bằng không" của Bài 00 theo hai nghĩa: điều kiện cần trở thành điều kiện đủ, và áp dụng được cho nghiệm trên biên qua (7.3).
 
-Cái giá là giả thiết lồi. Với $f(x)=x^3$ trên $\mathbb R$, $f'(0)=0$ nhưng $0$ không phải cực tiểu; giả thiết lồi bị vi phạm theo Nhận xét 01.32.
+Tuy nhiên, hệ quả cần giả thiết lồi. Với $f(x)=x^3$ trên $\mathbb R$, $f'(0)=0$ nhưng $0$ không phải cực tiểu, và giả thiết lồi bị vi phạm theo Nhận xét 01.32.
 
 ::: example Ví dụ 01.12 (Điều kiện bậc nhất trên ba ca)
 **Dữ kiện.** Hệ quả 01.27: nếu $f$ lồi, khả vi trên một tập mở lồi $D\supseteq C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$ (7.3), thì $x^*$ là cực tiểu toàn cục của $f$ trên $C$. Ví dụ 01.4: $J(w)=\lVert Xw-y\rVert_2^2$ với $X=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix}$, $y=(1,2,2)^T$, $\nabla J(w)=2X^T(Xw-y)$; tại $w^*=(7/6,1/2)^T$, $Xw^*-y=(1/6,-1/3,1/6)^T$ và $X^T(Xw^*-y)=0$.
@@ -1697,19 +1659,19 @@ Cái giá là giả thiết lồi. Với $f(x)=x^3$ trên $\mathbb R$, $f'(0)=0$
 **Kiểm tra lại.** Ở (a), tại $u=-1$: $q'(1)(-1-1)=6\ge0$, và trực tiếp $q(-1)=\tfrac{33}2\ge\tfrac92$.
 :::
 
-**Trong học máy.** Trong huấn luyện, $f$ là hàm mất mát trên tập huấn luyện và $x^*$ là tham số mà thuật toán dừng lại. Hệ quả 01.27 cho biết: nếu mất mát lồi theo tham số, như $J$ của hồi quy tuyến tính hay $L$ của hồi quy logistic, thì mọi điểm có gradient bằng không là nghiệm toàn cục.
+**Trong học máy.** Trong huấn luyện, $f$ là hàm mất mát trên tập huấn luyện và $x^*$ là tham số mà thuật toán dừng lại. Hệ quả 01.27 cho biết nếu mất mát lồi theo tham số, như $J$ của hồi quy tuyến tính hay $L$ của hồi quy logistic, thì mọi điểm có gradient bằng không là nghiệm toàn cục.
 
-Tiêu chí dừng thực tế là chuẩn gradient nhỏ chứ không bằng không. Hệ quả 01.27 chỉ nói về gradient bằng không, và để suy ra một điểm có gradient nhỏ là gần tối ưu cần thêm giả thiết như lồi mạnh (Định nghĩa 01.39).
+Trong thực hành, người ta dừng thuật toán khi chuẩn gradient nhỏ chứ không đợi nó bằng không. Hệ quả 01.27 chỉ nói về gradient bằng không, và để suy ra một điểm có gradient nhỏ là gần tối ưu cần thêm giả thiết như lồi mạnh (Định nghĩa 01.39).
 
-Với mạng nơ-ron, mất mát không lồi theo tham số, giả thiết của hệ quả bị vi phạm, và một điểm có gradient bằng không có thể là điểm yên ngựa. Tình huống 01.3 tính cụ thể một trường hợp như vậy. Bài 05b nghiên cứu tốc độ mà hạ gradient tiến tới điểm có $\nabla f=0$ trong cả hai trường hợp.
+Với mạng nơ-ron, mất mát không lồi theo tham số, giả thiết của hệ quả bị vi phạm, và một điểm có gradient bằng không có thể là điểm yên ngựa. Tình huống 01.3 tính cụ thể một trường hợp như vậy. Trong Bài 05b, chúng ta nghiên cứu tốc độ mà hạ gradient tiến tới điểm có $\nabla f=0$ trong cả hai trường hợp.
 
 ### 7.5 Điều kiện bậc hai
 
-Điều kiện bậc nhất vẫn là một bất đẳng thức cho mọi cặp điểm. Khi $f$ khả vi hai lần, có thể thay nó bằng một kiểm tra tại từng điểm trên ma trận Hessian.
+Điều kiện bậc nhất vẫn đòi kiểm một bất đẳng thức cho mọi cặp điểm. Khi $f$ khả vi hai lần, ta có thể thay nó bằng một kiểm tra tại từng điểm trên ma trận Hessian.
 
-Đường đi gồm hai bước: đưa bài toán nhiều biến về các hàm một biến trên các đường thẳng, rồi xử lý hàm một biến bằng đạo hàm bậc hai. Định lý 01.30 cần hai bổ đề dưới đây, và qua Bổ đề 01.29 nó dùng lại Định lý 01.26.
+Đầu tiên, chúng ta đưa bài toán nhiều biến về các hàm một biến trên các đường thẳng, sau đó xử lý hàm một biến bằng đạo hàm bậc hai. Định lý 01.30 cần hai bổ đề ứng với hai bước đó, và qua Bổ đề 01.29 nó dùng lại Định lý 01.26.
 
-Trực giác, chưa phải định lý: điều kiện $\nabla^2f(x)\succeq0$ nghĩa là độ cong của $f$ theo mọi hướng $v$ tại $x$, tức $v^T\nabla^2f(x)v$, không âm, nên mọi lát cắt của đồ thị theo một đường thẳng đều cong lên. Với hàm $q(u)=\tfrac32u^2-6u+9$ của Ví dụ 01.1, chỉ có một hướng và $q''(u)=3>0$ tại mọi $u$. Parabol cong lên ở mọi điểm, đúng với các dây cung và tiếp tuyến đã tính ở Mục 7.1 và 7.4.
+Về mặt hình học, điều kiện $\nabla^2f(x)\succeq0$ nghĩa là độ cong của $f$ theo mọi hướng $v$ tại $x$, tức $v^T\nabla^2f(x)v$, không âm, nên mọi lát cắt của đồ thị theo một đường thẳng đều cong lên. Đây mới là trực giác, chưa phải định lý. Với hàm $q(u)=\tfrac32u^2-6u+9$ của Ví dụ 01.1, chỉ có một hướng và $q''(u)=3>0$ tại mọi $u$, nên parabol cong lên ở mọi điểm, khớp với các dây cung và tiếp tuyến đã tính ở Mục 7.1 và 7.4.
 
 ::: lemma Bổ đề 01.28 (Hạn chế lên đường thẳng)
 **Giả thiết.** $C\subseteq\mathbb R^d$ lồi, $f:C\to\mathbb R$. Với $x\in C$ và $v\in\mathbb R^d$, đặt $T_{x,v}=\{t\in\mathbb R\mid x+tv\in C\}$ và $\varphi_{x,v}(t)=f(x+tv)$ trên $T_{x,v}$.
@@ -1753,13 +1715,13 @@ Tính lồi (lồi chặt) của $\varphi_{x,v}$ tại $0$ và $1$ cho đúng (7
 :::
 
 ::: proof Chứng minh Bổ đề 01.29
-**Bước 1 (phần (a), chiều thuận: $\varphi'$ không giảm).** Theo Định lý 01.26 với $d=1$, với $s,t\in T$:
+**Bước 1 (phần (a), chiều thuận: $\varphi'$ không giảm).** Theo Định lý 01.26 với $d=1$, với $s,t\in T$, ta có
 
 $$
 \varphi(s)\ge\varphi(t)+\varphi'(t)(s-t),\qquad\varphi(t)\ge\varphi(s)+\varphi'(s)(t-s).
 $$
 
-Cộng hai bất đẳng thức: $0\ge(\varphi'(t)-\varphi'(s))(s-t)$, tức $(\varphi'(s)-\varphi'(t))(s-t)\ge0$. Vậy $\varphi'$ không giảm.
+Cộng hai bất đẳng thức, ta được $0\ge(\varphi'(t)-\varphi'(s))(s-t)$, tức $(\varphi'(s)-\varphi'(t))(s-t)\ge0$. Suy ra $\varphi'$ không giảm.
 
 **Bước 2 (phần (a), chiều thuận: $\varphi''\ge0$).** Đạo hàm của một hàm không giảm là không âm:
 
@@ -1769,13 +1731,15 @@ $$
 
 **Bước 3 (phần (a), chiều đảo).** Nếu $\varphi''\ge0$ thì $\varphi'$ không giảm. Với $s\ne t$ thuộc $T$, định lý giá trị trung bình cho $\xi$ nằm giữa $s$ và $t$ với $\varphi(s)-\varphi(t)=\varphi'(\xi)(s-t)$. Xét hai trường hợp.
 
-- Nếu $s>t$ thì $\xi>t$, $\varphi'(\xi)\ge\varphi'(t)$, và nhân với $s-t>0$ được $\varphi'(\xi)(s-t)\ge\varphi'(t)(s-t)$.
+- Nếu $s>t$ thì $\xi>t$, $\varphi'(\xi)\ge\varphi'(t)$, và nhân với $s-t>0$, ta được $\varphi'(\xi)(s-t)\ge\varphi'(t)(s-t)$.
 - Nếu $s<t$ thì $\xi<t$, $\varphi'(\xi)\le\varphi'(t)$, và nhân với $s-t<0$ đổi chiều, cho cùng bất đẳng thức.
 
 Vậy $\varphi(s)\ge\varphi(t)+\varphi'(t)(s-t)$, và Định lý 01.26 cho $\varphi$ lồi.
 
 **Bước 4 (phần (b)).** Nếu $\varphi''>0$ thì $\varphi'$ tăng chặt. Các bất đẳng thức $\varphi'(\xi)\ge\varphi'(t)$ và $\varphi'(\xi)\le\varphi'(t)$ ở Bước 3 trở thành chặt, nên $\varphi(s)>\varphi(t)+\varphi'(t)(s-t)$ với $s\ne t$. Phần cuối của Định lý 01.26 cho $\varphi$ lồi chặt. $\square$
 :::
+
+Ghép hai bổ đề trên, ta được điều kiện bậc hai cho hàm nhiều biến.
 
 ::: theorem Định lý 01.30 (Điều kiện bậc hai)
 **Giả thiết.** $C\subseteq\mathbb R^d$ mở và lồi; $f:C\to\mathbb R$ khả vi hai lần.
@@ -1791,7 +1755,7 @@ Vậy $\varphi(s)\ge\varphi(t)+\varphi'(t)(s-t)$, và Định lý 01.26 cho $\va
 :::
 
 ::: proof Chứng minh Định lý 01.30
-**Bước 1 (đạo hàm bậc hai trên lát cắt).** Với $x\in C$ và $v\ne0$, tập $T_{x,v}$ là một khoảng mở chứa $0$, vì $C$ mở. Theo quy tắc dây chuyền (Bài 00),
+**Bước 1 (đạo hàm bậc hai trên lát cắt).** Với $x\in C$ và $v\ne0$, tập $T_{x,v}$ là một khoảng mở chứa $0$, vì $C$ mở. Theo quy tắc dây chuyền (Bài 00), ta có
 
 $$
 \varphi_{x,v}''(t)=v^T\nabla^2f(x+tv)v .
@@ -1804,15 +1768,15 @@ $$
 **Bước 4 (phần (b)).** Nếu $\nabla^2f\succ0$ thì $\varphi_{x,v}''>0$ với mọi $v\ne0$. Do đó mọi $\varphi_{x,v}$ lồi chặt theo Bổ đề 01.29(b), và $f$ lồi chặt theo Bổ đề 01.28. $\square$
 :::
 
-Định lý 01.30 thay bất đẳng thức cho mọi cặp điểm bằng một điều kiện tại từng điểm; nó cần thêm giả thiết khả vi hai lần so với Định lý 01.26. Phần (a) là tương đương, còn phần (b) chỉ là điều kiện đủ.
+So với Định lý 01.26, Định lý 01.30 cần thêm giả thiết khả vi hai lần nhưng thay bất đẳng thức cho mọi cặp điểm bằng một điều kiện tại từng điểm. Phần (a) là tương đương, còn phần (b) chỉ là điều kiện đủ.
 
 **Trong học máy.** Hessian của hàm mất mát theo tham số mô tả độ cong của bề mặt mất mát. Với hồi quy tuyến tính, Hessian $2X^TX$ không phụ thuộc tham số, và Định lý 01.30 chứng nhận tính lồi bằng một phép kiểm tra trên dữ liệu.
 
-Với mạng nơ-ron, Hessian thường có giá trị riêng âm tại một số điểm, và Định lý 01.30(a) cho thấy ngay mất mát không lồi. Tình huống 01.3 tính một Hessian như vậy. Bài 06 dùng độ cong này để xây các phương pháp bậc hai.
+Với mạng nơ-ron, Hessian thường có giá trị riêng âm tại một số điểm, và Định lý 01.30(a) cho thấy ngay mất mát không lồi. Tình huống 01.3 tính một Hessian như vậy. Trong Bài 06, chúng ta dùng độ cong này để xây các phương pháp bậc hai.
 
 ![Hai khung. Khung trái: đồ thị một hàm lồi một biến luôn nằm trên tiếp tuyến tại x, minh họa f(y) lớn hơn hoặc bằng f(x) cộng gradient của f tại x nhân (y − x). Khung phải: các đường mức elip của một hàm hai biến và một lát cắt theo hướng d; hàm một biến phi(t) trên lát cắt cong lên, minh họa d chuyển vị H(x) d lớn hơn hoặc bằng 0 với mọi d, tương đương H(x) nửa xác định dương.](img/lec-01/first-second-order-convexity.svg)
 
-Hình trên đặt hai tiêu chuẩn cạnh nhau. Khung trái minh họa (7.2). Khung phải minh họa chứng minh của Định lý 01.30: mỗi lát cắt theo một hướng $d$ là một hàm một biến $\varphi(t)$, và điều kiện bậc hai đòi mọi lát cắt cong lên.
+Hình trên đặt hai tiêu chuẩn cạnh nhau, khung trái cho (7.2) và khung phải cho chứng minh của Định lý 01.30. Ở khung phải, mỗi lát cắt theo một hướng $d$ là một hàm một biến $\varphi(t)$, và điều kiện bậc hai đòi mọi lát cắt cong lên.
 
 Trong hình, $d$ là vector hướng, đóng vai trò của $v$ trong Định lý 01.30 (không phải số chiều). $H(x)$ là Hessian, và chữ viết tắt PSD nghĩa là nửa xác định dương (positive semidefinite).
 
@@ -1838,7 +1802,7 @@ nên $Q\succ0$.
 **Kiểm tra lại.** Ở (b), hai giá trị riêng của $Q$ là $\tfrac{5\pm\sqrt5}2$, cả hai dương. Ở (a) với $\lambda=\tfrac12$, $q''=3$, khớp với hệ số $\tfrac32$ của $u^2$ trong Ví dụ 01.1.
 :::
 
-Ví dụ 01.13(e) chỉ ra một khoảng trống thật của Định lý 01.30: Hessian suy biến tại một điểm không ngăn hàm lồi chặt. Khoảng trống này không gây hại cho chương, vì mọi hàm cần chứng nhận lồi chặt ở đây đều có Hessian xác định dương.
+Ví dụ 01.13(e) cho thấy Định lý 01.30 có một khoảng trống, vì Hessian suy biến tại một điểm không ngăn hàm lồi chặt. Khoảng trống này không ảnh hưởng tới chương, do mọi hàm cần chứng nhận lồi chặt ở đây đều có Hessian xác định dương.
 
 ::: exercise Bài tập 01.10
 (a) Dùng điều kiện bậc nhất (7.2), $f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y$ (dấu $>$ khi $x\ne y$ cho lồi chặt), chứng minh $f(x)=e^x$ lồi chặt trên $\mathbb R$.
@@ -1851,13 +1815,13 @@ Ví dụ 01.13(e) chỉ ra một khoảng trống thật của Định lý 01.30
 :::
 
 ::: solution
-**(a) Bước 1 (quy về một bất đẳng thức).** $f'(x)=e^x$, nên (7.2) là $e^y\ge e^x+e^x(y-x)$. Chia cho $e^x>0$ và đặt $s=y-x$: cần $e^s\ge1+s$.
+**(a) Bước 1 (quy về một bất đẳng thức).** $f'(x)=e^x$, nên (7.2) là $e^y\ge e^x+e^x(y-x)$. Chia cho $e^x>0$ và đặt $s=y-x$, ta cần chứng minh $e^s\ge1+s$.
 
 **(a) Bước 2 (khảo sát $g$).** Hàm $g(s)=e^s-1-s$ có $g'(s)=e^s-1$, âm khi $s<0$ và dương khi $s>0$. Do đó $g$ giảm chặt trên $(-\infty,0]$, tăng chặt trên $[0,\infty)$, và $g(s)>g(0)=0$ khi $s\ne0$. Vậy (7.2) đúng với dấu $>$ khi $x\ne y$, và phần cuối của Định lý 01.26 cho $e^x$ lồi chặt.
 
 **(b) Bước 1 (tính lồi).** $f$ xác định trên miền mở $\mathbb R^2$ chứa $C$, có $\nabla^2f=2I_2\succ0$, nên lồi theo Định lý 01.30.
 
-**(b) Bước 2 (kiểm (7.3)).** $\nabla f(x)=(2(x_1-2),\ 2(x_2+1))$, nên $\nabla f(1,0)=(-2,2)$. Với $x\in C$:
+**(b) Bước 2 (kiểm (7.3)).** $\nabla f(x)=(2(x_1-2),\ 2(x_2+1))$, nên $\nabla f(1,0)=(-2,2)$. Với $x\in C$, ta có
 
 $$
 \nabla f(x^*)^T(x-x^*)=-2(x_1-1)+2x_2=2(1-x_1)+2x_2\ge0,
@@ -1870,9 +1834,9 @@ vì $x_1\le1$ và $x_2\ge0$. Theo Hệ quả 01.27, $x^*$ là cực tiểu toàn
 
 ### 7.6 Các phép ghép giữ tính lồi
 
-Hessian của $L$ phụ thuộc $w$ qua từng mẫu, và tính trực tiếp thì cồng kềnh. Một cách gọn hơn là xây hàm lồi từ các khối đã biết bằng các phép ghép giữ tính lồi.
+Hessian của $L$ phụ thuộc $w$ qua từng mẫu, nên tính trực tiếp thì cồng kềnh. Thay vào đó, chúng ta xây hàm lồi từ các khối đã biết bằng các phép ghép giữ tính lồi.
 
-Trực giác, chưa phải định lý: dây cung của tổng hai hàm là tổng hai dây cung, nên nếu đồ thị của mỗi hàm không vượt lên trên dây cung của nó thì đồ thị của tổng cũng vậy. Một phép đổi biến tuyến tính chỉ thay cách đi dọc trục mà không bẻ cong đồ thị.
+Về mặt ý tưởng, dây cung của tổng hai hàm là tổng hai dây cung, nên nếu đồ thị của mỗi hàm không vượt lên trên dây cung của nó thì đồ thị của tổng cũng vậy. Một phép đổi biến tuyến tính chỉ thay cách đi dọc trục mà không bẻ cong đồ thị. Các quan sát này chưa phải định lý, và định lý sau phát biểu chúng chính xác.
 
 ::: theorem Định lý 01.31 (Các phép bảo toàn tính lồi của hàm)
 **Giả thiết.** $C\subseteq\mathbb R^d$ lồi; $f_1,\ldots,f_k:C\to\mathbb R$ lồi; $\alpha_1,\ldots,\alpha_k\ge0$; $g:\mathbb R^p\to\mathbb R$ lồi; $A\in\mathbb R^{p\times d}$, $b\in\mathbb R^p$.
@@ -1891,7 +1855,7 @@ Trực giác, chưa phải định lý: dây cung của tổng hai hàm là tổ
 ::: proof Chứng minh Định lý 01.31
 Gọi $z=\theta x+(1-\theta)y$ với $\theta\in[0,1]$.
 
-**(a) Tổng không âm.** Nhân (7.1) của từng $f_j$ với $\alpha_j\ge0$, phép nhân với số không âm giữ chiều bất đẳng thức, rồi cộng:
+**(a) Tổng không âm.** Nhân (7.1) của từng $f_j$ với $\alpha_j\ge0$ (phép nhân với số không âm giữ chiều bất đẳng thức) rồi cộng lại, ta được
 
 $$
 \textstyle\sum_j\alpha_jf_j(z)\le\theta\sum_j\alpha_jf_j(x)+(1-\theta)\sum_j\alpha_jf_j(y).
@@ -1901,7 +1865,7 @@ Nếu $f_{j_0}$ lồi chặt và $\alpha_{j_0}>0$, thì với $x\ne y$ và $\the
 
 **(b) Hợp affine.** Đặt $h(x)=g(Ax+b)$. Vì $Az+b=\theta(Ax+b)+(1-\theta)(Ay+b)$, (7.1) của $g$ tại hai điểm $Ax+b$ và $Ay+b$ cho $h(z)\le\theta h(x)+(1-\theta)h(y)$.
 
-**(c) Cực đại từng điểm.** Với mỗi $j$,
+**(c) Cực đại từng điểm.** Với mỗi $j$, ta có
 
 $$
 \begin{aligned}
@@ -1913,15 +1877,15 @@ $$
 Lấy cực đại theo $j$ ở vế trái. $\square$
 :::
 
-Định lý 01.31 không thêm tiêu chuẩn kiểm tra mới mà cho cách xây hàm lồi từ các khối đã được chứng nhận. So với Định lý 01.30, nó không cần khả vi, nên chứng nhận được cả hàm có điểm gãy như cực đại của các hàm affine.
+Định lý 01.31 cho cách xây hàm lồi từ các khối đã được chứng nhận, thay vì thêm một tiêu chuẩn kiểm tra mới. So với Định lý 01.30, nó không cần khả vi, nên chứng nhận được cả hàm có điểm gãy như cực đại của các hàm affine.
 
-Đổi lại, nó chỉ áp dụng khi hàm có cấu trúc ghép nhận ra được, và không cho kết luận ngược: một hàm lồi không nhất thiết phân tích được thành các khối của định lý.
+Tuy nhiên, định lý chỉ áp dụng khi hàm có cấu trúc ghép nhận ra được, và không cho kết luận ngược, vì một hàm lồi không nhất thiết phân tích được thành các khối của định lý.
 
 **Trong học máy.** Hàm mất mát thực nghiệm có dạng $\frac1n\sum_i\ell(g(a_i;w),y_i)$, trong đó $g(a;w)$ là hàm dự đoán của mô hình với tham số $w$, còn $\ell(\cdot,y)$ là mất mát của một mẫu có nhãn $y$. Với hồi quy logistic, $\ell(s,y)=\log(1+e^{-ys})$, trùng với hàm $\ell$ của Định nghĩa 01.8 viết theo biên $m=ys$. Biểu thức là một tổng không âm theo mẫu.
 
 Khi mô hình tuyến tính theo tham số, $g(a_i;w)=a_i^Tw$, mỗi hạng là hợp của một hàm mất mát lồi với ánh xạ tuyến tính. Định lý 01.31(a), (b) khi đó cho tính lồi của mất mát với mọi dữ liệu, và Định lý 01.30 chỉ cần cho khối một biến.
 
-Khi $g$ phi tuyến theo tham số, như ở mạng nơ-ron, phép hợp ở (b) không còn affine và kết luận mất (Tình huống 01.3).
+Khi $g$ phi tuyến theo tham số, như ở mạng nơ-ron, phép hợp ở (b) không còn affine, nên định lý không còn cho kết luận (Tình huống 01.3).
 
 ::: example Ví dụ 01.14 (Chứng nhận tính lồi của các hàm mất mát)
 **Dữ kiện.** Các hàm mất mát: $J(w)=\sum_i(x_i^Tw-y_i)^2$ (Định nghĩa 01.4); $L(w)=\sum_i\ell(y_ia_i^Tw)$ với $\ell(m)=\log(1+e^{-m})$, $\ell''(m)=\frac{e^m}{(1+e^m)^2}>0$ (Định nghĩa 01.8, Mệnh đề 01.9(c)). Định lý 01.31: (a) tổng với hệ số không âm của các hàm lồi là lồi, và lồi chặt nếu có một hạng lồi chặt với hệ số dương; (b) $x\mapsto g(Ax+b)$ lồi khi $g$ lồi; (c) cực đại từng điểm của các hàm lồi là lồi.
@@ -1975,27 +1939,13 @@ Tính Hessian rồi kiểm tra dấu của $v^THv$; với ma trận $2\times2$ �
 **(c)** $h$ là hợp của hàm lồi $e^s$ với ánh xạ tuyến tính $x\mapsto x_1+2x_2$, nên lồi theo Định lý 01.31(b). Hessian $e^{x_1+2x_2}\begin{bmatrix}1&2\\2&4\end{bmatrix}$ có định thức $0$, nên chỉ nửa xác định dương. $h$ không lồi chặt vì $h$ không đổi dọc đường thẳng $x_1+2x_2=\text{const}$.
 :::
 
-Chuỗi suy luận của mục là:
+Như vậy, Định nghĩa 01.22 nêu hàm lồi, và Nhận xét 01.23 cho phép hạn chế nó xuống tập con lồi. Định nghĩa 01.24 và Mệnh đề 01.25 chuyển tính lồi của hàm thành tính lồi của tập mức dưới. Định lý 01.26 cho điều kiện bậc nhất, và Hệ quả 01.27 biến nó thành điều kiện đủ tối ưu. Bổ đề 01.28 và 01.29 đưa bài toán về một chiều để chứng minh điều kiện bậc hai (Định lý 01.30), còn Định lý 01.31 cho các phép ghép. Dùng các kết quả này, Ví dụ 01.13 và 01.14 chứng nhận $q$ lồi chặt, $J$ lồi (lồi chặt khi hạng cột đầy đủ), $L$ lồi và $L+\tfrac\mu2\lVert w\rVert_2^2$ lồi chặt, tức câu hỏi 3 của Nhận xét 01.17 đã có câu trả lời cho cả ba ca.
 
-1. Định nghĩa 01.22 nêu hàm lồi, với Nhận xét 01.23 cho phép hạn chế xuống tập con;
-2. Định nghĩa 01.24 và Mệnh đề 01.25 chuyển tính lồi của hàm thành tính lồi của tập mức dưới;
-3. Định lý 01.26 cho điều kiện bậc nhất và Hệ quả 01.27 biến nó thành điều kiện đủ tối ưu;
-4. Bổ đề 01.28 và 01.29 đưa về một chiều để chứng minh Định lý 01.30;
-5. Định lý 01.31 cho các phép ghép.
-
-Các Ví dụ 01.13 và 01.14 dùng các kết quả này để chứng nhận $q$ lồi chặt, $J$ lồi (lồi chặt khi hạng cột đầy đủ), $L$ lồi và $L+\tfrac\mu2\lVert w\rVert_2^2$ lồi chặt. Đích của mục là câu trả lời cho câu hỏi 3 của Nhận xét 01.17 cho cả ba ca.
-
-Mục này thu được một bộ tiêu chuẩn để chứng nhận hàm mục tiêu lồi, và Hệ quả 01.27 đã cho một kết luận toàn cục dưới giả thiết khả vi. Còn ba thiếu hụt.
-
-- Kết luận toàn cục cho cực tiểu địa phương nói chung, không cần khả vi, chưa được chứng minh.
-- Tính lồi chưa nói gì về sự tồn tại: hàm $L$ của Ví dụ 01.6 lồi chặt mà không có nghiệm.
-- Tính lồi chặt chưa được nối với tính duy nhất.
-
-Mục 8 giải quyết cả ba.
+Bộ tiêu chuẩn này chứng nhận được hàm mục tiêu lồi, và Hệ quả 01.27 đã cho một kết luận toàn cục dưới giả thiết khả vi. Còn ba thiếu hụt. Kết luận toàn cục cho cực tiểu địa phương nói chung, khi không có tính khả vi, chưa được chứng minh. Tính lồi chưa nói gì về sự tồn tại, vì hàm $L$ của Ví dụ 01.6 lồi chặt mà không có nghiệm. Tính lồi chặt cũng chưa được nối với tính duy nhất. Trong Mục 8, chúng ta giải quyết cả ba thiếu hụt này.
 
 ## 8. Toàn cục, tồn tại và duy nhất
 
-Mục 7 để lại ba thiếu hụt, và ba hàm một biến sau cho thấy chúng độc lập với nhau.
+Ba hàm một biến sau cho thấy ba thiếu hụt về toàn cục, tồn tại và duy nhất độc lập với nhau.
 
 - Hàm $e^x$ trên $\mathbb R$ lồi chặt nhưng không có cực tiểu: giá trị giảm về $0$ khi $x\to-\infty$ mà không đạt.
 - Hàm hằng $0$ trên $[-1,1]$ lồi và có cực tiểu, nhưng mọi điểm đều là cực tiểu.
@@ -2003,7 +1953,7 @@ Mục 7 để lại ba thiếu hụt, và ba hàm một biến sau cho thấy ch
 
 Ba hàm đều lồi, nên tính lồi một mình không phân biệt được "không có", "có nhiều" và "có đúng một" nghiệm.
 
-Mục này chứng minh định lý cực tiểu địa phương là toàn cục, nối tính lồi chặt với tính duy nhất, và phát biểu hai điều kiện đủ cho sự tồn tại: miền đóng, bị chặn (định lý Weierstrass) và hàm bức.
+Trong mục này, chúng ta chứng minh định lý cực tiểu địa phương là toàn cục và nối tính lồi chặt với tính duy nhất. Sau đó, chúng ta phát biểu hai điều kiện đủ cho sự tồn tại: miền đóng, bị chặn (định lý Weierstrass) và hàm bức.
 
 ![Ba đồ thị. Trái: hàm e mũ x trên toàn trục số, cận dưới đúng bằng 0 nhưng không có nghiệm. Giữa: hàm hằng 0 trên đoạn từ −1 đến 1, mọi điểm của đoạn đều tối ưu. Phải: hàm x bình phương trên toàn trục số, nghiệm duy nhất x sao bằng 0.](img/lec-01/existence-and-uniqueness.svg)
 
@@ -2015,7 +1965,7 @@ Hình trên đặt ba hàm cạnh nhau.
 
 ### 8.1 Cực tiểu địa phương là cực tiểu toàn cục
 
-Câu hỏi 4 của Nhận xét 01.17 hỏi khi nào một cực tiểu địa phương là cực tiểu toàn cục. Ví dụ 01.8 cho thấy câu trả lời là "không phải luôn luôn" khi hàm không lồi. Định lý sau dùng Định nghĩa 01.13, Định nghĩa 01.18 và Định nghĩa 01.22, không cần khả vi.
+Câu hỏi 4 của Nhận xét 01.17 là khi nào một cực tiểu địa phương là cực tiểu toàn cục, và Ví dụ 01.8 cho thấy câu trả lời là "không phải luôn luôn" khi hàm không lồi. Khi cả miền và hàm đều lồi, câu trả lời được cho bởi định lý sau. Chứng minh chỉ dùng Định nghĩa 01.13, Định nghĩa 01.18 và Định nghĩa 01.22, không cần khả vi.
 
 ::: theorem Định lý 01.33 (Cực tiểu địa phương của hàm lồi là cực tiểu toàn cục)
 **Giả thiết.** $C\subseteq\mathbb R^d$ lồi; $f:C\to\mathbb R$ lồi; $x^*\in C$ là cực tiểu địa phương của $f$ tương đối với $C$.
@@ -2030,7 +1980,7 @@ Câu hỏi 4 của Nhận xét 01.17 hỏi khi nào một cực tiểu địa ph
 ::: proof Chứng minh Định lý 01.33
 **Bước 1 (giả thiết phản chứng).** Giả sử ngược lại có $y\in C$ với $f(y)<f(x^*)$. Gọi $r>0$ là bán kính trong Định nghĩa 01.13. Với $\theta\in(0,1]$, đặt $z_\theta=(1-\theta)x^*+\theta y$.
 
-**Bước 2 (điểm trộn khả thi và tốt hơn).** Vì $C$ lồi (Định nghĩa 01.18), $z_\theta\in C$. Vì $f$ lồi, (7.1) cho
+**Bước 2 (điểm trộn khả thi và tốt hơn).** Vì $C$ lồi (Định nghĩa 01.18), $z_\theta\in C$. Vì $f$ lồi, theo (7.1) ta có
 
 $$
 \begin{aligned}
@@ -2045,14 +1995,14 @@ trong đó bất đẳng thức chặt dùng $f(y)<f(x^*)$ và $\theta>0$.
 **Bước 3 (điểm trộn nằm trong lân cận).** Mặt khác $\lVert z_\theta-x^*\rVert_2=\theta\lVert y-x^*\rVert_2$, nên với $\theta\le r/\lVert y-x^*\rVert_2$ và $\theta\le1$, điểm $z_\theta$ nằm trong lân cận bán kính $r$ của $x^*$. Khi đó $z_\theta$ là một điểm khả thi gần $x^*$ có giá trị nhỏ hơn $f(x^*)$, mâu thuẫn với tính cực tiểu địa phương. $\square$
 :::
 
-Chứng minh dùng mỗi giả thiết lồi ở đúng một bước: miền lồi bảo đảm $z_\theta$ khả thi, hàm lồi bảo đảm $f(z_\theta)<f(x^*)$.
+Chứng minh dùng mỗi giả thiết lồi ở đúng một bước, trong đó miền lồi bảo đảm $z_\theta$ khả thi, còn hàm lồi bảo đảm $f(z_\theta)<f(x^*)$. Hai phản ví dụ sau cho thấy bỏ một trong hai giả thiết thì kết luận sai.
 
 - Bỏ giả thiết miền lồi: tập vùng chết của Mục 6 với $f(u)=(u-1)^2$ có cực tiểu địa phương $u=-\tfrac12$ không toàn cục, với giá trị $\tfrac94$ trong khi $u=1$ cho $0$.
 - Bỏ giả thiết hàm lồi: Ví dụ 01.8 có cực tiểu địa phương $x=1$ không toàn cục trên đoạn lồi $[-3,3]$.
 
-Định lý 01.33 tổng quát Hệ quả 01.27 theo nghĩa không cần khả vi, và đổi lại cần biết trước $x^*$ là cực tiểu địa phương.
+So với Hệ quả 01.27, Định lý 01.33 không cần khả vi, nhưng cần biết trước $x^*$ là cực tiểu địa phương.
 
-Kết quả sau là hệ quả của Mệnh đề 01.25, áp dụng cho tập mức dưới ở đúng mức $p^*$.
+Áp dụng Mệnh đề 01.25 cho tập mức dưới ở đúng mức $p^*$, ta có hệ quả sau.
 
 ::: corollary Hệ quả 01.34 (Tập nghiệm của bài toán lồi là tập lồi)
 **Giả thiết.** $C$ lồi, $f:C\to\mathbb R$ lồi.
@@ -2074,13 +2024,13 @@ Xét ba trường hợp của $p^*$.
 
 Hệ quả 01.34 loại trừ khả năng một bài toán lồi có đúng hai nghiệm tách rời: nếu có hai nghiệm thì cả đoạn nối chúng là nghiệm. Tập nghiệm $S^*$ ở Ví dụ 01.5 là một đường thẳng, phù hợp với hệ quả. Tập nghiệm $\{-\tfrac12,\tfrac12\}$ của hàm $u^2$ trên tập vùng chết thì không lồi, vì miền không lồi.
 
-**Trong học máy.** Với mất mát lồi theo tham số, như hồi quy tuyến tính, hồi quy logistic hay máy vector hỗ trợ, Định lý 01.33 cho phép dừng thuật toán tại một cực tiểu địa phương mà không phải tìm thêm: mọi cực tiểu địa phương đều cho cùng giá trị mất mát nhỏ nhất. Hệ quả 01.34 nói rằng các nghiệm khác nhau, nếu có, tạo thành một tập lồi, nên mọi tổ hợp lồi của hai nghiệm vẫn là nghiệm.
+**Trong học máy.** Với mất mát lồi theo tham số, như hồi quy tuyến tính, hồi quy logistic hay máy vector hỗ trợ, Định lý 01.33 cho phép dừng thuật toán tại một cực tiểu địa phương mà không phải tìm thêm. Lý do là mọi cực tiểu địa phương đều cho cùng giá trị mất mát nhỏ nhất. Hệ quả 01.34 cho thấy các nghiệm khác nhau, nếu có, tạo thành một tập lồi, nên mọi tổ hợp lồi của hai nghiệm vẫn là nghiệm.
 
 Với mạng nhiều tầng, mất mát không lồi theo tham số và cả hai kết luận đều có thể sai. Tình huống 01.3 cho một ví dụ với hai nghiệm mà trung điểm không phải nghiệm.
 
 ### 8.2 Tính duy nhất
 
-Câu hỏi 6 hỏi khi nào có nhiều nhất một nghiệm. Đồ thị giữa của hình đầu mục cho thấy tính lồi không đủ, vì hàm lồi có thể phẳng trên cả một đoạn. Lồi chặt loại trừ đoạn phẳng.
+Câu hỏi 6 là khi nào có nhiều nhất một nghiệm. Đồ thị giữa của hình đầu mục cho thấy tính lồi không đủ, vì hàm lồi có thể phẳng trên cả một đoạn. Lồi chặt loại trừ đoạn phẳng, và do đó cho câu trả lời theo định lý sau.
 
 ::: theorem Định lý 01.35 (Lồi chặt cho nhiều nhất một nghiệm)
 **Giả thiết.** $C\subseteq\mathbb R^d$ lồi; $f:C\to\mathbb R$ lồi chặt.
@@ -2095,7 +2045,7 @@ Câu hỏi 6 hỏi khi nào có nhiều nhất một nghiệm. Đồ thị giữ
 ::: proof Chứng minh Định lý 01.35
 **Bước 1 (giả thiết phản chứng).** Giả sử có hai nghiệm khác nhau $x\ne y$ trong $C$, cùng giá trị $p^*$.
 
-**Bước 2 (trung điểm tốt hơn).** Trung điểm $z=\tfrac12x+\tfrac12y$ thuộc $C$ vì $C$ lồi. Theo định nghĩa lồi chặt với $\theta=\tfrac12\in(0,1)$,
+**Bước 2 (trung điểm tốt hơn).** Trung điểm $z=\tfrac12x+\tfrac12y$ thuộc $C$ vì $C$ lồi. Theo định nghĩa lồi chặt với $\theta=\tfrac12\in(0,1)$, ta có
 
 $$
 f(z)<\tfrac12f(x)+\tfrac12f(y)=p^* .
@@ -2116,7 +2066,7 @@ Khi mất mát chỉ lồi, như hồi quy tuyến tính với đặc trưng ph�
 
 ### 8.3 Sự tồn tại: miền đóng, bị chặn và hàm bức
 
-Câu hỏi 5 hỏi khi nào cận dưới đúng được đạt. Hàm $e^x$ trên $\mathbb R$ cho thấy hai cách thất bại: miền không bị chặn để điểm "chạy ra vô cực", và hàm không tăng ra vô cực theo hướng đó. Kết quả cổ điển sau xử lý trường hợp miền bị chặn.
+Câu hỏi 5 là khi nào cận dưới đúng được đạt. Hàm $e^x$ trên $\mathbb R$ cho thấy hai cách thất bại: miền không bị chặn để điểm "chạy ra vô cực", và hàm không tăng ra vô cực theo hướng đó. Trường hợp miền bị chặn được giải quyết bằng kết quả cổ điển sau.
 
 ::: theorem Định lý 01.36 (Weierstrass)
 **Giả thiết.** $C\subseteq\mathbb R^d$ không rỗng, đóng và bị chặn; $f:C\to\mathbb R$ liên tục.
@@ -2128,7 +2078,7 @@ Câu hỏi 5 hỏi khi nào cận dưới đúng được đạt. Hàm $e^x$ tr�
 **Phạm vi.** Không cần tính lồi; không cho tính duy nhất.
 :::
 
-Chứng minh nằm ngoài phạm vi học phần. Xem Rudin (1976), *Principles of Mathematical Analysis*, Định lý 2.41, trang 40 (tập đóng và bị chặn trong $\mathbb R^d$ là compact) và Định lý 4.16, trang 89 (hàm liên tục trên tập compact đạt giá trị nhỏ nhất).
+Chúng ta không đi sâu vào chứng minh của định lý này, vì nó nằm ngoài phạm vi học phần. Chứng minh có thể tìm thấy trong Rudin (1976), *Principles of Mathematical Analysis*, Định lý 2.41, trang 40 (tập đóng và bị chặn trong $\mathbb R^d$ là compact) và Định lý 4.16, trang 89 (hàm liên tục trên tập compact đạt giá trị nhỏ nhất).
 
 Ý tưởng chính gồm ba bước.
 
@@ -2136,7 +2086,7 @@ Chứng minh nằm ngoài phạm vi học phần. Xem Rudin (1976), *Principles 
 2. Vì $C$ bị chặn, dãy có một dãy con hội tụ (định lý Bolzano–Weierstrass); vì $C$ đóng, giới hạn $x^*$ thuộc $C$.
 3. Vì $f$ liên tục, $f(x^*)$ bằng giới hạn của $f$ trên dãy con, tức bằng $\inf_Cf$.
 
-Mỗi giả thiết chặn một cách thất bại.
+Mỗi giả thiết của định lý chặn một cách thất bại, như các phản ví dụ sau cho thấy.
 
 - Bỏ "bị chặn": $e^x$ trên $\mathbb R$ không đạt cận dưới đúng.
 - Bỏ "đóng": $x$ trên $(0,1]$ có cận dưới đúng $0$ không đạt.
@@ -2144,11 +2094,11 @@ Mỗi giả thiết chặn một cách thất bại.
 
 **Trong học máy.** Định lý 01.36 không cần tính lồi, nên áp dụng được cả cho mạng nơ-ron. Nếu tham số bị ràng buộc trong một quả cầu $\{w\mid\lVert w\rVert_2\le r\}$, một tập không rỗng, đóng và bị chặn, thì mọi hàm mất mát liên tục theo tham số đều đạt giá trị nhỏ nhất trên quả cầu đó.
 
-Bảo đảm này chỉ nói nghiệm tồn tại. Nó không cho cách tìm nghiệm và không bảo đảm cực tiểu địa phương mà thuật toán tìm được là toàn cục khi mất mát không lồi. Bài tập 01.21 áp dụng định lý cho hồi quy logistic có ràng buộc chuẩn.
+Tuy nhiên, bảo đảm này chỉ nói nghiệm tồn tại, không cho cách tìm nghiệm và không bảo đảm cực tiểu địa phương mà thuật toán tìm được là toàn cục khi mất mát không lồi. Bài tập 01.21 áp dụng định lý cho hồi quy logistic có ràng buộc chuẩn.
 
 Hai ca hồi quy có miền $\mathbb R^d$, không bị chặn, nên Định lý 01.36 không áp dụng trực tiếp. Điều kiện sau thay tính bị chặn của miền bằng một tính chất của hàm.
 
-Trực giác: nếu hàm tăng ra vô cực theo mọi hướng đi xa, thì mọi điểm đủ xa đều tồi hơn một điểm cố định, nên chỉ cần tìm nghiệm trong một vùng bị chặn.
+Một cách dễ hình dung, nếu hàm tăng ra vô cực theo mọi hướng đi xa thì mọi điểm đủ xa đều tồi hơn một điểm cố định, nên chỉ cần tìm nghiệm trong một vùng bị chặn. Tính chất "tăng ra vô cực" này mới được mô tả bằng lời, và định nghĩa sau làm nó chính xác.
 
 ::: definition Định nghĩa 01.37 (Hàm bức)
 Cho $C\subseteq\mathbb R^d$ không bị chặn. Hàm $f:C\to\mathbb R$ là bức (coercive) trên $C$ nếu $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$ với $x\in C$; nghĩa là với mọi $M$ có $R$ sao cho $f(x)>M$ với mọi $x\in C$ thỏa $\lVert x\rVert_2>R$.
@@ -2156,7 +2106,7 @@ Cho $C\subseteq\mathbb R^d$ không bị chặn. Hàm $f:C\to\mathbb R$ là bức
 
 Hàm $x^2$ bức trên $\mathbb R$. Hàm $e^x$ không bức, vì $e^x\to0$ khi $x\to-\infty$. Hàm $J$ với ma trận $X'$ của Ví dụ 01.5 không bức, vì $J$ giữ giá trị $\tfrac16$ dọc theo đường thẳng $(7/6,\ s,\ 1/2-s)^T$ khi $s\to\infty$.
 
-Tính bức không liên quan tới tính lồi: $x^4-2x^2$ bức mà không lồi (Bài tập 01.12), $e^x$ lồi mà không bức.
+Tính bức độc lập với tính lồi, vì $x^4-2x^2$ bức mà không lồi (Bài tập 01.12), còn $e^x$ lồi mà không bức. Với khái niệm này, sự tồn tại nghiệm trên miền không bị chặn được phát biểu như sau.
 
 ::: theorem Định lý 01.38 (Tồn tại nghiệm với hàm bức)
 **Giả thiết.** $C\subseteq\mathbb R^d$ không rỗng và đóng; $f:C\to\mathbb R$ liên tục và bức trên $C$ (khi $C$ bị chặn, chỉ cần liên tục).
@@ -2187,21 +2137,23 @@ Vậy $x^*$ là cực tiểu trên toàn $C$. $\square$
 
 **Trong học máy.** Hàm mất mát cộng hạng chính quy hóa $\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$ là bức khi mất mát không âm, vì tổng không nhỏ hơn $\tfrac\mu2\lVert w\rVert_2^2$. Định lý 01.38 vì vậy bảo đảm bài toán huấn luyện có chính quy hóa có nghiệm với mọi hàm mất mát liên tục không âm, kể cả khi mất mát không lồi. Tính duy nhất cần thêm tính lồi chặt.
 
-Với hàm khả vi trên $\mathbb R^d$, có một điều kiện đủ dễ kiểm tra cho cả tồn tại và duy nhất, dựa trên một dạng lồi mạnh hơn lồi chặt.
+Với hàm khả vi trên $\mathbb R^d$, ta có một điều kiện đủ dễ kiểm tra cho cả tồn tại và duy nhất, dựa trên một dạng lồi mạnh hơn lồi chặt.
 
-Trực giác: hàm $e^x$ lồi chặt nhưng độ cong $e^x$ tắt dần về $0$ khi $x\to-\infty$, nên đồ thị có thể đi ngang mãi. Nếu độ cong theo mọi hướng luôn ít nhất bằng độ cong của parabol $\tfrac\mu2\lVert x\rVert_2^2$, đồ thị buộc phải đi lên ở xa.
+Một cách trực quan, hàm $e^x$ lồi chặt nhưng độ cong $e^x$ tắt dần về $0$ khi $x\to-\infty$, nên đồ thị có thể đi ngang mãi. Nếu độ cong theo mọi hướng luôn ít nhất bằng độ cong của parabol $\tfrac\mu2\lVert x\rVert_2^2$, đồ thị buộc phải đi lên ở xa. Trực giác này chưa phải định nghĩa, và định nghĩa sau diễn đạt nó mà không cần đạo hàm bậc hai.
 
 ::: definition Định nghĩa 01.39 (Hàm lồi mạnh)
 Cho $C\subseteq\mathbb R^d$ lồi và $\mu>0$. Hàm $f:C\to\mathbb R$ là lồi mạnh (strongly convex) với hằng số $\mu$ nếu $x\mapsto f(x)-\tfrac\mu2\lVert x\rVert_2^2$ lồi trên $C$.
 :::
 
-Định nghĩa 01.39 bao hàm Ví dụ 01.11(a): hàm $x^2$ lồi mạnh với hằng số $2$, vì $x^2-x^2=0$ lồi. Hàm $e^x$ không lồi mạnh với bất kỳ $\mu>0$ nào, như nhận xét dưới đây chỉ ra.
+Theo Định nghĩa 01.39, hàm $x^2$ của Ví dụ 01.11(a) lồi mạnh với hằng số $2$, vì $x^2-x^2=0$ lồi. Hàm $e^x$ không lồi mạnh với bất kỳ $\mu>0$ nào, như nhận xét dưới đây chỉ ra.
 
 ::: remark Nhận xét 01.40 (Lồi mạnh qua Hessian; quan hệ với lồi chặt)
 **Tiêu chuẩn Hessian.** Với $f$ khả vi hai lần trên miền mở, theo Định lý 01.30(a) áp dụng cho $f-\tfrac\mu2\lVert\cdot\rVert_2^2$, $f$ lồi mạnh với hằng số $\mu$ khi và chỉ khi $\nabla^2f(x)-\mu I_d\succeq0$, tức $\nabla^2f(x)\succeq\mu I_d$, với mọi $x$. Với $e^x$, đạo hàm bậc hai $e^x$ dần tới $0$ khi $x\to-\infty$, nên không có $\mu>0$ nào thỏa điều kiện.
 
 **Quan hệ với lồi chặt.** Mọi hàm lồi mạnh là lồi chặt, theo Định lý 01.31(a), vì $f=(f-\tfrac\mu2\lVert\cdot\rVert_2^2)+\tfrac\mu2\lVert\cdot\rVert_2^2$ là tổng của một hàm lồi và một hàm lồi chặt. Chiều ngược lại sai: $\ell$ lồi chặt nhưng không lồi mạnh, vì $\ell''(m)\to0$ (Mệnh đề 01.9(c)).
 :::
+
+Từ tính lồi mạnh, ta có cả tồn tại lẫn duy nhất theo hệ quả sau.
 
 ::: corollary Hệ quả 01.41 (Hàm lồi mạnh khả vi có nghiệm duy nhất)
 **Giả thiết.** $f:\mathbb R^d\to\mathbb R$ khả vi và lồi mạnh với hằng số $\mu>0$.
@@ -2214,7 +2166,7 @@ Cho $C\subseteq\mathbb R^d$ lồi và $\mu>0$. Hàm $f:C\to\mathbb R$ là lồi 
 :::
 
 ::: proof Chứng minh Hệ quả 01.41
-**Bước 1 (chặn dưới bậc hai).** Đặt $g(x)=f(x)-\tfrac\mu2\lVert x\rVert_2^2$, lồi và khả vi với $\nabla g(0)=\nabla f(0)$. Theo Định lý 01.26 tại $x=0$: $g(x)\ge g(0)+\nabla f(0)^Tx$, tức
+**Bước 1 (chặn dưới bậc hai).** Đặt $g(x)=f(x)-\tfrac\mu2\lVert x\rVert_2^2$, lồi và khả vi với $\nabla g(0)=\nabla f(0)$. Áp dụng Định lý 01.26 tại $x=0$, ta có $g(x)\ge g(0)+\nabla f(0)^Tx$, tức
 
 $$
 f(x)\ge f(0)+\nabla f(0)^Tx+\tfrac\mu2\lVert x\rVert_2^2 .
@@ -2226,14 +2178,14 @@ $$
 f(x)\ge f(0)-\lVert\nabla f(0)\rVert_2\lVert x\rVert_2+\tfrac\mu2\lVert x\rVert_2^2 .
 $$
 
-**Bước 2 (tính bức và tồn tại).** Vế phải là một đa thức bậc hai của $\lVert x\rVert_2$ với hệ số bậc hai dương, nên dần tới $+\infty$ khi $\lVert x\rVert_2\to\infty$: $f$ bức. Hàm khả vi thì liên tục, và $\mathbb R^d$ không rỗng, đóng, nên Định lý 01.38 cho nghiệm tồn tại.
+**Bước 2 (tính bức và tồn tại).** Vế phải là một đa thức bậc hai của $\lVert x\rVert_2$ với hệ số bậc hai dương, nên dần tới $+\infty$ khi $\lVert x\rVert_2\to\infty$, tức $f$ bức. Hàm khả vi thì liên tục, và $\mathbb R^d$ không rỗng, đóng, nên Định lý 01.38 cho nghiệm tồn tại.
 
 **Bước 3 (duy nhất).** Hàm lồi mạnh là lồi chặt, nên Định lý 01.35 cho nghiệm duy nhất. $\square$
 :::
 
-Hệ quả 01.41 mạnh hơn Định lý 01.38 theo nghĩa nó gộp cả tồn tại lẫn duy nhất trong một giả thiết, và tính bức không cần kiểm tra riêng mà suy ra từ lồi mạnh. Đổi lại, nó cần $f$ khả vi, miền là $\mathbb R^d$, và tính lồi mạnh, một giả thiết mạnh hơn lồi chặt (Nhận xét 01.40).
+Hệ quả 01.41 mạnh hơn Định lý 01.38 theo nghĩa nó gộp cả tồn tại lẫn duy nhất trong một giả thiết, và tính bức không cần kiểm tra riêng mà suy ra từ lồi mạnh. Đổi lại, hệ quả cần $f$ khả vi, miền là $\mathbb R^d$ và tính lồi mạnh, một giả thiết mạnh hơn lồi chặt (Nhận xét 01.40).
 
-Cách thông dụng nhất để có tính lồi mạnh là cộng vào hàm mục tiêu một hạng bậc hai. Ví dụ 01.6 cho thấy nhu cầu: mất mát logistic trên dữ liệu tách được không có nghiệm, và một hạng phạt độ lớn của tham số ngăn tham số chạy ra vô cực.
+Cách thông dụng nhất để có tính lồi mạnh là cộng vào hàm mục tiêu một hạng bậc hai. Nhu cầu này đã xuất hiện ở Ví dụ 01.6, nơi mất mát logistic trên dữ liệu tách được không có nghiệm, và một hạng phạt độ lớn của tham số ngăn tham số chạy ra vô cực. Hạng bậc hai đó được định nghĩa như sau.
 
 ::: definition Định nghĩa 01.42 (Chính quy hóa bậc hai)
 Cho hàm $F:\mathbb R^d\to\mathbb R$ và hệ số $\mu>0$. Hàm chính quy hóa bậc hai của $F$ là $F_\mu(w)=F(w)+\tfrac\mu2\lVert w\rVert_2^2$.
@@ -2243,11 +2195,11 @@ Với mất mát logistic $L$ của Định nghĩa 01.8, ký hiệu $L_\mu(w)=L(
 Với bình phương nhỏ nhất, hồi quy với chính quy hóa bậc hai (ridge regression) cực tiểu $J(w)+\mu\lVert w\rVert_2^2$, tức $J_{2\mu}$.
 :::
 
-Nếu $F$ lồi và khả vi hai lần thì $\nabla^2F_\mu=\nabla^2F+\mu I_d\succeq\mu I_d$, nên $F_\mu$ lồi mạnh với hằng số $\mu$ theo Nhận xét 01.40, và Hệ quả 01.41 cho $F_\mu$ có đúng một nghiệm. Định nghĩa 01.42 không đòi $F$ lồi; khi $F$ không lồi, $F_\mu$ nói chung không lồi.
+Nếu $F$ lồi và khả vi hai lần thì $\nabla^2F_\mu=\nabla^2F+\mu I_d\succeq\mu I_d$, nên $F_\mu$ lồi mạnh với hằng số $\mu$ theo Nhận xét 01.40, và Hệ quả 01.41 cho $F_\mu$ có đúng một nghiệm. Lưu ý rằng Định nghĩa 01.42 không đòi $F$ lồi, và khi $F$ không lồi, $F_\mu$ nói chung không lồi.
 
 **Trong học máy.** Hệ quả 01.41 là lý do kỹ thuật đằng sau chính quy hóa bậc hai (weight decay). Với mất mát lồi khả vi $F$, hàm $F_\mu$ của Định nghĩa 01.42 lồi mạnh với hằng số $\mu$, và bài toán huấn luyện có đúng một nghiệm, bất kể dữ liệu tách được hay đặc trưng trùng lặp.
 
-Giá phải trả là nghiệm thay đổi: nó bị kéo về phía $0$, và $\mu$ trở thành một siêu tham số cần chọn. Bài 05b dùng hằng số $\mu$ này để chứng minh hạ gradient hội tụ tuyến tính.
+Nghiệm cũng thay đổi theo, vì nó bị kéo về phía $0$, và $\mu$ trở thành một siêu tham số cần chọn. Trong Bài 05b, chúng ta dùng hằng số $\mu$ này để chứng minh hạ gradient hội tụ tuyến tính.
 
 Với mạng nhiều tầng, thêm $\tfrac\mu2\lVert w\rVert_2^2$ nói chung không làm mất mát trở thành lồi, vì Hessian của phần không lồi có thể có giá trị riêng âm lớn hơn $\mu$ về độ lớn (Tình huống 01.3).
 
@@ -2266,7 +2218,7 @@ $$
 2(w_1+w_2-1)+\mu w_1=0,\qquad 2(w_1+w_2-1)+\mu w_2=0 .
 $$
 
-Trừ hai phương trình được $\mu(w_1-w_2)=0$, nên $w_1=w_2=s$, và $2(2s-1)+\mu s=0$ cho $s=2/(4+\mu)$. Với $\mu=1$: $w^*=(0{,}4;\ 0{,}4)$, dự đoán $0{,}8$.
+Trừ hai phương trình, ta được $\mu(w_1-w_2)=0$, nên $w_1=w_2=s$, và $2(2s-1)+\mu s=0$ cho $s=2/(4+\mu)$. Với $\mu=1$: $w^*=(0{,}4;\ 0{,}4)$, dự đoán $0{,}8$.
 
 **Kiểm tra lại.** Với $\mu=1$, $s=0{,}4$: $2(0{,}8-1)+0{,}4=-0{,}4+0{,}4=0$. Khi $\mu\to0$, $s\to\tfrac12$, và nghiệm tiến tới điểm $(\tfrac12,\tfrac12)$ của đường thẳng nghiệm ban đầu, điểm có chuẩn nhỏ nhất trên đường thẳng đó.
 :::
@@ -2300,23 +2252,16 @@ Viết $f(x)=(x^2-1)^2-1$.
 
 **(b)** $f(x)\ge-1$ với dấu bằng khi và chỉ khi $x^2=1$, nên $S^*=\{-1,1\}$ và $p^*=-1$. Kiểm tra: $f(\pm1)=1-2=-1$.
 
-**(c)** $f''(x)=12x^2-4$, âm tại $x=0$, nên $f$ không lồi theo Định lý 01.30(a). Trực tiếp, $f(0)=0>\tfrac12f(-1)+\tfrac12f(1)=-1$. Hệ quả 01.34 cần $f$ lồi; giả thiết bị vi phạm, nên tập nghiệm gồm hai điểm tách rời không mâu thuẫn với nó.
+**(c)** $f''(x)=12x^2-4$, âm tại $x=0$, nên $f$ không lồi theo Định lý 01.30(a). Trực tiếp, $f(0)=0>\tfrac12f(-1)+\tfrac12f(1)=-1$. Hệ quả 01.34 cần $f$ lồi, và giả thiết này bị vi phạm, nên tập nghiệm gồm hai điểm tách rời không mâu thuẫn với nó.
 :::
 
-Chuỗi suy luận của mục là:
+Như vậy, Định lý 01.33 trả lời câu hỏi toàn cục, với Hệ quả 01.34 về hình dạng tập nghiệm, và Định lý 01.35 trả lời câu hỏi duy nhất. Định lý 01.36 (miền đóng và bị chặn) và Định lý 01.38 (hàm bức, Định nghĩa 01.37) trả lời câu hỏi tồn tại. Với hàm lồi mạnh, Định nghĩa 01.39, Nhận xét 01.40 và Hệ quả 01.41 gộp tồn tại và duy nhất vào một giả thiết, còn Định nghĩa 01.42 cho cách tạo ra tính lồi mạnh. Kết quả của mục là ba điều kiện đủ riêng biệt cho ba kết luận, được tóm tắt trong Nhận xét 01.43.
 
-1. Định lý 01.33 trả lời câu hỏi toàn cục, với Hệ quả 01.34 về hình dạng tập nghiệm;
-2. Định lý 01.35 trả lời câu hỏi duy nhất;
-3. Định lý 01.36 và Định lý 01.38, qua Định nghĩa 01.37, trả lời câu hỏi tồn tại;
-4. Định nghĩa 01.39, Nhận xét 01.40 và Hệ quả 01.41 gộp tồn tại và duy nhất cho hàm lồi mạnh, và Định nghĩa 01.42 cho cách tạo ra tính lồi mạnh.
-
-Đích của mục là bộ ba điều kiện đủ riêng biệt cho ba kết luận, được tóm tắt trong Nhận xét 01.43.
-
-Mục này hoàn tất bộ công cụ cho sáu câu hỏi của Nhận xét 01.17. Các công cụ mới được thử trên những ví dụ nhỏ; ba ca đầu chương chưa được chứng nhận đầy đủ bằng chúng. Mục 9 áp dụng bộ công cụ cho từng ca, đặt kết quả cạnh nhau, và rút ra một quy trình cho mô hình mới.
+Đến đây, bộ công cụ cho sáu câu hỏi của Nhận xét 01.17 đã hoàn tất, nhưng mới được thử trên những ví dụ nhỏ, và ba ca đầu chương chưa được chứng nhận đầy đủ bằng chúng. Việc áp dụng bộ công cụ cho từng ca, đặt kết quả cạnh nhau và rút ra một quy trình cho mô hình mới được làm ở Mục 9.
 
 ## 9. Chứng nhận ba ca
 
-Mục 2 đến Mục 4 giải ba ca bằng ba lập luận riêng, và Mục 8 vừa hoàn tất các công cụ chung. Mục này viết lại kết luận của mỗi ca thành một chứng nhận, trong đó mỗi kết luận được gắn với đúng định lý cung cấp nó, rồi so sánh ba chứng nhận để chỉ ra giả thiết nào sinh ra kết luận nào.
+Ở Mục 2 đến Mục 4, kết luận của mỗi ca được rút ra bằng một lập luận riêng. Trong mục này, chúng ta viết lại mỗi kết luận đó thành một chứng nhận, trong đó mỗi kết luận được gắn với đúng định lý cung cấp nó. Sau đó, việc so sánh ba chứng nhận cho biết giả thiết nào sinh ra kết luận nào.
 
 ::: proposition Mệnh đề 01.44 (Chứng nhận ca điều khiển)
 **Giả thiết.** Dữ kiện như Định nghĩa 01.1.
@@ -2413,12 +2358,12 @@ Ba chứng nhận được đặt cạnh nhau trong bảng sau.
 
 Cả bốn hàng đều có miền lồi và mục tiêu lồi, nên cả bốn có bảo đảm toàn cục của Định lý 01.33. Hai cột cuối khác nhau giữa các hàng, và sự khác nhau được giải thích bằng giả thiết riêng.
 
-- Ca điều khiển và ca logistic hai mẫu đều có mục tiêu lồi chặt, nhưng chỉ ca điều khiển có nghiệm, vì chỉ nó có miền bị chặn: lồi chặt không kéo theo tồn tại.
-- Hai ca hồi quy có cùng miền $\mathbb R^d$ nhưng kết luận tồn tại khác nhau: tồn tại phụ thuộc cả mục tiêu, không chỉ miền.
+- Ca điều khiển và ca logistic hai mẫu đều có mục tiêu lồi chặt, nhưng chỉ ca điều khiển có nghiệm, vì chỉ nó có miền bị chặn, tức lồi chặt không kéo theo tồn tại.
+- Hai ca hồi quy có cùng miền $\mathbb R^d$ nhưng kết luận tồn tại khác nhau, nên tồn tại phụ thuộc cả mục tiêu chứ không chỉ miền.
 
-Ba cơ sở tồn tại khác nhau xuất hiện: miền bị chặn, cấu trúc phương trình chuẩn, và tính bức sau chính quy hóa.
+Như vậy, bảng cho ba cơ sở tồn tại khác nhau: miền bị chặn, cấu trúc phương trình chuẩn, và tính bức sau chính quy hóa.
 
-Quy trình đã dùng cho ba ca được viết lại thành một thuật toán áp dụng cho mô hình mới.
+Ghép các bước đã dùng cho ba ca, ta được một quy trình cho mô hình mới, phát biểu dưới dạng thuật toán sau.
 
 ::: algorithm Thuật toán 01.1 (Quy trình chứng nhận một mô hình tối ưu)
 **Đầu vào.** Mô tả bằng lời của một tình huống cần ra quyết định.
@@ -2488,19 +2433,9 @@ Với mọi $w\in C$, $\nabla J(w^*)^T(w-w^*)=0\cdot(w_1-\tfrac43)+2(w_2-0)=2w_2
 **(c) Diễn giải.** Khi ràng buộc hệ số góc không âm, mô hình tốt nhất là đường nằm ngang ở mức trung bình $\tfrac43$ của $y$.
 :::
 
-Chuỗi suy luận của mục là:
+Tóm lại, Mệnh đề 01.44, 01.45 và 01.46 ghép các kết quả của Mục 6 đến Mục 8 thành chứng nhận cho từng ca, bảng so sánh tách bảo đảm toàn cục khỏi tồn tại và duy nhất, và Thuật toán 01.1 tổng quát hóa quy trình. Chuỗi chứng nhận trong Thuật toán 01.1 là kết quả chính của mục này và của cả chương.
 
-1. Mệnh đề 01.44, 01.45 và 01.46 ghép các kết quả của Mục 6 đến Mục 8 thành chứng nhận cho từng ca;
-2. bảng so sánh tách bảo đảm toàn cục khỏi tồn tại và duy nhất;
-3. Thuật toán 01.1 tổng quát hóa quy trình.
-
-Đích của mục, và của chương, là chuỗi chứng nhận trong Thuật toán 01.1.
-
-Ba chứng nhận đều dựa trên những bài toán đã được thiết kế để minh họa. Ba tình huống ở phần sau áp dụng Thuật toán 01.1 cho ba bài toán mới:
-
-- một tình huống mà chính quy hóa sửa được sự không tồn tại;
-- một tình huống trộn ba mô hình với ràng buộc đơn hình và nghiệm trên biên;
-- một tình huống mà giả thiết lồi bị vi phạm.
+Ba chứng nhận trên đều dựa trên những bài toán đã được thiết kế để minh họa. Ở phần sau, chúng ta áp dụng Thuật toán 01.1 cho ba bài toán mới.
 
 ## Tình huống áp dụng và ứng dụng
 
@@ -2511,7 +2446,7 @@ Ba tình huống dưới đây được giải trọn vẹn bằng Thuật toán
 - Tình huống 01.3 vi phạm giả thiết lồi và cho thấy hậu quả.
 
 ::: application Tình huống 01.1 (Hồi quy logistic có chính quy hóa trên dữ liệu tách tuyến tính)
-**Bài toán và dữ liệu.** Dữ liệu là hai mẫu của Ví dụ 01.6, $(a_1,y_1)=(1,+1)$ và $(a_2,y_2)=(-1,-1)$, tách được bởi mọi $w>0$. Theo Ví dụ 01.6, bài toán hồi quy logistic không có nghiệm: tham số tăng mãi và xác suất dự đoán $\sigma(w)$ tiến về $1$. Cần một tham số hữu hạn với xác suất dự đoán không bị đẩy tới $1$.
+**Bài toán và dữ liệu.** Dữ liệu là hai mẫu của Ví dụ 01.6, $(a_1,y_1)=(1,+1)$ và $(a_2,y_2)=(-1,-1)$, tách được bởi mọi $w>0$. Theo Ví dụ 01.6, bài toán hồi quy logistic không có nghiệm: tham số tăng mãi và xác suất dự đoán $\sigma(w)$ tiến về $1$. Chúng ta cần một tham số hữu hạn với xác suất dự đoán không bị đẩy tới $1$.
 
 **Mô hình hóa.** Dùng chính quy hóa bậc hai (Định nghĩa 01.42) với hệ số $\mu>0$ (bước 1–3 của Thuật toán 01.1): biến $w\in\mathbb R$, miền $\mathbb R$, mục tiêu
 
@@ -2556,7 +2491,7 @@ Ta có $L_\mu'(0)=-1<0$ và $L_\mu'$ tăng chặt, nên $w^*_\mu>0$. Từ phươ
 - Mô hình 2 dự đoán $(2,0,1)$.
 - Mô hình 3 dự đoán $(3,3,0)$.
 
-Cần một dự đoán trộn, bằng tổng các dự đoán của ba mô hình nhân với trọng số $\theta_1,\theta_2,\theta_3$ không âm có tổng bằng $1$, sao cho dự đoán trộn gần $y$ nhất. Số liệu là giả lập sư phạm.
+Chúng ta cần một dự đoán trộn, bằng tổng các dự đoán của ba mô hình nhân với trọng số $\theta_1,\theta_2,\theta_3$ không âm có tổng bằng $1$, sao cho dự đoán trộn gần $y$ nhất. Số liệu là giả lập sư phạm.
 
 **Mô hình hóa.** Xếp ba vector dự đoán thành ba cột của ma trận
 
@@ -2603,7 +2538,7 @@ Cả bốn giá trị đều lớn hơn $1$.
 
 **Diễn giải.** Tổ hợp tối ưu bỏ hẳn mô hình 3 (trọng số $0$, nghiệm nằm trên biên của $\Delta_3$) và chia đều cho hai mô hình còn lại. Tổng bình phương sai số giảm từ $3$ của mô hình đơn tốt nhất xuống $1$.
 
-Thành phần thứ ba của gradient lớn hơn hai thành phần kia ($0>-2$): chuyển trọng số sang mô hình 3 làm mục tiêu tăng, đúng như $2\theta_3\ge0$ cho thấy.
+Thành phần thứ ba của gradient lớn hơn hai thành phần kia ($0>-2$), nên chuyển trọng số sang mô hình 3 làm mục tiêu tăng, đúng như $2\theta_3\ge0$ cho thấy.
 
 **Giới hạn.** Trọng số được chọn trên chính tập kiểm định nên có thể quá khớp với ba mẫu này; trong thực tế cần nhiều mẫu hơn và một tập kiểm tra riêng. Ràng buộc đơn hình là lựa chọn mô hình. Bỏ ràng buộc cho sai số $0$ trên ba mẫu nhưng với trọng số âm khó diễn giải.
 
@@ -2615,7 +2550,7 @@ Thành phần thứ ba của gradient lớn hơn hai thành phần kia ($0>-2$):
 
 **Mô hình hóa.** Biến $(\alpha,\beta)\in\mathbb R^2$, miền $\mathbb R^2$, mục tiêu $F(\alpha,\beta)=(\alpha\tanh\beta-\tfrac12)^2$.
 
-**Xác minh giả thiết.** Miền lồi. Mục tiêu không lồi. Vì $\tanh$ là hàm lẻ, hai điểm $P_1=(1,\beta_0)$ và $P_2=(-1,-\beta_0)$ với $\beta_0=\operatorname{artanh}\tfrac12\approx0{,}5493$ đều cho $\alpha\tanh\beta=\tfrac12$ và $F=0$. Trung điểm của chúng là $(0,0)$, với
+**Xác minh giả thiết.** Miền lồi nhưng mục tiêu không lồi. Vì $\tanh$ là hàm lẻ, hai điểm $P_1=(1,\beta_0)$ và $P_2=(-1,-\beta_0)$ với $\beta_0=\operatorname{artanh}\tfrac12\approx0{,}5493$ đều cho $\alpha\tanh\beta=\tfrac12$ và $F=0$. Trung điểm của chúng là $(0,0)$, với
 
 $$
 F(0,0)=\tfrac14>\tfrac12F(P_1)+\tfrac12F(P_2)=0,
@@ -2635,7 +2570,7 @@ cả hai bằng $0$ tại $(0,0)$. Các đạo hàm bậc hai tại $(0,0)$ là:
 - $\partial^2F/\partial\beta^2=0$, vì mọi hạng chứa thừa số $\alpha$ hoặc $\tanh\beta$;
 - $\partial^2F/\partial\alpha\partial\beta=2\bigl[\alpha(1-\tanh^2\beta)\tanh\beta+r(1-\tanh^2\beta)\bigr]$, bằng $2\bigl[0+(-\tfrac12)\cdot1\bigr]=-1$ tại $(0,0)$.
 
-Hessian $\begin{bmatrix}0&-1\\-1&0\end{bmatrix}$ có hai giá trị riêng $\pm1$, nên $(0,0)$ là điểm yên ngựa (Bài 00, mục "Phân loại điểm dừng bằng Hessian"). Trực tiếp: $F(0{,}3;\ 0{,}3)\approx0{,}170<\tfrac14$ và $F(0{,}3;\ -0{,}3)\approx0{,}345>\tfrac14$.
+Hessian $\begin{bmatrix}0&-1\\-1&0\end{bmatrix}$ có hai giá trị riêng $\pm1$, nên $(0,0)$ là điểm yên ngựa (Bài 00, mục "Phân loại điểm dừng bằng Hessian"). Kiểm tra trực tiếp, $F(0{,}3;\ 0{,}3)\approx0{,}170<\tfrac14$ còn $F(0{,}3;\ -0{,}3)\approx0{,}345>\tfrac14$.
 
 Hạ gradient khởi tạo đúng tại $(0,0)$ không bao giờ rời điểm này, vì gradient bằng $0$. Đây là lý do trọng số của mạng được khởi tạo ngẫu nhiên.
 
@@ -2660,13 +2595,22 @@ Các khái niệm của chương xuất hiện trong học máy ở những ch�
 - **Trộn mô hình và phân bổ tài nguyên.** Tình huống 01.2 dùng đơn hình (Ví dụ 01.10(d)) và điều kiện (7.3) để chọn trọng số trộn. Bài toán phân bổ công suất chiếu sáng, phỏng theo Bài giảng 1 của MIT 6.079, có cùng cấu trúc với miền là một hộp; nó là Bài 9 trong tệp bài tập của Bài 01.
 - **Tốc độ hội tụ.** Hằng số lồi mạnh $\mu$ của Định nghĩa 01.39 quyết định tốc độ hội tụ tuyến tính của hạ gradient ở Bài 05b.
 - **Nhiễu đối kháng.** Tập nhiễu hợp lệ của Ví dụ 01.10(c) lồi, nên bài toán tìm nhiễu tối ưu cho một mô hình tuyến tính là bài toán lồi.
-- **Mạng sâu.** Tình huống 01.3 cho thấy mất mát của mạng không lồi theo tham số. Bài 06 nghiên cứu các phương pháp tối ưu dùng cho trường hợp này.
+- **Mạng sâu.** Tình huống 01.3 cho thấy mất mát của mạng không lồi theo tham số. Bài 06 dành cho các phương pháp tối ưu dùng trong trường hợp này.
 
 ## Tóm tắt chương
 
-**Định nghĩa.** Bài toán điều khiển một bước (Định nghĩa 01.1); bình phương nhỏ nhất (Định nghĩa 01.4); hồi quy logistic (Định nghĩa 01.8); cận dưới đúng, giá trị nhỏ nhất, dãy tối ưu hóa (Định nghĩa 01.10); bài toán tối ưu, giá trị tối ưu, nghiệm (Định nghĩa 01.12); cực tiểu địa phương, toàn cục, chặt (Định nghĩa 01.13); tập lồi (Định nghĩa 01.18); hàm lồi, lồi chặt, lõm (Định nghĩa 01.22); tập mức dưới (Định nghĩa 01.24); hàm bức (Định nghĩa 01.37); hàm lồi mạnh (Định nghĩa 01.39); chính quy hóa bậc hai (Định nghĩa 01.42).
+Chương này khởi đầu bằng ba quyết định cụ thể là ca điều khiển một bước, hồi quy tuyến tính và hồi quy logistic (Định nghĩa 01.1, 01.4, 01.8). Mỗi ca bộc lộ một khó khăn về nghiệm: nghiệm nằm trên biên (Nhận xét 01.3), vô số nghiệm (Ví dụ 01.5) và không có nghiệm (Ví dụ 01.6). Để phát biểu các khó khăn này một lần cho mọi bài toán, chúng ta đặt ba ca vào khuôn chung của bài toán tối ưu (Định nghĩa 01.12, 01.13, Mệnh đề 01.14) và chuyển chúng thành sáu câu hỏi chứng nhận (Nhận xét 01.17). Tập lồi (Định nghĩa 01.18, Mệnh đề 01.19, 01.20) trả lời câu hỏi về miền. Hàm lồi (Định nghĩa 01.22) cùng các tiêu chuẩn của Định lý 01.26, 01.30 và 01.31 trả lời câu hỏi về mục tiêu. Từ đó, Định lý 01.33 cho kết luận toàn cục, Định lý 01.36 và 01.38 cho sự tồn tại, Định lý 01.35 cho tính duy nhất, và Hệ quả 01.41 gộp hai kết luận sau. Cuối cùng, Mệnh đề 01.44 đến 01.46 chứng nhận ba ca, và Thuật toán 01.1 tổng quát hóa quy trình cho mô hình mới.
 
-**Kết quả.** Quy tắc cắt (Mệnh đề 01.2); khai triển của $J$ và phương trình chuẩn (Mệnh đề 01.5); tồn tại và tập nghiệm bình phương nhỏ nhất (Mệnh đề 01.6); tính chất của $\ell$ (Mệnh đề 01.9); quan hệ giữa các loại cực tiểu (Mệnh đề 01.14); miền lồng nhau (Mệnh đề 01.16); tập lồi cơ bản (Mệnh đề 01.19); phép bảo toàn tập lồi (Mệnh đề 01.20); tập mức dưới của hàm lồi (Mệnh đề 01.25); điều kiện bậc nhất (Định lý 01.26) và điều kiện đủ tối ưu (Hệ quả 01.27); hạn chế lên đường thẳng (Bổ đề 01.28), tiêu chuẩn một biến (Bổ đề 01.29), điều kiện bậc hai (Định lý 01.30); phép bảo toàn hàm lồi (Định lý 01.31); địa phương là toàn cục (Định lý 01.33) và tập nghiệm lồi (Hệ quả 01.34); lồi chặt cho duy nhất (Định lý 01.35); Weierstrass (Định lý 01.36); tồn tại với hàm bức (Định lý 01.38); lồi mạnh cho tồn tại và duy nhất (Hệ quả 01.41); chứng nhận ba ca (Mệnh đề 01.44, 01.45, 01.46); quy trình chứng nhận (Thuật toán 01.1).
+**Định nghĩa và kết quả theo mục.**
+
+- Mục 2: bài toán điều khiển một bước (Định nghĩa 01.1); quy tắc cắt (Mệnh đề 01.2).
+- Mục 3: bình phương nhỏ nhất (Định nghĩa 01.4); khai triển của $J$ và phương trình chuẩn (Mệnh đề 01.5); tồn tại và tập nghiệm bình phương nhỏ nhất (Mệnh đề 01.6).
+- Mục 4: hồi quy logistic (Định nghĩa 01.8); tính chất của $\ell$ (Mệnh đề 01.9); cận dưới đúng, giá trị nhỏ nhất, dãy tối ưu hóa (Định nghĩa 01.10).
+- Mục 5: bài toán tối ưu, giá trị tối ưu, nghiệm (Định nghĩa 01.12); cực tiểu địa phương, toàn cục, chặt (Định nghĩa 01.13); quan hệ giữa các loại cực tiểu (Mệnh đề 01.14); miền lồng nhau (Mệnh đề 01.16).
+- Mục 6: tập lồi (Định nghĩa 01.18); tập lồi cơ bản (Mệnh đề 01.19); phép bảo toàn tập lồi (Mệnh đề 01.20).
+- Mục 7: hàm lồi, lồi chặt, lõm (Định nghĩa 01.22); tập mức dưới (Định nghĩa 01.24); tập mức dưới của hàm lồi (Mệnh đề 01.25); điều kiện bậc nhất (Định lý 01.26) và điều kiện đủ tối ưu (Hệ quả 01.27); hạn chế lên đường thẳng (Bổ đề 01.28), tiêu chuẩn một biến (Bổ đề 01.29), điều kiện bậc hai (Định lý 01.30); phép bảo toàn hàm lồi (Định lý 01.31).
+- Mục 8: địa phương là toàn cục (Định lý 01.33) và tập nghiệm lồi (Hệ quả 01.34); lồi chặt cho duy nhất (Định lý 01.35); Weierstrass (Định lý 01.36); hàm bức (Định nghĩa 01.37); tồn tại với hàm bức (Định lý 01.38); hàm lồi mạnh (Định nghĩa 01.39); lồi mạnh cho tồn tại và duy nhất (Hệ quả 01.41); chính quy hóa bậc hai (Định nghĩa 01.42).
+- Mục 9: chứng nhận ba ca (Mệnh đề 01.44, 01.45, 01.46); quy trình chứng nhận (Thuật toán 01.1).
 
 **Công thức cần nhớ.**
 
@@ -2694,20 +2638,11 @@ Dòng đầu là định nghĩa tập lồi và hàm lồi. Dòng thứ hai là 
 - Định lý 01.36 cần miền không rỗng, đóng và bị chặn, cả ba.
 - Công thức $(X^TX)^{-1}X^Ty$ cần $\operatorname{rank}X=d$.
 
-**Chuỗi suy luận của toàn chương.**
+**Giới hạn còn lại và bài sau.** Đến đây, chúng ta chứng nhận được tính tối ưu của một điểm cho trước nhưng chưa có cách nhận dạng nhanh một bài toán là lồi khi nó có nhiều ràng buộc, và chưa có phương pháp tìm nghiệm khi không có công thức đóng.
 
-1. Ba ca (Định nghĩa 01.1, 01.4, 01.8) sinh ba khó khăn: nghiệm biên (Nhận xét 01.3), vô số nghiệm (Ví dụ 01.5), không có nghiệm (Ví dụ 01.6).
-2. Khuôn chung (Định nghĩa 01.12, 01.13, Mệnh đề 01.14) chuyển chúng thành sáu câu hỏi (Nhận xét 01.17).
-3. Tập lồi (Định nghĩa 01.18, Mệnh đề 01.19, 01.20) trả lời câu hỏi về miền.
-4. Hàm lồi (Định nghĩa 01.22) cùng các tiêu chuẩn (Định lý 01.26, 01.30, 01.31) trả lời câu hỏi về mục tiêu.
-5. Định lý 01.33 cho kết luận toàn cục, Định lý 01.36 và 01.38 cho tồn tại, Định lý 01.35 cho duy nhất, Hệ quả 01.41 gộp hai kết luận sau.
-6. Mệnh đề 01.44 đến 01.46 chứng nhận ba ca, và Thuật toán 01.1 tổng quát hóa quy trình.
+Trong Bài 02 (Các bài toán tối ưu lồi), chúng ta xây các lớp bài toán chuẩn (quy hoạch tuyến tính, quy hoạch bậc hai, quy hoạch hình học) và quy tắc nhận dạng chúng dựa trên định nghĩa và phép bảo toàn của chương này.
 
-**Giới hạn còn lại và bài sau.** Chương chứng nhận được tính tối ưu của một điểm cho trước nhưng chưa cho cách nhận dạng nhanh một bài toán là lồi khi nó có nhiều ràng buộc, và chưa cho phương pháp tìm nghiệm khi không có công thức đóng.
-
-Bài 02 (Các bài toán tối ưu lồi) xây các lớp bài toán chuẩn (quy hoạch tuyến tính, quy hoạch bậc hai, quy hoạch hình học) và quy tắc nhận dạng chúng dựa trên định nghĩa và phép bảo toàn của chương này.
-
-Điều kiện (7.3) mới là điều kiện đủ, và chỉ dễ kiểm tra khi miền đơn giản như một hộp. Bài 03 (Đối ngẫu Lagrange) biến các ràng buộc thành nhân tử, cho cận dưới của giá trị tối ưu và điều kiện tối ưu dạng hệ phương trình. Bài 04 nghiên cứu điều kiện tối ưu với ràng buộc đẳng thức và phương pháp Newton.
+Điều kiện (7.3) mới là điều kiện đủ, và chỉ dễ kiểm tra khi miền đơn giản như một hộp. Trong Bài 03 (Đối ngẫu Lagrange), chúng ta biến các ràng buộc thành nhân tử để có cận dưới của giá trị tối ưu và điều kiện tối ưu dạng hệ phương trình. Trong Bài 04, chúng ta nghiên cứu điều kiện tối ưu với ràng buộc đẳng thức và phương pháp Newton.
 
 ## Bài tập củng cố
 

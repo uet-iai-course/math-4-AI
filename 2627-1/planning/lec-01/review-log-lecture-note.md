@@ -290,3 +290,49 @@ Quyết định của điều phối viên:
 **Kiểm tra lại sau lượt sửa.** Playwright ở 1600×900 và 390×844: 0 `.katex-error`, 0 phần tử KaTeX tô đỏ, 0 lỗi trang, không tràn ngang trang, số khối không đổi (151). Quét lệnh LaTeX trên các dòng mới: chỉ lệnh chuẩn. Sync và `--check`: OK; `git diff --check`: sạch. Số từ cuối: 33498.
 
 Quyết định của điều phối viên: chấp nhận (Fable 5.1, 2026-10-10). Căn cứ: tác tử rà soát chỉ đọc đối chiếu 146 đoạn Dữ kiện của năm bài, số liệu khớp; hai phát biểu chép thiếu điều kiện (Mệnh đề 02.11(c), Slater dạng yếu) đã sửa và điều phối viên kiểm lại trong tệp; Playwright 1600×900 và 390×844: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, số khối không đổi; `sync --check` và `git diff --check` sạch.
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng: tham khảo giáo trình *Học máy thống kê* (`../SML-textbook-main.zip`, LaTeX) để học cách hành văn, cách đặt vấn đề và cách dẫn dắt câu chuyện, rồi chỉnh toàn bộ ghi chú Bài 01–07, 05b, 05c theo văn phong đó. Chỉ dẫn này đứng trên `AGENTS.md` (thứ tự ưu tiên trong `CLAUDE.md`); `AGENTS.md` chưa được sửa tương ứng vì trình phân loại chặn tự sửa tài liệu chỉ dẫn, việc này để người dùng quyết.
+
+Phạm vi lượt này: `materials/lec-01/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt. Giữ nguyên toán, công thức, `\tag`, số hiệu, loại và thứ tự 151 khối, hình, bảng, thuật ngữ của học phần, bài tập và lời giải.
+
+### Chuẩn bị (điều phối viên Fable 5.1, `claude-fable-5-1`, effort medium)
+
+| Vai | Loại tác tử | Mô hình | Effort | Kết quả | Quyết định |
+|---|---|---|---|---|---|
+| Phân tích văn phong giáo trình | general-purpose, chỉ đọc | Claude Opus 5.5 (`claude-opus-5-5`) | high | `style-guide.md` (scratchpad): 11 mục, 68 trích dẫn kèm đường dẫn, 37 quy tắc biên tập | chấp nhận sau khi điều phối viên đối chiếu hai trích dẫn với giáo trình; bổ sung mục 12 gồm 10 quyết định điều phối |
+| Chẩn đoán ghi chú hiện có | general-purpose, chỉ đọc | Claude Opus 5.5 | high | `notes-diagnosis.md`: bảng đếm mẫu × 9 tệp (52 "Chuỗi suy luận của mục", 44 "Kết mục", 0 "chúng ta"), phân loại (a)–(g), rủi ro | chấp nhận sau khi điều phối viên kiểm trực tiếp các số đếm và đoạn lec-01:316–327 |
+
+Mười quyết định điều phối (mục 12 của `style-guide.md`): giọng kể "chúng ta/ta" như giáo trình; bỏ ba nhãn "Chuỗi suy luận của mục", "Đích của mục", "Kết mục" và kể trọn thông tin của chúng trong một đến hai đoạn văn xuôi cuối mục; mở chương theo bốn bước nối với bài trước; tóm tắt chương có đoạn kể trước danh mục; vẫn nói rõ trực giác chưa phải định nghĩa; giữ tiêu đề `##`, chỉ đổi tiêu đề `###` đang là nhãn khuôn; giữ thuật ngữ học phần; giữ nhãn mã của 05b; giữ nguyên tuyệt đối toán và khối; độ dài ±4 %.
+
+### Tác tử lượt biên tập
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-01/lecture-note.md | 198 lần thay chuỗi; 9 tiêu đề `###` đổi từ nhãn khuôn sang tên khái niệm; các mẫu siêu-dẫn về 0; 33 498 → 34 667 từ | yêu cầu sửa (theo báo cáo rà) |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 95 hunk đã rà; 0 chặn, 1 nghiêm trọng, 8 trung bình, 13 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp dòng 708 (lec-00 dòng 1127 đã lập bình phương tối thiểu từ hàm hợp lý Gauss), 630, 640, 890, 1944, 2260 |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | Làm đủ 22 mục của `lec01-fixes.md`; "Tuy nhiên" 18 → 9; "Hình trên minh họa" 12 → 2; 34 577 từ (+3,2 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | Mục 4.3 (dòng 708 lượt 1) | "Đây là lần đầu trong học phần một bài toán tối ưu được lập từ một mô hình xác suất" sai, vì Bài 00 đã lập bình phương tối thiểu từ hàm hợp lý Gauss | đã sửa: dẫn Bài 00, mục "Nhiễu Gauss, hàm hợp lý và bình phương tối thiểu" |
+| trung bình | mở Mục 4 | lượng từ tồn tại đọc thành phát biểu chung về mọi bộ hai mẫu | đã sửa: dẫn Ví dụ 01.6 và 01.7 |
+| trung bình | kết Mục 3 | "luôn tồn tại và duy nhất khi và chỉ khi" mơ hồ | đã sửa: tách hai kết luận của Mệnh đề 01.6 |
+| trung bình | mở Mục 5 | "ba mục đầu" sai (phải là Mục 2–4) | đã sửa |
+| trung bình | kết Mục 7 | chủ ngữ treo, quan hệ phụ thuộc sai giữa Nhận xét 01.23 và Mệnh đề 01.25 | đã sửa: tách câu |
+| trung bình | kết Mục 8 | gán hàm bức cho cả Định lý 01.36 | đã sửa |
+| trung bình | Mục 2.1 | tài liệu làm chủ ngữ ("Mục 2.2 viết nó…") | đã sửa |
+| trung bình | ranh giới mục | nhịp lặp hai phía "Trong Mục N+1, chúng ta… / Trong Mục N, chúng ta đã…" | đã sửa: mỗi ranh giới chỉ giữ một phía, Mục 4 mở thẳng bằng tình huống |
+| trung bình | toàn tệp | "Tuy nhiên" 18 lần, nhiều chỗ không tương phản | đã sửa: còn 9, đều nêu giới hạn |
+| nhẹ | 13 mục (câu dài, lặp "Hình trên minh họa", ngôi không thống nhất ở phần "bài sau", danh sách lặp, số hiệu Mệnh đề 01.9(b)) | | đã sửa toàn bộ |
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` (scratchpad) so với HEAD: `display_math` (90), `tags` (13), `block_open`/`block_close` (151), `images` (16), bảng, `bold_steps` (69), `\square` (23), tập số hiệu không đổi; chỉ `headings` khác ở 9 tiêu đề `###`; công thức nội dòng 3066 → 3082 do thêm ký hiệu vào câu dẫn.
+- grep: "Chuỗi suy luận", "Đích của mục", "Kết mục", "Trực giác, chưa phải", "Mục này", "chúng tôi", "hãy" đều 0; không "?" và "!" trong thân bài; "chúng ta" 35.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-01/lecture-note.md&deck=lecture-01-…`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ KaTeX, 151/151 khối, 17 `h2`, không tràn ngang; ảnh chụp đã xem (mục lục hiển thị tiêu đề mới). Một cảnh báo console CSP đến từ script nội tuyến của `reloadserver`, có sẵn trước khi sửa.
+- `material-local-data.js` tạo lại từ bản dàn dựng trong đó các bài chưa duyệt (lec-02 trở đi) lấy từ HEAD, để gói chỉ chứa Markdown đã duyệt; `--check` sẽ được chạy ở bài cuối cùng khi mọi bài đã đồng bộ.
+- `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 01.
