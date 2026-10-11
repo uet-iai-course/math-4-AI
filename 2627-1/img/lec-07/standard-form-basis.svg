@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
-  <title id="title">Dạng chuẩn, cơ sở và điểm cực</title>
-  <desc id="desc">Sơ đồ chuyển ba bất đẳng thức của bài hộp hạt thành phương trình có biến phụ, chọn ba cột cơ sở và thu được điểm cực 30,12.</desc>
-  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#294f7c"/></marker></defs>
+  <title id="title">Dạng chuẩn, cơ sở và điểm cực biên</title>
+  <desc id="desc">Sơ đồ chuyển ba bất đẳng thức của bài toán hộp hạt thành phương trình có biến phụ, chọn ba cột cơ sở và thu được điểm cực biên (30,12). Nghiệm cơ sở khả thi trong đại số ứng với điểm cực biên trong hình học.</desc>
+  <defs><marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="20" refY="11" orient="auto"><path d="M0,2 L20,11 L0,20 z" fill="#294f7c"/></marker></defs>
   <rect width="900" height="520" rx="24" fill="#f7f9fc"/>
   <text x="450" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="700" fill="#172033">Một điểm, hai mô tả</text>
   <g font-family="Arial,sans-serif">
@@ -11,14 +11,14 @@
     <rect x="330" y="95" width="250" height="330" rx="18" fill="#e8f1fb" stroke="#2e6098" stroke-width="4"/>
     <text x="455" y="140" text-anchor="middle" font-size="28" font-weight="700" fill="#17365d">Cơ sở B</text>
     <text x="455" y="190" text-anchor="middle" font-size="25" fill="#24344d">B = {x1, x2, s2}</text>
-    <text x="455" y="240" text-anchor="middle" font-size="26" fill="#17365d">det(A_B) = −2</text>
-    <text x="455" y="292" text-anchor="middle" font-size="25" fill="#24344d">s1 = s3 = 0</text><text x="455" y="338" text-anchor="middle" font-size="25" fill="#24344d">x_B = (30,12,8)</text><text x="455" y="382" text-anchor="middle" font-size="24" fill="#2e6098">khả thi, không suy biến</text>
+    <text x="455" y="240" text-anchor="middle" font-size="26" fill="#17365d">det(A<tspan font-size="18" dy="6">B</tspan><tspan dy="-6">) = −2</tspan></text>
+    <text x="455" y="292" text-anchor="middle" font-size="25" fill="#24344d">s1 = s3 = 0</text><text x="455" y="338" text-anchor="middle" font-size="25" fill="#24344d">x<tspan font-size="17" dy="6">B</tspan><tspan dy="-6"> = (30,12,8)</tspan></text><text x="455" y="382" text-anchor="middle" font-size="21" fill="#2e6098">khả thi, không suy biến</text>
     <rect x="625" y="95" width="240" height="330" rx="18" fill="#edf7f1" stroke="#24714f" stroke-width="4"/>
-    <text x="745" y="140" text-anchor="middle" font-size="28" font-weight="700" fill="#174936">Điểm cực</text>
-    <line x1="670" y1="355" x2="825" y2="355" stroke="#172033" stroke-width="4"/><line x1="670" y1="355" x2="670" y2="185" stroke="#172033" stroke-width="4"/>
-    <path d="M670 355 L810 355 L810 255 L735 185 L670 245 Z" fill="#dcebe3" stroke="#24714f" stroke-width="5"/>
-    <circle cx="810" cy="255" r="11" fill="#b64b22" stroke="#fff" stroke-width="3"/><text x="755" y="235" font-size="24" fill="#172033">(30,12)</text>
+    <text x="745" y="140" text-anchor="middle" font-size="26" font-weight="700" fill="#174936">Điểm cực biên</text>
+    <line x1="670" y1="355" x2="840" y2="355" stroke="#172033" stroke-width="4"/><line x1="670" y1="355" x2="670" y2="168" stroke="#172033" stroke-width="4"/>
+    <path d="M670 355 L810 355 L810 255 L735 188 L670 188 Z" fill="#dcebe3" stroke="#24714f" stroke-width="5"/>
+    <circle cx="810" cy="255" r="11" fill="#b64b22" stroke="#fff" stroke-width="3"/><text x="798" y="282" text-anchor="end" font-size="24" fill="#172033">(30,12)</text>
   </g>
-  <g stroke="#294f7c" stroke-width="5" marker-end="url(#arrow)"><path d="M285 260 H322"/><path d="M580 260 H617"/></g>
-  <text x="450" y="475" text-anchor="middle" font-family="Arial,sans-serif" font-size="27" fill="#172033">BFS trong đại số tương ứng với điểm cực trong hình học.</text>
+  <g stroke="#294f7c" stroke-width="5" marker-end="url(#arrow)"><path d="M290 260 H326"/><path d="M585 260 H621"/></g>
+  <text x="450" y="475" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" fill="#172033">Nghiệm cơ sở khả thi (đại số) ứng với điểm cực biên (hình học).</text>
 </svg>

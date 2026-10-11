@@ -113,7 +113,7 @@ Tại $\theta=0$, định nghĩa cho $J(0)=\tfrac16(1+1+9)=\tfrac{11}6$, còn (1
 
 Công thức (1.1) cho thấy mất mát trung bình bằng nửa bình phương khoảng cách từ dự đoán tới trung bình mẫu, cộng với một hằng số. Hằng số $\tfrac43$ là nửa phương sai thực nghiệm của ba quan sát, tức phương sai tính với mẫu số $N=3$, nên không mô hình hằng nào làm nó nhỏ hơn. Do ba quan sát không trùng nhau, cực tiểu của mất mát trung bình không làm từng mất mát riêng bằng $0$.
 
-![Trục số dọc với ba quan sát tại −1, 1 và 3 (chấm tròn) và vạch ngang tại dự đoán θ = 1. Hai mũi tên chỉ sai số có dấu θ − y bằng 2 với quan sát −1 và bằng −2 với quan sát 3; quan sát 1 có sai số 0.](img/lec-05/observations.svg)
+![Trục số ngang với ba quan sát tại −1, 1 và 3 (chấm tròn) và vạch dọc nét đứt tại dự đoán θ = 1. Hai mũi tên chỉ sai số có dấu θ − y bằng 2 với quan sát −1 và bằng −2 với quan sát 3; quan sát 1 có sai số 0.](img/lec-05/observations.svg)
 
 Trên hình, ba quan sát nằm trên một trục cùng vạch dự đoán $\theta=1$. Hai sai số có dấu $\theta-y_1=2$ và $\theta-y_3=-2$ có độ lớn bằng nhau và ngược dấu, nên dịch vạch theo hướng nào cũng làm tổng bình phương tăng, đúng như (1.1) khẳng định.
 
@@ -509,9 +509,9 @@ So với Mệnh đề 04.2(a), mệnh đề này không cần tính lồi nhưng
 **Kiểm tra lại.** $\omega(\pm1)=0$ và $\omega(0)=1$; $\omega(\pm\tfrac12)=\tfrac9{16}<1$, khớp với việc $0$ là cực đại địa phương.
 :::
 
-![Hai đồ thị. Bên trái, hàm ghi là s: lát cắt s(u,0) = u² cong lên và lát cắt s(0,v) = −v² cong xuống, cắt nhau tại gốc; s ứng với ψ của ghi chú, u và v ứng với u₁ và u₂. Bên phải, hàm ghi là r(u) = (u² − 1)², tức ω(u) của ghi chú, với hai đáy bằng 0 tại u = −1 và u = 1 và một đỉnh cục bộ bằng 1 tại u = 0.](img/lec-05/critical-points.svg)
+![Hai đồ thị. Bên trái, hàm ghi là s: lát cắt s(u,0) = u² cong lên và lát cắt s(0,v) = −v² cong xuống, cắt nhau tại gốc; s ứng với ψ của ghi chú, u và v ứng với u₁ và u₂. Bên phải, hàm ghi là r(u) = (u² − 1)², tức ω(u) của ghi chú, với hai cực tiểu địa phương bằng 0 tại u = −1 và u = 1 và một đỉnh cục bộ bằng 1 tại u = 0.](img/lec-05/critical-points.svg)
 
-Khung trái của hình là hai lát cắt của $\psi$ qua gốc, một parabol cong lên và một parabol cong xuống, ứng với hai giá trị riêng $2$ và $-2$. Khung phải là đồ thị của $\omega$ với hai đáy cùng độ sâu. Hàm $\psi$ có hai biến $u_1$, $u_2$, còn $\omega$ chỉ có một biến $u$. Trên hình, $\psi$ được ghi là $s$ với hai biến $u$, $v$, và $\omega$ được ghi là $r$. Tên trên hình khác tên trong ghi chú vì chữ $s$, $r$ và $v$ đã có nghĩa khác trong chương.
+Khung trái của hình là hai lát cắt của $\psi$ qua gốc, một parabol cong lên và một parabol cong xuống, ứng với hai giá trị riêng $2$ và $-2$. Khung phải là đồ thị của $\omega$ với hai cực tiểu địa phương cùng giá trị. Hàm $\psi$ có hai biến $u_1$, $u_2$, còn $\omega$ chỉ có một biến $u$. Trên hình, $\psi$ được ghi là $s$ với hai biến $u$, $v$, và $\omega$ được ghi là $r$. Tên trên hình khác tên trong ghi chú vì chữ $s$, $r$ và $v$ đã có nghĩa khác trong chương.
 
 ::: remark Nhận xét 05.9 (Nhiều cực tiểu cùng giá trị và giới hạn của điểm dừng)
 **Đối xứng hoán vị.** Hoán đổi hai đơn vị ẩn cùng các trọng số vào và ra của chúng cho một bộ tham số khác có cùng hàm dự đoán, nên mất mát của mạng có nhiều cực tiểu cùng giá trị, giống $\omega$. Nhận xét 05.30 nêu lại đối xứng này trên mạng hai đơn vị ẩn.
@@ -1993,7 +1993,7 @@ và các khối của hai đơn vị không liên kết. Với dữ liệu của
 
 **Momentum không sửa được đối xứng.** Định lý 05.28 bao gồm Thuật toán 05.2 và 05.3; vận tốc chỉ cộng dồn các gradient vốn đã bằng nhau.
 
-**Đối xứng hoán vị.** Nếu hai đơn vị không đối xứng, hoán đổi $(w_1,c_1,a_1)$ với $(w_2,c_2,a_2)$ cho một tham số khác có cùng $f_\theta$ và cùng $J$; mất mát vì vậy có ít nhất hai cực tiểu cùng giá trị, như hai đáy của $\omega$ ở Ví dụ 05.6.
+**Đối xứng hoán vị.** Nếu hai đơn vị không đối xứng, hoán đổi $(w_1,c_1,a_1)$ với $(w_2,c_2,a_2)$ cho một tham số khác có cùng $f_\theta$ và cùng $J$; mất mát vì vậy có ít nhất hai cực tiểu cùng giá trị, như hai cực tiểu địa phương của $\omega$ ở Ví dụ 05.6.
 :::
 
 Định lý 05.28 cho thấy đối xứng phải được phá ngay tại $\theta_0$, và cách đơn giản là lấy trọng số ngẫu nhiên từ một phân phối liên tục. Hai trọng số lấy như vậy khác nhau với xác suất $1$, theo mệnh đề sau.

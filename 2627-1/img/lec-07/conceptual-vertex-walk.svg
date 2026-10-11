@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 190 700 310" role="img" aria-labelledby="title desc">
-  <title id="title">Đường đi qua các đỉnh kề của bài hộp hạt</title>
-  <desc id="desc">Miền khả thi hộp hạt với năm đỉnh và giá trị z. Đường đi tô đậm từ (0,0) với z bằng 0 sang (30,0) với z bằng 60, rồi lên (30,12) với z bằng 96. Tại (30,12), hai đỉnh kề là (30,0) với z bằng 60 và (14,20) với z bằng 88, đều nhỏ hơn 96, nên thuật toán dừng.</desc>
+  <title id="title">Đường đi qua các đỉnh kề của bài toán hộp hạt</title>
+  <desc id="desc">Miền khả thi của bài toán hộp hạt với năm đỉnh và giá trị z. Đường đi tô đậm từ (0,0) với z bằng 0 sang (30,0) với z bằng 60, rồi lên (30,12) với z bằng 96. Tại (30,12), hai đỉnh kề là (30,0) với z bằng 60 và (14,20) với z bằng 88, đều nhỏ hơn 96, nên thuật toán dừng.</desc>
   <defs><marker id="aw" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="11" refY="11" orient="auto"><path d="M0 2L20 11L0 20Z" fill="#b15a2b"/></marker></defs>
   <rect x="20" y="190" width="700" height="310" fill="#fff"/>
   <path d="M80 450L410 450L410 318L234 230L80 230Z" fill="#eef3fc" stroke="#2f3e7a" stroke-width="4"/>

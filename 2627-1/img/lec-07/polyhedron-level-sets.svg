@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 30 720 470" role="img" aria-labelledby="title desc">
-  <title id="title">Miền khả thi và đường mức của bài hộp hạt</title>
-  <desc id="desc">Đa giác khả thi có năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Đường mức nét đứt z bằng 60 đi qua hai đỉnh (30,0) và (0,20). Đường mức đỏ song song z bằng 96 chỉ chạm miền tại đỉnh (30,12). Mũi tên chỉ hướng tăng z theo véc-tơ (2,3).</desc>
+  <title id="title">Miền khả thi và đường mức của bài toán hộp hạt</title>
+  <desc id="desc">Đa giác khả thi có năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Đường mức nét đứt z bằng 60 đi qua hai đỉnh (30,0) và (0,20). Đường mức song song z bằng 96 chỉ có điểm chung với miền tại đỉnh (30,12). Mũi tên chỉ hướng tăng z theo véc-tơ (2,3).</desc>
   <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0L9 4L0 8Z" fill="#b15a2b"/></marker></defs>
   <rect x="0" y="30" width="720" height="470" fill="#fff"/>
   <line x1="60" y1="450" x2="680" y2="450" stroke="#222" stroke-width="3"/>
   <line x1="80" y1="470" x2="80" y2="55" stroke="#222" stroke-width="3"/>
   <path d="M80 450L410 450L410 318L234 230L80 230Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="5"/>
-  <line x1="14" y1="186" x2="443" y2="472" stroke="#7a8aa8" stroke-width="3" stroke-dasharray="10 8"/>
+  <line x1="14" y1="186" x2="422" y2="458" stroke="#7a8aa8" stroke-width="3" stroke-dasharray="10 8"/>
   <line x1="58" y1="83" x2="641" y2="472" stroke="#b15a2b" stroke-width="5"/>
   <line x1="470" y1="250" x2="510" y2="190" stroke="#b15a2b" stroke-width="4" marker-end="url(#arrow)"/>
   <g fill="#2e7d32" stroke="#fff" stroke-width="3"><circle cx="80" cy="450" r="9"/><circle cx="410" cy="450" r="9"/><circle cx="410" cy="318" r="11"/><circle cx="234" cy="230" r="9"/><circle cx="80" cy="230" r="9"/></g>
@@ -16,9 +16,9 @@
     <text x="88" y="482">(0,0)</text>
     <text x="378" y="482">(30,0)</text>
     <text x="428" y="300" font-weight="700" fill="#2e7d32">(30,12)</text>
-    <text x="228" y="288">(14,20)</text>
+    <text x="150" y="262">(14,20)</text>
     <text x="92" y="220">(0,20)</text>
-    <text x="182" y="262" fill="#55627e">z = 60</text>
+    <text transform="translate(296 361) rotate(33.69)" text-anchor="middle" fill="#55627e">z = 60</text>
     <text x="560" y="404" fill="#b15a2b" font-weight="700">z = 96</text>
     <text x="520" y="196" fill="#b15a2b">tăng z</text>
   </g>

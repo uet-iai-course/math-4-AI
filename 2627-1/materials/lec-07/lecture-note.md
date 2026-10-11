@@ -5,7 +5,7 @@
 Bốn mục tiêu đầu là minh chứng cho hai chuẩn đầu ra bài học (LLO) của buổi 7, cả hai đóng góp chuẩn đầu ra học phần CLO1:
 
 - LLO17: hiểu định nghĩa quy hoạch tuyến tính và diễn đạt bài toán thực tế thành quy hoạch tuyến tính;
-- LLO18: xây dựng đa diện của quy hoạch tuyến tính, hiểu sự tồn tại và tính tối ưu của điểm cực biên, mô tả thuật toán đi qua đỉnh kề ở mức ý niệm.
+- LLO18: xây dựng đa diện của quy hoạch tuyến tính, hiểu sự tồn tại và tính tối ưu của điểm cực biên, mô tả thuật toán duyệt đỉnh kề ở mức ý niệm.
 
 Hai mục tiêu cuối thuộc phần quy hoạch động (dynamic programming), phần bổ trợ của bài giảng; chúng không gắn với LLO hay CLO nào của đề cương.
 
