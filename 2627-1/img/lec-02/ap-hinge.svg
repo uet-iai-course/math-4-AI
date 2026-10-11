@@ -53,7 +53,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_1">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="62.603281" y="272.233437" transform="rotate(-0 62.603281 272.233437)">−2.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="62.603281" y="272.233437" transform="rotate(-0 62.603281 272.233437)">−2,0</text>
      </g>
     </g>
     <g id="xtick_2">
@@ -63,7 +63,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_2">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="109.137871" y="272.233437" transform="rotate(-0 109.137871 272.233437)">−1.5</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="109.137871" y="272.233437" transform="rotate(-0 109.137871 272.233437)">−1,5</text>
      </g>
     </g>
     <g id="xtick_3">
@@ -73,7 +73,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_3">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="155.672461" y="272.233437" transform="rotate(-0 155.672461 272.233437)">−1.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="155.672461" y="272.233437" transform="rotate(-0 155.672461 272.233437)">−1,0</text>
      </g>
     </g>
     <g id="xtick_4">
@@ -83,7 +83,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_4">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="202.207051" y="272.233437" transform="rotate(-0 202.207051 272.233437)">−0.5</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="202.207051" y="272.233437" transform="rotate(-0 202.207051 272.233437)">−0,5</text>
      </g>
     </g>
     <g id="xtick_5">
@@ -93,7 +93,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_5">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="248.741641" y="272.233437" transform="rotate(-0 248.741641 272.233437)">0.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="248.741641" y="272.233437" transform="rotate(-0 248.741641 272.233437)">0,0</text>
      </g>
     </g>
     <g id="xtick_6">
@@ -103,7 +103,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_6">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="295.27623" y="272.233437" transform="rotate(-0 295.27623 272.233437)">0.5</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="295.27623" y="272.233437" transform="rotate(-0 295.27623 272.233437)">0,5</text>
      </g>
     </g>
     <g id="xtick_7">
@@ -113,7 +113,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_7">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="341.81082" y="272.233437" transform="rotate(-0 341.81082 272.233437)">1.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="341.81082" y="272.233437" transform="rotate(-0 341.81082 272.233437)">1,0</text>
      </g>
     </g>
     <g id="xtick_8">
@@ -123,7 +123,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_8">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="388.34541" y="272.233437" transform="rotate(-0 388.34541 272.233437)">1.5</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="388.34541" y="272.233437" transform="rotate(-0 388.34541 272.233437)">1,5</text>
      </g>
     </g>
     <g id="xtick_9">
@@ -133,7 +133,7 @@ L 0 3.5
       </g>
      </g>
      <g id="text_9">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="434.88" y="272.233437" transform="rotate(-0 434.88 272.233437)">2.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle" x="434.88" y="272.233437" transform="rotate(-0 434.88 272.233437)">2,0</text>
      </g>
     </g>
     <g id="text_10">
@@ -153,7 +153,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_11">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="245.828212" transform="rotate(-0 55.603281 245.828212)">0.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="245.828212" transform="rotate(-0 55.603281 245.828212)">0,0</text>
      </g>
     </g>
     <g id="ytick_2">
@@ -163,7 +163,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_12">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="210.611048" transform="rotate(-0 55.603281 210.611048)">0.5</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="210.611048" transform="rotate(-0 55.603281 210.611048)">0,5</text>
      </g>
     </g>
     <g id="ytick_3">
@@ -173,7 +173,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_13">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="175.393883" transform="rotate(-0 55.603281 175.393883)">1.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="175.393883" transform="rotate(-0 55.603281 175.393883)">1,0</text>
      </g>
     </g>
     <g id="ytick_4">
@@ -183,7 +183,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_14">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="140.176719" transform="rotate(-0 55.603281 140.176719)">1.5</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="140.176719" transform="rotate(-0 55.603281 140.176719)">1,5</text>
      </g>
     </g>
     <g id="ytick_5">
@@ -193,7 +193,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_15">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="104.959554" transform="rotate(-0 55.603281 104.959554)">2.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="104.959554" transform="rotate(-0 55.603281 104.959554)">2,0</text>
      </g>
     </g>
     <g id="ytick_6">
@@ -203,7 +203,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_16">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="69.74239" transform="rotate(-0 55.603281 69.74239)">2.5</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="69.74239" transform="rotate(-0 55.603281 69.74239)">2,5</text>
      </g>
     </g>
     <g id="ytick_7">
@@ -213,7 +213,7 @@ L -3.5 0
       </g>
      </g>
      <g id="text_17">
-      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="34.525225" transform="rotate(-0 55.603281 34.525225)">3.0</text>
+      <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: end" x="55.603281" y="34.525225" transform="rotate(-0 55.603281 34.525225)">3,0</text>
      </g>
     </g>
     <g id="text_18">
