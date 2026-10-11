@@ -247,3 +247,30 @@ Lượt 2 áp dụng lại chế độ Edit trên mọi đoạn sửa: bỏ ba k
 
 - Số trang của Bertsimas và Tsitsiklis (1997), Bertsekas (2017), Cormen và cộng sự (2009), Sutton và Barto (2018) chưa kiểm vì không có bản cục bộ.
 - Trường hợp suy biến của Bổ đề 07.32 chỉ nêu ý tưởng qua phương pháp đơn hình với quy tắc Bland.
+
+## Biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng và quy tắc chung: xem nhật ký Bài 01 (mục cùng tên) và `style-guide.md` (scratchpad phiên). Phạm vi: `materials/lec-07/lecture-note.md`, chỉ lớp văn xuôi dẫn dắt; giữ nguyên toán, công thức, `\tag`, số hiệu, 132 khối, hình, bảng, thuật ngữ, bài tập. Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium); các tác tử sửa tệp khác nhau chạy song song, mỗi tệp một tác tử ghi.
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ lec-07/lecture-note.md | không đổi tiêu đề; 12 khối kết mục thành 6 cụm văn xuôi; 8 câu dẫn mới; 12 chỗ đổi chủ ngữ vật vô tri; mở chương nối Mệnh đề 06.3 và Bài 02, 03; 33 188 → 34 101 từ | yêu cầu sửa |
+| Rà toán và mạch truyện, lượt 1 | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 135 hunk; 264 dòng `:::` và 44 `$$` trùng hash; số hiệu Bài 01, 02, 03, 06 đúng; 0 chặn, 0 nghiêm trọng, 4 trung bình, 11 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp Định nghĩa 07.35 (bốn giả thiết) và Bước 2 chứng minh Hệ quả 07.16 (dùng (ii)) |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | Làm đủ 15 mục của `lec07-fixes.md`; 34 134 từ (+2,9 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| trung bình | kết Mục 6 | "cần ba giả thiết" trong khi Định nghĩa 07.35 có bốn (thiếu "hữu hạn") và chữ "cần" nói quá | đã sửa |
+| trung bình | câu dẫn Hệ quả 07.16 | gán phép đếm cho khẳng định (iii) trong khi Bước 2 dùng (ii) | đã sửa |
+| trung bình | kết Mục 2, kết Mục 3 | lượng từ tồn tại ("nghiệm tối ưu nằm trong tập này") và thiếu hụt cuối Mục 2 không phải điều Mục 3 giải quyết | đã sửa |
+| trung bình | đoạn kể tóm tắt | số phép tính tuyến tính theo $N$ thiếu điều kiện số trạng thái, số điều khiển bị chặn (Mệnh đề 07.42) | đã sửa |
+| nhẹ | 11 mục (giả thiết $c\ne0$ ở câu dẫn Mệnh đề 07.2, Hệ quả 07.21 nêu đủ (a) và (b), lặp ranh giới mục, "Hình trên" ×7, mở Mục 6 trả lại $J_0(\mathrm s)=5$) | | đã sửa toàn bộ |
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `headings`, `display_math`, `tags`, 132 khối, hình, bảng, nhãn bước, `\square` không đổi; `numbered_labels` chỉ đổi số lần nhắc; công thức nội dòng 3541 → 3545.
+- grep: "Chuỗi suy luận", "Kết mục", "Mục này" đều 0; "bốn giả thiết của Định nghĩa 07.35" 2; "Tuy nhiên" 9; "Hình trên" 1.
+- Playwright Chromium 1600×900 và 390×844 qua `material-viewer.html?doc=materials/lec-07/lecture-note.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ, 132/132 khối, 14 `h2`, không tràn ngang.
+- `material-local-data.js` tạo lại với lec-05, 05b, 05c lấy từ HEAD. `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 07.
