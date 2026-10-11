@@ -412,3 +412,29 @@ Kết quả tự kiểm bản soạn: 67 mã duy nhất đúng thứ tự; 67 gh
 - Trong lecture note, trực quan elip, ví dụ Gauss, hình minh họa và điểm dễ nhầm về đường đồng mật độ được đặt trước heading con mở rộng; chỉ Mahalanobis và làm trắng nằm dưới nhãn ngoài phạm vi deck.
 - SVG `probability-gaussian-ellipse.svg` tách riêng trực quan Gauss có tương quan dương khỏi hình mở rộng về làm trắng; Chromium render đủ ba elip, nhãn trục, chú giải và hệ số $\rho=0{,}8$.
 - Kiểm toán tiêu đề toàn bộ Bài 00–07 đổi C13 từ dạng kể tiến trình “Từ … đến …” thành `Hàm hợp lý Gauss và tổng bình phương phần dư`; không đổi nội dung toán học hoặc thứ tự trang.
+
+## Ghi chú bài giảng Bài 00: biên tập văn phong theo giáo trình của người dùng (2026-10-11)
+
+Yêu cầu người dùng: sau chín bài 01–07, 05b, 05c, chỉnh cả ghi chú Bài 00 theo cách hành văn, cách đặt vấn đề và cách dẫn dắt của giáo trình *Học máy thống kê* (quy tắc chung ở nhật ký ghi chú Bài 01 và `style-guide.md` trong scratchpad phiên). Bài 00 có khuôn thẻ (nhãn đậm "Định nghĩa / Ví dụ / Điểm dễ nhầm / Ý nghĩa…", không khối `:::`, không số hiệu), nên brief điều chỉnh: giữ bộ nhãn và thứ tự nhãn làm cấu trúc, viết lại lớp văn xuôi; cho phép tăng tới +10 % số từ vì không có khối nhãn siêu-dẫn để bỏ bù. Điều phối viên: Claude Fable 5.1 (`claude-fable-5-1`, effort medium).
+
+| Vai | Loại tác tử | Mô hình | Effort | Ghi tệp | Kết quả | Quyết định |
+|---|---|---|---|---|---|---|
+| Biên tập (editor), lượt 1 | general-purpose | Claude Opus 5.5 (`claude-opus-5-5`) | high | Có, chỉ materials/lec-00/lecture-note.md | mở chương theo nhu cầu của người học AI, nối tới Bài 01; 4 đoạn mở và 4 đoạn kết mục `##`; 46 câu dẫn trước thẻ; 31 "Điểm dễ nhầm", 24 "Ý nghĩa", 6 "Trực quan", 5 "Công cụ tái sử dụng" thành câu đủ; dấu ";" 122 → 77; 13 944 → 15 386 từ | yêu cầu sửa |
+| Rà toán và mạch truyện | general-purpose, chỉ đọc | Claude Opus 5.5 | high | Không | 123 hunk; 303 nhãn, 78 tiêu đề, 20 hình, nội dung mọi "Định nghĩa" giống bản cũ; tham chiếu Bước 6, Hessian $\mathbf X^T\mathbf X$, đầu Bài 01 đúng; 0 chặn, 1 nghiêm trọng, 5 trung bình, 14 nhẹ | chấp nhận báo cáo; điều phối viên kiểm trực tiếp câu kết mục Xác suất một biến |
+| Biên tập, lượt 2 (cùng tác tử, SendMessage) | general-purpose | Claude Opus 5.5 | high | Có | Làm đủ 19 mục của `lec00-fixes.md`, rút gọn văn thêm để giữ trần; 15 396 từ (+10,4 %) | chấp nhận |
+
+### Phát hiện và trạng thái
+
+| Mức độ | Vị trí | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | kết mục Xác suất một biến | câu mới bỏ giả thiết Gauss: chỉ độc lập cùng phân phối không cho cực đại hợp lý trùng bình phương tối thiểu | đã sửa: "cùng phân phối $\mathcal N(0,\sigma^2)$ với $\sigma^2$ cố định" |
+| trung bình | kết mục Xác suất nhiều biến; câu dẫn Jacobian; câu dẫn đạo hàm riêng; câu dẫn điểm dừng | mất giả thiết Gauss tương quan và hiệp phương sai đã biết; hàng Jacobian là gradient đã chuyển vị; "vốn đã có đạo hàm"; thiếu khả vi và địa phương | đã sửa |
+| trung bình | toàn tệp | số từ +10,3 % vượt mức ±4 % của quyết định chung | chấp nhận theo brief riêng của Bài 00 (bản gốc rất cô đọng, không có khối nhãn để bỏ) |
+| nhẹ | 14 mục (khuôn "nên ta cần" ×11, thứ tự khái niệm ở mở mục Giải tích, câu dẫn hứa hội tụ, ";" còn sót, thiếu câu dẫn nhóm "Phép toán cơ bản") | | đã sửa toàn bộ; "ta cần" còn 7 |
+
+### Kiểm tra của điều phối viên
+
+- `invariants.py` so với HEAD: `INVARIANTS OK` (tiêu đề, công thức hiển thị, 20 hình, bảng không đổi); đếm nhãn đậm đầu dòng không đổi (Định nghĩa 57, Ví dụ 57, Điểm dễ nhầm 58, Ý nghĩa 77, Trực quan 14, Công cụ 9, Diễn giải 9, Đầu vào 9, Thao tác 9); công thức nội dòng 790 → 799.
+- grep: "hãy", "?", "chúng tôi", "Bài 00" làm chủ ngữ đều 0; "chúng ta" 19; "Tuy nhiên" 2.
+- Playwright Chromium qua `material-viewer.html?doc=materials/lec-00/lecture-note.md&deck=lecture-00-…`: 0 lỗi trang, 0 `.katex-error`, 0 chữ đỏ ở cả 1600×900 và 390×844; ảnh màn hẹp đã xem. Ở 390×844 `scrollWidth` bằng 553 vì 20 hình SVG của Bài 00 dựng rộng 900 px (`naturalWidth` 300, không có `max-width`); hình và `alt` không đổi so với HEAD nên đây là lỗi có sẵn của tệp SVG hoặc CSS trình xem, ngoài phạm vi lượt văn phong; cần một lượt riêng (sửa thuộc tính kích thước SVG hoặc CSS dùng chung kèm rà mọi bài).
+- `sync-local-materials.py` và `--check` đạt; `git diff --check` sạch. Quyết định: chấp nhận, commit Bài 00.
