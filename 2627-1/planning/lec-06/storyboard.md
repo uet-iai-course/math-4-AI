@@ -1,525 +1,630 @@
-# Storyboard Bài giảng 06
+# Storyboard Bài 06 — Mở rộng mô hình và dữ liệu
 
 ## Phạm vi và cơ sở lý thuyết chung
 
-Storyboard mới ngày 2026-09-26 gồm 45 trang trong 7 mạch, xây dựng từ nguồn và mục tiêu buổi học. Toàn bộ trang được thêm khi xây dựng lại tuyến; vòng biên tập sau rà soát ghi riêng quyết định **giữ** hoặc **sửa** cho từng trang; quyết định giữ/sửa/gộp/tách nội dung nguồn nằm ở outline.md, phần Phân tích nguồn và thiết kế nội dung, mục 8. Không coi số trang cũ là ràng buộc. RevealJS đã được triển khai đủ 45 trang theo thứ tự này ngày 2026-09-27; trạng thái kiểm định nằm trong vòng triển khai của review-log.md.
+Storyboard lập ngày 2026-10-11 theo thiết kế Lecture B của người dùng (*Scaling Models and Data*) và dàn bài [outline.md](outline.md). Bài gồm 45 trang trong 7 mạch, nằm trong khoảng 5–7 mạch của AGENTS.md. Bản đầu có 43 trang; sau kiểm định storyboard cùng ngày, F02 và F05 cũ được tách, câu hỏi vận dụng của G02 chuyển sang G03, các mã F03, F04, F06 cũ đổi thành F04, F05, F08 (outline.md, mục 1.5). Thiết kế người dùng chỉ quy định ba khối B1–B3, mỗi khối 1 tiết, cùng ba câu hỏi trung tâm; không có trang mẫu. Vì bài được dựng mới, mọi trang có quyết định `thêm`. Storyboard của deck hiện hành (“Các phương pháp tối ưu trong học sâu”, 45 trang) được lưu tại `storyboard.old-2026-10-02.md`. Deck mới chưa được dựng; mã trang chỉ dùng trong kế hoạch.
 
-Vấn đề trung tâm là chọn thành phần huấn luyện cần thay và kiểm điều kiện sử dụng. A02 xác lập sơ đồ thành phần ngay trên tuyến trang; E01 và G01 dùng lại cùng nhãn. Đối tượng chung: dữ liệu, mô hình, mục tiêu F, tham số θ, gradient, điểm đầu, quỹ đạo và quy tắc trả về. Sườn B–D: ví dụ thang đo → mô hình tuyến tính có phạt SPD → thống kê đường chéo → mô hình Taylor/hệ SPD → giải qua Av hoặc xấp xỉ nghịch đảo từ (s,y). Sườn E–F gọi lại các thành phần: phép tính/khối/đầu ra → điểm đầu/họ mục tiêu/phân phối → phương án đánh giá. Không có định lý chung khẳng định mọi can thiệp cải thiện hội tụ mạng sâu.
+**Bài toán trung tâm.** Bài 05 kết thúc với hai giới hạn: mọi phương pháp của Bài 05 trả chi phí của toàn bộ $n$ mẫu ở mỗi bước, và dự đoán tuyến tính theo đặc trưng không biểu diễn được XOR. Khi mô hình phải có đặc trưng học được và dữ liệu lớn đến mức một gradient đầy đủ vượt ngân sách, bài xác định: (1) chi phí tính gradient theo tham số; (2) điều mà một phương pháp dựa trên gradient còn chứng nhận khi mục tiêu không lồi; (3) tốc độ còn lại khi gradient được thay bằng ước lượng ngẫu nhiên, và lý do tốc độ đó đủ cho mục tiêu thay thế $F$ của rủi ro $R$.
 
-Giả thiết và giới hạn được phát triển tại chỗ: A04 phân biệt ma trận phạt và Hessian; B07 phân biệt moment với gradient; B08 xét tương tác độ cong; C03–C04 kiểm SPD/hướng giảm; C06 giữ toán tử cố định, C07 tách kiểm phần dư khỏi kiểm hướng; D03 kiểm yᵀs>0; E03 thay mục tiêu độc lập mẫu khi dùng BN; E06,F04,F05 kiểm các giới hạn của trung bình và giai đoạn. Mã HT0–HT13 và phát biểu đầy đủ trong outline.md, phần Phân tích nguồn và thiết kế nội dung, mục 7.
+**Luận đề (chỉ dẫn người dùng 2026-10-11).** Lý do tính toán: một gradient đầy đủ tốn $O(np)$, một bước Newton tốn $O(np^2+p^3)$; SGD nhóm nhỏ là phương pháp còn lại khi ngân sách mỗi bước cố định. Lý do thống kê: tại $\theta$ cố định, $F$ ước lượng $R$ với sai số cỡ $1/\sqrt n$ (05c G.2), và theo Bottou–Bousquet, với bài toán lồi, giảm sai số tối ưu dưới sai số ước lượng không làm thay đổi bậc của cận sai số dư; vì vậy cực tiểu chính xác của $F$ không cần thiết và có thể không mong muốn, còn dừng sớm và chính quy hóa là một phần của phương pháp. A03 nêu luận đề, E01–E02 và F05 dùng lại, G01 khép lại ở dạng: mất tính chính xác, bảo đảm tất định, gradient đầy đủ; giữ tính giảm mỗi bước của hạ gradient đầy đủ, bất đẳng thức một bước của SGD có số hạng nhiễu $\tfrac{L\eta^2}2\sigma^2$ (SGD không giảm theo kỳ vọng ở mọi bước, phản ví dụ $\tfrac{69}{128}>\tfrac12$ ở F01), bảo đảm điểm dừng và tốc độ theo kỳ vọng (T5, T6, T8). Phạm vi: cận $O(1/\sqrt K)$ của T8 là bảo đảm còn lại; luận điểm rằng nó đủ dựa trên lập luận đại lượng thay thế (E02) cho bài toán lồi và trên tập xác thực (F06) cho mạng, không dựa trên T8.
+
+**Đối tượng và ký hiệu chung** (outline.md, mục 4.2). Dữ liệu $(x_i,y_i)$, $x_i\in\mathbb R^d$; mạng hai tầng $f(x;\theta)=w_2^\top\sigma(W_1x+b_1)+b_2$, $\theta\in\mathbb R^p$, $p=md+2m+1$; mô hình tuyến tính $f(x;w,c)=w^\top x+c$, $p=d+1$; $\ell_i$, $F=\frac1n\sum_i\ell_i$, $R$; dãy lặp $\theta_k$; nhóm nhỏ $B_k$, cỡ nhóm $b$, gradient nhóm $\widehat g_k$. Bài 05 gộp hệ số chặn vào $w$; Bài 05b viết $x_k$, $f$, $N$; A04 ghi ánh xạ.
+
+**Giả thiết.** Nhãn của Bài 05b: H0, H2, H3, H4, H6, H6a, H6b. Ba giả thiết cục bộ: M1 (mạng ReLU, quy ước tính toán $\sigma'(0)=0$), M2 (mất mát lồi theo $f$, mặc định bình phương), M3 (nhóm chọn đều, độc lập với lịch sử). H6b chỉ đúng trên vùng bị chặn chứa dãy lặp. H2 đúng trên vùng bị chặn cho mạng có hàm kích hoạt trơn (tanh, softplus) hoặc mạng tuyến tính (D02); với ReLU, $\nabla F$ gián đoạn tại điểm gãy nên H2 không đúng trên vùng nào chứa điểm gãy, và T7, T8 chỉ dùng làm định hướng (nêu trên mặt trang D05, F04, G02). Ký hiệu $\sigma$ ở mạch B–C là hàm kích hoạt, $\sigma^2$ ở mạch E–F là chặn phương sai.
+
+**Chuỗi định nghĩa → kết quả → phương pháp.** (1) Tách được tuyến tính → Mệnh đề 1 (B02). (2) Mạng hai tầng (B06) → Mệnh đề 2 (B08) → Mệnh đề 3 (B09). (3) Thuật toán lan truyền ngược (C04) → chi phí cùng bậc truyền xuôi (C05). (4) Điểm dừng, điểm yên ngựa, điều kiện bậc hai (D01, D03) → bổ đề giảm (D04) → T7 (D05). (5) Định lý G.3 (E04) → SGD nhóm nhỏ (E05) → bất đẳng thức một bước có số hạng nhiễu và T5 (F02), T6 (F03), T8 (F04) → so sánh dưới ngân sách cố định (F05) → dừng sớm (F06) và quan hệ với chính quy hóa $\ell_2$ (F07). (6) Lựa chọn phương pháp theo $(n,p)$ và tính lồi (G02).
+
+**Giới hạn áp dụng.** Mọi bảo đảm là về điểm dừng hoặc kỳ vọng; SGD không giảm $F$ theo kỳ vọng ở mọi bước; T7, T8 cần $F$ trơn, chặn bình phương chuẩn gradient của dãy lặp, không chặn khoảng cách tới cực tiểu hay $R$ của tham số chọn theo tập xác thực; các cận là cận trên, có thể bi quan nhiều bậc (D07, F01–F02); tương đương dừng sớm và chính quy hóa $\ell_2$ chỉ đúng cho mục tiêu bậc hai và gần đúng khi $\eta\alpha$ nhỏ ($\alpha$ là trị riêng); bảng chi phí bỏ hằng số và song song phần cứng.
+
+**Hình dùng lại (đường dẫn gốc).** `img/lec-05b/vda-sgd-bound-vs-exact.svg` (F01, dữ liệu Ví dụ A), `img/lec-05b/step-halving-schedule.svg` (F02, tùy chọn), `img/lec-05b/rates-log-error.svg` (F04, tùy chọn), `img/lec-05/risk-curves.svg` (F06). Theo quyết định Q4 của điều phối viên, các tệp được dùng sẽ được sao chép vào `img/lec-06/` ở giai đoạn dựng deck, kèm dòng xuất xứ trong `review-log.md`.
 
 ## Chức năng và ranh giới mạch
 
-| Mạch | Chức năng | Đầu vào | Đầu ra và đóng góp vào vấn đề trung tâm | Kiểm tra | Tiết lý thuyết + bài tập |
-|---|---|---|---|---|---|
-| A: Bài toán và mô hình bước cập nhật | MT1–MT3; xác lập thành phần toàn bài, rồi mô hình bước cho MT1–MT2 | Gradient, hàm bậc hai và bước SGD của Bài 05 | Sơ đồ thành phần huấn luyện; ma trận phạt và nhu cầu ước lượng thang đo | A05 | 0,20 + 0,08 |
-| B: Thống kê gradient theo tọa độ | MT1; thống kê gradient theo tọa độ | Mô hình bước với ma trận đường chéo | Ba cơ chế trạng thái và giới hạn tương tác tọa độ | B09 | 0,38 + 0,20 |
-| C: Độ cong và hệ Newton | MT2; độ cong và hệ Newton | Giới hạn của thống kê đường chéo | Hệ SPD, hướng Newton và nghiệm CG có phần dư kiểm được | C08 | 0,40 + 0,22 |
-| D: Xấp xỉ độ cong từ gradient | MT2; xấp xỉ độ cong từ gradient | Chi phí cung cấp toán tử độ cong trong Newton–CG | Cặp cát tuyến hợp lệ và hướng BFGS; nhu cầu xem các thành phần khác | D05 | 0,24 + 0,12 |
-| E: Phép tính mô hình, khối biến và đầu ra | MT3; phép tính mô hình, khối biến và đầu ra | Các giới hạn của việc chỉ thay bước | Phân biệt BN, hạ theo khối, Polyak và đường truyền gradient | E08 | 0,38 + 0,15 |
-| F: Huấn luyện theo giai đoạn | MT3; huấn luyện theo giai đoạn | Mô hình, mục tiêu, dữ liệu và điểm đầu của bài toán | Phân biệt chuyển tham số, họ mục tiêu, lịch phân phối; điều kiện mục tiêu đích | F07 | 0,30 + 0,13 |
-| G: Lựa chọn và đánh giá phương pháp | MT1–MT3; lựa chọn và đánh giá phương pháp | Kết quả và giới hạn của sáu mạch trước | Phương án có dữ kiện, điều kiện áp dụng và phép kiểm | G02 | 0,10 + 0,10 |
+| Mạch | Khối | Chức năng | Đầu vào | Đầu ra và đóng góp vào bài toán trung tâm | Kiểm tra | Tiết LT + BT |
+|---|---|---|---|---|---|---|
+| A. Bài toán huấn luyện khi mô hình và dữ liệu lớn | B1 (mở đầu) | Nhận hai giới hạn của Bài 05, nêu luận đề, cố định ký hiệu | Kết luận Bài 05: chi phí $O(nd)$, $O(nd^2+d^3)$; XOR; chính quy hóa $\ell_2$ | Ba câu hỏi của bài và khung ký hiệu | không | 0,12 + 0,00 |
+| B. Biểu diễn phi tuyến và mạng hai tầng | B1 | Nhu cầu: dự đoán tuyến tính có giới hạn biểu diễn. Dựng mạng hai tầng và chỉ ra cái giá | Giới hạn (ii) của A03 | $f(x;\theta)$; $F(\theta)$ không lồi, nhiều cực tiểu đối xứng | B10 | 0,55 + 0,33 |
+| C. Lan truyền ngược trên đồ thị tính toán | B2 (phần 1) | Nhu cầu: tính $\nabla F(\theta)\in\mathbb R^p$ với chi phí cùng bậc truyền xuôi | $f$, $F$ của mạch B; quy tắc dây chuyền Bài 00 | Thuật toán, chi phí $O(p)$ một mẫu, một bước hạ gradient | C07 | 0,36 + 0,14 |
+| D. Điểm dừng và bảo đảm của gradient khi không lồi | B2 (phần 2) | Nhu cầu: xác định điều gradient bằng 0 hoặc gradient nhỏ chứng nhận khi $F$ không lồi | Gradient từ C; tính không lồi từ B | Phân loại điểm dừng; bổ đề giảm và T7: bảo đảm còn lại là điểm dừng xấp xỉ | D07 | 0,32 + 0,18 |
+| E. Gradient nhóm nhỏ và chi phí mỗi bước | B3 (phần 1) | Nhu cầu: một gradient đầy đủ vượt ngân sách và $F$ chỉ là đại lượng thay thế | T7 (D05); chi phí của C | Ước lượng không chệch, phương sai, thuật toán SGD, chi phí mỗi bước độc lập với $n$ | E06 | 0,30 + 0,14 |
+| F. Tốc độ hội tụ dưới nhiễu và dừng sớm | B3 (phần 2) | Nhu cầu: xác định tốc độ còn lại khi gradient có nhiễu, phạm vi của bảo đảm và quy tắc dừng | SGD và phương sai của E | Bất đẳng thức một bước có nhiễu; T5, T6, T8 phát biểu lại với phạm vi; so sánh dưới ngân sách cố định; dừng sớm và quan hệ với chính quy hóa | F08 | 0,30 + 0,13 |
+| G. Tổng hợp và lựa chọn phương pháp | B3 (kết luận) | Khép luận đề; chọn phương pháp theo $(n,p)$ và tính lồi | Kết quả của B–F | Bảng quyết định có điều kiện áp dụng | G03 | 0,05 + 0,08 |
 
-Tổng 2,00 tiết lý thuyết + 1,00 tiết bài tập. Bài tập bao gồm phép tính tay ở trang ví dụ, kiểm tra cá nhân và sản phẩm nhóm G02; không cộng thêm thời gian ngoài đề cương. Hai ranh giới cần giữ rõ: C07→D01 thay đầu vào Av bằng cặp gradient; D05→E01 thay câu hỏi “tính bước” bằng “thành phần nào của quá trình cần điều chỉnh”. E→F chuyển từ thao tác trong một quá trình sang tổ chức nhiều giai đoạn.
+Tổng 2,00 tiết lý thuyết + 1,00 tiết bài tập; mỗi khối 1,00 tiết (outline.md, mục 5 và 7). Mỗi khối của thiết kế ứng với các mạch giữa: B1 là mạch B, B2 tách thành C và D, B3 tách thành E và F; không mạch nào gộp hai khối. Bốn ranh giới phải giữ rõ: B10→C01 chuyển từ mô hình sang cách tính gradient của nó; C06→D01 chuyển từ “tính được” sang “chứng nhận được”; D07→E01 giữ T7 nhưng thay giả thiết gradient đầy đủ bằng ngân sách cố định; E06→F01 chuyển từ một bước sang tốc độ sau $K$ bước.
 
 ## Bản đồ hành trình khái niệm
 
-Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập. Khi ví dụ cùng trang nhu cầu, phần dữ kiện xuất hiện trước hình thức hóa. Mỗi cụm dưới ghi riêng đầu vào, sản phẩm, ký hiệu truyền tiếp và lý do gộp. Thời lượng cụm tính theo hợp các trang được tham chiếu; các trang kiểm tra chung xuất hiện trong nhiều cụm nên các tổng cụm không cộng để suy tổng toàn bài.
+Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập; khi ví dụ dẫn nhập đứng cùng nhu cầu, chuỗi hợp lệ là nhu cầu + ví dụ dẫn nhập → trực quan → hình thức → ứng dụng → bài tập. Thời lượng cụm tính theo hợp các trang được tham chiếu (bảng thời lượng trong outline.md, mục 7); trang dùng chung giữa các cụm được tính ở mỗi cụm, nên tổng các cụm lớn hơn tổng toàn bài.
 
-### KN0. Mô hình bước cục bộ
+### KN1. Tách được tuyến tính và giới hạn của dự đoán tuyến tính
 
-- **Sáu bước:** nhu cầu A03; trực quan A03 (thang khác nhau) và A04 (phạt đều thành phạt theo hướng); ví dụ A03; hình thức/toán học A04; ứng dụng A04; bài tập A05.
-- **Đầu vào và mục tiêu:** Gradient, Hessian và dạng toàn phương; MT1–MT2. Tính bước từ g, M, η và bác bỏ ma trận phạt làm bài toán không bị chặn dưới; kiểm ở A05.
-- **Ký hiệu/dữ kiện truyền tiếp:** θ=(1,1), g=(1,9), M=diag(1,9).
-- **Gộp hoặc rút gọn:** Nhu cầu và ví dụ dẫn nhập cùng A03: bước vô hướng không cân bằng hai tọa độ. Hình và phép tính dùng đúng một hàm.
-- **Câu nối học thuật:** Độ dài lệch nhau → ma trận phạt → bước có công thức.
-- **Thời lượng cụm:** 0,15 tiết lý thuyết + 0,08 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu B01 (ví dụ dẫn nhập XOR); trực quan B01 (bốn điểm), B02 (hai đường chéo có trung điểm chung); ví dụ B01 (ví dụ dẫn nhập: mô hình $f(x;w,c)$ với ngưỡng $\tfrac12$ trên bốn điểm) và B02 (hệ quả số: nghiệm bình phương nhỏ nhất affine $w=0$, $c=\tfrac12$, $F=\tfrac18$); hình thức B02 (Định nghĩa tách được tuyến tính, Mệnh đề 1); ứng dụng B03 (đặc trưng $x_1x_2$, số đặc trưng $\binom{d+q}{q}$); bài tập B10(a).
+- **Đầu vào:** giới hạn (ii) của Bài 05; bình phương nhỏ nhất và hệ phương trình chuẩn (Bài 00, Bài 05 khối A1).
+- **Sản phẩm học tập và LLO/CLO:** chứng minh XOR không tách được tuyến tính, tính nghiệm bình phương nhỏ nhất affine, khớp XOR bằng đặc trưng $x_1x_2$; CLO1, CLO2.
+- **Ký hiệu, dữ kiện truyền tiếp:** bốn điểm $\{0,1\}^2$, nhãn $y=(0,1,1,0)$, $f(x;w,c)$, $g(x)=w^\top x+c$; đẳng thức $g(1,0)+g(0,1)=g(0,0)+g(1,1)$ đi thẳng từ bốn điểm vào chứng minh.
+- **Gộp, rút gọn:** nhu cầu, ví dụ dẫn nhập và trực quan cùng B01 vì bốn điểm vừa là dữ liệu vừa là hình; ví dụ dẫn nhập làm cụ thể nhu cầu kiểm dự đoán tuyến tính trên một nhiệm vụ cụ thể. B02 gộp phần hình thức với phép tính bình phương nhỏ nhất vì phép tính là hệ quả số trên cùng dữ liệu, kiểm tay trong ghi chú.
+- **Câu nối:** mô hình tuyến tính thất bại trên bốn điểm → định nghĩa và chứng minh thất bại đó → sửa bằng đặc trưng thủ công và trả giá bằng số chiều.
+- **Thời lượng cụm:** 0,18 tiết LT + 0,24 tiết BT (gồm B10 dùng chung).
 
-### KN1. AdaGrad
+### KN2. Mạng hai tầng (đặc trưng học được)
 
-- **Sáu bước:** nhu cầu B01; trực quan B01; ví dụ B02; hình thức/toán học B03; ứng dụng B03; bài tập B09.
-- **Đầu vào và mục tiêu:** KN0 và phép toán theo tọa độ; MT1. Tính tổng v và bước d, nối tần suất tọa độ với tốc độ học hiệu dụng; kiểm ở B09.
-- **Ký hiệu/dữ kiện truyền tiếp:** g₁=(2,1), g₂=(2,0), v₀=0.
-- **Gộp hoặc rút gọn:** Gộp nhu cầu/trực quan trong bảng tần suất B01; ứng dụng đặc trưng thưa nằm cùng thuật toán.
-- **Câu nối học thuật:** Lịch sử hoạt động → tổng bình phương → độ dài bước.
-- **Thời lượng cụm:** 0,13 tiết lý thuyết + 0,14 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu B03; trực quan B04; ví dụ B05 ($\theta_A$, bảng truyền xuôi); hình thức B06; ứng dụng B07 (huấn luyện mạng XOR là cực tiểu hóa $F$ trên $\mathbb R^9$); bài tập B10(b), (d).
+- **Đầu vào:** KN1; chi phí theo số đặc trưng (Bài 05 khối A3).
+- **Sản phẩm học tập và LLO/CLO:** dựng mạng biểu diễn XOR, tính truyền xuôi, đếm $p$; CLO2.
+- **Ký hiệu, dữ kiện truyền tiếp:** $W_1,b_1,w_2,b_2,\sigma,z,h,p$; trọng số $\theta_A$ của B05 trở thành trường hợp $d=m=2$, $p=9$ của định nghĩa B06 và là điểm xuất phát của B08.
+- **Gộp, rút gọn:** mỗi bước một trang; B03 dùng chung với KN1 vì ứng dụng của KN1 (chi phí đặc trưng thủ công) chính là nhu cầu của KN2.
+- **Câu nối:** đặc trưng thủ công tốn số chiều → lớp ẩn tạo đặc trưng → trọng số tường minh → định nghĩa tổng quát → bài toán huấn luyện trên $\mathbb R^p$.
+- **Thời lượng cụm:** 0,29 tiết LT + 0,26 tiết BT.
 
-### KN2. RMSProp
+### KN3. Đối xứng hoán vị và tính không lồi
 
-- **Sáu bước:** nhu cầu B03–B04; trực quan B04; ví dụ B04; hình thức/toán học B05; ứng dụng B05; bài tập B09.
-- **Đầu vào và mục tiêu:** Tích lũy AdaGrad; MT1. Tính thống kê suy giảm và bước RMSProp, giải thích cơ chế quên khi tọa độ vắng gradient; kiểm ở B09.
-- **Ký hiệu/dữ kiện truyền tiếp:** Cùng dãy gradient; ρ=1/2.
-- **Gộp hoặc rút gọn:** B04 gộp nhu cầu, bảng trọng số và bước số vì chúng giải thích một cơ chế quên; đồ thị trọng số theo độ trễ nằm ở B05.
-- **Câu nối học thuật:** Bộ nhớ không quên → trọng số suy giảm → thống kê cục bộ theo thời gian.
-- **Thời lượng cụm:** 0,14 tiết lý thuyết + 0,14 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu B07 (quy tắc hợp thành lồi không áp dụng); trực quan B08 (đổi chỗ hai đơn vị ẩn); ví dụ B08 ($\theta_B\neq\theta_A$, $F(\theta_B)=0$); hình thức B08 (Mệnh đề 2) và B09 (Mệnh đề 3); ứng dụng B09 (phép kiểm trung điểm trên XOR: $F(\theta(t))=t^2$ rồi $(1-t)^2$, $F(\theta(\tfrac12))=\tfrac14$) và D02 (đối xứng đổi dấu của mạng tuyến tính, trung điểm $F=\tfrac12$); bài tập B10(c).
+- **Đầu vào:** KN2; tập cực tiểu của hàm lồi là tập lồi (Bài 01); quy tắc hợp thành lồi (Bài 02).
+- **Sản phẩm học tập và LLO/CLO:** chỉ ra hai cực tiểu đối xứng và bác bỏ tính lồi bằng giá trị tại trung điểm; LLO11; CLO1.
+- **Ký hiệu, dữ kiện truyền tiếp:** $\theta_A,\theta_B$, ma trận hoán vị $P$, đường $\theta(t)=(1-t)\theta_A+t\theta_B$.
+- **Gộp, rút gọn:** B08 gộp trực quan, ví dụ và Mệnh đề 2; khi dựng deck, bảng $\theta_A$, $\theta_B$ đứng trước Mệnh đề 2 để phát biểu tổng quát hóa phép đổi chỗ vừa thấy. Trên B09, phép tính $F(\theta(t))$ là ứng dụng của Mệnh đề 3 vào XOR; kế hoạch gốc ghi phép tính này là ví dụ, storyboard ghi là ứng dụng để thứ tự sáu bước không bị đảo.
+- **Câu nối:** tham số vào phi tuyến → hai tham số khác nhau cho cùng một hàm → tập cực tiểu không lồi → $F$ không lồi; đặc trưng học được trả giá bằng tính lồi, như đặc trưng thủ công trả giá bằng số chiều.
+- **Thời lượng cụm:** 0,25 tiết LT + 0,28 tiết BT.
 
-### KN3. Adam
+### KN4. Lan truyền ngược
 
-- **Sáu bước:** nhu cầu B05–B06; trực quan B06; ví dụ B06; hình thức/toán học B07; ứng dụng B07 (kiểm hướng moment), B08 (giới hạn tương tác); bài tập B09.
-- **Đầu vào và mục tiêu:** RMSProp và momentum đã học; MT1. Tính hai moment đã hiệu chỉnh và giải thích bước còn khác 0 khi gradient hiện tại bằng 0; kiểm ở B09.
-- **Ký hiệu/dữ kiện truyền tiếp:** m₀=v₀=0; β₁=1/2, β₂=3/4.
-- **Gộp hoặc rút gọn:** Hai cột moment thô/hiệu chỉnh gộp trực quan với ví dụ; Ghi chú B07 kiểm giới hạn của hướng moment; B08 kiểm riêng thông tin ngoài đường chéo.
-- **Câu nối học thuật:** Bộ nhớ độ lớn + bộ nhớ hướng → hiệu chỉnh khởi tạo → giới hạn hướng giảm.
-- **Thời lượng cụm:** 0,22 tiết lý thuyết + 0,14 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu C01; trực quan C02 (đồ thị tính toán); ví dụ C02 (truyền xuôi) và C03 (truyền ngược, mọi đại lượng trung gian); hình thức C04; ứng dụng C05 (chi phí) và C06 (một bước hạ gradient); bài tập C07, E06 (chuyển giao sang SGD).
+- **Đầu vào:** KN2; quy tắc dây chuyền dạng Jacobian chuyển vị (Bài 00).
+- **Sản phẩm học tập và LLO/CLO:** tính gradient một mẫu bằng tay, đếm chi phí hai chiều; LLO11 (độ sâu đồ thị tính toán); CLO1, CLO4.
+- **Ký hiệu, dữ kiện truyền tiếp:** tham số chung $W_1=\begin{psmallmatrix}1&\tfrac12\\\tfrac12&-1\end{psmallmatrix}$, $b_1=(-\tfrac12,1)$, $w_2=(1,-2)$, $b_2=\tfrac12$ dùng ở C02–C07 và E06; $e,\delta_h,\delta_z$; $\lVert\nabla\ell\rVert^2=\tfrac{69}{16}$ truyền sang C06.
+- **Gộp, rút gọn:** trực quan và phần xuôi của ví dụ cùng C02 vì đồ thị chỉ có nghĩa khi gắn giá trị.
+- **Câu nối:** sai phân tốn cỡ $p^2$ → lưu giá trị trung gian → nhân ngược đạo hàm cục bộ → quy tắc chung $\delta_{\text{trước}}=J^\top\delta_{\text{sau}}$ → chi phí $O(p)$ → một bước cho thấy độ dài bước phải gắn với độ cong.
+- **Thời lượng cụm:** 0,36 tiết LT + 0,22 tiết BT.
 
-### KN4. Newton
+### KN5. Điểm dừng, điểm yên ngựa và phân loại bậc hai
 
-- **Sáu bước:** nhu cầu B08, C01; trực quan C01; ví dụ C02; hình thức/toán học C03; ứng dụng C04; bài tập C08.
-- **Đầu vào và mục tiêu:** Gradient và Hessian; MT2. Lập hệ Newton, kiểm trị riêng và chọn giảm chấn đủ để có hướng giảm; kiểm ở C08.
-- **Ký hiệu/dữ kiện truyền tiếp:** Q=[[2,1],[1,2]], θ=(1,0), g=(2,1).
-- **Gộp hoặc rút gọn:** Đổi từ V1 sang V5 có chủ ý để có phần tử ngoài đường chéo; C01 định nghĩa lại dữ kiện đầy đủ.
-- **Câu nối học thuật:** Tương tác tọa độ → mô hình Taylor → hệ tuyến tính → kiểm SPD.
-- **Thời lượng cụm:** 0,28 tiết lý thuyết + 0,15 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu C07 (gradient bằng 0 cục bộ) và D01 (đối chiếu với trường hợp lồi); hình thức phần định nghĩa D01; trực quan D02 (đường mức); ví dụ D02 (Hessian, trị riêng $\pm1$ tại gốc; $0$ và $2$ tại $(1,1)$); hình thức phần kết quả D03 (điều kiện bậc hai); ứng dụng D06 (bình nguyên gần điểm yên ngựa); bài tập D07(a), (b).
+- **Ngoại lệ thứ tự và lý do:** D01 nêu định nghĩa điểm dừng, điểm dừng $\varepsilon$-xấp xỉ và điểm yên ngựa trước trực quan và ví dụ D02. Ba lý do: ví dụ D02 thể hiện cả ba hiện tượng trên một hàm và cần tên để gọi; các định nghĩa là thuật ngữ đã có (điểm yên ngựa, ví dụ $u^2-v^2$, và phép thử Hessian đã học ở Bài 00; điểm dừng đã dùng ở Bài 02, 04), không chứa kết quả mới, và D03 là phát biểu nhắc lại Bài 00; nhu cầu đã có trước (C07 cho gradient bằng 0 cục bộ, D01 đối chiếu với chứng nhận cực tiểu toàn cục của Bài 02, 04). Phần hình thức mang nội dung của cụm là điều kiện bậc hai ở D03, đứng sau trực quan và ví dụ, nên thứ tự sáu bước của kết quả không bị đảo.
+- **Đầu vào:** KN3, KN4; khai triển Taylor bậc hai (Bài 00).
+- **Sản phẩm học tập và LLO/CLO:** phân loại điểm dừng bằng trị riêng Hessian, nhận ra trường hợp phép kiểm không kết luận; LLO11; CLO1.
+- **Ký hiệu, dữ kiện truyền tiếp:** $F(u,v)=\tfrac12(uv-1)^2$, các điểm $(0,0)$, $(1,1)$, $(2,\tfrac12)$; hàm này đi tiếp vào D04–D07.
+- **Câu nối:** gradient bằng 0 không còn chứng nhận cực tiểu → tên cho các loại điểm dừng → một hàm hai biến có đủ ba hiện tượng → điều kiện bậc hai và giới hạn khi có trị riêng 0 → gradient nhỏ có thể xuất hiện xa cực tiểu.
+- **Thời lượng cụm:** 0,21 tiết LT + 0,24 tiết BT.
 
-### KN5. Gradient liên hợp
+### KN6. Bảo đảm chỉ dùng gradient (bổ đề giảm, T7)
 
-- **Sáu bước:** nhu cầu C04–C05; trực quan C05; ví dụ C05; hình thức/toán học C06; ứng dụng C07; bài tập C08.
-- **Đầu vào và mục tiêu:** Hệ SPD và phần dư mới định nghĩa tại C05; MT2. Tái tạo một vòng CG, tính phần dư, quyết định dừng; khi áp dụng Newton–CG phân biệt thêm kiểm dấu hướng; kiểm ở C08 và G02.
-- **Ký hiệu/dữ kiện truyền tiếp:** A=diag(1,4), b=(1,1), d₀=0.
-- **Gộp hoặc rút gọn:** C05 hiện phép thế tạo α₀, β₀ và p₁ trước thuật toán; chi tiết vòng thứ hai đặt ghi chú. C06 giữ đủ cập nhật hệ số và hướng trên mặt trang; chi phí và hữu hạn vòng thuộc ghi chú.
-- **Câu nối học thuật:** Chi phí giải hệ → hướng liên hợp → thuật toán dùng Av → kiểm phần dư → kiểm dấu hướng trong Newton–CG.
-- **Thời lượng cụm:** 0,23 tiết lý thuyết + 0,19 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu C06 (bước 0,25 làm mất mát tăng) và D03 (Hessian có $p^2$ phần tử, không dùng được làm quy tắc dừng); trực quan D04 (parabol chặn trên của $\varphi(\eta)$); ví dụ D04 (bảo đảm giảm $0{,}0703\le$ giảm thực $0{,}1422$) và D06; hình thức D04 (bổ đề giảm, nhắc lại) và D05 (T7); ứng dụng D06; bài tập D07(c), (d).
+- **Đầu vào:** bổ đề giảm (Bài 04; Bài 05b); T7 (Bài 05b, mạch F, trang F03).
+- **Sản phẩm học tập và LLO/CLO:** áp bổ đề giảm trên một vùng, tính số bước theo T7, nêu điều T7 không khẳng định; CLO1.
+- **Ký hiệu, dữ kiện truyền tiếp:** $L=2$ trên $[0,1]^2$, $\theta_0=(\tfrac12,\tfrac12)$, $\Delta_0=0{,}28125$, $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2$; các số này dùng lại ở D07(c).
+- **Gộp, rút gọn:** D04 gộp trực quan, ví dụ và phát biểu bổ đề giảm. Bổ đề đã được chứng minh ở Bài 04 và 05b; trang chỉ nhắc phát biểu để kiểm trên D02, nên phần hình thức mới của cụm là T7 ở D05, đứng sau trực quan và ví dụ.
+- **Câu nối:** bước nào luôn giảm → bổ đề giảm chỉ cần tính trơn → cộng theo $k$ thành T7 → điều T7 chứng nhận có thể là một điểm gần yên ngựa.
+- **Thời lượng cụm:** 0,26 tiết LT + 0,17 tiết BT.
 
-### KN6. BFGS
+### KN7. Gradient nhóm nhỏ và SGD
 
-- **Sáu bước:** nhu cầu C07, D01; trực quan D01; ví dụ D02; hình thức/toán học D03; ứng dụng D04; bài tập D05.
-- **Đầu vào và mục tiêu:** Gradient tại hai điểm; MT2. Kiểm dấu yᵀs, nhận hoặc bỏ cặp và tính d=−Pg với gradient mới; kiểm ở D05.
-- **Ký hiệu/dữ kiện truyền tiếp:** Q của C01, s=(1,0), y=(2,1), P₀=I.
-- **Gộp hoặc rút gọn:** Cát tuyến và hình sai phân chung D01; L-BFGS rút gọn trong D04 vì chỉ hỗ trợ chi phí.
-- **Câu nối học thuật:** Không có toán tử Hessian → cặp độ cong → SPD → hướng và bộ nhớ.
-- **Thời lượng cụm:** 0,29 tiết lý thuyết + 0,12 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu E01 (chi phí ba quy mô) và E02 ($F$ là đại lượng thay thế); trực quan E03 (sáu mũi tên gradient nhóm quanh $\nabla F(\theta_0)$); ví dụ E03 (bảng sáu nhóm); hình thức E04 (Định lý G.3) và E05 (thuật toán); ứng dụng E05 (chi phí mỗi lượt), F05, G02; bài tập E06.
+- **Đầu vào:** KN4 (lan truyền ngược), KN6 (T7); Bài 05c (G.2, G.3).
+- **Sản phẩm học tập và LLO/CLO:** tính gradient nhóm, kiểm tính không chệch và phương sai, thực hiện một bước SGD trên mạng; LLO12; CLO1, CLO2.
+- **Ký hiệu, dữ kiện truyền tiếp:** $B_k$, $b$, $\widehat g_k$, $\operatorname{tr}\Sigma$; dữ liệu $x=(-1,0,1,2)$, $y=(1,0,1,4)$, mô hình $wx+c$ đi từ E03 sang E04 (kiểm $\tfrac{59}{12}$) và F01 (tại $\theta^*=(1,1)$).
+- **Gộp, rút gọn:** trực quan và ví dụ cùng E03 vì hình vẽ đúng sáu vector của bảng.
+- **Câu nối:** T7 cần gradient đầy đủ → gradient đầy đủ vượt ngân sách và không cần chính xác → gradient nhóm trên bốn điểm → không chệch, phương sai giảm theo $b$ → thuật toán chi phí $O(bp)$ mỗi bước.
+- **Thời lượng cụm:** 0,38 tiết LT + 0,18 tiết BT.
 
-### KN7. Chuẩn hóa theo lô
+### KN8. Tốc độ hội tụ dưới nhiễu
 
-- **Sáu bước:** nhu cầu E01–E02; trực quan E02; ví dụ E02; hình thức/toán học E03; ứng dụng E03; bài tập E08.
-- **Đầu vào và mục tiêu:** Trung bình/phương sai, phép tính một tầng; MT3. Tính phương sai sau chuẩn hóa và phân biệt thống kê huấn luyện/suy luận; kiểm ở E08.
-- **Ký hiệu/dữ kiện truyền tiếp:** a=(1,1,5,5), a+4=(5,5,9,9), trung bình 3 và 7, cùng σ²=4.
-- **Gộp hoặc rút gọn:** E01 nối thang đầu vào tầng với độ nhạy theo tham số. E02 gộp nhu cầu đưa hai lô về quy ước chung với trục số/ví dụ; ứng dụng tầng ẩn và chế độ suy luận chung E03.
-- **Câu nối học thuật:** Thang và vị trí đầu vào tầng → hai lô dịch chuyển → chuẩn hóa có tham số → kiểm phụ thuộc lô.
-- **Thời lượng cụm:** 0,14 tiết lý thuyết + 0,09 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu F01; trực quan F01 (hình kỳ vọng sai số co về mức dương, dữ liệu Ví dụ A của 05b, ghi rõ trên chú thích); ví dụ F01 (dữ liệu E03 tại $\theta^*$: $\operatorname{tr}\Sigma(\theta^*)=\tfrac52$, $\mathbb EF(\theta_1)=\tfrac{69}{128}>\tfrac12$), F02 và F03 (Ví dụ A); hình thức F02 (bất đẳng thức một bước có số hạng nhiễu, T5), F03 (T6), F04 (T8); ứng dụng F05; bài tập F08(a), (b).
+- **Đầu vào:** KN7; T5, T6, T8 của Bài 05b.
+- **Sản phẩm học tập và LLO/CLO:** đọc và áp các cận với đủ giả thiết và phạm vi, so sánh lịch bước, tính $K$ theo hệ quả T8; LLO12; CLO1.
+- **Ký hiệu, dữ kiện truyền tiếp:** $\sigma^2$ (chặn phương sai, khác hàm kích hoạt $\sigma$ của mạch B–C), sàn nhiễu $\eta\sigma^2/\mu$, $O(1/k)$, $O(1/\sqrt K)$ cho trung bình kỳ vọng bình phương chuẩn gradient. Dữ kiện đổi một lần, có nói rõ: số của F01 lấy từ dữ liệu E03; hình F01 và số của F02, F03, F08(a) lấy từ Ví dụ A. Lý do đổi: trên dữ liệu E03, $\operatorname{tr}\Sigma(\theta)$ tăng không bị chặn theo $\theta$ nên H6b chỉ đúng trên vùng, còn Ví dụ A có $\sigma^2=\tfrac83$ không đổi nên H6b đúng trên toàn trục. Câu nối F01→F02 nêu lý do này.
+- **Gộp, rút gọn:** nhu cầu, trực quan và ví dụ cùng F01 vì hiện tượng thấy ngay từ một phép tính trên dữ liệu đã có. F02, F03 mỗi trang một định lý kèm số của Ví dụ A để đối chiếu cận với giá trị chính xác; bước ví dụ của cụm đã thực hiện ở F01.
+- **Câu nối:** tại nghiệm gradient nhóm vẫn khác 0 và $F$ tăng theo kỳ vọng → điều còn giữ là bất đẳng thức một bước có số hạng nhiễu; lồi mạnh: sàn nhiễu với bước hằng → bước giảm dần cho $O(1/k)$ → không lồi và trơn: T8 thay T7 → đặt hai cận vào cùng ngân sách.
+- **Thời lượng cụm:** 0,24 tiết LT + 0,12 tiết BT (F01–F05, F08).
 
-### KN8. Hạ tọa độ/khối
+### KN9. Dừng sớm theo tập xác thực
 
-- **Sáu bước:** nhu cầu E04; trực quan E04; ví dụ E04; hình thức/toán học E05; ứng dụng E05; bài tập E08.
-- **Đầu vào và mục tiêu:** Đạo hàm riêng, bài toán con; MT3. Giải thích điều kiện mục tiêu không tăng của lượt cập nhật theo khối; kiểm ở E08 từ điểm đã cho.
-- **Ký hiệu/dữ kiện truyền tiếp:** F(u,v), (0,0)→(1,0)→(1,1/2).
-- **Gộp hoặc rút gọn:** Nhu cầu gắn ngay ví dụ có bài toán con dễ giải; hình đường gấp khúc giải thích cùng dữ kiện.
-- **Câu nối học thuật:** Giữ khối → giải bài toán con → mục tiêu không tăng có điều kiện.
-- **Thời lượng cụm:** 0,10 tiết lý thuyết + 0,10 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+- **Sáu bước:** nhu cầu E02, F05; trực quan F06 (đường mất mát huấn luyện và xác thực, định tính); ví dụ F07 (bảng tỉ lệ giữ); hình thức F06 (quy tắc dừng) và F07 (nhận xét DL (7.43)–(7.45)); ứng dụng F07 (dừng sớm tác động như chính quy hóa $\ell_2$) và G02; bài tập F08(c). Bước lưu tham số tốt nhất trong thuật toán E05 thuộc phần hình thức của KN7 (thuật toán), không phải bước ứng dụng của KN9; F06 giải thích bước đó sau nhu cầu và trực quan.
+- **Thứ tự và lý do:** sau kiểm định storyboard, cụm được tách thành hai trang thay cho một trang gộp. Trên F06, trực quan (hình) đứng trước quy tắc vận hành; trên F07, bảng số đứng trước nhận xét. Quy tắc trên F06 là phần hình thức của thao tác dừng; nhận xét trên F07 là phần hình thức của quan hệ với chính quy hóa, và ví dụ của nó đứng trước nó trên cùng trang. Dừng sớm là một phần của phương pháp theo luận đề; cụm không có trang định nghĩa riêng vì tập xác thực và tập kiểm thử đã được định nghĩa ở Bài 05 HQ05 và Bài 05 KL01 đã có quan sát số trên dữ liệu khối A1 (điểm hòa giải 5; quyết định phân chia nguồn của điều phối viên); phép so sánh định lượng thuộc F07.
+- **Đầu vào:** Bài 05 (khối A1: khớp quá; khối A2: chính quy hóa $\ell_2$; HQ05: tập xác thực; KL01: quan sát số); Định lý G.2 của 05c.
+- **Sản phẩm học tập và LLO/CLO:** áp quy tắc dừng sớm, tính và giải thích tỉ lệ giữ; LLO11; CLO1, CLO2.
+- **Ký hiệu, dữ kiện truyền tiếp:** chu kỳ đánh giá $s$, ngưỡng $K_{\text{stop}}$; trị riêng $\alpha$, hệ số chính quy hóa $\lambda\approx1/(\eta k)$; tỉ lệ giữ $1-(1-\eta\alpha)^k$ và $\alpha/(\alpha+\lambda)$; số $\eta=0{,}5$, $k=20$, $\alpha=0{,}1$ đi từ F07 vào F08(c).
+- **Câu nối:** không cần cực tiểu chính xác → dừng theo tập xác thực (F06) → trên mục tiêu bậc hai, dừng sớm tác động như chính quy hóa $\ell_2$ (F07).
+- **Thời lượng cụm:** 0,20 tiết LT + 0,13 tiết BT (E02, F05–F08, G02).
 
-### KN9. Trung bình Polyak
+### Câu nối giữa các cụm
 
-- **Sáu bước:** nhu cầu E06; trực quan E06; ví dụ E06; hình thức/toán học E06; ứng dụng E06; bài tập E08.
-- **Đầu vào và mục tiêu:** Quỹ đạo tham số; MT3. Tính trung bình tham số và dùng phản ví dụ hai miền nghiệm để bác bỏ bảo đảm cải thiện chung; kiểm ở E08.
-- **Ký hiệu/dữ kiện truyền tiếp:** 1;3;1,5;2,5 và trung bình 2.
-- **Gộp hoặc rút gọn:** Gộp chu trình trên một trang do định nghĩa trung bình quen thuộc; phản ví dụ E06 là ứng dụng kiểm giới hạn. Chứng minh hội tụ không nằm trong mục tiêu.
-- **Câu nối học thuật:** Dao động quỹ đạo → chọn đầu ra trung bình → kiểm cùng miền nghiệm.
-- **Thời lượng cụm:** 0,07 tiết lý thuyết + 0,10 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
-
-### KN10. Thiết kế đường truyền gradient
-
-- **Sáu bước:** nhu cầu và trực quan E07 (câu mở: tích đạo hàm, nối tắt cộng thêm 1); ví dụ E07; hình thức/toán học E07; ứng dụng E07; bài tập E08.
-- **Đầu vào và mục tiêu:** Quy tắc dây chuyền từ Bài 05; MT3. Xác định tích đạo hàm là một thừa số của gradient mất mát, kiểm giới hạn tăng theo độ sâu; kiểm ở E08.
-- **Ký hiệu/dữ kiện truyền tiếp:** h₀, h₅; tích 0,1⁵ và 1,1⁵ là hệ số trong ∂ℒ/∂h₀, rồi nhân ∂h₀/∂w để nhận gradient tham số tầng trước.
-- **Gộp hoặc rút gọn:** Chu trình hỗ trợ rút gọn nhu cầu → hình thức → kiểm; sơ đồ có trong ví dụ, không cần trang trực quan riêng.
-- **Câu nối học thuật:** Tích đạo hàm nhỏ → thay đường đạo hàm → kiểm giới hạn theo độ sâu.
-- **Thời lượng cụm:** 0,07 tiết lý thuyết + 0,07 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
-
-### KN11. Tiền huấn luyện có giám sát
-
-- **Sáu bước:** nhu cầu F01; trực quan F01; ví dụ F01; hình thức/toán học F02; ứng dụng F02; bài tập F07.
-- **Đầu vào và mục tiêu:** Mất mát bình phương và gradient; MT3. Xác định phần tham số được chuyển, tính gradient và bước tinh chỉnh trên mục tiêu đích; kiểm ở F07.
-- **Ký hiệu/dữ kiện truyền tiếp:** F=(ab−3)²/2; gradient tại (0,0) bằng 0, tại (2,1) bằng (−1,−2); nhãn đích 3, η=0,1.
-- **Gộp hoặc rút gọn:** Nhu cầu/ví dụ dẫn nhập chung F01: điểm đầu (0,0) không có tín hiệu gradient; điểm chuyển (2,1) cho một quỹ đạo khác cần đánh giá trên mục tiêu đích.
-- **Câu nối học thuật:** Điểm đầu mất tín hiệu gradient → tham số học ở nhiệm vụ phụ → chuyển hợp lệ → tinh chỉnh mục tiêu đích.
-- **Thời lượng cụm:** 0,09 tiết lý thuyết + 0,09 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
-
-### KN12. Tiếp diễn
-
-- **Sáu bước:** nhu cầu F03; trực quan F03; ví dụ F03; hình thức/toán học F04; ứng dụng F04; bài tập F07.
-- **Đầu vào và mục tiêu:** Đạo hàm cấp một và cấp hai của đa thức bậc bốn; MT3. Dùng đạo hàm đã cho để kiểm điểm dừng có tồn tại qua lịch λ và giải thích giới hạn truyền nghiệm; kiểm ở F07.
-- **Ký hiệu/dữ kiện truyền tiếp:** F₀=(θ²−1)²; λ=3→1,5→0.
-- **Gộp hoặc rút gọn:** Ba đồ thị cùng một họ nên gộp trực quan/ví dụ; cơ chế mục tiêu đổi và điểm dừng được kiểm trong F04.
-- **Câu nối học thuật:** Họ mục tiêu dễ hơn → truyền nghiệm → kiểm điểm dừng và mục tiêu cuối.
-- **Thời lượng cụm:** 0,10 tiết lý thuyết + 0,09 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
-
-### KN13. Học theo chương trình
-
-- **Sáu bước:** nhu cầu F05; trực quan F05; ví dụ F05; hình thức/toán học F05; ứng dụng F06; bài tập F07.
-- **Đầu vào và mục tiêu:** Trung bình có trọng số, hồi quy một biến; MT3. Đối chiếu nghiệm theo q với phân phối đích và chỉ ra thời điểm lịch vẫn giải mục tiêu khác; kiểm ở F07/G02.
-- **Ký hiệu/dữ kiện truyền tiếp:** Hai mẫu E,H; q=0→1/4→1/2.
-- **Gộp hoặc rút gọn:** Ví dụ dẫn nhập cụ thể hóa việc đổi thành phần lô; định nghĩa chỉ là tổng có trọng số đã biết nên cùng trang, chi tiết đạo hàm trong ghi chú.
-- **Câu nối học thuật:** Độ nhạy khác nhau → lịch lấy mẫu → mục tiêu đích và đánh giá.
-- **Thời lượng cụm:** 0,11 tiết lý thuyết + 0,09 tiết bài tập theo hợp trang; có chia sẻ trang với cụm khác.
+KN1 → KN2: đặc trưng thủ công tốn số chiều → đặc trưng học được. KN2 → KN3: tham số vào phi tuyến → phản ví dụ cho tính lồi. KN3 → KN4: mục tiêu không lồi vẫn cần gradient → tính gradient. KN4 → KN5, KN6: gradient tính được → gradient chứng nhận được điều gì. KN6 → KN7: T7 cần gradient đầy đủ → gradient nhóm. KN7 → KN8: ước lượng có phương sai → tốc độ còn lại. KN8 → KN9: không cần cực tiểu chính xác → quy tắc dừng.
 
 ## Vai trò từng trang
 
-Mỗi trang dưới có đúng một mục tương ứng với dàn bài. Mã là dữ liệu nội bộ, không xuất hiện trên mặt trang hoặc trong ghi chú diễn giả.
-
-### A01. Các phương pháp tối ưu trong học sâu
-
-- **Lý do tồn tại và nhu cầu học tập:** Phân biệt phạm vi bài mới với các quy tắc SGD và momentum đã học; thiếu trang này sẽ không xác lập được chủ đề và đơn vị học phần.
-- **Kế thừa, đầu ra và vị trí trong sườn:** Nhận mục tiêu huấn luyện từ Bài 05; A02 phân chia các quyết định cần học.
-- **LLO/CLO hoặc minh chứng:** LLO14–16; CLO2–4. Xác lập phạm vi Bài 06; MT1–MT3.
-- **Quyết định và lý do:** Giữ trang nhận diện ngắn để dành thời lượng cho ví dụ và kiểm tra. Đặc tả tại A01 trong outline.md.
-- **Thời lượng và hoạt động:** 0,02 tiết lý thuyết + 0,00 tiết bài tập; nhận diện chủ đề, học phần và phạm vi đọc.
-
-### A02. Nội dung và mục tiêu học tập
-
-- **Lý do tồn tại và nhu cầu học tập:** Người học cần biết đầy đủ các thành phần có thể điều chỉnh trước khi xét thuật toán; sơ đồ chung cho phép nối cả ba mục tiêu của bài.
-- **Kế thừa, đầu ra và vị trí trong sườn:** A01 xác lập phạm vi; sơ đồ thành phần là cơ sở toàn bài. A03–A04 xét riêng một bước trên quỹ đạo, E01 và G01 dùng lại cùng các thành phần để phân biệt can thiệp.
-- **LLO/CLO hoặc minh chứng:** LLO14–16; CLO2–4. Bản đồ nội dung; MT1–MT3.
-- **Quyết định và lý do:** Sửa sơ đồ ba nhánh thành sơ đồ thành phần, giữ ba nhóm mục tiêu và bổ sung LLO16. Sửa 2026-10-02: gắn mạch B–F vào các ô sơ đồ để trang làm bản đồ nội dung; khung cuối nêu vấn đề trung tâm nối với Bài 05; ghi chú giải nghĩa quy tắc trả về. Đặc tả tại A02 trong outline.md.
-- **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,00 tiết bài tập; đọc sơ đồ thành phần, phân biệt ba nhóm quyết định và tiên quyết.
-
-### A03. Thang đo khác nhau giữa các tọa độ
-
-- **Lý do tồn tại và nhu cầu học tập:** Hai giá trị bước trên cùng hàm làm rõ hạn chế của tốc độ học vô hướng trước khi đưa ma trận phạt.
-- **Kế thừa, đầu ra và vị trí trong sườn:** A02 đặt nhiệm vụ chọn bước; các độ dài lệch nhau tạo nhu cầu về ma trận phạt tại A04.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3; LLO15/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ dẫn nhập cho HT1; MT1–MT2.
-- **Quyết định và lý do:** Sửa ký hiệu điểm hiện tại để không dùng một chỉ số cho cả tọa độ lẫn vòng lặp. Sửa 2026-10-02: tiêu đề gọi tên hiện tượng; nhãn ví dụ dẫn nhập; kết luận định lượng $\eta<2/9$, hệ số $1-\eta>7/9$, nối Bài 05. Đặc tả tại A03 trong outline.md.
-- **Thời lượng và hoạt động:** 0,08 tiết lý thuyết + 0,00 tiết bài tập; so sánh hai bước và ba giá trị mục tiêu trên đồ thị đồng mức.
-
-### A04. Bước cập nhật với ma trận phạt
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần một phép suy ra bước chung để đối chiếu các thuật toán B–D và chỉ ra nơi dùng tính xác định dương.
-- **Kế thừa, đầu ra và vị trí trong sườn:** A02 xác lập các thành phần huấn luyện; A03 cung cấp dữ kiện để xét một bước trên quỹ đạo. B dùng thống kê gradient để dựng ma trận đường chéo, C dùng Hessian; E–F gọi lại sơ đồ để thay thành phần khác.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3; LLO15/CLO2,3. Vai trò đánh giá: Hình thức hóa và ứng dụng HT1; MT1–MT2.
-- **Quyết định và lý do:** Sửa kết nối: mô hình này cụ thể hóa một bước của sơ đồ A02, không thay thế toàn bộ cơ sở huấn luyện. Sửa 2026-10-02: tiêu đề gọi tên khái niệm; câu Trực quan (hạ gradient là trường hợp phạt đều) đứng trước bài toán hình thức; ví dụ nêu hệ quả đến nghiệm trên hàm mở đầu. Đặc tả tại A04 trong outline.md.
-- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; đạo hàm theo d, kiểm nghiệm duy nhất và áp dụng ma trận phạt chéo.
-
-### A05. Ma trận phạt và tính xác định dương
-
-- **Lý do tồn tại và nhu cầu học tập:** Kiểm người học có tính được bước và phát hiện ma trận phạt không hợp lệ trước khi ước lượng thang đo từ dữ liệu.
-- **Kế thừa, đầu ra và vị trí trong sườn:** A04 cho công thức; kết quả A05 đặt nhu cầu ước lượng thang đo khi chưa biết Hessian tại B01.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3; LLO15/CLO2,3. Vai trò đánh giá: Kiểm tra riêng mạch A; MT1–MT2.
-- **Quyết định và lý do:** Sửa đề thành bài toán tự đủ công thức; giữ riêng minh chứng đầu mạch. Đặc tả tại A05 trong outline.md.
-- **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,08 tiết bài tập; tính hai bước, giải thích tính không bị chặn dưới và đối chiếu đáp án.
-
-### B01. Thống kê gradient theo tọa độ
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần quan sát tọa độ hoạt động nhiều hoặc ít để lựa chọn thống kê bình phương trước công thức AdaGrad.
-- **Kế thừa, đầu ra và vị trí trong sườn:** A05 cần ước lượng thang đo; B02 dùng chính dãy gradient để tính một bước AdaGrad.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Nhu cầu và trực quan KN1; MT1.
-- **Quyết định và lý do:** Giữ bảng hai gradient vì đủ tạo nhu cầu mà chưa thêm mô hình dữ liệu. Sửa 2026-10-02: câu mở nêu nhu cầu một thang cho mỗi tọa độ và trực quan “tọa độ cong hơn có gradient lớn hơn” trên hàm mở đầu; so sánh $p$ với $p^2$ vào ghi chú. Đặc tả tại B01 trong outline.md.
-- **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,00 tiết bài tập; lập bảng bình phương, tổng và tần suất hoạt động tọa độ.
-
-### B02. Ví dụ cập nhật AdaGrad
-
-- **Lý do tồn tại và nhu cầu học tập:** Một cập nhật số giúp phân biệt tốc độ học hiệu dụng với độ dài bước trước khi đọc thuật toán.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B01 cho dãy; B03 tổng quát hóa cùng $v_t$, $g_t$ và quy định xử lý mẫu bằng 0.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Ví dụ tính tay KN1; MT1.
-- **Quyết định và lý do:** Giữ riêng ví dụ hai vòng để thứ tự cập nhật thống kê có thể kiểm bằng tay. Sửa 2026-10-02: câu mở nối AdaGrad với ma trận phạt $M_t=\operatorname{diag}(\sqrt{v_t})$ của A04; gộp câu về $\varepsilon$ vào khung. Đặc tả tại B02 trong outline.md.
-- **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,03 tiết bài tập; tính v₁, v₂ và bước; đối chiếu tọa độ có gradient bằng 0.
-
-### B03. Thuật toán AdaGrad
-
-- **Lý do tồn tại và nhu cầu học tập:** Ví dụ số chưa cho quy tắc xử lý mẫu bằng 0 hoặc cách dùng tần suất đặc trưng; thuật toán phải khép kín và có ứng dụng cụ thể.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B02 cung cấp cơ chế; tích lũy không quên dẫn tới nhu cầu B04 khi gradient thay đổi phân bố.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Hình thức hóa và ứng dụng KN1/HT2; MT1.
-- **Quyết định và lý do:** Sửa ứng dụng đặc trưng thưa bằng hai tốc độ hiệu dụng đã tính từ dãy chung. Đặc tả tại B03 trong outline.md.
-- **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,00 tiết bài tập; đối chiếu đầu vào, thứ tự cập nhật và tốc độ hiệu dụng của tọa độ thưa.
-
-### B04. Ví dụ cập nhật RMSProp
-
-- **Lý do tồn tại và nhu cầu học tập:** Tổng tích lũy giữ thông tin quá khứ; ví dụ trọng số suy giảm chuẩn bị cơ chế quên của RMSProp.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B03 tích lũy toàn lịch sử; B04 thay tổng bằng bộ nhớ suy giảm, B05 nêu thuật toán.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN2; MT1.
-- **Quyết định và lý do:** Giữ cùng dãy gradient để thay đổi duy nhất cách thống kê. Sửa 2026-10-02: câu nhu cầu trên mặt trang (AdaGrad chỉ tích lũy nên bước hiệu dụng chỉ giảm; RMSProp quên dần bằng trung bình mũ). Đặc tả tại B04 trong outline.md.
-- **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,03 tiết bài tập; tính trung bình mũ và đọc trọng số theo độ trễ.
-
-### B05. Thuật toán RMSProp
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần quy tắc tổng quát và một hệ quả sau công thức để giải thích bộ nhớ quên khi đặc trưng tạm vắng.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B04 cho phép tính; B06 bổ sung moment bậc nhất để kết hợp lịch sử hướng với lịch sử độ lớn.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Hình thức hóa và ứng dụng KN2/HT3; MT1.
-- **Quyết định và lý do:** Sửa rho, nguồn ST và ứng dụng thống kê giảm; giữ epsilon dương trong hệ quả. Đặc tả tại B05 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; đọc đồ thị trọng số, tính tọa độ mất gradient và giới hạn suy luận.
-
-### B06. Ví dụ hiệu chỉnh moment trong Adam
-
-- **Lý do tồn tại và nhu cầu học tập:** Moment khởi tạo bằng 0 cần được đối chiếu với tổng trọng số trước khi xuất hiện phép hiệu chỉnh Adam.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B05 cung cấp moment bậc hai; B06 cần thêm moment bậc nhất và hiệu chỉnh, B07 nêu đầy đủ thứ tự.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN3; MT1.
-- **Quyết định và lý do:** Giữ bảng thô/hiệu chỉnh để tránh đưa toàn bộ giả mã trước nhu cầu. Sửa 2026-10-02: câu mở nêu Adam = mẫu số RMSProp + tử là trung bình mũ của gradient (nối momentum Bài 05), và lý do cần hiệu chỉnh. Đặc tả tại B06 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,03 tiết bài tập; tính hai moment và hiệu chỉnh vòng đầu; phân biệt với giả thiết không chệch.
-
-### B07. Thuật toán Adam
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần kết hợp hai trạng thái thành thuật toán và kiểm điều kiện dùng tử số moment để không gán bảo đảm hướng giảm sai.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B06 xác lập hiệu chỉnh; B07 phân biệt moment và gradient hiện tại. B08 xét riêng thông tin tương tác mà thống kê đường chéo không chứa.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Hình thức hóa và ứng dụng kiểm giới hạn KN3/HT4; MT1.
-- **Quyết định và lý do:** Sửa ghi chú: nhận phản ví dụ dấu từ B08 và gắn nguyên nhân với bộ nhớ hướng. Đặc tả tại B07 trong outline.md.
-- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; theo dõi lưu đồ cập nhật; kiểm phản ví dụ moment ngược gradient.
-
-### B08. Giới hạn của ma trận phạt đường chéo
-
-- **Lý do tồn tại và nhu cầu học tập:** Giới hạn của thống kê đường chéo tạo nhu cầu dùng thông tin tương tác độ cong ở C01.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B07 cho công thức; B09 kiểm tra thống kê và C01 sử dụng tương tác độ cong còn thiếu.
-- **LLO/CLO hoặc minh chứng:** LLO14–15; CLO2,3. MT1; chuẩn bị MT2 tại C01, chưa là minh chứng đánh giá riêng.
-- **Quyết định và lý do:** Sửa để chỉ xét hạng tương tác; chuyển phản ví dụ một chiều sang B07 vì khác nguyên nhân. Đặc tả tại B08 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; đối chiếu dạng toàn phương có hạng chéo và elip nghiêng.
-
-### B09. So sánh AdaGrad, RMSProp và Adam
-
-- **Lý do tồn tại và nhu cầu học tập:** Ba thuật toán dùng cùng gradient nhưng lưu trạng thái khác nhau; bài riêng kiểm được lỗi thứ tự và hiệu chỉnh.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B08 giới hạn lựa chọn; C01 thay thống kê gradient bằng mô hình độ cong.
-- **LLO/CLO hoặc minh chứng:** LLO14/CLO2,3. Vai trò đánh giá: Kiểm tra riêng mạch B; MT1.
-- **Quyết định và lý do:** Giữ đề hai vòng; sửa dòng kiến thức đo đúng ba cơ chế, bỏ ngoại lệ A05. Đặc tả tại B09 trong outline.md.
-- **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,11 tiết bài tập; tính bước thứ hai và giải thích moment còn tạo dịch chuyển.
-
-### C01. Tương tác độ cong giữa các tọa độ
-
-- **Lý do tồn tại và nhu cầu học tập:** Sau giới hạn đường chéo, cần một Hessian có tương tác thật để hình dung thông tin độ cong còn thiếu.
-- **Kế thừa, đầu ra và vị trí trong sườn:** B08 để lại tương tác ngoài đường chéo; C02 tính bước dùng toàn bộ Q.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Nhu cầu và trực quan KN4; MT2.
-- **Quyết định và lý do:** Giữ ma trận nghiêng thay ma trận chéo của mở bài; dữ kiện được định nghĩa lại đầy đủ. Sửa 2026-10-02: khung kết luận chỉ ra $g_2$ sinh từ $Q_{12}=1$; ghi chú nối với giới hạn đường chéo của B08. Đặc tả tại C01 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; xác định gradient, trục riêng và hướng tới nghiệm.
-
-### C02. Ví dụ bước Newton
-
-- **Lý do tồn tại và nhu cầu học tập:** Giải một hệ cụ thể làm rõ vai trò của Hessian trước mô hình Taylor tổng quát.
-- **Kế thừa, đầu ra và vị trí trong sườn:** C01 cho độ cong; C03 tổng quát hóa khi Hessian thay đổi theo tham số.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Ví dụ tính tay KN4; MT2.
-- **Quyết định và lý do:** Giữ phép khử ẩn riêng để không trộn suy diễn tổng quát với ví dụ số. Sửa 2026-10-02: nêu hệ $Qd=-g$ là bước có phạt với $M=Q$, $\eta=1$, nối A04. Đặc tả tại C02 trong outline.md.
-- **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,03 tiết bài tập; giải hai phương trình và kiểm giá trị mục tiêu sau bước.
-
-### C03. Phương pháp Newton
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần nêu điều kiện nào biến nghiệm hệ thành hướng giảm và điều kiện nào chỉ bảo đảm hội tụ cục bộ.
-- **Kế thừa, đầu ra và vị trí trong sườn:** C02 minh họa nghiệm mô hình; C04 kiểm tra giả thiết H xác định dương.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Hình thức hóa KN4/HT5; MT2.
-- **Quyết định và lý do:** Giữ phát biểu, chứng minh dấu và điều kiện hội tụ; không mở chứng minh tốc độ dài. Sửa 2026-10-02: câu dẫn từ C02 (Hessian đổi theo $\theta$, dùng $M=H(\theta)$); nhãn Mệnh đề và Định lý cho hai kết quả. Đặc tả tại C03 trong outline.md.
-- **Thời lượng và hoạt động:** 0,08 tiết lý thuyết + 0,00 tiết bài tập; suy ra hệ từ Taylor và kiểm chỗ dùng Hessian xác định dương.
-
-### C04. Giảm chấn cho hệ Newton
-
-- **Lý do tồn tại và nhu cầu học tập:** Hessian phi lồi có thể phá kết luận trước; phản ví dụ buộc kiểm giả thiết trước khi dùng Newton.
-- **Kế thừa, đầu ra và vị trí trong sườn:** C03 cần SPD; C04 tạo hệ SPD nhưng chi phí lưu/giải còn lớn, dẫn đến C05.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Trường hợp biên và ứng dụng KN4; MT2.
-- **Quyết định và lý do:** Giữ yên ngựa và dịch trị riêng để tạo hệ hợp lệ cho CG. Sửa 2026-10-02: câu nhu cầu (giả thiết $H\succ0$ của C03 có thể bị vi phạm); ghi $A=H+\lambda I$, $\lambda=2$; thuật ngữ damping trong ghi chú. Đặc tả tại C04 trong outline.md.
-- **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,00 tiết bài tập; tính hai hướng, dấu đạo hàm và điều kiện giảm chấn.
-
-### C05. Ví dụ gradient liên hợp
-
-- **Lý do tồn tại và nhu cầu học tập:** Sinh viên chưa học CG cần thấy hệ số và hướng thứ hai được sinh ra bằng phép tính, không chỉ nhận đáp số.
-- **Kế thừa, đầu ra và vị trí trong sườn:** C04 tạo hệ A; C05 dùng một hệ SPD nhỏ, C06 tổng quát hóa cùng r,p,α,β.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN5; MT2.
-- **Quyết định và lý do:** Sửa để hiện nghĩa của $d_k,r_k,p_k$, tỷ số tạo $\alpha_0$, quan hệ $p_1=r_1+(9/25)p_0$ và điều kiện liên hợp. Phép suy ra $\beta_0$, tọa độ số của $p_1$ và phép tính vòng hai nằm trong ghi chú; giữ hình hai đoạn tới nghiệm. Các nhãn và phép thế làm rõ cơ chế trước thuật toán C06 mà không tăng mật độ trang. Sửa 2026-10-02: câu nhu cầu trên mặt trang (giải hệ đặc $O(p^3)$, CG chỉ cần tích $Av$); dữ kiện và ký hiệu tách dòng. Đặc tả tại C05 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,07 tiết bài tập; tối thiểu trên đường, dùng điều kiện liên hợp, thế số và kiểm phần dư.
-
-### C06. Thuật toán gradient liên hợp tuyến tính
-
-- **Lý do tồn tại và nhu cầu học tập:** Ví dụ hai chiều cần được tổng quát thành vòng lặp có đầy đủ đầu vào, cập nhật hướng và kiểm dừng.
-- **Kế thừa, đầu ra và vị trí trong sườn:** C05 giải hai chiều; C07 dùng cùng thuật toán cho hệ Newton giảm chấn.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Hình thức hóa KN5/HT6; MT2.
-- **Quyết định và lý do:** Sửa để giữ β,p trên mặt trang; dẫn SH cho đúng truy hồi và ghi biến thể ngưỡng dừng. Đặc tả tại C06 trong outline.md.
-- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; đọc tuần tự giả mã, kiểm ngưỡng phần dư ban đầu, dừng trước phép chia và cập nhật hướng.
-
-### C07. Phương pháp Newton–CG
-
-- **Lý do tồn tại và nhu cầu học tập:** Bộ giải hệ chưa tự cho quy tắc bước ngoài; cần nối phần dư với hướng sử dụng trong Newton–CG.
-- **Kế thừa, đầu ra và vị trí trong sườn:** C06 cung cấp bộ giải; D01 sẽ bỏ yêu cầu tích Hessian–vectơ và học độ cong từ chênh lệch gradient.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Ứng dụng KN4–KN5; MT2.
-- **Quyết định và lý do:** Sửa ứng dụng dùng d₀=0, xử lý g=0 và kiểm dấu hướng ngoài tiêu chí phần dư. Sửa 2026-10-02: đổi tiêu đề thành “Phương pháp Newton–CG”, câu mở nêu ghép giảm chấn với CG. Đặc tả tại C07 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; phân biệt vòng trong/ngoài, giữ toán tử cố định và kiểm hướng trước tìm bước.
-
-### C08. Giảm chấn và một vòng gradient liên hợp
-
-- **Lý do tồn tại và nhu cầu học tập:** Bài kiểm tra phải yêu cầu chọn hệ hợp lệ trước khi chạy CG và dùng phần dư để quyết định dừng.
-- **Kế thừa, đầu ra và vị trí trong sườn:** C07 tạo nghiệm gần đúng; D01 đặt bài toán khi không có toán tử Hessian.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Kiểm tra riêng mạch C; MT2.
-- **Quyết định và lý do:** Giữ ma trận trùng ví dụ vì chọn giảm chấn và kiểm ngưỡng tạo nhiệm vụ mới. Sửa 2026-10-02: đổi tiêu đề thành “Giảm chấn và một vòng gradient liên hợp”. Đặc tả tại C08 trong outline.md.
-- **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,12 tiết bài tập; chọn giảm chấn, tính một vòng và so chuẩn phần dư với ngưỡng.
-
-### D01. Thông tin độ cong từ chênh lệch gradient
-
-- **Lý do tồn tại và nhu cầu học tập:** Khi không có toán tử Hessian–vectơ, cần xác định thông tin độ cong nào có thể lấy từ hai gradient.
-- **Kế thừa, đầu ra và vị trí trong sườn:** C07 cần toán tử Hessian–vectơ; D01 thay đầu vào bằng hai gradient, D02 kiểm một cặp số.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Nhu cầu và trực quan KN6; MT2.
-- **Quyết định và lý do:** Giữ bước sai phân riêng để tạo cặp cát tuyến trước công thức BFGS. Đặc tả tại D01 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; lập s,y, kiểm y=Qs trên hàm bậc hai và giới hạn một hướng.
-
-### D02. Ví dụ cập nhật BFGS
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần kiểm đồng thời cát tuyến và xác định dương bằng số trước cập nhật tổng quát.
-- **Kế thừa, đầu ra và vị trí trong sườn:** D01 cho cặp cát tuyến; D02 xác lập hai điều kiện, D03 giải thích phép cập nhật bảo toàn chúng.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Ví dụ KN6; MT2.
-- **Quyết định và lý do:** Giữ ma trận cho sẵn và chuẩn hóa thuật ngữ cát tuyến; không gọi kiểm ma trận là suy ra toàn bộ Hessian. Sửa 2026-10-02: câu mở nêu BFGS sửa $P$ sau mỗi cặp và $P_1$ đến từ công thức ở trang sau, để ma trận không xuất hiện đột ngột. Đặc tả tại D02 trong outline.md.
-- **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,03 tiết bài tập; nhân P₁y và kiểm hai định thức con đầu.
-
-### D03. Cập nhật nghịch đảo BFGS
-
-- **Lý do tồn tại và nhu cầu học tập:** Hai điều kiện đã kiểm bằng số cần một công thức bảo toàn để dùng lặp lại qua nhiều bước.
-- **Kế thừa, đầu ra và vị trí trong sườn:** D02 đã kiểm số; D04 dùng P để tạo hướng và quyết định nhận hoặc bỏ cặp cập nhật.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Hình thức hóa KN6/HT7; MT2.
-- **Quyết định và lý do:** Giữ công thức trung tâm với giả thiết trước, phác thảo dạng toàn phương trong ghi chú. Đặc tả tại D03 trong outline.md.
-- **Thời lượng và hoạt động:** 0,08 tiết lý thuyết + 0,00 tiết bài tập; ánh xạ s,y,ρ vào công thức và kiểm tính xác định dương.
-
-### D04. Thuật toán BFGS và bộ nhớ giới hạn
-
-- **Lý do tồn tại và nhu cầu học tập:** Cập nhật ma trận chỉ hữu ích khi có quy trình tạo hướng, tìm bước, kiểm cặp và đánh giá chi phí.
-- **Kế thừa, đầu ra và vị trí trong sườn:** D03 cho phép cập nhật hợp lệ; E01 xem xét giới hạn mà chỉ đổi quy tắc cập nhật chưa xử lý.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Ứng dụng KN6/HT7; MT2.
-- **Quyết định và lý do:** Sửa lần đầu tên BFGS với bộ nhớ giới hạn; giữ nội dung hỗ trợ, không thêm đệ quy. Đặc tả tại D04 trong outline.md.
-- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; theo dõi đầu vào, hướng, bước và bộ nhớ ma trận/cặp.
-
-### D05. Điều kiện độ cong của BFGS
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần tách khả năng nhận cặp độ cong khỏi khả năng tạo hướng bằng một gradient mới.
-- **Kế thừa, đầu ra và vị trí trong sườn:** D04 kết thúc nhóm cập nhật; E01 mở các thành phần còn lại của bài toán.
-- **LLO/CLO hoặc minh chứng:** LLO15/CLO2,3. Vai trò đánh giá: Kiểm tra riêng mạch D; MT2.
-- **Quyết định và lý do:** Sửa đề ghi đầy đủ P₁ và đổi gradient thành (1,0) để tránh chép lại P₁y=s. Sửa 2026-10-02: đổi tiêu đề thành “Điều kiện độ cong của BFGS”. Đặc tả tại D05 trong outline.md.
-- **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,09 tiết bài tập; kiểm dấu hai cặp, tính hướng mới và đạo hàm theo hướng.
-
-### E01. Can thiệp ngoài quy tắc sinh bước
-
-- **Lý do tồn tại và nhu cầu học tập:** Sau nhóm thay bước, người học cần gọi lại các thành phần còn lại để hiểu ranh giới can thiệp mô hình, khối và đầu ra.
-- **Kế thừa, đầu ra và vị trí trong sườn:** D05 kết thúc thay bước; E02 xét đầu vào của các tầng trước khi có gradient.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu và bản đồ KN7–KN10; MT3.
-- **Quyết định và lý do:** Sửa thành hồi chiếu sơ đồ A02; đặt nhu cầu thang đầu vào tầng trước ví dụ BN. Sửa 2026-10-02: tiêu đề theo nhu cầu; câu mở nối từ B–D (chỉ thay cách dùng gradient); bỏ sơ đồ bốn ô lặp A02 vì bảng đã liệt kê thành phần và trang tràn; khung nêu quan hệ thang đầu vào–gradient. Đặc tả tại E01 trong outline.md.
-- **Thời lượng và hoạt động:** 0,03 tiết lý thuyết + 0,00 tiết bài tập; định vị ba can thiệp trên sơ đồ chung và nối độ nhạy tham số với phép tính tầng.
-
-### E02. Ví dụ chuẩn hóa theo lô
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần một nhiệm vụ chuẩn hóa có dữ kiện trước công thức BN; hai lô dịch chuyển cho phép kiểm cả quy ước chung và phụ thuộc lô.
-- **Kế thừa, đầu ra và vị trí trong sườn:** E01 xác định phép tính mô hình; E03 tổng quát hóa và phân biệt chế độ huấn luyện/suy luận.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN7; MT3.
-- **Quyết định và lý do:** Sửa nhu cầu/trực quan dùng a và a+4; không suy tốc độ hội tụ từ phép tính. Sửa 2026-10-02: câu Trực quan trên mặt trang (trước đây nhu cầu chỉ ở ghi chú); gộp dòng $\varepsilon\to0^+$ vào công thức. Đặc tả tại E02 trong outline.md.
-- **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,02 tiết bài tập; tính trung bình, phương sai và so đầu ra cùng giá trị trong hai lô.
-
-### E03. Chuẩn hóa theo lô
-
-- **Lý do tồn tại và nhu cầu học tập:** Ví dụ chưa phân biệt thống kê lúc học và lúc suy luận hoặc tác động epsilon; định nghĩa phải nêu đúng hai chế độ.
-- **Kế thừa, đầu ra và vị trí trong sườn:** E02 cho số; E04 xét can thiệp nhóm biến thay vì phép tính tầng.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Hình thức hóa và ứng dụng KN7/HT8; MT3.
-- **Quyết định và lý do:** Giữ hai nhánh và mục tiêu kỳ vọng theo lô để phân biệt mục tiêu độc lập mẫu với mục tiêu phụ thuộc lô. Đặc tả tại E03 trong outline.md.
-- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; ánh xạ dữ kiện vào công thức; kiểm phương sai và chế độ suy luận.
-
-### E04. Ví dụ hạ theo tọa độ
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần thấy vì sao chọn một nhóm biến có thể làm bài toán con dễ giải trước thuật toán hạ khối.
-- **Kế thừa, đầu ra và vị trí trong sườn:** E03 thay phép tính mạng; E04 chuyển sang tập biến cập nhật, E05 nêu quy trình và giới hạn.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN8; MT3.
-- **Quyết định và lý do:** Giữ hàm bậc hai hai biến và đường gấp khúc tính được. Sửa 2026-10-02: câu nhu cầu trên mặt trang (giữ biến khác, bài toán một biến thường giải được chính xác). Đặc tả tại E04 trong outline.md.
-- **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,03 tiết bài tập; tối thiểu lần lượt u,v và kiểm ba giá trị mục tiêu.
-
-### E05. Hạ theo tọa độ và theo khối
-
-- **Lý do tồn tại và nhu cầu học tập:** Một lượt số chưa chứng minh tính không tăng hoặc mô tả cập nhật nhiều khối; cần điều kiện khả thi và nghiệm con.
-- **Kế thừa, đầu ra và vị trí trong sườn:** E04 cho một lượt; E06 xét cách chọn đầu ra từ các điểm đã sinh.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Hình thức hóa và ứng dụng KN8/HT9; MT3.
-- **Quyết định và lý do:** Giữ chứng minh ngắn và một lượt áp dụng nữa, không suy hội tụ mạng sâu. Đặc tả tại E05 trong outline.md.
-- **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,00 tiết bài tập; giải thích không tăng qua lựa chọn cũ và áp dụng thêm một lượt.
-
-### E06. Trung bình Polyak
-
-- **Lý do tồn tại và nhu cầu học tập:** Quỹ đạo có dao động tạo nhu cầu chọn đầu ra khác điểm cuối, nhưng trung bình cần được kiểm bằng phản ví dụ.
-- **Kế thừa, đầu ra và vị trí trong sườn:** E05 sinh quỹ đạo; E06 thay quy tắc trả về; E07 xét yếu tố trước cả gradient là kiến trúc.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan, ví dụ và hình thức hóa KN9; MT3.
-- **Quyết định và lý do:** Sửa nguồn trung bình đều; giữ gộp ví dụ/định nghĩa vì phép trung bình đã quen. Sửa 2026-10-02: câu nhu cầu nối dao động của SGD (Bài 05); khung kết luận chuyển vào ghi chú để trang không tràn. Đặc tả tại E06 trong outline.md.
-- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,03 tiết bài tập; tính trung bình, cập nhật trực tuyến và kiểm hai nghiệm khác miền.
-
-### E07. Thiết kế đường truyền gradient
-
-- **Lý do tồn tại và nhu cầu học tập:** Thay thuật toán không thay các đạo hàm do mô hình tạo; cần nối hệ số qua khối với gradient mất mát thực dùng.
-- **Kế thừa, đầu ra và vị trí trong sườn:** E06 thay đầu ra; E07 đặt giới hạn mà chỉ đổi thuật toán cập nhật chưa xử lý; F01 xét cách xây điểm đầu qua nhiệm vụ phụ.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Khái niệm hỗ trợ KN10; MT3.
-- **Quyết định và lý do:** Sửa bổ sung h₀,h₅ vô hướng, mất mát ℒ và tham số tầng trước; giữ mức hỗ trợ quy tắc dây chuyền. Sửa 2026-10-02: câu nhu cầu nối Bài 05 và định nghĩa nối tắt trước hình; khung gradient theo $w$ vào ghi chú để trang không tràn. Đặc tả tại E07 trong outline.md.
-- **Thời lượng và hoạt động:** 0,07 tiết lý thuyết + 0,00 tiết bài tập; tính hai tích và xác định vị trí của chúng trong gradient tham số.
-
-### E08. Bốn can thiệp ngoài quy tắc sinh bước
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần phân biệt bốn can thiệp bằng đầu ra và giới hạn riêng, không chỉ nhớ tên.
-- **Kế thừa, đầu ra và vị trí trong sườn:** E02–E07 cho công cụ; F01 mở các thay đổi theo giai đoạn.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Kiểm tra riêng mạch E; MT3.
-- **Quyết định và lý do:** Sửa giảm tải: một phép tính BN, ba đối chiếu có kết quả trung gian và đề tự đủ. Sửa 2026-10-02: đổi tiêu đề; yêu cầu (c), (d) dùng động từ học tập. Đặc tả tại E08 trong outline.md.
-- **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,07 tiết bài tập; tính phương sai; giải thích không tăng, phản ví dụ trung bình và giới hạn nối tắt.
-
-### F01. Điểm đầu từ nhiệm vụ phụ
-
-- **Lý do tồn tại và nhu cầu học tập:** Điểm đầu có thể làm gradient mất tín hiệu ngay cả khi mô hình đã cố định; cần một phép chuyển tham số có thể kiểm bằng số.
-- **Kế thừa, đầu ra và vị trí trong sườn:** E07 cho vai trò kiến trúc; F01 dùng kiến trúc tăng dần để xây điểm đầu, F02 tổng quát hóa quy trình.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN11; MT3.
-- **Quyết định và lý do:** Sửa đối chiếu (0,0) với (2,1), giữ bước tinh chỉnh để minh họa quỹ đạo khác nhau. Sửa 2026-10-02: tiêu đề nêu đối tượng thay (điểm đầu); câu nhu cầu trên mặt trang. Đặc tả tại F01 trong outline.md.
-- **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,02 tiết bài tập; tính hai gradient tại điểm đầu và một bước tinh chỉnh mục tiêu đích.
-
-### F02. Tiền huấn luyện có giám sát
-
-- **Lý do tồn tại và nhu cầu học tập:** Ví dụ chuyển một hệ số cần quy trình cho phần giữ, phần mới và mục tiêu được tối ưu sau chuyển.
-- **Kế thừa, đầu ra và vị trí trong sườn:** F01 cho phép chuyển cụ thể; F03 xét trường hợp giữ không gian tham số nhưng thay mục tiêu theo giai đoạn.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Hình thức hóa và ứng dụng KN11/HT11; MT3.
-- **Quyết định và lý do:** Giữ ánh xạ T và tiêu chí tinh chỉnh; không đồng nhất mọi tiền huấn luyện với học từng tầng. Đặc tả tại F02 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; xác định dữ liệu phụ/đích, tham số chuyển và khối tinh chỉnh.
-
-### F03. Ví dụ họ mục tiêu tiếp diễn
-
-- **Lý do tồn tại và nhu cầu học tập:** Sau cách đổi điểm đầu, cần thấy một họ mục tiêu trên cùng tham số có cấu trúc nghiệm thay đổi theo lịch.
-- **Kế thừa, đầu ra và vị trí trong sườn:** F02 thay điểm đầu; F03 cho mục tiêu đổi có tham số λ, F04 kiểm điều kiện và giới hạn truyền nghiệm.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan và ví dụ KN12; MT3.
-- **Quyết định và lý do:** Giữ họ phạt tính được bằng đạo hàm một biến, không thêm xác suất Gaussian. Sửa 2026-10-02: câu mở nêu ý tưởng giải mục tiêu dễ trước rồi chuyển dần về đích; khung rút gọn, điều kiện kiểm đường điểm dừng vào ghi chú. Đặc tả tại F03 trong outline.md.
-- **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,02 tiết bài tập; so ba đồ thị và các điểm cực tiểu theo λ.
-
-### F04. Phương pháp tiếp diễn
-
-- **Lý do tồn tại và nhu cầu học tập:** Truyền nghiệm giữa giai đoạn có thể giữ nguyên một điểm dừng; cần kiểm giới hạn trước khi vận dụng tiếp diễn.
-- **Kế thừa, đầu ra và vị trí trong sườn:** F03 tạo họ mục tiêu; F04 nêu giới hạn; F05 thay phân phối dữ liệu để tạo họ mục tiêu theo cơ chế khác.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Hình thức hóa và ứng dụng KN12/HT12; MT3.
-- **Quyết định và lý do:** Giữ đạo hàm và đường θ=0 để tránh suy ưu thế từ hình họ mục tiêu. Đặc tả tại F04 trong outline.md.
-- **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,00 tiết bài tập; kiểm đạo hàm cấp một/cấp hai và đường điểm dừng qua lịch.
-
-### F05. Học theo chương trình
-
-- **Lý do tồn tại và nhu cầu học tập:** Lịch lấy mẫu phải được viết thành mục tiêu trung bình để phân biệt thay phân phối với chỉ đổi thứ tự dữ liệu.
-- **Kế thừa, đầu ra và vị trí trong sườn:** F04 thay hàm trực tiếp; F05 thay trọng số mẫu, F06 so sánh các can thiệp theo đúng dữ kiện.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Nhu cầu, trực quan, ví dụ và hình thức hóa KN13; MT3.
-- **Quyết định và lý do:** Giữ hai mẫu có độ nhạy tính được và phân phối đích xác định. Sửa 2026-10-02: câu định nghĩa nêu ý tưởng (thay phân phối lấy mẫu, mẫu dễ trước) trước dữ kiện. Đặc tả tại F05 trong outline.md.
-- **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,02 tiết bài tập; lập tổng có trọng số, tính nghiệm theo q và đối chiếu đích.
-
-### F06. Đánh giá huấn luyện theo giai đoạn
-
-- **Lý do tồn tại và nhu cầu học tập:** Ba chiến lược giai đoạn cần cùng tiêu chí đánh giá để không nhầm thay mục tiêu hoặc tăng ngân sách với cải thiện phương pháp.
-- **Kế thừa, đầu ra và vị trí trong sườn:** F02,F04,F05 cung cấp cơ chế; F07 kiểm áp dụng bằng số, G01 dùng hồ sơ để lựa chọn có điều kiện.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Ứng dụng KN11–KN13; MT3.
-- **Quyết định và lý do:** Giữ hồ sơ dữ liệu, mục tiêu và chi phí làm ứng dụng chung của ba cơ chế. Sửa 2026-10-02: rút gọn tiêu đề. Đặc tả tại F06 trong outline.md.
-- **Thời lượng và hoạt động:** 0,05 tiết lý thuyết + 0,00 tiết bài tập; đối chiếu đối tượng thay, tiêu chí chuyển và ngân sách toàn bộ.
-
-### F07. Ba chiến lược huấn luyện theo giai đoạn
-
-- **Lý do tồn tại và nhu cầu học tập:** Cần kiểm phân biệt khởi tạo, điểm dừng và phân phối đích bằng dữ kiện thay vì tên chiến lược.
-- **Kế thừa, đầu ra và vị trí trong sườn:** F06 đặt điều kiện đánh giá; G01 tổng hợp theo giới hạn đã chứng minh.
-- **LLO/CLO hoặc minh chứng:** LLO16/CLO3,4. Vai trò đánh giá: Kiểm tra riêng mạch F; MT3.
-- **Quyết định và lý do:** Sửa đề tự đủ và giảm tính lặp: một bước tinh chỉnh, hai đối chiếu từ đạo hàm/nghiệm cho sẵn. Sửa 2026-10-02: đổi tiêu đề; yêu cầu (b), (c) dùng động từ học tập. Đặc tả tại F07 trong outline.md.
-- **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,07 tiết bài tập; tính bước đích; giải thích mắc điểm dừng và sai khác mục tiêu cuối.
-
-### G01. Lựa chọn phương pháp theo dữ kiện
-
-- **Lý do tồn tại và nhu cầu học tập:** Các kết quả riêng cần được chuyển thành tiêu chí lựa chọn trả lời vấn đề mở bài.
-- **Kế thừa, đầu ra và vị trí trong sườn:** F07 đã phân biệt các giai đoạn; G02 buộc phối hợp ba chuẩn đầu ra trong một tình huống.
-- **LLO/CLO hoặc minh chứng:** LLO14–16; CLO2–4. Vai trò đánh giá: Tổng hợp kết quả; MT1–MT3.
-- **Quyết định và lý do:** Sửa gọi lại cùng nhãn sơ đồ A02 để kết nối lựa chọn với thành phần huấn luyện. Sửa 2026-10-02: thay sơ đồ lặp bằng câu trả lời vấn đề trung tâm của A02; rút tiêu đề. Đặc tả tại G01 trong outline.md.
-- **Thời lượng và hoạt động:** 0,06 tiết lý thuyết + 0,00 tiết bài tập; đối chiếu dữ kiện, cơ chế, giả thiết và phép kiểm trên sơ đồ chung.
-
-### G02. Phối hợp lựa chọn trong ba tình huống
-
-- **Lý do tồn tại và nhu cầu học tập:** Minh chứng cuối phải phối hợp chi phí, độ cong và mục tiêu đích trong một phương án có điều kiện.
-- **Kế thừa, đầu ra và vị trí trong sườn:** G01 cung cấp tiêu chí; G03 chỉ tài liệu để đối chiếu sau bài.
-- **LLO/CLO hoặc minh chứng:** LLO14–16; CLO2–4. Vai trò đánh giá: Kiểm tra riêng mạch G và tổng hợp; MT1–MT3.
-- **Quyết định và lý do:** Sửa đề bỏ mã ví dụ; thêm kiểm hướng và trường hợp g=0 cho Newton–CG. Sửa 2026-10-02: đổi tiêu đề. Đặc tả tại G02 trong outline.md.
-- **Thời lượng và hoạt động:** 0,00 tiết lý thuyết + 0,10 tiết bài tập; lập ba hàng phương án, trình bày điều kiện và đối chiếu phép kiểm.
-
-### G03. Tài liệu đối chiếu
-
-- **Lý do tồn tại và nhu cầu học tập:** Người học cần truy nguyên biến thể và giả thiết sau khi kết thúc các phép kiểm trong bài.
-- **Kế thừa, đầu ra và vị trí trong sườn:** G02 hoàn tất minh chứng; nguồn phục vụ kiểm công thức và đọc giới hạn.
-- **LLO/CLO hoặc minh chứng:** LLO14–16; CLO2–4. Vai trò đánh giá: Kết thúc và truy nguyên; MT1–MT3.
-- **Quyết định và lý do:** Sửa ghi chú nguồn BV/SH, giữ danh mục hiển thị ngắn để không tạo trang kết luận mới. Đặc tả tại G03 trong outline.md.
-- **Thời lượng và hoạt động:** 0,04 tiết lý thuyết + 0,00 tiết bài tập; đối chiếu nhóm kết quả với nguồn và vị trí đọc tiếp.
-
-## Quyết định biên tập và cổng kiểm định
-
-Không có ánh xạ mã trang cũ–mới vì người dùng yêu cầu bỏ tuyến cũ và làm lại từ đầu. Chỉ bảo toàn lịch sử trong review-log.md. So với giáo trình, tách ví dụ khỏi thuật toán ở B–D, thêm kiểm tra riêng cho từng mạch, đưa §8.7.5 vào E07 trước tiền huấn luyện §8.7.4 để nối kiến trúc với điểm đầu; các thay đổi được biện minh ở outline.md, phần Phân tích nguồn và thiết kế nội dung, mục 8.
-
-Không bỏ ngầm bước của khái niệm trọng tâm. KN10 là hỗ trợ nên dùng chu trình rút gọn đã ghi; L-BFGS chỉ hỗ trợ chi phí BFGS và không có bài tập đòi đệ quy chưa dạy. Nhu cầu và ví dụ dẫn nhập được gộp có chủ ý ở A03,E04,F01,F03,F05. Những trang gộp nhiều bước giữ một luận điểm; phép suy diễn phụ đặt ghi chú khi triển khai.
-
-Bản đồ và 45 mục trang đã được chốt sau cổng storyboard, năm báo cáo độc lập và tái kiểm của vòng lập kế hoạch. Bản RevealJS đã triển khai đủ 45 trang và 7 mạch; các báo cáo phản biện, chỉnh sửa, kiểm định trực quan, đồng bộ học liệu và xác nhận phiên bản Codex Slides của vòng triển khai được ghi riêng trong review-log.md. Kết quả của vòng lập kế hoạch không thay thế nghiệm thu bản triển khai.
+Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và cùng tiêu đề. Mã là dữ liệu nội bộ, không xuất hiện trên mặt trang hoặc trong ghi chú diễn giả.
+
+### A01. Mở rộng mô hình và dữ liệu
+
+- **Lý do tồn tại:** trang nhận diện bắt buộc của cấu trúc mặc định: học phần, số bài, tên bài, phụ đề tạm (Q1), đơn vị.
+- **Nhu cầu hoặc khoảng trống được lấp:** người học cần nhận ra bài này nối tiếp kết luận Bài 05; thiếu trang này deck không có điểm nhận diện.
+- **Đầu vào:** kết luận Bài 05 (hai giới hạn, nêu trong ghi chú diễn giả).
+- **Đầu ra:** tên bài và phạm vi cho A02.
+- **Vị trí trong khung:** ngoài chuỗi lập luận; mở mạch A.
+- **LLO/CLO:** chung, không đo riêng.
+- **Bước hành trình:** không áp dụng.
+- **Quyết định:** `thêm` — trang nhận diện bắt buộc; bài dựng mới theo thiết kế Lecture B, không có trang mẫu để giữ.
+
+### A02. Mục tiêu học tập và bản đồ bài
+
+- **Lý do tồn tại:** nêu ba mục tiêu đo được tương ứng ba khối B1–B3 và bản đồ năm mạch nội dung B–F.
+- **Nhu cầu hoặc khoảng trống được lấp:** người học cần biết ba sản phẩm học tập (chứng minh rủi ro thực nghiệm của mạng biểu diễn XOR không lồi; tính gradient bằng lan truyền ngược và phân loại điểm dừng; chọn phương pháp theo $(n,p)$ và tính lồi kèm bảo đảm dưới nhiễu) trước nội dung; thiếu bản đồ thì ranh giới giữa ba khối không được thấy.
+- **Đầu vào:** A01; tiên quyết Bài 00 (dây chuyền), Bài 04 (bổ đề giảm), kết luận Bài 05.
+- **Đầu ra:** ba mục tiêu mà G03 đối chiếu; bản đồ mạch dùng lại ở các ranh giới mạch.
+- **Vị trí trong khung:** cấu trúc của bài toán trung tâm thành ba câu hỏi.
+- **LLO/CLO:** LLO11, LLO12 (một phần); CLO1, CLO2, CLO4.
+- **Bước hành trình:** không áp dụng.
+- **Quyết định:** `thêm` — cấu trúc mặc định yêu cầu mục tiêu đo được gắn LLO/CLO trước nội dung.
+
+### A03. Bức tranh lồi của Bài 01–04 và hai giới hạn khi mở rộng quy mô
+
+- **Lý do tồn tại:** nêu luận đề của người dùng lần đầu, ở dạng đối chiếu giữa bức tranh lồi của Bài 01–04 và bài toán quy mô lớn, kèm hai lý do; G01 quay lại cùng bảng.
+- **Nhu cầu hoặc khoảng trống được lấp:** nếu hai lý do không được nêu sớm, SGD ở mạch E–F dễ bị hiểu là lựa chọn “nhanh hơn” và dừng sớm bị hiểu là thất bại hội tụ.
+- **Đầu vào:** hai giới hạn trong kết luận Bài 05: chi phí $O(nd)$ và $O(nd^2+d^3)$ đều quét toàn bộ $n$ mẫu; XOR không biểu diễn được bằng dự đoán tuyến tính; kết quả khối A1, A2 của Bài 05.
+- **Đầu ra:** lý do tính toán; lý do thống kê kèm hệ quả “dừng sớm và chính quy hóa là một phần của phương pháp”; đối chiếu “giảm mỗi bước / bất đẳng thức giảm có số hạng nhiễu”; ba vấn đề của bài (chi phí tính gradient, điều gradient chứng nhận khi không lồi, tốc độ còn lại dưới nhiễu), mỗi vấn đề là nhu cầu của một khối.
+- **Vị trí trong khung:** bài toán trung tâm và luận đề.
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** nhu cầu của toàn bài, đứng trước KN1–KN9.
+- **Quyết định:** `thêm` — chỉ dẫn người dùng 2026-10-11 yêu cầu nêu luận đề sớm theo dạng “mất gì, giữ gì”; ghi chú phát biểu Newton theo Bài 05 CP05, không viết “Newton không phụ thuộc $\kappa$” vô điều kiện (điểm hòa giải 2); sau kiểm định storyboard, mặt trang không khẳng định SGD giảm theo kỳ vọng, không dùng $p$ trước A04 và dùng nhãn “Vấn đề của bài” thay cho “Câu hỏi”.
+
+### A04. Bài toán huấn luyện và ký hiệu chung
+
+- **Lý do tồn tại:** cố định đối tượng và ký hiệu chung trước khi phát biểu lại kết quả của 05b, 05c.
+- **Nhu cầu hoặc khoảng trống được lấp:** 05b viết $x_k$, $f$, $N$; 05c viết $J$ và dùng $d$ cho số chiều tham số; Bài 05 gộp hệ số chặn vào $w$ và viết $w_k$. Không có ánh xạ, T5–T8, G.2, G.3 sẽ trùng chữ với dữ liệu $x_i$ và với cỡ nhóm $b$.
+- **Đầu vào:** ba câu hỏi của A03; ký hiệu của Bài 05, 05b, 05c.
+- **Đầu ra:** $(x_i,y_i)$, $f(x;\theta)$, $\theta\in\mathbb R^p$, $\ell_i$, $F$, $R$, dãy lặp $\theta_{k+1}=\theta_k-\eta_kg_k$; quy ước $c$ cho hệ số chặn, $b_1,b_2$ cho độ lệch mạng, $b$ cho cỡ nhóm; ánh xạ ký hiệu với Bài 05, 05b, 05c, gồm dòng đối xứng với MD04 của Bài 05: Bài 05 viết đầu vào thô $u$, đặc trưng $x=\varphi(u)\in\mathbb R^d$ có tọa độ hằng 1 và hệ số chặn trong $w$, nên $d$ của Bài 05 bằng $p=d+1$ của Bài 06 với mô hình tuyến tính; câu nhắc $\sigma$ (hàm kích hoạt ở mạch B–C; Bài 05 dùng $\sigma$ cho hàm sigmoid) khác $\sigma^2$ (chặn phương sai ở mạch E–F).
+- **Vị trí trong khung:** đối tượng và ký hiệu chung.
+- **LLO/CLO:** CLO1.
+- **Bước hành trình:** nền cho mọi KN, không thuộc bước riêng.
+- **Quyết định:** `thêm` — khung ký hiệu phải cố định trước khi dẫn định lý có ký hiệu khác; câu ánh xạ quy ước hệ số chặn của Bài 05 theo điểm hòa giải 1.
+
+### B01. Bài toán XOR
+
+- **Lý do tồn tại:** cung cấp một dữ liệu tính tay được cho nhu cầu của mạch B, trước mọi định nghĩa.
+- **Nhu cầu hoặc khoảng trống được lấp:** giới hạn (ii) ở A03 mới là một phát biểu; người học cần một nhiệm vụ cụ thể để kiểm.
+- **Đầu vào:** giới hạn (ii) của A03; ký hiệu A04.
+- **Đầu ra:** bốn điểm, nhãn $\{0,1\}$, mô hình $f(x;w,c)$, ngưỡng $\tfrac12$; mất mát bình phương được nêu là lựa chọn để tính tay.
+- **Vị trí trong khung:** mở bước 1 của chuỗi (tách được tuyến tính → Mệnh đề 1).
+- **LLO/CLO:** CLO2.
+- **Bước hành trình:** KN1 nhu cầu + ví dụ dẫn nhập + trực quan.
+- **Quyết định:** `thêm` — cần một dữ liệu tính tay được trước định nghĩa; nêu nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính tay, ghi chú nối với nhãn $\pm1$ của Bài 05 KL03 (điểm hòa giải 4).
+
+### B02. Tính không tách được tuyến tính của XOR
+
+- **Lý do tồn tại:** chứng minh trên trang rằng không hàm affine nào phân lớp đúng bốn điểm, kèm nghiệm bình phương nhỏ nhất là hằng $\tfrac12$.
+- **Nhu cầu hoặc khoảng trống được lấp:** B01 chỉ đặt nhiệm vụ; giới hạn (ii) cần trở thành một mệnh đề có chứng minh.
+- **Đầu vào:** dữ liệu B01; bình phương nhỏ nhất (Bài 00, Bài 05 khối A1).
+- **Đầu ra:** Định nghĩa tách được tuyến tính; Mệnh đề 1; nghiệm $w=0$, $c=\tfrac12$, $F=\tfrac18$.
+- **Vị trí trong khung:** bước 1 của chuỗi.
+- **LLO/CLO:** CLO1.
+- **Bước hành trình:** KN1 trực quan (hai đường chéo) + ví dụ (hệ quả bình phương nhỏ nhất) + hình thức.
+- **Quyết định:** `thêm` — chứng minh ngắn đủ đặt trên trang; tiêu đề viết thành cụm danh từ thay cho mệnh đề “XOR không tách được tuyến tính”.
+
+### B03. Đặc trưng thủ công và chi phí theo số chiều
+
+- **Lý do tồn tại:** cho thấy đặc trưng $x_1x_2$ sửa được XOR và đo cái giá của cách sửa này theo $\binom{d+q}{q}$.
+- **Nhu cầu hoặc khoảng trống được lấp:** sau Mệnh đề 1, cách sửa trực tiếp là đổi không gian đặc trưng; cần chi phí của cách sửa để có lý do chuyển sang đặc trưng học được.
+- **Đầu vào:** Mệnh đề 1; chi phí mỗi bước theo số đặc trưng (Bài 05 khối A3); hệ quả thống kê khi $d$ tăng (khối A1).
+- **Đầu ra:** $f=x_1+x_2-2x_1x_2$; bảng số đơn thức; nhận xét đặc trưng thủ công đòi hỏi biết trước dạng tương tác.
+- **Vị trí trong khung:** ứng dụng bước 1; nhu cầu của bước 2.
+- **LLO/CLO:** CLO2, CLO4.
+- **Bước hành trình:** KN1 ứng dụng; KN2 nhu cầu.
+- **Quyết định:** `thêm` — nối chi phí của đặc trưng thủ công với khối A1, A3 của Bài 05.
+
+### B04. Lớp ẩn như một phép biến đổi đặc trưng
+
+- **Lý do tồn tại:** trực quan cho đặc trưng học được: hai đơn vị ReLU đưa XOR sang không gian $h$ nơi hai lớp tách được tuyến tính.
+- **Nhu cầu hoặc khoảng trống được lấp:** định nghĩa mạng ở B06 cần một hình ảnh về việc lớp ẩn làm gì với dữ liệu.
+- **Đầu vào:** nhu cầu ở B03; bốn điểm B01.
+- **Đầu ra:** ánh xạ $x\mapsto h$; đường $h_1+h_2=\tfrac12$; hai điểm lớp 0 bị gộp vào một điểm.
+- **Vị trí trong khung:** bước 2 (trực quan).
+- **LLO/CLO:** CLO2.
+- **Bước hành trình:** KN2 trực quan.
+- **Quyết định:** `thêm` — trực quan phải đứng trước định nghĩa mạng.
+
+### B05. Mạng hai đơn vị ẩn biểu diễn XOR
+
+- **Lý do tồn tại:** viết đầy đủ trọng số $\theta_A$ và bảng truyền xuôi tại bốn đầu vào.
+- **Nhu cầu hoặc khoảng trống được lấp:** B04 chỉ ra phép biến đổi; cần một ví dụ có tham số tường minh làm điểm tựa cho định nghĩa B06 và cho phản ví dụ B08–B09.
+- **Đầu vào:** phép biến đổi B04.
+- **Đầu ra:** $\theta_A$, $f(x;\theta_A)=\lvert x_1-x_2\rvert$ trên $\{0,1\}^2$, $F(\theta_A)=0$; ghi nhận tiền kích hoạt bằng 0 tại $(0,0)$ và $(1,1)$.
+- **Vị trí trong khung:** bước 2 (ví dụ).
+- **LLO/CLO:** CLO2.
+- **Bước hành trình:** KN2 ví dụ.
+- **Quyết định:** `thêm` — cần trọng số tường minh và truyền xuôi cho bốn đầu vào.
+
+### B06. Mạng nơ ron hai tầng
+
+- **Lý do tồn tại:** định nghĩa mạng hai tầng có miền, kích thước và số tham số; nhận xét $\sigma$ tuyến tính đưa mạng về hàm affine.
+- **Nhu cầu hoặc khoảng trống được lấp:** B05 là trường hợp $d=m=2$; $F(\theta)$, lan truyền ngược và bảng chi phí cần định nghĩa tổng quát theo $p$.
+- **Đầu vào:** B05.
+- **Đầu ra:** $f(x;\theta)=w_2^\top\sigma(W_1x+b_1)+b_2$, $p=md+2m+1$; ký hiệu $W_1,b_1,w_2,b_2,\sigma,z,h$ dùng tới cuối bài.
+- **Vị trí trong khung:** định nghĩa mạng hai tầng (bước 2 của chuỗi).
+- **LLO/CLO:** CLO2.
+- **Bước hành trình:** KN2 hình thức.
+- **Quyết định:** `thêm` — định nghĩa phải có miền và kích thước theo tiêu chuẩn nội dung.
+
+### B07. Rủi ro thực nghiệm theo tham số mạng
+
+- **Lý do tồn tại:** tách bước “quy tắc hợp thành lồi không áp dụng” khỏi bước phản ví dụ.
+- **Nhu cầu hoặc khoảng trống được lấp:** người học dễ suy ra rằng mất mát lồi theo $f$ kéo theo $F$ lồi theo $\theta$; trang chỉ ra hàm trong $\theta\mapsto f(x_i;\theta)$ không affine.
+- **Đầu vào:** định nghĩa B06; quy tắc hợp thành lồi (Bài 02; BV §3.2).
+- **Đầu ra:** huấn luyện mạng XOR là cực tiểu hóa $F$ trên $\mathbb R^9$; tính lồi không còn được bảo đảm, chờ phản ví dụ.
+- **Vị trí trong khung:** nối định nghĩa mạng với Mệnh đề 2–3.
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** KN2 ứng dụng; KN3 nhu cầu.
+- **Quyết định:** `thêm` — tránh nhảy kết luận từ “không được bảo đảm” sang “không lồi”; ghi chú kiểm kết luận không lồi với mất mát logistic (điểm hòa giải 4, Q5).
+
+### B08. Đối xứng hoán vị các đơn vị ẩn
+
+- **Lý do tồn tại:** chỉ ra nguồn gốc cụ thể của nhiều cực tiểu là phép hoán vị đơn vị ẩn.
+- **Nhu cầu hoặc khoảng trống được lấp:** B07 để mở câu hỏi về tính lồi; muốn bác bỏ tính lồi cần hai cực tiểu phân biệt cụ thể.
+- **Đầu vào:** $\theta_A$ (B05); định nghĩa B06.
+- **Đầu ra:** Mệnh đề 2; $\theta_B\neq\theta_A$ với $F(\theta_B)=0$; $m!$ cách sắp xếp; hệ quả cho khởi tạo đối xứng (chỉ nêu trong ghi chú).
+- **Vị trí trong khung:** Mệnh đề 2 (bước 2 của chuỗi).
+- **LLO/CLO:** LLO11.
+- **Bước hành trình:** KN3 trực quan + ví dụ + hình thức (Mệnh đề 2).
+- **Quyết định:** `thêm` — nguồn gốc của nhiều cực tiểu phải được chỉ ra trước khi kết luận không lồi.
+
+### B09. Tính không lồi của rủi ro thực nghiệm
+
+- **Lý do tồn tại:** lập luận trung điểm với $F(\theta(t))$ tính tường minh bác bỏ tính lồi của $F$.
+- **Nhu cầu hoặc khoảng trống được lấp:** biến “tính lồi không được bảo đảm” (B07) thành “$F$ không lồi” bằng một phép kiểm có chứng minh.
+- **Đầu vào:** $\theta_A,\theta_B$ (B08); tập cực tiểu của hàm lồi là tập lồi (Bài 01).
+- **Đầu ra:** Mệnh đề 3; $F(\theta(t))=t^2$ trên $[0,\tfrac12]$, $(1-t)^2$ trên $[\tfrac12,1]$; $F(\theta(\tfrac12))=\tfrac14$; nhận xét lớp ẩn thay cho việc tăng số đặc trưng thủ công, đổi lại $F$ không lồi.
+- **Vị trí trong khung:** Mệnh đề 3, kết quả chính của khối B1; đầu vào của mạch D.
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** KN3 hình thức (Mệnh đề 3) + ứng dụng (phép kiểm trên XOR).
+- **Quyết định:** `thêm` — lập luận trung điểm cần một đường $F(\theta(t))$ tính được tường minh.
+
+### B10. Biểu diễn XOR và đối xứng của mạng
+
+- **Lý do tồn tại:** trang kiểm tra riêng của mạch B; đo khả năng tái tạo ba kết quả trên nghiệm XOR khác (DL (6.4)–(6.6)).
+- **Nhu cầu hoặc khoảng trống được lấp:** cần minh chứng người học tái tạo được KN1–KN3 trước khi chuyển sang tính gradient.
+- **Đầu vào:** B02, B03, B05–B09.
+- **Đầu ra:** đáp án $(0,1,1,-2)$; bảng truyền xuôi nghiệm DL; $F=\tfrac{27}{32}$ tại trung điểm; $p=78\,601$ dùng ở C01.
+- **Vị trí trong khung:** kiểm tra bước 1–2.
+- **LLO/CLO:** LLO11; CLO1, CLO2.
+- **Bước hành trình:** KN1, KN2, KN3 bài tập.
+- **Quyết định:** `thêm` — mỗi mạch có trang kiểm tra riêng; câu (d) chuẩn bị nhu cầu của C01.
+
+### C01. Chi phí của gradient theo mọi tham số
+
+- **Lý do tồn tại:** đặt nhu cầu của lan truyền ngược bằng một chi phí đo được.
+- **Nhu cầu hoặc khoảng trống được lấp:** mọi phương pháp bậc nhất cần $\nabla F\in\mathbb R^p$; sai phân hữu hạn cần $p+1$ lần truyền xuôi, tổng cỡ $p^2$, quá đắt với $p=78\,601$.
+- **Đầu vào:** $p$ từ B10(d); $F$ từ B07.
+- **Đầu ra:** mục tiêu của mạch: gradient chính xác với chi phí cùng bậc một lần truyền xuôi.
+- **Vị trí trong khung:** mở bước 3 (lan truyền ngược).
+- **LLO/CLO:** LLO11 (độ sâu đồ thị tính toán); CLO1.
+- **Bước hành trình:** KN4 nhu cầu.
+- **Quyết định:** `thêm` — nhu cầu phải xuất phát từ một chi phí đo được.
+
+### C02. Đồ thị tính toán và truyền xuôi
+
+- **Lý do tồn tại:** gộp trực quan (đồ thị tính toán) với phần truyền xuôi của ví dụ số.
+- **Nhu cầu hoặc khoảng trống được lấp:** lan truyền ngược dùng lại các giá trị trung gian; người học cần thấy giá trị nào được tính và lưu.
+- **Đầu vào:** định nghĩa B06; nhu cầu C01.
+- **Đầu ra:** tham số chung của mạch C; mẫu $x=(1,1)$, $y=0$: $z=(1,\tfrac12)$, $h=(1,\tfrac12)$, $f=\tfrac12$, $\ell=\tfrac18$; ghi chú điểm gãy tại đầu vào $(0,1)$.
+- **Vị trí trong khung:** bước 3 (trực quan, ví dụ).
+- **LLO/CLO:** CLO1.
+- **Bước hành trình:** KN4 trực quan + ví dụ (phần xuôi).
+- **Quyết định:** `thêm` — đồ thị chỉ có nghĩa khi gắn giá trị, nên hai bước cùng trang.
+
+### C03. Truyền ngược trên ví dụ
+
+- **Lý do tồn tại:** tính mọi đạo hàm trung gian từ $\ell$ về $\theta$ trên cùng đồ thị và kiểm một thành phần bằng sai phân trung tâm.
+- **Nhu cầu hoặc khoảng trống được lấp:** trước thuật toán tổng quát, người học cần thấy mỗi đạo hàm là tích của đạo hàm phía sau với một đạo hàm cục bộ đã có từ truyền xuôi.
+- **Đầu vào:** giá trị truyền xuôi C02.
+- **Đầu ra:** $e$, $\nabla_{b_2}$, $\nabla_{w_2}$, $\delta_h$, $\delta_z$, $\nabla_{W_1}$, $\nabla_{b_1}$; $\lVert\nabla\ell\rVert^2=\tfrac{69}{16}$ dùng ở C06.
+- **Vị trí trong khung:** bước 3 (ví dụ).
+- **LLO/CLO:** CLO1.
+- **Bước hành trình:** KN4 ví dụ (phần ngược).
+- **Quyết định:** `thêm` — ví dụ số phải có đủ mọi đại lượng trung gian.
+
+### C04. Thuật toán lan truyền ngược
+
+- **Lý do tồn tại:** phát biểu thuật toán với đầu vào, đầu ra, quy ước $\sigma'(0)=0$ và dạng tổng quát $\delta_{\text{trước}}=J^\top\delta_{\text{sau}}$.
+- **Nhu cầu hoặc khoảng trống được lấp:** C03 xử lý một mẫu cụ thể; cần quy tắc dùng cho mọi mẫu và cho gradient của $F$.
+- **Đầu vào:** C03; quy tắc dây chuyền (Bài 00).
+- **Đầu ra:** thuật toán; phân biệt lan truyền ngược (tính gradient) với thuật toán tối ưu.
+- **Vị trí trong khung:** bước 3 (thuật toán).
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** KN4 hình thức.
+- **Quyết định:** `thêm` — thuật toán phải có đầu vào, đầu ra và điều kiện.
+
+### C05. Chi phí của lan truyền ngược
+
+- **Lý do tồn tại:** đếm phép nhân của hai chiều và so sánh với sai phân hữu hạn.
+- **Nhu cầu hoặc khoảng trống được lấp:** trả lời nhu cầu C01 bằng con số; chi phí $O(p)$ một mẫu là đầu vào của bảng chi phí E01.
+- **Đầu vào:** C04; quy mô $d=784$, $m=100$.
+- **Đầu ra:** truyền xuôi $78\,500$, truyền ngược $78\,600$ phép nhân; gradient đầy đủ $O(np)$; bộ nhớ $O(bm)$.
+- **Vị trí trong khung:** nhận xét về chi phí (bước 3).
+- **LLO/CLO:** CLO1, CLO4.
+- **Bước hành trình:** KN4 ứng dụng.
+- **Quyết định:** `thêm` — cần kết luận định lượng “chi phí lan truyền ngược cùng bậc truyền xuôi”.
+
+### C06. Một bước hạ gradient trên mạng
+
+- **Lý do tồn tại:** dùng chính gradient vừa tính cho một bước với hai độ dài bước.
+- **Nhu cầu hoặc khoảng trống được lấp:** gradient chưa đủ để giảm mất mát: $\eta=0{,}02$ giảm, $\eta=0{,}25$ làm tăng; độ dài bước phải gắn với độ cong.
+- **Đầu vào:** tham số C02; gradient C03.
+- **Đầu ra:** $\ell$: $0{,}125\to0{,}0536$ với $\eta=0{,}02$; $\ell=\tfrac{2809}{2048}$ với $\eta=0{,}25$; câu hỏi về bước luôn giảm chuyển sang mạch D.
+- **Vị trí trong khung:** nối bước 3 với bước 4 (bổ đề giảm).
+- **LLO/CLO:** LLO12 (một phần); CLO1.
+- **Bước hành trình:** KN4 ứng dụng; KN6 nhu cầu.
+- **Quyết định:** `thêm` — ứng dụng phải dùng chính gradient vừa tính.
+
+### C07. Lan truyền ngược khi một đơn vị không hoạt động
+
+- **Lý do tồn tại:** trang kiểm tra riêng của mạch C trên mẫu có đơn vị ẩn bị chặn.
+- **Nhu cầu hoặc khoảng trống được lấp:** đo khả năng áp thuật toán khi $\sigma'(z_1)=0$ và $x=0$, và khả năng nêu quy ước tại điểm gãy.
+- **Đầu vào:** tham số C02; thuật toán C04.
+- **Đầu ra:** đáp án (a)–(d); quan sát gradient bằng 0 cục bộ, dẫn sang D01.
+- **Vị trí trong khung:** kiểm tra bước 3.
+- **LLO/CLO:** CLO1.
+- **Bước hành trình:** KN4 bài tập; KN5 nhu cầu.
+- **Quyết định:** `thêm` — mỗi mạch có trang kiểm tra riêng.
+
+### D01. Điểm dừng khi mục tiêu không lồi
+
+- **Lý do tồn tại:** định nghĩa điểm dừng, điểm dừng $\varepsilon$-xấp xỉ và điểm yên ngựa, đối chiếu với trường hợp lồi.
+- **Nhu cầu hoặc khoảng trống được lấp:** Bài 02, 04 dùng $\nabla F=0$ để chứng nhận cực tiểu toàn cục; với $F$ không lồi (B09) chiều suy ra này mất, cần tên cho những gì còn lại.
+- **Đầu vào:** B09 (không lồi); C07 (gradient bằng 0 cục bộ); tiêu chí dừng $\lVert\nabla F\rVert\le\varepsilon$ (Bài 04).
+- **Đầu ra:** định nghĩa; ba loại điểm dừng; tiêu chí dừng giữ nguyên nhưng đổi ý nghĩa.
+- **Vị trí trong khung:** bước 4 (định nghĩa).
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** KN5 nhu cầu + hình thức (định nghĩa); ngoại lệ thứ tự giải thích ở KN5.
+- **Quyết định:** `thêm` — nhu cầu và tên gọi phải có trước phép phân loại.
+
+### D02. Mạng tuyến tính một đơn vị: điểm yên ngựa và cực tiểu đối xứng
+
+- **Lý do tồn tại:** cung cấp một hàm hai biến tính tay được, sinh từ mạng, có cả điểm yên ngựa và đường cực tiểu đối xứng.
+- **Nhu cầu hoặc khoảng trống được lấp:** D01 chỉ đặt tên; cần ví dụ có trị riêng Hessian cụ thể gắn với mạng.
+- **Đầu vào:** D01; mạng hai tầng B06 với $d=m=1$, $\sigma(z)=z$, không độ lệch.
+- **Đầu ra:** $F(u,v)=\tfrac12(uv-1)^2$, $\nabla F$, $\nabla^2F$; gốc là điểm yên ngựa (trị riêng $\pm1$); $(1,1)$ có trị riêng $0$ và $2$; hàm dùng lại ở D03–D07.
+- **Vị trí trong khung:** ví dụ cho bước 4; ứng dụng của Mệnh đề 3 cho mạng tuyến tính.
+- **LLO/CLO:** LLO11.
+- **Bước hành trình:** KN5 trực quan + ví dụ; KN3 ứng dụng.
+- **Quyết định:** `thêm` — ví dụ hai chiều có trị riêng Hessian, gắn trực tiếp với mạng.
+
+### D03. Phân loại điểm dừng bằng Hessian
+
+- **Lý do tồn tại:** phát biểu điều kiện bậc hai và giới hạn của nó khi Hessian có trị riêng 0.
+- **Nhu cầu hoặc khoảng trống được lấp:** D02 cho số; cần công cụ tổng quát, và cần biết công cụ không kết luận được tại $(1,1)$ dù đó là cực tiểu toàn cục.
+- **Đầu vào:** D02; khai triển Taylor bậc hai (Bài 00).
+- **Đầu ra:** mệnh đề (i)–(iii); nhận xét Hessian có $p^2$ phần tử nên không là quy tắc dừng thực hành.
+- **Vị trí trong khung:** bước 4 (kết quả).
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** KN5 hình thức; KN6 nhu cầu.
+- **Quyết định:** `thêm` — tách công cụ phân loại khỏi ví dụ để mỗi trang một luận điểm.
+
+### D04. Bổ đề giảm khi không lồi
+
+- **Lý do tồn tại:** chỉ ra bổ đề giảm chỉ dùng tính trơn, nên vẫn cho giảm mỗi bước khi $F$ không lồi, và kiểm trên D02.
+- **Nhu cầu hoặc khoảng trống được lấp:** C06 và D03 để lại câu hỏi bước nào bảo đảm giảm mà không cần Hessian.
+- **Đầu vào:** bổ đề giảm (Bài 04; 05b); $F(u,v)$ trên $[0,1]^2$ với $L=2$.
+- **Đầu ra:** bất đẳng thức giảm; số $0{,}0703\le0{,}1422$; nhận xét $L$ chỉ tồn tại trên vùng, và với ReLU không tồn tại trên vùng chứa điểm gãy; giải thích bước 0,25 ở C06 (dọc đoạn không có điểm gãy, hằng số Lipschitz trên đoạn lớn hơn 8).
+- **Vị trí trong khung:** bước 4 (bổ đề giảm dưới H2).
+- **LLO/CLO:** CLO1.
+- **Bước hành trình:** KN6 trực quan + ví dụ + hình thức (bổ đề, nhắc lại).
+- **Quyết định:** `thêm` — cần phát biểu rằng bổ đề giảm vẫn cho giảm mỗi bước khi không lồi.
+
+### D05. Hội tụ của chuẩn gradient
+
+- **Lý do tồn tại:** phát biểu lại T7 của 05b với nhãn, chứng minh một dòng và nêu rõ những điều không được khẳng định.
+- **Nhu cầu hoặc khoảng trống được lấp:** biến giảm mỗi bước (D04) thành bảo đảm sau $K$ bước, tức câu trả lời của khối B2.
+- **Đầu vào:** D04; T7 (05b, mạch F, trang F03); H0, H2.
+- **Đầu ra:** $\min_{0\le k<K}\lVert\nabla F(\theta_k)\rVert^2\le2L\Delta_0/K$; danh sách điều không khẳng định; phạm vi trên mặt trang (hàm kích hoạt trơn hoặc mạng tuyến tính; với ReLU là định hướng); điểm xuất phát của T8 ở F04.
+- **Vị trí trong khung:** bước 4 (T7), kết quả trung tâm của khối B2.
+- **LLO/CLO:** CLO1.
+- **Bước hành trình:** KN6 hình thức.
+- **Quyết định:** `thêm` — cần dẫn T7 có nhãn và phát biểu lại, không chứng minh lại.
+
+### D06. Bình nguyên gần điểm yên ngựa
+
+- **Lý do tồn tại:** một dãy lặp tính được cho thấy điểm dừng xấp xỉ được T7 chứng nhận có thể nằm xa cực tiểu.
+- **Nhu cầu hoặc khoảng trống được lấp:** D05 nêu T7 là bảo đảm về điểm dừng khi không lồi; cần một dãy cụ thể để thấy giới hạn của chứng nhận đó.
+- **Đầu vào:** D02 với $\theta_0=(0{,}01;\,0{,}01)$, $\eta=\tfrac12$; T7 (D05); $L=2$ hợp lệ vì dãy ở trong $[0,1]^2$.
+- **Đầu ra:** bảng bình nguyên $k=0,\dots,14$; nhận xét với $\varepsilon^2=2\cdot10^{-4}$, $\theta_0$ đã là điểm dừng $\varepsilon$-xấp xỉ trong khi $F(\theta_0)\approx0{,}4999$, gần giá trị tại điểm yên ngựa.
+- **Vị trí trong khung:** giới hạn áp dụng của bước 4.
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** KN5 ứng dụng; KN6 ứng dụng.
+- **Quyết định:** `thêm` — cần một phép tính chứng tỏ điểm dừng xấp xỉ không nhất thiết là cực tiểu.
+
+### D07. Phân loại điểm dừng và số bước theo T7
+
+- **Lý do tồn tại:** trang kiểm tra riêng của mạch D.
+- **Nhu cầu hoặc khoảng trống được lấp:** đo khả năng phân loại điểm dừng và đọc cận T7 so với số bước thực tế.
+- **Đầu vào:** D02–D06.
+- **Đầu ra:** đáp án: điểm dừng là $(0,0)$ và mọi điểm $uv=1$; Hessian tại $(2,\tfrac12)$ có trị riêng $0$ và $4{,}25$; cận T7 cho $K=113$, thực tế $K=4$.
+- **Vị trí trong khung:** kiểm tra bước 4; khép khối B2.
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** KN5, KN6 bài tập.
+- **Quyết định:** `thêm` — mỗi mạch có trang kiểm tra riêng.
+
+### E01. Chi phí của gradient đầy đủ ở ba quy mô
+
+- **Lý do tồn tại:** đưa lý do tính toán của luận đề về số cụ thể ở ba quy mô.
+- **Nhu cầu hoặc khoảng trống được lấp:** T7 cần $\nabla F(\theta_k)$ ở mỗi bước với chi phí $O(np)$ (C05); cần đo khi nào một bước như vậy vượt ngân sách.
+- **Đầu vào:** C05 ($O(p)$ một mẫu); chi phí Newton $O(np^2+p^3)$ (Bài 04; Bài 05 khối A3); giới hạn (i) của A03.
+- **Đầu ra:** bảng chi phí GD, Newton, SGD ở ba quy mô; nhận xét một lượt dữ liệu tốn $np$ cho cả GD và SGD.
+- **Vị trí trong khung:** lý do tính toán; mở bước 5 (SGD).
+- **LLO/CLO:** LLO11, LLO15 (chi phí Newton); CLO4.
+- **Bước hành trình:** KN7 nhu cầu.
+- **Quyết định:** `thêm` — luận đề yêu cầu chỉ ra SGD bị buộc bởi chi phí; ghi chú chỉ so chi phí một bước, phát biểu Newton theo Bài 05 CP05 (điểm hòa giải 2).
+
+### E02. Rủi ro thực nghiệm như đại lượng thay thế
+
+- **Lý do tồn tại:** nêu lại lý do thống kê với Định lý G.2 của 05c và số liệu RCV1 (SNW Bảng 13.3).
+- **Nhu cầu hoặc khoảng trống được lấp:** E01 chỉ cho thấy gradient đầy đủ đắt; cần lý do để chấp nhận một ước lượng nhiễu thay cho cực tiểu chính xác.
+- **Đầu vào:** Định lý G.2 (05c); Bài 05 khối A1, A2; SNW Bảng 13.3, tr. 363, chỉ các hàng mất mát hinge (SVMLight 23 642 s, SVMPerf 66 s, SGD 1,4 s); các hàng mất mát logistic thuộc Bài 05 KL02, ghi chú E02 dẫn tới KL02.
+- **Đầu ra:** tại $\theta$ cố định, sai số $F-R$ cỡ $1/\sqrt n$; kết luận Bottou–Bousquet cho bài toán lồi (không đổi bậc của cận), không khẳng định “không cải thiện $R$”; phân tách sai số xấp xỉ, ước lượng, tối ưu (ghi chú); thí nghiệm RCV1 làm minh họa có nguồn.
+- **Vị trí trong khung:** lý do thống kê; nhu cầu của F05, F06.
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** KN7 nhu cầu; KN9 nhu cầu.
+- **Quyết định:** `thêm` — luận đề yêu cầu lý do thứ hai được nêu lại với số liệu; tiêu đề viết thành cụm danh từ. Phân chia Bảng 13.3 với Bài 05 KL02 theo quyết định của điều phối viên: E02 giữ các hàng hinge, KL02 giữ các hàng logistic.
+
+### E03. Gradient nhóm nhỏ trên dữ liệu bốn điểm
+
+- **Lý do tồn tại:** ví dụ số đặt trước Định lý G.3: sáu nhóm hai mẫu cho sáu gradient khác nhau có trung bình bằng gradient đầy đủ, và một nhóm làm $F$ tăng.
+- **Nhu cầu hoặc khoảng trống được lấp:** trước phát biểu về tính không chệch và phương sai, người học cần thấy gradient nhóm thay đổi theo nhóm.
+- **Đầu vào:** E01–E02; mô hình tuyến tính có hệ số chặn $c$ (A04).
+- **Đầu ra:** bảng sáu nhóm với $\widehat g$ và $F(\theta_1)$; kỳ vọng $\tfrac{503}{384}$ so với $\tfrac{133}{128}$ của bước đầy đủ; $\theta^*=(1,1)$, $\kappa\approx2{,}62$.
+- **Vị trí trong khung:** bước 5 (trực quan và ví dụ cho G.3).
+- **LLO/CLO:** LLO12; CLO1.
+- **Bước hành trình:** KN7 trực quan + ví dụ.
+- **Quyết định:** `thêm` — cần một bước số trên dữ liệu nhỏ với $b=2$, đặt trước phát biểu hình thức.
+
+### E04. Tính không chệch và phương sai của gradient nhóm
+
+- **Lý do tồn tại:** phát biểu lại Định lý G.3 của 05c và kiểm trên E03.
+- **Nhu cầu hoặc khoảng trống được lấp:** E03 cho thấy hiện tượng trên một ví dụ; cần phát biểu tổng quát với giả thiết chọn đều và hệ số không hoàn lại.
+- **Đầu vào:** E03; Định lý G.3 (05c).
+- **Đầu ra:** $\mathbb E\widehat g=\nabla F(\theta)$; $\mathbb E\lVert\widehat g-\nabla F(\theta)\rVert^2=\frac{\operatorname{tr}\Sigma(\theta)}{b}\cdot\frac{n-b}{n-1}$ khi chọn không hoàn lại; kiểm $\tfrac{59}{12}$; liên hệ M3 với H6, H6b.
+- **Vị trí trong khung:** bước 5 (Định lý G.3).
+- **LLO/CLO:** LLO12; CLO1.
+- **Bước hành trình:** KN7 hình thức.
+- **Quyết định:** `thêm` — dẫn 05c có nhãn, phát biểu lại, không chứng minh lại.
+
+### E05. Thuật toán hạ gradient ngẫu nhiên nhóm nhỏ
+
+- **Lý do tồn tại:** phát biểu thuật toán với đầu vào, đầu ra, quy tắc lưu tham số tốt nhất theo tập xác thực và chi phí.
+- **Nhu cầu hoặc khoảng trống được lấp:** ghép ước lượng E04 với lan truyền ngược C04 thành một phương pháp chạy được.
+- **Đầu vào:** E04; C04; tập xác thực (Bài 05 HQ05).
+- **Đầu ra:** thuật toán SGD nhóm nhỏ; chi phí $O(bp)$ mỗi bước, $O(np)$ mỗi lượt; ghi chú về xáo trộn theo lượt và M3; nhận xét T8 bảo đảm cho dãy lặp, còn thuật toán trả về tham số tốt nhất theo tập xác thực.
+- **Vị trí trong khung:** bước 5 (phương pháp).
+- **LLO/CLO:** LLO12; CLO2.
+- **Bước hành trình:** KN7 hình thức (thuật toán) + ứng dụng (chi phí mỗi lượt).
+- **Quyết định:** `thêm` — thuật toán phải có đầu vào, đầu ra và chi phí.
+
+### E06. Một bước SGD trên mạng XOR
+
+- **Lý do tồn tại:** trang kiểm tra riêng của mạch E, chuyển giao lan truyền ngược sang SGD.
+- **Nhu cầu hoặc khoảng trống được lấp:** đo khả năng tính gradient nhóm bằng lan truyền ngược và thực hiện một bước cập nhật trên mạng.
+- **Đầu vào:** tham số C02; gradient mẫu $((1,1),0)$ từ C03; thuật toán E05.
+- **Đầu ra:** đáp án: gradient mẫu $((1,0),1)$; $\widehat g$; $\theta^+$; mất mát nhóm $\tfrac{37}{16}\to1{,}9202$.
+- **Vị trí trong khung:** kiểm tra bước 3 và bước 5.
+- **LLO/CLO:** LLO12; CLO2.
+- **Bước hành trình:** KN7 bài tập; KN4 bài tập chuyển giao.
+- **Quyết định:** `thêm` — bài tập chuyển giao giữa lan truyền ngược và SGD.
+
+### F01. Nhiễu của gradient nhóm tại nghiệm
+
+- **Lý do tồn tại:** một hiện tượng tính được tạo nhu cầu cho các định lý tốc độ: tại $\theta^*$ gradient đầy đủ bằng 0 còn gradient nhóm thì không, và một bước từ $\theta^*$ làm $F$ tăng theo kỳ vọng.
+- **Nhu cầu hoặc khoảng trống được lấp:** E05 cho thuật toán; cần biết dãy lặp hội tụ theo nghĩa nào và điều gì của tính giảm còn giữ được, bắt đầu từ việc bước hằng không dừng tại $\theta^*$.
+- **Đầu vào:** dữ liệu E03 tại $\theta^*$; E04; hình dùng lại, đường dẫn gốc `img/lec-05b/vda-sgd-bound-vs-exact.svg` (dữ liệu Ví dụ A của 05b, ghi rõ trên chú thích; sao chép vào `img/lec-06/` ở giai đoạn dựng deck).
+- **Đầu ra:** $\operatorname{tr}\Sigma(\theta^*)=\tfrac52$; $\mathbb E\lVert\widehat g\rVert^2=\tfrac56$; một bước dời trung bình bình phương $\tfrac5{96}$; $\mathbb EF(\theta_1)=\tfrac{69}{128}>\tfrac12$, phản ví dụ cho “giảm theo kỳ vọng”; lý do chuyển sang Ví dụ A.
+- **Vị trí trong khung:** mở phần tốc độ của bước 5; giới hạn của tính giảm khi gradient có nhiễu.
+- **LLO/CLO:** LLO12; CLO1.
+- **Bước hành trình:** KN8 nhu cầu + trực quan + ví dụ.
+- **Quyết định:** `thêm` — nhu cầu của định lý phải là hiện tượng tính được trên ví dụ đã có; sau kiểm định storyboard, trang mang phản ví dụ $\tfrac{69}{128}$ và nói rõ dữ liệu của hình.
+
+### F02. Sàn nhiễu của bước hằng
+
+- **Lý do tồn tại:** phát biểu bất đẳng thức một bước có số hạng nhiễu và định lý T5 của 05b, kèm số của Ví dụ A.
+- **Nhu cầu hoặc khoảng trống được lấp:** định lượng hiện tượng F01: điều còn giữ của tính giảm là bất đẳng thức có số hạng $\tfrac{L\eta^2}2\sigma^2$, và với lồi mạnh, bước hằng chỉ đưa kỳ vọng sai số về sàn nhiễu.
+- **Đầu vào:** F01; cận trên bậc hai và H6b; T5 (05b, phần SGD cho hàm lồi mạnh); Ví dụ A; hình tùy chọn, đường dẫn gốc `img/lec-05b/step-halving-schedule.svg`.
+- **Đầu ra:** $\mathbb E[F(\theta_{k+1})\mid\theta_k]\le F(\theta_k)-\eta(1-\tfrac{L\eta}2)\lVert\nabla F(\theta_k)\rVert^2+\tfrac{L\eta^2}2\sigma^2$, kiểm trên dữ liệu bốn điểm trong ghi chú ($0{,}547\ge\tfrac{69}{128}$ tại $\theta^*$; $1{,}3188\ge\tfrac{503}{384}$ tại $\theta_0$); sàn nhiễu $\eta\sigma^2/\mu$; số $0{,}81^k+\tfrac8{57}(1-0{,}81^k)$ và cận $0{,}9^k+0{,}267$.
+- **Vị trí trong khung:** bước 5 (bất đẳng thức một bước, T5).
+- **LLO/CLO:** LLO12; CLO1.
+- **Bước hành trình:** KN8 hình thức + ví dụ (đối chiếu cận với giá trị chính xác).
+- **Quyết định:** `thêm` — tách từ F02 cũ theo kiểm định storyboard để mỗi trang một định lý; bất đẳng thức một bước thay cho khẳng định sai “giảm theo kỳ vọng”.
+
+### F03. Bước giảm dần cho hàm lồi mạnh
+
+- **Lý do tồn tại:** phát biểu lại T6 của 05b: bước $\tfrac1{\mu(k+1)}$ bỏ sàn nhiễu với tốc độ $O(1/k)$.
+- **Nhu cầu hoặc khoảng trống được lấp:** F02 để lại sàn nhiễu không giảm theo $k$; cần lịch bước cho kỳ vọng sai số về 0, cho các bài toán lồi mạnh của Bài 05 sau chính quy hóa.
+- **Đầu vào:** F02; T6 (05b, phần SGD cho hàm lồi mạnh); Ví dụ A.
+- **Đầu ra:** $\mathbb E\lVert\theta_k-\theta^*\rVert^2\le\tfrac{G^2}{\mu^2k}$; giá trị chính xác $\tfrac8{3k}$ trên Ví dụ A, nhỏ hơn quỹ đạo bước hằng từ $k=16$; các lịch bước khác trong ghi chú.
+- **Vị trí trong khung:** bước 5 (T6).
+- **LLO/CLO:** LLO12; CLO1.
+- **Bước hành trình:** KN8 hình thức + ví dụ.
+- **Quyết định:** `thêm` — tách từ F02 cũ theo kiểm định storyboard; cần phát biểu lại tốc độ lồi mạnh $O(1/k)$ kèm giả thiết và hằng số.
+
+### F04. Hạ gradient ngẫu nhiên cho hàm không lồi
+
+- **Lý do tồn tại:** phát biểu lại T8 và hệ quả chọn bước, cùng phạm vi áp dụng cho mạng.
+- **Nhu cầu hoặc khoảng trống được lấp:** mạng không thỏa H3 (B09, D02); cần bảo đảm thay cho T7 khi gradient đầy đủ được thay bằng gradient nhóm, và cần nói rõ bảo đảm đó áp dụng cho loại mạng nào.
+- **Đầu vào:** T7 (D05); F02; T8 (05b, phần hạ gradient cho hàm không lồi); M1 và giới hạn về H2 với ReLU (outline.md, mục 4.3); hình tùy chọn, đường dẫn gốc `img/lec-05b/rates-log-error.svg`.
+- **Đầu ra:** cận $\frac{2\Delta_0}{\eta K}+L\eta\sigma^2$; $O(1/\sqrt K)$ cho trung bình kỳ vọng bình phương chuẩn gradient, $O(K^{-1/4})$ cho chuẩn (ghi chú); bảng $0{,}303$; $0{,}0285$; $0{,}00283$; phạm vi: hàm kích hoạt trơn hoặc mạng tuyến tính, với ReLU là định hướng; bảo đảm thuộc về dãy lặp, không thuộc tham số chọn theo tập xác thực.
+- **Vị trí trong khung:** bước 5 (T8); bảo đảm còn lại của khối B3.
+- **LLO/CLO:** LLO12; CLO1.
+- **Bước hành trình:** KN8 hình thức.
+- **Quyết định:** `thêm` — cần phát biểu lại tốc độ không lồi theo bình phương chuẩn gradient (điểm hòa giải 3), với giả thiết H2 trên tập chứa mọi dãy lặp và phạm vi ReLU trên mặt trang (kiểm định storyboard).
+
+### F05. Tốc độ dưới ngân sách tính toán cố định
+
+- **Lý do tồn tại:** điểm trung tâm của khối B3: đặt cận T7 và T8 vào cùng ngân sách số gradient mẫu.
+- **Nhu cầu hoặc khoảng trống được lấp:** theo số bước, T8 chậm hơn T7; cần so trên cùng đơn vị chi phí để thấy SGD bị buộc bởi chi phí, và cần nói rõ luận điểm “đủ” dựa vào đâu.
+- **Đầu vào:** E01, E02, D05, F04; $\sigma^2=\sigma_1^2/b$ (05c).
+- **Đầu ra:** bảng hai quy mô với $\mathcal B=10n$ và cận hệ quả T8 đầy đủ; số hạng chính không phụ thuộc $b$; điểm chuyển $n\approx7\cdot10^5$ (SNW Bảng 13.2) dùng ở G03; phạm vi: $O(1/\sqrt K)$ trên $\lVert\nabla F\rVert^2$ là bảo đảm còn lại, luận điểm “đủ” dựa trên E02 (bài toán lồi) và tập xác thực (mạng), không dựa trên T8.
+- **Vị trí trong khung:** so sánh dưới ngân sách cố định (bước 5); khép lý do tính toán.
+- **LLO/CLO:** LLO11, LLO12; CLO1, CLO4.
+- **Bước hành trình:** KN7 ứng dụng; KN8 ứng dụng; KN9 nhu cầu.
+- **Quyết định:** `thêm` — luận đề yêu cầu trình bày SGD là phương án bị buộc bởi chi phí; sau kiểm định storyboard, dòng kết luận nêu phạm vi của luận điểm “đủ”.
+
+### F06. Dừng sớm theo tập xác thực
+
+- **Lý do tồn tại:** nêu quy tắc dừng sớm sau trực quan về đường mất mát huấn luyện và xác thực.
+- **Nhu cầu hoặc khoảng trống được lấp:** E02 và F05 cho thấy không cần cực tiểu chính xác và mức đủ dùng phải được quyết định bằng dữ liệu; cần quy tắc vận hành xác định điểm dừng.
+- **Đầu vào:** E02, F05; tập xác thực và tập kiểm thử của Bài 05 HQ05 (dẫn lại, không định nghĩa lại); quan sát số về dừng sớm ở Bài 05 KL01; quy tắc lưu tham số tốt nhất của E05; hình dùng lại, đường dẫn gốc `img/lec-05/risk-curves.svg`.
+- **Đầu ra:** quy tắc dừng (chu kỳ $s$, ngưỡng $K_{\text{stop}}$, trả về tham số tốt nhất); nhận xét tham số trả về nhắm tới $R$, khác dãy lặp mà T8 bảo đảm.
+- **Vị trí trong khung:** quy tắc dừng sớm (bước 5); khép lý do thống kê.
+- **LLO/CLO:** LLO11; CLO1, CLO2.
+- **Bước hành trình:** KN9 trực quan + hình thức (quy tắc).
+- **Quyết định:** `thêm` — tách từ F05 cũ theo kiểm định storyboard; dừng sớm phải được trình bày là đánh giá trên dữ liệu xác thực, không phải thất bại hội tụ; dẫn tập xác thực của Bài 05 HQ05 (điểm hòa giải 5).
+
+### F07. Dừng sớm và chính quy hóa $\ell_2$ trên mục tiêu bậc hai
+
+- **Lý do tồn tại:** so sánh định lượng tỉ lệ giữ của dừng sớm và của chính quy hóa $\ell_2$ trên mục tiêu bậc hai.
+- **Nhu cầu hoặc khoảng trống được lấp:** F06 cho quy tắc nhưng chưa giải thích vì sao dừng sớm tác động như chính quy hóa; luận đề cần quan hệ này để coi dừng sớm là một phần của phương pháp.
+- **Đầu vào:** F06; chính quy hóa $\ell_2$ (Bài 05 khối A2); DL §7.8, (7.43)–(7.45); phân chia nguồn với Bài 05 KL01 (KL01 chỉ nêu quan sát số và tên DL §7.8; phép so sánh định lượng thuộc F07); hình mới `early-stopping-shrinkage.svg`.
+- **Đầu ra:** bảng tỉ lệ giữ theo trị riêng $\alpha$ với $\eta=0{,}5$, $k=20$, $\lambda=0{,}1$; nhận xét $\lambda\approx1/(\eta k)$, khớp khi $\eta\alpha$ nhỏ.
+- **Vị trí trong khung:** quan hệ dừng sớm và chính quy hóa (bước 5).
+- **LLO/CLO:** LLO11; CLO1, CLO2.
+- **Bước hành trình:** KN9 ví dụ + hình thức (nhận xét) + ứng dụng.
+- **Quyết định:** `thêm` — tách từ F05 cũ theo kiểm định storyboard để mỗi trang một luận điểm; trị riêng viết $\alpha$, hệ số chính quy hóa viết $\lambda$ như Bài 05.
+
+### F08. Lịch bước, cận không lồi và dừng sớm
+
+- **Lý do tồn tại:** trang kiểm tra riêng của mạch F.
+- **Nhu cầu hoặc khoảng trống được lấp:** đo khả năng đọc và dùng T5, T6, hệ quả T8 và tỉ lệ giữ của dừng sớm.
+- **Đầu vào:** F02, F03, F04, F07.
+- **Đầu ra:** đáp án: so sánh hai lịch bước tại $k=10$ và $k=20$; $K=80\,400$; tỉ lệ giữ $0{,}6415$ và $0{,}5$.
+- **Vị trí trong khung:** kiểm tra bước 5.
+- **LLO/CLO:** LLO12; CLO1.
+- **Bước hành trình:** KN8, KN9 bài tập.
+- **Quyết định:** `thêm` — mỗi mạch có trang kiểm tra riêng (F06 trong bản 43 trang).
+
+### G01. Điều không còn giữ được và điều còn giữ được
+
+- **Lý do tồn tại:** khép luận đề ở dạng “mất gì, giữ gì” với nhãn kết quả, quay lại đúng bảng A03.
+- **Nhu cầu hoặc khoảng trống được lấp:** ba vấn đề nêu ở A03 cần câu trả lời có tham chiếu tới kết quả, không chỉ danh sách chủ đề.
+- **Đầu vào:** A03; Mệnh đề 3, D01, D03, D04, F01, F02, T5, T6, T7, T8, G.2, G.3, F06.
+- **Đầu ra:** bảng sáu dòng đối chiếu Bài 01–04 với Bài 06, nhãn kết quả ghi bằng tên kết quả, không bằng mã trang; dòng tính giảm nêu đúng: giảm mỗi bước với gradient đầy đủ, bất đẳng thức có số hạng nhiễu với SGD; dòng bảo đảm nêu điều kiện $F$ trơn và việc bảo đảm thuộc về dãy lặp; đầu vào của G02.
+- **Vị trí trong khung:** tổng hợp và giới hạn áp dụng.
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** tổng hợp, không thuộc cụm riêng.
+- **Quyết định:** `thêm` — luận đề yêu cầu kết luận dạng “mất gì, giữ gì” có nhãn kết quả; tiêu đề theo Bài 05 KL04; dòng tính giảm sửa theo kiểm định storyboard.
+
+### G02. Lựa chọn giữa gradient đầy đủ, Newton và SGD
+
+- **Lý do tồn tại:** biến các kết quả thành bảng quyết định có điều kiện áp dụng.
+- **Nhu cầu hoặc khoảng trống được lấp:** CLO4 yêu cầu chọn thuật toán theo dạng bài toán; G01 chưa cho quy tắc chọn.
+- **Đầu vào:** G01; E01, F05; Newton (Bài 04; Bài 05, phần độ cong và chi phí); T1, T2 (05b).
+- **Đầu ra:** bảng năm tình huống theo $(n,p)$ và tính lồi, với dòng (2) ghi “lồi mạnh và trơn” cho tốc độ tuyến tính, dòng (4), (5) ghi điều kiện $F$ trơn và phạm vi ReLU; hằng số Hessian viết $m_H,M_H,L_H$ trong ghi chú.
+- **Vị trí trong khung:** bước 6 của chuỗi (lựa chọn phương pháp).
+- **LLO/CLO:** LLO15 (chi phí Newton), LLO12; CLO4.
+- **Bước hành trình:** ứng dụng tổng hợp KN7, KN8, KN9.
+- **Quyết định:** `thêm` — cần bảng quyết định theo $(n,p)$ và tính lồi; dòng Newton phát biểu theo Bài 05 CP05 (điểm hòa giải 2); câu hỏi vận dụng chuyển sang G03 theo kiểm định storyboard.
+
+### G03. Tổng kết, câu hỏi tự kiểm và tài liệu đọc
+
+- **Lý do tồn tại:** cấu trúc mặc định yêu cầu tổng kết theo mục tiêu, câu hỏi tự kiểm và tài liệu đọc; trang cũng nhận câu hỏi vận dụng bảng G02.
+- **Nhu cầu hoặc khoảng trống được lấp:** đo khả năng dùng bảng G02 trên ba tình huống có đủ dữ kiện ($\kappa=10$, $\rho=10^{-6}$ ở tình huống hai), đối chiếu ba mục tiêu của A02 với kết quả và chỉ tài liệu đọc cho các phần được dẫn từ 05b, 05c.
+- **Đầu vào:** A02, G01, G02; điểm chuyển $n\approx7\cdot10^5$ từ F05.
+- **Đầu ra:** đáp án ba tình huống; ba dòng tổng kết; ba câu hỏi tự kiểm; danh mục đọc.
+- **Vị trí trong khung:** khép bài.
+- **LLO/CLO:** LLO11, LLO12, LLO15; CLO4.
+- **Bước hành trình:** bài tập vận dụng tổng hợp KN7, KN8, KN9; bài tập tự kiểm.
+- **Quyết định:** `thêm` — cấu trúc mặc định yêu cầu tổng kết, câu hỏi tự kiểm và tài liệu đọc; câu hỏi vận dụng chuyển từ G02 để mỗi trang một luận điểm.
