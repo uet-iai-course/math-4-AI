@@ -5,7 +5,7 @@
 <line x1="70.0" y1="338.0" x2="370.0" y2="338.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
 <line x1="70.0" y1="338.0" x2="70.0" y2="38.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
 <text x="402.00" y="346.00" text-anchor="start" fill="#222" font-size="24">α</text>
-<text x="30.00" y="24.00" text-anchor="start" fill="#222" font-size="24">t</text>
+<text x="84.00" y="30.00" text-anchor="start" fill="#222" font-size="24">t</text>
 <text x="70.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0</text>
 <text x="220.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0,5</text>
 <text x="370.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">1</text>
@@ -17,6 +17,6 @@
 <circle cx="70.0" cy="153.73593128807147" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
 <circle cx="220.0" cy="277.99999999999994" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
 <circle cx="370.0" cy="153.73593128807147" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
-<text x="223.00" y="272.00" text-anchor="start" fill="#222" font-size="24">(0,5; 1,5)</text>
+<text x="220.00" y="308.00" text-anchor="middle" fill="#222" font-size="24">(0,5; 1,5)</text>
 <text x="300.00" y="406.00" text-anchor="middle" fill="#222" font-size="22">Hai đầu: 1,7071; giá trị thấp nhất: 1,5</text>
 </g></svg>

@@ -5,7 +5,7 @@
 <line x1="70.0" y1="338.0" x2="370.0" y2="338.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
 <line x1="70.0" y1="338.0" x2="70.0" y2="38.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
 <text x="402.00" y="346.00" text-anchor="start" fill="#222" font-size="24">x₁</text>
-<text x="30.00" y="24.00" text-anchor="start" fill="#222" font-size="24">x₂</text>
+<text x="84.00" y="30.00" text-anchor="start" fill="#222" font-size="24">x₂</text>
 <text x="70.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0</text>
 <text x="250.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">3</text>
 <text x="370.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">5</text>
@@ -17,7 +17,7 @@
 <path d="M70.000,218.000 L310.000,338.000" fill="none" stroke="#b15a2b" stroke-width="3" stroke-dasharray="5 5" clip-path="url(#plot)"/>
 <path d="M70.000,248.000 L250.000,338.000" fill="none" stroke="#b15a2b" stroke-width="3" stroke-dasharray="" clip-path="url(#plot)"/>
 <circle cx="250.0" cy="338.0" r="6" fill="#b15a2b" stroke="#fff" stroke-width="2"/>
-<text x="250.00" y="323.00" text-anchor="start" fill="#222" font-size="24">(3; 0)</text>
+<text x="256.00" y="323.00" text-anchor="start" fill="#222" font-size="24" stroke="#edf1fc" stroke-width="6" stroke-linejoin="round" paint-order="stroke">(3; 0)</text>
 <text x="79.00" y="128.00" text-anchor="start" fill="#222" font-size="24">x₁+x₂ ≥ 3</text>
 <text x="238.00" y="62.00" text-anchor="start" fill="#222" font-size="21">Miền tiếp tục ↗</text>
 <text x="300.00" y="406.00" text-anchor="middle" fill="#222" font-size="22">Đơn vị lượng; đường mức chi phí k = 5, 4, 3</text>

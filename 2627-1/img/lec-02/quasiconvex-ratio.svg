@@ -5,7 +5,7 @@
 <line x1="70.0" y1="338.0" x2="370.0" y2="338.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
 <line x1="70.0" y1="338.0" x2="70.0" y2="38.0" stroke="#333" stroke-width="3" stroke-dasharray="" marker-end="url(#arrow)"/>
 <text x="402.00" y="346.00" text-anchor="start" fill="#222" font-size="24">x₁</text>
-<text x="30.00" y="24.00" text-anchor="start" fill="#222" font-size="24">x₂</text>
+<text x="84.00" y="30.00" text-anchor="start" fill="#222" font-size="24">x₂</text>
 <text x="70.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">0</text>
 <text x="220.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">1</text>
 <text x="370.00" y="367.00" text-anchor="middle" fill="#222" font-size="24">2</text>

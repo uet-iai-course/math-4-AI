@@ -74,9 +74,9 @@ Ngoài ra, chúng ta cũng cần biết chính xác tính lồi bảo đảm đi
 
 Hình sau cho thấy hai ràng buộc ở đầu mục là cách viết phức tạp của hai điều kiện affine.
 
-![Hai khung nối bằng chữ tương đương. Khung trái: hai ràng buộc x1 chia (1 cộng x2 bình phương) nhỏ hơn hoặc bằng 0 và (x1 cộng x2) bình phương bằng 0, chú thích mẫu số luôn dương và bình phương bằng 0 khi cơ số bằng 0. Khung phải: dạng affine x1 nhỏ hơn hoặc bằng 0 và x1 cộng x2 bằng 0. Phía dưới: tập khả thi chung là tia (âm s, s), s không âm, qua (âm 1, 1) và (âm 2, 2). Dải cuối nhắc hai phép biến đổi bài toán khác: thêm biến dư và khử ràng buộc đẳng thức.](img/lec-02/reformulation-equivalence.svg)
+![Ba khung trên một hàng. Khung trái: hai ràng buộc x1 chia (1 cộng x2 bình phương) nhỏ hơn hoặc bằng 0 và (x1 cộng x2) bình phương bằng 0, chú thích mẫu số luôn dương và bình phương bằng 0 khi cơ số bằng 0. Mũi tên ghi chữ tương đương nối sang khung giữa: dạng affine x1 nhỏ hơn hoặc bằng 0 và x1 cộng x2 bằng 0, tức x bằng (âm s, s) với s không âm. Khung phải: tập khả thi chung là tia xuất phát từ (0, 0), qua (âm 1, 1) và (âm 2, 2). Dải dưới gồm ba ô nhắc ba phép biến đổi bài toán khác: thêm biến dư, khử ràng buộc đẳng thức và chuyển sang dạng tập trên đồ thị.](img/lec-02/reformulation-equivalence.svg)
 
-Hai biểu diễn trên hình mô tả cùng một tia khả thi, nhưng chỉ biểu diễn bên phải cho thấy ngay tập đó lồi.
+Hai biểu diễn trên hình mô tả cùng một tia khả thi, nhưng chỉ dạng affine ở khung giữa cho thấy ngay tập đó lồi.
 
 Một cách trực quan, một bài toán nên được gọi là lồi khi mỗi dòng của nó đã mang chứng nhận riêng, gồm mục tiêu lồi, bất đẳng thức dạng "hàm lồi không vượt quá $0$" và đẳng thức affine. Khi đó, tính lồi của toàn bài toán suy ra từ các chứng nhận từng dòng. Mô tả này chưa phải định nghĩa và sẽ được làm chính xác ở Mục 1.2.
 
@@ -1360,9 +1360,9 @@ Bảng sau đặt bốn nghiệm cạnh nhau. Mỗi giá trị mục tiêu đư�
 | $\ell_2^2+\ell_1$ | $4$ | $(\tfrac45,\tfrac15)$ | quy hoạch bậc hai | $\tfrac{62}5$ |
 | $\ell_2^2+\ell_2^2$ | $10$ | $(\tfrac12,\tfrac15)$ | quy hoạch bậc hai | $\tfrac{67}5$ |
 
-![Bốn khung, mỗi khung vẽ năm điểm dữ liệu chung và một đường hồi quy có chính quy hóa: sai số chuẩn một với phạt chuẩn một (lambda 4, a bằng 1, b bằng 0); sai số chuẩn một với phạt bình phương chuẩn hai (lambda 4, a bằng 0,75, b bằng 0,125); bình phương sai số với phạt chuẩn một (lambda 4, a bằng 0,8, b bằng 0,2); bình phương sai số với phạt bình phương chuẩn hai (lambda 10, a bằng 0,5, b bằng 0,2).](img/lec-02/qp-regularized.svg)
+![Một khung vẽ năm điểm dữ liệu chung và bốn đường hồi quy có chính quy hóa, phân biệt bằng màu và kiểu nét theo chú giải: sai số chuẩn một với phạt chuẩn một (lambda 4, a bằng 1, b bằng 0); sai số chuẩn một với phạt bình phương chuẩn hai (lambda 4, a bằng 0,75, b bằng 0,125); bình phương sai số với phạt chuẩn một (lambda 4, a bằng 0,8, b bằng 0,2); bình phương sai số với phạt bình phương chuẩn hai (lambda 10, a bằng 0,5, b bằng 0,2).](img/lec-02/qp-regularized.svg)
 
-Hình trên cho thấy hai đường có sai số chuẩn một đi qua gần bốn điểm thẳng hàng, trong khi hai đường có sai số bình phương bị lệch lên do điểm $(0,3)$. Các giá trị $\lambda$ được chọn để minh họa, không qua kiểm định.
+Hình trên cho thấy chỉ đường $\ell_1+\ell_1$ đi qua đúng bốn điểm thẳng hàng $(-2,-2)$, $(-1,-1)$, $(1,1)$, $(2,2)$. Ba đường còn lại có hệ số góc nhỏ hơn $1$ và hệ số chặn dương; chẳng hạn đường $\ell_1+\ell_2^2$ cho $\hat y=\tfrac34(-2)+\tfrac18=-\tfrac{11}8$ tại $u=-2$, lệch $\tfrac58\approx0{,}6$ so với $y=-2$. Các giá trị $\lambda$ được chọn để minh họa, không qua kiểm định.
 
 ::: remark Nhận xét 02.23 (Ba nhầm lẫn về chính quy hóa)
 1. Coi chính quy hóa là một phép biến đổi bài toán (xem Nhận xét 02.7).

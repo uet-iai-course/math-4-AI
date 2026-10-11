@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
   <title id="title">Phép đổi biến log của một quy hoạch hình học</title>
-  <desc id="desc">Trong không gian dương x y, bài toán tối thiểu nghịch đảo tích dưới ràng buộc x cộng y không quá bốn đạt nghiệm hai, hai. Phép đổi biến y một bằng log x và y hai bằng log y biến mục tiêu thành affine và ràng buộc thành tập mức dưới lồi của log tổng mũ, với nghiệm log hai, log hai.</desc>
+  <desc id="desc">Trong không gian dương x y, bài toán cực tiểu hóa nghịch đảo của tích dưới ràng buộc x cộng y không quá bốn đạt nghiệm hai, hai, nơi đường mức xy bằng bốn tiếp xúc đường x cộng y bằng bốn. Phép đổi biến y một bằng log x và y hai bằng log y biến mục tiêu thành affine và ràng buộc thành tập mức dưới lồi của log tổng mũ, với nghiệm log hai, log hai, nơi đường mức y một cộng y hai bằng log bốn tiếp xúc biên.</desc>
   <defs>
     <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker>
     <style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.head{font-family:"DejaVu Sans";font-size:23px;font-weight:700;fill:#172033}.label{font-family:"DejaVu Sans";font-size:18px;fill:#24324a}.small{font-family:"DejaVu Sans";font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.budget{stroke:#315d92;stroke-width:4;fill:none}.feasible{fill:#dcecfb;stroke:#315d92;stroke-width:2}.contour{fill:none;stroke:#6a45a5;stroke-width:3}.level{stroke:#b44b20;stroke-width:3;stroke-dasharray:8 6}.point{fill:#fff8e6;stroke:#16706a;stroke-width:4}.map{fill:#f5f0fb;stroke:#6a45a5;stroke-width:2}.ok{fill:#e9f6f0;stroke:#16706a;stroke-width:2}</style>
@@ -9,27 +9,27 @@
   <rect class="panel" x="22" y="62" width="480" height="455" rx="14"/><text class="head" x="262" y="98" text-anchor="middle">Không gian biến dương</text>
   <line class="axis" x1="72" y1="458" x2="464" y2="458"/><line class="axis" x1="82" y1="478" x2="82" y2="126"/>
   <path class="feasible" d="M84 456 L84 143 L444 456 Z" opacity=".78"/><line class="budget" x1="84" y1="143" x2="444" y2="456"/>
-  <path class="contour" d="M105 225 C150 345 240 410 430 438"/><path class="contour" d="M120 176 C170 305 270 382 455 420" opacity=".7"/>
+  <path class="contour" d="M138.0 195.2 L146.1 229.2 L154.2 255.4 L162.3 276.1 L170.4 293.0 L178.5 307.0 L186.6 318.7 L194.7 328.8 L202.8 337.4 L210.9 345.0 L219.0 351.7 L227.1 357.6 L235.2 362.8 L243.3 367.6 L251.4 371.9 L259.5 375.7 L267.6 379.3 L275.7 382.5 L283.8 385.5 L291.9 388.3 L300.0 390.8 L308.1 393.1 L316.2 395.3 L324.3 397.4 L332.4 399.3 L340.5 401.1 L348.6 402.8 L356.7 404.3 L364.8 405.8 L372.9 407.2 L381.0 408.6 L389.1 409.8 L397.2 411.0 L405.3 412.2 L413.4 413.2 L421.5 414.3 L429.6 415.2 L437.7 416.2 L445.8 417.1 L453.9 417.9 L462.0 418.7" opacity=".7"/><path class="contour" d="M196.5 205.6 L202.5 218.2 L208.4 229.6 L214.4 240.0 L220.4 249.4 L226.3 258.1 L232.3 266.0 L238.2 273.4 L244.2 280.2 L250.2 286.5 L256.1 292.3 L262.1 297.8 L268.0 302.9 L274.0 307.7 L280.0 312.3 L285.9 316.5 L291.9 320.5 L297.9 324.3 L303.8 327.9 L309.8 331.2 L315.8 334.4 L321.7 337.5 L327.7 340.4 L333.6 343.2 L339.6 345.8 L345.6 348.3 L351.5 350.7 L357.5 353.0 L363.4 355.2 L369.4 357.3 L375.4 359.3 L381.3 361.3 L387.3 363.1 L393.3 364.9 L399.2 366.6 L405.2 368.3 L411.1 369.9 L417.1 371.4 L423.1 372.9 L429.0 374.4 L435.0 375.7"/>
   <circle class="point" cx="264" cy="300" r="8"/><text class="label" x="278" y="289">(2; 2)</text>
-  <text class="small" x="446" y="480">x</text><text class="small" x="62" y="130">y</text><text class="small" x="340" y="206">x + y = 4</text>
-  <text class="small" x="290" y="404">xy = hằng số</text>
+  <text class="small" x="446" y="480">x</text><text class="small" x="62" y="130">y</text><text class="small" x="128" y="160" transform="rotate(41 128 160)">x + y = 4</text>
+  <text class="small" x="440" y="370">xy = 4</text><text class="small" x="292" y="440">xy = 2</text>
   <text class="label" x="262" y="498" text-anchor="middle">min (xy)⁻¹,  x+y ≤ 4</text>
 
   <rect class="map" x="520" y="144" width="160" height="214" rx="16"/>
   <text class="head" x="600" y="180" text-anchor="middle">Đổi biến</text>
   <text class="label" x="600" y="220" text-anchor="middle">y₁ = log x</text><text class="label" x="600" y="252" text-anchor="middle">y₂ = log y</text>
-  <line class="axis" x1="545" y1="292" x2="654" y2="292"/><text class="small" x="600" y="324" text-anchor="middle">song ánh vì x,y &gt; 0</text>
+  <line class="axis" x1="545" y1="292" x2="654" y2="292"/><text class="small" x="600" y="320" text-anchor="middle">song ánh</text><text class="small" x="600" y="342" text-anchor="middle">vì x, y &gt; 0</text>
 
   <rect class="panel" x="698" y="62" width="480" height="455" rx="14"/><text class="head" x="938" y="98" text-anchor="middle">Không gian log</text>
-  <line class="axis" x1="744" y1="458" x2="1138" y2="458"/><line class="axis" x1="870" y1="486" x2="870" y2="126"/>
-  <path class="feasible" d="M746 458 L746 300 C810 304 870 317 935 365 C986 402 1018 438 1035 458 Z" opacity=".75"/>
-  <path class="budget" d="M746 300 C810 304 870 317 935 365 C986 402 1018 438 1035 458"/>
-  <line class="level" x1="770" y1="200" x2="1045" y2="475"/><line class="level" x1="810" y1="160" x2="1120" y2="470" opacity=".6"/>
-  <circle class="point" cx="935" cy="365" r="8"/><text class="label" x="948" y="353">(log 2; log 2)</text>
-  <text class="small" x="1124" y="482">y₁</text><text class="small" x="882" y="136">y₂</text>
-  <text class="small" x="760" y="282">log(eʸ¹ + eʸ²) ≤ log 4</text>
+  <line class="axis" x1="744" y1="400" x2="1150" y2="400"/><line class="axis" x1="900" y1="478" x2="900" y2="126"/>
+  <path d="M745.5 206.1 L751.1 206.6 L756.7 207.2 L762.2 207.8 L767.8 208.5 L773.4 209.1 L779.0 209.8 L784.6 210.5 L790.2 211.3 L795.7 212.0 L801.3 212.9 L806.9 213.7 L812.5 214.6 L818.1 215.5 L823.7 216.5 L829.2 217.5 L834.8 218.5 L840.4 219.6 L846.0 220.8 L851.6 222.0 L857.1 223.3 L862.7 224.6 L868.3 226.0 L873.9 227.4 L879.5 228.9 L885.1 230.5 L890.6 232.2 L896.2 234.0 L901.8 235.8 L907.4 237.8 L913.0 239.8 L918.5 241.9 L924.1 244.2 L929.7 246.6 L935.3 249.1 L940.9 251.8 L946.5 254.6 L952.0 257.5 L957.6 260.7 L963.2 264.0 L968.8 267.5 L974.4 271.3 L980.0 275.3 L985.5 279.6 L991.1 284.2 L996.7 289.1 L1002.3 294.4 L1007.9 300.0 L1013.4 306.1 L1019.0 312.8 L1024.6 320.0 L1030.2 327.8 L1035.8 336.4 L1041.4 345.9 L1046.9 356.5 L1052.5 368.3 L1058.1 381.6 L1063.7 396.7 L1069.3 414.3 L1074.8 435.0 L1080.4 460.0 L745.5 460.0 Z" fill="#dcecfb" opacity=".75"/>
+  <path class="budget" d="M745.5 206.1 L751.1 206.6 L756.7 207.2 L762.2 207.8 L767.8 208.5 L773.4 209.1 L779.0 209.8 L784.6 210.5 L790.2 211.3 L795.7 212.0 L801.3 212.9 L806.9 213.7 L812.5 214.6 L818.1 215.5 L823.7 216.5 L829.2 217.5 L834.8 218.5 L840.4 219.6 L846.0 220.8 L851.6 222.0 L857.1 223.3 L862.7 224.6 L868.3 226.0 L873.9 227.4 L879.5 228.9 L885.1 230.5 L890.6 232.2 L896.2 234.0 L901.8 235.8 L907.4 237.8 L913.0 239.8 L918.5 241.9 L924.1 244.2 L929.7 246.6 L935.3 249.1 L940.9 251.8 L946.5 254.6 L952.0 257.5 L957.6 260.7 L963.2 264.0 L968.8 267.5 L974.4 271.3 L980.0 275.3 L985.5 279.6 L991.1 284.2 L996.7 289.1 L1002.3 294.4 L1007.9 300.0 L1013.4 306.1 L1019.0 312.8 L1024.6 320.0 L1030.2 327.8 L1035.8 336.4 L1041.4 345.9 L1046.9 356.5 L1052.5 368.3 L1058.1 381.6 L1063.7 396.7 L1069.3 414.3 L1074.8 435.0 L1080.4 460.0"/>
+  <line class="level" x1="870.0" y1="162.1" x2="1143.0" y2="435.1"/><line class="level" x1="750.0" y1="146.0" x2="1068.0" y2="464.0" opacity=".6"/>
+  <circle class="point" cx="1004.0" cy="296.0" r="8"/><text class="label" x="1016.0" y="282.0">(log 2; log 2)</text>
+  <text class="small" x="1140" y="390">y₁</text><text class="small" x="912" y="136">y₂</text>
+  <text class="small" x="822" y="335" text-anchor="middle">log(eʸ¹ + eʸ²)</text><text class="small" x="822" y="357" text-anchor="middle">≤ log 4</text>
   <text class="label" x="938" y="498" text-anchor="middle">min −y₁ − y₂</text>
 
   <rect class="ok" x="22" y="541" width="555" height="82" rx="14"/><text class="label" x="299" y="574" text-anchor="middle">Đơn thức → log biến thành hàm affine</text><text class="small" x="299" y="603" text-anchor="middle">c x₁ᵃ¹⋯xₙᵃⁿ  ↦  aᵀy + log c</text>
-  <rect class="ok" x="623" y="541" width="555" height="82" rx="14"/><text class="label" x="900" y="574" text-anchor="middle">Đa thức dương → hàm log-tổng-mũ lồi</text><text class="small" x="900" y="603" text-anchor="middle">Σ exp(aₖᵀy + log cₖ)  ↦  log Σ exp(aₖᵀy + log cₖ)</text>
+  <rect class="ok" x="623" y="541" width="555" height="82" rx="14"/><text class="label" x="900" y="574" text-anchor="middle">Tổng đơn thức dương → hàm log-tổng-mũ lồi</text><text class="small" x="900" y="603" text-anchor="middle">Σ exp(aₖᵀy + log cₖ)  ↦  log Σ exp(aₖᵀy + log cₖ)</text>
 </svg>
