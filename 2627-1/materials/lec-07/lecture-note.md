@@ -2294,7 +2294,7 @@ Trong bộ học liệu này, Bài 07 là bài giảng cuối hiện có, và ng
 
 ## Bài tập củng cố
 
-Mỗi mức có ít nhất một bài tập. Bài 07 không có tệp bài tập riêng, nên các bài tập trong các mục và ba bài tập dưới đây là bộ bài tập của chương; mọi mục tiêu học tập có ít nhất một bài tập.
+Mỗi mức có ít nhất một bài tập. Các bài tập trong các mục và ba bài tập dưới đây là bộ bài tập của chương; mọi mục tiêu học tập có ít nhất một bài tập. [Tệp bài tập Bài 07](material-viewer.html?doc=materials/lec-07/exercises.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html) chép lại Bài tập 07.1–07.9 kèm liên kết tới các trang chiếu tương ứng, và bổ sung bốn bài 07.13–07.16.
 
 ### Mức nhận biết
 
