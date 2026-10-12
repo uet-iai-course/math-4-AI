@@ -471,3 +471,88 @@ Ba trang cao quá khung ở 1600×900 có từ trước (B03D 773, B13 754, E05 
 - **Bài 07 P03**: SVG ghép hai panel tách thành `central-problem-lp.svg` và `central-problem-dp.svg` (viewBox 420×350, chữ 17,6 px ở 390 px thay vì 7,7 px), P03 dùng lưới hai cột sẵn có; ghi chú Bài 07 dòng 78 dùng hai hình với alt riêng, đoạn đọc hình sửa "ô trái/phải" → "hình thứ nhất/thứ hai"; tệp cũ `central-problem.svg` xóa bằng `git rm` (không còn tham chiếu); storyboard P03 ghi lý do.
 - **Kiểm toàn bộ 217 SVG** bằng `svg-audit.py` do điều phối viên chạy: 18 tệp còn cờ, trong đó 14 là đường hoặc elip bị clipPath cắt (dương tính giả), 1 là chữ trên nền hộp (curvature-toolchain), 1 đã xem bằng mắt không che (equality-nullspace); 3 lỗi thật được sửa: nhãn "(2/3; 2/3)" ở coordinate-path dời lên vùng trống kèm đường dẫn; nhãn trục "giá trị hàm" (phi-local-model) và "tỷ số" (self-concordance-ratio) bị cắt 3 đơn vị ở mép trên, dời vào trong. Điều phối viên xem PNG coordinate-path sau sửa: đạt.
 - **SVG không được dùng**: 54 tệp còn lại đã được rà từng tệp ở lượt trước; quyết định giữ làm tài sản tái dùng (ghi ở nhật ký Bài 00, 01, 07).
+
+## Đợt sửa văn phong, mật độ và trang tiêu đề mạch (2026-10-12)
+
+### Phạm vi và tác tử
+
+- Yêu cầu người dùng 2026-10-12: áp các mục mới của AGENTS.md ("Trang tiêu đề mạch", "Văn phong và mật độ mặt trang chiếu", các gạch đầu dòng đã sửa ở "Tiêu chuẩn trình bày") cho deck 00. Đầu vào: báo cáo phân tích MAT1101 (phần B.3, D.8, E), số đo cơ sở `baseline/lecture-00-…txt`, nhật ký `planning/style-revision-2026-10-12.md`.
+- Tác tử biên tập deck: general-purpose, Claude Opus 5.5 (`claude-opus-5-5`), effort high; giao bởi điều phối viên Fable 5.1. Chỉ ghi deck 00 và ba tệp lập kế hoạch ở gốc `2627-1/` (giữ nguyên vị trí). Không sửa `lecture-style.css`, `materials/`, `index.html`, không commit.
+- Kết quả: 73 → 88 trang, 7 mạch. Quyết định chờ điều phối viên duyệt.
+
+### Thay đổi theo trang
+
+| Trang | Thay đổi | Âm tiết trước → sau |
+|---|---|---|
+| H00, A00, B00, C00, D00, E00 | Thêm trang tiêu đề mạch 2–7 (`strand-title`, `id="mach-2"`…`"mach-7"`, chữ số, dòng dẫn ≤ 25 âm tiết, dòng từ khóa, ghi chú 70–92 âm tiết). Tên mạch theo D.8, giữ nguyên; dòng dẫn mạch 3, 4, 6, 7 viết lại cho cụ thể | mới, 27–37 |
+| P01 | Bỏ dòng "Luận điểm trung tâm:", rút bốn mục tiêu | 90 → 65 (trần 80) |
+| P02 | "Bản đồ bài học" → "Nội dung": danh sách 1–7 trùng tên trang tiêu đề mạch; bỏ sơ đồ luồng, câu metadiscourse "Ví dụ giá nhà chỉ là bối cảnh minh họa…", câu vấn đề trung tâm ~50 âm tiết; thay bằng "Nhu cầu:" 19 âm tiết | 94 → 63 (trần 80; 8 dòng, ngoại lệ ghi ở storyboard) |
+| H03, B15, D10B | Tiêu đề theo mẫu "Ví dụ: …" | — |
+| H04 → H04 + H05 | Tách nguồn phần dư và hàm mất mát; nêu lại bốn phần dư | 69 → 45 + 31 |
+| A01 | Câu dẫn ~40 âm tiết ("Phần H…; giờ cần…") → "Nhu cầu:"; định nghĩa bằng "là" | 76 → 47 |
+| A12 | Danh sách ba hệ thức mâu thuẫn; bỏ hộp và tiêu đề thẻ | 71 → 36 |
+| B12 | Câu mở ~40 âm tiết → "Nhu cầu:"; "Định lý." cho Newton–Leibniz | 67 → 30 |
+| D10 → D10 + D10B | Định nghĩa GLS tách khỏi ví dụ hai phần dư cùng chuẩn (trước nằm trong ghi chú) | 62 → 43 + 23 |
+| E01 | Ba thẻ thành danh sách; luồng một dòng | 68 → 55 |
+| E04 | Bỏ gạch dài trong tiêu đề thẻ; "Giả thiết:" | 61 → 52 |
+| E06 + E06L | Bỏ kicker "Biểu diễn → tối ưu → bất định."; SSE/OLS/GLS đã có tên tiếng Việt ở E03, D10; một nhãn "Câu hỏi:" | 89 → 57; lời giải 49 |
+| A07L, A15L, B19L, C09L, D11L, E06L | Thêm trang "Lời giải:" cùng tiêu đề với trang bài tập; mỗi cụm khái niệm lớn có một lời giải trên mặt trang | mới, 15–49 |
+| A07, A15, B19, C09, C14, D11, E06 | Tiêu đề "Bài tập: <chủ đề>"; một nhãn "Câu hỏi:"; nêu lại dữ kiện bốn căn nhà hoặc bảng đồng thời | — |
+| E07 | Thêm trang "Tổng kết": bảng kết quả, giả thiết không được bỏ, công thức; tài liệu đọc | mới, 68 (trần 80) |
+| A02, A03, A05, A06, A09, A11, B01, B02, B03, B03D, B07, B08, B13, B16, C01, C02, C03, C05, C07, C08, C10, C11, D01, D06, E02, E05 | Bỏ nhãn đậm ngoài danh sách cho phép ("Hợp lệ:", "Mỗi hàng:", "Nhiễu:", "Ví dụ:" → "Ví dụ."…); định nghĩa viết bằng "là"; gộp thẻ để đạt ≤ 6 dòng; bỏ dấu gạch dài; mỗi trang ≤ 1 khung chứa câu văn; E05 hai thẻ → bảng so sánh | — |
+| H02, A03, A08, B03, B07, C04, C06, C08, C12, C13, D03, D04, D05, D07, D09 | Ghi chú dưới 40 âm tiết được bổ sung nội dung (phép kiểm tra, giả thiết, phân biệt dễ nhầm) | — |
+| B01 | Tiêu đề thẻ `h3` chứa ký hiệu bị `text-transform: uppercase` biến $h$ thành "H": bỏ `h3`, tên kiểu hàm in đậm đầu câu | — |
+
+Không bỏ bước nào của hành trình khái niệm: phần chữ rời mặt trang chuyển vào ghi chú; bước trực quan GLS được nâng từ ghi chú lên trang D10B. Số liệu bốn căn nhà, $\mathbf w^{(0)}$, $\mathbf w_{\mathrm{LS}}$, $f$ và mọi kết quả cũ giữ nguyên. Tác tử biên tập tính lại các phép tính mới trên mặt trang: $\mathbf X^T\mathbf r(\mathbf w^{(0)})=(0,-5,-3)^T$ theo từng tích vô hướng; $\mathbf X\mathbf w_{\mathrm{LS}}=(10,13,15,18)^T$ và $\mathbf X^T\mathbf r=\mathbf0$; bước $\eta=0{,}05$: $\hat{\mathbf y}=(10{,}975;13{,}375;14{,}625;17{,}025)$, tổng bình phương $6{,}1825$, $f=3{,}09125$; $\boldsymbol\Sigma_2^{-1}=\frac43[[1,-0{,}5],[-0{,}5,1]]$, $J_2=2/3$ và $2$; Bernoulli$(1/3)$ có phương sai $2/9$; $\det\mathbf X^T\mathbf X=4$; $C=\frac n2\log(2\pi\sigma^2)$ trong $-\log L$; mô hình bốn trọng số cho $11$ tại căn 1.
+
+### Kiểm tra
+
+- **no-ai-slop** (Edit mode, đối chiếu `eval.md`): bỏ câu metadiscourse ở P02, kicker chuỗi mũi tên ở E06, câu chỉ đường "Phần H đã dùng…; giờ cần…" ở A01, câu nối kiểu chỉ đường ở hộp thứ hai của B13, câu "Không công cụ nào đứng riêng" trong ghi chú E01; dòng dẫn trang tiêu đề mạch nêu đại lượng cụ thể (qua portability test). Grep mặt trang và ghi chú sau sửa: 0 mã trang, 0 dấu gạch dài, 0 "hãy", 0 "Tự kiểm"/"Tự học", 0 ghi chú mở bằng "Trang này", nhãn đậm chỉ thuộc danh sách cho phép.
+- **density.py**: 88 trang; 3 trang trên 60 âm tiết đều thuộc loại có trần 80 (P01 65, P02 63, E07 68); không còn trang nào vượt 6 dòng ngoài P02 (8 dòng, ngoại lệ), không dòng nào quá 20 âm tiết, không trang nào quá 3 khối công thức, không ghi chú dưới 40 âm tiết. Trước sửa: 10 trang trên 60 âm tiết, 20 trang trên 6 dòng.
+- **deckcheck.py** (máy chủ tĩnh `http.server` cổng 8791 vì `reloadserver` 8765 tải lại trang khi tác tử khác ghi tệp, làm hỏng hai lượt chạy đầu): 88 trang, 0 lỗi console/page, 0 `.katex-error`, 0 tràn dọc ở 1280×720 sau khi sửa C05 (784) và D10B (725); 0 tràn ngang trang ở 390 px. Năm cờ `TRAN_NGANG` còn lại (A02, B10, C08, C12, D08) là đường `path` SVG của dấu căn KaTeX, dương tính giả đã ghi ở các lượt trước.
+- **Ảnh chụp** (tắt hiệu ứng chuyển trang, 1600×900 và 390×844, cuộn cuối khi có): tác tử xem 56 trang mới hoặc sửa ở cả hai kích thước, gồm sáu trang tiêu đề mạch và mọi trang tách. Sửa thêm sau khi xem: B01 ký hiệu $h$ hiện thành "H" và công thức tràn thẻ; A11, B08, C08, D01, E07 công thức nội dòng xuống dòng giữa chừng (bọc nhóm); A15, B19L, H05 công thức nội dòng bị cắt ở 390 px (tách thành nhiều công thức ngắn). Ở 390 px, công thức hiển thị rộng và bảng E05, E07 cuộn ngang theo cơ chế sẵn có của deck.
+- `git diff --check`: sạch.
+
+### Giới hạn và việc chuyển cho điều phối viên
+
+- `materials/lec-00/` chỉ có `lecture-note.md`, không có `exercises.md` và không có khối `exercise`, nên không có lời giải nào để đối chiếu; lời giải trên mặt trang trùng đáp án cũ trong ghi chú diễn giả của chính deck.
+- Ghi chú bài giảng không cần đổi số liệu; có thể cân nhắc thêm vào ghi chú bài giảng: ví dụ GLS hai phần dư cùng chuẩn (D10B), bảng tổng kết E07, bài tập bước $\eta=0{,}05$ (B19L).
+- Chưa chạy vòng rà soát độc lập (toán, mạch kể) trên các trang đổi; theo CLAUDE.md cần tái kiểm toán các trang mới và tái kiểm mạch kể ±2 trang quanh mỗi trang tiêu đề mạch, trang tách và trang tổng kết.
+
+### Vòng sửa sau tái kiểm toán và tái kiểm mạch kể (2026-10-12)
+
+Nguồn: `recheck-00-math.md` (tái kiểm toán: không lỗi số học; 4 trung bình, 10 nhẹ) và `recheck-00-story.md` (tái kiểm mạch kể: 1 nghiêm trọng, 8 trung bình, 11 nhẹ), cả hai do tác tử chỉ đọc general-purpose, Claude Opus 5.5, high; danh sách sửa bắt buộc do điều phối viên Fable 5.1 chốt. Tác tử sửa: cùng tác tử biên tập deck 00 (general-purpose, `claude-opus-5-5`, high).
+
+| Nguồn | Mức | Trang | Phát hiện | Trạng thái |
+|---|---|---|---|---|
+| Mạch kể | nghiêm trọng | H05, bản đồ | Hàm mất mát mở bằng định nghĩa, thiếu trực quan; bản đồ đảo thứ tự | Đã sửa: dòng "Trực quan." ($r_i^2$ là diện tích hình vuông cạnh $\|r_i\|$) trước công thức; H03 ghi là ví dụ dẫn nhập; hàng bản đồ riêng "Hàm mất mát bình phương" |
+| Toán | trung bình | E07 hàng 1 | Phương trình chuẩn không cần giả thiết hạng | Đã sửa: "Nghiệm bình phương nhỏ nhất duy nhất \| cột độc lập tuyến tính \| $(\mathbf X^T\mathbf X)^{-1}\mathbf X^T\mathbf y$"; ghi chú nêu phương trình chuẩn đúng với mọi nghiệm |
+| Toán | trung bình | E07 hàng 5 | Thiếu $\mathbf w$ cố định, trung bình 0, mức 95 % | Đã sửa: "Dải nhiễu 95 %", "Nhiễu $\mathcal N(0,\sigma^2)$, $\sigma$ đã biết; $\mathbf w$ cố định" |
+| Toán | trung bình | E06L câu 5 | Nhánh GLS thiếu giả thiết | Đã sửa: "$\boldsymbol\Sigma_\varepsilon$ đã biết, xác định dương" |
+| Toán + mạch kể | trung bình | C00 dòng dẫn | Hai nghĩa | Đã sửa: "Muốn dùng một biến ngẫu nhiên có kỳ vọng và phương sai để mô tả phần giá chưa giải thích được." |
+| Mạch kể | trung bình | A00 dòng dẫn | $\mathbf X\mathbf w=\mathbf y$ trước khi định nghĩa $\mathbf X$ | Đã sửa: "ghép bốn mẫu thành một hệ phương trình tuyến tính" |
+| Mạch kể | trung bình | D10/D10B | Trực quan GLS đứng sau hình thức | Đã sửa: trực quan là D09 (ghi chú D09 nêu elip là tập mức), câu nối mở ghi chú D10, D10B ghi là ví dụ; storyboard và bản đồ sửa theo |
+| Toán + mạch kể | trung bình | Ghi chú H00–E00 | Mở bằng "Mạch trước…/Mục mở đầu…", cùng một khuôn | Đã sửa: sáu ghi chú mở bằng đối tượng toán học (bộ dữ liệu, $r_i$, $f$, $\mathbf w_{\mathrm{LS}}$, nhiễu, các kết quả), cấu trúc câu khác nhau, không liệt kê lại dòng từ khóa; E00 đếm đúng bốn mạch và nêu bảng tổng kết |
+| Mạch kể | trung bình | P00 | Bìa thiếu học phần, số bài, đơn vị | Đã sửa: "Bài 00: …", "Cơ sở toán học cho AI", "Trường Đại học Công nghệ, Đại học Quốc gia Hà Nội" |
+| Mạch kể | trung bình | H03 | Thiếu cột $y_i$, thiếu "Diễn giải:" | Đã sửa |
+| Mạch kể | trung bình | Outline | A13, C13 ("Từ … đến …"), E02 lệch deck; B12 còn mã C05; D10 "không tách trang" | Đã sửa; "bình phương tối thiểu" thống nhất thành "bình phương nhỏ nhất" trong outline và storyboard |
+| Mạch kể | trung bình | Storyboard | Minh chứng B12, B13, A12, E01 lỗi thời; A07 mâu thuẫn | Đã sửa; E01 giữ sơ đồ mũi tên vì là sơ đồ quy trình, lý do ghi trong storyboard |
+| Toán + mạch kể | nhẹ | B04, B06 | Chữ thường sau "Ví dụ." | Đã sửa |
+| Toán | nhẹ | A06, D10, E03, C13, C05 | Thiếu tên tiếng Anh lần đầu | Đã sửa trên mặt trang: PSD, OLS, GLS, SSE; iid và PDF đặt trong ghi chú vì đưa lên mặt trang làm dòng vượt 20 âm tiết (C13) hoặc tràn khung (C05) |
+| Toán | nhẹ | C02 | Tính đóng của $\mathcal F$ | Đã sửa: "họ biến cố đóng với phần bù và hợp đếm được" |
+| Toán + mạch kể | nhẹ | B19, E06 | Không nêu lại dữ kiện | Đã sửa: B19 nêu $(a'_i,b'_i)$, $\mathbf y$; E06 nêu $\mathbf w^{(0)}$. A12 giữ nguyên (đủ 6 dòng; bốn phương trình trong ghi chú) |
+| Toán | nhẹ | H00 dòng dẫn | "một dự đoán" | Đã sửa: "các dự đoán" |
+| Toán | nhẹ | D00 ghi chú | "kiểm tra được" | Đã sửa: "phát biểu được" |
+| Toán | nhẹ | E07 hàng 2–4 | Giả thiết lặp tên; thuật ngữ | Đã sửa: $f=\frac12\|\mathbf X\mathbf w-\mathbf y\|_2^2$; "Cực đại hàm hợp lý"; hàng GLS nêu $\boldsymbol\varepsilon\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_\varepsilon)$ |
+| Mạch kể | nhẹ | B13 → B14 | Thiếu kết quả kế thừa | Đã sửa: ghi chú B14 mở bằng $\nabla\ell=\mathbf J_F^T\nabla g$, $\mathbf J_{\mathbf r}=\mathbf X$; bỏ câu chỉ đường ở B13 |
+| Mạch kể | nhẹ | C00 từ khóa | Sáu cụm | Đã sửa: năm cụm |
+| Mạch kể | nhẹ | C01 | Không nói vì sao bắt đầu từ không gian hữu hạn | Đã sửa trong ghi chú |
+| Mạch kể | nhẹ | A04, A14, B12, B13, C01, C12, D04, D10, D10B | Ghi chú chứa siêu dữ liệu biên soạn | Đã sửa thành mệnh đề toán hoặc bỏ. Ghi chú truy nguyên: B12 dùng nét gạch và nhãn "miền tích phân", C01 dùng đường biên và nhãn $E$ để không phụ thuộc màu (chuyển từ ghi chú diễn giả sang nhật ký này) |
+| Mạch kể | nhẹ | Review-log | Cách đếm ghi chú dưới 40 âm tiết | Ghi rõ: `density.py` đếm âm tiết ghi chú gồm cả dòng nguồn và không tính KaTeX; theo cách đếm của báo cáo (bỏ dòng nguồn) còn khoảng 20 ghi chú dưới 40 âm tiết (khuyến nghị, không phải trần); B14 đã bổ sung, các ghi chú khác chưa mở rộng |
+
+Kiểm tra sau sửa: `density.py` 88 trang, ba trang trên 60 âm tiết đều có trần 80 (P01 65, P02 63, E07 72), P02 giữ ngoại lệ 8 dòng; dòng dài nhất ngoài trang tiêu đề mạch 20 âm tiết; dòng dẫn C00 21 âm tiết, trong trần 25 của dòng dẫn trang tiêu đề mạch. `deckcheck.py --port 8790` (máy chủ tĩnh của điều phối viên): 88 trang, 0 lỗi console, 0 lỗi KaTeX, 0 tràn dọc, 0 cuộn ngang trang ở 390 px; năm cờ `TRAN_NGANG` (A02, B10, C08, C12, D08) vẫn là đường SVG dấu căn KaTeX. Ảnh 1600×900 và 390×844 đã xem cho P00, H00, H03, H04, H05, A00, B00, C00, C02, D00, D09, D10, D10B, E00, E06L, E07, B19, A06. Ở 390 px, bảng H03 sáu cột cuộn ngang theo cơ chế sẵn có. `git diff --check` sạch.
+- Sửa dòng dài theo yêu cầu điều phối viên (2026-10-12): C02 tách định nghĩa thành hai dòng ("bộ ba $(\Omega,\mathcal F,\Pr)$ với $\Pr:\mathcal F\to[0,1]$" và "$\mathcal F$ đóng với phần bù và hợp đếm được; $\Pr$ thỏa:"), hộp "Hệ quả." chuyển vào ghi chú để giữ 5 dòng (24 → 13 âm tiết/dòng, 41 âm tiết); D10 tách dòng "Nhu cầu:" thành nhu cầu và câu về OLS (23 → 15 âm tiết/dòng, 6 dòng, 56 âm tiết), giả thiết giữ trên mặt trang; `deckcheck.py --port 8790 --ids C02,D10`: 0 lỗi, 0 tràn; ảnh hai kích thước đã xem; `git diff --check` sạch.
+
+### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
+
+Master đã tự chạy `density.py` (88 trang; P01 65, P02 63, E07 72 dưới trần 80; P02 8 dòng vì bảy mạch; không dòng nào quá 20 âm tiết ngoài dòng dẫn C00 21/25), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console, 0 tràn dọc; cờ tràn ngang là dương tính giả KaTeX có từ trước), đọc nguyên văn H05 (bước trực quan trước công thức) và bảng E07 sau sửa, xem ảnh P00, H05, E07, C00, H03 ở hai kích thước, đối chiếu bảng trạng thái hai báo cáo tái kiểm. Quyết định: `chấp nhận`, commit Bài 00. Việc còn treo: ghi chú bài giảng có thể nhận ví dụ GLS D10B, bảng tổng kết E07 và bài tập η = 0,05 (đợt học liệu).
