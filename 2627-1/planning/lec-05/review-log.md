@@ -513,3 +513,58 @@ Kiểm tra: `git diff --check` sạch; trình xem `material-viewer.html?doc=mate
 **Quyết định của điều phối viên:** (chờ duyệt)
 
 Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12
+
+### Tác tử
+
+- Tác tử rà soát (chỉ đọc): Agent tool, `general-purpose`, claude-opus-5-5, effort high; báo cáo `report-05.md` (Detect mode no-ai-slop, bảng A thuật ngữ, bảng B thứ tự định nghĩa), điều phối viên lưu nguyên văn.
+- Tác tử biên tập (ghi tệp): Agent tool, `general-purpose`, claude-opus-5-5, effort high; áp dụng `decisions-common.md` rồi `decisions-05.md` của điều phối viên Fable 5.1. Phạm vi ghi: deck Bài 05, `img/lec-05/lg-loss-along-ray.svg` (`desc`), `img/lec-05/lg-penalty-along-ray.svg` (`title`), `planning/lec-05/{outline,storyboard,review-log}.md`, `materials/lec-05/{lecture-note,exercises}.md`. Không chạy `sync-local-materials.py`, không commit.
+
+### Bảng phát hiện
+
+| mức độ | trang | vấn đề | quyết định điều phối viên | trạng thái | cách sửa |
+|---|---|---|---|---|---|
+| trung bình | LG07 (tiêu đề, mặt trang); ghi chú MD02, LG00, LG07, LG08a | "hạng phạt" dễ nhầm với hạng ma trận (A1) | chấp nhận | đã sửa | "số hạng phạt" cả 6 chỗ; "(penalty term)" ở ghi chú LG07; `title` của `lg-penalty-along-ray.svg`; outline, storyboard; ghi chú bài giảng (lần đầu kèm "(penalty term)") và bài tập |
+| trung bình | MD03c; ghi chú HQ00, KL04 | "$F$ chỉ thay cho rủi ro" (A2, gộp B3) | chấp nhận | đã sửa | "$F$ chỉ đại diện cho sai số trên dữ liệu mới"; ghi chú "chỉ đại diện cho $R$"; outline và ghi chú bài giảng cùng câu |
+| trung bình | LG08a | "cận đúng nhưng không chặt" dùng sai nghĩa "cận đúng" (A3) | chấp nhận | đã sửa | "bất đẳng thức đúng nhưng không chặt"; giữ "cận đúng" ở ghi chú LG05a (nghĩa infimum, cố ý) |
+| trung bình | CP08, KL04a; ghi chú KL04a | khẩu ngữ "cỡ" (A4) | chấp nhận | đã sửa | "có bậc vài trăm", "về mức có bậc $\eta\tau^2/\mu$", "bán kính có bậc"; outline, storyboard (trừ hai dòng lịch sử outline "Sửa sau rà soát năm vai", giữ nguyên văn), ghi chú bài giảng (8 chỗ), bài tập (4 chỗ: "khoảng", "cùng bậc số phép tính", "kích thước") |
+| trung bình | CP11 | "bước Newton dày" (A5) | chấp nhận | đã sửa | "RCV1: bước Newton với Hessian dày đặc cần …"; bỏ chữ "một" thay vì bỏ nhãn "RCV1:" để dòng giữ ngữ cảnh; 60 âm tiết |
+| trung bình | CP09, KL02 | RCV1 chưa viết đầy đủ (A6) | chấp nhận | đã sửa một phần | ghi chú CP09: "RCV1 (Reuters Corpus Volume 1, kho văn bản tin tức của hãng Reuters)"; "(kho tin Reuters)" không thêm vào KL02 vì trang thành 82 > 80 |
+| nhẹ | CP07, KL05a; ghi chú MD04, CP07, CP09, KL02 | "dày" thiếu tiếng Anh, lệch "dày đặc" của outline (A7) | chấp nhận | đã sửa | "dày đặc (dense)" ở CP07 (mặt trang) và MD04 (ghi chú), sau đó "dày đặc" (7 chỗ trong deck); outline, storyboard, ghi chú bài giảng (21 chỗ) |
+| nhẹ | MD03c, HQ05, KL04 | "đích" hai nghĩa (A8) | bác bỏ (không bắt buộc, tránh sửa lan) | giữ nguyên | không sửa |
+| nhẹ | KL02; ghi chú KL00 | "một bậc" nhầm với "bậc hai" (A9) | chấp nhận | đã sửa | "một bậc độ lớn"; outline, ghi chú bài giảng (2 chỗ) |
+| nhẹ | CP05 | $m, M$ lệch $\mu, L$ của CP04 (A10) | chấp nhận | đã sửa | mặt trang viết $\mu I\preceq\nabla^2f\preceq LI$, $\varepsilon_0=2\mu^3/L_H^2$, $\gamma$ phụ thuộc $\mu, L, L_H$; ghi chú giữ đối chiếu $m, M$; ghi chú CP03 viết $\mu^2/L_H$ |
+| nhẹ | CP06 ↔ KL04a | $g$ và $g_k$ (A11) | chấp nhận, giải quyết bằng B10 | đã sửa | xem B10 |
+| nhẹ | LG03 (`alt`) | "chạm" (A12) | chấp nhận | đã sửa | "giảm về 0 nhưng không đạt 0"; `desc` của SVG và `alt` trong ghi chú bài giảng sửa theo |
+| nhẹ | MD03c, LG01 | chữ hoa sau dấu hai chấm (A13) | chấp nhận | đã sửa | "gradient", "điểm số" |
+| nhẹ | HQ12, KL04a | thiếu "(conditioning)", "(minibatch)" (A14) | chấp nhận | đã sửa | HQ12 "Điều kiện hóa (conditioning)."; KL04a "nhóm nhỏ (minibatch)" |
+| nhẹ | HQ05, HQ07, HQ07a, HQ09, HQ10, CP05a, CP06a, KL02 | thiếu tiếng Anh lần đầu (A15) | chấp nhận | đã sửa | mặt trang: HQ07a "(minimum-norm solution)", CP06a "(Newton decrement)"; ghi chú (mặt trang hết chỗ hoặc thêm quá 3 từ): HQ05 empirical/expected risk, HQ07 interpolation regime, rank–nullity theorem, HQ09 condition number, HQ10 $\ell_2$ regularization (hồi quy ridge), CP05a affine invariance, KL02 stochastic gradient descent |
+| nghiêm trọng | MD04 (định nghĩa); dùng ở MD03b, HQ09, LG05, LG08, CP04 | $L$-trơn, $\mu$-lồi mạnh chỉ định nghĩa trong ghi chú (B1) | chấp nhận | đã sửa | MD04 thêm dòng bảng "$L,\mu,\kappa$ / Nhắc lại: $\mu I\preceq\nabla^2F\preceq LI$, tức $\mu\lVert v\rVert^2\le v^T\nabla^2F\,v\le L\lVert v\rVert^2$; $L$ hằng số trơn, $\mu$ hằng số lồi mạnh, $\kappa=L/\mu$ số điều kiện" (dạng toàn phương cũng là dòng nhắc lại nghĩa của $\preceq$, quyết định chung 10); ghi chú MD04 bỏ câu hứa "trang số điều kiện", nhắc định nghĩa và tương đương với điều kiện Hessian; 33 → 46 âm tiết |
+| trung bình | MD03b, MD03c | $F$ dùng trước công thức (B2) | chấp nhận | đã sửa | MD03b: "Giả thiết:" lên trước "Nhắc lại:", thêm $F(w)=\frac1n\sum_i\ell_i(w)$ (59 → 59). Dòng tùy chọn ở MD04 không giữ: bảng chạm mép dưới khung 16:9 và che chân trang (đã chụp kiểm) |
+| trung bình | MD03c; HQ05 | "rủi ro" trước định nghĩa (B3) | chấp nhận, gộp A2 | đã sửa | xem A2 |
+| trung bình | HQ09 | $\kappa_F$ trước $\kappa=L/\mu$ (B4) | chấp nhận | đã sửa | "$\kappa_F=L/\mu=\kappa(X^TX)$" |
+| trung bình | HQ09 | $\lambda_{\max}, \lambda_{\min}$ chưa nêu là trị riêng (B5) | chấp nhận | đã sửa | định nghĩa: "Với $A$ đối xứng nửa xác định dương có trị riêng lớn nhất $\lambda_{\max}(A)$, nhỏ nhất $\lambda_{\min}(A)$: …" |
+| trung bình | HQ09, KL05 | định lý xen kẽ Cauchy không phát biểu (B6) | chấp nhận (HQ09 ≤ 60) | đã sửa | khung nhận xét tách hai câu: "Theo định lý xen kẽ Cauchy, $\lambda_{\min}$ không tăng, $\lambda_{\max}$ không giảm, nên $\kappa$ không giảm theo $d$"; ghi chú phát biểu đầy đủ $\lambda_j(A)\le\lambda_j(B)\le\lambda_{j+1}(A)$; HQ09 43 → 55, 6 dòng |
+| trung bình | CP05, KL05a | Hessian Lipschitz chưa nhắc lại; Armijo (B7) | chấp nhận | đã sửa | CP05 dòng "Nhắc lại: Hessian Lipschitz nghĩa là $\lVert\nabla^2f(w)-\nabla^2f(v)\rVert\le L_H\lVert w-v\rVert$"; "quay lui Armijo (Bài 04)" |
+| trung bình | CP05, CP11 | hai giai đoạn Newton chỉ trong ghi chú (B8) | chấp nhận | đã sửa | CP05 "Ý nghĩa: số hạng đầu đếm giai đoạn tắt dần; số hạng sau đếm giai đoạn bậc hai, không chứa $\kappa$"; "(damped)" ở ghi chú; CP05 48 → 60 (bỏ chữ "Newton" lặp ở dòng kết luận và "với hằng số $L_H$" trong giả thiết) |
+| trung bình | KL04, KL04a | "nhóm nhỏ" chưa nhắc lại (B9) | chấp nhận (đặt ở KL04a) | đã sửa | KL04a giả thiết: "$g_k$ gradient ngẫu nhiên trên nhóm nhỏ (minibatch) $b$ mẫu, ở đây $b=1$" |
+| trung bình | KL04a | $g_k$, $K$ chưa định nghĩa (B10) | chấp nhận | đã sửa | "$\mathbb Eg_k=\nabla F(w_k)$, phương sai $\le\tau^2$; … $K$ bước"; KL04a 42 → 54 |
+| trung bình | KL03 | "bài toán XOR" trước dữ kiện (B11) | chấp nhận "(bốn điểm $\{0,1\}^2$, trang sau)" | đã sửa, lệch nhỏ | thêm "(bốn điểm $\{0,1\}^2$)"; bỏ "trang sau" vì dòng (ii) sẽ 21 > 20 âm tiết, và KL03a liền sau mang tiêu đề "Ví dụ: bài toán XOR" |
+| nhẹ | LG02 | thiếu "Nhắc lại:"; margin (B12, quyết định chung 1) | chấp nhận | đã sửa | "Nhắc lại: biên có dấu (signed margin, còn gọi là lề có dấu) …"; 15 → 24, dòng đầu 20 âm tiết |
+| nhẹ | KL04a | "điểm dừng" chưa nhắc lại (B13) | chấp nhận | đã sửa | dòng ba thêm "(điểm dừng: $\nabla F=0$)" |
+| nhẹ | HQ07 | định lý hạng–số chiều chưa phát biểu (B14) | chấp nhận | đã sửa | "định lý hạng–số chiều ($\dim\ker X=d-\operatorname{rank}X$)" |
+
+Quyết định chung áp dụng thêm: "tập mức" (nghĩa sublevel set) thành "tập mức dưới" ở ghi chú HQ08, outline (Định lý 4, nguồn) và ghi chú bài giảng (3 chỗ) theo quyết định chung 6. "giảm gradient" chỉ còn trong dòng D5 của bảng quyết định outline (trích dẫn lịch sử, giữ). Không có "véc-tơ", "cỡ", "hình phạt", "đồng mức", "ràng buộc chặt" trong deck.
+
+### Tự kiểm no-ai-slop (Edit mode, đối chiếu `eval.md`)
+
+Các câu thêm vào mặt trang là mệnh đề toán ngắn với nhãn được phép ("Nhắc lại:", "Ý nghĩa:", "Định nghĩa."); không câu dẫn rỗng, không lời nhấn mạnh, không câu kết kịch tính, không đổi từ đồng nghĩa (một thuật ngữ cho một khái niệm: "số hạng phạt", "dày đặc", "có bậc"). Ghi chú thêm câu có nội dung (định nghĩa, tương đương, phát biểu định lý), không mở bằng "Trang này". Đạt.
+
+### Kiểm tra
+
+- Âm tiết (token khoảng trắng, bỏ tiêu đề, KaTeX, ô số, hình, ghi chú), trước → sau: MD03b 59 → 59, MD03c 52 → 53, MD04 33 → 46, HQ07 32 → 32, HQ07a 46 → 48, HQ09 43 → 55, HQ12 57 → 58, LG02 15 → 24, LG07 41 → 42, LG08a 32 → 34, CP05 48 → 60, CP06a 28 → 31, CP07 52 → 54, CP08 32 → 33, CP11 58 → 60, KL02 77 → 79 (trần 80), KL03 55 → 57, KL04a 42 → 54, KL05a 58 → 59 (trần 80). Không trang nào vượt trần; mọi dòng thêm ≤ 20 âm tiết; không trang mới, không đổi số mạch hay trang "Nội dung"; 67 trang, 67 mục storyboard.
+- `deckcheck.py` (Playwright Chromium, 1600×900 và 390×844) trên 21 trang có mặt trang thay đổi: `errors: none`, 0 `.katex-error`, không FLAG ở khổ rộng. Sáu FLAG khổ hẹp `hover` (MD04, HQ07a, HQ09, LG03, LG08a, KL02) là bảng cuộn ngang trong `.table-scroll`, có sẵn: chạy cùng công cụ trên bản deck trước khi sửa cho đúng sáu FLAG đó. Đã xem ảnh từng trang ở cả hai khổ; MD04 ở lần thử đầu (có dòng $F$) chạm mép dưới, đã sửa như ghi ở B2.
+- `git diff --check` sạch trên các tệp của Bài 05.
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-05 và decisions-common; kiểm dòng L, μ, κ ở MD04 (μ‖v‖² ≤ vᵀ∇²F v ≤ L‖v‖²) và hệ quả xen kẽ Cauchy ở HQ09 (ma trận con chính: λ_min không tăng, λ_max không giảm); chấp nhận các chỗ làm khác đề xuất vì trần mật độ (dòng F ở MD04, 'kho tin Reuters', 'trang sau'); tự chạy deckcheck trên MD03b, MD04, HQ09, LG02, LG07, CP05, CP11, KL02, KL04a: 0 lỗi, không tràn ở 16:9, ba cờ cuộn ngang khổ hẹp là bảng có sẵn; xem ảnh MD04, CP05 ở 1600×900. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.

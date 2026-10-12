@@ -16,7 +16,7 @@ Sau chương này, người học có thể:
 Số hiệu `01.k`, `02.k`, `04.k`, `05b.k`, `05c.k` chỉ ghi chú Bài 01, 02, 04 và hai bài bổ trợ 05b, 05c. Mỗi kết quả được phát biểu lại ở dạng cần dùng; nơi dùng nó trong chương nêu lại giả thiết.
 
 - **Bình phương nhỏ nhất** (Mệnh đề 01.6). Với $X\in\mathbb R^{n\times d}$ và $y\in\mathbb R^n$ tùy ý, phương trình chuẩn $X^TXw=X^Ty$ luôn có nghiệm; nếu $w^*$ là một nghiệm thì tập nghiệm là $\{w^*+v:\ v\in\ker X\}$; nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$.
-- **Hồi quy với chính quy hóa bậc hai** (Mệnh đề 02.21(c)). Với $\lambda>0$, bài toán bình phương nhỏ nhất cộng hạng phạt $\lambda\lVert w\rVert^2$ có đúng một nghiệm với mọi $X$.
+- **Hồi quy với chính quy hóa bậc hai** (Mệnh đề 02.21(c)). Với $\lambda>0$, bài toán bình phương nhỏ nhất cộng số hạng phạt (penalty term) $\lambda\lVert w\rVert^2$ có đúng một nghiệm với mọi $X$.
 - **Mất mát logistic** (Định nghĩa 01.8, Mệnh đề 01.9). Với biên có dấu $m$, mất mát $\phi(m)=\log(1+e^{-m})$ dương, giảm chặt, $\phi'(m)=-1/(1+e^{m})\in(-1,0)$, $\phi''(m)\in(0,\tfrac14]$ đạt $\tfrac14$ tại $m=0$, và $\phi(m)\to0$ khi $m\to+\infty$. Bài 01 viết $\ell$ cho hàm này; ở đây chúng ta viết $\phi$ để dành $\ell$ cho mất mát của một mẫu.
 - **Sự tồn tại và tính duy nhất của điểm cực tiểu** (Định lý 01.36, Định nghĩa 01.37, Định lý 01.38, Hệ quả 01.41, Nhận xét 01.43). Hàm liên tục trên tập không rỗng, đóng, bị chặn đạt giá trị nhỏ nhất (Weierstrass). Hàm liên tục và cưỡng bức (coercive) trên $\mathbb R^d$, tức $f(w)\to\infty$ khi $\lVert w\rVert\to\infty$, đạt giá trị nhỏ nhất. Hàm khả vi lồi mạnh có đúng một điểm cực tiểu. Tính lồi chặt không bảo đảm sự tồn tại điểm cực tiểu.
 - **Hạ gradient trên hàm lồi mạnh** (Định lý 04.26, Định lý 05b.18). Nếu $f$ có gradient $L$-Lipschitz và lồi mạnh với hằng số $\mu$, dãy $w_{k+1}=w_k-\tfrac1L\nabla f(w_k)$ thỏa $f(w_k)-f^*\le(1-\mu/L)^k\bigl(f(w_0)-f^*\bigr)$.
@@ -68,11 +68,11 @@ Mọi số liệu của hai ví dụ là số liệu sư phạm tự xây dựng
 
 Trong Bài 01–04, chúng ta đã làm việc trong một khung gọn. Hàm mục tiêu $F$ lồi và có điểm cực tiểu $w^*$; hạ gradient hội tụ tới $w^*$ với tốc độ tuyến tính khi $F$ lồi mạnh (Định lý 04.26), còn phương pháp Newton hội tụ bậc hai khi điểm lặp đủ gần $w^*$ (Định lý 04.35). Các ví dụ của những bài đó có vài tham số và vài mẫu, nên một bước của mỗi phương pháp tính thủ công được.
 
-Bài toán học máy thực tế khác các ví dụ ấy ở hai con số: số mẫu $n$ và số đặc trưng $d$. Một mô hình phân loại văn bản có thể có $n$ cỡ $10^6$ mẫu và $d$ cỡ $10^4$ đến $10^5$ đặc trưng. Câu hỏi đặt ra là khung của Bài 01–04 còn đúng tới đâu khi $n$ và $d$ lớn; để trả lời, chúng ta cần kiểm tra lại từng thành phần của khung.
+Bài toán học máy thực tế khác các ví dụ ấy ở hai con số: số mẫu $n$ và số đặc trưng $d$. Một mô hình phân loại văn bản có thể có $n$ có bậc $10^6$ mẫu và $d$ có bậc $10^4$ đến $10^5$ đặc trưng. Câu hỏi đặt ra là khung của Bài 01–04 còn đúng tới đâu khi $n$ và $d$ lớn; để trả lời, chúng ta cần kiểm tra lại từng thành phần của khung.
 
 ### 1.1 Hai lý do xem xét lại khung tất định
 
-Lý do thứ nhất là chi phí. Một gradient đầy đủ của mất mát trung bình trên $n$ mẫu tốn cỡ $nd$ phép nhân–cộng, còn một bước Newton tốn cỡ $nd^2+d^3$ (chi phí chính xác được đếm ở Mục 4.5). Với một ngân sách tính toán cố định, số lần cập nhật làm được vì vậy giảm theo $1/n$. Khi $n=10^6$ và $d=10^4$, một bước Newton dày tốn khoảng $10^{14}$ phép nhân–cộng, và riêng việc lưu Hessian cần 800 MB.
+Lý do thứ nhất là chi phí. Một gradient đầy đủ của mất mát trung bình trên $n$ mẫu tốn bậc $nd$ phép nhân–cộng, còn một bước Newton tốn bậc $nd^2+d^3$ (chi phí chính xác được đếm ở Mục 4.5). Với một ngân sách tính toán cố định, số lần cập nhật làm được vì vậy giảm theo $1/n$. Khi $n=10^6$ và $d=10^4$, một bước Newton với Hessian dày đặc (dense) tốn khoảng $10^{14}$ phép nhân–cộng, và riêng việc lưu Hessian cần 800 MB.
 
 Lý do thứ hai là đích của việc tối ưu. Mất mát huấn luyện $F$ chỉ là đại lượng thay thế cho sai số trên dữ liệu mới, gọi là rủi ro kỳ vọng $R$ (Định nghĩa 05.5). Điểm cực tiểu chính xác của $F$ có thể dự đoán kém trên dữ liệu mới (Mục 2), và có thể không tồn tại (Mục 3). Khi đó, đòi một thuật toán hội tụ chính xác tới điểm cực tiểu của $F$ không còn là yêu cầu đúng.
 
@@ -111,7 +111,7 @@ Năm giả thiết sau dùng chung cho mọi mục; mỗi định lý nêu lại
 - **(G2) Mô hình và mất mát.** Dự đoán $x^Tw$; mất mát bình phương hoặc logistic như trong Định nghĩa 05.1.
 - **(G3) Phân phối.** Mẫu huấn luyện, mẫu xác thực và mẫu kiểm thử được rút độc lập từ cùng một phân phối $P$. Giả thiết này chỉ dùng để định nghĩa rủi ro kỳ vọng và đọc sai số trên tập xác thực, tập kiểm thử; chúng ta không chứng minh cận khái quát hóa.
 - **(G4) Chính quy hóa.** $\lambda>0$ cố định khi tối ưu, được chọn bằng tập xác thực.
-- **(G5) Đếm chi phí.** Ma trận dày; đếm số phép nhân–cộng và bỏ hằng số; tích ma trận–vector $Xv$ tốn $nd$ phép nhân–cộng.
+- **(G5) Đếm chi phí.** Ma trận dày đặc; đếm số phép nhân–cộng và bỏ hằng số; tích ma trận–vector $Xv$ tốn $nd$ phép nhân–cộng.
 
 Ký hiệu của chương khác ký hiệu của một số bài lân cận ở vài chỗ; nhận xét sau ghi đủ các phép đổi.
 
@@ -505,7 +505,7 @@ Nghiệm chuẩn nhỏ nhất là $t=0$ trong bảng của Ví dụ 05.6. Nó v�
 Có ba loại tiêu chí ngoài dữ liệu huấn luyện.
 
 1. **Tiêu chí tường minh**: chuẩn nhỏ nhất, như Mệnh đề 05.11.
-2. **Thay đổi mục tiêu**: cộng hạng phạt $\frac\lambda2\lVert w\rVert^2$; mục tiêu mới có nghiệm duy nhất (Mệnh đề 05.17).
+2. **Thay đổi mục tiêu**: cộng số hạng phạt $\frac\lambda2\lVert w\rVert^2$; mục tiêu mới có nghiệm duy nhất (Mệnh đề 05.17).
 3. **Chính thuật toán**: hạ gradient xuất phát từ $w_0=0$ trên $F$ chỉ đi trong ảnh của $X^T$, vì mỗi gradient $\frac1nX^T(Xw-y)$ thuộc ảnh đó, nên giới hạn của nó vuông góc với $\ker X$ và bằng $w_{\rm mn}$. Ở ví dụ năm mẫu với $d=8$, cả hạ gradient từ $0$ lẫn công thức $X^T(XX^T)^{-1}y$ cho cùng MSE xác thực $0{,}0759$. Bài tập 05.13 ở cuối chương yêu cầu chứng minh khẳng định về giới hạn.
 
 Ba tiêu chí có liên hệ: nghiệm có chính quy hóa hội tụ về $w_{\rm mn}$ khi $\lambda\to0$ (Nhận xét 05.18). Goodfellow và cộng sự (2016, mục 7.3, tr. 239–240) đọc giả nghịch đảo Moore–Penrose theo đúng cách này.
@@ -679,9 +679,9 @@ Chuẩn hóa đặc trưng, tức trừ trung bình và chia độ lệch chuẩ
 
 ### 2.6 Chính quy hóa bậc hai và chọn mô hình
 
-Ba hệ quả vừa thu được đều xấu đi khi $d$ tăng: nghiệm không duy nhất khi $d>n$, sai số xác thực tăng, và số điều kiện không giảm. Bài 02 đã có một công cụ sửa hệ quả thứ nhất và thứ ba: cộng hạng phạt bậc hai.
+Ba hệ quả vừa thu được đều xấu đi khi $d$ tăng: nghiệm không duy nhất khi $d>n$, sai số xác thực tăng, và số điều kiện không giảm. Bài 02 đã có một công cụ sửa hệ quả thứ nhất và thứ ba: cộng số hạng phạt bậc hai.
 
-Về mặt ý tưởng, hạng phạt $\frac\lambda2\lVert w\rVert^2$ cộng $\lambda$ vào độ cong theo mọi hướng, nên hướng phẳng nhất có độ cong ít nhất $\lambda$ và đường mức không còn dẹt tùy ý. Đây mới là trực giác. Chẳng hạn, với đường thẳng của Ví dụ 05.2, Hessian $\frac15\operatorname{diag}(5,\tfrac52)=\operatorname{diag}(1;\ 0{,}5)$ trở thành $\operatorname{diag}(1+\lambda;\ 0{,}5+\lambda)$. Mệnh đề sau phát biểu điều này cho mọi $X$.
+Về mặt ý tưởng, số hạng phạt $\frac\lambda2\lVert w\rVert^2$ cộng $\lambda$ vào độ cong theo mọi hướng, nên hướng phẳng nhất có độ cong ít nhất $\lambda$ và đường mức không còn dẹt tùy ý. Đây mới là trực giác. Chẳng hạn, với đường thẳng của Ví dụ 05.2, Hessian $\frac15\operatorname{diag}(5,\tfrac52)=\operatorname{diag}(1;\ 0{,}5)$ trở thành $\operatorname{diag}(1+\lambda;\ 0{,}5+\lambda)$. Mệnh đề sau phát biểu điều này cho mọi $X$.
 
 ::: proposition Mệnh đề 05.17 (Hồi quy với chính quy hóa bậc hai)
 **Giả thiết.** $X\in\mathbb R^{n\times d}$ tùy ý, $y\in\mathbb R^n$, $\lambda>0$, $F_\lambda(w)=\frac1{2n}\lVert Xw-y\rVert^2+\frac\lambda2\lVert w\rVert^2$.
@@ -715,7 +715,7 @@ $$
 **Bước 2 (nghiệm duy nhất).** $\mu\ge\lambda>0$, nên $\nabla^2F_\lambda\succ0$ và ma trận của (2.6) khả nghịch. $F_\lambda$ lồi, nên điểm cực tiểu là nghiệm của $\nabla F_\lambda=0$, tức (2.6), và nghiệm đó duy nhất. $\square$
 :::
 
-Với $d>n$, $\lambda_{\min}(X^TX)=0$, nên $\mu=\lambda$ và số điều kiện bằng $1+\lambda_{\max}(X^TX)/(n\lambda)$: hạng phạt biến $\kappa=\infty$ thành một số hữu hạn. So với Mệnh đề 05.10, chính quy hóa không còn khớp đúng nhãn, vì nó đổi mục tiêu. Điều đổi lại là tính duy nhất và số điều kiện hữu hạn với mọi $d$.
+Với $d>n$, $\lambda_{\min}(X^TX)=0$, nên $\mu=\lambda$ và số điều kiện bằng $1+\lambda_{\max}(X^TX)/(n\lambda)$: số hạng phạt biến $\kappa=\infty$ thành một số hữu hạn. So với Mệnh đề 05.10, chính quy hóa không còn khớp đúng nhãn, vì nó đổi mục tiêu. Điều đổi lại là tính duy nhất và số điều kiện hữu hạn với mọi $d$.
 
 ::: example Ví dụ 05.9 (Chọn hệ số chính quy hóa trên ví dụ năm mẫu)
 **Dữ kiện.** Năm mẫu $u=(-1,-\tfrac12,0,\tfrac12,1)$, $y=(-0{,}9;\ -0{,}7;\ 0{,}2;\ 0{,}4;\ 1{,}0)$, $n=5$; đặc trưng $(1,u,\ldots,u^{d-1})$; tập xác thực $u'=\pm\tfrac14,\pm\tfrac34$ với nhãn $u'$. Với $d=5$, $\lambda_{\min}(X^TX)=0{,}01419$ và $\lambda_{\max}(X^TX)=7{,}857$ (Ví dụ 05.8).
@@ -746,7 +746,7 @@ Khi $\operatorname{rank}X=n$, nghiệm của (2.6) viết được ở dạng $w
 Giá trị xác thực $0{,}00261$ của $\lambda=0{,}01$ là số nhỏ nhất trong bốn số của cột, nên theo Nhận xét 05.8 có xu hướng thấp hơn rủi ro của mô hình được chọn. Ví dụ thu nhỏ không có tập kiểm thử riêng; con số này không phải báo cáo cuối về $R$.
 :::
 
-**Trong học máy.** Hạng phạt $\frac\lambda2\lVert w\rVert^2$ trong học sâu còn gọi là suy giảm trọng số (weight decay): bước hạ gradient trên $F_\lambda$ là $w\leftarrow(1-\eta\lambda)w-\eta\nabla F(w)$, tức co $w$ về $0$ một tỉ lệ cố định trước khi đi theo gradient của mất mát (Goodfellow và cộng sự 2016, mục 7.1.1). Thư viện scikit-learn đặt hạng phạt này mặc định cho hồi quy logistic, với tham số $C$ tỉ lệ nghịch với hệ số chính quy hóa. Ví dụ 05.9 chọn $\lambda$ trên tập xác thực theo cùng quy trình chọn siêu tham số của Goodfellow và cộng sự (2016, mục 5.3).
+**Trong học máy.** Số hạng phạt $\frac\lambda2\lVert w\rVert^2$ trong học sâu còn gọi là suy giảm trọng số (weight decay): bước hạ gradient trên $F_\lambda$ là $w\leftarrow(1-\eta\lambda)w-\eta\nabla F(w)$, tức co $w$ về $0$ một tỉ lệ cố định trước khi đi theo gradient của mất mát (Goodfellow và cộng sự 2016, mục 7.1.1). Thư viện scikit-learn đặt số hạng phạt này mặc định cho hồi quy logistic, với tham số $C$ tỉ lệ nghịch với hệ số chính quy hóa. Ví dụ 05.9 chọn $\lambda$ trên tập xác thực theo cùng quy trình chọn siêu tham số của Goodfellow và cộng sự (2016, mục 5.3).
 
 Ba bài tập sau kiểm tra phương trình chuẩn, chế độ nội suy và số điều kiện của Mục 2.
 
@@ -828,7 +828,7 @@ Chính quy hóa bậc hai sửa tính duy nhất và số điều kiện (Mệnh
 
 Xét ba điểm trên một trục, $u=(-1,0,1)$, với nhãn $y=(-1,+1,-1)$: điểm giữa thuộc lớp dương, hai điểm ngoài thuộc lớp âm. Cùng ba điểm này, với hai bộ đặc trưng khác nhau, cho hai bài toán hồi quy logistic có tính chất trái ngược: một bài toán có điểm cực tiểu, bài toán kia không.
 
-Để giải thích sự khác biệt đó, chúng ta cần một khái niệm hình học của dữ liệu trong không gian đặc trưng, tính tách được tuyến tính, và một định lý nói khi nào mất mát logistic không có điểm cực tiểu. Sau đó, chúng ta sửa chính bài toán bằng hạng phạt bậc hai và đo hệ quả của phép sửa đó lên số điều kiện.
+Để giải thích sự khác biệt đó, chúng ta cần một khái niệm hình học của dữ liệu trong không gian đặc trưng, tính tách được tuyến tính, và một định lý nói khi nào mất mát logistic không có điểm cực tiểu. Sau đó, chúng ta sửa chính bài toán bằng số hạng phạt bậc hai và đo hệ quả của phép sửa đó lên số điều kiện.
 
 ### 3.1 Ba điểm với hai bộ đặc trưng
 
@@ -913,7 +913,7 @@ Với bộ đặc trưng $(1,u,u^2)$ của Ví dụ 05.10, mọi biên tại $\b
 **Kiểm tra lại.** Với $t$ lớn, $\log(1+e^{-t})\approx e^{-t}$; tại $t=10$, $e^{-10}=4{,}540\cdot10^{-5}$, khớp bảng.
 :::
 
-![Đường F(t w̄) = log(1 + e mũ −t) với t từ 0 đến 10 giảm về 0 mà không chạm: 0,693 tại t = 0; 0,313 tại t = 1; 0,0067 tại t = 5; 4,5·10⁻⁵ tại t = 10. Đường nét đứt ở mức 0 là inf F, không đạt.](img/lec-05/lg-loss-along-ray.svg)
+![Đường F(t w̄) = log(1 + e mũ −t) với t từ 0 đến 10 giảm về 0 nhưng không đạt 0: 0,693 tại t = 0; 0,313 tại t = 1; 0,0067 tại t = 5; 4,5·10⁻⁵ tại t = 10. Đường nét đứt ở mức 0 là inf F, không đạt.](img/lec-05/lg-loss-along-ray.svg)
 
 Đồ thị trên cho thấy đường cong tiệm cận mức $0$ từ phía trên. Nếu $F$ có điểm cực tiểu $w^*$, giá trị $F(w^*)$ phải không lớn hơn mọi giá trị trên đường cong, tức không lớn hơn $0$; điều này mâu thuẫn với $F>0$. Lập luận này sẽ được viết chặt trong Định lý 05.22. Với bộ đặc trưng $(1,u)$, kết luận ngược lại.
 
@@ -1081,9 +1081,9 @@ Kết luận của hai kết quả là sự tồn tại điểm cực tiểu do 
 
 ### 3.6 Chính quy hóa bậc hai và tính lồi mạnh
 
-Về mặt ý tưởng, hạng phạt $\frac\lambda2\lVert w\rVert^2$ chặn đường đi ra vô cùng: mất mát logistic giảm không quá $\log2$ khi $w$ đi ra xa, còn hạng phạt tăng như bình phương khoảng cách. Đây mới là trực giác; ví dụ sau tính nó trên tia $t\bar w$, rồi Định lý 05.26 phát biểu cho mọi hướng.
+Về mặt ý tưởng, số hạng phạt $\frac\lambda2\lVert w\rVert^2$ chặn đường đi ra vô cùng: mất mát logistic giảm không quá $\log2$ khi $w$ đi ra xa, còn số hạng phạt tăng như bình phương khoảng cách. Đây mới là trực giác; ví dụ sau tính nó trên tia $t\bar w$, rồi Định lý 05.26 phát biểu cho mọi hướng.
 
-::: example Ví dụ 05.13 (Hạng phạt dọc tia $t\bar w$)
+::: example Ví dụ 05.13 (Số hạng phạt dọc tia $t\bar w$)
 **Dữ kiện.** Ba điểm $u=(-1,0,1)$, $y=(-1,+1,-1)$, đặc trưng $(1,u,u^2)$, $\bar w=(1,0,-2)$, $F(t\bar w)=\log(1+e^{-t})$ (Ví dụ 05.11). Mục tiêu $F_\lambda=F+\frac\lambda2\lVert w\rVert^2$.
 
 **Hàm dọc tia.** $\lVert\bar w\rVert^2=1+0+4=5$, nên
@@ -1099,7 +1099,7 @@ $$
 
 ![Ba đường theo t từ 0 đến 6. Nét liền: log(1 + e mũ −t) giảm về 0. Nét đứt: thêm 0,025t² (λ = 0,01), cực tiểu tại t* = 2,128, giá trị 0,2257. Chấm gạch: thêm 0,25t² (λ = 0,1), cực tiểu tại t* = 0,6748, giá trị 0,5255.](img/lec-05/lg-penalty-along-ray.svg)
 
-Trên hình, đường nét liền giảm mãi, còn hai đường có hạng phạt đi xuống rồi đi lên lại, với đáy dịch về gần gốc khi $\lambda$ tăng. Cực tiểu dọc một tia chưa phải cực tiểu của $F_\lambda$ trên $\mathbb R^3$; Ví dụ 05.16 tính điểm cực tiểu thật, và nó không nằm trên tia $\bar w$. Để kết luận cho mọi hướng và mọi dữ liệu, chúng ta cần một phát biểu dựa trên Hessian.
+Trên hình, đường nét liền giảm mãi, còn hai đường có số hạng phạt đi xuống rồi đi lên lại, với đáy dịch về gần gốc khi $\lambda$ tăng. Cực tiểu dọc một tia chưa phải cực tiểu của $F_\lambda$ trên $\mathbb R^3$; Ví dụ 05.16 tính điểm cực tiểu thật, và nó không nằm trên tia $\bar w$. Để kết luận cho mọi hướng và mọi dữ liệu, chúng ta cần một phát biểu dựa trên Hessian.
 
 Định lý sau dùng Hệ quả 01.41 (hàm khả vi lồi mạnh có đúng một điểm cực tiểu) và Mệnh đề 05.19 (mất mát logistic lồi). Nó áp dụng cho cả hai mất mát của Định nghĩa 05.1.
 
@@ -1172,7 +1172,7 @@ Bảng cho thấy khi $\lambda$ giảm, $w_\lambda$ tăng và xác suất dự �
 :::
 
 ::: proof Chứng minh Hệ quả 05.27
-**Bước 1 (chặn trên $F(w_\lambda)$).** Với mọi $t>0$, vì $w_\lambda$ cực tiểu hóa $F_\lambda$ và hạng phạt không âm,
+**Bước 1 (chặn trên $F(w_\lambda)$).** Với mọi $t>0$, vì $w_\lambda$ cực tiểu hóa $F_\lambda$ và số hạng phạt không âm,
 
 $$
 \begin{aligned}
@@ -1288,7 +1288,7 @@ Giảm $\lambda$ kéo nghiệm về gần bài toán gốc, như Ví dụ 05.14 
 Nghiệm càng gần bài toán gốc thì càng khó tính bằng hạ gradient. Chọn $\lambda$ là quyết định mô hình, thực hiện trên tập xác thực; các định lý không chỉ ra giá trị nào.
 :::
 
-**Trong học máy.** Đối tượng của Định lý 05.26 là hàm mất mát huấn luyện có suy giảm trọng số, tham số là trọng số của mô hình tuyến tính. Giả thiết lồi của $F$ được bảo đảm với hồi quy tuyến tính và hồi quy logistic; với mạng nơ ron, $F$ không lồi và hạng phạt không làm $F_\lambda$ lồi (Định nghĩa 01.42, Tình huống 01.3). Kết luận cho phép dùng mọi định lý hội tụ cho hàm lồi mạnh, trong đó có Định lý 05b.18, với hằng số $\mu=\lambda$ và $L$ của Mệnh đề 05.28. Bộ giải LIBLINEAR, dùng trong scikit-learn, huấn luyện hồi quy logistic có hạng phạt $\ell_2$ bằng một biến thể của phương pháp Newton (Mục 5.2).
+**Trong học máy.** Đối tượng của Định lý 05.26 là hàm mất mát huấn luyện có suy giảm trọng số, tham số là trọng số của mô hình tuyến tính. Giả thiết lồi của $F$ được bảo đảm với hồi quy tuyến tính và hồi quy logistic; với mạng nơ ron, $F$ không lồi và số hạng phạt không làm $F_\lambda$ lồi (Định nghĩa 01.42, Tình huống 01.3). Kết luận cho phép dùng mọi định lý hội tụ cho hàm lồi mạnh, trong đó có Định lý 05b.18, với hằng số $\mu=\lambda$ và $L$ của Mệnh đề 05.28. Bộ giải LIBLINEAR, dùng trong scikit-learn, huấn luyện hồi quy logistic có số hạng phạt $\ell_2$ bằng một biến thể của phương pháp Newton (Mục 5.2).
 
 Ba bài tập sau kiểm tra tính tách được, sự tồn tại điểm cực tiểu và các hằng số của Mục 3.
 
@@ -1357,7 +1357,7 @@ Dùng $S_{ii}=\sigma(m_i)\sigma(-m_i)$, với $m_i(0)=0$ và $m_i(t\bar w)=t\,m_
 2. $m_i(t\bar w)=t\,m_i(\bar w)\to\infty$ vì $m_i(\bar w)>0$, và $\sigma(m)\sigma(-m)\le e^{-m}\to0$. Mỗi phần tử của $\frac1nX^TS(t\bar w)X=\frac1n\sum_iS_{ii}x_ix_i^T$ tiến về $0$, nên $\nabla^2F_\lambda(t\bar w)\to\lambda I$. Nếu $\mu'>\lambda$ thỏa $\nabla^2F_\lambda\succeq\mu'I$ tại mọi $w$, thì $v^T\nabla^2F_\lambda(t\bar w)v\ge\mu'$ với vector đơn vị $v$, mâu thuẫn với giới hạn $\lambda$.
 :::
 
-Như vậy, chúng ta đã thấy một bài toán học lồi có thể không có điểm cực tiểu: trên dữ liệu tách được, mất mát logistic có cận dưới đúng $0$ không đạt, và mọi dãy cực tiểu hóa phân kỳ (Định lý 05.22); khi $\operatorname{rank}X=n$, mọi cách gán nhãn đều rơi vào trường hợp này (Mệnh đề 05.21). Trên dữ liệu không tách được theo nghĩa của Mệnh đề 05.24, điểm cực tiểu tồn tại. Hạng phạt bậc hai sửa bài toán cho mọi dữ liệu: $F_\lambda$ lồi mạnh, có đúng một nghiệm với chuẩn bị chặn (Định lý 05.26), và có số điều kiện $\kappa\le1+r^2/(4\lambda)$ (Mệnh đề 05.28).
+Như vậy, chúng ta đã thấy một bài toán học lồi có thể không có điểm cực tiểu: trên dữ liệu tách được, mất mát logistic có cận dưới đúng $0$ không đạt, và mọi dãy cực tiểu hóa phân kỳ (Định lý 05.22); khi $\operatorname{rank}X=n$, mọi cách gán nhãn đều rơi vào trường hợp này (Mệnh đề 05.21). Trên dữ liệu không tách được theo nghĩa của Mệnh đề 05.24, điểm cực tiểu tồn tại. Số hạng phạt bậc hai sửa bài toán cho mọi dữ liệu: $F_\lambda$ lồi mạnh, có đúng một nghiệm với chuẩn bị chặn (Định lý 05.26), và có số điều kiện $\kappa\le1+r^2/(4\lambda)$ (Mệnh đề 05.28).
 
 Tuy nhiên, phép sửa này có hệ quả về tính toán. Nghiệm càng gần bài toán gốc thì $\lambda$ càng nhỏ và $\kappa$ càng lớn (Nhận xét 05.29), nên câu hỏi tồn tại đã được thay bằng câu hỏi tính toán. Trong Mục 4, chúng ta đếm chi phí tính $w_\lambda$ bằng hai phương pháp của Bài 04: hạ gradient, có số bước tăng theo $\kappa$, và phương pháp Newton, có số bước gần như không phụ thuộc $\kappa$ nhưng mỗi bước đắt hơn.
 
@@ -1479,7 +1479,7 @@ $$
 Hàm $\log$ lõm nên $\log(1-s)\le-s$ với $s\in[0,1)$. Áp với $s=\frac1\kappa$: $(1-\frac1\kappa)^k=e^{k\log(1-1/\kappa)}\le e^{-k/\kappa}$. Theo (4.3), $e_k\le e^{-k/\kappa}e_0$, và vế phải không vượt $\varepsilon_{\rm tol}$ khi $k/\kappa\ge\log(e_0/\varepsilon_{\rm tol})$. $\square$
 :::
 
-**Trong học máy.** Đối tượng của Định lý 05.30 là mục tiêu huấn luyện $F_\lambda$ của hồi quy logistic có suy giảm trọng số, và dãy lặp là bộ tối ưu hạ gradient với tốc độ học $\frac1L$. Giả thiết lồi mạnh được bảo đảm bởi hạng phạt, với $\mu=\lambda$ (Định lý 05.26), và $L$ được tính từ dữ liệu theo Mệnh đề 05.28. Kết luận cho số bước tăng theo $\kappa\le1+r^2/(4\lambda)$, nên chọn $\lambda$ nhỏ để nghiệm gần bài toán gốc làm số bước tăng theo $1/\lambda$ (Tình huống 05.3). Với mạng nơ ron, mục tiêu không lồi mạnh và định lý không áp dụng; Bài 05b nêu bảo đảm còn lại (Định lý 05b.41).
+**Trong học máy.** Đối tượng của Định lý 05.30 là mục tiêu huấn luyện $F_\lambda$ của hồi quy logistic có suy giảm trọng số, và dãy lặp là bộ tối ưu hạ gradient với tốc độ học $\frac1L$. Giả thiết lồi mạnh được bảo đảm bởi số hạng phạt, với $\mu=\lambda$ (Định lý 05.26), và $L$ được tính từ dữ liệu theo Mệnh đề 05.28. Kết luận cho số bước tăng theo $\kappa\le1+r^2/(4\lambda)$, nên chọn $\lambda$ nhỏ để nghiệm gần bài toán gốc làm số bước tăng theo $1/\lambda$ (Tình huống 05.3). Với mạng nơ ron, mục tiêu không lồi mạnh và định lý không áp dụng; Bài 05b nêu bảo đảm còn lại (Định lý 05b.41).
 
 Ví dụ sau so cận của Hệ quả 05.31 với số bước thực trên ví dụ một chiều, với ba giá trị $\lambda$.
 
@@ -1520,7 +1520,7 @@ Số bước vì vậy tỉ lệ gần với số điều kiện cục bộ $L/F
 Định lý sau là Định lý 04.35 của Bài 04, phát biểu với ký hiệu của chương: $\mu$, $L$ là cận dưới và cận trên của Hessian, $L_H$ là hằng số Lipschitz của Hessian. Boyd và Vandenberghe (2004, mục 9.5.3) viết ba hằng số này là $m$, $M$, $L$.
 
 ::: theorem Định lý 05.33 (Hội tụ hai giai đoạn của Newton với quay lui)
-**Giả thiết.** $f$ lồi, khả vi hai lần liên tục; trên tập mức $C_0=\{w:\ f(w)\le f(w_0)\}$, $\mu I\preceq\nabla^2f\preceq LI$ với $\mu>0$, và $\lVert\nabla^2f(w)-\nabla^2f(z)\rVert\le L_H\lVert w-z\rVert$. Phương pháp Newton với quay lui Armijo tham số $\alpha\in(0,\tfrac12)$, $\beta\in(0,1)$ (Thuật toán 04.2).
+**Giả thiết.** $f$ lồi, khả vi hai lần liên tục; trên tập mức dưới $C_0=\{w:\ f(w)\le f(w_0)\}$, $\mu I\preceq\nabla^2f\preceq LI$ với $\mu>0$, và $\lVert\nabla^2f(w)-\nabla^2f(z)\rVert\le L_H\lVert w-z\rVert$. Phương pháp Newton với quay lui Armijo tham số $\alpha\in(0,\tfrac12)$, $\beta\in(0,1)$ (Thuật toán 04.2).
 
 **Kết luận.** Số bước để $f(w_k)-f^*\le\varepsilon_{\rm tol}$ không vượt
 
@@ -1545,7 +1545,7 @@ Số bước của giai đoạn bậc hai, $\log_2\log_2(\varepsilon_0/\varepsil
 
 **Hằng số Lipschitz của Hessian.** $F_\lambda'''(w)=\frac{d}{dw}\bigl[s(1-s)\bigr]$ với $s=\sigma(w)$, tức $s(1-s)(1-2s)$. Hàm $q(s)=s(1-s)(1-2s)$ trên $(0,1)$ có $q'(s)=1-6s+6s^2=0$ tại $s=\tfrac{3\pm\sqrt3}6$, và $\lvert q\rvert$ lớn nhất bằng $\tfrac1{6\sqrt3}\approx0{,}0962$. Vậy $L_H=\tfrac1{6\sqrt3}$.
 
-**Ngưỡng.** Chứng minh của Boyd và Vandenberghe (2004, tr. 488) bảo đảm giai đoạn bậc hai khi $\lvert F_\lambda'(w_k)\rvert$ xuống dưới một ngưỡng cỡ $\mu^2/L_H$:
+**Ngưỡng.** Chứng minh của Boyd và Vandenberghe (2004, tr. 488) bảo đảm giai đoạn bậc hai khi $\lvert F_\lambda'(w_k)\rvert$ xuống dưới một ngưỡng có bậc $\mu^2/L_H$:
 
 | $\lambda$ | $0{,}05$ | $0{,}005$ | $0{,}0005$ |
 |---|---:|---:|---:|
@@ -1627,7 +1627,7 @@ Dòng 3 dùng công thức gradient (3.2) viết lại: $\nabla F(w)=\frac1nX^Tr
 Dòng 3 là tổng của $n$ tích ngoài $S_{ii}x_ix_i^T$, mỗi tích tốn $d^2$; dùng tính đối xứng thì chỉ cần khoảng $nd^2/2$. Phân tích Cholesky tốn khoảng $d^3/3$ phép tính, sau đó hai phép thế tốn $O(d^2)$. Theo Mệnh đề 04.31(a), $\tfrac12\delta_N^2$ là mức giảm của mô hình bậc hai và ước lượng $F_\lambda(w)-F_\lambda^*$ khi $w$ gần nghiệm. Newton cho hồi quy logistic ở dạng này còn gọi là bình phương nhỏ nhất có trọng số lặp (iteratively reweighted least squares, IRLS): mỗi bước giải một bài toán bình phương nhỏ nhất với trọng số $S$.
 
 ::: proposition Mệnh đề 05.35 (Chi phí một bước)
-**Giả thiết.** $X\in\mathbb R^{n\times d}$ dày, $n\ge d$; đếm phép nhân–cộng và bỏ hằng số (G5).
+**Giả thiết.** $X\in\mathbb R^{n\times d}$ dày đặc, $n\ge d$; đếm phép nhân–cộng và bỏ hằng số (G5).
 
 **Kết luận.**
 
@@ -1635,7 +1635,7 @@ Dòng 3 là tổng của $n$ tích ngoài $S_{ii}x_ix_i^T$, mỗi tích tốn $d
 2. Một bước Newton tốn thời gian $O(nd^2+d^3)$ và bộ nhớ thêm $O(d^2+n)$.
 3. Tỉ số chi phí một bước Newton trên một bước hạ gradient có bậc $d+d^2/n$.
 
-**Điều kiện áp dụng.** Ma trận dày; trường hợp $d>n$ và dữ liệu thưa ở Mệnh đề 05.36 và Nhận xét 05.37.
+**Điều kiện áp dụng.** Ma trận dày đặc; trường hợp $d>n$ và dữ liệu thưa ở Mệnh đề 05.36 và Nhận xét 05.37.
 
 **Phạm vi.** Đếm theo bậc; hằng số bị bỏ có thể đổi kết luận khi hai chi phí cùng bậc (Mục 4.6).
 :::
@@ -1688,16 +1688,16 @@ Dòng (a) đặt $U$ ra trước tích $(\lambda I_n+U^TU)$; dòng (b) dùng $(\
 **Bước 3 (chi phí).** Lập $U$ tốn $nd$; lập $U^TU$ tốn $n^2d$; phân tích Cholesky của $M$ tốn $O(n^3)$; tính $U^Tg$, giải hệ $n\times n$ và nhân với $U$ tốn $nd+O(n^2)+nd$. Tổng là $O(n^2d+n^3)$. $\square$
 :::
 
-Hai mệnh đề trên giả thiết ma trận dày. Nhận xét sau nêu điều thay đổi khi dữ liệu thưa.
+Hai mệnh đề trên giả thiết ma trận dày đặc. Nhận xét sau nêu điều thay đổi khi dữ liệu thưa.
 
-::: remark Nhận xét 05.37 (Dữ liệu thưa và các phương pháp tránh Hessian dày)
-Với dữ liệu thưa như vector TF-IDF, $nd$ trong chi phí hạ gradient được thay bằng số phần tử khác $0$ của $X$, nhỏ hơn $nd$ nhiều khi phần lớn tọa độ của mỗi $x_i$ bằng $0$. Hessian $X^TSX$ thì nói chung vẫn dày, nên chi phí $d^2$ bộ nhớ và $d^3$ thời gian của Newton không giảm theo. Gradient liên hợp (conjugate gradient) giải $Hp=-g$ chỉ bằng các tích $Hv=\frac1nX^T(S(Xv))+\lambda v$, mỗi tích tốn như một gradient; các phương pháp tựa Newton như BFGS xấp xỉ $H^{-1}$ từ hiệu các gradient. Hai nhóm phương pháp này được trình bày ở Bài 06c.
+::: remark Nhận xét 05.37 (Dữ liệu thưa và các phương pháp tránh Hessian dày đặc)
+Với dữ liệu thưa như vector TF-IDF, $nd$ trong chi phí hạ gradient được thay bằng số phần tử khác $0$ của $X$, nhỏ hơn $nd$ nhiều khi phần lớn tọa độ của mỗi $x_i$ bằng $0$. Hessian $X^TSX$ thì nói chung vẫn dày đặc, nên chi phí $d^2$ bộ nhớ và $d^3$ thời gian của Newton không giảm theo. Gradient liên hợp (conjugate gradient) giải $Hp=-g$ chỉ bằng các tích $Hv=\frac1nX^T(S(Xv))+\lambda v$, mỗi tích tốn như một gradient; các phương pháp tựa Newton như BFGS xấp xỉ $H^{-1}$ từ hiệu các gradient. Hai nhóm phương pháp này được trình bày ở Bài 06c.
 :::
 
-Ví dụ sau áp Mệnh đề 05.35 cho một bài toán cỡ trung bình.
+Ví dụ sau áp Mệnh đề 05.35 cho một bài toán kích thước trung bình.
 
 ::: example Ví dụ 05.21 (Chi phí một bước với $n=10^5$, $d=10^3$)
-**Dữ kiện.** Ma trận dày $X\in\mathbb R^{10^5\times10^3}$, mất mát logistic có chính quy hóa.
+**Dữ kiện.** Ma trận dày đặc $X\in\mathbb R^{10^5\times10^3}$, mất mát logistic có chính quy hóa.
 
 **Hạ gradient.** Hai tích $Xw$ và $X^Tr$, mỗi tích $nd=10^8$ phép nhân–cộng.
 
@@ -1755,7 +1755,7 @@ Bottou và Bousquet (2011, Bảng 13.2, tr. 362) lập một bảng tương tự
 Chúng ta tính các đại lượng của Mệnh đề 05.35 ở ba quy mô; quy mô thứ ba là kích thước tập RCV1, mà chúng ta gặp lại ở Mục 5.2.
 
 ::: example Ví dụ 05.23 (Chi phí theo ba quy mô)
-**Dữ kiện.** Ma trận dày $X\in\mathbb R^{n\times d}$; mỗi số thực chiếm $8$ byte ở độ chính xác kép. Quy mô thứ ba là tập RCV1: $n=781\,265$ văn bản huấn luyện, $d=47\,152$ đặc trưng TF-IDF.
+**Dữ kiện.** Ma trận dày đặc $X\in\mathbb R^{n\times d}$; mỗi số thực chiếm $8$ byte ở độ chính xác kép. Quy mô thứ ba là tập RCV1: $n=781\,265$ văn bản huấn luyện, $d=47\,152$ đặc trưng TF-IDF.
 
 **Bảng.**
 
@@ -1765,12 +1765,12 @@ Chúng ta tính các đại lượng của Mệnh đề 05.35 ở ba quy mô; qu
 | $(10^5,\ 10^3)$ | $10^8$ | $10^{11}$ | $10^9$ | 8 MB | $1010$ |
 | $(781\,265;\ 47\,152)$ | $3{,}68\cdot10^{10}$ | $1{,}74\cdot10^{15}$ | $1{,}05\cdot10^{14}$ | 17,8 GB | $\approx5{,}0\cdot10^4$ |
 
-**Đọc bảng.** Khi $(n,d)$ tăng, một bước Newton đắt hơn một bước hạ gradient từ $10^2$ đến $5\cdot10^4$ lần. Ở quy mô thứ ba, riêng Hessian cần 17,8 GB bộ nhớ, và một bước Newton dày tốn $nd^2+d^3\approx1{,}84\cdot10^{15}$ phép nhân–cộng.
+**Đọc bảng.** Khi $(n,d)$ tăng, một bước Newton đắt hơn một bước hạ gradient từ $10^2$ đến $5\cdot10^4$ lần. Ở quy mô thứ ba, riêng Hessian cần 17,8 GB bộ nhớ, và một bước Newton với Hessian dày đặc tốn $nd^2+d^3\approx1{,}84\cdot10^{15}$ phép nhân–cộng.
 
 **Kiểm tra lại.** Dòng ba: $8\cdot47\,152^2\approx1{,}78\cdot10^{10}$ byte; $d^2/n=47\,152^2/781\,265\approx2846$, nên $d+d^2/n\approx49\,998$.
 :::
 
-Dữ liệu RCV1 là dữ liệu thưa, nên các con số tính như ma trận dày chỉ dùng để so bậc, không mô tả cách một thí nghiệm thực chạy. Chúng ta không giả định tốc độ máy, nên bảng chỉ so số phép tính và số byte. Ngay cả theo cách đếm dày, một tích $Xv$ trên RCV1 cần $nd\approx3{,}7\cdot10^{10}$ phép nhân–cộng, và một gradient đầy đủ theo Thuật toán 05.1 cần hai tích như vậy, khoảng $7{,}4\cdot10^{10}$; đó là chi phí của mỗi lần cập nhật hạ gradient.
+Dữ liệu RCV1 là dữ liệu thưa, nên các con số tính như ma trận dày đặc chỉ dùng để so bậc, không mô tả cách một thí nghiệm thực chạy. Chúng ta không giả định tốc độ máy, nên bảng chỉ so số phép tính và số byte. Ngay cả theo cách đếm với ma trận dày đặc, một tích $Xv$ trên RCV1 cần $nd\approx3{,}7\cdot10^{10}$ phép nhân–cộng, và một gradient đầy đủ theo Thuật toán 05.1 cần hai tích như vậy, khoảng $7{,}4\cdot10^{10}$; đó là chi phí của mỗi lần cập nhật hạ gradient.
 
 Tổng hợp Mục 4.3–4.5, tổng chi phí của hai phương pháp là tích của hai thừa số trong bảng sau.
 
@@ -1781,7 +1781,7 @@ Tổng hợp Mục 4.3–4.5, tổng chi phí của hai phương pháp là tích
 
 Newton giảm thừa số thứ hai nhưng tăng thừa số thứ nhất từ $nd$ lên $nd^2+d^3$. Cả hai thừa số thứ nhất đều chứa $n$, vì mỗi bước đọc toàn bộ dữ liệu.
 
-**Trong học máy.** Đối tượng của Mệnh đề 05.35 là một bước của bộ tối ưu trên toàn bộ tập huấn luyện. Với hồi quy logistic trên vài trăm đặc trưng, các biến thể của Newton như TRON trong LIBLINEAR và bộ giải `newton-cg` của scikit-learn có lợi, vì $d^3$ nhỏ và $\kappa$ có thể lớn khi $\lambda$ nhỏ (Tình huống 05.3). Với mô hình có $d$ cỡ $10^5$ trở lên, như mô hình ngôn ngữ hay mạng nơ ron, Hessian dày không lưu được và bộ tối ưu dùng gradient. Trong mọi trường hợp, thừa số $n$ ở mỗi bước là chi phí của một lượt qua dữ liệu, đơn vị chi phí nhỏ nhất mà mọi phương pháp tất định của Mục 4 phải trả cho mỗi lần cập nhật.
+**Trong học máy.** Đối tượng của Mệnh đề 05.35 là một bước của bộ tối ưu trên toàn bộ tập huấn luyện. Với hồi quy logistic trên vài trăm đặc trưng, các biến thể của Newton như TRON trong LIBLINEAR và bộ giải `newton-cg` của scikit-learn có lợi, vì $d^3$ nhỏ và $\kappa$ có thể lớn khi $\lambda$ nhỏ (Tình huống 05.3). Với mô hình có $d$ có bậc $10^5$ trở lên, như mô hình ngôn ngữ hay mạng nơ ron, Hessian dày đặc không lưu được và bộ tối ưu dùng gradient. Trong mọi trường hợp, thừa số $n$ ở mỗi bước là chi phí của một lượt qua dữ liệu, đơn vị chi phí nhỏ nhất mà mọi phương pháp tất định của Mục 4 phải trả cho mỗi lần cập nhật.
 
 Ba bài tập sau kiểm tra bước cập nhật và phép đếm chi phí của Mục 4.
 
@@ -1808,7 +1808,7 @@ $\sigma(1)\approx0{,}7311$ và $\sigma(-1)\approx0{,}2689$. Dùng $F_\lambda'(w)
 ::: exercise Bài tập 05.8
 Một bài toán hồi quy logistic có $n=10^4$ mẫu và $d=10^2$ đặc trưng.
 
-1. Với $X$ dày, tính chi phí một bước hạ gradient, chi phí một bước Newton theo bậc, tỉ số $d+d^2/n$ và bộ nhớ của Hessian.
+1. Với $X$ dày đặc, tính chi phí một bước hạ gradient, chi phí một bước Newton theo bậc, tỉ số $d+d^2/n$ và bộ nhớ của Hessian.
 2. Nếu $X$ thưa với $5\cdot10^4$ phần tử khác $0$, chi phí một bước hạ gradient và chi phí lập Hessian thay đổi thế nào.
 :::
 
@@ -1819,7 +1819,7 @@ Với dữ liệu thưa, mỗi tích $Xv$ tốn bằng số phần tử khác $0
 ::: solution
 1. Hạ gradient: $nd=10^6$ cho mỗi tích, $2\cdot10^6$ cho một bước. Newton: $nd^2+d^3=10^8+10^6\approx1{,}01\cdot10^8$. Tỉ số $100+1=101$. Hessian $8\cdot10^4$ byte, tức 80 kB, nhỏ.
 
-2. Mỗi tích $Xv$ tốn $5\cdot10^4$, nên một bước hạ gradient tốn khoảng $10^5$, giảm $20$ lần. Trung bình mỗi hàng có $5$ phần tử khác $0$, nên lập Hessian tốn khoảng $\sum_ik_i^2\approx n\cdot25=2{,}5\cdot10^5$ nếu các $k_i$ đều nhau; Hessian $d\times d$ vẫn có thể dày và Cholesky vẫn tốn bậc $d^3=10^6$. Với $d$ nhỏ như ở đây, Newton vẫn rẻ.
+2. Mỗi tích $Xv$ tốn $5\cdot10^4$, nên một bước hạ gradient tốn khoảng $10^5$, giảm $20$ lần. Trung bình mỗi hàng có $5$ phần tử khác $0$, nên lập Hessian tốn khoảng $\sum_ik_i^2\approx n\cdot25=2{,}5\cdot10^5$ nếu các $k_i$ đều nhau; Hessian $d\times d$ vẫn có thể dày đặc và Cholesky vẫn tốn bậc $d^3=10^6$. Với $d$ nhỏ như ở đây, Newton vẫn rẻ.
 :::
 
 ::: exercise Bài tập 05.9
@@ -1945,14 +1945,14 @@ Ví dụ năm mẫu chỉ cho kết luận định tính. Bottou và Bousquet (2
 | TRON, $\rho=10^{-3}$ | 44 s | $0{,}18890$ | 5,70 % |
 | SGD | 2,3 s | $0{,}18893$ | 5,66 % |
 
-**Đọc bảng.** SGD có chi phí mỗi bước không phụ thuộc $n$ và đạt cùng mức lỗi kiểm thử với thời gian nhỏ hơn một bậc. Giá trị mục tiêu chênh nhau không quá $1{,}7\cdot10^{-4}$.
+**Đọc bảng.** SGD có chi phí mỗi bước không phụ thuộc $n$ và đạt cùng mức lỗi kiểm thử với thời gian nhỏ hơn một bậc độ lớn. Giá trị mục tiêu chênh nhau không quá $1{,}7\cdot10^{-4}$.
 
 **Kiểm tra lại.** Sai số chuẩn của một tỉ lệ lỗi $p\approx0{,}057$ trên $n_{\rm kt}=23\,149$ mẫu kiểm thử là $\sqrt{p(1-p)/n_{\rm kt}}=\sqrt{0{,}057\cdot0{,}943/23\,149}\approx0{,}0015$, tức khoảng $0{,}15$ điểm phần trăm. Ba lỗi kiểm thử chênh nhau $0{,}04$ điểm phần trăm, nhỏ hơn sai số chuẩn.
 :::
 
 Bảng cho hai quan sát. Thứ nhất, nó minh họa điều phép đếm của Mục 4 dự báo: khi $n$ lớn, chi phí theo $n$ của mỗi bước chi phối thời gian. Lý do phải bỏ gradient đầy đủ nằm ở phép đếm đó, không ở bảng; TRON vẫn chạy được trên tập này, và theo Bottou và Bousquet, nó đạt điểm cực tiểu với mười chữ số đúng trong chưa tới một phút. Thứ hai, giảm $\rho$ từ $10^{-2}$ xuống $10^{-3}$ không làm lỗi kiểm thử khác nhau một cách phân biệt được: độ chính xác tối ưu vượt quá một mức nào đó không còn cải thiện $R$.
 
-TRON giải hệ Newton bằng gradient liên hợp và không lập Hessian dày (Nhận xét 05.37); nó không đồng nhất với Newton thuần mà chúng ta đã đếm ở Mục 4. Số liệu thuộc phần cứng và phần mềm khoảng năm 2008–2011, chỉ dùng để so bậc. Định nghĩa, tính không chệch và tốc độ hội tụ của SGD thuộc Bài 06.
+TRON giải hệ Newton bằng gradient liên hợp và không lập Hessian dày đặc (Nhận xét 05.37); nó không đồng nhất với Newton thuần mà chúng ta đã đếm ở Mục 4. Số liệu thuộc phần cứng và phần mềm khoảng năm 2008–2011, chỉ dùng để so bậc. Định nghĩa, tính không chệch và tốc độ hội tụ của SGD thuộc Bài 06.
 
 ### 5.3 Hai giới hạn của mô hình tuyến tính và phương pháp tất định
 
@@ -2024,18 +2024,18 @@ Hai giới hạn trên đẩy bài toán ra khỏi khung của chương theo hai
 | Mất (khi nào) | Còn giữ được |
 |---|---|
 | Đích là nghiệm chính xác (ngay trong chương này) | Đích là $R$ nhỏ; dừng sớm và chính quy hóa là một phần của phương pháp (Mục 2, Mục 5.1) |
-| Hội tụ tuyến tính tất định của Định lý 05.30 (khi (i) hoặc (ii)) | Gradient đầy đủ, khi còn tính được: $F$ giảm ở mỗi bước với bước không quá $\frac1L$ (Bổ đề 05b.6). SGD trên $F_\lambda$ lồi mạnh: bước hằng giữ $\mathbb E\lVert w_k-w^*\rVert^2$ ở mức cỡ $\eta\tau^2/\mu$ (Định lý 05b.36); bước giảm dần cho hội tụ tới điểm cực tiểu với tốc độ $O(1/k)$ (Định lý 05b.39) |
+| Hội tụ tuyến tính tất định của Định lý 05.30 (khi (i) hoặc (ii)) | Gradient đầy đủ, khi còn tính được: $F$ giảm ở mỗi bước với bước không quá $\frac1L$ (Bổ đề 05b.6). SGD trên $F_\lambda$ lồi mạnh: bước hằng giữ $\mathbb E\lVert w_k-w^*\rVert^2$ ở mức có bậc $\eta\tau^2/\mu$ (Định lý 05b.36); bước giảm dần cho hội tụ tới điểm cực tiểu với tốc độ $O(1/k)$ (Định lý 05b.39) |
 | Cực tiểu toàn cục (khi (ii)) | Điểm dừng xấp xỉ: hạ gradient có $\min_{k<K}\lVert\nabla F(w_k)\rVert^2\le\frac{2L\Delta_0}K$ (Định lý 05b.41); SGD bước hằng có $\frac1K\sum_{k<K}\mathbb E\lVert\nabla F(w_k)\rVert^2\le\frac{2\Delta_0}{\eta K}+L\eta\tau^2$ (Định lý 05b.43) |
 | Chi phí $O(nd)$ mỗi bước (khi (i)) | Gradient nhóm nhỏ không chệch, chi phí không phụ thuộc $n$ (Định lý 05c.53) |
 
 Cột phải chỉ nêu tên và kết luận; giả thiết đầy đủ và chứng minh thuộc Bài 05b, Bài 05c và Bài 06. Ba điểm sau hay bị đọc sai.
 
-1. Định lý 05b.36 với bước hằng chỉ đưa SGD tới một lân cận của điểm cực tiểu, trong đó kỳ vọng bình phương khoảng cách $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$, tức bán kính cỡ $\sqrt{\eta\tau^2/\mu}$; nó không cho hội tụ tới điểm cực tiểu; chỉ bước giảm dần của Định lý 05b.39 cho hội tụ tới điểm cực tiểu.
+1. Định lý 05b.36 với bước hằng chỉ đưa SGD tới một lân cận của điểm cực tiểu, trong đó kỳ vọng bình phương khoảng cách $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$, tức bán kính có bậc $\sqrt{\eta\tau^2/\mu}$; nó không cho hội tụ tới điểm cực tiểu; chỉ bước giảm dần của Định lý 05b.39 cho hội tụ tới điểm cực tiểu.
 2. Định lý 05b.41 chỉ chặn chuẩn gradient nhỏ nhất trong $K$ bước, không chặn điểm cuối. Định lý 05b.43 có số hạng $L\eta\tau^2$ không giảm theo $K$, tức một mức nhiễu nền, nên trung bình kỳ vọng bình phương chuẩn gradient không tiến về $0$ với bước hằng.
 3. SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước. Bài 06 cho một ví dụ bốn điểm trong đó một bước xuất phát từ chính điểm cực tiểu cho $\mathbb E\,F(\theta_1)=\tfrac{69}{128}>\tfrac12=F(\theta_0)$, với tham số $\theta$ của Bài 06 là $w$ ở đây. Điều còn lại là bất đẳng thức một bước có thêm số hạng nhiễu tỉ lệ với $\eta^2$, đủ để suy ra tốc độ theo kỳ vọng khi bước đủ nhỏ hoặc giảm dần.
 :::
 
-Hàng đầu của bảng mất ngay trong Bài 05, vì $F$ chỉ thay cho $R$. Hàng thứ hai mất khi gradient đầy đủ được thay bằng gradient nhóm nhỏ, dù mục tiêu vẫn là $F_\lambda$ lồi mạnh, và cũng mất khi mục tiêu không còn lồi mạnh. Hàng thứ ba chỉ mất khi mục tiêu không lồi: với $F_\lambda$ lồi mạnh, Định lý 05b.39 vẫn cho hội tụ theo kỳ vọng tới điểm cực tiểu toàn cục. Hàng cuối là chi phí, không phải bảo đảm.
+Hàng đầu của bảng mất ngay trong Bài 05, vì $F$ chỉ đại diện cho $R$. Hàng thứ hai mất khi gradient đầy đủ được thay bằng gradient nhóm nhỏ, dù mục tiêu vẫn là $F_\lambda$ lồi mạnh, và cũng mất khi mục tiêu không còn lồi mạnh. Hàng thứ ba chỉ mất khi mục tiêu không lồi: với $F_\lambda$ lồi mạnh, Định lý 05b.39 vẫn cho hội tụ theo kỳ vọng tới điểm cực tiểu toàn cục. Hàng cuối là chi phí, không phải bảo đảm.
 
 Ba bài tập sau kiểm tra giới hạn biểu diễn và dừng sớm của Mục 5.
 
@@ -2113,7 +2113,7 @@ Với $A$ chéo, các hướng riêng là hai trục tọa độ. Theo quy ướ
 3. $w_\lambda=\bigl(\tfrac1{1{,}01},\ \tfrac{0{,}01}{0{,}02}\bigr)=(0{,}990;\ 0{,}5)$. Dừng ở bước $69$ cho $(1;\ 0{,}50)$, gần $w_\lambda$: cả hai cách khớp trọn hướng cong và khớp một nửa hướng phẳng. Kiểm tra: $(A+\lambda I)w_\lambda=(1{,}01\cdot0{,}990;\ 0{,}02\cdot0{,}5)=(1;\ 0{,}01)=Aw^*$.
 :::
 
-Như vậy, chúng ta đã ghép hai lý do của vấn đề trung tâm. Dừng sớm (Định nghĩa 05.38) cho sai số xác thực nhỏ hơn điểm cực tiểu chính xác, và Mệnh đề 05.39 giải thích điều đó bằng thứ tự khớp các hướng riêng; số liệu RCV1 (Ví dụ 05.25) cho thấy trên dữ liệu thật, phương pháp có chi phí mỗi bước không phụ thuộc $n$ đạt cùng lỗi kiểm thử với thời gian nhỏ hơn một bậc. Hai giới hạn còn lại là chi phí theo $n$ của mỗi bước, và giới hạn biểu diễn của đặc trưng cố định (Mệnh đề 05.40, 05.41). Nhận xét 05.42 ghi những bảo đảm còn lại khi rời khung tất định; các định lý tương ứng thuộc Bài 05b, còn hạ gradient ngẫu nhiên theo nhóm nhỏ và mạng hai tầng thuộc Bài 06.
+Như vậy, chúng ta đã ghép hai lý do của vấn đề trung tâm. Dừng sớm (Định nghĩa 05.38) cho sai số xác thực nhỏ hơn điểm cực tiểu chính xác, và Mệnh đề 05.39 giải thích điều đó bằng thứ tự khớp các hướng riêng; số liệu RCV1 (Ví dụ 05.25) cho thấy trên dữ liệu thật, phương pháp có chi phí mỗi bước không phụ thuộc $n$ đạt cùng lỗi kiểm thử với thời gian nhỏ hơn một bậc độ lớn. Hai giới hạn còn lại là chi phí theo $n$ của mỗi bước, và giới hạn biểu diễn của đặc trưng cố định (Mệnh đề 05.40, 05.41). Nhận xét 05.42 ghi những bảo đảm còn lại khi rời khung tất định; các định lý tương ứng thuộc Bài 05b, còn hạ gradient ngẫu nhiên theo nhóm nhỏ và mạng hai tầng thuộc Bài 06.
 
 ## Tình huống áp dụng và ứng dụng
 
@@ -2169,7 +2169,7 @@ Tình huống thứ hai cho thấy điều xảy ra khi giả thiết tồn tạ
 
 **Diễn giải.** Kết quả của huấn luyện phụ thuộc vào lúc dừng nhiều hơn vào dữ liệu, và các xác suất dự đoán gần $0$ hoặc $1$ không phản ánh độ tin cậy nào có được từ ba mẫu. Hướng $w_k/\lVert w_k\rVert$ tiến chậm về $(0{,}447;\ 0;\ -0{,}894)$, hướng của $\bar w=(1,0,-2)$; Soudry và cộng sự (2018) chứng minh hiện tượng này cho dữ liệu tách được tổng quát, với hướng giới hạn là nghiệm của bài toán biên cực đại.
 
-**Cách sửa.** Hạng phạt $\lambda>0$ cho nghiệm duy nhất với chuẩn bị chặn (Định lý 05.26); với $\lambda=0{,}01$, $w_\lambda=(1{,}557;\ 0;\ -4{,}245)$ và xác suất dự đoán tại $u=0$ là $0{,}826$ (Ví dụ 05.16). Dừng sớm theo tập xác thực là cách sửa thứ hai.
+**Cách sửa.** Số hạng phạt $\lambda>0$ cho nghiệm duy nhất với chuẩn bị chặn (Định lý 05.26); với $\lambda=0{,}01$, $w_\lambda=(1{,}557;\ 0;\ -4{,}245)$ và xác suất dự đoán tại $u=0$ là $0{,}826$ (Ví dụ 05.16). Dừng sớm theo tập xác thực là cách sửa thứ hai.
 
 **Dẫn ngược lý thuyết.** Mệnh đề 05.21 (tách được từ hạng), Định lý 05.22 và Hệ quả 05.23 (bước "hậu quả"), Định lý 05.26 và Mệnh đề 05.28 (bước "cách sửa").
 :::
@@ -2177,11 +2177,11 @@ Tình huống thứ hai cho thấy điều xảy ra khi giả thiết tồn tạ
 Tình huống thứ ba dùng các phép đếm của Mục 4 để chọn phương pháp tính.
 
 ::: application Tình huống 05.3 (Chọn phương pháp tính cho hồi quy logistic có chính quy hóa)
-**Bài toán và dữ liệu.** Xét một hệ thống chấm điểm tín dụng giả định, với kích thước chọn để minh họa phép đếm, không lấy từ một tập dữ liệu thật. Hệ thống huấn luyện hồi quy logistic trên $n=10^6$ hồ sơ với $d=100$ đặc trưng dày, đã chuẩn hóa để phần đặc trưng của mỗi $x_i$ có chuẩn không quá $1$. Hệ số chính quy hóa chọn trên tập xác thực là $\lambda=10^{-4}$. Yêu cầu độ chính xác tối ưu $e_0/\varepsilon_{\rm tol}=10^8$.
+**Bài toán và dữ liệu.** Xét một hệ thống chấm điểm tín dụng giả định, với kích thước chọn để minh họa phép đếm, không lấy từ một tập dữ liệu thật. Hệ thống huấn luyện hồi quy logistic trên $n=10^6$ hồ sơ với $d=100$ đặc trưng dày đặc, đã chuẩn hóa để phần đặc trưng của mỗi $x_i$ có chuẩn không quá $1$. Hệ số chính quy hóa chọn trên tập xác thực là $\lambda=10^{-4}$. Yêu cầu độ chính xác tối ưu $e_0/\varepsilon_{\rm tol}=10^8$.
 
 **Mô hình hóa.** Mục tiêu $F_\lambda$ của Định lý 05.26; hai ứng viên là hạ gradient (Thuật toán 05.1) và Newton (Thuật toán 05.2).
 
-**Xác minh giả thiết.** $F_\lambda$ lồi mạnh với $\mu=\lambda$ (Định lý 05.26). Với tọa độ hằng, $\lVert x_i\rVert^2\le2$, nên Mệnh đề 05.28 cho $\kappa\le1+\frac2{4\cdot10^{-4}}=5001$. Giả thiết của Định lý 05.33 thỏa trên mọi tập mức, vì Hessian bị chặn hai phía và liên tục Lipschitz; số bước Newton được giả định $N_{\rm N}=10$, theo Ví dụ 05.19 (từ $4$ đến $7$ bước).
+**Xác minh giả thiết.** $F_\lambda$ lồi mạnh với $\mu=\lambda$ (Định lý 05.26). Với tọa độ hằng, $\lVert x_i\rVert^2\le2$, nên Mệnh đề 05.28 cho $\kappa\le1+\frac2{4\cdot10^{-4}}=5001$. Giả thiết của Định lý 05.33 thỏa trên mọi tập mức dưới, vì Hessian bị chặn hai phía và liên tục Lipschitz; số bước Newton được giả định $N_{\rm N}=10$, theo Ví dụ 05.19 (từ $4$ đến $7$ bước).
 
 **Áp dụng.**
 
@@ -2189,7 +2189,7 @@ Tình huống thứ ba dùng các phép đếm của Mục 4 để chọn phươ
 - Newton: mỗi bước $nd^2+d^3=10^{10}+10^6$, nên $C_{\rm N}\approx1{,}0\cdot10^{11}$. Hessian chiếm $8\cdot10^4$ byte, tức 80 kB.
 - Tỉ số hai cận khoảng $92$; tính cả hằng số của hai thuật toán, khoảng $354$. Ngay cả khi cận của hạ gradient bi quan $20$ lần như ở Ví dụ 05.19, Newton vẫn rẻ hơn khoảng $4{,}6$ lần.
 
-**Diễn giải.** Với $d$ nhỏ và $\kappa$ lớn, Newton có lợi rõ rệt: chi phí $d^2$, $d^3$ nhỏ và số bước không tăng theo $\kappa$ ở giai đoạn bậc hai. Riêng ma trận dữ liệu dày chiếm $8nd=8\cdot10^8$ byte, tức 800 MB, lớn hơn Hessian $10^4$ lần.
+**Diễn giải.** Với $d$ nhỏ và $\kappa$ lớn, Newton có lợi rõ rệt: chi phí $d^2$, $d^3$ nhỏ và số bước không tăng theo $\kappa$ ở giai đoạn bậc hai. Riêng ma trận dữ liệu dày đặc chiếm $8nd=8\cdot10^8$ byte, tức 800 MB, lớn hơn Hessian $10^4$ lần.
 
 **Giới hạn.** Kết luận dựa trên so sánh hai cận ở hai bậc khác nhau, nên không đổi chiều khi tính hằng số (Ví dụ 05.22). Nếu $d$ tăng lên $10^4$, một bước Newton tốn khoảng $10^{14}$ và Hessian cần 800 MB; hai cận khi đó cùng bậc, $9{,}2\cdot10^{14}$ và $1{,}0\cdot10^{15}$, và phép đếm không còn phân định. Nếu $n$ tăng lên $10^8$, mọi bước của cả hai phương pháp tăng chi phí $100$ lần, và giới hạn (i) của Mục 5.3 trở thành ràng buộc chính.
 
@@ -2199,8 +2199,8 @@ Tình huống thứ ba dùng các phép đếm của Mục 4 để chọn phươ
 **Ứng dụng.**
 
 - **Chọn siêu tham số.** Bậc đa thức, hệ số chính quy hóa và số bước huấn luyện đều được chọn trên tập xác thực và báo cáo trên tập kiểm thử (Định nghĩa 05.6, Mệnh đề 05.7). Kiểm định chéo là biến thể dùng khi dữ liệu ít (Goodfellow và cộng sự 2016, mục 5.3.1).
-- **Suy giảm trọng số trong học sâu.** Hạng phạt $\frac\lambda2\lVert w\rVert^2$ của Định lý 05.26 là suy giảm trọng số; với mạng nơ ron nó không làm mục tiêu lồi, nhưng vẫn giới hạn chuẩn tham số (Bài 06).
-- **Bộ giải hồi quy logistic.** LIBLINEAR dùng Newton miền tin cậy với gradient liên hợp (TRON) cho hồi quy logistic có hạng phạt $\ell_2$; scikit-learn cung cấp thêm các bộ giải tựa Newton. Lựa chọn giữa chúng theo $(n,d,\kappa)$ là nội dung của Mục 4.6 (Bài 06c trình bày gradient liên hợp và BFGS).
+- **Suy giảm trọng số trong học sâu.** Số hạng phạt $\frac\lambda2\lVert w\rVert^2$ của Định lý 05.26 là suy giảm trọng số; với mạng nơ ron nó không làm mục tiêu lồi, nhưng vẫn giới hạn chuẩn tham số (Bài 06).
+- **Bộ giải hồi quy logistic.** LIBLINEAR dùng Newton miền tin cậy với gradient liên hợp (TRON) cho hồi quy logistic có số hạng phạt $\ell_2$; scikit-learn cung cấp thêm các bộ giải tựa Newton. Lựa chọn giữa chúng theo $(n,d,\kappa)$ là nội dung của Mục 4.6 (Bài 06c trình bày gradient liên hợp và BFGS).
 - **Dừng sớm.** Huấn luyện mạng nơ ron thường dừng theo sai số xác thực (Định nghĩa 05.38); Mệnh đề 05.39 là trường hợp tuyến tính của cơ chế này (Goodfellow và cộng sự 2016, mục 7.8).
 - **Chuẩn hóa đặc trưng.** Trừ trung bình và chia độ lệch chuẩn từng cột làm giảm số điều kiện khi các cột có thang đo khác nhau (Mục 2.5), nên giảm số bước của hạ gradient (Hệ quả 05.31).
 - **Học quy mô lớn.** Phân loại văn bản với hàng trăm nghìn mẫu, như RCV1, dùng hạ gradient ngẫu nhiên vì chi phí mỗi bước không phụ thuộc $n$ (Ví dụ 05.25; Bài 06).
@@ -2324,7 +2324,7 @@ Mỗi phát biểu ứng với một kết quả đánh số của Mục 2–4; 
 Một bài toán phân loại văn bản có $n=10^5$ văn bản và $d=5\cdot10^4$ đặc trưng TF-IDF. Ma trận $X$ thưa: mỗi văn bản có $100$ tọa độ khác $0$, nên $X$ có $10^7$ phần tử khác $0$. Mỗi vector đặc trưng có chuẩn bình phương không quá $2$ sau khi thêm tọa độ hằng. Hệ số chính quy hóa là $\lambda=10^{-4}$, độ chính xác yêu cầu $e_0/\varepsilon_{\rm tol}=10^8$.
 
 1. Tính chi phí một bước hạ gradient khi tận dụng tính thưa, cận số bước theo Hệ quả 05.31 và cận tổng chi phí.
-2. Với Newton dùng Hessian dày, tính bộ nhớ của Hessian và chi phí phân tích Cholesky mỗi bước; giải thích vì sao Mệnh đề 05.36 không giúp ở đây.
+2. Với Newton dùng Hessian dày đặc, tính bộ nhớ của Hessian và chi phí phân tích Cholesky mỗi bước; giải thích vì sao Mệnh đề 05.36 không giúp ở đây.
 3. Với Newton giải hệ bằng gradient liên hợp (Nhận xét 05.37), giả định mỗi bước Newton cần $50$ tích Hessian–vector và cần $10$ bước Newton. Tính tổng chi phí và so với câu 1.
 4. Nêu giới hạn của kết luận ở câu 3.
 :::
@@ -2336,19 +2336,19 @@ Với dữ liệu thưa, một tích $Xv$ hoặc $X^Tv$ tốn bằng số phần
 ::: solution
 1. Một bước hạ gradient gồm hai tích thưa, khoảng $2\cdot10^7$ phép nhân–cộng. Theo Mệnh đề 05.28 với $r^2=2$, $\kappa\le1+\frac2{4\cdot10^{-4}}=5001$. Hệ quả 05.31 cho tối đa $5001\cdot18{,}42\approx9{,}2\cdot10^4$ bước, nên cận tổng chi phí là khoảng $9{,}2\cdot10^4\cdot2\cdot10^7\approx1{,}8\cdot10^{12}$.
 
-2. Hessian $d\times d$ nói chung dày và chiếm $8d^2=2\cdot10^{10}$ byte, tức 20 GB. Phân tích Cholesky tốn khoảng $d^3/3\approx4{,}2\cdot10^{13}$ mỗi bước, gấp hơn hai mươi lần cận tổng chi phí của hạ gradient chỉ trong một bước. Mệnh đề 05.36 có lợi khi $n<d$; ở đây $n=10^5>d$, nên hệ $n\times n$ còn lớn hơn hệ $d\times d$.
+2. Hessian $d\times d$ nói chung dày đặc và chiếm $8d^2=2\cdot10^{10}$ byte, tức 20 GB. Phân tích Cholesky tốn khoảng $d^3/3\approx4{,}2\cdot10^{13}$ mỗi bước, gấp hơn hai mươi lần cận tổng chi phí của hạ gradient chỉ trong một bước. Mệnh đề 05.36 có lợi khi $n<d$; ở đây $n=10^5>d$, nên hệ $n\times n$ còn lớn hơn hệ $d\times d$.
 
 3. Mỗi tích $Hv$ tốn khoảng $2\cdot10^7$, như một gradient. Mỗi bước Newton gồm một gradient và $50$ tích, khoảng $51\cdot2\cdot10^7\approx10^9$; mười bước tốn khoảng $1{,}0\cdot10^{10}$. Con số này nhỏ hơn cận của hạ gradient khoảng $180$ lần, và không cần lưu Hessian.
 
-4. Số tích Hessian–vector và số bước Newton là giả định; số vòng gradient liên hợp cần thiết tăng theo số điều kiện của Hessian, nên với $\lambda$ nhỏ hơn có thể cần nhiều hơn $50$. Cận của hạ gradient còn bi quan (Nhận xét 05.32), nên tỉ số thật nhỏ hơn $180$. Kết luận định tính vẫn đứng: với dữ liệu thưa và $d$ lớn, phương pháp bậc hai chỉ khả thi khi không lập Hessian dày, như TRON trên RCV1 (Ví dụ 05.25).
+4. Số tích Hessian–vector và số bước Newton là giả định; số vòng gradient liên hợp cần thiết tăng theo số điều kiện của Hessian, nên với $\lambda$ nhỏ hơn có thể cần nhiều hơn $50$. Cận của hạ gradient còn bi quan (Nhận xét 05.32), nên tỉ số thật nhỏ hơn $180$. Kết luận định tính vẫn đứng: với dữ liệu thưa và $d$ lớn, phương pháp bậc hai chỉ khả thi khi không lập Hessian dày đặc, như TRON trên RCV1 (Ví dụ 05.25).
 :::
 
 ## Hướng dẫn đọc thêm và tài liệu tham khảo
 
 - Ian Goodfellow, Yoshua Bengio và Aaron Courville (2016), *Deep Learning*, MIT Press: mục 5.2 (tr. 110–117: dung lượng mô hình, quá khớp và khớp thiếu, hình 5.2 với đa thức bậc tăng dần), mục 5.3.1 (kiểm định chéo), mục 5.7.1 (tr. 140: hồi quy logistic), mục 6.1 (bài toán XOR), mục 7.1.1 (tr. 231: suy giảm trọng số), mục 7.3 (tr. 239–240: chính quy hóa cho bài toán thiếu ràng buộc, hồi quy logistic trên dữ liệu tách được, giả nghịch đảo), mục 7.8 (tr. 246–250: dừng sớm, Thuật toán 7.1), mục 8.1 (tr. 275–277: rủi ro thực nghiệm và mất mát thay thế), mục 8.2.1 (điều kiện hóa kém). Dùng cho Mục 2, 3.4, 5.1, 5.3.
-- Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Cambridge University Press: mục 6.3.2 (tr. 306: chính quy hóa), mục 7.1.1 (tr. 354–355: hồi quy logistic), mục 8.6.1 (phân tách tuyến tính), mục 9.1.2 (tr. 459–461: lồi mạnh và số điều kiện của tập mức), mục 9.3.1 (tr. 466–468: hội tụ của hạ gradient), mục 9.5.1 (tr. 486: bất biến affine), mục 9.5.3 (tr. 488–491: hội tụ hai giai đoạn của Newton), mục 9.7.1–9.7.2 (tr. 508–512: chi phí Cholesky và hệ Newton có cấu trúc đường chéo cộng hạng thấp). Dùng cho Mục 2.5, 3.3, 4.
+- Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Cambridge University Press: mục 6.3.2 (tr. 306: chính quy hóa), mục 7.1.1 (tr. 354–355: hồi quy logistic), mục 8.6.1 (phân tách tuyến tính), mục 9.1.2 (tr. 459–461: lồi mạnh và số điều kiện của tập mức dưới), mục 9.3.1 (tr. 466–468: hội tụ của hạ gradient), mục 9.5.1 (tr. 486: bất biến affine), mục 9.5.3 (tr. 488–491: hội tụ hai giai đoạn của Newton), mục 9.7.1–9.7.2 (tr. 508–512: chi phí Cholesky và hệ Newton có cấu trúc đường chéo cộng hạng thấp). Dùng cho Mục 2.5, 3.3, 4.
 - Léon Bottou và Olivier Bousquet (2011), "The Tradeoffs of Large-Scale Learning", trong Suvrit Sra, Sebastian Nowozin và Stephen J. Wright (biên tập), *Optimization for Machine Learning*, MIT Press, chương 13: mục 13.1–13.2 (tr. 351–354: đánh đổi giữa sai số xấp xỉ, sai số ước lượng và sai số tối ưu), Bảng 13.2 (tr. 362: chi phí của các thuật toán gradient), mục 13.4.1 và Bảng 13.3 (tr. 363: thí nghiệm RCV1). Dùng cho Mục 1.1, 4.6, 5.2.
-- Stephen Boyd (2009), *Introduction to Convex Optimization*, MIT OpenCourseWare 6.079, bài giảng 10 "Unconstrained minimization", trang 10–29 (chi phí phân tích Cholesky) và 10–30 (hệ Newton dày có cấu trúc, giải qua hệ nhỏ). Dùng cho Mệnh đề 05.36.
+- Stephen Boyd (2009), *Introduction to Convex Optimization*, MIT OpenCourseWare 6.079, bài giảng 10 "Unconstrained minimization", trang 10–29 (chi phí phân tích Cholesky) và 10–30 (hệ Newton dày đặc có cấu trúc, giải qua hệ nhỏ). Dùng cho Mệnh đề 05.36.
 - Gilbert Strang (2016), *Introduction to Linear Algebra*, ấn bản 5, Wellesley–Cambridge Press: phần bốn không gian con cơ bản và định lý hạng–số chiều; phần ma trận đối xứng và thương Rayleigh. Dùng cho Mệnh đề 05.10, 05.11, 05.16.
 - Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar và Nathan Srebro (2018), "The Implicit Bias of Gradient Descent on Separable Data", *Journal of Machine Learning Research* 19(70), 1–57. Đọc thêm cho Tình huống 05.2.
 - Chih-Jen Lin, Ruby C. Weng và S. Sathiya Keerthi (2008), "Trust Region Newton Method for Large-Scale Logistic Regression", *Journal of Machine Learning Research* 9, 627–650. Nguồn của phương pháp TRON ở Mục 5.2.

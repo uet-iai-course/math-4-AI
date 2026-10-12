@@ -69,7 +69,7 @@ $\frac1nX^TX=\operatorname{diag}(1;\ 0{,}5)$ và $\frac1nX^Ty=(0;\ 0{,}49)$. Ở
 
    có tổng bình phương $0{,}1657$, nên MSE huấn luyện $\approx0{,}0331$. Sai số xác thực là $(0{,}8167-1)u'=-0{,}1833u'$, nên MSE xác thực $=0{,}1833^2\cdot0{,}3125\approx0{,}0105$. Ma trận hệ có trị riêng $1{,}1$ và $0{,}6$, nên $\kappa=1{,}83$, nhỏ hơn $\kappa=2$ khi $\lambda=0$ (Mệnh đề 05.17).
 
-3. Với $d=2$, mô hình đã đúng dạng với quan hệ thật $y=u$, nghiệm không chính quy hóa duy nhất và $\kappa=2$ nhỏ. Hạng phạt kéo $w_1$ về $0$, xa giá trị đúng $1$, nên sai số xác thực tăng gần $84$ lần. Chính quy hóa có lợi khi mô hình quá lớn so với dữ liệu, như $d=5$ trong Ví dụ 05.9, không phải khi mô hình đã vừa. Đây là lý do $\lambda$ phải được chọn trên tập xác thực, với $\lambda=0$ nằm trong danh sách ứng viên.
+3. Với $d=2$, mô hình đã đúng dạng với quan hệ thật $y=u$, nghiệm không chính quy hóa duy nhất và $\kappa=2$ nhỏ. Số hạng phạt kéo $w_1$ về $0$, xa giá trị đúng $1$, nên sai số xác thực tăng gần $84$ lần. Chính quy hóa có lợi khi mô hình quá lớn so với dữ liệu, như $d=5$ trong Ví dụ 05.9, không phải khi mô hình đã vừa. Đây là lý do $\lambda$ phải được chọn trên tập xác thực, với $\lambda=0$ nằm trong danh sách ứng viên.
 :::
 
 ## Bài 3. Tập xác thực có nhiễu và thiên lệch khi chọn
@@ -199,7 +199,7 @@ $$
 
 Theo gợi ý, $\phi(w_0)+\phi(-w_0)\ge\log4=2\log2$, và hai số hạng còn lại dương. Vậy $F(w)>\tfrac14\cdot2\log2=\tfrac12\log2$.
 
-3. Với $w=(0,t)$: $F=\tfrac14\bigl[2\phi(t)+2\log2\bigr]=\tfrac12\phi(t)+\tfrac12\log2\to\tfrac12\log2$ khi $t\to\infty$. Kết hợp câu 2, $\inf F=\tfrac12\log2\approx0{,}3466$ và không đạt, nên $F$ không có điểm cực tiểu. Số liệu: $F(0,1)=0{,}5032$, $F(0,5)=0{,}3499$, $F(0,10)=0{,}34660$. Trường hợp ranh giới này giống trường hợp tách được ở chỗ điểm cực tiểu không tồn tại, nhưng cận dưới đúng dương. Hạng phạt $\lambda>0$ vẫn sửa được bài toán theo Định lý 05.26.
+3. Với $w=(0,t)$: $F=\tfrac14\bigl[2\phi(t)+2\log2\bigr]=\tfrac12\phi(t)+\tfrac12\log2\to\tfrac12\log2$ khi $t\to\infty$. Kết hợp câu 2, $\inf F=\tfrac12\log2\approx0{,}3466$ và không đạt, nên $F$ không có điểm cực tiểu. Số liệu: $F(0,1)=0{,}5032$, $F(0,5)=0{,}3499$, $F(0,10)=0{,}34660$. Trường hợp ranh giới này giống trường hợp tách được ở chỗ điểm cực tiểu không tồn tại, nhưng cận dưới đúng dương. Số hạng phạt $\lambda>0$ vẫn sửa được bài toán theo Định lý 05.26.
 :::
 
 ## Bài 7. Cận dưới định lượng của chuẩn nghiệm khi $\lambda\to0$
@@ -228,7 +228,7 @@ $$
 ::: solution Lời giải Bài 7
 1. Đặt $s=r\lVert w\rVert\ge0$. Vì $\phi$ giảm và $m_i(w)\le s$, mỗi số hạng thỏa $\phi(m_i(w))\ge\phi(s)$, nên $F(w)\ge\phi(s)=\log(1+e^{-s})$. Với $a=e^{-s}\in(0,1]$, tính lõm cho $\log(1+a)\ge a\log2$. Vậy $F(w)\ge\log2\cdot e^{-r\lVert w\rVert}$.
 
-2. Vì $w_\lambda$ cực tiểu hóa $F_\lambda$ và hạng phạt không âm,
+2. Vì $w_\lambda$ cực tiểu hóa $F_\lambda$ và số hạng phạt không âm,
 
 $$
 \begin{aligned}
@@ -270,7 +270,7 @@ Mức độ: tính toán. LLO15, LLO11; CLO4, CLO1.
 ::: solution Lời giải Bài 8
 1. Tại $w_0=0$: $F'_\lambda=-0{,}5$, $F''_\lambda=0{,}25+0{,}05=0{,}3$, nên $w_1=0{,}5/0{,}3=1{,}6667$. Tại $w_1$: $F'_\lambda=-0{,}07554$, $F''_\lambda=0{,}18363$, nên $w_2=1{,}6667+0{,}07554/0{,}18363=2{,}0780$. Khoảng cách tới nghiệm giảm từ $2{,}128$ xuống $0{,}461$ rồi $0{,}050$; bước thứ ba cho $2{,}1274$, khoảng cách $0{,}0006$, đúng kiểu hội tụ bậc hai.
 
-2. $\log10^8=18{,}42$. Hạ gradient: $C_{\rm HG}\approx nd\cdot\kappa\log(e_0/\varepsilon_{\rm tol})=10^{10}\cdot1000\cdot18{,}42\approx1{,}84\cdot10^{14}$. Newton: $C_{\rm N}\approx10\cdot(nd^2+d^3)=10\cdot(10^{14}+10^{12})=1{,}01\cdot10^{15}$. Hai cận cùng bậc độ lớn, cỡ $10^{14}$–$10^{15}$; tính cả hằng số của Thuật toán 05.1 và 05.2, chúng là $2nd\cdot1000\cdot18{,}42\approx3{,}7\cdot10^{14}$ và $10\cdot(2nd+nd^2/2+d^3/3)\approx5{,}0\cdot10^{14}$. Theo Ví dụ 05.22, khi hai cận cùng bậc, phép đếm chỉ cho kết luận ở mức bậc độ lớn: hai phương pháp tốn cùng cỡ phép tính, và cận của hạ gradient còn bi quan (Ví dụ 05.19). Hessian cần $8d^2=8\cdot10^8$ byte, tức 800 MB.
+2. $\log10^8=18{,}42$. Hạ gradient: $C_{\rm HG}\approx nd\cdot\kappa\log(e_0/\varepsilon_{\rm tol})=10^{10}\cdot1000\cdot18{,}42\approx1{,}84\cdot10^{14}$. Newton: $C_{\rm N}\approx10\cdot(nd^2+d^3)=10\cdot(10^{14}+10^{12})=1{,}01\cdot10^{15}$. Hai cận cùng bậc độ lớn, khoảng $10^{14}$–$10^{15}$; tính cả hằng số của Thuật toán 05.1 và 05.2, chúng là $2nd\cdot1000\cdot18{,}42\approx3{,}7\cdot10^{14}$ và $10\cdot(2nd+nd^2/2+d^3/3)\approx5{,}0\cdot10^{14}$. Theo Ví dụ 05.22, khi hai cận cùng bậc, phép đếm chỉ cho kết luận ở mức bậc độ lớn: hai phương pháp tốn cùng bậc số phép tính, và cận của hạ gradient còn bi quan (Ví dụ 05.19). Hessian cần $8d^2=8\cdot10^8$ byte, tức 800 MB.
 
 3. Theo Mệnh đề 05.36, chi phí là $n^2d+n^3=10^{13}+10^{12}=1{,}1\cdot10^{13}$, so với $nd^2+d^3=10^{14}+10^{15}=1{,}1\cdot10^{15}$: rẻ hơn $100$ lần. Ma trận cần phân tích có kích thước $n\times n$, chiếm $8\cdot10^8$ byte thay cho $8\cdot10^{10}$ byte.
 :::
@@ -284,7 +284,7 @@ Trên ví dụ năm mẫu với $d=5$, mục tiêu bình phương có chính quy
 
 1. Với $e_0/\varepsilon_{\rm tol}=10^6$, tính số bước hạ gradient đủ theo Hệ quả 05.31 cho hai giá trị $\lambda$.
 2. Phương pháp Newton cần bao nhiêu bước trên hai mục tiêu này. Giải thích.
-3. Với $n=5$, $d=5$, chi phí mỗi bước của hai phương pháp theo bậc là bao nhiêu, và phương pháp nào nên dùng cho bài toán cỡ này.
+3. Với $n=5$, $d=5$, chi phí mỗi bước của hai phương pháp theo bậc là bao nhiêu, và phương pháp nào nên dùng cho bài toán kích thước này.
 :::
 
 ::: hint Gợi ý Bài 9
@@ -296,7 +296,7 @@ Hai mục tiêu là hàm bậc hai; Hessian của chúng không đổi theo $w$.
 
 2. Một bước. Với hàm bậc hai $f(w)=\tfrac12w^THw-b^Tw+c$, $H\succ0$, mô hình bậc hai của Newton trùng với $f$, nên bước đầy đủ $w_1=w_0-H^{-1}(Hw_0-b)=H^{-1}b$ là nghiệm, như trong Ví dụ 05.17. Bước đó chính là giải phương trình chuẩn (2.6).
 
-3. Một bước hạ gradient tốn khoảng $nd=25$ phép nhân–cộng, một bước Newton khoảng $nd^2+d^3=250$; Newton một bước rẻ hơn hàng nghìn bước hạ gradient. Với bài toán cỡ này, giải trực tiếp phương trình chuẩn là lựa chọn đúng; hạ gradient chỉ có ý nghĩa ở Ví dụ 05.24 vì các điểm lặp trung gian của nó được dùng để dừng sớm.
+3. Một bước hạ gradient tốn khoảng $nd=25$ phép nhân–cộng, một bước Newton khoảng $nd^2+d^3=250$; Newton một bước rẻ hơn hàng nghìn bước hạ gradient. Với bài toán kích thước này, giải trực tiếp phương trình chuẩn là lựa chọn đúng; hạ gradient chỉ có ý nghĩa ở Ví dụ 05.24 vì các điểm lặp trung gian của nó được dùng để dừng sớm.
 :::
 
 ## Bài 10. Phân loại với nhiều đặc trưng hơn mẫu

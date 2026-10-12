@@ -26,7 +26,7 @@ Dàn bài này lập ngày 2026-10-11 theo thiết kế hai bài do người dù
 1. **Tính toán không cho phép dùng toàn bộ dữ liệu ở mỗi bước.** Một gradient đầy đủ tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$; với $n$ và $d$ của bài toán hiện đại, ngay một bước như vậy mỗi lần cập nhật đã vượt ngân sách. Phiên A3 đếm các chi phí này; kết luận nêu thành giới hạn (i), Bài 06 (B3) mang hệ quả: SGD theo nhóm nhỏ là phương án còn lại khi ngân sách mỗi bước cố định, và nhiễu cùng tốc độ yếu hơn là hệ quả phải chấp nhận, không phải mục tiêu thiết kế.
 2. **Cực tiểu chính xác của mất mát huấn luyện không phải đích.** $F$ là đại lượng thay thế cho rủi ro trên dữ liệu mới $R$. Phiên A1 cho thấy khớp dữ liệu huấn luyện tốt hơn khi $d$ tăng nhưng sai số trên dữ liệu ngoài mẫu xấu đi; phiên A2 cho thấy trên dữ liệu tách được, cực tiểu chính xác không tồn tại và chính quy hóa là thành phần làm bài toán đặt chỉnh. Kết luận cho thấy dừng sớm cho sai số xác thực nhỏ hơn nghiệm chính xác; vì vậy dừng sớm và chính quy hóa là một phần của phương pháp.
 
-Điều còn giữ được khi rời khung tất định (KL04, chính xác hóa sau cổng storyboard Bài 06 và sau rà soát 2026-10-12): tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ khi còn tính được (bổ đề giảm); với SGD, bất đẳng thức một bước có thêm số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu với tốc độ $O(1/k)$ (T6); điểm dừng xấp xỉ theo nghĩa của T7 ($\min_{k<K}$ chuẩn gradient) và T8 (trung bình kỳ vọng, có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước.
+Điều còn giữ được khi rời khung tất định (KL04, chính xác hóa sau cổng storyboard Bài 06 và sau rà soát 2026-10-12): tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ khi còn tính được (bổ đề giảm); với SGD, bất đẳng thức một bước có thêm số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu với tốc độ $O(1/k)$ (T6); điểm dừng xấp xỉ theo nghĩa của T7 ($\min_{k<K}$ chuẩn gradient) và T8 (trung bình kỳ vọng, có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước.
 
 **Tệp kế hoạch cũ.** Dàn bài và storyboard của deck Bài 05 cũ (từ ngày 2026-10-12 là Bài 06b, `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html`, 37 trang) nằm ở `planning/lec-06b/outline.md` và `storyboard.md` (trước đó là `outline.old-2026-10-01.md` và `storyboard.old-2026-10-01.md` trong thư mục này); nhật ký cũ nằm ở `planning/lec-06b/review-log.md` và `review-log-lecture-note.md`, nhật ký của kế hoạch mới ở `planning/lec-05/review-log.md`.
 
@@ -115,7 +115,7 @@ Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác đ�
 - Mô hình tuyến tính theo đặc trưng và mất mát lồi; không xét mô hình phi lồi (Bài 06).
 - Phương pháp tất định dùng toàn bộ dữ liệu ở mỗi bước; gradient ngẫu nhiên thuộc B3 của Bài 06.
 - Cận số bước là cận trên. Trên ví dụ của bài, số bước thực của hạ gradient nhỏ hơn cận khoảng 9 đến 20 lần (CP03).
-- Chi phí đếm theo bậc với ma trận dày, $n\ge d$; trường hợp $d>n$ và dữ liệu thưa nêu ở ghi chú CP07.
+- Chi phí đếm theo bậc với ma trận dày đặc, $n\ge d$; trường hợp $d>n$ và dữ liệu thưa nêu ở ghi chú CP07.
 - Sai số trên vài điểm ngoài mẫu chỉ là ước lượng của $R$; ví dụ $n=5$ minh họa định tính, không phải thực nghiệm. Ví dụ thu nhỏ có tập xác thực bốn điểm, không có tập kiểm thử riêng.
 
 ## Bản đồ mạch
@@ -306,7 +306,7 @@ Dữ liệu dùng xuyên mạch (VD-A1, mục Ví dụ số): $u=(-1,-\tfrac12,0
   - Hình đường mức của hai hàm bậc hai: elip gần tròn và elip dẹt (tỉ lệ bán trục $\sqrt2$ và $\sqrt{50}$).
   - Nhu cầu: một đại lượng của $X$ đo được độ nhạy này trước khi giải.
 - **Sửa sau rà soát năm vai (2026-10-12):** thêm chú thích dưới hình: minh họa với hai giá trị $\kappa$, định nghĩa ở trang sau, ở $d=5$ $\kappa=553{,}7$ (M8).
-- **Ghi chú:** $\delta w$ ở $d=5$ là $0{,}01$ nhân hệ số của đa thức Lagrange $4u^4-5u^2+1$ (bằng $1$ tại $u=0$, bằng $0$ tại bốn nút còn lại). Elip dẹt nghĩa là theo một hướng $F$ gần như phẳng: dữ liệu ít ràng buộc $w$ theo hướng đó, nên nhiễu nhỏ dịch nghiệm xa, và hạ gradient với một bước chung tiến chậm theo hướng đó (dùng lại ở CP01, CP04). Nguồn: Boyd §9.1.2 (tr. 461, số điều kiện tập mức).
+- **Ghi chú:** $\delta w$ ở $d=5$ là $0{,}01$ nhân hệ số của đa thức Lagrange $4u^4-5u^2+1$ (bằng $1$ tại $u=0$, bằng $0$ tại bốn nút còn lại). Elip dẹt nghĩa là theo một hướng $F$ gần như phẳng: dữ liệu ít ràng buộc $w$ theo hướng đó, nên nhiễu nhỏ dịch nghiệm xa, và hạ gradient với một bước chung tiến chậm theo hướng đó (dùng lại ở CP01, CP04). Nguồn: Boyd §9.1.2 (tr. 461, số điều kiện tập mức dưới).
 - **Hình:** `hq-level-sets-kappa.svg`.
 - **Liên kết:** từ hệ quả không duy nhất ở HQ07 (khi $d>n$ có hướng hoàn toàn phẳng) sang trường hợp $d\le n$ có hướng gần phẳng; tạo nhu cầu định nghĩa $\kappa$ ở HQ09.
 - **Quyết định:** thêm; tách từ HQ08 của kế hoạch theo cổng storyboard, để nhu cầu và trực quan của KN3 đứng trước định nghĩa.
@@ -460,12 +460,12 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 - **Hành trình:** KN4 hình thức (kết quả thứ hai, đối chứng với Định lý 1). Bước ứng dụng của KN4 chuyển sang LG10 theo cổng storyboard.
 - **Thời lượng:** 0,04 tiết LT.
 
-#### LG07 — Hạng phạt dọc một tia
+#### LG07 — Số hạng phạt dọc một tia
 
 - **Điểm trung tâm:** cộng $\frac\lambda2\lVert w\rVert^2$ làm mục tiêu dọc tia tăng trở lại, nên có cực tiểu hữu hạn.
 - **Mặt trang:** **Định nghĩa** (thêm 2026-10-12 theo yêu cầu người dùng, để $F_\lambda$ có định nghĩa trước lần dùng đầu). Mất mát có chính quy hóa bậc hai: $F_\lambda(w)=F(w)+\frac\lambda2\lVert w\rVert^2$, $\lambda>0$. Dọc tia: $F_\lambda(t\bar w)=\log(1+e^{-t})+\tfrac{5\lambda}2t^2$ vì $\lVert\bar w\rVert^2=5$; với $\lambda=0{,}01$, cực tiểu tại $t^*=2{,}128$, giá trị $0{,}2257$; với $\lambda=0{,}1$: $t^*=0{,}6748$, giá trị $0{,}5255$.
 - **Ghi chú:** hình vẽ hai đường trên cùng trục. Cực tiểu dọc tia chỉ là trực giác; cực tiểu của $F_\lambda$ trên $\mathbb R^3$ tính ở LG10 và không nằm trên tia $\bar w$. Các số $2{,}128$ và $0{,}6748$ trùng nghiệm một chiều của LG08 vì $5\lambda$ đóng vai hệ số chính quy hóa của bài toán một chiều; đây là trùng hợp cấu trúc, không phải kết quả chung.
-- **Hình:** `lg-penalty-along-ray.svg` (ba đường $\lambda=0;\ 0{,}01;\ 0{,}1$ trên $t\in[0,6]$, đánh dấu $t^*=2{,}128$ và $0{,}6748$; tách khỏi hình của LG03 khi dựng deck để LG03 không hiện hạng phạt trước khi nó được đưa vào).
+- **Hình:** `lg-penalty-along-ray.svg` (ba đường $\lambda=0;\ 0{,}01;\ 0{,}1$ trên $t\in[0,6]$, đánh dấu $t^*=2{,}128$ và $0{,}6748$; tách khỏi hình của LG03 khi dựng deck để LG03 không hiện số hạng phạt trước khi nó được đưa vào).
 - **Liên kết:** từ giới hạn LG05; tạo nhu cầu phát biểu tổng quát ở LG08.
 - **Quyết định:** thêm.
 - **Hành trình:** KN5 nhu cầu + trực quan + ví dụ.
@@ -615,8 +615,8 @@ Ví dụ xuyên mạch (VD-A3, mục Ví dụ số): $F_\lambda(w)=\log(1+e^{-w}
 
 - **Điểm trung tâm:** Newton có hai giai đoạn; giai đoạn hội tụ bậc hai cần không quá $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, con số không chứa $\kappa$.
 - **Mặt trang:**
-  - **Định lý 4** (Boyd §9.5.3; hội tụ bậc hai của Newton, Bài 04; phát biểu lại). Giả thiết: $mI\preceq\nabla^2f\preceq MI$ trên tập mức đầu; Hessian Lipschitz hằng số $L_H$; quay lui Armijo. Kết luận: số bước để $f-f^*\le\varepsilon$ không quá $\frac{f(x_0)-f^*}{\gamma}+\log_2\log_2\frac{\varepsilon_0}{\varepsilon}$, $\varepsilon_0=2m^3/L_H^2$.
-  - Ánh xạ: $m=\mu$, $M=L$ (Boyd dùng $L$ cho hằng số Lipschitz của Hessian; ở đây viết $L_H$).
+  - **Định lý 4** (Boyd §9.5.3; hội tụ bậc hai của Newton, Bài 04; phát biểu lại). Giả thiết: $\mu I\preceq\nabla^2f\preceq LI$ trên tập mức dưới (sublevel set) $C_0=\{w:\ f(w)\le f(w_0)\}$; Hessian Lipschitz hằng số $L_H$ (mặt trang có dòng "Nhắc lại:"); quay lui Armijo (Bài 04). Kết luận: số bước để $f-f^*\le\varepsilon$ không quá $\frac{f(x_0)-f^*}{\gamma}+\log_2\log_2\frac{\varepsilon_0}{\varepsilon}$, $\varepsilon_0=2\mu^3/L_H^2$; "Ý nghĩa:" số hạng đầu đếm giai đoạn tắt dần, số hạng sau đếm giai đoạn bậc hai, không chứa $\kappa$.
+  - Ánh xạ (chỉ trong ghi chú; mặt trang viết $\mu$, $L$ theo quyết định chung 2026-10-12): $m=\mu$, $M=L$ (Boyd dùng $L$ cho hằng số Lipschitz của Hessian; ở đây viết $L_H$).
   - Nhận xét: bước Newton bất biến dưới phép đổi biến tuyến tính khả nghịch (Boyd §9.5.1, tr. 486); hạ gradient thì không.
 - **Sửa sau rà soát năm vai (2026-10-12):** tập mức viết $C_0$ để không trùng ma trận trọng số $S$ (M17); "Số bước của giai đoạn bậc hai".
 - **Ghi chú:** $\gamma$ và $\varepsilon_0$ phụ thuộc $m,M,L_H$, nên toàn bộ cận không độc lập với độ cong; phần độc lập với $\kappa$ chỉ là giai đoạn bậc hai. Sáu bước bậc hai cho độ chính xác khoảng $5\cdot10^{-20}\varepsilon_0$ (Boyd tr. 489). Không phát biểu "Newton không phụ thuộc $\kappa$" một cách vô điều kiện (điểm hòa giải 2; Bài 06 dùng cùng cách phát biểu).
@@ -643,7 +643,7 @@ Ví dụ xuyên mạch (VD-A3, mục Ví dụ số): $F_\lambda(w)=\log(1+e^{-w}
 
 #### CP07 — Chi phí một bước
 
-- **Điểm trung tâm:** với $n\ge d$ và ma trận dày, một bước hạ gradient tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$; bộ nhớ thêm $O(n+d)$ và $O(d^2+n)$.
+- **Điểm trung tâm:** với $n\ge d$ và ma trận dày đặc, một bước hạ gradient tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$; bộ nhớ thêm $O(n+d)$ và $O(d^2+n)$.
 - **Mặt trang:**
   - **Mệnh đề 5.** Hạ gradient: thời gian $O(nd)$, bộ nhớ thêm $O(n+d)$. Newton: thời gian $O(nd^2+d^3)$, bộ nhớ thêm $O(d^2+n)$.
   - Tỉ số một bước Newton / một bước hạ gradient: bậc $d+d^2/n$.
@@ -661,7 +661,7 @@ Ví dụ xuyên mạch (VD-A3, mục Ví dụ số): $F_\lambda(w)=\log(1+e^{-w}
 - **Điểm trung tâm:** Newton rẻ hơn khi $\kappa\log(e_0/\varepsilon)$ vượt $N_{\rm N}(d+d^2/n)$, với $N_{\rm N}$ là số bước Newton.
 - **Mặt trang:**
   - Hạ gradient: $\approx nd\cdot\kappa\log(e_0/\varepsilon)$; Newton: $\approx(nd^2+d^3)\,N_{\rm N}$.
-  - Ví dụ $n=10^5$, $d=10^3$, $e_0/\varepsilon=10^8$ ($\log=18{,}42$), $N_{\rm N}=10$: Newton $\approx1{,}01\cdot10^{12}$; hạ gradient $\approx1{,}84\cdot10^9\,\kappa$; hòa vốn khi $\kappa$ cỡ vài trăm ($548$ khi bỏ hằng số; $137$ khi tính hằng số của giả mã).
+  - Ví dụ $n=10^5$, $d=10^3$, $e_0/\varepsilon=10^8$ ($\log=18{,}42$), $N_{\rm N}=10$: Newton $\approx1{,}01\cdot10^{12}$; hạ gradient $\approx1{,}84\cdot10^9\,\kappa$; hòa vốn khi $\kappa$ có bậc vài trăm ($548$ khi bỏ hằng số; $137$ khi tính hằng số của giả mã).
   - Với $\lVert x_i\rVert^2\le r^2=2$ (tọa độ hằng cộng phần đặc trưng có chuẩn $\le1$): $\lambda=10^{-3}$ cho $\kappa\le501$, cận hạ gradient $\approx9{,}2\cdot10^{11}$; $\lambda=10^{-5}$ cho $\kappa\le50\,001$, cận hạ gradient $\approx9{,}2\cdot10^{13}$.
 - **Sửa sau rà soát năm vai (2026-10-12):** ngưỡng hòa vốn viết "$\kappa$ cỡ vài trăm ($548$ khi bỏ hằng số)"; ở $\lambda=10^{-3}$ hai cận cùng bậc, không kết luận; ở $\lambda=10^{-5}$ Newton có lợi theo cận khoảng $90$ lần; ghi chú nêu ngưỡng $137$ khi tính hằng số của giả mã (M1).
 - **Ghi chú:** đây là so sánh cận, không phải số bước thực; CP03 cho thấy cận của hạ gradient có thể bi quan 10 lần. Kết luận đúng có điều kiện: Newton có lợi khi $\kappa$ rất lớn và $d$ vừa phải; khi $d$ lớn, $d^2$ và $d^3$ chiếm ưu thế. Nguồn đối chiếu: Bottou–Bousquet, SNW ch. 13, Bảng 13.2 (tr. 362): GD $O(nd)$ mỗi bước, $O(\kappa\log\frac1\rho)$ bước; 2GD $O(d^2+nd)$ mỗi bước, $O(\log\log\frac1\rho)$ bước.
@@ -683,7 +683,7 @@ Ví dụ xuyên mạch (VD-A3, mục Ví dụ số): $F_\lambda(w)=\log(1+e^{-w}
   | $(781\,265;\,47\,152)$ | $3{,}68\cdot10^{10}$ | $1{,}74\cdot10^{15}$ | $1{,}05\cdot10^{14}$ | 17,8 GB | $\approx5{,}0\cdot10^4$ |
 
 - **Sửa sau rà soát năm vai (2026-10-12):** dòng ba ghi tên RCV1 (M11).
-- **Ghi chú:** dòng ba lấy kích thước tập RCV1 trong thí nghiệm của Bottou–Bousquet (SNW §13.4.1, tr. 363): 781 265 mẫu huấn luyện, 47 152 đặc trưng tần suất từ – nghịch đảo tần suất văn bản (TF-IDF). Dữ liệu này thưa; con số tính như ma trận dày chỉ để so bậc. Không giả định tốc độ máy.
+- **Ghi chú:** dòng ba lấy kích thước tập RCV1 trong thí nghiệm của Bottou–Bousquet (SNW §13.4.1, tr. 363): 781 265 mẫu huấn luyện, 47 152 đặc trưng tần suất từ – nghịch đảo tần suất văn bản (TF-IDF). Dữ liệu này thưa; con số tính như ma trận dày đặc chỉ để so bậc. Không giả định tốc độ máy.
 - **Hình:** không; bảng HTML.
 - **Liên kết:** áp dụng CP07–CP08; dòng ba dùng lại ở KL02.
 - **Quyết định:** thêm; thiết kế của người dùng đặt câu hỏi về chi phí tính toán, bảng ba quy mô cho câu trả lời định lượng.
@@ -707,7 +707,7 @@ Ví dụ xuyên mạch (VD-A3, mục Ví dụ số): $F_\lambda(w)=\log(1+e^{-w}
 #### CP11 — Thừa số $n$ trong mọi bước
 
 - **Điểm trung tâm:** mọi phương pháp của bài trả chi phí tỉ lệ với $n$ ở mỗi bước; Newton đổi số bước lấy chi phí $d^2$, $d^3$, không bỏ được thừa số $n$.
-- **Mặt trang:** hai dòng: hạ gradient $O(nd)$ nhân $O(\kappa\log\frac1\varepsilon)$; Newton $O(nd^2+d^3)$ nhân $O(\log\log\frac1\varepsilon)$ cộng giai đoạn tắt dần. Một dòng: với RCV1, một gradient đầy đủ (hai tích $Xw$, $X^Tr$) cần $\approx7{,}4\cdot10^{10}$ phép nhân–cộng, một bước Newton dày cần $nd^2+d^3\approx1{,}8\cdot10^{15}$ phép nhân–cộng và 17,8 GB cho Hessian; panel: với ngân sách tính toán cố định, số lần cập nhật giảm theo $1/n$ (sửa sau rà soát 2026-10-12).
+- **Mặt trang:** hai dòng: hạ gradient $O(nd)$ nhân $O(\kappa\log\frac1\varepsilon)$; Newton $O(nd^2+d^3)$ nhân $O(\log\log\frac1\varepsilon)$ cộng giai đoạn tắt dần. Một dòng: với RCV1, một gradient đầy đủ (hai tích $Xw$, $X^Tr$) cần $\approx7{,}4\cdot10^{10}$ phép nhân–cộng, một bước Newton với Hessian dày đặc cần $nd^2+d^3\approx1{,}8\cdot10^{15}$ phép nhân–cộng và 17,8 GB cho Hessian; panel: với ngân sách tính toán cố định, số lần cập nhật giảm theo $1/n$ (sửa sau rà soát 2026-10-12).
 - **Ghi chú:** tổng chi phí là chi phí một bước nhân số bước; Newton giảm thừa số thứ hai nhưng tăng thừa số thứ nhất từ $nd$ lên $nd^2+d^3$, và cả hai thừa số thứ nhất đều chứa $n$ vì mỗi bước đọc toàn bộ dữ liệu. Một lượt qua dữ liệu (một gradient đầy đủ) là đơn vị chi phí nhỏ nhất mà mọi phương pháp của bài phải trả cho mỗi lần cập nhật; khi $n$ tăng, số lần cập nhật làm được trong một ngân sách cố định giảm theo $1/n$.
 - **Hình:** không.
 - **Liên kết:** giới hạn tạo nhu cầu cho KL; KL03(i) dẫn lại kết quả này, không phát biểu lại. Theo giao diện A–B, đây là đầu ra (c) của phiên A3 và giới hạn (i).
@@ -736,10 +736,10 @@ Chức năng: tổng hợp đầu ra ba phiên thành luận đề; nêu hai gi�
 
 #### KL02 — Số liệu trên tập RCV1
 
-- **Điểm trung tâm:** trong thí nghiệm hồi quy logistic có chính quy hóa của Bottou–Bousquet, hạ gradient ngẫu nhiên (SGD), với chi phí mỗi bước không phụ thuộc $n$, đạt cùng mức lỗi kiểm thử (5,66–5,70 %) với thời gian nhỏ hơn một bậc so với một phương pháp kiểu Newton.
+- **Điểm trung tâm:** trong thí nghiệm hồi quy logistic có chính quy hóa của Bottou–Bousquet, hạ gradient ngẫu nhiên (SGD), với chi phí mỗi bước không phụ thuộc $n$, đạt cùng mức lỗi kiểm thử (5,66–5,70 %) với thời gian nhỏ hơn một bậc độ lớn so với một phương pháp kiểu Newton.
 - **Mặt trang:** bảng ba dòng (SNW, Bảng 13.3, tr. 363; mất mát logistic, $\lambda=10^{-5}$): TRON $\rho=10^{-2}$: 30 s, mục tiêu $0{,}18907$, lỗi kiểm thử 5,68 %; TRON $\rho=10^{-3}$: 44 s, $0{,}18890$, 5,70 %; SGD: 2,3 s, $0{,}18893$, 5,66 %.
 - **Sửa sau rà soát năm vai (2026-10-12):** mặt trang giải nghĩa TRON, $\rho$, SGD; ghi chú bỏ hai khái quát quá mức và sửa "chữ số thứ tư" thành hiệu $1{,}7\cdot10^{-4}$ (M11).
-- **Ghi chú:** TRON là phương pháp Newton miền tin cậy giải hệ bằng gradient liên hợp, không lập Hessian dày; không đồng nhất với Newton thuần đã đếm chi phí. SGD chỉ được gọi tên ở đây; định nghĩa và tốc độ thuộc Bài 06. Hai quan sát: chi phí theo $n$ của mỗi bước quyết định thời gian, nên việc dùng SGD bị buộc bởi chi phí mỗi bước; chênh lệch mục tiêu ở chữ số thứ tư đi cùng lỗi kiểm thử chênh nhau không quá 0,04 điểm phần trăm. Số liệu thuộc phần cứng và phần mềm năm 2008–2011, chỉ dùng để so bậc.
+- **Ghi chú:** TRON là phương pháp Newton miền tin cậy giải hệ bằng gradient liên hợp, không lập Hessian dày đặc; không đồng nhất với Newton thuần đã đếm chi phí. SGD chỉ được gọi tên ở đây; định nghĩa và tốc độ thuộc Bài 06. Hai quan sát: chi phí theo $n$ của mỗi bước quyết định thời gian, nên việc dùng SGD bị buộc bởi chi phí mỗi bước; chênh lệch mục tiêu ở chữ số thứ tư đi cùng lỗi kiểm thử chênh nhau không quá 0,04 điểm phần trăm. Số liệu thuộc phần cứng và phần mềm năm 2008–2011, chỉ dùng để so bậc.
 - **Hình:** không; bảng HTML.
 - **Liên kết:** dùng dòng ba của CP09; đầu ra cho E02 của Bài 06. Phân công nguồn chung với Bài 06 (quyết định của điều phối viên 2026-10-11): KL02 chỉ trình bày các hàng mất mát logistic của SNW Bảng 13.3; E02 của Bài 06 trình bày các hàng mất mát hinge và dẫn lại KL02.
 - **Quyết định:** thêm; bằng chứng có nguồn cho hai lý do của MD03c.
@@ -765,8 +765,8 @@ Chức năng: tổng hợp đầu ra ba phiên thành luận đề; nêu hai gi�
 
 - **Điểm trung tâm:** khi chuyển sang dữ liệu và mô hình lớn, phải bỏ tính chính xác của nghiệm làm đích, bảo đảm tất định và gradient đầy đủ; còn giữ tính giảm mỗi bước của hạ gradient với gradient đầy đủ khi còn tính được, bất đẳng thức một bước có số hạng nhiễu và tốc độ theo kỳ vọng của SGD, và hội tụ tới điểm dừng.
 - **Mặt trang** (bản sau tái kiểm 2026-10-12): một dòng "Mất khi (i) chi phí buộc dùng SGD, hoặc (ii) mục tiêu không lồi (Bài 06): hai giới hạn ở trang trước", kèm giải nghĩa $K$ (số bước), $\eta$ (bước), $\Delta_0=F(w_0)-\inf F$, $\tau^2$ (chặn phương sai nhiễu của gradient ngẫu nhiên; Bài 05b viết $\sigma^2$, ở đây đổi vì $\sigma$ là sigmoid). Bảng hai cột "Mất (khi nào)" / "Còn giữ được":
-  - đích là nghiệm chính xác (mất ngay trong bài, vì $F$ chỉ thay cho $R$) ↔ đích là $R$ nhỏ; dừng sớm và chính quy hóa thuộc phương pháp;
-  - bảo đảm tất định của Định lý 3, $e_k\le(1-1/\kappa)^ke_0$ (tốc độ tuyến tính, mất khi (i) hoặc (ii); dưới (ii) với gradient đầy đủ, bổ đề giảm và T7 vẫn là bảo đảm tất định) ↔ gradient đầy đủ, khi còn tính được: $F$ giảm mỗi bước (bổ đề giảm); SGD với $F_\lambda$ lồi mạnh: bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6);
+  - đích là nghiệm chính xác (mất ngay trong bài, vì $F$ chỉ đại diện cho $R$) ↔ đích là $R$ nhỏ; dừng sớm và chính quy hóa thuộc phương pháp;
+  - bảo đảm tất định của Định lý 3, $e_k\le(1-1/\kappa)^ke_0$ (tốc độ tuyến tính, mất khi (i) hoặc (ii); dưới (ii) với gradient đầy đủ, bổ đề giảm và T7 vẫn là bảo đảm tất định) ↔ gradient đầy đủ, khi còn tính được: $F$ giảm mỗi bước (bổ đề giảm); SGD với $F_\lambda$ lồi mạnh: bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6);
   - cực tiểu toàn cục (mất khi (ii)) ↔ điểm dừng xấp xỉ: $\min_{k<K}\lVert\nabla F\rVert^2\le2L\Delta_0/K$ (T7); SGD bước hằng: trung bình $\mathbb E\lVert\nabla F\rVert^2\le\frac{2\Delta_0}{\eta K}+L\eta\tau^2$, mức nhiễu nền tỉ lệ với $\eta$ (T8);
   - chi phí $O(nd)$ mỗi bước (mất khi (i)) ↔ gradient nhóm nhỏ: không chệch, chi phí không phụ thuộc $n$ (Định lý 05c.53).
   Câu luận đề "$n$ lớn với ngân sách cố định buộc thay gradient đầy đủ bằng SGD" đặt ở KL03 (i).
@@ -966,7 +966,7 @@ Chỉ lấy thứ tự trình bày và cách tạo động cơ; không dịch, k
 | Nguồn | Vị trí đã đọc | Lấy gì |
 |---|---|---|
 | Đề cương `sources/đề cương-cơ sở toán học của AI-v2.docx` | Buổi 5, Buổi 6 (LLO11–LLO16), bảng CLO | Phạm vi, LLO, CLO, 2 LT + 1 BT |
-| Boyd, Vandenberghe (2004), `sources/bv_cvxbook.pdf` | §6.3.1–6.3.2 (tr. 305–307); §7.1.1 hồi quy logistic (tr. 354–355); §9.1.2 (tr. 459–461); §9.3.1 (tr. 466–468); §9.5.1 bất biến affine (tr. 486); §9.5.3 (tr. 488–490); §9.7.1–9.7.2 (tr. 509–512) | Chính quy hóa như vô hướng hóa song tiêu chí; mô hình logistic; số điều kiện tập mức; cận số bước hạ gradient và Newton hai giai đoạn; chi phí $(1/3)n^3$ và cấu trúc đường chéo cộng hạng thấp |
+| Boyd, Vandenberghe (2004), `sources/bv_cvxbook.pdf` | §6.3.1–6.3.2 (tr. 305–307); §7.1.1 hồi quy logistic (tr. 354–355); §9.1.2 (tr. 459–461); §9.3.1 (tr. 466–468); §9.5.1 bất biến affine (tr. 486); §9.5.3 (tr. 488–490); §9.7.1–9.7.2 (tr. 509–512) | Chính quy hóa như vô hướng hóa song tiêu chí; mô hình logistic; số điều kiện tập mức dưới; cận số bước hạ gradient và Newton hai giai đoạn; chi phí $(1/3)n^3$ và cấu trúc đường chéo cộng hạng thấp |
 | Goodfellow, Bengio, Courville (2016), `sources/Deep Learning … (z-lib.org).pdf` | §5.2 (tr. 110–117, hình 5.2 tr. 112); §5.2.2 (tr. 118); §5.7.1 (tr. 140); §7.1.1 (tr. 231); §7.3 (tr. 239–240); §7.8 (tr. 246–250); §8.1 (tr. 275–277); §8.2.1 | Thứ tự dung lượng → quá khớp → chính quy hóa; $X^TX$ suy biến khi $d>n$ và logistic trên dữ liệu tách được (§7.3) là động cơ trực tiếp nối A1 với A2; dừng sớm; rủi ro và đại lượng thay thế |
 | Sra, Nowozin, Wright (2011), ch. 13 Bottou, Bousquet, "The Tradeoffs of Large-Scale Learning" (`sources/(Neural Information Processing series) …pdf`; bản `MIT-Optimization-for-Machine-Learning.2012.pdf` có cùng chương) | §13.1–13.2 (tr. 351–354); §13.3 Bảng 13.2 (tr. 360–362); §13.4.1 Bảng 13.3 (tr. 363) | Đánh đổi xấp xỉ–ước lượng–tối ưu (luận đề); bảng chi phí GD/2GD/SGD; số liệu RCV1 |
 | Giáo trình *Học máy thống kê* của người dùng (`../SML-textbook-main.zip`, giải nén vào thư mục nháp riêng) | `chapters/05_regression/sec_linear_regression.tex`; `chapters/01_classification/sec_logistic_regression.tex` (mục mô hình, hợp lý cực đại, thuật toán huấn luyện) | Thứ tự: mô hình → lỗi trên tập huấn luyện → phương trình chuẩn → chi phí nghịch đảo $X^TX$ khi số chiều lớn → hạ gradient với điều kiện bước theo $\lambda_{\max}$. Không chạy mã nào trong gói |
@@ -998,7 +998,7 @@ Cột "Nhãn trên trang" là nhãn hiển thị trên mặt trang; mã KQ chỉ
 | KQ11 | không lên trang | Tách được ⇒ $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0$ | Mới | Bài tập về nhà | ghi chú LG08 |
 | KQ12 | "Nhắc lại (Bài 02, Mệnh đề 02.21(c))" | Ridge có nghiệm duy nhất với mọi $d$ | Bài 02 Mệnh đề 02.21 | Phát biểu lại | HQ10 |
 | — | không đánh số | Trung bình mẫu ước lượng không chệch kỳ vọng | Bài 05c §E | Trích dẫn | HQ05 |
-| — | T5, T6, T7, T8 (Bài 05b) | SGD lồi mạnh: bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu (T6); điểm dừng xấp xỉ (T7, T8, có mức nhiễu nền) | Bài 05b | Chỉ nêu tên | KL04 |
+| — | T5, T6, T7, T8 (Bài 05b) | SGD lồi mạnh: bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu (T6); điểm dừng xấp xỉ (T7, T8, có mức nhiễu nền) | Bài 05b | Chỉ nêu tên | KL04 |
 
 ## Rủi ro và điểm cần người dùng quyết
 
@@ -1017,7 +1017,7 @@ Cột "Nhãn trên trang" là nhãn hiển thị trên mặt trang; mã KQ chỉ
 | Mã | Rủi ro | Cách xử lý trong dàn bài | Trạng thái |
 |---|---|---|---|
 | R1 | Phát biểu về Newton và $\kappa$. Chỉ số bước của giai đoạn bậc hai, $\log_2\log_2(\varepsilon_0/\varepsilon)$, không chứa $\kappa$; $\varepsilon_0=2m^3/L_H^2$ và giai đoạn tắt dần phụ thuộc $m,M,L_H$ | CP05 dùng cách phát biểu này; Bài 06 dùng cùng câu (điểm hòa giải 2) | mở |
-| R2 | Công thức chi phí Newton $O(nd^2+d^3)$ chỉ đúng với ma trận dày và $n\ge d$ | CP07 nêu đủ ba trường hợp: $d>n$ dùng $O(n^2d+n^3)$; dữ liệu thưa thay $nd$ bằng số phần tử khác $0$ | mở |
+| R2 | Công thức chi phí Newton $O(nd^2+d^3)$ chỉ đúng với ma trận dày đặc và $n\ge d$ | CP07 nêu đủ ba trường hợp: $d>n$ dùng $O(n^2d+n^3)$; dữ liệu thưa thay $nd$ bằng số phần tử khác $0$ | mở |
 | R3 | Số liệu RCV1: TRON là Newton miền tin cậy với gradient liên hợp, không phải Newton thuần; phần cứng khoảng năm 2008–2011 | KL02 dùng để so bậc, có chú thích | mở |
 | R4 | Ví dụ năm điểm chỉ cho kết luận định tính; mức tăng $\kappa$ phụ thuộc cơ sở đơn thức (chiều tăng thì chung, theo xen kẽ Cauchy) | Ghi chú HQ09 nêu giới hạn này | mở |
 | R5 | Cận số bước bi quan: $\kappa\log(e_0/\varepsilon)$ lớn hơn số bước thực 9–20 lần trên ví dụ | CP03, CP08 nêu rõ để tránh kết luận sai rằng Newton luôn rẻ hơn khi $\kappa$ vượt ngưỡng tính từ cận | mở |
