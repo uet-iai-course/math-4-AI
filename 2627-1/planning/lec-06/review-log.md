@@ -570,3 +570,85 @@ Kiểm tra: `git diff --check` sạch; `grep -E '\bT[1-8]\b'` trong `materials/l
 **Quyết định của điều phối viên:** (chờ duyệt)
 
 Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12
+
+### Tác tử
+
+| Vai | Loại (Agent tool) | Mô hình | Effort | Ghi tệp |
+|---|---|---|---|---|
+| Rà soát thuật ngữ và thứ tự định nghĩa (Detect) | `general-purpose` | claude-opus-5-5 | high | không; báo cáo `report-06.md` do điều phối viên lưu |
+| Biên tập (Edit, theo `decisions-common.md` và `decisions-06.md` của điều phối viên Fable 5.1) | `general-purpose` | claude-opus-5-5 | high | deck, `img/lec-06/two-layer-network.svg`, `outline.md`, `storyboard.md`, mục này, `materials/lec-06/{lecture-note,exercises}.md`; không chạy `sync-local-materials.py`, không commit |
+
+Tác tử biên tập đã nạp `no-ai-slop` (SKILL.md, eval.md), dùng chế độ Edit và tự kiểm các câu mới theo eval.md (không từ cấm, không câu dẫn rỗng, không gạch ngang trang trí; một câu ghi chú D01b viết lại cho cụ thể).
+
+### Thay đổi cấu trúc
+
+- A04 “Ngữ cảnh” đứng trước A03 (B3); D01b đứng trước D01 (B7, phương án 1).
+- D04 tách thành D04 (bổ đề giảm có định nghĩa gradient $L$-Lipschitz) và D04b “Ví dụ: bổ đề giảm trên mạng tuyến tính một đơn vị”: thêm định nghĩa làm trang hai cột vượt khung 16:9 (đáy nội dung 726 px logic, khung 675). Deck 72 → 73 trang, vẫn 7 mạch; trang “Nội dung” và `#/N` của các mạch không đổi.
+
+### Phát hiện và quyết định
+
+| mức độ | trang | vấn đề | quyết định điều phối viên | trạng thái | cách sửa |
+|---|---|---|---|---|---|
+| trung bình | B04, ghi chú B00, B09b, SVG | “lớp ẩn” lẫn với “tầng”, “lớp” còn chỉ lớp nhãn (A1) | chấp nhận | đã sửa | “tầng ẩn (hidden layer)”; tiêu đề B04, nhãn và `desc` của `two-layer-network.svg` (`desc` cũng đổi “độ lệch b₁” → “độ chệch b₁”) |
+| trung bình | E02, ghi chú E02, G04 | “sai số dư” cho excess error (A2) | chấp nhận | đã sửa | “sai số vượt”; “(excess error)” và định nghĩa trong ghi chú E02; phân rã ba thành phần không lên mặt trang vì E02 sẽ vượt 60 (58 sau sửa), giữ trong ghi chú |
+| trung bình | G02 | “quét hết dữ liệu” (A3) | chấp nhận | đã sửa | “toàn bộ $n$ mẫu” (bản “… mỗi bước” làm ô ba dòng, bảng vượt khung; cột đã tên “Mỗi bước”) |
+| nhẹ | F06 | “đạt đáy rồi tăng” (A4) | chấp nhận | đã sửa | “giảm tới cực tiểu rồi tăng” |
+| nhẹ | D00, ghi chú A02 | “phép thử Hessian” (A5) | chấp nhận | đã sửa | “phép kiểm tra bậc hai” |
+| nhẹ | ghi chú C02 | “không chạm điểm gãy” (A6) | chấp nhận | đã sửa | “không rơi vào điểm gãy” |
+| nhẹ | ghi chú D05 | “triệt tiêu (tổng lồng)” (A7) | chấp nhận | đã sửa | “triệt tiêu liên tiếp (telescoping)” |
+| nhẹ | ghi chú C01 | “sai số cắt” (A8) | chấp nhận | đã sửa | “sai số chặt cụt (truncation error)” |
+| nhẹ | ghi chú C01, C03 | thiếu tiếng Anh (A9) | chấp nhận | đã sửa | “(finite difference)”, “(central difference)” |
+| nhẹ | B05 | ReLU gọi là “hàm tuyến tính chỉnh lưu” (A10) | chấp nhận | đã sửa | mặt trang “hàm ReLU”; ghi chú “đơn vị tuyến tính chỉnh lưu (rectified linear unit, ReLU)” |
+| nhẹ | A01, B06 | “nơ ron”; thiếu tiếng Anh (A11) | chấp nhận | đã sửa | “nơ-ron”; “(neural network)” ở ghi chú B06 |
+| nhẹ | C00–C04 | tiếng Anh “backpropagation” chỉ ở C04 (A12) | chấp nhận | đã sửa | chuyển lên ghi chú C00 |
+| nhẹ | A03, E02 | thiếu “(surrogate)” (A13) | chấp nhận | đã sửa | ghi chú A03 và E02 |
+| nhẹ | F06b | thiếu “(patience)” (A14) | chấp nhận | đã sửa | ghi chú F06b |
+| nhẹ | F07 | “tỉ lệ giữ” không có tên tiếng Anh (A15) | chấp nhận | đã sửa | ghi chú “hệ số co (shrinkage factor)” |
+| nhẹ | E05 | “lỗi xác thực” lệch “sai số xác thực” (A16) | chấp nhận | đã sửa | “sai số xác thực” |
+| nhẹ | F02b | “rút đều” (A17) | chấp nhận | đã sửa | “chọn đều” |
+| nhẹ | E05 | trật tự từ bước 1 (A18) | chấp nhận | đã sửa | “Chọn đều ngẫu nhiên $b$ chỉ số làm $B_k$, …” |
+| nhẹ | D07b | “không loại điểm gần yên ngựa” (A19) | chấp nhận | đã sửa | “không loại khả năng dừng gần điểm yên ngựa” |
+| nhẹ | D03 | “mục 3” trùng cách gọi mạch (A20) | chấp nhận | đã sửa | “(Bài 00; ý 3 là phần bổ sung)”; ghi chú “Ý 3” |
+| nhẹ | G04 | “ch. 13” (A21) | chấp nhận | đã sửa | “chương 13” |
+| nhẹ | ghi chú A04, D02, E04, E06c | bias hai tên; “độ lệch” còn chỉ sai lệch (A22) | chấp nhận | đã sửa | “độ chệch (bias)” cho $b_1,b_2$, “hệ số chặn” cho mô hình tuyến tính, “sai lệch” cho độ lệch khỏi trung bình |
+| nhẹ | A04 | “(minibatch)” muộn (A23) | chấp nhận | đã sửa | thêm vào ghi chú A04 (giữ trong bảng thuật ngữ ở ghi chú E05) |
+| nhẹ | nhiều trang | thiếu tiếng Anh lần đầu (A24) | chấp nhận | đã sửa | ghi chú: empirical risk (mặt trang A04), expected risk, validation set (A04), activation function (B06), strongly convex (F02), early stopping (F06), step-size schedule (E05), descent lemma (D04), batch size (A04) |
+| nghiêm trọng | D04 | gradient $L$-Lipschitz chưa định nghĩa (B1) | chấp nhận | đã sửa | “Nhắc lại:” D04 nêu $\lVert\nabla F(u)-\nabla F(v)\rVert\le L\lVert u-v\rVert$ với mọi $u,v\in C$; ví dụ tách sang D04b |
+| nghiêm trọng | F02 | $\mu$-lồi mạnh chưa định nghĩa (B2) | chấp nhận | đã sửa | “tức $F-\tfrac\mu2\lVert\theta\rVert^2$ lồi”; ghi chú thêm dạng $\nabla^2F\succeq\mu I$ |
+| trung bình | A03 | bốn khái niệm dùng trước định nghĩa (B3) | chấp nhận | đã sửa | A04 lên trước A03; ô “Đích”: “$F$ chỉ ước lượng $R$”; ô “Biểu diễn”: “không lồi: chỉ chặn được $\lVert\nabla F\rVert$”. 75 → 67 |
+| trung bình | A04 | $F$, $R$ không có tên trên mặt trang (B4) | chấp nhận | đã sửa | dòng “$F$: rủi ro thực nghiệm (empirical risk); $R$: rủi ro kỳ vọng (Bài 05).” |
+| trung bình | E05, F05b, F06, F06b, G01 | tập xác thực không nhắc lại (B5) | chấp nhận (phương án 1) | đã sửa | A04 thêm “Tập xác thực: mẫu tách riêng, không dùng tính gradient, dùng để ước lượng $R$.” A04 29 → 54, 6 dòng; storyboard F06 ghi nhận |
+| trung bình | B05, B06 | đơn vị ẩn, tiền kích hoạt, hàm kích hoạt chỉ ở ghi chú (B6) | chấp nhận | đã sửa | B06 dòng “Ký hiệu:” (32 → 47); B05 “(mỗi hàng của $W_1$ là một đơn vị ẩn)” (26 → 30, dưới 40) |
+| trung bình | D01 | điểm yên ngựa dùng trước “Nhắc lại” (B7) | chấp nhận (phương án 1) | đã sửa | D01b đứng trước D01; câu nối trong ghi chú hai trang đổi theo |
+| trung bình | D02, D03 | xác định dương, trị riêng không nhắc lại (B8) | chấp nhận | đã sửa | D02 “Nhắc lại: $A$ đối xứng, $A\succ0$ (xác định dương) khi $v^\top Av>0$ mọi $v\ne0$, tức mọi trị riêng dương; $A\succeq0$ khi chúng không âm.” ở cột phải dưới hình (cột trái đã kín khung). 27 → 45 |
+| trung bình | B08 | ma trận hoán vị chưa định nghĩa (B9) | chấp nhận | đã sửa | “(mỗi hàng, mỗi cột có đúng một số $1$)”; ghi chú nêu đủ. 44 → 52 |
+| trung bình | F07 | $F_\lambda$ dùng trước G01 (B10) | chấp nhận | đã sửa | “với cực tiểu của mục tiêu cộng thêm $\tfrac\lambda2\lVert\theta\rVert^2$”. 44 → 46 |
+| trung bình | G01 | hội tụ tuyến tính không nhắc lại (B11) | chấp nhận (nếu ≤ 80) | đã sửa | ô “Sai số giảm theo cấp số nhân (hội tụ tuyến tính), tất định …”; bỏ chữ “nhỏ” ở dòng mở và viết $\limsup_k\mathbb E\lVert\theta_k-\theta^*\rVert^2\le\eta\sigma^2/\mu$ thay “cỡ …” để giữ trần: 74 → 79 |
+| ngoài phạm vi | ghi chú G01 | mã “Bài 05 KL04” | chấp nhận | đã sửa | “bảng kết luận của Bài 05” |
+| ngoài phạm vi | ghi chú G04 | nhãn “Đáp án 1.” | chấp nhận | đã sửa | “Lời giải: câu 1, …”, “Câu 2–4” |
+| ngoài phạm vi | ghi chú F02b, F04b | “Ví dụ A/D của Bài 05b” | chấp nhận | đã sửa | “ví dụ cùng tên của Bài 05b” (ví dụ ba quan sát), “ví dụ bậc bốn của Bài 05b” (tên theo deck 05b) |
+| liên bài 1 | ghi chú B02 | “biên” cho margin | áp dụng quyết định chung | đã sửa | “biên có dấu (signed margin, còn gọi là lề có dấu)” |
+| liên bài 8 | C01, E02, F05b, G01 (mặt trang); ghi chú B03, C01, F02, F05b, G01, G02, G04 | “cỡ” chỉ độ lớn | áp dụng quyết định chung | đã sửa | “khoảng” cho số cụ thể, “bậc”/“có bậc”/“cùng bậc với” cho bậc độ lớn; 21 chỗ trong deck, cả storyboard, outline, ghi chú bài giảng, bài tập; giữ “cỡ chữ” (cỡ phông) trong outline |
+| liên bài 12 | ghi chú A02, E01 | LLO/CLO, RCV1 viết tắt | áp dụng quyết định chung | đã sửa | “chuẩn đầu ra bài học (LLO)”, “chuẩn đầu ra học phần (CLO)”; “RCV1 (Reuters Corpus Volume I, …)” |
+
+Không có mục bị bác bỏ trong `decisions-06.md`.
+
+### Học liệu cùng bài
+
+`materials/lec-06/lecture-note.md` và `exercises.md` đổi cùng thuật ngữ: “cỡ” (22 + 5 chỗ), “nơ ron” → “nơ-ron”, tiêu đề mục 2.3 “Tầng ẩn …”, “sai số dư” → “sai số vượt (excess error)”, “độ lệch” → “độ chệch (bias)” cho $b_1,b_2$ và “sai lệch” cho độ lệch khỏi trung bình, “phép thử (Hessian)” → “phép kiểm tra (bậc hai)”, “tập mức” → “tập mức dưới (sublevel set)”, “Sai số cắt” → “Sai số chặt cụt (truncation error)”, “tổng lồng” → “triệt tiêu liên tiếp”, “rút đều” → “chọn đều”, “chạm” → “rơi vào”/“đạt”, “đạt đáy” → “đạt/giảm tới cực tiểu”. Giữ “độ lệch chuẩn” (standard deviation) và “biên tập”. Chưa chạy `sync-local-materials.py` (điều phối viên chạy một lần cuối).
+
+### Mật độ sau sửa (bộ đếm token có chữ, bỏ tiêu đề, KaTeX, ghi chú)
+
+A01 31 → 30; A03 75 → 67; A04 29 → 54; B05 26 → 30; B06 32 → 47; B08 44 → 52; D00 28 → 30; D02 27 → 45; D03 51 → 53; D04 35 → 24; D04b 32 (mới, 5 dòng); D07b 42 → 45; E02 54 → 58; E05 57 → 60; F02 36 → 38; F06 52 → 54; F07 44 → 46; G01 74 → 79; G02 77 → 76. Các trang khác không đổi mặt trang.
+
+### Kiểm tra
+
+- `deckcheck.py` trên 41 trang đã sửa hoặc thêm: `errors: none`; 7 FLAG `narrow … hover` (A03, B05, B08, E01, E04, G01, G02) đều có sẵn trên bản trước đợt này (chạy lại trên bản sao trước khi sửa cho cùng kết quả), không có FLAG mới.
+- Ảnh chụp với chuyển trang tắt (Playwright, 1600×900 và 390×844, cuộn hết vùng `.lecture-viewport` khi có): đáy nội dung mọi trang đã sửa ≤ 675 px logic ở 16:9 (G02 658, F07 634, B08 626, D02 621, B06 616); không `.katex-error`, không tràn ngang trang. Đã xem ảnh A03, A04, B05, B06, B08, D02, D04, D04b, E05, F07, G01, G02 (rộng) và B06, D02, D04 (hẹp).
+- Mỗi trang có đúng một mục trong `storyboard.md` và `outline.md`, cùng mã, cùng thứ tự với deck (73/73/73).
+- `grep` từ cũ trong deck: “cỡ”, “nơ ron”, “lớp ẩn”, “sai số dư”, “độ lệch”, “lỗi xác thực”, “phép thử”, “Đáp án”, “KL0”, “Ví dụ A/D”, “quét hết”, “chạm”, “tổng lồng”, “sai số cắt”, “rút đều”, “ch. 13”, “đạt đáy”: 0.
+- `git diff --check`: sạch.
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-06 và decisions-common; kiểm định nghĩa gradient L-Lipschitz (D04), μ-lồi mạnh (F02), xác định dương qua trị riêng của ma trận đối xứng (D02), cận limsup E‖θ_k−θ*‖² ≤ ησ²/μ (G01) và số liệu trang tách mới D04b (∇F(θ₀) = (−3/8, −3/8), bảo đảm 9/128, F(θ₁) = 0,13905); chấp nhận tách D04b và đảo thứ tự A04/A03, D01b/D01; tự chạy deckcheck trên A03, A04, B06, B08, D02, D04, D04b, F02, G01, G02: 0 lỗi, không tràn ở 16:9, bốn cờ cuộn ngang khổ hẹp là bảng có sẵn; xem ảnh D04, D04b, A04 ở 1600×900. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.

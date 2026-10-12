@@ -240,7 +240,7 @@ $$
 
 4. $z=(0+\tfrac12-\tfrac12,\ 0-1+1)=(0,0)$: cả hai tiền kích hoạt ở điểm gãy. Tại đó $\ell$ không khả vi theo $W_1$, $b_1$, nên vector lan truyền ngược trả về phụ thuộc giá trị gán cho $\sigma'(0)$; với quy ước $\sigma'(0)=0$ thì $\delta_z=0$. Một bước SGD là một lần lan truyền ngược trên mỗi mẫu của nhóm, lấy trung bình, rồi cập nhật, nên quy ước ảnh hưởng trực tiếp tới bước.
 
-5. Phần dư $wx_i+c-y_i=-2,0,0,-2$, gradient mẫu $(2,-2)$, $(0,0)$, $(0,0)$, $(-4,-2)$, trung bình $\nabla F=(-\tfrac12,-1)$. Độ lệch là $(\tfrac52,-1)$, $(\tfrac12,1)$, $(\tfrac12,1)$, $(-\tfrac72,-1)$, với bình phương chuẩn $\tfrac{29}4,\tfrac54,\tfrac54,\tfrac{53}4$, nên $\operatorname{tr}\Sigma=\tfrac{23}4$. Theo Định lý 06.25 (không hoàn lại),
+5. Phần dư $wx_i+c-y_i=-2,0,0,-2$, gradient mẫu $(2,-2)$, $(0,0)$, $(0,0)$, $(-4,-2)$, trung bình $\nabla F=(-\tfrac12,-1)$. Sai lệch là $(\tfrac52,-1)$, $(\tfrac12,1)$, $(\tfrac12,1)$, $(-\tfrac72,-1)$, với bình phương chuẩn $\tfrac{29}4,\tfrac54,\tfrac54,\tfrac{53}4$, nên $\operatorname{tr}\Sigma=\tfrac{23}4$. Theo Định lý 06.25 (không hoàn lại),
 
 $$
 \mathbb E\lVert\widehat g-\nabla F\rVert^2=\frac{23}4\cdot\frac13\cdot\frac{4-3}{4-1}=\frac{23}{36}.
@@ -359,17 +359,17 @@ Mức độ: nhận biết và vận dụng vào AI. LLO11, LLO15; CLO1, CLO4.
 :::
 
 ::: hint Gợi ý Bài 11
-Ở câu 1, tính chi phí một bước theo bảng của Ví dụ 06.17 và dùng bảng lựa chọn ở Mục 7.2 của ghi chú. Ở câu 4, so mức nhiễu nền với sai số thống kê cỡ $1/\sqrt n$ (Nhận xét 06.23).
+Ở câu 1, tính chi phí một bước theo bảng của Ví dụ 06.17 và dùng bảng lựa chọn ở Mục 7.2 của ghi chú. Ở câu 4, so mức nhiễu nền với sai số thống kê bậc $1/\sqrt n$ (Nhận xét 06.23).
 :::
 
 ::: solution Lời giải Bài 11
-1. (a) Newton: một bước tốn $np^2+p^3=2{,}5\cdot10^6+1{,}25\cdot10^5\approx2{,}6\cdot10^6$ phép tính, và có hội tụ bậc hai cục bộ (Định lý 05.33). (b) SGD với bước $\eta_k=\tfrac1{\lambda(k+k_0)}$, $\lambda$ là hệ số chính quy hóa đóng vai $\mu$ (Định lý 06.32). Lý do chính là chi phí một bước: hạ gradient đầy đủ tốn $np=10^{14}$, Newton tốn cỡ $np^2+p^3\approx10^{20}$, còn một bước SGD tốn $bp$. Chỉ báo bổ sung: theo Bottou và Bousquet (2011, Bảng 13.2), với $\kappa=10$ và độ chính xác $10^{-6}$, hai bậc thời gian bằng nhau khi $n$ cỡ $10^5$–$10^6$, và $n=10^8$ vượt xa bậc đó. (c) SGD nhóm nhỏ (Thuật toán 06.2) với lịch bước và dừng sớm (Thuật toán 06.3); Định lý 06.34 chỉ là định hướng nếu mạng dùng ReLU.
+1. (a) Newton: một bước tốn $np^2+p^3=2{,}5\cdot10^6+1{,}25\cdot10^5\approx2{,}6\cdot10^6$ phép tính, và có hội tụ bậc hai cục bộ (Định lý 05.33). (b) SGD với bước $\eta_k=\tfrac1{\lambda(k+k_0)}$, $\lambda$ là hệ số chính quy hóa đóng vai $\mu$ (Định lý 06.32). Lý do chính là chi phí một bước: hạ gradient đầy đủ tốn $np=10^{14}$, Newton tốn $np^2+p^3\approx10^{20}$, còn một bước SGD tốn $bp$. Chỉ báo bổ sung: theo Bottou và Bousquet (2011, Bảng 13.2), với $\kappa=10$ và độ chính xác $10^{-6}$, hai bậc thời gian bằng nhau khi $n$ trong khoảng $10^5$–$10^6$, và $n=10^8$ vượt xa bậc đó. (c) SGD nhóm nhỏ (Thuật toán 06.2) với lịch bước và dừng sớm (Thuật toán 06.3); Định lý 06.34 chỉ là định hướng nếu mạng dùng ReLU.
 
 2. Mệnh đề 06.9 là một phép kiểm tra tại một cặp cực tiểu toàn cục có hai đơn vị ẩn khác nhau. Trên dữ liệu khác, mọi cực tiểu có thể có các đơn vị trùng nhau; khi đó phép hoán vị không tạo cực tiểu mới và phép kiểm tra không kết luận.
 
 3. Định lý 06.34 chặn trung bình theo $k$ của kỳ vọng bình phương chuẩn gradient của dãy lặp. Nó không chặn khoảng cách tới một cực tiểu, không chặn giá trị $F$, không phân biệt điểm yên ngựa với cực tiểu, và không chặn $R$ của tham số được trả về theo tập xác thực (Nhận xét 06.36).
 
-4. Khi số bước $K$ cố định trước và sai số giá trị tương ứng với mức nhiễu nền, cỡ $\tfrac L2\cdot\tfrac{\eta\sigma^2}\mu$, nhỏ hơn sai số ước lượng cỡ $1/\sqrt n$. Khi đó, theo phân tích Bottou–Bousquet cho bài toán lồi, giảm tiếp sai số tối ưu không đổi bậc của sai số dư.
+4. Khi số bước $K$ cố định trước và sai số giá trị tương ứng với mức nhiễu nền, có bậc $\tfrac L2\cdot\tfrac{\eta\sigma^2}\mu$, nhỏ hơn sai số ước lượng bậc $1/\sqrt n$. Khi đó, theo phân tích Bottou–Bousquet cho bài toán lồi, giảm tiếp sai số tối ưu không đổi bậc của sai số vượt.
 
 **Kiểm tra.** Ở câu 1(b): $10^8\cdot10^{12}+10^{18}=1{,}01\cdot10^{20}$.
 :::
