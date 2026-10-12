@@ -11,7 +11,7 @@ Mọi mục tiêu sau là minh chứng bộ phận của hai chuẩn đầu ra b
 1. Lập hàm Lagrange và hàm đối ngẫu của một bài toán có ràng buộc, tính hàm đối ngẫu đến công thức tường minh trên dữ liệu nhỏ và dùng giá trị của nó làm cận dưới cho giá trị tối ưu (LLO4, CLO1).
 2. Chứng minh đối ngẫu yếu, lập và giải bài toán đối ngẫu, phân biệt khoảng đối ngẫu của một cặp phương án với khoảng đối ngẫu tối ưu (LLO4).
 3. Kiểm tra điều kiện Slater, nêu đúng các kết luận mà định lý Slater bảo đảm và không bảo đảm, nhận ra trường hợp đối ngẫu mạnh đúng mà nghiệm đối ngẫu không đạt (LLO4).
-4. Biểu diễn bài toán và hàm đối ngẫu trên mặt phẳng giá trị, đọc nhân tử như hệ số góc của đường đỡ, đọc cận dưới và độ nhạy của giá trị tối ưu (LLO5).
+4. Biểu diễn bài toán và hàm đối ngẫu trên mặt phẳng giá trị, đọc nhân tử qua độ dốc của đường đỡ, đọc cận dưới và độ nhạy của giá trị tối ưu (LLO5).
 5. Lập và giải hệ điều kiện Karush–Kuhn–Tucker theo các nhánh bù trừ, phân biệt giả thiết cho tính cần và tính đủ (LLO4, CLO1).
 6. Vận dụng đối ngẫu vào hồi quy có ràng buộc chuẩn, máy vector hỗ trợ lề mềm và bài toán chọn dữ liệu rời rạc, nêu hậu quả khi một giả thiết bị vi phạm (LLO4, LLO5, CLO1).
 
@@ -78,7 +78,7 @@ $$
 
 ### 1.1 Cận trên và cận dưới của giá trị tối ưu
 
-Mỗi điểm khả thi cho một cận trên của giá trị tối ưu, vì theo định nghĩa cận dưới đúng (Định nghĩa 01.10), $p^*\le f_0(x)$ với mọi $x$ khả thi. Việc xác định cận dưới khó hơn, vì khẳng định $f_0(x)\ge\ell$ đòi hỏi một lập luận áp dụng đồng thời cho mọi điểm khả thi. Bài toán (1.1) đủ nhỏ để giải trực tiếp, nên chúng ta dùng nó làm ví dụ xuyên suốt chương và kiểm tra mọi công cụ mới trên một bài toán đã biết nghiệm.
+Mỗi điểm khả thi cho một cận trên của giá trị tối ưu, vì theo định nghĩa cận dưới đúng (Định nghĩa 01.10), $p^*\le f_0(x)$ với mọi $x$ khả thi. Việc xác định cận dưới khó hơn, vì khẳng định $f_0(x)\ge\ell$ đòi hỏi một lập luận áp dụng đồng thời cho mọi điểm khả thi. Bài toán (1.1) đủ nhỏ để giải trực tiếp, nên chúng ta dùng nó làm ví dụ xuyên suốt chương và kiểm tra mọi công cụ mới trên một bài toán đã biết nghiệm. Trên trang chiếu, bài toán này được gọi là bài toán một biến trên đoạn $[2,4]$.
 
 ::: example Ví dụ 03.1 (Bài toán xuyên suốt)
 **Dữ kiện.**
@@ -239,7 +239,7 @@ Trên tập khả thi $[1,\infty)$, $f_0'(x)=2x+2>0$, nên $f_0$ tăng và nhỏ
 
 Xuất phát từ nhu cầu khẳng định không phương án nào tốt hơn $x=2$, chúng ta đã đặt tên cho cận dưới, khoảng chứng nhận và chứng nhận tối ưu (Định nghĩa 03.1). Theo Mệnh đề 03.2, một cận dưới chặn sai số của mọi phương án, và một cận dưới bằng giá trị của một điểm khả thi là chứng nhận tối ưu. Ví dụ 03.2 còn cho thấy phép cộng $\lambda f_1$ với $\lambda\ge0$ sinh ra cận dưới cho bài toán (1.1).
 
-## 2. Hàm Lagrange, hàm đối ngẫu và đối ngẫu yếu
+## 2. Hàm và bài toán đối ngẫu Lagrange
 
 Phép cộng $\lambda f_1$ ở Mục 1 mới được thực hiện cho một ràng buộc với một giá trị $\lambda$ chọn trước. Chưa có lập luận cho trường hợp tổng quát có nhiều bất đẳng thức, có đẳng thức hay có miền khác $\mathbb R$, trong khi các bài toán của học phần có nhiều ràng buộc và có đẳng thức. Bài toán pha trộn của Bài 02 có bốn bất đẳng thức tuyến tính. Bài toán $\min\tfrac12(x_1^2+x_2^2)$ với $x_1\ge1$, $x_2\ge2$ có hai bất đẳng thức, mỗi bất đẳng thức chặn một biến, nên một hệ số chung cho cả hai không đủ để cận dưới đạt giá trị tối ưu $\tfrac52$ (Ví dụ 03.6 tính con số này).
 
@@ -1141,7 +1141,7 @@ Tại $\lambda=(\tfrac12,0)$, $L=x_1+\tfrac12(x_1^2+x_2^2)-x_1=\tfrac12\lVert x\
 
 Hai ví dụ đầu mục cho thấy khoảng đối ngẫu có thể dương khi thiếu tính lồi (Ví dụ 03.7) hoặc thiếu độ dư (Ví dụ 03.8). Sau khi định nghĩa đối ngẫu mạnh (Định nghĩa 03.12) và điều kiện Slater (Định nghĩa 03.13), chúng ta đã dùng phép tách hai tập lồi (Bổ đề 03.14) để chứng minh Định lý 03.15. Theo định lý này, bài toán lồi có điểm Slater và $p^*$ hữu hạn thì có nhân tử $(\lambda^*,\nu^*)$ với $g(\lambda^*,\nu^*)=p^*$. Phạm vi của định lý được vạch bởi Ví dụ 03.10, 03.11 và Nhận xét 03.17.
 
-## 4. Hình học của đối ngẫu trên mặt phẳng giá trị
+## 4. Hình học của đối ngẫu
 
 Chứng minh Định lý 03.15 tách tập $\mathcal A$ khỏi nửa đường thẳng $\mathcal B$ bằng một siêu phẳng, rồi đọc nhân tử từ pháp tuyến của siêu phẳng đó. Tuy nhiên, lập luận này chưa cho thấy trực tiếp vì sao nhân tử là hệ số của siêu phẳng.
 
@@ -1151,7 +1151,7 @@ Với bài toán (1.1), có một ràng buộc và không có đẳng thức, n�
 2. bài toán thứ nhất của Ví dụ 03.10 có đối ngẫu mạnh nhưng bài toán đối ngẫu không đạt nghiệm;
 3. nhân tử $\lambda^*=2$ đo một đại lượng của bài toán chưa được gọi tên.
 
-Trong mục này, chúng ta định nghĩa tập giá trị và tập trên, rồi chứng minh rằng hàm đối ngẫu là tung độ gốc của một đường đỡ. Sau đó, chúng ta đặc trưng đối ngẫu mạnh có nghiệm đối ngẫu bằng sự tiếp xúc của một đường đỡ không thẳng đứng tại điểm $(0,p^*)$. Cuối cùng, chúng ta đọc nhân tử, tức số đối của hệ số góc của đường đỡ, như độ nhạy của giá trị tối ưu khi nới ràng buộc.
+Trong mục này, chúng ta định nghĩa tập giá trị và tập trên, rồi chứng minh rằng hàm đối ngẫu là tung độ gốc của một đường đỡ. Sau đó, chúng ta đặc trưng đối ngẫu mạnh có nghiệm đối ngẫu bằng sự tiếp xúc của một đường đỡ không thẳng đứng tại điểm $(0,p^*)$. Cuối cùng, chúng ta đọc nhân tử, tức số đối của độ dốc của đường đỡ, như độ nhạy của giá trị tối ưu khi nới ràng buộc.
 
 ### 4.1 Ảnh của phương án trên mặt phẳng giá trị
 
@@ -1169,7 +1169,7 @@ Bảng sau ghi năm phương án của bài toán (1.1), với $u=(x-2)(x-4)$ v�
 
 Một phương án khả thi khi và chỉ khi điểm của nó có $u\le0$. Giá trị tối ưu là tung độ thấp nhất trong các điểm nằm bên trái trục tung hoặc trên trục tung, và theo bảng, đó là điểm $(0,5)$.
 
-Về mặt hình học, bài toán gốc là "tìm điểm thấp nhất của đường cong ở nửa mặt phẳng $u\le0$", còn mỗi giá trị $L=t+\lambda u$ là tung độ gốc trục $u=0$ của đường thẳng hệ số góc $-\lambda$ đi qua điểm $(u,t)$. Cách nhìn này chưa phải định nghĩa và được làm chính xác ở Mục 4.2.
+Về mặt hình học, bài toán gốc là "tìm điểm thấp nhất của đường cong ở nửa mặt phẳng $u\le0$", còn mỗi giá trị $L=t+\lambda u$ là tung độ gốc trục $u=0$ của đường thẳng có độ dốc $-\lambda$ đi qua điểm $(u,t)$. Cách nhìn này chưa phải định nghĩa và được làm chính xác ở Mục 4.2.
 
 ![Mặt phẳng với trục ngang u bằng f1(x) và trục đứng t bằng f0(x). Đường cong G là một parabol mở theo hướng chéo lên phải, là tập các điểm (f1(x), f0(x)) khi x chạy trên trục số. Các điểm ứng với x bằng 2, 3, 4 lần lượt là (0, 5), (âm 1, 10), (0, 17), nằm ở nửa mặt phẳng u không dương, được tô nền là vùng khả thi. Điểm ứng với x bằng 0 là (8, 1), nằm ở nửa mặt phẳng u dương.](img/lec-03/value-plane-mapping.svg)
 
@@ -1258,7 +1258,7 @@ Phần 2 nói rằng $\lambda^Tu+\nu^Tv+t\ge g(\lambda,\nu)$ với mọi điểm
 
 Theo phần 2 của Mệnh đề 03.19, tính $g(\lambda,\nu)$ tức là cực tiểu hàm tuyến tính $(\lambda,\nu,1)^T(u,v,t)$ trên tập giá trị. Với một ràng buộc, điều đó có ý nghĩa hình học sau.
 
-Với hệ số góc $-\lambda$ cố định, khi $g(\lambda)$ hữu hạn, $g(\lambda)$ là giá trị $c$ lớn nhất để đường thẳng $t=c-\lambda u$ nằm không cao hơn mọi điểm của $G$. Đó cũng là tung độ gốc trục $u=0$ của đường thẳng này.
+Với độ dốc $-\lambda$ cố định, khi $g(\lambda)$ hữu hạn, $g(\lambda)$ là giá trị $c$ lớn nhất để đường thẳng $t=c-\lambda u$ nằm không cao hơn mọi điểm của $G$. Đó cũng là tung độ gốc trục $u=0$ của đường thẳng này.
 
 Đối ngẫu yếu cũng đọc được ngay trên hình. Mọi điểm khả thi có $u\le0$, nên với $\lambda\ge0$, tung độ của nó thỏa $t\ge g(\lambda)-\lambda u\ge g(\lambda)$, tức tung độ gốc nằm dưới mọi điểm khả thi.
 
@@ -1302,7 +1302,7 @@ Tại $(1{,}25;\,3{,}25)$: $3{,}25+1{,}25=4{,}5$, đúng là nằm trên đườ
 
 Hình trên vẽ đường $\lambda=1$. Khoảng cách theo chiều đứng từ tung độ gốc $4{,}5$ tới điểm $(0,5)$ là khoảng đối ngẫu $0{,}5$ của cặp $(x,\lambda)=(2,1)$.
 
-![Mặt phẳng (u, t) với đường cong G và vùng khả thi u không dương được tô nền. Đường thẳng t bằng 5 trừ 2u có hệ số góc âm 2, nằm dưới G và tiếp xúc G đúng tại điểm (0, 5), ứng với x bằng 2, điểm khả thi thấp nhất.](img/lec-03/value-plane-2.svg)
+![Mặt phẳng (u, t) với đường cong G và vùng khả thi u không dương được tô nền. Đường thẳng t bằng 5 trừ 2u có độ dốc âm 2, nằm dưới G và tiếp xúc G đúng tại điểm (0, 5), ứng với x bằng 2, điểm khả thi thấp nhất.](img/lec-03/value-plane-2.svg)
 
 Hình thứ hai vẽ đường $\lambda=2$, tiếp xúc với $G$ tại $(0,5)$. Sự tiếp xúc tại một điểm của trục tung là dấu hiệu hình học của đối ngẫu mạnh có nghiệm đối ngẫu.
 
@@ -1372,7 +1372,7 @@ $$
 
 **Đường đỡ.**
 
-Biên dưới $t=-\sqrt{2u}$ có hệ số góc $-\frac1{\sqrt{2u}}$, tiến tới $-\infty$ khi $u\to0^+$. Một đường đỡ với hệ số góc $-\lambda$ tiếp xúc với biên tại $u=\frac1{2\lambda^2}$, $t=-\frac1\lambda$, có tung độ gốc
+Biên dưới $t=-\sqrt{2u}$ có độ dốc $-\frac1{\sqrt{2u}}$, tiến tới $-\infty$ khi $u\to0^+$. Một đường đỡ với độ dốc $-\lambda$ tiếp xúc với biên tại $u=\frac1{2\lambda^2}$, $t=-\frac1\lambda$, có tung độ gốc
 
 $$
 -\frac1\lambda+\lambda\cdot\frac1{2\lambda^2}=-\frac1{2\lambda},
@@ -1593,7 +1593,7 @@ Tập giá trị của bài toán một ràng buộc là $G=\{(f_1(x),f_0(x))\mi
 Xét $\min_{x\in\mathbb R}x^2$ với $f_1(x)=1-x\le0$.
 
 - (a) Mô tả tập giá trị $G$ bằng một phương trình giữa $u$ và $t$.
-- (b) Tính $g(\lambda)$ với mọi $\lambda\in\mathbb R$ và tìm điểm tiếp xúc của đường đỡ hệ số góc $-\lambda$.
+- (b) Tính $g(\lambda)$ với mọi $\lambda\in\mathbb R$ và tìm điểm tiếp xúc của đường đỡ độ dốc $-\lambda$.
 - (c) Tính hàm giá trị $p^*(u)$ và kiểm tra (4.2), (4.3) với nhân tử tối ưu.
 :::
 
@@ -1630,7 +1630,7 @@ Kiểm tra (4.2): với $u\le1$, $(1-u)^2-(1-2u)=u^2\ge0$; với $u>1$, $1-2u<0$
 $p^*=1$ tại $x=1$, bằng $g(2)$; tại $\lambda=1$, điểm tiếp xúc $(\tfrac12,\tfrac14)$ thỏa $\tfrac14=(1-\tfrac12)^2$.
 :::
 
-Với tập giá trị và tập trên (Định nghĩa 03.18), mọi đại lượng đã gặp có nghĩa hình học. Hàm đối ngẫu $g(\lambda)$ là tung độ gốc của một đường đỡ có hệ số góc $-\lambda$ (Mệnh đề 03.19). Đối ngẫu mạnh có nghiệm đối ngẫu tương đương với một đường đỡ không thẳng đứng tiếp xúc tại $(0,p^*)$ (Mệnh đề 03.20). Qua hàm giá trị (Định nghĩa 03.22) và bất đẳng thức độ nhạy toàn cục (Mệnh đề 03.23), chúng ta đi tới kết quả chính của mục là Hệ quả 03.24. Theo hệ quả này, khi hàm giá trị khả vi, nhân tử tối ưu bằng số đối của đạo hàm hàm giá trị tại nhiễu $0$, tức giá bóng của ràng buộc.
+Với tập giá trị và tập trên (Định nghĩa 03.18), mọi đại lượng đã gặp có nghĩa hình học. Hàm đối ngẫu $g(\lambda)$ là tung độ gốc của một đường đỡ có độ dốc $-\lambda$ (Mệnh đề 03.19). Đối ngẫu mạnh có nghiệm đối ngẫu tương đương với một đường đỡ không thẳng đứng tiếp xúc tại $(0,p^*)$ (Mệnh đề 03.20). Qua hàm giá trị (Định nghĩa 03.22) và bất đẳng thức độ nhạy toàn cục (Mệnh đề 03.23), chúng ta đi tới kết quả chính của mục là Hệ quả 03.24. Theo hệ quả này, khi hàm giá trị khả vi, nhân tử tối ưu bằng số đối của đạo hàm hàm giá trị tại nhiễu $0$, tức giá bóng của ràng buộc.
 
 Tuy nhiên, mọi chứng nhận cho đến đây đều dựa trên hàm $g$, tức một bài toán cực tiểu theo $x$ cho mỗi nhân tử, rồi một bài toán cực đại theo nhân tử. Trong Mục 5, chúng ta khai thác các dấu bằng trong chuỗi $g(\lambda^*,\nu^*)\le L(x^*,\lambda^*,\nu^*)\le f_0(x^*)$ để thay việc tính $g$ bằng một hệ điều kiện trên $(x,\lambda,\nu)$, gọi là điều kiện Karush–Kuhn–Tucker.
 
@@ -2289,7 +2289,7 @@ $\lVert w^*\rVert_2^2=\tfrac{1+4+4}9=1$; dừng: $(\tfrac13-1)+2\cdot\tfrac13=0$
 
 Từ hai dấu bằng trong (2.4), chúng ta đã có điều kiện bù trừ (Định nghĩa 03.26) và tính chất nghiệm cực tiểu hóa $L$ (Mệnh đề 03.27), rồi gộp chúng thành hệ KKT (Định nghĩa 03.29). Kết quả chính của mục là cặp Định lý 03.30 và 03.32. Định lý thứ nhất cho tính cần khi có đối ngẫu mạnh và nghiệm đối ngẫu, định lý thứ hai cho tính đủ khi bài toán lồi, và Hệ quả 03.31 nối tính cần với điều kiện Slater cho bài toán lồi. Mệnh đề 03.34, 03.35 và Thuật toán 03.1 áp dụng hệ này cho hồi quy có ràng buộc chuẩn, còn Mệnh đề 03.36 áp dụng cho máy vector hỗ trợ.
 
-## 6. Tổng hợp: quy trình chứng nhận bằng đối ngẫu
+## 6. Tổng hợp và vận dụng
 
 Hệ KKT đã thay việc tính $g$ bằng việc giải một hệ hữu hạn điều kiện, với giả thiết được chỉ rõ cho mỗi chiều. Phần còn thiếu là trình tự áp dụng. Với một bài toán mới, chúng ta cần xác định điều kiện được kiểm tra trước, trường hợp dùng hàm đối ngẫu, trường hợp dùng hệ KKT và các kết luận đã được bảo đảm.
 
@@ -2686,7 +2686,7 @@ Mệnh đề 03.27 phần 1: $\lambda_i^*f_i(x^*)=0$ với $\lambda_i^*>0$ cho $
 
 **(vii) Đúng.**
 
-Đường có hệ số góc $-1$, nên $\lambda=1$. Theo Mệnh đề 03.19, tung độ gốc của đường đỡ tiếp xúc với tập giá trị là $g(1)=3$, và Định lý 03.8 cho $3\le p^*$.
+Đường có độ dốc $-1$, nên $\lambda=1$. Theo Mệnh đề 03.19, tung độ gốc của đường đỡ tiếp xúc với tập giá trị là $g(1)=3$, và Định lý 03.8 cho $3\le p^*$.
 
 **(viii) Sai.**
 

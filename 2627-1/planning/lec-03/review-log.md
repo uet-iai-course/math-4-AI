@@ -1454,3 +1454,18 @@ Nguồn: báo cáo tái kiểm toán học và báo cáo tái kiểm mạch kể
 ### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
 
 Master đã tự chạy `density.py` (57 trang, chỉ S07-01 ở đúng trần 80 của trang tổng kết, có ngoại lệ trong storyboard), `deckcheck.py` trên máy chủ tĩnh cổng 8790 (57 trang, 0 lỗi console, 0 tràn, 0 `.katex-error`), xem ảnh 1600×900 và 390×844 của S03-00, S03-03a, S03-06b, S07-01, đọc diff của các trang S01-03, S02-00, S02-01, S02-05d, S03-06b, và đối chiếu bảng trạng thái của hai báo cáo tái kiểm với tệp. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 03. Việc còn treo chuyển sang đợt học liệu: `materials/lec-03/exercises.md` bài 5 (cận trên do điểm khả thi; "độ dốc"), tên mục của `lecture-note.md` theo tên mạch mới, ví dụ gọi là "bài toán một biến trên đoạn [2,4]".
+
+## 2026-10-12 — Đồng bộ học liệu với deck sau đợt sửa văn phong
+
+**Tác tử:** tác tử chỉnh sửa học liệu, loại `general-purpose`, mô hình `claude-opus-5-5`, effort `high` (theo brief của master). Đã nạp `no-ai-slop` (chế độ Edit). Không commit, không chạy `sync-local-materials.py` (master chạy sau). Không sửa deck; không phát hiện lỗi trong các trang lời giải của deck.
+
+| Tệp | Thay đổi |
+|---|---|
+| `materials/lec-03/exercises.md` | Bài 5: cận trên $p^*\le5$ ghi là do phương án khả thi chi phí 5, cận dưới $p^*\ge4{,}5$ do đối ngẫu yếu; "hệ số góc" → "độ dốc"; câu 2 thêm ý "xét xem có suy ra được $p^*-d^*=0{,}5$" để trùng S04-04/S04-04b. Lời giải bài 2 (câu 1–3), bài 5 (câu 2), bài 6 (câu 1–2), bài 7 (câu 1) viết lại cho trùng S02-08b, S04-04b, S05-07b, S03-06b ($g'(\lambda)$ và chuỗi $1=g(2)\le p^*\le f_0(1)=1$; nhánh bù trừ có $w^2=9>1$ và bốn nhóm KKT tại $(1,1)$; Hessian $2I$, $f_1(\bar x)=-1<0$, $0\le p^*\le2$, kết luận của định lý Slater). Bài 1 câu 1, 6 và đề bài 5: "ví dụ chính", "ví dụ trong bài" → "bài toán một biến trên đoạn $[2,4]$" |
+| `materials/lec-03/lecture-note.md` | Tên mục theo tên mạch: §2 → "Hàm và bài toán đối ngẫu Lagrange", §4 → "Hình học của đối ngẫu", §6 → "Tổng hợp và vận dụng" (§3, §5 đã trùng). "hệ số góc" → "độ dốc" (9 chỗ, gồm văn bản thay thế của hình value-plane-2); mục tiêu 4 "đọc nhân tử như hệ số góc" → "đọc nhân tử qua độ dốc" vì nhân tử là số đối của độ dốc. Mục 1.1 thêm câu nêu tên "bài toán một biến trên đoạn $[2,4]$" dùng trên trang chiếu; các chỗ khác giữ "bài toán (1.1)". Không có tham chiếu nào tới tiêu đề trang "Khoảng đối ngẫu", "Mặt phẳng giá trị", "Ba bước chứng nhận" |
+
+**Kiểm tra:** `git diff --check` sạch; viewer (máy chủ tĩnh cổng 8790) mở ghi chú và bài tập: 0 lỗi console, 0 `.katex-error`.
+
+**Quyết định của master:** chờ duyệt.
+
+Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.

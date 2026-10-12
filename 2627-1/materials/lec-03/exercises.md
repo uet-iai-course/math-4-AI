@@ -16,12 +16,12 @@ Xác định đúng hoặc sai; giải thích hoặc cho phản ví dụ.
 :::
 
 ::: solution
-1. Sai. Lấy $\inf_xL$ trên miền xác định ban đầu, không áp lại các ràng buộc đã đưa vào Lagrange. Ví dụ trong bài: $x(1)=1{,}5$ nằm ngoài $[2,4]$ nhưng cho cận hợp lệ $4{,}5$.
+1. Sai. Lấy $\inf_xL$ trên miền xác định ban đầu, không áp lại các ràng buộc đã đưa vào Lagrange. Trong bài toán một biến trên đoạn $[2,4]$, điểm $x(1)=1{,}5$ nằm ngoài $[2,4]$ nhưng cho cận hợp lệ $4{,}5$.
 2. Sai. Chuỗi $g\le L\le f_0$ chỉ dùng định nghĩa $\inf$, tính khả thi và dấu nhân tử.
 3. Sai. $\min x$ với $x^2\le0$ có $p^*=d^*=0$ dù không có điểm khả thi nghiêm.
 4. Sai. $\min x^2$ với $x\le0$ có $(x^*,\lambda^*)=(0,0)$.
 5. Đúng trong dạng bài toán đang học: các hàm lồi khả vi trên toàn không gian, đẳng thức affine. Dừng làm $x^*$ cực tiểu hóa Lagrange; khả thi và bù trừ làm cận khít.
-6. Sai. Đây là đạo hàm tại một điểm, chỉ cho xấp xỉ với nhiễu nhỏ. Trong ví dụ chính, $p(1)=12-6\sqrt2\approx3{,}51472$, khác $5-2=3$.
+6. Sai. Đây là đạo hàm tại một điểm, chỉ cho xấp xỉ với nhiễu nhỏ. Trong bài toán một biến trên đoạn $[2,4]$, $p(1)=12-6\sqrt2\approx3{,}51472$, khác $5-2=3$.
 :::
 
 ## 2. Tính cận dưới và chứng nhận nghiệm
@@ -40,13 +40,15 @@ Ràng buộc là $x-1\le0$. Không bỏ hạng $-\lambda$ khỏi Lagrange. Khi c
 :::
 
 ::: solution
+Ràng buộc viết thành $f_1(x)=x-1\le0$, nên $L(x,\lambda)=(x-2)^2+\lambda(x-1)$. Hoàn thành bình phương theo $x$ cho
 
 $$
-L=(x-2)^2+\lambda(x-1)
-=\left(x-2+\frac\lambda2\right)^2+\lambda-\frac{\lambda^2}{4}.
+L(x,\lambda)=\left(x-2+\frac\lambda2\right)^2+\lambda-\frac{\lambda^2}{4},
+\qquad
+g(\lambda)=\lambda-\frac{\lambda^2}{4}.
 $$
 
-Vì vậy $g(\lambda)=\lambda-\lambda^2/4$, cực đại tại $\lambda^*=2$, giá trị $1$. Với $\lambda=2$, $L(x,2)=(x-1)^2+1\ge1$. Điểm $x=1$ khả thi và có mục tiêu $1$, nên $x^*=1$, $p^*=d^*=1$.
+Ta có $g'(\lambda)=1-\lambda/2$, nên $\lambda^*=2$ và $d^*=g(2)=1$. Với $\lambda=2$, $L(x,2)=(x-1)^2+1\ge1$. Điểm $x=1$ khả thi, nên chuỗi đối ngẫu yếu cho $1=g(2)\le p^*\le f_0(1)=1$. Do đó $x^*=1$ và $p^*=d^*=1$.
 
 Chọn điểm Slater $\bar x=0$, thỏa $\bar x-1=-1<0$. KKT là $x\le1$, $\lambda\ge0$, $\lambda(x-1)=0$, $2(x-2)+\lambda=0$. Nhánh $\lambda=0$ cho $x=2$ không khả thi; nhánh $x=1$ cho $\lambda=2$. Bài toán lồi nên bộ này chứng nhận tối ưu.
 :::
@@ -103,10 +105,10 @@ Ta có $d^*=\sup g=0=p^*$, nhưng mọi $\lambda$ hữu hạn đều cho giá tr
 ## 5. Đọc hình và giải thích cận
 
 ::: exercise
-Trong ví dụ $f_0=x^2+1$, $f_1=(x-2)(x-4)$, đặt $u=f_1(x)$, $t=f_0(x)$.
+Trong bài toán một biến trên đoạn $[2,4]$, với $f_0=x^2+1$, $f_1=(x-2)(x-4)$, đặt $u=f_1(x)$, $t=f_0(x)$.
 
 1. Tính $(u,t)$ tại $x=1{,}5$ và $x=2$; xác định điểm khả thi.
-2. Đường $t=4{,}5-u$ đỡ và tiếp xúc với tập giá trị. Đọc $\lambda$, $g(\lambda)$ và chặn trên sai số của phương án chi phí $5$.
+2. Đường $t=4{,}5-u$ đỡ và tiếp xúc với tập giá trị. Đọc $\lambda$, $g(\lambda)$ và chặn trên sai số của phương án chi phí $5$. Xét xem có suy ra được $p^*-d^*=0{,}5$ hay không.
 3. Chứng minh đường $t=5-2u$ tạo cận khít bằng một đẳng thức bình phương.
 4. Giải thích vì sao tiếp xúc tại một điểm của tập giá trị chưa đủ để chứng nhận nghiệm gốc.
 :::
@@ -114,7 +116,7 @@ Trong ví dụ $f_0=x^2+1$, $f_1=(x-2)(x-4)$, đặt $u=f_1(x)$, $t=f_0(x)$.
 ::: solution
 Với $x=1{,}5$, $(u,t)=(1{,}25;3{,}25)$, không khả thi vì $u>0$. Với $x=2$, $(u,t)=(0,5)$, khả thi.
 
-Đường thứ nhất có hệ số góc $-1$, tung độ gốc $4{,}5$: $\lambda=1$, $g(1)=4{,}5$. Theo đối ngẫu yếu, $4{,}5\le p^*\le5$, nên sai số của phương án không quá $0{,}5$. Không kết luận khoảng đối ngẫu tối ưu bằng $0{,}5$.
+Đường thứ nhất có độ dốc $-\lambda=-1$, nên $\lambda=1$; tung độ gốc là $g(1)=4{,}5$. Đối ngẫu yếu cho cận dưới $p^*\ge4{,}5$, còn phương án khả thi chi phí $5$ cho cận trên $p^*\le5$. Vì vậy sai số của phương án là $5-p^*\le0{,}5$. Không suy ra được $p^*-d^*=0{,}5$: từ đường này chỉ biết $p^*-d^*\le0{,}5$. Thực tế $g(2)=5$ (câu 3), nên $p^*-d^*=0$.
 
 Ta có $t+2u-5=3(x-2)^2\ge0$, đạt dấu bằng tại $x=2$. Vì điểm này khả thi và $t=5=g(2)$, đó là chứng nhận tối ưu. Tiếp xúc riêng lẻ có thể ở điểm không khả thi, như với $\lambda=1$; còn muốn cận khít tại một điểm khả thi phải có thêm $f_0(x)=g(\lambda)$.
 :::
@@ -135,9 +137,12 @@ $$
 :::
 
 ::: solution
-Tại $\tau=1$, dừng là $w-3+2\lambda w=0$, bù trừ là $\lambda(w^2-1)=0$. Nhánh $\lambda=0$ cho $w=3$ không khả thi. Nhánh $w=1$ cho $\lambda=1$ hợp lệ; nhánh $w=-1$ cho $\lambda=-2$ trái dấu.
+Tại $\tau=1$, ràng buộc là $f_1(w)=w^2-1\le0$; dừng là $(w-3)+2\lambda w=0$, bù trừ là $\lambda(w^2-1)=0$.
 
-Bộ $(w^*,\lambda^*)=(1,1)$ thỏa $w^2\le1$, $\lambda\ge0$, bù trừ và dừng. Mục tiêu và hàm ràng buộc đều lồi khả vi, nên KKT đủ cho tối ưu toàn cục. Mất mát tối ưu bằng $2$. Điểm $w=0$ còn thỏa Slater.
+- Nhánh $\lambda=0$: $w=3$, nhưng $w^2=9>1$, loại.
+- Nhánh $w^2=1$: $w=1$ cho $\lambda=1$, hợp lệ; $w=-1$ cho $\lambda=-2<0$, loại.
+
+Bộ $(w^*,\lambda^*)=(1,1)$ thỏa bốn nhóm: khả thi $1\le1$, khả thi đối ngẫu $1\ge0$, bù trừ $1\cdot(1-1)=0$, dừng $(1-3)+2\cdot1\cdot1=0$. Mục tiêu và hàm ràng buộc đều lồi khả vi, nên KKT đủ cho tối ưu toàn cục. Mất mát tối ưu bằng $2$. Điểm $w=0$ còn thỏa Slater.
 
 Với $0<\tau<9$, điểm khả thi gần $3$ nhất là $w^*=\sqrt\tau$. Thay vào dừng cho
 
@@ -163,7 +168,7 @@ $$
 :::
 
 ::: solution
-Mục tiêu lồi, ràng buộc $f_1=1-x_1-x_2\le0$ affine. Điểm $(1,1)$ thỏa Slater. Mục tiêu không âm, có điểm khả thi hữu hạn, nên $p^*$ hữu hạn.
+Ràng buộc $f_1=1-x_1-x_2\le0$ affine; mục tiêu có Hessian $2I$, nên bài toán lồi. Điểm $\bar x=(1,1)$ cho $f_1(\bar x)=-1<0$, nên thỏa Slater. Mục tiêu không âm và $\bar x$ khả thi, nên $0\le p^*\le f_0(\bar x)=2$. Định lý Slater cho $d^*=p^*$ và bài toán đối ngẫu đạt nghiệm, nhưng không bảo đảm nghiệm gốc tồn tại.
 
 $$
 \begin{aligned}
