@@ -141,7 +141,7 @@ Mức độ: tính toán. LLO11, CLO1, CLO2.
 - từ $m_1\ge0$ và $m_4\ge0$: $-2w_1\le w_0\le2w_1$, nên $w_1\ge0$;
 - vậy $w_1=0$, rồi $0\le w_0\le0$ cho $w_0=0$.
 
-Mọi $w\ne0$ có một biên âm, nên $F$ bức và có điểm cực tiểu.
+Mọi $w\ne0$ có một biên âm, nên theo Mệnh đề 05.24, $F$ cưỡng bức (coercive), tức $F(w)\to+\infty$ khi $\lVert w\rVert\to\infty$ (Định nghĩa 01.37), và có điểm cực tiểu.
 
 3. $\lVert x_i\rVert^2\le2$, tức $r^2=2$. Theo Định lý 05.26 và Mệnh đề 05.28: $\mu=\lambda=0{,}02$; $L\le\tfrac24+0{,}02=0{,}52$; $\kappa\le0{,}52/0{,}02=26$; $\lVert w_\lambda\rVert\le\sqrt{2\log2/0{,}02}=\sqrt{69{,}3}\approx8{,}33$.
 :::
@@ -151,7 +151,7 @@ Mọi $w\ne0$ có một biên âm, nên $F$ bức và có điểm cực tiểu.
 Mức độ: chứng minh. LLO11, CLO1. Bài tập về nhà.
 
 ::: exercise Bài 5
-Cho mất mát logistic trung bình $F(w)=\frac1n\sum_i\log(1+e^{-m_i(w)})$, $m_i(w)=y_ix_i^Tw$, và giả thiết: với mọi $w\ne0$ tồn tại $i$ với $m_i(w)<0$. Chứng minh đầy đủ rằng $F$ bức và có điểm cực tiểu. Có hai cách: dùng hàm $v\mapsto\max_i(-m_i(v))$ trên mặt cầu đơn vị, như chứng minh trong ghi chú bài giảng, hoặc phản chứng bằng dãy. Bài này đi theo cách thứ hai, qua các bước sau.
+Cho mất mát logistic trung bình $F(w)=\frac1n\sum_i\log(1+e^{-m_i(w)})$, $m_i(w)=y_ix_i^Tw$, và giả thiết: với mọi $w\ne0$ tồn tại $i$ với $m_i(w)<0$. Chứng minh đầy đủ rằng $F$ cưỡng bức và có điểm cực tiểu. Có hai cách: dùng hàm $v\mapsto\max_i(-m_i(v))$ trên mặt cầu đơn vị, như chứng minh trong ghi chú bài giảng, hoặc phản chứng bằng dãy. Bài này đi theo cách thứ hai, qua các bước sau.
 
 1. Giả sử có dãy $(w_k)$ với $\lVert w_k\rVert\to\infty$ và $F(w_k)\le C$ với mọi $k$. Chứng minh $-m_i(w_k)\le nC$ với mọi $i$, $k$.
 2. Đặt $v_k=w_k/\lVert w_k\rVert$. Chứng minh có dãy con hội tụ về một $v$ với $\lVert v\rVert=1$, và $m_i(v)\ge0$ với mọi $i$.
@@ -167,9 +167,9 @@ Cho mất mát logistic trung bình $F(w)=\frac1n\sum_i\log(1+e^{-m_i(w)})$, $m_
 
 2. Các $v_k$ nằm trên mặt cầu đơn vị, một tập đóng và bị chặn của $\mathbb R^d$. Theo định lý Bolzano–Weierstrass, có dãy con $v_{k_j}\to v$, và $\lVert v\rVert=1$ vì chuẩn liên tục. Vì $m_i$ tuyến tính, $-m_i(v_{k_j})=-m_i(w_{k_j})/\lVert w_{k_j}\rVert\le nC/\lVert w_{k_j}\rVert\to0$. Chuyển qua giới hạn, dùng tính liên tục của $m_i$: $-m_i(v)\le0$, tức $m_i(v)\ge0$ với mọi $i$.
 
-3. $v\ne0$ và mọi biên của $v$ không âm, trái giả thiết. Giả thiết phản chứng của câu 1 là phủ định của tính bức: $F$ không bức khi và chỉ khi có $C$ và dãy $\lVert w_k\rVert\to\infty$ với $F(w_k)\le C$. Mâu thuẫn vừa nhận được cho thấy với mọi $C$, tập $\{w:\ F(w)\le C\}$ bị chặn, tức $F(w)\to\infty$ khi $\lVert w\rVert\to\infty$. $F$ liên tục, nên Định lý 01.38 cho $F$ có điểm cực tiểu.
+3. $v\ne0$ và mọi biên của $v$ không âm, trái giả thiết. Giả thiết phản chứng của câu 1 là phủ định của tính cưỡng bức: $F$ không cưỡng bức khi và chỉ khi có $C$ và dãy $\lVert w_k\rVert\to\infty$ với $F(w_k)\le C$. Mâu thuẫn vừa nhận được cho thấy với mọi $C$, tập $\{w:\ F(w)\le C\}$ bị chặn, tức $F(w)\to\infty$ khi $\lVert w\rVert\to\infty$. $F$ liên tục, nên Định lý 01.38 cho $F$ có điểm cực tiểu.
 
-So với chứng minh trong ghi chú, cách này không cho hằng số $c$ trong cận $F(w)\ge\frac cn\lVert w\rVert$; nó chỉ cho tính bức.
+So với chứng minh trong ghi chú, cách này không cho hằng số $c$ trong cận $F(w)\ge\frac cn\lVert w\rVert$; nó chỉ cho tính cưỡng bức.
 :::
 
 ## Bài 6. Trường hợp ranh giới

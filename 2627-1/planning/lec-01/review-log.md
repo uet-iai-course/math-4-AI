@@ -675,3 +675,20 @@ Quyết định: chờ điều phối viên Fable 5.1.
 ### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
 
 Master đã tự chạy `density.py` (52 trang; K04 70 và K07 72 dưới trần 80 của bảng so sánh và tổng kết, M02B 7 dòng vì bảy mạch, đều có ngoại lệ trong storyboard), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console; hai cờ D02 và L01 có từ HEAD), đọc nguyên văn K07 và L04 sau sửa và tính lại tay L04 (dự đoán $(7/6,5/3,13/6)$, giá trị $1/6$, tập tối ưu $\{(7/6,s,1/2-s)\}$: đúng), xem ảnh trang tiêu đề mạch và trang tách ở hai kích thước, đối chiếu bảng trạng thái hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 01. Việc còn treo: ký hiệu $t$ trùng giữa dữ liệu ba điểm và đích điều khiển (cần sửa SVG và ghi chú, đợt sau); đề xuất CSS `.l01-slide .mini-data` 0,78em → 0,84em (đợt CSS chung).
+
+## Đổi thuật ngữ bức → cưỡng bức (coercive), 2026-10-12, yêu cầu người dùng
+
+Tác tử chỉnh sửa (`general-purpose`, Opus 5.5, effort high theo brief của điều phối viên). Quyết định của người dùng: "bức" chưa đủ học thuật; dùng thống nhất "cưỡng bức (coercive)", "hàm cưỡng bức", "tính cưỡng bức", "điều kiện cưỡng bức"; lần đầu trong mỗi bài viết kèm "(coercive)".
+
+| Tệp | Số chỗ đổi | Ghi chú |
+|---|---|---|
+| `lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html` | 14 | Mặt trang: H07 thẻ (b) tiêu đề "Cưỡng bức" (một dòng ở 1600×900; "Tính cưỡng bức" xuống hai dòng), thân thẻ "Liên tục, cưỡng bức (coercive) trên miền đóng, không rỗng ⇒ …"; H07B câu hỏi "(b) tính cưỡng bức"; K07 bảng "$f_0$ cưỡng bức". Ghi chú: H07 ("hàm cưỡng bức (coercive) thỏa …"), H07B, K00, K02, K03 (bốn chỗ, có "điều kiện cưỡng bức"), K06, K07. |
+| `materials/lec-01/lecture-note.md` | 36 | Mở Mục 8 "hàm cưỡng bức (coercive)"; tiêu đề 8.3; Định nghĩa 01.37 "(Hàm cưỡng bức)", "là cưỡng bức (coercive) trên $C$"; Định lý 01.38 "(Tồn tại nghiệm với hàm cưỡng bức)"; các chỗ dùng trong 8.3–8.5, Tình huống, tóm tắt chương, lời giải Bài tập. |
+
+Kiểm tra: `grep` không còn "bức" đứng riêng trong deck 01 và ghi chú; `density.py` H07 56 → 59 âm tiết, H07B 55 → 56, K07 72 → 73 (trần 80, ngoại lệ đã ghi); `deckcheck.py --port 8790` 52 trang, 0 lỗi console, chỉ hai cờ có sẵn ở HEAD (D02, L01, đã đối chiếu bằng bản HEAD); đã xem ảnh H07, H07B, K07 ở 1600×900 và 390×844. `sync-local-materials.py --check` khớp; `git diff --check` sạch.
+
+Còn lại ngoài phạm vi tệp được giao: `planning/lec-01/outline.md` dòng 80 và 91 còn "bức"; `lecture-01-…backup-2026-09-05.html` không sửa.
+
+**Quyết định của điều phối viên:** (chờ duyệt)
+
+Quyết định của master (Fable 5.1): đã đọc diff, đối chiếu grep toàn kho (không còn "bức" đứng riêng), xem ảnh LG06/LG07/H07 ở 1600×900, `sync-local-materials.py --check` OK, `git diff --check` sạch. `chấp nhận`, commit cùng đợt đổi thuật ngữ 2026-10-12.

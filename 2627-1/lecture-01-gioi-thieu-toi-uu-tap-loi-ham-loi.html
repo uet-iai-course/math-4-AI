@@ -770,11 +770,11 @@
         <img class="visual visual-compact" src="img/lec-01/existence-and-uniqueness.svg" alt="Ba đồ thị đối chiếu trường hợp không đạt cận dưới đúng, có nhiều nghiệm và có một nghiệm duy nhất" />
         <div class="grid3">
           <div class="card"><h3>(a) Tồn tại</h3><p><strong>Định lý (Weierstrass).</strong> Liên tục trên miền không rỗng, đóng, bị chặn ⇒ đạt giá trị nhỏ nhất.</p></div>
-          <div class="card"><h3>(b) Tính bức</h3><p><strong>Mệnh đề.</strong> Liên tục, bức trên miền đóng, không rỗng ⇒ đạt giá trị nhỏ nhất.</p></div>
+          <div class="card"><h3>(b) Cưỡng bức</h3><p><strong>Mệnh đề.</strong> Liên tục, cưỡng bức (coercive) trên miền đóng, không rỗng ⇒ đạt giá trị nhỏ nhất.</p></div>
           <div class="card"><h3>(c) Duy nhất</h3><p><strong>Mệnh đề.</strong> $f$ lồi chặt trên miền lồi ⇒ có nhiều nhất một nghiệm.</p></div>
         </div>
         <aside class="notes">
-          <p>Tính lồi cho kết luận toàn cục nhưng không giải quyết bước 5 và bước 6. Ba thẻ nêu ba điều kiện đủ, mỗi điều kiện cho một kết luận. Thẻ (a) là định lý Weierstrass: hàm liên tục trên tập không rỗng, đóng và bị chặn trong $\mathbb R^d$ đạt giá trị nhỏ nhất. Thẻ (b) dùng cho miền không bị chặn; hàm bức (coercive) thỏa $f(x)\to+\infty$ khi $\lVert x\rVert\to\infty$ với $x$ thuộc miền. Khi đó, với $x_0\in C$, tập $\{x\in C\mid f(x)\le f(x_0)\}$ không rỗng, bị chặn và đóng (do $f$ liên tục, $C$ đóng), nên định lý Weierstrass áp dụng trên tập này. Thẻ (c): nếu $f$ lồi chặt trên miền lồi và có hai nghiệm $x\ne y$ cùng giá trị $p^*$, trung điểm cho $f\big(\tfrac{x+y}2\big)&lt;p^*$, mâu thuẫn; vậy có nhiều nhất một nghiệm.</p>
+          <p>Tính lồi cho kết luận toàn cục nhưng không giải quyết bước 5 và bước 6. Ba thẻ nêu ba điều kiện đủ, mỗi điều kiện cho một kết luận. Thẻ (a) là định lý Weierstrass: hàm liên tục trên tập không rỗng, đóng và bị chặn trong $\mathbb R^d$ đạt giá trị nhỏ nhất. Thẻ (b) dùng cho miền không bị chặn; hàm cưỡng bức (coercive) thỏa $f(x)\to+\infty$ khi $\lVert x\rVert\to\infty$ với $x$ thuộc miền. Khi đó, với $x_0\in C$, tập $\{x\in C\mid f(x)\le f(x_0)\}$ không rỗng, bị chặn và đóng (do $f$ liên tục, $C$ đóng), nên định lý Weierstrass áp dụng trên tập này. Thẻ (c): nếu $f$ lồi chặt trên miền lồi và có hai nghiệm $x\ne y$ cùng giá trị $p^*$, trung điểm cho $f\big(\tfrac{x+y}2\big)&lt;p^*$, mâu thuẫn; vậy có nhiều nhất một nghiệm.</p>
           <p>Hình có ba phản ví dụ chuẩn, vẽ lại cục bộ. Trái: $e^x$ trên $\mathbb R$ có infimum $0$ nhưng không có nghiệm. Giữa: hàm hằng $0$ trên $[-1,1]$, mọi điểm đều tối ưu, nên có tồn tại mà không duy nhất. Phải: $x^2$ trên $\mathbb R$ có nghiệm duy nhất $x^*=0$.</p>
           <p>Lồi chặt chỉ cho "nhiều nhất một nghiệm"; muốn có đúng một nghiệm phải ghép với một điều kiện tồn tại.</p>
         </aside>
@@ -782,7 +782,7 @@
 
       <section data-slide-id="H07B">
         <h2>Bài tập: hàm mũ trên tập số thực</h2>
-        <div class="check"><p><strong>Câu hỏi:</strong> Điều kiện nào trong (a) Weierstrass, (b) tính bức, (c) lồi chặt áp dụng cho $e^x$ trên $\mathbb R$?</p></div>
+        <div class="check"><p><strong>Câu hỏi:</strong> Điều kiện nào trong (a) Weierstrass, (b) tính cưỡng bức, (c) lồi chặt áp dụng cho $e^x$ trên $\mathbb R$?</p></div>
         <div class="fragment">
           <p><strong>Lời giải:</strong> (a) không áp dụng, vì $\mathbb R$ không bị chặn.</p>
           <p>(b) không áp dụng, vì $e^x\to0$ khi $x\to-\infty$.</p>
@@ -790,7 +790,7 @@
           <p><strong>Kết luận:</strong> $e^x&gt;0=\inf_xe^x$ với mọi $x$, nên không có nghiệm.</p>
         </div>
         <aside class="notes">
-          <p>Mỗi mệnh đề chỉ cho kết luận khi giả thiết của nó được thỏa. Mệnh đề Weierstrass cần miền bị chặn, mà $\mathbb R$ không bị chặn. Mệnh đề về tính bức cần $f(x)\to+\infty$ khi $|x|\to\infty$ theo cả hai chiều; $e^x\to0$ khi $x\to-\infty$, nên giả thiết không thỏa. Hai mệnh đề này không cho kết luận nào, kể cả kết luận phủ định.</p>
+          <p>Mỗi mệnh đề chỉ cho kết luận khi giả thiết của nó được thỏa. Mệnh đề Weierstrass cần miền bị chặn, mà $\mathbb R$ không bị chặn. Mệnh đề về tính cưỡng bức cần $f(x)\to+\infty$ khi $|x|\to\infty$ theo cả hai chiều; $e^x\to0$ khi $x\to-\infty$, nên giả thiết không thỏa. Hai mệnh đề này không cho kết luận nào, kể cả kết luận phủ định.</p>
           <p>Điều kiện (c) áp dụng được vì $(e^x)''=e^x>0$, nên $e^x$ lồi chặt theo điều kiện đủ bậc hai; nó chỉ cho "nhiều nhất một nghiệm". Thực tế $e^x>0=\inf e^x$ với mọi $x$, nên số nghiệm bằng $0$, phù hợp với "nhiều nhất một". Hồi quy logistic trên dữ liệu tách tuyến tính có cùng hiện tượng: mục tiêu lồi chặt mà không có nghiệm.</p>
         </aside>
       </section>
@@ -804,7 +804,7 @@
           <p class="strand-keys">Tồn tại · duy nhất · chính quy hóa · quy trình chứng nhận</p>
         </div>
         <aside class="notes">
-          <p>Bộ công cụ đã có gồm định lý cực tiểu địa phương là toàn cục, tiêu chuẩn bậc nhất và bậc hai, phép giữ tính lồi, định lý Weierstrass, tính bức và lồi chặt. Mỗi công cụ được gắn với đúng một kết luận cho bài toán điều khiển, hồi quy tuyến tính và hồi quy logistic; ba chứng nhận được so sánh, gom thành quy trình bốn bước, áp dụng cho bài toán chiếu sáng, rồi tổng kết theo giả thiết của từng kết luận.</p>
+          <p>Bộ công cụ đã có gồm định lý cực tiểu địa phương là toàn cục, tiêu chuẩn bậc nhất và bậc hai, phép giữ tính lồi, định lý Weierstrass, tính cưỡng bức và lồi chặt. Mỗi công cụ được gắn với đúng một kết luận cho bài toán điều khiển, hồi quy tuyến tính và hồi quy logistic; ba chứng nhận được so sánh, gom thành quy trình bốn bước, áp dụng cho bài toán chiếu sáng, rồi tổng kết theo giả thiết của từng kết luận.</p>
         </aside>
       </section>
 
@@ -845,7 +845,7 @@
         </div>
         <div class="result"><p>Với ba điểm $(0,1)$, $(1,2)$, $(2,2)$: $\det(X^TX)=6&gt;0$, nên $w^*=(7/6,1/2)^T$ là nghiệm duy nhất.</p></div>
         <aside class="notes">
-          <p>Miền $\mathbb R^d$ lồi và $J$ lồi vì Hessian $2X^TX\succeq0$, nên mọi cực tiểu địa phương là toàn cục. Định lý Weierstrass không áp dụng vì $\mathbb R^d$ không bị chặn. Tính bức cũng có thể thiếu: nếu có $v\ne0$ với $Xv=0$ thì $J(w+sv)=J(w)$ với mọi $s\in\mathbb R$. Sự tồn tại được chứng minh bằng hình chiếu trực giao.</p>
+          <p>Miền $\mathbb R^d$ lồi và $J$ lồi vì Hessian $2X^TX\succeq0$, nên mọi cực tiểu địa phương là toàn cục. Định lý Weierstrass không áp dụng vì $\mathbb R^d$ không bị chặn. Tính cưỡng bức cũng có thể thiếu: nếu có $v\ne0$ với $Xv=0$ thì $J(w+sv)=J(w)$ với mọi $s\in\mathbb R$. Sự tồn tại được chứng minh bằng hình chiếu trực giao.</p>
           <p>Tồn tại. Không gian cột $\mathcal R(X)=\{Xw\mid w\in\mathbb R^d\}$ là một không gian con của $\mathbb R^n$, nên là tập đóng. Cực tiểu $\lVert Xw-y\rVert_2^2$ tương đương với tìm điểm của $\mathcal R(X)$ gần $y$ nhất; điểm đó là hình chiếu trực giao $\widehat y$ của $y$ lên $\mathcal R(X)$ và luôn tồn tại. Vì $\widehat y\in\mathcal R(X)$, có $w^*$ với $Xw^*=\widehat y$, và $w^*$ là nghiệm. Lập luận đúng với mọi $X$ và $y$, kể cả khi phương trình chuẩn có nhiều nghiệm.</p>
           <p>Duy nhất. $J$ lồi chặt khi và chỉ khi $v^T(2X^TX)v=2\lVert Xv\rVert_2^2>0$ với mọi $v\ne0$, tức $Xv=0$ chỉ có nghiệm $v=0$: các cột của $X$ độc lập tuyến tính, hay $\operatorname{rank}X=d$ (cần $n\ge d$). Khi đó nghiệm duy nhất là $w^*=(X^TX)^{-1}X^Ty$. Khi $X$ thiếu hạng, mọi vector trong $w^*+\ker(X)$ cho cùng dự đoán và cùng giá trị, như ví dụ hai cột trùng nhau. Ví dụ ba điểm có $\det(X^TX)=3\cdot5-3\cdot3=6$.</p>
           <p>Trường hợp logistic cũng có miền không bị chặn, nhưng mục tiêu của nó không có cấu trúc hình chiếu, và ví dụ hai mẫu đã cho thấy tồn tại có thể thất bại.</p>
@@ -869,8 +869,8 @@
         <aside class="notes">
           <p>Tính lồi của $L$ được chứng nhận lại bằng Hessian, bổ sung cho lập luận bằng phép biến đổi. Với $m_i=y_ia_i^Tw$, gradient của số hạng thứ $i$ là $\ell'(m_i)y_ia_i$ và Hessian là $\ell''(m_i)y_i^2a_ia_i^T=d_ia_ia_i^T$, vì $y_i^2=1$. Ở đây $d_i=\ell''(m_i)>0$ là một số dương phụ thuộc $w$. Với mọi $v$, $v^T\nabla^2L(w)v=\sum_id_i(a_i^Tv)^2\ge0$, nên $L$ lồi trên $\mathbb R^d$. Nếu ma trận có các hàng $a_i^T$ có hạng cột đầy đủ, tổng này dương với mọi $v\ne0$ và $L$ lồi chặt; ví dụ hai mẫu một chiều thuộc trường hợp này.</p>
           <p>Thẻ phải nhắc lại phản ví dụ: $L(w)=2\log(1+e^{-w})$ giảm chặt về $0$ khi $w\to+\infty$ mà không đạt. Hàm lồi chặt nên có nhiều nhất một nghiệm, nhưng nghiệm không tồn tại. Hessian xác định dương tại mọi $w$ hữu hạn vẫn không tạo ra nghiệm, vì $d_i=\ell''(m_i)\to0$ khi $m_i\to+\infty$: độ cong tắt dần ở xa.</p>
-          <p>Khung dưới nêu cách sửa bằng chính quy hóa (regularization) bậc hai: $L_\mu(w)=L(w)+\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$. Vì $L\ge0$, $L_\mu(w)\ge\tfrac\mu2\lVert w\rVert_2^2\to\infty$, nên $L_\mu$ bức và liên tục trên $\mathbb R^d$; nghiệm tồn tại theo điều kiện bức. Hessian $\nabla^2L_\mu=\nabla^2L+\mu I\succeq\mu I$, nên $L_\mu$ lồi mạnh (strongly convex) với hằng số $\mu$; khi đó $v^T\nabla^2L_\mu v\ge\mu\lVert v\rVert_2^2>0$ với $v\ne0$, $L_\mu$ lồi chặt và nghiệm duy nhất. Với ví dụ hai mẫu, phương trình $L_\mu'(w)=-2/(1+e^w)+\mu w=0$ có đúng một nghiệm, và nghiệm đó dương: $L_\mu'$ tăng chặt, $L_\mu'(0)=-1&lt;0$ và $L_\mu'(w)\to+\infty$ khi $w\to+\infty$.</p>
-          <p>Ba trường hợp đã có ba chứng nhận với ba cơ sở tồn tại khác nhau: miền bị chặn, hình chiếu và tính bức sau chính quy hóa; trang sau đặt ba căn cứ này cạnh nhau theo từng kết luận.</p>
+          <p>Khung dưới nêu cách sửa bằng chính quy hóa (regularization) bậc hai: $L_\mu(w)=L(w)+\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$. Vì $L\ge0$, $L_\mu(w)\ge\tfrac\mu2\lVert w\rVert_2^2\to\infty$, nên $L_\mu$ cưỡng bức và liên tục trên $\mathbb R^d$; nghiệm tồn tại theo điều kiện cưỡng bức. Hessian $\nabla^2L_\mu=\nabla^2L+\mu I\succeq\mu I$, nên $L_\mu$ lồi mạnh (strongly convex) với hằng số $\mu$; khi đó $v^T\nabla^2L_\mu v\ge\mu\lVert v\rVert_2^2>0$ với $v\ne0$, $L_\mu$ lồi chặt và nghiệm duy nhất. Với ví dụ hai mẫu, phương trình $L_\mu'(w)=-2/(1+e^w)+\mu w=0$ có đúng một nghiệm, và nghiệm đó dương: $L_\mu'$ tăng chặt, $L_\mu'(0)=-1&lt;0$ và $L_\mu'(w)\to+\infty$ khi $w\to+\infty$.</p>
+          <p>Ba trường hợp đã có ba chứng nhận với ba cơ sở tồn tại khác nhau: miền bị chặn, hình chiếu và tính cưỡng bức sau chính quy hóa; trang sau đặt ba căn cứ này cạnh nhau theo từng kết luận.</p>
         </aside>
       </section>
 
@@ -903,7 +903,7 @@
         <div class="check"><p><strong>Câu hỏi:</strong> Với một mô hình mới, giả thiết nào hỗ trợ từng kết luận ở bước 3?</p></div>
         <aside class="notes">
           <p>Ba chứng nhận vừa so sánh có cùng bốn bước; bài toán chiếu sáng ngay sau dùng đúng quy trình này. Quy trình là dạng rút gọn của Thuật toán 01.1 (chín bước) trong ghi chú bài giảng: bước 1 ứng với bước 1–3 của thuật toán, bước 2 với bước 4–5, bước 3 với bước 6–8, bước 4 với bước 9. So với sáu bước kiểm tra đã nêu, bước 2 gộp kiểm tra $C$ lồi và $f_0$ lồi, bước 3 gộp các bước toàn cục, tồn tại, duy nhất; bước 1 thêm phần lập mô hình (bao gồm kiểm tra khả thi), bước 4 thêm phần diễn giải, chẳng hạn $u^*=1$ là tác động tối đa mà trạng thái mới vẫn chưa tới đích.</p>
-          <p>Lời giải câu hỏi. Miền lồi và mục tiêu lồi hỗ trợ kết luận cực tiểu địa phương là toàn cục. Tính liên tục cùng miền không rỗng, đóng, bị chặn, hoặc cùng tính bức trên miền đóng, không rỗng, hỗ trợ sự tồn tại; riêng bình phương nhỏ nhất, hình chiếu trực giao cho tồn tại không cần hai giả thiết này. Lồi chặt trên miền lồi hỗ trợ kết luận có nhiều nhất một nghiệm; kết hợp với tồn tại thì nghiệm duy nhất.</p>
+          <p>Lời giải câu hỏi. Miền lồi và mục tiêu lồi hỗ trợ kết luận cực tiểu địa phương là toàn cục. Tính liên tục cùng miền không rỗng, đóng, bị chặn, hoặc cùng tính cưỡng bức trên miền đóng, không rỗng, hỗ trợ sự tồn tại; riêng bình phương nhỏ nhất, hình chiếu trực giao cho tồn tại không cần hai giả thiết này. Lồi chặt trên miền lồi hỗ trợ kết luận có nhiều nhất một nghiệm; kết hợp với tồn tại thì nghiệm duy nhất.</p>
         </aside>
       </section>
 
@@ -950,12 +950,12 @@
           <thead><tr><th>Kết quả</th><th>Giả thiết đủ</th><th>Công cụ kiểm tra</th></tr></thead>
           <tbody>
             <tr><td>Cực tiểu địa phương là toàn cục</td><td>$C$ lồi, $f_0$ lồi trên $C$</td><td>$C$: tập cơ bản, giao, nghịch ảnh affine; $f_0$: bậc nhất, bậc hai, phép giữ tính lồi</td></tr>
-            <tr><td>Nghiệm tồn tại</td><td>$f_0$ liên tục, $C$ không rỗng, đóng; thêm $C$ bị chặn hoặc $f_0$ bức</td><td>Định lý Weierstrass; riêng bình phương nhỏ nhất: hình chiếu</td></tr>
+            <tr><td>Nghiệm tồn tại</td><td>$f_0$ liên tục, $C$ không rỗng, đóng; thêm $C$ bị chặn hoặc $f_0$ cưỡng bức</td><td>Định lý Weierstrass; riêng bình phương nhỏ nhất: hình chiếu</td></tr>
             <tr><td>Có nhiều nhất một nghiệm</td><td>$f_0$ lồi chặt trên $C$ lồi</td><td>Định nghĩa; $\nabla^2f_0\succ0$ trên $C$ mở</td></tr>
           </tbody>
         </table>
         <aside class="notes">
-          <p>Ba kết quả của bài, mỗi kết quả kèm giả thiết đủ, trả lời câu hỏi ở quy trình chứng nhận. Các giả thiết là đủ, không cần: hồi quy tuyến tính với $X$ thiếu hạng cột có miền không bị chặn và mục tiêu không bức, nhưng nghiệm vẫn tồn tại nhờ hình chiếu trực giao lên $\mathcal R(X)$. Bỏ giả thiết thì kết luận có thể sai: thiếu tính lồi, một cực tiểu địa phương có thể không toàn cục; thiếu tính bị chặn hoặc tính bức, $e^x$ trên $\mathbb R$ và mất mát logistic trên dữ liệu tách tuyến tính không có nghiệm; thiếu lồi chặt, hàm hằng trên $[-1,1]$ có vô số nghiệm.</p>
+          <p>Ba kết quả của bài, mỗi kết quả kèm giả thiết đủ, trả lời câu hỏi ở quy trình chứng nhận. Các giả thiết là đủ, không cần: hồi quy tuyến tính với $X$ thiếu hạng cột có miền không bị chặn và mục tiêu không cưỡng bức, nhưng nghiệm vẫn tồn tại nhờ hình chiếu trực giao lên $\mathcal R(X)$. Bỏ giả thiết thì kết luận có thể sai: thiếu tính lồi, một cực tiểu địa phương có thể không toàn cục; thiếu tính bị chặn hoặc tính cưỡng bức, $e^x$ trên $\mathbb R$ và mất mát logistic trên dữ liệu tách tuyến tính không có nghiệm; thiếu lồi chặt, hàm hằng trên $[-1,1]$ có vô số nghiệm.</p>
           <p>Bảng ứng với mục tiêu học tập 3 và 4; các chứng nhận ở bài toán điều khiển, hồi quy tuyến tính, hồi quy logistic và lời giải bài toán chiếu sáng là minh chứng cho mục tiêu 1 và 2. Điều kiện $\nabla^2f_0\succ0$ chỉ là điều kiện đủ cho lồi chặt.</p>
         </aside>
       </section>

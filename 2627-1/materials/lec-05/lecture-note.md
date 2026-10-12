@@ -18,7 +18,7 @@ Số hiệu `01.k`, `02.k`, `04.k`, `05b.k`, `05c.k` chỉ ghi chú Bài 01, 02,
 - **Bình phương nhỏ nhất** (Mệnh đề 01.6). Với $X\in\mathbb R^{n\times d}$ và $y\in\mathbb R^n$ tùy ý, phương trình chuẩn $X^TXw=X^Ty$ luôn có nghiệm; nếu $w^*$ là một nghiệm thì tập nghiệm là $\{w^*+v:\ v\in\ker X\}$; nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$.
 - **Hồi quy với chính quy hóa bậc hai** (Mệnh đề 02.21(c)). Với $\lambda>0$, bài toán bình phương nhỏ nhất cộng hạng phạt $\lambda\lVert w\rVert^2$ có đúng một nghiệm với mọi $X$.
 - **Mất mát logistic** (Định nghĩa 01.8, Mệnh đề 01.9). Với biên có dấu $m$, mất mát $\phi(m)=\log(1+e^{-m})$ dương, giảm chặt, $\phi'(m)=-1/(1+e^{m})\in(-1,0)$, $\phi''(m)\in(0,\tfrac14]$ đạt $\tfrac14$ tại $m=0$, và $\phi(m)\to0$ khi $m\to+\infty$. Bài 01 viết $\ell$ cho hàm này; ở đây chúng ta viết $\phi$ để dành $\ell$ cho mất mát của một mẫu.
-- **Sự tồn tại và tính duy nhất của điểm cực tiểu** (Định lý 01.36, 01.38, Hệ quả 01.41, Nhận xét 01.43). Hàm liên tục trên tập không rỗng, đóng, bị chặn đạt giá trị nhỏ nhất (Weierstrass). Hàm liên tục và bức trên $\mathbb R^d$, tức $f(w)\to\infty$ khi $\lVert w\rVert\to\infty$, đạt giá trị nhỏ nhất. Hàm khả vi lồi mạnh có đúng một điểm cực tiểu. Tính lồi chặt không bảo đảm sự tồn tại điểm cực tiểu.
+- **Sự tồn tại và tính duy nhất của điểm cực tiểu** (Định lý 01.36, Định nghĩa 01.37, Định lý 01.38, Hệ quả 01.41, Nhận xét 01.43). Hàm liên tục trên tập không rỗng, đóng, bị chặn đạt giá trị nhỏ nhất (Weierstrass). Hàm liên tục và cưỡng bức (coercive) trên $\mathbb R^d$, tức $f(w)\to\infty$ khi $\lVert w\rVert\to\infty$, đạt giá trị nhỏ nhất. Hàm khả vi lồi mạnh có đúng một điểm cực tiểu. Tính lồi chặt không bảo đảm sự tồn tại điểm cực tiểu.
 - **Hạ gradient trên hàm lồi mạnh** (Định lý 04.26, Định lý 05b.18). Nếu $f$ có gradient $L$-Lipschitz và lồi mạnh với hằng số $\mu$, dãy $w_{k+1}=w_k-\tfrac1L\nabla f(w_k)$ thỏa $f(w_k)-f^*\le(1-\mu/L)^k\bigl(f(w_0)-f^*\bigr)$.
 - **Hạ gradient khi không có điểm cực tiểu** (Hệ quả 05b.17). Nếu $f$ lồi và có gradient $L$-Lipschitz thì dãy hạ gradient với bước hằng $0<\eta\le\tfrac1L$ có $f(w_k)\to\inf f$, kể cả khi $\inf f$ không đạt.
 - **Phương pháp Newton** (Định nghĩa 04.28, 04.30, Thuật toán 04.2, Định lý 04.35). Hướng Newton tại $w$ là nghiệm $p$ của $\nabla^2f(w)\,p=-\nabla f(w)$; độ giảm Newton là $\delta_N(w)=\sqrt{-\nabla f(w)^Tp}$. Với quay lui Armijo, phương pháp có một giai đoạn tắt dần và một giai đoạn hội tụ bậc hai; định lý được phát biểu lại ở Mục 4.
@@ -1024,9 +1024,15 @@ Tính giảm đơn điệu của $F(w_k)$ một mình chưa đủ cho kết lu�
 
 ### 3.5 Dữ liệu không tách được
 
-Trước khi sửa bài toán, chúng ta cần biết trường hợp nào vẫn có điểm cực tiểu. Ví dụ 05.12 là một trường hợp như vậy; mệnh đề sau cho một điều kiện đủ tổng quát, dùng Định lý 01.38 về hàm bức.
+Trước khi sửa bài toán, chúng ta cần biết trường hợp nào vẫn có điểm cực tiểu. Ví dụ 05.12 là một trường hợp như vậy. Để có một điều kiện đủ tổng quát, chúng ta dùng lại tính cưỡng bức của Bài 01, phát biểu cho miền $\mathbb R^d$.
 
-::: proposition Mệnh đề 05.24 (Dữ liệu không tách được thì mất mát logistic bức)
+::: definition Hàm cưỡng bức (nhắc lại Định nghĩa 01.37)
+Hàm $f:\mathbb R^d\to\mathbb R$ là cưỡng bức (coercive) nếu $f(w)\to+\infty$ khi $\lVert w\rVert\to\infty$; nghĩa là với mọi $M$ có $R$ sao cho $f(w)>M$ với mọi $w$ thỏa $\lVert w\rVert>R$.
+:::
+
+Hàm $w\mapsto\lVert w\rVert^2$ cưỡng bức. Mất mát logistic trên dữ liệu tách được thì không, vì $F(t\bar w)\to0$ khi $t\to\infty$ (Định lý 05.22). Theo Định lý 01.38, hàm liên tục và cưỡng bức trên $\mathbb R^d$ đạt giá trị nhỏ nhất, nên chỉ cần một điều kiện trên dữ liệu bảo đảm $F$ cưỡng bức. Mệnh đề sau cho điều kiện đó.
+
+::: proposition Mệnh đề 05.24 (Dữ liệu không tách được thì mất mát logistic cưỡng bức)
 **Giả thiết.** $F$ là (3.1), và với mọi $w\ne0$ tồn tại $i$ với $m_i(w)<0$.
 
 **Kết luận.** Tồn tại $c>0$ với
@@ -1036,7 +1042,7 @@ F(w)\ge\frac cn\lVert w\rVert\quad\forall w\in\mathbb R^d ,
 \tag{3.4}
 $$
 
-nên $F$ bức và có điểm cực tiểu trên $\mathbb R^d$.
+nên $F$ cưỡng bức và có điểm cực tiểu trên $\mathbb R^d$.
 
 **Điều kiện áp dụng.** Giả thiết nói rằng mọi hướng khác $0$ phân loại sai ít nhất một mẫu với biên âm chặt.
 
@@ -1060,7 +1066,7 @@ $$
 
 Bất đẳng thức (a) dùng tính giảm của $\phi$ và $m_i(w)\le-c\lVert w\rVert$; bất đẳng thức (b) dùng $\log(1+e^s)\ge s$. Với $w=0$, (3.4) đúng vì $F(0)=\log2>0$.
 
-**Bước 4 (tồn tại điểm cực tiểu).** Theo (3.4), $F(w)\to\infty$ khi $\lVert w\rVert\to\infty$, tức $F$ bức. $F$ liên tục, nên Định lý 01.38 cho $F$ đạt giá trị nhỏ nhất trên $\mathbb R^d$. $\square$
+**Bước 4 (tồn tại điểm cực tiểu).** Theo (3.4), $F(w)\to\infty$ khi $\lVert w\rVert\to\infty$, tức $F$ cưỡng bức. $F$ liên tục, nên Định lý 01.38 cho $F$ đạt giá trị nhỏ nhất trên $\mathbb R^d$. $\square$
 :::
 
 Về tính duy nhất trong Phạm vi: nếu $\operatorname{rank}X=d$ thì $Xv\ne0$ với mọi $v\ne0$, nên $v^T\nabla^2F(w)v=\frac1n\sum_iS_{ii}(x_i^Tv)^2>0$ vì mọi $S_{ii}>0$. Hessian xác định dương ở mọi điểm, nên $F$ lồi chặt và có nhiều nhất một điểm cực tiểu (Định lý 01.35).
@@ -1303,7 +1309,7 @@ Năm điểm $u=(-2,-1,0,1,2)$ có nhãn $y=(+1,-1,-1,-1,+1)$.
 
 2. Với $\bar w=(-2{,}5;\ 1)$, điểm số là $u^2-2{,}5$, bằng $1{,}5$ tại $u=\pm2$, bằng $-1{,}5$ tại $u=\pm1$ và bằng $-2{,}5$ tại $u=0$. Nhân với nhãn, các biên là $(1{,}5;\ 1{,}5;\ 2{,}5;\ 1{,}5;\ 1{,}5)$, đều dương, nên $\gamma=1{,}5$.
 
-3. Với $(1,u)$, Mệnh đề 05.24 cho $F$ bức và có điểm cực tiểu. Với $(1,u^2)$, Định lý 05.22 cho $\inf F=0$ không đạt và mọi dãy cực tiểu hóa phân kỳ. Cùng dữ liệu, bộ đặc trưng quyết định sự tồn tại.
+3. Với $(1,u)$, Mệnh đề 05.24 cho $F$ cưỡng bức và có điểm cực tiểu. Với $(1,u^2)$, Định lý 05.22 cho $\inf F=0$ không đạt và mọi dãy cực tiểu hóa phân kỳ. Cùng dữ liệu, bộ đặc trưng quyết định sự tồn tại.
 :::
 
 ::: exercise Bài tập 05.5

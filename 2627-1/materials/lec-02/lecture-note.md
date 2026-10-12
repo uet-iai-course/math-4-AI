@@ -19,7 +19,7 @@ Chúng ta dùng các kết quả sau của Bài 01 (ghi chú Bài 01, số hiệ
 - **Tập lồi** (Định nghĩa 01.18, Mệnh đề 01.19, 01.20). Tập affine, nửa không gian, hộp, quả cầu Euclid đều lồi; giao của các tập lồi và nghịch ảnh của tập lồi qua ánh xạ affine đều lồi.
 - **Hàm lồi** (Định nghĩa 01.22). Trên tập lồi $C$, $f$ lồi nếu $f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$ với mọi $x,y\in C$, $\theta\in[0,1]$, bất đẳng thức (7.1) của Bài 01; $f$ lồi chặt (còn gọi là lồi nghiêm ngặt) khi bất đẳng thức chặt với $x\ne y$, $\theta\in(0,1)$. Hàm $f$ lõm nếu $-f$ lồi. Tập mức dưới $\{x\in C\mid f(x)\le\alpha\}$ của hàm lồi là lồi (Mệnh đề 01.25).
 - **Điều kiện bậc nhất, bậc hai, phép bảo toàn tính lồi** (Định lý 01.26, Hệ quả 01.27, Định lý 01.30, 01.31). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$; nếu $f$ lồi, khả vi trên một tập mở chứa $C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$ (điều kiện (7.3) của Bài 01) thì $x^*$ là nghiệm. Hàm khả vi hai lần lồi khi và chỉ khi Hessian $\succeq0$ mọi nơi, và lồi chặt nếu Hessian $\succ0$ mọi nơi. Tổng có hệ số không âm, hợp với ánh xạ affine và cực đại từng điểm của các hàm lồi là lồi.
-- **Toàn cục, tồn tại, duy nhất** (Định lý 01.33, Hệ quả 01.34, Định lý 01.35, 01.36, 01.38). Với miền lồi và mục tiêu lồi, cực tiểu địa phương là toàn cục và tập nghiệm lồi; mục tiêu lồi chặt có nhiều nhất một nghiệm; hàm liên tục đạt cực tiểu trên tập không rỗng, đóng, bị chặn (Weierstrass), hoặc trên tập không rỗng, đóng nếu hàm bức, tức $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$.
+- **Toàn cục, tồn tại, duy nhất** (Định lý 01.33, Hệ quả 01.34, Định lý 01.35, 01.36, 01.38). Với miền lồi và mục tiêu lồi, cực tiểu địa phương là toàn cục và tập nghiệm lồi; mục tiêu lồi chặt có nhiều nhất một nghiệm; hàm liên tục đạt cực tiểu trên tập không rỗng, đóng, bị chặn (Weierstrass), hoặc trên tập không rỗng, đóng nếu hàm cưỡng bức (coercive), tức $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$.
 - **Bình phương nhỏ nhất và mất mát phân loại** (Mệnh đề 01.5, 01.6, 01.9, Ví dụ 01.14(c)). Hàm $\lVert Xw-y\rVert_2^2$ có gradient $2X^T(Xw-y)$, Hessian $2X^TX\succeq0$, luôn đạt cực tiểu, và $w^*$ là nghiệm khi và chỉ khi $X^TXw^*=X^Ty$. Hàm bản lề $\max(0,1-m)$ lồi; hàm $\log(1+e^{-m})$ có đạo hàm bậc hai $e^m/(1+e^m)^2>0$.
 - **Đại số tuyến tính** (Bài 00, mục "Phân rã trị riêng"). Ma trận đối xứng $P$ viết được thành $P=V\Lambda V^T$ với $V$ trực giao và $\Lambda$ chéo chứa các giá trị riêng; bất đẳng thức Cauchy–Schwarz $\lvert a^Tb\rvert\le\lVert a\rVert_2\lVert b\rVert_2$.
 - **Bất đẳng thức sơ cấp và logarit.** Bất đẳng thức tam giác $\lvert s+t\rvert\le\lvert s\rvert+\lvert t\rvert$; bất đẳng thức trung bình cộng – trung bình nhân cho ba số dương, $\tfrac13(s_1+s_2+s_3)\ge(s_1s_2s_3)^{1/3}$ với dấu bằng khi ba số bằng nhau. Ký hiệu $\log$ là logarit tự nhiên, tăng chặt trên $(0,\infty)$.
@@ -1007,7 +1007,7 @@ $$
 
 Ma trận $2X^TX$ luôn nửa xác định dương vì $v^T(2X^TX)v=2\lVert Xv\rVert_2^2\ge0$. Do đó, bình phương nhỏ nhất luôn là quy hoạch bậc hai, kể cả khi $X$ không có hạng cột đầy đủ.
 
-Câu hỏi đặt ra là khi nào quy hoạch bậc hai có đúng một nghiệm. Dựa trên Định lý 01.30 (điều kiện bậc hai), Định lý 01.38 (tồn tại với hàm bức) và Định lý 01.35 (duy nhất), câu trả lời được phát biểu trong mệnh đề sau.
+Câu hỏi đặt ra là khi nào quy hoạch bậc hai có đúng một nghiệm. Dựa trên Định lý 01.30 (điều kiện bậc hai), Định lý 01.38 (tồn tại với hàm cưỡng bức) và Định lý 01.35 (duy nhất), câu trả lời được phát biểu trong mệnh đề sau.
 
 ::: proposition Mệnh đề 02.18 (Tính lồi, tồn tại và duy nhất của quy hoạch bậc hai)
 **Giả thiết.** Bài toán (3.1) với $P\succeq0$.
@@ -1037,7 +1037,7 @@ $$
 f_0(x)\ge\tfrac{\lambda_{\min}}2\lVert x\rVert_2^2-\lVert q\rVert_2\lVert x\rVert_2+s .
 $$
 
-**Bước 3 (phần (b): tính bức và tồn tại).** Vế phải là một đa thức bậc hai theo $\lVert x\rVert_2$ với hệ số bậc hai dương, dần tới $+\infty$ khi $\lVert x\rVert_2\to\infty$, tức $f_0$ bức. Tập khả thi là tập nghiệm của hữu hạn bất đẳng thức tuyến tính không chặt và đẳng thức tuyến tính, nên đóng, và không rỗng theo giả thiết; $f_0$ liên tục. Định lý 01.38 cho nghiệm tồn tại.
+**Bước 3 (phần (b): tính cưỡng bức và tồn tại).** Vế phải là một đa thức bậc hai theo $\lVert x\rVert_2$ với hệ số bậc hai dương, dần tới $+\infty$ khi $\lVert x\rVert_2\to\infty$, tức $f_0$ cưỡng bức. Tập khả thi là tập nghiệm của hữu hạn bất đẳng thức tuyến tính không chặt và đẳng thức tuyến tính, nên đóng, và không rỗng theo giả thiết; $f_0$ liên tục. Định lý 01.38 cho nghiệm tồn tại.
 
 **Bước 4 (phần (b): duy nhất).** Vì $P\succ0$, $f_0$ lồi chặt theo Định lý 01.30(b), và Định lý 01.35 cho nghiệm duy nhất. $\square$
 :::
@@ -1102,7 +1102,7 @@ Trên hình, nghiệm có ràng buộc là tiếp điểm giữa miền và elip
 Tại đó, gradient $(-10,0)$ vuông góc với biên $a=\tfrac12$ và $-\nabla E$ chỉ ra ngoài miền, nên không dịch chuyển khả thi nào làm $E$ giảm theo xấp xỉ bậc nhất. Đó là nội dung hình học của điều kiện (1.2).
 
 ::: remark Nhận xét 02.19 (Vai trò của giả thiết $P\succ0$)
-So với Mệnh đề 01.6 của Bài 01, vốn không cho ràng buộc, Mệnh đề 02.18(b) cho phép ràng buộc tuyến tính tùy ý nhưng cần thêm giả thiết $P\succ0$, tức $\operatorname{rank}X=d$ với bình phương nhỏ nhất. Giả thiết đó được dùng hai lần, cho tính bức (tồn tại) và cho tính lồi chặt (duy nhất).
+So với Mệnh đề 01.6 của Bài 01, vốn không cho ràng buộc, Mệnh đề 02.18(b) cho phép ràng buộc tuyến tính tùy ý nhưng cần thêm giả thiết $P\succ0$, tức $\operatorname{rank}X=d$ với bình phương nhỏ nhất. Giả thiết đó được dùng hai lần, cho tính cưỡng bức (tồn tại) và cho tính lồi chặt (duy nhất).
 
 Nhầm lẫn thường gặp là suy ra có nghiệm chỉ từ $P\succeq0$; phản ví dụ ở phần Phạm vi.
 :::
@@ -1178,13 +1178,13 @@ Bốn tổ hợp được phân lớp và chứng nhận nghiệm theo mệnh đ
 - Với $\ell_2^2+\ell_1$, $f(w)=\lVert Xw-y\rVert_2^2$, và ma trận bậc hai theo $(w,v)$ là $\operatorname{diag}(2X^TX,0)\succeq0$.
 - Với $\ell_2^2+\ell_2^2$, khai triển cho $w^T(X^TX+\lambda I)w-2y^TXw+y^Ty$, nên $P=2(X^TX+\lambda I)$. Ngoài ra $v^T(X^TX+\lambda I)v=\lVert Xv\rVert_2^2+\lambda\lVert v\rVert_2^2>0$ khi $v\ne0$, nên $P\succ0$.
 
-**Bước 3 (phần (b): tồn tại).** Mục tiêu liên tục trên $\mathbb R^d$ và không nhỏ hơn $\lambda R(w)$, vì $L\ge0$. Hình phạt là hàm bức, do $\lVert w\rVert_2^2\to\infty$ khi $\lVert w\rVert_2\to\infty$ và $\lVert w\rVert_1\ge\lVert w\rVert_2$. Bất đẳng thức thứ hai đúng vì
+**Bước 3 (phần (b): tồn tại).** Mục tiêu liên tục trên $\mathbb R^d$ và không nhỏ hơn $\lambda R(w)$, vì $L\ge0$. Hình phạt là hàm cưỡng bức, do $\lVert w\rVert_2^2\to\infty$ khi $\lVert w\rVert_2\to\infty$ và $\lVert w\rVert_1\ge\lVert w\rVert_2$. Bất đẳng thức thứ hai đúng vì
 
 $$
 \lVert w\rVert_1^2=\sum_jw_j^2+\sum_{j\ne k}\lvert w_j\rvert\lvert w_k\rvert\ge\lVert w\rVert_2^2 .
 $$
 
-Vậy mục tiêu bức, và Định lý 01.38 với $C=\mathbb R^d$ cho nghiệm tồn tại.
+Vậy mục tiêu cưỡng bức, và Định lý 01.38 với $C=\mathbb R^d$ cho nghiệm tồn tại.
 
 **Bước 4 (phần (c): duy nhất).**
 
@@ -1194,7 +1194,7 @@ Vậy mục tiêu bức, và Định lý 01.38 với $C=\mathbb R^d$ cho nghiệ
 Trong các trường hợp này, Định lý 01.35 cho nhiều nhất một nghiệm, và (b) cho ít nhất một. $\square$
 :::
 
-Mệnh đề 02.21 mở rộng Mệnh đề 02.18 theo hai hướng: mục tiêu được chứa hạng không khả vi (nhờ Định lý 02.15), và sự tồn tại đến từ tính bức của hình phạt thay cho $P\succ0$.
+Mệnh đề 02.21 mở rộng Mệnh đề 02.18 theo hai hướng: mục tiêu được chứa hạng không khả vi (nhờ Định lý 02.15), và sự tồn tại đến từ tính cưỡng bức của hình phạt thay cho $P\succ0$.
 
 Tuy nhiên, phần (c) chỉ cho tính duy nhất với ba tổ hợp. Chẳng hạn, với $\ell_2^2+\ell_1$, khi hai cột của $X$ trùng nhau, có thể chia hệ số cùng dấu giữa hai cột theo vô số cách mà không đổi sai số lẫn $\lVert w\rVert_1$.
 
@@ -2234,7 +2234,7 @@ và $J(w,b)\ge\tfrac\lambda2\lVert w\rVert_2^2$.
 
 **Bước 3 (phần (b): tập mức dưới bị chặn).** Nếu $J(w,b)\le K$ thì $\lVert w\rVert_2\le\sqrt{2K/\lambda}$ và $\lvert b\rvert\le K-1+M\sqrt{2K/\lambda}$, nên mọi tập mức dưới của $J$ bị chặn.
 
-**Bước 4 (phần (b): tính bức và tồn tại).** $J$ bức. Thật vậy, nếu có dãy $(w_k,b_k)$ với chuẩn dần tới vô cực mà $J(w_k,b_k)$ không dần tới $+\infty$, thì một dãy con có $J\le K$ với một $K$ nào đó, mâu thuẫn với tính bị chặn của tập mức dưới. $J$ liên tục trên $\mathbb R^{d+1}$, và Định lý 01.38 cho nghiệm tồn tại.
+**Bước 4 (phần (b): tính cưỡng bức và tồn tại).** $J$ cưỡng bức. Thật vậy, nếu có dãy $(w_k,b_k)$ với chuẩn dần tới vô cực mà $J(w_k,b_k)$ không dần tới $+\infty$, thì một dãy con có $J\le K$ với một $K$ nào đó, mâu thuẫn với tính bị chặn của tập mức dưới. $J$ liên tục trên $\mathbb R^{d+1}$, và Định lý 01.38 cho nghiệm tồn tại.
 
 **Bước 5 (phần (c)).** Giả sử $(w,b)$ và $(w',b')$ là hai nghiệm với $w\ne w'$, cùng giá trị $p^*$. Tại trung điểm, hàm $\tfrac\lambda2\lVert\cdot\rVert_2^2$ lồi chặt cho
 
@@ -2252,7 +2252,7 @@ Khi $\lambda=0$, quy hoạch bậc hai suy biến thành quy hoạch tuyến tí
 ::: remark Nhận xét 02.40 (Giả thiết hai nhãn không cần cho sự tồn tại)
 Nếu mọi nhãn bằng $+1$, thì $w=0$ và mọi $b\ge1$ cho $J=0$, giá trị nhỏ nhất có thể vì $J\ge0$. Nghiệm vẫn tồn tại, nhưng tập nghiệm $\{(0,b)\mid b\ge1\}$ không bị chặn theo $b$, nên bước chặn $b$ trong chứng minh Mệnh đề 02.39(b) không thực hiện được.
 
-Giả thiết hai nhãn vì vậy là điều kiện đủ cho lập luận tính bức, không phải điều kiện cần cho sự tồn tại. Trong thực hành, dữ liệu một nhãn chỉ cho bộ phân loại hằng.
+Giả thiết hai nhãn vì vậy là điều kiện đủ cho lập luận tính cưỡng bức, không phải điều kiện cần cho sự tồn tại. Trong thực hành, dữ liệu một nhãn chỉ cho bộ phân loại hằng.
 :::
 
 **Trong học máy.** Theo Mệnh đề 02.39, huấn luyện máy vector hỗ trợ lề mềm là quy hoạch bậc hai lồi với $d+1+N$ biến, có nghiệm và có $w$ duy nhất, nên mọi bộ giải trả về cùng một hướng của biên quyết định.

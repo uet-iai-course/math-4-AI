@@ -1953,7 +1953,7 @@ Ba hàm một biến sau cho thấy ba thiếu hụt về toàn cục, tồn t�
 
 Ba hàm đều lồi, nên riêng tính lồi không phân biệt được ba trường hợp: không có nghiệm, có vô số nghiệm và có đúng một nghiệm.
 
-Trong mục này, chúng ta chứng minh định lý cực tiểu địa phương là toàn cục và nối tính lồi chặt với tính duy nhất. Sau đó, chúng ta phát biểu hai điều kiện đủ cho sự tồn tại: miền đóng, bị chặn (định lý Weierstrass) và hàm bức.
+Trong mục này, chúng ta chứng minh định lý cực tiểu địa phương là toàn cục và nối tính lồi chặt với tính duy nhất. Sau đó, chúng ta phát biểu hai điều kiện đủ cho sự tồn tại: miền đóng, bị chặn (định lý Weierstrass) và hàm cưỡng bức (coercive).
 
 ![Ba đồ thị. Trái: hàm e mũ x trên toàn trục số, cận dưới đúng bằng 0 nhưng không có nghiệm. Giữa: hàm hằng 0 trên đoạn từ −1 đến 1, mọi điểm của đoạn đều tối ưu. Phải: hàm x bình phương trên toàn trục số, nghiệm duy nhất x sao bằng 0.](img/lec-01/existence-and-uniqueness.svg)
 
@@ -2064,7 +2064,7 @@ Sự tồn tại cần thêm giả thiết (Định lý 01.38, Hệ quả 01.41)
 
 Khi mất mát chỉ lồi, như hồi quy tuyến tính với đặc trưng phụ thuộc tuyến tính, các lần huấn luyện có thể kết thúc tại các tham số khác nhau trong tập nghiệm lồi $S^*$ (Hệ quả 01.34) với cùng sai số. Chính quy hóa bậc hai làm mất mát lồi chặt và loại bỏ sự mơ hồ này (Ví dụ 01.15).
 
-### 8.3 Sự tồn tại: miền đóng, bị chặn và hàm bức
+### 8.3 Sự tồn tại: miền đóng, bị chặn và hàm cưỡng bức
 
 Câu hỏi 5 là khi nào cận dưới đúng được đạt. Hàm $e^x$ trên $\mathbb R$ cho thấy hai nguyên nhân khiến cận dưới đúng không đạt: miền không bị chặn, nên chuẩn của dãy tối ưu hóa có thể tiến ra vô cực, và hàm không tăng ra vô cực theo hướng đó. Trường hợp miền bị chặn được giải quyết bằng kết quả cổ điển sau.
 
@@ -2100,20 +2100,20 @@ Hai trường hợp hồi quy có miền $\mathbb R^d$, không bị chặn, nên
 
 Về mặt trực quan, nếu $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$ thì mọi điểm có chuẩn đủ lớn đều có giá trị hàm lớn hơn giá trị tại một điểm cố định, nên chỉ cần tìm nghiệm trong một vùng bị chặn. Định nghĩa sau làm chính xác điều kiện này.
 
-::: definition Định nghĩa 01.37 (Hàm bức)
-Cho $C\subseteq\mathbb R^d$ không bị chặn. Hàm $f:C\to\mathbb R$ là bức (coercive) trên $C$ nếu $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$ với $x\in C$; nghĩa là với mọi $M$ có $R$ sao cho $f(x)>M$ với mọi $x\in C$ thỏa $\lVert x\rVert_2>R$.
+::: definition Định nghĩa 01.37 (Hàm cưỡng bức)
+Cho $C\subseteq\mathbb R^d$ không bị chặn. Hàm $f:C\to\mathbb R$ là cưỡng bức (coercive) trên $C$ nếu $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$ với $x\in C$; nghĩa là với mọi $M$ có $R$ sao cho $f(x)>M$ với mọi $x\in C$ thỏa $\lVert x\rVert_2>R$.
 :::
 
-Hàm $x^2$ bức trên $\mathbb R$. Hàm $e^x$ không bức, vì $e^x\to0$ khi $x\to-\infty$. Hàm $J$ với ma trận $X'$ của Ví dụ 01.5 không bức, vì $J$ giữ giá trị $\tfrac16$ dọc theo đường thẳng $(7/6,\ s,\ 1/2-s)^T$ khi $s\to\infty$.
+Hàm $x^2$ cưỡng bức trên $\mathbb R$. Hàm $e^x$ không cưỡng bức, vì $e^x\to0$ khi $x\to-\infty$. Hàm $J$ với ma trận $X'$ của Ví dụ 01.5 không cưỡng bức, vì $J$ giữ giá trị $\tfrac16$ dọc theo đường thẳng $(7/6,\ s,\ 1/2-s)^T$ khi $s\to\infty$.
 
-Tính bức độc lập với tính lồi, vì $x^4-2x^2$ bức mà không lồi (Bài tập 01.12), còn $e^x$ lồi mà không bức. Với khái niệm này, sự tồn tại nghiệm trên miền không bị chặn được phát biểu như sau.
+Tính cưỡng bức độc lập với tính lồi, vì $x^4-2x^2$ cưỡng bức mà không lồi (Bài tập 01.12), còn $e^x$ lồi mà không cưỡng bức. Với khái niệm này, sự tồn tại nghiệm trên miền không bị chặn được phát biểu như sau.
 
-::: theorem Định lý 01.38 (Tồn tại nghiệm với hàm bức)
-**Giả thiết.** $C\subseteq\mathbb R^d$ không rỗng và đóng; $f:C\to\mathbb R$ liên tục và bức trên $C$ (khi $C$ bị chặn, chỉ cần liên tục).
+::: theorem Định lý 01.38 (Tồn tại nghiệm với hàm cưỡng bức)
+**Giả thiết.** $C\subseteq\mathbb R^d$ không rỗng và đóng; $f:C\to\mathbb R$ liên tục và cưỡng bức trên $C$ (khi $C$ bị chặn, chỉ cần liên tục).
 
 **Kết luận.** $f$ đạt giá trị nhỏ nhất trên $C$.
 
-**Điều kiện áp dụng.** Cần $C$ đóng để tập mức dưới dùng trong chứng minh là tập đóng, và $f$ liên tục; không cần tính lồi. Với $C=\mathbb R^d$, tính bức là điều kiện thay cho tính bị chặn của miền trong Định lý 01.36.
+**Điều kiện áp dụng.** Cần $C$ đóng để tập mức dưới dùng trong chứng minh là tập đóng, và $f$ liên tục; không cần tính lồi. Với $C=\mathbb R^d$, tính cưỡng bức là điều kiện thay cho tính bị chặn của miền trong Định lý 01.36.
 
 **Phạm vi.** Không cho tính duy nhất.
 :::
@@ -2133,9 +2133,9 @@ Tính bức độc lập với tính lồi, vì $x^4-2x^2$ bức mà không lồ
 Vậy $x^*$ là cực tiểu trên toàn $C$. $\square$
 :::
 
-Định lý 01.38 mở rộng Định lý 01.36 sang miền không bị chặn, đổi giả thiết "miền bị chặn" thành "hàm bức". Chứng minh dùng Định lý 01.36 trên một tập mức dưới, nên nó kế thừa yêu cầu miền đóng và hàm liên tục.
+Định lý 01.38 mở rộng Định lý 01.36 sang miền không bị chặn, đổi giả thiết "miền bị chặn" thành "hàm cưỡng bức". Chứng minh dùng Định lý 01.36 trên một tập mức dưới, nên nó kế thừa yêu cầu miền đóng và hàm liên tục.
 
-**Trong học máy.** Hàm mất mát cộng hạng chính quy hóa $\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$ là bức khi mất mát không âm, vì tổng không nhỏ hơn $\tfrac\mu2\lVert w\rVert_2^2$. Định lý 01.38 vì vậy bảo đảm bài toán huấn luyện có chính quy hóa có nghiệm với mọi hàm mất mát liên tục không âm, kể cả khi mất mát không lồi. Tính duy nhất cần thêm tính lồi chặt.
+**Trong học máy.** Hàm mất mát cộng hạng chính quy hóa $\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$ là cưỡng bức khi mất mát không âm, vì tổng không nhỏ hơn $\tfrac\mu2\lVert w\rVert_2^2$. Định lý 01.38 vì vậy bảo đảm bài toán huấn luyện có chính quy hóa có nghiệm với mọi hàm mất mát liên tục không âm, kể cả khi mất mát không lồi. Tính duy nhất cần thêm tính lồi chặt.
 
 Với hàm khả vi trên $\mathbb R^d$, ta có một điều kiện đủ dễ kiểm tra cho cả tồn tại và duy nhất, dựa trên một dạng lồi mạnh hơn lồi chặt.
 
@@ -2158,7 +2158,7 @@ Từ tính lồi mạnh, ta có cả tồn tại lẫn duy nhất theo hệ qu�
 ::: corollary Hệ quả 01.41 (Hàm lồi mạnh khả vi có nghiệm duy nhất)
 **Giả thiết.** $f:\mathbb R^d\to\mathbb R$ khả vi và lồi mạnh với hằng số $\mu>0$.
 
-**Kết luận.** $f$ bức, và bài toán $\min_{x\in\mathbb R^d}f(x)$ có đúng một nghiệm.
+**Kết luận.** $f$ cưỡng bức, và bài toán $\min_{x\in\mathbb R^d}f(x)$ có đúng một nghiệm.
 
 **Điều kiện áp dụng.** Miền $\mathbb R^d$; $\mu>0$.
 
@@ -2178,12 +2178,12 @@ $$
 f(x)\ge f(0)-\lVert\nabla f(0)\rVert_2\lVert x\rVert_2+\tfrac\mu2\lVert x\rVert_2^2 .
 $$
 
-**Bước 2 (tính bức và tồn tại).** Vế phải là một đa thức bậc hai của $\lVert x\rVert_2$ với hệ số bậc hai dương, nên dần tới $+\infty$ khi $\lVert x\rVert_2\to\infty$, tức $f$ bức. Hàm khả vi thì liên tục, và $\mathbb R^d$ không rỗng, đóng, nên Định lý 01.38 cho nghiệm tồn tại.
+**Bước 2 (tính cưỡng bức và tồn tại).** Vế phải là một đa thức bậc hai của $\lVert x\rVert_2$ với hệ số bậc hai dương, nên dần tới $+\infty$ khi $\lVert x\rVert_2\to\infty$, tức $f$ cưỡng bức. Hàm khả vi thì liên tục, và $\mathbb R^d$ không rỗng, đóng, nên Định lý 01.38 cho nghiệm tồn tại.
 
 **Bước 3 (duy nhất).** Hàm lồi mạnh là lồi chặt, nên Định lý 01.35 cho nghiệm duy nhất. $\square$
 :::
 
-Hệ quả 01.41 mạnh hơn Định lý 01.38 theo nghĩa nó gộp cả tồn tại lẫn duy nhất trong một giả thiết, và tính bức không cần kiểm tra riêng mà suy ra từ lồi mạnh. Điều kiện áp dụng của hệ quả cũng chặt hơn, vì nó cần $f$ khả vi, miền là $\mathbb R^d$ và tính lồi mạnh, một giả thiết mạnh hơn lồi chặt (Nhận xét 01.40).
+Hệ quả 01.41 mạnh hơn Định lý 01.38 theo nghĩa nó gộp cả tồn tại lẫn duy nhất trong một giả thiết, và tính cưỡng bức không cần kiểm tra riêng mà suy ra từ lồi mạnh. Điều kiện áp dụng của hệ quả cũng chặt hơn, vì nó cần $f$ khả vi, miền là $\mathbb R^d$ và tính lồi mạnh, một giả thiết mạnh hơn lồi chặt (Nhận xét 01.40).
 
 Cách thông dụng nhất để có tính lồi mạnh là cộng vào hàm mục tiêu một hạng bậc hai. Nhu cầu này đã xuất hiện ở Ví dụ 01.6, nơi mất mát logistic trên dữ liệu tách được không có nghiệm, và một số hạng phạt độ lớn của tham số ngăn chuẩn của tham số tăng không giới hạn. Hạng bậc hai đó được định nghĩa như sau.
 
@@ -2236,7 +2236,7 @@ Mỗi kết luận phải được chứng nhận bằng giả thiết của ri�
 ::: exercise Bài tập 01.12
 Cho $f(x)=x^4-2x^2$ trên $\mathbb R$.
 
-(a) Chứng minh $f$ bức và suy ra bài toán $\min_{x\in\mathbb R}f(x)$ có nghiệm.
+(a) Chứng minh $f$ cưỡng bức và suy ra bài toán $\min_{x\in\mathbb R}f(x)$ có nghiệm.
 
 (b) Tìm mọi nghiệm và giá trị tối ưu.
 
@@ -2248,14 +2248,14 @@ Viết $f(x)=(x^2-1)^2-1$.
 :::
 
 ::: solution
-**(a)** $f(x)=(x^2-1)^2-1$, và $(x^2-1)^2\to+\infty$ khi $\lvert x\rvert\to\infty$, nên $f$ bức. $f$ là đa thức nên liên tục, $\mathbb R$ đóng và không rỗng; Định lý 01.38 cho nghiệm tồn tại.
+**(a)** $f(x)=(x^2-1)^2-1$, và $(x^2-1)^2\to+\infty$ khi $\lvert x\rvert\to\infty$, nên $f$ cưỡng bức. $f$ là đa thức nên liên tục, $\mathbb R$ đóng và không rỗng; Định lý 01.38 cho nghiệm tồn tại.
 
 **(b)** $f(x)\ge-1$ với dấu bằng khi và chỉ khi $x^2=1$, nên $S^*=\{-1,1\}$ và $p^*=-1$. Kiểm tra: $f(\pm1)=1-2=-1$.
 
 **(c)** $f''(x)=12x^2-4$, âm tại $x=0$, nên $f$ không lồi theo Định lý 01.30(a). Trực tiếp, $f(0)=0>\tfrac12f(-1)+\tfrac12f(1)=-1$. Hệ quả 01.34 cần $f$ lồi, và giả thiết này bị vi phạm, nên tập nghiệm gồm hai điểm tách rời không mâu thuẫn với nó.
 :::
 
-Như vậy, Định lý 01.33 trả lời câu hỏi toàn cục, với Hệ quả 01.34 về hình dạng tập nghiệm, và Định lý 01.35 trả lời câu hỏi duy nhất. Định lý 01.36 (miền đóng và bị chặn) và Định lý 01.38 (hàm bức, Định nghĩa 01.37) trả lời câu hỏi tồn tại. Với hàm lồi mạnh, Định nghĩa 01.39, Nhận xét 01.40 và Hệ quả 01.41 gộp tồn tại và duy nhất vào một giả thiết, còn Định nghĩa 01.42 cho cách tạo ra tính lồi mạnh. Kết quả của mục là ba điều kiện đủ riêng biệt cho ba kết luận, được tóm tắt trong Nhận xét 01.43.
+Như vậy, Định lý 01.33 trả lời câu hỏi toàn cục, với Hệ quả 01.34 về hình dạng tập nghiệm, và Định lý 01.35 trả lời câu hỏi duy nhất. Định lý 01.36 (miền đóng và bị chặn) và Định lý 01.38 (hàm cưỡng bức, Định nghĩa 01.37) trả lời câu hỏi tồn tại. Với hàm lồi mạnh, Định nghĩa 01.39, Nhận xét 01.40 và Hệ quả 01.41 gộp tồn tại và duy nhất vào một giả thiết, còn Định nghĩa 01.42 cho cách tạo ra tính lồi mạnh. Kết quả của mục là ba điều kiện đủ riêng biệt cho ba kết luận, được tóm tắt trong Nhận xét 01.43.
 
 Đến đây, bộ công cụ cho sáu câu hỏi của Nhận xét 01.17 đã hoàn tất, nhưng mới được áp dụng cho các ví dụ nhỏ, và ba trường hợp đầu chương chưa được chứng nhận đầy đủ bằng chúng. Việc áp dụng bộ công cụ cho từng trường hợp, đặt kết quả cạnh nhau và rút ra một quy trình cho mô hình mới là nội dung của Mục 9.
 
@@ -2306,7 +2306,7 @@ Trong cả ba nhánh tích không âm, và Hệ quả 01.27 cho $u^*$ tối ưu.
 ::: proof Chứng minh Mệnh đề 01.45
 **Bước 1 (miền, mục tiêu, toàn cục).** Miền $\mathbb R^d$ lồi; $J$ lồi theo Ví dụ 01.13(c); toàn cục theo Định lý 01.33.
 
-**Bước 2 (tồn tại).** Định lý 01.36 không áp dụng vì $\mathbb R^d$ không bị chặn, và Định lý 01.38 không áp dụng khi $X$ thiếu hạng vì $J$ không bức (Ví dụ 01.5). Sự tồn tại đến từ Mệnh đề 01.6(a), một lập luận riêng của bình phương nhỏ nhất dựa trên phương trình chuẩn.
+**Bước 2 (tồn tại).** Định lý 01.36 không áp dụng vì $\mathbb R^d$ không bị chặn, và Định lý 01.38 không áp dụng khi $X$ thiếu hạng vì $J$ không cưỡng bức (Ví dụ 01.5). Sự tồn tại đến từ Mệnh đề 01.6(a), một lập luận riêng của bình phương nhỏ nhất dựa trên phương trình chuẩn.
 
 **Bước 3 (duy nhất).**
 
@@ -2361,7 +2361,7 @@ Cả bốn hàng đều có miền lồi và mục tiêu lồi, nên cả bốn 
 - Bài toán điều khiển và bài toán logistic hai mẫu đều có mục tiêu lồi chặt, nhưng chỉ bài toán điều khiển có nghiệm, vì chỉ nó có miền bị chặn, tức lồi chặt không kéo theo tồn tại.
 - Hai trường hợp hồi quy có cùng miền $\mathbb R^d$ nhưng kết luận tồn tại khác nhau, nên tồn tại phụ thuộc cả mục tiêu chứ không chỉ miền.
 
-Như vậy, bảng cho ba cơ sở tồn tại khác nhau: miền bị chặn, cấu trúc phương trình chuẩn, và tính bức sau chính quy hóa.
+Như vậy, bảng cho ba cơ sở tồn tại khác nhau: miền bị chặn, cấu trúc phương trình chuẩn, và tính cưỡng bức sau chính quy hóa.
 
 Ghép các bước đã dùng cho ba trường hợp, ta được một quy trình cho mô hình mới, phát biểu dưới dạng thuật toán sau.
 
@@ -2376,7 +2376,7 @@ Ghép các bước đã dùng cho ba trường hợp, ta được một quy trì
 4. Kiểm tra $C$ lồi bằng Mệnh đề 01.19, 01.20 và 01.25.
 5. Kiểm tra $f_0$ lồi trên $C$ bằng Định nghĩa 01.22, Định lý 01.26, Định lý 01.30 hoặc Định lý 01.31; ghi rõ giả thiết của công cụ (miền mở, khả vi).
 6. Kết luận toàn cục bằng Định lý 01.33 nếu bước 4 và 5 thành công.
-7. Kiểm tra tồn tại: $C$ không rỗng; rồi $C$ đóng, bị chặn và $f_0$ liên tục (Định lý 01.36), hoặc $C$ đóng và $f_0$ liên tục, bức (Định lý 01.38), hoặc $C=\mathbb R^d$ và $f_0$ khả vi, lồi mạnh (Hệ quả 01.41).
+7. Kiểm tra tồn tại: $C$ không rỗng; rồi $C$ đóng, bị chặn và $f_0$ liên tục (Định lý 01.36), hoặc $C$ đóng và $f_0$ liên tục, cưỡng bức (Định lý 01.38), hoặc $C=\mathbb R^d$ và $f_0$ khả vi, lồi mạnh (Hệ quả 01.41).
 8. Nếu nghiệm tồn tại, kiểm tra duy nhất bằng lồi chặt (Định lý 01.35).
 9. Diễn giải nghiệm trong ngữ cảnh ban đầu.
 
@@ -2407,7 +2407,7 @@ Bài toán bình phương nhỏ nhất với tham số không âm: $\min_{w\ge0}
 **(a) Kiểm tra giả thiết.**
 
 - Miền $C$ là giao của hai nửa không gian $\{w\mid-w_j\le0\}$, nên lồi (Mệnh đề 01.19(c), 01.20(a)), không rỗng vì chứa $0$, và đóng vì là giao của hai tập đóng.
-- $J$ lồi. Vì $\operatorname{rank}X=2$, $\nabla^2J=2X^TX\succeq\lambda_{\min}I_2$ với $\lambda_{\min}>0$ là giá trị riêng nhỏ nhất của $2X^TX$, nên $J$ lồi mạnh, bức theo Hệ quả 01.41.
+- $J$ lồi. Vì $\operatorname{rank}X=2$, $\nabla^2J=2X^TX\succeq\lambda_{\min}I_2$ với $\lambda_{\min}>0$ là giá trị riêng nhỏ nhất của $2X^TX$, nên $J$ lồi mạnh, cưỡng bức theo Hệ quả 01.41.
 
 Tồn tại theo Định lý 01.38, duy nhất theo Định lý 01.35.
 
@@ -2576,7 +2576,7 @@ Hạ gradient khởi tạo đúng tại $(0,0)$ không bao giờ rời điểm n
 
 **Hậu quả thứ hai: tập nghiệm không lồi.** Tập nghiệm $\{(\alpha,\beta)\mid\alpha\tanh\beta=\tfrac12\}$ gồm hai nhánh rời nhau ($\alpha,\beta>0$ và $\alpha,\beta<0$), không lồi và có vô số điểm. Do đó tham số không xác định duy nhất từ dữ liệu.
 
-**Hậu quả thứ ba: hàm không bức.** Dọc nhánh $\beta\to0^+$, $\alpha=1/(2\tanh\beta)\to\infty$, $F$ giữ bằng $0$. Nghiệm tồn tại ở đây nhờ tính trực tiếp, không nhờ Định lý 01.38.
+**Hậu quả thứ ba: hàm không cưỡng bức.** Dọc nhánh $\beta\to0^+$, $\alpha=1/(2\tanh\beta)\to\infty$, $F$ giữ bằng $0$. Nghiệm tồn tại ở đây nhờ tính trực tiếp, không nhờ Định lý 01.38.
 
 **Chính quy hóa không khôi phục tính lồi.** Với $F_\mu=F+\tfrac\mu2(\alpha^2+\beta^2)$, Hessian tại $(0,0)$ là $\begin{bmatrix}\mu&-1\\-1&\mu\end{bmatrix}$, có giá trị riêng $\mu-1$ âm khi $\mu<1$. Khi đó $F_\mu$ không lồi theo Định lý 01.30(a), khác với Tình huống 01.1 nơi hạng $\tfrac\mu2w^2$ cộng vào một hàm đã lồi.
 
@@ -2584,7 +2584,7 @@ Hạ gradient khởi tạo đúng tại $(0,0)$ không bao giờ rời điểm n
 
 Với mạng sâu, các bảo đảm của chương này thay bằng bảo đảm yếu hơn: thuật toán tìm được điểm có chuẩn gradient nhỏ, không chắc là cực tiểu toàn cục (Bài 05b, phần mục tiêu không lồi; Bài 06).
 
-**Dẫn ngược lý thuyết.** Định nghĩa 01.22 (kiểm tra bằng định nghĩa thất bại), Định lý 01.30(a) (Hessian không nửa xác định dương), Định lý 01.33 và Hệ quả 01.34 (kết luận bị mất khi giả thiết lồi bị vi phạm), Định nghĩa 01.37 (tính bức thất bại).
+**Dẫn ngược lý thuyết.** Định nghĩa 01.22 (kiểm tra bằng định nghĩa thất bại), Định lý 01.30(a) (Hessian không nửa xác định dương), Định lý 01.33 và Hệ quả 01.34 (kết luận bị mất khi giả thiết lồi bị vi phạm), Định nghĩa 01.37 (tính cưỡng bức thất bại).
 :::
 
 Các khái niệm của chương xuất hiện trong các vấn đề sau của học máy.
@@ -2609,7 +2609,7 @@ Chương này khởi đầu bằng ba quyết định cụ thể là điều khi
 - Mục 5: bài toán tối ưu, giá trị tối ưu, nghiệm (Định nghĩa 01.12); cực tiểu địa phương, toàn cục, chặt (Định nghĩa 01.13); quan hệ giữa các loại cực tiểu (Mệnh đề 01.14); miền lồng nhau (Mệnh đề 01.16).
 - Mục 6: tập lồi (Định nghĩa 01.18); tập lồi cơ bản (Mệnh đề 01.19); phép bảo toàn tập lồi (Mệnh đề 01.20).
 - Mục 7: hàm lồi, lồi chặt, lõm (Định nghĩa 01.22); tập mức dưới (Định nghĩa 01.24); tập mức dưới của hàm lồi (Mệnh đề 01.25); điều kiện bậc nhất (Định lý 01.26) và điều kiện đủ tối ưu (Hệ quả 01.27); hạn chế lên đường thẳng (Bổ đề 01.28), tiêu chuẩn một biến (Bổ đề 01.29), điều kiện bậc hai (Định lý 01.30); phép bảo toàn hàm lồi (Định lý 01.31).
-- Mục 8: địa phương là toàn cục (Định lý 01.33) và tập nghiệm lồi (Hệ quả 01.34); lồi chặt cho duy nhất (Định lý 01.35); Weierstrass (Định lý 01.36); hàm bức (Định nghĩa 01.37); tồn tại với hàm bức (Định lý 01.38); hàm lồi mạnh (Định nghĩa 01.39); lồi mạnh cho tồn tại và duy nhất (Hệ quả 01.41); chính quy hóa bậc hai (Định nghĩa 01.42).
+- Mục 8: địa phương là toàn cục (Định lý 01.33) và tập nghiệm lồi (Hệ quả 01.34); lồi chặt cho duy nhất (Định lý 01.35); Weierstrass (Định lý 01.36); hàm cưỡng bức (Định nghĩa 01.37); tồn tại với hàm cưỡng bức (Định lý 01.38); hàm lồi mạnh (Định nghĩa 01.39); lồi mạnh cho tồn tại và duy nhất (Hệ quả 01.41); chính quy hóa bậc hai (Định nghĩa 01.42).
 - Mục 9: chứng nhận ba trường hợp (Mệnh đề 01.44, 01.45, 01.46); quy trình chứng nhận (Thuật toán 01.1).
 
 **Công thức cần nhớ.**
@@ -2703,7 +2703,7 @@ Mỗi phát biểu ứng với một trong các kết quả của Mục 7 và M�
 - **(a) Sai.** $e^x$ lồi chặt trên $\mathbb R$ và không đạt cận dưới đúng $0$.
 - **(b) Đúng.** Hệ quả 01.27 với $C=D=\mathbb R^d$.
 - **(c) Sai.** Theo Hệ quả 01.34 tập nghiệm lồi, nên nếu chứa hai điểm thì chứa cả đoạn nối, tức vô số điểm.
-- **(d) Sai.** $f(x)=e^x$ trên tập đóng $\mathbb R$; thiếu giả thiết bị chặn của Định lý 01.36 hoặc giả thiết bức của Định lý 01.38.
+- **(d) Sai.** $f(x)=e^x$ trên tập đóng $\mathbb R$; thiếu giả thiết bị chặn của Định lý 01.36 hoặc giả thiết cưỡng bức của Định lý 01.38.
 :::
 
 ### Mức tính toán hoặc chứng minh
@@ -2745,7 +2745,7 @@ Cho $f(x)=(x_1+x_2)^2+e^{x_1}$ trên $\mathbb R^2$.
 
 **(c) Không lồi mạnh.** Giá trị riêng nhỏ nhất của Hessian dần tới $0$ khi $x_1\to-\infty$, vì định thức $2e^{x_1}\to0$ trong khi vết bị chặn trên dọc hướng đó. Do đó không có $\mu>0$ với $\nabla^2f\succeq\mu I_2$: $f$ không lồi mạnh.
 
-**(c) Không bức.** $f$ không bức, vì $\lVert(-s,s)\rVert_2\to\infty$ mà $f\to0$. Đây là phiên bản hai chiều của Nhận xét 01.43.
+**(c) Không cưỡng bức.** $f$ không cưỡng bức, vì $\lVert(-s,s)\rVert_2\to\infty$ mà $f\to0$. Đây là phiên bản hai chiều của Nhận xét 01.43.
 :::
 
 ::: exercise Bài tập 01.18 (Chứng minh: máy vector hỗ trợ lề mềm)
@@ -2753,13 +2753,13 @@ Cho dữ liệu $(a_i,y_i)$, $a_i\in\mathbb R^d$, $y_i\in\{-1,+1\}$, và $\mu>0$
 :::
 
 ::: hint
-Tách chứng minh thành ba phần: lồi chặt (Định lý 01.31), liên tục và bức, rồi Định lý 01.38 và Định lý 01.35.
+Tách chứng minh thành ba phần: lồi chặt (Định lý 01.31), liên tục và cưỡng bức, rồi Định lý 01.38 và Định lý 01.35.
 :::
 
 ::: solution
 **Bước 1 (lồi chặt).** Mỗi hạng $\max(0,1-y_ia_i^Tw)$ là cực đại của hai hàm affine theo $w$, lồi theo Định lý 01.31(c). Hạng $\tfrac\mu2\lVert w\rVert_2^2$ lồi chặt (Hessian $\mu I_d\succ0$). Theo Định lý 01.31(a), $G$ lồi chặt.
 
-**Bước 2 (liên tục và bức).** $G$ liên tục vì là tổng và cực đại của các hàm liên tục. Vì mỗi hạng bản lề không âm, $G(w)\ge\tfrac\mu2\lVert w\rVert_2^2\to\infty$, nên $G$ bức.
+**Bước 2 (liên tục và cưỡng bức).** $G$ liên tục vì là tổng và cực đại của các hàm liên tục. Vì mỗi hạng bản lề không âm, $G(w)\ge\tfrac\mu2\lVert w\rVert_2^2\to\infty$, nên $G$ cưỡng bức.
 
 **Bước 3 (tồn tại và duy nhất).** Định lý 01.38 trên miền đóng $\mathbb R^d$ cho nghiệm tồn tại, Định lý 01.35 cho duy nhất.
 

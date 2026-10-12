@@ -105,7 +105,7 @@ Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác đ�
 
 ### Chuỗi định nghĩa → kết quả → phương pháp
 
-1. **Định nghĩa:** $F$, $R$, tập xác thực, tập kiểm thử (HQ05); chế độ nội suy (HQ07); $\kappa(X^TX)$ (HQ09); dừng sớm (KL01); tách được tuyến tính (LG04); $F_\lambda$ (LG08); $L,\mu,\kappa$ của $F_\lambda$ (LG09).
+1. **Định nghĩa:** $F$, $R$, tập xác thực, tập kiểm thử (HQ05); chế độ nội suy (HQ07); $\kappa(X^TX)$ (HQ09); dừng sớm (KL01); tách được tuyến tính (LG04); hàm cưỡng bức (LG06, nhắc lại Định nghĩa 01.37); $F_\lambda$ (LG07); $L,\mu,\kappa$ của $F_\lambda$ (LG09).
 2. **Kết quả:** KQ1–KQ12 (mục Kết quả dùng lại). Ba kết quả chứng minh mới trên trang: KQ2 (nội suy khi $\operatorname{rank}X=n$), KQ4–KQ5 (mọi cách gán nhãn tách được khi $\operatorname{rank}X=n$; dữ liệu tách được thì không có cực tiểu), KQ7 (cận $L$, $\kappa$, $\lVert w_\lambda\rVert$ của $F_\lambda$). Thêm sau cổng storyboard: $\kappa(X^TX)$ không giảm khi thêm đặc trưng (định lý xen kẽ Cauchy, HQ09).
 3. **Phương pháp:** hạ gradient và Newton cho $F_\lambda$ (Bài 04), số bước (05b T2b; Boyd §9.5.3), chi phí một bước (KQ10), tổng chi phí và ngưỡng hòa vốn (CP08).
 4. **Quyết định:** chọn $d$, $\lambda$ và bước dừng bằng tập xác thực; chọn phương pháp theo $(n,d,\kappa,\varepsilon)$; dừng sớm.
@@ -161,7 +161,7 @@ Chức năng: nêu sự thay đổi bức tranh so với Bài 01–04 và hai l�
 - **Điểm trung tâm:** ba hành vi kiểm tra được.
 - **Mặt trang:**
   - Mục tiêu 1: giải phương trình chuẩn, xác định hạng và số điều kiện; phân biệt sai số huấn luyện với sai số ngoài mẫu khi $d$ tăng; chọn mô hình bằng tập xác thực.
-  - Mục tiêu 2: chứng minh mất mát logistic không có cực tiểu trên dữ liệu tách được; chứng nhận $F_\lambda$ lồi mạnh, tính $\mu$, $L$, $\kappa$.
+  - Mục tiêu 2: chứng minh mất mát logistic không có cực tiểu trên dữ liệu tách được; chứng nhận mất mát có chính quy hóa lồi mạnh, tính $\mu$, $L$, $\kappa$ (sửa 2026-10-12: mặt trang không dùng ký hiệu $F_\lambda$ trước LG07, dòng ghi "tính $\mu,$ $L,$ $\kappa$ sau chính quy hóa").
   - Mục tiêu 3: đếm chi phí một bước của hạ gradient và Newton; chọn phương pháp theo $(n,d,\kappa,\varepsilon)$.
 - **Sửa sau rà soát năm vai (2026-10-12):** ghi chú nêu kết quả và tiên quyết của từng mục tiêu, thay câu bình về thiết kế (N9).
 - **Ghi chú:** mục tiêu 1–3 trên mặt trang là MT1–MT3 của kế hoạch; ánh xạ sang LLO11, LLO15 (phần Newton), CLO1, CLO2, CLO4 theo bảng Đối chiếu LLO/CLO. Không hiển thị mã LLO trên mặt trang nếu deck mẫu không hiển thị.
@@ -446,9 +446,10 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 
 #### LG06 — Dữ liệu không tách được
 
-- **Điểm trung tâm:** nếu với mọi $w\ne0$ có một mẫu bị biên âm, thì $F$ bức và có cực tiểu.
+- **Điểm trung tâm:** nếu với mọi $w\ne0$ có một mẫu bị biên âm, thì $F$ cưỡng bức và có cực tiểu.
 - **Mặt trang:**
-  - **Mệnh đề 3.** Giả thiết: với mọi $w\ne0$ tồn tại $i$ với $m_i(w)<0$. Kết luận: $F$ bức, nên có cực tiểu (Bài 01, Định lý 01.38).
+  - **Định nghĩa** (nhắc lại Định nghĩa 01.37, thêm 2026-10-12 theo yêu cầu người dùng). $F$ cưỡng bức (coercive) nếu $F(w)\to+\infty$ khi $\lVert w\rVert\to\infty$.
+  - **Mệnh đề 3.** Giả thiết: với mọi $w\ne0$ tồn tại $i$ với $m_i(w)<0$. Kết luận: $F$ cưỡng bức, nên có cực tiểu (Bài 01, Định lý 01.38).
   - Ý chứng minh: $c=\min_{\lVert v\rVert=1}\max_i(-m_i(v))>0$; $F(w)\ge\frac1n\log(1+e^{c\lVert w\rVert})\ge\frac cn\lVert w\rVert$.
   - Ví dụ: đặc trưng $(1,u)$ của LG01 thỏa giả thiết, cực tiểu đã tính ở LG03.
 - **Sửa sau rà soát năm vai (2026-10-12):** ví dụ dẫn "đã tính ở trang mất mát dọc một tia" (M16).
@@ -462,7 +463,7 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 #### LG07 — Hạng phạt dọc một tia
 
 - **Điểm trung tâm:** cộng $\frac\lambda2\lVert w\rVert^2$ làm mục tiêu dọc tia tăng trở lại, nên có cực tiểu hữu hạn.
-- **Mặt trang:** $F_\lambda(t\bar w)=\log(1+e^{-t})+\tfrac{5\lambda}2t^2$ vì $\lVert\bar w\rVert^2=5$; với $\lambda=0{,}01$, cực tiểu tại $t^*=2{,}128$, giá trị $0{,}2257$; với $\lambda=0{,}1$: $t^*=0{,}6748$, giá trị $0{,}5255$.
+- **Mặt trang:** **Định nghĩa** (thêm 2026-10-12 theo yêu cầu người dùng, để $F_\lambda$ có định nghĩa trước lần dùng đầu). Mất mát có chính quy hóa bậc hai: $F_\lambda(w)=F(w)+\frac\lambda2\lVert w\rVert^2$, $\lambda>0$. Dọc tia: $F_\lambda(t\bar w)=\log(1+e^{-t})+\tfrac{5\lambda}2t^2$ vì $\lVert\bar w\rVert^2=5$; với $\lambda=0{,}01$, cực tiểu tại $t^*=2{,}128$, giá trị $0{,}2257$; với $\lambda=0{,}1$: $t^*=0{,}6748$, giá trị $0{,}5255$.
 - **Ghi chú:** hình vẽ hai đường trên cùng trục. Cực tiểu dọc tia chỉ là trực giác; cực tiểu của $F_\lambda$ trên $\mathbb R^3$ tính ở LG10 và không nằm trên tia $\bar w$. Các số $2{,}128$ và $0{,}6748$ trùng nghiệm một chiều của LG08 vì $5\lambda$ đóng vai hệ số chính quy hóa của bài toán một chiều; đây là trùng hợp cấu trúc, không phải kết quả chung.
 - **Hình:** `lg-penalty-along-ray.svg` (ba đường $\lambda=0;\ 0{,}01;\ 0{,}1$ trên $t\in[0,6]$, đánh dấu $t^*=2{,}128$ và $0{,}6748$; tách khỏi hình của LG03 khi dựng deck để LG03 không hiện hạng phạt trước khi nó được đưa vào).
 - **Liên kết:** từ giới hạn LG05; tạo nhu cầu phát biểu tổng quát ở LG08.
@@ -988,7 +989,7 @@ Cột "Nhãn trên trang" là nhãn hiển thị trên mặt trang; mã KQ chỉ
 | KQ3 | Định nghĩa và nhận xét, không đánh số | $\kappa_F=\kappa(X^TX)$ với $F=\frac1{2n}\lVert Xw-y\rVert^2$; cận độ nhạy; $\kappa(X^TX)$ không giảm khi thêm đặc trưng lồng nhau (xen kẽ Cauchy) | Mới (tính trực tiếp); định lý xen kẽ Cauchy | Chứng minh một dòng | HQ09 |
 | KQ4 | Mệnh đề 2 | $\operatorname{rank}X=n$ ⇒ mọi nhãn tách được | Mới | Chứng minh trên trang | LG04 |
 | KQ5 | Định lý 1 | Tách được ⇒ $\inf F=0$ không đạt; dãy cực tiểu hóa phân kỳ | Bài 01 VD 01.6 (trường hợp $d=1$) | Chứng minh tổng quát trên trang | LG05; ứng dụng ở LG10 |
-| KQ6 | Mệnh đề 3 | Không tách được chặt ⇒ $F$ bức, có cực tiểu | Bài 01 Định lý 01.38 (công cụ) | Phác chứng minh trên trang | LG06 |
+| KQ6 | Mệnh đề 3 | Không tách được chặt ⇒ $F$ cưỡng bức, có cực tiểu | Bài 01 Định lý 01.38 (công cụ) | Phác chứng minh trên trang | LG06 |
 | KQ7a | Định lý 2 | $F_\lambda$ lồi mạnh hằng số $\lambda$, nghiệm duy nhất, $\lVert w_\lambda\rVert\le\sqrt{2F(0)/\lambda}$, với mất mát logistic $\sqrt{2\log2/\lambda}$ | Bài 01 Hệ quả 01.41, Định nghĩa 01.42, Mệnh đề 01.46(b) | Phát biểu lại; cận $\lVert w_\lambda\rVert$ chứng minh mới | LG08 |
 | KQ7b | Mệnh đề 4 | $L=\lambda_{\max}(X^TX)/(4n)+\lambda$, $\kappa\le1+\lambda_{\max}/(4n\lambda)$; nếu $\lVert x_i\rVert\le r$ thì $L\le r^2/4+\lambda$, $\kappa\le1+r^2/(4\lambda)$ ($r\ge1$ vì có tọa độ hằng) | Mới | Chứng minh trên trang | LG09 |
 | KQ8 | Định lý 3 (Bài 05b, T2b) | Hạ gradient bước $1/L$: $e_k\le(1-1/\kappa)^ke_0$ | Bài 05b T2b (C05–C06); Bài 04 RG17 | Phát biểu lại, trích dẫn | CP04, LG09 |

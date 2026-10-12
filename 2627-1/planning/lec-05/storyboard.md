@@ -73,7 +73,7 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 
 - **Sáu bước:** nhu cầu + ví dụ dẫn nhập LG01; trực quan LG03; ví dụ LG03; hình thức LG04 (định nghĩa, KQ4), LG05 (định lý KQ5), LG05a (chứng minh, tách 2026-10-12), LG06 (KQ6, kết quả đối chứng); ứng dụng LG10 (dòng $\lambda=0$: chế độ $d\ge n$ làm hồi quy logistic mất cực tiểu với mọi nhãn); bài tập LG11(1, 2), lời giải LG11a.
 - **Ví dụ dẫn nhập:** ba điểm $u=(-1,0,1)$, $y=(-1,+1,-1)$ phục vụ nhu cầu "biết bài toán logistic nào có nghiệm".
-- **Đầu vào và mục tiêu:** KQ2 (HQ07), mất mát logistic (Bài 01), Định lý Weierstrass và hàm bức (Bài 01); MT2, LLO11 → CLO1. Sản phẩm: nhận dạng dữ liệu tách được, chứng minh không tồn tại cực tiểu, phân loại hai trường hợp.
+- **Đầu vào và mục tiêu:** KQ2 (HQ07), mất mát logistic (Bài 01), Định lý Weierstrass và hàm cưỡng bức (Bài 01); MT2, LLO11 → CLO1. Sản phẩm: nhận dạng dữ liệu tách được, chứng minh không tồn tại cực tiểu, phân loại hai trường hợp.
 - **Ký hiệu/dữ kiện truyền tiếp:** $m_i$, $\bar w=(1,0,-2)$, $F(t\bar w)=\log(1+e^{-t})$; KQ4–KQ6. LG02 cung cấp gradient và Hessian dạng ma trận làm công cụ nền.
 - **Gộp hoặc rút gọn:** LG03 gộp trực quan và ví dụ: tia $t\bar w$ vừa là hình ảnh vừa là phép tính. Bước hình thức trải trên ba trang vì định nghĩa, định lý và kết quả đối chứng là ba luận điểm. Theo cổng storyboard, LG06 là phát biểu hình thức thứ hai chứ không phải ứng dụng; bước ứng dụng chuyển sang LG10, sau LG06 nên thứ tự sáu bước được giữ.
 - **Câu nối học thuật:** đặc trưng $(1,u)$ không tách được, thêm $u^2$ thì tách được (LG01) → dọc tia $t\bar w$, $F$ giảm về $0$ mà không đạt (LG03) → định nghĩa tách được và hệ quả của chế độ nội suy (LG04) → định lý: không có cực tiểu, dãy cực tiểu hóa phân kỳ (LG05) → trường hợp đối chứng có cực tiểu (LG06) → với $\operatorname{rank}X=n$, dữ liệu dẫn nhập và mọi cách gán nhãn năm mẫu VD-A1 ở $d=5$ đều mất cực tiểu (LG10).
@@ -153,6 +153,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; mục tiêu học tập là thành phần bắt buộc (mục 2 cấu trúc mặc định).
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 87 → 65 âm tiết (trang mục tiêu, trần 80); mỗi mục ≤ 20 âm tiết; ý chọn $d$, $\lambda$ chuyển xuống ghi chú; gỡ `.dense`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** nhãn mục tiêu bỏ in đậm; mục tiêu 3 mang đúng tên mạch 4 "Độ cong và chi phí tính toán"; 66 âm tiết.
+- **Sửa 2026-10-12 (thuật ngữ, yêu cầu người dùng):** mục tiêu 2 bỏ ký hiệu $F_\lambda$ chưa định nghĩa, viết "tính $\mu$, $L$, $\kappa$ sau chính quy hóa"; nhãn mục rút thành "Hồi quy logistic." để giữ dòng ≤ 20 âm tiết; 65 âm tiết (trần 80 của trang mục tiêu); ghi chú nêu $F_\lambda=F+\tfrac\lambda2\lVert w\rVert^2$ và trang định nghĩa (LG07).
 
 #### MD03a — Nội dung
 
@@ -489,13 +490,14 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 
 - **Lý do tồn tại:** cho trường hợp đối chứng có điều kiện đủ, để người học phân loại được hai trường hợp.
 - **Nhu cầu/khoảng trống lấp:** không có LG06, người học có thể hiểu sai rằng mất mát logistic không bao giờ có cực tiểu.
-- **Đầu vào:** LG05; ĐL 01.38 về hàm bức (Bài 01); cực tiểu đã tính ở LG03.
+- **Đầu vào:** LG05; ĐL 01.38 về hàm cưỡng bức (Bài 01); cực tiểu đã tính ở LG03.
 - **Đầu ra:** KQ6; nhận xét: sự tồn tại do dữ liệu quyết định, không kiểm soát được khi $d$ lớn.
 - **Vị trí trong khung:** kết quả KQ6; giới hạn áp dụng của KQ5.
 - **LLO/CLO:** MT2; LLO11 → CLO1.
 - **Bước hành trình:** KN4 hình thức (kết quả thứ hai, đối chứng với Định lý 1). Theo cổng storyboard, bước ứng dụng của KN4 chuyển sang LG10.
 - **Quyết định:** thêm; cần trường hợp đối chứng có điều kiện đủ cụ thể. Nhãn trên trang: Mệnh đề 3.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 58 → 48 âm tiết; nhãn "Ý chứng minh." thành "Chứng minh (phác thảo)."; Mệnh đề 3 dạng Giả thiết/Kết luận; gỡ `.dense`.
+- **Sửa 2026-10-12 (thuật ngữ, yêu cầu người dùng):** quyết định `sửa`; thêm dòng "Định nghĩa. $F$ cưỡng bức (coercive) nếu $F(w)\to+\infty$ khi $\lVert w\rVert\to\infty$" trước Mệnh đề 3 (nhắc lại Định nghĩa 01.37, vì sinh viên đọc Bài 05 có thể không nhớ Bài 01); kết luận viết "$F$ cưỡng bức"; ghi chú thêm dạng $M$–$R$ và phản ví dụ $F(t\bar w)\to0$ trên dữ liệu tách được; 48 → 55 âm tiết, 6 dòng.
 
 #### LG07 — Hạng phạt dọc một tia
 
@@ -508,6 +510,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN5 nhu cầu + trực quan + ví dụ.
 - **Quyết định:** thêm; trực quan và ví dụ phải đi trước định lý.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `giữ`; chỉ gỡ `.dense` (30 âm tiết).
+- **Sửa 2026-10-12 (ký hiệu, yêu cầu người dùng):** quyết định `sửa`; thêm dòng "Định nghĩa. Mất mát có chính quy hóa bậc hai: $F_\lambda(w)=F(w)+\frac\lambda2\lVert w\rVert^2$, $\lambda>0$" thay câu "Cộng $\frac\lambda2\lVert w\rVert^2$", để $F_\lambda$ được định nghĩa trước lần dùng đầu trên mặt trang; câu dẫn công thức thành "Dọc tia $t\bar w$, vì $\lVert\bar w\rVert^2=5$"; 30 → 41 âm tiết, 6 dòng.
 
 #### LG08 — Chính quy hóa bậc hai và tính lồi mạnh
 
@@ -521,6 +524,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; phát biểu lại kết quả Bài 01 ở dạng trung bình và bổ sung cận chuẩn. Nhãn trên trang: Định lý 2; dữ liệu của bảng kiểm tra (một mẫu $x_1=1$, $y_1=+1$) nêu lại ngay trên trang.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; định lý + chứng minh + ví dụ + bảng (49 âm tiết) → LG08 (Định lý 2 và chứng minh hai dòng; 43) và LG08a "Ví dụ: một mẫu có chính quy hóa" (32).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** thêm dòng "Nhu cầu:" cuối trang (cận trên $L$ để có $\kappa$), làm bước nhu cầu của KN6 hiện trên mặt trang.
+- **Sửa 2026-10-12 (ký hiệu, yêu cầu người dùng):** giả thiết Định lý 2 giữ công thức, thêm "như định nghĩa trên" (định nghĩa ở LG07); 50 → 54 âm tiết.
 
 #### LG08a — Ví dụ: một mẫu có chính quy hóa
 

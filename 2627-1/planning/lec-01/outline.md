@@ -77,7 +77,7 @@ Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đ�
 - Biến quyết định: $w\in\mathbb R^d$.
 - Mục tiêu: $L(w)=\sum_i\log(1+\exp(-y_i a_i^Tw))$.
 - Ví dụ số tách tuyến tính: $(a_1,y_1)=(1,+1)$, $(a_2,y_2)=(-1,-1)$; $L(w)=2\log(1+e^{-w})\downarrow0$ khi $w\to+\infty$ nhưng không có nghiệm hữu hạn.
-- Kết luận cuối bài: $L$ lồi; tính lồi không tự bảo đảm tồn tại. Thêm $\mu\lVert w\rVert_2^2/2$ với $\mu>0$ tạo mục tiêu lồi mạnh, bức và có nghiệm duy nhất.
+- Kết luận cuối bài: $L$ lồi; tính lồi không tự bảo đảm tồn tại. Thêm $\mu\lVert w\rVert_2^2/2$ với $\mu>0$ tạo mục tiêu lồi mạnh, cưỡng bức và có nghiệm duy nhất.
 
 ## Công cụ lý thuyết được giữ
 
@@ -88,7 +88,7 @@ Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đ�
 - Định lý: cực tiểu địa phương của hàm lồi trên tập lồi là cực tiểu toàn cục.
 - Điều kiện bậc nhất và bậc hai trên miền mở, lồi; cách áp dụng cho hàm xác định trên $\mathbb R$ rồi hạn chế lên đoạn đóng.
 - Tổng không âm và hợp với ánh xạ affine.
-- Phân biệt tồn tại và duy nhất; định lý Weierstrass trên miền đóng, bị chặn; vai trò của tính bức.
+- Phân biệt tồn tại và duy nhất; định lý Weierstrass trên miền đóng, bị chặn; vai trò của tính cưỡng bức.
 
 Không đưa nón lồi, nón nửa xác định dương, epigraph, tập mức, Jensen, liên hợp, tựa lồi, log-lồi hoặc log-lõm vào tuyến chính vì chúng không cần để chứng nhận ba ca.
 
