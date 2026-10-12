@@ -1,6 +1,6 @@
 # Bài tập Bài 05 — Không gian đặc trưng nhiều chiều
 
-Bộ bài tập gồm mười hai bài theo bốn mạch của chương: hồi quy nhiều chiều (Bài 1–3), hồi quy logistic và chính quy hóa (Bài 4–7), độ cong và chi phí tính toán (Bài 8–9), giới hạn của tối ưu tất định (Bài 10–12). Mức độ của từng bài ghi ở đầu bài: nhận biết, tính toán hoặc chứng minh, vận dụng vào AI. Các bài 1, 4, 8 và 10 là các câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ; Bài 5 và Bài 7 là hai bài tập về nhà nêu ở trang tổng kết.
+Bộ bài tập gồm mười hai bài theo bốn mạch của chương: hồi quy nhiều chiều (Bài 1–3), hồi quy logistic và chính quy hóa (Bài 4–7), độ cong và chi phí tính toán (Bài 8–9), giới hạn của tối ưu tất định (Bài 10–12). Mức độ của từng bài ghi ở đầu bài: nhận biết, tính toán hoặc chứng minh, vận dụng vào AI. Bài 1, 4 và 8 là ba bài tập trên trang chiếu có lời giải mẫu ngay trên trang chiếu; ở đây lời giải được viết đầy đủ hơn và kèm số hiệu. Bài 10 là bài tự kiểm tra ở mạch kết luận, trên trang chiếu chỉ có đề; câu 3 trên trang chiếu là bản rút gọn của câu 3 ở đây. Bài 7 và Bài 5 là hai bài tập về nhà nêu ở trang "Tài liệu đọc và bài tập về nhà" cuối bộ trang chiếu.
 
 Ký hiệu và số hiệu theo ghi chú bài giảng. Tên ngắn trên trang chiếu ứng với số hiệu như sau: Mệnh đề 1 là Mệnh đề 05.10; Mệnh đề 2 là Mệnh đề 05.21; Định lý 1 là Định lý 05.22; Mệnh đề 3 là Mệnh đề 05.24; Định lý 2 là Định lý 05.26; Mệnh đề 4 là Mệnh đề 05.28; Định lý 3 là Định lý 05.30; Định lý 4 là Định lý 05.33; Mệnh đề 5 là Mệnh đề 05.35. Hai ví dụ dùng chung:
 
@@ -26,7 +26,7 @@ Mức độ: nhận biết. LLO11, CLO1.
 :::
 
 ::: hint Gợi ý Bài 1
-Ở câu 1, năm cột đầu của $X\in\mathbb R^{5\times7}$ tạo một ma trận Vandermonde. Ở câu 2, $X^TX=\operatorname{diag}(5,\tfrac52)$ và chỉ vế phải thay đổi. Ở câu 3, thử hai vector $(1,1)$ và $(1,-1)$.
+Ở câu 1, năm cột đầu của $X\in\mathbb R^{5\times7}$ tạo một ma trận Vandermonde. Ở câu 2, $X^TX=\operatorname{diag}(5,\tfrac52)$ và chỉ vế phải thay đổi. Ở câu 3, thử hai vector $(1,1)$ và $(1,-1)$. Ở câu 4, so hàng xác thực chứ không so hàng huấn luyện; tập đã dùng để chọn không dùng để báo cáo.
 :::
 
 ::: solution Lời giải Bài 1
@@ -129,7 +129,7 @@ Mức độ: tính toán. LLO11, CLO1, CLO2.
 :::
 
 ::: hint Gợi ý Bài 4
-Ở câu 2, điểm số affine $w_0+w_1u$ đổi dấu nhiều nhất một lần; để kiểm tra giả thiết của Mệnh đề 05.24, viết bốn biên rồi giả sử cả bốn không âm. Ở câu 3, $\lVert x_i\rVert^2\le1+1$.
+Ở câu 1, thử $\bar w=(0,1)$. Ở câu 2, điểm số affine $w_0+w_1u$ đổi dấu nhiều nhất một lần; để kiểm tra giả thiết của Mệnh đề 05.24, viết bốn biên rồi giả sử cả bốn không âm. Ở câu 3, $\lVert x_i\rVert^2\le1+1$, rồi dùng Định lý 05.26 và Mệnh đề 05.28.
 :::
 
 ::: solution Lời giải Bài 4

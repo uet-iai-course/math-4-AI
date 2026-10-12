@@ -498,3 +498,18 @@ Kiểm tra: `grep` không còn "bức" đứng riêng trong deck 01, 02, 05 và 
 **Quyết định của điều phối viên:** (chờ duyệt)
 
 Quyết định của master (Fable 5.1): đã đọc diff, đối chiếu grep toàn kho (không còn "bức" đứng riêng), xem ảnh LG06/LG07/H07 ở 1600×900, `sync-local-materials.py --check` OK, `git diff --check` sạch. `chấp nhận`, commit cùng đợt đổi thuật ngữ 2026-10-12.
+
+## Đồng bộ học liệu với deck sau đợt văn phong (2026-10-12)
+
+Tác tử chỉnh sửa học liệu (Agent tool, `general-purpose`, claude-opus-5-5, high, theo brief của điều phối viên Fable 5.1); ghi `materials/lec-05/{lecture-note,exercises}.md` và mục này; không chạy `sync-local-materials.py`, không commit. Đã nạp `no-ai-slop` (Edit) và tự kiểm theo `eval.md`.
+
+| Tệp | Chỗ sửa |
+|---|---|
+| `exercises.md` | Đoạn dẫn: Bài 1, 4, 8 có lời giải mẫu trên trang chiếu (HQ11a, LG11a, CP10a); Bài 10 là bài tự kiểm tra (KL05b), câu 3 trên trang chiếu là bản rút gọn của câu 3; Bài 7 và 5 nêu ở trang "Tài liệu đọc và bài tập về nhà" (KL05c), thay "trang tổng kết". Gợi ý Bài 1 thêm câu 4, gợi ý Bài 4 thêm câu 1 và Định lý 05.26, Mệnh đề 05.28 ở câu 3, như ghi chú HQ11, LG11. Lời giải Bài 1, 4, 8 đối chiếu với HQ11a, LG11a, CP10a: khớp số liệu và kết luận, không sửa. |
+| `lecture-note.md` | Mục 5.4: câu dẫn gán nhãn (i) chi phí, (ii) mục tiêu không lồi do đặc trưng học được, khớp KL03, KL04 và nối với giới hạn biểu diễn của Mục 5.3. Nhận xét 05.42 bỏ bốn mã T5–T8 sau số hiệu 05b. Bảng tương ứng nhãn trang chiếu bỏ dòng "T5, T6, T7, T8" (deck không còn các mã này), thêm câu: kết quả 05b, 05c được trang chiếu dẫn trực tiếp bằng số hiệu. Thứ tự Định lý 05.30 → Ví dụ 05.19 đã trùng thứ tự mới CP04 → CP03; ghi chú không có tham chiếu thứ tự trang, không sửa. Mã H2, H3 (giả thiết của Bài 05b, có dẫn Định nghĩa 05b.5) giữ nguyên. |
+
+Kiểm tra: `git diff --check` sạch; trình xem `material-viewer.html?doc=materials/lec-05/{lecture-note,exercises}.md&deck=lecture-05-khong-gian-dac-trung-nhieu-chieu.html` trên máy chủ tĩnh cổng 8790 (Playwright Chromium): 0 lỗi console, 0 `.katex-error`, một `h1` mỗi tệp. Còn lại cho điều phối viên: chạy `sync-local-materials.py` và `--check`.
+
+**Quyết định của điều phối viên:** (chờ duyệt)
+
+Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.

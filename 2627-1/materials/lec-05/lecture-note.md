@@ -2018,14 +2018,14 @@ Với $d_0=100$ biến đầu vào, (5.2) cho $\binom{102}2=5151$ đặc trưng 
 
 ### 5.4 Điều không còn giữ được và điều còn giữ được
 
-Hai giới hạn trên đẩy bài toán ra khỏi khung của chương theo hai cách: (i) thay gradient đầy đủ bằng gradient nhóm nhỏ, và (ii) thay mô hình tuyến tính bằng mô hình phi tuyến theo tham số, làm mục tiêu không còn lồi (Bài 06). Nhận xét sau ghi rõ bảo đảm nào mất khi nào, và bảo đảm nào thay thế. Ký hiệu: $K$ là số bước, $\eta$ là bước hằng, $\Delta_0=F(w_0)-\inf F$, và $\tau^2$ là chặn phương sai của nhiễu gradient ngẫu nhiên, mà Bài 05b viết là $\sigma^2$.
+Hai giới hạn trên đẩy bài toán ra khỏi khung của chương theo hai cách, và bảng dưới đây giữ nhãn (i), (ii) cho hai cách đó. Nhãn (i) là chi phí: gradient đầy đủ được thay bằng gradient nhóm nhỏ. Nhãn (ii) là mục tiêu không lồi do đặc trưng học được: để vượt giới hạn biểu diễn, mạng hai tầng của Bài 06 học đặc trưng cùng với tham số, tham số đi vào mô hình một cách phi tuyến, và mất mát lồi không còn cho mục tiêu lồi. Nhận xét sau ghi rõ bảo đảm nào mất khi nào, và bảo đảm nào thay thế. Ký hiệu: $K$ là số bước, $\eta$ là bước hằng, $\Delta_0=F(w_0)-\inf F$, và $\tau^2$ là chặn phương sai của nhiễu gradient ngẫu nhiên, mà Bài 05b viết là $\sigma^2$.
 
 ::: remark Nhận xét 05.42 (Bảo đảm còn lại khi rời khung tất định)
 | Mất (khi nào) | Còn giữ được |
 |---|---|
 | Đích là nghiệm chính xác (ngay trong chương này) | Đích là $R$ nhỏ; dừng sớm và chính quy hóa là một phần của phương pháp (Mục 2, Mục 5.1) |
-| Hội tụ tuyến tính tất định của Định lý 05.30 (khi (i) hoặc (ii)) | Gradient đầy đủ, khi còn tính được: $F$ giảm ở mỗi bước với bước không quá $\frac1L$ (Bổ đề 05b.6). SGD trên $F_\lambda$ lồi mạnh: bước hằng giữ $\mathbb E\lVert w_k-w^*\rVert^2$ ở mức cỡ $\eta\tau^2/\mu$ (Định lý 05b.36, T5); bước giảm dần cho hội tụ tới điểm cực tiểu với tốc độ $O(1/k)$ (Định lý 05b.39, T6) |
-| Cực tiểu toàn cục (khi (ii)) | Điểm dừng xấp xỉ: hạ gradient có $\min_{k<K}\lVert\nabla F(w_k)\rVert^2\le\frac{2L\Delta_0}K$ (Định lý 05b.41, T7); SGD bước hằng có $\frac1K\sum_{k<K}\mathbb E\lVert\nabla F(w_k)\rVert^2\le\frac{2\Delta_0}{\eta K}+L\eta\tau^2$ (Định lý 05b.43, T8) |
+| Hội tụ tuyến tính tất định của Định lý 05.30 (khi (i) hoặc (ii)) | Gradient đầy đủ, khi còn tính được: $F$ giảm ở mỗi bước với bước không quá $\frac1L$ (Bổ đề 05b.6). SGD trên $F_\lambda$ lồi mạnh: bước hằng giữ $\mathbb E\lVert w_k-w^*\rVert^2$ ở mức cỡ $\eta\tau^2/\mu$ (Định lý 05b.36); bước giảm dần cho hội tụ tới điểm cực tiểu với tốc độ $O(1/k)$ (Định lý 05b.39) |
+| Cực tiểu toàn cục (khi (ii)) | Điểm dừng xấp xỉ: hạ gradient có $\min_{k<K}\lVert\nabla F(w_k)\rVert^2\le\frac{2L\Delta_0}K$ (Định lý 05b.41); SGD bước hằng có $\frac1K\sum_{k<K}\mathbb E\lVert\nabla F(w_k)\rVert^2\le\frac{2\Delta_0}{\eta K}+L\eta\tau^2$ (Định lý 05b.43) |
 | Chi phí $O(nd)$ mỗi bước (khi (i)) | Gradient nhóm nhỏ không chệch, chi phí không phụ thuộc $n$ (Định lý 05c.53) |
 
 Cột phải chỉ nêu tên và kết luận; giả thiết đầy đủ và chứng minh thuộc Bài 05b, Bài 05c và Bài 06. Ba điểm sau hay bị đọc sai.
@@ -2237,7 +2237,7 @@ Chúng ta xuất phát từ câu hỏi khung tối ưu lồi tất định của
 6. Phép đếm theo bậc chỉ phân định khi hai cận chênh nhau nhiều bậc (Ví dụ 05.22).
 7. SGD bước hằng chỉ tới một lân cận của điểm cực tiểu (Nhận xét 05.42).
 
-**Tương ứng với nhãn của bộ trang chiếu.** Bộ trang chiếu Bài 05 đánh số kết quả theo bài; tương ứng với số hiệu của ghi chú như sau.
+**Tương ứng với nhãn của bộ trang chiếu.** Bộ trang chiếu Bài 05 đánh số kết quả theo bài; tương ứng với số hiệu của ghi chú như sau. Kết quả của Bài 05b và Bài 05c được trang chiếu dẫn trực tiếp bằng số hiệu, chẳng hạn Định lý 05b.41.
 
 | Nhãn trên trang chiếu | Số hiệu trong ghi chú |
 |---|---|
@@ -2250,7 +2250,6 @@ Chúng ta xuất phát từ câu hỏi khung tối ưu lồi tất định của
 | Định lý 3 (số bước của hạ gradient) | Định lý 05.30 |
 | Định lý 4 (Newton hai giai đoạn) | Định lý 05.33 |
 | Mệnh đề 5 (chi phí một bước) | Mệnh đề 05.35 |
-| T5, T6, T7, T8 | Định lý 05b.36, 05b.39, 05b.41, 05b.43 |
 
 **Giới hạn còn lại và bài tiếp theo.** Hai giới hạn còn để mở. Giới hạn (i), chi phí theo $n$ của mỗi bước, dẫn tới hạ gradient ngẫu nhiên theo nhóm nhỏ ở Bài 06, với các bảo đảm của Bài 05b và ước lượng phương sai của Bài 05c. Giới hạn (ii), biểu diễn của đặc trưng cố định, dẫn tới mạng hai tầng có đặc trưng học được, mở đầu bằng bài toán XOR ở Bài 06; ở đó mục tiêu không còn lồi, và các bảo đảm chỉ còn ở mức điểm dừng xấp xỉ.
 
