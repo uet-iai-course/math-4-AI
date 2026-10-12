@@ -556,3 +556,71 @@ Kiểm tra sau sửa: `density.py` 88 trang, ba trang trên 60 âm tiết đều
 ### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
 
 Master đã tự chạy `density.py` (88 trang; P01 65, P02 63, E07 72 dưới trần 80; P02 8 dòng vì bảy mạch; không dòng nào quá 20 âm tiết ngoài dòng dẫn C00 21/25), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console, 0 tràn dọc; cờ tràn ngang là dương tính giả KaTeX có từ trước), đọc nguyên văn H05 (bước trực quan trước công thức) và bảng E07 sau sửa, xem ảnh P00, H05, E07, C00, H03 ở hai kích thước, đối chiếu bảng trạng thái hai báo cáo tái kiểm. Quyết định: `chấp nhận`, commit Bài 00. Việc còn treo: ghi chú bài giảng có thể nhận ví dụ GLS D10B, bảng tổng kết E07 và bài tập η = 0,05 (đợt học liệu).
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12
+
+### Tác tử và đầu vào
+
+- Tác tử rà soát (chỉ đọc, chế độ Detect của `no-ai-slop`): `general-purpose`, `claude-opus-5-5`, effort `high`. Báo cáo lưu ở `term-review/report-00.md` trong thư mục phiên của điều phối viên (21 mục A về thuật ngữ, 17 mục B về dùng trước định nghĩa).
+- Tác tử biên tập (ghi tệp, chế độ Edit của `no-ai-slop`, tự kiểm theo `eval.md`): `general-purpose`, `claude-opus-5-5`, effort `high`.
+- Quyết định áp dụng: `decisions-common.md` (liên bài) rồi `decisions-00.md` (thắng khi lệch). Bài 00 giữ "véc-tơ". Không mục nào bị bác bỏ; các chỗ thực hiện khác đề xuất ghi trong cột "cách sửa".
+- Các mục cũ của nhật ký này giữ nguyên câu chữ lịch sử (chẳng hạn "nghiệm đóng" ở mục "Hợp nhất ba báo cáo độc lập"); thuật ngữ hiện hành là thuật ngữ trong bảng dưới.
+
+### Bảng phát hiện
+
+| mức độ | trang | vấn đề | quyết định điều phối viên | trạng thái | cách sửa |
+|---|---|---|---|---|---|
+| trung bình | E06, E06L (storyboard), outline | "nghiệm đóng" | chấp nhận (A1) | đã sửa | "nghiệm dạng đóng (closed-form solution)" trên mặt trang E06; ghi chú, storyboard E06/E06L, outline E06 đồng bộ; 55 → 58 âm tiết |
+| trung bình | D09; D10B (ghi chú) | "cỡ" | chấp nhận (A2) | đã sửa | "kích thước $n\times n$", "kích thước $2\times2$", "kích thước $4\times4$" |
+| trung bình | B11; outline | "đủ trơn bậc hai" | chấp nhận (A3) | đã sửa | "khả vi liên tục hai lần trong một lân cận của $\mathbf x$"; "Xấp xỉ cục bộ:"; dòng 19 âm tiết; outline B11 sửa theo |
+| trung bình | B02 | "mặt độ cao" | chấp nhận (A4) | đã sửa | "Đồ thị là mặt $z=h(u,v)$ trong $\mathbb R^3$." |
+| trung bình | A12 (tiêu đề) | "Hệ dữ liệu không tương thích" | chấp nhận (A5) | đã sửa | "Hệ phương trình không tương thích"; outline, storyboard A12 và ghi chú bài giảng (Mục kết quả sau khớp) đồng bộ |
+| nhẹ | B00, C01, D00, D01 (ghi chú) | "tính tay", "bằng tay" | chấp nhận (A6) | đã sửa | "tính thủ công (được)" |
+| nhẹ | H02 | "đổi giá" | chấp nhận (A7) | đã sửa | "mức tăng giá khi tăng $10\,\mathrm m^2$", "mức tăng giá khi thêm một phòng"; ghi chú bài giảng Mục diễn giải trọng số đồng bộ; 33 → 38 âm tiết |
+| nhẹ | A06, B17 (ghi chú) | "đẳng thức chuẩn" | chấp nhận (A8) | đã sửa | viết tường minh $\mathbf d^T\mathbf A^T\mathbf A\mathbf d=\|\mathbf A\mathbf d\|_2^2$ và $\mathbf d^T\mathbf H\mathbf d=\|\mathbf X\mathbf d\|_2^2$ |
+| nhẹ | B17 (ghi chú) | hàm "có nghiệm" | chấp nhận (A9) | đã sửa | "bài toán cực tiểu $f$ có nghiệm duy nhất" |
+| nhẹ | E04 (ghi chú) | "biến chuẩn" | chấp nhận (A10) | đã sửa | "biến ngẫu nhiên chuẩn tắc vô hướng" |
+| nhẹ | A02 ↔ B04, D10B | hai tên cho một chuẩn | chấp nhận (A11) | đã sửa | mặt trang A02: "chuẩn $\ell_2$ (chuẩn Euclid)"; tên tiếng Anh Euclidean norm, inner product đặt trong ghi chú vì thêm vào hộp làm dòng vượt 20 âm tiết |
+| nhẹ | A08, A09, H03; ghi chú bài giảng | "biến đổi" ↔ "đã đổi thang" | chấp nhận (A12) | đã sửa | "diện tích đã đổi thang $a'$", "số phòng đã dịch tâm $b'$"; H03 ghi chú "cặp đặc trưng đã đổi thang" |
+| nhẹ | E00, E01; SVG `housing-model-pipeline`, `housing-prediction-uncertainty`; ghi chú bài giảng | "dải bất định" ↔ "dải nhiễu" | chấp nhận (A13) | đã sửa | thống nhất "dải nhiễu" trên mặt trang, nhãn và `title` SVG, outline, storyboard, ghi chú bài giảng |
+| nhẹ | D04 | $\Pr$ và $p$ cho biến cố | chấp nhận (A14, phương án "Ký hiệu:") | đã sửa | dòng "Ký hiệu: $p(V=v\mid U=u)=\Pr(V=v\mid U=u)$, hàm khối có điều kiện."; 1 → 8 âm tiết, 4 → 5 dòng |
+| nhẹ | E05 | "Lỗi huấn luyện" ↔ "SSE huấn luyện" | chấp nhận (A15) | đã sửa | hộp dùng "SSE huấn luyện"; ghi chú bài giảng đồng bộ |
+| nhẹ | C05, C08, D08 | thiếu tên "phân phối đều"; Unif/Uniform, ngoặc vuông | chấp nhận (A16) | đã sửa | C05 "$U\sim\operatorname{Unif}(0,2)$, phân phối đều"; mọi chỗ thống nhất $\operatorname{Unif}(a,b)$ (deck, outline, storyboard, ghi chú bài giảng) |
+| nhẹ | C07 | $dx$ | chấp nhận (A17) | đã sửa | $x\,p_X(x)\,\mathrm dx$ |
+| nhẹ | A06, C05, P01 | PD, PDF, CLO | chấp nhận (A18) | đã sửa | "(xác định dương, positive definite, PD)", "(probability density function, PDF)" trên mặt trang; P01 ghi chú "chuẩn đầu ra học phần (course learning outcome, CLO)" |
+| nhẹ | C12 | thiếu tên phân phối chuẩn | chấp nhận (A19) | đã sửa | câu "$\varepsilon\sim\mathcal N(0,\sigma^2)$, $\sigma>0$, với $\mathcal N(\mu,\sigma^2)$ là phân phối chuẩn (phân phối Gauss) trung bình $\mu$, phương sai $\sigma^2$" thay khối công thức đầu; ba dòng kỳ vọng/phương sai và xác suất khoảng chuyển sang cột hình để vừa khung 16:9; normal distribution trong ghi chú; 22 → 34 âm tiết, 6 dòng |
+| nhẹ | B02 (alt) | alt mơ hồ | chấp nhận (A20) | đã sửa | alt ghi $h(u,v)=u^2+uv+2v^2+u-2v$ |
+| nhẹ | nhiều trang | thiếu tên tiếng Anh | chấp nhận (A21, ưu tiên ghi chú) | đã sửa | ghi chú: feature (H02), residual (H03), loss function (H05), design matrix (A09), inconsistent system và least squares (A12), normal equations (A14), linear independence, rank (A05), column space (A05B), invertible, inverse (A04), stationary point (B15), likelihood function (C13), covariance, correlation coefficient (D08), uniform distribution (C05); mặt trang: step size (B18), overfitting (E05), closed-form solution (E06) |
+| nghiêm trọng | A04 | khả nghịch dùng lặp vòng | chấp nhận (B1) | đã sửa | "Định nghĩa. $\mathbf A\in\mathbb R^{n\times n}$ khả nghịch nếu có $\mathbf A^{-1}$ với $\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I_n$ (ma trận đơn vị)." đặt trước công thức $\mathbf A^{-1}$; 26 → 25 âm tiết, 6 dòng |
+| nghiêm trọng | A05 | độc lập tuyến tính, số chiều chưa định nghĩa | chấp nhận (B2, tách nếu vượt 6 dòng) | đã sửa, tách trang | A05: "Định nghĩa." độc lập tuyến tính, "Định nghĩa." hạng là số cột độc lập tuyến tính tối đa, hai ví dụ (35 → 43 âm tiết, 6 dòng). A05B mới "Hạng và không gian cột": $\operatorname{Col}(\mathbf A)$, "Dạng khác:" $\operatorname{rank}=\dim\operatorname{Col}$, số nghiệm theo không gian cột (41 âm tiết, 6 dòng); số chiều định nghĩa trong ghi chú; storyboard và outline có mục A05B |
+| nghiêm trọng | A13 | $\perp$ chưa định nghĩa | chấp nhận (B3) | đã sửa | dòng "Ký hiệu: $\mathbf u\perp\mathbf v$ (trực giao) khi $\mathbf u^T\mathbf v=0$; $\mathbf r\perp\operatorname{Col}(\mathbf X)$ khi $\mathbf r$ trực giao với mọi cột của $\mathbf X$."; câu đầu bỏ "của $\mathbf X$" để vừa khung; 22 → 33 âm tiết, 6 dòng |
+| trung bình | H05, A01 | chuyển vị dùng trước A03 | chấp nhận (B4) | đã sửa | H05 bỏ $^T$; A01 thêm "Ký hiệu: véc-tơ viết thành cột; $(v_1,v_2,v_3)^T$ là cột đó viết ngang." (44 → 55 âm tiết, 6 dòng) |
+| trung bình | B15 | điểm dừng | chấp nhận (B5) | đã sửa | "(điểm có $\nabla f=\mathbf0$)"; 17 → 19 âm tiết |
+| trung bình | B18 | độ dài bước | chấp nhận (B6) | đã sửa | "độ dài bước (step size) $\eta=0{,}1$"; 15 → 20 âm tiết |
+| trung bình | C01 | $\Pr$ trước C02 | chấp nhận (B7) | đã sửa | "xác suất cổ điển $\Pr(E)=\lvert E\rvert/\lvert\Omega\rvert=3/6=1/2$"; 50 → 54 âm tiết |
+| trung bình | C03 | hàm đo được | chấp nhận (B8) | đã sửa | "(tức $\{X\le t\}\in\mathcal F$ với mọi $t$)"; 41 → 44 âm tiết |
+| trung bình | C13 | độc lập trước D06 | chấp nhận (B9) | đã sửa | dòng "Lưu ý: $\varepsilon_i$ độc lập khi mật độ đồng thời bằng tích các mật độ (xem mạch 6)." (nhãn "Lưu ý:" thay "Độc lập:" vì chỉ dùng nhãn được phép); 29 → 46 âm tiết, 5 dòng |
+| trung bình | B13 | mật độ trước C05 | chấp nhận (B10) | đã sửa | "Ý nghĩa: ở mạch xác suất, tích phân hàm mật độ trên $D$ cho xác suất của $D$." |
+| trung bình | D08 | hệ số tương quan thiếu công thức tổng quát | chấp nhận (B11) | đã sửa | khối `aligned`: $\rho_{UV}=(\boldsymbol\Sigma_Z)_{12}/\sqrt{(\boldsymbol\Sigma_Z)_{11}(\boldsymbol\Sigma_Z)_{22}}=\dots\approx0{,}408$; vừa màn hẹp |
+| trung bình | E05 | quá khớp chưa định nghĩa | chấp nhận (B12) | đã sửa | hộp "Định nghĩa. Quá khớp (overfitting) là hiện tượng sai số huấn luyện nhỏ nhưng dự đoán ngoài mẫu kém." cùng câu SSE; 37 → 56 âm tiết (không tính ô số của bảng), hộp 2 câu |
+| nhẹ | B10 | $\mathbf e_1$ | chấp nhận (B13) | đã sửa | "$\mathbf e_1=(1,0)^T$"; B19 giữ "$\mathbf e_1$" vì đã định nghĩa ở B10 |
+| nhẹ | C04 | $\sim$, Bernoulli | chấp nhận (B14) | đã sửa | "đọc là $X$ có phân phối Bernoulli tham số $\pi=0{,}3$"; 16 → 24 âm tiết |
+| nhẹ | C13 | $\mathcal N(\mu,\sigma^2)$ tổng quát | chấp nhận (B15) | đã sửa | giải ở C12 (định nghĩa $\mathcal N(\mu,\sigma^2)$, mật độ tổng quát trong ghi chú) thay vì thêm chữ vào C13 |
+| nhẹ | A06 | đối xứng, diag | chấp nhận (B16) | đã sửa | "$\mathbf Q^T=\mathbf Q$"; "$\operatorname{diag}(1,4)=\begin{bmatrix}1&0\\0&4\end{bmatrix}$" |
+| nhẹ | D07, D08 | "mômen" | chấp nhận (B17) | đã sửa | "$\mathbb E\lvert U\rvert,\mathbb E\lvert V\rvert<\infty$", "$\mathbb E[U^2],\mathbb E[V^2]<\infty$"; ghi chú C08 giữ chữ "mômen" (không phải mặt trang) |
+| nhẹ | D03 | "không còn quan tâm" | chấp nhận (mục 5) | đã sửa | "Lấy biên là cộng theo biến bị loại." |
+| nhẹ | SVG `probability-gls-weighting` (dùng trong ghi chú bài giảng) | "đường đồng mức" | chấp nhận (liên bài 6) | đã sửa | "đường mức" ở hai nhãn khung |
+| nhẹ | A07, B19, C14 (ghi chú) | nhãn "Đáp án" | chấp nhận (liên bài 13) | đã sửa | "Lời giải:", "Lời giải câu 2–4.", "Lời giải." |
+
+Các quyết định liên bài khác (biên có dấu, số hạng phạt, hạ gradient, ràng buộc hoạt động, biến LP, $\mu/L$) không có chỗ áp dụng trong Bài 00 (grep bằng 0). Quyết định 10: lần dùng đầu $\succ0$, $\succeq0$ là chính định nghĩa ở A06, không cần dòng "Nhắc lại:".
+
+### Kiểm tra
+
+- `grep -c` trên deck, outline, ghi chú bài giảng và SVG của Bài 00: "nghiệm đóng", "cỡ ", "tính tay", "bằng tay", "mặt độ cao", "đủ trơn", "dải bất định", "Uniform", "Unif[", "Đẳng thức chuẩn", "biến chuẩn vô", "hệ dữ liệu", "Lỗi huấn luyện", "đồng mức", "Đáp án", "không còn quan tâm" đều bằng 0. Còn cố ý: "thay đổi giá" trong outline (mô tả đúng dấu tùy ý của trọng số), "mômen bậc hai" trong ghi chú C08 và outline C08, các câu trích thuật ngữ cũ trong cột quyết định của storyboard và trong mục lịch sử của nhật ký.
+- `deckcheck.py` trên 47 trang đã sửa hoặc thêm, cả hai khổ: `errors: none`. Hai cờ còn lại có từ trước và không đổi so với bản trước đợt sửa (đo lại bản cũ bằng chặn route Playwright): A12 khổ rộng `sh 540 > ch 536` (nội dung vẫn trong khung 16:9), H03 khổ hẹp tràn ngang 10 px do bảng sáu cột.
+- Kiểm tra trực quan riêng (tắt hiệu ứng chuyển trang, nạp lại trang cho mỗi mã, chặn thăm dò reloadserver): đáy nội dung khổ 1600×900 lớn nhất 870 px (C12) trong khung 882 px; không `.katex-error`; không phần tử mới tràn ngang ở 390×844 so với bản cũ; điều hướng bàn phím A05 → A05B → A06 → A05B đúng; `Reveal.getTotalSlides()` = 89. Đã xem ảnh A01, A04, A05, A05B, A13, B11, C04, C05, C12, C13, D04, D08, E05, E06 ở khổ rộng và A05B, A13, C12, D08 ở khổ hẹp.
+- Storyboard: 89 trang, mỗi trang đúng một mục; outline có mục cho mọi trang. Số mạch (7), trang "Nội dung" và chỉ số ngang `#/N` không đổi; không có liên kết theo hash vào deck từ học liệu hay `index.html`.
+- `git diff --check` trên các tệp Bài 00: sạch. Không chạy `sync-local-materials.py` (điều phối viên chạy một lần cuối).
+- `no-ai-slop` (Edit, tự kiểm theo `eval.md`): câu mới trên mặt trang là mệnh đề định nghĩa hoặc ký hiệu, không câu dẫn rỗng, không đối lập nhị phân, không lời nhấn mạnh; ghi chú mới không mở bằng "Trang này…".
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đọc mặt trang A04, A05, A05B, A13 sau sửa (định nghĩa khả nghịch với A⁻¹A = AA⁻¹ = I, độc lập tuyến tính, hạng là số cột độc lập tối đa, Col(A) và rank = dim Col, ký hiệu ⊥ qua uᵀv = 0); chấp nhận tách A05B; tự chạy deckcheck trên A01, A04, A05, A05B, A13, C12, C13, D04, E05, E06: 0 lỗi, 0 FLAG mới (A12 rộng lệch 4 px và H03 hẹp tràn ngang 10 px có từ trước); xem ảnh A05, A05B, A13 ở 1600×900. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.

@@ -68,7 +68,7 @@ $$
 
 Tại nghiệm: $\hat{\mathbf y}=(10,13,15,18)^T$, $\mathbf r=(-1,1,1,-1)^T$, $\mathrm{SSE}=4$, $f=2$ và $\mathbf X^T\mathbf r=\mathbf0$. Một bước gradient với $\eta=0{,}1$ cho $\mathbf w^+=(14,1{,}5,1{,}3)^T$, $f(\mathbf w^+)=2{,}265$.
 
-## Cấu trúc 88 trang, 7 mạch
+## Cấu trúc 89 trang, 7 mạch
 
 Sửa 2026-10-12 theo AGENTS.md, mục "Trang tiêu đề mạch" và "Văn phong và mật độ mặt trang chiếu". Mỗi mạch là một `<section>` ngoài; mạch 2–7 mở bằng trang tiêu đề mạch `id="mach-N"`.
 
@@ -76,7 +76,7 @@ Sửa 2026-10-12 theo AGENTS.md, mục "Trang tiêu đề mạch" và "Văn phon
 |---|---|---|---|---:|
 | 1 | Mở đầu | P00 (bìa) | P00–P02 | 3 |
 | 2 | Dự đoán giá nhà và phần dư | H00 | H00–H05 | 6 |
-| 3 | Đại số tuyến tính cho dữ liệu | A00 | A00–A15L | 18 |
+| 3 | Đại số tuyến tính cho dữ liệu | A00 | A00–A15L | 19 |
 | 4 | Giải tích nhiều biến cho hàm mất mát | B00 | B00–B19L | 22 |
 | 5 | Xác suất một biến và nhiễu | C00 | C00–C14 | 16 |
 | 6 | Véc-tơ ngẫu nhiên và phân phối nhiều biến | D00 | D00–D11L | 14 |
@@ -113,8 +113,9 @@ H01–H05 không dùng ký hiệu ma trận $\mathbf X$ hoặc tích $\mathbf X\
 | A01 | Đối tượng của đại số tuyến tính | Dùng $r_i,\mathbf r,f(\mathbf w)$ để tạo nhu cầu phân biệt vô hướng, véc-tơ và ma trận trước phép toán | Goodfellow et al. (2016), §2.1 |
 | A02 | Véc-tơ và phép toán | Nối ký hiệu với dữ liệu trước khi tính: $\boldsymbol\phi_1$ ghép ba số của căn 1 trong H02, $\mathbf w^{(0)}$ là bộ trọng số thử ở H03; tính tích vô hướng $11{,}5$ và chuẩn $\ell_2$; A08 chính thức hóa véc-tơ đặc trưng | Goodfellow et al. (2016), §2.1–2.2 |
 | A03 | Ma trận, chuyển vị và kích thước | Tính ví dụ $\mathbf A\mathbf x=(-1,-3)^T$; phân biệt phép nhân hợp lệ và không hợp lệ | Goodfellow et al. (2016), §2.1–2.2 |
-| A04 | Hệ phương trình và nghịch đảo | Giải hệ $2\times2$ bằng nghịch đảo; công thức nghịch đảo và $x=A^{-1}b$ tách hai dòng; dùng ma trận chữ nhật chung $\mathbf M\in\mathbb R^{4\times3}$ để cảnh báo $\mathbf M^{-1}$ không tồn tại | Goodfellow et al. (2016), §2.3 |
-| A05 | Hạng và phụ thuộc tuyến tính | Định nghĩa không gian cột và hạng (câu đầu rút gọn, Col(A) trước rank); so sánh trực tiếp ma trận hạng 2 với ma trận hạng 1; ma trận và rank tách các dòng riêng trong mỗi thẻ; hộp kết luận rút gọn | Goodfellow et al. (2016), §2.5–2.6 |
+| A04 | Hệ phương trình và nghịch đảo | "Định nghĩa." khả nghịch ($\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I_n$) trước công thức nghịch đảo; giải hệ $2\times2$ bằng nghịch đảo; công thức nghịch đảo và $x=A^{-1}b$ tách hai dòng; dùng ma trận chữ nhật chung $\mathbf M\in\mathbb R^{4\times3}$ để cảnh báo $\mathbf M^{-1}$ không tồn tại | Goodfellow et al. (2016), §2.3 |
+| A05 | Hạng và phụ thuộc tuyến tính | Định nghĩa độc lập tuyến tính ($\sum_jc_j\mathbf a_j=\mathbf0$ chỉ khi mọi $c_j=0$) rồi hạng là số cột độc lập tuyến tính tối đa; so sánh trực tiếp ma trận hạng 2 với ma trận hạng 1 | Goodfellow et al. (2016), §2.4 |
+| A05B | Hạng và không gian cột | Không gian cột $\operatorname{Col}(\mathbf A)$; dạng khác $\operatorname{rank}=\dim\operatorname{Col}$; $\operatorname{Col}(\mathbf I_2)=\mathbb R^2$ cho nghiệm duy nhất, $\operatorname{Col}([[1,2],[2,4]])$ là đường thẳng cho vô số nghiệm hoặc vô nghiệm (tách từ A05 trong đợt rà soát thuật ngữ 2026-10-12) | Goodfellow et al. (2016), §2.4 |
 | A06 | Dạng toàn phương và tính dương | Định nghĩa dạng toàn phương, PSD/PD trước khi dùng; tính ví dụ $q(\mathbf d)=8$ và nối $\mathbf A^T\mathbf A$ | Goodfellow et al. (2016), §2.6; Boyd & Vandenberghe (2004), Phụ lục A |
 | A07 | Bài tập: phép toán, hạng và dạng toàn phương | Năm câu: kiểu đối tượng, tích vô hướng, kích thước, hạng, dạng toàn phương | Tổng hợp |
 | A07L | Bài tập: phép toán, hạng và dạng toàn phương | Lời giải mẫu năm câu trên mặt trang | Tổng hợp |
@@ -122,8 +123,8 @@ H01–H05 không dùng ký hiệu ma trận $\mathbf X$ hoặc tích $\mathbf X\
 | A09 | Ma trận thiết kế | Định nghĩa $\mathbf X=\boldsymbol\Phi^T\in\mathbb R^{4\times3}$; mỗi hàng là một mẫu, ba cột là $1,a',b'$; ghi rõ $\mathbf w$ và $\mathbf y$ | Goodfellow et al. (2016), §2.1–2.2 |
 | A10 | Dự đoán và phần dư dạng véc-tơ | Tính $\mathbf X\mathbf w^{(0)}=\hat{\mathbf y}$, $\mathbf r=\hat{\mathbf y}-\mathbf y$ và $f(\mathbf w^{(0)})=4{,}5$ | Goodfellow et al. (2016), §2.2, §4.5 |
 | A11 | Đặc trưng phi tuyến | Kiểm tra mô hình vẫn tuyến tính theo trọng số khi véc-tơ đặc trưng chứa $(a')^2$ | Goodfellow et al. (2016), §4.5, §5.2 |
-| A12 | Hệ dữ liệu không tương thích | Kiểm tra mâu thuẫn của $\mathbf X\mathbf w=\mathbf y$ trên bốn mẫu và chuyển sang bình phương nhỏ nhất | Goodfellow et al. (2016), §2.2, §4.5; Boyd & Vandenberghe (2004), Phụ lục A |
-| A13 | Bình phương nhỏ nhất và phép chiếu | Định nghĩa $\operatorname{Col}(\mathbf X)=\{\mathbf X\mathbf w:\mathbf w\in\mathbb R^3\}$ trước SVG và điều kiện trực giao | Goodfellow et al. (2016), §2.6, §4.5; Boyd & Vandenberghe (2004), Phụ lục A |
+| A12 | Hệ phương trình không tương thích | Kiểm tra mâu thuẫn của $\mathbf X\mathbf w=\mathbf y$ trên bốn mẫu và chuyển sang bình phương nhỏ nhất | Goodfellow et al. (2016), §2.2, §4.5; Boyd & Vandenberghe (2004), Phụ lục A |
+| A13 | Bình phương nhỏ nhất và phép chiếu | Định nghĩa $\operatorname{Col}(\mathbf X)=\{\mathbf X\mathbf w:\mathbf w\in\mathbb R^3\}$ trước SVG; dòng "Ký hiệu:" $\mathbf u\perp\mathbf v$ khi $\mathbf u^T\mathbf v=0$; điều kiện trực giao | Goodfellow et al. (2016), §2.6, §4.5; Boyd & Vandenberghe (2004), Phụ lục A |
 | A14 | Phương trình chuẩn từ phép chiếu | Suy phương trình chuẩn; nêu điều kiện cột độc lập trước công thức nghịch đảo | Goodfellow et al. (2016), §2.6, §4.5; Boyd & Vandenberghe (2004), Phụ lục A |
 | A15 | Bài tập: ma trận thiết kế và phép chiếu | Nêu lại dữ kiện bốn căn; ba câu về hàng–mẫu, dự đoán và phần dư, điều kiện trực giao | Tổng hợp |
 | A15L | Bài tập: ma trận thiết kế và phép chiếu | Lời giải mẫu ba câu trên mặt trang, gồm $\mathbf X^T\mathbf r(\mathbf w_{\mathrm{LS}})=\mathbf0$ tính từng thành phần | Tổng hợp |
@@ -144,7 +145,7 @@ H01–H05 không dùng ký hiệu ma trận $\mathbf X$ hoặc tích $\mathbf X\
 | B08 | Quy tắc dây chuyền | Bốn bước: hàm trong, hàm ngoài, công thức, thế số; dùng $\ell=g\circ\mathbf F$ và thu $\nabla\ell=(6,6)^T$ | Goodfellow et al. (2016), §4.3; Boyd & Vandenberghe (2004), §A.4 |
 | B09 | Ma trận Hessian | Định nghĩa từng phần tử $\partial^2h/(\partial x_i\partial x_j)$ và tính ma trận $[[2,1],[1,4]]$ | Goodfellow et al. (2016), §4.3.1; Boyd & Vandenberghe (2004), §A.4 |
 | B10 | Độ cong theo một hướng | Đặt $\varphi(t)=h(\mathbf x+t\mathbf d)$ và suy $\varphi''(0)=\mathbf d^T\mathbf H_h\mathbf d$ | Goodfellow et al. (2016), §4.3.1; Boyd & Vandenberghe (2004), §A.4 |
-| B11 | Khai triển Taylor bậc hai | Nêu giả thiết đủ trơn; hiệu chỉnh tuyến tính bằng số hạng $0{,}02$ để thu $7{,}82$, là đẳng thức vì $h$ bậc hai | Goodfellow et al. (2016), §4.3.1; Boyd & Vandenberghe (2004), §A.4 |
+| B11 | Khai triển Taylor bậc hai | Nêu giả thiết $h$ khả vi liên tục hai lần trong một lân cận của $\mathbf x$; hiệu chỉnh tuyến tính bằng số hạng $0{,}02$ để thu $7{,}82$, là đẳng thức vì $h$ bậc hai | Goodfellow et al. (2016), §4.3.1; Boyd & Vandenberghe (2004), §A.4 |
 | B12 | Tích phân một biến | "Nhu cầu:" tổng tích lũy của đại lượng thay đổi liên tục; $\int_0^1(2x+1)\,\mathrm dx=2$ với hình miền tích phân; "Định lý." Newton–Leibniz; câu nối sang mật độ xác suất nằm trong ghi chú | Stewart (2016), §§5.2–5.3 |
 | B13 | Tích phân nhiều biến | Tích phân lặp trên $D=[0,1]\times[0,2]$ bằng $3$; hộp "Ý nghĩa:" tích phân mật độ trên miền cho xác suất của miền; quan hệ với quy tắc dây chuyền ở trang sau nằm trong ghi chú B14 | Stewart (2016), §§15.1–15.2; Goodfellow et al. (2016), §3.3 |
 | B14 | Quy tắc dây chuyền cho phần dư và mất mát | Suy $\nabla f=\mathbf X^T\mathbf r$ | Goodfellow et al. (2016), §4.3–4.5; Boyd & Vandenberghe (2004), §A.4 |
@@ -164,16 +165,16 @@ H01–H05 không dùng ký hiệu ma trận $\mathbf X$ hoặc tích $\mathbf X\
 | C02 | Xác suất và các tiên đề | Định nghĩa $(\Omega,\mathcal F,\Pr)$, sigma-đại số và ba tiên đề với $E_k\in\mathcal F$ | Koller & Friedman (2009), §2.1.1 |
 | C03 | Biến ngẫu nhiên | Mặt trang dùng $X:\Omega\to\mathbb R$ và câu đo được; chi tiết $\mathcal B(\mathbb R)$ đặt trong ghi chú | Koller & Friedman (2009), Ch. 2 |
 | C04 | Biến rời rạc và hàm khối xác suất | Viết đầy đủ hàm khối xác suất (PMF), điều kiện chuẩn hóa và Bernoulli$(0{,}3)$ | Goodfellow et al. (2016), §3.2 |
-| C05 | Biến liên tục và hàm mật độ xác suất | Nối chính thức mật độ→xác suất: $\Pr(U\in A)=\int_Ap_U$; dùng Uniform$(0,2)$ cho diện tích khoảng và xác suất điểm bằng 0 | Goodfellow et al. (2016), §3.3 |
-| C06 | Hàm phân phối tích lũy | Viết đầy đủ hàm phân phối tích lũy (CDF); đồ thị Uniform và tính xác suất bằng hiệu CDF | Goodfellow et al. (2016), §3.2–3.3 |
-| C07 | Kỳ vọng | Tổng/tích phân với điều kiện $\mathbb E|X|<\infty$; so sánh Bernoulli và Uniform | Goodfellow et al. (2016), §3.8 |
+| C05 | Biến liên tục và hàm mật độ xác suất | Nối chính thức mật độ→xác suất: $\Pr(U\in A)=\int_Ap_U$; dùng $\operatorname{Unif}(0,2)$ (phân phối đều) cho diện tích khoảng và xác suất điểm bằng 0 | Goodfellow et al. (2016), §3.3 |
+| C06 | Hàm phân phối tích lũy | Viết đầy đủ hàm phân phối tích lũy (CDF); đồ thị CDF của $\operatorname{Unif}(0,2)$ và tính xác suất bằng hiệu CDF | Goodfellow et al. (2016), §3.2–3.3 |
+| C07 | Kỳ vọng | Tổng/tích phân với điều kiện $\mathbb E|X|<\infty$; so sánh Bernoulli và $\operatorname{Unif}(0,2)$ | Goodfellow et al. (2016), §3.8 |
 | C08 | Phương sai | Hai công thức tương đương, điều kiện mômen bậc hai và độ lệch chuẩn | Goodfellow et al. (2016), §3.8 |
-| C09 | Bài tập: biến chỉ báo và xác suất khoảng | Chỉ báo "lớn hơn 4" của xúc xắc đều; xác suất khoảng của Uniform$(0,2)$ bằng PDF và CDF; mật độ tại điểm | Tổng hợp |
+| C09 | Bài tập: biến chỉ báo và xác suất khoảng | Chỉ báo "lớn hơn 4" của xúc xắc đều; xác suất khoảng của $\operatorname{Unif}(0,2)$ bằng PDF và CDF; mật độ tại điểm | Tổng hợp |
 | C09L | Bài tập: biến chỉ báo và xác suất khoảng | Lời giải mẫu câu 1: Bernoulli$(1/3)$, $\mathbb E[X]=1/3$, $\operatorname{Var}(X)=2/9$ | Tổng hợp |
 | C10 | Bất định của giá nhà | Dùng nền tảng vừa học để giải thích vì sao dự đoán điểm chưa mô tả biến thiên của $Y$ | Goodfellow et al. (2016), §3.1–3.3, §5.5 |
 | C11 | Nhiễu ẩn và phần dư quan sát | Giả sử rõ $\mathbf w_{\mathrm{true}}^T\boldsymbol\phi_2=13$ trước khi tính $\varepsilon_2=-1$ và kiểm dấu phần dư | Goodfellow et al. (2016), §3.1, §5.5 |
-| C12 | Mô hình Gauss cho nhiễu | Nêu $\sigma>0$, mật độ Gauss, xác suất $0{,}6827$ (thống nhất một dạng số) và cảnh báo đây là giả thiết, không phải kết luận từ bốn mẫu; hình SVG tĩnh trong markup | Goodfellow et al. (2016), §3.9 |
-| C13 | Hàm hợp lý Gauss và tổng bình phương phần dư | Nêu $y_i-\mathbf w^T\boldsymbol\phi_i=-r_i$ trước âm log-hàm hợp lý và tổng bình phương phần dư | Goodfellow et al. (2016), §3.9, §5.5 |
+| C12 | Mô hình Gauss cho nhiễu | Gọi tên phân phối chuẩn (phân phối Gauss) $\mathcal N(\mu,\sigma^2)$ và nêu $\sigma>0$, mật độ Gauss, xác suất $0{,}6827$ (thống nhất một dạng số) và cảnh báo đây là giả thiết, không phải kết luận từ bốn mẫu; hình SVG tĩnh trong markup | Goodfellow et al. (2016), §3.9 |
+| C13 | Hàm hợp lý Gauss và tổng bình phương phần dư | Nêu $y_i-\mathbf w^T\boldsymbol\phi_i=-r_i$ trước âm log-hàm hợp lý và tổng bình phương phần dư; dòng "Lưu ý:" báo trước nghĩa của độc lập (định nghĩa ở D06) | Goodfellow et al. (2016), §3.9, §5.5 |
 | C14 | Bài tập: nhiễu, phần dư và giả thiết Gauss | Bốn câu tự làm về nhiễu/phần dư, giả thiết Gauss, vai trò $\sigma^2$ và giới hạn của bốn phần dư | Tổng hợp |
 
 ### Xác suất nhiều biến
@@ -184,11 +185,11 @@ H01–H05 không dùng ký hiệu ma trận $\mathbf X$ hoặc tích $\mathbf X\
 | D01 | Véc-tơ ngẫu nhiên | Tạo nhu cầu mô tả đồng thời/phụ thuộc rồi phân biệt $\mathbf Z$ với hiện thực $\mathbf z$ | Goodfellow et al. (2016), §3.4; Koller & Friedman (2009), Ch. 2 |
 | D02 | Phân phối đồng thời | Định nghĩa hàm khối xác suất đồng thời bằng bảng $2\times2$ có tổng bằng $1$ | Koller & Friedman (2009), Ch. 2 |
 | D03 | Phân phối biên | Cộng theo biến bị loại; tính $p_U(1)=0{,}50$, $p_V(1)=0{,}60$ | Koller & Friedman (2009), Ch. 2 |
-| D04 | Xác suất có điều kiện và quy tắc nhân | Tính $p(V=1\mid U=1)=0{,}80$ và kiểm $0{,}40=0{,}80\times0{,}50$ | Koller & Friedman (2009), Ch. 2 |
+| D04 | Xác suất có điều kiện và quy tắc nhân | Dòng "Ký hiệu:" $p(V=v\mid U=u)=\Pr(V=v\mid U=u)$; tính $p(V=1\mid U=1)=0{,}80$ và kiểm $0{,}40=0{,}80\times0{,}50$ | Koller & Friedman (2009), Ch. 2 |
 | D05 | Công thức Bayes | Đảo điều kiện để tính $p(U=1\mid V=1)=2/3$ | Koller & Friedman (2009), Ch. 2 |
 | D06 | Độc lập và phụ thuộc | Kiểm $0{,}40\ne0{,}50\times0{,}60$ và phân biệt phụ thuộc với nhân quả | Goodfellow et al. (2016), §3.5 |
 | D07 | Kỳ vọng của véc-tơ ngẫu nhiên | Tính $\boldsymbol\mu=(0{,}50,0{,}60)^T$ theo từng thành phần | Goodfellow et al. (2016), §3.8 |
-| D08 | Hiệp phương sai và tương quan | Tính $\boldsymbol\Sigma_Z$ và $\rho_{UV}\approx0{,}408$; chứng minh PSD trong ghi chú | Goodfellow et al. (2016), §3.8; Boyd & Vandenberghe (2004), Phụ lục A |
+| D08 | Hiệp phương sai và tương quan | Tính $\boldsymbol\Sigma_Z$ và $\rho_{UV}\approx0{,}408$ từ công thức tổng quát $\rho_{UV}=(\boldsymbol\Sigma_Z)_{12}/\sqrt{(\boldsymbol\Sigma_Z)_{11}(\boldsymbol\Sigma_Z)_{22}}$; chứng minh PSD trong ghi chú | Goodfellow et al. (2016), §3.8; Boyd & Vandenberghe (2004), Phụ lục A |
 | D09 | Gauss nhiều biến | Dùng $\mathbf G\sim\mathcal N(\mathbf0,\boldsymbol\Sigma_G)$ với $\boldsymbol\Sigma_G=[[1,0{,}8],[0{,}8,1]]$ và elip đồng mật độ; là bước trực quan của GLS (elip là tập mức của dạng toàn phương $\boldsymbol\Sigma^{-1}$) | Goodfellow et al. (2016), §3.9 |
 | D10 | Bình phương nhỏ nhất tổng quát | Nhu cầu khi nhiễu tương quan; giả thiết $\boldsymbol\Sigma_\varepsilon\in\mathbb S_{++}^4$ đã biết; mục tiêu $J(\mathbf w)=\frac12\mathbf r^T\boldsymbol\Sigma_\varepsilon^{-1}\mathbf r$; GLS → OLS khi $\boldsymbol\Sigma_\varepsilon=\sigma^2\mathbf I$ | Goodfellow et al. (2016), §3.9, §5.5 |
 | D10B | Ví dụ: hai phần dư cùng chuẩn | $\boldsymbol\Sigma_2=[[1;0{,}5],[0{,}5;1]]$, $\mathbf r_\pm=(1,\pm1)^T$: $J_2=2/3$ và $2$ dù cùng chuẩn Euclid | Ví dụ tự tính |
@@ -199,13 +200,13 @@ H01–H05 không dùng ký hiệu ma trận $\mathbf X$ hoặc tích $\mathbf X\
 
 | Mã | Tiêu đề | Vai trò | Nguồn |
 |---|---|---|---|
-| E00 | 7. Tổng hợp mô hình giá nhà | Trang tiêu đề mạch; dòng dẫn "Nhu cầu: dự đoán giá căn nhà $65\,\mathrm m^2$, 2 phòng ngủ kèm dải bất định." | — |
+| E00 | 7. Tổng hợp mô hình giá nhà | Trang tiêu đề mạch; dòng dẫn "Nhu cầu: dự đoán giá căn nhà $65\,\mathrm m^2$, 2 phòng ngủ kèm dải nhiễu." | — |
 | E01 | Mô hình giá nhà với các công cụ đã ôn | Luồng dữ liệu → đặc trưng → $\mathbf X,\mathbf y$ → mất mát → trọng số → bất định; vai trò ba công cụ; nhánh OLS/GLS theo giả thiết nhiễu. | Goodfellow et al. (2016), Ch. 2–5 |
 | E02 | Trọng số bình phương nhỏ nhất | Diễn giải nghiệm bằng đơn vị tiền; "Lưu ý:" không suy diễn nhân quả. | Tự tính |
 | E03 | Phần dư sau khi khớp mô hình | Nêu $\mathbf X^T\mathbf r=\mathbf0$ nhưng từng phần dư có thể khác không. | Tự tính; Goodfellow et al. (2016), §4.5; Boyd & Vandenberghe (2004), §A.5 |
 | E04 | Dự đoán kèm bất định | Dùng vô hướng $G\sim\mathcal N(0,1)$, phân biệt với véc-tơ $\mathbf G$ ở D09; dải có điều kiện theo tỷ đồng; $1{,}96$ là phân vị chuẩn được cung cấp, nối lại $0{,}6827$ ở C12, không yêu cầu người học tự suy ra phân vị; nếu nhiễu tương quan, dải phải thay bằng GLS ở D10. | Goodfellow et al. (2016), §3.9, §5.5 |
-| E05 | Mô hình mở rộng và nguy cơ quá khớp | Bảng so sánh mô hình ba và bốn trọng số theo đặc trưng, trọng số, SSE huấn luyện và dự đoán căn $65\,\mathrm m^2$; SSE thấp không chứng minh dự đoán ngoài mẫu tốt hơn. | Goodfellow et al. (2016), §5.2 |
-| E06 | Bài tập: tổng hợp mô hình giá nhà | Năm câu: nghiệm đóng, bước gradient, giới hạn của SSE bằng 0, nhiễu/phần dư, chọn OLS/GLS; bỏ hộp chuỗi mũi tên. | Tổng hợp |
+| E05 | Mô hình mở rộng và nguy cơ quá khớp | Bảng so sánh mô hình ba và bốn trọng số theo đặc trưng, trọng số, SSE huấn luyện và dự đoán căn $65\,\mathrm m^2$; hộp định nghĩa quá khớp (overfitting); SSE huấn luyện thấp không chứng minh dự đoán ngoài mẫu tốt hơn. | Goodfellow et al. (2016), §5.2 |
+| E06 | Bài tập: tổng hợp mô hình giá nhà | Năm câu: nghiệm dạng đóng (closed-form solution), bước gradient, giới hạn của SSE bằng 0, nhiễu/phần dư, chọn OLS/GLS; bỏ hộp chuỗi mũi tên. | Tổng hợp |
 | E06L | Bài tập: tổng hợp mô hình giá nhà | Lời giải mẫu câu 1, 2, 5 trên mặt trang. | Tổng hợp |
 | E07 | Tổng kết | Bảng "kết quả, giả thiết không được bỏ, công thức": nghiệm bình phương nhỏ nhất duy nhất, gradient, cực đại hàm hợp lý, GLS, dải nhiễu 95 %; tài liệu đọc. | Tổng hợp |
 
@@ -222,7 +223,7 @@ H01–H05 không dùng ký hiệu ma trận $\mathbf X$ hoặc tích $\mathbf X\
 | Quay lại ví dụ | 16 phút |
 | **Tổng** | **150 phút** |
 
-Bài giảng dùng một tuyến duy nhất gồm toàn bộ 88 trang (trang tiêu đề mạch và trang lời giải dùng thời lượng của phần tương ứng); phân bổ thời gian nội bộ dưới đây tính theo tổng 150 phút tương đương 2 tiết lý thuyết + 1 tiết bài tập (mỗi tiết 50 phút) theo quyết định biên soạn, không phải quy định gộp buổi của đề cương.
+Bài giảng dùng một tuyến duy nhất gồm toàn bộ 89 trang (trang tiêu đề mạch và trang lời giải dùng thời lượng của phần tương ứng); phân bổ thời gian nội bộ dưới đây tính theo tổng 150 phút tương đương 2 tiết lý thuyết + 1 tiết bài tập (mỗi tiết 50 phút) theo quyết định biên soạn, không phải quy định gộp buổi của đề cương.
 
 Thời lượng 150 phút chỉ tính các mục mang nhãn **“Câu hỏi:”** trên lớp. Mỗi cụm khái niệm lớn có một bài tập lời giải mẫu trên mặt trang; các câu tự làm có đáp án trong ghi chú diễn giả.
 

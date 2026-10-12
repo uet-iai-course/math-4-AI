@@ -8,7 +8,7 @@
     <style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.title{font-family:sans-serif;font-size:23px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:18px;fill:#24324a}.small{font-family:sans-serif;font-size:16px;fill:#44516a}.axis{stroke:#24324a;stroke-width:2;marker-end:url(#arrow)}.circle{fill:none;stroke:#315d92;stroke-width:4}.ellipse{fill:none;stroke:#6a45a5;stroke-width:4}.plus{stroke:#16706a;stroke-width:5;marker-end:url(#arrowTeal)}.minus{stroke:#b44b20;stroke-width:5;marker-end:url(#arrowOrange)}.c-teal{fill:#16706a}.c-orange{fill:#b44b20}</style>
   </defs>
   <rect width="1200" height="560" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">GLS phạt phần dư theo cấu trúc tương quan, không chỉ theo độ dài Euclid</text>
-  <rect class="panel" x="25" y="58" width="545" height="470" rx="14"/><text class="title" x="298" y="94" text-anchor="middle">OLS: đường đồng mức là đường tròn</text>
+  <rect class="panel" x="25" y="58" width="545" height="470" rx="14"/><text class="title" x="298" y="94" text-anchor="middle">OLS: đường mức là đường tròn</text>
   <line class="axis" x1="95" y1="330" x2="500" y2="330"/><line class="axis" x1="298" y1="475" x2="298" y2="135"/>
   <text class="small" x="500" y="352">r₁</text><text class="small" x="310" y="140">r₂</text>
   <circle class="circle" cx="298" cy="330" r="91.9"/>
@@ -18,7 +18,7 @@
   <text class="label" x="50" y="150">J<tspan baseline-shift="sub" font-size="12">OLS</tspan> = ½‖r‖²</text>
   <text class="small" x="298" y="496" text-anchor="middle">J<tspan baseline-shift="sub" font-size="11">OLS</tspan>(r<tspan baseline-shift="sub" font-size="11">+</tspan>) = J<tspan baseline-shift="sub" font-size="11">OLS</tspan>(r<tspan baseline-shift="sub" font-size="11">−</tspan>) = 1: OLS coi hai hướng như nhau.</text>
 
-  <rect class="panel" x="595" y="58" width="580" height="470" rx="14"/><text class="title" x="885" y="94" text-anchor="middle">GLS: đường đồng mức theo Σ</text>
+  <rect class="panel" x="595" y="58" width="580" height="470" rx="14"/><text class="title" x="885" y="94" text-anchor="middle">GLS: đường mức theo Σ</text>
   <text class="label" x="836" y="142" text-anchor="end">Σ₂ =</text>
   <path d="M852 112h-6v40h6M930 112h6v40h-6" fill="none" stroke="#24324a" stroke-width="2"/>
   <g class="small" text-anchor="end"><text x="878" y="128">1</text><text x="922" y="128">0,5</text><text x="878" y="147">0,5</text><text x="922" y="147">1</text></g>

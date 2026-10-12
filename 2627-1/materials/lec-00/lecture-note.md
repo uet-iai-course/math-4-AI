@@ -75,7 +75,7 @@ $$
 \in\mathbb R^{4\times3}.
 $$
 
-Mỗi hàng biểu diễn một căn nhà; ba cột lần lượt chứa hệ số chặn, diện tích biến đổi và số phòng ngủ biến đổi.
+Mỗi hàng biểu diễn một căn nhà; ba cột lần lượt chứa hệ số chặn, diện tích đã đổi thang và số phòng ngủ đã dịch tâm.
 
 **Điểm dễ nhầm.** Trong kích thước $m\times n$, số hàng được viết trước số cột. Vì vậy, $\mathbf X\in\mathbb R^{4\times3}$ có bốn hàng và ba cột, không phải ngược lại.
 
@@ -1135,7 +1135,7 @@ $$
 
 **Trực quan.** Xác suất là diện tích dưới đường mật độ, không phải chiều cao của đường tại một điểm. Mật độ cao quanh $u$ cho biết một khoảng nhỏ quanh $u$ tương đối dễ xuất hiện hơn một khoảng cùng độ dài ở nơi có mật độ thấp.
 
-**Ví dụ.** Nếu $U\sim\operatorname{Unif}(0,2)$ thì $p_U(u)=1/2$ trên $[0,2]$. Do đó $\Pr(0{,}5\le U\le1{,}5)=1/2$, nhưng $\Pr(U=1)=0$. Dù mọi điểm riêng lẻ đều có xác suất bằng $0$, một lần lấy mẫu vẫn trả về một giá trị cụ thể trong đoạn.
+**Ví dụ.** Nếu $U\sim\operatorname{Unif}(0,2)$, phân phối đều trên $[0,2]$, thì $p_U(u)=1/2$ trên $[0,2]$. Do đó $\Pr(0{,}5\le U\le1{,}5)=1/2$, nhưng $\Pr(U=1)=0$. Dù mọi điểm riêng lẻ đều có xác suất bằng $0$, một lần lấy mẫu vẫn trả về một giá trị cụ thể trong đoạn.
 
 **Điểm dễ nhầm.** Không phải mọi phân phối có CDF liên tục đều có PDF; điều kiện phù hợp ở đây là tính liên tục tuyệt đối. PDF có thể lớn hơn $1$. Điều bắt buộc chỉ là tích phân của nó trên toàn miền bằng $1$. Giá trị $p_U(u)$ có đơn vị nghịch đảo với đơn vị của $U$, còn xác suất không có đơn vị.
 
@@ -1311,7 +1311,7 @@ Trong ví dụ trên, biết $V=1$ làm thay đổi xác suất của $U=1$, cò
 
 **Ví dụ.** Trong bảng trên, $p(1,1)=0{,}40\ne0{,}50\cdot0{,}60$, nên $U,V$ phụ thuộc. Hai kết quả xét nghiệm là một ví dụ ít hiển nhiên hơn. Chúng có thể phụ thuộc trên toàn bộ quần thể vì cùng bị chi phối bởi trạng thái bệnh $W$. Nếu sai số của hai máy đo riêng biệt, chúng gần độc lập khi đã điều kiện trên $W$.
 
-**Điểm dễ nhầm.** Nói chung, không tương quan không suy ra độc lập. Chẳng hạn, nếu $U\sim\operatorname{Unif}[-1,1]$ và $V=U^2$ thì $\operatorname{Cov}(U,V)=0$ dù $V$ hoàn toàn do $U$ quyết định. Độc lập có điều kiện cũng không kéo theo độc lập không điều kiện.
+**Điểm dễ nhầm.** Nói chung, không tương quan không suy ra độc lập. Chẳng hạn, nếu $U\sim\operatorname{Unif}(-1,1)$ và $V=U^2$ thì $\operatorname{Cov}(U,V)=0$ dù $V$ hoàn toàn do $U$ quyết định. Độc lập có điều kiện cũng không kéo theo độc lập không điều kiện.
 
 **Ý nghĩa và ứng dụng trong AI.** Các giả thiết độc lập giúp phân rã phân phối lớn thành các thừa số nhỏ, làm suy diễn và học tham số khả thi. Naive Bayes, mô hình đồ thị xác suất và mô hình chuỗi đều dựa vào các dạng độc lập có điều kiện cụ thể.
 
@@ -1480,7 +1480,7 @@ Bốn cặp đặc trưng biến đổi là $(-1{,}5,-1)$, $(-0{,}5,0)$, $(0{,}5
 
 **Công cụ tái sử dụng.** Véc-tơ cột, chuyển vị và tích vô hướng biến một mẫu thành một dự đoán vô hướng.
 
-**Diễn giải và giới hạn.** $w_0$ là giá nền tại $55\,\mathrm{m}^2$ và $2$ phòng; $w_1$ là mức đổi giá mỗi $10\,\mathrm{m}^2$ khi giữ số phòng cố định; $w_2$ là mức đổi giá mỗi phòng khi giữ diện tích cố định. Đây là diễn giải của mô hình, không tự động là hiệu ứng nhân quả.
+**Diễn giải và giới hạn.** $w_0$ là giá nền tại $55\,\mathrm{m}^2$ và $2$ phòng; $w_1$ là mức tăng giá khi tăng $10\,\mathrm{m}^2$ và giữ số phòng cố định; $w_2$ là mức tăng giá khi thêm một phòng và giữ diện tích cố định. Đây là diễn giải của mô hình, không tự động là hiệu ứng nhân quả.
 
 ### Bước 3 — Ghép các mẫu thành ma trận thiết kế
 
@@ -1632,7 +1632,7 @@ Dự đoán và phần dư sau khớp cho biết sai lệch còn lại và cho p
 
 ![So sánh phần dư của trọng số ban đầu và phần dư sau khi khớp OLS trên bốn căn nhà.](img/lec-00/housing-residuals-before-after.svg)
 
-*Mất mát giảm từ $4{,}5$ xuống $2$, nhưng bốn phần dư sau khớp vẫn khác không vì hệ dữ liệu không tương thích.*
+*Mất mát giảm từ $4{,}5$ xuống $2$, nhưng bốn phần dư sau khớp vẫn khác không vì hệ phương trình không tương thích.*
 
 **Diễn giải và giới hạn.** Gradient bằng $0$ không có nghĩa từng phần dư bằng $0$. Phần dư sau khớp là đại lượng tính từ mô hình và dữ liệu; nó không đồng nhất với nhiễu ẩn, và sai số huấn luyện nhỏ chưa đo được khả năng dự đoán ngoài mẫu.
 
@@ -1661,7 +1661,7 @@ tức $[1{,}404;1{,}796]$ tỷ đồng.
 
 Kết quả là một dự đoán điểm và dải 95% cho biến thiên nhiễu quan sát dưới giả thiết Gauss đã nêu.
 
-**Công cụ tái sử dụng.** Dự đoán và dải bất định dựa trên tích vô hướng, biến đổi đặc trưng, phân phối Gauss, CDF và phân vị.
+**Công cụ tái sử dụng.** Dự đoán và dải nhiễu dựa trên tích vô hướng, biến đổi đặc trưng, phân phối Gauss, CDF và phân vị.
 
 ![Dự đoán giá căn nhà mới với đường trung tâm và dải nhiễu Gauss 95 phần trăm.](img/lec-00/housing-prediction-uncertainty.svg)
 
@@ -1697,7 +1697,7 @@ Hai mô hình có độ khớp huấn luyện và dự đoán ngoài bốn đi�
 
 *Mô hình mở rộng đạt SSE bằng $0$ trên dữ liệu huấn luyện nhưng thay đổi dự đoán tại căn nhà mới.*
 
-**Diễn giải và giới hạn.** Lỗi huấn luyện thấp hơn không chứng minh dự đoán ngoài mẫu tốt hơn. Với chỉ bốn quan sát, chưa thể chọn mô hình bằng đánh giá ngoài mẫu đáng tin cậy; ví dụ chỉ minh họa rằng tăng độ linh hoạt làm tăng nguy cơ học cả biến thiên riêng của dữ liệu.
+**Diễn giải và giới hạn.** SSE huấn luyện thấp hơn không chứng minh dự đoán ngoài mẫu tốt hơn. Với chỉ bốn quan sát, chưa thể chọn mô hình bằng đánh giá ngoài mẫu đáng tin cậy; ví dụ chỉ minh họa rằng tăng độ linh hoạt làm tăng nguy cơ học cả biến thiên riêng của dữ liệu.
 
 ## Tài liệu tham khảo
 
