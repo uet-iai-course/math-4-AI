@@ -10,7 +10,7 @@ Quy ước: quy hoạch tuyến tính (LP), quy hoạch bậc hai (QP), quy ho�
 
 $$u=(-2,-1,0,1,2),\qquad y=(-2,-1,3,1,2)^T.$$
 
-Ma trận $X\in\mathbb R^{5\times2}$ có hàng thứ $i$ là $(u_i,1)$. Biến $a,b\in\mathbb R$, vectơ hệ số $w=(a,b)^T$ và phần dư $r=Xw-y\in\mathbb R^5$. Trong các bài chính quy hóa hồi quy, hình phạt tác động lên cả $a$ và $b$. Dữ liệu là minh họa của học phần.
+Ma trận $X\in\mathbb R^{5\times2}$ có hàng thứ $i$ là $(u_i,1)$. Biến $a,b\in\mathbb R$, vector hệ số $w=(a,b)^T$ và phần dư $r=Xw-y\in\mathbb R^5$. Trong các bài chính quy hóa hồi quy, số hạng phạt (penalty term) tác động lên cả $a$ và $b$. Dữ liệu là minh họa của học phần.
 
 ## Phần 1: Mô hình hóa và chứng nhận tính lồi
 
@@ -60,7 +60,7 @@ và hai điểm $a=(\sqrt2,\,1)$, $b=(\sqrt2,\,-1)$.
 
 **a)** Kiểm tra $a,b\in C$. Tính trung điểm $\frac{a+b}{2}$ và kết luận về tính lồi của $C$.
 
-**b)** Hàm $g(x)=x_1^2-x_2^2$ có Hessian $\operatorname{diag}(2,-2)$ bất định. Giải thích vì sao "Hessian của hàm ràng buộc không nửa xác định dương" **không đủ** để kết luận tập khả thi không lồi, bằng phản ví dụ: hàm $h(x)=-x^2$ không lồi trên $\mathbb R$ nhưng tập mức $\{x\mid h(x)\le 0\}=\mathbb R$ lại lồi.
+**b)** Hàm $g(x)=x_1^2-x_2^2$ có Hessian $\operatorname{diag}(2,-2)$ bất định. Giải thích vì sao "Hessian của hàm ràng buộc không nửa xác định dương" **không đủ** để kết luận tập khả thi không lồi, bằng phản ví dụ: hàm $h(x)=-x^2$ không lồi trên $\mathbb R$ nhưng tập mức dưới $\{x\mid h(x)\le 0\}=\mathbb R$ lại lồi.
 
 **c)** Nêu một điều kiện đủ để tập khả thi $C=\{x\in D:g_i(x)\le0,\ h_j(x)=0\}$ lồi, trong đó $D$ là miền lồi, $g_i$ là hàm ràng buộc bất đẳng thức và $h_j$ là hàm ràng buộc đẳng thức. Giải thích vì sao điều kiện đủ này không phải điều kiện cần đối với mọi cách biểu diễn của $C$.
 
@@ -79,7 +79,7 @@ nên $\frac{a+b}{2}\notin C$. Vậy $C$ **không lồi**: tồn tại hai điể
 
 $$\{x\in\mathbb R \mid -x^2\le 0\}=\mathbb R$$
 
-là tập lồi. Kết luận: dấu Hessian là chứng nhận tính lồi của **hàm** (Hessian nửa xác định dương trên miền lồi chứng minh $g$ lồi, và từ đó tập mức dưới lồi); nhưng Hessian **không** nửa xác định dương thì **không đủ** kết luận tập mức không lồi — có thể kiểm tra trực tiếp định nghĩa tập lồi, như phép kiểm tra trung điểm ở câu a.
+là tập lồi. Kết luận: dấu Hessian là chứng nhận tính lồi của **hàm** (Hessian nửa xác định dương trên miền lồi chứng minh $g$ lồi, và từ đó tập mức dưới lồi); nhưng Hessian **không** nửa xác định dương thì **không đủ** kết luận tập mức dưới không lồi — có thể kiểm tra trực tiếp định nghĩa tập lồi, như phép kiểm tra trung điểm ở câu a.
 
 **c)** Điều kiện đủ: $D$ lồi, mỗi $g_i$ lồi trên $D$ và mỗi $h_j$ affine. Khi đó từng tập mức dưới $\{x\in D:g_i(x)\le0\}$ lồi, từng tập đẳng thức affine lồi; giao của chúng là tập khả thi lồi. Kết hợp với hàm mục tiêu lồi trên $D$ để chứng nhận bài toán tối ưu lồi. Đây là điều kiện đủ cho biểu diễn đang dùng, không phải điều kiện cần: câu b cho một hàm ràng buộc không lồi nhưng tập mức dưới vẫn lồi. Nếu điều kiện đủ không thỏa, cần một lập luận khác về tập, chẳng hạn kiểm tra đoạn nối như câu a.
 :::
@@ -101,14 +101,14 @@ Một vườn ươm pha trộn hai nguyên liệu với số liệu (đơn vị 
 
 Cần ít nhất 4 g nitơ và 5 g phốtpho; lượng mua $x_1,x_2\ge 0$ (kg, liên tục).
 
-**a)** Viết bài toán dưới dạng LP; chứng nhận tính lồi theo khung phần 1. Đưa bài toán về dạng chuẩn $Az=b,\ z\ge 0$ bằng cách đổi dấu ràng buộc $\ge$ và thêm biến dư.
+**a)** Viết bài toán dưới dạng LP; chứng nhận tính lồi theo khung phần 1. Đưa bài toán về dạng chuẩn $Az=b,\ z\ge 0$ bằng cách đổi dấu ràng buộc $\ge$ và thêm biến bù.
 
 **b)** Tìm ứng viên nghiệm bằng giao của hai ràng buộc dinh dưỡng, rồi chứng minh $(x_1^\star,x_2^\star)=(1,2)$ tối ưu với chi phí $7$ (tức 70 nghìn đồng) bằng tổ hợp tuyến tính hệ số không âm của các ràng buộc.
 
 **c)** Biến thể: thêm giới hạn mua $x_1\le \tfrac12$ (bộ số liệu bảng giữ nguyên; thay đổi chỉ là thêm một ràng buộc). Chứng minh nghiệm mới là $(\tfrac12,3)$ với chi phí $\tfrac{15}{2}$, dùng cận $3x_1+2x_2=2(2x_1+x_2)-x_1\ge 8-\tfrac12$. Có được khẳng định "hai dinh dưỡng đều không dư" ở nghiệm này không?
 
 ::: hint
-Câu a: ràng buộc $2x_1+x_2\ge 4$ đổi thành $-2x_1-x_2\le -4$; biến dư $s_1\ge0$ cho đẳng thức. Câu b: giải hệ hai ràng buộc đạt dấu bằng; biểu diễn mục tiêu $\tfrac43(2x_1+x_2)+\tfrac13(x_1+2x_2)$; lưu ý đây là tổ hợp hệ số không âm, không phải tổ hợp lồi. Câu c: từ giới hạn $x_1\le\tfrac12$ suy $-x_1\ge-\tfrac12$; kiểm tra khả thi và dấu bằng.
+Câu a: ràng buộc $2x_1+x_2\ge 4$ đổi thành $-2x_1-x_2\le -4$; biến bù $s_1\ge0$ cho đẳng thức. Câu b: giải hệ hai ràng buộc đạt dấu bằng; biểu diễn mục tiêu $\tfrac43(2x_1+x_2)+\tfrac13(x_1+2x_2)$; lưu ý đây là tổ hợp hệ số không âm, không phải tổ hợp lồi. Câu c: từ giới hạn $x_1\le\tfrac12$ suy $-x_1\ge-\tfrac12$; kiểm tra khả thi và dấu bằng.
 :::
 
 ::: solution
@@ -116,7 +116,7 @@ Câu a: ràng buộc $2x_1+x_2\ge 4$ đổi thành $-2x_1-x_2\le -4$; biến dư
 
 $$\begin{aligned}\min\;& 3x_1+2x_2\\\text{với}\quad & 2x_1+x_2\ge 4,\\ & x_1+2x_2\ge 5,\\ & x_1,x_2\ge 0.\end{aligned}$$
 
-Mục tiêu affine nên lồi; tập khả thi là giao các nửa không gian (đổi dấu các $\ge$ thành $\le$: $-2x_1-x_2\le-4$, $-x_1-2x_2\le-5$, $-x\le0$), nên lồi. Về dạng chuẩn: thêm biến dư $s_1,s_2\ge0$ để $2x_1+x_2-s_1=4$, $x_1+2x_2-s_2=5$. Bài toán gốc có dạng $Gx\le h$ với $G=\begin{bmatrix}-2&-1\\-1&-2\\-1&0\\0&-1\end{bmatrix}$, $h=(-4,-5,0,0)^{\mathsf T}$. Theo quy tắc chuyển biến tự do/biến dư: ở đây $x\ge0$ đã có nên không cần tách $x=x^+-x^-$; đặt $z=(x_1,x_2,s_1,s_2)^{\mathsf T}\ge0$ và
+Mục tiêu affine nên lồi; tập khả thi là giao các nửa không gian (đổi dấu các $\ge$ thành $\le$: $-2x_1-x_2\le-4$, $-x_1-2x_2\le-5$, $-x\le0$), nên lồi. Về dạng chuẩn: thêm biến dư (surplus variable) $s_1,s_2\ge0$ để $2x_1+x_2-s_1=4$, $x_1+2x_2-s_2=5$. Bài toán gốc có dạng $Gx\le h$ với $G=\begin{bmatrix}-2&-1\\-1&-2\\-1&0\\0&-1\end{bmatrix}$, $h=(-4,-5,0,0)^{\mathsf T}$. Theo quy tắc chuyển biến tự do/biến bù: ở đây $x\ge0$ đã có nên không cần tách $x=x^+-x^-$; đặt $z=(x_1,x_2,s_1,s_2)^{\mathsf T}\ge0$ và
 
 $$A=\begin{bmatrix}2&1&-1&0\\1&2&0&-1\end{bmatrix},\qquad b=\begin{bmatrix}4\\5\end{bmatrix},\qquad d=(3,2,0,0)^{\mathsf T},$$
 
@@ -178,7 +178,7 @@ $$|b-d|+|b+d|\ge|(b-d)+(b+d)|=2|b|,\qquad |b-2d|+|b+2d|\ge2|b|,$$
 
 và $|b-3|\ge3-|b|$. Ghép: $\sum|r_i|\ge 2|b|+2|b|+3-|b|=3+3|b|\ge3$. Đạt tại $b=0,d=0$ ($w=(1,0)$): phần dư $(0,0,-3,0,0)$, tổng đúng $3$. Duy nhất: nếu tối ưu thì tổng $=3$ buộc $b=0$; khi đó tổng $=6|d|+3$ buộc $d=0$. Lưu ý lập luận dựa vào cặp điểm đối xứng $\pm1,\pm2$ quanh $0$ — tính chất riêng của bộ dữ liệu này, không tổng quát. *Minimax:* nếu mọi $|r_i|\le t$ thì $|b|=\left|\tfrac{(b-d)+(b+d)}{2}\right|\le t$ và $|b-3|\le t$, nên $3=|b+(3-b)|\le|b|+|b-3|\le2t$, tức $t\ge\tfrac32$. Đạt tại $w=(1,\tfrac32)$: phần dư lần lượt $1{,}5;\,1{,}5;\,-1{,}5;\,1{,}5;\,1{,}5$, max đúng $\tfrac32$. (Đánh đổi: tổng sai số tăng $3\to7{,}5$, sai số tệ nhất giảm $3\to1{,}5$.)
 
-**c)** Bộ dữ liệu mới: $y=(-2,-1,4,1,2)$; phần dư tại $u=0$ là $b-4$, các cặp $b\pm d$, $b\pm2d$ không đổi. *L1:* cận $\sum|r_i|\ge 4|b|+|b-4|\ge4|b|+4-|b|=4+3|b|\ge4$; đạt tại $w=(1,0)$: phần dư $(0,0,-4,0,0)$, tổng $4$. *Minimax:* nếu mọi $|r_i|\le t$ thì $|b|\le t$ (từ cặp $\pm1$) và $|b-4|\le t$, nên $4\le|b|+|b-4|\le2t$, tức $t\ge2$; đạt tại $w=(1,2)$: phần dư $2;2;-2;2;2$, max $=2$. *Về duy nhất:* với L1 lập luận cận buộc $b=0$ rồi $d=0$, nên nghiệm duy nhất. Với minimax, mọi nghiệm tối ưu thỏa $t=2$ và $|r_i|\le2$ với mọi $i$; từ cặp $\pm1$: $|b|\le2$; từ điểm $u=0$: $|b-4|\le2$. Hai điều kiện này buộc $b=2$. Từ hai cặp: $|b-2d|\le2$ và $|b+2d|\le2$; thay $b=2$ ta được $|2-2d|\le2 \Rightarrow 0\le d\le2$ và $|2+2d|\le2 \Rightarrow -2\le d\le0$, nên $d=0$. Vậy nghiệm minimax là **duy nhất**, $w=(1,2)$ với giá trị $t^*=2$. *Đổi tiêu chí và biến đổi tương đương:* đổi tiêu chí là thay hàm mục tiêu của bài toán gốc ($\sum|r_i|$ → $\max|r_i|$) — hai bài toán này khác nhau, nghiệm và giá trị khác nhau; biến đổi tương đương là viết **cùng một bài toán** dưới dạng khác bằng biến phụ mà giá trị tối ưu và nghiệm gốc không đổi — là phép biến đổi tương đương, không đổi bản chất bài toán.
+**c)** Bộ dữ liệu mới: $y=(-2,-1,4,1,2)$; phần dư tại $u=0$ là $b-4$, các cặp $b\pm d$, $b\pm2d$ không đổi. *L1:* cận $\sum|r_i|\ge 4|b|+|b-4|\ge4|b|+4-|b|=4+3|b|\ge4$; đạt tại $w=(1,0)$: phần dư $(0,0,-4,0,0)$, tổng $4$. *Minimax:* nếu mọi $|r_i|\le t$ thì $|b|\le t$ (từ cặp $\pm1$) và $|b-4|\le t$, nên $4\le|b|+|b-4|\le2t$, tức $t\ge2$; đạt tại $w=(1,2)$: phần dư $2;2;-2;2;2$, max $=2$. *Về duy nhất:* với L1 lập luận cận buộc $b=0$ rồi $d=0$, nên nghiệm duy nhất. Với minimax, mọi nghiệm tối ưu thỏa $t=2$ và $|r_i|\le2$ với mọi $i$; từ cặp $\pm1$: $|b|\le2$; từ điểm $u=0$: $|b-4|\le2$. Hai điều kiện này buộc $b=2$. Từ hai cặp: $|b-2d|\le2$ và $|b+2d|\le2$; thay $b=2$ ta được $|2-2d|\le2 \Rightarrow 0\le d\le2$ và $|2+2d|\le2 \Rightarrow -2\le d\le0$, nên $d=0$. Vậy nghiệm minimax là **duy nhất**, $w=(1,2)$ với giá trị $t^*=2$. *Đổi tiêu chí và biến đổi tương đương:* đổi tiêu chí là thay hàm mục tiêu của bài toán gốc ($\sum|r_i|$ → $\max|r_i|$) — hai bài toán này khác nhau, nghiệm và giá trị khác nhau; biến đổi tương đương là viết **cùng một bài toán** dưới dạng khác bằng biến phụ mà giá trị tối ưu và nghiệm của bài toán gốc không đổi — là phép biến đổi tương đương, không đổi bản chất bài toán.
 :::
 
 *(Tham chiếu: [Hồi quy với sai số tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-hoi-quy-tuyet-doi), [Biến phụ cho giá trị tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-bien-phu), [Tính tương đương của phép biến đổi](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-tuong-duong), [Nghiệm hồi quy với sai số tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-nghiem-hoi-quy), [Hồi quy với sai số lớn nhất](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-sai-so-lon-nhat); Boyd–Vandenberghe, §6.1.1, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
@@ -223,7 +223,7 @@ Nghiệm nằm trên mép miền khả thi. Đối chiếu Bài 4: trên cùng d
 
 *(Tham chiếu: [Nghiệm hồi quy bình phương nhỏ nhất](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-nghiem-hoi-quy), [Dạng phổ biến của quy hoạch bậc hai](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-dang-pho-bien); Boyd–Vandenberghe, §4.4.1, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
 
-### Bài 6. Bốn tổ hợp sai số và hình phạt
+### Bài 6. Bốn tổ hợp sai số và số hạng phạt
 
 **Mức:** Nhận dạng, tính toán và chứng minh.
 
@@ -247,7 +247,7 @@ Câu a: bốn hàng — $\ell_1+\ell_1$ (biến $t$ và $v$), $\ell_1+\ell_2^2$ 
 3. $\min\|r\|_2^2+\lambda\|w\|_1$: thêm $v$: $\min_{w,v}\|Xw-y\|_2^2+\lambda\mathbf1^{\mathsf T}v$ với $-v\le w\le v$ — **QP**.
 4. $\min\|r\|_2^2+\lambda\|w\|_2^2$: không cần biến phụ — **QP**.
 
-Về "đủ hai phía": $t_i\ge|r_i|\iff t_i\ge r_i$ **và** $t_i\ge -r_i$. Nếu chỉ giữ $t_i\ge r_i$ thì $t_i$ không còn chặn $|r_i|$: ví dụ $r_i=-3$, $t_i=-3$ thỏa $t_i\ge r_i$ nhưng $t_i=-3\ne|r_i|=3$, nên $\min\sum t_i$ không còn đo $\sum|r_i|$ — bài toán sau biến đổi sai giá trị. Lưu ý: không khẳng định vội rằng mọi bài toán thiếu một phía đều không bị chặn dưới — với hình phạt bậc hai theo $w$, bài toán vẫn có thể hữu hạn dù sai; sai sót nằm ở **giá trị**, không nhất thiết ở tính không bị chặn. (Chẳng hạn, trong mô hình một phía của bài toán L1 **không phạt**, chọn $a=1$, $b\to-\infty$, $t_i=r_i$ cho mọi $i$ thỏa $t_i\ge r_i$ và $\sum t_i=5b-3\to-\infty$.) Không đạo hàm tại $0$ vì $|\cdot|$ không khả vi tại đó; biến phụ thay thế và phép biến đổi vẫn tương đương chính xác (cùng lập luận hai chiều như Bài 4a, nhân với $\lambda\ge0$ bảo toàn bất đẳng thức cho khối $v$).
+Về "đủ hai phía": $t_i\ge|r_i|\iff t_i\ge r_i$ **và** $t_i\ge -r_i$. Nếu chỉ giữ $t_i\ge r_i$ thì $t_i$ không còn chặn $|r_i|$: ví dụ $r_i=-3$, $t_i=-3$ thỏa $t_i\ge r_i$ nhưng $t_i=-3\ne|r_i|=3$, nên $\min\sum t_i$ không còn đo $\sum|r_i|$ — bài toán sau biến đổi sai giá trị. Lưu ý: không khẳng định vội rằng mọi bài toán thiếu một phía đều không bị chặn dưới — với số hạng phạt bậc hai theo $w$, bài toán vẫn có thể hữu hạn dù sai; sai sót nằm ở **giá trị**, không nhất thiết ở tính không bị chặn. (Chẳng hạn, trong mô hình một phía của bài toán L1 **không phạt**, chọn $a=1$, $b\to-\infty$, $t_i=r_i$ cho mọi $i$ thỏa $t_i\ge r_i$ và $\sum t_i=5b-3\to-\infty$.) Không đạo hàm tại $0$ vì $|\cdot|$ không khả vi tại đó; biến phụ thay thế và phép biến đổi vẫn tương đương chính xác (cùng lập luận hai chiều như Bài 4a, nhân với $\lambda\ge0$ bảo toàn bất đẳng thức cho khối $v$).
 
 **b)** Mục tiêu $=w^{\mathsf T}(X^{\mathsf T}X+5I)w-2y^{\mathsf T}Xw+y^{\mathsf T}y$. Điều kiện dừng của hàm bậc hai: $(X^{\mathsf T}X+5I)w=X^{\mathsf T}y$. Theo thành phần: $(10+5)a=10\Rightarrow a=\tfrac23$; $(5+5)b=3\Rightarrow b=\tfrac3{10}$. Vậy $w^\star=(\tfrac23,\tfrac3{10})$. Tính $E$ từ Bài 5a:
 
@@ -327,7 +327,7 @@ Câu a: hàm $g(w)=w^{\mathsf T}w-R^2$ có Hessian $2I$; tập mức dưới c�
 :::
 
 ::: solution
-**a)** Bài toán có mục tiêu bậc hai và ràng buộc bất đẳng thức bậc hai: đây là **QCQP** (quy hoạch bậc hai với ràng buộc bậc hai). Bán kính $R=\sqrt{481/900}=\tfrac{\sqrt{481}}{30}$. Chứng nhận: mục tiêu $E$ lồi (Bài 5a); hàm $g(w)=w^{\mathsf T}w-\tfrac{481}{900}$ có Hessian $2I\succ0$ nên lồi, tập mức $\{w\mid g(w)\le0\}$ là tập lồi (theo khung phần 1: với $u,v$ khả thi và $\theta\in[0,1]$, $\|\theta u+(1-\theta)v\|_2^2\le\theta\|u\|_2^2+(1-\theta)\|v\|_2^2\le R^2$). Vậy bài toán là QCQP lồi. Đơn vị: $481/900$ là bình phương bán kính, tức $R^2$; không nhầm với $R$.
+**a)** Bài toán có mục tiêu bậc hai và ràng buộc bất đẳng thức bậc hai: đây là **QCQP** (quy hoạch bậc hai với ràng buộc bậc hai). Bán kính $R=\sqrt{481/900}=\tfrac{\sqrt{481}}{30}$. Chứng nhận: mục tiêu $E$ lồi (Bài 5a); hàm $g(w)=w^{\mathsf T}w-\tfrac{481}{900}$ có Hessian $2I\succ0$ nên lồi, tập mức dưới $\{w\mid g(w)\le0\}$ là tập lồi (theo khung phần 1: với $u,v$ khả thi và $\theta\in[0,1]$, $\|\theta u+(1-\theta)v\|_2^2\le\theta\|u\|_2^2+(1-\theta)\|v\|_2^2\le R^2$). Vậy bài toán là QCQP lồi. Đơn vị: $481/900$ là bình phương bán kính, tức $R^2$; không nhầm với $R$.
 
 **b)** Theo Bài 6b, $w^\star=(\tfrac23,\tfrac3{10})$ là nghiệm toàn cục của $\min_w\big(E(w)+5\|w\|_2^2\big)$ với giá trị $\tfrac{343}{30}$, nên với mọi $w$:
 
@@ -337,7 +337,7 @@ Với mọi $w$ khả thi của bài toán có ràng buộc chặn chuẩn, $\|w
 
 $$E(w)\ \ge\ \tfrac{343}{30}-5\|w\|_2^2\ \ge\ \tfrac{343}{30}-5\cdot\tfrac{481}{900}=\tfrac{343}{30}-\tfrac{481}{180}=\tfrac{2058-481}{180}=\tfrac{1577}{180}=E(w^\star).$$
 
-Và $w^\star$ khả thi vì $\|w^\star\|_2^2=\tfrac49+\tfrac9{100}=\tfrac{400+81}{900}=\tfrac{481}{900}$ đúng bằng mức chặn. Vậy $w^\star$ tối ưu, $E(w^\star)=\tfrac{1577}{180}$. **Giới hạn của lập luận:** ràng buộc chặn chuẩn và hình phạt là hai mô hình khác nhau; điều ta chứng minh là **tồn tại** một tham số ($\lambda=5$) mà nghiệm bài toán có phạt trùng nghiệm bài toán có ràng buộc chuẩn — vì bán kính được chọn **chủ đích** bằng chuẩn của nghiệm bài toán có phạt đó. Không được khẳng định "mức chặn $R^2$ tương đương $\lambda=R$" hay dùng cách này như thuật toán quy đổi tổng quát; với bán kính khác, nghiệm hai bài toán nói chung khác nhau.
+Và $w^\star$ khả thi vì $\|w^\star\|_2^2=\tfrac49+\tfrac9{100}=\tfrac{400+81}{900}=\tfrac{481}{900}$ đúng bằng mức chặn. Vậy $w^\star$ tối ưu, $E(w^\star)=\tfrac{1577}{180}$. **Giới hạn của lập luận:** ràng buộc chặn chuẩn và số hạng phạt là hai mô hình khác nhau; điều ta chứng minh là **tồn tại** một tham số ($\lambda=5$) mà nghiệm bài toán có phạt trùng nghiệm bài toán có ràng buộc chặn chuẩn — vì bán kính được chọn **chủ đích** bằng chuẩn của nghiệm bài toán có phạt đó. Không được khẳng định "mức chặn $R^2$ tương đương $\lambda=R$" hay dùng cách này như thuật toán quy đổi tổng quát; với bán kính khác, nghiệm hai bài toán nói chung khác nhau.
 
 **c)** *$R=0$:* tập khả thi $\{w\mid\|w\|_2^2\le0\}=\{0\}$ chỉ có một điểm, nên nghiệm $w=0$, $E(0)=19$. *$R^2\ge\tfrac{34}{25}$:* nghiệm không ràng buộc $(1,\tfrac35)$ có $\|w\|_2^2=1+\tfrac9{25}=\tfrac{34}{25}$, nên khi $R^2\ge\tfrac{34}{25}$ nghiệm tự do **khả thi**; vì nghiệm không ràng buộc là giá trị nhỏ nhất toàn cục của $E$ trên toàn $\mathbb R^2$, nó cũng nhỏ nhất trên mọi tập con chứa nó. Vậy nghiệm là $(1,\tfrac35)$ với $E=\tfrac{36}{5}$ — ràng buộc trở nên không tác động (nghiệm nằm trong miền, có thể nằm trên biên nếu đẳng thức).
 :::
@@ -352,7 +352,7 @@ Và $w^\star$ khả thi vì $\|w^\star\|_2^2=\tfrac49+\tfrac9{100}=\tfrac{400+81
 
 **Biến thể:** bài này dùng **thể tích 27 dm³** — biến thể của ví dụ hộp 8 dm³ trong bộ trang chiếu. Kích thước $a,b,c>0$ là số đo chuẩn hóa theo đơn vị $1\,\mathrm{dm}$ (để lấy logarit của số không thứ nguyên); chi phí tỷ lệ với diện tích bề mặt $S=2(ab+ac+bc)$.
 
-**a)** Viết mô hình tối thiểu hóa $S$ với thể tích đúng 27 dm³; nhận dạng nó là GP với đẳng thức đơn thức $abc/27=1$. Chứng minh bài toán **không lồi** theo biến gốc $(a,b,c)$.
+**a)** Viết mô hình cực tiểu hóa $S$ với thể tích đúng 27 dm³; nhận dạng nó là GP với đẳng thức đơn thức $abc/27=1$. Chứng minh bài toán **không lồi** theo biến ban đầu $(a,b,c)$.
 
 **b)** Đổi biến $A=\log a$, $B=\log b$, $C=\log c$; viết bài toán sau đổi biến và chứng minh nó lồi bằng kiến thức về logarit tổng hàm mũ đã học (trình bày ý chính của chứng minh Hessian, không cần khai triển đầy đủ).
 
@@ -367,7 +367,7 @@ Câu a: thử hai điểm khả thi và trung điểm của chúng; xét Hessian
 
 $$\min_{a,b,c>0}\ 2(ab+ac+bc)\quad\text{với}\quad abc=27.$$
 
-Chuẩn hóa đẳng thức: $abc/27=1$ — đơn thức (hệ số dương, số mũ thực) so với 1; mục tiêu $2ab+2ac+2bc$ là tổng ba đơn thức dương. Vậy bài toán đúng **dạng chuẩn GP**. Nhưng GP dạng chuẩn chưa chắc lồi theo biến gốc: (i) tập khả thi không lồi — hai điểm $(1,3,9)$ và $(9,3,1)$ đều có tích 27, trung điểm $(5,3,5)$ có tích $75\ne27$; (ii) hàm $S$ không lồi — Hessian $\begin{bmatrix}0&2&2\\2&0&2\\2&2&0\end{bmatrix}$ có trị riêng $4$ (vectơ $(1,1,1)$) và $-2$ (bội hai), có trị riêng âm nên $S$ không lồi trên miền dương.
+Chuẩn hóa đẳng thức: $abc/27=1$ — đơn thức (hệ số dương, số mũ thực) so với 1; mục tiêu $2ab+2ac+2bc$ là tổng ba đơn thức dương. Vậy bài toán đúng **dạng chuẩn GP**. Nhưng GP dạng chuẩn chưa chắc lồi theo biến ban đầu: (i) tập khả thi không lồi — hai điểm $(1,3,9)$ và $(9,3,1)$ đều có tích 27, trung điểm $(5,3,5)$ có tích $75\ne27$; (ii) hàm $S$ không lồi — Hessian $\begin{bmatrix}0&2&2\\2&0&2\\2&2&0\end{bmatrix}$ có trị riêng $4$ (vector $(1,1,1)$) và $-2$ (bội hai), có trị riêng âm nên $S$ không lồi trên miền dương.
 
 **b)** Đặt $A=\log a$, $B=\log b$, $C=\log c$ (song ánh giữa $\mathbb R_{++}^3$ và $\mathbb R^3$). Đơn thức: $\log(abc/27)=A+B+C-\log27$ — affine. Tổng đơn thức dương:
 
@@ -381,7 +381,7 @@ Tính lồi của $F(z)=\log\sum_{k=1}^{3} e^{\alpha_k^{\mathsf T}z+\beta_k}$ v�
 
 $$\nabla^2F=\sum_k\pi_k\alpha_k\alpha_k^{\mathsf T}-\bar\alpha\bar\alpha^{\mathsf T}=\sum_k\pi_k(\alpha_k-\bar\alpha)(\alpha_k-\bar\alpha)^{\mathsf T},$$
 
-nên với mọi $v\in\mathbb R^3$, $v^{\mathsf T}\nabla^2Fv=\sum_{k=1}^{3}\pi_k\big[v^{\mathsf T}(\alpha_k-\bar\alpha)\big]^2\ge0$ — Hessian nửa xác định dương tại mọi điểm, $F$ lồi trên toàn $\mathbb R^3$. Đây là chứng minh trực tiếp; **không** được suy từ "log là hàm tăng". Logarit tăng chặt bảo toàn thứ tự giá trị dương, nên bài toán log tương đương bài toán gốc: nghiệm gốc $(a^\star,b^\star,c^\star)=(e^{A^\star},e^{B^\star},e^{C^\star})$ và $S_{\min}=e^{F(z^\star)}$ — hai giá trị mục tiêu **không** bằng nhau, chỉ là hàm mũ của nhau.
+nên với mọi $v\in\mathbb R^3$, $v^{\mathsf T}\nabla^2Fv=\sum_{k=1}^{3}\pi_k\big[v^{\mathsf T}(\alpha_k-\bar\alpha)\big]^2\ge0$ — Hessian nửa xác định dương tại mọi điểm, $F$ lồi trên toàn $\mathbb R^3$. Đây là chứng minh trực tiếp; **không** được suy từ "log là hàm tăng". Logarit tăng chặt bảo toàn thứ tự giá trị dương, nên bài toán log tương đương bài toán gốc: nghiệm của bài toán gốc $(a^\star,b^\star,c^\star)=(e^{A^\star},e^{B^\star},e^{C^\star})$ và $S_{\min}=e^{F(z^\star)}$ — hai giá trị mục tiêu **không** bằng nhau, chỉ là hàm mũ của nhau.
 
 **c)** Bất đẳng thức trung bình cộng – trung bình nhân với ba số dương $ab,ac,bc$:
 
@@ -423,7 +423,7 @@ $$\min\ -s\quad\text{với}\quad \log\left(e^{s-v_1}+\tfrac14e^{s+v_2-v_1}\right
 
 Mục tiêu affine, các vế trái là logarit tổng hàm mũ của biểu thức affine — lồi (theo chứng minh Hessian của Bài 9b). Bài toán **không phải LP**. Khôi phục $p_i=e^{v_i}$, $t=e^s$.
 
-**b)** $(3,3)$: $S_1=\dfrac{3}{1+3/4}=\dfrac{12}{7}\approx1{,}71$; $S_2=\dfrac{3}{1+9/2}=\dfrac{6}{11}\approx0{,}55$ — chất lượng yếu nhất chỉ $\tfrac6{11}$, chia đều chưa tốt. *Chứng minh $t^\star=1$ tại $(2,4)$:* để đạt $t=1$ phải có $p_1\ge1+\tfrac{p_2}4$ và $p_2\ge1+\tfrac32p_1$. Thế bất đẳng thức hai vào một:
+**b)** $(3,3)$: $S_1=\dfrac{3}{1+3/4}=\dfrac{12}{7}\approx1{,}71$; $S_2=\dfrac{3}{1+9/2}=\dfrac{6}{11}\approx0{,}55$ — chất lượng nhỏ nhất chỉ $\tfrac6{11}$, chia đều chưa tốt. *Chứng minh $t^\star=1$ tại $(2,4)$:* để đạt $t=1$ phải có $p_1\ge1+\tfrac{p_2}4$ và $p_2\ge1+\tfrac32p_1$. Thế bất đẳng thức hai vào một:
 
 $$p_1\ge1+\tfrac14\left(1+\tfrac32p_1\right)=\tfrac54+\tfrac38p_1\ \Rightarrow\ \tfrac58p_1\ge\tfrac54\ \Rightarrow\ p_1\ge2,\qquad p_2\ge1+\tfrac32\cdot2=4.$$
 
@@ -542,7 +542,7 @@ $$2x_1+3x_2+4x_3\ \ge\ \tfrac32\cdot1+\tfrac12\cdot1+\tfrac52\cdot1=\tfrac92.$$
 **Mức:** Tính toán và chứng minh.
 
 
-Trang chiếu liên quan: [Giới hạn số đặc trưng](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-gioi-han-dac-trung), [Miền giới hạn đặc trưng không lồi](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-mien-khong-loi), [Thay bằng hình phạt chuẩn một](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-phat-chuan-mot). Ý tưởng nguồn: Boyd–Vandenberghe (2004), §6.5.4 (biểu diễn thưa) và §6.3.2 (chính quy hóa); nội dung và dữ liệu dưới đây là biên soạn của học phần, không phải bản dịch nguyên đề.
+Trang chiếu liên quan: [Giới hạn số đặc trưng](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-gioi-han-dac-trung), [Miền giới hạn đặc trưng không lồi](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-mien-khong-loi), [Thay bằng số hạng phạt chuẩn một](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-phat-chuan-mot). Ý tưởng nguồn: Boyd–Vandenberghe (2004), §6.5.4 (biểu diễn thưa) và §6.3.2 (chính quy hóa); nội dung và dữ liệu dưới đây là biên soạn của học phần, không phải bản dịch nguyên đề.
 
 **Đề bài.** Cho dữ liệu $u_i\in\mathbb R^d$, $y_i\in\{\pm1\}$, $i=1,\dots,m$, và số nguyên dương $k$ với $m,d$ nguyên dương, $d\ge2$, $1\le k<d$. Biến $w\in\mathbb R^d$, $b\in\mathbb R$ (tự do, không bị phạt/đếm):
 
@@ -557,19 +557,19 @@ trong đó $\|w\|_0=\#\{j: w_j\ne0\}$.
 **c)** Xét mô hình thay thế $\min_{w,b}\ H(w,b)+\lambda\|w\|_1$ với $\lambda>0$ chọn trước. Biến đổi thành LP bằng biến phụ; chứng minh tương đương hai chiều giữa LP và bài toán có phạt. Mô hình thay thế có bảo đảm $\|w\|_0\le k$ không? Phát biểu cẩn thận quan hệ của phép biến đổi này với ràng buộc đếm của bài toán gốc.
 
 ::: hint
-**a)** Chuẩn phải thỏa tính thuần nhất $\|\alpha x\|=|\alpha|\|x\|$; thử $x=e_1$, $\alpha=2$. Cho không lồi: theo phần 1, tập lồi phải chứa trung điểm của hai điểm bất kỳ thuộc tập; chọn hai vectơ có tập hỗ trợ khác nhau độ lớn $k$ sao cho trung điểm dùng $k+1$ đặc trưng.
+**a)** Chuẩn phải thỏa tính thuần nhất $\|\alpha x\|=|\alpha|\|x\|$; thử $x=e_1$, $\alpha=2$. Cho không lồi: theo phần 1, tập lồi phải chứa trung điểm của hai điểm bất kỳ thuộc tập; chọn hai vector có giá (support, tập chỉ số của các hệ số khác 0) khác nhau độ lớn $k$ sao cho trung điểm dùng $k+1$ đặc trưng.
 
 **b)** Một bài toán lồi cần **cả** mục tiêu lồi **lẫn** tập khả thi lồi (bốn bước chứng nhận ở mục "Chứng nhận một bài toán lồi" của ghi chú); hãy kiểm tra từng thành phần.
 
-**c)** Thay $|w_j|$ bằng biến phụ $t_j$ (không nhầm với biến dư) với hai bất đẳng thức $t_j\ge w_j$, $t_j\ge -w_j$ (cùng kỹ thuật biến phụ ở phần 2), và thay phần bản lề bằng $\xi_i\ge0$, $\xi_i\ge 1-y_i(w^Tu_i+b)$. Kiểm tra chiều thuận (lựa chọn biến phụ tối ưu) và chiều ngược (mọi bộ khả thi cho mục tiêu không nhỏ hơn).
+**c)** Thay $|w_j|$ bằng biến phụ $t_j$ (không nhầm với biến bù) với hai bất đẳng thức $t_j\ge w_j$, $t_j\ge -w_j$ (cùng kỹ thuật biến phụ ở phần 2), và thay phần bản lề bằng $\xi_i\ge0$, $\xi_i\ge 1-y_i(w^Tu_i+b)$. Kiểm tra chiều thuận (lựa chọn biến phụ tối ưu) và chiều ngược (mọi bộ khả thi cho mục tiêu không nhỏ hơn).
 :::
 
 ::: solution
 **a) Không phải chuẩn; $F$ không lồi.** *Không phải chuẩn:* lấy $e_1=(1,0,\dots,0)$, khi đó $\|e_1\|_0=1$ nhưng $\|2e_1\|_0=1\ne2=2\|e_1\|_0$: tính thuần nhất bị vi phạm, nên $\|\cdot\|_0$ chỉ là một cách đếm, không phải chuẩn.
 
-*Không lồi với $1\le k<d$:* đặt các vectơ
+*Không lồi với $1\le k<d$:* đặt các vector
 $$v^{(1)}:\ v^{(1)}_j=1\ \text{khi}\ j\in S_1=\{1,\dots,k\},\ 0\ \text{khi không};\qquad v^{(2)}:\ v^{(2)}_j=1\ \text{khi}\ j\in S_2=\{1,\dots,k-1\}\cup\{k+1\},\ 0\ \text{khi không}.$$
-Mỗi vectơ dùng đúng $k$ đặc trưng nên $v^{(1)},v^{(2)}\in F$. Trung điểm $M=\tfrac12(v^{(1)}+v^{(2)})$ có hệ số $1$ tại $k-1$ vị trí chung và hệ số $\tfrac12$ tại hai vị trí riêng, nên $\|M\|_0=(k-1)+2=k+1>k$: $M\notin F$. Tồn tại hai điểm thuộc $F$ có trung điểm không thuộc $F$, vậy $F$ không lồi. (Khi $k=1$, phần chung rỗng và $S_2=\{2\}$, tức đúng hình hai trục trong ghi chú với $A=(1,0)$, $B=(0,1)$, $M=(\tfrac12,\tfrac12)$.) *Trường hợp biên:* $k=0$ thì $F=\{0\}$ lồi; $k=d$ thì $F=\mathbb R^d$ lồi — hai trường hợp này không nằm trong phạm vi giả thiết $1\le k<d$.
+Mỗi vector dùng đúng $k$ đặc trưng nên $v^{(1)},v^{(2)}\in F$. Trung điểm $M=\tfrac12(v^{(1)}+v^{(2)})$ có hệ số $1$ tại $k-1$ vị trí chung và hệ số $\tfrac12$ tại hai vị trí riêng, nên $\|M\|_0=(k-1)+2=k+1>k$: $M\notin F$. Tồn tại hai điểm thuộc $F$ có trung điểm không thuộc $F$, vậy $F$ không lồi. (Khi $k=1$, phần chung rỗng và $S_2=\{2\}$, tức đúng hình hai trục trong ghi chú với $A=(1,0)$, $B=(0,1)$, $M=(\tfrac12,\tfrac12)$.) *Trường hợp biên:* $k=0$ thì $F=\{0\}$ lồi; $k=d$ thì $F=\mathbb R^d$ lồi — hai trường hợp này không nằm trong phạm vi giả thiết $1\le k<d$.
 
 **b) Không phải bài toán lồi.** Mục tiêu $H(w,b)$ lồi: mỗi hàm $\max(0,1-y_i(w^Tu_i+b))$ là hợp của hàm lồi $\max(0,\cdot)$ với hàm affine theo $(w,b)$; tổng các hàm lồi là lồi. Tuy nhiên tập khả thi $T=\{(w,b):\|w\|_0\le k\}$ **bằng** $F\times\mathbb R$ với $F=\{w:\|w\|_0\le k\}$: mọi $w\in F$ hợp với mọi $b\in\mathbb R$ đều khả thi và ngược lại. Tích Cartesian không lồi khi một thành phần không lồi (lấy hai điểm trong $F\times\{0\}$ có trung điểm thoát $F$, như câu a), vậy $T$ không lồi. (Trực tiếp: $(v^{(1)},0)$ và $(v^{(2)},0)$ khả thi nhưng trung điểm $(M,0)$ với $M\notin F$.) Vậy bài toán **không lồi**: mục tiêu lồi nhưng tập khả thi không lồi.
 
@@ -583,7 +583,7 @@ $$\begin{aligned}
 \end{aligned}$$
 Mục tiêu và mọi ràng buộc đều affine: đây là **LP**.
 
-*Chiều thuận:* với mọi $(w,b)$, chọn $\xi_i=\max(0,1-y_i(w^Tu_i+b))$ và $t_j=|w_j|$ (tối thiểu hóa từng biến phụ độc lập) — mọi ràng buộc thỏa và mục tiêu đúng bằng $H(w,b)+\lambda\|w\|_1$.
+*Chiều thuận:* với mọi $(w,b)$, chọn $\xi_i=\max(0,1-y_i(w^Tu_i+b))$ và $t_j=|w_j|$ (cực tiểu hóa từng biến phụ độc lập) — mọi ràng buộc thỏa và mục tiêu đúng bằng $H(w,b)+\lambda\|w\|_1$.
 
 *Chiều ngược:* mọi bộ $(w,b,\xi,t)$ khả thi có $\xi_i\ge\max(0,1-y_i(w^Tu_i+b))$ và $\sum_j t_j\ge\sum_j |w_j|=\|w\|_1$ (vì $t_j\ge\max(w_j,-w_j)=|w_j|$), nên mục tiêu $\ge H(w,b)+\lambda\|w\|_1$ (nhân với $\lambda>0$ bảo toàn bất đẳng thức).
 
@@ -597,7 +597,7 @@ Vậy hai bài toán có cùng giá trị tối ưu, và từ nghiệm LP lấy 
 **Mức:** Vận dụng tổng hợp.
 
 
-Trang chiếu liên quan: [Miền giới hạn đặc trưng không lồi](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-mien-khong-loi), [Thay bằng hình phạt chuẩn một](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-phat-chuan-mot), [Tổng kết bài giảng](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-ket-bai). Ý tưởng nguồn: Boyd–Vandenberghe, [§6.2](https://web.stanford.edu/~boyd/cvxbook/) và [§6.3.2](https://web.stanford.edu/~boyd/cvxbook/) (xấp xỉ chuẩn một, chính quy hóa); dữ liệu bốn điểm đối xứng dưới đây là minh họa tự biên soạn của học phần.
+Trang chiếu liên quan: [Miền giới hạn đặc trưng không lồi](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-mien-khong-loi), [Thay bằng số hạng phạt chuẩn một](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-hop-phat-chuan-mot), [Tổng kết bài giảng](lecture-02-cac-bai-toan-toi-uu-loi.html#/tong-ket-bai). Ý tưởng nguồn: Boyd–Vandenberghe, [§6.2](https://web.stanford.edu/~boyd/cvxbook/) và [§6.3.2](https://web.stanford.edu/~boyd/cvxbook/) (xấp xỉ chuẩn một, chính quy hóa); dữ liệu bốn điểm đối xứng dưới đây là minh họa tự biên soạn của học phần.
 
 **Đề bài.** Dữ liệu bốn điểm đối xứng:
 $$u_1=(1,0),y_1=1;\quad u_2=(-1,0),y_2=-1;\quad u_3=(0,1),y_3=1;\quad u_4=(0,-1),y_4=-1.$$
@@ -607,7 +607,7 @@ Biến $w=(w_1,w_2)\in\mathbb R^2$, $b\in\mathbb R$ **tự do**; $\lambda=1$; $J
 
 **b)** Giải bài toán giới hạn **cứng** $k=1$: $\min_{w,b} H(w,b)$ với $\|w\|_0\le1$ (không có phạt). Chứng minh giá trị tối ưu bằng $2$, đạt tại $w=(1,0)$, $b=0$; rồi chứng minh rằng với **mọi** phương án bỏ một tọa độ, mất mát của cặp điểm tương ứng luôn $\ge2$ (giải thích vì sao không thể có nghiệm tốt hơn trong mô hình cứng).
 
-**c)** Tổng hợp: phân biệt bốn phép xử lý đã học trong bộ bài — **biến đổi tương đương**, **thay mất mát**, **thêm hình phạt**, **nới lỏng miền** — và nêu ở bài nào trong bộ bài mỗi phép xuất hiện, kèm ý nghĩa "bảo đảm / không bảo đảm" của từng phép.
+**c)** Tổng hợp: phân biệt bốn phép xử lý đã học trong bộ bài — **biến đổi tương đương**, **thay mất mát**, **thêm số hạng phạt**, **nới lỏng miền** — và nêu ở bài nào trong bộ bài mỗi phép xuất hiện, kèm ý nghĩa "bảo đảm / không bảo đảm" của từng phép.
 
 ::: hint
 **a)** Dùng cận theo từng tọa độ: cặp điểm đối xứng $1,2$ cho hai bản lề $\max(0,1-w_1-b)$ và $\max(0,1-w_1+b)$; đặt $a=1-w_1-b$, $c=1-w_1+b$ và chú ý $a+c=2(1-w_1)$, rồi dùng $\max(0,a)+\max(0,c)\ge 2\max\bigl(0,\tfrac{a+c}{2}\bigr)$. Sau đó xét ba trường hợp dấu của $w_j$ cho bất đẳng thức $2\max(0,1-w_j)+|w_j|\ge1$. Dấu bằng buộc $w_j=1$.
@@ -635,9 +635,9 @@ $$J(w,b)=H(w,b)+\|w\|_1\ \ge\ \sum_{j=1}^2\bigl[2\max(0,1-w_j)+|w_j|\bigr]\ \ge\
 
 *Bước 4 — đạt cận và duy nhất.* Tại $w=(1,1)$, $b=0$: bản lề từng điểm là $\max(0,1-1)=0$, nên $H=0$; $\|w\|_1=2$; $J=2$. Vậy giá trị tối ưu bằng 2. Xét nghiệm đạt cận: tổng hai thành phần ở bước 3 bằng 2 buộc mỗi thành phần bằng 1; theo ba trường hợp ở bước 2, dấu bằng chỉ xảy ra khi $w_j=1$. Vậy mọi nghiệm có $w_1=w_2=1$. Với $w=(1,1)$, bản lề điểm 1 là $\max(0,1-(1+b))=\max(0,-b)$ và điểm 2 là $\max(0,b)$, tổng $\max(0,-b)+\max(0,b)=|b|$; tương tự điểm 3, 4 cho $|b|$. Suy ra $H((1,1),b)=2|b|$ và $J(b)=2+2|b|$, nhỏ nhất **duy nhất** tại $b=0$.
 
-*Kết luận:* nghiệm duy nhất $w=(1,1)$, $b=0$, $J=2$; vectơ $w$ có **2** hệ số khác 0 — nếu đặt mục tiêu chỉ dùng tối đa $k=1$ đặc trưng, nghiệm này **vi phạm** giới hạn đếm. Đây là phản ví dụ mạnh cho ý "phạt $\lambda>0$ bảo đảm $\|w\|_0\le k$" (khớp phân tích ở bài 13c).
+*Kết luận:* nghiệm duy nhất $w=(1,1)$, $b=0$, $J=2$; vector $w$ có **2** hệ số khác 0 — nếu đặt mục tiêu chỉ dùng tối đa $k=1$ đặc trưng, nghiệm này **vi phạm** giới hạn đếm. Đây là phản ví dụ mạnh cho ý "phạt $\lambda>0$ bảo đảm $\|w\|_0\le k$" (khớp phân tích ở bài 13c).
 
-**b) Mô hình giới hạn cứng $k=1$, không phạt.** Ràng buộc $\|w\|_0\le1$ nghĩa là $w=(w_1,0)$ hoặc $w=(0,w_2)$.
+**b) Mô hình có ràng buộc đếm $k=1$, không phạt.** Ràng buộc $\|w\|_0\le1$ nghĩa là $w=(w_1,0)$ hoặc $w=(0,w_2)$.
 
 *Xét $w=(w_1,0)$:* tọa độ thứ hai bằng 0, nên cặp điểm 3, 4 cho hai đối số bản lề $1-y_3b=1-b$ (điểm 3) và $1-y_4b=1+b$ (điểm 4); tổng hai điểm là
 $$\max(0,1-b)+\max(0,1+b)\ \ge\ (1-b)+(1+b)=2$$
@@ -651,9 +651,9 @@ $$\max(0,1-b)+\max(0,1+b)\ \ge\ (1-b)+(1+b)=2$$
 
 | Phép xử lý | Bản chất | Xuất hiện ở | Bảo đảm gì / không bảo đảm gì |
 |---|---|---|---|
-| Biến đổi tương đương | Viết lại bài toán bằng biến phụ, giữ giá trị tối ưu và khôi phục nghiệm gốc qua phép chiếu bỏ biến phụ | Bài 3 (biến dư đưa về dạng chuẩn LP), Bài 4 (biến đổi L1/minimax), Bài 11 (biến phụ LP), Bài 13c (LP cho bài toán có phạt) | Bảo đảm hai bài toán cùng giá trị tối ưu; cần chứng minh tương đương hai chiều |
+| Biến đổi tương đương | Viết lại bài toán bằng biến phụ, giữ giá trị tối ưu và khôi phục nghiệm của bài toán gốc qua phép chiếu bỏ biến phụ | Bài 3 (biến bù, biến dư đưa về dạng chuẩn LP), Bài 4 (biến đổi L1/minimax), Bài 11 (biến phụ LP), Bài 13c (LP cho bài toán có phạt) | Bảo đảm hai bài toán cùng giá trị tối ưu; cần chứng minh tương đương hai chiều |
 | Thay mất mát | Đổi hàm mục tiêu sang mất mát khác (cùng dữ liệu) | Bài 4 (L1 so với minimax; đối chiếu bình phương ở Bài 5), Bài 11 (H so với E: nghiệm khác nhau) | Không bảo đảm cùng nghiệm; phải đối chiếu nghiệm theo từng tiêu chí |
-| Thêm hình phạt | Cộng $\lambda R(w)$ vào mục tiêu với $R$ lồi và $\lambda\ge0$; với $L,R$ lồi thì mục tiêu $L+\lambda R$ lồi | Bài 6, 7 (chính quy hóa), Bài 13c, Bài 14a (phạt chuẩn một) | Phạt **không** đồng nghĩa "gộp ràng buộc" hay tự động làm mục tiêu lồi trong mọi tình huống; ở các bài tập đang xét là cộng $\lambda R$ với hàm $L,R$ lồi nên mục tiêu lồi. Phạt chuẩn một có thể tạo hệ số bằng 0; phạt bình phương chuẩn hai chủ yếu thu nhỏ hệ số; không bảo đảm thỏa ràng buộc gốc (Bài 13c, 14a: nghiệm vi phạm $\|w\|_0\le k$) |
+| Thêm số hạng phạt | Cộng $\lambda R(w)$ vào mục tiêu với $R$ lồi và $\lambda\ge0$; với $L,R$ lồi thì mục tiêu $L+\lambda R$ lồi | Bài 6, 7 (chính quy hóa), Bài 13c, Bài 14a (phạt chuẩn một) | Phạt **không** đồng nghĩa "gộp ràng buộc" hay tự động làm mục tiêu lồi trong mọi tình huống; ở các bài tập đang xét là cộng $\lambda R$ với hàm $L,R$ lồi nên mục tiêu lồi. Phạt chuẩn một có thể tạo hệ số bằng 0; phạt bình phương chuẩn hai chủ yếu thu nhỏ hệ số; không bảo đảm thỏa ràng buộc gốc (Bài 13c, 14a: nghiệm vi phạm $\|w\|_0\le k$) |
 | Nới lỏng miền | Giữ nguyên mục tiêu, mở rộng tập khả thi để bài toán dễ giải | Bài 12 (bỏ ràng buộc nhị phân, $x\in[0,1]^3$) | Cho cận dưới **chỉ khi giữ nguyên mục tiêu và mở rộng tập khả thi**; nghiệm nới lỏng có thể không khả thi cho bài toán gốc, phải làm tròn/kiểm tra lại (Bài 12). Bài 13 thay đếm bằng phạt là **thay mục tiêu**, không phải nới lỏng thuần túy, nên không gắn cận dưới cho bài toán đếm |
 
 Chu trình sáu thành phần cần tự đi đủ cho mỗi mô hình: **dữ liệu, biến, mục tiêu, ràng buộc, chứng nhận, ý nghĩa nghiệm** — và khi nghiệm của mô hình thay thế được tìm ra, phải kiểm tra lại bằng mục tiêu và ràng buộc của bài toán gốc, không đọc giá trị có phạt như giá trị bài toán gốc.
@@ -675,7 +675,7 @@ Chu trình sáu thành phần cần tự đi đủ cho mỗi mô hình: **dữ l
 | 10 | Phân bổ công suất hai đường truyền | Phần 4 — GP: phân bổ công suất (bài 4.20 của Boyd là ý tưởng nguồn) | §4.5; bài 4.20 (ý tưởng) |
 | 11 | Phân loại ngưỡng: H so với E | Phần 5 — Xấp xỉ lồi: phân loại và mất mát | §6.1.1; §8.6.1 (phân loại tuyến tính, ý tưởng) |
 | 12 | Phủ tập yêu cầu, nới lỏng nhị phân | Phần 5 — Nới lỏng và làm tròn (bài 4.15 ý tưởng nới lỏng) | bài 4.15 (ý tưởng nới lỏng) |
-| 13 | Giới hạn $\|w\|_0\le k$, phạt chuẩn một | Phần 6 — Giới hạn số đặc trưng; Thay bằng hình phạt chuẩn một | §6.2; §6.3.2; §6.5.4 (biểu diễn thưa) |
-| 14 | Chuyển giao mô hình thưa, bốn phép xử lý | Phần 6 — Miền không lồi; Thay bằng hình phạt chuẩn một; Tổng kết | §6.2; §6.3.2 |
+| 13 | Giới hạn $\|w\|_0\le k$, phạt chuẩn một | Phần 6 — Giới hạn số đặc trưng; Thay bằng số hạng phạt chuẩn một | §6.2; §6.3.2; §6.5.4 (biểu diễn thưa) |
+| 14 | Chuyển giao mô hình thưa, bốn phép xử lý | Phần 6 — Miền không lồi; Thay bằng số hạng phạt chuẩn một; Tổng kết | §6.2; §6.3.2 |
 
 Ghi chú nguồn: bài 10 dùng ý tưởng công suất từ bài 4.20 và phép biến đổi GP §4.5; bài 12 dùng ý tưởng nới lỏng từ bài 4.15 của Boyd–Vandenberghe; bối cảnh và toàn bộ dữ liệu số của 14 bài tập là biên soạn của học phần, không phải bản dịch nguyên đề của Boyd. Liên kết Boyd dùng trang chính thức: [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/). Ghi chú đầy đủ: [Ghi chú Bài 02](material-viewer.html?doc=materials/lec-02/lecture-note.md&deck=lecture-02-cac-bai-toan-toi-uu-loi.html).

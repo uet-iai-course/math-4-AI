@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
   <title id="title">Biến đổi tương đương làm lộ tập khả thi affine</title>
-  <desc id="desc">Hai ràng buộc có biểu thức phi tuyến được rút gọn thành x một không dương và x một cộng x hai bằng không. Cả hai biểu diễn cho cùng một tia khả thi từ gốc qua các điểm âm một, một và âm hai, hai. Dải dưới minh họa biến dư, khử đẳng thức và dạng tập trên đồ thị (epigraph).</desc>
+  <desc id="desc">Hai ràng buộc có biểu thức phi tuyến được rút gọn thành x một không dương và x một cộng x hai bằng không. Cả hai biểu diễn cho cùng một tia khả thi từ gốc qua các điểm âm một, một và âm hai, hai. Dải dưới minh họa biến bù, khử đẳng thức và dạng tập trên đồ thị (epigraph).</desc>
   <defs>
     <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#24324a"/></marker>
     <marker id="rayarrow" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="20" refX="20" refY="10" orient="auto"><path d="M0 0L22 10L0 20Z" fill="#315d92"/></marker>
@@ -45,7 +45,7 @@
   <text class="label" x="1147" y="353">x₁</text><text class="label" x="1053" y="139">x₂</text>
 
   <rect class="tool" x="24" y="430" width="360" height="184" rx="14"/>
-  <text class="head" x="204" y="466" text-anchor="middle">Biến dư</text>
+  <text class="head" x="204" y="466" text-anchor="middle">Biến bù</text>
   <text class="math" x="204" y="507" text-anchor="middle">aᵀx ≤ b</text>
   <text class="label" x="204" y="540" text-anchor="middle">⇔ aᵀx + s = b, s ≥ 0</text>
   <text class="small" x="204" y="582" text-anchor="middle">Thêm biến, giữ đúng phép chiếu theo x.</text>

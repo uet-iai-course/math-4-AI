@@ -13,17 +13,18 @@ Tên mạch trùng trang "Nội dung" `S01-02` và trang tiêu đề mạch `S02
 5. Xấp xỉ lồi và nới lỏng (`S05`).
 6. Tổng hợp và vận dụng (`S06`).
 
-Phần 1 có 8 trang; phần 2 có 13; phần 3 có 15; phần 4 có 17; phần 5 có 17; phần 6 có 10. Toàn bài có 80 trang trong sáu section ngoài; sáu trang thêm ngày 2026-10-12 là trang mục tiêu học tập `S01-01b` và năm trang lời giải bài tập `S02-11`, `S03-10`, `S04-16`, `S05-15`, `S06-07b`. Không ấn định thời lượng mới. Danh sách trang của từng phần bên dưới ghi theo thời điểm triển khai; tiêu đề và trang thêm của đợt 2026-10-12 nằm trong mục cuối tệp này và trong `storyboard.md`.
+Phần 1 có 9 trang; phần 2 có 13; phần 3 có 15; phần 4 có 17; phần 5 có 17; phần 6 có 10. Toàn bài có 81 trang trong sáu section ngoài; sáu trang thêm trong đợt sửa văn phong 2026-10-12 là trang mục tiêu học tập `S01-01b` và năm trang lời giải bài tập `S02-11`, `S03-10`, `S04-16`, `S05-15`, `S06-07b`; trang nhắc lại `S01-02b` thêm trong đợt rà soát thuật ngữ cùng ngày. Không ấn định thời lượng mới. Danh sách trang của từng phần bên dưới ghi theo thời điểm triển khai; tiêu đề và trang thêm của đợt 2026-10-12 nằm trong mục cuối tệp này và trong `storyboard.md`.
 
 ## Phần 1 hiện tại
 
 1. Bài 02: Các bài toán tối ưu lồi — thông tin học phần, Viện Trí tuệ nhân tạo, năm học và học kỳ.
 2. Nội dung — danh sách đánh số sáu mạch.
-3. Bài toán tối ưu lồi tổng quát — mục tiêu lồi và tập khả thi lồi.
-4. Dạng phổ biến của tối ưu lồi — biến $x\in\mathbb{R}^n$, mục tiêu và các hàm bất đẳng thức lồi, đẳng thức affine.
-5. Ví dụ: hàm bậc hai — tối thiểu hóa $(x-2)^2$ trên $[0,1]$, nghiệm ở biên.
-6. Ví dụ: hàm giá trị tuyệt đối — tối thiểu hóa $|x-2|$ trên $\mathbb{R}$, nghiệm tại điểm không khả vi.
-7. Ví dụ: hàm nghịch đảo — tối thiểu hóa $1/x$ trên $(0,+\infty)$, cận dưới không đạt được.
+3. Tập lồi, hàm lồi và giá trị tối ưu (`S01-02b`, thêm 2026-10-12) — "Nhắc lại:" định nghĩa tập lồi, hàm lồi, giá trị tối ưu $p^\star=\inf_{x\in C}f_0(x)$ và nghiệm tối ưu $x^\star$.
+4. Bài toán tối ưu lồi tổng quát — mục tiêu lồi và tập khả thi lồi.
+5. Dạng phổ biến của tối ưu lồi — biến $x\in\mathbb{R}^n$, mục tiêu và các hàm bất đẳng thức lồi, đẳng thức affine; tập mức dưới của hàm lồi là tập lồi.
+6. Ví dụ: hàm bậc hai — cực tiểu hóa $(x-2)^2$ trên $[0,1]$, nghiệm ở biên.
+7. Ví dụ: hàm giá trị tuyệt đối — cực tiểu hóa $|x-2|$ trên $\mathbb{R}$, nghiệm tại điểm không khả vi.
+8. Ví dụ: hàm nghịch đảo — cực tiểu hóa $1/x$ trên $(0,+\infty)$, cận dưới không đạt được.
 
 Trang điều kiện riêng được bỏ theo yêu cầu người dùng vì nội dung đã nằm ở trang dạng toán học. Nguồn đã dùng: Boyd và Vandenberghe (2004), *Convex Optimization*, §4.2, trang 136–138. Nguồn cho các ví dụ: §3.1.3, §3.1.5 và Ví dụ 4.1, trang 128. Ba ví dụ có công thức, đồ thị SVG tự vẽ, chứng nhận tính lồi và kết luận về nghiệm; chứng minh chi tiết và biến thể kiểm tra hiểu nằm trong ghi chú diễn giả. CSS riêng Bài 02 tham khảo các bài trong `../rl-plan/2627-1/`.
 
@@ -60,15 +61,15 @@ Phần này có 14 trang, bổ sung chính quy hóa cho cả hai tiêu chí sai 
 2. Hồi quy với tổng bình phương sai số — Thiết lập nhu cầu dự đoán và hai ứng viên trước khi khai triển mục tiêu.
 3. Dạng bậc hai của bình phương sai số — Chỉ ra cấu trúc bậc hai và chứng nhận Hessian; phân biệt viết lại với thay mục tiêu.
 4. Dạng phổ biến của quy hoạch bậc hai — Khái quát nhận dạng QP: mục tiêu bậc hai lồi, ràng buộc affine.
-5. Nghiệm hồi quy bình phương tối thiểu — Đọc nghiệm thành đường dự đoán; hình đồng mức làm rõ tác động của ràng buộc.
-6. Chính quy hóa trong hồi quy — Thiết lập nhu cầu kiểm soát hệ số và phân biệt hai tiêu chí sai số với hai hình phạt.
+5. Nghiệm hồi quy bình phương tối thiểu — Đọc nghiệm thành đường dự đoán; hình đường mức làm rõ tác động của ràng buộc.
+6. Chính quy hóa trong hồi quy — Thiết lập nhu cầu kiểm soát hệ số và phân biệt hai tiêu chí sai số với hai số hạng phạt.
 7. Sai số tuyệt đối và chính quy hóa chuẩn một — Dùng lại biến phụ của phần 2 cho cả sai số và hệ số; nhận dạng LP.
-8. Sai số tuyệt đối và chính quy hóa bậc hai — Thay hình phạt bằng bình phương chuẩn hai; nhận ra QP dù sai số chưa trơn.
-9. Bình phương sai số và chính quy hóa chuẩn một — Giữ sai số bậc hai, cải dạng hình phạt chuẩn một; phân biệt QP với hàm trơn.
+8. Sai số tuyệt đối và chính quy hóa bậc hai — Thay số hạng phạt bằng bình phương chuẩn hai; nhận ra QP dù sai số chưa trơn.
+9. Bình phương sai số và chính quy hóa chuẩn một — Giữ sai số bậc hai, cải dạng số hạng phạt chuẩn một; phân biệt QP với hàm trơn.
 10. Bình phương sai số và chính quy hóa bậc hai — Khai triển chính quy hóa bậc hai; chỉ rõ điều kiện đủ cho nghiệm duy nhất theo w.
 11. Nghiệm hồi quy có chính quy hóa — Đối chiếu bốn đường dự đoán, hệ số và tham số; đánh giá theo từng mục tiêu gốc.
 12. Hồi quy với giới hạn độ lớn hệ số — Thay chi phí mềm bằng mức trần cứng; chứng nhận miền hình tròn và nghiệm trên biên.
-13. Quy hoạch bậc hai với ràng buộc bậc hai — Khái quát QCQP từ ràng buộc chuẩn; chứng nhận cả mục tiêu và các bất đẳng thức.
+13. Quy hoạch bậc hai với ràng buộc bậc hai — Khái quát QCQP từ ràng buộc chặn chuẩn; chứng nhận cả mục tiêu và các bất đẳng thức.
 14. Nhận dạng và chứng nhận bài toán bậc hai — Kiểm tra chuyển giao khi thêm ràng buộc, đổi chiều bất đẳng thức hoặc đặt hệ số phạt bằng 0.
 
 Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số để minh họa. Chính quy hóa chuẩn một khác chính quy hóa bằng bình phương chuẩn hai. Nguồn, chứng nhận hai chiều, giới hạn và ánh xạ từng ví dụ nằm trong [storyboard.md](storyboard.md). Phần 5 được triển khai ở mục dưới; phần 6 còn khung tiêu đề. Không phân bổ thời lượng mới.
@@ -95,7 +96,7 @@ Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số đ�
 15. Nghiệm phân bổ công suất.
 16. Nhận dạng và giới hạn cải dạng.
 
-Dạng tổng quát có vế phải đơn thức được chuẩn hóa bằng phép chia; tối đa hóa đơn thức chuyển thành tối thiểu hóa nghịch đảo. Đổi biến logarit sau đó tạo mô hình lồi tương đương. Phải phân biệt ba bước này, chứng nhận tính lồi và khôi phục đại lượng ban đầu. Nguồn chính: Boyd–Vandenberghe, §4.5; bối cảnh công suất phỏng theo Bài tập 4.20, còn dữ liệu và cải dạng GP tự xây dựng. Không phân bổ thời lượng mới.
+Dạng tổng quát có vế phải đơn thức được chuẩn hóa bằng phép chia; cực đại hóa đơn thức chuyển thành cực tiểu hóa nghịch đảo. Đổi biến logarit sau đó tạo mô hình lồi tương đương. Phải phân biệt ba bước này, chứng nhận tính lồi và khôi phục đại lượng ban đầu. Nguồn chính: Boyd–Vandenberghe, §4.5; bối cảnh công suất phỏng theo Bài tập 4.20, còn dữ liệu và cải dạng GP tự xây dựng. Không phân bổ thời lượng mới.
 
 
 ## Phần 5 đã triển khai — Xấp xỉ lồi và nới lỏng bài toán không lồi
@@ -137,17 +138,17 @@ Sáu trang giữ nguyên thứ tự. Dùng nhu cầu mua ảnh đã gán nhãn n
 3. `S06-02` — Quy hoạch hình học và đổi biến: GP trước/sau đổi biến $z=\log x$, hai khối công thức đối chiếu.
 4. `S06-03` — Chứng nhận một bài toán lồi: bốn bước hành động, câu hỏi kiểm tra đúng nhãn "Câu hỏi:".
 5. `S06-04` — Giới hạn số đặc trưng: nhu cầu, dữ liệu/biến, mô hình $\|w\|_0\le k$; tách công thức $H$ và bài toán cực tiểu.
-6. `S06-05` — Miền giới hạn đặc trưng không lồi: ví dụ $d=2,k=1$, SVG trung điểm, khái quát hai tập hỗ trợ giao nhau.
-7. `S06-06` — Thay bằng hình phạt chuẩn một: mô hình có phạt, bảng $(2,0)/(1,1)$, chứng minh tương đương LP chỉ cho bài có phạt, phản ví dụ 4 điểm cận 2.
+6. `S06-05` — Miền giới hạn đặc trưng không lồi: ví dụ $d=2,k=1$, SVG trung điểm, khái quát hai giá (support) giao nhau.
+7. `S06-06` — Thay bằng số hạng phạt chuẩn một: mô hình có phạt, bảng $(2,0)/(1,1)$, chứng minh tương đương LP chỉ cho bài có phạt, phản ví dụ 4 điểm cận 2.
 8. `S06-07` — Kiểm tra các biến thể: ba câu hỏi, đáp án trong ghi chú diễn giả.
 9. `S06-08` — Tổng kết bài giảng: nay là bảng kết quả, giả thiết không được bỏ, công thức (2026-10-12), nguồn đọc.
 
 ### Quyết định
 
-- Tách nhu cầu/mô hình giới hạn đặc trưng (S06-04) khỏi phản ví dụ trung điểm (S06-05) để mỗi trang một luận điểm; S06-04 nêu nhu cầu và mô hình giới hạn cứng, S06-05 kiểm tập khả thi bằng SVG.
-- Bảng dạng chuẩn ở S06-01 gộp "Mục tiêu và ràng buộc" thành một cột, định nghĩa $f_i$ phía trên, tránh lặp hai lần công thức bậc hai dài; cụ thể: ba hàng LP/QP/QCQP vừa khít bảng.
-- S06-06: chứng minh tương đương LP chỉ áp dụng cho bài có phạt $H+\lambda\|w\|_1$; bài giới hạn cứng phải kiểm nghiệm riêng, không mặc nhiên dùng chung nghiệm.
-- S06-05: khái quát không lồi dùng hai tập hỗ trợ $\{1,\dots,k\}$ và $\{1,\dots,k-1,k+1\}$ giao nhau, trung điểm có $k+1$ hệ số khác 0, phủ mọi $1\le k<d$.
+- Tách nhu cầu/mô hình giới hạn đặc trưng (S06-04) khỏi phản ví dụ trung điểm (S06-05) để mỗi trang một luận điểm; S06-04 nêu nhu cầu và mô hình có ràng buộc đếm, S06-05 kiểm tập khả thi bằng SVG.
+- Bảng các lớp bài toán ở S06-01 gộp "Mục tiêu và ràng buộc" thành một cột, định nghĩa $f_i$ phía trên, tránh lặp hai lần công thức bậc hai dài; cụ thể: ba hàng LP/QP/QCQP vừa khít bảng.
+- S06-06: chứng minh tương đương LP chỉ áp dụng cho bài có phạt $H+\lambda\|w\|_1$; bài có ràng buộc đếm phải kiểm nghiệm riêng, không mặc nhiên dùng chung nghiệm.
+- S06-05: khái quát không lồi dùng hai giá $\{1,\dots,k\}$ và $\{1,\dots,k-1,k+1\}$ giao nhau, trung điểm có $k+1$ hệ số khác 0, phủ mọi $1\le k<d$.
 - Giữ giao diện hiện có; không thêm bài tập tổng hợp hồi quy hoặc mở rộng sang tối ưu tựa lồi/nhiều mục tiêu.
 - Nguồn chỉ Boyd–Vandenberghe (2004) đã có: chương 4; §6.2, tr. 304–305; §6.3.2; §4.5 cho GP. Không dùng "§6.2.1".
 - Thời lượng chưa ấn định, không tự đặt phút cho từng trang.
@@ -163,7 +164,7 @@ Mục tiêu là tài liệu tự học có thể tái tạo phép tính: mỗi v
 3. Quy hoạch bậc hai: bình phương tối thiểu, ràng buộc tuyến tính, bốn tổ hợp sai số và chính quy hóa; suy ra nghiệm theo từng miền, chứng minh cận đạt được, kiểm tra ràng buộc chuẩn.
 4. Quy hoạch hình học: hộp có diện tích giới hạn, đơn thức và tổng đơn thức, đổi biến logarit; đạo hàm và Hessian của logarit tổng hàm mũ; phân bổ công suất và khôi phục nghiệm.
 5. Xấp xỉ và nới lỏng: phân loại theo ngưỡng, mất mát bản lề, chọn gói dữ liệu; bảng trường hợp biên, nghiệm phân số, khôi phục phương án nguyên và cận tối ưu.
-6. Tổng hợp: chứng nhận theo cấu trúc, giới hạn số đặc trưng, phản ví dụ trung điểm, phạt chuẩn một và phản ví dụ không bảo toàn giới hạn cứng.
+6. Tổng hợp: chứng nhận theo cấu trúc, giới hạn số đặc trưng, phản ví dụ trung điểm, phạt chuẩn một và phản ví dụ không bảo toàn ràng buộc đếm.
 
 Nguồn cấu trúc và ví dụ: bộ RevealJS Bài 02 hiện tại. Nguồn nội dung: Boyd–Vandenberghe (2004), chương 3–4, §6.1.1, §6.2, §6.3.2, §6.5.4, §8.6.1, Bài tập 4.15 và 4.20; đối chiếu trực tiếp bản `sources/bv_cvxbook.pdf`. Đề cương DOCX chính thức xác định buổi 2, LLO3/CLO1 và nền tảng giải tích, đại số tuyến tính, xác suất–thống kê. Không khẳng định bản ghi chú bao phủ toàn bộ phạm vi rộng hơn của đề cương, không tự ấn định thời lượng. Không bổ sung nguồn MIT hoặc tài sản bên thứ ba.
 
@@ -192,3 +193,11 @@ Thêm đúng một trang sau hàm mất mát bản lề và trước cải dạn
 - Thêm `S01-01b` "Mục tiêu học tập" ngay sau bìa (ba mục tiêu: nhận dạng; biến đổi hoặc xấp xỉ; chứng nhận và diễn giải nghiệm). `S06-08` chuyển thành bảng "kết quả | giả thiết không được bỏ | công thức hoặc thuật toán" cho LP, QP/QCQP, GP, xấp xỉ lồi.
 - `S01-02` đổi tiêu đề thành "Nội dung". `S05-03b` giữ tiêu đề, thay khẩu hiệu bằng bảng ba điều kiện kiểm chứng.
 - Bảng trang vượt trần và các sửa nhãn: xem `storyboard.md`, mục "Đợt sửa văn phong và mật độ — 2026-10-12".
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa — 2026-10-12
+
+- Thêm `S01-02b` "Tập lồi, hàm lồi và giá trị tối ưu" sau "Nội dung": nhắc lại hai định nghĩa lồi, giá trị tối ưu $p^\star$ và nghiệm tối ưu $x^\star$ trước khi `S01-03`–`S01-08` dùng chúng. Số mạch, trang "Nội dung" và `#/N` không đổi.
+- Thuật ngữ thống nhất trong deck, kế hoạch và học liệu: "số hạng phạt (penalty term)" thay "hình phạt", "hàm phạt" cho $R(w)$; "đường mức (level curve)" thay "đồng mức"; "ràng buộc chặn chuẩn" cho $\|w\|_2^2\le R^2$, "ràng buộc đếm" cho $\|w\|_0\le k$; "phép toán bảo toàn tính lồi" thay "quy tắc cấu tạo"; "logarit tổng hàm mũ (log-sum-exp)"; "vector"; "biến ban đầu" thay "biến gốc"; "bảng các lớp bài toán" thay "bảng dạng chuẩn"; "biến bù (slack variable)" cho biến bù của ràng buộc $\le$, "biến dư (surplus variable)" chỉ cho biến trừ đi ở ràng buộc $\ge$.
+- Định nghĩa đặt trước lần dùng: "Định nghĩa." cho LP (`S02-03`) và GP (`S04-04`); "Nhắc lại:" cho nửa không gian, siêu phẳng, đa diện (`S02-03`), nửa xác định dương (`S03-02`), tập mức dưới (`S01-04`); "Ký hiệu:" cho $\mathbf 1$ (`S02-06`) và chuẩn (`S03-04b`); "Định nghĩa." cho hàm thay thế (`S05-03`).
+- Ký hiệu: hằng số của QP/QCQP là $\rho_i$ (không trùng phần dư $r_i$ và biến bù $s_i$); chi phí tối ưu khi mua nguyên gói là $J^\star$; tập khả thi của bài toán nới lỏng là $\tilde F$; GP dùng $h_j$ cho đẳng thức ở cả `S04-04` và `S06-02`.
+- Chi tiết từng trang: `storyboard.md`, mục cùng tên; phát hiện và quyết định: `review-log.md`.

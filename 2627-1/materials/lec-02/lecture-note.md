@@ -6,9 +6,9 @@ Mọi mục tiêu sau là minh chứng bộ phận của chuẩn đầu ra bài 
 
 1. Chứng nhận từng dòng rằng một bài toán thuộc dạng chuẩn của tối ưu lồi, và tách kết luận "bài toán lồi" khỏi "bài toán có nghiệm" (LLO3, CLO1).
 2. Lập, chuẩn hóa và chứng nhận nghiệm quy hoạch tuyến tính; biến đổi bài toán (reformulation) hồi quy sai số tuyệt đối và minimax bằng biến phụ (LLO3, CLO1).
-3. Nhận dạng quy hoạch bậc hai và quy hoạch bậc hai có ràng buộc bậc hai, giải bốn tổ hợp sai số – hình phạt trên dữ liệu nhỏ, và phân biệt hình phạt với ràng buộc chặn chuẩn (norm constraint) (LLO3, CLO1).
+3. Nhận dạng quy hoạch bậc hai và quy hoạch bậc hai có ràng buộc bậc hai, giải bốn tổ hợp sai số – số hạng phạt (penalty term) trên dữ liệu nhỏ, và phân biệt số hạng phạt với ràng buộc chặn chuẩn (norm constraint) (LLO3, CLO1).
 4. Đưa bài toán chứa tích và tỷ số của đại lượng dương về quy hoạch hình học và đổi biến logarit để được bài toán lồi tương đương (LLO3, CLO1).
-5. Phân biệt biến đổi tương đương (equivalent reformulation) với hàm thay thế, hình phạt và nới lỏng; dùng nới lỏng tuyến tính để lấy cận (LLO3, CLO1).
+5. Phân biệt biến đổi tương đương (equivalent reformulation) với hàm thay thế, số hạng phạt và nới lỏng; dùng nới lỏng tuyến tính để lấy cận (LLO3, CLO1).
 6. Vận dụng quy trình nhận dạng vào mô hình học máy mới và nêu hậu quả khi một giả thiết bị vi phạm (LLO3, CLO1).
 
 ## Kiến thức tiên quyết
@@ -45,7 +45,7 @@ Bài toán tổng quát có $n$ biến, $m$ ràng buộc bất đẳng thức, $
 | $X$, $w$ | ma trận thiết kế với hàng $i$ là đặc trưng của mẫu $i$; vector tham số (ở Mục 2–3, $w=(a,b)$ gồm hệ số góc và hệ số chặn) | $\mathbb R^{N\times d}$; $\mathbb R^d$ |
 | $r$ | vector phần dư $Xw-y$ | $\mathbb R^N$ |
 | $E(w)$ | tổng bình phương phần dư $\lVert Xw-y\rVert_2^2$ | $\mathbb R^d\to\mathbb R$ |
-| $L(w)$, $R(w)$, $\lambda$ | hàm sai số, hình phạt và hệ số của hạng chính quy hóa (Mục 3) | $\mathbb R^d\to\mathbb R$; $\lambda\ge0$ |
+| $L(w)$, $R(w)$, $\lambda$ | hàm sai số, hàm phạt và hệ số của số hạng chính quy hóa (Mục 3) | $\mathbb R^d\to\mathbb R$; $\lambda\ge0$ |
 | $\lVert\cdot\rVert_1$, $\lVert\cdot\rVert_2$, $\lVert\cdot\rVert_\infty$, $\lVert\cdot\rVert_0$ | tổng trị tuyệt đối, chuẩn Euclid, trị tuyệt đối lớn nhất, số thành phần khác không | hàm trên $\mathbb R^k$ |
 | $\varphi$, $\psi$, $T$ | ánh xạ đưa phương án gốc sang bài toán mới, ánh xạ khôi phục, hàm tăng chặt đổi giá trị trong một biến đổi tương đương | ánh xạ |
 | $\mu$ | hệ số không âm trong chứng nhận bằng tổ hợp ràng buộc (Mục 2, 5, các bài tập) | $\mathbb R^k$, $\mu\succeq0$ |
@@ -74,7 +74,7 @@ Ngoài ra, chúng ta cũng cần biết chính xác tính lồi bảo đảm đi
 
 Hình sau cho thấy hai ràng buộc ở đầu mục là cách viết phức tạp của hai điều kiện affine.
 
-![Ba khung trên một hàng. Khung trái: hai ràng buộc x1 chia (1 cộng x2 bình phương) nhỏ hơn hoặc bằng 0 và (x1 cộng x2) bình phương bằng 0, chú thích mẫu số luôn dương và bình phương bằng 0 khi cơ số bằng 0. Mũi tên ghi chữ tương đương nối sang khung giữa: dạng affine x1 nhỏ hơn hoặc bằng 0 và x1 cộng x2 bằng 0, tức x bằng (âm s, s) với s không âm. Khung phải: tập khả thi chung là tia xuất phát từ (0, 0), qua (âm 1, 1) và (âm 2, 2). Dải dưới gồm ba ô nhắc ba phép biến đổi bài toán khác: thêm biến dư, khử ràng buộc đẳng thức và chuyển sang dạng tập trên đồ thị.](img/lec-02/reformulation-equivalence.svg)
+![Ba khung trên một hàng. Khung trái: hai ràng buộc x1 chia (1 cộng x2 bình phương) nhỏ hơn hoặc bằng 0 và (x1 cộng x2) bình phương bằng 0, chú thích mẫu số luôn dương và bình phương bằng 0 khi cơ số bằng 0. Mũi tên ghi chữ tương đương nối sang khung giữa: dạng affine x1 nhỏ hơn hoặc bằng 0 và x1 cộng x2 bằng 0, tức x bằng (âm s, s) với s không âm. Khung phải: tập khả thi chung là tia xuất phát từ (0, 0), qua (âm 1, 1) và (âm 2, 2). Dải dưới gồm ba ô nhắc ba phép biến đổi bài toán khác: thêm biến bù, khử ràng buộc đẳng thức và chuyển sang dạng tập trên đồ thị.](img/lec-02/reformulation-equivalence.svg)
 
 Hai biểu diễn trên hình mô tả cùng một tia khả thi, nhưng chỉ dạng affine ở khung giữa cho thấy ngay tập đó lồi.
 
@@ -303,7 +303,7 @@ Nếu cả $(\mathrm P)$ lẫn $(\mathrm Q)$ đều có nghiệm $x^*$, $\zeta^*
 Các phép thay mục tiêu (chính quy hóa ở Mục 3.3, hàm thay thế ở Mục 5) khác ở một điểm chứng minh được. Nghiệm của bài toán mới nói chung không là nghiệm của bài toán gốc, và không có công thức khôi phục biết trước. Ví dụ 02.25 cho một trường hợp: mọi nghiệm của bài toán thay thế có số lỗi $2$ trong khi số lỗi tối ưu là $1$. Nhận xét 02.43 so sánh các phép xử lý theo tiêu chí này.
 :::
 
-**Trong học máy.** Các thư viện mô hình hóa tối ưu lồi như CVXPY nhận mô hình viết gần với bài toán gốc, chẳng hạn chứa chuẩn một hay hàm cực đại. Thư viện tự động biến đổi sang quy hoạch tuyến tính hoặc quy hoạch bậc hai, rồi trả về giá trị của các biến gốc, tức áp dụng $\psi$. Theo Mệnh đề 02.6, kết quả trả về là nghiệm của bài toán người dùng viết.
+**Trong học máy.** Các thư viện mô hình hóa tối ưu lồi như CVXPY nhận mô hình viết gần với bài toán gốc, chẳng hạn chứa chuẩn một hay hàm cực đại. Thư viện tự động biến đổi sang quy hoạch tuyến tính hoặc quy hoạch bậc hai, rồi trả về giá trị của các biến ban đầu, tức áp dụng $\psi$. Theo Mệnh đề 02.6, kết quả trả về là nghiệm của bài toán người dùng viết.
 
 Tuy nhiên, khi người dùng thay mất mát đếm lỗi bằng mất mát bản lề, không có công thức khôi phục như vậy (Nhận xét 02.7).
 
@@ -567,12 +567,12 @@ Vậy $z=\varphi(x)$ khả thi cho (2.3), và $\tilde c^Tz=c^Tx^+-c^Tx^-=c^Tx$.
 
 Mệnh đề 02.10 cho phép coi hai dạng (2.2) và (2.3) như một lớp: mọi kết quả chứng minh cho một dạng chuyển được sang dạng kia qua Mệnh đề 02.6.
 
-Biến $\sigma$ được gọi là biến dư (slack variable). Thành phần $\sigma_i$ đo khoảng cách còn lại tới giới hạn thứ $i$, và $\sigma_i=0$ nghĩa là ràng buộc $i$ đang chặt.
+Biến $\sigma$ được gọi là biến bù (slack variable). Thành phần $\sigma_i$ đo khoảng cách còn lại tới giới hạn thứ $i$, và $\sigma_i=0$ nghĩa là ràng buộc $i$ là ràng buộc hoạt động (active constraint).
 
 ::: example Ví dụ 02.6 (Dạng chuẩn của bài toán pha trộn)
 **Dữ kiện.** Bài toán pha trộn (2.1): $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$. Dạng chuẩn (2.3): $\min\tilde c^Tz$ với $Bz=e$, $z\succeq0$.
 
-**Lập dạng chuẩn.** Trong (2.1), hai biến đã không âm nên không cần tách. Thêm biến dư $\sigma_1,\sigma_2\ge0$ cho hai ràng buộc dinh dưỡng, viết ở dạng "$\ge$": $2x_1+x_2-\sigma_1=4$ và $x_1+2x_2-\sigma_2=5$. Với $z=(x_1,x_2,\sigma_1,\sigma_2)$, dạng chuẩn là
+**Lập dạng chuẩn.** Trong (2.1), hai biến đã không âm nên không cần tách. Thêm biến dư (surplus variable) $\sigma_1,\sigma_2\ge0$ cho hai ràng buộc dinh dưỡng, viết ở dạng "$\ge$": $2x_1+x_2-\sigma_1=4$ và $x_1+2x_2-\sigma_2=5$. Với $z=(x_1,x_2,\sigma_1,\sigma_2)$, dạng chuẩn là
 
 $$
 \underset{z\succeq0}{\operatorname{minimize}}\quad 3x_1+2x_2\qquad\text{subject to}\quad\begin{bmatrix}2&1&-1&0\\1&2&0&-1\end{bmatrix}z=\begin{bmatrix}4\\5\end{bmatrix}.
@@ -670,7 +670,7 @@ $$
 **Trong học máy.** Quy hoạch tuyến tính xuất hiện trong ba loại tình huống:
 
 - phân bổ tài nguyên dưới ngân sách, như chia giờ máy tính toán giữa các tác vụ (Bài tập 02.3);
-- khớp mô hình với tiêu chí tuyến tính từng khúc: hồi quy sai số tuyệt đối, minimax, máy vector hỗ trợ với hình phạt chuẩn một;
+- khớp mô hình với tiêu chí tuyến tính từng khúc: hồi quy sai số tuyệt đối, minimax, máy vector hỗ trợ với số hạng phạt chuẩn một;
 - nới lỏng bài toán rời rạc (Mục 5).
 
 Trong cả ba loại, Mệnh đề 02.11 cho phép kiểm tra trực tiếp phương án và các hệ số $\mu$ do bộ giải trả về.
@@ -727,7 +727,7 @@ Hình trên minh họa ý tưởng của kỹ thuật biến phụ. Tập các �
 
 Từ Bổ đề 02.14 và Mệnh đề 02.6, ta tổng quát hóa được cách Boyd và Vandenberghe (2004, tr. 150) đưa cực tiểu một hàm tuyến tính từng khúc về quy hoạch tuyến tính.
 
-Kết quả được phát biểu cho một hàm $f$ tùy ý cộng với một tổng có trọng số của các cực đại affine trong định lý sau. Cách phát biểu này cho phép dùng lại định lý ở Mục 3 (hình phạt chuẩn một), Mục 5 (mất mát bản lề) và Mục 6.
+Kết quả được phát biểu cho một hàm $f$ tùy ý cộng với một tổng có trọng số của các cực đại affine trong định lý sau. Cách phát biểu này cho phép dùng lại định lý ở Mục 3 (số hạng phạt chuẩn một), Mục 5 (mất mát bản lề) và Mục 6.
 
 ::: theorem Định lý 02.15 (Biến đổi bằng biến phụ)
 **Giả thiết.** $C\subseteq\mathbb R^n$ và $f:C\to\mathbb R$ tùy ý. Với $i=1,\ldots,M$ và $k=1,\ldots,K_i$, cho các hàm affine $g_{ik}(x)=\alpha_{ik}^Tx+\beta_{ik}$, và trọng số $\gamma_i\ge0$. Xét
@@ -890,7 +890,7 @@ trong đó ràng buộc thứ nhất cho ảnh, ràng buộc thứ hai cho âm t
 
 **(b) Chứng nhận.** Theo Mệnh đề 02.11(a), mọi phương án khả thi có chi phí ít nhất $1\cdot6+1\cdot7=13$. Phương án $(1,3)$ khả thi ($3+3=6$, $1+6=7$) và có chi phí $4+9=13$, tức $1{,}3$ triệu đồng, nên là nghiệm.
 
-**(b) Duy nhất.** Vì $\mu_1,\mu_2>0$, mọi nghiệm làm hai ràng buộc chặt (Mệnh đề 02.11(c)). Hệ $3x_1+x_2=6$, $x_1+2x_2=7$ có nghiệm duy nhất $(1,3)$, nên nghiệm duy nhất.
+**(b) Duy nhất.** Vì $\mu_1,\mu_2>0$, mọi nghiệm làm hai ràng buộc hoạt động (Mệnh đề 02.11(c)). Hệ $3x_1+x_2=6$, $x_1+2x_2=7$ có nghiệm duy nhất $(1,3)$, nên nghiệm duy nhất.
 
 **Kiểm tra lại.** Hai đỉnh khác của miền, $(0,6)$ và $(7,0)$, cho chi phí $18$ và $28$.
 :::
@@ -939,7 +939,7 @@ Với năm điểm dữ liệu của Mục 2.4, tiêu chí thông dụng nhất 
 
 Do đó, chúng ta cần một lớp bài toán cho phép mục tiêu bậc hai, cùng hai cách kiểm soát độ lớn của tham số là phạt trong mục tiêu và chặn chuẩn trong ràng buộc.
 
-Đầu tiên, chúng ta định nghĩa quy hoạch bậc hai (quadratic programming, QP) và so sánh bốn tổ hợp sai số và hình phạt, sau đó định nghĩa quy hoạch bậc hai có ràng buộc bậc hai (quadratically constrained quadratic programming, QCQP).
+Đầu tiên, chúng ta định nghĩa quy hoạch bậc hai (quadratic programming, QP) và so sánh bốn tổ hợp sai số và số hạng phạt, sau đó định nghĩa quy hoạch bậc hai có ràng buộc bậc hai (quadratically constrained quadratic programming, QCQP).
 
 ### 3.1 Tổng bình phương phần dư
 
@@ -1095,9 +1095,9 @@ $$
 **Kiểm tra lại.** Điểm khả thi $(0,\tfrac35)$ cho $E=10+\tfrac{36}5=\tfrac{86}5=17{,}2>9{,}7$. Theo Mệnh đề 01.16, thêm ràng buộc làm giá trị tối ưu tăng từ $7{,}2$ lên $9{,}7$, không giảm.
 :::
 
-![Các đường đồng mức hình elip của E(a, b) bằng 10 (a trừ 1) bình phương cộng 5 (b trừ 0,6) bình phương cộng 7,2, có tâm chung tại nghiệm tự do (1; 0,6). Nửa mặt phẳng a nhỏ hơn hoặc bằng 0,5 được tô nhạt. Nghiệm có ràng buộc (0,5; 0,6) nằm trên biên a bằng 0,5, tại chỗ một elip tiếp xúc với biên.](img/lec-02/qp-geometry.svg)
+![Các đường mức hình elip của E(a, b) bằng 10 (a trừ 1) bình phương cộng 5 (b trừ 0,6) bình phương cộng 7,2, có tâm chung tại nghiệm tự do (1; 0,6). Nửa mặt phẳng a nhỏ hơn hoặc bằng 0,5 được tô nhạt. Nghiệm có ràng buộc (0,5; 0,6) nằm trên biên a bằng 0,5, tại chỗ một elip tiếp xúc với biên.](img/lec-02/qp-geometry.svg)
 
-Trên hình, nghiệm có ràng buộc là tiếp điểm giữa miền và elip đồng mức có giá trị $E$ nhỏ nhất còn giao với miền.
+Trên hình, nghiệm có ràng buộc là điểm tiếp xúc giữa miền và đường mức elip có giá trị $E$ nhỏ nhất còn giao với miền.
 
 Tại đó, gradient $(-10,0)$ vuông góc với biên $a=\tfrac12$ và $-\nabla E$ chỉ ra ngoài miền, nên không dịch chuyển khả thi nào làm $E$ giảm theo xấp xỉ bậc nhất. Đó là nội dung hình học của điều kiện (1.2).
 
@@ -1107,13 +1107,13 @@ So với Mệnh đề 01.6 của Bài 01, vốn không cho ràng buộc, Mệnh 
 Nhầm lẫn thường gặp là suy ra có nghiệm chỉ từ $P\succeq0$; phản ví dụ ở phần Phạm vi.
 :::
 
-### 3.3 Chính quy hóa: bốn tổ hợp sai số và hình phạt
+### 3.3 Chính quy hóa: bốn tổ hợp sai số và số hạng phạt
 
 Khi có nhiều đặc trưng và ít mẫu, hệ số bình phương nhỏ nhất có thể lớn, thay đổi mạnh theo dữ liệu, hoặc không duy nhất (Mệnh đề 01.6 của Bài 01). Một cách kiểm soát hiện tượng này là cộng vào mục tiêu một số hạng phạt độ lớn của $w$, thường là $\lVert w\rVert_1=\lvert a\rvert+\lvert b\rvert$ hoặc $\lVert w\rVert_2^2=a^2+b^2$.
 
 ![Mặt phẳng (a, b) với hai trục cùng tỷ lệ. Hình thoi là tập trị tuyệt đối của a cộng trị tuyệt đối của b bằng 0,8, có bốn đỉnh nằm trên hai trục. Đường tròn là tập a bình phương cộng b bình phương bằng 0,64, bán kính 0,8.](img/lec-02/qp-penalties.svg)
 
-Về mặt hình học, tập mức của $\lVert w\rVert_1$ trên hình có đỉnh nằm trên các trục, nên khi một elip đồng mức của sai số tiếp xúc với hình thoi, tiếp điểm thường là một đỉnh, nơi một tọa độ bằng $0$. Trong khi đó, tập mức của $\lVert w\rVert_2^2$ tròn đều, nên tiếp điểm nói chung có mọi tọa độ khác $0$. Nhận xét này mới là trực giác, chưa phải chứng minh.
+Về mặt hình học, tập mức của $\lVert w\rVert_1$ trên hình có đỉnh nằm trên các trục, nên khi một đường mức elip của sai số tiếp xúc với hình thoi, điểm tiếp xúc thường là một đỉnh, nơi một tọa độ bằng $0$. Trong khi đó, tập mức của $\lVert w\rVert_2^2$ tròn đều, nên điểm tiếp xúc nói chung có mọi tọa độ khác $0$. Nhận xét này mới là trực giác, chưa phải chứng minh.
 
 Do đó, chính quy hóa chuẩn một có xu hướng cho hệ số bằng $0$, còn chính quy hóa bậc hai chỉ thu nhỏ hệ số. Ví dụ sau kiểm tra trực giác này trên một hệ số.
 
@@ -1132,7 +1132,7 @@ Do đó, chính quy hóa chuẩn một có xu hướng cho hệ số bằng $0$,
 **Diễn giải.** Hai phép phạt cùng làm $b$ dịch về $0$; chỉ phép phạt trị tuyệt đối đặt $b$ bằng đúng $0$, từ $\lambda=6$.
 :::
 
-Bài toán tổng quát, với hai lựa chọn cho sai số và hai cho hình phạt, được phát biểu theo định nghĩa sau.
+Bài toán tổng quát, với hai lựa chọn cho sai số và hai cho số hạng phạt, được phát biểu theo định nghĩa sau.
 
 ::: definition Định nghĩa 02.20 (Bài toán hồi quy có chính quy hóa)
 Cho $X\in\mathbb R^{N\times d}$, $y\in\mathbb R^N$, $r=Xw-y$ và $\lambda\ge0$. Bài toán hồi quy có chính quy hóa là
@@ -1141,9 +1141,9 @@ $$
 \underset{w\in\mathbb R^d}{\operatorname{minimize}}\quad L(w)+\lambda R(w),
 $$
 
-với hàm sai số $L(w)\in\{\lVert r\rVert_1,\ \lVert r\rVert_2^2\}$ và hình phạt $R(w)\in\{\lVert w\rVert_1,\ \lVert w\rVert_2^2\}$.
+với hàm sai số $L(w)\in\{\lVert r\rVert_1,\ \lVert r\rVert_2^2\}$ và hàm phạt $R(w)\in\{\lVert w\rVert_1,\ \lVert w\rVert_2^2\}$.
 
-Bốn tổ hợp được ký hiệu $\ell_1+\ell_1$, $\ell_1+\ell_2^2$, $\ell_2^2+\ell_1$, $\ell_2^2+\ell_2^2$, theo thứ tự (sai số, hình phạt). Tổ hợp $\ell_2^2+\ell_1$ là LASSO (least absolute shrinkage and selection operator); tổ hợp $\ell_2^2+\ell_2^2$ là hồi quy ridge (chính quy hóa Tikhonov).
+Bốn tổ hợp được ký hiệu $\ell_1+\ell_1$, $\ell_1+\ell_2^2$, $\ell_2^2+\ell_1$, $\ell_2^2+\ell_2^2$, theo thứ tự (sai số, số hạng phạt). Tổ hợp $\ell_2^2+\ell_1$ là LASSO (least absolute shrinkage and selection operator); tổ hợp $\ell_2^2+\ell_2^2$ là hồi quy ridge (chính quy hóa Tikhonov).
 :::
 
 Trong định nghĩa trên, $\lambda$ là dữ liệu do người lập mô hình chọn, và $\lambda=0$ cho lại bài toán không chính quy hóa.
@@ -1161,7 +1161,7 @@ Bốn tổ hợp được phân lớp và chứng nhận nghiệm theo mệnh đ
 
 - (a) Sau khi thêm biến phụ theo Định lý 02.15 cho mỗi hạng chuẩn một, tổ hợp $\ell_1+\ell_1$ là quy hoạch tuyến tính, ba tổ hợp còn lại là quy hoạch bậc hai; tổ hợp $\ell_2^2+\ell_2^2$ không cần biến phụ và có $P=2(X^TX+\lambda I_d)\succ0$.
 - (b) Cả bốn bài toán có nghiệm.
-- (c) Hai tổ hợp có hình phạt $\ell_2^2$ có đúng một nghiệm; tổ hợp $\ell_2^2+\ell_1$ có đúng một nghiệm nếu $\operatorname{rank}X=d$.
+- (c) Hai tổ hợp có số hạng phạt $\ell_2^2$ có đúng một nghiệm; tổ hợp $\ell_2^2+\ell_1$ có đúng một nghiệm nếu $\operatorname{rank}X=d$.
 
 **Điều kiện áp dụng.** $\lambda>0$ dùng cho (b) và (c).
 
@@ -1178,7 +1178,7 @@ Bốn tổ hợp được phân lớp và chứng nhận nghiệm theo mệnh đ
 - Với $\ell_2^2+\ell_1$, $f(w)=\lVert Xw-y\rVert_2^2$, và ma trận bậc hai theo $(w,v)$ là $\operatorname{diag}(2X^TX,0)\succeq0$.
 - Với $\ell_2^2+\ell_2^2$, khai triển cho $w^T(X^TX+\lambda I)w-2y^TXw+y^Ty$, nên $P=2(X^TX+\lambda I)$. Ngoài ra $v^T(X^TX+\lambda I)v=\lVert Xv\rVert_2^2+\lambda\lVert v\rVert_2^2>0$ khi $v\ne0$, nên $P\succ0$.
 
-**Bước 3 (phần (b): tồn tại).** Mục tiêu liên tục trên $\mathbb R^d$ và không nhỏ hơn $\lambda R(w)$, vì $L\ge0$. Hình phạt là hàm cưỡng bức, do $\lVert w\rVert_2^2\to\infty$ khi $\lVert w\rVert_2\to\infty$ và $\lVert w\rVert_1\ge\lVert w\rVert_2$. Bất đẳng thức thứ hai đúng vì
+**Bước 3 (phần (b): tồn tại).** Mục tiêu liên tục trên $\mathbb R^d$ và không nhỏ hơn $\lambda R(w)$, vì $L\ge0$. Hàm phạt $R$ là hàm cưỡng bức, do $\lVert w\rVert_2^2\to\infty$ khi $\lVert w\rVert_2\to\infty$ và $\lVert w\rVert_1\ge\lVert w\rVert_2$. Bất đẳng thức thứ hai đúng vì
 
 $$
 \lVert w\rVert_1^2=\sum_jw_j^2+\sum_{j\ne k}\lvert w_j\rvert\lvert w_k\rvert\ge\lVert w\rVert_2^2 .
@@ -1194,7 +1194,7 @@ Vậy mục tiêu cưỡng bức, và Định lý 01.38 với $C=\mathbb R^d$ ch
 Trong các trường hợp này, Định lý 01.35 cho nhiều nhất một nghiệm, và (b) cho ít nhất một. $\square$
 :::
 
-Mệnh đề 02.21 mở rộng Mệnh đề 02.18 theo hai hướng: mục tiêu được chứa hạng không khả vi (nhờ Định lý 02.15), và sự tồn tại đến từ tính cưỡng bức của hình phạt thay cho $P\succ0$.
+Mệnh đề 02.21 mở rộng Mệnh đề 02.18 theo hai hướng: mục tiêu được chứa hạng không khả vi (nhờ Định lý 02.15), và sự tồn tại đến từ tính cưỡng bức của số hạng phạt thay cho $P\succ0$.
 
 Tuy nhiên, phần (c) chỉ cho tính duy nhất với ba tổ hợp. Chẳng hạn, với $\ell_2^2+\ell_1$, khi hai cột của $X$ trùng nhau, có thể chia hệ số cùng dấu giữa hai cột theo vô số cách mà không đổi sai số lẫn $\lVert w\rVert_1$.
 
@@ -1366,13 +1366,13 @@ Hình trên cho thấy chỉ đường $\ell_1+\ell_1$ đi qua đúng bốn đi�
 
 ::: remark Nhận xét 02.23 (Ba nhầm lẫn về chính quy hóa)
 1. Coi chính quy hóa là một phép biến đổi bài toán (xem Nhận xét 02.7).
-2. Cho rằng hình phạt chuẩn một luôn làm hệ số bằng $0$: với $\lambda=4$, Ví dụ 02.16 cho cả hai hệ số khác $0$; Bổ đề 02.22 cho đúng ngưỡng.
+2. Cho rằng số hạng phạt chuẩn một luôn làm hệ số bằng $0$: với $\lambda=4$, Ví dụ 02.16 cho cả hai hệ số khác $0$; Bổ đề 02.22 cho đúng ngưỡng.
 3. Bỏ qua thang đo: đổi đơn vị một đặc trưng từ mét sang centimét chia hệ số của nó cho $100$ và đổi kết quả chọn đặc trưng của LASSO, nên đặc trưng thường được chuẩn hóa trước.
 :::
 
 ### 3.4 Chặn độ lớn hệ số và quy hoạch bậc hai có ràng buộc bậc hai
 
-Hình phạt $\lambda\lVert w\rVert_2^2$ ở Mục 3.3 làm tăng giá trị mục tiêu khi hệ số lớn nhưng không loại các hệ số đó. Trong khi đó, yêu cầu chuẩn hệ số không vượt một mức cố định, chẳng hạn để chạy trên phần cứng có biên độ số giới hạn, là một ràng buộc cứng. Trên dữ liệu chung, ràng buộc chặn chuẩn $\lVert w\rVert_2^2\le\tfrac{29}{100}$ loại nghiệm bình phương nhỏ nhất, vốn có $\lVert w\rVert_2^2=\tfrac{34}{25}$.
+Số hạng phạt $\lambda\lVert w\rVert_2^2$ ở Mục 3.3 làm tăng giá trị mục tiêu khi hệ số lớn nhưng không loại các hệ số đó. Trong khi đó, yêu cầu chuẩn hệ số không vượt một mức cố định, chẳng hạn để chạy trên phần cứng có biên độ số giới hạn, là một ràng buộc cứng. Trên dữ liệu chung, ràng buộc chặn chuẩn $\lVert w\rVert_2^2\le\tfrac{29}{100}$ loại nghiệm bình phương nhỏ nhất, vốn có $\lVert w\rVert_2^2=\tfrac{34}{25}$.
 
 Về mặt hình học, tập $\{w\mid\lVert w\rVert_2^2\le R^2\}$ là hình tròn, lồi, nên chúng ta cần một lớp bài toán cho phép ràng buộc bậc hai lồi. Nhận xét này mới là trực giác, chưa phải định nghĩa. Lớp đó được định nghĩa như sau.
 
@@ -1419,9 +1419,9 @@ $$
 nên $f_i(x)\le0$ kéo theo $\lVert x\rVert_2$ bị chặn. Tập khả thi đóng vì các $f_i$ liên tục. $\square$
 :::
 
-Hình phạt của Mục 3.3 và ràng buộc chặn độ lớn hệ số liên hệ với nhau theo mệnh đề sau, và mệnh đề này không cần tính lồi.
+Số hạng phạt của Mục 3.3 và ràng buộc chặn độ lớn hệ số liên hệ với nhau theo mệnh đề sau, và mệnh đề này không cần tính lồi.
 
-::: proposition Mệnh đề 02.26 (Nghiệm của bài toán có phạt là nghiệm của bài toán có ràng buộc chuẩn)
+::: proposition Mệnh đề 02.26 (Nghiệm của bài toán có phạt là nghiệm của bài toán có ràng buộc chặn chuẩn)
 **Giả thiết.** $L,R:\mathbb R^d\to\mathbb R$ tùy ý, $\lambda\ge0$, và $w_\lambda$ là một nghiệm của $\min_w L(w)+\lambda R(w)$.
 
 **Kết luận.** $w_\lambda$ là nghiệm của $\min_wL(w)$ với ràng buộc $R(w)\le R(w_\lambda)$.
@@ -1448,7 +1448,7 @@ trong đó bất đẳng thức cuối dùng $\lambda\ge0$ và $R(w_\lambda)-R(w
 
 **Lập mô hình.** Bài toán $\min_wE(w)$ với $\lVert w\rVert_2^2\le\tfrac{29}{100}$ là QCQP với $P_0=2X^TX=\operatorname{diag}(20,10)$, $q_0=(-20,-6)$, $s_0=19$, $P_1=2I$, $q_1=0$, $s_1=-\tfrac{29}{100}$. Mọi $P_i\succ0$, nên bài toán lồi và có nghiệm (Mệnh đề 02.25).
 
-**Chứng nhận.** Theo Ví dụ 02.17, $w_{10}=(\tfrac12,\tfrac15)$ là nghiệm của bài toán có phạt với $\lambda=10$, và $\lVert w_{10}\rVert_2^2=\tfrac14+\tfrac1{25}=\tfrac{29}{100}$. Mệnh đề 02.26 với $L=E$, $R=\lVert\cdot\rVert_2^2$ cho $w^*=(\tfrac12,\tfrac15)$ là nghiệm của bài toán có ràng buộc chuẩn, với $E(w^*)=\tfrac{21}2$. Nghiệm duy nhất vì $E$ lồi chặt.
+**Chứng nhận.** Theo Ví dụ 02.17, $w_{10}=(\tfrac12,\tfrac15)$ là nghiệm của bài toán có phạt với $\lambda=10$, và $\lVert w_{10}\rVert_2^2=\tfrac14+\tfrac1{25}=\tfrac{29}{100}$. Mệnh đề 02.26 với $L=E$, $R=\lVert\cdot\rVert_2^2$ cho $w^*=(\tfrac12,\tfrac15)$ là nghiệm của bài toán có ràng buộc chặn chuẩn, với $E(w^*)=\tfrac{21}2$. Nghiệm duy nhất vì $E$ lồi chặt.
 
 **Kiểm tra lại bằng (1.2).** $\nabla E(w^*)=(20(\tfrac12-1),\ 10(\tfrac15-\tfrac35))=(-10,-4)$. Với mọi $w$ khả thi,
 
@@ -1461,14 +1461,14 @@ vì bất đẳng thức Cauchy–Schwarz cho $10a+4b\le\sqrt{116}\cdot\sqrt{0{,
 **Kiểm tra một điểm biên.** Điểm $(\sqrt{0{,}29},0)\approx(0{,}5385;0)$ cho $E\approx10\cdot0{,}2130+1{,}8+7{,}2=11{,}13>10{,}5$.
 :::
 
-![Mặt phẳng (a, b) với hai trục cùng tỷ lệ. Hình tròn tâm gốc, a bình phương cộng b bình phương nhỏ hơn hoặc bằng 0,29, là miền khả thi. Nghiệm tự do (1; 0,6) nằm ngoài hình tròn. Đường đồng mức E bằng 10,5 tiếp xúc hình tròn tại điểm (0,5; 0,2), là nghiệm tối ưu.](img/lec-02/qp-bound.svg)
+![Mặt phẳng (a, b) với hai trục cùng tỷ lệ. Hình tròn tâm gốc, a bình phương cộng b bình phương nhỏ hơn hoặc bằng 0,29, là miền khả thi. Nghiệm tự do (1; 0,6) nằm ngoài hình tròn. Đường mức E bằng 10,5 tiếp xúc hình tròn tại điểm (0,5; 0,2), là nghiệm tối ưu.](img/lec-02/qp-bound.svg)
 
-Nghiệm nằm trên biên của hình tròn, tại chỗ elip đồng mức $E=10{,}5$ tiếp xúc biên.
+Nghiệm nằm trên biên của hình tròn, tại chỗ đường mức elip $E=10{,}5$ tiếp xúc biên.
 
 Bán kính được chọn bằng chuẩn của nghiệm ridge với $\lambda=10$ để có thể chứng nhận bằng Mệnh đề 02.26. Với một bán kính tùy ý, $\lambda$ tương ứng là nhân tử của ràng buộc chặn chuẩn (Mệnh đề 03.34) và được tìm bằng phép chia đôi ở Thuật toán 03.1 của Bài 03.
 
-::: remark Nhận xét 02.27 (Hình phạt, ràng buộc chặn chuẩn và các biến thể không lồi)
-**Phạt và ràng buộc chặn chuẩn.** Hình phạt $\lambda$ là giá của độ lớn, mức chặn $R^2$ là giới hạn cứng. Khi $R^2\ge\tfrac{34}{25}$, nghiệm bình phương nhỏ nhất khả thi nên là nghiệm của bài toán có ràng buộc chuẩn (Mệnh đề 01.16(b)).
+::: remark Nhận xét 02.27 (Số hạng phạt, ràng buộc chặn chuẩn và các biến thể không lồi)
+**Phạt và ràng buộc chặn chuẩn.** Hệ số phạt $\lambda$ là giá của độ lớn, mức chặn $R^2$ là giới hạn cứng. Khi $R^2\ge\tfrac{34}{25}$, nghiệm bình phương nhỏ nhất khả thi nên là nghiệm của bài toán có ràng buộc chặn chuẩn (Mệnh đề 01.16(b)).
 
 **Đổi chiều ràng buộc.** Đổi chiều thành $\lVert w\rVert_2^2\ge R^2$ cho phần ngoài hình tròn, không lồi: $(R,0)$ và $(-R,0)$ khả thi mà trung điểm $0$ thì không.
 
@@ -1477,7 +1477,7 @@ Bán kính được chọn bằng chuẩn của nghiệm ridge với $\lambda=10
 
 **Trong học máy.** QCQP xuất hiện khi tham số bị giới hạn chuẩn, chẳng hạn chuẩn của vector trọng số đi vào mỗi nơ-ron. Nó cũng xuất hiện trong bài toán con miền tin cậy (trust region) của các phương pháp bậc hai: cực tiểu một mô hình bậc hai trên quả cầu $\lVert d\rVert_2\le\Delta$ (Bài 06c).
 
-Bài toán con này lồi khi Hessian của mô hình nửa xác định dương, và không lồi khi Hessian có giá trị riêng âm, trường hợp thường gặp với mạng sâu. Trong cả hai trường hợp, Mệnh đề 02.26 liên hệ hình phạt với ràng buộc chặn chuẩn theo một chiều.
+Bài toán con này lồi khi Hessian của mô hình nửa xác định dương, và không lồi khi Hessian có giá trị riêng âm, trường hợp thường gặp với mạng sâu. Trong cả hai trường hợp, Mệnh đề 02.26 liên hệ số hạng phạt với ràng buộc chặn chuẩn theo một chiều.
 
 ::: exercise Bài tập 02.5
 Cho ba quan sát $u=(-1,0,1)$, $y=(0,1,5)$, mô hình $\hat y=au+b$, $X$ với hàng $(u_i,1)$ và $E(w)=\lVert Xw-y\rVert_2^2$.
@@ -1865,7 +1865,7 @@ $$
 nên $S\ge24$, dấu bằng khi $ab=ac=bc$, tức $a=b=c=2$. Hộp $(1,2,4)$ cho $28>24$.
 :::
 
-![Mặt phẳng tọa độ log, trục hoành A bằng ln a, trục tung B bằng ln b, sau khi thay C bằng ln 8 trừ A trừ B. Các đường đồng mức của log diện tích là các đường cong khép kín lồng nhau quanh điểm (ln 2, ln 2), là nghiệm.](img/lec-02/gp-box-contour.svg)
+![Mặt phẳng tọa độ log, trục hoành A bằng ln a, trục tung B bằng ln b, sau khi thay C bằng ln 8 trừ A trừ B. Các đường mức của log diện tích là các đường cong khép kín lồng nhau quanh điểm (ln 2, ln 2), là nghiệm.](img/lec-02/gp-box-contour.svg)
 
 Trong tọa độ logarit trên hình, với trục $A$, $B$ là $z_a$, $z_b$ của Ví dụ 02.20, các tập mức dưới của $\Phi$ là các tập lồi lồng nhau quanh $(\log2,\log2)$, đúng với Mệnh đề 01.25.
 
@@ -1885,7 +1885,7 @@ Bài toán thiết kế thứ hai của mục đến từ truyền thông vô tu
 
 Dữ liệu của bài toán, đọc từ hình, gồm:
 
-- hệ số truyền từ bộ phát $j$ tới bộ thu $i$: $\eta_{11}=\eta_{22}=1$, $\eta_{12}=\tfrac14$, $\eta_{21}=\tfrac32$;
+- độ lợi đường truyền (path gain) từ bộ phát $j$ tới bộ thu $i$: $\eta_{11}=\eta_{22}=1$, $\eta_{12}=\tfrac14$, $\eta_{21}=\tfrac32$;
 - tạp âm nền $\nu_1=\nu_2=1$;
 - ngân sách tổng công suất $6$.
 
@@ -2245,7 +2245,7 @@ $$
 còn tổng bản lề lồi theo $(w,b)$ cho bất đẳng thức không chặt cùng chiều. Cộng lại, $J$ tại trung điểm nhỏ hơn $\tfrac12p^*+\tfrac12p^*=p^*$, mâu thuẫn. $\square$
 :::
 
-Mệnh đề 02.39 tương tự về cấu trúc với Mệnh đề 02.21, nhưng hình phạt chỉ đặt lên $w$. Do đó, chứng minh tồn tại dùng thêm giả thiết hai nhãn để chặn $b$, và tính duy nhất chỉ còn cho $w$.
+Mệnh đề 02.39 tương tự về cấu trúc với Mệnh đề 02.21, nhưng số hạng phạt chỉ đặt lên $w$. Do đó, chứng minh tồn tại dùng thêm giả thiết hai nhãn để chặn $b$, và tính duy nhất chỉ còn cho $w$.
 
 Khi $\lambda=0$, quy hoạch bậc hai suy biến thành quy hoạch tuyến tính của Mệnh đề 02.36(c).
 
@@ -2375,9 +2375,9 @@ Bảng sau phân biệt bốn phép xử lý của chương theo quan hệ giữ
 
 | Phép xử lý | Quan hệ với bài toán gốc | Việc phải làm sau khi giải |
 |---|---|---|
-| Biến đổi tương đương (Định nghĩa 02.5): biến phụ, biến dư, đổi biến logarit | ánh xạ $\psi$ cho bằng công thức chuyển mọi nghiệm thành nghiệm gốc (Nhận xét 02.7) | áp dụng $\psi$ |
-| Thay mất mát (Định nghĩa 02.35): số lỗi thành bản lề | chỉ có $\operatorname{err}\le H$; nghiệm nói chung không là nghiệm gốc (Ví dụ 02.25) | đo lại mục tiêu gốc tại nghiệm |
-| Thay ràng buộc bằng hình phạt (Mục 3.3, 6.2): ràng buộc chặn chuẩn hay giới hạn số đặc trưng thành số hạng phạt | từ hình phạt chỉ suy ra một mức chặn (Mệnh đề 02.26); ràng buộc gốc có thể bị vi phạm (Ví dụ 02.29) | kiểm tra lại ràng buộc gốc |
+| Biến đổi tương đương (Định nghĩa 02.5): biến phụ, biến bù, đổi biến logarit | ánh xạ $\psi$ cho bằng công thức chuyển mọi nghiệm thành nghiệm của bài toán gốc (Nhận xét 02.7) | áp dụng $\psi$ |
+| Thay mất mát (Định nghĩa 02.35): số lỗi thành bản lề | chỉ có $\operatorname{err}\le H$; nghiệm nói chung không là nghiệm của bài toán gốc (Ví dụ 02.25) | đo lại mục tiêu gốc tại nghiệm |
+| Thay ràng buộc bằng số hạng phạt (Mục 3.3, 6.2): ràng buộc chặn chuẩn hay giới hạn số đặc trưng thành số hạng phạt | từ số hạng phạt chỉ suy ra một mức chặn (Mệnh đề 02.26); ràng buộc gốc có thể bị vi phạm (Ví dụ 02.29) | kiểm tra lại ràng buộc gốc |
 | Nới lỏng (Định nghĩa 02.41): nhị phân thành khoảng | mục tiêu giữ nguyên, miền mở rộng; giá trị chỉ cho cận | khôi phục phương án khả thi, ghép cận |
 
 Ba nhầm lẫn thường gặp:
@@ -2504,8 +2504,8 @@ Quy trình đã dùng trong các ví dụ được viết lại thành thuật t
 4. Nếu mục tiêu chứa tổng hoặc cực đại của hàm affine với hệ số không âm, thêm biến phụ theo Định lý 02.15.
 5. Nếu mọi biến dương và các hàm là đơn thức hoặc tổng đơn thức dương, chuẩn hóa theo Mệnh đề 02.30 và đổi biến theo Định lý 02.33.
 6. Nhận dạng lớp bằng bảng trên; kiểm tra tồn tại và duy nhất (Mệnh đề 02.18, 02.21, Định lý 01.36, 01.38).
-7. Nếu bước 2 đến bước 5 không cho dạng lồi, chọn một trong ba phép đổi bài toán của Nhận xét 02.43: thay mất mát bằng hàm thay thế lồi (Định nghĩa 02.35); thay ràng buộc bằng hình phạt (Mục 3.3, 6.2); hoặc nới lỏng miền (Định nghĩa 02.41). Ghi rõ bảo đảm của phép đã chọn (Mệnh đề 02.36, 02.26 hoặc 02.42).
-8. Sau khi giải: với biến đổi tương đương, áp dụng $\psi$ để lấy nghiệm gốc; với hàm thay thế, tính lại mục tiêu gốc tại nghiệm; với hình phạt, kiểm tra lại ràng buộc gốc; với nới lỏng, khôi phục một phương án khả thi và ghép cận theo Mệnh đề 02.42(d).
+7. Nếu bước 2 đến bước 5 không cho dạng lồi, chọn một trong ba phép đổi bài toán của Nhận xét 02.43: thay mất mát bằng hàm thay thế lồi (Định nghĩa 02.35); thay ràng buộc bằng số hạng phạt (Mục 3.3, 6.2); hoặc nới lỏng miền (Định nghĩa 02.41). Ghi rõ bảo đảm của phép đã chọn (Mệnh đề 02.36, 02.26 hoặc 02.42).
+8. Sau khi giải: với biến đổi tương đương, áp dụng $\psi$ để lấy nghiệm của bài toán gốc; với hàm thay thế, tính lại mục tiêu gốc tại nghiệm; với số hạng phạt, kiểm tra lại ràng buộc gốc; với nới lỏng, khôi phục một phương án khả thi và ghép cận theo Mệnh đề 02.42(d).
 
 **Điều kiện dừng.** Quy trình dừng sau bước 8; hoặc ở bước 7 nếu không có hàm thay thế hay nới lỏng nào chấp nhận được với người dùng mô hình.
 
@@ -2574,16 +2574,16 @@ Trường hợp $d=2$, $k=1$ của Mệnh đề 02.45 được vẽ trên hình.
 
 Cách giải trực tiếp là liệt kê mọi tập chỉ số có tối đa $k$ phần tử và giải bài toán lồi trên mỗi tập. Tuy nhiên, số bài toán con $\sum_{j=0}^k\binom dj$ tăng nhanh, chẳng hạn $\binom{100}{5}\approx7{,}5\cdot10^7$.
 
-Ngoài cách tiếp cận trên, theo bước 7 của Thuật toán 02.1, ta có thể thay ràng buộc đếm bằng hình phạt chuẩn một. Hình phạt này lồi và có xu hướng cho hệ số bằng $0$ (Mục 3.3). Ta được bài toán
+Ngoài cách tiếp cận trên, theo bước 7 của Thuật toán 02.1, ta có thể thay ràng buộc đếm bằng số hạng phạt chuẩn một. Số hạng phạt này lồi và có xu hướng cho hệ số bằng $0$ (Mục 3.3). Ta được bài toán
 
 $$
 \underset{w,b}{\operatorname{minimize}}\quad H(w,b)+\lambda\lVert w\rVert_1 .
 \tag{6.2}
 $$
 
-Theo Định lý 02.15, (6.2) là quy hoạch tuyến tính với biến $(w,b,\xi,v)$: $\min\mathbf 1^T\xi+\lambda\mathbf 1^Tv$ với $\xi_i\ge1-y_i(w^Tu_i+b)$, $\xi_i\ge0$, $-v\preceq w\preceq v$. Do đây là phép thay ràng buộc bằng hình phạt của Nhận xét 02.43, ta cần kiểm tra lại ràng buộc gốc tại nghiệm, như ví dụ sau cho thấy.
+Theo Định lý 02.15, (6.2) là quy hoạch tuyến tính với biến $(w,b,\xi,v)$: $\min\mathbf 1^T\xi+\lambda\mathbf 1^Tv$ với $\xi_i\ge1-y_i(w^Tu_i+b)$, $\xi_i\ge0$, $-v\preceq w\preceq v$. Do đây là phép thay ràng buộc bằng số hạng phạt của Nhận xét 02.43, ta cần kiểm tra lại ràng buộc gốc tại nghiệm, như ví dụ sau cho thấy.
 
-::: example Ví dụ 02.29 (Hình phạt chuẩn một không bảo đảm số đặc trưng)
+::: example Ví dụ 02.29 (Số hạng phạt chuẩn một không bảo đảm số đặc trưng)
 **Dữ kiện.** Bốn mẫu ở đầu Mục 6: $u_1=(1,0)$, $u_2=(-1,0)$, $u_3=(0,1)$, $u_4=(0,-1)$, nhãn $y=(+1,-1,+1,-1)$; $H(w,b)=\sum_{i=1}^4\max\bigl(0,1-y_i(w^Tu_i+b)\bigr)$. Bài toán (6.1) là $\min H(w,b)$ với $\lVert w\rVert_0\le k$, ở đây $k=1$; bài toán (6.2) là $\min_{w,b}H(w,b)+\lambda\lVert w\rVert_1$.
 
 Với bốn mẫu ở đầu mục và $\lambda=1$, ta chứng minh (6.2) có nghiệm duy nhất $w=(1,1)$, $b=0$, giá trị $2$.
@@ -2610,7 +2610,7 @@ Vậy $2\max(0,1-s)+\lvert s\rvert\ge1$, dấu bằng khi và chỉ khi $s=1$. M
 :::
 
 ::: remark Nhận xét 02.46 (Kiểm tra ràng buộc gốc sau khi thay thế)
-Ví dụ 02.29 bác bỏ mệnh đề "hình phạt chuẩn một với $\lambda>0$ bảo đảm số đặc trưng không vượt $k$". Hình phạt chỉ tạo xu hướng; số thành phần khác $0$ của nghiệm phải được đếm lại.
+Ví dụ 02.29 bác bỏ mệnh đề "số hạng phạt chuẩn một với $\lambda>0$ bảo đảm số đặc trưng không vượt $k$". Số hạng phạt chỉ tạo xu hướng; số thành phần khác $0$ của nghiệm phải được đếm lại.
 
 Nếu vượt $k$, có thể tăng $\lambda$, hoặc giữ $k$ đặc trưng có hệ số lớn nhất rồi giải lại; cả hai cách đều không bảo đảm tối ưu cho (6.1).
 
@@ -2709,7 +2709,7 @@ và dự đoán là $\hat y=0{,}25+1{,}5x_1$, tức $1{,}75$ cho hai lần chạ
 
 **Kiểm tra lại.** Với $\lambda=4$, đạo hàm của phần theo $w_1$ tại $1{,}5$ là $8(1{,}5-2)+4=0$; các phần theo $w_2$, $w_3$ có $\lvert m\rvert\le\lambda/8=0{,}5$, nên bằng $0$. Nghiệm bình phương nhỏ nhất cho mục tiêu LASSO là $4\cdot2{,}75=11>8{,}25$.
 
-**Diễn giải.** Với $\lambda=4$, chỉ tăng cường dữ liệu được giữ: bật nó ước tính tăng $2\cdot1{,}5=3$ điểm phần trăm. Hai thiết lập còn lại có hiệu ứng nhỏ hơn ngưỡng $\lambda/8$ và bị đặt bằng $0$. Hiệu ứng được giữ cũng bị hình phạt thu nhỏ từ $2$ xuống $1{,}5$.
+**Diễn giải.** Với $\lambda=4$, chỉ tăng cường dữ liệu được giữ: bật nó ước tính tăng $2\cdot1{,}5=3$ điểm phần trăm. Hai thiết lập còn lại có hiệu ứng nhỏ hơn ngưỡng $\lambda/8$ và bị đặt bằng $0$. Hiệu ứng được giữ cũng bị số hạng phạt thu nhỏ từ $2$ xuống $1{,}5$.
 
 **Giới hạn.** Công thức đóng chỉ có nhờ thiết kế trực giao. Bốn lần chạy không đủ để chọn $\lambda$ bằng kiểm định chéo (cross-validation).
 
@@ -2842,7 +2842,7 @@ Chương này khởi đầu bằng dạng chuẩn của bài toán tối ưu l�
 
 - Mục 1: bài toán tối ưu lồi dạng chuẩn (Định nghĩa 02.1); tập khả thi của dạng chuẩn lồi (Mệnh đề 02.2); các bảo đảm của tính lồi (Hệ quả 02.3); biến đổi tương đương (Định nghĩa 02.5); biến đổi tương đương giữ nghiệm (Mệnh đề 02.6).
 - Mục 2: quy hoạch tuyến tính, dạng bất đẳng thức và dạng chuẩn (Định nghĩa 02.9); quy hoạch tuyến tính lồi và dạng chuẩn (Mệnh đề 02.10); cận dưới từ tổ hợp không âm các ràng buộc (Mệnh đề 02.11); hồi quy sai số tuyệt đối và hồi quy minimax (Định nghĩa 02.13); chặn trên một cực đại (Bổ đề 02.14) và biến đổi bằng biến phụ (Định lý 02.15).
-- Mục 3: quy hoạch bậc hai (Định nghĩa 02.17); tồn tại và duy nhất cho quy hoạch bậc hai (Mệnh đề 02.18); hồi quy có chính quy hóa, bốn tổ hợp (Định nghĩa 02.20); phân lớp bốn tổ hợp chính quy hóa (Mệnh đề 02.21); ngưỡng mềm (Bổ đề 02.22); QCQP (Định nghĩa 02.24); tính lồi của QCQP (Mệnh đề 02.25); từ hình phạt tới ràng buộc chặn chuẩn (Mệnh đề 02.26).
+- Mục 3: quy hoạch bậc hai (Định nghĩa 02.17); tồn tại và duy nhất cho quy hoạch bậc hai (Mệnh đề 02.18); hồi quy có chính quy hóa, bốn tổ hợp (Định nghĩa 02.20); phân lớp bốn tổ hợp chính quy hóa (Mệnh đề 02.21); ngưỡng mềm (Bổ đề 02.22); QCQP (Định nghĩa 02.24); tính lồi của QCQP (Mệnh đề 02.25); từ số hạng phạt tới ràng buộc chặn chuẩn (Mệnh đề 02.26).
 - Mục 4: đơn thức và tổng đơn thức dương (Định nghĩa 02.28); quy hoạch hình học (Định nghĩa 02.29); quy tắc chuẩn hóa quy hoạch hình học (Mệnh đề 02.30); đổi biến logarit (Bổ đề 02.31); hàm log-sum-exp lồi (Định lý 02.32); dạng lồi của quy hoạch hình học (Định lý 02.33).
 - Mục 5: hàm thay thế lồi và mất mát bản lề (Định nghĩa 02.35); bảo đảm của hàm thay thế (Mệnh đề 02.36); máy vector hỗ trợ lề mềm (Định nghĩa 02.38); máy vector hỗ trợ là quy hoạch bậc hai (Mệnh đề 02.39); nới lỏng (Định nghĩa 02.41); cận từ nới lỏng (Mệnh đề 02.42).
 - Mục 6: quy trình nhận dạng (Thuật toán 02.1); ràng buộc số đặc trưng (Định nghĩa 02.44); miền giới hạn số đặc trưng không lồi (Mệnh đề 02.45).
@@ -2884,7 +2884,7 @@ Các dòng lần lượt là:
 - Biến phụ chỉ dùng cho bài toán cực tiểu với hệ số không âm (Nhận xét 02.16).
 - Quy hoạch bậc hai và QCQP cần mọi $P_i\succeq0$.
 - Quy hoạch hình học cần biến và hệ số dương (Nhận xét 02.34).
-- Thay mất mát, thay ràng buộc bằng hình phạt và nới lỏng đều đổi bài toán (Nhận xét 02.43).
+- Thay mất mát, thay ràng buộc bằng số hạng phạt và nới lỏng đều đổi bài toán (Nhận xét 02.43).
 
 **Giới hạn còn lại và bài sau.** Nghiệm trong chương được chứng nhận bằng lập luận riêng cho từng ví dụ: tổ hợp không âm các ràng buộc, điều kiện (1.2), bất đẳng thức trung bình cộng – trung bình nhân. Hai câu hỏi còn mở:
 
@@ -3010,7 +3010,7 @@ Với dữ liệu của Tình huống 02.1:
 
 (a) xác định các khoảng của $\lambda>0$ ứng với mô hình giữ lại $3$, $2$, $1$ và $0$ thiết lập;
 
-(b) giải hồi quy ridge (hình phạt $\lambda\lVert w\rVert_2^2$, hệ số chặn không phạt) với $\lambda=4$ và so sánh số hệ số khác $0$ với LASSO cùng $\lambda$.
+(b) giải hồi quy ridge (số hạng phạt $\lambda\lVert w\rVert_2^2$, hệ số chặn không phạt) với $\lambda=4$ và so sánh số hệ số khác $0$ với LASSO cùng $\lambda$.
 :::
 
 ::: hint
@@ -3027,7 +3027,7 @@ Theo Tình huống 02.1, $w_j=\max(c_j-\lambda/8,0)$ với $c=(2,\tfrac12,\tfrac
 
 **(b) Ridge.** Đạo hàm $8(w_j-c_j)+2\lambda w_j=0$ cho $w_j=\tfrac{4c_j}{4+\lambda}=\tfrac{c_j}2$ khi $\lambda=4$: $w=(1;\ 0{,}25;\ 0{,}125)$, $b=\tfrac14$.
 
-**(b) So sánh.** Ridge thu nhỏ mọi hệ số theo cùng tỷ lệ và giữ cả ba thiết lập; LASSO cùng $\lambda=4$ giữ một thiết lập. Hai mô hình có cùng $\lambda$ nhưng hình phạt khác nhau nên $\lambda$ không có cùng ý nghĩa.
+**(b) So sánh.** Ridge thu nhỏ mọi hệ số theo cùng tỷ lệ và giữ cả ba thiết lập; LASSO cùng $\lambda=4$ giữ một thiết lập. Hai mô hình có cùng $\lambda$ nhưng số hạng phạt khác nhau nên $\lambda$ không có cùng ý nghĩa.
 :::
 
 ### Mức vận dụng vào AI
@@ -3098,7 +3098,7 @@ cho $e^{2z}=\mathcal AK/\mathcal B$. Vậy $N_p^*=\sqrt{\mathcal AK/\mathcal B}$
 **(c)** $N_p^*=8$, $N_d^*=2$, giá trị $\tfrac48+\tfrac12=1$; chia đều cho $1+\tfrac14=1{,}25$.
 :::
 
-::: exercise Bài tập 02.17 (Vận dụng: tối thiểu hóa mất mát của nhóm chịu thiệt nhất)
+::: exercise Bài tập 02.17 (Vận dụng: cực tiểu hóa mất mát của nhóm chịu thiệt nhất)
 Hai mô hình phân loại có tỷ lệ lỗi trên nhóm người dùng A và B như sau: mô hình 1 có $0{,}2$ trên A và $0{,}6$ trên B; mô hình 2 có $0{,}5$ trên A và $0{,}1$ trên B (số liệu giả lập). Hệ thống chọn mô hình 1 với xác suất $\theta\in[0,1]$ cho mỗi yêu cầu, nên tỷ lệ lỗi kỳ vọng trên A là $0{,}5-0{,}3\theta$ và trên B là $0{,}1+0{,}5\theta$.
 
 (a) Viết bài toán cực tiểu theo $\theta$ của tỷ lệ lỗi lớn hơn trong hai nhóm thành quy hoạch tuyến tính.

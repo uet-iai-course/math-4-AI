@@ -1501,3 +1501,60 @@ Master đã tự chạy `density.py` (80 trang, chỉ S06-08 ở 79 dưới tr�
 **Quyết định của master:** chờ duyệt.
 
 Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12
+
+**Tác tử rà soát:** loại `general-purpose`, mô hình `claude-opus-5-5`, effort `high`; chỉ đọc, chế độ Detect của `no-ai-slop`; báo cáo 27 mục A (thuật ngữ, ký hiệu), 12 mục B (thứ tự định nghĩa), điều phối viên lưu nguyên văn.
+**Tác tử biên tập:** loại `general-purpose`, mô hình `claude-opus-5-5`, effort `high`; đã nạp `no-ai-slop` (chế độ Edit, tự đối chiếu `eval.md`); áp dụng `decisions-common.md` rồi `decisions-02.md`. Không commit, không chạy `sync-local-materials.py`.
+**Quyết định điều phối viên:** chấp nhận cả 39 mục (không mục nào bị bác bỏ).
+
+| # | mức độ | trang | vấn đề | quyết định điều phối viên | trạng thái | cách sửa |
+|---|---|---|---|---|---|---|
+| A1 | trung bình | S03 lead, S03-04b…S06-06 (37 lần) | "hình phạt" là từ nôm | chấp nhận | đã sửa | "số hạng phạt (penalty term)" lần đầu ở `S03-04b` ("Số hạng phạt (penalty term): $\lambda R(w)$, với $R(w)=\ldots$"), "hàm phạt" cho $R(w)$ (quyết định chung 2); tiêu đề `S06-06` "Thay bằng số hạng phạt chuẩn một"; storyboard, outline, `lecture-note.md` (31 chỗ), `exercises.md` (10), `qp-penalties.svg` |
+| A2 | trung bình | S06-03 | "quy tắc cấu tạo" chưa định nghĩa | chấp nhận | đã sửa | "phép toán bảo toàn tính lồi" (mặt trang, ghi chú; khớp Bài 01) |
+| A3 | trung bình | S02-05 | "LP" chưa giải thích | chấp nhận (theo B12) | đã sửa | "Định nghĩa. Quy hoạch tuyến tính (LP) là bài toán" ở `S02-03` |
+| A4 | trung bình | S04-07… | "GP" chưa giải thích | chấp nhận (theo B12) | đã sửa | "Định nghĩa. Quy hoạch hình học (GP) dạng chuẩn là bài toán" ở `S04-04` |
+| A5 | trung bình | S06 keys; ghi chú S01-02, S06-02, S06-08 | "dạng chuẩn" hai nghĩa | chấp nhận | đã sửa | "Bảng các lớp bài toán"; ghi chú ba trang; outline |
+| A6 | trung bình | S03 keys, S03-07, S06-07 | một ràng buộc nhiều tên | chấp nhận | đã sửa | "ràng buộc chặn chuẩn" cho $\|w\|_2^2\le R^2$ (S03 keys, ghi chú S01-02, S03, S03-07, S06-01; S03-09 câu 2); "ràng buộc đếm" cho $\|w\|_0\le k$ (S06-04 mặt trang và ghi chú, S06-06 ghi chú, S06-07 câu 1); "giới hạn cứng" về 0 trong deck |
+| A7 | trung bình | S03-04, S04-09, S03-07 | "đồng mức" | chấp nhận | đã sửa | "đường mức (level curve)" lần đầu ở chú thích `S03-04`; `alt`, ghi chú; SVG `qp-geometry`, `qp-bound`, `gp-box-contour`; `lecture-note.md` (6) |
+| A8 | trung bình | S02-07, S03-04e; ghi chú | "nghiệm gốc", "hàm gốc", "biến gốc" | chấp nhận | đã sửa | "nghiệm của bài toán gốc" (5), "hàm mục tiêu gốc" (3), "biến ban đầu" (8); học liệu cùng bài |
+| A9 | trung bình | S01-07 | "Thanh hai chiều" | chấp nhận | đã sửa | "Mũi tên hai đầu: $C=\mathbb R$"; `desc` SVG nội tuyến |
+| A10 | nhẹ | S06-06; 17 ghi chú | "vectơ" | chấp nhận | đã sửa | "vector" toàn deck (19), `exercises.md` (6), storyboard |
+| A11 | nhẹ | S02-06 | "tối thiểu hóa" | chấp nhận | đã sửa | "Cực tiểu hóa" (mặt trang, ghi chú; outline, học liệu) |
+| A12 | nhẹ | S04-07, S04-13 | hai tên log-sum-exp | chấp nhận | đã sửa | "logarit tổng hàm mũ (log-sum-exp)" ở ô kết luận `S04-07` và ghi chú `S04-06`; `S04-13` "logarit tổng hàm mũ nên lồi" |
+| A13 | nhẹ | S03-04e | "không trơn" chưa định nghĩa | chấp nhận | đã sửa | "không khả vi tại các điểm có $w_j=0$" (mặt trang, ghi chú) |
+| A14 | nhẹ | S04-11 | "yếu nhất"/"nhỏ nhất" | chấp nhận | đã sửa | "chất lượng nhỏ nhất" |
+| A15 | nhẹ | S06-02 | đổi tên, $h_j\to g_j$ | chấp nhận | đã sửa | "Dạng chuẩn GP", $h_j$ ở `S06-02`, `S06-08` |
+| A16 | nhẹ | S05-12, S06-08 | $p^*$ khác nghĩa $p^\star$ | chấp nhận | đã sửa | $J^\star$ (mặt trang S05-12, S06-08; ghi chú S05-12, S05-15, S06-08) |
+| A17 | nhẹ | S03-03, S03-08, S06-01 | $r_i$ vừa phần dư vừa hằng số | chấp nhận | đã sửa | $\rho_0,\rho_i$; không dùng $s_i$ vì trùng thành phần biến bù $s$ ở `S02-03b` (ghi chú có $s_1$) |
+| A18 | nhẹ | S05-02, S05-03, S05-10 | "biên" ba nghĩa | chấp nhận | đã sửa | `S05-02` mặt trang "Biên có dấu (signed margin, còn gọi là lề có dấu)"; `alt` S05-03 "điểm r=0"; ghi chú S05-10 "cùng cận", S05-02, S05-03 |
+| A19 | nhẹ | S02-03b, S02-06 | thiếu tiếng Anh | chấp nhận | đã sửa | ghi chú: standard form, free variable, slack variable, auxiliary variable |
+| A20 | nhẹ | S05-02, S05-03, S05-09 | thiếu tiếng Anh | chấp nhận | đã sửa | "(0–1 loss)" ghi chú S05-02; "(surrogate)" mặt trang và ghi chú S05-03; "(relaxation)" ghi chú S05-09 |
+| A21 | nhẹ | S03-02, S06-01, S01-04 | thiếu tiếng Anh | chấp nhận | đã sửa | gộp vào "Nhắc lại:" B3 (positive semidefinite), B5 (polyhedron), B6 (sublevel set) |
+| A22 | nhẹ | ghi chú S06-04 | "tập hỗ trợ" | chấp nhận | đã sửa | "giá (support) … của $w$"; outline, `exercises.md` |
+| A23 | nhẹ | ghi chú S05-01 | lớp dương/âm | chấp nhận | đã sửa | "lớp dương (positive class)", "lớp âm (negative class)"; mặt trang giữ "nhóm" |
+| A24 | nhẹ | S04-10 | path gain | chấp nhận | đã sửa | "độ lợi đường truyền (path gain)" (`alt`, ghi chú, `gp-wireless.svg`, `lecture-note.md`) |
+| A25 | nhẹ | S04-08 | "trở thành một mặt phẳng" | chấp nhận | đã sửa | "ràng buộc thể tích thành đẳng thức affine (một mặt phẳng)" |
+| A26 | nhẹ | ghi chú S01-06 | cụm nôm | chấp nhận | đã sửa | "bài toán cực tiểu trên một đoạn" |
+| A27 | nhẹ | ghi chú S02-03b, S03-04 | "cỡ", "tiếp điểm" | chấp nhận | đã sửa | "có kích thước", "điểm tiếp xúc" (cả `lecture-note.md`) |
+| B1 | nghiêm trọng | S01-06, S01-08, S02-07 | giá trị tối ưu, nghiệm tối ưu, $\inf$ chưa định nghĩa | chấp nhận | đã sửa | trang mới `S01-02b` (S01-03 đã 6 dòng): "Nhắc lại:" $p^\star=\inf_{x\in C}f_0(x)$, $x^\star$; `S01-08` viết $p^\star=\ldots$; tiêu đề "Tập lồi, hàm lồi và giá trị tối ưu" (gọi tên khái niệm theo `CLAUDE.md`, thay cụm "Nhắc lại từ Bài 01" của quyết định) |
+| B2 | trung bình | S01-03 | tập lồi, hàm lồi chỉ ở ghi chú | chấp nhận | đã sửa | hai định nghĩa trên `S01-02b` cùng B1; `S01-03` giữ nguyên mặt trang |
+| B3 | trung bình | S02-11, S03-02, S03-05 | $\succeq$, $\succ$ chưa nhắc | chấp nhận | đã sửa | `S03-02` "Nhắc lại:" nửa xác định dương và xác định dương; `S02-11` "(nửa xác định dương)" |
+| B4 | trung bình | S03-04b | chuẩn một chưa nêu | chấp nhận | đã sửa | "Ký hiệu:" $\|v\|_1$, $\|v\|_2^2$ |
+| B5 | trung bình | S02-03 | nửa không gian, siêu phẳng, đa diện | chấp nhận | đã sửa | "Nhắc lại:" với $a\ne0$; ô kết luận "Tập khả thi là đa diện nên lồi"; dòng "Biến…; dữ liệu…" bỏ (vượt 40), nội dung còn trong ghi chú |
+| B6 | trung bình | S01-04 | tập mức dưới chỉ ở lời giải cuối | chấp nhận | đã sửa | dòng cuối `S01-04` nêu tập mức dưới lồi |
+| B7 | trung bình | S05-03 | hàm thay thế chưa định nghĩa trên mặt trang | chấp nhận | đã sửa | "Định nghĩa." một dòng |
+| B8 | trung bình | S05-09, S05-13 | $F$, $R$ chưa nêu; $R$ trùng | chấp nhận | đã sửa | $R\to\tilde F$; thẻ "Bài toán gốc ($F$)", "Bài toán nới lỏng ($\tilde F$)", ô kết luận $F\subseteq\tilde F$; ghi chú S05-09, S05-12, S05-14, bảng S05-13. Nghiệm $x^R$ giữ chỉ số trên R (nhãn "nghiệm nới lỏng", không phải tên tập) |
+| B9 | nhẹ | S02-06 | $\mathbf 1$ | chấp nhận | đã sửa | "Ký hiệu: $\mathbf 1=(1,\ldots,1)\in\mathbb R^m$" (dạng ngắn để không chạm chân trang) |
+| B10 | nhẹ | S04-07 | $\gamma_j,\delta_j$ chưa nêu | chấp nhận | đã sửa | mệnh đề nêu $\gamma_j^Tz+\delta_j=\log h_j(e^z)$ |
+| B11 | nhẹ | S05-08 | "ràng buộc phủ" chưa gọi tên | chấp nhận | đã sửa | ô kết luận "… nên có ràng buộc phủ $x_1+x_3\ge1$"; không dùng "Ràng buộc phủ:" làm nhãn vì ngoài danh sách nhãn cho phép |
+| B12 | nhẹ | S02-03, S04-04 | LP, GP thiếu "Định nghĩa." | chấp nhận | đã sửa | như A3, A4 |
+| QĐ chung 12, 13 | — | S01-01b; ghi chú toàn deck | LLO/CLO viết tắt; nhãn "Đáp án:" | quyết định chung | đã sửa | "chuẩn đầu ra bài học (LLO)", "chuẩn đầu ra học phần (CLO)"; 9 nhãn "Đáp án:" → "Lời giải:" |
+
+**Học liệu cùng bài:** `lecture-note.md`: "hình phạt" → "số hạng phạt" (thêm "(penalty term)" ở lần đầu), "hàm phạt" cho $R(w)$, "đồng mức" → "đường mức", "biến dư (slack variable)" → "biến bù (slack variable)" ở định nghĩa dạng chuẩn, "biến dư (surplus variable)" giữ cho biến trừ ở ràng buộc $\ge$ (Ví dụ 02.6, lời giải bài máy thuê), "ràng buộc … chặt" → "ràng buộc hoạt động" (quyết định chung 4), "ràng buộc chuẩn" → "ràng buộc chặn chuẩn", "tiếp điểm", "hệ số truyền", "nghiệm gốc", "biến gốc", "tối thiểu hóa". `exercises.md`: cùng các từ, "vectơ" → "vector", "tập mức" → "tập mức dưới" ở ba chỗ mang nghĩa tập mức dưới, "biến dư" → "biến bù" khi biến được cộng vào ràng buộc $\le$. Liên kết tới trang chiếu theo `id` không đổi; nhãn liên kết `S06-06` khớp tiêu đề mới. Chưa chạy `sync-local-materials.py` (điều phối viên chạy cuối đợt).
+
+**Kiểm tra:** grep các từ cũ trong deck về 0 ("hình phạt", "đồng mức", "vectơ", "quy tắc cấu tạo", "logarit tổng mũ", "giới hạn cứng", "ràng buộc chuẩn", "tối thiểu hóa", "biến gốc", "nghiệm gốc", "hàm gốc", "không trơn", "tập hỗ trợ", "hệ số truyền", "cỡ", "tiếp điểm", "Bảng dạng chuẩn", "Thanh hai chiều", "điểm biên", $p^*$, $g_j$, $r_0$); "yếu nhất" còn 1 chỗ ở dòng "Nhu cầu:" của `S04-10` ("cải thiện đường yếu nhất", chỉ đường truyền, không phải đại lượng chất lượng), cố ý giữ. `deckcheck.py` trên 38 trang đã sửa hoặc thêm và trên toàn deck: không FLAG, `errors: none`; đã xem ảnh 1600×900 và 390×844 (kể cả cuộn tới cuối vùng đọc ở `S01-02b`, `S02-03`, `S03-02`, `S03-04b`, `S05-03`), không tràn ngang trang. Đo thêm khoảng cách tới chân trang ở 1600×900: lần sửa đầu làm `S02-06`, `S05-03`, `S05-08`, `S05-09` chạm chân trang; đã rút câu để cả 81 trang không chạm. Không thêm `<style>`, `style=""`, lớp mới hay `.dense`. `git diff --check` sạch.
+
+**Quyết định của master:** chấp nhận (xem quyết định điều phối viên bên dưới).
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-02 và decisions-common; kiểm các dòng Nhắc lại/Ký hiệu/Định nghĩa mới (tập lồi, hàm lồi, p* = inf, nửa không gian/siêu phẳng/đa diện, ⪰/≻, chuẩn một, hàm thay thế ≥ ℓ01, F̃, ρ_i); chấp nhận trang mới S01-02b, đổi R → F̃ và r_i → ρ_i, cách viết ràng buộc phủ không dùng nhãn ngoài danh sách; tự chạy deckcheck trên S01-02b, S01-04, S02-03, S03-02, S03-04b, S04-04, S05-02, S05-03, S05-09, S06-04: 0 lỗi, 0 FLAG; xem ảnh S01-02b, S02-03 ở 1600×900. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg role="img" aria-label="Đồng mức mục tiêu hộp sau đổi biến log" xmlns:xlink="http://www.w3.org/1999/xlink" width="460.8pt" height="309.6pt" viewBox="0 0 460.8 309.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
- <title>Đồng mức mục tiêu hộp sau đổi biến log</title>
+<svg role="img" aria-label="Đường mức mục tiêu hộp sau đổi biến log" xmlns:xlink="http://www.w3.org/1999/xlink" width="460.8pt" height="309.6pt" viewBox="0 0 460.8 309.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>Đường mức mục tiêu hộp sau đổi biến log</title>
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title>Đồng mức mục tiêu hộp sau đổi biến log</dc:title>
+    <dc:title>Đường mức mục tiêu hộp sau đổi biến log</dc:title>
     <dc:date>2026-09-11T12:19:49.867539</dc:date>
-    <dc:description>A=ln a, B=ln b, C=ln8-A-B. Các đường đồng mức log diện tích bao quanh điểm tối ưu A=B=ln2; C cũng bằng ln2.</dc:description>
+    <dc:description>A=ln a, B=ln b, C=ln8-A-B. Các đường mức log diện tích bao quanh điểm tối ưu A=B=ln2; C cũng bằng ln2.</dc:description>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
