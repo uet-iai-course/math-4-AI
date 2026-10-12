@@ -222,12 +222,13 @@ Tiêu chuẩn này áp dụng cho ghi chú mới và là đích rà soát lại 
 
 Nếu mẫu người dùng không quy định khác, bộ trang chiếu gồm:
 
-1. Trang tiêu đề: tên học phần, số buổi hoặc chương, chủ đề, đơn vị.
+1. Trang tiêu đề: tên học phần, số bài, chủ đề, đơn vị. Trang này đồng thời là trang tiêu đề của mạch mở đầu.
 2. Mục tiêu học tập có thể quan sát hoặc đánh giá được, liên kết với LLO/CLO phù hợp.
-3. Bản đồ nội dung và một câu hỏi trung tâm viết dưới dạng vấn đề cần giải quyết, không dùng câu hỏi tu từ.
-4. Các phần kiến thức được tổ chức thành hành trình khái niệm theo thứ tự mặc định **nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập**. Ví dụ dẫn nhập có thể đặt cùng hoặc ngay sau nhu cầu, trước trực quan, theo chuỗi hợp lệ **nhu cầu + ví dụ dẫn nhập → trực quan → hình thức/toán học → ứng dụng → bài tập**. Storyboard phải ghi rõ ví dụ dẫn nhập phục vụ nhu cầu nào. Không mở đầu một khái niệm trọng tâm bằng định nghĩa hoặc ký hiệu nếu nhu cầu, đại lượng và trực giác chưa được thiết lập.
-5. Câu hỏi kiểm tra hiểu biết hoặc bài tập ngắn sau mỗi cụm khái niệm lớn.
-6. Tổng kết theo mục tiêu học tập, câu hỏi tự kiểm tra, bài tập và tài liệu đọc.
+3. Trang **Nội dung**: danh sách đánh số mọi mạch của bài, kể cả mạch mở đầu (mục 1) và mạch kết luận; số và tên mỗi mục trùng với số và tên trên trang tiêu đề mạch tương ứng. Có thể thêm một dòng tài liệu đọc trước (giáo trình, chương, mục). Trang này có thể gộp với bản đồ nội dung nhưng không gộp với mục tiêu học tập.
+4. Trang **Ngữ cảnh** khi bài dùng một khung chung: đối tượng, ký hiệu, giả thiết chung và vấn đề trung tâm viết dưới dạng nhiệm vụ cần giải quyết, không dùng câu hỏi tu từ. Tối đa bốn dòng; bảng ký hiệu dài hoặc đối chiếu ký hiệu với bài khác đặt trong ghi chú diễn giả hay ghi chú bài giảng.
+5. Các phần kiến thức được tổ chức thành hành trình khái niệm theo thứ tự mặc định **nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập**. Ví dụ dẫn nhập có thể đặt cùng hoặc ngay sau nhu cầu, trước trực quan, theo chuỗi hợp lệ **nhu cầu + ví dụ dẫn nhập → trực quan → hình thức/toán học → ứng dụng → bài tập**. Storyboard phải ghi rõ ví dụ dẫn nhập phục vụ nhu cầu nào. Không mở đầu một khái niệm trọng tâm bằng định nghĩa hoặc ký hiệu nếu nhu cầu, đại lượng và trực giác chưa được thiết lập.
+6. Câu hỏi kiểm tra hiểu biết hoặc trang "Bài tập: …" sau mỗi cụm khái niệm lớn.
+7. Tổng kết theo mục tiêu học tập, câu hỏi tự kiểm tra, bài tập và tài liệu đọc.
 
 Toàn bộ bài phải được tổ chức thành từ 5 đến 7 mạch nội dung lớn, mỗi mạch tương ứng với một `<section>` ngoài của RevealJS; số này bao gồm mạch mở đầu và mạch kết luận. Mỗi mạch phải có một chức năng riêng trong việc giải quyết vấn đề trung tâm, một điểm vào nhận kết quả hoặc câu hỏi từ mạch trước và một đầu ra đủ rõ để mạch sau sử dụng. Không chia một mạch liền lạc hoặc tạo mạch trang trí chỉ để đạt đủ số lượng. Chỉ dùng ngoài khoảng 5–7 khi mẫu hoặc yêu cầu cụ thể của người dùng quy định rõ, và phải ghi lý do cùng ảnh hưởng đến mạch lập luận trong `storyboard.md` và `review-log.md`.
 
@@ -247,6 +248,8 @@ Mỗi bộ trang chiếu mới phải có `storyboard.md` tại `2627-1/planning
 - LLO/CLO hoặc minh chứng đánh giá mà trang hỗ trợ;
 - quyết định `thêm`, `giữ`, `sửa`, `gộp`, `tách` hoặc `bỏ`, kèm lý do.
 
+Trang tiêu đề mạch cũng có một mục riêng trong storyboard với đủ các trường trên; trường vị trí ghi “điểm vào mạch N” và nêu trang này có đảm nhận bước nhu cầu của khái niệm đầu tiên hay không. Bảng chức năng và ranh giới mạch ghi mã trang tiêu đề của từng mạch. Với mỗi trang vượt trần mật độ trước khi sửa, storyboard ghi số âm tiết trước và sau, cùng quyết định `tách` hoặc `sửa`.
+
 Không giữ một trang chỉ vì nó có trong tài liệu mẫu. Nếu lý do tồn tại không đủ vững, phải sửa vai trò hoặc nội dung, gộp với trang khác, tách để làm rõ một bước suy luận, hoặc bỏ trang. Có thể thêm trang khi storyboard chứng minh một khoảng trống về tiên quyết, lập luận, ví dụ, luyện tập hoặc chuyển ý mà không thể xử lý rõ bằng cách sửa trang hiện có hay ghi chú diễn giả. Không thêm trang để bù số lượng, trang trí hoặc lặp lại kết luận. Mọi thay đổi số lượng hay thứ tự so với mẫu phải được ghi trong `storyboard.md` và nhật ký rà soát.
 
 Ngoài bảng theo từng trang, `storyboard.md` phải có **bản đồ hành trình khái niệm**. Với mỗi khái niệm hoặc cụm khái niệm, bản đồ phải chỉ ra:
@@ -258,6 +261,23 @@ Ngoài bảng theo từng trang, `storyboard.md` phải có **bản đồ hành 
 - câu nối giữa các bước và tổng thời lượng của cụm.
 
 Không bắt buộc sáu bước tương ứng với sáu trang riêng. Có thể gộp hai bước khi trang vẫn có một luận điểm trung tâm và mối nối được thể hiện rõ. Không được đảo thứ tự hoặc bỏ ngầm một bước. Với khái niệm phụ hoặc phần tự học, có thể dùng chu trình rút gọn `nhu cầu → hình thức → kiểm tra`, nhưng storyboard phải giải thích vì sao không cần chu trình đầy đủ.
+
+### Trang tiêu đề mạch
+
+Mỗi mạch, trừ mạch mở đầu, bắt đầu bằng một trang tiêu đề mạch (yêu cầu người dùng 2026-10-12). Trang bìa là trang tiêu đề của mạch mở đầu; không thêm trang "Mở đầu" riêng. Trang tiêu đề mạch là `<section>` trong đầu tiên của `<section>` ngoài tương ứng, mang lớp `strand-title`, và gồm:
+
+- số thứ tự của mạch viết bằng chữ số ("2.", "3.", …), trùng với số trên trang "Nội dung" và với chỉ số ngang của RevealJS (`hashOneBasedIndex: true` nên mạch 3 mở tại `#/3`). Quy định này áp dụng cho mọi bộ trang chiếu, kể cả Bài 07 đang ghi "A."–"D." trên trang mở mạch;
+- tên mạch là cụm danh từ gọi tên khái niệm hay kết quả, không dạng câu hỏi, không kể tiến trình; tên không trùng tiêu đề của trang nội dung đầu tiên trong mạch;
+- một dòng dẫn, tối đa 25 âm tiết, nêu nhu cầu hoặc nhiệm vụ mà mạch giải quyết, mở bằng "Muốn …" hoặc nhãn "Nhu cầu:", là câu trần thuật, không kết thúc bằng dấu hỏi;
+- tùy chọn một dòng từ khóa, tối đa năm cụm danh từ ngăn bằng " · ".
+
+Cấu trúc HTML: khối `div.strand-title-body` chứa `<h2>` với số thứ tự trong `span.strand-number` đứng trước tên mạch, rồi `p.strand-lead` cho dòng dẫn và `p.strand-keys` cho dòng từ khóa. Kiểu của các lớp này nằm trong `lecture-style.css`, không viết lại theo bài.
+
+Nhãn phần bằng chữ cái `A`, `B`, `C` vẫn được dùng trong storyboard, dàn ý, học liệu và mã trang, nhưng không đặt trên mặt trang tiêu đề mạch.
+
+Không đặt định nghĩa, công thức trung tâm, hình hay bài tập trên trang tiêu đề mạch; không ghi "Mạch", "Đầu vào", "Đầu ra" hay mã trang trên mặt trang. Ghi chú diễn giả của trang này dài khoảng 40–100 âm tiết và nêu: kết quả hoặc ký hiệu kế thừa từ mạch trước, nhiệm vụ của mạch, và kết quả mạch giao cho mạch sau. Trang tiêu đề mạch không tính là một mạch và không đổi số mạch của bài. Nếu dòng dẫn nêu đúng nhu cầu của khái niệm đầu tiên trong mạch, storyboard có thể ghi trang này là bước `nhu cầu` của khái niệm đó; nếu không, ghi "ngoài hành trình khái niệm".
+
+Mã trang theo quy ước `<tiền tố mạch>00` (ví dụ `B00`, `HQ00`, `RG00`); deck dùng mã dạng `S0k-NN` dùng `S0k-00`; nếu mã `<tiền tố>00` đã có, dùng `<tiền tố>T` và ghi trong storyboard. Thuộc tính `id` của trang tiêu đề mạch là `mach-N`. Không đổi `id` của trang đã được học liệu liên kết tới.
 
 ## Tiêu chuẩn nội dung cho học phần Cơ sở toán học cho AI
 
@@ -277,20 +297,110 @@ Với mỗi khái niệm toán học quan trọng:
 - Dùng ký hiệu nhất quán trong toàn bộ trang chiếu; định nghĩa lại nếu chuyển ngữ cảnh có thể gây nhầm.
 - Phân biệt rõ đẳng thức, xấp xỉ, tỷ lệ, hội tụ và tương đương; ghi điều kiện xảy ra dấu bằng nếu có.
 - Nguồn phải truy nguyên được. Ưu tiên giáo trình, bài báo gốc và tài liệu chính thức; ghi tác giả, năm, chương, mục hoặc trang khi có thể. Không tạo nguồn hoặc số liệu.
-- Bài tập nên có các mức nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI; đáp án hoặc gợi ý đặt trong ghi chú diễn giả khi phù hợp.
+- Bài tập nên có các mức nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI. Mỗi cụm khái niệm lớn có ít nhất một bài tập có lời giải mẫu trình bày trên mặt trang (nhãn “Lời giải:”, hiện bằng `fragment` hoặc ở trang kế tiếp); các câu hỏi tự làm đặt đáp án hoặc gợi ý trong ghi chú diễn giả.
 
 Khi dùng lịch sử để phát triển một khái niệm, trình bày theo quan hệ **vấn đề hoặc giới hạn trước đó → nhu cầu mới → ý tưởng được đưa ra → hệ quả còn dùng hiện nay**. Không dùng danh sách năm, tên người và thuật toán tách rời khỏi mạch nhân quả. Chỉ giữ mốc thời gian khi nó giải thích sự thay đổi phương pháp; chuyển chi tiết không phục vụ lập luận sang ghi chú hoặc tài liệu đọc. Không dùng lịch sử để ca tụng cá nhân, tổ chức hoặc thuật toán.
 
 Nội dung toàn học phần phải nhất quán với các cụm chủ đề trong đề cương: tối ưu lồi và đối ngẫu; tối ưu có hoặc không có ràng buộc; tối ưu cho học sâu; quy hoạch tuyến tính, đơn hình, luồng mạng và quy hoạch nguyên; mô hình đồ thị xác suất, suy diễn và học tham số.
+
+## Văn phong và mật độ mặt trang chiếu
+
+Mặt trang chiếu là văn bản toán học ngắn gồm tiêu đề, vài dòng mệnh đề, công thức và nhãn. Diễn giải, động cơ chi tiết, đối chiếu ký hiệu và nguồn nằm trong ghi chú diễn giả. Các chuẩn trong mục này lấy từ bài giảng MAT1101 (Xác suất thống kê) của cùng tác giả, đo trên 532 trang (yêu cầu người dùng 2026-10-12; số đo và quyết định ghi tại `2627-1/planning/style-revision-2026-10-12.md`), và áp dụng cho mọi bộ trang chiếu của học phần.
+
+### Mật độ chữ
+
+Âm tiết được đếm bằng số từ tách theo khoảng trắng, không tính tiêu đề, công thức KaTeX, ô số của bảng, nhãn trong hình và ghi chú diễn giả.
+
+- Mỗi trang nội dung nhắm tới không quá 40 âm tiết chữ; trần cứng 60 âm tiết. Trang mục tiêu, nội dung, tổng kết và bảng so sánh có trần 80 âm tiết.
+- Không quá sáu dòng nội dung, không tính tiêu đề; mỗi gạch đầu dòng, câu, dòng nhãn hoặc khối công thức hiển thị tính là một dòng.
+- Mỗi dòng chữ không quá 20 âm tiết. Câu dài hơn được tách, rút thành mệnh đề, hoặc chuyển sang ghi chú.
+- Không quá ba khối công thức hiển thị; một hệ `aligned` tính là một khối.
+- Mỗi trang có nhiều nhất một khung nhấn chứa câu văn (`.panel`, `.box` hoặc tương đương); khung không chứa quá hai câu.
+- Không dùng lớp hay thuộc tính thu nhỏ chữ để đạt các trần trên. Trang vượt trần phải được tách hoặc chuyển phần diễn giải sang ghi chú, và storyboard ghi quyết định `tách` hoặc `sửa`.
+- Trang được phép vượt trần chỉ khi có ngoại lệ ghi trong `storyboard.md` kèm lý do. Tác tử rà soát xếp trang vượt trần không có ngoại lệ ở mức `trung bình`, trang vượt quá 1,5 lần trần ở mức `nghiêm trọng`.
+
+### Câu trên mặt trang
+
+- Viết mệnh đề toán học ngắn theo lối văn bản toán: "Đặt …", "Suy ra …", "Thế vào được …", "Do … nên …". Không dùng "ta thấy", "rõ ràng", "chúng ta", lời chỉ đường hay câu hỏi tu từ trên mặt trang; "ta" chỉ xuất hiện trong dòng tính toán ("ta được …") khi không bỏ được.
+- Định nghĩa viết bằng "là" hoặc "gọi là"; không dùng dấu "=" thay cho động từ.
+- Một trang có nhiều nhất một câu kết luận cuối trang. Câu đó phải là một kết luận toán học có điều kiện hoặc một con số; không dùng khẩu hiệu, ẩn dụ hay chuỗi mũi tên tóm tắt.
+
+### Mở một khái niệm
+
+Trang nhu cầu mở bằng một câu "Muốn …" hoặc nhãn "Nhu cầu:", tiếp theo là một đến ba ví dụ dẫn nhập cụ thể, có số liệu hoặc đối tượng đếm được. Trang hình thức kế tiếp có thể giữ cùng tiêu đề với trang nhu cầu. Bước trực quan đứng trước phát biểu hình thức; nhãn "Ý nghĩa:" sau một định lý là diễn giải bổ sung, không thay cho bước trực quan.
+
+### Trang phát biểu kết quả
+
+Một trang định lý, mệnh đề hoặc bất đẳng thức gồm:
+1. Phát biểu có giả thiết và kết luận.
+2. Tùy chọn một dòng "Ý nghĩa:" đọc kết quả bằng lời.
+3. Tùy chọn một dòng "Chứng minh." nêu ý chính khi chứng minh gói trong một đến hai dòng.
+
+Chứng minh dài hơn đặt ở trang riêng có tiêu đề "Chứng minh: <tên kết quả>", chia bước, mỗi trang một kết quả. Không đặt định lý, chứng minh nhiều bước, ví dụ và nhận xét phạm vi trên cùng một trang.
+
+### Trang ví dụ
+
+Tiêu đề có dạng "Ví dụ: <đối tượng>", trong đó đối tượng là cụm danh từ. Trang theo thứ tự:
+1. Dữ kiện có số.
+2. Yêu cầu bằng động từ học tập ("Tính …", "Xác định …").
+3. Các bước, mỗi bước một dòng.
+4. Kết quả kèm "Diễn giải:" hoặc dòng kiểm tra.
+
+Khi một ví dụ kéo dài nhiều trang, mỗi trang thêm tên bước sau dấu phẩy, ví dụ "Ví dụ: đo đạc, giải hệ phương trình chuẩn".
+
+### Trang bài tập
+
+Tiêu đề có dạng "Bài tập: <chủ đề>"; nhiều phần thì thêm "(a)", "(b)". Đề bài mở bằng nhãn "Câu hỏi:", được gõ bằng chữ và KaTeX, không chụp ảnh từ sách.
+- **Bài tập có lời giải mẫu:** lời giải trình bày trên mặt trang dưới nhãn "Lời giải:", hiện bằng `fragment` hoặc ở trang kế tiếp cùng tiêu đề, mỗi dòng một bước lập luận.
+- **Bài tập để người học tự làm:** gợi ý và đáp án đặt trong ghi chú diễn giả.
+
+Storyboard ghi bài tập thuộc loại nào. Tiêu đề "Bài tập: …" là nhãn nội dung, không phải badge quy trình.
+
+### Ví dụ xuyên suốt
+
+Mỗi bài chọn một đến hai bộ dữ liệu hoặc tình huống nhỏ, tính tay được, và dùng lại qua nhiều khái niệm. Mỗi lần dùng lại phải trả lời một câu hỏi mới hoặc so sánh hai công cụ trên cùng số liệu, chẳng hạn cận Chebyshev và xấp xỉ chuẩn cho cùng cỡ mẫu. Gọi ví dụ bằng tên đối tượng ("dữ liệu bốn căn nhà", "bài toán hộp hạt"), không bằng mã ("VD1"). Dữ kiện được nêu lại trên trang dùng lại.
+
+### Bảng
+
+Dùng bảng so sánh khi hai đến bốn phương pháp được đối chiếu theo cùng tiêu chí. Một phép tính lặp lại nhiều lần (bảng Bayes, bảng lặp của thuật toán) dùng một khuôn bảng cố định với cùng tên cột trong toàn bài.
+
+### Nhãn dẫn dắt
+
+Chỉ dùng các nhãn sau, viết đậm:
+- **Môi trường hình thức, kết thúc bằng dấu chấm:** "Định nghĩa.", "Định lý.", "Mệnh đề.", "Bổ đề.", "Hệ quả.", "Nhận xét.", "Thuật toán.", "Chứng minh.", "Trực quan.", "Ví dụ.".
+- **Nhãn dẫn, kết thúc bằng dấu hai chấm:** "Nhu cầu:", "Ý nghĩa:", "Diễn giải:", "Lưu ý:", "Nhắc lại:", "Cách khác:", "Dạng khác:", "Ký hiệu:", "Giả thiết:", "Kết luận:", "Đầu vào:", "Đầu ra:", "Câu hỏi:", "Gợi ý:", "Lời giải:".
+
+Không dùng nhãn quy trình, nhãn cảm thán hay nhãn quảng bá.
+
+### Mã nội bộ của bài khác
+
+Mặt trang phát biểu giả thiết và kết quả bằng lời, và gọi ví dụ bằng tên đối tượng. Mã nội bộ kiểu "T7", "H2", "VD1" không xuất hiện trên mặt trang. Sau phát biểu bằng lời được kèm số hiệu kết quả của ghi chú bài giảng, dạng "(Định lý 05b.41)", tối đa một lần mỗi trang. Học liệu trong `materials/` không bắt buộc đổi các mã này trong đợt sửa 2026-10-12.
+
+### Mở bài và kết bài
+
+Mạch mở đầu gồm bìa, mục tiêu học tập, "Nội dung" và khi cần "Ngữ cảnh". Mạch kết luận gồm một bảng tổng kết "kết quả | giả thiết không được bỏ | công thức hoặc thuật toán", câu hỏi tự kiểm tra và tài liệu đọc. Khi bài có ứng dụng AI xuyên suốt, trang cuối của mạch nội dung cuối cùng nối kết quả với ứng dụng đó bằng một phép tính hoặc quyết định cụ thể.
+
+### Những điểm của MAT1101 không áp dụng
+
+Không bắt chước:
+- dấu cách trước dấu hỏi;
+- câu hỏi không có nhãn;
+- tiêu đề "Bài tập" không có chủ đề;
+- đề bài dạng ảnh;
+- dấu "=" thay cho "là";
+- thuật ngữ tiếng Anh hay viết tắt chưa giải thích;
+- địa chỉ web trên mặt trang;
+- lịch sử dạng danh sách năm–tên;
+- trang thiếu ghi chú diễn giả.
 
 ## Tiêu chuẩn trình bày và khả năng đọc
 
 - Kế thừa màu, khoảng cách, chân trang, thẻ, lưới và cách chia phần từ `2526-2-another-course/`. Không tạo một hệ giao diện mới nếu mẫu không yêu cầu.
 - Ưu tiên nền sáng, tương phản cao và màu có ý nghĩa nhất quán. Không dùng màu làm tín hiệu duy nhất.
 - Văn bản thân bài nên từ `0.75em` trở lên. Chỉ dùng dưới `0.65em` cho chú thích ngắn không thể tách; nếu phải dùng, tác tử rà soát sinh viên phải xác nhận vẫn đọc được khi trình chiếu.
-- Giữ tiêu đề ngắn, trực tiếp và gọi đúng khái niệm. Không đặt tiêu đề dưới dạng câu hỏi như “Tại sao...?”, “Vì sao...?” hoặc kể tiến trình như “Từ ... đến ...”; dùng tên khái niệm, chẳng hạn `Định nghĩa tập lồi`, và đặt động cơ hoặc chuyển ý trong nội dung hay ghi chú. Mỗi gạch đầu dòng nên không quá hai dòng. Tránh đoạn văn dài trên trang chiếu; chuyển diễn giải sang ghi chú diễn giả.
+- Giữ tiêu đề ngắn, trực tiếp và gọi đúng khái niệm. Không đặt tiêu đề dưới dạng câu hỏi như “Tại sao...?”, “Vì sao...?” hoặc kể tiến trình như “Từ ... đến ...”; dùng tên khái niệm, chẳng hạn `Định nghĩa tập lồi`, và đặt động cơ hoặc chuyển ý trong nội dung hay ghi chú. Được dùng tiền tố chức năng trước cụm danh từ: `Ví dụ: <đối tượng>`, `Bài tập: <chủ đề>`, `Chứng minh: <tên kết quả>`; tiền tố không đứng một mình. Mỗi gạch đầu dòng nên không quá hai dòng hiển thị và không quá 20 âm tiết. Tránh đoạn văn dài trên trang chiếu; chuyển diễn giải sang ghi chú diễn giả và tuân theo các trần ở mục “Văn phong và mật độ mặt trang chiếu”.
 - Mã vị trí nội bộ như `A01`, `B02`, `C03` chỉ xuất hiện trong `data-slide-id`, storyboard, dàn ý và nhật ký khi cần truy nguyên; không xuất hiện trên mặt trang chiếu hoặc trong ghi chú diễn giả. Nhãn phần `A`, `B`, `C` được phép giữ.
-- Không hiển thị badge hoặc nhãn quy trình như `Giảng chính`, `Tự học`, `Bài tập`, thống kê phân tuyến hay tiên quyết theo mã trên mặt trang chiếu. Ghi chú diễn giả cũng không chứa mã trang, tuyến hoặc chỉ dẫn điều phối nội bộ; các dữ liệu này chỉ nằm trong storyboard và dàn ý.
+- Không hiển thị badge hoặc nhãn quy trình như `Giảng chính`, `Tự học`, thống kê phân tuyến hay tiên quyết theo mã trên mặt trang chiếu, kể cả bên trong tiêu đề. Tiền tố tiêu đề `Bài tập: <chủ đề>` của một trang bài tập là nhãn nội dung và được phép; không dùng `Bài tập` làm badge gắn lên trang khác. Ghi chú diễn giả cũng không chứa mã trang, tuyến hoặc chỉ dẫn điều phối nội bộ; các dữ liệu này chỉ nằm trong storyboard và dàn ý.
 - Bộ trang chiếu mặc định phải tạo một tuyến liên tục có thể trình chiếu từ đầu đến cuối. Phân loại nội bộ không được tạo ra các tuyến mà tệp RevealJS không có cơ chế điều hướng riêng để thực hiện; nếu cần nhiều tuyến, phải thiết kế và kiểm định cơ chế điều hướng rõ ràng.
 - Mọi câu hỏi hoặc nhiệm vụ kiểm tra trên mặt trang chiếu dùng nhãn **“Câu hỏi:”**. Không dùng “Điểm dừng:” hoặc gắn số phút vào nhãn.
 - Không hiển thị hoặc gợi ý thời lượng trên mặt trang chiếu hay trong ghi chú diễn giả, trừ khi người dùng yêu cầu rõ. Phân bổ thời gian chỉ được giữ trong tài liệu lập kế hoạch nội bộ như storyboard hoặc dàn ý.
@@ -300,6 +410,7 @@ Nội dung toàn học phần phải nhất quán với các cụm chủ đề t
 - Mỗi trang chiếu nội dung cần ghi chú diễn giả trong `<aside class="notes">` khi có giả thiết, diễn giải, đáp án, quan hệ suy luận hoặc chi tiết không nên đặt lên màn chiếu.
 - Không hiển thị chú thích nguồn dạng “MIT 6.079 …” ở cuối từng trang chiếu. Đặt nguồn trong ghi chú diễn giả hoặc một trang tài liệu tham khảo.
 - Ghi chú diễn giả phải là phần diễn giải học thuật ngắn, thuần Việt: ý chính, giả thiết, giải thích công thức hoặc hình, phân biệt dễ nhầm, quan hệ với nội dung kế tiếp và gợi ý hoặc lời giải bài tập. Gợi ý phải nêu cách lập luận hoặc bước toán học; không chỉ dẫn giảng viên phải nói, nhấn mạnh hay điều phối lớp thế nào. Không chỉ ghi siêu dữ liệu và không lặp nguyên văn nội dung hiển thị.
+- Ghi chú diễn giả nên dài khoảng 40–150 âm tiết; trang chứng minh hoặc lời giải có thể tới khoảng 250 âm tiết. Khoảng này là khuyến nghị: ghi chú dài hơn chỉ bị xếp mức `nhẹ`, và mọi ghi chú vẫn phải có đủ giả thiết, diễn giải, phân biệt dễ nhầm và lời giải khi trang có bài tập, theo gạch đầu dòng trên. Diễn giải dài hơn mức cần cho buổi giảng thuộc về ghi chú bài giảng `lecture-note.md`. Không mở ghi chú bằng “Trang này …”, “Slide này …” hoặc câu lấy tài liệu làm chủ ngữ; mở bằng đối tượng toán học hoặc kết quả kế thừa.
 - Bộ trang chiếu phải dùng được bằng bàn phím, không có tài nguyên hỏng và không phụ thuộc mạng cho các thành phần cốt lõi.
 - Trước khi bàn giao, kiểm tra và sửa tràn nội dung ở khung 16:9 và màn hình hẹp; không che lỗi bằng cách cắt nội dung hoặc thu nhỏ thân bài dưới ngưỡng quy định.
 
@@ -368,6 +479,7 @@ Trước vòng rà soát sinh viên, chuyên gia, toán học, phản biện h�
 - kiểm tra ở cấp cụm rằng mỗi khái niệm trọng tâm hoàn thành đúng thứ tự sáu bước; không chấp nhận một cụm chỉ có định nghĩa, định lý và công thức dù từng trang riêng lẻ đều đúng;
 - kiểm tra ví dụ dùng được để dẫn tới phát biểu hình thức, ứng dụng sử dụng đúng kết quả vừa xây dựng, bài tập đo đúng LLO/CLO và tổng thời lượng của cụm khả thi;
 - phát hiện trang trùng ý, trang chỉ làm nhiệm vụ trang trí, trang quá tải nhiều vai trò, và khoảng trống cần thêm trang;
+- kiểm tra mỗi mạch trừ mạch mở đầu có trang tiêu đề mạch đúng mục “Trang tiêu đề mạch”, số và tên khớp trang “Nội dung”, và trang nội dung đầu mạch không trùng tiêu đề với tên mạch;
 - đối chiếu thời lượng, tuyến giảng chính, LLO/CLO, mẫu nguồn và quan hệ trước–sau;
 - đề xuất cho từng mã một quyết định `thêm`, `giữ`, `sửa`, `gộp`, `tách` hoặc `bỏ`, kèm bằng chứng và tác động đến các trang lân cận; với quyết định `thêm`, phải chỉ rõ vị trí, mã dự kiến, khoảng trống được giải quyết và lý do không thể xử lý bằng cách sửa trang hiện có.
 
@@ -379,7 +491,7 @@ Phân mức riêng cho hành trình khái niệm: `chặn bàn giao` nếu bài 
 
 Sau bản nháp đầu tiên, giao đủ năm vai độc lập; chạy song song trong giới hạn số tác tử khả dụng, chia lượt khi cần. Các tác tử này không sửa tệp; mỗi tác tử chỉ trả về danh sách vấn đề có cấu trúc gồm `mức độ`, `trang chiếu`, `vấn đề`, `bằng chứng`, `đề xuất sửa`.
 
-- **Góc nhìn sinh viên:** kiểm tra kiến thức tiên quyết, tải nhận thức, nhịp giảng, khả năng đọc từ cuối lớp, độ rõ của ký hiệu, ví dụ, chuyển ý, câu hỏi kiểm tra và khả năng tự học từ bộ trang chiếu.
+- **Góc nhìn sinh viên:** kiểm tra kiến thức tiên quyết, tải nhận thức, nhịp giảng, khả năng đọc từ cuối lớp, độ rõ của ký hiệu, ví dụ, chuyển ý, câu hỏi kiểm tra và khả năng tự học từ bộ trang chiếu. Đo số âm tiết chữ của từng trang theo mục “Văn phong và mật độ mặt trang chiếu”; trang vượt trần mà không có ngoại lệ ghi trong storyboard xếp mức `trung bình`, trang vượt quá 1,5 lần trần xếp mức `nghiêm trọng`.
 - **Góc nhìn chuyên gia:** kiểm tra độ bao phủ, chiều sâu, thuật ngữ, mạch học thuật, liên kết với AI, LLO/CLO, nguồn và tính phù hợp với thời lượng buổi học.
 - **Độ chính xác toán học:** kiểm tra từng định nghĩa, giả thiết, lượng từ, miền, kích thước, chỉ số, dấu, đạo hàm, chuyển vị, chuẩn, xác suất, điều kiện lồi, điều kiện tối ưu, bước biến đổi, kết quả ví dụ, hội tụ và độ phức tạp. Tự tính lại các ví dụ số quan trọng.
 - **Phản biện học thuật và giảng dạy:** kiểm tra mỗi khái niệm hình thức có đủ nhu cầu, trực quan, ví dụ và tiên quyết; thứ tự hiện tại có hỗ trợ suy luận trên lớp; ứng dụng và bài tập có đóng vòng học tập; các lựa chọn lược, gộp hoặc thêm so với mẫu có được biện minh. Rà văn phong học thuật của tiêu đề, nội dung và ghi chú theo `no-ai-slop`, bảo toàn độ chính xác toán học. Phải chỉ ra trường hợp nội dung đúng riêng lẻ nhưng đặt sai trình tự, thiếu cầu nối sư phạm hoặc không phục vụ LLO/CLO.
@@ -429,9 +541,11 @@ Một tác tử kiểm định Opus 5.5 thực hiện các bước dưới đây
 - Kiểm tra sườn lý thuyết chung, quan hệ phụ thuộc giữa các trang và mức độ giải quyết bài toán trung tâm trong phần kết luận; xác nhận phạm vi biên tập và kết quả tự kiểm `no-ai-slop` trong nhật ký.
 - Kiểm tra đủ năm báo cáo hoặc bản hợp nhất có truy nguyên từng vai; mọi vấn đề về vai trò trang, kết nối vào–ra, kết quả trọng tâm và mạch lập luận đã có trạng thái, quyết định và bằng chứng rà lại phù hợp.
 - Kiểm tra bài có 5–7 `<section>` ngoài gồm mở đầu và kết luận, hoặc có ngoại lệ do người dùng yêu cầu rõ; đối chiếu chức năng, đầu vào, đầu ra và đóng góp của từng mạch với `storyboard.md`, `review-log.md` và bản RevealJS hiện tại.
+- Chạy phép đếm mật độ (âm tiết chữ, số dòng, âm tiết mỗi dòng) cho mọi trang và đính kèm kết quả; xác nhận không trang nào vượt trần mà không có ngoại lệ ghi trong storyboard, và không trang nào dùng lớp thu nhỏ chữ để đạt trần.
 - Tại thư mục gốc của kho, chạy `python3 -m reloadserver 8765`. Cổng là đối số vị trí; không dùng tùy chọn `--port`. Không thay đổi cổng nếu người dùng không yêu cầu. Ví dụ truy cập Bài giảng 01 qua `http://localhost:8765/2627-1/lecture-01-<chu-de>.html`.
 - Mở đúng URL, duyệt mọi trang chiếu và các trang chiếu dọc; kiểm tra tràn chữ, chữ quá nhỏ, phần tử chồng lấn, công thức lỗi, ảnh vỡ, tương phản và điều hướng bàn phím.
 - Kiểm tra riêng ở tỷ lệ 16:9 và một màn hình hẹp; tách hoặc rút gọn nội dung nếu có tràn.
+- Kiểm tra mọi trang tiêu đề mạch hiển thị đúng ở 1600×900 và 390×844, số mạch khớp `#/N` và trang “Nội dung”.
 - Rà soát trực quan sau cùng bằng trình duyệt. Sau mọi chỉnh sửa, xác minh thay đổi đã được lưu trong tệp của kho và hiển thị đúng ở trang chiếu tương ứng.
 - Lặp lại vòng chỉnh sửa nếu còn lỗi chặn bàn giao hoặc nghiêm trọng. Không bàn giao chỉ dựa trên việc tệp HTML mở được.
 

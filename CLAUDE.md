@@ -13,6 +13,7 @@ This repo holds the RevealJS lecture decks, lecture notes and exercises for **C�
 | `2627-1/revealjs/`, `plugin/`, `vendor/katex/` | Local runtime; decks must not load anything from outside `2627-1/` |
 | `2627-1/img/lec-NN/` | SVG assets for each lecture |
 | `2627-1/planning/lec-NN/` | `outline.md`, `storyboard.md`, `review-log.md` (tracked in git even though `.gitignore` lists them) |
+| `2627-1/planning/style-revision-2026-10-12.md` | Log of the 2026-10-12 slide-style revision (MAT1101 measurements, master decisions, strand names per deck) |
 | `2627-1/materials/lec-NN/` | `lecture-note.md`, `exercises.md`, the published sources |
 | `2627-1/material-viewer.html`, `material-local-data.js` | Markdown viewer and its bundle for opening under `file://` |
 | `2627-1/index.html` | Semester index; links only to finished public decks and materials |
@@ -61,7 +62,7 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
   - No simulated speech or instructor directions, e.g. "chúng ta hãy…", "nhấn mạnh với sinh viên", "chuyển sang trang sau".
   - Learning tasks ("Tính", "Xác định", "Chứng minh") are fine.
 - **Terminology:** write `lồi chặt (còn gọi là lồi nghiêm ngặt)` the first time, `lồi chặt` afterwards.
-- **Titles:** name the concept. No questions ("Tại sao…?") and no progress phrasing ("Từ … đến …").
+- **Titles:** name the concept. No questions ("Tại sao…?") and no progress phrasing ("Từ … đến …"). Function prefixes "Ví dụ: …", "Bài tập: …", "Chứng minh: …" are allowed before a noun phrase; "Bài tập" as a badge is not.
 - **Bullets:** at most two lines each; move explanation into the notes.
 - **Keep off the slide face and out of speaker notes:**
   - slide codes (`RP02`, `A01`…), workflow badges ("Giảng chính", "Tự học"), timings, and "MIT 6.079…" source footers;
@@ -78,6 +79,13 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
 - **Strands:** 5–7 outer sections, including an opening and a conclusion.
   - Each strand has its own function, an input from the strand before, and an output the next one uses.
   - Going outside 5–7 needs an explicit user request, recorded in `storyboard.md` and `review-log.md`.
+- **Strand title slides (user request 2026-10-12):** every strand except the opening starts with a `section.strand-title` slide (`AGENTS.md` §"Trang tiêu đề mạch").
+  - It shows the number in digits ("2.", "3.", …, matching the "Nội dung" list and `#/N`; this includes deck 07, which now shows "A."–"D."), a noun-phrase name, one declarative lead line (≤ 25 syllables, "Muốn …" or "Nhu cầu:"), and optionally ≤ 5 keywords joined by " · ".
+  - Markup: `div.strand-title-body` > `h2` with `span.strand-number`, then `p.strand-lead`, `p.strand-keys`. Styles live in `lecture-style.css`.
+  - No definitions, formulas, figures, "Đầu vào/Đầu ra" or codes on its face. Notes of about 40–100 syllables state the inherited result, the task and the output.
+  - Letter labels A, B, C stay allowed in storyboards, outlines, materials and slide codes, never on a strand title slide.
+  - The cover is the opening strand's title. ID `<prefix>00` (`S0k-00` in `S0k-NN` decks), `id="mach-N"`. One storyboard entry each.
+- **Opening:** cover, objectives, "Nội dung" (numbered strands, optional pre-reading line), "Ngữ cảnh" when there is a shared frame (≤ 4 lines).
 - **Common theoretical frame:** one per lecture, fixed in `outline.md` and `storyboard.md` before slides are finalised.
   - It covers the central problem, shared objects and notation, assumptions, the chain definition → result → method, and the limits of applicability.
 - **Concept journey for every core concept:** need → intuition → example → formal statement → application → exercise.
@@ -86,6 +94,22 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
   - Never open a core concept with a definition before its need and intuition exist.
 - **One central point per slide.** Split long derivations; never shrink text to fit.
   - Body text is ≥ 0.75em; below 0.65em only for unavoidable short captions.
+- **Density (from MAT1101, `AGENTS.md` §"Văn phong và mật độ mặt trang chiếu"):** count syllables as whitespace tokens, excluding title, KaTeX, table numbers and notes.
+  - Aim for ≤ 40 per content slide, hard cap 60 (80 for objectives, contents, summary, comparison tables).
+  - Hard caps: ≤ 6 content lines, ≤ 20 syllables per line, ≤ 3 display formulas, ≤ 1 text box of ≤ 2 sentences.
+  - Over the cap means split or move prose to notes; never `.dense` or smaller fonts.
+  - An exception needs a reason recorded in `storyboard.md`. Reviewers rate an over-cap slide without one `trung bình`, and one over 1.5× the cap `nghiêm trọng`.
+- **Slide sentences:** terse math prose ("Đặt …", "Suy ra …", "Thế vào được …"). No "ta thấy", "rõ ràng", "chúng ta", or "=" used for "là". At most one closing line, which must be a conditional result or a number, never a slogan.
+- **Result slides:** statement, then optional "Ý nghĩa:" line, then optional one-line "Chứng minh.". Longer proofs go on their own "Chứng minh: <kết quả>" slide. "Ý nghĩa:" never replaces the intuition step.
+- **Example and exercise slides:**
+  - "Ví dụ: <đối tượng>": data → "Tính …" → one step per line → result with "Diễn giải:" or a check.
+  - "Bài tập: <chủ đề>": "Câu hỏi:" typed (no screenshots). Each major cluster has one exercise whose "Lời giải:" is on the face (fragment or next slide); self-study answers stay in notes.
+- **Running examples:** 1–2 hand-computable datasets reused across concepts. Each reuse answers a new question or compares two tools on the same numbers. Name them by content, never "VD1".
+- **Allowed labels:**
+  - with a period: Định nghĩa. Định lý. Mệnh đề. Bổ đề. Hệ quả. Nhận xét. Thuật toán. Chứng minh. Trực quan. Ví dụ.
+  - with a colon: Nhu cầu: Ý nghĩa: Diễn giải: Lưu ý: Nhắc lại: Cách khác: Dạng khác: Ký hiệu: Giả thiết: Kết luận: Đầu vào: Đầu ra: Câu hỏi: Gợi ý: Lời giải:
+- **Codes from other lectures:** state assumptions and results in words and name examples by their object. Codes such as "T7", "H2", "VD1" never appear on the slide face. A lecture-note number such as "(Định lý 05b.41)" may follow the verbal statement at most once per slide. Materials keep their codes for now.
+- **Notes length (recommendation, not a cap):** usually 40–150 syllables, up to ~250 for proofs or solutions. Longer notes are only a `nhẹ` finding; notes still carry the assumptions, interpretation, easy confusions and solutions. Longer material belongs in `lecture-note.md`. Never open with "Trang này …" or with the document as subject.
 - **Formal statements:** state domain, assumptions, dimensions and types before use.
   - Label definitions, theorems, remarks, intuition and examples.
   - For theorems and algorithms, give inputs, outputs, conditions and conclusion.
