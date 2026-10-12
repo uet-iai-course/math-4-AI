@@ -26,6 +26,8 @@ Cột mô hình và effort lấy theo lời gọi công cụ Agent của điều
 
 Kiểm nguồn: Bảng 13.3 của Sra–Nowozin–Wright, tr. 363, đối chiếu bằng `pdftotext`: hàng hinge $\lambda=10^{-4}$ (23 642 s / 66 s / 1,4 s; 0,2275 / 0,2278 / 0,2275; 6,02 %) và hàng logistic $\lambda=10^{-5}$ (TRON 30 s / 44 s; SGD 2,3 s; 0,18907 / 0,18890 / 0,18893; 5,68 / 5,70 / 5,66 %). Khớp. Văn bản nguồn xác nhận các hàng TRON dùng mất mát logistic.
 
+**Đính chính (2026-10-12, vòng rà soát năm vai):** ở hàng hinge, lỗi kiểm thử là 6,02 % / 6,03 % / 6,02 % (SVMPerf 6,03 %; SNW tr. 363, pdftotext: `0.2275 0.2278 0.2275 | 6.02% 6.03% 6.02%`), không phải 6,02 % ở cả ba; kết luận “Khớp” ở dòng trên chỉ đúng cho các số còn lại. Dòng tương ứng trong `planning/lec-05/review-log.md` cần đính chính tương tự (thuộc Bài 05, chưa sửa).
+
 ### Mười điểm hòa giải giữa hai kế hoạch (bắt buộc cho hai tác tử soạn)
 
 1. **Hệ số chặn.** Không bài nào dùng $b$ cho hệ số chặn ($b$ là cỡ nhóm như 05b, 05c). Bài 05: hệ số chặn nằm trong $w$ qua tọa độ hằng 1 của $x_i$. Bài 06: độ lệch mạng $b_1,b_2$ luôn có chỉ số; ví dụ tuyến tính E03 viết hệ số chặn $c$. A04 của Bài 06 ghi một câu ánh xạ với quy ước của Bài 05.
@@ -163,3 +165,208 @@ Kiểm tra sau lượt sửa: mã outline/storyboard khớp (45); `git diff --ch
 ### Trạng thái
 
 Deck, ghi chú và bài tập Bài 06 chưa dựng lại theo kế hoạch này; deck hiện hành vẫn được index.html liên kết.
+
+## Vòng dựng deck (2026-10-12)
+
+### Tác tử
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Ghi/đọc | Bằng chứng |
+|---|---|---|---|---|---|
+| Tác tử soạn deck Bài 06 | Công cụ Agent, `general-purpose` | `claude-opus-5-5` | high | Ghi: `lecture-06-mo-rong-mo-hinh-va-du-lieu.html`, `img/lec-06/`, `planning/lec-06/{outline,storyboard,review-log}.md` | Deck và hình trong kho; báo cáo `scratchpad/build/lec-06/author-report.md` của phiên |
+
+Cột mô hình và effort ghi theo brief; điều phối viên xác nhận bằng lời gọi công cụ Agent. Không dùng OpenRouter, lệnh gọi mô hình trực tiếp hay tệp `.env`. Không sửa `lecture-style.css`; không có yêu cầu CSS riêng (`scratchpad/build/lec-06/css-requests.css` ghi rõ điều này). Không commit.
+
+### Sản phẩm
+
+- Deck `2627-1/lecture-06-mo-rong-mo-hinh-va-du-lieu.html`: 45 trang, 7 mạch (A 4, B 10, C 7, D 7, E 6, F 8, G 3), mã và tiêu đề khớp một-một với outline.md và storyboard.md; mỗi trang có ghi chú diễn giả. Khung HTML, khối `<script>` và cấu hình Reveal chép từ deck 05b (`data-lecture="06"`, `width:1200`, `height:675`, `controlsLayout:"edges"`, `slideNumber`, `hash`, `hashOneBasedIndex`, KaTeX cục bộ, Notes, Highlight, Math.KaTeX). Không `<style>`, không `style=""`, không tải gì ngoài `2627-1/`.
+- Phụ đề tạm trên trang bìa: “Khả năng biểu diễn của mạng nơ ron và tối ưu ngẫu nhiên” (Q1 vẫn mở).
+
+### Hình
+
+Mười hai SVG mới và bốn bản cho màn hẹp, sinh bằng `scratchpad/build/lec-06/svg/gen.py` của phiên (không trong kho) từ số liệu outline.md mục 8; chữ tiếng Việt, dấu phẩy thập phân, lớp không phân biệt chỉ bằng màu (hình dạng điểm, kiểu nét).
+
+| Tệp | Trang | Nội dung |
+|---|---|---|
+| `xor-points.svg` | B01 | Bốn điểm XOR, ô vuông rỗng cho $y=0$, hình tròn đặc cho $y=1$ |
+| `xor-diagonals.svg` | B02 | Hai đường chéo (liền, nét đứt) và trung điểm chung $(\tfrac12,\tfrac12)$ |
+| `xor-feature-map.svg`, `xor-feature-map-narrow.svg` | B04 | Không gian $x$ và không gian $h$; đường $h_1+h_2=\tfrac12$ |
+| `two-layer-network.svg` | B06 | Mạng 2–2–1 với $W_1,b_1,w_2,b_2$, $z$, $h$, $f$ |
+| `xor-symmetric-path.svg` | B09 | $F(\theta(t))$: $t^2$, $(1-t)^2$, đỉnh $\tfrac14$, dây cung $F=0$ |
+| `backprop-forward.svg`, `backprop-forward-narrow.svg` | C02 | Đồ thị tính toán, giá trị truyền xuôi |
+| `backprop-backward.svg`, `backprop-backward-narrow.svg` | C03 | Mũi tên ngược nét đứt với $e$, $\delta_h$, $\delta_z$; gradient theo tham số |
+| `product-landscape.svg` | D02 | Đường mức $\tfrac12(uv-1)^2$, tập cực tiểu $uv=1$, điểm yên ngựa, $(\pm1,\pm1)$ |
+| `descent-bound-product.svg` | D04 | $\varphi(\eta)$ và cận trên bậc hai $L=2$; tại $\eta=\tfrac12$: $0{,}2109$ và $0{,}1390$ |
+| `saddle-plateau.svg`, `saddle-plateau-narrow.svg` | D06 | $F(\theta_k)$ và $\lVert\nabla F(\theta_k)\rVert^2$ (logarit), $k=0..15$ |
+| `batch-gradients.svg` | E03 | Sáu gradient nhóm và $\nabla F(\theta_0)=(-2;-1{,}5)$ |
+| `early-stopping-shrinkage.svg` | F07 | Tỉ lệ giữ của dừng sớm và chính quy hóa, $k$ logarit, ba trị riêng, đánh dấu $k=20$ |
+
+Bản cho màn hẹp được chọn bằng `<picture><source media="(max-width:760px)">`, chỉ dùng HTML, không cần CSS mới.
+
+Hình chép lại (quyết định Q4): `img/lec-05b/vda-sgd-bound-vs-exact.svg` → `img/lec-06/vda-sgd-bound-vs-exact.svg` (F01), giữ nguyên byte (SHA-256 bắt đầu `4beb1bb1e3dc94dd` ở cả hai tệp); `img/lec-06b/risk-curves.svg` → `img/lec-06/risk-curves.svg` (F06), trong bản chép dòng ghi chú “Sơ đồ minh họa; không phải quy luật cho mọi bài toán.” tách hai dòng, cỡ chữ 17 → 24, khung ghi chú rộng lại cho vừa; đường cong và nhãn khác không đổi (bản gốc `5e1b6108…`, bản chép `a536b26d…`). Lý do: ở nửa trang, chữ 17 hiển thị dưới 14 px. `step-halving-schedule.svg` (F02, tùy chọn) và `rates-log-error.svg` (F04, tùy chọn) không dùng nên không chép; `budget-bounds.svg` (F05, tùy chọn) không vẽ. Không có raster.
+
+### Sai lệch so với kế hoạch và lý do
+
+| # | Trang | Quyết định | Nội dung và lý do |
+|---|---|---|---|
+| 1 | E02, E04, F05, F06, G01; notes | sửa | Kế hoạch gọi các kết quả của Bài 05c là G.2, G.3, G.5, G.6, G.7; ghi chú Bài 05c hiện hành đánh số Định lý 05c.52 (rủi ro thực nghiệm tại tham số cố định), Định lý 05c.53 (gradient lô nhỏ), Mệnh đề 05c.56, Nhận xét 05c.58, Mục 6.7 và Nhận xét 05c.59. Deck dùng số hiệu hiện hành (brief: lấy đúng số hiệu từ ghi chú); outline.md và storyboard.md đã đổi theo |
+| 2 | F07, F08(c) | sửa | Kế hoạch nêu hai tỉ lệ giữ gần nhau khi $\lambda\approx1/(\eta k)$ và $\eta\alpha$ nhỏ; DL §7.8 cho (7.44) cần cả $\eta\alpha\ll1$ và $\alpha\ll\lambda$. Số liệu xác nhận: $\alpha=0{,}01$ ($\alpha/\lambda=0{,}1$) cho $0{,}095$ và $0{,}091$, còn $\alpha=0{,}1=\lambda$ cho $0{,}642$ và $0{,}500$ dù $\eta\alpha=0{,}05$ nhỏ. Mặt trang F07 thêm điều kiện thứ hai; đáp án F08(c) giải thích sai khác bằng $\alpha/\lambda=1$ ($(0{,}95)^{20}\approx0{,}358$ gần $e^{-1}$, còn $0{,}5$ khác $e^{-1}$). Không đổi số. Cần tác tử rà toán xác nhận |
+| 3 | B05, B06 | sửa | Sơ đồ mạng chỉ đặt ở B06 (định nghĩa); B05 đã có ma trận và bảng truyền xuôi, thêm hình làm chữ hình dưới 14 px |
+| 4 | B02 | sửa | Biến thể hai đường chéo là tệp riêng `xor-diagonals.svg` |
+| 5 | C03 | sửa | Bảng bảy dòng thay bằng hình truyền ngược (ghi đủ $e$, $\delta_h$, $\delta_z$ và gradient theo bốn khối) cộng một dòng $\nabla_{W_1}\ell$ dạng ma trận; bảng và hình cùng trang vượt khung 16:9 |
+| 6 | E03 | sửa | Bảng sáu nhóm xoay thành ba hàng (nhóm, $\widehat g$, $F(\theta_1)$) dưới hai cột chữ–hình; thứ tự trực quan và ví dụ giữ nguyên |
+| 7 | F02, F04, F05 | sửa | Không có hình (ba hình tùy chọn không dùng); trang đã đủ một định lý và số đối chiếu |
+| 8 | G03 | sửa | Danh mục đọc trên mặt trang rút gọn (Goodfellow và cộng sự §6.1, §6.5, §7.8, §§8.1–8.3; SNW ch. 13; Bài 05b; Bài 05c Mục 6), bản đầy đủ và câu về ghi chú bài giảng Bài 06 trong ghi chú diễn giả (phương án R10) |
+| 9 | A02 | sửa | Mục tiêu 3 viết “theo số mẫu, số tham số và tính lồi” thay cho $(n,p)$, vì $p$ chỉ được định nghĩa ở A04 |
+| 10 | A03 | sửa | “Vấn đề của bài” là đoạn in đậm nhãn, không đặt trong khung, để trang không chạm nút điều hướng dưới |
+| 11 | E01 | sửa | Chú thích bảng nêu SGD là hạ gradient ngẫu nhiên trên nhóm $b$ mẫu, vì đây là lần đầu chữ SGD xuất hiện trên mặt trang |
+| 12 | E02 | sửa | “SVM” viết đầy đủ “máy vector hỗ trợ (SVM)” ở lần đầu |
+
+Mọi trang giữ quyết định `thêm` của storyboard; không tách, không gộp; số trang 45, số mạch 7.
+
+### Nguồn đã đối chiếu khi soạn
+
+Không chép đoạn; chỉ dẫn trong ghi chú diễn giả. Goodfellow, Bengio và Courville (2016): §6.1 (XOR, (6.4)–(6.11)), §6.5 (đồ thị tính toán, Thuật toán 6.2, chi phí MLP tr. 220–221), §7.8 ((7.43)–(7.45) và điều kiện của (7.44)), §8.1.3 (xáo trộn theo lượt), §8.2.2–8.2.3 (đối xứng không gian trọng số, bình nguyên), §8.3.1 (Thuật toán 8.1, (8.12)–(8.14)). Sra, Nowozin và Wright (2011) ch. 13: §13.2.3, Bảng 13.2, Bảng 13.3 (số liệu như kế hoạch, điều phối viên đã đối chiếu). Boyd và Vandenberghe §3.2 (hợp thành). Deck và ghi chú Bài 05b (phát biểu T5–T8, nhãn H0–H6b), ghi chú Bài 05c Mục 6 (Định lý 05c.52, 05c.53, Mệnh đề 05c.56, Nhận xét 05c.58, Mục 6.7). Kế hoạch Bài 05 (`planning/lec-05/outline.md`) để gọi tên phần thay cho mã trang.
+
+### Kiểm bằng mắt và kỹ thuật
+
+Máy chủ `python3 -m reloadserver 8765` (đã chạy sẵn, trả 200). Playwright Chromium, tập lệnh `scratchpad/build/lec-06/check.py`: mỗi trang mở bằng `Reveal.getIndices` rồi `Reveal.slide(h, v, 99)`, chụp 1600×900 và 390×844 (màn hẹp chụp thêm khi đã cuộn `.lecture-viewport` tới cuối). Ảnh ở `scratchpad/build/lec-06/shots/`, ảnh ghép xem bằng mắt ở `scratchpad/build/lec-06/review/`.
+
+- 45/45 trang ở cả hai kích thước; 0 lỗi console hoặc lỗi trang (kể cả lỗi phân tích KaTeX); 0 `.katex-error`.
+- 16:9: chiều cao nội dung lớn nhất 634 px trên khung 675 (ngưỡng tự đặt 645 để không chạm chân trang); 0 phần tử vượt bề rộng 1200 (bảng và công thức dài nằm trong vùng cuộn ngang).
+- Cỡ chữ thân trên mặt trang 28 px (lớp `dense`), không phần tử chữ ngoài KaTeX dưới 27 px; chữ trong mọi SVG hiển thị ≥ 14 px ở 16:9 (tính theo tỉ lệ hiển thị thật của ảnh).
+- Màn hẹp: 0 tràn ngang tài liệu; công thức và bảng dài cuộn ngang trong vùng riêng như các deck 05b, 06b. Bốn hình rộng dùng bản xếp dọc; các hình nửa trang khác hiển thị chữ khoảng 10–12 px ở 390 px, ngang mức các deck hiện hành.
+- 18 tệp trong `img/lec-06/` tải được (`naturalWidth>0`), mọi `<img>` có `alt` mô tả nội dung và số liệu.
+- Bàn phím: phím cách đi qua đủ 45 trang theo thứ tự; mũi tên và Home hoạt động; địa chỉ trang trên thanh địa chỉ đánh số từ 1.
+- Xem bằng mắt: mọi trang ở 1600×900; mọi trang ở 390×844 (đầu trang và cuối trang). Đã sửa trong lúc xem: chữ đè đường hoặc chữ quá nhỏ trong bảy SVG, ba trang cao quá ngưỡng (A03, F07, G03), bốn công thức nội dòng tràn ở màn hẹp (D05, E02, E04, F04), công thức rộng trong cột (A04, B02, B05, B08).
+- `git diff --check` sạch trên các tệp đã theo dõi; tệp mới không có khoảng trắng cuối dòng, không ký tự tab.
+
+### Tự kiểm văn phong
+
+Kỹ năng `no-ai-slop` chế độ Edit trên toàn bộ tiêu đề, mặt trang và ghi chú; đối chiếu `eval.md`. Đã sửa: hai câu đối lập nhị phân (A03 ghi chú về SGD, F06 mặt trang về dừng sớm), hai mươi bảy câu lấy “trang sau / trang này” làm chủ ngữ thành câu có chủ ngữ là kết quả hoặc đối tượng toán học. Không câu cảm thán, câu hỏi tu từ, lời giảng viên, mã trang, nhãn quy trình hay thời lượng trên mặt trang và trong ghi chú (kiểm bằng biểu thức chính quy). Thuật ngữ tiếng Anh trong ngoặc ở lần đầu: linearly separable, ReLU, hidden unit, pre-activation, forward pass, computational graph, backpropagation, stationary point, saddle point, plateau, SGD, minibatch, epoch, weight space symmetry.
+
+### Điểm cần điều phối viên quyết
+
+1. Đổi nhãn G.2, G.3, G.5–G.7 sang số hiệu hiện hành của ghi chú Bài 05c (sai lệch 1); kế hoạch Bài 05 nếu còn dùng nhãn G cần đổi theo.
+2. Điều kiện $\alpha\ll\lambda$ ở F07 và đáp án F08(c) (sai lệch 2): sửa toán so với kế hoạch đã duyệt, cần tác tử rà toán xác nhận.
+3. Bản chép `risk-curves.svg` khác bản gốc ở dòng ghi chú; nếu muốn giữ nguyên byte, cần đổi bố cục F06 (hình cả trang) hoặc chấp nhận chữ ghi chú dưới 14 px.
+4. Bản hình cho màn hẹp qua `<picture>` là cách mới so với các deck trước; không cần CSS.
+5. Q1 (phụ đề) và Q2–Q6 vẫn mở; ghi chú bài giảng và bài tập Bài 06 mới chưa có (G03 nhắc tới chúng trong ghi chú diễn giả); `index.html` chưa đổi.
+
+### Quyết định của điều phối viên
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12, bản thảo deck):** chấp nhận bản thảo để đưa vào vòng rà soát năm vai. Kiểm độc lập: 45 trang đúng mã và thứ tự outline; không mã trang, thời lượng, nhãn quy trình trên mặt trang; 0 `style=`, 0 `<style>`, 0 tài nguyên ngoài; mọi trang có ghi chú; tiêu đề là cụm danh từ; ảnh C03, G01, F07 ở 16:9 xem bằng mắt đạt; bảng F07 tính lại khớp (0,642/0,500; 0,095/0,091) và điều kiện $\alpha\ll\lambda$ đúng theo Goodfellow §7.8 (7.44). Sai lệch của tác tử soạn: (1) dùng số hiệu thật của ghi chú 05c thay nhãn G.k: chấp nhận; (2) sửa điều kiện F07/F08(c): chấp nhận, giao vai kiểm toán xác nhận; (3) bản chép `risk-curves.svg` sửa cỡ chữ: chấp nhận (ghi nguồn); (4) `<picture>` cho bản màn hẹp: chấp nhận như sai lệch có chủ ý, không cần CSS; (5) bỏ ba hình F02/F04/F05: chấp nhận có điều kiện, vai sư phạm và mạch kể đánh giá. Tác tử soạn: general-purpose, claude-opus-5-5, effort high (theo lệnh gọi Agent).
+
+## Sửa sau vòng rà soát năm vai (2026-10-12)
+
+### Tác tử
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Ghi/đọc | Bằng chứng |
+|---|---|---|---|---|---|
+| Biên tập viên deck Bài 06 (cùng tác tử soạn deck, tiếp tục bằng tin nhắn) | Công cụ Agent, `general-purpose` | `claude-opus-5-5` | high | Ghi: deck, `img/lec-06/`, `planning/lec-06/{outline,storyboard,review-log}.md` | Deck, hình và mục này; đầu vào: `fix-list.md` và năm báo cáo `review-{sinh-vien,chuyen-gia,kiem-toan,su-pham,mach-ke}.md` trong `scratchpad/build/lec-06/` |
+
+Mô hình và effort ghi theo brief; điều phối viên xác nhận bằng lời gọi công cụ. Không sửa `lecture-style.css` hay tệp Bài 05; không commit. Đã nạp `no-ai-slop` (Edit) và tự kiểm theo `eval.md`.
+
+Vai gốc: SV = sinh viên, CG = chuyên gia, KT = kiểm toán, SP = sư phạm, MK = mạch kể.
+
+### Mục nghiêm trọng
+
+| Mục | Vai | Trang | Trạng thái và cách sửa |
+|---|---|---|---|
+| S1 | CG, KT | E02 | **đã sửa**: SVMPerf $6{,}03\,\%$; bảng tách cột “mục tiêu” và “lỗi kiểm thử”; dòng kết luận “lỗi kiểm thử gần như nhau”; ghi chú “$6{,}02\,\%$, $6{,}03\,\%$ và $6{,}02\,\%$”. Outline E02 sửa; dòng đính chính thêm ngay sau dòng 27 của tệp này. Dòng tương ứng ở `planning/lec-05/review-log.md` (khoảng dòng 47) chưa sửa, thuộc Bài 05, đã báo điều phối viên |
+| S2 | SP, CG, SV | F05, G02, G03, A03, E01 | **đã sửa**: mặt F05 nói rõ so hai cận trên trên cùng tổng ngân sách $\mathcal B$, khác ngân sách mỗi bước; kết luận “cận SGD nhỏ hơn khi $\mathcal B&lt;(n-b)^2/2$; với $n=10^3$ hạ gradient đầy đủ vẫn chạy được, cận nhỏ hơn khi $\mathcal B&gt;4{,}9\cdot10^5$”. Kiểm lại: $2n/\mathcal B&lt;2b/\mathcal B+2\sqrt{2/\mathcal B}\iff\mathcal B&gt;(n-b)^2/2$; với $n=10^3$, $b=10$: $490\,050$. G02 dòng 5 “không lồi, $n$ nhỏ so với ngân sách”, căn cứ trong ghi chú. Điểm chuyển SNW ghi “cỡ $10^5$–$10^6$” (log tự nhiên $7{,}2\cdot10^5$, $\log_{10}$ $1{,}7\cdot10^6$), là phép so bậc; G03 1(b) dựa chính vào chi phí một bước $np=10^{14}$ |
+| S3 | SP, MK, CG | toàn deck, outline, storyboard | **đã sửa**: sàn nhiễu → mức nhiễu nền (tiêu đề F02); tính tay, bằng tay → tính thủ công; phép kiểm, Kiểm → phép kiểm tra, Kiểm tra; cỡ nhóm → kích thước nhóm; cái giá, trả giá → hệ quả, điều phải đánh đổi, đổi lấy; mất mát hinge → mất mát bản lề (hinge loss); tiêu đề G03 “câu hỏi tự kiểm tra”. SVG không chứa các từ này. Rà bằng `findterms.py`: 0 chỗ còn lại |
+| S4 | SP, MK | A01 và ghi chú 25 trang | **đã sửa**: bỏ “cách gọi tạm” ở A01; mọi “mạch A…G”, “câu hỏi cuối mạch” trong ghi chú thay bằng tên phần (phần mạng hai tầng, lan truyền ngược, điểm dừng, gradient nhóm nhỏ, tốc độ hội tụ dưới nhiễu, tổng hợp) hoặc số phần của bản đồ A02; grep “mạch” trong deck: 0 |
+| S5 | MK | A02, A03 | **đã sửa**: A03 có dòng “Hai giới hạn của Bài 05: (i) chi phí; (ii) biểu diễn (XOR, đặc trưng thủ công)” và “Vấn đề của bài” bốn mục, mục (1) là biểu diễn XOR và hệ quả; bảng bốn dòng viết lại cùng thứ tự với G01; tiêu đề “Giả thiết lồi của Bài 01–04 …”. A02 “Vấn đề trung tâm” nêu biểu diễn XOR và ngân sách mỗi bước, không lặp danh sách của A03 |
+
+### Mục trung bình
+
+| Mục | Vai | Trang | Trạng thái và cách sửa |
+|---|---|---|---|
+| M1 | CG | F01 | **đã sửa**: “Khi $\operatorname{tr}\Sigma(\theta^*)&gt;0$, dãy SGD bước hằng dao động quanh $\theta^*$”; ghi chú nêu trường hợp $\theta_A$ của XOR (mọi gradient mẫu bằng 0) |
+| M2 | CG, KT | E04, E02, F02, F04 | **đã sửa**: 05c.53 thêm “mọi $\ell_i$ khả vi tại $\theta$”, “các lần chọn độc lập”, “$n\ge2$, $b\le n$”; ghi chú về ReLU; 05c.52 thêm “phương sai hữu hạn”; T5, T8 thêm “$\theta_0$ tất định”; ghi chú E04 tách $\sigma^2$ có hoàn lại (Mục 6.7) và hệ số $\frac{n-b}{n-1}$ (kết luận 2 của 05c.53) |
+| M3 | CG, KT | D01 | **đã sửa**: “không lồi: chứa $\theta^*$ và $P\theta^*$ nhưng không chứa đoạn nối (Mệnh đề 3)” |
+| M4 | MK, CG, KT, SV | G01, A03 | **đã sửa**: G01 hai cột “Không còn giữ được / Còn giữ được (kết quả của bài)”, dòng (A)/(B), bốn dòng cùng thứ tự A03 và cùng câu chữ với Bài 05 KL04 (đọc deck 05 hiện hành): T7 với $\min_{k&lt;K}$, T8 bước hằng có mức nhiễu nền $L\eta\sigma^2$, không khẳng định dãy hội tụ; “T5, T8 cần $F$ trơn; T6 cần lồi mạnh và H6a” |
+| M5 | SV | F01, F02, F08 | **đã sửa**: chú thích F01 nêu $F(\theta)=\tfrac16\sum(\theta-y_i)^2$, $y=(-1,1,3)$, rút một quan sát mỗi bước, $\widehat g=\theta-y_i$, $\sigma^2=\tfrac83$; F02 nêu truy hồi $\mathbb E(\theta_{k+1}-1)^2=0{,}81\,\mathbb E(\theta_k-1)^2+0{,}01\cdot\tfrac83$ (kiểm: $(1-0{,}1)^2=0{,}81$; giới hạn $0{,}01\cdot\tfrac83/0{,}19=\tfrac8{57}$); F08 câu 1 thêm so sánh với cận T5 |
+| M6 | SV, SP, CG, KT | G03, F05 | **đã sửa**: bỏ $\kappa$, $\rho$ khỏi câu 1(b), câu trả lời được bằng bảng chi phí; ghi chú F05 định nghĩa $\rho$, $\nu$ |
+| M7 | SP | F02, F04 | **đã sửa**: F02 ghi bất đẳng thức một bước là bước trong chứng minh T8 và giải thích phản ví dụ; F04 thêm dòng “Chứng minh (Bài 05b). Cộng bất đẳng thức một bước theo $k&lt;K$”, song song D04→D05; giữ bất đẳng thức ở F02 để không phải chuyển trang |
+| M8 | SP | E06 | **đã sửa**: câu 5, dữ liệu bốn điểm tại $\theta^*$, $b=3$ không hoàn lại; đáp án $\operatorname{tr}\Sigma=\tfrac52$, $\mathbb E\lVert\widehat g\rVert^2=\tfrac52\cdot\tfrac13\cdot\tfrac13=\tfrac5{18}$, kiểm bằng liệt kê ($\widehat g=-g_j/3$) |
+| M9 | SV, SP, MK | B02, A03, storyboard KN1, outline §11 | **đã sửa**: nhãn “Nhắc lại (Bài 05)” và “Mệnh đề 1 (nhắc lại Bài 05)”, dòng đối chiếu $y_{\pm,i}g(x_i)&gt;0$, $g=f-\tfrac12$; “Hệ quả” → “Ví dụ (bình phương nhỏ nhất)”; ghi chú A03 đặt XOR ở phần kết luận của Bài 05; KN1 và §11 sửa |
+| M10 | SV, MK, KT | B03, D05, B09, E03, G02, A04 | **đã sửa**: B03 giữ $q$, ghi chú dẫn $\binom{r+q}{q}$ của Bài 05; D05 “H2 ($\nabla F$ là $L$-Lipschitz)”; B09 định nghĩa $P\theta$ trên mặt trang; E03 định nghĩa $\widehat g$ và $\theta_1=\theta_0-\tfrac14\widehat g$; G02 “T2, Định lý 05b.18”; A04 “Bài 05b viết $x_k\in\mathbb R^n$ (số chiều $n$, số mẫu $N$)” |
+| M11 | MK | E01 | **đã sửa**: Hessian 8 byte như Bài 05 ($8\cdot10^{10}$, $8\cdot10^{18}$ byte, trong ghi chú); ghi chú dẫn bảng chi phí ba quy mô của Bài 05 và nêu khác biệt (cột SGD, tốc độ máy giả định); tiêu đề đổi “Chi phí một bước của ba phương pháp ở ba quy mô” để không trùng tên |
+| M12 | SV, MK | F06, storyboard KN9 | **đã sửa**: mặt F06 “Bài 05 đã định nghĩa dừng sớm; quy tắc dưới đây thêm chu kỳ đánh giá và điều kiện dừng”; ghi chú dẫn ví dụ bước 79 ($0{,}00108$, gấp 45 lần nhỏ hơn $0{,}0487$); KN9 ghi KL01 của Bài 05 là bước ví dụ của quy tắc |
+| M13 | MK | E01 | **đã sửa**: dòng đầu “Định lý T7 cần gradient đầy đủ $\nabla F(\theta_k)$ ở mỗi bước, mỗi lần $O(np)$” |
+| M14 | SV, CG | F07 | **đã sửa**: thứ tự Thiết lập → Ví dụ (bảng) → Nhận xét; định nghĩa tỉ lệ giữ; ghi chú dẫn (7.40), (7.42), (7.43), (7.44)–(7.45) |
+| M15 | SP, SV | E02, B03, B05, D06 | **đã sửa**: E02 hai cột, nhắc Bài 05 chuyển xuống ghi chú, chữ hoa “Máy vector hỗ trợ”, dòng kết luận; B03 câu kết viết lại; ReLU và điểm gãy định nghĩa trên mặt B05, bình nguyên trên mặt D06 |
+| M16 | SP | B04, C03, D06; review-log | **đã sửa**: alt không còn “Trái/Phải”, “từ phải sang trái”, “phía trên” (dùng “khung thứ nhất/thứ hai”, “chiều ngược của đồ thị”, “ghi kèm”). **Quy ước:** mỗi hình rộng có bản `-narrow.svg` sinh cùng bộ sinh `gen.py` từ cùng số liệu; khi sửa số hoặc chữ của một bản phải sinh lại cả hai và so `<desc>` |
+| M17 | CG | D06, D03, D02 | **đã sửa**: D06 ghi chú tách bình nguyên khỏi điểm yên ngựa và dẫn Goodfellow tr. 286 (hạ gradient thường thoát điểm yên ngựa trong thực nghiệm); D03 phân biệt đối xứng liên tục (sinh trị riêng 0) với đối xứng hoán vị; D02 hệ số co giãn $c&gt;0$ cho ReLU; D03 nhãn “Bài 00; mục 3 bổ sung” |
+| M18 | MK | storyboard, outline | **đã sửa**: storyboard dòng trạng thái; outline §1.3; §3 đặt AdaGrad, Newton/BFGS, chuẩn hóa theo lô ở 06c và ghi quyết định 06b/06c; §9 cột trang của `xor-points.svg` (B01), `two-layer-network.svg` (B06); D06 “dòng bốn giá trị và hình”; bỏ $\kappa$ khỏi đầu ra E03 của storyboard |
+
+### Mục nhẹ
+
+| Mục | Vai | Trạng thái |
+|---|---|---|
+| N1 | KT | **đã sửa**: alt F07 và `<desc>` của `early-stopping-shrinkage.svg`: các đường tăng dần, cặp $\alpha$ nhỏ tăng muộn hơn; tại $k=1$ cặp $\alpha=1$ ở $0{,}5$ và $0{,}33$; tại $k=1000$ đường chính quy hóa của $\alpha=0{,}01$ ở $0{,}83$ |
+| N2 | CG, KT | **đã sửa**: C05 ghi chú “Thuật toán 6.2, tr. 209–210” |
+| N3 | KT | **đã sửa**: C03 “cho $-1$ (sai khác dưới $10^{-13}$)”, kèm công thức sai phân trung tâm |
+| N4 | SV, SP, MK | **đã sửa**: G03 ghi chú dẫn chứng minh ở Bài 05b, 05c Mục 6; “lời giải chi tiết thuộc học liệu Bài 06”, không khẳng định học liệu đã có |
+| N5 | năm vai | Đã làm: A03 “đại lượng thay thế”; A04 thêm $n$ của 05b, $w_k$ của Bài 05, $\theta_t$ của 06b (ghi chú); B01 nhãn $\pm1$; B02 ngưỡng $g=f-\tfrac12$; B03 chi phí Newton; B07 “tích tham số tầng ra với tham số tầng ẩn”; C01 $e_j$; C03 $\odot$; C05 bộ nhớ $2m$; C06 câu kết; D01 dòng nhu cầu; D04 $L=2$ và trùng giá trị $\tfrac9{32}$; D07, B04 bỏ khẩu ngữ; E02 dòng Bottou–Bousquet trên mặt trang, ghi chú về mất mát bản lề không khả vi; E02→E03 câu nối; E04 “Bài 05c gọi nhóm nhỏ là lô nhỏ”; E06 câu 4 viết lại; F01 bỏ đối lập nhị phân, hình nêu tên T5; F04 câu cân bằng hai số hạng, ghi chú dẫn Ví dụ D của 05b; F05 ghi chú nguồn chọn kích thước nhóm; F06 $\widehat R$, ngưỡng kiên nhẫn $r$ thay $K_{\rm stop}$, “có xu hướng giảm” (mặt trang, alt, `<desc>` của `risk-curves.svg`); F07 ghi chú về logistic; G01, G02, E02, B09, B03, C03, C05, F07 bỏ lời bình về trang; G02 tiêu đề, bước T6, bước của T8; G03 trích dẫn đủ tên tác giả, “chương 13”, đáp án 4 so sai số giá trị $\tfrac L2\eta\sigma^2/\mu$ với sai số ước lượng; E01 tiêu đề cột “SGD (ngẫu nhiên)”. Không làm: (a) đánh số lại “Mệnh đề 06.1–06.3” (MK), để dành cho lúc viết ghi chú bài giảng; (b) thống nhất ký hiệu chuyển vị $^\top$ với $^T$ của Bài 05, 05b (MK): giữ $^\top$, chỉ ghi ở đây; (c) đổi tiêu đề trùng G01 ↔ Bài 05 KL04 (SV): tiêu đề G01 do điều phối viên chốt, phía Bài 05 quyết; (d) dời phần 05b/05c của khung đối chiếu A04 vào ghi chú (SV): giữ trên mặt trang vì các định lý 05b, 05c được dẫn ngay sau đó, đã thêm $\mathbb R^n$ |
+
+### Mục bỏ
+
+| Mục | Vai | Lý do |
+|---|---|---|
+| B1 | SP | Không vẽ thêm hình cho F02, F04, F05. Vai sư phạm xác nhận bước trực quan của cụm đã có: F02 dùng hình Ví dụ A ở F01 (F02 nay trỏ về đường nét đứt của hình đó), F04 kế thừa D04, D06 và F01, F05 là bước ứng dụng. F04 có thêm câu giải thích cách chọn $\eta$ |
+
+### Thay đổi kế hoạch
+
+Outline mục 1.7 (mới) và các mục Mặt trang của A02, A03, B02, E02, E06, F01, F02, F04, F05, F06, F07, G01, G02, G03; năm tiêu đề đổi ở cả outline và storyboard (A03, E01, F02, G02, G03); storyboard thêm đoạn “Sửa sau vòng rà soát năm vai”. Mã và tiêu đề deck, outline, storyboard khớp một-một (45). SVG đã sửa: `early-stopping-shrinkage.svg` (`<desc>`), `risk-curves.svg` (`<desc>`); không đổi hình vẽ.
+
+### Kiểm tra
+
+Playwright, 45/45 trang ở 1600×900 và 390×844 (kèm ảnh cuộn cuối ở màn hẹp): 0 lỗi console hoặc trang, 0 lỗi KaTeX, chiều cao lớn nhất 637/675 px (C03; ngưỡng tự đặt 645), 0 tràn ngang tài liệu, chữ thân ≥ 27 px, chữ SVG hiển thị ≥ 14 px ở 16:9, mọi ảnh tải được và có alt. Đã xem bằng mắt mọi trang ở cả hai kích thước sau lượt sửa. `git diff --check` sạch; không khoảng trắng cuối dòng trong deck và SVG.
+
+### Điểm báo điều phối viên
+
+1. Đính chính $6{,}03\,\%$ cho `planning/lec-05/review-log.md` (khoảng dòng 47) và, nếu Bài 05 trình bày hàng hinge, cho deck Bài 05.
+2. Ghi chú KL03 của Bài 05 nói Bài 06 “chứng minh đầy đủ” XOR; Bài 06 nay ghi đây là nhắc lại Bài 05.
+3. G01 dùng cùng câu chữ với Bài 05 KL04 hiện hành; nếu KL04 đổi tiếp, G01 cần đổi theo.
+
+### Quyết định của điều phối viên
+
+## Đồng bộ G01 với Bài 05 KL04 sau tái kiểm (2026-10-12)
+
+Yêu cầu của điều phối viên sau khi chấp nhận vòng sửa: KL04 của Bài 05 đã đổi sau tái kiểm, G01 phải khớp. Tác tử: biên tập viên deck Bài 06 (cùng tác tử, `general-purpose`, `claude-opus-5-5`, high).
+
+- **G01 (mặt trang):** bỏ nhãn (A)/(B); dòng dẫn “Mất khi (i) chi phí: gradient nhóm nhỏ thay gradient đầy đủ, hoặc (ii) biểu diễn: mô hình phi tuyến, mục tiêu không lồi”; cột trái “Mất (khi nào)”; hàng bảo đảm tất định mất “khi (i) và (ii)”; cột phải hàng này viết như KL04: gradient đầy đủ giảm $F$ mỗi bước; SGD với $F_\lambda$ lồi mạnh, bước hằng tới lân cận cỡ $\eta\sigma^2/\mu$ (T5), bước giảm dần tới cực tiểu $O(1/k)$ (T6); bỏ câu chung “bảo đảm theo kỳ vọng cho dãy lặp (T5, T8)”. Hàng T7/T8 giữ nội dung. Bài 06 giữ $\sigma^2$ cho chặn phương sai.
+- **G01 (ghi chú):** giải thích hai điều kiện, Định lý 3 của Bài 05 mất khi (i) và khi (ii), T5 so với T6; nêu Bài 05 viết $\tau^2$ vì $\sigma$ là sigmoid ở đó, còn trong Bài 06 $\sigma$ không bình phương là hàm kích hoạt.
+- **A03:** cột phải hàng hai thành “SGD: bảo đảm theo kỳ vọng, có số hạng nhiễu”; nhãn (i) chi phí, (ii) biểu diễn đã có ở dòng “Hai giới hạn của Bài 05”.
+- **Kế hoạch:** outline mục Mặt trang của G01 và A03, storyboard đoạn “Sửa sau vòng rà soát năm vai” cập nhật.
+- **Kiểm tra:** A02–A04, F08, G01–G03 ở 1600×900 và 390×844: 0 lỗi console, 0 lỗi KaTeX, A03 cao 620 px, G01 586 px trên khung 675, 0 tràn ngang tài liệu (bảng cuộn ngang trong vùng riêng ở màn hẹp); xem bằng mắt A03, G01 ở hai kích thước. `git diff --check` sạch.
+
+### Quyết định của điều phối viên
+
+## Sửa sau tái kiểm (2026-10-12)
+
+Đầu vào: `recheck-kiem-toan.md`, `recheck-mach-ke.md` (thư mục nháp `scratchpad/build/lec-06/`) và danh sách R1–R7 của điều phối viên. Tác tử: biên tập viên deck Bài 06 (cùng tác tử, `general-purpose`, `claude-opus-5-5`, high). Chỉ sửa tệp Bài 06; không commit.
+
+| Mục | Mức | Trang | Trạng thái và cách sửa |
+|---|---|---|---|
+| R1 | nghiêm trọng | F05, G02; outline F05, G02 | **đã sửa**. Câu diễn giải “tức khi $n$ lớn so với ngân sách” và dòng G02 “$n$ nhỏ so với ngân sách” sai nghĩa; câu này bắt nguồn từ gợi ý ở mục S2 của danh sách sửa vòng trước, tác tử biên tập chép lại mà không đối chiếu với hàng $n=10^3$ của bảng ($\mathcal B=10n&gt;n$ mà cận SGD nhỏ hơn). Mặt F05: “Cận SGD nhỏ hơn khi $\mathcal B&lt;(n-b)^2/2$, tức số lượt dữ liệu $\mathcal B/n$ nhỏ hơn cỡ $n/2$ (cả hai hàng: 10 lượt). Với $n=10^3$, hạ gradient đầy đủ có cận nhỏ hơn khi $\mathcal B&gt;490\,050$ (khoảng 490 lượt).” Ghi chú F05 nêu dạng tương đương $n-b&gt;\sqrt{2\mathcal B}$ và ví dụ $n=10^4$, $b=10$, $\mathcal B=10^6$ (100 lượt): cận GD $0{,}02$, cận SGD $0{,}00285$, ngưỡng $4{,}99\cdot10^7$ (đã tính lại). G02 dòng 5: “không lồi, $\mathcal B&gt;(n-b)^2/2$ (F05)”; ghi chú G02 đọc thành “ngân sách đủ cho cỡ $n/2$ lượt trở lên” |
+| R2 | trung bình | G01 | **đã sửa**: dòng 1 “Đích là nghiệm chính xác (đã mất ở Bài 05)”; dòng 2 “Tốc độ tuyến tính (Định lý 3, Bài 05; khi (i) hoặc (ii))” như KL04 Bài 05 hiện hành; mặt trang định nghĩa $F_\lambda=F+\tfrac\lambda2\lVert\theta\rVert^2$; ghi chú định nghĩa $e_k=F_\lambda(\theta_k)-\min F_\lambda$, nói rõ chỉ cần một trong hai điều kiện và dưới (ii) với gradient đầy đủ vẫn còn bổ đề giảm và T7 |
+| R3 | trung bình | A03, E01, E02; outline §1.1 | **đã sửa**: bảng A03 gắn nhãn dòng theo Bài 05 MD03: **Đích** (lý do thống kê), **Biểu diễn** (ii), **Chi phí** (lý do tính toán; (i)); E01 “Lý do tính toán (chi phí, giới hạn (i))”, E02 “Lý do thống kê (đích)”; ghi chú E03 mở bằng câu “Hai lý do của luận đề …”; outline §1.1 thêm câu ánh xạ hai lý do với nhãn dòng |
+| R4 | trung bình | B02 | **đã sửa**: “**Mệnh đề 1.**” (đánh số của Bài 06) và “**Chứng minh** (nhắc lại phần kết luận của Bài 05)”; ghi chú nói Bài 05 không đánh số kết quả này và Mệnh đề 1 của Bài 05 là kết quả khác |
+| R5 | trung bình | D01, F01, E01 | **đã sửa**: D01 “có thể không lồi; với mạng (Mệnh đề 3): chứa $\theta^*$, $P\theta^*$ nhưng không chứa trọn đoạn nối”; F01 thêm “và $b&lt;n$ (nếu chọn không hoàn lại)”; ghi chú E01 nêu hai bảng chỉ trùng quy mô thứ nhất, Bài 05 dùng $(10^5,10^3)$ và RCV1, bảng ở đây dùng $(10^5,10^5)$, $(10^9,10^9)$, thêm cột SGD và tốc độ máy giả định; chỉ quy ước 8 byte là chung |
+| R6 | trung bình | outline, storyboard | **đã sửa**: bỏ “phương án còn lại”, “bảo đảm còn lại”, “tốc độ còn lại”; ba vấn đề, ba câu hỏi → bốn vấn đề (A01, A02, A03, A04, G01, G03); G01 “bảng sáu dòng” → bốn dòng cùng thứ tự A03 và KL04; điểm chuyển $7\cdot10^5$ → cỡ $10^5$–$10^6$, chỉ báo bổ sung (outline F05, G03, §8.6; storyboard F05, G03); $K_{\text{stop}}$ → ngưỡng kiên nhẫn $r$ (KN9, F06); outline §11 bỏ B02 khỏi dòng “Mới”; “kiểm tay” → “kiểm tra thủ công”; “Cỡ nhóm” → “Kích thước nhóm” (R2 của outline); mục Mặt trang của A03, B02, F05, G01, G02 viết lại theo deck; storyboard KN1, KN3 bỏ “đổi lấy” |
+| R7 | nhẹ | B09, D07, D03, F05, E06/F01, F02, B05, D06, E03, G02 | **đã sửa**: ghi chú B09 “đặc trưng thủ công khắc phục giới hạn bằng cách tăng số chiều; đặc trưng học được khắc phục nó nhưng làm mất tính lồi”; ghi chú D07 “giữ các giả thiết của T7 về $F$ (H0, H2), thay gradient đầy đủ bằng gradient nhóm; kết quả tương ứng là T8”; D03 “(Bài 00; điều kiện cần ở mục 3 là phần thêm)”; câu mở F05 viết lại thành câu có chủ ngữ; E06 câu 5 đổi sang $\theta=(1,0)$ để F01 không lộ đáp án (đáp án $\operatorname{tr}\Sigma=\tfrac{23}4$, $\mathbb E\lVert\widehat g-\nabla F\rVert^2=\tfrac{23}{36}$, đã kiểm bằng liệt kê); F02 thêm “Số hạng $\tfrac{\eta\sigma^2}{\mu}$ là mức nhiễu nền (noise floor)”; B05 “hàm tuyến tính chỉnh lưu, ReLU”; D06 định nghĩa bình nguyên khớp ghi chú (vùng gradient nhỏ, giá trị gần như không đổi, còn xa cực tiểu; ở ví dụ bao quanh điểm yên ngựa); ghi chú E03 đưa câu nối lên đầu; ghi chú G02 bỏ dấu phẩy thừa |
+
+Kiểm tra: toàn deck 45 trang ở 1600×900 và 390×844 (kèm ảnh cuộn cuối): 0 lỗi console hoặc trang, 0 lỗi KaTeX, chiều cao lớn nhất dưới ngưỡng 645 px (A03 584, F05 624, G01 622), 0 tràn ngang tài liệu. Xem bằng mắt A03, B02, D01, F01, F02, F05, G01, G02 ở hai kích thước. Mã và tiêu đề deck, outline, storyboard khớp (45). `git diff --check` sạch.
+
+### Quyết định của điều phối viên
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12, sau hai vòng sửa):** chấp nhận vòng sửa năm vai (S1–S5, M1–M18, N1–N5; B1 bác bỏ có lý do), lượt đồng bộ G01 với KL04 và vòng sửa sau tái kiểm (R1–R7). Bằng chứng kiểm độc lập: pdftotext tr. 363 (6,02/6,03/6,02 %); bảng F05 tính lại (0,2; 2,85·10⁻⁵; 0,0303), điều kiện $\mathcal B<(n-b)^2/2$ suy từ $2b/\mathcal B+2\sqrt{2/\mathcal B}<2n/\mathcal B$, ngưỡng 490 050; E06 câu 5 với $\theta=(1,0)$: $\operatorname{tr}\Sigma=23/4$, phương sai nhóm $b=3$ không hoàn lại $23/36$; bảng F07 khớp Goodfellow (7.44); ảnh A03, F05 ở 16:9 do điều phối viên tự chụp đạt. Hai câu sai bắt nguồn từ gợi ý của điều phối viên (S2 "n lớn so với ngân sách"; S1(a) phía Bài 05) đã đính chính. Tác tử: soạn/biên tập general-purpose claude-opus-5-5 high; năm vai rà soát và hai vai tái kiểm cùng loại (theo lệnh gọi Agent). Chuyển sang kiểm cuối và viết học liệu.
+
+## Sửa sau kiểm cuối (2026-10-12)
+
+Đã thêm `tabindex="0"` cho 16 vùng `.table-scroll` (A03, B01, B03, B05, B07, B08, C05, D01, E01, E02, E03, F03, F05, F07, G01, G02): bảng ở màn hẹp nhận tiêu điểm và cuộn ngang bằng phím mũi tên (đã kiểm ở G02, 390×844). G02 dòng 5 bỏ mã trang “(F05)”, thay bằng “(so sánh dưới ngân sách cố định)”; outline sửa theo; rà toàn bộ mặt trang và ghi chú, không còn mã trang. `batch-gradients.svg`: nhãn ∇F(θ₀) dời khỏi đầu mũi tên, nhãn {2,3} dùng đường dẫn nét đứt, tách hai nhãn góc −3 và −5. Footer ẩn ở A01–A04 là hành vi đã biết, chung cho mọi deck của học kỳ (quy tắc chung ở dòng 79 của `lecture-style.css`); điều phối viên quyết giữ nguyên. Kiểm tra Playwright G02, E03, F05, A03: 0 lỗi console, 0 lỗi KaTeX, cao tối đa 624 px; `git diff --check` sạch.
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12, kiểm cuối deck):** chấp nhận. Kiểm cuối (general-purpose, claude-opus-5-5, high) đạt: 45/45 trang ở 1600×900 (cao nhất 643/675) và 390×844, 0 lỗi, 0 `.katex-error`, 14/14 hình tải, `<picture>` chọn đúng bản hẹp, phím đi hết deck; planning khớp 45/45; `git diff --check` sạch. Hai mục kỹ thuật (tabindex 16 bảng cuộn; mã trang "(F05)" ở G02) đã sửa và kiểm lại, điều phối viên xác nhận 16 tabindex và không còn mã trang. Footer ẩn ở mạch đầu là luật chung của học kỳ (lecture-style.css dòng 79), giữ nguyên để nhất quán với mọi deck. Deck commit ở mốc này; thẻ index thêm khi học liệu xong.

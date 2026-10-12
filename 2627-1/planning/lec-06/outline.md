@@ -8,7 +8,7 @@ Ngày 2026-10-11, người dùng thiết kế lại Bài 05 và Bài 06 thành h
 
 | Khối | Chủ đề | Câu hỏi trung tâm (người dùng) | Nhu cầu trong kế hoạch | Mạch | Thời lượng |
 |---|---|---|---|---|---|
-| B1 | XOR và mạng hai tầng | “Why is linear prediction insufficient?” | Dự đoán tuyến tính theo đặc trưng có giới hạn biểu diễn; cần mô hình có đặc trưng học được và biết cái giá của nó | A, B | 1,00 tiết |
+| B1 | XOR và mạng hai tầng | “Why is linear prediction insufficient?” | Dự đoán tuyến tính theo đặc trưng có giới hạn biểu diễn; cần mô hình có đặc trưng học được và biết chi phí của nó | A, B | 1,00 tiết |
 | B2 | Lan truyền ngược và tính không lồi | “What can gradients certify now?” | Tính $\nabla F(\theta)\in\mathbb R^p$ với chi phí cùng bậc truyền xuôi; xác định điều mà gradient bằng 0 hoặc gradient nhỏ chứng nhận khi $F$ không lồi | C, D | 1,00 tiết |
 | B3 | SGD nhóm nhỏ | “What convergence rate remains when gradients are noisy?” | Tốc độ hội tụ còn lại khi gradient đầy đủ được thay bằng ước lượng ngẫu nhiên, và lý do tốc độ đó đủ dưới ngân sách tính toán cố định với mục tiêu thay thế | E, F, G | 1,00 tiết |
 
@@ -26,8 +26,10 @@ Ngày 2026-10-11, người dùng thiết kế lại Bài 05 và Bài 06 thành h
 
 Chỉ dẫn người dùng ngày 2026-10-11 áp dụng cho cả Bài 05 và Bài 06. Bài 01–04 làm việc với một bức tranh gọn: mục tiêu lồi có nghiệm chính xác, phương pháp tất định có bảo đảm hội tụ tới nghiệm đó. Khi mô hình và dữ liệu lớn, bức tranh này không còn phù hợp vì hai lý do. Bài 06 nêu hai lý do ở A03, dùng lại ở E01–E02 và F05, khép lại ở G01.
 
-- **Lý do tính toán.** Một gradient đầy đủ tốn $O(np)$ phép nhân–cộng, một bước Newton tốn $O(np^2+p^3)$. Với $n,p$ lớn, ngay một bước như vậy cho mỗi lần cập nhật đã vượt ngân sách; SGD nhóm nhỏ là phương pháp còn lại khi ngân sách mỗi bước cố định. Nhiễu và tốc độ chậm hơn là cái giá phải trả, không phải mục tiêu thiết kế.
-- **Lý do thống kê.** Rủi ro thực nghiệm $F$ là đại lượng thay thế cho rủi ro kỳ vọng $R$. Tại $\theta$ cố định, $F$ lệch $R$ cỡ $1/\sqrt n$ (Định lý G.2 của Bài 05c); theo phân tích của Bottou–Bousquet cho bài toán lồi, giảm sai số tối ưu dưới bậc của sai số ước lượng không làm thay đổi bậc của cận sai số dư. Vì vậy giảm $F$ tới cực tiểu chính xác không cần thiết, và có thể không mong muốn (Bài 05, khối A1: khớp kém dần trên dữ liệu mới khi $d$ tăng; khối A2: trên dữ liệu tách được, cực tiểu không tồn tại nếu không chính quy hóa). Dừng sớm và chính quy hóa là một phần của phương pháp.
+- **Lý do tính toán.** Một gradient đầy đủ tốn $O(np)$ phép nhân–cộng, một bước Newton tốn $O(np^2+p^3)$. Với $n,p$ lớn, ngay một bước như vậy cho mỗi lần cập nhật đã vượt ngân sách; SGD nhóm nhỏ là phương pháp còn lại khi ngân sách mỗi bước cố định. Nhiễu và tốc độ chậm hơn là chi phí phải trả, không phải mục tiêu thiết kế.
+- **Lý do thống kê.** Rủi ro thực nghiệm $F$ là đại lượng thay thế cho rủi ro kỳ vọng $R$. Tại $\theta$ cố định, $F$ lệch $R$ cỡ $1/\sqrt n$ (Định lý 05c.52 của Bài 05c); theo phân tích của Bottou–Bousquet cho bài toán lồi, giảm sai số tối ưu dưới bậc của sai số ước lượng không làm thay đổi bậc của cận sai số dư. Vì vậy giảm $F$ tới cực tiểu chính xác không cần thiết, và có thể không mong muốn (Bài 05, khối A1: khớp kém dần trên dữ liệu mới khi $d$ tăng; khối A2: trên dữ liệu tách được, cực tiểu không tồn tại nếu không chính quy hóa). Dừng sớm và chính quy hóa là một phần của phương pháp.
+
+Trên mặt trang A03, hai lý do gắn với nhãn dòng của bảng đối chiếu: lý do thống kê là dòng **Đích**, lý do tính toán là dòng **Chi phí** (giới hạn (i)); dòng **Biểu diễn** là giới hạn (ii). E01, E02 dùng lại hai nhãn này.
 
 Hệ quả cho trình bày: SGD được trình bày là phương án bị buộc bởi chi phí và đủ cho mục tiêu thay thế, không phải phương pháp “nhanh hơn”. Mở đầu (A03) và kết luận (G01) dùng cùng dạng đối chiếu: mất tính chính xác, bảo đảm tất định và gradient đầy đủ; giữ tính giảm mỗi bước của hạ gradient đầy đủ (bổ đề giảm), bất đẳng thức một bước của SGD $\mathbb E[F(\theta_{k+1})\mid\theta_k]\le F(\theta_k)-\eta\big(1-\tfrac{L\eta}2\big)\lVert\nabla F(\theta_k)\rVert^2+\tfrac{L\eta^2}2\sigma^2$ (có số hạng nhiễu, nên SGD không giảm theo kỳ vọng ở mọi bước; phản ví dụ $\tfrac{69}{128}>\tfrac12$ ở F01), bảo đảm điểm dừng và tốc độ theo kỳ vọng (T5, T6, T8). Phạm vi của luận đề: luận điểm “tốc độ của SGD là đủ” dựa trên lập luận đại lượng thay thế (E02), không phải hệ quả của T8; với mạng, mức chính xác đủ dùng được quyết định bằng tập xác thực (F06).
 
@@ -41,21 +43,21 @@ Hệ quả cho trình bày: SGD được trình bày là phương án bị buộ
 
 Quy ước gọi tên trong tệp này: “Bài 05” là bài mới theo Lecture A, đang được lập kế hoạch song song trong `planning/lec-05/`. A1, A2, A3 (một chữ số) là ba khối của Bài 05; A01–A04 (hai chữ số) là mã trang của Bài 06. Mã trang của Bài 05 là MD, HQ, LG, CP, KL.
 
-Ký hiệu hệ số chặn (điểm hòa giải 1): Bài 05 gộp hệ số chặn vào $w$ qua tọa độ hằng 1 của $x_i$, nên ở đó $\theta=w\in\mathbb R^d$. Bài 06 viết hệ số chặn của mô hình tuyến tính riêng là $c$ (B01, E03), nên $p=d+1$; độ lệch của mạng luôn có chỉ số ($b_1,b_2$); $b$ không chỉ số là cỡ nhóm, như Bài 05b, 05c. A04 ghi một câu ánh xạ hai quy ước.
+Ký hiệu hệ số chặn (điểm hòa giải 1): Bài 05 gộp hệ số chặn vào $w$ qua tọa độ hằng 1 của $x_i$, nên ở đó $\theta=w\in\mathbb R^d$. Bài 06 viết hệ số chặn của mô hình tuyến tính riêng là $c$ (B01, E03), nên $p=d+1$; độ lệch của mạng luôn có chỉ số ($b_1,b_2$); $b$ không chỉ số là kích thước nhóm, như Bài 05b, 05c. A04 ghi một câu ánh xạ hai quy ước.
 
 ### 1.3. Tệp lưu trữ và trạng thái
 
 - `outline.old-2026-10-02.md` và `storyboard.old-2026-10-02.md` (đổi tên bằng `git mv` ngày 2026-10-11) là kế hoạch của deck Bài 06 cũ, từ ngày 2026-10-12 là Bài 06c (bổ trợ) `lecture-06c-toi-uu-mang-sau.html` (“Các phương pháp tối ưu trong học sâu”, 45 trang, 7 mạch); hai tệp nay là `planning/lec-06c/outline.md` và `storyboard.md`. Hai tệp được giữ để truy nguyên và làm đầu vào cho quyết định về bài bổ trợ (Q2).
 - `review-log.md` giữ nguyên; vòng lập lại kế hoạch được nối vào cuối tệp. `review-log-lecture-note.md` giữ nguyên.
-- Deck, ghi chú bài giảng và bài tập Bài 06 chưa được dựng lại theo kế hoạch này. Deck cũ và học liệu cũ (từ ngày 2026-10-12 là `lecture-06c-toi-uu-mang-sau.html` và `materials/lec-06c/`) vẫn được `index.html` liên kết và không bị sửa trong vòng này (điểm hòa giải 9).
+- Deck Bài 06 đã được dựng theo kế hoạch này ngày 2026-10-12 (mục 1.6, 1.7); ghi chú bài giảng và bài tập Bài 06 chưa được dựng. Deck cũ và học liệu cũ (từ ngày 2026-10-12 là `lecture-06c-toi-uu-mang-sau.html` và `materials/lec-06c/`) vẫn được `index.html` liên kết và không bị sửa trong vòng này (điểm hòa giải 9).
 
 ### 1.4. Điều chỉnh so với kế hoạch đã duyệt
 
-Các thay đổi dưới đây áp dụng mười điểm hòa giải của điều phối viên hoặc thống nhất cách gọi trong kho. Nội dung toán học và số liệu của kế hoạch giữ nguyên; số mới duy nhất là phép kiểm với mất mát logistic trong ghi chú B07 ($\approx0{,}503$ và $\log2\approx0{,}693$), cần tác tử rà toán kiểm lại. Cách ánh xạ bước hành trình của KN1 và KN3 được làm rõ trong storyboard.md để thứ tự sáu bước không bị đảo.
+Các thay đổi dưới đây áp dụng mười điểm hòa giải của điều phối viên hoặc thống nhất cách gọi trong kho. Nội dung toán học và số liệu của kế hoạch giữ nguyên; số mới duy nhất là phép kiểm tra với mất mát logistic trong ghi chú B07 ($\approx0{,}503$ và $\log2\approx0{,}693$), cần tác tử rà toán kiểm lại. Cách ánh xạ bước hành trình của KN1 và KN3 được làm rõ trong storyboard.md để thứ tự sáu bước không bị đảo.
 
 - A04: thêm câu ánh xạ quy ước hệ số chặn của Bài 05 (điểm 1).
 - A03, E01, G02: phát biểu về Newton theo Bài 05 CP05: chỉ giai đoạn hội tụ bậc hai, $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, không chứa $\kappa$; $\varepsilon_0$ và giai đoạn tắt dần phụ thuộc các hằng số Hessian, viết $m_H,M_H,L_H$ để không trùng số đơn vị ẩn $m$ (điểm 2).
-- B01: nêu trên mặt trang rằng nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính tay; ghi chú nêu quan hệ với nhãn $\pm1$ của Bài 05 KL03. B07: ghi chú nêu kết luận không lồi giữ nguyên với mất mát logistic, kèm phép kiểm số (điểm 4).
+- B01: nêu trên mặt trang rằng nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính thủ công; ghi chú nêu quan hệ với nhãn $\pm1$ của Bài 05 KL03. B07: ghi chú nêu kết luận không lồi giữ nguyên với mất mát logistic, kèm phép kiểm tra số (điểm 4).
 - F06 (F05 trong bản 43 trang): dẫn tập xác thực của Bài 05 HQ05, không định nghĩa lại; rủi ro R3 không kích hoạt; lý do gộp chu trình KN9 trong storyboard viết lại theo đó (điểm 5).
 - F01, F02, F04, F06 (theo mã 45 trang): hình dùng lại được sao chép vào `img/lec-06/` ở giai đoạn dựng deck; cột hình ghi đường dẫn gốc (điểm 8).
 - Tiêu đề B02 và E02 viết lại thành cụm danh từ (“Tính không tách được tuyến tính của XOR”, “Rủi ro thực nghiệm như đại lượng thay thế”) vì tiêu đề dạng mệnh đề trái quy tắc tiêu đề của CLAUDE.md; điểm trung tâm của hai trang không đổi.
@@ -69,10 +71,23 @@ Báo cáo kiểm định storyboard (`gate-lec-06.md` trong thư mục nháp c�
 - **Tính giảm của SGD.** SGD không giữ tính giảm mỗi bước theo kỳ vọng. Điều được giữ là tính giảm mỗi bước của hạ gradient đầy đủ (bổ đề giảm) và, với SGD, bất đẳng thức một bước có số hạng nhiễu $\tfrac{L\eta^2}2\sigma^2$ (F02), cùng các tốc độ theo kỳ vọng T5, T6, T8. Phản ví dụ trên dữ liệu E03: từ $\theta^*$, $\mathbb EF(\theta_1)=\tfrac{69}{128}>\tfrac12$ (F01). Sửa ở mục 1.1, A03, F01, F02, G01 và storyboard.
 - **Giả thiết trơn với ReLU.** $\nabla F$ gián đoạn tại điểm gãy, nên H2 không đúng trên vùng nào chứa điểm gãy. T7, T8 áp dụng cho mạng có hàm kích hoạt trơn (tanh, softplus) hoặc mạng tuyến tính (D02); với ReLU, các cận chỉ dùng làm định hướng, và điều này được nêu trên mặt trang D05, F04, G02. Sửa M1, giới hạn ở mục 4.3, D04, D05, F04, G02, R5.
 - **Quy ước $\sigma'(0)=0$.** Ghi chú C04 không còn khẳng định vector thu được thuộc tập đạo hàm suy rộng (phản ví dụ $\sigma(z)-\sigma(-z)=z$). Mặt trang C04 nêu quy ước.
-- **Phạm vi của luận đề.** E02: tại $\theta$ cố định, $F$ ước lượng $R$ với sai số cỡ $1/\sqrt n$ (G.2); theo Bottou–Bousquet, giảm sai số tối ưu dưới sai số ước lượng không đổi bậc của cận. F05: cận $O(1/\sqrt K)$ trên $\lVert\nabla F\rVert^2$ là bảo đảm còn lại; luận điểm rằng nó đủ dựa trên E02, không dựa trên T8.
-- **Tách trang.** F02 cũ tách thành F02 (sàn nhiễu, T5) và F03 (bước giảm dần, T6); F05 cũ tách thành F06 (quy tắc dừng sớm) và F07 (dừng sớm và chính quy hóa $\ell_2$); câu hỏi vận dụng của G02 chuyển sang G03 kèm dữ kiện $\kappa=10$, $\rho=10^{-6}$. F03, F04, F06 cũ đổi mã thành F04, F05, F08. Tổng 45 trang, vẫn trong khoảng 36–45.
+- **Phạm vi của luận đề.** E02: tại $\theta$ cố định, $F$ ước lượng $R$ với sai số cỡ $1/\sqrt n$ (05c.52); theo Bottou–Bousquet, giảm sai số tối ưu dưới sai số ước lượng không đổi bậc của cận. F05: cận $O(1/\sqrt K)$ trên $\lVert\nabla F\rVert^2$ là bảo đảm có được; luận điểm rằng nó đủ dựa trên E02, không dựa trên T8.
+- **Tách trang.** F02 cũ tách thành F02 (mức nhiễu nền, T5) và F03 (bước giảm dần, T6); F05 cũ tách thành F06 (quy tắc dừng sớm) và F07 (dừng sớm và chính quy hóa $\ell_2$); câu hỏi vận dụng của G02 chuyển sang G03 kèm dữ kiện $\kappa=10$, $\rho=10^{-6}$. F03, F04, F06 cũ đổi mã thành F04, F05, F08. Tổng 45 trang, vẫn trong khoảng 36–45.
 - **Ký hiệu.** Giữ $\sigma^2$ cho chặn phương sai (như Bài 05b) và thêm câu nhắc ở A04, E04: $\sigma$ ở mạch B–C là hàm kích hoạt, $\sigma^2$ ở mạch E–F là chặn phương sai. Ở F07, trị riêng viết $\alpha$, hệ số chính quy hóa viết $\lambda$ như Bài 05. Hằng số Hessian của Newton viết $m_H,M_H,L_H$.
 - **Các sửa khác.** A04 thêm dòng ánh xạ với Bài 05 (đầu vào thô $u$, đặc trưng $x=\varphi(u)\in\mathbb R^d$ có tọa độ hằng 1; $d$ của Bài 05 bằng $p=d+1$ của Bài 06), đối xứng với MD04 của Bài 05 (bổ sung của điều phối viên). G02 dòng (2) ghi “lồi mạnh và trơn” cho tốc độ tuyến tính (T2), ghi chú nêu tốc độ $O(1/k)$ của trường hợp lồi trơn (T1). F01 ghi rõ hình dùng Ví dụ A của Bài 05b và lý do đổi dữ liệu. A03 thêm “dừng sớm và chính quy hóa là một phần của phương pháp”, thay nhãn “Câu hỏi của bài” bằng “Vấn đề của bài” và không dùng $p$ trước A04. A04 thêm ánh xạ ký hiệu của 05c. E05, F04, F06 nêu T8 bảo đảm cho dãy lặp còn thuật toán trả về tham số tốt nhất theo tập xác thực. D04 sửa nhãn dẫn 05b (BĐ1 là cận trên bậc hai, bổ đề giảm ở phần B). B08 đặt bảng $\theta_A,\theta_B$ trước Mệnh đề 2; B09 bỏ câu kết đối xứng; D03 ghi mệnh đề là nhắc lại Bài 00; D05 bỏ cụm “điều duy nhất được chứng nhận”; D06 viết lại câu về cận T7; E02 đổi nhãn thành “Số liệu thực nghiệm”; F05 ghi đủ cận hệ quả T8. Mục 6 thêm quy ước chuyển mã trang của bài khác trong ghi chú diễn giả thành tên kết quả.
+
+### 1.6. Điều chỉnh khi dựng deck (2026-10-12)
+
+Deck `lecture-06-mo-rong-mo-hinh-va-du-lieu.html` giữ 45 trang, 7 mạch, mã và tiêu đề như mục 6. Không đổi số liệu. Các điều chỉnh, ghi đủ trong `review-log.md`, vòng “Dựng deck (2026-10-12)”:
+
+- Nhãn kết quả của Bài 05c theo số hiệu hiện hành của ghi chú Bài 05c: G.2 → Định lý 05c.52, G.3 → Định lý 05c.53, G.5 → Mệnh đề 05c.56, G.6 → Nhận xét 05c.58, G.7 → Mục 6.7 và Nhận xét 05c.59; đã thay trong tệp này và storyboard.md.
+- F07 và F08(c): điều kiện để hai tỉ lệ giữ gần nhau là $\lambda\approx1/(\eta k)$, $\eta\alpha\ll1$ và $\alpha\ll\lambda$ (DL §7.8, điều kiện cho (7.44)); đáp án F08(c) giải thích sai khác bằng $\alpha/\lambda=1$, không bằng $\eta\alpha$. Số liệu không đổi.
+- Hình: B02 dùng tệp riêng `xor-diagonals.svg`; B05 không có hình, sơ đồ mạng ở B06; F02, F04, F05 không có hình; bốn hình rộng có bản cho màn hẹp; bản chép `risk-curves.svg` tăng cỡ chữ dòng ghi chú.
+- Mặt trang: C03 thay bảng bảy dòng bằng hình truyền ngược cộng một dòng $\nabla_{W_1}\ell$; E03 bảng sáu nhóm xoay thành ba hàng; G03 rút gọn danh mục đọc (đầy đủ trong ghi chú diễn giả); A02 không dùng $(n,p)$ trước khi $p$ được định nghĩa.
+
+### 1.7. Sửa sau vòng rà soát năm vai (2026-10-12)
+
+Năm vai rà soát (sinh viên, chuyên gia, kiểm toán, sư phạm, mạch kể) và danh sách quyết định của điều phối viên (S1–S5, M1–M18, N1–N5, B1) dẫn tới các sửa ghi chi tiết trong `review-log.md`, vòng “Sửa sau vòng rà soát năm vai”. Các mục Mặt trang của A02, A03, B02, E02, E06, F01, F02, F04, F05, F06, F07, G01, G02, G03 trong mục 6 đã viết lại theo deck. Năm tiêu đề đổi: A03 “Giả thiết lồi của Bài 01–04 và hai giới hạn khi mở rộng quy mô”, E01 “Chi phí một bước của ba phương pháp ở ba quy mô”, F02 “Mức nhiễu nền của bước hằng”, G02 “Lựa chọn giữa hạ gradient đầy đủ, Newton và SGD”, G03 “Tổng kết, câu hỏi tự kiểm tra và tài liệu đọc”. Thuật ngữ theo bảng người dùng ngày 2026-10-11: mức nhiễu nền, tính thủ công, phép kiểm tra, kích thước nhóm, mất mát bản lề (hinge loss). Số liệu SNW Bảng 13.3: lỗi kiểm thử của SVMPerf là 6,03 %. Hessian ở E01 tính 8 byte mỗi số như Bài 05.
 
 ## 2. Đối chiếu LLO
 
@@ -95,14 +110,14 @@ LLO13, LLO14, LLO16 không được bài này hỗ trợ. LLO13 chỉ xuất hi�
 
 | Nội dung | LLO | Hiện đang ở | Đề xuất nơi đặt |
 |---|---|---|---|
-| Momentum, Nesterov | LLO12 | Deck Bài 05 hiện hành, mạch C (C01–C08) | Bài bổ trợ **06b** “Các phương pháp tối ưu trong học sâu”, gom mạch C, D của deck Bài 05 hiện hành và toàn bộ deck Bài 06 hiện hành; hoặc giữ nguyên hai deck cũ dưới tên bổ trợ |
-| Khởi tạo (đối xứng, Glorot, phương sai qua lớp) | LLO13 | Deck Bài 05 hiện hành, mạch D (D03–D11) | 06b, nối ngay sau B08 của bài này (đối xứng hoán vị) |
-| AdaGrad, RMSProp, Adam | LLO14 | Deck Bài 06 hiện hành, mạch B | 06b |
-| Newton trong huấn luyện, gradient liên hợp, BFGS | LLO15 | Deck Bài 06 hiện hành, mạch C–D; Newton tổng quát ở Bài 04 và A3 | 06b; Bài 05 (A3) giữ phần chi phí Newton |
-| Chuẩn hóa theo lô, hạ theo tọa độ, trung bình Polyak, tiền huấn luyện, tiếp diễn, học theo chương trình | LLO16 | Deck Bài 06 hiện hành, mạch E–F | 06b; trung bình Polyak có thể dẫn T3, T4 của Bài 05b |
+| Momentum, Nesterov | LLO12 | Deck Bài 05 cũ, mạch C (C01–C08) | Bài bổ trợ **06b** (deck Bài 05 cũ, đổi tên ngày 2026-10-12) |
+| Khởi tạo (đối xứng, Glorot, phương sai qua lớp) | LLO13 | Deck Bài 05 cũ, mạch D (D03–D11) | 06b; ghi chú B08 của bài này dẫn tới |
+| AdaGrad, RMSProp, Adam | LLO14 | Deck Bài 06 cũ, mạch B | 06c (deck Bài 06 cũ, đổi tên ngày 2026-10-12) |
+| Newton trong huấn luyện, gradient liên hợp, BFGS | LLO15 | Deck Bài 06 cũ, mạch C–D; Newton tổng quát ở Bài 04 và A3 | 06c; Bài 05 (A3) giữ phần chi phí Newton |
+| Chuẩn hóa theo lô, hạ theo tọa độ, trung bình Polyak, tiền huấn luyện, tiếp diễn, học theo chương trình | LLO16 | Deck Bài 06 cũ, mạch E–F | 06c; trung bình Polyak có thể dẫn T3, T4 của Bài 05b |
 | Bất đẳng thức tập trung cho gradient nhóm | (nền cho LLO12) | Bài 05c | Giữ ở 05c, chỉ dẫn |
 
-Đề xuất này cần người dùng quyết định (Q2, mục 12). Phương án ít tốn công nhất: đổi vai trò hai deck hiện hành thành bổ trợ, không xóa, cập nhật `index.html` sau khi Bài 05 và Bài 06 hoàn thành.
+Quyết định ngày 2026-10-12: deck Bài 05 cũ thành Bài 06b, deck Bài 06 cũ thành Bài 06c (bổ trợ), không xóa; `index.html` liên kết hai bài bổ trợ.
 
 ## 4. Khung lý thuyết chung
 
@@ -110,7 +125,7 @@ LLO13, LLO14, LLO16 không được bài này hỗ trợ. LLO13 chỉ xuất hi�
 
 Bài 05 kết thúc với hai giới hạn: (i) mọi phương pháp của Bài 05 trả chi phí của toàn bộ $n$ mẫu ở mỗi bước; (ii) dự đoán tuyến tính theo đặc trưng không biểu diễn được một số hàm đích, XOR là trường hợp điển hình, và mở rộng đặc trưng thủ công làm $d$ tăng, với các hệ quả khối A1 của Bài 05 đã chỉ ra. Bài 06 giải quyết bài toán sau: khi mô hình phải có đặc trưng học được và dữ liệu lớn đến mức một gradient đầy đủ vượt ngân sách tính toán, cần xác định (1) gradient theo tham số được tính với chi phí bao nhiêu, (2) một phương pháp dựa trên gradient còn chứng nhận được điều gì khi mục tiêu không lồi, (3) tốc độ nào còn lại khi gradient được thay bằng ước lượng ngẫu nhiên, và vì sao tốc độ đó đủ cho mục tiêu thay thế $F$ của rủi ro $R$.
 
-Luận đề ở mục 1.1 trả lời phần “vì sao” của bài toán này: SGD nhóm nhỏ bị buộc bởi chi phí. Cận $O(1/\sqrt K)$ của T8 trên $\lVert\nabla F\rVert^2$ là bảo đảm còn lại; luận điểm rằng mức đó đủ dựa trên lập luận đại lượng thay thế (E02, cho bài toán lồi) và trên tập xác thực (F06, cho mạng), không dựa trên T8, như dòng kết luận của F05.
+Luận đề ở mục 1.1 trả lời phần “vì sao” của bài toán này: SGD nhóm nhỏ bị buộc bởi chi phí. Cận $O(1/\sqrt K)$ của T8 trên $\lVert\nabla F\rVert^2$ là bảo đảm có được; luận điểm rằng mức đó đủ dựa trên lập luận đại lượng thay thế (E02, cho bài toán lồi) và trên tập xác thực (F06, cho mạng), không dựa trên T8, như dòng kết luận của F05.
 
 ### 4.2. Đối tượng và ký hiệu chung
 
@@ -124,11 +139,11 @@ Luận đề ở mục 1.1 trả lời phần “vì sao” của bài toán nà
 | $\theta\in\mathbb R^p$ | Toàn bộ tham số; mạng hai tầng: $p=md+2m+1$; mô hình tuyến tính có hệ số chặn $c$: $p=d+1$ | 05c dùng $d$ cho số chiều tham số; Bài 05 gộp hệ số chặn vào $w$ nên $p=d$; nêu ánh xạ ở A04 |
 | $\ell(f,y)=\tfrac12(f-y)^2$, $\ell_i(\theta)=\ell(f(x_i;\theta),y_i)$ | Mất mát bình phương (lồi theo $f$) | DL §6.1 dùng MSE cho XOR |
 | $F(\theta)=\frac1n\sum_{i=1}^n\ell_i(\theta)$ | Rủi ro thực nghiệm | 05b viết $f$; 05c viết $J$ |
-| $R(\theta)=\mathbb E\,\ell(f(X;\theta),Y)$ | Rủi ro kỳ vọng | 05c Định nghĩa G.1; Bài 05 |
+| $R(\theta)=\mathbb E\,\ell(f(X;\theta),Y)$ | Rủi ro kỳ vọng | 05c Định nghĩa 05c.51; Bài 05 |
 | $e=f-y$; $\delta_h=\partial\ell/\partial h$, $\delta_z=\partial\ell/\partial z$ | Sai số dự đoán, các đại lượng truyền ngược | deck Bài 05 hiện hành dùng $e$ |
 | $\theta_k$, $\eta$ hoặc $\eta_k$, $K$ | Dãy lặp, bước, số bước | 05b viết $x_k$; deck Bài 05 hiện hành viết $T$. Nêu một lần ở A04: dùng $\theta_k$ để không trùng dữ liệu $x_i$ |
-| $B_k\subset\{1,\dots,n\}$, $\lvert B_k\rvert=b$; $\widehat g_k=\frac1b\sum_{i\in B_k}\nabla\ell_i(\theta_k)$ | Nhóm nhỏ, cỡ nhóm, gradient nhóm | 05b viết $g_k$. Độ lệch mạng luôn có chỉ số ($b_1,b_2$); cỡ nhóm $b$ không chỉ số. Ví dụ tuyến tính ở E03 viết hệ số chặn là $c$ để tránh trùng |
-| $\Sigma(\theta)$, $\operatorname{tr}\Sigma(\theta)$ | Hiệp phương sai và phương sai tổng của gradient một mẫu chọn đều | 05c G.3 |
+| $B_k\subset\{1,\dots,n\}$, $\lvert B_k\rvert=b$; $\widehat g_k=\frac1b\sum_{i\in B_k}\nabla\ell_i(\theta_k)$ | Nhóm nhỏ, kích thước nhóm, gradient nhóm | 05b viết $g_k$. Độ lệch mạng luôn có chỉ số ($b_1,b_2$); kích thước nhóm $b$ không chỉ số. Ví dụ tuyến tính ở E03 viết hệ số chặn là $c$ để tránh trùng |
+| $\Sigma(\theta)$, $\operatorname{tr}\Sigma(\theta)$ | Hiệp phương sai và phương sai tổng của gradient một mẫu chọn đều | 05c.53 |
 | $L,\mu,\sigma^2,\Delta_0,D$ | Hằng số trơn, lồi mạnh, chặn phương sai (H6b), $F(\theta_0)-F_{\inf}$, $\lVert\theta_0-\theta^*\rVert$ | 05b |
 | $m_H,M_H,L_H$ | Chặn dưới, chặn trên trị riêng của Hessian và hằng số Lipschitz của Hessian trong phân tích Newton | Bài 05 viết $m,M,L_H$; ở đây có chỉ số $H$ để không trùng số đơn vị ẩn $m$ |
 | $\alpha$ (chỉ ở F07) | Trị riêng của Hessian của mục tiêu bậc hai | DL §7.8 viết $\lambda$; ở đây $\lambda$ giữ cho hệ số chính quy hóa như Bài 05 |
@@ -139,7 +154,7 @@ Dùng nguyên nhãn 05b: H0 ($F$ khả vi, bị chặn dưới), H2 ($L$-trơn),
 
 - **M1 (mô hình).** Mạng hai tầng như bảng trên, $\sigma$ là ReLU. $F$ liên tục, khả vi ngoài tập các $\theta$ có tiền kích hoạt bằng 0 tại một mẫu nào đó; tại đó lan truyền ngược dùng quy ước tính toán $\sigma'(0)=0$. Tại các điểm gãy, $\nabla F$ gián đoạn, nên với ReLU giả thiết H2 không đúng trên bất kỳ vùng nào chứa điểm gãy.
 - **M2 (mất mát).** $\ell(\cdot,y)$ lồi, khả vi theo $f$; mặc định bình phương.
-- **M3 (lấy mẫu).** Ở bước $k$, $B_k$ là tập con $b$ phần tử chọn đều, độc lập với $B_0,\dots,B_{k-1}$. Khi đó H6 đúng, và $\mathbb E\lVert\widehat g_k-\nabla F(\theta_k)\rVert^2=\frac{\operatorname{tr}\Sigma(\theta_k)}{b}\cdot\frac{n-b}{n-1}$ (05c G.3). Xáo trộn theo lượt trong thực hành vi phạm M3; nêu trong ghi chú E05.
+- **M3 (lấy mẫu).** Ở bước $k$, $B_k$ là tập con $b$ phần tử chọn đều, độc lập với $B_0,\dots,B_{k-1}$. Khi đó H6 đúng, và $\mathbb E\lVert\widehat g_k-\nabla F(\theta_k)\rVert^2=\frac{\operatorname{tr}\Sigma(\theta_k)}{b}\cdot\frac{n-b}{n-1}$ (05c.53). Xáo trộn theo lượt trong thực hành vi phạm M3; nêu trong ghi chú E05.
 
 Giới hạn bắt buộc phải nói: T7, T8 áp dụng cho mạng có hàm kích hoạt trơn (tanh, softplus) hoặc mạng tuyến tính như D02, với H2 trên một tập lồi bị chặn chứa mọi dãy lặp (D02 cho thấy H2 không đúng toàn cục: Hessian không bị chặn). Với ReLU, $\nabla F$ gián đoạn tại điểm gãy, nên các cận chỉ dùng làm định hướng; điều này được nói trên mặt trang D05, F04, G02. H6b với $\sigma^2$ hữu hạn cũng chỉ đúng trên vùng bị chặn.
 
@@ -149,7 +164,7 @@ Giới hạn bắt buộc phải nói: T7, T8 áp dụng cho mạng có hàm kí
 2. Định nghĩa mạng hai tầng (B06) → Mệnh đề 2: hoán vị đơn vị ẩn giữ nguyên hàm (B08) → Mệnh đề 3: nếu một cực tiểu toàn cục có hai đơn vị ẩn khác nhau thì có ít nhất hai cực tiểu toàn cục phân biệt; nếu $F$ lồi thì cả đoạn nối là cực tiểu; giá trị tại trung điểm bác bỏ tính lồi (B09).
 3. Thuật toán lan truyền ngược (C04) → Nhận xét về chi phí: cùng bậc với truyền xuôi (C05).
 4. Định nghĩa điểm dừng, điểm yên ngựa; điều kiện bậc hai (D01, D03) → bổ đề giảm dưới H2 (D04, nhắc Bài 04 và 05b B03) → T7 của 05b (D05).
-5. Định lý G.3 của 05c (E04) → thuật toán SGD nhóm nhỏ (E05) → bất đẳng thức một bước có số hạng nhiễu và T5 (F02), T6 (F03), T8 (F04) của 05b → so sánh dưới ngân sách cố định (F05) → quy tắc dừng sớm (F06) và quan hệ với chính quy hóa $\ell_2$ (F07).
+5. Định lý 05c.53 của 05c (E04) → thuật toán SGD nhóm nhỏ (E05) → bất đẳng thức một bước có số hạng nhiễu và T5 (F02), T6 (F03), T8 (F04) của 05b → so sánh dưới ngân sách cố định (F05) → quy tắc dừng sớm (F06) và quan hệ với chính quy hóa $\ell_2$ (F07).
 6. Bảng lựa chọn phương pháp theo $(n,p)$ và tính lồi (G02).
 
 ### 4.5. Giới hạn áp dụng
@@ -159,7 +174,7 @@ Giới hạn bắt buộc phải nói: T7, T8 áp dụng cho mạng có hàm kí
 - T8 bảo đảm cho dãy lặp; tham số trả về theo tập xác thực không được T8 chặn trực tiếp.
 - T7, T8 chặn **bình phương** chuẩn gradient (cực tiểu theo $k$, hoặc trung bình kỳ vọng), không chặn khoảng cách tới một điểm cực tiểu, không chứng minh dãy hội tụ.
 - Các cận là cận trên, có thể bi quan nhiều bậc (D07, F01–F02 có đối chiếu số).
-- Tương đương dừng sớm và chính quy hóa $\ell_2$ chỉ đúng cho mục tiêu bậc hai và gần đúng khi $\eta\alpha$ nhỏ, $\alpha$ là trị riêng (DL §7.8).
+- Tương đương dừng sớm và chính quy hóa $\ell_2$ chỉ đúng cho mục tiêu bậc hai và gần đúng khi $\eta\alpha\ll1$ và $\alpha\ll\lambda$, $\alpha$ là trị riêng (DL §7.8).
 - Bảng chi phí đếm phép nhân–cộng, bỏ hằng số và song song phần cứng.
 
 ## 5. Bản đồ mạch
@@ -167,9 +182,9 @@ Giới hạn bắt buộc phải nói: T7, T8 áp dụng cho mạng có hàm kí
 | Mạch | Chức năng | Đầu vào | Đầu ra | Trang | Tiết LT | Tiết BT | Trang kiểm tra |
 |---|---|---|---|---|---|---|---|
 | A. Bài toán huấn luyện khi mô hình và dữ liệu lớn | Nhận hai giới hạn của Bài 05, nêu luận đề “mất gì, giữ gì”, cố định ký hiệu | Kết luận Bài 05: chi phí $O(nd)$ và $O(nd^2+d^3)$; XOR; chính quy hóa $\ell_2$ | Ba câu hỏi của bài (biểu diễn, chứng nhận, tốc độ dưới nhiễu) và khung ký hiệu | A01–A04 | 0,12 | 0,00 | (không) |
-| B. Biểu diễn phi tuyến và mạng hai tầng (khối B1) | **Nhu cầu:** dự đoán tuyến tính không đủ cho XOR. Xây mạng hai tầng và chỉ ra cái giá: rủi ro thực nghiệm không lồi | Giới hạn (ii) của Bài 05 | Mô hình $f(x;\theta)$, $F(\theta)$ không lồi, nhiều cực tiểu đối xứng | B01–B10 | 0,55 | 0,33 | B10 |
+| B. Biểu diễn phi tuyến và mạng hai tầng (khối B1) | **Nhu cầu:** dự đoán tuyến tính không đủ cho XOR. Xây mạng hai tầng và chỉ ra chi phí: rủi ro thực nghiệm không lồi | Giới hạn (ii) của Bài 05 | Mô hình $f(x;\theta)$, $F(\theta)$ không lồi, nhiều cực tiểu đối xứng | B01–B10 | 0,55 | 0,33 | B10 |
 | C. Lan truyền ngược trên đồ thị tính toán (khối B2, phần 1) | **Nhu cầu:** mọi phương pháp bậc nhất cần $\nabla F(\theta)\in\mathbb R^p$; tính nó với chi phí cùng bậc truyền xuôi | Mô hình và $F$ của mạch B; dây chuyền của Bài 00 | Thuật toán và chi phí; gradient chính xác của một mẫu; một bước hạ gradient | C01–C07 | 0,36 | 0,14 | C07 |
-| D. Điểm dừng và bảo đảm của gradient khi không lồi (khối B2, phần 2) | **Nhu cầu:** xác định điều mà gradient bằng 0 hoặc gradient nhỏ chứng nhận khi $F$ không lồi | Gradient từ C; tính không lồi từ B | Phân loại điểm dừng; bổ đề giảm và T7: bảo đảm còn lại là điểm dừng xấp xỉ | D01–D07 | 0,32 | 0,18 | D07 |
+| D. Điểm dừng và bảo đảm của gradient khi không lồi (khối B2, phần 2) | **Nhu cầu:** xác định điều mà gradient bằng 0 hoặc gradient nhỏ chứng nhận khi $F$ không lồi | Gradient từ C; tính không lồi từ B | Phân loại điểm dừng; bổ đề giảm và T7: bảo đảm có được là điểm dừng xấp xỉ | D01–D07 | 0,32 | 0,18 | D07 |
 | E. Gradient nhóm nhỏ và chi phí mỗi bước (khối B3, phần 1) | **Nhu cầu:** một gradient đầy đủ vượt ngân sách; $F$ chỉ là đại lượng thay thế | Thuật toán GD và T7 của D; chi phí của C | Ước lượng không chệch, phương sai, thuật toán SGD, chi phí mỗi bước độc lập với $n$ | E01–E06 | 0,30 | 0,14 | E06 |
 | F. Tốc độ hội tụ dưới nhiễu và dừng sớm (khối B3, phần 2) | **Nhu cầu:** xác định tốc độ hội tụ còn lại khi gradient có nhiễu, và lý do tốc độ đó đủ dưới ngân sách cố định với mục tiêu thay thế | SGD và phương sai của E | Bất đẳng thức một bước có nhiễu; T5, T6, T8 phát biểu lại với phạm vi; so sánh dưới ngân sách cố định; dừng sớm | F01–F08 | 0,30 | 0,13 | F08 |
 | G. Tổng hợp và lựa chọn phương pháp | Khép luận đề: những gì mất, những gì giữ; chọn phương pháp theo $(n,p)$ và tính lồi | Kết quả của B–F | Bảng quyết định có điều kiện áp dụng | G01–G03 | 0,05 | 0,08 | G03 |
@@ -183,7 +198,7 @@ Ranh giới cần giữ: B10→C01 chuyển từ “mô hình nào” sang “t�
 
 Quy ước mỗi mục: **Điểm trung tâm** (một câu); **Mặt trang**; **Ghi chú diễn giả**; **Hình**; **Liên kết**; **Quyết định** (mọi trang là `thêm` vì bài được dựng mới); **Hành trình** (khái niệm KN và bước); **LLO/CLO**; **Thời lượng** (tiết LT + BT). Số trong mặt trang lấy từ mục 8.
 
-Quy ước cho tác tử soạn deck: mã trang (của bài này hay bài khác) không xuất hiện trên mặt trang và trong ghi chú diễn giả. Trên mặt trang, mọi tham chiếu chéo dùng tên kết quả (Mệnh đề 1–3, T5–T8, G.2, G.3 là tên kết quả, được giữ) hoặc từ chỉ nội dung (“ví dụ mạng tuyến tính một đơn vị”, “dữ liệu bốn điểm”, “mạng của ví dụ đồ thị tính toán”); mã còn sót trong mục Mặt trang của tệp này chỉ là chỉ dẫn nội bộ và phải được chuyển như vậy. Trong mục Ghi chú diễn giả, mã trang của bài khác (05b F03, Bài 05 KL02, HQ05, CP05…), mã Q, R, số hiệu điểm hòa giải và các lời dặn người soạn chỉ là chỉ dẫn nội bộ. Khi viết ghi chú diễn giả thật, chuyển mã trang thành tên kết quả hoặc tên phần (ví dụ “Bài 05b, Định lý T7”, “Bài 05, phần hồi quy nhiều chiều”) và bỏ mọi chỉ dẫn điều phối.
+Quy ước cho tác tử soạn deck: mã trang (của bài này hay bài khác) không xuất hiện trên mặt trang và trong ghi chú diễn giả. Trên mặt trang, mọi tham chiếu chéo dùng tên kết quả (Mệnh đề 1–3, T5–T8, 05c.52, 05c.53 là tên kết quả, được giữ) hoặc từ chỉ nội dung (“ví dụ mạng tuyến tính một đơn vị”, “dữ liệu bốn điểm”, “mạng của ví dụ đồ thị tính toán”); mã còn sót trong mục Mặt trang của tệp này chỉ là chỉ dẫn nội bộ và phải được chuyển như vậy. Trong mục Ghi chú diễn giả, mã trang của bài khác (05b F03, Bài 05 KL02, HQ05, CP05…), mã Q, R, số hiệu điểm hòa giải và các lời dặn người soạn chỉ là chỉ dẫn nội bộ. Khi viết ghi chú diễn giả thật, chuyển mã trang thành tên kết quả hoặc tên phần (ví dụ “Bài 05b, Định lý T7”, “Bài 05, phần hồi quy nhiều chiều”) và bỏ mọi chỉ dẫn điều phối.
 
 ### Mạch A. Bài toán huấn luyện khi mô hình và dữ liệu lớn
 
@@ -191,7 +206,7 @@ Quy ước cho tác tử soạn deck: mã trang (của bài này hay bài khác)
 
 - **Điểm trung tâm:** Nhận diện bài, học phần, đơn vị.
 - **Mặt trang:** Tên học phần; “Bài 06”; tên bài; phụ đề danh từ tạm dùng “Khả năng biểu diễn của mạng nơ ron và tối ưu ngẫu nhiên”, chờ người dùng xác nhận (Q1); Trường Đại học Công nghệ, ĐHQGHN.
-- **Ghi chú diễn giả:** Bài 06 tiếp tục từ kết luận Bài 05 (hai giới hạn); ba câu hỏi của bài.
+- **Ghi chú diễn giả:** Bài 06 tiếp tục từ kết luận Bài 05 (hai giới hạn); bốn vấn đề của bài.
 - **Hình:** không.
 - **Liên kết:** dẫn A02.
 - **Quyết định:** thêm; trang nhận diện bắt buộc.
@@ -200,18 +215,18 @@ Quy ước cho tác tử soạn deck: mã trang (của bài này hay bài khác)
 #### A02. Mục tiêu học tập và bản đồ bài
 
 - **Điểm trung tâm:** Ba nhóm năng lực tương ứng ba khối nội dung.
-- **Mặt trang:** Ba mục tiêu đo được: (1) chứng minh rủi ro thực nghiệm của mạng biểu diễn XOR không lồi; (2) tính gradient bằng lan truyền ngược và phân loại điểm dừng; (3) chọn phương pháp theo $(n,p)$ và tính lồi, có nêu bảo đảm dưới nhiễu. Các kỹ năng con (chứng minh XOR không tách được, phát biểu T7, tính một bước SGD) nằm trong ghi chú. Bản đồ năm mạch nội dung B–F và một dòng vấn đề trung tâm.
+- **Mặt trang:** Ba mục tiêu như trước (mục tiêu 3: “chọn phương pháp theo số mẫu, số tham số và tính lồi, kèm bảo đảm hội tụ dưới nhiễu”); bản đồ năm phần 2–6; khung “Vấn đề trung tâm”: huấn luyện bằng gradient một mô hình có đặc trưng học được, đủ để biểu diễn XOR, khi một gradient đầy đủ vượt ngân sách mỗi bước. (bản sau vòng rà soát năm vai, 2026-10-12)
 - **Ghi chú diễn giả:** Ánh xạ mục tiêu → mạch; tiên quyết: dây chuyền (Bài 00), bổ đề giảm (Bài 04), kết luận Bài 05; các định lý hội tụ được dẫn từ Bài 05b, phương sai gradient nhóm từ 05c.
 - **Hình:** không (bản đồ dạng thẻ HTML).
 - **Liên kết:** A01 → A03.
 - **Quyết định:** thêm; người học cần biết sản phẩm học tập trước nội dung.
 - **Hành trình:** không áp dụng. **LLO/CLO:** LLO11, LLO12 (một phần); CLO1, CLO2, CLO4. **Thời lượng:** 0,03 + 0,00.
 
-#### A03. Bức tranh lồi của Bài 01–04 và hai giới hạn khi mở rộng quy mô
+#### A03. Giả thiết lồi của Bài 01–04 và hai giới hạn khi mở rộng quy mô
 
 - **Điểm trung tâm:** Khi mô hình và dữ liệu lớn, bài toán mất tính chính xác, bảo đảm tất định và gradient đầy đủ; còn giữ được bất đẳng thức giảm (có số hạng nhiễu với SGD), bảo đảm điểm dừng và tốc độ theo kỳ vọng.
-- **Mặt trang:** Bảng hai cột “Bài 01–04” / “Mô hình và dữ liệu lớn”: mục tiêu lồi có nghiệm chính xác / mục tiêu không lồi, nhiều cực tiểu; phương pháp tất định có bảo đảm tới nghiệm / gradient ngẫu nhiên, bảo đảm theo kỳ vọng; gradient đầy đủ, chi phí $O(n\cdot\text{số tham số})$ mỗi bước / ngân sách mỗi bước cố định; giảm mỗi bước / bất đẳng thức giảm có số hạng nhiễu. Hai lý do (mỗi lý do một dòng): **Lý do tính toán** (một bước đầy đủ vượt ngân sách); **Lý do thống kê** ($F$ là đại lượng thay thế cho $R$, nên dừng sớm theo tập xác thực và chính quy hóa là một phần của phương pháp). Dòng cuối: “Vấn đề của bài: chi phí tính gradient theo tham số; điều gradient chứng nhận khi $F$ không lồi; tốc độ còn lại khi gradient có nhiễu.”
-- **Ghi chú diễn giả:** Nhắc hai giới hạn từ kết luận Bài 05: (i) A3 so sánh $O(nd)$ và $O(nd^2+d^3)$ mỗi bước nhưng cả hai đều quét toàn bộ $n$ mẫu; (ii) XOR không biểu diễn được bằng dự đoán tuyến tính. Lý do thống kê nhắc A1 (khớp kém dần khi $d$ tăng) và A2 (không có cực tiểu trên dữ liệu tách được, chính quy hóa $\ell_2$ làm bài toán đặt đúng). Không gọi SGD là “nhanh hơn”: nó là phương án còn lại dưới ngân sách cố định. Về Newton, dùng đúng phát biểu của Bài 05 CP05: chỉ giai đoạn hội tụ bậc hai, gồm $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, không chứa $\kappa$; $\varepsilon_0$ và giai đoạn tắt dần phụ thuộc các hằng số Hessian $m_H,M_H,L_H$. Không viết “Newton không phụ thuộc $\kappa$” vô điều kiện. SGD không giảm $F$ theo kỳ vọng ở mọi bước; G01 nêu đúng điều được giữ.
+- **Mặt trang:** Bảng bốn dòng “Bài 01–04 | Mô hình và dữ liệu lớn”, mỗi dòng có nhãn theo cách gọi của Bài 05 MD03 và hai giới hạn: **Đích** (lý do thống kê): nghiệm chính xác / rủi ro thực nghiệm: đại lượng thay thế; bảo đảm tất định, giảm mỗi bước / SGD: bảo đảm theo kỳ vọng, có số hạng nhiễu; **Biểu diễn** (ii): điểm dừng là cực tiểu toàn cục / không lồi: chỉ còn điểm dừng xấp xỉ; **Chi phí** (lý do tính toán; (i)): $n$ mẫu mỗi bước / nhóm nhỏ: chi phí mỗi bước độc lập với $n$. “Hai giới hạn của Bài 05”: (i) chi phí, (ii) biểu diễn (XOR). “Vấn đề của bài”: (1) biểu diễn XOR và hệ quả; (2) chi phí tính gradient; (3) điều gradient chứng nhận khi không lồi; (4) tốc độ hội tụ dưới nhiễu. Nhãn dòng là chỗ dựa cho nhãn “Lý do tính toán” (E01) và “Lý do thống kê” (E02) (bản sau tái kiểm, 2026-10-12)
+- **Ghi chú diễn giả:** Nhắc hai giới hạn từ kết luận Bài 05: (i) A3 so sánh $O(nd)$ và $O(nd^2+d^3)$ mỗi bước nhưng cả hai đều quét toàn bộ $n$ mẫu; (ii) XOR không biểu diễn được bằng dự đoán tuyến tính. Lý do thống kê nhắc A1 (khớp kém dần khi $d$ tăng) và A2 (không có cực tiểu trên dữ liệu tách được, chính quy hóa $\ell_2$ làm bài toán đặt đúng). Không gọi SGD là “nhanh hơn”: nó là phương án dùng được khi một bước đủ $n$ mẫu vượt ngân sách mỗi bước. Về Newton, dùng đúng phát biểu của Bài 05 CP05: chỉ giai đoạn hội tụ bậc hai, gồm $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, không chứa $\kappa$; $\varepsilon_0$ và giai đoạn tắt dần phụ thuộc các hằng số Hessian $m_H,M_H,L_H$. Không viết “Newton không phụ thuộc $\kappa$” vô điều kiện. SGD không giảm $F$ theo kỳ vọng ở mọi bước; G01 nêu đúng điều được giữ.
 - **Hình:** không (bảng HTML).
 - **Liên kết:** Giới hạn (ii) tạo nhu cầu của mạch B; giới hạn (i) được trả lời ở E–F. G01 quay lại đúng bảng này với nhãn kết quả.
 - **Quyết định:** thêm; chỉ dẫn người dùng bắt buộc nêu luận đề sớm, theo dạng “mất gì, giữ gì”.
@@ -221,7 +236,7 @@ Quy ước cho tác tử soạn deck: mã trang (của bài này hay bài khác)
 
 - **Điểm trung tâm:** Huấn luyện là cực tiểu hóa $F(\theta)=\frac1n\sum_i\ell_i(\theta)$ trên $\theta\in\mathbb R^p$, với $F$ là ước lượng của $R$.
 - **Mặt trang:** Dữ liệu $(x_i,y_i)$, $x_i\in\mathbb R^d$; mô hình $f(x;\theta)$, $\theta\in\mathbb R^p$; $\ell_i$, $F$, $R$; dãy lặp $\theta_{k+1}=\theta_k-\eta_k g_k$ với $g_k$ là gradient đầy đủ hoặc gradient nhóm. Một dòng ánh xạ: “Bài 05b viết $x_k$, $f$, $N$; Bài 05c viết $J$, $N$ và $d$ cho số chiều tham số; Bài 05 viết $w_k$ và gộp hệ số chặn vào $w$; ở đây $\theta_k$, $F$, $n$, $p$, hệ số chặn $c$.” Dòng ánh xạ với Bài 05: “Bài 05 viết đầu vào thô là $u$ và vector đặc trưng $x=\varphi(u)\in\mathbb R^d$ có tọa độ hằng 1, hệ số chặn nằm trong $w$; ở đây đầu vào thô là $x\in\mathbb R^d$ và số tham số là $p$. Với mô hình tuyến tính, $d$ của Bài 05 bằng $p=d+1$ của Bài 06.”
-- **Ghi chú diễn giả:** Dòng ánh xạ với Bài 05 đối xứng với dòng trên trang ký hiệu của Bài 05 (MD04 trong kế hoạch Bài 05). Lý do đổi $x_k\to\theta_k$: $x_i$ đã là dữ liệu. $p=d+1$ cho mô hình tuyến tính; mạng có $p$ riêng (B06). Mất mát bình phương được chọn cho phép tính tay; mất mát logistic của Bài 05 cũng lồi theo $f$, và kết luận về tính không lồi giữ nguyên (ghi chú B07). Ánh xạ hệ số chặn: Bài 05 gộp hệ số chặn vào $w$ qua tọa độ hằng 1 của vector đặc trưng $x_i=\varphi(u_i)$, nên số chiều $d$ của Bài 05 chính là số tham số; với mô hình tuyến tính trên đầu vào thô $x\in\mathbb R^d$ của Bài 06, số đó bằng $p=d+1$; ở bài này hệ số chặn của mô hình tuyến tính viết riêng là $c$, độ lệch mạng là $b_1,b_2$, còn $b$ không chỉ số là cỡ nhóm. Ký hiệu $\sigma$ ở mạch B–C là hàm kích hoạt (Bài 05 dùng $\sigma$ cho hàm sigmoid); $\sigma^2$ ở mạch E–F là chặn phương sai của gradient.
+- **Ghi chú diễn giả:** Dòng ánh xạ với Bài 05 đối xứng với dòng trên trang ký hiệu của Bài 05 (MD04 trong kế hoạch Bài 05). Lý do đổi $x_k\to\theta_k$: $x_i$ đã là dữ liệu. $p=d+1$ cho mô hình tuyến tính; mạng có $p$ riêng (B06). Mất mát bình phương được chọn cho phép tính thủ công; mất mát logistic của Bài 05 cũng lồi theo $f$, và kết luận về tính không lồi giữ nguyên (ghi chú B07). Ánh xạ hệ số chặn: Bài 05 gộp hệ số chặn vào $w$ qua tọa độ hằng 1 của vector đặc trưng $x_i=\varphi(u_i)$, nên số chiều $d$ của Bài 05 chính là số tham số; với mô hình tuyến tính trên đầu vào thô $x\in\mathbb R^d$ của Bài 06, số đó bằng $p=d+1$; ở bài này hệ số chặn của mô hình tuyến tính viết riêng là $c$, độ lệch mạng là $b_1,b_2$, còn $b$ không chỉ số là kích thước nhóm. Ký hiệu $\sigma$ ở mạch B–C là hàm kích hoạt (Bài 05 dùng $\sigma$ cho hàm sigmoid); $\sigma^2$ ở mạch E–F là chặn phương sai của gradient.
 - **Hình:** không.
 - **Liên kết:** A03 nêu câu hỏi; A04 cho đối tượng; B01 mở bằng một dữ liệu cụ thể.
 - **Quyết định:** thêm; khung ký hiệu phải cố định trước khi dẫn định lý từ 05b, 05c có ký hiệu khác.
@@ -229,27 +244,27 @@ Quy ước cho tác tử soạn deck: mã trang (của bài này hay bài khác)
 
 ### Mạch B. Biểu diễn phi tuyến và mạng hai tầng (khối B1)
 
-Nhu cầu của mạch (câu hỏi trung tâm B1 viết lại): dự đoán tuyến tính theo đặc trưng có giới hạn biểu diễn; cần mô hình có đặc trưng học được và biết cái giá của nó.
+Nhu cầu của mạch (câu hỏi trung tâm B1 viết lại): dự đoán tuyến tính theo đặc trưng có giới hạn biểu diễn; cần mô hình có đặc trưng học được và biết chi phí của nó.
 
 #### B01. Bài toán XOR
 
 - **Điểm trung tâm:** Bốn điểm XOR là một nhiệm vụ phân lớp cụ thể mà mô hình tuyến tính phải giải.
-- **Mặt trang:** Bảng chân trị: $x=(0,0),(0,1),(1,0),(1,1)$; $y=0,1,1,0$. Nhãn $\{0,1\}$ và mất mát bình phương $\ell=\tfrac12(f-y)^2$ là lựa chọn để tính tay. **Ví dụ dẫn nhập.** Mô hình tuyến tính $f(x;w,c)=w^\top x+c$, $w\in\mathbb R^2$, $c\in\mathbb R$; dự đoán lớp 1 khi $f>\tfrac12$. Hình bốn điểm trên mặt phẳng.
-- **Ghi chú diễn giả:** XOR là phép “hoặc loại trừ”: đầu ra 1 khi đúng một đầu vào bằng 1. Đây là ví dụ dẫn nhập cho nhu cầu của mạch: mô hình tuyến tính với hai đặc trưng gốc. Không bàn tổng quát hóa: cả bốn điểm đều là dữ liệu huấn luyện (DL §6.1). Hệ số chặn viết $c$ để không trùng cỡ nhóm $b$ về sau. Bài 05 (KL03) dùng cùng bốn điểm với nhãn $\pm1$ ($+1$ cho $(0,1),(1,0)$; $-1$ cho $(0,0),(1,1)$), tức $y_{\pm}=2y-1$; lập luận tổng $g(1,0)+g(0,1)=g(0,0)+g(1,1)$ ở B02 không phụ thuộc cách mã hóa nhãn. Mất mát bình phương cho nghiệm bình phương nhỏ nhất và $F(\theta_A)=0$ tính được bằng tay (DL §6.1 cũng dùng MSE cho XOR).
+- **Mặt trang:** Bảng chân trị: $x=(0,0),(0,1),(1,0),(1,1)$; $y=0,1,1,0$. Nhãn $\{0,1\}$ và mất mát bình phương $\ell=\tfrac12(f-y)^2$ là lựa chọn để tính thủ công. **Ví dụ dẫn nhập.** Mô hình tuyến tính $f(x;w,c)=w^\top x+c$, $w\in\mathbb R^2$, $c\in\mathbb R$; dự đoán lớp 1 khi $f>\tfrac12$. Hình bốn điểm trên mặt phẳng.
+- **Ghi chú diễn giả:** XOR là phép “hoặc loại trừ”: đầu ra 1 khi đúng một đầu vào bằng 1. Đây là ví dụ dẫn nhập cho nhu cầu của mạch: mô hình tuyến tính với hai đặc trưng gốc. Không bàn tổng quát hóa: cả bốn điểm đều là dữ liệu huấn luyện (DL §6.1). Hệ số chặn viết $c$ để không trùng kích thước nhóm $b$ về sau. Bài 05 (KL03) dùng cùng bốn điểm với nhãn $\pm1$ ($+1$ cho $(0,1),(1,0)$; $-1$ cho $(0,0),(1,1)$), tức $y_{\pm}=2y-1$; lập luận tổng $g(1,0)+g(0,1)=g(0,0)+g(1,1)$ ở B02 không phụ thuộc cách mã hóa nhãn. Mất mát bình phương cho nghiệm bình phương nhỏ nhất và $F(\theta_A)=0$ tính được thủ công (DL §6.1 cũng dùng MSE cho XOR).
 - **Hình:** `xor-points.svg`.
 - **Liên kết:** Nhận giới hạn (ii) của A03; B02 chứng minh không có $w,c$ nào phân lớp đúng.
-- **Quyết định:** thêm; cần một dữ liệu tính tay được trước định nghĩa.
+- **Quyết định:** thêm; cần một dữ liệu tính thủ công được trước định nghĩa.
 - **Hành trình:** KN1 nhu cầu + ví dụ dẫn nhập + trực quan. **LLO/CLO:** CLO2. **Thời lượng:** 0,05 + 0,00.
 
 #### B02. Tính không tách được tuyến tính của XOR
 
 - **Điểm trung tâm:** Không hàm affine nào phân lớp đúng cả bốn điểm XOR; nghiệm bình phương nhỏ nhất affine là hằng $\tfrac12$.
-- **Mặt trang:** **Định nghĩa.** Tập dữ liệu nhãn $\{0,1\}$ tách được tuyến tính (linearly separable) nếu tồn tại $w,c$ với $w^\top x_i+c>0$ khi $y_i=1$ và $<0$ khi $y_i=0$. **Mệnh đề 1.** XOR không tách được tuyến tính. **Chứng minh.** Với $g(x)=w^\top x+c$: $g(1,0)+g(0,1)=w_1+w_2+2c=g(0,0)+g(1,1)$. Tách được đòi hỏi vế trái $>0>$ vế phải, mâu thuẫn. **Hệ quả.** Nghiệm của bình phương nhỏ nhất affine: $w=(0,0)$, $c=\tfrac12$, $F=\tfrac18$.
+- **Mặt trang:** **Nhắc lại (Bài 05)**: tách được tuyến tính nếu có $w,c$ với $y_{\pm,i}g(x_i)>0$, $g(x)=w^\top x+c$; với mô hình B01, $g=f-\tfrac12$. **Mệnh đề 1** (đánh số của Bài 06) và **Chứng minh** (nhắc lại phần kết luận của Bài 05) bằng đẳng thức tổng. Hình `xor-diagonals.svg`. **Ví dụ** (bình phương nhỏ nhất): $w=(0,0)$, $c=\tfrac12$, $F=\tfrac18$ (bản sau tái kiểm, 2026-10-12)
 - **Ghi chú diễn giả:** Ngưỡng $\tfrac12$ ở B01 là trường hợp $g=f-\tfrac12$. Hệ phương trình chuẩn: ma trận $\begin{psmallmatrix}2&1&2\\1&2&2\\2&2&4\end{psmallmatrix}$, vế phải $(1,1,2)$, nghiệm $(0,0,\tfrac12)$; phần dư $\pm\tfrac12$ ở cả bốn điểm, $F=\tfrac14\cdot\tfrac12\cdot4\cdot\tfrac14=\tfrac18$. Mô hình tuyến tính “tốt nhất” trả về cùng một giá trị cho mọi đầu vào. Đẳng thức tổng là lý do hình học: hai đường chéo của hình vuông có cùng trung điểm.
-- **Hình:** dùng lại `xor-points.svg` với hai đường chéo và trung điểm chung $(\tfrac12,\tfrac12)$ (biến thể trong cùng tệp hoặc `xor-diagonals.svg`).
+- **Hình:** `xor-diagonals.svg` (bốn điểm XOR, hai đường chéo, trung điểm chung $(\tfrac12,\tfrac12)$; tệp riêng, cùng bộ sinh với `xor-points.svg`).
 - **Liên kết:** B01 cho dữ liệu; B03 hỏi cách khắc phục bằng đặc trưng mới.
 - **Quyết định:** thêm; chứng minh ngắn đủ đặt trên trang, theo yêu cầu.
-- **Hành trình:** KN1 ví dụ (bình phương nhỏ nhất) + hình thức. **LLO/CLO:** CLO1. **Thời lượng:** 0,07 + 0,02 (kiểm tay hệ phương trình chuẩn).
+- **Hành trình:** KN1 ví dụ (bình phương nhỏ nhất) + hình thức. **LLO/CLO:** CLO1. **Thời lượng:** 0,07 + 0,02 (kiểm tra thủ công hệ phương trình chuẩn).
 
 #### B03. Đặc trưng thủ công và chi phí theo số chiều
 
@@ -266,7 +281,7 @@ Nhu cầu của mạch (câu hỏi trung tâm B1 viết lại): dự đoán tuy�
 - **Điểm trung tâm:** Một lớp ẩn phi tuyến đưa bốn điểm XOR sang không gian mới, nơi chúng tách được tuyến tính.
 - **Mặt trang:** **Trực quan.** $h_1=\max\{0,x_1-x_2\}$, $h_2=\max\{0,x_2-x_1\}$ đưa $(0,0),(1,1)\mapsto(0,0)$, $(1,0)\mapsto(1,0)$, $(0,1)\mapsto(0,1)$. Trong không gian $h$, đường thẳng $h_1+h_2=\tfrac12$ tách hai lớp. Hình hai khung $x$ và $h$.
 - **Ghi chú diễn giả:** Hai điểm lớp 0 bị gộp vào cùng một điểm; đó là việc mà đặc trưng tuyến tính không làm được (DL Hình 6.1 dùng một phép biến đổi khác cùng ý). Phép biến đổi có tham số và sẽ được học; trang này chỉ cho thấy tồn tại.
-- **Hình:** `xor-feature-map.svg`.
+- **Hình:** `xor-feature-map.svg`; bản cho màn hẹp `xor-feature-map-narrow.svg` (hai khung xếp dọc), chọn bằng thẻ `<picture>`.
 - **Liên kết:** Nhu cầu ở B03 → trực quan; B05 viết đầy đủ trọng số.
 - **Quyết định:** thêm; cần trực quan trước định nghĩa mạng.
 - **Hành trình:** KN2 trực quan. **LLO/CLO:** CLO2. **Thời lượng:** 0,05 + 0,00.
@@ -276,7 +291,7 @@ Nhu cầu của mạch (câu hỏi trung tâm B1 viết lại): dự đoán tuy�
 - **Điểm trung tâm:** Với trọng số cụ thể, mạng hai tầng hai đơn vị ẩn ReLU tính đúng XOR tại cả bốn đầu vào.
 - **Mặt trang:** **Ví dụ.** $W_1=\begin{psmallmatrix}1&-1\\-1&1\end{psmallmatrix}$, $b_1=(0,0)^\top$, $w_2=(1,1)^\top$, $b_2=0$. Bảng truyền xuôi: $x$ | $z=W_1x+b_1$ | $h$ | $f$: $(0,0)$ | $(0,0)$ | $(0,0)$ | 0; $(0,1)$ | $(-1,1)$ | $(0,1)$ | 1; $(1,0)$ | $(1,-1)$ | $(1,0)$ | 1; $(1,1)$ | $(0,0)$ | $(0,0)$ | 0. Kết luận: $f(x;\theta_A)=\lvert x_1-x_2\rvert$ trên $\{0,1\}^2$, $F(\theta_A)=0$.
 - **Ghi chú diễn giả:** Gọi tham số này là $\theta_A$. Hàm ReLU (rectified linear unit) là tên tiếng Anh lần đầu. Tại $(0,0)$ và $(1,1)$ tiền kích hoạt bằng 0; giá trị hàm vẫn xác định, chỉ đạo hàm cần quy ước (dùng ở C). DL (6.4)–(6.6) cho một nghiệm khác, dùng ở bài tập B10.
-- **Hình:** `two-layer-network.svg` (sơ đồ 2–2–1 có nhãn $W_1,b_1,w_2,b_2$).
+- **Hình:** không trên mặt trang (dựng deck 2026-10-12: trang đã có ma trận và bảng truyền xuôi bốn dòng; sơ đồ `two-layer-network.svg` đặt ở B06).
 - **Liên kết:** B04 cho phép biến đổi; B06 trừu tượng hóa thành định nghĩa.
 - **Quyết định:** thêm; yêu cầu trọng số tường minh và truyền xuôi cho bốn đầu vào.
 - **Hành trình:** KN2 ví dụ. **LLO/CLO:** CLO2. **Thời lượng:** 0,06 + 0,04 (điền bảng).
@@ -286,7 +301,7 @@ Nhu cầu của mạch (câu hỏi trung tâm B1 viết lại): dự đoán tuy�
 - **Điểm trung tâm:** Mạng hai tầng là hàm $f(x;\theta)=w_2^\top\sigma(W_1x+b_1)+b_2$ với $p=md+2m+1$ tham số, và $\sigma$ phải phi tuyến.
 - **Mặt trang:** **Định nghĩa.** Cho $d,m\in\mathbb N_{>0}$, $W_1\in\mathbb R^{m\times d}$, $b_1\in\mathbb R^m$, $w_2\in\mathbb R^m$, $b_2\in\mathbb R$, $\sigma:\mathbb R\to\mathbb R$ áp theo thành phần. $f(x;\theta)=w_2^\top\sigma(W_1x+b_1)+b_2$, $\theta=(W_1,b_1,w_2,b_2)\in\mathbb R^p$, $p=md+2m+1$. **Nhận xét.** Nếu $\sigma(z)=z$ thì $f=(W_1^\top w_2)^\top x+(w_2^\top b_1+b_2)$ là affine, nên Mệnh đề 1 (XOR không tách được tuyến tính) vẫn áp dụng.
 - **Ghi chú diễn giả:** B05 là trường hợp $d=m=2$, $p=9$. Thuật ngữ: đơn vị ẩn (hidden unit), tiền kích hoạt (pre-activation), truyền xuôi (forward pass). Mạng sâu lặp lại cấu trúc này; bài chỉ cần hai tầng. Ví dụ quy mô: $d=784$, $m=100$ cho $p=78\,601$.
-- **Hình:** `two-layer-network.svg` (dạng vector, dùng lại).
+- **Hình:** `two-layer-network.svg` (sơ đồ 2–2–1 có nhãn $W_1,b_1,w_2,b_2$, $z$, $h$, $f$).
 - **Liên kết:** Kế thừa B05; B07 đặt câu hỏi về $F$ như hàm của $\theta$.
 - **Quyết định:** thêm; định nghĩa có miền, kích thước theo tiêu chuẩn nội dung.
 - **Hành trình:** KN2 hình thức. **LLO/CLO:** CLO2. **Thời lượng:** 0,07 + 0,00.
@@ -315,7 +330,7 @@ Nhu cầu của mạch (câu hỏi trung tâm B1 viết lại): dự đoán tuy�
 
 - **Điểm trung tâm:** Hai cực tiểu đối xứng cùng giá trị 0 mà trung điểm có $F=\tfrac14$ chứng tỏ $F$ không lồi.
 - **Mặt trang:** **Mệnh đề 3.** Giả sử $F$ đạt cực tiểu toàn cục tại $\theta^*$ mà hai đơn vị ẩn có tham số khác nhau. Khi đó $P\theta^*\neq\theta^*$ cũng là cực tiểu toàn cục. Nếu $F$ lồi, mọi điểm của đoạn $[\theta^*,P\theta^*]$ là cực tiểu toàn cục. **Trên XOR.** Dọc $\theta(t)=(1-t)\theta_A+t\theta_B$: $f=\lvert1-2t\rvert\,\lvert x_1-x_2\rvert$ và $F(\theta(t))=t^2$ với $t\le\tfrac12$, $(1-t)^2$ với $t\ge\tfrac12$. Tại $t=\tfrac12$: $W_1=0$, $f\equiv0$, $F=\tfrac14>0$. Kết luận: $F$ không lồi. Dòng cuối: lớp ẩn thay cho việc tăng số đặc trưng thủ công; đổi lại, $F$ không lồi (Mệnh đề 3).
-- **Ghi chú diễn giả:** Tập cực tiểu của hàm lồi là tập lồi (Bài 01). Mệnh đề 3 không khẳng định mọi mạng trên mọi dữ liệu đều không lồi; nó cho một phép kiểm, và trên XOR phép kiểm cho kết quả không lồi. Mạng tuyến tính hai tầng (bỏ $\sigma$) cũng không lồi: ví dụ D02. Đây là cái giá của giới hạn (ii) trong A03, đối xứng với cái giá $d$ ở B03.
+- **Ghi chú diễn giả:** Tập cực tiểu của hàm lồi là tập lồi (Bài 01). Mệnh đề 3 không khẳng định mọi mạng trên mọi dữ liệu đều không lồi; nó cho một phép kiểm tra, và trên XOR phép kiểm tra cho kết quả không lồi. Mạng tuyến tính hai tầng (bỏ $\sigma$) cũng không lồi: ví dụ D02. Đây là chi phí của giới hạn (ii) trong A03, đối xứng với chi phí $d$ ở B03.
 - **Hình:** `xor-symmetric-path.svg` (đồ thị $F(\theta(t))$ trên $[0,1]$, hai cực tiểu tại $t=0,1$, đỉnh $\tfrac14$ tại $t=\tfrac12$, dây cung nối hai cực tiểu nằm dưới đồ thị).
 - **Liên kết:** Dùng B08; mạch C tính gradient của $F$ này, mạch D xét gradient chứng nhận được gì khi $F$ không lồi.
 - **Quyết định:** thêm; lập luận trung điểm theo yêu cầu, có đường $F(\theta(t))$ tính được tường minh.
@@ -350,7 +365,7 @@ Nhu cầu của mạch (câu hỏi B2, nửa đầu): mọi phương pháp bậc
 - **Điểm trung tâm:** Truyền xuôi tính và lưu các giá trị trung gian $z,h,f,\ell$ trên đồ thị tính toán.
 - **Mặt trang:** **Ví dụ.** Một mẫu $x=(1,1)$, $y=0$. $W_1=\begin{psmallmatrix}1&\tfrac12\\\tfrac12&-1\end{psmallmatrix}$, $b_1=(-\tfrac12,1)$, $w_2=(1,-2)$, $b_2=\tfrac12$. Đồ thị $x\to z\to h\to f\to\ell$ với giá trị: $z=(1,\tfrac12)$, $h=(1,\tfrac12)$, $f=\tfrac12$, $\ell=\tfrac18$.
 - **Ghi chú diễn giả:** Đồ thị tính toán (computational graph): nút là đại lượng, cạnh là phép toán (DL §6.5.1, tr. 205). Cả hai đơn vị hoạt động ($z>0$), nên không gặp điểm gãy. Ghi nhớ: các giá trị $z,h$ phải được lưu cho bước ngược. Lưu ý cho bài tập về sau: với tham số này, đầu vào $(0,1)$ cho $z=(0,0)$, nằm đúng điểm gãy.
-- **Hình:** `backprop-forward.svg` (đồ thị 2–2–1, giá trị truyền xuôi trên nút).
+- **Hình:** `backprop-forward.svg` (đồ thị 2–2–1, giá trị truyền xuôi trên nút); bản cho màn hẹp `backprop-forward-narrow.svg` (chuỗi nút xếp dọc).
 - **Liên kết:** C01 đặt nhu cầu; C03 đi ngược trên cùng đồ thị.
 - **Quyết định:** thêm; gộp trực quan (đồ thị) với phần truyền xuôi của ví dụ vì cùng một luận điểm.
 - **Hành trình:** KN4 trực quan + ví dụ (phần xuôi). **LLO/CLO:** CLO1. **Thời lượng:** 0,06 + 0,02.
@@ -358,9 +373,9 @@ Nhu cầu của mạch (câu hỏi B2, nửa đầu): mọi phương pháp bậc
 #### C03. Truyền ngược trên ví dụ
 
 - **Điểm trung tâm:** Đi từ $\ell$ về $\theta$, mỗi đạo hàm là tích của đạo hàm phía sau với một đạo hàm cục bộ đã có từ truyền xuôi.
-- **Mặt trang:** Bảng: $e=f-y=\tfrac12$; $\partial\ell/\partial b_2=e=\tfrac12$; $\partial\ell/\partial w_2=e\,h=(\tfrac12,\tfrac14)$; $\delta_h=e\,w_2=(\tfrac12,-1)$; $\delta_z=\delta_h\odot\sigma'(z)=(\tfrac12,-1)$; $\partial\ell/\partial W_1=\delta_z x^\top=\begin{psmallmatrix}\tfrac12&\tfrac12\\-1&-1\end{psmallmatrix}$; $\partial\ell/\partial b_1=\delta_z=(\tfrac12,-1)$. **Kiểm.** Sai phân trung tâm theo $[W_1]_{22}$ với $\varepsilon=10^{-3}$ cho đúng $-1$.
+- **Mặt trang:** Hình truyền ngược ghi $e=f-y=\tfrac12$, $\delta_h=e\,w_2=(\tfrac12,-1)$, $\delta_z=\delta_h\odot\sigma'(z)=(\tfrac12,-1)$ và gradient theo $b_2$ ($e=\tfrac12$), $w_2$ ($e\,h=(\tfrac12,\tfrac14)$), $b_1$ ($\delta_z$), $W_1$ ($\delta_zx^\top$); một dòng dưới hình: $\nabla_{W_1}\ell=\delta_zx^\top=\begin{psmallmatrix}\tfrac12&\tfrac12\\-1&-1\end{psmallmatrix}$. **Kiểm.** Sai phân trung tâm theo $[W_1]_{22}$ với $\varepsilon=10^{-3}$ cho đúng $-1$. (Dựng deck 2026-10-12: bảng bảy dòng thay bằng hình cộng một dòng vì bảng và hình cùng trang vượt khung 16:9; giá trị không đổi.)
 - **Ghi chú diễn giả:** $\lVert\nabla\ell\rVert^2=\tfrac{69}{16}$. Mỗi dòng dùng một kết quả của dòng trên; không dòng nào tính lại truyền xuôi. Sai phân trung tâm cho đúng $-1$ vì $\ell$ là hàm bậc hai theo riêng $[W_1]_{22}$ tại điểm khả vi này.
-- **Hình:** `backprop-backward.svg` (cùng đồ thị, giá trị $\delta$ trên cạnh, khác kiểu nét với truyền xuôi, không chỉ khác màu).
+- **Hình:** `backprop-backward.svg` (cùng đồ thị, giá trị $\delta$ trên cạnh, khác kiểu nét với truyền xuôi, không chỉ khác màu); bản cho màn hẹp `backprop-backward-narrow.svg`.
 - **Liên kết:** Dùng giá trị C02; C04 viết thành thuật toán tổng quát.
 - **Quyết định:** thêm; yêu cầu ví dụ số đầy đủ mọi đại lượng trung gian.
 - **Hành trình:** KN4 ví dụ (phần ngược). **LLO/CLO:** CLO1. **Thời lượng:** 0,07 + 0,03.
@@ -432,7 +447,7 @@ Nhu cầu của mạch (câu hỏi B2, nửa sau): khi $F$ không lồi, cần b
 #### D03. Phân loại điểm dừng bằng Hessian
 
 - **Điểm trung tâm:** Trị riêng của Hessian tại điểm dừng phân loại được cực tiểu chặt và điểm yên ngựa, nhưng không quyết định khi có trị riêng bằng 0.
-- **Mặt trang:** **Mệnh đề** (nhắc lại Bài 00). $F\in C^2$, $\nabla F(\theta)=0$. (i) $\nabla^2F(\theta)\succ0$ ⇒ cực tiểu địa phương chặt. (ii) $\nabla^2F(\theta)$ có trị riêng âm và trị riêng dương ⇒ điểm yên ngựa. (iii) Cực tiểu địa phương ⇒ $\nabla^2F(\theta)\succeq0$ (điều kiện cần). Áp vào ví dụ mạng tuyến tính một đơn vị: $(0,0)$ thuộc (ii); $(1,1)$ có trị riêng $0,2$: phép kiểm không kết luận, dù đó là cực tiểu toàn cục.
+- **Mặt trang:** **Mệnh đề** (nhắc lại Bài 00). $F\in C^2$, $\nabla F(\theta)=0$. (i) $\nabla^2F(\theta)\succ0$ ⇒ cực tiểu địa phương chặt. (ii) $\nabla^2F(\theta)$ có trị riêng âm và trị riêng dương ⇒ điểm yên ngựa. (iii) Cực tiểu địa phương ⇒ $\nabla^2F(\theta)\succeq0$ (điều kiện cần). Áp vào ví dụ mạng tuyến tính một đơn vị: $(0,0)$ thuộc (ii); $(1,1)$ có trị riêng $0,2$: phép kiểm tra không kết luận, dù đó là cực tiểu toàn cục.
 - **Ghi chú diễn giả:** Chứng minh phác qua khai triển Taylor bậc hai (Bài 00): $F(\theta+s)=F(\theta)+\tfrac12s^\top\nabla^2F(\theta)s+o(\lVert s\rVert^2)$. Với mạng thật, Hessian có $p^2$ phần tử ($p=78\,601$ cho $6{,}2\cdot10^9$ phần tử), nên phép phân loại này chỉ là công cụ phân tích, không là quy tắc dừng thực hành. Đường cực tiểu không cô lập làm trị riêng 0 xuất hiện thường xuyên trong mạng có đối xứng.
 - **Hình:** không.
 - **Liên kết:** D02 cho số; giới hạn “không tính được Hessian ở quy mô lớn” tạo nhu cầu cho bảo đảm chỉ dùng gradient ở D04.
@@ -462,9 +477,9 @@ Nhu cầu của mạch (câu hỏi B2, nửa sau): khi $F$ không lồi, cần b
 #### D06. Bình nguyên gần điểm yên ngựa
 
 - **Điểm trung tâm:** Gradient nhỏ có thể xuất hiện xa cực tiểu: từ gần điểm yên ngựa, hạ gradient đứng gần như yên nhiều bước trước khi thoát.
-- **Mặt trang:** Ví dụ mạng tuyến tính một đơn vị với $\theta_0=(0{,}01;\,0{,}01)$, $\eta=\tfrac12$. Trên đường chéo $u=v=t$: $t_{k+1}=t_k+\tfrac12t_k(1-t_k^2)$. Bảng: $k=0$: $F=0{,}4999$, $\lVert\nabla F\rVert^2=2{,}0\cdot10^{-4}$; $k=5$: $t=0{,}0758$, $F=0{,}4943$; $k=10$: $t=0{,}529$, $F=0{,}259$; $k=13$: $t=0{,}984$, $F=5{,}3\cdot10^{-4}$; $k=15$: $t\approx1$. Với $\varepsilon^2=2\cdot10^{-4}$, $\theta_0$ đã là điểm dừng $\varepsilon$-xấp xỉ trong khi $F(\theta_0)\approx0{,}4999$, gần giá trị tại điểm yên ngựa.
+- **Mặt trang:** Ví dụ mạng tuyến tính một đơn vị với $\theta_0=(0{,}01;\,0{,}01)$, $\eta=\tfrac12$. Trên đường chéo $u=v=t$: $t_{k+1}=t_k+\tfrac12t_k(1-t_k^2)$. Dòng bốn giá trị (dựng deck 2026-10-12, thay cho bảng) cùng hình: $k=0$: $F=0{,}4999$, $\lVert\nabla F\rVert^2=2{,}0\cdot10^{-4}$; $k=5$: $t=0{,}0758$, $F=0{,}4943$; $k=10$: $t=0{,}529$, $F=0{,}259$; $k=13$: $t=0{,}984$, $F=5{,}3\cdot10^{-4}$; $k=15$: $t\approx1$. Với $\varepsilon^2=2\cdot10^{-4}$, $\theta_0$ đã là điểm dừng $\varepsilon$-xấp xỉ trong khi $F(\theta_0)\approx0{,}4999$, gần giá trị tại điểm yên ngựa.
 - **Ghi chú diễn giả:** Dãy nằm trong $[0,1]^2$ (hàm $t\mapsto t+\tfrac12t(1-t^2)$ tăng trên $[0,1]$ và giữ $[0,1]$), nên $L=2$ hợp lệ. Từ đúng $(0,0)$, hạ gradient đứng yên mãi. Bình nguyên (plateau) và điểm yên ngựa: DL §8.2.3, tr. 285–287. T7 chứng nhận “có một bước có gradient nhỏ”, và bước đó có thể là $k=0$.
-- **Hình:** `saddle-plateau.svg` (hai đồ thị theo $k=0..15$: $F(\theta_k)$ và $\lVert\nabla F(\theta_k)\rVert^2$ thang logarit; dữ liệu mục 8.4).
+- **Hình:** `saddle-plateau.svg`, bản cho màn hẹp `saddle-plateau-narrow.svg` (hai đồ thị xếp dọc) (hai đồ thị theo $k=0..15$: $F(\theta_k)$ và $\lVert\nabla F(\theta_k)\rVert^2$ thang logarit; dữ liệu mục 8.4).
 - **Liên kết:** Ứng dụng D05 cho thấy giới hạn của chứng nhận; D07 kiểm. Ở E, gradient đầy đủ được thay bằng gradient nhóm.
 - **Quyết định:** thêm; cần một phép tính chứng tỏ điểm dừng xấp xỉ không phải cực tiểu.
 - **Hành trình:** KN5 ứng dụng; KN6 ứng dụng. **LLO/CLO:** LLO11; CLO1. **Thời lượng:** 0,05 + 0,02.
@@ -472,8 +487,8 @@ Nhu cầu của mạch (câu hỏi B2, nửa sau): khi $F$ không lồi, cần b
 #### D07. Phân loại điểm dừng và số bước theo T7
 
 - **Điểm trung tâm:** Kiểm phân loại điểm dừng và đọc cận T7.
-- **Mặt trang:** **Câu hỏi:** Với $F(u,v)=\tfrac12(uv-1)^2$: (a) Xác định mọi điểm dừng. (b) Tính Hessian tại $(2,\tfrac12)$, các trị riêng, và kết luận phép kiểm bậc hai. (c) Với $L=2$, $\theta_0=(\tfrac12,\tfrac12)$, tìm $K$ nhỏ nhất để cận T7 bảo đảm $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le0{,}01$; so với bảng thực tế. (d) Nêu một kết luận mà T7 không cho.
-- **Ghi chú diễn giả (đáp án):** (a) $(0,0)$ và mọi điểm $uv=1$. (b) $\begin{psmallmatrix}0{,}25&1\\1&4\end{psmallmatrix}$, trị riêng $0$ và $4{,}25$; không kết luận được bằng phép kiểm, nhưng $F=0$ là cực tiểu toàn cục. (c) $\Delta_0=0{,}28125$, $K\ge2\cdot2\cdot0{,}28125/0{,}01=112{,}5$, $K=113$; thực tế $\lVert\nabla F(\theta_3)\rVert^2=0{,}0045$, tức $K=4$ đã đủ. (d) Ví dụ: không cho biết $\theta_k$ tới cực tiểu nào, không chặn $F(\theta_k)-0$.
+- **Mặt trang:** **Câu hỏi:** Với $F(u,v)=\tfrac12(uv-1)^2$: (a) Xác định mọi điểm dừng. (b) Tính Hessian tại $(2,\tfrac12)$, các trị riêng, và kết luận phép kiểm tra bậc hai. (c) Với $L=2$, $\theta_0=(\tfrac12,\tfrac12)$, tìm $K$ nhỏ nhất để cận T7 bảo đảm $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le0{,}01$; so với bảng thực tế. (d) Nêu một kết luận mà T7 không cho.
+- **Ghi chú diễn giả (đáp án):** (a) $(0,0)$ và mọi điểm $uv=1$. (b) $\begin{psmallmatrix}0{,}25&1\\1&4\end{psmallmatrix}$, trị riêng $0$ và $4{,}25$; không kết luận được bằng phép kiểm tra, nhưng $F=0$ là cực tiểu toàn cục. (c) $\Delta_0=0{,}28125$, $K\ge2\cdot2\cdot0{,}28125/0{,}01=112{,}5$, $K=113$; thực tế $\lVert\nabla F(\theta_3)\rVert^2=0{,}0045$, tức $K=4$ đã đủ. (d) Ví dụ: không cho biết $\theta_k$ tới cực tiểu nào, không chặn $F(\theta_k)-0$.
 - **Hình:** không.
 - **Liên kết:** Khép mạch D và khối B2.
 - **Quyết định:** thêm; trang kiểm tra riêng của mạch.
@@ -483,11 +498,11 @@ Nhu cầu của mạch (câu hỏi B2, nửa sau): khi $F$ không lồi, cần b
 
 Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_k)$ ở mỗi bước, chi phí $O(np)$; cần biết bỏ gradient đầy đủ thì mất gì.
 
-#### E01. Chi phí của gradient đầy đủ ở ba quy mô
+#### E01. Chi phí một bước của ba phương pháp ở ba quy mô
 
 - **Điểm trung tâm:** Ở quy mô lớn, ngay một bước gradient đầy đủ cũng vượt ngân sách; một bước Newton không thực hiện được.
-- **Mặt trang:** Bảng (đơn vị: phép nhân–cộng; giả định máy $10^{12}$ phép mỗi giây): $(n,p,b)=(10^3,10^2,10)$: GD $10^5$; Newton $1{,}1\cdot10^7$; SGD $10^3$. $(10^5,10^5,100)$: GD $10^{10}$ (0,01 s); Newton $2\cdot10^{15}$ (2000 s); SGD $10^7$. $(10^9,10^9,10^3)$: GD $10^{18}$ ($10^6$ s ≈ 11,6 ngày); Newton $2\cdot10^{27}$ (≈ $6{,}3\cdot10^7$ năm); SGD $10^{12}$ (1 s). **Lý do tính toán.**
-- **Ghi chú diễn giả:** Mô hình chi phí: GD $np$ (C05), Newton $np^2+p^3$ (khối A3 của Bài 05, Bài 04), SGD $bp$; bỏ hằng số, không tính song song. Bảng chỉ so chi phí một bước; số bước của Newton vẫn phụ thuộc các hằng số Hessian $m_H,M_H,L_H$ qua giai đoạn tắt dần (Bài 05 CP05), nên không viết Newton “không phụ thuộc $\kappa$”. Ma trận Hessian ở quy mô ba cần $4\cdot10^{18}$ byte nếu lưu số 4 byte. Một lượt dữ liệu (epoch) tốn $np$ cho cả GD (một cập nhật) và SGD ($n/b$ cập nhật). Quy mô là minh họa, không gán cho một mô hình cụ thể.
+- **Mặt trang:** Bảng (đơn vị: phép nhân–cộng; giả định máy $10^{12}$ phép mỗi giây): $(n,p,b)=(10^3,10^2,10)$: GD $10^5$; Newton $1{,}1\cdot10^7$; SGD $10^3$. $(10^5,10^5,100)$: GD $10^{10}$ (0,01 s); Newton $2\cdot10^{15}$ (2000 s); SGD $10^7$. $(10^9,10^9,10^3)$: GD $10^{18}$ ($10^6$ s ≈ 11,6 ngày); Newton $2\cdot10^{27}$ (≈ $6{,}3\cdot10^7$ năm); SGD $10^{12}$ (1 s). **Lý do tính toán** (chi phí, giới hạn (i)).
+- **Ghi chú diễn giả:** Mô hình chi phí: GD $np$ (C05), Newton $np^2+p^3$ (khối A3 của Bài 05, Bài 04), SGD $bp$; bỏ hằng số, không tính song song. Bảng chỉ so chi phí một bước; số bước của Newton vẫn phụ thuộc các hằng số Hessian $m_H,M_H,L_H$ qua giai đoạn tắt dần (Bài 05 CP05), nên không viết Newton “không phụ thuộc $\kappa$”. Ma trận Hessian ở quy mô ba cần $8\cdot10^{18}$ byte với số 8 byte, cùng quy ước với bảng chi phí ba quy mô của Bài 05 (sửa 2026-10-12). Một lượt dữ liệu (epoch) tốn $np$ cho cả GD (một cập nhật) và SGD ($n/b$ cập nhật). Quy mô là minh họa, không gán cho một mô hình cụ thể.
 - **Hình:** không (bảng HTML).
 - **Liên kết:** Giới hạn (i) của A03 có số cụ thể; E02 nêu lý do thứ hai.
 - **Quyết định:** thêm; yêu cầu so sánh chi phí ba quy mô và luận đề “bị buộc bởi chi phí”.
@@ -495,11 +510,11 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 
 #### E02. Rủi ro thực nghiệm như đại lượng thay thế
 
-- **Điểm trung tâm:** Tại $\theta$ cố định, $F$ ước lượng $R$ với sai số cỡ $1/\sqrt n$ (G.2); theo Bottou–Bousquet, với bài toán lồi, giảm sai số tối ưu dưới sai số ước lượng không làm thay đổi bậc của cận sai số dư.
-- **Mặt trang:** **Định lý G.2 (Bài 05c, phát biểu lại).** Với $\theta$ cố định và dữ liệu độc lập cùng phân phối: $\mathbb E F(\theta)=R(\theta)$, $\operatorname{Var}F(\theta)=\operatorname{Var}\ell/n$. **Lý do thống kê.** Một dòng nhắc A1, A2. Số liệu thực nghiệm (SNW, Bảng 13.3): SVM tuyến tính (mất mát hinge, $\lambda=10^{-4}$) trên RCV1, $n=781\,265$, $d=47\,152$: SVMLight 23 642 s, SVMPerf 66 s, SGD 1,4 s; giá trị mục tiêu 0,2275 / 0,2278 / 0,2275; lỗi kiểm thử 6,02% ở cả ba.
-- **Ghi chú diễn giả:** Bottou và Bousquet tách sai số dư thành xấp xỉ, ước lượng và tối ưu (05c Nhận xét G.6; SNW §13.2.3, tr. 354–355): với bài toán lồi, khi thời gian là ràng buộc chính, giảm sai số tối ưu dưới bậc sai số ước lượng không cải thiện bậc của cận. Thí nghiệm RCV1 dùng bước $\eta_t=1/(\lambda(t+t_0))$: đúng dạng bước của T6, với $\lambda$ là hệ số chính quy hóa $\ell_2$ đóng vai $\mu$ (A2). Một thí nghiệm không chứng minh quy luật chung; trang dùng nó như minh họa có nguồn. Phân chia nguồn với Bài 05 (quyết định của điều phối viên): E02 trình bày các hàng mất mát hinge của Bảng 13.3; các hàng mất mát logistic (TRON 30 s / 44 s, SGD 2,3 s) được trình bày ở Bài 05 KL02, ghi chú E02 chỉ dẫn tới KL02.
+- **Điểm trung tâm:** Tại $\theta$ cố định, $F$ ước lượng $R$ với sai số cỡ $1/\sqrt n$ (05c.52); theo Bottou–Bousquet, với bài toán lồi, giảm sai số tối ưu dưới sai số ước lượng không làm thay đổi bậc của cận sai số dư.
+- **Mặt trang:** Hai cột. Trái: Định lý 05c.52 (thêm “mất mát có phương sai hữu hạn”); lý do thống kê kèm Bottou–Bousquet. Phải: số liệu SNW Bảng 13.3, máy vector hỗ trợ (SVM), mất mát bản lề (hinge loss), bảng ba phương pháp × (thời gian, mục tiêu, lỗi kiểm thử): SVMLight 23 642 s, 0,2275, 6,02 %; SVMPerf 66 s, 0,2278, 6,03 %; SGD 1,4 s, 0,2275, 6,02 %; dòng kết luận “lỗi kiểm thử gần như nhau trong khi thời gian chênh bốn bậc”. Phần nhắc Bài 05 chuyển vào ghi chú. (bản sau vòng rà soát năm vai, 2026-10-12)
+- **Ghi chú diễn giả:** Bottou và Bousquet tách sai số dư thành xấp xỉ, ước lượng và tối ưu (05c Nhận xét 05c.58; SNW §13.2.3, tr. 354–355): với bài toán lồi, khi thời gian là ràng buộc chính, giảm sai số tối ưu dưới bậc sai số ước lượng không cải thiện bậc của cận. Thí nghiệm RCV1 dùng bước $\eta_t=1/(\lambda(t+t_0))$: đúng dạng bước của T6, với $\lambda$ là hệ số chính quy hóa $\ell_2$ đóng vai $\mu$ (A2). Một thí nghiệm không chứng minh quy luật chung; trang dùng nó như minh họa có nguồn. Phân chia nguồn với Bài 05 (quyết định của điều phối viên): E02 trình bày các hàng mất mát bản lề (hinge loss) của Bảng 13.3; các hàng mất mát logistic (TRON 30 s / 44 s, SGD 2,3 s) được trình bày ở Bài 05 KL02, ghi chú E02 chỉ dẫn tới KL02.
 - **Hình:** không.
-- **Liên kết:** Kết hợp với E01 thành luận đề; G.2 chỉ áp dụng tại $\theta$ cố định, nên trang không khẳng định cực tiểu chính xác “không cải thiện $R$”. E03 xét điều gì xảy ra khi thay gradient đầy đủ bằng gradient nhóm.
+- **Liên kết:** Kết hợp với E01 thành luận đề; Định lý 05c.52 chỉ áp dụng tại $\theta$ cố định, nên trang không khẳng định cực tiểu chính xác “không cải thiện $R$”. E03 xét điều gì xảy ra khi thay gradient đầy đủ bằng gradient nhóm.
 - **Quyết định:** thêm; luận đề yêu cầu lý do thứ hai được nêu lại với số liệu.
 - **Hành trình:** KN7 nhu cầu; KN9 nhu cầu. **LLO/CLO:** LLO11; CLO1. **Thời lượng:** 0,06 + 0,00.
 
@@ -507,7 +522,7 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 
 - **Điểm trung tâm:** Sáu nhóm hai mẫu cho sáu gradient khác nhau, trung bình đúng bằng gradient đầy đủ; một nhóm làm $F$ tăng sau bước cập nhật.
 - **Mặt trang:** **Ví dụ.** $x=(-1,0,1,2)$, $y=(1,0,1,4)$, $f(x;w,c)=wx+c$, $\theta_0=(0,0)$, $F(\theta_0)=\tfrac94$. Gradient mẫu $\nabla\ell_i=(wx_i+c-y_i)(x_i,1)$: $(1,-1),(0,0),(-1,-1),(-8,-4)$; $\nabla F(\theta_0)=(-2;\,-1{,}5)$. Bảng sáu nhóm $b=2$, $\eta=\tfrac14$: $\{1,2\}$: $\widehat g=(\tfrac12,-\tfrac12)$, $F(\theta_1)=2{,}324$; $\{1,3\}$: $(0,-1)$, $1{,}906$; $\{1,4\}$: $(-\tfrac72,-\tfrac52)$, $0{,}605$; $\{2,3\}$: $(-\tfrac12,-\tfrac12)$, $1{,}840$; $\{2,4\}$: $(-4,-2)$, $0{,}625$; $\{3,4\}$: $(-\tfrac92,-\tfrac52)$, $0{,}559$. Trung bình $\widehat g$: $(-2;\,-1{,}5)$. Bước đầy đủ: $\theta=(\tfrac12,\tfrac38)$, $F=1{,}039$.
-- **Ghi chú diễn giả:** Nghiệm $\theta^*=(1,1)$, $F^*=\tfrac12$; Hessian $\begin{psmallmatrix}1{,}5&0{,}5\\0{,}5&1\end{psmallmatrix}$, $\mu\approx0{,}691$, $L\approx1{,}809$, $\kappa\approx2{,}62$; $\eta=\tfrac14\le1/L$. Kỳ vọng của $F(\theta_1)$ theo sáu nhóm là $\tfrac{503}{384}\approx1{,}310$, lớn hơn $1{,}039$ của bước đầy đủ: nhiễu làm giảm kỳ vọng ít hơn, đổi lại mỗi bước chỉ dùng hai gradient mẫu thay vì bốn. Hệ số chặn viết $c$ vì $b$ là cỡ nhóm.
+- **Ghi chú diễn giả:** Nghiệm $\theta^*=(1,1)$, $F^*=\tfrac12$; Hessian $\begin{psmallmatrix}1{,}5&0{,}5\\0{,}5&1\end{psmallmatrix}$, $\mu\approx0{,}691$, $L\approx1{,}809$, $\kappa\approx2{,}62$; $\eta=\tfrac14\le1/L$. Kỳ vọng của $F(\theta_1)$ theo sáu nhóm là $\tfrac{503}{384}\approx1{,}310$, lớn hơn $1{,}039$ của bước đầy đủ: nhiễu làm giảm kỳ vọng ít hơn, đổi lại mỗi bước chỉ dùng hai gradient mẫu thay vì bốn. Hệ số chặn viết $c$ vì $b$ là kích thước nhóm.
 - **Hình:** `batch-gradients.svg` (mặt phẳng gradient: sáu mũi tên $\widehat g$ của sáu nhóm, mũi tên $\nabla F(\theta_0)$ đậm tại trọng tâm; dữ liệu bảng trên).
 - **Liên kết:** E01–E02 cho lý do; E04 phát biểu tổng quát tính không chệch và phương sai.
 - **Quyết định:** thêm; yêu cầu một bước số trên 3–4 điểm với $b=2$; ví dụ đặt trước phát biểu hình thức.
@@ -516,8 +531,8 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 #### E04. Tính không chệch và phương sai của gradient nhóm
 
 - **Điểm trung tâm:** Gradient nhóm chọn đều là ước lượng không chệch của $\nabla F(\theta)$ với sai số bình phương trung bình $\operatorname{tr}\Sigma(\theta)/b$, nhân $\tfrac{n-b}{n-1}$ khi chọn không hoàn lại.
-- **Mặt trang:** **Định lý G.3 (Bài 05c, phát biểu lại).** $\theta$ cố định; $B$ gồm $b$ chỉ số chọn đều. Có hoàn lại: $\mathbb E\widehat g=\nabla F(\theta)$, $\mathbb E\lVert\widehat g-\nabla F(\theta)\rVert^2=\operatorname{tr}\Sigma(\theta)/b$. Không hoàn lại: cùng kỳ vọng, phương sai nhân $\frac{n-b}{n-1}$. Kiểm trên dữ liệu bốn điểm: $\operatorname{tr}\Sigma(\theta_0)=\tfrac{59}{4}$; trung bình sáu giá trị $\lVert\widehat g-\nabla F\rVert^2$ bằng $\tfrac{59}{12}=\tfrac{59}{4}\cdot\tfrac12\cdot\tfrac23$.
-- **Ghi chú diễn giả:** Chứng minh ở 05c (Định lý G.3, dùng E.3, E.7–E.10). Ở dãy lặp, $\theta_k$ phụ thuộc các nhóm trước; điều kiện thay thế là M3 (nhóm mới độc lập với lịch sử), cho H6 của 05b, và H6b với $\sigma^2=\sup\operatorname{tr}\Sigma/b\cdot\frac{n-b}{n-1}$ trên vùng chứa dãy lặp (05c Nhận xét G.7). Sai số chuẩn giảm theo $1/\sqrt b$ trong khi chi phí tăng theo $b$ (05c Mệnh đề G.5). Ký hiệu $\sigma^2$ từ đây là chặn phương sai, không liên quan hàm kích hoạt $\sigma$ của mạch B–C.
+- **Mặt trang:** **Định lý 05c.53 (Bài 05c, phát biểu lại).** $\theta$ cố định; $B$ gồm $b$ chỉ số chọn đều. Có hoàn lại: $\mathbb E\widehat g=\nabla F(\theta)$, $\mathbb E\lVert\widehat g-\nabla F(\theta)\rVert^2=\operatorname{tr}\Sigma(\theta)/b$. Không hoàn lại: cùng kỳ vọng, phương sai nhân $\frac{n-b}{n-1}$. Kiểm trên dữ liệu bốn điểm: $\operatorname{tr}\Sigma(\theta_0)=\tfrac{59}{4}$; trung bình sáu giá trị $\lVert\widehat g-\nabla F\rVert^2$ bằng $\tfrac{59}{12}=\tfrac{59}{4}\cdot\tfrac12\cdot\tfrac23$.
+- **Ghi chú diễn giả:** Chứng minh ở 05c (Định lý 05c.53, dùng E.3, E.7–E.10). Ở dãy lặp, $\theta_k$ phụ thuộc các nhóm trước; điều kiện thay thế là M3 (nhóm mới độc lập với lịch sử), cho H6 của 05b, và H6b với $\sigma^2=\sup\operatorname{tr}\Sigma/b\cdot\frac{n-b}{n-1}$ trên vùng chứa dãy lặp (05c Mục 6.7, Nhận xét 05c.59). Sai số chuẩn giảm theo $1/\sqrt b$ trong khi chi phí tăng theo $b$ (05c Mệnh đề 05c.56). Ký hiệu $\sigma^2$ từ đây là chặn phương sai, không liên quan hàm kích hoạt $\sigma$ của mạch B–C.
 - **Hình:** không.
 - **Liên kết:** E03 cho số; E05 dùng ước lượng này trong thuật toán.
 - **Quyết định:** thêm; yêu cầu dẫn 05c với nhãn, phát biểu lại, không chứng minh lại.
@@ -536,7 +551,7 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 #### E06. Một bước SGD trên mạng XOR
 
 - **Điểm trung tâm:** Kiểm tính gradient nhóm bằng lan truyền ngược và một bước cập nhật trên mạng.
-- **Mặt trang:** **Câu hỏi:** Mạng và $\theta$ của ví dụ đồ thị tính toán. Nhóm $\{((1,1),0),\,((1,0),1)\}$, $\eta=0{,}02$. Gradient của mẫu thứ nhất đã có. (a) Tính gradient của mẫu $((1,0),1)$. (b) Tính $\widehat g$. (c) Tính $\theta^+$ và mất mát trung bình trên nhóm trước và sau. (d) Vì sao không đưa mẫu $((0,1),1)$ vào nhóm khi tính tay.
+- **Mặt trang:** Bốn câu như trước, câu 4 viết lại (tiền kích hoạt tại $(0,1)$ và quy ước $\sigma'(0)$); thêm câu 5: dữ liệu bốn điểm tại $\theta^*$, tính $\operatorname{tr}\Sigma(\theta^*)=\tfrac52$ và $\mathbb E\lVert\widehat g-\nabla F\rVert^2=\tfrac5{18}$ với $b=3$ không hoàn lại. (bản sau vòng rà soát năm vai, 2026-10-12)
 - **Ghi chú diễn giả (đáp án):** (a) $z=(\tfrac12,\tfrac32)$, $h=(\tfrac12,\tfrac32)$, $f=-2$, $e=-3$, $\ell=\tfrac92$; $\nabla_{b_2}=-3$, $\nabla_{w_2}=(-\tfrac32,-\tfrac92)$, $\delta_z=(-3,6)$, $\nabla_{W_1}=\begin{psmallmatrix}-3&0\\6&0\end{psmallmatrix}$, $\nabla_{b_1}=(-3,6)$. (b) $\nabla_{W_1}=\begin{psmallmatrix}-\tfrac54&\tfrac14\\\tfrac52&-\tfrac12\end{psmallmatrix}$, $\nabla_{b_1}=(-\tfrac54,\tfrac52)$, $\nabla_{w_2}=(-\tfrac12,-\tfrac{17}8)$, $\nabla_{b_2}=-\tfrac54$. (c) $W_1=\begin{psmallmatrix}1{,}025&0{,}495\\0{,}45&-0{,}99\end{psmallmatrix}$, $b_1=(-0{,}475;\,0{,}95)$, $w_2=(1{,}01;\,-1{,}9575)$, $b_2=0{,}525$; mất mát nhóm $\tfrac{37}{16}=2{,}3125\to1{,}9202$. (d) Tại $(0,1)$ cả hai tiền kích hoạt bằng 0 (C07).
 - **Hình:** không.
 - **Liên kết:** Khép mạch E; nối KN4 với KN7.
@@ -552,26 +567,26 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 #### F01. Nhiễu của gradient nhóm tại nghiệm
 
 - **Điểm trung tâm:** Tại $\theta^*$, $\nabla F=0$ nhưng gradient nhóm vẫn khác 0, nên SGD bước hằng không dừng ở $\theta^*$ mà dao động quanh nó, và một bước từ $\theta^*$ làm $F$ tăng theo kỳ vọng.
-- **Mặt trang:** Trên dữ liệu bốn điểm tại $\theta^*=(1,1)$: gradient mẫu $(1,-1),(0,1),(1,1),(-2,-1)$, trung bình 0, $\operatorname{tr}\Sigma(\theta^*)=\tfrac52$. Với $b=2$ không hoàn lại: $\mathbb E\lVert\widehat g\rVert^2=\tfrac56$; một bước $\eta=\tfrac14$ từ $\theta^*$ dời trung bình bình phương $\tfrac1{16}\cdot\tfrac56=\tfrac5{96}$ và cho $\mathbb EF(\theta_1)=\tfrac{69}{128}>F^*=\tfrac12$. **Trực quan** (dữ liệu khác: Ví dụ A của Bài 05b, ba quan sát một chiều, ghi rõ trên hình): kỳ vọng sai số co về một mức dương, không về 0.
+- **Mặt trang:** Như trước, câu kết có điều kiện: “Khi $\operatorname{tr}\Sigma(\theta^*)>0$, dãy SGD bước hằng dao động quanh $\theta^*$ và không dừng ở đó.” Chú thích hình tự chứa Ví dụ A: $F(\theta)=\tfrac16\sum(\theta-y_i)^2$, $y=(-1,1,3)$, mỗi bước rút một $y_i$, $\widehat g=\theta-y_i$, $\sigma^2=\tfrac83$, bước $0{,}1$; nét đứt là cận của T5. (bản sau vòng rà soát năm vai, 2026-10-12)
 - **Ghi chú diễn giả:** So sánh Bài 04: gradient đầy đủ tiến về 0 khi tới nghiệm nên bước hằng hội tụ; gradient nhóm thì không (DL tr. 294). Phản ví dụ cho “giảm theo kỳ vọng”: sáu nhóm cho $F(\theta_1)=\tfrac{131}{256},\tfrac{35}{64},\tfrac{143}{256},\tfrac{143}{256},\tfrac{35}{64},\tfrac{131}{256}$, trung bình $\tfrac{69}{128}$. Điều SGD giữ được là bất đẳng thức một bước có số hạng nhiễu (F02); ghi chú F02 kiểm bất đẳng thức này trên cùng dữ liệu. Hình dùng Ví dụ A thay cho dữ liệu E03 vì trên dữ liệu E03, $\operatorname{tr}\Sigma(\theta)$ tăng không bị chặn theo $\theta$, nên H6b chỉ đúng trên vùng; Ví dụ A có $\sigma^2=\tfrac83$ không đổi, H6b đúng trên toàn trục. Trên hình: kỳ vọng chính xác giảm về $\tfrac8{57}\approx0{,}140$, cận định lý giảm về $0{,}267$.
 - **Hình:** dùng lại `img/lec-05b/vda-sgd-bound-vs-exact.svg` (Ví dụ A); ở giai đoạn dựng deck sao chép vào `img/lec-06/` cùng tên, ghi xuất xứ trong review-log (Q4, điểm hòa giải 8). Chú thích hình ghi rõ dữ liệu là Ví dụ A.
 - **Liên kết:** Từ E05; F02 phát biểu định lượng trên Ví dụ A.
 - **Quyết định:** thêm; nhu cầu của định lý phải là một hiện tượng tính được trên ví dụ đã có.
 - **Hành trình:** KN8 nhu cầu + trực quan + ví dụ. **LLO/CLO:** LLO12; CLO1. **Thời lượng:** 0,06 + 0,01.
 
-#### F02. Sàn nhiễu của bước hằng
+#### F02. Mức nhiễu nền của bước hằng
 
-- **Điểm trung tâm:** Với lồi mạnh và bước hằng, kỳ vọng sai số co tuyến tính về sàn nhiễu $\eta\sigma^2/\mu$; bất đẳng thức một bước có thêm số hạng nhiễu $\tfrac{L\eta^2}{2}\sigma^2$.
-- **Mặt trang:** **Bất đẳng thức một bước** (H2, H6, H6b): $\mathbb E[F(\theta_{k+1})\mid\theta_k]\le F(\theta_k)-\eta\big(1-\tfrac{L\eta}2\big)\lVert\nabla F(\theta_k)\rVert^2+\tfrac{L\eta^2}{2}\sigma^2$. **Định lý (T5, Bài 05b).** H2, H3, H4; H6, H6b; $0<\eta\le1/L$ hằng: $\mathbb E\lVert\theta_k-\theta^*\rVert^2\le(1-\eta\mu)^kD^2+\dfrac{\eta\sigma^2}{\mu}$. **Ví dụ A** ($\mu=L=1$, $\sigma^2=\tfrac83$, $\theta_0=0$, $\theta^*=1$), bước $0{,}1$: giá trị chính xác $0{,}81^k+\tfrac8{57}(1-0{,}81^k)\to0{,}140$; cận $0{,}9^k+0{,}267$.
+- **Điểm trung tâm:** Với lồi mạnh và bước hằng, kỳ vọng sai số co tuyến tính về mức nhiễu nền $\eta\sigma^2/\mu$; bất đẳng thức một bước có thêm số hạng nhiễu $\tfrac{L\eta^2}{2}\sigma^2$.
+- **Mặt trang:** Bất đẳng thức một bước (H2, H6, H6b), ghi rõ là một bước trong chứng minh T8 và giải thích phản ví dụ tại nghiệm. Định lý T5 (Định lý 05b.36), thêm $\theta_0$ tất định và lời nhắc $\sigma^2$ không phải hàm kích hoạt. Ví dụ A với truy hồi $\mathbb E(\theta_{k+1}-1)^2=0{,}81\,\mathbb E(\theta_k-1)^2+0{,}01\cdot\tfrac83$; cận T5 là đường nét đứt ở hình F01. (bản sau vòng rà soát năm vai, 2026-10-12)
 - **Ghi chú diễn giả:** Bất đẳng thức một bước suy từ cận trên bậc hai và $\mathbb E\lVert\widehat g\rVert^2\le\lVert\nabla F\rVert^2+\sigma^2$; nó chỉ cho giảm theo kỳ vọng khi $\big(1-\tfrac{L\eta}2\big)\lVert\nabla F\rVert^2>\tfrac{L\eta}{2}\sigma^2$, nên gần nghiệm có thể tăng (F01). Phát biểu dẫn từ Bài 05b, phần SGD cho hàm lồi mạnh (Định lý T5), không chứng minh lại. Dưới H3 gradient không bị chặn trên $\mathbb R^p$; ở đây chỉ cần H6b. Mạng không thỏa H3; T5 áp dụng cho các bài toán của Bài 05 sau chính quy hóa. $\sigma$ ở mạch B–C là hàm kích hoạt; $\sigma^2$ ở mạch E–F là chặn phương sai của H6b. Kiểm trên dữ liệu bốn điểm với $b=2$ không hoàn lại, $\eta=\tfrac14$, $L=\tfrac{5+\sqrt5}4\approx1{,}809$: tại $\theta^*$, $\nabla F=0$ và cần $\sigma^2\ge\tfrac56$, vế phải $\tfrac12+\tfrac{L\eta^2}2\cdot\tfrac56\approx0{,}547\ge\tfrac{69}{128}\approx0{,}539$; tại $\theta_0=(0,0)$, cần $\sigma^2\ge\tfrac{59}{12}$, vế phải $\approx1{,}3188\ge\tfrac{503}{384}\approx1{,}3099$.
-- **Hình:** dùng lại `img/lec-05b/step-halving-schedule.svg` (tùy chọn; nếu trang chật, đặt trong ghi chú bài giảng); nếu dùng, sao chép vào `img/lec-06/` như F01.
-- **Liên kết:** Định lượng hiện tượng F01; giới hạn “sàn nhiễu không giảm theo $k$” dẫn tới bước giảm dần ở F03.
+- **Hình:** không (dựng deck 2026-10-12: trang đã có bất đẳng thức một bước, T5 và số của Ví dụ A; hình tùy chọn `step-halving-schedule.svg` không dùng, không sao chép; lịch theo pha nêu trong ghi chú F03).
+- **Liên kết:** Định lượng hiện tượng F01; giới hạn “mức nhiễu nền không giảm theo $k$” dẫn tới bước giảm dần ở F03.
 - **Quyết định:** thêm (tách từ F02 cũ theo kiểm định storyboard); một định lý mỗi trang.
 - **Hành trình:** KN8 hình thức + ví dụ (đối chiếu cận với giá trị chính xác). **LLO/CLO:** LLO12; CLO1. **Thời lượng:** 0,03 + 0,01.
 
 #### F03. Bước giảm dần cho hàm lồi mạnh
 
-- **Điểm trung tâm:** Bước $\eta_k=\tfrac1{\mu(k+1)}$ bỏ sàn nhiễu với tốc độ $O(1/k)$ theo kỳ vọng.
+- **Điểm trung tâm:** Bước $\eta_k=\tfrac1{\mu(k+1)}$ bỏ mức nhiễu nền với tốc độ $O(1/k)$ theo kỳ vọng.
 - **Mặt trang:** **Định lý (T6, Bài 05b).** H3, H4; H6, H6a trên vùng chứa dãy lặp; $\eta_k=\dfrac1{\mu(k+1)}$: $\mathbb E\lVert\theta_k-\theta^*\rVert^2\le\dfrac{G^2}{\mu^2k}$, $k\ge1$. **Ví dụ A:** bước $\tfrac1{k+1}$ cho giá trị chính xác $\tfrac8{3k}$; nhỏ hơn quỹ đạo bước hằng $0{,}1$ từ $k=16$.
 - **Ghi chú diễn giả:** Phát biểu dẫn từ Bài 05b, phần SGD cho hàm lồi mạnh (Định lý T6 và trang đối chiếu với Ví dụ A); không chứng minh lại. Các lịch bước khác: chia đôi theo pha (biến thể theo pha của T5: tổng số bước $O\big(\tfrac1{\mu\eta_0}\log\tfrac{D^2}\varepsilon+\tfrac{\sigma^2}{\mu^2\varepsilon}\big)$), giảm tuyến tính (DL (8.14)); điều kiện đủ $\sum\eta_k=\infty$, $\sum\eta_k^2<\infty$ (DL (8.12)–(8.13)). H6a chỉ hợp lý trên vùng vì dưới H3 gradient không bị chặn trên $\mathbb R^p$.
 - **Hình:** không.
@@ -582,19 +597,19 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 #### F04. Hạ gradient ngẫu nhiên cho hàm không lồi
 
 - **Điểm trung tâm:** Không cần lồi, với $F$ trơn, SGD bước cỡ $1/\sqrt K$ cho trung bình kỳ vọng bình phương chuẩn gradient giảm theo $O(1/\sqrt K)$; bảo đảm này thuộc về dãy lặp.
-- **Mặt trang:** **Định lý (T8, Bài 05b).** H0; H2 trên một tập lồi chứa mọi dãy lặp; H6, H6b; $0<\eta\le1/L$: $\dfrac1K\sum_{k<K}\mathbb E\lVert\nabla F(\theta_k)\rVert^2\le\dfrac{2\Delta_0}{\eta K}+L\eta\sigma^2$. **Hệ quả.** $\eta=\min\big\{\tfrac1L,\sqrt{\tfrac{2\Delta_0}{L\sigma^2K}}\big\}$ cho cận $\dfrac{2L\Delta_0}{K}+\dfrac{2\sqrt{2L\Delta_0\sigma^2}}{\sqrt K}$, nên $\min_{k<K}\mathbb E\lVert\nabla F(\theta_k)\rVert^2=O(1/\sqrt K)$. Bảng với $L=\Delta_0=\sigma^2=1$ (giả định để đọc bậc): $K=10^2$: $0{,}303$; $10^4$: $0{,}0285$; $10^6$: $0{,}00283$. **Phạm vi:** mạng có hàm kích hoạt trơn (tanh, softplus) hoặc mạng tuyến tính; với ReLU, $\nabla F$ gián đoạn tại điểm gãy, cận chỉ dùng làm định hướng.
+- **Mặt trang:** Định lý T8 (Định lý 05b.43), thêm $\theta_0$ tất định; dòng chứng minh “cộng bất đẳng thức một bước”; hệ quả chọn $\eta$ với câu cân bằng hai số hạng; ba giá trị cận $0{,}303$; $0{,}0285$; $0{,}00283$ (giả định $L=\Delta_0=\sigma^2=1$) viết thành một dòng; dòng phạm vi. (bản sau vòng rà soát năm vai, 2026-10-12)
 - **Ghi chú diễn giả:** Phát biểu dẫn từ Bài 05b, phần hạ gradient cho hàm không lồi (Định lý T8 và chứng minh); không chứng minh lại. So với T7: thêm số hạng nhiễu $L\eta\sigma^2$; bước phải nhỏ dần theo ngân sách $K$. Tăng $K$ 100 lần chỉ giảm cận khoảng 10 lần. Cận là về **bình phương** chuẩn; với chuẩn, Jensen cho $O(K^{-1/4})$. Như T7, định lý không phân biệt điểm yên ngựa với cực tiểu (D06). Với SGD, dãy lặp là ngẫu nhiên, nên tập lồi trong H2 phải chứa mọi dãy lặp có thể; điều kiện này không kiểm được trước. T8 bảo đảm cho một dãy lặp (giá trị nhỏ nhất hoặc một chỉ số chọn đều trong $k<K$); thuật toán E05 trả về tham số tốt nhất theo tập xác thực, nhắm tới $R$ và không được T8 chặn trực tiếp; hai tiêu chí bổ sung cho nhau.
-- **Hình:** dùng lại `img/lec-05b/rates-log-error.svg` (tùy chọn, ba tốc độ trên thang logarit) hoặc không hình; nếu dùng, sao chép vào `img/lec-06/` như F01.
+- **Hình:** không (dựng deck 2026-10-12: hình tùy chọn `rates-log-error.svg` không dùng, không sao chép; bảng ba giá trị của cận đọc được bậc $O(1/\sqrt K)$).
 - **Liên kết:** Thay gradient đầy đủ của T7 (D05) bằng gradient nhóm; F05 đặt hai cận vào cùng ngân sách.
 - **Quyết định:** thêm; cần phát biểu lại tốc độ không lồi kèm giả thiết, hằng số và phạm vi áp dụng.
 - **Hành trình:** KN8 hình thức. **LLO/CLO:** LLO12; CLO1. **Thời lượng:** 0,06 + 0,00.
 
 #### F05. Tốc độ dưới ngân sách tính toán cố định
 
-- **Điểm trung tâm:** Đo theo số gradient mẫu được phép tính, cận T8 của SGD nhỏ hơn cận T7 của hạ gradient đầy đủ khi $n$ lớn; cận $O(1/\sqrt K)$ trên $\lVert\nabla F\rVert^2$ là bảo đảm còn lại, còn luận điểm rằng nó đủ dựa trên lập luận đại lượng thay thế ở E02, không dựa trên T8.
-- **Mặt trang:** Ngân sách $\mathcal B$ gradient mẫu. GD: $K=\mathcal B/n$ bước, cận T7 $2L\Delta_0n/\mathcal B$. SGD: $K=\mathcal B/b$ bước, $\sigma^2=\sigma_1^2/b$, cận hệ quả T8 $\dfrac{2L\Delta_0b}{\mathcal B}+2\sqrt{\dfrac{2L\Delta_0\sigma_1^2}{\mathcal B}}$. Bảng ($L=\Delta_0=\sigma_1^2=1$, giả định; $\mathcal B=10n$, tức 10 lượt): $n=10^9$, $b=10^3$: GD $K=10$, cận $0{,}2$; SGD $K=10^7$, cận $2{,}85\cdot10^{-5}$. $n=10^3$, $b=10$: GD $0{,}2$; SGD $0{,}0303$. Dòng kết luận: dưới ngân sách cố định, SGD là phương án còn lại; mức chính xác đủ dùng được quyết định bằng tập xác thực (quy tắc dừng sớm).
-- **Ghi chú diễn giả:** Số hạng chính của cận SGD là $2\sqrt{2L\Delta_0\sigma_1^2/\mathcal B}$, không phụ thuộc $b$: theo cận này, $b$ được chọn theo phần cứng và bộ nhớ (Bài 05c, Mệnh đề G.5 và Nhận xét G.6). Đây là so sánh cận trên, không phải thời gian chạy thật. Với hàm lồi mạnh, SNW Bảng 13.2 (tr. 362) cho thời gian đạt độ chính xác $\rho$: GD $O(nd\kappa\log\tfrac1\rho)$, SGD $O(d\nu\kappa^2/\rho)$; với $\kappa=10$, $\rho=10^{-6}$, $\nu=1$: GD cần $n\cdot138$ đơn vị, SGD $10^8$, điểm chuyển quanh $n\approx7\cdot10^5$ (dùng ở G03). Phạm vi của luận đề: với bài toán lồi, lập luận Bottou–Bousquet (E02) cho thấy độ chính xác tối ưu cỡ sai số thống kê là đủ cho bậc của cận; với mạng, T8 chỉ bảo đảm điểm dừng xấp xỉ, và mức đủ được quyết định bằng tập xác thực.
-- **Hình:** không bắt buộc. Tùy chọn `budget-bounds.svg`: hai đường cận theo $\mathcal B$ trên thang log–log cho $n=10^9$.
+- **Điểm trung tâm:** Trên cùng tổng ngân sách $\mathcal B$ gradient mẫu, cận hệ quả T8 của SGD nhỏ hơn cận T7 của hạ gradient đầy đủ khi $\mathcal B<(n-b)^2/2$, tức số lượt dữ liệu $\mathcal B/n$ nhỏ hơn cỡ $n/2$; mức chính xác đủ dùng dựa trên lập luận đại lượng thay thế ở E02 và tập xác thực, không dựa trên T8.
+- **Mặt trang:** Câu mở: so sánh hai cận trên (không phải sai số thật) khi tổng số gradient mẫu là $\mathcal B$ (tổng ngân sách, khác ngân sách mỗi bước). Hai mô tả cận, bảng hai quy mô ($\mathcal B=10n$). **Kết luận.** Cận SGD nhỏ hơn khi $\mathcal B<(n-b)^2/2$, tức số lượt $\mathcal B/n$ nhỏ hơn cỡ $n/2$ (cả hai hàng: 10 lượt); với $n=10^3$, hạ gradient đầy đủ có cận nhỏ hơn khi $\mathcal B>490\,050$ (khoảng 490 lượt); mức chính xác đủ dùng do tập xác thực quyết định. Ghi chú: điều kiện tương đương $n-b>\sqrt{2\mathcal B}$; ví dụ $n=10^4$, $b=10$, $\mathcal B=10^6$ (100 lượt): cận GD $0{,}02$, cận SGD $0{,}00285$, ngưỡng $4{,}99\cdot10^7$ (bản sau tái kiểm, 2026-10-12)
+- **Ghi chú diễn giả:** Số hạng chính của cận SGD là $2\sqrt{2L\Delta_0\sigma_1^2/\mathcal B}$, không phụ thuộc $b$: theo cận này, $b$ được chọn theo phần cứng và bộ nhớ (Bài 05c, Mệnh đề 05c.56 và Nhận xét 05c.58). Đây là so sánh cận trên, không phải thời gian chạy thật. Với hàm lồi mạnh, SNW Bảng 13.2 (tr. 362) cho thời gian đạt độ chính xác $\rho$: GD $O(nd\kappa\log\tfrac1\rho)$, SGD $O(d\nu\kappa^2/\rho)$; với $\kappa=10$, $\rho=10^{-6}$, $\nu=1$: GD cần $n\cdot138$ đơn vị, SGD $10^8$, điểm chuyển cỡ $10^5$–$10^6$ (bậc độ lớn từ kết quả tiệm cận; chỉ báo bổ sung ở G03). Phạm vi của luận đề: với bài toán lồi, lập luận Bottou–Bousquet (E02) cho thấy độ chính xác tối ưu cỡ sai số thống kê là đủ cho bậc của cận; với mạng, T8 chỉ bảo đảm điểm dừng xấp xỉ, và mức đủ được quyết định bằng tập xác thực.
+- **Hình:** không (hình tùy chọn `budget-bounds.svg` không vẽ khi dựng deck 2026-10-12; bảng hai quy mô đủ cho luận điểm).
 - **Liên kết:** Tổng hợp E01 (chi phí), E02 (đại lượng thay thế), F04 (tốc độ): đây là điểm trung tâm của khối B3. F06 xử lý phần “không cần cực tiểu chính xác” bằng quy tắc dừng.
 - **Quyết định:** thêm; luận đề yêu cầu trình bày SGD là phương án bị buộc bởi chi phí, với phạm vi của lập luận “đủ” được nêu rõ.
 - **Hành trình:** KN7 ứng dụng; KN8 ứng dụng; KN9 nhu cầu. **LLO/CLO:** LLO11, LLO12; CLO1, CLO4. **Thời lượng:** 0,06 + 0,02.
@@ -602,9 +617,9 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 #### F06. Dừng sớm theo tập xác thực
 
 - **Điểm trung tâm:** Dừng sớm chọn tham số có lỗi xác thực nhỏ nhất; đây là một phần của phương pháp, không phải dấu hiệu chưa hội tụ.
-- **Mặt trang:** **Trực quan.** Hình đường mất mát huấn luyện và xác thực theo vòng lặp (định tính): mất mát huấn luyện giảm liên tục, mất mát xác thực đạt đáy rồi tăng. **Quy tắc.** Đánh giá $\widehat R$ trên tập xác thực mỗi $s$ bước; lưu $\theta$ tốt nhất; dừng khi $K_{\text{stop}}$ lần đánh giá liên tiếp không cải thiện; trả về $\theta$ đã lưu.
-- **Ghi chú diễn giả:** Tập xác thực và tập kiểm thử đã được định nghĩa ở Bài 05, phần hồi quy nhiều chiều (tập xác thực chọn $d$, $\lambda$, bước dừng; tập kiểm thử báo cáo $R$); trang này chỉ dẫn lại, không định nghĩa lại. Tập xác thực ước lượng $R$ không chệch tại $\theta$ cố định (Bài 05c, Định lý G.2), lệch lạc quan sau khi đã dùng để chọn; tập kiểm thử giữ riêng. Bài 05 đã có quan sát số về dừng sớm trên dữ liệu hồi quy nhiều chiều. Tham số trả về được chọn theo $R$ ước lượng, không phải dãy lặp mà T8 bảo đảm (F04). Đường trong hình là định tính.
-- **Hình:** dùng lại `img/lec-06b/risk-curves.svg` (định tính; sao chép vào `img/lec-06/` như F01).
+- **Mặt trang:** Hình `risk-curves.svg` với chú thích “mất mát huấn luyện có xu hướng giảm”; dòng “Bài 05 đã định nghĩa dừng sớm; quy tắc dưới đây thêm chu kỳ đánh giá và điều kiện dừng”; quy tắc bốn bước với $\widehat R$ (mất mát trung bình trên tập xác thực) và ngưỡng kiên nhẫn $r$. (bản sau vòng rà soát năm vai, 2026-10-12)
+- **Ghi chú diễn giả:** Tập xác thực và tập kiểm thử đã được định nghĩa ở Bài 05, phần hồi quy nhiều chiều (tập xác thực chọn $d$, $\lambda$, bước dừng; tập kiểm thử báo cáo $R$); trang này chỉ dẫn lại, không định nghĩa lại. Tập xác thực ước lượng $R$ không chệch tại $\theta$ cố định (Bài 05c, Định lý 05c.52), lệch lạc quan sau khi đã dùng để chọn; tập kiểm thử giữ riêng. Bài 05 đã có quan sát số về dừng sớm trên dữ liệu hồi quy nhiều chiều. Tham số trả về được chọn theo $R$ ước lượng, không phải dãy lặp mà T8 bảo đảm (F04). Đường trong hình là định tính.
+- **Hình:** dùng lại `img/lec-06b/risk-curves.svg` (định tính), sao chép vào `img/lec-06/risk-curves.svg`; trong bản chép, dòng ghi chú “Sơ đồ minh họa; không phải quy luật cho mọi bài toán.” tách hai dòng và tăng cỡ chữ từ 17 lên 24 để đọc được ở nửa trang; nội dung không đổi.
 - **Liên kết:** E02 và F05 cho lý do; F06 cho quy tắc vận hành; F07 giải thích tác dụng của quy tắc trên mục tiêu bậc hai.
 - **Quyết định:** thêm (tách từ F05 cũ theo kiểm định storyboard); quy tắc vận hành và phép so sánh định lượng là hai luận điểm.
 - **Hành trình:** KN9 trực quan + hình thức (quy tắc). **LLO/CLO:** LLO11; CLO1, CLO2. **Thời lượng:** 0,03 + 0,00.
@@ -612,8 +627,8 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 #### F07. Dừng sớm và chính quy hóa $\ell_2$ trên mục tiêu bậc hai
 
 - **Điểm trung tâm:** Trên mục tiêu bậc hai, dừng sớm sau $k$ bước giữ thành phần nghiệm theo cùng kiểu với chính quy hóa $\ell_2$ hệ số $\lambda\approx1/(\eta k)$.
-- **Mặt trang:** **Ví dụ.** $\eta=0{,}5$, $k=20$, $\lambda=0{,}1$; tỉ lệ giữ của dừng sớm / của chính quy hóa theo trị riêng $\alpha$: $\alpha=1$: $1{,}000$ / $0{,}909$; $\alpha=0{,}1$: $0{,}642$ / $0{,}500$; $\alpha=0{,}01$: $0{,}095$ / $0{,}091$. Hình các đường tỉ lệ giữ theo $k$. **Nhận xét (DL §7.8, (7.43)–(7.45)).** Hạ gradient từ 0 trên hàm bậc hai: sau $k$ bước, thành phần nghiệm theo vector riêng có trị riêng $\alpha$ được giữ tỉ lệ $1-(1-\eta\alpha)^k$; chính quy hóa $\ell_2$ hệ số $\lambda$ giữ $\alpha/(\alpha+\lambda)$; hai tỉ lệ gần nhau khi $\lambda\approx1/(\eta k)$ và $\eta\alpha$ nhỏ.
-- **Ghi chú diễn giả:** Cả hai cách đều giữ hướng độ cong lớn, nén hướng độ cong nhỏ; khớp tốt khi $\eta\alpha$ nhỏ, như DL nêu điều kiện cho (7.44). DL viết $\lambda$ cho trị riêng và $\alpha$ cho hệ số chính quy hóa; bài đổi chỗ để $\lambda$ thống nhất với hệ số chính quy hóa của Bài 05. Nối Bài 05, phần hồi quy logistic: chính quy hóa làm bài toán đặt đúng; dừng sớm cho tác dụng tương tự mà không đổi mục tiêu. Bài 05 chỉ nêu quan sát số và tên DL §7.8; phép so sánh định lượng thuộc trang này (quyết định phân chia nguồn của điều phối viên, ghi trong review-log).
+- **Mặt trang:** **Thiết lập** (mục tiêu bậc hai, định nghĩa tỉ lệ giữ) → **Ví dụ** (bảng $\eta=0{,}5$, $k=20$, $\lambda=0{,}1$) cạnh hình → **Nhận xét**: hai tỉ lệ $1-(1-\eta\alpha)^k$ và $\alpha/(\alpha+\lambda)$ gần nhau khi $\lambda\approx1/(\eta k)$, $\eta\alpha\ll1$, $\alpha\ll\lambda$. (bản sau vòng rà soát năm vai, 2026-10-12)
+- **Ghi chú diễn giả:** Cả hai cách đều giữ hướng độ cong lớn, nén hướng độ cong nhỏ; khớp tốt khi $\eta\alpha$ nhỏ và $\alpha$ nhỏ so với $\lambda$, như DL nêu điều kiện cho (7.44). DL viết $\lambda$ cho trị riêng và $\alpha$ cho hệ số chính quy hóa; bài đổi chỗ để $\lambda$ thống nhất với hệ số chính quy hóa của Bài 05. Nối Bài 05, phần hồi quy logistic: chính quy hóa làm bài toán đặt đúng; dừng sớm cho tác dụng tương tự mà không đổi mục tiêu. Bài 05 chỉ nêu quan sát số và tên DL §7.8; phép so sánh định lượng thuộc trang này (quyết định phân chia nguồn của điều phối viên, ghi trong review-log).
 - **Hình:** mới `early-stopping-shrinkage.svg` (đường $1-(1-\eta\alpha)^k$ theo $k$ cho $\alpha=1;\,0{,}1;\,0{,}01$, $\eta=0{,}5$, cùng mức $\alpha/(\alpha+1/(\eta k))$ nét đứt).
 - **Liên kết:** F06 cho quy tắc; F07 cho lý do quy tắc tác động như chính quy hóa. G01 dùng để khép luận đề.
 - **Quyết định:** thêm (tách từ F05 cũ theo kiểm định storyboard); phép so sánh định lượng cần trang riêng để mỗi trang một luận điểm.
@@ -623,7 +638,7 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 
 - **Điểm trung tâm:** Kiểm khả năng đọc và dùng ba kết quả của mạch.
 - **Mặt trang:** **Câu hỏi:** (a) Ví dụ A (ba quan sát $-1,1,3$; $\mu=L=1$; $\sigma^2=\tfrac83$; $\theta_0=0$): tính $\mathbb E(\theta_k-1)^2$ tại $k=10$ và $k=20$ cho bước hằng $0{,}1$ (dùng $0{,}81^k+\tfrac8{57}(1-0{,}81^k)$) và cho $\eta_k=\tfrac1{k+1}$. Lịch nào tốt hơn ở mỗi $k$. (b) Với $L=\Delta_0=\sigma^2=1$, tìm $K$ nhỏ nhất để cận hệ quả của T8 không vượt $0{,}01$. (c) Với $\eta=0{,}5$, $k=20$, trị riêng $\alpha=0{,}1$: tính tỉ lệ giữ của dừng sớm và của chính quy hóa hệ số $\lambda=0{,}1$; giải thích sai khác.
-- **Ghi chú diễn giả (đáp án):** (a) $k=10$: $0{,}2449$ và $0{,}2667$ (bước hằng tốt hơn); $k=20$: $0{,}1531$ và $0{,}1333$ (bước giảm tốt hơn). (b) $K=80\,400$ (cận $0{,}0099999\ldots$; với $K=80\,399$ cận vượt $0{,}01$). (c) $0{,}6415$ và $0{,}5$; $\eta\alpha=0{,}05$ chưa đủ nhỏ để xấp xỉ $(1-\eta\alpha)^k\approx\lambda/(\alpha+\lambda)$ chính xác.
+- **Ghi chú diễn giả (đáp án):** (a) $k=10$: $0{,}2449$ và $0{,}2667$ (bước hằng tốt hơn); $k=20$: $0{,}1531$ và $0{,}1333$ (bước giảm tốt hơn). (b) $K=80\,400$ (cận $0{,}0099999\ldots$; với $K=80\,399$ cận vượt $0{,}01$). (c) $0{,}6415$ và $0{,}5$; xấp xỉ cần $\eta\alpha\ll1$ và $\alpha\ll\lambda$; ở đây $\eta\alpha=0{,}05$ nhỏ ($(0{,}95)^{20}\approx0{,}358$ gần $e^{-1}\approx0{,}368$) nhưng $\alpha/\lambda=1$ không nhỏ, nên $\lambda/(\alpha+\lambda)=0{,}5$ khác $e^{-\alpha/\lambda}\approx0{,}368$ (sửa khi dựng deck 2026-10-12).
 - **Hình:** không.
 - **Liên kết:** Khép mạch F.
 - **Quyết định:** thêm; trang kiểm tra riêng của mạch.
@@ -634,31 +649,31 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 #### G01. Điều không còn giữ được và điều còn giữ được
 
 - **Điểm trung tâm:** So với Bài 01–04, bài toán học quy mô lớn mất tính chính xác, bảo đảm tất định và gradient đầy đủ; giữ được tính giảm mỗi bước của hạ gradient đầy đủ, bất đẳng thức giảm có số hạng nhiễu của SGD, bảo đảm điểm dừng và tốc độ theo kỳ vọng.
-- **Mặt trang:** Bảng ba cột “Đại lượng | Bài 01–04 | Bài 06 (nhãn kết quả)”: nghiệm: duy nhất hoặc tập lồi / nhiều cực tiểu đối xứng (Mệnh đề 3); chứng nhận của $\nabla F=0$: cực tiểu toàn cục / điểm dừng (định nghĩa điểm dừng; điều kiện bậc hai); bảo đảm: tất định / theo kỳ vọng, cho dãy lặp (T5, T6, T8), với $F$ trơn; gradient: đầy đủ $O(np)$ / nhóm $O(bp)$ không chệch (G.3); tính giảm: mỗi bước / mỗi bước với gradient đầy đủ (bổ đề giảm); với SGD chỉ có bất đẳng thức một bước có số hạng nhiễu $\tfrac{L\eta^2}2\sigma^2$, giảm theo kỳ vọng khi gradient đủ lớn so với nhiễu (phản ví dụ $\tfrac{69}{128}$; bất đẳng thức một bước); mục tiêu: $F$ / $F$ như đại lượng thay thế của $R$, dừng theo tập xác thực (Định lý G.2; quy tắc dừng sớm).
-- **Ghi chú diễn giả:** Đây là câu trả lời cho ba vấn đề nêu ở A03. Không có kết luận mới; mọi dòng dẫn một kết quả đã có trong bài.
+- **Mặt trang:** Dòng “Mất khi (i) chi phí: gradient nhóm nhỏ thay gradient đầy đủ, hoặc (ii) biểu diễn: mô hình phi tuyến, mục tiêu không lồi”. Bảng “Mất (khi nào) | Còn giữ được (kết quả của bài)”, bốn dòng cùng thứ tự với A03 và cùng câu chữ với Bài 05 KL04 hiện hành: đích là nghiệm chính xác (đã mất ở Bài 05) / $R$ nhỏ là đích (Định lý 05c.52), dừng theo tập xác thực; tốc độ tuyến tính (Định lý 3, Bài 05; khi (i) hoặc (ii)) / gradient đầy đủ: $F$ giảm mỗi bước (bổ đề giảm); SGD với $F_\lambda=F+\tfrac\lambda2\lVert\theta\rVert^2$ lồi mạnh: bước hằng tới lân cận cỡ $\eta\sigma^2/\mu$ (T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6); cực tiểu toàn cục (khi (ii), Mệnh đề 3) / T7 với $\min_{k<K}$, T8 bước hằng với $L\eta\sigma^2$; chi phí $O(np)$ (khi (i)) / gradient nhóm nhỏ, Định lý 05c.53. Ghi chú định nghĩa $e_k=F_\lambda(\theta_k)-\min F_\lambda$, nêu Bài 05 viết $\tau^2$ cho chặn phương sai (bản sau tái kiểm, 2026-10-12)
+- **Ghi chú diễn giả:** Đây là câu trả lời cho các vấn đề nêu ở A03. Không có kết luận mới; mọi dòng dẫn một kết quả đã có trong bài.
 - **Hình:** không.
 - **Liên kết:** Quay lại A03; G02 biến bảng thành quy tắc chọn.
 - **Quyết định:** thêm; luận đề yêu cầu kết luận ở dạng “mất gì, giữ gì” có nhãn kết quả.
 - **Hành trình:** tổng hợp. **LLO/CLO:** LLO11; CLO1. **Thời lượng:** 0,02 + 0,00.
 
-#### G02. Lựa chọn giữa gradient đầy đủ, Newton và SGD
+#### G02. Lựa chọn giữa hạ gradient đầy đủ, Newton và SGD
 
 - **Điểm trung tâm:** Phương pháp được chọn theo $n$, $p$ và tính lồi, với điều kiện áp dụng của từng bảo đảm.
-- **Mặt trang:** Bảng: Tình huống | Phương pháp | Chi phí mỗi bước | Bảo đảm | Giới hạn. (1) $n,p$ nhỏ, lồi mạnh (hồi quy logistic có chính quy hóa): Newton; $O(np^2+p^3)$; hội tụ bậc hai cục bộ; bộ nhớ $p^2$. (2) $p$ lớn, $n$ vừa, lồi mạnh và trơn: GD; $O(np)$; tuyến tính theo $\kappa$ (T2); mỗi bước quét toàn bộ dữ liệu. (3) $n$ lớn, lồi mạnh: SGD, $\eta_k\propto1/k$; $O(bp)$; $O(1/k)$ theo kỳ vọng (T6); cần $\mu$. (4) Không lồi (mạng), $n$ lớn: SGD nhóm nhỏ, lịch bước, dừng sớm; $O(bp)$; $O(1/\sqrt K)$ cho bình phương chuẩn gradient (T8), với $F$ trơn (H2, H6b trên vùng chứa dãy lặp); chỉ điểm dừng; với ReLU chỉ là định hướng. (5) Không lồi, $n$ nhỏ: GD; $O(np)$; T7 với $F$ trơn; chỉ điểm dừng.
+- **Mặt trang:** Bảng năm dòng: dòng 2 “tuyến tính (T2)”; dòng 3 bước $\eta_k=\tfrac1{\mu(k+1)}$; dòng 4 “SGD nhóm nhỏ, bước theo $K$”; dòng 5 “không lồi, $\mathcal B>(n-b)^2/2$ (so sánh dưới ngân sách cố định)”, tức ngân sách đủ cho cỡ $n/2$ lượt dữ liệu trở lên. (bản sau vòng rà soát năm vai, 2026-10-12)
 - **Ghi chú diễn giả:** Dòng (1): giai đoạn hội tụ bậc hai cần $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, không chứa $\kappa$; $\varepsilon_0$ và giai đoạn tắt dần phụ thuộc các hằng số Hessian $m_H$, $M_H$ (chặn dưới, chặn trên của trị riêng) và hằng số Lipschitz $L_H$ của Hessian (Bài 04; Bài 05, phần độ cong và chi phí). Dòng (2): với hàm lồi trơn không lồi mạnh, hạ gradient chỉ có tốc độ $O(1/k)$ (Bài 05b, Định lý T1); tốc độ tuyến tính cần thêm H3 (Định lý T2). Các ngưỡng chỉ là bậc độ lớn. Nội dung momentum, Adam, BFGS thuộc bài bổ trợ (Q2). Câu hỏi vận dụng của bảng nằm ở G03.
 - **Hình:** không (bảng HTML).
 - **Liên kết:** Dùng G01; G03 vận dụng bảng và tổng kết.
 - **Quyết định:** thêm; yêu cầu bảng quyết định theo $(n,p)$ và tính lồi; câu hỏi vận dụng chuyển sang G03 theo kiểm định storyboard để trang chỉ còn bảng.
 - **Hành trình:** ứng dụng tổng hợp KN7, KN8, KN9. **LLO/CLO:** LLO15 (chi phí Newton), LLO12; CLO4. **Thời lượng:** 0,02 + 0,02.
 
-#### G03. Tổng kết, câu hỏi tự kiểm và tài liệu đọc
+#### G03. Tổng kết, câu hỏi tự kiểm tra và tài liệu đọc
 
 - **Điểm trung tâm:** Vận dụng bảng lựa chọn, đối chiếu ba mục tiêu với kết quả, và chỉ tài liệu đọc.
-- **Mặt trang:** Ba dòng tổng kết theo ba mục tiêu học tập. **Câu hỏi:** (1) Chọn phương pháp theo bảng lựa chọn phương pháp cho ba tình huống: $n=10^3$, $p=50$, hồi quy logistic có chính quy hóa; $n=10^8$, $p=10^6$, hồi quy logistic có chính quy hóa, $\kappa=10$, độ chính xác cần đạt $\rho=10^{-6}$; $n=10^7$, mạng $p=10^7$. (2) Vì sao Mệnh đề 3 không khẳng định mọi mạng đều cho $F$ không lồi. (3) T8 chặn đại lượng nào, không chặn đại lượng nào. (4) Khi nào bước hằng là lựa chọn hợp lý dù có sàn nhiễu. Tài liệu đọc: DL §6.1, §6.5, §7.8, §§8.1–8.3; SNW ch. 13; Bài 05b, phần SGD và phần không lồi; Bài 05c mục G; ghi chú bài giảng và bài tập Bài 06.
-- **Ghi chú diễn giả (đáp án và gợi ý):** (1) Newton (một bước $np^2+p^3\approx2{,}6\cdot10^6$ phép tính); SGD với $\eta_k=1/(\lambda(k+k_0))$ vì $n$ vượt điểm chuyển $\approx7\cdot10^5$ của SNW Bảng 13.2 với $\kappa=10$, $\rho=10^{-6}$ (một bước GD $10^{14}$); SGD nhóm nhỏ, dừng sớm, T8 làm định hướng. (2) Mệnh đề 3 chỉ là phép kiểm tại một cặp cực tiểu; trên dữ liệu khác, cực tiểu có thể có các đơn vị trùng nhau. (3) Trung bình kỳ vọng bình phương chuẩn gradient của dãy lặp; không chặn khoảng cách tới cực tiểu, giá trị $F$ hay $R$ của tham số trả về. (4) Khi ngân sách $K$ cố định trước và sàn nhiễu $\eta\sigma^2/\mu$ nhỏ hơn sai số thống kê cần đạt.
+- **Mặt trang:** Ba dòng tổng kết; danh mục đọc (Goodfellow, Bengio và Courville; SNW chương 13; Bài 05b; Bài 05c Mục 6) ở cột trái; bốn câu hỏi, câu 1(b) bỏ $\kappa$, $\rho$ và trả lời được bằng bảng chi phí. (bản sau vòng rà soát năm vai, 2026-10-12)
+- **Ghi chú diễn giả (đáp án và gợi ý):** (1) Newton (một bước $np^2+p^3\approx2{,}6\cdot10^6$ phép tính); SGD với $\eta_k=1/(\lambda(k+k_0))$ vì một bước GD đã tốn $np=10^{14}$; chỉ báo bổ sung: $n$ vượt xa bậc $10^5$–$10^6$ của điểm chuyển theo SNW Bảng 13.2 với $\kappa=10$, $\rho=10^{-6}$ (một bước GD $10^{14}$); SGD nhóm nhỏ, dừng sớm, T8 làm định hướng. (2) Mệnh đề 3 chỉ là phép kiểm tra tại một cặp cực tiểu; trên dữ liệu khác, cực tiểu có thể có các đơn vị trùng nhau. (3) Trung bình kỳ vọng bình phương chuẩn gradient của dãy lặp; không chặn khoảng cách tới cực tiểu, giá trị $F$ hay $R$ của tham số trả về. (4) Khi ngân sách $K$ cố định trước và mức nhiễu nền $\eta\sigma^2/\mu$ nhỏ hơn sai số thống kê cần đạt.
 - **Hình:** không.
 - **Liên kết:** Khép bài.
-- **Quyết định:** thêm; cấu trúc mặc định yêu cầu tổng kết, câu hỏi tự kiểm, tài liệu đọc; nhận câu hỏi vận dụng từ G02.
+- **Quyết định:** thêm; cấu trúc mặc định yêu cầu tổng kết, câu hỏi tự kiểm tra, tài liệu đọc; nhận câu hỏi vận dụng từ G02.
 - **Hành trình:** bài tập vận dụng tổng hợp KN7, KN8, KN9; bài tập tự kiểm. **LLO/CLO:** LLO11, LLO12, LLO15; CLO4. **Thời lượng:** 0,01 + 0,06.
 
 ## 7. Bảng kiểm thời lượng từng trang (tiết LT + BT)
@@ -746,11 +761,11 @@ Tham số chung: $W_1=\begin{psmallmatrix}1&\tfrac12\\\tfrac12&-1\end{psmallmatr
 
 ### 8.6. Chi phí, tốc độ và ngân sách (E01, F02–F05, G03)
 
-- Chi phí (phép nhân–cộng; $10^{12}$ phép/s): $(10^3,10^2,10)$: GD $10^5$, Newton $1{,}1\cdot10^7$, SGD $10^3$, $n/b=100$ bước mỗi lượt. $(10^5,10^5,100)$: GD $10^{10}$ (0,01 s), Newton $2\cdot10^{15}$ (2 000 s), SGD $10^7$ ($10^{-5}$ s), 1 000 bước mỗi lượt, Hessian $4\cdot10^{10}$ byte. $(10^9,10^9,10^3)$: GD $10^{18}$ ($10^6$ s = 11,57 ngày), Newton $2\cdot10^{27}$ ($2\cdot10^{15}$ s = $6{,}34\cdot10^7$ năm, với 1 năm = $3{,}156\cdot10^7$ s), SGD $10^{12}$ (1 s), $10^6$ bước mỗi lượt, Hessian $4\cdot10^{18}$ byte.
+- Chi phí (phép nhân–cộng; $10^{12}$ phép/s): $(10^3,10^2,10)$: GD $10^5$, Newton $1{,}1\cdot10^7$, SGD $10^3$, $n/b=100$ bước mỗi lượt. $(10^5,10^5,100)$: GD $10^{10}$ (0,01 s), Newton $2\cdot10^{15}$ (2 000 s), SGD $10^7$ ($10^{-5}$ s), 1 000 bước mỗi lượt, Hessian $8\cdot10^{10}$ byte (8 byte mỗi số). $(10^9,10^9,10^3)$: GD $10^{18}$ ($10^6$ s = 11,57 ngày), Newton $2\cdot10^{27}$ ($2\cdot10^{15}$ s = $6{,}34\cdot10^7$ năm, với 1 năm = $3{,}156\cdot10^7$ s), SGD $10^{12}$ (1 s), $10^6$ bước mỗi lượt, Hessian $8\cdot10^{18}$ byte (8 byte mỗi số).
 - Ví dụ A của 05b: $a_k=0{,}81^k+\tfrac8{57}(1-0{,}81^k)$ (bước 0,1, $\theta_0=0$, $b=1$): $k=10$: 0,2449; $k=16$: 0,1699; $k=19$: 0,1560; $k=20$: 0,1531. Bước $\tfrac1{k+1}$: $\tfrac8{3k}$: 0,2667; 0,1667; 0,1404; 0,1333. Cận T5: $0{,}9^k+0{,}2667$: 0,6153 ($k=10$); 0,3882 ($k=20$). Giới hạn $\tfrac8{57}=0{,}14035$.
 - T8 với $L=\Delta_0=\sigma^2=1$: $K=10^2$: 0,30284 ($\eta=0{,}1414$); $10^4$: 0,028484 ($\eta=0{,}01414$); $10^6$: 0,0028304. $K$ nhỏ nhất cho cận $\le0{,}01$: 80 400.
 - Ngân sách $\mathcal B=10n$, $L=\Delta_0=\sigma_1^2=1$: $n=10^9$, $b=10^3$: GD $K=10$, cận $0{,}2$; SGD $K=10^7$, $\sigma^2=10^{-3}$, $\eta=0{,}01414$, cận $2\cdot10^{-7}+2{,}828\cdot10^{-5}=2{,}848\cdot10^{-5}$. $n=10^3$, $b=10$: GD $0{,}2$; SGD $K=10^3$, $\sigma^2=0{,}1$, $\eta=0{,}1414$, cận $0{,}002+0{,}02828=0{,}03028$.
-- SNW Bảng 13.2 (đơn vị gradient mẫu, bỏ hệ số $d$ chung): GD $n\kappa\ln(1/\rho)$, SGD $\nu\kappa^2/\rho$. $\kappa=10$, $\rho=10^{-6}$, $\nu=1$: $\ln10^6=13{,}82$; GD $138{,}2\,n$; SGD $10^8$; bằng nhau tại $n\approx7{,}2\cdot10^5$.
+- SNW Bảng 13.2 (đơn vị gradient mẫu, bỏ hệ số $d$ chung): GD $n\kappa\ln(1/\rho)$, SGD $\nu\kappa^2/\rho$. $\kappa=10$, $\rho=10^{-6}$, $\nu=1$: $\ln10^6=13{,}82$; GD $138{,}2\,n$; SGD $10^8$; bằng nhau tại $n\approx7{,}2\cdot10^5$ (log tự nhiên; với $\log_{10}$ là $1{,}7\cdot10^6$); chỉ dùng như bậc $10^5$–$10^6$.
 - G03, câu hỏi 1: Newton $n=10^3$, $p=50$: $np^2+p^3=2{,}5\cdot10^6+1{,}25\cdot10^5\approx2{,}6\cdot10^6$. GD $n=10^8$, $p=10^6$: $np=10^{14}$ mỗi bước.
 
 ### 8.7. Dừng sớm và chính quy hóa (F07, F08c)
@@ -765,24 +780,26 @@ $\eta=0{,}5$; trị riêng $\alpha$, hệ số chính quy hóa $\lambda=1/(\eta 
 
 ## 9. Danh sách hình SVG
 
-Hình mới đặt ở `2627-1/img/lec-06/`. Thư mục này đang chứa 15 SVG của deck Bài 06 hiện hành; không ghi đè, tên mới không trùng (đã kiểm: `gradient-chain.svg` đã có, không dùng tên này).
+Hình mới đặt ở `2627-1/img/lec-06/` (thư mục tạo mới ngày 2026-10-12; 15 SVG của deck cũ đã chuyển sang `img/lec-06c/`). Tập lệnh sinh hình nằm trong thư mục nháp của phiên (`scratchpad/build/lec-06/svg/gen.py`), không trong kho; mọi tọa độ tính từ số liệu mục 8.
 
 | Tệp | Trang | Nội dung | Dữ liệu |
 |---|---|---|---|
-| `xor-points.svg` | B01, B02 | Bốn điểm XOR trên $[0,1]^2$, nhãn lớp bằng hình dạng và chữ (không chỉ màu); biến thể có hai đường chéo và trung điểm $(\tfrac12,\tfrac12)$ | 8.1 |
+| `xor-points.svg` | B01 | Bốn điểm XOR trên $[0,1]^2$, nhãn lớp bằng hình dạng và chữ (không chỉ màu); biến thể hai đường chéo là tệp riêng `xor-diagonals.svg` (B02), trung điểm $(\tfrac12,\tfrac12)$ | 8.1 |
 | `xor-feature-map.svg` | B04 | Hai khung: không gian $x$ và không gian $h$; ảnh của bốn điểm; đường $h_1+h_2=\tfrac12$ | 8.2 |
-| `two-layer-network.svg` | B05, B06 | Mạng 2–2–1, nhãn $W_1,b_1,w_2,b_2$, ReLU | Cấu trúc |
+| `two-layer-network.svg` | B06 | Mạng 2–2–1, nhãn $W_1,b_1,w_2,b_2$, ReLU | Cấu trúc |
 | `xor-symmetric-path.svg` | B09 | $F(\theta(t))$, $t\in[0,1]$: $t^2$ rồi $(1-t)^2$; dây cung $F=0$ giữa hai cực tiểu | 8.2 |
 | `backprop-forward.svg` | C02 | Đồ thị tính toán với giá trị truyền xuôi trên nút | 8.3 |
 | `backprop-backward.svg` | C03 | Cùng đồ thị, giá trị $\delta$ trên cạnh, kiểu nét khác | 8.3 |
 | `product-landscape.svg` | D02 | Đường mức $\tfrac12(uv-1)^2$ trên $[-2,2]^2$, hyperbol cực tiểu, điểm yên ngựa, $(\pm1,\pm1)$ | 8.4 |
 | `descent-bound-product.svg` | D04 | $\varphi(\eta)=F(\theta_0-\eta g)$ và parabol chặn trên với $L=2$, $\theta_0=(\tfrac12,\tfrac12)$ | 8.4 |
-| `saddle-plateau.svg` | D06 | $F(\theta_k)$ và $\lVert\nabla F(\theta_k)\rVert^2$ (log) theo $k=0..15$ | Bảng mục 8.4 |
+| `saddle-plateau.svg` | D06 | $F(\theta_k)$ và $\lVert\nabla F(\theta_k)\rVert^2$ (log) theo $k=0..15$ | Số liệu bảng mục 8.4 |
 | `batch-gradients.svg` | E03 | Sáu vector $\widehat g$ và $\nabla F(\theta_0)$ tại trọng tâm | 8.5 |
 | `early-stopping-shrinkage.svg` | F07 | Tỉ lệ giữ theo $k$ cho ba trị riêng $\alpha$, mức chính quy hóa nét đứt | 8.7 |
-| `budget-bounds.svg` (tùy chọn) | F05 | Cận GD và SGD theo ngân sách, log–log, $n=10^9$ | 8.6 |
+| `budget-bounds.svg` (tùy chọn) | F05 | Không vẽ khi dựng deck (2026-10-12) | — |
+| `xor-diagonals.svg` (thêm khi dựng deck) | B02 | Bốn điểm XOR, hai đường chéo, trung điểm chung $(\tfrac12,\tfrac12)$ | 8.1 |
+| `xor-feature-map-narrow.svg`, `backprop-forward-narrow.svg`, `backprop-backward-narrow.svg`, `saddle-plateau-narrow.svg` (thêm khi dựng deck) | B04, C02, C03, D06 | Bản xếp dọc của bốn hình rộng, chọn bằng `<picture>` khi màn hẹp hơn 760 px | như bản rộng |
 
-Dùng lại (không vẽ lại): `img/lec-05b/vda-sgd-bound-vs-exact.svg` (F01, dữ liệu Ví dụ A, ghi rõ trên chú thích), `img/lec-05b/step-halving-schedule.svg` (F02, tùy chọn), `img/lec-05b/rates-log-error.svg` (F04, tùy chọn), `img/lec-06b/risk-curves.svg` (F06, định tính). Quyết định Q4 của điều phối viên (điểm hòa giải 8): ở giai đoạn dựng deck, sao chép các tệp được dùng vào `img/lec-06/` với cùng tên (đã kiểm: không trùng 15 tệp hiện có), ghi một dòng xuất xứ cho mỗi tệp trong `review-log.md`; storyboard ghi đường dẫn gốc.
+Dùng lại (không vẽ lại): `img/lec-05b/vda-sgd-bound-vs-exact.svg` (F01, dữ liệu Ví dụ A, ghi rõ trên chú thích), `img/lec-05b/step-halving-schedule.svg` (F02, tùy chọn), `img/lec-05b/rates-log-error.svg` (F04, tùy chọn), `img/lec-06b/risk-curves.svg` (F06, định tính). Quyết định Q4 của điều phối viên (điểm hòa giải 8): ở giai đoạn dựng deck, sao chép các tệp được dùng vào `img/lec-06/` với cùng tên (đã kiểm: không trùng 15 tệp hiện có), ghi một dòng xuất xứ cho mỗi tệp trong `review-log.md`; storyboard ghi đường dẫn gốc. Khi dựng deck (2026-10-12) chỉ hai tệp được dùng và sao chép: `vda-sgd-bound-vs-exact.svg` (F01) và `risk-curves.svg` (F06, bản chép có dòng ghi chú tăng cỡ chữ); `step-halving-schedule.svg` và `rates-log-error.svg` không dùng.
 
 Không vẽ: bảng chân trị, bảng chi phí, bảng sáu nhóm, bảng quyết định (HTML/KaTeX).
 
@@ -821,17 +838,18 @@ Nocedal–Wright không có trong `sources/`; không cần cho bài này. Không
 | Tập xác thực (chọn $d$, $\lambda$, bước dừng) và tập kiểm thử (báo cáo $R$) | Bài 05 HQ05 | Dẫn, không định nghĩa lại (F06) |
 | H0, H2, H3, H4, H6, H6a, H6b | 05b “Giả thiết có tên” | Dùng nguyên nhãn, phát biểu lại khi dùng |
 | T2 (GD lồi mạnh tuyến tính) | 05b C05 | Dẫn (G02) |
-| T5 (SGD lồi mạnh bước hằng, sàn nhiễu) | 05b E06–E07 | Phát biểu lại (F02) |
+| T5 (SGD lồi mạnh bước hằng, mức nhiễu nền) | 05b E06–E07 | Phát biểu lại (F02) |
 | Bất đẳng thức một bước của SGD có số hạng nhiễu (từ cận trên bậc hai và H6b) | 05b, chứng minh T5 và T8 | Phát biểu lại, không chứng minh (F02) |
 | T5-pha (chia đôi bước) | 05b E09 | Dẫn trong ghi chú (F03) |
 | T6 (SGD lồi mạnh $\eta_k=\tfrac1{\mu(k+1)}$) | 05b E10 | Phát biểu lại (F03) |
 | T7 (GD không lồi, chuẩn gradient) | 05b F03 | Phát biểu lại, chứng minh một dòng (D05) |
 | T8 và hệ quả chọn bước (SGD không lồi) | 05b F04–F05 | Phát biểu lại (F04) |
 | Ví dụ A (ba quan sát) và các số $\tfrac8{57}$, $\tfrac8{3k}$ | 05b “Ví dụ dẫn”, E08, E10 | Dẫn số (F01 hình, F02, F03, F08) |
-| Định lý G.2 ($\mathbb EF=R$, $\operatorname{Var}F=\operatorname{Var}\ell/n$) | 05c §G.1 | Phát biểu lại (E02) |
-| Định lý G.3 (gradient nhóm không chệch, phương sai, hệ số không hoàn lại) | 05c §G.2 | Phát biểu lại, kiểm trên ví dụ (E04) |
-| Mệnh đề G.5 (hiệu suất giảm dần theo $b$), Nhận xét G.6 (Bottou–Bousquet), Nhận xét G.7 ($\sigma^2$ của H6b) | 05c §G.5–G.7 | Dẫn trong ghi chú (E02, E04, F05) |
-| XOR không tách được; Mệnh đề 2, 3; thuật toán lan truyền ngược hai tầng; phân loại điểm dừng của $F(u,v)$ | Mới | Chứng minh trên trang hoặc tính tường minh (B02, B08–B09, C04, D02–D03) |
+| Định lý 05c.52 ($\mathbb EF=R$, $\operatorname{Var}F=\operatorname{Var}\ell/n$) | 05c §6.1 | Phát biểu lại (E02) |
+| Định lý 05c.53 (gradient nhóm không chệch, phương sai, hệ số không hoàn lại) | 05c §6.2 | Phát biểu lại, kiểm trên ví dụ (E04) |
+| Mệnh đề 05c.56 (hiệu suất giảm dần theo $b$), Nhận xét 05c.58 (Bottou–Bousquet), Mục 6.7, Nhận xét 05c.59 ($\sigma^2$ của H6b) | 05c §6.5–6.7 | Dẫn trong ghi chú (E02, E04, F05) |
+| Định nghĩa tách được tuyến tính, XOR không tách được (Mệnh đề 1) | Bài 05 (phần hồi quy logistic, phần kết luận) | Nhắc lại, thêm đối chiếu mã hóa nhãn (B02) |
+| Mệnh đề 2, 3; thuật toán lan truyền ngược hai tầng; phân loại điểm dừng của $F(u,v)$ | Mới | Chứng minh trên trang hoặc tính tường minh (B08–B09, C04, D02–D03) |
 | Tương đương dừng sớm và $\ell_2$ | DL §7.8 | Nhận xét có nguồn, không chứng minh (F07) |
 
 ## 12. Rủi ro và điểm cần người dùng quyết
@@ -846,7 +864,7 @@ Mọi mục dưới đây đang ở trạng thái **mở**. Cột “Hướng t�
 | Q2 | **Nội dung đề cương bị bỏ.** LLO12 (momentum, Nesterov), LLO13, LLO14, LLO15 (gradient liên hợp, BFGS), LLO16 không còn trong Bài 05 và Bài 06. Đề xuất giữ hai deck hiện hành làm bài bổ trợ (ví dụ 06b “Các phương pháp tối ưu trong học sâu”, gồm mạch C–D của deck Bài 05 hiện hành và toàn bộ deck Bài 06 hiện hành), không xóa. Cần quyết định tên tệp, vị trí trong `index.html`, và việc ghi chú bài giảng 05, 06 hiện có được giữ hay viết lại | mở | Không đụng deck và học liệu hiện hành; `index.html` không đổi (điểm 9) |
 | Q3 | **Phát biểu tốc độ không lồi.** Đặc tả viết “$O(1/\sqrt T)$ cho chuẩn gradient nhỏ nhất”. T8 của 05b chặn **trung bình kỳ vọng bình phương** chuẩn gradient; với chính chuẩn, tốc độ là $O(K^{-1/4})$. Kế hoạch dùng phát biểu đúng của T8 trên mặt trang và ghi chú chuyển sang chuẩn | mở (điều phối viên đã chấp nhận, chờ người dùng xác nhận) | Phát biểu theo bình phương chuẩn ở D05, F04, G02 (điểm 3) |
 | Q4 | **Vị trí hình dùng lại.** Bài 05 mới sẽ thay deck Bài 05 hiện hành; nếu `img/lec-05/*.svg` bị bỏ khỏi deck Bài 05 mới, tham chiếu chéo thư mục dễ gãy. Phương án: sao chép các hình dùng lại vào `img/lec-06/`, hoặc tham chiếu trực tiếp `img/lec-05b/`, `img/lec-05/` | mở | Sao chép vào `img/lec-06/` ở giai đoạn dựng deck, ghi xuất xứ trong review-log; storyboard ghi đường dẫn gốc (điểm 8) |
-| Q5 | **Mất mát cho XOR.** Kế hoạch dùng mất mát bình phương (như DL §6.1) để tính tay; Bài 05 (A2) dùng mất mát logistic. Nếu thống nhất mất mát logistic, các số ở mục 8.2 (trừ lập luận không lồi) phải tính lại và $F(\theta_A)$ không còn bằng 0 | mở (điều phối viên đã chấp nhận mất mát bình phương) | B01 nêu lựa chọn trên mặt trang; ghi chú B07 kiểm kết luận không lồi với mất mát logistic (điểm 4) |
+| Q5 | **Mất mát cho XOR.** Kế hoạch dùng mất mát bình phương (như DL §6.1) để tính thủ công; Bài 05 (A2) dùng mất mát logistic. Nếu thống nhất mất mát logistic, các số ở mục 8.2 (trừ lập luận không lồi) phải tính lại và $F(\theta_A)$ không còn bằng 0 | mở (điều phối viên đã chấp nhận mất mát bình phương) | B01 nêu lựa chọn trên mặt trang; ghi chú B07 kiểm kết luận không lồi với mất mát logistic (điểm 4) |
 | Q6 | **Thời lượng mạch mở đầu.** Mạch A (0,12 tiết) tính vào khối B1, nên XOR và mạng còn 0,88 tiết. Nếu khối B1 phải trọn 1,00 tiết cho mạng, cần chuyển một phần sang B3 (ví dụ rút F07 vào ghi chú) | mở | Giữ phân bổ ở mục 5 và 7 |
 
 ### 12.2. Rủi ro
@@ -854,15 +872,15 @@ Mọi mục dưới đây đang ở trạng thái **mở**. Cột “Hướng t�
 | Mã | Nội dung | Trạng thái | Ghi chú sau hòa giải |
 |---|---|---|---|
 | R1 | **Phụ thuộc Bài 05.** Kế hoạch giả định kết luận Bài 05 đúng như giao diện chung (hai giới hạn, chi phí $O(nd)$ và $O(nd^2+d^3)$, chính quy hóa $\ell_2$, rủi ro kiểm thử ở A1). Cần đối chiếu với kế hoạch Bài 05 trước khi chốt A03, E01, E02, F06, G02 | mở | Điều phối viên đã đối chiếu hai kế hoạch (mười điểm hòa giải); cần đối chiếu lại khi `planning/lec-05/` được chốt |
-| R2 | **Ký hiệu $b$.** Cỡ nhóm $b$ trùng chữ với độ lệch $b_1,b_2$. Kế hoạch giữ $b$ cho cỡ nhóm (khớp 05b, 05c), độ lệch luôn có chỉ số, hệ số chặn của mô hình tuyến tính viết $c$ | mở | Bài 05 gộp hệ số chặn vào $w$, không dùng $b$ cho hệ số chặn; A04 ghi câu ánh xạ (điểm 1) |
+| R2 | **Ký hiệu $b$.** Kích thước nhóm $b$ trùng chữ với độ lệch $b_1,b_2$. Kế hoạch giữ $b$ cho kích thước nhóm (khớp 05b, 05c), độ lệch luôn có chỉ số, hệ số chặn của mô hình tuyến tính viết $c$ | mở | Bài 05 gộp hệ số chặn vào $w$, không dùng $b$ cho hệ số chặn; A04 ghi câu ánh xạ (điểm 1) |
 | R3 | **Tập xác thực.** Nếu Bài 05 không định nghĩa tập xác thực, trang dừng sớm (F06) cần thêm một trang định nghĩa | mở | Không kích hoạt: Bài 05 HQ05 định nghĩa tập xác thực và tập kiểm thử trên mặt trang; F06 chỉ dẫn lại (điểm 5) |
 | R4 | **Điểm gãy ReLU.** $\theta_A$ có tiền kích hoạt bằng 0 tại $(0,0)$ và $(1,1)$; tham số của C02 có điểm gãy tại $(0,1)$. Lập luận không lồi chỉ dùng giá trị hàm nên không bị ảnh hưởng; các bài tính gradient tránh điểm gãy và C07(d) nêu quy ước. Tác tử rà toán phải kiểm không trang nào lấy gradient tại điểm gãy mà không nói quy ước | mở | |
 | R5 | **Giả thiết $L$-trơn với mạng.** Ví dụ D02 chứng tỏ H2 không đúng toàn cục. Mọi trang dẫn T7, T8 cho mạng phải nói “trên vùng chứa dãy lặp”. D06 thỏa điều kiện này (đã kiểm). Nếu tác tử soạn đưa ví dụ khác, phải kiểm lại | mở | Kiểm định storyboard: với ReLU, H2 không đúng trên vùng nào chứa điểm gãy. Đã sửa: T7, T8 áp dụng cho hàm kích hoạt trơn hoặc mạng tuyến tính; với ReLU là định hướng, ghi trên mặt trang D05, F04, G02 |
-| R6 | **Tải nội dung.** Các trang dày nhất: E03 (bảng sáu nhóm có bốn cột), F02 (hai định lý và số Ví dụ A), G02 (bảng năm dòng năm cột kèm câu hỏi). Nguy cơ tràn khung 16:9. Phương án tách: F02 thành “Sàn nhiễu của bước hằng (T5)” và “Bước giảm dần (T6)”; G02 đưa câu hỏi sang G03. Nếu tách, tổng 44–45 trang, vẫn trong khoảng 36–45 | mở | Đã tách theo kiểm định storyboard: F02, F03 (T5, T6); F06, F07 (dừng sớm); câu hỏi G02 sang G03; tổng 45 trang. Nguy cơ còn lại ở E03 và bảng G02 được kiểm khi dựng deck |
+| R6 | **Tải nội dung.** Các trang dày nhất: E03 (bảng sáu nhóm có bốn cột), F02 (hai định lý và số Ví dụ A), G02 (bảng năm dòng năm cột kèm câu hỏi). Nguy cơ tràn khung 16:9. Phương án tách: F02 thành “Mức nhiễu nền của bước hằng (T5)” và “Bước giảm dần (T6)”; G02 đưa câu hỏi sang G03. Nếu tách, tổng 44–45 trang, vẫn trong khoảng 36–45 | mở | Đã tách theo kiểm định storyboard: F02, F03 (T5, T6); F06, F07 (dừng sớm); câu hỏi G02 sang G03; tổng 45 trang. Nguy cơ còn lại ở E03 và bảng G02 được kiểm khi dựng deck |
 | R7 | **Số liệu nguồn ngoài.** Bảng 13.3 của SNW (RCV1) là kết quả thực nghiệm năm 2011 với phần cứng khi đó; trang chỉ dùng tỉ lệ thời gian và sự trùng lỗi kiểm thử, ghi nguồn đầy đủ trong ghi chú | mở | Điều phối viên đã đối chiếu Bảng 13.3 tr. 363 bằng `pdftotext`: khớp |
 | R8 | **Quy mô minh họa.** Bộ $(n,p)=(10^9,10^9)$ và tốc độ máy $10^{12}$ phép/s là giả định; phải ghi là minh họa trên mặt trang hoặc ghi chú, không gán cho mô hình thực | mở | |
 | R9 | **Hằng số giả định.** F04, F05, F08 dùng $L=\Delta_0=\sigma^2=1$ để đọc bậc; phải ghi rõ là giả định | mở | |
-| R10 | **Tải trang G03.** Sau khi nhận câu hỏi vận dụng của G02, G03 gồm ba dòng tổng kết, bốn câu hỏi (câu 1 có ba tình huống) và danh mục đọc; nguy cơ tràn khung 16:9 | mở | Khi dựng deck, nếu tràn: chuyển danh mục đọc vào ghi chú diễn giả hoặc chuyển câu hỏi tự kiểm (2)–(4) sang ghi chú bài giảng; không giảm cỡ chữ |
+| R10 | **Tải trang G03.** Sau khi nhận câu hỏi vận dụng của G02, G03 gồm ba dòng tổng kết, bốn câu hỏi (câu 1 có ba tình huống) và danh mục đọc; nguy cơ tràn khung 16:9 | mở | Khi dựng deck, nếu tràn: chuyển danh mục đọc vào ghi chú diễn giả hoặc chuyển câu hỏi tự kiểm tra (2)–(4) sang ghi chú bài giảng; không giảm cỡ chữ |
 
 ### 12.3. Giai đoạn tiếp theo
 
