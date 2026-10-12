@@ -50,7 +50,7 @@ $$
 
 Ta có $g'(\lambda)=1-\lambda/2$, nên $\lambda^*=2$ và $d^*=g(2)=1$. Với $\lambda=2$, $L(x,2)=(x-1)^2+1\ge1$. Điểm $x=1$ khả thi, nên chuỗi đối ngẫu yếu cho $1=g(2)\le p^*\le f_0(1)=1$. Do đó $x^*=1$ và $p^*=d^*=1$.
 
-Chọn điểm Slater $\bar x=0$, thỏa $\bar x-1=-1<0$. KKT là $x\le1$, $\lambda\ge0$, $\lambda(x-1)=0$, $2(x-2)+\lambda=0$. Nhánh $\lambda=0$ cho $x=2$ không khả thi; nhánh $x=1$ cho $\lambda=2$. Bài toán lồi nên bộ này chứng nhận tối ưu.
+Chọn điểm Slater $\bar x=0$, thỏa $\bar x-1=-1<0$. KKT là $x\le1$, $\lambda\ge0$, $\lambda(x-1)=0$, $2(x-2)+\lambda=0$. Trường hợp $\lambda=0$ cho $x=2$ không khả thi; trường hợp $x=1$ cho $\lambda=2$. Bài toán lồi nên bộ này chứng nhận tối ưu.
 :::
 
 ## 3. Kiểm tra Slater khi có đẳng thức
@@ -108,7 +108,7 @@ Ta có $d^*=\sup g=0=p^*$, nhưng mọi $\lambda$ hữu hạn đều cho giá tr
 Trong bài toán một biến trên đoạn $[2,4]$, với $f_0=x^2+1$, $f_1=(x-2)(x-4)$, đặt $u=f_1(x)$, $t=f_0(x)$.
 
 1. Tính $(u,t)$ tại $x=1{,}5$ và $x=2$; xác định điểm khả thi.
-2. Đường $t=4{,}5-u$ đỡ và tiếp xúc với tập giá trị. Đọc $\lambda$, $g(\lambda)$ và chặn trên sai số của phương án chi phí $5$. Xét xem có suy ra được $p^*-d^*=0{,}5$ hay không.
+2. Đường $t=4{,}5-u$ đỡ và tiếp xúc với tập giá trị. Đọc $\lambda$, $g(\lambda)$ và chặn trên sai số tối ưu của phương án chi phí $5$. Xét xem có suy ra được $p^*-d^*=0{,}5$ hay không.
 3. Chứng minh đường $t=5-2u$ tạo cận khít bằng một đẳng thức bình phương.
 4. Giải thích vì sao tiếp xúc tại một điểm của tập giá trị chưa đủ để chứng nhận nghiệm gốc.
 :::
@@ -116,7 +116,7 @@ Trong bài toán một biến trên đoạn $[2,4]$, với $f_0=x^2+1$, $f_1=(x-
 ::: solution
 Với $x=1{,}5$, $(u,t)=(1{,}25;3{,}25)$, không khả thi vì $u>0$. Với $x=2$, $(u,t)=(0,5)$, khả thi.
 
-Đường thứ nhất có độ dốc $-\lambda=-1$, nên $\lambda=1$; tung độ gốc là $g(1)=4{,}5$. Đối ngẫu yếu cho cận dưới $p^*\ge4{,}5$, còn phương án khả thi chi phí $5$ cho cận trên $p^*\le5$. Vì vậy sai số của phương án là $5-p^*\le0{,}5$. Không suy ra được $p^*-d^*=0{,}5$: từ đường này chỉ biết $p^*-d^*\le0{,}5$. Thực tế $g(2)=5$ (câu 3), nên $p^*-d^*=0$.
+Đường thứ nhất có độ dốc $-\lambda=-1$, nên $\lambda=1$; tung độ gốc là $g(1)=4{,}5$. Đối ngẫu yếu cho cận dưới $p^*\ge4{,}5$, còn phương án khả thi chi phí $5$ cho cận trên $p^*\le5$. Vì vậy sai số tối ưu của phương án là $5-p^*\le0{,}5$. Không suy ra được $p^*-d^*=0{,}5$: từ đường này chỉ biết $p^*-d^*\le0{,}5$. Thực tế $g(2)=5$ (câu 3), nên $p^*-d^*=0$.
 
 Ta có $t+2u-5=3(x-2)^2\ge0$, đạt dấu bằng tại $x=2$. Vì điểm này khả thi và $t=5=g(2)$, đó là chứng nhận tối ưu. Tiếp xúc riêng lẻ có thể ở điểm không khả thi, như với $\lambda=1$; còn muốn cận khít tại một điểm khả thi phải có thêm $f_0(x)=g(\lambda)$.
 :::
@@ -139,8 +139,8 @@ $$
 ::: solution
 Tại $\tau=1$, ràng buộc là $f_1(w)=w^2-1\le0$; dừng là $(w-3)+2\lambda w=0$, bù trừ là $\lambda(w^2-1)=0$.
 
-- Nhánh $\lambda=0$: $w=3$, nhưng $w^2=9>1$, loại.
-- Nhánh $w^2=1$: $w=1$ cho $\lambda=1$, hợp lệ; $w=-1$ cho $\lambda=-2<0$, loại.
+- Trường hợp $\lambda=0$: $w=3$, nhưng $w^2=9>1$, loại.
+- Trường hợp $w^2=1$: $w=1$ cho $\lambda=1$, hợp lệ; $w=-1$ cho $\lambda=-2<0$, loại.
 
 Bộ $(w^*,\lambda^*)=(1,1)$ thỏa bốn nhóm: khả thi $1\le1$, khả thi đối ngẫu $1\ge0$, bù trừ $1\cdot(1-1)=0$, dừng $(1-3)+2\cdot1\cdot1=0$. Mục tiêu và hàm ràng buộc đều lồi khả vi, nên KKT đủ cho tối ưu toàn cục. Mất mát tối ưu bằng $2$. Điểm $w=0$ còn thỏa Slater.
 

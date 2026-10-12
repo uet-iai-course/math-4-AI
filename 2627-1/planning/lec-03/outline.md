@@ -46,16 +46,16 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
 | S03-00 | 3. Đối ngẫu mạnh và điều kiện Slater | Trang tiêu đề mạch: nhu cầu điều kiện bảo đảm d*=p*. |
-| S03-01 | Khoảng đối ngẫu | Ngăn đồng nhất khoảng của một cặp với khoảng đối ngẫu tối ưu trước khi nói cận khít. |
+| S03-01 | Khoảng đối ngẫu | Ngăn đồng nhất khoảng đối ngẫu của cặp với khoảng đối ngẫu tối ưu trước khi nói cận khít. |
 | S03-02 | Cận khít và đối ngẫu mạnh | Đặt tên đối ngẫu mạnh sau một chứng nhận bằng bình phương có thể kiểm tra. |
 | S03-03 | Điều kiện Slater | Cung cấp một giả thiết kiểm tra được thay cho việc phải giải hai bài toán mới biết cận khít. |
-| S03-02b | Trực quan của điều kiện Slater | Minh họa khoảng dư quanh cùng một điểm khả thi chặt, phân biệt điểm Slater và nghiệm tối ưu sau khi đã phát biểu định lý. |
-| S03-03a | Chứng minh: định lý Slater | Giải thích vì sao khả thi chặt bảo đảm cận khít và đạt đối ngẫu. |
+| S03-02b | Trực quan của điều kiện Slater | Minh họa độ dư quanh cùng một điểm Slater, phân biệt điểm Slater và nghiệm tối ưu sau khi đã phát biểu định lý. |
+| S03-03a | Chứng minh: định lý Slater | Giải thích vì sao điểm Slater bảo đảm cận khít và đạt đối ngẫu. |
 | S03-03b | Chứng minh: định lý Slater, hệ số bất đẳng thức | Khai triển tổng không âm nhưng từng số hạng không dương; dấu chặt buộc mọi hệ số bằng không. |
 | S03-03c | Chứng minh: định lý Slater, hệ số đẳng thức | Dùng một điểm cụ thể để suy ra bình phương chuẩn bằng không, rồi dùng các hàng độc lập để kết luận hệ số bằng không. |
 | S03-04 | Ví dụ: điều kiện Slater cho bài toán một biến | Tách vai trò điểm Slater và nghiệm tối ưu, đồng thời thực hành kiểm tra tính lồi. |
 | S03-05 | Giới hạn của điều kiện Slater | Phản ví dụ buộc tách ba mệnh đề Slater, đối ngẫu mạnh và sự đạt nghiệm đối ngẫu. |
-| S03-06 | Bài tập: điều kiện Slater cho bài toán hai biến | Đo khả năng kiểm tra cùng một điểm khả thi chặt và tính hữu hạn trước khi dùng định lý. |
+| S03-06 | Bài tập: điều kiện Slater cho bài toán hai biến | Đo khả năng kiểm tra cùng một điểm Slater và tính hữu hạn trước khi dùng định lý. |
 | S03-06b | Bài tập: điều kiện Slater cho bài toán hai biến | Lời giải mẫu trên mặt trang, trùng bài 7 câu 1 của tài liệu bài tập. |
 
 ### 4. Hình học của đối ngẫu
@@ -65,10 +65,10 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 | S04-00 | 4. Hình học của đối ngẫu | Trang tiêu đề mạch: đọc nhân tử và cận trên cùng hình. |
 | S04-01 | Mặt phẳng giá trị | Nêu đối tượng mới, mặt phẳng giá trị (u,t), nhắc bài toán và giải thích hai trục trước ký hiệu G. |
 | S04-01a | Điểm và tập giá trị | Tính tọa độ từ x, vẽ G và phân biệt phần G khả thi với nửa mặt phẳng. |
-| S04-01b | Hàm Lagrange trong mặt phẳng giá trị | Suy diễn đường cận từ L và g; giải thích tung độ cắt là cận dưới. |
-| S04-02 | Đường cận trong mặt phẳng giá trị | Ánh xạ nhân tử sang độ dốc và inf sang tung độ cắt; điểm chạm không khả thi cho giới hạn trực giác. |
+| S04-01b | Hàm Lagrange trong mặt phẳng giá trị | Suy diễn đường cận từ L và g; giải thích tung độ gốc là cận dưới. |
+| S04-02 | Đường cận trong mặt phẳng giá trị | Ánh xạ nhân tử sang độ dốc và inf sang tung độ gốc; điểm tiếp xúc không khả thi cho giới hạn trực giác. |
 | S04-03 | Tiếp xúc và đối ngẫu mạnh | Dùng đẳng thức bình phương xác nhận hình học cận khít, không suy luận chỉ bằng nhìn hình. |
-| S04-04 | Bài tập: đọc cận trên mặt phẳng giá trị | Đo khả năng đọc cận và giới hạn sai số từ đường thẳng, không nhầm khoảng tối ưu. |
+| S04-04 | Bài tập: đọc cận trên mặt phẳng giá trị | Đo khả năng đọc cận và chặn trên sai số tối ưu từ đường thẳng, không nhầm khoảng tối ưu. |
 | S04-04b | Bài tập: đọc cận trên mặt phẳng giá trị | Lời giải mẫu trên mặt trang, trùng bài 5 câu 2 của tài liệu bài tập. |
 
 ### 5. Điều kiện Karush–Kuhn–Tucker
@@ -79,15 +79,15 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 | S05-01 | Dấu bằng trong chuỗi đối ngẫu yếu | Dẫn hệ KKT từ nhu cầu tránh tính g và từ các điều kiện xảy ra đẳng thức trong chuỗi cận. |
 | S05-02 | Ràng buộc hoạt động và bù trừ | Làm rõ logic bù trừ trước khi viết hệ tổng quát; phản ví dụ sửa chiều suy luận sai. |
 | S05-03 | Bốn nhóm điều kiện KKT | Tổ chức các điều kiện thành bốn nhóm để sinh viên kiểm tra có hệ thống. |
-| S05-04 | Ví dụ: hệ KKT của bài toán một biến | Minh họa quy trình giải nhánh và loại ứng viên theo tính khả thi, không chỉ giải phương trình. |
+| S05-04 | Ví dụ: hệ KKT của bài toán một biến | Minh họa quy trình giải theo từng trường hợp của điều kiện bù trừ và loại ứng viên theo tính khả thi, không chỉ giải phương trình. |
 | S05-05 | Điều kiện cần và điều kiện đủ | Tách giả thiết cho tính cần và tính đủ, tránh coi Slater là điều kiện bắt buộc của chứng nhận. |
 | S05-05b | Chứng minh: điều kiện đủ của KKT | Chứng minh điểm dùng tính lồi để bảo đảm toàn cục và nối KKT trở lại đối ngẫu yếu. |
 | S05-05c | Chứng minh: điều kiện cần của KKT | Dùng nhân tử đạt đối ngẫu và chuỗi cận khít để suy ra riêng bù trừ và dừng. |
 | S05-05a | Ví dụ: nghiệm tối ưu không có nhân tử KKT | Dùng miền chỉ có một điểm để thấy nghiệm tối ưu có thể không có nhân tử KKT khi thiếu giả thiết chính quy. |
-| S05-06 | KKT trong hồi quy có ràng buộc | Áp dụng các kết quả vừa học cho mô hình AI có kích thước thực tế; giải thích vai trò giới hạn trọng số. |
-| S05-06a | Giải hệ KKT của hồi quy | Giải hệ dừng, xét nghiệm bình phương tối thiểu và nhánh nhân tử dương mà không giả định X đủ hạng. |
+| S05-06 | KKT trong hồi quy có ràng buộc chuẩn | Áp dụng các kết quả vừa học cho mô hình AI có kích thước thực tế; giải thích vai trò giới hạn trọng số. |
+| S05-06a | Giải hệ KKT của hồi quy | Giải hệ dừng, xét nghiệm bình phương nhỏ nhất và trường hợp nhân tử dương mà không giả định X đủ hạng. |
 | S05-06b | Ví dụ: hồi quy hai trọng số | Tính hai trọng số, nhân tử và mất mát đến kết quả số; kiểm tra đầy đủ bốn nhóm KKT. |
-| S05-07 | Bài tập: KKT cho hồi quy một trọng số | Đo khả năng tự giải đủ nhánh và bốn nhóm KKT trên hồi quy một trọng số. |
+| S05-07 | Bài tập: KKT cho hồi quy một trọng số | Đo khả năng tự giải đủ các trường hợp và bốn nhóm KKT trên hồi quy một trọng số. |
 | S05-07b | Bài tập: KKT cho hồi quy một trọng số | Lời giải mẫu trên mặt trang, trùng bài 6 câu 1–2 của tài liệu bài tập. |
 
 ### 6. Tổng hợp và vận dụng

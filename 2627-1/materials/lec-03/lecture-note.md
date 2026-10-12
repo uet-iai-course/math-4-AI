@@ -12,7 +12,7 @@ Mọi mục tiêu sau là minh chứng bộ phận của hai chuẩn đầu ra b
 2. Chứng minh đối ngẫu yếu, lập và giải bài toán đối ngẫu, phân biệt khoảng đối ngẫu của một cặp phương án với khoảng đối ngẫu tối ưu (LLO4).
 3. Kiểm tra điều kiện Slater, nêu đúng các kết luận mà định lý Slater bảo đảm và không bảo đảm, nhận ra trường hợp đối ngẫu mạnh đúng mà nghiệm đối ngẫu không đạt (LLO4).
 4. Biểu diễn bài toán và hàm đối ngẫu trên mặt phẳng giá trị, đọc nhân tử qua độ dốc của đường đỡ, đọc cận dưới và độ nhạy của giá trị tối ưu (LLO5).
-5. Lập và giải hệ điều kiện Karush–Kuhn–Tucker theo các nhánh bù trừ, phân biệt giả thiết cho tính cần và tính đủ (LLO4, CLO1).
+5. Lập và giải hệ điều kiện Karush–Kuhn–Tucker theo từng trường hợp của điều kiện bù trừ, phân biệt giả thiết cho tính cần và tính đủ (LLO4, CLO1).
 6. Vận dụng đối ngẫu vào hồi quy có ràng buộc chuẩn, máy vector hỗ trợ lề mềm và bài toán chọn dữ liệu rời rạc, nêu hậu quả khi một giả thiết bị vi phạm (LLO4, LLO5, CLO1).
 
 ## Kiến thức tiên quyết
@@ -174,12 +174,12 @@ Trong khi cận trên $f_0(\hat x)$ đến từ một điểm thì cận dưới
 
 Mệnh đề sau nêu thông tin mà một cặp (phương án, cận dưới) cho về giá trị tối ưu chưa biết. Chứng minh chỉ cần Định nghĩa 01.10 và Định nghĩa 03.1.
 
-::: proposition Mệnh đề 03.2 (Cận dưới chặn sai số và chứng nhận tối ưu)
+::: proposition Mệnh đề 03.2 (Cận dưới chặn sai số tối ưu và chứng nhận tối ưu)
 **Giả thiết.** Bài toán có tập khả thi $C\neq\varnothing$, $\hat x\in C$ và $\ell$ là một cận dưới theo Định nghĩa 03.1.
 
 **Kết luận.**
 
-- (a) $\ell\le p^*\le f_0(\hat x)$, nên sai số $f_0(\hat x)-p^*$ của phương án $\hat x$ không vượt khoảng chứng nhận $f_0(\hat x)-\ell$.
+- (a) $\ell\le p^*\le f_0(\hat x)$, nên sai số tối ưu (suboptimality) $f_0(\hat x)-p^*$ của phương án $\hat x$ không vượt khoảng chứng nhận $f_0(\hat x)-\ell$.
 - (b) Nếu $f_0(\hat x)=\ell$ thì $\hat x$ là nghiệm và $p^*=\ell$.
 
 **Điều kiện áp dụng.** Không cần tính lồi, tính khả vi hay sự tồn tại nghiệm.
@@ -197,7 +197,7 @@ Vì $\ell\le f_0(x)$ với mọi $x\in C$, số $\ell$ là một cận dưới c
 Nếu $f_0(\hat x)=\ell$ thì chuỗi ở (a) thành $\ell\le p^*\le\ell$, nên $p^*=\ell=f_0(\hat x)$; một điểm khả thi có giá trị bằng $p^*$ là nghiệm theo Định nghĩa 01.12. $\square$
 :::
 
-Theo Mệnh đề 03.2, việc chứng nhận tối ưu tách thành hai việc độc lập là tìm một phương án tốt và tìm một cận dưới tốt. Phần (a) dùng được cả khi chưa có chứng nhận, vì khi một bộ giải trả về phương án $\hat x$ và cận $\ell$, người dùng biết sai số không quá $f_0(\hat x)-\ell$ mà không cần biết $p^*$. Áp dụng vào Ví dụ 03.2, cặp $(2;\,4{,}5)$ cho sai số của phương án $x=2$ không quá $0{,}5$, còn cặp $(2;\,5)$ cho sai số bằng $0$. Trong Ví dụ 03.1, sai số thật bằng $0$, nên con số $0{,}5$ chỉ là cận trên của sai số.
+Theo Mệnh đề 03.2, việc chứng nhận tối ưu tách thành hai việc độc lập là tìm một phương án tốt và tìm một cận dưới tốt. Phần (a) dùng được cả khi chưa có chứng nhận, vì khi một bộ giải trả về phương án $\hat x$ và cận $\ell$, người dùng biết sai số tối ưu không quá $f_0(\hat x)-\ell$ mà không cần biết $p^*$. Áp dụng vào Ví dụ 03.2, cặp $(2;\,4{,}5)$ cho sai số của phương án $x=2$ không quá $0{,}5$, còn cặp $(2;\,5)$ cho sai số bằng $0$. Trong Ví dụ 03.1, sai số thật bằng $0$, nên con số $0{,}5$ chỉ là cận trên của sai số.
 
 ::: remark Nhận xét 03.3 (Chứng nhận của Bài 02 và hai câu hỏi còn mở)
 Trong Mệnh đề 02.11, số $\sum_i\mu_i\beta_i$ là một cận dưới theo Định nghĩa 03.1, và phần (b) của mệnh đề đó là Mệnh đề 03.2(b). Ví dụ 03.2 dùng cùng ý nhưng không cần tuyến tính: cộng bội không âm $\lambda f_1$ rồi lấy cực tiểu trên toàn $\mathbb R$. Hai câu hỏi còn mở là chọn $\lambda$ như thế nào và khi nào tồn tại $\lambda$ cho chứng nhận tối ưu. Câu thứ nhất được trả lời ở Mục 2 bằng bài toán đối ngẫu, câu thứ hai ở Mục 3 bằng điều kiện Slater.
@@ -237,7 +237,7 @@ Theo Mệnh đề 03.2(b), $\hat x=1$ là nghiệm và $p^*=3$.
 Trên tập khả thi $[1,\infty)$, $f_0'(x)=2x+2>0$, nên $f_0$ tăng và nhỏ nhất tại $x=1$ với giá trị $3$, khớp kết luận.
 :::
 
-Xuất phát từ nhu cầu khẳng định không phương án nào tốt hơn $x=2$, chúng ta đã đặt tên cho cận dưới, khoảng chứng nhận và chứng nhận tối ưu (Định nghĩa 03.1). Theo Mệnh đề 03.2, một cận dưới chặn sai số của mọi phương án, và một cận dưới bằng giá trị của một điểm khả thi là chứng nhận tối ưu. Ví dụ 03.2 còn cho thấy phép cộng $\lambda f_1$ với $\lambda\ge0$ sinh ra cận dưới cho bài toán (1.1).
+Xuất phát từ nhu cầu khẳng định không phương án nào tốt hơn $x=2$, chúng ta đã đặt tên cho cận dưới, khoảng chứng nhận và chứng nhận tối ưu (Định nghĩa 03.1). Theo Mệnh đề 03.2, một cận dưới chặn sai số tối ưu của mọi phương án, và một cận dưới bằng giá trị của một điểm khả thi là chứng nhận tối ưu. Ví dụ 03.2 còn cho thấy phép cộng $\lambda f_1$ với $\lambda\ge0$ sinh ra cận dưới cho bài toán (1.1).
 
 ## 2. Hàm và bài toán đối ngẫu Lagrange
 
@@ -455,7 +455,7 @@ So với Mệnh đề 02.11, Định lý 03.8 bỏ giả thiết tuyến tính v
 
 **Trong học máy.** Đối ngẫu yếu là cơ sở của phép nới lỏng Lagrange (Lagrangian relaxation) cho các bài toán chọn rời rạc như chọn tập dữ liệu để gán nhãn hay chọn đặc trưng. Tập khả thi rời rạc không lồi, nhưng $g$ vẫn là cận dưới và Mệnh đề 03.6 vẫn cho bài toán chọn nhân tử lõm. Tình huống 03.3 tính cụ thể cận này.
 
-Trong các bộ giải lồi, mỗi lần lặp tạo một phương án khả thi $x^{(k)}$ và một nhân tử $(\lambda^{(k)},\nu^{(k)})$ với $\lambda^{(k)}\succeq0$. Hiệu $f_0(x^{(k)})-g(\lambda^{(k)},\nu^{(k)})$ chặn trên sai số theo Mệnh đề 03.2(a), và bộ giải dừng khi hiệu này nhỏ hơn ngưỡng (Boyd và Vandenberghe 2004, mục 5.5.1, tr. 241–242).
+Trong các bộ giải lồi, mỗi lần lặp tạo một phương án khả thi $x^{(k)}$ và một nhân tử $(\lambda^{(k)},\nu^{(k)})$ với $\lambda^{(k)}\succeq0$. Hiệu $f_0(x^{(k)})-g(\lambda^{(k)},\nu^{(k)})$ chặn trên sai số tối ưu theo Mệnh đề 03.2(a), và bộ giải dừng khi hiệu này nhỏ hơn ngưỡng (Boyd và Vandenberghe 2004, mục 5.5.1, tr. 241–242).
 
 Giả thiết $\lambda\succeq0$ phải được bộ giải bảo đảm, vì nếu một nhân tử âm do sai số làm tròn thì con số trả về không còn là cận dưới.
 
@@ -777,7 +777,7 @@ Trong Ví dụ 03.7, tập $D$ không lồi và hai giá trị tối ưu không 
 Cho bài toán (2.1) với giá trị tối ưu $p^*$ và bài toán đối ngẫu (2.5) với giá trị tối ưu $d^*$. Khi $p^*$ và $d^*$ hữu hạn, hiệu $p^*-d^*\ge0$ gọi là khoảng đối ngẫu tối ưu (optimal duality gap). Bài toán có đối ngẫu mạnh (strong duality) nếu $d^*=p^*$. Với một điểm khả thi $x$ và một cặp khả thi đối ngẫu $(\lambda,\nu)$, hiệu $f_0(x)-g(\lambda,\nu)\ge0$ gọi là khoảng đối ngẫu của cặp (duality gap of the pair).
 :::
 
-Trong định nghĩa trên, khoảng của một cặp và khoảng tối ưu là hai đại lượng khác nhau. Khoảng của cặp phụ thuộc vào phương án và nhân tử đang có, và luôn không nhỏ hơn khoảng tối ưu, vì $f_0(x)-g(\lambda,\nu)\ge p^*-d^*$ theo Hệ quả 03.10(b). Chẳng hạn, với bài toán (1.1), cặp $(x,\lambda)=(2,1)$ có khoảng $5-4{,}5=0{,}5$, còn khoảng tối ưu bằng $0$.
+Trong định nghĩa trên, khoảng đối ngẫu của một cặp và khoảng tối ưu là hai đại lượng khác nhau. Khoảng đối ngẫu của cặp phụ thuộc vào phương án và nhân tử đang có, và luôn không nhỏ hơn khoảng tối ưu, vì $f_0(x)-g(\lambda,\nu)\ge p^*-d^*$ theo Hệ quả 03.10(b). Chẳng hạn, với bài toán (1.1), cặp $(x,\lambda)=(2,1)$ có khoảng $5-4{,}5=0{,}5$, còn khoảng tối ưu bằng $0$.
 
 Ví dụ 03.7 có miền rời rạc, nên tính không lồi có thể là nguyên nhân của khoảng dương. Ví dụ sau cho thấy tính lồi chưa đủ, vì một bài toán lồi vẫn có thể có khoảng đối ngẫu dương.
 
@@ -1169,7 +1169,7 @@ Bảng sau ghi năm phương án của bài toán (1.1), với $u=(x-2)(x-4)$ v�
 
 Một phương án khả thi khi và chỉ khi điểm của nó có $u\le0$. Giá trị tối ưu là tung độ thấp nhất trong các điểm nằm bên trái trục tung hoặc trên trục tung, và theo bảng, đó là điểm $(0,5)$.
 
-Về mặt hình học, bài toán gốc là "tìm điểm thấp nhất của đường cong ở nửa mặt phẳng $u\le0$", còn mỗi giá trị $L=t+\lambda u$ là tung độ gốc trục $u=0$ của đường thẳng có độ dốc $-\lambda$ đi qua điểm $(u,t)$. Cách nhìn này chưa phải định nghĩa và được làm chính xác ở Mục 4.2.
+Về mặt hình học, bài toán gốc là "tìm điểm thấp nhất của đường cong ở nửa mặt phẳng $u\le0$", còn mỗi giá trị $L=t+\lambda u$ là tung độ gốc trục $u=0$ của đường thẳng có độ dốc (hệ số góc) $-\lambda$ đi qua điểm $(u,t)$. Cách nhìn này chưa phải định nghĩa và được làm chính xác ở Mục 4.2.
 
 ![Mặt phẳng với trục ngang u bằng f1(x) và trục đứng t bằng f0(x). Đường cong G là một parabol mở theo hướng chéo lên phải, là tập các điểm (f1(x), f0(x)) khi x chạy trên trục số. Các điểm ứng với x bằng 2, 3, 4 lần lượt là (0, 5), (âm 1, 10), (0, 17), nằm ở nửa mặt phẳng u không dương, được tô nền là vùng khả thi. Điểm ứng với x bằng 0 là (8, 1), nằm ở nửa mặt phẳng u dương.](img/lec-03/value-plane-mapping.svg)
 
@@ -1869,12 +1869,12 @@ $$
 2x+\lambda(2x-6)=0 .
 $$
 
-**Giải theo nhánh bù trừ.**
+**Giải theo các trường hợp của điều kiện bù trừ.**
 
-Bù trừ cho hai nhánh.
+Bù trừ cho hai trường hợp.
 
-1. Nhánh $\lambda=0$: dừng cho $x=0$; nhưng $f_1(0)=8>0$, vi phạm khả thi gốc. Loại.
-2. Nhánh $f_1(x)=0$, tức $x=2$ hoặc $x=4$.
+1. Trường hợp $\lambda=0$: dừng cho $x=0$; nhưng $f_1(0)=8>0$, vi phạm khả thi gốc. Loại.
+2. Trường hợp $f_1(x)=0$, tức $x=2$ hoặc $x=4$.
    - $x=2$: dừng cho $4-2\lambda=0$, $\lambda=2\ge0$. Hợp lệ.
    - $x=4$: dừng cho $8+2\lambda=0$, $\lambda=-4<0$, vi phạm khả thi đối ngẫu. Loại.
 
@@ -1887,7 +1887,7 @@ Bộ KKT duy nhất là $(x,\lambda)=(2,2)$. Bài toán lồi, nên Định lý 
 Khớp Ví dụ 03.4. Ứng viên $x=4$ bị loại vì sai dấu nhân tử: tại $x=4$, gradient của mục tiêu và của ràng buộc cùng hướng, nên không nhân tử không âm nào cân bằng được.
 :::
 
-![Hai khung. Khung trái: đoạn khả thi từ 2 đến 4 với điểm khả thi chặt 3; hai ô so sánh ứng viên x bằng 2 (4 trừ 2 lambda bằng 0 cho lambda bằng 2, không âm, thỏa đủ bốn nhóm) và ứng viên x bằng 4 (8 cộng 2 lambda bằng 0 cho lambda bằng âm 4, sai dấu, bị loại). Khung phải: một nửa mặt phẳng khả thi được tô và một điểm Slater bên trong; nghiệm là hình chiếu của gốc tọa độ lên đường biên, nơi ràng buộc hoạt động; tại đó gradient của mục tiêu và gradient của ràng buộc nhân với nhân tử là hai vector ngược chiều, cân bằng nhau. Hàng dưới: bốn ô ghi bốn nhóm điều kiện khả thi gốc, khả thi đối ngẫu, bù trừ, dừng.](img/lec-03/kkt-active-projection.svg)
+![Hai khung. Khung trái: đoạn khả thi từ 2 đến 4 với điểm Slater 3; hai ô so sánh ứng viên x bằng 2 (4 trừ 2 lambda bằng 0 cho lambda bằng 2, không âm, thỏa đủ bốn nhóm) và ứng viên x bằng 4 (8 cộng 2 lambda bằng 0 cho lambda bằng âm 4, sai dấu, bị loại). Khung phải: một nửa mặt phẳng khả thi được tô và một điểm Slater bên trong; nghiệm là hình chiếu của gốc tọa độ lên đường biên, nơi ràng buộc hoạt động; tại đó gradient của mục tiêu và gradient của ràng buộc nhân với nhân tử là hai vector ngược chiều, cân bằng nhau. Hàng dưới: bốn ô ghi bốn nhóm điều kiện khả thi gốc, khả thi đối ngẫu, bù trừ, dừng.](img/lec-03/kkt-active-projection.svg)
 
 Khung trái của hình trên tóm tắt Ví dụ 03.17. Khung phải thể hiện sự cân bằng gradient tại một ràng buộc hoạt động cho bài toán chiếu gốc tọa độ lên một nửa mặt phẳng tổng quát, qua hai vector ngược chiều tại điểm chiếu. Ví dụ 03.18 dưới đây giải một bài toán chiếu với dữ liệu khác hình.
 
@@ -1898,10 +1898,10 @@ Khung trái của hình trên tóm tắt Ví dụ 03.17. Khung phải thể hi�
 
 $\min x_1^2+x_2^2$ với $f_1(x)=5-x_1-2x_2\le0$. Dừng: $2x_1-\lambda=0$ và $2x_2-2\lambda=0$, nên $x=(\frac\lambda2,\lambda)$.
 
-**(a) Giải theo nhánh bù trừ.**
+**(a) Giải theo các trường hợp của điều kiện bù trừ.**
 
-1. Nhánh $\lambda=0$: $x=(0,0)$, có $f_1=5>0$. Loại.
-2. Nhánh $x_1+2x_2=5$: thay $x=(\frac\lambda2,\lambda)$ cho $\frac{5\lambda}2=5$, nên $\lambda=2$, $x=(1,2)$, $p^*=1+4=5$.
+1. Trường hợp $\lambda=0$: $x=(0,0)$, có $f_1=5>0$. Loại.
+2. Trường hợp $x_1+2x_2=5$: thay $x=(\frac\lambda2,\lambda)$ cho $\frac{5\lambda}2=5$, nên $\lambda=2$, $x=(1,2)$, $p^*=1+4=5$.
 
 Bài toán lồi, nên Định lý 03.32 cho đây là nghiệm.
 
@@ -1998,8 +1998,8 @@ Mục tiêu và ràng buộc lồi, khả vi; $w=0$ là điểm Slater; tập kh
 
 Dừng: $(w-y)+2\lambda w=0$, nên $w=\frac{y}{1+2\lambda}$.
 
-1. Nhánh $\lambda=0$: $w=y$, $\lVert y\rVert_2^2=25>1$. Loại.
-2. Nhánh $\lVert w\rVert_2^2=1$: $\frac{5}{1+2\lambda}=1$, nên $\lambda^*=2$ và $w^*=(0{,}6;\,0{,}8)$.
+1. Trường hợp $\lambda=0$: $w=y$, $\lVert y\rVert_2^2=25>1$. Loại.
+2. Trường hợp $\lVert w\rVert_2^2=1$: $\frac{5}{1+2\lambda}=1$, nên $\lambda^*=2$ và $w^*=(0{,}6;\,0{,}8)$.
 
 Mất mát tối ưu: $\tfrac12\bigl(2{,}4^2+3{,}2^2\bigr)=\tfrac12(5{,}76+10{,}24)=8$.
 
@@ -2181,7 +2181,7 @@ Vector $w$ là tổ hợp tuyến tính của riêng các vector hỗ trợ.
 :::
 
 ::: exercise Bài tập 03.7
-Giải $\min x_1^2+2x_2^2$ với $x_1+x_2\ge3$ bằng hệ KKT, xét đủ các nhánh. Kiểm tra kết quả bằng cách tính $g(\lambda)$ và giải bài toán đối ngẫu.
+Giải $\min x_1^2+2x_2^2$ với $x_1+x_2\ge3$ bằng hệ KKT, xét đủ các trường hợp. Kiểm tra kết quả bằng cách tính $g(\lambda)$ và giải bài toán đối ngẫu.
 :::
 
 ::: hint
@@ -2193,8 +2193,8 @@ Ràng buộc viết thành $3-x_1-x_2\le0$. Dừng cho $x_1=\frac\lambda2$ và $
 
 Dừng: $2x_1-\lambda=0$, $4x_2-\lambda=0$.
 
-1. Nhánh $\lambda=0$: $x=(0,0)$, có $3-0>0$. Loại.
-2. Nhánh $x_1+x_2=3$: $\frac\lambda2+\frac\lambda4=3$, nên $\lambda=4$ và $x=(2,1)$, giá trị $4+2=6$.
+1. Trường hợp $\lambda=0$: $x=(0,0)$, có $3-0>0$. Loại.
+2. Trường hợp $x_1+x_2=3$: $\frac\lambda2+\frac\lambda4=3$, nên $\lambda=4$ và $x=(2,1)$, giá trị $4+2=6$.
 
 Bài toán lồi, nên Định lý 03.32 cho $x^*=(2,1)$, $\lambda^*=4$, $p^*=6$.
 
@@ -2217,12 +2217,12 @@ $g'(\lambda)=3-\frac{3\lambda}4=0$ tại $\lambda=4$, với $g(4)=12-6=6$.
 Xét $\min(x_1-1)^2+(x_2-1)^2$ với $x_1+x_2-4\le0$ và $x_1-\tfrac12\le0$.
 
 - (a) Viết hệ KKT.
-- (b) Xét bốn nhánh bù trừ và tìm bộ KKT.
+- (b) Xét bốn trường hợp của điều kiện bù trừ và tìm bộ KKT.
 - (c) Ràng buộc nào hoạt động, nhân tử nào dương, và nghiệm thay đổi thế nào nếu nới ràng buộc thứ hai thành $x_1\le\tfrac12+u$ với $u$ nhỏ.
 :::
 
 ::: hint
-Dừng: $2(x_1-1)+\lambda_1+\lambda_2=0$ và $2(x_2-1)+\lambda_1=0$. Nhánh "cả hai nhân tử bằng $0$" cho cực tiểu không ràng buộc $(1,1)$.
+Dừng: $2(x_1-1)+\lambda_1+\lambda_2=0$ và $2(x_2-1)+\lambda_1=0$. Trường hợp "cả hai nhân tử bằng $0$" cho cực tiểu không ràng buộc $(1,1)$.
 :::
 
 ::: solution
@@ -2230,7 +2230,7 @@ Dừng: $2(x_1-1)+\lambda_1+\lambda_2=0$ và $2(x_2-1)+\lambda_1=0$. Nhánh "c�
 
 Khả thi gốc: $x_1+x_2\le4$, $x_1\le\tfrac12$. Khả thi đối ngẫu: $\lambda_1,\lambda_2\ge0$. Bù trừ: $\lambda_1(x_1+x_2-4)=0$, $\lambda_2(x_1-\tfrac12)=0$. Dừng như trong gợi ý.
 
-**(b) Bốn nhánh.**
+**(b) Bốn trường hợp.**
 
 1. $\lambda_1=\lambda_2=0$: $x=(1,1)$, vi phạm $x_1\le\tfrac12$. Loại.
 2. $\lambda_1=0$, $x_1=\tfrac12$: dừng cho $x_2=1$ và $2(-\tfrac12)+\lambda_2=0$, $\lambda_2=1$. Khả thi: $\tfrac12+1=1{,}5\le4$. Hợp lệ.
@@ -2269,8 +2269,8 @@ Như Ví dụ 03.19, dừng cho $w=\frac y{1+2\lambda}$; $\lVert y\rVert_2=3$.
 
 Dừng cho $w=\frac y{1+2\lambda}$.
 
-1. Nhánh $\lambda=0$: $w=y$ với $\lVert y\rVert_2^2=9>1$. Loại.
-2. Nhánh ràng buộc chuẩn hoạt động: $\frac3{1+2\lambda}=1$, nên $\lambda^*=1$ và $w^*=\frac y3=(\tfrac13,\tfrac23,\tfrac23)$.
+1. Trường hợp $\lambda=0$: $w=y$ với $\lVert y\rVert_2^2=9>1$. Loại.
+2. Trường hợp ràng buộc chuẩn hoạt động: $\frac3{1+2\lambda}=1$, nên $\lambda^*=1$ và $w^*=\frac y3=(\tfrac13,\tfrac23,\tfrac23)$.
 
 Mất mát $\tfrac12\lVert(\tfrac23,\tfrac43,\tfrac43)\rVert_2^2=\tfrac12\cdot\tfrac{4+16+16}9=2$.
 
@@ -2311,12 +2311,12 @@ Trong mục này, chúng ta gom các công cụ đó thành một thuật toán 
 1. Viết bài toán ở dạng (2.1): mọi bất đẳng thức thành $f_i(x)\le0$, đẳng thức thành $Ax=b$, điều kiện còn lại vào miền $D$.
 2. Lập hàm Lagrange (2.2) và ghi dấu: $\lambda\succeq0$, $\nu$ tự do.
 3. Kiểm tra tính lồi theo Định nghĩa 02.1 và tìm một điểm Slater. Nếu cả hai có và $p^*$ hữu hạn, Định lý 03.15 bảo đảm có nhân tử chứng nhận.
-4. Nếu các hàm khả vi: lập hệ KKT (Định nghĩa 03.29) và giải theo các nhánh bù trừ, loại nhánh vi phạm khả thi gốc hoặc dấu nhân tử.
+4. Nếu các hàm khả vi: lập hệ KKT (Định nghĩa 03.29) và giải theo từng trường hợp của điều kiện bù trừ, loại trường hợp vi phạm khả thi gốc hoặc dấu nhân tử.
 5. Nếu bài toán lồi và bước 4 cho một bộ KKT: dừng; Định lý 03.32 chứng nhận. Nếu bài toán không lồi: bộ KKT chỉ là ứng viên; tính $g$ tại nhân tử tìm được và báo khoảng.
 6. Nếu không giải được KKT: tính $g$ theo (2.3), giải hoặc giải gần đúng bài toán đối ngẫu (2.5), lấy một phương án khả thi tốt nhất có được, báo khoảng theo Hệ quả 03.10(b).
 7. Đọc nhân tử theo Hệ quả 03.24: nhân tử lớn chỉ ra ràng buộc có giá bóng lớn.
 
-**Chi phí.** Bước 4 có tối đa $2^m$ nhánh bù trừ; với $m$ lớn, bước 4 được thay bằng một bộ giải lặp, và bước 5 dùng khoảng của cặp làm điều kiện dừng.
+**Chi phí.** Bước 4 có tối đa $2^m$ trường hợp bù trừ; với $m$ lớn, bước 4 được thay bằng một bộ giải lặp, và bước 5 dùng khoảng đối ngẫu của cặp làm điều kiện dừng.
 :::
 
 Bảng sau ghi cho mỗi kết luận các giả thiết cần, kết quả cung cấp nó, và điều không được suy ra.
@@ -2389,8 +2389,8 @@ $L=(x_1-2)^2+x_2^2+\lambda(x_1+x_2-1)$. Bài toán lồi; $\bar x=(0,0)$ cho $-1
 
 Dừng: $2(x_1-2)+\lambda=0$, $2x_2+\lambda=0$, nên $x_1=2-\frac\lambda2$, $x_2=-\frac\lambda2$.
 
-1. Nhánh $\lambda=0$: $x=(2,0)$, vi phạm vì $2>1$. Loại.
-2. Nhánh hoạt động: tổng $2-\lambda=1$, nên $\lambda^*=1$, $x^*=(1{,}5;\,-0{,}5)$ và $p^*=0{,}25+0{,}25=0{,}5$.
+1. Trường hợp $\lambda=0$: $x=(2,0)$, vi phạm vì $2>1$. Loại.
+2. Trường hợp ràng buộc hoạt động: tổng $2-\lambda=1$, nên $\lambda^*=1$, $x^*=(1{,}5;\,-0{,}5)$ và $p^*=0{,}25+0{,}25=0{,}5$.
 
 **Hàm đối ngẫu.**
 
@@ -2488,7 +2488,7 @@ $\min E(w)$ với $\lVert w\rVert_2^2-\tau\le0$. Mục tiêu lồi chặt, ràng
 
 **Áp dụng với $\tau=0{,}29$.**
 
-Dừng $(X^TX+\lambda I)w=X^Ty$ cho $w(\lambda)=\bigl(\frac{10}{10+\lambda},\frac3{5+\lambda}\bigr)$. Nhánh $\lambda=0$ loại vì $1{,}36>0{,}29$. Thử $\lambda=10$: $w=(0{,}5;\,0{,}2)$, $\lVert w\rVert_2^2=0{,}25+0{,}04=0{,}29$. Theo Mệnh đề 03.35 nghiệm này duy nhất, nên $\lambda^*=10$ và $E^*=10\cdot0{,}25+5\cdot0{,}04-10-1{,}2+19=10{,}5$.
+Dừng $(X^TX+\lambda I)w=X^Ty$ cho $w(\lambda)=\bigl(\frac{10}{10+\lambda},\frac3{5+\lambda}\bigr)$. Trường hợp $\lambda=0$ loại vì $1{,}36>0{,}29$. Thử $\lambda=10$: $w=(0{,}5;\,0{,}2)$, $\lVert w\rVert_2^2=0{,}25+0{,}04=0{,}29$. Theo Mệnh đề 03.35 nghiệm này duy nhất, nên $\lambda^*=10$ và $E^*=10\cdot0{,}25+5\cdot0{,}04-10-1{,}2+19=10{,}5$.
 
 **Áp dụng với $\tau=0{,}5$.**
 
@@ -2520,7 +2520,7 @@ Tính duy nhất của $\lambda^*$ dựa vào hạng cột đầy đủ của $X
 
 **Dẫn ngược lý thuyết.**
 
-Định lý 03.15, với điểm Slater $w=0$, ở bước xác minh; Định lý 03.32 chứng nhận nghiệm của nhánh hoạt động; Mệnh đề 03.35 cho tính duy nhất; Mệnh đề 03.34 cho quan hệ với phạt; Mệnh đề 03.23 và Hệ quả 03.24 cho bước kiểm tra lại và diễn giải.
+Định lý 03.15, với điểm Slater $w=0$, ở bước xác minh; Định lý 03.32 chứng nhận nghiệm của trường hợp ràng buộc hoạt động; Mệnh đề 03.35 cho tính duy nhất; Mệnh đề 03.34 cho quan hệ với phạt; Mệnh đề 03.23 và Hệ quả 03.24 cho bước kiểm tra lại và diễn giải.
 :::
 
 ::: application Tình huống 03.3 (Chọn dữ liệu để gán nhãn: giả thiết lồi không thỏa)
@@ -2581,7 +2581,7 @@ Các khái niệm của chương xuất hiện trong các vấn đề sau của 
 
 - **Chính quy hóa.** Mỗi ràng buộc chuẩn của bài toán lồi có điểm Slater tương đương một hệ số phạt bằng nhân tử của ràng buộc chuẩn (Mệnh đề 03.34, Tình huống 03.2); chọn $\rho$ bằng kiểm định chéo (cross-validation) vì vậy tương đương chọn mức chặn, với hồi quy ridge là trường hợp riêng.
 - **Máy vector hỗ trợ.** Bài toán đối ngẫu, vector hỗ trợ và thủ thuật hạt nhân đều xuất phát từ Mệnh đề 03.36 (Tình huống 03.1).
-- **Bộ giải và điều kiện dừng.** Khoảng của cặp $f_0(x^{(k)})-g(\lambda^{(k)},\nu^{(k)})$ là điều kiện dừng có chứng nhận của phương pháp điểm trong (Hệ quả 03.10).
+- **Bộ giải và điều kiện dừng.** Khoảng đối ngẫu của cặp $f_0(x^{(k)})-g(\lambda^{(k)},\nu^{(k)})$ là điều kiện dừng có chứng nhận của phương pháp điểm trong (Hệ quả 03.10).
 - **Phân phối entropy cực đại và softmax.** Điều kiện KKT của bài toán entropy cực đại với ràng buộc kỳ vọng cho dạng $p_i\propto e^{-\theta a_i}$ (Bài tập 03.15).
 - **Học có ràng buộc.** Ràng buộc công bằng hay ngân sách tính toán được xử lý bằng nhân tử, và nhân tử là giá bóng (Hệ quả 03.24, Bài tập 03.17). Với mạng sâu, Định lý 03.8 vẫn đúng nhưng $g(\lambda)$ không tính được; giá trị Lagrange tại một cực tiểu địa phương chỉ là ước lượng trên của $g(\lambda)$, không phải cận dưới đã chứng nhận.
 - **Nới lỏng Lagrange cho bài toán rời rạc.** Chọn dữ liệu, chọn đặc trưng, gán nhãn có ngân sách: đối ngẫu cho cận nhưng có thể có khoảng dương (Tình huống 03.3).
@@ -2592,7 +2592,7 @@ Chương này khởi đầu bằng bài toán chứng nhận, trong đó một c
 
 **Định nghĩa và kết quả theo mục.**
 
-- Mục 1: cận dưới và chứng nhận tối ưu (Định nghĩa 03.1); cận dưới chặn sai số và chứng nhận tối ưu (Mệnh đề 03.2).
+- Mục 1: cận dưới và chứng nhận tối ưu (Định nghĩa 03.1); cận dưới chặn sai số tối ưu và chứng nhận tối ưu (Mệnh đề 03.2).
 - Mục 2: hàm Lagrange (Định nghĩa 03.4); hàm đối ngẫu (Định nghĩa 03.5); hàm đối ngẫu lõm (Mệnh đề 03.6); đối ngẫu yếu (Định lý 03.8); bài toán đối ngẫu (Định nghĩa 03.9); chứng nhận từ một cặp gốc – đối ngẫu (Hệ quả 03.10); đối ngẫu của quy hoạch tuyến tính (Mệnh đề 03.11).
 - Mục 3: đối ngẫu mạnh và khoảng đối ngẫu (Định nghĩa 03.12); điều kiện Slater (Định nghĩa 03.13); tách hai tập lồi, dạng yếu (Bổ đề 03.14); định lý Slater (Định lý 03.15).
 - Mục 4: tập giá trị và tập trên (Định nghĩa 03.18); hàm đối ngẫu trên mặt phẳng giá trị (Mệnh đề 03.19); đối ngẫu mạnh và đường đỡ không thẳng đứng (Mệnh đề 03.20); hàm giá trị (Định nghĩa 03.22); độ nhạy toàn cục (Mệnh đề 03.23); nhân tử là giá bóng (Hệ quả 03.24).
@@ -2623,7 +2623,7 @@ Dòng đầu là hàm Lagrange, hàm đối ngẫu và đối ngẫu yếu; dòn
 - Tính đủ của KKT cần tính lồi, còn tính cần của KKT cần đối ngẫu mạnh có nghiệm đối ngẫu.
 - Ràng buộc hoạt động không kéo theo nhân tử dương.
 
-**Giới hạn còn lại và bài sau.** Hệ KKT của chương được giải trực tiếp theo từng nhánh, khả thi khi ít ràng buộc và khi hệ dừng tuyến tính.
+**Giới hạn còn lại và bài sau.** Hệ KKT của chương được giải trực tiếp theo từng trường hợp, khả thi khi ít ràng buộc và khi hệ dừng tuyến tính.
 
 Trong Bài 04 (tối ưu không ràng buộc và ràng buộc đẳng thức), chúng ta xây dựng phương pháp Newton cho bài toán có đẳng thức khi không có công thức đóng, áp dụng cho loại hệ tuyến tính như Ví dụ 03.18(b). Bài 05 (không gian đặc trưng nhiều chiều) dành cho các bài toán không ràng buộc hoặc có phạt với số tham số rất lớn, nơi giải trực tiếp hệ điều kiện tối ưu không khả thi.
 
@@ -2690,7 +2690,7 @@ Mệnh đề 03.27 phần 1: $\lambda_i^*f_i(x^*)=0$ với $\lambda_i^*>0$ cho $
 
 **(viii) Sai.**
 
-Theo Hệ quả 03.10(b), khoảng của cặp chỉ là cận trên của khoảng tối ưu: $p^*-d^*\le0{,}5$. Ở bài toán (1.1), $\min x^2+1$ với $(x-2)(x-4)\le0$, điểm $x=2$ khả thi với $f_0(2)=5$ và $g(1)=4{,}5$ (Ví dụ 03.3), nên cặp $(2,1)$ có khoảng $0{,}5$, trong khi $p^*=d^*=5$ và khoảng tối ưu bằng $0$.
+Theo Hệ quả 03.10(b), khoảng đối ngẫu của cặp chỉ là cận trên của khoảng tối ưu: $p^*-d^*\le0{,}5$. Ở bài toán (1.1), $\min x^2+1$ với $(x-2)(x-4)\le0$, điểm $x=2$ khả thi với $f_0(2)=5$ và $g(1)=4{,}5$ (Ví dụ 03.3), nên cặp $(2,1)$ có khoảng $0{,}5$, trong khi $p^*=d^*=5$ và khoảng tối ưu bằng $0$.
 :::
 
 ::: exercise Bài tập 03.12 (Nhận biết: tìm lỗi trong một lời giải)
@@ -2872,8 +2872,8 @@ Dừng: $-\frac{c_i}{x_i^2}+\lambda=0$, nên $x_i=\sqrt{c_i/\lambda}$.
 ::: solution
 **(a) KKT.**
 
-1. Nhánh $\lambda=0$: dừng đòi $-\frac{c_i}{x_i^2}=0$, vô nghiệm. Loại.
-2. Nhánh ngân sách hoạt động: $\sum_i\sqrt{c_i}/\sqrt\lambda=12$ với $\sum_i\sqrt{c_i}=6$, nên $\sqrt\lambda=\tfrac12$, $\lambda^*=\tfrac14$ và $x=(2,4,6)$.
+1. Trường hợp $\lambda=0$: dừng đòi $-\frac{c_i}{x_i^2}=0$, vô nghiệm. Loại.
+2. Trường hợp ngân sách hoạt động: $\sum_i\sqrt{c_i}/\sqrt\lambda=12$ với $\sum_i\sqrt{c_i}=6$, nên $\sqrt\lambda=\tfrac12$, $\lambda^*=\tfrac14$ và $x=(2,4,6)$.
 
 Sai số tổng là $\tfrac12+1+\tfrac32=3$. Bài toán lồi trên miền mở lồi, nên theo phần Phạm vi của Định lý 03.32, đây là nghiệm.
 

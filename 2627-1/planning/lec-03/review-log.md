@@ -1469,3 +1469,55 @@ Master đã tự chạy `density.py` (57 trang, chỉ S07-01 ở đúng trần 8
 **Quyết định của master:** chờ duyệt.
 
 Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12
+
+**Tác tử rà soát:** loại `general-purpose`, mô hình `claude-opus-5-5`, effort `high`, chỉ đọc, `no-ai-slop` chế độ Detect; báo cáo `report-03.md` (thư mục làm việc của điều phối viên).
+**Tác tử biên tập:** loại `general-purpose`, mô hình `claude-opus-5-5`, effort `high` (theo brief `EDIT-BRIEF.md`); đã nạp `no-ai-slop` (chế độ Edit, tự kiểm theo `eval.md`). Áp `decisions-common.md` rồi `decisions-03.md` của điều phối viên. Không commit, không chạy `sync-local-materials.py`.
+
+**Phạm vi sửa:** `lecture-03-doi-ngau-lagrange.html` (mặt trang, ghi chú), title của `img/lec-03/value-plane-mapping.svg`, `planning/lec-03/{outline.md, storyboard.md, review-log.md}`, `materials/lec-03/{lecture-note.md, exercises.md}` ở các chỗ có thuật ngữ đã đổi. Không thêm trang, không đổi mạch, trang "Nội dung" và `#/N`.
+
+| mức độ | trang | vấn đề | quyết định điều phối viên | trạng thái | cách sửa |
+|---|---|---|---|---|---|
+| nghiêm trọng | S03-03a | "tập mức" dùng sai nghĩa cho tập $C$ và nửa đường $B$ | chấp nhận (theo B1 phương án i) | đã sửa | Bước 1: "(định lý tách). Tập lồi $C$ các bộ giá trị đạt được rời nửa đường $B$ dưới $p^*$"; ghi chú "các mức mục tiêu dưới $p^*$ nằm trên nửa đường $B$" |
+| trung bình | S03-05 ghi chú | "Ví dụ phản chứng" sai nghĩa | chấp nhận | đã sửa | "Phản ví dụ (counterexample) kiểm tra giới hạn của định lý." |
+| nhẹ | S03-01; ghi chú S03-02, S04-02, S04-04, S04-04b | "Khoảng của một cặp" tự chế | chấp nhận | đã sửa | "Khoảng đối ngẫu của cặp $(x,\lambda)$" trên mặt trang và trong mọi ghi chú; ghi chú S03-01 thêm "(duality gap)"; học liệu đổi theo (4 dòng) |
+| nhẹ | S04-01b ghi chú | "đường cận" chưa nối với thuật ngữ chuẩn | chấp nhận | đã sửa | giữ tên; ghi chú thêm đường đỡ (supporting line), siêu phẳng đỡ (supporting hyperplane) |
+| nhẹ | S04-01b | "độ dốc" so với "hệ số góc" | chấp nhận (giữ "độ dốc", lần đầu kèm "hệ số góc") | đã sửa | mặt trang S04-01b (lần đầu trên mặt trang), ghi chú S01-02 (lần đầu trong ghi chú), ghi chú bài giảng lần đầu trong thân bài |
+| nhẹ | S05-04, S05-07, S05-07b | "Trường hợp"/"Nhánh" hai tên | chấp nhận | đã sửa | "trường hợp" trong toàn deck (25 chỗ, mặt trang S05-07b và ghi chú S01-02, S05-02–S05-07b, S07-02), outline, storyboard, ghi chú bài giảng (28 chỗ) và bài tập (3 chỗ); giữ "nhánh – cận (branch and bound)" trong ghi chú bài giảng vì là tên phương pháp khác |
+| nhẹ | S03-06; ghi chú S02-02, S02-07a | "dạng không dương" và "dạng chuẩn" | chấp nhận | đã sửa | "dạng chuẩn $f_1(x)\le0$" (S03-06), ghi chú S02-02 "(standard form)", S02-07a "dạng chuẩn $f_i\le0$" |
+| nhẹ | S04-01, S04-01a; ghi chú S03-06b | "quyết định", "phương án"; "chi phí" và "giá trị mục tiêu" | chấp nhận | đã sửa | "phương án $x$"; trục dọc "giá trị mục tiêu, gọi tắt là chi phí" (khai báo một lần); ghi chú S03-06b "giá trị mục tiêu"; title SVG `value-plane-mapping.svg` "phương án khả thi"; giữ "biến quyết định" (decision variable) trong ghi chú S04-01 |
+| nhẹ | ghi chú S02-05d, S02-07, S03-03c, S05-06a | "véc-tơ" | chấp nhận | đã sửa | "vector" (4 chỗ) |
+| nhẹ | S03-02b | "độ dư" chưa có tiếng Anh | chấp nhận | đã sửa | ghi chú "độ dư (slack)" |
+| nhẹ | ghi chú S02-03 | "cận lỏng", "cận khít" chưa có tiếng Anh | chấp nhận | đã sửa | "(loose bound)", "(tight bound)" |
+| nhẹ | S02-05c | "lõm" chưa có tiếng Anh | chấp nhận | đã sửa | ghi chú "lõm (concave), tức $-g$ lồi" |
+| nhẹ | S07-03 | "bất đẳng thức theo nón" | chấp nhận | đã sửa | mặt trang "bất đẳng thức suy rộng theo nón"; ghi chú thêm "(generalized inequality)" |
+| nhẹ | ghi chú S01-01, S05-00; S05-06 | một mô hình bốn tên | chấp nhận | đã sửa | "hồi quy có ràng buộc chuẩn" (ghi chú S01-01, S05-00, từ khóa S05-00, tiêu đề S05-06, outline, storyboard) |
+| trung bình | S03-03a | định lý tách và $C$, $B$ chỉ trong ghi chú | chấp nhận phương án (i) | đã sửa | dòng Bước 1 viết lại (xem dòng đầu bảng); 47 → 54 âm tiết, 6 dòng, dòng dài nhất 19; không cần trang mới |
+| trung bình | S03-03a | "đủ hạng hàng" hai tên, chưa có tiếng Anh | chấp nhận | đã sửa | "đủ hạng hàng (các hàng độc lập tuyến tính)" trên mặt trang; ghi chú "(full row rank)" |
+| trung bình | S02-04, S02-05c | "bài toán lồi" kế thừa chưa nhắc lại | chấp nhận (gồm tùy chọn S02-05c) | đã sửa | S02-04 "Nhắc lại: bài toán gốc là bài toán lồi khi $f_0,\ldots,f_m$ lồi; đẳng thức $Ax=b$ luôn affine."; S02-05c "Ý nghĩa:" nêu cực tiểu hàm lồi $-g$ trên tập lồi (41 → 54) |
+| trung bình | S05-05b | bất đẳng thức gradient của hàm lồi chưa nhắc lại | chấp nhận | đã sửa | thêm "Nhắc lại: $h$ lồi khả vi thì $h(x)\ge h(x^*)+\nabla h(x^*)^T(x-x^*)$ với mọi $x$."; 18 → 26, 5 → 6 dòng |
+| trung bình | S02-05c | "affine" kế thừa chưa nhắc | chấp nhận | đã sửa | "affine (hằng số cộng hàm tuyến tính)" |
+| trung bình | S02-04 | "nhân tử Lagrange" chưa gọi tên trên mặt trang; kích thước $A$ | chấp nhận | đã sửa | "$\nu\in\mathbb R^r$ tự do: các nhân tử Lagrange"; thêm $A\in\mathbb R^{r\times n}$; 12 → 31, 5 → 6 dòng |
+| trung bình | S03-03, S03-03b, S07-01, S03-00 | "điểm Slater" chỉ trong ghi chú; hai tên | chấp nhận | đã sửa | S03-03 "(điểm Slater)"; S03-03b "điểm Slater phải có $f_i(\bar x)<0$"; S07-01 "có điểm Slater"; từ khóa S03-00 "điểm Slater"; giữ một lần "điểm khả thi chặt (strictly feasible point), hay điểm Slater" trong ghi chú S03-03 và ghi chú bài giảng làm tên đồng nghĩa |
+| trung bình | S04-01b | hộp không gọi tên "đường cận" | chấp nhận | đã sửa | "Định nghĩa. Đường cận ứng với $\lambda$ là đường cao nhất có độ dốc (hệ số góc) $-\lambda$ nằm dưới $G$: $t=g(\lambda)-\lambda u$."; 24 → 30 |
+| trung bình | S03-01, S04-04, S04-04b | "sai số" chưa định nghĩa trên mặt trang | chấp nhận | đã sửa | S03-01 thêm "Sai số tối ưu của phương án $x$: $f_0(x)-p^*$" (23 → 31, 5 → 6 dòng); "sai số tối ưu" ở S04-04, S04-04b và ghi chú S01-01, S02-01, S04-03; ghi chú bài giảng (Mệnh đề 03.2 thêm "(suboptimality)") và bài tập 5 đổi theo; giữ "sai số dự đoán", "sai số làm tròn" vì khác nghĩa |
+| nhẹ | S02-07 | $\sup$ chưa giải nghĩa | chấp nhận | đã sửa | "$\sup$ (cận trên nhỏ nhất)"; 23 → 27 |
+| nhẹ | S02-01 | "nghiệm tối ưu", "hàm mục tiêu" chưa nhắc | chấp nhận (≤ 60) | đã sửa | "cực tiểu hàm mục tiêu $f_0(x)$"; dòng "Điểm khả thi đạt $p^*$ gọi là nghiệm tối ưu."; 46 → 58, 4 → 5 dòng |
+| nhẹ | S03-02 | "cận khít" chưa định nghĩa trên mặt trang | chấp nhận | đã sửa | hộp "Định nghĩa. Cận dưới bằng $p^*$ gọi là cận khít; đẳng thức $d^*=p^*$ gọi là đối ngẫu mạnh."; 26 → 33 |
+| nhẹ | outline, storyboard | "điểm chạm", "tung độ cắt", "bình phương tối thiểu" | chấp nhận | đã sửa | "điểm tiếp xúc", "tung độ gốc", "bình phương nhỏ nhất" |
+| nhẹ | S03-03a | câu chỉ đường "(hai trang sau)" | chấp nhận | đã sửa | bỏ; ghi chú đã nêu hai trang chứng minh kế tiếp |
+| nhẹ | ghi chú S02-05 | câu dẫn rỗng "Ba lưu ý về định nghĩa có lý do riêng." | chấp nhận | đã sửa | bỏ câu; ba đoạn "Thứ nhất/Thứ hai/Thứ ba" ứng với ba gạch đầu dòng trên mặt trang |
+
+Không có mục bị bác bỏ.
+
+**Kiểm tra của tác tử biên tập:**
+- Đếm âm tiết (token khoảng trắng, bỏ tiêu đề, KaTeX, ô số của bảng, ghi chú) mọi trang sửa: ≤ 60 (S07-01 74 ≤ 80), ≤ 6 dòng, ≤ 20 âm tiết mỗi dòng, ≤ 3 công thức hiển thị.
+- `grep -c` trong deck: "véc-tơ" 0, "tập mức" 0, "phản chứng" 0, "khoảng của" 0, "hồi quy có giới hạn" 0, "dạng không dương" 0, "nhánh" 0, "hai trang sau" 0; "khả thi chặt" 1 (tên đồng nghĩa trong ghi chú S03-03, cố ý giữ); "quyết định" 2 (động từ ở ghi chú S01-02, "biến quyết định" ở ghi chú S04-01, cố ý giữ).
+- `deckcheck.py` trên 22 trang có mặt trang sửa (S02-01, S02-04, S02-05c, S02-07, S03-00, S03-01, S03-02, S03-03, S03-03a, S03-03b, S03-06, S04-01, S04-01a, S04-01b, S04-04, S04-04b, S05-00, S05-05b, S05-06, S05-07b, S07-01, S07-03) và trên toàn deck: không FLAG, dòng cuối `errors: none`. Đã xem ảnh 1600×900 và 390×844 của 22 trang: không tràn khung 16:9, không chồng lấn; ở khổ hẹp công thức dài cuộn ngang như trước.
+- `git diff --check`: sạch.
+- `no-ai-slop` (Edit, tự kiểm `eval.md`): không thêm câu dẫn rỗng, lời nhấn mạnh hay chỉ đường; các dòng thêm là định nghĩa, "Nhắc lại:" hoặc tên tiếng Anh.
+
+**Quyết định của master:** chấp nhận (xem quyết định điều phối viên bên dưới).
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-03 và decisions-common; kiểm Bước 1 của chứng minh Slater (tập lồi C các bộ giá trị đạt được rời nửa đường B dưới p*, định lý tách) và 'Ý nghĩa' ở S02-05c (cực đại g tương đương cực tiểu hàm lồi −g); tự chạy deckcheck trên S02-01, S02-04, S02-05c, S03-01, S03-02, S03-03, S03-03a, S04-01b, S05-05b, S07-01: 0 lỗi, 0 FLAG; xem ảnh S03-03a, S02-04 ở 1600×900. Việc đổi 'nhánh' → 'trường hợp' trong học liệu (31 chỗ) được chấp nhận theo bảng thuật ngữ 2026-10-11. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.
