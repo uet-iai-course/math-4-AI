@@ -10,6 +10,8 @@ Hai điều chỉnh hiển thị cuối giữ nguyên bố cục và nội dung:
 
 **Căn cứ:** AGENTS.md, các mục "Trang tiêu đề mạch" và "Văn phong và mật độ mặt trang chiếu" (yêu cầu người dùng 2026-10-12; số đo MAT1101 tại `../style-revision-2026-10-12.md`). Tác tử soạn: general-purpose, claude-opus-5-5, effort high. Deck đi từ **54 lên 75 trang**: thêm 6 trang tiêu đề mạch, 1 trang "Nội dung", 6 trang lời giải bài tập, 6 trang tách theo trần mật độ, và sau vòng tái kiểm thêm RG09c (chứng minh tách khỏi RG09b) và RZ01c (bảng định lý hội tụ). Bảy mạch, thứ tự mạch, dữ kiện và kết quả toán học giữ nguyên. Đặc tả từng trang bên dưới vẫn là đặc tả hiện hành; mỗi mục có thêm gạch đầu dòng **Sửa 2026-10-12**, và 21 mục mới được chèn đúng vị trí.
 
+**Đợt rà soát thuật ngữ và thứ tự định nghĩa (2026-10-12).** Áp dụng các mục `chấp nhận` của điều phối viên cho báo cáo thuật ngữ Bài 04: không thêm, không bỏ, không tách trang (vẫn 75 trang, bảy mạch, số "Nội dung" và `#/N` giữ nguyên). Mỗi mục bị sửa có thêm gạch đầu dòng **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa)** ghi số âm tiết trước/sau khi mặt trang đổi. Thuật ngữ thống nhất: "hướng ngược gradient (negative gradient)" cho $d_G=-g$; "tập mức dưới"; "tiêu chí dừng" cho tiêu chuẩn kết thúc thuật toán ("điều kiện dừng" chỉ dành cho $\nabla f=0$); "hiệu"; "kích thước"/"cấp"/"bậc" thay "cỡ"; "thực tế"/"hàm gốc" thay "thật"; "ma trận trọng số" thay "thước đo"; "vòng lặp" thay "lượt"; "điểm tiếp xúc"; "phần dư gốc (primal residual)"; $\mu,L$ thay $m,M$ trên mặt trang. Bằng chứng và bảng phát hiện: `review-log.md`, mục "Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12".
+
 ### Chức năng và ranh giới mạch (bản 2026-10-12)
 
 | Số | Tên mạch (trùng trang "Nội dung" và trang tiêu đề) | Trang tiêu đề | Trang theo thứ tự trình chiếu | Số trang |
@@ -106,13 +108,13 @@ Số trang (từ 2026-10-12): 7 + 25 + 11 + 10 + 9 + 7 + 7 = **75**. Lịch sử
 
 | Cụm, chuẩn đo | Nhu cầu | Trực quan | Ví dụ | Hình thức/toán học | Ứng dụng | Bài tập | Dữ kiện truyền và câu nối |
 |---|---|---|---|---|---|---|---|
-| Gradient và bước, LLO6/8 | RG00 (dòng dẫn: chọn hướng và độ dài bước); RG01 | RG01 đường mức, RG03 tia cập nhật | Hàm bậc hai $\tfrac12(3x_1^2+7x_2^2)$ tại RG01, RG03 | RG01 định nghĩa đạo hàm hướng; RG02 bài toán con; RG04 Armijo | RG05 một lượt, RG06 vòng lặp | RG11 → RG11b (lời giải trên mặt trang) | Giữ $x,g,d$; chọn hướng chưa quyết định $t$. RG01 gộp ví dụ dẫn nhập, trực quan và định nghĩa (kiến thức tiên quyết Bài 00). |
+| Gradient và bước, LLO6/8 | RG00 (dòng dẫn: chọn hướng và độ dài bước); RG01 | RG01 đường mức, RG03 tia cập nhật | Hàm bậc hai $\tfrac12(3x_1^2+7x_2^2)$ tại RG01, RG03 | RG01 định nghĩa đạo hàm hướng; RG02 bài toán con; RG04 Armijo | RG05 một vòng lặp, RG06 thuật toán | RG11 → RG11b (lời giải trên mặt trang) | Giữ $x,g,d$; chọn hướng chưa quyết định $t$. RG01 gộp ví dụ dẫn nhập, trực quan và định nghĩa (kiến thức tiên quyết Bài 00). |
 | Chuẩn bậc hai, LLO6/8 | RG07 đường đi phụ thuộc cách đo | RG07, elip RG08 | $W=\operatorname{diag}(3,7)$, $g=(6,28)^T$ ở RG08, RG10 | RG08 bài toán con; RG09 bốn nhóm KKT; RG09b mệnh đề nghiệm; RG09c chứng minh | RG10 đổi độ dài và giải hệ $Wd=-g$ | RG11 → RG11b | Giữ $g$, thêm $W$ trước chỗ dùng; nghiệm chuẩn hóa phải được đổi độ dài để cập nhật. |
 | Hội tụ của hạ gradient, LLO8/CLO2 | RG12 "Nhu cầu:" đếm số bước để $f(x^k)-f^*\le\varepsilon$; RG17 "Nhu cầu:" cận $O(1/k)$ đòi 7000 bước | RG12 parabol cận trên và tiếp tuyến; RG17 "Trực quan." parabol cận dưới độ cong $\mu$ | Hàm bậc hai tại RG13, RG15, RG16b, RG17, RG17b | RG12 định nghĩa, RG13 bổ đề giảm, RG14 bất đẳng thức một bước, RG15 định lý $O(1/k)$, RG16 chặn dưới bước quay lui, RG16b định lý với quay lui, RG17 định nghĩa lồi mạnh, RG17b hội tụ tuyến tính | Không áp dụng riêng: kết quả là bảo đảm cho thuật toán RG06; tổng hợp ở RZ01c | RG18 (tự làm, đáp án trong ghi chú) | Giữ $x,g,t,L$, $x^*=0$. Chu trình đầy đủ trừ bước ứng dụng, vì cụm là kết quả hỗ trợ cho thuật toán đã có, không giới thiệu phương pháp mới. |
-| Newton, LLO6/8 | RN00 (dòng dẫn: thay $W$ cố định bằng Hessian); RN01 độ cong của $s-\log s$ đổi theo $s$ | RN01 hàm thật và parabol | RN01 dữ kiện $\varphi$; RN02 phép tính $g,H,d$ | RN02 KKT bài con, RN03 tuyến tính hóa, RN04 độ giảm | RN05 nhận bước; RN06 thuật toán | RN08 → RN08b | $\varphi,g,H,d$ giữ nguyên; xấp xỉ của phương trình thật dẫn đến phân biệt giảm mô hình và sai số mục tiêu. |
+| Newton, LLO6/8 | RN00 (dòng dẫn: thay $W$ cố định bằng Hessian); RN01 độ cong của $s-\log s$ đổi theo $s$ | RN01 hàm gốc và parabol | RN01 dữ kiện $\varphi$; RN02 phép tính $g,H,d$ | RN02 KKT bài con, RN03 tuyến tính hóa, RN04 độ giảm | RN05 nhận bước; RN06 thuật toán | RN08 → RN08b | $\varphi,g,H,d$ giữ nguyên; xấp xỉ của phương trình gốc dẫn đến phân biệt giảm mô hình và sai số mục tiêu. |
 | Tốc độ hội tụ của Newton, LLO8/CLO2 (chu trình rút gọn nhu cầu → hình thức → kiểm tra) | RN07: thuật toán RN06 chưa có phát biểu tốc độ | Không áp dụng: kết quả nêu không chứng minh | Hàm bậc hai (một bước), hàm $s-\log s$ ở RN08b | RN07 định nghĩa và bảng bốn trường hợp; RN07b định lý số bước có quay lui | Không áp dụng riêng; tổng hợp ở RZ01c | RN08 câu (b) → RN08b | Rút gọn vì người dùng yêu cầu nêu kết quả không chứng minh (2026-10-01); chứng minh nằm ở ghi chú bài giảng. |
 | Newton khả thi, LLO9/10 | RE00 (dòng dẫn: giữ $Au=b$); RE01, RE02 hướng cũ phá tổng | RE01–RE02 đường khả thi | RE01 mốc nghiệm, RE02 điểm đầu $(16,-2)^T$ | RE02 định nghĩa hướng khả thi, RE03 Lagrange, RE04 hệ | RE05 giải bước, RE06 khử biến, RE07 thuật toán | RE08 → RE08b | Truyền $F,u,A,b,g,H$; thêm $\eta$ khi lập bài con. |
-| Newton phần dư, LLO9/10 | RR00 (dòng dẫn: giảm $\|r\|_2$); RR01 "Nhu cầu:" đo vi phạm KKT tại điểm chưa khả thi | RR01 "Trực quan.": $r_d,r_p$ là vế trái hai phương trình KKT | RR01 tính hai phần dư tại $(1,8)^T$, $\nu=4$ | RR01 định nghĩa; RR02 tuyến tính hóa; RR03 hệ | RR04 giải số; RR05 biện minh thước đo; RR06 thuật toán | RR07 → RR07b | Truyền $F,A,b$, đổi rõ $u,\nu$; RR05 là kết quả hỗ trợ: nhu cầu → phản ví dụ → đạo hàm → dùng ở RR06. |
+| Newton phần dư, LLO9/10 | RR00 (dòng dẫn: giảm chuẩn phần dư KKT); RR01 "Nhu cầu:" đo vi phạm KKT tại điểm chưa khả thi | RR01 "Trực quan.": $r_d,r_p$ là vế trái hai phương trình KKT | RR01 tính hai phần dư tại $(1,8)^T$, $\nu=4$ | RR01 định nghĩa; RR02 tuyến tính hóa; RR03 hệ | RR04 giải số; RR05 biện minh thước đo; RR06 thuật toán | RR07 → RR07b | Truyền $F,A,b$, đổi rõ $u,\nu$; RR05 là kết quả hỗ trợ: nhu cầu → phản ví dụ → đạo hàm → dùng ở RR06. |
 | Tự điều chỉnh, LLO7 | RS00 (dòng dẫn: khi nào độ giảm Newton chặn sai số); RS01 nhu cầu từ $9/32<\log4-3/4$ | RS01 độ cong gần biên, RS02 tỷ số tương đối | RS02 tính trên toàn miền cho $s-\log s$ | RS02 định nghĩa, RS03 cận có giả thiết | RS03 cận số, RS04 bài khử đẳng thức | RS05 → RS05b | Giữ $\varphi,s,\delta$ từ mạch 3; không đổi $\delta$ thành $\delta^2$ trong công thức cận. Câu hỏi còn mở chuyển từ RN08b sang dòng dẫn RS00. |
 
 Các trang tiêu đề mạch RG00, RN00, RE00, RR00, RS00 đảm nhận bước `nhu cầu` của cụm đầu tiên trong mạch qua dòng dẫn; RZ00 nằm ngoài hành trình khái niệm (mạch tổng hợp).
@@ -148,6 +150,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu P01, P03. Sinh viên nhận ra kết quả cũ sẽ được dùng, thay vì học thêm một danh sách thuật toán.
 - **Sửa 2026-10-12:** đổi tiêu đề (tiêu đề cũ trùng tên mạch 1); giữ nhắc lại tính đủ của KKT, ví dụ hồi quy (Bài 03) và câu "Nhu cầu:"; phần cấu trúc bước lặp tách sang RP01b. Âm tiết 76 → 51. `tách`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: gọi tên $X$ (ma trận dữ liệu), $y$ (vector nhãn) (B12; mặt trang giữ nguyên theo quyết định điều phối viên).
 - **Nội dung trên trang (2026-10-12):** "Nhắc lại:" KKT chứng nhận nghiệm của bài toán lồi, khả vi; "Ví dụ." hồi quy với $\|w\|_2^2\le\tau$ (Bài 03), với $\lambda$ cố định điều kiện dừng là hệ tuyến tính $(X^TX+2\lambda I)w=X^Ty$; "Nhu cầu:" tìm nghiệm bằng dãy điểm lặp.
 - **Bố cục chọn (2026-10-12):** Một cột bốn dòng, một công thức hiển thị. Ba thao tác của bước lặp nằm ở RP01b.
 - **Lý do bố cục cho sinh viên năm 3:** Sinh viên nhận ra kết quả cũ sẽ được dùng, thay vì học thêm một danh sách thuật toán.
@@ -160,6 +163,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RP01b — Cấu trúc một bước lặp
 
 - **Quyết định:** `tách` 2026-10-12 (RP01 76 → 51, RP01b 45 âm tiết).
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: thêm câu đầu nêu "bài toán con (subproblem)" và "độ dài bước (step size)" (A17).
 - **Lý do tồn tại:** tách từ RP01 cũ (76 âm tiết): ba thao tác của một bước lặp là khung của mọi phương pháp trong bài.
 - **Nhu cầu hoặc khoảng trống được lấp:** phân biệt nghiệm bài toán con với nghiệm bài toán gốc trước khi gặp các mô hình cụ thể.
 - **Đầu vào:** tính đủ của KKT và nhu cầu lặp (RP01).
@@ -184,7 +188,8 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo rà soát cuối: đổi tiêu đề thành "Mục tiêu học tập" (tiêu đề cũ 946 px đè nút điều hướng). Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu P01, P03. Bản đồ thể hiện quan hệ phụ thuộc; ngăn hiểu nhầm rằng KKT tự cho một thuật toán duy nhất.
 - **Sửa 2026-10-12:** chuyển lên ngay sau bìa; bỏ sơ đồ năm nút (chuyển thành danh sách bảy mạch ở RP03b); giữ ba mục tiêu; ghi chú viết lại. Dòng 13 → 4. `sửa`.
-- **Nội dung trên trang (2026-10-12):** Câu dẫn về hai lớp bài toán và bốn mục tiêu đánh số: suy ra hệ của bài toán con; thực hiện một bước bằng số; kiểm tra điều kiện nhận bước và tiêu chuẩn dừng; xác định giả thiết để tiêu chí dừng chứng nhận sai số mục tiêu (mục 4 thêm sau tái kiểm mạch kể để mở bài đặt lại nhiệm vụ chứng nhận sai số mà RZ01 thu hồi). Ghi chú nêu LLO/CLO của từng mục.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Mặt trang: "tiêu chuẩn dừng" → "tiêu chí dừng" (A7), 60 → 60 âm tiết. Ghi chú: lần đầu viết đầy đủ "chuẩn đầu ra bài học (LLO)", "chuẩn đầu ra học phần (CLO)" (A16).
+- **Nội dung trên trang (2026-10-12):** Câu dẫn về hai lớp bài toán và bốn mục tiêu đánh số: suy ra hệ của bài toán con; thực hiện một bước bằng số; kiểm tra điều kiện nhận bước và tiêu chí dừng; xác định giả thiết để tiêu chí dừng chứng nhận sai số mục tiêu (mục 4 thêm sau tái kiểm mạch kể để mở bài đặt lại nhiệm vụ chứng nhận sai số mà RZ01 thu hồi). Ghi chú nêu LLO/CLO của từng mục.
 - **Bố cục chọn (2026-10-12):** Một cột, danh sách đánh số; sơ đồ năm nút cũ bỏ, thứ tự mạch nằm ở RP03b.
 - **Lý do bố cục cho sinh viên năm 3:** Bản đồ thể hiện quan hệ phụ thuộc; ngăn hiểu nhầm rằng KKT tự cho một thuật toán duy nhất.
 - **Vào → ra (2026-10-12):** Đầu vào: bìa RP00. Đầu ra: trang "Nội dung" RP03b.
@@ -196,6 +201,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RP03b — Nội dung
 
 - **Quyết định:** `thêm` 2026-10-12. Ngoại lệ mật độ: 7 dòng (> 6) vì phải liệt kê đủ bảy mạch.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "hướng gradient" → "hướng ngược gradient" (A1).
 - **Lý do tồn tại:** trang "Nội dung" bắt buộc của mạch mở đầu (AGENTS.md, cấu trúc mặc định mục 3), thay sơ đồ năm nút cũ của RP03.
 - **Nhu cầu hoặc khoảng trống được lấp:** người học thấy bảy mạch đánh số, trùng số và tên trang tiêu đề mạch.
 - **Đầu vào:** mục tiêu học tập (RP03).
@@ -207,6 +213,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo rà soát cuối: đổi tiêu đề thành "KKT với ràng buộc đẳng thức" (tiêu đề cũ 986 px đè nút điều hướng; nguồn ghi "Bài giảng 03"; ghi chú "Số hạng $A^T\nu$"). Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu P04. Kiểm trực tiếp kết quả bài 03 trước khi dùng vào bài con, đồng thời giữ kiểm tra đại số cần thiết.
 - **Sửa 2026-10-12:** tiêu đề "Bài tập: …"; hai câu hỏi gộp một khung, bỏ dòng điền chỗ trống; thêm "Lời giải:" dạng fragment. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: nhãn "Đáp án câu …" → "Lời giải câu …" (liên bài số 13).
 - **Nội dung trên trang:** Câu hỏi: với bài lồi chỉ có $Au=b$, viết Lagrange và hai phương trình KKT; có cần $\nu\ge0$ không? Với $A=[1\;1]$, $d=(d_1,d_2)^T$, tính $Ad$ và tìm điều kiện trên $d$ để giữ tính khả thi. Chưa cho hướng số sẽ suy ra ở phần Newton khả thi.
 - **Bố cục chọn (2026-10-12):** Một khung "Câu hỏi:" với (a), (b); "Lời giải:" hai dòng hiện bằng fragment. Ghi chú giữ đáp án đầy đủ.
 - **Lý do bố cục cho sinh viên năm 3:** Kiểm trực tiếp kết quả bài 03 trước khi dùng vào bài con, đồng thời giữ kiểm tra đại số cần thiết.
@@ -219,6 +226,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RG00 — Hướng giảm và độ dài bước (trang tiêu đề mạch 2)
 
 - **Quyết định:** `thêm` ngày 2026-10-12, trang tiêu đề mạch bắt buộc (yêu cầu người dùng 2026-10-12; AGENTS.md "Trang tiêu đề mạch"). Không xử lý bằng sửa trang đầu mạch vì trang đó mang khái niệm đầu tiên của mạch.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "hướng gradient" → "hướng ngược gradient" (A1); "thước đo $W$" → "ma trận trọng số $W$" (A8).
 - **Lý do tồn tại:** đánh dấu ranh giới RP04 → mạch 2; số "2." trùng mục 2 của RP03b và chỉ số `#/2`; `id="mach-2"`.
 - **Nhu cầu hoặc khoảng trống được lấp:** người học thấy nhiệm vụ của mạch trước khi gặp khái niệm đầu tiên.
 - **Đầu vào:** điều kiện dừng $\nabla f(x^*)=0$ và cấu trúc bước lặp (mạch 1).
@@ -231,6 +239,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu người dùng: người dùng hỏi trang muốn nói gì; luận điểm trung tâm (dấu của $g^Td$ quyết định $f$ giảm hay tăng khi bước dương đủ nhỏ) không hiển thị trên mặt trang, chỉ nằm trong ghi chú, còn bảng dữ kiện chiếm nửa trang mà không có phép tính $g^Td$ nào. Đổi tiêu đề thành tên khái niệm, thay bảng bằng định nghĩa, ba trường hợp dấu và một ví dụ tính. Trước đó cùng ngày: nhận quy ước $g$ chuyển từ RP02. Ngày 2026-09-26: sửa văn phong và liên kết toán học; quyết định cấu trúc gốc: gộp và sửa, đối chiếu A01, A02, P02.
 - **Sửa 2026-10-12:** "Tính chất." → "Mệnh đề."; ba gạch đầu dòng gộp thành hai; bỏ "VD1" trên mặt trang và alt. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "hướng giảm (descent direction)" và "đường mức (level curve)" ở lần đầu trong ghi chú (A17; liên bài số 6); "vectơ" → "vector" (liên bài số 7).
 - **Nội dung trên trang:** Trái: hình ba hướng và dòng **Ví dụ** VD1: $f=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$, $g=(6,28)^T$; $d=(-1,0)^T$ cho $g^Td=-6<0$. Phải: khung gồm **Định nghĩa** (với hướng $d\in\mathbb R^n$, $f'(x^0;d)\triangleq\lim_{t\downarrow0}[f(x^0+td)-f(x^0)]/t$) và **Tính chất** (khi $f$ khả vi tại $x^0$, $f'(x^0;d)=g^Td$ với $g=\nabla f(x^0)$, không phải $g(\lambda,\nu)$ của Bài giảng 03); dưới khung ba trường hợp dấu: $g^Td<0$ cho $f(x^0+td)<f(x^0)$ khi $t>0$ đủ nhỏ và $d$ gọi là hướng giảm tại $x^0$; $g^Td>0$ cho $f(x^0+td)>f(x^0)$; $g^Td=0$ thông tin bậc một chưa đủ kết luận. Không có khung kết luận: tên "hướng giảm" nằm trong trường hợp thứ nhất. Hình ba hướng giữ nguyên; tỷ lệ hai trục khác nhau, không dùng góc hiển thị làm chứng cứ trực giao, không đồng nhất mũi tên giảm với $-g$. $f(x^0)=62$ rời khỏi RG01; RG05 đã tự nêu "Cho $f(x^0)=62$" ở chỗ Armijo cần.
 - **Bố cục chọn:** `lec-grid--45-55`: trái 45% hình và dòng ví dụ; phải 55% khung định nghĩa–tính chất và danh sách ba trường hợp dấu. Khung kết luận dưới hình bị bỏ để trang vừa khung sau khi tách định nghĩa và tính chất (vòng rà 2026-09-30); dòng ví dụ chuyển vào chỗ đó. Chuyển từ `ratio55` vì công thức định nghĩa tràn ngang ở cột 45%. Các cụm ví dụ và $f'(x^0;d)=g^Td$, $g=\nabla f(x^0)$ đặt trong `math-nowrap`. Đo ở 1600×900: nội dung 674/674, đáy nội dung 812 px so với đáy trang 829 px, không tràn ngang. Ở 390×844, dòng tính chất hiển thị đủ, không cuộn ngang; riêng công thức định nghĩa (376 px trong khung 308 px) cuộn ngang trong `.formula` có `tabindex="0"`.
 - **Lý do bố cục cho sinh viên năm 3:** Luận điểm và công cụ kiểm tra dấu đứng trên mặt trang; hình và ví dụ đi trước định nghĩa theo thứ tự đọc, định nghĩa tách khỏi tính chất khả vi.
@@ -241,10 +250,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Nguồn, ghi chú soạn:** BV §§9.2–9.4.1; Bài 03 S05-03, S05-05b/c; MIT lec16; Bài giảng 00, B05. Đại số của khai triển bậc một và lý do dấu chiếm ưu thế nằm trong ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
-### RG02 — Hướng gradient
+### RG02 — Hướng ngược gradient
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang của người dùng: đổi tiêu đề từ "Hướng gradient từ mô hình bậc hai" thành "Hướng gradient" (gọi tên khái niệm, không kể tiến trình); nêu $x$ là điểm hiện tại cố định (bước đầu $x=x^0$), đóng phát hiện S9 của lượt rà RG01; gọi tên vai trò của số hạng $\tfrac12\|d\|_2^2$ là phạt độ dài bước để mô hình bậc hai không xuất hiện đột ngột. Trước đó: sửa văn phong ngày 2026-09-26; quyết định cấu trúc đã triển khai: thêm.
 - **Sửa 2026-10-12:** ba khối chữ-công thức thành câu và công thức hiển thị; khung bỏ, câu cuối giữ "lồi chặt (còn gọi là lồi nghiêm ngặt)". `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Tiêu đề "Hướng gradient" → "Hướng ngược gradient" (A1); thêm dòng "Nhắc lại:" định nghĩa ma trận đối xứng $W\succ0$ (xác định dương) trước lần dùng đầu tiên $I\succ0$ (B1, nghiêm trọng); thêm dòng "$d_G$ gọi là hướng ngược gradient (negative gradient)"; hai dòng mở đầu gộp thành một dòng với vế sau hiện bằng fragment để giữ ≤ 6 dòng. 35 → 55 âm tiết, 5 → 6 dòng, dòng dài nhất 19 âm tiết. Ghi chú: "Hướng ngược gradient (negative gradient)", "số hạng phạt (penalty term)" (liên bài số 2).
 - **Nội dung trên trang:** Xấp xỉ tuyến tính tại $x$ không có cực tiểu hữu hạn khi $g\ne0$. Thêm số hạng phạt độ dài bước: $Q_I(d)=f(x)+g^Td+\tfrac12\|d\|_2^2$; KKT không ràng buộc theo $d$ cho $g+d=0$, nên $d_G=-g$. Khung bên: bài con có $x$ là điểm hiện tại cố định, biến $d\in\mathbb R^n$; $\nabla^2Q_I=I\succ0$ nên lồi chặt, nghiệm duy nhất.
 - **Bố cục chọn:** Một cột ba dòng biến đổi, mỗi lần hiện một dòng; bên phải 25% ghi vai trò của $x$ và $d$ cùng lý do nghiệm duy nhất. Đo ở 1600×900: đáy nội dung 739 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Bước toán mới được suy ra từ điều kiện dừng đã học; phân biệt bài gốc theo $x$ và bài con theo $d$.
@@ -271,7 +281,8 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề (tên thuật toán); đặt điều kiện giảm đủ lên trước thủ tục vì các bước cũ nhắc "ngưỡng bên dưới" trước khi điều kiện xuất hiện; thêm câu diễn giải "giảm đủ" để điều kiện không xuất hiện đột ngột; gộp thủ tục còn ba bước; sửa ghi chú nhắc tới tiếp tuyến không có trên hình. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần G (G-S7): thêm khoảng trắng trong `<desc>` của `armijo-window.svg`.
 - **Sửa 2026-10-12:** "Định nghĩa." và "Ý nghĩa:" thay nhãn cũ; alt bỏ "VD1". `sửa`.
-- **Nội dung trên trang:** Điều kiện giảm đủ (Armijo) với $0<\alpha<1/2$: $f(x+td)\le f(x)+\alpha t\,g^Td$; mức giảm thật đạt ít nhất phần $\alpha$ của mức giảm dự báo tuyến tính $-t\,g^Td$. Thủ tục: với hướng giảm $d$, đặt $t=1$; nếu $x+td$ thuộc miền và thỏa điều kiện thì nhận $t$; nếu không, $t\leftarrow\beta t$ ($0<\beta<1$) và kiểm lại.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Dòng "Ý nghĩa:": "mức giảm thật" → "mức giảm thực tế (actual reduction)" (A6); ghi chú "mức giảm thực tế". 48 → 51 âm tiết.
+- **Nội dung trên trang:** Điều kiện giảm đủ (Armijo) với $0<\alpha<1/2$: $f(x+td)\le f(x)+\alpha t\,g^Td$; mức giảm thực tế đạt ít nhất phần $\alpha$ của mức giảm dự báo tuyến tính $-t\,g^Td$. Thủ tục: với hướng giảm $d$, đặt $t=1$; nếu $x+td$ thuộc miền và thỏa điều kiện thì nhận $t$; nếu không, $t\leftarrow\beta t$ ($0<\beta<1$) và kiểm lại.
 - **Bố cục chọn:** Trái 60%: điều kiện, diễn giải, khung thủ tục; phải: hình VD1 với $\alpha=1/10$. Đo ở 1600×900: đáy nội dung 757 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Điều kiện được đọc trước, thủ tục dùng điều kiện đó; hình kiểm vùng nhận bước bằng số của VD1.
 - **Vào → ra:** Đầu vào: RG03 cho thấy khoảng bước làm giảm $f$ bị giới hạn và nói chung không tính được dạng đóng. Đầu ra: thủ tục dừng sau hữu hạn lần co (vì $\alpha<1$); RG05 chạy thủ tục trên VD1 với $\beta=1/2$.
@@ -284,10 +295,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; dòng dữ kiện nêu đủ $x^0$ và hướng $d=d_G$; cột ngưỡng viết cụ thể $62-82t$; thêm dòng kết quả $x^1$, $f(x^1)$ là đầu ra của bước lặp. Trước đó: sửa văn phong ngày 2026-09-26.
 - **Sửa 2026-10-12:** tiêu đề theo mẫu "Ví dụ: …"; dòng dữ kiện và yêu cầu "Tính bước được nhận."; câu cuối "Kết luận:". `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Kết luận: "lượt sau" → "vòng lặp sau" (A9); ghi chú: "lượt" → "vòng lặp", "hướng gradient" → "hướng ngược gradient". 34 → 35 âm tiết.
 - **Nội dung trên trang:** VD1: $x^0=(2,4)^T$, $d=d_G=(-6,-28)^T$, $f(x^0)=62$, $g^Td=-820$, $\alpha=1/10$, $\beta=1/2$. Bảng ba lần thử $t=1,1/2,1/4$ với điểm thử $x^0+td$, giá trị $f$, ngưỡng $62-82t$: $2040>-20$ loại; $703/2>21$ loại; $255/8\le83/2$ nhận. Dòng kết quả: $x^1=(1/2,-3)^T$, $f(x^1)=255/8$; lượt sau tính lại gradient tại $x^1$.
 - **Bố cục chọn:** Dòng dữ kiện, bảng hiện từng hàng, dòng kết quả hiện sau cùng. Đo ở 1600×900: đáy nội dung 583 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Mỗi lần thử so hai số cụ thể; ngưỡng không cần tự thay tham số.
-- **Vào → ra:** Đầu vào: thủ tục và điều kiện Armijo (RG04); vùng nhận $0<t\le369/1399$. Đầu ra: bước $t=1/4$, điểm $x^1$ và $g(x^1)=(3/2,-21)^T$ cho lượt sau; các thành phần được ghép thành thuật toán ở RG06.
+- **Vào → ra:** Đầu vào: thủ tục và điều kiện Armijo (RG04); vùng nhận $0<t\le369/1399$. Đầu ra: bước $t=1/4$, điểm $x^1$ và $g(x^1)=(3/2,-21)^T$ cho vòng lặp sau; các thành phần được ghép thành thuật toán ở RG06.
 - **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RG11.
 - **Số liệu:** Tính lại bằng phân số: $f(-4,-24)=2040$, $f(-1,-10)=703/2$, $f(1/2,-3)=255/8$; ngưỡng $-20,21,83/2$.
 - **Nguồn, ghi chú soạn:** BV §§9.2–9.3; MIT lec16.
@@ -297,7 +309,8 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm đầu ra; thay khung kết luận về bước $1/L$ (đưa hằng số Lipschitz $L$ lên mặt trang đột ngột, chưa định nghĩa trên mặt trang nào) bằng câu nối tiêu chí dừng với điều kiện KKT $\nabla f(x^*)=0$ của sườn chung; chuyển định nghĩa $L$ và các cận hội tụ bước cố định vào ghi chú. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần G (G-M1–G-M3): đầu vào ghi $x^0\in\operatorname{dom}f$ (miền mở); ghi chú sửa phạm vi cận hội tụ (bước cố định $1/L$; BV §9.3.1 cho cận tuyến tính với quay lui khi lồi mạnh) và nêu "Hessian chéo như VD1".
 - **Sửa 2026-10-12:** xem bảng trang vượt trần. `sửa`.
-- **Nội dung trên trang:** Năm bước: tính $g=\nabla f(x)$; dừng nếu $\|g\|_2\le\varepsilon_g$; $d=-g$; chọn $t$ bằng quay lui Armijo; cập nhật $x\leftarrow x+td$. Khung phải: đầu vào ($x^0$ trong miền mở, $\varepsilon_g>0$, $\alpha,\beta$), đầu ra (điểm $x$ với $\|\nabla f(x)\|_2\le\varepsilon_g$), chi phí mỗi lượt. Kết luận: tiêu chí dừng là dạng xấp xỉ của KKT $\nabla f(x^*)=0$; với $f$ lồi, điểm thỏa đúng điều kiện là nghiệm tối ưu toàn cục.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. "(miền mở)" → "(miền xác định của $f$, mở)" cho $\operatorname{dom}f$ (B9); "Chi phí mỗi lượt" → "Chi phí mỗi vòng lặp" (A9); ghi chú tương ứng. 40 → 45 âm tiết, 6 dòng.
+- **Nội dung trên trang:** Năm bước: tính $g=\nabla f(x)$; dừng nếu $\|g\|_2\le\varepsilon_g$; $d=-g$; chọn $t$ bằng quay lui Armijo; cập nhật $x\leftarrow x+td$. Khung phải: đầu vào ($x^0$ trong miền mở, $\varepsilon_g>0$, $\alpha,\beta$), đầu ra (điểm $x$ với $\|\nabla f(x)\|_2\le\varepsilon_g$), chi phí mỗi vòng lặp. Kết luận: tiêu chí dừng là dạng xấp xỉ của KKT $\nabla f(x^*)=0$; với $f$ lồi, điểm thỏa đúng điều kiện là nghiệm tối ưu toàn cục.
 - **Bố cục chọn:** Trái 65% khung thủ tục; phải khung đầu vào–đầu ra–chi phí; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 755 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Thủ tục đầy đủ đặt cạnh đầu vào–đầu ra; tiêu chí dừng được nối với điều kiện tối ưu đã học thay vì một khái niệm mới.
 - **Vào → ra:** Đầu vào: hướng $d_G=-g$ (RG02), quay lui Armijo (RG04–RG05). Đầu ra: thuật toán hoàn chỉnh; ghi chú nêu kết quả hội tụ thuộc cấu hình bước cố định, và giữ $t$ cố định tách hệ số cập nhật theo tọa độ, làm cơ sở cho RG07.
@@ -308,12 +321,13 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RG07 — Độ cong không đồng đều
 
-- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Ảnh hưởng của thước đo" thành "Độ cong không đồng đều" vì trang chưa bàn tới thước đo mà cho thấy hệ số co khác nhau do độ cong; nêu lý do chọn $t=1/4$ (bước Armijo đã nhận ở lượt đầu); viết hệ số co dạng $1-3t$, $1-7t$; bỏ câu "cấu hình bước cố định tách ảnh hưởng của độ cong khỏi quy tắc quay lui"; khung kết luận nối nguyên nhân với số hạng phạt $\tfrac12\|d\|_2^2$ của RG02 thay cho câu "chuẩn bậc hai phản ánh độ cong" xuất hiện đột ngột. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần G (G-S1): khung kết luận thêm "cần đo độ dài bằng chuẩn có trọng số".
+- **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Ảnh hưởng của thước đo" thành "Độ cong không đồng đều" vì trang chưa bàn tới thước đo mà cho thấy hệ số co khác nhau do độ cong; nêu lý do chọn $t=1/4$ (bước Armijo đã nhận ở vòng lặp đầu); viết hệ số co dạng $1-3t$, $1-7t$; bỏ câu "cấu hình bước cố định tách ảnh hưởng của độ cong khỏi quy tắc quay lui"; khung kết luận nối nguyên nhân với số hạng phạt $\tfrac12\|d\|_2^2$ của RG02 thay cho câu "chuẩn bậc hai phản ánh độ cong" xuất hiện đột ngột. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần G (G-S1): khung kết luận thêm "cần đo độ dài bằng chuẩn có trọng số".
 - **Sửa 2026-10-12:** khung kết luận 37 âm tiết rút thành dòng "Kết luận:"; diễn giải về số hạng phạt chuyển xuống ghi chú (đã có). `sửa`.
-- **Nội dung trên trang:** Hình đường đi với bước cố định $t=1/4$ trên VD1. Khung: giữ bước $t=1/4$ đã nhận ở lượt đầu; $d_G=-(3x_1,7x_2)^T$; $x_1^+=(1-3t)x_1=\tfrac14x_1$, $x_2^+=(1-7t)x_2=-\tfrac34x_2$. Kết luận: cùng một bước $t$, hai tọa độ co theo $1-3t$ và $1-7t$; số hạng phạt $\tfrac12\|d\|_2^2$ đo mọi phương như nhau nên hướng $-g$ không tính đến độ cong khác nhau.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "lượt" → "vòng lặp" (A9).
+- **Nội dung trên trang:** Hình đường đi với bước cố định $t=1/4$ trên VD1. Khung: giữ bước $t=1/4$ đã nhận ở vòng lặp đầu; $d_G=-(3x_1,7x_2)^T$; $x_1^+=(1-3t)x_1=\tfrac14x_1$, $x_2^+=(1-7t)x_2=-\tfrac34x_2$. Kết luận: cùng một bước $t$, hai tọa độ co theo $1-3t$ và $1-7t$; số hạng phạt $\tfrac12\|d\|_2^2$ đo mọi phương như nhau nên hướng $-g$ không tính đến độ cong khác nhau.
 - **Bố cục chọn:** Trái 65% hình; phải khung cập nhật; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 761 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Hai hệ số co được đọc trực tiếp từ đường đi trên hình; nguyên nhân được quy về đúng thành phần của bài con đã học.
-- **Vào → ra:** Đầu vào: thuật toán giảm gradient (RG06), bước $t=1/4$ (RG05), bài con $Q_I$ (RG02). Đầu ra: nhu cầu thay chuẩn Euclid trong bài con chọn hướng bằng chuẩn có trọng số theo độ cong (RG08).
+- **Vào → ra:** Đầu vào: thuật toán hạ gradient (RG06), bước $t=1/4$ (RG05), bài con $Q_I$ (RG02). Đầu ra: nhu cầu thay chuẩn Euclid trong bài con chọn hướng bằng chuẩn có trọng số theo độ cong (RG08).
 - **Chuẩn và minh chứng:** LLO6 / CLO1.
 - **Số liệu:** VD1: $x_2$: $4\to-3\to9/4\to\cdots$; bước cố định tối ưu $t=1/5$ cho hệ số $2/5=(\kappa-1)/(\kappa+1)$, $\kappa=7/3$ (ghi chú, tính lại).
 - **Nguồn, ghi chú soạn:** BV §§9.3–9.4.1; MIT lec16.
@@ -323,6 +337,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Hướng giảm dốc nhất có chuẩn đơn vị" thành "Bài toán hướng giảm dốc nhất" (ngắn hơn, không trùng RG10, nêu đúng việc trang làm là lập bài toán); thêm câu định nghĩa "dốc nhất" để ràng buộc độ dài không xuất hiện đột ngột; sắp lại thứ tự: chuẩn → định nghĩa → bài toán → hàm Lagrange ở cột phải, ví dụ VD1 dưới hình ở cột trái; bỏ dòng giả thiết đứng rời. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần G (G-S1, G-S3, G-M5): mặt trang ghi "Chuẩn có trọng số", câu VD1 ghi "$W=\operatorname{diag}(3,7)$ theo độ cong" (rút gọn để vừa khung, đáy 790/829 px); ghi chú định nghĩa "hướng giảm dốc nhất (gọi tắt: hướng dốc nhất)" và lý do dùng dạng ràng buộc chuẩn hóa.
 - **Sửa 2026-10-12:** "VD1" thay bằng dữ kiện; nhãn "Định nghĩa.". `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. "tiếp điểm" → "điểm tiếp xúc" (A10, mặt trang và ghi chú); định nghĩa thêm "(gọi tắt: hướng dốc nhất)" (A11); ghi chú thêm "chuẩn có trọng số (weighted norm)" (A17), "cùng phương với hướng ngược gradient" (A1). 38 → 44 âm tiết, 6 dòng.
 - **Nội dung trên trang:** Chuẩn theo độ cong $\|v\|_W=\sqrt{v^TWv}$, $W\succ0$. Hướng giảm dốc nhất chuẩn hóa ($g\ne0$): $g^Tv$ nhỏ nhất trên các hướng có độ dài không quá 1; $\min_v g^Tv$ với $v^TWv\le1$. Hàm Lagrange với $\zeta\ge0$: $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$. VD1, $W=\operatorname{diag}(3,7)$: nghiệm là điểm tiếp xúc của elip $3v_1^2+7v_2^2=1$ với đường mức $6v_1+28v_2=c$ thấp nhất.
 - **Bố cục chọn:** Trái 45%: hình elip–đường mức và câu VD1; phải: chuẩn, định nghĩa, bài toán, hàm Lagrange. Đo ở 1600×900: đáy nội dung 793 px, đáy trang 829 px (bản nháp đặt VD1 trong khung ở cột phải bị tràn 44 px nên chuyển sang cột trái).
 - **Lý do bố cục cho sinh viên năm 3:** Bài toán được phát biểu sau khi đã có chuẩn và nghĩa của "dốc nhất"; hình và ví dụ đứng cạnh nhau.
@@ -348,6 +363,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RG09b — Nghiệm của bài toán hướng dốc nhất
 
 - **Quyết định:** `tách` 2026-10-12 từ RG09 cũ (56 âm tiết, 10 dòng); sau tái kiểm mạch kể, chứng minh ba bước tách tiếp sang RG09c theo mẫu "Trang phát biểu kết quả".
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. "cùng phương hướng gradient" → "cùng phương với hướng ngược gradient" (A1). 32 → 34 âm tiết.
 - **Lý do tồn tại:** phát biểu mệnh đề nghiệm $v$, $\zeta$ với "Ý nghĩa:" và trường hợp $W=I$.
 - **Nhu cầu hoặc khoảng trống được lấp:** công thức hướng dốc nhất suy từ bốn nhóm KKT.
 - **Đầu vào:** bốn nhóm KKT (RG09).
@@ -358,6 +374,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RG09c — Chứng minh: nghiệm của bài toán hướng dốc nhất
 
 - **Quyết định:** `tách` 2026-10-12 sau tái kiểm mạch kể (chứng minh nhiều bước không đặt cùng trang với mệnh đề).
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "$g=0$ là điều kiện dừng của thuật toán" → "tiêu chí dừng của thuật toán" (cùng nghĩa với A3); "Vectơ" → "Vector" (liên bài số 7).
 - **Lý do tồn tại:** bốn bước dùng lần lượt nhóm dừng, bù trừ và ràng buộc hoạt động.
 - **Nhu cầu hoặc khoảng trống được lấp:** cho thấy mỗi nhóm KKT được dùng ở bước nào.
 - **Đầu vào:** mệnh đề RG09b.
@@ -369,6 +386,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Hướng giảm dốc nhất theo chuẩn bậc hai" thành "Hướng dốc nhất theo chuẩn bậc hai" (ngắn hơn, cùng thuật ngữ với RG09); nêu lý do của quy ước độ dài (với $W=I$ cho $d=-g$) để chuẩn đối ngẫu không xuất hiện như quy ước tùy ý; đưa kết nối $Q_W$ từ dòng chân trang lên khung kết luận; chuyển dòng "$v$ có chuẩn 1…" (bị ngắt giữa công thức) vào ghi chú. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần G (G-S4, G-M4, G-S8): đổi tiêu đề thành "Hướng dốc nhất có trọng số" để không chạm nút điều hướng; ghi chú bỏ tham chiếu trước tới $\delta_N^2$, dùng "quy ước thông dụng".
 - **Sửa 2026-10-12:** khung "VD1" thành "Ví dụ."; khung kết luận thành dòng "Kết luận:" (một khung mỗi trang). `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "$t$ là bước số" → "$t$ là độ dài bước, một số dương" (A14); "khớp với hướng ngược gradient" (A1); "thước đo mức giảm" → "hai lần mức giảm của mô hình" (A8, chính xác hơn vì $Q(0)-Q(d)=\tfrac12d^TWd$).
 - **Nội dung trên trang:** Quy ước độ dài: nhân $v$ với chuẩn đối ngẫu $\|g\|_{W,*}=\max_{\|v\|_W\le1}g^Tv=\sqrt{g^TW^{-1}g}$; $d=\|g\|_{W,*}v=-W^{-1}g$, tức $Wd=-g$; với $W=I$, $d=-g$. Khung VD1: $3d_1=-6$, $7d_2=-28$, $d=(-2,-4)^T$, $d^TWd=124$, $v=d/\sqrt{124}$. Kết luận: $Q_W(d)=f(x)+g^Td+\tfrac12d^TWd$ cho cùng hệ $g+Wd=0$; hướng dốc nhất theo $\|\cdot\|_W$ là nghiệm của mô hình bậc hai với $I$ thay bằng $W$.
 - **Bố cục chọn:** `ratio55`: trái quy ước và hai công thức, phải khung VD1; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 730 px, đáy trang 829 px (trước sửa 822 px).
 - **Lý do bố cục cho sinh viên năm 3:** Quy ước độ dài được kiểm bằng trường hợp đã biết $W=I$; kết nối với mô hình bậc hai được đọc như kết luận chính.
@@ -394,6 +412,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RG11b — Bài tập: hướng theo $W$ và quay lui
 
 - **Quyết định:** `thêm` 2026-10-12; lời giải lấy từ ghi chú RG11 cũ.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: nhãn "Đáp án câu …" → "Lời giải câu …" (liên bài số 13).
 - **Lý do tồn tại:** lời giải trên mặt trang của bài tập cụm "Gradient và bước"/"Chuẩn bậc hai" (AGENTS.md: mỗi cụm lớn có ít nhất một bài tập có lời giải trên mặt trang).
 - **Nhu cầu hoặc khoảng trống được lấp:** người học đối chiếu từng bước tính.
 - **Đầu vào:** đề bài RG11.
@@ -405,10 +424,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ và tốc độ hội tụ của giảm gradient cho hàm lồi có gradient Lipschitz. Mở cụm tự học RG12–RG18, đặt sau câu hỏi kiểm tra RG11 và trước phần Newton; nhãn "Tự học" từng đặt trên mặt trang đã bỏ ngày 2026-10-12; phân loại tự học chỉ còn trong storyboard.
 - **Sửa 2026-10-12:** bỏ badge "Tự học"; "Hệ quả." đúng nhãn; "VD1" thay bằng hàm. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. "Nhu cầu:" thêm "$f^*=\inf f$" (B3) và rút gọn thành một dòng; dòng "$f$ lồi, khả vi hai lần: $\nabla^2f\preceq LI$" nối "tức $v^T\nabla^2f\,v\le L\|v\|_2^2$ với mọi $v$" (B2) và chuyển ra ngoài khung, trải toàn bề rộng dưới lưới hai cột, vì nằm trong cột 60% thì tràn khung 16:9 (đo 757/674 px); sau khi chuyển: 676/674 px (trong dung sai 2 px). 34 → 37 âm tiết, 6 dòng.
 - **Nội dung trên trang:** Nhu cầu: bước cố định $t=1/L$ chỉ an toàn khi độ cong bị chặn trên. Định nghĩa gradient $L$-Lipschitz; hệ quả cận trên bậc hai $f(y)\le f(x)+\nabla f(x)^T(y-x)+\tfrac L2\|y-x\|_2^2$; với $f$ lồi $C^2$: $\nabla^2f\preceq LI$; VD1 $L=7$.
 - **Bố cục chọn:** Lưới 40–60: trái hình SVG tự vẽ `img/lec-04/lipschitz-upper-bound.svg` (mất mát logistic, parabol cận trên $L=1/4$, tiếp tuyến tại $s=1$, có chú giải); phải khung định nghĩa và hệ quả.
 - **Lý do tồn tại:** RG06 dùng $t=1/L$ và nêu tốc độ trong ghi chú mà không có giả thiết hay chứng minh trên mặt trang; khái niệm $L$ cần được định nghĩa trước bổ đề giảm.
-- **Vào → ra:** Đầu vào: thuật toán giảm gradient và bước cố định (RG06), VD1. Đầu ra: cận trên bậc hai, dùng để chứng minh bổ đề giảm (RG13); tiếp tuyến dưới $f$ (tính lồi) dùng ở RG14.
+- **Vào → ra:** Đầu vào: thuật toán hạ gradient và bước cố định (RG06), VD1. Đầu ra: cận trên bậc hai, dùng để chứng minh bổ đề giảm (RG13); tiếp tuyến dưới $f$ (tính lồi) dùng ở RG14.
 - **Chuẩn và minh chứng:** LLO8 / CLO2 (phân tích tốc độ hội tụ); tự học, kiểm ở RG18.
 - **Số liệu:** VD1: $\nabla^2f=\operatorname{diag}(3,7)$, $L=7$. Hình: $f(s)=\log(1+e^s)$, $f''\le1/4$, $f(1)\approx1{,}313$, $f'(1)\approx0{,}731$.
 - **Nguồn, ghi chú soạn:** BV §9.1.2 (hằng số $M$), §9.3; MIT 6.079 lec16; chứng minh cận trên bằng tích phân dọc đoạn và Cauchy–Schwarz trong ghi chú.
@@ -417,6 +437,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ của giảm gradient; trang thứ hai của cụm tự học.
 - **Sửa 2026-10-12:** bỏ badge; thứ tự Bổ đề → Ý nghĩa → Chứng minh → Ví dụ; khung kết luận thành "Ý nghĩa:". `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "Bổ đề giảm (descent lemma)" (A17); "giá trị thật" → "giá trị thực tế"; "giảm thật sự" → "giảm chặt" (A6).
 - **Nội dung trên trang:** Thế $y=x-g/L$ vào cận trên; bổ đề $f(x-\tfrac1L\nabla f(x))\le f(x)-\tfrac1{2L}\|\nabla f(x)\|_2^2$; VD1 $t=1/7$: $x^1=(8/7,0)^T$, $f(x^1)=96/49\le24/7$; kết luận: bước cố định giảm ít nhất $\|g\|^2/(2L)$.
 - **Bố cục chọn:** Một cột: dòng thế, phép cộng hai số hạng, khung bổ đề, dòng VD1, kết luận.
 - **Lý do tồn tại:** Mức giảm bảo đảm là bước đầu của mọi chứng minh tốc độ; tách khỏi trang định nghĩa để mỗi trang một luận điểm.
@@ -478,7 +499,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Sửa sau rà soát 2026-10-01:** "Ý chính" nêu rõ bất đẳng thức $\|\nabla f\|_2^2\ge2\mu(f-f^*)$; $\mu=3$ đưa lên dòng nhu cầu; định nghĩa đầy đủ (khả vi trên $\mathbb R^n$, mọi $x,y\in\mathbb R^n$), sự tồn tại duy nhất $x^*$ và câu nối sang trang câu hỏi nằm trong ghi chú.
 - **Nội dung trên trang:** Nhu cầu: cận $O(1/k)$ cần 7000 bước trên VD1, thực tế 6; VD1 lồi mạnh. Định nghĩa lồi mạnh dạng bậc nhất; hệ quả $\|\nabla f\|^2\ge2\mu(f-f^*)$. Định lý bước $1/L$: $e_k\le(1-\mu/L)^ke_0$ với $e_k=f(x^k)-f^*$; ý chính; VD1 ($\mu=3$, $L=7$): $62(4/7)^k\le0{,}01$ khi $k\ge16$. Kết luận: $k\ge\kappa\log(e_0/\varepsilon)$, $\kappa=L/\mu$.
 - **Bố cục chọn:** Dòng nhu cầu; lưới hai khung (định nghĩa và bất đẳng thức gradient; định lý, ý chính, VD1); kết luận.
-- **Lý do tồn tại:** Trả lời chênh lệch giữa cận $O(1/k)$ và hành vi thật trên VD1; cho tốc độ tuyến tính dùng trong câu hỏi RG18 và bảng so sánh ở RN07.
+- **Lý do tồn tại:** Trả lời chênh lệch giữa cận $O(1/k)$ và hành vi thực tế trên VD1; cho tốc độ tuyến tính dùng trong câu hỏi RG18 và bảng so sánh ở RN07.
 - **Vào → ra:** Đầu vào: bổ đề giảm (RG13), định lý $O(1/k)$ và quay lui (RG15–RG16), VD1. Đầu ra: tốc độ tuyến tính $(1-\mu/L)^k$, số bước $\kappa\log(e_0/\varepsilon)$; ghi chú nối với bước tối ưu $2/(\mu+L)$ ở trang độ cong không đồng đều.
 - **Chuẩn và minh chứng:** LLO8 / CLO2; tự học, kiểm ở RG18 câu 1.
 - **Số liệu:** $\mu=3$, $L=7$, $\kappa=7/3$; $62(4/7)^k\le0{,}01\Leftrightarrow k\ge\log6200/\log(7/4)\approx15{,}6$, tức $k=16$; điều kiện đủ $\kappa\log6200\approx20{,}4$ cho $k\ge21$; bước $2/(\mu+L)=1/5$ cho hệ số co khoảng cách $(\kappa-1)/(\kappa+1)=2/5$ (hàm bậc hai, lập luận theo giá trị riêng).
@@ -487,6 +508,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RG17b — Hội tụ tuyến tính
 
 - **Quyết định:** `tách` 2026-10-12.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "dãy giá trị thật" → "dãy giá trị thực tế" (A6); "vectơ riêng" → "vector riêng" (liên bài số 7).
 - **Lý do tồn tại:** tách từ RG17 cũ (69 âm tiết, 10 dòng): định lý hội tụ tuyến tính với lồi mạnh.
 - **Nhu cầu hoặc khoảng trống được lấp:** tốc độ $\log(1/\varepsilon)$ thay cho $1/\varepsilon$.
 - **Đầu vào:** định nghĩa và hệ quả lồi mạnh (RG17).
@@ -498,10 +520,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-10-01 (lần 2): đổi mã RG17 → RG18 vì chèn trang tự học "Hội tụ tuyến tính" (RG17 mới) trước trang này; đáp án câu 1 trong ghi chú dẫn chiếu định lý ở trang trước. Trước đó: `thêm` ngày 2026-10-01: người dùng yêu cầu thêm phần tự học về hội tụ của giảm gradient (có quay lui); trang kiểm tra khép cụm tự học.
 - **Sửa 2026-10-12:** bỏ badge; tiêu đề "Bài tập: …"; ba câu hỏi viết thành nhiệm vụ, dữ kiện nêu lại; bài tự làm, đáp án trong ghi chú. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "thước đo" → "ma trận trọng số" (A8).
 - **Nội dung trên trang:** Ba câu hỏi (nhãn "Câu hỏi:"): so cận $70/k$ với số bước thực tế trên VD1 ($t=1/7$, $f(x^k)=6(16/49)^k$); vì sao $t>2/L$ phân kỳ; quay lui với $\alpha=\tfrac12$, $\beta=\tfrac14$ nhận $t$ nào và cận nào. Đáp án trong ghi chú.
 - **Bố cục chọn:** Ba khung câu hỏi xếp dọc.
-- **Lý do tồn tại:** Bài tập của cụm tự học; đo khả năng dùng cận trên dữ kiện cụ thể, phân biệt cận trường hợp xấu nhất với hành vi thật, và chuyển giao sang tham số $\beta$ mới.
-- **Vào → ra:** Đầu vào: RG13–RG16. Đầu ra: cận phụ thuộc độ cong lớn nhất $L$; nhu cầu thước đo theo độ cong tại từng điểm, nối sang phần Newton.
+- **Lý do tồn tại:** Bài tập của cụm tự học; đo khả năng dùng cận trên dữ kiện cụ thể, phân biệt cận trường hợp xấu nhất với hành vi thực tế, và chuyển giao sang tham số $\beta$ mới.
+- **Vào → ra:** Đầu vào: RG13–RG16. Đầu ra: cận phụ thuộc độ cong lớn nhất $L$; nhu cầu ma trận trọng số theo độ cong tại từng điểm, nối sang phần Newton.
 - **Chuẩn và minh chứng:** LLO8 / CLO2; minh chứng tự học.
 - **Số liệu:** Câu 1: $k\ge7000$ theo cận; thực tế $k=6$ ($k=5$: $\approx0{,}0223$; $k=6$: $\approx0{,}0073$); cận tuyến tính $62(4/7)^k$ cần $k\ge16$. Câu 2: hệ số $|1-7t|>1$. Câu 3: nhận $t=1/16$ ($2775/128\le291/8$), $t_{\min}=1/28$, cận $280/k$.
 - **Nguồn, ghi chú soạn:** BV §9.3; ghi chú bài giảng mục B.
@@ -509,6 +532,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RN00 — Phương pháp Newton (trang tiêu đề mạch 3)
 
 - **Quyết định:** `thêm` ngày 2026-10-12, trang tiêu đề mạch bắt buộc (yêu cầu người dùng 2026-10-12; AGENTS.md "Trang tiêu đề mạch"). Không xử lý bằng sửa trang đầu mạch vì trang đó mang khái niệm đầu tiên của mạch.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Dòng dẫn: "thay thước đo $W$ cố định bằng Hessian tại điểm hiện tại, vì độ cong thay đổi theo điểm" → "thay ma trận trọng số $W$ cố định bằng Hessian tại từng điểm, vì độ cong đổi theo điểm" (A8); 20 âm tiết (≤ 25), toàn trang 36 → 36.
 - **Lý do tồn tại:** đánh dấu ranh giới RG18 → mạch 3; số "3." trùng mục 3 của RP03b và chỉ số `#/3`; `id="mach-3"`.
 - **Nhu cầu hoặc khoảng trống được lấp:** người học thấy nhiệm vụ của mạch trước khi gặp khái niệm đầu tiên.
 - **Đầu vào:** hệ $Wd=-g$ và nhận xét $W$ bằng Hessian cho nghiệm sau một bước trên hàm bậc hai.
@@ -521,6 +545,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thêm dòng nhu cầu nhận đầu ra của RG11 (VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước) và nêu phép đổi ký hiệu $W\to H=\nabla^2f(x)$; khung VD2 nêu lý do đổi ví dụ (không bậc hai, độ cong $1/s^2$ đổi theo $s$, một biến $s$ thay $x$, nghiệm $s^\star=1$); khung kết luận nêu cụ thể tính cục bộ của parabol. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): đổi tiêu đề thành "Mô hình bậc hai cục bộ" để không chạm nút điều hướng; dòng mở nêu $W=H=\nabla^2f(x)$ tại điểm hiện tại.
 - **Sửa 2026-10-12:** "VD1/VD2" thay bằng dữ kiện; nhãn "Nhu cầu:", "Ví dụ.", "Trực quan."; một khung. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Dòng "Ví dụ." thêm "($\log$ tự nhiên)" (B13); alt hình "hàm thật" → "hàm gốc"; ghi chú "thước đo" → "ma trận trọng số" (A8), "độ cong thật" → "độ cong của hàm" (A6). 43 → 45 âm tiết. Phần mô tả `desc` trong `img/lec-04/phi-local-model.svg` còn chữ "Hàm thật"; không sửa trong đợt này vì tệp SVG có mã SHA-256 ghi trong `source-provenance.md` và chữ này không nằm trong `title`.
 - **Sửa 2026-10-01:** dòng mở chỉ nêu VD1; "Hàm tổng quát: $W=H=\nabla^2f(x)$" chuyển vào khung VD2; dòng VD2 rút gọn để nội dung vừa khung 16:9 (L-S1).
 - **Nội dung trên trang:** Dòng mở: VD1 bậc hai, $W=\nabla^2f$ cho nghiệm sau một bước; tổng quát $W=H=\nabla^2f(x)$. Hình $\varphi$, tiếp tuyến và parabol tại $s^0=1/4$. Khung VD2: $\varphi(s)=s-\log s$, $s>0$, $\varphi''(s)=1/s^2$, $s^\star=1$; tại $s^0=1/4$: $g=-3$, $H=16$. Kết luận: parabol dùng $H$ tại $s^0$ khớp $\varphi$ gần $s^0$ rồi tách xa dần.
 - **Bố cục chọn:** Dòng nhu cầu; `ratio60`: trái hình, phải khung VD2; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 778 px, đáy trang 829 px (bản nháp đầu tràn 1 px do công thức khối và dòng mở hai dòng; đã rút gọn).
@@ -561,10 +586,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Độ giảm của mô hình Newton" thành "Độ giảm Newton" (thống nhất với RS03); đặt phép tính mức giảm mô hình trước định nghĩa để định nghĩa có nhu cầu; nêu thuật ngữ gốc (Newton decrement) ở lần đầu; bảng VD2 và khung VD1 ghi rõ đại lượng. Trước đó: sửa văn phong ngày 2026-09-26.
 - **Sửa 2026-10-12:** bỏ khung đối chiếu VD1 (nội dung có trong ghi chú); bảng mang tên hàm. Dòng 7 → 4. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "ba phép trừ" → "ba hiệu" (A4); "giảm thật" → "mức giảm thực tế" (A6).
 - **Nội dung trên trang:** Mức giảm mô hình dự báo, dùng $Hd=-g$: $Q_H(0)-Q_H(d)=-g^Td-\tfrac12d^THd=\tfrac12d^THd$. Định nghĩa: độ giảm Newton $\delta_N=\sqrt{d^THd}=\sqrt{-g^Td}\ge0$. Bảng VD2: $\delta_N^2=9/16$, giảm mô hình $9/32$. Khung VD1: $W=H$, giảm mô hình $124/2$ và giảm thật đều bằng $62$.
 - **Bố cục chọn:** `ratio60`: trái phép tính và định nghĩa, phải bảng VD2; khung VD1 dưới. Đo ở 1600×900: đáy nội dung 733 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Đại lượng được đặt tên sau khi đã tính ra; VD1 là trường hợp mô hình trùng hàm.
-- **Vào → ra:** Đầu vào: hệ $Hd=-g$ (RN02) và giới hạn của một bước (RN03). Đầu ra: $\delta_N^2/2$ là mức giảm mô hình, cần so với mức giảm thật và sai số tối ưu (RN05).
+- **Vào → ra:** Đầu vào: hệ $Hd=-g$ (RN02) và giới hạn của một bước (RN03). Đầu ra: $\delta_N^2/2$ là mức giảm mô hình, cần so với mức giảm thực tế và sai số tối ưu (RN05).
 - **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN08.
 - **Số liệu:** VD2: $\delta_N^2=16\cdot(3/16)^2=9/16$; VD1: $d^THd=124$.
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16; VD2 tự xây dựng.
@@ -574,7 +600,8 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Mức giảm hàm mục tiêu và sai số tối ưu" thành "Giảm mô hình và sai số tối ưu" (ngắn hơn, nêu đúng cặp đại lượng được so); đưa luận điểm trung tâm (giảm mô hình không phải cận sai số khi thiếu giả thiết) từ ghi chú lên khung kết luận, hiện sau bảng; rút gọn dòng Armijo. Trước đó: sửa văn phong ngày 2026-09-26.
 - **Sửa 2026-10-12:** xem bảng trang vượt trần. `sửa`.
-- **Nội dung trên trang:** Bảng ba phép trừ trên VD2 ($s^0=1/4$, $d=3/16$, $s^+=7/16$): giảm mô hình $9/32\approx0{,}28125$; giảm thật một bước $\log(7/4)-3/16\approx0{,}37212$; sai số tối ưu tại điểm đầu $\log4-3/4\approx0{,}63629$. Armijo, $\alpha=1/10$, $t=1$: ngưỡng $9/160<0{,}37212$, nhận bước đầy đủ. Kết luận: $\delta_N^2/2=9/32<\log4-3/4$; nếu không có giả thiết thêm về độ cong, giảm mô hình không phải cận sai số tối ưu.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. "Tính ba phép trừ:" → "Tính ba hiệu:", cột "Phép trừ" → "Hiệu" (A4); hàng "Giảm thật một bước" → "Giảm thực tế sau một bước" (A6); ghi chú: "hai hiệu trên hàm gốc", bỏ câu lấy trang làm chủ ngữ "Dòng cuối của trang rút ra kết luận" (mục 5 của báo cáo). 56 → 56 âm tiết.
+- **Nội dung trên trang:** Bảng ba hiệu trên VD2 ($s^0=1/4$, $d=3/16$, $s^+=7/16$): giảm mô hình $9/32\approx0{,}28125$; giảm thực tế sau một bước $\log(7/4)-3/16\approx0{,}37212$; sai số tối ưu tại điểm đầu $\log4-3/4\approx0{,}63629$. Armijo, $\alpha=1/10$, $t=1$: ngưỡng $9/160<0{,}37212$, nhận bước đầy đủ. Kết luận: $\delta_N^2/2=9/32<\log4-3/4$; nếu không có giả thiết thêm về độ cong, giảm mô hình không phải cận sai số tối ưu.
 - **Bố cục chọn:** Dòng dữ kiện, bảng hiện từng hàng, dòng Armijo, khung kết luận hiện sau cùng. Đo ở 1600×900: đáy nội dung 732 px, đáy trang 829 px.
 - **Lý do bố cục cho sinh viên năm 3:** Ba số được so trực tiếp; kết luận đọc từ bảng, không từ ghi chú.
 - **Vào → ra:** Đầu vào: $\delta_N^2/2$ (RN04), bước $s^+$ (RN02). Đầu ra: tiêu chí dừng theo $\delta_N^2/2$ tính được nhưng chưa là chứng nhận sai số (RN06); nhu cầu giả thiết kiểm soát độ cong (RS).
@@ -587,10 +614,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề từ "Thuật toán Newton và điều kiện áp dụng" thành "Thuật toán Newton" (song song RG06); thêm đầu ra; đặt tên dung sai $\varepsilon_{\mathrm{model}}$ trong đầu vào; gộp ba khung bên thành một khung đầu vào–đầu ra–điều kiện–chi phí; thay câu "hội tụ bậc hai cần giả thiết cục bộ" (khái niệm chưa định nghĩa) bằng kết luận về tiêu chí dừng có số liệu VD2; định nghĩa hội tụ bậc hai và giả thiết cục bộ chuyển vào ghi chú. Trước đó: sửa văn phong ngày 2026-09-26. Sửa theo rà soát phần N (2026-09-30): ghi chú nêu bước đầy đủ được nhận với $\alpha<1/2$ (BV §9.5.3).
 - **Sửa 2026-10-12:** xem bảng trang vượt trần. `sửa`.
-- **Nội dung trên trang:** Năm bước: tính $g,H$; giải $Hd=-g$; tính $\delta_N^2=d^THd$; dừng nếu $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$; nếu chưa, chọn $t$ bằng Armijo và cập nhật. Khung: đầu vào $x^0\in\operatorname{dom}f$, $\varepsilon_{\mathrm{model}}>0$, $\alpha,\beta$; đầu ra $x$ với $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$; điều kiện $f$ hai lần khả vi, $H\succ0$ tại điểm lặp; chi phí mỗi lượt Hessian và hệ $n\times n$, $O(n^3)$ khi đặc. Kết luận: tiêu chí $\delta_N^2/2$ tính được tại điểm hiện tại nhưng chưa chứng nhận sai số tối ưu (VD2: $9/32$ so với $0{,}636$).
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "Chi phí mỗi vòng lặp" (A9), "bậc $O(n^3)$" (A15).
+- **Nội dung trên trang:** Năm bước: tính $g,H$; giải $Hd=-g$; tính $\delta_N^2=d^THd$; dừng nếu $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$; nếu chưa, chọn $t$ bằng Armijo và cập nhật. Khung: đầu vào $x^0\in\operatorname{dom}f$, $\varepsilon_{\mathrm{model}}>0$, $\alpha,\beta$; đầu ra $x$ với $\delta_N^2/2\le\varepsilon_{\mathrm{model}}$; điều kiện $f$ hai lần khả vi, $H\succ0$ tại điểm lặp; chi phí mỗi vòng lặp Hessian và hệ $n\times n$, $O(n^3)$ khi đặc. Kết luận: tiêu chí $\delta_N^2/2$ tính được tại điểm hiện tại nhưng chưa chứng nhận sai số tối ưu (VD2: $9/32$ so với $0{,}636$).
 - **Bố cục chọn:** `lec-grid--60-40`: trái thủ tục, phải một khung bốn mục; khung kết luận dưới. Đo ở 1600×900: đáy nội dung 778 px, đáy trang 829 px.
-- **Lý do bố cục cho sinh viên năm 3:** Cùng khuôn với thuật toán giảm gradient để thấy hai phương pháp chỉ khác hướng và tiêu chí dừng.
-- **Vào → ra:** Đầu vào: hướng Newton (RN02), độ giảm Newton (RN04), so sánh ba phép trừ (RN05), Armijo (RG04). Đầu ra: thuật toán hoàn chỉnh; tiêu chí dừng chưa là cận sai số, dẫn tới câu hỏi RN08 và phần cận sai số (RS).
+- **Lý do bố cục cho sinh viên năm 3:** Cùng khuôn với thuật toán hạ gradient để thấy hai phương pháp chỉ khác hướng và tiêu chí dừng.
+- **Vào → ra:** Đầu vào: hướng Newton (RN02), độ giảm Newton (RN04), so sánh ba hiệu (RN05), Armijo (RG04). Đầu ra: thuật toán hoàn chỉnh; tiêu chí dừng chưa là cận sai số, dẫn tới câu hỏi RN08 và phần cận sai số (RS).
 - **Chuẩn và minh chứng:** LLO8 / CLO2; đo tại RN08.
 - **Số liệu:** VD2: $9/32$, $\log4-3/4\approx0{,}636$; $\delta_N^2=g^TH^{-1}g$ (ghi chú).
 - **Nguồn, ghi chú soạn:** BV §§9.5.1–9.5.3; MIT lec16.
@@ -600,8 +628,9 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `thêm` ngày 2026-10-01: người dùng yêu cầu "sau slide 'Thuật toán Newton', thêm một slide Tự học về tốc độ hội tụ của thuật toán trong các trường hợp (không cần chứng minh)". Có nhãn "Tự học".
 - **Sửa 2026-10-12:** bỏ badge; tách; dòng đầu thành "Định nghĩa."; bảng bốn trường hợp. `tách`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Hai ô "Hessian Lipschitz" → "Hessian $L_H$-Lipschitz" và thêm dòng "Ký hiệu:" định nghĩa Hessian $L_H$-Lipschitz bằng chuẩn $\|\cdot\|_2$ (B5; ghi chú nêu chuẩn phổ (spectral norm)); ô "Tự điều chỉnh" thêm "(định nghĩa ở mạch 6)" (B6); "tập mức đóng" → "tập mức dưới đóng" (A2); ghi chú bỏ mệnh đề "được định nghĩa ở dòng đầu trang" (mục 5). 57 → 71 âm tiết, 5 → 6 dòng. **Ngoại lệ mật độ:** trang bảng so sánh bốn trường hợp, áp trần 80 âm tiết (71 ≤ 80).
 - **Sửa sau rà soát 2026-10-01:** định nghĩa hội tụ bậc hai thêm "khi $k$ đủ lớn"; hàng tự điều chỉnh ghi "(định nghĩa sau)" và "tập mức đóng"; dòng toàn cục định nghĩa $\gamma$, $\varepsilon_0$; câu "số chữ số đúng gấp đôi" chuyển vào ghi chú.
-- **Nội dung trên trang:** Định nghĩa hội tụ bậc hai (chuyển từ trang câu hỏi). Bảng bốn trường hợp: bậc hai lồi chặt (một bước), cục bộ ($\nabla^2f(x^*)\succ0$, Hessian Lipschitz; bậc hai khi gần), toàn cục (lồi mạnh, Hessian Lipschitz; pha tắt dần rồi bậc hai), tự điều chỉnh (hằng số chỉ theo $\alpha,\beta$). Số bước toàn cục $\le(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$. Kết luận: Hessian không xác định dương thì hướng có thể không giảm; so với giảm gradient $O(1/k)$ hoặc $(1-\mu/L)^k$.
+- **Nội dung trên trang:** Định nghĩa hội tụ bậc hai (chuyển từ trang câu hỏi). Bảng bốn trường hợp: bậc hai lồi chặt (một bước), cục bộ ($\nabla^2f(x^*)\succ0$, Hessian Lipschitz; bậc hai khi gần), toàn cục (lồi mạnh, Hessian Lipschitz; pha tắt dần rồi bậc hai), tự điều chỉnh (hằng số chỉ theo $\alpha,\beta$). Số bước toàn cục $\le(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$. Kết luận: Hessian không xác định dương thì hướng có thể không giảm; so với hạ gradient $O(1/k)$ hoặc $(1-\mu/L)^k$.
 - **Bố cục chọn:** Dòng định nghĩa; bảng ba cột; dòng số bước; kết luận. Hằng số chính xác ở ghi chú.
 - **Lý do tồn tại:** Thuật toán Newton vừa hoàn chỉnh chưa có phát biểu về tốc độ; trang câu hỏi kế tiếp dùng khái niệm hội tụ bậc hai.
 - **Vào → ra:** Đầu vào: thuật toán Newton (RN06), cận gradient (RG15, RG16, ghi chú mục B). Đầu ra: định nghĩa hội tụ bậc hai cho RN08; chỉ dẫn tới phần tự điều chỉnh (RS).
@@ -612,6 +641,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RN07b — Số bước của Newton có quay lui
 
 - **Quyết định:** `tách` 2026-10-12.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Định lý: $mI\preceq\nabla^2f\preceq MI$ → $\mu I\preceq\nabla^2f\preceq LI$ (A13), "tập mức ban đầu" → "tập mức dưới ban đầu" (A2); dòng "Ký hiệu:" tách hai dòng: định nghĩa pha tắt dần (B7) và "$\gamma$ theo $\mu,L,L_H,\alpha,\beta$; $\varepsilon_0=2\mu^3/L_H^2$; quay lui với $0<\alpha<\tfrac12$" (B14). Ghi chú viết theo $\mu,L,L_H$ và nêu đối chiếu ký hiệu $m,M,L$ của Boyd và Vandenberghe. 42 → 52 âm tiết, 4 → 5 dòng. Tên tiếng Anh "sublevel set" đã có ở ghi chú RN07 (lần đầu).
 - **Lý do tồn tại:** tách từ RN07 cũ (79 âm tiết): phát biểu số bước toàn cục và lưu ý về Hessian không xác định dương.
 - **Nhu cầu hoặc khoảng trống được lấp:** số bước của pha tắt dần và pha bậc hai.
 - **Đầu vào:** bảng bốn trường hợp (RN07).
@@ -696,7 +726,8 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: tiêu đề kể cách suy ra và chạm nút điều hướng (802 px); cột trái chép lại hai phương trình mà không gắn hàng ma trận với nhóm KKT; điều kiện khả nghịch thiếu lý do; câu kết luận khó đọc. Trước đó: sửa văn phong ngày 2026-09-26.
 - **Sửa 2026-10-12:** bỏ hai cột "Hàng 1/Hàng 2"; "Mệnh đề." và "Lưu ý:". Dòng 8 → 4. `sửa`.
-- **Nội dung trên trang:** Trái: Hàng 1 nhóm dừng $g+Hd+A^T\eta=0$; Hàng 2 nhóm khả thi $Ad=0$. Phải: hệ khối cỡ $(n+p)\times(n+p)$. Dòng giả thiết: $H\succ0$, $A$ đủ hạng hàng nên ma trận khối khả nghịch, $(d,\eta)$ duy nhất. Kết luận: $d$ là bước tối ưu của mô hình; với $F$ không bậc hai, $u+d$ chưa là nghiệm bài gốc. Ghi chú: chứng minh khả nghịch qua $d^THd=0$ và đủ hạng hàng; ma trận không xác định dương.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. "hệ khối cỡ" → "hệ khối kích thước" (A5); mệnh đề thêm "(hàng độc lập tuyến tính)" sau "$A$ đủ hạng hàng" (B4); ghi chú "khối 0 kích thước $p\times p$". 44 → 50 âm tiết, dòng dài nhất 20.
+- **Nội dung trên trang:** Trái: Hàng 1 nhóm dừng $g+Hd+A^T\eta=0$; Hàng 2 nhóm khả thi $Ad=0$. Phải: hệ khối kích thước $(n+p)\times(n+p)$. Dòng giả thiết: $H\succ0$, $A$ đủ hạng hàng nên ma trận khối khả nghịch, $(d,\eta)$ duy nhất. Kết luận: $d$ là bước tối ưu của mô hình; với $F$ không bậc hai, $u+d$ chưa là nghiệm bài gốc. Ghi chú: chứng minh khả nghịch qua $d^THd=0$ và đủ hạng hàng; ma trận không xác định dương.
 - **Bố cục chọn:** Trái 45% hai hàng có nhãn nhóm KKT; phải hệ khối nhấn mạnh; dòng giả thiết và kết luận toàn chiều rộng. Đo 1600×900: đáy nội dung 669/829, tiêu đề kết thúc ở 571 px; 390×844: vừa khi cuộn, không cuộn ngang.
 - **Lý do bố cục cho sinh viên năm 3:** Bố cục thể hiện nguồn gốc từng khối, thay việc đưa ma trận hoàn chỉnh rồi yêu cầu nhớ.
 - **Vào → ra:** Đầu vào: hai phương trình KKT của bài con (RE03). Đầu ra: hệ khối khả nghịch dưới $H\succ0$ và $A$ đủ hạng hàng; giải trên VD3 ở RE05.
@@ -707,9 +738,10 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 ### RE05 — Ví dụ: bước Newton khả thi từ $(16,-2)^T$
 
-- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: giữ tiêu đề; bỏ câu "Đặt $\delta_{eq}$" xuất hiện đột ngột trên mặt trang (định nghĩa chuyển sang RE07, nối với $\delta_N$); dòng kiểm nêu mức giảm thật bằng $\tfrac12d^THd$; dữ kiện nêu điểm và $H$; ghi chú nêu $\eta=\nu^*$. Trước đó: sửa văn phong ngày 2026-09-26.
+- **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: giữ tiêu đề; bỏ câu "Đặt $\delta_{eq}$" xuất hiện đột ngột trên mặt trang (định nghĩa chuyển sang RE07, nối với $\delta_N$); dòng kiểm nêu mức giảm thực tế bằng $\tfrac12d^THd$; dữ kiện nêu điểm và $H$; ghi chú nêu $\eta=\nu^*$. Trước đó: sửa văn phong ngày 2026-09-26.
 - **Sửa 2026-10-12:** tiêu đề "Ví dụ: …"; yêu cầu "Tính $d$, $\eta$."; "Diễn giải:". `sửa`.
-- **Nội dung trên trang:** Dữ kiện VD3 tại $(16,-2)^T$, $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$; hệ ba phương trình; thế $d_2=-d_1$, $7d_1=-42$, $d=(-6,6)^T$, $\eta=-20$; kiểm $Ad=0$, bước $t=1$ tới $(10,4)^T$, $F$ giảm $266-140=126=\tfrac12d^THd$. Kết luận: một bước tới nghiệm vì hàm bậc hai. Ghi chú: $\eta=-20=\nu^*$; mức giảm thật bằng mức giảm mô hình, khác VD2.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "mức giảm thật" → "mức giảm thực tế" (A6).
+- **Nội dung trên trang:** Dữ kiện VD3 tại $(16,-2)^T$, $g=(32,-10)^T$, $H=\operatorname{diag}(2,5)$; hệ ba phương trình; thế $d_2=-d_1$, $7d_1=-42$, $d=(-6,6)^T$, $\eta=-20$; kiểm $Ad=0$, bước $t=1$ tới $(10,4)^T$, $F$ giảm $266-140=126=\tfrac12d^THd$. Kết luận: một bước tới nghiệm vì hàm bậc hai. Ghi chú: $\eta=-20=\nu^*$; mức giảm thực tế bằng mức giảm mô hình, khác VD2.
 - **Bố cục chọn:** Trái 60% dữ kiện → hệ → phép thế → nghiệm → dòng kiểm; phải hình bước dọc đường khả thi; kết luận ở chân. Đo 1600×900: đáy nội dung 822/829, tiêu đề kết thúc ở 492 px; 390×844: vừa khi cuộn, hàng nghiệm cuộn ngang trong `.formula`.
 - **Lý do bố cục cho sinh viên năm 3:** Giải ra hướng trước khi kiểm, để ví dụ không chỉ là thế nghiệm được cho sẵn.
 - **Vào → ra:** Đầu vào: hệ khối và điều kiện khả nghịch (RE04); điểm đầu và nghiệm tham chiếu (RE01). Đầu ra: $d=(-6,6)^T$, $\eta=-20$ để đối chiếu với cách giải rút gọn ở RE06.
@@ -722,10 +754,11 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: mặt trang chưa nêu vì sao cần cách giải thứ hai; tiêu đề gộp phương pháp với kết quả; ghi chú chưa mở bằng nghiệm RE05 và chưa nối sang thuật toán. Trước đó: sửa văn phong ngày 2026-09-26.
 - **Sửa 2026-10-12:** xem bảng trang vượt trần. `sửa`.
-- **Nội dung trên trang:** Dòng nhu cầu: hệ khối cỡ $n+p$ không xác định dương; tham số hóa tập khả thi cho hệ cỡ $n-p$ không chứa nhân tử. $u=\hat u+Nz$, $d=N\Delta z$; khử nhân tử bằng $N^TA^T=0$, được $N^THN\Delta z=-N^Tg$. VD3: $N=(-1,1)^T$, $N^THN=7$, $N^Tg=-42$, $\Delta z=6$. Kết luận: cùng $d=(-6,6)^T$; với $H\succ0$, $N^THN\succ0$. Ghi chú: chứng minh $N^THN\succ0$, $\psi(z)=196-28z+7z^2/2$.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. "Nhu cầu:" viết lại: "phân rã Cholesky $LL^T$ cần ma trận xác định dương, nên không áp dụng trực tiếp cho hệ khối" (B8; khớp ghi chú "không áp dụng trực tiếp"); khung kết "hệ cỡ $n-p$" → "hệ cấp $n-p$" (A5); ghi chú thêm "phép khử biến (elimination)", "hệ rút gọn (reduced system)" (A17). 55 → 59 âm tiết, 6 dòng, dòng dài nhất 20.
+- **Nội dung trên trang:** Dòng nhu cầu: hệ khối kích thước $n+p$ không xác định dương; tham số hóa tập khả thi cho hệ cấp $n-p$ không chứa nhân tử. $u=\hat u+Nz$, $d=N\Delta z$; khử nhân tử bằng $N^TA^T=0$, được $N^THN\Delta z=-N^Tg$. VD3: $N=(-1,1)^T$, $N^THN=7$, $N^Tg=-42$, $\Delta z=6$. Kết luận: cùng $d=(-6,6)^T$; với $H\succ0$, $N^THN\succ0$. Ghi chú: chứng minh $N^THN\succ0$, $\psi(z)=196-28z+7z^2/2$.
 - **Bố cục chọn:** Hai dòng mở toàn chiều rộng (nhu cầu, tham số hóa); lưới hai cột: khử nhân tử | khung VD3; kết luận ở chân. Đo 1600×900: đáy nội dung 707/829, tiêu đề kết thúc ở 450 px; 390×844: vừa khi cuộn.
 - **Lý do bố cục cho sinh viên năm 3:** Đặt khử biến như cách giải cùng một hệ, thay vì một nhánh xuất hiện trước rồi bị bỏ lại.
-- **Vào → ra:** Đầu vào: nghiệm $d=(-6,6)^T$, $\eta=-20$ của hệ khối (RE05); $\ker A$ (RE02). Đầu ra: hệ rút gọn cỡ $n-p$, xác định dương, cho cùng bước; thuật toán ở RE07 dùng một trong hai cách giải.
+- **Vào → ra:** Đầu vào: nghiệm $d=(-6,6)^T$, $\eta=-20$ của hệ khối (RE05); $\ker A$ (RE02). Đầu ra: hệ rút gọn cấp $n-p$, xác định dương, cho cùng bước; thuật toán ở RE07 dùng một trong hai cách giải.
 - **Chuẩn và minh chứng:** LLO9 / CLO1; LLO10 / CLO2; chuẩn bị thao tác được đo tại RE08.
 - **Số liệu:** VD3 khả thi, dàn ý §6: F, u, A, b; g, H ở RE02; d, η ở RE05; N, Δz ở RE06. Chỉ đưa ký hiệu đã dùng trên trang, chưa đưa phần dư hoặc số gia nhân tử.
 - **Nguồn, ghi chú soạn:** BV §§10.1–10.2.1; Bài 03 S02-04, S05-03; MIT lec17. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
@@ -736,6 +769,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 theo yêu cầu duyệt từng trang: giữ tiêu đề (song song với "Thuật toán Newton"); $\delta_{eq}$ chưa được định nghĩa và chưa nối với $\delta_N$; thiếu đầu vào, đầu ra, điều kiện áp dụng trên mặt trang; hai công thức cột phải chưa có nhãn vai trò. Trước đó: sửa văn phong ngày 2026-09-26.
 - **Sửa 2026-10-12:** xem bảng trang vượt trần. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "Newton khả thi (feasible-start Newton method)" (A17); "hệ khối đặc cấp $n+p$", "chi phí bậc $O((n+p)^3)$", "hệ rút gọn cấp $n-p$" (A5, A15).
 - **Nội dung trên trang:** Trái: năm bước (tính $g,H$; giải hệ KKT bài con; $\delta_{eq}^2=d^THd$ là độ giảm Newton của bài con; dừng khi $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$; Armijo trên $F$ và cập nhật). Phải: Đầu vào $u^0$ với $Au^0=b$, $\varepsilon_{\mathrm{model}}$, $\alpha,\beta$; Đầu ra $u$ khả thi với $\delta_{eq}^2/2\le\varepsilon_{\mathrm{model}}$; Điều kiện $H\succ0$, $A$ đủ hạng hàng; Mỗi bước: giữ khả thi $A(u+td)=b$, hướng giảm $g^Td=-d^THd<0$. Kết luận: $\delta_{eq}^2/2$ chưa chứng nhận sai số tối ưu.
 - **Bố cục chọn:** Lưới 50–50: panel năm bước | panel đầu vào, đầu ra, điều kiện, tính chất mỗi bước; kết luận ở chân. Bản nháp 60–40 với hai dòng tính chất riêng tràn 67 px ở 16:9; gộp hai tính chất thành một dòng và đổi lưới 50–50. Đo 1600×900: đáy nội dung 723/829, tiêu đề kết thúc ở 623 px; 390×844: vừa khi cuộn.
 - **Lý do bố cục cho sinh viên năm 3:** Sinh viên hiểu vì sao được tái dùng Armijo trên F và khi nào lập luận không còn đúng.
@@ -773,6 +807,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RR00 — Newton từ điểm chưa khả thi (trang tiêu đề mạch 5)
 
 - **Quyết định:** `thêm` ngày 2026-10-12, trang tiêu đề mạch bắt buộc (yêu cầu người dùng 2026-10-12; AGENTS.md "Trang tiêu đề mạch"). Không xử lý bằng sửa trang đầu mạch vì trang đó mang khái niệm đầu tiên của mạch.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Dòng dẫn bỏ ký hiệu $\|r\|_2$ chưa định nghĩa: "giảm chuẩn của phần dư KKT" (B11); từ khóa "Phần dư đối ngẫu và khả thi" → "Phần dư đối ngẫu và gốc" (A12). 36 → 35 âm tiết.
 - **Lý do tồn tại:** đánh dấu ranh giới RE08b → mạch 5; số "5." trùng mục 5 của RP03b và chỉ số `#/5`; `id="mach-5"`.
 - **Nhu cầu hoặc khoảng trống được lấp:** người học thấy nhiệm vụ của mạch trước khi gặp khái niệm đầu tiên.
 - **Đầu vào:** thuật toán Newton khả thi và giới hạn: cần điểm đầu khả thi.
@@ -785,6 +820,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Hai phần dư của điều kiện KKT" thành "Phần dư KKT"; đưa nhu cầu từ RE08 lên mặt trang, định nghĩa hai phần dư và tương đương với KKT trước số liệu. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
 - **Sửa 2026-10-12:** bỏ câu dẫn (đã nằm ở dòng dẫn RR00); "Ví dụ." với dữ kiện; khung kết luận thành "Nhu cầu:". Dòng 8 → 6. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "phần dư khả thi (primal residual)" → "phần dư gốc (primal residual)" (A12), khớp lời giải thích chỉ số $p$ và "khả thi gốc".
 - **Nội dung trên trang:** Dòng nhu cầu: Newton khả thi cần $Au^0=b$; tại điểm chưa khả thi, $Ad=0$ giữ nguyên $Au-b$. Định nghĩa $r_d=\nabla F(u)+A^T\nu$, $r_p=Au-b$; $(u,\nu)$ thỏa KKT khi và chỉ khi $r_d=0$, $r_p=0$. VD3 tại $u=(1,8)^T$, $\nu=4$: $g=(2,40)^T$, $r_d=(6,44)^T$, $r_p=-5$. Kết luận: bước mới phải đưa đồng thời hai phần dư về 0.
 - **Bố cục chọn:** Dòng nhu cầu trên cùng; trái 55% khung định nghĩa; phải số liệu VD3; kết luận dưới. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 319 px.
 - **Lý do bố cục cho sinh viên năm 3:** Mỗi phần dư có nguồn gốc và nhiệm vụ cụ thể, tránh tạo ký hiệu mới không gắn điều kiện cũ.
@@ -850,6 +886,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Thuật toán Newton từ điểm chưa khả thi" (đè nút điều hướng) thành "Newton từ điểm chưa khả thi"; gộp dòng dừng vào bước 1, định nghĩa rõ phần dư sau bước trong tiêu chí quay lui, bốn bước thay năm; thêm khung đầu vào, đầu ra, điều kiện (đủ) theo mẫu RE07; kết luận nối với Newton khả thi. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
 - **Sửa 2026-10-12:** đổi tiêu đề; xem bảng trang vượt trần. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: câu đầu nêu "Newton từ điểm chưa khả thi (infeasible-start Newton method)" (A17); "phần dư gốc" (A12); "mỗi vòng lặp" (A9).
 - **Nội dung trên trang:** Tính hai phần dư; giải hệ; quay lui bằng cách kiểm miền và tiêu chí $\|r_{new}\|_2\le(1-\alpha t)\|r\|_2$; cập nhật $u+td$, $\nu+t\Delta\nu$. Dừng khi cả hai chuẩn phần dư đạt dung sai. Đạo hàm âm bảo đảm có bước dương đủ nhỏ thỏa tiêu chí, không bảo đảm mọi t đều được nhận. $r_p^+=(1-t)r_p$ và $\nu^+=(1-t)\nu+t\eta$; với $t=1$ ta có $\nu^+=\eta$.
 - **Bố cục chọn:** Lưới 50–50: trái khung bốn bước; phải khung đầu vào, đầu ra, điều kiện và tính chất sau bước $t$; kết luận dưới. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 666 px.
 - **Lý do bố cục cho sinh viên năm 3:** Làm rõ ảnh hưởng của giảm bước và tránh dùng giá trị nhân tử đầy đủ khi chỉ đi một phần bước.
@@ -863,6 +900,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-09-30 (duyệt từng trang theo yêu cầu người dùng): đổi tiêu đề từ "Kiểm tra hai dạng hệ Newton" (kể nhiệm vụ) thành "Bước Newton cho phần dư KKT"; hai câu hỏi dùng dữ kiện mới thay cho đọc lại RR01/RR04; bỏ hai khung "Lỗi cần sửa" in sẵn đáp án, chuyển lỗi thường gặp vào ghi chú. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26.
 - **Sửa 2026-10-12:** tiêu đề "Bài tập: …"; dữ kiện nêu lại; lời giải sang RR07b. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. "nêu hai điều kiện dừng" → "nêu hai tiêu chí dừng" (A3). 39 → 39 âm tiết.
 - **Nội dung trên trang:** Câu 1: VD3 tại $u=(4,2)^T$, $\nu=2$: tính $r_d$, $r_p$, giải hệ Newton, tính $(u^+,\nu^+)$ với $t=1$, xác định nhân tử của nghiệm. Đáp án: $r_d=(10,12)^T$, $r_p=-8$, $d=(6,2)^T$, $\Delta\nu=-22$, $u^+=(10,4)^T$, $\nu^+=-20=\nu^*$. Câu 2: bước $t=1/2$: $r^+=(5,6,-4)^T=\tfrac12r$, so với $0{,}95\|r\|_2$ nên nhận; hai điều kiện dừng.
 - **Bố cục chọn:** Hai khung câu hỏi; lời giải và lỗi thường gặp trong ghi chú. Đo ở 1600×900: nội dung 674/674, tiêu đề kết thúc ở 708 px (phương án "Bước Newton từ điểm chưa khả thi" kết thúc ở 786 px nên không dùng).
 - **Lý do bố cục cho sinh viên năm 3:** Kiểm các nhầm lẫn có đáp số khác nhau thật sự; buộc dùng KKT chứ không chỉ nhớ số.
@@ -897,25 +935,27 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học cho phần tự điều chỉnh; thêm nhãn "Tự học" (lớp chung `.self-study-badge`), đặt bằng nhãn nội dòng cuối tiêu đề. Đây là ngoại lệ có chủ ý theo chỉ dẫn cụ thể của người dùng đối với quy định AGENTS.md không hiển thị nhãn quy trình; không đổi nội dung toán, thứ tự hay điều hướng. Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề "Độ cong và sai số của mô hình Newton" thành "Biến thiên độ cong"; đưa vấn đề mở từ RN05/RN08/RR07 lên mặt trang; kết luận nêu rõ đại lượng được so sánh ($|arphi'''|$ với $(arphi'')^{3/2}$); ghi chú giải thích vì sao cận cổ điển cần hằng số $m,L$ và vì sao tỷ số với số mũ $3/2$ không đổi khi đổi thang. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu D01, C08. Phần tự điều chỉnh trả lời một vấn đề đã giữ lại, thay vì cắt ngang giữa hai loại Newton.
 - **Sửa 2026-10-12:** bỏ badge; "Vấn đề:" → "Nhu cầu:"; "Ký hiệu:". `sửa`.
-- **Nội dung trên trang:** (2026-09-30) Vấn đề: VD2 tại $s=1/4$ có giảm mô hình $9/32$ nhỏ hơn sai số $\log4-3/4$; ký hiệu $\delta=\delta_N$, VD2 $\delta=3/4$; $\varphi''=1/s^2\to\infty$ khi $s\to0^+$; kết luận: cần giả thiết so $|\varphi'''|$ với $(\varphi'')^{3/2}$. Mô tả trước: Trở lại phân biệt giảm mô hình và sai số thật. Từ đây viết $\delta=\delta_N=\sqrt{d^THd}\ge0$; VD2 có $\delta_N^2=9/16$ nên $\delta=3/4$. Với $\varphi(s)=s-\log s$, $\varphi''=1/s^2$ không bị chặn trên toàn miền $s>0$. Cần kiểm biến thiên độ cong tương đối để có một cận sai số.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "trên tập mức" → "trên tập mức dưới" (A2); "(ký hiệu $m$ trong bảng tốc độ Newton)" → "(Boyd và Vandenberghe ký hiệu $m$)" (A13).
+- **Nội dung trên trang:** (2026-09-30) Vấn đề: VD2 tại $s=1/4$ có giảm mô hình $9/32$ nhỏ hơn sai số $\log4-3/4$; ký hiệu $\delta=\delta_N$, VD2 $\delta=3/4$; $\varphi''=1/s^2\to\infty$ khi $s\to0^+$; kết luận: cần giả thiết so $|\varphi'''|$ với $(\varphi'')^{3/2}$. Mô tả trước: Trở lại phân biệt giảm mô hình và sai số thực tế. Từ đây viết $\delta=\delta_N=\sqrt{d^THd}\ge0$; VD2 có $\delta_N^2=9/16$ nên $\delta=3/4$. Với $\varphi(s)=s-\log s$, $\varphi''=1/s^2$ không bị chặn trên toàn miền $s>0$. Cần kiểm biến thiên độ cong tương đối để có một cận sai số.
 - **Bố cục chọn:** Trái 60% đồ thị $\varphi''$ có biên $s=0$; phải ba số đã biết và câu hỏi còn mở; không tạo ví dụ mới.
 - **Lý do bố cục cho sinh viên năm 3:** Phần tự điều chỉnh trả lời một vấn đề đã giữ lại, thay vì cắt ngang giữa hai loại Newton.
 - **Vào → ra:** (2026-09-30) Đầu vào: vấn đề mở từ RN05, RN08, RR07. Đầu ra: nhu cầu một giả thiết độ cong không phụ thuộc hệ tọa độ, định nghĩa ở RS02. Mô tả trước: Đầu vào: Trong VD2, $\delta_N^2/2=9/32$ nhỏ hơn sai số mục tiêu $\log4-3/4$. Đầu ra: Vì $\varphi''(s)=1/s^2$ không bị chặn trên toàn miền, điều kiện tự điều chỉnh kiểm soát độ biến thiên tương đối của độ cong.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; chuẩn bị thao tác được đo tại RS05.
-- **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
-- **Nguồn, ghi chú soạn:** Ghi chú gọi rõ độ giảm Newton của bài toán không ràng buộc và đối chiếu $9/32$ với $\log4-3/4$; phép khử chuyển cận sang điểm khả thi, không dùng chuẩn phần dư tại điểm chưa khả thi. Hessian không bị chặn toàn miền không loại trừ phân tích trên tập mức có cận riêng.  BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
+- **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thực tế chỉ trong ví dụ đã tính.
+- **Nguồn, ghi chú soạn:** Ghi chú gọi rõ độ giảm Newton của bài toán không ràng buộc và đối chiếu $9/32$ với $\log4-3/4$; phép khử chuyển cận sang điểm khả thi, không dùng chuẩn phần dư tại điểm chưa khả thi. Hessian không bị chặn toàn miền không loại trừ phân tích trên tập mức dưới có cận riêng.  BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
 ### RS02 — Hàm tự điều chỉnh
 
 - **Quyết định:** `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học cho phần tự điều chỉnh; thêm nhãn "Tự học" (lớp chung `.self-study-badge`), đặt bằng nhãn nội dòng cuối tiêu đề. Đây là ngoại lệ có chủ ý theo chỉ dẫn cụ thể của người dùng đối với quy định AGENTS.md không hiển thị nhãn quy trình; không đổi nội dung toán, thứ tự hay điều hướng. Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Hàm tự điều chỉnh"; dòng mở nêu tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ đo gì; định nghĩa có đủ lượng từ $x\in\operatorname{dom}f$, $v\in\mathbb R^n$, $x+tv\in\operatorname{dom}f$ và thuật ngữ gốc self-concordant; phép thử tại $s=1/4$ chuyển vào ghi chú. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: gộp và sửa; đối chiếu D02, D03. Tách chứng minh cho mọi s khỏi kiểm tra tại một điểm; không để con số128 thay lập luận.
 - **Sửa 2026-10-12:** bỏ badge; "Trực quan.", "Ví dụ."; định nghĩa tách lượng từ ra dòng riêng. `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Định nghĩa: dòng cuối thêm "$C^3$ là lớp hàm khả vi liên tục ba lần" (B10; đặt ở dòng cuối thay vì chèn vào dòng đầu để dòng đầu không vượt 20 âm tiết). 50 → 59 âm tiết, 5 dòng.
 - **Nội dung trên trang:** Bắt đầu từ VD2: $\varphi^{\prime\prime}=1/s^2$, $|\varphi^{\prime\prime\prime}|=2/s^3$ nên tỷ số bằng 2 trên toàn miền; tại $1/4$ có $128=2\cdot16^{3/2}$. Khái quát: hàm lồi $C^3$ trên miền mở lồi là tự điều chỉnh khi mọi hạn chế lên đường thẳng thỏa $|h^{\prime\prime\prime}|\le2(h^{\prime\prime})^{3/2}$.
 - **Bố cục chọn:** Trái 45% tỷ số độ cong tương đối của ví dụ; phải định nghĩa tổng quát, hiện sau phép kiểm toàn miền. Một dòng kiểm số ở chân; không dùng số 128 làm chứng minh.
 - **Lý do bố cục cho sinh viên năm 3:** Tách chứng minh cho mọi s khỏi kiểm tra tại một điểm; không để con số128 thay lập luận.
 - **Vào → ra:** (2026-09-30) Đầu vào: nhu cầu so tốc độ thay đổi độ cong với chính độ cong (RS01). Đầu ra: lớp hàm tự điều chỉnh, VD2 đạt tỷ số 2, dùng cho cận ở RS03. Mô tả trước: Đầu vào: Với $s-\log s$, tỷ số $|\varphi'''|/(\varphi'')^{3/2}$ bằng $2$ với mọi $s>0$. Đầu ra: Bất đẳng thức này cho phép chặn sai số mục tiêu bằng độ giảm Newton khi thỏa thêm các giả thiết của cận.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; chuẩn bị thao tác được đo tại RS05.
-- **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
+- **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thực tế chỉ trong ví dụ đã tính.
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
@@ -923,12 +963,12 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học cho phần tự điều chỉnh; thêm nhãn "Tự học" (lớp chung `.self-study-badge`), đặt bằng hàng nhãn `.slide-badge-row` phía trên tiêu đề, vì nhãn nội dòng kết thúc ở 854 px, đè nút điều hướng; trang còn dư 71 px nên vẫn vừa khung. Đây là ngoại lệ có chủ ý theo chỉ dẫn cụ thể của người dùng đối với quy định AGENTS.md không hiển thị nhãn quy trình; không đổi nội dung toán, thứ tự hay điều hướng. Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: đổi tiêu đề thành "Cận sai số theo độ giảm Newton"; kết quả gắn nhãn "Định lý", bỏ giả thiết thừa "lồi chặt" (đã kéo theo từ $\nabla^2f\succ0$), dùng $f^*$; VD2 gọn một dòng; kết luận mới dùng khai triển $-\delta-\log(1-\delta)=\delta^2/2+\delta^3/3+\cdots$ để trả lời vấn đề tiêu chí dừng; bỏ hai khung lặp kết luận RN05. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: tách và sửa; đối chiếu D04. Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN08 bằng đúng ví dụ cũ.
 - **Sửa 2026-10-12:** bỏ badge; thứ tự Định lý → Ý nghĩa → Ví dụ; khung kết luận thành "Ý nghĩa:". `sửa`.
-- **Nội dung trên trang:** Kết quả cho hàm tự điều chỉnh lồi chặt (còn gọi là lồi nghiêm ngặt), $H\succ0$, có nghiệm cực tiểu trong miền: nếu $\delta<1$ thì $f-f^*\le-\delta-\log(1-\delta)$. Với $\varphi$ tại $1/4$, $\delta=3/4$, cận $=\log4-3/4\approx0{,}63629$; $9/32$ chỉ là giảm mô hình. Sự bằng nhau giữa cận và sai số thật chỉ được xác nhận cho ví dụ log này.
+- **Nội dung trên trang:** Kết quả cho hàm tự điều chỉnh lồi chặt (còn gọi là lồi nghiêm ngặt), $H\succ0$, có nghiệm cực tiểu trong miền: nếu $\delta<1$ thì $f-f^*\le-\delta-\log(1-\delta)$. Với $\varphi$ tại $1/4$, $\delta=3/4$, cận $=\log4-3/4\approx0{,}63629$; $9/32$ chỉ là giảm mô hình. Sự bằng nhau giữa cận và sai số thực tế chỉ được xác nhận cho ví dụ log này.
 - **Bố cục chọn:** Trên là hộp giả thiết và một bất đẳng thức; dưới thayδ=3/4 rồi so hai đại lượng bằng nhãn; chứng minh cận để ghi chú/tài liệu.
 - **Lý do bố cục cho sinh viên năm 3:** Có một đầu ra thực dụng cho phần tự điều chỉnh và thu hồi câu hỏi RN08 bằng đúng ví dụ cũ.
 - **Vào → ra:** (2026-09-30) Đầu vào: lớp hàm tự điều chỉnh (RS02) và $\delta$ của VD2. Đầu ra: cận sai số; khi $\delta$ nhỏ tiêu chí $\delta^2/2\le\varepsilon$ gần đúng chứng nhận sai số; câu hỏi dùng cận cho bài có đẳng thức (RS04). Mô tả trước: Đầu vào: Với hàm tự điều chỉnh có Hessian xác định dương và đạt cực tiểu, điều kiện $\delta<1$ cho cận $-\delta-\log(1-\delta)$. Đầu ra: Phép khử đẳng thức tạo hàm hợp affine; tính tự điều chỉnh của hàm rút gọn cho phép xét cùng cận trên các điểm khả thi.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; chuẩn bị thao tác được đo tại RS05.
-- **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
+- **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thực tế chỉ trong ví dụ đã tính.
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Giải thích phép tính/giả thiết và câu nối bằng lời; đại số dài theo dàn ý §5 chuyển vào ghi chú.
 - **Dự toán nội bộ:** 1/20 LT + 0 BT (LT xấp xỉ 0.0500; dùng phân số để cộng chính xác).
 
@@ -954,13 +994,14 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 - **Lý do bố cục cho sinh viên năm 3:** Chống đồng nhất tính tự điều chỉnh với tồn tại nghiệm và phân biệtδ vớiδ².
 - **Vào → ra:** (2026-09-30) Đầu vào: định lý cận sai số (RS03) và VD2. Đầu ra: phân biệt giả thiết tồn tại nghiệm với tính tự điều chỉnh; cận đúng nhưng không chặt khi $s>1$; dẫn sang phần tổng hợp (RZ01). Mô tả trước: Đầu vào: Hai hàm $-\log s$ và $s-\log s$ có cùng đạo hàm bậc hai, bậc ba nhưng khác tính đạt cực tiểu. Đầu ra: Mỗi kết luận về bước lặp hoặc sai số phải đi kèm bài toán, đại lượng đo và giả thiết áp dụng.
 - **Chuẩn và minh chứng:** LLO7 / CLO1; sản phẩm và đáp án kiểm tra ở dàn ý §7.
-- **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thật chỉ trong ví dụ đã tính.
+- **Số liệu:** VD2 và hàm biên −log s; dàn ý §6–§7. Cận bằng sai số thực tế chỉ trong ví dụ đã tính.
 - **Nguồn, ghi chú soạn:** BV §§9.6.1, 9.6.3 (9.49); MIT lec16; nối phép khử BV §10.1. Đáp án chỉ trong ghi chú; mặt trang dùng nhãn “Câu hỏi:”.
 - **Dự toán nội bộ:** 0 LT + 1/10 BT; suy nghĩ 1/25 BT, chữa 3/50 BT.
 
 ### RS05b — Bài tập: giả thiết của cận sai số
 
 - **Quyết định:** `thêm` 2026-10-12; lời giải từ ghi chú RS05 cũ.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "Sai số thật" → "Sai số thực tế" (A6).
 - **Lý do tồn tại:** lời giải trên mặt trang cho cụm tự điều chỉnh; câu (a) trùng kết luận Bài 7(b) của `exercises.md`.
 - **Nhu cầu hoặc khoảng trống được lấp:** kiểm tra từng giả thiết của định lý cận sai số.
 - **Đầu vào:** đề bài RS05.
@@ -1005,6 +1046,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RZ01c — Định lý hội tụ
 
 - **Quyết định:** `thêm` 2026-10-12 sau tái kiểm mạch kể: kết bài phải tổng hợp các kết quả đã xây dựng cùng điều kiện sử dụng (AGENTS.md "Mở bài và kết bài"); cụm hội tụ nay thuộc tuyến chính. Không đặt vào RZ01b vì bảng tám hàng vượt trần 6 dòng.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "hằng số $m$, $M$, $L_H$" → "$\mu$, $L$, $L_H$" (A13).
 - **Lý do tồn tại:** bảng "phương pháp | giả thiết không được bỏ | kết luận" cho bốn định lý: $O(1/k)$ với bước $1/L$, $O(1/k)$ với quay lui $\alpha=\tfrac12$, hội tụ tuyến tính khi lồi mạnh, số bước Newton có quay lui ($\alpha<\tfrac12$).
 - **Nhu cầu hoặc khoảng trống được lấp:** RZ01b chỉ có cận sai số theo tiêu chí dừng, chưa có tốc độ.
 - **Đầu vào:** RG15, RG16b, RG17b, RN07b.
@@ -1028,6 +1070,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 ### RZ02b — Bài tập: hồi quy ridge có ràng buộc
 
 - **Quyết định:** `tách` 2026-10-12.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: nhãn "Đáp án câu …" → "Lời giải câu …" (liên bài số 13).
 - **Lý do tồn tại:** lời giải trên mặt trang cho bài áp dụng; câu (a) trùng Bài 8(a) của `exercises.md` (cùng $g$, $H$ và lập luận $v^THv\ge\rho\|v\|_2^2$).
 - **Nhu cầu hoặc khoảng trống được lấp:** đối chiếu hệ Newton cho phần dư với dữ liệu tổng quát.
 - **Đầu vào:** đề bài RZ02.
@@ -1039,6 +1082,7 @@ Cụm gradient và chọn bước gồm RG01–RG06: 0.30 giờ LT + 0.075 giờ
 
 - **Quyết định:** `sửa` ngày 2026-10-01 (lần 2): dòng đầu bảng thêm "hội tụ của giảm gradient (tự học)" với nguồn "ghi chú bài giảng, mục B"; rút gọn dòng tài liệu đọc để vừa khung 16:9; ghi chú nêu phần tự học không có bài tập chính thức riêng. Trước đó: `sửa` ngày 2026-10-01: người dùng yêu cầu đánh dấu Tự học; hàng "Tự điều chỉnh và cận sai số" ghi "Bài 7 (tự học)". Trước đó: `sửa` ngày 2026-09-30 theo lượt duyệt từng trang: giữ tiêu đề; thay bảng ba nhiệm vụ chung chung bằng bảng ánh xạ sáu phần của bài sang Bài 1–8 của tệp bài tập chính thức; tài liệu đọc thêm ghi chú bài giảng; ghi chú nêu bước đo của từng bài và câu nối sang Bài giảng 05. Trước đó: sửa văn phong và liên kết toán học ngày 2026-09-26, giữ cấu trúc và dữ kiện; quyết định cấu trúc đã triển khai: sửa; đối chiếu Z03. Kết thúc bằng năng lực quan sát được và nguồn để tự lấp chi tiết chứng minh.
 - **Sửa 2026-10-12:** xem bảng trang vượt trần; bỏ chú thích "(tự học)". `sửa`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** `sửa`. Chỉ ghi chú: "mức giảm thật" → "mức giảm thực tế" (A6).
 - **Nội dung trên trang (2026-10-12):** Bảng sáu hàng "mạch 2–7 | Bài 1–8 của `exercises.md`"; dòng tài liệu đọc Boyd và Vandenberghe (2004) §5.5.3, §§9.2–9.6, 10.1–10.3; MIT 6.079 bài giảng 16–17.
 - **Bố cục chọn (2026-10-12):** Bảng hai cột theo tên mạch, một dòng tài liệu đọc. Ngoại lệ mật độ: 72 âm tiết, dưới trần 80 của trang tổng kết.
 - **Lý do bố cục cho sinh viên năm 3:** Kết thúc bằng năng lực quan sát được và nguồn để tự lấp chi tiết chứng minh.

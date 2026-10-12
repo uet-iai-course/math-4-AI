@@ -7,7 +7,7 @@ Tập bài tập của Bài 04 gồm: hướng giảm và quay lui Armijo, hư�
 | Mạch | Mở phần | Ghi chú | Bài tập |
 | --- | --- | --- | --- |
 | A. Điều kiện KKT và nhiệm vụ tính | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/1/1) | A | — |
-| B. Hướng giảm, bước và thước đo | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/2/1) | B | Bài 1, Bài 2, Bài 9 |
+| B. Hướng giảm, bước và ma trận trọng số | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/2/1) | B | Bài 1, Bài 2, Bài 9 |
 | C. Newton không ràng buộc | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/3/1) | C | Bài 3, Bài 4, Bài 10 |
 | D. Newton khả thi và khử biến | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/4/1) | D | Bài 5, Bài 11 |
 | E. Newton phần dư từ điểm chưa khả thi | [Mở phần](lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html#/5/1) | E | Bài 6, Bài 12 |
@@ -16,7 +16,7 @@ Tập bài tập của Bài 04 gồm: hướng giảm và quay lui Armijo, hư�
 
 Đọc phần giải thích và các chứng minh trong [ghi chú bài giảng](material-viewer.html?doc=materials/lec-04/lecture-note.md&deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html).
 
-## Bài 1 — Hướng gradient và quay lui Armijo
+## Bài 1 — Hướng ngược gradient và quay lui Armijo
 
 ::: exercise
 **Bài 1 (tính toán/nhận biết).** Cho $f(x)=\tfrac12(3x_1^2+7x_2^2)$, điểm đầu $x^0=(2,4)^T$ nên $g=\nabla f(x^0)=(6,28)^T$, $f_0=62$, $\|g\|^2=820$.
@@ -41,7 +41,7 @@ Với $t=1/2$: điểm thử $(-1,-10)$, $f=\tfrac12(3+700)=703/2$; ngưỡng $6
 
 Với $t=1/4$: điểm thử $(1/2,-3)$, $f=\tfrac12(3/4+63)=255/8$; ngưỡng $62-82/4=83/2$. Vì $255/8=31{,}875\le 41{,}5$, nhận.
 
-Vậy quay lui trả $t=1/4$. Hướng gradient là hướng giảm, nhưng độ cong theo $x_2$ lớn khiến bước dài làm hàm tăng; Armijo chỉ chấp nhận bước đủ ngắn để giảm thật. Bảng này áp dụng riêng cho hướng gradient; trên hướng Newton cùng điểm, hệ số góc của ngưỡng là khác, hai bảng không dùng chung hệ số.
+Vậy quay lui trả $t=1/4$. Hướng ngược gradient là hướng giảm, nhưng độ cong theo $x_2$ lớn khiến bước dài làm hàm tăng; Armijo chỉ chấp nhận bước đủ ngắn để hàm giảm đủ. Bảng này áp dụng riêng cho hướng ngược gradient; trên hướng Newton cùng điểm, hệ số góc của ngưỡng là khác, hai bảng không dùng chung hệ số.
 
 (c) Vì $g^Td<0$, $t>0$ và $\alpha>0$, vế phải của Armijo nhỏ hơn $f_0$. Khi bất đẳng thức đã thỏa, bước cho mức giảm thực tế ít nhất $-\alpha t g^Td>0$, nên nhận $t$ và dừng vòng thử. Quay lui không yêu cầu tìm bước tốt nhất trên tia. Việc nó kết thúc sau hữu hạn lần co được chứng minh riêng bằng khai triển $f(x^0+td)=f_0+t g^Td+o(t)$; chỉ tính liên tục là chưa đủ để suy bất đẳng thức Armijo.
 :::
@@ -90,7 +90,7 @@ và đẳng thức đúng tại $v$ tìm được, xác nhận tối ưu.
 
 (a) Tại $x^1=(1/2,-3)^T$, viết điều kiện dừng của $Q_W$ theo $d$, giải $d$, rồi tính $x^1+d$ và $\|d\|_W^2$.
 
-(b) Từ $x^0=(2,4)^T$, với $f(x^0)=62$, $g=(6,28)^T$ và hướng gradient $d_G=(-6,-28)^T$, chạy quay lui Armijo với $\beta=1/2$, $\alpha=3/10$: thử lần lượt $t=1,\ 1/2,\ 1/4,\ldots$ và nhận bước đầu tiên thỏa $f(x^0+td_G)\le f(x^0)+\alpha t\,g^Td_G$. Xác định bước được nhận. So với Bài 1(b), nơi $\alpha=1/10$ cho bước nhận $t=1/4$.
+(b) Từ $x^0=(2,4)^T$, với $f(x^0)=62$, $g=(6,28)^T$ và hướng ngược gradient $d_G=(-6,-28)^T$, chạy quay lui Armijo với $\beta=1/2$, $\alpha=3/10$: thử lần lượt $t=1,\ 1/2,\ 1/4,\ldots$ và nhận bước đầu tiên thỏa $f(x^0+td_G)\le f(x^0)+\alpha t\,g^Td_G$. Xác định bước được nhận. So với Bài 1(b), nơi $\alpha=1/10$ cho bước nhận $t=1/4$.
 :::
 
 ::: hint
@@ -116,11 +116,11 @@ Tại $t=1/8$: $f=\tfrac12\big(3\cdot\tfrac{25}{16}+7\cdot\tfrac14\big)=\tfrac{1
 ## Bài 3 — Độ giảm mô hình, mức giảm hàm và sai số tối ưu
 
 ::: exercise
-**Bài 3 (tính toán).** Cho $\varphi(s)=s-\log s$ trên $s>0$ ($\log$ là logarit tự nhiên), điểm đầu $s^0=1/4$. (a) Tính $\varphi'(s)$, $\varphi''(s)$, từ đó $g$ và $H$ tại $s^0=1/4$. Tự lập mô hình bậc hai $Q_H(d)$ xấp xỉ $\varphi(s^0+d)$ theo độ dời $d$, lấy đạo hàm của $Q_H$ theo $d$, giải điều kiện dừng $Q_H'(d)=0$ để tìm bước $d_N$ và điểm mới $s^1$. (b) Tính $\delta_N$, $\delta_N^2$ và mức giảm dự đoán của mô hình $\delta_N^2/2$; kiểm tra $\varphi'(s^1)$ để thấy $s^1$ chưa tối ưu. (c) Tính sai số thật $\varphi(s^0)-\varphi(1)$, mức giảm thật của một bước $\varphi(s^0)-\varphi(s^1)$, và kiểm tra bước đầy đủ $t=1$ có thỏa Armijo với $\alpha=1/10$ không. (d) Nêu rõ vì sao ba đại lượng ở (b) và (c) không được đồng nhất.
+**Bài 3 (tính toán).** Cho $\varphi(s)=s-\log s$ trên $s>0$ ($\log$ là logarit tự nhiên), điểm đầu $s^0=1/4$. (a) Tính $\varphi'(s)$, $\varphi''(s)$, từ đó $g$ và $H$ tại $s^0=1/4$. Tự lập mô hình bậc hai $Q_H(d)$ xấp xỉ $\varphi(s^0+d)$ theo độ dời $d$, lấy đạo hàm của $Q_H$ theo $d$, giải điều kiện dừng $Q_H'(d)=0$ để tìm bước $d_N$ và điểm mới $s^1$. (b) Tính $\delta_N$, $\delta_N^2$ và mức giảm dự đoán của mô hình $\delta_N^2/2$; kiểm tra $\varphi'(s^1)$ để thấy $s^1$ chưa tối ưu. (c) Tính sai số thực tế $\varphi(s^0)-\varphi(1)$, mức giảm thực tế của một bước $\varphi(s^0)-\varphi(s^1)$, và kiểm tra bước đầy đủ $t=1$ có thỏa Armijo với $\alpha=1/10$ không. (d) Nêu rõ vì sao ba đại lượng ở (b) và (c) không được đồng nhất.
 :::
 
 ::: hint
-Dùng khai triển Taylor bậc hai của $\varphi$ quanh $s^0$ theo độ dời $d$ để lập $Q_H(d)$; đạo hàm theo $d$ rồi giải điều kiện dừng để được bước. $\delta_N=|g^Td_N|^{1/2}$ không phải bình phương; cận Armijo là $\alpha(-g^Td_N)$. Sai số thật cần giá trị $\varphi(1)=1$.
+Dùng khai triển Taylor bậc hai của $\varphi$ quanh $s^0$ theo độ dời $d$ để lập $Q_H(d)$; đạo hàm theo $d$ rồi giải điều kiện dừng để được bước. $\delta_N=|g^Td_N|^{1/2}$ không phải bình phương; cận Armijo là $\alpha(-g^Td_N)$. Sai số thực tế cần giá trị $\varphi(1)=1$.
 :::
 
 ::: solution
@@ -130,9 +130,9 @@ Vì $H=16>0$, $Q_H$ lồi chặt (còn gọi là lồi nghiêm ngặt) nên đi�
 
 (b) $g^Td_N=(-3)(3/16)=-9/16$, nên $\delta_N^2=-g^Td_N=9/16$ và $\delta_N=\sqrt{9/16}=3/4$. $\delta_N=3/4$ không phải bình phương; đại lượng bình phương là $\delta_N^2=9/16$. Mức giảm dự đoán của mô hình là $\delta_N^2/2=9/32=0{,}28125$. Kiểm tra tối ưu: $\varphi'(7/16)=1-16/7=-9/7\ne0$, nên $s^1$ chưa phải điểm tối ưu.
 
-(c) Vì $\varphi^{\prime\prime}(s)>0$ trên $s>0$ và $\varphi^{\prime}(1)=0$, nghiệm duy nhất là $s^*=1$. Sai số thật tại điểm đầu: $\varphi(1/4)-\varphi(1)=(1/4+\log4)-1=\log4-3/4\approx0{,}636294$. Mức giảm thật của một bước: $\varphi(1/4)-\varphi(7/16)=\log(7/4)-3/16\approx0{,}372116$. Điều kiện Armijo cho bước đầy đủ: cần $\varphi(1/4)-\varphi(s^1)\ge\alpha(-g^Td_N)=\tfrac{1}{10}\cdot\tfrac{9}{16}=\tfrac{9}{160}=0{,}05625$ (không phải $\alpha\cdot 9/32$); vì $0{,}372116\ge0{,}05625$, bước $t=1$ được nhận.
+(c) Vì $\varphi^{\prime\prime}(s)>0$ trên $s>0$ và $\varphi^{\prime}(1)=0$, nghiệm duy nhất là $s^*=1$. Sai số thực tế tại điểm đầu: $\varphi(1/4)-\varphi(1)=(1/4+\log4)-1=\log4-3/4\approx0{,}636294$. Mức giảm thực tế của một bước: $\varphi(1/4)-\varphi(7/16)=\log(7/4)-3/16\approx0{,}372116$. Điều kiện Armijo cho bước đầy đủ: cần $\varphi(1/4)-\varphi(s^1)\ge\alpha(-g^Td_N)=\tfrac{1}{10}\cdot\tfrac{9}{16}=\tfrac{9}{160}=0{,}05625$ (không phải $\alpha\cdot 9/32$); vì $0{,}372116\ge0{,}05625$, bước $t=1$ được nhận.
 
-(d) Ba đại lượng có ý nghĩa khác nhau: $\delta_N^2/2=9/32$ là giảm dự đoán của mô hình bậc hai; sai số thật $\log4-3/4$ là khoảng cách tới giá trị tối ưu $\varphi(1)=1$; mức giảm một bước $\log(7/4)-3/16$ là lượng $\varphi$ giảm thật sau một lần lặp. Ba số $0{,}28125$, $0{,}636294$, $0{,}372116$ không được đồng nhất; với hàm bậc hai xác định dương, mô hình là hàm thật và bước Newton đầy đủ tới nghiệm, nên ba đại lượng trùng nhau.
+(d) Ba đại lượng có ý nghĩa khác nhau: $\delta_N^2/2=9/32$ là giảm dự đoán của mô hình bậc hai; sai số thực tế $\log4-3/4$ là khoảng cách tới giá trị tối ưu $\varphi(1)=1$; mức giảm một bước $\log(7/4)-3/16$ là lượng $\varphi$ giảm thực tế sau một lần lặp. Ba số $0{,}28125$, $0{,}636294$, $0{,}372116$ không được đồng nhất; với hàm bậc hai xác định dương, mô hình là hàm gốc và bước Newton đầy đủ tới nghiệm, nên ba đại lượng trùng nhau.
 :::
 
 
@@ -185,7 +185,7 @@ Như ở bước đầu (Bài 3), giảm mô hình nhỏ hơn sai số mục ti�
 ## Bài 5 — Newton khả thi và khử biến
 
 ::: exercise
-**Bài 5 (tính toán).** Xét bài toán $\min_u F(u)$ với $F(u)=\tfrac12(2u_1^2+5u_2^2)$ và ràng buộc đẳng thức $u_1+u_2=14$, tức $A=\begin{bmatrix}1&1\end{bmatrix}$, $b=14$. Điểm xuất phát $u^0=(16,-2)^T$ thỏa $Au^0=b$. (a) Tự lập mô hình bậc hai $\min_d\; g^Td+\tfrac12d^THd$ với ràng buộc $Ad=0$; tự lập Lagrange $L_m$ với nhân tử $\eta$, lấy đạo hàm theo $d$ và $\eta$, xếp thành hệ điều kiện tối ưu dạng khối rồi tự giải để tìm bước $d$ và nhân tử $\eta$. Kiểm tra $Ad=0$, tính bình phương độ giảm Newton của bài toán con $\delta_{eq}^2=d^THd$, so sánh giảm mô hình $\delta_{eq}^2/2$ với giảm thật sau một bước đầy đủ, và cho biết điểm mới cùng giá trị $F$. (b) Đặt $N=(-1,1)^T$ và $\hat u=(14,0)^T$ với $A\hat u=b$, $AN=0$. Viết $u=\hat u+Nz$, lập hàm $\psi(z)=F(\hat u+Nz)$, tìm điểm cực tiểu $z^*$ và đối chiếu $\Delta z=z^*-z^0$ (với $z^0$ từ $u^0=\hat u+Nz^0$) với bước ở câu (a) qua hệ rút gọn $(N^THN)\Delta z=-N^Tg$.
+**Bài 5 (tính toán).** Xét bài toán $\min_u F(u)$ với $F(u)=\tfrac12(2u_1^2+5u_2^2)$ và ràng buộc đẳng thức $u_1+u_2=14$, tức $A=\begin{bmatrix}1&1\end{bmatrix}$, $b=14$. Điểm xuất phát $u^0=(16,-2)^T$ thỏa $Au^0=b$. (a) Tự lập mô hình bậc hai $\min_d\; g^Td+\tfrac12d^THd$ với ràng buộc $Ad=0$; tự lập Lagrange $L_m$ với nhân tử $\eta$, lấy đạo hàm theo $d$ và $\eta$, xếp thành hệ điều kiện tối ưu dạng khối rồi tự giải để tìm bước $d$ và nhân tử $\eta$. Kiểm tra $Ad=0$, tính bình phương độ giảm Newton của bài toán con $\delta_{eq}^2=d^THd$, so sánh giảm mô hình $\delta_{eq}^2/2$ với giảm thực tế sau một bước đầy đủ, và cho biết điểm mới cùng giá trị $F$. (b) Đặt $N=(-1,1)^T$ và $\hat u=(14,0)^T$ với $A\hat u=b$, $AN=0$. Viết $u=\hat u+Nz$, lập hàm $\psi(z)=F(\hat u+Nz)$, tìm điểm cực tiểu $z^*$ và đối chiếu $\Delta z=z^*-z^0$ (với $z^0$ từ $u^0=\hat u+Nz^0$) với bước ở câu (a) qua hệ rút gọn $(N^THN)\Delta z=-N^Tg$.
 :::
 
 ::: hint
@@ -197,7 +197,7 @@ Như ở bước đầu (Bài 3), giảm mô hình nhỏ hơn sai số mục ti�
 $$\nabla_dL_m=g+Hd+A^T\eta=0,\qquad \nabla_\eta L_m=Ad=0.$$
 Vì $H\succ0$ và $A$ có hạng hàng đầy đủ, nghiệm KKT cho bước cực tiểu duy nhất. Xếp hai dòng thành hệ khối
 $$\begin{bmatrix}2&0&1\\0&5&1\\1&1&0\end{bmatrix}\begin{bmatrix}d_1\\d_2\\\eta\end{bmatrix}=-\begin{bmatrix}32\\-10\\0\end{bmatrix}.$$
-Hàng cuối cho $d_2=-d_1$; hai hàng đầu là $2d_1+\eta=-32$ và $5d_2+\eta=10$. Trừ rồi thế $d_2=-d_1$: $2d_1-5d_2=-42\Rightarrow 7d_1=-42$, nên $d=(-6,6)^T$, $\eta=-20$. Kiểm tra: $Ad=0$ và $Hd+g=(20,20)^T=-A^T\eta$. Mọi bước $u+td$ giữ $A(u+td)=Au^0+t\,Ad=b$. Bước đầy đủ tới $u^*=(10,4)^T$, $F^*=140$. Bình phương độ giảm Newton của bài toán con $\delta_{eq}^2=d^THd=2\cdot36+5\cdot36=252$; giảm mô hình $Q(0)-Q(d)=\tfrac12d^THd=126$ (dương), đúng bằng giảm thật $F(u^0)-F^*=266-140=126$ vì $F$ bậc hai nên $Q(d)=F(u^0+d)-F(u^0)$ chính xác.
+Hàng cuối cho $d_2=-d_1$; hai hàng đầu là $2d_1+\eta=-32$ và $5d_2+\eta=10$. Trừ rồi thế $d_2=-d_1$: $2d_1-5d_2=-42\Rightarrow 7d_1=-42$, nên $d=(-6,6)^T$, $\eta=-20$. Kiểm tra: $Ad=0$ và $Hd+g=(20,20)^T=-A^T\eta$. Mọi bước $u+td$ giữ $A(u+td)=Au^0+t\,Ad=b$. Bước đầy đủ tới $u^*=(10,4)^T$, $F^*=140$. Bình phương độ giảm Newton của bài toán con $\delta_{eq}^2=d^THd=2\cdot36+5\cdot36=252$; giảm mô hình $Q(0)-Q(d)=\tfrac12d^THd=126$ (dương), đúng bằng giảm thực tế $F(u^0)-F^*=266-140=126$ vì $F$ bậc hai nên $Q(d)=F(u^0+d)-F(u^0)$ chính xác.
 
 (b) Với $\hat u=(14,0)^T$, $N=(-1,1)^T$: $A\hat u=14$, $AN=0$, nên $u=(14-z,z)^T$ khả thi với mọi $z$. Thay vào $F$:
 $$\psi(z)=\tfrac12\big(2(14-z)^2+5z^2\big)=196-28z+\tfrac72 z^2.$$
@@ -231,11 +231,11 @@ Vì $F$ bậc hai, mô hình trùng hàm và một bước đầy đủ từ m�
 ## Bài 6 — Newton phần dư
 
 ::: exercise
-**Bài 6 (tính toán).** Xét bài toán với $F(u)=\tfrac12(2u_1^2+5u_2^2)$, ràng buộc đẳng thức $u_1+u_2=14$, tức $A=(1,1)$, $b=14$, và điểm khởi đầu chưa khả thi $u^0=(1,8)^T$ với nhân tử khởi tạo $\nu^0=4$. (a) Tự tính $\nabla F(u^0)$, rồi lập hai phần dư $r_d=\nabla F(u^0)+A^T\nu^0$ và $r_p=Au^0-b$. (b) Viết tuyến tính hóa hai dòng điều kiện KKT tại $(u^0,\nu^0)$, phân biệt Taylor của gradient trong bài toán tổng quát với đẳng thức chính xác trong ví dụ bậc hai này, rồi xếp thành hệ Newton phần dư đối với $(d,\Delta\nu)$ với $H=\mathrm{diag}(2,5)$. (c) Tự giải hệ bằng phép thế, kiểm tra lại nghiệm bằng cách thay vào từng hàng, rồi cập nhật $u^1=u^0+d$, $\nu^1=\nu^0+\Delta\nu$ và tính lại cả hai phần dư tại điểm mới. (d) Đặt $\eta=\nu^0+\Delta\nu$; phân biệt rõ $\eta$ với $\Delta\nu$. Với hệ số bước $t=\tfrac12$, dùng công thức $\nu^+=(1-t)\nu^0+t\,\eta$ để tính $\nu^+$, lấy $u^+=u^0+td$, rồi tính $r_p^+$ và $r_d^+$ tại điểm thử. (e) Nêu tiêu chuẩn dừng cần theo dõi cả hai phần dư, và giải thích vì sao một phần dư nhỏ không tự chứng minh sai số mục tiêu nhỏ: cho thấy có điểm với $F(u)<F^*=140$ nhưng vẫn ngoài miền khả thi.
+**Bài 6 (tính toán).** Xét bài toán với $F(u)=\tfrac12(2u_1^2+5u_2^2)$, ràng buộc đẳng thức $u_1+u_2=14$, tức $A=(1,1)$, $b=14$, và điểm khởi đầu chưa khả thi $u^0=(1,8)^T$ với nhân tử khởi tạo $\nu^0=4$. (a) Tự tính $\nabla F(u^0)$, rồi lập hai phần dư $r_d=\nabla F(u^0)+A^T\nu^0$ và $r_p=Au^0-b$. (b) Viết tuyến tính hóa hai dòng điều kiện KKT tại $(u^0,\nu^0)$, phân biệt Taylor của gradient trong bài toán tổng quát với đẳng thức chính xác trong ví dụ bậc hai này, rồi xếp thành hệ Newton phần dư đối với $(d,\Delta\nu)$ với $H=\mathrm{diag}(2,5)$. (c) Tự giải hệ bằng phép thế, kiểm tra lại nghiệm bằng cách thay vào từng hàng, rồi cập nhật $u^1=u^0+d$, $\nu^1=\nu^0+\Delta\nu$ và tính lại cả hai phần dư tại điểm mới. (d) Đặt $\eta=\nu^0+\Delta\nu$; phân biệt rõ $\eta$ với $\Delta\nu$. Với hệ số bước $t=\tfrac12$, dùng công thức $\nu^+=(1-t)\nu^0+t\,\eta$ để tính $\nu^+$, lấy $u^+=u^0+td$, rồi tính $r_p^+$ và $r_d^+$ tại điểm thử. (e) Nêu tiêu chí dừng cần theo dõi cả hai phần dư, và giải thích vì sao một phần dư nhỏ không tự chứng minh sai số mục tiêu nhỏ: cho thấy có điểm với $F(u)<F^*=140$ nhưng vẫn ngoài miền khả thi.
 :::
 
 ::: hint
-(a) Tính gradient trước, rồi cộng $A^T\nu^0$ vào để được $r_d$; riêng $r_p$ chỉ dùng $Au^0-b$. (b) Trong bài toán tổng quát, $r_d(u^0+d,\nu^0+\Delta\nu)\approx r_d+Hd+A^T\Delta\nu$, rồi đặt vế phải bằng $0$ để xác định bước; riêng ví dụ bậc hai này Taylor chính xác. Phương trình khả thi $r_p+Ad=0$ luôn chính xác vì ràng buộc affine; ghép thành hệ khối với $H$ và $A$. (c) Trừ hai hàng đầu để khử $\Delta\nu$, dùng hàng khối ràng buộc để biểu diễn một ẩn theo ẩn kia, rồi thay ngược; sau khi có nghiệm, thay vào từng hàng để kiểm tra. (d) $\eta$ là giá trị nhân tử mới ở bước đầy đủ, còn $\Delta\nu$ là số gia của nhân tử; với $t=\tfrac12$ nhân tử mới là trung bình cộng của $\nu^0$ và $\eta$, và phần dư khả thi tại điểm thử giảm đúng theo hệ số $(1-t)$. (e) Hai phần dư cần hai ngưỡng riêng; hãy tìm một điểm cụ thể thỏa $F(u)<140$ nhưng vi phạm $u_1+u_2=14$ để thấy mục tiêu thấp không nghĩa là gần nghiệm.
+(a) Tính gradient trước, rồi cộng $A^T\nu^0$ vào để được $r_d$; riêng $r_p$ chỉ dùng $Au^0-b$. (b) Trong bài toán tổng quát, $r_d(u^0+d,\nu^0+\Delta\nu)\approx r_d+Hd+A^T\Delta\nu$, rồi đặt vế phải bằng $0$ để xác định bước; riêng ví dụ bậc hai này Taylor chính xác. Phương trình khả thi $r_p+Ad=0$ luôn chính xác vì ràng buộc affine; ghép thành hệ khối với $H$ và $A$. (c) Trừ hai hàng đầu để khử $\Delta\nu$, dùng hàng khối ràng buộc để biểu diễn một ẩn theo ẩn kia, rồi thay ngược; sau khi có nghiệm, thay vào từng hàng để kiểm tra. (d) $\eta$ là giá trị nhân tử mới ở bước đầy đủ, còn $\Delta\nu$ là số gia của nhân tử; với $t=\tfrac12$ nhân tử mới là trung bình cộng của $\nu^0$ và $\eta$, và phần dư gốc tại điểm thử giảm đúng theo hệ số $(1-t)$. (e) Hai phần dư cần hai ngưỡng riêng; hãy tìm một điểm cụ thể thỏa $F(u)<140$ nhưng vi phạm $u_1+u_2=14$ để thấy mục tiêu thấp không nghĩa là gần nghiệm.
 :::
 
 ::: solution
@@ -324,7 +324,7 @@ $\varphi'(3/2)=1/3$ và $\varphi''(3/2)=4/9$. Với hàm này, $\delta^2=(1-1/s)
 ::: solution
 (a) Tại $s=3/2$: $g=1-2/3=1/3$, $H=4/9$, nên $\delta^2=g^2/H=(1/9)/(4/9)=1/4$ và $\delta=1/2$. Cận bằng
 $$-\tfrac12-\log\tfrac12=\log2-\tfrac12\approx0{,}193.$$
-Sai số thật là $\tfrac32-\log\tfrac32-1=\tfrac12-\log\tfrac32\approx0{,}095$, và giảm mô hình là $\delta^2/2=1/8$. Thứ tự $0{,}095<0{,}125<0{,}193$ cho thấy cận đúng nhưng không chặt, và tại điểm này giảm mô hình lớn hơn sai số.
+Sai số thực tế là $\tfrac32-\log\tfrac32-1=\tfrac12-\log\tfrac32\approx0{,}095$, và giảm mô hình là $\delta^2/2=1/8$. Thứ tự $0{,}095<0{,}125<0{,}193$ cho thấy cận đúng nhưng không chặt, và tại điểm này giảm mô hình lớn hơn sai số.
 
 (b) Vì $\delta^2=(1-s)^2$, khi $s<1$ ta có $\delta=1-s$ và cận $-(1-s)-\log s=\varphi(s)-1$ trùng sai số; tại $s=1/4$ cả hai bằng $\log4-3/4\approx0{,}636$. Khi $1<s<2$ (để $\delta<1$), đặt $u=s-1\in(0,1)$; hiệu giữa cận và sai số là $\log\frac{1+u}{1-u}-2u>0$, nên cận lớn hơn hẳn sai số. Dấu bằng tại $s=1/4$ vì vậy là trường hợp riêng của các điểm bên trái nghiệm.
 :::

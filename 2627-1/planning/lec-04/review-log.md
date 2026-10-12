@@ -1734,3 +1734,54 @@ Sau lượt đồng bộ deck và SVG, các hình không được deck hay ghi c
 Master đã tự chạy `density.py` (75 trang; chỉ RZ03 72/80 và RP03b 7 dòng, đều có ngoại lệ; không còn "Tự học" hay mã VD trên deck), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console; cờ tràn ngang là dương tính giả KaTeX), và tự tái kiểm toán hai trang mới chưa qua tác tử tái kiểm: RG09c (hệ KKT của $\min g^Tv$ với $v^TWv\le1$: $\zeta=0\Rightarrow g=0$; $v=-W^{-1}g/(2\zeta)$; $\zeta=\tfrac12\sqrt{g^TW^{-1}g}$: đúng) và RZ01c (bốn cận: $L\|x^0-x^*\|^2/(2k)$; $\|x^0-x^*\|^2/(2t_{\min}k)$ với quay lui; $(1-\mu/L)^k e_0$; $(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$ với giả thiết lồi mạnh, Hessian Lipschitz, $\alpha<\tfrac12$: đúng theo Boyd–Vandenberghe §9.3, §9.5); vị trí hai trang trong mạch (chứng minh ngay sau mệnh đề RG09b; bảng định lý trong mạch kết luận) hợp lệ. Đối chiếu bảng trạng thái hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 04. Việc còn treo (đợt học liệu): `materials/lec-04` còn mã VD1/VD2/VD3 (ánh xạ ở trên), bài tập RG11, RN08, RE08, RR07, RS05(b) chưa có trong `exercises.md`; liên kết `#/h/1` của `exercises.md` nay mở trang tiêu đề mạch.
 
 Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12
+
+**Tác tử.** Rà soát thuật ngữ và ký hiệu kèm kiến trúc học tập, chỉ đọc: general-purpose, Claude Opus 5.5 (`claude-opus-5-5`), effort high (báo cáo `report-04.md`, 17 mục bảng A, 14 mục bảng B). Biên tập: general-purpose, Claude Opus 5.5 (`claude-opus-5-5`), effort high, ghi tệp theo `decisions-04.md` và `decisions-common.md` của điều phối viên Fable 5.1 (`decisions-04.md` thắng khi lệch). Tác tử biên tập đã tải `no-ai-slop` (SKILL.md, eval.md), dùng chế độ Edit cho các câu mới trên mặt trang và trong ghi chú, rồi tự đối chiếu `eval.md`: không thêm câu dẫn rỗng, không đổi từ đồng nghĩa tùy tiện, bỏ hai câu lấy trang làm chủ ngữ (RN05, RN07).
+
+**Phạm vi tệp.** Deck `lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`; `planning/lec-04/{outline,storyboard,review-log}.md`; theo quyết định liên bài số 15, `materials/lec-04/{lecture-note,exercises}.md` (chỉ đổi thuật ngữ, không đổi nội dung toán). Không chạy `sync-local-materials.py` (điều phối viên chạy cuối đợt). Không thêm, không tách trang: vẫn 75 trang, bảy mạch, trang "Nội dung" và `#/N` giữ nguyên.
+
+| mức độ | trang | vấn đề | quyết định điều phối viên | trạng thái | cách sửa |
+|---|---|---|---|---|---|
+| trung bình | RG02, RG09b; ghi chú RP03b, RG00, RG05, RG08, RG10 | "hướng gradient" cho $d_G=-g$ lệch nghĩa | chấp nhận (A1) | đã sửa | Tiêu đề RG02 "Hướng ngược gradient"; dòng "$d_G$ gọi là hướng ngược gradient (negative gradient)"; mọi chỗ còn lại "hướng ngược gradient" (deck 0 chỗ cũ; học liệu 17 chỗ) |
+| trung bình | RN07, RN07b | "tập mức" thay cho tập mức dưới | chấp nhận (A2) | đã sửa | "tập mức dưới" trên mặt RN07, RN07b và ghi chú RS01; "(sublevel set)" đã có ở ghi chú RN07 |
+| trung bình | RR07 | "điều kiện dừng" dùng cho tiêu chí kết thúc | chấp nhận (A3) | đã sửa | "nêu hai tiêu chí dừng"; thêm ghi chú RG09c "tiêu chí dừng của thuật toán" (cùng loại) |
+| trung bình | RN05; ghi chú RN04, RN05 | "phép trừ" | chấp nhận (A4) | đã sửa | "Tính ba hiệu:", cột "Hiệu"; ghi chú "ba hiệu", "hai hiệu trên hàm gốc" |
+| trung bình | RE04, RE06; ghi chú RE04, RE06, RE07 | "cỡ" | chấp nhận (A5, A15) | đã sửa | "kích thước $(n+p)\times(n+p)$", "hệ cấp $n-p$", "bậc $O(n^3)$", "bậc $O((n+p)^3)$" |
+| nhẹ | RG04, RN05; ghi chú nhiều trang | "thật" | chấp nhận (A6) | đã sửa | "mức giảm thực tế (actual reduction)" ở RG04; "Giảm thực tế sau một bước" ở RN05; ghi chú "thực tế", "hàm gốc", "độ cong của hàm", "giảm chặt"; alt RN01 "hàm gốc". `desc` của `phi-local-model.svg` còn "Hàm thật": giữ vì không nằm trong `title` và tệp có mã SHA-256 trong `source-provenance.md` |
+| nhẹ | RP03 | "tiêu chuẩn dừng" | chấp nhận (A7) | đã sửa | "tiêu chí dừng" |
+| nhẹ | RN00; ghi chú RG00, RG10, RG18, RN01 | "thước đo" cho $W$ | chấp nhận (A8) | đã sửa | "ma trận trọng số"; ghi chú RG10 "hai lần mức giảm của mô hình" (nghĩa đo lường, chính xác hơn) |
+| nhẹ | RG05, RG06; ghi chú RG05–RG07, RN06, RR06 | "lượt" | chấp nhận (A9) | đã sửa | "vòng lặp" |
+| nhẹ | RG08 | "tiếp điểm" và "điểm tiếp xúc" | chấp nhận (A10) | đã sửa | "điểm tiếp xúc" |
+| nhẹ | RG08 | tên gọi tắt chỉ trong ghi chú | chấp nhận (A11) | đã sửa | "(gọi tắt: hướng dốc nhất)" trong định nghĩa |
+| nhẹ | RR00; ghi chú RR01, RR06 | "phần dư khả thi" lệch "gốc (primal)" | chấp nhận (A12) | đã sửa | "phần dư gốc (primal residual)"; từ khóa RR00 "Phần dư đối ngẫu và gốc" |
+| nhẹ | RN07b | $m,M$ trên mặt trang | chấp nhận (A13; liên bài số 9) | đã sửa | $\mu I\preceq\nabla^2f\preceq LI$; ghi chú RN07b viết theo $\mu,L,L_H$ và đối chiếu $m,M,L$ của Boyd và Vandenberghe; ghi chú RS01, RZ01c theo $\mu,L$ |
+| nhẹ | RG10 (ghi chú) | "bước số" tối nghĩa | chấp nhận (A14) | đã sửa | "độ dài bước, một số dương do quy tắc nhận bước chọn sau" |
+| nhẹ | RP03 (ghi chú) | LLO/CLO chưa viết đầy đủ | chấp nhận (A16) | đã sửa | "chuẩn đầu ra bài học (LLO)", "chuẩn đầu ra học phần (CLO)" |
+| nhẹ | RP01b, RG01, RG03, RG08, RG13, RE06, RE07, RR06 | thiếu tên tiếng Anh | chấp nhận (A17) | đã sửa | trong ghi chú: subproblem, step size (RP01b), descent direction (RG01), weighted norm (RG08), descent lemma (RG13), elimination, reduced system (RE06), feasible-start Newton method (RE07), infeasible-start Newton method (RR06); thêm level curve (RG01), penalty term (RG02) theo quyết định liên bài |
+| nhẹ | ghi chú RN05, RN07 | ghi chú lấy trang làm chủ ngữ | chấp nhận (mục 5) | đã sửa | bỏ "Dòng cuối của trang rút ra kết luận", "được định nghĩa ở dòng đầu trang" |
+| ghi nhận | outline, storyboard | "giảm gradient" trong kế hoạch | chấp nhận | đã sửa | outline dòng RG18/RN07 và storyboard RN07, RG07, RG12, RN06 → "hạ gradient"; các câu trích nguyên văn yêu cầu người dùng giữ nguyên |
+| nghiêm trọng | RG02 (lần dùng đầu $\succ0$) | ma trận xác định dương chưa định nghĩa | chấp nhận (B1) | đã sửa | dòng "Nhắc lại: ma trận đối xứng $W\succ0$ (xác định dương) khi $v^TWv>0$ với mọi $v\ne0$" trên RG02, đứng trước dòng dùng $I\succ0$; 35 → 55 âm tiết, 6 dòng |
+| trung bình | RG12 | $\preceq$ chưa nhắc | chấp nhận (B2) | đã sửa | "tức $v^T\nabla^2f\,v\le L\|v\|_2^2$ với mọi $v$"; dòng này chuyển ra ngoài khung, trải toàn bề rộng, vì trong cột 60% trang tràn (757/674 px) |
+| trung bình | RG12 | $f^*$ dùng trước định nghĩa | chấp nhận (B3) | đã sửa | "$f^*=\inf f$" trong dòng "Nhu cầu:" (rút gọn còn một dòng) |
+| trung bình | RE04 | "đủ hạng hàng" chưa giải thích | chấp nhận (B4) | đã sửa | "(hàng độc lập tuyến tính)"; 44 → 50 âm tiết |
+| trung bình | RN07 | Hessian Lipschitz chưa định nghĩa | chấp nhận (B5) | đã sửa | "Ký hiệu:" dưới bảng; ô bảng "Hessian $L_H$-Lipschitz"; ghi chú "chuẩn phổ (spectral norm)" |
+| trung bình | RN07 | "tự điều chỉnh" trước định nghĩa | chấp nhận (B6) | đã sửa | "(định nghĩa ở mạch 6)"; RN07 57 → 71 âm tiết, ngoại lệ bảng so sánh (trần 80) ghi trong storyboard |
+| trung bình | RN07b | "pha tắt dần" chưa định nghĩa trên mặt | chấp nhận (B7) | đã sửa | "Ký hiệu: pha tắt dần gồm các bước còn xa nghiệm, mỗi bước giảm $f$ ít nhất $\gamma$" |
+| trung bình | RE06 | Cholesky chưa nhắc; mặt trang mạnh hơn ghi chú | chấp nhận (B8) | đã sửa | "phân rã Cholesky $LL^T$ cần ma trận xác định dương, nên không áp dụng trực tiếp cho hệ khối" (rút gọn để dòng ≤ 20 âm tiết); 55 → 59 |
+| nhẹ | RG06 | $\operatorname{dom}f$ | chấp nhận (B9) | đã sửa | "(miền xác định của $f$, mở)" |
+| nhẹ | RS02 | $C^3$ | chấp nhận (B10) | đã sửa | "$C^3$ là lớp hàm khả vi liên tục ba lần" ở dòng cuối khung định nghĩa (đặt ở dòng đầu thì dòng đầu 23 âm tiết > 20) |
+| nhẹ | RR00 | $r$ trước định nghĩa | chấp nhận (B11) | đã sửa | "giảm chuẩn của phần dư KKT" |
+| nhẹ | RP01 | $X,y$ chưa gọi tên | chấp nhận (B12, phương án ghi chú) | đã sửa | ghi chú "ma trận dữ liệu $X$ và vector nhãn $y$" |
+| nhẹ | RN01 | log tự nhiên | chấp nhận (B13) | đã sửa | "($\log$ tự nhiên)" |
+| nhẹ | RN07b | $\varepsilon_0$ thiếu công thức | chấp nhận (B14) | đã sửa | "$\varepsilon_0=2\mu^3/L_H^2$" (Boyd và Vandenberghe (9.36)) |
+| liên bài | ghi chú RP01, RG01, RG09c, RG17b | "vectơ" | chấp nhận (liên bài số 7) | đã sửa | "vector" (deck 0 chỗ cũ; học liệu Bài 04 không có) |
+| liên bài | ghi chú RP04, RG11b, RZ02b | nhãn "Đáp án câu …" | chấp nhận (liên bài số 13) | đã sửa | "Lời giải câu …" (6 chỗ) |
+
+Không có mục `bác bỏ` trong `decisions-04.md`. Các mục liên bài số 1, 4, 5, 6 (đường mức), 8, 10, 11, 12, 16 đã kiểm: deck Bài 04 không dùng "biên có dấu", "ràng buộc chặt", "biến bù", "đồng mức"; "nghiêm ngặt" chỉ trong cụm "(còn gọi là lồi nghiêm ngặt)"; không có tiếng Anh trong tiêu đề h2.
+
+**Học liệu Bài 04** (quyết định liên bài số 15): `lecture-note.md` và `exercises.md` đổi "hướng gradient" → "hướng ngược gradient" (Định nghĩa 04.8 thêm "(negative gradient)"), "phép trừ" → "hiệu" (giữ "Phép trừ trung bình của từng cột", nghĩa phép toán), "thật" → "thực tế"/"gốc" (giữ "thật vậy", "Mạng thật"), "lượt" → "vòng lặp" (giữ "lần lượt"), "thước đo" cho chuẩn/$W$ → "chuẩn"/"ma trận trọng số" (giữ "thước đo tiến triển" của chuẩn phần dư ở Mục 5.3, nghĩa đo lường), "tiếp điểm" → "điểm tiếp xúc", "phần dư khả thi" → "phần dư gốc", "tiêu chuẩn dừng" → "tiêu chí dừng", thêm "số hạng phạt (penalty term)". Tiêu đề Mục 2 của ghi chú và dòng mục lục trong `exercises.md` đổi "thước đo" → "ma trận trọng số"; không tệp nào liên kết tới neo của tiêu đề này.
+
+**Kiểm tra của tác tử biên tập.** `density.py`: chỉ RN07 (71/80, ngoại lệ bảng so sánh mới ghi), RZ03 (72/80) và RP03b (7 dòng) vượt trần 60/6, đều có ngoại lệ; không dòng nào > 20 âm tiết. `deckcheck.py` trên mọi trang mặt đổi ở 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung 16:9; ba cờ tràn ngang ở khổ hẹp (RG05, RN05, RN07) do bảng trong `.table-scroll`, đã có trước đợt sửa (chạy lại trên bản cũ cho cùng ba cờ). Ảnh chụp sau khi trang ổn định (chờ 1,2 s) đã xem ở cả hai khổ. `git diff --check` sạch.
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-04 và decisions-common; kiểm toán học dòng "d^TWd bằng hai lần mức giảm của mô hình" (đúng vì Hd=-g); tự chạy deckcheck trên RG02, RG12, RN07, RN07b, RE04, RE06, RS02, RG08: 0 lỗi console, 0 .katex-error, không tràn dọc ở 16:9; cờ cuộn ngang khổ hẹp của bảng RN07 có từ trước. Xem ảnh RG02, RG12, RN07 ở 1600×900 và RG02 ở 390×844. Gói học liệu cục bộ sẽ được đồng bộ một lần ở cuối đợt (các bài khác đang sửa song song).
