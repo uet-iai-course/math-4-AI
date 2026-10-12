@@ -372,3 +372,186 @@ Kiểm tra: toàn deck 45 trang ở 1600×900 và 390×844 (kèm ảnh cuộn cu
 **Quyết định của điều phối viên (Fable 5.1, 2026-10-12, kiểm cuối deck):** chấp nhận. Kiểm cuối (general-purpose, claude-opus-5-5, high) đạt: 45/45 trang ở 1600×900 (cao nhất 643/675) và 390×844, 0 lỗi, 0 `.katex-error`, 14/14 hình tải, `<picture>` chọn đúng bản hẹp, phím đi hết deck; planning khớp 45/45; `git diff --check` sạch. Hai mục kỹ thuật (tabindex 16 bảng cuộn; mã trang "(F05)" ở G02) đã sửa và kiểm lại, điều phối viên xác nhận 16 tabindex và không còn mã trang. Footer ẩn ở mạch đầu là luật chung của học kỳ (lecture-style.css dòng 79), giữ nguyên để nhất quán với mọi deck. Deck commit ở mốc này; thẻ index thêm khi học liệu xong.
 
 Đồng bộ với Bài 05 KL04 (2026-10-12): G01 (mặt trang, ghi chú), outline và storyboard không còn gọi $\eta\sigma^2/\mu$ là bán kính; nay viết “tới lân cận, $\mathbb E\lVert\theta_k-\theta^*\rVert^2$ cỡ $\eta\sigma^2/\mu$ (T5)”, ghi chú thêm bán kính cỡ $\sqrt{\eta\sigma^2/\mu}$; rà F02, F03, F08 và toàn deck không còn chỗ nào khác; kiểm G01 ở 1600×900 và 390×844 không lỗi (cao 622 px); `git diff --check` sạch.
+
+## Sửa theo nguyên tắc văn phong và mật độ (2026-10-12)
+
+### Tác tử
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Ghi/đọc | Bằng chứng |
+|---|---|---|---|---|---|
+| Biên tập viên deck Bài 06 (đợt sửa văn phong MAT1101) | Công cụ Agent, `general-purpose` | `claude-opus-5-5` | high | Ghi: deck, `planning/lec-06/{outline,storyboard,review-log}.md`; không ghi `img/lec-06/`, `lecture-style.css`, `materials/`, `index.html` | Brief `brief-deck-editor.md` trong thư mục nháp của phiên; báo cáo phân tích `phan-tich-mat1101.md` (B.3, D.3, D.6, D.8, E); số đo cơ sở `baseline/lecture-06-mo-rong-mo-hinh-va-du-lieu.txt` |
+
+Mô hình và effort ghi theo brief; điều phối viên xác nhận bằng lời gọi công cụ. Không commit.
+
+### Phạm vi
+
+Áp các mục “Trang tiêu đề mạch” và “Văn phong và mật độ mặt trang chiếu” của AGENTS.md cho deck Bài 06. Deck 45 → 72 trang, 7 mạch giữ nguyên. Thêm 6 trang tiêu đề mạch (`B00` “Biểu diễn phi tuyến và mạng hai tầng”, `C00` “Lan truyền ngược trên đồ thị tính toán”, `D00` “Điểm dừng và bảo đảm của gradient khi không lồi”, `E00` “Gradient nhóm nhỏ và chi phí mỗi bước”, `F00` “Tốc độ hội tụ dưới nhiễu và dừng sớm”, `G00` “Tổng hợp và lựa chọn phương pháp”; `id="mach-2"`…`mach-7"`), trang Nội dung `A02b` (mạch 1 “Bài toán huấn luyện khi mô hình và dữ liệu lớn”, bìa A01 là trang tiêu đề của mạch 1), 20 trang tách. D01 đổi tiêu đề để khác tên mạch 4. Lớp `.dense` gỡ khỏi cả 45 trang cũ (còn 0). Mã T1–T8 (77 lần) và H0–H6b (39 lần) không còn trong tệp deck, kể cả ghi chú. “Ví dụ A” của 05b gọi là “ví dụ ba quan sát”. Nhãn ngoài danh sách AGENTS.md đã bỏ: “Ví dụ dẫn nhập.”, “Mục tiêu.”, “Vấn đề trung tâm.”, “Ứng dụng.”, “Kiểm tra.”, “Không khẳng định:”, “Phạm vi:”, “Lý do thống kê/tính toán”, “Số liệu thực nghiệm”, “Thiết lập.”, “Quy tắc”, “Chi phí:”, “Bước:”. Ghi chú bỏ câu chỉ đường (“Lời giải ở trang kế”, “ở trang sau/trước”) và câu lấy tài liệu làm chủ ngữ ở đầu ghi chú.
+
+### Bảng thay đổi theo trang
+
+Số âm tiết đo bằng `tools/density.py` (không tính tiêu đề, KaTeX, ô số, ghi chú). “—”: trang mới.
+
+| Trang | Trước | Sau | Quyết định | Thay đổi |
+|---|---:|---:|---|---|
+| A01 | 31 | 31 | `sửa` | ghi chú bỏ câu mô tả phụ đề |
+| A02 | 133 | 52 | `tách` | chỉ còn ba mục tiêu; bản đồ → A02b; vấn đề trung tâm → A04 |
+| A02b | — | 61 | `thêm` | trang Nội dung 1–7 (7 dòng, ngoại lệ) |
+| A03 | 140 | 77 | `sửa` | bảng ba cột có nhãn dòng; bỏ “Vấn đề của bài”; trần 80 (bảng so sánh) |
+| A04 | 74 | 29 | `sửa` | thành trang Ngữ cảnh 4 dòng; đối chiếu ký hiệu → ghi chú |
+| B00 | — | 37 | `thêm` | tiêu đề mạch 2 |
+| B01 | 31 | 27 | `sửa` | “Nhu cầu:” thay panel “Ví dụ dẫn nhập.” |
+| B02 | 70 | 42 | `tách` | ví dụ bình phương nhỏ nhất → B02b |
+| B02b | — | 46 | `thêm` | ví dụ bình phương nhỏ nhất |
+| B03 | 54 | 33 | `sửa` | rút hai câu diễn giải |
+| B04 | 11 | 11 | `giữ` | gỡ .dense |
+| B05 | 23 | 21 | `sửa` | tiêu đề “Ví dụ: …” |
+| B06 | 33 | 33 | `giữ` | gỡ .dense |
+| B07 | 59 | 53 | `sửa` | bỏ nhãn “Ứng dụng.” |
+| B08 | 45 | 45 | `giữ` | gỡ .dense |
+| B09 | 69 | 59 | `tách` | Mệnh đề 3 + chứng minh một dòng; phép kiểm tra XOR → B09b |
+| B09b | — | 16 | `thêm` | ví dụ đoạn nối hai cực tiểu |
+| B10 | 48 | 38 | `tách` | “Bài tập: …”; đáp án → B10b |
+| B10b | — | 18 | `thêm` | lời giải |
+| C00 | — | 30 | `thêm` | tiêu đề mạch 3 |
+| C01 | 54 | 48 | `sửa` | “Kết luận:” thay panel “Mục tiêu.” |
+| C02 | 15 | 15 | `giữ` | gỡ .dense |
+| C03 | 28 | 25 | `sửa` | “Ví dụ: …”; bỏ nhãn “Kiểm tra.” |
+| C04 | 41 | 27 | `sửa` | bỏ panel; dạng chung → ghi chú |
+| C05 | 67 | 39 | `sửa` | ô sai phân ghi số phép nhân; chi tiết → ghi chú |
+| C06 | 40 | 24 | `sửa` | “Ví dụ: …”; bỏ hai panel; “Diễn giải:” |
+| C07 | 40 | 40 | `tách` | “Bài tập: …”; đáp án → C07b |
+| C07b | — | 30 | `thêm` | lời giải (khớp Bài 3) |
+| D00 | — | 32 | `thêm` | tiêu đề mạch 4 |
+| D01 | 94 | 46 | `tách` | đổi tiêu đề; định nghĩa → D01b |
+| D01b | — | 46 | `thêm` | định nghĩa |
+| D02 | 22 | 20 | `sửa` | “Ví dụ: …” |
+| D03 | 77 | 50 | `sửa` | phát biểu rút gọn |
+| D04 | 50 | 33 | `sửa` | (Bổ đề 05b.6); ví dụ hai dòng |
+| D05 | 76 | 43 | `tách` | phát biểu bằng lời (Định lý 05b.41); phạm vi → D05b |
+| D05b | — | 60 | `thêm` | phạm vi của định lý |
+| D06 | 51 | 37 | `sửa` | đệ quy và dãy $F(\theta_k)$ → ghi chú; hết tràn |
+| D07 | 46 | 49 | `tách` | “Bài tập: …”; đáp án → D07b |
+| D07b | — | 43 | `thêm` | lời giải |
+| E00 | — | 33 | `thêm` | tiêu đề mạch 5 |
+| E01 | 98 | 56 | `sửa` | SGD viết đầy đủ; “Kết luận:” |
+| E02 | 113 | 54 | `tách` | định lý bằng lời (05c.52); RCV1 → E02b |
+| E02b | — | 47 | `thêm` | ví dụ RCV1 |
+| E03 | 24 | 22 | `tách` | bảng sáu nhóm → E03b (hết tràn) |
+| E03b | — | 32 | `thêm` | ví dụ, bước theo từng nhóm |
+| E04 | 58 | 52 | `sửa` | định lý bằng lời (05c.53); bỏ panel |
+| E05 | 78 | 57 | `sửa` | bỏ panel; gộp bước |
+| E06 | 73 | 52 | `tách` | “Bài tập: …”; câu 5 → E06c; đáp án → E06b |
+| E06b | — | 23 | `thêm` | lời giải (khớp Bài 7, câu 1–4) |
+| E06c | — | 27 | `thêm` | bài tập có lời giải fragment (khớp Bài 7, câu 5) |
+| F00 | — | 35 | `thêm` | tiêu đề mạch 6 |
+| F01 | 61 | 31 | `tách` | hình → F02b |
+| F01b | — | 28 | `thêm` | bất đẳng thức một bước |
+| F02 | 91 | 36 | `tách` | định lý bằng lời (05b.36); ví dụ → F02b |
+| F02b | — | 26 | `thêm` | ví dụ ba quan sát + hình |
+| F03 | 41 | 36 | `sửa` | định lý bằng lời (05b.39) |
+| F04 | 89 | 55 | `tách` | định lý bằng lời (05b.43); hệ quả → F04b |
+| F04b | — | 32 | `thêm` | hệ quả chọn bước (05b.44) |
+| F05 | 97 | 30 | `tách` | kết luận ngưỡng → F05b |
+| F05b | — | 48 | `thêm` | ngưỡng $\mathcal B<(n-b)^2/2$ |
+| F06 | 84 | 53 | `tách` | quy tắc → F06b |
+| F06b | — | 46 | `thêm` | thuật toán dừng sớm |
+| F07 | 59 | 45 | `tách` | thành trang ví dụ; nhận xét → F07b |
+| F07b | — | 47 | `thêm` | nhận xét, phạm vi, hình |
+| F08 | 63 | 41 | `tách` | “Bài tập: …”; đáp án → F08b |
+| F08b | — | 26 | `thêm` | lời giải |
+| G00 | — | 33 | `thêm` | tiêu đề mạch 7 |
+| G01 | 134 | 75 | `tách` | dòng 1–2; trần 80 (bảng so sánh) |
+| G01b | — | 47 | `thêm` | dòng 3–4 |
+| G02 | 82 | 72 | `sửa` | bỏ mã T trong ô; 8 dòng theo ô chữ, ngoại lệ bảng |
+| G03 | 123 | 74 | `tách` | bảng tổng kết ba cột; câu hỏi → G04 |
+| G04 | — | 77 | `thêm` | câu hỏi tự kiểm tra, tài liệu đọc |
+
+### Mật độ sau sửa
+
+`density.py`: 72 trang; 0 trang vượt 60 âm tiết ngoài các trang có trần 80 (A02b 61, A03 77, G01 75, G02 72, G03 74, G04 77; đều ≤ 80); 0 dòng quá 20 âm tiết; 0 trang quá 3 khối công thức hiển thị; trang quá 6 dòng: A02b (7, phải liệt kê đủ 7 mạch) và G02 (bộ đo đếm 8 dòng theo ô chữ của bảng 5 hàng × 5 cột) — hai ngoại lệ ghi trong storyboard. Trước sửa: 22 trang > 60 âm tiết, 44/45 trang có `.dense`. Ghi chú diễn giả: 4 trang trên 250 âm tiết (A03 255, E04 267, G02 261, G04 281 là trang đáp án tự kiểm), mức `nhẹ`.
+
+### Kiểm trình duyệt
+
+`tools/deckcheck.py` chạy trên bản sao có chặn yêu cầu `/api-reloadserver/` (máy chủ tự tải lại trang khi tác tử khác ghi tệp, làm hỏng phiên đo; bản gốc dừng giữa chừng với lỗi “Execution context was destroyed”): 72/72 trang, 0 lỗi console hoặc trang, 0 `.katex-error`, 0 tràn dọc ở 1600×900, 0 cuộn ngang ở 390×844. Cờ `TRAN_NGANG` ở D05, E02, F04b, F05, F08b, G02 là dương tính giả: phần tử vượt khung là `path` của SVG căn bậc hai KaTeX nằm trong vùng `overflow:hidden` (đã kiểm phần tử); HEAD trước sửa có cùng loại cờ ở E02, F04, F05, G02. Trước khi tách, D06 (720 px) và E03 (741 px) tràn dọc sau khi gỡ `.dense`; đã sửa (D06 chuyển đệ quy và dãy giá trị xuống ghi chú; E03 tách E03b). Đã xem ảnh (chụp không hiệu ứng chuyển trang) ở 1600×900 và 390×844, kể cả ảnh cuộn cuối, của sáu trang tiêu đề mạch, A02, A02b, A03, A04 và mọi trang tách hoặc sửa nhiều: không chồng lấn, không cắt chữ. Ở 390×844, bảng ba cột G03 hẹp nhưng đọc được trong vùng cuộn; công thức hiển thị dài (F01b, F02) cuộn ngang trong `.formula` như bản trước. `git diff --check` sạch.
+
+### Kiểm `no-ai-slop`
+
+Đã nạp kỹ năng (Edit) và tự đối chiếu `eval.md` trên mọi câu mới hoặc viết lại (mặt trang và ghi chú). Đạt: không câu dẫn rỗng, không nhấn mạnh không căn cứ, không kết luận kịch tính; dòng dẫn của sáu trang tiêu đề mạch nêu đại lượng hoặc nhiệm vụ cụ thể ($O(p)$, $O(np)$, $K$ bước, $n$, $p$). Đã sửa trong lượt tự kiểm: “Bài trả lời ba việc” (tài liệu làm chủ ngữ) → “Ba việc được giải quyết”; ghi chú E01, G01, G03 mở bằng đối tượng thay cho “Bảng …”, “Ba dòng …”; năm câu “Lời giải ở trang kế.” bỏ; D05 “Ý nghĩa:” sửa “giảm theo $O(1/\sqrt K)$” thành “không vượt $O(1/\sqrt K)$” (cận, không phải đại lượng). Giữ: nhãn kết quả, phân biệt toán học, nguồn.
+
+### Kiểm toán học trên nội dung mới
+
+Tính lại: B02b $A^\top A$, $A^\top y$ và $F=\tfrac18$; C05 $(p+1)(md+m)=78\,602\cdot78\,500\approx6{,}17\cdot10^9$; D07b Hessian tại $(2,\tfrac12)$, trị riêng $0$ và $4{,}25$, $K=113$; E06b gradient nhóm $(-\tfrac54,\tfrac52)$, $(-\tfrac12,-\tfrac{17}8)$, $-\tfrac54$; E06c $\tfrac{23}{36}$; F01 $\tfrac1{16}\cdot\tfrac56$; F02b đệ quy $0{,}9(\theta_k-1)+0{,}1(y_i-1)$ cho hệ số $0{,}81$ và giới hạn $\tfrac8{57}$; E03b kỳ vọng $\tfrac{503}{384}$. Số liệu chốt không đổi: lân cận G01 theo $\mathbb E\lVert\theta_k-\theta^*\rVert^2$ cỡ $\eta\sigma^2/\mu$ (bán kính $\sqrt{\eta\sigma^2/\mu}$ trong ghi chú), SVMPerf $6{,}03\,\%$, $\mathcal B<(n-b)^2/2$, nhãn $\{0,1\}$ và $y_\pm=2y-1$.
+
+### Đồng bộ học liệu cần điều phối viên giao
+
+- `materials/lec-06/exercises.md` (dòng 3, tiêu đề Bài 5) còn dùng tên ngắn T5–T8 và “theo T7”; deck không còn mã này. AGENTS.md không bắt buộc đổi học liệu trong đợt này; nếu đổi, câu “Trên trang chiếu, Mệnh đề 1, 2, 3 …” vẫn đúng.
+- Lời giải trên mặt trang trùng bài tập: C07b = Bài 3; E06b = Bài 7 câu 1–4; E06c = Bài 7 câu 5 (trên deck tách thành bài riêng); G04 (đáp án trong ghi chú) = Bài 11. Đã đối chiếu, khớp. B10b, D07b, F08b dùng dữ kiện khác Bài 1, 5, 9 nên không trùng.
+- Thứ tự ví dụ thay đổi một chỗ: hình ví dụ ba quan sát (Ví dụ A của 05b) chuyển từ trang nhiễu tại nghiệm (F01) sang trang ví dụ sau định lý mức nhiễu nền (F02b). Ghi chú bài giảng không cần đổi nếu không đối chiếu vị trí hình với deck.
+- Không học liệu nào liên kết `#/h/v` hay `id` vào deck Bài 06 (đã kiểm `materials/`, `index.html`), nên các trang thêm không làm hỏng liên kết.
+
+### Đề xuất CSS (không sửa, chờ điều phối viên)
+
+Không bắt buộc. Lớp `.dense` và các luật `.dense …` trong khối dùng chung 05/05b/06/06b (`lecture-style.css`, khoảng dòng 833, 874–878) không còn được deck 06 dùng; chỉ gỡ được khi deck 05, 05b, 06b cũng không dùng.
+
+## Sửa sau tái kiểm toán và mạch kể (2026-10-12, đợt văn phong)
+
+### Tác tử
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Ghi/đọc | Bằng chứng |
+|---|---|---|---|---|---|
+| Biên tập viên deck Bài 06 (tiếp tục cùng tác tử, nhận vòng sửa qua tin nhắn của điều phối viên) | Công cụ Agent, `general-purpose` | `claude-opus-5-5` | high | Ghi: deck, `planning/lec-06/{outline,storyboard,review-log}.md` | Đầu vào: `recheck-06-math.md`, `recheck-06-story.md` trong thư mục nháp của phiên; danh sách bắt buộc của điều phối viên |
+
+Không commit. Không sửa `materials/`, `lecture-style.css`, `img/`.
+
+### Phát hiện của vai tái kiểm toán học
+
+| Mức | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | B09 | Giả thiết Mệnh đề 3 thành khẳng định | **đã sửa**: “Giả sử $\theta^*$ là cực tiểu toàn cục có hai đơn vị ẩn mang tham số khác nhau.” (bỏ “của $F$” để dòng không quá 20 âm tiết; $F$ đã nêu ở hai hệ quả); khớp G04 câu 2 |
+| nghiêm trọng | F05b, G02 | Ngưỡng $(n-b)^2/2$ mất giả thiết hằng số | **đã sửa**: F05b dòng đầu $\mathcal B<L\Delta_0(n-b)^2/(2\sigma_1^2)$, dòng hai “Với $L=\Delta_0=\sigma_1^2=1$: $\mathcal B<(n-b)^2/2$”; G02 dòng 5 “không lồi, $\mathcal B>\mathcal B^*$ (so sánh dưới ngân sách cố định)” và chú thích $\mathcal B^*=L\Delta_0(n-b)^2/(2\sigma_1^2)$; ghi chú F05b, G02 nêu phép suy ngưỡng. Kiểm lại: $2L\Delta_0n/\mathcal B<2L\Delta_0b/\mathcal B+2\sqrt{2L\Delta_0\sigma_1^2/\mathcal B}$ ⇔ $\mathcal B>L\Delta_0(n-b)^2/(2\sigma_1^2)$ |
+| nghiêm trọng | D05b | Gradient Lipschitz toàn cục | **đã sửa**: “Mạng tuyến tính, hàm kích hoạt trơn: gradient Lipschitz chỉ trên vùng bị chặn chứa dãy lặp.” (khớp ghi chú D04) |
+| trung bình | F01b | “chỉ khi” | **đã sửa**: “bảo đảm giảm theo kỳ vọng khi …; gần nghiệm, số hạng nhiễu trội và bảo đảm này mất” |
+| trung bình | G03 | Thiếu giả thiết | **đã sửa**: dòng 2 “$F$ bị chặn dưới; $\nabla F$ là $L$‑Lipschitz; $\eta\le1/L$; tiền kích hoạt khác 0”; dòng 3 “như dòng trên; nhóm chọn độc lập; phương sai $\le\sigma^2$” |
+| nhẹ | D03 | Nguồn “(Bài 00)” | **đã sửa**: “(Bài 00; mục 3 bổ sung)” |
+| nhẹ | C07b | “không phải gradient” | **đã sửa**: “$\ell$ không khả vi theo $W_1,b_1$; … $\delta_z=0$ là kết quả của quy ước” |
+| nhẹ | E06b | Thiếu $\nabla_{W_1}$ trung bình, $\nabla_{b_1}\ell$ | **đã sửa**: thêm cả hai; khớp Bài 7 |
+| nhẹ | F04 | “nhỏ dần”, $\Delta_0$, phương sai có điều kiện | **đã sửa**: nêu $\Delta_0=F(\theta_0)-F_{\inf}$, “phương sai có điều kiện”, “$K$ lớn đòi hỏi bước hằng nhỏ hơn” |
+| nhẹ | F04b | Thiếu $\sigma>0$ | **đã sửa** |
+| nhẹ | G01 | “F giảm mỗi bước” thiếu $\eta\le1/L$ | **đã sửa**: “Gradient đầy đủ, $\eta\le1/L$: $F$ không tăng (bổ đề giảm)” |
+| nhẹ | D05 | “K dãy lặp” | **đã sửa**: “trong $K$ điểm lặp đầu” |
+| nhẹ | G02 dòng 4 | Trung bình theo $k$ | **đã sửa**: “$O(1/\sqrt K)$, trung bình theo $k$” |
+| nhẹ | B00, E00, F00 | Dòng dẫn “Muốn …” | **giữ** B00, E00 (điều phối viên: “Muốn …” và “Nhu cầu:” đều hợp lệ); F00 đổi thành “Muốn chặn sai số của hạ gradient ngẫu nhiên sau $K$ bước và chọn thời điểm dừng.” theo gợi ý của vai mạch kể |
+
+### Phát hiện của vai tái kiểm mạch kể
+
+| Mức | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|
+| nghiêm trọng | B09 | Mất “Giả sử” | **đã sửa** (như trên) |
+| trung bình | F01, F02b (KN8) | Trực quan đặt sau hình thức | **đã sửa**: câu cuối F01 thành “**Trực quan.**”; storyboard KN8 ghi F01 là trực quan, F02b là ứng dụng/kiểm tra Định lý 05b.36, bỏ “ngoại lệ thứ tự”; outline F01 (Mặt trang, Hình, Liên kết, Hành trình) khớp deck |
+| trung bình | D01b (KN5) | Định nghĩa trước trực quan | **đã sửa** (cách 2): “Nhắc lại (Bài 00):” cho điểm dừng, điểm yên ngựa; “Định nghĩa.” chỉ cho điểm dừng $\varepsilon$-xấp xỉ (tên cho tiêu chí dừng của Bài 04); KN5 ghi quyết định, không còn ngoại lệ. Không đổi chỗ D02 vì D02 cần tên “điểm yên ngựa” |
+| trung bình | F07b | Trực quan sau Nhận xét | **đã sửa**: “**Trực quan.**” đứng đầu, trước “**Nhận xét.**”; KN9 cập nhật |
+| trung bình | B03 | Thiếu dòng nhu cầu | **đã sửa**: “**Nhu cầu:** phép biến đổi đặc trưng có tham số, học từ dữ liệu, thay cho liệt kê đơn thức.” |
+| trung bình | ghi chú B00–G00, A01, A02b, D07 | Tài liệu làm chủ ngữ | **đã sửa**: mở bằng kết quả hoặc đối tượng kế thừa; không còn “Phần này …” |
+| trung bình | G01 | Mất nhãn (i), (ii) của A03 | **đã sửa**: “(i) chi phí: …; (ii) biểu diễn: mục tiêu không lồi.” Ghi chú G01 nêu Bài 05 KL04 gọi (ii) là “không lồi”, cùng nội dung; “(đã mất ở Bài 05)” chuyển xuống ghi chú để giữ trần 80 |
+| trung bình | E06 (C07) | Không nêu lại dữ kiện mạng | **đã sửa** ở E06 và C07: $W_1$, $b_1$, $w_2$, $b_2$ bằng KaTeX trên mặt trang |
+| trung bình | storyboard | Chưa đồng bộ | **đã sửa**: “72 trang”, đường dẫn hình (F02b), KN1 (B02b là hệ quả số, ví dụ do B01), KN2 (B03 có “Nhu cầu:”), KN3 (B09b), KN5, KN8, KN9 (thêm F00), mục G03 viết lại cho bảng tổng kết; mỗi trang sửa có dòng “Sửa vòng tái kiểm 2026-10-12” |
+| nhẹ | B02b | Vai trò | **đã sửa** trong KN1 |
+| nhẹ | G01b | Ghi chú gọi “dòng thứ ba/tư” | **đã sửa**: “dòng cực tiểu toàn cục”, “dòng chi phí”; tiêu đề giữ nguyên (trang tiếp nối) |
+| nhẹ | D04, C06 | Nhãn ngoài danh sách | **đã sửa**: D04 “Nhắc lại: bổ đề giảm (Bổ đề 05b.6)”; C06 bỏ đậm ở “Bước $\eta=\dots$” |
+| nhẹ | B05, C03, C06, D02 | Thiếu dòng yêu cầu | **đã sửa**: thêm “Tính …”/“Xác định …” |
+| nhẹ | F00 | Dòng dẫn khẩu ngữ | **đã sửa** (như trên) |
+| nhẹ | A02b | Tên mục 1 khác bìa | **giữ**, ghi ngoại lệ trong storyboard A02b và ghi chú A02b |
+| nhẹ | F03 | Trực quan chỉ trong ghi chú | **giữ**: trang gần đầy khung; storyboard KN8 ghi F03 dùng chu trình rút gọn hình thức → ví dụ kiểm tra, có lý do |
+| nhẹ | E06/E06b câu 4 | Lặp câu 4 của C07 | **không sửa**: E06 trùng Bài 7 của `exercises.md`; đổi câu sẽ lệch học liệu |
+| nhẹ | A04 ghi chú | Thiếu $\tau^2$ ↔ $\sigma^2$ | **đã sửa** (thêm ánh xạ); giữ dạng đoạn văn |
+| nhẹ | G03 | Giả thiết | **đã sửa** (như trên) |
+| nhẹ | outline | Vị trí trang tiêu đề mạch; Mặt trang B01, F01, G01 | **đã sửa**: XX00 đặt dưới “### Mạch X”; B01, F01, G01, F05b, G02 khớp deck; mục 1.8 thêm đoạn “Vòng tái kiểm” |
+| nhẹ | E02, E05 ghi chú | Lặp mệnh đề; câu chỉ đường | **đã sửa** |
+
+### Kiểm tra
+
+`density.py`: 72 trang; trang trên 60 âm tiết chỉ còn các trang trần 80 (A02b 61, A03 77, G01 76, G02 78, G03 80, G04 77); 0 dòng quá 20 âm tiết; B09 59, B03 51, D05b 56, F04 58, F05b 50. Quá 6 dòng: A02b (7) và G02 (9 theo bộ đo: bảng 5 hàng và chú thích) — ngoại lệ đã ghi. `deckcheck.py --port 8790` (máy chủ tĩnh): 72/72 trang, 0 lỗi console hoặc trang, 0 `.katex-error`, 0 tràn dọc. Lần đầu G02 tràn dọc (744 px) khi ngưỡng tổng quát nằm trong ô bảng; đã chuyển ngưỡng xuống chú thích $\mathcal B^*$, nay 658/675 px. Cờ `TRAN_NGANG` ở D05, E02, F04b, F05, F08b, G02 vẫn là dương tính giả của SVG căn bậc hai KaTeX trong vùng `overflow:hidden`. Đã xem ảnh 1600×900 và 390×844 (đầu và cuộn cuối) của B03, B09, C03, C06, D01b, D02, D05b, E06, E06b, F01b, F05b, F07b, G01, G02, G03, F00 và sáu trang tiêu đề mạch: không chồng lấn, không cắt chữ. G03: “$L$‑Lipschitz” dùng gạch nối không ngắt dòng. Planning: 72/72 mã và tiêu đề khớp deck ở storyboard và outline. `git diff --check` sạch.
+
+### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
+
+Master đã tự chạy `density.py` (72 trang; A02b 61, A03 77, G01 76, G02 78, G03 80, G04 77 trong trần 80 của trang mục tiêu/nội dung/tổng kết/bảng so sánh; A02b 7 dòng vì bảy mạch, G02 đếm dòng theo ô bảng; không còn `.dense`, không còn mã T/H), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console, 0 tràn dọc; cờ tràn ngang là dương tính giả KaTeX), đọc nguyên văn B09 ("Giả sử θ* là cực tiểu toàn cục có hai đơn vị ẩn mang tham số khác nhau"), F05b (ngưỡng tổng quát $\mathcal B<L\Delta_0(n-b)^2/(2\sigma_1^2)$, dạng rút gọn kèm giả thiết hằng số) và G02 (chú thích $\mathcal B^*$ dưới bảng, chấp nhận thay cho ghi trong ô vì tràn khung), xem ảnh các trang đã sửa, đối chiếu bảng trạng thái hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 06. Việc còn treo (đợt học liệu): `materials/lec-06/exercises.md` dòng 3 và tiêu đề Bài 5 còn mã T5–T8/"theo T7".
