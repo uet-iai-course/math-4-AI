@@ -1,6 +1,6 @@
 # Bài tập Bài 06 — Mở rộng mô hình và dữ liệu
 
-Bộ bài tập gồm mười một bài theo sáu phần của bài học, ở ba mức: nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI. Các Bài 1, 3, 5, 7, 9 và 11 dựa trên câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ; ở Bài 1, 5 và 9, một phần dữ kiện được đổi để không trùng các ví dụ đã giải trong ghi chú bài giảng. Ký hiệu, giả thiết H0–H6b và số hiệu theo ghi chú bài giảng Bài 06. Tên ngắn của các định lý hội tụ ứng với số hiệu như sau: T5 là Định lý 06.31 (Định lý 05b.36), T6 là Định lý 06.32 (Định lý 05b.39), T7 là Định lý 06.20 (Định lý 05b.41), T8 là Định lý 06.34 (Định lý 05b.43), hệ quả của T8 là Hệ quả 06.35 (Hệ quả 05b.44). Trên trang chiếu, Mệnh đề 1, 2, 3 là Mệnh đề 06.4, 06.8, 06.9 của ghi chú.
+Bộ bài tập gồm mười một bài theo sáu phần của bài học, ở ba mức: nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI. Các Bài 1, 3, 5, 7, 9 và 11 dựa trên câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ; ở Bài 1, 5 và 9, một phần dữ kiện được đổi để không trùng các ví dụ đã giải trong ghi chú bài giảng. Lời giải mẫu của Bài 3 và Bài 7 có trên trang chiếu, và câu 5 của Bài 7 được tách thành một bài riêng ở đó; đáp án ngắn của Bài 11 nằm trong ghi chú diễn giả của trang câu hỏi tự kiểm tra. Ký hiệu, giả thiết H0–H6b và số hiệu theo ghi chú bài giảng Bài 06. Các định lý hội tụ được gọi bằng phát biểu kèm số hiệu, như trên trang chiếu: SGD bước hằng trên hàm lồi mạnh là Định lý 06.31 (Định lý 05b.36); SGD bước giảm dần $\tfrac1{\mu(k+1)}$ trên hàm lồi mạnh là Định lý 06.32 (Định lý 05b.39); hạ gradient trên hàm không lồi là Định lý 06.20 (Định lý 05b.41); SGD trên hàm không lồi là Định lý 06.34 (Định lý 05b.43), và cách chọn bước theo số bước là Hệ quả 06.35 (Hệ quả 05b.44). Trên trang chiếu, Mệnh đề 1, 2, 3 là Mệnh đề 06.4, 06.8, 06.9 của ghi chú.
 
 Bốn bộ dữ liệu dùng chung, được nêu lại trong từng bài khi cần:
 
@@ -106,7 +106,7 @@ Cho mạng của ví dụ đồ thị tính toán: $W_1=\begin{pmatrix}1&\tfrac1
 :::
 
 ::: hint Gợi ý Bài 3
-Với $x=0$, $z=b_1$. Một đơn vị có tiền kích hoạt âm có $\sigma'=0$. Mỗi phần tử $\partial\ell/\partial[W_1]_{ji}$ bằng $[\delta_z]_jx_i$.
+Với $x=0$, $z=b_1$. Một đơn vị có tiền kích hoạt âm có $\sigma'=0$. Mỗi phần tử $\partial\ell/\partial[W_1]_{ji}$ bằng $[\delta_z]_jx_i$. Ở câu 4, cả hai tiền kích hoạt rơi vào điểm gãy, nên kết quả phụ thuộc quy ước $\sigma'(0)=0$ của thuật toán.
 :::
 
 ::: solution Lời giải Bài 3
@@ -116,7 +116,7 @@ Với $x=0$, $z=b_1$. Một đơn vị có tiền kích hoạt âm có $\sigma'=
 
 3. Đơn vị thứ nhất có $z_1=-\tfrac12<0$, nên $\sigma'(z_1)=0$ chặn mọi tín hiệu đi qua nó: $[\delta_z]_1=0$, kéo theo hàng một của $\delta_zx^\top$ và $[\nabla_{b_1}\ell]_1$ bằng $0$. Toàn bộ $\nabla_{W_1}\ell$ bằng $0$ vì mỗi phần tử $[\delta_z]_jx_i$ chứa $x_i=0$. Gradient bằng $0$ theo một khối tham số ở một mẫu không có nghĩa khối tham số đó đã tối ưu: $\nabla_{b_1}\ell$ và $\nabla_{w_2}\ell$ vẫn khác $0$, và mất mát $\tfrac98$ còn lớn.
 
-4. $z=(0+\tfrac12-\tfrac12,\ 0-1+1)=(0,0)$: cả hai đơn vị ở điểm gãy. Với quy ước $\sigma'(0)=0$, $\delta_z=0$ và lan truyền ngược trả $0$ cho $\nabla_{W_1}\ell$, $\nabla_{b_1}\ell$. Tại điểm này, $\ell$ không khả vi theo $W_1$, $b_1$, nên vector trả về là kết quả của quy ước, không phải gradient (Mệnh đề 06.13, Nhận xét 06.14).
+4. $z=(0+\tfrac12-\tfrac12,\ 0-1+1)=(0,0)$: cả hai đơn vị ở điểm gãy. Với quy ước $\sigma'(0)=0$, $\delta_z=0$ và lan truyền ngược trả $0$ cho $\nabla_{W_1}\ell$, $\nabla_{b_1}\ell$. Tại điểm này, $\ell$ không khả vi theo $W_1$, $b_1$, nên vector trả về là kết quả của quy ước $\sigma'(0)=0$ (Mệnh đề 06.13, Nhận xét 06.14).
 
 **Kiểm tra.** Tăng $b_2$ thêm $\varepsilon$ làm $f=-\tfrac32+\varepsilon$ và $\ell=\tfrac12(-\tfrac32+\varepsilon)^2$, đạo hàm tại $0$ bằng $-\tfrac32$.
 :::
@@ -147,7 +147,7 @@ Cho $F(u,v)=\tfrac12(uv-1)^2$ với $\nabla^2F(u,v)=\begin{pmatrix}v^2&2uv-1\\2u
 **Kiểm tra.** Đoạn nối $\theta_0$ và $\theta_1$ nằm trong $[-1,1]^2$, tập lồi nơi $L=4$, nên Bổ đề 06.19 áp dụng.
 :::
 
-## Bài 5. Phân loại điểm dừng và số bước theo T7
+## Bài 5. Phân loại điểm dừng và số bước của hạ gradient trên hàm không lồi
 
 Mức độ: tính toán. LLO11; CLO1.
 
@@ -156,8 +156,8 @@ Cho $F(u,v)=\tfrac12(uv-1)^2$.
 
 1. Xác định mọi điểm dừng.
 2. Tính Hessian tại $(4,\tfrac14)$, các trị riêng, và kết luận của phép kiểm tra bậc hai.
-3. Với $L=2$, $\theta_0=(\tfrac14,\tfrac14)$, tìm $K$ nhỏ nhất để cận T7 bảo đảm $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le0{,}01$; so với số bước thực tế của hạ gradient bước $\tfrac12$.
-4. Nêu một kết luận mà T7 không cho.
+3. Với $L=2$, $\theta_0=(\tfrac14,\tfrac14)$, tìm $K$ nhỏ nhất để cận của Định lý 06.20 bảo đảm $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le0{,}01$; so với số bước thực tế của hạ gradient bước $\tfrac12$.
+4. Nêu một kết luận mà Định lý 06.20 không cho.
 :::
 
 ::: hint Gợi ý Bài 5
@@ -178,7 +178,7 @@ Cho $F(u,v)=\tfrac12(uv-1)^2$.
 
 Giá trị đầu tiên không vượt $0{,}01$ ở $k=5$, nên $K=6$ đã đủ, nhỏ hơn cận khoảng $30$ lần. Chuẩn gradient tăng qua hai bước đầu vì dãy xuất phát gần vùng phẳng quanh điểm yên ngựa.
 
-4. Chẳng hạn, T7 không cho biết $\theta_k$ tới cực tiểu nào trên hyperbol, không chặn $F(\theta_k)$, và không loại trường hợp dãy dừng gần điểm yên ngựa (Nhận xét 06.21).
+4. Chẳng hạn, Định lý 06.20 không cho biết $\theta_k$ tới cực tiểu nào trên hyperbol, không chặn $F(\theta_k)$, và không loại trường hợp dãy dừng gần điểm yên ngựa (Nhận xét 06.21).
 
 **Kiểm tra.** Tại $k=5$: $t_5^2\approx0{,}96574$, $(1-t_5^2)^2\approx0{,}0011738$, nên $\lVert\nabla F\rVert^2\approx2\cdot0{,}96574\cdot0{,}0011738\approx0{,}00227$.
 :::
@@ -289,8 +289,8 @@ Nhóm ba mẫu bỏ mẫu $j$ có $\widehat g=-\tfrac13g_j$ vì tổng bốn gra
 Mức độ: tính toán. LLO11, LLO12; CLO1, CLO2.
 
 ::: exercise Bài 9
-1. Ví dụ ba quan sát: $y=(-1,1,3)$, $F(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, $\mu=L=1$, $\sigma^2=\tfrac83$, $\theta_0=0$. Tính $\mathbb E(\theta_k-1)^2$ tại $k=15$ và $k=30$ cho bước hằng $0{,}1$ (dùng $0{,}81^k+\tfrac8{57}(1-0{,}81^k)$) và cho bước $\eta_k=\tfrac1{k+1}$. Lịch nào tốt hơn ở mỗi $k$? So với cận $0{,}9^k+0{,}267$ của T5.
-2. Với $L=\Delta_0=\sigma^2=1$, tìm $K$ nhỏ nhất để cận hệ quả của T8 không vượt $0{,}02$.
+1. Ví dụ ba quan sát: $y=(-1,1,3)$, $F(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, $\mu=L=1$, $\sigma^2=\tfrac83$, $\theta_0=0$. Tính $\mathbb E(\theta_k-1)^2$ tại $k=15$ và $k=30$ cho bước hằng $0{,}1$ (dùng $0{,}81^k+\tfrac8{57}(1-0{,}81^k)$) và cho bước $\eta_k=\tfrac1{k+1}$. Lịch nào tốt hơn ở mỗi $k$? So với cận $0{,}9^k+0{,}267$ của Định lý 06.31.
+2. Với $L=\Delta_0=\sigma^2=1$, tìm $K$ nhỏ nhất để cận của Hệ quả 06.35 không vượt $0{,}02$.
 3. Với $\eta=0{,}5$, $k=20$, trị riêng $\alpha=0{,}05$, tính tỉ lệ giữ của dừng sớm và của chính quy hóa với hệ số $\lambda=0{,}1$, rồi giải thích sai khác.
 :::
 
@@ -299,7 +299,7 @@ Mức độ: tính toán. LLO11, LLO12; CLO1, CLO2.
 :::
 
 ::: solution Lời giải Bài 9
-1. Tại $k=15$: bước hằng cho $0{,}1768$, bước $\tfrac1{k+1}$ cho $\tfrac8{45}\approx0{,}1778$, nên bước hằng còn tốt hơn một chút. Tại $k=30$: $0{,}1419$ và $\tfrac8{90}\approx0{,}0889$, nên bước giảm dần tốt hơn rõ. Bước hằng giảm nhanh lúc đầu rồi dừng ở giới hạn dương $\tfrac8{57}\approx0{,}140$, còn bước giảm dần tiếp tục giảm theo $\tfrac1k$; điểm đổi chiều là $k=16$. Cận T5 cho $0{,}4726$ tại $k=15$ và $0{,}3091$ tại $k=30$, lớn hơn giá trị thật vì mức nhiễu nền của cận, $\tfrac{\eta\sigma^2}\mu\approx0{,}267$, lớn hơn giới hạn thật.
+1. Tại $k=15$: bước hằng cho $0{,}1768$, bước $\tfrac1{k+1}$ cho $\tfrac8{45}\approx0{,}1778$, nên bước hằng còn tốt hơn một chút. Tại $k=30$: $0{,}1419$ và $\tfrac8{90}\approx0{,}0889$, nên bước giảm dần tốt hơn rõ. Bước hằng giảm nhanh lúc đầu rồi dừng ở giới hạn dương $\tfrac8{57}\approx0{,}140$, còn bước giảm dần tiếp tục giảm theo $\tfrac1k$; điểm đổi chiều là $k=16$. Cận của Định lý 06.31 cho $0{,}4726$ tại $k=15$ và $0{,}3091$ tại $k=30$, lớn hơn giá trị thật vì mức nhiễu nền của cận, $\tfrac{\eta\sigma^2}\mu\approx0{,}267$, lớn hơn giới hạn thật.
 
 2. Giải $\tfrac2K+\tfrac{2\sqrt2}{\sqrt K}\le0{,}02$ cho $K=20\,200$ (cận $\approx0{,}0199998$); với $K=20\,199$, cận vượt $0{,}02$. Số hạng chính $\tfrac{2\sqrt2}{\sqrt K}$ cho ước lượng nhanh $K\approx(100\sqrt2)^2=20\,000$. Ngược lại, khi yêu cầu chặt hơn hai lần, từ $0{,}02$ xuống $0{,}01$, số bước tăng khoảng bốn lần ($80\,400$ so với $20\,200$), đúng với tốc độ $O(1/\sqrt K)$.
 
@@ -313,7 +313,7 @@ Mức độ: tính toán. LLO11, LLO12; CLO1, CLO2.
 Mức độ: vận dụng vào AI. LLO11, LLO12; CLO2, CLO4.
 
 ::: exercise Bài 10
-1. Với $L=\Delta_0=\sigma_1^2=1$, $n=10^4$, $b=10$ (nhóm chọn có hoàn lại) và tổng ngân sách $\mathcal B=10^6$ gradient mẫu, tính cận của hạ gradient đầy đủ và cận hệ quả T8 của SGD theo Mệnh đề 06.37, rồi tính ngưỡng $\mathcal B$ mà từ đó hạ gradient đầy đủ có cận nhỏ hơn.
+1. Với $L=\Delta_0=\sigma_1^2=1$, $n=10^4$, $b=10$ (nhóm chọn có hoàn lại) và tổng ngân sách $\mathcal B=10^6$ gradient mẫu, tính cận của hạ gradient đầy đủ và cận của SGD theo Hệ quả 06.35 và Mệnh đề 06.37, rồi tính ngưỡng $\mathcal B$ mà từ đó hạ gradient đầy đủ có cận nhỏ hơn.
 2. Thuật toán 06.3 chạy với chu kỳ $s=100$ bước. Mất mát xác thực đo được tại các bước $100,200,\ldots,900$ là
 
 $$
@@ -329,7 +329,7 @@ Với ngưỡng kiên nhẫn $r=3$, $r=2$ và $r=1$, xác định bước dừng
 :::
 
 ::: solution Lời giải Bài 10
-1. Hạ gradient đầy đủ: $K=100$ bước, cận $\tfrac{2n}{\mathcal B}=0{,}02$. SGD: $K=10^5$, $\sigma^2=0{,}1$, cận $\tfrac{2b}{\mathcal B}+2\sqrt{\tfrac2{\mathcal B}}=0{,}00002+0{,}00283\approx0{,}00285$. Ngưỡng $\tfrac{(n-b)^2}2=\tfrac{9990^2}2\approx4{,}99\cdot10^7$, tức khoảng $5\,000$ lượt dữ liệu; ngân sách $10^6$ ứng với $100$ lượt, dưới ngưỡng, phù hợp với việc cận SGD nhỏ hơn.
+1. Hạ gradient đầy đủ: $K=100$ bước, cận $\tfrac{2n}{\mathcal B}=0{,}02$. SGD: $K=10^5$, $\sigma^2=0{,}1$, cận $\tfrac{2b}{\mathcal B}+2\sqrt{\tfrac2{\mathcal B}}=0{,}00002+0{,}00283\approx0{,}00285$. Ngưỡng của Mệnh đề 06.37 là $\mathcal B^*=\tfrac{L\Delta_0(n-b)^2}{2\sigma_1^2}$; với $L=\Delta_0=\sigma_1^2=1$, $\mathcal B^*=\tfrac{(n-b)^2}2=\tfrac{9990^2}2\approx4{,}99\cdot10^7$, tức khoảng $5\,000$ lượt dữ liệu; ngân sách $10^6$ ứng với $100$ lượt, dưới ngưỡng, phù hợp với việc cận SGD nhỏ hơn.
 
 2. Theo dõi giá trị nhỏ nhất và bộ đếm:
 
@@ -354,7 +354,7 @@ Mức độ: nhận biết và vận dụng vào AI. LLO11, LLO15; CLO1, CLO4.
 ::: exercise Bài 11
 1. Chọn phương pháp cho: (a) $n=10^3$, $p=50$, hồi quy logistic có chính quy hóa; (b) $n=10^8$, $p=10^6$, cùng mô hình; (c) mạng, $n=p=10^7$.
 2. Giải thích vì sao Mệnh đề 06.9 không khẳng định mọi mạng đều cho $F$ không lồi.
-3. T8 chặn đại lượng nào, và không chặn đại lượng nào?
+3. Định lý 06.34 (SGD trên hàm không lồi) chặn đại lượng nào, và không chặn đại lượng nào?
 4. Khi nào bước hằng là lựa chọn hợp lý dù có mức nhiễu nền?
 :::
 
@@ -367,7 +367,7 @@ Mức độ: nhận biết và vận dụng vào AI. LLO11, LLO15; CLO1, CLO4.
 
 2. Mệnh đề 06.9 là một phép kiểm tra tại một cặp cực tiểu toàn cục có hai đơn vị ẩn khác nhau. Trên dữ liệu khác, mọi cực tiểu có thể có các đơn vị trùng nhau; khi đó phép hoán vị không tạo cực tiểu mới và phép kiểm tra không kết luận.
 
-3. T8 chặn trung bình theo $k$ của kỳ vọng bình phương chuẩn gradient của dãy lặp. Nó không chặn khoảng cách tới một cực tiểu, không chặn giá trị $F$, không phân biệt điểm yên ngựa với cực tiểu, và không chặn $R$ của tham số được trả về theo tập xác thực (Nhận xét 06.36).
+3. Định lý 06.34 chặn trung bình theo $k$ của kỳ vọng bình phương chuẩn gradient của dãy lặp. Nó không chặn khoảng cách tới một cực tiểu, không chặn giá trị $F$, không phân biệt điểm yên ngựa với cực tiểu, và không chặn $R$ của tham số được trả về theo tập xác thực (Nhận xét 06.36).
 
 4. Khi số bước $K$ cố định trước và sai số giá trị tương ứng với mức nhiễu nền, cỡ $\tfrac L2\cdot\tfrac{\eta\sigma^2}\mu$, nhỏ hơn sai số ước lượng cỡ $1/\sqrt n$. Khi đó, theo phân tích Bottou–Bousquet cho bài toán lồi, giảm tiếp sai số tối ưu không đổi bậc của sai số dư.
 

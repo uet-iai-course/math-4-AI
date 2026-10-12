@@ -22,7 +22,7 @@ Số hiệu `01.k`, `04.k`, `05.k`, `05b.k`, `05c.k` chỉ ghi chú Bài 01, 04,
 - **Tính lồi** (Định nghĩa 01.22; Định lý 01.31(b); Hệ quả 01.27; Hệ quả 01.34). Hợp của một hàm lồi với một ánh xạ affine là hàm lồi. Với $F$ lồi khả vi, mọi điểm có $\nabla F(\theta)=0$ là cực tiểu toàn cục. Tập nghiệm của bài toán cực tiểu hóa một hàm lồi là tập lồi.
 - **Gradient Lipschitz và bổ đề giảm** (Định nghĩa 04.17; Bổ đề 04.18, 04.20; Bổ đề 05b.6). Nếu $\nabla F$ là $L$-Lipschitz thì $F(\theta')\le F(\theta)+\nabla F(\theta)^\top(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert^2$, và một bước hạ gradient với bước $\eta\in(0,\tfrac2L)$ làm $F$ giảm.
 - **Kết luận của Bài 05.** Một bước hạ gradient trên $n$ mẫu với $d$ tham số tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$ (Mệnh đề 05.35). Dữ liệu XOR không tách được bằng điểm số affine (Mệnh đề 05.40), và số đơn thức bậc không quá $q$ của $d_0$ biến là $\binom{d_0+q}q$ (Mệnh đề 05.41). Tập xác thực, tập kiểm thử và dừng sớm được định nghĩa ở Định nghĩa 05.6 và Định nghĩa 05.38. Chính quy hóa bậc hai làm mất mát logistic lồi mạnh (Định lý 05.26).
-- **Bài 05b** (Định nghĩa 05b.5, 05b.31; Định lý 05b.36, 05b.39, 05b.41, 05b.43; Hệ quả 05b.44). Các giả thiết có tên H0, H2, H3, H4, H6, H6a, H6b và các định lý hội tụ, gọi tắt là T5, T6, T7, T8, được phát biểu lại đầy đủ ở Mục 4, 5 và 6.
+- **Bài 05b** (Định nghĩa 05b.5, 05b.31; Định lý 05b.36, 05b.39, 05b.41, 05b.43; Hệ quả 05b.44). Các giả thiết có tên được phát biểu lại tại chỗ dùng đầu: H0 (bị chặn dưới) và H2 (gradient Lipschitz) ở Định lý 06.20, H3 (lồi mạnh) và H4 (có điểm cực tiểu) ở Định lý 06.31, H6 (không chệch), H6a (chặn mômen bậc hai) và H6b (chặn phương sai) ở Định nghĩa 06.26. Bốn định lý hội tụ trên được phát biểu lại đầy đủ ở Mục 4 và 6, thành Định lý 06.20 (Định lý 05b.41), Định lý 06.31 (Định lý 05b.36), Định lý 06.32 (Định lý 05b.39) và Định lý 06.34 (Định lý 05b.43).
 - **Bài 05c** (Định nghĩa 05c.51; Định lý 05c.52, 05c.53; Mệnh đề 05c.56; Nhận xét 05c.58). Rủi ro thực nghiệm tại một tham số cố định ước lượng không chệch rủi ro kỳ vọng; gradient trên một nhóm mẫu chọn ngẫu nhiên ước lượng không chệch gradient đầy đủ. Hai kết quả này được phát biểu lại ở Mục 5.
 
 ## Bảng ký hiệu
@@ -974,9 +974,9 @@ Bổ đề 06.19 còn cho một cận dưới của độ cong từ Ví dụ 06.
 
 ### 4.5 Hội tụ của chuẩn gradient
 
-Bổ đề 06.19 bảo đảm $F$ giảm ở mỗi bước. Cộng các mức giảm theo nhiều bước, ta được bảo đảm cơ bản của hạ gradient trên hàm không lồi trơn: chuẩn gradient phải nhỏ ở một bước nào đó. Định lý sau là Định lý 05b.41 (T7) phát biểu lại với ký hiệu của chương.
+Bổ đề 06.19 bảo đảm $F$ giảm ở mỗi bước. Cộng các mức giảm theo nhiều bước, ta được bảo đảm cơ bản của hạ gradient trên hàm không lồi trơn: chuẩn gradient phải nhỏ ở một bước nào đó. Định lý sau là Định lý 05b.41 phát biểu lại với ký hiệu của chương.
 
-::: theorem Định lý 06.20 (Hạ gradient trên hàm không lồi; T7)
+::: theorem Định lý 06.20 (Hạ gradient trên hàm không lồi)
 **Giả thiết.**
 
 - H0: $F$ khả vi và bị chặn dưới, $F_{\inf}=\inf_\theta F(\theta)>-\infty$.
@@ -1019,7 +1019,7 @@ trong đó bất đẳng thức thứ hai dùng H0.
 
 Định lý 06.20 cho tốc độ $O(1/K)$ cho bình phương chuẩn gradient, tức $O(1/\sqrt K)$ cho chính chuẩn. So với Định lý 05b.18 cho hàm lồi mạnh, định lý bỏ H3 và trả bằng hai điều: đại lượng được chặn chuyển từ khoảng cách tới nghiệm sang chuẩn gradient, và tốc độ chuyển từ tuyến tính sang $O(1/K)$. Ví dụ sau so cận với dãy thật.
 
-::: example Ví dụ 06.15 (Số bước theo cận T7 và số bước thật)
+::: example Ví dụ 06.15 (Số bước theo cận của Định lý 06.20 và số bước thật)
 **Dữ kiện.** $F(u,v)=\tfrac12(uv-1)^2$; $\theta_0=(\tfrac12,\tfrac12)$; $L=2$ trên $[0,1]^2$ (Ví dụ 06.14); $F_{\inf}=0$, nên $\Delta_0=F(\theta_0)=0{,}28125$. Yêu cầu: $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le0{,}01$.
 
 **Kiểm tra giả thiết.** H0 đúng với $F_{\inf}=0$. Dãy $\theta_k$ nằm trên đường chéo $u=v=t_k$ với $t_{k+1}=t_k+\tfrac12t_k(1-t_k^2)$; hàm $t\mapsto t+\tfrac12t(1-t^2)$ tăng trên $[0,1]$ và giữ $[0,1]$, nên mọi điểm lặp ở trong $[0,1]^2$, nơi H2 đúng với $L=2$.
@@ -1484,9 +1484,9 @@ Mệnh đề 06.29 là Bước 1–2 của chứng minh Định lý 05b.43. So v
 
 ### 6.2 Bước hằng trên hàm lồi mạnh và mức nhiễu nền
 
-Với hàm lồi mạnh, ta theo dõi khoảng cách tới nghiệm thay cho giá trị $F$. Định lý sau là Định lý 05b.36 (T5) phát biểu lại.
+Với hàm lồi mạnh, ta theo dõi khoảng cách tới nghiệm thay cho giá trị $F$. Định lý sau là Định lý 05b.36 phát biểu lại.
 
-::: theorem Định lý 06.31 (SGD bước hằng trên hàm lồi mạnh; T5)
+::: theorem Định lý 06.31 (SGD bước hằng trên hàm lồi mạnh)
 **Giả thiết.**
 
 - H2: $\nabla F$ là $L$-Lipschitz trên $\mathbb R^p$.
@@ -1586,9 +1586,9 @@ Trên hình, cả hai đường dừng ở một mức dương: đường liền
 
 ### 6.3 Bước giảm dần cho hàm lồi mạnh
 
-Định lý sau là Định lý 05b.39 (T6) phát biểu lại. Nó thay H6b bằng H6a và chọn bước giảm theo $1/k$ với hằng số lồi mạnh đã biết.
+Định lý sau là Định lý 05b.39 phát biểu lại. Nó thay H6b bằng H6a và chọn bước giảm theo $1/k$ với hằng số lồi mạnh đã biết.
 
-::: theorem Định lý 06.32 (Bước giảm dần $\tfrac1{\mu(k+1)}$ cho hàm lồi mạnh; T6)
+::: theorem Định lý 06.32 (Bước giảm dần $\tfrac1{\mu(k+1)}$ cho hàm lồi mạnh)
 **Giả thiết.** H3 với hằng số $\mu$; H4 với điểm cực tiểu $\theta^*$; H6, và H6a với hằng số $G^2$ trên một vùng chứa mọi điểm lặp; bước $\eta_k=\dfrac1{\mu(k+1)}$.
 
 **Kết luận.** Với mọi $k\ge1$,
@@ -1657,9 +1657,9 @@ Ví dụ sau đặt hai lịch bước cạnh nhau.
 
 ### 6.4 Hạ gradient ngẫu nhiên cho hàm không lồi
 
-Mạng không thỏa H3, nên Định lý 06.31 và 06.32 không áp dụng cho mạng. Bỏ H3, giữ H2 và cộng bất đẳng thức một bước (6.1) theo $K$ bước như chứng minh Định lý 06.20, ta được định lý sau, là Định lý 05b.43 (T8) phát biểu lại.
+Mạng không thỏa H3, nên Định lý 06.31 và 06.32 không áp dụng cho mạng. Bỏ H3, giữ H2 và cộng bất đẳng thức một bước (6.1) theo $K$ bước như chứng minh Định lý 06.20, ta được định lý sau, là Định lý 05b.43 phát biểu lại.
 
-::: theorem Định lý 06.34 (SGD trên hàm không lồi; T8)
+::: theorem Định lý 06.34 (SGD trên hàm không lồi)
 **Giả thiết.** H0 với $F_{\inf}>-\infty$; H2 trên một tập lồi chứa mọi điểm lặp có thể; H6, H6b tại mọi bước; $\theta_0$ tất định, $\Delta_0=F(\theta_0)-F_{\inf}$; bước hằng $0<\eta\le\tfrac1L$.
 
 **Kết luận.** Với mọi $K\ge1$,
@@ -1788,7 +1788,7 @@ trong đó bước thứ hai nhân hai vế với $\tfrac{\mathcal B}{2\sqrt{L\D
 
 **Quy mô nhỏ: $n=10^3$, $b=10$.** Hạ gradient đầy đủ: $K=10$, cận $0{,}2$. SGD: $K=10^3$, $\sigma^2=0{,}1$, $\eta\approx0{,}1414$, cận $0{,}002+0{,}02828\approx0{,}0303$.
 
-**Ngưỡng.** Với $n=10^3$, $b=10$: $\tfrac{(n-b)^2}2=\tfrac{990^2}2=490\,050$. Hạ gradient đầy đủ có cận nhỏ hơn khi $\mathcal B>490\,050$, tức khoảng $490$ lượt dữ liệu. Với $n=10^9$, ngưỡng là $5\cdot10^{17}$ gradient mẫu, tức khoảng $5\cdot10^8$ lượt.
+**Ngưỡng.** Với các hằng số bằng $1$, ngưỡng $\tfrac{L\Delta_0(n-b)^2}{2\sigma_1^2}$ của Mệnh đề 06.37 thành $\tfrac{(n-b)^2}2$. Với $n=10^3$, $b=10$: $\tfrac{(n-b)^2}2=\tfrac{990^2}2=490\,050$. Hạ gradient đầy đủ có cận nhỏ hơn khi $\mathcal B>490\,050$, tức khoảng $490$ lượt dữ liệu. Với $n=10^9$, ngưỡng là $5\cdot10^{17}$ gradient mẫu, tức khoảng $5\cdot10^8$ lượt.
 
 **Kiểm tra lại.** Ở cả hai hàng, $\mathcal B=10n<\tfrac{(n-b)^2}2$, phù hợp với việc cận SGD nhỏ hơn.
 :::
@@ -1935,7 +1935,7 @@ $\sigma^2=\sigma_1^2/b$ và $K=\mathcal B/b$ cho SGD; $K=\mathcal B/n$ cho hạ 
 
    Hạ gradient đầy đủ: $K=\tfrac{10^6}{10^5}=10$ bước, cận $\tfrac{2\cdot10^5}{10^6}=0{,}2$.
 
-2. Ngưỡng $\tfrac{(n-b)^2}2=\tfrac{99\,900^2}2\approx4{,}99\cdot10^9$ gradient mẫu, tức khoảng $49\,900$ lượt dữ liệu. Ngân sách $10^6$ ứng với $10$ lượt, xa dưới ngưỡng.
+2. Ngưỡng $\tfrac{L\Delta_0(n-b)^2}{2\sigma_1^2}$, với $L=\Delta_0=\sigma_1^2=1$, bằng $\tfrac{(n-b)^2}2=\tfrac{99\,900^2}2\approx4{,}99\cdot10^9$ gradient mẫu, tức khoảng $49\,900$ lượt dữ liệu. Ngân sách $10^6$ ứng với $10$ lượt, xa dưới ngưỡng.
 
 3. Thứ nhất, với ReLU, $\nabla F$ gián đoạn tại điểm gãy, nên H2 không đúng và cả hai cận chỉ là định hướng. Thứ hai, cả hai cận chặn chuẩn gradient, không chặn $F-F_{\inf}$ hay $R$; mức chính xác đủ dùng được quyết định bằng tập xác thực (Nhận xét 06.38).
 
@@ -1979,7 +1979,7 @@ Bảng sau chuyển các kết quả thành quy tắc. Các ngưỡng "nhỏ", "
 | $p$ lớn, $n$ vừa; lồi mạnh, trơn | hạ gradient | $O(np)$ | tuyến tính (Định lý 05b.18) | quét toàn bộ dữ liệu mỗi bước |
 | $n$ lớn; lồi mạnh | SGD, $\eta_k=\tfrac1{\mu(k+1)}$ | $O(bp)$ | $O(1/k)$ theo kỳ vọng (Định lý 06.32) | cần biết $\mu$ |
 | không lồi (mạng), $n$ lớn | SGD nhóm nhỏ, bước chọn theo $K$ | $O(bp)$ | $O(1/\sqrt K)$ cho trung bình $\mathbb E\lVert\nabla F\rVert^2$ (Hệ quả 06.35), cần $F$ trơn | chỉ điểm dừng; với ReLU chỉ là định hướng |
-| không lồi, $\mathcal B>\tfrac{(n-b)^2}2$ (Mệnh đề 06.37) | hạ gradient | $O(np)$ | Định lý 06.20, cần $F$ trơn | chỉ điểm dừng |
+| không lồi, $\mathcal B>\tfrac{L\Delta_0(n-b)^2}{2\sigma_1^2}$ (Mệnh đề 06.37) | hạ gradient | $O(np)$ | Định lý 06.20, cần $F$ trơn | chỉ điểm dừng |
 
 Năm dòng của bảng có các điều kiện sau.
 
@@ -2086,9 +2086,9 @@ Chúng ta đã xuất phát từ hai giới hạn của Bài 05: mô hình tuy�
 - Mục 1: bài toán huấn luyện, rủi ro thực nghiệm và rủi ro kỳ vọng (Định nghĩa 06.1); đối chiếu ký hiệu (Nhận xét 06.2).
 - Mục 2: tách được tuyến tính (Định nghĩa 06.3); XOR không tách được (Mệnh đề 06.4), kể cả qua đặc trưng affine (Mệnh đề 06.5); mạng hai tầng (Định nghĩa 06.6); kích hoạt tuyến tính cho hàm affine (Mệnh đề 06.7); đối xứng hoán vị (Mệnh đề 06.8); phép kiểm tra tính lồi (Mệnh đề 06.9); phạm vi (Nhận xét 06.10).
 - Mục 3: đồ thị tính toán (Định nghĩa 06.11); truyền ngược qua một nút (Bổ đề 06.12); Thuật toán 06.1; tính đúng (Mệnh đề 06.13) và quy ước $\sigma'(0)=0$ (Nhận xét 06.14); chi phí (Mệnh đề 06.15).
-- Mục 4: điểm dừng, điểm yên ngựa (Định nghĩa 06.16); phân loại bằng Hessian (Mệnh đề 06.17, Nhận xét 06.18); bổ đề giảm (Bổ đề 06.19); hạ gradient trên hàm không lồi, T7 (Định lý 06.20, Nhận xét 06.21).
+- Mục 4: điểm dừng, điểm yên ngựa (Định nghĩa 06.16); phân loại bằng Hessian (Mệnh đề 06.17, Nhận xét 06.18); bổ đề giảm (Bổ đề 06.19); hạ gradient trên hàm không lồi (Định lý 06.20, Nhận xét 06.21).
 - Mục 5: rủi ro thực nghiệm tại tham số cố định (Định lý 06.22, Nhận xét 06.23); gradient nhóm nhỏ (Định nghĩa 06.24, Định lý 06.25); Thuật toán 06.2; giả thiết H6, H6a, H6b (Định nghĩa 06.26, Mệnh đề 06.27, Nhận xét 06.28).
-- Mục 6: bất đẳng thức một bước có nhiễu (Mệnh đề 06.29, Nhận xét 06.30); T5, T6, T8 (Định lý 06.31, 06.32, 06.34; Nhận xét 06.33, 06.36; Hệ quả 06.35); so sánh dưới tổng ngân sách (Mệnh đề 06.37, Nhận xét 06.38); dừng sớm (Thuật toán 06.3, Nhận xét 06.39); tỉ lệ giữ (Mệnh đề 06.40, Nhận xét 06.41).
+- Mục 6: bất đẳng thức một bước có nhiễu (Mệnh đề 06.29, Nhận xét 06.30); SGD trên hàm lồi mạnh với bước hằng và bước giảm dần, SGD trên hàm không lồi (Định lý 06.31, 06.32, 06.34; Nhận xét 06.33, 06.36; Hệ quả 06.35); so sánh dưới tổng ngân sách (Mệnh đề 06.37, Nhận xét 06.38); dừng sớm (Thuật toán 06.3, Nhận xét 06.39); tỉ lệ giữ (Mệnh đề 06.40, Nhận xét 06.41).
 - Mục 7: điều không còn giữ được và điều còn giữ được (Nhận xét 06.42); bảng lựa chọn phương pháp.
 
 **Công thức cần nhớ.**
@@ -2098,7 +2098,7 @@ Chúng ta đã xuất phát từ hai giới hạn của Bài 05: mô hình tuy�
 - Sai số của gradient nhóm: $\tfrac{\operatorname{tr}\Sigma}b$ (có hoàn lại), $\tfrac{\operatorname{tr}\Sigma}b\cdot\tfrac{n-b}{n-1}$ (không hoàn lại).
 - Bất đẳng thức một bước: $\mathbb E[F(\theta_{k+1})\mid\mathcal F_k]\le F(\theta_k)-\eta(1-\tfrac{L\eta}2)\lVert\nabla F(\theta_k)\rVert^2+\tfrac{L\eta^2}2\sigma^2$.
 - Mức nhiễu nền của bước hằng: $\tfrac{\eta\sigma^2}\mu$.
-- T7: $\min_{k<K}\lVert\nabla F\rVert^2\le\tfrac{2L\Delta_0}K$; T8 với bước theo $K$: $\tfrac{2L\Delta_0}K+2\sqrt{\tfrac{2L\Delta_0\sigma^2}K}$.
+- Hạ gradient trên hàm không lồi (Định lý 06.20): $\min_{k<K}\lVert\nabla F\rVert^2\le\tfrac{2L\Delta_0}K$; SGD trên hàm không lồi với bước theo $K$ (Hệ quả 06.35): $\tfrac{2L\Delta_0}K+2\sqrt{\tfrac{2L\Delta_0\sigma^2}K}$.
 - Tỉ lệ giữ: $1-(1-\eta\alpha)^k$ (dừng sớm), $\tfrac\alpha{\alpha+\lambda}$ (chính quy hóa), gần nhau khi $\lambda\approx\tfrac1{\eta k}$, $\eta\alpha\ll1$, $\alpha\ll\lambda$.
 
 **Giả thiết hay bị bỏ quên.**
@@ -2120,9 +2120,9 @@ Năm bài tập dưới đây bổ sung cho sáu bài tập trong các mục, th
 |---|---|
 | 1. XOR, mạng hai tầng, tính không lồi | 06.1, 06.7, 06.8 |
 | 2. Lan truyền ngược và chi phí | 06.2, 06.9 |
-| 3. Điểm dừng, bổ đề giảm, T7 | 06.3, 06.7, 06.8 |
+| 3. Điểm dừng, bổ đề giảm, hạ gradient trên hàm không lồi | 06.3, 06.7, 06.8 |
 | 4. Gradient nhóm nhỏ và thuật toán SGD | 06.4, 06.7 |
-| 5. T5, T6, T8, ngân sách, dừng sớm | 06.5, 06.6, 06.10 |
+| 5. Hội tụ của SGD, ngân sách, dừng sớm | 06.5, 06.6, 06.10 |
 | 6. Lựa chọn phương pháp | 06.6, 06.11 |
 
 ::: exercise Bài tập 06.7 (Mức nhận biết: sáu phát biểu)
