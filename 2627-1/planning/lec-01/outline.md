@@ -20,32 +20,36 @@ Vấn đề trung tâm: từ một nhu cầu cụ thể, xây dựng mô hình t
 
 Sau bài học, sinh viên phải làm được bốn việc:
 
-1. Tách dữ kiện, biến quyết định, hàm mục tiêu và miền khả thi trong một tình huống đơn giản.
-2. Viết mô hình cho điều khiển một bước, hồi quy tuyến tính và hồi quy logistic.
-3. Kiểm tra tính lồi của miền và mục tiêu bằng định nghĩa hoặc điều kiện vi phân phù hợp.
-4. Phân biệt ba kết luận: cực tiểu địa phương là toàn cục, nghiệm tồn tại, nghiệm duy nhất.
+1. Tách dữ kiện, biến quyết định, hàm mục tiêu và miền khả thi.
+2. Lập mô hình cho điều khiển một bước, hồi quy tuyến tính và hồi quy logistic.
+3. Kiểm tra tính lồi của miền và mục tiêu bằng định nghĩa hoặc đạo hàm.
+4. Chứng nhận ba kết luận về nghiệm: cực tiểu toàn cục, tồn tại, duy nhất.
 
-## Bảy mạch và 41 trang lá
+Bốn mục tiêu trùng nguyên văn trang `M02` (đồng bộ 2026-10-12).
 
-1. **Mở đầu và một số bài toán tối ưu — M01, M01A, M01B, M02–M03:** định hướng hai phần học phần, kiểm tra đánh giá, mục tiêu bài, vấn đề trung tâm và ba quyết định cần tối ưu.
-2. **Điều khiển một bước — D01–D04:** mô hình động lực, đánh đổi bám đích–năng lượng, nghiệm bị chặn và câu hỏi về nghiệm biên.
-3. **Hồi quy tuyến tính — L01, L01B–L04:** dự đoán chiều cao từ cân nặng, khái quát sang nhiều đặc trưng, bình phương nhỏ nhất, ví dụ số và câu hỏi về hạng của ma trận thiết kế.
-4. **Hồi quy logistic — G00–G04:** phân loại chất lượng cam bằng hai đặc trưng đo từ ảnh, khái quát thành bài toán biên tuyến tính, mất mát logistic, dữ liệu tách tuyến tính và câu hỏi về sự tồn tại nghiệm.
-5. **Khuôn chung của bài toán tối ưu — T01–T04:** giải phẫu mô hình, ánh xạ ba ca, các loại kết luận và danh sách điều cần chứng nhận.
-6. **Công cụ lồi vừa đủ — F01–F05 và H01–H07:** tập lồi, hàm lồi, điều kiện vi phân, phép bảo toàn, định lý địa phương–toàn cục, tồn tại và duy nhất.
-7. **Trở lại ba ca — K01–K06:** chứng nhận riêng từng ca, so sánh kết luận, bài tập chuyển giao và tài liệu.
+## Bảy mạch và 52 trang lá
+
+Trạng thái sau đợt sửa văn phong 2026-10-12. Mỗi mạch trừ mạch mở đầu mở bằng một trang tiêu đề mạch (`id="mach-N"`); tên mạch trùng trang "Nội dung" `M02B`.
+
+1. **Mở đầu và ba bài toán tối ưu — M01, M01A, M01B, M02, M02B, M03 (6 trang):** bìa, hai phần học phần, kiểm tra đánh giá, mục tiêu, nội dung, nhu cầu trung tâm với ba quyết định cần tối ưu.
+2. **Điều khiển một bước — D00–D04 (5 trang):** mô hình động lực, hàm chi phí bám đích–năng lượng, ví dụ nghiệm trên biên, bài tập chứng minh nghiệm biên.
+3. **Hồi quy tuyến tính — L00, L01, L01B, L02–L04 (6 trang):** dự đoán chiều cao từ cân nặng, khái quát sang nhiều đặc trưng, bình phương nhỏ nhất, ví dụ ba điểm, bài tập cột trùng.
+4. **Hồi quy logistic — GT, G00–G04 (6 trang):** phân loại cam, biên có dấu, mất mát logistic, ví dụ hai mẫu tách tuyến tính, bài tập dãy tốt dần.
+5. **Dạng tổng quát của bài toán tối ưu — T00–T04 (5 trang):** ba thành phần, ba bài toán trong dạng tổng quát, bốn loại kết luận, sáu bước kiểm tra.
+6. **Tập lồi và hàm lồi — F00–F05, H01–H07, H07B (14 trang):** tập lồi, hàm lồi, điều kiện vi phân, phép giữ tính lồi, định lý địa phương–toàn cục, tồn tại và duy nhất, bài tập hàm mũ.
+7. **Chứng nhận ba bài toán — K00–K04, K06, K05, K05B, K07, K08 (10 trang):** chứng nhận từng trường hợp, so sánh, quy trình chứng nhận, bài tập chiếu sáng có lời giải, tổng kết theo kết quả, tài liệu đọc.
 
 ## Phân bổ nội bộ theo tiết
 
 | Mạch | Phân bổ dự kiến | Vai trò |
 |---|---:|---|
-| 1. Mở đầu và một số bài toán tối ưu | 0,15 tiết lý thuyết | Đặt vấn đề và chuẩn đầu ra |
+| 1. Mở đầu và ba bài toán tối ưu | 0,15 tiết lý thuyết | Đặt vấn đề và chuẩn đầu ra |
 | 2. Điều khiển một bước | 0,30 tiết lý thuyết | Ca có ràng buộc và nghiệm biên |
 | 3. Hồi quy tuyến tính | 0,30 tiết lý thuyết | Ca bậc hai trong học máy |
 | 4. Hồi quy logistic | 0,30 tiết lý thuyết | Ca lồi có thể không đạt nghiệm |
-| 5. Khuôn chung | 0,20 tiết lý thuyết | Trừu tượng hóa ba ca |
-| 6. Công cụ lồi vừa đủ | 0,75 tiết lý thuyết | Xây công cụ chứng nhận |
-| 7. Trở lại ba ca | 1,00 tiết bài tập | Chứng nhận, diễn giải và chuyển giao |
+| 5. Dạng tổng quát của bài toán tối ưu | 0,20 tiết lý thuyết | Trừu tượng hóa ba trường hợp |
+| 6. Tập lồi và hàm lồi | 0,75 tiết lý thuyết | Xây công cụ chứng nhận |
+| 7. Chứng nhận ba bài toán | 1,00 tiết bài tập | Chứng nhận, diễn giải và chuyển giao |
 
 Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đề cương; đây là dữ liệu điều phối nội bộ, không hiển thị trên trang chiếu hoặc ghi chú diễn giả.
 
@@ -107,7 +111,7 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 
 ## Tiêu chí hoàn thành
 
-- HTML có đúng 7 `<section>` ngoài, 41 trang lá, 41 mã `data-slide-id` duy nhất và ghi chú diễn giả có nội dung trên mọi trang nội dung.
+- HTML có đúng 7 `<section>` ngoài, 52 trang lá, 52 mã `data-slide-id` duy nhất, sáu trang tiêu đề mạch `mach-2`…`mach-7` và ghi chú diễn giả có nội dung trên mọi trang nội dung.
 - Mỗi ca có nhu cầu, trực quan, ví dụ tính được, mô hình, chứng nhận và bài tập kiểm tra.
 - Mọi giả thiết của kết luận về lồi, tồn tại và duy nhất đều hiện diện trước khi dùng.
 - Ghi chú học tập mở rộng lập luận; bài tập có mức nhận biết, tính toán hoặc chứng minh và vận dụng AI.
@@ -121,3 +125,10 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 - M01B dùng mục IV.1 và chỉ dẫn cụ thể của người dùng: kiểm tra thường xuyên 20%, giữa kỳ 20%, cuối kỳ 60%; cuối kỳ có một buổi tuần 15 và một buổi theo lịch thi. Không suy diễn tỷ trọng từng buổi.
 - Nguồn mới chỉ là đề cương hiện có và chỉ dẫn người dùng; không tải thêm MIT. Hai trang định hướng không kế thừa mẫu nội dung MIT; dùng thẻ và bảng sẵn có của RevealJS.
 - Giữ tổng 2 tiết lý thuyết và 1 tiết bài tập. Phần mở đầu vẫn phân bổ nội bộ 0,15 tiết, trình bày ngắn và đưa chi tiết vào tài liệu học tập.
+
+## Sửa văn phong và trang tiêu đề mạch ngày 2026-10-12
+
+- Theo yêu cầu người dùng 2026-10-12 và các mục "Trang tiêu đề mạch", "Văn phong và mật độ mặt trang chiếu" của `AGENTS.md`: thêm sáu trang tiêu đề mạch D00, L00, GT, T00, F00, K00; thêm trang "Nội dung" M02B; tách H07B khỏi H07, K05B khỏi K05, K07 và K08 khỏi K06. Tổng 41 → 52 trang, vẫn bảy mạch.
+- Đổi tên bốn mạch cho khớp trang "Nội dung" (lý do ở `storyboard.md`). Đổi tiêu đề D01, D02, D03, L03, L04, G03, G04, T01, T02, T03, T04, F05, K05 theo mẫu trang ví dụ, bài tập và quy tắc tiêu đề.
+- Mỗi cụm khái niệm lớn có một bài tập có "Lời giải:" trên mặt trang: D04, L04, G04, F05, H07B, K05B. Lời giải K05B trùng Bài 9 (phần 1–4) của `materials/lec-01/exercises.md`.
+- Mạch kết luận có bảng tổng kết theo kết quả K07 và trang tài liệu đọc K08. Thời lượng theo đề cương không đổi.

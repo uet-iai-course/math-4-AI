@@ -568,3 +568,110 @@ Tác tử biên tập deck và hình (general-purpose, Claude Opus 5.5 `claude-o
 - **Bài 07 P03**: SVG ghép hai panel tách thành `central-problem-lp.svg` và `central-problem-dp.svg` (viewBox 420×350, chữ 17,6 px ở 390 px thay vì 7,7 px), P03 dùng lưới hai cột sẵn có; ghi chú Bài 07 dòng 78 dùng hai hình với alt riêng, đoạn đọc hình sửa "ô trái/phải" → "hình thứ nhất/thứ hai"; tệp cũ `central-problem.svg` xóa bằng `git rm` (không còn tham chiếu); storyboard P03 ghi lý do.
 - **Kiểm toàn bộ 217 SVG** bằng `svg-audit.py` do điều phối viên chạy: 18 tệp còn cờ, trong đó 14 là đường hoặc elip bị clipPath cắt (dương tính giả), 1 là chữ trên nền hộp (curvature-toolchain), 1 đã xem bằng mắt không che (equality-nullspace); 3 lỗi thật được sửa: nhãn "(2/3; 2/3)" ở coordinate-path dời lên vùng trống kèm đường dẫn; nhãn trục "giá trị hàm" (phi-local-model) và "tỷ số" (self-concordance-ratio) bị cắt 3 đơn vị ở mép trên, dời vào trong. Điều phối viên xem PNG coordinate-path sau sửa: đạt.
 - **SVG không được dùng**: 54 tệp còn lại đã được rà từng tệp ở lượt trước; quyết định giữ làm tài sản tái dùng (ghi ở nhật ký Bài 00, 01, 07).
+
+## 2026-10-12 — Văn phong, mật độ mặt trang và trang tiêu đề mạch
+
+### Phạm vi
+
+Yêu cầu người dùng 2026-10-12 (nhật ký chung `planning/style-revision-2026-10-12.md`): áp các mục "Trang tiêu đề mạch" và "Văn phong và mật độ mặt trang chiếu" của `AGENTS.md` cho deck Bài 01. Tác tử soạn và chỉnh sửa deck: `general-purpose`, Claude Opus 5.5 (`claude-opus-5-5`), effort `high`, theo brief của điều phối viên Fable 5.1; quyết định chấp nhận thuộc điều phối viên. Tệp ghi: deck, `outline.md`, `storyboard.md`, nhật ký này. Không sửa `lecture-style.css`, `materials/`, `index.html`, `img/lec-01/`. Bộ planning dùng là `planning/lec-01/` vì khớp mã trang của deck (D01…K06); bộ cũ ở gốc `2627-1/lecture-01-*.md` mô tả cấu trúc A00…D04 trước đây, để nguyên.
+
+### Thay đổi theo trang
+
+| Trang | Thay đổi |
+|---|---|
+| D00, L00, GT, T00, F00, K00 | Thêm trang tiêu đề mạch 2–7 (`strand-title`, `id="mach-2"`…`mach-7"`, số trùng `#/N`); dòng dẫn mở bằng "Muốn …" hoặc "Nhu cầu:", ghi chú 71–90 âm tiết nêu kế thừa, nhiệm vụ, đầu ra. Mã `GT` cho mạch 4 vì `G00` đã có |
+| M02B | Thêm trang "Nội dung" đánh số 1–7, tên trùng trang tiêu đề mạch |
+| M01A, M01B, M02 | Rút về ≤ 60 âm tiết (104, 79, 74 → 59); ghi chú M01A, M01B không còn mở bằng "Trang …" |
+| M03 | Câu hỏi không nhãn "Vấn đề trung tâm … ?" thành "Nhu cầu: …"; bỏ mũi tên trang trí (63 → 47) |
+| D01, T01 | Đổi tiêu đề vì trùng hoặc gần trùng tên mạch ("Dữ kiện của bài toán điều khiển", "Ba thành phần của bài toán tối ưu") |
+| D02 | Bỏ câu "Mô hình: quan niệm chủ quan của con người về thế giới", viết hoa giữa tiêu đề và tiền tố tiêu đề; định nghĩa mô hình bằng "là" (58 → 29) |
+| D03, L03, G03 | Mẫu trang ví dụ "Ví dụ: …" (dữ kiện → "Tính …" → bước → "Diễn giải:"); L03 bốn khối công thức → hai |
+| D04, L04, G04, F05 | Mẫu trang bài tập "Bài tập: …", "Câu hỏi:" và "Lời giải:" hiện bằng `fragment`; dữ kiện nêu lại trên trang |
+| L01, L02, G01, H03, H04, H05 | Thay nhãn ngoài danh sách ("Giả thuyết mô hình:", "Mô hình:", "Ý tưởng:") bằng "Muốn …", "Lưu ý:", "Định nghĩa.", "Định lý.", "Chứng minh.", "Ý nghĩa:", "Hệ quả.", "Ký hiệu:", "Ví dụ." |
+| L01B, G00, G02, T03, F03, F04, K01 | Giảm dòng: bỏ tiêu đề thẻ hoặc chuyển thẻ thành bảng (L01B 12 → 6 dòng, T03 9 → 4, F03 9 → 3) |
+| T04 | Sáu câu hỏi không nhãn thành sáu nhiệm vụ; tiêu đề "Sáu bước kiểm tra một mô hình"; ghi chú các trang sau đổi "câu hỏi thứ k" thành "bước k" |
+| H07 → H07, H07B | Tách câu hỏi về $e^x$ thành trang bài tập có lời giải (65 → 46 và 57) |
+| K02, K03, K04 | Bỏ mã trang "Ví dụ L03", "Trong G03", "ví dụ G03" trên mặt trang (mục còn mở của lượt 2026-10-09, nay đóng) |
+| K05 → K05, K05B | Tiêu đề "Bài tập: phân bố công suất chiếu sáng"; câu hỏi bốn phần khớp Bài 9 phần 1–4; lời giải trên trang kế, trùng lời giải Bài 9 |
+| K06 → K06, K07, K08 | K06 giữ quy trình và câu hỏi tự kiểm tra (80 → 56); K07 bảng tổng kết "kết quả / giả thiết không được bỏ / công cụ kiểm tra"; K08 tài liệu đọc |
+| Ghi chú | Sửa câu lấy tài liệu làm chủ ngữ ở M02B, D00, L00, K00, K07, T02, K03, M03, K04, H07B, F05, K05; H05 bỏ câu "PSD viết tắt …" vì hình `first-second-order-convexity.svg` không còn chữ PSD |
+
+Số trang 41 → 52; bảy mạch giữ nguyên. Lớp thu chữ `compact-cards` gỡ khỏi G00, H07; lớp `d02-slide` gỡ khỏi D02. Không thêm lớp hay thuộc tính thu chữ.
+
+### Kiểm tra
+
+- `density.py`: trước 9 trang > 60 âm tiết (M01A 104, M01B 79, M02 74, M03 63, L01B 61, L04 79, H07 65, K04 71, K06 80); sau còn K04 68 và K07 63, cả hai thuộc trần 80 (bảng so sánh, tổng kết) và ghi ngoại lệ trong storyboard. Mọi dòng ≤ 20 âm tiết; ≤ 3 khối công thức mỗi trang; ghi chú ≤ 250 âm tiết. Cờ còn lại: M02B 7 dòng (7 mạch, ngoại lệ), K04 7 dòng theo cách đếm ô bảng.
+- `deckcheck.py` (máy chủ tĩnh cục bộ không tự tải lại, vì `reloadserver` tải lại trang khi tác tử khác ghi tệp): 52 trang, 0 lỗi console hoặc trang, 0 `.katex-error`, 0 tràn dọc ở 16:9, 0 cuộn ngang ở 390 px. Hai cờ có sẵn ở HEAD (đã chạy cùng công cụ trên bản HEAD, kết quả trùng): D02 "tràn ngang 17813" là SVG kéo giãn của `\underbrace` trong KaTeX, bị cắt, không hiện; L01 bảng `mini-data` cỡ chữ 0,61 do luật `.l01-slide` 0,78em × `.mini-data` 0,78em trong CSS dùng chung.
+- Ảnh 1600×900 và 390×844 (đầu và cuối vùng cuộn) của 48 trang đã sửa hoặc thêm, chụp sau khi tắt hiệu ứng chuyển trang; đã xem, sửa bốn trang: L03, H03, H05 cao quá khung (bố trí lại), D03 và H07B có KaTeX trong tiêu đề bị `text-transform: uppercase` đổi $t$ thành $T$ (bỏ công thức khỏi tiêu đề).
+- Bàn phím: mũi tên phải, xuống, trái, lên chuyển trang đúng; trang tiêu đề mạch `mach-2`…`mach-7` ở chỉ số ngang 2…7.
+- `git diff --check`: sạch.
+- no-ai-slop (Edit mode, tự kiểm theo `eval.md`): bỏ câu triết lý D02, câu khẩu hiệu cuối trang (M01A, L01B, G01, T03, K06 cũ), mũi tên trang trí M03, câu metadiscourse trong ghi chú ("Trang này …", "Câu hỏi cuối trang chỉ ra …"); không thêm số liệu hay khẳng định mới ngoài lời giải đã có trong ghi chú và tệp bài tập.
+
+### Việc cần đồng bộ với học liệu (chỉ ghi nhận, không sửa trong lượt này)
+
+- Bài 9 của `exercises.md` có 5 phần; deck K05/K05B dùng phần 1–4, phần 5 ở ghi chú K05B. Lời giải K05B nói "hộp là giao của $2m$ nửa không gian", tệp bài tập nói "miền là một hộp, nên lồi, đóng và bị chặn": cùng kết luận.
+- Tên mạch mới ("Dạng tổng quát của bài toán tối ưu", "Tập lồi và hàm lồi", "Chứng nhận ba bài toán") và tiêu đề trang mới không được học liệu liên kết; `materials/` không có liên kết `#/…` tới deck 01.
+- K06 dẫn "Thuật toán 01.1" của ghi chú bài giảng trong ghi chú diễn giả; quy trình bốn bước trên mặt trang là dạng rút gọn của chín bước trong ghi chú.
+
+### Đề xuất CSS (cho điều phối viên)
+
+- `.l01-slide .mini-data { font-size: .78em }` cho chữ 0,61 so với cỡ gốc, dưới ngưỡng 0,65: đề xuất nâng lên khoảng .84em (có sẵn từ trước).
+- Tiêu đề `h2` có `text-transform: uppercase` biến chữ trong KaTeX thành chữ hoa; nên thêm `.reveal h2 .katex { text-transform: none; }` vào CSS dùng chung, hoặc giữ quy ước không đặt công thức trong tiêu đề.
+
+### Quyết định
+
+Chờ điều phối viên Fable 5.1 duyệt.
+
+### Vòng sửa theo hai báo cáo tái kiểm (2026-10-12)
+
+Cùng tác tử soạn (general-purpose, `claude-opus-5-5`, high), theo yêu cầu sửa của điều phối viên Fable 5.1 dựa trên `recheck-01-math.md` (tái kiểm toán) và `recheck-01-story.md` (tái kiểm mạch kể). Mục trước ghi đã sửa câu lấy tài liệu làm chủ ngữ ở M02B, D00, L00, K00; tái kiểm chỉ ra các câu "Phần này …", "Mục 5 …" vẫn còn, nay mới sửa thật.
+
+| Nguồn | Mức | Trang | Phát hiện | Trạng thái và quyết định |
+|---|---|---|---|---|
+| Toán | trung bình | K07 | Nhánh tính bức thiếu "$C$ không rỗng" | Đã sửa: "$f_0$ liên tục, $C$ không rỗng, đóng; thêm $C$ bị chặn hoặc $f_0$ bức" |
+| Toán | trung bình | K07 | "Giả thiết không được bỏ" ngụ ý điều kiện cần; thiếu trường hợp hình chiếu | Đã sửa: cột "Giả thiết đủ"; ô công cụ "riêng bình phương nhỏ nhất: hình chiếu"; ghi chú nêu $X$ thiếu hạng vẫn có nghiệm |
+| Toán | trung bình | K07 | Cột công cụ thiếu công cụ cho $C$ lồi, ghi "lập luận trung điểm" | Đã sửa: "$C$: tập cơ bản, giao, nghịch ảnh affine; $f_0$: …"; hàng 3 "Định nghĩa; $\nabla^2f_0\succ0$ trên $C$ mở" |
+| Toán | trung bình | H05 (K01, K05B, H06, H07B dùng) | Thiếu điều kiện đủ $\nabla^2f\succ0$ ⇒ lồi chặt và ký hiệu $\succ0$ | Đã sửa: dòng thứ hai trong khung định lý, phản ví dụ $x^4$; "Ký hiệu:" định nghĩa $\succeq0$, $\succ0$; ghi chú H06 dẫn đúng điều kiện đủ |
+| Toán | trung bình | H07B | Thiếu căn cứ $(e^x)''>0$ và $e^x>0$ | Đã sửa trên mặt trang |
+| Toán | trung bình | L04 | "đều tối ưu, vì rank" sai vai trò của hạng; chưa nói là mọi nghiệm | Đã sửa: tập tối ưu $\{(7/6,s,1/2-s)^T\}$ nhờ $\mathbf 1$, $(0,1,2)^T$ độc lập; hạng giải thích tính không duy nhất; ghi chú nêu lập luận hình chiếu |
+| Toán | nhẹ | H07B | "ba mệnh đề trên" không tự chứa | Đã sửa: câu hỏi nêu (a) Weierstrass, (b) tính bức, (c) lồi chặt |
+| Toán | nhẹ | G04 | "dãy tối ưu hóa" chưa định nghĩa trên mặt trang | Đã sửa: "$L(w_k)\to\inf L$ nên $w_k$ là dãy tối ưu hóa" |
+| Toán | nhẹ | T04 | Thiếu "hay không" | Đã sửa bốn mục |
+| Toán | nhẹ | K05B | Tiêu đề trùng K05 | Đã sửa: "Bài tập: phân bố công suất chiếu sáng, lời giải" (mẫu tên bước sau dấu phẩy) |
+| Toán | nhẹ | K02 | Mặt trang mất căn cứ "$\mathcal R(X)$ đóng" | Giữ: ghi chú K02 đã nêu "không gian con của $\mathbb R^n$, nên là tập đóng"; mặt trang ở trần dòng |
+| Toán | nhẹ | H02 | "là nghiêm" | Đã sửa cùng mục mạch kể H02 |
+| Toán | nhẹ | ghi chú K03 | Câu siêu ngôn "cho thấy bảo đảm nào …" | Đã sửa |
+| Mạch kể | trung bình | M01, M02B, D00, L00, GT, T00, F00, K00, T04 | Ghi chú lấy tài liệu hoặc một phần bài làm chủ ngữ | Đã sửa: mở bằng đối tượng toán học hoặc kết quả |
+| Mạch kể | trung bình | quanh mọi ranh giới mạch | Câu chuyển lặp ba lần | Đã sửa: giữ ở ghi chú trang tiêu đề mạch; D04 kết bằng giới hạn cụ thể; bỏ câu cuối L04, H07B; L01, G00 mở thẳng bằng đối tượng; G04 kết bằng nhận xét về ví dụ; chỉ M03 liệt kê ba khó khăn về nghiệm ở mạch mở đầu |
+| Mạch kể | trung bình | T03 | Bốn loại kết luận không khớp bộ ba toàn cục–tồn tại–duy nhất | Đã sửa: thêm dòng "Toàn cục", tiêu đề "Các loại kết luận về nghiệm", "Lưu ý:" nêu bộ ba; ghi chú T03, T04, T00 khớp |
+| Mạch kể | trung bình | K06, T04, K05 | Ba phiên bản quy trình không có ánh xạ; quy trình đứng sau bài tập dùng nó | Đã sửa: ghi chú K06 ánh xạ bốn bước với sáu bước T04 và chín bước Thuật toán 01.1; **chuyển K06 lên trước K05** (thứ tự mạch 7: K00–K04, K06, K05, K05B, K07, K08); mối nối K04, K05 và storyboard cập nhật |
+| Mạch kể | trung bình | storyboard | Bản đồ thiếu dòng "Dạng tổng quát", "Chứng nhận" | Đã sửa: thêm hai dòng; tách "Hàm lồi" khỏi "Chứng nhận" |
+| Mạch kể | trung bình | storyboard | Thứ tự bước đảo chưa ghi lý do | Đã sửa: đoạn "Ngoại lệ thứ tự"; ô hình thức hàng điều khiển thành "D01–D02, T01"; không đảo cấu trúc deck |
+| Mạch kể | trung bình | H07B, H07 | Trang bài tập không tự chứa; ba thẻ không có nhãn | Đã sửa: thẻ (a), (b), (c) với "Định lý (Weierstrass).", "Mệnh đề."; câu hỏi H07B trích lại |
+| Mạch kể | trung bình | H02 | Thuật ngữ in đậm làm nhãn | Đã sửa: "**Định nghĩa.** $f$ là lồi chặt (còn gọi là lồi nghiêm ngặt) nếu bất đẳng thức là chặt …" |
+| Mạch kể | trung bình | G03 | Thiếu "Tính …" và "Diễn giải:" | Đã sửa |
+| Mạch kể | trung bình | outline | Mục tiêu lệch M02 | Đã sửa: bốn mục tiêu trùng nguyên văn M02 |
+| Mạch kể | nhẹ | F00 | Dòng dẫn đọc như khẳng định | Đã sửa: "Nhu cầu: tìm giả thiết … đủ để bảo đảm …" |
+| Mạch kể | nhẹ | T04 | Thiếu "hay không" | Đã sửa |
+| Mạch kể | nhẹ | K00, K03, K04 | "chính quy hóa" chưa gọi tên trên K03, thiếu tên tiếng Anh | Đã sửa: K03 "Chính quy hóa bậc hai thêm …"; ghi chú "chính quy hóa (regularization)" |
+| Mạch kể | nhẹ | H07B | "Mệnh đề duy nhất" hai nghĩa | Đã sửa: dùng nhãn (c) |
+| Mạch kể | nhẹ | L01 | Câu hỏi hai "nào" | Đã sửa |
+| Mạch kể | nhẹ | K04 | Khung hai câu khái quát; "giờ" | Đã sửa: một câu có điều kiện; ghi chú bỏ "giờ" |
+| Mạch kể | nhẹ | K06 | Ghi chú lặp mặt trang | Đã sửa (ghi chú nay là ánh xạ quy trình và lời giải câu hỏi) |
+| Mạch kể | nhẹ | K07 | Không nối với mục tiêu học tập | Đã sửa trong ghi chú |
+| Mạch kể | nhẹ | L01→L03 | Ký hiệu $t$ của dữ liệu ba điểm trùng đích $t$ | Giữ, ghi nhận: hình `linear-regression-fit.svg` ghi trục $t$; đổi ký hiệu cần sửa SVG và ghi chú bài giảng, để lượt sau; ghi chú L02 đã giải thích |
+| Mạch kể | nhẹ | M01A | Số "1.", "2." ở tiêu đề thẻ | Đã sửa |
+| Mạch kể | nhẹ | ghi chú K08 | Tài liệu làm chủ ngữ | Đã sửa |
+| Mạch kể | nhẹ | storyboard | (a) trường nhu cầu của GT, T00, K00; (b) "41 trang"; (c) ánh xạ K05–K06; (d) thiếu `g01-linear-boundary-2d.svg` | Đã sửa cả bốn |
+
+Kiểm tra sau vòng sửa:
+- `density.py`: còn K04 70 và K07 72 (trần 80, ngoại lệ đã ghi), M02B 7 dòng; không dòng nào > 20 âm tiết.
+- `deckcheck.py --port 8790`: 52 trang, 0 lỗi; chỉ còn hai cờ có sẵn ở HEAD (D02 SVG `\underbrace` bị cắt, L01 `mini-data` 0,61). Lần chạy giữa vòng bắt L04 (808/720) và H05 (772, rồi 726/720), đã bố trí lại và rút câu.
+- Đã xem ảnh 1600×900 và 390×844 của T03, T04, H02, H05, H07, H07B, G03, L04, K03–K07 và sáu trang tiêu đề mạch.
+- `git diff --check` sạch.
+
+Quyết định: chờ điều phối viên Fable 5.1.
+
+### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
+
+Master đã tự chạy `density.py` (52 trang; K04 70 và K07 72 dưới trần 80 của bảng so sánh và tổng kết, M02B 7 dòng vì bảy mạch, đều có ngoại lệ trong storyboard), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console; hai cờ D02 và L01 có từ HEAD), đọc nguyên văn K07 và L04 sau sửa và tính lại tay L04 (dự đoán $(7/6,5/3,13/6)$, giá trị $1/6$, tập tối ưu $\{(7/6,s,1/2-s)\}$: đúng), xem ảnh trang tiêu đề mạch và trang tách ở hai kích thước, đối chiếu bảng trạng thái hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 01. Việc còn treo: ký hiệu $t$ trùng giữa dữ liệu ba điểm và đích điều khiển (cần sửa SVG và ghi chú, đợt sau); đề xuất CSS `.l01-slide .mini-data` 0,78em → 0,84em (đợt CSS chung).
