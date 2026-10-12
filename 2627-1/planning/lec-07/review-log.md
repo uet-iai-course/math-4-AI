@@ -2,6 +2,8 @@
 
 ## Trạng thái
 
+**Cập nhật 2026-10-12:** deck có 53 trang, 6 mạch, trang tiêu đề mạch A01, B01, C01, D01, Z00; xem mục “2026-10-12 — Văn phong và mật độ theo MAT1101, trang tiêu đề mạch” cuối tệp. Đoạn dưới đây mô tả trạng thái trước đợt sửa.
+
 **Đã sửa theo năm vòng rà soát độc lập; chờ kiểm định trực quan bằng Browser.** Tệp RevealJS, outline và storyboard đồng bộ ở 37 trang, 6 mạch. Các vấn đề nội dung, toán học, sư phạm và mạch kể chuyện trong bảng hợp nhất dưới đây đã đóng; kiểm định trực quan thực tế còn bị giới hạn bởi phiên không có Browser tích hợp.
 
 ## Kiểm kê nguồn và quyền
@@ -385,3 +387,82 @@ Màn hẹp 390×844: sáu trang lưới nhiều cột (A05, A07, B02, C02, C09, 
 - **Bài 07 P03**: SVG ghép hai panel tách thành `central-problem-lp.svg` và `central-problem-dp.svg` (viewBox 420×350, chữ 17,6 px ở 390 px thay vì 7,7 px), P03 dùng lưới hai cột sẵn có; ghi chú Bài 07 dòng 78 dùng hai hình với alt riêng, đoạn đọc hình sửa "ô trái/phải" → "hình thứ nhất/thứ hai"; tệp cũ `central-problem.svg` xóa bằng `git rm` (không còn tham chiếu); storyboard P03 ghi lý do.
 - **Kiểm toàn bộ 217 SVG** bằng `svg-audit.py` do điều phối viên chạy: 18 tệp còn cờ, trong đó 14 là đường hoặc elip bị clipPath cắt (dương tính giả), 1 là chữ trên nền hộp (curvature-toolchain), 1 đã xem bằng mắt không che (equality-nullspace); 3 lỗi thật được sửa: nhãn "(2/3; 2/3)" ở coordinate-path dời lên vùng trống kèm đường dẫn; nhãn trục "giá trị hàm" (phi-local-model) và "tỷ số" (self-concordance-ratio) bị cắt 3 đơn vị ở mép trên, dời vào trong. Điều phối viên xem PNG coordinate-path sau sửa: đạt.
 - **SVG không được dùng**: 54 tệp còn lại đã được rà từng tệp ở lượt trước; quyết định giữ làm tài sản tái dùng (ghi ở nhật ký Bài 00, 01, 07).
+
+## 2026-10-12 — Văn phong và mật độ theo MAT1101, trang tiêu đề mạch
+
+### Phạm vi và tác tử
+
+- Phạm vi: chỉ deck `lecture-07-quy-hoach-tuyen-tinh-va-dong.html`, `outline.md`, `storyboard.md` và tệp này. Không sửa `lecture-style.css`, `materials/`, `index.html`, `img/lec-07/`. Không commit.
+- Căn cứ: AGENTS.md, mục “Trang tiêu đề mạch”, “Văn phong và mật độ mặt trang chiếu”, “Tiêu chuẩn trình bày”; `planning/style-revision-2026-10-12.md` (bảng deck 07); báo cáo phân tích MAT1101, phần B.3, D.8.
+- Tác tử biên tập: general-purpose, claude-opus-5-5, effort high (theo brief của master; master ghi bằng chứng lời gọi công cụ). Đã nạp `no-ai-slop` (Edit mode) trước khi viết.
+
+### Thay đổi theo trang
+
+| Trang | Quyết định | Nội dung |
+|---|---|---|
+| A01, B01, C01, D01 | sửa | Trang mở mạch lai thành trang tiêu đề mạch: lớp `strand-title`, `id="mach-2"`–`"mach-5"`, chữ số “2.”–“5.” thay “A.”–“D.”, giữ mã; dòng dẫn “Muốn …” ≤ 20 âm tiết; dòng từ khóa; ghi chú 93–96 âm tiết nêu đầu vào, nhiệm vụ, đầu ra. Gạch đầu dòng định nghĩa chuyển vào trang kế hoặc ghi chú; bảng so sánh LP–DP của D01 chuyển sang D01b. |
+| Z00 | thêm | Trang tiêu đề mạch 6 “Tổng kết và chuyển tiếp”, `id="mach-6"`. |
+| P02b | thêm | Trang “Nội dung” liệt kê sáu mạch đánh số, tên trùng trang tiêu đề mạch. |
+| Z01b | thêm | Câu hỏi tự kiểm tra (ba câu, đáp án trong ghi chú), theo AGENTS.md, mục “Mở bài và kết bài”. |
+| A09, B07b, C11b, D06b | thêm | Lời giải mẫu trên mặt trang cho bốn cụm khái niệm lớn, cùng tiêu đề với trang đề. |
+| A05b, B06b, C03b, C05b, C07b, C07c, D01b, D04b, D05b | tách | Tách từ A05, B06, C03, C05, C07 (ba trang), D01, D04, D05 để mỗi trang một luận điểm và về trần mật độ. |
+| P01, P02, P03, A02, A03, A04, A05, A07, A08, B02, B04, B05, B06, B07, C02, C03, C04, C05, C06, C07, C08, C09, C10, C11, D02, D03, D04, D05, D06, Z01, Z02 | sửa | Nhãn ngoài danh sách đổi sang nhãn cho phép (“Yêu cầu:” → “Nhu cầu:”, “Quy ước.”/“Mô hình.” → “Định nghĩa.”, “Không phải LP:” → “Lưu ý:”, “Phạm vi:” → “Giả thiết:”, “Vấn đề trung tâm:” → “Kết luận:”, “Bài 08:” bỏ, “Nhu cầu.” → “Nhu cầu:”, bỏ in đậm “Bước 1/2/Dừng”); tiêu đề “Ví dụ: …”, “Bài tập: …”; thẻ có câu văn đổi thành đoạn để mỗi trang một khung; câu dài tách hoặc chuyển vào ghi chú. |
+| C02 | sửa | `\qquad` → `\quad` trong công thức định nghĩa; hết tràn ngang 3 px. |
+| Ghi chú diễn giả | sửa | Nhắc “phần A–D” trong ghi chú đổi thành “phần 2–5” hoặc tên phần; ghi chú trên 250 âm tiết rút về ≤ 250 (bỏ câu trùng mặt trang hoặc trùng ghi chú khác); ghi chú các trang tách được chia theo trang; câu “Ở bước 3” sửa thành “Ở bước 2” theo danh sách bước mới của D05. |
+
+Số trang: 37 → 53, vẫn 6 mạch. Bảng số âm tiết trước/sau và ngoại lệ ghi trong `storyboard.md`, mục “Mật độ mặt trang trước và sau (2026-10-12)”.
+
+### Kiểm tra
+
+- `density.py`: 53 trang; 2 trang trên 60 âm tiết, cả hai là ngoại lệ đã ghi trong storyboard (D01b 72, bảng so sánh; Z01 79, tổng kết; trần 80). Mọi trang ≤ 6 dòng, dòng dài nhất ≤ 20 âm tiết, không trang có ghi chú trên 250 âm tiết; ghi chú bốn trang tiêu đề mạch 93–96 âm tiết, Z00 81. Không còn lớp `.dense`. Trước sửa: 37 trang, 18 trang trên 60.
+- `deckcheck.py` (1600×900 và 390×844): 0 lỗi console/page, 0 `.katex-error`, 0 tràn dọc, 0 tràn ngang (C02 đã hết), không chữ dưới 0,65em.
+- Ảnh chụp (đã xem, tắt chuyển cảnh và chặn tải lại của `reloadserver`): A01, B01, C01, D01, Z00, P01, P02b, P03, A02, A03, A05, A08, A09, B06b, B07b, C02, C03, C03b, C07b, C07c, C08, C11b, D01b, D04, D05, D06b, Z01, Z01b ở 1600×900; A01, D01, C03, B07b, Z01, A08 ở 390×844 (đầu và cuối vùng cuộn). Bảng Z01, A08 và công thức B07b cuộn ngang ở màn hẹp với dấu hiệu “↔” sẵn có của deck.
+- `git diff --check`: sạch.
+- `no-ai-slop` (Edit mode, đối chiếu `eval.md`): mặt trang không còn câu chỉ đường, câu hỏi không nhãn, khẩu hiệu hay mã nội bộ; ghi chú trang tiêu đề mạch, P02b, A05b, A08, Z01b không mở bằng “Trang này” hay lấy tài liệu làm chủ ngữ ở câu đầu; không dùng gạch ngang dài trang trí.
+
+### Việc chưa làm, chuyển master
+
+- Học liệu: tiêu đề và thứ tự trang mới không đổi ký hiệu, ví dụ hay lời giải; lời giải A09, C11b, D06b trùng Bài tập 07.1, 07.7, 07.9 của `lecture-note.md`. `materials/lec-07/exercises.md` chưa tồn tại. Không cần đồng bộ học liệu vì đợt sửa này.
+- CSS: các luật theo trang `[data-slide-id="A03"] .card` và `[data-slide-id="A05"] .grid2` trong `lecture-style.css` không còn phần tử khớp (A03 bỏ thẻ, A05 bỏ lưới); có thể xóa ở lượt CSS sau. Danh sách có `type="a"`/`type="i"` bị CSS chung ghi đè thành số, nên deck dùng đánh số 1, 2, 3 (“câu 1”) hoặc dòng (i)–(iii) viết tay.
+- Cần vai mạch lập luận và vai toán rà lại các trang tách, các trang tiêu đề mạch, hai trang lân cận mỗi phía và ranh giới mạch (AGENTS.md, mục 6), vì số và thứ tự trang thay đổi.
+
+### Vòng sửa sau tái kiểm (2026-10-12)
+
+Đầu vào: `recheck-07-math.md` (tái kiểm toán, Opus 5.5, chỉ đọc) và `recheck-07-story.md` (tái kiểm mạch kể, Opus 5.5, chỉ đọc), qua master. Tác tử sửa: cùng tác tử biên tập (general-purpose, claude-opus-5-5, high).
+
+| Nguồn | Mức | Trang | Vấn đề | Trạng thái |
+|---|---|---|---|---|
+| toán | trung bình | C08 | Lý do dừng thiếu “hữu hạn điểm cực biên” | đã sửa: “Không đỉnh nào lặp lại vì $c^Tv$ tăng nghiêm ngặt; $P$ có hữu hạn đỉnh nên thuật toán dừng.” |
+| toán | trung bình | Z01 (hàng 2, ghi chú) | Thiếu ngữ cảnh dạng chuẩn và $A_B$ khả nghịch; ghi chú gán sai vai trò $\operatorname{rank}(A)=m$ | đã sửa: hàng “dạng chuẩn, $\operatorname{rank}(A)=m$; $A_B$ khả nghịch; $A_B^{-1}b\ge0$”; ghi chú “ít nhất một $A_B$ khả nghịch”, khớp B06 |
+| toán + mạch kể | trung bình / nhẹ | Z01 (kết luận) | Kết luận không điều kiện | đã sửa: bỏ dòng khỏi mặt trang; ghi chú nêu câu trả lời có điều kiện; 66 âm tiết |
+| mạch kể | trung bình | B01 | Dòng dẫn nêu nhiệm vụ mạch 4 | đã sửa: “Muốn tìm tập ứng viên hữu hạn, phải mô tả toàn bộ miền khả thi và tính được các đỉnh bằng đại số.” |
+| mạch kể | trung bình | P00, P02, P02b, P03, A05, A09, B06, D01, Z01, Z02 (ghi chú) | Tài liệu, phần bài hoặc dòng mặt trang làm chủ ngữ | đã sửa: câu viết lại với chủ ngữ là đối tượng toán học; đoạn mở Z02 bỏ |
+| mạch kể | trung bình | storyboard | Cột lý do và quan hệ của trang gốc đã tách còn nội dung cũ | đã sửa: A05, A08, B06, B07, C03, C05, C07, C11, D01, D04, D05, D06, Z02; “Quyết định cấu trúc” sửa C07 → C07c, D02–D06 → D01b–D06b |
+| mạch kể | trung bình | storyboard, bản đồ cụm C | C09 ghi “Trực quan” sau hình thức; thiếu hàng “tối ưu tại đỉnh” | đã sửa: tách ba hàng (điểm cực biên; tối ưu tại đỉnh và bốn kết cục với trực quan B02; thuật toán với C09 là ứng dụng) |
+| mạch kể | trung bình | D01b | Ba luận điểm, dùng “trạng thái” trước D02, phải dùng ngoại lệ | đã sửa: dòng “Giả thiết:” vào ghi chú, bảng dùng “tình huống”; 72 → 55 âm tiết, bỏ ngoại lệ |
+| toán | nhẹ | C03b | Thiếu ngữ cảnh $P$, $m$ | đã sửa: “Với $P=\{x:Ax=b,\ x\ge0\}$, $\operatorname{rank}(A)=m$: …” |
+| toán | nhẹ | C11b | Suy luận “≤ 108 ⇒ nhiều nghiệm”; “cũng chỉ” | đã sửa: “đạt tại hai đỉnh … cả cạnh nối chúng tối ưu”; “không lớn hơn nghiêm ngặt” |
+| toán + mạch kể | nhẹ | C07 | Dãy $z$ không gắn đỉnh | đã sửa |
+| toán | nhẹ | D06b | Chi phí không gắn đường | đã sửa |
+| toán | nhẹ | D04b | “với mọi $k$” bao cả $k=N$ | đã sửa: $k=N-1,\ldots,0$ |
+| toán | nhẹ | D02 | Mất ý “quá khứ không ảnh hưởng thêm” | đã sửa (19 âm tiết trên dòng) |
+| toán | nhẹ | D01b (ghi chú) | “bốn giới hạn” liệt kê ba | đã sửa: ba giả thiết, giả thiết thứ tư (trạng thái đủ) nêu cùng định nghĩa trạng thái |
+| toán | nhẹ | D05b | Lưu ý lặp | đã sửa: “nếu trạng thái phải chứa cả lịch sử, $\lvert X_k\rvert$ tăng theo hàm mũ và ưu thế mất” |
+| toán + mạch kể | nhẹ | D01, A01, Z00 | Dòng dẫn thiếu vế chính / mơ hồ / chung chung | đã sửa (21, 21, 23 âm tiết; trần 25) |
+| mạch kể | nhẹ | B06/B06b, D05/D05b, P02/P02b | Câu nối trỏ qua trang mới chèn | đã sửa: câu cũ chuyển xuống trang tách, trang gốc có câu nối sang trang tách |
+| mạch kể | nhẹ | C07c, C05b, D04 | Ghi chú mở bằng nhãn cụt; D04 thiếu câu nối | đã sửa |
+| mạch kể | nhẹ | B06b, C07b | Khái niệm phụ không có nhu cầu trên mặt trang | đã sửa trong storyboard: ghi chu trình rút gọn kèm lý do |
+| mạch kể | nhẹ | C01 (ghi chú) | Chưa nêu đầu ra cho mạch 5 | không áp dụng: ghi chú đang 96 âm tiết, thêm câu vượt khoảng 40–100; đầu ra cho mạch 5 nêu ở ghi chú D01 và C11b |
+| mạch kể | nhẹ | A08 | “Câu hỏi:” trước câu dữ kiện | đã sửa: “dựng mô hình cho hai luồng suy luận …” |
+| mạch kể | nhẹ | B05, C04, C09 | Thiếu dòng yêu cầu bằng động từ học tập | đã sửa: “Viết dạng chuẩn của …”, “Xác định tập nghiệm tối ưu của …” (công thức hiển thị thành nội dòng để C04 không chạm chân trang), “chạy thuật toán duyệt đỉnh kề từ $(0,0)$” |
+| mạch kể | nhẹ | C07, C07c, C03b | Dòng “Ví dụ.” ngoài khuôn trang kết quả | giữ có chủ ý: mỗi trang một luận điểm, ví dụ một dòng áp dụng kết quả lên bài toán hộp hạt |
+| mạch kể | nhẹ | Z01b | Câu 3 không gọi tên đồ thị tầng | đã sửa |
+| mạch kể | nhẹ | P01 | Thứ tự khác mặc định | giữ, ghi lý do trong storyboard (ký hiệu dùng trong mục tiêu; P01 và P03 làm “Ngữ cảnh”) |
+| mạch kể | nhẹ | A05b, D01b (ghi chú) | Lặp mặt trang | đã sửa |
+| mạch kể | nhẹ | storyboard, outline | “mười” trang tách; ô nhu cầu hàng tích hợp; “điểm cực” | đã sửa: “chín”; “không áp dụng”; thống nhất “điểm cực biên” |
+
+Kiểm sau vòng sửa: `density.py` 53 trang, chỉ Z01 vượt 60 (66, ngoại lệ tổng kết ≤ 80); mọi trang ≤ 6 dòng; dòng dài nhất ≤ 20 âm tiết trừ năm dòng dẫn trang tiêu đề mạch (21–23, trần riêng 25); mọi ghi chú ≤ 250 âm tiết, ghi chú trang tiêu đề mạch 81–98. `deckcheck.py --port 8790`: 0 lỗi, 0 tràn ở 1600×900 và 390×844; ảnh đã xem: B01, C04, C08, C11b, D01b, Z01 (tắt chuyển cảnh). `git diff --check`: sạch.
+
+### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
+
+Master đã tự chạy `density.py` (53 trang, chỉ Z01 ở 66 dưới trần 80 của trang tổng kết; bốn dòng dẫn 21–23 âm tiết theo trần 25 của trang tiêu đề mạch), `deckcheck.py` trên máy chủ tĩnh với chuyển cảnh tắt (0 lỗi console, 0 tràn ở hai kích thước), đọc nguyên văn C08 ("P có hữu hạn đỉnh nên thuật toán dừng") và bảng Z01 sau sửa (hàng nghiệm cơ sở khả thi: dạng chuẩn, rank(A) = m, A_B khả nghịch, A_B⁻¹b ≥ 0), xem ảnh các trang tiêu đề mạch và trang tách, đối chiếu bảng trạng thái hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 07. Việc còn treo: hai luật CSS scoped cho A03/A05 không còn phần tử khớp (đợt CSS chung); `materials/lec-07` chưa có `exercises.md`.
