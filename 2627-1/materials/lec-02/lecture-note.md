@@ -933,7 +933,7 @@ Quy hoạch tuyến tính có hai dạng liên hệ qua biến đổi tương đ
 
 Tuy nhiên, lớp này không biểu diễn được tổng bình phương sai số. Trong Mục 3, chúng ta giữ dữ liệu hồi quy và cho phép mục tiêu bậc hai lồi.
 
-## 3. Quy hoạch bậc hai, chính quy hóa và ràng buộc bậc hai
+## 3. Quy hoạch bậc hai và ràng buộc bậc hai
 
 Với năm điểm dữ liệu của Mục 2.4, tiêu chí thông dụng nhất là tổng bình phương phần dư. Trên dữ liệu này, đường $\hat y=u$ có tổng bình phương phần dư $9$, còn đường $\hat y=u+\tfrac35$ có $\tfrac{36}5$.
 
@@ -2022,7 +2022,7 @@ Từ đơn thức và tổng đơn thức dương (Định nghĩa 02.28), chúng
 
 Tuy nhiên, số lỗi phân loại là hàm bậc thang, còn quyết định mua một gói dữ liệu là biến nhị phân, nên các bài toán này có miền hoặc tập nghiệm không lồi theo mọi cách viết đã gặp. Trong Mục 5, chúng ta thay mục tiêu hoặc mở rộng miền, và đánh giá sai lệch do phép thay thế gây ra.
 
-## 5. Xấp xỉ lồi và nới lỏng bài toán không lồi
+## 5. Xấp xỉ lồi và nới lỏng
 
 Bài toán phân loại sau có tập nghiệm không lồi, nên không có cách viết nào của nó ở dạng chuẩn (Ví dụ 02.24).
 

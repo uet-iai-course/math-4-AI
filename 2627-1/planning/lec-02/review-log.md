@@ -1484,3 +1484,20 @@ Kiểm tra: `density.py` 80 trang, chỉ S06-08 trên 60 âm tiết (79, trần 
 ### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
 
 Master đã tự chạy `density.py` (80 trang, chỉ S06-08 ở 79 dưới trần 80 của trang tổng kết), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console, cờ tràn ngang S05-02 là dương tính giả KaTeX có từ trước), xem ảnh S02, S05, S05-03b, S01-01b, S06-08, S02-11 ở hai kích thước, đọc nguyên văn bảng S06-08 sau sửa (ba giả thiết của hàng xấp xỉ: $E\le H$ mọi $\theta$, tập gốc ⊆ tập nới lỏng, phương án nguyên khả thi; không còn ký hiệu chưa định nghĩa), và đối chiếu bảng trạng thái hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 02. Việc còn treo chuyển sang đợt học liệu: tên mục §3, §5 của `lecture-note.md` và Phần 3 của `exercises.md` theo tên mạch mới; luật CSS `.ai-philosophy` không còn dùng (đợt CSS chung).
+
+## 2026-10-12 — Đồng bộ học liệu với deck sau đợt sửa văn phong
+
+**Tác tử:** tác tử chỉnh sửa học liệu, loại `general-purpose`, mô hình `claude-opus-5-5`, effort `high` (theo brief của master). Đã nạp `no-ai-slop` (chế độ Edit). Không commit, không chạy `sync-local-materials.py` (master chạy sau).
+
+| Tệp | Thay đổi |
+|---|---|
+| `materials/lec-02/lecture-note.md` | §3 "Quy hoạch bậc hai, chính quy hóa và ràng buộc bậc hai" → "Quy hoạch bậc hai và ràng buộc bậc hai"; §5 "Xấp xỉ lồi và nới lỏng bài toán không lồi" → "Xấp xỉ lồi và nới lỏng" (khớp trang Nội dung S01-02). Không có tham chiếu chéo nào tới tên cũ; các tham chiếu "Mục 3", "Mục 5" giữ nguyên số |
+| `materials/lec-02/exercises.md` | Phần 3 "Quy hoạch bậc hai và chính quy hóa" → "Quy hoạch bậc hai và ràng buộc bậc hai"; bốn nhãn liên kết sửa theo tiêu đề trang hiện tại: "Bình phương sai số và chính quy hóa bậc hai", "Bình phương sai số và chính quy hóa chuẩn một", "Biến đổi bài toán hàm bản lề thành LP", "Tính tương đương của phép biến đổi". Đã grep 39 `id` liên kết `#/…`: đều tồn tại trong deck |
+
+**Chưa đổi (ngoài brief):** §1 "Bài toán tối ưu lồi và chứng nhận" và §6 "Tổng hợp: nhận dạng lớp bài toán và kiểm tra phép biến đổi" của `lecture-note.md` vẫn khác tên mạch 1 và 6 của deck; chờ master quyết định.
+
+**Kiểm tra:** `git diff --check` sạch; viewer (máy chủ tĩnh cổng 8790) mở ghi chú và bài tập: 0 lỗi console, 0 `.katex-error`.
+
+**Quyết định của master:** chờ duyệt.
+
+Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.

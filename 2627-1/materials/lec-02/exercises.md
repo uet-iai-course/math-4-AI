@@ -181,9 +181,9 @@ và $|b-3|\ge3-|b|$. Ghép: $\sum|r_i|\ge 2|b|+2|b|+3-|b|=3+3|b|\ge3$. Đạt t�
 **c)** Bộ dữ liệu mới: $y=(-2,-1,4,1,2)$; phần dư tại $u=0$ là $b-4$, các cặp $b\pm d$, $b\pm2d$ không đổi. *L1:* cận $\sum|r_i|\ge 4|b|+|b-4|\ge4|b|+4-|b|=4+3|b|\ge4$; đạt tại $w=(1,0)$: phần dư $(0,0,-4,0,0)$, tổng $4$. *Minimax:* nếu mọi $|r_i|\le t$ thì $|b|\le t$ (từ cặp $\pm1$) và $|b-4|\le t$, nên $4\le|b|+|b-4|\le2t$, tức $t\ge2$; đạt tại $w=(1,2)$: phần dư $2;2;-2;2;2$, max $=2$. *Về duy nhất:* với L1 lập luận cận buộc $b=0$ rồi $d=0$, nên nghiệm duy nhất. Với minimax, mọi nghiệm tối ưu thỏa $t=2$ và $|r_i|\le2$ với mọi $i$; từ cặp $\pm1$: $|b|\le2$; từ điểm $u=0$: $|b-4|\le2$. Hai điều kiện này buộc $b=2$. Từ hai cặp: $|b-2d|\le2$ và $|b+2d|\le2$; thay $b=2$ ta được $|2-2d|\le2 \Rightarrow 0\le d\le2$ và $|2+2d|\le2 \Rightarrow -2\le d\le0$, nên $d=0$. Vậy nghiệm minimax là **duy nhất**, $w=(1,2)$ với giá trị $t^*=2$. *Đổi tiêu chí và biến đổi tương đương:* đổi tiêu chí là thay hàm mục tiêu của bài toán gốc ($\sum|r_i|$ → $\max|r_i|$) — hai bài toán này khác nhau, nghiệm và giá trị khác nhau; biến đổi tương đương là viết **cùng một bài toán** dưới dạng khác bằng biến phụ mà giá trị tối ưu và nghiệm gốc không đổi — là phép biến đổi tương đương, không đổi bản chất bài toán.
 :::
 
-*(Tham chiếu: [Hồi quy với sai số tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-hoi-quy-tuyet-doi), [Biến phụ cho giá trị tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-bien-phu), [Tính tương đương của phép biến đổi bài toán](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-tuong-duong), [Nghiệm hồi quy với sai số tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-nghiem-hoi-quy), [Hồi quy với sai số lớn nhất](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-sai-so-lon-nhat); Boyd–Vandenberghe, §6.1.1, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
+*(Tham chiếu: [Hồi quy với sai số tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-hoi-quy-tuyet-doi), [Biến phụ cho giá trị tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-bien-phu), [Tính tương đương của phép biến đổi](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-tuong-duong), [Nghiệm hồi quy với sai số tuyệt đối](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-nghiem-hoi-quy), [Hồi quy với sai số lớn nhất](lecture-02-cac-bai-toan-toi-uu-loi.html#/lp-sai-so-lon-nhat); Boyd–Vandenberghe, §6.1.1, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
 
-## Phần 3: Quy hoạch bậc hai và chính quy hóa
+## Phần 3: Quy hoạch bậc hai và ràng buộc bậc hai
 
 ### Bài 5. Bình phương nhỏ nhất
 
@@ -262,7 +262,7 @@ Duy nhất: với mọi $d\ne0$, $d^{\mathsf T}(X^{\mathsf T}X+5I)d=\|Xd\|_2^2+5
 **c)** $J=L+\lambda R$ và $E=L$ là **hai hàm mục tiêu khác nhau**: $J=\tfrac{343}{30}\approx11{,}43$ còn $E$ của nghiệm Tikhonov là $\tfrac{1577}{180}\approx8{,}76$, nhưng $E$ của nghiệm không phạt là $\tfrac{36}{5}=7{,}2$. So $J$ với $E$ như cùng một thước đo không cho phép đánh giá trực tiếp mô hình nào khớp dữ liệu tốt hơn. Để so độ khớp dữ liệu, cần tính $E$ tại cả hai nghiệm; để so mục tiêu có phạt, cần dùng cùng $J$ và cùng hệ số phạt. Chính quy hóa **thay đổi mô hình** (đánh đổi khớp dữ liệu lấy hệ số nhỏ), không phải biến đổi tương đương của bài toán cũ.
 :::
 
-*(Tham chiếu: [Chính quy hóa trong hồi quy](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-chinh-quy-hoa), [Nghiệm hồi quy có chính quy hóa](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-so-sanh-chinh-quy), [Tổng bình phương sai số và chính quy hóa bậc hai](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-ls-l2); Boyd–Vandenberghe, §6.3.2, §4.4.1, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
+*(Tham chiếu: [Chính quy hóa trong hồi quy](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-chinh-quy-hoa), [Nghiệm hồi quy có chính quy hóa](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-so-sanh-chinh-quy), [Bình phương sai số và chính quy hóa bậc hai](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-ls-l2); Boyd–Vandenberghe, §6.3.2, §4.4.1, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
 
 ### Bài 7. Ngưỡng triệt tiêu hệ số
 
@@ -304,7 +304,7 @@ $$J_\lambda(\theta u+(1-\theta)v)\le\theta J_\lambda(u)+(1-\theta)J_\lambda(v)-\
 với mọi $u,v\in\mathbb R^2$, $u\ne v$, $\theta\in(0,1)$, và $X$ hạng đầy cột nên $\|X(u-v)\|_2^2>0$. Bất đẳng thức đầu cộng hai bất đẳng thức định nghĩa của $E$ (lồi chặt) và của chuẩn một (lồi); bất đẳng thức sau là ngặt nhờ việc trừ số hạng dương $\theta(1-\theta)\|X(u-v)\|_2^2$. Tính không khả vi của $|\cdot|$ tại $0$ không cản trở **định nghĩa** lồi chặt — tính lồi là tính chất giá trị, không đòi hỏi trơn. (Với $\lambda=0$, $J_0=E$ vẫn lồi chặt.)
 :::
 
-*(Tham chiếu: [Tổng bình phương sai số và chính quy hóa chuẩn một](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-ls-l1); Boyd–Vandenberghe, §6.3.2, §6.5.4, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
+*(Tham chiếu: [Bình phương sai số và chính quy hóa chuẩn một](lecture-02-cac-bai-toan-toi-uu-loi.html#/qp-ls-l1); Boyd–Vandenberghe, §6.3.2, §6.5.4, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
 
 ### Bài 8. Giới hạn độ lớn hệ số
 
@@ -480,7 +480,7 @@ $$\min_{\theta,\xi}\ \sum_{i=1}^4\xi_i\quad\text{với}\quad \xi_i\ge1-y_i(u_i-\
 *Cận cho số lỗi và biến đổi $H$:* trước hết chứng minh $\ell_{01}(r)\le\max(0,1-r)$ theo hai trường hợp. Nếu $r\le0$: $\ell_{01}(r)=1\le1-r\le\max(0,1-r)$ (vì $1-r\ge1$). Nếu $r>0$: $\ell_{01}(r)=0\le\max(0,1-r)$ hiển nhiên. Chiều thuận, với mọi $\theta$ chọn $\xi_i=\max(0,1-y_i(u_i-\theta))$ thì khả thi và mục tiêu $=H(\theta)$; chiều ngược, mọi $(\theta,\xi)$ khả thi có $\xi_i\ge\max(0,1-r_i)$ nên $\sum\xi_i\ge H(\theta)$. Vậy giá trị tối ưu LP $=\min H=4$; mục tiêu và ràng buộc affine nên là LP. *So sánh nghiệm:* mọi $\theta\in[-1,1]$ đều tối ưu cho $H$ và có $E=2$; với $\theta\in(-2,-1)\cup(1,2)$, $H=3+|\theta|\in(4,5)$. Do đó tại **mọi** nghiệm tối ưu của $H$, số lỗi $E=2$ — không chỉ ở ví dụ $\theta=0$. Ngược lại, tối ưu $E$ đạt trên $(-2,-1)\cup(1,2)$ với $E=1$; giá trị $H$ tại những điểm đó là $3+|\theta|\in(4,5)$, bằng $\tfrac92$ chỉ tại $\theta=\pm\tfrac32$. Kết luận: mặc dù $\ell_{01}(r)\le\max(0,1-r)$ tại **mọi** $r$ nên $E(\theta)\le H(\theta)$ mọi $\theta$, hai bài toán tối ưu cho nghiệm khác nhau — quan hệ đúng chỉ là $\min E\le\min H$ ($1\le4$), nên tối ưu $H$ không cung cấp cận dưới cho $\min E$ và không bảo đảm giảm số lỗi nhiều nhất. Đây là **hàm thay thế** (đổi mục tiêu), không phải biến đổi tương đương; và mọi kết luận chỉ trên tập huấn luyện — không hứa tổng quát hóa sang dữ liệu mới.
 :::
 
-*(Tham chiếu: [Mô hình giảm số lỗi phân loại](lecture-02-cac-bai-toan-toi-uu-loi.html#/ap-dem-loi), [Hàm mất mát bản lề](lecture-02-cac-bai-toan-toi-uu-loi.html#/ap-ban-le), [Nghiệm của hàm thay thế](lecture-02-cac-bai-toan-toi-uu-loi.html#/ap-nghiem-phan-loai), [Biến đổi hàm bản lề thành LP](lecture-02-cac-bai-toan-toi-uu-loi.html#/ap-ban-le-lp); Boyd–Vandenberghe, §8.6.1, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
+*(Tham chiếu: [Mô hình giảm số lỗi phân loại](lecture-02-cac-bai-toan-toi-uu-loi.html#/ap-dem-loi), [Hàm mất mát bản lề](lecture-02-cac-bai-toan-toi-uu-loi.html#/ap-ban-le), [Nghiệm của hàm thay thế](lecture-02-cac-bai-toan-toi-uu-loi.html#/ap-nghiem-phan-loai), [Biến đổi bài toán hàm bản lề thành LP](lecture-02-cac-bai-toan-toi-uu-loi.html#/ap-ban-le-lp); Boyd–Vandenberghe, §8.6.1, [Boyd–Vandenberghe (2004)](https://web.stanford.edu/~boyd/cvxbook/).)*
 
 ### Bài 12. Nới lỏng bài toán chọn gói
 
