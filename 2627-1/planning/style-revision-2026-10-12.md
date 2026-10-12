@@ -203,3 +203,24 @@ Số trang sau khi chỉ thêm trang tiêu đề mạch: 00: 73 → 79; 01: 41 �
 <!-- Master điền: chấp nhận | yêu cầu sửa | bác bỏ, kèm lý do. -->
 
 Master (Claude Fable 5.1, effort medium) đã đọc toàn bộ diff của `AGENTS.md`, `CLAUDE.md`, `lecture-style.css` và tệp này; đối chiếu các nhận định của báo cáo phân tích với tệp thật (trang tiêu đề mạch sẵn có ở deck 02 và 07, 13 badge "Tự học" ở deck 04, mã T/H ở deck 06, `id="mach-7"` ở deck 03, 18 ghi chú mở bằng "Trang này" ở deck 02). Quyết định: `chấp nhận`, với một điều chỉnh do master tự ghi: câu cấm trên mặt trang bỏ "ta có" khỏi danh sách và cho phép "ta" trong dòng tính toán khi không bỏ được, vì giọng tính toán của học phần (ghi chú bài giảng) dùng "ta". Kiểm tra: `git diff --check` sạch; deckcheck trên deck 02 và 06 không lỗi console, các cờ tràn ngang trùng với bản HEAD. Commit `docs(agents)` ngay sau mục này.
+
+## Kết quả thực hiện (master Fable 5.1 ghi, 2026-10-12)
+
+| Deck | Trang trước → sau | Mạch | Trang tiêu đề mạch | Commit |
+|---|---|---|---|---|
+| 00 | 73 → 88 | 7 | H00, A00, B00, C00, D00, E00 | ca4191f |
+| 01 | 41 → 52 | 7 | D00, L00, GT, T00, F00, K00 | fecae84 |
+| 02 | 74 → 80 | 6 | S02–S06 (đổi mẫu) | a640a0b |
+| 03 | 47 → 57 | 6 | S02-00, S03-00, S04-00, S05-00, S07-00 | 1823d1a |
+| 04 | 54 → 75 | 7 | RG00, RN00, RE00, RR00, RS00, RZ00 | 0083fd0 |
+| 05 | 44 → 67 | 5 | HQ00, LG00, CP00, KL00 | b00899c |
+| 06 | 45 → 72 | 7 | B00, C00, D00, E00, F00, G00 | f714748 |
+| 07 | 37 → 53 | 6 | A01–D01 (đổi mẫu, chữ số), Z00 | 9f7a5ba |
+
+Quy trình mỗi deck: tác tử biên tập (general-purpose, claude-opus-5-5, high) → master kiểm density/deckcheck/ảnh → hai tác tử tái kiểm chỉ đọc (toán; mạch kể; cùng cấu hình) → vòng sửa theo chỉ thị master → master duyệt lần cuối, ghi `chấp nhận` vào review-log của bài, commit và push. Tổng cộng 8 tác tử biên tập, 16 tác tử tái kiểm, 1 tác tử phân tích, 1 tác tử sửa tài liệu, 1 tác tử đổi thuật ngữ. Số trang vượt trần 60 âm tiết: trước 10/9/7/2/16/17/22/18, sau chỉ còn các trang mục tiêu/nội dung/tổng kết/bảng so sánh trong trần 80, có ngoại lệ ghi storyboard. Không deck nào còn `.dense`, badge "Tự học", mã VD/T/H trên mặt trang.
+
+Bổ sung theo yêu cầu người dùng cùng ngày: thuật ngữ "cưỡng bức (coercive)" thay "bức" ở Bài 01, 02, 05; Bài 05 định nghĩa lại hàm cưỡng bức (LG06) và $F_\lambda$ (LG07) trước lần dùng đầu (commit 8beea89).
+
+Hồi quy CSS dùng chung: deck 05b, 06b, 06c chạy deckcheck 0 lỗi, 0 cờ. Gói học liệu cục bộ đồng bộ. `index.html` không đổi (không chứa số trang).
+
+Việc còn treo (đợt học liệu sau): tên mục của `lecture-note.md` Bài 02, 03 theo tên mạch mới; `materials/lec-03/exercises.md` bài 5 (cận trên do điểm khả thi, "độ dốc"); `materials/lec-04` còn mã VD1/VD2/VD3 và năm bài tập mới của deck chưa có trong `exercises.md`; `materials/lec-05/exercises.md` câu dẫn "ở trang tổng kết"; `materials/lec-06/exercises.md` còn mã T5–T8; `materials/lec-07` chưa có `exercises.md`; CSS: luật `.ai-philosophy`, hai luật scoped A03/A05 của Bài 07 và các luật `.dense` không còn dùng ở 05/06 (05b vẫn dùng); ký hiệu $t$ trùng ở Bài 01; đề xuất `.l01-slide .mini-data` 0,84em.
