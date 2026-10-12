@@ -34,5 +34,5 @@
   <path d="M760 279 L1030 279" stroke="#16706a" stroke-width="3"/>
   <circle cx="760" cy="279" r="7" fill="#fff" stroke="#16706a" stroke-width="3"/><circle cx="1030" cy="279" r="7" fill="#fff" stroke="#16706a" stroke-width="3"/>
   <text class="small" x="895" y="252" text-anchor="middle">Dây cung nằm phía trên đồ thị</text>
-  <text class="small" x="897" y="478" text-anchor="middle">Kết luận cần cả tập khả thi lồi và hàm mục tiêu lồi.</text>
+  <text class="small" x="897" y="478" text-anchor="middle">Kết luận cần cả miền khả thi lồi và hàm mục tiêu lồi.</text>
 </svg>

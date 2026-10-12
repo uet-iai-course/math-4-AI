@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
   <title id="title">Đồ thị chi phí điều khiển trên miền khả thi</title>
-  <desc id="desc">Parabol q của u bằng ba phần hai u bình phương trừ sáu u cộng chín. Dải tô từ u bằng âm một đến u bằng một là miền khả thi. Nghiệm tối ưu có ràng buộc ở u bằng một với giá trị chín phần hai. Nghiệm tự do ở u bằng hai với giá trị ba nằm ngoài miền khả thi.</desc>
+  <desc id="desc">Parabol q của u bằng ba phần hai u bình phương trừ sáu u cộng chín. Dải tô từ u bằng âm một đến u bằng một là miền khả thi. Nghiệm tối ưu có ràng buộc ở u bằng một với giá trị chín phần hai. Cực tiểu không ràng buộc ở u bằng hai với giá trị ba nằm ngoài miền khả thi.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#24324a"/></marker>
     <style>

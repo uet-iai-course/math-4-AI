@@ -82,11 +82,11 @@ $$
 \quad (1+u-5)^2+u^2.
 $$
 
-Hạng năng lượng tương ứng với $\lambda=1$. Tính nghiệm tự do, nghiệm bị chặn, trạng thái kế tiếp và giá trị tối ưu. Tính $q'(u^*)$; giải thích vì sao đạo hàm khác không vẫn phù hợp với nghiệm tại biên. Chứng nhận nghiệm tồn tại và duy nhất.
+Hạng năng lượng tương ứng với $\lambda=1$. Tính cực tiểu không ràng buộc, nghiệm bị chặn, trạng thái kế tiếp và giá trị tối ưu. Tính $q'(u^*)$; giải thích vì sao đạo hàm khác không vẫn phù hợp với nghiệm tại biên. Chứng nhận nghiệm tồn tại và duy nhất.
 :::
 
 ::: hint
-Viết mục tiêu thành $2u^2-8u+16$ rồi kiểm tra vị trí của nghiệm tự do so với đoạn $[-1,1]$.
+Viết mục tiêu thành $2u^2-8u+16$ rồi kiểm tra vị trí của cực tiểu không ràng buộc so với đoạn $[-1,1]$.
 :::
 
 ::: solution
@@ -147,7 +147,7 @@ $$
 Giá trị $0$ được đạt nên nghiệm tồn tại. Ma trận $X$ có hạng $1<2$, do đó $X^TX$ chỉ nửa xác định dương, không xác định dương; mục tiêu không lồi chặt và nghiệm không duy nhất.
 :::
 
-### Bài 7. Mất mát logistic tách tuyến tính
+### Bài 7. Mất mát logistic tách được tuyến tính
 
 ::: exercise
 Với $L(w)=2\log(1+e^{-w})$ trên $\mathbb R$:
@@ -190,10 +190,10 @@ So sánh Hessian với $\mu I$ và xét giới hạn khi $\lVert w\rVert_2\to\in
 :::
 
 ::: solution
-Đặt $m_i=y_i a_i^Tw$ và $d_i=e^{m_i}/(1+e^{m_i})^2>0$. Hessian của tổng mất mát logistic là nửa xác định dương. Khi đó
+Đặt $m_i=y_i a_i^Tw$ và $\ell(m)=\log(1+e^{-m})$; khi đó $\ell''(m_i)=e^{m_i}/(1+e^{m_i})^2>0$. Hessian của tổng mất mát logistic là nửa xác định dương. Khi đó
 
 $$
-\nabla^2L_\mu(w)=\sum_{i=1}^{n}d_i a_i a_i^T+\mu I\succeq\mu I\succ0.
+\nabla^2L_\mu(w)=\sum_{i=1}^{n}\ell''(m_i)\,a_i a_i^T+\mu I\succeq\mu I\succ0.
 $$
 
 Do đó $L_\mu$ lồi chặt, nên có nhiều nhất một nghiệm. Mặt khác, $L_\mu$ liên tục và
@@ -208,7 +208,7 @@ khi $\lVert w\rVert_2\to\infty$. Vì vậy tập mức dưới $\{w\mid L_\mu(w)
 ### Bài 9. Phân bố công suất chiếu sáng
 
 ::: exercise
-$m$ đèn tạo độ sáng $I=Ap$ trên $n$ vùng, trong đó $A\in\mathbb R_+^{n\times m}$ và $p_{\max}\ge0$. Lập mô hình chọn $p$ để gần độ sáng đích $I_{\mathrm{des}}\in\mathbb R^n$, với $0\le p_j\le p_{\max}$.
+$m$ đèn tạo độ sáng $I=Ap$ trên $n$ vùng, trong đó $A\in\mathbb R^{n\times m}$ có mọi phần tử không âm và $p_{\max}\ge0$. Lập mô hình chọn $p$ để gần độ sáng đích $I_{\mathrm{des}}\in\mathbb R^n$, với $0\le p_j\le p_{\max}$.
 
 1. Dùng mục tiêu bình phương nhỏ nhất.
 2. Chứng nhận miền và mục tiêu lồi.

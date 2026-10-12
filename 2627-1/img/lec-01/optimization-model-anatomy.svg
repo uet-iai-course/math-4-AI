@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
   <title id="title">Bài toán tối ưu tổng quát</title>
-  <desc id="desc">Sơ đồ nối dữ kiện với biến quyết định, hàm mục tiêu và các ràng buộc. Ràng buộc xác định tập khả thi, còn hàm mục tiêu dùng để so sánh các điểm khả thi và chọn nghiệm tối ưu.</desc>
+  <desc id="desc">Sơ đồ nối dữ kiện với biến quyết định, hàm mục tiêu và các ràng buộc. Ràng buộc xác định miền khả thi, còn hàm mục tiêu dùng để so sánh các điểm khả thi và chọn nghiệm tối ưu.</desc>
   <defs>
     <marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto"><path d="M0 0L16 8L0 16Z" fill="#24324a"/></marker>
     <style>.panel{fill:#fbfcff;stroke:#bac5d6;stroke-width:2}.data{fill:#eef4f3;stroke:#16706a;stroke-width:3}.decision{fill:#e9f1fb;stroke:#315d92;stroke-width:3}.objective{fill:#fff1e9;stroke:#b44b20;stroke-width:3}.constraint{fill:#f2edfa;stroke:#6a45a5;stroke-width:3}.output{fill:#fff8e6;stroke:#9b6b12;stroke-width:3}.title{font-family:sans-serif;font-size:25px;font-weight:700;fill:#172033}.label{font-family:sans-serif;font-size:21px;fill:#24324a}.small{font-family:sans-serif;font-size:20px;fill:#44516a}.arrow{stroke:#24324a;stroke-width:3;fill:none;marker-end:url(#arrow)}</style>
   </defs>
   <rect width="1200" height="600" fill="#f3f6fb"/>
-  <text class="title" x="600" y="34" text-anchor="middle">Một mô hình tối ưu xác định rõ biến quyết định, hàm mục tiêu và tập khả thi</text>
+  <text class="title" x="600" y="34" text-anchor="middle">Một mô hình tối ưu xác định rõ biến quyết định, hàm mục tiêu và miền khả thi</text>
   <rect class="panel" x="14" y="54" width="1172" height="510" rx="14"/>
 
   <rect class="data" x="30" y="92" width="212" height="350" rx="12"/>
@@ -47,7 +47,7 @@
   <path class="arrow" d="M832 190 C860 190 862 172 890 172"/>
   <path class="arrow" d="M832 423 C862 423 862 390 890 380"/>
   <rect class="output" x="896" y="92" width="274" height="350" rx="12"/>
-  <text class="title" x="1033" y="132" text-anchor="middle">Tập khả thi C</text>
+  <text class="title" x="1033" y="132" text-anchor="middle">Miền khả thi C</text>
   <ellipse cx="1033" cy="226" rx="92" ry="60" fill="#fff" stroke="#6a45a5" stroke-width="3"/>
   <circle cx="992" cy="236" r="6" fill="#6a45a5"/><circle cx="1044" cy="199" r="6" fill="#6a45a5"/><circle cx="1086" cy="250" r="6" fill="#6a45a5"/>
   <path d="M1024 266 l10 10 l18 -25" fill="none" stroke="#9b6b12" stroke-width="5"/>

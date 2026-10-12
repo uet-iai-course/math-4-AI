@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
-  <title id="title">Biên tuyến tính chia mặt phẳng đặc trưng</title>
-  <desc id="desc">Hai trục đặc trưng a một và a hai cắt nhau tại gốc. Đường a chuyển vị w bằng không đi qua gốc và chia mặt phẳng thành miền dương phía trên trái với các điểm tròn, miền âm phía dưới phải với các điểm vuông. Véc tơ w xuất phát từ gốc, vuông góc với biên và hướng vào miền dương.</desc>
+  <title id="title">Biên quyết định tuyến tính chia mặt phẳng đặc trưng</title>
+  <desc id="desc">Hai trục đặc trưng a một và a hai cắt nhau tại gốc. Đường a chuyển vị w bằng không đi qua gốc và chia mặt phẳng thành miền dương phía trên trái với các điểm tròn, miền âm phía dưới phải với các điểm vuông. Vector w xuất phát từ gốc, vuông góc với biên và hướng vào miền dương.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
       <path d="M0,0 L10,5 L0,10 Z" fill="#24324a" />

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
   <title id="title">Dây chuyền phân loại chất lượng cam bằng hai đặc trưng</title>
-  <desc id="desc">Bên trái, ba quả cam tròn, méo và có vết đi dưới camera. Ở giữa là hai đặc trưng do con người chọn: tỉ lệ hai kích thước chính và phần trăm diện tích vết sẫm. Bên phải, cam tốt hình tròn và cam xấu hình vuông nằm trong hai vùng của mặt phẳng đặc trưng, được ngăn bởi một biên tuyến tính; véc tơ w vuông góc với biên.</desc>
+  <desc id="desc">Bên trái, ba quả cam tròn, méo và có vết đi dưới camera. Ở giữa là hai đặc trưng do con người chọn: tỉ lệ hai kích thước chính và phần trăm diện tích vết sẫm. Bên phải, cam tốt hình tròn và cam xấu hình vuông nằm trong hai vùng của mặt phẳng đặc trưng, được ngăn bởi một biên quyết định tuyến tính; vector w vuông góc với biên.</desc>
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
       <path d="M0,0 L10,5 L0,10 Z" fill="#24324a" />
@@ -73,7 +73,7 @@
   <text class="small" x="842" y="66">z₂ (%)</text>
 
   <line class="boundary" x1="830" y1="82" x2="1140" y2="322" />
-  <text class="small" x="935" y="72" fill="#315d92">biên tuyến tính minh họa</text>
+  <text class="small" x="935" y="72" fill="#315d92">biên quyết định minh họa</text>
   <line class="normal" x1="930" y1="159.4" x2="893" y2="207.2" />
   <text class="label" x="866" y="206" font-weight="700">w</text>
 

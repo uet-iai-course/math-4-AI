@@ -721,3 +721,67 @@ Kiểm tra: `git diff --check` sạch; `deckcheck.py --port 8790 --ids L02,L03` 
 Bổ sung theo yêu cầu của master (Fable 5.1), 2026-10-12: tham số tự do của tập nghiệm đổi $s\to c$, $\{(7/6,\,c,\,1/2-c)^T\mid c\in\mathbb R\}$, ở deck L04 (mặt trang 1 chỗ, ghi chú 1 chỗ gồm $c=1/2$, $c=1/4$) và ghi chú bài giảng (Ví dụ 01.5 $S^*$ và "Kiểm tra lại", bảng tổng hợp ví dụ, ví dụ hàm không cưỡng bức ở Mục 8: 4 chỗ); `exercises.md` không có chỗ liên quan. Giữ $J(w+sv)=J(w)$ ở ghi chú K02 (vô hướng tổng quát, không phải tập nghiệm L04). Kiểm tra: grep không còn `1/2-s`, `s=1/4`, `s=1/2`; `deckcheck.py --ids L04` 0 lỗi (hai cờ có sẵn D02, L01), ảnh L04 1600×900 đã xem; `density.py` L04 không đổi; viewer lec-01 0 lỗi console, 0 `.katex-error`; `git diff --check` sạch. Mục "Còn lại" phía trên đã xử lý.
 
 Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12
+
+### Tác tử
+
+| Vai | Loại | Mô hình | Effort | Đầu ra |
+|---|---|---|---|---|
+| Rà soát thuật ngữ và thứ tự định nghĩa (chỉ đọc, no-ai-slop Detect) | `general-purpose` | `claude-opus-5-5` | high | `report-01.md` (điều phối viên lưu nguyên văn) |
+| Biên tập (ghi tệp, no-ai-slop Edit rồi tự kiểm theo `eval.md`) | `general-purpose` | `claude-opus-5-5` | high (theo brief; điều phối viên đối chiếu bằng lệnh gọi công cụ) | Deck, `storyboard.md`, `outline.md`, `review-log.md`, `materials/lec-01/{lecture-note,exercises}.md`, tám SVG trong `img/lec-01/` |
+
+Đầu vào quyết định: `decisions-common.md` rồi `decisions-01.md` của điều phối viên (Fable 5.1). Không commit, không chạy `sync-local-materials.py` (điều phối viên chạy một lần cuối).
+
+### Phát hiện và xử lý
+
+| mức độ | trang | vấn đề | quyết định điều phối viên | trạng thái | cách sửa |
+|---|---|---|---|---|---|
+| trung bình | G01, GT, G02, G03, K03 | "biên" ba nghĩa; đề xuất đổi sang "lề có dấu" | bác bỏ đổi hàng loạt (quyết định chung 1); chấp nhận chú thích lần đầu | đã sửa | G01 "Biên có dấu (signed margin, còn gọi là lề có dấu)"; "biên" của miền giữ nguyên; biên quyết định thống nhất (A8) |
+| trung bình | T03; ghi chú M02, G04, T03 | $p^*$ hai tên | chấp nhận | đã sửa | "Giá trị tối ưu (optimal value)" ở T03; ghi chú M02, T03 "giá trị tối ưu"; câu G04 bị xóa (mục 5) |
+| trung bình | D01 | "động lực" không mang nghĩa dynamics | chấp nhận | đã sửa | Thẻ "Dữ kiện và phương trình trạng thái"; ghi chú "phương trình trạng thái (động lực học, dynamics)"; `lecture-note.md` 1 chỗ |
+| trung bình | G04 | "dãy tối ưu hóa" | chấp nhận | đã sửa | "dãy cực tiểu hóa (minimizing sequence)" trên mặt trang và ghi chú; `lecture-note.md` 7 chỗ (Định nghĩa 01.10 kèm tiếng Anh) |
+| trung bình | G04 tiêu đề; ghi chú G03 | khẩu ngữ "tốt dần" | chấp nhận | đã sửa | "Bài tập: dãy cực tiểu hóa và nghiệm tối ưu"; ghi chú G03 "giá trị mục tiêu giảm dần" |
+| trung bình | GT, G03, K03, K04, ghi chú | "tách tuyến tính" | chấp nhận | đã sửa | "tách được tuyến tính" toàn deck (10 chỗ), SVG `logistic-loss-convex-case.svg`, `lecture-note.md` 4, `exercises.md` 1 |
+| nhẹ | K02, K04, ghi chú K02, K07 | bốn cách gọi hạng | chấp nhận | đã sửa | "có / không có hạng cột đầy đủ"; tiếng Anh ở L04; `lecture-note.md` 2 chỗ |
+| nhẹ | M03, G00, G01 | ba tên cho biên quyết định | chấp nhận | đã sửa | "biên quyết định (decision boundary)" ở ghi chú M03; alt M03, G00, G01; tiêu đề G01; nhãn và mô tả `m03-logistic-classes.svg`, `g00-orange-quality-pipeline.svg`, `g01-linear-boundary-2d.svg`; `lecture-note.md` 3 chỗ |
+| nhẹ | H06, K07, ghi chú F00, T04, H05, K00, K03, K08 | tên phép biến đổi không thống nhất | chấp nhận | đã sửa | "phép toán bảo toàn tính lồi" (tiêu đề H06, bảng K07, ghi chú); `lecture-note.md` "phép bảo toàn"/"phép ghép giữ tính lồi" → "phép toán bảo toàn tính lồi" (15 chỗ) |
+| nhẹ | ghi chú F01, H02 | khẩu ngữ "trộn" | chấp nhận | đã sửa | "trọng số của tổ hợp lồi", "tổ hợp lồi"; `lecture-note.md` 6 chỗ ("điểm trộn", "giá trị trộn"); giữ "phương án trộn" ở đoạn trực giác 6.1 trước khi gọi tên tổ hợp lồi và "trọng số trộn" của Tình huống 01.2 |
+| nhẹ | ghi chú H05, K03 | "lát cắt cong lên", "tắt dần" | chấp nhận | đã sửa | "hàm hạn chế thỏa $\varphi''\ge0$"; "độ cong tiến về $0$ khi $w\to+\infty$"; `lecture-note.md` 5 chỗ; mô tả `first-second-order-convexity.svg` |
+| nhẹ | ghi chú D01, T01, T02 | ba tên cho miền khả thi | chấp nhận | đã sửa | "miền khả thi (feasible set)" (tiếng Anh ở ghi chú M02); alt T01; nhãn `optimization-model-anatomy.svg`, `local-versus-global-minimum.svg`; `lecture-note.md` 3 chỗ |
+| nhẹ | ghi chú H07B | "Mệnh đề Weierstrass" | chấp nhận | đã sửa | "Định lý Weierstrass" |
+| nhẹ | D03 | "nghiệm tự do" | chấp nhận | đã sửa | "cực tiểu không ràng buộc (unconstrained minimizer)": mặt trang, alt, ghi chú, mô tả `d03-cost-parabola-feasible.svg`; `lecture-note.md` 8 chỗ, `exercises.md` 2 |
+| nhẹ | M03 | viết tắt AI | chấp nhận | đã sửa | Tiêu đề "Một số bài toán tối ưu trong điều khiển và trí tuệ nhân tạo (AI)" |
+| nhẹ | G01 alt | "véc tơ" | chấp nhận | đã sửa | "vector pháp tuyến"; mô tả `g01`, `g00` |
+| nhẹ | ghi chú K05 | "cỡ" | chấp nhận | đã sửa | "kích thước $n\times m$" |
+| nhẹ | nhiều trang | thiếu tiếng Anh lần đầu | chấp nhận | đã sửa | Ghi chú M01, M02, M03, D03, D04, L01, L01B, L02, L03, L04, L04B, G02, T03, F03, F04, H03B, H04, H05, H06; mặt trang F01, G04, L04, T03 |
+| nhẹ | K03 | $d_i$ trùng số chiều $d$ | chấp nhận có điều kiện ($\sigma_i$ nếu không trùng) | đã sửa, lệch đề xuất | Dùng thẳng $\ell''(m_i)$ vì `lecture-note.md` dùng $\sigma$ cho hàm sigmoid; `exercises.md` Bài 10 đổi tương tự; khớp công thức $\nabla^2L=\sum_i\ell''(m_i)a_ia_i^T$ của ghi chú bài giảng |
+| nghiêm trọng | H07 (a); H07B, K01, K05B, K07 | tập đóng, tập bị chặn chưa định nghĩa | chấp nhận trang mới H03B | đã sửa | H03B "Tập mở, tập đóng, tập bị chặn": "Nhắc lại:" điểm trong, tập mở, đóng, bị chặn; "Ví dụ." $[-1,1]$, $(0,1]$, $\mathbb R$; 52 âm tiết, 6 dòng; ghi chú 100 âm tiết |
+| trung bình | D04; H04, H05 | điểm trong, tập mở chưa định nghĩa | chấp nhận | đã sửa | D04 "(không phải đầu mút)", 43 → 47; tập mở ở H03B |
+| trung bình | L04 | hạng cột đầy đủ chưa nhắc lại | chấp nhận | đã sửa, có tách trang | "Nhắc lại:" trên L04 làm nội dung cao 750 > 720 px; L04 tách thành L04 (câu hỏi, "Nhắc lại:", 31 âm tiết) và L04B (lời giải, 35 âm tiết) |
+| trung bình | H07 (b) | cưỡng bức chỉ ở ghi chú | chấp nhận | đã sửa, lệch đề xuất | Thẻ (b) "$f$ liên tục, cưỡng bức ($f(x)\to+\infty$ khi $\lVert x\rVert\to\infty$), …"; "(coercive)" chỉ còn ở ghi chú vì bản giữ tiếng Anh làm thẻ sáu dòng, nội dung 720 px; 58 → 59 |
+| trung bình | H03 | cực tiểu địa phương chỉ ở ghi chú | chấp nhận | đã sửa | Dòng "Định nghĩa." với $r>0$; định lý viết một dòng để nội dung ≤ 720 px; 35 → 43 |
+| trung bình | F03 | "tổ hợp lồi" chỉ ở ghi chú F01 | chấp nhận | đã sửa | F01 "$z_\theta$ gọi là tổ hợp lồi (convex combination) của $x$ và $y$"; 32 → 41 |
+| trung bình | G03 | "tách được tuyến tính" chưa định nghĩa | chấp nhận | đã sửa, lệch đề xuất | G03 "Dữ liệu gọi là tách được tuyến tính nếu có $w$ với mọi $m_i>0$"; "(linearly separable)" và "ở đây mọi $w>0$" ở ghi chú vì cột phải cao hơn hình làm nội dung 789 px; 20 → 31 |
+| trung bình | G04 | dãy cực tiểu hóa chỉ định nghĩa ở ghi chú | chấp nhận | đã sửa | "Kết luận:" "$w_k$ là dãy cực tiểu hóa (minimizing sequence), tức $L(w_k)\to\inf L$, …"; 52 → 55 |
+| trung bình | K01 | clip chỉ ở ghi chú | chấp nhận | đã sửa, lệch đề xuất | Định nghĩa $\operatorname{clip}(s,[\alpha,\beta])\triangleq\min(\max(s,\alpha),\beta)$ là dòng thứ hai của cùng hệ `aligned`; không thêm dòng "Ký hiệu:" vì K01 đã có 6 dòng |
+| nhẹ | K03 | $A\succeq B$, $I$ chưa định nghĩa | chấp nhận | đã sửa | "$\nabla^2L_\mu-\mu I\succeq0$"; ghi chú "$I$ là ma trận đơn vị" |
+| nhẹ | L04 | $\mathbf 1$ chỉ ở ghi chú L03 | chấp nhận | đã sửa | L04B "với $\mathbf 1=(1,1,1)^T$" |
+| nhẹ | K05 | $\mathbb R_+^{n\times m}$ chỉ ở ghi chú | chấp nhận | đã sửa | "$A\in\mathbb R^{n\times m}$ có mọi phần tử không âm"; 46 → 52; `exercises.md` Bài 9 đổi tương tự |
+| nhẹ | L04 tiêu đề, L01B | "ma trận thiết kế" chưa có trên mặt trang | chấp nhận | đã sửa | L01B "Hàng $i$ của ma trận thiết kế $X$ …"; 35 → 39 |
+| nhẹ | H05 | Ký hiệu thiếu "$A$ đối xứng" | chấp nhận | đã sửa | "**Ký hiệu:** với $A$ đối xứng, …"; 43 → 46 |
+| nhẹ | ghi chú T02 | câu chỉ dẫn đọc bảng | chấp nhận | đã sửa | Bỏ "Đọc bảng theo cột thuận tiện hơn đọc theo hàng" |
+| nhẹ | ghi chú G04 | câu lặp cuối | chấp nhận | đã sửa | Bỏ câu "Ví dụ này cho thấy giá trị tốt nhất hữu hạn …" |
+| nhẹ | ghi chú D04 | "lồi chặt, còn gọi là lồi nghiêm ngặt" dùng dấu phẩy | (bảng 4 báo cáo) | đã sửa | "tính lồi chặt (còn gọi là lồi nghiêm ngặt, strictly convex)" |
+
+Sửa bố cục phát sinh khi đo chiều cao nội dung ở 1600×900 (khung 720 px chưa nhân tỷ lệ): D01 "(target)" chuyển xuống ghi chú (746 → 701); G01 đổi tiêu đề thành "Phân loại bằng biên quyết định tuyến tính", câu đầu "nhãn dự đoán là dấu của điểm số $a_i^Tw$", dòng $m_i=0$ bỏ "$a^Tw=0$" vì đã có trên hình và ghi chú (748 → 698); G03 dòng dữ liệu bỏ "Hai mẫu" (→ 696); H03 định lý một dòng (793 → 720). Chiều cao sau sửa của mọi trang ≤ 720 px; trước đợt này lớn nhất 703 (G01).
+
+### Kiểm tra
+
+- `grep` từ cũ trong deck, tám SVG được dùng, `outline.md`: "véc", "biên phân loại", "biên tuyến tính", "nghiệm tự do", "tách tuyến tính", "tốt dần", "dãy tối ưu hóa", "đủ hạng", "thiếu hạng", "phép biến đổi", "phép bảo toàn", "lát cắt", "tắt dần", "cỡ", "Mệnh đề Weierstrass", "tập khả thi", "tập phương án", "đồng mức", "$d_i$", "$\mathbb R_+$" đều 0. Giữ có chủ ý: "(động lực học, dynamics)" ở ghi chú D01; "tốt nhất" ở ghi chú H03 (nghĩa thường, không chỉ $p^*$); "giữ tính lồi" dạng động từ ở ghi chú F03; "lồi nghiêm ngặt" trong "(còn gọi là lồi nghiêm ngặt)" ở H02 và ghi chú D04. `storyboard.md` chỉ còn từ cũ trong các trích dẫn "cũ → mới" của mục quyết định.
+- `density.py`: 54 trang; H03B 52/6 dòng, L04 31, L04B 35, G03 31, H03 43, H07 59, K04 73 (trần 80), K07 75 (trần 80); không trang nội dung nào vượt 60; ghi chú H05 248, K03 242 âm tiết.
+- `deckcheck.py` trên 42 trang đã sửa hoặc thêm: không FLAG, `errors: none`. Đo riêng chiều cao nội dung (Playwright, chia `Reveal.getScale()`) cho cả 54 trang trước và sau. Đã xem ảnh 1600×900 và 390×844 (kể cả cuộn cuối) của H03B, L04, L04B, H03, G01, G03, D01, H07, K01, M03, F01; ảnh PNG của `optimization-model-anatomy.svg`, `g00-orange-quality-pipeline.svg`. Ở 390×844, công thức K01 cuộn ngang trong vùng có dấu hiệu cuộn, giống các công thức dài khác của deck.
+- Bảy `<section>` ngoài, sáu trang tiêu đề mạch; trang "Nội dung" và chỉ số `#/N` của các mạch không đổi; mỗi trang có đúng một mục storyboard, thứ tự khớp DOM.
+- `git diff --check` sạch. Chưa chạy `sync-local-materials.py` (theo brief).
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-01 và decisions-common; kiểm định nghĩa trên trang mới H03B (điểm trong, tập mở, tập đóng qua giới hạn dãy, tập bị chặn; ví dụ [−1,1], (0,1], ℝ), định nghĩa cực tiểu địa phương (H03), lời giải tách sang L04B (X'(0,1,−1)ᵀ = 0, rank X' = 2); chấp nhận các chỗ làm khác đề xuất (giữ ℓ''(m_i) thay σ_i vì σ là sigmoid; clip trong khối aligned; tiếng Anh xuống ghi chú khi tràn khung); bác bỏ đổi hàng loạt 'lề có dấu' theo quyết định chung 1; tự chạy deckcheck trên H03B, H03, L04, L04B, G01, G03, H07, K01, F01, D04: 0 lỗi, 0 FLAG; xem ảnh H03B, L04B, H03 ở 1600×900. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.

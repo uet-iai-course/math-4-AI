@@ -27,16 +27,16 @@ Sau bài học, sinh viên phải làm được bốn việc:
 
 Bốn mục tiêu trùng nguyên văn trang `M02` (đồng bộ 2026-10-12).
 
-## Bảy mạch và 52 trang lá
+## Bảy mạch và 54 trang lá
 
 Trạng thái sau đợt sửa văn phong 2026-10-12. Mỗi mạch trừ mạch mở đầu mở bằng một trang tiêu đề mạch (`id="mach-N"`); tên mạch trùng trang "Nội dung" `M02B`.
 
 1. **Mở đầu và ba bài toán tối ưu — M01, M01A, M01B, M02, M02B, M03 (6 trang):** bìa, hai phần học phần, kiểm tra đánh giá, mục tiêu, nội dung, nhu cầu trung tâm với ba quyết định cần tối ưu.
-2. **Điều khiển một bước — D00–D04 (5 trang):** mô hình động lực, hàm chi phí bám đích–năng lượng, ví dụ nghiệm trên biên, bài tập chứng minh nghiệm biên.
-3. **Hồi quy tuyến tính — L00, L01, L01B, L02–L04 (6 trang):** dự đoán chiều cao từ cân nặng, khái quát sang nhiều đặc trưng, bình phương nhỏ nhất, ví dụ ba điểm, bài tập cột trùng.
-4. **Hồi quy logistic — GT, G00–G04 (6 trang):** phân loại cam, biên có dấu, mất mát logistic, ví dụ hai mẫu tách tuyến tính, bài tập dãy tốt dần.
+2. **Điều khiển một bước — D00–D04 (5 trang):** mô hình phương trình trạng thái, hàm chi phí bám đích–năng lượng, ví dụ nghiệm trên biên, bài tập chứng minh nghiệm biên.
+3. **Hồi quy tuyến tính — L00, L01, L01B, L02–L04, L04B (7 trang):** dự đoán chiều cao từ cân nặng, khái quát sang nhiều đặc trưng, bình phương nhỏ nhất, ví dụ ba điểm, bài tập cột trùng (lời giải ở L04B).
+4. **Hồi quy logistic — GT, G00–G04 (6 trang):** phân loại cam, biên có dấu, mất mát logistic, ví dụ hai mẫu tách được tuyến tính, bài tập dãy cực tiểu hóa.
 5. **Dạng tổng quát của bài toán tối ưu — T00–T04 (5 trang):** ba thành phần, ba bài toán trong dạng tổng quát, bốn loại kết luận, sáu bước kiểm tra.
-6. **Tập lồi và hàm lồi — F00–F05, H01–H07, H07B (14 trang):** tập lồi, hàm lồi, điều kiện vi phân, phép giữ tính lồi, định lý địa phương–toàn cục, tồn tại và duy nhất, bài tập hàm mũ.
+6. **Tập lồi và hàm lồi — F00–F05, H01–H03, H03B, H04–H07, H07B (15 trang):** tập lồi, hàm lồi, nhắc lại tập mở, đóng, bị chặn, điều kiện vi phân, phép toán bảo toàn tính lồi, định lý địa phương–toàn cục, tồn tại và duy nhất, bài tập hàm mũ.
 7. **Chứng nhận ba bài toán — K00–K04, K06, K05, K05B, K07, K08 (10 trang):** chứng nhận từng trường hợp, so sánh, quy trình chứng nhận, bài tập chiếu sáng có lời giải, tổng kết theo kết quả, tài liệu đọc.
 
 ## Phân bổ nội bộ theo tiết
@@ -76,21 +76,22 @@ Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đ�
 - Dữ kiện: $a_i\in\mathbb R^d$, $y_i\in\{-1,+1\}$, $i=1,\ldots,n$.
 - Biến quyết định: $w\in\mathbb R^d$.
 - Mục tiêu: $L(w)=\sum_i\log(1+\exp(-y_i a_i^Tw))$.
-- Ví dụ số tách tuyến tính: $(a_1,y_1)=(1,+1)$, $(a_2,y_2)=(-1,-1)$; $L(w)=2\log(1+e^{-w})\downarrow0$ khi $w\to+\infty$ nhưng không có nghiệm hữu hạn.
+- Ví dụ số tách được tuyến tính: $(a_1,y_1)=(1,+1)$, $(a_2,y_2)=(-1,-1)$; $L(w)=2\log(1+e^{-w})\downarrow0$ khi $w\to+\infty$ nhưng không có nghiệm hữu hạn.
 - Kết luận cuối bài: $L$ lồi; tính lồi không tự bảo đảm tồn tại. Thêm $\mu\lVert w\rVert_2^2/2$ với $\mu>0$ tạo mục tiêu lồi mạnh, cưỡng bức và có nghiệm duy nhất.
 
 ## Công cụ lý thuyết được giữ
 
 - Tổ hợp lồi và định nghĩa tập lồi.
 - Các tập trực tiếp phục vụ ba ca: $\mathbb R^d$, đoạn hoặc hộp, tập affine và nửa không gian.
-- Giao của các tập lồi và ảnh ngược affine.
+- Giao của các tập lồi và nghịch ảnh affine.
 - Định nghĩa hàm lồi; `lồi chặt (còn gọi là lồi nghiêm ngặt)` ở lần xuất hiện đầu.
 - Định lý: cực tiểu địa phương của hàm lồi trên tập lồi là cực tiểu toàn cục.
 - Điều kiện bậc nhất và bậc hai trên miền mở, lồi; cách áp dụng cho hàm xác định trên $\mathbb R$ rồi hạn chế lên đoạn đóng.
-- Tổng không âm và hợp với ánh xạ affine.
+- Phép toán bảo toàn tính lồi: tổng không âm và hợp với ánh xạ affine.
+- Nhắc lại điểm trong, tập mở, tập đóng, tập bị chặn (H03B), vì Bài 00 không ôn các khái niệm này.
 - Phân biệt tồn tại và duy nhất; định lý Weierstrass trên miền đóng, bị chặn; vai trò của tính cưỡng bức.
 
-Không đưa nón lồi, nón nửa xác định dương, epigraph, tập mức, Jensen, liên hợp, tựa lồi, log-lồi hoặc log-lõm vào tuyến chính vì chúng không cần để chứng nhận ba ca.
+Không đưa nón lồi, nón nửa xác định dương, epigraph, tập mức dưới (sublevel set), Jensen, liên hợp, tựa lồi, log-lồi hoặc log-lõm vào tuyến chính vì chúng không cần để chứng nhận ba ca.
 
 ## Nguồn và thứ tự sử dụng
 
@@ -111,7 +112,7 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 
 ## Tiêu chí hoàn thành
 
-- HTML có đúng 7 `<section>` ngoài, 52 trang lá, 52 mã `data-slide-id` duy nhất, sáu trang tiêu đề mạch `mach-2`…`mach-7` và ghi chú diễn giả có nội dung trên mọi trang nội dung.
+- HTML có đúng 7 `<section>` ngoài, 54 trang lá, 54 mã `data-slide-id` duy nhất, sáu trang tiêu đề mạch `mach-2`…`mach-7` và ghi chú diễn giả có nội dung trên mọi trang nội dung.
 - Mỗi ca có nhu cầu, trực quan, ví dụ tính được, mô hình, chứng nhận và bài tập kiểm tra.
 - Mọi giả thiết của kết luận về lồi, tồn tại và duy nhất đều hiện diện trước khi dùng.
 - Ghi chú học tập mở rộng lập luận; bài tập có mức nhận biết, tính toán hoặc chứng minh và vận dụng AI.
@@ -132,3 +133,9 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 - Đổi tên bốn mạch cho khớp trang "Nội dung" (lý do ở `storyboard.md`). Đổi tiêu đề D01, D02, D03, L03, L04, G03, G04, T01, T02, T03, T04, F05, K05 theo mẫu trang ví dụ, bài tập và quy tắc tiêu đề.
 - Mỗi cụm khái niệm lớn có một bài tập có "Lời giải:" trên mặt trang: D04, L04, G04, F05, H07B, K05B. Lời giải K05B trùng Bài 9 (phần 1–4) của `materials/lec-01/exercises.md`.
 - Mạch kết luận có bảng tổng kết theo kết quả K07 và trang tài liệu đọc K08. Thời lượng theo đề cương không đổi.
+
+## Rà soát thuật ngữ và thứ tự định nghĩa ngày 2026-10-12
+
+- Thuật ngữ thống nhất: biên có dấu (signed margin, còn gọi là lề có dấu), biên quyết định (decision boundary), giá trị tối ưu (optimal value), phương trình trạng thái, dãy cực tiểu hóa (minimizing sequence), tách được tuyến tính (linearly separable), hạng cột đầy đủ (full column rank), phép toán bảo toàn tính lồi, miền khả thi (feasible set), cực tiểu không ràng buộc (unconstrained minimizer), định lý Weierstrass, vector, kích thước.
+- Định nghĩa đặt trên mặt trang trước khi dùng: tổ hợp lồi (F01), cực tiểu địa phương (H03), tập mở, tập đóng, tập bị chặn (trang mới H03B), tách được tuyến tính (G03), dãy cực tiểu hóa (G04), hạng cột đầy đủ (L04), ký hiệu clip (K01), điều kiện cưỡng bức (H07).
+- L04 tách thành L04 (câu hỏi, "Nhắc lại:") và L04B (lời giải) vì dòng "Nhắc lại:" làm trang vượt khung 16:9. Tổng 52 → 54 trang, vẫn bảy mạch; trang "Nội dung" không đổi.
