@@ -4,19 +4,21 @@ Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hi�
 
 ## Cấu trúc hiện tại
 
-1. Mô hình hóa và chứng nhận bài toán tối ưu lồi.
-2. Quy hoạch tuyến tính.
-3. Quy hoạch bậc hai.
-4. Quy hoạch hình học.
-5. Xấp xỉ lồi và nới lỏng bài toán không lồi.
-6. Tổng hợp và vận dụng.
+Tên mạch trùng trang "Nội dung" `S01-02` và trang tiêu đề mạch `S02`–`S06` (đợt sửa 2026-10-12):
 
-Phần 1 có 7 trang; phần 2 có 12; phần 3 có 14; phần 4 có 16; phần 5 có 16 trang đã triển khai. Phần 6 có 9 trang đã triển khai. Toàn bài có 74 trang trong sáu section ngoài. Không ấn định thời lượng mới.
+1. Mô hình hóa và chứng nhận tính lồi (bìa `S01-01` là trang tiêu đề mạch).
+2. Quy hoạch tuyến tính (`S02`).
+3. Quy hoạch bậc hai và ràng buộc bậc hai (`S03`).
+4. Quy hoạch hình học (`S04`).
+5. Xấp xỉ lồi và nới lỏng (`S05`).
+6. Tổng hợp và vận dụng (`S06`).
+
+Phần 1 có 8 trang; phần 2 có 13; phần 3 có 15; phần 4 có 17; phần 5 có 17; phần 6 có 10. Toàn bài có 80 trang trong sáu section ngoài; sáu trang thêm ngày 2026-10-12 là trang mục tiêu học tập `S01-01b` và năm trang lời giải bài tập `S02-11`, `S03-10`, `S04-16`, `S05-15`, `S06-07b`. Không ấn định thời lượng mới. Danh sách trang của từng phần bên dưới ghi theo thời điểm triển khai; tiêu đề và trang thêm của đợt 2026-10-12 nằm trong mục cuối tệp này và trong `storyboard.md`.
 
 ## Phần 1 hiện tại
 
 1. Bài 02: Các bài toán tối ưu lồi — thông tin học phần, Viện Trí tuệ nhân tạo, năm học và học kỳ.
-2. Nội dung chính — liệt kê các chủ đề đã chốt.
+2. Nội dung — danh sách đánh số sáu mạch.
 3. Bài toán tối ưu lồi tổng quát — mục tiêu lồi và tập khả thi lồi.
 4. Dạng phổ biến của tối ưu lồi — biến $x\in\mathbb{R}^n$, mục tiêu và các hàm bất đẳng thức lồi, đẳng thức affine.
 5. Ví dụ: hàm bậc hai — tối thiểu hóa $(x-2)^2$ trên $[0,1]$, nghiệm ở biên.
@@ -126,7 +128,7 @@ Sáu trang giữ nguyên thứ tự. Dùng nhu cầu mua ảnh đã gán nhãn n
 
 ## Phần 6 đã triển khai — Tổng hợp và vận dụng
 
-Phần 6 gồm 9 trang trong một section ngoài, mã tiêu đề S06, nội dung S06-01–08.
+(Lịch sử, trước 2026-10-12) Phần 6 gồm 9 trang trong một section ngoài, mã tiêu đề S06, nội dung S06-01–08; nay 10 trang, xem mục cuối tệp.
 
 ### Danh sách trang
 
@@ -138,7 +140,7 @@ Phần 6 gồm 9 trang trong một section ngoài, mã tiêu đề S06, nội du
 6. `S06-05` — Miền giới hạn đặc trưng không lồi: ví dụ $d=2,k=1$, SVG trung điểm, khái quát hai tập hỗ trợ giao nhau.
 7. `S06-06` — Thay bằng hình phạt chuẩn một: mô hình có phạt, bảng $(2,0)/(1,1)$, chứng minh tương đương LP chỉ cho bài có phạt, phản ví dụ 4 điểm cận 2.
 8. `S06-07` — Kiểm tra các biến thể: ba câu hỏi, đáp án trong ghi chú diễn giả.
-9. `S06-08` — Tổng kết bài giảng: ba dòng đánh số, sáu thành phần mô hình, nguồn đọc.
+9. `S06-08` — Tổng kết bài giảng: nay là bảng kết quả, giả thiết không được bỏ, công thức (2026-10-12), nguồn đọc.
 
 ### Quyết định
 
@@ -176,3 +178,17 @@ Bài tập và bản đóng gói ngoại tuyến được đồng bộ; công b�
 ## Bản đề xuất ngày 2026-09-17 — Tư duy thiết kế phương pháp AI
 
 Thêm đúng một trang sau hàm mất mát bản lề và trước cải dạng LP theo yêu cầu người dùng. Đích là dự đoán trên dữ liệu chưa biết; ba thành phần là cơ sở toán học, lựa chọn phương pháp linh hoạt và kiểm chứng thực nghiệm. Người dùng đã duyệt và yêu cầu commit/push ngày 2026-09-17. Sáu mạch và thời lượng giữ nguyên.
+
+## Đợt sửa văn phong và mật độ — 2026-10-12
+
+- Trang tiêu đề mạch `S02`–`S06` theo mẫu `strand-title` của `AGENTS.md`: chữ số, tên mạch, dòng dẫn "Nhu cầu: …", dòng từ khóa; giữ `id="mach-2"`–`mach-6`.
+- Đổi tên mạch 3 thành "Quy hoạch bậc hai và ràng buộc bậc hai", mạch 5 thành "Xấp xỉ lồi và nới lỏng".
+- Đổi tiêu đề trang câu hỏi cuối mạch thành "Bài tập: …" và thêm trang lời giải ngay sau:
+  - phần 2: 12. Bài tập: nhận dạng quy hoạch tuyến tính (`S02-10`); 13. lời giải (`S02-11`);
+  - phần 3: 14. Bài tập: nhận dạng bài toán bậc hai (`S03-09`); 15. lời giải (`S03-10`);
+  - phần 4: 16. Bài tập: nhận dạng quy hoạch hình học (`S04-15`); 17. lời giải (`S04-16`);
+  - phần 5: 16. Bài tập: đánh giá nghiệm theo bài toán gốc (`S05-14`); 17. lời giải (`S05-15`);
+  - phần 6: 8. Bài tập: biến thể giới hạn số đặc trưng (`S06-07`); 9. lời giải (`S06-07b`); 10. Tổng kết bài giảng (`S06-08`).
+- Thêm `S01-01b` "Mục tiêu học tập" ngay sau bìa (ba mục tiêu: nhận dạng; biến đổi hoặc xấp xỉ; chứng nhận và diễn giải nghiệm). `S06-08` chuyển thành bảng "kết quả | giả thiết không được bỏ | công thức hoặc thuật toán" cho LP, QP/QCQP, GP, xấp xỉ lồi.
+- `S01-02` đổi tiêu đề thành "Nội dung". `S05-03b` giữ tiêu đề, thay khẩu hiệu bằng bảng ba điều kiện kiểm chứng.
+- Bảng trang vượt trần và các sửa nhãn: xem `storyboard.md`, mục "Đợt sửa văn phong và mật độ — 2026-10-12".

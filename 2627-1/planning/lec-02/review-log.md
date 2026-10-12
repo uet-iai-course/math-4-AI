@@ -1357,3 +1357,130 @@ Sau lượt đồng bộ deck và SVG, các hình không được deck hay ghi c
 ## Rà bằng mắt toàn bộ SVG và thống nhất dấu thập phân (2026-10-11)
 
 Điều phối viên Fable 5.1 tự xem toàn bộ 218 SVG hiện hành (dựng PNG bằng `svg-audit.py`, ghép 36 bảng 6 hình, cùng `img/lec-03/cone-induced-orders.svg` xem riêng vì trùng tên tệp với Bài 02): đối chiếu nội dung với khái niệm, tính lại số liệu trên hình (phần dư 1/6, −1/3, 1/6 của linear-regression-fit; ba đường qua (1, 2) của lp-mixture; z = 96 tại (30, 12); det(A_B) = −2 và x_B = (30, 12, 8); tiếp tuyến 0,70 của quartic-nonconvex; p* = 2√5 − 4 của quasiconvex-level-bisection), kiểm mũi tên không che chữ và chữ đúng vị trí. Không phát hiện lỗi nội dung, mũi tên hay vị trí chữ. Lỗi duy nhất: chữ trên hình còn dấu chấm thập phân kiểu Anh trong khi ghi chú và các hình khác dùng dấu phẩy (quét regex trên text/tspan/title/desc của 218 tệp): Bài 02 ap-hinge (16 nhãn trục), gp-box-contour (8), gp-power (5), feature-cardinality (`<desc>`: "(0,5; 0,5)", "(1; 0)", "(0; 1)"); Bài 05 batch-standard-error (3), step-noise (2). Tác tử biên tập hình (general-purpose, Claude Opus 5.5 `claude-opus-5-5`, high) sửa; điều phối viên đọc word-diff: chỉ đổi chữ, 32 dòng; `svg-audit.py` sáu tệp: 0 chồng, 0 trên nét, 0 ngoài khung; đã xem PNG ap-hinge và gp-box-contour sau sửa; quét lại regex: 0 tệp còn dấu chấm; `git diff --check` sạch. Quyết định: chấp nhận, commit.
+
+## 2026-10-12 — Văn phong và mật độ mặt trang chiếu, trang tiêu đề mạch
+
+**Phạm vi.** Áp các mục mới "Trang tiêu đề mạch" và "Văn phong và mật độ mặt trang chiếu" của `AGENTS.md` cho deck Bài 02 theo brief của điều phối viên (báo cáo phân tích MAT1101, mục B.3, D.8). Tác tử biên tập deck: general-purpose, Claude Opus 5.5 `claude-opus-5-5`, effort high; không commit. Tệp được ghi: deck, `outline.md`, `storyboard.md`, `review-log.md`. Không sửa `lecture-style.css`, `materials/`, `index.html`, ảnh trong `img/lec-02/`. Số trang 74 → 79.
+
+**Kiểm `id` trước khi sửa.** `materials/lec-02/exercises.md` và `material-local-data.js` liên kết tới 39 `id` của deck (`#/lp-pha-tron`, `#/tong-ket-bai`, …). Không đổi `id` nào; sau sửa cả 39 `id` còn nguyên, không `id` trùng. Năm trang mới mang `id` mới chưa được liên kết.
+
+### Bảng thay đổi theo trang
+
+| Trang | Thay đổi | Lý do |
+|---|---|---|
+| `S01-02` | Tiêu đề "Nội dung chính" → "Nội dung"; danh sách sáu mạch giữ nguyên, mục 1 là mạch mở đầu | Trang "Nội dung" theo `AGENTS.md`; tên mạch là chuẩn cho `S02`–`S06` |
+| `S01-06`–`S01-08` | Bỏ nhãn đậm "Tập khả thi:", "Hàm mục tiêu:", "Nghiệm:", "Cận dưới:"; dùng "Kết luận:" và "Diễn giải:" | Nhãn ngoài danh sách cho phép; mẫu trang ví dụ |
+| `S02`–`S06` | Markup `text-light` → `section.strand-title` với `span.strand-number`, `p.strand-lead` "Nhu cầu: …", `p.strand-keys`; giữ `id="mach-2"`–`mach-6` và mã `S02`–`S06`; ghi chú 199–225 → 89–99 âm tiết | Mẫu trang tiêu đề mạch |
+| `S03`, `S05` | Tên mạch "Quy hoạch bậc hai và ràng buộc bậc hai", "Xấp xỉ lồi và nới lỏng" | Khớp `S01-02` (chọn phía trang "Nội dung"); mạch 5 khớp thêm tiêu đề phần 5 của `exercises.md` |
+| `S06` | Bỏ câu "Phần cuối: dùng lại toàn bộ …"; dòng dẫn "Nhu cầu: áp dụng trọn chu trình …" | Câu chỉ đường trên mặt trang |
+| `S02-01b` | 93 → 52 âm tiết; "Nhu cầu:", hai thẻ một dòng, "Giả thiết:" biến liên tục; bỏ ô "Cần quyết định:" | Đoạn kể chuyện, vượt trần |
+| `S02-02` | Bỏ dòng dẫn trùng tiêu đề (7 → 6 dòng) | Trần dòng |
+| `S02-03b` | Dòng dẫn và $z=(x^+,x^-,s)$ gộp vào nhãn thẻ (8 → 6 dòng) | Trần dòng |
+| `S02-09` | "Mục tiêu ban đầu: … — giảm sai số tệ nhất" → câu mệnh đề | Nhãn ngoài danh sách, gạch dài |
+| `S03-02`, `S03-08` | Bỏ nhãn "Chứng nhận:"; `S03-08` dùng "Giả thiết:" | Nhãn ngoài danh sách |
+| `S04-03` | Thêm "Định nghĩa.", "Ví dụ." (thay "Ví dụ:"); ví dụ tổng đơn thức dương đưa lên mặt trang | Môi trường hình thức có nhãn |
+| `S05-03b` | 96 → 58 âm tiết, 12 → 3 dòng; bỏ ba dòng chốt và câu "Bản sắc AI: …"; bảng ba điều kiện kiểm chứng trên ví dụ ngưỡng; ghi chú viết lại, bỏ địa chỉ web | Khẩu hiệu; vượt trần |
+| `S05-07` | 63 → 50 âm tiết; "Nhu cầu:", "Giả thiết:"; cột giá bỏ chữ "minh họa" (còn trong ghi chú) | Vượt trần, dòng 22 âm tiết |
+| `S05-09` | Ô kết luận tách hai dòng, "Lưu ý:" | Dòng 24 âm tiết |
+| `S05-11` | 69 → 44 âm tiết; dòng dẫn "Xác định …"; bảng bỏ gạch dài; ô "Diễn giải:" | Vượt trần, dòng 28 âm tiết |
+| `S05-12` | 61 → 52 âm tiết, 7 → 6 dòng; "Ký hiệu:"; bỏ nhãn đậm "Cận dưới từ LP:" | Vượt trần, nhãn |
+| `S05-05`, `S06-05` | Dấu thập phân kiểu Anh trên mặt trang → dấu phẩy ($-1{,}5$, $4{,}5$, $(0{,}5;\,0{,}5)$); `S06-05` "$\Rightarrow$ $F$ không lồi" → "Kết luận:" | Quy ước dấu thập phân; mũi tên tóm tắt |
+| `S06-01` | Dòng ký hiệu chung rút gọn với "Ký hiệu:" (dòng 22 → 12 âm tiết) | Dòng dài |
+| `S06-03` | 67 → 57 âm tiết | Vượt trần |
+| `S06-08` | Bỏ nhãn đậm "Nhận dạng:", "Biến đổi/xấp xỉ:", "Chứng nhận:"; 69 âm tiết, dưới trần 80 của trang tổng kết | Nhãn ngoài danh sách |
+| `S02-10`, `S03-09`, `S04-15`, `S05-14`, `S06-07` | Tiêu đề "Bài tập: <chủ đề>"; "Câu hỏi:" đậm; ghi chú còn mục đích và "Gợi ý:" | Mẫu trang bài tập |
+| `S02-11`, `S03-10`, `S04-16`, `S05-15`, `S06-07b` (mới) | Trang lời giải cùng tiêu đề, nhãn "Lời giải:", ba dòng một bước; ghi chú nhận lời giải chi tiết và câu nối cuối mạch từ trang câu hỏi | Mỗi cụm khái niệm lớn có một bài tập có lời giải trên mặt trang |
+| `S02-04`, `S03-04`, `S03-06` | "Câu hỏi:" đậm; `S03-04` "thì sao?" → "thì nghiệm đổi thế nào?" | Nhãn; khẩu ngữ |
+| 23 ghi chú | Câu mở "Trang này …", "Hai trang trước …", "Bảng trước …", "trang này gắn số liệu …" viết lại với đối tượng toán học làm chủ ngữ (`S02-02`, `S03-04`, `S03-06`, `S03-08`, `S04-04`, `S04-07`, `S04-09`, `S04-11`, `S04-12`, `S05-02`, `S05-03b`, `S05-04`, `S05-06`, `S05-08`, `S05-11`, `S05-12`, `S05-13`, `S06-01`, `S06-02`, `S06-03`, `S06-05`, `S06-07`, `S06-08`) | Ghi chú không mở bằng câu lấy tài liệu làm chủ ngữ |
+
+Lời giải trên mặt trang lấy nguyên kết quả của đáp án đã duyệt trong ghi chú cũ; không có kết quả toán học mới. Câu 2 của `S06-07b` dùng dữ liệu Bài 14a của `exercises.md` và khớp lời giải ở đó ($w=(1,1)$, $b=0$, hai hệ số khác 0). Các bài còn lại không trùng bài nào trong `exercises.md`.
+
+### no-ai-slop (chế độ Edit)
+
+Phạm vi: mặt trang của các trang trong bảng trên, năm ghi chú trang tiêu đề mạch, ghi chú `S05-03b`, năm "Gợi ý:", 23 câu mở ghi chú. Đã loại khẩu hiệu và dòng chốt ("Lập luận chặt chẽ", "Tính toán hiệu quả", "Bản sắc AI: …"), câu chỉ đường ("Phần cuối: dùng lại toàn bộ …"), câu lấy trang làm chủ ngữ, mũi tên tóm tắt, gạch dài trang trí. Tự đối chiếu `eval.md`: không thêm khẳng định hay số liệu mới; câu ngắn, động từ rõ; ghi chú `S05-03b` dùng ba ý đánh số "Thứ nhất/Thứ hai/Thứ ba" vì trùng ba hàng bảng, chấp nhận nhịp liệt kê này. Còn tồn tại: các cụm "Ô kết luận nêu …", "Câu hỏi trên trang …" ở giữa ghi chú (không phải câu mở) chưa sửa.
+
+### Kiểm tra
+
+- `tools/density.py`: trước 7 trang trên 60 âm tiết; sau 1 trang (`S06-08`, 69, trang tổng kết, trần 80). Không trang nào quá 6 dòng, quá 20 âm tiết một dòng hay quá ba khối công thức. Năm ghi chú trang tiêu đề mạch 89–99 âm tiết. 45 ghi chú dài hơn 250 âm tiết (mức nhẹ, không xử lý đợt này).
+- `tools/deckcheck.py` (Playwright Chromium, máy chủ tĩnh cổng 8792 vì máy chủ 8765 tự tải lại khi các tác tử khác ghi tệp): 79 trang, 0 lỗi console hay trang, 0 `.katex-error`, 0 tràn dọc ở 16:9; một cờ tràn ngang ở `S05-02` là đường `path` của KaTeX `\underbrace` (đã có ở HEAD, xem mục 2026-10-11), không phải nội dung tràn. Tác tử đã xem ảnh 1600×900 và 390×844 của `S02`–`S06`, `S02-01b`, `S02-11`, `S04-03`, `S04-16`, `S05-03b`, `S05-11`, `S05-12`, `S05-15`, `S06-01`, `S06-07b`, `S01-08`: không chồng chữ, không tràn.
+- `git diff --check`: sạch.
+
+### Còn mở cho điều phối viên
+
+- Đề xuất CSS: bỏ khối `.ai-philosophy` (`lecture-style.css` dòng 703–714) vì không còn trang nào dùng.
+- Bài chưa có trang mục tiêu học tập riêng; `S06-08` chưa ở dạng bảng "kết quả | giả thiết không được bỏ | công thức hoặc thuật toán". Cả hai là thay đổi cấu trúc, chờ quyết định.
+- Học liệu: `exercises.md` và `lecture-note.md` không cần đổi nội dung; tên phần 3 trong `exercises.md` ("Quy hoạch bậc hai và chính quy hóa") khác tên mạch 3 trên deck.
+
+**Quyết định của điều phối viên:** chờ duyệt.
+
+### Yêu cầu sửa của master (2026-10-12)
+
+Điều phối viên Fable 5.1 chấp nhận đợt sửa trên (kể cả `S05-03b`, ghi là lệch so với yêu cầu 2026-09-17 vì quy tắc mới cấm khẩu hiệu) và yêu cầu sửa hai mục. Cùng tác tử (general-purpose, Claude Opus 5.5 `claude-opus-5-5`, high) thực hiện; không commit.
+
+| Mục | Thay đổi | Kiểm tra |
+|---|---|---|
+| Trang mục tiêu học tập | Thêm `S01-01b` (`id="muc-tieu-hoc-tap"`, chưa trùng) ngay sau bìa: "Sau bài học, người học có thể:" và ba mục tiêu (nhận dạng quy hoạch tuyến tính, bậc hai, hình học; biến đổi tương đương hoặc xấp xỉ; chứng nhận tính lồi và diễn giải nghiệm). Ghi chú nêu LLO3 (buổi 2), CLO1 theo storyboard và nơi kiểm tra từng mục tiêu. Bỏ câu ba mục tiêu trong ghi chú bìa (trùng) | 58 âm tiết, 4 dòng, dòng dài nhất 20 |
+| `S06-08` | Danh sách ba năng lực thay bằng bảng "Kết quả \| Giả thiết không được bỏ \| Công thức hoặc thuật toán", bốn hàng LP, QP/QCQP, GP, xấp xỉ lồi; giữ dòng tài liệu đọc; sáu thành phần mô hình và giải thích từng hàng chuyển xuống ghi chú (ghi chú 242 âm tiết). Trang không có câu hỏi tự kiểm tra trên mặt trang trước khi sửa; ghi chú dẫn tới các trang bài tập cuối mỗi phần | 75 âm tiết (trần 80), 5 dòng |
+
+Kiểm tra: `density.py` 80 trang, chỉ `S06-08` trên 60 âm tiết (trang tổng kết, trần 80); `deckcheck.py --port 8790` cho `S01-01`, `S01-01b`, `S01-02`, `S06-08`: 0 lỗi, không tràn (cờ `S05-02` là dương tính giả đã biết); đã xem ảnh `S01-01b`, `S06-08` ở 1600×900 và 390×844 (màn hẹp: bảng ba cột hẹp nhưng không tràn ngang); `git diff --check` sạch. Không `id` nào được học liệu liên kết bị đổi.
+
+**Quyết định của điều phối viên:** chờ duyệt.
+
+### Vòng sửa cuối theo hai báo cáo tái kiểm (2026-10-12)
+
+Nguồn: `recheck-02-math.md` (tái kiểm toán học, kết luận "không đạt" do S06-08) và `recheck-02-story.md` (tái kiểm mạch kể, "đạt", 7 trung bình). Cùng tác tử biên tập (general-purpose, Claude Opus 5.5 `claude-opus-5-5`, high) sửa theo brief của điều phối viên; không commit.
+
+**Báo cáo toán học**
+
+| mức độ | trang | vấn đề | trạng thái |
+|---|---|---|---|
+| nghiêm trọng | S06-08 hàng xấp xỉ | Cột giả thiết ghi thủ tục; $f,F,R,\hat x$ chưa định nghĩa trên mặt trang, $R$ trùng | đã sửa: giả thiết "$E(\theta)\le H(\theta)\ \forall\theta$; tập gốc $\subseteq$ tập nới lỏng; phương án nguyên khả thi"; công thức "$\min E\le\min H$ và tối ưu LP $\le p^*\le$ chi phí phương án"; không dùng $F,R,\hat x$ trên mặt trang |
+| trung bình | S06-08 hàng LP | Thiếu điều kiện cho biến phụ trị tuyệt đối | đã sửa: "$|r_i|$ có hệ số $\ge0$ trong $\min$"; trường hợp vế trái của $\le$ và phản ví dụ trong ghi chú |
+| trung bình | S06-08 hàng GP | Thiếu chiều $f_i\le1$, $g_j=1$ | đã sửa, dùng ký hiệu $g_j$ của S06-02 |
+| trung bình | S06-08 ghi chú | "làm tập khả thi không lồi" khẳng định quá mức | đã sửa: "khung chứng nhận không còn áp dụng, và tập khả thi có thể không lồi" |
+| nhẹ | S06-08 hàng QP | Không phân biệt $i=0$ và $i\ge1$ | đã sửa: "$P_0\succeq0$ cho mục tiêu, $P_i\succeq0$ cho $i\ge1$"; công thức "$\min f_0,\ f_i\le0\ (i\ge1),\ Ax=b$" |
+| nhẹ | S06-08, S06-02 | $h_j$ / $g_j$, $r$ trùng ký hiệu | đã sửa: $g_j$; hàng LP viết $-t\le Xw-y\le t$ |
+| nhẹ | S05-15 | $L$ chưa định nghĩa | đã sửa: "cận dưới là tối ưu LP, bằng 3" |
+| nhẹ | S05-14/S05-15 | $H=0$ không nói tại điểm nào | đã sửa: $H(\hat\theta)=0$ tại ngưỡng đã học $\hat\theta$ (câu hỏi và lời giải) |
+| nhẹ | S02-11 | Trung điểm "thì không" mơ hồ | đã sửa: "không nguyên nên không khả thi" |
+| nhẹ | S06-07b | Chưa ghi nghiệm duy nhất | đã sửa |
+| nhẹ | S04 dòng dẫn | Khẳng định không điều kiện | đã sửa: dòng dẫn viết lại thành nhiệm vụ, ý "thường không lồi" nằm trong ghi chú |
+| nhẹ | S03 ghi chú | Câu nối sang phần 4 sai | đã sửa |
+| nhẹ | S06-08 ghi chú | "nơi dễ sai nhất" | đã sửa: "Sai thường gặp ở thành phần cuối" |
+
+**Báo cáo mạch kể**
+
+| # | mức độ | trang | trạng thái |
+|---|---|---|---|
+| 1 | trung bình | S03 dòng dẫn | đã sửa: "Muốn chứng nhận lồi cho hồi quy bình phương có hình phạt hoặc giới hạn độ lớn hệ số." |
+| 2 | trung bình | S04 dòng dẫn | đã sửa: "Muốn chứng nhận lồi cho mô hình chứa tích và tỷ số của các biến dương." |
+| 3 | trung bình | S06-08, S06, S06-07b | đã sửa: ghi chú S06-08 mở bằng ánh xạ ba cột sang ba mục tiêu; câu cuối ghi chú S06 và câu nối S06-07b khớp bảng; hàng storyboard S06-08 cập nhật |
+| 4 | trung bình | S05-03b | đã sửa: dòng đầu thành "Lưu ý: $E\le H$ chỉ đúng trên dữ liệu huấn luyện; số lỗi trên dữ liệu mới phải đo riêng."; hàng 2 "$\min_\theta H$ viết được thành LP tương đương"; hàng 3 viết thành điều kiện; giữ tiêu đề theo quyết định của điều phối viên |
+| 5 | trung bình | 10 ghi chú mở bằng tài liệu | đã sửa: S01-02, S01-06, S01-07, S01-08, S02-01b, S04-01, S04-10, S05-01, S05-07, S05-13 |
+| 6 | trung bình | Tiêu đề trang ví dụ nhiều trang | ngoại lệ có lý do ghi trong storyboard (bước quy trình chín bước; chữ liên kết của `exercises.md`) |
+| 7 | trung bình | S06-08 hàng xấp xỉ | đã sửa (cùng mục nghiêm trọng của báo cáo toán) |
+| 8 | nhẹ | S02 dòng dẫn | đã sửa: "Muốn mô hình hóa quyết định có chi phí và yêu cầu tuyến tính, kể cả sai số tuyệt đối." |
+| 9 | nhẹ | S03 ghi chú | đã sửa |
+| 10 | nhẹ | Ghi chú S02–S06 lấy "Phần N" làm chủ ngữ | đã sửa câu mở của cả năm ghi chú |
+| 11 | nhẹ | Ghi chú S01-01, S01-01b | đã sửa: câu cuối bìa nối sang ba mục tiêu; bỏ đoạn "ba trường hợp" lặp ở S01-01b, thêm câu nối sang "Nội dung" |
+| 12 | nhẹ | S01-03 thiếu dòng nhiệm vụ | còn mở: trang đã 6 dòng (trần dòng); nhiệm vụ trung tâm nằm ở S01-01b và ghi chú |
+| 13 | nhẹ | Trang nhu cầu mở bằng "Cần …" | đã sửa: S03-04b, S03-07, S04-01, S04-10, S05-01 mở bằng "Nhu cầu:" |
+| 14 | nhẹ | Tiêu đề S05-03b | giữ theo quyết định của điều phối viên (trang do người dùng yêu cầu) |
+| 15 | nhẹ | S02-07 chữ "ta", "nghiệm khả thi" | đã sửa, đồng thời thêm "Mệnh đề." và "Chứng minh." |
+| 16 | nhẹ | "thì sao?" | đã sửa: S04-15 mặt trang; ghi chú S02-04, S03-04, S03-05, S04-09 |
+| 17 | nhẹ | S02-11 câu 3 dùng tên lớp chưa học | đã sửa: "nằm ngoài lớp LP" |
+| 18 | nhẹ | Câu kết, tóm tắt trong ghi chú S03-04, S05-15, S06-08, S01-03 | đã sửa cả bốn |
+| 19 | nhẹ | Bản đồ hành trình phần 1 | đã ghi chú bổ sung trong storyboard |
+| 20 | nhẹ | Bước trực quan LP | đã ghi ngoại lệ thứ tự trong storyboard |
+| 21 | nhẹ | Số liệu lỗi thời trong storyboard, outline | đã sửa (tám trang phần 1, 74 → 80, câu CSS là lịch sử, tiêu đề các hàng bài tập, outline phần 6) |
+| 22 | nhẹ | Mã S02–S06 | giữ theo quyết định của điều phối viên, lý do ghi trong storyboard |
+| 23 | nhẹ | Chuẩn đầu ra không thống nhất | còn mở, cần đối chiếu đề cương DOCX |
+| ngoài phạm vi | — | Nhãn môi trường S02-07, S03-03, S03-08, S04-07 | đã sửa: "Mệnh đề." ở S02-07, S04-07; "Định nghĩa." ở S03-03, S03-08 |
+
+Kiểm tra: `density.py` 80 trang, chỉ S06-08 trên 60 âm tiết (79, trần 80 trang tổng kết); không trang nào quá 6 dòng hay quá 20 âm tiết một dòng; ghi chú trang tiêu đề mạch 95–100 âm tiết. `deckcheck.py --port 8790` trên 24 trang đã chạm (gồm S02–S06, S05-03b, S06-08): 0 lỗi, không tràn (cờ S05-02 là dương tính giả đã biết). Đã xem ảnh S06-08 (1600×900 và 390×844), S02-07, S04-10. `git diff --check` sạch.
+
+**Quyết định của điều phối viên:** chờ duyệt.
+
+### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
+
+Master đã tự chạy `density.py` (80 trang, chỉ S06-08 ở 79 dưới trần 80 của trang tổng kết), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console, cờ tràn ngang S05-02 là dương tính giả KaTeX có từ trước), xem ảnh S02, S05, S05-03b, S01-01b, S06-08, S02-11 ở hai kích thước, đọc nguyên văn bảng S06-08 sau sửa (ba giả thiết của hàng xấp xỉ: $E\le H$ mọi $\theta$, tập gốc ⊆ tập nới lỏng, phương án nguyên khả thi; không còn ký hiệu chưa định nghĩa), và đối chiếu bảng trạng thái hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 02. Việc còn treo chuyển sang đợt học liệu: tên mục §3, §5 của `lecture-note.md` và Phần 3 của `exercises.md` theo tên mạch mới; luật CSS `.ai-philosophy` không còn dùng (đợt CSS chung).

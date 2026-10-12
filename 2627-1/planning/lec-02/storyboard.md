@@ -4,7 +4,7 @@ Phiên bản làm lại ngày 2026-09-11; cập nhật sáu mạch theo yêu c�
 
 ## Trạng thái và mục tiêu
 
-- Phạm vi hiện tại: phần 1–5 có lần lượt 7, 12, 14, 16, 16 trang đã triển khai; phần 6 có 9 trang đã triển khai. Toàn bài 74 trang trong sáu section ngoài. Giữ thời lượng chưa ấn định; không tự thêm phân bổ.
+- Phạm vi hiện tại (sau đợt sửa văn phong và mật độ 2026-10-12): phần 1–6 có lần lượt 8, 13, 15, 17, 17, 10 trang. Toàn bài 80 trang trong sáu section ngoài; sáu trang thêm là trang mục tiêu học tập `S01-01b` và năm trang lời giải bài tập `S02-11`, `S03-10`, `S04-16`, `S05-15`, `S06-07b` (xem mục "Đợt sửa văn phong và mật độ — 2026-10-12"). Giữ thời lượng chưa ấn định; không tự thêm phân bổ.
 - Cấu trúc 58 trang (39 chính + 19 phụ lục) của lần sửa trước không còn là ràng buộc.
 - Bản storyboard cũ lưu trong lịch sử Git tại commit e030846; không tạo bản sao, không di chuyển tệp cũ.
 - Mục tiêu bài học: sinh viên hiểu rõ các dạng bài toán tối ưu lồi; nhận biết bài toán thực tế có thể chuyển về dạng lồi hoặc xấp xỉ bằng dạng lồi; chứng minh một bài toán tối ưu là lồi. Ưu tiên ví dụ trong trí tuệ nhân tạo và học máy (AI/ML) hoặc bài toán quen thuộc.
@@ -88,25 +88,26 @@ Chuỗi này áp dụng bên trong mỗi ví dụ, không phải chín phần c�
 
 Khung ban đầu có bảy phần; sau yêu cầu bỏ Tối ưu nón, phần xấp xỉ/nới lỏng chuyển từ 6 sang 5, tổng hợp từ 7 sang 6. Mã tiêu đề S05/S06 được gán lại theo vị trí hiện hành; S07 không còn. Không giữ một section trống để đủ bảy phần. Sáu phần vẫn đáp ứng quy ước 5–7 mạch.
 
-| Mạch | Section ngoài | Trang hiện tại | Quyết định |
-|---|---|---|---|
-| 1 | `section-1` | 7 trang | Giữ; bỏ trang điều kiện riêng theo yêu cầu trước |
-| 2 | `section-2` | 12 trang | Giữ nội dung đã duyệt |
-| 3 | `section-3` | 14 trang | Giữ nội dung đã duyệt |
-| 4 | `section-4` | 16 trang | Giữ; sửa câu nối cuối để dẫn sang quan hệ không tương đương |
-| 5 | `section-5` | 15 trang | Sửa tiêu đề và thêm nội dung theo bảng phần 5 |
-| 6 | `section-6` | 9 trang: `S06`, `S06-01`–`S06-08` | Triển khai tổng hợp và vận dụng; bỏ bài tập tổng hợp hồi quy theo yêu cầu |
+| Mạch | Tên mạch (trùng trang "Nội dung" `S01-02`) | Section ngoài | Trang tiêu đề | Trang hiện tại | Quyết định |
+|---|---|---|---|---|---|
+| 1 | Mô hình hóa và chứng nhận tính lồi | `section-1` | `S01-01` (bìa) | 8 trang | Giữ; bỏ trang điều kiện riêng theo yêu cầu trước; 2026-10-12 thêm `S01-01b` theo yêu cầu sửa của điều phối viên |
+| 2 | Quy hoạch tuyến tính | `section-2` | `S02` (`mach-2`) | 13 trang | Giữ nội dung đã duyệt; 2026-10-12 thêm `S02-11` |
+| 3 | Quy hoạch bậc hai và ràng buộc bậc hai | `section-3` | `S03` (`mach-3`) | 15 trang | Giữ nội dung đã duyệt; 2026-10-12 thêm `S03-10` |
+| 4 | Quy hoạch hình học | `section-4` | `S04` (`mach-4`) | 17 trang | Giữ; 2026-10-12 thêm `S04-16` |
+| 5 | Xấp xỉ lồi và nới lỏng | `section-5` | `S05` (`mach-5`) | 17 trang | Sửa tiêu đề và thêm nội dung theo bảng phần 5; 2026-10-12 thêm `S05-15` |
+| 6 | Tổng hợp và vận dụng | `section-6` | `S06` (`mach-6`) | 10 trang: `S06`, `S06-01`–`S06-07`, `S06-07b`, `S06-08` | Triển khai tổng hợp và vận dụng; bỏ bài tập tổng hợp hồi quy theo yêu cầu; 2026-10-12 thêm `S06-07b` |
 
 Bản trước khi xóa nội dung truy xuất tại commit `774112d`. Các bảng dưới là ánh xạ hiện tại; số trang ở những quyết định lịch sử chỉ mô tả thời điểm đó.
 
-## Bảy trang của phần 1
+## Tám trang của phần 1
 
 Bốn trang đầu được soạn theo nội dung người dùng chốt; ba ví dụ được triển khai ngay theo yêu cầu tiếp theo, với ba tập khả thi khác nhau. Thứ tự hình thức trước ví dụ là yêu cầu cụ thể cho phần ôn tập này, với kiến thức tập lồi và hàm lồi đã học ở Bài 01. Không coi phần mở đầu là một ví dụ ứng dụng đầy đủ theo chín bước.
 
 | Mã | Tiêu đề | Nhu cầu và vai trò | Kết nối trước–sau | Minh chứng hỗ trợ | Quyết định |
 |---|---|---|---|---|---|
 | `S01-01` | Bài 02: Các bài toán tối ưu lồi | Định danh bài, học phần và đơn vị | Mở bài → nội dung chính | Định hướng; không đánh giá riêng | Sửa: thêm học phần, Viện Trí tuệ nhân tạo và học kỳ |
-| `S01-02` | Nội dung chính | Cho biết các nhóm mô hình và kỹ năng sẽ học | Tên bài → khung chung của các mô hình | Định hướng ba mục tiêu bài học | Sửa: liệt kê nội dung; bỏ nhãn nội bộ khỏi mặt chiếu |
+| `S01-01b` | Mục tiêu học tập | Ba mục tiêu quan sát được (nhận dạng; biến đổi hoặc xấp xỉ; chứng nhận và diễn giải nghiệm) đặt trên mặt trang thay vì chỉ trong ghi chú bìa | Bìa → nội dung | LLO3 buổi 2, CLO1; ghi chú nêu nơi kiểm tra từng mục tiêu | Thêm 2026-10-12 (yêu cầu sửa của điều phối viên): 58 âm tiết; câu ba mục tiêu trong ghi chú bìa được bỏ để không lặp |
+| `S01-02` | Nội dung | Danh sách đánh số sáu mạch, tên trùng trang tiêu đề mạch | Tên bài → khung chung của các mô hình | Định hướng ba mục tiêu bài học | Sửa: liệt kê nội dung; bỏ nhãn nội bộ khỏi mặt chiếu; 2026-10-12 đổi tiêu đề "Nội dung chính" thành "Nội dung" theo AGENTS.md, tên năm mạch sau khớp `S02`–`S06` |
 | `S01-03` | Bài toán tối ưu lồi tổng quát | Phân biệt hai đối tượng cần chứng nhận: mục tiêu và tập khả thi | Nội dung chính → cách biểu diễn ràng buộc | Nhận dạng bài toán lồi; chuẩn bị chứng nhận | Sửa: mô hình $\min_{x\in C} f_0(x)$, $C$ lồi và $f_0$ lồi |
 | `S01-04` | Dạng phổ biến của tối ưu lồi | Cụ thể hóa tập khả thi bằng ràng buộc để kiểm tra mô hình | Tập $C$ → các hàm quen thuộc | Chuẩn bị chứng minh tính lồi | Sửa theo yêu cầu mới: bỏ ký hiệu $D$, dùng $x\in\mathbb{R}^n$; $f_0,\ldots,f_m$ lồi, $f_i(x)\le0$, $Ax=b$; ghi kích thước và giải thích giao tập trong notes |
 | `S01-06` | Ví dụ: hàm bậc hai | Dùng đoạn khả thi để phân biệt cực tiểu tự do với nghiệm có ràng buộc | Dạng chuẩn → hàm không trơn | Chứng nhận lồi; tìm nghiệm ở biên $x^\star=1$; biến thể đổi cận trên thành 3 trong notes | Sửa: công thức, parabol với đoạn khả thi, chứng nhận và nghiệm |
@@ -132,7 +133,7 @@ Phần này ôn khái niệm đã học trong Bài 01, theo thứ tự hình th�
 
 - Boyd và Vandenberghe (2004), *Convex Optimization*, bản có sẵn `sources/bv_cvxbook.pdf`: §4.1.1–4.1.2 cho mô hình và thuật ngữ, §4.2 cho điều kiện lồi; §3.1.3 và §3.1.5 cho hàm bậc hai và giá trị tuyệt đối. Ví dụ hàm nghịch đảo tham chiếu trực tiếp Ví dụ 4.1, trang in 128, với miền dương. Không tải thêm nguồn.
 - Tham khảo `../rl-plan/2627-1/lecture-style.css` và CSS trong `lecture-01-gioi-thieu-hoc-tang-cuong.html`, `lecture-02-giao-dien-tac-tu-moi-truong.html`: nền trắng, chữ Source Sans Pro từ theme cục bộ, tiêu đề xanh, cỡ nội dung 0.84em và phân cấp h1/h2. Giữ kiểu chữ hoa/thường đã viết, không tự chuyển toàn bộ thành chữ hoa.
-- CSS điều chỉnh được lưu tại `2627-1/lecture-02-style.css`; không tạo phụ thuộc runtime sang kho tham chiếu.
+- (Lịch sử) CSS điều chỉnh từng được lưu tại `2627-1/lecture-02-style.css`; hiện deck chỉ dùng `lecture-style.css`, không tạo phụ thuộc runtime sang kho tham chiếu.
 
 
 ## Triển khai phần 2 — Quy hoạch tuyến tính
@@ -145,18 +146,19 @@ Ví dụ mở đầu: pha trộn hai nguyên liệu với chi phí thấp nhất
 
 | Vị trí / mã | Tiêu đề | Nội dung và lý do tồn tại | Kết nối vào → ra | Sản phẩm học tập / quyết định |
 |---|---|---|---|---|
-| 1 / `S02` | Quy hoạch tuyến tính | Định danh lớp bài toán tiếp theo | Khung chứng nhận phần 1 → nhu cầu pha trộn | Sửa tiêu đề đã được yêu cầu; giữ trang hiện có |
-| 2 / `S02-01b` | Pha trộn cho một vườn ươm | Xác lập người ra quyết định, luống cây cần dinh dưỡng, đánh đổi giá và hàm lượng; tránh mở ví dụ bằng ký hiệu | Tiêu đề phần → dữ liệu của mô hình | Đề xuất cách mua ban đầu; Thêm theo yêu cầu câu chuyện, tách khỏi mô hình để giữ khả năng đọc |
-| 3 / `S02-02` | Mô hình pha trộn | Nêu quyết định cần chọn, bảng chi phí và hàm lượng; xác định dữ liệu, lượng nguyên liệu, mục tiêu, ràng buộc, đơn vị, đầu ra. So sánh cách chọn nguyên liệu rẻ nhất với yêu cầu đủ chỉ tiêu | Nhu cầu thực tế → các biểu thức affine | Mô hình rõ nghĩa; Thêm: đã triển khai |
+| 1 / `S02` | Quy hoạch tuyến tính | Trang tiêu đề mạch 2; xem mục 2026-10-12 | Khung chứng nhận phần 1 → nhu cầu pha trộn | Sửa 2026-10-12: mẫu `strand-title`, dòng dẫn, ghi chú 99 âm tiết |
+| 2 / `S02-01b` | Pha trộn cho một vườn ươm | Xác lập người ra quyết định, luống cây cần dinh dưỡng, đánh đổi giá và hàm lượng; tránh mở ví dụ bằng ký hiệu | Tiêu đề phần → dữ liệu của mô hình | Đề xuất cách mua ban đầu; Thêm theo yêu cầu câu chuyện, tách khỏi mô hình để giữ khả năng đọc; sửa 2026-10-12: 93 → 52 âm tiết, mở bằng "Nhu cầu:", giả thiết biến liên tục thành dòng "Giả thiết:" |
+| 3 / `S02-02` | Mô hình pha trộn | Nêu quyết định cần chọn, bảng chi phí và hàm lượng; xác định dữ liệu, lượng nguyên liệu, mục tiêu, ràng buộc, đơn vị, đầu ra. So sánh cách chọn nguyên liệu rẻ nhất với yêu cầu đủ chỉ tiêu | Nhu cầu thực tế → các biểu thức affine | Mô hình rõ nghĩa; Thêm: đã triển khai; sửa 2026-10-12: bỏ dòng dẫn trùng tiêu đề, 7 → 6 dòng |
 | 4 / `S02-03` | Dạng phổ biến của quy hoạch tuyến tính | Nhận ra các biểu thức affine; đưa mô hình về $\min c^Tx$ với $Gx\le h$, $Ax=b$. Nhắc lại ký hiệu từ phần 1; các bước đổi dấu và kích thước chi tiết để notes. Chứng nhận ngắn: mục tiêu affine, tập khả thi là giao các nửa không gian/siêu phẳng lồi | Mô hình cụ thể → dạng chuẩn và chứng nhận | Giải thích vì sao bài toán là LP và là lồi; Thêm: đã triển khai |
-| 5 / `S02-03b` | Dạng chuẩn của quy hoạch tuyến tính | Chuyển bài tổng quát về đẳng thức và biến không âm: tách biến tự do, thêm biến phụ; viết ma trận khối và chứng minh bảo toàn trong ghi chú | Dạng phổ biến → dạng chuẩn → kiểm nghiệm mô hình | Tự chuẩn hóa LP và khôi phục biến gốc; Sửa theo yêu cầu mới, bỏ so sánh canonical/standard |
+| 5 / `S02-03b` | Dạng chuẩn của quy hoạch tuyến tính | Chuyển bài tổng quát về đẳng thức và biến không âm: tách biến tự do, thêm biến phụ; viết ma trận khối và chứng minh bảo toàn trong ghi chú | Dạng phổ biến → dạng chuẩn → kiểm nghiệm mô hình | Tự chuẩn hóa LP và khôi phục biến gốc; Sửa theo yêu cầu mới, bỏ so sánh canonical/standard; sửa 2026-10-12: gộp dòng dẫn vào nhãn hai thẻ, 8 → 6 dòng |
 | 6 / `S02-04` | Nghiệm của bài toán pha trộn | Tính ví dụ hai biến, vẽ miền khả thi và các đường cùng chi phí; đọc nghiệm thành lượng từng nguyên liệu và tổng chi phí. Đổi một đơn giá hoặc yêu cầu số lượng nguyên để kiểm tra hiểu | Dạng chuẩn → nghiệm trong ngữ cảnh ban đầu | Giải thích nghiệm, nhận ra giả thiết biến liên tục; Thêm: đã triển khai |
 | 7 / `S02-05` | Hồi quy với sai số tuyệt đối | Dữ liệu $X,y$, tham số $w$, dự đoán $Xw$, phần dư $r=Xw-y$; nhu cầu khớp dữ liệu theo tổng độ lệch tuyệt đối. Mô hình trực tiếp $\min_w\sum_i\lvert r_i\rvert$ đã lồi nhưng chưa được viết thành LP | LP đã có sẵn → mô hình cần cải dạng | Phân biệt dự đoán tuyến tính với dạng của bài toán tối ưu; Thêm: đã triển khai |
 | 8 / `S02-06` | Biến phụ cho giá trị tuyệt đối | Bắt đầu với một phần dư; dùng $t_i\ge r_i$, $t_i\ge-r_i$. Ghép thành $\min_{w,t}\sum_i t_i$ với $-t\le Xw-y\le t$ | Trị tuyệt đối → mục tiêu và ràng buộc affine | Tự viết LP bằng biến phụ; Thêm: đã triển khai |
 | 9 / `S02-07` | Tính tương đương của phép cải dạng | Hai chiều: từ $w$ chọn $t_i=\lvert r_i\rvert$; từ cặp khả thi suy ra $\sum_i t_i\ge\sum_i\lvert r_i\rvert$. Chứng nhận LP lồi, giải thích vì sao tại nghiệm tối ưu mọi $t_i=\lvert r_i\rvert$ và lấy lại $w$ để dự đoán | Phép biến đổi → bảo đảm không thay đổi bài toán | Chứng minh tương đương thay vì chỉ nhận dạng công thức; Thêm: đã triển khai |
 | 10 / `S02-08` | Nghiệm hồi quy với sai số tuyệt đối | Dùng một bộ dữ liệu nhỏ; tính nghiệm, vẽ dữ liệu và đường dự đoán, kiểm từng phần dư và tổng sai số. Diễn giải $w$ và $t$; làm rõ $t$ là biến phụ, không phải tham số dùng để dự đoán | Chứng minh → kiểm tra số và diễn giải | Kiểm lại nghiệm của LP bằng mục tiêu gốc; Thêm: đã triển khai |
 | 11 / `S02-09` | Hồi quy với sai số lớn nhất | Đổi nhu cầu sang giảm sai số tệ nhất; dùng một biến $t$ với $-t\mathbf{1}\le Xw-y\le t\mathbf{1}$, mục tiêu $\min t$. Kiểm quan hệ $t\ge\max_i\lvert r_i\rvert$, vẽ dải sai số trên cùng dữ liệu và so sánh với tổng sai số tuyệt đối | Cùng dữ liệu, khác tiêu chí → một LP khác | Tự chuyển giao kỹ thuật biến phụ; Thêm: đã triển khai |
-| 12 / `S02-10` | Nhận dạng quy hoạch tuyến tính | Bài tập phân loại ba biến thể: thay đổi ràng buộc affine, thêm điều kiện nguyên, đổi mục tiêu thành tổng bình phương sai số. Yêu cầu giải thích dạng bài toán và tính lồi; trường hợp cuối nối cùng bài hồi quy sang phần quy hoạch bậc hai | Các ví dụ → lựa chọn dạng mô hình và giới hạn | Bài tập phân loại kèm lập luận; Thêm: đã triển khai |
+| 12 / `S02-10` | Bài tập: nhận dạng quy hoạch tuyến tính | Bài tập phân loại ba biến thể: thay đổi ràng buộc affine, thêm điều kiện nguyên, đổi mục tiêu thành tổng bình phương sai số. Yêu cầu giải thích dạng bài toán và tính lồi; trường hợp cuối nối cùng bài hồi quy sang phần quy hoạch bậc hai | Các ví dụ → lựa chọn dạng mô hình và giới hạn | Bài tập phân loại kèm lập luận; Thêm: đã triển khai; sửa 2026-10-12: tiêu đề "Bài tập: nhận dạng quy hoạch tuyến tính", ghi chú chỉ giữ gợi ý |
+| 13 / `S02-11` | Bài tập: nhận dạng quy hoạch tuyến tính (lời giải) | Lời giải mẫu trên mặt trang cho bài tập của cụm LP (AGENTS.md: mỗi cụm khái niệm lớn có một bài tập có "Lời giải:" trên mặt trang) | `S02-10` → phần 3 qua biến thể tổng bình phương | Bài tập có lời giải mẫu; Thêm 2026-10-12, lời giải chuyển từ ghi chú `S02-10` |
 
 ### Ánh xạ chín bước và hành trình học
 
@@ -193,7 +195,7 @@ Nhu cầu đi trước dạng chuẩn. Trực quan pha trộn bắt đầu bằn
 
 | Mã | Tiêu đề | Lý do tồn tại / khoảng trống | Kết nối vào → ra | Minh chứng / quyết định |
 |---|---|---|---|---|
-| S03 | Quy hoạch bậc hai | Định danh lớp bài toán; nhận câu hỏi đổi tiêu chí từ phần 2. | Phần 2 → S03-01 | Định hướng; Giữ tiêu đề, bổ sung ghi chú |
+| S03 | Quy hoạch bậc hai và ràng buộc bậc hai | Trang tiêu đề mạch 3; xem mục 2026-10-12 | Phần 2 → S03-01 | Định hướng; sửa 2026-10-12: tên mạch khớp `S01-02`, mẫu `strand-title`, dòng dẫn, ghi chú 97 âm tiết |
 | S03-01 | Hồi quy với tổng bình phương sai số | Thiết lập nhu cầu dự đoán và hai ứng viên trước khi khai triển mục tiêu. | S03 → S03-02 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
 | S03-02 | Dạng bậc hai của bình phương sai số | Chỉ ra cấu trúc bậc hai và chứng nhận Hessian; phân biệt viết lại với thay mục tiêu. | S03-01 → S03-03 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
 | S03-03 | Dạng phổ biến của quy hoạch bậc hai | Khái quát nhận dạng QP: mục tiêu bậc hai lồi, ràng buộc affine. | S03-02 → S03-04 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
@@ -206,7 +208,8 @@ Nhu cầu đi trước dạng chuẩn. Trực quan pha trộn bắt đầu bằn
 | S03-06 | Nghiệm hồi quy có chính quy hóa | Đối chiếu bốn đường dự đoán, hệ số và tham số; đánh giá theo từng mục tiêu gốc. | S03-05 → S03-07 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
 | S03-07 | Hồi quy với giới hạn độ lớn hệ số | Thay chi phí mềm bằng mức trần cứng; chứng nhận miền hình tròn và nghiệm trên biên. | S03-06 → S03-08 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
 | S03-08 | Quy hoạch bậc hai với ràng buộc bậc hai | Khái quát QCQP từ ràng buộc chuẩn; chứng nhận cả mục tiêu và các bất đẳng thức. | S03-07 → S03-09 | Mô hình, chứng nhận hoặc diễn giải nghiệm hỗ trợ LLO3/CLO1; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
-| S03-09 | Nhận dạng và chứng nhận bài toán bậc hai | Kiểm tra chuyển giao khi thêm ràng buộc, đổi chiều bất đẳng thức hoặc đặt hệ số phạt bằng 0. | S03-08 → Phần 4: đổi biến | Phân loại và lập luận ở bài tập; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối |
+| S03-09 | Bài tập: nhận dạng bài toán bậc hai | Kiểm tra chuyển giao khi thêm ràng buộc, đổi chiều bất đẳng thức hoặc đặt hệ số phạt bằng 0. | S03-08 → S03-10 | Phân loại và lập luận ở bài tập; Triển khai kế hoạch; sửa nội dung theo phạm vi cuối; sửa 2026-10-12: tiêu đề "Bài tập: nhận dạng bài toán bậc hai", ghi chú chỉ giữ gợi ý |
+| S03-10 | Bài tập: nhận dạng bài toán bậc hai (lời giải) | Lời giải mẫu trên mặt trang cho cụm QP/QCQP. | S03-09 → Phần 4: đổi biến | Bài tập có lời giải mẫu; Thêm 2026-10-12, lời giải chuyển từ ghi chú S03-09 |
 
 
 ### Chín bước theo từng ví dụ
@@ -247,7 +250,7 @@ Phần này có 16 trang, dùng hai ví dụ: hộp ít vật liệu và phân b
 
 | Mã | Tiêu đề | Quyết định | Lý do tồn tại | Kết nối vào → ra | Minh chứng hỗ trợ LLO3/CLO1 |
 |---|---|---|---|---|---|
-| S04 | Quy hoạch hình học | Sửa | Rút tiêu đề theo cách gọi lớp bài toán ở phần 2 và 3. | S03-09 → hộp | Định hướng cải dạng tương đương |
+| S04 | Quy hoạch hình học | Sửa | Trang tiêu đề mạch 4; 2026-10-12 đổi sang mẫu `strand-title`, thêm dòng dẫn, ghi chú 99 âm tiết. | S03-10 → hộp | Định hướng cải dạng tương đương |
 | S04-01 | Hộp đựng và chi phí vật liệu | Thêm | Thiết lập quyết định thiết kế và quan hệ giữa diện tích với chi phí trước ký hiệu. | S04 → mô hình | Xác định dữ liệu, yêu cầu, đầu ra |
 | S04-02 | Mô hình thiết kế hộp | Thêm | Chuyển sáu mặt và thể tích thành tích các kích thước; thử hai ứng viên chưa chứng minh tối ưu. | Câu chuyện → nhận dạng đơn thức | Mô hình hóa; kiểm tập khả thi |
 | S04-03 | Đơn thức và tổng đơn thức dương | Thêm | Cung cấp đúng lớp hàm chứa các tích đã xuất hiện, kể cả số mũ âm/thực. | Mô hình hộp → dạng chuẩn | Phân loại theo hệ số và số mũ |
@@ -262,7 +265,8 @@ Phần này có 16 trang, dùng hai ví dụ: hộp ít vật liệu và phân b
 | S04-12 | Cải dạng bài phân bổ công suất | Thêm | Biến ngưỡng chuyển cực tiểu các tỷ số thành ràng buộc, rồi chuẩn hóa GP. | Mô hình max-min → dạng log | Cải dạng hai chiều bằng ngưỡng và đơn thức |
 | S04-13 | Dạng lồi của bài phân bổ công suất | Thêm | Viết rõ từng ràng buộc sau đổi log để sinh viên có thể tự làm lại. | GP công suất → nghiệm | Chứng nhận lồi và ánh xạ p,t |
 | S04-14 | Nghiệm phân bổ công suất | Thêm | Diễn giải nghiệm theo chất lượng đường yếu nhất; so với chia đều và kiểm cận tối ưu. | Dạng lồi → kiểm tra | Đánh giá lựa chọn và giới hạn mô hình |
-| S04-15 | Nhận dạng và giới hạn cải dạng | Thêm | Kiểm trường hợp biên về chiều bất đẳng thức, đẳng thức tổng và biến bằng 0. | Hai ví dụ → phần 5 | Chứng minh/ phản ví dụ; phân biệt chưa là GP với không lồi |
+| S04-15 | Bài tập: nhận dạng quy hoạch hình học | Thêm; sửa 2026-10-12 | Kiểm trường hợp biên về chiều bất đẳng thức, đẳng thức tổng và biến bằng 0; tiêu đề đổi từ "Nhận dạng và giới hạn của phép biến đổi", ghi chú chỉ giữ gợi ý. | Hai ví dụ → S04-16 | Chứng minh/ phản ví dụ; phân biệt chưa là GP với không lồi |
+| S04-16 | Bài tập: nhận dạng quy hoạch hình học (lời giải) | Thêm 2026-10-12 | Lời giải mẫu trên mặt trang cho cụm GP; lời giải chuyển từ ghi chú S04-15. | S04-15 → phần 5 | Bài tập có lời giải mẫu |
 
 ### Ánh xạ chín bước theo từng ví dụ
 
@@ -302,22 +306,23 @@ Kế hoạch 15 trang được duyệt sau tác tử lập kế hoạch: bỏ ch
 
 | Mã | Tiêu đề | Nhu cầu và lý do tồn tại | Kết nối vào–ra | Minh chứng LLO3/CLO1 | Quyết định |
 |---|---|---|---|---|---|
-| S05 | Xấp xỉ lồi và nới lỏng bài toán không lồi | Định vị bước chuyển khi cải dạng tương đương không còn áp dụng | Giới hạn GP → phân loại ảnh | Chuẩn bị, không đánh giá riêng | Sửa: thay tiêu đề Tối ưu nón, nhận vai trò phần 5 |
+| S05 | Xấp xỉ lồi và nới lỏng | Trang tiêu đề mạch 5; định vị bước chuyển khi cải dạng tương đương không còn áp dụng | Giới hạn GP → phân loại ảnh | Chuẩn bị, không đánh giá riêng | Sửa: thay tiêu đề Tối ưu nón, nhận vai trò phần 5; 2026-10-12 rút tên thành "Xấp xỉ lồi và nới lỏng" cho khớp `S01-02` và học liệu, mẫu `strand-title`, ghi chú 89 âm tiết |
 | S05-01 | Phân loại bằng ngưỡng | Thiết lập quyết định, dữ liệu và trực quan nhãn xen kẽ trước ký hiệu mất mát | Ngưỡng ảnh → đếm lỗi | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: cụ thể hóa nhu cầu |
 | S05-02 | Mô hình giảm số lỗi phân loại | Biến nhu cầu thành mục tiêu gốc để không đánh tráo tiêu chí | Dữ liệu u,y → E không lồi | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: thiết lập tiêu chí cần đánh giá |
 | S05-03 | Hàm mất mát bản lề | Đưa ra một hàm lồi chặn trên và chứng nhận quan hệ từng điểm | E → H → biến phụ | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: có trực quan và chứng minh |
-| S05-03b | Tư duy thiết kế phương pháp AI | Làm rõ quyền chọn hàm thay thế và trách nhiệm kiểm chứng sau khi đổi mục tiêu | Hàm bản lề → tiêu chí lựa chọn phương pháp → LP chính xác cho H | LLO3/CLO1: diễn giải giới hạn của mô hình; câu hỏi trong notes và Bài 11 | Thêm theo yêu cầu: khái quát tư duy AI, không lặp chứng minh |
+| S05-03b | Tư duy thiết kế phương pháp AI | Làm rõ quyền chọn hàm thay thế và trách nhiệm kiểm chứng sau khi đổi mục tiêu | Hàm bản lề → tiêu chí lựa chọn phương pháp → LP chính xác cho H | LLO3/CLO1: diễn giải giới hạn của mô hình; câu hỏi trong notes và Bài 11 | Thêm theo yêu cầu: khái quát tư duy AI, không lặp chứng minh; sửa 2026-10-12: 96 → 58 âm tiết, 12 → 3 dòng; bỏ khẩu hiệu "Bản sắc AI" và ba dòng chốt, thay bằng bảng ba điều kiện kiểm chứng cụ thể trên ví dụ ngưỡng |
 | S05-04 | Cải dạng hàm bản lề thành LP | Dùng lại kỹ thuật phần 2 và xác định chính xác bài toán được giữ | H → LP tương đương → nghiệm | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: tránh đồng nhất với tối ưu số lỗi |
 | S05-05 | Nghiệm của hàm thay thế | Phản ví dụ cho suy luận hai mục tiêu cùng nghiệm | Tối ưu H → kiểm tra E → nhiều đặc trưng | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: kiểm tra số và hình học |
 | S05-06 | Phân loại nhiều đặc trưng | Chuyển mô hình ngưỡng sang ứng dụng nhiều biến có chính quy hóa | LP ngưỡng → QP → chọn gói | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: dùng lại chứng nhận phần 3 |
-| S05-07 | Chọn các gói dữ liệu | Thiết lập nhu cầu ảnh gán nhãn người đi bộ cho ba bối cảnh; ghi rõ ảnh có sẵn và giá từng gói | Thay mục tiêu → đổi miền khả thi | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: thay dấu tích bằng nội dung gói, bổ sung câu chuyện và đơn vị |
+| S05-07 | Chọn các gói dữ liệu | Thiết lập nhu cầu ảnh gán nhãn người đi bộ cho ba bối cảnh; ghi rõ ảnh có sẵn và giá từng gói | Thay mục tiêu → đổi miền khả thi | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: thay dấu tích bằng nội dung gói, bổ sung câu chuyện và đơn vị; sửa 2026-10-12: 63 → 50 âm tiết, dòng dẫn "Nhu cầu:", luật mua thành "Giả thiết:" |
 | S05-08 | Mô hình chọn gói dữ liệu | Giải thích mỗi biến mua/không mua và từng ràng buộc bằng gói chứa bối cảnh tương ứng | Bảng gói → F → nới miền | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: nối dữ liệu với bất đẳng thức ngày khô |
 | S05-09 | Nới lỏng điều kiện nhị phân | Chỉ thay miền nhị phân bằng khoảng; nhà cung cấp vẫn bán nguyên gói | Nhị phân → khoảng → nghiệm LP | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: tách phép nới lỏng toán học khỏi giao dịch |
 | S05-10 | Nghiệm phân số của bài nới lỏng | Kiểm tra ba ràng buộc tại nghiệm phân số, chứng minh chi phí tối ưu LP là 3 triệu đồng | LP → L=3 → mua nguyên | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: bảng kiểm ràng buộc thay hình nửa gói |
-| S05-11 | Khôi phục phương án mua | Theo dõi mua cả ba gói rồi bỏ gói 3; kiểm tra đủ bối cảnh và chi phí 4 triệu đồng | Phân số → nguyên hợp lệ → cận trên | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: nêu rõ phương án mua và bước loại gói thừa |
-| S05-12 | Cận dưới và chứng nhận nghiệm | Dùng cận 3, phương án 4 và chi phí bội của 2 để chứng nhận tối ưu; khái quát trong ghi chú | L=3, U=4 → p*=4 → so sánh | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: đặt chứng nhận bằng số trên mặt chiếu |
+| S05-11 | Khôi phục phương án mua | Theo dõi mua cả ba gói rồi bỏ gói 3; kiểm tra đủ bối cảnh và chi phí 4 triệu đồng | Phân số → nguyên hợp lệ → cận trên | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: nêu rõ phương án mua và bước loại gói thừa; sửa 2026-10-12: 69 → 44 âm tiết, dòng dẫn thành yêu cầu "Xác định …", bỏ dấu gạch dài trong bảng, ô kết luận thành "Diễn giải:" |
+| S05-12 | Cận dưới và chứng nhận nghiệm | Dùng cận 3, phương án 4 và chi phí bội của 2 để chứng nhận tối ưu; khái quát trong ghi chú | L=3, U=4 → p*=4 → so sánh | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Sửa: đặt chứng nhận bằng số trên mặt chiếu; sửa 2026-10-12: 61 → 52 âm tiết, 7 → 6 dòng, nhãn "Ký hiệu:", bỏ nhãn đậm ngoài danh sách |
 | S05-13 | Phân biệt ba cách xử lý | Tách ba quan hệ đã gặp bằng cùng hai ví dụ | Chứng nhận hai ví dụ → kiểm tra hiểu | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: tổng hợp sau trải nghiệm |
-| S05-14 | Đánh giá nghiệm theo bài toán gốc | Đo khả năng phân biệt loại bảo đảm khi thay giả thiết | Ba quan hệ → bài tích hợp phần 6 | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: biến thể và đáp án |
+| S05-14 | Bài tập: đánh giá nghiệm theo bài toán gốc | Đo khả năng phân biệt loại bảo đảm khi thay giả thiết | Ba quan hệ → S05-15 | Nhận dạng, chứng nhận hoặc diễn giải theo vai trò; kiểm tra tổng hợp S05-14 | Thêm: biến thể và đáp án; sửa 2026-10-12: tiêu đề "Bài tập: đánh giá nghiệm theo bài toán gốc", câu 1 rút còn 19 âm tiết, ghi chú chỉ giữ gợi ý |
+| S05-15 | Bài tập: đánh giá nghiệm theo bài toán gốc (lời giải) | Lời giải mẫu trên mặt trang cho cụm hàm thay thế và nới lỏng | S05-14 → bài tích hợp phần 6 | Bài tập có lời giải mẫu | Thêm 2026-10-12, lời giải chuyển từ ghi chú S05-14 |
 
 ### Chín bước theo từng ví dụ
 
@@ -365,15 +370,16 @@ Phần 6 gồm chín trang: giữ mã S06 và thêm S06-01–08.
 
 | Mã | Tiêu đề | Lý do tồn tại | Vào → ra | LLO3 / CLO1 | Quyết định |
 |---|---|---|---|---|---|
-| `S06` | Tổng hợp và vận dụng | Định danh phần cuối, nối phần 5 | Nhận xét cuối phần 5 → chu trình tự kiểm | Hỗ trợ LLO3, CLO1 | Sửa: triển khai phần tổng hợp, giữ mã S06 và liên kết mach-6 |
+| `S06` | Tổng hợp và vận dụng | Trang tiêu đề mạch 6; nối phần 5 | Nhận xét cuối phần 5 → chu trình tự kiểm | Hỗ trợ LLO3, CLO1 | Sửa: triển khai phần tổng hợp, giữ mã S06 và liên kết mach-6; 2026-10-12: mẫu `strand-title`, thay câu "Phần cuối: dùng lại toàn bộ …" bằng dòng dẫn "Nhu cầu: …", ghi chú 97 âm tiết |
 | `S06-01` | Các dạng bài toán đã học | Ôn bảng LP/QP/QCQP làm khung nhận dạng | Tiêu đề → bảng dạng chuẩn 3 hàng | Nhận dạng cấu trúc | Thêm: định nghĩa $f_i$ một lần phía trên, gộp cột mục tiêu và ràng buộc để bảng vừa khít |
 | `S06-02` | Quy hoạch hình học và đổi biến | Ôn GP và đổi biến log | Bảng → hai khối trước/sau | Nhận dạng + cải dạng | Thêm: mỗi khối một nhãn ngắn và ba dòng công thức căn thẳng, nêu miền $x>0$ và $z\in\mathbb R^n$ |
 | `S06-03` | Chứng nhận một bài toán lồi | Khung bốn bước dùng cho biến thể sau | Ôn tập → câu hỏi kiểm tra | Chứng nhận | Thêm: nhãn "Câu hỏi:" trên mặt, đáp án trong ghi chú |
 | `S06-04` | Giới hạn số đặc trưng | Nhu cầu mới: giảm chi phí đặc trưng | Khung → mô hình $\|w\|_0\le k$ | Biến thể nhu cầu | Thêm: tách công thức $H$ và bài toán cực tiểu, nêu dữ liệu $u_i,y_i,k$ và biến $w,b$ trước |
 | `S06-05` | Miền giới hạn đặc trưng không lồi | Trực quan phản ví dụ trung điểm | Mô hình → SVG $F$ không lồi | Kiểm tra tập khả thi | Thêm: chú thích hình chỉ nêu $M\notin F$; khái quát hai tập hỗ trợ giao nhau, trung điểm $k+1$ hệ số |
 | `S06-06` | Thay bằng hình phạt chuẩn một | Hình thức và mô hình thay thế lồi | Phản ví dụ → bài có phạt + LP biến phụ | Cải dạng/xấp xỉ | Thêm: chứng minh tương đương chỉ cho bài có phạt, phản ví dụ 4 điểm với bất đẳng thức theo cặp, cận 2 đạt tại $(1,1),b=0$; nguồn §6.2, tr. 304–305 |
-| `S06-07` | Kiểm tra các biến thể | Áp dụng tới bộ phân loại, khôi phục nghiệm | Mô hình phạt → ba câu hỏi | Ứng dụng + bài tập | Thêm: ba câu hỏi đúng nhãn, đáp án khớp phản ví dụ S06-06 |
-| `S06-08` | Tổng kết bài giảng | Chốt ba năng lực và sáu thành phần | Bài tập → kết bài | Đối chiếu mục tiêu bài học | Thêm: ba dòng đánh số thay bố cục hai cột, mục 3 "Chứng nhận tính lồi và diễn giải nghiệm trong bài toán ban đầu", nguồn chương 4; §6.2; §6.3.2 |
+| `S06-07` | Bài tập: biến thể giới hạn số đặc trưng | Áp dụng tới bộ phân loại, khôi phục nghiệm | Mô hình phạt → ba câu hỏi | Ứng dụng + bài tập | Thêm: ba câu hỏi đúng nhãn, đáp án khớp phản ví dụ S06-06; sửa 2026-10-12: tiêu đề đổi từ "Kiểm tra các biến thể", ghi chú chỉ giữ gợi ý |
+| `S06-07b` | Bài tập: biến thể giới hạn số đặc trưng (lời giải) | Lời giải mẫu trên mặt trang cho cụm tổng hợp; câu 2 dùng cùng dữ liệu và nghiệm với Bài 14a của `exercises.md` | Ba câu hỏi → tổng kết | Bài tập có lời giải mẫu | Thêm 2026-10-12, lời giải chuyển từ ghi chú `S06-07` |
+| `S06-08` | Tổng kết bài giảng | Bảng kết quả, giả thiết không được bỏ, công thức cho bốn nhóm LP, QP/QCQP, GP, xấp xỉ lồi; ghi chú đọc bảng theo ba mục tiêu của `S01-01b` | Bài tập → kết bài | Đối chiếu mục tiêu bài học | Thêm: ba dòng đánh số thay bố cục hai cột, mục 3 "Chứng nhận tính lồi và diễn giải nghiệm trong bài toán ban đầu", nguồn chương 4; §6.2; §6.3.2; sửa 2026-10-12 (yêu cầu sửa của điều phối viên): bảng "kết quả \| giả thiết không được bỏ \| công thức hoặc thuật toán", bốn hàng LP, QP/QCQP, GP, xấp xỉ lồi; 75 âm tiết; sáu thành phần mô hình chuyển xuống ghi chú; giữ dòng tài liệu đọc |
 
 ### Bản đồ hành trình khái niệm
 
@@ -449,3 +455,130 @@ Nguồn, biến thể, kiểm tiên quyết và kết quả rà lại nằm tron
 **Phạm vi:** Không mở khái niệm toán mới; đây là tổng hợp rút gọn của cụm sáu bước đã có, đóng lại bằng cách gọi tên từng tầng. Cách nhìn này kế thừa Toán/Khoa học máy tính và thống kê; đặc trưng của AI là trách nhiệm nối các tầng trong bối cảnh học từ dữ liệu.
 
 Bản đồ hành trình của cụm hàm thay thế giữ nguyên: nhu cầu S05-01; trực quan S05-01,03; ví dụ S05-01–02; hình thức S05-03–04; ứng dụng S05-05–06; bài tập S05-14 và Bài 11. S05-03b là cầu nối rút gọn nhu cầu chọn phương pháp → nguyên tắc lựa chọn → câu hỏi kiểm tra trong notes; không giới thiệu định lý hoặc ký hiệu mới. Kế thừa $E,H,\theta$; không suy bảo đảm tổng quát hóa từ bất đẳng thức $E\le H$. Chưa phân bổ thêm thời lượng vì người dùng không yêu cầu.
+
+## Đợt sửa văn phong và mật độ — 2026-10-12
+
+Căn cứ: yêu cầu người dùng 2026-10-12 và các mục "Trang tiêu đề mạch", "Văn phong và mật độ mặt trang chiếu" của `AGENTS.md`; số đo cơ sở trong `planning/style-revision-2026-10-12.md`. Mức sửa của deck là nhẹ: không đổi luận đề, khung chung, thứ tự mạch hay số liệu ví dụ. Số trang 74 → 80 (năm trang lời giải và trang mục tiêu học tập `S01-01b`). Không đổi `id` nào mà `materials/lec-02/` liên kết tới (39 `id`, đã kiểm bằng grep trước và sau khi sửa).
+
+Trang "Ngữ cảnh": không thêm trang riêng. `S01-03` (bài toán tối ưu lồi tổng quát: biến $x\in\mathbb R^n$, mục tiêu $f_0$, tập khả thi $C$, hai điều kiện lồi) đã đảm nhận vai trò ngữ cảnh của khung chung; thêm một trang nữa sẽ lặp nội dung đó.
+
+### Trang tiêu đề mạch
+
+Tên mạch thống nhất với trang "Nội dung" `S01-02`. Mạch 3 dùng tên dài "Quy hoạch bậc hai và ràng buộc bậc hai" (phía `S01-02`) vì mạch kết thúc ở QCQP. Mạch 5 dùng tên ngắn "Xấp xỉ lồi và nới lỏng" (phía `S01-02`), trùng tiêu đề phần 5 của `exercises.md`. Không tên mạch nào trùng tiêu đề trang nội dung đầu mạch.
+
+#### S02. Quy hoạch tuyến tính (trang tiêu đề mạch)
+
+- **Lý do tồn tại:** trang tiêu đề mạch bắt buộc; đánh dấu ranh giới `S01-08` → `S02-01b`, chuyển từ ba hàm một biến sang mô hình nhiều biến affine.
+- **Nhu cầu hoặc khoảng trống được lấp:** người học cần biết mạch mới xét lớp bài toán nào và vì sao trị tuyệt đối cần một kỹ thuật riêng.
+- **Đầu vào:** khung chứng nhận (mục tiêu lồi, $f_i\le0$ với $f_i$ lồi, đẳng thức affine) của mạch 1.
+- **Đầu ra:** nhiệm vụ "mô hình affine và đưa trị tuyệt đối về dạng affine" cho `S02-01b`.
+- **Vị trí trong khung:** điểm vào mạch 2; dòng dẫn đảm nhận bước `nhu cầu` của cụm LP ở mức tên lớp, nhu cầu cụ thể nằm ở `S02-01b`.
+- **LLO/CLO:** không đo trực tiếp; định hướng LLO3/CLO1.
+- **Quyết định:** `sửa` (đổi markup `text-light` sang `strand-title`, thêm dòng dẫn và dòng từ khóa, ghi chú 225 → 99 âm tiết).
+
+#### S03. Quy hoạch bậc hai và ràng buộc bậc hai (trang tiêu đề mạch)
+
+- **Lý do tồn tại:** trang tiêu đề mạch bắt buộc; ranh giới `S02-11` → `S03-01`.
+- **Nhu cầu hoặc khoảng trống được lấp:** biến thể tổng bình phương ở cuối mạch 2 lồi nhưng ngoài lớp LP; người học cần biết lớp nào chứa nó.
+- **Đầu vào:** dữ liệu năm điểm, $\hat y=au+b$, ký hiệu $X,y,w,r$, Hessian $2X^TX\succeq0$.
+- **Đầu ra:** nhiệm vụ "bình phương sai số, hình phạt và giới hạn độ lớn hệ số" cho `S03-01`.
+- **Vị trí trong khung:** điểm vào mạch 3; ngoài hành trình khái niệm (nhu cầu cụ thể ở `S03-01`).
+- **LLO/CLO:** không đo trực tiếp; định hướng LLO3/CLO1.
+- **Quyết định:** `sửa` (tên mạch đổi từ "Quy hoạch bậc hai" cho khớp `S01-02`, markup mới, ghi chú 216 → 97 âm tiết).
+
+#### S04. Quy hoạch hình học (trang tiêu đề mạch)
+
+- **Lý do tồn tại:** trang tiêu đề mạch bắt buộc; ranh giới `S03-10` → `S04-01`.
+- **Nhu cầu hoặc khoảng trống được lấp:** tích và tỷ số của biến dương làm mô hình không lồi theo biến gốc; các phép chứng nhận của mạch 2–3 không áp dụng trực tiếp.
+- **Đầu vào:** chứng nhận theo biến ban đầu hoặc sau khi thêm biến phụ.
+- **Đầu ra:** nhiệm vụ "bài toán có tích và tỷ số của biến dương" cho `S04-01`.
+- **Vị trí trong khung:** điểm vào mạch 4; dòng dẫn đảm nhận bước `nhu cầu` của cụm GP ở mức lớp bài toán.
+- **LLO/CLO:** không đo trực tiếp; định hướng LLO3/CLO1.
+- **Quyết định:** `sửa` (markup mới, dòng dẫn, ghi chú 222 → 99 âm tiết).
+
+#### S05. Xấp xỉ lồi và nới lỏng (trang tiêu đề mạch)
+
+- **Lý do tồn tại:** trang tiêu đề mạch bắt buộc; ranh giới `S04-16` → `S05-01`.
+- **Nhu cầu hoặc khoảng trống được lấp:** bài toán không lồi mà không có phép biến đổi tương đương nào đã học.
+- **Đầu vào:** điều kiện cấu trúc của GP và các trường hợp vi phạm ở `S04-15`–`S04-16`.
+- **Đầu ra:** nhiệm vụ "xử lý bài toán không lồi khi không có biến đổi tương đương" cho `S05-01`.
+- **Vị trí trong khung:** điểm vào mạch 5; đảm nhận bước `nhu cầu` chung của hai cụm hàm thay thế và nới lỏng.
+- **LLO/CLO:** không đo trực tiếp; định hướng LLO3/CLO1.
+- **Quyết định:** `sửa` (tên rút từ "Xấp xỉ lồi và nới lỏng bài toán không lồi", markup mới, ghi chú 211 → 89 âm tiết).
+
+#### S06. Tổng hợp và vận dụng (trang tiêu đề mạch)
+
+- **Lý do tồn tại:** trang tiêu đề mạch bắt buộc; ranh giới `S05-15` → `S06-01`.
+- **Nhu cầu hoặc khoảng trống được lấp:** người học cần áp dụng trọn chu trình nhận dạng, biến đổi, chứng nhận cho một mô hình mới.
+- **Đầu vào:** ba quan hệ tương đương, thay mục tiêu, nới lỏng của mạch 5.
+- **Đầu ra:** nhiệm vụ tổng hợp cho `S06-01`.
+- **Vị trí trong khung:** điểm vào mạch 6; ngoài hành trình khái niệm.
+- **LLO/CLO:** định hướng LLO3/CLO1.
+- **Quyết định:** `sửa` (câu "Phần cuối: dùng lại toàn bộ …" trên mặt trang thay bằng dòng dẫn "Nhu cầu: …", markup mới, ghi chú 199 → 97 âm tiết).
+
+### Trang vượt trần trước khi sửa
+
+Âm tiết đo bằng `tools/density.py` (không tính tiêu đề, công thức, ô số của bảng, ghi chú).
+
+| Trang | Trước | Sau | Quyết định | Việc đã làm |
+|---|---|---|---|---|
+| `S02-01b` | 93 âm tiết, 7 dòng, dòng dài nhất 25 | 52, 6, 17 | `sửa` | Đoạn kể chuyện chuyển xuống ghi chú; mặt trang còn "Nhu cầu:", hai thẻ nguyên liệu, "Giả thiết:" |
+| `S02-02` | 54, 7 dòng | 42, 6 | `sửa` | Bỏ dòng dẫn trùng tiêu đề; "số liệu minh họa" nằm trong ghi chú |
+| `S02-03b` | 27, 8 dòng | 27, 6 | `sửa` | Dòng dẫn và ký hiệu $z$ gộp vào nhãn hai thẻ |
+| `S05-03b` | 96, 12 dòng | 58, 3 | `sửa` | Bỏ khẩu hiệu "Bản sắc AI" và ba dòng chốt; thay bằng bảng ba điều kiện kiểm chứng cụ thể |
+| `S05-07` | 63, dòng dài nhất 22 | 50, 20 | `sửa` | Bối cảnh nhóm phát triển xuống ghi chú; "Nhu cầu:" và "Giả thiết:" |
+| `S05-09` | dòng dài nhất 24 | 14 | `sửa` | Ô kết luận tách hai dòng, nhãn "Lưu ý:" |
+| `S05-11` | 69, dòng dài nhất 28 | 44, 13 | `sửa` | Dòng dẫn thành yêu cầu "Xác định …"; ô kết luận "Diễn giải:" |
+| `S05-12` | 61, 7 dòng | 52, 6 | `sửa` | Gộp hai dòng thẻ phải; nhãn "Ký hiệu:" |
+| `S05-14` | dòng dài nhất 24 | 19 | `sửa` | Câu hỏi 1 viết gọn |
+| `S06-01` | dòng dài nhất 22 | 12 | `sửa` | Dòng ký hiệu chung rút gọn với nhãn "Ký hiệu:" |
+| `S06-03` | 67 | 57 | `sửa` | Rút bốn bước quy trình; câu hỏi giữ trong khung |
+| `S06-08` | 67 | 79 | ngoại lệ | Trang tổng kết dạng bảng, trần 80 âm tiết theo `AGENTS.md`; ô công thức đặt trọn trong KaTeX nên không tính |
+
+Sau sửa, `density.py` chỉ còn `S06-08` trên 60 âm tiết (79, dưới trần 80 của trang tổng kết); `S01-01b` 58 âm tiết, trần 80 của trang mục tiêu; `S05-13` là bảng so sánh 53 âm tiết. Không trang nào quá sáu dòng hay có dòng quá 20 âm tiết. Không dùng `.dense` hay lớp thu chữ.
+
+### Bài tập có lời giải trên mặt trang
+
+Mỗi cụm khái niệm lớn có một bài tập có lời giải mẫu trên trang kế tiếp cùng tiêu đề; trang câu hỏi giữ "Câu hỏi:", ghi chú của nó chỉ còn mục đích và "Gợi ý:". Lời giải trên mặt trang lấy từ đáp án đã duyệt trong ghi chú cũ, không thêm kết quả mới.
+
+| Cụm | Trang câu hỏi | Trang lời giải | Loại | Đối chiếu `exercises.md` |
+|---|---|---|---|---|
+| LP | `S02-10` | `S02-11` | có lời giải mẫu | không trùng bài nào (Bài 3, 4 dùng dữ liệu khác) |
+| QP/QCQP | `S03-09` | `S03-10` | có lời giải mẫu | không trùng (Bài 8 xét giới hạn cứng với bán kính khác) |
+| GP | `S04-15` | `S04-16` | có lời giải mẫu | không trùng (Bài 9, 10 là bài tính) |
+| Hàm thay thế và nới lỏng | `S05-14` | `S05-15` | có lời giải mẫu | không trùng (Bài 11, 12 dùng cùng ví dụ nhưng câu hỏi khác) |
+| Tổng hợp | `S06-07` | `S06-07b` | có lời giải mẫu | câu 2 trùng dữ liệu Bài 14a: nghiệm $w=(1,1)$, $b=0$, hai hệ số khác 0, khớp lời giải Bài 14a |
+| Khung chứng nhận (mạch 1) | câu hỏi trong ghi chú `S01-06`–`S01-08` | không áp dụng | tự làm | ba ví dụ có lời giải đầy đủ trên mặt trang đóng vai bài mẫu |
+
+Cập nhật bước `bài tập` trong các bản đồ hành trình ở trên: LP `S02-10`–`S02-11`; QP/QCQP `S03-09`–`S03-10`; GP `S04-15`–`S04-16`; hàm thay thế và nới lỏng `S05-14`–`S05-15`; giới hạn số đặc trưng `S06-07`–`S06-07b`.
+
+### Sửa nhãn và câu trên các trang khác
+
+- `S01-06`, `S01-07`, `S01-08`: bỏ nhãn đậm "Tập khả thi:", "Hàm mục tiêu:", "Nghiệm:", "Cận dưới:" (ngoài danh sách cho phép); kết quả dùng "Kết luận:", ô cuối dùng "Diễn giải:".
+- `S02-09`: "Mục tiêu ban đầu: … — giảm sai số tệ nhất" thành câu "Bài toán gốc … làm nhỏ sai số lớn nhất".
+- `S03-02`, `S03-08`: bỏ nhãn "Chứng nhận:"; `S03-08` dùng "Giả thiết:".
+- `S04-03`: thêm nhãn "Định nghĩa." và "Ví dụ." (thay "Ví dụ:"), ví dụ đứng sau hai định nghĩa.
+- `S05-09`: nhãn thẻ bỏ chữ đậm và dấu hai chấm kiểu nhãn.
+- `S06-05`: "$\Rightarrow$ $F$ không lồi" thành "Kết luận: $F$ không lồi".
+- Mọi "Câu hỏi:" trên mặt trang viết đậm (`S02-04`, `S02-10`, `S03-04`, `S03-06`, `S03-09`, `S04-15`).
+- Ghi chú diễn giả: 23 câu mở đầu lấy trang làm chủ ngữ ("Trang này …", "Hai trang trước …", "Bảng trước …", "Ba năng lực trên trang …") được viết lại với đối tượng toán học làm chủ ngữ.
+
+### S05-03b và yêu cầu ngày 2026-09-17
+
+Trang được thêm theo yêu cầu người dùng 2026-09-17 với dải đích, ba thẻ trụ cột có dòng chốt và câu "Bản sắc AI". Quy định 2026-10-12 cấm khẩu hiệu và câu kết luận không phải mệnh đề toán học. Bản sửa giữ tiêu đề, giữ ba thành phần (cơ sở toán học, lựa chọn tính toán, kiểm chứng bằng dữ liệu) và dải đích dưới dạng "Nhu cầu:", nhưng mỗi thành phần nay là một điều kiện kiểm chứng trên ví dụ ngưỡng: $H$ lồi và $E\le H$; giải $\min_\theta H$ bằng LP; tính lại $E$ và đo lỗi trên tập kiểm tra độc lập. Lớp CSS `ai-philosophy` không còn được dùng.
+
+### Chưa xử lý trong đợt này
+
+- 45 ghi chú diễn giả dài hơn 250 âm tiết (mức `nhẹ`), phần lớn là chứng minh và lời giải; không rút trong đợt này.
+
+### Vòng sửa cuối theo hai báo cáo tái kiểm (2026-10-12)
+
+**Mã trang tiêu đề mạch.** Quyết định của điều phối viên: giữ `S02`–`S06`, không đổi thành `S02-00`–`S06-00`. Lý do: các mã này đã có từ trước đợt sửa, gắn với `id="mach-2"`–`mach-6` và với mọi hàng storyboard, nhật ký rà soát lịch sử; đổi mã chỉ tạo bất nhất truy nguyên mà không thêm thông tin.
+
+**Ngoại lệ tiêu đề trang ví dụ kéo dài nhiều trang.** Các trang `S02-04`, `S02-08`, `S03-04`, `S04-08`, `S04-09`, `S04-12`–`S04-14`, `S05-05`, `S05-10`–`S05-12` giữ tiêu đề hiện có thay vì "Ví dụ: <đối tượng>, <bước>". Lý do: (1) mỗi trang là một bước của quy trình chín bước (mô hình, biến đổi, nghiệm, chứng nhận) và mang kết quả hoặc chứng minh, không chỉ phép tính minh họa; tiêu đề đã gọi tên cả đối tượng và bước ("Nghiệm của bài toán pha trộn", "Biến đổi bài toán thiết kế hộp", "Nghiệm phân số của bài toán nới lỏng"); (2) `materials/lec-02/exercises.md` liên kết tới các trang này kèm đúng tiêu đề hiện có làm chữ liên kết, và học liệu nằm ngoài phạm vi đợt sửa. Ba trang `S01-06`–`S01-08` là ví dụ một trang nên giữ dạng "Ví dụ: …".
+
+**Bản đồ hành trình — ghi chú bổ sung.** Khung chung (phần 1): bước nhu cầu nằm ở ghi chú bìa và `S01-03`; hình thức (`S01-03`–`S01-04`) đứng trước ba ví dụ theo yêu cầu người dùng về thứ tự phần mở đầu; bước ứng dụng là việc dùng khung ở `S02-03`, `S03-03`, `S03-08`, `S04-07`, `S06-03`; mục tiêu học tập ở `S01-01b`. LP: trực quan "giao các nửa không gian và siêu phẳng" ở ô kết luận `S02-03` gộp cùng trang với hình thức; trực quan hình học (miền khả thi, đường đồng chi phí) ở `S02-04` là ngoại lệ thứ tự có lý do, vì cần mô hình đã chuẩn hóa để vẽ.
+
+**Chuẩn đầu ra.** Các hàng mới ghi "LLO3 buổi 2, CLO1" theo `lecture-note.md`; mục phần 2 cũ nhắc "CLO2 … CLO4". Chưa thống nhất vì cần đối chiếu đề cương DOCX; ghi là mục mở cho điều phối viên.
+
+**S06-08.** Bảng bốn hàng; hàng xấp xỉ ghi ba giả thiết $E(\theta)\le H(\theta)$ với mọi $\theta$, tập khả thi gốc nằm trong tập nới lỏng, phương án nguyên khả thi, bằng lời và ký hiệu đã có trên mặt trang trước ($E$, $H$, $\theta$ ở phần 5; $p^*$ ở `S05-12`; $f_i$, $g_j$ ở `S06-02`); không dùng $F$, $R$, $\hat x$ trên mặt trang để tránh trùng $R(w)$ và bán kính $R$ của phần 3.
