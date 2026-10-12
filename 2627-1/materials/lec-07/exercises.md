@@ -13,7 +13,7 @@ Bộ bài tập gồm mười ba bài theo bốn mạch nội dung của bài h�
 
 ## Hướng dẫn và ký hiệu
 
-Ký hiệu, giả thiết và số hiệu theo ghi chú bài giảng Bài 07. Biến quyết định là $x\in\mathbb R^n$; bất đẳng thức giữa hai véc-tơ hiểu theo từng thành phần. Mỗi mục tiêu ghi rõ cực đại hay cực tiểu. Tên nút của đồ thị viết chữ đứng ($\mathrm s$, $\mathrm A$, …) để phân biệt với ma trận $A$ và tập chỉ số cơ sở $B$. Số thập phân viết với dấu phẩy; khi một véc-tơ có thành phần thập phân, các thành phần cách nhau bằng dấu chấm phẩy, như $(1{,}6;\,1{,}2)$.
+Ký hiệu, giả thiết và số hiệu theo ghi chú bài giảng Bài 07. Biến quyết định là $x\in\mathbb R^n$; bất đẳng thức giữa hai vector hiểu theo từng thành phần. Mỗi mục tiêu ghi rõ cực đại hay cực tiểu. Tên nút của đồ thị viết chữ đứng ($\mathrm s$, $\mathrm A$, …) để phân biệt với ma trận $A$ và tập chỉ số cơ sở $B$. Số thập phân viết với dấu phẩy; khi một vector có thành phần thập phân, các thành phần cách nhau bằng dấu chấm phẩy, như $(1{,}6;\,1{,}2)$.
 
 Bài toán hộp hạt được dùng ở nhiều bài và được nêu lại trong từng bài dùng nó. Dữ kiện gốc: sản lượng hai loại hộp hạt là $x_1$, $x_2$ (nghìn hộp); mỗi nghìn hộp loại 1 và loại 2 đem lợi ích $2$ và $3$ đơn vị, dùng $1$ và $2$ giờ máy; hai loại dùng chung $54$ giờ máy; sản lượng tối đa của loại 1 là $30$, của loại 2 là $20$ nghìn hộp. Mô hình là cực đại $2x_1+3x_2$ dưới các ràng buộc
 
@@ -58,7 +58,7 @@ $$
 c=\begin{bmatrix}4\\5\end{bmatrix},\qquad A=\begin{bmatrix}2&1\\1&0\\0&1\end{bmatrix},\qquad b=\begin{bmatrix}14\\8\\6\end{bmatrix}.
 $$
 
-**Câu (d).** Phương án $(4,6)$ dùng $2\cdot4+6=14$ phút, đúng bằng ngân sách; $4\le8$ và $6\le6$. Vậy $(4,6)$ khả thi, với hai ràng buộc chặt là GPU và giới hạn luồng 2. Giá trị mục tiêu là $4\cdot4+5\cdot6=46$.
+**Câu (d).** Phương án $(4,6)$ dùng $2\cdot4+6=14$ phút, đúng bằng ngân sách; $4\le8$ và $6\le6$. Vậy $(4,6)$ khả thi, với hai ràng buộc hoạt động là GPU và giới hạn luồng 2. Giá trị mục tiêu là $4\cdot4+5\cdot6=46$.
 
 **Kiểm tra lại.** Ba lỗi thường gặp: đảo hệ số thành $x_1+2x_2\le14$, dùng $60$ phút thay cho ngân sách $14$ phút, và quên miền biến. Với $Ax$ tại $(4,6)$: $(14,4,6)\le(14,8,6)$. Câu hỏi chỉ yêu cầu kiểm tra khả thi; kết luận $(4,6)$ có tối ưu hay không cần công cụ của Mục 4 (Bài tập 07.6 làm việc đó trên một đa giác khác).
 :::
@@ -135,7 +135,7 @@ có hai hàng độc lập (hai cột cuối là $(-1,0)^T$ và $(0,1)^T$), nên
 Mức độ: nhận biết. LLO18; CLO1. Trùng trang chiếu [Bài tập: nghiệm cơ sở của bài toán hộp hạt](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/3/8) và [trang lời giải](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/3/9). Hai cơ sở của bài là hai dòng trong bảng mười cơ sở của Bài tập 07.4.
 
 ::: exercise Bài tập 07.13 (Nghiệm cơ sở của bài toán hộp hạt)
-Bài toán hộp hạt: cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$ (sản lượng tối đa, nghìn hộp), $x_1+2x_2\le54$ (giờ máy), $x_1,x_2\ge0$. Mỗi giới hạn nhận một biến phụ, cho hệ dạng chuẩn với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$:
+Bài toán hộp hạt: cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$ (sản lượng tối đa, nghìn hộp), $x_1+2x_2\le54$ (giờ máy), $x_1,x_2\ge0$. Mỗi giới hạn nhận một biến bù, cho hệ dạng chuẩn với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$:
 
 $$
 \begin{aligned}
@@ -215,7 +215,7 @@ Năm nghiệm cơ sở khả thi ứng đúng năm đỉnh, mỗi đỉnh một 
 
 **Câu (c).** Tập $\{x_1,s_1,s_3\}$ đặt $x_2=s_2=0$, tức hai đường song song $x_2=0$ và $x_2=20$; tập $\{x_2,s_2,s_3\}$ đặt $x_1=s_1=0$, tức hai đường song song $x_1=0$ và $x_1=30$. Về đại số, ở tập thứ nhất cả ba cột có hàng thứ hai bằng $0$.
 
-**Câu (d).** Không nghiệm nào suy biến: ở cả năm nghiệm cơ sở khả thi, ba biến cơ sở đều dương, chẳng hạn $(14,20,16)$ tại đỉnh $(14,20)$ và $(30,20,54)$ tại $(0,0)$. Về hình học, mỗi đỉnh của ngũ giác có đúng hai ràng buộc chặt.
+**Câu (d).** Không nghiệm nào suy biến: ở cả năm nghiệm cơ sở khả thi, ba biến cơ sở đều dương, chẳng hạn $(14,20,16)$ tại đỉnh $(14,20)$ và $(30,20,54)$ tại $(0,0)$. Về hình học, mỗi đỉnh của ngũ giác có đúng hai ràng buộc hoạt động.
 
 **Kiểm tra lại.** Tại $(14,20,16,0,0)$: $14+16=30$, $20+0=20$, $14+40+0=54$. Tại $(0,27,30,-7,0)$: $27-7=20$ và $54+0=54$.
 :::
@@ -246,7 +246,7 @@ Cho $P_2=\{x\in\mathbb R^2\mid -x_1+x_2\le1,\ x_1-x_2\le1\}$.
 - Cặp (1), (3): $x_1=0$, $x_2=1$; kiểm tra (2): $0-1=-1\le1$. Điểm $(0,1)$ là điểm cực biên.
 - Cặp (2), (3): $x_1=0$, $x_2=-1$; kiểm tra (1): $0-1=-1\le1$. Điểm $(0,-1)$ là điểm cực biên.
 
-**Kiểm tra lại.** Tại $(0,1)$: hàng (1) cho $-0+1=1$ và hàng (3) cho $0$, cả hai chặt; hai hàng $(-1,1)$, $(-1,0)$ độc lập. Tại $(0,-1)$: hàng (2) cho $0+1=1$, hàng (3) chặt; hai hàng $(1,-1)$, $(-1,0)$ độc lập.
+**Kiểm tra lại.** Tại $(0,1)$: hàng (1) cho $-0+1=1$ và hàng (3) cho $0$, cả hai hoạt động; hai hàng $(-1,1)$, $(-1,0)$ độc lập. Tại $(0,-1)$: hàng (2) cho $0+1=1$, hàng (3) hoạt động; hai hàng $(1,-1)$, $(-1,0)$ độc lập.
 :::
 
 ### Bài tập 07.6. Điểm cực biên và đỉnh kề trên một đa giác mới
@@ -258,17 +258,17 @@ Xét bài toán cực đại $x_1+x_2$ dưới $x_1+2x_2\le4$, $3x_1+x_2\le6$, $
 
 - (a) Vẽ miền khả thi và xác định bốn đỉnh bằng tiêu chuẩn hạng.
 - (b) Tính giá trị mục tiêu tại các đỉnh; xác định kết cục và nghiệm tối ưu.
-- (c) Từ $(0,0)$, viết một đường đi qua đỉnh kề có giá trị tăng nghiêm ngặt và nêu lý do dừng.
+- (c) Từ $(0,0)$, viết một đường đi qua đỉnh kề có giá trị tăng chặt và nêu lý do dừng.
 - (d) Nêu định lý bảo đảm có điểm cực biên tối ưu và kiểm tra từng giả thiết.
-- (e) Viết dạng chuẩn với biến phụ $s_1$, $s_2$; tại $(1{,}6;\,1{,}2)$ với cơ sở $\{x_1,x_2\}$, tính hai chi phí rút gọn $\bar c_{s_1}$, $\bar c_{s_2}$ theo (4.1)–(4.2) và kết luận bằng Mệnh đề 07.31.
+- (e) Viết dạng chuẩn với biến bù $s_1$, $s_2$; tại $(1{,}6;\,1{,}2)$ với cơ sở $\{x_1,x_2\}$, tính hai chi phí rút gọn $\bar c_{s_1}$, $\bar c_{s_2}$ theo (4.1)–(4.2) và kết luận bằng Mệnh đề 07.31.
 :::
 
 ::: hint Gợi ý Bài tập 07.6
-Đường $x_1+2x_2=4$ cắt hai trục tại $(4,0)$, $(0,2)$; đường $3x_1+x_2=6$ cắt hai trục tại $(2,0)$, $(0,6)$. Trên mỗi trục, ràng buộc chặt hơn cho đỉnh.
+Đường $x_1+2x_2=4$ cắt hai trục tại $(4,0)$, $(0,2)$; đường $3x_1+x_2=6$ cắt hai trục tại $(2,0)$, $(0,6)$. Trên mỗi trục, ràng buộc hạn chế hơn cho đỉnh.
 :::
 
 ::: solution Lời giải Bài tập 07.6
-**Câu (a).** Trên trục $x_1$, ràng buộc thứ hai chặt hơn, cho đỉnh $(2,0)$; trên trục $x_2$, ràng buộc thứ nhất chặt hơn, cho đỉnh $(0,2)$. Giao của hai đường chéo: từ $x_2=6-3x_1$ và $x_1+2(6-3x_1)=4$ được $5x_1=8$, tức $x_1=1{,}6$ và $x_2=1{,}2$. Bốn đỉnh là $(0,0)$, $(2,0)$, $(1{,}6;\,1{,}2)$, $(0,2)$, mỗi đỉnh có hai hàng chặt độc lập.
+**Câu (a).** Trên trục $x_1$, ràng buộc thứ hai hạn chế hơn, cho đỉnh $(2,0)$; trên trục $x_2$, ràng buộc thứ nhất hạn chế hơn, cho đỉnh $(0,2)$. Giao của hai đường chéo: từ $x_2=6-3x_1$ và $x_1+2(6-3x_1)=4$ được $5x_1=8$, tức $x_1=1{,}6$ và $x_2=1{,}2$. Bốn đỉnh là $(0,0)$, $(2,0)$, $(1{,}6;\,1{,}2)$, $(0,2)$, mỗi đỉnh có hai hàng hoạt động độc lập.
 
 **Câu (b).** Giá trị lần lượt $0$, $2$, $2{,}8$, $2$. Miền bị chặn và khác rỗng, nên theo Hệ quả 07.24, $z^*=2{,}8$ tại $(1{,}6;\,1{,}2)$. Kết cục là tối ưu duy nhất: với $\mu_1=\tfrac25$, $\mu_2=\tfrac15$ giải từ $\mu_1+3\mu_2=1$, $2\mu_1+\mu_2=1$,
 
@@ -280,7 +280,7 @@ x_1+x_2&=\tfrac25(x_1+2x_2)+\tfrac15(3x_1+x_2)\\
 \end{aligned}
 $$
 
-và dấu bằng chỉ khi cả hai ràng buộc chéo chặt, tức chỉ tại $(1{,}6;\,1{,}2)$.
+và dấu bằng chỉ khi cả hai ràng buộc chéo hoạt động, tức chỉ tại $(1{,}6;\,1{,}2)$.
 
 **Câu (c).** Đường $(0,0)\to(2,0)\to(1{,}6;\,1{,}2)$ với giá trị $0\to2\to2{,}8$; mỗi đoạn là một cạnh. Tại $(1{,}6;\,1{,}2)$, hai đỉnh kề $(2,0)$ và $(0,2)$ đều cho $2<2{,}8$, nên thuật toán dừng. Đường qua $(0,2)$ cũng hợp lệ.
 
@@ -312,7 +312,7 @@ Miền khả thi $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$, với năm đ
 :::
 
 ::: hint Gợi ý Bài tập 07.7
-So sánh véc-tơ $(2,4)$ với hàng $(1,2)$ của ràng buộc giờ máy. Ở câu (c), tiêu chuẩn dừng dùng so sánh nghiêm ngặt.
+So sánh vector $(2,4)$ với hàng $(1,2)$ của ràng buộc giờ máy. Ở câu (c), tiêu chuẩn dừng dùng bất đẳng thức chặt.
 :::
 
 ::: solution Lời giải Bài tập 07.7
@@ -322,10 +322,10 @@ So sánh véc-tơ $(2,4)$ với hàng $(1,2)$ của ràng buộc giờ máy. Ở
 
 **Câu (c).**
 
-- Đường thứ nhất: $(0,0)\to(30,0)\to(30,12)$ với $z$: $0\to60\to108$. Tại $(30,12)$, đỉnh kề $(14,20)$ cũng cho $108$, không lớn hơn nghiêm ngặt, nên thuật toán dừng tại $(30,12)$.
-- Đường thứ hai: $(0,0)\to(0,20)\to(14,20)$ với $z$: $0\to80\to108$. Tại $(14,20)$, đỉnh kề $(30,12)$ không có giá trị lớn hơn nghiêm ngặt, nên thuật toán dừng tại $(14,20)$.
+- Đường thứ nhất: $(0,0)\to(30,0)\to(30,12)$ với $z$: $0\to60\to108$. Tại $(30,12)$, đỉnh kề $(14,20)$ cũng cho $108$, không lớn hơn chặt, nên thuật toán dừng tại $(30,12)$.
+- Đường thứ hai: $(0,0)\to(0,20)\to(14,20)$ với $z$: $0\to80\to108$. Tại $(14,20)$, đỉnh kề $(30,12)$ không có giá trị lớn hơn chặt, nên thuật toán dừng tại $(14,20)$.
 
-Hai đỉnh dừng khác nhau cho cùng giá trị tối ưu. Thuật toán trả về một điểm cực biên tối ưu, không trả về cả cạnh; so sánh nghiêm ngặt ngăn thuật toán dao động giữa hai đỉnh cùng giá trị $108$.
+Hai đỉnh dừng khác nhau cho cùng giá trị tối ưu. Thuật toán trả về một điểm cực biên tối ưu, không trả về cả cạnh; bất đẳng thức chặt ngăn thuật toán dao động giữa hai đỉnh cùng giá trị $108$.
 
 **Kiểm tra lại.** Trung điểm $(22,16)$ của cạnh tối ưu: $22+32=54$, $z=44+64=108$, và $16\le20$.
 :::
@@ -335,7 +335,7 @@ Hai đỉnh dừng khác nhau cho cùng giá trị tối ưu. Thuật toán tr�
 Mức độ: nhận biết (câu (a)–(c)) và tính toán (câu (d)), vận dụng vào AI. LLO18; CLO1. Bài dùng Định lý 07.15, Hệ quả 07.16 và Hệ quả 07.24.
 
 ::: exercise Bài tập 07.14 (Trọng số trộn dữ liệu và điểm cực biên)
-Một nhóm huấn luyện mô hình ngôn ngữ trộn ba nguồn dữ liệu: nguồn 1 là văn bản web đã lọc, nguồn 2 là sách và bài báo khoa học, nguồn 3 là dữ liệu tổng hợp do một mô hình khác sinh ra. Trọng số $p_j$ là tỉ lệ của nguồn $j$ trong tập huấn luyện, với $p_j\ge0$ và $p_1+p_2+p_3=1$. Dữ liệu tổng hợp chiếm không quá $0{,}2$, tức $p_3\le0{,}2$. Thêm biến phụ $s\ge0$ cho giới hạn này, được hệ dạng chuẩn với biến $(p_1,p_2,p_3,s)$:
+Một nhóm huấn luyện mô hình ngôn ngữ trộn ba nguồn dữ liệu: nguồn 1 là văn bản web đã lọc, nguồn 2 là sách và bài báo khoa học, nguồn 3 là dữ liệu tổng hợp do một mô hình khác sinh ra. Trọng số $p_j$ là tỉ lệ của nguồn $j$ trong tập huấn luyện, với $p_j\ge0$ và $p_1+p_2+p_3=1$. Dữ liệu tổng hợp chiếm không quá $0{,}2$, tức $p_3\le0{,}2$. Thêm biến bù $s\ge0$ cho giới hạn này, được hệ dạng chuẩn với biến $(p_1,p_2,p_3,s)$:
 
 $$
 \begin{aligned}
@@ -352,7 +352,7 @@ $$
 :::
 
 ::: hint Gợi ý Bài tập 07.14
-Cột của $A$ là $A_1=A_2=(1,0)^T$, $A_3=(1,1)^T$, $A_4=(0,1)^T$. Ở (b), ba véc-tơ trong $\mathbb R^2$ luôn phụ thuộc tuyến tính. Ở (d), có $\binom42=6$ cách chọn cơ sở.
+Cột của $A$ là $A_1=A_2=(1,0)^T$, $A_3=(1,1)^T$, $A_4=(0,1)^T$. Ở (b), ba vector trong $\mathbb R^2$ luôn phụ thuộc tuyến tính. Ở (d), có $\binom42=6$ cách chọn cơ sở.
 :::
 
 ::: solution Lời giải Bài tập 07.14
@@ -385,7 +385,7 @@ với $m=2$ phương trình và $n=4$ biến. Hai cột $A_3=(1,1)^T$ và $A_4=(
 
 Giả thiết của Hệ quả 07.24 thỏa: bài toán ở dạng chuẩn với $\operatorname{rank}(A)=2$, khả thi (chứa $q^{(1)}$), và bị chặn vì $0\le p_j\le1$, $0\le s\le0{,}2$, nên giá trị tối ưu hữu hạn. Do đó $z^*=4{,}4$, đạt tại $p=(0;\,0{,}8;\,0{,}2)$: dùng hết giới hạn dữ liệu tổng hợp, phần còn lại dành cho nguồn 2, không dùng nguồn 1.
 
-Kết luận này phụ thuộc giả thiết điểm đánh giá tuyến tính theo trọng số. Khi lợi ích của mỗi nguồn giảm dần theo tỉ lệ của nó, mục tiêu không còn tuyến tính và Hệ quả 07.24 không áp dụng. Nghiệm tối ưu có hai thành phần dương, bằng $m$, đúng với Hệ quả 07.16; với $100$ nguồn và cùng hai phương trình, một nghiệm đỉnh vẫn có nhiều nhất hai thành phần dương, tính cả biến phụ.
+Kết luận này phụ thuộc giả thiết điểm đánh giá tuyến tính theo trọng số. Khi lợi ích của mỗi nguồn giảm dần theo tỉ lệ của nó, mục tiêu không còn tuyến tính và Hệ quả 07.24 không áp dụng. Nghiệm tối ưu có hai thành phần dương, bằng $m$, đúng với Hệ quả 07.16; với $100$ nguồn và cùng hai phương trình, một nghiệm đỉnh vẫn có nhiều nhất hai thành phần dương, tính cả biến bù.
 
 **Kiểm tra lại.** Cận trực tiếp: $3p_1+4p_2+6p_3\le4(p_1+p_2+p_3)+2p_3\le4+2\cdot0{,}2=4{,}4$, dùng $3p_1\le4p_1$ và $p_3\le0{,}2$. Dấu bằng cần $p_1=0$ và $p_3=0{,}2$, tức đúng điểm $(0;\,0{,}8;\,0{,}2)$.
 :::
@@ -404,7 +404,7 @@ Một nhóm chuẩn bị dữ liệu huấn luyện cho một mô hình phân lo
 | Số giờ tối đa | $8$ | $12$ | |
 
 - (a) Nêu biến quyết định và đơn vị, hàm mục tiêu, các ràng buộc và miền biến; viết bài toán ở dạng (1.1) với $c$, $A$, $b$ cụ thể.
-- (b) Xác định năm đỉnh của miền khả thi bằng tiêu chuẩn hạng của Định lý 07.13, nêu các ràng buộc chặt tại mỗi đỉnh, và tính số nhãn dùng được tại mỗi đỉnh.
+- (b) Xác định năm đỉnh của miền khả thi bằng tiêu chuẩn hạng của Định lý 07.13, nêu các ràng buộc hoạt động tại mỗi đỉnh, và tính số nhãn dùng được tại mỗi đỉnh.
 - (c) Tìm các hệ số không âm như ở Ví dụ 07.5 để chứng minh một cận trên của số nhãn; chứng minh nghiệm tối ưu là duy nhất.
 - (d) Ngân sách tăng từ $40$ lên $42$. Dùng cùng các hệ số để tính cận trên mới, rồi tìm điểm khả thi đạt cận đó.
 :::
@@ -428,7 +428,7 @@ $$
 
 **Câu (b).** Miền có năm đường biên: $4x_1+2x_2=40$, $x_1=8$, $x_2=12$, $x_1=0$, $x_2=0$. Trong mười cặp đường, hai cặp song song ($x_1=0$ với $x_1=8$, $x_2=0$ với $x_2=12$). Tám cặp còn lại có hai hàng độc lập, nên mỗi cặp cho đúng một giao điểm; theo Định lý 07.13, giao điểm là đỉnh khi và chỉ khi nó khả thi.
 
-| Đỉnh | Ràng buộc chặt | Số nhãn $40x_1+50x_2$ |
+| Đỉnh | Ràng buộc hoạt động | Số nhãn $40x_1+50x_2$ |
 |---|---|---:|
 | $(0,0)$ | $x_1=0$, $x_2=0$ | $0$ |
 | $(8,0)$ | $x_1=8$, $x_2=0$ | $320$ |
@@ -455,7 +455,7 @@ $$
 
 Vì $\mu_1>0$ và $\mu_3>0$, dấu bằng xảy ra khi và chỉ khi $4x_1+2x_2=40$ và $x_2=12$, tức $x=(4,12)$. Điểm này khả thi ($4\le8$), nên nó là nghiệm tối ưu duy nhất với $z^*=760$: thuê $4$ giờ chuyên gia và $12$ giờ cộng tác viên.
 
-**Câu (d).** Các hệ số $\mu_1=10$, $\mu_3=30$ chỉ phụ thuộc $c$ và các hàng của $A$, nên vẫn dùng được. Cận mới là $10\cdot42+30\cdot12=780$. Dấu bằng cần $4x_1+2x_2=42$ và $x_2=12$, tức $x_1=4{,}5\le8$; điểm $(4{,}5;\,12)$ khả thi và cho $40\cdot4{,}5+50\cdot12=180+600=780$. Vậy mỗi trăm nghìn đồng ngân sách thêm cho $\mu_1=10$ nhãn dùng được, chừng nào giao điểm của hai ràng buộc chặt còn khả thi, tức $0\le x_1=\tfrac{\beta-24}4\le8$ với ngân sách $\beta$, hay $24\le\beta\le56$.
+**Câu (d).** Các hệ số $\mu_1=10$, $\mu_3=30$ chỉ phụ thuộc $c$ và các hàng của $A$, nên vẫn dùng được. Cận mới là $10\cdot42+30\cdot12=780$. Dấu bằng cần $4x_1+2x_2=42$ và $x_2=12$, tức $x_1=4{,}5\le8$; điểm $(4{,}5;\,12)$ khả thi và cho $40\cdot4{,}5+50\cdot12=180+600=780$. Vậy mỗi trăm nghìn đồng ngân sách thêm cho $\mu_1=10$ nhãn dùng được, chừng nào giao điểm của hai ràng buộc hoạt động còn khả thi, tức $0\le x_1=\tfrac{\beta-24}4\le8$ với ngân sách $\beta$, hay $24\le\beta\le56$.
 
 **Kiểm tra lại.** Tại $(4,12)$: $16+24=40$, $4\le8$, $12\le12$. Hệ số $\mu_3=30$ cũng đo giá trị của năng lực kiểm duyệt: nâng giới hạn lên $x_2\le13$ cho giao điểm $4x_1=40-26$, tức $x_1=3{,}5$, và số nhãn $140+650=790=760+30$. Trong bài toán này, nâng năng lực kiểm duyệt thêm một giờ cộng tác viên đem lại $30$ nhãn, bằng mức tăng do ba trăm nghìn đồng ngân sách thêm.
 :::
@@ -629,7 +629,7 @@ $$
 
 Điều khiển đạt cực tiểu tại $(\mathrm F,2)$, $(\mathrm E,2)$, $(\mathrm s,3)$ lần lượt là $\mathrm G$, $\mathrm G$, $\mathrm E$. Lượt xuôi: $(\mathrm s,3)\to(\mathrm E,2)\to(\mathrm G,1)\to(\mathrm t,0)$, tức đường $\mathrm s\to\mathrm E\to\mathrm G\to\mathrm t$ với thời gian $1+6+2=9$ giây. Tại $\mathrm E$, lựa chọn đổi từ $\mathrm F$ ở (a) sang $\mathrm G$: chính sách phụ thuộc cả số hành động còn lại. Với $k=3-r$, cặp $(v,r)$ là nút $v$ ở giai đoạn $k$ của một bài toán ba giai đoạn theo Định nghĩa 07.35, khi thêm tại $\mathrm t$ một điều khiển ở lại với thời gian $0$ và bỏ khỏi $X_k$ các nút không còn tới được đích. Số trạng thái tăng từ $5$ lên nhiều nhất $5\cdot4=20$. Trong học tăng cường với chân trời hữu hạn, hàm giá trị vì vậy được đánh chỉ số theo số bước còn lại, như $J(v,r)$ ở đây.
 
-**Câu (d).** Giả thiết tất định không còn thỏa: một hành động không dẫn tới đúng một trạng thái kế. Vế phải của phương trình Bellman lấy kỳ vọng theo trạng thái kế, $J(v)=\min_u\{g(v,u)+\mathbb E[J(w)]\}$, với $w$ là trạng thái kế ngẫu nhiên khi chọn $u$ tại $v$ (MIT 15.093J, bài giảng 16, trang 9; Sutton và Barto 2018, chương 3–4).
+**Câu (d).** Giả thiết tất định không còn thỏa: một hành động không dẫn tới đúng một trạng thái kế tiếp. Vế phải của phương trình Bellman lấy kỳ vọng theo trạng thái kế tiếp, $J(v)=\min_u\{g(v,u)+\mathbb E[J(w)]\}$, với $w$ là trạng thái kế tiếp ngẫu nhiên khi chọn $u$ tại $v$ (MIT 15.093J, bài giảng 16, trang 9; Sutton và Barto 2018, chương 3–4).
 
 **Kiểm tra lại.** Trong bảng ở (b), các đường dùng không quá ba hành động có thời gian $10$, $9$, $10$, $12$; nhỏ nhất là $9$ tại $\mathrm s\to\mathrm E\to\mathrm G\to\mathrm t$, khớp $J(\mathrm s,3)$.
 :::

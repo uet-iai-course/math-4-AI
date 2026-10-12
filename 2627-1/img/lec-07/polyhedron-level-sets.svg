@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 30 720 470" role="img" aria-labelledby="title desc">
   <title id="title">Miền khả thi và đường mức của bài toán hộp hạt</title>
-  <desc id="desc">Đa giác khả thi có năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Đường mức nét đứt z bằng 60 đi qua hai đỉnh (30,0) và (0,20). Đường mức song song z bằng 96 chỉ có điểm chung với miền tại đỉnh (30,12). Mũi tên chỉ hướng tăng z theo véc-tơ (2,3).</desc>
+  <desc id="desc">Đa giác khả thi có năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Đường mức nét đứt z bằng 60 đi qua hai đỉnh (30,0) và (0,20). Đường mức song song z bằng 96 chỉ có điểm chung với miền tại đỉnh (30,12). Mũi tên chỉ hướng tăng z theo vector (2,3).</desc>
   <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0L9 4L0 8Z" fill="#b15a2b"/></marker></defs>
   <rect x="0" y="30" width="720" height="470" fill="#fff"/>
   <line x1="60" y1="450" x2="680" y2="450" stroke="#222" stroke-width="3"/>

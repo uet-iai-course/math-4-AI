@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 350" role="img" aria-labelledby="title desc">
-  <title id="title">Một véc-tơ quyết định: miền khả thi có vô số điểm và năm đỉnh</title>
+  <title id="title">Một vector quyết định: miền khả thi có vô số điểm và năm đỉnh</title>
   <desc id="desc">Miền khả thi của một quy hoạch tuyến tính hai biến, tô kín, chứa vô số điểm khả thi; năm đỉnh của miền được đánh dấu.</desc>
   <rect width="420" height="350" fill="#fff"/>
-  <text x="210" y="34" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="700" fill="#2f3e7a">Một véc-tơ quyết định</text>
+  <text x="210" y="34" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="700" fill="#2f3e7a">Một vector quyết định</text>
   <line x1="30" y1="300" x2="360" y2="300" stroke="#222" stroke-width="3"/>
   <line x1="30" y1="300" x2="30" y2="62" stroke="#222" stroke-width="3"/>
   <path d="M30 300L290 300L290 180L150 100L30 100Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="4"/>

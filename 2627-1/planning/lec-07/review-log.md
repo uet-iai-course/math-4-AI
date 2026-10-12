@@ -477,3 +477,50 @@ Tác tử soạn học liệu: general-purpose, claude-opus-5-5, effort high (th
 - **Điểm cần master quyết định.** (1) AGENTS.md mục "Cấu trúc bắt buộc của một chương" ghi "hai tệp không lặp đề bài", còn brief yêu cầu chép 07.1–07.9; tệp làm theo brief. (2) Ghi chú bài giảng, mục "Bài tập củng cố", còn câu "Bài 07 không có tệp bài tập riêng", nay không còn đúng. (3) Ghi chú diễn giả trang C10 ký hiệu hai hệ số nhân là $\lambda_1,\lambda_2$, ghi chú bài giảng dùng $\mu_1,\mu_2$ ($\lambda$ trong bảng ký hiệu là hệ số tổ hợp lồi); tệp bài tập theo ghi chú. (4) Mô tả Bài 07 trong `index.html` còn chữ "điểm cực" thay vì "điểm cực biên".
 
 Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.
+
+## Đợt rà soát thuật ngữ và thứ tự định nghĩa 2026-10-12
+
+- **Tác tử rà soát:** general-purpose, claude-opus-5-5, effort high (chỉ đọc; báo cáo `report-07.md`, 21 phát hiện bảng A, 7 phát hiện bảng B).
+- **Tác tử biên tập:** general-purpose, claude-opus-5-5, effort high; nạp `no-ai-slop` chế độ Edit, tự kiểm theo `eval.md`. Áp dụng `decisions-common.md` rồi `decisions-07.md` của điều phối viên. Không commit, không chạy `sync-local-materials.py`.
+- **Phạm vi đã sửa:** deck, `storyboard.md` (40 mục có dòng “Sửa (2026-10-12, thuật ngữ)”), `outline.md` (“Thuật toán ở mức khái niệm”), năm SVG trong `img/lec-07/` (`central-problem-lp.svg`, `polyhedron-level-sets.svg`, `lp-four-statuses.svg`, `lp-dp-decision-map.svg`: “vector”; `standard-form-basis.svg`: “biến bù”), `materials/lec-07/lecture-note.md` và `exercises.md`. Không thêm trang, không đổi số mạch, trang “Nội dung” và `#/N` giữ nguyên (53 trang).
+
+| mức độ | trang | vấn đề | quyết định điều phối viên | trạng thái | cách sửa |
+|---|---|---|---|---|---|
+| nghiêm trọng | B06 | “ma trận cột $A_B$” sai nghĩa | chấp nhận (A1) | đã sửa | “ma trận con $A_B$ (gồm các cột $A_j$, $j\in B$)”; 44 → 56 âm tiết cùng mục B3 |
+| trung bình | B02 | “còn chạm miền” | chấp nhận (A2) | đã sửa | “còn có điểm chung với miền”; 39 → 42 |
+| trung bình | A05, A05b | tên tự đặt “Dạng thường dùng” | chấp nhận (A3) | đã sửa | “Dạng ma trận” trên hai trang và storyboard |
+| trung bình | B01, B04, B05, C09, P01, A05b (ghi chú) | slack gọi là “biến phụ”, trùng tên với $t_i$ | chấp nhận (A4) | đã sửa | “biến bù (slack variable)”; $t_i$ giữ “biến phụ”, surplus giữ “biến dư”; học liệu đổi 30 chỗ “biến phụ” (nghĩa slack) thành “biến bù” |
+| trung bình | A09, B05; ghi chú C02, C03, C05b, C07, C07b, C10 | “ràng buộc chặt” cho nghĩa active | chấp nhận (A5) | đã sửa | “ràng buộc hoạt động (active constraint)”; học liệu: Định nghĩa 07.12 đổi tên “Ràng buộc hoạt động”, 79 chỗ “chặt” nghĩa active đổi theo, “chặt hơn” (nghĩa hạn chế hơn) thành “hạn chế hơn” |
+| trung bình | D05b | “cỡ $Nq^2$”, “cỡ $80$”, “nối đủ” | chấp nhận (A6) | đã sửa | “$O(Nq^2)$”, “khoảng $80$”, “nối đầy đủ”; ghi chú “tổng là $Nq^2$, tức bậc $O(Nq^2)$” |
+| trung bình | D04b | “chi phí trả ngay” | chấp nhận (A7) | đã sửa | “chi phí giai đoạn $k$”; tên “chi phí giai đoạn (stage cost)” đặt ở D04 (mặt trang và ghi chú); học liệu “chi phí giai đoạn hiện tại” |
+| trung bình | D05, D06 | “đạt min” | chấp nhận (A8) | đã sửa | “đạt giá trị nhỏ nhất”; D05 38 → 47, D06 44 → 47 |
+| nhẹ | D05, D06, D06b | bốn tên cho hai lượt | chấp nhận (A9) | đã sửa | D05 bước 2 “Lượt ngược (backward pass):”, bước 3 “Lượt xuôi (forward pass):”; ghi chú D05 “giải ngược (backward induction)” |
+| nhẹ | D04 | “trạng thái kế” | chấp nhận (A10) | đã sửa | “trạng thái kế tiếp”; học liệu đổi 7 chỗ |
+| nhẹ | D01b | “tình huống” và “trạng thái” xen kẽ | chấp nhận (A11) | đã sửa | bảng “chi phí tối ưu còn lại theo trạng thái”; ghi chú dùng “trạng thái”; 54 → 56 |
+| nhẹ | P01, D01b, alt P03, ghi chú | “véc-tơ” lệch quy ước | chấp nhận (A12) | đã sửa | “vector” 17 chỗ trong deck, nhãn và title SVG, 43 chỗ trong học liệu |
+| nhẹ | C08, C10, C11b; ghi chú C07, C11 | “nghiêm ngặt” | chấp nhận (A13) | đã sửa | “tăng chặt”, “lớn hơn chặt”, “bất đẳng thức chặt”; học liệu giữ duy nhất cụm “(còn gọi là lồi nghiêm ngặt)” |
+| nhẹ | P00 (ghi chú) | KKT chưa viết đầy đủ | chấp nhận (A14) | đã sửa | “điều kiện Karush–Kuhn–Tucker (KKT)” |
+| nhẹ | P00 (ghi chú) | thiếu “simplex method” | chấp nhận (A15) | đã sửa | “Phương pháp đơn hình (simplex method)” |
+| nhẹ | C07c (ghi chú) | “nón tiếp xúc” | chấp nhận (A16) | đã sửa | “nón tiếp tuyến (tangent cone)”; storyboard theo |
+| nhẹ | A05b, A08, D04 (ghi chú) | từ “khuôn” | chấp nhận (A17) | đã sửa | “dạng ma trận”, “cùng cấu trúc”, “cấu trúc chung”; storyboard theo |
+| nhẹ | P00, C08, Z02 (ghi chú) | “ở mức ý niệm” | chấp nhận (A18) | đã sửa | “ở mức khái niệm”; outline và học liệu (4 chỗ) theo |
+| nhẹ | A02, B06, D02, D03, D04 | thiếu tiếng Anh lần đầu | chấp nhận (A19) | đã sửa | ghi chú: decision variable, basic solution, subproblem, layered graph, control, stage cost, terminal cost |
+| nhẹ | B04 (ghi chú) | tên “dạng chính tắc” của giáo trình tiếng Việt | chấp nhận (A20) | đã sửa | ghi chú B04 nêu tên này, mặt trang giữ “dạng chuẩn” |
+| nhẹ | D02, D03, D04 | trùng chữ $s,B$; $u$ và $u_k$ | chấp nhận (A21) | đã sửa | ghi chú D02, D03 nói rõ $s,A,B,C,D,t$ là tên nút; D04 viết $u_k\in U_k(x_k)$, $f_k(x_k,u_k)$, $g_k(x_k,u_k)$ |
+| trung bình | B03 | nửa không gian chưa viết rõ | chấp nhận (B1) | đã sửa | “các nửa không gian $\{x:a_i^Tx\le b_i\}$, $i=1,\ldots,m$”; 53 âm tiết, không đổi |
+| trung bình | A09 | ràng buộc hoạt động không định nghĩa trên mặt trang | chấp nhận (B2) | đã sửa | “hai ràng buộc hoạt động (thỏa với dấu bằng)”; ghi chú thêm “Nhắc lại:” theo Bài 03–04; 25 → 30 |
+| trung bình | B06 | “cơ sở”, “biến cơ sở” chưa được đặt tên | chấp nhận (B3) | đã sửa | dòng “$B$ gọi là cơ sở (basis); $x_j$, $j\in B$, là biến cơ sở.”; dòng “Trực quan.” giữ trên mặt trang vì trang còn dưới trần (56 âm tiết) |
+| trung bình | C07b | định nghĩa kề dựa vào “mặt một chiều” | chấp nhận (B4) | đã sửa | “Trong đa diện $P\subset\mathbb R^n$, hai điểm cực biên khác nhau kề nhau nếu chúng có chung $n-1$ ràng buộc hoạt động độc lập tuyến tính” (Bertsimas và Tsitsiklis, §2.2, định nghĩa nghiệm cơ sở kề nhau, ghi trong nguồn của ghi chú); ghi chú: cạnh là hình ảnh hình học, ví dụ $n=2$, ở dạng chuẩn tính cả $m$ phương trình; 49 → 55 |
+| trung bình | D04 | chưa nêu đại lượng cần cực tiểu | chấp nhận (B5) | đã sửa | gạch thứ ba thêm “mục tiêu $\min\sum_{k=0}^{N-1}g_k(x_k,u_k)+g_N(x_N)$ (chi phí cộng)”; 51 → 59, 5 dòng |
+| nhẹ | A05b | giả thiết tỉ lệ, cộng tính chỉ có trong ghi chú | chấp nhận (B6) | đã sửa | “Lưu ý: tuyến tính gồm tỉ lệ (gấp đôi sản lượng, gấp đôi lợi ích) và cộng tính.”; ghi chú đọc hai giả thiết trên dữ kiện; 25 → 43 |
+| nhẹ | C03, B06 | $A_j$ chưa khai báo | chấp nhận (B7, giải quyết bởi A1) | đã sửa | B06 khai báo “các cột $A_j$, $j\in B$” |
+| nhẹ | B02 | “(level set)” | quyết định liên bài 6 | đã sửa | “(level curve)” |
+| nhẹ | A03, Z01b (ghi chú) | nhãn “Đáp án” | quyết định liên bài 13 | đã sửa | “Lời giải:”; Z01b đánh (1)–(3) |
+
+Ghi chú biên tập: (1) Ghi chú bài giảng gọi $t_i$ của hồi quy $L_1$ là “biến chặn”, deck A07 gọi là “biến phụ” theo quyết định A4; hai tên chưa thống nhất, để điều phối viên quyết định. (2) Câu C10 ghi chú “ràng buộc thứ hai chặt hơn” (nghĩa hạn chế hơn) đổi thành “hạn chế hơn” để “chặt” chỉ còn nghĩa strict.
+
+**Kiểm tra.** `grep` trong deck: “véc-tơ”, “nghiêm ngặt”, “ý niệm”, “khuôn”, “tiếp xúc”, “chạm”, “cỡ”, “tình huống”, “thường dùng”, “ma trận cột”, “Đáp án”, “level set” đều 0; “chặt” còn 9 chỗ, đều nghĩa strict (tăng chặt, lớn hơn chặt, bất đẳng thức chặt); “biến phụ” còn 4 chỗ, đều chỉ $t_i$ hoặc liệt kê ba loại biến ở P01. Học liệu: “véc-tơ” 0, “nghiêm ngặt” chỉ còn “(còn gọi là lồi nghiêm ngặt)”, “ý niệm” 0. `deckcheck.py` cho P01, P03, A05, A05b, A09, B02–B06, C07b, C08, C10, C11b, D01b, D04, D04b, D05, D05b, D06: `errors: none`, không FLAG; ảnh 1600×900 (tắt chuyển cảnh) đã xem cho A05b, A09, B02, B03, B06, C07b, D04, D05, D05b, nội dung thấp nhất ≤ 805 px; ảnh 390×844 đã xem cho B06 và D04 (cuộn tới cuối). `git diff --check` sạch.
+
+Quyết định bổ sung của điều phối viên (2026-10-12): $t_i$ của hồi quy $L_1$ gọi là “biến phụ (auxiliary variable)”, thống nhất với deck A07 và Bài 02. Tác tử biên tập đổi cả 8 chỗ “biến chặn” trong `materials/lec-07/lecture-note.md` thành “biến phụ” (dòng 30, 56, 274 có thêm “(auxiliary variable)” ở lần giới thiệu, 297 hai chỗ, 302, 345, 553); cả 8 chỗ cùng nghĩa biến chặn trên trị tuyệt đối, kể cả dòng 30 tóm tắt Bổ đề 02.14, nên không giữ chỗ nào. `exercises.md` không có “biến chặn”.
+
+**Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-07 và decisions-common; kiểm định nghĩa kề ở C07b (hai điểm cực biên chung n−1 ràng buộc hoạt động độc lập tuyến tính, Bertsimas–Tsitsiklis); kiểm 79 chỗ thay 'chặt' trong học liệu không chạm 'lồi chặt'/'tăng chặt'; tự chạy deckcheck trên A05b, A09, B02, B06, C07b, D04, D05, D06: 0 lỗi, 0 FLAG; xem ảnh B06, C07b ở 1600×900. Quyết định bổ sung: t_i gọi là 'biến phụ' (8 chỗ 'biến chặn' trong ghi chú đã đổi). Gói học liệu cục bộ đồng bộ ở commit cuối đợt.
