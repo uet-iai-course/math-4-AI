@@ -6,6 +6,20 @@
 
 Căn cứ: KKT thực tế trong [Bài 03](../../lecture-03-doi-ngau-lagrange.html), bản Bài 04 trước sửa, đề cương DOCX chính thức và các mục nguồn nêu dưới. Đợt biên tập ngày 2026-09-26 dùng các tác tử GPT-6-Astra native theo chỉ định của người dùng; không gọi OpenRouter, script cầu nối hoặc đọc tệp môi trường và bí mật. Quyền và quy trình OpenRouter trong các mục lịch sử không áp dụng cho đợt này.
 
+**Cập nhật ngày 2026-10-12 (văn phong và mật độ mặt trang chiếu):** deck có **75 trang trong 7 mạch**; luận đề, thứ tự mạch, dữ kiện và kết quả toán học không đổi. Danh sách mạch (số và tên trùng trang "Nội dung" RP03b và trang tiêu đề mạch):
+
+| Số | Mạch | Trang tiêu đề | Số trang |
+|---|---|---|---|
+| 1 | Điều kiện tối ưu và bước lặp | RP00 (bìa) | 7 |
+| 2 | Hướng giảm và độ dài bước | RG00 | 25 |
+| 3 | Phương pháp Newton | RN00 | 11 |
+| 4 | Newton giữ ràng buộc đẳng thức | RE00 | 10 |
+| 5 | Newton từ điểm chưa khả thi | RR00 | 9 |
+| 6 | Tính tự điều chỉnh và cận sai số | RS00 | 7 |
+| 7 | Tổng hợp và chuyển giao | RZ00 | 7 |
+
+Thêm 6 trang tiêu đề mạch, trang "Nội dung" RP03b, 6 trang lời giải bài tập (RG11b, RN08b, RE08b, RR07b, RS05b, RZ02b), 6 trang tách theo trần mật độ (RP01b, RG09b, RG16b, RG17b, RN07b, RZ01b), và sau tái kiểm thêm RG09c (chứng minh tách khỏi RG09b) và RZ01c (bảng định lý hội tụ). Các phát biểu hội tụ ở §5.7 nằm trên mặt trang RG12–RG17b và RN07–RN07b từ 2026-10-01, tổng hợp ở RZ01c; §5.7 không còn mô tả vị trí hiện hành. Mạch mở đầu theo thứ tự bìa → mục tiêu (bốn mục, mục 4 là nhiệm vụ chứng nhận sai số) → nội dung → nhắc lại KKT → bài tập. Bỏ badge "Tự học" và mã VD1/VD2/VD3 trên mặt trang; bảng ánh xạ tên ví dụ và số âm tiết trước/sau nằm trong [storyboard.md](storyboard.md), mục "Đợt sửa văn phong và mật độ — 2026-10-12". Các số "46 trang" ở các mục dưới là của bản 2026-09-26.
+
 ## 1. Kết luận phân tích và quyết định đã duyệt
 
 Bản trước sửa có các công thức KKT và ví dụ tính đúng, nhưng chưa biến kiến thức Bài 03 thành công cụ để sinh ra phương pháp. Nhiều chỗ cho hướng hoặc hệ phương trình trước rồi kiểm lại; sinh viên chưa thấy cần chọn bài toán con nào, lấy đạo hàm theo biến nào và vì sao hệ đó xuất hiện. Phần giải thích trong ghi chú chưa đủ thay các bước suy luận phải nhìn thấy trên màn chiếu.

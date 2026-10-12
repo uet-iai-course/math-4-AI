@@ -1,5 +1,112 @@
 # Nhật ký rà soát Bài giảng 04 — triển khai mạch KKT
 
+## Vòng sửa sau tái kiểm toán học và mạch kể — 2026-10-12
+
+**Đầu vào.** Hai báo cáo tái kiểm chỉ đọc của điều phối viên: `recheck-04-math.md` (0 chặn, 0 nghiêm trọng, 4 trung bình, 7 nhẹ; mọi con số đúng) và `recheck-04-story.md` (1 nghiêm trọng, 12 trung bình, 19 nhẹ). Brief vòng sửa của điều phối viên Fable 5.1. Tác tử sửa: `general-purpose`, `claude-opus-5-5`, effort `high` (cùng tác tử đợt trước). Deck 73 → 75 trang (thêm RG09c, RZ01c). Không commit.
+
+### Tái kiểm toán học
+
+| mức độ | trang | vấn đề | trạng thái và quyết định |
+|---|---|---|---|
+| trung bình | RZ01b | dòng $\delta$ thiếu $\nabla^2f\succ0$ | Đã sửa: "tự điều chỉnh, $\nabla^2f\succ0$, đạt cực tiểu, $\delta<1$" (khớp RS03, Định lý 04.50) |
+| trung bình | RS04 | $N^THN\succ0$ chỉ tại một điểm | Đã sửa mặt trang và ghi chú: "$N^T\nabla^2F\,N\succ0$ tại mọi điểm khả thi" (khớp Hệ quả 04.52) |
+| trung bình | RR00 | dòng dẫn "giảm đồng thời hai phần dư" mâu thuẫn RR05 | Đã sửa: "mỗi bước phải giảm chuẩn $\|r\|_2$ của phần dư KKT"; ghi chú nêu từng phần dư không nhất thiết giảm đơn điệu |
+| trung bình | RG04 ↔ RG16b, RG18 | miền $\alpha$ chặt | Đã sửa: $0<\alpha\le1/2$; ghi chú nêu Newton đòi $\alpha<\tfrac12$ |
+| nhẹ | RP01 | thiếu "khả vi"; hệ tuyến tính khi $\lambda$ cố định | Đã sửa cả hai; câu mồ côi trong ghi chú thay bằng "bài toán gốc lồi, khả vi" |
+| nhẹ | RP01b | "$d$ chưa là nghiệm của bài toán gốc" | Đã sửa: "$x+d$ nói chung chưa là nghiệm" |
+| nhẹ | RZ01b | ô "không có" | Đã sửa: "không có cận chung" |
+| nhẹ | RS05b(a) | thiếu $\delta=1$ với $-\log s$ | Đã sửa trên mặt trang và ghi chú |
+| nhẹ | RG17 | "thực tế cần 6" không nêu bước; định nghĩa thiếu khả vi | Đã sửa: nêu $t=1/7$, bỏ "thực tế cần 6" (tránh lộ đáp án RG18(a)); định nghĩa thêm "$f$ khả vi trên $\mathbb R^n$" |
+| nhẹ | RN07b | thiếu $0<\alpha<\tfrac12$ | Đã sửa trên dòng "Ký hiệu:" và ghi chú |
+| nhẹ | RG07 | "co nhanh" định tính | Đã sửa: $\max\{\lvert1-3t\rvert,\lvert1-7t\rvert\}\ge2/5$, dấu bằng tại $t=1/5$ |
+
+### Tái kiểm mạch kể
+
+| mức độ | trang | vấn đề | trạng thái và quyết định |
+|---|---|---|---|
+| nghiêm trọng | storyboard | bản đồ hành trình và bảng cấu trúc chưa cập nhật, còn lý do "tự học" | Đã sửa: viết lại bảng "Cấu trúc 7 mạch" (75 trang) và bản đồ hành trình (thêm trang tiêu đề mạch ở cột nhu cầu, RG09b, RG09c, RG16b, RG17b, RN07b, các trang lời giải; bỏ câu badge; RN08 → RN08b/RS00; lý do rút gọn mới cho cụm hội tụ) |
+| trung bình | storyboard RP01, RP03, RP04, RZ03 | trường cũ lệch deck | Đã sửa các trường Nội dung, Bố cục, Vào → ra (ghi ngày 2026-10-12) |
+| trung bình | ghi chú RG00–RZ00, RP03b, RP03 | tài liệu làm chủ ngữ | Đã viết lại mở bằng đối tượng toán học |
+| trung bình | RN00, RS00, RR00 | công thức trung tâm trong dòng từ khóa | Đã sửa: "hệ Newton", "cận sai số theo độ giảm Newton", "phần dư đối ngẫu và khả thi" |
+| trung bình | mạch 1 ↔ RZ01 | mất nhiệm vụ chứng nhận sai số | Đã sửa: RP03 thêm mục tiêu 4; ghi chú RP01b nêu vấn đề riêng giải ở phần tự điều chỉnh |
+| trung bình | RG03 | khung takeaway là khẩu hiệu | Đã sửa: "Kết luận:" bước $t=1/2$ nằm ngoài $(0,410/1399)$ nên làm $f$ tăng |
+| trung bình | RG12 | thiếu nhu cầu | Đã sửa: "Nhu cầu:" đếm số bước để $f(x^k)-f^*\le\varepsilon$ |
+| trung bình | RG17 | thiếu trực quan; lộ đáp án RG18(a) | Đã sửa: thêm "Trực quan." (parabol cận dưới), bỏ "thực tế cần 6" |
+| trung bình | RG09b | mệnh đề cùng chứng minh ba bước | Đã sửa: tách RG09c "Chứng minh: nghiệm của bài toán hướng dốc nhất"; RG09b giữ mệnh đề, "Ý nghĩa:", trường hợp $W=I$ |
+| trung bình | RN07/RN07b | ghi chú lệch trang | Đã sửa: diễn giải hàng 3–4 chuyển sang RN07; RN07b mở bằng giả thiết định lý, nghĩa của $\gamma$, $\varepsilon_0$, hai pha |
+| trung bình | RN08b | ghi chú trỏ "cuối trang" | Đã sửa |
+| trung bình | RR01 | nhu cầu cuối trang, thiếu trực quan | Đã sửa: "Nhu cầu:" và "Trực quan." lên đầu, bỏ dòng cuối |
+| trung bình | RZ01/RZ01b | thiếu định lý hội tụ | Đã sửa bằng trang mới RZ01c "Định lý hội tụ" (bốn hàng: phương pháp, giả thiết không được bỏ, kết luận); không nhét vào RZ01b vì bảng tám hàng vượt trần 6 dòng |
+| nhẹ | RP00 → RP03 | câu nối cũ trỏ ví dụ hồi quy | Đã sửa: câu chuyển sang cuối ghi chú RP03b |
+| nhẹ | RP01, RP02 | câu mồ côi; RP02 không nối sang RP04 | Đã sửa cả hai |
+| nhẹ | RP01b, RP03 | ghi chú lặp mặt trang | Đã sửa: RP01b nêu thao tác nào do KKT quyết định; RP03 nêu LLO/CLO từng mục tiêu |
+| nhẹ | RS00 | "Hai mạch Newton" sai số lượng | Đã sửa: nêu ba phương pháp |
+| nhẹ | RS00, RR00 | ký hiệu trước định nghĩa | RS00 bỏ $\delta$; RR00 giữ "phần dư KKT" và $\|r\|_2$ theo yêu cầu toán học (dòng dẫn phải nói chuẩn phần dư ghép), chấp nhận |
+| nhẹ | RE00, RR00 | tên mạch dạng chủ–vị | Giữ (tùy chọn trong báo cáo; đổi tên kéo theo RP03b, RZ03, học liệu liên kết) |
+| nhẹ | RG14 | thiếu nhãn môi trường | Giữ: thêm nhãn làm trang vượt 6 dòng; nhãn "Giả thiết:" và "Ý nghĩa:" đã có |
+| nhẹ | RN05 | "sai số tối ưu" ↔ "sai số mục tiêu" | Đã sửa tiêu đề, bảng và ghi chú |
+| nhẹ | RE02 | hướng khả thi không nhãn | Đã sửa: "Định nghĩa." |
+| nhẹ | RN01, RR01 | nhu cầu lặp dòng dẫn | Đã sửa: RN01 cụ thể hóa trên $s-\log s$; RR01 "đo vi phạm KKT tại điểm chưa khả thi" |
+| nhẹ | ghi chú RN01 | mở bằng tham chiếu bài tập xa | Đã sửa |
+| nhẹ | ghi chú nhiều trang | lặp tên ví dụ; "trên bài toán trên đường" | Đã sửa: tên đầy đủ một lần mỗi ghi chú, sau đó "hàm này"/"bài toán này"; "cho bài toán trên đường" |
+| nhẹ | RR05 | thiếu dữ kiện | Đã sửa |
+| nhẹ | ghi chú RG09 | lặp ý, thiếu diễn giải từng nhóm | Đã sửa |
+| nhẹ | ghi chú RG16, RG17 | thiếu câu nối sang trang tách | Đã sửa |
+| nhẹ | ghi chú RZ01b | bảng làm chủ ngữ | Đã sửa |
+| nhẹ | ghi chú RN05, RN07, RZ01, RR03; ghi chú trang bài tập | phần bài hoặc "câu hỏi" làm chủ ngữ | Giữ một phần (RZ01 cần câu "phần mở đầu đặt hai vấn đề" để nối mở bài; các trang bài tập giữ cách viết như Bài 03) |
+| nhẹ | outline §5.7 | vị trí phát biểu hội tụ | Đã sửa trong ghi chú cập nhật đầu outline |
+
+### Kiểm sau vòng sửa
+
+- `tools/density.py`: 75 trang; chỉ RZ03 > 60 âm tiết (72, trần 80 trang tổng kết) và RP03b 7 dòng (ngoại lệ đã ghi); RP03 60 âm tiết (trang mục tiêu, trần 80). Mọi trang khác ≤ 60 âm tiết, ≤ 6 dòng, ≤ 20 âm tiết mỗi dòng.
+- `tools/deckcheck.py --port 8790`: 75 trang, 0 lỗi console, 0 `.katex-error`, không cuộn ngang trang; chiều cao lớn nhất 670 px (RG12) ≤ 674 px. Cờ `TRAN_NGANG` ở RG08, RG09b, RG09c, RG10, RN04, RS01 là đường SVG của dấu căn KaTeX.
+- Đã xem ảnh 1600×900 và 390×844 của RP03, RP03b, RG00, RG03, RG04, RG07, RG09b, RG09c, RG12, RG17, RN00, RN01, RN07b, RE00, RE02, RR00, RR01, RR05, RS00, RS04, RS05b, RZ00, RZ01b, RZ01c.
+- Storyboard: 75 mục, mỗi trang đúng một mục. `git diff --check` sạch.
+- Quyết định duyệt của điều phối viên: chờ.
+
+## Sửa văn phong, mật độ và trang tiêu đề mạch — 2026-10-12
+
+**Phạm vi.** Áp dụng AGENTS.md, các mục "Trang tiêu đề mạch" và "Văn phong và mật độ mặt trang chiếu" (yêu cầu người dùng 2026-10-12), theo báo cáo phân tích MAT1101 (B.3, D.8) của điều phối viên. Tệp đã ghi: deck `lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`, `storyboard.md`, `outline.md`, nhật ký này. Không sửa `lecture-style.css`, `materials/`, `index.html`, hình trong `img/lec-04/`. Chưa commit.
+
+**Tác tử.** Tác tử soạn/chỉnh sửa: `general-purpose`, `claude-opus-5-5`, effort `high` (theo brief của điều phối viên Fable 5.1). Quyết định duyệt của điều phối viên: chờ.
+
+**Kết quả chính.** 54 → 73 trang, giữ 7 mạch, thứ tự mạch, dữ kiện số và kết quả toán học.
+
+| Nhóm thay đổi | Trang |
+|---|---|
+| Thêm trang tiêu đề mạch (`section.strand-title`, `id="mach-N"`) | RG00 (2. Hướng giảm và độ dài bước), RN00 (3. Phương pháp Newton), RE00 (4. Newton giữ ràng buộc đẳng thức), RR00 (5. Newton từ điểm chưa khả thi), RS00 (6. Tính tự điều chỉnh và cận sai số), RZ00 (7. Tổng hợp và chuyển giao); mạch 1 "Điều kiện tối ưu và bước lặp" dùng bìa RP00 |
+| Thêm trang "Nội dung" | RP03b (danh sách bảy mạch, thay sơ đồ năm nút của RP03); RP03 chuyển lên sau bìa |
+| Tách theo trần mật độ | RP01 → RP01, RP01b; RG09 → RG09, RG09b; RG16 → RG16, RG16b; RG17 → RG17, RG17b; RN07 → RN07, RN07b; RZ01 → RZ01, RZ01b |
+| Thêm trang lời giải (nhãn "Lời giải:") | RG11b, RN08b, RE08b, RR07b, RS05b, RZ02b; RP04 có lời giải dạng fragment |
+| Đổi tiêu đề | RP01 "Tính đủ của điều kiện KKT" (trùng tên mạch 1); RR06 "Thuật toán Newton từ điểm chưa khả thi"; trang ví dụ theo mẫu "Ví dụ: …" (RG05, RN05, RE05, RR04); trang bài tập theo mẫu "Bài tập: …" (RP04, RG11, RG18, RN08, RE08, RR07, RS05, RZ02); RZ03 "Bài tập về nhà và tài liệu đọc" |
+| Bỏ badge "Tự học" | RG12–RG18, RN07, RS01–RS05 (13 badge, kể cả hàng badge của RS03) |
+| Bỏ mã ví dụ | mọi "VD1/VD2/VD3" trên mặt trang, alt hình và ghi chú; mặt trang nêu lại dữ kiện |
+| Nhãn | chỉ dùng nhãn trong danh sách cho phép: "Tính chất." → "Mệnh đề."; "Vấn đề:" → "Nhu cầu:"; "Ý chính:", "Chứng minh (ý chính)." → "Chứng minh."; "Điều kiện:" → "Giả thiết:"; bỏ nhãn đậm "Bài toán con:", "Hàng 1/2", "Bước đầy đủ:", "Kiểm tra:", "Điền công thức:", "Tài liệu đọc:" |
+| Khung nhấn | mỗi trang ≤ 1 khung chứa câu văn; khung kết luận thừa thành dòng "Kết luận:", "Ý nghĩa:" hoặc "Diễn giải:" |
+| Thống nhất tên bài | "Bài giảng 0k" → "Bài 0k" trên mặt trang và ghi chú |
+
+**Ánh xạ mã ví dụ của học liệu sang tên trên deck** (`materials/lec-04` vẫn dùng mã; không sửa học liệu đợt này):
+
+| Mã | Tên trên deck | Dữ kiện |
+|---|---|---|
+| VD1 | hàm bậc hai $\tfrac12(3x_1^2+7x_2^2)$ | $x^0=(2,4)^T$, $g=(6,28)^T$, $f(x^0)=62$, $L=7$, $\mu=3$ |
+| VD2 | hàm $s-\log s$ | $\varphi(s)=s-\log s$, $s>0$, $s^0=1/4$, $s^*=1$ |
+| VD3 | bài toán trên đường $u_1+u_2=14$ | $F=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ 1]$, $b=14$, điểm khả thi $(16,-2)^T$, nghiệm $(10,4)^T$, $\nu^*=-20$ |
+
+**Liên kết học liệu.** `materials/lec-04/exercises.md` (dòng 9–15) liên kết `#/1/1` … `#/7/1`; `#/1/1` vẫn là bìa, `#/2/1` … `#/7/1` nay mở trang tiêu đề của đúng mạch. Chấp nhận, không sửa.
+
+**Lời giải trên mặt trang và `exercises.md`.** RS05b câu (a) cùng kết luận với Bài 7(b) ($-\log s$ tự điều chỉnh nhưng không đạt cực tiểu); RZ02b câu (a) cùng $g$, $H$ và lập luận $v^THv\ge\rho\|v\|_2^2$ của Bài 8(a). Các bài khác dùng dữ kiện khác `exercises.md`. Mọi số trên trang lời giải được tính lại: RG11b ($d=(-1/2,3)^T$, $255/4$, $t=1/8$ với $103/32\le125/4$), RN08b ($63/256$, $175/256$, $81/512$, $\log(16/7)-9/16\approx0{,}264$), RE08b ($d=(2,-2)^T$, $\eta=-20$, giảm 14, $\Delta z=-2$), RR07b ($d=(6,2)^T$, $\Delta\nu=-22$, $r^+=\tfrac12r$), RS05b ($\delta=1/2$, $\log2-1/2\approx0{,}193$, $1/2-\log(3/2)\approx0{,}095$).
+
+**Mật độ** (`tools/density.py`). Trước: 16 trang > 60 âm tiết, nhiều trang > 6 dòng (RP03 13, RR04 11). Sau: 1 trang > 60 là RZ03 (72 âm tiết, trang tổng kết và tài liệu đọc, trần 80); RP03b "Nội dung" 7 dòng (ngoại lệ: đủ bảy mạch); mọi trang khác ≤ 60 âm tiết, ≤ 6 dòng, ≤ 20 âm tiết mỗi dòng, ≤ 3 công thức hiển thị. Không thêm `.dense` hay thu chữ. Ghi chú > 250 âm tiết còn ở RG01, RG08, RE07, RR06, RZ03 (có từ trước; mức `nhẹ`). Bảng trước/sau từng trang nằm trong `storyboard.md`.
+
+**Kiểm trình duyệt** (`tools/deckcheck.py`, Playwright Chromium, máy chủ tĩnh cổng 8794 vì `reloadserver` tải lại trang khi tác tử khác ghi tệp): 73 trang, 0 lỗi console/trang, 0 `.katex-error`, không cuộn ngang trang ở 390×844, chiều cao nội dung lớn nhất 670 px (RG12) ≤ 674 px của khung cố định, cỡ chữ không dưới ngưỡng. Cờ `TRAN_NGANG` ở RG08, RG09b, RG10, RN04, RS01 là đường SVG của dấu căn KaTeX (`\sqrt`) bị cắt bởi hộp chứa, không hiển thị; có cả ở bản trước sửa. Đã xem ảnh chụp 1600×900 của cả 73 trang và 390×844 (đầu và cuối trang) của các trang tiêu đề mạch và trang tách; công thức rộng ở màn hẹp nằm trong vùng cuộn `.formula` như bản trước. `git diff --check` sạch.
+
+**no-ai-slop (Edit mode, tự kiểm theo `eval.md`).** Dòng dẫn và ghi chú trang tiêu đề mạch nêu đại lượng cụ thể ($\nabla f(x)\ne0$, $W$, $Au=b$, hai phần dư, $\delta$); không khẩu hiệu, không câu hỏi tu từ, không "chúng ta", không lời chỉ đường; câu kết trên mặt trang là kết luận toán học có điều kiện. Câu mở RZ01 bỏ chuỗi mũi tên. Ghi chú mới không mở bằng "Trang này". Còn lại: ghi chú cũ lặp tên "hàm bậc hai $\tfrac12(3x_1^2+7x_2^2)$" nhiều lần do thay mã; chấp nhận để tránh mã nội bộ.
+
+**Việc cần đồng bộ học liệu (chưa làm, ngoài phạm vi).** (1) `lecture-note.md` dùng 96 lần mã VD1/VD2/VD3: chọn giữ mã kèm ánh xạ hay đổi sang tên trên deck. (2) Các bài tập trên deck (RG11, RN08, RE08, RR07, RS05(b)) chưa có trong `exercises.md`; nếu đưa vào, lời giải phải trùng trang lời giải. (3) Nếu học liệu liên kết đầu mạch nội dung thay vì trang tiêu đề, đổi `#/h/1` thành `#/h/2`.
+
+**Rà soát độc lập.** Chưa chạy; theo CLAUDE.md cần tái kiểm toán học trên trang lời giải và trang tách, tái kiểm mạch lập luận trên mạch 1 (đổi thứ tự) và các ranh giới mạch.
+
 ## Rà soát trang hội tụ tuyến tính (RG17) — 2026-10-01
 
 Người rà soát: fork chỉ đọc của điều phối viên, Claude Opus 5.5 (kế thừa). Kết luận: 0 chặn bàn giao, 0 nghiêm trọng, 0 trung bình, 5 nhẹ; toán học đúng. Cổng storyboard chấp nhận quyết định `thêm` cho RG17. Tác tử sửa: fork của điều phối viên, Claude Opus 5.5 (kế thừa).
@@ -1609,3 +1716,7 @@ Yêu cầu người dùng: như nhật ký Bài 03 cùng ngày. Tác tử biên 
 ## Rà đầy đủ các SVG không được dùng (2026-10-11, khép mục mở)
 
 Sau lượt đồng bộ deck và SVG, các hình không được deck hay ghi chú tham chiếu mới chỉ được sửa lỗi rõ. Điều phối viên Fable 5.1 giao hai tác tử biên tập hình (general-purpose, Claude Opus 5.5 `claude-opus-5-5`, high) rà đủ 55 tệp mồ côi của mọi bài (Bài 01: 7, 02: 26, 03: 2, 04: 6, 05: 5 cùng saddle.svg và gradient-chain.svg, 05c: 1, 06: 6, 07: 1): mở xem từng PNG, đối chiếu khái niệm trong ghi chú, tính lại số liệu, vẽ lại các hình sai nội dung (saddle: parabol không qua gốc; coordinate-polyak-geometry panel A: đường mức elip và đường đi hạ tọa độ đúng; ill-conditioning, momentum-lookahead, risk-curves, quadratic-start, adaptive-scaling, self-concordant-curvature, line-restriction-convex-library, psd-cone-and-quadratic-directions, convex-preservation-and-jensen, quasiconvex-level-bisection, lp-qp-qcqp-geometry, pareto-front-weighted-scalarization, cone-induced-orders, qcqp-intersection, feasible-ray), thu nhỏ đầu mũi tên quá to, dời nhãn bị đường cắt, bỏ viền khung cắt làm miền không bị chặn trông như bị chặn, đổi thuật ngữ và tiêu đề dạng câu, thêm desc. Cùng lượt: Bài 06 thống nhất chính tả "vectơ" → "vector" trong deck (13), ghi chú (53), bài tập (4) và SVG (3). Kiểm tra của điều phối viên: `svg-audit.py` trên 56 tệp chỉ còn bốn cảnh báo dương tính giả (clipPath ở quadratic-local-model, momentum-lookahead, coordinate-polyak-geometry; nền chữ ở curvature-toolchain); đã xem PNG coordinate-polyak-geometry và psd-cone-and-quadratic-directions: đạt; `sync-local-materials.py --check` đạt; `git diff --check` sạch. Quyết định: chấp nhận, commit.
+
+### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
+
+Master đã tự chạy `density.py` (75 trang; chỉ RZ03 72/80 và RP03b 7 dòng, đều có ngoại lệ; không còn "Tự học" hay mã VD trên deck), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console; cờ tràn ngang là dương tính giả KaTeX), và tự tái kiểm toán hai trang mới chưa qua tác tử tái kiểm: RG09c (hệ KKT của $\min g^Tv$ với $v^TWv\le1$: $\zeta=0\Rightarrow g=0$; $v=-W^{-1}g/(2\zeta)$; $\zeta=\tfrac12\sqrt{g^TW^{-1}g}$: đúng) và RZ01c (bốn cận: $L\|x^0-x^*\|^2/(2k)$; $\|x^0-x^*\|^2/(2t_{\min}k)$ với quay lui; $(1-\mu/L)^k e_0$; $(f(x^0)-f^*)/\gamma+\log_2\log_2(\varepsilon_0/\varepsilon)$ với giả thiết lồi mạnh, Hessian Lipschitz, $\alpha<\tfrac12$: đúng theo Boyd–Vandenberghe §9.3, §9.5); vị trí hai trang trong mạch (chứng minh ngay sau mệnh đề RG09b; bảng định lý trong mạch kết luận) hợp lệ. Đối chiếu bảng trạng thái hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 04. Việc còn treo (đợt học liệu): `materials/lec-04` còn mã VD1/VD2/VD3 (ánh xạ ở trên), bài tập RG11, RN08, RE08, RR07, RS05(b) chưa có trong `exercises.md`; liên kết `#/h/1` của `exercises.md` nay mở trang tiêu đề mạch.
