@@ -297,7 +297,7 @@
         <aside class="notes">
           <p>Câu hỏi về độ khớp cần một đại lượng số tính từ các phần dư $x_i^Tw-y_i$, $i=1,\ldots,n$. Bình phương nhỏ nhất chọn tổng bình phương các phần dư. Ký hiệu $\triangleq$ đọc là "được định nghĩa bằng": vế phải định nghĩa hàm $J:\mathbb R^d\to\mathbb R$, còn $\min_{w\in\mathbb R^d}$ yêu cầu tìm $w$ làm $J$ nhỏ nhất trên toàn không gian. Ở dạng vector, $J(w)=\lVert Xw-y\rVert_2^2$.</p>
           <p>Bình phương loại dấu, nên phần dư âm và dương không triệt tiêu nhau khi cộng. Bình phương tăng nhanh hơn tuyến tính: phần dư gấp đôi bị phạt gấp bốn, nên điểm ngoại lai (outlier) có ảnh hưởng lớn. Miền là cả $\mathbb R^d$, khác trường hợp điều khiển với miền là một đoạn. Bình phương còn cho một hàm mục tiêu trơn, nên có thể dùng đạo hàm.</p>
-          <p>Hình vẽ ba điểm dữ liệu với đầu vào $t=0,1,2$ và đầu ra $1,2,2$; ở hình này $t$ là biến đầu vào, khác đích $t$ của trường hợp điều khiển. Đường khớp là $\widehat y=7/6+t/2$; các đoạn thẳng đứng đo sai lệch theo trục đầu ra, không phải khoảng cách vuông góc từ điểm tới đường. Dữ liệu không quyết định cách đo sai số: tổng giá trị tuyệt đối của phần dư cho một mô hình khác.</p>
+          <p>Hình vẽ ba điểm dữ liệu với đầu vào $s=0,1,2$ và đầu ra $1,2,2$. Đường khớp là $\widehat y=7/6+s/2$; các đoạn thẳng đứng đo sai lệch theo trục đầu ra, không phải khoảng cách vuông góc từ điểm tới đường. Dữ liệu không quyết định cách đo sai số: tổng giá trị tuyệt đối của phần dư cho một mô hình khác.</p>
           <p>Cùng ba điểm của hình cho phép tính nghiệm chính xác của bài toán bình phương nhỏ nhất bằng phương trình chuẩn.</p>
         </aside>
       </section>
@@ -306,7 +306,7 @@
         <h2>Ví dụ: hồi quy trên ba điểm</h2>
         <div class="grid2">
           <div class="card">
-            <p>Cho ba điểm $(t_i,y_i)$: $(0,1)$, $(1,2)$, $(2,2)$; mô hình $\widehat y_i=b+at_i$.</p>
+            <p>Cho ba điểm $(s_i,y_i)$: $(0,1)$, $(1,2)$, $(2,2)$; mô hình $\widehat y_i=b+as_i$.</p>
             <div class="math-mid">$$X=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix},\qquad y=\begin{bmatrix}1\\2\\2\end{bmatrix}.$$</div>
           </div>
           <div class="card">
@@ -317,8 +317,8 @@
         <p>Suy ra $w^*=(7/6,\,1/2)^T$, phần dư $Xw^*-y=(1/6,\,-1/3,\,1/6)^T$ và $J(w^*)=\tfrac16$.</p>
         <p><strong>Diễn giải:</strong> hệ số chặn $b^*=7/6$, hệ số góc $a^*=1/2$; tổng phần dư bằng $0$.</p>
         <aside class="notes">
-          <p>Bài toán bình phương nhỏ nhất được giải trên ba điểm của hình trước. Ma trận $X\in\mathbb R^{3\times2}$ có hàng $i$ là $(1,t_i)$, nên $\widehat y_i=b+at_i$ với $w=(b,a)^T$.</p>
-          <p>Phương trình chuẩn: khai triển $J(w)=w^TX^TXw-2y^TXw+y^Ty$, một hàm bậc hai có gradient $\nabla J(w)=2X^T(Xw-y)$; cho gradient bằng $0$ được $X^TXw=X^Ty$. Ở đây $X^TX=\begin{bmatrix}3&3\\3&5\end{bmatrix}$, $X^Ty=(5,6)^T$, định thức $15-9=6$, nên $w^*=\tfrac16\begin{bmatrix}5&-3\\-3&3\end{bmatrix}\begin{bmatrix}5\\6\end{bmatrix}=\begin{bmatrix}7/6\\1/2\end{bmatrix}$. Dự đoán $Xw^*=(7/6,\,5/3,\,13/6)^T$ và $J(w^*)=\tfrac1{36}+\tfrac19+\tfrac1{36}=\tfrac16$. Hệ số $b^*=7/6$ là dự đoán tại $t=0$, còn $a^*=1/2$ là mức tăng của dự đoán khi đầu vào tăng một đơn vị.</p>
+          <p>Bài toán bình phương nhỏ nhất được giải trên ba điểm của hình trước. Ma trận $X\in\mathbb R^{3\times2}$ có hàng $i$ là $(1,s_i)$, nên $\widehat y_i=b+as_i$ với $w=(b,a)^T$.</p>
+          <p>Phương trình chuẩn: khai triển $J(w)=w^TX^TXw-2y^TXw+y^Ty$, một hàm bậc hai có gradient $\nabla J(w)=2X^T(Xw-y)$; cho gradient bằng $0$ được $X^TXw=X^Ty$. Ở đây $X^TX=\begin{bmatrix}3&3\\3&5\end{bmatrix}$, $X^Ty=(5,6)^T$, định thức $15-9=6$, nên $w^*=\tfrac16\begin{bmatrix}5&-3\\-3&3\end{bmatrix}\begin{bmatrix}5\\6\end{bmatrix}=\begin{bmatrix}7/6\\1/2\end{bmatrix}$. Dự đoán $Xw^*=(7/6,\,5/3,\,13/6)^T$ và $J(w^*)=\tfrac1{36}+\tfrac19+\tfrac1{36}=\tfrac16$. Hệ số $b^*=7/6$ là dự đoán tại $s=0$, còn $a^*=1/2$ là mức tăng của dự đoán khi đầu vào tăng một đơn vị.</p>
           <p>Tổng phần dư bằng $0$ là hệ quả của hàng thứ nhất trong phương trình chuẩn: hàng đó là $\mathbf 1^T(Xw^*-y)=0$, với $\mathbf 1$ là cột toàn số một của $X$. Mô hình không có hệ số chặn thường không có tính chất này. Việc điểm có gradient bằng không là cực tiểu toàn cục được dùng ở đây trước khi chứng minh; điều kiện bậc nhất cho hàm lồi sẽ chứng minh nó.</p>
           <p>Nghiệm thu được là duy nhất vì $X^TX$ khả nghịch, và tính khả nghịch phụ thuộc vào các cột của $X$.</p>
         </aside>
@@ -332,11 +332,11 @@
         </div>
         <div class="fragment">
           <p><strong>Lời giải:</strong> $X'w'=b\,\mathbf 1+(a_1+a_2)(0,1,2)^T$; dự đoán tối ưu $(7/6,5/3,13/6)^T$ và giá trị $1/6$ không đổi.</p>
-          <p>Vì $\mathbf 1$, $(0,1,2)^T$ độc lập, tập tối ưu là $\{(7/6,\,s,\,1/2-s)^T\mid s\in\mathbb R\}$; $\operatorname{rank}X'=2&lt;3$ nên nghiệm không duy nhất.</p>
+          <p>Vì $\mathbf 1$, $(0,1,2)^T$ độc lập, tập tối ưu là $\{(7/6,\,c,\,1/2-c)^T\mid c\in\mathbb R\}$; $\operatorname{rank}X'=2&lt;3$ nên nghiệm không duy nhất.</p>
         </div>
         <aside class="notes">
           <p>Nghiệm ở ví dụ ba điểm duy nhất vì $X^TX$ khả nghịch. Bài tập thay đổi đúng giả thiết đó: cột thứ ba của $X'$ trùng cột thứ hai.</p>
-          <p>Không gian cột của $X'$ trùng không gian cột của $X$, nên tập các vector dự đoán đạt được không đổi; dự đoán tối ưu và giá trị tối ưu giữ nguyên. Dự đoán tối ưu là hình chiếu của $y$ lên không gian cột, duy nhất; vì $\mathbf 1$ và $(0,1,2)^T$ độc lập, cặp $(b,a_1+a_2)$ biểu diễn nó được xác định duy nhất là $(7/6,1/2)$. Do đó tập tối ưu đúng bằng $\{(7/6,s,1/2-s)^T\}$, chẳng hạn $s=1/2$ hoặc $s=1/4$: hệ số $1/2$ được chia tùy ý cho hai cột trùng nhau.</p>
+          <p>Không gian cột của $X'$ trùng không gian cột của $X$, nên tập các vector dự đoán đạt được không đổi; dự đoán tối ưu và giá trị tối ưu giữ nguyên. Dự đoán tối ưu là hình chiếu của $y$ lên không gian cột, duy nhất; vì $\mathbf 1$ và $(0,1,2)^T$ độc lập, cặp $(b,a_1+a_2)$ biểu diễn nó được xác định duy nhất là $(7/6,1/2)$. Do đó tập tối ưu đúng bằng $\{(7/6,c,1/2-c)^T\}$, chẳng hạn $c=1/2$ hoặc $c=1/4$: hệ số $1/2$ được chia tùy ý cho hai cột trùng nhau.</p>
           <p>Nguyên nhân đại số: $X'v=0$ có nghiệm khác không $v=(0,1,-1)^T$, nên $\ker X'$ (không gian không của $X'$) khác $\{0\}$, và cộng một bội bất kỳ của $v$ vào một nghiệm vẫn được nghiệm. Tương đương, $\operatorname{rank}X'=2&lt;3$, tức $X'$ không có hạng cột đầy đủ, và $X'^TX'$ suy biến. Ví dụ tách hai kết luận mà trường hợp điều khiển chưa cần phân biệt: giá trị tối ưu và dự đoán tối ưu được xác định duy nhất, còn vector tham số thì không. Câu trả lời tổng quát cần nối điều kiện hạng cột của $X$ với độ cong của $J$.</p>
         </aside>
       </section>

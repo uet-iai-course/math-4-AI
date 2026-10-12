@@ -692,3 +692,32 @@ Còn lại ngoài phạm vi tệp được giao: `planning/lec-01/outline.md` d�
 **Quyết định của điều phối viên:** (chờ duyệt)
 
 Quyết định của master (Fable 5.1): đã đọc diff, đối chiếu grep toàn kho (không còn "bức" đứng riêng), xem ảnh LG06/LG07/H07 ở 1600×900, `sync-local-materials.py --check` OK, `git diff --check` sạch. `chấp nhận`, commit cùng đợt đổi thuật ngữ 2026-10-12.
+
+## Tách ký hiệu $t$: đích điều khiển và đầu vào hồi quy ba điểm, 2026-10-12
+
+Tác tử chỉnh sửa (`general-purpose`, Opus 5.5, effort high theo brief của điều phối viên). Giải quyết mục treo "L01→L03: ký hiệu $t$ của dữ liệu ba điểm trùng đích $t$" (bảng mạch kể và quyết định master phía trên).
+
+Kiểm kê trước khi đổi (grep mọi đoạn toán chứa $t$ đứng riêng):
+- Đích điều khiển $t$: deck M03, D01–D04, T02, K01 (21 chỗ); ghi chú Mục 1, Mục 2, bảng Mục 5, bài tập cuối chương (khoảng 37 chỗ); `one-step-control.svg`, `m03-control-target.svg`.
+- Đầu vào hồi quy ba điểm $t$: deck ghi chú L02 (4), mặt trang L03 (2), ghi chú L03 (3); `linear-regression-fit.svg` (5 nhãn); ghi chú bài giảng dòng chú thích hình và câu sau hình (3). Ví dụ 01.4, đáp án và bài tập Mục 3 trong ghi chú đã dùng $s_i$ từ trước.
+- Nghĩa khác, giữ nguyên: $\varphi(t)=f(x+td)$ (H05, ghi chú Mục 8–9), tham số tự do $(t,1-t)$ trong `exercises.md`.
+
+Phương án: giữ $t$ cho đích (quyết định trước đó đổi $r\to t$, dùng dày đặc ở hai tệp và hai SVG), đổi đầu vào hồi quy thành $s$. Lý do: ít chỗ đổi nhất, và ghi chú bài giảng đã dùng $s_i$ cho đầu vào này; $x$ không dùng được vì trùng hàng đặc trưng $x_i^T$, $z$ trùng đặc trưng logistic $z_1,z_2$ và $z_\theta$.
+
+| Tệp | Số chỗ đổi | Ghi chú |
+|---|---|---|
+| `lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html` | 9 | L02 ghi chú: $s=0,1,2$, $\widehat y=7/6+s/2$, bỏ câu giải thích $t$ hai nghĩa; L03 mặt trang $(s_i,y_i)$, $b+as_i$; L03 ghi chú $(1,s_i)$, $b+as_i$, "dự đoán tại $s=0$" |
+| `img/lec-01/linear-regression-fit.svg` | 5 | Nhãn trục hoành, nhãn đường khớp, ba nhãn "s=0:", "s=1:", "s=2:"; bố cục giữ nguyên |
+| `materials/lec-01/lecture-note.md` | 3 | Chú thích hình (2 chỗ), câu sau hình viết lại: "Trên trục hoành của hình và trong Ví dụ 01.4, đầu vào được ký hiệu là $s$ để không trùng với đích $t$ của Mục 2." |
+| `materials/lec-01/exercises.md` | 0 | Không có đầu vào hồi quy ký hiệu $t$ |
+| `planning/lec-01/outline.md`, `storyboard.md` | 1, 2 | Ví dụ số hồi quy; mục L02, L03 |
+
+Còn lại: L04 và Ví dụ 01.5 dùng $s$ làm tham số tự do của tập nghiệm $\{(7/6,s,1/2-s)^T\}$, ngay sau $s_i$ của L03 và Ví dụ 01.4; phạm vi khác nhau (chỉ số dưới, có "$s\in\mathbb R$"), không đổi trong lượt này. Chưa chạy `sync-local-materials.py` (theo brief).
+
+Kiểm tra: `git diff --check` sạch; `deckcheck.py --port 8790 --ids L02,L03` 52 trang, 0 lỗi, chỉ hai cờ có sẵn (D02, L01); `density.py` không đổi so với trước sửa; đã xem ảnh L02, L03 ở 1600×900 và 390×844, PNG của `linear-regression-fit.svg`; viewer lec-01 (ghi chú và bài tập) trên cổng 8790 0 lỗi console, 0 `.katex-error`.
+
+**Quyết định của điều phối viên:** (chờ duyệt)
+
+Bổ sung theo yêu cầu của master (Fable 5.1), 2026-10-12: tham số tự do của tập nghiệm đổi $s\to c$, $\{(7/6,\,c,\,1/2-c)^T\mid c\in\mathbb R\}$, ở deck L04 (mặt trang 1 chỗ, ghi chú 1 chỗ gồm $c=1/2$, $c=1/4$) và ghi chú bài giảng (Ví dụ 01.5 $S^*$ và "Kiểm tra lại", bảng tổng hợp ví dụ, ví dụ hàm không cưỡng bức ở Mục 8: 4 chỗ); `exercises.md` không có chỗ liên quan. Giữ $J(w+sv)=J(w)$ ở ghi chú K02 (vô hướng tổng quát, không phải tập nghiệm L04). Kiểm tra: grep không còn `1/2-s`, `s=1/4`, `s=1/2`; `deckcheck.py --ids L04` 0 lỗi (hai cờ có sẵn D02, L01), ảnh L04 1600×900 đã xem; `density.py` L04 không đổi; viewer lec-01 0 lỗi console, 0 `.katex-error`; `git diff --check` sạch. Mục "Còn lại" phía trên đã xử lý.
+
+Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-10-12: đã đọc diff, viewer (ghi chú và bài tập) trên máy chủ tĩnh 0 lỗi console, 0 `.katex-error`; `sync-local-materials.py --check` OK; `git diff --check` sạch. `chấp nhận`, commit.

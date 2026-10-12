@@ -68,7 +68,7 @@ Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đ�
 - Dữ kiện: $X\in\mathbb R^{n\times d}$, $y\in\mathbb R^n$.
 - Biến quyết định: $w\in\mathbb R^d$.
 - Mục tiêu: $J(w)=\lVert Xw-y\rVert_2^2$.
-- Ví dụ số: $X=[(1,0);(1,1);(1,2)]$, $y=(1,2,2)^T$; $w^*=(7/6,1/2)^T$, tổng bình phương sai số bằng $1/6$.
+- Ví dụ số: ba điểm $(s_i,y_i)$ với đầu vào $s_i\in\{0,1,2\}$ (ký hiệu $s$, không dùng $t$ vì $t$ là đích của bài toán điều khiển), $X=[(1,0);(1,1);(1,2)]$, $y=(1,2,2)^T$; $w^*=(7/6,1/2)^T$, tổng bình phương sai số bằng $1/6$.
 - Kết luận cuối bài: $J$ lồi; luôn có ít nhất một nghiệm; nghiệm duy nhất khi và chỉ khi $X$ có hạng cột đầy đủ.
 
 ### Hồi quy logistic

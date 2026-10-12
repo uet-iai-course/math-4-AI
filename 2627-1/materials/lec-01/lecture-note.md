@@ -360,9 +360,9 @@ Tổng giá trị tuyệt đối $\sum_i\lvert x_i^Tw-y_i\rvert$ là một cách
 
 Hàm chi phí $q$ của Định nghĩa 01.1 là trường hợp $d=1$, $n=2$ của (3.1), như ta đã thấy ở Mục 2.2, và hai bài toán chỉ khác nhau ở miền.
 
-![Ba điểm dữ liệu tại đầu vào t bằng 0, 1, 2 với đầu ra 1, 2, 2. Đường hồi quy y mũ bằng bảy phần sáu cộng t chia hai. Ba đoạn nét đứt thẳng đứng là các phần dư một phần sáu, âm một phần ba và một phần sáu theo quy ước dự đoán trừ quan sát; tổng phần dư bằng 0 và tổng bình phương sai số bằng một phần sáu.](img/lec-01/linear-regression-fit.svg)
+![Ba điểm dữ liệu tại đầu vào s bằng 0, 1, 2 với đầu ra 1, 2, 2. Đường hồi quy y mũ bằng bảy phần sáu cộng s chia hai. Ba đoạn nét đứt thẳng đứng là các phần dư một phần sáu, âm một phần ba và một phần sáu theo quy ước dự đoán trừ quan sát; tổng phần dư bằng 0 và tổng bình phương sai số bằng một phần sáu.](img/lec-01/linear-regression-fit.svg)
 
-Hình trên minh họa (3.1) với ba điểm có đầu vào $0,1,2$ và đầu ra $1,2,2$. Chữ $t$ trên trục hoành của hình là biến đầu vào, ký hiệu $s_i$ trong Ví dụ 01.4, không phải đích của Mục 2.
+Hình trên minh họa (3.1) với ba điểm có đầu vào $s=0,1,2$ và đầu ra $1,2,2$. Trên trục hoành của hình và trong Ví dụ 01.4, đầu vào được ký hiệu là $s$ để không trùng với đích $t$ của Mục 2.
 
 Các đoạn nét đứt đo sai lệch theo phương thẳng đứng, tức theo trục đầu ra. Chúng không phải khoảng cách vuông góc từ điểm tới đường thẳng, vì bình phương nhỏ nhất chỉ đo sai số của đầu ra. Ví dụ 01.4 dưới đây tính chính xác đường thẳng trong hình.
 
@@ -571,12 +571,12 @@ $$
 **Tập nghiệm.** Vector $(7/6,1/2,0)^T$ cho cùng dự đoán như $w^*$ của Ví dụ 01.4 nên thỏa phương trình chuẩn của $X'$. Theo Mệnh đề 01.6(b), tập nghiệm là
 
 $$
-S^*=\bigl\{(7/6,\ s,\ 1/2-s)^T\mid s\in\mathbb R\bigr\}.
+S^*=\bigl\{(7/6,\ c,\ 1/2-c)^T\mid c\in\mathbb R\bigr\}.
 $$
 
 Mọi nghiệm cho cùng dự đoán $(7/6,5/3,13/6)^T$ và cùng giá trị tối ưu $1/6$.
 
-**Kiểm tra lại.** Với $s=1/4$: $X'w'=7/6\cdot\mathbf 1+(1/4+1/4)(0,1,2)^T=(7/6,5/3,13/6)^T$, đúng dự đoán của Ví dụ 01.4.
+**Kiểm tra lại.** Với $c=1/4$: $X'w'=7/6\cdot\mathbf 1+(1/4+1/4)(0,1,2)^T=(7/6,5/3,13/6)^T$, đúng dự đoán của Ví dụ 01.4.
 :::
 
 ::: remark Nhận xét 01.7 (Phần dư, thang đo và các nhầm lẫn thường gặp)
@@ -1084,7 +1084,7 @@ Mệnh đề 01.16 giải thích hai hiện tượng đã gặp.
 **Dữ kiện.** Ba trường hợp đã giải:
 
 - Ví dụ 01.1: $\min_{u\in[-1,1]}q(u)$ với $q(u)=\tfrac32u^2-6u+9$, nghiệm $u^*=1$, giá trị tối ưu $\tfrac92$;
-- Ví dụ 01.5: $\min_{w'}\lVert X'w'-y\rVert_2^2$ với $X'=\begin{bmatrix}1&0&0\\1&1&1\\1&2&2\end{bmatrix}$, $y=(1,2,2)^T$, giá trị tối ưu $\tfrac16$, tập nghiệm $\{(7/6,s,1/2-s)^T\mid s\in\mathbb R\}$;
+- Ví dụ 01.5: $\min_{w'}\lVert X'w'-y\rVert_2^2$ với $X'=\begin{bmatrix}1&0&0\\1&1&1\\1&2&2\end{bmatrix}$, $y=(1,2,2)^T$, giá trị tối ưu $\tfrac16$, tập nghiệm $\{(7/6,c,1/2-c)^T\mid c\in\mathbb R\}$;
 - Ví dụ 01.6: $\min_{w\in\mathbb R}L(w)$ với $L(w)=2\log(1+e^{-w})$, $\inf L=0$ không được đạt.
 
 Bốn loại kết luận về một bài toán là:
@@ -2104,7 +2104,7 @@ Về mặt trực quan, nếu $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$ t
 Cho $C\subseteq\mathbb R^d$ không bị chặn. Hàm $f:C\to\mathbb R$ là cưỡng bức (coercive) trên $C$ nếu $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$ với $x\in C$; nghĩa là với mọi $M$ có $R$ sao cho $f(x)>M$ với mọi $x\in C$ thỏa $\lVert x\rVert_2>R$.
 :::
 
-Hàm $x^2$ cưỡng bức trên $\mathbb R$. Hàm $e^x$ không cưỡng bức, vì $e^x\to0$ khi $x\to-\infty$. Hàm $J$ với ma trận $X'$ của Ví dụ 01.5 không cưỡng bức, vì $J$ giữ giá trị $\tfrac16$ dọc theo đường thẳng $(7/6,\ s,\ 1/2-s)^T$ khi $s\to\infty$.
+Hàm $x^2$ cưỡng bức trên $\mathbb R$. Hàm $e^x$ không cưỡng bức, vì $e^x\to0$ khi $x\to-\infty$. Hàm $J$ với ma trận $X'$ của Ví dụ 01.5 không cưỡng bức, vì $J$ giữ giá trị $\tfrac16$ dọc theo đường thẳng $(7/6,\ c,\ 1/2-c)^T$ khi $c\to\infty$.
 
 Tính cưỡng bức độc lập với tính lồi, vì $x^4-2x^2$ cưỡng bức mà không lồi (Bài tập 01.12), còn $e^x$ lồi mà không cưỡng bức. Với khái niệm này, sự tồn tại nghiệm trên miền không bị chặn được phát biểu như sau.
 
