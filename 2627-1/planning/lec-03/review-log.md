@@ -1350,3 +1350,107 @@ Sau lượt đồng bộ deck và SVG, các hình không được deck hay ghi c
 - **Bài 07 P03**: SVG ghép hai panel tách thành `central-problem-lp.svg` và `central-problem-dp.svg` (viewBox 420×350, chữ 17,6 px ở 390 px thay vì 7,7 px), P03 dùng lưới hai cột sẵn có; ghi chú Bài 07 dòng 78 dùng hai hình với alt riêng, đoạn đọc hình sửa "ô trái/phải" → "hình thứ nhất/thứ hai"; tệp cũ `central-problem.svg` xóa bằng `git rm` (không còn tham chiếu); storyboard P03 ghi lý do.
 - **Kiểm toàn bộ 217 SVG** bằng `svg-audit.py` do điều phối viên chạy: 18 tệp còn cờ, trong đó 14 là đường hoặc elip bị clipPath cắt (dương tính giả), 1 là chữ trên nền hộp (curvature-toolchain), 1 đã xem bằng mắt không che (equality-nullspace); 3 lỗi thật được sửa: nhãn "(2/3; 2/3)" ở coordinate-path dời lên vùng trống kèm đường dẫn; nhãn trục "giá trị hàm" (phi-local-model) và "tỷ số" (self-concordance-ratio) bị cắt 3 đơn vị ở mép trên, dời vào trong. Điều phối viên xem PNG coordinate-path sau sửa: đạt.
 - **SVG không được dùng**: 54 tệp còn lại đã được rà từng tệp ở lượt trước; quyết định giữ làm tài sản tái dùng (ghi ở nhật ký Bài 00, 01, 07).
+
+## 2026-10-12 — Trang tiêu đề mạch và trần mật độ mặt trang (đợt sửa văn phong MAT1101)
+
+**Tác tử:** tác tử chỉnh sửa deck, loại `general-purpose`, mô hình `claude-opus-5-5`, effort `high` (theo brief của master). Đã nạp `no-ai-slop` (chế độ Edit). Không commit.
+
+**Phạm vi:** `lecture-03-doi-ngau-lagrange.html`, `outline.md`, `storyboard.md`, mục này. Không sửa `lecture-style.css`, `materials/`, `index.html`, `img/lec-03/`. Đầu vào: brief chung, báo cáo phân tích (B.3, D.8), số đo cơ sở, `AGENTS.md` mục "Trang tiêu đề mạch" và "Văn phong và mật độ mặt trang chiếu".
+
+**Số trang:** 47 → 57 (thêm 5 trang tiêu đề mạch, 1 trang chứng minh tách, 4 trang lời giải mẫu). Sáu mạch giữ nguyên.
+
+| Trang | Thay đổi |
+|---|---|
+| S01-02 | "Karush–Kuhn–Tucker (KKT)" đầy đủ trước viết tắt; hộp "Tiên quyết:" (nhãn ngoài danh sách) viết thành câu |
+| S01-03 | Tiêu đề "Nội dung"; mục 5 "Điều kiện Karush–Kuhn–Tucker." trùng trang tiêu đề mạch 5 |
+| S02-00, S03-00, S04-00, S05-00, S07-00 | Thêm trang tiêu đề mạch (`strand-title`, chữ số 2.–6., dòng dẫn ≤ 25 âm tiết, dòng từ khóa, ghi chú 78–90 âm tiết); `id="mach-2"`…`mach-6"` chuyển từ trang đầu mạch cũ; mạch 6 đổi `mach-7` → `mach-6`, section ngoài `section-7` → `section-6`. Mã trang S07-xx giữ nguyên. Đã grep `materials/`, `index.html`, `*.js`: không liên kết nào tới các `id` này |
+| S02-01 | "Cận dưới cho giá trị tối ưu"; 80 → 47 âm tiết, dòng dài 30 → 15; ghi chú bỏ "Trang này …" |
+| S03-01 | "Khoảng đối ngẫu"; bỏ nhãn "Nhiệm vụ:", hộp thành $p^*-d^*\ge0$ |
+| S04-01 | "Mặt phẳng giá trị"; bỏ "Ta đã … Giờ cần …", câu đầu nêu đối tượng $(u,t)$; 62 → 39 âm tiết, 9 → 5 dòng |
+| S05-01 | "Dấu bằng trong chuỗi đối ngẫu yếu"; câu nhu cầu chuyển thành dòng dẫn S05-00 |
+| S07-01 | "Ba bước chứng nhận"; bảng "kết quả, giả thiết không được bỏ, công thức" theo mẫu kết bài; 72 âm tiết (trang tổng kết, trần 80) |
+| S02-05c → S02-05c + S02-05d | Mệnh đề, "Ý nghĩa:", "Chứng minh." một dòng; chứng minh hai bước sang "Chứng minh: tính lõm của hàm đối ngẫu" |
+| S03-03a, S03-03b, S03-03c | Tiêu đề "Chứng minh: định lý Slater[, bước]"; 59/56/60 → 40/32/29 âm tiết; ≤ 6 dòng; dòng dài ≤ 12 |
+| S03-02b | "Trực quan của điều kiện Slater"; 54 → 39 âm tiết; bỏ "(strictly feasible)" trên mặt trang |
+| S05-05 | Hai thẻ thành bảng chiều đủ/chiều cần; 9 → 5 dòng |
+| S05-05c, S05-06a | Rút gọn; câu cách tính của S05-06a chuyển xuống ghi chú (7 → 6 dòng) |
+| S02-02, S02-05a/b, S02-07a/b, S03-04, S05-04, S05-06b | Tiêu đề "Ví dụ: <đối tượng>[, bước]"; bỏ nhãn "Bài toán:"; ví dụ xuyên suốt gọi là "bài toán một biến (trên đoạn [2,4])", dữ kiện nêu lại |
+| S02-08, S03-06, S04-04, S05-07 + trang `b` | Tiêu đề "Bài tập: <chủ đề>"; lời giải mẫu "Lời giải:" ở trang kế tiếp cùng tiêu đề, trùng `materials/lec-03/exercises.md` (bài 2 câu 1–3; bài 7 câu 1; bài 5 câu 2; bài 6 câu 1–2); trang câu hỏi giữ gợi ý trong ghi chú |
+| S07-02 | "Bài tập: chứng nhận nghiệm của bài toán hai biến" (bài tự làm, lời giải trong ghi chú) |
+| S02-07, S03-02, S03-03, S03-05, S05-02, S05-05a, S05-05b | Nhãn trong danh sách cho phép ("Định nghĩa.", "Lưu ý:", "Ví dụ.", "Giả thiết:"); tiêu đề S03-02 "Cận khít và đối ngẫu mạnh" |
+| Ghi chú nhiều trang | Bỏ "Trang này …", "Hộp cuối trang …", "Thẻ bên trái …", "Dòng cuối …"; câu mở bằng đối tượng toán học |
+
+**Quyết định không làm:** không thêm trang "Ngữ cảnh" (bìa và S02-01 nêu vấn đề trung tâm; ký hiệu chung vào ở S02-04 sau nhu cầu và ví dụ). Không đổi nội dung toán học; các phép tính trên trang lời giải lấy nguyên từ ghi chú cũ và tài liệu bài tập.
+
+**no-ai-slop (Edit):** đã đối chiếu `eval.md` trên văn bản mới (dòng dẫn, ghi chú trang tiêu đề mạch, trang lời giải, câu thay thế). Đã bỏ khẩu hiệu ở hộp S07-01 ("Bộ nhân tử nối cận dưới với điều kiện tối ưu.") thay bằng kết luận cụ thể về $\lambda^*=2$; bỏ lời chỉ đường S04-01; không còn câu hỏi không nhãn (câu hỏi duy nhất trên mặt trang nằm dưới "Câu hỏi:" ở S04-04).
+
+**Kiểm tra:**
+- `density.py`: 57 trang; không trang nào > 6 dòng, > 20 âm tiết mỗi dòng hay > 3 khối công thức. Trang > 60 âm tiết duy nhất: S07-01 (72, trang tổng kết, trần 80, ghi ngoại lệ trong storyboard). Ghi chú > 250 âm tiết còn ở S01-02, S03-02b, S03-03a (330), S05-05, S05-05c, S07-01 (mức nhẹ, trang chứng minh hoặc tổng kết).
+- `deckcheck.py` (qua máy chủ tĩnh cổng 8773, vì `reloadserver` 8765 tự tải lại trang khi tác tử khác ghi tệp): 57 trang, 0 lỗi console/trang, 0 `.katex-error`, 0 tràn dọc/ngang, 0 chữ nhỏ. Đã xem ảnh 1600×900 và 390×844 các trang tiêu đề mạch, trang đổi tiêu đề, trang tách và trang lời giải. Ở màn hẹp, công thức hiển thị dài cuộn ngang trong khung như trước.
+- `git diff --check`: sạch.
+
+**Chờ master duyệt:** quyết định `chấp nhận | yêu cầu sửa | bác bỏ` do Fable 5.1 ghi.
+
+### Yêu cầu sửa của master (Fable 5.1) — 2026-10-12
+
+Master chấp nhận phần lớn đợt sửa, yêu cầu ba mục; tác tử chỉnh sửa (general-purpose/claude-opus-5-5/high) đã sửa:
+
+| Mục | Yêu cầu | Đã sửa |
+|---|---|---|
+| 1 | S03-06b: đề mở bằng "Câu hỏi:" có động từ nhiệm vụ; bỏ mục so sánh chi phí khỏi mặt trang để trùng bài 7 câu 1 | S03-06b mở bằng "Câu hỏi: Kiểm tra điều kiện Slater … và kết luận về $d^*$, $p^*$."; lời giải còn 3 mục; nhận xét $f_0(1,1)=2>f_0(1/2,1/2)$ giữ trong ghi chú. Câu 4 tương ứng cũng bỏ khỏi đề S03-06 để đề và lời giải khớp |
+| 2 | Ghi chú S01-03 nói sai vị trí lời giải | Sửa thành: phần 2–5 có bài tập với lời giải mẫu ở trang kế tiếp; bài tổng hợp phần 6 tự làm, gợi ý và lời giải trong ghi chú; lời giải đầy đủ trong tài liệu bài tập |
+| 3 | Mọi trang "Bài tập: …" có "Câu hỏi:" ở đề và "Lời giải:" ở trang lời giải | S02-08b, S04-04b, S05-07b mở bằng một dòng "Câu hỏi:" nhắc đề có động từ (Chứng nhận / Đọc, chặn, xét / Giải và kiểm tra), rồi "Lời giải:". Các trang đề S02-08, S03-06, S04-04, S05-07, S07-02 đã có "Câu hỏi:" |
+
+Kiểm tra lại: `density.py` không thêm cờ mới (các trang lời giải ≤ 6 dòng, ≤ 20 âm tiết mỗi dòng); `deckcheck.py --port 8790` (ảnh S01-03, S02-08, S02-08b, S03-06, S03-06b, S04-04b, S05-07b): 57 trang, 0 lỗi, 0 tràn, 0 `.katex-error`; đã xem ảnh 1600×900 các trang lời giải; `git diff --check` sạch.
+
+### Vòng sửa cuối theo hai báo cáo tái kiểm — 2026-10-12
+
+Nguồn: báo cáo tái kiểm toán học và báo cáo tái kiểm mạch kể (Opus 5.5, chỉ đọc), cùng chỉ thị của master Fable 5.1. Người sửa: general-purpose/claude-opus-5-5/high. Quyết định master: giữ thứ tự S03-03 (định lý) trước S03-02b (trực quan) theo yêu cầu cũ của người dùng, là ngoại lệ có chủ ý so với mục "Mở một khái niệm"; dòng dẫn "Muốn …" và "Nhu cầu:" đều hợp lệ.
+
+**Báo cáo tái kiểm toán học**
+
+| mức độ | trang | phát hiện | trạng thái |
+|---|---|---|---|
+| trung bình | S03-03a | Mặt trang mất giả thiết; bước 2 không nói nhờ đâu $a=0$, $\beta=0$ | đã sửa: dòng "Giả thiết:" (lồi, hữu hạn, điểm Slater, $p^*$ hữu hạn, $A$ đủ hạng hàng); bước 1 nêu hai tập được tách; bước 2 "điểm Slater buộc $a=0$, rồi $\beta=0$ (hai trang sau)" |
+| trung bình | S03-03b | "Lưu ý:" thiếu kết luận | đã sửa: "… nên không buộc được $a=0$; vì vậy cần khả thi chặt" |
+| trung bình | S07-01 | Hàng KKT thiếu kết luận | đã sửa: giả thiết "lồi; khả vi; bộ $(x,\lambda,\nu)$ thỏa KKT", cột công thức "$x$ tối ưu toàn cục, $f_0(x)=g(\lambda,\nu)$" |
+| trung bình | S02-08, S02-08b | Lời giải chỉ phủ câu 1 và 3 của bài 2 | đã sửa: đề thêm "giải bài toán đối ngẫu"; lời giải thêm $g'(\lambda)$, $\lambda^*=2$, $d^*=1$; ghi chú ghi "trùng câu 1–3 của bài 2", câu 4 (Slater, KKT) để tự luyện |
+| nhẹ | S02-08b | Thiếu chuỗi đối ngẫu yếu | đã sửa: "$1=g(2)\le p^*\le f_0(1)=1$, nên $x^*=1$, $p^*=d^*=1$" |
+| nhẹ | S04-04b | Cận trên $p^*\le5$ do tính khả thi, không do đối ngẫu yếu; "hệ số góc"/"độ dốc" | đã sửa trên mặt trang và ghi chú; deck, outline, storyboard thống nhất "độ dốc". `exercises.md` bài 5 (dòng 117) còn "Theo đối ngẫu yếu, $4{,}5\le p^*\le5$" và "hệ số góc": cần giao việc học liệu (ngoài phạm vi tệp được ghi) |
+| nhẹ | S05-05 | "$f_i$" mơ hồ | đã sửa: "$f_0,\ldots,f_m$ khả vi …, đẳng thức affine $Ax=b$" |
+| nhẹ | S02-05c | Nhãn "Chứng minh." cho câu ý tưởng | không sửa: "Ý chứng minh." không thuộc danh sách nhãn cho phép; mẫu "Trang phát biểu kết quả" cho phép dòng "Chứng minh." một câu |
+| nhẹ | S03-06b | Thiếu "không bảo đảm nghiệm gốc tồn tại" | đã sửa (mục 3 của lời giải) |
+| nhẹ | S04-00, S07-00 | Dòng dẫn "Muốn …" | không sửa theo quyết định master; S07-00 đổi "gom" → "kết hợp" |
+| nhẹ | S03-03b (ghi chú) | "Dấu chặt có vai trò quyết định." | đã sửa: bỏ câu |
+
+**Báo cáo tái kiểm mạch kể**
+
+| mức độ | trang | phát hiện | trạng thái |
+|---|---|---|---|
+| trung bình | ghi chú S01-01, S01-03, S02-00, S03-00, S03-01, S03-06b, S04-00, S04-01, S05-00, S05-01, S02-08b, S07-00 | Tài liệu hoặc phần của bài làm chủ ngữ | đã sửa: câu mở bằng đối tượng toán học ("Cận dưới được dựng …", "Đối ngẫu yếu $d^*\le p^*$ đúng …", "Hàm Lagrange $L$ và hàm đối ngẫu $g$ được dựng ở phần 2 …"); ghi chú dùng thống nhất "phần" |
+| trung bình | S03-03 | Định lý thiếu giả thiết Slater | đã sửa: "Nếu các $f_i$ lồi, điều kiện Slater thỏa và $p^*$ hữu hạn thì …"; định nghĩa viết "Điều kiện Slater là: …" (44 → 55 âm tiết) |
+| trung bình | S05-03 | Định nghĩa không nêu đối tượng | đã sửa: "Với các $f_i$ khả vi trên $\mathbb R^n$, bộ $(x^*,\lambda^*,\nu^*)$ thỏa điều kiện KKT nếu:" |
+| trung bình | storyboard | Bản đồ hành trình thiếu nhãn bước, mã lặp | đã sửa: mỗi cụm gán nhãn đủ sáu bước theo trang (nhu cầu, trực quan, ví dụ, hình thức, ứng dụng, bài tập); bỏ mã lặp |
+| nhẹ | S02-00 | $p^*$ trước khi định nghĩa | đã sửa: "một cận dưới của giá trị tối ưu" |
+| nhẹ | ghi chú trang tiêu đề mạch | "mạch" và "phần" lẫn lộn | đã sửa: ghi chú dùng "phần" |
+| nhẹ | S03-01, S04-01, S05-01 | Ghi chú lặp ghi chú trang tiêu đề mạch | đã sửa: bỏ đoạn lặp đầu ghi chú |
+| nhẹ | nhiều ghi chú | "ví dụ chính", "ví dụ hai chiều" | đã sửa: "bài toán một biến", "bài toán hai biến" |
+| nhẹ | ghi chú S01-01, S02-05a, S05-05b | Thành phần mặt trang làm chủ ngữ | đã sửa |
+| nhẹ | S02-04, S02-05, S03-02, S03-03 | Định nghĩa không dùng "là"/"gọi là" | đã sửa; S02-04 bỏ thêm nhãn "Bài toán gốc:" |
+| nhẹ | S04-01b | "ta có" | đã sửa: "… nên" |
+| nhẹ | S03-05, S04-01a | In đậm giữa câu, "không Slater" | đã sửa |
+| nhẹ | S05-05a | Tiêu đề dạng mệnh đề | đã sửa: "Ví dụ: nghiệm tối ưu không có nhân tử KKT" (giữ `id`) |
+| nhẹ | S07-00, S01-03 | Tên mạch 6 gọi tên hoạt động; "tài liệu đọc" trong từ khóa | sửa một phần: từ khóa đổi thành "chứng nhận cận khít", "gom" → "kết hợp"; không đổi tên mạch vì tên đã khớp đề cương mẫu và trang "Nội dung", đổi tên kéo theo nhiều tệp, master chưa yêu cầu |
+| nhẹ | S07-01 | Câu kết luận nén; chiều cần ngoài bảng | sửa một phần: hộp nêu "âm độ dốc đường cận tại $(0,5)$"; không thêm hàng thứ tư vì trang đã ở trần 80 âm tiết |
+| nhẹ | ghi chú S03-03a | "bước" hai nghĩa | đã sửa: "hai trang chứng minh kế tiếp" |
+| nhẹ | outline, storyboard | "điểm nghiêm", "khả thi nghiêm" | đã sửa: "điểm khả thi chặt", "khả thi chặt" |
+| nhẹ | outline.md | Câu cũ "không push" | đã sửa: bỏ câu |
+
+**Kiểm tra sau vòng sửa:**
+- `density.py` toàn deck: 57 trang; S07-01 có 80 âm tiết (trang tổng kết, đúng trần 80), mọi trang khác ≤ 60. Không trang nào > 6 dòng hay > 20 âm tiết mỗi dòng. S03-03a 56, S03-03 55.
+- `deckcheck.py --port 8790`, ảnh của S02-00, S02-04, S02-05, S02-08, S02-08b, S03-02, S03-03, S03-02b, S03-03a/b/c, S03-05, S03-06b, S04-01a, S04-01b, S04-04b, S05-02 đến S05-05a, S07-00, S07-01, S07-02: 57 trang, 0 lỗi console, 0 tràn, 0 `.katex-error`. Đã xem ảnh 1600×900; S03-03a sát đáy khung nhưng không tràn.
+- `git diff --check`: sạch.
+
+### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
+
+Master đã tự chạy `density.py` (57 trang, chỉ S07-01 ở đúng trần 80 của trang tổng kết, có ngoại lệ trong storyboard), `deckcheck.py` trên máy chủ tĩnh cổng 8790 (57 trang, 0 lỗi console, 0 tràn, 0 `.katex-error`), xem ảnh 1600×900 và 390×844 của S03-00, S03-03a, S03-06b, S07-01, đọc diff của các trang S01-03, S02-00, S02-01, S02-05d, S03-06b, và đối chiếu bảng trạng thái của hai báo cáo tái kiểm với tệp. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 03. Việc còn treo chuyển sang đợt học liệu: `materials/lec-03/exercises.md` bài 5 (cận trên do điểm khả thi; "độ dốc"), tên mục của `lecture-note.md` theo tên mạch mới, ví dụ gọi là "bài toán một biến trên đoạn [2,4]".
