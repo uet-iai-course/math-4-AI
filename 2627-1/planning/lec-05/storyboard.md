@@ -10,7 +10,7 @@ Bài gồm 44 trang trong 5 mạch ngoài (43 trang theo kế hoạch đã duy�
 
 **Vấn đề trung tâm.** Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác định điều gì thay đổi khi số đặc trưng $d$ tăng so với kích thước mẫu $n$: cực tiểu của rủi ro thực nghiệm có tồn tại và duy nhất không, có dự đoán tốt trên dữ liệu mới không, và tính nó tốn bao nhiêu phép tính.
 
-**Luận đề xuyên suốt** (yêu cầu người dùng 2026-10-11). Khung của Bài 01–04 (mục tiêu lồi có cực tiểu chính xác, phương pháp tất định hội tụ tới nó) không còn là bức tranh đúng khi $n$ và $d$ lớn, vì (1) tính toán không cho phép dùng toàn bộ dữ liệu ở mỗi bước và (2) cực tiểu chính xác của mất mát huấn luyện $F$ không phải đích, vì $F$ chỉ thay thế cho rủi ro $R$ trên dữ liệu mới. MD03 nêu hai lý do; HQ và LG kiểm chứng lý do (2); CP kiểm chứng lý do (1); KL tổng hợp thành hai giới hạn chuyển sang Bài 06 và bảng điều không còn giữ được / điều còn giữ được. Cột "còn giữ được" gồm: tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ (bổ đề giảm); với SGD, bất đẳng thức một bước có số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận cỡ $\eta\tau^2/\mu$ (Bài 05b T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6); điểm dừng xấp xỉ theo T7, T8 (có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước (phát hiện của cổng storyboard Bài 06).
+**Luận đề xuyên suốt** (yêu cầu người dùng 2026-10-11). Khung của Bài 01–04 (mục tiêu lồi có cực tiểu chính xác, phương pháp tất định hội tụ tới nó) không còn là bức tranh đúng khi $n$ và $d$ lớn, vì (1) tính toán không cho phép dùng toàn bộ dữ liệu ở mỗi bước và (2) cực tiểu chính xác của mất mát huấn luyện $F$ không phải đích, vì $F$ chỉ thay thế cho rủi ro $R$ trên dữ liệu mới. MD03 nêu hai lý do; HQ và LG kiểm chứng lý do (2); CP kiểm chứng lý do (1); KL tổng hợp thành hai giới hạn chuyển sang Bài 06 và bảng điều không còn giữ được / điều còn giữ được. Cột "còn giữ được" gồm: tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ (bổ đề giảm); với SGD, bất đẳng thức một bước có số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (Bài 05b T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6); điểm dừng xấp xỉ theo T7, T8 (có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước (phát hiện của cổng storyboard Bài 06).
 
 **Sườn lý thuyết** (đầy đủ ở dàn bài, mục Khung lý thuyết chung).
 
@@ -557,7 +557,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Lý do tồn tại:** gom đầu ra của phiên A3 thành giới hạn (i): mọi phương pháp của bài trả chi phí tỉ lệ với $n$ ở mỗi bước.
 - **Nhu cầu/khoảng trống lấp:** ranh giới CP → KL cần một giới hạn rõ mà Bài 06 (B3) dùng làm điểm xuất phát.
 - **Đầu vào:** CP04, CP05, CP07.
-- **Đầu ra:** giới hạn (i), kèm số RCV1 ($3{,}7\cdot10^{10}$ phép nhân–cộng cho một gradient đầy đủ; $nd^2+d^3\approx1{,}8\cdot10^{15}$ và 17,8 GB cho một bước Newton dày), cho KL01; KL03(i) dẫn lại, không phát biểu lại.
+- **Đầu ra:** giới hạn (i), kèm số RCV1 ($\approx7{,}4\cdot10^{10}$ phép nhân–cộng cho một gradient đầy đủ, gồm hai tích với $X$; $nd^2+d^3\approx1{,}8\cdot10^{15}$ và 17,8 GB cho một bước Newton dày), cho KL01; KL03(i) dẫn lại, không phát biểu lại.
 - **Vị trí trong khung:** đầu ra (c) của giao diện A–B; lý do thứ nhất của luận đề.
 - **LLO/CLO:** MT3; LLO15 → CLO4; LLO11.
 - **Bước hành trình:** KN8, trang kết của cụm.
@@ -592,7 +592,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Lý do tồn tại:** phát biểu hai giới hạn mà giao diện A–B chuyển sang Bài 06: (i) chi phí theo $n$, (ii) XOR không biểu diễn được bằng dự đoán tuyến tính.
 - **Nhu cầu/khoảng trống lấp:** Bài 06 mở từ hai giới hạn này; XOR cần đúng bốn điểm và nhãn như B01 của Bài 06 (điểm hòa giải 4).
 - **Đầu vào:** CP11 (dẫn lại cho dòng (i)); LG01 (dạng một chiều của XOR); HQ12 (hệ quả của $d$ lớn).
-- **Đầu ra:** giới hạn (i) cho B3, giới hạn (ii) cho B1–B2 của Bài 06 (KL03 chứng minh bằng đẳng thức tổng; Bài 06 nhắc lại và dùng); số đơn thức $\binom{r+q}q$; dòng (i) chốt luận đề: $n$ lớn với ngân sách cố định buộc thay gradient đầy đủ bằng SGD.
+- **Đầu ra:** giới hạn (i) cho B3, giới hạn (ii) cho B1–B2 của Bài 06 (KL03 chứng minh bằng đẳng thức tổng; Bài 06 nhắc lại và dùng); số đơn thức $\binom{d_0+q}q$ ($d_0$ biến đầu vào); dòng (i) chốt luận đề: $n$ lớn với ngân sách cố định buộc thay gradient đầy đủ bằng SGD.
 - **Vị trí trong khung:** giới hạn áp dụng của khung (mô hình tuyến tính, phương pháp tất định).
 - **LLO/CLO:** LLO11 → CLO1; CLO4.
 - **Bước hành trình:** nhu cầu mở cho Bài 06.
@@ -603,7 +603,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Lý do tồn tại:** phát biểu luận đề ở dạng mà người dùng yêu cầu cho kết luận A và mở đầu B: điều không còn giữ được và điều còn giữ được.
 - **Nhu cầu/khoảng trống lấp:** người học cần thấy SGD được buộc bởi chi phí và đủ cho mục tiêu thay thế, không chỉ "nhanh hơn".
 - **Đầu vào:** MD03; KL01–KL03.
-- **Đầu ra:** bảng hai cột, cột "còn giữ được" gồm tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ (bổ đề giảm), bất đẳng thức một bước có số hạng nhiễu của SGD; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu (T6); điểm dừng xấp xỉ (T7, T8, có mức nhiễu nền); ước lượng không chệch của gradient (Bài 05c); cho B3 của Bài 06. Không viết SGD giảm $F$ theo kỳ vọng ở mỗi bước.
+- **Đầu ra:** bảng hai cột, cột "còn giữ được" gồm tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ (bổ đề giảm), bất đẳng thức một bước có số hạng nhiễu của SGD; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu (T6); điểm dừng xấp xỉ (T7, T8, có mức nhiễu nền); ước lượng không chệch của gradient (Bài 05c); cho B3 của Bài 06. Không viết SGD giảm $F$ theo kỳ vọng ở mỗi bước.
 - **Vị trí trong khung:** tổng hợp chuỗi và giới hạn áp dụng thành luận đề.
 - **LLO/CLO:** LLO11 → CLO1.
 - **Bước hành trình:** tổng hợp.

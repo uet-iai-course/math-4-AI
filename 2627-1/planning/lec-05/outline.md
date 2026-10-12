@@ -26,7 +26,7 @@ Dàn bài này lập ngày 2026-10-11 theo thiết kế hai bài do người dù
 1. **Tính toán không cho phép dùng toàn bộ dữ liệu ở mỗi bước.** Một gradient đầy đủ tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$; với $n$ và $d$ của bài toán hiện đại, ngay một bước như vậy mỗi lần cập nhật đã vượt ngân sách. Phiên A3 đếm các chi phí này; kết luận nêu thành giới hạn (i), Bài 06 (B3) mang hệ quả: SGD theo nhóm nhỏ là phương án còn lại khi ngân sách mỗi bước cố định, và nhiễu cùng tốc độ yếu hơn là hệ quả phải chấp nhận, không phải mục tiêu thiết kế.
 2. **Cực tiểu chính xác của mất mát huấn luyện không phải đích.** $F$ là đại lượng thay thế cho rủi ro trên dữ liệu mới $R$. Phiên A1 cho thấy khớp dữ liệu huấn luyện tốt hơn khi $d$ tăng nhưng sai số trên dữ liệu ngoài mẫu xấu đi; phiên A2 cho thấy trên dữ liệu tách được, cực tiểu chính xác không tồn tại và chính quy hóa là thành phần làm bài toán đặt chỉnh. Kết luận cho thấy dừng sớm cho sai số xác thực nhỏ hơn nghiệm chính xác; vì vậy dừng sớm và chính quy hóa là một phần của phương pháp.
 
-Điều còn giữ được khi rời khung tất định (KL04, chính xác hóa sau cổng storyboard Bài 06 và sau rà soát 2026-10-12): tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ khi còn tính được (bổ đề giảm); với SGD, bất đẳng thức một bước có thêm số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu với tốc độ $O(1/k)$ (T6); điểm dừng xấp xỉ theo nghĩa của T7 ($\min_{k<K}$ chuẩn gradient) và T8 (trung bình kỳ vọng, có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước.
+Điều còn giữ được khi rời khung tất định (KL04, chính xác hóa sau cổng storyboard Bài 06 và sau rà soát 2026-10-12): tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ khi còn tính được (bổ đề giảm); với SGD, bất đẳng thức một bước có thêm số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu với tốc độ $O(1/k)$ (T6); điểm dừng xấp xỉ theo nghĩa của T7 ($\min_{k<K}$ chuẩn gradient) và T8 (trung bình kỳ vọng, có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước.
 
 **Tệp kế hoạch cũ.** Dàn bài và storyboard của deck Bài 05 cũ (từ ngày 2026-10-12 là Bài 06b, `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html`, 37 trang) nằm ở `planning/lec-06b/outline.md` và `storyboard.md` (trước đó là `outline.old-2026-10-01.md` và `storyboard.old-2026-10-01.md` trong thư mục này); nhật ký cũ nằm ở `planning/lec-06b/review-log.md` và `review-log-lecture-note.md`, nhật ký của kế hoạch mới ở `planning/lec-05/review-log.md`.
 
@@ -694,7 +694,7 @@ Ví dụ xuyên mạch (VD-A3, mục Ví dụ số): $F_\lambda(w)=\log(1+e^{-w}
   - (a) $F_\lambda(w)=\log(1+e^{-w})+0{,}025w^2$ ($\lambda=0{,}05$), $w_0=0$: tính hai bước Newton.
   - (b) $n=10^6$, $d=10^4$, $\kappa=1000$, $e_0/\varepsilon=10^8$, $N_{\rm N}=10$: so tổng chi phí hai phương pháp; bộ nhớ Hessian.
   - (c) $n=10^4$, $d=10^5$: chi phí một bước Newton khi tận dụng cấu trúc hạng thấp.
-- **Ghi chú (đáp án):** (a) $g(0)=-0{,}5$, $h(0)=0{,}3$, $w_1=1{,}6667$; $g(w_1)=-0{,}07554$, $h(w_1)=0{,}18363$, $w_2=2{,}0780$ (nghiệm $2{,}1280$). (b) Hạ gradient $\approx1000\cdot18{,}42\cdot10^{10}=1{,}84\cdot10^{14}$; Newton $\approx10\cdot(10^{14}+10^{12})=1{,}01\cdot10^{15}$; hạ gradient rẻ hơn khoảng 5 lần; Hessian 800 MB. (c) $n^2d+n^3=1{,}1\cdot10^{13}$ so với $nd^2+d^3=1{,}1\cdot10^{15}$.
+- **Ghi chú (đáp án):** (a) $g(0)=-0{,}5$, $h(0)=0{,}3$, $w_1=1{,}6667$; $g(w_1)=-0{,}07554$, $h(w_1)=0{,}18363$, $w_2=2{,}0780$ (nghiệm $2{,}1280$). (b) Hạ gradient $\approx1000\cdot18{,}42\cdot10^{10}=1{,}84\cdot10^{14}$; Newton $\approx10\cdot(10^{14}+10^{12})=1{,}01\cdot10^{15}$; bỏ hằng số, cận hạ gradient nhỏ hơn khoảng 5 lần; tính cả hằng số của giả mã, hai cận là $3{,}7\cdot10^{14}$ và $5{,}0\cdot10^{14}$, cùng bậc, nên chỉ kết luận về bậc độ lớn (sửa 2026-10-12); Hessian 800 MB. (c) $n^2d+n^3=1{,}1\cdot10^{13}$ so với $nd^2+d^3=1{,}1\cdot10^{15}$.
 - **Hình:** không.
 - **Liên kết:** kiểm tra đầu ra CP02–CP09 trước khi tổng kết mạch.
 - **Quyết định:** thêm; trang bài tập của mạch.
@@ -704,7 +704,7 @@ Ví dụ xuyên mạch (VD-A3, mục Ví dụ số): $F_\lambda(w)=\log(1+e^{-w}
 #### CP11 — Thừa số $n$ trong mọi bước
 
 - **Điểm trung tâm:** mọi phương pháp của bài trả chi phí tỉ lệ với $n$ ở mỗi bước; Newton đổi số bước lấy chi phí $d^2$, $d^3$, không bỏ được thừa số $n$.
-- **Mặt trang:** hai dòng: hạ gradient $O(nd)$ nhân $O(\kappa\log\frac1\varepsilon)$; Newton $O(nd^2+d^3)$ nhân $O(\log\log\frac1\varepsilon)$ cộng giai đoạn tắt dần. Một dòng: với RCV1, một gradient đầy đủ cần $3{,}7\cdot10^{10}$ phép nhân–cộng, một bước Newton dày cần $nd^2+d^3\approx1{,}8\cdot10^{15}$ phép nhân–cộng và 17,8 GB cho Hessian; panel: với ngân sách tính toán cố định, số lần cập nhật giảm theo $1/n$ (sửa sau rà soát 2026-10-12).
+- **Mặt trang:** hai dòng: hạ gradient $O(nd)$ nhân $O(\kappa\log\frac1\varepsilon)$; Newton $O(nd^2+d^3)$ nhân $O(\log\log\frac1\varepsilon)$ cộng giai đoạn tắt dần. Một dòng: với RCV1, một gradient đầy đủ (hai tích $Xw$, $X^Tr$) cần $\approx7{,}4\cdot10^{10}$ phép nhân–cộng, một bước Newton dày cần $nd^2+d^3\approx1{,}8\cdot10^{15}$ phép nhân–cộng và 17,8 GB cho Hessian; panel: với ngân sách tính toán cố định, số lần cập nhật giảm theo $1/n$ (sửa sau rà soát 2026-10-12).
 - **Ghi chú:** tổng chi phí là chi phí một bước nhân số bước; Newton giảm thừa số thứ hai nhưng tăng thừa số thứ nhất từ $nd$ lên $nd^2+d^3$, và cả hai thừa số thứ nhất đều chứa $n$ vì mỗi bước đọc toàn bộ dữ liệu. Một lượt qua dữ liệu (một gradient đầy đủ) là đơn vị chi phí nhỏ nhất mà mọi phương pháp của bài phải trả cho mỗi lần cập nhật; khi $n$ tăng, số lần cập nhật làm được trong một ngân sách cố định giảm theo $1/n$.
 - **Hình:** không.
 - **Liên kết:** giới hạn tạo nhu cầu cho KL; KL03(i) dẫn lại kết quả này, không phát biểu lại. Theo giao diện A–B, đây là đầu ra (c) của phiên A3 và giới hạn (i).
@@ -749,7 +749,7 @@ Chức năng: tổng hợp đầu ra ba phiên thành luận đề; nêu hai gi�
 - **Mặt trang:**
   - (i) Thừa số $n$ ở mỗi bước của cả hai phương pháp, như đã đếm.
   - (ii) XOR trên bốn điểm $u\in\{0,1\}^2$: nhãn $+1$ tại $(0,1)$, $(1,0)$; nhãn $-1$ tại $(0,0)$, $(1,1)$. Không điểm số affine $g$ nào phân loại đúng, vì $g(1,0)+g(0,1)=g(0,0)+g(1,1)$. Thêm đặc trưng $u_1u_2$ thì tách được.
-  - Số đơn thức bậc $\le q$ của $r$ biến: $\binom{r+q}q$; $r=100$: $5151$ ($q=2$), $176\,851$ ($q=3$).
+  - Số đơn thức bậc $\le q$ của $d_0$ biến đầu vào: $\binom{d_0+q}q$; $d_0=100$: $5151$ ($q=2$), $176\,851$ ($q=3$).
 - **Sửa sau rà soát năm vai (2026-10-12):** bậc đơn thức viết $q$ (N10); "với một bộ đặc trưng cố định"; "làm $d$ tăng nhanh" thay cách nói cũ (N8).
 - **Ghi chú:** đẳng thức đúng vì cả hai vế bằng $2w_0+w_1+w_2$; phân loại đúng đòi vế trái dương và vế phải âm. Bài 06 mở đầu phần mạng hai lớp bằng bài toán XOR, nhắc lại và dùng kết quả này. Với đặc trưng $(1,u_1,u_2,u_1u_2)$, $\bar w=(-\tfrac12,1,1,-2)$ cho điểm số $-\tfrac12,\tfrac12,\tfrac12,-\tfrac12$ tại $(0,0),(1,0),(0,1),(1,1)$, nên mọi biên bằng $\tfrac12$. Ba điểm $-,+,-$ trên một trục ở phần hồi quy logistic là dạng một chiều của XOR. Phần hồi quy nhiều chiều cho thấy hệ quả của $d$ lớn (quá khớp, $\kappa$ không giảm); phần chi phí cho thấy Newton tốn theo $d^2$, $d^3$. Đầu vào thô $u$ ở đây là $x$ của Bài 06.
 - **Hình:** không.
@@ -763,11 +763,11 @@ Chức năng: tổng hợp đầu ra ba phiên thành luận đề; nêu hai gi�
 - **Điểm trung tâm:** khi chuyển sang dữ liệu và mô hình lớn, phải bỏ tính chính xác của nghiệm làm đích, bảo đảm tất định và gradient đầy đủ; còn giữ tính giảm mỗi bước của hạ gradient với gradient đầy đủ khi còn tính được, bất đẳng thức một bước có số hạng nhiễu và tốc độ theo kỳ vọng của SGD, và hội tụ tới điểm dừng.
 - **Mặt trang** (bản sau tái kiểm 2026-10-12): một dòng "Mất khi (i) chi phí buộc dùng SGD, hoặc (ii) mục tiêu không lồi (Bài 06): hai giới hạn ở trang trước", kèm giải nghĩa $K$ (số bước), $\eta$ (bước), $\Delta_0=F(w_0)-\inf F$, $\tau^2$ (chặn phương sai nhiễu của gradient ngẫu nhiên; Bài 05b viết $\sigma^2$, ở đây đổi vì $\sigma$ là sigmoid). Bảng hai cột "Mất (khi nào)" / "Còn giữ được":
   - đích là nghiệm chính xác (mất ngay trong bài, vì $F$ chỉ thay cho $R$) ↔ đích là $R$ nhỏ; dừng sớm và chính quy hóa thuộc phương pháp;
-  - bảo đảm tất định của Định lý 3, $e_k\le(1-1/\kappa)^ke_0$ (mất khi (i) và (ii)) ↔ gradient đầy đủ, khi còn tính được: $F$ giảm mỗi bước (bổ đề giảm); SGD với $F_\lambda$ lồi mạnh: bước hằng tới lân cận cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6);
+  - bảo đảm tất định của Định lý 3, $e_k\le(1-1/\kappa)^ke_0$ (tốc độ tuyến tính, mất khi (i) hoặc (ii); dưới (ii) với gradient đầy đủ, bổ đề giảm và T7 vẫn là bảo đảm tất định) ↔ gradient đầy đủ, khi còn tính được: $F$ giảm mỗi bước (bổ đề giảm); SGD với $F_\lambda$ lồi mạnh: bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6);
   - cực tiểu toàn cục (mất khi (ii)) ↔ điểm dừng xấp xỉ: $\min_{k<K}\lVert\nabla F\rVert^2\le2L\Delta_0/K$ (T7); SGD bước hằng: trung bình $\mathbb E\lVert\nabla F\rVert^2\le\frac{2\Delta_0}{\eta K}+L\eta\tau^2$, mức nhiễu nền tỉ lệ với $\eta$ (T8);
   - chi phí $O(nd)$ mỗi bước (mất khi (i)) ↔ gradient nhóm nhỏ: không chệch, chi phí không phụ thuộc $n$ (Định lý 05c.53).
   Câu luận đề "$n$ lớn với ngân sách cố định buộc thay gradient đầy đủ bằng SGD" đặt ở KL03 (i).
-- **Sửa sau rà soát năm vai (2026-10-12):** xem mục Mặt trang (S1; tái kiểm R1, R2: T5 bước hằng chỉ tới lân cận cỡ $\eta\tau^2/\mu$, nhãn (i), (ii) thay (A), (B)).
+- **Sửa sau rà soát năm vai (2026-10-12):** xem mục Mặt trang (S1; tái kiểm R1, R2: T5 bước hằng chỉ tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$, nhãn (i), (ii) thay (A), (B)).
 - **Ghi chú:** chỉ nêu tên các kết quả T5, T6, T7, T8; phát biểu thuộc Bài 05b và Bài 06 (điểm hòa giải 3). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước: Bài 06 cho một ví dụ bốn điểm trong đó một bước SGD xuất phát từ chính cực tiểu cho $\mathbb E\,F(\theta_1)=\tfrac{69}{128}>\tfrac12=F(\theta_0)$. Điều còn lại là bất đẳng thức một bước có số hạng nhiễu tỉ lệ với $\eta^2$, đủ để suy ra tốc độ theo kỳ vọng khi bước đủ nhỏ hoặc giảm dần. Mất mát lồi không còn bảo đảm mục tiêu lồi khi tham số vào phi tuyến; điều này thuộc Bài 06.
 - **Hình:** không; bảng HTML.
 - **Liên kết:** gộp MD03 với KL01–KL03. Cột "còn giữ được" chính xác hóa theo cổng storyboard Bài 06 (2026-10-11).
@@ -995,7 +995,7 @@ Cột "Nhãn trên trang" là nhãn hiển thị trên mặt trang; mã KQ chỉ
 | KQ11 | không lên trang | Tách được ⇒ $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0$ | Mới | Bài tập về nhà | ghi chú LG08 |
 | KQ12 | "Nhắc lại (Bài 02, Mệnh đề 02.21(c))" | Ridge có nghiệm duy nhất với mọi $d$ | Bài 02 Mệnh đề 02.21 | Phát biểu lại | HQ10 |
 | — | không đánh số | Trung bình mẫu ước lượng không chệch kỳ vọng | Bài 05c §E | Trích dẫn | HQ05 |
-| — | T5, T6, T7, T8 (Bài 05b) | SGD lồi mạnh: bước hằng tới lân cận cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu (T6); điểm dừng xấp xỉ (T7, T8, có mức nhiễu nền) | Bài 05b | Chỉ nêu tên | KL04 |
+| — | T5, T6, T7, T8 (Bài 05b) | SGD lồi mạnh: bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu (T6); điểm dừng xấp xỉ (T7, T8, có mức nhiễu nền) | Bài 05b | Chỉ nêu tên | KL04 |
 
 ## Rủi ro và điểm cần người dùng quyết
 
