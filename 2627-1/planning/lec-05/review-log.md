@@ -362,3 +362,121 @@ Sửa thêm sau tái kiểm toán Bài 06 (2026-10-12): KL04 hàng 2 đổi nhã
 Sửa thêm sau rà soát học liệu (2026-10-12): KL04 (mặt trang, ghi chú) viết T5 là lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (bán kính cỡ $\sqrt{\eta\tau^2/\mu}$), không gọi $\eta\tau^2/\mu$ là bán kính; CP09 (ghi chú) và CP11 (mặt trang): một tích với $X$ là $nd\approx3{,}7\cdot10^{10}$, một gradient đầy đủ (hai tích $Xw$, $X^Tr$) cần $\approx7{,}4\cdot10^{10}$ phép nhân–cộng; CP10 (ghi chú) câu 2: tính cả hằng số hai cận là $3{,}7\cdot10^{14}$ và $5{,}0\cdot10^{14}$, cùng bậc, chỉ kết luận về bậc độ lớn; outline và storyboard sửa theo; KL04, CP09–CP11 đạt ở 1600×900 và 390×844; `git diff --check` sạch.
 
 Đồng bộ ký hiệu với ghi chú bài giảng (2026-10-12): KL03 (mặt trang, ghi chú) viết số biến đầu vào là $d_0$ thay $r$, số đơn thức $\binom{d_0+q}q$; $r$ giữ cho cận $\lVert x_i\rVert\le r$ (LG09, KL05); không SVG nào dùng ký hiệu này; outline, storyboard sửa theo; KL03 đạt ở 1600×900 và 390×844; `git diff --check` sạch.
+
+## Vòng sửa văn phong MAT1101 và trang tiêu đề mạch (2026-10-12)
+
+### Phạm vi và tác tử
+
+Áp mục "Trang tiêu đề mạch" và "Văn phong và mật độ mặt trang chiếu" của AGENTS.md (commit a389f70) lên deck Bài 05. Tác tử biên tập: Agent tool, general-purpose, claude-opus-5-5, high (do điều phối viên Fable 5.1 giao, theo brief chung `brief-deck-editor.md` và báo cáo phân tích `phan-tich-mat1101.md`, mục B.3, D.8). Tệp đã ghi: `lecture-05-khong-gian-dac-trung-nhieu-chieu.html`, `planning/lec-05/{outline,storyboard,review-log}.md`. Không sửa `lecture-style.css`, `materials/`, `index.html`, `img/lec-05/`. Không commit.
+
+### Kết quả
+
+- Số trang: 44 → 67, vẫn 5 mạch. Thêm bốn trang tiêu đề mạch: HQ00 "2. Hồi quy nhiều chiều" (`mach-2`), LG00 "3. Hồi quy logistic và chính quy hóa" (`mach-3`), CP00 "4. Độ cong và chi phí tính toán" (`mach-4`), KL00 "5. Giới hạn của tối ưu tất định" (`mach-5`); `#/3` mở đúng LG00. Mạch 1 dùng bìa MD01. Tên năm mạch trùng giữa trang "Nội dung" MD03a, bốn trang tiêu đề và bảng mạch của storyboard; không tên mạch nào trùng tiêu đề trang nội dung đầu mạch.
+- Lớp `.dense`: 43/44 trang → 0/67 trang.
+- Trang vượt 60 âm tiết: 17 → 3, cả ba thuộc loại trang có trần 80 và được ghi ngoại lệ trong storyboard: MD02 (mục tiêu, 65), KL02 (bảng so sánh ba phương pháp, 78), KL04 (bảng so sánh mất/còn, 79). Không dòng nào quá 20 âm tiết trừ dòng dẫn KL00 (21, trần dòng dẫn 25). Không trang nào quá 6 dòng hay quá 3 khối công thức.
+- Mã T2b, T5–T8, H2, H3 không còn trên mặt trang và trong ghi chú; thay bằng lời kèm Định lý 05b.18(b) (CP04), Hệ quả 05b.17 (LG05), Định lý 05b.36, 05b.39, 05b.41, 05b.43 (một dòng ở KL04a), Định lý 05c.52 (HQ05a), 05c.53 (KL04). Mỗi trang có nhiều nhất một chỗ dẫn số hiệu.
+- Ba bài tập có lời giải mẫu trên mặt trang (trang kế cùng tiêu đề, nhãn "Lời giải:"): HQ11a, LG11a, CP10a; lời giải trùng Bài tập 1, 4, 8 của `materials/lec-05/exercises.md`. KL05b là bài tự làm, đáp án trong ghi chú (Bài tập 10). KL05c nêu Bài tập 7 và 5 làm bài về nhà.
+- Ký hiệu đã chốt với học liệu giữ nguyên: $d_0$ (KL03a), bán kính lân cận $\sqrt{\eta\tau^2/\mu}$ (ghi chú KL04a), gradient RCV1 $\approx7{,}4\cdot10^{10}$ (CP11), nhãn "(i) hoặc (ii)" (KL04).
+
+### Bảng thay đổi theo trang
+
+| Trang | Âm tiết trước → sau | Quyết định | Việc chính |
+|---|---|---|---|
+| MD02 | 87 → 65 | sửa | mỗi mục ≤ 20 âm tiết (trang mục tiêu, trần 80) |
+| MD03 | 186 → MD03a 47, MD03b 58, MD03c 52 | tách | Nội dung đánh số 1–5; Ngữ cảnh 4 dòng; hai lý do |
+| MD04 | 59 → 53 | sửa | tiêu đề "Ký hiệu chung"; dòng $w_k$ xuống ghi chú |
+| HQ00, LG00, CP00, KL00 | mới (38, 36, 33, 36) | thêm | trang tiêu đề mạch, ghi chú 92–110 âm tiết |
+| HQ01 | 39 → 32 | sửa | "Nhu cầu:" lên đầu |
+| HQ04 | 40 → 24 | sửa | bảng chỉ giữ hàng ngoài mẫu để vừa khung |
+| HQ05 | 100 → HQ05 43, HQ05a 60 | tách | rủi ro và quá khớp / tập xác thực, tập kiểm thử |
+| HQ07 | 77 → HQ07 33, HQ07a 46 | tách | mệnh đề và chứng minh / ví dụ $d=6$ |
+| HQ08 | 74 → 58 | sửa | "Nhu cầu:" lên đầu, "Trực quan.", chú thích ngắn |
+| HQ09 | 47 → 43 | sửa | cận độ nhạy thành "Nhận xét" |
+| HQ11 | 29 → 28 (+ HQ11a 40) | sửa, thêm | "Bài tập: hạng, nghiệm và chọn số đặc trưng" + lời giải |
+| HQ12 | 74 → 57 | sửa | hệ quả 2 viết bằng tỉ số; bỏ nhãn "Giới hạn." |
+| LG01 | 67 → 45 | sửa | "Nhu cầu:" lên đầu |
+| LG04 | 54 → 51 | sửa | một khung nhấn |
+| LG05 | 56 → LG05 48, LG05a 34 | tách | định lý + "Ý nghĩa:" / "Chứng minh: …" bốn bước |
+| LG06 | 58 → 48 | sửa | "Chứng minh (phác thảo)." |
+| LG08 | 49 → LG08 43, LG08a 32 | tách | định lý / "Ví dụ: một mẫu có chính quy hóa" |
+| LG09 | 34 → 24 | sửa | 7 → 6 dòng |
+| LG10 | 44 → 42 | sửa | "Ví dụ: ba điểm có chính quy hóa", "Diễn giải:" |
+| LG11 | 39 → 36 (+ LG11a 47) | sửa, thêm | "Bài tập: …" + lời giải |
+| LG12 | 61 → 49 | sửa | khung kết luận tách hai dòng |
+| CP01 | 47 → 38 | sửa | mô tả hình ngắn |
+| CP02 | 16 → 16 | sửa | bỏ hàng $k=0$ (trang cao 701 px khi gỡ `.dense`) |
+| CP03 | 61 → 42 | sửa | tiêu đề cột ngắn, ba gạch đầu dòng |
+| CP04 | 53 → 43 | sửa | Định lý 05b.18(b); bỏ H2, H3, nhãn "Áp dụng." |
+| CP05 | 92 → CP05 48, CP05a 48 | tách | Định lý 4 + "Ý nghĩa:" / bất biến affine + "Nhu cầu:" |
+| CP06 | 50 → CP06 19, CP06a 28 | tách | giả mã hạ gradient / phần thêm của Newton |
+| CP07 | 87 → CP07 52, CP07a 39 | tách | Mệnh đề 5 / tỉ số chi phí và $d>n$ |
+| CP08 | 54 → CP08 33, CP08a 40 | tách | công thức và ngưỡng / bảng hai giá trị $\lambda$ |
+| CP09 | 36 → 34 | sửa | câu kết tách hai dòng |
+| CP10 | 38 → 38 (+ CP10a 18) | sửa, thêm | "Bài tập: …" + lời giải |
+| CP11 | 77 → 58 | sửa | dòng RCV1 tách hai dòng |
+| KL01 | 80 → KL01 51, KL01a 59 | tách | số liệu và nhu cầu / định nghĩa dừng sớm |
+| KL02 | 99 → 78 | sửa | trang bảng so sánh, trần 80 |
+| KL03 | 102 → KL03 53, KL03a 47 | tách | hai giới hạn / "Ví dụ: bài toán XOR" |
+| KL04 | 134 (ghi chú 466) → KL04 79, KL04a 60 (ghi chú 200, khoảng 240) | tách | bảng mất/còn / bốn công thức với số hiệu 05b |
+| KL05 | 143 → KL05 39, KL05a 47, KL05b 47, KL05c 46 | tách | hai bảng tổng kết theo mẫu AGENTS.md; bài tự kiểm tra; tài liệu đọc và bài về nhà |
+| Các trang còn lại (MD01, HQ02, HQ03, HQ06, HQ10, LG02, LG03, LG07) | không đổi số âm tiết | giữ hoặc sửa nhãn | gỡ `.dense`; "Nhắc lại:", dòng kiểm tra HQ06 |
+
+Ghi chú diễn giả: tham chiếu "trang sau/trang trước" và "phần A/B/C" được rà và sửa theo thứ tự trang mới (ví dụ LG07 trỏ tới "ví dụ một mẫu ở trang ví dụ sau Định lý 2", KL04 trỏ tới "trang giới hạn"); không ghi chú nào mở bằng "Trang này", không mã trang trong ghi chú.
+
+### Tự kiểm no-ai-slop
+
+Đã nạp `no-ai-slop` (Edit mode) và đối chiếu `eval.md` cho mọi câu mới trên mặt trang và trong ghi chú: không từ cấm, không câu dẫn rỗng, không khẩu hiệu hay kết luận kịch tính; mỗi trang một câu kết luận có điều kiện hoặc con số; dòng dẫn trang tiêu đề mạch nêu nhiệm vụ cụ thể (không đạt kiểm tra "dời được sang bài khác"). Đã thay cụm khó đọc "$d=2,$ $8{,}39$" bằng "khi $d=2$ và $8{,}39$ khi $d=5$" (HQ09).
+
+### Kiểm tra
+
+- `density.py`: 67 trang, 3 trang > 60 âm tiết (MD02, KL02, KL04, ngoại lệ trần 80 đã ghi), 0 trang > 6 dòng, 0 `.dense`.
+- `deckcheck.py` (Playwright, 1600×900 và 390×844): 0 lỗi console/trang, 0 `.katex-error`, 0 tràn dọc ở 16:9 (cao nhất HQ09 621/675 sau khi sửa HQ01 678, HQ04 688, CP02 701, KL05 814), 0 cuộn ngang ở màn hẹp. Bốn cờ "TRAN_NGANG" (HQ09, LG08a, LG10, LG11a) là SVG đuôi của dấu căn KaTeX (`\sqrt`, rộng 400em, cắt bởi `overflow:hidden`); đã xem ảnh, không có tràn thật.
+- Đã xem ảnh cả 67 trang ở 1600×900 và 390×844 (đầu và cuối vùng cuộn), gồm bốn trang tiêu đề mạch và mọi trang tách. Bảng ở màn hẹp cuộn ngang trong `.table-scroll` như trước.
+- Bàn phím: phím cách đi qua đủ 67 trang tới KL05c; `#/3` mở LG00.
+- `git diff --check` sạch trên bốn tệp.
+
+### Chỗ học liệu cần đồng bộ (đề xuất cho điều phối viên)
+
+- `materials/lec-05/exercises.md`, đoạn đầu: "Các bài 1, 4, 8 và 10 là các câu hỏi trên trang chiếu" và "Bài 5 và Bài 7 là hai bài tập về nhà nêu ở trang tổng kết" vẫn đúng nội dung; trang tổng kết nay là trang "Tài liệu đọc và bài tập về nhà". Câu hỏi 3 của KL05b được viết gọn ("Dừng sớm: nêu tập chọn bước dừng, và lý do không báo cáo sai số trên tập đó"), nghĩa trùng Bài tập 10(3).
+- Không đổi số liệu, ký hiệu hay thứ tự ví dụ; chỉ đổi thứ tự trình bày trong một số trang (định nghĩa tập xác thực tách khỏi rủi ro; ví dụ một mẫu đứng sau Định lý 2 như trước).
+
+### Quyết định của điều phối viên
+
+(chờ điều phối viên Fable 5.1 duyệt)
+
+### Vòng sửa sau tái kiểm toán học và mạch kể (2026-10-12)
+
+Cùng tác tử biên tập (general-purpose, claude-opus-5-5, high), theo lời giao của điều phối viên dựa trên `recheck-05-math.md` (KT) và `recheck-05-story.md` (MK). Điều phối viên chấp nhận cách đọc "tối đa một lần mỗi trang" là một chỗ trích dẫn mỗi trang; KL04a giữ một dòng ngoặc số hiệu.
+
+| Mã | Mức độ | Vai | Trang | Trạng thái | Cách sửa |
+|---|---|---|---|---|---|
+| V1 | trung bình | KT | KL04a | đã sửa | dòng "Giả thiết:" ($F$ $L$-trơn, bị chặn dưới; $g_k$ không chệch, phương sai $\le\tau^2$); điều kiện bước trên từng dòng ($\eta\le1/L$ ở dòng 1 và 4; $\tfrac1{\mu(k+1)}$ và $\mathbb E\lVert g_k\rVert^2\le G^2$ ở dòng 2; $1/L$ ở dòng 3); dòng 4 viết $\tfrac1K\sum_{k<K}$; 42 âm tiết |
+| V2 | trung bình | KT | KL05 | đã sửa | Định lý 1: "$F(w_k)\to0\Rightarrow\lVert w_k\rVert\to\infty$", giả thiết "mất mát logistic, dữ liệu tách được"; Mệnh đề 1: "mất mát bình phương"; cận $\kappa$: "mất mát logistic, $\lVert x_i\rVert\le r$" |
+| V3 | trung bình | KT, MK | KL05a | đã sửa | tách hàng số bước: hạ gradient (bước $1/L$, $\kappa\log\frac{e_0}\varepsilon$) và Newton (quay lui Armijo, $\frac{f(w_0)-f^*}\gamma+\log_2\log_2\frac{\varepsilon_0}\varepsilon$) |
+| V4 | trung bình | KT, MK | HQ00 (ghi chú) | đã sửa | "khi $\operatorname{rank}X=n$ (cần $d\ge n$), nghiệm nội suy; khi $d>n$, tập nghiệm có chiều $d-n$" |
+| V5 | trung bình | MK | MD04 | đã sửa | mặt trang chỉ còn $(u_i,y_i)$ với $d_0$ biến, $x_i$, $X$, $y$, $w$ (và $n$, $d$); $F$, $R$, $F_\lambda$, $L$, $\mu$, $\kappa$, năm giả thiết và đối chiếu ký hiệu xuống ghi chú |
+| V6 | trung bình | MK | KL03, KL04 | đã sửa | KL03: "(ii) Biểu diễn: với đặc trưng cố định $(1,u_1,u_2)$, không điểm số affine nào phân loại đúng bài toán XOR" và "Đặc trưng học được (Bài 06) bỏ giới hạn (ii) nhưng làm mục tiêu không lồi"; KL04: "(i) Chi phí; (ii) mục tiêu không lồi do đặc trưng học được"; "(khi (i) hoặc (ii))" giữ nguyên; ghi chú KL03 nêu mắt xích |
+| V7 | trung bình | MK | CP03, CP04 | đã sửa | CP04 (Định lý 3 và hệ quả) đứng trước CP03 trên deck, mã giữ nguyên; CP03 ghi "cột cận theo hệ quả của Định lý 3"; ghi chú CP02, CP04 sửa mối nối; storyboard đổi thứ tự mục và KN7 |
+| V8 | trung bình | MK | LG12 | đã sửa | một câu "Kết luận: $\lambda$ càng nhỏ, $w_\lambda$ càng gần bài toán gốc và cận $\kappa\le1+\frac{r^2}{4\lambda}$ càng lớn"; bỏ "liên tục theo dữ liệu"; gạch đầu dòng dẫn Định lý 2 cho tồn tại và duy nhất |
+| V9 | trung bình | MK | storyboard | đã sửa | mục KL05 viết lại cho trang hiện hành; bỏ mục MD03 lịch sử (67 mục cho 67 trang); MD03 → MD03c ở luận đề, MD02, MD04, HQ04, KL02, KL04 (storyboard và outline); nhu cầu KN8 → CP05a; "KL05(c)" → KL05b(3); thêm câu 44 → 67 ở mục cuối; sáu tiêu đề mục đồng bộ với `h2` (MD04, HQ11, LG10, LG11, CP06, CP10) và KL05 viết lại |
+| V10 | nhẹ | KT, MK | MD03b | đã sửa | "Bài 01–04 giả thiết $F$ lồi, trơn, có cực tiểu $w^*$; khi đó hạ gradient, Newton hội tụ" |
+| V11 | nhẹ | KT, MK | KL04 | đã sửa | "Gradient đầy đủ, bước $\le1/L$: $F$ giảm; SGD, $F_\lambda$ lồi mạnh: lân cận hoặc $w^*$"; "Đích: nghiệm chính xác (mất ngay ở Bài 05)"; "Gradient đầy đủ $O(nd)$ (khi (i))"; 80 âm tiết |
+| V12 | nhẹ | KT | LG10 (ghi chú) | đã sửa | "theo kết luận thứ hai của Định lý 1 (bước 4 của chứng minh)" |
+| V13 | nhẹ | KT, MK | KL00, HQ00, LG00 | đã sửa | dòng dẫn KL00 nêu giới hạn và bảo đảm của khung tất định; HQ00 nêu ba đại lượng cần xác định; LG00 "Nhu cầu: điều kiện để mất mát logistic có cực tiểu…" (22, 20, 23 âm tiết; trần 25) |
+| V14 | nhẹ | MK | ghi chú MD01, MD03a, HQ00, LG00, CP00, KL00, KL04, KL04a, CP04, KL05c, KL01a | đã sửa | mở bằng đối tượng hoặc kết quả kế thừa; bỏ "Bài 05b chứng minh…", "bài này không chứng minh lại"; ghi chú trang tiêu đề mạch 72–93 âm tiết |
+| V15 | nhẹ | MK | CP01, LG08, KL01 | đã sửa | CP01 thêm "Nhu cầu:" đầu trang; LG08 thêm dòng "Nhu cầu:" (cận trên $L$); KL01 "Nhu cầu:" lên dòng đầu (trang cao 653 px) |
+| V16 | nhẹ | MK | KL01a | đã sửa | "Ví dụ. Trên năm mẫu ở trang trước, quy tắc trả về $w_{79}$." |
+| V17 | nhẹ | MK | MD02, MD03c, HQ12, LG01, LG03, LG10, CP01, KL03, KL05c | đã sửa | bỏ in đậm nhãn ngoài danh sách |
+| V18 | nhẹ | MK | MD02, MD03a, KL05 | đã sửa | mục tiêu 3 mang tên mạch 4; ghi chú MD03a nối mạch 4 → 5; KL05 thêm dòng số điều kiện $\kappa(X^TX)$ không giảm theo $d$ |
+| V19 | nhẹ | MK | LG04, HQ09, HQ10 | giữ, có lý do | mỗi trang một luận điểm, dưới trần; lý do gộp ghi trong storyboard |
+| V20 | nhẹ | MK | KL04a | giữ | một dòng ngoặc bốn số hiệu, điều phối viên chấp nhận |
+| V21 | nhẹ | MK | ghi chú MD02, MD04, KL04a, CP06 | đã sửa một phần | CP06 thêm lý do dòng 2 tốn $O(n)$; KL04a còn 238 âm tiết, MD04 212 (đối chiếu ký hiệu dồn từ mặt trang theo V5), MD02 khoảng 210; mức nhẹ, giữ |
+| V22 | nhẹ | MK | ghi chú KL01a, KL03 | đã sửa | "Quan sát dừng sớm dùng cả ba mạch giữa…"; ghi chú KL03 viết lại thành một mạch câu |
+
+Kiểm tra sau vòng sửa: `density.py` 67 trang, 4 trang > 60 âm tiết đều thuộc loại trần 80 (MD02 66, KL02 78, KL04 80, KL05 66), không trang > 6 dòng, không `.dense`, dòng > 20 âm tiết chỉ ở dòng dẫn LG00 (22) và KL00 (23), trần 25; `deckcheck.py --port 8790` (67 trang, 1600×900 và 390×844): 0 lỗi console/trang, 0 `.katex-error`, 0 tràn dọc (KL01 761 px ở lần chạy đầu, sửa bằng cách gộp dòng nhu cầu với dữ kiện), 0 cuộn ngang màn hẹp; bốn cờ "TRAN_NGANG" còn lại là đuôi SVG của `\sqrt` như vòng trước. Đã xem ảnh 1600×900 của MD03b, MD04, CP01, CP04, CP03, LG08, LG12, KL01, KL03, KL04, KL04a, KL05, KL05a và bốn trang tiêu đề mạch. `git diff --check` sạch.
+
+**Quyết định của điều phối viên:** (chờ duyệt)
+
+### Quyết định của master (Fable 5.1, effort medium) — 2026-10-12
+
+Master đã tự chạy `density.py` (67 trang; MD02 66, KL02 78, KL04 80, KL05 66 dưới hoặc bằng trần 80, có ngoại lệ trong storyboard; không trang nào còn `.dense`; dòng dẫn LG00, KL00 22–23/25), `deckcheck.py` trên máy chủ tĩnh (0 lỗi console, 0 tràn; cờ tràn ngang là dương tính giả KaTeX), đọc nguyên văn KL04a (bốn cận đúng với giả thiết đi kèm: $\min_{k<K}\|\nabla F\|^2\le 2L\Delta_0/K$ với bước $1/L$; $\frac1K\sum\mathbb E\|\nabla F\|^2\le 2\Delta_0/(\eta K)+L\eta\tau^2$ với $\eta\le1/L$) và MD04 sau rút gọn, xem ảnh trang tiêu đề mạch và trang tách, đối chiếu bảng trạng thái V1–V22 của hai báo cáo tái kiểm. `git diff --check` sạch. Quyết định: `chấp nhận`, commit Bài 05. Việc còn treo (đợt học liệu): câu dẫn của `exercises.md` nói Bài 5 và 7 "ở trang tổng kết" nay là KL05c; mã T5–T8 trong học liệu giữ nguyên theo quyết định đợt này.

@@ -14,70 +14,83 @@
 <div class="reveal"><div class="lecture-viewport" tabindex="0" role="region" aria-label="Nội dung trang chiếu"><div class="slides">
 <section>
 <section data-slide-id="MD01" class="title-slide"><h2>Không gian đặc trưng nhiều chiều</h2><p>Hồi quy lồi và giới hạn của tối ưu tất định</p><p class="course">Cơ sở toán học cho AI</p><p class="lecture">Bài 05</p><div class="title-rule"></div><p>Trường Đại học Công nghệ<br>Đại học Quốc gia Hà Nội</p>
-<aside class="notes"><p>Bài 05 dùng lại hai mô hình tuyến tính theo đặc trưng của Bài 01–02 (hồi quy bình phương nhỏ nhất và hồi quy logistic) và hai phương pháp tất định của Bài 04 (hạ gradient và Newton). Đối tượng mới là sự phụ thuộc của bài toán vào số đặc trưng $d$ và kích thước mẫu $n$: nghiệm còn tồn tại và duy nhất hay không, nghiệm có dự đoán tốt trên dữ liệu mới hay không, và tính nghiệm tốn bao nhiêu phép tính.</p><p>Kiến thức cần có: phương trình chuẩn và điều kiện nghiệm duy nhất (Bài 01), hồi quy ridge (Bài 02), hạ gradient, Newton và hội tụ tuyến tính (Bài 04), kỳ vọng của trung bình mẫu (Bài 05c). Bài 05b chứng minh các định lý hội tụ mà bài này chỉ phát biểu lại.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Buổi 5.</p></aside></section>
+<aside class="notes"><p>Hai mô hình tuyến tính theo đặc trưng của Bài 01–02 (hồi quy bình phương nhỏ nhất và hồi quy logistic) và hai phương pháp tất định của Bài 04 (hạ gradient và Newton) được dùng lại. Đối tượng mới là sự phụ thuộc của bài toán vào số đặc trưng $d$ và kích thước mẫu $n$: nghiệm còn tồn tại và duy nhất hay không, nghiệm có dự đoán tốt trên dữ liệu mới hay không, và tính nghiệm tốn bao nhiêu phép tính.</p><p>Kiến thức cần có: phương trình chuẩn và điều kiện nghiệm duy nhất (Bài 01), hồi quy ridge (Bài 02), hạ gradient, Newton và hội tụ tuyến tính (Bài 04), kỳ vọng của trung bình mẫu (Bài 05c). Chứng minh các định lý hội tụ được phát biểu lại ở đây nằm trong ghi chú Bài 05b.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Buổi 5.</p></aside></section>
 
-<section data-slide-id="MD02" class="dense"><h2>Mục tiêu học tập</h2>
+<section data-slide-id="MD02"><h2>Mục tiêu học tập</h2>
 <p>Sau bài này, người học có thể:</p>
 <ol>
-<li><b>Hồi quy nhiều chiều.</b> Giải phương trình chuẩn, xác định hạng và số điều kiện; phân biệt sai số huấn luyện với sai số ngoài mẫu khi $d$ tăng; chọn mô hình bằng tập xác thực.</li>
-<li><b>Hồi quy logistic và chính quy hóa.</b> Chứng minh mất mát logistic không có cực tiểu trên dữ liệu tách được; chứng nhận $F_\lambda$ lồi mạnh và tính $\mu,$ $L,$ $\kappa.$</li>
-<li><b>Chi phí tính toán.</b> Đếm chi phí một bước của hạ gradient và Newton; chọn phương pháp theo $(n,d,\kappa,\varepsilon).$</li>
+<li>Hồi quy nhiều chiều. Tính hạng, số điều kiện; phân biệt sai số huấn luyện với sai số xác thực.</li>
+<li>Hồi quy logistic và chính quy hóa. Chứng minh không có cực tiểu trên dữ liệu tách được; tính $\mu,$ $L,$ $\kappa$ của $F_\lambda.$</li>
+<li>Độ cong và chi phí tính toán. Đếm chi phí một bước hạ gradient, Newton; chọn phương pháp theo $(n,d,\kappa,\varepsilon).$</li>
 </ol>
-<aside class="notes"><p>Ba mục tiêu ứng với ba phần giữa của bài và được đo lại ở trang tổng kết. Mục tiêu 1 và 2 thuộc chuẩn đầu ra của Buổi 5 về các khó khăn khi tối ưu mô hình học máy: điều kiện hóa kém và sự khác nhau giữa đại lượng được tối ưu và đại lượng cần nhỏ trên dữ liệu mới. Mục tiêu 3 thuộc phần phương pháp bậc hai (Newton) và phần phân tích chi phí thuật toán.</p><p>Mục tiêu 1 dựa trên phương trình chuẩn, Mệnh đề 1 (chế độ nội suy) và số điều kiện $\kappa(X^TX)$; tiên quyết là phương trình chuẩn và điều kiện nghiệm duy nhất của Bài 01. Mục tiêu 2 dựa trên Định lý 1 (không tồn tại cực tiểu), Định lý 2 (tính lồi mạnh của $F_\lambda$) và Mệnh đề 4 (hằng số trơn); tiên quyết là hồi quy logistic và định lý Weierstrass của Bài 01. Mục tiêu 3 dựa trên Định lý 3, Định lý 4 (số bước) và Mệnh đề 5 (chi phí một bước); tiên quyết là hạ gradient và Newton của Bài 04.</p><p>Ba mục tiêu cùng phục vụ một vấn đề trung tâm, nêu ở trang sau, cùng hai lý do khiến khung tối ưu của Bài 01–04 phải được kiểm tra lại.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Buổi 5 và Buổi 6.</p></aside></section>
+<aside class="notes"><p>Ba mục tiêu ứng với ba mạch giữa của bài và được đo lại ở trang tổng kết. Mục tiêu 1 và 2 thuộc chuẩn đầu ra của Buổi 5 về các khó khăn khi tối ưu mô hình học máy: điều kiện hóa kém và sự khác nhau giữa đại lượng được tối ưu và đại lượng cần nhỏ trên dữ liệu mới. Mục tiêu 1 còn gồm việc chọn $d$ và $\lambda$ bằng tập xác thực. Mục tiêu 3 thuộc phần phương pháp bậc hai (Newton) và phần phân tích chi phí thuật toán.</p><p>Mục tiêu 1 dựa trên phương trình chuẩn, Mệnh đề 1 (chế độ nội suy) và số điều kiện $\kappa(X^TX)$; tiên quyết là phương trình chuẩn và điều kiện nghiệm duy nhất của Bài 01. Mục tiêu 2 dựa trên Định lý 1 (không tồn tại cực tiểu), Định lý 2 (tính lồi mạnh của $F_\lambda$) và Mệnh đề 4 (hằng số trơn); tiên quyết là hồi quy logistic và định lý Weierstrass của Bài 01. Mục tiêu 3 dựa trên Định lý 3, Định lý 4 (số bước) và Mệnh đề 5 (chi phí một bước); tiên quyết là hạ gradient và Newton của Bài 04.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Buổi 5 và Buổi 6.</p></aside></section>
 
-<section data-slide-id="MD03" class="dense"><h2>Vấn đề trung tâm</h2>
-<div class="cols"><div>
-<div class="panel"><p><b>Khung của Bài 01–04.</b> $F$ lồi có điểm cực tiểu $w^*;$ hạ gradient hoặc Newton hội tụ tới $w^*$ dưới các giả thiết đã nêu.</p></div>
-<p>Khi $n$ và $d$ lớn, khung này cần được kiểm tra lại vì hai lý do:</p>
-<ol><li><b>Chi phí.</b> Một gradient đầy đủ tốn $O(nd)$ phép tính, một bước Newton tốn $O(nd^2+d^3);$ với ngân sách tính toán cố định, số lần cập nhật giảm theo $1/n.$</li>
-<li><b>Đích.</b> Mất mát huấn luyện $F$ chỉ thay thế cho rủi ro trên dữ liệu mới; cực tiểu chính xác của $F$ có thể không tồn tại hoặc dự đoán kém.</li></ol>
-</div><div>
-<div class="panel"><p><b>Vấn đề trung tâm.</b> Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác định điều gì thay đổi khi $d$ tăng so với $n\text{:}$ cực tiểu của rủi ro thực nghiệm có tồn tại và duy nhất không, có dự đoán tốt trên dữ liệu mới không, và tính nó tốn bao nhiêu phép tính.</p></div>
-<ol class="roadmap"><li>Hồi quy nhiều chiều: nghiệm khi $d$ tiến tới và vượt $n$</li><li>Hồi quy logistic và chính quy hóa: sự tồn tại của cực tiểu</li><li>Độ cong và chi phí tính toán: chi phí của phương pháp hội tụ nhanh</li></ol>
-</div></div>
-<aside class="notes"><p>Hai lý do được kiểm chứng lần lượt trong bài. Lý do thứ hai xuất hiện trước: ở hồi quy nhiều chiều, sai số trên dữ liệu ngoài mẫu tăng khi $d$ tăng dù sai số huấn luyện giảm; ở hồi quy logistic trên dữ liệu tách được, cực tiểu chính xác không tồn tại. Lý do thứ nhất được đo ở phần chi phí, nơi số bước và chi phí mỗi bước của hai phương pháp được đếm. Phần kết luận ghép hai lý do bằng quan sát về dừng sớm và số liệu trên một tập dữ liệu lớn.</p><p>Thứ tự của bài: hiện tượng ở bình phương nhỏ nhất (A), hiện tượng ở phân loại (B), rồi chi phí của phép sửa (C). Mỗi phần nhận đầu ra của phần trước: hạng và số điều kiện của $X$ từ phần A dùng cho phần B; số điều kiện của mục tiêu có chính quy hóa từ phần B quyết định số bước ở phần C.</p><p>Khi rời khung tất định, không phải mọi bảo đảm đều mất. Bổ đề giảm vẫn bảo đảm hạ gradient với gradient đầy đủ giảm $F$ ở mỗi bước; hạ gradient ngẫu nhiên không có tính chất này, chỉ có bất đẳng thức một bước có thêm số hạng nhiễu. Bảng ở phần kết luận ghi chính xác điều nào còn giữ được.</p><p class="note-source"><strong>Nguồn:</strong> Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13, §13.1–13.2 (đánh đổi giữa sai số xấp xỉ, sai số ước lượng và sai số tối ưu).</p></aside></section>
+<section data-slide-id="MD03a"><h2>Nội dung</h2>
+<ol>
+<li>Bài toán trung tâm và khung chung</li>
+<li>Hồi quy nhiều chiều</li>
+<li>Hồi quy logistic và chính quy hóa</li>
+<li>Độ cong và chi phí tính toán</li>
+<li>Giới hạn của tối ưu tất định</li>
+</ol>
+<div class="reading"><p>Tài liệu đọc trước: Goodfellow, Bengio và Courville (2016), §5.2; Boyd và Vandenberghe (2004), §9.1–9.3.</p></div>
+<aside class="notes"><p>Năm mạch nối nhau theo vấn đề trung tâm. Mạch 1 đặt vấn đề trung tâm, khung chung và ký hiệu. Mạch 2 xét bình phương nhỏ nhất khi $d$ tăng tới và vượt $n$: nội suy, quá khớp, số điều kiện. Mạch 3 xét hồi quy logistic: dữ liệu tách được làm mất cực tiểu, chính quy hóa bậc hai khôi phục cực tiểu nhưng làm $\kappa$ tăng theo $1/\lambda$. Mạch 4 đếm số bước và chi phí mỗi bước của hạ gradient và Newton. Mạch 5 ghép hai lý do của vấn đề trung tâm qua dừng sớm, số liệu RCV1 và bài toán XOR, rồi nêu điều còn giữ được khi chuyển sang Bài 06.</p><p>Đầu ra của mỗi mạch là đầu vào của mạch sau: hạng và số điều kiện của $X$ từ mạch 2 dùng cho mạch 3; số điều kiện của mục tiêu có chính quy hóa từ mạch 3 quyết định số bước ở mạch 4; thừa số $n$ trong chi phí mọi bước từ mạch 4 là giới hạn (i) của mạch 5.</p><p class="note-source"><strong>Nguồn:</strong> Đề cương UET.AI2012, Buổi 5; Goodfellow, Bengio và Courville (2016), §5.2; Boyd và Vandenberghe (2004), §9.1–9.3.</p></aside></section>
 
-<section data-slide-id="MD04" class="dense"><h2>Khung chung và ký hiệu</h2>
-<div class="cols"><div><div class="table-scroll" tabindex="0"><table><thead><tr><th>Ký hiệu</th><th>Nghĩa</th></tr></thead><tbody>
-<tr><td>$(u_i,y_i),$ $i\le n$</td><td>đầu vào thô, nhãn thực hoặc $\pm1$</td></tr>
+<section data-slide-id="MD03b"><h2>Ngữ cảnh</h2>
+<p><b>Nhắc lại:</b> Bài 01–04 giả thiết $F$ lồi, trơn, có cực tiểu $w^*;$ khi đó hạ gradient, Newton hội tụ.</p>
+<p><b>Giả thiết:</b> mô hình tuyến tính $x^Tw,$ $x\in\mathbb R^d;$ mất mát lồi; $n$ mẫu.</p>
+<div class="panel"><p><b>Nhu cầu:</b> khi $d$ tăng so với $n,$ xác định cực tiểu của $F$ có tồn tại và duy nhất không.</p>
+<p>Xác định thêm sai số trên dữ liệu mới và số phép tính.</p></div>
+<aside class="notes"><p>Vấn đề trung tâm gồm ba câu hỏi về cùng một cực tiểu của rủi ro thực nghiệm $F$: tồn tại và duy nhất (mạch 2 và 3), chất lượng dự đoán trên dữ liệu mới (mạch 2, đo bằng tập xác thực) và số phép tính (mạch 4). Các định lý của Bài 01–04 vẫn đúng; điều cần kiểm tra là các giả thiết của chúng còn thỏa và kết luận của chúng còn đủ khi $n$ và $d$ lớn. Bảng ký hiệu và năm giả thiết chung nằm ở trang ký hiệu.</p><p class="note-source"><strong>Nguồn:</strong> Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13, §13.1–13.2.</p></aside></section>
+
+<section data-slide-id="MD03c"><h2>Chi phí tính toán và đích của tối ưu</h2>
+<p>Khi $n$ và $d$ lớn, khung của Bài 01–04 cần được kiểm tra lại vì hai lý do:</p>
+<ol><li>Chi phí: Gradient đầy đủ tốn $O(nd),$ bước Newton $O(nd^2+d^3);$ số lần cập nhật trong ngân sách cố định giảm theo $1/n.$</li>
+<li>Đích: $F$ chỉ thay cho rủi ro trên dữ liệu mới; $\arg\min F$ có thể rỗng hoặc dự đoán kém.</li></ol>
+<aside class="notes"><p>Hai lý do được kiểm chứng lần lượt trong bài. Lý do thứ hai xuất hiện trước: ở hồi quy nhiều chiều, sai số trên dữ liệu ngoài mẫu tăng khi $d$ tăng dù sai số huấn luyện giảm; ở hồi quy logistic trên dữ liệu tách được, cực tiểu chính xác không tồn tại. Lý do thứ nhất được đo ở mạch chi phí, nơi số bước và chi phí mỗi bước của hai phương pháp được đếm. Mạch kết luận ghép hai lý do bằng quan sát về dừng sớm và số liệu trên một tập dữ liệu lớn.</p><p>Khi rời khung tất định, không phải mọi bảo đảm đều mất. Bổ đề giảm vẫn bảo đảm hạ gradient với gradient đầy đủ giảm $F$ ở mỗi bước; hạ gradient ngẫu nhiên không có tính chất này, chỉ có bất đẳng thức một bước có thêm số hạng nhiễu. Bảng ở mạch kết luận ghi chính xác điều nào còn giữ được.</p><p class="note-source"><strong>Nguồn:</strong> Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13, §13.1–13.2 (đánh đổi giữa sai số xấp xỉ, sai số ước lượng và sai số tối ưu).</p></aside></section>
+
+<section data-slide-id="MD04"><h2>Ký hiệu chung</h2>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Ký hiệu</th><th>Nghĩa</th></tr></thead><tbody>
+<tr><td>$(u_i,y_i),$ $i\le n$</td><td>đầu vào thô $u_i$ gồm $d_0$ biến; nhãn thực hoặc $\pm1$</td></tr>
 <tr><td>$x_i=\varphi(u_i)\in\mathbb R^d$</td><td>vector đặc trưng, tọa độ đầu bằng $1$</td></tr>
-<tr><td>$X\in\mathbb R^{n\times d}$</td><td>ma trận thiết kế, hàng $i$ là $x_i^T$</td></tr>
+<tr><td>$X\in\mathbb R^{n\times d},$ $y\in\mathbb R^n$</td><td>ma trận thiết kế (hàng $i$ là $x_i^T$), vector nhãn</td></tr>
 <tr><td>$w\in\mathbb R^d$</td><td>tham số, hệ số chặn nằm trong $w$</td></tr>
-</tbody></table></div></div>
-<div><div class="table-scroll" tabindex="0"><table><thead><tr><th>Ký hiệu</th><th>Nghĩa</th></tr></thead><tbody>
-<tr><td>$F(w)=\frac1n\sum_i\ell_i(w)$</td><td>rủi ro thực nghiệm</td></tr>
-<tr><td>$R(w)=\mathbb E\,\ell(w;u,y)$</td><td>rủi ro kỳ vọng</td></tr>
-<tr><td>$F_\lambda=F+\frac\lambda2\lVert w\rVert^2$</td><td>mục tiêu chính quy hóa</td></tr>
-<tr><td>$L,$ $\mu,$ $\kappa=L/\mu$</td><td>hằng số trơn, lồi mạnh, số điều kiện</td></tr>
-</tbody></table></div></div></div>
-<p>Dãy lặp: $w_k$ (Bài 05b viết $x_k$).</p>
-<aside class="notes"><p>Năm giả thiết dùng chung cho cả bài. Dữ liệu: $n$ mẫu hữu hạn, $x_i$ đã chứa tọa độ hằng $1$. Mô hình và mất mát: dự đoán $x^Tw$; mất mát bình phương $\ell_i=\tfrac12(x_i^Tw-y_i)^2$ hoặc logistic $\ell_i=\log(1+e^{-y_ix_i^Tw})$, cả hai lồi và khả vi hai lần theo $w$. Phân phối: mẫu huấn luyện, xác thực và kiểm thử cùng phân phối $P$, nên $R$ được định nghĩa và ước lượng được; bài không chứng minh cận khái quát hóa. Chính quy hóa: $\lambda&gt;0$ cố định, chọn bằng tập xác thực. Đếm chi phí: ma trận dày, bỏ hằng số; tích ma trận–vector $Xv$ tốn $nd$ phép nhân–cộng.</p><p>Bài 05b và 05c viết $N$ cho kích thước mẫu; bài này viết $n$. Bài 01 viết $a_i$ cho vector đặc trưng và $\mu$ cho hệ số chính quy hóa ở dạng tổng; dạng trung bình $F_\lambda$ ở đây ứng với dạng tổng của Bài 01 khi $\lambda=\mu/n$ (hai mẫu của Tình huống 01.1: $\lambda=\mu/2$). Trong bài này $\mu$ luôn là hằng số lồi mạnh. Hệ số chặn không được viết $b$, vì Bài 05b, 05c và Bài 06 dùng $b$ cho kích thước nhóm nhỏ.</p><p>Đối chiếu Bài 06, với đặc trưng tuyến tính $\varphi(u)=(1,u)$: đầu vào thô $u$ ở đây là $x$ của Bài 06, và số chiều $d$ ở đây bằng số tham số $p=d_{06}+1$ của mô hình tuyến tính trong Bài 06, với $d_{06}$ là số chiều đầu vào ở đó.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01 (phương trình chuẩn, hồi quy logistic), Bài 05b (giả thiết H2, H3), Bài 05c (ký hiệu mẫu).</p></aside></section>
+</tbody></table></div>
+<aside class="notes"><p>Bảng chỉ gồm các ký hiệu dùng ngay ở mạch hồi quy nhiều chiều. Các ký hiệu còn lại được định nghĩa tại chỗ khi nhu cầu của chúng đã có: rủi ro thực nghiệm $F(w)=\tfrac1n\sum_i\ell_i(w)$ (phương trình chuẩn), rủi ro kỳ vọng $R(w)=\mathbb E\,\ell(w;u,y)$ (trang rủi ro), mục tiêu chính quy hóa $F_\lambda=F+\tfrac\lambda2\lVert w\rVert^2$ (trang chính quy hóa), hằng số trơn $L$, hằng số lồi mạnh $\mu$, số điều kiện $\kappa=L/\mu$ (trang số điều kiện). Dãy lặp viết $w_k$; Bài 05b viết $x_k$.</p><p>Năm giả thiết dùng chung: $n$ mẫu hữu hạn, $x_i$ chứa tọa độ hằng $1$; dự đoán $x^Tw$ với mất mát bình phương $\ell_i=\tfrac12(x_i^Tw-y_i)^2$ hoặc logistic $\ell_i=\log(1+e^{-y_ix_i^Tw})$, cả hai lồi và khả vi hai lần; mẫu huấn luyện, xác thực, kiểm thử cùng phân phối $P$; $\lambda&gt;0$ chọn bằng tập xác thực; đếm chi phí với ma trận dày, bỏ hằng số.</p><p>Bài 05b, 05c viết $N$ cho kích thước mẫu; Bài 01 viết $a_i$ cho vector đặc trưng và $\mu$ cho hệ số chính quy hóa ở dạng tổng, ứng với $\lambda=\mu/n$ ở đây. Hệ số chặn không viết $b$ vì $b$ là kích thước nhóm nhỏ ở Bài 05b, 05c, 06. Với $\varphi(u)=(1,u)$, $u$ ở đây là $x$ của Bài 06 và $d=p=d_{06}+1$.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01 (phương trình chuẩn, hồi quy logistic), Bài 05b (giả thiết trơn và lồi mạnh), Bài 05c (ký hiệu mẫu).</p></aside></section>
 </section>
 <section>
-<section data-slide-id="HQ01" class="dense"><h2>Dữ liệu và đặc trưng đa thức</h2>
+<section id="mach-2" data-slide-id="HQ00" class="strand-title">
+<div class="strand-title-body">
+<h2><span class="strand-number">2.</span> Hồi quy nhiều chiều</h2>
+<p class="strand-lead">Muốn xác định tính duy nhất, sai số ngoài mẫu và số điều kiện của nghiệm khi $d$ tăng so với $n.$</p>
+<p class="strand-keys">Phương trình chuẩn · quá khớp · chế độ nội suy · số điều kiện · chính quy hóa</p>
+</div>
+<aside class="notes"><p>Mô hình tuyến tính $x^Tw$ theo đặc trưng, ma trận thiết kế $X\in\mathbb R^{n\times d}$ và lý do thứ hai của vấn đề trung tâm ($F$ chỉ thay cho rủi ro trên dữ liệu mới) là đầu vào. Trên năm mẫu với đặc trưng đa thức: khi $d$ tăng, sai số huấn luyện giảm về $0$ còn sai số ngoài mẫu tăng; khi $\operatorname{rank}X=n$ (cần $d\ge n$), nghiệm nội suy; khi $d&gt;n$, tập nghiệm có chiều $d-n$; $\kappa(X^TX)$ không giảm. Đầu ra cho hồi quy logistic: chế độ nội suy và nhận xét rằng bình phương nhỏ nhất luôn có nghiệm.</p></aside></section>
+
+<section data-slide-id="HQ01"><h2>Dữ liệu và đặc trưng đa thức</h2>
 <div class="cols"><div>
+<div class="panel"><p><b>Nhu cầu:</b> chọn số đặc trưng $d$ cho năm mẫu, khi $d$ có thể vượt $n=5.$</p></div>
 <div class="table-scroll" tabindex="0"><table><tbody>
 <tr><th>$u_i$</th><td>$-1$</td><td>$-\tfrac12$</td><td>$0$</td><td>$\tfrac12$</td><td>$1$</td></tr>
 <tr><th>$y_i$</th><td>$-0{,}9$</td><td>$-0{,}7$</td><td>$0{,}2$</td><td>$0{,}4$</td><td>$1{,}0$</td></tr>
 </tbody></table></div>
-<p>Đặc trưng đa thức: $x=\varphi_d(u)=(1,u,\dots,u^{d-1})\in\mathbb R^d.$ Tăng $d$ là thêm một cột vào $X\in\mathbb R^{5\times d}.$</p>
+<p>Đặc trưng đa thức $x=(1,u,\dots,u^{d-1})\in\mathbb R^d;$ tăng $d$ là thêm một cột vào $X.$</p>
 <ul><li>$d=2\text{:}$ hàng $i$ của $X$ là $(1,u_i).$</li>
-<li>$d=5\text{:}$ hàng $i$ là $(1,u_i,u_i^2,u_i^3,u_i^4);$ $X$ là ma trận Vandermonde $5\times5.$</li></ul>
-<div class="panel"><p><b>Nhu cầu.</b> Chọn $d$ khi chỉ có năm mẫu, và biết nghiệm thay đổi thế nào khi $d$ tiến tới và vượt $n=5.$</p></div>
+<li>$d=5\text{:}$ hàng $i$ là $(1,u_i,\dots,u_i^4);$ $X$ là ma trận Vandermonde $5\times5.$</li></ul>
 </div><div>
 <figure><img src="img/lec-05/hq-data-points.svg" alt="Năm mẫu huấn luyện (chấm đặc) tại u = −1; −0,5; 0; 0,5; 1 với y = −0,9; −0,7; 0,2; 0,4; 1,0 nằm quanh đường thật y = u (nét đứt); bốn điểm ngoài mẫu (vòng rỗng) tại u = ±0,25 và ±0,75 nằm đúng trên đường y = u." /></figure>
 </div></div>
 <aside class="notes"><p>Dữ liệu được dựng để mọi phép tính kiểm tra được bằng phép tính thủ công: $y_i=u_i+\varepsilon_i$ với $\varepsilon=(0{,}1;\,-0{,}2;\,0{,}2;\,-0{,}1;\,0)$. Quan hệ thật là tuyến tính, nên mọi đặc trưng từ $u^2$ trở lên chỉ có thể dùng để khớp nhiễu. Các nút $u_i$ đối xứng quanh $0$, nên $\sum_iu_i=0$ và nhiều tích vô hướng giữa các cột của $X$ bằng $0$.</p><p>Hình còn vẽ bốn điểm ngoài mẫu $u=\pm\tfrac14,\pm\tfrac34$ với nhãn bằng giá trị đúng $u$, không nhiễu. Các điểm này không tham gia huấn luyện; từ khi định nghĩa tập xác thực, chúng đóng vai tập xác thực.</p><p>Với $d=1$, mô hình chỉ có hệ số chặn; với $d=2$, đường thẳng; với $d=5$, đa thức bậc $4$ có đúng năm hệ số, bằng số mẫu. Để so các giá trị $d$, trước hết cần nghiệm $w$ cho từng $d$, tức phương trình chuẩn.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §5.2 và hình 5.2 (thứ tự trình bày: đa thức bậc tăng dần trên cùng dữ liệu); dữ liệu tự xây dựng.</p></aside></section>
 
-<section data-slide-id="HQ02" class="dense"><h2>Phương trình chuẩn</h2>
+<section data-slide-id="HQ02"><h2>Phương trình chuẩn</h2>
 <p>Với mất mát bình phương, $F(w)=\frac1{2n}\lVert Xw-y\rVert^2,$</p>
 <div class="formula" tabindex="0">$$\nabla F(w)=\frac1nX^T(Xw-y),\qquad\nabla^2F=\frac1nX^TX.$$</div>
-<div class="panel"><p><b>Nhắc lại</b> (Bài 01, Mệnh đề 01.6)<b>.</b> Phương trình chuẩn $X^TXw=X^Ty$ luôn có nghiệm; nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d.$</p></div>
+<div class="panel"><p><b>Nhắc lại:</b> phương trình chuẩn $X^TXw=X^Ty$ luôn có nghiệm; nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$ (Mệnh đề 01.6).</p></div>
 <p><b>Ví dụ</b> ($d=2$)<b>.</b> Vì $\sum_iu_i=0$ và $\sum_iu_i^2=\tfrac52\text{:}$</p>
 <div class="formula" tabindex="0">$$X^TX=\begin{pmatrix}5&amp;0\\0&amp;\tfrac52\end{pmatrix},\quad X^Ty=\begin{pmatrix}\sum_iy_i\\\sum_iu_iy_i\end{pmatrix}=\begin{pmatrix}0\\\tfrac{49}{20}\end{pmatrix},\quad w=\begin{pmatrix}0\\\tfrac{49}{50}\end{pmatrix}.$$</div>
 <aside class="notes"><p>Hệ số $\tfrac1{2n}$ không đổi tập nghiệm so với $\lVert Xw-y\rVert^2$ của Bài 01, vì nhân hàm mục tiêu với một hằng số dương không đổi điểm cực tiểu. Hệ số này lại đổi các hằng số $L$ và $\mu$ của $F$: chúng bằng trị riêng lớn nhất và nhỏ nhất của $\tfrac1nX^TX$, dùng ở trang số điều kiện.</p><p>Phép tính thủ công: $\sum_iy_i=-0{,}9-0{,}7+0{,}2+0{,}4+1=0$ và $\sum_iu_iy_i=0{,}9+0{,}35+0+0{,}2+1=2{,}45=\tfrac{49}{20}$. Hệ chéo cho $w_0=0$, $w_1=\tfrac{49/20}{5/2}=\tfrac{49}{50}=0{,}98$, tức đường $0{,}98u$, gần quan hệ thật $u$.</p><p>Với $d=3,4,5$, hệ không còn chéo nhưng vẫn giải được bằng phân số; các nghiệm đó cho bảng sai số ở trang sau.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Mệnh đề 01.6; Boyd và Vandenberghe (2004), §6.1.</p></aside></section>
 
-<section data-slide-id="HQ03" class="dense"><h2>Sai số huấn luyện theo số chiều</h2>
+<section data-slide-id="HQ03"><h2>Sai số huấn luyện theo số chiều</h2>
 <div class="cols"><div>
 <p>Sai số bình phương trung bình (MSE) huấn luyện $\frac1n\lVert Xw-y\rVert^2$ tại nghiệm của phương trình chuẩn:</p>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$d$</th><th>$1$</th><th>$2$</th><th>$3$</th><th>$4$</th><th>$5$</th></tr></thead><tbody>
@@ -89,83 +102,92 @@
 </div></div>
 <aside class="notes"><p>Giá trị chính xác: $\tfrac{99}{5000}$ ở $d=2$, $\tfrac{86}{4375}$ ở $d=3$, $\tfrac1{56}$ ở $d=4$. MSE huấn luyện bằng $2F(w)$ tại nghiệm.</p><p>Lý do sai số không tăng: với $d'&gt;d$, đặt các hệ số thêm bằng $0$ cho lại đúng mô hình bậc thấp, nên tập các hàm biểu diễn được với $d$ đặc trưng nằm trong tập ứng với $d'$; cực tiểu của cùng một hàm trên tập lớn hơn không lớn hơn. Đây mới là lập luận trực quan về bao hàm, chưa nói gì về mức giảm.</p><p>Số $0$ tại $d=5$ đến từ việc có năm hệ số cho năm phương trình, nên đa thức đi qua đúng năm điểm (đường nét đứt trên hình). Sai số huấn luyện giảm không cho biết dự đoán tại điểm mới; hình đã cho thấy đa thức bậc $4$ rời xa đường $y=u$ giữa các nút, và trang sau đo khoảng cách đó.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp trên dữ liệu năm mẫu; Goodfellow, Bengio và Courville (2016), §5.2.</p></aside></section>
 
-<section data-slide-id="HQ04" class="dense"><h2>Sai số ngoài mẫu theo số chiều</h2>
-<div class="table-scroll" tabindex="0"><table><thead><tr><th>MSE theo $d$</th><th>$1$</th><th>$2$</th><th>$3$</th><th>$4$</th><th>$5$</th></tr></thead><tbody>
-<tr><td>huấn luyện</td><td>$0{,}5$</td><td>$0{,}0198$</td><td>$0{,}0197$</td><td>$0{,}0179$</td><td>$0$</td></tr>
-<tr><td>ngoài mẫu</td><td>$0{,}3125$</td><td>$0{,}000125$</td><td>$0{,}000205$</td><td>$0{,}00107$</td><td>$0{,}0487$</td></tr>
+<section data-slide-id="HQ04"><h2>Sai số ngoài mẫu theo số chiều</h2>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>$d$</th><th>$1$</th><th>$2$</th><th>$3$</th><th>$4$</th><th>$5$</th></tr></thead><tbody>
+<tr><td>MSE ngoài mẫu</td><td>$0{,}3125$</td><td>$0{,}000125$</td><td>$0{,}000205$</td><td>$0{,}00107$</td><td>$0{,}0487$</td></tr>
 </tbody></table></div>
 <div class="cols"><div>
-<p>Bốn điểm ngoài mẫu $u=\pm\tfrac14,\pm\tfrac34,$ nhãn bằng giá trị đúng $u$ (không nhiễu); từ trang sau, bốn điểm này là tập xác thực.</p>
+<p>Bốn điểm ngoài mẫu $u=\pm\tfrac14,\pm\tfrac34,$ nhãn đúng $y=u,$ không nhiễu.</p>
 <div class="panel"><p>Cực tiểu chính xác ở $d=5$ có sai số ngoài mẫu gấp $389$ lần ở $d=2.$</p></div>
 </div><div>
 <figure><img src="img/lec-05/hq-errors-vs-d.svg" alt="Trục tung logarit. MSE huấn luyện giảm theo d: 0,5; 0,0198; 0,0197; 0,0179; bằng 0 tại d = 5. MSE trên bốn điểm ngoài mẫu: 0,3125; 0,000125; 0,000205; 0,00107; 0,0487, nhỏ nhất tại d = 2 rồi tăng." /></figure>
 </div></div>
-<aside class="notes"><p>Tại $u=-\tfrac34$, đa thức nội suy bậc $4$ dự đoán $-\tfrac{1373}{1280}\approx-1{,}073$, trong khi giá trị đúng là $-0{,}75$; sai số riêng điểm này là $0{,}32$. Tỉ số $0{,}048682/0{,}000125\approx389{,}5$.</p><p>Nhãn của bốn điểm không có nhiễu, nên con số đo khoảng cách giữa hàm đã khớp và quan hệ thật. Nếu nhãn mới cũng có nhiễu độc lập, sai số kỳ vọng cộng thêm phương sai của nhiễu, nhưng thứ tự giữa các $d$ không đổi. Ví dụ năm điểm chỉ minh họa định tính; không suy ra quy luật định lượng nào về mức tăng.</p><p>Hai hàng của bảng đo hai đại lượng khác nhau: hàng đầu là đại lượng được tối ưu, hàng sau là đại lượng cần nhỏ. Hai đại lượng này cần tên và định nghĩa riêng.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Goodfellow, Bengio và Courville (2016), §5.2 (quan hệ giữa dung lượng mô hình, sai số huấn luyện và sai số khái quát hóa).</p></aside></section>
+<aside class="notes"><p>Tại $u=-\tfrac34$, đa thức nội suy bậc $4$ dự đoán $-\tfrac{1373}{1280}\approx-1{,}073$, trong khi giá trị đúng là $-0{,}75$; sai số riêng điểm này là $0{,}32$. Tỉ số $0{,}048682/0{,}000125\approx389{,}5$.</p><p>Nhãn của bốn điểm không có nhiễu, nên con số đo khoảng cách giữa hàm đã khớp và quan hệ thật. Nếu nhãn mới cũng có nhiễu độc lập, sai số kỳ vọng cộng thêm phương sai của nhiễu, nhưng thứ tự giữa các $d$ không đổi. Ví dụ năm điểm chỉ minh họa định tính; không suy ra quy luật định lượng nào về mức tăng.</p><p>Hình đặt cạnh nhau hai đại lượng khác nhau: sai số huấn luyện (bảng ở trang trước) là đại lượng được tối ưu, sai số ngoài mẫu là đại lượng cần nhỏ. Hai đại lượng này cần tên và định nghĩa riêng.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Goodfellow, Bengio và Courville (2016), §5.2 (quan hệ giữa dung lượng mô hình, sai số huấn luyện và sai số khái quát hóa).</p></aside></section>
 
-<section data-slide-id="HQ05" class="dense"><h2>Rủi ro thực nghiệm và rủi ro kỳ vọng</h2>
-<p><b>Định nghĩa</b> (rủi ro)<b>.</b> Giả sử mẫu huấn luyện và mẫu mới cùng phân phối $P.$ Với mất mát $\ell,$</p>
+<section data-slide-id="HQ05"><h2>Rủi ro thực nghiệm và rủi ro kỳ vọng</h2>
+<p><b>Định nghĩa</b> (rủi ro)<b>.</b> Mẫu huấn luyện và mẫu mới cùng phân phối $P;$ với mất mát $\ell\text{:}$</p>
 <div class="formula" tabindex="0">$$F(w)=\frac1n\sum_{i=1}^n\ell(w;u_i,y_i),\qquad R(w)=\mathbb E_{(u,y)\sim P}\,\ell(w;u,y).$$</div>
-<p><b>Định nghĩa</b> (tập xác thực, tập kiểm thử)<b>.</b> Tập xác thực (validation set) là mẫu tách khỏi tập huấn luyện, dùng để chọn $d,$ $\lambda$ và bước dừng. Tập kiểm thử (test set) là mẫu không tham gia lựa chọn nào, dùng để báo cáo ước lượng của $R.$</p>
-<p>Với $w$ cố định, trung bình mất mát trên một tập kiểm thử độc lập là ước lượng không chệch của $R(w).$</p>
-<div class="panel"><p><b>Định nghĩa</b> (quá khớp)<b>.</b> Quá khớp (overfitting) là trạng thái $F(w)$ nhỏ nhưng $R(w)-F(w)$ lớn. Nói chung $\arg\min F$ khác $\arg\min R.$</p></div>
-<aside class="notes"><p>Đây là lý do thứ hai của vấn đề trung tâm ở dạng định nghĩa: thuật toán tối ưu $F$, còn đích học là $R$ nhỏ. Bảng ở trang trước cho thấy cực tiểu chính xác của $F$ ở $d=5$ có $R$ lớn hơn nhiều so với $d=2$.</p><p>Tính không chệch dùng kỳ vọng của trung bình mẫu (Bài 05c, Định lý 05c.52): nếu $(u'_j,y'_j)$ độc lập cùng phân phối $P$ và $w$ không phụ thuộc vào chúng, thì $\mathbb E\,\tfrac1m\sum_j\ell(w;u'_j,y'_j)=R(w)$. Nếu dùng chính tập kiểm thử để chọn $d$ hoặc $\lambda$, thì $w$ được chọn phụ thuộc vào tập đó và đẳng thức không còn đúng; vì vậy tập chọn và tập báo cáo phải tách nhau.</p><p>Trong ví dụ năm mẫu, bốn điểm $u=\pm\tfrac14,\pm\tfrac34$ là tập xác thực: chúng dùng để chọn $\lambda$ ở trang chính quy hóa và chọn bước dừng ở phần kết luận. Ví dụ thu nhỏ không có tập kiểm thử riêng, nên các con số trên bốn điểm này không phải báo cáo cuối về $R$.</p><p>Bốn điểm này là một quy ước minh họa, không phải mẫu lấy từ $P$: vị trí được chọn trước và nhãn lấy từ hàm đích $y=u$ không nhiễu. Với mô hình sinh $y=u+\varepsilon$, $\mathbb E\varepsilon=0$, $\operatorname{Var}\varepsilon=s^2$, sai số bình phương $(x^Tw-y)^2$ có kỳ vọng $s^2+\mathbb E_u(x^Tw-u)^2$, tức $2R(w)$ với $\ell=\tfrac12(\cdot)^2$; MSE trên bốn điểm vì thế ước lượng phần sai số của mô hình $\mathbb E_u(x^Tw-u)^2=2R(w)-s^2$. Phần $s^2$ không phụ thuộc $w$, nên thứ tự khi chọn $d$, $\lambda$ và bước dừng không đổi.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §5.2 (tr. 110–117), §5.3.1, §8.1 (tr. 275–277); Bài 05c, Định lý 05c.52 (kỳ vọng của trung bình mẫu tại tham số cố định).</p></aside></section>
+<div class="panel"><p><b>Định nghĩa</b> (quá khớp)<b>.</b> Quá khớp (overfitting) là trạng thái $F(w)$ nhỏ nhưng $R(w)-F(w)$ lớn.</p></div>
+<p><b>Ý nghĩa:</b> thuật toán tối ưu $F,$ còn đích học là $R$ nhỏ; nói chung $\arg\min F$ khác $\arg\min R.$</p>
+<aside class="notes"><p>Đây là lý do thứ hai của vấn đề trung tâm ở dạng định nghĩa: thuật toán tối ưu $F$, còn đích học là $R$ nhỏ. Bảng ở trang trước cho thấy cực tiểu chính xác của $F$ ở $d=5$ có sai số ngoài mẫu lớn hơn nhiều so với $d=2$.</p><p>Bốn điểm ngoài mẫu là một quy ước minh họa, không phải mẫu lấy từ $P$: vị trí được chọn trước và nhãn lấy từ hàm đích $y=u$ không nhiễu. Với mô hình sinh $y=u+\varepsilon$, $\mathbb E\varepsilon=0$, $\operatorname{Var}\varepsilon=s^2$, sai số bình phương $(x^Tw-y)^2$ có kỳ vọng $s^2+\mathbb E_u(x^Tw-u)^2$, tức $2R(w)$ với $\ell=\tfrac12(\cdot)^2$; MSE trên bốn điểm vì thế ước lượng phần sai số của mô hình $\mathbb E_u(x^Tw-u)^2=2R(w)-s^2$. Phần $s^2$ không phụ thuộc $w$, nên thứ tự khi chọn $d$, $\lambda$ và bước dừng không đổi.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §5.2 (tr. 110–117), §5.3.1.</p></aside></section>
 
-<section data-slide-id="HQ06" class="dense"><h2>Nội suy khi số chiều bằng kích thước mẫu</h2>
+<section data-slide-id="HQ05a"><h2>Tập xác thực và tập kiểm thử</h2>
+<p><b>Định nghĩa.</b> Tập xác thực (validation set) là mẫu tách riêng khỏi tập huấn luyện, dùng để chọn $d,$ $\lambda,$ bước dừng.</p>
+<p>Tập kiểm thử (test set) là mẫu không tham gia lựa chọn nào, dùng để báo cáo ước lượng của $R.$</p>
+<div class="panel"><p><b>Nhắc lại:</b> với $w$ cố định, mất mát trung bình trên mẫu độc lập ước lượng không chệch $R(w)$ (Định lý 05c.52).</p></div>
+<aside class="notes"><p>Tính không chệch dùng kỳ vọng của trung bình mẫu: nếu $(u'_j,y'_j)$ độc lập cùng phân phối $P$ và $w$ không phụ thuộc vào chúng, thì $\mathbb E\,\tfrac1m\sum_j\ell(w;u'_j,y'_j)=R(w)$. Nếu dùng chính tập kiểm thử để chọn $d$ hoặc $\lambda$, thì $w$ được chọn phụ thuộc vào tập đó và đẳng thức không còn đúng; vì vậy tập chọn và tập báo cáo phải tách nhau.</p><p>Trong ví dụ năm mẫu, bốn điểm $u=\pm\tfrac14,\pm\tfrac34$ là tập xác thực: chúng dùng để chọn $\lambda$ ở trang chính quy hóa và chọn bước dừng ở mạch kết luận. Ví dụ thu nhỏ không có tập kiểm thử riêng, nên các con số trên bốn điểm này không phải báo cáo cuối về $R$.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §5.3.1, §8.1 (tr. 275–277); Bài 05c, Định lý 05c.52 (kỳ vọng của trung bình mẫu tại tham số cố định).</p></aside></section>
+
+<section data-slide-id="HQ06"><h2>Nội suy khi số chiều bằng kích thước mẫu</h2>
 <div class="cols"><div>
 <p>Với $d=n=5\text{:}$ năm phương trình $x_i^Tw=y_i,$ năm ẩn.</p>
 <ul><li>$X$ là ma trận Vandermonde với năm nút phân biệt, nên khả nghịch.</li>
 <li>$w=X^{-1}y$ thỏa $Xw=y,$ nên $F(w)=0.$</li></ul>
 <div class="formula" tabindex="0">$$w=\Bigl(\tfrac15,\ \tfrac{23}{20},\ -\tfrac{109}{60},\ -\tfrac15,\ \tfrac53\Bigr).$$</div>
-<p><b>Kiểm tra</b> tại $u=1$, tổng các hệ số:</p>
+<p>Kiểm tra tại $u=1$ (tổng các hệ số):</p>
 <div class="formula" tabindex="0">$$\tfrac15+\tfrac{23}{20}-\tfrac{109}{60}-\tfrac15+\tfrac53=1=y_5.$$</div>
 </div><div>
 <figure><img src="img/lec-05/hq-fits-d2-d5.svg" alt="Đa thức bậc 4 (nét đứt) đi qua đúng năm mẫu huấn luyện nhiễu và uốn lượn giữa các nút; đường thẳng 0,98u đi gần các điểm; vòng rỗng là bốn điểm ngoài mẫu." /></figure>
 </div></div>
 <aside class="notes"><p>Định thức Vandermonde bằng $\prod_{i&lt;j}(u_j-u_i)$, khác $0$ vì năm nút phân biệt. Vì vậy với mọi nhãn $y$ có đúng một đa thức bậc không quá $4$ đi qua năm điểm. Ở dạng thập phân, tại $u=1$: $0{,}2+1{,}15-1{,}8167-0{,}2+1{,}6667=1{,}0$. Kiểm tra thêm tại $u=-1$: $0{,}2-1{,}15-1{,}8167+0{,}2+1{,}6667=-0{,}9=y_1$; tại $u=0$: $w_0=0{,}2=y_3$.</p><p>Đa thức nội suy đi qua cả năm điểm nhiễu, nên theo nhiễu: hệ số $u^4$ bằng $\tfrac53$ trong khi quan hệ thật không có số hạng bậc cao. Phép tính này là trường hợp riêng $d=n$ của mệnh đề ở trang sau, nơi $\operatorname{rank}X=n$ thay cho tính khả nghịch và $d$ được phép lớn hơn $n$.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp bằng phân số.</p></aside></section>
 
-<section data-slide-id="HQ07" class="dense"><h2>Chế độ nội suy và tập nghiệm</h2>
-<div class="panel"><p><b>Mệnh đề 1.</b> Giả thiết: $X\in\mathbb R^{n\times d},$ $\operatorname{rank}X=n$ (nên $d\ge n$). Kết luận: với mọi $y\in\mathbb R^n,$ $\min F=0,$ và tập nghiệm là $\{w_0+v:\ v\in\ker X\}$ với $Xw_0=y,$ $\dim\ker X=d-n.$</p></div>
-<p><b>Chứng minh.</b> Ảnh của $X$ có chiều $n$ nên bằng $\mathbb R^n;$ có $w_0$ với $Xw_0=y.$ $Xw=y\iff w-w_0\in\ker X;$ định lý hạng–số chiều cho $\dim\ker X=d-n.$</p>
-<div class="cols"><div>
-<p><b>Ví dụ</b> ($d=6$)<b>.</b> $z=(0,\tfrac14,0,-\tfrac54,0,1)$ là hệ số của $u(u^2-1)(u^2-\tfrac14),$ đa thức bằng $0$ tại năm nút, nên $Xz=0.$ Nghiệm chuẩn nhỏ nhất: $w_{\rm mn}=X^T(XX^T)^{-1}y.$</p>
-</div><div>
+<section data-slide-id="HQ07"><h2>Chế độ nội suy và tập nghiệm</h2>
+<div class="panel"><p><b>Mệnh đề 1.</b> Giả thiết: $X\in\mathbb R^{n\times d},$ $\operatorname{rank}X=n$ (nên $d\ge n$).</p>
+<p>Kết luận: với mọi $y\in\mathbb R^n,$ $\min F=0;$ tập nghiệm là $\{w_0+v:\ v\in\ker X\}$ với $Xw_0=y,$ và $\dim\ker X=d-n.$</p></div>
+<p><b>Chứng minh.</b> Ảnh của $X$ có chiều $n$ nên bằng $\mathbb R^n;$ do đó có $w_0$ với $Xw_0=y.$</p>
+<p>$Xw=y\iff w-w_0\in\ker X;$ định lý hạng–số chiều cho $\dim\ker X=d-n.$</p>
+<aside class="notes"><p>Mệnh đề này mở rộng Bài 01, Mệnh đề 01.6(b) (tập nghiệm $w^*+\ker X$) sang trường hợp $\operatorname{rank}X=n$, nơi nghiệm khớp đúng mọi nhãn. Giả thiết hạng đủ theo hàng thay cho tính khả nghịch của trang trước và cho phép $d>n$. Khi $d=n$, $\ker X=\{0\}$ và mệnh đề trở về đa thức nội suy duy nhất; khi $d>n$, tập nghiệm là một không gian affine có chiều dương. Mệnh đề được dùng lại ở mạch hồi quy logistic: khi $\operatorname{rank}X=n$, mọi cách gán nhãn $\pm1$ đều tách được.</p><p class="note-source"><strong>Nguồn:</strong> định lý hạng–số chiều của đại số tuyến tính (Strang, <i>Introduction to Linear Algebra</i>, mục về bốn không gian con cơ bản); Bài 01, Mệnh đề 01.6.</p></aside></section>
+
+<section data-slide-id="HQ07a"><h2>Ví dụ: tập nghiệm với sáu đặc trưng</h2>
+<p>Năm mẫu, $d=6.$ Vector $z=(0,\tfrac14,0,-\tfrac54,0,1)$ là hệ số của $u(u^2-1)(u^2-\tfrac14).$</p>
+<p>Đa thức này bằng $0$ tại năm nút, nên $Xz=0.$</p>
+<p>Nghiệm chuẩn nhỏ nhất $w_{\rm mn}=X^T(XX^T)^{-1}y.$ Tính MSE của $w_{\rm mn}+tz\text{:}$</p>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$w_{\rm mn}+tz$</th><th>$t=-5$</th><th>$t=0$</th><th>$t=5$</th></tr></thead><tbody>
 <tr><td>MSE huấn luyện</td><td>$0$</td><td>$0$</td><td>$0$</td></tr>
 <tr><td>MSE xác thực</td><td>$0{,}2244$</td><td>$0{,}0492$</td><td>$0{,}1852$</td></tr>
 </tbody></table></div>
-</div></div>
-<p>Dữ liệu huấn luyện không phân biệt được các nghiệm; chọn một nghiệm cần tiêu chí ngoài dữ liệu huấn luyện.</p>
-<aside class="notes"><p>$w_{\rm mn}=X^T(XX^T)^{-1}y$ là nghiệm có chuẩn nhỏ nhất, ứng với $t=0$ trong bảng; nó vuông góc với $\ker X$, nên $z^Tw_{\rm mn}=0$. Mọi $w_{\rm mn}+tz$ khớp đúng năm mẫu, còn sai số trên tập xác thực thay đổi từ $0{,}0492$ đến $0{,}2244$.</p><p>Có ba loại tiêu chí: chuẩn nhỏ nhất, chính quy hóa (trang chính quy hóa), hoặc chính thuật toán. Hạ gradient xuất phát từ $w_0=0$ chỉ đi trong ảnh của $X^T$, nên hội tụ tới $w_{\rm mn}$; ở $d=8$, cả hai cách cho cùng MSE xác thực $0{,}0759$.</p><p>Mệnh đề này mở rộng Bài 01, Mệnh đề 01.6(b) (tập nghiệm $w^*+\ker X$) sang trường hợp $\operatorname{rank}X=n$, nơi nghiệm khớp đúng mọi nhãn. Nó được dùng lại ở phần hồi quy logistic: khi $\operatorname{rank}X=n$, mọi cách gán nhãn $\pm1$ đều tách được.</p><p class="note-source"><strong>Nguồn:</strong> định lý hạng–số chiều của đại số tuyến tính (Strang, <i>Introduction to Linear Algebra</i>, mục về bốn không gian con cơ bản); Bài 01, Mệnh đề 01.6; tính trực tiếp.</p></aside></section>
+<p><b>Kết luận:</b> dữ liệu huấn luyện không phân biệt được các nghiệm; chọn nghiệm cần tiêu chí khác.</p>
+<aside class="notes"><p>$w_{\rm mn}=X^T(XX^T)^{-1}y$ là nghiệm có chuẩn nhỏ nhất, ứng với $t=0$ trong bảng; nó vuông góc với $\ker X$, nên $z^Tw_{\rm mn}=0$. Mọi $w_{\rm mn}+tz$ khớp đúng năm mẫu, còn sai số trên tập xác thực thay đổi từ $0{,}0492$ đến $0{,}2244$. Theo Mệnh đề 1, $\dim\ker X=6-5=1$, nên mọi nghiệm có dạng $w_{\rm mn}+tz$.</p><p>Có ba loại tiêu chí: chuẩn nhỏ nhất, chính quy hóa (trang chính quy hóa), hoặc chính thuật toán. Hạ gradient xuất phát từ $w_0=0$ chỉ đi trong ảnh của $X^T$, nên hội tụ tới $w_{\rm mn}$; ở $d=8$, cả hai cách cho cùng MSE xác thực $0{,}0759$.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Bài 01, Mệnh đề 01.6.</p></aside></section>
 
-<section data-slide-id="HQ08" class="dense"><h2>Độ nhạy của nghiệm</h2>
+<section data-slide-id="HQ08"><h2>Độ nhạy của nghiệm</h2>
 <div class="cols"><div>
-<p><b>Thí nghiệm.</b> Tăng $y_3$ thêm $0{,}01,$ giữ các nhãn khác, giải lại phương trình chuẩn.</p>
+<div class="panel"><p><b>Nhu cầu:</b> đo độ nhạy của nghiệm theo nhãn bằng một đại lượng tính từ $X,$ trước khi giải.</p></div>
+<p>Tăng $y_3$ thêm $0{,}01$ rồi giải lại phương trình chuẩn:</p>
 <ul><li>$d=2\text{:}$ $\delta w=(0{,}002;\ 0),$ $\lVert\delta w\rVert=0{,}002.$</li>
 <li>$d=5\text{:}$ $\delta w=0{,}01\cdot(1,0,-5,0,4),$ $\lVert\delta w\rVert=0{,}0648,$ gấp khoảng $32$ lần.</li></ul>
-<p>Đường mức của $F$ chuyển từ elip gần tròn sang elip rất dẹt: theo hướng trục dài, $F$ gần như phẳng.</p>
-<div class="panel"><p><b>Nhu cầu.</b> Một đại lượng tính từ $X$ đo được độ nhạy này trước khi giải.</p></div>
+<p><b>Trực quan.</b> Đường mức của $F$ từ elip gần tròn thành elip rất dẹt; theo trục dài, $F$ gần phẳng.</p>
 </div><div>
 <figure><img src="img/lec-05/hq-level-sets-kappa.svg" alt="Hai khung đường mức của hàm bậc hai. Trái: số điều kiện 2, elip gần tròn, tỉ lệ bán trục √2 ≈ 1,41. Phải: số điều kiện 50, elip rất dẹt, tỉ lệ bán trục √50 ≈ 7,07; trục dài là hướng gần phẳng. Hình minh họa; định nghĩa số điều kiện ở trang sau." /></figure>
-<p class="caption">Minh họa với hai giá trị của $\kappa$, tỉ số giữa độ cong lớn nhất và nhỏ nhất (định nghĩa ở trang sau); ở $d=5,$ $\kappa=553{,}7.$</p>
+<p class="caption">Tỉ số độ cong lớn nhất trên nhỏ nhất: $2$ (trái), $50$ (phải).</p>
 </div></div>
-<aside class="notes"><p>Ở $d=2$, hệ chéo cho $\delta w_0=0{,}01/5=0{,}002$ và $\delta w_1=\tfrac{u_3\cdot0{,}01}{5/2}=0$ vì $u_3=0$. Ở $d=5$, $X$ khả nghịch nên $\delta w=X^{-1}\delta y$ là $0{,}01$ nhân hệ số của đa thức Lagrange $4u^4-5u^2+1$, đa thức bằng $1$ tại $u=0$ và bằng $0$ tại bốn nút còn lại. $\lVert(1,0,-5,0,4)\rVert=\sqrt{42}\approx6{,}48$.</p><p>Hình vẽ đường mức của hai hàm bậc hai có tỉ số giữa độ cong lớn nhất và nhỏ nhất bằng $2$ và $50$; bán trục theo hướng có độ cong $c$ tỉ lệ với $1/\sqrt c$, nên tỉ lệ hai bán trục là $\sqrt2$ và $\sqrt{50}$. Elip dẹt nghĩa là theo một hướng, dữ liệu ràng buộc $w$ rất yếu: một nhiễu nhỏ ở nhãn dịch nghiệm đi xa theo hướng đó, và hạ gradient với một độ dài bước chung tiến chậm theo hướng đó (phần chi phí dùng lại nhận xét này).</p><p>Khi $d&gt;n$, $\ker X$ cho các hướng hoàn toàn phẳng (trang trước); khi $d\le n$, các hướng có thể chỉ gần phẳng. Đại lượng đo mức phẳng là tỉ số giữa trị riêng lớn nhất và nhỏ nhất của $X^TX$.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.1.2 (tr. 461, số điều kiện của tập mức); tính trực tiếp.</p></aside></section>
+<aside class="notes"><p>Ở $d=2$, hệ chéo cho $\delta w_0=0{,}01/5=0{,}002$ và $\delta w_1=\tfrac{u_3\cdot0{,}01}{5/2}=0$ vì $u_3=0$. Ở $d=5$, $X$ khả nghịch nên $\delta w=X^{-1}\delta y$ là $0{,}01$ nhân hệ số của đa thức Lagrange $4u^4-5u^2+1$, đa thức bằng $1$ tại $u=0$ và bằng $0$ tại bốn nút còn lại. $\lVert(1,0,-5,0,4)\rVert=\sqrt{42}\approx6{,}48$.</p><p>Hình vẽ đường mức của hai hàm bậc hai có tỉ số giữa độ cong lớn nhất và nhỏ nhất bằng $2$ và $50$; ở $d=5$ của ví dụ, tỉ số này bằng $553{,}7$. Bán trục theo hướng có độ cong $c$ tỉ lệ với $1/\sqrt c$, nên tỉ lệ hai bán trục là $\sqrt2$ và $\sqrt{50}$. Elip dẹt nghĩa là theo một hướng, dữ liệu ràng buộc $w$ rất yếu: một nhiễu nhỏ ở nhãn dịch nghiệm đi xa theo hướng đó, và hạ gradient với một độ dài bước chung tiến chậm theo hướng đó (mạch chi phí dùng lại nhận xét này).</p><p>Khi $d&gt;n$, $\ker X$ cho các hướng hoàn toàn phẳng; khi $d\le n$, các hướng có thể chỉ gần phẳng. Đại lượng đo mức phẳng là tỉ số giữa trị riêng lớn nhất và nhỏ nhất của $X^TX$.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.1.2 (tr. 461, số điều kiện của tập mức); tính trực tiếp.</p></aside></section>
 
-<section data-slide-id="HQ09" class="dense"><h2>Số điều kiện</h2>
+<section data-slide-id="HQ09"><h2>Số điều kiện</h2>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$d$</th><th>$1$</th><th>$2$</th><th>$3$</th><th>$4$</th><th>$5$</th><th>$\ge6$</th></tr></thead><tbody>
 <tr><td>$\kappa(X^TX)$</td><td>$1$</td><td>$2$</td><td>$9{,}50$</td><td>$50{,}5$</td><td>$553{,}7$</td><td>$\infty$</td></tr>
 </tbody></table></div>
 <p><b>Định nghĩa.</b> Với $A$ đối xứng nửa xác định dương, $\kappa(A)=\lambda_{\max}(A)/\lambda_{\min}(A);$ quy ước $\kappa=\infty$ khi $\lambda_{\min}=0.$</p>
-<p>Với $F=\frac1{2n}\lVert Xw-y\rVert^2\text{:}$ $L=\frac{\lambda_{\max}(X^TX)}n,$ $\mu=\frac{\lambda_{\min}(X^TX)}n,$ nên $\kappa_F=L/\mu=\kappa(X^TX).$</p>
-<p><b>Cận độ nhạy</b> (khi $\operatorname{rank}X=d$)<b>.</b> $\lVert\delta w\rVert\le\lVert\delta y\rVert/\sqrt{\lambda_{\min}(X^TX)},$ với $\frac1{\sqrt{\lambda_{\min}}}=\sqrt{\kappa(X^TX)/\lambda_{\max}};$ hệ số $0{,}632$ ở $d=2,$ $8{,}39$ ở $d=5.$</p>
-<div class="panel"><p><b>Nhận xét.</b> $X_d^TX_d$ là ma trận con chính của $X_{d+1}^TX_{d+1}.$ Theo định lý xen kẽ Cauchy, $\lambda_{\min}$ không tăng và $\lambda_{\max}$ không giảm, nên $\kappa$ không giảm theo $d.$</p></div>
-<aside class="notes"><p>Trị riêng của $X^TX$ theo $d=1,\dots,5$: $\lambda_{\min}=5;\,2{,}5;\,0{,}679;\,0{,}128;\,0{,}0142$ và $\lambda_{\max}=5;\,5;\,6{,}45;\,6{,}45;\,7{,}86$. Khi $d\ge6$, $\operatorname{rank}X\le5&lt;d$ nên $\lambda_{\min}=0$.</p><p>Cận độ nhạy suy từ $\delta w=(X^TX)^{-1}X^T\delta y$ và $\lVert(X^TX)^{-1}X^T\rVert=1/\sqrt{\lambda_{\min}(X^TX)}$ (chuẩn toán tử, khi $\operatorname{rank}X=d$). Với $\lVert\delta y\rVert=0{,}01$, cận là $0{,}00632$ và $0{,}0839$; các giá trị đo $0{,}002$ và $0{,}0648$ ở trang trước không vượt cận. Vì $\lambda_{\max}$ chỉ đổi từ $5$ đến $7{,}86$ khi $d$ đi từ $1$ đến $5$, hệ số $1/\sqrt{\lambda_{\min}}=\sqrt{\kappa/\lambda_{\max}}$ tăng gần như theo $\sqrt\kappa$: số điều kiện đo được độ nhạy mà trang trước đặt thành nhu cầu.</p><p>Chiều tăng của $\kappa$ là chung cho mọi họ đặc trưng lồng nhau; mức tăng phụ thuộc cách chọn đặc trưng. Đơn thức $1,u,u^2,\dots$ trên $[-1,1]$ có các cột gần phụ thuộc tuyến tính nên $\kappa$ tăng rất nhanh; một cơ sở đa thức trực giao trên cùng các nút cho $\kappa$ tăng chậm hơn nhiều. Số điều kiện này còn quyết định số bước của hạ gradient ở phần chi phí.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.1.2; Goodfellow, Bengio và Courville (2016), §8.2.1; định lý xen kẽ Cauchy cho ma trận đối xứng.</p></aside></section>
+<p>Với $F=\frac1{2n}\lVert Xw-y\rVert^2\text{:}$ $L=\frac{\lambda_{\max}(X^TX)}n,$ $\mu=\frac{\lambda_{\min}(X^TX)}n,$ nên $\kappa_F=\kappa(X^TX).$</p>
+<p><b>Nhận xét</b> (độ nhạy)<b>.</b> Khi $\operatorname{rank}X=d\text{:}$ $\lVert\delta w\rVert\le\lVert\delta y\rVert/\sqrt{\lambda_{\min}(X^TX)};$ hệ số $0{,}632$ khi $d=2$ và $8{,}39$ khi $d=5.$</p>
+<div class="panel"><p><b>Nhận xét</b> (chiều tăng)<b>.</b> $X_d^TX_d$ là ma trận con chính của $X_{d+1}^TX_{d+1};$ theo định lý xen kẽ Cauchy, $\kappa$ không giảm theo $d.$</p></div>
+<aside class="notes"><p>Trị riêng của $X^TX$ theo $d=1,\dots,5$: $\lambda_{\min}=5;\,2{,}5;\,0{,}679;\,0{,}128;\,0{,}0142$ và $\lambda_{\max}=5;\,5;\,6{,}45;\,6{,}45;\,7{,}86$. Khi $d\ge6$, $\operatorname{rank}X\le5&lt;d$ nên $\lambda_{\min}=0$. Định lý xen kẽ Cauchy cho $\lambda_{\min}$ không tăng và $\lambda_{\max}$ không giảm khi thêm một cột.</p><p>Cận độ nhạy suy từ $\delta w=(X^TX)^{-1}X^T\delta y$ và $\lVert(X^TX)^{-1}X^T\rVert=1/\sqrt{\lambda_{\min}(X^TX)}$ (chuẩn toán tử, khi $\operatorname{rank}X=d$). Với $\lVert\delta y\rVert=0{,}01$, cận là $0{,}00632$ và $0{,}0839$; các giá trị đo $0{,}002$ và $0{,}0648$ ở trang trước không vượt cận. Vì $1/\sqrt{\lambda_{\min}}=\sqrt{\kappa/\lambda_{\max}}$ và $\lambda_{\max}$ chỉ đổi từ $5$ đến $7{,}86$, hệ số tăng gần như theo $\sqrt\kappa$: số điều kiện đo được độ nhạy mà trang trước đặt thành nhu cầu.</p><p>Chiều tăng của $\kappa$ là chung cho mọi họ đặc trưng lồng nhau; mức tăng phụ thuộc cách chọn đặc trưng. Đơn thức $1,u,u^2,\dots$ trên $[-1,1]$ có các cột gần phụ thuộc tuyến tính nên $\kappa$ tăng rất nhanh; một cơ sở đa thức trực giao trên cùng các nút cho $\kappa$ tăng chậm hơn nhiều.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.1.2; Goodfellow, Bengio và Courville (2016), §8.2.1; định lý xen kẽ Cauchy cho ma trận đối xứng.</p></aside></section>
 
-<section data-slide-id="HQ10" class="dense"><h2>Chính quy hóa bậc hai và chọn mô hình</h2>
+<section data-slide-id="HQ10"><h2>Chính quy hóa bậc hai và chọn mô hình</h2>
 <div class="cols"><div>
 <p>Cực tiểu hóa $F+\frac\lambda2\lVert w\rVert^2\text{:}$</p>
 <div class="formula" tabindex="0">$$\Bigl(\tfrac1nX^TX+\lambda I\Bigr)w=\tfrac1nX^Ty.$$</div>
-<div class="panel"><p><b>Nhắc lại</b> (Bài 02, Mệnh đề 02.21(c))<b>.</b> Với $\lambda&gt;0,$ nghiệm duy nhất với mọi $d.$</p></div>
-<p>Cột $\kappa$: số điều kiện của $X^TX+n\lambda I;$ mọi trị riêng tăng thêm $n\lambda,$ nên $\kappa$ hữu hạn. $d=8,$ $\lambda=0{,}01\text{:}$ $\kappa=189{,}5$ thay cho $\infty;$ MSE xác thực $0{,}007635.$</p>
+<div class="panel"><p><b>Nhắc lại:</b> với $\lambda&gt;0,$ nghiệm duy nhất với mọi $d$ (Mệnh đề 02.21(c)).</p></div>
+<p>Cột $\kappa$: số điều kiện của $X^TX+n\lambda I;$ mọi trị riêng tăng thêm $n\lambda,$ nên $\kappa$ hữu hạn.</p>
+<p>$d=8,$ $\lambda=0{,}01\text{:}$ $\kappa=189{,}5$ thay cho $\infty;$ MSE xác thực $0{,}007635.$</p>
 </div><div>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$d=5$</th><th>huấn luyện</th><th>xác thực</th><th>$\kappa$</th></tr></thead><tbody>
 <tr><td>$\lambda=0{,}1$</td><td>$0{,}0349$</td><td>$0{,}0189$</td><td>$16{,}3$</td></tr>
@@ -175,12 +197,12 @@
 </tbody></table></div>
 <p>Chọn $\lambda=0{,}01\text{:}$ giá trị nhỏ nhất của cột xác thực.</p>
 </div></div>
-<aside class="notes"><p>Hessian của mục tiêu chính quy hóa là $\tfrac1nX^TX+\lambda I$, nên mọi trị riêng tăng thêm $\lambda$ và $\kappa=(\lambda_{\max}/n+\lambda)/(\lambda_{\min}/n+\lambda)$. Ở $d=5$, $\lambda=0{,}01$: $L=7{,}857/5+0{,}01=1{,}5815$, $\mu=0{,}01419/5+0{,}01=0{,}01284$, $\kappa=123{,}2$. Ở $d=8$, $\lambda_{\min}(X^TX)=0$ nên $\mu=\lambda$ và chính quy hóa biến $\kappa=\infty$ thành số hữu hạn.</p><p>Cột huấn luyện tăng theo $\lambda$ còn cột xác thực có cực tiểu ở giữa: quy tắc chọn của trang rủi ro áp dụng trên chính dữ liệu năm mẫu. Sai số xác thực của giá trị được chọn là số nhỏ nhất trong bảng, nên có xu hướng thấp hơn $R$; báo cáo cuối cần một tập kiểm thử riêng, mà ví dụ thu nhỏ không có.</p><p>Với bình phương nhỏ nhất, nghiệm luôn tồn tại, và chính quy hóa chỉ sửa tính duy nhất và số điều kiện. Với mất mát phân loại, vấn đề tồn tại xuất hiện trước, ở phần sau.</p><p class="note-source"><strong>Nguồn:</strong> Bài 02, Mệnh đề 02.21; Goodfellow, Bengio và Courville (2016), §7.1.1; tính trực tiếp.</p></aside></section>
+<aside class="notes"><p>Hessian của mục tiêu chính quy hóa là $\tfrac1nX^TX+\lambda I$, nên mọi trị riêng tăng thêm $\lambda$ và $\kappa=(\lambda_{\max}/n+\lambda)/(\lambda_{\min}/n+\lambda)$. Ở $d=5$, $\lambda=0{,}01$: $L=7{,}857/5+0{,}01=1{,}5815$, $\mu=0{,}01419/5+0{,}01=0{,}01284$, $\kappa=123{,}2$. Ở $d=8$, $\lambda_{\min}(X^TX)=0$ nên $\mu=\lambda$ và chính quy hóa biến $\kappa=\infty$ thành số hữu hạn.</p><p>Cột huấn luyện tăng theo $\lambda$ còn cột xác thực có cực tiểu ở giữa: quy tắc chọn của trang tập xác thực áp dụng trên chính dữ liệu năm mẫu. Sai số xác thực của giá trị được chọn là số nhỏ nhất trong bảng, nên có xu hướng thấp hơn $R$; báo cáo cuối cần một tập kiểm thử riêng, mà ví dụ thu nhỏ không có.</p><p>Với bình phương nhỏ nhất, nghiệm luôn tồn tại, và chính quy hóa chỉ sửa tính duy nhất và số điều kiện. Với mất mát phân loại, vấn đề tồn tại xuất hiện trước, ở mạch sau.</p><p class="note-source"><strong>Nguồn:</strong> Bài 02, Mệnh đề 02.21; Goodfellow, Bengio và Courville (2016), §7.1.1; tính trực tiếp.</p></aside></section>
 
-<section data-slide-id="HQ11" class="dense"><h2>Câu hỏi về hồi quy nhiều chiều</h2>
+<section data-slide-id="HQ11"><h2>Bài tập: hạng, nghiệm và chọn số đặc trưng</h2>
 <p class="question-label">Câu hỏi:</p>
 <ol>
-<li>Cùng năm nút $u,$ $d=7\text{:}$ tính $\operatorname{rank}X,$ $\dim\ker X,$ $\min F.$</li>
+<li>Năm nút $u=(-1,-\tfrac12,0,\tfrac12,1),$ $d=7\text{:}$ tính $\operatorname{rank}X,$ $\dim\ker X,$ $\min F.$</li>
 <li>$d=2,$ nhãn mới $y'=y+0{,}1\cdot\mathbf 1\text{:}$ tính $w.$</li>
 <li>$X^TX=\begin{pmatrix}2&amp;1\\1&amp;2\end{pmatrix}\text{:}$ tính $\kappa(X^TX).$</li>
 <li>Chọn $d$ theo bảng MSE dưới đây; nêu tập dùng để báo cáo sai số cuối.</li>
@@ -189,75 +211,101 @@
 <tr><td>huấn luyện</td><td>$0{,}5$</td><td>$0{,}0198$</td><td>$0{,}0197$</td><td>$0{,}0179$</td><td>$0$</td></tr>
 <tr><td>xác thực</td><td>$0{,}3125$</td><td>$0{,}000125$</td><td>$0{,}000205$</td><td>$0{,}00107$</td><td>$0{,}0487$</td></tr>
 </tbody></table></div>
-<aside class="notes"><p>Đáp án câu 1: năm nút phân biệt nên năm hàng của $X\in\mathbb R^{5\times7}$ độc lập tuyến tính (năm cột đầu tạo ma trận Vandermonde khả nghịch), $\operatorname{rank}X=5$, $\dim\ker X=7-5=2$, và theo Mệnh đề 1, $\min F=0$.</p><p>Đáp án câu 2: $X^Ty'=X^Ty+0{,}1\,X^T\mathbf 1=(0;\,2{,}45)+(0{,}5;\,0)=(0{,}5;\,2{,}45)$, nên $w=(0{,}5/5;\,2{,}45/2{,}5)=(0{,}1;\,0{,}98)$: dịch nhãn một hằng số chỉ dịch hệ số chặn.</p><p>Đáp án câu 3: trị riêng là $3$ và $1$ (vector riêng $(1,1)$ và $(1,-1)$), nên $\kappa=3$.</p><p>Đáp án câu 4: chọn $d=2$, giá trị nhỏ nhất của cột xác thực; theo cột huấn luyện sẽ chọn $d=5$, đúng mô hình quá khớp. Sai số cuối được báo cáo trên một tập kiểm thử riêng không tham gia lựa chọn, vì $0{,}000125$ là số nhỏ nhất trong năm số nên có xu hướng thấp hơn $R$.</p><p class="note-source"><strong>Nguồn:</strong> câu hỏi tự xây dựng trên dữ liệu năm mẫu.</p></aside></section>
+<aside class="notes"><p>Gợi ý: ở câu 1, năm cột đầu của $X\in\mathbb R^{5\times7}$ tạo một ma trận Vandermonde. Ở câu 2, $X^TX=\operatorname{diag}(5,\tfrac52)$ và chỉ vế phải thay đổi. Ở câu 3, thử hai vector $(1,1)$ và $(1,-1)$. Ở câu 4, so hàng xác thực chứ không so hàng huấn luyện, và nhớ rằng tập dùng để chọn không dùng để báo cáo.</p><p>Bài tập kiểm tra ba khái niệm của mạch: chế độ nội suy (câu 1), phương trình chuẩn (câu 2), số điều kiện (câu 3), và quy tắc chọn mô hình bằng tập xác thực (câu 4).</p><p class="note-source"><strong>Nguồn:</strong> câu hỏi tự xây dựng trên dữ liệu năm mẫu; Bài tập 1 của học liệu Bài 05.</p></aside></section>
 
-<section data-slide-id="HQ12" class="dense"><h2>Ba hệ quả của việc tăng số chiều</h2>
-<p>Khi $d$ tăng so với $n,$ với mất mát bình phương:</p>
+<section data-slide-id="HQ11a"><h2>Bài tập: hạng, nghiệm và chọn số đặc trưng</h2>
+<p class="question-label">Lời giải:</p>
 <ol>
-<li><b>Không duy nhất.</b> Khi $d&gt;n$ và $\operatorname{rank}X=n,$ tập nghiệm có chiều $\dim\ker X=d-n.$</li>
-<li><b>Khoảng cách huấn luyện–xác thực.</b> Sai số huấn luyện giảm về $0,$ sai số xác thực tăng từ $0{,}000125$ lên $0{,}0487$ khi $d$ đi từ $2$ lên $5.$</li>
-<li><b>Điều kiện hóa.</b> $\kappa(X^TX)$ không giảm theo $d\text{:}$ $2\to553{,}7\to\infty.$</li>
+<li>Năm nút phân biệt nên $\operatorname{rank}X=5;$ $\dim\ker X=7-5=2;$ $\min F=0$ (Mệnh đề 1).</li>
+<li>$X^Ty'=X^Ty+0{,}1\,X^T\mathbf 1=(0{,}5;\ 2{,}45),$ nên $w=(0{,}1;\ 0{,}98)\text{:}$ chỉ hệ số chặn dịch.</li>
+<li>Trị riêng $3$ và $1$ (vector riêng $(1,1)$ và $(1,-1)$), nên $\kappa=3.$</li>
+<li>Chọn $d=2$ theo hàng xác thực; báo cáo sai số cuối trên một tập kiểm thử riêng.</li>
 </ol>
-<div class="panel"><p><b>Giới hạn.</b> Với bình phương nhỏ nhất, nghiệm luôn tồn tại (Bài 01, Mệnh đề 01.6); với mất mát logistic, nghiệm không phải lúc nào cũng tồn tại.</p></div>
-<aside class="notes"><p>Bình phương nhỏ nhất luôn có nghiệm vì $Xw^*$ là hình chiếu trực giao của $y$ lên không gian cột $\operatorname{range}X$, và hình chiếu lên một không gian con hữu hạn chiều luôn tồn tại. Chính quy hóa chỉ cần sửa tính duy nhất (hệ quả 1) và điều kiện hóa (hệ quả 3); hệ quả 2 được xử lý bằng cách chọn $d$ hoặc $\lambda$ trên tập xác thực.</p><p>Mất mát logistic không có cấu trúc chiếu này. Giá trị nhỏ nhất có thể chỉ đạt ở giới hạn khi $\lVert w\rVert\to\infty$, và chế độ $\operatorname{rank}X=n$ của Mệnh đề 1 chính là chế độ trong đó điều đó xảy ra với mọi nhãn. Hệ quả 3, dựa trên định lý xen kẽ Cauchy, quyết định số bước của hạ gradient khi tính nghiệm ở phần chi phí.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Mệnh đề 01.6; Goodfellow, Bengio và Courville (2016), §5.2, §7.3.</p></aside></section>
+<aside class="notes"><p>Câu 1: năm cột đầu của $X\in\mathbb R^{5\times7}$ là ma trận Vandermonde khả nghịch, nên năm hàng của $X$ độc lập tuyến tính và $\operatorname{rank}X=5$; định lý hạng–số chiều cho $\dim\ker X=2$; theo Mệnh đề 1, $\min F=0$.</p><p>Câu 2: $X^Ty=(0;\,2{,}45)$ và $X^T\mathbf 1=(5;\,0)$, nên $X^Ty'=(0{,}5;\,2{,}45)$; hệ chéo cho $w=(0{,}5/5;\,2{,}45/2{,}5)=(0{,}1;\,0{,}98)$. Dịch mọi nhãn một hằng số chỉ dịch hệ số chặn vì $\sum_iu_i=0$.</p><p>Câu 3: $X^TX(1,1)=(3,3)$ và $X^TX(1,-1)=(1,-1)$; kiểm tra: vết $4=3+1$, định thức $3=3\cdot1$.</p><p>Câu 4: theo hàng huấn luyện sẽ chọn $d=5$, đúng mô hình quá khớp. Sai số xác thực $0{,}000125$ là số nhỏ nhất trong năm số nên có xu hướng thấp hơn $R$; vì vậy sai số cuối được báo cáo trên tập kiểm thử không tham gia lựa chọn.</p><p class="note-source"><strong>Nguồn:</strong> lời giải Bài tập 1 của học liệu Bài 05.</p></aside></section>
+
+<section data-slide-id="HQ12"><h2>Ba hệ quả của việc tăng số chiều</h2>
+<p>Mất mát bình phương, $d$ tăng so với $n\text{:}$</p>
+<ol>
+<li>Không duy nhất. Khi $d&gt;n$ và $\operatorname{rank}X=n,$ tập nghiệm có chiều $d-n.$</li>
+<li>Khoảng cách huấn luyện–xác thực. Từ $d=2$ đến $d=5,$ sai số huấn luyện về $0,$ sai số xác thực tăng $389$ lần.</li>
+<li>Điều kiện hóa. $\kappa(X^TX)$ không giảm theo $d\text{:}$ $2\to553{,}7\to\infty.$</li>
+</ol>
+<div class="panel"><p>Bình phương nhỏ nhất luôn có nghiệm (Mệnh đề 01.6); mất mát logistic thì có thể không.</p></div>
+<aside class="notes"><p>Bình phương nhỏ nhất luôn có nghiệm vì $Xw^*$ là hình chiếu trực giao của $y$ lên không gian cột $\operatorname{range}X$, và hình chiếu lên một không gian con hữu hạn chiều luôn tồn tại. Chính quy hóa chỉ cần sửa tính duy nhất (hệ quả 1) và điều kiện hóa (hệ quả 3); hệ quả 2 được xử lý bằng cách chọn $d$ hoặc $\lambda$ trên tập xác thực.</p><p>Mất mát logistic không có cấu trúc chiếu này. Giá trị nhỏ nhất có thể chỉ đạt ở giới hạn khi $\lVert w\rVert\to\infty$, và chế độ $\operatorname{rank}X=n$ của Mệnh đề 1 chính là chế độ trong đó điều đó xảy ra với mọi nhãn. Hệ quả 3, dựa trên định lý xen kẽ Cauchy, quyết định số bước của hạ gradient khi tính nghiệm ở mạch chi phí.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Mệnh đề 01.6; Goodfellow, Bengio và Courville (2016), §5.2, §7.3.</p></aside></section>
 </section>
 <section>
-<section data-slide-id="LG01" class="dense"><h2>Ba điểm với hai bộ đặc trưng</h2>
+<section id="mach-3" data-slide-id="LG00" class="strand-title">
+<div class="strand-title-body">
+<h2><span class="strand-number">3.</span> Hồi quy logistic và chính quy hóa</h2>
+<p class="strand-lead">Nhu cầu: điều kiện để mất mát logistic có cực tiểu, và cách sửa mục tiêu khi điều kiện đó không thỏa.</p>
+<p class="strand-keys">Tách được tuyến tính · không tồn tại cực tiểu · lồi mạnh · hằng số trơn</p>
+</div>
+<aside class="notes"><p>Chế độ nội suy $\operatorname{rank}X=n$ và nhận xét rằng bình phương nhỏ nhất luôn có nghiệm (nghiệm là một phép chiếu) là đầu vào. Với mất mát logistic, cùng chế độ nội suy làm mọi cách gán nhãn tách được và cực tiểu không tồn tại; hạng phạt $\frac\lambda2\lVert w\rVert^2$ khôi phục cực tiểu. Đầu ra cho phép đếm chi phí: $F_\lambda$ lồi mạnh với $\mu=\lambda$, hằng số trơn $L$ và số điều kiện $\kappa$ tăng theo $1/\lambda$.</p></aside></section>
+
+<section data-slide-id="LG01"><h2>Ba điểm với hai bộ đặc trưng</h2>
 <div class="cols"><div>
+<div class="panel"><p><b>Nhu cầu:</b> xác định khi nào hồi quy logistic có nghiệm.</p></div>
 <p>Dữ liệu: $u=(-1,0,1),$ $y=(-1,+1,-1).$</p>
-<ul><li><b>Đặc trưng $(1,u)$.</b> Điểm số $w_0+w_1u$ đổi dấu nhiều nhất một lần; dãy nhãn $-,+,-$ đổi dấu hai lần, nên không biên quyết định tuyến tính nào phân loại đúng cả ba điểm.</li>
-<li><b>Đặc trưng $(1,u,u^2)$.</b> $\bar w=(1,0,-2)$ cho điểm số $1-2u^2,$ đúng dấu tại cả ba điểm.</li></ul>
-<div class="panel"><p><b>Nhu cầu.</b> Xác định khi nào bài toán hồi quy logistic có nghiệm, và sửa bài toán khi nghiệm không tồn tại.</p></div>
+<ul><li>Đặc trưng $(1,u)$: Điểm số $w_0+w_1u$ đổi dấu tối đa một lần, nhãn đổi dấu hai lần: không phân loại đúng.</li>
+<li>Đặc trưng $(1,u,u^2)$: $\bar w=(1,0,-2)$ cho điểm số $1-2u^2,$ đúng dấu tại cả ba điểm.</li></ul>
 </div><div>
 <figure><img src="img/lec-05/lg-three-points.svg" alt="Ba điểm trên trục u: u = −1 nhãn −1, u = 0 nhãn +1, u = 1 nhãn −1. Đường cong điểm số 1 − 2u² đi qua cả ba điểm, dương trên khoảng từ −1/√2 đến 1/√2 (tô nhạt) và âm ngoài khoảng đó." /></figure>
 </div></div>
-<aside class="notes"><p>Với $(1,u,u^2)$, ma trận $X\in\mathbb R^{3\times3}$ khả nghịch và $\bar w=X^{-1}y$: điểm số tại các mẫu bằng đúng nhãn. Đây là chế độ nội suy của Mệnh đề 1 với $d=n=3$, nay dùng cho bài toán phân loại. Hai nghiệm của $1-2u^2$ là $\pm1/\sqrt2$, nằm giữa các nút.</p><p>Phần hồi quy kết thúc ở chỗ bình phương nhỏ nhất luôn có nghiệm. Với mất mát logistic, cùng dữ liệu ba điểm cho hai bài toán khác nhau tùy bộ đặc trưng: với $(1,u)$ có cực tiểu hữu hạn, với $(1,u,u^2)$ thì không, như hai trang sau tính.</p><p>Dãy nhãn $-,+,-$ trên một trục là dạng một chiều của bài toán XOR, trở lại ở phần kết luận và ở Bài 06.</p><p class="note-source"><strong>Nguồn:</strong> dữ liệu tự xây dựng; Goodfellow, Bengio và Courville (2016), §5.2 (mở rộng đặc trưng để tăng dung lượng mô hình).</p></aside></section>
+<aside class="notes"><p>Với $(1,u,u^2)$, ma trận $X\in\mathbb R^{3\times3}$ khả nghịch và $\bar w=X^{-1}y$: điểm số tại các mẫu bằng đúng nhãn. Đây là chế độ nội suy của Mệnh đề 1 với $d=n=3$, nay dùng cho bài toán phân loại. Hai nghiệm của $1-2u^2$ là $\pm1/\sqrt2$, nằm giữa các nút.</p><p>Phần hồi quy kết thúc ở chỗ bình phương nhỏ nhất luôn có nghiệm. Với mất mát logistic, cùng dữ liệu ba điểm cho hai bài toán khác nhau tùy bộ đặc trưng: với $(1,u)$ có cực tiểu hữu hạn, với $(1,u,u^2)$ thì không, như hai trang sau tính.</p><p>Dãy nhãn $-,+,-$ trên một trục là dạng một chiều của bài toán XOR, trở lại ở mạch kết luận và ở Bài 06.</p><p class="note-source"><strong>Nguồn:</strong> dữ liệu tự xây dựng; Goodfellow, Bengio và Courville (2016), §5.2 (mở rộng đặc trưng để tăng dung lượng mô hình).</p></aside></section>
 
-<section data-slide-id="LG02" class="dense"><h2>Mất mát logistic trung bình</h2>
+<section data-slide-id="LG02"><h2>Mất mát logistic trung bình</h2>
 <p>Biên có dấu (margin) $m_i(w)=y_ix_i^Tw,$ khác với biên quyết định $\{x:\ x^Tw=0\};$ hàm sigmoid $\sigma(z)=\frac1{1+e^{-z}}\text{:}$</p>
 <div class="formula" tabindex="0">$$F(w)=\frac1n\sum_{i=1}^n\log\bigl(1+e^{-m_i(w)}\bigr).$$</div>
 <p>Với mọi $w,$ $F(w)&gt;0;$ $F(0)=\log2.$</p>
 <div class="formula" tabindex="0">$$\nabla F(w)=-\frac1n\sum_{i=1}^n\sigma\bigl(-m_i(w)\bigr)\,y_ix_i,$$</div>
 <div class="formula" tabindex="0">$$\nabla^2F(w)=\frac1nX^TSX,\qquad S=\operatorname{diag}\bigl(\sigma(m_i)\sigma(-m_i)\bigr),\quad0&lt;S_{ii}\le\tfrac14.$$</div>
 <p>$S\succ0$ nên $\nabla^2F\succeq0\text{:}$ $F$ lồi.</p>
-<aside class="notes"><p>Đây là Bài 01, Định nghĩa 01.8 và Mệnh đề 01.9, viết ở dạng trung bình và dạng ma trận. Với $\phi(m)=\log(1+e^{-m})$ có $\phi'(m)=-\sigma(-m)$ và $\phi''(m)=\sigma(m)\sigma(-m)$; quy tắc dây chuyền với $m_i=y_ix_i^Tw$ và $y_i^2=1$ cho hai công thức trên.</p><p>Cận $S_{ii}\le\tfrac14$ đạt khi $m_i=0$, vì $\sigma(m)\sigma(-m)=\sigma(m)(1-\sigma(m))\le\tfrac14$. Cận này cho hằng số trơn của $F_\lambda$ ở trang hằng số trơn. Mặt khác $S_{ii}\to0$ khi $\lvert m_i\rvert\to\infty$, nên độ cong của $F$ có thể nhỏ tùy ý: không có hằng số lồi mạnh dương nào cho chính $F$.</p><p>Gradient và Hessian này là công cụ cho phép tính dọc tia ở trang sau và cho giả mã Newton ở phần chi phí.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Định nghĩa 01.8, Mệnh đề 01.9; Boyd và Vandenberghe (2004), §7.1.1 (tr. 354); Goodfellow, Bengio và Courville (2016), §5.7.1 (tr. 140).</p></aside></section>
+<aside class="notes"><p>Đây là Bài 01, Định nghĩa 01.8 và Mệnh đề 01.9, viết ở dạng trung bình và dạng ma trận. Với $\phi(m)=\log(1+e^{-m})$ có $\phi'(m)=-\sigma(-m)$ và $\phi''(m)=\sigma(m)\sigma(-m)$; quy tắc dây chuyền với $m_i=y_ix_i^Tw$ và $y_i^2=1$ cho hai công thức trên.</p><p>Cận $S_{ii}\le\tfrac14$ đạt khi $m_i=0$, vì $\sigma(m)\sigma(-m)=\sigma(m)(1-\sigma(m))\le\tfrac14$. Cận này cho hằng số trơn của $F_\lambda$ ở trang hằng số trơn. Mặt khác $S_{ii}\to0$ khi $\lvert m_i\rvert\to\infty$, nên độ cong của $F$ có thể nhỏ tùy ý: không có hằng số lồi mạnh dương nào cho chính $F$.</p><p>Gradient và Hessian này là công cụ cho phép tính dọc tia ở trang sau và cho giả mã Newton ở mạch chi phí.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Định nghĩa 01.8, Mệnh đề 01.9; Boyd và Vandenberghe (2004), §7.1.1 (tr. 354); Goodfellow, Bengio và Courville (2016), §5.7.1 (tr. 140).</p></aside></section>
 
-<section data-slide-id="LG03" class="dense"><h2>Mất mát dọc một tia</h2>
+<section data-slide-id="LG03"><h2>Mất mát dọc một tia</h2>
 <div class="cols"><div>
-<p><b>Đặc trưng $(1,u,u^2)$.</b> Mọi biên $m_i(\bar w)=1,$ nên $F(t\bar w)=\log(1+e^{-t})\text{:}$</p>
+<p>Đặc trưng $(1,u,u^2)$: mọi biên $m_i(\bar w)=1,$ nên $F(t\bar w)=\log(1+e^{-t})\text{:}$</p>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$t$</th><th>$0$</th><th>$1$</th><th>$5$</th><th>$10$</th></tr></thead><tbody>
 <tr><td>$F$</td><td>$0{,}6931$</td><td>$0{,}3133$</td><td>$0{,}00672$</td><td>${4{,}54\cdot10^{-5}}$</td></tr>
 </tbody></table></div>
 <p>$F$ giảm về $0$ dọc tia, không đạt $0.$</p>
-<p><b>Đặc trưng $(1,u)$.</b> Cực tiểu tại $w=(-\log2,\,0),$ $F^*=\tfrac13\log\tfrac{27}4\approx0{,}6365;$ tại đó $\sigma(w_0)=\tfrac13.$</p>
+<p>Đặc trưng $(1,u)$: cực tiểu tại $w=(-\log2,\,0),$ $F^*=\tfrac13\log\tfrac{27}4\approx0{,}6365;$ tại đó $\sigma(w_0)=\tfrac13.$</p>
 </div><div>
 <figure><img src="img/lec-05/lg-loss-along-ray.svg" alt="Đường F(t w̄) = log(1 + e mũ −t) với t từ 0 đến 10 giảm về 0 mà không chạm: 0,693 tại t = 0; 0,313 tại t = 1; 0,0067 tại t = 5; 4,5·10⁻⁵ tại t = 10. Đường nét đứt ở mức 0 là inf F, không đạt." /></figure>
 </div></div>
 <aside class="notes"><p>Với $(1,u,u^2)$, $X\bar w=y$ nên $m_i(\bar w)=y_i^2=1$ và mọi số hạng của $F(t\bar w)$ bằng $\log(1+e^{-t})$. Giá trị giảm theo $t$ và tiến về $0$, nhưng dương với mọi $t$ hữu hạn.</p><p>Với $(1,u)$: theo đối xứng $u\mapsto-u$ (đổi dấu $w_1$ không đổi $F$) và tính lồi, có thể lấy $w_1=0$. Khi đó $\partial F/\partial w_0=\tfrac13\bigl[2\sigma(w_0)-\sigma(-w_0)\bigr]=0$, tức $2\sigma(w_0)=1-\sigma(w_0)$, cho $\sigma(w_0)=\tfrac13$ và $w_0=-\log2$. Giá trị $F^*=\tfrac13\bigl[2\log\tfrac32+\log3\bigr]=\tfrac13\log\tfrac{27}4$. Hessian tại đó là $\tfrac13\cdot\tfrac29\cdot\operatorname{diag}(3,2)\succ0$, nên đây là cực tiểu chặt; cấu trúc giống Bài 01, Ví dụ 01.7.</p><p>Hai bộ đặc trưng trên cùng ba điểm cho hai kết luận ngược nhau về sự tồn tại cực tiểu. Điều phân biệt hai trường hợp là hình học của dữ liệu trong không gian đặc trưng, được đặt tên ở trang sau.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Bài 01, Ví dụ 01.7.</p></aside></section>
 
-<section data-slide-id="LG04" class="dense"><h2>Tách được tuyến tính</h2>
-<div class="panel"><p><b>Định nghĩa.</b> Dữ liệu $\{(x_i,y_i)\}_{i=1}^n,$ $y_i\in\{-1,+1\},$ tách được tuyến tính (linearly separable) nếu tồn tại $\bar w\in\mathbb R^d$ với $m_i(\bar w)=y_ix_i^T\bar w&gt;0$ với mọi $i.$</p></div>
-<div class="panel"><p><b>Mệnh đề 2.</b> Nếu $\operatorname{rank}X=n$ thì với mọi $y\in\{-1,+1\}^n,$ dữ liệu tách được tuyến tính.</p></div>
-<p><b>Chứng minh.</b> Theo Mệnh đề 1 có $\bar w$ với $X\bar w=y.$ Khi đó $m_i(\bar w)=y_i\,x_i^T\bar w=y_i^2=1&gt;0$ với mọi $i.$</p>
-<p><b>Ví dụ.</b> Ba điểm với đặc trưng $(1,u,u^2)\text{:}$ $\operatorname{rank}X=3=n,$ $\bar w=(1,0,-2).$ Với $(1,u),$ dữ liệu không tách được.</p>
+<section data-slide-id="LG04"><h2>Tách được tuyến tính</h2>
+<div class="panel"><p><b>Định nghĩa.</b> Dữ liệu $\{(x_i,y_i)\}_{i=1}^n,$ $y_i\in\{-1,+1\},$ tách được tuyến tính (linearly separable) nếu có $\bar w$ với $m_i(\bar w)=y_ix_i^T\bar w&gt;0$ với mọi $i.$</p></div>
+<p><b>Ví dụ.</b> Ba điểm, đặc trưng $(1,u,u^2)\text{:}$ $\bar w=(1,0,-2)$ cho mọi $m_i(\bar w)=1.$ Với $(1,u),$ dữ liệu không tách được.</p>
+<p><b>Mệnh đề 2.</b> Nếu $\operatorname{rank}X=n$ thì với mọi $y\in\{-1,+1\}^n,$ dữ liệu tách được tuyến tính.</p>
+<p><b>Chứng minh.</b> Mệnh đề 1 cho $\bar w$ với $X\bar w=y;$ khi đó $m_i(\bar w)=y_i\,x_i^T\bar w=y_i^2=1&gt;0.$</p>
 <aside class="notes"><p>Mệnh đề 2 nối hồi quy nhiều chiều với hồi quy logistic: chế độ nội suy của bình phương nhỏ nhất ($\operatorname{rank}X=n$, cần $d\ge n$) là chế độ mà cả $2^n$ cách gán nhãn đều tách được tuyến tính. Ở chế độ đó, định lý ở trang sau cho thấy mất mát logistic không có cực tiểu, bất kể nhãn nào.</p><p>Điều kiện $\operatorname{rank}X=n$ là đủ, không cần: dữ liệu ở câu hỏi 1 cuối phần này tách được với $d=2&lt;n=4$. Tách được là tính chất của cả $X$ lẫn $y$; hạng chỉ là một cách bảo đảm nó cho mọi $y$.</p><p>Biên có dấu dương tại mọi mẫu nghĩa là siêu phẳng $\{x:\ x^T\bar w=0\}$ trong không gian đặc trưng đặt mọi mẫu nhãn $+1$ về một phía và mọi mẫu nhãn $-1$ về phía kia.</p><p class="note-source"><strong>Nguồn:</strong> Mệnh đề 1 của bài; Boyd và Vandenberghe (2004), §8.6.1 (phân tách tuyến tính).</p></aside></section>
 
-<section data-slide-id="LG05" class="dense"><h2>Định lý không tồn tại cực tiểu</h2>
-<div class="panel"><p><b>Định lý 1.</b> Giả thiết: $F$ là mất mát logistic trung bình; dữ liệu tách được bởi $\bar w.$ Kết luận: $\inf_wF(w)=0$ và không $w$ nào đạt giá trị này; mọi dãy $(w_k)$ với $F(w_k)\to0$ có $\lVert w_k\rVert\to\infty.$</p></div>
-<p><b>Chứng minh.</b></p>
-<ol><li>Mỗi số hạng $\log(1+e^{-m_i(w)})&gt;0,$ nên $F(w)&gt;0$ với mọi $w.$</li>
-<li>Đặt $\gamma=\min_im_i(\bar w)&gt;0.$ Với $t&gt;0,$ $F(t\bar w)\le\log(1+e^{-t\gamma})\to0$ khi $t\to\infty;$ vậy $\inf F=0.$</li>
-<li>Trên hình cầu $\lVert w\rVert\le r,$ $F$ liên tục và dương nên đạt cực tiểu $c_r&gt;0$ (Weierstrass). Vì vậy $F(w_k)&lt;c_r$ buộc $\lVert w_k\rVert&gt;r.$</li></ol>
-<aside class="notes"><p>Bước 2 dùng $m_i(t\bar w)=t\,m_i(\bar w)\ge t\gamma$ và tính giảm của $\log(1+e^{-m})$ theo $m$: mỗi số hạng không vượt $\log(1+e^{-t\gamma})$, nên trung bình cũng vậy. Bước 3 dùng định lý Weierstrass (Bài 01, Định lý 01.36) trên tập compact $\{\lVert w\rVert\le r\}$; vì $F(w_k)\to0$, với mỗi $r$ có $k_0$ để $F(w_k)&lt;c_r$ khi $k\ge k_0$, tức $\lVert w_k\rVert&gt;r$.</p><p>Bước 3 giải thích hiện tượng thực hành. Hạ gradient bước không quá $1/L$ có $F(w_k)\to\inf F=0$ (Bài 05b, Hệ quả 05b.17), nên theo bước 3, $\lVert w_k\rVert\to\infty$; tính giảm đơn điệu của $F(w_k)$ một mình chưa đủ cho kết luận này. Tính lồi không bảo đảm tồn tại cực tiểu (Bài 01, Nhận xét 01.43); điều quyết định ở đây là hình học của dữ liệu. Bài 01, Ví dụ 01.6 là trường hợp $d=1$ của định lý.</p><p>Định lý cũng cho thấy nghiệm không thể được sửa bằng cách chọn thuật toán tốt hơn: không có nghiệm để thuật toán hội tụ tới. Trước khi sửa mục tiêu, cần biết trường hợp nào vẫn có cực tiểu.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Định lý 01.36, Ví dụ 01.6, Nhận xét 01.43; Goodfellow, Bengio và Courville (2016), §7.3 (tr. 239–240).</p></aside></section>
+<section data-slide-id="LG05"><h2>Định lý không tồn tại cực tiểu</h2>
+<div class="panel"><p><b>Định lý 1.</b> Giả thiết: $F$ là mất mát logistic trung bình; dữ liệu tách được bởi $\bar w.$</p>
+<p>Kết luận: $\inf_wF(w)=0$ và không $w$ nào đạt giá trị này; mọi dãy $(w_k)$ với $F(w_k)\to0$ có $\lVert w_k\rVert\to\infty.$</p></div>
+<p><b>Ý nghĩa:</b> không có nghiệm để thuật toán hội tụ tới; hạ gradient bước $\le1/L$ có $F(w_k)\to0$ (Hệ quả 05b.17), nên $\lVert w_k\rVert\to\infty.$</p>
+<aside class="notes"><p>Kết luận thứ hai của định lý giải thích hiện tượng thực hành. Hạ gradient bước không quá $1/L$ có $F(w_k)\to\inf F=0$ (Bài 05b, Hệ quả 05b.17), nên theo định lý, $\lVert w_k\rVert\to\infty$; tính giảm đơn điệu của $F(w_k)$ một mình chưa đủ cho kết luận này. Tính lồi không bảo đảm tồn tại cực tiểu (Bài 01, Nhận xét 01.43); điều quyết định ở đây là hình học của dữ liệu. Bài 01, Ví dụ 01.6 là trường hợp $d=1$ của định lý.</p><p>Định lý cũng cho thấy nghiệm không thể được sửa bằng cách chọn thuật toán tốt hơn: không có nghiệm để thuật toán hội tụ tới. Trước khi sửa mục tiêu, cần biết trường hợp nào vẫn có cực tiểu.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Ví dụ 01.6, Nhận xét 01.43; Bài 05b, Hệ quả 05b.17; Goodfellow, Bengio và Courville (2016), §7.3 (tr. 239–240).</p></aside></section>
 
-<section data-slide-id="LG06" class="dense"><h2>Dữ liệu không tách được</h2>
-<div class="panel"><p><b>Mệnh đề 3.</b> Giả thiết: với mọi $w\ne0$ tồn tại $i$ với $m_i(w)&lt;0.$ Kết luận: $F$ bức (coercive), nên có cực tiểu (Bài 01, Định lý 01.38).</p></div>
-<p><b>Ý chứng minh.</b> Hàm $v\mapsto\max_i\bigl(-m_i(v)\bigr)$ liên tục và dương trên mặt cầu đơn vị, nên</p>
+<section data-slide-id="LG05a"><h2>Chứng minh: định lý không tồn tại cực tiểu</h2>
+<ol>
+<li>Mỗi số hạng $\log(1+e^{-m_i(w)})&gt;0,$ nên $F(w)&gt;0$ với mọi $w.$</li>
+<li>Đặt $\gamma=\min_im_i(\bar w)&gt;0.$ Vì $m_i(t\bar w)\ge t\gamma,$ $F(t\bar w)\le\log(1+e^{-t\gamma})\to0;$ vậy $\inf F=0.$</li>
+<li>Trên hình cầu $\lVert w\rVert\le r,$ $F$ liên tục và dương nên đạt cực tiểu $c_r&gt;0$ (định lý Weierstrass).</li>
+<li>Vì $F(w_k)\to0,$ khi $k$ đủ lớn có $F(w_k)&lt;c_r,$ nên $\lVert w_k\rVert&gt;r.$ Điều này đúng với mọi $r.$</li>
+</ol>
+<aside class="notes"><p>Bước 2 dùng $m_i(t\bar w)=t\,m_i(\bar w)\ge t\gamma$ với $t&gt;0$ và tính giảm của $\log(1+e^{-m})$ theo $m$: mỗi số hạng không vượt $\log(1+e^{-t\gamma})$, nên trung bình cũng vậy. Bước 1 và bước 2 cho phần đầu của kết luận: cận dưới $0$ là cận đúng nhưng không đạt. Bước 3 dùng định lý Weierstrass (Bài 01, Định lý 01.36) trên tập compact $\{\lVert w\rVert\le r\}$. Bước 4 chuyển giá trị nhỏ thành chuẩn lớn: với mỗi $r$ có $k_0$ để $F(w_k)&lt;c_r$ khi $k\ge k_0$, tức $\lVert w_k\rVert&gt;r$, nên $\lVert w_k\rVert\to\infty$. Giả thiết tách được chỉ dùng ở bước 2.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Định lý 01.36; Goodfellow, Bengio và Courville (2016), §7.3 (tr. 239–240).</p></aside></section>
+
+<section data-slide-id="LG06"><h2>Dữ liệu không tách được</h2>
+<div class="panel"><p><b>Mệnh đề 3.</b> Giả thiết: với mọi $w\ne0$ tồn tại $i$ với $m_i(w)&lt;0.$</p>
+<p>Kết luận: $F$ bức (coercive), nên có cực tiểu (Định lý 01.38).</p></div>
+<p><b>Chứng minh</b> (phác thảo)<b>.</b> Hàm $v\mapsto\max_i\bigl(-m_i(v)\bigr)$ liên tục và dương trên mặt cầu đơn vị, nên</p>
 <div class="formula" tabindex="0">$$c=\min_{\lVert v\rVert=1}\max_i\bigl(-m_i(v)\bigr)&gt;0,\qquad F(w)\ge\frac1n\log\bigl(1+e^{c\lVert w\rVert}\bigr)\ge\frac cn\lVert w\rVert.$$</div>
-<p><b>Ví dụ.</b> Ba điểm với đặc trưng $(1,u)$ thỏa giả thiết; cực tiểu $(-\log2,\,0)$ đã tính ở trang mất mát dọc một tia.</p>
+<p><b>Ví dụ.</b> Ba điểm, đặc trưng $(1,u)\text{:}$ giả thiết thỏa; cực tiểu tại $(-\log2,\,0).$</p>
 <aside class="notes"><p>Bất đẳng thức thứ hai: viết $w=\lVert w\rVert v$ với $\lVert v\rVert=1$; chọn $i$ đạt $\max_i(-m_i(v))\ge c$, thì $-m_i(w)=\lVert w\rVert(-m_i(v))\ge c\lVert w\rVert$, và $F(w)$ không nhỏ hơn số hạng thứ $i$ chia $n$. Vì $\log(1+e^s)\ge s$, $F(w)\to\infty$ khi $\lVert w\rVert\to\infty$.</p><p>Kiểm tra giả thiết cho $(1,u)$ trên ba điểm: $m_1=w_1-w_0$, $m_2=w_0$, $m_3=-w_0-w_1$. Nếu cả ba không âm thì $w_1\ge w_0\ge0$ và $w_1\le-w_0\le0$, nên $w=0$. Vậy mọi $w\ne0$ có ít nhất một biên âm.</p><p>Giữa hai trường hợp còn trường hợp ranh giới: có $w\ne0$ với mọi $m_i(w)\ge0$ và dấu bằng tại một số mẫu; trường hợp này không xét ở đây. Kết luận của hai trang: sự tồn tại cực tiểu do dữ liệu quyết định, và theo Mệnh đề 2 không kiểm soát được khi $d\ge n$. Vì vậy cần sửa chính mục tiêu.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Định lý 01.38 (hàm bức liên tục có cực tiểu).</p></aside></section>
 
-<section data-slide-id="LG07" class="dense"><h2>Hạng phạt dọc một tia</h2>
+<section data-slide-id="LG07"><h2>Hạng phạt dọc một tia</h2>
 <div class="cols"><div>
 <p>Cộng $\frac\lambda2\lVert w\rVert^2.$ Vì $\lVert\bar w\rVert^2=5,$</p>
 <div class="formula" tabindex="0">$$F_\lambda(t\bar w)=\log(1+e^{-t})+\tfrac{5\lambda}2t^2.$$</div>
@@ -267,19 +315,29 @@
 </div><div>
 <figure><img src="img/lec-05/lg-penalty-along-ray.svg" alt="Ba đường theo t từ 0 đến 6. Nét liền: log(1 + e mũ −t) giảm về 0. Nét đứt: thêm 0,025t² (λ = 0,01), cực tiểu tại t* = 2,128, giá trị 0,2257. Chấm gạch: thêm 0,25t² (λ = 0,1), cực tiểu tại t* = 0,6748, giá trị 0,5255." /></figure>
 </div></div>
-<aside class="notes"><p>$\bar w=(1,0,-2)$ nên $\lVert\bar w\rVert^2=1+4=5$. Điều kiện cực tiểu dọc tia là $\tfrac1{1+e^{t}}=5\lambda t$; với $\lambda=0{,}01$: $0{,}05\cdot2{,}128=0{,}1064=1/(1+e^{2{,}128})$.</p><p>Cực tiểu dọc một tia chỉ là trực giác: nó cho thấy hạng phạt chặn đường đi ra vô cùng theo hướng $\bar w$. Cực tiểu của $F_\lambda$ trên $\mathbb R^3$ được tính ở trang ví dụ ba điểm và không nằm trên tia $\bar w$. Hai số $2{,}128$ và $0{,}6748$ trùng với nghiệm của bài toán một chiều ở trang sau vì $5\lambda$ đóng vai hệ số chính quy hóa của bài toán đó; đây là trùng hợp do cấu trúc ví dụ, không phải kết quả chung.</p><p>Để kết luận cho mọi hướng và mọi dữ liệu, cần một phát biểu dựa trên Hessian của $F_\lambda$.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Boyd và Vandenberghe (2004), §6.3.2 (chính quy hóa).</p></aside></section>
+<aside class="notes"><p>$\bar w=(1,0,-2)$ nên $\lVert\bar w\rVert^2=1+4=5$. Điều kiện cực tiểu dọc tia là $\tfrac1{1+e^{t}}=5\lambda t$; với $\lambda=0{,}01$: $0{,}05\cdot2{,}128=0{,}1064=1/(1+e^{2{,}128})$.</p><p>Cực tiểu dọc một tia chỉ là trực giác: nó cho thấy hạng phạt chặn đường đi ra vô cùng theo hướng $\bar w$. Cực tiểu của $F_\lambda$ trên $\mathbb R^3$ được tính ở trang ví dụ ba điểm và không nằm trên tia $\bar w$. Hai số $2{,}128$ và $0{,}6748$ trùng với nghiệm của ví dụ một mẫu ở trang ví dụ sau Định lý 2 vì $5\lambda$ đóng vai hệ số chính quy hóa của bài toán đó; đây là trùng hợp do cấu trúc ví dụ, không phải kết quả chung.</p><p>Để kết luận cho mọi hướng và mọi dữ liệu, cần một phát biểu dựa trên Hessian của $F_\lambda$.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Boyd và Vandenberghe (2004), §6.3.2 (chính quy hóa).</p></aside></section>
 
-<section data-slide-id="LG08" class="dense"><h2>Chính quy hóa bậc hai và tính lồi mạnh</h2>
-<div class="panel"><p><b>Định lý 2.</b> Giả thiết: $F$ là mất mát bình phương hoặc logistic trung bình, $\lambda&gt;0,$ $F_\lambda=F+\frac\lambda2\lVert w\rVert^2.$ Kết luận: $\nabla^2F_\lambda\succeq\lambda I;$ $F_\lambda$ có đúng một điểm cực tiểu $w_\lambda,$ thỏa $\lambda w_\lambda=-\nabla F(w_\lambda);$ và $\lVert w_\lambda\rVert^2\le2F(0)/\lambda,$ với mất mát logistic là $2\log2/\lambda.$</p></div>
-<p><b>Chứng minh.</b> $\nabla^2F\succeq0$ nên $\nabla^2F_\lambda\succeq\lambda I\text{:}$ lồi mạnh, có cực tiểu duy nhất (Bài 01, Hệ quả 01.41). Vì $F\ge0\text{:}$ $\frac\lambda2\lVert w_\lambda\rVert^2\le F_\lambda(w_\lambda)\le F_\lambda(0)=F(0).$</p>
-<p><b>Ví dụ.</b> Một mẫu $x_1=1,$ $y_1=+1$ $(n=d=1)\text{:}$ $F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2.$</p>
+<section data-slide-id="LG08"><h2>Chính quy hóa bậc hai và tính lồi mạnh</h2>
+<div class="panel"><p><b>Định lý 2.</b> Giả thiết: $F$ là mất mát bình phương hoặc logistic trung bình; $\lambda&gt;0;$ $F_\lambda=F+\frac\lambda2\lVert w\rVert^2.$</p>
+<p>Kết luận: $\nabla^2F_\lambda\succeq\lambda I;$ $F_\lambda$ có đúng một điểm cực tiểu $w_\lambda,$ thỏa $\lambda w_\lambda=-\nabla F(w_\lambda);$</p>
+<p>và $\lVert w_\lambda\rVert^2\le2F(0)/\lambda,$ với mất mát logistic là $2\log2/\lambda.$</p></div>
+<p><b>Chứng minh.</b> $\nabla^2F\succeq0$ nên $\nabla^2F_\lambda\succeq\lambda I\text{:}$ lồi mạnh, có cực tiểu duy nhất (Hệ quả 01.41).</p>
+<p>Vì $F\ge0\text{:}$ $\frac\lambda2\lVert w_\lambda\rVert^2\le F_\lambda(w_\lambda)\le F_\lambda(0)=F(0).$</p>
+<p><b>Nhu cầu:</b> cận trên $L$ của $\nabla^2F_\lambda$ để có $\kappa=L/\mu.$</p>
+<aside class="notes"><p>Điều kiện $\lambda w_\lambda=-\nabla F(w_\lambda)$ là $\nabla F_\lambda(w_\lambda)=0$. Cận chuẩn chỉ dùng $F\ge0$ và so sánh với điểm $w=0$. Với mất mát bình phương, $F(0)=\tfrac1{2n}\lVert y\rVert^2$; với mất mát logistic, $F(0)=\log2$ không phụ thuộc dữ liệu. Nghiệm $w_\lambda$ là nghiệm của một bài toán khác bài toán gốc; mức khác nhau do $\lambda$ quyết định.</p><p>Bài tập về nhà: trên dữ liệu tách được, chứng minh $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0$. Gợi ý: $F(w_\lambda)\le F_\lambda(w_\lambda)\le F(t\bar w)+\tfrac\lambda2t^2\lVert\bar w\rVert^2$ với mọi $t$, nên $F(w_\lambda)\to0$; áp dụng kết luận thứ hai của Định lý 1.</p><p>Định lý cho hằng số lồi mạnh $\mu=\lambda$; để có số điều kiện còn thiếu cận trên của Hessian.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Hệ quả 01.41; Boyd và Vandenberghe (2004), §6.3.2 (tr. 306), §7.1.2; Goodfellow, Bengio và Courville (2016), §7.1.1 (tr. 231), §7.3.</p></aside></section>
+
+<section data-slide-id="LG08a"><h2>Ví dụ: một mẫu có chính quy hóa</h2>
+<p>Một mẫu $x_1=1,$ $y_1=+1$ $(n=d=1)\text{:}$ $F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2.$</p>
+<p>Tính $w_\lambda$ từ $\lambda w=1/(1+e^{w})$ và so với cận chuẩn của Định lý 2:</p>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$\lambda$</th><th>$0{,}5$</th><th>$0{,}05$</th><th>$0{,}005$</th><th>$0{,}0005$</th></tr></thead><tbody>
 <tr><td>$w_\lambda$</td><td>$0{,}6748$</td><td>$2{,}1280$</td><td>$3{,}9140$</td><td>$5{,}8342$</td></tr>
 <tr><td>$\sqrt{2\log2/\lambda}$</td><td>$1{,}665$</td><td>$5{,}266$</td><td>$16{,}65$</td><td>$52{,}66$</td></tr>
 </tbody></table></div>
-<aside class="notes"><p>Điều kiện $\lambda w_\lambda=-\nabla F(w_\lambda)$ là $\nabla F_\lambda(w_\lambda)=0$. Trong ví dụ, nó thành $\lambda w=1/(1+e^{w})$; kiểm tra với $\lambda=0{,}05$: $0{,}05\cdot2{,}128=0{,}1064=1/(1+e^{2{,}128})$. Hai mẫu của Bài 01, Ví dụ 01.6 có cùng biên $w$, nên trung bình của chúng cho đúng hàm này; ba giá trị đầu của bảng trùng với Tình huống 01.1 của Bài 01 vì $\lambda=\mu/2$.</p><p>Cận chuẩn chỉ dùng $F\ge0$ và so sánh với điểm $w=0$. Với mất mát bình phương, $F(0)=\tfrac1{2n}\lVert y\rVert^2$; với mất mát logistic, $F(0)=\log2$ không phụ thuộc dữ liệu. Nghiệm $w_\lambda$ là nghiệm của một bài toán khác bài toán gốc; mức khác nhau do $\lambda$ quyết định.</p><p>Bài tập về nhà: trên dữ liệu tách được, chứng minh $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0$. Gợi ý: $F(w_\lambda)\le F_\lambda(w_\lambda)\le F(t\bar w)+\tfrac\lambda2t^2\lVert\bar w\rVert^2$ với mọi $t$, nên $F(w_\lambda)\to0$; áp dụng bước 3 của Định lý 1.</p><p>Định lý cho hằng số lồi mạnh $\mu=\lambda$; để có số điều kiện còn thiếu cận trên của Hessian.</p><p class="note-source"><strong>Nguồn:</strong> Bài 01, Hệ quả 01.41, Tình huống 01.1; Boyd và Vandenberghe (2004), §6.3.2 (tr. 306), §7.1.2; Goodfellow, Bengio và Courville (2016), §7.1.1 (tr. 231), §7.3.</p></aside></section>
+<p>Kiểm tra với $\lambda=0{,}05\text{:}$ $0{,}05\cdot2{,}128=0{,}1064=1/(1+e^{2{,}128}).$</p>
+<p><b>Diễn giải:</b> nghiệm hữu hạn với mọi $\lambda&gt;0$ và tăng khi $\lambda$ giảm; cận đúng nhưng không chặt.</p>
+<aside class="notes"><p>Phương trình $\lambda w=1/(1+e^{w})$ là $F_\lambda'(w)=0$, vì $F_\lambda'(w)=-\sigma(-w)+\lambda w$ và $\sigma(-w)=1/(1+e^w)$. Vế trái tăng, vế phải giảm theo $w$, nên nghiệm duy nhất, đúng như Định lý 2. Hai mẫu của Bài 01, Ví dụ 01.6 có cùng biên $w$, nên trung bình của chúng cho đúng hàm này; ba giá trị đầu của bảng trùng với Tình huống 01.1 của Bài 01 vì $\lambda=\mu/2$.</p><p>Dữ liệu một mẫu tách được ($\bar w=1$), nên khi $\lambda\to0$ nghiệm tăng không bị chặn, phù hợp với Định lý 1; với mỗi $\lambda&gt;0$ cố định, hạng phạt giữ nghiệm hữu hạn. Ví dụ này được dùng lại ở trang hằng số trơn và ở mạch chi phí.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Bài 01, Ví dụ 01.6, Tình huống 01.1.</p></aside></section>
 
-<section data-slide-id="LG09" class="dense"><h2>Hằng số trơn và số điều kiện của $F_\lambda$</h2>
+<section data-slide-id="LG09"><h2>Hằng số trơn và số điều kiện của $F_\lambda$</h2>
 <div class="cols"><div>
 <p><b>Ví dụ</b> (một mẫu $x_1=1,$ $y_1=+1$)<b>.</b> ${F_\lambda''(w)=\sigma(w)\sigma(-w)+\lambda}\in(\lambda,\tfrac14+\lambda].$</p>
 <figure><img src="img/lec-05/lg-curvature-1d.svg" alt="Đường độ cong σ(w)σ(−w) + λ với λ = 0,05, w từ −8 đến 8: lớn nhất 0,30 = 1/4 + λ tại w = 0 (nét đứt L), giảm về 0,05 = λ khi |w| lớn (đường chấm μ)." /></figure>
@@ -289,58 +347,76 @@
 <div class="formula" tabindex="0">$$\mu=\lambda,\qquad L=\frac{\lambda_{\max}(X^TX)}{4n}+\lambda,$$</div>
 <p>nên $\kappa=\frac L\mu=1+\frac{\lambda_{\max}(X^TX)}{4n\lambda}.$ Nếu $\lVert x_i\rVert\le r$ với mọi $i$ thì $L\le\frac{r^2}4+\lambda$ và $\kappa\le1+\frac{r^2}{4\lambda}.$</p></div>
 <p><b>Chứng minh.</b> $0\preceq S\preceq\tfrac14I;$ $\lambda_{\max}(X^TX)\le\operatorname{tr}X^TX=\sum_i\lVert x_i\rVert^2\le nr^2.$</p>
-<p>Tọa độ hằng $1$ cho $r\ge1;$ khi phần còn lại có chuẩn $\le1,$ $r^2=2.$</p>
 </div></div>
-<aside class="notes"><p>Hình vẽ độ cong của ví dụ một chiều với $\lambda=0{,}05$: đỉnh $0{,}30$ tại $w=0$, nơi mọi biên bằng $0$, và tiến về $\lambda$ khi $\lvert w\rvert$ lớn. Tỉ số giữa cận trên và cận dưới là $\kappa=6$; khi $\lambda$ giảm, cận dưới giảm theo còn cận trên gần như giữ nguyên, nên $\kappa$ tăng theo $1/\lambda$.</p><p>Chứng minh mệnh đề: $\nabla^2F_\lambda=\tfrac1nX^TSX+\lambda I$ và $v^TX^TSXv\le\tfrac14\lVert Xv\rVert^2\le\tfrac14\lambda_{\max}(X^TX)\lVert v\rVert^2$. Vậy $F_\lambda$ thỏa H2 và H3 của Bài 05b với $L$, $\mu$ ở trên, nên định lý hội tụ tuyến tính của hạ gradient trong Bài 05b (T2a, T2b) áp dụng: với bước $1/L$, $e_k\le(1-1/\kappa)^ke_0$.</p><p>Không thể giả thiết $\lVert x_i\rVert\le1$, vì tọa độ hằng $1$ đã cho $\lVert x_i\rVert\ge1$; dấu bằng chỉ xảy ra với mô hình chỉ có hệ số chặn, như ví dụ một chiều. $\kappa$ ở đây là cận toàn cục; độ cong tại nghiệm có thể lớn hơn $\lambda$ nhiều, và phần chi phí cho thấy hệ quả của khoảng cách này lên số bước thực.</p><p class="note-source"><strong>Nguồn:</strong> Bài 05b, giả thiết H2, H3 và định lý T2a, T2b; Boyd và Vandenberghe (2004), §9.1.2.</p></aside></section>
+<aside class="notes"><p>Hình vẽ độ cong của ví dụ một chiều với $\lambda=0{,}05$: đỉnh $0{,}30$ tại $w=0$, nơi mọi biên bằng $0$, và tiến về $\lambda$ khi $\lvert w\rvert$ lớn. Tỉ số giữa cận trên và cận dưới là $\kappa=6$; khi $\lambda$ giảm, cận dưới giảm theo còn cận trên gần như giữ nguyên, nên $\kappa$ tăng theo $1/\lambda$.</p><p>Chứng minh mệnh đề: $\nabla^2F_\lambda=\tfrac1nX^TSX+\lambda I$ và $v^TX^TSXv\le\tfrac14\lVert Xv\rVert^2\le\tfrac14\lambda_{\max}(X^TX)\lVert v\rVert^2$. Vậy $F_\lambda$ là $L$-trơn và $\mu$-lồi mạnh với $L$, $\mu$ ở trên, nên định lý hội tụ tuyến tính của hạ gradient (Bài 05b, Định lý 05b.18) áp dụng: với bước $1/L$, $e_k\le(1-1/\kappa)^ke_0$.</p><p>Không thể giả thiết $\lVert x_i\rVert\le1$, vì tọa độ hằng $1$ đã cho $\lVert x_i\rVert\ge1$, tức $r\ge1$; khi phần đặc trưng còn lại có chuẩn không quá $1$, $r^2=2$. $\kappa$ ở đây là cận toàn cục; độ cong tại nghiệm có thể lớn hơn $\lambda$ nhiều, và mạch chi phí cho thấy hệ quả của khoảng cách này lên số bước thực.</p><p class="note-source"><strong>Nguồn:</strong> Bài 05b, Định lý 05b.18; Boyd và Vandenberghe (2004), §9.1.2.</p></aside></section>
 
-<section data-slide-id="LG10" class="dense"><h2>Ví dụ ba điểm có chính quy hóa</h2>
-<p><b>$\lambda=0$.</b> $\operatorname{rank}X=n=3,$ nên dữ liệu tách được (Mệnh đề 2) và $F$ không có cực tiểu (Định lý 1). Cùng kết luận cho mọi cách gán nhãn $\pm1$ của năm mẫu ở phần hồi quy với $d=5.$</p>
+<section data-slide-id="LG10"><h2>Ví dụ: ba điểm có chính quy hóa</h2>
+<p>Với $\lambda=0\text{:}$ $\operatorname{rank}X=n=3,$ nên dữ liệu tách được (Mệnh đề 2) và $F$ không có cực tiểu (Định lý 1).</p>
+<p>Cùng kết luận cho mọi cách gán nhãn $\pm1$ của năm mẫu với $d=5.$</p>
 <p>$X^TX=\begin{pmatrix}3&amp;0&amp;2\\0&amp;2&amp;0\\2&amp;0&amp;2\end{pmatrix},$ $\lambda_{\max}=\frac{5+\sqrt{17}}2\approx4{,}5616,$ $L=\frac{4{,}5616}{12}+\lambda.$</p>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$\lambda$</th><th>$w_\lambda$</th><th>$P(y=+1\mid u=-1,0,1)$</th><th>$L$</th><th>$\kappa\le$</th></tr></thead><tbody>
 <tr><td>$0{,}1$</td><td>$(0{,}1298;\ 0;\ -1{,}4288)$</td><td>$(0{,}214;\ 0{,}532;\ 0{,}214)$</td><td>$0{,}4801$</td><td>$4{,}80$</td></tr>
 <tr><td>$0{,}01$</td><td>$(1{,}5571;\ 0;\ -4{,}2452)$</td><td>$(0{,}064;\ 0{,}826;\ 0{,}064)$</td><td>$0{,}3901$</td><td>$39{,}0$</td></tr>
 </tbody></table></div>
-<p>Nghiệm hữu hạn; xác suất dự đoán không tiến về $0$ hoặc $1.$</p>
-<aside class="notes"><p>Dòng đầu là ứng dụng của Mệnh đề 2 và Định lý 1 vào chế độ $d\ge n$: khi số đặc trưng đạt kích thước mẫu, hồi quy logistic không chính quy hóa mất cực tiểu với mọi nhãn, và hạ gradient bước không quá $1/L$ có $F(w_k)\to0$ (Bài 05b, Hệ quả 05b.17), nên theo bước 3 của Định lý 1, $\lVert w_k\rVert\to\infty$. Với năm mẫu và $d=5$, ma trận Vandermonde khả nghịch nên $\operatorname{rank}X=5$.</p><p>$w_\lambda$ tính bằng Newton tới chuẩn gradient dưới $10^{-16}$; $w_1=0$ do đối xứng $u\mapsto-u$ và tính duy nhất của nghiệm. Xác suất $P(y=+1\mid u)=\sigma(x^Tw_\lambda)$; với $\lambda=0{,}1$, tại $u=0$ là $\sigma(0{,}1298)=0{,}532$. Kiểm tra cận chuẩn của Định lý 2: $\lVert w_\lambda\rVert=1{,}435\le3{,}723$ và $4{,}522\le11{,}77$. Hằng số $L$ theo Mệnh đề 4 với $n=3$, nên $4n=12$.</p><p>Chọn $\lambda$ là quyết định mô hình, thực hiện trên tập xác thực như ở phần hồi quy; các định lý không chỉ ra giá trị nào. Với $\lambda=0{,}01$, định lý hội tụ tuyến tính của Bài 05b cho $e_k\le(1-1/39)^ke_0$ khi chạy hạ gradient bước $1/L$.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Goodfellow, Bengio và Courville (2016), §7.3.</p></aside></section>
+<p><b>Diễn giải:</b> nghiệm hữu hạn; xác suất dự đoán không tiến về $0$ hoặc $1.$</p>
+<aside class="notes"><p>Dòng đầu là ứng dụng của Mệnh đề 2 và Định lý 1 vào chế độ $d\ge n$: khi số đặc trưng đạt kích thước mẫu, hồi quy logistic không chính quy hóa mất cực tiểu với mọi nhãn, và hạ gradient bước không quá $1/L$ có $F(w_k)\to0$ (Bài 05b, Hệ quả 05b.17), nên theo kết luận thứ hai của Định lý 1 (bước 4 của chứng minh), $\lVert w_k\rVert\to\infty$. Với năm mẫu và $d=5$, ma trận Vandermonde khả nghịch nên $\operatorname{rank}X=5$.</p><p>$w_\lambda$ tính bằng Newton tới chuẩn gradient dưới $10^{-16}$; $w_1=0$ do đối xứng $u\mapsto-u$ và tính duy nhất của nghiệm. Xác suất $P(y=+1\mid u)=\sigma(x^Tw_\lambda)$; với $\lambda=0{,}1$, tại $u=0$ là $\sigma(0{,}1298)=0{,}532$. Kiểm tra cận chuẩn của Định lý 2: $\lVert w_\lambda\rVert=1{,}435\le3{,}723$ và $4{,}522\le11{,}77$. Hằng số $L$ theo Mệnh đề 4 với $n=3$, nên $4n=12$.</p><p>Chọn $\lambda$ là quyết định mô hình, thực hiện trên tập xác thực như ở mạch hồi quy; các định lý không chỉ ra giá trị nào. Với $\lambda=0{,}01$, định lý hội tụ tuyến tính của Bài 05b cho $e_k\le(1-1/39)^ke_0$ khi chạy hạ gradient bước $1/L$.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Goodfellow, Bengio và Courville (2016), §7.3.</p></aside></section>
 
-<section data-slide-id="LG11" class="dense"><h2>Câu hỏi về tách được và chính quy hóa</h2>
+<section data-slide-id="LG11"><h2>Bài tập: tách được, sự tồn tại cực tiểu và các hằng số</h2>
 <p class="question-label">Câu hỏi:</p>
 <ol>
 <li>$u=(-2,-1,1,2),$ $y=(-1,-1,+1,+1),$ đặc trưng $(1,u)\text{:}$ dữ liệu có tách được không; $F$ có cực tiểu không.</li>
 <li>Cùng $u,$ $y=(-1,+1,-1,+1)\text{:}$ trả lời như câu 1.</li>
-<li>$\lambda=0{,}02;$ mỗi $x_i$ gồm tọa độ hằng $1$ và phần đặc trưng có chuẩn $\le1\text{:}$ cho $\mu,$ cận trên của $L$ và $\kappa,$ cận trên của $\lVert w_\lambda\rVert.$</li>
+<li>$\lambda=0{,}02;$ mỗi $x_i$ gồm tọa độ hằng $1$ và phần đặc trưng có chuẩn $\le1\text{:}$ cho $\mu,$ cận trên của $L,$ $\kappa$ và $\lVert w_\lambda\rVert.$</li>
 </ol>
-<aside class="notes"><p>Đáp án câu 1: $\bar w=(0,1)$ cho biên $y_iu_i=(2,1,1,2)$, đều dương, nên dữ liệu tách được và theo Định lý 1, $F$ không có cực tiểu; $\lVert w_k\rVert\to\infty$ với mọi dãy làm $F$ về $0$. Ví dụ này cho thấy tách được không cần $\operatorname{rank}X=n$: $d=2&lt;n=4$.</p><p>Đáp án câu 2: điểm số affine $w_0+w_1u$ đổi dấu nhiều nhất một lần, dãy nhãn $-,+,-,+$ đổi dấu ba lần, nên không tách được. Kiểm tra giả thiết của Mệnh đề 3: $m_1=2w_1-w_0$, $m_2=w_0-w_1$, $m_3=-w_0-w_1$, $m_4=w_0+2w_1$. Nếu cả bốn không âm, từ $m_2,m_3$ có $w_1\le w_0\le-w_1$ nên $w_1\le0$; từ $m_1,m_4$ có $-2w_1\le w_0\le2w_1$ nên $w_1\ge0$; vậy $w_1=0$ rồi $w_0=0$. Mọi $w\ne0$ có một biên âm, nên $F$ bức và có cực tiểu.</p><p>Đáp án câu 3: $\lVert x_i\rVert^2\le1+1=2$, nên $\mu=0{,}02$, $L\le\tfrac24+0{,}02=0{,}52$, $\kappa\le0{,}52/0{,}02=26$, và $\lVert w_\lambda\rVert\le\sqrt{2\log2/0{,}02}=\sqrt{69{,}3}\approx8{,}33$.</p><p class="note-source"><strong>Nguồn:</strong> câu hỏi tự xây dựng.</p></aside></section>
+<aside class="notes"><p>Gợi ý: ở câu 1, thử $\bar w=(0,1)$. Ở câu 2, điểm số affine $w_0+w_1u$ đổi dấu nhiều nhất một lần; để kiểm tra giả thiết của Mệnh đề 3, viết bốn biên rồi giả sử cả bốn không âm. Ở câu 3, $\lVert x_i\rVert^2\le1+1$, rồi dùng Định lý 2 và Mệnh đề 4.</p><p>Câu 1 cho thấy tách được không cần $\operatorname{rank}X=n$: ở đây $d=2&lt;n=4$. Câu 2 là trường hợp đối chứng của Mệnh đề 3.</p><p class="note-source"><strong>Nguồn:</strong> câu hỏi tự xây dựng; Bài tập 4 của học liệu Bài 05.</p></aside></section>
 
-<section data-slide-id="LG12" class="dense"><h2>Hệ số chính quy hóa và số điều kiện</h2>
+<section data-slide-id="LG11a"><h2>Bài tập: tách được, sự tồn tại cực tiểu và các hằng số</h2>
+<p class="question-label">Lời giải:</p>
+<ol>
+<li>$\bar w=(0,1)$ cho biên $(2,1,1,2),$ đều dương: tách được; theo Định lý 1, $F$ không có cực tiểu.</li>
+<li>Nhãn $-,+,-,+$ đổi dấu ba lần: không tách được; $F$ bức nên có cực tiểu (Mệnh đề 3).</li>
+<li>$\lVert x_i\rVert^2\le2\text{:}$ $\mu=0{,}02,$ $L\le0{,}52,$ $\kappa\le26,$ $\lVert w_\lambda\rVert\le\sqrt{2\log2/0{,}02}\approx8{,}33.$</li>
+</ol>
+<p>Kiểm tra giả thiết ở câu 2: nếu cả bốn biên $\ge0$ thì $w_1\le0$ và $w_1\ge0,$ nên $w_1=0,$ rồi $w_0=0.$</p>
+<aside class="notes"><p>Câu 1: các biên $y_iu_i=(2,1,1,2)$ đều dương, nên dữ liệu tách được; theo Định lý 1, $\inf F=0$ không đạt và mọi dãy làm $F$ về $0$ có chuẩn tiến ra vô cùng.</p><p>Câu 2: các biên là $m_1=2w_1-w_0$, $m_2=w_0-w_1$, $m_3=-w_0-w_1$, $m_4=w_0+2w_1$. Nếu cả bốn không âm: từ $m_2,m_3$ có $w_1\le w_0\le-w_1$ nên $w_1\le0$; từ $m_1,m_4$ có $-2w_1\le w_0\le2w_1$ nên $w_1\ge0$; vậy $w_1=0$ rồi $w_0=0$. Mọi $w\ne0$ có một biên âm, nên giả thiết của Mệnh đề 3 thỏa, $F$ bức và có cực tiểu.</p><p>Câu 3: $\lVert x_i\rVert^2\le1+1=2$, tức $r^2=2$; theo Định lý 2 và Mệnh đề 4, $\mu=0{,}02$, $L\le\tfrac24+0{,}02=0{,}52$, $\kappa\le0{,}52/0{,}02=26$, và $\lVert w_\lambda\rVert\le\sqrt{2\log2/0{,}02}=\sqrt{69{,}3}\approx8{,}33$.</p><p class="note-source"><strong>Nguồn:</strong> lời giải Bài tập 4 của học liệu Bài 05.</p></aside></section>
+
+<section data-slide-id="LG12"><h2>Hệ số chính quy hóa và số điều kiện</h2>
 <p>Ví dụ một mẫu $x_1=1,$ $y_1=+1\text{:}$</p>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$\lambda$</th><th>$0{,}5$</th><th>$0{,}05$</th><th>$0{,}005$</th><th>$0{,}0005$</th></tr></thead><tbody>
 <tr><td>$\sigma(w_\lambda)$</td><td>$0{,}663$</td><td>$0{,}894$</td><td>$0{,}980$</td><td>$0{,}997$</td></tr>
 <tr><td>$\kappa$</td><td>$1{,}5$</td><td>$6$</td><td>$51$</td><td>$501$</td></tr>
 </tbody></table></div>
 <ul><li>$\lambda$ giảm: $\sigma(w_\lambda)\to1$ và $\lVert w_\lambda\rVert$ tăng không bị chặn, như bài toán không chính quy hóa.</li>
-<li>Cùng lúc $\kappa$ tăng theo $1/\lambda.$</li></ul>
-<div class="panel"><p>Chính quy hóa làm bài toán đặt chỉnh (well-posed: nghiệm tồn tại, duy nhất và phụ thuộc liên tục vào dữ liệu), nhưng nghiệm càng gần bài toán gốc thì càng khó tính. Chọn phương pháp tính $w_\lambda$ phụ thuộc vào $\kappa,$ $n,$ $d.$</p></div>
-<aside class="notes"><p>Khi $\lambda$ giảm, $w_\lambda$ tiến gần hành vi của bài toán gốc trên dữ liệu tách được: $\sigma(w_\lambda)\to1$ và $\lVert w_\lambda\rVert$ tăng không bị chặn (bài tập ở trang tính lồi mạnh). Đồng thời cận $\kappa\le1+r^2/(4\lambda)$ tăng theo $1/\lambda$, và số bước của hạ gradient trong định lý hội tụ tuyến tính tỉ lệ với $\kappa$. Giảm $\lambda$ vì vậy đưa $w_\lambda$ gần bài toán gốc hơn nhưng làm cận $\kappa$ tăng.</p><p>Phương pháp Newton dùng độ cong có một giai đoạn hội tụ bậc hai mà số bước không chứa $\kappa$; giai đoạn tắt dần trước đó vẫn phụ thuộc độ cong. Mỗi bước Newton có chi phí riêng, và phần sau đếm chi phí đó cùng với số bước.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp (bảng nghiệm một chiều); Boyd và Vandenberghe (2004), §9.3.1.</p></aside></section>
+<li>Định lý 2 vẫn cho cực tiểu tồn tại và duy nhất với mọi $\lambda&gt;0.$</li></ul>
+<div class="panel"><p><b>Kết luận:</b> $\lambda$ càng nhỏ, $w_\lambda$ càng gần bài toán gốc và cận $\kappa\le1+\frac{r^2}{4\lambda}$ càng lớn.</p></div>
+<aside class="notes"><p>Khi $\lambda$ giảm, $w_\lambda$ tiến gần hành vi của bài toán gốc trên dữ liệu tách được: $\sigma(w_\lambda)\to1$ và $\lVert w_\lambda\rVert$ tăng không bị chặn (bài tập ở trang tính lồi mạnh). Đồng thời cận $\kappa\le1+r^2/(4\lambda)$ tăng theo $1/\lambda$; ở ví dụ một mẫu, $r=1$ và $\kappa=1+\tfrac1{4\lambda}$ đạt đúng cận, nên bảng cho $1{,}5$; $6$; $51$; $501$. Số bước của hạ gradient trong định lý hội tụ tuyến tính tỉ lệ với $\kappa$, nên cách tính $w_\lambda$ phải được chọn theo $\kappa$, $n$ và $d$.</p><p>Phương pháp Newton dùng độ cong có một giai đoạn hội tụ bậc hai mà số bước không chứa $\kappa$; giai đoạn tắt dần trước đó vẫn phụ thuộc độ cong. Mỗi bước Newton có chi phí riêng, và mạch sau đếm chi phí đó cùng với số bước.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp (bảng nghiệm một chiều); Boyd và Vandenberghe (2004), §9.3.1.</p></aside></section>
 </section>
 <section>
-<section data-slide-id="CP01" class="dense"><h2>Hai quy tắc cập nhật</h2>
+<section id="mach-4" data-slide-id="CP00" class="strand-title">
+<div class="strand-title-body">
+<h2><span class="strand-number">4.</span> Độ cong và chi phí tính toán</h2>
+<p class="strand-lead">Muốn biết số bước và chi phí mỗi bước của hạ gradient và Newton khi tính $w_\lambda.$</p>
+<p class="strand-keys">Số điều kiện · hội tụ bậc hai · chi phí một bước · ngưỡng hòa vốn</p>
+</div>
+<aside class="notes"><p>Mục tiêu $F_\lambda$ lồi mạnh với $\mu=\lambda$ và $\kappa\le1+r^2/(4\lambda)$ là đầu vào của phép so sánh hai phương pháp tất định của Bài 04: số bước của hạ gradient theo $\kappa$, số bước của Newton theo hai giai đoạn, chi phí một bước $O(nd)$ và $O(nd^2+d^3)$, ngưỡng hòa vốn. Đầu ra cho phần kết luận: mọi bước của cả hai phương pháp đều có thừa số $n$, tức lý do thứ nhất của vấn đề trung tâm ở dạng định lượng.</p></aside></section>
+
+<section data-slide-id="CP01"><h2>Hai quy tắc cập nhật</h2>
 <div class="cols"><div>
-<p><b>Hạ gradient</b>: một độ dài bước cho mọi hướng,</p>
+<p><b>Nhu cầu:</b> so số bước của hai quy tắc khi $\kappa$ lớn.</p>
+<p>Hạ gradient: một độ dài bước cho mọi hướng,</p>
 <div class="formula" tabindex="0">$$w_{k+1}=w_k-\tfrac1L\nabla F_\lambda(w_k).$$</div>
-<p><b>Newton</b>: mỗi hướng riêng chia cho độ cong của chính nó,</p>
+<p>Newton: mỗi hướng riêng chia cho độ cong của chính nó,</p>
 <div class="formula" tabindex="0">$$w_{k+1}=w_k-\bigl[\nabla^2F_\lambda(w_k)\bigr]^{-1}\nabla F_\lambda(w_k).$$</div>
-<p>Hình: hàm bậc hai có trị riêng $1$ và $10,$ trục xoay $30^\circ,$ xuất phát $(6,4).$ Sau 12 bước hạ gradient (bước $0{,}1$) còn ở $(1{,}76;\,1{,}02);$ Newton tới nghiệm sau một bước.</p>
+<p>Hình: trị riêng $1$ và $10;$ sau 12 bước hạ gradient bước $0{,}1$ còn ở $(1{,}76;\,1{,}02),$ Newton tới nghiệm sau một bước.</p>
 </div><div>
 <figure><img src="img/lec-05/cp-gd-newton-paths.svg" alt="Đường mức elip của hàm bậc hai có trị riêng 1 và 10, trục xoay 30 độ, cực tiểu tại gốc. Từ w₀ = (6; 4), 12 bước hạ gradient bước 0,1 (chấm nối liền) đi dọc hướng phẳng và dừng ở (1,76; 1,02); một bước Newton (nét đứt) đi thẳng tới gốc." /></figure>
 </div></div>
-<aside class="notes"><p>Hai quy tắc nhắc lại từ Bài 04. Với hàm bậc hai $f(w)=\tfrac12w^THw$, trị riêng $1$ và $10$, hằng số trơn là $L=10$ nên bước $0{,}1=1/L$. Theo hướng riêng có độ cong $10$, bước này triệt tiêu thành phần ngay lập tức; theo hướng có độ cong $1$, mỗi bước chỉ nhân thành phần với $1-0{,}1=0{,}9$. Sau 12 bước, khoảng cách tới nghiệm còn $0{,}9^{12}\approx0{,}28$ lần ban đầu: từ $7{,}21$ xuống $2{,}03$. Đây là hướng gần phẳng của các elip dẹt ở phần hồi quy.</p><p>Bước Newton nhân gradient với $H^{-1}$, tức chia thành phần theo mỗi hướng riêng cho độ cong của hướng đó. Trên hàm bậc hai, mô hình bậc hai mà Newton dùng là chính hàm, nên một bước tới đúng nghiệm. Trên $F_\lambda$ thì không, vì Hessian thay đổi theo $w$.</p><p>Newton cần ít bước hơn; chi phí của mỗi bước là đại lượng cần đếm.</p><p class="note-source"><strong>Nguồn:</strong> Bài 04 (hạ gradient, phương pháp Newton); Boyd và Vandenberghe (2004), §9.3, §9.5.</p></aside></section>
+<aside class="notes"><p>Hai quy tắc nhắc lại từ Bài 04. Hình vẽ hàm bậc hai $f(w)=\tfrac12w^THw$ với trị riêng $1$ và $10$, trục chính xoay $30^\circ$, điểm đầu $w_0=(6,4)$. Hằng số trơn là $L=10$ nên bước $0{,}1=1/L$. Theo hướng riêng có độ cong $10$, bước này triệt tiêu thành phần ngay lập tức; theo hướng có độ cong $1$, mỗi bước chỉ nhân thành phần với $1-0{,}1=0{,}9$. Sau 12 bước, khoảng cách tới nghiệm còn $0{,}9^{12}\approx0{,}28$ lần ban đầu: từ $7{,}21$ xuống $2{,}03$. Đây là hướng gần phẳng của các elip dẹt ở mạch hồi quy.</p><p>Bước Newton nhân gradient với $H^{-1}$, tức chia thành phần theo mỗi hướng riêng cho độ cong của hướng đó. Trên hàm bậc hai, mô hình bậc hai mà Newton dùng là chính hàm, nên một bước tới đúng nghiệm. Trên $F_\lambda$ thì không, vì Hessian thay đổi theo $w$.</p><p class="note-source"><strong>Nguồn:</strong> Bài 04 (hạ gradient, phương pháp Newton); Boyd và Vandenberghe (2004), §9.3, §9.5.</p></aside></section>
 
-<section data-slide-id="CP02" class="dense"><h2>Hai phương pháp trên ví dụ một chiều</h2>
-<p>$F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2,$ $\lambda=0{,}005$ $(\kappa=51),$ $w_0=0;$ dừng khi $e_k=F_\lambda(w_k)-F_\lambda(w_\lambda)\le10^{-8}.$</p>
+<section data-slide-id="CP02"><h2>Hai phương pháp trên ví dụ một chiều</h2>
+<p>$F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2,$ $\lambda=0{,}005$ $(\kappa=51),$ $w_0=0$ $(e_0=0{,}635);$ dừng khi $e_k=F_\lambda(w_k)-F_\lambda(w_\lambda)\le10^{-8}.$</p>
 <div class="cols"><div>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$k$</th><th>Newton $w_k$</th><th>Newton $e_k$</th><th>Hạ gradient $w_k$</th></tr></thead><tbody>
-<tr><td>$0$</td><td>$0$</td><td>$0{,}635$</td><td>$0$</td></tr>
 <tr><td>$1$</td><td>$1{,}9608$</td><td>${8{,}3\cdot10^{-2}}$</td><td>$1{,}9608$</td></tr>
 <tr><td>$2$</td><td>$2{,}9645$</td><td>${1{,}4\cdot10^{-2}}$</td><td>$2{,}4062$</td></tr>
 <tr><td>$3$</td><td>$3{,}6273$</td><td>${1{,}1\cdot10^{-3}}$</td><td>$2{,}6833$</td></tr>
@@ -351,150 +427,237 @@
 <figure><img src="img/lec-05/cp-error-vs-iteration.svg" alt="Trục tung logarit từ 10⁻¹⁰ đến 1, k từ 0 đến 75. Newton (ô vuông) giảm 0,635; 0,083; 0,014; 0,0011; 1,1·10⁻⁵; 1,4·10⁻⁹, đạt 10⁻⁸ sau 5 bước. Hạ gradient (chấm) giảm gần thẳng trên thang logarit, đạt 10⁻⁸ ở bước 71." /></figure>
 <p>Newton đạt $10^{-8}$ sau 5 bước; hạ gradient sau 71 bước $(e_{71}=8{,}9\cdot10^{-9}).$</p>
 </div></div>
-<aside class="notes"><p>Phép tính thủ công bước đầu: $g(w)=-\sigma(-w)+\lambda w$, $h(w)=\sigma(w)\sigma(-w)+\lambda$; tại $0$: $g=-0{,}5$, $h=0{,}255$, nên $w_1=0{,}5/0{,}255=1{,}9608$. Bước đầu của hai phương pháp trùng nhau vì $F_\lambda''(0)=\tfrac14+\lambda=L$: tại $w=0$, bước Newton đúng bằng bước $1/L$.</p><p>Ở giai đoạn cuối của Newton, số chữ số đúng tăng gấp đôi mỗi bước: $e_4\approx10^{-5}$, $e_5\approx10^{-9}$. Hạ gradient giảm $e_k$ theo một tỉ số gần cố định, nên trên thang logarit là một đường gần thẳng. Nghiệm $w_\lambda=3{,}914$, $e_0=0{,}635$.</p><p>Trên ví dụ này, quay lui Armijo với tham số $\alpha=0{,}25$ nhận bước đầy đủ $t=1$ ở mọi bước Newton, với cả ba giá trị $\lambda$ của bảng số bước ở trang sau, nên bảng là đúng dãy lặp mà định lý hội tụ của Newton mô tả.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Bài 04 (bước Newton).</p></aside></section>
+<aside class="notes"><p>Phép tính thủ công bước đầu: $g(w)=-\sigma(-w)+\lambda w$, $h(w)=\sigma(w)\sigma(-w)+\lambda$; tại $0$: $g=-0{,}5$, $h=0{,}255$, nên $w_1=0{,}5/0{,}255=1{,}9608$. Bước đầu của hai phương pháp trùng nhau vì $F_\lambda''(0)=\tfrac14+\lambda=L$: tại $w=0$, bước Newton đúng bằng bước $1/L$.</p><p>Ở giai đoạn cuối của Newton, số chữ số đúng tăng gấp đôi mỗi bước: $e_4\approx10^{-5}$, $e_5\approx10^{-9}$. Hạ gradient giảm $e_k$ theo một tỉ số gần cố định, nên trên thang logarit là một đường gần thẳng. Nghiệm $w_\lambda=3{,}914$, $e_0=0{,}635$.</p><p>Trên ví dụ này, quay lui Armijo với tham số $\alpha=0{,}25$ nhận bước đầy đủ $t=1$ ở mọi bước Newton, với cả ba giá trị $\lambda$ của bảng số bước sau Định lý 3, nên bảng là đúng dãy lặp mà định lý hội tụ của Newton mô tả.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Bài 04 (bước Newton).</p></aside></section>
 
-<section data-slide-id="CP03" class="dense"><h2>Số bước theo số điều kiện</h2>
-<p>Cùng ví dụ một chiều, ba giá trị $\lambda,$ $\varepsilon=10^{-8}\text{:}$</p>
-<div class="table-scroll" tabindex="0"><table><thead><tr><th>$\lambda$</th><th>$\kappa$</th><th>$e_0$</th><th>Hạ gradient (thực tế)</th><th>Cận $\lceil\kappa\log(e_0/\varepsilon)\rceil$ (Định lý 3, trang sau)</th><th>Newton</th></tr></thead><tbody>
+<section data-slide-id="CP04"><h2>Số bước của hạ gradient</h2>
+<div class="panel"><p><b>Định lý 3</b> (Định lý 05b.18(b), phát biểu lại)<b>.</b> Giả thiết: $f:\mathbb R^d\to\mathbb R$ khả vi, $L$-trơn, $\mu$-lồi mạnh, $0&lt;\mu\le L,$ có cực tiểu $w^*;$ bước $\eta=1/L.$</p>
+<p>Kết luận: với mọi $k\ge0,$</p>
+<div class="formula" tabindex="0">$$e_k=f(w_k)-f(w^*)\le\Bigl(1-\frac\mu L\Bigr)^ke_0.$$</div></div>
+<p><b>Hệ quả.</b> Vì $\log\frac1{1-1/\kappa}\ge\frac1\kappa,$ điều kiện $k\ge\kappa\log\frac{e_0}\varepsilon$ đủ cho $e_k\le\varepsilon.$</p>
+<p>Với $F_\lambda\text{:}$ $\mu=\lambda,$ $L$ theo Mệnh đề 4; mỗi bước dùng $\nabla F_\lambda$ trên toàn bộ $n$ mẫu.</p>
+<aside class="notes"><p>Chứng minh nằm ở Bài 05b (Định lý 05b.18, phần b) và Bài 04 (định lý hội tụ tuyến tính). Dãy lặp $x_k$ của Bài 05b là $w_k$ ở đây; $L$-trơn nghĩa là gradient Lipschitz với hằng số $L$, $\mu$-lồi mạnh nghĩa là $f-\tfrac\mu2\lVert w\rVert^2$ lồi.</p><p>Hệ quả: từ $\log(1-s)\le-s$ có $(1-1/\kappa)^k\le e^{-k/\kappa}$, nên $e_k\le e^{-k/\kappa}e_0\le\varepsilon$ khi $k\ge\kappa\log(e_0/\varepsilon)$. Bảng ở trang sau so cận này với số bước thực. Cận là điều kiện đủ: nó bảo đảm số bước không vượt quá giá trị đó, không nói số bước thực bằng giá trị đó.</p><p>Định lý không nói gì về chi phí của bước. So sánh với Newton cần cả số bước (Định lý 4) lẫn chi phí một bước.</p><p class="note-source"><strong>Nguồn:</strong> Bài 05b, Định lý 05b.18; Boyd và Vandenberghe (2004), §9.3.1 (tr. 466–468).</p></aside></section>
+
+<section data-slide-id="CP03"><h2>Số bước theo số điều kiện</h2>
+<p>Cùng ví dụ một chiều, ba giá trị $\lambda,$ $\varepsilon=10^{-8};$ cột cận theo hệ quả của Định lý 3:</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>$\lambda$</th><th>$\kappa$</th><th>$e_0$</th><th>Số bước hạ gradient</th><th>Cận $\lceil\kappa\log(e_0/\varepsilon)\rceil$</th><th>Số bước Newton</th></tr></thead><tbody>
 <tr><td>$0{,}05$</td><td>$6$</td><td>$0{,}4674$</td><td>$12$</td><td>$106$</td><td>$4$</td></tr>
 <tr><td>$0{,}005$</td><td>$51$</td><td>$0{,}6351$</td><td>$71$</td><td>$917$</td><td>$5$</td></tr>
 <tr><td>$0{,}0005$</td><td>$501$</td><td>$0{,}6817$</td><td>$446$</td><td>$9037$</td><td>$7$</td></tr>
 </tbody></table></div>
-<ul><li>$\kappa$ tăng $83{,}5$ lần, số bước hạ gradient tăng $37$ lần, theo sát tỉ số độ cong toàn cục trên độ cong tại nghiệm $L/F''_\lambda(w_\lambda)=2{,}07;\ 10{,}5;\ 73{,}5$ (tăng $35{,}5$ lần).</li>
-<li>Cận theo $\kappa$ lớn hơn số bước thực $9$ đến $20$ lần; số bước Newton chỉ tăng nhẹ ($4$, $5$, $7$).</li></ul>
-<aside class="notes"><p>Cận lớn hơn số bước thực vì $\mu=\lambda$ là cận dưới toàn cục của độ cong, trong khi tại nghiệm $F_\lambda''(w_\lambda)=0{,}1451;\ 0{,}02419;\ 0{,}003409$, lớn hơn $\lambda$ nhiều. Gần nghiệm, hạ gradient bước $1/L$ co khoảng cách $\lvert w_k-w_\lambda\rvert$ theo hệ số khoảng $1-F_\lambda''(w_\lambda)/L$, nên co sai số giá trị $e_k$ theo hệ số khoảng $\bigl(1-F_\lambda''(w_\lambda)/L\bigr)^2=0{,}267;\ 0{,}819;\ 0{,}973$, khớp tỉ số đo được $0{,}2667;\ 0{,}8193;\ 0{,}9727$.</p><p>Vì vậy số bước tỉ lệ gần với số điều kiện cục bộ $L/F''_\lambda(w_\lambda)$, không với $\kappa=L/\lambda$. Cận theo $\kappa$ vẫn đúng; nó chỉ không chặt trên ví dụ này. Mọi bước Newton trong ví dụ là bước đầy đủ $t=1$. Số bước Newton vẫn tăng nhẹ ($4$, $5$, $7$): chứng minh của Boyd và Vandenberghe (tr. 488) chỉ bảo đảm giai đoạn bậc hai khi $\lvert F_\lambda'(w_k)\rvert$ xuống dưới ngưỡng $m^2/L_H$, với $m=\lambda$ và $L_H=1/(6\sqrt3)$ trên ví dụ này, nên ngưỡng bằng $2{,}6\cdot10^{-2};\ 2{,}6\cdot10^{-4};\ 2{,}6\cdot10^{-6}$ và co theo $\lambda^2$; $w_\lambda$ cũng nằm xa điểm đầu hơn. Chỉ riêng số bước của giai đoạn bậc hai mới không phụ thuộc $\kappa$, đúng như định lý ở trang Newton.</p><p>Hai cột số bước ứng với hai định lý: cận theo $\kappa$ của hạ gradient và cận hai giai đoạn của Newton, mỗi định lý với giả thiết riêng.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp.</p></aside></section>
+<ul><li>$\kappa$ tăng $83{,}5$ lần; số bước hạ gradient tăng $37$ lần.</li>
+<li>Số bước theo sát $L/F''_\lambda(w_\lambda)=2{,}07;\ 10{,}5;\ 73{,}5$ (tăng $35{,}5$ lần).</li>
+<li>Cận theo $\kappa$ lớn hơn số bước thực $9$ đến $20$ lần; Newton cần $4,$ $5,$ $7$ bước.</li></ul>
+<aside class="notes"><p>$L/F''_\lambda(w_\lambda)$ là tỉ số giữa độ cong toàn cục và độ cong tại nghiệm, tức số điều kiện cục bộ. Cận lớn hơn số bước thực vì $\mu=\lambda$ là cận dưới toàn cục của độ cong, trong khi tại nghiệm $F_\lambda''(w_\lambda)=0{,}1451;\ 0{,}02419;\ 0{,}003409$, lớn hơn $\lambda$ nhiều. Gần nghiệm, hạ gradient bước $1/L$ co sai số giá trị $e_k$ theo hệ số khoảng $\bigl(1-F_\lambda''(w_\lambda)/L\bigr)^2=0{,}267;\ 0{,}819;\ 0{,}973$, khớp tỉ số đo được $0{,}2667;\ 0{,}8193;\ 0{,}9727$. Cận theo $\kappa$ vẫn đúng; nó chỉ không chặt trên ví dụ này.</p><p>Mọi bước Newton trong ví dụ là bước đầy đủ $t=1$. Số bước Newton vẫn tăng nhẹ vì giai đoạn bậc hai chỉ bắt đầu khi $\lvert F_\lambda'(w_k)\rvert$ xuống dưới ngưỡng $m^2/L_H$, với $m=\lambda$ và $L_H=1/(6\sqrt3)$; ngưỡng bằng $2{,}6\cdot10^{-2};\ 2{,}6\cdot10^{-4};\ 2{,}6\cdot10^{-6}$ và co theo $\lambda^2$ (Boyd và Vandenberghe, tr. 488); $w_\lambda$ cũng nằm xa điểm đầu hơn. Chỉ riêng số bước của giai đoạn bậc hai mới không phụ thuộc $\kappa$.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp; Boyd và Vandenberghe (2004), §9.5.3 (tr. 488).</p></aside></section>
 
-<section data-slide-id="CP04" class="dense"><h2>Số bước của hạ gradient</h2>
-<div class="panel"><p><b>Định lý 3</b> (Bài 05b, T2b; phát biểu lại)<b>.</b> Giả thiết: $f:\mathbb R^d\to\mathbb R$ khả vi, $L$-trơn (H2), $\mu$-lồi mạnh (H3) với $0&lt;\mu\le L,$ có điểm cực tiểu $w^*;$ bước $\eta=1/L.$ Kết luận: với mọi $k\ge0,$</p>
-<div class="formula" tabindex="0">$$e_k=f(w_k)-f(w^*)\le\Bigl(1-\frac\mu L\Bigr)^ke_0.$$</div></div>
-<p><b>Hệ quả.</b> Vì $\log\frac1{1-1/\kappa}\ge\frac1\kappa,$ điều kiện $k\ge\kappa\log\frac{e_0}\varepsilon$ đủ cho $e_k\le\varepsilon.$</p>
-<p><b>Áp dụng.</b> $F_\lambda$ thỏa giả thiết với $\mu=\lambda$ và $L$ của Mệnh đề 4. Mỗi bước dùng $\nabla F_\lambda$ trên toàn bộ $n$ mẫu.</p>
-<aside class="notes"><p>Chứng minh nằm ở Bài 05b (Định lý 05b.18, phần b) và Bài 04 (định lý hội tụ tuyến tính); bài này không chứng minh lại. Dãy lặp $x_k$ của Bài 05b là $w_k$ ở đây.</p><p>Hệ quả: từ $\log(1-s)\le-s$ có $(1-1/\kappa)^k\le e^{-k/\kappa}$, nên $e_k\le e^{-k/\kappa}e_0\le\varepsilon$ khi $k\ge\kappa\log(e_0/\varepsilon)$. Đây là cột "cận" của bảng trang trước. Cận là điều kiện đủ: nó bảo đảm số bước không vượt quá giá trị đó, không nói số bước thực bằng giá trị đó.</p><p>Mỗi bước tính $\nabla F_\lambda$ trên toàn bộ $n$ mẫu; định lý không nói gì về chi phí của bước. So sánh với Newton cần cả số bước (Định lý 4) lẫn chi phí một bước, mà định lý này không chứa.</p><p class="note-source"><strong>Nguồn:</strong> Bài 05b, Định lý 05b.18 (T2b); Boyd và Vandenberghe (2004), §9.3.1 (tr. 466–468).</p></aside></section>
-
-<section data-slide-id="CP05" class="dense"><h2>Hội tụ bậc hai của Newton</h2>
-<div class="panel"><p><b>Định lý 4</b> (Boyd và Vandenberghe, §9.5.3; phát biểu lại)<b>.</b> Giả thiết: $f$ lồi, khả vi hai lần; $mI\preceq\nabla^2f\preceq MI$ trên tập mức $C_0=\{w:\ f(w)\le f(w_0)\};$ Hessian Lipschitz trên $C_0$ với hằng số $L_H;$ bước Newton với quay lui Armijo. Kết luận: số bước để $f(w_k)-f^*\le\varepsilon$ không vượt</p>
+<section data-slide-id="CP05"><h2>Hội tụ bậc hai của Newton</h2>
+<div class="panel"><p><b>Định lý 4</b> (Boyd và Vandenberghe, §9.5.3)<b>.</b> Giả thiết: $f$ lồi; $mI\preceq\nabla^2f\preceq MI$ và Hessian Lipschitz với hằng số $L_H$ trên $C_0=\{w:\ f(w)\le f(w_0)\};$ quay lui Armijo.</p>
+<p>Kết luận: số bước Newton để $f(w_k)-f^*\le\varepsilon$ không vượt</p>
 <div class="formula" tabindex="0">$$\frac{f(w_0)-f^*}{\gamma}+\log_2\log_2\frac{\varepsilon_0}{\varepsilon},\qquad\varepsilon_0=\frac{2m^3}{L_H^2},$$</div>
 <p>với $\gamma&gt;0$ phụ thuộc $m,$ $M,$ $L_H$ và tham số quay lui.</p></div>
-<ul><li>Ánh xạ: $m=\mu,$ $M=L;$ Boyd viết $L$ cho hằng số Lipschitz của Hessian, ở đây là $L_H.$</li>
-<li>Số bước của giai đoạn bậc hai không chứa $\kappa;$ $\gamma$ và $\varepsilon_0$ phụ thuộc độ cong.</li>
-<li><b>Nhận xét.</b> Bước Newton bất biến dưới phép đổi biến tuyến tính khả nghịch; hạ gradient thì không.</li></ul>
-<aside class="notes"><p>Định lý có hai giai đoạn. Giai đoạn tắt dần (damped): chừng nào $\lVert\nabla f\rVert$ còn lớn, mỗi bước giảm $f$ ít nhất $\gamma$, nên có không quá $(f(w_0)-f^*)/\gamma$ bước. Giai đoạn bậc hai: khi $\lVert\nabla f\rVert$ đủ nhỏ, quay lui nhận bước đầy đủ và sai số giảm theo bình phương, nên sau $\ell$ bước sai số không vượt $\varepsilon_0(1/2)^{2^\ell}$. Sáu bước bậc hai cho độ chính xác khoảng $5\cdot10^{-20}\varepsilon_0$ (Boyd và Vandenberghe, tr. 489).</p><p>Vì $\gamma$ và $\varepsilon_0$ phụ thuộc $m$, $M$, $L_H$, toàn bộ cận không độc lập với độ cong; phần độc lập với $\kappa$ chỉ là số bước của giai đoạn bậc hai. Phát biểu "Newton không phụ thuộc $\kappa$" không có điều kiện là sai.</p><p>Bất biến affine (Boyd và Vandenberghe, §9.5.1, tr. 486): nếu $w=T\tilde w$ với $T$ khả nghịch, bước Newton trên $\tilde f(\tilde w)=f(T\tilde w)$ ứng đúng với bước Newton trên $f$; hạ gradient thì đổi hướng theo $T$. Đó là lý do Newton không bị elip dẹt làm chậm. Đổi lại, mỗi bước cần $\nabla^2F_\lambda$ và một hệ tuyến tính $d\times d$.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.5.1 (tr. 486), §9.5.3 (tr. 488–490); Bài 04 (hội tụ bậc hai của Newton).</p></aside></section>
+<p><b>Ý nghĩa:</b> chỉ số bước của giai đoạn bậc hai, $\log_2\log_2(\varepsilon_0/\varepsilon),$ không chứa $\kappa.$</p>
+<aside class="notes"><p>Ký hiệu của Boyd và Vandenberghe: $m=\mu$, $M=L$; chữ $L$ của họ là hằng số Lipschitz của Hessian, ở đây viết $L_H$.</p><p>Định lý có hai giai đoạn. Giai đoạn tắt dần (damped): chừng nào $\lVert\nabla f\rVert$ còn lớn, mỗi bước giảm $f$ ít nhất $\gamma$, nên có không quá $(f(w_0)-f^*)/\gamma$ bước. Giai đoạn bậc hai: khi $\lVert\nabla f\rVert$ đủ nhỏ, quay lui nhận bước đầy đủ và sai số giảm theo bình phương, nên sau $\ell$ bước sai số không vượt $\varepsilon_0(1/2)^{2^\ell}$. Sáu bước bậc hai cho độ chính xác khoảng $5\cdot10^{-20}\varepsilon_0$ (Boyd và Vandenberghe, tr. 489).</p><p>Vì $\gamma$ và $\varepsilon_0$ phụ thuộc $m$, $M$, $L_H$, toàn bộ cận không độc lập với độ cong; phần độc lập với $\kappa$ chỉ là số bước của giai đoạn bậc hai. Phát biểu "Newton không phụ thuộc $\kappa$" không có điều kiện là sai.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.5.3 (tr. 488–490); Bài 04 (hội tụ bậc hai của Newton).</p></aside></section>
 
-<section data-slide-id="CP06" class="dense"><h2>Các phép tính trong một bước</h2>
+<section data-slide-id="CP05a"><h2>Bất biến affine của bước Newton</h2>
+<p><b>Nhận xét.</b> Với $w=T\tilde w,$ $T$ khả nghịch, bước Newton trên $\tilde f(\tilde w)=f(T\tilde w)$ ứng đúng với bước Newton trên $f.$</p>
+<p>Bước hạ gradient không có tính chất này: nó phụ thuộc tọa độ, nên chậm trên elip dẹt.</p>
+<div class="panel"><p><b>Nhu cầu:</b> mỗi bước Newton cần $\nabla^2F_\lambda\in\mathbb R^{d\times d}$ và một hệ tuyến tính $d\times d;$ cần đếm chi phí đó.</p></div>
+<aside class="notes"><p>Với $\tilde f(\tilde w)=f(T\tilde w)$ có $\nabla\tilde f=T^T\nabla f$ và $\nabla^2\tilde f=T^T\nabla^2fT$, nên bước Newton $-\bigl(\nabla^2\tilde f\bigr)^{-1}\nabla\tilde f=-T^{-1}(\nabla^2f)^{-1}\nabla f$ ứng với đúng bước Newton trên $f$ qua phép đổi biến $w=T\tilde w$. Bước hạ gradient $-T^T\nabla f$ thì ứng với $-TT^T\nabla f$ trong biến $w$, tức đổi hướng theo $T$. Đó là lý do Newton không bị elip dẹt làm chậm ở giai đoạn bậc hai.</p><p>Đổi lại, mỗi bước cần lập $\nabla^2F_\lambda$ và giải một hệ tuyến tính $d\times d$. Hai phép tính này là nội dung của phép đếm chi phí kế tiếp.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.5.1 (tr. 486).</p></aside></section>
+
+<section data-slide-id="CP06"><h2>Các phép tính trong một bước hạ gradient</h2>
 <p>Số phép nhân–cộng tại $n=10^5,$ $d=10^3,$ mất mát logistic có chính quy hóa:</p>
-<div class="cols"><div><div class="panel"><p><b>Một bước hạ gradient</b></p>
 <ol><li>$z=Xw\text{:}$ $nd=10^8$</li>
 <li>$r_i=-y_i\sigma(-y_iz_i)\text{:}$ $O(n)$</li>
 <li>$g=\frac1nX^Tr+\lambda w\text{:}$ $nd=10^8$</li>
 <li>$w\leftarrow w-\frac1Lg\text{:}$ $O(d)$</li></ol>
-<p>Dừng khi $\lVert g\rVert\le\varepsilon_g,$ với $\varepsilon_g$ là ngưỡng cho chuẩn gradient.</p></div></div>
-<div><div class="panel"><p><b>Phần thêm của một bước Newton</b></p>
+<p>Dừng khi $\lVert g\rVert\le\varepsilon_g,$ với $\varepsilon_g$ là ngưỡng cho chuẩn gradient.</p>
+<aside class="notes"><p>Dòng 2 dùng $\nabla F(w)=\tfrac1nX^Tr$ với $r_i=-y_i\sigma(-m_i)$ và $m_i=y_iz_i$. Một bước hạ gradient là hai phép nhân ma trận–vector với $X$, mỗi phép $nd$ phép nhân–cộng; các phép còn lại chỉ tốn $O(n)$ hoặc $O(d)$. Dòng 2 chỉ tốn $O(n)$ vì mỗi $r_i$ chỉ cần $z_i$ và $y_i$ đã có; không tích nào với $X$ được lặp lại. Với $n=10^5$, $d=10^3$, một bước tốn khoảng $2\cdot10^8$ phép nhân–cộng.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.7.1 (tr. 508–509).</p></aside></section>
+
+<section data-slide-id="CP06a"><h2>Các phép tính thêm trong một bước Newton</h2>
+<p>Cùng $n=10^5,$ $d=10^3;$ sau dòng 1–3 của hạ gradient:</p>
 <ol start="5"><li>$H=\frac1nX^TSX+\lambda I\text{:}$ $nd^2=10^{11}$</li>
 <li>Giải $Hp=-g$ (Cholesky): bậc $d^3=10^9$</li>
 <li>Quay lui: tính sẵn $Xp$ $(nd),$ mỗi lần thử $O(n)$</li></ol>
-<p>Dừng khi $\tfrac12\delta_N^2\le\varepsilon,$ với $\delta_N^2=-g^Tp$ là bình phương độ giảm Newton (Bài 04).</p></div></div></div>
-<aside class="notes"><p>Bước 2 dùng $\nabla F(w)=\tfrac1nX^Tr$ với $r_i=-y_i\sigma(-m_i)$ và $m_i=y_iz_i$; các trọng số $S_{ii}=\sigma(m_i)\sigma(-m_i)$ của Newton cũng tính trong $O(n)$ từ $z$. Một bước hạ gradient là hai phép nhân ma trận–vector với $X$.</p><p>Hằng số bị bỏ theo quy ước đếm của bài: lập $X^TSX$ dùng tính đối xứng tốn khoảng $nd^2/2$ phép nhân–cộng; phân tích Cholesky tốn khoảng $d^3/3$ phép tính dấu phẩy động, sau đó hai phép thế tốn $O(d^2)$. $\delta_N$ là độ giảm Newton (Newton decrement) của Bài 04; $\tfrac12\delta_N^2$ ước lượng $F_\lambda(w)-F_\lambda^*$ gần nghiệm.</p><p>Newton cho hồi quy logistic ở dạng này còn gọi là bình phương nhỏ nhất có trọng số lặp (iteratively reweighted least squares, IRLS): mỗi bước giải một bài toán bình phương nhỏ nhất với trọng số $S$. Với $n=10^5$, $d=10^3$, riêng dòng 5 đã tốn gấp $d=1000$ lần một tích $Xw$.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.7.1–9.7.2 (tr. 508–512); Bài 04 (độ giảm Newton).</p></aside></section>
+<p>Dừng khi $\tfrac12\delta_N^2\le\varepsilon,$ với $\delta_N^2=-g^Tp$ là bình phương độ giảm Newton (Bài 04).</p>
+<aside class="notes"><p>Các trọng số $S_{ii}=\sigma(m_i)\sigma(-m_i)$ tính trong $O(n)$ từ $z$. Hằng số bị bỏ theo quy ước đếm của bài: lập $X^TSX$ dùng tính đối xứng tốn khoảng $nd^2/2$ phép nhân–cộng; phân tích Cholesky tốn khoảng $d^3/3$ phép tính dấu phẩy động, sau đó hai phép thế tốn $O(d^2)$. $\delta_N$ là độ giảm Newton (Newton decrement) của Bài 04; $\tfrac12\delta_N^2$ ước lượng $F_\lambda(w)-F_\lambda^*$ gần nghiệm.</p><p>Newton cho hồi quy logistic ở dạng này còn gọi là bình phương nhỏ nhất có trọng số lặp (iteratively reweighted least squares, IRLS): mỗi bước giải một bài toán bình phương nhỏ nhất với trọng số $S$. Với $n=10^5$, $d=10^3$, riêng dòng 5 đã tốn gấp $d=1000$ lần một tích $Xw$.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.7.1–9.7.2 (tr. 508–512); Bài 04 (độ giảm Newton).</p></aside></section>
 
-<section data-slide-id="CP07" class="dense"><h2>Chi phí một bước</h2>
-<div class="panel"><p><b>Mệnh đề 5.</b> Giả thiết: $X\in\mathbb R^{n\times d}$ dày, $n\ge d;$ đếm phép nhân–cộng, bỏ hằng số. Kết luận:</p>
-<ul><li>một bước hạ gradient tốn thời gian $O(nd),$ bộ nhớ thêm $O(n+d);$</li>
-<li>một bước Newton tốn thời gian $O(nd^2+d^3),$ bộ nhớ thêm $O(d^2+n).$</li></ul></div>
-<p><b>Chứng minh.</b> Cộng các dòng giả mã: hai tích $Xw,$ $X^Tr$ tốn $2nd;$ $X^TSX$ là tổng $n$ tích ngoài $d\times d;$ Cholesky $O(d^3).$ Bộ nhớ: $z,r\in\mathbb R^n,$ $g\in\mathbb R^d;$ Newton thêm $H$ với $d^2$ số.</p>
-<p>Tỉ số một bước Newton trên một bước hạ gradient: bậc $d+d^2/n;$ cả hai chi phí đều có thừa số $n.$</p>
+<section data-slide-id="CP07"><h2>Chi phí một bước</h2>
+<div class="panel"><p><b>Mệnh đề 5.</b> Giả thiết: $X\in\mathbb R^{n\times d}$ dày, $n\ge d;$ đếm phép nhân–cộng, bỏ hằng số.</p>
+<p>Kết luận: một bước hạ gradient tốn thời gian $O(nd),$ bộ nhớ thêm $O(n+d);$</p>
+<p>một bước Newton tốn thời gian $O(nd^2+d^3),$ bộ nhớ thêm $O(d^2+n).$</p></div>
+<p><b>Chứng minh.</b> Cộng các dòng giả mã: $Xw,$ $X^Tr$ tốn $2nd;$ $X^TSX$ là tổng $n$ tích ngoài $d\times d;$ Cholesky $O(d^3).$</p>
+<p>Bộ nhớ: $z,r\in\mathbb R^n,$ $g\in\mathbb R^d;$ Newton thêm $H$ với $d^2$ số.</p>
+<aside class="notes"><p>Bộ nhớ $O(n)$ đến từ hai vector $z=Xw$ và $r$ của giả mã; nếu duyệt theo từng hàng (tính $z_i$, $r_i$ rồi cộng dồn $r_ix_i$ vào $g$), bộ nhớ thêm của hạ gradient giảm còn $O(d)$. Mỗi tích ngoài $x_ix_i^T$ tốn $d^2$ phép nhân–cộng, nên $X^TSX$ tốn $nd^2$.</p><p>Với dữ liệu thưa, $nd$ được thay bằng số phần tử khác $0$ của $X$ trong chi phí hạ gradient; Hessian thì nói chung vẫn dày. Gradient liên hợp và các phương pháp tựa Newton như BFGS tránh chi phí $d^3$ và bộ nhớ $d^2$; chúng được trình bày ở Bài 06c, không ở bài này.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.7 (tr. 508–512).</p></aside></section>
+
+<section data-slide-id="CP07a"><h2>Tỉ số chi phí và cấu trúc hạng thấp</h2>
+<p>Tỉ số một bước Newton trên một bước hạ gradient: bậc $d+d^2/n;$ cả hai chi phí có thừa số $n.$</p>
 <div class="panel"><p><b>Nhận xét</b> ($d&gt;n$)<b>.</b> $H=\lambda I+\tfrac1nX^TSX,$ phần thứ hai có hạng $\le n.$ Giải $Hp=-g$ qua một hệ $n\times n$ tốn $O(n^2d+n^3).$</p></div>
-<aside class="notes"><p>Bộ nhớ $O(n)$ đến từ hai vector $z=Xw$ và $r$ của giả mã; nếu duyệt theo từng hàng (tính $z_i$, $r_i$ rồi cộng dồn $r_ix_i$ vào $g$), bộ nhớ thêm của hạ gradient giảm còn $O(d)$. Nhận xét $d&gt;n$ dùng cấu trúc đường chéo cộng hạng thấp: viết $H=\lambda I+UU^T$ với $U=\tfrac1{\sqrt n}X^TS^{1/2}\in\mathbb R^{d\times n}$; công thức Sherman–Morrison–Woodbury đưa việc giải về hệ $n\times n$ với ma trận $\lambda I+U^TU$, lập ma trận này tốn $O(n^2d)$ và phân tích nó tốn $O(n^3)$ (Boyd và Vandenberghe, §9.7.2, tr. 511–512). Công thức chung cho mọi quan hệ giữa $n$ và $d$ là $O\bigl(nd\min(n,d)+\min(n,d)^3\bigr)$.</p><p>Với dữ liệu thưa, $nd$ được thay bằng số phần tử khác $0$ của $X$ trong chi phí hạ gradient; Hessian thì nói chung vẫn dày. Gradient liên hợp và các phương pháp tựa Newton như BFGS tránh chi phí $d^3$ và bộ nhớ $d^2$; chúng được trình bày ở Bài 06c, không ở bài này.</p><p>Tỉ số $d+d^2/n$ là phần bị nhân thêm khi chuyển từ hạ gradient sang Newton; thừa số $n$ chung cho cả hai, vì mỗi bước đọc toàn bộ dữ liệu.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.7 (tr. 508–512).</p></aside></section>
+<p>Công thức chung cho một bước Newton: $O\bigl(nd\min(n,d)+\min(n,d)^3\bigr).$</p>
+<aside class="notes"><p>Tỉ số $d+d^2/n$ là phần bị nhân thêm khi chuyển từ hạ gradient sang Newton; thừa số $n$ chung cho cả hai, vì mỗi bước đọc toàn bộ dữ liệu.</p><p>Nhận xét $d&gt;n$ dùng cấu trúc đường chéo cộng hạng thấp: viết $H=\lambda I+UU^T$ với $U=\tfrac1{\sqrt n}X^TS^{1/2}\in\mathbb R^{d\times n}$; công thức Sherman–Morrison–Woodbury đưa việc giải về hệ $n\times n$ với ma trận $\lambda I+U^TU$, lập ma trận này tốn $O(n^2d)$ và phân tích nó tốn $O(n^3)$. Khi $n\ge d$ công thức chung trở về $O(nd^2+d^3)$ của Mệnh đề 5; khi $d&gt;n$ nó là $O(n^2d+n^3)$.</p><p class="note-source"><strong>Nguồn:</strong> Boyd và Vandenberghe (2004), §9.7.2 (tr. 511–512).</p></aside></section>
 
-<section data-slide-id="CP08" class="dense"><h2>Tổng chi phí và ngưỡng hòa vốn</h2>
+<section data-slide-id="CP08"><h2>Tổng chi phí và ngưỡng hòa vốn</h2>
 <p>Tổng chi phí $\approx$ chi phí một bước $\times$ số bước; $C_{\rm HG}$ cho hạ gradient, $C_{\rm N}$ cho Newton với $N_{\rm N}$ bước:</p>
 <div class="formula" tabindex="0">$$C_{\rm HG}\approx nd\cdot\kappa\log\frac{e_0}\varepsilon,\qquad C_{\rm N}\approx(nd^2+d^3)\,N_{\rm N}.$$</div>
 <p>Newton rẻ hơn khi $\kappa\log\frac{e_0}\varepsilon&gt;N_{\rm N}\bigl(d+\frac{d^2}n\bigr).$</p>
-<div class="panel"><p><b>Ví dụ.</b> $n=10^5,$ $d=10^3,$ $e_0/\varepsilon=10^8$ $(\log=18{,}42),$ $N_{\rm N}=10\text{:}$ $C_{\rm N}\approx1{,}01\cdot10^{12},$ $C_{\rm HG}\approx1{,}84\cdot10^9\,\kappa;$ hòa vốn khi $\kappa$ cỡ vài trăm ($548$ khi bỏ hằng số).</p></div>
-<p>Với $\lVert x_i\rVert^2\le2\text{:}$ $\lambda=10^{-3}$ cho $\kappa\le501,$ cận $C_{\rm HG}\approx9{,}2\cdot10^{11},$ cùng bậc với $C_{\rm N}\text{:}$ phép đếm không phân định. $\lambda=10^{-5}$ cho $\kappa\le50\,001,$ cận $C_{\rm HG}\approx9{,}2\cdot10^{13},$ gấp khoảng $90$ lần $C_{\rm N}\text{:}$ Newton có lợi theo cận.</p>
-<aside class="notes"><p>Đây là so sánh giữa các cận, không phải số bước thực: trang số bước theo số điều kiện cho thấy cận của hạ gradient có thể lớn hơn số bước thực từ $9$ đến $20$ lần. Ngưỡng hòa vốn nhạy với các hằng số bị bỏ. Tính cả hằng số của giả mã, một bước hạ gradient tốn $2nd=2\cdot10^8$ và một bước Newton tốn $2nd+nd^2/2+d^3/3\approx5{,}05\cdot10^{10}$; tỉ số một bước khoảng $250$ thay cho $1010$, và ngưỡng là $\kappa\approx137$ thay cho $548$. Khi đó ở $\lambda=10^{-3}$ kết luận đổi chiều: cận của hạ gradient $\approx1{,}8\cdot10^{12}$ lớn hơn $C_{\rm N}\approx5{,}1\cdot10^{11}$. Hai cận ở $\lambda=10^{-3}$ chỉ chênh $9\,\%$ khi bỏ hằng số, dưới độ phân giải của phép đếm, nên trang không kết luận cho trường hợp này. Ở $\lambda=10^{-5}$, chênh lệch khoảng $90$ lần (khoảng $360$ lần khi tính hằng số) nên kết luận Newton có lợi theo cận không đổi.</p><p>Phép tính: $10\cdot(10^{11}+10^9)=1{,}01\cdot10^{12}$; $18{,}42\cdot10^8=1{,}842\cdot10^9$; ngưỡng $1{,}01\cdot10^{12}/1{,}842\cdot10^9\approx548$. Với $r^2=2$, Mệnh đề 4 cho $\kappa\le1+\tfrac2{4\lambda}$.</p><p>Kết luận đúng có điều kiện: Newton có lợi khi $\kappa$ rất lớn và $d$ vừa phải; khi $d$ lớn, các số hạng $d^2$ và $d^3$ chiếm ưu thế. Bottou và Bousquet lập một bảng tương tự: hạ gradient tốn $O(nd)$ mỗi bước và $O(\kappa\log\tfrac1\rho)$ bước; phương pháp bậc hai của họ giả định biết trước nghịch đảo Hessian, nên mỗi bước chỉ tốn $O(d^2+nd)$, với $O(\log\log\tfrac1\rho)$ bước; $\rho$ là độ chính xác tối ưu.</p><p class="note-source"><strong>Nguồn:</strong> Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13, Bảng 13.2 (tr. 362); tính trực tiếp.</p></aside></section>
+<div class="panel"><p><b>Ví dụ.</b> $n=10^5,$ $d=10^3,$ $e_0/\varepsilon=10^8,$ $N_{\rm N}=10\text{:}$ $C_{\rm N}\approx1{,}01\cdot10^{12},$ $C_{\rm HG}\approx1{,}84\cdot10^9\,\kappa.$</p>
+<p>Hòa vốn khi $\kappa$ cỡ vài trăm ($548$ khi bỏ hằng số).</p></div>
+<aside class="notes"><p>Phép tính: $\log10^8=18{,}42$; $10\cdot(10^{11}+10^9)=1{,}01\cdot10^{12}$; $18{,}42\cdot10^8=1{,}842\cdot10^9$; ngưỡng $1{,}01\cdot10^{12}/1{,}842\cdot10^9\approx548$. Ngưỡng nhạy với các hằng số bị bỏ: tính cả hằng số của giả mã, một bước hạ gradient tốn $2nd=2\cdot10^8$ và một bước Newton tốn $2nd+nd^2/2+d^3/3\approx5{,}05\cdot10^{10}$; tỉ số một bước khoảng $250$ thay cho $1010$, và ngưỡng là $\kappa\approx137$ thay cho $548$. Vì vậy trang chỉ nêu bậc độ lớn.</p><p>Kết luận đúng có điều kiện: Newton có lợi khi $\kappa$ rất lớn và $d$ vừa phải; khi $d$ lớn, các số hạng $d^2$ và $d^3$ chiếm ưu thế. Bottou và Bousquet lập một bảng tương tự: hạ gradient tốn $O(nd)$ mỗi bước và $O(\kappa\log\tfrac1\rho)$ bước; phương pháp bậc hai của họ giả định biết trước nghịch đảo Hessian, nên mỗi bước chỉ tốn $O(d^2+nd)$, với $O(\log\log\tfrac1\rho)$ bước; $\rho$ là độ chính xác tối ưu.</p><p class="note-source"><strong>Nguồn:</strong> Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13, Bảng 13.2 (tr. 362); tính trực tiếp.</p></aside></section>
 
-<section data-slide-id="CP09" class="dense"><h2>Chi phí theo ba quy mô</h2>
+<section data-slide-id="CP08a"><h2>Ví dụ: ngưỡng hòa vốn theo hệ số chính quy hóa</h2>
+<p>Cùng $n=10^5,$ $d=10^3,$ $e_0/\varepsilon=10^8,$ $N_{\rm N}=10,$ $C_{\rm N}\approx1{,}01\cdot10^{12};$ $\lVert x_i\rVert^2\le2$ nên $\kappa\le1+\frac1{2\lambda}.$</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>$\lambda$</th><th>Cận $\kappa$</th><th>Cận $C_{\rm HG}$</th><th>So với $C_{\rm N}$</th></tr></thead><tbody>
+<tr><td>$10^{-3}$</td><td>$501$</td><td>$9{,}2\cdot10^{11}$</td><td>cùng bậc</td></tr>
+<tr><td>$10^{-5}$</td><td>$50\,001$</td><td>$9{,}2\cdot10^{13}$</td><td>gấp khoảng $90$ lần</td></tr>
+</tbody></table></div>
+<p><b>Kết luận:</b> ở $\lambda=10^{-3}$ phép đếm không phân định; ở $\lambda=10^{-5}$ Newton có lợi theo cận.</p>
+<p><b>Lưu ý:</b> đây là so sánh giữa các cận, không phải giữa số bước thực.</p>
+<aside class="notes"><p>Với $r^2=2$, Mệnh đề 4 cho $\kappa\le1+\tfrac2{4\lambda}=1+\tfrac1{2\lambda}$. Trang số bước theo số điều kiện cho thấy cận của hạ gradient có thể lớn hơn số bước thực từ $9$ đến $20$ lần.</p><p>Ở $\lambda=10^{-3}$, hai cận chỉ chênh $9\,\%$ khi bỏ hằng số, dưới độ phân giải của phép đếm; tính cả hằng số của giả mã, kết luận đổi chiều: cận của hạ gradient $\approx1{,}8\cdot10^{12}$ lớn hơn $C_{\rm N}\approx5{,}1\cdot10^{11}$. Vì vậy trang không kết luận cho trường hợp này. Ở $\lambda=10^{-5}$, chênh lệch khoảng $90$ lần (khoảng $360$ lần khi tính hằng số), nên kết luận Newton có lợi theo cận không đổi.</p><p class="note-source"><strong>Nguồn:</strong> tính trực tiếp từ Mệnh đề 4, Mệnh đề 5 và Định lý 3.</p></aside></section>
+
+<section data-slide-id="CP09"><h2>Chi phí theo ba quy mô</h2>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$(n,d)$</th><th>$nd$</th><th>$nd^2$</th><th>$d^3$</th><th>Hessian, $8d^2$ byte</th><th>$d+d^2/n$</th></tr></thead><tbody>
 <tr><td>$(10^3,\,10^2)$</td><td>$10^5$</td><td>$10^7$</td><td>$10^6$</td><td>80 kB</td><td>$110$</td></tr>
 <tr><td>$(10^5,\,10^3)$</td><td>$10^8$</td><td>$10^{11}$</td><td>$10^9$</td><td>8 MB</td><td>$1010$</td></tr>
 <tr><td>RCV1 $(781\,265;\ 47\,152)$</td><td>${3{,}68\cdot10^{10}}$</td><td>${1{,}74\cdot10^{15}}$</td><td>${1{,}05\cdot10^{14}}$</td><td>17,8 GB</td><td>$\approx5{,}0\cdot10^4$</td></tr>
 </tbody></table></div>
-<p>Khi $(n,d)$ tăng, một bước Newton đắt hơn một bước hạ gradient từ $10^2$ đến $5\cdot10^4$ lần; ở quy mô thứ ba, riêng Hessian đã cần 17,8 GB bộ nhớ.</p>
+<ul><li>Một bước Newton đắt hơn một bước hạ gradient từ $10^2$ đến $5\cdot10^4$ lần.</li>
+<li>Ở quy mô thứ ba, riêng Hessian đã cần 17,8 GB bộ nhớ.</li></ul>
 <aside class="notes"><p>Dòng thứ ba dùng kích thước tập RCV1 trong thí nghiệm của Bottou và Bousquet: 781 265 mẫu huấn luyện, 47 152 đặc trưng tần suất từ – nghịch đảo tần suất văn bản (TF-IDF). Dữ liệu này thưa; con số tính như ma trận dày chỉ để so bậc, không mô tả cách thí nghiệm thực sự chạy. Bài không giả định tốc độ máy, nên bảng chỉ so số phép tính và số byte.</p><p>Cột cuối là tỉ số chi phí một bước của Mệnh đề 5: $110$, $1010$ và $47\,152+2\,846\approx5{,}0\cdot10^4$. Mỗi số thực của Hessian chiếm $8$ byte ở độ chính xác kép, nên $8\cdot47\,152^2\approx1{,}78\cdot10^{10}$ byte.</p><p>Ở quy mô thứ ba, một tích với $X$ cần $nd\approx3{,}7\cdot10^{10}$ phép nhân–cộng, và một gradient đầy đủ (hai tích $Xw$, $X^Tr$) cần $\approx7{,}4\cdot10^{10}$; con số này xuất hiện lại ở trang kết của phần.</p><p class="note-source"><strong>Nguồn:</strong> Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13, §13.4.1 (tr. 363); tính trực tiếp.</p></aside></section>
 
-<section data-slide-id="CP10" class="dense"><h2>Câu hỏi về chi phí và số bước</h2>
+<section data-slide-id="CP10"><h2>Bài tập: chi phí của hai phương pháp và cấu trúc hạng thấp</h2>
 <p class="question-label">Câu hỏi:</p>
 <ol>
 <li>$F_\lambda(w)=\log(1+e^{-w})+0{,}025w^2$ $(\lambda=0{,}05),$ $w_0=0\text{:}$ tính hai bước Newton.</li>
 <li>$n=10^6,$ $d=10^4,$ $\kappa=1000,$ $e_0/\varepsilon=10^8,$ $N_{\rm N}=10\text{:}$ so tổng chi phí của hai phương pháp; tính bộ nhớ cho Hessian.</li>
 <li>$n=10^4,$ $d=10^5\text{:}$ tính chi phí một bước Newton khi tận dụng cấu trúc đường chéo cộng hạng thấp, và so với $nd^2+d^3.$</li>
 </ol>
-<aside class="notes"><p>Đáp án câu 1: $g(w)=-\sigma(-w)+0{,}05w$, $h(w)=\sigma(w)\sigma(-w)+0{,}05$. Tại $0$: $g=-0{,}5$, $h=0{,}3$, $w_1=1{,}6667$. Tại $w_1$: $g=-0{,}07554$, $h=0{,}18363$, $w_2=1{,}6667+0{,}07554/0{,}18363=2{,}0780$. Nghiệm là $2{,}1280$; bước thứ ba cho $2{,}1274$.</p><p>Đáp án câu 2: hạ gradient $\approx1000\cdot18{,}42\cdot10^{10}=1{,}84\cdot10^{14}$; Newton $\approx10\cdot(10^{14}+10^{12})=1{,}01\cdot10^{15}$. Bỏ hằng số, cận của hạ gradient nhỏ hơn khoảng $5$ lần; tính cả hằng số của giả mã, hai cận là $3{,}7\cdot10^{14}$ (hạ gradient) và $5{,}0\cdot10^{14}$ (Newton), cùng bậc. Vì vậy chỉ kết luận được về bậc độ lớn: hai phương pháp cùng bậc chi phí theo cận; theo trang số bước, cận của hạ gradient còn bi quan. Hessian cần $8\cdot10^8$ byte, tức 800 MB.</p><p>Đáp án câu 3: $n^2d+n^3=10^{13}+10^{12}=1{,}1\cdot10^{13}$, so với $nd^2+d^3=10^{14}+10^{15}=1{,}1\cdot10^{15}$, rẻ hơn $100$ lần.</p><p class="note-source"><strong>Nguồn:</strong> câu hỏi tự xây dựng.</p></aside></section>
+<aside class="notes"><p>Gợi ý: ở câu 1, $F_\lambda'(w)=-\sigma(-w)+\lambda w$ và $F_\lambda''(w)=\sigma(w)\sigma(-w)+\lambda$; bước Newton là $w\leftarrow w-F_\lambda'/F_\lambda''$. Ở câu 2, dùng hai công thức tổng chi phí với $\log10^8=18{,}42$, và Hessian ở độ chính xác kép chiếm $8d^2$ byte. Ở câu 3, dùng nhận xét về trường hợp $d&gt;n$: chi phí $O(n^2d+n^3)$.</p><p class="note-source"><strong>Nguồn:</strong> câu hỏi tự xây dựng; Bài tập 8 của học liệu Bài 05.</p></aside></section>
 
-<section data-slide-id="CP11" class="dense"><h2>Thừa số $n$ trong mọi bước</h2>
-<ul><li>Hạ gradient: $O(nd)$ mỗi bước $\times$ $O\bigl(\kappa\log\tfrac1\varepsilon\bigr)$ bước.</li>
-<li>Newton: $O(nd^2+d^3)$ mỗi bước $\times$ ($O(\log\log\tfrac1\varepsilon)$ bước bậc hai cộng giai đoạn tắt dần).</li></ul>
-<p>Với RCV1: một gradient đầy đủ (hai tích $Xw$, $X^Tr$) cần $\approx7{,}4\cdot10^{10}$ phép nhân–cộng; một bước Newton dày cần $nd^2+d^3\approx1{,}8\cdot10^{15}$ phép nhân–cộng và 17,8 GB cho Hessian.</p>
-<div class="panel"><p>Newton đổi số bước lấy chi phí $d^2,$ $d^3;$ không phương pháp nào của bài bỏ được thừa số $n$ ở mỗi bước. Với ngân sách tính toán cố định, số lần cập nhật làm được giảm theo $1/n.$</p></div>
-<aside class="notes"><p>Tổng chi phí là tích của chi phí một bước và số bước. Newton giảm thừa số thứ hai nhưng tăng thừa số thứ nhất từ $nd$ lên $nd^2+d^3$; cả hai thừa số thứ nhất đều chứa $n$, vì mỗi bước đọc toàn bộ dữ liệu.</p><p>Một lượt qua dữ liệu, tức một gradient đầy đủ, là đơn vị chi phí nhỏ nhất mà mọi phương pháp của bài phải trả cho mỗi lần cập nhật. Vì vậy khi $n$ tăng với ngân sách cố định, số lần cập nhật giảm theo $1/n$. Đây là giới hạn thứ nhất mà phần kết luận chuyển sang Bài 06.</p><p class="note-source"><strong>Nguồn:</strong> Mệnh đề 5 và Định lý 3, 4 của bài; Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13.</p></aside></section>
+<section data-slide-id="CP10a"><h2>Bài tập: chi phí của hai phương pháp và cấu trúc hạng thấp</h2>
+<p class="question-label">Lời giải:</p>
+<ol>
+<li>$w_1=0{,}5/0{,}3=1{,}6667;$ $w_2=1{,}6667+0{,}07554/0{,}18363=2{,}0780;$ nghiệm $w_\lambda=2{,}1280.$</li>
+<li>$C_{\rm HG}\approx1{,}84\cdot10^{14},$ $C_{\rm N}\approx1{,}01\cdot10^{15}\text{:}$ cùng bậc độ lớn; Hessian cần $8\cdot10^8$ byte, tức 800 MB.</li>
+<li>$n^2d+n^3=1{,}1\cdot10^{13}$ so với $nd^2+d^3=1{,}1\cdot10^{15}\text{:}$ rẻ hơn $100$ lần.</li>
+</ol>
+<aside class="notes"><p>Câu 1: tại $0$, $F_\lambda'=-0{,}5$, $F_\lambda''=0{,}3$, nên $w_1=1{,}6667$; tại $w_1$, $F_\lambda'=-0{,}07554$, $F_\lambda''=0{,}18363$, nên $w_2=2{,}0780$. Khoảng cách tới nghiệm giảm từ $2{,}128$ xuống $0{,}461$ rồi $0{,}050$; bước thứ ba cho $2{,}1274$, khoảng cách $0{,}0006$, đúng kiểu hội tụ bậc hai.</p><p>Câu 2: hạ gradient $\approx10^{10}\cdot1000\cdot18{,}42=1{,}84\cdot10^{14}$; Newton $\approx10\cdot(10^{14}+10^{12})=1{,}01\cdot10^{15}$. Bỏ hằng số, cận của hạ gradient nhỏ hơn khoảng $5$ lần; tính cả hằng số của giả mã, hai cận là $3{,}7\cdot10^{14}$ (hạ gradient) và $5{,}0\cdot10^{14}$ (Newton). Vì vậy chỉ kết luận được về bậc độ lớn: hai phương pháp cùng bậc chi phí theo cận, và cận của hạ gradient còn bi quan. Hessian cần $8d^2=8\cdot10^8$ byte.</p><p>Câu 3: $n^2d+n^3=10^{13}+10^{12}$ và $nd^2+d^3=10^{14}+10^{15}$; ma trận cần phân tích có kích thước $n\times n$.</p><p class="note-source"><strong>Nguồn:</strong> lời giải Bài tập 8 của học liệu Bài 05.</p></aside></section>
+
+<section data-slide-id="CP11"><h2>Thừa số $n$ trong mọi bước</h2>
+<ul><li>Hạ gradient: $O(nd)$ mỗi bước, $O\bigl(\kappa\log\tfrac1\varepsilon\bigr)$ bước.</li>
+<li>Newton: $O(nd^2+d^3)$ mỗi bước, $O(\log\log\tfrac1\varepsilon)$ bước bậc hai cộng giai đoạn tắt dần.</li>
+<li>RCV1: một gradient đầy đủ cần $\approx7{,}4\cdot10^{10}$ phép nhân–cộng.</li>
+<li>RCV1: một bước Newton dày cần $\approx1{,}8\cdot10^{15}$ phép nhân–cộng và 17,8 GB.</li></ul>
+<div class="panel"><p>Mọi bước của hai phương pháp đều có thừa số $n.$</p><p>Với ngân sách tính toán cố định, số lần cập nhật giảm theo $1/n.$</p></div>
+<aside class="notes"><p>Tổng chi phí là tích của chi phí một bước và số bước. Newton giảm thừa số thứ hai nhưng tăng thừa số thứ nhất từ $nd$ lên $nd^2+d^3$; cả hai thừa số thứ nhất đều chứa $n$, vì mỗi bước đọc toàn bộ dữ liệu. Trên RCV1, một gradient đầy đủ gồm hai tích $Xw$ và $X^Tr$, mỗi tích $nd\approx3{,}7\cdot10^{10}$ phép nhân–cộng.</p><p>Một lượt qua dữ liệu, tức một gradient đầy đủ, là đơn vị chi phí nhỏ nhất mà mọi phương pháp của bài phải trả cho mỗi lần cập nhật. Vì vậy khi $n$ tăng với ngân sách cố định, số lần cập nhật giảm theo $1/n$. Đây là giới hạn thứ nhất mà mạch kết luận chuyển sang Bài 06.</p><p class="note-source"><strong>Nguồn:</strong> Mệnh đề 5 và Định lý 3, 4 của bài; Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13.</p></aside></section>
 </section>
 <section>
-<section data-slide-id="KL01" class="dense"><h2>Nghiệm chính xác và nghiệm dừng sớm</h2>
-<p>Hạ gradient, bình phương nhỏ nhất với $\lambda=0,$ năm mẫu, $d=5,$ $w_0=0,$ bước $1/L,$ $\kappa=553{,}7\text{:}$</p>
+<section id="mach-5" data-slide-id="KL00" class="strand-title">
+<div class="strand-title-body">
+<h2><span class="strand-number">5.</span> Giới hạn của tối ưu tất định</h2>
+<p class="strand-lead">Nhu cầu: so nghiệm chính xác với nghiệm dừng sớm; xác định giới hạn và bảo đảm còn lại của khung tất định.</p>
+<p class="strand-keys">Dừng sớm · tập RCV1 · bài toán XOR · bảo đảm còn giữ được</p>
+</div>
+<aside class="notes"><p>Quá khớp và vai trò của tập xác thực, chính quy hóa làm cực tiểu tồn tại nhưng làm $\kappa$ tăng, và thừa số $n$ trong chi phí mọi bước là ba đầu vào. Trên năm mẫu, dừng sớm cho sai số xác thực nhỏ hơn nghiệm chính xác; trên RCV1, hạ gradient ngẫu nhiên đạt cùng lỗi kiểm thử nhanh hơn một bậc. Đầu ra cho Bài 06: hai giới hạn, chi phí và biểu diễn, cùng các bảo đảm còn giữ được khi bỏ gradient đầy đủ hoặc khi mục tiêu không lồi.</p></aside></section>
+
+<section data-slide-id="KL01"><h2>Nghiệm chính xác và nghiệm dừng sớm</h2>
+<p><b>Nhu cầu:</b> chọn bước dừng theo sai số xác thực; hạ gradient, $\lambda=0,$ $d=5,$ $\kappa=553{,}7\text{:}$</p>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>$k$</th><th>$0$</th><th>$10$</th><th>$50$</th><th>$79$</th><th>$200$</th><th>$1000$</th><th>$k\to\infty$</th></tr></thead><tbody>
 <tr><td>MSE xác thực</td><td>$0{,}3125$</td><td>$0{,}0107$</td><td>$0{,}00200$</td><td>$0{,}00108$</td><td>$0{,}00487$</td><td>$0{,}0341$</td><td>$0{,}0487$</td></tr>
 </tbody></table></div>
 <div class="cols"><div>
-<p><b>Nhu cầu.</b> MSE huấn luyện dưới $10^{-6}$ từ bước $2701;$ dừng ở bước $79$ tốn ít hơn khoảng $34$ lần số lượt qua dữ liệu, sai số xác thực nhỏ hơn $45$ lần: cần quy tắc chọn bước dừng theo sai số xác thực.</p>
-<div class="panel"><p><b>Định nghĩa.</b> Dừng sớm (early stopping): chạy hạ gradient, theo dõi sai số trên tập xác thực, trả về $w_k$ tại bước có sai số xác thực nhỏ nhất.</p></div>
+<ul><li>Bình phương nhỏ nhất, năm mẫu, $w_0=0,$ bước $1/L.$</li>
+<li>MSE huấn luyện dưới $10^{-6}$ từ bước $2701.$</li>
+<li>Dừng ở bước $79$ tốn ít hơn khoảng $34$ lần số lượt qua dữ liệu; sai số xác thực nhỏ hơn $45$ lần.</li></ul>
 </div><div>
 <figure><img src="img/lec-05/kl-early-stopping.svg" alt="Hai trục logarit, k từ 1 đến 10⁴. MSE huấn luyện giảm liên tục, xuống dưới 10⁻⁶ từ bước 2701. MSE trên tập xác thực giảm tới 0,00108 tại k = 79 (vạch đứng) rồi tăng về giới hạn 0,0487 (đường ngang chấm)." /></figure>
 </div></div>
-<aside class="notes"><p>Bài toán là bình phương nhỏ nhất không chính quy hóa trên năm mẫu với $d=5$, nên nghiệm chính xác là đa thức nội suy của phần hồi quy, có MSE xác thực $0{,}0487$; hằng số trơn $L=1{,}5715$. Với $\kappa=553{,}7$, hạ gradient khớp nhanh các thành phần theo hướng có độ cong lớn và rất chậm các thành phần theo hướng gần phẳng. Trên ví dụ này, phần nghiệm được khớp muộn là phần làm sai số xác thực tăng, nên sai số xác thực nhỏ nhất đạt ở bước $79$ rồi tăng dần về giới hạn.</p><p>Hạ gradient không đạt cực tiểu chính xác sau hữu hạn bước: $0{,}0487$ là giới hạn, còn tại bước $2701$ sai số xác thực là $0{,}0480$. Ngưỡng $10^{-6}$ đặt cho MSE huấn luyện, bằng $2F$, như trên hình; ngưỡng $F\le10^{-6}$ đạt sớm hơn, ở bước $2509$. Bốn điểm $u=\pm\tfrac14,\pm\tfrac34$ là tập xác thực, nên con số $0{,}00108$ không phải báo cáo cuối về $R$; báo cáo cuối cần một tập kiểm thử riêng.</p><p>Kết luận dùng cả ba phần của bài: quá khớp ở hồi quy nhiều chiều, vai trò của chính quy hóa, và vai trò của $\kappa$ trong số bước. Dừng sớm có tác dụng gần với chính quy hóa bậc hai; phép so sánh định lượng được trình bày ở Bài 06. Hai lý do của vấn đề trung tâm gặp nhau trên cùng số liệu này: mỗi bước tốn một lượt qua dữ liệu (phần chi phí), và dừng trước cực tiểu chính xác cho sai số xác thực nhỏ hơn.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §7.8 (tr. 246–250); tính trực tiếp.</p></aside></section>
+<aside class="notes"><p>Bài toán là bình phương nhỏ nhất không chính quy hóa trên năm mẫu với $d=5$, nên nghiệm chính xác là đa thức nội suy của mạch hồi quy, có MSE xác thực $0{,}0487$; hằng số trơn $L=1{,}5715$. Với $\kappa=553{,}7$, hạ gradient khớp nhanh các thành phần theo hướng có độ cong lớn và rất chậm các thành phần theo hướng gần phẳng. Trên ví dụ này, phần nghiệm được khớp muộn là phần làm sai số xác thực tăng, nên sai số xác thực nhỏ nhất đạt ở bước $79$ rồi tăng dần về giới hạn.</p><p>Hạ gradient không đạt cực tiểu chính xác sau hữu hạn bước: $0{,}0487$ là giới hạn, còn tại bước $2701$ sai số xác thực là $0{,}0480$. Ngưỡng $10^{-6}$ đặt cho MSE huấn luyện, bằng $2F$, như trên hình; ngưỡng $F\le10^{-6}$ đạt sớm hơn, ở bước $2509$. Tỉ số $2701/79\approx34$ và $0{,}0487/0{,}00108\approx45$.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §7.8 (tr. 246–250); tính trực tiếp.</p></aside></section>
 
-<section data-slide-id="KL02" class="dense"><h2>Số liệu trên tập RCV1</h2>
-<p>Hồi quy logistic có chính quy hóa, $\lambda=10^{-5};$ 781 265 mẫu huấn luyện, 47 152 đặc trưng (Bottou và Bousquet):</p>
-<div class="table-scroll" tabindex="0"><table><thead><tr><th>Phương pháp</th><th>Thời gian</th><th>Giá trị mục tiêu</th><th>Lỗi kiểm thử</th></tr></thead><tbody>
-<tr><td>TRON, $\rho=10^{-2}$</td><td>30 s</td><td>$0{,}18907$</td><td>5,68 %</td></tr>
-<tr><td>TRON, $\rho=10^{-3}$</td><td>44 s</td><td>$0{,}18890$</td><td>5,70 %</td></tr>
-<tr><td>Hạ gradient ngẫu nhiên (SGD)</td><td>2,3 s</td><td>$0{,}18893$</td><td>5,66 %</td></tr>
+<section data-slide-id="KL01a"><h2>Dừng sớm</h2>
+<p><b>Định nghĩa.</b> Dừng sớm (early stopping) là quy tắc gồm hai bước:</p>
+<ol><li>chạy hạ gradient, theo dõi sai số trên tập xác thực;</li>
+<li>trả về $w_k$ tại bước có sai số xác thực nhỏ nhất.</li></ol>
+<p><b>Ví dụ.</b> Trên năm mẫu ở trang trước, quy tắc trả về $w_{79}.$</p>
+<p><b>Lưu ý:</b> báo cáo cuối về $R$ dùng tập kiểm thử riêng.</p>
+<aside class="notes"><p>Bốn điểm $u=\pm\tfrac14,\pm\tfrac34$ là tập xác thực, nên con số $0{,}00108$ là giá trị nhỏ nhất trên cả quỹ đạo và có xu hướng thấp hơn $R$; báo cáo cuối cần một tập kiểm thử riêng.</p><p>Quan sát dừng sớm dùng cả ba mạch giữa của bài: quá khớp ở hồi quy nhiều chiều, vai trò của chính quy hóa, và vai trò của $\kappa$ trong số bước. Dừng sớm có tác dụng gần với chính quy hóa bậc hai; phép so sánh định lượng được trình bày ở Bài 06. Hai lý do của vấn đề trung tâm gặp nhau trên cùng số liệu này: mỗi bước tốn một lượt qua dữ liệu (mạch chi phí), và dừng trước cực tiểu chính xác cho sai số xác thực nhỏ hơn.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §7.8 (tr. 246–250).</p></aside></section>
+
+<section data-slide-id="KL02"><h2>Số liệu trên tập RCV1</h2>
+<p>Hồi quy logistic, $\lambda=10^{-5};$ RCV1: 781 265 mẫu huấn luyện, 47 152 đặc trưng.</p>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Phương pháp</th><th>Thời gian (s)</th><th>Giá trị mục tiêu</th><th>Lỗi kiểm thử (%)</th></tr></thead><tbody>
+<tr><td>TRON, $\rho=10^{-2}$</td><td>$30$</td><td>$0{,}18907$</td><td>$5{,}68$</td></tr>
+<tr><td>TRON, $\rho=10^{-3}$</td><td>$44$</td><td>$0{,}18890$</td><td>$5{,}70$</td></tr>
+<tr><td>Hạ gradient ngẫu nhiên (SGD)</td><td>$2{,}3$</td><td>$0{,}18893$</td><td>$5{,}66$</td></tr>
 </tbody></table></div>
-<p>TRON: Newton miền tin cậy (trust region Newton); $\rho$: độ chính xác tối ưu yêu cầu; SGD: mỗi bước dùng gradient của một mẫu ngẫu nhiên, tức nhóm nhỏ có kích thước $b=1$ (Bài 06).</p>
-<p>SGD có chi phí mỗi bước không phụ thuộc $n,$ đạt cùng mức lỗi kiểm thử với thời gian nhỏ hơn một bậc.</p>
-<aside class="notes"><p>TRON là phương pháp Newton miền tin cậy (trust region Newton), giải hệ tuyến tính bằng gradient liên hợp và không lập Hessian dày; nó không đồng nhất với Newton thuần mà phần chi phí đã đếm. $\rho$ là độ chính xác tối ưu yêu cầu. Hạ gradient ngẫu nhiên chỉ được gọi tên ở đây; định nghĩa, ước lượng gradient trên nhóm nhỏ và tốc độ hội tụ thuộc Bài 06.</p><p>Bảng cho hai quan sát. Thứ nhất, bảng minh họa điều mà phép đếm ở phần chi phí dự báo: khi $n$ lớn, chi phí theo $n$ của mỗi bước chi phối thời gian. Lý do phải bỏ gradient đầy đủ nằm ở phép đếm đó, không ở bảng; TRON vẫn chạy được trên tập này. Thứ hai, giá trị mục tiêu chênh nhau không quá $1{,}7\cdot10^{-4}$, và lỗi kiểm thử chênh nhau $0{,}04$ điểm phần trăm, nhỏ hơn sai số chuẩn khoảng $0{,}15$ điểm của tỉ lệ lỗi trên 23 149 mẫu kiểm thử. Trên bảng này, giảm $\rho$ từ $10^{-2}$ xuống $10^{-3}$ không làm lỗi kiểm thử khác nhau một cách phân biệt được.</p><p>Số liệu thuộc phần cứng và phần mềm năm 2008–2011, chỉ dùng để so bậc.</p><p class="note-source"><strong>Nguồn:</strong> Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13, Bảng 13.3 (tr. 363).</p></aside></section>
+<p><b>Ký hiệu:</b> TRON là Newton miền tin cậy (trust region Newton); $\rho$ là độ chính xác tối ưu.</p>
+<p>Mỗi bước SGD dùng gradient của một mẫu, chi phí không phụ thuộc $n.$</p>
+<p><b>Kết luận:</b> SGD đạt cùng lỗi kiểm thử với thời gian nhỏ hơn một bậc.</p>
+<aside class="notes"><p>TRON giải hệ tuyến tính bằng gradient liên hợp và không lập Hessian dày; nó không đồng nhất với Newton thuần mà mạch chi phí đã đếm. Hạ gradient ngẫu nhiên chỉ được gọi tên ở đây: một mẫu mỗi bước là nhóm nhỏ có kích thước $b=1$; định nghĩa, ước lượng gradient trên nhóm nhỏ và tốc độ hội tụ thuộc Bài 06.</p><p>Bảng cho hai quan sát. Thứ nhất, bảng minh họa điều mà phép đếm ở mạch chi phí dự báo: khi $n$ lớn, chi phí theo $n$ của mỗi bước chi phối thời gian. Lý do phải bỏ gradient đầy đủ nằm ở phép đếm đó, không ở bảng; TRON vẫn chạy được trên tập này. Thứ hai, giá trị mục tiêu chênh nhau không quá $1{,}7\cdot10^{-4}$, và lỗi kiểm thử chênh nhau $0{,}04$ điểm phần trăm, nhỏ hơn sai số chuẩn khoảng $0{,}15$ điểm của tỉ lệ lỗi trên 23 149 mẫu kiểm thử. Số liệu thuộc phần cứng và phần mềm năm 2008–2011, chỉ dùng để so bậc.</p><p class="note-source"><strong>Nguồn:</strong> Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13, Bảng 13.3 (tr. 363).</p></aside></section>
 
-<section data-slide-id="KL03" class="dense"><h2>Giới hạn của mô hình tuyến tính và phương pháp tất định</h2>
-<p><b>(i) Chi phí.</b> Mọi phương pháp của bài trả chi phí của toàn bộ $n$ mẫu ở mỗi bước; $n$ lớn với ngân sách cố định buộc thay gradient đầy đủ bằng SGD.</p>
-<p><b>(ii) Biểu diễn.</b> Với một bộ đặc trưng cố định, dự đoán tuyến tính theo đặc trưng không biểu diễn được một số quan hệ. XOR: bốn điểm $u\in\{0,1\}^2,$ nhãn $+1$ tại $(0,1),(1,0),$ nhãn $-1$ tại $(0,0),(1,1).$ Với mọi điểm số affine $g(u)=w_0+w_1u_1+w_2u_2\text{:}$</p>
+<section data-slide-id="KL03"><h2>Giới hạn của mô hình tuyến tính và phương pháp tất định</h2>
+<p>(i) Chi phí: mỗi bước trả chi phí của toàn bộ $n$ mẫu; $n$ lớn, ngân sách cố định buộc dùng SGD.</p>
+<p>(ii) Biểu diễn: với đặc trưng cố định $(1,u_1,u_2),$ không điểm số affine nào phân loại đúng bài toán XOR.</p>
+<p>Đặc trưng học được (Bài 06) bỏ giới hạn (ii) nhưng làm mục tiêu không lồi.</p>
+<aside class="notes"><p>Hai giới hạn có nguồn gốc khác nhau. Giới hạn (i) thuộc phương pháp: gradient đầy đủ phải được thay bằng hạ gradient ngẫu nhiên theo nhóm nhỏ ở Bài 06. Giới hạn (ii) thuộc mô hình: thêm đặc trưng thủ công làm $d$ tăng nhanh, kéo theo quá khớp và $\kappa$ không giảm (mạch hồi quy) cùng chi phí $d^2$, $d^3$ của Newton (mạch chi phí). Mạng hai tầng của Bài 06 thay đặc trưng cố định bằng đặc trưng học được, mở đầu bằng chính bài toán XOR; khi tham số đi vào mô hình một cách phi tuyến, mất mát lồi không còn cho mục tiêu lồi. Vì vậy ở bảng sau, nhãn (ii) chỉ hệ quả đó của giới hạn biểu diễn: mục tiêu không lồi.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §6.1; Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13.</p></aside></section>
+
+<section data-slide-id="KL03a"><h2>Ví dụ: bài toán XOR</h2>
+<p>Bốn điểm $u\in\{0,1\}^2;$ nhãn $+1$ tại $(0,1),(1,0),$ nhãn $-1$ tại $(0,0),(1,1).$ Với mọi điểm số affine $g(u)=w_0+w_1u_1+w_2u_2\text{:}$</p>
 <div class="formula" tabindex="0">$$g(1,0)+g(0,1)=g(0,0)+g(1,1),$$</div>
 <p>nên không $g$ nào đúng dấu tại cả bốn điểm. Thêm đặc trưng $u_1u_2$ thì tách được.</p>
-<p>Mở rộng đặc trưng thủ công làm $d$ tăng nhanh: số đơn thức bậc $\le q$ của $d_0$ biến đầu vào là $\binom{d_0+q}q;$ với $d_0=100\text{:}$ $5151$ $(q=2),$ $176\,851$ $(q=3).$</p>
-<aside class="notes"><p>Đẳng thức đúng vì cả hai vế bằng $2w_0+w_1+w_2$. Phân loại đúng đòi $g(1,0)&gt;0$ và $g(0,1)&gt;0$, nên vế trái dương, và $g(0,0)&lt;0$, $g(1,1)&lt;0$, nên vế phải âm; mâu thuẫn. Với đặc trưng $(1,u_1,u_2,u_1u_2)$, $\bar w=(-\tfrac12,1,1,-2)$ cho điểm số $-\tfrac12,\tfrac12,\tfrac12,-\tfrac12$ tại $(0,0),(1,0),(0,1),(1,1)$, nên mọi biên bằng $\tfrac12$. Ba điểm $-,+,-$ của phần hồi quy logistic là dạng một chiều của XOR. Đầu vào thô $u$ ở đây là $x$ của Bài 06.</p><p>Hai giới hạn có nguồn gốc khác nhau. Giới hạn (i) thuộc phương pháp: nó dẫn tới hạ gradient ngẫu nhiên theo nhóm nhỏ ở Bài 06. Giới hạn (ii) thuộc mô hình: thêm đặc trưng thủ công làm $d$ tăng nhanh, kéo theo quá khớp và $\kappa$ không giảm (phần hồi quy) cùng chi phí $d^2$, $d^3$ của Newton (phần chi phí). Bài 06 thay đặc trưng cố định bằng đặc trưng học được trong mạng hai tầng, mở đầu bằng chính bài toán XOR; Bài 06 nhắc lại và dùng kết quả này.</p><p>Số đơn thức: $\binom{102}2=5151$ và $\binom{103}3=176\,851$. Ký hiệu $q$ cho bậc để không trùng với số tham số $p$ của Bài 06; $d_0$ là số biến đầu vào, còn $r$ giữ cho cận $\lVert x_i\rVert\le r$.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §6.1 (bài toán XOR); tính trực tiếp.</p></aside></section>
+<p><b>Diễn giải:</b> mở rộng thủ công làm $d$ tăng nhanh: số đơn thức bậc $\le q$ của $d_0$ biến đầu vào là $\binom{d_0+q}q.$</p>
+<p>Với $d_0=100\text{:}$ $5151$ khi $q=2,$ $176\,851$ khi $q=3.$</p>
+<aside class="notes"><p>Đẳng thức đúng vì cả hai vế bằng $2w_0+w_1+w_2$. Phân loại đúng đòi $g(1,0)&gt;0$ và $g(0,1)&gt;0$, nên vế trái dương, và $g(0,0)&lt;0$, $g(1,1)&lt;0$, nên vế phải âm; mâu thuẫn. Với đặc trưng $(1,u_1,u_2,u_1u_2)$, $\bar w=(-\tfrac12,1,1,-2)$ cho điểm số $-\tfrac12,\tfrac12,\tfrac12,-\tfrac12$ tại $(0,0),(1,0),(0,1),(1,1)$, nên mọi biên bằng $\tfrac12$. Ba điểm $-,+,-$ của mạch hồi quy logistic là dạng một chiều của XOR. Đầu vào thô $u$ ở đây là $x$ của Bài 06.</p><p>Số đơn thức: $\binom{102}2=5151$ và $\binom{103}3=176\,851$. Ký hiệu $q$ cho bậc để không trùng với số tham số $p$ của Bài 06; $d_0$ là số biến đầu vào, còn $r$ giữ cho cận $\lVert x_i\rVert\le r$.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016), §6.1 (bài toán XOR); tính trực tiếp.</p></aside></section>
 
-<section data-slide-id="KL04" class="dense"><h2>Điều không còn giữ được và điều còn giữ được</h2>
-<p>Mất khi (i) chi phí buộc dùng SGD, hoặc (ii) mục tiêu không lồi (Bài 06): hai giới hạn ở trang trước. $K$: số bước; $\eta$: bước; $\Delta_0=F(w_0)-\inf F;$ $\tau^2$: chặn phương sai nhiễu của gradient ngẫu nhiên.</p>
+<section data-slide-id="KL04"><h2>Điều không còn giữ được và điều còn giữ được</h2>
+<p>(i) Chi phí; (ii) mục tiêu không lồi do đặc trưng học được.</p>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>Mất (khi nào)</th><th>Còn giữ được</th></tr></thead><tbody>
-<tr><td>Đích là nghiệm chính xác (ngay trong bài)</td><td>Đích là $R$ nhỏ; dừng sớm và chính quy hóa thuộc phương pháp</td></tr>
-<tr><td>Tốc độ tuyến tính của Định lý 3 (khi (i) hoặc (ii))</td><td>Gradient đầy đủ, khi còn tính được: $F$ giảm mỗi bước. SGD, $F_\lambda$ lồi mạnh: bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6)</td></tr>
-<tr><td>Cực tiểu toàn cục (khi (ii))</td><td>Điểm dừng xấp xỉ: $\min_{k&lt;K}\lVert\nabla F\rVert^2\le\tfrac{2L\Delta_0}K$ (T7); SGD bước hằng: trung bình $\mathbb E\lVert\nabla F\rVert^2\le\tfrac{2\Delta_0}{\eta K}+L\eta\tau^2$ (T8)</td></tr>
-<tr><td>Chi phí $O(nd)$ (khi (i))</td><td>Gradient nhóm nhỏ: không chệch, chi phí không phụ thuộc $n$ (05c.53)</td></tr>
+<tr><td>Đích: nghiệm chính xác (mất ngay ở Bài 05)</td><td>$R$ nhỏ; dừng sớm, chính quy hóa</td></tr>
+<tr><td>Tốc độ tuyến tính, Định lý 3 (khi (i) hoặc (ii))</td><td>Gradient đầy đủ, bước $\le1/L$: $F$ giảm; SGD, $F_\lambda$ lồi mạnh: lân cận hoặc $w^*$</td></tr>
+<tr><td>Cực tiểu toàn cục (khi (ii))</td><td>Điểm dừng xấp xỉ</td></tr>
+<tr><td>Gradient đầy đủ $O(nd)$ (khi (i))</td><td>Gradient nhóm nhỏ không chệch (Định lý 05c.53)</td></tr>
 </tbody></table></div>
-<aside class="notes"><p>Bảng ghép hai lý do của vấn đề trung tâm với hai giới hạn ở trang trước. Hai nhãn (i), (ii) là hai giới hạn của trang trước; mỗi dòng của cột trái ghi điều làm mất nó. Đích nghiệm chính xác đã mất ngay trong Bài 05, vì $F$ chỉ thay cho $R$. Bảo đảm tất định của Định lý 3, $e_k\le(1-1/\kappa)^ke_0$, mất khi gradient đầy đủ được thay bằng gradient nhóm nhỏ (i), dù mục tiêu vẫn là $F_\lambda$ lồi mạnh, và cũng mất khi mục tiêu không còn lồi mạnh (ii); chỉ cần một trong hai điều kiện. Dưới (ii) với gradient đầy đủ, bổ đề giảm và T7 vẫn là bảo đảm tất định; điều mất là tốc độ tuyến tính. Cực tiểu toàn cục chỉ mất khi mục tiêu không lồi (ii): với $F_\lambda$ lồi mạnh, T6 (bước giảm dần) vẫn cho hội tụ theo kỳ vọng tới cực tiểu toàn cục; T5 (bước hằng) chỉ cho hội tụ tuyến tính tới một lân cận trong đó $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$, tức bán kính cỡ $\sqrt{\eta\tau^2/\mu}$. Dòng cuối là chi phí, không phải bảo đảm: gradient đầy đủ $O(nd)$ không còn khả thi khi $n$ lớn.</p><p>Cột phải chỉ nêu tên kết quả; phát biểu và chứng minh thuộc Bài 05b (T5: hạ gradient ngẫu nhiên với hàm lồi mạnh, bước hằng; T6: bước giảm dần, tốc độ $O(1/k)$; T7: hạ gradient trên hàm không lồi; T8: hạ gradient ngẫu nhiên trên hàm không lồi) và Bài 06. Bài 05b viết $\sigma^2$ cho chặn phương sai của gradient ngẫu nhiên; ở đây viết $\tau^2$ vì $\sigma$ là hàm sigmoid. T7 chỉ chặn chuẩn gradient nhỏ nhất trong $K$ bước, không chặn điểm cuối; T8 với bước hằng có số hạng $L\eta\tau^2$ không giảm theo $K$, nên trung bình kỳ vọng bình phương chuẩn gradient không tiến về $0$. Bổ đề giảm bảo đảm $F$ giảm ở mỗi bước khi dùng gradient đầy đủ với bước không quá $1/L$, khi gradient đó còn tính được.</p><p>Hạ gradient ngẫu nhiên không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước: Bài 06 cho một ví dụ bốn điểm trong đó một bước xuất phát từ chính cực tiểu cho $\mathbb E\,F(\theta_1)=\tfrac{69}{128}&gt;\tfrac12=F(\theta_0)$ (tham số $\theta$ của Bài 06 là $w$ ở đây). Điều còn lại là bất đẳng thức một bước có số hạng nhiễu tỉ lệ với $\eta^2$, đủ để suy ra tốc độ theo kỳ vọng khi bước đủ nhỏ hoặc giảm dần. Khi tham số đi vào mô hình một cách phi tuyến, mất mát lồi không còn cho mục tiêu lồi; điều này thuộc Bài 06.</p><p class="note-source"><strong>Nguồn:</strong> Bài 05b (bảng tra các bảo đảm hội tụ; Định lý 05b.36, 05b.39, 05b.41, 05b.43); Bài 05c, Định lý 05c.53 (gradient trên nhóm nhỏ là ước lượng không chệch); Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13.</p></aside></section>
+<aside class="notes"><p>Hai lý do của vấn đề trung tâm được ghép với hai giới hạn (i), (ii) của trang giới hạn; mỗi dòng của cột trái ghi điều làm mất nó. Đích nghiệm chính xác đã mất ngay trong Bài 05, vì $F$ chỉ thay cho $R$. Bảo đảm tất định của Định lý 3, $e_k\le(1-1/\kappa)^ke_0$, mất khi gradient đầy đủ được thay bằng gradient nhóm nhỏ (i), dù mục tiêu vẫn là $F_\lambda$ lồi mạnh, và cũng mất khi mục tiêu không còn lồi mạnh (ii); chỉ cần một trong hai điều kiện. Dưới (ii) với gradient đầy đủ, bổ đề giảm và cận điểm dừng xấp xỉ vẫn là bảo đảm tất định; điều mất là tốc độ tuyến tính. Với SGD trên $F_\lambda$ lồi mạnh, bước hằng chỉ đưa tới một lân cận của $w^*$, bước giảm dần đưa tới $w^*$ theo kỳ vọng. Cực tiểu toàn cục chỉ mất khi mục tiêu không lồi (ii). Dòng cuối là chi phí: gradient đầy đủ $O(nd)$ không còn khả thi khi $n$ lớn, và gradient nhóm nhỏ là ước lượng không chệch với chi phí không phụ thuộc $n$.</p><p class="note-source"><strong>Nguồn:</strong> Bài 05b (bảng tra các bảo đảm hội tụ); Bài 05c, Định lý 05c.53 (gradient trên nhóm nhỏ là ước lượng không chệch); Bottou và Bousquet, trong Sra, Nowozin và Wright (2011), ch. 13.</p></aside></section>
 
-<section data-slide-id="KL05" class="dense"><h2>Tổng kết, bài tập và tài liệu đọc</h2>
-<div class="cols"><div>
-<ol><li>Khi $d$ tăng tới $n,$ nghiệm bình phương nhỏ nhất nội suy, mất tính duy nhất khi $d&gt;n,$ và $\kappa$ không giảm; chọn $d,$ $\lambda$ bằng tập xác thực.</li>
-<li>Khi $\operatorname{rank}X=n,$ mọi nhãn tách được và mất mát logistic không có cực tiểu; $F_\lambda$ lồi mạnh, $\kappa\le1+\frac{r^2}{4\lambda}.$</li>
-<li>Một bước tốn $O(nd)$ hoặc $O(nd^2+d^3);$ mọi bước có thừa số $n.$</li></ol>
-<div class="reading"><p><b>Tài liệu đọc:</b> Goodfellow và cộng sự, §5.2, §7.1, §7.3, §7.8, §8.1; Boyd và Vandenberghe, §6.3.2, §7.1.1, §9.3, §9.5, §9.7; Sra, Nowozin và Wright, ch. 13.</p></div>
-</div><div>
+<section data-slide-id="KL04a"><h2>Các bảo đảm còn giữ được</h2>
+<p><b>Giả thiết:</b> $F$ $L$-trơn, bị chặn dưới; $g_k$ không chệch, phương sai $\le\tau^2;$ $\Delta_0=F(w_0)-\inf F.$</p>
+<ul><li>SGD bước hằng $\eta\le1/L,$ $F_\lambda$ lồi mạnh: $\mathbb E\lVert w_k-w^*\rVert^2$ về mức cỡ $\eta\tau^2/\mu.$</li>
+<li>SGD bước $\tfrac1{\mu(k+1)},$ $\mathbb E\lVert g_k\rVert^2\le G^2,$ $F_\lambda$ lồi mạnh: tới cực tiểu, $O(1/k).$</li>
+<li>Gradient đầy đủ, bước $1/L,$ $F$ không lồi: $\min_{k&lt;K}\lVert\nabla F(w_k)\rVert^2\le\tfrac{2L\Delta_0}K.$</li>
+<li>SGD bước hằng $\eta\le1/L,$ $F$ không lồi: $\tfrac1K\sum_{k&lt;K}\mathbb E\lVert\nabla F(w_k)\rVert^2\le\tfrac{2\Delta_0}{\eta K}+L\eta\tau^2.$</li></ul>
+<p>(Định lý 05b.36, 05b.39, 05b.41, 05b.43)</p>
+<aside class="notes"><p>Bốn bất đẳng thức là cột "còn giữ được" của bảng trước, viết thành công thức; phát biểu và chứng minh nằm trong ghi chú Bài 05b: SGD với hàm lồi mạnh, bước hằng (Định lý 05b.36); bước giảm dần $\tfrac1{\mu(k+1)}$ với mômen bậc hai của gradient ngẫu nhiên bị chặn bởi $G^2$, tốc độ $O(1/k)$ (Định lý 05b.39); hạ gradient trên hàm không lồi (Định lý 05b.41); SGD trên hàm không lồi (Định lý 05b.43). $K$ là số bước, $g_k$ là gradient ngẫu nhiên tại bước $k$. Dòng đầu chỉ cho hội tụ tuyến tính tới một lân cận có bán kính cỡ $\sqrt{\eta\tau^2/\mu}$, không tới cực tiểu. Bài 05b viết $\sigma^2$ cho chặn phương sai; ở đây viết $\tau^2$ vì $\sigma$ là hàm sigmoid.</p><p>Dòng ba chỉ chặn chuẩn gradient nhỏ nhất trong $K$ bước, không chặn điểm cuối; dòng bốn với bước hằng có số hạng $L\eta\tau^2$ không giảm theo $K$, nên trung bình kỳ vọng bình phương chuẩn gradient không tiến về $0$.</p><p>SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước: Bài 06 có một ví dụ bốn điểm trong đó một bước xuất phát từ chính cực tiểu cho $\mathbb E\,F(\theta_1)=\tfrac{69}{128}&gt;\tfrac12=F(\theta_0)$ (tham số $\theta$ của Bài 06 là $w$ ở đây). Điều còn lại là bất đẳng thức một bước có số hạng nhiễu tỉ lệ với $\eta^2$, đủ để suy ra tốc độ theo kỳ vọng khi bước đủ nhỏ hoặc giảm dần.</p><p class="note-source"><strong>Nguồn:</strong> Bài 05b, Định lý 05b.36, 05b.39, 05b.41, 05b.43.</p></aside></section>
+
+<section data-slide-id="KL05"><h2>Tổng kết về tồn tại và tính duy nhất của nghiệm</h2>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức</th></tr></thead><tbody>
+<tr><td>Số điều kiện (định lý xen kẽ Cauchy)</td><td>đặc trưng lồng nhau</td><td>$\kappa(X^TX)$ không giảm theo $d$</td></tr>
+<tr><td>Chế độ nội suy (Mệnh đề 1)</td><td>mất mát bình phương, $\operatorname{rank}X=n$</td><td>$\min F=0;$ nghiệm $w_0+\ker X$</td></tr>
+<tr><td>Không tồn tại cực tiểu (Định lý 1)</td><td>mất mát logistic, dữ liệu tách được</td><td>$\inf F=0$ không đạt; $F(w_k)\to0\Rightarrow\lVert w_k\rVert\to\infty$</td></tr>
+<tr><td>Lồi mạnh (Định lý 2, Mệnh đề 4)</td><td>$\lambda&gt;0;$ với $\kappa$: mất mát logistic, $\lVert x_i\rVert\le r$</td><td>$\mu=\lambda;$ $\kappa\le1+\frac{r^2}{4\lambda}$</td></tr>
+</tbody></table></div>
+<aside class="notes"><p>Ba dòng ứng với mục tiêu 2 và một phần mục tiêu 1: chế độ nội suy và tính không duy nhất khi $d&gt;n$; không tồn tại cực tiểu trên dữ liệu tách được; tính lồi mạnh của $F_\lambda$ và cận của $\kappa$. Dòng đầu là số điều kiện của mục tiêu 1.</p><p>Cột giữa ghi giả thiết mà bỏ đi thì kết luận sai: khi $\operatorname{rank}X&lt;n$, có nhãn không nội suy được; khi dữ liệu không tách được, $F$ bức và có cực tiểu (Mệnh đề 3); khi $\lambda=0$, cực tiểu có thể không tồn tại.</p><p class="note-source"><strong>Nguồn:</strong> các kết quả của bài; Goodfellow, Bengio và Courville (2016), §5.2, §7.1, §7.3.</p></aside></section>
+
+<section data-slide-id="KL05a"><h2>Tổng kết về số bước, chi phí và chọn mô hình</h2>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức</th></tr></thead><tbody>
+<tr><td>Số bước hạ gradient (Định lý 3)</td><td>$L$-trơn, $\mu$-lồi mạnh; bước $1/L$</td><td>$\kappa\log\frac{e_0}\varepsilon$</td></tr>
+<tr><td>Số bước Newton (Định lý 4)</td><td>Hessian Lipschitz; quay lui Armijo</td><td>$\frac{f(w_0)-f^*}\gamma+\log_2\log_2\frac{\varepsilon_0}\varepsilon$</td></tr>
+<tr><td>Chi phí một bước (Mệnh đề 5)</td><td>$X$ dày, $n\ge d$</td><td>$O(nd);$ $O(nd^2+d^3)$</td></tr>
+<tr><td>Chọn mô hình, dừng sớm</td><td>tập chọn tách khỏi tập báo cáo</td><td>$d,$ $\lambda,$ bước dừng theo sai số xác thực</td></tr>
+</tbody></table></div>
+<aside class="notes"><p>Ba dòng ứng với mục tiêu 3 và phần chọn mô hình của mục tiêu 1. Cận số bước của Newton gồm giai đoạn tắt dần $(f(w_0)-f^*)/\gamma$, phụ thuộc độ cong qua $\gamma$, và giai đoạn bậc hai $\log_2\log_2(\varepsilon_0/\varepsilon)$. Khi $d&gt;n$, chi phí một bước Newton là $O(n^2d+n^3)$ nhờ cấu trúc hạng thấp. Ngưỡng hòa vốn giữa hai phương pháp nằm ở trang tổng chi phí.</p><p>Dùng chính tập báo cáo để chọn $d$, $\lambda$ hay bước dừng làm ước lượng lệch thấp; vì vậy tập chọn và tập báo cáo phải tách nhau.</p><p class="note-source"><strong>Nguồn:</strong> các kết quả của bài; Boyd và Vandenberghe (2004), §9.3, §9.5, §9.7; Goodfellow, Bengio và Courville (2016), §7.8.</p></aside></section>
+
+<section data-slide-id="KL05b"><h2>Bài tập: phân loại với nhiều đặc trưng hơn mẫu</h2>
 <p class="question-label">Câu hỏi:</p>
 <p>Phân loại hai lớp, $n=200$ mẫu, $d=500$ đặc trưng đa thức.</p>
 <ol><li>Nêu ba hệ quả đối với $F$ và $F_\lambda.$</li>
-<li>Nêu phương án tính bước Newton.</li>
-<li>Huấn luyện bằng hạ gradient và dừng sớm: chọn bước dừng bằng tập nào; vì sao sai số trên tập đó không phải ước lượng cuối của $R.$</li></ol>
-<p><b>Bài tập về nhà:</b> chứng minh $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0$ trên dữ liệu tách được; chứng minh đầy đủ Mệnh đề 3.</p>
-</div></div>
-<aside class="notes"><p>Ba dòng tổng kết ứng với ba mục tiêu học tập. Dòng 1: phương trình chuẩn, hạng, số điều kiện, tập xác thực. Dòng 2: tách được, Định lý 1, Định lý 2, Mệnh đề 4. Dòng 3: Mệnh đề 5, Định lý 3, 4, ngưỡng hòa vốn.</p><p>Đáp án câu 1: $d&gt;n$ nên $\operatorname{rank}X\le200$. Nếu $\operatorname{rank}X=200$ thì mọi cách gán nhãn tách được và $F$ không có cực tiểu (Mệnh đề 2, Định lý 1); cần $\lambda&gt;0$, khi đó $F_\lambda$ có nghiệm duy nhất và $\kappa\le1+\lambda_{\max}(X^TX)/(800\lambda)$. Đáp án câu 2: Hessian là $\lambda I$ cộng ma trận hạng không quá $200$, nên giải qua hệ $200\times200$, tốn $O(n^2d+n^3)=2\cdot10^7+8\cdot10^6=2{,}8\cdot10^7$, rẻ hơn hệ $500\times500$ với $nd^2+d^3=1{,}75\cdot10^8$. Đáp án câu 3: bước dừng chọn bằng tập xác thực; sai số xác thực tại bước được chọn là giá trị nhỏ nhất trên cả quỹ đạo nên có xu hướng thấp hơn $R$; ước lượng cuối lấy trên một tập kiểm thử riêng.</p><p>Gợi ý bài tập: bài thứ nhất dùng $F(w_\lambda)\le F(t\bar w)+\tfrac\lambda2t^2\lVert\bar w\rVert^2$ rồi bước 3 của Định lý 1; bài thứ hai cần chứng minh hàm $v\mapsto\max_i(-m_i(v))$ liên tục trên mặt cầu đơn vị và dùng tính compact. Bài 05b chứng minh các định lý hội tụ đã dẫn; Bài 05c trình bày trung bình nhóm nhỏ; Bài 06 nhận hai giới hạn của bài này làm điểm xuất phát.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016); Boyd và Vandenberghe (2004); Sra, Nowozin và Wright (2011); câu hỏi tự xây dựng.</p></aside></section>
+<li>Nêu phương án tính bước Newton và chi phí của nó.</li>
+<li>Dừng sớm: nêu tập chọn bước dừng, và lý do không báo cáo sai số trên tập đó.</li></ol>
+<aside class="notes"><p>Đáp án câu 1: $d&gt;n$ nên $\operatorname{rank}X\le200$. Nếu $\operatorname{rank}X=200$ thì mọi cách gán nhãn tách được và $F$ không có cực tiểu (Mệnh đề 2, Định lý 1); với $\lambda&gt;0$, $F_\lambda$ lồi mạnh, có nghiệm duy nhất với $\lVert w_\lambda\rVert\le\sqrt{2\log2/\lambda}$ (Định lý 2); $\kappa\le1+\lambda_{\max}(X^TX)/(800\lambda)$ (Mệnh đề 4) tăng theo $1/\lambda$.</p><p>Đáp án câu 2: Hessian là $\lambda I$ cộng ma trận hạng không quá $200$, nên giải qua hệ $200\times200$, tốn $O(n^2d+n^3)=2\cdot10^7+8\cdot10^6=2{,}8\cdot10^7$, rẻ hơn hệ $500\times500$ với $nd^2+d^3=1{,}75\cdot10^8$ khoảng $6$ lần.</p><p>Đáp án câu 3: bước dừng chọn bằng tập xác thực; sai số xác thực tại bước được chọn là giá trị nhỏ nhất trên cả quỹ đạo nên có xu hướng thấp hơn $R$; ước lượng cuối lấy trên một tập kiểm thử riêng.</p><p class="note-source"><strong>Nguồn:</strong> câu hỏi tự xây dựng; Bài tập 10 của học liệu Bài 05.</p></aside></section>
+
+<section data-slide-id="KL05c"><h2>Tài liệu đọc và bài tập về nhà</h2>
+<div class="reading"><p>Tài liệu đọc: Goodfellow, Bengio và Courville (2016), §5.2, §7.1, §7.3, §7.8, §8.1.</p>
+<p>Boyd và Vandenberghe (2004), §6.3.2, §7.1.1, §9.3, §9.5, §9.7.</p>
+<p>Sra, Nowozin và Wright (2011), ch. 13.</p></div>
+<p class="question-label">Câu hỏi:</p>
+<ol><li>Trên dữ liệu tách được, chứng minh $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0.$</li>
+<li>Chứng minh đầy đủ Mệnh đề 3.</li></ol>
+<aside class="notes"><p>Gợi ý bài thứ nhất: $F(w_\lambda)\le F_\lambda(w_\lambda)\le F(t\bar w)+\tfrac\lambda2t^2\lVert\bar w\rVert^2$ với mọi $t$, nên $F(w_\lambda)\to0$ khi $\lambda\to0$; rồi dùng kết luận thứ hai của Định lý 1. Gợi ý bài thứ hai: chứng minh hàm $v\mapsto\max_i(-m_i(v))$ liên tục trên mặt cầu đơn vị và dùng tính compact để có $c&gt;0$. Hai bài là Bài tập 7 và Bài tập 5 của học liệu Bài 05.</p><p>Chứng minh các định lý hội tụ đã dẫn nằm ở Bài 05b; trung bình nhóm nhỏ ở Bài 05c; hai giới hạn của bài này là điểm xuất phát của Bài 06.</p><p class="note-source"><strong>Nguồn:</strong> Goodfellow, Bengio và Courville (2016); Boyd và Vandenberghe (2004); Sra, Nowozin và Wright (2011).</p></aside></section>
 </section>
 <div class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 05</div>
 </div></div></div>

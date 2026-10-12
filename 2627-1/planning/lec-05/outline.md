@@ -2,7 +2,7 @@
 
 Quy ước viết tắt: lý thuyết (LT), bài tập (BT), chuẩn đầu ra bài học (LLO), chuẩn đầu ra học phần (CLO), hạ gradient ngẫu nhiên (SGD). Tệp liên quan: [storyboard.md](storyboard.md), [review-log.md](review-log.md).
 
-Quy ước mã trang: `MD` mở đầu, `HQ` hồi quy nhiều chiều (phiên A1), `LG` hồi quy logistic và chính quy hóa (phiên A2), `CP` độ cong và chi phí tính toán (phiên A3), `KL` kết luận. Mã trang, thời lượng và mã LLO chỉ dùng trong dàn bài, storyboard và nhật ký; không xuất hiện trên mặt trang chiếu hay trong ghi chú diễn giả. Mục **Ghi chú** của từng trang dưới đây là đặc tả nội dung cho ghi chú diễn giả; các mã trang của bài khác trong đó (RG17, RN07, C05, C06…) chỉ để truy nguyên, khi soạn ghi chú diễn giả phải thay bằng tên kết quả (ví dụ "định lý hội tụ tuyến tính của hạ gradient trong bài bổ trợ về hội tụ"). Các mã KQ, KN, MT, G1–G5, D, R, tên phiên A1–A3, "điểm hòa giải" và "giao diện A–B" cũng chỉ dùng trong kế hoạch. Trên mặt trang, kết quả được đánh số theo bài (Mệnh đề 1–5, Định lý 1–4); bảng Kết quả dùng lại ghi tương ứng giữa nhãn trên trang và mã KQ. Giữ nguyên các nhãn đã hiện trên mặt trang của bài khác: T2b, T5, T6, T7, T8 của Bài 05b; Mệnh đề 01.6, Định lý 01.38… của ghi chú Bài 01.
+Quy ước mã trang: `MD` mở đầu, `HQ` hồi quy nhiều chiều (phiên A1), `LG` hồi quy logistic và chính quy hóa (phiên A2), `CP` độ cong và chi phí tính toán (phiên A3), `KL` kết luận. Mã trang, thời lượng và mã LLO chỉ dùng trong dàn bài, storyboard và nhật ký; không xuất hiện trên mặt trang chiếu hay trong ghi chú diễn giả. Mục **Ghi chú** của từng trang dưới đây là đặc tả nội dung cho ghi chú diễn giả; các mã trang của bài khác trong đó (RG17, RN07, C05, C06…) chỉ để truy nguyên, khi soạn ghi chú diễn giả phải thay bằng tên kết quả (ví dụ "định lý hội tụ tuyến tính của hạ gradient trong bài bổ trợ về hội tụ"). Các mã KQ, KN, MT, G1–G5, D, R, tên phiên A1–A3, "điểm hòa giải" và "giao diện A–B" cũng chỉ dùng trong kế hoạch. Trên mặt trang, kết quả được đánh số theo bài (Mệnh đề 1–5, Định lý 1–4); bảng Kết quả dùng lại ghi tương ứng giữa nhãn trên trang và mã KQ. Giữ nguyên các nhãn đã hiện trên mặt trang của bài khác: T2b, T5, T6, T7, T8 của Bài 05b (từ 2026-10-12 thay bằng số hiệu Định lý 05b.18(b), 05b.36, 05b.39, 05b.41, 05b.43 theo AGENTS.md, mục "Mã nội bộ của bài khác"); Mệnh đề 01.6, Định lý 01.38… của ghi chú Bài 01.
 
 ## Phạm vi và quyết định thiết kế
 
@@ -19,9 +19,9 @@ Dàn bài này lập ngày 2026-10-11 theo thiết kế hai bài do người dù
 - **Tệp deck đề xuất:** `2627-1/lecture-05-khong-gian-dac-trung-nhieu-chieu.html`. Học liệu: `2627-1/materials/lec-05/{lecture-note,exercises}.md`, viết lại sau khi deck ổn định.
 - **Đối tượng:** sinh viên năm ba đã học Bài 00–04; Bài 05b (hội tụ hạ gradient và SGD) và Bài 05c (xác suất đến trung bình nhóm nhỏ) là học liệu bổ trợ.
 - **Thời lượng:** Buổi 5 theo đề cương DOCX gồm 2 tiết LT và 1 tiết BT, tức ba khối 1 tiết. Mỗi phiên A1, A2, A3 chiếm một khối. Khối 1 gồm mạch MD và HQ, khối 2 là LG, khối 3 gồm CP và KL. Thời lượng ghi bằng phần tiết, không quy đổi ra phút.
-- **Quy mô:** 44 trang (43 trang theo kế hoạch đã duyệt; trang HQ08 được tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11), 5 mạch ngoài (mở đầu, ba mạch ứng với ba phiên, kết luận). Không gộp hai phiên vào một mạch; không tách phiên nào thành hai mạch vì mỗi phiên có một nhu cầu liền mạch.
+- **Quy mô (cập nhật 2026-10-12):** 67 trang, 5 mạch; xem mục "Cập nhật 2026-10-12" cuối tệp. **Quy mô ban đầu:** 44 trang (43 trang theo kế hoạch đã duyệt; trang HQ08 được tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11), 5 mạch ngoài (mở đầu, ba mạch ứng với ba phiên, kết luận). Không gộp hai phiên vào một mạch; không tách phiên nào thành hai mạch vì mỗi phiên có một nhu cầu liền mạch.
 
-**Luận đề xuyên suốt** (yêu cầu người dùng 2026-10-11, áp dụng cho cả Bài 05 và Bài 06). Bài 01–04 làm việc trong một khung gọn: hàm mục tiêu lồi có cực tiểu chính xác, và các phương pháp tất định hội tụ tới cực tiểu đó với bảo đảm có điều kiện. Khung này không còn là bức tranh đúng khi mô hình và dữ liệu lớn, vì hai lý do được nêu sớm (MD03) và được kiểm chứng lần lượt trong bài:
+**Luận đề xuyên suốt** (yêu cầu người dùng 2026-10-11, áp dụng cho cả Bài 05 và Bài 06). Bài 01–04 làm việc trong một khung gọn: hàm mục tiêu lồi có cực tiểu chính xác, và các phương pháp tất định hội tụ tới cực tiểu đó với bảo đảm có điều kiện. Khung này không còn là bức tranh đúng khi mô hình và dữ liệu lớn, vì hai lý do được nêu sớm (MD03c) và được kiểm chứng lần lượt trong bài:
 
 1. **Tính toán không cho phép dùng toàn bộ dữ liệu ở mỗi bước.** Một gradient đầy đủ tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$; với $n$ và $d$ của bài toán hiện đại, ngay một bước như vậy mỗi lần cập nhật đã vượt ngân sách. Phiên A3 đếm các chi phí này; kết luận nêu thành giới hạn (i), Bài 06 (B3) mang hệ quả: SGD theo nhóm nhỏ là phương án còn lại khi ngân sách mỗi bước cố định, và nhiễu cùng tốc độ yếu hơn là hệ quả phải chấp nhận, không phải mục tiêu thiết kế.
 2. **Cực tiểu chính xác của mất mát huấn luyện không phải đích.** $F$ là đại lượng thay thế cho rủi ro trên dữ liệu mới $R$. Phiên A1 cho thấy khớp dữ liệu huấn luyện tốt hơn khi $d$ tăng nhưng sai số trên dữ liệu ngoài mẫu xấu đi; phiên A2 cho thấy trên dữ liệu tách được, cực tiểu chính xác không tồn tại và chính quy hóa là thành phần làm bài toán đặt chỉnh. Kết luận cho thấy dừng sớm cho sai số xác thực nhỏ hơn nghiệm chính xác; vì vậy dừng sớm và chính quy hóa là một phần của phương pháp.
@@ -68,7 +68,7 @@ Danh sách tính từ phía Bài 05; kế hoạch Bài 06 bổ sung phần thu�
 
 ### Vấn đề trung tâm
 
-Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác định điều gì thay đổi khi số đặc trưng $d$ tăng so với kích thước mẫu $n$: cực tiểu của rủi ro thực nghiệm có tồn tại và duy nhất không, có dự đoán tốt trên dữ liệu mới không, và tính nó tốn bao nhiêu phép tính. Câu này đặt trên MD03 dưới dạng vấn đề cần giải quyết, không dùng câu hỏi tu từ.
+Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác định điều gì thay đổi khi số đặc trưng $d$ tăng so với kích thước mẫu $n$: cực tiểu của rủi ro thực nghiệm có tồn tại và duy nhất không, có dự đoán tốt trên dữ liệu mới không, và tính nó tốn bao nhiêu phép tính. Câu này đặt trên MD03c dưới dạng vấn đề cần giải quyết, không dùng câu hỏi tu từ.
 
 ### Đối tượng và ký hiệu chung
 
@@ -124,12 +124,14 @@ Thời lượng tính bằng tiết; mỗi khối 1 tiết. Khối 1 = MD + HQ; 
 
 | Mạch | Chức năng | Đầu vào | Đầu ra | Trang | Tiết LT | Tiết BT | Trang kiểm tra |
 |---|---|---|---|---|---:|---:|---|
-| MD. Bài toán trung tâm và khung chung | Nêu sự thay đổi bức tranh so với Bài 01–04, hai lý do, khung và ký hiệu | Khung lồi, phương trình chuẩn, hồi quy logistic, hạ gradient, Newton (Bài 01–04) | Vấn đề trung tâm, ba nhu cầu, ký hiệu | MD01–MD04 (4) | 0,10 | 0 | — |
-| HQ. Hồi quy nhiều chiều (A1) | **Nhu cầu:** xác định điều gì thay đổi ở nghiệm bình phương nhỏ nhất khi $d$ tăng tới và vượt $n$ | Phương trình chuẩn và điều kiện duy nhất (Bài 01, Mệnh đề 01.6), ridge (Bài 02, Mệnh đề 02.21) | Ba hệ quả: không duy nhất khi $d>n$, khoảng cách huấn luyện–xác thực, $\kappa$ không giảm; chính quy hóa khắc phục cho bình phương | HQ01–HQ12 (12) | 0,56 | 0,34 | HQ11 |
-| LG. Hồi quy logistic và chính quy hóa (A2) | **Nhu cầu:** giải thích vì sao một bài toán học lồi có thể không có cực tiểu, và sửa bài toán để cực tiểu tồn tại, duy nhất | Chế độ nội suy $\operatorname{rank}X=n$ (HQ07), Bài 01 VD 01.6, 01.7, HQ 01.41 | $F_\lambda$ có nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}(X^TX)/(4n\lambda)$, với $\lVert x_i\rVert\le r$: $\kappa\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn | LG01–LG12 (12) | 0,67 | 0,33 | LG11 |
-| CP. Độ cong và chi phí tính toán (A3) | **Nhu cầu:** xác định chi phí tính toán của một bước cập nhật hội tụ nhanh hơn | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (05b) | Chi phí một bước $O(nd)$ và $O(nd^2+d^3)$, số bước theo $\kappa$ và theo hai giai đoạn Newton, ngưỡng hòa vốn; mọi bước đều trả chi phí theo $n$ | CP01–CP11 (11) | 0,53 | 0,25 | CP10 |
-| KL. Giới hạn của tối ưu tất định | Tổng hợp ba phiên thành luận đề; nêu hai giới hạn chuyển sang Bài 06 | Đầu ra HQ, LG, CP | Dừng sớm, bằng chứng RCV1, hai giới hạn (i) và (ii), điều không còn giữ được và điều còn giữ được | KL01–KL05 (5) | 0,14 | 0,08 | KL05 |
-| **Tổng** | | | | **44** | **2,00** | **1,00** | 4 trang |
+| MD. Bài toán trung tâm và khung chung | Nêu sự thay đổi bức tranh so với Bài 01–04, hai lý do, khung và ký hiệu | Khung lồi, phương trình chuẩn, hồi quy logistic, hạ gradient, Newton (Bài 01–04) | Vấn đề trung tâm, ba nhu cầu, ký hiệu | MD01, MD02, MD03a–c, MD04 (6) | 0,10 | 0 | — |
+| HQ. Hồi quy nhiều chiều (A1) | **Nhu cầu:** xác định điều gì thay đổi ở nghiệm bình phương nhỏ nhất khi $d$ tăng tới và vượt $n$ | Phương trình chuẩn và điều kiện duy nhất (Bài 01, Mệnh đề 01.6), ridge (Bài 02, Mệnh đề 02.21) | Ba hệ quả: không duy nhất khi $d>n$, khoảng cách huấn luyện–xác thực, $\kappa$ không giảm; chính quy hóa khắc phục cho bình phương | HQ00 (tiêu đề), HQ01–HQ12, HQ05a, HQ07a, HQ11a (16) | 0,56 | 0,34 | HQ11, HQ11a |
+| LG. Hồi quy logistic và chính quy hóa (A2) | **Nhu cầu:** giải thích vì sao một bài toán học lồi có thể không có cực tiểu, và sửa bài toán để cực tiểu tồn tại, duy nhất | Chế độ nội suy $\operatorname{rank}X=n$ (HQ07), Bài 01 VD 01.6, 01.7, HQ 01.41 | $F_\lambda$ có nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}(X^TX)/(4n\lambda)$, với $\lVert x_i\rVert\le r$: $\kappa\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn | LG00 (tiêu đề), LG01–LG12, LG05a, LG08a, LG11a (16) | 0,67 | 0,33 | LG11, LG11a |
+| CP. Độ cong và chi phí tính toán (A3) | **Nhu cầu:** xác định chi phí tính toán của một bước cập nhật hội tụ nhanh hơn | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (05b) | Chi phí một bước $O(nd)$ và $O(nd^2+d^3)$, số bước theo $\kappa$ và theo hai giai đoạn Newton, ngưỡng hòa vốn; mọi bước đều trả chi phí theo $n$ | CP00 (tiêu đề), CP01–CP11, CP05a, CP06a, CP07a, CP08a, CP10a (17) | 0,53 | 0,25 | CP10, CP10a |
+| KL. Giới hạn của tối ưu tất định | Tổng hợp ba phiên thành luận đề; nêu hai giới hạn chuyển sang Bài 06 | Đầu ra HQ, LG, CP | Dừng sớm, bằng chứng RCV1, hai giới hạn (i) và (ii), điều không còn giữ được và điều còn giữ được | KL00 (tiêu đề), KL01–KL05, KL01a, KL03a, KL04a, KL05a–c (12) | 0,14 | 0,08 | KL05b |
+| **Tổng** | | | | **67** | **2,00** | **1,00** | 7 trang |
+
+Cột "Trang" cập nhật ngày 2026-10-12 (văn phong MAT1101): tên mạch giữ nguyên và trùng tên trên trang "Nội dung" (MD03a) và trên bốn trang tiêu đề mạch; số trang tăng từ 44 lên 67 do bốn trang tiêu đề mạch và các trang tách theo trần mật độ (chi tiết ở mục "Cập nhật 2026-10-12" cuối tệp). Thời lượng của mạch không đổi.
 
 Kiểm tra cộng: LT $0{,}10+0{,}56+0{,}67+0{,}53+0{,}14=2{,}00$; BT $0{,}34+0{,}33+0{,}25+0{,}08=1{,}00$; khối 1: $0{,}10+0{,}56+0{,}34=1{,}00$; khối 2: $0{,}67+0{,}33=1{,}00$; khối 3: $0{,}53+0{,}25+0{,}14+0{,}08=1{,}00$. Thời gian BT gồm cả các phép tính thủ công ở HQ02, HQ06, HQ08, LG03, LG10, CP02 và các trang kiểm tra. Sau cổng storyboard: mạch CP nhường $0{,}02$ tiết LT (CP09) cho KL03; trong KL, KL02 nhường $0{,}01$ cho KL03.
 
@@ -169,7 +171,7 @@ Chức năng: nêu sự thay đổi bức tranh so với Bài 01–04 và hai l�
 - **Hành trình:** không áp dụng.
 - **Thời lượng:** 0,02 tiết LT.
 
-#### MD03 — Vấn đề trung tâm
+#### MD03 — Vấn đề trung tâm (đặc tả gốc; từ 2026-10-12 tách thành MD03a "Nội dung", MD03b "Ngữ cảnh", MD03c "Chi phí tính toán và đích của tối ưu")
 
 - **Điểm trung tâm:** khung "mục tiêu lồi có cực tiểu chính xác, phương pháp tất định hội tụ tới nó" cần được kiểm tra lại khi $d$ và $n$ lớn, vì hai lý do.
 - **Mặt trang:**
@@ -262,7 +264,7 @@ Dữ liệu dùng xuyên mạch (VD-A1, mục Ví dụ số): $u=(-1,-\tfrac12,0
   - Với $w$ cố định, trung bình mất mát trên tập kiểm thử độc lập là ước lượng không chệch của $R(w)$.
   - Nhận xét: $\arg\min F$ nói chung khác $\arg\min R$; quá khớp (overfitting) là trạng thái $F(w)$ nhỏ nhưng khoảng cách $R(w)-F(w)$ lớn.
 - **Sửa sau rà soát năm vai (2026-10-12):** quá khớp mang nhãn Định nghĩa (M14); ghi chú: bốn điểm là quy ước minh họa, nhãn không nhiễu nên sai số xác thực ước lượng $R(w)-s^2$, thứ tự chọn không đổi (M7); dẫn Định lý 05c.52.
-- **Ghi chú:** đây là lý do thứ hai của MD03. Nếu dùng chính tập kiểm thử để chọn $d$ hoặc $\lambda$, $w$ được chọn phụ thuộc vào tập đó và ước lượng không còn không chệch; vì vậy hai tập phải tách nhau. Trong ví dụ năm điểm, bốn điểm $u=\pm\tfrac14,\pm\tfrac34$ là tập xác thực (chọn $\lambda$ ở HQ10, chọn bước dừng ở KL01); ví dụ thu nhỏ không có tập kiểm thử riêng, nên các con số trên bốn điểm này không phải báo cáo cuối về $R$. Tính không chệch dùng kỳ vọng của trung bình mẫu (Bài 05c). Nguồn: Goodfellow et al. §5.2 (tr. 110–117), §5.3.1, §8.1 (tr. 275–277).
+- **Ghi chú:** đây là lý do thứ hai của MD03c. Nếu dùng chính tập kiểm thử để chọn $d$ hoặc $\lambda$, $w$ được chọn phụ thuộc vào tập đó và ước lượng không còn không chệch; vì vậy hai tập phải tách nhau. Trong ví dụ năm điểm, bốn điểm $u=\pm\tfrac14,\pm\tfrac34$ là tập xác thực (chọn $\lambda$ ở HQ10, chọn bước dừng ở KL01); ví dụ thu nhỏ không có tập kiểm thử riêng, nên các con số trên bốn điểm này không phải báo cáo cuối về $R$. Tính không chệch dùng kỳ vọng của trung bình mẫu (Bài 05c). Nguồn: Goodfellow et al. §5.2 (tr. 110–117), §5.3.1, §8.1 (tr. 275–277).
 - **Hình:** không.
 - **Liên kết:** kế thừa kỳ vọng và trung bình mẫu (Bài 05c); đầu ra là tiêu chí đánh giá và quy tắc chọn dùng đến cuối bài. Bài 06 (F05) chỉ dẫn lại định nghĩa này, không định nghĩa lại (điểm hòa giải 5).
 - **Quyết định:** thêm; tập xác thực và tập kiểm thử được định nghĩa trên mặt trang theo điểm hòa giải 5.
@@ -739,7 +741,7 @@ Chức năng: tổng hợp đầu ra ba phiên thành luận đề; nêu hai gi�
 - **Ghi chú:** TRON là phương pháp Newton miền tin cậy giải hệ bằng gradient liên hợp, không lập Hessian dày; không đồng nhất với Newton thuần đã đếm chi phí. SGD chỉ được gọi tên ở đây; định nghĩa và tốc độ thuộc Bài 06. Hai quan sát: chi phí theo $n$ của mỗi bước quyết định thời gian, nên việc dùng SGD bị buộc bởi chi phí mỗi bước; chênh lệch mục tiêu ở chữ số thứ tư đi cùng lỗi kiểm thử chênh nhau không quá 0,04 điểm phần trăm. Số liệu thuộc phần cứng và phần mềm năm 2008–2011, chỉ dùng để so bậc.
 - **Hình:** không; bảng HTML.
 - **Liên kết:** dùng dòng ba của CP09; đầu ra cho E02 của Bài 06. Phân công nguồn chung với Bài 06 (quyết định của điều phối viên 2026-10-11): KL02 chỉ trình bày các hàng mất mát logistic của SNW Bảng 13.3; E02 của Bài 06 trình bày các hàng mất mát hinge và dẫn lại KL02.
-- **Quyết định:** thêm; bằng chứng có nguồn cho hai lý do của MD03.
+- **Quyết định:** thêm; bằng chứng có nguồn cho hai lý do của MD03c.
 - **Hành trình:** khái niệm hỗ trợ.
 - **Thời lượng:** 0,01 tiết LT (nhường $0{,}01$ cho KL03).
 
@@ -770,7 +772,7 @@ Chức năng: tổng hợp đầu ra ba phiên thành luận đề; nêu hai gi�
 - **Sửa sau rà soát năm vai (2026-10-12):** xem mục Mặt trang (S1; tái kiểm R1, R2: T5 bước hằng chỉ tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ cỡ $\eta\tau^2/\mu$, nhãn (i), (ii) thay (A), (B)).
 - **Ghi chú:** chỉ nêu tên các kết quả T5, T6, T7, T8; phát biểu thuộc Bài 05b và Bài 06 (điểm hòa giải 3). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước: Bài 06 cho một ví dụ bốn điểm trong đó một bước SGD xuất phát từ chính cực tiểu cho $\mathbb E\,F(\theta_1)=\tfrac{69}{128}>\tfrac12=F(\theta_0)$. Điều còn lại là bất đẳng thức một bước có số hạng nhiễu tỉ lệ với $\eta^2$, đủ để suy ra tốc độ theo kỳ vọng khi bước đủ nhỏ hoặc giảm dần. Mất mát lồi không còn bảo đảm mục tiêu lồi khi tham số vào phi tuyến; điều này thuộc Bài 06.
 - **Hình:** không; bảng HTML.
-- **Liên kết:** gộp MD03 với KL01–KL03. Cột "còn giữ được" chính xác hóa theo cổng storyboard Bài 06 (2026-10-11).
+- **Liên kết:** gộp MD03c với KL01–KL03. Cột "còn giữ được" chính xác hóa theo cổng storyboard Bài 06 (2026-10-11).
 - **Quyết định:** thêm; luận đề yêu cầu phát biểu điều không còn giữ được và điều còn giữ được ở kết luận.
 - **Hành trình:** tổng hợp.
 - **Thời lượng:** 0,02 tiết LT.
@@ -781,7 +783,7 @@ Chức năng: tổng hợp đầu ra ba phiên thành luận đề; nêu hai gi�
 - **Mặt trang:** ba dòng tổng kết theo mục tiêu 1–3; "Câu hỏi:" chuyển giao cho $n=200$ mẫu, $d=500$ đặc trưng đa thức, phân loại hai lớp: (a) nêu ba hệ quả; (b) nêu phương án tính; (c) nếu huấn luyện bằng hạ gradient và dừng sớm, chọn bước dừng bằng tập nào và vì sao sai số trên tập đó không phải ước lượng cuối của $R$. Bài tập về nhà: chứng minh $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0$ trên dữ liệu tách được; chứng minh đầy đủ Mệnh đề 3 (danh sách bài tập trong `exercises.md` thêm khi học liệu được viết lại); tài liệu đọc: Goodfellow §5.2, §7.1, §7.3, §7.8, §8.1; Boyd §6.3.2, §7.1.1, §9.3, §9.5, §9.7; SNW ch. 13.
 - **Ghi chú (đáp án):** (a) $d>n$: $\operatorname{rank}X\le200$; nếu $\operatorname{rank}X=200$ thì mọi nhãn tách được và $F$ không có cực tiểu; cần $\lambda>0$; $\kappa\le1+\lambda_{\max}(X^TX)/(800\lambda)$. (b) Newton qua hệ $200\times200$ ($O(n^2d+n^3)=2{,}8\cdot10^7$) rẻ hơn hệ $500\times500$. (c) Bước dừng chọn bằng tập xác thực; sai số xác thực tại bước được chọn là giá trị nhỏ nhất trên cả quỹ đạo nên có xu hướng thấp hơn $R$; ước lượng cuối lấy trên tập kiểm thử riêng.
 - **Hình:** không.
-- **Liên kết:** khép vấn đề trung tâm của MD03; tài liệu đọc dẫn sang Bài 05b, 05c và Bài 06.
+- **Liên kết:** khép vấn đề trung tâm của MD03c; tài liệu đọc dẫn sang Bài 05b, 05c và Bài 06.
 - **Quyết định:** thêm; cấu trúc mặc định mục 6 của AGENTS.md. Câu (c) thêm sau cổng storyboard để có bước kiểm tra thật của khái niệm dừng sớm.
 - **Hành trình:** bài tập tổng hợp; bài tập của khái niệm dừng sớm (câu c).
 - **Thời lượng:** 0,01 tiết LT + 0,08 tiết BT.
@@ -1029,3 +1031,25 @@ Cột "Nhãn trên trang" là nhãn hiển thị trên mặt trang; mã KQ chỉ
 3. Soạn deck và SVG (một tác tử ghi); kiểm tra hình ở 1600×900 và 390×844. Đã làm ngày 2026-10-12 (mười một SVG).
 4. Năm vai rà soát độc lập (song song, chỉ đọc); chỉnh sửa; tái kiểm; kiểm định cuối.
 5. Ghi chú bài giảng và bài tập viết lại sau khi deck ổn định.
+
+## Cập nhật 2026-10-12: trang tiêu đề mạch và trần mật độ
+
+Đợt sửa theo AGENTS.md (mục "Trang tiêu đề mạch", "Văn phong và mật độ mặt trang chiếu") đổi cấu trúc trang như sau; mặt trang hiện hành của các trang tách nằm trong deck, còn đặc tả của mục "Dàn bài từng trang" ở trên giữ cho trang gốc. Lý do và số âm tiết trước/sau ghi ở storyboard (dòng "Sửa 2026-10-12" của từng trang), nhật ký ở review-log.
+
+| Mạch | Trang tiêu đề | Trang theo thứ tự |
+|---|---|---|
+| 1. Bài toán trung tâm và khung chung | MD01 (bìa) | MD01, MD02, MD03a "Nội dung", MD03b "Ngữ cảnh", MD03c "Chi phí tính toán và đích của tối ưu", MD04 "Ký hiệu chung" |
+| 2. Hồi quy nhiều chiều | HQ00 | HQ00, HQ01–HQ05, HQ05a, HQ06, HQ07, HQ07a, HQ08–HQ11, HQ11a, HQ12 |
+| 3. Hồi quy logistic và chính quy hóa | LG00 | LG00, LG01–LG05, LG05a, LG06–LG08, LG08a, LG09–LG11, LG11a, LG12 |
+| 4. Độ cong và chi phí tính toán | CP00 | CP00, CP01–CP05, CP05a, CP06, CP06a, CP07, CP07a, CP08, CP08a, CP09, CP10, CP10a, CP11 |
+| 5. Giới hạn của tối ưu tất định | KL00 | KL00, KL01, KL01a, KL02, KL03, KL03a, KL04, KL04a, KL05, KL05a, KL05b, KL05c |
+
+Thay đổi nội dung so với đặc tả trang gốc:
+
+- MD03 tách ba trang; danh sách ba phần A–C thay bằng trang "Nội dung" đánh số 1–5. MD04 đổi tiêu đề thành "Ký hiệu chung"; dòng $w_k$ xuống ghi chú.
+- HQ04 chỉ giữ hàng ngoài mẫu trong bảng (hàng huấn luyện ở HQ03 và trên hình). HQ11, LG11, CP10 đổi tiêu đề thành "Bài tập: …" trùng tên Bài tập 1, 4, 8 của `materials/lec-05/exercises.md`; lời giải mẫu trên mặt trang ở HQ11a, LG11a, CP10a.
+- LG10 đổi tiêu đề thành "Ví dụ: ba điểm có chính quy hóa"; LG08 tách ví dụ một mẫu sang LG08a; LG05 tách chứng minh sang LG05a.
+- CP02 bỏ hàng $k=0$ của bảng ($e_0=0{,}635$ nêu ở dòng dữ kiện). CP05 tách nhận xét bất biến affine sang CP05a, trang này mang nhu cầu của KN8; ánh xạ ký hiệu Boyd–Vandenberghe xuống ghi chú.
+- KL04 bỏ công thức khỏi bảng; bốn công thức chuyển sang KL04a kèm số hiệu Định lý 05b.36, 05b.39, 05b.41, 05b.43 thay cho T5–T8. KL05 tách thành hai bảng tổng kết "kết quả | giả thiết không được bỏ | công thức", một trang bài tập tự kiểm tra và một trang tài liệu đọc và bài tập về nhà.
+- Vòng 2 (sau tái kiểm toán và mạch kể): MD04 chỉ giữ ký hiệu dùng ngay ở mạch 2 ($F$, $R$, $F_\lambda$, $L$, $\mu$, $\kappa$ và năm giả thiết xuống ghi chú); CP04 đứng trước CP03 trên deck (mã giữ nguyên); KL03 nêu (ii) bằng bài toán XOR và hệ quả "đặc trưng học được làm mục tiêu không lồi", KL04 dùng nhãn (ii) cùng nghĩa; KL04a ghi giả thiết trơn, chặn dưới và điều kiện bước của từng bảo đảm; KL05, KL05a ghi loại mất mát và đủ hai giai đoạn của cận Newton; LG12 một câu kết luận về $\lambda$ và cận $\kappa$.
+- Mã T2b, T5–T8, H2, H3 không còn trên mặt trang và trong ghi chú; dùng Định lý 05b.18(b), 05b.36, 05b.39, 05b.41, 05b.43, Hệ quả 05b.17.
