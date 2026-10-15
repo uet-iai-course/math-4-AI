@@ -681,3 +681,66 @@ Phát hiện ngoài phạm vi để mở: chú thích CP02 sát footer; Bài 06 
 **Vòng 5 (2026-10-15, KL03, yêu cầu sửa của điều phối viên):** phát hiện trung bình: (i), (ii) chưa song song, cụm cụt, "$d^2, d^3$" mất $n$ và $O$, "quá khớp" viết như kết quả chắc chắn. Đã sửa: hai giới hạn theo dạng giới hạn trước, hệ quả sau; (ii) "với $\varphi$ cố định, $\varphi(u)^Tw$ có thể không biểu diễn được quan hệ cần học"; dòng ba "nguy cơ quá khớp, bước Newton $O(nd^2+d^3)$"; ghi chú thêm câu giải thích dòng ba, bỏ câu RCV1 (khoảng 170 âm tiết). Mặt trang 57 âm tiết, 4 dòng (16, 16, 12, 13). Playwright 1600×900 và 390×844: 0 lỗi console, 0 `.katex-error`, đáy 328 px logic ở 16:9; `git diff --check` sạch.
 
 **Quyết định của điều phối viên về KL03 (vòng 4–5, 2026-10-15):** vòng 4 yêu cầu sửa (tái kiểm: general-purpose, opus, effort high, nêu (i)/(ii) chưa song song và cụm cụt); vòng 5 chấp nhận. Đã đọc mặt trang: chỉ phát biểu tổng quát, ký hiệu $x=\varphi(u)$ của MD04, ví dụ ba điểm và dòng đích ở ghi chú; 57 âm tiết, 4 dòng ≤ 16; tác tử sửa chạy Playwright hai kích thước, 0 lỗi, đáy 328 px logic ở 16:9.
+
+## Rà soát mạch 4, 2026-10-15
+
+Người dùng nhận xét các trang mạch 4 "Độ cong và chi phí tính toán" không tập trung vào chủ đề của mục.
+
+### Tác tử
+
+| Vai | Loại | Mô hình | Effort | Ghi tệp |
+|---|---|---|---|---|
+| Rà soát mạch 4, tác tử 1 (chỉ đọc) | general-purpose | opus | high | không |
+| Rà soát mạch 4, tác tử 2 (chỉ đọc) | general-purpose | opus | high | không |
+| Chỉnh sửa (tác tử ghi duy nhất) | general-purpose | opus | medium | có |
+
+Ghi theo brief của điều phối viên.
+
+### Phát hiện chính và quyết định
+
+| Mức độ | Trang chiếu | Vấn đề | Quyết định | Trạng thái |
+|---|---|---|---|---|
+| nghiêm trọng | CP00–CP08 | Khung "tổng chi phí = số bước × chi phí một bước" chỉ lên mặt trang ở CP08 | CP00 dòng dẫn và CP01 "Nhu cầu:" nêu khung; mỗi trang ghi thừa số nó điền | đã sửa |
+| trung bình | CP01, CP04, CP05 | Dạy lại lý thuyết Bài 04 (hai quy tắc, Định lý 04.35) không nói điền thừa số nào | nhãn "Nhắc lại:"; CP05 gộp vào CP04, một dòng giả thiết và một công thức mỗi phương pháp; "Ý nghĩa:" gắn với thừa số số bước | đã sửa |
+| trung bình | CP02 | Dừng ở "Newton 5 bước, hạ gradient 71 bước", dễ dẫn tới "Newton tốt hơn" | khuôn ví dụ, "Diễn giải: $n=d=1$ nên một bước cùng bậc chi phí; với $n$, $d$ lớn thì không" | đã sửa |
+| trung bình | CP05a; một dòng CP03 | Lệch chủ đề (bất biến affine; $L/F''_\lambda(w_\lambda)$) | bỏ CP05a, một câu vào ghi chú CP01; dòng CP03 xuống ghi chú | đã sửa |
+| trung bình | CP03 (ghi chú) | Giải thích sai: số bước Newton tăng vì ngưỡng $\mu^2/L_H$ co theo $\lambda^2$ | ngưỡng chỉ là điều kiện đủ; với $\lambda=0{,}005$, $\lvert F'_\lambda(w_k)\rvert$ đều trên ngưỡng mà $e_5=1{,}4\cdot10^{-9}$; số bước tăng chủ yếu vì $w_\lambda=2{,}13;\ 3{,}91;\ 5{,}83$ (tính lại bằng Python). Ví dụ 05.20 của ghi chú bài giảng sửa theo | đã sửa |
+| trung bình | CP06, CP06a, CP07 | Kể lại cùng phép cộng | CP06a gộp vào CP06 thành một bảng; CP07 chứng minh một dòng | đã sửa |
+| trung bình | CP10 câu 1 | Kỹ năng Bài 04 (bước Newton một chiều) | thay bằng Bài tập 9 trên ví dụ năm mẫu | đã sửa |
+| nhẹ | CP08, CP08a (ghi chú) | "khoảng 250", "360" lệch ghi chú bài giảng; tài liệu làm chủ ngữ ("trang chỉ nêu", "trang không kết luận") | 253, 365; viết lại câu | đã sửa |
+| nhẹ | CP07a | Hai ý (tỉ số, $d>n$) trên một trang | tỉ số sang CP08; tiêu đề "Chi phí một bước Newton khi $d>n$" | đã sửa |
+| nhẹ | CP11 | Bốn gạch lặp CP04, CP07, CP09 | phép tính ngân sách $10^{12}$ | đã sửa |
+
+Quyết định của điều phối viên: giữ tên mạch và mã trang; thứ tự CP00, CP01, CP02, CP04, CP03, CP06, CP07, CP07a, CP08, CP08a, CP09, CP10, CP10a, CP11; bỏ CP05a, gộp CP05 vào CP04 và CP06a vào CP06. Deck 65 → 62 trang. CP04 gộp được trong trần (49 âm tiết, 2 công thức hiển thị), nên không cần giữ hai trang.
+
+### Việc tác tử chỉnh sửa đã làm
+
+- Deck Bài 05: mạch 4 theo thứ tự trên; mọi con số trên mặt trang giữ; số mới (ngân sách CP11: $10^4$, $9$, $27$; CP10a: $7650$, $1702$; ghi chú CP03: dãy $\lvert F'_\lambda(w_k)\rvert$, $w_\lambda$) kiểm bằng Python. Ghi chú LG02 ("giả mã Newton") và CP07 ("của giả mã") đổi thành "bảng phép tính". TK02 khớp ký hiệu CP04 ($\kappa\log\frac{e_0}\varepsilon$; $\frac{f(w_0)-f^*}\gamma+\log_2\log_2\frac{\varepsilon_0}\varepsilon$).
+- CP02: bảng năm hàng bỏ khỏi mặt trang (cùng hình và dòng diễn giải làm trang tràn 16:9); dãy $e_k$ của Newton lên mặt trang, dãy $w_k$ vào ghi chú.
+- Học liệu: `materials/lec-05/lecture-note.md` Ví dụ 05.20, đoạn "Diễn giải" sửa theo giải thích mới; 253 và 365 đã khớp sẵn. `exercises.md` không đổi. Đã chạy `sync-local-materials.py` và `--check`.
+- Kế hoạch: storyboard (phạm vi, bảng mạch, KN7, KN8, mục từng trang, tiểu mục "Trang đã bỏ hoặc gộp ở mạch 4"), outline (quy mô, bản đồ mạch, mục CP, KQ9, R8, mục cập nhật cuối tệp); lec-06 outline và storyboard đổi "Bài 05 CP05" thành "Bài 05 CP04 (Định lý 4, số bước của Newton)".
+
+### Mật độ mặt trang (token có chữ, bỏ tiêu đề, KaTeX, ghi chú)
+
+CP00 35, CP01 50, CP02 37, CP04 49, CP03 43, CP06 31, CP07 50, CP07a 36, CP08 39, CP08a 27, CP09 34, CP10 51, CP10a 30, CP11 47. Trang vượt mục tiêu 40 có lý do ở storyboard (CP01, CP04, CP03, CP07, CP10, CP11); không trang nào vượt 60, ≤ 6 dòng, ≤ 3 công thức hiển thị.
+
+### Tự kiểm no-ai-slop (Edit mode)
+
+Câu mới trên mặt trang là mệnh đề toán ngắn với nhãn được phép ("Nhu cầu:", "Nhắc lại:", "Ý nghĩa:", "Diễn giải:", "Kết luận:", "Lời giải:"); không câu dẫn rỗng, không nhấn mạnh; ghi chú không lấy tài liệu làm chủ ngữ. Đạt.
+
+### Kiểm tra
+
+- Playwright 1600×900 và 390×844, chờ 1600 ms sau `Reveal.slide(h,v,99)`: 0 lỗi console, 0 `.katex-error`, tổng 62 trang; đáy nội dung ở 16:9 của mọi trang mạch 4 dưới 652,6 px logic (lớn nhất CP06 631, CP01 614, CP02 583).
+- `git diff --check` sạch.
+
+**Vòng sửa nhẹ mạch 4 (2026-10-15).** Tác tử rà lại (general-purpose, opus, effort high) và tác tử kiểm định hiển thị (general-purpose, opus, effort high), theo brief của điều phối viên; không phát hiện chặn, nghiêm trọng hay trung bình. Đã sửa: ghi chú CP09 (cuối mạch dùng $nd\approx3{,}68\cdot10^{10}$, không phải $7{,}4\cdot10^{10}$); ghi chú CP04 nêu ngưỡng $\eta=\min(1,3(1-2\alpha))\mu^2/L_H$, bằng $\mu^2/L_H$ khi $\alpha=\tfrac14$; CP01 định nghĩa $e_k$ tại chỗ; CP10a "Hessian khả nghịch", "khoảng $5{,}5$ lần"; ghi chú CP11 bỏ "trang này" làm chủ ngữ; storyboard thêm lý do vượt 40 cho CP03, KN8 "bảng phép tính"; nhóm KaTeX chống ngắt dòng ở CP02, CP08, CP09, CP10, CP10a; CP02 "Diễn giải:" rút gọn; CP00 đã có `&nbsp;·`. Âm tiết: CP00 35, CP01 48, CP02 37, CP08 39, CP09 34, CP10 51, CP10a 33. Playwright 1600×900 và 390×844 trên CP00, CP01, CP02, CP08, CP09, CP10, CP10a: 0 lỗi console, 0 `.katex-error`, đáy lớn nhất 583 px logic (CP02); `git diff --check` sạch.
+
+### Quyết định của điều phối viên về mạch 4 (Opus 5.5 high, 2026-10-15)
+
+| Đầu ra | Tác tử (lời gọi `Agent`/`SendMessage`) | Quyết định | Lý do |
+|---|---|---|---|
+| Rà soát mạch kể mạch 4 | general-purpose, opus, effort high, chỉ đọc | chấp nhận một phần | Chấp nhận khung tích hai thừa số, bỏ CP05a, gộp CP06/CP06a, đổi CP10 câu 1 sang ví dụ năm mẫu (tự kiểm 7650, 1702); không đổi tên mạch, không đánh số lại mã |
+| Rà soát sư phạm mạch 4 | general-purpose, opus, effort high, chỉ đọc | chấp nhận một phần | Chấp nhận gộp CP04/CP05 thành trang nhắc lại, sửa giải thích ngưỡng bậc hai, phép tính ngân sách ở CP11 (tự kiểm 10⁴, 9, 27); câu ngân sách cho CP10 không dùng |
+| Sửa mạch 4 | general-purpose, opus, effort medium | yêu cầu sửa → chấp nhận | Vòng 1 đọc mặt trang 14 trang; vòng sửa nhẹ xử lý 7 phát hiện nhẹ của tái kiểm và các lỗi ngắt dòng |
+| Tái kiểm mạch kể và toán | general-purpose, opus, effort high, chỉ đọc | chấp nhận | 0 phát hiện chặn/nghiêm trọng/trung bình; mọi số liệu tính lại khớp |
+| Kiểm định hiển thị | general-purpose, opus, effort high, chỉ đọc | chấp nhận | 62 trang, 0 lỗi console, 0 `.katex-error`, không trang lấn footer; ArrowRight theo mạch là hành vi mặc định của Reveal |

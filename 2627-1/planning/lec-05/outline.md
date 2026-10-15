@@ -19,7 +19,7 @@ Dàn bài này lập ngày 2026-10-11 theo thiết kế hai bài do người dù
 - **Tệp deck đề xuất:** `2627-1/lecture-05-khong-gian-dac-trung-nhieu-chieu.html`. Học liệu: `2627-1/materials/lec-05/{lecture-note,exercises}.md`, viết lại sau khi deck ổn định.
 - **Đối tượng:** sinh viên năm ba đã học Bài 00–04; Bài 05b (hội tụ hạ gradient và SGD) và Bài 05c (xác suất đến trung bình nhóm nhỏ) là học liệu bổ trợ.
 - **Thời lượng:** Buổi 5 theo đề cương DOCX gồm 2 tiết LT và 1 tiết BT, tức ba khối 1 tiết. Mỗi phiên A1, A2, A3 chiếm một khối. Khối 1 gồm mạch MD và HQ, khối 2 là LG, khối 3 gồm CP và KL (từ 2026-10-15: CP, KL và TK). Thời lượng ghi bằng phần tiết, không quy đổi ra phút.
-- **Quy mô (cập nhật 2026-10-12):** 67 trang, 5 mạch (cập nhật 2026-10-15: 65 trang, 6 mạch; mục "Cập nhật 2026-10-15" cuối tệp); xem mục "Cập nhật 2026-10-12" cuối tệp. **Quy mô ban đầu:** 44 trang (43 trang theo kế hoạch đã duyệt; trang HQ08 được tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11), 5 mạch ngoài (mở đầu, ba mạch ứng với ba phiên, kết luận). Không gộp hai phiên vào một mạch; không tách phiên nào thành hai mạch vì mỗi phiên có một nhu cầu liền mạch.
+- **Quy mô (cập nhật 2026-10-12):** 67 trang, 5 mạch (cập nhật 2026-10-15: 62 trang, 6 mạch, sau rà soát mạch 5 và mạch 4; các mục "Cập nhật 2026-10-15" cuối tệp); xem mục "Cập nhật 2026-10-12" cuối tệp. **Quy mô ban đầu:** 44 trang (43 trang theo kế hoạch đã duyệt; trang HQ08 được tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11), 5 mạch ngoài (mở đầu, ba mạch ứng với ba phiên, kết luận). Không gộp hai phiên vào một mạch; không tách phiên nào thành hai mạch vì mỗi phiên có một nhu cầu liền mạch.
 
 **Luận đề xuyên suốt** (yêu cầu người dùng 2026-10-11, áp dụng cho cả Bài 05 và Bài 06). Bài 01–04 làm việc trong một khung gọn: hàm mục tiêu lồi có cực tiểu chính xác, và các phương pháp tất định hội tụ tới cực tiểu đó với bảo đảm có điều kiện. Khung này không còn là bức tranh đúng khi mô hình và dữ liệu lớn, vì hai lý do được nêu sớm (MD03c) và được kiểm chứng lần lượt trong bài:
 
@@ -128,10 +128,10 @@ Thời lượng tính bằng tiết; mỗi khối 1 tiết. Khối 1 = MD + HQ; 
 | MD. Bài toán trung tâm và khung chung | Nêu sự thay đổi bức tranh so với Bài 01–04, hai lý do, khung và ký hiệu | Khung lồi, phương trình chuẩn, hồi quy logistic, hạ gradient, Newton (Bài 01–04) | Vấn đề trung tâm, ba nhu cầu, ký hiệu | MD01, MD02, MD03a–c, MD04 (6) | 0,10 | 0 | — |
 | HQ. Hồi quy nhiều chiều (A1) | **Nhu cầu:** xác định điều gì thay đổi ở nghiệm bình phương nhỏ nhất khi $d$ tăng tới và vượt $n$ | Phương trình chuẩn và điều kiện duy nhất (Bài 01, Mệnh đề 01.6), ridge (Bài 02, Mệnh đề 02.21) | Ba hệ quả: không duy nhất khi $d>n$, khoảng cách huấn luyện–xác thực, $\kappa$ không giảm; chính quy hóa khắc phục cho bình phương | HQ00 (tiêu đề), HQ01–HQ12, HQ05a, HQ07a, HQ11a (16) | 0,56 | 0,34 | HQ11, HQ11a |
 | LG. Hồi quy logistic và chính quy hóa (A2) | **Nhu cầu:** giải thích vì sao một bài toán học lồi có thể không có cực tiểu, và sửa bài toán để cực tiểu tồn tại, duy nhất | Chế độ nội suy $\operatorname{rank}X=n$ (HQ07), Bài 01 VD 01.6, 01.7, HQ 01.41 | $F_\lambda$ có nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}(X^TX)/(4n\lambda)$, với $\lVert x_i\rVert\le r$: $\kappa\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn | LG00 (tiêu đề), LG01–LG12, LG05a, LG08a, LG11a (16) | 0,67 | 0,33 | LG11, LG11a |
-| CP. Độ cong và chi phí tính toán (A3) | **Nhu cầu:** xác định chi phí tính toán của một bước cập nhật hội tụ nhanh hơn | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (05b) | Chi phí một bước $O(nd)$ và $O(nd^2+d^3)$, số bước theo $\kappa$ và theo hai giai đoạn Newton, ngưỡng hòa vốn; mọi bước đều trả chi phí theo $n$ | CP00 (tiêu đề), CP01–CP11, CP05a, CP06a, CP07a, CP08a, CP10a (17) | 0,53 | 0,25 | CP10, CP10a |
+| CP. Độ cong và chi phí tính toán (A3) | **Nhu cầu:** so tổng chi phí của hạ gradient và Newton: số bước theo độ cong nhân chi phí một bước (sửa 2026-10-15) | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (05b) | Chi phí một bước $O(nd)$ và $O(nd^2+d^3)$, số bước theo $\kappa$ và theo hai giai đoạn Newton, ngưỡng hòa vốn; mọi bước đều trả chi phí theo $n$ | CP00 (tiêu đề), CP01–CP04, CP06–CP11, CP07a, CP08a, CP10a (14; sửa 2026-10-15) | 0,53 | 0,25 | CP10, CP10a |
 | KL. Giới hạn của tối ưu tất định | **Nhu cầu:** xác định độ chính xác tối ưu cần thiết khi đích là sai số trên dữ liệu mới; nêu hai giới hạn chuyển sang Bài 06 | Tổng chi phí (CP08, CP11); $F$ chỉ đại diện cho $R$ (HQ05) | Dừng sớm (trực quan, định nghĩa), hai giới hạn (i) chi phí và (ii) biểu diễn | KL00 (tiêu đề), KL01, KL01a, KL03 (4) | 0,12 | 0 | TK03, TK03a |
 | TK. Tổng hợp và chuyển giao | Đối chiếu kết quả với ba mục tiêu và giả thiết không được bỏ | Đầu ra HQ, LG, CP, KL | Hai bảng tổng kết, bài tập chuyển giao có lời giải, tài liệu đọc, bài về nhà | TK00 (tiêu đề), TK01–TK04, TK03a (6) | 0,02 | 0,08 | TK03, TK03a |
-| **Tổng** | | | | **65** | **2,00** | **1,00** | 8 trang |
+| **Tổng** | | | | **62** | **2,00** | **1,00** | 8 trang |
 
 Cột "Trang" cập nhật ngày 2026-10-12 (văn phong MAT1101): tên mạch giữ nguyên và trùng tên trên trang "Nội dung" (MD03a) và trên bốn trang tiêu đề mạch; số trang tăng từ 44 lên 67 do bốn trang tiêu đề mạch và các trang tách theo trần mật độ (chi tiết ở mục "Cập nhật 2026-10-12" cuối tệp). Thời lượng của mạch không đổi.
 
@@ -547,6 +547,8 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 ### CP. Độ cong và chi phí tính toán (phiên A3)
 
 **Nhu cầu của mạch:** xác định chi phí tính toán của một bước cập nhật hội tụ nhanh hơn. 0,53 tiết LT + 0,25 tiết BT.
+
+**Cập nhật 2026-10-15 (rà soát mạch 4).** Đặc tả dưới đây giữ cho bản trước. Deck hiện hành lấy khung tổng chi phí = số bước × chi phí một bước làm trục, thứ tự CP00, CP01, CP02, CP04 (gộp CP05), CP03, CP06 (gộp CP06a), CP07, CP07a, CP08, CP08a, CP09, CP10, CP10a, CP11; CP05a bỏ. Thời lượng theo trang: CP01 0,05; CP02 0,05 + 0,05 BT; CP04 0,08 (nhận 0,03 của CP05); CP03 0,06 (nhận 0,01); CP06 0,06; CP07 0,06; CP08 0,07; CP09 0,04; CP10 + CP10a 0,20 BT; CP11 0,06 (nhận 0,01); tổng 0,53 LT + 0,25 BT. Chi tiết ở mục "Cập nhật 2026-10-15: rà soát mạch 4" cuối tệp.
 
 Ví dụ xuyên mạch (VD-A3, mục Ví dụ số): $F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2$ (dữ liệu Bài 01 VD 01.6, dạng trung bình), $w_0=0$, dừng khi $F_\lambda(w_k)-F_\lambda(w_\lambda)\le10^{-8}$.
 
@@ -997,7 +999,7 @@ Cột "Nhãn trên trang" là nhãn hiển thị trên mặt trang; mã KQ chỉ
 | KQ7a | Định lý 2 | $F_\lambda$ lồi mạnh hằng số $\lambda$, nghiệm duy nhất, $\lVert w_\lambda\rVert\le\sqrt{2F(0)/\lambda}$, với mất mát logistic $\sqrt{2\log2/\lambda}$ | Bài 01 Hệ quả 01.41, Định nghĩa 01.42, Mệnh đề 01.46(b) | Phát biểu lại; cận $\lVert w_\lambda\rVert$ chứng minh mới | LG08 |
 | KQ7b | Mệnh đề 4 | $L=\lambda_{\max}(X^TX)/(4n)+\lambda$, $\kappa\le1+\lambda_{\max}/(4n\lambda)$; nếu $\lVert x_i\rVert\le r$ thì $L\le r^2/4+\lambda$, $\kappa\le1+r^2/(4\lambda)$ ($r\ge1$ vì có tọa độ hằng) | Mới | Chứng minh trên trang | LG09 |
 | KQ8 | Định lý 3 (Bài 05b, T2b) | Hạ gradient bước $1/L$: $e_k\le(1-1/\kappa)^ke_0$ | Bài 05b T2b (C05–C06); Bài 04 RG17 | Phát biểu lại, trích dẫn | CP04, LG09 |
-| KQ9 | Định lý 4 | Newton hai giai đoạn, $\log_2\log_2(\varepsilon_0/\varepsilon)$ | Bài 04 RN07; Boyd §9.5.3 | Phát biểu lại, trích dẫn | CP05 |
+| KQ9 | Định lý 4 | Newton hai giai đoạn, $\log_2\log_2(\varepsilon_0/\varepsilon)$ | Bài 04 RN07; Boyd §9.5.3 | Phát biểu lại, trích dẫn | CP05; từ 2026-10-15 CP04 |
 | KQ10 | Mệnh đề 5 | Chi phí một bước $O(nd)$, $O(nd^2+d^3)$; trường hợp $d>n$ | Mới (đếm); Boyd §9.7 | Suy ra trên trang | CP06–CP07 |
 | KQ11 | không lên trang | Tách được ⇒ $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0$ | Mới | Bài tập về nhà | ghi chú LG08 |
 | KQ12 | "Nhắc lại (Bài 02, Mệnh đề 02.21(c))" | Ridge có nghiệm duy nhất với mọi $d$ | Bài 02 Mệnh đề 02.21 | Phát biểu lại | HQ10 |
@@ -1027,7 +1029,7 @@ Cột "Nhãn trên trang" là nhãn hiển thị trên mặt trang; mã KQ chỉ
 | R5 | Cận số bước bi quan: $\kappa\log(e_0/\varepsilon)$ lớn hơn số bước thực 9–20 lần trên ví dụ | CP03, CP08 nêu rõ để tránh kết luận sai rằng Newton luôn rẻ hơn khi $\kappa$ vượt ngưỡng tính từ cận | mở |
 | R6 | Trùng lặp với Bài 01 (VD 01.6, 01.7, Tình huống 01.1, HQ 01.41) | LG chỉ phát biểu lại các kết quả này; phần mới là trường hợp $d$ tổng quát, nối với chế độ nội suy, và cận $L$, $\kappa$ | mở |
 | R7 | Quá tải trang: khối 1 có 16 trang (gồm tiêu đề, mục tiêu; HQ08 đã tách thành hai trang), khối 3 có 16 trang (gồm 5 trang kết luận) | Nếu kiểm tra thời lượng cho thấy quá tải, cắt theo thứ tự: chuyển cận độ nhạy của HQ09 vào ghi chú; gộp KL02 vào ghi chú KL01; chuyển CP10(c) sang bài tập về nhà | đóng 2026-10-15 cho khối 3: bỏ KL02, KL03a, KL04, KL04a (rà soát mạch 5); khối 1 không đổi |
-| R8 | Trang dày công thức: LG05, LG09, LG10, CP05 có định lý kèm chứng minh, ví dụ hoặc ánh xạ ký hiệu, có nguy cơ vượt khung 16:9 | Người soạn deck tách chứng minh LG05 sang trang kế nếu cần (45 trang, vẫn trong khoảng 36–45); ở LG10 chuyển dòng $\lambda=0$ hoặc dòng $X^TX$ xuống ghi chú trước khi tách trang; ghi vào storyboard | mở |
+| R8 | Trang dày công thức: LG05, LG09, LG10, CP05 có định lý kèm chứng minh, ví dụ hoặc ánh xạ ký hiệu, có nguy cơ vượt khung 16:9 | Người soạn deck tách chứng minh LG05 sang trang kế nếu cần (45 trang, vẫn trong khoảng 36–45); ở LG10 chuyển dòng $\lambda=0$ hoặc dòng $X^TX$ xuống ghi chú trước khi tách trang; ghi vào storyboard | đóng 2026-10-15: CP05 gộp vào CP04, hai công thức hiển thị, trang vừa khung |
 
 ### Giai đoạn triển khai tiếp theo
 
@@ -1077,3 +1079,19 @@ Mạch 1–4 không đổi trang; MD03a thêm mục 6. Thay đổi nội dung:
 - Bỏ KL02 (RCV1), KL03a (XOR), KL04, KL04a (bảng và bốn bảo đảm): nội dung còn ở ghi chú bài giảng (Mục 5.2–5.4) và Bài 06 (E02b, B01–B03, A03, F02–F04, G01–G01b).
 - TK03: câu 1 cụ thể; TK03a "Lời giải:" trên mặt trang, toán giữ nguyên lời giải cũ trong ghi chú KL05b.
 - MD02: mục tiêu 1 nêu chọn $d$, $\lambda$, bước dừng bằng sai số xác thực.
+
+## Cập nhật 2026-10-15: rà soát mạch 4
+
+Người dùng nhận xét các trang mạch 4 không tập trung vào chủ đề. Hai tác tử rà soát chỉ đọc cùng chẩn đoán: khung tổng chi phí chỉ lên mặt trang ở CP08; CP01–CP05a dạy lại lý thuyết Bài 04 mà không nói mình điền thừa số nào; CP02 dừng ở "Newton 5 bước, hạ gradient 71 bước"; CP05a lệch chủ đề; CP06, CP06a, CP07 kể lại cùng phép cộng; CP10 câu 1 là kỹ năng Bài 04.
+
+| Mạch | Trang tiêu đề | Trang theo thứ tự |
+|---|---|---|
+| 4. Độ cong và chi phí tính toán | CP00 | CP00, CP01, CP02, CP04 (gộp CP05), CP03, CP06 (gộp CP06a), CP07, CP07a, CP08, CP08a, CP09, CP10, CP10a, CP11 |
+
+- CP00, CP01 nêu khung tổng chi phí = số bước × chi phí một bước; CP01 gắn nhãn "Nhắc lại:" cho hai quy tắc của Bài 04; bất biến affine (CP05a cũ) chỉ còn ở ghi chú CP01.
+- CP02 theo khuôn ví dụ, kết bằng "Diễn giải:" ($n=d=1$ nên chỉ cần so số bước).
+- CP04 gộp Định lý 3 và Định lý 4 (giả thiết một dòng, một công thức số bước mỗi phương pháp); CP03 đặt sau, ghi chú sửa giải thích về ngưỡng $\mu^2/L_H$ (điều kiện đủ; số bước Newton tăng chủ yếu vì $w_\lambda$ xa điểm đầu).
+- CP06 là bảng "Phép tính | Hạ gradient | Newton"; CP07 chứng minh một dòng; CP07a chỉ còn trường hợp $d>n$; tỉ số $d+d^2/n$ lên CP08.
+- CP10 câu 1 dùng ví dụ năm mẫu (Bài tập 9): $7650$ và $1702$ bước theo Định lý 3, Newton một bước.
+- CP11 tính số bước trong ngân sách $10^{12}$: $10^4$ bước hạ gradient hoặc $9$ bước Newton ở $(10^5,10^3)$; RCV1 $27$ bước hạ gradient, không đủ một bước Newton.
+- R8 (trang dày công thức, CP05) đóng: CP05 gộp vào CP04 với hai công thức hiển thị.

@@ -202,7 +202,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Vị trí trong khung:** bài toán trung tâm và luận đề.
 - **LLO/CLO:** LLO11; CLO1.
 - **Bước hành trình:** nhu cầu của toàn bài, đứng trước KN1–KN9.
-- **Quyết định:** `thêm` — chỉ dẫn người dùng 2026-10-11 yêu cầu nêu luận đề sớm theo dạng “mất gì, giữ gì”; ghi chú phát biểu Newton theo Bài 05 CP05, không viết “Newton không phụ thuộc $\kappa$” vô điều kiện (điểm hòa giải 2); sau kiểm định storyboard, mặt trang không khẳng định SGD giảm theo kỳ vọng, không dùng $p$ trước A04 và dùng nhãn “Vấn đề của bài” thay cho “Câu hỏi”.
+- **Quyết định:** `thêm` — chỉ dẫn người dùng 2026-10-11 yêu cầu nêu luận đề sớm theo dạng “mất gì, giữ gì”; ghi chú phát biểu Newton theo Bài 05 CP04 (Định lý 4, số bước của Newton), không viết “Newton không phụ thuộc $\kappa$” vô điều kiện (điểm hòa giải 2); sau kiểm định storyboard, mặt trang không khẳng định SGD giảm theo kỳ vọng, không dùng $p$ trước A04 và dùng nhãn “Vấn đề của bài” thay cho “Câu hỏi”.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 140 → 77 âm tiết; gỡ `.dense`; bảng ba cột có nhãn dòng Đích, Bảo đảm, Biểu diễn (ii), Chi phí (i); bỏ dòng “Vấn đề của bài” (nay là trang Nội dung) và câu dài về hai giới hạn; ô “SGD” đổi thành “theo kỳ vọng” vì SGD chưa được định nghĩa; ghi chú rút còn khoảng 255 âm tiết, bỏ đoạn Newton (đã có ở E01, G02). Ngoại lệ trần 60: bảng so sánh, trần 80.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — đứng sau A04 (thứ tự A02b → A04 → A03, quyết định B3) để $F$, $R$ và tập xác thực có tên trước bảng; ô “Đích” thành “$F$ chỉ ước lượng $R$”, ô “Biểu diễn (ii)” thành “không lồi: chỉ chặn được $\lVert\nabla F\rVert$” (hai khái niệm chưa định nghĩa là đại lượng thay thế và điểm dừng xấp xỉ rời mặt trang); ghi chú thêm “đại lượng thay thế (surrogate)” và câu bảo đảm chỉ chặn chuẩn gradient. 75 → 67 âm tiết (trần 80, bảng so sánh).
 
@@ -674,7 +674,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Vị trí trong khung:** lý do tính toán; mở bước 5 (SGD).
 - **LLO/CLO:** LLO11, LLO15 (chi phí Newton); CLO4.
 - **Bước hành trình:** KN7 nhu cầu.
-- **Quyết định:** `thêm` — luận đề yêu cầu chỉ ra SGD bị buộc bởi chi phí; ghi chú chỉ so chi phí một bước, phát biểu Newton theo Bài 05 CP05 (điểm hòa giải 2).
+- **Quyết định:** `thêm` — luận đề yêu cầu chỉ ra SGD bị buộc bởi chi phí; ghi chú chỉ so chi phí một bước, phát biểu Newton theo Bài 05 CP04 (Định lý 4, số bước của Newton) (điểm hòa giải 2).
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 98 → 56 âm tiết; gỡ `.dense`; câu dẫn bỏ mã T7 và viết đầy đủ “hạ gradient ngẫu nhiên (SGD)” ở lần đầu trên mặt trang; panel “Lý do tính toán” thay bằng “Kết luận:”; chú thích rút gọn; ghi chú rút đoạn so sánh bảng với Bài 05.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — ghi chú: tên đầy đủ của RCV1 (Reuters Corpus Volume I) ở lần đầu.
 
@@ -1036,7 +1036,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Vị trí trong khung:** bước 6 của chuỗi (lựa chọn phương pháp).
 - **LLO/CLO:** LLO15 (chi phí Newton), LLO12; CLO4.
 - **Bước hành trình:** ứng dụng tổng hợp KN7, KN8, KN9.
-- **Quyết định:** `thêm` — cần bảng quyết định theo $(n,p)$ và tính lồi; dòng Newton phát biểu theo Bài 05 CP05 (điểm hòa giải 2); câu hỏi vận dụng chuyển sang G03 theo kiểm định storyboard.
+- **Quyết định:** `thêm` — cần bảng quyết định theo $(n,p)$ và tính lồi; dòng Newton phát biểu theo Bài 05 CP04 (Định lý 4, số bước của Newton) (điểm hòa giải 2); câu hỏi vận dụng chuyển sang G03 theo kiểm định storyboard.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 82 → 72 âm tiết; gỡ `.dense`; bỏ mã T2, T6, T7, T8 trong ô; bỏ chú “(so sánh dưới ngân sách cố định)”. Ngoại lệ: bảng so sánh 5 hàng, 72 âm tiết dưới trần 80; bộ đo đếm 8 dòng theo số ô chữ, ghi ngoại lệ vì bảng quyết định cần đủ năm tình huống.
 - **Sửa vòng tái kiểm 2026-10-12:** dòng 4 ghi “$O(1/\sqrt K)$, trung bình theo $k$”, bước “$\eta$ theo $K$”; dòng 5 “không lồi, $\mathcal B>\mathcal B^*$ (so sánh dưới ngân sách cố định)”, chú thích dưới bảng $\mathcal B^*=L\Delta_0(n-b)^2/(2\sigma_1^2)$, “dòng 4–5 cần $F$ trơn; ReLU: định hướng” (bảng ghi ngưỡng ngay trong ô làm trang tràn khung 16:9: 744 px); 78 âm tiết, cao 658/675 px.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — “quét hết dữ liệu” → “toàn bộ $n$ mẫu” (A3; bản “… mỗi bước” làm ô ba dòng và bảng vượt khung, cột đã tên “Mỗi bước”). 77 → 76 âm tiết. Ghi chú bỏ “cỡ”.

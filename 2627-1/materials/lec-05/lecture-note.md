@@ -1551,7 +1551,7 @@ Số bước của giai đoạn bậc hai, $\log_2\log_2(\varepsilon_0/\varepsil
 |---|---:|---:|---:|
 | $\mu^2/L_H=6\sqrt3\,\lambda^2$ | $2{,}6\cdot10^{-2}$ | $2{,}6\cdot10^{-4}$ | $2{,}6\cdot10^{-6}$ |
 
-**Diễn giải.** Ngưỡng co theo $\lambda^2$, và nghiệm $w_\lambda$ nằm xa điểm đầu hơn khi $\lambda$ giảm. Đó là lý do số bước Newton của Ví dụ 05.19 tăng nhẹ từ $4$ lên $7$ dù mọi bước là bước đầy đủ. Chỉ riêng số bước của giai đoạn bậc hai mới không phụ thuộc $\kappa$, đúng như Định lý 05.33.
+**Diễn giải.** Ngưỡng co theo $\lambda^2$, nhưng nó chỉ là điều kiện đủ của Định lý 05.33, không phải thời điểm hội tụ bậc hai thực sự bắt đầu. Với $\lambda=0{,}005$, ta có $\lvert F_\lambda'(w_k)\rvert=0{,}50;\ 0{,}11;\ 0{,}034;\ 0{,}0078;\ 7{,}3\cdot10^{-4}$ ở năm bước đầu, đều trên ngưỡng $2{,}6\cdot10^{-4}$, mà sai số đã xuống $e_5=1{,}4\cdot10^{-9}$. Số bước Newton của Ví dụ 05.19 tăng nhẹ từ $4$ lên $7$ chủ yếu vì nghiệm nằm xa điểm đầu hơn khi $\lambda$ giảm: $w_\lambda=2{,}13;\ 3{,}91;\ 5{,}83$. Chỉ riêng số bước của giai đoạn bậc hai trong cận mới không phụ thuộc $\kappa$, đúng như Định lý 05.33.
 
 **Kiểm tra lại.** Tại $s=\tfrac{3-\sqrt3}6\approx0{,}2113$: $0{,}2113\cdot0{,}7887\cdot0{,}5774\approx0{,}0962$.
 :::

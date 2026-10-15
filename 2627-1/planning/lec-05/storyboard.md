@@ -10,6 +10,8 @@ Quy ước viết tắt: lý thuyết (LT), bài tập (BT), chuẩn đầu ra b
 
 **Cập nhật 2026-10-15 (rà soát mạch 5).** Theo quyết định của điều phối viên sau hai báo cáo rà soát chỉ đọc, deck có 65 trang trong 6 mạch: bỏ KL02, KL03a, KL04, KL04a (mục giữ ở tiểu mục "Trang đã bỏ 2026-10-15" với quyết định `bỏ`); mạch 5 "Giới hạn của tối ưu tất định" còn KL00, KL01, KL01a, KL03 theo thứ tự này; mạch 6 mới "Tổng hợp và chuyển giao" gồm TK00 (trang tiêu đề mạch mới), TK01–TK04 (mã cũ KL05, KL05a, KL05b, KL05c) và TK03a (lời giải trên mặt trang, mới). Số mạch 6 nằm trong khoảng 5–7. Hai ngoại lệ trần 80 của KL02 và KL04 không còn; trang vượt 60 âm tiết hiện là MD02 (mục tiêu, 62), TK01 (tổng kết, 65), đều thuộc loại trần 80. Thời lượng buổi không đổi: phần tiết của KL02 ($0{,}01$) và KL04 ($0{,}02$) chia cho KL01/KL01a, KL03 và mạch 6, mỗi nơi $0{,}01$ tiết LT. Storyboard có đúng 65 mục cho 65 trang, cộng bốn mục trang đã bỏ.
 
+**Cập nhật 2026-10-15 (rà soát mạch 4).** Người dùng nhận xét các trang mạch 4 không tập trung vào chủ đề. Theo quyết định của điều phối viên, mạch 4 lấy khung "tổng chi phí = số bước × chi phí một bước" làm trục: thứ tự CP00, CP01, CP02, CP04 (gộp CP05), CP03, CP06 (gộp CP06a), CP07, CP07a, CP08, CP08a, CP09, CP10, CP10a, CP11; CP05a bỏ. Deck còn 62 trang trong 6 mạch; storyboard có 62 mục cho 62 trang, cộng bảy mục trang đã bỏ hoặc gộp (KL02, KL03a, KL04, KL04a, CP05, CP05a, CP06a). Thời lượng mạch 4 không đổi (0,53 LT + 0,25 BT): phần 0,05 của CP05 chia cho CP04 (+0,03), CP03 (+0,01), CP11 (+0,01).
+
 Bài gồm 44 trang trong 5 mạch ngoài (43 trang theo kế hoạch đã duyệt; HQ08 tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11): mở đầu (MD), ba mạch ứng với ba phiên A1–A3 của thiết kế (HQ, LG, CP) và kết luận (KL). Số mạch nằm trong khoảng 5–7; không có ngoại lệ cần ghi. Thời lượng theo đề cương: 2 tiết LT + 1 tiết BT, chia thành ba khối 1 tiết (khối 1 = MD + HQ, khối 2 = LG, khối 3 = CP + KL). Deck được dựng ngày 2026-10-12 (`lecture-05-khong-gian-dac-trung-nhieu-chieu.html`, 44 trang, đúng mã và thứ tự trang của storyboard); các sai lệch về hình và bố cục ghi ở nhật ký, vòng dựng deck.
 
 **Vấn đề trung tâm.** Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác định điều gì thay đổi khi số đặc trưng $d$ tăng so với kích thước mẫu $n$: cực tiểu của rủi ro thực nghiệm có tồn tại và duy nhất không, có dự đoán tốt trên dữ liệu mới không, và tính nó tốn bao nhiêu phép tính.
@@ -30,7 +32,7 @@ Bài gồm 44 trang trong 5 mạch ngoài (43 trang theo kế hoạch đã duy�
 | MD. Bài toán trung tâm và khung chung | MD01 (bìa) | Nêu sự thay đổi bức tranh so với Bài 01–04 và hai lý do; đặt khung, ký hiệu | Khung lồi, phương trình chuẩn, hồi quy logistic, hạ gradient, Newton (Bài 01–04) | Vấn đề trung tâm; ba nhu cầu cho ba mạch giữa; ký hiệu chung | — | 0,10 + 0 |
 | HQ. Hồi quy nhiều chiều (A1) | HQ00 | Trả lời nhu cầu: điều gì thay đổi ở nghiệm bình phương nhỏ nhất khi $d$ tăng tới và vượt $n$ | Phương trình chuẩn, điều kiện duy nhất (Bài 01), ridge (Bài 02), trung bình mẫu (Bài 05c) | Ba hệ quả: không duy nhất khi $d>n$, khoảng cách huấn luyện–xác thực, $\kappa$ không giảm (xen kẽ Cauchy); $F$ khác $R$; chính quy hóa sửa tính duy nhất; giới hạn "tồn tại" mở LG | HQ11, HQ11a | 0,56 + 0,34 |
 | LG. Hồi quy logistic và chính quy hóa (A2) | LG00 | Trả lời nhu cầu: vì sao bài toán học lồi có thể không có cực tiểu, và sửa bài toán để cực tiểu tồn tại, duy nhất | Chế độ nội suy (HQ07), $\kappa$ (HQ09), mất mát logistic (Bài 01) | Tách được ⇒ không có cực tiểu; $F_\lambda$ lồi mạnh, nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}/(4n\lambda)\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn, mở CP | LG11, LG11a | 0,67 + 0,33 |
-| CP. Độ cong và chi phí tính toán (A3) | CP00 | Trả lời nhu cầu: chi phí tính toán của một bước cập nhật hội tụ nhanh hơn | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (Bài 05b) | Số bước theo $\kappa$ và theo hai giai đoạn Newton; chi phí một bước $O(nd)$, $O(nd^2+d^3)$; ngưỡng hòa vốn; mọi bước trả thừa số $n$ (giới hạn (i)) | CP10, CP10a | 0,53 + 0,25 |
+| CP. Độ cong và chi phí tính toán (A3) | CP00 | Trả lời nhu cầu: so tổng chi phí của hạ gradient và Newton theo khung tổng chi phí = số bước × chi phí một bước (sửa 2026-10-15) | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (Bài 05b) | Số bước theo $\kappa$ và theo hai giai đoạn Newton; chi phí một bước $O(nd)$, $O(nd^2+d^3)$; ngưỡng hòa vốn; mọi bước trả thừa số $n$ (giới hạn (i)) | CP10, CP10a | 0,53 + 0,25 |
 | KL. Giới hạn của tối ưu tất định | KL00 | Xác định độ chính xác tối ưu cần thiết khi đích là sai số trên dữ liệu mới; nêu hai giới hạn chuyển sang Bài 06 | Tổng chi phí (CP08, CP11); $F$ chỉ đại diện cho $R$ (HQ05) | Dừng sớm có sai số xác thực nhỏ hơn nghiệm chính xác (trực quan theo độ cong, định nghĩa); giới hạn (i) chi phí theo $n$ và (ii) biểu diễn (ba điểm của LG01, số đơn thức); đầu vào A03, B01–B03, E02 của Bài 06 | TK03 (câu 3), TK03a | 0,12 + 0 |
 | TK. Tổng hợp và chuyển giao (thêm 2026-10-15) | TK00 | Đối chiếu kết quả với ba mục tiêu và giả thiết không được bỏ; bài tập chuyển giao, tài liệu đọc | Đầu ra HQ, LG, CP, KL | Hai bảng tổng kết; bài tập $d>n$ có lời giải trên mặt trang; bài về nhà | TK03, TK03a | 0,02 + 0,08 |
 
@@ -103,21 +105,21 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 
 ### KN7. Số bước của hạ gradient và Newton
 
-- **Sáu bước:** nhu cầu CP00 (dòng dẫn) và CP01 (nhãn "Nhu cầu:"); trực quan CP01; ví dụ CP02; hình thức CP04 (hạ gradient, đặt trước CP03 từ vòng 2 ngày 2026-10-12), CP05 (Newton), CP05a (nhận xét bất biến affine); ví dụ đối chứng CP03 (so cận của Định lý 3 với số bước thực); ứng dụng CP08, CP08a; bài tập CP10(1), lời giải CP10a.
+- **Sáu bước:** nhu cầu CP00 (dòng dẫn) và CP01 (nhãn "Nhu cầu:"); trực quan CP01; ví dụ CP02; hình thức CP04 (từ 2026-10-15 gộp Định lý 3 của hạ gradient và Định lý 4 của Newton; CP05, CP05a không còn, bất biến affine ở ghi chú CP01); ví dụ đối chứng CP03 (so cận của Định lý 3 với số bước thực); ứng dụng CP08, CP08a; bài tập CP10(1), lời giải CP10a.
 - **Đầu vào và mục tiêu:** quy tắc cập nhật và hội tụ (Bài 04), T2b (Bài 05b); MT3, LLO15 (Newton) → CLO4, LLO11. Sản phẩm: tính bước Newton, so số bước theo $\kappa$, phát biểu đúng điều kiện của hai cận.
 - **Ký hiệu/dữ kiện truyền tiếp:** VD-A3 ($F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2$, $w_0=0$, $\varepsilon=10^{-8}$); cận $\kappa\log(e_0/\varepsilon)$; $\log_2\log_2(\varepsilon_0/\varepsilon)$; $N_{\rm N}$.
 - **Gộp hoặc rút gọn:** CP01 gộp nhu cầu và trực quan: hình đường mức của hàm bậc hai minh họa vừa nêu nhu cầu (một bước chung cho mọi hướng) vừa cho trực quan (Newton chia theo độ cong). Bước ví dụ trải trên hai trang: một giá trị $\lambda$ chi tiết, rồi ba giá trị $\lambda$ đối chứng.
-- **Câu nối học thuật:** $\kappa$ lớn làm hạ gradient chậm theo hướng phẳng (LG12, CP01) → Newton đạt $10^{-8}$ sau 5 bước so với 71 bước (CP02) → số bước hạ gradient tăng theo $\kappa$ nhưng chậm hơn $\kappa$ ($\times37$ so với $\times83{,}5$), theo sát số điều kiện cục bộ $L/F''_\lambda(w_\lambda)$ ($\times35{,}5$); cận theo $\kappa$ là cận trên; Newton chỉ tăng nhẹ, 4, 5, 7 (CP03) → hai định lý với đầy đủ giả thiết, chỉ giai đoạn bậc hai không chứa $\kappa$ (CP04, CP05).
-- **Thời lượng cụm:** 0,25 tiết LT + 0,12 tiết BT.
+- **Câu nối học thuật:** $\kappa$ lớn làm hạ gradient chậm theo hướng phẳng (LG12, CP01) → Newton đạt $10^{-8}$ sau 5 bước so với 71 bước (CP02) → số bước hạ gradient tăng theo $\kappa$ nhưng chậm hơn $\kappa$ ($\times37$ so với $\times83{,}5$), theo sát số điều kiện cục bộ $L/F''_\lambda(w_\lambda)$ ($\times35{,}5$); cận theo $\kappa$ là cận trên; Newton chỉ tăng nhẹ, 4, 5, 7 (CP03) → hai định lý với đầy đủ giả thiết, chỉ giai đoạn bậc hai không chứa $\kappa$ (CP04). Từ 2026-10-15 thứ tự trình chiếu là CP01 → CP02 → CP04 → CP03: ví dụ một mẫu chỉ so số bước vì $n=d=1$, định lý cho số bước tổng quát, bảng ba $\lambda$ đối chứng cận với số bước thực.
+- **Thời lượng cụm:** 0,24 tiết LT + 0,12 tiết BT (từ 2026-10-15: CP04 0,08 gồm phần của CP05, CP03 0,06).
 
 ### KN8. Chi phí một bước và tổng chi phí
 
-- **Sáu bước:** nhu cầu CP05a (nhãn "Nhu cầu:" trên mặt trang: mỗi bước Newton cần Hessian và một hệ $d\times d$), CP06; trực quan CP06, CP06a; ví dụ CP06, CP06a; hình thức CP07, CP07a, CP08; ứng dụng CP08a, CP09; bài tập CP10(2, 3), lời giải CP10a.
+- **Sáu bước:** nhu cầu CP06 (nhãn "Nhu cầu:" đầu trang: mỗi bước Newton cần Hessian và một hệ $d\times d$; trước 2026-10-15 ở CP05a); trực quan và ví dụ CP06 (bảng "Phép tính | Hạ gradient | Newton", gộp CP06a); hình thức CP07, CP07a, CP08; ứng dụng CP08a, CP09; bài tập CP10(2, 3), lời giải CP10a.
 - **Đầu vào và mục tiêu:** đếm phép tính (Bài 00), KN6, KN7; MT3, LLO15 → CLO4. Sản phẩm: đếm chi phí một bước, so tổng chi phí, chọn phương pháp theo $(n,d,\kappa,\varepsilon)$.
 - **Ký hiệu/dữ kiện truyền tiếp:** $O(nd)$, $O(nd^2+d^3)$, $O(n^2d+n^3)$ khi $d>n$; ngưỡng hòa vốn khi $\kappa$ có bậc vài trăm ($548$ khi bỏ hằng số) tại $n=10^5$, $d=10^3$; kích thước RCV1 truyền sang ghi chú CP11 và ghi chú KL03 (minh họa Bảng 13.3; trước 2026-10-15 truyền sang KL02); giới hạn (i) truyền sang KL03.
-- **Gộp hoặc rút gọn:** CP06 gộp nhu cầu, trực quan và ví dụ: giả mã với số phép tính cụ thể tại $n=10^5$, $d=10^3$. CP08 vừa là hình thức (tổng chi phí) vừa là ứng dụng (ngưỡng hòa vốn).
-- **Câu nối học thuật:** Newton cần ít bước nhưng mỗi bước cần Hessian và một hệ tuyến tính (CP05a) → giả mã cho số phép tính từng dòng (CP06) → mệnh đề chi phí một bước (CP07) → tổng chi phí và ngưỡng hòa vốn (CP08) → ba quy mô, đến 17,8 GB cho Hessian (CP09) → mọi bước đều có thừa số $n$ (CP11).
-- **Thời lượng cụm:** 0,23 tiết LT + 0,13 tiết BT (CP09 nhường $0{,}02$ tiết LT cho KL03 sau cổng storyboard).
+- **Gộp hoặc rút gọn:** CP06 gộp nhu cầu, trực quan và ví dụ: bảng phép tính với số phép tính cụ thể tại $n=10^5$, $d=10^3$. CP08 vừa là hình thức (tổng chi phí) vừa là ứng dụng (ngưỡng hòa vốn).
+- **Câu nối học thuật:** Newton cần ít bước nhưng mỗi bước cần Hessian và một hệ tuyến tính (CP04, CP06) → bảng số phép tính từng dòng của hai phương pháp (CP06) → mệnh đề chi phí một bước (CP07) → tổng chi phí và ngưỡng hòa vốn (CP08) → ba quy mô, đến 17,8 GB cho Hessian (CP09) → ngân sách $10^{12}$ cho $10^4$ bước hạ gradient hoặc $9$ bước Newton, RCV1 không đủ một bước Newton; mọi bước đều có thừa số $n$ (CP11).
+- **Thời lượng cụm:** 0,24 tiết LT + 0,13 tiết BT (CP09 nhường $0{,}02$ tiết LT cho KL03 sau cổng storyboard; từ 2026-10-15 CP11 nhận $0{,}01$ của CP05).
 
 ### Khái niệm hỗ trợ: dừng sớm
 
@@ -640,6 +642,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; dòng dẫn 16 âm tiết, ghi chú 92 âm tiết; `id="mach-4"`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** ghi chú mở bằng đối tượng ($F_\lambda$, $\kappa$).
 - **Sửa 2026-10-15 (rà soát mạch 5):** chỉ ghi chú; "Đầu ra cho phần kết luận" thành "Đầu ra cho mạch 5".
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; dòng dẫn nêu khung tích hai thừa số "Muốn so tổng chi phí của hạ gradient và Newton: số bước theo độ cong nhân chi phí một bước." (20 âm tiết); từ khóa "Số bước theo $\kappa$ · chi phí một bước · tổng chi phí · ngưỡng hòa vốn · thừa số $n$"; ghi chú kế thừa $\kappa\le1+r^2/(4\lambda)$, nhiệm vụ, đầu ra. Mặt trang 35 âm tiết.
 
 #### CP01 — Hai quy tắc cập nhật
 
@@ -653,20 +656,24 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; nhu cầu của mạch cần một hình trực quan trước bảng số.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 47 → 38 âm tiết; mô tả hình rút gọn, trục xoay $30^\circ$ và điểm đầu $(6,4)$ chuyển xuống ghi chú; gỡ `.dense`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** thêm "Nhu cầu:" đầu trang; nhãn "Hạ gradient", "Newton" bỏ in đậm.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; "Nhu cầu:" nêu khung tổng chi phí (số bước nhân chi phí một bước, đạt $e_k\le\varepsilon$); nhãn "Nhắc lại:" trước hai quy tắc của Bài 04; bỏ nhãn "Hình:"; bất biến affine (từ CP05a) chuyển vào ghi chú, dẫn Mệnh đề 05.34 của ghi chú bài giảng; ghi chú mở bằng câu nối LG12 → CP01. 50 âm tiết, 6 dòng, 2 công thức hiển thị; vượt mục tiêu 40 vì trang mang nhu cầu, hai quy tắc kèm lời giải nghĩa và một dòng đọc hình. Thời lượng 0,05 tiết LT, không đổi.
+- **Sửa nhẹ 2026-10-15 (mạch 4):** "Nhu cầu:" định nghĩa $e_k=F_\lambda(w_k)-F_\lambda(w_\lambda)$ tại chỗ; rút câu để không có chữ đơn lẻ ở dòng cuối. 48 âm tiết.
 
-#### CP02 — Hai phương pháp trên ví dụ một chiều
+#### CP02 — Ví dụ: số bước trên mất mát logistic một mẫu
 
 - **Lý do tồn tại:** cho phép tính cụ thể của hai phương pháp trên $F_\lambda$ đã biết, gồm một bước Newton tính thủ công.
 - **Nhu cầu/khoảng trống lấp:** trên hàm không bậc hai Newton không còn đúng sau một bước; người học cần thấy giai đoạn tắt dần và giai đoạn bậc hai trên số liệu.
 - **Đầu vào:** VD-A2b, $\kappa=51$ (LG09).
-- **Đầu ra:** bảng $k=0..5$; 5 bước Newton so với 71 bước hạ gradient; ghi chú: quay lui nhận bước đầy đủ ở mọi bước, nên bảng khớp với giả thiết của định lý CP05.
+- **Đầu ra:** bảng $k=0..5$; 5 bước Newton so với 71 bước hạ gradient; ghi chú: quay lui nhận bước đầy đủ ở mọi bước, nên bảng khớp với giả thiết của định lý về số bước Newton (CP04 từ 2026-10-15).
 - **Vị trí trong khung:** ví dụ cho KQ8, KQ9.
 - **LLO/CLO:** MT3; LLO15 → CLO4.
 - **Bước hành trình:** KN7 ví dụ.
 - **Quyết định:** thêm; ví dụ trước định lý.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; hàng $k=0$ của bảng bỏ, $e_0=0{,}635$ nêu ở dòng dữ kiện, để trang vừa khung khi gỡ `.dense` (16 âm tiết).
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; tiêu đề "Ví dụ: số bước trên mất mát logistic một mẫu"; khuôn ví dụ: dữ kiện → "Tính số bước để $e_k\le10^{-8}$" → dãy $e_k$ của Newton, tỉ số gần cố định của hạ gradient → "Newton cần 5 bước, hạ gradient 71 bước" → "Diễn giải: $n=d=1$ nên một bước của hai phương pháp cùng bậc chi phí; với $n$, $d$ lớn thì không". Bảng năm hàng bỏ khỏi mặt trang vì cùng hình và dòng diễn giải làm trang tràn khung 16:9; dãy $e_k$ của Newton lên mặt trang, dãy $w_k$ của hai phương pháp chuyển vào ghi chú; số liệu không đổi. Ghi chú nối CP02 → CP04. 37 âm tiết, 6 dòng. Thời lượng 0,05 LT + 0,05 BT, không đổi.
+- **Sửa nhẹ 2026-10-15 (mạch 4):** nhóm từng số của dãy $e_k$ bằng ngoặc nhọn KaTeX; "Diễn giải: một bước của hai phương pháp cùng bậc chi phí khi $n=d=1$, khác bậc khi $n$, $d$ lớn." 37 âm tiết.
 
-#### CP04 — Số bước của hạ gradient
+#### CP04 — Số bước của hạ gradient và Newton
 
 - **Lý do tồn tại:** phát biểu lại T2b của Bài 05b với đầy đủ giả thiết và áp dụng cho $F_\lambda$.
 - **Nhu cầu/khoảng trống lấp:** bảng CP03 cần cận có điều kiện; người học cần biết kết quả nào được dùng lại và ánh xạ $x_k\mapsto w_k$.
@@ -678,6 +685,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; nêu rõ kết quả nào được dùng lại, không chứng minh lại.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 53 → 43 âm tiết; "(Bài 05b, T2b)" thành "(Định lý 05b.18(b))"; mã H2, H3 thay bằng "$L$-trơn, $\mu$-lồi mạnh"; nhãn "Áp dụng." (ngoài danh sách) thành câu thường; gỡ `.dense`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** đặt trước CP03 trên deck (mã giữ nguyên), để cận $\kappa\log(e_0/\varepsilon)$ được phát biểu trước khi bảng CP03 dùng nó; ghi chú trỏ bảng ở trang sau.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `gộp` (CP05 vào CP04); tiêu đề "Số bước của hạ gradient và Newton"; nhãn "Nhắc lại:" (Bài 04); giữ tên Định lý 3, Định lý 4 cho TK02. Định lý 3: một dòng giả thiết và công thức $e_k\le(1-\frac1\kappa)^ke_0\le\varepsilon$ khi $k\ge\kappa\log\frac{e_0}\varepsilon$; Định lý 4: một dòng giả thiết và cận $\frac{f(w_0)-f^*}\gamma+\log_2\log_2\frac{\varepsilon_0}\varepsilon$, khớp TK02; định nghĩa Hessian Lipschitz, ý nghĩa của $\gamma$, $\varepsilon_0=2\mu^3/L_H^2$ và đối chiếu ký hiệu Boyd–Vandenberghe xuống ghi chú; "Ý nghĩa:" gắn với thừa số số bước. Ghi chú kết bằng câu nối "đổi lại, mỗi bước Newton cần Hessian và một hệ $d\times d$". 49 âm tiết, 6 dòng, 2 công thức hiển thị (dưới trần 60 và 3, nên gộp được). Vượt mục tiêu 40 vì hai định lý cần giả thiết đủ để đúng. Thời lượng 0,05 → 0,08 tiết LT (nhận 0,03 của CP05).
 
 #### CP03 — Số bước theo số điều kiện
 
@@ -687,42 +695,19 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Đầu ra:** bảng ba dòng; tỉ số $L/F''_\lambda(w_\lambda)$; nhu cầu hai phát biểu hình thức.
 - **Vị trí trong khung:** ví dụ đối chứng cho KQ8, KQ9; giới hạn "cận là cận trên".
 - **LLO/CLO:** MT3; LLO15 → CLO4; LLO11.
-- **Bước hành trình:** KN7 ví dụ (đối chứng). Nhu cầu của KN8 đặt ở CP05a.
+- **Bước hành trình:** KN7 ví dụ (đối chứng). Nhu cầu của KN8 đặt ở CP06 (trước 2026-10-15 ở CP05a).
 - **Quyết định:** thêm; đối chứng theo $\kappa$ cần trang riêng. Điểm trung tâm sửa theo cổng storyboard (bỏ "gần tỉ lệ với $\kappa$").
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 61 → 42 âm tiết; tiêu đề cột rút gọn (bỏ "(Định lý 3, trang sau)"); ba gạch đầu dòng ≤ 20 âm tiết; gỡ `.dense`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** đứng sau CP04; dòng dữ kiện ghi "cột cận theo hệ quả của Định lý 3". Vai trò: ví dụ đối chứng của KN7.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); ngưỡng viết $\mu^2/L_H$ với $\mu=\lambda$ thay cho $m^2/L_H$ (quyết định chung 9).
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; đặt sau CP04; cột cận "theo Định lý 3"; hai ý: "$\kappa$ tăng $83{,}5$ lần thì số bước hạ gradient tăng $37$ lần; Newton cần 4, 5, 7 bước" và "cận theo $\kappa$ lớn hơn số bước thực 9 đến 20 lần"; dòng $L/F''_\lambda(w_\lambda)$ xuống ghi chú. Ghi chú sửa giải thích sai về ngưỡng: $\mu^2/L_H$ chỉ là điều kiện đủ; với $\lambda=0{,}005$, $\lvert F'_\lambda(w_k)\rvert=0{,}50;\ 0{,}11;\ 0{,}034;\ 0{,}0078;\ 7{,}3\cdot10^{-4}$ đều trên $2{,}6\cdot10^{-4}$ mà $e_5=1{,}4\cdot10^{-9}$; số bước Newton tăng chủ yếu vì $w_\lambda=2{,}13;\ 3{,}91;\ 5{,}83$ (đã tính lại bằng Python). Tỉ số đo được thống nhất với ghi chú bài giảng: $0{,}2666;\ 0{,}8192;\ 0{,}9729$. Câu nối CP03 → CP06. 43 âm tiết. Thời lượng 0,05 → 0,06 tiết LT (nhận 0,01 của CP05).
+- **Lý do vượt mục tiêu 40 (2026-10-15):** 43 âm tiết; trang mang dòng dữ kiện của bảng ba giá trị $\lambda$ và hai kết luận đo được (tỉ lệ tăng số bước, độ bi quan của cận), không bỏ được dòng nào mà bảng còn đọc được.
 
-#### CP05 — Hội tụ bậc hai của Newton
-
-- **Lý do tồn tại:** phát biểu lại định lý hai giai đoạn của Newton với giả thiết, và nói chính xác phần nào không chứa $\kappa$.
-- **Nhu cầu/khoảng trống lấp:** tránh phát biểu sai "Newton không phụ thuộc $\kappa$" (rủi ro R1, điểm hòa giải 2).
-- **Đầu vào:** Bài 04 (hội tụ bậc hai); Boyd §9.5.3.
-- **Đầu ra:** cận $\frac{f(x_0)-f^*}{\gamma}+\log_2\log_2\frac{\varepsilon_0}\varepsilon$; tính bất biến affine; câu nối "ít bước nhưng mỗi bước đắt" cho CP06.
-- **Vị trí trong khung:** kết quả KQ9.
-- **LLO/CLO:** MT3; LLO15 → CLO4.
-- **Bước hành trình:** KN7 hình thức (Newton); nhu cầu của KN8 chuyển sang CP05a từ vòng tách 2026-10-12.
-- **Quyết định:** thêm; phát biểu có điều kiện cần trang riêng để không vượt khung.
-- **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 92 âm tiết → CP05 (Định lý 4 + "Ý nghĩa:"; 48) và CP05a "Bất biến affine của bước Newton" (nhận xét bất biến + nhu cầu đếm chi phí; 48). Ánh xạ ký hiệu Boyd–Vandenberghe chuyển xuống ghi chú CP05.
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; thêm dòng "Nhắc lại: Hessian Lipschitz nghĩa là $\lVert\nabla^2f(w)-\nabla^2f(v)\rVert\le L_H\lVert w-v\rVert$" trước định lý (B7); giả thiết viết $\mu I\preceq\nabla^2f\preceq LI$ và $\varepsilon_0=2\mu^3/L_H^2$, $\gamma$ phụ thuộc $\mu, L, L_H$ (A10, quyết định chung 9; đối chiếu $m, M$ của Boyd–Vandenberghe giữ ở ghi chú); "quay lui Armijo (Bài 04)" (B7); "Ý nghĩa:" nêu hai giai đoạn: "số hạng đầu đếm giai đoạn tắt dần; số hạng sau đếm giai đoạn bậc hai, không chứa $\kappa$" (B8; "(damped)" giữ ở ghi chú vì hết chỗ). Để giữ trần, bỏ chữ "Newton" lặp ở dòng kết luận và cụm "với hằng số $L_H$" trong giả thiết (đã có ở dòng nhắc lại). 48 → 60 âm tiết (chạm trần, không vượt), 6 dòng.
-
-#### CP05a — Bất biến affine của bước Newton
-
-- **Lý do tồn tại:** nhận xét bất biến affine tách khỏi trang Định lý 4; trang này mang nhu cầu đếm chi phí.
-- **Nhu cầu/khoảng trống lấp:** người học cần biết Newton tránh được elip dẹt nhờ đâu và phải trả gì ở mỗi bước.
-- **Đầu vào:** Định lý 4 (CP05); CP01.
-- **Đầu ra:** nhu cầu "mỗi bước cần $\nabla^2F_\lambda$ và hệ $d\times d$" cho CP06, CP06a.
-- **Vị trí trong khung:** nhận xét về phương pháp.
-- **LLO/CLO:** MT3; LLO15 → CLO4.
-- **Bước hành trình:** KN7 (nhận xét) và KN8 nhu cầu.
-- **Quyết định:** thêm (tách từ CP05); 48 âm tiết.
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); thêm "bất biến affine (affine invariance)" (A15). 48 âm tiết.
-
-#### CP06 — Các phép tính trong một bước hạ gradient
+#### CP06 — Ví dụ: các phép tính trong một bước
 
 - **Lý do tồn tại:** cho giả mã có số phép tính từng dòng, để chi phí một bước được đếm chứ không được khẳng định.
 - **Nhu cầu/khoảng trống lấp:** thuật toán cần giả mã, tiêu chuẩn dừng và chi phí chính (AGENTS.md); người học chưa đếm chi phí lập $X^TSX$ và giải hệ $d\times d$.
-- **Đầu vào:** CP05; $\nabla F$, $\nabla^2F$ (LG02).
+- **Đầu vào:** CP03 (số bước đã có); $\nabla F$, $\nabla^2F$ (LG02).
 - **Đầu ra:** số phép tính tại $n=10^5$, $d=10^3$; tiêu chuẩn dừng; số liệu cho CP07.
 - **Vị trí trong khung:** phương pháp (giả mã hai thuật toán).
 - **LLO/CLO:** MT3; LLO15 → CLO4.
@@ -730,18 +715,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; giả mã với số cụ thể là bước trực quan và ví dụ của KN8.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 50 âm tiết, 7 dòng, hai khung nhấn → CP06 "Các phép tính trong một bước hạ gradient" (19) và CP06a "Các phép tính thêm trong một bước Newton" (28).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** ghi chú thêm lý do dòng 2 chỉ tốn $O(n)$.
-
-#### CP06a — Các phép tính thêm trong một bước Newton
-
-- **Lý do tồn tại:** giả mã phần thêm của Newton tách khỏi trang hạ gradient (trang cũ 7 dòng, hai khung nhấn).
-- **Nhu cầu/khoảng trống lấp:** người học cần số phép tính từng dòng của Newton để so với hạ gradient.
-- **Đầu vào:** CP06; CP05a.
-- **Đầu ra:** dòng 5–7 với $nd^2=10^{11}$, $d^3=10^9$ cho CP07.
-- **Vị trí trong khung:** ví dụ của KQ10.
-- **LLO/CLO:** MT3; LLO15 → CLO4.
-- **Bước hành trình:** KN8 trực quan + ví dụ (phần Newton).
-- **Quyết định:** thêm (tách từ CP06); 28 âm tiết.
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "độ giảm Newton (Newton decrement) của Bài 04" (A15). 28 → 31 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `gộp` (CP06a vào CP06); tiêu đề "Ví dụ: các phép tính trong một bước"; "Nhu cầu:" lấy từ CP05a (mỗi bước Newton cần $\nabla^2F_\lambda$ và giải hệ $d\times d$); một bảng "Phép tính | Hạ gradient | Newton" sáu dòng tại $n=10^5$, $d=10^3$; tiêu chuẩn dừng (chuẩn gradient, độ giảm Newton) và IRLS xuống ghi chú. 31 âm tiết. Thời lượng 0,06 tiết LT, không đổi (đã gồm phần của CP06a).
 
 #### CP07 — Chi phí một bước
 
@@ -755,8 +729,9 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; phát biểu chi phí là đầu ra bắt buộc của giao diện.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 87 âm tiết → CP07 (Mệnh đề 5 + chứng minh hai dòng; 52) và CP07a "Tỉ số chi phí và cấu trúc hạng thấp" (39).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "$X$ dày đặc (dense)" thay "$X$ dày" (A7); ghi chú "Hessian ... vẫn dày đặc". 52 → 54 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; "Chứng minh." rút còn một dòng (cộng các dòng của bảng phép tính; bộ nhớ). 50 âm tiết; vượt mục tiêu 40 vì mệnh đề nêu giả thiết, thời gian và bộ nhớ cho hai phương pháp. Thời lượng 0,06 tiết LT, không đổi.
 
-#### CP07a — Tỉ số chi phí và cấu trúc hạng thấp
+#### CP07a — Chi phí một bước Newton khi $d>n$
 
 - **Lý do tồn tại:** tách tỉ số chi phí và nhận xét $d>n$ khỏi Mệnh đề 5.
 - **Nhu cầu/khoảng trống lấp:** người học cần thấy thừa số $n$ chung và cách giảm chi phí khi $d>n$.
@@ -766,12 +741,13 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **LLO/CLO:** MT3; LLO15 → CLO4.
 - **Bước hành trình:** KN8 hình thức (phần hai).
 - **Quyết định:** thêm (tách từ CP07); 39 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; tiêu đề "Chi phí một bước Newton khi $d>n$"; một ý: cấu trúc hạng thấp (Woodbury), $O(n^2d+n^3)$, công thức chung; "Nhu cầu:" dẫn chế độ $d\ge n$ của mạch 2; dòng tỉ số $d+d^2/n$ chuyển sang CP08. 36 âm tiết.
 
 #### CP08 — Tổng chi phí và ngưỡng hòa vốn
 
-- **Lý do tồn tại:** ghép số bước (CP04, CP05) với chi phí một bước (CP07) thành tiêu chí chọn phương pháp.
+- **Lý do tồn tại:** ghép số bước (CP04) với chi phí một bước (CP07) thành tiêu chí chọn phương pháp.
 - **Nhu cầu/khoảng trống lấp:** MT3 yêu cầu chọn phương pháp theo $(n,d,\kappa,\varepsilon)$; người học cần một ngưỡng tính được và lời cảnh báo về cận bi quan.
-- **Đầu vào:** CP04, CP05, CP07; CP03 (độ bi quan của cận).
+- **Đầu vào:** CP04, CP07; CP03 (độ bi quan của cận).
 - **Đầu ra:** ngưỡng hòa vốn khi $\kappa$ có bậc vài trăm ($548$ khi bỏ hằng số, $137$ khi tính hằng số); ảnh hưởng của $\lambda$ lên tổng chi phí với $r^2=2$ ($\kappa\le501$ và $50\,001$; cận hạ gradient $\approx9{,}2\cdot10^{11}$ và $9{,}2\cdot10^{13}$).
 - **Vị trí trong khung:** phương pháp và quyết định chọn phương pháp.
 - **LLO/CLO:** MT3; LLO15 → CLO4.
@@ -779,6 +755,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; ứng dụng phải dùng các kết quả vừa xây dựng.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 54 âm tiết, đoạn hai giá trị $\lambda$ dài 40 âm tiết → CP08 (công thức, điều kiện, ví dụ ngưỡng; 33) và CP08a "Ví dụ: ngưỡng hòa vốn theo hệ số chính quy hóa" (bảng hai dòng; 40).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "Hòa vốn khi $\kappa$ có bậc vài trăm" thay "cỡ vài trăm" (A4, quyết định chung 8). 32 → 33 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; nhận dòng tỉ số "Một bước Newton đắt gấp $d+\frac{d^2}n$ lần" gộp với điều kiện Newton rẻ hơn; ghi chú nêu $N_{\rm N}=10$ rộng tay so với 4–7 bước ở CP03; "khoảng 250" → $253$ như ghi chú bài giảng; câu "Vì vậy trang chỉ nêu bậc độ lớn" → "Vì vậy chỉ bậc độ lớn của ngưỡng là đáng tin". 39 âm tiết.
 
 #### CP08a — Ví dụ: ngưỡng hòa vốn theo hệ số chính quy hóa
 
@@ -790,6 +767,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **LLO/CLO:** MT3; LLO15 → CLO4.
 - **Bước hành trình:** KN8 ứng dụng.
 - **Quyết định:** thêm (tách từ CP08); 40 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; dòng dữ kiện rút "Cùng $n$, $d$, $e_0/\varepsilon$, $N_{\rm N}$ như trên; $\lVert x_i\rVert^2\le2$ nên $\kappa\le1+\frac1{2\lambda}$"; "Kết luận:" và "Lưu ý:" gộp một dòng kết có điều kiện; lưu ý về so sánh cận chuyển vào ghi chú; ghi chú "360" → $365$, câu "Vì vậy trang không kết luận" → "phép đếm bỏ hằng số không phân định được trường hợp này". 27 âm tiết.
 
 #### CP09 — Chi phí theo ba quy mô
 
@@ -804,7 +782,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; câu kết 27 âm tiết tách hai gạch đầu dòng; gỡ `.dense` (34 âm tiết).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); RCV1 viết đầy đủ "Reuters Corpus Volume 1, kho văn bản tin tức của hãng Reuters" ở lần đầu (A6); "ma trận dày đặc". 34 âm tiết.
 
-#### CP10 — Bài tập: chi phí của hai phương pháp và cấu trúc hạng thấp
+#### CP10 — Bài tập: số bước và chi phí của hai phương pháp
 
 - **Lý do tồn tại:** đo khả năng tính bước Newton, so tổng chi phí và xử lý trường hợp $d>n$.
 - **Nhu cầu/khoảng trống lấp:** kiểm tra hiểu biết sau cụm khái niệm lớn.
@@ -815,8 +793,9 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN7, KN8 bài tập.
 - **Quyết định:** thêm; trang kiểm tra của mạch CP.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; tiêu đề đổi thành "Bài tập: chi phí của hai phương pháp và cấu trúc hạng thấp" (Bài tập 8 của học liệu); ghi chú thành gợi ý. Loại bài tập: có lời giải mẫu, lời giải ở CP10a.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; câu 1 thay bằng câu trên ví dụ năm mẫu (Bài tập 9 của học liệu): $d=5$, $e_0/\varepsilon=10^6$, $\kappa=553{,}7$ ($\lambda=0$) và $123{,}2$ ($\lambda=0{,}01$, như HQ10); số bước đủ theo Định lý 3 và số bước Newton; câu 2, 3 giữ; tiêu đề "Bài tập: số bước và chi phí của hai phương pháp". 51 âm tiết; vượt mục tiêu 40 vì ba câu hỏi cần dữ kiện số. Thời lượng 0,20 tiết BT (cùng CP10a), không đổi.
 
-#### CP10a — Bài tập: chi phí của hai phương pháp và cấu trúc hạng thấp
+#### CP10a — Bài tập: số bước và chi phí của hai phương pháp
 
 - **Lý do tồn tại:** lời giải mẫu trên mặt trang cho cụm khái niệm của mạch 4.
 - **Nhu cầu/khoảng trống lấp:** người học cần lời giải mẫu cho bước Newton và phép so chi phí.
@@ -826,12 +805,14 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **LLO/CLO:** MT3; LLO15 → CLO4.
 - **Bước hành trình:** bài tập (lời giải) của KN7, KN8.
 - **Quyết định:** thêm; trang kế cùng tiêu đề; 18 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; lời giải câu 1 mới: $\log10^6=13{,}82$, $553{,}7\cdot13{,}82\approx7650$, $123{,}2\cdot13{,}82\approx1702$ bước, Newton một bước vì $F$ bậc hai; câu 2 "cùng bậc độ lớn" → "chênh khoảng 5 lần, dưới độ chính xác của phép đếm bỏ hằng số"; lời giải Newton một chiều cũ bỏ (đã có ở Bài tập 8); ghi chú dẫn Bài tập 8, 9. 30 âm tiết.
+- **Sửa nhẹ 2026-10-15 (mạch 4):** "Newton 1 bước vì $F$ bậc hai, Hessian khả nghịch"; "chênh khoảng $5{,}5$ lần"; nhóm biểu thức KaTeX chống ngắt dòng. 33 âm tiết.
 
 #### CP11 — Thừa số $n$ trong mọi bước
 
 - **Lý do tồn tại:** gom đầu ra của phiên A3 thành giới hạn (i): mọi phương pháp của bài trả chi phí tỉ lệ với $n$ ở mỗi bước.
 - **Nhu cầu/khoảng trống lấp:** ranh giới CP → KL cần một giới hạn rõ mà Bài 06 (B3) dùng làm điểm xuất phát.
-- **Đầu vào:** CP04, CP05, CP07.
+- **Đầu vào:** CP04, CP07, CP09.
 - **Đầu ra:** giới hạn (i), kèm số RCV1 ($\approx7{,}4\cdot10^{10}$ phép nhân–cộng cho một gradient đầy đủ, gồm hai tích với $X$; $nd^2+d^3\approx1{,}8\cdot10^{15}$ và 17,8 GB cho một bước Newton với Hessian dày đặc), cho KL00; KL03(i) dẫn lại, không phát biểu lại.
 - **Vị trí trong khung:** đầu ra (c) của giao diện A–B; lý do thứ nhất của luận đề.
 - **LLO/CLO:** MT3; LLO15 → CLO4; LLO11.
@@ -840,6 +821,51 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 77 → 58 âm tiết; dòng RCV1 tách hai gạch đầu dòng; khung kết luận hai câu tách hai dòng; gỡ `.dense`.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "RCV1: bước Newton với Hessian dày đặc cần …" thay "một bước Newton dày" (A5: "dày đặc" thuộc Hessian). Giữ nhãn "RCV1:" của dòng để dòng có ngữ cảnh, bỏ chữ "một" để không vượt trần. 58 → 60 âm tiết (chạm trần), 6 dòng; giai đoạn tắt dần nay đã định nghĩa ở CP05.
 - **Sửa 2026-10-15 (rà soát mạch 5):** chỉ ghi chú; câu cuối "Đây là giới hạn (i) mà cuối mạch 5 nêu lại và chuyển sang Bài 06"; đầu ra cho KL00 thay KL01.
+- **Sửa 2026-10-15 (rà soát mạch 4):** quyết định `sửa`; bốn gạch lặp CP04, CP07, CP09 thay bằng phép tính ngân sách $10^{12}$ phép nhân–cộng, bỏ hằng số: $(10^5,10^3)$ cho $10^4$ bước hạ gradient hoặc $9$ bước Newton ($10^{12}/1{,}01\cdot10^{11}\approx9{,}9$); RCV1 cho $27$ bước hạ gradient ($10^{12}/3{,}68\cdot10^{10}$), không đủ một bước Newton ($\approx1{,}8\cdot10^{15}$); đã kiểm bằng Python. Giữ khung kết luận; $7{,}4\cdot10^{10}$ và 17,8 GB ở ghi chú. 47 âm tiết; vượt mục tiêu 40 vì trang mang phép tính hai quy mô và khung kết luận hai câu. Thời lượng 0,05 → 0,06 tiết LT (nhận 0,01 của CP05).
+
+### Trang đã bỏ hoặc gộp ở mạch 4 (2026-10-15)
+
+Ba mục dưới đây giữ để truy vết; các trang không còn trong deck. Không hình nào chỉ do ba trang này dùng.
+
+#### CP05 — Hội tụ bậc hai của Newton
+
+- **Lý do tồn tại:** phát biểu lại định lý hai giai đoạn của Newton với giả thiết, và nói chính xác phần nào không chứa $\kappa$.
+- **Nhu cầu/khoảng trống lấp:** tránh phát biểu sai "Newton không phụ thuộc $\kappa$" (rủi ro R1, điểm hòa giải 2).
+- **Đầu vào:** Bài 04 (hội tụ bậc hai); Boyd §9.5.3.
+- **Đầu ra:** cận $\frac{f(x_0)-f^*}{\gamma}+\log_2\log_2\frac{\varepsilon_0}\varepsilon$; tính bất biến affine; câu nối "ít bước nhưng mỗi bước đắt" cho CP06.
+- **Vị trí trong khung:** kết quả KQ9.
+- **LLO/CLO:** MT3; LLO15 → CLO4.
+- **Bước hành trình:** KN7 hình thức (Newton); nhu cầu của KN8 chuyển sang CP05a từ vòng tách 2026-10-12.
+- **Quyết định:** thêm; phát biểu có điều kiện cần trang riêng để không vượt khung.
+- **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 92 âm tiết → CP05 (Định lý 4 + "Ý nghĩa:"; 48) và CP05a "Bất biến affine của bước Newton" (nhận xét bất biến + nhu cầu đếm chi phí; 48). Ánh xạ ký hiệu Boyd–Vandenberghe chuyển xuống ghi chú CP05.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; thêm dòng "Nhắc lại: Hessian Lipschitz nghĩa là $\lVert\nabla^2f(w)-\nabla^2f(v)\rVert\le L_H\lVert w-v\rVert$" trước định lý (B7); giả thiết viết $\mu I\preceq\nabla^2f\preceq LI$ và $\varepsilon_0=2\mu^3/L_H^2$, $\gamma$ phụ thuộc $\mu, L, L_H$ (A10, quyết định chung 9; đối chiếu $m, M$ của Boyd–Vandenberghe giữ ở ghi chú); "quay lui Armijo (Bài 04)" (B7); "Ý nghĩa:" nêu hai giai đoạn: "số hạng đầu đếm giai đoạn tắt dần; số hạng sau đếm giai đoạn bậc hai, không chứa $\kappa$" (B8; "(damped)" giữ ở ghi chú vì hết chỗ). Để giữ trần, bỏ chữ "Newton" lặp ở dòng kết luận và cụm "với hằng số $L_H$" trong giả thiết (đã có ở dòng nhắc lại). 48 → 60 âm tiết (chạm trần, không vượt), 6 dòng.
+- **Quyết định 2026-10-15 (rà soát mạch 4):** `gộp` vào CP04. Lý do: CP05 dạy lại Định lý 04.35 (Bài 04) mà không nói mình điền thừa số nào của tổng chi phí; gộp với Định lý 3 thành một trang "Số bước của hạ gradient và Newton" (49 âm tiết, 2 công thức). Thời lượng 0,05 tiết LT chia: CP04 +0,03, CP03 +0,01, CP11 +0,01.
+
+#### CP05a — Bất biến affine của bước Newton
+
+- **Lý do tồn tại:** nhận xét bất biến affine tách khỏi trang Định lý 4; trang này mang nhu cầu đếm chi phí.
+- **Nhu cầu/khoảng trống lấp:** người học cần biết Newton tránh được elip dẹt nhờ đâu và phải trả gì ở mỗi bước.
+- **Đầu vào:** Định lý 4 (CP05); CP01.
+- **Đầu ra:** nhu cầu "mỗi bước cần $\nabla^2F_\lambda$ và hệ $d\times d$" cho CP06, CP06a.
+- **Vị trí trong khung:** nhận xét về phương pháp.
+- **LLO/CLO:** MT3; LLO15 → CLO4.
+- **Bước hành trình:** KN7 (nhận xét) và KN8 nhu cầu.
+- **Quyết định:** thêm (tách từ CP05); 48 âm tiết.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); thêm "bất biến affine (affine invariance)" (A15). 48 âm tiết.
+- **Quyết định 2026-10-15 (rà soát mạch 4):** `bỏ`. Lý do: bất biến affine lệch chủ đề chi phí (Mệnh đề 04.31(c) của Bài 04); một câu chuyển vào ghi chú CP01 (dẫn Mệnh đề 05.34 của ghi chú bài giảng); dòng "Nhu cầu:" chuyển lên đầu CP06. Không có thời lượng riêng (thuộc phần của CP05).
+
+#### CP06a — Các phép tính thêm trong một bước Newton
+
+- **Lý do tồn tại:** giả mã phần thêm của Newton tách khỏi trang hạ gradient (trang cũ 7 dòng, hai khung nhấn).
+- **Nhu cầu/khoảng trống lấp:** người học cần số phép tính từng dòng của Newton để so với hạ gradient.
+- **Đầu vào:** CP06; CP05a.
+- **Đầu ra:** dòng 5–7 với $nd^2=10^{11}$, $d^3=10^9$ cho CP07.
+- **Vị trí trong khung:** ví dụ của KQ10.
+- **LLO/CLO:** MT3; LLO15 → CLO4.
+- **Bước hành trình:** KN8 trực quan + ví dụ (phần Newton).
+- **Quyết định:** thêm (tách từ CP06); 28 âm tiết.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "độ giảm Newton (Newton decrement) của Bài 04" (A15). 28 → 31 âm tiết.
+- **Quyết định 2026-10-15 (rà soát mạch 4):** `gộp` vào CP06. Lý do: CP06, CP06a và CP07 kể lại cùng phép cộng; một bảng "Phép tính | Hạ gradient | Newton" thay hai danh sách. Không có thời lượng riêng (thuộc phần 0,06 của CP06).
 
 ### KL. Giới hạn của tối ưu tất định
 
