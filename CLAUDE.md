@@ -85,6 +85,13 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
   - No definitions, formulas, figures, "Đầu vào/Đầu ra" or codes on its face. Notes of about 40–100 syllables state the inherited result, the task and the output.
   - Letter labels A, B, C stay allowed in storyboards, outlines, materials and slide codes, never on a strand title slide.
   - The cover is the opening strand's title. ID `<prefix>00` (`S0k-00` in `S0k-NN` decks), `id="mach-N"`. One storyboard entry each.
+- **Strand focus (user request 2026-10-15; `AGENTS.md` §"Tập trung của mạch"):** each content strand answers one central question, recorded in the storyboard strand table, and every slide face serves it.
+  - The question (and its decomposition, e.g. "tổng chi phí = số bước × chi phí một bước") appears in the strand-title lead and the first content slide's "Nhu cầu:", not only at the end.
+  - Each slide names the part it fills (storyboard and link sentence). A slide that serves nothing downstream moves to notes or `lecture-note.md`, or goes.
+  - Earlier lectures' theory appears only as a compact "Nhắc lại:"; no previews of later lectures (unintroduced algorithms, theorems, symbols) on the slide face; no duplicate tables, proofs or examples within a deck or across adjacent decks.
+  - Statement slides hold general statements only; concrete cases go on "Ví dụ: …" slides or in notes. Parallel items use the same form; each label has one meaning.
+  - Examples end with a "Diễn giải:" tied to the strand question; exercises test the strand's goal, preferably on the running example. Summary, synthesis exercise and reading live in a separate conclusion strand.
+  - The storyline reviewer runs a per-strand focus audit (central question + per-slide function table) and reruns it whenever a strand gains, loses, merges or reorders slides. Severity: `nghiêm trọng` if the question is missing from the face before the strand's second half or the face concludes with unintroduced concepts; `trung bình` for an off-topic, duplicate, re-taught or example/theory-mixed slide; `nhẹ` for a link sentence that doesn't name the slide's part.
 - **Opening:** cover, objectives, "Nội dung" (numbered strands, optional pre-reading line), "Ngữ cảnh" when there is a shared frame (≤ 4 lines).
 - **Common theoretical frame:** one per lecture, fixed in `outline.md` and `storyboard.md` before slides are finalised.
   - It covers the central problem, shared objects and notation, assumptions, the chain definition → result → method, and the limits of applicability.
@@ -214,6 +221,7 @@ Known quirk: `.lec-grid` centres its columns vertically (`align-items: center`),
 ## Done means
 
 - Every blocking and serious finding is resolved and logged.
+- Every strand passes the strand-focus audit, and the audit report for each strand is in `review-log.md`.
 - `outline.md`, `storyboard.md` and `review-log.md` match the current deck.
 - The browser check passed at both sizes.
 - Materials are in sync, and `index.html` is updated for completed lectures only.

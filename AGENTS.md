@@ -279,6 +279,22 @@ Không đặt định nghĩa, công thức trung tâm, hình hay bài tập trê
 
 Mã trang theo quy ước `<tiền tố mạch>00` (ví dụ `B00`, `HQ00`, `RG00`); deck dùng mã dạng `S0k-NN` dùng `S0k-00`; nếu mã `<tiền tố>00` đã có, dùng `<tiền tố>T` và ghi trong storyboard. Thuộc tính `id` của trang tiêu đề mạch là `mach-N`. Không đổi `id` của trang đã được học liệu liên kết tới.
 
+### Tập trung của mạch
+
+Yêu cầu người dùng 2026-10-15, rút ra từ đợt rà mạch 4–5 của Bài 05. Mỗi mạch nội dung trả lời đúng một câu hỏi trung tâm, suy ra từ vấn đề trung tâm của bài và ghi trong bảng chức năng mạch của `storyboard.md`. Mọi trang trên mặt trang của mạch phải phục vụ câu hỏi đó.
+
+- **Đặt khung từ đầu mạch.** Câu hỏi trung tâm, cùng cách phân rã nếu có (ví dụ "tổng chi phí = số bước × chi phí một bước"), xuất hiện ở dòng dẫn của trang tiêu đề mạch và ở dòng "Nhu cầu:" của trang nội dung đầu tiên. Không để khung chỉ lộ ra ở cuối mạch.
+- **Mỗi trang gọi tên phần việc của nó.** Storyboard ghi trang trả lời phần nào của câu hỏi trung tâm; câu nối trên mặt trang hoặc trong ghi chú nói trang điền phần nào. Trang không phục vụ câu hỏi trung tâm được chuyển vào ghi chú diễn giả hoặc ghi chú bài giảng, hoặc bỏ. Một tính chất đúng nhưng không được mạch sau dùng tới không đủ lý do để ở trên mặt trang.
+- **Lý thuyết bài trước chỉ nhắc lại.** Định nghĩa và định lý đã dạy ở bài trước đặt sau nhãn "Nhắc lại:", gộp gọn (thường một trang cho một cụm); chi tiết giả thiết và hằng số để trong ghi chú. Không dạy lại.
+- **Không xem trước bài sau trên mặt trang.** Không dùng khái niệm, ký hiệu hay định lý chưa được giới thiệu trong bài (thuật toán, định lý hội tụ của bài sau) để phát biểu hay kết luận trên mặt trang. Nhu cầu chuyển sang bài sau được nêu bằng lời. Nội dung bài sau trình bày đầy đủ thì để ở bài sau.
+- **Không trùng lặp.** Không có hai trang trong một bài, hoặc trong hai bộ trang chiếu liền kề, trình bày cùng một bảng, chứng minh hay ví dụ. Gộp các trang kể lại cùng một phép tính.
+- **Phát biểu và ví dụ tách vai.** Trang phát biểu chỉ chứa phát biểu tổng quát; ví dụ cụ thể đặt trên trang "Ví dụ: …" hoặc trong ghi chú. Các ý song song (ví dụ hai giới hạn (i), (ii)) viết cùng dạng và cùng cấp. Mỗi nhãn chỉ mang một nghĩa trong toàn bài.
+- **Ví dụ kết bằng diễn giải gắn với câu hỏi của mạch**, để sinh viên không rút ra kết luận ngược với đích của mạch.
+- **Bài tập đo mục tiêu của mạch**, không luyện lại kỹ năng của bài trước; ưu tiên dùng ví dụ xuyên suốt.
+- **Mạch kết luận tách khỏi mạch nội dung.** Bảng tổng kết, bài tập tổng hợp và tài liệu đọc nằm trong mạch kết luận riêng; mạch nội dung cuối chỉ chứa nội dung của nó và câu nối sang bài sau.
+
+Rà tập trung là một phần của vai mạch lập luận (mục "Năm tác tử rà soát độc lập") và được chạy lại cho một mạch mỗi khi mạch đó thêm, bỏ, gộp hay đổi thứ tự trang. Báo cáo nêu câu hỏi trung tâm bằng một câu, rồi bảng theo từng trang: chức năng thực tế, phần việc phục vụ, đầu vào, đầu ra, đề xuất. Phân mức: `nghiêm trọng` khi câu hỏi trung tâm chưa có trên mặt trang trước nửa sau của mạch, hoặc mặt trang phát biểu hay kết luận bằng khái niệm chưa giới thiệu trong bài; `trung bình` khi một trang không phục vụ câu hỏi trung tâm, trùng lặp với trang khác hay bài liền kề, dạy lại lý thuyết bài trước không gắn "Nhắc lại:", hoặc trộn ví dụ với phát biểu tổng quát; `nhẹ` khi câu nối chưa gọi tên phần việc của trang.
+
 ## Tiêu chuẩn nội dung cho học phần Cơ sở toán học cho AI
 
 Bộ trang chiếu phải hỗ trợ ít nhất một trong các năng lực của học phần: nhận dạng dạng bài toán tối ưu; vận dụng thuật toán; xây dựng mô hình từ bài toán thực tế; phân tích độ phức tạp hoặc tốc độ hội tụ; lựa chọn và đánh giá mô hình hoặc thuật toán trong AI.
@@ -495,7 +511,7 @@ Sau bản nháp đầu tiên, giao đủ năm vai độc lập; chạy song song
 - **Góc nhìn chuyên gia:** kiểm tra độ bao phủ, chiều sâu, thuật ngữ, mạch học thuật, liên kết với AI, LLO/CLO, nguồn và tính phù hợp với thời lượng buổi học.
 - **Độ chính xác toán học:** kiểm tra từng định nghĩa, giả thiết, lượng từ, miền, kích thước, chỉ số, dấu, đạo hàm, chuyển vị, chuẩn, xác suất, điều kiện lồi, điều kiện tối ưu, bước biến đổi, kết quả ví dụ, hội tụ và độ phức tạp. Tự tính lại các ví dụ số quan trọng.
 - **Phản biện học thuật và giảng dạy:** kiểm tra mỗi khái niệm hình thức có đủ nhu cầu, trực quan, ví dụ và tiên quyết; thứ tự hiện tại có hỗ trợ suy luận trên lớp; ứng dụng và bài tập có đóng vòng học tập; các lựa chọn lược, gộp hoặc thêm so với mẫu có được biện minh. Rà văn phong học thuật của tiêu đề, nội dung và ghi chú theo `no-ai-slop`, bảo toàn độ chính xác toán học. Phải chỉ ra trường hợp nội dung đúng riêng lẻ nhưng đặt sai trình tự, thiếu cầu nối sư phạm hoặc không phục vụ LLO/CLO.
-- **Mạch lập luận và liên kết trang chiếu:** kiểm tra cơ sở lý thuyết chung, bài toán trung tâm và chuỗi kết quả của toàn bài; xác nhận 5–7 mạch hoặc ngoại lệ được phép. Với mỗi mạch, xác định chức năng, đầu vào, đầu ra và đóng góp cho vấn đề trung tâm. Với mỗi trang, xác định kết quả đã dùng, bước suy luận mới và đầu ra cho trang kế tiếp. Phải phát hiện thiếu tiên quyết, bước nhảy lập luận, chuyển phần đột ngột, phần đứng riêng, lặp chức năng, kết quả trọng tâm chưa được chuẩn bị hoặc kết luận không giải quyết vấn đề mở đầu. Báo cáo từng vấn đề phải nêu `vai trò trong lập luận`, `kết nối vào`, `kết nối ra` và `kết quả cần đạt`; báo cáo cấp mạch phải nêu `chức năng`, `đầu vào`, `đầu ra` và `đóng góp cho vấn đề trung tâm`. Vai này không thay kiểm định storyboard, toán học hoặc độ bao phủ chuyên môn.
+- **Mạch lập luận và liên kết trang chiếu:** kiểm tra cơ sở lý thuyết chung, bài toán trung tâm và chuỗi kết quả của toàn bài; xác nhận 5–7 mạch hoặc ngoại lệ được phép. Với mỗi mạch, xác định chức năng, đầu vào, đầu ra và đóng góp cho vấn đề trung tâm. Với mỗi trang, xác định kết quả đã dùng, bước suy luận mới và đầu ra cho trang kế tiếp. Phải phát hiện thiếu tiên quyết, bước nhảy lập luận, chuyển phần đột ngột, phần đứng riêng, lặp chức năng, kết quả trọng tâm chưa được chuẩn bị hoặc kết luận không giải quyết vấn đề mở đầu. Vai này chạy rà tập trung cho từng mạch theo mục “Tập trung của mạch”. Báo cáo từng vấn đề phải nêu `vai trò trong lập luận`, `kết nối vào`, `kết nối ra` và `kết quả cần đạt`; báo cáo cấp mạch phải nêu `chức năng`, `đầu vào`, `đầu ra` và `đóng góp cho vấn đề trung tâm`. Vai này không thay kiểm định storyboard, toán học hoặc độ bao phủ chuyên môn.
 
 Mức độ gồm `chặn bàn giao`, `nghiêm trọng`, `trung bình`, `nhẹ`. Mọi lỗi `chặn bàn giao` và `nghiêm trọng` phải được xử lý.
 
@@ -592,6 +608,7 @@ Chỉ coi bộ trang chiếu hoàn thành khi:
 - Ba tệp quy trình của bài mới nằm trong `2627-1/planning/lec-NN/`; `storyboard.md` bao phủ toàn bộ trang chiếu và không còn trang có lý do tồn tại yếu hoặc chưa được xử lý.
 - Mọi khái niệm trọng tâm hoàn thành hành trình `nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập`, hoặc có ngoại lệ được giải thích và được tác tử kiểm định storyboard chấp nhận.
 - Bài có 5–7 mạch nội dung lớn tương ứng với các `<section>` ngoài, gồm mở đầu và kết luận; mỗi mạch có chức năng riêng, điểm nối vào–ra và đóng góp kiểm chứng được cho vấn đề trung tâm, hoặc có ngoại lệ do người dùng yêu cầu rõ và đã được ghi nhận.
+- Mỗi mạch đạt mục “Tập trung của mạch”: câu hỏi trung tâm ghi trong storyboard và nêu ở trang tiêu đề mạch cùng trang nội dung đầu tiên; mọi trang trên mặt trang phục vụ câu hỏi đó; không dạy lại lý thuyết bài trước, không xem trước bài sau, không trùng lặp, không trộn ví dụ với phát biểu; mạch kết luận tách riêng; báo cáo rà tập trung của từng mạch đã có trong `review-log.md` và các phát hiện bắt buộc đã được xử lý.
 - Bài có cơ sở lý thuyết chung phù hợp chủ đề; liên kết giữa các trang chỉ rõ kết quả kế thừa, giả thiết thay đổi và bước suy luận tiếp theo.
 - Các công thức, ví dụ số, giả thiết và nguồn đã được kiểm tra.
 - Bộ trang chiếu chạy tại cổng `8765`, không có tài nguyên hỏng hoặc lỗi hiển thị nghiêm trọng.
