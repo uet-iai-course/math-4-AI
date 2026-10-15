@@ -133,17 +133,19 @@ This model assignment is a standing user instruction (2026-10-07, revised 2026-1
   - It splits the work, writes the briefs, merges results, and accepts or rejects every sub-agent output.
   - It does not take a sub-agent role itself. Drafting, reviewing and editing go to sub-agents.
   - If the session runs another model or effort, say so before delegating, and ask the user to switch (`/model`, effort setting). Do not treat that session as a valid master.
-- **Sub-agents:** every workflow role, including agents spawned by sub-agents, runs Claude Opus 5.5 (`claude-opus-5-5`) at effort `high`.
+- **Sub-agents:** every workflow role, including agents spawned by sub-agents, runs Claude Opus 5.5 (`claude-opus-5-5`). Effort depends on the role (user instruction 2026-10-15):
+  - **Reviewers** (storyboard gate, the five review roles, rechecks, final-check verifier): effort `high`.
+  - **Workers** (planning, source analysis, authoring, editing, and any other sub-agent): effort `medium`.
 - **Quality control of every output:** no sub-agent output reaches the next stage, a repo file or the user until the master has reviewed it.
   - **Plans and reports:** check every finding and claim against the cited file or line. Re-derive the maths and constants.
   - **Written files:** read the diff. Run the checks listed in this file (visual check, `--check` sync, `git diff --check`).
   - **Decision:** record `chấp nhận | yêu cầu sửa | bác bỏ` with a reason in `review-log.md`. Send the requested fixes back to the same agent with `SendMessage`, and review the result again.
   - Only the master's approval counts. A sub-agent reviewing another sub-agent does not count as quality control.
-- **Creating agents:** use the `Agent` tool with `model: "opus"` and `effort: "high"`.
-  - Do not use `subagent_type: "fork"`: a fork inherits the master's full context and effort and ignores the model override, so its output is not independent of the master. Use `general-purpose`, or a `.claude/agents/` definition pinned to `claude-opus-5-5` at `high` once one exists.
-  - Never assign a workflow role to an agent type pinned to another model.
+- **Creating agents:** use the `Agent` tool with `model: "opus"` and `effort: "high"` for reviewers or `effort: "medium"` for workers.
+  - Do not use `subagent_type: "fork"`: a fork inherits the master's full context and effort and ignores the model override, so its output is not independent of the master. Use `general-purpose`, or a `.claude/agents/` definition pinned to `claude-opus-5-5` at the role's effort once one exists.
+  - Never assign a workflow role to an agent type pinned to another model or effort.
   - Continue an existing agent with `SendMessage` rather than spawning a new one.
-- **Stopping rule:** if no Opus 5.5 sub-agent can be created, say so and stop the dependent work. The master does not do that work itself.
+- **Stopping rule:** if no Opus 5.5 sub-agent at the required effort can be created, say so and stop the dependent work. The master does not do that work itself.
 - **Concurrency:** read-only agents may run in parallel. **Only one agent writes files at a time.**
 - **Every brief states:** role, inputs, output, file scope, done condition, and "do not commit".
 - **Logging:** record each agent's role, type, model and effort in `review-log.md`, using the tool call as evidence rather than the agent's own claim. Also record the master's review decision for each output.
