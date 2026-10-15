@@ -14,29 +14,27 @@ Lời giải cần nêu giả thiết được dùng ở từng bước. Số th
 Mức độ: nhận biết. LLO11, CLO1.
 
 ::: exercise Bài 1
-1. Với năm nút của ví dụ năm mẫu và $d=7$, tính $\operatorname{rank}X$, $\dim\ker X$ và $\min F$.
-2. Với $d=2$ và nhãn mới $y'=y+0{,}1\cdot\mathbf 1$, tức mọi nhãn tăng thêm $0{,}1$, tính nghiệm $w$ của phương trình chuẩn.
-3. Cho $X^TX=\begin{pmatrix}2&1\\1&2\end{pmatrix}$. Tính $\kappa(X^TX)$.
-4. Với bảng MSE dưới đây của ví dụ năm mẫu, chọn $d$ và nêu tập dùng để báo cáo sai số cuối.
+Ví dụ năm mẫu có đầu vào $u=(-1,-\tfrac12,0,\tfrac12,1)$, nhãn $y=(-0{,}9;\ -0{,}7;\ 0{,}2;\ 0{,}4;\ 1{,}0)$ và đặc trưng đa thức $(1,u,\ldots,u^{d-1})$.
 
-| $d$ | $1$ | $2$ | $3$ | $4$ | $5$ |
-|---|---:|---:|---:|---:|---:|
-| huấn luyện | $0{,}5$ | $0{,}0198$ | $0{,}0197$ | $0{,}0179$ | $0$ |
-| xác thực | $0{,}3125$ | $0{,}000125$ | $0{,}000205$ | $0{,}00107$ | $0{,}0487$ |
+1. Với $d=7$, tính $\operatorname{rank}X$, $\dim\ker X$ và $\min F$.
+2. Với $d=3$, ma trận $X^TX=\begin{pmatrix}5&0&\frac52\\0&\frac52&0\\\frac52&0&\frac{17}8\end{pmatrix}$. Tính $\kappa(X^TX)$ và so với $\kappa=2$ của $d=2$.
+3. Ba mô hình có sai số xác thực (MSE trên bốn điểm $u=\pm\tfrac14,\pm\tfrac34$) như sau. Chọn một mô hình và nêu tập dùng để báo cáo sai số cuối.
+
+| mô hình | $d=2$, $\lambda=0$ | $d=5$, $\lambda=0{,}01$ | $d=5$, $\lambda=0$ |
+|---|---:|---:|---:|
+| sai số xác thực | $0{,}000125$ | $0{,}00261$ | $0{,}0487$ |
 :::
 
 ::: hint Gợi ý Bài 1
-Ở câu 1, năm cột đầu của $X\in\mathbb R^{5\times7}$ tạo một ma trận Vandermonde. Ở câu 2, $X^TX=\operatorname{diag}(5,\tfrac52)$ và chỉ vế phải thay đổi. Ở câu 3, thử hai vector $(1,1)$ và $(1,-1)$. Ở câu 4, so hàng xác thực chứ không so hàng huấn luyện; tập đã dùng để chọn không dùng để báo cáo.
+Ở câu 1, năm cột đầu của $X\in\mathbb R^{5\times7}$ tạo một ma trận Vandermonde. Ở câu 2, phần tử $(j,k)$ của $X^TX$ là $\sum_iu_i^{j+k}$, và các tổng lũy thừa lẻ bằng $0$ vì các nút đối xứng quanh $0$; vì vậy cột thứ hai tách riêng, còn trị riêng của khối $2\times2$ gồm hàng và cột thứ nhất, thứ ba tìm được từ vết và định thức. Ở câu 3, so sai số xác thực trên toàn họ mô hình, chứ không so sai số huấn luyện; tập đã dùng để chọn không dùng để báo cáo.
 :::
 
 ::: solution Lời giải Bài 1
-1. Năm cột đầu của $X$ là ma trận Vandermonde dựng trên năm nút phân biệt, nên khả nghịch; do đó năm hàng của $X$ độc lập tuyến tính và $\operatorname{rank}X=5$. Định lý hạng–số chiều cho $\dim\ker X=7-5=2$. Theo Mệnh đề 05.10, $\min F=0$: có vô số đa thức bậc không quá $6$ đi qua năm điểm.
+1. Năm cột đầu của $X$ là ma trận Vandermonde dựng trên năm nút phân biệt, nên khả nghịch; do đó năm hàng của $X$ độc lập tuyến tính và $\operatorname{rank}X=5$. Định lý hạng–số chiều cho $\dim\ker X=7-5=2$. Theo Mệnh đề 05.10, $\min F=0$, và tập nghiệm là một không gian affine chiều $2$: có vô số đa thức bậc không quá $6$ đi qua năm điểm, nên nghiệm không duy nhất.
 
-2. $X^Ty'=X^Ty+0{,}1\,X^T\mathbf 1$. Ta có $X^Ty=(0;\ 2{,}45)$ và $X^T\mathbf 1=(\sum_i1,\ \sum_iu_i)=(5,0)$, nên $X^Ty'=(0{,}5;\ 2{,}45)$. Hệ chéo cho $w=(0{,}5/5;\ 2{,}45/2{,}5)=(0{,}1;\ 0{,}98)$. Dịch mọi nhãn một hằng số chỉ dịch hệ số chặn, vì $\sum_iu_i=0$. Kiểm tra: phần dư mới $0{,}1+0{,}98u_i-y'_i$ bằng phần dư cũ, có tổng $0$.
+2. Ta có $\sum_i1=5$, $\sum_iu_i^2=\tfrac52$ và $\sum_iu_i^4=1+\tfrac1{16}+0+\tfrac1{16}+1=\tfrac{17}8$, còn các tổng lũy thừa lẻ bằng $0$; đó là các phần tử của ma trận đã cho. Cột thứ hai chỉ có phần tử chéo $\tfrac52$, nên $\tfrac52$ là một trị riêng. Khối còn lại $\begin{pmatrix}5&\frac52\\\frac52&\frac{17}8\end{pmatrix}$ có vết $\tfrac{57}8$ và định thức $\tfrac{85}8-\tfrac{25}4=\tfrac{35}8$, nên hai trị riêng là nghiệm của $t^2-\tfrac{57}8t+\tfrac{35}8=0$, tức $t=\frac{57\pm\sqrt{2129}}{16}$, xấp xỉ $6{,}446$ và $0{,}679$. Vậy $\lambda_{\max}\approx6{,}446$, $\lambda_{\min}\approx0{,}679$ và $\kappa(X^TX)\approx9{,}50$, lớn hơn $\kappa=2$ của $d=2$. Thêm cột $u^2$ làm $\lambda_{\min}$ giảm từ $2{,}5$ xuống $0{,}679$ và $\lambda_{\max}$ tăng từ $5$ lên $6{,}446$, đúng chiều mà định lý xen kẽ Cauchy bảo đảm (Mệnh đề 05.16). Kiểm tra: tổng ba trị riêng $\tfrac52+\tfrac{57}8=\tfrac{77}8$ bằng vết $5+\tfrac52+\tfrac{17}8$.
 
-3. $X^TX(1,1)=(3,3)$ và $X^TX(1,-1)=(1,-1)$, nên trị riêng là $3$ và $1$, và $\kappa=3$. Kiểm tra: vết $4=3+1$, định thức $3=3\cdot1$.
-
-4. Chọn $d=2$, giá trị nhỏ nhất của hàng xác thực. Nếu chọn theo hàng huấn luyện sẽ được $d=5$, đúng mô hình quá khớp (Định nghĩa 05.6). Sai số cuối được báo cáo trên một tập kiểm thử riêng, không tham gia lựa chọn: $0{,}000125$ là số nhỏ nhất trong năm số của hàng xác thực, nên theo Nhận xét 05.8 có xu hướng thấp hơn rủi ro của mô hình được chọn.
+3. Chọn $d=2$, $\lambda=0$, mô hình có sai số xác thực nhỏ nhất. Nếu chọn theo sai số huấn luyện sẽ được $d=5$, $\lambda=0$ với sai số huấn luyện bằng $0$, đúng mô hình quá khớp (Định nghĩa 05.6). Sai số cuối được báo cáo trên một tập kiểm thử riêng, không tham gia lựa chọn: $0{,}000125$ là số nhỏ nhất trong ba số, nên theo Nhận xét 05.8 có xu hướng thấp hơn rủi ro của mô hình được chọn.
 :::
 
 ## Bài 2. Chính quy hóa đường thẳng

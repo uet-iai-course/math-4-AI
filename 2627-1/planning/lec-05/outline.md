@@ -19,7 +19,7 @@ Dàn bài này lập ngày 2026-10-11 theo thiết kế hai bài do người dù
 - **Tệp deck đề xuất:** `2627-1/lecture-05-khong-gian-dac-trung-nhieu-chieu.html`. Học liệu: `2627-1/materials/lec-05/{lecture-note,exercises}.md`, viết lại sau khi deck ổn định.
 - **Đối tượng:** sinh viên năm ba đã học Bài 00–04; Bài 05b (hội tụ hạ gradient và SGD) và Bài 05c (xác suất đến trung bình nhóm nhỏ) là học liệu bổ trợ.
 - **Thời lượng:** Buổi 5 theo đề cương DOCX gồm 2 tiết LT và 1 tiết BT, tức ba khối 1 tiết. Mỗi phiên A1, A2, A3 chiếm một khối. Khối 1 gồm mạch MD và HQ, khối 2 là LG, khối 3 gồm CP và KL (từ 2026-10-15: CP, KL và TK). Thời lượng ghi bằng phần tiết, không quy đổi ra phút.
-- **Quy mô (cập nhật 2026-10-12):** 67 trang, 5 mạch (cập nhật 2026-10-15: 62 trang, 6 mạch, sau rà soát mạch 5 và mạch 4; các mục "Cập nhật 2026-10-15" cuối tệp); xem mục "Cập nhật 2026-10-12" cuối tệp. **Quy mô ban đầu:** 44 trang (43 trang theo kế hoạch đã duyệt; trang HQ08 được tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11), 5 mạch ngoài (mở đầu, ba mạch ứng với ba phiên, kết luận). Không gộp hai phiên vào một mạch; không tách phiên nào thành hai mạch vì mỗi phiên có một nhu cầu liền mạch.
+- **Quy mô (cập nhật 2026-10-12):** 67 trang, 5 mạch (cập nhật 2026-10-15: 62 trang, 6 mạch, sau rà soát mạch 5 và mạch 4; 61 trang sau rà soát mạch 2 và mạch 3, LG08a gộp vào LG12; các mục "Cập nhật 2026-10-15" cuối tệp); xem mục "Cập nhật 2026-10-12" cuối tệp. **Quy mô ban đầu:** 44 trang (43 trang theo kế hoạch đã duyệt; trang HQ08 được tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11), 5 mạch ngoài (mở đầu, ba mạch ứng với ba phiên, kết luận). Không gộp hai phiên vào một mạch; không tách phiên nào thành hai mạch vì mỗi phiên có một nhu cầu liền mạch.
 
 **Luận đề xuyên suốt** (yêu cầu người dùng 2026-10-11, áp dụng cho cả Bài 05 và Bài 06). Bài 01–04 làm việc trong một khung gọn: hàm mục tiêu lồi có cực tiểu chính xác, và các phương pháp tất định hội tụ tới cực tiểu đó với bảo đảm có điều kiện. Khung này không còn là bức tranh đúng khi mô hình và dữ liệu lớn, vì hai lý do được nêu sớm (MD03c) và được kiểm chứng lần lượt trong bài:
 
@@ -126,16 +126,16 @@ Thời lượng tính bằng tiết; mỗi khối 1 tiết. Khối 1 = MD + HQ; 
 | Mạch | Chức năng | Đầu vào | Đầu ra | Trang | Tiết LT | Tiết BT | Trang kiểm tra |
 |---|---|---|---|---|---:|---:|---|
 | MD. Bài toán trung tâm và khung chung | Nêu sự thay đổi bức tranh so với Bài 01–04, hai lý do, khung và ký hiệu | Khung lồi, phương trình chuẩn, hồi quy logistic, hạ gradient, Newton (Bài 01–04) | Vấn đề trung tâm, ba nhu cầu, ký hiệu | MD01, MD02, MD03a–c, MD04 (6) | 0,10 | 0 | — |
-| HQ. Hồi quy nhiều chiều (A1) | **Nhu cầu:** xác định điều gì thay đổi ở nghiệm bình phương nhỏ nhất khi $d$ tăng tới và vượt $n$ | Phương trình chuẩn và điều kiện duy nhất (Bài 01, Mệnh đề 01.6), ridge (Bài 02, Mệnh đề 02.21) | Ba hệ quả: không duy nhất khi $d>n$, khoảng cách huấn luyện–xác thực, $\kappa$ không giảm; chính quy hóa khắc phục cho bình phương | HQ00 (tiêu đề), HQ01–HQ12, HQ05a, HQ07a, HQ11a (16) | 0,56 | 0,34 | HQ11, HQ11a |
-| LG. Hồi quy logistic và chính quy hóa (A2) | **Nhu cầu:** giải thích vì sao một bài toán học lồi có thể không có cực tiểu, và sửa bài toán để cực tiểu tồn tại, duy nhất | Chế độ nội suy $\operatorname{rank}X=n$ (HQ07), Bài 01 VD 01.6, 01.7, HQ 01.41 | $F_\lambda$ có nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}(X^TX)/(4n\lambda)$, với $\lVert x_i\rVert\le r$: $\kappa\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn | LG00 (tiêu đề), LG01–LG12, LG05a, LG08a, LG11a (16) | 0,67 | 0,33 | LG11, LG11a |
+| HQ. Hồi quy nhiều chiều (A1) | **Nhu cầu:** xác định sai số ngoài mẫu, tính duy nhất và độ nhạy của nghiệm bình phương nhỏ nhất khi $d$ tăng so với $n$ (sửa 2026-10-15) | Phương trình chuẩn và điều kiện duy nhất (Bài 01, Mệnh đề 01.6), ridge (Bài 02, Mệnh đề 02.21) | Ba hệ quả: không duy nhất khi $d>n$, khoảng cách huấn luyện–xác thực, $\kappa$ không giảm; chính quy hóa khắc phục cho bình phương | HQ00 (tiêu đề), HQ01–HQ12, HQ05a, HQ07a, HQ11a (16) | 0,56 | 0,34 | HQ11, HQ11a |
+| LG. Hồi quy logistic và chính quy hóa (A2) | **Nhu cầu:** xác định khi nào mất mát logistic có cực tiểu lúc $d$ tăng tới $n$, và $\kappa$ của mục tiêu có chính quy hóa (sửa 2026-10-15) | Chế độ nội suy $\operatorname{rank}X=n$ (HQ07), Bài 01 VD 01.6, 01.7, HQ 01.41 | $F_\lambda$ có nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}(X^TX)/(4n\lambda)$, với $\lVert x_i\rVert\le r$: $\kappa\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn | LG00 (tiêu đề), LG01–LG12, LG05a, LG11a (15; LG08a gộp vào LG12, 2026-10-15) | 0,67 | 0,33 | LG11, LG11a |
 | CP. Độ cong và chi phí tính toán (A3) | **Nhu cầu:** so tổng chi phí của hạ gradient và Newton: số bước theo độ cong nhân chi phí một bước (sửa 2026-10-15) | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (05b) | Chi phí một bước $O(nd)$ và $O(nd^2+d^3)$, số bước theo $\kappa$ và theo hai giai đoạn Newton, ngưỡng hòa vốn; mọi bước đều trả chi phí theo $n$ | CP00 (tiêu đề), CP01–CP04, CP06–CP11, CP07a, CP08a, CP10a (14; sửa 2026-10-15) | 0,53 | 0,25 | CP10, CP10a |
 | KL. Giới hạn của tối ưu tất định | **Nhu cầu:** xác định độ chính xác tối ưu cần thiết khi đích là sai số trên dữ liệu mới; nêu hai giới hạn chuyển sang Bài 06 | Tổng chi phí (CP08, CP11); $F$ chỉ đại diện cho $R$ (HQ05) | Dừng sớm (trực quan, định nghĩa), hai giới hạn (i) chi phí và (ii) biểu diễn | KL00 (tiêu đề), KL01, KL01a, KL03 (4) | 0,12 | 0 | TK03, TK03a |
 | TK. Tổng hợp và chuyển giao | Đối chiếu kết quả với ba mục tiêu và giả thiết không được bỏ | Đầu ra HQ, LG, CP, KL | Hai bảng tổng kết, bài tập chuyển giao có lời giải, tài liệu đọc, bài về nhà | TK00 (tiêu đề), TK01–TK04, TK03a (6) | 0,02 | 0,08 | TK03, TK03a |
-| **Tổng** | | | | **62** | **2,00** | **1,00** | 8 trang |
+| **Tổng** | | | | **61** | **2,00** | **1,00** | 8 trang |
 
 Cột "Trang" cập nhật ngày 2026-10-12 (văn phong MAT1101): tên mạch giữ nguyên và trùng tên trên trang "Nội dung" (MD03a) và trên bốn trang tiêu đề mạch; số trang tăng từ 44 lên 67 do bốn trang tiêu đề mạch và các trang tách theo trần mật độ (chi tiết ở mục "Cập nhật 2026-10-12" cuối tệp). Thời lượng của mạch không đổi.
 
-Kiểm tra cộng (cập nhật 2026-10-15, mạch KL tách thành KL và TK): LT $0{,}10+0{,}56+0{,}67+0{,}53+0{,}12+0{,}02=2{,}00$; BT $0{,}34+0{,}33+0{,}25+0+0{,}08=1{,}00$; khối 1: $0{,}10+0{,}56+0{,}34=1{,}00$; khối 2: $0{,}67+0{,}33=1{,}00$; khối 3: $0{,}53+0{,}25+0{,}12+0{,}02+0{,}08=1{,}00$. Khối 3 = CP + KL + TK. Thời gian BT gồm cả các phép tính thủ công ở HQ02, HQ06, HQ08, LG03, LG10, CP02 và các trang kiểm tra. Sau cổng storyboard: mạch CP nhường $0{,}02$ tiết LT (CP09) cho KL03; trong KL, KL02 nhường $0{,}01$ cho KL03.
+Kiểm tra cộng (cập nhật 2026-10-15, mạch KL tách thành KL và TK): LT $0{,}10+0{,}56+0{,}67+0{,}53+0{,}12+0{,}02=2{,}00$; BT $0{,}34+0{,}33+0{,}25+0+0{,}08=1{,}00$; khối 1: $0{,}10+0{,}56+0{,}34=1{,}00$; khối 2: $0{,}67+0{,}33=1{,}00$; khối 3: $0{,}53+0{,}25+0{,}12+0{,}02+0{,}08=1{,}00$. Khối 3 = CP + KL + TK. Sau rà soát mạch 2 và mạch 3 (2026-10-15) tổng không đổi: phần $0{,}02$ tiết LT của LG08a (trong $0{,}08$ của LG08) chuyển sang LG12. Thời gian BT gồm cả các phép tính thủ công ở HQ02, HQ06, HQ08, LG03, LG10, CP02 và các trang kiểm tra. Sau cổng storyboard: mạch CP nhường $0{,}02$ tiết LT (CP09) cho KL03; trong KL, KL02 nhường $0{,}01$ cho KL03.
 
 Thời lượng từng trang trong mục Dàn bài từng trang do tác tử soạn phân bổ từ tổng của mạch và của cụm khái niệm (storyboard, Bản đồ hành trình khái niệm); tổng theo trang khớp tổng theo mạch ở bảng trên.
 
@@ -359,6 +359,7 @@ Dữ liệu dùng xuyên mạch (VD-A1, mục Ví dụ số): $u=(-1,-\tfrac12,0
 - **Liên kết:** kiểm tra đầu ra HQ04–HQ10 trước khi tổng kết mạch.
 - **Quyết định:** thêm; trang bài tập của mạch. Câu (d) thêm sau cổng storyboard để đo đúng sản phẩm của KN1.
 - **Hành trình:** KN1 bài tập (d); KN2 bài tập (a); KN3 bài tập (c); câu (b) luyện công cụ phương trình chuẩn.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** ba câu, đều trên dữ liệu năm mẫu (dữ kiện nêu lại trên mặt trang): (1) giữ câu (a) $d=7$; (2) $d=3$, $X^TX=\begin{pmatrix}5&0&\frac52\\0&\frac52&0\\\frac52&0&\frac{17}8\end{pmatrix}$, tính $\kappa$ và so với $d=2$; (3) chọn trong ba mô hình $d=2$; $d=5,\lambda=0{,}01$; $d=5,\lambda=0$ với sai số xác thực $0{,}000125$; $0{,}00261$; $0{,}0487$, nêu tập báo cáo. Bỏ câu (b) (luyện phương trình chuẩn, kỹ năng Bài 01) và câu (c) (ma trận $2\times2$ tùy ý). Đáp án (HQ11a): (1) $5$, $2$, $0$; (2) trị riêng $\tfrac52$ và $\tfrac{57\pm\sqrt{2129}}{16}\approx6{,}446;\ 0{,}679$, $\kappa\approx9{,}50>2$ (tự kiểm bằng phân số và phép quay Jacobi); (3) $d=2$, báo cáo trên tập kiểm thử riêng. Hành trình: KN2 (1), KN3 (2), KN1 (3).
 - **Thời lượng:** 0,15 tiết BT.
 
 #### HQ12 — Ba hệ quả của việc tăng số chiều
@@ -408,7 +409,7 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 
 #### LG03 — Mất mát dọc một tia
 
-- **Điểm trung tâm:** trên dữ liệu tách được, $F(t\bar w)$ giảm về $0$ khi $t\to\infty$ mà không đạt; trên dữ liệu không tách được, $F$ có cực tiểu hữu hạn.
+- **Điểm trung tâm:** trên dữ liệu tách được, $F(t\bar w)$ giảm về $0$ khi $t\to\infty$ mà không đạt; với đặc trưng $(1,u)$, mọi $w\ne0$ có một biên âm và $F$ có cực tiểu hữu hạn (từ 2026-10-15 giá trị $F^*$ nằm ở LG06).
 - **Mặt trang:**
   - $(1,u,u^2)$: mọi biên của $\bar w$ bằng $1$, nên $F(t\bar w)=\log(1+e^{-t})$: $t=0$: $0{,}6931$; $1$: $0{,}3133$; $5$: $0{,}00672$; $10$: $4{,}54\cdot10^{-5}$.
   - $(1,u)$: cực tiểu $w=(-\log2,0)$, $F^*=\tfrac13\log\tfrac{27}4\approx0{,}6365$; $\sigma(w_0)=\tfrac13$.
@@ -446,7 +447,7 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 - **Hành trình:** KN4 hình thức (định lý); KN5 nhu cầu (giới hạn tạo nhu cầu sửa bài toán).
 - **Thời lượng:** 0,07 tiết LT.
 
-#### LG06 — Dữ liệu không tách được
+#### LG06 — Điều kiện đủ cho sự tồn tại cực tiểu (tiêu đề cũ "Dữ liệu không tách được", đổi 2026-10-15)
 
 - **Điểm trung tâm:** nếu với mọi $w\ne0$ có một mẫu bị biên âm, thì $F$ cưỡng bức và có cực tiểu.
 - **Mặt trang:**
@@ -460,6 +461,7 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 - **Liên kết:** đối chứng với LG05 (KQ6); kết quả: sự tồn tại do dữ liệu quyết định, không kiểm soát được khi $d$ lớn, nên cần sửa mục tiêu.
 - **Quyết định:** thêm; cần trường hợp đối chứng có điều kiện đủ cụ thể.
 - **Hành trình:** KN4 hình thức (kết quả thứ hai, đối chứng với Định lý 1). Bước ứng dụng của KN4 chuyển sang LG10 theo cổng storyboard.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** tiêu đề cũ ngụ ý "không tách được ⇒ có cực tiểu", sai ở trường hợp ranh giới; tiêu đề mới nêu điều kiện đủ. Định nghĩa cưỡng bức thành "Nhắc lại:" (kèm Định lý 01.38); chứng minh một dòng "$c=\min_{\lVert v\rVert=1}\max_i(-m_i(v))>0$ cho $F(w)\ge\frac cn\lVert w\rVert$", bất đẳng thức trung gian vào ghi chú; dòng Ví dụ nhận $w=(-\log2,0)$, $F^*=\tfrac13\log\tfrac{27}4\approx0{,}6365$ từ LG03 (phép tính vào ghi chú). Ghi chú nêu trường hợp ranh giới (Nhận xét 05.25) và điều kiện $\operatorname{rank}X=n$.
 - **Thời lượng:** 0,04 tiết LT.
 
 #### LG07 — Số hạng phạt dọc một tia
@@ -485,7 +487,8 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 - **Liên kết:** kế thừa Hệ quả 01.41 (phát biểu lại, không chứng minh lại); kết quả KQ7a; đầu ra $\mu=\lambda$ cho LG09.
 - **Quyết định:** thêm.
 - **Hành trình:** KN5 hình thức; KN6 nhu cầu (đã có $\mu$, còn thiếu $L$).
-- **Thời lượng:** 0,08 tiết LT.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** dòng đầu "Nhắc lại: (Bài 01) $\nabla^2F_\lambda\succeq\lambda I$, nên $F_\lambda$ lồi mạnh, có đúng một cực tiểu $w_\lambda$"; Định lý 2 chỉ giữ phần mới (điều kiện bậc nhất, cận chuẩn, $\mu=\lambda$); dòng cuối "Ý nghĩa: kể cả khi dữ liệu tách được (Định lý 1), $F_\lambda$ có cực tiểu với mọi $\lambda>0$"; dòng "Nhu cầu:" về $L$ chuyển lên đầu LG09. Bảng kiểm tra một mẫu (LG08a) gộp vào LG12; cận $\sqrt{2\log2/\lambda}$ và dòng kiểm tra vào ghi chú LG12.
+- **Thời lượng:** 0,08 tiết LT (từ 2026-10-15: 0,06; phần $0{,}02$ của LG08a chuyển sang LG12).
 
 #### LG09 — Hằng số trơn và số điều kiện của $F_\lambda$
 
@@ -500,6 +503,7 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 - **Liên kết:** kế thừa HQ09 ($\kappa$ của bình phương nhỏ nhất); kết quả KQ7b; đầu ra $\kappa$ cho CP.
 - **Quyết định:** thêm; chiều chuyển giao A2 → A3 của giao diện.
 - **Hành trình:** KN6 trực quan + ví dụ (đồ thị độ cong một chiều, đặt đầu trang) + hình thức (Mệnh đề 4); nhu cầu nhận từ LG08.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** mở bằng "Nhu cầu: cận trên $L$ của $\nabla^2F_\lambda$ để có $\kappa=L/\mu$" (từ LG08); ví dụ một mẫu nêu $F_\lambda(w)$ tại chỗ; dòng dãy $\kappa=1{,}5;6;51;501$ bỏ khỏi mặt trang (LG12 có), giữ trong ghi chú.
 - **Thời lượng:** 0,10 tiết LT.
 
 #### LG10 — Ví dụ ba điểm có chính quy hóa
@@ -542,7 +546,8 @@ Dữ liệu dẫn (VD-A2a, mục Ví dụ số): $u=(-1,0,1)$, $y=(-1,+1,-1)$.
 - **Liên kết:** giới hạn tạo nhu cầu cho CP01. Theo giao diện A–B, đây là đầu ra (b) của phiên A2.
 - **Quyết định:** thêm; đầu ra rõ cho mạch sau. Tiêu đề đổi theo cổng storyboard (tên khái niệm thay cho cụm khẩu ngữ).
 - **Hành trình:** chuyển KN6 sang KN7.
-- **Thời lượng:** 0,06 tiết LT.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** gộp LG08a. Mặt trang: dữ kiện một mẫu $x_1=1$, $y_1=+1$ (tách được), $F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2$, $w_\lambda$ giải $\lambda w=\frac1{1+e^w}$; một bảng $\lambda=0{,}5;\,0{,}05;\,0{,}005;\,0{,}0005$ với ba hàng $w_\lambda=0{,}6748;\,2{,}1280;\,3{,}9140;\,5{,}8342$, $\sigma(w_\lambda)=0{,}663;\,0{,}894;\,0{,}980;\,0{,}997$, $\kappa=1+\frac1{4\lambda}=1{,}5;\,6;\,51;\,501$; một dòng "$\lambda$ giảm: $\sigma(w_\lambda)\to1$ và $w_\lambda$ tăng không bị chặn"; "Kết luận: trên dữ liệu tách được, $\lambda$ càng nhỏ thì $F(w_\lambda)$ càng gần $\inf F$ và cận $\kappa\le1+\frac{r^2}{4\lambda}$ càng lớn" (thay "$w_\lambda$ càng gần bài toán gốc", không chính xác). Hàng cận $\sqrt{2\log2/\lambda}=1{,}665;\,5{,}266;\,16{,}65;\,52{,}66$ và dòng kiểm tra $0{,}05\cdot2{,}128=0{,}1064$ vào ghi chú.
+- **Thời lượng:** 0,06 tiết LT (từ 2026-10-15: 0,08, nhận $0{,}02$ của LG08a).
 
 ### CP. Độ cong và chi phí tính toán (phiên A3)
 
@@ -1095,3 +1100,20 @@ Người dùng nhận xét các trang mạch 4 không tập trung vào chủ đ�
 - CP10 câu 1 dùng ví dụ năm mẫu (Bài tập 9): $7650$ và $1702$ bước theo Định lý 3, Newton một bước.
 - CP11 tính số bước trong ngân sách $10^{12}$: $10^4$ bước hạ gradient hoặc $9$ bước Newton ở $(10^5,10^3)$; RCV1 $27$ bước hạ gradient, không đủ một bước Newton.
 - R8 (trang dày công thức, CP05) đóng: CP05 gộp vào CP04 với hai công thức hiển thị.
+
+## Cập nhật 2026-10-15: rà soát mạch 2 và mạch 3
+
+Người dùng yêu cầu rà mạch 2 và mạch 3 để mọi trang phục vụ đúng câu hỏi trung tâm của mạch. Bốn tác tử rà soát chỉ đọc báo cáo; điều phối viên chốt quyết định; lý do từng trang ở storyboard (dòng "Sửa 2026-10-15 (rà soát mạch 2/3)"), nhật ký ở review-log.
+
+| Mạch | Trang tiêu đề | Trang theo thứ tự |
+|---|---|---|
+| 2. Hồi quy nhiều chiều | HQ00 | HQ00, HQ01–HQ05, HQ05a, HQ06, HQ07, HQ07a, HQ08–HQ11, HQ11a, HQ12 (16, không đổi) |
+| 3. Hồi quy logistic và chính quy hóa | LG00 | LG00, LG01–LG05, LG05a, LG06–LG11, LG11a, LG12 (15; LG08a gộp vào LG12) |
+
+Câu hỏi trung tâm. Mạch 2: khi $d$ tăng so với $n$, nghiệm bình phương nhỏ nhất dự đoán thế nào ngoài mẫu, còn duy nhất không, và nhạy thế nào với nhiễu. Mạch 3: khi nào mất mát logistic có cực tiểu lúc $d$ tăng tới $n$, và chính quy hóa khôi phục cực tiểu với số điều kiện bao nhiêu.
+
+- **Lỗi toán (nghiêm trọng).** "Dữ liệu không tách được ⇒ mất mát logistic cưỡng bức" là sai (trường hợp ranh giới: có $w\ne0$ với mọi biên $\ge0$, một số bằng $0$; Nhận xét 05.25, Bài tập 6). Điều kiện đúng của Mệnh đề 3: với mọi $w\ne0$ tồn tại $i$ với $m_i(w)<0$. Sửa ở LG06 (tiêu đề "Điều kiện đủ cho sự tồn tại cực tiểu"), LG11a câu 2, ghi chú TK01, tiêu đề Mệnh đề 05.24 và Mục 3.5 của ghi chú bài giảng.
+- **Mạch 2.** HQ00 dòng dẫn theo thứ tự các trang (sai số ngoài mẫu, tính duy nhất, độ nhạy); HQ01 "Nhu cầu:" nêu ba câu hỏi; HQ02 nhãn "Nhắc lại:" phủ trang, $\nabla F$ vào ghi chú; HQ05 quá khớp sau "Nhắc lại:" (Bài 00), phần mới là $R$; HQ06 thêm "Nhu cầu:" và "Diễn giải:" (hệ số $u^4=\tfrac53$), bỏ hình trùng HQ03; HQ07a công thức $w_{\rm mn}$ vào ghi chú, "Kết luận: khi $d>n$, chọn nghiệm cần tiêu chí ngoài dữ liệu huấn luyện"; HQ08 thí nghiệm khuếch đại nhiễu trên chính ví dụ ($\lVert w-w^\circ\rVert=0{,}020$, gấp $0{,}063$ lần $\lVert\varepsilon\rVert$ ở $d=2$; $2{,}49$, gấp $7{,}86$ lần ở $d=5$), thí nghiệm $y_3$ vào ghi chú; HQ09 cận tương đối $\lVert\delta w\rVert/\lVert w\rVert\le\sqrt{\kappa(X^TX)}\lVert\delta y\rVert/\lVert Xw\rVert$ với $0{,}020\le0{,}283$, $2{,}49\le4{,}71$; HQ10 "Nhu cầu:", dòng $d=8$ vào ghi chú; HQ11/HQ11a ba câu mới (mục HQ11 ở trên); HQ12 viết lại thành ba cặp "kết quả → cách xử lý", tiêu đề "Ba hệ quả của việc tăng số chiều và cách xử lý".
+- **Mạch 3.** LG00 dòng dẫn gắn $d$, $n$ và $\kappa$; LG01 nhãn $d=2$, $d=3=n$; LG02, LG04, LG06, LG08 nhãn "Nhắc lại:" cho lý thuyết Bài 01; LG03 bỏ dòng cực tiểu với $(1,u)$, giá trị $F^*$ chuyển sang dòng Ví dụ của LG06; LG05 thêm hệ quả cho $\operatorname{rank}X=n$ (từ LG10); LG07 mở bằng "Nhu cầu:", "Ký hiệu: $F_\lambda$" thay "Định nghĩa."; LG08–LG09, LG12 như các mục ở trên; LG10 thêm dữ kiện và dòng "Tính …", bỏ dòng năm mẫu; LG11a câu 2 nêu điều kiện biên âm.
+- **Thời lượng:** không đổi theo mạch (HQ $0{,}56+0{,}34$, LG $0{,}67+0{,}33$); trong LG, LG08 $0{,}08\to0{,}06$, LG12 $0{,}06\to0{,}08$.
+- **Sửa vòng 2 (2026-10-15):** HQ06, LG03 đổi tiêu đề thành "Ví dụ: nội suy khi $d=n$", "Ví dụ: mất mát dọc một tia"; HQ09 trường hợp số của cận độ nhạy vào ghi chú, bất đẳng thức thành khối công thức; LG04 bỏ dòng "Ví dụ."; LG06 dòng "Ví dụ." thành "Ý nghĩa:"; LG09 nhãn "Trực quan."; LG01 "Nhu cầu:" thêm vế "Khi không có, sửa mục tiêu và tính $\kappa$"; LG05 bỏ "như năm mẫu với $d=5$"; HQ08 chú thích hình vào `alt`; sửa ngắt dòng ở nhiều trang. Thời lượng không đổi.

@@ -744,3 +744,96 @@ Câu mới trên mặt trang là mệnh đề toán ngắn với nhãn được 
 | Sửa mạch 4 | general-purpose, opus, effort medium | yêu cầu sửa → chấp nhận | Vòng 1 đọc mặt trang 14 trang; vòng sửa nhẹ xử lý 7 phát hiện nhẹ của tái kiểm và các lỗi ngắt dòng |
 | Tái kiểm mạch kể và toán | general-purpose, opus, effort high, chỉ đọc | chấp nhận | 0 phát hiện chặn/nghiêm trọng/trung bình; mọi số liệu tính lại khớp |
 | Kiểm định hiển thị | general-purpose, opus, effort high, chỉ đọc | chấp nhận | 62 trang, 0 lỗi console, 0 `.katex-error`, không trang lấn footer; ArrowRight theo mạch là hành vi mặc định của Reveal |
+
+## Rà soát mạch 2 và mạch 3, 2026-10-15
+
+Người dùng yêu cầu rà mạch 2 "Hồi quy nhiều chiều" (HQ00–HQ12) và mạch 3 "Hồi quy logistic và chính quy hóa" (LG00–LG12) để các trang phục vụ đúng chủ đề của mạch, tương tự đợt sửa mạch 4 (commit e070e83).
+
+### Tác tử
+
+| Vai | Loại | Mô hình | Effort | Ghi tệp |
+|---|---|---|---|---|
+| Rà soát mạch 2/3, tác tử 1–4 (chỉ đọc) | general-purpose | opus | high | không |
+| Chỉnh sửa (tác tử ghi duy nhất) | general-purpose | opus | medium | có |
+
+Ghi theo brief của điều phối viên; mọi con số đang có trên mặt trang đã được các tác tử rà soát kiểm lại là đúng.
+
+### Phát hiện chính và quyết định
+
+| Mức độ | Trang chiếu | Vấn đề | Quyết định | Trạng thái |
+|---|---|---|---|---|
+| nghiêm trọng | LG06 (tiêu đề), LG11a câu 2, ghi chú TK01; Mệnh đề 05.24, Mục 3.5 ghi chú bài giảng | "Dữ liệu không tách được ⇒ mất mát logistic cưỡng bức" sai: trường hợp ranh giới (có $w\ne0$ với mọi biên $\ge0$, một số bằng $0$) không có cực tiểu (Nhận xét 05.25, Bài tập 6) | Điều kiện đúng của Mệnh đề 3: mọi $w\ne0$ có $i$ với $m_i(w)<0$. LG06 "Điều kiện đủ cho sự tồn tại cực tiểu"; LG11a "mọi $w\ne0$ có biên âm (kiểm tra dưới), nên $F$ cưỡng bức"; ghi chú TK01; Mệnh đề 05.24 "Điều kiện đủ cho tính cưỡng bức của mất mát logistic"; Mục 3.5 "Điều kiện đủ cho sự tồn tại điểm cực tiểu"; câu tổng kết Mục 3 và bảng tương ứng nhãn | đã sửa |
+| nghiêm trọng | HQ00, HQ01 | Câu hỏi trung tâm của mạch 2 không theo thứ tự trang (duy nhất đứng trước sai số ngoài mẫu); HQ01 chỉ hỏi "chọn $d$" | Dòng dẫn và "Nhu cầu:" nêu sai số ngoài mẫu → tính duy nhất → độ nhạy | đã sửa |
+| trung bình | HQ02, HQ05, LG02, LG04, LG06, LG08 | Dạy lại Bài 00, Bài 01 không gắn "Nhắc lại:" | Nhãn "Nhắc lại:", phần mới tách rõ; $\nabla F$ của HQ02, LG02 vào ghi chú | đã sửa |
+| trung bình | HQ06 | Thiếu nhu cầu; hình trùng HQ03; diễn giải chỉ ở ghi chú | "Nhu cầu:", "Diễn giải: hệ số $u^4=\tfrac53$…", bỏ hình | đã sửa |
+| trung bình | HQ08, HQ09 | Thí nghiệm $y_3+0{,}01$ không gắn với câu "vì sao nghiệm $d=5$ lệch xa"; cận độ nhạy theo $\lambda_{\min}$ không nối với $\kappa$ | Khuếch đại nhiễu trên chính ví dụ; cận tương đối theo $\sqrt\kappa$ | đã sửa |
+| trung bình | HQ11 | Câu (b) luyện phương trình chuẩn (Bài 01), câu (c) ma trận tùy ý | Ba câu trên năm mẫu, mỗi câu một câu hỏi của mạch | đã sửa |
+| trung bình | HQ12 | Ba hệ quả không kèm cách xử lý, thứ tự khác các trang | Ba cặp "kết quả → cách xử lý" | đã sửa |
+| trung bình | LG08a, LG12 | Hai trang kể lại cùng bảng một mẫu | Gộp LG08a vào LG12 | đã sửa |
+| trung bình | LG12, Nhận xét 05.29 | "$w_\lambda$ càng gần bài toán gốc" không chính xác (bài toán gốc không có nghiệm) | "trên dữ liệu tách được, $\lambda$ càng nhỏ thì $F(w_\lambda)$ càng gần $\inf F$ và cận $\kappa$ càng lớn" | đã sửa |
+| trung bình | LG03, LG06 | Cực tiểu với $(1,u)$ nêu ở trang hiện tượng không có cực tiểu | Chuyển sang dòng Ví dụ của LG06 | đã sửa |
+| trung bình | LG05, LG10 | Hệ quả cho $\operatorname{rank}X=n$ (năm mẫu, $d=5$) đặt ở trang ví dụ ba điểm | Chuyển lên "Ý nghĩa:" của LG05 | đã sửa |
+| nhẹ | LG00, LG01, LG07, LG09, HQ07a, HQ10 | Câu nối chưa gọi tên phần việc; "Định nghĩa." cho ký hiệu đã dùng; nhu cầu $L$ ở cuối LG08 | "Nhu cầu:" đầu LG07, LG09, HQ10; "Ký hiệu:" $F_\lambda$; nhãn $d$ ở LG01; kết luận HQ07a | đã sửa |
+| nhẹ | ghi chú HQ01, HQ03, HQ04, HQ09, LG05, LG07, LG10 | Câu slop, tài liệu làm chủ ngữ, "colon reveal", "trùng hợp", $10^{-16}$ lệch ghi chú bài giảng | Viết lại; $10^{-15}$ | đã sửa |
+
+Quyết định của điều phối viên: giữ mã trang, không đánh số lại Định lý 1–2, Mệnh đề 1–4; mạch 3 còn 15 trang, deck 62 → 61.
+
+### Việc tác tử chỉnh sửa đã làm
+
+- Deck: các trang HQ00–HQ12, LG00–LG12 theo bảng trên; ghi chú MD02, MD03a, MD04, TK01 cập nhật dẫn chiếu. Ký hiệu $w^\circ$ (hệ số thật) thay $w_{\rm thật}$ vì KaTeX cảnh báo chữ tiếng Việt trong công thức.
+- Số mới, tự kiểm bằng Python (phân số chính xác, trị riêng bằng phép quay Jacobi; không có numpy): $\lVert\varepsilon\rVert=\sqrt{0{,}1}=0{,}316$; $\lVert w-w^\circ\rVert=0{,}020$ ($d=2$, tỉ số $0{,}0632$) và $2{,}486$ ($d=5$, tỉ số $7{,}862$); cận tương đối $\sqrt2\cdot0{,}316/1{,}581=0{,}283$ và $\sqrt{553{,}7}\cdot0{,}316/1{,}581=4{,}71$; thí nghiệm $y_3$: tương đối $0{,}00204\le0{,}00913$ và $0{,}0237\le0{,}149$ (khớp brief); $X^TX$ của $d=3$ là $\begin{pmatrix}5&0&\frac52\\0&\frac52&0\\\frac52&0&\frac{17}8\end{pmatrix}$, trị riêng $0{,}6787$; $2{,}5$; $6{,}4463$, khớp $\tfrac{57\pm\sqrt{2129}}{16}$, $\kappa=9{,}498$; LG10 tính lại bằng Newton: $w_\lambda$, xác suất, $\lVert w_\lambda\rVert=1{,}435$, $4{,}522$ khớp, chuẩn gradient khi dừng cỡ $10^{-17}$; $\sigma(w_\lambda)$ và $\sqrt{2\log2/\lambda}$ của LG12 khớp.
+- Học liệu: `lecture-note.md` (tiêu đề Mục 3.5 và Mệnh đề 05.24, câu tổng kết Mục 3, mục tóm tắt, bảng tương ứng nhãn, Nhận xét 05.29 và đoạn chuyển sang Mục 4, đoạn mở Mục 2 theo thứ tự ba câu hỏi); `exercises.md` Bài 1 (đề, gợi ý, lời giải theo ba câu mới). Đã chạy `sync-local-materials.py` và `--check`.
+- Kế hoạch: storyboard (phạm vi, bảng mạch, ranh giới HQ12 → LG01, KN1–KN6, mục từng trang, tiểu mục "Trang đã gộp ở mạch 3", đầu vào CP02); outline (quy mô, bản đồ mạch, HQ11, LG06, LG08, LG09, LG12, kiểm tra cộng, mục cập nhật cuối tệp); lec-06 outline, storyboard đổi "Bài 05 HQ05" thành "HQ05a", review-log lec-06 thêm một dòng.
+
+### Mật độ mặt trang (token có chữ, bỏ tiêu đề, KaTeX, ghi chú)
+
+HQ00 34, HQ01 42, HQ02 31, HQ03 29, HQ04 24, HQ05 40, HQ05a 60, HQ06 55, HQ07 31, HQ07a 43, HQ08 58, HQ09 52, HQ10 56, HQ11 27, HQ11a 40, HQ12 54; LG00 39, LG01 47, LG02 25, LG03 11, LG04 50, LG05 51, LG05a 34, LG06 49, LG07 46, LG08 49, LG09 28, LG10 29, LG11 35, LG11a 48, LG12 34. Không trang nào vượt 60; mỗi dòng ≤ 20 âm tiết (dòng dẫn LG00 22, trần 25); ≤ 3 công thức hiển thị; trang vượt 40 có lý do ở storyboard.
+
+### Tự kiểm no-ai-slop (Edit mode, đối chiếu `eval.md`)
+
+Câu mới trên mặt trang là mệnh đề toán ngắn với nhãn được phép; không câu dẫn rỗng, không nhấn mạnh, không "ta thấy"/"chúng ta". Trong ghi chú đã bỏ "Kết luận của hai trang:", câu "trùng hợp…", câu "Hình đặt cạnh nhau…" và colon reveal ở HQ09; ghi chú không lấy trang hay tài liệu làm chủ ngữ. Đạt.
+
+### Kiểm tra
+
+- Playwright 1600×900 và 390×844, chờ 1700 ms sau `Reveal.slide(h,v,99)`, trên HQ00–HQ12, LG00–LG12, TK01, TK03a: tổng 61 trang; 0 `.katex-error`; 0 lỗi console sau khi đổi $w_{\rm thật}$ thành $w^\circ$; đáy nội dung ở 16:9 dưới 652,6 px logic (lớn nhất LG07 634,5, HQ09 633,1, HQ01 625,4, HQ08 622,6); ở 390×844 không tràn ngang trang, cỡ chữ thân không dưới 0,9 em. Ảnh đã xem: HQ01, HQ05, HQ06, HQ08 (cả 390 cuối trang), HQ09, HQ11, HQ11a, HQ12, LG02, LG06, LG07, LG08, LG09, LG10, LG12.
+- Material viewer (exercises, lecture-note Bài 05): 0 `.katex-error`, 0 lỗi trang.
+- `git diff --check` sạch.
+
+### Vòng tái kiểm, kiểm định hiển thị và sửa vòng 2 (2026-10-15)
+
+| Vai | Loại | Mô hình | Effort | Ghi tệp |
+|---|---|---|---|---|
+| Tái kiểm toán, mạch lập luận và rà tập trung mạch 2/3 (chỉ đọc) | general-purpose | opus | high | không |
+| Kiểm định hiển thị (chỉ đọc) | general-purpose | opus | high | không |
+| Chỉnh sửa vòng 2 (tác tử ghi duy nhất) | general-purpose | opus | medium | có |
+
+Rà tập trung (tóm tắt). Mạch 2 trả lời câu hỏi: khi $d$ tăng so với $n$, nghiệm bình phương nhỏ nhất dự đoán thế nào ngoài mẫu, còn duy nhất không, nhạy thế nào với nhiễu, và xử lý mỗi điều ra sao. Mạch 3 trả lời câu hỏi: khi nào mất mát logistic có cực tiểu lúc $d$ tăng tới $n$, và chính quy hóa khôi phục cực tiểu với số điều kiện $\kappa$ bao nhiêu. Không phát hiện chặn hay nghiêm trọng; các phát hiện trung bình và nhẹ dưới đây đã sửa. Kết quả: đạt sau sửa vòng 2.
+
+| Mức độ | Trang chiếu | Vấn đề | Quyết định | Trạng thái |
+|---|---|---|---|---|
+| trung bình | HQ09 | Trường hợp số trộn vào phát biểu nhận xét độ nhạy; công thức inline bị cắt 37 px ở màn hẹp | Trường hợp số vào ghi chú; bất đẳng thức thành khối công thức cuộn được; nhận xét chiều tăng rút một câu để vừa 16:9; bảng $\kappa$ giữ (dữ kiện của nhận xét chiều tăng, mạch 4–5 dùng $553{,}7$) | đã sửa |
+| trung bình | LG04 | Dòng "Ví dụ." kể ba điểm lần thứ ba | Bỏ; một câu nối trong ghi chú | đã sửa |
+| trung bình | LG06 | Dòng "Ví dụ." trên trang phát biểu | "Ý nghĩa: ba điểm với đặc trưng $(1,u)$ thỏa giả thiết nên có cực tiểu."; $F^*$ trong ghi chú | đã sửa |
+| trung bình | LG09 | Cột trái mang nhãn "Ví dụ" nhưng là bước trực quan trước Mệnh đề 4 | Nhãn "Trực quan." | đã sửa |
+| nhẹ | LG01 | "Nhu cầu:" chỉ nêu nửa đầu câu hỏi | Thêm "Khi không có, sửa mục tiêu và tính $\kappa$." | đã sửa |
+| nhẹ | LG05 | "như năm mẫu với $d=5$" lặp ghi chú | Bỏ | đã sửa |
+| nhẹ | HQ06, LG03 | Trang chỉ chứa ví dụ không mang tiêu đề "Ví dụ: …" | "Ví dụ: nội suy khi $d=n$", "Ví dụ: mất mát dọc một tia"; ghi chú LG01 sửa dẫn chiếu | đã sửa |
+| nhẹ | HQ08 | 7 dòng nếu tính chú thích; công thức đơn lẻ ở dòng cuối | Chú thích vào `alt`; nhóm KaTeX | đã sửa |
+| nhẹ | storyboard | Thiếu lý do vượt 40 cho LG04, LG11a | LG04 còn 36; LG11a có lý do | đã sửa |
+| nhẹ | ghi chú HQ02, LG02, LG09 | Tài liệu làm chủ ngữ | Viết lại | đã sửa |
+| nhẹ | ghi chú F06 deck Bài 06 | Dẫn "phần rủi ro thực nghiệm và rủi ro kỳ vọng" | "trang tập xác thực và tập kiểm thử của phần hồi quy nhiều chiều"; review-log lec-06 thêm một dòng | đã sửa |
+| nhẹ | HQ11a, LG08, LG09, MD04, TK03a, HQ06, HQ10, HQ12, LG07, LG00, HQ07, LG11a, LG03 | Ngắt dòng, chữ đơn lẻ, bảng rộng hơn khung 4 px | Nhóm `{…}`, `&nbsp;`, rút chữ; ngoặc vào KaTeX ở HQ07 (bỏ ngoặc quanh "nên $d\ge n$"); LG03 ô $4{,}5\cdot10^{-5}$ (khớp `alt`) | đã sửa |
+
+Âm tiết các trang đổi: MD04 46, HQ06 52, HQ07 31, HQ08 45, HQ09 39, HQ10 54, HQ11a 40, HQ12 54, LG00 39, LG01 55, LG03 11, LG04 36, LG05 47, LG06 51, LG07 46, LG08 49, LG09 28, LG11a 48, TK03a 35. Không trang nào vượt 60.
+
+Kiểm tra: Playwright 1600×900 và 390×844 (chờ 1700 ms) trên MD04, HQ06–HQ12, LG00, LG01, LG03–LG09, LG11a, TK03a: 0 lỗi console, 0 `.katex-error`; đáy ở 16:9 dưới 652,6 (lớn nhất LG07 634,5, LG09 628,4, HQ09 623); bảng LG03 vừa khung ($575=575$ px); ở màn hẹp mọi phần tử KaTeX hay bảng vượt khung đều nằm trong vùng cuộn `.formula`/`.table-scroll`, kể cả bất đẳng thức HQ09. Đã xem ảnh HQ06, HQ08, HQ09 (1600 và 390 cuối trang), LG01, LG07, LG09. Học liệu không đổi ở vòng này. `git diff --check` sạch.
+
+### Quyết định của điều phối viên về mạch 2 và mạch 3 (Opus 5.5 high, 2026-10-15)
+
+| Đầu ra | Tác tử | Quyết định | Lý do |
+|---|---|---|---|
+| Bốn báo cáo rà soát (mạch kể và sư phạm cho mỗi mạch) | general-purpose, opus, effort high, chỉ đọc | chấp nhận | Xác nhận lỗi "không tách được ⇒ cưỡng bức" bằng phản ví dụ ranh giới; tự kiểm $\kappa$ của $X^TX$ khi $d=3$ (9,50) và cận độ nhạy theo $\sqrt\kappa$ ($\lVert\delta w\rVert\le\lVert\delta y\rVert/\sigma_{\min}$, $\lVert w\rVert\ge\lVert Xw\rVert/\sigma_{\max}$) |
+| Sửa vòng 1 mạch 3 rồi mạch 2 | general-purpose, opus, effort medium (tác tử mới) | yêu cầu sửa | Tái kiểm theo "Tập trung của mạch" nêu 4 trang trộn ví dụ với phát biểu (HQ09, LG04, LG06, LG09); kiểm định hiển thị nêu công thức HQ09 bị cắt ở màn hẹp |
+| Tái kiểm và rà tập trung mạch 2, 3 | general-purpose, opus, effort high, chỉ đọc | chấp nhận | Báo cáo rà tập trung hai mạch đã ghi ở trên |
+| Kiểm định hiển thị | general-purpose, opus, effort high, chỉ đọc | chấp nhận | 61 trang, 0 lỗi console, 0 `.katex-error`, không lấn footer; viewer học liệu 0 lỗi KaTeX |
+| Sửa vòng 2 | general-purpose, opus, effort medium | chấp nhận | Đã đọc mặt trang HQ09, LG06, LG09; `--check` đồng bộ và `git diff --check` sạch |

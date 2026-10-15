@@ -12,6 +12,8 @@ Quy ước viết tắt: lý thuyết (LT), bài tập (BT), chuẩn đầu ra b
 
 **Cập nhật 2026-10-15 (rà soát mạch 4).** Người dùng nhận xét các trang mạch 4 không tập trung vào chủ đề. Theo quyết định của điều phối viên, mạch 4 lấy khung "tổng chi phí = số bước × chi phí một bước" làm trục: thứ tự CP00, CP01, CP02, CP04 (gộp CP05), CP03, CP06 (gộp CP06a), CP07, CP07a, CP08, CP08a, CP09, CP10, CP10a, CP11; CP05a bỏ. Deck còn 62 trang trong 6 mạch; storyboard có 62 mục cho 62 trang, cộng bảy mục trang đã bỏ hoặc gộp (KL02, KL03a, KL04, KL04a, CP05, CP05a, CP06a). Thời lượng mạch 4 không đổi (0,53 LT + 0,25 BT): phần 0,05 của CP05 chia cho CP04 (+0,03), CP03 (+0,01), CP11 (+0,01).
 
+**Cập nhật 2026-10-15 (rà soát mạch 2/3).** Người dùng yêu cầu rà mạch 2 và mạch 3 để mọi trang phục vụ câu hỏi trung tâm của mạch. Theo quyết định của điều phối viên sau bốn báo cáo rà soát chỉ đọc: mạch 2 giữ 16 trang, thứ tự câu hỏi trên mặt trang là sai số ngoài mẫu → tính duy nhất → độ nhạy, theo đúng thứ tự trang; mạch 3 còn 15 trang (LG08a gộp vào LG12, mục giữ ở tiểu mục "Trang đã gộp ở mạch 3 (2026-10-15)" với quyết định `gộp`). Sửa lỗi toán mức nghiêm trọng: "không tách được ⇒ cưỡng bức" sai ở trường hợp ranh giới; điều kiện đúng của Mệnh đề 3 là mọi $w\ne0$ có một biên âm (LG06 đổi tiêu đề, LG11a, ghi chú TK01). Deck còn 61 trang trong 6 mạch; storyboard có 61 mục cho 61 trang, cộng tám mục trang đã bỏ hoặc gộp (KL02, KL03a, KL04, KL04a, CP05, CP05a, CP06a, LG08a). Thời lượng theo mạch không đổi; trong mạch 3, phần $0{,}02$ LT của LG08a chuyển sang LG12 (LG08 $0{,}06$, LG12 $0{,}08$). Mọi trang vượt 40 âm tiết có lý do ở dòng "Sửa 2026-10-15 (rà soát mạch 2/3)" hoặc dòng sửa trước; không trang nào của mạch 2–3 vượt 60.
+
 Bài gồm 44 trang trong 5 mạch ngoài (43 trang theo kế hoạch đã duyệt; HQ08 tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11): mở đầu (MD), ba mạch ứng với ba phiên A1–A3 của thiết kế (HQ, LG, CP) và kết luận (KL). Số mạch nằm trong khoảng 5–7; không có ngoại lệ cần ghi. Thời lượng theo đề cương: 2 tiết LT + 1 tiết BT, chia thành ba khối 1 tiết (khối 1 = MD + HQ, khối 2 = LG, khối 3 = CP + KL). Deck được dựng ngày 2026-10-12 (`lecture-05-khong-gian-dac-trung-nhieu-chieu.html`, 44 trang, đúng mã và thứ tự trang của storyboard); các sai lệch về hình và bố cục ghi ở nhật ký, vòng dựng deck.
 
 **Vấn đề trung tâm.** Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác định điều gì thay đổi khi số đặc trưng $d$ tăng so với kích thước mẫu $n$: cực tiểu của rủi ro thực nghiệm có tồn tại và duy nhất không, có dự đoán tốt trên dữ liệu mới không, và tính nó tốn bao nhiêu phép tính.
@@ -30,15 +32,15 @@ Bài gồm 44 trang trong 5 mạch ngoài (43 trang theo kế hoạch đã duy�
 | Mạch | Trang tiêu đề | Chức năng | Đầu vào | Đầu ra và đóng góp vào vấn đề trung tâm | Trang kiểm tra | Tiết LT + BT |
 |---|---|---|---|---|---|---|
 | MD. Bài toán trung tâm và khung chung | MD01 (bìa) | Nêu sự thay đổi bức tranh so với Bài 01–04 và hai lý do; đặt khung, ký hiệu | Khung lồi, phương trình chuẩn, hồi quy logistic, hạ gradient, Newton (Bài 01–04) | Vấn đề trung tâm; ba nhu cầu cho ba mạch giữa; ký hiệu chung | — | 0,10 + 0 |
-| HQ. Hồi quy nhiều chiều (A1) | HQ00 | Trả lời nhu cầu: điều gì thay đổi ở nghiệm bình phương nhỏ nhất khi $d$ tăng tới và vượt $n$ | Phương trình chuẩn, điều kiện duy nhất (Bài 01), ridge (Bài 02), trung bình mẫu (Bài 05c) | Ba hệ quả: không duy nhất khi $d>n$, khoảng cách huấn luyện–xác thực, $\kappa$ không giảm (xen kẽ Cauchy); $F$ khác $R$; chính quy hóa sửa tính duy nhất; giới hạn "tồn tại" mở LG | HQ11, HQ11a | 0,56 + 0,34 |
-| LG. Hồi quy logistic và chính quy hóa (A2) | LG00 | Trả lời nhu cầu: vì sao bài toán học lồi có thể không có cực tiểu, và sửa bài toán để cực tiểu tồn tại, duy nhất | Chế độ nội suy (HQ07), $\kappa$ (HQ09), mất mát logistic (Bài 01) | Tách được ⇒ không có cực tiểu; $F_\lambda$ lồi mạnh, nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}/(4n\lambda)\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn, mở CP | LG11, LG11a | 0,67 + 0,33 |
+| HQ. Hồi quy nhiều chiều (A1) | HQ00 | Câu hỏi trung tâm (sửa 2026-10-15): khi $d$ tăng so với $n$, nghiệm bình phương nhỏ nhất dự đoán thế nào ngoài mẫu, còn duy nhất không, nhạy thế nào với nhiễu; mỗi câu hỏi kèm cách xử lý (tập xác thực, $\lambda>0$) | Phương trình chuẩn, điều kiện duy nhất (Bài 01), ridge (Bài 02), trung bình mẫu (Bài 05c) | Ba hệ quả theo thứ tự trang: sai số xác thực gấp $389$ lần (chọn $d$, $\lambda$ trên tập xác thực), tập nghiệm chiều $d-n$ khi $d>n$, $\kappa$ không giảm ($2\to553{,}7\to\infty$); $\lambda>0$ sửa tính duy nhất và $\kappa$; tập xác thực cho mạch 3, 5; $\kappa=553{,}7$, $123{,}2$ cho mạch 4, 5; giới hạn "tồn tại" mở LG | HQ11, HQ11a | 0,56 + 0,34 |
+| LG. Hồi quy logistic và chính quy hóa (A2) | LG00 | Câu hỏi trung tâm (sửa 2026-10-15): khi nào mất mát logistic có cực tiểu lúc $d$ tăng tới $n$, và chính quy hóa khôi phục cực tiểu với số điều kiện $\kappa$ bao nhiêu | Chế độ nội suy (HQ07), $\kappa$ (HQ09), mất mát logistic (Bài 01) | Tách được ⇒ không có cực tiểu (với mọi nhãn khi $\operatorname{rank}X=n$); mọi $w\ne0$ có biên âm ⇒ có cực tiểu (điều kiện đủ); $F_\lambda$ lồi mạnh, nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}/(4n\lambda)\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn, mở CP | LG11, LG11a | 0,67 + 0,33 |
 | CP. Độ cong và chi phí tính toán (A3) | CP00 | Trả lời nhu cầu: so tổng chi phí của hạ gradient và Newton theo khung tổng chi phí = số bước × chi phí một bước (sửa 2026-10-15) | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (Bài 05b) | Số bước theo $\kappa$ và theo hai giai đoạn Newton; chi phí một bước $O(nd)$, $O(nd^2+d^3)$; ngưỡng hòa vốn; mọi bước trả thừa số $n$ (giới hạn (i)) | CP10, CP10a | 0,53 + 0,25 |
 | KL. Giới hạn của tối ưu tất định | KL00 | Xác định độ chính xác tối ưu cần thiết khi đích là sai số trên dữ liệu mới; nêu hai giới hạn chuyển sang Bài 06 | Tổng chi phí (CP08, CP11); $F$ chỉ đại diện cho $R$ (HQ05) | Dừng sớm có sai số xác thực nhỏ hơn nghiệm chính xác (trực quan theo độ cong, định nghĩa); giới hạn (i) chi phí theo $n$ và (ii) biểu diễn (ba điểm của LG01, số đơn thức); đầu vào A03, B01–B03, E02 của Bài 06 | TK03 (câu 3), TK03a | 0,12 + 0 |
 | TK. Tổng hợp và chuyển giao (thêm 2026-10-15) | TK00 | Đối chiếu kết quả với ba mục tiêu và giả thiết không được bỏ; bài tập chuyển giao, tài liệu đọc | Đầu ra HQ, LG, CP, KL | Hai bảng tổng kết; bài tập $d>n$ có lời giải trên mặt trang; bài về nhà | TK03, TK03a | 0,02 + 0,08 |
 
 Tổng 2,00 tiết LT + 1,00 tiết BT. Các ranh giới cần giữ rõ:
 
-- HQ12 → LG01: bình phương nhỏ nhất luôn có nghiệm, mất mát logistic thì không; chế độ nội suy $\operatorname{rank}X=n$ của HQ07 được dùng lại làm điều kiện đủ cho tách được ở LG04.
+- HQ12 → LG01: HQ12 khép mạch 2 bằng ba cặp kết quả–xử lý và dòng "Nhắc lại: bình phương nhỏ nhất luôn có nghiệm; mất mát logistic thì có thể không"; LG01 lấy đúng câu hỏi tồn tại đó, trên ba điểm với $d=2$ rồi $d=3=n$. Chế độ nội suy $\operatorname{rank}X=n$ của HQ07 được dùng lại làm điều kiện đủ cho tách được ở LG04 (sửa 2026-10-15).
 - LG12 → CP01: chính quy hóa sửa tồn tại và duy nhất nhưng làm $\kappa$ tăng theo $1/\lambda$; câu hỏi chuyển từ "nghiệm có tồn tại" sang "tính nghiệm tốn bao nhiêu".
 - CP11 → KL00: Newton đổi số bước lấy chi phí $d^2$, $d^3$ nhưng không bỏ được thừa số $n$; KL00 kế thừa tổng chi phí = chi phí một bước × số bước và hỏi độ chính xác tối ưu nào thật sự cần khi đích là $R$ nhỏ (sửa 2026-10-15).
 - KL03 → TK00 (thêm 2026-10-15): hai giới hạn đã nêu; mạch 6 chỉ đối chiếu kết quả với mục tiêu, không thêm nội dung mới.
@@ -49,17 +51,17 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 
 ### KN1. Rủi ro thực nghiệm, rủi ro kỳ vọng và quá khớp
 
-- **Sáu bước:** nhu cầu + ví dụ dẫn nhập HQ01; trực quan HQ03; ví dụ HQ04; hình thức HQ05, HQ05a (tách 2026-10-12); ứng dụng HQ10, KL01, KL01a; bài tập HQ11(4) với lời giải HQ11a, TK03(3) với lời giải TK03a (câu 3).
+- **Sáu bước:** nhu cầu + ví dụ dẫn nhập HQ01; trực quan HQ03; ví dụ HQ04; hình thức HQ05 (quá khớp nhắc lại Bài 00, phần mới là $R$; sửa 2026-10-15), HQ05a (tách 2026-10-12); ứng dụng HQ10, KL01, KL01a; bài tập HQ11(3) với lời giải HQ11a (từ 2026-10-15: chọn trong ba mô hình), TK03(3) với lời giải TK03a (câu 3).
 - **Ví dụ dẫn nhập:** năm mẫu VD-A1 với đặc trưng đa thức phục vụ nhu cầu "xác định điều gì thay đổi khi $d$ tăng".
 - **Đầu vào và mục tiêu:** phương trình chuẩn (Bài 01), kỳ vọng và trung bình mẫu (Bài 05c); MT1, LLO11 → CLO1. Sản phẩm: phân biệt $F$ với $R$, đọc sai số huấn luyện và sai số trên tập xác thực, chọn $\lambda$ đúng quy tắc.
 - **Ký hiệu/dữ kiện truyền tiếp:** $u=(-1,-\tfrac12,0,\tfrac12,1)$, $y=u+\varepsilon$, bốn điểm $u=\pm\tfrac14,\pm\tfrac34$; $F$, $R$, tập xác thực, tập kiểm thử. Dữ liệu truyền sang HQ06–HQ10 và KL01.
 - **Gộp hoặc rút gọn:** HQ01 gộp nhu cầu và ví dụ dẫn nhập, hợp lệ theo AGENTS.md. Ứng dụng có hai trang: HQ10 (chọn $\lambda$) và KL01 (chọn bước dừng).
-- **Câu nối học thuật:** sai số huấn luyện giảm theo $d$ vì tập mô hình lồng nhau (HQ03) → sai số trên bốn điểm ngoài mẫu tăng 389 lần từ $d=2$ đến $d=5$ (HQ04) → cần tách đại lượng tối ưu $F$ khỏi đại lượng cần nhỏ $R$, và tách tập chọn khỏi tập báo cáo (HQ05) → $\lambda$ chọn theo cột xác thực (HQ10).
+- **Câu nối học thuật:** HQ01 nêu ba câu hỏi của mạch, câu đầu là sai số tại điểm mới → sai số huấn luyện giảm theo $d$ vì tập mô hình lồng nhau (HQ03) → sai số trên bốn điểm ngoài mẫu tăng 389 lần từ $d=2$ đến $d=5$ (HQ04) → cần tách đại lượng tối ưu $F$ khỏi đại lượng cần nhỏ $R$, và tách tập chọn khỏi tập báo cáo (HQ05) → $\lambda$ chọn theo cột xác thực (HQ10).
 - **Thời lượng cụm:** 0,25 tiết LT + 0,15 tiết BT.
 
 ### KN2. Chế độ nội suy và tính không duy nhất
 
-- **Sáu bước:** nhu cầu HQ03 (số $0$ tại $d=5$); trực quan HQ06; ví dụ HQ06; hình thức HQ07; ứng dụng HQ07a (chọn nghiệm chuẩn nhỏ nhất; tách từ HQ07 ngày 2026-10-12), LG04; bài tập HQ11(1), lời giải HQ11a.
+- **Sáu bước:** nhu cầu HQ03 (số $0$ tại $d=5$) và dòng "Nhu cầu:" của HQ06 (thêm 2026-10-15); trực quan HQ06; ví dụ HQ06 (kết bằng "Diễn giải:" hệ số $u^4=\tfrac53$); hình thức HQ07; ứng dụng HQ07a (chọn nghiệm cần tiêu chí ngoài dữ liệu huấn luyện; tách từ HQ07 ngày 2026-10-12), LG04; bài tập HQ11(1), lời giải HQ11a.
 - **Đầu vào và mục tiêu:** Mệnh đề 01.6 (Bài 01), định lý hạng–số chiều; MT1, LLO11 → CLO1. Sản phẩm: xác định hạng, số chiều tập nghiệm và $\min F$.
 - **Ký hiệu/dữ kiện truyền tiếp:** KQ2; $\ker X$, $z=(0,\tfrac14,0,-\tfrac54,0,1)$, $w_{\rm mn}$. KQ2 được dùng lại ở LG04.
 - **Gộp hoặc rút gọn:** HQ06 gộp trực quan và ví dụ: đếm năm phương trình, năm ẩn là ý trực quan, đa thức nội suy là ví dụ tính được.
@@ -68,35 +70,35 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 
 ### KN3. Số điều kiện
 
-- **Sáu bước:** nhu cầu HQ08 (thí nghiệm độ nhạy); trực quan HQ08 (đường mức); ví dụ HQ09 (bảng $\kappa$ theo $d$); hình thức HQ09 (định nghĩa, $\kappa_F=\kappa(X^TX)$, cận độ nhạy, nhận xét xen kẽ Cauchy); ứng dụng HQ10, CP03; bài tập HQ11(3), lời giải HQ11a.
+- **Sáu bước:** nhu cầu + ví dụ dẫn nhập HQ08 (từ 2026-10-15: khuếch đại nhiễu $y=u+\varepsilon$ trên chính ví dụ, $\lVert w-w^\circ\rVert=0{,}020$ và $2{,}49$); trực quan HQ08 (hướng phẳng $\ker X$ khi $d>n$, hướng gần phẳng khi $d\le n$, đường mức); ví dụ HQ09 (bảng $\kappa$ theo $d$); hình thức HQ09 (định nghĩa, $\kappa_F=\kappa(X^TX)$, cận tương đối theo $\sqrt\kappa$, nhận xét xen kẽ Cauchy); ứng dụng HQ10, CP03; bài tập HQ11(2) ($\kappa$ ở $d=3$, từ 2026-10-15), lời giải HQ11a.
 - **Đầu vào và mục tiêu:** trị riêng ma trận đối xứng (Bài 00), Hessian của $F$ (HQ02); MT1, MT3, LLO11 → CLO1. Sản phẩm: tính $\kappa(X^TX)$, nối $\kappa$ với độ nhạy và với $L/\mu$.
-- **Ký hiệu/dữ kiện truyền tiếp:** $\delta y_3=0{,}01$, $\lVert\delta w\rVert=0{,}002$ và $0{,}0648$; $\kappa(X^TX)=\kappa_F$; bảng $1;2;9{,}50;50{,}5;553{,}7;\infty$; dùng ở LG09 và CP.
+- **Ký hiệu/dữ kiện truyền tiếp:** $\varepsilon$, $\lVert\varepsilon\rVert=0{,}316$, $w^\circ$, hệ số khuếch đại $0{,}063$ và $7{,}86$ (từ 2026-10-15; thí nghiệm $\delta y_3=0{,}01$, $\lVert\delta w\rVert=0{,}002$ và $0{,}0648$ ở ghi chú); $\kappa(X^TX)=\kappa_F$; bảng $1;2;9{,}50;50{,}5;553{,}7;\infty$; dùng ở LG09 và CP.
 - **Gộp hoặc rút gọn:** sau cổng storyboard, trang gộp bốn bước của kế hoạch được tách thành hai trang (HQ08: nhu cầu + trực quan; HQ09: ví dụ + hình thức), vì trên một trang nhu cầu đứng sau định nghĩa và trang mang ba khối nội dung.
-- **Câu nối học thuật:** đổi một nhãn $0{,}01$ làm $w$ đổi $0{,}002$ ở $d=2$ nhưng $0{,}0648$ ở $d=5$, và elip mức dẹt dần (HQ08) → bảng $\kappa$ theo $d$, định nghĩa và $\kappa_F=\kappa(X^TX)$; $\kappa$ không giảm khi thêm đặc trưng (HQ09) → ridge thay $\infty$ bằng $189{,}5$ ở $d=8$ (HQ10); $\kappa$ là cận trên quyết định số bước hạ gradient ở CP03–CP04.
+- **Câu nối học thuật:** cùng nhiễu $\varepsilon$ làm $w$ lệch $0{,}020$ ở $d=2$ nhưng $2{,}49$ ở $d=5$, và elip mức dẹt dần (HQ08) → bảng $\kappa$ theo $d$, định nghĩa, $\kappa_F=\kappa(X^TX)$ và cận $\lVert\delta w\rVert/\lVert w\rVert\le\sqrt\kappa\,\lVert\delta y\rVert/\lVert Xw\rVert$ ($0{,}020\le0{,}283$, $2{,}49\le4{,}71$); $\kappa$ không giảm khi thêm đặc trưng (HQ09) → ridge thay $\infty$ bằng $189{,}5$ ở $d=8$ (HQ10); $\kappa$ là cận trên quyết định số bước hạ gradient ở CP03–CP04.
 - **Thời lượng cụm:** 0,11 tiết LT + 0,09 tiết BT (tăng $0{,}01$ LT do tách trang; HQ12 giảm từ $0{,}08$ xuống $0{,}07$).
 
 ### KN4. Tách được tuyến tính và sự không tồn tại cực tiểu
 
-- **Sáu bước:** nhu cầu + ví dụ dẫn nhập LG01; trực quan LG03; ví dụ LG03; hình thức LG04 (định nghĩa, KQ4), LG05 (định lý KQ5), LG05a (chứng minh, tách 2026-10-12), LG06 (KQ6, kết quả đối chứng); ứng dụng LG10 (dòng $\lambda=0$: chế độ $d\ge n$ làm hồi quy logistic mất cực tiểu với mọi nhãn); bài tập LG11(1, 2), lời giải LG11a.
+- **Sáu bước:** nhu cầu + ví dụ dẫn nhập LG01; trực quan LG03; ví dụ LG03; hình thức LG04 (tách được nhắc lại Bài 01, phần mới KQ4), LG05 (định lý KQ5, kèm hệ quả cho $\operatorname{rank}X=n$ từ 2026-10-15), LG05a (chứng minh, tách 2026-10-12), LG06 (KQ6, điều kiện đủ; tiêu đề đổi 2026-10-15); ứng dụng LG10 (dòng $\lambda=0$); bài tập LG11(1, 2), lời giải LG11a.
 - **Ví dụ dẫn nhập:** ba điểm $u=(-1,0,1)$, $y=(-1,+1,-1)$ phục vụ nhu cầu "biết bài toán logistic nào có nghiệm".
 - **Đầu vào và mục tiêu:** KQ2 (HQ07), mất mát logistic (Bài 01), Định lý Weierstrass và hàm cưỡng bức (Bài 01); MT2, LLO11 → CLO1. Sản phẩm: nhận dạng dữ liệu tách được, chứng minh không tồn tại cực tiểu, phân loại hai trường hợp.
 - **Ký hiệu/dữ kiện truyền tiếp:** $m_i$, $\bar w=(1,0,-2)$, $F(t\bar w)=\log(1+e^{-t})$; KQ4–KQ6. LG02 cung cấp gradient và Hessian dạng ma trận làm công cụ nền.
 - **Gộp hoặc rút gọn:** LG03 gộp trực quan và ví dụ: tia $t\bar w$ vừa là hình ảnh vừa là phép tính. Bước hình thức trải trên ba trang vì định nghĩa, định lý và kết quả đối chứng là ba luận điểm. Theo cổng storyboard, LG06 là phát biểu hình thức thứ hai chứ không phải ứng dụng; bước ứng dụng chuyển sang LG10, sau LG06 nên thứ tự sáu bước được giữ.
-- **Câu nối học thuật:** đặc trưng $(1,u)$ không tách được, thêm $u^2$ thì tách được (LG01) → dọc tia $t\bar w$, $F$ giảm về $0$ mà không đạt (LG03) → định nghĩa tách được và hệ quả của chế độ nội suy (LG04) → định lý: không có cực tiểu, dãy cực tiểu hóa phân kỳ (LG05) → trường hợp đối chứng có cực tiểu (LG06) → với $\operatorname{rank}X=n$, dữ liệu dẫn nhập và mọi cách gán nhãn năm mẫu VD-A1 ở $d=5$ đều mất cực tiểu (LG10).
+- **Câu nối học thuật:** đặc trưng $(1,u)$ không tách được, thêm $u^2$ thì tách được (LG01) → dọc tia $t\bar w$, $F$ giảm về $0$ mà không đạt (LG03) → định nghĩa tách được và hệ quả của chế độ nội suy (LG04) → định lý: không có cực tiểu, dãy cực tiểu hóa phân kỳ (LG05) → điều kiện đủ có cực tiểu: mọi $w\ne0$ có một biên âm; không phải phủ định của tách được (LG06) → với $\operatorname{rank}X=n$, dữ liệu dẫn nhập (LG10) và mọi cách gán nhãn năm mẫu VD-A1 ở $d=5$ (LG05, từ 2026-10-15) đều mất cực tiểu.
 - **Thời lượng cụm:** 0,28 tiết LT + 0,13 tiết BT.
 
 ### KN5. Chính quy hóa bậc hai và tính lồi mạnh
 
-- **Sáu bước:** nhu cầu LG05 (giới hạn: không có cực tiểu); trực quan LG07; ví dụ LG07; hình thức LG08; ví dụ kiểm tra cận LG08a (tách 2026-10-12, sau hình thức); ứng dụng LG10; bài tập LG11(3), lời giải LG11a.
+- **Sáu bước:** nhu cầu LG05, LG06 (giới hạn: không có cực tiểu) và dòng "Nhu cầu:" đầu LG07 (thêm 2026-10-15); trực quan LG07; ví dụ LG07; hình thức LG08 ("Nhắc lại:" Hệ quả 01.41, phần mới Định lý 2); ví dụ kiểm tra cận: từ 2026-10-15 ở ghi chú LG12 (LG08a gộp); ứng dụng LG10, LG12; bài tập LG11(3), lời giải LG11a.
 - **Đầu vào và mục tiêu:** Hệ quả 01.41 (Bài 01); MT2, LLO11 → CLO1, CLO2. Sản phẩm: chứng nhận $F_\lambda$ lồi mạnh, có nghiệm duy nhất, chặn $\lVert w_\lambda\rVert$.
-- **Ký hiệu/dữ kiện truyền tiếp:** $F_\lambda$, $w_\lambda$, $\mu=\lambda$, $\lVert w_\lambda\rVert\le\sqrt{2\log2/\lambda}$; bảng VD-A2b truyền sang CP.
+- **Ký hiệu/dữ kiện truyền tiếp:** $F_\lambda$ (ký hiệu đặt ở LG07, mục tiêu đã dùng ở HQ10), $w_\lambda$, $\mu=\lambda$, $\lVert w_\lambda\rVert\le\sqrt{2\log2/\lambda}$; bảng VD-A2b (LG12) truyền sang CP.
 - **Gộp hoặc rút gọn:** LG07 gộp trực quan và ví dụ: đường $F_\lambda(t\bar w)$ có cực tiểu tính được tại $t^*$.
 - **Câu nối học thuật:** trên dữ liệu tách được không có cực tiểu (LG05) → số hạng phạt làm mục tiêu dọc tia tăng trở lại (LG07) → tính lồi mạnh cho tồn tại, duy nhất và cận chuẩn với mọi dữ liệu (LG08) → áp dụng trên chính ba điểm của LG01 (LG10).
 - **Thời lượng cụm:** 0,18 tiết LT + 0,10 tiết BT.
 
 ### KN6. Hằng số trơn và số điều kiện của $F_\lambda$
 
-- **Sáu bước:** nhu cầu LG08 (dòng "Nhu cầu:" cuối trang từ vòng 2: còn thiếu cận trên $L$); trực quan + ví dụ LG09 (độ cong một chiều $F_\lambda''\in(\lambda,\tfrac14+\lambda]$, đặt đầu trang); hình thức LG09 (Mệnh đề 4, đặt sau ví dụ); ứng dụng LG10, CP04; bài tập LG11(3), lời giải LG11a.
+- **Sáu bước:** nhu cầu LG09 (dòng "Nhu cầu:" đầu trang: còn thiếu cận trên $L$; trước 2026-10-15 ở cuối LG08); trực quan + ví dụ LG09 (độ cong một chiều $F_\lambda''\in(\lambda,\tfrac14+\lambda]$, đặt đầu trang); hình thức LG09 (Mệnh đề 4, đặt sau ví dụ); ứng dụng LG10, CP04; bài tập LG11(3), lời giải LG11a.
 - **Đầu vào và mục tiêu:** KN3, cận $S\preceq\tfrac14I$ (LG02); MT2, MT3, LLO11 → CLO1. Sản phẩm: tính $L$, $\kappa$ của $F_\lambda$; đọc ảnh hưởng của $\lambda$ lên $\kappa$.
 - **Ký hiệu/dữ kiện truyền tiếp:** $L=\lambda_{\max}(X^TX)/(4n)+\lambda$, $\kappa\le1+\lambda_{\max}/(4n\lambda)$; với $\lVert x_i\rVert\le r$: $\kappa\le1+r^2/(4\lambda)$, $r^2=2$ khi phần đặc trưng ngoài tọa độ hằng có chuẩn $\le1$; $\kappa=1{,}5;6;51;501$ của ví dụ một chiều truyền sang CP02–CP03.
 - **Gộp hoặc rút gọn:** LG09 gộp trực quan, ví dụ và hình thức vì chỉ có một luận điểm (hai cận Hessian). Sau cổng storyboard, mặt trang đặt ví dụ một chiều (đồ thị độ cong và bốn giá trị $\kappa$) trước mệnh đề để giữ thứ tự ví dụ → hình thức.
@@ -232,6 +234,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; dòng dẫn 19 âm tiết, ghi chú 104 âm tiết; `id="mach-2"`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** dòng dẫn nêu nhiệm vụ cụ thể (tính duy nhất, sai số ngoài mẫu, số điều kiện); ghi chú sửa trường hợp $d=n$ (nghiệm duy nhất; mất duy nhất khi $d>n$), mở bằng đối tượng, 90 âm tiết.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); "$F$ chỉ thay cho rủi ro trên dữ liệu mới" thành "chỉ đại diện cho sai số trên dữ liệu mới" (A2).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; dòng dẫn theo thứ tự các trang: "Muốn xác định sai số ngoài mẫu, tính duy nhất và độ nhạy của nghiệm khi $d$ tăng so với $n$" (19 âm tiết); từ khóa "Quá khớp · tập xác thực · chế độ nội suy · số điều kiện · chính quy hóa" (`&nbsp;·`). Ghi chú nêu đầu ra: tập xác thực (mạch 3, 5), $\kappa$ với $553{,}7$ và $123{,}2$ (mạch 4, 5), chế độ nội suy (mạch 3). Câu hỏi trung tâm của mạch 2 đặt khung ngay ở trang này và ở "Nhu cầu:" của HQ01. 34 âm tiết.
 
 #### HQ01 — Dữ liệu và đặc trưng đa thức
 
@@ -244,6 +247,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN1 nhu cầu + ví dụ dẫn nhập; KN2 nhu cầu.
 - **Quyết định:** thêm; nhu cầu và dữ liệu phải đi trước công thức.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 39 → 32 âm tiết; nhãn "Nhu cầu:" chuyển lên đầu trang theo mẫu trang nhu cầu; gỡ `.dense`.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; "Nhu cầu: chọn $d$ cho năm mẫu khi $d$ có thể vượt $n=5$. Cần sai số tại điểm mới, tính duy nhất, độ nhạy của nghiệm." (khung nhấn đặt ngang trang để vừa 16:9). Phần việc: đặt câu hỏi trung tâm. Ghi chú "kiểm tra được thủ công". 32 → 42 âm tiết; vượt 40 vì dòng nhu cầu phải nêu đủ ba câu hỏi của mạch.
 
 #### HQ02 — Phương trình chuẩn
 
@@ -256,6 +260,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** tiên quyết nhắc lại (Bài 01), không tính vào sáu bước; công cụ chung của KN1 và KN2 (sửa nhãn theo cổng storyboard).
 - **Quyết định:** thêm; nhắc lại có tính toán để cả mạch dùng chung một công cụ.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; nhãn "Nhắc lại:" theo danh sách nhãn; gỡ `.dense` (29 âm tiết).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; nhãn "Nhắc lại:" phủ trang (khung nhấn gồm $F$, $\nabla^2F=\frac1nX^TX$ và Mệnh đề 01.6); một dòng lý do "Phương trình chuẩn cho $w$ ở từng $d$; Hessian cho $L$, $\mu$ của $F$" (HQ09 dùng Hessian); công thức $\nabla F$ vào ghi chú vì không trang nào của mạch cần nó trên mặt trang. 29 → 31 âm tiết.
 
 #### HQ03 — Sai số huấn luyện theo số chiều
 
@@ -268,6 +273,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN1 trực quan; KN2 nhu cầu.
 - **Quyết định:** thêm; bước trực quan của KN1 cần trang riêng trước ví dụ đối chứng.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `giữ`; chỉ gỡ `.dense` (29 âm tiết).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** chỉ ghi chú; "Lập luận này chứng minh sai số không tăng, chưa cho biết mức giảm" thay "lập luận trực quan". Phần việc: câu hỏi sai số ngoài mẫu (đại lượng được tối ưu).
 
 #### HQ04 — Sai số ngoài mẫu theo số chiều
 
@@ -280,6 +286,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN1 ví dụ.
 - **Quyết định:** thêm; ví dụ phải đi trước định nghĩa hình thức.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 40 → 24 âm tiết; bảng chỉ giữ hàng ngoài mẫu (hàng huấn luyện đã ở HQ03 và trên hình) để trang vừa khung 16:9 khi gỡ `.dense`; câu chỉ đường "từ trang sau…" bỏ.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** chỉ ghi chú; "độ lệch $0{,}32$ (bình phương $0{,}104$)"; câu "Hình đặt cạnh nhau…" viết lại, không lấy hình làm chủ ngữ. Phần việc: câu hỏi sai số ngoài mẫu (số $389$ lần).
 
 #### HQ05 — Rủi ro thực nghiệm và rủi ro kỳ vọng
 
@@ -293,6 +300,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; theo điểm hòa giải 5, cả tập xác thực và tập kiểm thử được định nghĩa trên mặt trang.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 100 âm tiết, ba định nghĩa → HQ05 (rủi ro, quá khớp, "Ý nghĩa:"; 43) và HQ05a (tập xác thực, tập kiểm thử, tính không chệch; 60).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); thêm tên tiếng Anh "rủi ro thực nghiệm (empirical risk)", "rủi ro kỳ vọng (expected risk)" vào ghi chú vì dòng định nghĩa trên mặt trang đã gần 20 âm tiết (A15, quyết định chung 11). 43 âm tiết, không đổi.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; quá khớp đặt sau "Nhắc lại:" (Bài 00, mô hình giá nhà mở rộng), $F$ nhắc một dòng (MD03b đã định nghĩa); phần mới là định nghĩa $R$ và khung "Theo cặp $F$, $R$, quá khớp là trạng thái $F(w)$ nhỏ, $R(w)-F(w)$ lớn"; "Ý nghĩa: nói chung $\arg\min F\ne\arg\min R$". Phần việc: câu hỏi sai số ngoài mẫu (công cụ đo). 43 → 40 âm tiết.
 
 #### HQ05a — Tập xác thực và tập kiểm thử
 
@@ -306,7 +314,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm (tách từ HQ05); 60 âm tiết, 3 dòng.
 - **Sửa 2026-10-15 (rà soát mạch 5):** chỉ ghi chú; "mạch kết luận" thành "mạch 5".
 
-#### HQ06 — Nội suy khi số chiều bằng kích thước mẫu
+#### HQ06 — Ví dụ: nội suy khi $d=n$ (tiêu đề cũ "Nội suy khi số chiều bằng kích thước mẫu")
 
 - **Lý do tồn tại:** giải thích số $0$ của HQ03 bằng phép đếm phương trình và ẩn, với nghiệm cụ thể.
 - **Nhu cầu/khoảng trống lấp:** trước mệnh đề tổng quát, người học cần một trường hợp $d=n$ tính được và kiểm tra được tại các nút.
@@ -317,6 +325,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN2 trực quan + ví dụ.
 - **Quyết định:** thêm; ví dụ cụ thể cần đứng trước mệnh đề HQ07.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; nhãn "Kiểm tra" (không thuộc danh sách nhãn) thành dòng thường; gỡ `.dense` (27 âm tiết).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; thêm "Nhu cầu: giải thích MSE huấn luyện bằng $0$ tại $d=5$; xác định nghiệm còn duy nhất không khi $d\ge n$"; "Diễn giải: hệ số $u^4=\tfrac53$ trong khi quan hệ thật là $y=u$; nghiệm khớp cả nhiễu" lên mặt trang; bỏ hình `hq-fits-d2-d5.svg` (trùng HQ03), dòng kiểm tra rút còn một câu. Phần việc: câu hỏi tính duy nhất (trường hợp $d=n$). 27 → 55 âm tiết; vượt 40 vì trang mang cả nhu cầu, phép tính và diễn giải của ví dụ (6 dòng, 1 công thức hiển thị).
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** tiêu đề "Ví dụ: nội suy khi $d=n$" (trang chỉ chứa ví dụ); "Nhu cầu:" rút để không còn chữ đơn lẻ ở dòng cuối; bỏ $x_i^Tw=y_i$ khỏi dòng dữ kiện. 52 âm tiết; vượt 40 vì nhu cầu, phép tính và diễn giải của một ví dụ.
 
 #### HQ07 — Chế độ nội suy và tập nghiệm
 
@@ -330,6 +340,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; chế độ $d\ge n$ là nội dung mới theo thiết kế của người dùng.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 77 âm tiết (mệnh đề + chứng minh + ví dụ + bảng) → HQ07 (Mệnh đề 1 dạng Giả thiết/Kết luận, chứng minh hai dòng; 33) và HQ07a "Ví dụ: tập nghiệm với sáu đặc trưng" (46).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; phát biểu định lý hạng–số chiều tại chỗ: "($\dim\ker X=d-\operatorname{rank}X$)" (B14); ghi chú thêm "chế độ nội suy (interpolation regime)", "định lý hạng–số chiều (rank–nullity theorem)" (A15). 32 → 32 âm tiết (chỉ thêm KaTeX).
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** ngoặc đặt ngoài cụm ngắt dòng: "$\operatorname{rank}X=n,$ nên $d\ge n$", "$(\dim\ker X=d-\operatorname{rank}X)$" trong KaTeX (màn hẹp). 31 âm tiết.
 
 #### HQ07a — Ví dụ: tập nghiệm với sáu đặc trưng
 
@@ -342,6 +353,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN2 ứng dụng (chọn nghiệm chuẩn nhỏ nhất).
 - **Quyết định:** thêm (tách từ HQ07); 46 âm tiết.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "Nghiệm chuẩn nhỏ nhất (minimum-norm solution)" ở lần đầu (A15). 46 → 48 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; công thức $w_{\rm mn}=X^T(XX^T)^{-1}y$ vào ghi chú, mặt trang chỉ gọi tên nghiệm chuẩn nhỏ nhất; "Kết luận: khi $d>n$, chọn nghiệm cần tiêu chí ngoài dữ liệu huấn luyện". Ghi chú "trong ba giá trị $t$ của bảng". Phần việc: câu hỏi tính duy nhất ($d>n$). 48 → 43 âm tiết; vượt 40 vì ví dụ gồm dữ kiện, yêu cầu, bảng và kết luận.
 
 #### HQ08 — Độ nhạy của nghiệm
 
@@ -355,6 +367,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; tách từ HQ08 của kế hoạch theo cổng storyboard 2026-10-11, vì trên trang gộp nhu cầu (độ nhạy) đứng sau định nghĩa và trang mang ba khối nội dung.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 74 → 58 âm tiết; "Nhu cầu:" lên đầu trang; nhãn "Thí nghiệm" bỏ; câu đường mức mang nhãn "Trực quan."; chú thích hình rút gọn, giá trị $\kappa=553{,}7$ chuyển xuống ghi chú; gỡ `.dense`.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); "số điều kiện của tập mức" thành "tập mức dưới" (quyết định chung 6).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; "Nhu cầu:" gắn với $d$ ("khi $d\le n$ nghiệm duy nhất nhưng có thể nhạy. Xác định vì sao nghiệm $d=5$ lệch xa quan hệ thật dù nhiễu nhỏ."); thí nghiệm "tăng $y_3$ thêm $0{,}01$" chuyển vào ghi chú, thay bằng khuếch đại nhiễu trên chính ví dụ: $y=u+\varepsilon$, $\lVert\varepsilon\rVert=0{,}316$, hệ số thật $w^\circ=(0,1,0,\dots)$; $\lVert w-w^\circ\rVert=0{,}020$ ($d=2$, gấp $0{,}063$ lần) và $2{,}49$ ($d=5$, gấp $7{,}86$ lần), tự kiểm bằng Python với phân số. "Trực quan." nối $d>n$ ($\ker X$ là hướng phẳng) với $d\le n$ (có thể có hướng gần phẳng), đặt ở cột phải dưới hình để vừa 16:9; chú thích "Đường mức của hàm bậc hai hai chiều" (hình không phải $F$ năm chiều). Ký hiệu $w^\circ$ thay $w_{\rm thật}$ vì KaTeX không có số đo chữ tiếng Việt trong công thức. Phần việc: câu hỏi độ nhạy. Hành trình KN3: nhu cầu + ví dụ dẫn nhập (khuếch đại nhiễu) → trực quan. 58 → 58 âm tiết; vượt 40 vì trang gộp nhu cầu, ví dụ dẫn nhập và trực quan, có chú thích hình.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** chú thích hình chuyển vào `alt` (trang còn 6 dòng); nhóm "${0{,}063}$ lần ${\lVert\varepsilon\rVert}$". 58 → 45 âm tiết; vượt 40 vì nhu cầu, ví dụ dẫn nhập và trực quan trên một trang.
 
 #### HQ09 — Số điều kiện
 
@@ -369,6 +383,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 47 → 43 âm tiết; cận độ nhạy thành "Nhận xét (độ nhạy)."; gỡ `.dense`; trang vừa khung (621/675).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** giữ gộp bảng, định nghĩa và hai nhận xét: cùng một luận điểm (số điều kiện và hai tính chất của nó), 43 âm tiết, vừa khung.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; định nghĩa nêu rõ $\lambda_{\max}(A)$, $\lambda_{\min}(A)$ là trị riêng lớn nhất, nhỏ nhất (B5); viết "$\kappa_F=L/\mu=\kappa(X^TX)$" (B4); khung nhận xét chiều tăng tách hai câu và phát biểu hệ quả của định lý xen kẽ Cauchy: "$\lambda_{\min}$ không tăng, $\lambda_{\max}$ không giảm, nên $\kappa$ không giảm theo $d$" (B6, vừa dưới trần nên đặt trên mặt trang); ghi chú phát biểu đầy đủ định lý xen kẽ và thêm "(condition number)" (A15, mặt trang hết chỗ). 43 → 55 âm tiết, 6 dòng, khung 2 câu, mỗi dòng ≤ 19 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; "Nhận xét (độ nhạy)" đổi thành cận tương đối theo $\kappa$: $\lVert\delta w\rVert/\lVert w\rVert\le\sqrt{\kappa(X^TX)}\,\lVert\delta y\rVert/\lVert Xw\rVert$, với $w=w^\circ$, $\delta y=\varepsilon$: $0{,}020\le0{,}283$ và $2{,}49\le4{,}71$ (tự kiểm; chọn $\varepsilon$ thay thí nghiệm $y_3$ để nối thẳng với HQ08). Hệ số $0{,}632$, $8{,}39$ và cận tuyệt đối vào ghi chú; ghi chú "…theo $\sqrt\kappa$, nên số điều kiện đo được độ nhạy đặt ra ở trang trước". Bảng $\kappa$, định nghĩa, $\kappa_F=\kappa(X^TX)$, nhận xét chiều tăng giữ. Phần việc: câu hỏi độ nhạy. 55 → 52 âm tiết; vượt 40 (lý do vòng trước: bảng, định nghĩa, hai nhận xét cùng một luận điểm).
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** trường hợp số $0{,}020\le0{,}283$, $2{,}49\le4{,}71$ chuyển vào ghi chú (phát biểu và ví dụ tách vai); bất đẳng thức độ nhạy thành khối công thức hiển thị cuộn được (màn hẹp bị cắt 37 px trước đây); nhận xét chiều tăng rút còn một câu, chi tiết ma trận con chính vào ghi chú, để vừa 16:9. Giữ bảng $\kappa$ theo $d$: đó là dữ kiện của nhận xét chiều tăng, và mạch 4–5 dùng $553{,}7$. 52 → 39 âm tiết, 6 dòng, 1 công thức hiển thị.
 
 #### HQ10 — Chính quy hóa bậc hai và chọn mô hình
 
@@ -383,6 +399,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; nhãn "Nhắc lại:"; dòng $d=8$ tách riêng; gỡ `.dense` (46 âm tiết).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** giữ gộp công thức chính quy hóa và bước chọn $\lambda$: bước ứng dụng của KN1 và KN3 trên cùng bảng số liệu.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); thêm "chính quy hóa bậc hai ($\ell_2$ regularization; với mất mát bình phương là hồi quy ridge)" (A15). 45 âm tiết, không đổi.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; thêm "Nhu cầu: nghiệm duy nhất và $\kappa$ hữu hạn khi $d\ge n$; chọn mức khớp bằng tập xác thực"; dòng "$d=8$, $\lambda=0{,}01$…" vào ghi chú (giữ $189{,}5$, $0{,}007635$); $\kappa=123{,}2$ giữ trên bảng (CP10 dùng). Ghi chú: phép chọn bằng tập xác thực áp dụng trên toàn họ $(d,\lambda)$; $d=2$ có sai số xác thực $0{,}000125<0{,}00261$. Phần việc: cách xử lý cho cả ba câu hỏi. 45 → 56 âm tiết (tính cả chữ trong bảng); vượt 40 vì bảng bốn hàng có chữ ở tiêu đề cột và dòng nhu cầu bắt buộc.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** dòng cuối "Chọn $\lambda=0{,}01$: sai số xác thực nhỏ nhất" (không còn chữ đơn lẻ). 54 âm tiết; lý do vượt 40 như dòng trước.
 
 #### HQ11 — Bài tập: hạng, nghiệm và chọn số đặc trưng
 
@@ -395,6 +413,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN1 bài tập (d); KN2 bài tập (a); KN3 bài tập (c); câu (b) luyện công cụ phương trình chuẩn.
 - **Quyết định:** thêm; trang kiểm tra của mạch HQ.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; tiêu đề "Câu hỏi về hồi quy nhiều chiều" đổi thành "Bài tập: hạng, nghiệm và chọn số đặc trưng" (trùng tên Bài tập 1 của `materials/lec-05/exercises.md`); nêu lại năm nút trên mặt trang; ghi chú thành gợi ý. Loại bài tập: có lời giải mẫu, lời giải ở HQ11a.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; ba câu đo ba câu hỏi của mạch, đều trên dữ liệu năm mẫu nêu lại trên mặt trang: (1) $d=7$: hạng, $\dim\ker X$, $\min F$ (tính duy nhất); (2) $d=3$, $X^TX$ cho sẵn, tính $\kappa$ và so với $d=2$ (độ nhạy); (3) chọn trong ba mô hình theo sai số xác thực $0{,}000125$; $0{,}00261$; $0{,}0487$ và nêu tập báo cáo (sai số ngoài mẫu). Bỏ câu phương trình chuẩn (kỹ năng Bài 01) và câu ma trận $2\times2$ tùy ý. $X^TX$ và $\kappa\approx9{,}50$ tự kiểm. Đồng bộ Bài tập 1 của `exercises.md`. Loại: có lời giải mẫu ở HQ11a. 27 âm tiết.
 
 #### HQ11a — Bài tập: hạng, nghiệm và chọn số đặc trưng
 
@@ -406,8 +425,10 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **LLO/CLO:** MT1; LLO11 → CLO1.
 - **Bước hành trình:** bài tập (lời giải) của KN1, KN2, KN3.
 - **Quyết định:** thêm; trang kế cùng tiêu đề; 40 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; lời giải ba câu: (1) $5$, $2$, $0$; (2) cột giữa cho $\tfrac52$, khối hàng, cột 1 và 3 cho $\tfrac{57\pm\sqrt{2129}}{16}$, $\kappa\approx9{,}50>2$; (3) $d=2$, báo cáo trên tập kiểm thử riêng. 40 âm tiết.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** nhóm $\{\kappa\approx\dots\approx9{,}50>2\}$ chống ngắt dòng. 40 âm tiết.
 
-#### HQ12 — Ba hệ quả của việc tăng số chiều
+#### HQ12 — Ba hệ quả của việc tăng số chiều và cách xử lý
 
 - **Lý do tồn tại:** gom đầu ra của phiên A1 thành ba hệ quả có số và nêu giới hạn mở LG.
 - **Nhu cầu/khoảng trống lấp:** ranh giới HQ → LG cần một đầu ra rõ; người học cần thấy bình phương nhỏ nhất luôn có nghiệm còn mất mát logistic thì không.
@@ -419,9 +440,11 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; mạch cần đầu ra rõ cho mạch sau.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 74 → 57 âm tiết; hệ quả 2 viết bằng tỉ số $389$ lần; khung "Giới hạn." (nhãn ngoài danh sách) thành câu kết luận một dòng; gỡ `.dense`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** ba nhãn mục bỏ in đậm.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "Điều kiện hóa (conditioning)." (A14). 57 → 58 âm tiết. (dòng này trước đây nằm lạc dưới tiêu đề mục LG.)
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; viết lại thành trang trả lời câu hỏi trung tâm: ba dòng "kết quả → cách xử lý" theo thứ tự các trang (dự đoán: gấp $389$ lần, chọn $d$, $\lambda$ trên tập xác thực; duy nhất: chiều $d-n$, $\lambda>0$; độ nhạy: $2\to553{,}7\to\infty$, $\lambda>0$ cho $\kappa$ hữu hạn); khung "Nhắc lại: bình phương nhỏ nhất luôn có nghiệm (Mệnh đề 01.6); mất mát logistic thì có thể không" giữ (ghi chú LG01 dẫn ý này). Tiêu đề "Ba hệ quả của việc tăng số chiều và cách xử lý". 58 → 54 âm tiết; vượt 40 vì ba cặp kết quả–xử lý cùng dòng nối sang mạch 3.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** "có thể&nbsp;không" để tránh chữ đơn lẻ. 54 âm tiết.
 
 ### LG. Hồi quy logistic và chính quy hóa (phiên A2)
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "Điều kiện hóa (conditioning)." (A14). 57 → 58 âm tiết.
 
 #### LG00 — Hồi quy logistic và chính quy hóa (trang tiêu đề mạch)
 
@@ -435,6 +458,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; dòng dẫn 19 âm tiết, ghi chú 97 âm tiết; `id="mach-3"`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** dòng dẫn "Nhu cầu: điều kiện để mất mát logistic có cực tiểu, và cách sửa mục tiêu…" (22 âm tiết); ghi chú mở bằng kết quả kế thừa.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); "hạng phạt" thành "số hạng phạt" (A1, quyết định chung 2).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; dòng dẫn gắn trục $d$/$n$ và đầu ra $\kappa$: "Muốn xác định khi nào mất mát logistic có cực tiểu lúc $d$ tăng tới $n$, và $\kappa$ của mục tiêu có chính quy hóa" (22 âm tiết); từ khóa "Tách được tuyến tính · không tồn tại cực tiểu · chính quy hóa · lồi mạnh · số điều kiện". Ghi chú: $L\le\frac{r^2}4+\lambda$, chỉ $\kappa$ tăng theo $1/\lambda$. 39 âm tiết.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** "chính&nbsp;quy&nbsp;hóa" trong tiêu đề, "lồi&nbsp;mạnh" trong từ khóa. 39 âm tiết.
 
 #### LG01 — Ba điểm với hai bộ đặc trưng
 
@@ -450,6 +475,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** hai nhãn mục bỏ in đậm.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "Đặc trưng $(1,u)$: điểm số" viết thường sau dấu hai chấm (A13). 43 âm tiết.
 - **Sửa 2026-10-15 (rà soát mạch 5):** chỉ ghi chú; XOR "trở lại ở cuối mạch 5 và ở Bài 06" (KL03 nêu ba điểm $-,+,-$ làm giới hạn (ii)).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; "Nhu cầu: xác định sự tồn tại cực tiểu của mất mát logistic khi $d$ tăng"; nhãn hai mục "Đặc trưng $(1,u)$, $d=2$" và "Thêm $u^2$, $d=3=n$"; lượng từ "không $w$ nào cho đúng dấu tại cả ba điểm". Phần việc: đặt câu hỏi trung tâm trên ví dụ dẫn nhập. 43 → 47 âm tiết; vượt 40 vì hai mục so sánh đều cần lý do.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** "Nhu cầu:" thêm vế sau "Khi không có, sửa mục tiêu và tính $\kappa$" để câu hỏi trung tâm gồm cả hai nửa của mạch. 47 → 55 âm tiết; vượt 40 vì dòng nhu cầu nêu đủ hai nửa câu hỏi và hai mục so sánh cần lý do.
 
 #### LG02 — Mất mát logistic trung bình
 
@@ -463,8 +490,9 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; nhắc lại có chủ đích vì dạng ma trận là mới.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `giữ`; chỉ gỡ `.dense` (15 âm tiết).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; dòng đầu mở bằng nhãn "Nhắc lại:" (mất mát logistic kế thừa Bài 01) và viết "biên có dấu (signed margin, còn gọi là lề có dấu)" ở lần dùng đầu của deck (B12, quyết định chung 1). 15 → 24 âm tiết; dòng đầu 20 âm tiết, 6 dòng.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; nhãn "Nhắc lại:" phủ cả trang (Bài 01; dạng $X^TSX$ là Nhận xét 04.19, dẫn trong ghi chú); công thức $\nabla F$ vào ghi chú (CP06 tự viết $g$); thêm dòng "$F$ lồi; $S_{ii}\to0$ khi $\lvert m_i\rvert\to\infty$, nên không có $\mu>0$ chung cho $F$". Phần việc: công cụ, và lý do mạch cần số hạng phạt. 24 → 25 âm tiết, 2 công thức hiển thị.
 
-#### LG03 — Mất mát dọc một tia
+#### LG03 — Ví dụ: mất mát dọc một tia
 
 - **Lý do tồn tại:** cho trực quan và phép tính của hiện tượng "giảm mãi mà không đạt" trên dữ liệu tách được, kèm đối chứng có cực tiểu.
 - **Nhu cầu/khoảng trống lấp:** định lý LG05 cần một trường hợp cụ thể đã tính được trước đó.
@@ -477,6 +505,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `giữ`; chỉ gỡ `.dense` (20 âm tiết).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** hai nhãn mục bỏ in đậm.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ `alt`); "giảm về 0 mà không chạm" thành "giảm về 0 nhưng không đạt 0" (A12); `desc` của `lg-loss-along-ray.svg` sửa cùng nghĩa. 18 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; bỏ dòng cực tiểu với $(1,u)$, giá trị $F^*$ chuyển sang dòng Ví dụ của LG06 và phép tính vào ghi chú LG06; trang chỉ còn hiện tượng "giảm về $0$ dọc tia, không đạt" ở $d=n=3$. Phần việc: câu hỏi tồn tại (trường hợp không có cực tiểu). 18 → 11 âm tiết.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** tiêu đề "Ví dụ: mất mát dọc một tia"; ô $4{,}5\cdot10^{-5}$ (bảng không còn rộng hơn khung; `alt` đã ghi $4{,}5\cdot10^{-5}$); ghi chú LG01 dẫn "trang ví dụ mất mát dọc một tia". 11 âm tiết.
 
 #### LG04 — Tách được tuyến tính
 
@@ -490,6 +520,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; định nghĩa và định lý là hai luận điểm, cần hai trang. Nhãn trên trang: Mệnh đề 2.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 54 → 51 âm tiết; một khung nhấn (định nghĩa), Mệnh đề 2 thành dòng thường; thứ tự định nghĩa → ví dụ → Mệnh đề 2 → chứng minh một dòng; gỡ `.dense`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** giữ gộp định nghĩa, ví dụ, Mệnh đề 2 và chứng minh một dòng: một luận điểm (điều kiện tách được), 51 âm tiết, một khung nhấn.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; "Định nghĩa." tách được thành "Nhắc lại:" (Bài 01, Ví dụ 01.6); khung nhấn chuyển sang Mệnh đề 2, phần mới của trang. Phần việc: nối $\operatorname{rank}X=n$ với tách được. 51 → 50 âm tiết.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** bỏ dòng "Ví dụ." (lần thứ ba kể ba điểm); một câu trong ghi chú nối với ba điểm đầu mạch. 50 → 36 âm tiết.
 
 #### LG05 — Định lý không tồn tại cực tiểu
 
@@ -502,6 +534,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN4 hình thức (định lý); KN5 nhu cầu.
 - **Quyết định:** thêm; chứng minh nằm trên trang vì nó là câu trả lời của phiên. Nhãn trên trang: Định lý 1.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; định lý + chứng minh ba bước (56 âm tiết) → LG05 (Định lý 1 dạng Giả thiết/Kết luận + "Ý nghĩa:" kèm Hệ quả 05b.17; 48) và LG05a "Chứng minh: định lý không tồn tại cực tiểu" (bốn bước; 34).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; "Ý nghĩa:" bỏ cụm lặp kết luận, thêm dòng "Khi $\operatorname{rank}X=n$, kết luận đúng với mọi nhãn (Mệnh đề 2), như năm mẫu với $d=5$" (chuyển từ LG10). Ghi chú: $\sigma(m_i(w_k))\to1$ nên xác suất dự đoán tại mẫu tiến về $0$ hoặc $1$ (LG10 dùng); $L=\lambda_{\max}(X^TX)/(4n)$ từ cận Hessian LG02; viết lại hai câu slop. Phần việc: câu hỏi tồn tại (định lý). 48 → 51 âm tiết; vượt 40 vì định lý có giả thiết/kết luận và hai dòng hệ quả.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** bỏ cụm "như năm mẫu với $d=5$" (ghi chú có). 51 → 47 âm tiết; vượt 40 vì định lý có giả thiết/kết luận và hai dòng hệ quả.
 
 #### LG05a — Chứng minh: định lý không tồn tại cực tiểu
 
@@ -514,7 +548,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN4 hình thức (chứng minh).
 - **Quyết định:** thêm (tách từ LG05); 34 âm tiết.
 
-#### LG06 — Dữ liệu không tách được
+#### LG06 — Điều kiện đủ cho sự tồn tại cực tiểu
 
 - **Lý do tồn tại:** cho trường hợp đối chứng có điều kiện đủ, để người học phân loại được hai trường hợp.
 - **Nhu cầu/khoảng trống lấp:** không có LG06, người học có thể hiểu sai rằng mất mát logistic không bao giờ có cực tiểu.
@@ -526,6 +560,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; cần trường hợp đối chứng có điều kiện đủ cụ thể. Nhãn trên trang: Mệnh đề 3.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 58 → 48 âm tiết; nhãn "Ý chứng minh." thành "Chứng minh (phác thảo)."; Mệnh đề 3 dạng Giả thiết/Kết luận; gỡ `.dense`.
 - **Sửa 2026-10-12 (thuật ngữ, yêu cầu người dùng):** quyết định `sửa`; thêm dòng "Định nghĩa. $F$ cưỡng bức (coercive) nếu $F(w)\to+\infty$ khi $\lVert w\rVert\to\infty$" trước Mệnh đề 3 (nhắc lại Định nghĩa 01.37, vì sinh viên đọc Bài 05 có thể không nhớ Bài 01); kết luận viết "$F$ cưỡng bức"; ghi chú thêm dạng $M$–$R$ và phản ví dụ $F(t\bar w)\to0$ trên dữ liệu tách được; 48 → 55 âm tiết, 6 dòng.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; LỖI TOÁN (nghiêm trọng): tiêu đề cũ "Dữ liệu không tách được" ngụ ý "không tách được ⇒ cưỡng bức", sai ở trường hợp ranh giới (Nhận xét 05.25, Bài tập 6). Tiêu đề mới "Điều kiện đủ cho sự tồn tại cực tiểu"; định nghĩa cưỡng bức thành "Nhắc lại:" (Định lý 01.38); chứng minh một dòng; dòng Ví dụ nhận $w=(-\log2,0)$, $F^*\approx0{,}6365$ từ LG03. Ghi chú: chứng minh đầy đủ, phép tính $F^*$, trường hợp ranh giới, "Sự tồn tại cực tiểu do dữ liệu quyết định…", điều kiện viết theo $\operatorname{rank}X=n$. Phần việc: câu hỏi tồn tại (điều kiện đủ). 55 → 49 âm tiết; vượt 40 vì nhắc lại, mệnh đề, chứng minh một dòng và ví dụ cùng một luận điểm, 0 công thức hiển thị.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** dòng "Ví dụ." thành "Ý nghĩa: ba điểm với đặc trưng $(1,u)$ thỏa giả thiết nên có cực tiểu."; $w=(-\log2,0)$ và $F^*\approx0{,}6365$ trong ghi chú. 49 → 51 âm tiết; vượt 40 vì nhắc lại, mệnh đề, chứng minh một dòng và ý nghĩa cùng một luận điểm.
 
 #### LG07 — Số hạng phạt dọc một tia
 
@@ -540,6 +576,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `giữ`; chỉ gỡ `.dense` (30 âm tiết).
 - **Sửa 2026-10-12 (ký hiệu, yêu cầu người dùng):** quyết định `sửa`; thêm dòng "Định nghĩa. Mất mát có chính quy hóa bậc hai: $F_\lambda(w)=F(w)+\frac\lambda2\lVert w\rVert^2$, $\lambda>0$" thay câu "Cộng $\frac\lambda2\lVert w\rVert^2$", để $F_\lambda$ được định nghĩa trước lần dùng đầu trên mặt trang; câu dẫn công thức thành "Dọc tia $t\bar w$, vì $\lVert\bar w\rVert^2=5$"; 30 → 41 âm tiết, 6 dòng.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; tiêu đề "Hạng phạt dọc một tia" thành "Số hạng phạt dọc một tia", câu cuối "số hạng phạt tăng như $t^2$" (A1: "hạng phạt" dễ nhầm với hạng ma trận; deck 01, 04, 06c dùng "số hạng phạt"); "(penalty term)" đặt ở ghi chú vì dòng cuối sẽ vượt 20 âm tiết; `title` của `lg-penalty-along-ray.svg` sửa theo. 41 → 42 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; dòng đầu "Nhu cầu: khi $\operatorname{rank}X=n$, mọi nhãn tách được (Mệnh đề 2); cần sửa mục tiêu để có cực tiểu"; "Ký hiệu: $F_\lambda=F+\frac\lambda2\lVert w\rVert^2$, $\lambda>0$" thay "Định nghĩa." (mục tiêu đã dùng ở HQ10); dòng cuối mang nhãn "Trực quan."; số liệu giữ. Ghi chú "Hai bài toán có cùng phương trình $\frac1{1+e^t}=5\lambda t$" thay câu "trùng hợp…", dẫn tới LG12 thay LG08a. Ghi chú MD02, MD04 sửa nơi đặt ký hiệu $F_\lambda$. Phần việc: câu hỏi tồn tại (cách sửa). 42 → 46 âm tiết; vượt 40 vì nhu cầu, ký hiệu, công thức, hai số liệu và trực quan cùng một trang.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** "cực&nbsp;tiểu" chống chữ đơn lẻ. 46 âm tiết.
 
 #### LG08 — Chính quy hóa bậc hai và tính lồi mạnh
 
@@ -554,18 +592,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; định lý + chứng minh + ví dụ + bảng (49 âm tiết) → LG08 (Định lý 2 và chứng minh hai dòng; 43) và LG08a "Ví dụ: một mẫu có chính quy hóa" (32).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** thêm dòng "Nhu cầu:" cuối trang (cận trên $L$ để có $\kappa$), làm bước nhu cầu của KN6 hiện trên mặt trang.
 - **Sửa 2026-10-12 (ký hiệu, yêu cầu người dùng):** giả thiết Định lý 2 giữ công thức, thêm "như định nghĩa trên" (định nghĩa ở LG07); 50 → 54 âm tiết.
-
-#### LG08a — Ví dụ: một mẫu có chính quy hóa
-
-- **Lý do tồn tại:** ví dụ tính được của Định lý 2.
-- **Nhu cầu/khoảng trống lấp:** người học cần kiểm tra cận chuẩn và tính duy nhất trên một hàm một biến.
-- **Đầu vào:** Định lý 2 (LG08).
-- **Đầu ra:** bảng $w_\lambda$ và cận $\sqrt{2\log2/\lambda}$; ví dụ một mẫu cho LG09, LG12, CP02.
-- **Vị trí trong khung:** ví dụ của KQ7.
-- **LLO/CLO:** MT2; LLO11 → CLO1.
-- **Bước hành trình:** KN5 ví dụ (lần hai, sau hình thức) và đầu vào của KN6.
-- **Quyết định:** thêm (tách từ LG08); 32 âm tiết.
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "cận đúng nhưng không chặt" thành "bất đẳng thức đúng nhưng không chặt" (A3: "cận đúng" là thuật ngữ supremum/infimum, giữ nguyên nghĩa đó ở ghi chú LG05a); ghi chú "số hạng phạt". 32 → 34 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; dòng đầu "Nhắc lại: (Bài 01) $\nabla^2F_\lambda\succeq\lambda I$, nên $F_\lambda$ lồi mạnh, có đúng một cực tiểu $w_\lambda$"; Định lý 2 giữ phần mới (điều kiện bậc nhất, cận chuẩn, $\mu=\lambda$); "Ý nghĩa: kể cả khi dữ liệu tách được (Định lý 1), $F_\lambda$ có cực tiểu với mọi $\lambda>0$" thay dòng "Nhu cầu:" về $L$ (lên đầu LG09). LG08a gộp vào LG12. Thời lượng 0,08 → 0,06 LT. Phần việc: câu hỏi tồn tại (kết luận) và $\mu$ của $\kappa$. 54 → 49 âm tiết; vượt 40 vì định lý có giả thiết/kết luận và chứng minh một dòng.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** nhóm ${\lVert w_\lambda\rVert\le\sqrt{2\log2/\lambda}}$, ${\mu=\lambda}$ trong khung định lý. 49 âm tiết.
 
 #### LG09 — Hằng số trơn và số điều kiện của $F_\lambda$
 
@@ -578,6 +606,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** KN6 trực quan + ví dụ (độ cong một chiều, đầu trang) + hình thức (Mệnh đề 4); nhu cầu nhận từ LG08.
 - **Quyết định:** thêm; ba bước gộp một trang vì cùng một luận điểm (hai cận Hessian). Sau cổng storyboard: ví dụ đặt trước mệnh đề; giả thiết $\lVert x_i\rVert\le1$ (mâu thuẫn với tọa độ hằng $1$) thay bằng $\lVert x_i\rVert\le r$.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 7 dòng → 6; dòng "tọa độ hằng $1$ cho $r\ge1$" chuyển xuống ghi chú; mã H2, H3, T2a, T2b trong ghi chú thay bằng lời và Định lý 05b.18; gỡ `.dense` (24 âm tiết).
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; mở bằng "Nhu cầu: cận trên $L$ của $\nabla^2F_\lambda$ để có $\kappa=L/\mu$" (từ LG08); ví dụ một mẫu nêu $F_\lambda(w)$ tại chỗ (LG08a không còn); dòng dãy $\kappa=1{,}5;6;51;501$ bỏ (LG12 có), giữ trong ghi chú. Phần việc: $L$ của $\kappa$. 24 → 28 âm tiết.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** nhãn "Ví dụ (một mẫu …)" thành "Trực quan." (cột trái là bước trực quan trước Mệnh đề 4); nhóm ${\lambda I\preceq\nabla^2F_\lambda(w)\preceq LI}$, ${\lVert x_i\rVert\le r}$, hai cận; ghi chú không lấy trang làm chủ ngữ. 28 âm tiết.
 
 #### LG10 — Ví dụ: ba điểm có chính quy hóa
 
@@ -591,6 +621,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; bước ứng dụng phải dùng kết quả vừa xây dựng. Trang có nguy cơ dày (R8): nếu vượt khung 16:9, chuyển dòng $X^TX$ xuống ghi chú.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; tiêu đề đổi thành "Ví dụ: ba điểm có chính quy hóa" theo mẫu trang ví dụ; dòng $\lambda=0$ (33 âm tiết) tách hai dòng; dòng cuối mang nhãn "Diễn giải:"; gỡ `.dense` (42 âm tiết).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** nhãn "$\lambda=0$." bỏ in đậm; ghi chú trỏ "kết luận thứ hai của Định lý 1 (bước 4 của chứng minh)".
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; theo khuôn ví dụ: dữ kiện (ba điểm, đặc trưng $(1,u,u^2)$; $\lambda=0$ không có cực tiểu) → "Tính $w_\lambda$, $L$ và cận $\kappa$ với $\lambda=0{,}1$; $0{,}01$" → $X^TX$, bảng → "Diễn giải: với $\lambda>0$ nghiệm hữu hạn dù dữ liệu tách được; xác suất không tiến về $0$ hoặc $1$". Dòng năm mẫu chuyển sang LG05. Ghi chú: $10^{-15}$ như ghi chú bài giảng; "$\operatorname{rank}X=n$" thay "khi số đặc trưng đạt kích thước mẫu". Phần việc: áp dụng cả hai nửa câu hỏi trên ví dụ dẫn nhập. 42 → 29 âm tiết.
 
 #### LG11 — Bài tập: tách được, sự tồn tại cực tiểu và các hằng số
 
@@ -614,6 +645,8 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **LLO/CLO:** MT2; LLO11 → CLO1, CLO2.
 - **Bước hành trình:** bài tập (lời giải) của KN4, KN5, KN6.
 - **Quyết định:** thêm; trang kế cùng tiêu đề; 47 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `sửa`; câu 2 nêu đúng giả thiết Mệnh đề 3: "Nhãn $-,+,-,+$: không tách được; mọi $w\ne0$ có biên âm (kiểm tra dưới), nên $F$ cưỡng bức, có cực tiểu" (trước: "không tách được; $F$ cưỡng bức", suy luận sai). 47 → 48 âm tiết.
+- **Sửa vòng 2, 2026-10-15 (mạch 2/3):** "cưỡng&nbsp;bức". 48 âm tiết; vượt 40 vì lời giải ba câu cùng dòng kiểm tra giả thiết Mệnh đề 3, trang lời giải mẫu của cụm khái niệm.
 
 #### LG12 — Hệ số chính quy hóa và số điều kiện
 
@@ -627,6 +660,22 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm; mạch cần đầu ra rõ cho mạch sau. Tiêu đề đổi theo cổng storyboard; đặc tả ghi chú thay siêu dữ liệu quy trình bằng nội dung (độ gần bài toán gốc và $\kappa$ kéo ngược nhau).
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 61 → 49 âm tiết; khung kết luận hai câu tách hai dòng; câu chọn phương pháp chuyển xuống ghi chú; gỡ `.dense`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** một câu kết luận "Kết luận: $\lambda$ càng nhỏ, $w_\lambda$ càng gần bài toán gốc và cận $\kappa\le1+\frac{r^2}{4\lambda}$ càng lớn"; bỏ khẳng định "liên tục theo dữ liệu" (chưa chứng minh trong bài); gạch đầu dòng hai dẫn Định lý 2.
+- **Sửa 2026-10-15 (rà soát mạch 2/3):** quyết định `gộp` (nhận LG08a) và `sửa`; một bảng ví dụ một mẫu với ba hàng $w_\lambda$, $\sigma(w_\lambda)$, $\kappa=1+\frac1{4\lambda}$; dữ kiện $F_\lambda$ và phương trình $\lambda w=\frac1{1+e^w}$ trên mặt trang; hàng $\sqrt{2\log2/\lambda}$ và dòng kiểm tra $0{,}05\cdot2{,}128=0{,}1064$ vào ghi chú; bỏ gạch đầu dòng "Định lý 2 vẫn cho…" (LG08 "Ý nghĩa:" đã nêu). "Kết luận: trên dữ liệu tách được, $\lambda$ càng nhỏ thì $F(w_\lambda)$ càng gần $\inf F$ và cận $\kappa\le1+\frac{r^2}{4\lambda}$ càng lớn" thay "$w_\lambda$ càng gần bài toán gốc". Thời lượng 0,06 → 0,08 LT (nhận phần của LG08a). Phần việc: đầu ra $\kappa$ của mạch. 49 → 34 âm tiết.
+
+### Trang đã gộp ở mạch 3 (2026-10-15)
+
+#### LG08a — Ví dụ: một mẫu có chính quy hóa (đã gộp vào LG12)
+
+- **Lý do tồn tại:** ví dụ tính được của Định lý 2.
+- **Nhu cầu/khoảng trống lấp:** người học cần kiểm tra cận chuẩn và tính duy nhất trên một hàm một biến.
+- **Đầu vào:** Định lý 2 (LG08).
+- **Đầu ra:** bảng $w_\lambda$ và cận $\sqrt{2\log2/\lambda}$; ví dụ một mẫu cho LG09, LG12, CP02.
+- **Vị trí trong khung:** ví dụ của KQ7.
+- **LLO/CLO:** MT2; LLO11 → CLO1.
+- **Bước hành trình:** KN5 ví dụ (lần hai, sau hình thức) và đầu vào của KN6.
+- **Quyết định:** thêm (tách từ LG08); 32 âm tiết.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "cận đúng nhưng không chặt" thành "bất đẳng thức đúng nhưng không chặt" (A3: "cận đúng" là thuật ngữ supremum/infimum, giữ nguyên nghĩa đó ở ghi chú LG05a); ghi chú "số hạng phạt". 32 → 34 âm tiết.
+- **Gộp 2026-10-15 (rà soát mạch 2/3):** quyết định `gộp` vào LG12. Bảng $w_\lambda$ một mẫu trùng phần với bảng của LG12 (cùng ví dụ, cùng bốn giá trị $\lambda$); hai trang kể lại cùng một phép tính. Hàng $w_\lambda$ lên bảng LG12; cận $\sqrt{2\log2/\lambda}$, dòng kiểm tra và câu nối Bài 01 vào ghi chú LG12. Thời lượng ($0{,}02$ LT trong $0{,}08$ của LG08) chuyển sang LG12. Dẫn chiếu tới LG08a trong deck (ghi chú LG07) và storyboard (đầu vào CP02) đổi sang LG12.
 
 ### CP. Độ cong và chi phí tính toán (phiên A3)
 
@@ -663,7 +712,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 
 - **Lý do tồn tại:** cho phép tính cụ thể của hai phương pháp trên $F_\lambda$ đã biết, gồm một bước Newton tính thủ công.
 - **Nhu cầu/khoảng trống lấp:** trên hàm không bậc hai Newton không còn đúng sau một bước; người học cần thấy giai đoạn tắt dần và giai đoạn bậc hai trên số liệu.
-- **Đầu vào:** VD-A2b, $\kappa=51$ (LG09).
+- **Đầu vào:** VD-A2b, $\kappa=51$ (LG12; trước 2026-10-15 bảng ở LG08a, dãy $\kappa$ ở LG09).
 - **Đầu ra:** bảng $k=0..5$; 5 bước Newton so với 71 bước hạ gradient; ghi chú: quay lui nhận bước đầy đủ ở mọi bước, nên bảng khớp với giả thiết của định lý về số bước Newton (CP04 từ 2026-10-15).
 - **Vị trí trong khung:** ví dụ cho KQ8, KQ9.
 - **LLO/CLO:** MT3; LLO15 → CLO4.

@@ -125,8 +125,8 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 ### KN9. Dừng sớm theo tập xác thực
 
 - **Sáu bước:** nhu cầu E02, F00 (dòng dẫn: thời điểm dừng), F05b; trực quan F06 (đường mất mát huấn luyện và xác thực, định tính); ví dụ của quy tắc dừng là Bài 05, mạch giới hạn của tối ưu tất định (KL01, KL01a; định nghĩa dừng sớm, sai số xác thực nhỏ nhất tại bước 79; bước kế thừa), ví dụ của nhận xét là F07 (bảng tỉ lệ giữ); hình thức F06b (thuật toán dừng sớm, tách từ F06 ngày 2026-10-12) và F07b (nhận xét DL (7.43)–(7.45), tách từ F07); ứng dụng F07b (dừng sớm tác động như chính quy hóa $\ell_2$) và G02; bài tập F08(c), lời giải F08b. Bước lưu tham số tốt nhất trong thuật toán E05 thuộc phần hình thức của KN7 (thuật toán), không phải bước ứng dụng của KN9; F06 giải thích bước đó sau nhu cầu và trực quan.
-- **Thứ tự và lý do (cập nhật 2026-10-12):** dừng sớm theo tập xác thực: trực quan F06 (hình) đứng trước thuật toán F06b. Quan hệ với chính quy hóa $\ell_2$: ví dụ dẫn nhập F07 (bảng tỉ lệ giữ) → “Trực quan.” đầu F07b (cả hai giữ hướng có độ cong lớn, nén hướng có độ cong nhỏ) → “Nhận xét.” F07b (điều kiện $\lambda\approx1/(\eta k)$, $\eta\alpha\ll1$, $\alpha\ll\lambda$) → “Lưu ý:” phạm vi. Dừng sớm là một phần của phương pháp theo luận đề; cụm không có trang định nghĩa riêng vì tập xác thực và tập kiểm thử đã được định nghĩa ở Bài 05 HQ05 và Bài 05 KL01 đã có quan sát số trên dữ liệu khối A1 (điểm hòa giải 5).
-- **Đầu vào:** Bài 05 (khối A1: khớp quá; khối A2: chính quy hóa $\ell_2$; HQ05: tập xác thực; KL01: quan sát số); Định lý 05c.52 của 05c.
+- **Thứ tự và lý do (cập nhật 2026-10-12):** dừng sớm theo tập xác thực: trực quan F06 (hình) đứng trước thuật toán F06b. Quan hệ với chính quy hóa $\ell_2$: ví dụ dẫn nhập F07 (bảng tỉ lệ giữ) → “Trực quan.” đầu F07b (cả hai giữ hướng có độ cong lớn, nén hướng có độ cong nhỏ) → “Nhận xét.” F07b (điều kiện $\lambda\approx1/(\eta k)$, $\eta\alpha\ll1$, $\alpha\ll\lambda$) → “Lưu ý:” phạm vi. Dừng sớm là một phần của phương pháp theo luận đề; cụm không có trang định nghĩa riêng vì tập xác thực và tập kiểm thử đã được định nghĩa ở Bài 05 HQ05a và Bài 05 KL01 đã có quan sát số trên dữ liệu khối A1 (điểm hòa giải 5).
+- **Đầu vào:** Bài 05 (khối A1: khớp quá; khối A2: chính quy hóa $\ell_2$; HQ05a: tập xác thực; KL01: quan sát số); Định lý 05c.52 của 05c.
 - **Sản phẩm học tập và LLO/CLO:** áp quy tắc dừng sớm, tính và giải thích tỉ lệ giữ; LLO11; CLO1, CLO2.
 - **Ký hiệu, dữ kiện truyền tiếp:** chu kỳ đánh giá $s$, ngưỡng kiên nhẫn $r$; trị riêng $\alpha$, hệ số chính quy hóa $\lambda\approx1/(\eta k)$; tỉ lệ giữ $1-(1-\eta\alpha)^k$ và $\alpha/(\alpha+\lambda)$; số $\eta=0{,}5$, $k=20$, $\alpha=0{,}1$ đi từ F07 vào F08(c).
 - **Câu nối:** không cần cực tiểu chính xác → dừng theo tập xác thực (F06) → trên mục tiêu bậc hai, dừng sớm tác động như chính quy hóa $\ell_2$ (F07).
@@ -743,7 +743,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 
 - **Lý do tồn tại:** phát biểu thuật toán với đầu vào, đầu ra, quy tắc lưu tham số tốt nhất theo tập xác thực và chi phí.
 - **Nhu cầu hoặc khoảng trống được lấp:** ghép ước lượng E04 với lan truyền ngược C04 thành một phương pháp chạy được.
-- **Đầu vào:** E04; C04; tập xác thực (Bài 05 HQ05).
+- **Đầu vào:** E04; C04; tập xác thực (Bài 05 HQ05a).
 - **Đầu ra:** thuật toán SGD nhóm nhỏ; chi phí $O(bp)$ mỗi bước, $O(np)$ mỗi lượt; ghi chú về xáo trộn theo lượt và M3; nhận xét T8 bảo đảm cho dãy lặp, còn thuật toán trả về tham số tốt nhất theo tập xác thực.
 - **Vị trí trong khung:** bước 5 (phương pháp).
 - **LLO/CLO:** LLO12; CLO2.
@@ -919,12 +919,12 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 
 - **Lý do tồn tại:** nêu quy tắc dừng sớm sau trực quan về đường mất mát huấn luyện và xác thực.
 - **Nhu cầu hoặc khoảng trống được lấp:** E02 và F05 cho thấy không cần cực tiểu chính xác và mức đủ dùng phải được quyết định bằng dữ liệu; cần quy tắc vận hành xác định điểm dừng.
-- **Đầu vào:** E02, F05; tập xác thực và tập kiểm thử của Bài 05 HQ05 (dẫn lại, không định nghĩa lại); quan sát số về dừng sớm ở Bài 05 KL01; quy tắc lưu tham số tốt nhất của E05; hình dùng lại, đường dẫn gốc `img/lec-06b/risk-curves.svg`.
+- **Đầu vào:** E02, F05; tập xác thực và tập kiểm thử của Bài 05 HQ05a (dẫn lại, không định nghĩa lại); quan sát số về dừng sớm ở Bài 05 KL01; quy tắc lưu tham số tốt nhất của E05; hình dùng lại, đường dẫn gốc `img/lec-06b/risk-curves.svg`.
 - **Đầu ra:** quy tắc dừng (chu kỳ $s$, ngưỡng kiên nhẫn $r$, trả về tham số tốt nhất); nhận xét tham số trả về nhắm tới $R$, khác dãy lặp mà T8 bảo đảm.
 - **Vị trí trong khung:** quy tắc dừng sớm (bước 5); khép lý do thống kê.
 - **LLO/CLO:** LLO11; CLO1, CLO2.
 - **Bước hành trình:** KN9 trực quan + hình thức (quy tắc).
-- **Quyết định:** `thêm` — tách từ F05 cũ theo kiểm định storyboard; dừng sớm phải được trình bày là đánh giá trên dữ liệu xác thực, không phải thất bại hội tụ; dẫn tập xác thực của Bài 05 HQ05 (điểm hòa giải 5).
+- **Quyết định:** `thêm` — tách từ F05 cũ theo kiểm định storyboard; dừng sớm phải được trình bày là đánh giá trên dữ liệu xác thực, không phải thất bại hội tụ; dẫn tập xác thực của Bài 05 HQ05a (điểm hòa giải 5).
 - **Sửa 2026-10-12 (văn phong và mật độ):** `tách` — 84 → 53 âm tiết; gỡ `.dense`; trang giữ trực quan, nhắc lại định nghĩa của Bài 05 và nhu cầu đánh giá thưa; quy tắc chuyển sang F06b dưới nhãn “Thuật toán.”.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — “đạt đáy rồi tăng” → “giảm tới cực tiểu rồi tăng” (A4). 52 → 54 âm tiết. Tập xác thực từ nay được nhắc lại trên mặt trang A04 (B5, phương án 1), nên ghi chú dẫn Bài 05 giữ nguyên; ghi chú thêm dừng sớm (early stopping).
 

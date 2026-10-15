@@ -132,7 +132,7 @@ Như vậy, chúng ta đã có lớp mô hình chung (Định nghĩa 05.1), năm
 
 Năm mẫu sau đây được sinh từ quan hệ thật $y=u$ cộng một nhiễu nhỏ: đầu vào $u=(-1,-\tfrac12,0,\tfrac12,1)$ và nhãn $y=(-0{,}9;\ -0{,}7;\ 0{,}2;\ 0{,}4;\ 1{,}0)$. Người lập mô hình không biết quan hệ thật và phải chọn một bộ đặc trưng đa thức $(1,u,\ldots,u^{d-1})$. Với $d=2$, mô hình là một đường thẳng; với $d=5$, mô hình là một đa thức bậc $4$ có đúng năm hệ số, bằng số mẫu. Bài 01 cho biết với mỗi $d$ cố định, nghiệm bình phương nhỏ nhất luôn tồn tại (Mệnh đề 01.6), nhưng chưa cho biết nên chọn $d$ nào.
 
-Để chọn được $d$, chúng ta cần biết nghiệm thay đổi thế nào khi $d$ tiến tới và vượt kích thước mẫu $n=5$. Ba câu hỏi cụ thể là: nghiệm còn duy nhất không, nghiệm dự đoán thế nào tại điểm mới, và nghiệm nhạy thế nào với nhiễu ở nhãn. Mỗi câu hỏi dẫn tới một khái niệm: chế độ nội suy, rủi ro kỳ vọng và số điều kiện.
+Để chọn được $d$, chúng ta cần biết nghiệm thay đổi thế nào khi $d$ tiến tới và vượt kích thước mẫu $n=5$. Chúng ta lần lượt xét ba câu hỏi: nghiệm dự đoán thế nào tại điểm mới, nghiệm còn duy nhất không, và nghiệm nhạy thế nào với nhiễu ở nhãn. Mỗi câu hỏi dẫn tới một khái niệm, theo cùng thứ tự: rủi ro kỳ vọng cùng tập xác thực, chế độ nội suy, và số điều kiện.
 
 ### 2.1 Dữ liệu năm mẫu và đặc trưng đa thức
 
@@ -1022,7 +1022,7 @@ Tính giảm đơn điệu của $F(w_k)$ một mình chưa đủ cho kết lu�
 
 **Trong học máy.** Trên dữ liệu tách được, huấn luyện hồi quy logistic không chính quy hóa bằng hạ gradient hoặc hạ gradient ngẫu nhiên (stochastic gradient descent, SGD), tức hạ gradient dùng gradient trên một nhóm nhỏ mẫu chọn ngẫu nhiên, làm chuẩn tham số tăng mãi; trên máy tính, các xác suất dự đoán $\sigma(x_i^Tw_k)$ bị làm tròn thành $0$ hoặc $1$ và có thể gây tràn số (Goodfellow và cộng sự 2016, mục 7.3, tr. 239–240). Theo Hệ quả 05.23, thuật toán vẫn làm đúng việc được giao là cực tiểu hóa $F$; điều cần sửa là bài toán, và chúng ta sửa nó ở Mục 3.6.
 
-### 3.5 Dữ liệu không tách được
+### 3.5 Điều kiện đủ cho sự tồn tại điểm cực tiểu
 
 Trước khi sửa bài toán, chúng ta cần biết trường hợp nào vẫn có điểm cực tiểu. Ví dụ 05.12 là một trường hợp như vậy. Để có một điều kiện đủ tổng quát, chúng ta dùng lại tính cưỡng bức của Bài 01, phát biểu cho miền $\mathbb R^d$.
 
@@ -1032,7 +1032,7 @@ Hàm $f:\mathbb R^d\to\mathbb R$ là cưỡng bức (coercive) nếu $f(w)\to+\i
 
 Hàm $w\mapsto\lVert w\rVert^2$ cưỡng bức. Mất mát logistic trên dữ liệu tách được thì không, vì $F(t\bar w)\to0$ khi $t\to\infty$ (Định lý 05.22). Theo Định lý 01.38, hàm liên tục và cưỡng bức trên $\mathbb R^d$ đạt giá trị nhỏ nhất, nên chỉ cần một điều kiện trên dữ liệu bảo đảm $F$ cưỡng bức. Mệnh đề sau cho điều kiện đó.
 
-::: proposition Mệnh đề 05.24 (Dữ liệu không tách được thì mất mát logistic cưỡng bức)
+::: proposition Mệnh đề 05.24 (Điều kiện đủ cho tính cưỡng bức của mất mát logistic)
 **Giả thiết.** $F$ là (3.1), và với mọi $w\ne0$ tồn tại $i$ với $m_i(w)<0$.
 
 **Kết luận.** Tồn tại $c>0$ với
@@ -1278,14 +1278,14 @@ Tại $w_\lambda$ cố định, gradient (2.1) hay (3.2) là hàm liên tục c�
 
 Bài toán logistic không chính quy hóa trên dữ liệu tách được thì không đặt chỉnh, vì nghiệm không tồn tại.
 
-Giảm $\lambda$ kéo nghiệm về gần bài toán gốc, như Ví dụ 05.14 và Hệ quả 05.27 cho thấy, nhưng làm số điều kiện tăng theo $1/\lambda$ (Mệnh đề 05.28). Bảng của Ví dụ 05.14 với $\kappa$ ghi kèm:
+Trên dữ liệu tách được, giảm $\lambda$ làm $F(w_\lambda)$ tiến về $\inf F$ và $\lVert w_\lambda\rVert$ tăng không bị chặn, như Ví dụ 05.14 và Hệ quả 05.27 cho thấy, nhưng làm số điều kiện tăng theo $1/\lambda$ (Mệnh đề 05.28). Bảng của Ví dụ 05.14 với $\kappa$ ghi kèm:
 
 | $\lambda$ | $0{,}5$ | $0{,}05$ | $0{,}005$ | $0{,}0005$ |
 |---|---:|---:|---:|---:|
 | $\sigma(w_\lambda)$ | $0{,}663$ | $0{,}894$ | $0{,}980$ | $0{,}997$ |
 | $\kappa$ | $1{,}5$ | $6$ | $51$ | $501$ |
 
-Nghiệm càng gần bài toán gốc thì càng khó tính bằng hạ gradient. Chọn $\lambda$ là quyết định mô hình, thực hiện trên tập xác thực; các định lý không chỉ ra giá trị nào.
+Khi đó, $\lambda$ càng nhỏ thì $F(w_\lambda)$ càng gần $\inf F$ và cận $\kappa\le1+\frac{r^2}{4\lambda}$ càng lớn, nên $w_\lambda$ càng khó tính bằng hạ gradient. Chọn $\lambda$ là quyết định mô hình, thực hiện trên tập xác thực; các định lý không chỉ ra giá trị nào.
 :::
 
 **Trong học máy.** Đối tượng của Định lý 05.26 là hàm mất mát huấn luyện có suy giảm trọng số, tham số là trọng số của mô hình tuyến tính. Giả thiết lồi của $F$ được bảo đảm với hồi quy tuyến tính và hồi quy logistic; với mạng nơ ron, $F$ không lồi và số hạng phạt không làm $F_\lambda$ lồi (Định nghĩa 01.42, Tình huống 01.3). Kết luận cho phép dùng mọi định lý hội tụ cho hàm lồi mạnh, trong đó có Định lý 05b.18, với hằng số $\mu=\lambda$ và $L$ của Mệnh đề 05.28. Bộ giải LIBLINEAR, dùng trong scikit-learn, huấn luyện hồi quy logistic có số hạng phạt $\ell_2$ bằng một biến thể của phương pháp Newton (Mục 5.2).
@@ -1357,9 +1357,9 @@ Dùng $S_{ii}=\sigma(m_i)\sigma(-m_i)$, với $m_i(0)=0$ và $m_i(t\bar w)=t\,m_
 2. $m_i(t\bar w)=t\,m_i(\bar w)\to\infty$ vì $m_i(\bar w)>0$, và $\sigma(m)\sigma(-m)\le e^{-m}\to0$. Mỗi phần tử của $\frac1nX^TS(t\bar w)X=\frac1n\sum_iS_{ii}x_ix_i^T$ tiến về $0$, nên $\nabla^2F_\lambda(t\bar w)\to\lambda I$. Nếu $\mu'>\lambda$ thỏa $\nabla^2F_\lambda\succeq\mu'I$ tại mọi $w$, thì $v^T\nabla^2F_\lambda(t\bar w)v\ge\mu'$ với vector đơn vị $v$, mâu thuẫn với giới hạn $\lambda$.
 :::
 
-Như vậy, chúng ta đã thấy một bài toán học lồi có thể không có điểm cực tiểu: trên dữ liệu tách được, mất mát logistic có cận dưới đúng $0$ không đạt, và mọi dãy cực tiểu hóa phân kỳ (Định lý 05.22); khi $\operatorname{rank}X=n$, mọi cách gán nhãn đều rơi vào trường hợp này (Mệnh đề 05.21). Trên dữ liệu không tách được theo nghĩa của Mệnh đề 05.24, điểm cực tiểu tồn tại. Số hạng phạt bậc hai sửa bài toán cho mọi dữ liệu: $F_\lambda$ lồi mạnh, có đúng một nghiệm với chuẩn bị chặn (Định lý 05.26), và có số điều kiện $\kappa\le1+r^2/(4\lambda)$ (Mệnh đề 05.28).
+Như vậy, chúng ta đã thấy một bài toán học lồi có thể không có điểm cực tiểu: trên dữ liệu tách được, mất mát logistic có cận dưới đúng $0$ không đạt, và mọi dãy cực tiểu hóa phân kỳ (Định lý 05.22); khi $\operatorname{rank}X=n$, mọi cách gán nhãn đều rơi vào trường hợp này (Mệnh đề 05.21). Khi mọi $w\ne0$ có một biên âm (Mệnh đề 05.24), điểm cực tiểu tồn tại; điều kiện này mạnh hơn tính không tách được, vì còn trường hợp ranh giới (Nhận xét 05.25). Số hạng phạt bậc hai sửa bài toán cho mọi dữ liệu: $F_\lambda$ lồi mạnh, có đúng một nghiệm với chuẩn bị chặn (Định lý 05.26), và có số điều kiện $\kappa\le1+r^2/(4\lambda)$ (Mệnh đề 05.28).
 
-Tuy nhiên, phép sửa này có hệ quả về tính toán. Nghiệm càng gần bài toán gốc thì $\lambda$ càng nhỏ và $\kappa$ càng lớn (Nhận xét 05.29), nên câu hỏi tồn tại đã được thay bằng câu hỏi tính toán. Trong Mục 4, chúng ta đếm chi phí tính $w_\lambda$ bằng hai phương pháp của Bài 04: hạ gradient, có số bước tăng theo $\kappa$, và phương pháp Newton, có số bước gần như không phụ thuộc $\kappa$ nhưng mỗi bước đắt hơn.
+Tuy nhiên, phép sửa này có hệ quả về tính toán. Trên dữ liệu tách được, $\lambda$ càng nhỏ thì $F(w_\lambda)$ càng gần $\inf F$ và $\kappa$ càng lớn (Nhận xét 05.29), nên câu hỏi tồn tại đã được thay bằng câu hỏi tính toán. Trong Mục 4, chúng ta đếm chi phí tính $w_\lambda$ bằng hai phương pháp của Bài 04: hạ gradient, có số bước tăng theo $\kappa$, và phương pháp Newton, có số bước gần như không phụ thuộc $\kappa$ nhưng mỗi bước đắt hơn.
 
 ## 4. Độ cong và chi phí tính toán
 
@@ -2214,7 +2214,7 @@ Chúng ta xuất phát từ câu hỏi khung tối ưu lồi tất định của
 
 - Mục 1: bài toán học với mô hình tuyến tính theo đặc trưng (Định nghĩa 05.1); đổi ký hiệu (Nhận xét 05.2).
 - Mục 2: phương trình chuẩn (Mệnh đề 05.3); sai số huấn luyện không tăng (Mệnh đề 05.4); rủi ro thực nghiệm và kỳ vọng, tập xác thực, tập kiểm thử, quá khớp (Định nghĩa 05.5, 05.6); ước lượng không chệch và thiên lệch khi chọn (Mệnh đề 05.7, Nhận xét 05.8, 05.9); chế độ nội suy, nghiệm chuẩn nhỏ nhất (Mệnh đề 05.10, 05.11, Nhận xét 05.12); số điều kiện (Định nghĩa 05.13, Mệnh đề 05.14, 05.15, 05.16); hồi quy có chính quy hóa (Mệnh đề 05.17, Nhận xét 05.18).
-- Mục 3: gradient và Hessian logistic (Mệnh đề 05.19); tách được tuyến tính (Định nghĩa 05.20, Mệnh đề 05.21); không tồn tại điểm cực tiểu (Định lý 05.22, Hệ quả 05.23); dữ liệu không tách được (Mệnh đề 05.24, Nhận xét 05.25); chính quy hóa và lồi mạnh (Định lý 05.26, Hệ quả 05.27); hằng số trơn và số điều kiện (Mệnh đề 05.28, Nhận xét 05.29).
+- Mục 3: gradient và Hessian logistic (Mệnh đề 05.19); tách được tuyến tính (Định nghĩa 05.20, Mệnh đề 05.21); không tồn tại điểm cực tiểu (Định lý 05.22, Hệ quả 05.23); điều kiện đủ cho sự tồn tại điểm cực tiểu và trường hợp ranh giới (Mệnh đề 05.24, Nhận xét 05.25); chính quy hóa và lồi mạnh (Định lý 05.26, Hệ quả 05.27); hằng số trơn và số điều kiện (Mệnh đề 05.28, Nhận xét 05.29).
 - Mục 4: hội tụ tuyến tính và số bước của hạ gradient (Định lý 05.30, Hệ quả 05.31, Nhận xét 05.32); Newton hai giai đoạn và bất biến affine (Định lý 05.33, Mệnh đề 05.34); chi phí một bước (Thuật toán 05.1, 05.2, Mệnh đề 05.35, 05.36, Nhận xét 05.37); ngưỡng hòa vốn (4.8).
 - Mục 5: dừng sớm (Định nghĩa 05.38, Mệnh đề 05.39); XOR và số đơn thức (Mệnh đề 05.40, 05.41); bảo đảm còn lại (Nhận xét 05.42).
 
@@ -2244,7 +2244,7 @@ Chúng ta xuất phát từ câu hỏi khung tối ưu lồi tất định của
 | Mệnh đề 1 (chế độ nội suy) | Mệnh đề 05.10 |
 | Mệnh đề 2 (hạng đầy đủ kéo theo tách được) | Mệnh đề 05.21 |
 | Định lý 1 (không tồn tại điểm cực tiểu) | Định lý 05.22 |
-| Mệnh đề 3 (dữ liệu không tách được) | Mệnh đề 05.24 |
+| Mệnh đề 3 (điều kiện đủ cho tính cưỡng bức) | Mệnh đề 05.24 |
 | Định lý 2 (chính quy hóa và tính lồi mạnh) | Định lý 05.26 |
 | Mệnh đề 4 (hằng số trơn và số điều kiện) | Mệnh đề 05.28 |
 | Định lý 3 (số bước của hạ gradient) | Định lý 05.30 |

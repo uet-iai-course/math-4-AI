@@ -58,7 +58,7 @@ Các thay đổi dưới đây áp dụng mười điểm hòa giải của đi�
 - A04: thêm câu ánh xạ quy ước hệ số chặn của Bài 05 (điểm 1).
 - A03, E01, G02: phát biểu về Newton theo Bài 05 CP04 (Định lý 4, số bước của Newton): chỉ giai đoạn hội tụ bậc hai, $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, không chứa $\kappa$; $\varepsilon_0$ và giai đoạn tắt dần phụ thuộc các hằng số Hessian, viết $m_H,M_H,L_H$ để không trùng số đơn vị ẩn $m$ (điểm 2).
 - B01: nêu trên mặt trang rằng nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính thủ công; ghi chú nêu quan hệ với nhãn $\pm1$ của Bài 05 KL03 (từ 2026-10-15: của Mệnh đề 05.40 trong ghi chú bài giảng Bài 05, vì deck Bài 05 không còn trang XOR). B07: ghi chú nêu kết luận không lồi giữ nguyên với mất mát logistic, kèm phép kiểm tra số (điểm 4).
-- F06 (F05 trong bản 43 trang): dẫn tập xác thực của Bài 05 HQ05, không định nghĩa lại; rủi ro R3 không kích hoạt; lý do gộp chu trình KN9 trong storyboard viết lại theo đó (điểm 5).
+- F06 (F05 trong bản 43 trang): dẫn tập xác thực của Bài 05 HQ05a, không định nghĩa lại; rủi ro R3 không kích hoạt; lý do gộp chu trình KN9 trong storyboard viết lại theo đó (điểm 5).
 - F01, F02, F04, F06 (theo mã 45 trang): hình dùng lại được sao chép vào `img/lec-06/` ở giai đoạn dựng deck; cột hình ghi đường dẫn gốc (điểm 8).
 - Tiêu đề B02 và E02 viết lại thành cụm danh từ (“Tính không tách được tuyến tính của XOR”, “Rủi ro thực nghiệm như đại lượng thay thế”) vì tiêu đề dạng mệnh đề trái quy tắc tiêu đề của CLAUDE.md; điểm trung tâm của hai trang không đổi.
 - G01 đổi tiêu đề thành “Điều không còn giữ được và điều còn giữ được”, cùng cách diễn đạt với Bài 05 KL04 (quyết định của điều phối viên khi duyệt; KL04 bỏ khỏi deck Bài 05 ngày 2026-10-15, G01 nay là nơi duy nhất có bảng này). E02 và F07 (F05 trong bản 43 trang) ghi phân chia nguồn với Bài 05 KL01, KL02 (cùng quyết định).
@@ -1059,7 +1059,7 @@ Nocedal–Wright không có trong `sources/`; không cần cho bài này. Không
 | Newton, chi phí $O(np^2+p^3)$, hội tụ bậc hai cục bộ | Bài 04; Bài 05 (A3) | Dẫn (E01, G02) |
 | Chính quy hóa $\ell_2$ cho lồi mạnh, nghiệm duy nhất | Bài 05 (A2) | Dẫn (D04 ghi chú, E02, F07, G02) |
 | Khớp quá khi $d$ tăng; rủi ro kiểm thử | Bài 05 (A1) | Dẫn (A03, E02, F06) |
-| Tập xác thực (chọn $d$, $\lambda$, bước dừng) và tập kiểm thử (báo cáo $R$) | Bài 05 HQ05 | Dẫn, không định nghĩa lại (F06) |
+| Tập xác thực (chọn $d$, $\lambda$, bước dừng) và tập kiểm thử (báo cáo $R$) | Bài 05 HQ05a | Dẫn, không định nghĩa lại (F06) |
 | H0, H2, H3, H4, H6, H6a, H6b | 05b “Giả thiết có tên” | Dùng nguyên nhãn, phát biểu lại khi dùng |
 | T2 (GD lồi mạnh tuyến tính) | 05b C05 | Dẫn (G02) |
 | T5 (SGD lồi mạnh bước hằng, mức nhiễu nền) | 05b E06–E07 | Phát biểu lại (F02) |
@@ -1097,7 +1097,7 @@ Mọi mục dưới đây đang ở trạng thái **mở**. Cột “Hướng t�
 |---|---|---|---|
 | R1 | **Phụ thuộc Bài 05.** Kế hoạch giả định kết luận Bài 05 đúng như giao diện chung (hai giới hạn, chi phí $O(nd)$ và $O(nd^2+d^3)$, chính quy hóa $\ell_2$, rủi ro kiểm thử ở A1). Cần đối chiếu với kế hoạch Bài 05 trước khi chốt A03, E01, E02, F06, G02 | mở | Điều phối viên đã đối chiếu hai kế hoạch (mười điểm hòa giải); cần đối chiếu lại khi `planning/lec-05/` được chốt |
 | R2 | **Ký hiệu $b$.** Kích thước nhóm $b$ trùng chữ với độ chệch $b_1,b_2$. Kế hoạch giữ $b$ cho kích thước nhóm (khớp 05b, 05c), độ chệch luôn có chỉ số, hệ số chặn của mô hình tuyến tính viết $c$ | mở | Bài 05 gộp hệ số chặn vào $w$, không dùng $b$ cho hệ số chặn; A04 ghi câu ánh xạ (điểm 1) |
-| R3 | **Tập xác thực.** Nếu Bài 05 không định nghĩa tập xác thực, trang dừng sớm (F06) cần thêm một trang định nghĩa | mở | Không kích hoạt: Bài 05 HQ05 định nghĩa tập xác thực và tập kiểm thử trên mặt trang; F06 chỉ dẫn lại (điểm 5) |
+| R3 | **Tập xác thực.** Nếu Bài 05 không định nghĩa tập xác thực, trang dừng sớm (F06) cần thêm một trang định nghĩa | mở | Không kích hoạt: Bài 05 HQ05a định nghĩa tập xác thực và tập kiểm thử trên mặt trang; F06 chỉ dẫn lại (điểm 5) |
 | R4 | **Điểm gãy ReLU.** $\theta_A$ có tiền kích hoạt bằng 0 tại $(0,0)$ và $(1,1)$; tham số của C02 có điểm gãy tại $(0,1)$. Lập luận không lồi chỉ dùng giá trị hàm nên không bị ảnh hưởng; các bài tính gradient tránh điểm gãy và C07(d) nêu quy ước. Tác tử rà toán phải kiểm không trang nào lấy gradient tại điểm gãy mà không nói quy ước | mở | |
 | R5 | **Giả thiết $L$-trơn với mạng.** Ví dụ D02 chứng tỏ H2 không đúng toàn cục. Mọi trang dẫn T7, T8 cho mạng phải nói “trên vùng chứa dãy lặp”. D06 thỏa điều kiện này (đã kiểm). Nếu tác tử soạn đưa ví dụ khác, phải kiểm lại | mở | Kiểm định storyboard: với ReLU, H2 không đúng trên vùng nào chứa điểm gãy. Đã sửa: T7, T8 áp dụng cho hàm kích hoạt trơn hoặc mạng tuyến tính; với ReLU là định hướng, ghi trên mặt trang D05, F04, G02 |
 | R6 | **Tải nội dung.** Các trang dày nhất: E03 (bảng sáu nhóm có bốn cột), F02 (hai định lý và số Ví dụ A), G02 (bảng năm dòng năm cột kèm câu hỏi). Nguy cơ tràn khung 16:9. Phương án tách: F02 thành “Mức nhiễu nền của bước hằng (T5)” và “Bước giảm dần (T6)”; G02 đưa câu hỏi sang G03. Nếu tách, tổng 44–45 trang, vẫn trong khoảng 36–45 | mở | Đã tách theo kiểm định storyboard: F02, F03 (T5, T6); F06, F07 (dừng sớm); câu hỏi G02 sang G03; tổng 45 trang. Nguy cơ còn lại ở E03 và bảng G02 được kiểm khi dựng deck |

@@ -660,3 +660,6 @@ Bài 05 bỏ KL02 (RCV1), KL03a (XOR), KL04, KL04a (bảng mất/còn và bốn 
 Vòng 2 (2026-10-15, yêu cầu của điều phối viên): ghi chú B02 viết lại: định nghĩa là nhắc lại từ phần hồi quy logistic của Bài 05; Mệnh đề 1 ứng với Mệnh đề 05.40 của ghi chú bài giảng Bài 05, deck Bài 05 không chứng minh kết quả này; bỏ câu "Bài 05 không đánh số kết quả này".
 
 Rà soát mạch 4 Bài 05 (2026-10-15): CP05 gộp vào CP04 "Số bước của hạ gradient và Newton" trong deck Bài 05; các dẫn "Bài 05 CP05" trong `outline.md` và `storyboard.md` đổi thành "Bài 05 CP04 (Định lý 4, số bước của Newton)". Deck Bài 06 không đổi.
+
+Rà soát mạch 2 và mạch 3 Bài 05 (2026-10-15): tập xác thực và tập kiểm thử được định nghĩa ở trang HQ05a "Tập xác thực và tập kiểm thử" (HQ05 chỉ còn rủi ro kỳ vọng và quá khớp); các dẫn "Bài 05 HQ05" như nơi định nghĩa tập xác thực trong `outline.md` và `storyboard.md` đổi thành "Bài 05 HQ05a". Deck Bài 06 không đổi.
+Rà soát mạch 2 và mạch 3 Bài 05, vòng 2 (2026-10-15): ghi chú F06 của deck Bài 06 đổi dẫn chiếu thành "Bài 05, trang tập xác thực và tập kiểm thử của phần hồi quy nhiều chiều" (trước: "phần rủi ro thực nghiệm và rủi ro kỳ vọng"). Mặt trang Bài 06 không đổi.
