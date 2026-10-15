@@ -8,11 +8,13 @@ Quy ước viết tắt: lý thuyết (LT), bài tập (BT), chuẩn đầu ra b
 
 **Cập nhật 2026-10-12 (văn phong MAT1101).** Sau đợt sửa theo mục "Văn phong và mật độ mặt trang chiếu" và "Trang tiêu đề mạch" của AGENTS.md, deck có 67 trang trong 5 mạch: 44 trang cũ, trừ MD03 (tách thành MD03a–MD03c), cộng 4 trang tiêu đề mạch (HQ00, LG00, CP00, KL00) và 20 trang tách (MD03a–c, HQ05a, HQ07a, HQ11a, LG05a, LG08a, LG11a, CP05a, CP06a, CP07a, CP08a, CP10a, KL01a, KL03a, KL04a, KL05a–c). Không trang nào còn lớp `.dense`. Mục MD03 (bản 44 trang: vấn đề trung tâm, hai lý do, danh sách ba phần A–C, 186 âm tiết) đã bỏ khỏi bảng theo từng trang; nội dung của nó nằm ở MD03a–MD03c, nên storyboard có đúng 67 mục cho 67 trang. Bốn trang vượt 60 âm tiết, đều thuộc loại trang có trần 80 (ngoại lệ ghi ở đây): MD02 (mục tiêu, 66), KL02 (bảng so sánh ba phương pháp, 78), KL04 (bảng so sánh mất/còn, 80), KL05 (bảng tổng kết, 66). Thời lượng buổi không đổi; các trang tách chia lại phần tiết của trang gốc. Các đoạn dưới đây giữ lịch sử của bản 44 trang; mục theo từng trang ghi quyết định mới ở dòng "Sửa 2026-10-12".
 
+**Cập nhật 2026-10-15 (rà soát mạch 5).** Theo quyết định của điều phối viên sau hai báo cáo rà soát chỉ đọc, deck có 65 trang trong 6 mạch: bỏ KL02, KL03a, KL04, KL04a (mục giữ ở tiểu mục "Trang đã bỏ 2026-10-15" với quyết định `bỏ`); mạch 5 "Giới hạn của tối ưu tất định" còn KL00, KL01, KL01a, KL03 theo thứ tự này; mạch 6 mới "Tổng hợp và chuyển giao" gồm TK00 (trang tiêu đề mạch mới), TK01–TK04 (mã cũ KL05, KL05a, KL05b, KL05c) và TK03a (lời giải trên mặt trang, mới). Số mạch 6 nằm trong khoảng 5–7. Hai ngoại lệ trần 80 của KL02 và KL04 không còn; trang vượt 60 âm tiết hiện là MD02 (mục tiêu, 62), TK01 (tổng kết, 65), đều thuộc loại trần 80. Thời lượng buổi không đổi: phần tiết của KL02 ($0{,}01$) và KL04 ($0{,}02$) chia cho KL01/KL01a, KL03 và mạch 6, mỗi nơi $0{,}01$ tiết LT. Storyboard có đúng 65 mục cho 65 trang, cộng bốn mục trang đã bỏ.
+
 Bài gồm 44 trang trong 5 mạch ngoài (43 trang theo kế hoạch đã duyệt; HQ08 tách thành HQ08 và HQ09 sau cổng storyboard 2026-10-11): mở đầu (MD), ba mạch ứng với ba phiên A1–A3 của thiết kế (HQ, LG, CP) và kết luận (KL). Số mạch nằm trong khoảng 5–7; không có ngoại lệ cần ghi. Thời lượng theo đề cương: 2 tiết LT + 1 tiết BT, chia thành ba khối 1 tiết (khối 1 = MD + HQ, khối 2 = LG, khối 3 = CP + KL). Deck được dựng ngày 2026-10-12 (`lecture-05-khong-gian-dac-trung-nhieu-chieu.html`, 44 trang, đúng mã và thứ tự trang của storyboard); các sai lệch về hình và bố cục ghi ở nhật ký, vòng dựng deck.
 
 **Vấn đề trung tâm.** Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác định điều gì thay đổi khi số đặc trưng $d$ tăng so với kích thước mẫu $n$: cực tiểu của rủi ro thực nghiệm có tồn tại và duy nhất không, có dự đoán tốt trên dữ liệu mới không, và tính nó tốn bao nhiêu phép tính.
 
-**Luận đề xuyên suốt** (yêu cầu người dùng 2026-10-11). Khung của Bài 01–04 (mục tiêu lồi có cực tiểu chính xác, phương pháp tất định hội tụ tới nó) không còn là bức tranh đúng khi $n$ và $d$ lớn, vì (1) tính toán không cho phép dùng toàn bộ dữ liệu ở mỗi bước và (2) cực tiểu chính xác của mất mát huấn luyện $F$ không phải đích, vì $F$ chỉ thay thế cho rủi ro $R$ trên dữ liệu mới. MD03c nêu hai lý do; HQ và LG kiểm chứng lý do (2); CP kiểm chứng lý do (1); KL tổng hợp thành hai giới hạn chuyển sang Bài 06 và bảng điều không còn giữ được / điều còn giữ được. Cột "còn giữ được" gồm: tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ (bổ đề giảm); với SGD, bất đẳng thức một bước có số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$ (Bài 05b T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6); điểm dừng xấp xỉ theo T7, T8 (có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước (phát hiện của cổng storyboard Bài 06).
+**Luận đề xuyên suốt** (yêu cầu người dùng 2026-10-11). Khung của Bài 01–04 (mục tiêu lồi có cực tiểu chính xác, phương pháp tất định hội tụ tới nó) không còn là bức tranh đúng khi $n$ và $d$ lớn, vì (1) tính toán không cho phép dùng toàn bộ dữ liệu ở mỗi bước và (2) cực tiểu chính xác của mất mát huấn luyện $F$ không phải đích, vì $F$ chỉ thay thế cho rủi ro $R$ trên dữ liệu mới. MD03c nêu hai lý do; HQ và LG kiểm chứng lý do (2); CP kiểm chứng lý do (1); KL tổng hợp thành hai giới hạn chuyển sang Bài 06 và bảng điều không còn giữ được / điều còn giữ được. Cột "còn giữ được" gồm: tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ (bổ đề giảm); với SGD, bất đẳng thức một bước có số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$ (Bài 05b T5), bước giảm dần tới cực tiểu, $O(1/k)$ (T6); điểm dừng xấp xỉ theo T7, T8 (có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước (phát hiện của cổng storyboard Bài 06). Từ 2026-10-15, bảng điều không còn giữ được / điều còn giữ được không còn trên deck Bài 05 (KL04, KL04a bỏ); bảng chỉ có ở G01 của Bài 06 và Nhận xét 05.42 của ghi chú bài giảng, còn KL tổng hợp thành dừng sớm và hai giới hạn.
 
 **Sườn lý thuyết** (đầy đủ ở dàn bài, mục Khung lý thuyết chung).
 
@@ -29,21 +31,23 @@ Bài gồm 44 trang trong 5 mạch ngoài (43 trang theo kế hoạch đã duy�
 | HQ. Hồi quy nhiều chiều (A1) | HQ00 | Trả lời nhu cầu: điều gì thay đổi ở nghiệm bình phương nhỏ nhất khi $d$ tăng tới và vượt $n$ | Phương trình chuẩn, điều kiện duy nhất (Bài 01), ridge (Bài 02), trung bình mẫu (Bài 05c) | Ba hệ quả: không duy nhất khi $d>n$, khoảng cách huấn luyện–xác thực, $\kappa$ không giảm (xen kẽ Cauchy); $F$ khác $R$; chính quy hóa sửa tính duy nhất; giới hạn "tồn tại" mở LG | HQ11, HQ11a | 0,56 + 0,34 |
 | LG. Hồi quy logistic và chính quy hóa (A2) | LG00 | Trả lời nhu cầu: vì sao bài toán học lồi có thể không có cực tiểu, và sửa bài toán để cực tiểu tồn tại, duy nhất | Chế độ nội suy (HQ07), $\kappa$ (HQ09), mất mát logistic (Bài 01) | Tách được ⇒ không có cực tiểu; $F_\lambda$ lồi mạnh, nghiệm duy nhất, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}/(4n\lambda)\le1+r^2/(4\lambda)$; $\lambda$ nhỏ làm $\kappa$ lớn, mở CP | LG11, LG11a | 0,67 + 0,33 |
 | CP. Độ cong và chi phí tính toán (A3) | CP00 | Trả lời nhu cầu: chi phí tính toán của một bước cập nhật hội tụ nhanh hơn | $F_\lambda$, $\kappa$ (LG09); hạ gradient, Newton (Bài 04); T2b (Bài 05b) | Số bước theo $\kappa$ và theo hai giai đoạn Newton; chi phí một bước $O(nd)$, $O(nd^2+d^3)$; ngưỡng hòa vốn; mọi bước trả thừa số $n$ (giới hạn (i)) | CP10, CP10a | 0,53 + 0,25 |
-| KL. Giới hạn của tối ưu tất định | KL00 | Tổng hợp ba phiên thành luận đề; nêu hai giới hạn chuyển sang Bài 06 | Đầu ra HQ, LG, CP | Dừng sớm có sai số xác thực nhỏ hơn nghiệm chính xác; bằng chứng RCV1; giới hạn (i) chi phí theo $n$ (dẫn CP11) và (ii) XOR; bảng điều không còn giữ được / còn giữ được; đầu vào B1–B3 và E02 của Bài 06 | KL05b | 0,14 + 0,08 |
+| KL. Giới hạn của tối ưu tất định | KL00 | Xác định độ chính xác tối ưu cần thiết khi đích là sai số trên dữ liệu mới; nêu hai giới hạn chuyển sang Bài 06 | Tổng chi phí (CP08, CP11); $F$ chỉ đại diện cho $R$ (HQ05) | Dừng sớm có sai số xác thực nhỏ hơn nghiệm chính xác (trực quan theo độ cong, định nghĩa); giới hạn (i) chi phí theo $n$ và (ii) biểu diễn (ba điểm của LG01, số đơn thức); đầu vào A03, B01–B03, E02 của Bài 06 | TK03 (câu 3), TK03a | 0,12 + 0 |
+| TK. Tổng hợp và chuyển giao (thêm 2026-10-15) | TK00 | Đối chiếu kết quả với ba mục tiêu và giả thiết không được bỏ; bài tập chuyển giao, tài liệu đọc | Đầu ra HQ, LG, CP, KL | Hai bảng tổng kết; bài tập $d>n$ có lời giải trên mặt trang; bài về nhà | TK03, TK03a | 0,02 + 0,08 |
 
-Tổng 2,00 tiết LT + 1,00 tiết BT. Ba ranh giới cần giữ rõ:
+Tổng 2,00 tiết LT + 1,00 tiết BT. Các ranh giới cần giữ rõ:
 
 - HQ12 → LG01: bình phương nhỏ nhất luôn có nghiệm, mất mát logistic thì không; chế độ nội suy $\operatorname{rank}X=n$ của HQ07 được dùng lại làm điều kiện đủ cho tách được ở LG04.
 - LG12 → CP01: chính quy hóa sửa tồn tại và duy nhất nhưng làm $\kappa$ tăng theo $1/\lambda$; câu hỏi chuyển từ "nghiệm có tồn tại" sang "tính nghiệm tốn bao nhiêu".
-- CP11 → KL01: Newton đổi số bước lấy chi phí $d^2$, $d^3$ nhưng không bỏ được thừa số $n$; kết luận ghép giới hạn này với lý do (2) qua dừng sớm.
+- CP11 → KL00: Newton đổi số bước lấy chi phí $d^2$, $d^3$ nhưng không bỏ được thừa số $n$; KL00 kế thừa tổng chi phí = chi phí một bước × số bước và hỏi độ chính xác tối ưu nào thật sự cần khi đích là $R$ nhỏ (sửa 2026-10-15).
+- KL03 → TK00 (thêm 2026-10-15): hai giới hạn đã nêu; mạch 6 chỉ đối chiếu kết quả với mục tiêu, không thêm nội dung mới.
 
 ## Bản đồ hành trình khái niệm
 
-Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập. Khi ví dụ dẫn nhập đứng cùng trang nhu cầu, dữ kiện xuất hiện trước hình thức hóa và nhu cầu mà ví dụ làm cụ thể được ghi rõ. Thời lượng cụm lấy từ kế hoạch đã duyệt, điều chỉnh sau cổng storyboard ở KN3 ($+0{,}01$) và KN8 ($-0{,}02$); các trang dùng chung giữa các cụm được chia phần, nên tổng các cụm cộng với các trang chuyển mạch (HQ12 $0{,}07$, LG12, CP11, KL02–KL05) và mạch mở đầu bằng tổng toàn bài.
+Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/toán học → ứng dụng → bài tập. Khi ví dụ dẫn nhập đứng cùng trang nhu cầu, dữ kiện xuất hiện trước hình thức hóa và nhu cầu mà ví dụ làm cụ thể được ghi rõ. Thời lượng cụm lấy từ kế hoạch đã duyệt, điều chỉnh sau cổng storyboard ở KN3 ($+0{,}01$) và KN8 ($-0{,}02$); các trang dùng chung giữa các cụm được chia phần, nên tổng các cụm cộng với các trang chuyển mạch (HQ12 $0{,}07$, LG12, CP11, KL03, TK00–TK04; từ 2026-10-15 KL02, KL04 không còn) và mạch mở đầu bằng tổng toàn bài.
 
 ### KN1. Rủi ro thực nghiệm, rủi ro kỳ vọng và quá khớp
 
-- **Sáu bước:** nhu cầu + ví dụ dẫn nhập HQ01; trực quan HQ03; ví dụ HQ04; hình thức HQ05, HQ05a (tách 2026-10-12); ứng dụng HQ10, KL01, KL01a; bài tập HQ11(4) với lời giải HQ11a, KL05b(3).
+- **Sáu bước:** nhu cầu + ví dụ dẫn nhập HQ01; trực quan HQ03; ví dụ HQ04; hình thức HQ05, HQ05a (tách 2026-10-12); ứng dụng HQ10, KL01, KL01a; bài tập HQ11(4) với lời giải HQ11a, TK03(3) với lời giải TK03a (câu 3).
 - **Ví dụ dẫn nhập:** năm mẫu VD-A1 với đặc trưng đa thức phục vụ nhu cầu "xác định điều gì thay đổi khi $d$ tăng".
 - **Đầu vào và mục tiêu:** phương trình chuẩn (Bài 01), kỳ vọng và trung bình mẫu (Bài 05c); MT1, LLO11 → CLO1. Sản phẩm: phân biệt $F$ với $R$, đọc sai số huấn luyện và sai số trên tập xác thực, chọn $\lambda$ đúng quy tắc.
 - **Ký hiệu/dữ kiện truyền tiếp:** $u=(-1,-\tfrac12,0,\tfrac12,1)$, $y=u+\varepsilon$, bốn điểm $u=\pm\tfrac14,\pm\tfrac34$; $F$, $R$, tập xác thực, tập kiểm thử. Dữ liệu truyền sang HQ06–HQ10 và KL01.
@@ -110,19 +114,19 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 
 - **Sáu bước:** nhu cầu CP05a (nhãn "Nhu cầu:" trên mặt trang: mỗi bước Newton cần Hessian và một hệ $d\times d$), CP06; trực quan CP06, CP06a; ví dụ CP06, CP06a; hình thức CP07, CP07a, CP08; ứng dụng CP08a, CP09; bài tập CP10(2, 3), lời giải CP10a.
 - **Đầu vào và mục tiêu:** đếm phép tính (Bài 00), KN6, KN7; MT3, LLO15 → CLO4. Sản phẩm: đếm chi phí một bước, so tổng chi phí, chọn phương pháp theo $(n,d,\kappa,\varepsilon)$.
-- **Ký hiệu/dữ kiện truyền tiếp:** $O(nd)$, $O(nd^2+d^3)$, $O(n^2d+n^3)$ khi $d>n$; ngưỡng hòa vốn khi $\kappa$ có bậc vài trăm ($548$ khi bỏ hằng số) tại $n=10^5$, $d=10^3$; kích thước RCV1 truyền sang KL02; giới hạn (i) truyền sang KL03.
+- **Ký hiệu/dữ kiện truyền tiếp:** $O(nd)$, $O(nd^2+d^3)$, $O(n^2d+n^3)$ khi $d>n$; ngưỡng hòa vốn khi $\kappa$ có bậc vài trăm ($548$ khi bỏ hằng số) tại $n=10^5$, $d=10^3$; kích thước RCV1 truyền sang ghi chú CP11 và ghi chú KL03 (minh họa Bảng 13.3; trước 2026-10-15 truyền sang KL02); giới hạn (i) truyền sang KL03.
 - **Gộp hoặc rút gọn:** CP06 gộp nhu cầu, trực quan và ví dụ: giả mã với số phép tính cụ thể tại $n=10^5$, $d=10^3$. CP08 vừa là hình thức (tổng chi phí) vừa là ứng dụng (ngưỡng hòa vốn).
 - **Câu nối học thuật:** Newton cần ít bước nhưng mỗi bước cần Hessian và một hệ tuyến tính (CP05a) → giả mã cho số phép tính từng dòng (CP06) → mệnh đề chi phí một bước (CP07) → tổng chi phí và ngưỡng hòa vốn (CP08) → ba quy mô, đến 17,8 GB cho Hessian (CP09) → mọi bước đều có thừa số $n$ (CP11).
 - **Thời lượng cụm:** 0,23 tiết LT + 0,13 tiết BT (CP09 nhường $0{,}02$ tiết LT cho KL03 sau cổng storyboard).
 
 ### Khái niệm hỗ trợ: dừng sớm
 
-- **Chu trình rút gọn:** nhu cầu KL00 (dòng dẫn) và KL01 + ví dụ KL01 → định nghĩa KL01a (tách 2026-10-12) → kiểm tra KL05b(3).
+- **Chu trình rút gọn:** nhu cầu KL00 (dòng dẫn) và KL01 + ví dụ KL01 → trực quan KL01a (dòng "Trực quan.", thêm 2026-10-15) → định nghĩa KL01a → bài tập TK03(3) với lời giải TK03a (câu 3).
 - **Lý do rút gọn:** bài chỉ cần kết luận định tính rằng dừng sớm cho sai số ngoài mẫu nhỏ hơn nghiệm chính xác; lý thuyết (tương đương gần đúng với chính quy hóa bậc hai) thuộc Goodfellow §7.8 và Bài 06. Trên trang chỉ có định nghĩa một dòng (chọn bước có sai số xác thực nhỏ nhất); không có định lý; ghi chú KL01 trích nguồn, phép so sánh định lượng thuộc F05 của Bài 06.
 - **Đầu vào và mục tiêu:** KN1 (tập xác thực chọn bước dừng), KN3 ($\kappa=553{,}7$), KN7 (số bước hạ gradient); LLO11 → CLO1.
 - **Ký hiệu/dữ kiện truyền tiếp:** bảng dừng sớm VD-A1 ($k=79$, $0{,}001084$; MSE huấn luyện $\le10^{-6}$ từ bước 2701, MSE xác thực $0{,}0480$ tại đó; $F\le10^{-6}$ từ bước 2509); đầu vào B3 của Bài 06.
-- **Câu nối học thuật:** cực tiểu chính xác của $F$ không phải đích (MD03c, HQ05) và mỗi bước đều tốn $O(nd)$ (CP11) → dừng ở bước 79 cho sai số xác thực nhỏ hơn 45 lần so với giới hạn khi $k\to\infty$ → KL05b(3) kiểm tra tập dùng để chọn bước dừng và tập dùng để báo cáo.
-- **Thời lượng cụm:** 0,05 tiết LT + 0,03 tiết BT.
+- **Câu nối học thuật:** cực tiểu chính xác của $F$ không phải đích (MD03c, HQ05) và mỗi bước đều tốn $O(nd)$ (CP11) → dừng ở bước 79 cho sai số xác thực nhỏ hơn 45 lần so với giới hạn khi $k\to\infty$ → hạ gradient khớp hướng gần phẳng chậm nhất, và phần khớp muộn làm sai số xác thực tăng (KL01a) → TK03(3), TK03a kiểm tra tập dùng để chọn bước dừng và tập dùng để báo cáo.
+- **Thời lượng cụm:** 0,06 tiết LT + 0,03 tiết BT (KL01 và KL01a nhận $0{,}01$ từ KL02 đã bỏ, 2026-10-15).
 
 ## Mục theo từng trang
 
@@ -143,10 +147,10 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 
 #### MD02 — Mục tiêu học tập
 
-- **Lý do tồn tại:** nêu ba hành vi kiểm tra được mà ba mạch giữa và trang tổng kết KL05 đo lại.
+- **Lý do tồn tại:** nêu ba hành vi kiểm tra được mà ba mạch giữa và hai bảng tổng kết TK01, TK02 đo lại.
 - **Nhu cầu/khoảng trống lấp:** người học cần biết sản phẩm học tập trước khi gặp ví dụ.
 - **Đầu vào:** chủ đề từ MD01.
-- **Đầu ra:** MT1 (hồi quy nhiều chiều), MT2 (logistic và chính quy hóa), MT3 (chi phí) cho MD03a–MD03c và KL05, KL05a.
+- **Đầu ra:** MT1 (hồi quy nhiều chiều), MT2 (logistic và chính quy hóa), MT3 (chi phí) cho MD03a–MD03c và TK01, TK02.
 - **Vị trí trong khung:** ánh xạ chuỗi định nghĩa–kết quả–phương pháp sang ba mục tiêu.
 - **LLO/CLO:** LLO11, LLO15 (Newton) → CLO1, CLO2, CLO4.
 - **Bước hành trình:** không áp dụng.
@@ -155,18 +159,21 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** nhãn mục tiêu bỏ in đậm; mục tiêu 3 mang đúng tên mạch 4 "Độ cong và chi phí tính toán"; 66 âm tiết.
 - **Sửa 2026-10-12 (thuật ngữ, yêu cầu người dùng):** mục tiêu 2 bỏ ký hiệu $F_\lambda$ chưa định nghĩa, viết "tính $\mu$, $L$, $\kappa$ sau chính quy hóa"; nhãn mục rút thành "Hồi quy logistic." để giữ dòng ≤ 20 âm tiết; 65 âm tiết (trần 80 của trang mục tiêu); ghi chú nêu $F_\lambda=F+\tfrac\lambda2\lVert w\rVert^2$ và trang định nghĩa (LG07).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); "trang hạng phạt dọc một tia" thành "trang số hạng phạt dọc một tia" (quyết định chung 2). Mặt trang không đổi, 65 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 5):** quyết định `sửa`; mục tiêu 1 nêu "chọn $d$, $\lambda$, bước dừng bằng sai số xác thực" thay "phân biệt sai số huấn luyện với sai số xác thực" (dòng ≤ 20 âm tiết, ý phân biệt chuyển xuống ghi chú); ghi chú dẫn tới hai bảng tổng kết của mạch 6. 62 âm tiết (trần 80).
+- **Sửa vòng 2 2026-10-15:** ghi chú thêm "phần chọn bước dừng của mục tiêu 1 thuộc mạch 5".
 
 #### MD03a — Nội dung
 
-- **Lý do tồn tại:** trang "Nội dung" bắt buộc (AGENTS.md, cấu trúc mặc định mục 3): danh sách đánh số năm mạch, tên trùng trang tiêu đề mạch.
-- **Nhu cầu/khoảng trống lấp:** người học cần thấy năm mạch và thứ tự của chúng; MD03 cũ chỉ liệt kê ba mạch giữa bằng chữ cái A–C.
+- **Lý do tồn tại:** trang "Nội dung" bắt buộc (AGENTS.md, cấu trúc mặc định mục 3): danh sách đánh số sáu mạch (năm mạch trước 2026-10-15), tên trùng trang tiêu đề mạch.
+- **Nhu cầu/khoảng trống lấp:** người học cần thấy sáu mạch (năm mạch trước 2026-10-15) và thứ tự của chúng; MD03 cũ chỉ liệt kê ba mạch giữa bằng chữ cái A–C.
 - **Đầu vào:** MD02.
-- **Đầu ra:** số và tên năm mạch cho HQ00, LG00, CP00, KL00; một dòng tài liệu đọc trước.
+- **Đầu ra:** số và tên sáu mạch cho HQ00, LG00, CP00, KL00, TK00; một dòng tài liệu đọc trước.
 - **Vị trí trong khung:** bản đồ của sườn lý thuyết.
 - **LLO/CLO:** định vị MT1–MT3.
 - **Bước hành trình:** không áp dụng.
 - **Quyết định:** thêm (tách từ MD03); 47 âm tiết, 6 dòng.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** ghi chú mở bằng đối tượng, thêm mối nối mạch 4 → 5 (thừa số $n$ là giới hạn (i)).
+- **Sửa 2026-10-15 (rà soát mạch 5):** quyết định `sửa`; thêm mục "6. Tổng hợp và chuyển giao"; ghi chú "Sáu mạch", mạch 5 và 6 viết lại (bỏ "số liệu RCV1", "bài toán XOR", "điều còn giữ được"). 52 âm tiết (trần 80), 7 dòng (trang nội dung, danh sách sáu mạch cộng một dòng tài liệu đọc).
 
 #### MD03b — Ngữ cảnh
 
@@ -193,6 +200,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Quyết định:** thêm (tách từ MD03); 52 âm tiết; mỗi mục ≤ 20 âm tiết.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** hai nhãn mục bỏ in đậm (nhãn ngoài danh sách).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "$F$ chỉ thay cho rủi ro trên dữ liệu mới" thành "$F$ chỉ đại diện cho sai số trên dữ liệu mới" (A2, B3: "thay cho" dễ đọc thành "thay thế", và "rủi ro" chưa được định nghĩa ở đây); "Chi phí: Gradient" viết thường (A13); giữ nhãn "Đích:" (A8 bị bác). 52 → 53 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 5):** quyết định `sửa` (chỉ ghi chú); bỏ lời hứa "Bảng ở mạch kết luận ghi chính xác điều nào còn giữ được", thay bằng dẫn sang Bài 06; "mạch kết luận" thành "mạch 5".
 
 #### MD04 — Ký hiệu chung
 
@@ -294,6 +302,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **LLO/CLO:** MT1; LLO11 → CLO1.
 - **Bước hành trình:** KN1 hình thức (phần hai).
 - **Quyết định:** thêm (tách từ HQ05); 60 âm tiết, 3 dòng.
+- **Sửa 2026-10-15 (rà soát mạch 5):** chỉ ghi chú; "mạch kết luận" thành "mạch 5".
 
 #### HQ06 — Nội suy khi số chiều bằng kích thước mẫu
 
@@ -438,6 +447,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 67 → 45 âm tiết; "Nhu cầu:" lên đầu trang; gạch đầu dòng $(1,u)$ rút còn 19 âm tiết; gỡ `.dense`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** hai nhãn mục bỏ in đậm.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "Đặc trưng $(1,u)$: điểm số" viết thường sau dấu hai chấm (A13). 43 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 5):** chỉ ghi chú; XOR "trở lại ở cuối mạch 5 và ở Bài 06" (KL03 nêu ba điểm $-,+,-$ làm giới hạn (ii)).
 
 #### LG02 — Mất mát logistic trung bình
 
@@ -496,7 +506,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Lý do tồn tại:** chứng minh nhiều bước tách khỏi trang định lý (AGENTS.md, trang phát biểu kết quả).
 - **Nhu cầu/khoảng trống lấp:** người học cần thấy chỗ dùng giả thiết tách được (bước 2) và định lý Weierstrass (bước 3).
 - **Đầu vào:** Định lý 1 (LG05).
-- **Đầu ra:** chứng minh bốn bước; bước 4 dùng lại cho bài tập về nhà ở KL05c.
+- **Đầu ra:** chứng minh bốn bước; bước 4 dùng lại cho bài tập về nhà ở TK04.
 - **Vị trí trong khung:** chứng minh của KQ5.
 - **LLO/CLO:** MT2; LLO11 → CLO1.
 - **Bước hành trình:** KN4 hình thức (chứng minh).
@@ -629,6 +639,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Bước hành trình:** ngoài hành trình khái niệm.
 - **Quyết định:** thêm; dòng dẫn 16 âm tiết, ghi chú 92 âm tiết; `id="mach-4"`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** ghi chú mở bằng đối tượng ($F_\lambda$, $\kappa$).
+- **Sửa 2026-10-15 (rà soát mạch 5):** chỉ ghi chú; "Đầu ra cho phần kết luận" thành "Đầu ra cho mạch 5".
 
 #### CP01 — Hai quy tắc cập nhật
 
@@ -750,7 +761,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Lý do tồn tại:** tách tỉ số chi phí và nhận xét $d>n$ khỏi Mệnh đề 5.
 - **Nhu cầu/khoảng trống lấp:** người học cần thấy thừa số $n$ chung và cách giảm chi phí khi $d>n$.
 - **Đầu vào:** Mệnh đề 5 (CP07).
-- **Đầu ra:** tỉ số $d+d^2/n$; chi phí $O(n^2d+n^3)$ khi $d>n$ cho CP09, CP10, KL05b.
+- **Đầu ra:** tỉ số $d+d^2/n$; chi phí $O(n^2d+n^3)$ khi $d>n$ cho CP09, CP10, TK03.
 - **Vị trí trong khung:** hệ quả của KQ10.
 - **LLO/CLO:** MT3; LLO15 → CLO4.
 - **Bước hành trình:** KN8 hình thức (phần hai).
@@ -785,7 +796,7 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Lý do tồn tại:** đưa chi phí về các quy mô cụ thể, đến kích thước RCV1, để thấy Hessian dày đặc không còn khả thi.
 - **Nhu cầu/khoảng trống lấp:** câu hỏi của phiên A3 về chi phí của bước nhanh hơn cần câu trả lời định lượng ở quy mô thật.
 - **Đầu vào:** CP07, CP08.
-- **Đầu ra:** bảng ba quy mô; 17,8 GB cho Hessian; dòng RCV1 cho KL02.
+- **Đầu ra:** bảng ba quy mô; 17,8 GB cho Hessian; dòng RCV1 cho CP11 (trước 2026-10-15 cũng cho KL02).
 - **Vị trí trong khung:** ứng dụng KQ10; giới hạn áp dụng của Newton thuần.
 - **LLO/CLO:** MT3; LLO15 → CLO4.
 - **Bước hành trình:** KN8 ứng dụng.
@@ -821,73 +832,69 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Lý do tồn tại:** gom đầu ra của phiên A3 thành giới hạn (i): mọi phương pháp của bài trả chi phí tỉ lệ với $n$ ở mỗi bước.
 - **Nhu cầu/khoảng trống lấp:** ranh giới CP → KL cần một giới hạn rõ mà Bài 06 (B3) dùng làm điểm xuất phát.
 - **Đầu vào:** CP04, CP05, CP07.
-- **Đầu ra:** giới hạn (i), kèm số RCV1 ($\approx7{,}4\cdot10^{10}$ phép nhân–cộng cho một gradient đầy đủ, gồm hai tích với $X$; $nd^2+d^3\approx1{,}8\cdot10^{15}$ và 17,8 GB cho một bước Newton với Hessian dày đặc), cho KL01; KL03(i) dẫn lại, không phát biểu lại.
+- **Đầu ra:** giới hạn (i), kèm số RCV1 ($\approx7{,}4\cdot10^{10}$ phép nhân–cộng cho một gradient đầy đủ, gồm hai tích với $X$; $nd^2+d^3\approx1{,}8\cdot10^{15}$ và 17,8 GB cho một bước Newton với Hessian dày đặc), cho KL00; KL03(i) dẫn lại, không phát biểu lại.
 - **Vị trí trong khung:** đầu ra (c) của giao diện A–B; lý do thứ nhất của luận đề.
 - **LLO/CLO:** MT3; LLO15 → CLO4; LLO11.
 - **Bước hành trình:** KN8, trang kết của cụm.
 - **Quyết định:** thêm; mạch cần đầu ra rõ cho mạch kết luận. Đặc tả ghi chú thay siêu dữ liệu quy trình bằng nội dung (tổng chi phí là tích hai thừa số; một lượt dữ liệu là đơn vị chi phí nhỏ nhất của mỗi lần cập nhật).
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 77 → 58 âm tiết; dòng RCV1 tách hai gạch đầu dòng; khung kết luận hai câu tách hai dòng; gỡ `.dense`.
+- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "RCV1: bước Newton với Hessian dày đặc cần …" thay "một bước Newton dày" (A5: "dày đặc" thuộc Hessian). Giữ nhãn "RCV1:" của dòng để dòng có ngữ cảnh, bỏ chữ "một" để không vượt trần. 58 → 60 âm tiết (chạm trần), 6 dòng; giai đoạn tắt dần nay đã định nghĩa ở CP05.
+- **Sửa 2026-10-15 (rà soát mạch 5):** chỉ ghi chú; câu cuối "Đây là giới hạn (i) mà cuối mạch 5 nêu lại và chuyển sang Bài 06"; đầu ra cho KL00 thay KL01.
 
 ### KL. Giới hạn của tối ưu tất định
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "RCV1: bước Newton với Hessian dày đặc cần …" thay "một bước Newton dày" (A5: "dày đặc" thuộc Hessian). Giữ nhãn "RCV1:" của dòng để dòng có ngữ cảnh, bỏ chữ "một" để không vượt trần. 58 → 60 âm tiết (chạm trần), 6 dòng; giai đoạn tắt dần nay đã định nghĩa ở CP05.
+
+Cấu trúc từ 2026-10-15 (rà soát mạch 5, quyết định của điều phối viên): KL00, KL01, KL01a, KL03 theo thứ tự này. KL02, KL03a, KL04, KL04a bỏ khỏi deck (mục ở tiểu mục "Trang đã bỏ 2026-10-15"); KL05–KL05c chuyển sang mạch 6 với mã TK01–TK04. Thời lượng mạch: 0,12 tiết LT (KL01 + KL01a $0{,}06$, KL03 $0{,}06$; nhận $0{,}01$ từ KL02 và $0{,}01$ từ KL04).
 
 #### KL00 — Giới hạn của tối ưu tất định (trang tiêu đề mạch)
 
-- **Lý do tồn tại:** trang tiêu đề mạch bắt buộc; ranh giới CP11 → KL01.
-- **Nhu cầu/khoảng trống lấp:** người học cần biết mạch kết luận so nghiệm chính xác với dừng sớm và xác định bảo đảm còn lại.
-- **Đầu vào:** đầu ra của ba mạch giữa.
-- **Đầu ra:** nhiệm vụ của mạch kết luận cho KL01.
-- **Vị trí trong khung:** điểm vào mạch 5; đảm nhận bước nhu cầu của khái niệm hỗ trợ dừng sớm (dòng dẫn nêu so sánh nghiệm chính xác với nghiệm dừng sớm), cùng với KL01.
+- **Lý do tồn tại:** trang tiêu đề mạch bắt buộc; ranh giới CP11 → KL00.
+- **Nhu cầu/khoảng trống lấp:** người học cần biết mạch đo độ chính xác tối ưu cần thiết khi đích là sai số trên dữ liệu mới, rồi nêu hai giới hạn của khung tất định.
+- **Đầu vào:** tổng chi phí = chi phí một bước (chứa $n$) × số bước (chứa $\kappa\log(e_0/\varepsilon)$) từ CP08, CP11; $F$ chỉ đại diện cho $R$ (HQ05).
+- **Đầu ra:** nhiệm vụ của mạch cho KL01; quy tắc dừng sớm và hai giới hạn cho Bài 06 (nêu trong ghi chú).
+- **Vị trí trong khung:** điểm vào mạch 5; đảm nhận bước nhu cầu của khái niệm hỗ trợ dừng sớm, cùng với KL01.
 - **LLO/CLO:** không đo trực tiếp.
 - **Bước hành trình:** nhu cầu (dừng sớm), chung với KL01.
 - **Quyết định:** thêm; dòng dẫn 21 âm tiết (trần 25), ghi chú 110 âm tiết; `id="mach-5"`.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** dòng dẫn nêu cả giới hạn và bảo đảm của khung tất định (23 âm tiết, trần 25); ghi chú nêu cả trường hợp mục tiêu không lồi.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); "nhanh hơn một bậc" thành "một bậc độ lớn" (A9).
+- **Sửa 2026-10-15 (rà soát mạch 5):** quyết định `sửa`; dòng dẫn một nhiệm vụ thống nhất "Muốn xác định độ chính xác tối ưu khi đích là sai số trên dữ liệu mới, và hai giới hạn của khung tất định." (25 âm tiết; bỏ "cần thiết" của đề xuất để không vượt 25; không dùng "dừng sớm" trước định nghĩa); từ khóa "Độ chính xác tối ưu · dừng sớm · thừa số $n$ · đặc trưng cố định"; ghi chú khoảng 85 âm tiết nêu tổng chi phí kế thừa, việc $F$ chỉ đại diện cho $R$, nhiệm vụ và đầu ra; bỏ lời hứa về "bảo đảm còn giữ được", RCV1 và hạ gradient ngẫu nhiên. Mặt trang 38 âm tiết (dòng dẫn và từ khóa).
+- **Sửa vòng 2 2026-10-15:** ghi chú bỏ "thật sự".
 
-#### KL01 — Nghiệm chính xác và nghiệm dừng sớm
+#### KL01 — Sai số xác thực dọc quỹ đạo hạ gradient
 
-- **Lý do tồn tại:** cho bằng chứng định lượng của lý do thứ hai trên chính dữ liệu A1 và định nghĩa dừng sớm: dừng ở bước 79 cho sai số xác thực nhỏ hơn 45 lần so với giới hạn khi $k\to\infty$, trong khi MSE huấn luyện $\le10^{-6}$ chỉ đạt từ bước 2701; dừng ở bước 79 tốn ít hơn khoảng 34 lần số lượt qua dữ liệu.
-- **Nhu cầu/khoảng trống lấp:** luận đề yêu cầu dừng sớm được trình bày là thành phần của phương pháp, không phải thất bại của nó.
-- **Đầu vào:** VD-A1, $\kappa=553{,}7$ (HQ09), T2b (CP04), quy tắc tập xác thực (HQ05).
-- **Đầu ra:** bảng dừng sớm; kết luận dùng cả ba phiên cho KL02, KL04. Trang chỉ nêu quan sát số trên dữ liệu A1 và gọi tên Goodfellow §7.8 trong ghi chú; phép so sánh định lượng về độ co của nghiệm thuộc F05 của Bài 06 (phân công nguồn chung, quyết định của điều phối viên 2026-10-11).
+- **Lý do tồn tại:** cho bằng chứng định lượng của lý do thứ hai trên chính dữ liệu A1: dừng ở bước 79 cho sai số xác thực nhỏ hơn 45 lần so với giới hạn khi $k\to\infty$, trong khi MSE huấn luyện $\le10^{-6}$ chỉ đạt từ bước 2701; dừng ở bước 79 tốn ít hơn 34 lần số lượt qua dữ liệu so với bước 2701.
+- **Nhu cầu/khoảng trống lấp:** cận số bước $\kappa\log(e_0/\varepsilon)$ của mạch chi phí tăng khi $\varepsilon$ giảm; cần biết độ chính xác tối ưu nào thật sự cần khi đích là $R$ nhỏ.
+- **Đầu vào:** VD-A1, $\kappa=553{,}7$ (HQ09, chỉ ở ghi chú), Định lý 3 (CP04), quy tắc tập xác thực (HQ05, HQ05a).
+- **Đầu ra:** bảng MSE xác thực theo $k$ và hình; số liệu cho trực quan và định nghĩa ở KL01a. Ghi chú gọi tên Goodfellow §7.8; phép so sánh định lượng về độ co của nghiệm thuộc F05 của Bài 06 (phân công nguồn chung, quyết định của điều phối viên 2026-10-11).
 - **Vị trí trong khung:** quyết định "dừng sớm" của chuỗi; lý do thứ hai của luận đề.
 - **LLO/CLO:** LLO11 → CLO1.
-- **Bước hành trình:** khái niệm hỗ trợ "dừng sớm", nhu cầu + ví dụ + định nghĩa.
+- **Bước hành trình:** khái niệm hỗ trợ "dừng sớm": nhu cầu + ví dụ.
 - **Quyết định:** thêm; luận đề yêu cầu dừng sớm là thành phần của phương pháp. Thêm dòng định nghĩa và gọi bốn điểm là tập xác thực theo cổng storyboard.
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 80 âm tiết → KL01 (bảng, hai gạch đầu dòng số liệu, "Nhu cầu:"; 51) và KL01a "Dừng sớm" (định nghĩa, ví dụ, lưu ý; 59).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** "Nhu cầu:" lên dòng đầu (gộp với dữ kiện), dữ kiện phụ chuyển vào gạch đầu dòng; trang cao 653 px.
+- **Sửa 2026-10-15 (rà soát mạch 5):** quyết định `sửa`; tiêu đề "Sai số xác thực dọc quỹ đạo hạ gradient"; "Nhu cầu: xác định độ chính xác tối ưu cần thiết khi đích là $R$ nhỏ." chỉ nêu khoảng trống; dữ kiện (bình phương nhỏ nhất, năm mẫu, $\lambda=0$, $d=5$, $w_0=0$, bước $1/L$) xuống gạch đầu dòng; $\kappa=553{,}7$ chuyển sang dòng trực quan của KL01a và ghi chú; gạch đầu dòng so sánh nói rõ "ít hơn 34 lần so với bước 2701, MSE xác thực nhỏ hơn 45 lần so với $k\to\infty$" (gộp một dòng để trang vừa khung 16:9: hai dòng riêng làm trang tràn chân trang). Số liệu không đổi. Ghi chú thêm câu nối với cận số bước ($\kappa\ln10\approx1275$ bước cho mỗi lần giảm $\varepsilon$ mười lần, theo cận). 51 âm tiết, 5 dòng (dòng dài nhất 20).
+- **Sửa vòng 2 2026-10-15:** lý do vượt mục tiêu 40 (51 âm tiết): trang phải mang cả dòng nhu cầu, nhãn hàng bảng và dữ kiện của bài toán (loại mất mát, $\lambda$, $d$, $w_0$, bước) cùng hai so sánh có mốc; bỏ thêm dữ kiện thì bảng mất ngữ cảnh. Chiều cao trang do hình quyết định (hình định cỡ theo bề rộng cột), nên rút chữ không hạ được đáy; thêm quy tắc có phạm vi trong `lecture-style.css` (`:where(html[data-lecture="05"]) .reveal section[data-slide-id="KL01"] figure img { max-height:320px; }`, chỉ khi rộng hơn 760 px): đáy nội dung 676 → 632 px logic, dưới đỉnh dải chân trang 652,6.
 
 #### KL01a — Dừng sớm
 
-- **Lý do tồn tại:** định nghĩa dừng sớm tách khỏi trang số liệu KL01.
-- **Nhu cầu/khoảng trống lấp:** người học cần định nghĩa sau khi thấy số liệu.
-- **Đầu vào:** KL01; tập xác thực (HQ05a).
-- **Đầu ra:** định nghĩa hai bước, ví dụ $w_{79}$, lưu ý về tập báo cáo; đầu vào B3 của Bài 06.
+- **Lý do tồn tại:** trực quan và định nghĩa dừng sớm, tách khỏi trang số liệu KL01.
+- **Nhu cầu/khoảng trống lấp:** người học cần một cơ chế định tính giải thích vì sao sai số xác thực có cực tiểu dọc quỹ đạo, rồi một quy tắc gọi tên.
+- **Đầu vào:** KL01; tập xác thực (HQ05a); $\kappa=553{,}7$ (HQ09).
+- **Đầu ra:** trực quan theo độ cong, định nghĩa hai bước, lưu ý về tập báo cáo; đầu vào TK02 (dòng chọn mô hình, dừng sớm), TK03(3), F06 của Bài 06.
 - **Vị trí trong khung:** phương pháp (dừng sớm) trong luận đề.
 - **LLO/CLO:** LLO11 → CLO1.
-- **Bước hành trình:** dừng sớm: định nghĩa (chu trình rút gọn).
+- **Bước hành trình:** dừng sớm: trực quan, hình thức (định nghĩa).
 - **Quyết định:** thêm (tách từ KL01); 59 âm tiết.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** ví dụ không lặp số liệu KL01 ("quy tắc trả về $w_{79}$"); ghi chú đổi chủ ngữ.
+- **Sửa 2026-10-15 (rà soát mạch 5):** quyết định `sửa`; thay dòng "Ví dụ." lặp số liệu bằng "Trực quan." định tính (hạ gradient khớp nhanh hướng có độ cong lớn, rất chậm hướng gần phẳng, $\kappa=553{,}7$; trên năm mẫu phần khớp muộn làm sai số xác thực tăng); thứ tự Trực quan → Định nghĩa → Lưu ý; định nghĩa giữ hai bước. Ghi chú giải thích hệ số co $1-s_j/L$ theo hướng riêng (Mệnh đề 05.39 của ghi chú bài giảng), câu "Hai lý do … gặp nhau" thành câu khẳng định; bỏ dẫn tới các trang đã bỏ. 60 âm tiết (chạm trần cứng, 6 dòng): định nghĩa hai bước, trực quan hai dòng và lưu ý là bốn phần brief yêu cầu giữ; đã rút "gồm hai bước", "riêng" để không vượt.
+- **Sửa vòng 2 2026-10-15:** $\kappa=553{,}7$ chuyển sang câu thứ hai ("Trên năm mẫu ($\kappa=553{,}7$), …") để công thức không bị ngắt dòng; 60 âm tiết.
 
-#### KL02 — Số liệu trên tập RCV1
+#### KL03 — Hai giới hạn của khung tất định
 
-- **Lý do tồn tại:** cho bằng chứng có nguồn cho cả hai lý do của MD03c ở quy mô thật: SGD được dùng vì chi phí mỗi bước không phụ thuộc $n$, và đạt cùng mức lỗi kiểm thử.
-- **Nhu cầu/khoảng trống lấp:** ví dụ năm điểm chỉ minh họa định tính; người học cần một thí nghiệm công bố cho thấy chi phí theo $n$ quyết định thời gian và chênh lệch mục tiêu nhỏ không đổi lỗi kiểm thử.
-- **Đầu vào:** dòng RCV1 của CP09; SNW Bảng 13.3.
-- **Đầu ra:** ba dòng TRON / SGD (các hàng mất mát logistic của SNW Bảng 13.3); hai quan sát cho KL03, KL04; đầu vào của E02 trong Bài 06, nơi trình bày các hàng mất mát hinge và dẫn lại KL02 (phân công nguồn chung, quyết định của điều phối viên 2026-10-11).
-- **Vị trí trong khung:** kiểm chứng giới hạn áp dụng của phương pháp tất định.
-- **LLO/CLO:** LLO11 → CLO1; CLO4.
-- **Bước hành trình:** khái niệm hỗ trợ.
-- **Quyết định:** thêm; bằng chứng có nguồn cho luận đề (ứng viên gộp vào ghi chú KL01 nếu quá tải, R7). Thời lượng giảm từ $0{,}02$ xuống $0{,}01$ tiết để KL03 có $0{,}05$ tiết.
-- **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `sửa`; 99 → 78 âm tiết; trang bảng so sánh ba phương pháp, áp trần 80 (ngoại lệ so với trần 60 của trang nội dung, ghi ở đây); dòng giải nghĩa TRON/SGD tách hai dòng; thời gian và lỗi kiểm thử chuyển đơn vị vào tiêu đề cột; SGD viết đầy đủ trong bảng; gỡ `.dense`.
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "nhỏ hơn một bậc độ lớn" (A9); ghi chú thêm "hạ gradient ngẫu nhiên (stochastic gradient descent, SGD)" (A15) và "Hessian dày đặc". "(kho tin Reuters)" (A6) không thêm vì trang sẽ thành 82 > 80; tên đầy đủ RCV1 nằm ở ghi chú CP09. 77 → 79 âm tiết (trang bảng so sánh, trần 80, ngoại lệ đã ghi ở đầu storyboard).
-
-#### KL03 — Giới hạn của mô hình tuyến tính và phương pháp tất định
-
-- **Lý do tồn tại:** phát biểu hai giới hạn mà giao diện A–B chuyển sang Bài 06: (i) chi phí theo $n$, (ii) XOR không biểu diễn được bằng dự đoán tuyến tính.
-- **Nhu cầu/khoảng trống lấp:** Bài 06 mở từ hai giới hạn này; XOR cần đúng bốn điểm và nhãn như B01 của Bài 06 (điểm hòa giải 4).
-- **Đầu vào:** CP11 (dẫn lại cho dòng (i)); LG01 (dạng một chiều của XOR); HQ12 (hệ quả của $d$ lớn).
-- **Đầu ra:** giới hạn (i) cho B3, giới hạn (ii) cho B1–B2 của Bài 06 (KL03 chứng minh bằng đẳng thức tổng; Bài 06 nhắc lại và dùng); số đơn thức $\binom{d_0+q}q$ ($d_0$ biến đầu vào); dòng (i) chốt luận đề: $n$ lớn với ngân sách cố định buộc thay gradient đầy đủ bằng SGD.
+- **Lý do tồn tại:** trang cầu nối cuối mạch 5: phát biểu hai giới hạn mà Bài 06 nhận làm điểm xuất phát, mỗi nhãn một nghĩa.
+- **Nhu cầu/khoảng trống lấp:** Bài 06 mở từ hai giới hạn này; nhãn (i), (ii) phải cùng nghĩa với A03, B01–B03 của Bài 06.
+- **Đầu vào:** CP11 (dòng (i)); LG01 (ba điểm $-,+,-$ cho dòng (ii)); HQ05, HQ05a, KL01a (dòng đích).
+- **Đầu ra:** (i) chi phí: mỗi bước đọc cả $n$ mẫu, ngân sách cố định cho số bước $\propto1/n$; (ii) biểu diễn: đặc trưng cố định $(1,u)$ không tách ba điểm $-,+,-$, đặc trưng thủ công làm $d=\binom{d_0+q}q$; dòng đích; nhu cầu bằng lời (bước cập nhật có chi phí không phụ thuộc $n$; đặc trưng học được). Đầu vào A03, B01–B03, E02 của Bài 06.
 - **Vị trí trong khung:** giới hạn áp dụng của khung (mô hình tuyến tính, phương pháp tất định).
 - **LLO/CLO:** LLO11 → CLO1; CLO4.
 - **Bước hành trình:** nhu cầu mở cho Bài 06.
@@ -895,94 +902,122 @@ Mọi trang mang quyết định **thêm**: bài được xây lại theo thiế
 - **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 102 âm tiết → KL03 (hai giới hạn (i), (ii); 53) và KL03a "Ví dụ: bài toán XOR" (đẳng thức, đặc trưng $u_1u_2$, số đơn thức $\binom{d_0+q}q$; 47).
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** (ii) phát biểu cụ thể bằng bài toán XOR; thêm dòng "Đặc trưng học được (Bài 06) bỏ giới hạn (ii) nhưng làm mục tiêu không lồi" để nhãn (ii) ở KL04 cùng nghĩa; nhãn bỏ in đậm; 56 âm tiết.
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; thêm "(bốn điểm $\{0,1\}^2$)" sau "bài toán XOR" (B11). Cụm "trang sau" trong quyết định không đưa vào vì dòng (ii) sẽ thành 21 > 20 âm tiết; KL03a ngay sau có tiêu đề "Ví dụ: bài toán XOR". 55 → 57 âm tiết.
+- **Sửa 2026-10-15 (rà soát mạch 5):** quyết định `sửa`; chuyển xuống cuối mạch 5; tiêu đề "Hai giới hạn của khung tất định"; (ii) dùng ba điểm của LG01 thay XOR (XOR là dạng hai chiều, chứng minh ở B02 của Bài 06, nêu trong ghi chú); dòng số đơn thức với $d_0$ (định nghĩa ở MD04) và bậc $q$; dòng đích; dòng "Nhu cầu:" bằng lời, không gọi tên SGD, không "buộc". Ghi chú: nguồn Goodfellow §6.1, Bottou–Bousquet Bảng 13.3 (minh họa bậc độ lớn RCV1, dẫn Ví dụ 05.25 của ghi chú bài giảng); với $d_0=1$, $q=2$ công thức cho đúng bộ $(1,u,u^2)$. 60 âm tiết (chạm trần cứng), 5 dòng, dòng dài nhất 15 âm tiết; bốn thành phần (i), (ii), đích, nhu cầu là yêu cầu của brief, không thể đạt mục tiêu 40 mà không bỏ thành phần. Thời lượng $0{,}05\to0{,}06$ tiết LT.
+- **Sửa vòng 2 2026-10-15:** "cần chọn trước $u^2$" thành "cần thêm $u^2$"; dòng số đơn thức mở bằng "Thêm mọi đơn thức …" (hệ quả của (ii)); "Đích:" giữ vì đổi thành "Nhắc lại:" làm trang 61 > 60. Ghi chú mở bằng câu nối với KL01a, RCV1 rút một câu, dòng đích gọi tên hai kết quả; khoảng 175 âm tiết. Mặt trang 60 âm tiết.
 
-#### KL03a — Ví dụ: bài toán XOR
+### TK. Tổng hợp và chuyển giao (mạch 6, thêm 2026-10-15)
 
-- **Lý do tồn tại:** ví dụ chứng minh giới hạn (ii) tách khỏi KL03.
-- **Nhu cầu/khoảng trống lấp:** người học cần một phản ví dụ tính được cho giới hạn biểu diễn.
-- **Đầu vào:** KL03 (ii); ba điểm của LG01.
-- **Đầu ra:** đẳng thức tổng, đặc trưng $u_1u_2$, số đơn thức $\binom{d_0+q}q$; đầu vào B1–B2 của Bài 06.
-- **Vị trí trong khung:** giới hạn áp dụng (mô hình).
-- **LLO/CLO:** LLO11 → CLO1; CLO4.
-- **Bước hành trình:** nhu cầu mở cho Bài 06.
-- **Quyết định:** thêm (tách từ KL03); 47 âm tiết.
+Mạch 6 tách khỏi mạch 5 theo quyết định của điều phối viên ngày 2026-10-15, để mạch giới hạn chỉ mang một nhiệm vụ. Bài có 6 mạch, trong khoảng 5–7. Thời lượng: 0,02 tiết LT + 0,08 tiết BT (phần tiết cũ của KL05 là $0{,}01$ LT + $0{,}08$ BT; nhận $0{,}01$ LT từ KL04 đã bỏ).
 
-#### KL04 — Điều không còn giữ được và điều còn giữ được
+#### TK00 — Tổng hợp và chuyển giao (trang tiêu đề mạch)
 
-- **Lý do tồn tại:** phát biểu luận đề ở dạng mà người dùng yêu cầu cho kết luận A và mở đầu B: điều không còn giữ được và điều còn giữ được.
-- **Nhu cầu/khoảng trống lấp:** người học cần thấy SGD được buộc bởi chi phí và đủ cho mục tiêu thay thế, không chỉ "nhanh hơn".
-- **Đầu vào:** MD03c; KL01–KL03a.
-- **Đầu ra:** bảng hai cột, cột "còn giữ được" gồm tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ (bổ đề giảm), bất đẳng thức một bước có số hạng nhiễu của SGD; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu (T6); điểm dừng xấp xỉ (T7, T8, có mức nhiễu nền); ước lượng không chệch của gradient (Bài 05c); cho B3 của Bài 06. Không viết SGD giảm $F$ theo kỳ vọng ở mỗi bước.
-- **Vị trí trong khung:** tổng hợp chuỗi và giới hạn áp dụng thành luận đề.
-- **LLO/CLO:** LLO11 → CLO1.
-- **Bước hành trình:** tổng hợp.
-- **Quyết định:** thêm; luận đề yêu cầu bảng này ở kết luận. Cột "còn giữ được" bổ sung theo cổng storyboard Bài 05 và chính xác hóa theo cổng storyboard Bài 06.
-- **Sửa 2026-10-12 (văn phong MAT1101):** quyết định `tách`; 134 âm tiết, ghi chú 466 → KL04 (bảng hai cột, bỏ công thức và mã T5–T8 khỏi bảng; 79, trang bảng so sánh, trần 80, ngoại lệ ghi ở đây) và KL04a "Các bảo đảm còn giữ được" (bốn công thức, một dòng dẫn số hiệu Định lý 05b.36, 05b.39, 05b.41, 05b.43; 60). Nhãn "(i) hoặc (ii)" giữ nguyên. Ghi chú chia đôi (200 và khoảng 240 âm tiết).
-- **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** dòng đầu "(i) Chi phí; (ii) mục tiêu không lồi do đặc trưng học được"; nhãn "(khi (i) hoặc (ii))" giữ nguyên; ô SGD nói rõ "lân cận hoặc $w^*$", gradient đầy đủ ghi bước $\le1/L$; ô "Chi phí $O(nd)$" thành "Gradient đầy đủ $O(nd)$"; 80 âm tiết (trần 80 của bảng so sánh).
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa` (chỉ ghi chú); "vì $F$ chỉ thay cho $R$" thành "chỉ đại diện cho $R$" (A2). 79 âm tiết, không đổi.
+- **Lý do tồn tại:** trang tiêu đề mạch bắt buộc cho mạch 6; ranh giới KL03 → TK01.
+- **Nhu cầu/khoảng trống lấp:** người học cần biết mạch cuối đối chiếu kết quả với ba mục tiêu và giả thiết không được bỏ.
+- **Đầu vào:** quy tắc dừng sớm (KL01a), hai giới hạn (KL03), kết quả các mạch 2–4.
+- **Đầu ra:** nhiệm vụ của mạch cho TK01.
+- **Vị trí trong khung:** điểm vào mạch 6; ngoài hành trình khái niệm.
+- **LLO/CLO:** không đo trực tiếp.
+- **Bước hành trình:** ngoài hành trình khái niệm.
+- **Quyết định:** thêm (2026-10-15); `id="mach-6"`, số "6."; dòng dẫn "Nhu cầu: đối chiếu kết quả của bài với ba mục tiêu và các giả thiết không được bỏ." (19 âm tiết); từ khóa "Bảng tổng kết · giả thiết không được bỏ · bài tập chuyển giao · tài liệu đọc"; ghi chú khoảng 75 âm tiết; mặt trang 34 âm tiết.
+- **Sửa vòng 2 2026-10-15:** từ khóa còn ba cụm "Bảng tổng kết · bài tập chuyển giao · tài liệu đọc" (bỏ cụm trùng dòng dẫn); mặt trang 29 âm tiết.
+- **Sửa vòng 3 2026-10-15:** `&nbsp;` trước mỗi dấu " · " của dòng từ khóa để dòng sau ở màn hẹp không mở bằng dấu chấm giữa.
 
-#### KL04a — Các bảo đảm còn giữ được
-
-- **Lý do tồn tại:** phát biểu bằng công thức cột "còn giữ được" của KL04, tách để bảng KL04 không vượt trần.
-- **Nhu cầu/khoảng trống lấp:** người học cần dạng định lượng của bốn bảo đảm, kèm số hiệu trong ghi chú 05b.
-- **Đầu vào:** KL04; Bài 05b.
-- **Đầu ra:** bốn bất đẳng thức (Định lý 05b.36, 05b.39, 05b.41, 05b.43) cho B3 và E của Bài 06; bán kính lân cận $\sqrt{\eta\tau^2/\mu}$ ở ghi chú.
-- **Vị trí trong khung:** tổng hợp giới hạn áp dụng.
-- **LLO/CLO:** LLO11 → CLO1.
-- **Bước hành trình:** tổng hợp.
-- **Quyết định:** thêm (tách từ KL04); 60 âm tiết; mã T5–T8 thay bằng lời và số hiệu (một dòng số hiệu trên mặt trang).
-- **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** dòng "Giả thiết:" ($F$ $L$-trơn, bị chặn dưới; $g_k$ không chệch, phương sai $\le\tau^2$); điều kiện bước trên từng dòng ($\eta\le1/L$; $\tfrac1{\mu(k+1)}$ với $\mathbb E\lVert g_k\rVert^2\le G^2$; $1/L$; $\eta\le1/L$); dòng bốn viết trung bình $\tfrac1K\sum_k$; một dòng ngoặc số hiệu (một chỗ trích dẫn, điều phối viên chấp nhận); 42 âm tiết.
-- **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; giả thiết định nghĩa $g_k$: "gradient ngẫu nhiên trên nhóm nhỏ (minibatch) $b$ mẫu, ở đây $b=1$, $\mathbb Eg_k=\nabla F(w_k)$, phương sai $\le\tau^2$; … $K$ bước" (B9, B10, A14; nhóm nhỏ nhắc lại ở đây vì KL02 đã 79/80); "về mức có bậc $\eta\tau^2/\mu$" (A4); dòng ba thêm "(điểm dừng: $\nabla F=0$)" (B13); ghi chú "bán kính có bậc". 42 → 54 âm tiết, 6 dòng, dòng giả thiết 19 âm tiết.
-
-#### KL05 — Tổng kết về tồn tại và tính duy nhất của nghiệm
+#### TK01 — Tổng kết về nghiệm và số điều kiện
 
 - **Lý do tồn tại:** phần thứ nhất của bảng tổng kết "kết quả | giả thiết không được bỏ | công thức" (AGENTS.md, mục "Mở bài và kết bài"), cho các kết quả về nghiệm.
 - **Nhu cầu/khoảng trống lấp:** người học cần thấy mỗi kết quả của mạch 2 và 3 cùng giả thiết mà bỏ đi thì kết luận sai (loại mất mát, hạng, tách được, $\lambda>0$).
 - **Đầu vào:** MD02; đầu ra của HQ (số điều kiện, chế độ nội suy) và LG (Định lý 1, Định lý 2, Mệnh đề 4).
-- **Đầu ra:** bốn dòng: số điều kiện không giảm theo $d$; chế độ nội suy (mất mát bình phương); không tồn tại cực tiểu ($F(w_k)\to0\Rightarrow\lVert w_k\rVert\to\infty$, mất mát logistic); lồi mạnh và cận $\kappa$ (mất mát logistic, $\lVert x_i\rVert\le r$). Dẫn sang KL05a.
+- **Đầu ra:** bốn dòng: số điều kiện không giảm theo $d$; chế độ nội suy (mất mát bình phương); không tồn tại cực tiểu ($F(w_k)\to0\Rightarrow\lVert w_k\rVert\to\infty$, mất mát logistic); lồi mạnh và cận $\kappa$ (mất mát logistic, $\lVert x_i\rVert\le r$). Dẫn sang TK02.
 - **Vị trí trong khung:** khép vấn đề trung tâm (phần tồn tại, duy nhất).
 - **LLO/CLO:** MT1, MT2; LLO11 → CLO1, CLO2.
 - **Bước hành trình:** tổng hợp.
 - **Quyết định:** `tách` từ trang KL05 cũ (143 âm tiết, 10 dòng: tổng kết, câu hỏi, bài về nhà, tài liệu đọc) thành KL05, KL05a, KL05b, KL05c; bảng một trang sáu dòng cao 814 px nên chia hai. Vòng 2: thêm loại mất mát vào cột giả thiết, sửa kết luận Định lý 1, thêm dòng số điều kiện (MT1); 66 âm tiết (trang tổng kết, trần 80).
+- **Sửa 2026-10-15 (rà soát mạch 5):** mã KL05 → TK01, chuyển sang mạch 6; tiêu đề "Tổng kết về nghiệm và số điều kiện" (bảng có dòng số điều kiện); ghi chú gọi tên từng dòng và mục tiêu nó đo. 65 âm tiết (trang tổng kết, trần 80).
+- **Sửa vòng 2 2026-10-15:** `&nbsp;` trong "Mệnh đề 1", "Định lý 1", "Định lý 2", "Mệnh đề 4" để không tách dòng; nội dung không đổi.
 
-#### KL05a — Tổng kết về số bước, chi phí và chọn mô hình
+#### TK02 — Tổng kết về số bước, chi phí và chọn mô hình
 
 - **Lý do tồn tại:** phần thứ hai của bảng tổng kết theo mẫu AGENTS.md.
 - **Nhu cầu/khoảng trống lấp:** bảng sáu dòng không vừa khung 16:9.
 - **Đầu vào:** MD02; đầu ra CP, KL01a.
-- **Đầu ra:** ba dòng: số bước, chi phí một bước, chọn mô hình và dừng sớm.
+- **Đầu ra:** bốn dòng: số bước hạ gradient, số bước Newton, chi phí một bước, chọn mô hình và dừng sớm.
 - **Vị trí trong khung:** khép vấn đề trung tâm.
 - **LLO/CLO:** MT1, MT3; LLO11, LLO15 → CLO1, CLO4.
 - **Bước hành trình:** tổng hợp.
 - **Quyết định:** thêm (tách từ KL05); 47 âm tiết.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** tách dòng số bước thành hai: hạ gradient (bước $1/L$) và Newton (quay lui Armijo, cận $\frac{f(w_0)-f^*}\gamma+\log_2\log_2\frac{\varepsilon_0}\varepsilon$ đủ hai giai đoạn).
 - **Sửa 2026-10-12 (rà soát thuật ngữ và thứ tự định nghĩa):** quyết định `sửa`; "$X$ dày đặc" trong cột giả thiết (A7). 58 → 59 âm tiết (trang tổng kết, trần 80).
+- **Sửa 2026-10-15 (rà soát mạch 5):** mã KL05a → TK02; ghi chú "Ba dòng" thành "Ba dòng đầu … dòng cuối …". Mặt trang không đổi, 59 âm tiết.
+- **Sửa vòng 2 2026-10-15:** `&nbsp;` trong "Định lý 3", "Định lý 4", "Mệnh đề 5", "tập báo cáo", "sai số xác thực"; nội dung không đổi.
 
-#### KL05b — Bài tập: phân loại với nhiều đặc trưng hơn mẫu
+#### TK03 — Bài tập: phân loại với nhiều đặc trưng hơn mẫu
 
-- **Lý do tồn tại:** câu hỏi tự kiểm tra chuyển giao trên tình huống $d>n$ ghép ba mạch và dừng sớm.
-- **Nhu cầu/khoảng trống lấp:** cấu trúc mặc định yêu cầu câu hỏi tự kiểm tra ở kết luận.
-- **Đầu vào:** KL05, KL05a.
-- **Đầu ra:** ba câu hỏi (Bài tập 10 của học liệu); đáp án trong ghi chú (bài tự làm).
+- **Lý do tồn tại:** bài tập chuyển giao trên tình huống $d>n$ ghép ba mạch giữa và dừng sớm.
+- **Nhu cầu/khoảng trống lấp:** cấu trúc mặc định yêu cầu câu hỏi tự kiểm tra ở kết luận; cụm dừng sớm cần bước bài tập.
+- **Đầu vào:** TK01, TK02.
+- **Đầu ra:** ba câu hỏi (Bài tập 10 của học liệu); lời giải trên mặt trang ở TK03a.
 - **Vị trí trong khung:** khép vấn đề trung tâm.
 - **LLO/CLO:** MT1–MT3; LLO11, LLO15 → CLO1, CLO2, CLO4.
-- **Bước hành trình:** bài tập tổng hợp; kiểm tra của dừng sớm (câu 3) và KN1.
+- **Bước hành trình:** bài tập tổng hợp; bài tập của dừng sớm (câu 3) và KN1.
 - **Quyết định:** thêm (tách từ KL05); 47 âm tiết; loại bài tập: tự làm, đáp án trong ghi chú.
+- **Sửa 2026-10-15 (rà soát mạch 5):** mã KL05b → TK03; câu 1 cụ thể "Mất mát logistic: xác định hạng tối đa của $X$, sự tồn tại cực tiểu của $F$ khi $\operatorname{rank}X=200$, $\mu$ và cận $\kappa$ của $F_\lambda$." (19 âm tiết); câu 2, 3 giữ; lời giải chi tiết chuyển sang ghi chú TK03a, ghi chú TK03 nêu kết quả mà mỗi câu dùng. 59 âm tiết (dưới trần 60).
+- **Sửa vòng 2 2026-10-15:** ghi chú bỏ câu dẫn sang lời giải. Lý do vượt mục tiêu 40 (59 âm tiết): đề bài cần dữ kiện ($n$, $d$, loại đặc trưng) và ba câu hỏi đủ cụ thể để có lời giải kiểm tra được trên TK03a.
 
-#### KL05c — Tài liệu đọc và bài tập về nhà
+#### TK03a — Bài tập: phân loại với nhiều đặc trưng hơn mẫu
+
+- **Lý do tồn tại:** lời giải trên mặt trang cho bài tập tổng hợp (AGENTS.md: mỗi cụm lớn có một bài tập với "Lời giải:" trên mặt trang); trước đây lời giải chỉ nằm trong ghi chú KL05b.
+- **Nhu cầu/khoảng trống lấp:** cụm dừng sớm và tình huống $d>n$ chưa có lời giải mẫu trên mặt trang.
+- **Đầu vào:** TK03.
+- **Đầu ra:** bốn dòng lời giải: hạng $\le200$, tách được, không có cực tiểu; $F_\lambda$ lồi mạnh, $\mu=\lambda$, $\lVert w_\lambda\rVert\le\sqrt{2\log2/\lambda}$, $\kappa\le1+\lambda_{\max}(X^TX)/(800\lambda)$; Newton qua hệ $200\times200$, $2{,}8\cdot10^7$ so với $1{,}75\cdot10^8$; tập xác thực chọn bước dừng, tập kiểm thử báo cáo.
+- **Vị trí trong khung:** khép vấn đề trung tâm.
+- **LLO/CLO:** MT1–MT3; LLO11, LLO15 → CLO1, CLO2, CLO4.
+- **Bước hành trình:** bài tập (lời giải) của dừng sớm và KN1, KN4–KN8.
+- **Quyết định:** thêm (2026-10-15); toán giữ nguyên lời giải cũ; 45 âm tiết, 5 dòng, dòng dài nhất 20.
+- **Sửa vòng 2 2026-10-15:** lời giải theo đúng ba câu của TK03 với nhãn "Câu 1:" (hai dòng: hạng và tồn tại cực tiểu; $F_\lambda$, $\mu$, chuẩn, $\kappa$), "Câu 2:", "Câu 3:" ("tập xác thực chọn bước dừng; giá trị nhỏ nhất lệch thấp; tập kiểm thử báo cáo $R$"). 48 âm tiết, 5 dòng, dòng dài nhất 19. Lý do vượt mục tiêu 40: lời giải mẫu phải nêu kết luận của cả ba câu.
+- **Sửa vòng 3 2026-10-15 (quyết định của điều phối viên):** bỏ nhãn "Câu 1:", "Câu 2:", "Câu 3:" (không thuộc danh sách nhãn được phép); dưới "Lời giải:" dùng `<ol>` đúng ba mục ứng ba câu của TK03. Mục 1 rút gọn: "$\operatorname{rank}X\le200$; khi $\operatorname{rank}X=200$, $F$ không có cực tiểu; $F_\lambda$ lồi mạnh, $\mu=\lambda$, $\kappa\le1+\lambda_{\max}(X^TX)/(800\lambda)$"; cận $\lVert w_\lambda\rVert$ và "mọi cách gán nhãn tách được" chỉ còn trong ghi chú. Mục 2, 3 giữ nội dung. 35 âm tiết; ở 16:9 mục 1 hai dòng, mục 2 và 3 một dòng; đáy nội dung 329 px logic.
+
+#### TK04 — Tài liệu đọc và bài tập về nhà
 
 - **Lý do tồn tại:** tài liệu đọc và hai bài tập về nhà (Bài tập 7 và 5 của học liệu).
 - **Nhu cầu/khoảng trống lấp:** cấu trúc mặc định yêu cầu tài liệu đọc ở kết luận.
-- **Đầu vào:** KL05b.
+- **Đầu vào:** TK03a.
 - **Đầu ra:** danh sách đọc theo mục; hai bài chứng minh, gợi ý trong ghi chú.
 - **Vị trí trong khung:** khép bài; dẫn sang Bài 05b, 05c, 06.
 - **LLO/CLO:** MT2; LLO11 → CLO1.
 - **Bước hành trình:** bài tập về nhà.
 - **Quyết định:** thêm (tách từ KL05); 46 âm tiết.
 - **Sửa vòng 2 (2026-10-12, sau tái kiểm toán và mạch kể):** nhãn "Tài liệu đọc:" bỏ in đậm; ghi chú đổi chủ ngữ.
+- **Sửa 2026-10-15 (rà soát mạch 5):** mã KL05c → TK04; ghi chú dẫn chiếu theo cấu trúc mới (định lý hội tụ ở Bài 05b, trung bình mẫu ở Bài 05c, hai giới hạn ở cuối mạch 5). Mặt trang không đổi, 46 âm tiết.
+- **Sửa vòng 2 2026-10-15:** lý do vượt mục tiêu 40 (46 âm tiết): ba dòng tài liệu đọc ghi tác giả, năm và mục để truy nguyên được, cộng hai bài về nhà; không rút được mà không mất mục cụ thể.
+
+### Trang đã bỏ 2026-10-15
+
+Bốn trang dưới đây bỏ khỏi deck theo quyết định của điều phối viên sau rà soát mạch 5 (hai tác tử rà soát chỉ đọc): người dùng phàn nàn mạch 5 có nhiều trang không rõ vì sao có mặt. Nội dung còn trong ghi chú bài giảng Bài 05 (Mục 5.2–5.4: Ví dụ 05.25, Mệnh đề 05.40, 05.41, Nhận xét 05.42) và trong deck Bài 06 (E02b, B01–B03, A03, F02–F04, G01–G01b). Không trang nào trong bốn trang dùng SVG, nên không có tệp hình mồ côi. Mục cũ giữ để truy vết.
+
+#### KL02 — Số liệu trên tập RCV1
+
+- **Lý do tồn tại (bản cũ):** bằng chứng có nguồn cho hai lý do của MD03c ở quy mô thật (SNW Bảng 13.3, các hàng mất mát logistic).
+- **Quyết định:** `bỏ` (2026-10-15). Lý do: trang gọi tên SGD trước định nghĩa và trùng vai trò với E02b của Bài 06; số liệu nằm ở Ví dụ 05.25 của ghi chú bài giảng, ghi chú KL03 dẫn lại làm minh họa bậc độ lớn. Ngoại lệ trần 80 của trang này không còn. Thời lượng $0{,}01$ tiết LT chuyển cho KL01/KL01a. Đóng R7 (outline) và G13 (cổng storyboard) theo hướng bỏ trang.
+
+#### KL03a — Ví dụ: bài toán XOR
+
+- **Lý do tồn tại (bản cũ):** ví dụ chứng minh giới hạn (ii) bằng đẳng thức tổng, số đơn thức $\binom{d_0+q}q$.
+- **Quyết định:** `bỏ` (2026-10-15). Lý do: chứng minh trùng B02 của Bài 06; KL03 nay nêu giới hạn (ii) bằng ba điểm của LG01 (dạng một chiều), số đơn thức chuyển lên KL03. Không có thời lượng riêng (thuộc phần $0{,}05$ của KL03 cũ).
+
+#### KL04 — Điều không còn giữ được và điều còn giữ được
+
+- **Lý do tồn tại (bản cũ):** bảng luận đề "mất / còn giữ được" theo yêu cầu người dùng 2026-10-11.
+- **Quyết định:** `bỏ` (2026-10-15). Lý do: bảng trùng G01 của Bài 06 (cùng bốn dòng) và nói về SGD, mục tiêu không lồi trước khi các khái niệm này được định nghĩa; nhãn (ii) ở đây mang nghĩa "không lồi", khác nghĩa "biểu diễn" ở KL03. Ngoại lệ trần 80 của trang này không còn. Thời lượng $0{,}02$ tiết LT: $0{,}01$ cho KL03, $0{,}01$ cho mạch 6 (TK).
+
+#### KL04a — Các bảo đảm còn giữ được
+
+- **Lý do tồn tại (bản cũ):** bốn bất đẳng thức của Bài 05b (Định lý 05b.36, 05b.39, 05b.41, 05b.43) cho cột "còn giữ được".
+- **Quyết định:** `bỏ` (2026-10-15). Lý do: các bảo đảm SGD và không lồi được phát biểu và dùng ở F02–F04, G01–G01b của Bài 06; trên deck Bài 05 chúng đứng trước định nghĩa SGD và gây đổi ký hiệu $\tau^2$/$\sigma^2$. Không có thời lượng riêng (thuộc phần của KL04).
 
 ## Thay đổi so với deck hiện hành
 
 Ngày 2026-10-12, đợt sửa văn phong MAT1101 nâng số trang từ 44 lên 67 (bốn trang tiêu đề mạch, các trang tách theo trần mật độ); xem đoạn cập nhật ở mục Phạm vi và dòng "Sửa 2026-10-12" của từng trang.
+
+Ngày 2026-10-15, rà soát mạch 5 giảm số trang từ 67 xuống 65 (bỏ KL02, KL03a, KL04, KL04a; thêm TK00, TK03a) và tách mạch 6 "Tổng hợp và chuyển giao"; xem đoạn cập nhật ở mục Phạm vi và dòng "Sửa 2026-10-15" của từng trang.
 
 Bài được xây lại theo thiết kế của người dùng, không theo cấu trúc của deck Bài 05 cũ (từ ngày 2026-10-12 là Bài 06b, `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html`; 37 trang, các phần A–E về SGD, momentum, Nesterov và khởi tạo). Không trang nào được giữ; các nội dung momentum, Nesterov và khởi tạo được đề xuất chuyển sang bài bổ trợ "06b" (dàn bài, mục Nội dung đề cương không còn; quyết định D2 của người dùng). Số trang tăng từ 37 lên 44 (43 theo kế hoạch đã duyệt, cộng một trang do tách HQ08 sau cổng storyboard) vì bài mới có ba phiên, mỗi phiên một cụm hai đến ba khái niệm với trang kiểm tra riêng, cộng mạch kết luận năm trang mang luận đề.

@@ -124,7 +124,7 @@ Thứ tự chuẩn là nhu cầu → trực quan → ví dụ → hình thức/t
 
 ### KN9. Dừng sớm theo tập xác thực
 
-- **Sáu bước:** nhu cầu E02, F00 (dòng dẫn: thời điểm dừng), F05b; trực quan F06 (đường mất mát huấn luyện và xác thực, định tính); ví dụ của quy tắc dừng là Bài 05, phần kết luận (định nghĩa dừng sớm, sai số xác thực nhỏ nhất tại bước 79; bước kế thừa), ví dụ của nhận xét là F07 (bảng tỉ lệ giữ); hình thức F06b (thuật toán dừng sớm, tách từ F06 ngày 2026-10-12) và F07b (nhận xét DL (7.43)–(7.45), tách từ F07); ứng dụng F07b (dừng sớm tác động như chính quy hóa $\ell_2$) và G02; bài tập F08(c), lời giải F08b. Bước lưu tham số tốt nhất trong thuật toán E05 thuộc phần hình thức của KN7 (thuật toán), không phải bước ứng dụng của KN9; F06 giải thích bước đó sau nhu cầu và trực quan.
+- **Sáu bước:** nhu cầu E02, F00 (dòng dẫn: thời điểm dừng), F05b; trực quan F06 (đường mất mát huấn luyện và xác thực, định tính); ví dụ của quy tắc dừng là Bài 05, mạch giới hạn của tối ưu tất định (KL01, KL01a; định nghĩa dừng sớm, sai số xác thực nhỏ nhất tại bước 79; bước kế thừa), ví dụ của nhận xét là F07 (bảng tỉ lệ giữ); hình thức F06b (thuật toán dừng sớm, tách từ F06 ngày 2026-10-12) và F07b (nhận xét DL (7.43)–(7.45), tách từ F07); ứng dụng F07b (dừng sớm tác động như chính quy hóa $\ell_2$) và G02; bài tập F08(c), lời giải F08b. Bước lưu tham số tốt nhất trong thuật toán E05 thuộc phần hình thức của KN7 (thuật toán), không phải bước ứng dụng của KN9; F06 giải thích bước đó sau nhu cầu và trực quan.
 - **Thứ tự và lý do (cập nhật 2026-10-12):** dừng sớm theo tập xác thực: trực quan F06 (hình) đứng trước thuật toán F06b. Quan hệ với chính quy hóa $\ell_2$: ví dụ dẫn nhập F07 (bảng tỉ lệ giữ) → “Trực quan.” đầu F07b (cả hai giữ hướng có độ cong lớn, nén hướng có độ cong nhỏ) → “Nhận xét.” F07b (điều kiện $\lambda\approx1/(\eta k)$, $\eta\alpha\ll1$, $\alpha\ll\lambda$) → “Lưu ý:” phạm vi. Dừng sớm là một phần của phương pháp theo luận đề; cụm không có trang định nghĩa riêng vì tập xác thực và tập kiểm thử đã được định nghĩa ở Bài 05 HQ05 và Bài 05 KL01 đã có quan sát số trên dữ liệu khối A1 (điểm hòa giải 5).
 - **Đầu vào:** Bài 05 (khối A1: khớp quá; khối A2: chính quy hóa $\ell_2$; HQ05: tập xác thực; KL01: quan sát số); Định lý 05c.52 của 05c.
 - **Sản phẩm học tập và LLO/CLO:** áp quy tắc dừng sớm, tính và giải thích tỉ lệ giữ; LLO11; CLO1, CLO2.
@@ -228,7 +228,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Vị trí trong khung:** mở bước 1 của chuỗi (tách được tuyến tính → Mệnh đề 1).
 - **LLO/CLO:** CLO2.
 - **Bước hành trình:** KN1 nhu cầu + ví dụ dẫn nhập + trực quan.
-- **Quyết định:** `thêm` — cần một dữ liệu tính thủ công được trước định nghĩa; nêu nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính thủ công, ghi chú nối với nhãn $\pm1$ của Bài 05 KL03 (điểm hòa giải 4).
+- **Quyết định:** `thêm` — cần một dữ liệu tính thủ công được trước định nghĩa; nêu nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính thủ công, ghi chú nối với nhãn $\pm1$ của Bài 05 KL03 (điểm hòa giải 4). Từ 2026-10-15 deck Bài 05 không còn trang XOR (KL03a bỏ, KL03 nêu ba điểm $-,+,-$); ghi chú B01 dẫn Mệnh đề 05.40 của ghi chú bài giảng.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 31 → 27 âm tiết; gỡ `.dense`; panel “Ví dụ dẫn nhập.” (nhãn không trong danh sách) thay bằng dòng “Nhu cầu:” đầu trang; điều kiện ngưỡng chuyển xuống dưới hình.
 
 ### B02. Tính không tách được tuyến tính của XOR
@@ -682,7 +682,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 
 - **Lý do tồn tại:** nêu lại lý do thống kê với Định lý 05c.52 của 05c và số liệu RCV1 (SNW Bảng 13.3).
 - **Nhu cầu hoặc khoảng trống được lấp:** E01 chỉ cho thấy gradient đầy đủ đắt; cần lý do để chấp nhận một ước lượng nhiễu thay cho cực tiểu chính xác.
-- **Đầu vào:** Định lý 05c.52 (05c); Bài 05 khối A1, A2; SNW Bảng 13.3, tr. 363, chỉ các hàng mất mát bản lề (hinge loss) (SVMLight 23 642 s, SVMPerf 66 s, SGD 1,4 s); các hàng mất mát logistic thuộc Bài 05 KL02, ghi chú E02 dẫn tới KL02.
+- **Đầu vào:** Định lý 05c.52 (05c); Bài 05 khối A1, A2; SNW Bảng 13.3, tr. 363, chỉ các hàng mất mát bản lề (hinge loss) (SVMLight 23 642 s, SVMPerf 66 s, SGD 1,4 s); các hàng mất mát logistic thuộc Bài 05 KL02, ghi chú E02 dẫn tới KL02. Từ 2026-10-15 KL02 bỏ khỏi deck Bài 05; ghi chú E02b dẫn Ví dụ 05.25 của ghi chú bài giảng Bài 05.
 - **Đầu ra:** tại $\theta$ cố định, sai số $F-R$ có bậc $1/\sqrt n$; kết luận Bottou–Bousquet cho bài toán lồi (không đổi bậc của cận), không khẳng định “không cải thiện $R$”; phân tách sai số xấp xỉ, ước lượng, tối ưu (ghi chú); thí nghiệm RCV1 làm minh họa có nguồn.
 - **Vị trí trong khung:** lý do thống kê; nhu cầu của F05, F06.
 - **LLO/CLO:** LLO11; CLO1.
@@ -1005,18 +1005,19 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Lý do tồn tại:** khép luận đề ở dạng “mất gì, giữ gì” với nhãn kết quả, quay lại đúng bảng A03.
 - **Nhu cầu hoặc khoảng trống được lấp:** bốn vấn đề nêu ở A03 cần câu trả lời có tham chiếu tới kết quả, không chỉ danh sách chủ đề.
 - **Đầu vào:** A03; Mệnh đề 3, D01, D03, D04, F01, F02, T5, T6, T7, T8, Định lý 05c.52, 05c.53, F06.
-- **Đầu ra:** bảng bốn dòng (cùng thứ tự với A03 và Bài 05 KL04) đối chiếu điều mất, điều kiện mất ((i) chi phí, (ii) biểu diễn) và điều còn giữ, nhãn kết quả ghi bằng tên kết quả, không bằng mã trang; dòng tính giảm nêu đúng: giảm mỗi bước với gradient đầy đủ, bất đẳng thức có số hạng nhiễu với SGD; dòng bảo đảm nêu điều kiện $F$ trơn và việc bảo đảm thuộc về dãy lặp; đầu vào của G02.
+- **Đầu ra:** bảng bốn dòng (cùng thứ tự với A03; Bài 05 KL04 cũ, bỏ 2026-10-15) đối chiếu điều mất, điều kiện mất ((i) chi phí, (ii) biểu diễn) và điều còn giữ, nhãn kết quả ghi bằng tên kết quả, không bằng mã trang; dòng tính giảm nêu đúng: giảm mỗi bước với gradient đầy đủ, bất đẳng thức có số hạng nhiễu với SGD; dòng bảo đảm nêu điều kiện $F$ trơn và việc bảo đảm thuộc về dãy lặp; đầu vào của G02.
 - **Vị trí trong khung:** tổng hợp và giới hạn áp dụng.
 - **LLO/CLO:** LLO11; CLO1.
 - **Bước hành trình:** tổng hợp, không thuộc cụm riêng.
 - **Quyết định:** `thêm` — luận đề yêu cầu kết luận dạng “mất gì, giữ gì” có nhãn kết quả; tiêu đề theo Bài 05 KL04; dòng tính giảm sửa theo kiểm định storyboard.
+- **Sửa 2026-10-15 (rà soát mạch 5 Bài 05):** chỉ ghi chú; bỏ câu "cùng cách viết với bảng kết luận của Bài 05", câu về nhãn "không lồi" của bảng Bài 05 và ánh xạ $\tau^2$ (Bài 05) ↔ $\sigma^2$, vì KL04, KL04a bỏ khỏi deck Bài 05. Bảng G01 là nơi duy nhất phát biểu điều mất và điều còn giữ.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `tách` — 134 → 75 âm tiết; gỡ `.dense`; bảng bốn dòng chia hai trang: G01 (Đích, Tốc độ tuyến tính) và G01b (Cực tiểu toàn cục, Chi phí); bỏ mã T5–T8 trong ô (tên kết quả ở ghi chú); số liệu lân cận $\mathbb E\lVert\theta_k-\theta^*\rVert^2$ có bậc $\eta\sigma^2/\mu$ giữ nguyên. Ngoại lệ trần 60: bảng so sánh, trần 80.
 - **Sửa vòng tái kiểm 2026-10-12:** dòng điều kiện giữ nhãn “(i) chi phí”, “(ii) biểu diễn” như A03 (ghi chú nêu Bài 05 KL04 gọi (ii) là “không lồi”, cùng nội dung); “Gradient đầy đủ, $\eta\le1/L$: $F$ không tăng (bổ đề giảm)”; “(đã mất ở Bài 05)” chuyển xuống ghi chú; 76 âm tiết.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — ô “Sai số giảm theo cấp số nhân (hội tụ tuyến tính), tất định (Bài 05; khi (i) hoặc (ii))” (B11); để giữ trần 80, dòng mở bỏ chữ “nhỏ” (“gradient nhóm thay gradient đầy đủ”) và ô phải viết “$\limsup_k\mathbb E\lVert\theta_k-\theta^*\rVert^2\le\eta\sigma^2/\mu$” thay “… cỡ $\eta\sigma^2/\mu$”. 74 → 79 âm tiết. Ghi chú “Bài 05 KL04” → “bảng kết luận của Bài 05”, bỏ “cỡ”.
 
 ### G01b. Điều không còn giữ được và điều còn giữ được
 
-- **Lý do tồn tại:** hai dòng cuối của bảng “mất gì, giữ gì” (cực tiểu toàn cục, chi phí), cùng thứ tự với A03 và Bài 05 KL04.
+- **Lý do tồn tại:** hai dòng cuối của bảng “mất gì, giữ gì” (cực tiểu toàn cục, chi phí), cùng thứ tự với A03 (Bài 05 KL04 cũ, bỏ 2026-10-15).
 - **Nhu cầu hoặc khoảng trống được lấp:** bảng bốn dòng trên một trang vượt trần 80 của bảng so sánh.
 - **Đầu vào:** G01; Mệnh đề 3, Định lý 05b.41, 05b.43, 05c.53.
 - **Đầu ra:** dòng 3–4 của bảng; lưu ý ReLU.

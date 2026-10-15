@@ -568,3 +568,110 @@ Các câu thêm vào mặt trang là mệnh đề toán ngắn với nhãn đư�
 - `git diff --check` sạch trên các tệp của Bài 05.
 
 **Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-05 và decisions-common; kiểm dòng L, μ, κ ở MD04 (μ‖v‖² ≤ vᵀ∇²F v ≤ L‖v‖²) và hệ quả xen kẽ Cauchy ở HQ09 (ma trận con chính: λ_min không tăng, λ_max không giảm); chấp nhận các chỗ làm khác đề xuất vì trần mật độ (dòng F ở MD04, 'kho tin Reuters', 'trang sau'); tự chạy deckcheck trên MD03b, MD04, HQ09, LG02, LG07, CP05, CP11, KL02, KL04a: 0 lỗi, không tràn ở 16:9, ba cờ cuộn ngang khổ hẹp là bảng có sẵn; xem ảnh MD04, CP05 ở 1600×900. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.
+
+## Rà soát mạch 5, 2026-10-15
+
+Người dùng nhận xét mạch 5 "Giới hạn của tối ưu tất định" có nhiều trang không rõ vì sao có mặt.
+
+### Tác tử
+
+| Vai | Loại | Mô hình | Effort | Ghi tệp |
+|---|---|---|---|---|
+| Rà soát mạch 5, tác tử 1 (chỉ đọc) | general-purpose | opus | high | không |
+| Rà soát mạch 5, tác tử 2 (chỉ đọc) | general-purpose | opus | high | không |
+| Chỉnh sửa (tác tử ghi duy nhất) | general-purpose | opus | medium | có |
+
+Loại, mô hình và effort ghi theo brief của điều phối viên; bằng chứng là lệnh gọi `Agent` của điều phối viên, không phải lời tự khai của tác tử.
+
+### Phát hiện chính và trạng thái
+
+| Mức độ | Trang chiếu | Vấn đề | Quyết định | Trạng thái |
+|---|---|---|---|---|
+| nghiêm trọng | KL02, KL04, KL04a | Gọi tên và dùng SGD, gradient nhóm nhỏ, mục tiêu không lồi trước khi định nghĩa; trùng E02b, F02–F04, G01–G01b của Bài 06 | bỏ ba trang | đã sửa |
+| nghiêm trọng | KL03, KL03a, KL04 | Nhãn (ii) hai nghĩa ("biểu diễn" ở KL03, "không lồi" ở KL04); chứng minh XOR trùng B02 của Bài 06 | bỏ KL03a; KL03 mỗi nhãn một nghĩa, (ii) dùng ba điểm của LG01 | đã sửa |
+| trung bình | KL00 | Dòng dẫn hai nhiệm vụ, dùng "dừng sớm" trước định nghĩa, hứa "bảo đảm còn giữ được" | dòng dẫn một nhiệm vụ, từ khóa mới, ghi chú kế thừa tổng chi phí | đã sửa |
+| trung bình | KL01 | "Nhu cầu:" gộp dữ kiện và lời giải; "34 lần" không nói so với bước nào | tiêu đề mới, "Nhu cầu:" chỉ nêu khoảng trống, so sánh nói rõ mốc | đã sửa |
+| trung bình | KL01a | Dòng "Ví dụ." lặp số liệu KL01; thiếu bước trực quan của dừng sớm | dòng "Trực quan." định tính theo độ cong | đã sửa |
+| trung bình | KL05–KL05c | Tổng kết và bài tập trộn vào mạch giới hạn; bài tập tổng hợp không có lời giải trên mặt trang | tách mạch 6, thêm TK00, TK03a | đã sửa |
+| nhẹ | ghi chú MD03a, MD03c, HQ05a, LG01, CP00, CP11, KL01a | Dẫn tới "mạch kết luận", RCV1, XOR, "điều còn giữ được"; câu ẩn dụ "gặp nhau" | sửa dẫn chiếu theo cấu trúc mới | đã sửa |
+
+### Quyết định của điều phối viên (đã chốt trước khi giao chỉnh sửa)
+
+1. Sáu mạch: mạch 5 = KL00, KL01, KL01a, KL03; mạch 6 "Tổng hợp và chuyển giao" = TK00, TK01 (KL05), TK02 (KL05a), TK03 (KL05b), TK03a (mới), TK04 (KL05c).
+2. Bỏ KL02, KL03a, KL04, KL04a. Không SVG nào chỉ do bốn trang này dùng (cả bốn không có hình), nên không có tệp hình mồ côi.
+3–6. KL00, KL01, KL01a, KL03 sửa theo brief (dòng dẫn, tiêu đề, trực quan, hai giới hạn mỗi nhãn một nghĩa, dòng đích, nhu cầu bằng lời không gọi tên SGD).
+7–12. TK00 đúng markup trang tiêu đề mạch; TK01 đổi tiêu đề; TK02 sửa ghi chú; TK03 câu 1 cụ thể; TK03a lời giải trên mặt trang; TK04 sửa dẫn chiếu.
+13–14. MD02, MD03a, MD03c và ghi chú CP11 theo cấu trúc mới.
+15. Deck Bài 06 chỉ sửa ghi chú có dẫn tới nội dung Bài 05 vừa bỏ.
+
+Các mục cũ được đóng (tham chiếu, không xóa): R7 (quá tải trang khối 3, "gộp KL02 vào ghi chú KL01") đóng theo hướng bỏ KL02, KL03a, KL04, KL04a; R3 (TRON không phải Newton thuần) đóng vì KL02 bỏ, ghi chú KL03 chỉ dẫn Bảng 13.3 như minh họa bậc độ lớn; G13 (KL03 trùng chứng minh XOR của Bài 06) đóng vì KL03a bỏ và XOR chỉ còn ở ghi chú.
+
+### Việc tác tử chỉnh sửa đã làm
+
+- Deck Bài 05: 65 trang (từ 67), 6 section ngoài; TK00 `id="mach-6"`, số "6."; MD03a thêm mục 6.
+- Deck Bài 06, chỉ ghi chú: A04 (bỏ ánh xạ $\tau^2$), A03 (hai giới hạn nêu ở trang cuối mạch 5 Bài 05; giới hạn (ii) bằng ba điểm, XOR chứng minh ở mục 2), B01 (bốn điểm $\pm1$ của Mệnh đề 05.40 trong ghi chú bài giảng), B02 (XOR chứng minh tại đây), B03 ($\binom{d_0+q}q$ với $d_0$ biến), E02b (Ví dụ 05.25), F06 ("mạch giới hạn của tối ưu tất định" thay "phần kết luận"), G01 (bỏ "bảng kết luận của Bài 05" và $\tau^2$).
+- Kế hoạch: storyboard (phạm vi, bảng mạch, ranh giới CP11 → KL00 và KL03 → TK00, KN1, KN8, cụm dừng sớm, mục từng trang, tiểu mục "Trang đã bỏ 2026-10-15"), outline (bản đồ mạch, kiểm tra cộng, giới hạn áp dụng, R3, R7, mục cập nhật cuối tệp). Thời lượng: KL01/KL01a và KL03 mỗi nơi $+0{,}01$, mạch 6 $+0{,}01$ LT (từ KL02 $0{,}01$ và KL04 $0{,}02$); tổng 2,00 LT + 1,00 BT không đổi.
+- Học liệu không sửa. Ghi chú bài giảng Mục 5.2–5.4 vẫn trình bày RCV1, XOR và Nhận xét 05.42; không mâu thuẫn với deck, chỉ đầy đủ hơn.
+
+### Mật độ mặt trang (token có chữ, bỏ tiêu đề, KaTeX, ghi chú)
+
+MD02 65 → 62 (trần 80), MD03a 47 → 52 (trần 80, 7 dòng: danh sách sáu mạch và dòng tài liệu đọc), KL00 38, KL01 51 → 51 (5 dòng, dòng dài nhất 20), KL01a 59 → 60 (chạm trần cứng, 6 dòng), KL03 57 → 60 (chạm trần cứng, 5 dòng), TK00 34, TK01 65 (trần 80), TK02 59 (trần 80), TK03 47 → 59, TK03a 45, TK04 46. KL01a và KL03 vượt mục tiêu 40 vì brief yêu cầu đủ các thành phần (trực quan hai dòng, định nghĩa hai bước, lưu ý; (i), (ii), số đơn thức, đích, nhu cầu); lý do ghi ở storyboard.
+
+### Tự kiểm no-ai-slop (Edit mode, đối chiếu `eval.md`)
+
+Câu mới trên mặt trang là mệnh đề toán ngắn với nhãn được phép ("Trực quan.", "Định nghĩa.", "Lưu ý:", "Nhu cầu:", "Lời giải:"); không câu dẫn rỗng, không nhấn mạnh, không câu kết kịch tính; câu "Hai lý do … gặp nhau" thay bằng câu khẳng định. Ghi chú không mở bằng "Trang này", không có "ta thấy", "chúng ta". Đạt.
+
+### Kiểm tra
+
+- Cấu trúc HTML: 6 section ngoài, cân thẻ; năm trang tiêu đề mạch (HQ00, LG00, CP00, KL00, TK00) đúng markup và số 2–6; mã trang deck khớp 65 mục storyboard.
+- Playwright Chromium (1600×900 và 390×844) trên MD02, MD03a, KL00, KL01, KL01a, KL03, TK00–TK04, TK03a: 0 lỗi console, 0 `.katex-error`, tổng 65 trang. Đáy nội dung ở 16:9: KL01 676 px logic, bằng bản trước đợt này (cùng hình, đo cùng công cụ); các trang khác ≤ 607. Bản gộp hai gạch đầu dòng so sánh của KL01 thành một vì bản hai dòng làm chữ chạm chân trang (đã xem ảnh). Kiểm tra hình ảnh đầy đủ do điều phối viên giao riêng.
+- `git diff --check` sạch.
+
+### Vòng tái kiểm và sửa vòng 2 (2026-10-15)
+
+| Vai | Loại | Mô hình | Effort | Ghi tệp |
+|---|---|---|---|---|
+| Tái kiểm mạch kể và toán (chỉ đọc) | general-purpose | opus | high | không |
+| Kiểm định hiển thị (chỉ đọc) | general-purpose | opus | high | không |
+| Chỉnh sửa (cùng tác tử ghi của vòng 1) | general-purpose | opus | medium | có |
+
+Ghi theo brief của điều phối viên. Không có phát hiện chặn bàn giao hay nghiêm trọng.
+
+| Mức độ | Trang chiếu | Vấn đề | Trạng thái sau sửa |
+|---|---|---|---|
+| trung bình | TK03a | Lời giải đánh số 1–4, lệch ba câu của TK03 | đã sửa: nhãn "Câu 1:" (hai dòng), "Câu 2:", "Câu 3:"; storyboard ghi TK03a (câu 3) |
+| trung bình | Bài 06 B02 (ghi chú) | "Bài 05 không đánh số kết quả này" sai sự thật | đã sửa: định nghĩa nhắc lại từ phần hồi quy logistic Bài 05; Mệnh đề 1 ứng với Mệnh đề 05.40 của ghi chú bài giảng; deck Bài 05 không chứng minh |
+| trung bình | KL01 (16:9) | `.cols` đáy 676,1 > 675; hình đáy 666 lấn dải chân trang (đỉnh 652,6) | đã sửa: chiều cao do hình quyết định (định cỡ theo bề rộng cột), nên thêm quy tắc có phạm vi trong `lecture-style.css`, chỉ ở màn rộng hơn 760 px: `:where(html[data-lecture="05"]) .reveal section[data-slide-id="KL01"] figure img { max-height:320px; }`. Đáy nội dung đo lại 632 px logic (chờ 1600 ms sau `Reveal.slide`), hình 320 px, đáy hình 622. Cần kiểm hồi quy CSS chung (quy tắc chỉ khớp KL01 của Bài 05) |
+| nhẹ | TK00 | Từ khóa trùng dòng dẫn; chữ "đọc" lẻ ở dòng cuối | đã sửa: ba cụm từ khóa |
+| nhẹ | KL01a | KaTeX ngắt sau "(κ =" | đã sửa: $\kappa=553{,}7$ chuyển sang câu thứ hai |
+| nhẹ | TK01, TK02 | Cụm "Mệnh đề 1", "Định lý 3", "tập báo cáo", "sai số xác thực" bị tách dòng | đã sửa: `&nbsp;` |
+| nhẹ | KL03 | "cần chọn trước $u^2$"; dòng số đơn thức không rõ là hệ quả của (ii) | đã sửa: "cần thêm $u^2$", "Thêm mọi đơn thức …"; "Đích:" giữ (đổi thành "Nhắc lại:" làm trang 61 > 60) |
+| nhẹ | KL03 (ghi chú) | Thiếu câu nối với KL01a; đoạn RCV1 dài; "dòng đích" không gọi tên kết quả | đã sửa; ghi chú khoảng 175 âm tiết |
+| nhẹ | MD02, TK03, KL00 (ghi chú) | thiếu dẫn mạch 5 cho bước dừng; câu dẫn sang lời giải; "thật sự" | đã sửa |
+| nhẹ | outline, storyboard | quy mô 65 trang / 6 mạch; "năm mạch"; luận đề xuyên suốt; lý do vượt mục tiêu 40 | đã sửa |
+
+Phát hiện ngoài phạm vi, để mở:
+
+- CP02: chú thích sát chân trang ở 16:9.
+- Bài 06 F03, G02: nội dung sát chân trang.
+- `.katex-mathml` trong `.table-scroll` làm `.lecture-viewport` có scrollWidth > clientWidth ở màn hẹp (CSS chung).
+- Nút mũi tên lên đè tiêu đề dài (bố cục chung).
+- Ghi chú bài giảng Bài 05, Nhận xét 05.42 nêu định lý SGD trước khi chương định nghĩa SGD.
+
+Mật độ sau vòng 2: KL00 38, KL01 51, KL01a 60, KL03 60, TK00 29, TK01 65, TK02 59, TK03 59, TK03a 48, TK04 46, MD02 62. Kiểm tra: Playwright 1600×900 và 390×844, 0 lỗi console, 0 `.katex-error`; `git diff --check` sạch.
+
+**Vòng 3 (2026-10-15, quyết định của điều phối viên):** nhãn "Câu k:" không thuộc danh sách nhãn được phép, nên TK03a dùng lại `<ol>` đúng ba mục ứng ba câu của TK03 (mục 1 rút gọn; cận $\lVert w_\lambda\rVert$ và "mọi cách gán nhãn tách được" ở ghi chú); TK00 dùng `&nbsp;·` trong dòng từ khóa. TK03a 35 âm tiết, đáy nội dung 329 px logic ở 16:9, ba mục lần lượt 2, 1, 1 dòng; Playwright 1600×900 và 390×844: 0 lỗi console, 0 `.katex-error`; `git diff --check` sạch.
+
+### Quyết định của điều phối viên (Opus 5.5 high, 2026-10-15)
+
+| Đầu ra | Tác tử (lời gọi `Agent`) | Quyết định | Lý do |
+|---|---|---|---|
+| Báo cáo rà soát mạch kể mạch 5 | general-purpose, model opus, effort high, chỉ đọc | chấp nhận | Đối chiếu trùng lặp với Bài 06 (A03, B01–B03, E02b, F02–F04, G01–G01b) bằng grep; chấp nhận tách mạch 6; chọn mã TK00–TK04 |
+| Báo cáo rà soát học thuật–sư phạm mạch 5 | general-purpose, model opus, effort high, chỉ đọc | chấp nhận một phần | Chấp nhận bỏ KL04, KL04a, KL03a; không giữ KL02 như đề xuất (bỏ vì SGD và TRON chưa dạy, bảng đã có ở Bài 06 E02b) |
+| Sửa vòng 1 (tái cấu trúc) | general-purpose, model opus, effort medium | yêu cầu sửa | Tái kiểm và kiểm định hiển thị nêu TK03a lệch đánh số, ghi chú B02 Bài 06 sai, KL01 lấn footer, các mục nhẹ |
+| Tái kiểm mạch kể và toán | general-purpose, model opus, effort high, chỉ đọc | chấp nhận | Tự kiểm lại chi phí Newton $2{,}8\cdot10^7$ / $1{,}75\cdot10^8$ và cận $\kappa\le1+\lambda_{\max}/(800\lambda)$ |
+| Kiểm định hiển thị (hai lượt) | general-purpose, model opus, effort high, chỉ đọc | chấp nhận | Lượt cuối: 11 deck 0 lỗi console, 0 `.katex-error`; quy tắc CSS mới khớp đúng một phần tử (KL01, deck 05, khổ rộng) |
+| Sửa vòng 2 (gồm quy tắc CSS có phạm vi KL01) | general-purpose, model opus, effort medium | yêu cầu sửa | Nhãn "Câu k:" ở TK03a không thuộc danh sách nhãn được phép; dấu "·" đầu dòng ở TK00 màn hẹp |
+| Sửa vòng 3 | general-purpose, model opus, effort medium | chấp nhận | Đã đọc mặt trang TK03a (ba mục khớp ba câu); `--check` đồng bộ học liệu và `git diff --check` sạch |
+
+Phát hiện ngoài phạm vi để mở: chú thích CP02 sát footer; Bài 06 F03, G02 sát footer; `.katex-mathml` trong `.table-scroll` ở màn hẹp; nút mũi tên lên đè tiêu đề dài; ghi chú bài giảng Nhận xét 05.42 nêu định lý SGD trước khi định nghĩa SGD; nhãn SVG KL01 nhỏ ở màn hẹp.

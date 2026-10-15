@@ -57,11 +57,11 @@ Các thay đổi dưới đây áp dụng mười điểm hòa giải của đi�
 
 - A04: thêm câu ánh xạ quy ước hệ số chặn của Bài 05 (điểm 1).
 - A03, E01, G02: phát biểu về Newton theo Bài 05 CP05: chỉ giai đoạn hội tụ bậc hai, $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, không chứa $\kappa$; $\varepsilon_0$ và giai đoạn tắt dần phụ thuộc các hằng số Hessian, viết $m_H,M_H,L_H$ để không trùng số đơn vị ẩn $m$ (điểm 2).
-- B01: nêu trên mặt trang rằng nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính thủ công; ghi chú nêu quan hệ với nhãn $\pm1$ của Bài 05 KL03. B07: ghi chú nêu kết luận không lồi giữ nguyên với mất mát logistic, kèm phép kiểm tra số (điểm 4).
+- B01: nêu trên mặt trang rằng nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính thủ công; ghi chú nêu quan hệ với nhãn $\pm1$ của Bài 05 KL03 (từ 2026-10-15: của Mệnh đề 05.40 trong ghi chú bài giảng Bài 05, vì deck Bài 05 không còn trang XOR). B07: ghi chú nêu kết luận không lồi giữ nguyên với mất mát logistic, kèm phép kiểm tra số (điểm 4).
 - F06 (F05 trong bản 43 trang): dẫn tập xác thực của Bài 05 HQ05, không định nghĩa lại; rủi ro R3 không kích hoạt; lý do gộp chu trình KN9 trong storyboard viết lại theo đó (điểm 5).
 - F01, F02, F04, F06 (theo mã 45 trang): hình dùng lại được sao chép vào `img/lec-06/` ở giai đoạn dựng deck; cột hình ghi đường dẫn gốc (điểm 8).
 - Tiêu đề B02 và E02 viết lại thành cụm danh từ (“Tính không tách được tuyến tính của XOR”, “Rủi ro thực nghiệm như đại lượng thay thế”) vì tiêu đề dạng mệnh đề trái quy tắc tiêu đề của CLAUDE.md; điểm trung tâm của hai trang không đổi.
-- G01 đổi tiêu đề thành “Điều không còn giữ được và điều còn giữ được”, cùng cách diễn đạt với Bài 05 KL04 (quyết định của điều phối viên khi duyệt). E02 và F07 (F05 trong bản 43 trang) ghi phân chia nguồn với Bài 05 KL01, KL02 (cùng quyết định).
+- G01 đổi tiêu đề thành “Điều không còn giữ được và điều còn giữ được”, cùng cách diễn đạt với Bài 05 KL04 (quyết định của điều phối viên khi duyệt; KL04 bỏ khỏi deck Bài 05 ngày 2026-10-15, G01 nay là nơi duy nhất có bảng này). E02 và F07 (F05 trong bản 43 trang) ghi phân chia nguồn với Bài 05 KL01, KL02 (cùng quyết định).
 - Cách gọi: bài trước được gọi là “Bài 05” (kế hoạch gốc viết theo tên thiết kế Lecture A); deck và học liệu hiện có của Bài 05, Bài 06 được gọi là “deck Bài 05 hiện hành”, “deck Bài 06 hiện hành”; chính tả “vector” theo quy ước đã thống nhất của Bài 06 (nhật ký 2026-10-11).
 
 ### 1.5. Sửa theo kiểm định storyboard (2026-10-11)
@@ -1072,7 +1072,7 @@ Nocedal–Wright không có trong `sources/`; không cần cho bài này. Không
 | Định lý 05c.52 ($\mathbb EF=R$, $\operatorname{Var}F=\operatorname{Var}\ell/n$) | 05c §6.1 | Phát biểu lại (E02) |
 | Định lý 05c.53 (gradient nhóm không chệch, phương sai, hệ số không hoàn lại) | 05c §6.2 | Phát biểu lại, kiểm trên ví dụ (E04) |
 | Mệnh đề 05c.56 (hiệu suất giảm dần theo $b$), Nhận xét 05c.58 (Bottou–Bousquet), Mục 6.7, Nhận xét 05c.59 ($\sigma^2$ của H6b) | 05c §6.5–6.7 | Dẫn trong ghi chú (E02, E04, F05) |
-| Định nghĩa tách được tuyến tính, XOR không tách được (Mệnh đề 1) | Bài 05 (phần hồi quy logistic, phần kết luận) | Nhắc lại, thêm đối chiếu mã hóa nhãn (B02) |
+| Định nghĩa tách được tuyến tính, XOR không tách được (Mệnh đề 1) | Bài 05 (phần hồi quy logistic; XOR chỉ ở ghi chú bài giảng Bài 05 từ 2026-10-15) | Nhắc lại, thêm đối chiếu mã hóa nhãn; chứng minh XOR đầy đủ (B02) |
 | Mệnh đề 2, 3; thuật toán lan truyền ngược hai tầng; phân loại điểm dừng của $F(u,v)$ | Mới | Chứng minh trên trang hoặc tính tường minh (B08–B09, C04, D02–D03) |
 | Tương đương dừng sớm và $\ell_2$ | DL §7.8 | Nhận xét có nguồn, không chứng minh (F07) |
 

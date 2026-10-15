@@ -915,6 +915,11 @@
 :where(html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"]) table td { padding:5px 10px; }
 :where(html[data-lecture="05b"], html[data-lecture="05"], html[data-lecture="06"]) .reveal section:is([data-slide-id="G01"],[data-slide-id="G02"]) table { margin:8px 0; }
 
+/* Bài 05, trang KL01: hình dừng sớm định cỡ theo bề rộng cột; giới hạn chiều cao để hình nằm trên dải chân trang ở khổ 16:9 (2026-10-15). */
+@media screen and (min-width:761px) {
+  :where(html[data-lecture="05"]) .reveal section[data-slide-id="KL01"] figure img { max-height:320px; }
+}
+
 /* Bài 06c (bổ trợ, trước ngày 2026-10-12 là Bài 06): bố cục và điều chỉnh riêng trong bảng kiểu chung. */
 :where(html[data-lecture="06c"]) .reveal>.lecture-viewport { height:100%; }
 :where(html[data-lecture="06c"]) .reveal .slides section[data-slide-id] { font-size:.80em; line-height:1.26; padding:16px 6px 28px; box-sizing:border-box; }
