@@ -925,3 +925,113 @@ Trạng thái: chờ master rà soát vòng 5.
 Kết luận kiểm toán: câu hỏi trung tâm (chặn sai số của SGD sau $K$ bước và chọn thời điểm dừng) có ở lời dẫn F00; không có phát hiện nghiêm trọng hay trung bình.
 - Mật độ sau sửa: F01b 34; F01c 22 (6 dòng, 3 công thức hiển thị); F02 42.
 - Quyết định của master: F01c `chấp nhận` sau các sửa trên; M1, S1–S4 `chấp nhận`; S5 `hoãn`.
+
+## Vòng 9: bỏ F02, F02b, F03 (2026-10-22)
+
+- Yêu cầu người dùng 2026-10-22: “bỏ từ slide Mức nhiễu nền của bước hằng đến slide Bước giảm dần cho hàm lồi mạnh vì hàm lồi không quan trọng ở đây nữa.” Deck 76 → 73 trang, mạch 6 từ 17 xuống 14 trang; SGD chỉ còn bảo đảm không lồi (F04, F04b).
+- Tác tử chỉnh sửa: `ae2473aa8fba08f3b`, general-purpose, opus, medium; không commit.
+- Quyết định của master và cách thực hiện:
+  1. Xóa ba `<section>` F02, F02b, F03.
+  2. F00: từ khóa “Bất đẳng thức một bước · cận không lồi · ngân sách cố định · dừng sớm”; ghi chú nêu bất đẳng thức một bước và chứng minh, định lý không lồi của Bài 05b, so sánh ngân sách và dừng sớm.
+  3. F04, F04b: không có “như trên” hay dẫn ngược tới F02; không sửa.
+  4. F08, F08b: tiêu đề “Bài tập: bất đẳng thức một bước, cận không lồi và dừng sớm” (một dòng ở 1600×900); câu 1 mới về điều kiện $\eta<\tfrac23$; lời giải 1 trên F08b; ghi chú: gợi ý và phép biến đổi $\tfrac\eta2(\tfrac{3\eta}2-1)$ thay phần ví dụ ba quan sát. Câu 2, 3 giữ.
+  5. G01: ô gradient nhóm chỉ còn bất đẳng thức một bước với số hạng nhiễu; ghi chú đoạn 2 bỏ Định lý 05b.39, 05b.36, mức nhiễu nền. 76 âm tiết.
+  6. G02: bỏ dòng SGD lồi mạnh; chú thích “dòng 3–4”; ghi chú đánh số lại, bỏ câu Định lý 05b.39. Dòng Newton và hạ gradient đầy đủ giữ “lồi mạnh”.
+  7. Câu hỏi “Nêu khi nào bước hằng hợp lý dù có mức nhiễu nền.” nằm ở G04 (trang “Câu hỏi tự kiểm tra và tài liệu đọc”), không ở G03 như brief ghi; đã thay ở G04 bằng “Nêu giới hạn của cận không lồi khi $K\to\infty$ với $\eta$ cố định và cách chọn $\eta$ theo $K$.”, lời giải trong ghi chú. G04 cao 474 px; G03 (bảng tổng kết) chỉ sửa ghi chú, vẫn 683 px như trước.
+  8. G04 lời giải câu 1(b): chuyển sang bảo đảm không lồi (Hệ quả 05b.44) với đủ giả thiết, thêm $F-F^*\le\lVert\nabla F\rVert^2/(2\mu)$ cho mục tiêu lồi mạnh. Mặt trang G04 không dùng bảo đảm lồi mạnh.
+  9. Ghi chú khác: A02 (mục tiêu 3 chỉ nêu bảo đảm không lồi), A03 (dẫn thẳng Định lý 05b.39), E02b (dẫn thẳng Định lý 05b.39), E05 (“Định lý hội tụ không lồi ở phần tốc độ hội tụ dưới nhiễu”). F05, F05b, G01b không dẫn tới ba trang đã bỏ; đoạn so bậc lồi mạnh của Sra, Nowozin và Wright ở F05b giữ vì dẫn nguồn ngoài, và lời giải G04 câu 1(b) dùng nó.
+  10. Hình `img/lec-06/vda-sgd-bound-vs-exact.svg`: deck không còn dùng; `materials/lec-06/lecture-note.md` vẫn dẫn (một chỗ). Deck và ghi chú Bài 05b dùng bản `img/lec-05b/`. Không xóa tệp.
+  11. Planning: storyboard và outline chuyển ba mục vào “Trang đã bỏ (2026-10-22)” với quyết định `bỏ`; số trang 73; dòng mạch F; luận đề bỏ T5, T6; bản đồ hành trình KN8; dòng `sửa 2026-10-22` trên A02, A03, E02b, E05, F00, F08, F08b, G01, G02, G03, G04; thời lượng của ba trang (0,06 LT + 0,01 BT) trừ đi, không phân bổ lại (mạch F 0,24 + 0,12; tổng 1,94 + 0,99). Thứ tự mục của storyboard và outline khớp 73 trang của deck.
+- Ghi chú bài giảng `materials/lec-06/lecture-note.md` không đổi: các mục lồi mạnh giữ làm nội dung giáo trình (quyết định của master).
+- Kiểm tra: `grep` toàn deck các mẫu “nhiễu nền”, “giảm dần”, “05b.36”, “05b.39”, “ba quan sát”, “8/57”, “0,267”, “\mu(k+1)”, “như trên”: chỉ còn A03 và E02b dẫn thẳng “Định lý 05b.39” của Bài 05b, E02b nói “bước giảm dần cho hàm lồi mạnh của Định lý 05b.39”, và “như trên” ở ghi chú D03 (không liên quan). Playwright: 73 trang; F00, F01c, F04, F04b, F08, F08b, G01, G02, G03, G04 ở 1600×900 và 390×844: 0 lỗi, 0 cảnh báo, 0 `.katex-error`, vừa khung 16:9 (G03 683 px như trước). `git diff --check` sạch.
+- Tái kiểm vòng 9 (theo lệnh gọi `Agent` của master): toán học `aadb8dcf7d8cb7e47` (general-purpose, opus, high); mạch kể `af9ad99875b2e8cb7` (general-purpose, opus, high).
+
+| Mã | Mức độ | Trang chiếu / tệp | Vấn đề | Trạng thái | Quyết định của master |
+|---|---|---|---|---|---|
+| M9-1 = S9-1 | trung bình | G02 dòng 3; G04 câu 1(b) | dòng 3 của bảng lựa chọn chỉ ghi “không lồi”, không có trường hợp cho logistic lồi mạnh, $n$ lớn ở G04 1(b) | đã sửa: ô “Tình huống” thành “$n$ lớn (lồi hoặc không lồi)”; ghi chú G02 thêm $F-F^*\le\lVert\nabla F\rVert^2/(2\mu)$ cho mục tiêu $\mu$-lồi mạnh; chú thích giữ “dòng 3–4 cần $F$ trơn” | chấp nhận |
+| S9-2 | trung bình | `materials/lec-06/exercises.md` | Bài 9 câu 1 (ví dụ ba quan sát) và Bài 11 câu 4 (mức nhiễu nền) lệch deck | đã sửa (chi tiết dưới) | chấp nhận |
+| M9-2, S9-3 | nhẹ | G01 (ghi chú) | $F_\lambda$ dùng trước khi định nghĩa; “không còn lồi mạnh (ii)” lẫn hai trường hợp | đã sửa: định nghĩa $F_\lambda=F+\tfrac\lambda2\lVert\theta\rVert^2$ ở lần đầu; “… và cũng mất khi mục tiêu không lồi (ii), hoặc lồi nhưng không lồi mạnh” | chấp nhận |
+| M9-3 | nhẹ | A03 (ghi chú) | dẫn Định lý 05b.39 không nêu lịch bước | đã sửa: “(Định lý 05b.39, bước giảm dần $\tfrac1{\mu(k+1)}$)” | chấp nhận |
+| M9-4, S9-4 | nhẹ | F00 (ghi chú) | “phương sai $\operatorname{tr}\Sigma/b$” chỉ đúng khi chọn có hoàn lại; mạch làm chủ ngữ | đã sửa: “phương sai không quá $\operatorname{tr}\Sigma/b$ (bằng khi chọn có hoàn lại)”; “Bất đẳng thức một bước và chứng minh của nó dẫn tới định lý hội tụ cho hàm không lồi của Bài 05b, phát biểu lại với ký hiệu chung; …” | chấp nhận |
+| S9-5 | nhẹ | outline, dòng LLO12 | phạm vi và bằng chứng cũ | đã sửa: “Một phần: không có momentum, Nesterov; lịch bước chỉ có bước hằng chọn theo $K$ (F04b)”, bằng chứng “E03–E06, F01–F05b”. Mục tiêu 5 của ghi chú bài giảng rộng hơn deck có chủ ý (theo quyết định giữ ghi chú) | chấp nhận |
+| S9-6 | nhẹ | G04 câu 4 | câu hỏi dạng nhớ lại | không sửa | bác bỏ: G04 là câu hỏi tự kiểm tra, dạng nhớ lại là đúng chủ đích; F08 câu 2 đã luyện áp dụng hệ quả chọn bước |
+| S9-7 | nhẹ | storyboard luận đề | “lập luận đại lượng thay thế (E02)” không khớp tiêu đề mới của E02 | đã sửa: “ước lượng rủi ro kỳ vọng bằng rủi ro thực nghiệm (E02)” trong storyboard và ba chỗ cùng cụm của outline (mục 1, mục 2, mục E02) | chấp nhận |
+
+- `materials/lec-06/exercises.md` (S9-2):
+  - đoạn mở: bỏ câu ghi Định lý 06.31, 06.32 (SGD lồi mạnh) “như trên trang chiếu”; thêm Mệnh đề 06.29 (bất đẳng thức một bước); nêu hai định lý lồi mạnh chỉ có trong ghi chú bài giảng, bộ bài tập không dùng;
+  - Bài 9: tiêu đề “Bất đẳng thức một bước, cận không lồi và dừng sớm”; câu 1 thay bằng câu 1 mới của F08 (Mệnh đề 06.29, $\eta<\tfrac23$); gợi ý câu 1 mới; lời giải câu 1 có đủ phép biến đổi và nhận xét về $\eta\ge\tfrac23$; dòng **Kiểm tra** thay bằng phép thử $\eta=\tfrac12$ ($-\tfrac1{16}$) và $\eta=1$ ($\tfrac14$). Đã bỏ: ví dụ ba quan sát, công thức $0{,}81^k+\tfrac8{57}(1-0{,}81^k)$, $\tfrac8{3k}$ (Ví dụ 06.23), cận $0{,}9^k+0{,}267$ của Định lý 06.31, giới hạn $\tfrac8{57}$ và mức nhiễu nền;
+  - Bài 11: câu 4 và gợi ý, lời giải câu 4 thay bằng câu 4 mới của G04 (giới hạn $L\eta\sigma^2$, Hệ quả 06.35, $O(1/\sqrt K)$); lời giải 1(b) chuyển từ Định lý 06.32 sang Hệ quả 06.35 cùng giả thiết và $F-F^*\le\lVert\nabla F\rVert^2/(2\mu)$, khớp ghi chú G04. Đã bỏ: mức nhiễu nền, Nhận xét 06.23, so sánh Bottou–Bousquet ở câu 4;
+  - sau sửa, câu hỏi G04 khớp Bài 11 và lời giải khớp; câu “Lời giải chi tiết nằm trong bài tập của Bài 06” ở ghi chú G04 và khẳng định trong storyboard G04 đúng. `grep` “ba quan sát”, “nhiễu nền”, “8}{57”, “06.31”, “06.32” trong `exercises.md`: chỉ còn câu ở đoạn mở nói hai định lý lồi mạnh không dùng;
+  - chạy `sync-local-materials.py` và `--check`: OK.
+- Bảng kiểm toán tập trung mạch 6 (báo cáo `af9ad99875b2e8cb7`, sau khi bỏ F02, F02b, F03):
+
+| Trang | Chức năng | Phần trả lời | Đầu vào | Đầu ra | Đề xuất |
+|---|---|---|---|---|---|
+| F00 | tiêu đề mạch | câu hỏi | đầu ra mạch 5 | — | giữ |
+| F01 | nhiễu tại nghiệm (ví dụ, trực quan) | vì sao cận cần số hạng nhiễu | dữ liệu bốn điểm, $\operatorname{tr}\Sigma$ | $\tfrac{69}{128}>\tfrac12$ | giữ; thiếu "Nhu cầu:" (S5, hoãn) |
+| F01b | bất đẳng thức một bước | cơ chế sai số | giả thiết từ mạch 5 | số hạng nhiễu $\tfrac{L\eta^2}2\sigma^2$ | giữ |
+| F01c | chứng minh F01b | giả thiết dùng ở đâu | F01b, cận trên bậc hai | cùng bất đẳng thức | giữ |
+| F04 | định lý không lồi | cận chuẩn gradient | F01b/F01c | cận chuẩn gradient | giữ |
+| F04b | hệ quả chọn $\eta$ theo $K$ | $O(1/\sqrt K)$ | F04 | quy tắc bước | giữ |
+| F05, F05b | so sánh cùng ngân sách | GD đầy đủ so với nhóm nhỏ | F04b | ngưỡng ngân sách | giữ |
+| F06, F06b | dừng sớm theo tập xác thực | khi nào dừng | F05b | thuật toán | giữ |
+| F07, F07b | dừng sớm và chính quy hóa $\ell_2$ | ý nghĩa của dừng | F06b | tỉ số giữ lại | giữ |
+| F08, F08b | bài tập và lời giải | kiểm tra đích của mạch | F01–F07 | — | giữ |
+
+- Bảng kiểm toán tập trung mạch 7:
+
+| Trang | Chức năng | Phần trả lời |
+|---|---|---|
+| G00 | tiêu đề mạch | câu hỏi |
+| G01, G01b | điều mất và điều giữ | giả thiết và bảo đảm |
+| G02 | bảng lựa chọn | câu trả lời |
+| G03 | tổng kết theo mục tiêu | khép lại |
+| G04 | tự kiểm tra và tài liệu | đo mục tiêu 3 |
+
+Kết luận kiểm toán: không có phát hiện `nghiêm trọng`; phát hiện `trung bình` duy nhất ở mặt trang là S9-1, đã sửa.
+
+- Quyết định của master: chấp nhận sau các sửa trên; S9-6 bác bỏ.
+
+## Vòng 10: tiêu đề F07 (2026-10-22)
+
+- Yêu cầu người dùng 2026-10-22: trang F07 “Ví dụ: tỉ lệ giữ của dừng sớm và chính quy hóa $\ell_2$” đổi tiêu đề thành “Dừng sớm so với chính quy hóa” (đúng nguyên văn; không có $\ell_2$ và tiền tố “Ví dụ:”).
+- Tác tử chỉnh sửa: `ae2473aa8fba08f3b`, general-purpose, opus, medium; không commit.
+- Sửa: `<h2>` của F07 trong deck; tiêu đề mục F07 và dòng `sửa 2026-10-22` trong storyboard (ghi rõ trang vẫn là trang ví dụ về chức năng, kết bằng “Diễn giải:”) và outline. Không mục nào khác, kể cả bản đồ hành trình, dẫn tiêu đề cũ. Ghi chú bài giảng và bài tập không có tiêu đề chép tiêu đề cũ của trang.
+- Kiểm tra: `git diff --check` sạch; Playwright F07 ở 1600×900.
+- Quyết định của master: (chờ).
+
+## Vòng 11: tái kiểm toán học và mạch kể sau vòng 9–10 (2026-10-22)
+
+- Tác tử: tái kiểm toán học `a7589d9c0ff72402d` (general-purpose, opus, high); tái kiểm mạch kể `a848c33854f70c8e8` (general-purpose, opus, high); tác tử chỉnh sửa `ae2473aa8fba08f3b` (general-purpose, opus, medium), không commit. Nội dung phát hiện ghi theo brief của master; mức độ ghi theo brief, các ô không có mức trong brief ghi “nhẹ” theo master.
+
+| Mã | Mức độ | Trang chiếu / tệp | Vấn đề | Trạng thái | Quyết định của master |
+|---|---|---|---|---|---|
+| M11-1 = S11-7 | trung bình | `exercises.md` Bài 11 | gợi ý dẫn bảng Mục 7.2 (có dòng SGD lồi mạnh) nhưng lời giải không dùng | đã sửa (phương án 2): lời giải 1(b) thêm “Cách khác: … Định lý 06.32, dòng 3 của bảng ở Mục 7.2; trang chiếu không trình bày định lý này”; đoạn mở: “chỉ dùng Định lý 06.32 như cách khác ở Bài 11” | chấp nhận |
+| M11-2 | nhẹ | G02, G04 (ghi chú); Bài 11 1(b) | $F-F^*\le\lVert\nabla F\rVert^2/(2\mu)$ thiếu nguồn | đã sửa: “(Bổ đề 05b.8(b))”; ở bài tập thêm “tức Mệnh đề 04.25(b)” (ghi chú Bài 06 không phát biểu lại) | chấp nhận |
+| M11-3 = S11-15 | nhẹ | F08b (ghi chú câu 1) | câu về $F$ giảm trên một lần chạy không đúng điều cận nói | đã sửa: “Khi đó $\mathbb E[F(\theta_{k+1})\mid\theta_k]$ vẫn có thể nhỏ hơn $F(\theta_k)$, vì bất đẳng thức chỉ là một cận trên.” | chấp nhận |
+| M11-4 | nhẹ | G04 (ghi chú 1(b)); Bài 11 1(b) | so bậc Bottou–Bousquet thiếu phạm vi | đã sửa: “(so bậc cho SGD trên hàm lồi mạnh)” | chấp nhận |
+| M11-5 | nhẹ | F00 (dòng dẫn) | “chặn sai số” không khớp bảo đảm có được (chuẩn gradient) | đã sửa: “Muốn chặn chuẩn gradient của hạ gradient ngẫu nhiên sau $K$ bước và chọn thời điểm dừng.”; câu hỏi trung tâm mạch 6 trong bảng mạch storyboard, bảng mạch outline và dòng nhu cầu mạch F của outline sửa theo | chấp nhận |
+| M11-6 = S11-8 | nhẹ | `exercises.md` Bài 9 câu 1 | trùng dữ kiện F08 | đã sửa: $\lVert\nabla F\rVert^2=1$, $\Delta=\eta(\eta-1)$, đáp án $\eta<1$; kiểm tra $\eta=\tfrac12\to-\tfrac14$, $\eta=2\to2$; câu kết theo M11-3 | chấp nhận |
+| S11-1 | trung bình | F07b | tiêu đề F07b gần trùng tiêu đề mới của F07 | đã sửa: “Tương ứng giữa số bước dừng và hệ số chính quy hóa”, khớp nhận xét $\lambda\approx1/(\eta k)$ và lưu ý $k\leftrightarrow1/(\eta\lambda)$ | chấp nhận |
+| S11-2 | nhẹ | F07 | thiếu nhãn ví dụ sau khi bỏ “Ví dụ:” ở tiêu đề | đã sửa: “<b>Ví dụ.</b> Tính hai tỉ lệ …” | chấp nhận |
+| S11-3 | nhẹ | F07 | “Diễn giải:” không nối với câu hỏi của mạch | đã sửa: “với $\alpha=0{,}01$, dừng sau $20$ bước co như $\lambda=0{,}1$; chọn $k$ đóng vai chọn $\lambda$” (rút gọn từ câu của master để trang còn 671/675 px; bản đầy đủ cho 712 px) | chấp nhận |
+| S11-4 | nhẹ | F06b, F07b (ghi chú) | còn gọi F07 là “ví dụ tỉ lệ giữ” | đã sửa | chấp nhận |
+| S11-5 | nhẹ | F04 | dòng chứng minh thiếu bước $1-\tfrac{L\eta}2\ge\tfrac12$; ghi chú “không chứng minh lại” | đã sửa; F04 60 âm tiết, 569 px | chấp nhận |
+| S11-6 | nhẹ | F08 câu 3 | trùng hàng giữa của F07 | đã sửa: $k=10$; đáp án $1-0{,}95^{10}\approx0{,}40126$ và $0{,}5$ | chấp nhận |
+| S11-9 | trung bình | storyboard, outline | tham chiếu cũ tới F02, F03, T5, T6, Ví dụ A, G03, F08c, kiểm tổng, hình SVG | đã sửa (chi tiết dưới) | chấp nhận |
+| S11-10 | nhẹ | vòng 10 | chưa kiểm khổ hẹp | không sửa ở đây | master tự chạy |
+| S11-11 | nhẹ | A02 (ghi chú) | câu đo mục tiêu 3 gộp hai loại bài tập | đã sửa | chấp nhận |
+| S11-12 | nhẹ | G04 câu 4 | “giới hạn của cận” mơ hồ | đã sửa: “Nêu giá trị giới hạn của vế phải cận không lồi …”; Bài 11 câu 4 đổi theo | chấp nhận |
+| S11-13 | nhẹ | F00 (ghi chú) | “hai cận” không có chỗ dựa | đã sửa | chấp nhận |
+| S11-14 | nhẹ | F01 | thiếu “Nhu cầu:” (đóng S5 của vòng 8) | đã sửa; F01 41 âm tiết, 6 dòng, 452 px | chấp nhận |
+| M11-7 | nhẹ | F08b (ghi chú câu 3) | “Tương ứng của trang trước” chỉ sai trang: ba điều kiện nằm ở F07b, không ở trang ngay trước | đã sửa: “Tương ứng giữa số bước dừng và hệ số chính quy hóa cần …” | chấp nhận |
+| M11-8 = S11-17 | nhẹ | `exercises.md` Bài 9 lời giải 1 | hai câu liền nhau cùng mở bằng “Khi $\eta\ge1$,” | đã sửa: câu thứ hai mở bằng “Dù vậy,”; đồng bộ, `--check` OK | chấp nhận |
+| S11-16 | nhẹ | F07 (“Diễn giải:”) | “co như” không chính xác | đã sửa: “giữ gần như” | chấp nhận |
+| S11-18 | nhẹ | storyboard F07 | “Bước hành trình” còn ghi hình thức và ứng dụng đã chuyển sang F07b | đã sửa: “KN9 ví dụ dẫn nhập (nhận xét và phạm vi ở F07b).” | chấp nhận |
+
+- S11-9, chi tiết: storyboard khung (5) “T5 (F02), T6 (F03)” → F01b, F01c, T8 (F04, F04b), giữ dấu vết “đã thay 2026-10-22”; storyboard F08 (Nhu cầu, Đầu ra), F08b (Nhu cầu, Đầu ra, dữ kiện của Quyết định), F07 (Đầu vào, Đầu ra: hình và nhận xét thuộc F07b); outline §1.1 “(T5, T6, T8)” → “(T8; T5, T6 đã thay 2026-10-22)”; §8.6 tiêu đề “E01, F04–F05b, G04”, gạch “Ví dụ A của 05b” ghi không còn trên deck, “G03, câu hỏi 1” → G04; §8.7 “(F07, F07b, F08 câu 3)”; §5 Kiểm tổng tính lại 1,94 / 0,99 với F = 0,24 / 0,12, B3 = 0,93; §9: hình `vda-sgd-bound-vs-exact.svg` không còn dùng trên deck, ghi chú bài giảng vẫn dùng.
+- Đính chính vòng 9: mục 11 của vòng 9 viết “luận đề bỏ T5, T6” như áp dụng cho cả storyboard và outline; thực tế vòng 9 chỉ sửa luận đề của storyboard, còn mục 1.1 của outline vẫn ghi “(T5, T6, T8)” đến vòng 11.
+- `exercises.md`: đồng bộ bằng `sync-local-materials.py`; `--check` OK.
+- Kiểm tra: `git diff --check` sạch; Playwright F00, F01, F04, F07, F07b, F08, F08b, G02, G04 ở 1600×900 và 390×844: 0 lỗi, 0 cảnh báo console, 0 `.katex-error`; chiều cao ở 1600: F00 564, F01 452, F04 569, F07 671, F07b 493, F08 371, F08b 384, G02 609, G04 514 (khung 675).
+- Kiểm toán tập trung mạch 6: đạt (S5 đóng nhờ S11-14).
+- Quyết định của master: Vòng 9–11 `chấp nhận`; S9-6 bác bỏ.

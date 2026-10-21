@@ -1,6 +1,6 @@
 # Bài tập Bài 06 — Mở rộng mô hình và dữ liệu
 
-Bộ bài tập gồm mười một bài theo sáu phần của bài học, ở ba mức: nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI. Các Bài 1, 3, 5, 7, 9 và 11 dựa trên câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ; ở Bài 1, 5 và 9, một phần dữ kiện được đổi để không trùng các ví dụ đã giải trong ghi chú bài giảng. Lời giải mẫu của Bài 3 và Bài 7 có trên trang chiếu, và câu 5 của Bài 7 được tách thành một bài riêng ở đó; đáp án ngắn của Bài 11 nằm trong ghi chú diễn giả của trang câu hỏi tự kiểm tra. Ký hiệu, giả thiết H0–H6b và số hiệu theo ghi chú bài giảng Bài 06. Các định lý hội tụ được gọi bằng phát biểu kèm số hiệu, như trên trang chiếu: SGD bước hằng trên hàm lồi mạnh là Định lý 06.31 (Định lý 05b.36); SGD bước giảm dần $\tfrac1{\mu(k+1)}$ trên hàm lồi mạnh là Định lý 06.32 (Định lý 05b.39); hạ gradient trên hàm không lồi là Định lý 06.20 (Định lý 05b.41); SGD trên hàm không lồi là Định lý 06.34 (Định lý 05b.43), và cách chọn bước theo số bước là Hệ quả 06.35 (Hệ quả 05b.44). Trên trang chiếu, Mệnh đề 1, 2, 3 là Mệnh đề 06.4, 06.8, 06.9 của ghi chú.
+Bộ bài tập gồm mười một bài theo sáu phần của bài học, ở ba mức: nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI. Các Bài 1, 3, 5, 7, 9 và 11 dựa trên câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ; ở Bài 1, 5 và 9, một phần dữ kiện được đổi để không trùng các ví dụ đã giải trong ghi chú bài giảng. Lời giải mẫu của Bài 3 và Bài 7 có trên trang chiếu, và câu 5 của Bài 7 được tách thành một bài riêng ở đó; đáp án ngắn của Bài 11 nằm trong ghi chú diễn giả của trang câu hỏi tự kiểm tra. Ký hiệu, giả thiết H0–H6b và số hiệu theo ghi chú bài giảng Bài 06. Các kết quả hội tụ được gọi bằng phát biểu kèm số hiệu, như trên trang chiếu: bất đẳng thức một bước có số hạng nhiễu là Mệnh đề 06.29; hạ gradient trên hàm không lồi là Định lý 06.20 (Định lý 05b.41); SGD trên hàm không lồi là Định lý 06.34 (Định lý 05b.43), và cách chọn bước theo số bước là Hệ quả 06.35 (Hệ quả 05b.44). Hai định lý SGD trên hàm lồi mạnh, Định lý 06.31 (Định lý 05b.36) và Định lý 06.32 (Định lý 05b.39), chỉ có trong ghi chú bài giảng; bộ bài tập này chỉ dùng Định lý 06.32 như cách khác ở Bài 11. Trên trang chiếu, Mệnh đề 1, 2, 3 là Mệnh đề 06.4, 06.8, 06.9 của ghi chú.
 
 Bốn bộ dữ liệu dùng chung, được nêu lại trong từng bài khi cần:
 
@@ -284,28 +284,38 @@ Nhóm ba mẫu bỏ mẫu $j$ có $\widehat g=-\tfrac13g_j$ vì tổng bốn gra
 **Kiểm tra.** Với $j=4$: $\widehat g=(\tfrac23,\tfrac13)$, $\theta_1=(1-\tfrac16,1-\tfrac1{12})$; trực tiếp, phần dư $wx_i+c-y_i$ là $-\varepsilon_i+(-\tfrac16x_i-\tfrac1{12})$ với $\varepsilon=(1,-1,-1,1)$, tức $(-\tfrac{11}{12},\tfrac{11}{12},\tfrac34,-\tfrac{17}{12})$, cho $F(\theta_1)=\tfrac18\cdot\tfrac{612}{144}=\tfrac{17}{32}$.
 :::
 
-## Bài 9. Lịch bước, cận không lồi và dừng sớm
+## Bài 9. Bất đẳng thức một bước, cận không lồi và dừng sớm
 
 Mức độ: tính toán. LLO11, LLO12; CLO1, CLO2.
 
 ::: exercise Bài 9
-1. Ví dụ ba quan sát: $y=(-1,1,3)$, $F(\theta)=\tfrac12(\theta-1)^2+\tfrac43$, $\mu=L=1$, $\sigma^2=\tfrac83$, $\theta_0=0$. Tính $\mathbb E(\theta_k-1)^2$ tại $k=15$ và $k=30$ cho bước hằng $0{,}1$ (dùng $0{,}81^k+\tfrac8{57}(1-0{,}81^k)$) và cho bước $\eta_k=\tfrac1{k+1}$. Lịch nào tốt hơn ở mỗi $k$? So với cận $0{,}9^k+0{,}267$ của Định lý 06.31.
+1. Với $L=\sigma^2=1$ và $\lVert\nabla F(\theta_k)\rVert^2=1$, tìm mọi $\eta>0$ để bất đẳng thức một bước (Mệnh đề 06.29) bảo đảm giảm theo kỳ vọng, tức vế phải nhỏ hơn $F(\theta_k)$.
 2. Với $L=\Delta_0=\sigma^2=1$, tìm $K$ nhỏ nhất để cận của Hệ quả 06.35 không vượt $0{,}02$.
 3. Với $\eta=0{,}5$, $k=20$, trị riêng $\alpha=0{,}05$, tính tỉ lệ giữ của dừng sớm và của chính quy hóa với hệ số $\lambda=0{,}1$, rồi giải thích sai khác.
 :::
 
 ::: hint Gợi ý Bài 9
-Ở câu 1, bước $\tfrac1{k+1}$ cho $\mathbb E(\theta_k-1)^2=\tfrac8{3k}$ (Ví dụ 06.23). Ở câu 2, với $K\ge2$, bước của Hệ quả 06.35 là $\sqrt{2/K}$ và cận là $\tfrac2K+\tfrac{2\sqrt2}{\sqrt K}$. Ở câu 3, xem Nhận xét 06.41.
+Ở câu 1, viết hai số hạng sau $F(\theta_k)$ ở vế phải của (6.1) thành một đa thức theo $\eta$ rồi xét dấu. Ở câu 2, với $K\ge2$, bước của Hệ quả 06.35 là $\sqrt{2/K}$ và cận là $\tfrac2K+\tfrac{2\sqrt2}{\sqrt K}$. Ở câu 3, xem Nhận xét 06.41.
 :::
 
 ::: solution Lời giải Bài 9
-1. Tại $k=15$: bước hằng cho $0{,}1768$, bước $\tfrac1{k+1}$ cho $\tfrac8{45}\approx0{,}1778$, nên bước hằng còn tốt hơn một chút. Tại $k=30$: $0{,}1419$ và $\tfrac8{90}\approx0{,}0889$, nên bước giảm dần tốt hơn rõ. Bước hằng giảm nhanh lúc đầu rồi dừng ở giới hạn dương $\tfrac8{57}\approx0{,}140$, còn bước giảm dần tiếp tục giảm theo $\tfrac1k$; điểm đổi chiều là $k=16$. Cận của Định lý 06.31 cho $0{,}4726$ tại $k=15$ và $0{,}3091$ tại $k=30$, lớn hơn giá trị thật vì mức nhiễu nền của cận, $\tfrac{\eta\sigma^2}\mu\approx0{,}267$, lớn hơn giới hạn thật.
+1. Theo (6.1), vế phải nhỏ hơn $F(\theta_k)$ khi và chỉ khi phần thay đổi
+
+$$
+\begin{aligned}
+\Delta(\eta)&=-\eta\Bigl(1-\frac{L\eta}2\Bigr)\lVert\nabla F(\theta_k)\rVert^2+\frac{L\eta^2}2\sigma^2\\
+&=-\eta\Bigl(1-\frac\eta2\Bigr)+\frac{\eta^2}2\\
+&=-\eta+\eta^2=\eta(\eta-1)
+\end{aligned}
+$$
+
+là số âm. Với $\eta>0$, thừa số $\eta$ dương, nên $\Delta(\eta)<0$ khi và chỉ khi $\eta<1$. Khi $\eta\ge1$, số hạng nhiễu $\tfrac{\eta^2}2$ không nhỏ hơn phần giảm $\eta(1-\tfrac\eta2)$, và bất đẳng thức một bước không còn bảo đảm giảm theo kỳ vọng. Dù vậy, $\mathbb E[F(\theta_{k+1})\mid\theta_k]$ vẫn có thể nhỏ hơn $F(\theta_k)$, vì (6.1) chỉ là một cận trên.
 
 2. Giải $\tfrac2K+\tfrac{2\sqrt2}{\sqrt K}\le0{,}02$ cho $K=20\,200$ (cận $\approx0{,}0199998$); với $K=20\,199$, cận vượt $0{,}02$. Số hạng chính $\tfrac{2\sqrt2}{\sqrt K}$ cho ước lượng nhanh $K\approx(100\sqrt2)^2=20\,000$. Ngược lại, khi yêu cầu chặt hơn hai lần, từ $0{,}02$ xuống $0{,}01$, số bước tăng khoảng bốn lần ($80\,400$ so với $20\,200$), đúng với tốc độ $O(1/\sqrt K)$.
 
 3. Dừng sớm: $1-(1-0{,}025)^{20}\approx1-0{,}6027=0{,}3973$; chính quy hóa: $\tfrac{0{,}05}{0{,}05+0{,}1}=\tfrac13\approx0{,}3333$. Ở đây $\eta\alpha=0{,}025$ nhỏ, nên $0{,}975^{20}\approx0{,}6027$ gần $e^{-\eta\alpha k}=e^{-0{,}5}\approx0{,}6065$. Nhưng $\alpha/\lambda=0{,}5$ không nhỏ, nên $\tfrac\lambda{\alpha+\lambda}=\tfrac23\approx0{,}667$ khác $e^{-\alpha/\lambda}=e^{-0{,}5}\approx0{,}6065$. Sai khác đến từ điều kiện $\alpha\ll\lambda$.
 
-**Kiểm tra.** Ở câu 1, $0{,}81^{15}\approx0{,}0424$, nên $0{,}0424+\tfrac8{57}(1-0{,}0424)\approx0{,}0424+0{,}1344=0{,}1768$.
+**Kiểm tra.** Ở câu 1, với $\eta=\tfrac12$: $\Delta=-\tfrac12\cdot\tfrac34+\tfrac18=-\tfrac14<0$; với $\eta=2$: $\Delta=-2\cdot0+2=2>0$. Hai giá trị nằm hai phía của $1$, khớp với dấu của $\eta(\eta-1)$.
 :::
 
 ## Bài 10. Ngân sách cố định và quy tắc dừng sớm
@@ -355,21 +365,21 @@ Mức độ: nhận biết và vận dụng vào AI. LLO11, LLO15; CLO1, CLO4.
 1. Chọn phương pháp cho: (a) $n=10^3$, $p=50$, hồi quy logistic có chính quy hóa; (b) $n=10^8$, $p=10^6$, cùng mô hình; (c) mạng, $n=p=10^7$.
 2. Giải thích vì sao Mệnh đề 06.9 không khẳng định mọi mạng đều cho $F$ không lồi.
 3. Định lý 06.34 (SGD trên hàm không lồi) chặn đại lượng nào, và không chặn đại lượng nào?
-4. Khi nào bước hằng là lựa chọn hợp lý dù có mức nhiễu nền?
+4. Nêu giá trị giới hạn của vế phải cận trong Định lý 06.34 khi $K\to\infty$ với $\eta$ cố định, và cách chọn $\eta$ theo $K$.
 :::
 
 ::: hint Gợi ý Bài 11
-Ở câu 1, tính chi phí một bước theo bảng của Ví dụ 06.17 và dùng bảng lựa chọn ở Mục 7.2 của ghi chú. Ở câu 4, so mức nhiễu nền với sai số thống kê bậc $1/\sqrt n$ (Nhận xét 06.23).
+Ở câu 1, tính chi phí một bước theo bảng của Ví dụ 06.17 và dùng bảng lựa chọn ở Mục 7.2 của ghi chú. Ở câu 4, xét riêng hai số hạng $\tfrac{2\Delta_0}{\eta K}$ và $L\eta\sigma^2$ của cận, rồi dùng Hệ quả 06.35.
 :::
 
 ::: solution Lời giải Bài 11
-1. (a) Newton: một bước tốn $np^2+p^3=2{,}5\cdot10^6+1{,}25\cdot10^5\approx2{,}6\cdot10^6$ phép tính, và có hội tụ bậc hai cục bộ (Định lý 05.33). (b) SGD với bước $\eta_k=\tfrac1{\lambda(k+k_0)}$, $\lambda$ là hệ số chính quy hóa đóng vai $\mu$ (Định lý 06.32). Lý do chính là chi phí một bước: hạ gradient đầy đủ tốn $np=10^{14}$, Newton tốn $np^2+p^3\approx10^{20}$, còn một bước SGD tốn $bp$. Chỉ báo bổ sung: theo Bottou và Bousquet (2011, Bảng 13.2), với $\kappa=10$ và độ chính xác $10^{-6}$, hai bậc thời gian bằng nhau khi $n$ trong khoảng $10^5$–$10^6$, và $n=10^8$ vượt xa bậc đó. (c) SGD nhóm nhỏ (Thuật toán 06.2) với lịch bước và dừng sớm (Thuật toán 06.3); Định lý 06.34 chỉ là định hướng nếu mạng dùng ReLU.
+1. (a) Newton: một bước tốn $np^2+p^3=2{,}5\cdot10^6+1{,}25\cdot10^5\approx2{,}6\cdot10^6$ phép tính, và có hội tụ bậc hai cục bộ (Định lý 05.33). (b) SGD nhóm nhỏ với bước hằng chọn theo $K$ (Hệ quả 06.35). Giả thiết của bảo đảm là $F$ bị chặn dưới, gradient Lipschitz, gradient nhóm không chệch và chặn phương sai; mất mát logistic có chính quy hóa thỏa các giả thiết này. Bảo đảm là $O(1/\sqrt K)$ cho trung bình kỳ vọng bình phương chuẩn gradient; vì mục tiêu $\mu$-lồi mạnh, $F(\theta)-F^*\le\lVert\nabla F(\theta)\rVert^2/(2\mu)$ (Bổ đề 05b.8(b), tức Mệnh đề 04.25(b)), nên gradient nhỏ kéo theo giá trị gần tối ưu. Cách khác: khi biết $\mu$, bước giảm dần $\tfrac1{\mu(k+1)}$ cho tốc độ $O(1/k)$ theo kỳ vọng (Định lý 06.32, dòng 3 của bảng ở Mục 7.2); trang chiếu không trình bày định lý này. Lý do chính là chi phí một bước: hạ gradient đầy đủ tốn $np=10^{14}$, Newton tốn $np^2+p^3\approx10^{20}$, còn một bước SGD tốn $bp$. Chỉ báo bổ sung (so bậc cho SGD trên hàm lồi mạnh): theo Bottou và Bousquet (2011, Bảng 13.2), với $\kappa=10$ và độ chính xác $10^{-6}$, hai bậc thời gian bằng nhau khi $n$ trong khoảng $10^5$–$10^6$, và $n=10^8$ vượt xa bậc đó. (c) SGD nhóm nhỏ (Thuật toán 06.2) với lịch bước và dừng sớm (Thuật toán 06.3); Định lý 06.34 chỉ là định hướng nếu mạng dùng ReLU.
 
 2. Mệnh đề 06.9 là một phép kiểm tra tại một cặp cực tiểu toàn cục có hai đơn vị ẩn khác nhau. Trên dữ liệu khác, mọi cực tiểu có thể có các đơn vị trùng nhau; khi đó phép hoán vị không tạo cực tiểu mới và phép kiểm tra không kết luận.
 
 3. Định lý 06.34 chặn trung bình theo $k$ của kỳ vọng bình phương chuẩn gradient của dãy lặp. Nó không chặn khoảng cách tới một cực tiểu, không chặn giá trị $F$, không phân biệt điểm yên ngựa với cực tiểu, và không chặn $R$ của tham số được trả về theo tập xác thực (Nhận xét 06.36).
 
-4. Khi số bước $K$ cố định trước và sai số giá trị tương ứng với mức nhiễu nền, có bậc $\tfrac L2\cdot\tfrac{\eta\sigma^2}\mu$, nhỏ hơn sai số ước lượng bậc $1/\sqrt n$. Khi đó, theo phân tích Bottou–Bousquet cho bài toán lồi, giảm tiếp sai số tối ưu không đổi bậc của sai số vượt.
+4. Với $\eta$ cố định, số hạng $\tfrac{2\Delta_0}{\eta K}$ tiến về $0$ khi $K\to\infty$, còn số hạng $L\eta\sigma^2$ không phụ thuộc $K$; vế phải tiến về $L\eta\sigma^2$, nên cận không tiến về $0$. Muốn cận tiến về $0$, bước phải giảm theo $K$. Hệ quả 06.35 chọn $\eta=\min\{\tfrac1L,\sqrt{2\Delta_0/(L\sigma^2K)}\}$, tức $\eta$ tỉ lệ với $1/\sqrt K$ khi $K$ lớn; hai số hạng khi đó cùng bậc và cận là $O(1/\sqrt K)$.
 
 **Kiểm tra.** Ở câu 1(b): $10^8\cdot10^{12}+10^{18}=1{,}01\cdot10^{20}$.
 :::
