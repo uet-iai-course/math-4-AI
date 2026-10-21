@@ -880,3 +880,48 @@ Trạng thái: chờ master rà soát vòng 5.
 | U2 | nhẹ | G01 (mặt trang, ghi chú) | “$F$ chỉ thay thế cho $R$” còn dùng cách gọi cũ | đã sửa: “$F$ chỉ ước lượng $R$” ở ô phải và ghi chú; 77 âm tiết (trần 80) | chấp nhận |
 
 - Quyết định của master: sửa tiêu đề E02 `chấp nhận`; U1, U2 `chấp nhận`, đã sửa như trên.
+
+## Vòng 8: chứng minh bất đẳng thức một bước, trang F01c (2026-10-22)
+
+- Yêu cầu người dùng 2026-10-22, trang F01b “Bất đẳng thức một bước có số hạng nhiễu”: “Thêm gợi ý chứng minh”, kèm bản phác bốn bước (bổ đề giảm, kỳ vọng có điều kiện, tách $\mathbb E\lVert\widehat g\rVert^2$, thế vào).
+- Quyết định bố cục của master: chứng minh đặt ở trang mới F01c “Chứng minh: bất đẳng thức một bước có số hạng nhiễu”, ngay sau F01b. Lý do: CLAUDE.md đặt chứng minh dài hơn một dòng trên trang “Chứng minh: <kết quả>”; thêm bốn dòng vào F01b sẽ vượt trần 3 công thức hiển thị, 6 dòng và khung 675 px.
+- Tác tử chỉnh sửa: `ae2473aa8fba08f3b`, general-purpose, opus, medium; không commit.
+- Sửa:
+  - deck: thêm F01c theo thứ tự bản phác, với hai chỉnh của master: bước 1 gọi là “cận trên bậc hai” (thuật ngữ đã chốt ở D04: bổ đề giảm là hệ quả cho gradient đầy đủ); điều kiện viết “$\mid\theta_k$” như F01b, gradient nhóm $\widehat g_k$ như E05. 25 âm tiết, 6 dòng, 3 công thức hiển thị (dòng cuối là bất đẳng thức đóng khung); 605/675 px ở 1600×900;
+  - deck: ghi chú F01b bỏ phần kể lại chứng minh, giữ phép kiểm tra số; mặt trang F01b không đổi;
+  - storyboard: mục F01c mới, dòng `sửa` 2026-10-22 ở F01b, bản đồ hành trình KN8 thêm F01c, số trang 75 → 76;
+  - outline: dòng F01c trong bảng trang, mục F01c, số trang 76 (F 17), tổng 76; thời lượng F01b 0,02 → 0,01, F01c 0,01 (tổng mạch F không đổi).
+- Ghi chú bài giảng: chứng minh Mệnh đề 06.29 (`materials/lec-06/lecture-note.md`) dùng đúng ba bước và đúng thuật ngữ (“cận trên bậc hai cho từng lần chọn”, kỳ vọng có điều kiện, tách phương sai rồi dùng H6b, ghép). Khác biệt duy nhất là ký hiệu điều kiện: ghi chú viết $\mid\mathcal F_k$, deck viết $\mid\theta_k$ như F01b; không phải lệch thuật ngữ nên không sửa học liệu.
+- Kiểm tra: `git diff --check` sạch; Playwright F01b, F01c ở 1600×900 và 390×844: 0 lỗi, 0 cảnh báo console, 0 `.katex-error`; vừa khung ở 16:9; ở khổ hẹp các công thức cuộn ngang trong vùng `.formula`.
+- Tái kiểm vòng 8 (theo lệnh gọi `Agent` của master): toán học `aadb8dcf7d8cb7e47` (general-purpose, opus, high): 1 phát hiện `nhẹ` (M1); mạch kể `af9ad99875b2e8cb7` (general-purpose, opus, high): 5 phát hiện `nhẹ` (S1–S5) kèm bảng kiểm toán tập trung mạch 6. Tác tử chỉnh sửa không nhận bảng kiểm toán mạch 6 qua brief; master chép bảng vào đây từ báo cáo gốc.
+
+| Mã | Mức độ | Trang chiếu | Vấn đề | Trạng thái | Quyết định của master |
+|---|---|---|---|---|---|
+| M1 (toán học) | nhẹ | F01b (ghi chú) | ánh xạ giả thiết → số hạng sai: tính trơn không chỉ cho hệ số $1-\tfrac{L\eta}2$, tính không chệch bị bỏ sót | đã sửa (gộp với S3) | chấp nhận |
+| S1 (mạch kể) | nhẹ | F01c | “số hạng chéo” dùng cho hai đại lượng | đã sửa: mặt trang gọi tên $-\eta\nabla F(\theta_k)^\top\widehat g_k$; “số hạng chéo” chỉ dùng cho phép tách | chấp nhận |
+| S2 (mạch kể) | nhẹ | F01c | nguồn của cận trên bậc hai chưa nêu | đã sửa trong ghi chú (Bổ đề 04.18; dạng tổng quát đứng sau bổ đề giảm ở D04); mặt trang không đổi; storyboard “Đầu vào” sửa theo | chấp nhận |
+| S3 (mạch kể) | nhẹ | F01b (ghi chú) | câu về vị trí trang, câu chỉ trang sau, liên hệ cộng theo $k$ trùng F01c | đã sửa | chấp nhận |
+| S4 (mạch kể) | nhẹ | F02 | “gradient nhóm như trên” không còn chỉ đúng trang sau khi chèn F01c | đã sửa theo cách viết của master: “gradient nhóm không chệch, phương sai không quá $\sigma^2$” (bản trung gian “như ở bất đẳng thức một bước” làm dòng định lý 21 âm tiết, vượt trần 20); 42 âm tiết, dòng định lý 20 âm tiết | chấp nhận |
+| S5 (mạch kể) | nhẹ | F01 | thiếu dòng “Nhu cầu:” (có từ trước) | không sửa | hoãn: chuyển master và người dùng quyết định |
+
+- Bảng kiểm toán tập trung mạch 6 (báo cáo `af9ad99875b2e8cb7`, master chuyển):
+
+| Trang | Chức năng | Phần trả lời | Đầu vào | Đầu ra | Đề xuất |
+|---|---|---|---|---|---|
+| F00 | tiêu đề mạch | câu hỏi | đầu ra mạch 5 | — | giữ |
+| F01 | nhiễu tại nghiệm (ví dụ, trực quan) | vì sao cận cần số hạng nhiễu | dữ liệu bốn điểm, $\operatorname{tr}\Sigma$ | $\tfrac{69}{128}>\tfrac12$ | giữ; thiếu "Nhu cầu:" (S5, hoãn) |
+| F01b | bất đẳng thức một bước | cơ chế sai số | giả thiết từ mạch 5 | số hạng nhiễu $\tfrac{L\eta^2}2\sigma^2$ | giữ |
+| F01c | chứng minh F01b | giả thiết dùng ở đâu | F01b, cận trên bậc hai | cùng bất đẳng thức | giữ (S1, S2) |
+| F02 | định lý mức nhiễu nền, bước hằng | cận sai số (lồi mạnh) | giả thiết F01b | $\eta\sigma^2/\mu$ | giữ (S4) |
+| F02b | ví dụ ba quan sát | cận so với giá trị chính xác | F02 | 0,140 so với 0,267 | giữ |
+| F03 | bước giảm dần | cận $O(1/k)$ | F02 | tốc độ | giữ |
+| F04 | định lý không lồi | cận chuẩn gradient | F01b/F01c | cận chuẩn gradient | giữ |
+| F04b | hệ quả chọn $\eta$ theo $K$ | $O(1/\sqrt K)$ | F04 | quy tắc bước | giữ |
+| F05, F05b | so sánh cùng ngân sách | GD đầy đủ so với nhóm nhỏ | F04b | ngưỡng ngân sách | giữ |
+| F06, F06b | dừng sớm theo tập xác thực | khi nào dừng | F05b | thuật toán | giữ |
+| F07, F07b | dừng sớm và chính quy hóa $\ell_2$ | ý nghĩa của dừng | F06b | tỉ số giữ lại | giữ |
+| F08, F08b | bài tập và lời giải | kiểm tra đích của mạch | F01–F07 | — | giữ |
+
+Kết luận kiểm toán: câu hỏi trung tâm (chặn sai số của SGD sau $K$ bước và chọn thời điểm dừng) có ở lời dẫn F00; không có phát hiện nghiêm trọng hay trung bình.
+- Mật độ sau sửa: F01b 34; F01c 22 (6 dòng, 3 công thức hiển thị); F02 42.
+- Quyết định của master: F01c `chấp nhận` sau các sửa trên; M1, S1–S4 `chấp nhận`; S5 `hoãn`.

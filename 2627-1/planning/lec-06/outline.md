@@ -19,7 +19,7 @@ Ngày 2026-10-11, người dùng thiết kế lại Bài 05 và Bài 06 thành h
 | Tệp deck đề xuất | `2627-1/lecture-06-mo-rong-mo-hinh-va-du-lieu.html`; hình mới ở `2627-1/img/lec-06/`; kế hoạch ở `2627-1/planning/lec-06/` |
 | Đối tượng | Sinh viên năm ba đã học Bài 00–04 và Bài 05 mới; Bài 05b, 05c là học liệu bổ trợ được dẫn |
 | Thời lượng | Buổi 6 theo đề cương: 2 tiết lý thuyết + 1 tiết bài tập = 3 tiết, chia ba khối B1, B2, B3, mỗi khối 1,00 tiết. Mạch mở đầu A tính vào khối B1; mạch kết luận G tính vào khối B3 |
-| Quy mô | **75 trang, 7 mạch** (A 7, B 14, C 9, D 12, E 11, F 16, G 6) từ 2026-10-21 (A04b tách từ A04, A03b tách từ A03, yêu cầu người dùng; khối B1 = A + B = 21 trang); 73 trang từ đợt rà soát thuật ngữ 2026-10-12 (D04b tách từ D04, mục 1.9); trước đó 72 trang, gồm 6 trang tiêu đề mạch, trang Nội dung và 20 trang tách theo trần mật độ (mục 1.8). Khối B1 = A + B = 19 trang; B2 = C + D = 21 trang (20 trước khi tách D04b); B3 = E + F + G = 33 trang. Bản dựng đầu có 45 trang (A 4, B 10, C 7, D 7, E 6, F 8, G 3); bản kế hoạch đầu có 43 trang |
+| Quy mô | **76 trang, 7 mạch** (A 7, B 14, C 9, D 12, E 11, F 17, G 6) từ 2026-10-22 (F01c thêm theo yêu cầu người dùng); 75 trang từ 2026-10-21 (A04b tách từ A04, A03b tách từ A03, yêu cầu người dùng; khối B1 = A + B = 21 trang); 73 trang từ đợt rà soát thuật ngữ 2026-10-12 (D04b tách từ D04, mục 1.9); trước đó 72 trang, gồm 6 trang tiêu đề mạch, trang Nội dung và 20 trang tách theo trần mật độ (mục 1.8). Khối B1 = A + B = 19 trang; B2 = C + D = 21 trang (20 trước khi tách D04b); B3 = E + F + G = 33 trang. Bản dựng đầu có 45 trang (A 4, B 10, C 7, D 7, E 6, F 8, G 3); bản kế hoạch đầu có 43 trang |
 | Tiên quyết dùng ngay | Quy tắc dây chuyền dạng Jacobian chuyển vị (Bài 00); hàm lồi, điểm dừng của hàm lồi là cực tiểu toàn cục (Bài 01–02); hạ gradient, gradient $L$-Lipschitz, bổ đề giảm, Newton và chi phí giải hệ (Bài 04); kết luận Bài 05 (mục 1.2) |
 
 ### 1.1. Luận đề xuyên suốt
@@ -112,7 +112,8 @@ Theo các mục “Văn phong và mật độ mặt trang chiếu” và “Tran
 | E06b | Bài tập: một bước hạ gradient ngẫu nhiên trên mạng XOR | lời giải | tách từ ghi chú E06 | 0,00 + 0,03 |
 | E06c | Bài tập: phương sai của gradient nhóm ba mẫu | bài tập có lời giải | tách câu 5 của E06 | 0,00 + 0,02 |
 | F00 | 6. Tốc độ hội tụ dưới nhiễu và dừng sớm | tiêu đề mạch | thêm | 0,01 + 0,00 |
-| F01b | Bất đẳng thức một bước có số hạng nhiễu | kết quả | tách từ F02 | 0,02 + 0,00 |
+| F01b | Bất đẳng thức một bước có số hạng nhiễu | kết quả | tách từ F02 | 0,01 + 0,00 (0,02 trước 2026-10-22) |
+| F01c | Chứng minh: bất đẳng thức một bước có số hạng nhiễu | chứng minh | thêm 2026-10-22 (yêu cầu người dùng) | 0,01 + 0,00 |
 | F02b | Ví dụ: ba quan sát với bước hằng | ví dụ, hình chuyển từ F01 | tách từ F02 | 0,01 + 0,01 |
 | F04b | Bước hằng chọn theo số bước | hệ quả | tách từ F04 | 0,02 + 0,00 |
 | F05b | Ngưỡng ngân sách giữa hai cận | kết luận | tách từ F05 | 0,02 + 0,01 |
@@ -234,9 +235,9 @@ Giới hạn bắt buộc phải nói: T7, T8 áp dụng cho mạng có hàm kí
 | C. Lan truyền ngược trên đồ thị tính toán (khối B2, phần 1) | **Nhu cầu:** mọi phương pháp bậc nhất cần $\nabla F(\theta)\in\mathbb R^p$; tính nó với chi phí cùng bậc truyền xuôi | Mô hình và $F$ của mạch B; dây chuyền của Bài 00 | Thuật toán và chi phí; gradient chính xác của một mẫu; một bước hạ gradient | C00–C07b (9) | 0,36 | 0,14 | C07, C07b |
 | D. Điểm dừng và bảo đảm của gradient khi không lồi (khối B2, phần 2) | **Nhu cầu:** xác định điều mà gradient bằng 0 hoặc gradient nhỏ chứng nhận khi $F$ không lồi | Gradient từ C; tính không lồi từ B | Phân loại điểm dừng; bổ đề giảm và T7: bảo đảm có được là điểm dừng xấp xỉ | D00–D07b (12; D04b thêm 2026-10-12) | 0,32 | 0,18 | D07, D07b |
 | E. Gradient nhóm nhỏ và chi phí mỗi bước (khối B3, phần 1) | **Nhu cầu:** một gradient đầy đủ vượt ngân sách; $F$ chỉ là đại lượng thay thế | Thuật toán GD và T7 của D; chi phí của C | Ước lượng không chệch, phương sai, thuật toán SGD, chi phí mỗi bước độc lập với $n$ | E00–E06c (11) | 0,30 | 0,14 | E06–E06c |
-| F. Tốc độ hội tụ dưới nhiễu và dừng sớm (khối B3, phần 2) | **Nhu cầu:** xác định tốc độ hội tụ còn lại khi gradient có nhiễu, và lý do tốc độ đó đủ dưới ngân sách cố định với mục tiêu thay thế | SGD và phương sai của E | Bất đẳng thức một bước có nhiễu; T5, T6, T8 phát biểu lại với phạm vi; so sánh dưới ngân sách cố định; dừng sớm | F00–F08b (16) | 0,30 | 0,13 | F08, F08b |
+| F. Tốc độ hội tụ dưới nhiễu và dừng sớm (khối B3, phần 2) | **Nhu cầu:** xác định tốc độ hội tụ còn lại khi gradient có nhiễu, và lý do tốc độ đó đủ dưới ngân sách cố định với mục tiêu thay thế | SGD và phương sai của E | Bất đẳng thức một bước có nhiễu; T5, T6, T8 phát biểu lại với phạm vi; so sánh dưới ngân sách cố định; dừng sớm | F00–F08b (17; F01c thêm 2026-10-22) | 0,30 | 0,13 | F08, F08b |
 | G. Tổng hợp và lựa chọn phương pháp | Khép luận đề: những gì mất, những gì giữ; chọn phương pháp theo $(n,p)$ và tính lồi | Kết quả của B–F | Bảng quyết định có điều kiện áp dụng | G00–G04 (6) | 0,05 | 0,08 | G04 |
-| **Tổng** | | | | **75** | **2,00** | **1,00** | |
+| **Tổng** | | | | **76** | **2,00** | **1,00** | |
 
 Kiểm tổng: LT $0{,}12+0{,}55+0{,}36+0{,}32+0{,}30+0{,}30+0{,}05=2{,}00$; BT $0{,}33+0{,}14+0{,}18+0{,}14+0{,}13+0{,}08=1{,}00$. Khối B1 = $0{,}12+0{,}55+0{,}33=1{,}00$; B2 = $0{,}36+0{,}14+0{,}32+0{,}18=1{,}00$; B3 = $0{,}30+0{,}14+0{,}30+0{,}13+0{,}05+0{,}08=1{,}00$.
 
@@ -769,7 +770,18 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 
 - **Mặt trang:** “Giả thiết:”, bất đẳng thức một bước, “Ý nghĩa:”.
 - **Quyết định:** tách từ F02 (2026-10-12; mục 1.8).
-- **Hành trình:** KN8 hình thức. **Thời lượng:** 0,02 + 0,00.
+- **Hành trình:** KN8 hình thức. **Thời lượng:** 0,01 + 0,00 (0,02 trước 2026-10-22).
+- **Sửa 2026-10-22:** mặt trang không đổi; ghi chú không còn kể lại chứng minh (chứng minh chuyển sang F01c).
+
+#### F01c. Chứng minh: bất đẳng thức một bước có số hạng nhiễu
+
+- **Điểm trung tâm:** Bất đẳng thức một bước suy từ cận trên bậc hai, tính không chệch và chặn phương sai của gradient nhóm.
+- **Mặt trang:** “Cận trên bậc hai ($\nabla F$ là $L$-Lipschitz) với $\theta_{k+1}=\theta_k-\eta\widehat g_k$:” và công thức; “Lấy kỳ vọng khi biết $\theta_k$: $\mathbb E[\widehat g_k\mid\theta_k]=\nabla F(\theta_k)$ biến số hạng chéo thành $\lVert\nabla F(\theta_k)\rVert^2$; theo giả thiết phương sai,” và phép tách $\mathbb E[\lVert\widehat g_k\rVert^2\mid\theta_k]\le\lVert\nabla F(\theta_k)\rVert^2+\sigma^2$; “Thế vào được:” và bất đẳng thức đóng khung. 25 âm tiết, 6 dòng, 3 công thức hiển thị.
+- **Ghi chú diễn giả:** $\theta_k$ cố định khi lấy kỳ vọng có điều kiện; nơi dùng từng giả thiết; đẳng thức tách; liên hệ với Định lý 05b.43.
+- **Hình:** không.
+- **Liên kết:** F01b → F01c → F02.
+- **Quyết định:** thêm (yêu cầu người dùng 2026-10-22; chứng minh ở trang riêng theo quyết định của master).
+- **Hành trình:** KN8 hình thức (chứng minh). **LLO/CLO:** LLO12; CLO1. **Thời lượng:** 0,01 + 0,00.
 
 #### F02. Mức nhiễu nền của bước hằng
 
@@ -936,7 +948,7 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 | C | C00 0,01; C01 0,04; C02 0,06+0,02; C03 0,07+0,03; C04 0,08; C05 0,05+0,01; C06 0,05+0,02; C07 0+0,03; C07b 0+0,03 | 0,36 + 0,14 |
 | D | D00 0,01; D01b 0,02; D01 0,02; D02 0,06+0,03; D03 0,05+0,01; D04 0,03; D04b 0,02; D05 0,04; D05b 0,02; D06 0,05+0,02; D07 0+0,06; D07b 0+0,06 | 0,32 + 0,18 |
 | E | E00 0,01; E01 0,05+0,01; E02 0,04; E02b 0,02; E03 0,03+0,01; E03b 0,03+0,02; E04 0,06; E05 0,06+0,02; E06 0+0,03; E06b 0+0,03; E06c 0+0,02 | 0,30 + 0,14 |
-| F | F00 0,01; F01 0,04+0,01; F01b 0,02; F02 0,02; F02b 0,01+0,01; F03 0,03; F04 0,04; F04b 0,02; F05 0,03+0,01; F05b 0,02+0,01; F06 0,01; F06b 0,02; F07 0,02+0,01; F07b 0,01; F08 0+0,04; F08b 0+0,04 | 0,30 + 0,13 |
+| F | F00 0,01; F01 0,04+0,01; F01b 0,01; F01c 0,01; F02 0,02; F02b 0,01+0,01; F03 0,03; F04 0,04; F04b 0,02; F05 0,03+0,01; F05b 0,02+0,01; F06 0,01; F06b 0,02; F07 0,02+0,01; F07b 0,01; F08 0+0,04; F08b 0+0,04 | 0,30 + 0,13 |
 | G | G00 0,01; G01 0,01; G01b 0,01; G02 0,01+0,02; G03 0,01; G04 0+0,06 | 0,05 + 0,08 |
 
 Kiểm tổng theo khối: B1 = A + B = $0{,}12+0{,}55+0{,}33=1{,}00$; B2 = C + D = $0{,}36+0{,}14+0{,}32+0{,}18=1{,}00$; B3 = E + F + G = $0{,}30+0{,}14+0{,}30+0{,}13+0{,}05+0{,}08=1{,}00$. Tổng 2,00 tiết lý thuyết + 1,00 tiết bài tập.
