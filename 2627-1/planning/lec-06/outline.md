@@ -60,7 +60,7 @@ Các thay đổi dưới đây áp dụng mười điểm hòa giải của đi�
 - B01: nêu trên mặt trang rằng nhãn $\{0,1\}$ và mất mát bình phương là lựa chọn để tính thủ công; ghi chú nêu quan hệ với nhãn $\pm1$ của Bài 05 KL03 (từ 2026-10-15: của Mệnh đề 05.40 trong ghi chú bài giảng Bài 05, vì deck Bài 05 không còn trang XOR). B07: ghi chú nêu kết luận không lồi giữ nguyên với mất mát logistic, kèm phép kiểm tra số (điểm 4).
 - F06 (F05 trong bản 43 trang): dẫn tập xác thực của Bài 05 HQ05a, không định nghĩa lại; rủi ro R3 không kích hoạt; lý do gộp chu trình KN9 trong storyboard viết lại theo đó (điểm 5).
 - F01, F02, F04, F06 (theo mã 45 trang): hình dùng lại được sao chép vào `img/lec-06/` ở giai đoạn dựng deck; cột hình ghi đường dẫn gốc (điểm 8).
-- Tiêu đề B02 và E02 viết lại thành cụm danh từ (“Tính không tách được tuyến tính của XOR”, “Rủi ro thực nghiệm như đại lượng thay thế”) vì tiêu đề dạng mệnh đề trái quy tắc tiêu đề của CLAUDE.md; điểm trung tâm của hai trang không đổi.
+- Tiêu đề B02 và E02 viết lại thành cụm danh từ (“Tính không tách được tuyến tính của XOR”, “Rủi ro thực nghiệm như đại lượng thay thế”, đổi 2026-10-22 thành “Ước lượng rủi ro kỳ vọng bằng rủi ro thực nghiệm”) vì tiêu đề dạng mệnh đề trái quy tắc tiêu đề của CLAUDE.md; điểm trung tâm của hai trang không đổi.
 - G01 đổi tiêu đề thành “Điều không còn giữ được và điều còn giữ được”, cùng cách diễn đạt với Bài 05 KL04 (quyết định của điều phối viên khi duyệt; KL04 bỏ khỏi deck Bài 05 ngày 2026-10-15, G01 nay là nơi duy nhất có bảng này). E02 và F07 (F05 trong bản 43 trang) ghi phân chia nguồn với Bài 05 KL01, KL02 (cùng quyết định).
 - Cách gọi: bài trước được gọi là “Bài 05” (kế hoạch gốc viết theo tên thiết kế Lecture A); deck và học liệu hiện có của Bài 05, Bài 06 được gọi là “deck Bài 05 hiện hành”, “deck Bài 06 hiện hành”; chính tả “vector” theo quy ước đã thống nhất của Bài 06 (nhật ký 2026-10-11).
 
@@ -668,7 +668,7 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 - **Quyết định:** thêm; yêu cầu so sánh chi phí ba quy mô và luận đề “bị buộc bởi chi phí”.
 - **Hành trình:** KN7 nhu cầu. **LLO/CLO:** LLO11, LLO15 (chi phí Newton); CLO4. **Thời lượng:** 0,06 + 0,01.
 
-#### E02. Rủi ro thực nghiệm như đại lượng thay thế
+#### E02. Ước lượng rủi ro kỳ vọng bằng rủi ro thực nghiệm
 
 - **Điểm trung tâm:** Tại $\theta$ cố định, $F$ ước lượng $R$ với sai số bậc $1/\sqrt n$ (05c.52); theo Bottou–Bousquet, với bài toán lồi, giảm sai số tối ưu dưới sai số ước lượng không làm thay đổi bậc của cận sai số vượt.
 - **Mặt trang:** Hai cột. Trái: Định lý 05c.52 (thêm “mất mát có phương sai hữu hạn”); lý do thống kê kèm Bottou–Bousquet. Phải: số liệu SNW Bảng 13.3, máy vector hỗ trợ (SVM), mất mát bản lề (hinge loss), bảng ba phương pháp × (thời gian, mục tiêu, lỗi kiểm thử): SVMLight 23 642 s, 0,2275, 6,02 %; SVMPerf 66 s, 0,2278, 6,03 %; SGD 1,4 s, 0,2275, 6,02 %; dòng kết luận “lỗi kiểm thử gần như nhau trong khi thời gian chênh bốn bậc”. Phần nhắc Bài 05 chuyển vào ghi chú. (bản sau vòng rà soát năm vai, 2026-10-12)
@@ -677,6 +677,7 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 - **Liên kết:** Kết hợp với E01 thành luận đề; Định lý 05c.52 chỉ áp dụng tại $\theta$ cố định, nên trang không khẳng định cực tiểu chính xác “không cải thiện $R$”. E03 xét điều gì xảy ra khi thay gradient đầy đủ bằng gradient nhóm.
 - **Quyết định:** thêm; luận đề yêu cầu lý do thứ hai được nêu lại với số liệu.
 - **Hành trình:** KN7 nhu cầu; KN9 nhu cầu. **LLO/CLO:** LLO11; CLO1. **Thời lượng:** 0,06 + 0,00.
+- **Sửa 2026-10-22 (tiêu đề):** tiêu đề cũ “Rủi ro thực nghiệm như đại lượng thay thế” → “Ước lượng rủi ro kỳ vọng bằng rủi ro thực nghiệm” (yêu cầu người dùng 2026-10-22); từ khóa E00 đổi theo.
 
 #### E02b. Ví dụ: ba phương pháp trên tập RCV1
 

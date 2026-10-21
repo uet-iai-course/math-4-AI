@@ -854,3 +854,29 @@ Trạng thái: chờ master rà soát vòng 5.
 
 - Vòng 6: `chấp nhận`. Master tự kiểm tra bằng Playwright Chromium (1600×900 và 390×844) trên A02, A04, A04b, A03, A03b, B03, B04, D01b, D07, D07b, G00, G01, G01b, G03, G04: 75 trang, 0 lỗi hay cảnh báo console, 0 `.katex-error`, không tràn ngang; xem ảnh chụp A03b, G01. `git diff --check` sạch; `sync-local-materials.py --check` đạt.
 - Ghi nhận, chưa sửa: G03 cao 683/675 px ở 16:9 (mặt trang không đổi trong đợt này, có từ trước); xử lý khi người dùng rà tới G03. Sáu mục tiêu của `lecture-note.md` chưa đồng bộ với ba mục tiêu mới của A02.
+
+## Vòng 7: tiêu đề E02 (2026-10-22)
+
+- Yêu cầu người dùng 2026-10-22: đổi tiêu đề E02 thành “Ước lượng Rủi ro kì vọng bằng Rủi ro thực nghiệm”; master chuẩn hóa thành “Ước lượng rủi ro kỳ vọng bằng rủi ro thực nghiệm” (chữ thường, “kỳ” theo chính tả của deck).
+- Tác tử (theo lệnh gọi `Agent` của master):
+
+| Vai | Mã tác tử | Loại | Model | Effort | Kết quả |
+|---|---|---|---|---|---|
+| Tác tử chỉnh sửa | `ae2473aa8fba08f3b` | general-purpose | opus | medium | các sửa dưới đây |
+| Tái kiểm toán học | `aadb8dcf7d8cb7e47` | general-purpose | opus | high | không có phát hiện |
+| Tái kiểm mạch kể | `af9ad99875b2e8cb7` | general-purpose | opus | high | 2 phát hiện `nhẹ` (U1, U2) |
+- Sửa:
+  - deck: `<h2>` của E02; mặt trang và ghi chú không đổi, ghi chú giữ “đại lượng thay thế (surrogate)”;
+  - deck: từ khóa E00 “đại lượng thay thế” → “ước lượng rủi ro kỳ vọng”;
+  - storyboard: tiêu đề mục E02, dòng `sửa` 2026-10-22 ở E02 và E00;
+  - outline: tiêu đề mục E02 và dòng `sửa` 2026-10-22; câu lịch sử ở mục 1 thêm “đổi 2026-10-22 thành …”;
+  - `materials/lec-06/lecture-note.md`: tiêu đề mục 5.2; thân mục không đổi (đoạn dẫn “… bản thân $F$ chỉ là ước lượng của $R$” vẫn khớp tiêu đề mới); chạy `sync-local-materials.py` và `--check`.
+- Kiểm tra: `git diff --check` sạch.
+- Phát hiện tái kiểm mạch kể:
+
+| Mã | Mức độ | Trang chiếu | Vấn đề | Trạng thái | Quyết định của master |
+|---|---|---|---|---|---|
+| U1 | nhẹ | E00 (ghi chú) | “tính chất thay thế của $F$” còn dùng cách gọi cũ sau khi E02 đổi tiêu đề | đã sửa: “Việc $F$ chỉ ước lượng $R$, tại $\theta$ cố định với sai lệch bậc $1/\sqrt n$, giải thích vì sao không cần cực tiểu hóa $F$ chính xác.” | chấp nhận |
+| U2 | nhẹ | G01 (mặt trang, ghi chú) | “$F$ chỉ thay thế cho $R$” còn dùng cách gọi cũ | đã sửa: “$F$ chỉ ước lượng $R$” ở ô phải và ghi chú; 77 âm tiết (trần 80) | chấp nhận |
+
+- Quyết định của master: sửa tiêu đề E02 `chấp nhận`; U1, U2 `chấp nhận`, đã sửa như trên.

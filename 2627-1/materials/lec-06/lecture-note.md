@@ -1140,7 +1140,7 @@ Ba phương pháp được so sánh là hạ gradient đầy đủ, Newton và h
 
 Bảng chỉ so chi phí một bước, không so số bước. Một lượt dữ liệu (epoch) tốn $np$ cho cả hạ gradient đầy đủ và SGD: hạ gradient đầy đủ thực hiện một cập nhật, SGD thực hiện $n/b$ cập nhật. Với Newton, giai đoạn hội tụ bậc hai cần khoảng $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước và không chứa số điều kiện $\kappa=L/\mu$, nhưng ngưỡng $\varepsilon_0$ và giai đoạn tắt dần trước đó phụ thuộc chặn dưới $\mu$, chặn trên $L$ của trị riêng Hessian và hằng số Lipschitz $L_H$ của Hessian (Định lý 05.33).
 
-### 5.2 Rủi ro thực nghiệm như đại lượng thay thế
+### 5.2 Ước lượng rủi ro kỳ vọng bằng rủi ro thực nghiệm
 
 Bảng chi phí cho lý do tính toán để thay gradient đầy đủ. Lý do thống kê cho biết sự thay thế đó không làm mất điều cần có, vì bản thân $F$ chỉ là ước lượng của $R$. Định lý sau là Định lý 05c.52 (kết luận 1) phát biểu lại.
 

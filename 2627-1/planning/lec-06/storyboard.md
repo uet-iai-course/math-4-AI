@@ -702,6 +702,8 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Bước hành trình:** KN7 nhu cầu (cùng E01, E02).
 - **Quyết định:** `thêm` — theo yêu cầu người dùng. Mật độ: 33 âm tiết (trang mới, 2026-10-12).
 - **Sửa vòng tái kiểm 2026-10-12:** ghi chú mở bằng kết quả kế thừa.
+- **Sửa 2026-10-22 (từ khóa):** `sửa` — từ khóa “đại lượng thay thế” → “ước lượng rủi ro kỳ vọng”, khớp tiêu đề mới của E02 (yêu cầu người dùng 2026-10-22).
+- **Sửa 2026-10-22 (ghi chú, U1):** `sửa` — “tính chất thay thế của $F$ giải thích …” → “Việc $F$ chỉ ước lượng $R$, tại $\theta$ cố định với sai lệch bậc $1/\sqrt n$, giải thích vì sao không cần cực tiểu hóa $F$ chính xác.”, khớp tiêu đề mới của E02. Mặt trang không đổi.
 
 ### E01. Chi phí một bước của ba phương pháp ở ba quy mô
 
@@ -716,7 +718,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 98 → 56 âm tiết; gỡ `.dense`; câu dẫn bỏ mã T7 và viết đầy đủ “hạ gradient ngẫu nhiên (SGD)” ở lần đầu trên mặt trang; panel “Lý do tính toán” thay bằng “Kết luận:”; chú thích rút gọn; ghi chú rút đoạn so sánh bảng với Bài 05.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — ghi chú: tên đầy đủ của RCV1 (Reuters Corpus Volume I) ở lần đầu.
 
-### E02. Rủi ro thực nghiệm như đại lượng thay thế
+### E02. Ước lượng rủi ro kỳ vọng bằng rủi ro thực nghiệm
 
 - **Lý do tồn tại:** nêu lại lý do thống kê với Định lý 05c.52 của 05c và số liệu RCV1 (SNW Bảng 13.3).
 - **Nhu cầu hoặc khoảng trống được lấp:** E01 chỉ cho thấy gradient đầy đủ đắt; cần lý do để chấp nhận một ước lượng nhiễu thay cho cực tiểu chính xác.
@@ -729,6 +731,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Sửa 2026-10-12 (văn phong và mật độ):** `tách` — 113 → 54 âm tiết; gỡ `.dense`; định lý 05c.52 phát biểu bằng lời thành hai dòng và công thức; “Lý do thống kê” thành “Ý nghĩa:” và một dòng Bottou–Bousquet; số liệu RCV1 chuyển sang E02b.
 - **Sửa vòng tái kiểm 2026-10-12:** ghi chú bỏ mệnh đề lặp.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — “$F$ lệch $R$ cỡ $1/\sqrt n$” → “sai lệch giữa $F$ và $R$ có bậc $1/\sqrt n$”; “sai số dư” → “sai số vượt” (A2). Tiếng Anh “(excess error)” và phân rã ba thành phần nằm trong ghi chú vì dòng Bottou–Bousquet đã 21 âm tiết và thêm phân rã sẽ vượt 60. 54 → 58 âm tiết. Ghi chú: định nghĩa sai số vượt, “đại lượng thay thế (surrogate)”.
+- **Sửa 2026-10-22 (tiêu đề):** `sửa` — tiêu đề theo yêu cầu người dùng 2026-10-22; tiêu đề cũ “Rủi ro thực nghiệm như đại lượng thay thế”. Tiêu đề mới nêu đúng nội dung định lý: tại $\theta$ cố định, $F(\theta)$ là ước lượng không chệch của $R(\theta)$, sai số bậc $1/\sqrt n$. Mặt trang và ghi chú không đổi; ghi chú vẫn giải thích “đại lượng thay thế (surrogate)”. Từ khóa E00 đổi theo.
 
 ### E02b. Ví dụ: ba phương pháp trên tập RCV1
 
@@ -1055,6 +1058,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — ô “Sai số giảm theo cấp số nhân (hội tụ tuyến tính), tất định (Bài 05; khi (i) hoặc (ii))” (B11); để giữ trần 80, dòng mở bỏ chữ “nhỏ” (“gradient nhóm thay gradient đầy đủ”) và ô phải viết “$\limsup_k\mathbb E\lVert\theta_k-\theta^*\rVert^2\le\eta\sigma^2/\mu$” thay “… cỡ $\eta\sigma^2/\mu$”. 74 → 79 âm tiết. Ghi chú “Bài 05 KL04” → “bảng kết luận của Bài 05”, bỏ “cỡ”.
 - **Sửa 2026-10-21 (mật độ):** `sửa` — ô “Mục tiêu là nghiệm tối ưu của $F$” → “Mục tiêu: nghiệm tối ưu của $F$”, “Mục tiêu là $R$ nhỏ:” → “Mục tiêu: $R$ nhỏ;”. Mật độ: 80 âm tiết theo bộ đếm token có chữ (dòng dẫn 18, bảng 62; trần 80 của bảng so sánh); dòng dẫn giữ nguyên.
 - **Sửa 2026-10-21 (vòng 6):** `sửa` — ô phải bỏ “Mục tiêu:” thứ hai (“$R$ nhỏ; …”); ô bước hằng thêm điều kiện “bước hằng $\eta\le1/L$ tới lân cận”. Mật độ: 78 âm tiết (trần 80).
+- **Sửa 2026-10-22 (U2):** `sửa` — ô phải “$F$ chỉ thay thế cho $R;$” → “$F$ chỉ ước lượng $R;$”; ghi chú “$F$ chỉ thay thế cho $R$, nên …” → “$F$ chỉ ước lượng $R$, nên …”, khớp tiêu đề mới của E02. Mật độ: 77 âm tiết (trần 80).
 
 ### G01b. Điều không còn giữ được và điều còn giữ được
 
