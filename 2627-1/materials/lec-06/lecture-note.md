@@ -229,7 +229,7 @@ Cách sửa này cần biết trước dạng tương tác. Khi không biết, p
 
 Bảng cho thấy số đặc trưng tăng như $d^q/q!$. Với $d=1000$ và $q=2$, mô hình có $p=501\,501$ tham số, và riêng phần giải hệ của một bước Newton đã cần khoảng $p^3\approx1{,}26\cdot10^{17}$ phép tính. Đặc trưng thủ công khắc phục giới hạn biểu diễn bằng cách tăng số chiều, và chi phí mỗi bước tăng theo: $O(np)$ cho hạ gradient, $O(np^2+p^3)$ cho Newton. Trong phần hồi quy nhiều chiều của Bài 05, chúng ta còn thấy một hệ quả thống kê: khi số đặc trưng tăng, sai số trên dữ liệu mới tăng dần. Hai hệ quả này tạo nhu cầu cho một phép biến đổi đặc trưng có tham số, học được từ dữ liệu, thay cho việc liệt kê mọi đơn thức.
 
-### 2.3 Tầng ẩn như một phép biến đổi đặc trưng
+### 2.3 Phép biến đổi đặc trưng bằng tầng ẩn
 
 Về mặt ý tưởng, thay vì cố định $\varphi$, ta muốn mỗi đặc trưng là một hàm đơn giản của một tổ hợp affine của đầu vào, với hệ số của tổ hợp là tham số. Điều này chưa phải định nghĩa; ví dụ sau cho thấy một lựa chọn cụ thể của các hệ số đã đủ cho XOR.
 

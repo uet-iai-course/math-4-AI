@@ -663,3 +663,194 @@ Rà soát mạch 4 Bài 05 (2026-10-15): CP05 gộp vào CP04 "Số bước củ
 
 Rà soát mạch 2 và mạch 3 Bài 05 (2026-10-15): tập xác thực và tập kiểm thử được định nghĩa ở trang HQ05a "Tập xác thực và tập kiểm thử" (HQ05 chỉ còn rủi ro kỳ vọng và quá khớp); các dẫn "Bài 05 HQ05" như nơi định nghĩa tập xác thực trong `outline.md` và `storyboard.md` đổi thành "Bài 05 HQ05a". Deck Bài 06 không đổi.
 Rà soát mạch 2 và mạch 3 Bài 05, vòng 2 (2026-10-15): ghi chú F06 của deck Bài 06 đổi dẫn chiếu thành "Bài 05, trang tập xác thực và tập kiểm thử của phần hồi quy nhiều chiều" (trước: "phần rủi ro thực nghiệm và rủi ro kỳ vọng"). Mặt trang Bài 06 không đổi.
+
+## Sửa trang mục tiêu học tập A02 theo yêu cầu người dùng (2026-10-21)
+
+### Tác tử
+
+- Tác tử chỉnh sửa (worker): `general-purpose`, model và effort do master ghi theo lệnh gọi `Agent` (brief yêu cầu Opus 5.5, effort medium); không commit.
+
+### Thay đổi
+
+- **A02, mặt trang:** ba mục tiêu gắn trực tiếp với ba năng lực toán học, mỗi mục mở bằng cụm động từ in đậm (`<b>`; vòng 3 bỏ: mục tiêu của Bài 01–05 là câu thường, và cụm động từ in đậm không phải nhãn trong danh sách của AGENTS.md): (1) chứng minh tính không lồi của rủi ro thực nghiệm của mạng XOR bằng phản ví dụ theo định nghĩa; (2) tính gradient bằng lan truyền ngược, chỉ ra điểm có gradient bằng không nhưng không là cực tiểu địa phương; (3) chọn phương pháp theo chi phí, giả thiết, bảo đảm giữa hạ gradient đầy đủ, Newton, hạ gradient ngẫu nhiên. Mật độ 52 → 66 âm tiết (trần 80), 4 dòng, mỗi dòng ≤ 20 âm tiết (7/20/20/19; vòng 2: 67, 7/20/20/20); mỗi gạch đầu dòng hai dòng hiển thị ở 1600×900.
+- **A02, ghi chú diễn giả:** viết lại theo mục tiêu: mạch và bài tập đo từng mục tiêu (mục tiêu 1 ↔ mạch 2, câu 3 bài tập cuối mạch; mục tiêu 2 ↔ mạch 3 và 4, bài tập lan truyền ngược và câu 1–2 bài tập phân loại điểm dừng; mục tiêu 3 ↔ mạch 5, 6, bảng lựa chọn phương pháp và câu 1 của câu hỏi tự kiểm tra); tiêu chí đạt (phản ví dụ = hai cực tiểu đối xứng $\theta_A$, $\theta_B$ có $F=0$, trung điểm, bất đẳng thức lồi bị vi phạm $\tfrac14>0$; điểm yên ngựa tại gốc của $F(u,v)=\tfrac12(uv-1)^2$ với trị riêng Hessian $\pm1$, và trị riêng $0$, $\tfrac{17}4$ tại $(2,\tfrac12)$; lựa chọn phương pháp nêu đủ chi phí, giả thiết, bảo đảm hội tụ). Đối chiếu số liệu: B09b ($F(\theta(\tfrac12))=\tfrac14$), D02 (trị riêng $\pm1$ tại gốc), D07b (trị riêng $0$ và $4{,}25$). Giữ câu LLO/CLO và đoạn kiến thức cần có. Tên tiếng Anh “stochastic gradient descent, SGD” nêu trong ghi chú; mặt trang dùng tên tiếng Việt đầy đủ, chữ viết tắt SGD vẫn giới thiệu ở E01.
+- **G03:** mặt trang không đổi; bảng ba dòng vẫn ứng từng dòng với ba mục tiêu. Ghi chú: câu cuối đổi thành “Phần chọn phương pháp của mục tiêu 3, theo chi phí, giả thiết và bảo đảm hội tụ, là bảng lựa chọn phương pháp; ví dụ cho phần ‘gradient bằng không nhưng không là cực tiểu’ của mục tiêu 2 là gốc của mạng tuyến tính một đơn vị.”
+- **storyboard.md** (A02: nhu cầu và dòng `sửa` 2026-10-21) và **outline.md** (A02: mặt trang và ghi chú) cập nhật theo deck.
+
+### Ghi nhận, chưa sửa
+
+- `materials/lec-06/lecture-note.md` có sáu mục tiêu chi tiết hơn, cùng phạm vi nhưng khác cách chia (mục 1 ↔ mục tiêu 1; mục 2–3 ↔ mục tiêu 2; mục 4–6 ↔ mục tiêu 3), và bảng ánh xạ bài tập theo sáu mục tiêu. Không sửa học liệu theo brief.
+- Ghi chú bài giảng nêu thêm LLO15 (phần so sánh chi phí với Newton); câu LLO/CLO của A02 giữ nguyên (LLO11, LLO12) theo brief. Mục tiêu 3 mới nêu Newton tường minh, nên master cân nhắc thêm LLO15.
+
+### Kiểm tra
+
+- Playwright Chromium, A02 và G03 ở 1600×900 và 390×844: 0 lỗi console, 0 `.katex-error`, A02 không tràn dọc hay ngang, cỡ chữ thân nhỏ nhất 30 px (16:9) và 24 px (hẹp); phím mũi tên hoạt động. G03 ở khổ hẹp có cuộn ngang trong `.table-scroll` như trước (mặt trang không đổi).
+- `git diff --check`: sạch.
+
+### Trạng thái
+
+- Chờ master rà soát (chưa có quyết định `chấp nhận | yêu cầu sửa | bác bỏ`).
+
+### Vòng 2: yêu cầu sửa của master (2026-10-21)
+
+- Master: `yêu cầu sửa`, hai điểm. (1) Mục tiêu 3 bỏ danh sách sau dấu hai chấm, thay bằng “**Chọn phương pháp** giữa hạ gradient đầy đủ, Newton, hạ gradient ngẫu nhiên theo chi phí, giả thiết, bảo đảm.” (đếm 20 token, trong trần 20, nên dùng phương án thứ nhất của master). (2) Câu LLO/CLO trong ghi chú thêm “phần so sánh chi phí của LLO15 (phương pháp Newton)” theo dòng 5 của ghi chú bài giảng.
+- Mật độ sau sửa: 67 âm tiết (7/20/20/20), 4 dòng. Mục LLO/CLO của A02 trong storyboard.md và outline.md thêm LLO15; mục “Ghi nhận, chưa sửa” về LLO15 ở trên đã được xử lý.
+- Kiểm tra lại A02 ở 1600×900 và 390×844; `git diff --check` sạch.
+- Trạng thái: chờ master rà soát vòng 2.
+
+### Tác tử của đợt 2026-10-21 (theo lệnh gọi `Agent` của master)
+
+| Vai | Loại | Model | Effort |
+|---|---|---|---|
+| Tác tử chỉnh sửa (duy nhất ghi tệp) | general-purpose | opus (Claude Opus 5.5) | medium |
+| Tái kiểm toán học | general-purpose | opus (Claude Opus 5.5) | high |
+| Tái kiểm mạch kể | general-purpose | opus (Claude Opus 5.5) | high |
+
+### Quyết định của master trên A02
+
+- Vòng 1: `yêu cầu sửa` — cách viết mục tiêu 3 (bỏ danh sách sau dấu hai chấm); câu LLO/CLO thêm phần so sánh chi phí của LLO15.
+- Vòng 2: `yêu cầu sửa` — theo hai báo cáo tái kiểm (toán học F1–F9, mạch kể 11 phát hiện).
+
+### Phát hiện tái kiểm vòng 2 và cách xử lý (vòng 3)
+
+Hai báo cáo tái kiểm vòng 2 (toán học: general-purpose, opus, effort high; mạch kể: general-purpose, opus, effort high), do master chuyển nguyên nội dung:
+
+| Mã | Mức độ | Trang chiếu | Vấn đề | Trạng thái | Quyết định của master |
+|---|---|---|---|---|---|
+| F1 (toán học) | nghiêm trọng | A02 (ghi chú) | “$O(1/\sqrt K)$ cho chuẩn gradient” sai với SGD không lồi: cận là cho trung bình kỳ vọng bình phương chuẩn gradient (F04, F04b); với chính chuẩn chỉ có $O(K^{-1/4})$ | đã sửa | chấp nhận |
+| F2 (toán học) | trung bình | A02 (ghi chú) | $\tfrac14$ là của ví dụ B09b, không phải của B10 câu 3 ($\tfrac{27}{32}$) | đã sửa | chấp nhận |
+| F3 (toán học) | trung bình | A02 (ghi chú) | $(2,\tfrac12)$ là cực tiểu toàn cục mà phép kiểm tra bậc hai không kết luận; tiêu chí đạt thiếu “phân loại bằng giá trị $F$” | đã sửa | chấp nhận |
+| F4 (toán học) | trung bình | A02 (ghi chú) | danh sách chi phí và danh sách bảo đảm dùng hai thứ tự phương pháp khác nhau | đã sửa | chấp nhận |
+| F5 (toán học) | nhẹ | A02 (ghi chú) | G02 không có cột “giả thiết” | đã sửa | chấp nhận |
+| F6 (toán học) | nhẹ | A02 (ghi chú) | Newton cần Hessian Lipschitz | đã sửa | chấp nhận |
+| F7 (toán học) | nhẹ | A02 (ghi chú), D07 | D07 câu 1 không phân loại gốc | đã sửa | chấp nhận |
+| F8 (toán học) | nhẹ | A02 (ghi chú) | thiếu “một phần” trước LLO11, LLO12 | đã sửa | chấp nhận |
+| F9 (toán học) | nhẹ | G03 (ghi chú) | trích mục tiêu 2 không đúng nguyên văn | đã sửa | chấp nhận |
+| S1 (mạch kể) | trung bình | A02, D07 | không bài tập nào đo “gradient bằng không nhưng không là cực tiểu”; sửa bằng D07 câu 1 | đã sửa | chấp nhận |
+| S2 (mạch kể) | trung bình | A02 (mặt trang, mục tiêu 3) | ranh giới danh sách mơ hồ; “bảo đảm” thiếu “hội tụ” | đã sửa | chấp nhận |
+| S3 (mạch kể) | nhẹ | A02 (mục tiêu 1) | “của … của” | đã sửa | chấp nhận |
+| S4 (mạch kể) | nhẹ | A02 (mục tiêu 2) | “bằng không nhưng không”; sửa bằng $\nabla F=0$ | đã sửa | chấp nhận |
+| S5 (mạch kể) | nhẹ | A02 (mặt trang) | cụm động từ in đậm không phải nhãn của AGENTS.md; đã bỏ | đã sửa | chấp nhận |
+| S6 (mạch kể) | nhẹ | A02 (ghi chú) | cột của G02, bình phương chuẩn, “được viết tắt” | đã sửa | chấp nhận |
+| S7 (mạch kể) | nhẹ | A02 (ghi chú) | tiêu chí phản ví dụ chặt hơn định nghĩa; $\tfrac{27}{32}$ | đã sửa | chấp nhận |
+| S8 (mạch kể) | nhẹ | G04 (lời giải câu 1) | không nêu đủ ba tiêu chí cho từng trường hợp | đã sửa | chấp nhận |
+| S9 (mạch kể) | nhẹ | G03 (ghi chú) | thứ tự câu và chữ “là” | đã sửa | chấp nhận |
+| S10 (mạch kể) | nhẹ | G00, ghi chú bài giảng mục tiêu 6, dòng CLO4 của outline | cách gọi tiêu chí cũ; G00 đã sửa; ghi chú bài giảng: ghi nhận, chưa sửa | ghi nhận, chưa sửa (ghi chú bài giảng); đã sửa (G00) | chấp nhận |
+| S11 (mạch kể) | nhẹ | planning | dòng A02 cũ trong outline/storyboard, thiếu dòng G03 trong storyboard, thiếu bản ghi tác tử | đã sửa | chấp nhận |
+
+Bảng sửa đổi tương ứng (bản ghi theo brief vòng 3, giữ nguyên):
+
+| Nguồn | Nội dung (theo brief) | Trạng thái | Quyết định của master |
+|---|---|---|---|
+| Toán học | Ghi chú A02: với SGD không lồi, $O(1/\sqrt K)$ là cho trung bình kỳ vọng bình phương chuẩn gradient (F04, F04b); chỉ hạ gradient đầy đủ (D05) có dạng chuẩn | đã sửa | chấp nhận |
+| Toán học | Mục tiêu 1: phản ví dụ cần hai điểm vi phạm bất đẳng thức lồi; ở bài này là hai cực tiểu toàn cục đối xứng; $\tfrac14$ là của ví dụ B09b ($\theta_A$, $\theta_B$), câu 3 bài tập cuối mạch 2 cho $\tfrac{27}{32}$ | đã sửa | chấp nhận |
+| Toán học | Mục tiêu 2: $(2,\tfrac12)$ là cực tiểu toàn cục ($F=0$) mà phép kiểm tra bậc hai không kết luận; tiêu chí đạt gồm dấu trị riêng và giá trị $F$ khi phép kiểm tra không kết luận | đã sửa | chấp nhận |
+| Toán học | Mục tiêu 3: chi phí, giả thiết, bảo đảm nêu theo từng phương pháp cùng một thứ tự; Newton cần lồi mạnh và Hessian Lipschitz; SGD cần chặn phương sai | đã sửa | chấp nhận |
+| Toán học / mạch kể | D07 câu 1 chưa đo phần “điểm có $\nabla F=0$ nhưng không là cực tiểu địa phương”: câu 1 thêm yêu cầu chỉ ra điểm đó; D07b dùng $F(t,t)=\tfrac12(t^2-1)^2<\tfrac12=F(0,0)$, không lặp Hessian của D02 | đã sửa | chấp nhận |
+| Mạch kể | Mặt trang A02 bỏ in đậm; ba câu theo nguyên văn của master | đã sửa | chấp nhận |
+| Mạch kể | Mục tiêu 2 có hai chữ “không” liền nhau (“gradient bằng không nhưng không là”) | đã sửa bằng $\nabla F=0$ | chấp nhận |
+| Mạch kể | Ghi chú A02: “ba cột của bảng đó” thay bằng vị trí cụ thể (cột mỗi bước, cột tình huống và chú thích, cột bảo đảm); “được viết tắt từ mạch 5” → “chữ viết tắt SGD dùng từ mạch 5”; “bài tập cuối mạch 2” | đã sửa | chấp nhận |
+| Mạch kể | Câu LLO: “một phần LLO11, một phần LLO12 và phần so sánh chi phí của LLO15 (phương pháp Newton)” | đã sửa | chấp nhận |
+| Mạch kể | G03 ghi chú: hai câu riêng cho mục tiêu 2 (gốc của mạng tuyến tính một đơn vị, điểm yên ngựa) và mục tiêu 3 (bảng lựa chọn) | đã sửa | chấp nhận |
+| Mạch kể | G04 câu 1: lời giải (a)–(c) nêu chi phí một bước, giả thiết, bảo đảm hội tụ; mặt trang không đổi | đã sửa | chấp nhận |
+| Mạch kể | G00 dòng dẫn theo tiêu chí mới: “Nhu cầu: chọn phương pháp theo chi phí một bước, giả thiết và bảo đảm hội tụ.” (17 âm tiết); ghi chú G00 đồng bộ | đã sửa | chấp nhận |
+| Mạch kể | outline A02: mục “Mặt trang” và “Điểm trung tâm … ba khối” cũ đánh dấu đã thay; Hình “không”; Liên kết A01 → A02b. storyboard A02: “Lý do tồn tại”, “Đầu ra” không còn bản đồ mạch; thêm dòng `sửa` 2026-10-21 cho G00, G03, G04, D07, D07b | đã sửa | chấp nhận |
+
+Mặt trang A02 sau vòng 3: 62 âm tiết (7/18/17/20), 4 dòng. D07: 59 âm tiết, 6 dòng; D07b: 55 âm tiết, 5 dòng (công thức câu 1 tách thành hai khối nội dòng để xuống dòng ở khổ hẹp). Trạng thái: chờ master rà soát vòng 3.
+
+## Tách A04 thành A04 và A04b (2026-10-21)
+
+- Yêu cầu người dùng 2026-10-21: “tách làm hai, trình bày rõ ràng hơn”. Tác tử chỉnh sửa như trên.
+- A04 “Ngữ cảnh: dữ liệu, mô hình và rủi ro”: ký hiệu $D$, $f(x;\theta)$; “Lưu ý:” $d$/$p$; công thức $F$ (giữ $\ell_i$ vì E04, E05 dùng $\nabla\ell_i$) và $R=\mathbb E_{(X,Y)\sim P}\ell$, mỗi công thức một dòng diễn giải. 53 âm tiết, 6 dòng, 2 công thức hiển thị.
+- A04b “Ngữ cảnh: bài toán huấn luyện và dãy lặp”: câu bài toán huấn luyện; dãy lặp đóng khung bằng KaTeX `\boxed` (lecture-style.css không có lớp công thức trọng tâm cho Bài 06; `.formula.emphasis` chỉ thuộc Bài 04); $g_k$, $\eta_k$; tập xác thực; “Nhu cầu:” dẫn A03. 51 âm tiết, 5 dòng, 1 công thức hiển thị.
+- Ngoại lệ: trang Ngữ cảnh 6 và 5 dòng (AGENTS.md: tối đa bốn dòng), lý do ghi trong storyboard.
+- Ghi chú: đối chiếu ký hiệu Bài 05/05b/05c và mất mát bình phương ở A04; hai lựa chọn của $g_k$, tập xác thực, quy ước $b$/$\sigma$ ở A04b.
+- Số trang 73 → 75 (cùng A03b); outline (quy mô, bảng mạch, tổng, thời lượng mạch A) và storyboard cập nhật.
+- Liên kết băm: `grep` `#/` trỏ tới deck Bài 06 trong deck, `index.html`, `materials/`, `planning/`: không có liên kết nào; không cần sửa.
+- Trạng thái: chờ master rà soát.
+
+## Sửa A03 theo ngôn ngữ học thuật, tách A03b (2026-10-21)
+
+- Yêu cầu người dùng 2026-10-21: “điều chỉnh, ngôn ngữ học thuật không văn nói”. Tiêu đề: “Giả thiết lồi và hai giới hạn khi mở rộng quy mô”.
+- Chọn tách: bảng bốn dòng (khoảng 63 âm tiết) cộng hai dòng giới hạn (40 âm tiết) vượt trần 80 của bảng so sánh. A03 chỉ còn bảng; A03b “Hai giới hạn: biểu diễn và chi phí” giữ nhãn (ii, biểu diễn) và (i, chi phí) mà B00, E01, G01, G01b dùng.
+- Ghi chú A03: một đoạn cho mỗi dòng Mục tiêu, Gradient, Bảo đảm, Chi phí; ghi chú A03b: hai giới hạn theo Bài 05, thứ tự xử lý.
+- G01: sửa tối thiểu để khớp nhãn dòng mới: ô “Đích là nghiệm chính xác” → “Mục tiêu là nghiệm tối ưu của $F$”, “Đích là $R$ nhỏ” → “Mục tiêu là $R$ nhỏ”; ghi chú nêu thứ tự bốn dòng (mục tiêu, gradient, bảo đảm, chi phí) và đổi “Đích” → “Mục tiêu”. G01b không đổi.
+- Lưu ý cho master: ô “thường chỉ điểm dừng xấp xỉ” và “nhóm nhỏ” dùng khái niệm định nghĩa ở D01b và mạch 5, trái với quyết định sau kiểm định 2026-10-12; giữ theo brief.
+- Trạng thái: chờ master rà soát.
+
+## B03: nhận xét về đặc trưng thủ công (2026-10-21)
+
+- Yêu cầu người dùng 2026-10-21. Thêm “**Nhận xét.** Đặc trưng thủ công khắc phục giới hạn biểu diễn nhưng làm $p$ tăng nhanh, kéo theo chi phí và nguy cơ quá khớp (overfitting).” (nhãn `<b>Nhận xét.</b>` như B06, C05, F07). Lần đầu “quá khớp” trong deck nên tên tiếng Anh đặt tại đây.
+- Ký hiệu theo quy ước A04: $p=\binom{d+q}{q}$ là số đặc trưng; dòng chi phí “Mỗi bước: $O(np)$ (hạ gradient), $O(np^2+p^3)$ (Newton, Bài 05).” (không lặp ý “chi phí tăng” của nhận xét).
+- Dòng ví dụ $\varphi(x)=(x_1,x_2,x_1x_2)$ chuyển xuống ghi chú để giữ trần 60. Mật độ 60 âm tiết, 4 dòng chữ và một bảng, vừa khung 1600×900. Ngoại lệ: câu nhận xét 26 âm tiết, hai dòng hiển thị.
+- Ghi chú thêm đoạn hai loại chi phí (tính toán, thống kê theo Bài 05).
+- Trạng thái: chờ master rà soát.
+
+## B04: tiêu đề học thuật (2026-10-21)
+
+- Yêu cầu người dùng 2026-10-21: “Tầng ẩn như một phép biến đổi đặc trưng” (“như một” sao phỏng “as a”) → “Phép biến đổi đặc trưng bằng tầng ẩn”. Đổi ở deck, storyboard, outline và mục 2.3 của `materials/lec-06/lecture-note.md`; các chỗ dẫn “Mục 2.3” dẫn theo số nên không đổi; không có liên kết neo theo tiêu đề cũ. Chạy `sync-local-materials.py` và `--check`: OK.
+- Mặt trang và ghi chú B04 không còn “như một”. Ngoài B04, deck còn một chỗ “như một” ở ghi chú E05 (“tốn tổng $O(np)$, như một bước hạ gradient đầy đủ”): đây là phép so sánh “bằng một bước”, không phải sao phỏng “as a”; không sửa.
+- Trạng thái: chờ master rà soát.
+
+## Quyết định của master vòng 3 và sửa vòng 4 (2026-10-21)
+
+- Master, vòng 3: `chấp nhận` A02, A04, A04b, A03 (tách được chấp nhận vì bảng cộng hai giới hạn vượt trần), B04, D07/D07b, G00, G01, G03, G04. `yêu cầu sửa` bốn điểm: A03b, nhận xét B03, ghi chú G01b, bảng phát hiện trong review-log.
+- **A03b:** theo bản phác của người dùng: “Nhắc lại: với $F$ lồi, khả vi trên $\mathbb R^p$, điểm dừng là cực tiểu toàn cục:”; công thức hiển thị $\nabla F(\theta^*)=0\Longrightarrow\theta^*\in\arg\min_{\theta\in\mathbb R^p}F(\theta)$; “Giới hạn (ii), biểu diễn: khi $F$ không lồi, kéo theo này không còn đúng.”; “Giới hạn (i), chi phí: một bước hạ gradient trên $n$ mẫu tốn $O(nd)$ với mô hình tuyến tính, $O(np)$ với mạng.” Khác bản phác: (1) “là cực tiểu toàn cục” không đặt trong `\text{}` của KaTeX vì chữ Việt gây sáu cảnh báo KaTeX (“Unrecognized Unicode character”, “No character metrics”); cụm này chuyển lên dòng “Nhắc lại:” và công thức viết bằng $\arg\min$; (2) bỏ “toàn bộ” và “$p$ tham số” để dòng chi phí ≤ 20 âm tiết (19); ghi chú nêu “mạng” là mạng $p$ tham số. Nhãn “Giới hạn (i)”, “Giới hạn (ii)” khớp ghi chú A03b và E01. Ghi chú: “suy luận” → “kéo theo”. 47 âm tiết, 4 dòng, 1 công thức hiển thị.
+- **B03:** nhận xét thành “… nhưng làm $p$ tăng nhanh, tăng chi phí và nguy cơ quá khớp (overfitting).” Đếm lại: 59 âm tiết (trần 60).
+- **G01b:** ghi chú, câu cuối: quy tắc chọn theo chi phí một bước, giả thiết và bảo đảm hội tụ; $n$, $p$ quyết định chi phí một bước, tính lồi là giả thiết.
+- **review-log:** bảng phát hiện F1–F9, S1–S11 thay đoạn ghi chú chung; bảng sửa đổi cũ giữ nguyên.
+- Kiểm tra: Playwright A03b, B03, G01b ở 1600×900 và 390×844 (cuộn `.lecture-viewport` tới cuối): 0 lỗi, 0 cảnh báo console, 0 `.katex-error`, không tràn ngang trang, cỡ chữ nhỏ nhất 30 px / 24 px; công thức A03b ở khổ hẹp cuộn ngang trong vùng `.formula`. `git diff --check` sạch.
+- Trạng thái: chờ master rà soát vòng 4.
+
+## Vòng 5: tái kiểm lần hai (2026-10-21)
+
+- Master: `chấp nhận` vòng 4.
+- Tác tử tái kiểm (theo lệnh gọi `Agent` của master): tái kiểm toán học vòng 2 (general-purpose, opus, effort high); tái kiểm mạch kể vòng 2 (general-purpose, opus, effort high). Tác tử chỉnh sửa: general-purpose, opus, effort medium. Mức độ của từng phát hiện nằm trong báo cáo gốc; master chuyển nội dung và số hiệu (T1–T14 theo thứ tự bảng của báo cáo mạch kể).
+
+| Mã | Trang chiếu | Vấn đề | Trạng thái | Quyết định của master |
+|---|---|---|---|---|
+| N1 (toán học, vòng 2) | G04 (lời giải câu 1b) | bảo đảm $O(1/k)$ của Định lý 05b.39 cần $\mu$-lồi mạnh, gradient nhóm không chệch, chặn $\mathbb E[\lVert\widehat g_k\rVert^2\mid\theta_k]\le G^2$ trên vùng chứa dãy lặp và đúng bước $\tfrac1{\mu(k+1)}$; không dùng chặn phương sai hay gradient Lipschitz; với $\lambda,k_0$: chỉ đúng khi $\lambda=\mu$, $k_0=1$ | đã sửa | chấp nhận |
+| N2 (toán học, vòng 2) | A02 (ghi chú, mục tiêu 3) | giả thiết của SGD: lồi mạnh cần chặn mômen bậc hai và bước $\tfrac1{\mu(k+1)}$; không lồi cần gradient Lipschitz, chặn phương sai, bước hằng chọn theo $K$ | đã sửa (đoạn 3: 173 → 159 âm tiết) | chấp nhận |
+| N3 (toán học, vòng 2) | A03b | giới hạn (ii) là đặc trưng cố định không biểu diễn được XOR; tính không lồi là hệ quả của cách khắc phục | đã sửa | chấp nhận |
+| N4 (toán học, vòng 2) | G04 (lời giải câu 1c) | $O(1/\sqrt K)$ là cho bước hằng chọn theo $K$ (Hệ quả 05b.44); lịch bước, dừng sớm là thực hành; thiếu “gradient nhóm không chệch” | đã sửa | chấp nhận |
+| N5 (toán học, vòng 2) | A04 (ghi chú) | câu mất mát logistic: phản ví dụ trung điểm vẫn dùng được dù không có cực tiểu khi không chính quy hóa | đã sửa | chấp nhận |
+| N6 (toán học, vòng 2) | B03 | $\binom{d+q}{q}$ đếm cả đơn thức hằng $1$, nên là số tham số tính cả hệ số chặn | đã sửa (mặt trang “Số tham số”, quy ước đếm trong ghi chú và storyboard) | chấp nhận |
+| T1 (mạch kể, vòng 2) | A03b | dòng (ii) gán tính không lồi là giới hạn biểu diễn | đã sửa (gộp với N3) | chấp nhận |
+| T2 (mạch kể, vòng 2) | A03 | đổi tiêu đề hoặc thứ tự A03/A03b | không sửa | bác bỏ: tiêu đề và bố cục theo thiết kế của người dùng |
+| T3 (mạch kể, vòng 2) | G01 | vượt trần 80 | đã sửa (80 âm tiết; dòng dẫn giữ) | chấp nhận |
+| T4 (mạch kể, vòng 2) | D01b (ghi chú) | khái niệm điểm dừng xấp xỉ không mới; dạng $\varepsilon$ mới | đã sửa; ô A03 “thường chỉ điểm dừng xấp xỉ” giữ theo người dùng | chấp nhận |
+| T5 (mạch kể, vòng 2) | A03 | “(nhóm nhỏ)” lặp hai lần trong bảng | không sửa | bác bỏ: cách viết bảng của người dùng |
+| T6 (mạch kể, vòng 2) | A03b (ghi chú) | thiếu lý do nêu (ii) trước (i) | đã sửa | chấp nhận |
+| T7 (mạch kể, vòng 2) | A03 (ghi chú) | thiếu câu chuyển sang A03b | đã sửa | chấp nhận |
+| T8 (mạch kể, vòng 2) | A04 / F02 | $D$ trùng nghĩa: dữ liệu ở A04, khoảng cách $\lVert\theta_0-\theta^*\rVert$ | đã sửa (vòng 6): A04 bỏ “$D=$”, viết “dữ liệu $\{(x_i,y_i)\}_{i=1}^n$”; F02 giữ $D$. Đính chính: báo cáo vòng 5 của tác tử chỉnh sửa ghi sai “F02 không có $D$”; mặt trang F02 có $D=\lVert\theta_0-\theta^*\rVert$ và cận chứa $D^2$ (lệnh `grep` khi đó không bắt mẫu `{D=`); $D$, $D_k$ cũng có ở ghi chú bài giảng Bài 06 và Bài 05b | chấp nhận (quyết định của master vòng 6) |
+| T9 (mạch kể, vòng 2) | A04 | dòng $R$ thiếu tên tiếng Anh | đã sửa (55 âm tiết) | chấp nhận |
+| T10 (mạch kể, vòng 2) | A04b | dòng 1 văn kể | đã sửa | chấp nhận |
+| T11 (mạch kể, vòng 2) | B03 | hai dấu hai chấm ở dòng đầu | đã sửa | chấp nhận |
+| T12 (mạch kể, vòng 2) | G03 (ghi chú) | trích mục tiêu 2 không đúng nguyên văn | đã sửa | chấp nhận |
+| T13 (mạch kể, vòng 2) | planning | dòng cũ ở outline A04, A03; vào/ra của storyboard A04; tiêu chí cũ ở dòng G bảng mạch, G00 “Đầu ra”, dòng CLO4 §2; thời lượng A02; liên kết A03 ↔ A03b | đã sửa; mục tiêu 6 của ghi chú bài giảng: ghi nhận, chưa sửa | chấp nhận |
+| T14 (mạch kể, vòng 2) | A02 (ghi chú, mục tiêu 3) | độ dài đoạn 3 (khuyến nghị 40–150 âm tiết) | rút 173 → 161 âm tiết sau vòng 6, vẫn trên khuyến nghị; giữ vì cần đủ tiêu chí (nhẹ) | chấp nhận |
+
+Mật độ sau vòng 5: A03b 60 (5 dòng, 1 công thức hiển thị); A04 55 (6 dòng, 2 công thức); A04b 49 (5 dòng, 1 công thức); B03 59; G01 80. Khác brief ở A03b: bỏ “trên $\mathbb R^p$”, “điều này”, “không còn được bảo đảm” → “mất bảo đảm”, dòng chi phí viết chung $O(np)$, để giữ trần 60 (bản theo đúng brief: khoảng 72 âm tiết). B03: “kể cả hằng số $1$” làm mặt trang 63 âm tiết nên chuyển xuống ghi chú, như brief cho phép.
+
+Trạng thái: chờ master rà soát vòng 5.
+
+## Vòng 6: tái kiểm vòng 3 và sửa cuối (2026-10-21)
+
+- Master: `chấp nhận` vòng 5, trừ các điểm dưới đây.
+- Tái kiểm vòng 3 (theo master): toán học 1 phát hiện `trung bình` và 3 `nhẹ`; mạch kể 4 `nhẹ`. Master chuyển nội dung dưới dạng các điểm sửa của vòng 6; bảng ghi theo các điểm đó, không theo nguyên văn từng mã.
+
+| Nguồn | Trang chiếu | Vấn đề | Trạng thái | Quyết định của master |
+|---|---|---|---|---|
+| Toán học (1 trung bình, 3 nhẹ) và mạch kể (4 nhẹ), gộp theo brief vòng 6 | A03b | giới hạn (ii) phải nói về đầu vào gốc: B03 cho thấy đặc trưng thủ công biểu diễn được XOR; tính không lồi đến từ mô hình phi tuyến theo $\theta$ | đã sửa | chấp nhận |
+| như trên | G01 | “Mục tiêu:” lặp ở ô phải; ô bước hằng thiếu điều kiện $\eta\le1/L$ | đã sửa | chấp nhận |
+| như trên | B03 (ghi chú) | “số đặc trưng là $p=501\,501$” không theo quy ước $p$ là số tham số | đã sửa (cả câu chi phí thống kê) | chấp nhận |
+| như trên | A02 (ghi chú) | “cho $O(1/\sqrt K)$ cho trung bình …” | đã sửa: “cho cận $O(1/\sqrt K)$ đối với trung bình …” | chấp nhận |
+| như trên | A04 / F02 | đính chính T8; A04 bỏ tên $D$ | đã sửa | chấp nhận |
+
+- Mật độ: A03b 56 (5 dòng, mỗi dòng ≤ 20, 1 công thức hiển thị); A04 55; G01 78; B03 59.
+- Trạng thái: chờ master rà soát vòng 6.
+
+### Quyết định của master vòng 6 và nghiệm thu đợt 2026-10-21 (A02, A04/A04b, A03/A03b, B03, B04)
+
+- Vòng 6: `chấp nhận`. Master tự kiểm tra bằng Playwright Chromium (1600×900 và 390×844) trên A02, A04, A04b, A03, A03b, B03, B04, D01b, D07, D07b, G00, G01, G01b, G03, G04: 75 trang, 0 lỗi hay cảnh báo console, 0 `.katex-error`, không tràn ngang; xem ảnh chụp A03b, G01. `git diff --check` sạch; `sync-local-materials.py --check` đạt.
+- Ghi nhận, chưa sửa: G03 cao 683/675 px ở 16:9 (mặt trang không đổi trong đợt này, có từ trước); xử lý khi người dùng rà tới G03. Sáu mục tiêu của `lecture-note.md` chưa đồng bộ với ba mục tiêu mới của A02.

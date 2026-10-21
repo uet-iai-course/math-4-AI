@@ -2,7 +2,7 @@
 
 ## Phạm vi và cơ sở lý thuyết chung
 
-Storyboard lập ngày 2026-10-11 theo thiết kế Lecture B của người dùng (*Scaling Models and Data*) và dàn bài [outline.md](outline.md). Bài gồm 73 trang trong 7 mạch từ đợt rà soát thuật ngữ 2026-10-12 (D04b tách từ D04; 72 trang sau đợt sửa văn phong cùng ngày, 45 trang trước đó), nằm trong khoảng 5–7 mạch của AGENTS.md. Bản đầu có 43 trang; sau kiểm định storyboard cùng ngày, F02 và F05 cũ được tách, câu hỏi vận dụng của G02 chuyển sang G03, các mã F03, F04, F06 cũ đổi thành F04, F05, F08 (outline.md, mục 1.5). Thiết kế người dùng chỉ quy định ba khối B1–B3, mỗi khối 1 tiết, cùng ba câu hỏi trung tâm; không có trang mẫu. Vì bài được dựng mới, mọi trang có quyết định `thêm`. Storyboard của deck hiện hành (“Các phương pháp tối ưu trong học sâu”, 45 trang) được lưu tại `storyboard.old-2026-10-02.md`. Deck đã được dựng ngày 2026-10-12 và sửa sau vòng rà soát năm vai cùng ngày; mã trang chỉ dùng trong kế hoạch.
+Storyboard lập ngày 2026-10-11 theo thiết kế Lecture B của người dùng (*Scaling Models and Data*) và dàn bài [outline.md](outline.md). Bài gồm 75 trang trong 7 mạch từ 2026-10-21 (A04b tách từ A04, A03b tách từ A03, yêu cầu người dùng; 73 trang từ đợt rà soát thuật ngữ 2026-10-12, D04b tách từ D04; 72 trang sau đợt sửa văn phong cùng ngày, 45 trang trước đó), nằm trong khoảng 5–7 mạch của AGENTS.md. Bản đầu có 43 trang; sau kiểm định storyboard cùng ngày, F02 và F05 cũ được tách, câu hỏi vận dụng của G02 chuyển sang G03, các mã F03, F04, F06 cũ đổi thành F04, F05, F08 (outline.md, mục 1.5). Thiết kế người dùng chỉ quy định ba khối B1–B3, mỗi khối 1 tiết, cùng ba câu hỏi trung tâm; không có trang mẫu. Vì bài được dựng mới, mọi trang có quyết định `thêm`. Storyboard của deck hiện hành (“Các phương pháp tối ưu trong học sâu”, 45 trang) được lưu tại `storyboard.old-2026-10-02.md`. Deck đã được dựng ngày 2026-10-12 và sửa sau vòng rà soát năm vai cùng ngày; mã trang chỉ dùng trong kế hoạch.
 
 **Bài toán trung tâm.** Bài 05 kết thúc với hai giới hạn: mọi phương pháp của Bài 05 trả chi phí của toàn bộ $n$ mẫu ở mỗi bước, và dự đoán tuyến tính theo đặc trưng không biểu diễn được XOR. Khi mô hình phải có đặc trưng học được và dữ liệu lớn đến mức một gradient đầy đủ vượt ngân sách, bài xác định: (1) chi phí tính gradient theo tham số; (2) điều mà một phương pháp dựa trên gradient còn chứng nhận khi mục tiêu không lồi; (3) tốc độ hội tụ khi gradient được thay bằng ước lượng ngẫu nhiên, và lý do tốc độ đó đủ cho mục tiêu thay thế $F$ của rủi ro $R$.
 
@@ -29,12 +29,12 @@ Storyboard lập ngày 2026-10-11 theo thiết kế Lecture B của người dù
 | Mạch | Trang tiêu đề | Khối | Chức năng | Đầu vào | Đầu ra và đóng góp vào bài toán trung tâm | Kiểm tra | Tiết LT + BT |
 |---|---|---|---|---|---|---|---|
 | A. Bài toán huấn luyện khi mô hình và dữ liệu lớn | A01 (bìa) | B1 (mở đầu) | Nhận hai giới hạn của Bài 05, nêu luận đề, cố định ký hiệu | Kết luận Bài 05: chi phí $O(nd)$, $O(nd^2+d^3)$; XOR; chính quy hóa $\ell_2$ | Ba câu hỏi của bài và khung ký hiệu | không | 0,12 + 0,00 |
-| B. Biểu diễn phi tuyến và mạng hai tầng | B00 | B1 | Nhu cầu: dự đoán tuyến tính có giới hạn biểu diễn. Dựng mạng hai tầng và chỉ ra chi phí | Giới hạn (ii) của A03 | $f(x;\theta)$; $F(\theta)$ không lồi, nhiều cực tiểu đối xứng | B10, B10b | 0,55 + 0,33 |
+| B. Biểu diễn phi tuyến và mạng hai tầng | B00 | B1 | Nhu cầu: dự đoán tuyến tính có giới hạn biểu diễn. Dựng mạng hai tầng và chỉ ra chi phí | Giới hạn (ii) của A03b | $f(x;\theta)$; $F(\theta)$ không lồi, nhiều cực tiểu đối xứng | B10, B10b | 0,55 + 0,33 |
 | C. Lan truyền ngược trên đồ thị tính toán | C00 | B2 (phần 1) | Nhu cầu: tính $\nabla F(\theta)\in\mathbb R^p$ với chi phí cùng bậc truyền xuôi | $f$, $F$ của mạch B; quy tắc dây chuyền Bài 00 | Thuật toán, chi phí $O(p)$ một mẫu, một bước hạ gradient | C07, C07b | 0,36 + 0,14 |
 | D. Điểm dừng và bảo đảm của gradient khi không lồi | D00 | B2 (phần 2) | Nhu cầu: xác định điều gradient bằng 0 hoặc gradient nhỏ chứng nhận khi $F$ không lồi | Gradient từ C; tính không lồi từ B | Phân loại điểm dừng; bổ đề giảm và T7: bảo đảm có được là điểm dừng xấp xỉ | D07, D07b | 0,32 + 0,18 |
 | E. Gradient nhóm nhỏ và chi phí mỗi bước | E00 | B3 (phần 1) | Nhu cầu: một gradient đầy đủ vượt ngân sách và $F$ chỉ là đại lượng thay thế | T7 (D05); chi phí của C | Ước lượng không chệch, phương sai, thuật toán SGD, chi phí mỗi bước độc lập với $n$ | E06, E06b, E06c | 0,30 + 0,14 |
 | F. Tốc độ hội tụ dưới nhiễu và dừng sớm | F00 | B3 (phần 2) | Nhu cầu: xác định tốc độ hội tụ khi gradient có nhiễu, phạm vi của bảo đảm và quy tắc dừng | SGD và phương sai của E | Bất đẳng thức một bước có nhiễu; T5, T6, T8 phát biểu lại với phạm vi; so sánh dưới ngân sách cố định; dừng sớm và quan hệ với chính quy hóa | F08, F08b | 0,30 + 0,13 |
-| G. Tổng hợp và lựa chọn phương pháp | G00 | B3 (kết luận) | Khép luận đề; chọn phương pháp theo $(n,p)$ và tính lồi | Kết quả của B–F | Bảng quyết định có điều kiện áp dụng | G04 | 0,05 + 0,08 |
+| G. Tổng hợp và lựa chọn phương pháp | G00 | B3 (kết luận) | Khép luận đề; chọn phương pháp theo chi phí một bước, giả thiết, bảo đảm hội tụ | Kết quả của B–F | Bảng quyết định có điều kiện áp dụng | G04 | 0,05 + 0,08 |
 
 Tổng 2,00 tiết lý thuyết + 1,00 tiết bài tập; mỗi khối 1,00 tiết (outline.md, mục 5 và 7). Mỗi khối của thiết kế ứng với các mạch giữa: B1 là mạch B, B2 tách thành C và D, B3 tách thành E và F; không mạch nào gộp hai khối. Bốn ranh giới phải giữ rõ (từ 2026-10-12 mỗi ranh giới có trang tiêu đề mạch xen giữa): B10b→C01 chuyển từ mô hình sang cách tính gradient của nó; C07b→D01b chuyển từ “tính được” sang “chứng nhận được”; D07b→E01 giữ T7 nhưng thay giả thiết gradient đầy đủ bằng ngân sách cố định; E06c→F01 chuyển từ một bước sang tốc độ sau $K$ bước.
 
@@ -156,16 +156,17 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 
 ### A02. Mục tiêu học tập
 
-- **Lý do tồn tại:** nêu ba mục tiêu đo được tương ứng ba khối B1–B3 và bản đồ năm mạch nội dung B–F.
-- **Nhu cầu hoặc khoảng trống được lấp:** người học cần biết ba sản phẩm học tập (chứng minh rủi ro thực nghiệm của mạng biểu diễn XOR không lồi; tính gradient bằng lan truyền ngược và phân loại điểm dừng; chọn phương pháp theo $(n,p)$ và tính lồi kèm bảo đảm dưới nhiễu) trước nội dung; thiếu bản đồ thì ranh giới giữa ba khối không được thấy.
+- **Lý do tồn tại:** nêu ba mục tiêu đo được, mỗi mục tiêu ứng với một năng lực toán học của bài: chứng minh tính không lồi, tính gradient và phân loại điểm dừng, chọn phương pháp tối ưu (bản 2026-10-21; bản đồ mạch đã chuyển sang A02b từ 2026-10-12).
+- **Nhu cầu hoặc khoảng trống được lấp:** người học cần biết ba sản phẩm học tập trước nội dung và tiêu chí đạt của từng sản phẩm: chứng minh rủi ro thực nghiệm của mạng XOR không lồi bằng phản ví dụ theo định nghĩa; tính gradient bằng lan truyền ngược và chỉ ra điểm có $\nabla F=0$ nhưng không là cực tiểu địa phương; chọn hạ gradient đầy đủ, Newton hay hạ gradient ngẫu nhiên theo chi phí, giả thiết, bảo đảm hội tụ.
 - **Đầu vào:** A01; tiên quyết Bài 00 (dây chuyền), Bài 04 (bổ đề giảm), kết luận Bài 05.
-- **Đầu ra:** ba mục tiêu mà G03 đối chiếu; bản đồ mạch dùng lại ở các ranh giới mạch.
+- **Đầu ra:** ba mục tiêu mà G03 đối chiếu từng dòng; ánh xạ mục tiêu → mạch → bài tập đo (B10, C07, D07, E06, F08, G04 câu 1) trong ghi chú diễn giả.
 - **Vị trí trong khung:** cấu trúc của bài toán trung tâm thành bốn vấn đề (A03).
-- **LLO/CLO:** LLO11, LLO12 (một phần); CLO1, CLO2, CLO4.
+- **LLO/CLO:** một phần LLO11, một phần LLO12, phần so sánh chi phí của LLO15 (phương pháp Newton; thêm 2026-10-21); CLO1, CLO2, CLO4.
 - **Bước hành trình:** không áp dụng.
 - **Quyết định:** `thêm` — cấu trúc mặc định yêu cầu mục tiêu đo được gắn LLO/CLO trước nội dung.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `tách` — 133 → 52 âm tiết; gỡ `.dense`; bản đồ năm mạch chuyển sang trang Nội dung A02b, câu “Vấn đề trung tâm” chuyển sang trang Ngữ cảnh A04; trang chỉ còn ba mục tiêu; ghi chú bỏ mã T7, T8, nêu LLO/CLO. Tiêu đề cũ: “Mục tiêu học tập và bản đồ bài”.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — chỉ ghi chú: LLO/CLO viết đầy đủ ở lần đầu (chuẩn đầu ra bài học, chuẩn đầu ra học phần); “phép thử Hessian” → “phép kiểm tra bậc hai”. Mặt trang không đổi (52).
+- **Sửa 2026-10-21 (mục tiêu theo năng lực toán học):** `sửa` — yêu cầu người dùng 2026-10-21; ba vòng sửa theo quyết định của master (review-log.md). Mặt trang cuối, câu thường, không in đậm như mục tiêu của Bài 01–05: (1) “Chứng minh rủi ro thực nghiệm của mạng XOR không lồi bằng phản ví dụ theo định nghĩa.”; (2) “Tính gradient bằng lan truyền ngược; chỉ ra điểm có $\nabla F=0$ nhưng không là cực tiểu địa phương.”; (3) “Chọn hạ gradient đầy đủ, Newton hay hạ gradient ngẫu nhiên theo chi phí, giả thiết, bảo đảm hội tụ.” Mật độ: 52 → 62 âm tiết (trần 80), 4 dòng (trần 6), mỗi dòng 7/18/17/20 âm tiết (trần 20), 0 công thức hiển thị. Ghi chú diễn giả viết lại: mục tiêu 1 ↔ mạch 2 (phản ví dụ = hai điểm, trung điểm, bất đẳng thức lồi bị vi phạm; hai cực tiểu đối xứng $\theta_A$, $\theta_B$ với $F=\tfrac14$ tại trung điểm ở B09b, $\tfrac{27}{32}$ ở B10 câu 3); mục tiêu 2 ↔ mạch 3, 4 (C07; D07 câu 1: gốc không là cực tiểu địa phương; câu 2: $(2,\tfrac12)$ là cực tiểu toàn cục, phép kiểm tra bậc hai không kết luận); mục tiêu 3 ↔ mạch 5, 6, G02 (chi phí, giả thiết, bảo đảm theo từng phương pháp; với SGD không lồi, $O(1/\sqrt K)$ là cho trung bình kỳ vọng bình phương chuẩn gradient) và G04 câu 1; câu LLO/CLO thêm phần so sánh chi phí của LLO15. Tên tiếng Anh của hạ gradient ngẫu nhiên nêu trong ghi chú; chữ viết tắt SGD vẫn giới thiệu ở E01.
 
 ### A02b. Nội dung
 
@@ -179,12 +180,12 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Quyết định:** `thêm` — yêu cầu người dùng 2026-10-12; tách khỏi A02 vì AGENTS.md không cho gộp Nội dung với mục tiêu. Ngoại lệ: 7 dòng (trần 6) vì phải liệt kê đủ 7 mạch. Ngoại lệ tên: mục 1 mang tên mạch mở đầu “Bài toán huấn luyện khi mô hình và dữ liệu lớn”, còn trang tiêu đề của mạch này là bìa A01 mang tên bài; giữ vì “Mở đầu” không nêu nhiệm vụ của mạch. Mật độ: 61 âm tiết (trang mới, 2026-10-12).
 - **Sửa vòng tái kiểm 2026-10-12:** ghi chú viết theo mục, không lấy “Phần …” làm chủ ngữ; ghi ngoại lệ tên mục 1.
 
-### A04. Ngữ cảnh: bài toán huấn luyện
+### A04. Ngữ cảnh: dữ liệu, mô hình và rủi ro
 
 - **Lý do tồn tại:** cố định đối tượng và ký hiệu chung trước khi phát biểu lại kết quả của 05b, 05c.
 - **Nhu cầu hoặc khoảng trống được lấp:** 05b viết $x_k$, $f$, $N$; 05c viết $J$ và dùng $d$ cho số chiều tham số; Bài 05 gộp hệ số chặn vào $w$ và viết $w_k$. Không có ánh xạ, T5–T8, 05c.52, 05c.53 sẽ trùng chữ với dữ liệu $x_i$ và với kích thước nhóm $b$.
-- **Đầu vào:** bốn vấn đề của A03; ký hiệu của Bài 05, 05b, 05c.
-- **Đầu ra:** $(x_i,y_i)$, $f(x;\theta)$, $\theta\in\mathbb R^p$, $\ell_i$, $F$, $R$, dãy lặp $\theta_{k+1}=\theta_k-\eta_kg_k$; quy ước $c$ cho hệ số chặn, $b_1,b_2$ cho độ chệch mạng, $b$ cho kích thước nhóm; ánh xạ ký hiệu với Bài 05, 05b, 05c, gồm dòng đối xứng với MD04 của Bài 05: Bài 05 viết đầu vào thô $u$, đặc trưng $x=\varphi(u)\in\mathbb R^d$ có tọa độ hằng 1 và hệ số chặn trong $w$, nên $d$ của Bài 05 bằng $p=d+1$ của Bài 06 với mô hình tuyến tính; câu nhắc $\sigma$ (hàm kích hoạt ở mạch B–C; Bài 05 dùng $\sigma$ cho hàm sigmoid) khác $\sigma^2$ (chặn phương sai ở mạch E–F).
+- **Đầu vào:** A02b (danh sách mạch); ký hiệu của Bài 05, 05b, 05c. (Bản trước 2026-10-21 ghi “bốn vấn đề của A03”; A04 đứng trước A03 từ 2026-10-12.)
+- **Đầu ra (bản 2026-10-21, vòng 6):** dữ liệu $\{(x_i,y_i)\}_{i=1}^n$ (không đặt tên $D$: tên tập dữ liệu không dùng lại, còn $D=\lVert\theta_0-\theta^*\rVert$ ở F02), $f(x;\theta)$, $\theta\in\mathbb R^p$, vai trò của $d$ và $p$, $\ell_i$, $F$, $R$ và $P$; ánh xạ ký hiệu với Bài 05, 05b, 05c trong ghi chú. Dãy lặp $\theta_{k+1}=\theta_k-\eta_kg_k$, tập xác thực, quy ước $b$ và $\sigma$ chuyển sang A04b.
 - **Vị trí trong khung:** đối tượng và ký hiệu chung.
 - **LLO/CLO:** CLO1.
 - **Bước hành trình:** nền cho mọi KN, không thuộc bước riêng.
@@ -192,12 +193,27 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 74 → 29 âm tiết; gỡ `.dense`; thành trang Ngữ cảnh bốn dòng (ký hiệu, $F$ và $R$, dãy lặp, “Nhu cầu:”); khung “Đối chiếu ký hiệu” chuyển xuống ghi chú theo AGENTS.md mục Cấu trúc, ý 4; ghi chú bỏ mã H6b. Ghi chú bài giảng Bài 06 đã có mục ký hiệu nên không cần sửa học liệu. Tiêu đề cũ: “Bài toán huấn luyện và ký hiệu chung”.
 - **Sửa vòng tái kiểm 2026-10-12:** ghi chú thêm ánh xạ $\tau^2$ (Bài 05) ↔ $\sigma^2$.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — đứng ngay sau A02b (quyết định B3); thêm hai dòng “$F$: rủi ro thực nghiệm (empirical risk); $R$: rủi ro kỳ vọng (Bài 05).” (B4) và “Tập xác thực: mẫu tách riêng, không dùng tính gradient, dùng để ước lượng $R$.” (B5, phương án 1). 29 → 54 âm tiết, 6 dòng. Ghi chú: rủi ro kỳ vọng (expected risk), tập xác thực (validation set), độ chệch (bias) cho $b_1,b_2$, kích thước nhóm (batch size), nhóm nhỏ (minibatch).
+- **Sửa 2026-10-21 (tách A04):** `tách` — yêu cầu người dùng 2026-10-21 (“tách làm hai, trình bày rõ ràng hơn”). A04 giữ dữ liệu $D=\{(x_i,y_i)\}_{i=1}^n$, mô hình $f(x;\theta)$, dòng “Lưu ý:” về $d$ (số chiều đầu vào) và $p$ (số tham số học được), hai công thức hiển thị $F$ (giữ $\ell_i$ vì E04, E05 dùng) và $R=\mathbb E_{(X,Y)\sim P}\ell$, mỗi công thức một dòng diễn giải; dãy lặp, tập xác thực và “Nhu cầu:” chuyển sang A04b. Ghi chú: rủi ro kỳ vọng (expected risk), vai trò của $d$ và $p$, mất mát bình phương, đối chiếu ký hiệu Bài 05/05b/05c. Mật độ: 53 âm tiết (trần 60), 6 dòng (trần 6), 2 công thức hiển thị, mỗi dòng ≤ 19 âm tiết. **Ngoại lệ:** trang Ngữ cảnh 6 dòng (AGENTS.md: tối đa bốn dòng) vì nội dung do người dùng chỉ định gồm hai công thức hiển thị, mỗi công thức kèm một dòng diễn giải; gộp hai dòng diễn giải sẽ vượt 20 âm tiết một dòng. Tiêu đề cũ: “Ngữ cảnh: bài toán huấn luyện”.
+- **Sửa 2026-10-21 (vòng 5):** `sửa` — dòng $R$ thêm “(expected risk; Bài 05)”, tên tiếng Anh rời khỏi ghi chú; ghi chú mất mát logistic thêm “phản ví dụ trung điểm vẫn dùng được, dù không có cực tiểu khi không chính quy hóa”; dòng $F$ thành hai hàng `aligned` để không cắt ở khổ hẹp. Mật độ: 55 âm tiết (trần 60), 6 dòng, 2 công thức hiển thị.
+- **Sửa 2026-10-21 (vòng 6):** `sửa` — “dữ liệu $D=\{(x_i,y_i)\}$” → “dữ liệu $\{(x_i,y_i)\}_{i=1}^n$”: tên $D$ không dùng lại, còn F02 dùng $D=\lVert\theta_0-\theta^*\rVert$ và $D^2$ trong cận. Mật độ: 55 âm tiết.
 
-### A03. Giả thiết lồi của Bài 01–04 và hai giới hạn khi mở rộng quy mô
+### A04b. Ngữ cảnh: bài toán huấn luyện và dãy lặp
+
+- **Lý do tồn tại:** phát biểu bài toán huấn luyện và dạng chung của dãy lặp mà mọi phương pháp của bài là trường hợp riêng, sau khi A04 đã đặt tên $F$, $R$.
+- **Nhu cầu hoặc khoảng trống được lấp:** trước 2026-10-21 dãy lặp, tập xác thực và dòng nhu cầu nằm chung trang với ký hiệu và rủi ro (6 dòng); người dùng yêu cầu tách để trình bày rõ hơn. Không có dạng chung $\theta_{k+1}=\theta_k-\eta_kg_k$, hạ gradient đầy đủ và hạ gradient ngẫu nhiên xuất hiện như hai thuật toán rời nhau.
+- **Đầu vào:** $F$, $R$, $\theta\in\mathbb R^p$ của A04.
+- **Đầu ra:** dãy lặp đóng khung (KaTeX `\boxed`, vì `lecture-style.css` không có lớp công thức trọng tâm cho Bài 06); $g_k$ là gradient đầy đủ hoặc ước lượng trên nhóm mẫu, $\eta_k>0$ là bước; tập xác thực; dòng “Nhu cầu:” dẫn A03. Ghi chú: hai lựa chọn của $g_k$, tập xác thực (validation set), quy ước chữ $b$ và $\sigma$, kích thước nhóm (batch size), nhóm nhỏ (minibatch).
+- **Vị trí trong khung:** bài toán trung tâm và phương pháp chung.
+- **LLO/CLO:** CLO1.
+- **Bước hành trình:** nền cho mọi KN, không thuộc bước riêng.
+- **Quyết định:** `tách` — từ A04, yêu cầu người dùng 2026-10-21. Mật độ: 51 âm tiết (trần 60), 5 dòng, 1 công thức hiển thị, mỗi dòng ≤ 14 âm tiết. **Ngoại lệ:** trang Ngữ cảnh 5 dòng (tối đa bốn) vì người dùng chỉ định cả năm thành phần (bài toán, dãy lặp, $g_k$, tập xác thực, nhu cầu).
+- **Sửa 2026-10-21 (vòng 5):** `sửa` — dòng 1 thành “Huấn luyện: cực tiểu hóa $F$ trên $\mathbb R^p.$ Dãy lặp dạng chung:”. Mật độ: 49 âm tiết, 5 dòng, 1 công thức hiển thị.
+
+### A03. Giả thiết lồi và hai giới hạn khi mở rộng quy mô
 
 - **Lý do tồn tại:** nêu luận đề của người dùng lần đầu, ở dạng đối chiếu giữa bức tranh lồi của Bài 01–04 và bài toán quy mô lớn, kèm hai lý do; G01 quay lại cùng bảng.
 - **Nhu cầu hoặc khoảng trống được lấp:** nếu hai lý do không được nêu sớm, SGD ở mạch E–F dễ bị hiểu là lựa chọn “nhanh hơn” và dừng sớm bị hiểu là thất bại hội tụ.
-- **Đầu vào:** hai giới hạn trong kết luận Bài 05: chi phí $O(nd)$ và $O(nd^2+d^3)$ đều quét toàn bộ $n$ mẫu; XOR không biểu diễn được bằng dự đoán tuyến tính; kết quả khối A1, A2 của Bài 05.
+- **Đầu vào:** $F$, $R$, dãy lặp và tập xác thực của A04, A04b; hai giới hạn trong kết luận Bài 05: chi phí $O(nd)$ và $O(nd^2+d^3)$ đều quét toàn bộ $n$ mẫu; XOR không biểu diễn được bằng dự đoán tuyến tính; kết quả khối A1, A2 của Bài 05.
 - **Đầu ra:** lý do tính toán; lý do thống kê kèm hệ quả “dừng sớm và chính quy hóa là một phần của phương pháp”; đối chiếu “giảm mỗi bước / bất đẳng thức giảm có số hạng nhiễu”; bốn vấn đề của bài (biểu diễn XOR và hệ quả, chi phí tính gradient, điều gradient chứng nhận khi không lồi, tốc độ hội tụ dưới nhiễu), mỗi vấn đề là nhu cầu của một phần; bảng có nhãn dòng Đích (lý do thống kê), Biểu diễn (giới hạn (ii)), Chi phí (lý do tính toán, giới hạn (i)).
 - **Vị trí trong khung:** bài toán trung tâm và luận đề.
 - **LLO/CLO:** LLO11; CLO1.
@@ -205,6 +221,22 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Quyết định:** `thêm` — chỉ dẫn người dùng 2026-10-11 yêu cầu nêu luận đề sớm theo dạng “mất gì, giữ gì”; ghi chú phát biểu Newton theo Bài 05 CP04 (Định lý 4, số bước của Newton), không viết “Newton không phụ thuộc $\kappa$” vô điều kiện (điểm hòa giải 2); sau kiểm định storyboard, mặt trang không khẳng định SGD giảm theo kỳ vọng, không dùng $p$ trước A04 và dùng nhãn “Vấn đề của bài” thay cho “Câu hỏi”.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 140 → 77 âm tiết; gỡ `.dense`; bảng ba cột có nhãn dòng Đích, Bảo đảm, Biểu diễn (ii), Chi phí (i); bỏ dòng “Vấn đề của bài” (nay là trang Nội dung) và câu dài về hai giới hạn; ô “SGD” đổi thành “theo kỳ vọng” vì SGD chưa được định nghĩa; ghi chú rút còn khoảng 255 âm tiết, bỏ đoạn Newton (đã có ở E01, G02). Ngoại lệ trần 60: bảng so sánh, trần 80.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — đứng sau A04 (thứ tự A02b → A04 → A03, quyết định B3) để $F$, $R$ và tập xác thực có tên trước bảng; ô “Đích” thành “$F$ chỉ ước lượng $R$”, ô “Biểu diễn (ii)” thành “không lồi: chỉ chặn được $\lVert\nabla F\rVert$” (hai khái niệm chưa định nghĩa là đại lượng thay thế và điểm dừng xấp xỉ rời mặt trang); ghi chú thêm “đại lượng thay thế (surrogate)” và câu bảo đảm chỉ chặn chuẩn gradient. 75 → 67 âm tiết (trần 80, bảng so sánh).
+- **Sửa 2026-10-21 (văn phong học thuật, tách A03b):** `tách` — yêu cầu người dùng 2026-10-21 (“điều chỉnh, ngôn ngữ học thuật không văn nói”). Tiêu đề cũ: “Giả thiết lồi của Bài 01–04 và hai giới hạn khi mở rộng quy mô”. Bảng bốn dòng “Khía cạnh | Bài toán nhỏ, lồi (Bài 01–04) | Mô hình và dữ liệu lớn” với nhãn dòng Mục tiêu (thay Đích), Gradient (dòng mới), Bảo đảm, Chi phí; dòng Biểu diễn (ii) cũ thành dòng Bảo đảm, hai giới hạn chuyển sang A03b. Tách vì bảng (≈ 63 âm tiết) cộng hai dòng giới hạn (40 âm tiết) vượt trần 80 của bảng so sánh. Ghi chú: một đoạn cho mỗi dòng (lý do thống kê, gradient có nhiễu, bảo đảm, lý do tính toán), khả năng tổng quát hóa (generalization). Mật độ: khoảng 63 âm tiết (trần 80, bảng so sánh), 0 công thức hiển thị. Lưu ý cho master: ô “thường chỉ điểm dừng xấp xỉ” và “nhóm nhỏ” dùng thuật ngữ được định nghĩa ở D01b và E, trái với quyết định sau kiểm định 2026-10-12 (không dùng khái niệm chưa định nghĩa trên mặt trang); giữ theo brief vòng 3 của master.
+- **Sửa 2026-10-21 (vòng 5):** `sửa` — chỉ ghi chú: câu chuyển “Dòng Bảo đảm và dòng Chi phí là hệ quả của hai giới hạn của Bài 05, nêu riêng ở trang sau.” Liên kết A04b → A03 → A03b. Tiêu đề và thứ tự giữ theo thiết kế của người dùng (đề xuất đổi tiêu đề, thứ tự của tái kiểm mạch kể bị bác bỏ).
+
+### A03b. Hai giới hạn: biểu diễn và chi phí
+
+- **Lý do tồn tại:** nêu riêng hai giới hạn của Bài 05 mà bảng A03 tóm lược, giữ nhãn (i) chi phí, (ii) biểu diễn mà B00, E01, G01, G01b dùng lại.
+- **Nhu cầu hoặc khoảng trống được lấp:** bảng A03 so sánh bốn khía cạnh nhưng không nêu cơ chế của hai giới hạn: điều kiện bậc nhất chỉ đủ khi $F$ lồi, và chi phí một bước tỉ lệ với $n$.
+- **Đầu vào:** bảng A03; điều kiện bậc nhất của hàm lồi (Bài 02, 04); chi phí $O(nd)$ của Bài 05.
+- **Đầu ra:** “Nhắc lại:” với $F$ lồi, khả vi trên $\mathbb R^p$, điểm dừng là cực tiểu toàn cục, công thức hiển thị $\nabla F(\theta^*)=0\Longrightarrow\theta^*\in\arg\min F$; “Giới hạn (ii), biểu diễn: khi $F$ không lồi, kéo theo này không còn đúng.”; “Giới hạn (i), chi phí: một bước hạ gradient trên $n$ mẫu tốn $O(nd)$ với mô hình tuyến tính, $O(np)$ với mạng.” Nhãn “Giới hạn (i)”, “Giới hạn (ii)” như ghi chú A03b và E01. Ghi chú: hai giới hạn theo Bài 05, XOR chứng minh ở mạch 2, $O(p)$ của lan truyền ngược ở mạch 3; thứ tự xử lý (biểu diễn ở mạch 2–4, chi phí ở mạch 5–6).
+- **Vị trí trong khung:** bài toán trung tâm; nhu cầu của mạch 2 và mạch 5.
+- **LLO/CLO:** LLO11; CLO1.
+- **Bước hành trình:** nhu cầu của toàn bài.
+- **Quyết định:** `tách` — từ A03, yêu cầu người dùng 2026-10-21. Mật độ: 40 âm tiết (trần 60), 2 dòng, mỗi dòng 20 âm tiết (bản đầu).
+- **Sửa 2026-10-21 (yêu cầu sửa của master, theo bản phác của người dùng):** `sửa` — bỏ ngoặc cuối “(ii, biểu diễn)”, “(i, chi phí)”; bố cục bốn dòng: “Nhắc lại:”, công thức hiển thị, dòng “Giới hạn (ii), biểu diễn: …”, dòng “Giới hạn (i), chi phí: …”. Phần “là cực tiểu toàn cục” đặt ngoài KaTeX (chữ Việt trong `\text{}` gây cảnh báo KaTeX về ký tự Unicode), công thức viết $\theta^*\in\arg\min_{\theta\in\mathbb R^p}F(\theta)$; “mạng $p$ tham số” rút thành “mạng” để dòng chi phí ≤ 20 âm tiết ($p$ đã định nghĩa ở A04; ghi chú nêu lại). Mật độ: 47 âm tiết, 4 dòng (14/–/14/19), 1 công thức hiển thị; mỗi đoạn ≤ 2 dòng hiển thị ở 1600×900.
+- **Sửa 2026-10-21 (vòng 5, tái kiểm toán học và mạch kể):** `sửa` — giới hạn (ii) là “dự đoán tuyến tính theo đặc trưng cố định không biểu diễn được XOR”; tính không lồi là hệ quả của cách khắc phục. Mặt trang: “Nhắc lại: với $F$ lồi, khả vi, điểm dừng là cực tiểu toàn cục:”; công thức $\nabla F(\theta^*)=0\Longrightarrow\theta^*\in\arg\min F$; “Giới hạn (ii), biểu diễn: dự đoán tuyến tính theo đặc trưng cố định không biểu diễn được XOR.”; “Đặc trưng học được khắc phục nhưng làm $F$ không lồi; kéo theo trên mất bảo đảm.”; “Giới hạn (i), chi phí: một bước hạ gradient trên $n$ mẫu tốn $O(np).$” Rút gọn so với brief để giữ trần 60: bỏ “trên $\mathbb R^p$” ở dòng nhắc lại, bỏ “điều này”, “không còn được bảo đảm” → “mất bảo đảm”, dòng chi phí viết chung $O(np)$ (với mô hình tuyến tính $p=d+1$; ghi chú nêu $O(nd)$). Ghi chú: nhận bảng A03; (ii) nêu trước (i) vì mạch 2–4 xử lý trước; tính không lồi là hệ quả của cách khắc phục. Liên kết A03 → A03b → B00. Mật độ: 60 âm tiết (trần 60), 5 dòng, 1 công thức hiển thị, mỗi dòng ≤ 19.
+- **Sửa 2026-10-21 (vòng 6):** `sửa` — giới hạn (ii) nói về đầu vào gốc, vì B03 cho thấy đặc trưng thủ công biểu diễn được XOR: “Giới hạn (ii), biểu diễn: dự đoán tuyến tính theo đầu vào gốc không biểu diễn được XOR.”; “Mô hình phi tuyến theo $\theta$ khắc phục được nhưng làm $F$ không lồi; kéo theo trên không còn được bảo đảm.”; dòng nhắc lại rút thành “với $F$ lồi, khả vi:”. Ghi chú: đặc trưng thủ công giữ mô hình tuyến tính theo $\theta$, $F$ vẫn lồi; tính không lồi đến từ mô hình phi tuyến theo $\theta$. Mật độ: 56 âm tiết (trần 60), 5 dòng (6/–/18/20/12), 1 công thức hiển thị.
 
 ### B00. Biểu diễn phi tuyến và mạng hai tầng (trang tiêu đề mạch)
 
@@ -268,8 +300,11 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 54 → 33 âm tiết; gỡ `.dense`; bỏ mệnh đề diễn giải dài ở dòng đầu và dòng cuối (chuyển xuống ghi chú).
 - **Sửa vòng tái kiểm 2026-10-12:** thêm dòng “Nhu cầu:” (bước nhu cầu của KN2 trên mặt trang); 51 âm tiết.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — ghi chú “cỡ $p^3$” → “khoảng $p^3$” (quyết định liên bài 8).
+- **Sửa 2026-10-21 (nhận xét về đặc trưng thủ công):** `sửa` — yêu cầu người dùng 2026-10-21. Thêm “**Nhận xét.** Đặc trưng thủ công khắc phục giới hạn biểu diễn nhưng làm $p$ tăng nhanh, tăng chi phí và nguy cơ quá khớp (overfitting).” sau dòng chi phí, trước “Nhu cầu:”; đây là lần đầu “quá khớp” xuất hiện trong deck nên tên tiếng Anh đặt trên mặt trang. Dòng chi phí rút thành “Mỗi bước: $O(np)$ (hạ gradient), $O(np^2+p^3)$ (Newton, Bài 05).” với $p=\binom{d+q}{q}$ là số đặc trưng, theo quy ước $d$/$p$ mới của A04; dòng số đơn thức viết lại “Số đặc trưng (đơn thức bậc $\le q$ của $d$ biến): $p=\binom{d+q}{q}$”. Dòng ví dụ $\varphi(x)=(x_1,x_2,x_1x_2)$ chuyển xuống ghi chú để giữ trần 60. Ghi chú: thêm đoạn hai loại chi phí (tính toán: $np$, $p^3$; thống kê: quá khớp, Bài 05 phần hồi quy nhiều chiều). Mật độ: 51 → 59 âm tiết (trần 60; vòng sửa của master 2026-10-21: “kéo theo chi phí” → “tăng chi phí”), 4 dòng chữ và một bảng, vừa khung 1600×900 (chiều cao nội dung 673/675 px). **Ngoại lệ:** câu nhận xét 25 âm tiết, hai dòng hiển thị (trần 20 một dòng) vì nội dung người dùng yêu cầu gồm cả giới hạn biểu diễn, số chiều và hai loại chi phí trong một câu.
+- **Sửa 2026-10-21 (vòng 5):** `sửa` — dòng đầu “Số tham số (đơn thức bậc $\le q$ của $d$ biến): $p=\binom{d+q}{q}$”, bỏ dấu hai chấm thứ hai. Quy ước đếm: $\binom{d+q}{q}$ đếm mọi đơn thức bậc không quá $q$, kể cả đơn thức hằng $1$, nên $p$ là số tham số tính cả hệ số chặn (ghi chú nêu; viết “kể cả hằng số $1$” trên mặt trang làm mặt trang 63 âm tiết, vượt trần). Mật độ: 59 âm tiết.
+- **Sửa 2026-10-21 (vòng 6):** `sửa` — chỉ ghi chú: “số đặc trưng là $p=501\,501$” → “số tham số là $p=501\,501$”; “khi số đặc trưng tăng với $n$ cố định” → “khi số tham số $p$ tăng với $n$ cố định”. Mặt trang không đổi (59).
 
-### B04. Tầng ẩn như một phép biến đổi đặc trưng
+### B04. Phép biến đổi đặc trưng bằng tầng ẩn
 
 - **Lý do tồn tại:** trực quan cho đặc trưng học được: hai đơn vị ReLU đưa XOR sang không gian $h$ nơi hai lớp tách được tuyến tính.
 - **Nhu cầu hoặc khoảng trống được lấp:** định nghĩa mạng ở B06 cần một hình ảnh về việc tầng ẩn làm gì với dữ liệu.
@@ -281,6 +316,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Quyết định:** `thêm` — trực quan phải đứng trước định nghĩa mạng.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `giữ` — 11 → 11 âm tiết; gỡ `.dense`; nội dung giữ nguyên.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — tiêu đề “Lớp ẩn …” → “Tầng ẩn như một phép biến đổi đặc trưng” (“lớp” dành cho lớp nhãn); ghi chú thêm “tầng ẩn (hidden layer)”; nhãn `img/lec-06/two-layer-network.svg` đổi theo. Mặt trang 11 → 11.
+- **Sửa 2026-10-21 (tiêu đề):** `sửa` — yêu cầu người dùng 2026-10-21: tiêu đề cũ “Tầng ẩn như một phép biến đổi đặc trưng” (“như một” là sao phỏng “as a”) → “Phép biến đổi đặc trưng bằng tầng ẩn”. Mặt trang và ghi chú khác không đổi; mục 2.3 của ghi chú bài giảng đổi tên theo.
 
 ### B05. Ví dụ: mạng hai đơn vị ẩn biểu diễn XOR
 
@@ -640,6 +676,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Quyết định:** `thêm` — mỗi mạch có trang kiểm tra riêng.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `tách` — 46 → 49 âm tiết; gỡ `.dense`; tiêu đề “Bài tập: …” không mã T7; câu 3, 4 gọi tên định lý; đáp án lên mặt trang D07b. Tiêu đề cũ: “Phân loại điểm dừng và số bước theo T7”.
 - **Sửa vòng tái kiểm 2026-10-12:** ghi chú mở bằng kỹ năng được kiểm tra.
+- **Sửa 2026-10-21 (đo mục tiêu 2):** `sửa` — câu 1 thành “Xác định mọi điểm dừng; chỉ ra một điểm dừng không là cực tiểu địa phương.”, để bài tập đo phần “điểm có $\nabla F=0$ nhưng không là cực tiểu địa phương” của mục tiêu 2 ở A02; ghi chú nêu hai trường hợp phân loại. 59 âm tiết theo bộ đếm token có chữ (trần 60), 6 dòng.
 
 ### D07b. Bài tập: phân loại điểm dừng và số bước của hạ gradient
 
@@ -652,6 +689,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Bước hành trình:** KN5, KN6 bài tập (lời giải).
 - **Quyết định:** `tách` từ ghi chú D07; dữ kiện khác Bài 5 của `exercises.md` (Bài 5 dùng $(4,\tfrac14)$ và $\theta_0=(\tfrac14,\tfrac14)$), nên không phải cùng bài; đáp án khớp ghi chú cũ. Mật độ: 43 âm tiết (trang mới, 2026-10-12).
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — “không loại điểm gần yên ngựa” → “không loại khả năng dừng gần điểm yên ngựa”. 42 → 45 âm tiết.
+- **Sửa 2026-10-21 (đo mục tiêu 2):** `sửa` — lời giải câu 1 thêm ${F(t,t)=\tfrac12(t^2-1)^2<\tfrac12=F(0,0)}$ với $t\ne0$ nhỏ, nên gốc không là cực tiểu địa phương; lập luận bằng giá trị của $F$, không dùng Hessian, để không lặp D02. Ghi chú câu 1 nêu khoảng $0<\lvert t\rvert<\sqrt2$. 55 âm tiết (trần 60), 5 dòng, mỗi dòng ≤ 20.
 
 ### E00. Gradient nhóm nhỏ và chi phí mỗi bước (trang tiêu đề mạch)
 
@@ -993,12 +1031,13 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Lý do tồn tại:** trang tiêu đề mạch bắt buộc; đánh dấu ranh giới F08b → G01, từ kết quả từng phần sang tổng hợp.
 - **Nhu cầu hoặc khoảng trống được lấp:** người học cần biết mạch cuối khép luận đề và đưa ra quy tắc chọn phương pháp.
 - **Đầu vào:** kết quả của mạch 2–6.
-- **Đầu ra:** nhiệm vụ “chọn phương pháp theo $n$, $p$ và tính lồi” cho G01–G04.
+- **Đầu ra:** nhiệm vụ “chọn phương pháp theo chi phí một bước, giả thiết và bảo đảm hội tụ” cho G01–G04 (sửa 2026-10-21; trước: “theo $n$, $p$ và tính lồi”).
 - **Vị trí trong khung:** điểm vào mạch 7.
 - **LLO/CLO:** không đo trực tiếp; hỗ trợ mục tiêu 3 của A02.
 - **Bước hành trình:** ngoài hành trình khái niệm (tổng hợp).
 - **Quyết định:** `thêm` — theo yêu cầu người dùng. Mật độ: 33 âm tiết (trang mới, 2026-10-12).
 - **Sửa vòng tái kiểm 2026-10-12:** ghi chú mở bằng kết quả kế thừa.
+- **Sửa 2026-10-21 (đồng bộ mục tiêu 3):** `sửa` — dòng dẫn “Nhu cầu: chọn phương pháp theo chi phí một bước, giả thiết và bảo đảm hội tụ.” (17 âm tiết, trần 25) thay “theo số mẫu $n,$ số tham số $p$ và tính lồi”; ghi chú: quy tắc chọn theo chi phí một bước (phụ thuộc $n$, $p$, $b$), giả thiết và bảo đảm hội tụ. 30 âm tiết.
 
 ### G01. Điều không còn giữ được và điều còn giữ được
 
@@ -1014,6 +1053,8 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Sửa 2026-10-12 (văn phong và mật độ):** `tách` — 134 → 75 âm tiết; gỡ `.dense`; bảng bốn dòng chia hai trang: G01 (Đích, Tốc độ tuyến tính) và G01b (Cực tiểu toàn cục, Chi phí); bỏ mã T5–T8 trong ô (tên kết quả ở ghi chú); số liệu lân cận $\mathbb E\lVert\theta_k-\theta^*\rVert^2$ có bậc $\eta\sigma^2/\mu$ giữ nguyên. Ngoại lệ trần 60: bảng so sánh, trần 80.
 - **Sửa vòng tái kiểm 2026-10-12:** dòng điều kiện giữ nhãn “(i) chi phí”, “(ii) biểu diễn” như A03 (ghi chú nêu Bài 05 KL04 gọi (ii) là “không lồi”, cùng nội dung); “Gradient đầy đủ, $\eta\le1/L$: $F$ không tăng (bổ đề giảm)”; “(đã mất ở Bài 05)” chuyển xuống ghi chú; 76 âm tiết.
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — ô “Sai số giảm theo cấp số nhân (hội tụ tuyến tính), tất định (Bài 05; khi (i) hoặc (ii))” (B11); để giữ trần 80, dòng mở bỏ chữ “nhỏ” (“gradient nhóm thay gradient đầy đủ”) và ô phải viết “$\limsup_k\mathbb E\lVert\theta_k-\theta^*\rVert^2\le\eta\sigma^2/\mu$” thay “… cỡ $\eta\sigma^2/\mu$”. 74 → 79 âm tiết. Ghi chú “Bài 05 KL04” → “bảng kết luận của Bài 05”, bỏ “cỡ”.
+- **Sửa 2026-10-21 (mật độ):** `sửa` — ô “Mục tiêu là nghiệm tối ưu của $F$” → “Mục tiêu: nghiệm tối ưu của $F$”, “Mục tiêu là $R$ nhỏ:” → “Mục tiêu: $R$ nhỏ;”. Mật độ: 80 âm tiết theo bộ đếm token có chữ (dòng dẫn 18, bảng 62; trần 80 của bảng so sánh); dòng dẫn giữ nguyên.
+- **Sửa 2026-10-21 (vòng 6):** `sửa` — ô phải bỏ “Mục tiêu:” thứ hai (“$R$ nhỏ; …”); ô bước hằng thêm điều kiện “bước hằng $\eta\le1/L$ tới lân cận”. Mật độ: 78 âm tiết (trần 80).
 
 ### G01b. Điều không còn giữ được và điều còn giữ được
 
@@ -1026,6 +1067,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Bước hành trình:** tổng hợp, không thuộc cụm riêng.
 - **Quyết định:** `tách` từ G01 (134 âm tiết trước khi sửa); cùng tiêu đề với G01 theo quy tắc trang tiếp nối. Mật độ: 47 âm tiết (trang mới, 2026-10-12).
 - **Sửa vòng tái kiểm 2026-10-12:** ghi chú gọi tên dòng (“dòng cực tiểu toàn cục”, “dòng chi phí”).
+- **Sửa 2026-10-21 (đồng bộ G00):** `sửa` — chỉ ghi chú: câu cuối “quy tắc theo $n$, $p$ và tính lồi” → quy tắc chọn theo chi phí một bước, giả thiết và bảo đảm hội tụ; $n$, $p$ quyết định chi phí một bước, tính lồi là giả thiết. Mặt trang không đổi.
 
 ### G02. Lựa chọn giữa hạ gradient đầy đủ, Newton và SGD
 
@@ -1053,6 +1095,7 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Quyết định:** `tách` — trang cũ gộp tổng kết, câu hỏi tự kiểm tra và tài liệu đọc; câu hỏi và tài liệu đọc chuyển sang G04, câu hỏi vận dụng bảng G02 nằm ở G04 câu 1.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `tách` — 123 → 74 âm tiết; gỡ `.dense`; thành bảng tổng kết “kết quả | giả thiết không được bỏ | công thức hoặc thuật toán” theo AGENTS.md mục Mở bài và kết bài; câu hỏi tự kiểm tra và tài liệu đọc chuyển sang G04. Trần 80 của trang tổng kết. Tiêu đề cũ: “Tổng kết, câu hỏi tự kiểm tra và tài liệu đọc”.
 - **Sửa vòng tái kiểm 2026-10-12:** cột giả thiết thêm $F$ bị chặn dưới, $\eta\le1/L$; dòng 3 “như dòng trên”; 80 âm tiết (trần 80).
+- **Sửa 2026-10-21 (đồng bộ A02):** `sửa` — chỉ ghi chú: câu cuối thay bằng hai câu ứng với mục tiêu 2 (gốc của mạng tuyến tính một đơn vị, một điểm yên ngựa) và mục tiêu 3 (chọn theo chi phí, giả thiết và bảo đảm hội tụ, tổng kết ở bảng lựa chọn phương pháp). Mặt trang không đổi; ba dòng vẫn ứng từng dòng với ba mục tiêu.
 
 ### G04. Câu hỏi tự kiểm tra và tài liệu đọc
 
@@ -1065,3 +1108,4 @@ Mỗi trang của outline.md có đúng một mục dưới đây, cùng mã và
 - **Bước hành trình:** bài tập vận dụng tổng hợp KN7–KN9 (tự làm, đáp án trong ghi chú).
 - **Quyết định:** `tách` từ G03 (123 âm tiết trước khi sửa); câu hỏi trùng Bài 11 của `exercises.md`, đáp án trong ghi chú khớp lời giải Bài 11. Trần 80 của trang tổng kết. Mật độ: 77 âm tiết (trang mới, 2026-10-12).
 - **Sửa 2026-10-12 (rà soát thuật ngữ):** `sửa` — “ch. 13” → “chương 13”; ghi chú “Đáp án 1.–4.” → “Lời giải: câu 1, …”, “Câu 2–4”; bỏ “cỡ”; “sai số dư” → “sai số vượt”.
+- **Sửa 2026-10-21 (đồng bộ mục tiêu 3):** `sửa` — chỉ ghi chú: lời giải câu 1 nêu cho mỗi trường hợp (a)–(c) chi phí một bước, giả thiết và bảo đảm hội tụ. Mặt trang không đổi.
