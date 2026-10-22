@@ -96,7 +96,7 @@ Không hiển thị phân bổ này trên trang chiếu hoặc trong ghi chú di
 - Dạng chuẩn trong bài: $\max c^Tx$ với $Ax=b$, $x\ge0$, $\operatorname{rank}(A)=m\le n$.
 - Ví dụ hộp hạt: $x_1,x_2$ là sản lượng tính theo nghìn hộp; $\max 2x_1+3x_2$ với $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$.
 - Các đỉnh: $(0,0),(30,0),(30,12),(14,20),(0,20)$; giá trị tương ứng $0,60,96,88,60$; nghiệm tối ưu duy nhất $(30,12)$.
-- Hồi quy $L_1$: $a_i\in\mathbb R^n$, $b_i\in\mathbb R$, $x\in\mathbb R^n$, $t_i\in\mathbb R_+$; ví dụ $\min_x|x-1|+|x-3|$ có tập nghiệm $[1,3]$.
+- Hồi quy $L_1$: $M$ mẫu $h_i\in\mathbb R^n$, $y_i\in\mathbb R$, $x\in\mathbb R^n$, $t_i\in\mathbb R_+$ (không dùng $a_i,b_i,m$ vì các chữ này chỉ dữ kiện ràng buộc $A$, $b$); ví dụ $\min_x|x-1|+|x-3|$ có tập nghiệm $[1,3]$.
 - Ví dụ điểm cực biên: $\max x_1+x_2$ với $x_1+x_2\le2$, $x\ge0$ (trước 2026-10-03 viết dạng tương đương $\min -x_1-x_2$); cả cạnh $x_1+x_2=2$ tối ưu.
 - Bài tổng hợp C11: miền hộp hạt với $\max 2x_1+4x_2$; giá trị tại năm đỉnh $0,60,108,108,80$; cả cạnh $(30,12)$–$(14,20)$ tối ưu; thuật toán từ $(0,0)$ dừng tại $(30,12)$.
 - Bài chuyển giao C10: $\max x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x\ge0$; đường đỉnh kề $(0,0)\to(2,0)\to(1{,}6;\,1{,}2)$ có giá trị $0\to2\to2{,}8$.
