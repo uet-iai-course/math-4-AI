@@ -1680,7 +1680,7 @@ Giả thiết trạng thái đủ là một yêu cầu về cách mô hình hóa
 
 Về mặt ý tưởng, từ một trạng thái ở một giai đoạn, phần tương lai là một bài toán con độc lập với quá khứ. Chi phí tối ưu của bài toán con đó vì vậy chỉ cần tính một lần rồi dùng lại cho mọi lịch sử đi tới trạng thái này. Ý tưởng này chưa phải phát biểu hình thức.
 
-![Sơ đồ ba cột với tiêu đề "Nhiều lịch sử, một phần tương lai". Cột "Các lịch sử" gồm s→A→C, s→B→C và một ô "lịch sử khác". Cả ba mũi tên đi vào "Nút C" ở cột giữa, nhãn "Trạng thái đủ", ghi "cùng phần tương lai". Cột "Bài toán con" ghi "Tính một lần J(C)=3 rồi dùng lại". Dòng chú thích: chỉ gộp khi quá khứ không còn ảnh hưởng tới tương lai ngoài thông tin đã giữ trong trạng thái.](img/lec-07/dp-state-sufficiency.svg)
+![Sơ đồ ba cột với tiêu đề "Nhiều lịch sử, một phần tương lai". Cột "Các lịch sử" gồm s→A→C, s→B→C và một ô "lịch sử khác". Cả ba mũi tên đi vào "Nút C" ở cột giữa, nhãn "Trạng thái đủ", ghi "cùng phần tương lai". Cột "Bài toán con" ghi "Tính một lần chi phí nhỏ nhất từ C tới đích, rồi dùng lại". Dòng chú thích: chỉ gộp khi quá khứ không còn ảnh hưởng tới tương lai ngoài thông tin đã giữ trong trạng thái.](img/lec-07/dp-state-sufficiency.svg)
 
 Trên hình, ba lịch sử khác nhau cùng đi tới nút $\mathrm C$. Từ $\mathrm C$, chỉ còn cạnh $\mathrm C\to\mathrm t$ với chi phí $3$, nên chi phí tối ưu từ $\mathrm C$ tới đích là $3$ cho mọi lịch sử. Trong khi liệt kê tính đoạn $\mathrm C\to\mathrm t$ một lần cho mỗi lịch sử thì quy hoạch động tính nó một lần cho nút $\mathrm C$. Dòng chú thích dưới hình là giả thiết trạng thái đủ của Nhận xét 07.36.
 
