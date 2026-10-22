@@ -211,7 +211,7 @@ Một tập $B$ cho nghiệm cơ sở bằng cách đặt hai biến ngoài $B$ 
 | $x_2,s_2,s_3$ | $x_1,s_1$ | $0$ | không có | |
 | $s_1,s_2,s_3$ | $x_1,x_2$ | $1$ | $(0,0,30,20,54)$ | có, đỉnh $(0,0)$ |
 
-Năm nghiệm cơ sở khả thi ứng đúng năm đỉnh, mỗi đỉnh một cơ sở. Ba nghiệm cơ sở không khả thi là ba giao điểm nằm ngoài ngũ giác: $(30,20)$, $(54,0)$, $(0,27)$.
+Năm nghiệm cơ sở khả thi ứng đúng năm đỉnh, mỗi đỉnh một cơ sở. Ba nghiệm cơ sở không khả thi là ba giao điểm nằm ngoài ngũ giác: $(30,20)$, $(54,0)$, $(0,27)$. Trên hình sau, mỗi nghiệm cơ sở là giao của hai đường biên: chấm đặc là năm nghiệm cơ sở khả thi, chấm rỗng là ba nghiệm cơ sở không khả thi.
 
 ![Ngũ giác khả thi của bài toán hộp hạt cùng ba đường biên kéo dài x1 = 30, x2 = 20, x1 + 2x2 = 54. Năm chấm đặc tại (0,0), (30,0), (30,12), (14,20), (0,20) là nghiệm cơ sở khả thi, cũng là năm đỉnh. Ba chấm rỗng tại (30,20), (54,0), (0,27) là nghiệm cơ sở không khả thi, nằm ngoài miền.](img/lec-07/basic-solutions-boxes.svg)
 

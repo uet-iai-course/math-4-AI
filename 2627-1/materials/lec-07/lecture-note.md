@@ -425,7 +425,7 @@ Dòng thứ hai dùng $x_1\le30$, $x_1+2x_2\le54$ và hai hệ số không âm.
 **Kiểm tra lại.** Hai hệ số cho $\tfrac12+\tfrac32=2$ ở $x_1$ và $\tfrac32\cdot2=3$ ở $x_2$. Tại $(14,20)$: $\tfrac12\cdot14+\tfrac32\cdot54=7+81=88$, khớp $z=88$ vì $x_1+2x_2=54$ hoạt động tại đó.
 :::
 
-Trong Ví dụ 07.5, cận $2x_1+3x_2\le96$ được chứng minh bằng cơ chế của Mệnh đề 02.11 viết cho chiều cực đại, trong đó hai hệ số $\tfrac12$, $\tfrac32$ là nhân tử của bài toán đối ngẫu (Mệnh đề 03.11). Tuy nhiên, cách làm này cần đoán đúng hai ràng buộc hoạt động tại nghiệm, điều mà hình vẽ gợi ý được trong mặt phẳng nhưng không gợi ý được trong nhiều chiều. Để có một cách tìm ứng viên có hệ thống, trước hết chúng ta mô tả miền khả thi trong mọi số chiều bằng các khái niệm của định nghĩa sau. Bài 02 đã gọi miền khả thi của quy hoạch tuyến tính là đa diện; ở đây chúng ta nhắc lại khái niệm đó cùng siêu phẳng và nửa không gian, và bổ sung khái niệm đa diện bị chặn.
+Trong Ví dụ 07.5, cận $2x_1+3x_2\le96$ được chứng minh bằng cơ chế của Mệnh đề 02.11 viết cho chiều cực đại, trong đó hai hệ số $\tfrac12$, $\tfrac32$ là nhân tử của bài toán đối ngẫu (Mệnh đề 03.11). Tuy nhiên, cách làm này cần đoán đúng hai ràng buộc hoạt động tại nghiệm, điều mà hình vẽ gợi ý được trong mặt phẳng nhưng không gợi ý được trong nhiều chiều. Để có một cách tìm ứng viên có hệ thống, trước hết chúng ta cần mô tả miền khả thi trong mọi số chiều. Bài 02 đã gọi miền khả thi của quy hoạch tuyến tính là đa diện, và Bài 01 đã chứng minh nửa không gian là tập lồi (Mệnh đề 01.19(c)). Chúng ta nhắc lại các khái niệm đó và bổ sung khái niệm đa diện bị chặn trong định nghĩa sau.
 
 ::: definition Định nghĩa 07.5 (Siêu phẳng, nửa không gian, đa diện)
 Cho $a\in\mathbb R^n$, $a\ne0$, và $\beta\in\mathbb R$.
@@ -501,7 +501,7 @@ Miền khả thi của nó là $P=\{x\in\mathbb R^n\mid Ax=b,\ x\ge0\}$.
 
 Định nghĩa trên gồm ba thành phần: phương trình $Ax=b$, điều kiện không âm và giả thiết hạng $\operatorname{rank}(A)=m$. Giả thiết hạng bảo đảm ta chọn được $m$ cột độc lập của $A$, tức một ma trận vuông khả nghịch, và ta cần đúng điều này ở Mục 2.3. Giả thiết đó cũng kéo theo $m\le n$.
 
-So với dạng chuẩn trong Định nghĩa 02.9, định nghĩa này viết ở chiều cực đại và thêm giả thiết hạng. Một số tài liệu gọi dạng $Ax\le b$ là "dạng chuẩn", còn giáo trình tiếng Việt thường gọi dạng (2.2) là "dạng chính tắc"; trong chương này, dạng chuẩn luôn là (2.2). Biến bù của dạng chuẩn có nghĩa hẹp hơn biến phụ $t_i$ của Mục 1.3: biến phụ là biến thêm vào mô hình nói chung, còn biến bù đo phần giới hạn chưa dùng. Mọi quy hoạch tuyến tính đưa được về dạng (2.2) theo mệnh đề sau, phiên bản chiều cực đại của Mệnh đề 02.10.
+So với dạng chuẩn trong Định nghĩa 02.9, định nghĩa này viết ở chiều cực đại và thêm giả thiết hạng. Một số tài liệu gọi dạng $Ax\le b$ là "dạng chuẩn", và một số tài liệu khác gọi dạng (2.2) là "dạng chính tắc"; trong chương này, dạng chuẩn luôn là (2.2). Biến bù của dạng chuẩn có nghĩa hẹp hơn biến phụ $t_i$ của Mục 1.3: biến phụ là biến thêm vào mô hình nói chung, còn biến bù đo phần giới hạn chưa dùng. Mọi quy hoạch tuyến tính đưa được về dạng (2.2) theo mệnh đề sau, phiên bản chiều cực đại của Mệnh đề 02.10.
 
 ::: proposition Mệnh đề 07.8 (Đưa quy hoạch tuyến tính về dạng chuẩn)
 **Giả thiết.** Bài toán ban đầu: cực đại $c^Tx$ trên $P=\{x\in\mathbb R^n\mid Ax\le b\}$, với $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$. Đặt $\tilde x=(x^+,x^-,s)\in\mathbb R^{2n+m}$ và
@@ -584,7 +584,7 @@ với $A$ là ma trận $3\times2$ của Ví dụ 07.3. Dạng chuẩn có $m=3$
 - Tại đỉnh $(30,12)$: $(s_1,s_2,s_3)=(0,8,0)$. Hai biến bù bằng $0$ ứng với hai ràng buộc hoạt động $x_1=30$ và $x_1+2x_2=54$, cắt nhau tại đỉnh; giới hạn loại 2 còn dư $8$ nghìn hộp.
 - Tại đỉnh $(0,0)$: hai biến bằng $0$ là $x_1$, $x_2$, và $(s_1,s_2,s_3)=(30,20,54)$.
 
-**Cạnh và biến bằng không.** Mỗi cạnh của ngũ giác nằm trên một đường mà một trong năm biến bằng $0$: $s_1=0$ trên $x_1=30$, $s_2=0$ trên $x_2=20$, $s_3=0$ trên đường giờ máy, $x_1=0$ và $x_2=0$ trên hai trục.
+**Cạnh và biến bằng không.** Mỗi cạnh của ngũ giác nằm trên một đường mà một trong năm biến bằng $0$: $s_1=0$ trên $x_1=30$, $s_2=0$ trên $x_2=20$, $s_3=0$ trên đường giờ máy, $x_1=0$ và $x_2=0$ trên hai trục. Trên hình sau, hai cạnh tô đậm nằm trên $x_1=30$ ($s_1=0$) và $x_1+2x_2=54$ ($s_3=0$); chúng cắt nhau tại đỉnh $(30,12)$, nơi hai biến bù này cùng bằng $0$.
 
 ![Ngũ giác khả thi của bài toán hộp hạt với năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Mỗi cạnh ghi ràng buộc thỏa với dấu bằng và biến bằng 0: x2 = 0 ở cạnh dưới; x1 = 30, tức s1 = 0, ở cạnh phải; x1 + 2x2 = 54, tức s3 = 0, ở cạnh xiên; x2 = 20, tức s2 = 0, ở cạnh trên; x1 = 0 ở cạnh trái. Hai cạnh x1 = 30 và x1 + 2x2 = 54 tô đậm, cắt nhau tại đỉnh (30,12).](img/lec-07/pentagon-edge-labels.svg)
 
@@ -721,7 +721,7 @@ Một tập $B$ cho nghiệm cơ sở bằng cách đặt hai biến ngoài $B$ 
 | $x_2,s_2,s_3$ | $x_1,s_1$ | $0$ | không có | |
 | $s_1,s_2,s_3$ | $x_1,x_2$ | $1$ | $(0,0,30,20,54)$ | có, đỉnh $(0,0)$ |
 
-Năm nghiệm cơ sở khả thi ứng đúng năm đỉnh, mỗi đỉnh một cơ sở. Ba nghiệm cơ sở không khả thi là ba giao điểm nằm ngoài ngũ giác: $(30,20)$, $(54,0)$, $(0,27)$.
+Năm nghiệm cơ sở khả thi ứng đúng năm đỉnh, mỗi đỉnh một cơ sở. Ba nghiệm cơ sở không khả thi là ba giao điểm nằm ngoài ngũ giác: $(30,20)$, $(54,0)$, $(0,27)$. Trên hình sau, mỗi nghiệm cơ sở là giao của hai đường biên: chấm đặc là năm nghiệm cơ sở khả thi, chấm rỗng là ba nghiệm cơ sở không khả thi.
 
 ![Ngũ giác khả thi của bài toán hộp hạt cùng ba đường biên kéo dài x1 = 30, x2 = 20, x1 + 2x2 = 54. Năm chấm đặc tại (0,0), (30,0), (30,12), (14,20), (0,20) là nghiệm cơ sở khả thi, cũng là năm đỉnh. Ba chấm rỗng tại (30,20), (54,0), (0,27) là nghiệm cơ sở không khả thi, nằm ngoài miền.](img/lec-07/basic-solutions-boxes.svg)
 
