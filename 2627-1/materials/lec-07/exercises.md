@@ -303,9 +303,9 @@ Hai chi phí rút gọn âm, nên theo Mệnh đề 07.31(b) điểm tối ưu; 
 
 ### Bài tập 07.7. Đổi lợi ích của bài toán hộp hạt
 
-Mức độ: tính toán, bài tổng hợp. LLO18; CLO1. Trùng trang chiếu [Bài tập: bài toán hộp hạt với lợi ích mới](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/4/15) và [trang lời giải](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/4/16); trang lời giải chạy đường thứ nhất của câu (c) và nêu đường thứ hai trong ghi chú diễn giả.
+Mức độ: tính toán. LLO18; CLO1. Trùng trang chiếu [Bài tập: bài toán hộp hạt với lợi ích mới](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/4/15) và [trang lời giải](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/4/16); trang lời giải chạy đường thứ nhất của câu (c) và nêu đường thứ hai trong ghi chú diễn giả.
 
-::: exercise Bài tập 07.7 (Bài tập tổng hợp: đổi lợi ích của bài toán hộp hạt)
+::: exercise Bài tập 07.7 (Đổi lợi ích của bài toán hộp hạt)
 Miền khả thi $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$, với năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$. Mục tiêu mới: cực đại $2x_1+4x_2$.
 
 - (a) Tính $z$ tại năm đỉnh; xác định kết cục và tập nghiệm tối ưu.
@@ -318,7 +318,9 @@ So sánh vector $(2,4)$ với hàng $(1,2)$ của ràng buộc giờ máy. Ở c
 :::
 
 ::: solution Lời giải Bài tập 07.7
-**Câu (a).** Giá trị tại năm đỉnh: $0$; $2\cdot30=60$; $2\cdot30+4\cdot12=108$; $2\cdot14+4\cdot20=108$; $4\cdot20=80$. Vì $2x_1+4x_2=2(x_1+2x_2)\le2\cdot54=108$, đường mức song song với ràng buộc giờ máy, và giá trị tối ưu $108$ đạt trên cả cạnh nối $(30,12)$ và $(14,20)$. Trên đường $x_1+2x_2=54$, điều kiện $x_2\le20$ cho $x_1\ge14$ và $x_1\le30$, nên tập nghiệm tối ưu là $\{x\mid x_1+2x_2=54,\ 14\le x_1\le30\}$: kết cục nhiều nghiệm tối ưu.
+**Câu (a).** Giá trị tại năm đỉnh: $0$; $2\cdot30=60$; $2\cdot30+4\cdot12=108$; $2\cdot14+4\cdot20=108$; $4\cdot20=80$. Vì $2x_1+4x_2=2(x_1+2x_2)\le2\cdot54=108$, đường mức song song với ràng buộc giờ máy, và giá trị tối ưu $108$ đạt trên cả cạnh nối $(30,12)$ và $(14,20)$. Trên đường $x_1+2x_2=54$, điều kiện $x_2\le20$ cho $x_1\ge14$ và $x_1\le30$, nên tập nghiệm tối ưu là $\{x\mid x_1+2x_2=54,\ 14\le x_1\le30\}$: kết cục nhiều nghiệm tối ưu. Trên hình sau, cạnh tối ưu tô đậm nằm trên đường mức $z=108$, vuông góc với hướng $c=(2,4)$.
+
+![Ngũ giác khả thi của bài toán hộp hạt. Đường mức 2x1 + 4x2 = 108 trùng đường giờ máy x1 + 2x2 = 54; cạnh nối (30,12) và (14,20) tô đậm, mọi điểm của cạnh tối ưu, kể cả trung điểm (22,16). Mũi tên chỉ hướng c = (2,4), vuông góc với cạnh.](img/lec-07/multiple-optima-boxes.svg)
 
 **Câu (b).** Định lý 07.23: miền khác rỗng, có điểm cực biên (hạng $2$), bị chặn nên $z\le2\cdot30+4\cdot20=140$; cả hai giả thiết thỏa.
 

@@ -1029,6 +1029,7 @@
 :where(html[data-lecture="07"]) [data-slide-id="B05"] .visual img { max-height:300px; object-fit:contain; }
 :where(html[data-lecture="07"]) [data-slide-id="B07b"] .visual img { max-height:290px; object-fit:contain; }
 :where(html[data-lecture="07"]) [data-slide-id="C03b"] .visual img { max-height:320px; object-fit:contain; }
+:where(html[data-lecture="07"]) [data-slide-id="C11b"] .grid2 { grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); align-items:center; }
 :where(html[data-lecture="07"]) [data-slide-id="A07"] .responsive { grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); }
 :where(html[data-lecture="07"]) [data-slide-id="B02"] .responsive,
 :where(html[data-lecture="07"]) [data-slide-id="C09"] .responsive { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }

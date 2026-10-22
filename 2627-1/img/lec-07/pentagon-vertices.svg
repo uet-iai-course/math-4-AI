@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 170 620 330" role="img" aria-labelledby="title desc">
+  <title id="title">Miền khả thi hộp hạt và năm đỉnh</title>
+  <desc id="desc">Ngũ giác khả thi của bài toán hộp hạt, x1 ≤ 30, x2 ≤ 20, x1 + 2x2 ≤ 54, x ≥ 0, với năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Hình không vẽ đường mức.</desc>
+  <rect x="-10" y="170" width="620" height="330" fill="#fff"/>
+  <line x1="60" y1="450" x2="560" y2="450" stroke="#222" stroke-width="3"/>
+  <line x1="80" y1="470" x2="80" y2="190" stroke="#222" stroke-width="3"/>
+  <path d="M80 450L410 450L410 318L234 230L80 230Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="5"/>
+  <g stroke="#fff" stroke-width="3" fill="#2f3e7a"><circle cx="80" cy="450" r="10"/><circle cx="410" cy="450" r="10"/><circle cx="410" cy="318" r="10"/><circle cx="234" cy="230" r="10"/><circle cx="80" cy="230" r="10"/></g>
+  <g font-family="sans-serif" font-size="26" fill="#222">
+    <text x="568" y="458">x₁</text>
+    <text x="92" y="200">x₂</text>
+    <text x="70" y="486" text-anchor="end">(0,0)</text>
+    <text x="420" y="486">(30,0)</text>
+    <text x="424" y="314">(30,12)</text>
+    <text x="234" y="216" text-anchor="middle">(14,20)</text>
+    <text x="70" y="222" text-anchor="end">(0,20)</text>
+    <text x="250" y="380" text-anchor="middle" fill="#55627e">miền hộp hạt</text>
+  </g>
+</svg>
