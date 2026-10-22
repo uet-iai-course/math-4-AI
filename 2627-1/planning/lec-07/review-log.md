@@ -533,7 +533,7 @@ Quyết định bổ sung của điều phối viên (2026-10-12): $t_i$ của h
 |---|---|---|---|---|---|
 | R1: reviewer mạch kể và tập trung mạch (storyline and linking) | `a78e236a47ecc5de6` | general-purpose | Opus 5.5 (`claude-opus-5-5`) | high | không |
 | R2: reviewer góc nhìn sinh viên, mật độ, văn phong, toán | `a09e96e8aac640521` | general-purpose | Opus 5.5 (`claude-opus-5-5`) | high | không |
-| Tác tử biên tập (worker, tác tử ghi tệp duy nhất) | `ac02524b7499b6851` | theo lệnh gọi Agent của master | Opus 5.5 (`claude-opus-5-5`) | medium | có |
+| Tác tử biên tập (worker, tác tử ghi tệp duy nhất) | `ac02524b7499b6851` | general-purpose | Opus 5.5 (`claude-opus-5-5`) | medium | có |
 
 Hai reviewer nạp `no-ai-slop` chế độ Detect, đọc đủ 53 trang (mặt trang và ghi chú), 15 SVG của `img/lec-07/`; R1 đối chiếu thêm Bài 02 (S02-03, S02-03b, S02-05, S02-06, S03-04c). Không có phát hiện `chặn bàn giao` hay `nghiêm trọng`. R2 tính lại toàn bộ số liệu (năm đỉnh hộp hạt và giá trị $z$, chứng nhận cận $96$, các định thức $-2$ và $1$, ví dụ suy biến, bài tập C10 và C11, các giá trị $J$ ở D03 và D06b, $Nq^2=80$, tọa độ SVG): không có lỗi toán. Quyết định của master: `decisions-07-1022.md` (scratchpad phiên), chia thành 34 đơn vị U0–U33, mỗi đơn vị một commit.
 
@@ -623,7 +623,7 @@ Nguồn: R1 (B-1…B-18, C-1…C-10), R2 (bảng phát hiện). Quyết định 
 | đơn vị | mức độ | trang | vấn đề | nguồn | quyết định | trạng thái |
 |---|---|---|---|---|---|---|
 | U0 | trung bình | storyboard, review-log | thiếu cột câu hỏi trung tâm và báo cáo rà tập trung | R1 B-7 | chấp nhận | đã sửa: thêm cột "Câu hỏi trung tâm (2026-10-22)" vào bảng mạch của `storyboard.md`; ghi Phần A của R1 và bảng này vào `review-log.md` |
-| U1 | nhẹ | P01 | "Nhắc lại:" lệch ghi chú (bất phương trình/phương trình); ghi chú 251 âm tiết | R1 B-16, R2 | chấp nhận dạng R2; bác bỏ nhãn "Tiên quyết:" (không thuộc danh sách nhãn) | chưa sửa |
+| U1 | nhẹ | P01 | "Nhắc lại:" lệch ghi chú (bất phương trình/phương trình); ghi chú 251 âm tiết | R1 B-16, R2 | chấp nhận dạng R2; bác bỏ nhãn "Tiên quyết:" (không thuộc danh sách nhãn) | đã sửa: mặt trang "**Nhắc lại:** hệ phương trình và bất phương trình tuyến tính, hạng ma trận, tập lồi và tổ hợp lồi." (37 → 40 âm tiết, 4 dòng, dòng dài nhất 20); ghi chú nêu vai trò của bốn mục, 251 → 148 âm tiết; ghi chú bài giảng không cần sửa (mục "Kiến thức tiên quyết" đã có đại số tuyến tính và tập lồi) |
 | U2 | nhẹ | P02; ghi chú P01, P02, P02b | thẻ 2 thiếu đầu ra mạch 4; "kết cục" thiếu ngữ cảnh; số sản phẩm lệch | R1 B-12, R2 | chấp nhận dạng R1; bác bỏ dạng R2 "kết cục của bài toán" | chưa sửa |
 | U3 | nhẹ | A04 | chủ ngữ "vài điểm" không thể "chứng minh" | R2 | chấp nhận | chưa sửa |
 | U4 | trung bình | A05, A05b | dạy lại định nghĩa LP Bài 02 không có "Nhắc lại:"; "Lưu ý:" tổng quát trên trang ví dụ; "Lưu ý:" A05 thiếu chủ ngữ | R1 B-1, B-10; R2 | chấp nhận | chưa sửa |
@@ -657,4 +657,4 @@ Nguồn: R1 (B-1…B-18, C-1…C-10), R2 (bảng phát hiện). Quyết định 
 | U32 | trung bình | Z01 | vấn đề trung tâm chỉ được trả lời trong ghi chú | R1 B-8 | chấp nhận nếu tổng ≤ 80 âm tiết | chưa sửa |
 | U33 | nhẹ | Z01b | câu 3 nhắc đồ thị tầng bằng lời | R1 C-10 | chấp nhận dạng R1 (`dp-state-sufficiency.svg`); bác bỏ `dp-layered-graph.svg` (R2) | chưa sửa |
 | chung | nhẹ | ghi chú nhiều trang | ghi chú > 250 âm tiết; "Ví dụ này cho thấy", "Hình cho thấy" làm chủ ngữ | R1, R2 | rút về ≤ 200 và bỏ mẫu chủ ngữ này trên các trang được sửa | chưa sửa |
-| — | nhẹ | B06b, D05b | ví dụ trên trang phát biểu, chưa ghi ngoại lệ chu trình rút gọn trong storyboard | R1 B-9 | không có trong danh sách quyết định; chờ master | mở |
+| — | nhẹ | B06b, D05b | ví dụ trên trang phát biểu, chưa ghi ngoại lệ chu trình rút gọn trong storyboard | R1 B-9 | chấp nhận ghi ngoại lệ chu trình rút gọn cho D05b (phân tích chi phí là hệ quả của quy trình D05, không phải khái niệm lõi mới); B06b đã có ngoại lệ trong storyboard | đã sửa: ghi ngoại lệ D05b vào storyboard, mục "Quyết định cấu trúc" |
