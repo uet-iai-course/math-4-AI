@@ -51,7 +51,7 @@ Cập nhật 2026-10-12 theo AGENTS.md, mục “Trang tiêu đề mạch” và
 | 4 | C07b | Đỉnh kề | Định nghĩa |
 | 4 | C07c | Bổ đề đỉnh kề cải thiện | Bổ đề và tiêu chuẩn dừng |
 | 4 | C08 | Thuật toán duyệt đỉnh kề | Thuật toán ở mức khái niệm |
-| 4 | C09 | Ví dụ: bài toán hộp hạt, duyệt đỉnh kề | Trực quan thuật toán |
+| 4 | C09 | Ví dụ: duyệt đỉnh kề trên bài toán hộp hạt | Trực quan thuật toán |
 | 4 | C10 | Bài tập: điểm cực biên và đỉnh kề trên đa giác mới | Bài tự làm LLO18 |
 | 4 | C11 | Bài tập: bài toán hộp hạt với lợi ích mới | Đề bài tích hợp LLO17–18 |
 | 4 | C11b | Bài tập: bài toán hộp hạt với lợi ích mới | Lời giải trên mặt trang |
