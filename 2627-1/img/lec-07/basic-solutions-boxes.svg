@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 70 730 430" role="img" aria-labelledby="title desc">
+  <title id="title">Tám nghiệm cơ sở của bài toán hộp hạt là giao của các đường biên</title>
+  <desc id="desc">Ngũ giác khả thi của bài toán hộp hạt cùng ba đường biên kéo dài x1 = 30, x2 = 20 và x1 + 2x2 = 54, và hai trục. Năm chấm đặc tại (0,0), (30,0), (30,12), (14,20), (0,20) là các nghiệm cơ sở khả thi, cũng là năm đỉnh của ngũ giác. Ba chấm rỗng tại (30,20), (54,0), (0,27) là các nghiệm cơ sở không khả thi: chúng là giao của hai đường biên nhưng nằm ngoài miền. Hai cách chọn cơ sở còn lại ứng với hai cặp đường song song, x1 = 0 với x1 = 30 và x2 = 0 với x2 = 20, nên không cho giao điểm.</desc>
+  <rect x="-20" y="70" width="730" height="430" fill="#fff"/>
+  <line x1="40" y1="380" x2="680" y2="380" stroke="#222" stroke-width="3"/>
+  <line x1="70" y1="410" x2="70" y2="85" stroke="#222" stroke-width="3"/>
+  <path d="M70 380L370 380L370 260L210 180L70 180Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="5"/>
+  <g stroke="#7a8aa8" stroke-width="3" stroke-dasharray="10 8">
+    <line x1="370" y1="90" x2="370" y2="410"/>
+    <line x1="70" y1="180" x2="680" y2="180"/>
+    <line x1="70" y1="110" x2="610" y2="380"/>
+  </g>
+  <g stroke="#fff" stroke-width="3" fill="#2f3e7a"><circle cx="70" cy="380" r="10"/><circle cx="370" cy="380" r="10"/><circle cx="370" cy="260" r="10"/><circle cx="210" cy="180" r="10"/><circle cx="70" cy="180" r="10"/></g>
+  <g stroke="#b15a2b" stroke-width="4" fill="#fff"><circle cx="370" cy="180" r="10"/><circle cx="610" cy="380" r="10"/><circle cx="70" cy="110" r="10"/></g>
+  <g font-family="sans-serif" font-size="26" fill="#222">
+    <text x="676" y="372" text-anchor="end">x₁</text>
+    <text x="80" y="100">x₂</text>
+    <text x="52" y="412" text-anchor="end">(0,0)</text>
+    <text x="380" y="412">(30,0)</text>
+    <text x="356" y="292" text-anchor="end">(30,12)</text>
+    <text x="210" y="214" text-anchor="middle">(14,20)</text>
+    <text x="52" y="188" text-anchor="end">(0,20)</text>
+  </g>
+  <g font-family="sans-serif" font-size="26" fill="#b15a2b" font-weight="700">
+    <text x="384" y="166">(30,20)</text>
+    <text x="610" y="412" text-anchor="middle">(54,0)</text>
+    <text x="52" y="118" text-anchor="end">(0,27)</text>
+  </g>
+  <g font-family="sans-serif" font-size="26" fill="#55627e">
+    <text x="380" y="112">x₁ = 30</text>
+    <text x="680" y="170" text-anchor="end">x₂ = 20</text>
+    <text x="470" y="288">x₁ + 2x₂ = 54</text>
+  </g>
+  <g font-family="sans-serif" font-size="26">
+    <circle cx="84" cy="446" r="10" fill="#2f3e7a" stroke="#fff" stroke-width="3"/>
+    <text x="104" y="455" fill="#222">nghiệm cơ sở khả thi (đỉnh)</text>
+    <circle cx="84" cy="482" r="10" fill="#fff" stroke="#b15a2b" stroke-width="4"/>
+    <text x="104" y="491" fill="#b15a2b">nghiệm cơ sở không khả thi</text>
+  </g>
+</svg>
