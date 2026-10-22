@@ -145,7 +145,7 @@ Tính trên mỗi giờ máy, loại 1 mang lại $\tfrac21=2$ đơn vị còn l
 **Kiểm tra lại.** Chênh lệch $96-88=8$ bằng $32-24$, khớp phép đọc theo giờ máy.
 :::
 
-Tuy nhiên, so sánh vài điểm không chứng minh được điểm nào tối ưu, vì miền khả thi có vô số điểm. Chúng ta cần một lập luận chỉ ra một tập ứng viên hữu hạn, và lập luận đó phải áp dụng cho mọi bài toán có cùng dạng. Để có lập luận như vậy, trước hết ta tách phần chung của các bài toán này khỏi các con số cụ thể theo định nghĩa sau.
+Tuy nhiên, so sánh vài điểm không chứng minh được điểm nào tối ưu, vì miền khả thi có vô số điểm. Chúng ta cần một lập luận chỉ ra một tập ứng viên hữu hạn, và lập luận đó phải áp dụng cho mọi bài toán có cùng dạng. Để có lập luận như vậy, trước hết ta tách phần chung của các bài toán này khỏi các con số cụ thể. Định nghĩa sau nhắc lại Định nghĩa 02.9 của Bài 02, nơi quy hoạch tuyến tính đã được xếp vào lớp bài toán lồi và miền khả thi được gọi là đa diện; điểm mới ở đây là dạng ma trận chiều cực đại dùng xuyên suốt chương.
 
 ::: definition Định nghĩa 07.1 (Quy hoạch tuyến tính)
 **Bài toán.** Quy hoạch tuyến tính (linear programming, LP) là bài toán cực đại hoặc cực tiểu một hàm tuyến tính $c^Tx$ của biến $x\in\mathbb R^n$ trên tập các điểm thỏa hữu hạn phương trình và bất phương trình tuyến tính. Dạng dùng trong Mục 1, với dữ kiện $c\in\mathbb R^n$, $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$, là
@@ -174,6 +174,8 @@ Trong định nghĩa trên, bài toán có ba thành phần.
 Dạng (1.1) là một quy ước và không làm mất tính tổng quát: bất phương trình $\ge$ nhân với $-1$ thành $\le$, phương trình thành hai bất phương trình ngược chiều, biến tự do (free variable) thành hiệu của hai biến không âm, và bài toán cực tiểu đổi thành cực đại bằng $\min c^Tx=-\max(-c^Tx)$.
 
 Trong khi Định nghĩa 02.9 của Bài 02 viết bài toán ở chiều cực tiểu thì định nghĩa trên viết ở chiều cực đại, vì ví dụ chính của chương là bài toán lợi ích. Hai cách viết có cùng tập nghiệm và giá trị tối ưu trái dấu. Bertsimas và Tsitsiklis (1997, §1.1) cũng viết ở chiều cực tiểu, nên khi đối chiếu ta cần đổi dấu $c$.
+
+Khi dùng dạng (1.1) để mô hình hóa, ta chấp nhận ba giả thiết mô hình. Giả thiết tỉ lệ: đóng góp của mỗi biến vào mục tiêu và vào từng ràng buộc tỉ lệ với giá trị của biến đó, nên tăng gấp đôi sản lượng một loại thì lợi ích và mức tiêu hao của loại đó tăng gấp đôi. Giả thiết cộng tính: đóng góp của các biến cộng với nhau, không có số hạng tương tác. Cuối cùng, biến nhận giá trị thực. Một chi phí cố định phát sinh ngay khi bắt đầu sản xuất vi phạm giả thiết tỉ lệ.
 
 Hai bài toán sau không phải quy hoạch tuyến tính, với hai lý do khác nhau.
 

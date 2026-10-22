@@ -25,7 +25,7 @@ Cập nhật 2026-10-12 theo AGENTS.md, mục “Trang tiêu đề mạch” và
 | 2 | A02 | Bài toán sản xuất hộp hạt | Nhu cầu và ví dụ dẫn nhập |
 | 2 | A03 | Ràng buộc từ giới hạn | Trực quan theo đơn vị |
 | 2 | A04 | Hàm mục tiêu và so sánh phương án | Ví dụ tính được, mô hình đầy đủ |
-| 2 | A05 | Định nghĩa quy hoạch tuyến tính | Hình thức |
+| 2 | A05 | Quy hoạch tuyến tính dạng ma trận | Hình thức (nhắc lại định nghĩa Bài 02, giả thiết tỉ lệ và cộng tính) |
 | 2 | A05b | Ví dụ: bài toán hộp hạt dạng ma trận | Ánh xạ ví dụ → $c,A,b$ |
 | 2 | A07 | Hồi quy chuẩn $L_1$ dưới dạng LP | Ứng dụng |
 | 2 | A08 | Bài tập: dựng mô hình phân bổ GPU | Đề bài tập LLO17 |
