@@ -501,7 +501,7 @@ Miền khả thi của nó là $P=\{x\in\mathbb R^n\mid Ax=b,\ x\ge0\}$.
 
 Định nghĩa trên gồm ba thành phần: phương trình $Ax=b$, điều kiện không âm và giả thiết hạng $\operatorname{rank}(A)=m$. Giả thiết hạng bảo đảm ta chọn được $m$ cột độc lập của $A$, tức một ma trận vuông khả nghịch, và ta cần đúng điều này ở Mục 2.3. Giả thiết đó cũng kéo theo $m\le n$.
 
-So với dạng chuẩn trong Định nghĩa 02.9, định nghĩa này viết ở chiều cực đại và thêm giả thiết hạng. Một số tài liệu gọi dạng $Ax\le b$ là "dạng chuẩn", còn trong chương này, dạng chuẩn luôn là (2.2). Mọi quy hoạch tuyến tính đưa được về dạng (2.2) theo mệnh đề sau, phiên bản chiều cực đại của Mệnh đề 02.10.
+So với dạng chuẩn trong Định nghĩa 02.9, định nghĩa này viết ở chiều cực đại và thêm giả thiết hạng. Một số tài liệu gọi dạng $Ax\le b$ là "dạng chuẩn", còn giáo trình tiếng Việt thường gọi dạng (2.2) là "dạng chính tắc"; trong chương này, dạng chuẩn luôn là (2.2). Biến bù của dạng chuẩn có nghĩa hẹp hơn biến phụ $t_i$ của Mục 1.3: biến phụ là biến thêm vào mô hình nói chung, còn biến bù đo phần giới hạn chưa dùng. Mọi quy hoạch tuyến tính đưa được về dạng (2.2) theo mệnh đề sau, phiên bản chiều cực đại của Mệnh đề 02.10.
 
 ::: proposition Mệnh đề 07.8 (Đưa quy hoạch tuyến tính về dạng chuẩn)
 **Giả thiết.** Bài toán ban đầu: cực đại $c^Tx$ trên $P=\{x\in\mathbb R^n\mid Ax\le b\}$, với $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$. Đặt $\tilde x=(x^+,x^-,s)\in\mathbb R^{2n+m}$ và
