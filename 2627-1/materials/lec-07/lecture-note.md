@@ -271,7 +271,7 @@ $$
 
 Phần dư là sai lệch giữa dự đoán $h_i^Tx$ và giá trị đích; dấu của nó cho biết mô hình dự đoán thừa hay thiếu.
 
-Bình phương nhỏ nhất của Bài 01 cực tiểu $\sum_ir_i^2$ và khuếch đại các mẫu ngoại lai (outlier): một phần dư bằng $10$ đóng góp $100$ vào tổng bình phương nhưng chỉ $10$ vào tổng trị tuyệt đối. Hồi quy chuẩn $L_1$, còn gọi là hồi quy sai số tuyệt đối (least absolute deviations, Định nghĩa 02.13), cực tiểu $\sum_i|r_i|$. Mục tiêu này không khả vi tại các điểm có $r_i=0$, nên các bước gradient của Bài 04–06 không dùng trực tiếp được.
+Bình phương nhỏ nhất của Bài 01 cực tiểu $\sum_ir_i^2$ và khuếch đại các mẫu ngoại lai (outlier): một phần dư bằng $10$ đóng góp $100$ vào tổng bình phương nhưng chỉ $10$ vào tổng trị tuyệt đối. Hồi quy chuẩn $L_1$, còn gọi là hồi quy sai số tuyệt đối (least absolute deviations, Định nghĩa 02.13), cực tiểu $\sum_i|r_i|$. Mục tiêu này không khả vi tại các điểm có $r_i=0$, nên các bước gradient của Bài 04–06 không dùng trực tiếp được. Bài 02 đã đưa bài toán này về quy hoạch tuyến tính bằng biến phụ (Bổ đề 02.14, Định lý 02.15). Ở đây chúng ta nhắc lại kỹ thuật đó với ký hiệu của chương: bài toán thu được là một quy hoạch tuyến tính, nên mọi kết quả về đa diện và điểm cực biên ở các mục sau áp dụng được cho nó.
 
 Một cách trực quan, trị tuyệt đối là giá trị nhỏ nhất của một biến thêm vào, gọi là biến phụ (auxiliary variable), khi biến đó bị chặn dưới bởi hai hàm tuyến tính. Mô tả này mới là trực giác, chưa phải phát biểu hình thức. Viết bằng công thức, ta có
 
