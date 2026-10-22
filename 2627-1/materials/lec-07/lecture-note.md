@@ -613,7 +613,7 @@ $$
 
 là nghiệm cơ sở ứng với $B$.
 
-**Nghiệm cơ sở khả thi.** Nếu thêm $x_B\ge0$, nghiệm cơ sở là nghiệm cơ sở khả thi (basic feasible solution, BFS).
+**Nghiệm cơ sở khả thi.** Nếu thêm $x_B\ge0$, nghiệm cơ sở là nghiệm cơ sở khả thi (basic feasible solution).
 
 **Suy biến.** Nghiệm cơ sở khả thi là suy biến (degenerate) nếu có ít nhất một thành phần của $x_B$ bằng $0$.
 :::
