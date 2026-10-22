@@ -146,7 +146,7 @@ x_1,x_2,s_1,s_2,s_3&\ge0 .
 \end{aligned}
 $$
 
-Chỉ số cột: $1,2$ là $x_1,x_2$; $3,4,5$ là $s_1,s_2,s_3$.
+Chỉ số cột: $1,2$ là $x_1,x_2$; $3,4,5$ là $s_1,s_2,s_3$. Gọi $\bar A$ là ma trận hệ số $3\times5$ của hệ này; với tập chỉ số $B$, ma trận $A_B$ gồm các cột của $\bar A$ có chỉ số thuộc $B$.
 
 1. Với $B=\{1,2,4\}$: viết $A_B$, tính $\det(A_B)$ và $x_B$; xác định điểm $(x_1,x_2)$.
 2. Với $B=\{1,2,5\}$: tính $x_B$ và giải thích vì sao nghiệm này không khả thi.
