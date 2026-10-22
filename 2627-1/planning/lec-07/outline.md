@@ -66,7 +66,7 @@ Cập nhật 2026-10-12 theo AGENTS.md, mục “Trang tiêu đề mạch” và
 | 5 | D06 | Bài tập: giải ngược Bellman với chi phí mới | Đề bài tập DP |
 | 5 | D06b | Bài tập: giải ngược Bellman với chi phí mới | Lời giải trên mặt trang |
 | 6 · Tổng kết và chuyển tiếp | Z00 | 6. Tổng kết và chuyển tiếp | Trang tiêu đề mạch |
-| 6 | Z01 | Tổng kết | Kết quả / giả thiết / công thức |
+| 6 | Z01 | Tổng kết | Kết quả / giả thiết / công cụ; kết luận có điều kiện trả lời P03 |
 | 6 | Z01b | Câu hỏi tự kiểm tra | Ba câu hỏi, đáp án trong ghi chú |
 | 6 | Z02 | Tài liệu và chuyển tiếp | Nguồn và cầu nối Bài 08 |
 
@@ -98,7 +98,7 @@ Không hiển thị phân bổ này trên trang chiếu hoặc trong ghi chú di
 - Các đỉnh: $(0,0),(30,0),(30,12),(14,20),(0,20)$; giá trị tương ứng $0,60,96,88,60$; nghiệm tối ưu duy nhất $(30,12)$.
 - Hồi quy $L_1$: $M$ mẫu $h_i\in\mathbb R^n$, $y_i\in\mathbb R$, $x\in\mathbb R^n$, $t_i\in\mathbb R_+$ (không dùng $a_i,b_i,m$ vì các chữ này chỉ dữ kiện ràng buộc $A$, $b$); ví dụ $\min_x|x-1|+|x-3|$ có tập nghiệm $[1,3]$.
 - Ví dụ điểm cực biên: $\max x_1+x_2$ với $x_1+x_2\le2$, $x\ge0$ (trước 2026-10-03 viết dạng tương đương $\min -x_1-x_2$); cả cạnh $x_1+x_2=2$ tối ưu.
-- Bài tổng hợp C11: miền hộp hạt với $\max 2x_1+4x_2$; giá trị tại năm đỉnh $0,60,108,108,80$; cả cạnh $(30,12)$–$(14,20)$ tối ưu; thuật toán từ $(0,0)$ dừng tại $(30,12)$.
+- Bài tập C11 (lợi ích mới trên miền hộp hạt): miền hộp hạt với $\max 2x_1+4x_2$; giá trị tại năm đỉnh $0,60,108,108,80$; cả cạnh $(30,12)$–$(14,20)$ tối ưu; thuật toán từ $(0,0)$ dừng tại $(30,12)$.
 - Bài chuyển giao C10: $\max x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x\ge0$; đường đỉnh kề $(0,0)\to(2,0)\to(1{,}6;\,1{,}2)$ có giá trị $0\to2\to2{,}8$.
 - DP hữu hạn tất định: $x_{k+1}=f_k(x_k,u)$, $u\in U_k(x_k)$, chi phí $g_k$, chi phí cuối $g_N$, hàm giá trị $J_k$.
 - Đồ thị tầng: các cạnh có chi phí $s$–$A$: $2$, $s$–$B$: $5$, $A$–$C$: $4$, $A$–$D$: $2$, $B$–$C$: $1$, $B$–$D$: $3$, $C$–$t$: $3$, $D$–$t$: $1$. Khi giải ngược, $J(C)=3$, $J(D)=1$, $J(A)=3$, $J(B)=4$, $J(s)=5$; đường tối ưu là $s\to A\to D\to t$.
