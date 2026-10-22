@@ -577,7 +577,7 @@ $$
 \bar A=\begin{bmatrix}1&0&1&0&0\\0&1&0&1&0\\1&2&0&0&1\end{bmatrix}=\begin{bmatrix}A&I\end{bmatrix},\qquad b=\begin{bmatrix}30\\20\\54\end{bmatrix},
 $$
 
-với $A$ là ma trận $3\times2$ của Ví dụ 07.3. Dạng chuẩn có $m=3$, $n=5$ và $\operatorname{rank}(\bar A)=3$ nhờ ba cột đơn vị.
+với $A$ là ma trận $3\times2$ của Ví dụ 07.3. Dạng chuẩn có $m=3$, $n=5$ và $\operatorname{rank}(\bar A)=3$ nhờ ba cột đơn vị. Mục tiêu giữ nguyên với $c=(2,3,0,0,0)$, vì biến bù không đóng góp vào lợi ích.
 
 **Đọc biến bù.** $s_1=30-x_1$ và $s_2=20-x_2$ là phần sản lượng tối đa chưa dùng, tính bằng nghìn hộp; $s_3=54-x_1-2x_2$ là số giờ máy còn trống.
 
@@ -585,6 +585,8 @@ với $A$ là ma trận $3\times2$ của Ví dụ 07.3. Dạng chuẩn có $m=3$
 - Tại đỉnh $(0,0)$: hai biến bằng $0$ là $x_1$, $x_2$, và $(s_1,s_2,s_3)=(30,20,54)$.
 
 **Cạnh và biến bằng không.** Mỗi cạnh của ngũ giác nằm trên một đường mà một trong năm biến bằng $0$: $s_1=0$ trên $x_1=30$, $s_2=0$ trên $x_2=20$, $s_3=0$ trên đường giờ máy, $x_1=0$ và $x_2=0$ trên hai trục.
+
+![Ngũ giác khả thi của bài toán hộp hạt với năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Mỗi cạnh ghi ràng buộc thỏa với dấu bằng và biến bằng 0: x2 = 0 ở cạnh dưới; x1 = 30, tức s1 = 0, ở cạnh phải; x1 + 2x2 = 54, tức s3 = 0, ở cạnh xiên; x2 = 20, tức s2 = 0, ở cạnh trên; x1 = 0 ở cạnh trái. Hai cạnh x1 = 30 và x1 + 2x2 = 54 tô đậm, cắt nhau tại đỉnh (30,12).](img/lec-07/pentagon-edge-labels.svg)
 
 **Kiểm tra lại.** Tại $(30,12)$: $s_3=54-30-24=0$ và $s_2=20-12=8$. Ma trận $\bar A$ nhân $(30,12,0,8,0)$ cho $(30,20,54)=b$.
 :::

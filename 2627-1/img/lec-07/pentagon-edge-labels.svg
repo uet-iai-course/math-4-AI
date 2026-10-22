@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 170 620 330" role="img" aria-labelledby="title desc">
+  <title id="title">Các cạnh của miền hộp hạt và biến bằng 0 trên mỗi cạnh</title>
+  <desc id="desc">Ngũ giác khả thi của bài toán hộp hạt với năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Mỗi cạnh ghi ràng buộc thỏa với dấu bằng và biến bằng 0 trên cạnh đó: x2 = 0 ở cạnh dưới; x1 = 30, tức s1 = 0, ở cạnh phải; x1 + 2x2 = 54, tức s3 = 0, ở cạnh xiên; x2 = 20, tức s2 = 0, ở cạnh trên; x1 = 0 ở cạnh trái. Hai cạnh x1 = 30 và x1 + 2x2 = 54 được tô đậm; chúng cắt nhau tại đỉnh (30,12), nơi s1 = s3 = 0.</desc>
+  <rect x="-10" y="170" width="620" height="330" fill="#fff"/>
+  <line x1="60" y1="450" x2="560" y2="450" stroke="#222" stroke-width="3"/>
+  <line x1="80" y1="470" x2="80" y2="190" stroke="#222" stroke-width="3"/>
+  <path d="M80 450L410 450L410 318L234 230L80 230Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="5"/>
+  <line x1="410" y1="450" x2="410" y2="318" stroke="#b15a2b" stroke-width="8"/>
+  <line x1="410" y1="318" x2="234" y2="230" stroke="#b15a2b" stroke-width="8"/>
+  <g stroke="#fff" stroke-width="3"><circle cx="80" cy="450" r="9" fill="#2f3e7a"/><circle cx="410" cy="450" r="9" fill="#2f3e7a"/><circle cx="410" cy="318" r="12" fill="#2e7d32"/><circle cx="234" cy="230" r="9" fill="#2f3e7a"/><circle cx="80" cy="230" r="9" fill="#2f3e7a"/></g>
+  <g font-family="sans-serif" font-size="26" fill="#222">
+    <text x="568" y="458">x₁</text>
+    <text x="92" y="200">x₂</text>
+    <text x="70" y="486" text-anchor="end">(0,0)</text>
+    <text x="420" y="486">(30,0)</text>
+    <text x="424" y="330" font-weight="700" fill="#2e7d32">(30,12)</text>
+    <text x="234" y="216" text-anchor="middle">(14,20)</text>
+    <text x="70" y="222" text-anchor="end">(0,20)</text>
+  </g>
+  <g font-family="sans-serif" font-size="26">
+    <text x="245" y="436" text-anchor="middle" fill="#2f3e7a">x₂ = 0</text>
+    <text x="92" y="350" fill="#2f3e7a">x₁ = 0</text>
+    <text x="96" y="266" fill="#2f3e7a">x₂ = 20</text>
+    <text x="96" y="296" fill="#2f3e7a">(s₂ = 0)</text>
+    <text x="424" y="398" fill="#b15a2b" font-weight="700">x₁ = 30</text>
+    <text x="424" y="430" fill="#b15a2b" font-weight="700">(s₁ = 0)</text>
+    <text x="334" y="248" fill="#b15a2b" font-weight="700">x₁ + 2x₂ = 54 (s₃ = 0)</text>
+  </g>
+</svg>
