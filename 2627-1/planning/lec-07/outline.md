@@ -44,7 +44,7 @@ Cập nhật 2026-10-12 theo AGENTS.md, mục “Trang tiêu đề mạch” và
 | 4 | C03 | Điểm cực biên và nghiệm cơ sở khả thi | Định lý tương đương |
 | 4 | C03b | Số điểm cực biên | Hệ quả hữu hạn và ví dụ |
 | 4 | C04 | Ví dụ: bài toán có nhiều nghiệm tối ưu | Trường hợp biên |
-| 4 | C05 | Bảo đảm tồn tại điểm cực biên | Nhu cầu, phản ví dụ, định nghĩa chứa đường thẳng |
+| 4 | C05 | Đa diện chứa đường thẳng | Nhu cầu, phản ví dụ, định nghĩa chứa đường thẳng |
 | 4 | C05b | Định lý tồn tại điểm cực biên | Định lý và hệ quả dạng chuẩn |
 | 4 | C06 | Bốn kết cục của quy hoạch tuyến tính | Phân loại |
 | 4 | C07 | Điểm cực biên tối ưu | Định lý |

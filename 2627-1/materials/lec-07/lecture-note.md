@@ -953,7 +953,7 @@ Nửa mặt phẳng $\{x\in\mathbb R^2\mid x_2\ge0\}$ không có điểm cực b
 Về mặt trực quan, nửa mặt phẳng chứa trọn một đường thẳng nằm ngang, và từ mọi điểm có thể di chuyển dọc đường đó theo cả hai chiều mà vẫn ở trong miền. Ý này chưa phải định nghĩa, và khái niệm tập chứa một đường thẳng được phát biểu chính xác như sau.
 
 ::: definition Định nghĩa 07.18 (Tập chứa đường thẳng)
-Tập $C\subseteq\mathbb R^n$ chứa một đường thẳng nếu có $x\in C$ và $d\in\mathbb R^n$, $d\ne0$, với $x+\theta d\in C$ cho mọi $\theta\in\mathbb R$.
+Tập $C\subseteq\mathbb R^n$ chứa một đường thẳng nếu có $x\in C$ và $d\in\mathbb R^n$, $d\ne0$, sao cho $x+\theta d\in C$ với mọi $\theta\in\mathbb R$.
 :::
 
 Định nghĩa đòi cả hai chiều $\theta>0$ và $\theta<0$. Một tia, tức chỉ $\theta\ge0$, không đủ: góc phần tư $\{x\ge0\}$ chứa tia $\{(\theta,0)\mid\theta\ge0\}$ nhưng không chứa đường thẳng nào, và có điểm cực biên $(0,0)$.
