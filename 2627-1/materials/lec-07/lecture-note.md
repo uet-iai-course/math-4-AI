@@ -145,7 +145,7 @@ Tính trên mỗi giờ máy, loại 1 mang lại $\tfrac21=2$ đơn vị còn l
 **Kiểm tra lại.** Chênh lệch $96-88=8$ bằng $32-24$, khớp phép đọc theo giờ máy.
 :::
 
-Tuy nhiên, so sánh vài điểm không chứng minh được điểm nào tối ưu, vì miền khả thi có vô số điểm. Chúng ta cần một lập luận chỉ ra một tập ứng viên hữu hạn, và lập luận đó phải áp dụng cho mọi bài toán có cùng dạng. Để có lập luận như vậy, trước hết ta tách phần chung của các bài toán này khỏi các con số cụ thể. Định nghĩa sau nhắc lại Định nghĩa 02.9 của Bài 02, nơi quy hoạch tuyến tính đã được xếp vào lớp bài toán lồi và miền khả thi được gọi là đa diện; điểm mới ở đây là dạng ma trận chiều cực đại dùng xuyên suốt chương.
+Tuy nhiên, so sánh vài điểm không chứng minh được điểm nào tối ưu, vì miền khả thi có vô số điểm. Chúng ta cần một lập luận chỉ ra một tập ứng viên hữu hạn, và lập luận đó phải áp dụng cho mọi bài toán có cùng dạng. Để có lập luận như vậy, trước hết chúng ta tách phần chung của các bài toán này khỏi các con số cụ thể. Chúng ta viết lại Định nghĩa 02.9 của Bài 02 ở dạng ma trận theo chiều cực đại; dạng này được dùng xuyên suốt chương.
 
 ::: definition Định nghĩa 07.1 (Quy hoạch tuyến tính)
 **Bài toán.** Quy hoạch tuyến tính (linear programming, LP) là bài toán cực đại hoặc cực tiểu một hàm tuyến tính $c^Tx$ của biến $x\in\mathbb R^n$ trên tập các điểm thỏa hữu hạn phương trình và bất phương trình tuyến tính. Dạng dùng trong Mục 1, với dữ kiện $c\in\mathbb R^n$, $A\in\mathbb R^{m\times n}$, $b\in\mathbb R^m$, là
@@ -175,7 +175,7 @@ Dạng (1.1) là một quy ước và không làm mất tính tổng quát: bấ
 
 Trong khi Định nghĩa 02.9 của Bài 02 viết bài toán ở chiều cực tiểu thì định nghĩa trên viết ở chiều cực đại, vì ví dụ chính của chương là bài toán lợi ích. Hai cách viết có cùng tập nghiệm và giá trị tối ưu trái dấu. Bertsimas và Tsitsiklis (1997, §1.1) cũng viết ở chiều cực tiểu, nên khi đối chiếu ta cần đổi dấu $c$.
 
-Khi dùng dạng (1.1) để mô hình hóa, ta chấp nhận ba giả thiết mô hình. Giả thiết tỉ lệ: đóng góp của mỗi biến vào mục tiêu và vào từng ràng buộc tỉ lệ với giá trị của biến đó, nên tăng gấp đôi sản lượng một loại thì lợi ích và mức tiêu hao của loại đó tăng gấp đôi. Giả thiết cộng tính: đóng góp của các biến cộng với nhau, không có số hạng tương tác. Cuối cùng, biến nhận giá trị thực. Một chi phí cố định phát sinh ngay khi bắt đầu sản xuất vi phạm giả thiết tỉ lệ.
+Dạng (1.1) chứa ba giả thiết mô hình là tỉ lệ, cộng tính và biến nhận giá trị thực; chúng ta phát biểu chính xác ba giả thiết này ở Nhận xét 07.3, sau Mệnh đề 07.2.
 
 Hai bài toán sau không phải quy hoạch tuyến tính, với hai lý do khác nhau.
 
@@ -222,14 +222,14 @@ Theo ngôn ngữ của Bài 04–06, đây là cách nói khác của sự kiệ
 
 **Trong học máy.** Bài toán phân bổ tài nguyên tính toán với lợi ích tuyến tính, chẳng hạn chia giờ chạy bộ xử lý đồ họa (graphics processing unit, GPU) giữa huấn luyện và phục vụ, có nghiệm tối ưu tại biên theo Mệnh đề 07.2, nơi ít nhất một giới hạn được dùng hết. Ở Tình huống 07.2, chúng ta đọc giới hạn đó từ các biến bù. Mệnh đề không áp dụng khi lợi ích bão hòa theo giờ huấn luyện, vì mục tiêu khi đó không tuyến tính.
 
-Mệnh đề 07.2 và cả chương dựa trên tính tuyến tính của mô hình, và tính tuyến tính chứa những giả thiết về thực tế. Khi một giả thiết như vậy sai, mô hình tuyến tính trả lời một câu hỏi khác với câu hỏi ban đầu, nên chúng ta nêu rõ các giả thiết đó trong nhận xét sau.
+Mệnh đề 07.2 và cả chương dựa trên tính tuyến tính của mô hình. Khi một giả thiết của tính tuyến tính sai, mô hình tuyến tính trả lời một câu hỏi khác với câu hỏi ban đầu.
 
 ::: remark Nhận xét 07.3 (Ba giả thiết mô hình của quy hoạch tuyến tính)
 **Tỉ lệ.** Tăng gấp đôi sản lượng một loại thì lợi ích và mức tiêu hao của loại đó tăng gấp đôi. Một chi phí cố định phát sinh ngay khi bắt đầu sản xuất một loại vi phạm giả thiết này: lợi ích của loại 1 thành $2x_1-5$ khi $x_1>0$ và $0$ khi $x_1=0$, một hàm không tuyến tính.
 
 **Cộng tính.** Đóng góp của các loại cộng với nhau. Nếu khi sản xuất đồng thời hai loại, máy quá nhiệt và sản lượng mỗi giờ giảm theo tích $x_1x_2$, giả thiết này sai.
 
-**Chia được.** Biến nhận mọi giá trị thực trong miền. Đơn vị nghìn hộp cho phép coi sản lượng là đại lượng liên tục ở mức lập kế hoạch: $x_1=12{,}5$ ứng với $12\,500$ hộp. Khi quyết định là số lô nguyên, bài toán là quy hoạch nguyên.
+**Biến nhận giá trị thực (chia được).** Biến nhận mọi giá trị thực trong miền. Đơn vị nghìn hộp cho phép coi sản lượng là đại lượng liên tục ở mức lập kế hoạch: $x_1=12{,}5$ ứng với $12\,500$ hộp. Khi quyết định là số lô nguyên, bài toán là quy hoạch nguyên.
 :::
 
 ::: exercise Bài tập 07.1 (Dựng mô hình từ dữ kiện cho bằng lời)
@@ -271,7 +271,7 @@ $$
 
 Phần dư là sai lệch giữa dự đoán $h_i^Tx$ và giá trị đích; dấu của nó cho biết mô hình dự đoán thừa hay thiếu.
 
-Bình phương nhỏ nhất của Bài 01 cực tiểu $\sum_ir_i^2$ và khuếch đại các mẫu ngoại lai (outlier): một phần dư bằng $10$ đóng góp $100$ vào tổng bình phương nhưng chỉ $10$ vào tổng trị tuyệt đối. Hồi quy chuẩn $L_1$, còn gọi là hồi quy sai số tuyệt đối (least absolute deviations, Định nghĩa 02.13), cực tiểu $\sum_i|r_i|$. Mục tiêu này không khả vi tại các điểm có $r_i=0$, nên các bước gradient của Bài 04–06 không dùng trực tiếp được. Bài 02 đã đưa bài toán này về quy hoạch tuyến tính bằng biến phụ (Bổ đề 02.14, Định lý 02.15). Ở đây chúng ta nhắc lại kỹ thuật đó với ký hiệu của chương: bài toán thu được là một quy hoạch tuyến tính, nên mọi kết quả về đa diện và điểm cực biên ở các mục sau áp dụng được cho nó.
+Bình phương nhỏ nhất của Bài 01 cực tiểu $\sum_ir_i^2$ và khuếch đại các mẫu ngoại lai (outlier): một phần dư bằng $10$ đóng góp $100$ vào tổng bình phương nhưng chỉ $10$ vào tổng trị tuyệt đối. Hồi quy chuẩn $L_1$, còn gọi là hồi quy sai số tuyệt đối (least absolute deviations, Định nghĩa 02.13), cực tiểu $\sum_i|r_i|$. Mục tiêu này không khả vi tại các điểm có $r_i=0$, nên các bước gradient của Bài 04–06 không dùng trực tiếp được. Bài 02 đã đưa bài toán này về quy hoạch tuyến tính bằng biến phụ (Bổ đề 02.14, Định lý 02.15). Ở đây chúng ta nhắc lại kỹ thuật đó với ký hiệu của chương. Bài 02 viết $r=Xw-y$ với $N$ mẫu; ở đây $h_i^T$ là hàng $i$ của $X$, tham số viết là $x$ cho thống nhất với biến quyết định của quy hoạch tuyến tính, và số mẫu viết là $M$ vì $N$ dành cho số giai đoạn ở phần quy hoạch động. Bài toán thu được là một quy hoạch tuyến tính, nên các kết quả ở Mục 3 và Mục 4 áp dụng cho nó khi đủ giả thiết: miền không chứa đường thẳng khi và chỉ khi ma trận có các hàng $h_i^T$ có hạng $n$; khi đó miền có điểm cực biên, và vì mục tiêu không âm nên giá trị tối ưu hữu hạn.
 
 Một cách trực quan, trị tuyệt đối là giá trị nhỏ nhất của một biến thêm vào, gọi là biến phụ (auxiliary variable), khi biến đó bị chặn dưới bởi hai hàm tuyến tính. Mô tả này mới là trực giác, chưa phải phát biểu hình thức. Viết bằng công thức, ta có
 
@@ -425,7 +425,7 @@ Dòng thứ hai dùng $x_1\le30$, $x_1+2x_2\le54$ và hai hệ số không âm.
 **Kiểm tra lại.** Hai hệ số cho $\tfrac12+\tfrac32=2$ ở $x_1$ và $\tfrac32\cdot2=3$ ở $x_2$. Tại $(14,20)$: $\tfrac12\cdot14+\tfrac32\cdot54=7+81=88$, khớp $z=88$ vì $x_1+2x_2=54$ hoạt động tại đó.
 :::
 
-Trong Ví dụ 07.5, cận $2x_1+3x_2\le96$ được chứng minh bằng cơ chế của Mệnh đề 02.11 viết cho chiều cực đại, trong đó hai hệ số $\tfrac12$, $\tfrac32$ là nhân tử của bài toán đối ngẫu (Mệnh đề 03.11). Tuy nhiên, cách làm này cần đoán đúng hai ràng buộc hoạt động tại nghiệm, điều mà hình vẽ gợi ý được trong mặt phẳng nhưng không gợi ý được trong nhiều chiều. Để có một cách tìm ứng viên có hệ thống, trước hết chúng ta mô tả miền khả thi trong mọi số chiều bằng các khái niệm của định nghĩa sau. Bài 02 đã gọi miền khả thi của quy hoạch tuyến tính là đa diện; ở đây ta nhắc lại khái niệm đó cùng siêu phẳng và nửa không gian, và bổ sung khái niệm đa diện bị chặn.
+Trong Ví dụ 07.5, cận $2x_1+3x_2\le96$ được chứng minh bằng cơ chế của Mệnh đề 02.11 viết cho chiều cực đại, trong đó hai hệ số $\tfrac12$, $\tfrac32$ là nhân tử của bài toán đối ngẫu (Mệnh đề 03.11). Tuy nhiên, cách làm này cần đoán đúng hai ràng buộc hoạt động tại nghiệm, điều mà hình vẽ gợi ý được trong mặt phẳng nhưng không gợi ý được trong nhiều chiều. Để có một cách tìm ứng viên có hệ thống, trước hết chúng ta mô tả miền khả thi trong mọi số chiều bằng các khái niệm của định nghĩa sau. Bài 02 đã gọi miền khả thi của quy hoạch tuyến tính là đa diện; ở đây chúng ta nhắc lại khái niệm đó cùng siêu phẳng và nửa không gian, và bổ sung khái niệm đa diện bị chặn.
 
 ::: definition Định nghĩa 07.5 (Siêu phẳng, nửa không gian, đa diện)
 Cho $a\in\mathbb R^n$, $a\ne0$, và $\beta\in\mathbb R$.
@@ -2276,7 +2276,7 @@ $$
 
 **Giả thiết thường bị bỏ qua.**
 
-- Mô hình tuyến tính cần tỉ lệ, cộng tính và chia được; biến nguyên đưa bài toán ra khỏi quy hoạch tuyến tính.
+- Mô hình tuyến tính cần tỉ lệ, cộng tính và biến nhận giá trị thực; biến nguyên đưa bài toán ra khỏi quy hoạch tuyến tính.
 - Nghiệm cơ sở cần $A_B$ khả nghịch và, để khả thi, $A_B^{-1}b\ge0$; hạng $m$ không bảo đảm mọi tập $m$ cột là cơ sở.
 - "Có điểm cực biên tối ưu" cần miền có điểm cực biên và giá trị tối ưu hữu hạn; không phải mọi nghiệm tối ưu là điểm cực biên.
 - Chi phí rút gọn có một số dương chưa chứng minh điểm chưa tối ưu khi nghiệm cơ sở suy biến.
