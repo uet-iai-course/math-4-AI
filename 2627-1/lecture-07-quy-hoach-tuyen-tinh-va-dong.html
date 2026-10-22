@@ -344,9 +344,9 @@
   </section>
   <section data-slide-id="D04">
     <h2>Bài toán quyết định theo giai đoạn</h2>
-    <p><strong>Định nghĩa.</strong> Bài toán quyết định hữu hạn tất định gồm, ở giai đoạn $k=0,\ldots,N-1$:</p>
-    <ul><li>trạng thái $x_k\in X_k$, điều khiển $u_k\in U_k(x_k)$, tập hữu hạn khác rỗng;</li><li>trạng thái kế tiếp $x_{k+1}=f_k(x_k,u_k)$ và chi phí giai đoạn $g_k(x_k,u_k)$;</li><li>chi phí cuối $g_N(x_N)$ ở giai đoạn $N$; mục tiêu $\min\sum_{k=0}^{N-1}g_k(x_k,u_k)+g_N(x_N)$ (chi phí cộng).</li></ul>
-    <p><strong>Diễn giải:</strong> trên đồ thị tầng, $x_k$ là nút tầng $k$, $u_k$ là cạnh ra, $g_k$ là chi phí cạnh, $g_N(t)=0$.</p>
+    <p><strong>Định nghĩa.</strong> Bài toán quyết định hữu hạn tất định với trạng thái đầu $x_0$ cho trước gồm, ở giai đoạn $k=0,\ldots,N-1$:</p>
+    <ul><li>trạng thái $x_k\in X_k$, điều khiển $u_k\in U_k(x_k)$, tập hữu hạn khác rỗng;</li><li>trạng thái kế tiếp $x_{k+1}=f_k(x_k,u_k)$ và chi phí giai đoạn $g_k(x_k,u_k)$;</li><li>chi phí cuối $g_N(x_N)$; mục tiêu $\min\sum_{k=0}^{N-1}g_k(x_k,u_k)+g_N(x_N)$ (chi phí cộng).</li></ul>
+    <div class="responsive"><div class="visual"><img src="img/lec-07/dp-layered-graph.svg" alt="Đồ thị bốn tầng: s ở tầng k = 0; A, B ở tầng 1; C, D ở tầng 2; t ở tầng 3. Chi phí cạnh: s–A 2, s–B 5, A–C 4, A–D 2, B–C 1, B–D 3, C–t 3, D–t 1."/></div><p><strong>Diễn giải:</strong> trên hình, $x_k$ là nút tầng $k$, $u_k$ là cạnh ra, $g_k$ là chi phí cạnh, $g_N(t)=0$.</p></div>
     <aside class="notes"><p>Ví dụ đồ thị tầng có trạng thái là nút, lựa chọn là cạnh đi ra và chi phí là chi phí cạnh. Định nghĩa tách cấu trúc chung đó khỏi đồ thị: trạng thái không nhất thiết là nút và chi phí cuối có thể khác $0$. Mô hình của bài là trường hợp tất định của khung trong nguồn MIT, bỏ nhiễu ngẫu nhiên $w_k$ trong hàm chuyển $f_k(x_k,u_k,w_k)$.</p><p>Điều khiển (control) $u_k$ là lựa chọn ở giai đoạn $k$; $g_k$ là chi phí giai đoạn (stage cost), $g_N$ là chi phí cuối (terminal cost). Mục tiêu cực tiểu tổng chi phí của chuỗi điều khiển xuất phát từ $x_0$; giả thiết chi phí cộng nằm ở chính dạng tổng này. Trên đồ thị tầng, $f_k$ cho nút cuối của cạnh được chọn, $N=3$, và tổng là chi phí của đường đi. Chữ $x_k$ ở đây là trạng thái, khác biến quyết định $x$ của quy hoạch tuyến tính. Trên mô hình này, chi phí tối ưu còn lại $J_k(x)$ thỏa một hệ thức truy hồi theo $k$.</p><p class="note-source"><strong>Nguồn:</strong> MIT 15.093J, Bài 16, Slide 7.</p></aside>
   </section>
   <section data-slide-id="D04b">
