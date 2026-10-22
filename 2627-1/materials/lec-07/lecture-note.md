@@ -401,7 +401,7 @@ Trên mặt phẳng $(x_1,x_2)$, ta có thể vẽ cùng lúc miền khả thi v
 
 ![Mặt phẳng x1, x2. Miền khả thi của bài toán hộp hạt là ngũ giác tô màu với năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Đường mức nét đứt z = 60 đi qua hai đỉnh (30,0) và (0,20). Đường mức song song z = 96 chỉ có điểm chung với miền tại đỉnh (30,12). Mũi tên ghi "tăng z" chỉ theo hướng vector (2,3).](img/lec-07/polyhedron-level-sets.svg)
 
-Giao của năm nửa mặt phẳng trên hình là ngũ giác có năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$; đường giờ máy cắt hai trục tại $(54,0)$ và $(0,27)$. Các đường $2x_1+3x_2=\alpha$, gọi là đường mức (level set) của mục tiêu, song song vì cùng vector pháp tuyến $c=(2,3)$. Tăng $\alpha$ tịnh tiến đường mức theo hướng $c$, và đường mức cuối cùng còn có điểm chung với miền là $z=96$, với điểm chung duy nhất là một đỉnh.
+Giao của năm nửa mặt phẳng trên hình là ngũ giác có năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$; đường giờ máy cắt hai trục tại $(54,0)$ và $(0,27)$. Các đường $2x_1+3x_2=\alpha$, gọi là đường mức (level curve) của mục tiêu, song song vì cùng vector pháp tuyến $c=(2,3)$. Tăng $\alpha$ tịnh tiến đường mức theo hướng $c$, và đường mức cuối cùng còn có điểm chung với miền là $z=96$, với điểm chung duy nhất là một đỉnh.
 
 ::: example Ví dụ 07.5 (Cận trên của mục tiêu hộp hạt)
 **Dữ kiện.** Bài toán hộp hạt: cực đại $z=2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1,x_2\ge0$. Năm đỉnh của ngũ giác khả thi là $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$.
