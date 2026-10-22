@@ -524,3 +524,137 @@ Ghi chú biên tập: (1) Ghi chú bài giảng gọi $t_i$ của hồi quy $L_1
 Quyết định bổ sung của điều phối viên (2026-10-12): $t_i$ của hồi quy $L_1$ gọi là “biến phụ (auxiliary variable)”, thống nhất với deck A07 và Bài 02. Tác tử biên tập đổi cả 8 chỗ “biến chặn” trong `materials/lec-07/lecture-note.md` thành “biến phụ” (dòng 30, 56, 274 có thêm “(auxiliary variable)” ở lần giới thiệu, 297 hai chỗ, 302, 345, 553); cả 8 chỗ cùng nghĩa biến chặn trên trị tuyệt đối, kể cả dòng 30 tóm tắt Bổ đề 02.14, nên không giữ chỗ nào. `exercises.md` không có “biến chặn”.
 
 **Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-07 và decisions-common; kiểm định nghĩa kề ở C07b (hai điểm cực biên chung n−1 ràng buộc hoạt động độc lập tuyến tính, Bertsimas–Tsitsiklis); kiểm 79 chỗ thay 'chặt' trong học liệu không chạm 'lồi chặt'/'tăng chặt'; tự chạy deckcheck trên A05b, A09, B02, B06, C07b, D04, D05, D06: 0 lỗi, 0 FLAG; xem ảnh B06, C07b ở 1600×900. Quyết định bổ sung: t_i gọi là 'biến phụ' (8 chỗ 'biến chặn' trong ghi chú đã đổi). Gói học liệu cục bộ đồng bộ ở commit cuối đợt.
+
+## Rà soát 2026-10-22
+
+### Tác tử
+
+| vai trò | id tác tử | loại | mô hình | effort | ghi tệp |
+|---|---|---|---|---|---|
+| R1: reviewer mạch kể và tập trung mạch (storyline and linking) | `a78e236a47ecc5de6` | general-purpose | Opus 5.5 (`claude-opus-5-5`) | high | không |
+| R2: reviewer góc nhìn sinh viên, mật độ, văn phong, toán | `a09e96e8aac640521` | general-purpose | Opus 5.5 (`claude-opus-5-5`) | high | không |
+| Tác tử biên tập (worker, tác tử ghi tệp duy nhất) | `ac02524b7499b6851` | theo lệnh gọi Agent của master | Opus 5.5 (`claude-opus-5-5`) | medium | có |
+
+Hai reviewer nạp `no-ai-slop` chế độ Detect, đọc đủ 53 trang (mặt trang và ghi chú), 15 SVG của `img/lec-07/`; R1 đối chiếu thêm Bài 02 (S02-03, S02-03b, S02-05, S02-06, S03-04c). Không có phát hiện `chặn bàn giao` hay `nghiêm trọng`. R2 tính lại toàn bộ số liệu (năm đỉnh hộp hạt và giá trị $z$, chứng nhận cận $96$, các định thức $-2$ và $1$, ví dụ suy biến, bài tập C10 và C11, các giá trị $J$ ở D03 và D06b, $Nq^2=80$, tọa độ SVG): không có lỗi toán. Quyết định của master: `decisions-07-1022.md` (scratchpad phiên), chia thành 34 đơn vị U0–U33, mỗi đơn vị một commit.
+
+### Báo cáo rà tập trung từng mạch (R1, Phần A, viết gọn)
+
+**Mạch 1. Mở đầu (P00–P03).** Câu hỏi của bài (P03): tìm phương án tối ưu khi tập phương án quá lớn để duyệt hết.
+
+| trang | phần việc | đề xuất |
+|---|---|---|
+| P00 | định danh | giữ |
+| P01 | khóa ký hiệu $x,c,A,b$ | sửa dòng "Nhắc lại:" (U1) |
+| P02 | ba mục tiêu đo được | thẻ 2 thiếu định lý điểm cực biên tối ưu và duyệt đỉnh kề (U2) |
+| P02b | bản đồ mạch | giữ |
+| P03 | khung lý thuyết, hai cấu trúc | giữ |
+
+**Mạch 2. Mô hình hóa quy hoạch tuyến tính (A01–A09).** Câu hỏi: viết một quyết định thành quy hoạch tuyến tính thế nào (biến → ràng buộc → mục tiêu → dạng ma trận)? Có trên dòng dẫn A01; A02 "Nhu cầu:" nêu đủ ba thành phần. Đạt.
+
+| trang | phần việc | đề xuất |
+|---|---|---|
+| A01 | đặt câu hỏi | giữ |
+| A02 | biến | giữ |
+| A03 | ràng buộc | giữ |
+| A04 | mục tiêu; khoảng trống "vài điểm chưa đủ" | sửa câu hộp (U3) |
+| A05 | dạng ma trận | dạy lại Bài 02 không có "Nhắc lại:" (U4) |
+| A05b | ánh xạ $c,A,b$ | "Lưu ý:" tổng quát trên trang ví dụ (U4) |
+| A07 | ứng dụng: hồi quy $L_1$ | trùng Bài 02 S02-06 (U5) |
+| A08, A09 | đo mục tiêu mạch | giữ |
+
+**Mạch 3. Đa diện và dạng chuẩn (B01–B07b).** Câu hỏi: mô tả toàn bộ miền khả thi và tính các đỉnh bằng đại số thế nào? Có trên dòng dẫn B01; B02 chưa có "Nhu cầu:".
+
+| trang | phần việc | đề xuất |
+|---|---|---|
+| B01 | đặt câu hỏi | giữ |
+| B02 | mô tả miền; đỉnh là ứng viên | thêm "Nhu cầu:" (U6) |
+| B03 | mô tả miền trong $\mathbb R^n$ | dạy lại định nghĩa đa diện; ví dụ trên trang định nghĩa (U7) |
+| B04 | dạng chuẩn | bảng phép chuyển dạy lại Bài 02 S02-03b (U8) |
+| B05 | tính đỉnh trên ví dụ | thiếu hình nhắc lại đỉnh, khung chưa có "Diễn giải:" (U9) |
+| B06 | nghiệm cơ sở khả thi | bỏ viết tắt (U10) |
+| B06b | suy biến | giữ |
+| B07, B07b | đo mục tiêu mạch | làm rõ $A_B$ (U11); thêm hình nghiệm cơ sở (U12) |
+
+**Mạch 4. Điểm cực biên và bảo đảm tối ưu (C01–C11b).** Câu hỏi: khi nào chắc chắn có một đỉnh tối ưu, và tìm nó bằng cách nào? Dòng dẫn C01 chỉ nêu phần "định nghĩa đỉnh"; phần "tìm bằng cách nào" xuất hiện lần đầu trên thân trang ở C07b/C08 (nửa sau mạch). C02 chưa có "Nhu cầu:".
+
+| trang | phần việc | đề xuất |
+|---|---|---|
+| C01 | đặt câu hỏi (một nửa) | sửa dòng dẫn (U13) |
+| C02 | định nghĩa đỉnh | thêm "Nhu cầu:" (U14) |
+| C03 | đỉnh tính được | giữ |
+| C03b | tính hữu hạn | ví dụ trùng định thức B07b (U15) |
+| C04 | giới hạn kết luận định lý | đứng trước định lý mà nó giới hạn; chuyển sau C07 (U20) |
+| C05 | giả thiết 1 | tiêu đề chưa gọi tên khái niệm (U16) |
+| C05b | giả thiết 1: dạng chuẩn có đỉnh | sửa nhãn chứng minh (U17) |
+| C06 | giả thiết 2: bốn kết cục | thêm dòng chữ (U18) |
+| C07 | định lý điểm cực biên tối ưu | "Ví dụ." trùng hình C09 (U19) |
+| C07b | đi giữa các đỉnh | thiếu nhu cầu, thiếu hình (U21) |
+| C07c | tiêu chuẩn dừng | "Ví dụ." trùng bước 2 của C09 (U22) |
+| C08 | thuật toán | giữ |
+| C09 | tìm đỉnh tối ưu trên ví dụ | thiếu "Diễn giải:", tiêu đề vụng (U23) |
+| C10, C11, C11b | đo mục tiêu mạch | C11 thiếu hình, ghi chú gọi "tổng hợp"; C11b thiếu "Diễn giải:" và hình (U24) |
+
+**Mạch 5. Quy hoạch động (D01–D06b).** Câu hỏi: tối ưu một chuỗi quyết định thế nào mà không liệt kê $q^N$ chuỗi? Có trên dòng dẫn D01; "Nhu cầu:" của D01b nêu một tính chất, chưa nêu câu hỏi.
+
+| trang | phần việc | đề xuất |
+|---|---|---|
+| D01 | đặt câu hỏi | giữ |
+| D01b | kích thước bài toán | sửa "Nhu cầu:" và ô bảng (U25) |
+| D02 | trạng thái | nhãn $J$ trong hình dùng trước định nghĩa (U26) |
+| D03 | Bellman bằng số | hộp chưa có nhãn "Diễn giải:" (U27) |
+| D04 | hình thức | thiếu $x_0$; nhắc đồ thị tầng bằng lời (U28) |
+| D04b | phương trình Bellman | "Ý nghĩa:" đọc lại công thức (U29) |
+| D05, D05b | giải ngược, chi phí $O(Nq^2)$ | giữ |
+| D06, D06b | đo mục tiêu mạch | D06b thiếu hình giá trị mới (U30) |
+
+**Mạch 6. Tổng kết và chuyển tiếp (Z00–Z02).** Câu hỏi: mỗi kết quả cần giả thiết nào, và vấn đề trung tâm được trả lời có điều kiện ra sao? Phần sau chỉ có trong ghi chú Z01.
+
+| trang | phần việc | đề xuất |
+|---|---|---|
+| Z00 | đặt câu hỏi | ghi chú "bốn sản phẩm" lệch "ba mục tiêu" (U31) |
+| Z01 | giả thiết từng kết quả | thêm "Kết luận:" có điều kiện (U32) |
+| Z01b | tự kiểm tra | câu 3 nhắc đồ thị tầng bằng lời (U33) |
+| Z02 | chuyển tiếp | giữ |
+
+### Phát hiện hợp nhất và quyết định
+
+Nguồn: R1 (B-1…B-18, C-1…C-10), R2 (bảng phát hiện). Quyết định của master; trạng thái cập nhật theo từng đơn vị.
+
+| đơn vị | mức độ | trang | vấn đề | nguồn | quyết định | trạng thái |
+|---|---|---|---|---|---|---|
+| U0 | trung bình | storyboard, review-log | thiếu cột câu hỏi trung tâm và báo cáo rà tập trung | R1 B-7 | chấp nhận | đã sửa: thêm cột "Câu hỏi trung tâm (2026-10-22)" vào bảng mạch của `storyboard.md`; ghi Phần A của R1 và bảng này vào `review-log.md` |
+| U1 | nhẹ | P01 | "Nhắc lại:" lệch ghi chú (bất phương trình/phương trình); ghi chú 251 âm tiết | R1 B-16, R2 | chấp nhận dạng R2; bác bỏ nhãn "Tiên quyết:" (không thuộc danh sách nhãn) | chưa sửa |
+| U2 | nhẹ | P02; ghi chú P01, P02, P02b | thẻ 2 thiếu đầu ra mạch 4; "kết cục" thiếu ngữ cảnh; số sản phẩm lệch | R1 B-12, R2 | chấp nhận dạng R1; bác bỏ dạng R2 "kết cục của bài toán" | chưa sửa |
+| U3 | nhẹ | A04 | chủ ngữ "vài điểm" không thể "chứng minh" | R2 | chấp nhận | chưa sửa |
+| U4 | trung bình | A05, A05b | dạy lại định nghĩa LP Bài 02 không có "Nhắc lại:"; "Lưu ý:" tổng quát trên trang ví dụ; "Lưu ý:" A05 thiếu chủ ngữ | R1 B-1, B-10; R2 | chấp nhận | chưa sửa |
+| U5 | trung bình | A07 | trùng Bài 02 S02-06; $r_i$ dùng trước khi định nghĩa | R1 B-2, R2 | giữ trang, gắn "Nhắc lại:", thêm "Diễn giải:" về $n+m$ biến, $2m$ ràng buộc; ví dụ $\lvert x-1\rvert+\lvert x-3\rvert$ vào ghi chú; bác bỏ phương án hồi quy minimax (Bài 02 đã có) và phương án bỏ trang | chưa sửa |
+| U6 | nhẹ | B02 | thiếu "Nhu cầu:"; ghi chú 253 âm tiết | R1 B-11, R2 | chấp nhận dạng R1 | chưa sửa |
+| U7 | trung bình | B03 | dạy lại định nghĩa đa diện; ví dụ trên trang định nghĩa | R1 B-1, B-9 | chấp nhận | chưa sửa |
+| U8 | trung bình | B04 | bảng phép chuyển dạy lại Bài 02 S02-03b; ghi chú 265 âm tiết | R1 B-1, R2 | chấp nhận | chưa sửa |
+| U9 | nhẹ | B05 | thiếu hình nhắc lại đỉnh; khung không nhãn; $n$ đổi nghĩa; mục tiêu dạng chuẩn không viết | R1 C-1, R2 | chấp nhận; hình mới `pentagon-edge-labels.svg` | chưa sửa |
+| U10 | nhẹ | B06 | viết tắt BFS không dùng lại, trùng tìm kiếm theo chiều rộng | R2 | chấp nhận | chưa sửa |
+| U11 | nhẹ | B07 | không nói $A_B$ lấy cột của $\bar A$ | R2 | chấp nhận | chưa sửa |
+| U12 | nhẹ | B07b | nghiệm cơ sở là giao hai đường biên chỉ có bằng lời | R1 C-2, R2 | chấp nhận; hình mới `basic-solutions-boxes.svg` | chưa sửa |
+| U13 | trung bình | C01 | dòng dẫn chỉ nêu nửa câu hỏi của mạch | R1 B-3 | chấp nhận | chưa sửa |
+| U14 | trung bình | C02 | thiếu "Nhu cầu:" | R1 B-3, R2 | chấp nhận dạng R1 | chưa sửa |
+| U15 | trung bình | C03b | ví dụ trùng định thức $-2$ của B07b | R1 B-6, C-3; R2 | chấp nhận; dùng lại `standard-form-basis.svg` | chưa sửa |
+| U16 | nhẹ | C05 | tiêu đề không gọi tên khái niệm; câu định nghĩa thiếu "với" | R1 B-14, R2 | chấp nhận | chưa sửa |
+| U17 | nhẹ | C05b | "Chứng minh." chỉ chứng minh hệ quả | R2 | chấp nhận | chưa sửa |
+| U18 | nhẹ | C06 | bốn kết cục chỉ có trong hình | R2 | chấp nhận | chưa sửa |
+| U19 | trung bình | C07 | "Ý nghĩa:" chung chung; "Ví dụ." trùng hình C09 | R1 B-9, C-4; R2 | chấp nhận; bác bỏ hình thu nhỏ `conceptual-vertex-walk.svg` (R2) và hình H3 (R1), vì C09 đã có đủ năm giá trị | chưa sửa |
+| U20 | trung bình | C04 | ví dụ giới hạn định lý đứng trước định lý; hộp lặp gạch đầu dòng | R1 B-5, R2 | chấp nhận dạng R1; chuyển C04 sau C07 | chưa sửa |
+| U21 | trung bình | C07b | thiếu nhu cầu; dòng định nghĩa 25 âm tiết; ví dụ chỉ bằng lời | R1 B-4, C-5; R2 | chấp nhận; hình mới `pentagon-adjacent.svg` | chưa sửa |
+| U22 | trung bình | C07c | "Ví dụ." trùng bước 2 của C09 | R1 B-9 | chấp nhận | chưa sửa |
+| U23 | nhẹ | C09 | thiếu "Diễn giải:"; tiêu đề vụng; ghi chú 256 âm tiết | R1 B-13, R2 | chấp nhận | chưa sửa |
+| U24 | nhẹ | C11, C11b | thiếu hình; ghi chú gọi "tổng hợp"; C11b thiếu "Diễn giải:" | R1 B-13, B-17, C-6, C-7; R2 | chấp nhận; hình mới `pentagon-vertices.svg`, `multiple-optima-boxes.svg` | chưa sửa |
+| U25 | trung bình | D01b | "Nhu cầu:" nêu tính chất, không nêu câu hỏi; ô bảng dùng khái niệm chưa định nghĩa | R1 B-15, R2 | chấp nhận dạng R1 cho "Nhu cầu:"; ô bảng "chi phí nhỏ nhất từ mỗi trạng thái tới đích" | chưa sửa |
+| U26 | trung bình | D02 | nhãn $J(C)=3$ trước định nghĩa $J$; câu "Trực quan." và định nghĩa trạng thái khó đọc; ghi chú 278 âm tiết | R2 | chấp nhận | chưa sửa |
+| U27 | nhẹ | D03 | hộp không nhãn "Diễn giải:"; ghi chú 287 âm tiết | R2 | chấp nhận | chưa sửa |
+| U28 | trung bình | D04 | thiếu trạng thái đầu $x_0$; nhắc đồ thị tầng bằng lời | R1 C-8, R2 | chấp nhận; dùng lại `dp-layered-graph.svg` nếu vừa khung | chưa sửa |
+| U29 | nhẹ | D04b | "Ý nghĩa:" đọc lại công thức | R1 B-18 | chấp nhận | chưa sửa |
+| U30 | nhẹ | D06b | lời giải không có hình giá trị mới | R1 C-9 | chấp nhận; hình mới `dp-bellman-values-new-costs.svg` | chưa sửa |
+| U31 | nhẹ | Z00 (ghi chú) | "bốn sản phẩm" lệch "ba mục tiêu" | R1 B-12 | chấp nhận | chưa sửa |
+| U32 | trung bình | Z01 | vấn đề trung tâm chỉ được trả lời trong ghi chú | R1 B-8 | chấp nhận nếu tổng ≤ 80 âm tiết | chưa sửa |
+| U33 | nhẹ | Z01b | câu 3 nhắc đồ thị tầng bằng lời | R1 C-10 | chấp nhận dạng R1 (`dp-state-sufficiency.svg`); bác bỏ `dp-layered-graph.svg` (R2) | chưa sửa |
+| chung | nhẹ | ghi chú nhiều trang | ghi chú > 250 âm tiết; "Ví dụ này cho thấy", "Hình cho thấy" làm chủ ngữ | R1, R2 | rút về ≤ 200 và bỏ mẫu chủ ngữ này trên các trang được sửa | chưa sửa |
+| — | nhẹ | B06b, D05b | ví dụ trên trang phát biểu, chưa ghi ngoại lệ chu trình rút gọn trong storyboard | R1 B-9 | không có trong danh sách quyết định; chờ master | mở |

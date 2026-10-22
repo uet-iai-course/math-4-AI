@@ -93,14 +93,14 @@
 
 Đợt sửa văn phong theo MAT1101 (AGENTS.md, mục “Trang tiêu đề mạch” và “Văn phong và mật độ mặt trang chiếu”) đưa deck từ 37 lên **53 trang**, vẫn 6 mạch. Các trang mở mạch lai `A01`–`D01` (nhãn “A.”–“D.”, khung nhu cầu, ba gạch đầu dòng) đổi thành trang tiêu đề mạch và **giữ mã** vì không có liên kết nào trỏ tới mã cũ (đã kiểm `materials/lec-07` và `index.html` bằng grep); nhãn chữ cái A–D vẫn dùng trong kế hoạch và mã trang, mặt trang dùng chữ số “2.”–“5.” theo quyết định của master. Mạch kết luận dùng mã mới `Z00`.
 
-| Số | Mạch | Trang tiêu đề | `id` | Dòng dẫn (âm tiết) | Chức năng | Đầu vào → đầu ra |
-|---|---|---|---|---|---|---|
-| 1 | Mở đầu | P00 (bìa) | — | — | Định danh, tiên quyết, mục tiêu, nội dung, vấn đề trung tâm | Đề cương → vấn đề tập phương án quá lớn |
-| 2 | Mô hình hóa quy hoạch tuyến tính | A01 | `mach-2` | 21 | Dựng mô hình LP từ dữ kiện, định nghĩa, hồi quy $L_1$ | Vấn đề trung tâm → mô hình hộp hạt |
-| 3 | Đa diện và dạng chuẩn | B01 | `mach-3` | 23 | Mô tả miền, dạng chuẩn, nghiệm cơ sở khả thi | Mô hình → cách tính đỉnh |
-| 4 | Điểm cực biên và bảo đảm tối ưu | C01 | `mach-4` | 18 | Điểm cực biên, tồn tại, kết cục, tối ưu tại đỉnh, duyệt đỉnh kề | Cách tính đỉnh → thuật toán có bảo đảm |
-| 5 | Quy hoạch động | D01 | `mach-5` | 21 | Trạng thái, Bellman, giải ngược, chi phí | Quyết định đơn → chuỗi quyết định |
-| 6 | Tổng kết và chuyển tiếp | Z00 | `mach-6` | 23 | Kết quả cạnh giả thiết, tự kiểm tra, tài liệu, Bài 08 | Bốn sản phẩm → phương pháp đơn hình |
+| Số | Mạch | Trang tiêu đề | `id` | Dòng dẫn (âm tiết) | Câu hỏi trung tâm (2026-10-22) | Chức năng | Đầu vào → đầu ra |
+|---|---|---|---|---|---|---|---|
+| 1 | Mở đầu | P00 (bìa) | — | — | Tìm phương án tối ưu thế nào khi tập phương án quá lớn để duyệt hết (vấn đề trung tâm của bài, P03)? | Định danh, tiên quyết, mục tiêu, nội dung, vấn đề trung tâm | Đề cương → vấn đề tập phương án quá lớn |
+| 2 | Mô hình hóa quy hoạch tuyến tính | A01 | `mach-2` | 21 | Viết một quyết định thành quy hoạch tuyến tính thế nào (biến → ràng buộc → mục tiêu → dạng ma trận)? | Dựng mô hình LP từ dữ kiện, định nghĩa, hồi quy $L_1$ | Vấn đề trung tâm → mô hình hộp hạt |
+| 3 | Đa diện và dạng chuẩn | B01 | `mach-3` | 23 | Mô tả toàn bộ miền khả thi và tính các đỉnh bằng đại số thế nào? | Mô tả miền, dạng chuẩn, nghiệm cơ sở khả thi | Mô hình → cách tính đỉnh |
+| 4 | Điểm cực biên và bảo đảm tối ưu | C01 | `mach-4` | 18 | Khi nào chắc chắn có một đỉnh tối ưu, và tìm nó bằng cách nào? | Điểm cực biên, tồn tại, kết cục, tối ưu tại đỉnh, duyệt đỉnh kề | Cách tính đỉnh → thuật toán có bảo đảm |
+| 5 | Quy hoạch động | D01 | `mach-5` | 21 | Tối ưu một chuỗi quyết định thế nào mà không liệt kê $q^N$ chuỗi? | Trạng thái, Bellman, giải ngược, chi phí | Quyết định đơn → chuỗi quyết định |
+| 6 | Tổng kết và chuyển tiếp | Z00 | `mach-6` | 23 | Mỗi kết quả cần giả thiết nào, và vấn đề trung tâm được trả lời có điều kiện ra sao? | Kết quả cạnh giả thiết, tự kiểm tra, tài liệu, Bài 08 | Bốn sản phẩm → phương pháp đơn hình |
 
 Tên mạch trên trang “Nội dung” (P02b) trùng tên trên trang tiêu đề mạch. Trang nội dung đầu mỗi mạch có tiêu đề khác tên mạch (A02 “Bài toán sản xuất hộp hạt”, B02 “Đa diện và đường mức”, C02 “Điểm cực biên”, D01b “Chuỗi quyết định và số phương án”, Z01 “Tổng kết”).
 
