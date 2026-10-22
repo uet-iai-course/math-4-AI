@@ -1302,7 +1302,7 @@ Cho đa diện $P\subseteq\mathbb R^n$. Hai điểm cực biên khác nhau $v$, 
 
 Định nghĩa trên theo cách trình bày của Bertsimas và Tsitsiklis (1997, §2.2). Trong mặt phẳng, $n-1=1$: hai đỉnh kề nhau khi chung một đường biên hoạt động. Trên ngũ giác hộp hạt, $(30,0)$ và $(30,12)$ kề nhau vì cùng nằm trên $x_1=30$; $(30,12)$ và $(14,20)$ kề nhau qua đường giờ máy; còn $(0,0)$ và $(30,12)$ không chung đường biên nào nên không kề. Trên hình sau, hai đỉnh kề của $(30,0)$ là $(0,0)$ (chung $x_2=0$) và $(30,12)$ (chung $x_1=30$); đỉnh $(14,20)$ không có ràng buộc hoạt động chung với $(30,0)$ nên không kề.
 
-![Ngũ giác khả thi của bài toán hộp hạt. Đỉnh (30,0) tô đậm; hai cạnh xuất phát từ nó tô đậm: cạnh trên x2 = 0 tới (0,0) và cạnh trên x1 = 30 tới (30,12), hai đỉnh này ghi kề. Đỉnh (14,20) để nhạt, nối với (30,0) bằng nét đứt có nhãn không kề.](img/lec-07/pentagon-adjacent.svg)
+![Ngũ giác khả thi của bài toán hộp hạt. Đỉnh (30,0) tô đậm; hai cạnh xuất phát từ nó tô đậm: cạnh nằm trên đường x2 = 0 nối tới (0,0) và cạnh nằm trên đường x1 = 30 nối tới (30,12), hai đỉnh này ghi kề. Đỉnh (14,20) để nhạt, nối với (30,0) bằng nét đứt có nhãn không kề.](img/lec-07/pentagon-adjacent.svg)
 
 Với dạng chuẩn, đỉnh kề có một mô tả qua cơ sở, phát biểu trong mệnh đề sau. Chứng minh cần Định lý 07.15 (nghiệm cơ sở khả thi là điểm cực biên) và định lý số chiều (hạng của một họ hàng cộng số chiều không gian nghiệm của hệ thuần nhất tương ứng bằng $n$).
 
