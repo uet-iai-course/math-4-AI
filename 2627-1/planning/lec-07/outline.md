@@ -32,7 +32,7 @@ Cập nhật 2026-10-12 theo AGENTS.md, mục “Trang tiêu đề mạch” và
 | 2 | A09 | Bài tập: dựng mô hình phân bổ GPU | Lời giải trên mặt trang |
 | 3 · Đa diện và dạng chuẩn | B01 | 3. Đa diện và dạng chuẩn | Trang tiêu đề mạch; nhu cầu |
 | 3 | B02 | Đa diện và đường mức | Trực quan–ví dụ |
-| 3 | B03 | Định nghĩa đa diện | Hình thức hình học |
+| 3 | B03 | Đa diện và tính bị chặn | Hình thức hình học (nhắc lại đa diện của Bài 02; mới: bị chặn, tập $\{x:Ax=b,x\ge0\}$ là đa diện) |
 | 3 | B04 | Dạng chuẩn | Hình thức đại số |
 | 3 | B05 | Ví dụ: bài toán hộp hạt dạng chuẩn | Ứng dụng chuyển dạng |
 | 3 | B06 | Nghiệm cơ sở khả thi | Định nghĩa |
