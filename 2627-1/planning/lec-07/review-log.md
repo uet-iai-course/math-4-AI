@@ -703,3 +703,255 @@ Nguồn: R1 (B-1…B-18, C-1…C-10), R2 (bảng phát hiện). Quyết định 
 - **Giới hạn còn lại (master ghi):** ký hiệu trạng thái $x_k$ (deck) và $\xi_k$ (học liệu) chưa thống nhất.
 
 **Quyết định của master (Opus 5.5, 2026-10-22):** chấp nhận U34 và toàn bộ đợt rà soát 2026-10-22 (U0–U34, kể cả U5b–U5d, U12b–U12c, U24b, U30b). Mỗi đơn vị được master đọc diff, xem ảnh 1600×900 (và 390×844 khi bố cục đổi) trước khi commit và push riêng. Tái kiểm mạch kể và toán chạy sau mỗi mạch 2–5 và cho mạch 6 cùng toàn deck; không còn phát hiện chặn bàn giao, nghiêm trọng hay trung bình chưa xử lý. Phát hiện bị bác bỏ: R1 #1 mạch 3 (biến dư đã có trong ghi chú bài giảng Bài 02). Giới hạn còn lại: ký hiệu $x_k$/$\xi_k$ như ghi ở trên.
+
+## Đợt 2026-10-23: mạch phương pháp đơn hình
+
+Yêu cầu người dùng 2026-10-23: đưa phương pháp đơn hình (đề cương Buổi 8, Chương 11) vào Bài 07 thành một mạch riêng. Kế hoạch `plan.md` và quyết định master `master-decisions.md` nằm trong scratchpad của phiên master.
+
+### Tác tử
+
+| vai trò | loại | mô hình | effort | ghi tệp |
+|---|---|---|---|---|
+| Lập kế hoạch (worker) | general-purpose | Opus 5.5 (`claude-opus-5-5`) | medium | không |
+| Phân tích nguồn (worker) | general-purpose | Opus 5.5 (`claude-opus-5-5`) | medium | không |
+| Soạn và triển khai deck, kế hoạch, `index.html` (worker, tác tử ghi tệp duy nhất cho deck) | general-purpose | Opus 5.5 (`claude-opus-5-5`) | medium | có |
+| Soạn học liệu (`lecture-note.md`, `exercises.md`, song song, tệp khác) | do master ghi | Opus 5.5 | medium | có |
+
+Mã tác tử và bằng chứng gọi công cụ do master ghi bổ sung. Tác tử soạn deck nạp `no-ai-slop` (Edit mode) và tự kiểm theo `eval.md`; không commit.
+
+### Giáo trình và nguồn đã tham khảo
+
+- Bertsimas và Tsitsiklis (1997), *Introduction to Linear Optimization*, Chương 3: §3.1 (điều kiện tối ưu, chi phí rút gọn, Định lý 3.1), §3.2 (phát triển phương pháp đơn hình, bước xoay, không bị chặn), §3.3 (bảng đơn hình, đơn hình cải tiến), §3.4 (chống quay vòng: quy tắc từ điển, quy tắc Bland), §3.5 (tìm nghiệm cơ sở khả thi ban đầu, pha I); §3.6–3.7 chỉ dẫn trong ghi chú bài giảng. Không có bản cục bộ, trích theo mục, không số trang. Sách viết cho bài toán cực tiểu; deck đổi dấu cho bài toán cực đại.
+- Vanderbei (2014), *Linear Programming: Foundations and Extensions*, ấn bản 4 (bản văn bản trong scratchpad master): Chương 2 tr. 11–23 (§2.2 thuật toán, §2.3 khởi tạo/pha I, §2.4 không bị chặn); Chương 3 tr. 25–37 (§3.2 ví dụ suy biến và quay vòng, §3.4 tr. 31–33 quy tắc Bland, Định lý 3.3); Chương 4 §4.4 tr. 41 (trường hợp xấu nhất, Klee–Minty).
+- Bài giảng của giảng viên `mathAI-ch8p3` (chi phí rút gọn → điều kiện tối ưu → cải thiện → không bị chặn → thuật toán → suy biến) và `math-ai-ch8p4` (bảng, pha I): dùng để chọn thứ tự trang; viết cho bài toán cực tiểu.
+- Bài tập chương 8 của học phần, câu 5 (hộp hạt trộn, giải bằng đơn hình dạng bảng): nguồn gốc của bài toán hộp hạt; ghi chú nguồn A02 sửa theo quyết định master.
+- Không trích `simplex-method 1.pdf` (MIT 15.093 L3), nên không cần mục mới trong `sources/MIT/README.md`. Không chép đoạn văn của nguồn nào.
+
+### Quyết định master (tóm tắt từ `master-decisions.md`)
+
+- Chấp nhận kế hoạch có điều kiện: bảy mạch; mạch 5 mã S00 (`id="mach-5"`), S01–S11b; quy hoạch động thành mạch 6 (`mach-6`), tổng kết thành mạch 7 (`mach-7`); mã trang cũ giữ.
+- Ký hiệu: bài toán cực đại; vào khi $\bar c_j>0$, dừng khi mọi $\bar c_j\le0$; "$j\notin B$" hoặc $B^{\mathrm c}$ (bỏ $N$ ở B06, Z01); $d^j$, $\bar c_j$, $\theta^*$, $l$, $B'$; biến nhân tạo $\tilde s$; hàng cuối bảng $[\bar c^T\mid-z]$; không dùng $u$, $p$, $\mu$.
+- Hình học cột (11.5), đơn hình cải tiến, quy tắc từ điển, ví dụ quay vòng: chỉ trong ghi chú bài giảng; chiều ngược của điều kiện tối ưu chỉ trong ghi chú.
+- Không ghi phân bổ thời lượng nội bộ mới; ghi lệch đề cương có chủ ý (Buổi 7 + Chương 11 của Buổi 8; LLO19, LLO20 (Buổi 8), LLO21 một phần).
+- Z02 không còn "Bài 08"; câu nối bằng nhu cầu luồng mạng (đề cương, Buổi 9).
+- P02, Z01 ≤ 80 âm tiết; trang nội dung ≤ 60; không nhắc ví dụ trang trước bằng lời, dùng hình nhắc lại.
+
+### Thay đổi deck
+
+- **Trang mới (14):** S00 "5. Phương pháp đơn hình"; S01 Chi phí rút gọn; S02 Hướng cơ sở và chi phí rút gọn; S03 Điều kiện tối ưu theo chi phí rút gọn; S04 Phép thử tỉ số và bước xoay; S05 Thuật toán đơn hình; S06 Ví dụ: bài toán hộp hạt, ba bước đơn hình; S07 Ví dụ: bài toán hộp hạt có đỉnh suy biến; S08 Quy tắc Bland; S09 Ví dụ: bảng đơn hình hộp hạt, bước xoay đầu; S09b Ví dụ: bảng đơn hình hộp hạt, bảng cuối; S10 Cơ sở khả thi xuất phát và pha I; S11, S11b Bài tập: phương pháp đơn hình với lợi ích mới. Deck 53 → 67 trang.
+- **Trang cũ sửa:** P00 (h3, ghi chú), P02 (thẻ thứ tư, lưới 2×2), P02b (bảy mục), P03 (ghi chú), A02 (nguồn), B06 (bỏ $N$), B06b, C07c, C08, C09, C11b (ghi chú), D01 ("6.", `mach-6`), D06/D06b (số bài tập ghi chú bài giảng), Z00 ("7.", `mach-7`, dòng dẫn, từ khóa, ghi chú), Z01 (hàng phương pháp đơn hình, bỏ $x_N$, câu kết luận), Z01b (ghi chú), Z02 (tài liệu, câu chuyển tiếp). `grep "Bài 08"` trên deck: rỗng.
+- **Hình mới (SVG tay, cùng hệ tọa độ `pentagon-edge-labels.svg`: $(x_1,x_2)\mapsto(80+11x_1,\ 450-11x_2)$):** `reduced-cost-edge.svg` (S01), `simplex-two-paths.svg` (S09b), `degenerate-vertex-boxes.svg` (S08). Dùng lại `pentagon-vertices.svg` (S11). Không dùng `phase-one-boxes.svg` (tùy chọn; tam giác khả thi $(30,10),(30,12),(26,14)$ quá nhỏ ở tỉ lệ chung). Không ảnh raster, không ảnh sinh bởi AI.
+- **CSS mới, phạm vi `:where(html[data-lecture="07"])`:** `table.tableau` (căn giữa, đệm ô, `caption`), `tr.cbar-row` (viền trên hàng $\bar c$), `td.pivot-cell` (đậm, nền, viền: không dùng màu làm tín hiệu duy nhất), `table.iter-table` (đệm ô, `line-height`, `white-space:nowrap`), `[data-slide-id="Z01"] td:first-child { white-space:nowrap }`, `[data-slide-id="S08"] .visual img { max-height:260px }`. Không sửa quy tắc chung.
+
+### Lệch kế hoạch và lý do
+
+- S06 không đặt hình `simplex-two-paths.svg` (bảng lặp và hình cùng trang: 922/720); hình chuyển sang S09b, nơi "Diễn giải:" so sánh hai quy tắc chọn biến vào. S07 không đặt `degenerate-vertex-boxes.svg` (970/720); hình chuyển sang S08 làm bước trực quan của quy tắc Bland.
+- Tiêu đề S07, S09, S09b rút ngắn để một dòng; S10 đổi thành cụm danh từ "Cơ sở khả thi xuất phát và pha I"; S11/S11b "Bài tập: phương pháp đơn hình với lợi ích mới" (đề yêu cầu bảng lặp, không bắt buộc bảng đơn hình).
+- Z01 "Kết luận:" rút thành "đủ giả thiết, tránh được duyệt vét cạn." để giữ trần 80 khi thêm hàng phương pháp đơn hình; câu trả lời có điều kiện từng vế nằm trong ghi chú.
+- Z01b không thêm câu hỏi thứ tư trên mặt trang (vượt 60 âm tiết); câu hỏi về $\theta^*=0$ kèm lời giải đặt trong ghi chú.
+- Liên kết trang của mạch 5 cho `exercises.md`: S11 là `#/5/13`, S11b là `#/5/14` (kế hoạch ghi `#/5/12`, `#/5/13` khi chưa tính S09b); D06, D06b là `#/6/9`, `#/6/10`; mạch 6 `#/6/1`, mạch 7 `#/7/1`.
+
+### Kiểm tra (tác tử soạn deck)
+
+- Mật độ: bảng ở `storyboard.md`, mục "Mật độ mạch 5 và các trang sửa (2026-10-23)". Mọi trang nội dung mới ≤ 60 âm tiết, ≤ 6 dòng, dòng ≤ 20 âm tiết, ≤ 2 công thức hiển thị; P02 79, Z01 80 (trần 80).
+- Trực quan: `vcheck.py` (Playwright Chromium) trên cả 67 trang ở 1600×900 và 390×844 (màn hẹp chụp đầu và cuối vùng cuộn): 0 lỗi console/trang, 0 `.katex-error`, không tràn ngang (bảng màn hẹp cuộn trong `.table-scroll` có dấu ↔), mọi trang ≤ 720 đơn vị ở 16:9 (cao nhất S09 705, D04 704). Chữ thân nhỏ nhất $0{,}752$em (bảng); $0{,}72$em chỉ ở dòng từ khóa `.strand-keys` của mọi trang tiêu đề mạch (kiểu chung có sẵn, không đổi). Điều hướng: `#/5/1` → S00, `#/6/1` → D01, `#/7/1` → Z00, `#mach-5/6/7` đúng; phím mũi tên chuyển trang.
+- Số liệu kiểm bằng phân số chính xác (script của tác tử lập kế hoạch và tính tay): G1 (đường $\bar c_j$ lớn nhất), G2 (suy biến, $\theta^*=0$), G3 (ba bảng), G4 (pha I), G5 (bài tập $c=(2,4)$), Klee–Minty $n=2$.
+
+### Việc còn mở
+
+- Rà soát độc lập (năm vai) và rà tập trung mạch 5 chưa chạy; master quyết định.
+- Số khối ghi chú bài giảng trích trong deck (Bài tập 07.8 ở S11/S11b, 07.15 ở D06/D06b) theo `renumber-map.md` bản sớm; cần đối chiếu khi bản cuối có.
+- Ghi chú diễn giả P02 (khoảng 290 âm tiết) và Z01 (khoảng 275) dài hơn khuyến nghị (`nhẹ`).
+
+## Vòng chỉnh sửa 2026-10-23: cổng storyboard và năm vai rà soát (deck, planning)
+
+Nguồn phát hiện: `gate-findings.md` (G-1…G-6, nhẹ), báo cáo R1 (sinh viên), R2 (chuyên gia), R3 (toán), R4 (học thuật–sư phạm, #1–#30), R5 (mạch truyện, T1–T5, N1–N8); quyết định master `master-revise-decisions.md` (scratchpad phiên master). Tác tử chỉnh sửa deck: general-purpose, Opus 5.5 (`claude-opus-5-5`), effort medium, tác tử ghi tệp duy nhất cho deck và planning; nạp `no-ai-slop` (Edit mode). Các phát hiện chỉ thuộc ghi chú bài giảng và bài tập do tác tử học liệu ghi ở `review-log-lecture-note.md`.
+
+| mã | mức độ | trang | vấn đề | nguồn (vai) | quyết định master | trạng thái sửa |
+|---|---|---|---|---|---|---|
+| V1 | trung bình | S09b → S09c | "Diễn giải:" khẳng định quy tắc chọn biến vào không đổi đỉnh dừng (sai khi có $\bar c_j=0$); lý do trong ghi chú sai | G-1, R3 | chấp nhận (QĐ 3) | đã sửa: S09c "mọi $\bar c_j<0$ ($j\notin B$) nên nghiệm tối ưu $(30,12)$, $z^*=96$, là duy nhất. Hai quy tắc chọn biến vào đi hai đường tới cùng đỉnh đó."; ghi chú nêu lý do duy nhất nghiệm và trường hợp $\bar c_j=0$ |
+| V2 | trung bình | P02, S11, bản đồ | mục tiêu 3 hứa "bảng đơn hình" nhưng bài tập deck là bảng lặp | G-2 | chấp nhận | đã sửa: thẻ 3 "bằng phương pháp đơn hình"; ghi chú P02 nêu Bài tập 07.8–07.12; bản đồ hành trình sửa |
+| V3 | trung bình | S07, S08, S09 | S07 dùng thứ tự Bland trước khi gọi tên; "Diễn giải:" S07 chưa nói $\theta^*=0$ phá lập luận dừng; bước xoay bảng chưa gọi tên quy tắc Bland | G-3, R1 | chấp nhận (QĐ 7) | đã sửa: S07 "Diễn giải:" (tỉ số hòa, $\theta^*=0$, lập luận dừng mất hiệu lực); S09b "theo quy tắc Bland"; ghi chú S08b nói đường S07 là đường Bland |
+| V4 | trung bình | Z01b | không có câu hỏi tự kiểm tra cho mạch 5 trên mặt trang | G-4 | chấp nhận | đã sửa: câu 4 "Bước xoay có $\theta^*=0$ thay đổi những gì?"; 60 âm tiết |
+| V5 | trung bình | Z01 | "Kết luận:" khẳng định vô điều kiện; hàng đơn hình ghi Bland như giả thiết, thiếu dạng chuẩn, thiếu pha I | G-5, T1, T4, R1, R2, R3, R4#24 | chấp nhận (QĐ 8) | đã sửa: hàng "dạng chuẩn; cơ sở khả thi xuất phát; chống quay vòng khi suy biến \| $\bar c_j\le0$; $\theta^*$; pha I"; "Kết luận:" chuyển vào ghi chú (không vừa trần 80), ghi chú thêm trường hợp xấu nhất hàm mũ; 79 âm tiết. "bảng đơn hình" không vào ô công cụ vì vượt trần |
+| V6 | trung bình | storyboard, outline | mục cũ chưa cập nhật (D01 "mạch 5", Z00 `mach-6`, P02b "sáu mạch", B06b/Z02 "Bài 08", "53 trang", outline "Chương 9–10") | G-6 | chấp nhận | đã sửa; các chỗ còn chữ "Bài 08" chỉ nằm trong ghi chép lịch sử "Sửa (…)" |
+| V7 | trung bình | S00, S01, C08, storyboard | phân rã câu hỏi mạch 5 không nhất quán (ba/bốn/năm phần) | T2, R4#2, R2, R3, R1, cổng | chấp nhận (QĐ 2) | đã sửa: S00 dòng dẫn bốn phần (23 âm tiết); S01 "Nhu cầu:" song song; ghi chú C08 bốn câu hỏi (N4); câu hỏi trung tâm mạch 5 trong storyboard thêm phần ghi bảng (N2); mạch 4 theo N7 |
+| V8 | trung bình | S09 | bảng đơn hình vào đột ngột ("Ký hiệu:"), thiếu nhu cầu, định nghĩa, quy tắc xoay tổng quát, quan hệ cột $=-d^j_B$ | R4#3, R1, R2 | chấp nhận (QĐ 5) | đã sửa: tách S09 (Bảng đơn hình: Nhu cầu, Định nghĩa, cột $-d^j_B$, quy tắc xoay), S09b (bước xoay đầu), S09c (bảng cuối); nhãn hàng "$\bar c\mid-z$", cột "vế phải"; dòng phép biến đổi hàng cho phần tử xoay $2$ |
+| V9 | trung bình | S10, S10b mới | pha I thiếu trực quan và ví dụ trên mặt trang; "hợp đồng" không gắn bài toán hộp hạt; "Ý nghĩa:" nói quá | R4#4, R1, R2, N3, cổng | chấp nhận (QĐ 6) | đã sửa: S10 "Nhu cầu:" nêu hộp hạt, thêm "Trực quan.", định nghĩa "bài toán phụ (auxiliary problem) là" (R4#19); trang mới S10b (bảng lặp pha I theo Bland, pha II theo $\bar c_j$ lớn nhất, "Diễn giải:"). Lệch: dòng "Ý nghĩa:" theo R2 không vừa trần 60 cùng "Trực quan."; nội dung chuyển vào "Diễn giải:" S10b và ghi chú S10 |
+| V10 | trung bình | S08 → S08, S08b | nhãn "Trực quan." chở nhu cầu; định lý thiếu đầu vào, đầu ra | R4#6, R1 | chấp nhận (QĐ 7) | đã sửa: tách S08 "Quay vòng tại đỉnh suy biến" (Nhu cầu, Trực quan, hình) và S08b "Quy tắc Bland" (định nghĩa, định lý có đầu vào, "Ý nghĩa:" đầu ra); bản gộp 71 âm tiết |
+| V11 | trung bình | S08b (ghi chú) | dễ hiểu sai: Bland tránh hoặc gây bước suy biến | R4#5 | chấp nhận | đã sửa: ghi chú S08b "không tránh bước xoay suy biến … bảo đảm dãy cơ sở không lặp lại" |
+| V12 | trung bình | S11b | lời giải câu 2 chưa ra tập nghiệm; thiếu "Câu 1:" | R1, R4#22, T3, cổng | chấp nhận (QĐ 9) | đã sửa: "Câu 1:" bảng; "Câu 2:" theo điều kiện tối ưu (a) $z'-108=0\cdot s_2'-2s_3'$, tập $\{x: x_1+2x_2=54,\ 14\le x_1\le30\}$; ghi chú so sánh theo T3 |
+| V13 | trung bình | S01 | biểu thức theo $\theta$ không có phép giải | R1 | chấp nhận | đã sửa: dòng "Giải $x_2=20-s_2$, $x_1=54-2x_2-s_3$, $s_1=30-x_1$:"; ghi chú ba bước; bố cục lại để vừa khung (673/720) |
+| V14 | trung bình | S06 → S09b | chuyển hình hai đường sang S06 | R4#29 | bác bỏ (QĐ 4): hình cùng bảng lặp tràn khung (922/720) | giữ hình ở S09c (trước là S09b) |
+| V15 | trung bình | S10/S10b | đổi tên biến dư $s_4$ (trùng $s_4$ của S07) | cổng | bác bỏ (QĐ 6): mỗi ví dụ tự chứa dữ kiện, đổi tên lan sang Ví dụ 07.24, Bài tập 07.12 | S10b ghi rõ "$s_4$ biến dư" |
+| V16 | nhẹ | S03 | chứng minh bỏ lý do $A_B$ khả nghịch; ghi chú nói quá về chiều ngược | R1, R2, N1 | chấp nhận | đã sửa |
+| V17 | nhẹ | S04 | ngoặc $B'$, "$z$ tăng" khi $\theta^*=0$; thuật ngữ "minimum ratio test"; câu (i) dùng hai chấm | R1, R4#20, R4#21 | chấp nhận | đã sửa: $(B\setminus\{l\})\cup\{j\}$, "tăng thêm $\theta^*\bar c_j\ge0$", "(ratio test)", "nên mục tiêu không bị chặn trên $P$" |
+| V18 | nhẹ | S05 | không nêu điều kiện dừng hữu hạn; thứ tự hai đòi hỏi; không có ví dụ không bị chặn; bốn tên của quy tắc Dantzig | cổng, N1, R1, N6 | chấp nhận | đã sửa: "Nhận xét." dừng hữu hạn khi không suy biến; ghi chú theo thứ tự trang, ví dụ tia $(2+2\theta,\theta)$, "quy tắc Dantzig (chọn $\bar c_j$ lớn nhất)" |
+| V19 | nhẹ | S06 | cột tỉ số bỏ hàng không giảm; cách tính $\bar c$; câu nối sang suy biến; LLO21 trên mặt trang | R1, R4#3, N1, R2 | chấp nhận | đã sửa: "Diễn giải:" thêm "số bước phụ thuộc quy tắc chọn biến vào"; ghi chú bổ sung |
+| V20 | nhẹ | S01, S02 (ghi chú) | chỉ số ghi bằng tên biến; tên "chi phí rút gọn" với vector lợi ích; "nên đi" khẩu ngữ | R1, R4#21 | chấp nhận | đã sửa |
+| V21 | nhẹ | S00 (ghi chú) | khoảng 106 âm tiết | cổng | chấp nhận | đã sửa: khoảng 75 âm tiết |
+| V22 | nhẹ | ghi chú S08, S08b, Z02 | "từ điển" hai nghĩa; tên ví dụ lệch tiêu đề S07; nguồn quay vòng | R2, cổng, R4#16 | chấp nhận | đã sửa: "quy tắc thứ tự từ điển (lexicographic rule)"; "ví dụ bài toán hộp hạt có đỉnh suy biến"; Vanderbei §3.2 tr. 26–28 |
+| V23 | nhẹ | ghi chú S10, S10b | pha II không nêu quy tắc; "Trong thực hành"; $b\ge0$; pha I của Vanderbei khác | R1, R2, R3, cổng | chấp nhận | đã sửa: pha II theo quy tắc Dantzig, đường Bland ghi thêm; nhân $-1$ hàng $b_i<0$; ghi chú nguồn Vanderbei §2.3 |
+| V24 | nhẹ | ghi chú S09b (cũ) | "chứng nhận tối ưu ở mỗi bước" nói quá; nguồn bài toán hộp hạt | cổng, R4#17 | chấp nhận | đã sửa: bỏ câu; "Bài toán hộp hạt phỏng theo Bài tập chương 8, câu 5 … (Nguyễn Bích Vân, 2025)" |
+| V25 | nhẹ | tiêu đề S09, S09b, S11, S11b | ngữ pháp tiêu đề | R4#22 | chấp nhận một phần | đã sửa: "Bảng đơn hình", "Ví dụ: bài toán hộp hạt, bước xoay đầu", "Ví dụ: bài toán hộp hạt, bảng đơn hình cuối", "Bài tập: phương pháp đơn hình, lợi ích mới" (bản R4 đề xuất xuống hai dòng) |
+| V26 | nhẹ | ghi chú S11b | câu tiến trình "Đến đây"; đối lập nhị phân | R4#23, R2 | chấp nhận | đã sửa |
+| V27 | nhẹ | Z00 | dòng dẫn liệt kê bốn kết quả, thiếu vế vấn đề trung tâm | N5, cổng | chấp nhận | đã sửa (16 âm tiết) |
+| V28 | nhẹ | Z02 | câu chuyển tiếp chưa ở dạng nhu cầu; pha I Vanderbei | cổng, R2 | chấp nhận | đã sửa: "Nhu cầu: luồng mạng (đề cương, Buổi 9) là quy hoạch tuyến tính trên đồ thị. Giải nó bằng phương pháp đơn hình cần khai thác cấu trúc đồ thị." |
+| V29 | nhẹ | D01b | ô "hữu hạn đỉnh của đa diện" | N8 | chấp nhận (QĐ 12) | đã sửa: "đỉnh kề của đa diện" |
+| V30 | nhẹ | P00, P02 (ghi chú) | chủ ngữ; câu lặp; LLO21 | cổng, R4#30, R2 | chấp nhận | đã sửa |
+| V31 | nhẹ | ghi chú S08, S10 | ghi chú dài | R4#30 | chấp nhận | đã sửa: S08 tách, đường pha I/pha II chuyển sang S10b |
+| V32 | nhẹ | S07 so với Ví dụ 07.22 | đánh số bước 0–3 so với 1–4 | R3 | chấp nhận | deck giữ Bước 0–3 (khớp S06, S10b, S11b); chuyển tác tử học liệu đồng bộ Ví dụ 07.22 |
+| V33 | nhẹ | S09 (390×844) | chú thích bảng bị cắt | R1 | chấp nhận | đã sửa trước vòng này (caption căn trái); kiểm lại ở màn hẹp |
+
+**Trang mới/tách của vòng:** S08b (Quy tắc Bland), S09c (bảng cuối), S10b (ví dụ pha I); S08, S09, S09b đổi nội dung. Deck 67 → 70 trang; mạch 5 có 17 trang. Vị trí mới: S08 `#/5/9`, S08b `#/5/10`, S09 `#/5/11`, S09b `#/5/12`, S09c `#/5/13`, S10 `#/5/14`, S10b `#/5/15`, S11 `#/5/16`, S11b `#/5/17`; mạch 6 và 7 không đổi (`#/6/1`, `#/6/9`, `#/6/10`, `#/7/1`). Liên kết `#/5/13`, `#/5/14` của `exercises.md` (S11, S11b) phải đổi thành `#/5/16`, `#/5/17` (tác tử học liệu).
+
+**CSS mới (phạm vi Bài 07):** `[data-slide-id="S01"] .responsive` (1,2fr/0,8fr) và ảnh S01 max-height 250px; ảnh S08 max-height 360px; `[data-slide-id="S10b"] table.iter-table td { white-space:normal }`; `[data-slide-id="Z01b"] .grid2` (1,2fr/0,8fr).
+
+**Kiểm tra (tác tử chỉnh sửa):** `density.py` cho mọi trang sửa/mới (bảng ở `storyboard.md`); `vcheck.py` toàn deck 70 trang ở 1600×900 và 390×844; `navcheck.py`; `git diff --check`. Kết quả ghi trong báo cáo bàn giao của tác tử.
+
+### Duyệt của master cho vòng chỉnh sửa và sửa bổ sung (2026-10-23)
+
+Master chấp nhận vòng chỉnh sửa, trừ hai điểm "master yêu cầu sửa"; tác tử chỉnh sửa deck (Opus 5.5, medium) đã sửa:
+
+| mã | mức độ | trang | vấn đề | nguồn (vai) | quyết định master | trạng thái sửa |
+|---|---|---|---|---|---|---|
+| V5b | trung bình | Z01 | bỏ "Kết luận:" khỏi mặt trang làm thụt lùi U32 (câu trả lời có điều kiện phải ở mặt trang mạch 7) | master | master yêu cầu sửa | đã sửa: "Kết luận: đủ giả thiết, LP xét hữu hạn đỉnh, quy hoạch động xét từng trạng thái."; rút ô bảng ("biến thực"; "$Ax=b$, $\operatorname{rank}(A)=m$; $A_B^{-1}b\ge0$"; hàng đơn hình "cơ sở xuất phát; chống quay vòng \| $\bar c_j\le0$; $\theta^*$"; "giải ngược"). 80 âm tiết, đáy 638/720 ở 16:9; không cần tách sang Z01b |
+| V10b | trung bình | S08b | "Ý nghĩa: đầu ra của thuật toán vẫn đúng khi có suy biến." lệch: quy tắc Bland bảo đảm dừng, không phải tính đúng | master | master yêu cầu sửa | đã sửa: "Ý nghĩa: khi có suy biến, thuật toán vẫn dừng, tại nghiệm tối ưu hoặc tia không bị chặn."; định nghĩa rút thành "Quy tắc Bland (Bland's rule) chọn:". 60 âm tiết, 400/720 |
+
+Kiểm: `density.py` (Z01 80, S08b 60; dòng dài nhất 17 và 19); `vcheck.py` Z01, S08b ở 1600×900 và 390×844: 0 lỗi, không tràn ngang (bảng Z01 cuộn trong `.table-scroll` ở màn hẹp); `git diff --check` sạch.
+
+### Tái kiểm sau vòng chỉnh sửa (2026-10-23) và sửa nốt
+
+Tái kiểm toán (R3, `r3-recheck.md`): không còn phát hiện trung bình. Tái kiểm mạch truyện (R5, `r5-recheck.md`): qua. Master yêu cầu sửa nốt các mục dưới; tác tử chỉnh sửa deck (Opus 5.5, medium) đã sửa. Phát hiện R3 về chứng minh Mệnh đề 07.44 thuộc ghi chú bài giảng, do tác tử học liệu xử lý.
+
+| mã | mức độ | trang | vấn đề | nguồn (vai) | quyết định master | trạng thái sửa |
+|---|---|---|---|---|---|---|
+| V-R1 | trung bình | S10, S10b | "pha I", "pha II" dùng trên mặt trang (kết luận S10b) nhưng chỉ định nghĩa trong ghi chú | R5 | chấp nhận, master yêu cầu sửa | đã sửa: S10 "Định nghĩa. Với $Ax=b$, $x\ge0$, $b\ge0$, pha I giải bài toán phụ (auxiliary problem)" (59 âm tiết); S10b dòng 2 "Tính pha I (Bland), pha II trên bài toán gốc ($\bar c_j$ lớn nhất)." (60). Câu riêng về pha II trên S10 không vừa trần; pha II được nêu ở S10b |
+| V-N1 | nhẹ | S00; storyboard | phần ghi bảng chỉ ở dòng từ khóa; storyboard nói "khớp" một-một với bốn câu hỏi | R5 | chấp nhận | đã sửa: dòng dẫn "Muốn duyệt đỉnh kề bằng phép tính trên bảng, cần điều kiện dừng, bước xoay, xử lý suy biến và cơ sở xuất phát." (24 âm tiết); storyboard ghi ánh xạ đúng (câu 1 tách hai phần, câu 2 ở S05–S06) |
+| V-N2 | nhẹ | S09b, S09c | tiêu đề không song song, S09b trùng tiền tố S06 | R5 | chấp nhận | đã sửa: "Ví dụ: bảng đơn hình hộp hạt, bước xoay đầu" / "Ví dụ: bảng đơn hình hộp hạt, bảng cuối" (một dòng ở 1600×900) |
+| V-N3 | nhẹ | S10 (ghi chú) | S10 định nghĩa $m$ biến nhân tạo, S10b dùng một | R5 | chấp nhận | đã sửa: câu "Hàng đã có biến bù với hệ số $1$ và vế phải không âm không cần biến nhân tạo; ví dụ có hợp đồng chỉ có một hàng thiếu biến bù nên chỉ thêm một biến nhân tạo." |
+| V-N4 | nhẹ | S11b (ghi chú) | câu lặp "điều kiện $x_1\le30$ cho $x_1\le30$"; "cấp số mũ" lệch thuật ngữ | R5, R3 | chấp nhận | đã sửa: "còn $s_1\ge0$ cho $x_1\le30$"; "hàm mũ" |
+| V-N5 | nhẹ | storyboard, bản đồ hành trình | thứ tự suy biến; S10b ở cột ứng dụng của bảng đơn hình; cột ví dụ của pha I | R5 | chấp nhận | đã sửa |
+| V-N6 | nhẹ | storyboard | dòng dẫn mạch 7 "23"; D01 "C11b → D01b"; Z01b "Ba câu hỏi" | R5 | chấp nhận | đã sửa: "16"; "S11b → D01 → D01b"; "Bốn câu hỏi …" |
+| V-N7 | nhẹ | Z01 | ô "biến thực" lệch tên giả thiết "biến nhận giá trị thực" (A05, Nhận xét 07.3) | R5 | giữ "biến thực" (master quyết) | không sửa: Z01 đúng trần 80 âm tiết khi đã khôi phục dòng "Kết luận:" (V5b); "biến nhận giá trị thực" thêm 3 âm tiết, vượt trần. Tên đầy đủ có ở A05 và ghi chú Z01 |
+
+Kiểm: `density.py` S00 40 (dòng dẫn 24), S09b 47, S09c 54, S10 59, S10b 60, S11b 51; `vcheck.py` S00, S09b, S09c, S10, S10b, S11b ở 1600×900 và 390×844: 0 lỗi console, 0 `.katex-error`, không tràn ngang, cao nhất 697/720 (S09c); `git diff --check` sạch.
+
+### Danh sách tác tử theo lời gọi công cụ (master ghi, 2026-10-23)
+
+Bằng chứng là tham số của lời gọi `Agent` trong phiên master (`subagent_type: "general-purpose"`, `model: "opus"`, `effort` như bảng), không lấy lời tự khai của tác tử. Tác tử được tiếp tục bằng `SendMessage` cho các vai tiếp theo cùng loại.
+
+| vai trò | mã tác tử | loại | mô hình | effort | ghi tệp |
+|---|---|---|---|---|---|
+| Lập kế hoạch | `a1cd147f6181b71d9` | general-purpose | Opus 5.5 | medium | không |
+| Phân tích nguồn | `a5a879d906960e498` | general-purpose | Opus 5.5 | medium | không |
+| Soạn deck, sau đó chỉnh sửa deck (hai vòng) | `ae800060b6c3b6633` | general-purpose | Opus 5.5 | medium | có (deck, CSS, SVG, planning, `index.html`) |
+| Soạn học liệu, sau đó chỉnh sửa học liệu | `aa8160ee46647836c` | general-purpose | Opus 5.5 | medium | có (`lecture-note.md`, `exercises.md`, `review-log-lecture-note.md`, `material-local-data.js` qua script) |
+| Cổng storyboard | `a9398fb3be17b9846` | general-purpose | Opus 5.5 | high | không |
+| R1 sinh viên | `a55a789ab2b734025` | general-purpose | Opus 5.5 | high | không |
+| R2 chuyên gia | `a9435f283191bfe23` | general-purpose | Opus 5.5 | high | không |
+| R3 chính xác toán học, sau đó tái kiểm toán | `ac738a91bf76d8a34` | general-purpose | Opus 5.5 | high | không |
+| R4 học thuật và sư phạm | `adaaa65f1dba27bec` | general-purpose | Opus 5.5 | high | không |
+| R5 mạch truyện và liên kết, sau đó tái kiểm toàn deck (thay vai cổng cho S07–S09c, Z01b) | `a5292a304d1fff520` | general-purpose | Opus 5.5 | high | không |
+| Kiểm định cuối | `a6bfd260b1bd405c8` | general-purpose | Opus 5.5 | high | không |
+
+Hai tác tử ghi tệp chạy song song trên hai nhóm tệp tách rời (deck/planning so với học liệu), theo quyết định 2026-10-11 của người dùng; không tệp nào có hai tác tử ghi cùng lúc.
+
+### Quyết định của master theo từng đầu ra (2026-10-23)
+
+| đầu ra | quyết định | lý do |
+|---|---|---|
+| Phân tích nguồn | chấp nhận | master kiểm: `Bài tập chương 8.pdf` câu 5 là bài hộp hạt "giải bằng đơn hình dạng bảng"; `mathAI-ch8p3.pdf` là bài giảng đơn hình; ghi chú có Định nghĩa 07.30, Mệnh đề 07.31 và dòng "suy biến nằm ngoài phạm vi" |
+| Kế hoạch | chấp nhận có điều kiện | master dò lại G1, G2, G6, G8 và hướng tại $(14,20)$; bác bỏ phân bổ thời lượng nội bộ do tác tử đề xuất (không có trong đề cương) |
+| Bản nháp deck | chấp nhận để kiểm định | đọc mặt trang và ghi chú S00–S11b; xem ảnh S01, S08, S09, S09b; dò lại bảng S07 ($z=60+s_1-3s_4$) |
+| Bản nháp học liệu | chấp nhận để kiểm định | dò lại Bài tập 07.10, 07.11, 07.13 |
+| Cổng storyboard | chấp nhận (qua) | kiểm G-1: khẳng định "không đổi đỉnh dừng" sai khi có nhiều nghiệm (S11b là phản ví dụ); G-2 chọn phương án (b) |
+| Năm vai rà soát | chấp nhận, gộp trong `master-revise-decisions.md` | bác bỏ R4#29 (hình hai đường ở S06 tràn khung 922/720), đổi tên biến dư $s_4$ (mỗi ví dụ tự chứa), phân bố bài tập vào từng tiểu mục và tách bổ đề mới có số (R4#10, R4#11b: tránh đánh số lại) |
+| Vòng chỉnh sửa deck | yêu cầu sửa, rồi chấp nhận | Z01 mất "Kết luận:" (thụt lùi U32) và S08b "Ý nghĩa:" lệch (V5b, V10b); sau sửa: chấp nhận |
+| Vòng chỉnh sửa học liệu | chấp nhận | master kiểm 07.12(d): $x_1\le60<70$, thiếu $10$, cần thêm $30$; độ dài chương khoảng 50 100 từ giữ như hiện tại, ghi là việc còn mở mức nhẹ |
+| Tái kiểm toán, tái kiểm mạch truyện | chấp nhận | không còn phát hiện chặn, nghiêm trọng hay trung bình sau khi sửa V-R1 và hai điểm nhẹ của R3 |
+
+### Báo cáo rà tập trung mạch (tái kiểm R5, 2026-10-23, deck 70 trang)
+
+Chép từ báo cáo tái kiểm của R5 (`a5292a304d1fff520`, Opus 5.5, high), mục 1–2. Số mạch theo deck hiện hành: 5 = phương pháp đơn hình, 6 = quy hoạch động, 7 = tổng kết; bản rà 2026-10-22 ở trên dùng số mạch cũ (5 = quy hoạch động, 6 = tổng kết). Các mã V-N1…V-N7, V-R1 ở cột cuối đã sửa theo bảng tái kiểm phía trên.
+
+#### 1. Audit tập trung từng mạch
+
+**Mạch 1 (P00–P03).** Câu hỏi trung tâm: tìm phương án tối ưu khi tập phương án quá lớn để duyệt hết. Câu này có trong khung P03. Đạt.
+- P02, thẻ 3: "Giải quy hoạch tuyến tính bằng phương pháp đơn hình; xử lý suy biến; tìm cơ sở xuất phát." Ghi chú nêu Bài tập 07.8–07.12 làm minh chứng (G-2 đã xử lý).
+- 80 âm tiết, đúng trần.
+
+**Mạch 2, 3.** Không đổi. Đạt.
+
+**Mạch 4 (C01–C11b).** Đạt.
+- Câu hỏi trong storyboard đã sửa theo N7: "…đi qua các đỉnh theo nguyên tắc nào để đến được nó?"
+- Ghi chú C08 nêu bốn câu hỏi còn ngỏ và ánh xạ đúng sang phần 5 (N4).
+- Đầu ra cho mạch 5 nằm trong ghi chú C08, C09 và C11b.
+
+**Mạch 5 (17 trang; nửa sau bắt đầu từ S08).**
+- **Câu hỏi trung tâm** (storyboard): thực hiện một bước duyệt đỉnh kề bằng phép tính trên cơ sở thế nào, ghi thành bảng ra sao, xử lý suy biến và tìm cơ sở xuất phát thế nào.
+- **Phân rã:** điều kiện dừng + bước xoay (ghi trên bảng) + suy biến + cơ sở xuất phát.
+- **Trên mặt trang:** dòng dẫn S00 nêu bốn phần (23 âm tiết). "Nhu cầu:" của S01 nêu điều kiện dừng và bước xoay. Đạt.
+- **Phần ghi bảng:** trên S00 chỉ có ở dòng từ khóa ("Bảng đơn hình"); nêu thành nhu cầu lần đầu ở S09, thuộc nửa sau (xem V-N1).
+
+| Trang | Chức năng thực tế | Phần việc phục vụ | Đầu vào | Đầu ra | Đề xuất |
+|---|---|---|---|---|---|
+| S00 | Tiêu đề mạch, bốn phần | khung | ghi chú C11b | phân rã | V-N1 |
+| S01 | Nhu cầu, ví dụ dẫn nhập $(14,20)$, trực quan | điều kiện dừng; báo trước độ dài bước | B06, C09 | $88+\theta$, $\theta\le8$ | giữ |
+| S02 | Định nghĩa $d^j$, $\bar c_j$ | công cụ cho điều kiện dừng | S01 | ký hiệu | giữ |
+| S03 | Điều kiện tối ưu | khi nào dừng (ghi chú gọi tên phần việc) | S02 | bước 1 của S05 | giữ |
+| S04 | Phép thử tỉ số, bước xoay, không bị chặn | bước xoay | S03 | bước 2–3 của S05 | giữ |
+| S05 | Thuật toán và "Nhận xét." dừng khi không suy biến | ghép một bước; nêu điều kiện mà suy biến phá | S03–S04 | thuật toán, hai đòi hỏi còn mở theo thứ tự trang | giữ |
+| S06 | Một lần chạy (quy tắc Dantzig) | ứng dụng | S05 | $z^*=96$; ghi chú nối sang suy biến | giữ |
+| S07 | Ví dụ dẫn nhập suy biến | suy biến ($\theta^*=0$ phá lập luận dừng) | S05 (Nhận xét), ghi chú S06 | bước có $\theta^*=0$ | giữ |
+| S08 | Nhu cầu (quay vòng), trực quan, hình | suy biến | S07 | nhu cầu của quy tắc chống quay vòng | giữ |
+| S08b | Quy tắc Bland, định lý, "Ý nghĩa:" | suy biến | S08 | quy tắc Bland | giữ |
+| S09 | Nhu cầu, định nghĩa bảng, quy tắc xoay | ghi bảng | S04–S05 | cách ghi | giữ |
+| S09b | Bước xoay đầu theo quy tắc Bland | ghi bảng; ứng dụng quy tắc Bland | S09, S08b | bảng tại $(30,0)$ | tiêu đề (V-N2) |
+| S09c | Bảng cuối, hai đường | ghi bảng; điều kiện dừng đọc từ bảng | S09b, S06 | nghiệm tối ưu duy nhất | giữ (G-1 đã sửa) |
+| S10 | Nhu cầu (hợp đồng), trực quan, bài toán phụ, mệnh đề | cơ sở xuất phát | đầu vào của S05 | bài toán phụ | V-R1 |
+| S10b | Pha I theo quy tắc Bland, pha II theo quy tắc Dantzig | cơ sở xuất phát | S10 | cơ sở cuối pha I là cơ sở xuất phát pha II | V-R1, V-N3 |
+| S11 | Đề bài trên dữ kiện của C11 | đo một lần chạy | C11 | → S11b | giữ |
+| S11b | Lời giải: câu 1 bảng lặp; câu 2 theo điều kiện tối ưu (a) | điều kiện dừng, tập nghiệm tối ưu | S03 | câu nối sang quy hoạch động (ghi chú) | V-N4 |
+
+- Không trang nào lạc đề.
+- Trùng lặp có chủ ý, mỗi lần dùng lại trả lời câu hỏi mới: S01 và bước 2 của S06; dòng kết của S06 và S09c (một lần chạy so với cách ghi bằng bảng).
+- Không có trang nhắc ví dụ trang khác bằng lời trên mặt trang. S09c dùng hình.
+- Mỗi trang có đúng một mục trong storyboard (S00…S11b), theo đúng thứ tự deck. Outline khớp ("Bảy mạch và 70 trang", có S08b, S09c, S10b).
+
+**Mạch 6 (D01–D06b).** Đạt.
+- D01b, ô bảng "đỉnh kề của đa diện" (N8).
+- Câu nối vào từ ghi chú S11b nêu điều kiện đổi: một vector chọn một lần chuyển thành chuỗi $N$ giai đoạn.
+
+**Mạch 7 (Z00–Z02).** Đạt.
+- Z00, dòng dẫn: "Muốn trả lời vấn đề trung tâm, mỗi kết quả của bài cần đủ giả thiết của nó." (N5).
+- Z01, dòng "Kết luận:" có điều kiện. Ghi chú nêu trường hợp xấu nhất tăng theo hàm mũ (T1).
+- Z01b có câu hỏi 4 về $\theta^*=0$ (G-4).
+- Z02 có câu chuyển tiếp dạng "Nhu cầu:".
+- Năm hàng của Z01 phủ đủ bốn mục tiêu.
+
+#### 2. Thay vai cổng storyboard cho S07–S09c, Z01b
+
+| Cụm | Nhu cầu | Trực quan | Ví dụ | Hình thức | Ứng dụng | Bài tập | Nhận xét |
+|---|---|---|---|---|---|---|---|
+| Suy biến và quy tắc Bland | S05 "Nhận xét.", ghi chú S06, "Diễn giải:" S07, "Nhu cầu:" S08 | S08 | S07 | S08b | S09b (gọi tên quy tắc Bland) | Z01b câu 4; Bài tập 07.11 | Đủ sáu bước, đúng thứ tự nếu tính nhu cầu từ S05 và S06. Bản đồ storyboard ghi "ví dụ dẫn nhập (S07) → nhu cầu", đảo thứ tự so với AGENTS (V-N5). |
+| Bảng đơn hình | S09 | không áp dụng (đã có ở S01, S04) | S09b, S09c | S09 | S09c; bản đồ ghi cả S10b, nhưng S10b là bảng lặp, không phải bảng đơn hình (V-N5) | Bài tập 07.8 (exercises.md) | Chu trình rút gọn, lý do đã ghi. Chấp nhận. |
+| Pha I | S10 | S10 | bản đồ ghi S10b, sau phần hình thức (V-N5) | S10 | S10b | Bài tập 07.12 | Ghi lại: ví dụ là ví dụ dẫn nhập trong "Nhu cầu:" của S10; S10b là bước ứng dụng. |
+| Z01b | — | — | — | — | — | bốn câu hỏi | Mục storyboard vẫn ghi "Ba câu hỏi" ở cột đầu (V-N6). |
+
+
+### Kiểm định cuối (2026-10-23/24) và sign-off của master
+
+Verifier `a6bfd260b1bd405c8` (Opus 5.5, high): 70 trang ở 1600×900 và 390×844 (169 ảnh), 0 lỗi console/page, 0 `.katex-error`, không tràn ngang, không trang vượt khung 16:9, cỡ chữ ≥ 0,75em; điều hướng `#/5/1`, `#/6/1`, `#/7/1`, `#/5/16`, `#/5/17` đúng; 11 deck khác không hồi quy CSS; `sync-local-materials.py --check` OK; 18/18 liên kết `#/h/v` của `exercises.md` đúng; 0 trích dẫn 07.N treo; storyboard 70 mục đúng thứ tự; `index.html` không liên kết planning/sources; `git diff --check` sạch.
+
+| phát hiện | mức độ | quyết định master |
+|---|---|---|
+| Thiếu báo cáo rà tập trung mạch 5 trong log | trung bình | đã sửa: chép mục trên |
+| Mũi tên điều hướng chạm tiêu đề (S06, S07, S09c và các trang cũ B07b, C03b, C06, C11b, D04); mép bảng S10b, "(ii)" S04 gần mũi tên | nhẹ | giữ: kiểu chung của mọi deck, nội dung không bị che; sửa vị trí điều khiển cần rà hồi quy toàn bộ deck |
+| Cảnh báo KaTeX `unknownSymbol` cho chữ Việt trong `\text{}` (S04, S10 và 8 công thức cũ) | nhẹ | giữ: cảnh báo, không lỗi; cùng cách viết đã dùng ở các trang cũ (A05) |
+| Câu lỗi thời trong mục "Đợt 2026-10-23" (liên kết `#/5/13`, `#/5/14`; "Z01b không thêm câu hỏi thứ tư"; "rà soát chưa chạy") | nhẹ | đã thay bởi các mục "Vòng chỉnh sửa" và "Tái kiểm" phía sau: S11 = `#/5/16`, S11b = `#/5/17`; Z01b có câu hỏi 4; năm vai rà soát và tái kiểm đã chạy |
+| Ghi chú diễn giả P02, Z01 dài | nhẹ | giữ (khuyến nghị, không phải trần) |
+
+Việc còn mở: chương `lecture-note.md` khoảng 50 100 từ, vượt mức thường 8 000–20 000 của AGENTS.md (nhẹ); `exercises.md` vẫn chép trùng lời giải 07.1–07.15 với ghi chú (việc treo có từ trước).
+
+**Quyết định của master (2026-10-24): chấp nhận và ký duyệt bàn giao mạch 5 "Phương pháp đơn hình" của Bài 07** (deck, ghi chú bài giảng, bài tập, planning). Master đã đọc mặt trang và ghi chú S00–S11b, xem ảnh các trang dày, dò lại số liệu chính (G1, G2, G6, G8, 07.10, 07.11, 07.12(d), 07.13) và đọc báo cáo kiểm định cuối.

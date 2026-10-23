@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 150 640 350" role="img" aria-labelledby="title desc">
+  <title id="title">Hai cạnh xuất phát từ đỉnh (14,20) của bài toán hộp hạt</title>
+  <desc id="desc">Ngũ giác khả thi của bài toán hộp hạt với năm đỉnh (0,0), (30,0), (30,12), (14,20), (0,20). Tại đỉnh (14,20), z bằng 88, cơ sở gồm x1, x2, s1. Mũi tên dọc cạnh xiên tới (30,12) ghi: tăng s2, z tăng 1 trên mỗi đơn vị; mũi tên dừng tại (30,12), nơi s1 bằng 0 khi θ bằng 8. Mũi tên dọc cạnh trên tới (0,20) ghi: tăng s3, z giảm 2 trên mỗi đơn vị.</desc>
+  <defs>
+    <marker id="rg" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="18" refY="11" orient="auto"><path d="M0 2L20 11L0 20Z" fill="#2e7d32"/></marker>
+    <marker id="rr" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" refX="18" refY="11" orient="auto"><path d="M0 2L20 11L0 20Z" fill="#a33a1f"/></marker>
+  </defs>
+  <rect x="-10" y="150" width="640" height="350" fill="#fff"/>
+  <line x1="60" y1="450" x2="560" y2="450" stroke="#222" stroke-width="3"/>
+  <line x1="80" y1="470" x2="80" y2="170" stroke="#222" stroke-width="3"/>
+  <path d="M80 450L410 450L410 318L234 230L80 230Z" fill="#e7eefb" stroke="#2f3e7a" stroke-width="4"/>
+  <line x1="234" y1="230" x2="406" y2="316" stroke="#2e7d32" stroke-width="8" marker-end="url(#rg)"/>
+  <line x1="234" y1="230" x2="86" y2="230" stroke="#a33a1f" stroke-width="8" stroke-dasharray="16 8" marker-end="url(#rr)"/>
+  <g stroke="#fff" stroke-width="3"><circle cx="80" cy="450" r="9" fill="#7a8aa8"/><circle cx="410" cy="450" r="9" fill="#7a8aa8"/><circle cx="410" cy="318" r="11" fill="#2e7d32"/><circle cx="234" cy="230" r="12" fill="#2f3e7a"/><circle cx="80" cy="230" r="10" fill="#a33a1f"/></g>
+  <g font-family="sans-serif" font-size="25" fill="#222">
+    <text x="568" y="458">x₁</text>
+    <text x="92" y="182">x₂</text>
+    <text x="70" y="486" text-anchor="end">(0,0)</text>
+    <text x="410" y="486" text-anchor="middle">(30,0)</text>
+    <text x="234" y="206" text-anchor="middle" font-weight="700" fill="#2f3e7a">(14,20): z = 88</text>
+    <text x="70" y="222" text-anchor="end" fill="#a33a1f">(0,20)</text>
+    <text x="428" y="314" fill="#2e7d32" font-weight="700">(30,12)</text>
+    <text x="428" y="344" fill="#2e7d32">θ = 8, s₁ = 0</text>
+    <text x="350" y="232" fill="#2e7d32" font-weight="700">tăng s₂:</text>
+    <text x="350" y="260" fill="#2e7d32">z +1 mỗi đơn vị</text>
+    <text x="100" y="300" fill="#a33a1f" font-weight="700">tăng s₃:</text>
+    <text x="100" y="328" fill="#a33a1f">z −2 mỗi đơn vị</text>
+    <text x="250" y="410" text-anchor="middle" fill="#55627e">cơ sở {x₁, x₂, s₁}</text>
+  </g>
+</svg>

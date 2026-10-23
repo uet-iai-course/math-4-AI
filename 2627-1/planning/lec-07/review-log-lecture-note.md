@@ -295,3 +295,121 @@ Tác tử: hai tác tử rà thuật ngữ (general-purpose, Claude Opus 5.5 `cl
 Kiểm tra của điều phối viên: `invariants.py` so với HEAD cho mười bài chỉ khác `headings`, `block_open` ở chữ thuật ngữ; grep các từ cũ về 0 (ngoại lệ hợp lệ: "nhóm" nghĩa khác, "cỡ mẫu", "khoảng dương", "kiểm soát"); Playwright 1600×900 và 390×844 cho mười bài: 0 lỗi KaTeX, số khối không đổi; `sync-local-materials.py --check` đạt; `git diff --check` sạch. Quyết định: chấp nhận, commit một lần.
 
 Còn lệch, để lượt riêng: bộ trang chiếu và SVG dùng chung vẫn mang thuật ngữ cũ (deck 01 "ca" 61; deck 02 "cải dạng" 51, "bài gốc" 32; deck 03 "điểm chạm" 12, "tung độ cắt" 11; deck 04 "giảm gradient" 14; deck 05b "sàn nhiễu" 30, "khuôn" 16; deck 06 "ma trận phạt" 8; deck 07 "điểm cực" 42 dòng; SVG ở img/lec-01, 02, 03, 04, 05, 05b, 05c, 07 còn chữ cũ); planning/ là bản ghi lịch sử.
+
+## Bổ sung phương pháp đơn hình vào ghi chú và bài tập (2026-10-23)
+
+Yêu cầu người dùng 2026-10-23: Bài 07 nhận thêm Chương 11 của đề cương (buổi 8). Master duyệt kế hoạch `plan.md` và `master-decisions.md` của phiên (phương án B cho ghi chú). Tác tử soạn học liệu (vai trò worker, Claude Opus 5.5 `claude-opus-5-5`, effort medium theo brief của master; master ghi bằng chứng từ lời gọi công cụ) sửa `materials/lec-07/lecture-note.md`, `materials/lec-07/exercises.md` và chạy lại `material-local-data.js`. Không commit.
+
+### Cấu trúc mới
+
+- §4.4 "Đỉnh kề" giữ Định nghĩa 07.28, Mệnh đề 07.29. §4.5 giữ phát biểu Bổ đề 07.30 (tạm chấp nhận, chứng minh ở §5.2 và §5.4), Thuật toán 07.1, Mệnh đề 07.31, Ví dụ 07.17 (chỉ phần giá trị đỉnh), Bài tập 07.6 (bỏ câu (e)), 07.7. Nhận xét 07.34 cũ thành đoạn bốn câu hỏi sau Ví dụ 07.17 và đoạn kết §4.
+- Mục mới "## 5. Phương pháp đơn hình", 7 tiểu mục: 5.1 hướng cơ sở, chi phí rút gọn, điều kiện tối ưu (Ví dụ 07.18, Định nghĩa 07.32, Mệnh đề 07.33 có thêm phần (c) chiều ngược khi không suy biến, Ví dụ 07.19); 5.2 phép thử tỉ số, bước xoay, không bị chặn (Mệnh đề 07.34, chứng minh Bổ đề 07.30 trường hợp không suy biến, Ví dụ 07.20); 5.3 thuật toán và tính hữu hạn (Thuật toán 07.2, Định lý 07.35, Ví dụ 07.21, Nhận xét 07.36, "Trong học máy"); 5.4 suy biến, quay vòng, quy tắc Bland (Ví dụ 07.22, Định nghĩa 07.37, Định lý 07.38 chứng minh ngoài phạm vi kèm ý tưởng, chứng minh Bổ đề 07.30 trường hợp suy biến, Nhận xét 07.39); 5.5 bảng đơn hình (Định nghĩa 07.40, Mệnh đề 07.41 có chứng minh, Ví dụ 07.23, Nhận xét 07.42); 5.6 pha I (Định nghĩa 07.43, Mệnh đề 07.44 có chứng minh kể cả biến nhân tạo bằng 0 còn trong cơ sở, Thuật toán 07.3, Ví dụ 07.24, "Trong học máy"); 5.7 hiệu quả (Ví dụ 07.25 Klee–Minty $n=2$, Nhận xét 07.45, đoạn hình học cột, "Trong học máy", đoạn kết nối sang quy hoạch động). Bài tập 07.8–07.13 ở cuối §5.
+- Quy hoạch động thành §6–§7; thẻ (5.x) → (6.x), (6.x) → (7.x); (4.1)–(4.2) → (5.1)–(5.2); thẻ mới (5.3) phép thử tỉ số, (5.4) bảng đơn hình, (5.5) bài toán phụ.
+- Bảng ánh xạ số hiệu đầy đủ: `scratchpad/plan/renumber-map.md` của phiên (bản cuối). Áp dụng bằng script thay thế qua placeholder; kiểm bằng script đối chiếu mọi trích dẫn có nhãn với khối được định nghĩa (đúng loại, không trùng, không nhảy số): 54 số hiệu chung, 30 ví dụ, 18 bài tập trong ghi chú, 4 thuật toán, 4 tình huống, 0 trích dẫn hỏng trong cả hai tệp.
+
+### Quyết định của tác tử soạn (chờ master duyệt)
+
+| Quyết định | Lý do |
+|---|---|
+| Sáu bài tập đơn hình đặt cuối §5 (07.8–07.13), chép sang `exercises.md`; "Bài tập củng cố" nhận thêm câu 7–8 (đúng/sai về suy biến và quy tắc Bland) trong Bài tập 07.16 | Giữ quy ước hiện có: `exercises.md` chép các bài trong mục, không chép bài củng cố; tránh đánh số bài củng cố xen giữa bài trong mục |
+| Bài tập không bị chặn và Klee–Minty dùng biến thể khác ví dụ (bỏ hai giới hạn hộp hạt; đổi đơn vị $y_1=20x_1$) | Ví dụ 07.20 (G6) và Ví dụ 07.25 (G8) đã chạy đúng hai bài đó; tránh trùng lặp |
+| Ví dụ "70 giờ máy" của kế hoạch chuyển thành Bài tập 07.11 (G7) | Phản ví dụ chiều ngược của điều kiện tối ưu đã có ở Tình huống 07.2; bài tập kiểm tra cùng hiện tượng trên ví dụ xuyên suốt |
+| Giá trị mục tiêu của bài toán phụ ký hiệu $\tilde z$, $\tilde z^*$ | $w$ đã dùng cho điểm cực biên; mỗi chữ một nghĩa |
+| Chỉ số biến cơ sở trong (5.3) viết $i\in B$ thay $j'$ | Khớp ký hiệu kế hoạch mặt trang; bảng công thức cần nhớ sửa theo |
+| Dùng ba SVG mới của deck (`reduced-cost-edge.svg`, `simplex-two-paths.svg`, `degenerate-vertex-boxes.svg`) trong §5.1, §5.3, §5.4, alt theo `desc` của tệp | Hình đọc trong văn bản; nếu tác tử deck đổi nội dung hình, alt và đoạn đọc hình phải sửa theo |
+| Nguồn bài hộp hạt ghi theo Bài tập chương 8, câu 5 (giữ bộ số, đổi cách diễn giải đơn vị) ở đoạn sau bảng ký hiệu và trong `exercises.md` | Quyết định master |
+| Không dùng chuỗi $\text{...}$ có chữ Việt trong công thức | KaTeX cảnh báo ký tự không có metric; câu "với các ràng buộc" chuyển ra văn bản |
+
+### Giáo trình và nguồn đã tham khảo (không dịch, không chép)
+
+| Mục | Nguồn và vị trí | Điều lấy ý |
+|---|---|---|
+| 5.1 | Bertsimas và Tsitsiklis (1997), §3.1, Định lý 3.1 (chỉ theo mục, không có bản cục bộ); bài giảng Chương 8 phần 3 (Nguyễn Bích Vân 2025), mục 2.1–2.2 | thứ tự: chi phí rút gọn → điều kiện tối ưu hai chiều; chiều cực tiểu đổi dấu |
+| 5.2 | B&T §3.2; bài giảng phần 3, mục 3–5 (cải thiện chi phí, không bị chặn, $\theta^*$); Vanderbei (2014) §2.4, tr. 18 | phép thử tỉ số, chứng minh $B'$ là cơ sở |
+| 5.3 | B&T §3.2, Định lý 3.3 và các quy tắc chọn; bài giảng phần 3, mục 6–6.1; Kupferschmid (2023) §4.4.1, tr. 151–152 | thuật toán, tính hữu hạn khi không suy biến, quy tắc chọn cột (cạnh dốc nhất) |
+| 5.4 | Vanderbei (2014) §3.1–3.2, tr. 25–28 (bước xoay suy biến, ví dụ quay vòng sáu bước), §3.3, tr. 28–30 (nhiễu, từ điển), §3.4, tr. 31–33 (Định lý 3.3, ý tưởng chứng minh); B&T §3.4; Kupferschmid §4.5.3, tr. 160–163; bài giảng phần 3, mục 6.2–6.3 | quay vòng, quy tắc Bland, cách bộ giải thực tế xử lý suy biến |
+| 5.5 | bài giảng phần 4, mục 2–3 (đơn hình cải tiến, dạng bảng); B&T §3.3; Kupferschmid §2.2–2.6, tr. 57–71, §4.2, tr. 137–145 | bảng, phép xoay là biến đổi hàng, so sánh chi phí bảng và đơn hình cải tiến |
+| 5.6 | Vanderbei §2.3, tr. 16–18 và §3.5, tr. 33; Kupferschmid §2.8.2, tr. 78–82; B&T §3.5; bài giảng phần 4, mục "Tìm BFS ban đầu" | bài toán phụ, khả thi ⇔ giá trị phụ bằng 0, đưa biến nhân tạo ra khỏi cơ sở, định lý cơ bản |
+| 5.7 | Vanderbei §4.4, tr. 41–44 (Klee–Minty, $2^n-1$, không bất biến theo đơn vị), §4.5, tr. 44–50 (số bước thực nghiệm); B&T §3.6–3.7 và Chương 8–9 (chỉ theo mục) | trường hợp xấu nhất, hình học cột, thuật toán đa thức |
+| Bài tập | Bài tập chương 8 (câu 5: hộp hạt, đơn hình dạng bảng) | ví dụ xuyên suốt |
+
+`simplex-method 1.pdf` (MIT) không được trích theo điều kiện 4 của master.
+
+### Kiểm số liệu
+
+Mọi đáp số của §5 và Bài tập 07.8–07.13 tính lại bằng phân số chính xác: `python3 scratchpad/work/verify.py` (hộp hạt Dantzig và Bland; lợi ích $(2,4)$; 70 giờ máy với hai cách phá hòa; biến thể $x_1+x_2\le30$; Ví dụ 07.20; biến thể không bị chặn; bài đa giác của Bài tập 07.6; pha I với hợp đồng 40 và 60; pha II; Klee–Minty gốc và đổi đơn vị) cùng `scratchpad/plan/simplex.py`, `extra.py`, `extra2.py` của tác tử lập kế hoạch. Mọi bảng, tỉ số, chi phí rút gọn và giá trị trong ghi chú khớp đầu ra.
+
+### Kiểm kỹ thuật
+
+- `python3 2627-1/scripts/sync-local-materials.py` rồi `--check`: OK (23 tệp). `git diff --check`: sạch.
+- Playwright Chromium qua `python3 -m reloadserver 8765` (máy chủ đang chạy), `material-viewer.html?doc=materials/lec-07/{lecture-note,exercises}.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html`, 1600×900 và 390×844: 0 `.katex-error`, 0 cảnh báo KaTeX sau khi bỏ `\text{với}`, không tràn ngang; 15 `h2` (có "5. Phương pháp đơn hình", "6.", "7."); ba SVG mới tải được (naturalWidth > 0). Lỗi console duy nhất là CSP chặn script nội tuyến do máy chủ tải lại chèn vào, không thuộc tệp học liệu. Ảnh chụp ở `scratchpad/shots/`.
+- Liên kết trang trong `exercises.md` đối chiếu bằng Playwright với deck hiện tại: `#/5/1` S00, `#/5/13` S11, `#/5/14` S11b, `#/6/1` D01, `#/6/9` D06, `#/6/10` D06b, `#/7/1` Z00; mạch 1–4 không đổi.
+
+### Tự kiểm `no-ai-slop` (Edit mode, đối chiếu `eval.md`)
+
+Giữ giọng giáo trình ("chúng ta" cho kế hoạch và giới hạn, "ta" trong phép tính), không "hãy", không câu hỏi tu từ, không tài liệu làm chủ ngữ; grep trong §5: "ta thấy", "rõ ràng", "Mục này", "dễ thấy", dấu "?", gạch ngang dài đều 0. Một câu "Đây mới là mô tả" sửa thành câu nêu rõ trực quan chưa phải định nghĩa. Mỗi tiểu mục mở bằng bài toán có số trên dữ liệu hộp hạt, kết bằng đoạn văn xuôi nêu kết quả, thiếu hụt và tiểu mục sau. Thuật ngữ theo bảng đã chốt ("tính thủ công", "biến bù/dư", "ràng buộc hoạt động").
+
+### Việc còn mở
+
+- Ghi chú dài khoảng 49 300 từ (trước đợt khoảng 35 600), vượt mức thường 8 000–20 000 từ; cần master quyết có tách §5 thành ghi chú bổ trợ hay chấp nhận, và ghi lý do.
+- Chưa có rà toán và rà mạch truyện độc lập cho §5.
+- Câu nối Z02 của deck và đoạn "Giới hạn còn lại" của ghi chú cùng nêu luồng mạng (Buổi 9); tác tử deck cần đối chiếu câu chữ.
+
+## Vòng chỉnh sửa sau năm vai rà soát (2026-10-23)
+
+Tác tử chỉnh sửa học liệu (worker, Claude Opus 5.5 `claude-opus-5-5`, effort medium theo brief của master; master ghi bằng chứng từ lời gọi công cụ). Nguồn: `scratchpad/review/master-revise-decisions.md` (ghi đè), `gate-findings.md`, `r1-report.md` … `r5-report.md`. Phạm vi ghi: `materials/lec-07/lecture-note.md`, `materials/lec-07/exercises.md`, tệp này, `material-local-data.js` (qua script). Không đổi số khối nào; `renumber-map.md` không đổi. Không commit.
+
+### Bảng phát hiện của đợt (phần học liệu)
+
+| mức độ | mục | vấn đề | nguồn (vai) | quyết định master | trạng thái |
+|---|---|---|---|---|---|
+| nghiêm trọng | Mục tiêu học tập | câu quy trình nội bộ "Theo yêu cầu người dùng…", số mục 11.x | R4#1, R1 | QĐ 1: chấp nhận | đã sửa: "Bài 07 gồm nội dung Buổi 7 và Buổi 8 (Chương 11) của đề cương." |
+| trung bình | §4.5 kết, mở §5 | đếm câu hỏi 4 so với 5 | R4#2, R5 T2, R2, R1 | QĐ 2 | đã sửa: khung bốn câu hỏi, câu 1 tách ba phép tính, ánh xạ tới 5.1–5.7 |
+| trung bình | §5.3 sau hình hai đường | lý do hai đường cùng đỉnh dừng (G-1, phần ghi chú) | gate G-1, R3 | QĐ 3 | đã sửa: nghiệm duy nhất vì mọi $\bar c_j<0$ chặt; khi $\bar c_j=0$ đỉnh dừng có thể khác; Bài tập 07.8(c) nêu đỉnh dừng của Bland |
+| trung bình | Bảng ký hiệu, §5 | $u$, $y$, $r$, $t$ trái cam kết "mỗi chữ một nghĩa" | R1 | QĐ 10 | đã sửa: $u\to\alpha$, $y\to x^+$ (Mệnh đề 07.34) và $\eta$ (Mệnh đề 07.41, 07.44), hàng xoay $r\to p$, $t,r\to j_{\max},j_0$; câu cam kết đổi thành "mỗi ký hiệu trong bảng…; ký hiệu cục bộ chỉ mang nghĩa trong khối" |
+| trung bình | §5.4, Mệnh đề 07.33, §5.3 | tham chiếu tiến tới Tình huống 07.2 với số liệu chưa có | R1, R4#9 | QĐ 10 | đã sửa: bỏ đoạn Tình huống 07.2 ở §5.4; Phạm vi 07.33 dẫn Bài tập 07.11(d); sau Định lý 07.35 dẫn đỉnh $(30,0)$ của Ví dụ 07.22 |
+| trung bình | §5.6 Mệnh đề 07.44, Thuật toán 07.3 | thiếu trường hợp hàng thừa | R2 | mặc định chấp nhận | đã sửa: đoạn hàng thừa trong chứng minh (c), Phạm vi, đầu vào Thuật toán 07.3 không cần biết hạng, bước 4 bỏ hàng thừa |
+| trung bình | §5.4 | quay vòng dùng trước khi định nghĩa | R4#7 | QĐ 10 | đã sửa: Định nghĩa 07.37 thành "(Quay vòng, quy tắc Bland)" có phần định nghĩa quay vòng; không đổi số |
+| trung bình | §5.3 "Trong học máy" và ba đoạn `linprog` | ghi chú phần mềm, lặp | R4#8, R4#13, R2 | QĐ 10 | đã sửa: viết lại đoạn 5.3 theo đối tượng hồi quy $L_1$; gộp `linprog`, mã `status`, đơn hình đối ngẫu (giữ $\bar c\le0$, khôi phục $x_B\ge0$) vào một đoạn ở 5.7; bỏ mã `status` ở 5.6 |
+| trung bình | ranh giới §5/§6 | đoạn kết §5 đứng trước bài tập; câu nối hai phía | R5 T5, R4#10 | QĐ 10 (giữ vị trí bài tập) | đã sửa: đoạn kết chuyển xuống sau Bài tập 07.13; câu cuối rút, phần nhu cầu theo giai đoạn để §6 mở |
+| trung bình | chứng minh 07.33, Bổ đề 07.30 | trình bày chưa sáng sủa; $m$, $A$ hai nghĩa | R4#11, R2, R1 | QĐ 10 (không tách bổ đề mới) | đã sửa: Bước 1 của 07.33 thành `aligned` một quan hệ một dòng, công thức (a) trên dòng riêng; Bước 1 Bổ đề 07.30 chia 1a–1c, $G\in\mathbb R^{p\times n}$, $h$, $\eta$, câu "khi $P$ đã ở dạng chuẩn, bỏ qua" |
+| trung bình | 1493, 1549, 1973, Nhận xét 07.42 | nhiều ý một đoạn | R4#12 | chấp nhận | đã sửa: tách đoạn; quy ước dấu chuyển sau Định nghĩa 07.32; Nhận xét 07.42 rút gọn |
+| trung bình | Mục 5 độ dài | cần rút ~1 000 từ | R4#13 | QĐ 10 | một phần: rút lộ trình mở mục, đoạn Tình huống 07.2, câu Bài tập chương 8, Nhận xét 07.42, hình học cột; thêm nội dung bắt buộc (hàng thừa, 07.12(d), Bảng 1 của 07.8) bù lại, số từ ghi ở dưới |
+| nhẹ | Bài tập mạch 5 | thiếu mức vận dụng vào AI | R4#14 | QĐ 11 | đã thêm Bài tập 07.12(d) (phân bổ giờ GPU, yêu cầu $x_1\ge70$) ở cả hai tệp; đáp số kiểm bằng script |
+| nhẹ | Định nghĩa 07.43 | câu tự mâu thuẫn $b\ge0$ / $b_i<0$ | R3, R4#15 | chấp nhận | đã sửa |
+| nhẹ | Nhận xét 07.39 | "ví dụ nhỏ nhất thường được trích" sai nguồn; câu ba vị ngữ | R2, R4#16 | chấp nhận | đã sửa theo Vanderbei tr. 26–27 (ít nhất bốn biến, hai ràng buộc); câu ba cách xử lý suy biến song song |
+| nhẹ | Nhận xét 07.36 | cạnh dốc nhất so sai đối tượng | R2 | chấp nhận | đã sửa: so với quy tắc chọn cột đầu tiên (Kupferschmid tr. 152) |
+| nhẹ | §5.7 "luôn kèm"; "cơ sở cũ thường chỉ cần vài bước" | nói quá, không nguồn | R2, R4#16 | chấp nhận | đã sửa: "phần lớn bộ giải thực tế"; "điểm xuất phát gần nghiệm mới" |
+| nhẹ | tài liệu tham khảo Vanderbei §2.3 | pha I dùng một biến $x_0$ | R2 | chấp nhận | đã ghi |
+| nhẹ | "từ điển" hai nghĩa | lexicographic / dictionary | R2 | chấp nhận | đã sửa: "quy tắc thứ tự từ điển"; "từ điển (dictionary)" cho Vanderbei |
+| nhẹ | Nhận xét 07.42 | "đơn hình sửa đổi" | R2 | chấp nhận | đã thêm "còn gọi là đơn hình sửa đổi" |
+| nhẹ | Tình huống 07.2 bước 2 | thiếu tỉ số $x_1$: 180, biến ra, cơ sở | R3 | chấp nhận | đã sửa; câu về cơ sở thứ ba viết lại |
+| nhẹ | §4.5 đoạn đầu | phạm vi chứng minh Mục 5.2 | R3 | chấp nhận | đã sửa ("trường hợp điểm cực biên không suy biến") |
+| nhẹ | Ví dụ 07.22 | đánh số bước 1–4 lệch S07 (0–3) | R3 | chấp nhận | đã sửa thành Bước 0–3 và các chỗ dẫn ("bước 1" suy biến, "bước 0" chọn $x_1$) |
+| nhẹ | Ví dụ 07.22 / S07 | ví dụ dùng thứ tự Bland trước khi gọi tên; Diễn giải chưa nêu tỉ số hòa | G-3, R4#5 | QĐ 7 | đã sửa: câu "Đây là quy tắc Bland…"; Diễn giải nêu tỉ số hòa ở bước 0; đoạn "Quy tắc Bland không tránh bước xoay suy biến" sau định nghĩa |
+| nhẹ | Ví dụ 07.24 | không nói vì sao pha II dùng Dantzig | R1, R3 | chấp nhận | đã sửa: nêu đường Bland qua $(26,14)$, $z=94$ |
+| nhẹ | Bài tập 07.8(a) | "bảng" hai nghĩa; thiếu Bảng 1 | R1, R4#28 | QĐ 9 | đã sửa đề và thêm Bảng 1 đầy đủ |
+| nhẹ | Bài tập 07.10(c), (d) | "bước 4" mơ hồ; lập luận bị chặn chưa đủ | R1, R3, R4#27 | chấp nhận | đã sửa |
+| nhẹ | exercises.md 07.9 | "thay câu (e) cũ" | R1, R3, R4#18 | QĐ 1 | đã bỏ |
+| nhẹ | LLO21 dòng mục tiêu | không song song | R4#18 | chấp nhận | đã sửa |
+| nhẹ | §5 câu dẫn lấy tài liệu làm chủ ngữ | "Ví dụ sau…", "Mệnh đề sau…" | R4#25 | chấp nhận | đã sửa 7 chỗ |
+| nhẹ | §5.7, §5.6, Ví dụ 07.23 | câu mơ hồ, ngoặc kép, hai chấm kiểu tiết lộ | R4#26 | chấp nhận | đã sửa |
+| nhẹ | nguồn hộp hạt, tham chiếu "bài giảng Chương 8" | nguồn nêu hai kiểu, ở đoạn ký hiệu | R4#17 | chấp nhận | đã sửa: dẫn Nguyễn Bích Vân (2025); nguồn hộp hạt chỉ ở mục tài liệu tham khảo; bỏ câu ở mở §5.5 |
+| nhẹ | Tiêu đề §5.6 | "cơ sở khả thi ban đầu" lệch "cơ sở xuất phát" | R4#20 | chấp nhận | đã đổi "5.6 Cơ sở khả thi xuất phát và pha I" |
+| — | R4#10 phân bố bài tập vào từng tiểu mục | | R4#10 | QĐ 10: bác bỏ | không sửa |
+| — | R4#11(b) tách bổ đề có số | | R4#11 | QĐ 10: bác bỏ (tránh đánh số lại) | chia bước con thay thế |
+| — | R4#29, R4#30, R4#3–#6, #19, #21–#24; R5 N1–N8, T1, T3, T4; R1/R2/R3 phần deck, Z01 | thuộc deck/planning | — | — | chuyển tác tử deck |
+
+### Kiểm
+
+- Số liệu: `python3 scratchpad/work/verify.py` (như vòng trước) và `python3 scratchpad/work/verify2.py` (pha II theo Bland qua $(26,14)$, $z=94$; Bài tập 07.12(d): một bước xoay, $\tilde z^*=-10$, $\bar c=(x_2{:}-\tfrac13,\ s_2{:}-\tfrac13,\ s_4{:}-1)$; Tình huống 07.2 tỉ số $x_1$: 180; Bài tập 07.8 theo Bland dừng $(30,12)$ với $\bar c_{s_1}=0$). Khớp.
+- Trích dẫn: `scratchpad/work/cites.py`: 839 trích dẫn có nhãn trong hai tệp, 0 hỏng; số hiệu liên tục (54 chung, 30 ví dụ, 18 bài tập, 4 thuật toán, 4 tình huống); Bài tập 07.8–07.13 trùng khớp giữa hai tệp.
+- Liên kết `exercises.md`: deck hiện có 17 trang mạch 5 (thêm S08b, S09c, S10b); tạm trỏ S11 = `#/5/16`, S11b = `#/5/17` (đối chiếu Playwright với deck lúc sửa); chờ master xác nhận vị trí cuối.
+- Kỹ thuật: `sync-local-materials.py` và `--check` OK; `git diff --check` sạch. Playwright 1600×900 và 390×844, ghi chú và bài tập: 0 `.katex-error`, 0 cảnh báo KaTeX, không tràn ngang; đã xem ảnh Định nghĩa 07.37 mới. Lỗi console duy nhất vẫn là CSP chặn script nội tuyến của máy chủ tải lại.
+- Số từ (`wc -w`): ghi chú 49 321 → 50 137 (+816), `exercises.md` 10 521 → 10 963. Phần rút gọn theo R4#13 bị bù bởi nội dung bắt buộc thêm (hàng thừa của pha I, Bài tập 07.12(d), Bảng 1 của 07.8, đoạn nghiệm duy nhất, định nghĩa quay vòng). Việc rút sâu hơn hoặc tách §5 chờ master.
+
+### Tái kiểm toán (R3 recheck, 2026-10-23)
+
+| mức độ | mục | vấn đề | nguồn (vai) | quyết định master | trạng thái |
+|---|---|---|---|---|---|
+| nhẹ | Chứng minh Mệnh đề 07.44, Bước 4 (không có giả thiết hạng); Thuật toán 07.3 bước 4 | câu "với một $k$ có $\eta_k\ne0$ … pha I tiếp tục" chưa chỉ phương trình nào thừa và gợi ý chạy lại pha I | R3 recheck (`r3-recheck.md`) | chấp nhận | đã sửa: chọn $k=r$ là chỉ số của $\tilde s_r$ ở hàng $p$, $\eta_r=1$; bỏ hàng $p$ và cột $\tilde s_r$, tiếp tục đưa biến nhân tạo còn lại ra với $m-1$ phương trình; Thuật toán 07.3 bước 4 viết khớp. `exercises.md` không có câu tương ứng |

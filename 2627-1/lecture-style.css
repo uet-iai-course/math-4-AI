@@ -1041,6 +1041,20 @@
 :where(html[data-lecture="07"]) [data-slide-id="C06"] .visual img { max-height:320px; object-fit:contain; }
 :where(html[data-lecture="07"]) [data-slide-id="C04"] .visual img { max-height:300px; object-fit:contain; }
 :where(html[data-lecture="07"]) [data-slide-id="C02"] .responsive { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); }
+:where(html[data-lecture="07"]) .reveal table.tableau th,
+:where(html[data-lecture="07"]) .reveal table.tableau td { text-align:center; padding:.1em .42em; }
+:where(html[data-lecture="07"]) .reveal table.tableau caption { caption-side:top; text-align:left; font-weight:700; color:#2f3e7a; padding-bottom:.15em; }
+:where(html[data-lecture="07"]) .reveal table.tableau tr.cbar-row th,
+:where(html[data-lecture="07"]) .reveal table.tableau tr.cbar-row td { border-top:3px solid #2f3e7a; }
+:where(html[data-lecture="07"]) .reveal table.tableau td.pivot-cell { font-weight:700; background:#f2d6c4; outline:3px solid #b15a2b; outline-offset:-3px; }
+:where(html[data-lecture="07"]) .reveal table.iter-table th,
+:where(html[data-lecture="07"]) .reveal table.iter-table td { padding:.12em .3em; line-height:1.25; white-space:nowrap; }
+:where(html[data-lecture="07"]) .reveal [data-slide-id="Z01"] td:first-child { white-space:nowrap; }
+:where(html[data-lecture="07"]) .reveal [data-slide-id="S10b"] table.iter-table td { white-space:normal; }
+:where(html[data-lecture="07"]) [data-slide-id="Z01b"] .grid2 { grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); }
+:where(html[data-lecture="07"]) [data-slide-id="S08"] .visual img { max-height:360px; object-fit:contain; }
+:where(html[data-lecture="07"]) [data-slide-id="S01"] .responsive { grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); }
+:where(html[data-lecture="07"]) [data-slide-id="S01"] .visual img { max-height:250px; object-fit:contain; }
 :where(html[data-lecture="07"]) .small-table { font-size:.9em!important; }
 :where(html[data-lecture="07"]) .responsive { display:grid; grid-template-columns:minmax(360px,1.15fr) minmax(0,.85fr); gap:.7em; align-items:center; }
 :where(html[data-lecture="07"]) .reveal .algorithm { font-size:.94em; text-align:left; background:#f5f7fb; border-radius:8px; padding:.5em .8em .5em 1.9em; margin-left:0; }
