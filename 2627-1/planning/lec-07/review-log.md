@@ -955,3 +955,105 @@ Verifier `a6bfd260b1bd405c8` (Opus 5.5, high): 70 trang ở 1600×900 và 390×8
 Việc còn mở: chương `lecture-note.md` khoảng 50 100 từ, vượt mức thường 8 000–20 000 của AGENTS.md (nhẹ); `exercises.md` vẫn chép trùng lời giải 07.1–07.15 với ghi chú (việc treo có từ trước).
 
 **Quyết định của master (2026-10-24): chấp nhận và ký duyệt bàn giao mạch 5 "Phương pháp đơn hình" của Bài 07** (deck, ghi chú bài giảng, bài tập, planning). Master đã đọc mặt trang và ghi chú S00–S11b, xem ảnh các trang dày, dò lại số liệu chính (G1, G2, G6, G8, 07.10, 07.11, 07.12(d), 07.13) và đọc báo cáo kiểm định cuối.
+
+## Đánh giá ngoài (2026-10-29)
+
+Nguồn: bản đánh giá do một công cụ bên ngoài sinh ra từ trang công bố, người dùng dán vào phiên 2026-10-28 (tóm lược của master trong scratchpad phiên, không đưa vào kho). Ánh xạ "Slide N" → `data-slide-id` theo thứ tự deck (1 = P00, …, 70 = Z02), tác tử sửa đã đối chiếu lại bằng `grep data-slide-id`. Bản đánh giá có lỗi của chính nó (phần Slide 66; phần IV.4 tự đính chính Slide 2), nên mọi đề xuất được đối chiếu với AGENTS.md và CLAUDE.md trước khi áp dụng.
+
+### Quyết định của người dùng (2026-10-29)
+
+- Không thêm trang mới: giữ 70 trang, mọi `#/h/v` giữ nguyên. Ý có giá trị của ba trang mới đề xuất (III.1–III.3) đưa vào ghi chú diễn giả khi phù hợp.
+- Không thêm fragment (bỏ mọi đề xuất "tiết lộ tuần tự", "ẩn đáp án" bằng build).
+
+### Phân loại đề xuất theo nhóm
+
+- **Đã có trong deck hoặc ghi chú:** phần lớn nội dung toán theo từng trang (dữ kiện hộp hạt, kiểm tra $(30,20)$, đường mức và năm đỉnh, ba phép chuyển dạng chuẩn, hai cơ sở cùng một điểm suy biến, lời giải B07b và phép đếm $10=5+3+2$ trong ghi chú B07b (C03b chỉ thêm một câu dẫn về phép đếm này), bốn kết cục, $\max x_1+x_2$ có nghiệm không cực biên, bổ đề đỉnh kề cải thiện, ví dụ $z=88+\theta$ ở S01, công thức $\bar c_j$, điều kiện tối ưu một chiều khi suy biến ở S03, bảng lặp S06, Bland, bảng đơn hình S09–S09c, pha I, đồ thị tầng, phương trình Bellman, lượt ngược/xuôi, chi phí tính toán, bảng tổng kết Z01, bốn câu hỏi tự kiểm tra Z01b, chuyển tiếp luồng mạng ở Z02). Không sửa.
+- **Chấp nhận (sửa mặt trang):** S11b "Diễn giải:" có điều kiện (B1); Z01 thêm giả thiết $A_B$ khả nghịch, viết "$\det A_B\ne0$" (B2).
+- **Chấp nhận (sửa ghi chú):** S09 Gauss–Jordan (B3); P02 dẫn Bài tập 07.8–07.13 (B4); P00 trường hợp $c=0$; A05b kiểm tra $Ax\le b$ tại $(30,12)$; A09 chứng nhận $z\le46$; C03b một câu "$\binom nm$ chỉ là cận trên" dẫn về bài tập nghiệm cơ sở; C05 góc phần tư; S01 diễn giải giờ máy; S08 ba khái niệm suy biến; D06b bảng giá trị đổi/không đổi; Z02 đường đi ngắn nhất là quy hoạch tuyến tính.
+- **Chấp nhận một phần (ý của trang mới đề xuất, đưa vào ghi chú):** III.2 → ghi chú S04 (ví dụ số $\theta^*=8$ và ba vai của $d^j$, $\bar c_j$, phép thử tỉ số); III.3 → ghi chú D02 (phản ví dụ bằng số cho trạng thái không đủ). III.1 (sơ đồ nghiệm khả thi ⊇ nghiệm cơ sở khả thi) không đưa vào: B07b và C03b đã nêu quan hệ này.
+- **Bác bỏ:** xem danh sách cuối mục.
+
+### Bảng phát hiện
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa | trạng thái |
+|---|---|---|---|---|---|
+| nhẹ | S11b | "Diễn giải:" khái quát quá: chi phí rút gọn $0$ chỉ cho cạnh tối ưu khi bước dọc $d^j$ dương; khi suy biến có thể không có cạnh (đánh giá ngoài, S56 và III.4) | "chi phí rút gọn $0$ cho một cạnh tối ưu; dấu của mọi $\bar c_j$ cho cả tập nghiệm." | "$\bar c_{s_2}=0$ với $\theta^*>0$ cho cạnh tối ưu; dấu của mọi $\bar c_j$ cho cả tập nghiệm." (bản tái kiểm) | đã sửa (14 âm tiết, một dòng ở 1600×900) |
+| nhẹ | Z01 | Hàng "Nghiệm cơ sở khả thi" thiếu giả thiết $A_B$ khả nghịch trên mặt trang (đánh giá ngoài, S68) | ô giả thiết: "$Ax=b$, $\operatorname{rank}(A)=m$; $A_B^{-1}b\ge0$" | thêm "$\det A_B\ne0$" (KaTeX, bản tái kiểm) | đã sửa (80/80 âm tiết) |
+| nhẹ | S09 (ghi chú) | Bước xoay khử cả các hàng phía trên phần tử xoay, nên là phép khử Gauss–Jordan (đánh giá ngoài, S50) | "Bước xoay là phép khử Gauss quanh phần tử xoay" | "phép khử Gauss–Jordan …, kể cả các hàng phía trên phần tử xoay" | đã sửa |
+| nhẹ | P02 (ghi chú) | Ghi chú dẫn Bài tập 07.8–07.12, trong khi exercises.md xếp 07.8–07.13 vào mục phương pháp đơn hình (07.13 Klee–Minty) | exercises.md dòng 3 và mục "Phương pháp đơn hình" | dẫn 07.8–07.13, thêm "số bước trong trường hợp xấu nhất với bài toán Klee–Minty" | đã sửa |
+
+### Thay đổi ghi chú diễn giả
+
+- P00: sau câu KKT, thêm "Trường hợp $c=0$ là tầm thường: mục tiêu là hằng số và mọi điểm khả thi đều tối ưu."
+- P02: 07.8–07.12 → 07.8–07.13 (B4); danh sách chủ đề thêm 07.9 (phương pháp đơn hình trên đa giác của Bài tập 07.6) và 07.13 (Klee–Minty).
+- A05b: $A(30,12)^T=(30,12,54)^T\le b=(30,20,54)^T$, dấu bằng ở hàng 1 và 3, hai ràng buộc hoạt động (active constraint); câu "Nhắc lại: … như ở Bài 03–04" chuyển từ A09 sang đây vì đây là lần dùng đầu.
+- A09: đoạn mới đặt trước câu nối sang đa diện: chứng nhận bằng tổ hợp không âm của các ràng buộc như ở Bài 02–03, $4x_1+5x_2=2(2x_1+x_2)+3x_2\le2\cdot14+3\cdot6=46$; $x_2\ge0$ cho $x_1\le7$ nên $x_1\le8$ thừa; kiểm tra có hệ thống ở phần 4 và phần 5. Bỏ câu "Nhắc lại:" (chuyển sang A05b).
+- C03b: một câu "Số $\binom nm$ chỉ là cận trên: với bài toán hộp hạt, $10$ tập ba cột chỉ cho năm đỉnh (bài tập nghiệm cơ sở)." Phép đếm chi tiết $10=5+3+2$ chỉ ở ghi chú B07b.
+- C05: góc phần tư $\{x\ge0\}$ không bị chặn nhưng không chứa đường thẳng, có điểm cực biên $0$.
+- S01: với $s_3=0$ tổng giờ máy không đổi; mỗi đơn vị $s_2$ mất $3$ ở loại 2, được $4$ ở loại 1; chênh lệch $1$ về sau ký hiệu $\bar c_{s_2}$.
+- S04: "Với $d^{s_2}_B=(2,-1,-2)$ tại $(14,20)$, thành phần dương của $x_1$ không tham gia; tỉ số $20$ của $x_2$ và $8$ của $s_1$ cho $\theta^*=8$, $s_1$ rời cơ sở. Hướng $d^j$ xác định cạnh, $\bar c_j$ xác định tốc độ thay đổi của $z$, phép thử tỉ số xác định độ dài bước."
+- S08: "Nhắc lại:" nghiệm cơ sở suy biến có ít hơn $m$ thành phần dương, nên mọi cơ sở của điểm đó có biến cơ sở bằng $0$; bước xoay suy biến ($\theta^*=0$); quay vòng. Quay vòng cần bước xoay suy biến, bước xoay suy biến cần nghiệm cơ sở suy biến; cả hai chiều ngược đều sai (S07: bước 1 có $\theta^*=0$ không lặp; bước 2 từ cơ sở suy biến $\{x_1,x_2,s_2,s_3\}$, $x_2=0$, có $\theta^*=20>0$). Đoạn đặt trước câu nối sang S08b.
+- S09: Gauss → Gauss–Jordan (B3).
+- D02: phụ phí $4$ trên $C\to t$ khi đến từ $A$ cho chi phí còn lại $3$ hoặc $7$; trạng thái (nút hiện tại, nút trước) khôi phục phép gộp. Câu đã bỏ: câu tả hình cũ (nay là mệnh đề "Trên hình, hai lịch sử $s\to A\to C$ và $s\to B\to C$ cùng tới $C$;" đầu đoạn 2); câu "Điều kiện gộp: biết trạng thái thì quá khứ không ảnh hưởng thêm tới tương lai." (ý vẫn ở mặt trang: "Biết trạng thái thì lịch sử không ảnh hưởng thêm."); câu "Trạng thái càng nhỏ thì càng ít bài toán con, nhưng phải đủ thông tin thì phép gộp mới đúng." (gộp vào "đổi lại số bài toán con tăng lên"). Ghi chú khoảng 160 âm tiết.
+- D06b: thêm $J(C)$ $3\to0$, $J(D)$ giữ $1$, $J(s)$ $5\to4$.
+- Z02: đường đi ngắn nhất trên đồ thị tầng viết được thành quy hoạch tuyến tính: luồng $f_e\ge0$ trên mỗi cạnh, mục tiêu $\min\sum_ec_ef_e$, luồng ra trừ luồng vào bằng $1$ tại $s$, $-1$ tại $t$, $0$ tại mọi nút khác; một dạng của bài toán luồng mạng.
+- Z01 (ghi chú, câu có sẵn): "trong trường hợp xấu nhất số đỉnh đi qua tăng theo hàm mũ" → "với quy tắc Dantzig, trong trường hợp xấu nhất (bài toán Klee–Minty) số đỉnh đi qua tăng theo hàm mũ".
+
+`lecture-note.md`: đã rà các câu về chi phí rút gọn bằng $0$ (dòng 1796, 2135, 2165–2167); không có câu khái quát quá, không sửa, không chạy lại script đồng bộ.
+
+### Đề xuất bị bác bỏ chính
+
+- Câu hỏi tu từ trên bìa và trên trang mở mạch ("Khi gradient không bằng 0, nghiệm tối ưu nằm ở đâu?", "Có thể chứng minh tối ưu không?"): CLAUDE.md, giọng văn cấm câu hỏi tu từ; câu hỏi trên trang chỉ dùng nhãn "Câu hỏi:".
+- Khẩu hiệu và câu nhấn mạnh ("Tối ưu không đồng nghĩa với cực biên", "nhấn mạnh"): cấm khẩu hiệu và chỉ dẫn diễn giả; dòng kết chỉ là kết quả có điều kiện hoặc con số.
+- Animation, "thanh trượt" $\theta$, "thanh tiến độ", tiết lộ tuần tự: cần JS hoặc fragment; người dùng quyết định không thêm fragment; không JS chèn kiểu.
+- Trang tiêu đề mạch có hình, sơ đồ hay ví dụ: AGENTS.md §"Trang tiêu đề mạch" chỉ cho số, tên, dòng dẫn và từ khóa.
+- Ví dụ mới ngoài ví dụ chạy (robot pin, Fibonacci, knapsack, cây quyết định $N=3$, ba ví dụ 2D mới, ví dụ một chiều dưới mỗi kết cục): quy tắc 1–2 ví dụ chạy và trần mật độ.
+- Xem trước giá đối ngẫu $y^T=c_B^TA_B^{-1}$ và "chi phí cơ hội" ở S02, cũng như chứng nhận tối ưu kiểu đối ngẫu trên mặt trang (A09, C10): không xem trước khái niệm chưa định nghĩa trên mặt trang; chứng nhận của A09 chỉ ở ghi chú.
+- Chia bài thành ba khối hoặc ba buổi: trái đề cương (Buổi 7 và Buổi 8).
+- Ba trang mới (III.1–III.3): người dùng quyết định không thêm trang.
+
+### Tái kiểm (2026-10-29)
+
+Tác tử của đợt này (theo lời gọi công cụ `Agent`, loại `general-purpose`, `model: "opus"`, tức Claude Opus 5.5):
+
+| vai | effort | đầu ra | quyết định master |
+|---|---|---|---|
+| phân tích nguồn: phân loại bản đánh giá ngoài (chỉ đọc) | medium | bảng phân loại 70 trang và mục III, B1–B4, sai sót của bản đánh giá, kế hoạch | chấp nhận; master dò lại các dòng được dẫn (P00, A05b, A09, C03b, C05, S01, S04, S08, S09, S11b, D06b, Z01) và phép tính S01, S04, C03b |
+| chỉnh sửa (tác tử ghi duy nhất), vòng 1 và vòng 2 | medium | diff deck, storyboard, review-log | vòng 1: yêu cầu sửa (Z01 vượt trần và các điểm nhẹ ở bảng dưới); vòng 2: chấp nhận sau khi đọc diff và xem ảnh S11b, Z01 |
+| tái kiểm toán học, vòng 1 và vòng 2 | high | vòng 1: 4 điểm nhẹ; vòng 2: không còn lỗi | chấp nhận |
+| tái kiểm mạch kể, văn phong, tập trung mạch 5 và 7, vòng 1 và vòng 2 | high | vòng 1: 1 trung bình, 15 nhẹ; vòng 2: đạt, 1 nhẹ tùy chọn (A08) | chấp nhận; A08 giữ, xem dưới |
+| kiểm định cuối (trình duyệt, đồng bộ, git), vòng 1 và vòng 2 | high | 70 trang × 2 kích thước, 0 lỗi, 0 `.katex-error` | chấp nhận |
+
+| mức độ | trang | vấn đề | quyết định | trạng thái |
+|---|---|---|---|---|
+| trung bình | Z01 | "$A_B$ khả&nbsp;nghịch" đẩy trang lên 82/80 âm tiết, đảo quyết định 2026-10-23 | thay bằng "$\det A_B\ne0$"; 80/80 | đã sửa |
+| nhẹ | S11b | "bước" trùng nghĩa cột "Bước"; $\theta^*=8$ không tính trên mặt trang; dòng xuống hai dòng | "$\bar c_{s_2}=0$ với $\theta^*>0$ cho cạnh tối ưu; …", 14 âm tiết, một dòng ở 1600×900 | đã sửa |
+| nhẹ | P00 (ghi chú) | câu $c=0$ đọc như mâu thuẫn với câu "Điều kiện gradient bằng $0$ không còn dùng được" | chuyển ra sau câu KKT, dạng "Trường hợp $c=0$ là tầm thường: …" | đã sửa |
+| nhẹ | A05b, A09 (ghi chú) | lần dùng đầu của "ràng buộc hoạt động" chuyển sang A05b nhưng thuật ngữ và "Nhắc lại:" vẫn ở A09 | chuyển "(active constraint)" và "Nhắc lại:" sang A05b, bỏ ở A09 | đã sửa |
+| nhẹ | A09 (ghi chú) | đoạn chứng nhận nói "mạch", không nêu $x_2\ge0$, đứng sau câu nối sang đa diện | viết lại: tổ hợp không âm như Bài 02–03, $x_2\ge0$, "phần 4 và phần 5"; đặt trước câu nối | đã sửa |
+| nhẹ | C03b (ghi chú) | lặp phép đếm của ghi chú B07b; review-log tự mâu thuẫn ("đã có" và "đã thêm") | rút còn một câu dẫn về bài tập nghiệm cơ sở; sửa câu phân loại | đã sửa |
+| nhẹ | C05 (ghi chú) | mệnh đề "$x+td\ge0$ … buộc $d=0$" làm trước chứng minh của C05b | bỏ mệnh đề, giữ câu phân biệt và điểm cực biên $0$ | đã sửa |
+| nhẹ | S04 (ghi chú) | ví dụ lặp ghi chú S01, S02 và bảng S06 | rút còn tỉ số, $\theta^*$, biến ra; câu kết ba vai | đã sửa |
+| nhẹ | S08 (ghi chú) | "Nghiệm cơ sở suy biến là tính chất…" sai ngữ pháp, gợi phụ thuộc cơ sở; "chiều ngược không đúng" mơ hồ; lặp "không quay vòng"; đoạn mới đứng sau câu nối | "Nhắc lại:" theo số thành phần dương; nêu cả hai chiều ngược sai với hai minh chứng S07 (bước 1 $\theta^*=0$; bước 2 từ cơ sở suy biến, $\theta^*=20$, khớp bảng S07: tỉ số $x_1{:}30$, $s_2{:}20$, $s_3{:}24$); đặt trước câu nối sang S08b | đã sửa |
+| nhẹ | D02 (ghi chú, planning) | thiếu mệnh đề tả hình; storyboard/log không liệt kê đúng các câu đã bỏ | thêm mệnh đề đầu đoạn 2; liệt kê ba câu đã bỏ | đã sửa |
+| nhẹ | Z02 (ghi chú) | quy hoạch tuyến tính thiếu mục tiêu, điều kiện không âm; bảo toàn luồng không áp dụng tại $s$, $t$ | $f_e\ge0$, $\min\sum_ec_ef_e$, luồng ra trừ luồng vào $1$, $-1$, $0$ | đã sửa |
+| nhẹ | Z01 (ghi chú) | "trường hợp xấu nhất … hàm mũ" không gắn với quy tắc | thêm "với quy tắc Dantzig … (bài toán Klee–Minty)" | đã sửa |
+| nhẹ | P02 (ghi chú) | danh sách chủ đề 07.8–07.13 thiếu 07.9 | thêm "phương pháp đơn hình trên đa giác của Bài tập 07.6" | đã sửa |
+
+Giữ, không sửa (có từ trước):
+
+| mức độ | trang | vấn đề | quyết định | trạng thái |
+|---|---|---|---|---|
+| nhẹ | S09 | mặt trang "Cột của $x_j$" không nói $j\notin B$; ghi chú đã nói | giữ | mở, có từ trước |
+| nhẹ | toàn deck | 30 cảnh báo KaTeX strict cho chữ Việt trong `\text{}` (HEAD = bản làm việc) | giữ | mở, có từ trước |
+| nhẹ | toàn deck, 390 px | `.katex-mathml` vô hình làm `.lecture-viewport` có `scrollWidth` lớn; người dùng không cuộn ngang được | giữ | mở, có từ trước |
+
+Kiểm tra sau tái kiểm: `git diff --check` sạch; 70 `data-slide-id`; Z01 80 âm tiết, dòng "Diễn giải:" S11b 14 âm tiết; Playwright 1600×900 và 390×844: S11b cao 664 px, Z01 665 px (≤ 720) ở 16:9, 0 `.katex-error` trên 15 trang đã sửa kể cả ghi chú, 0 lỗi console/page.
+
+Giữ theo quyết định master: ghi chú A08 nói kết luận tối ưu "cần công cụ của các phần sau" (nhẹ, tùy chọn). A08 là trang đề bài, chủ ý hoãn kết luận sang lời giải A09; hai câu không mâu thuẫn về toán.
+
+Kiểm định cuối vòng 2: 70 trang ở 1600×900 và 390×844; 0 lỗi console/page; 0 `.katex-error` trên mặt trang và trong ghi chú; chiều cao lớn nhất 717/720 (S09c); S11b 664, Z01 665; cỡ chữ nhỏ nhất 0,90em; không tràn ngang trang; `sync-local-materials.py --check` OK; `git diff --check` sạch; 70 `data-slide-id`; `#/5/17` → S11b, `#/7/2` → Z01; 17 liên kết của `exercises.md` đúng trang (vòng 1, số trang không đổi).
+
+### Quyết định master
+
+**Chấp nhận (2026-10-29).** Bản đánh giá ngoài được áp dụng ở mức tương thích với AGENTS.md và CLAUDE.md: 2 sửa mặt trang (S11b, Z01) và bổ sung ghi chú ở 13 trang. Phần lớn đề xuất còn lại hoặc đã có trong deck, hoặc trái quy tắc kho (lý do ở phần phân loại). Người dùng chốt không thêm trang, không thêm fragment. Không còn phát hiện `chặn bàn giao`, `nghiêm trọng` hay `trung bình`. Ba mục nhẹ có từ trước để mở như bảng trên.
