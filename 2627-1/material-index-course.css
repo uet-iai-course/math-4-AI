@@ -1,0 +1,7 @@
+/* math-4-AI: course-specific rules, loaded after the shared material-index.css. */
+
+@media (width > 620px) {
+  .resource-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

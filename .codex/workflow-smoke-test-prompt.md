@@ -11,7 +11,8 @@ thử điều phối; không chuyển bài giảng và không sửa bất kỳ t
    - `openrouter_reviewer`;
    - `openrouter_writer`.
 
-   Gọi ba vai trò bằng các lệnh tương ứng trong `openrouter-mcp/`, luôn truyền
+   Gọi ba vai trò bằng các lệnh `openrouter-mcp-*` tương ứng trong `../.venv/bin/`
+   (gói dùng chung `../tools/openrouter-mcp/`), chạy từ gốc kho, luôn truyền
    `--json`. Không dùng `collaboration.spawn_agent` cho kiểm thử này.
 
 2. Giao một `openrouter_reader` nhiệm vụ hẹp:

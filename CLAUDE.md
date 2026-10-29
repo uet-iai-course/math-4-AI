@@ -2,14 +2,15 @@
 
 This repo holds the RevealJS lecture decks, lecture notes and exercises for **Cơ sở toán học cho AI** (UET.AI2012). The current semester is `2627-1/`.
 
-`AGENTS.md` is the full, authoritative specification, written in Vietnamese. This file tells Claude Code how to apply it: repo layout, commands, the rules most often broken, and how the multi-agent workflow maps onto Claude Code tools. Precedence: the user's instructions first, then `AGENTS.md`, then this file. Read the relevant section of `AGENTS.md` before any deck or materials work.
+The workspace file `../CLAUDE.md` carries the rules shared by every course: environment, static-site rules, shared CSS, writing style, `no-ai-slop`/`quill`, the sub-agent policy, visual verification and git basics. This file holds only what is specific to this course. `AGENTS.md` is the full, authoritative specification, written in Vietnamese. Precedence: the user's instructions first, then `AGENTS.md`, then this file, then `../CLAUDE.md`. Read the relevant section of `AGENTS.md` before any deck or materials work.
 
 ## Repo map
 
 | Path | Contents |
 |---|---|
 | `2627-1/lecture-NN-<chu-de>.html` | One RevealJS deck per lecture |
-| `2627-1/lecture-style.css` | The **only** course stylesheet, shared by every published deck |
+| `2627-1/lecture-style.css` | Shared stylesheet, identical in every course; synced from `../shared/css/`, never edited here |
+| `2627-1/lecture-course.css` | This course's deck styles, loaded after `lecture-style.css` |
 | `2627-1/revealjs/`, `plugin/`, `vendor/katex/` | Local runtime; decks must not load anything from outside `2627-1/` |
 | `2627-1/img/lec-NN/` | SVG assets for each lecture |
 | `2627-1/planning/lec-NN/` | `outline.md`, `storyboard.md`, `review-log.md` (tracked in git even though `.gitignore` lists them) |
@@ -19,60 +20,39 @@ This repo holds the RevealJS lecture decks, lecture notes and exercises for **C�
 | `2627-1/index.html` | Semester index; links only to finished public decks and materials |
 | `2526-2-another-course/` | Structure and visual template; never link to it at runtime |
 | `sources/` | Syllabus DOCX, source slides, MIT OCW PDFs (gitignored) |
+| `../tools/courses/math-4-AI/2627-1/scripts/sync-local-materials.py` | Builds `material-local-data.js` from the Markdown (workspace tooling, not in this repo) |
 
 Lectures 00 and 01 also have older planning files in the `2627-1/` root. Leave them where they are unless the user asks to move them.
 
 ## Commands
 
 ```bash
-python3 -m reloadserver 8765                      # from repo root; port is positional, never --port
+../.venv/bin/python -m reloadserver 8765          # from repo root
 # view: http://localhost:8765/2627-1/lecture-NN-<chu-de>.html
 
-python3 2627-1/scripts/sync-local-materials.py    # after ANY edit to materials/*.md
-python3 2627-1/scripts/sync-local-materials.py --check
+../.venv/bin/python ../tools/courses/math-4-AI/2627-1/scripts/sync-local-materials.py          # after ANY edit to materials/*.md
+../.venv/bin/python ../tools/courses/math-4-AI/2627-1/scripts/sync-local-materials.py --check
 git diff --check
 ```
 
-Headless Chromium through Python Playwright is installed and is the visual-check tool (see Visual verification).
+## Course-specific rules
 
-## Hard rules
-
-- Never read, load or send `.env` or `.env.*`. Never put secrets in prompts, logs or commits.
-- Do not use OpenRouter, `openrouter-mcp/`, or direct model API/CLI calls to stand in for sub-agents.
-- **CSS:** decks use `2627-1/lecture-style.css` only.
+- **CSS:** decks link `lecture-style.css` then `lecture-course.css`, nothing else.
   - No `<style>` blocks, no static `style=""`, no per-lecture CSS files, no JS that injects styles.
-  - Styles specific to one lecture go in the shared file, scoped with `:where(html[data-lecture="NN"])` plus a meaningful class or `data-slide-id`.
-  - Editing shared CSS means checking every published deck at wide and narrow sizes.
+  - Styles specific to one lecture go in `lecture-course.css`, scoped with `:where(html[data-lecture="NN"])` plus a meaningful class or `data-slide-id`.
+  - Editing `lecture-course.css` means checking every published deck at wide and narrow sizes.
 - **RevealJS config:** `lang="vi"`; outer `<section>` = one strand, inner `<section>` = one slide; footer at the end of `.slides`.
   - Settings: `controlsLayout: "edges"`, `slideNumber: true`, `hash: true`, `hashOneBasedIndex: true`.
   - Plugins: `RevealMath.KaTeX`, `RevealNotes`, `RevealHighlight`.
-- **Paths** are relative to `2627-1/`, and core assets never come from a CDN.
-- **Maths and figures:** in Markdown use only `$...$` and `$$...$$`. Build formulas, tables and code with KaTeX, HTML or code blocks, never as images.
-  - Diagrams are local SVGs with `alt` text, or `role="img"` with a `title` when inline.
-  - Keep a raster only with a justification recorded in `review-log.md`. No AI-generated images standing in for data or evidence.
-- **Index:** `index.html` never links `planning/`, outlines, storyboards, review logs or sources.
+- **Paths** are relative to `2627-1/`.
+- **Rasters:** keep one only with a justification recorded in `review-log.md`.
 
-## Writing course content (Vietnamese)
+## Writing (in addition to `../CLAUDE.md`)
 
-Everything a student sees is formal, academic, native Vietnamese: slide text, titles, speaker notes, lecture notes, solutions.
-
-- **English:** only for proper names, standard symbols and established algorithm or library names. A new term's English name goes in parentheses at first use.
-- **Abbreviations:** spell out in Vietnamese first, abbreviation in parentheses.
-- **Banned tone:** no exclamations, praise, slogans or rhetorical questions.
-  - No simulated speech or instructor directions, e.g. "chúng ta hãy…", "nhấn mạnh với sinh viên", "chuyển sang trang sau".
-  - Learning tasks ("Tính", "Xác định", "Chứng minh") are fine.
-- **Terminology:** write `lồi chặt (còn gọi là lồi nghiêm ngặt)` the first time, `lồi chặt` afterwards.
-- **Titles:** name the concept. No questions ("Tại sao…?") and no progress phrasing ("Từ … đến …"). Function prefixes "Ví dụ: …", "Bài tập: …", "Chứng minh: …" are allowed before a noun phrase; "Bài tập" as a badge is not.
+- **Terminology example:** `lồi chặt (còn gọi là lồi nghiêm ngặt)` the first time, `lồi chặt` afterwards.
+- **Titles:** "Bài tập" as a badge is not allowed.
 - **Bullets:** at most two lines each; move explanation into the notes.
-- **Keep off the slide face and out of speaker notes:**
-  - slide codes (`RP02`, `A01`…), workflow badges ("Giảng chính", "Tự học"), timings, and "MIT 6.079…" source footers;
-  - sources go in the notes or on a references slide.
-- **Questions on slides** use the label **"Câu hỏi:"**.
-- **Speaker notes** are short academic explanation: the assumptions, what a formula or figure means, easy confusions, the link to the next result, and hints or solutions. They must not just repeat the slide.
-- **no-ai-slop is mandatory.** It is installed as the user-level Claude skill `no-ai-slop` (`~/.claude/skills/no-ai-slop/`). Load it with the `Skill` tool, or read `SKILL.md` and `eval.md` there, before editing or reviewing text. Sub-agents must load it too.
-  - Editors use Edit mode, then self-check against `eval.md`.
-  - Read-only reviewers use Detect mode: quote the problem line and propose a fix.
-  - Academic register and mathematical precision take priority over the skill's voice and humour advice.
+- **Off the slide face and out of notes:** slide codes (`RP02`, `A01`…), workflow badges ("Giảng chính", "Tự học"), timings and "MIT 6.079…" source footers; sources go in the notes or on a references slide.
 
 ## Deck structure and content
 
@@ -81,7 +61,7 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
   - Going outside 5–7 needs an explicit user request, recorded in `storyboard.md` and `review-log.md`.
 - **Strand title slides (user request 2026-10-12):** every strand except the opening starts with a `section.strand-title` slide (`AGENTS.md` §"Trang tiêu đề mạch").
   - It shows the number in digits ("2.", "3.", …, matching the "Nội dung" list and `#/N`; this includes deck 07, which now shows "A."–"D."), a noun-phrase name, one declarative lead line (≤ 25 syllables, "Muốn …" or "Nhu cầu:"), and optionally ≤ 5 keywords joined by " · ".
-  - Markup: `div.strand-title-body` > `h2` with `span.strand-number`, then `p.strand-lead`, `p.strand-keys`. Styles live in `lecture-style.css`.
+  - Markup: `div.strand-title-body` > `h2` with `span.strand-number`, then `p.strand-lead`, `p.strand-keys`. Styles live in `lecture-course.css`.
   - No definitions, formulas, figures, "Đầu vào/Đầu ra" or codes on its face. Notes of about 40–100 syllables state the inherited result, the task and the output.
   - Letter labels A, B, C stay allowed in storyboards, outlines, materials and slide codes, never on a strand title slide.
   - The cover is the opening strand's title. ID `<prefix>00` (`S0k-00` in `S0k-NN` decks), `id="mach-N"`. One storyboard entry each.
@@ -116,7 +96,7 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
   - with a period: Định nghĩa. Định lý. Mệnh đề. Bổ đề. Hệ quả. Nhận xét. Thuật toán. Chứng minh. Trực quan. Ví dụ.
   - with a colon: Nhu cầu: Ý nghĩa: Diễn giải: Lưu ý: Nhắc lại: Cách khác: Dạng khác: Ký hiệu: Giả thiết: Kết luận: Đầu vào: Đầu ra: Câu hỏi: Gợi ý: Lời giải:
 - **Codes from other lectures:** state assumptions and results in words and name examples by their object. Codes such as "T7", "H2", "VD1" never appear on the slide face. A lecture-note number such as "(Định lý 05b.41)" may follow the verbal statement at most once per slide. Materials keep their codes for now.
-- **Notes length (recommendation, not a cap):** usually 40–150 syllables, up to ~250 for proofs or solutions. Longer notes are only a `nhẹ` finding; notes still carry the assumptions, interpretation, easy confusions and solutions. Longer material belongs in `lecture-note.md`. Never open with "Trang này …" or with the document as subject.
+- **Notes length (recommendation, not a cap):** usually 40–150 syllables, up to ~250 for proofs or solutions. Longer notes are only a `nhẹ` finding; notes still carry the assumptions, interpretation, easy confusions and solutions. Longer material belongs in `lecture-note.md`.
 - **Formal statements:** state domain, assumptions, dimensions and types before use.
   - Label definitions, theorems, remarks, intuition and examples.
   - For theorems and algorithms, give inputs, outputs, conditions and conclusion.
@@ -128,34 +108,14 @@ Everything a student sees is formal, academic, native Vietnamese: slide text, ti
 - **Sources:**
   - **Syllabus:** the official DOCX in `sources/` fixes sessions, scope, LLO/CLO and assessment. Never invent timings.
   - **User-supplied template slides:** keep their order and layout unless fixing an error.
-  - **MIT OCW:** add resources only through the procedure in `AGENTS.md`: official URL, licence and third-party check, temp download, SHA-256 dedupe, no overwrite, and an entry in `sources/MIT/README.md`. Ignore `._*` files.
+  - **MIT OCW:** add resources only through the procedure in `AGENTS.md`: official URL, licence and third-party check, temp download, SHA-256 dedupe, no overwrite, and an entry in `sources/MIT/README.md`.
 
-## Multi-agent workflow in Claude Code
+## Sub-agents (course settings)
 
-`AGENTS.md` requires an orchestrator plus sub-agents; don't do the whole workflow in one role.
+The policy in `../CLAUDE.md` applies, with these settings (standing user instruction 2026-10-07, revised 2026-10-15; matches `AGENTS.md` §"Điều phối mô hình trong dự án"):
 
-This model assignment is a standing user instruction (2026-10-07, revised 2026-10-15) and matches `AGENTS.md` §"Điều phối mô hình trong dự án".
-
-- **Master and quality controller:** this session runs Claude Opus 5.5 (`claude-opus-5-5`) at effort `high`.
-  - It splits the work, writes the briefs, merges results, and accepts or rejects every sub-agent output.
-  - It does not take a sub-agent role itself. Drafting, reviewing and editing go to sub-agents.
-  - If the session runs another model or effort, say so before delegating, and ask the user to switch (`/model`, effort setting). Do not treat that session as a valid master.
-- **Sub-agents:** every workflow role, including agents spawned by sub-agents, runs Claude Opus 5.5 (`claude-opus-5-5`). Effort depends on the role (user instruction 2026-10-15):
-  - **Reviewers** (storyboard gate, the five review roles, rechecks, final-check verifier): effort `high`.
-  - **Workers** (planning, source analysis, authoring, editing, and any other sub-agent): effort `medium`.
-- **Quality control of every output:** no sub-agent output reaches the next stage, a repo file or the user until the master has reviewed it.
-  - **Plans and reports:** check every finding and claim against the cited file or line. Re-derive the maths and constants.
-  - **Written files:** read the diff. Run the checks listed in this file (visual check, `--check` sync, `git diff --check`).
-  - **Decision:** record `chấp nhận | yêu cầu sửa | bác bỏ` with a reason in `review-log.md`. Send the requested fixes back to the same agent with `SendMessage`, and review the result again.
-  - Only the master's approval counts. A sub-agent reviewing another sub-agent does not count as quality control.
-- **Creating agents:** use the `Agent` tool with `model: "opus"` and `effort: "high"` for reviewers or `effort: "medium"` for workers.
-  - Do not use `subagent_type: "fork"`: a fork inherits the master's full context and effort and ignores the model override, so its output is not independent of the master. Use `general-purpose`, or a `.claude/agents/` definition pinned to `claude-opus-5-5` at the role's effort once one exists.
-  - Never assign a workflow role to an agent type pinned to another model or effort.
-  - Continue an existing agent with `SendMessage` rather than spawning a new one.
-- **Stopping rule:** if no Opus 5.5 sub-agent at the required effort can be created, say so and stop the dependent work. The master does not do that work itself.
-- **Concurrency:** read-only agents may run in parallel. **Only one agent writes files at a time.**
-- **Every brief states:** role, inputs, output, file scope, done condition, and "do not commit".
-- **Logging:** record each agent's role, type, model and effort in `review-log.md`, using the tool call as evidence rather than the agent's own claim. Also record the master's review decision for each output.
+- **Effort by role:** reviewers (storyboard gate, the five review roles, rechecks, final-check verifier) `high`; workers (planning, source analysis, authoring, editing, any other sub-agent) `medium`.
+- **Checks the master runs on written files:** visual check, materials sync `--check`, `git diff --check`.
 
 | Stage | Role(s) | Writes files? |
 |---|---|---|
@@ -168,55 +128,25 @@ This model assignment is a standing user instruction (2026-10-07, revised 2026-1
 | Recheck | Math on changed content. Storyline on the changed slides, ±2 neighbours and section boundaries; the whole deck if the opening, conclusion or thesis changed | No |
 | Final check | Opus 5.5 verifier runs technical, visual, planning-sync and git checks; the master reviews the evidence and signs off | — |
 
-After every stage, the master reviews the output before the next stage starts.
+## Visual verification (course notes)
 
-- **Report format:** reviews return findings as `mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa`.
-  - Severities are `chặn bàn giao`, `nghiêm trọng`, `trung bình` and `nhẹ`.
-  - Every blocking and serious finding must be resolved.
-- **Logging findings:** record each one in `review-log.md` with its status and decision. Never delete resolved findings.
-- **Scaling to small edits:** a one-slide edit still goes editor → math and storyline rechecks on the affected slides → browser check → log. The full five-role review isn't needed.
-
-## Visual verification
-
-Required after every deck change. Only claim a visual check you actually ran.
-
-1. Start `python3 -m reloadserver 8765` in the background from the repo root.
-2. With Playwright Chromium, open the deck and jump to a slide by ID. Use `Reveal.getIndices(document.querySelector('section[data-slide-id="X"]'))`, then `Reveal.slide(h, v, 99)`, where `99` reveals all fragments.
-3. Capture **1600×900** (16:9) and **390×844** (narrow).
-   - On narrow screens the content scrolls inside `.lecture-viewport`; scroll it to the end and capture again.
-4. Check: no console or page errors, no `.katex-error`, content height ≤ frame at 16:9, no horizontal overflow, body font sizes above the minimum, keyboard navigation works, no overlaps.
-   - Ignore `.katex-mathml`, which is visually hidden.
-5. View the screenshots yourself before reporting.
-6. Keep screenshots under `/tmp/claude-1000/` or the session scratchpad, not in the repo.
-
-Known quirk: `.lec-grid` centres its columns vertically (`align-items: center`), so column headings can sit at different heights. Changing that means a shared-CSS regression pass across every deck.
+Known quirk: `.lec-grid` centres its columns vertically (`align-items: center`), so column headings can sit at different heights. Changing that means a CSS regression pass across every deck.
 
 ## Lecture notes and exercises
 
 - **Viewer contract:** `material-viewer.html?doc=materials/lec-NN/{lecture-note,exercises}.md&deck=lecture-NN-<chu-de>.html`, with both parameters naming the same lecture. The one exception is a supplementary lecture that has materials but no deck, or a rewritten note kept for comparison (currently 05c, 01b, 02b and 03b, listed in `DECKLESS_LECTURES` in `material-viewer.js`): it opens with `doc` alone.
-- **No build step:** no Node.js, no HTML generation. The pipeline is: protect maths → Marked → DOMPurify → restore maths → KaTeX.
+- **No build step:** no HTML generation. The pipeline is: protect maths → Marked → DOMPurify → restore maths → KaTeX.
 - **Voice of `lecture-note.md` (user instruction, 2026-10-11):** notes follow the narrative voice of the user's own textbook *Học máy thống kê* (`../SML-textbook-main.zip`): "chúng ta" for plans, needs and limits, "ta" inside calculations, a complete lead-in sentence before every block, section endings told in prose (no "Chuỗi suy luận", "Đích của mục" or "Kết mục" labels), a narrative paragraph before the chapter summary list. The document never acts as the subject ("Mục này định nghĩa…"). "hãy", rhetorical questions and instructor talk stay banned. See `AGENTS.md` §"Ngôn ngữ và giọng văn".
 - **Textbook standard for `lecture-note.md`:** `AGENTS.md` §"Tiêu chuẩn giáo trình cho ghi chú bài giảng" is binding. A note is a self-contained textbook chapter a student can understand by reading alone: problem before tool, every formula wrapped in prose, numbered definitions/theorems/examples, full proofs or a paged source, worked examples with a check line, linking paragraphs between concepts, between theorems and to AI applications ("Trong học máy"), application scenarios, chapter summary and exercises with solutions. No long introduction before the learning objectives; notation table about 20 rows. Proofs and interpretations must be laid out clearly (AGENTS.md §"Trình bày sáng sủa"): one idea per paragraph, proofs split into labelled steps on their own lines, multi-step derivations in `aligned` with one relation per line, cases as lists, key formulas on display lines. Authors must consult the standard textbooks (Boyd and Vandenberghe, Nocedal and Wright, Goodfellow et al., Wasserman, Strang, MIT OCW PDFs in `sources/MIT`) for how they motivate, order and interpret each concept, log which sections were consulted in `review-log.md`, and never translate or copy passages. Use `materials/_templates/lecture-note.md`.
 - **Blocks:** `::: definition|theorem|proposition|lemma|corollary|remark|algorithm|example|application|derivation|proof|exercise|hint|solution Optional title`, closed by `:::`, not nested. A title replaces the default Vietnamese label. The list lives only in `DIRECTIVE_LABELS` in `material-viewer.js`. `proof`, `hint` and `solution` are collapsed by default.
 - **Format:** each file starts with one `#` heading. Tables need header rows, figures need alt text.
 - **Keeping slides and materials in sync:** when a deck changes notation, assumptions, examples, conclusions or concept order, review that lecture's note and exercises too. Then run the sync script and commit `material-local-data.js` with the Markdown.
 
-## Git
+## Git (course settings)
 
 - **Standing permission:** the user allows commit **and push** after each substantial, checked milestone without asking again. This covers decks, materials, infrastructure and `AGENTS.md`/`CLAUDE.md`.
-- **Branch:** `main` tracks `origin/main`.
-  - Never create or switch branches, rebase, amend, force-push or delete remote branches.
-- **Before committing:**
-  - Run `git status --short` and `git diff --check`.
-  - Stage explicit paths only; never `git add .` or `-A`.
-  - Then run `git diff --cached --check`.
-- **Commit scope:** only files from the finished work. For a deck that means the deck HTML, `img/lec-NN/`, the tracked `planning/lec-NN/` files, the related `index.html` entry, and shared files that truly had to change. Never stage someone else's pending changes.
-- **Commit prefixes:**
-  - `feat(slides)` / `fix(slides)` for decks;
-  - `feat(materials)` / `fix(materials)` for notes, exercises and viewer;
-  - `docs(agents)` for `AGENTS.md`/`CLAUDE.md`.
-  - The message must name the lecture or topic, and may be in Vietnamese.
-- **After pushing:** confirm with `git fetch` and `git branch -r --contains HEAD`. If the push fails, report the local hash and the error, and do not claim the work is delivered.
+- **Commit scope:** for a deck, the deck HTML, `img/lec-NN/`, the tracked `planning/lec-NN/` files, the related `index.html` entry, and shared files that truly had to change.
+- **Commit prefixes:** `feat(slides)` / `fix(slides)` for decks; `feat(materials)` / `fix(materials)` for notes, exercises and viewer; `docs(agents)` for `AGENTS.md`/`CLAUDE.md`. The message must name the lecture or topic, and may be in Vietnamese.
 
 ## Done means
 

@@ -1,0 +1,52 @@
+/* math-4-AI: course-specific rules, loaded after the shared material-viewer.css. */
+
+.material-toc a {
+  text-decoration-thickness: 1px;
+}
+
+.markdown-body img[src^="img/lec-"] {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Narrow screens: keep lecture figures at a readable 900px and let the
+   paragraph scroll horizontally instead of shrinking the labels. */
+@media (max-width: 1000px) {
+  .markdown-body p:has(> img[src^="img/lec-"]) {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .markdown-body img[src^="img/lec-"] {
+    min-width: 900px;
+    max-width: none;
+  }
+}
+
+.markdown-body .katex {
+  /* Keep the clipped MathML accessibility layer anchored to its formula,
+     including formulas inside horizontally scrolling tables. */
+  position: relative;
+}
+
+/* Tagged display formulas (\tag{...}): KaTeX positions the tag absolutely at
+   the right edge of .katex-html. When the formula is wider than the column,
+   let that box grow to the content width (plus room for the tag) so the tag
+   scrolls with the formula instead of overlapping its last symbols. */
+.katex-display > .katex > .katex-html:has(> .tag) {
+  display: inline-block;
+  width: max-content;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding-right: 3.2em;
+}
+
+@media (max-width: 560px) {
+  .material-block {
+    padding: 14px 14px;
+  }
+
+  .material-block--algorithm ol {
+    padding-left: 1.6em;
+  }
+}

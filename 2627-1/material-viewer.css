@@ -1,3 +1,7 @@
+/* Common stylesheet, byte-identical in every course. Do not edit this copy: change
+   shared/css/material-viewer.css in the parent lectures workspace and run tools/css/sync_shared_css.py.
+   Course-specific rules go in material-viewer-course.css, which pages load right after this file. */
+
 .skip-link {
   position: fixed;
   z-index: 20;
@@ -128,7 +132,6 @@
 .material-toc a {
   color: var(--text);
   line-height: 1.4;
-  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
@@ -234,47 +237,10 @@
   margin: 20px auto;
 }
 
-.markdown-body img[src^="img/lec-"] {
-  width: 100%;
-  max-width: 100%;
-}
-
-/* Narrow screens: keep lecture figures at a readable 900px and let the
-   paragraph scroll horizontally instead of shrinking the labels. */
-@media (max-width: 1000px) {
-  .markdown-body p:has(> img[src^="img/lec-"]) {
-    overflow-x: auto;
-    padding-bottom: 8px;
-  }
-
-  .markdown-body img[src^="img/lec-"] {
-    min-width: 900px;
-    max-width: none;
-  }
-}
-
-.markdown-body .katex {
-  /* Keep the clipped MathML accessibility layer anchored to its formula,
-     including formulas inside horizontally scrolling tables. */
-  position: relative;
-}
-
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.35em 0;
-}
-
-/* Tagged display formulas (\tag{...}): KaTeX positions the tag absolutely at
-   the right edge of .katex-html. When the formula is wider than the column,
-   let that box grow to the content width (plus room for the tag) so the tag
-   scrolls with the formula instead of overlapping its last symbols. */
-.katex-display > .katex > .katex-html:has(> .tag) {
-  display: inline-block;
-  width: max-content;
-  min-width: 100%;
-  box-sizing: border-box;
-  padding-right: 3.2em;
 }
 
 .material-block {
@@ -427,14 +393,6 @@
 
   .material-actions .secondary-link {
     justify-content: center;
-  }
-
-  .material-block {
-    padding: 14px 14px;
-  }
-
-  .material-block--algorithm ol {
-    padding-left: 1.6em;
   }
 }
 
