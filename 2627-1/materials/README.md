@@ -37,7 +37,7 @@ URL có dạng:
 http://localhost:8765/2627-1/material-viewer.html?doc=materials/lec-03/lecture-note.md&deck=lecture-03-doi-ngau-lagrange.html
 ```
 
-Các bài chỉ có học liệu, chưa có bộ trang chiếu (hiện là 05c và 10), mở với riêng tham số `doc`, ví dụ `material-viewer.html?doc=materials/lec-05c/lecture-note.md`; danh sách các bài này nằm trong hằng `DECKLESS_LECTURES` của `material-viewer.js`.
+Các bài chỉ có học liệu, chưa có bộ trang chiếu (hiện là 05c, 10 và 11), mở với riêng tham số `doc`, ví dụ `material-viewer.html?doc=materials/lec-05c/lecture-note.md`; danh sách các bài này nằm trong hằng `DECKLESS_LECTURES` của `material-viewer.js`.
 
 Khi mở bằng `file://`, trình đọc dùng bản sao Markdown trong `material-local-data.js` để tránh hạn chế đọc tệp của trình duyệt. Khi mở qua HTTP/HTTPS, trình đọc vẫn tải Markdown gốc. Cả hai chế độ đều bảo toàn công thức, chuyển Markdown, làm sạch HTML rồi render KaTeX bằng cùng quy trình.
 
