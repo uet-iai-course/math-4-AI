@@ -1,4 +1,4 @@
-# Bài 11 — Học từ dữ liệu như một bài toán ước lượng thống kê
+# Bài 11 — Học từ dữ liệu qua ước lượng thống kê
 
 ## Mục tiêu học tập
 
