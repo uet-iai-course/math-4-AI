@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="460" viewBox="0 0 960 460" role="img" aria-labelledby="title desc">
+<title id="title">Cây xác suất nhà cung cấp và tình trạng sản phẩm</title>
+<desc id="desc">Nhà cung cấp a có xác suất 0,60, tỉ lệ lỗi 0,02; nhà cung cấp b có xác suất 0,40, tỉ lệ lỗi 0,08. Bốn xác suất đồng thời là 0,012; 0,588; 0,032; 0,368. Cộng hai nhánh lỗi được 0,044.</desc>
+<rect width="960" height="460" rx="16" fill="#f8fafc"/>
+<g font-family="Arial, sans-serif" fill="#172554">
+<text x="32" y="40" font-size="23" font-weight="bold">Từ nguồn hàng đến xác suất lỗi</text>
+<text x="32" y="72" font-size="17">Nhân dọc nhánh để tính đồng thời; cộng các nhánh lỗi để lấy biên.</text>
+<g stroke="#94a3b8" stroke-width="2" fill="none">
+<path d="M120 245 L335 155 M120 245 L335 335 M365 155 L620 115 M365 155 L620 205 M365 335 L620 295 M365 335 L620 385"/>
+</g>
+<g font-size="18">
+<text x="160" y="170">0,60</text><text x="160" y="330">0,40</text>
+<text x="440" y="111">0,02</text><text x="440" y="208">0,98</text>
+<text x="440" y="289">0,08</text><text x="440" y="389">0,92</text>
+</g>
+<g fill="#dbeafe" stroke="#60a5fa" stroke-width="2"><circle cx="100" cy="245" r="26"/><circle cx="350" cy="155" r="26"/><circle cx="350" cy="335" r="26"/></g>
+<g font-size="20" text-anchor="middle"><text x="100" y="252">S</text><text x="350" y="162">a</text><text x="350" y="342">b</text></g>
+<g font-size="18">
+<rect x="620" y="92" width="292" height="46" rx="8" fill="#ffedd5"/>
+<rect x="620" y="182" width="292" height="46" rx="8" fill="#e2e8f0"/>
+<rect x="620" y="272" width="292" height="46" rx="8" fill="#ffedd5"/>
+<rect x="620" y="362" width="292" height="46" rx="8" fill="#e2e8f0"/>
+<text x="638" y="121">Lỗi (Y = 1): 0,012</text><text x="638" y="211">Đạt (Y = 0): 0,588</text>
+<text x="638" y="301">Lỗi (Y = 1): 0,032</text><text x="638" y="391">Đạt (Y = 0): 0,368</text>
+</g>
+<text x="32" y="438" font-size="19" font-weight="bold">P(Y = 1) = 0,012 + 0,032 = 0,044</text>
+</g></svg>
