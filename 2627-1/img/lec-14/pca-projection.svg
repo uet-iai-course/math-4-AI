@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title desc">
+<title id="title">PCA một chiều của bốn điểm</title><desc id="desc">Các điểm (2,0),(-2,0),(0,1),(0,-1); phép chiếu lên trục ngang giữ hai điểm ngang và đưa hai điểm đứng về gốc.</desc><rect width="600" height="420" fill="#fff"/>
+<g stroke="#64748b" stroke-width="2"><path d="M35 205H565M300 335V35"/></g><path d="M55 205H545" stroke="#166534" stroke-width="5"/>
+<g stroke="#b45309" stroke-width="3" stroke-dasharray="8 6"><path d="M300 105V205M300 305V205"/></g>
+<g fill="#1e40af"><circle cx="500" cy="205" r="8"/><circle cx="100" cy="205" r="8"/><circle cx="300" cy="105" r="8"/><circle cx="300" cy="305" r="8"/></g><circle cx="300" cy="205" r="8" fill="#fff" stroke="#166534" stroke-width="3"/>
+<g font-family="Arial,sans-serif" font-size="25" fill="#172033"><text x="470" y="245">(2, 0)</text><text x="65" y="245">(−2, 0)</text><text x="320" y="112">(0, 1)</text><text x="320" y="312">(0, −1)</text><text x="270" y="245">0</text><text x="565" y="195">x₁</text><text x="315" y="40">x₂</text><text x="50" y="165" fill="#166534">u = (1, 0)</text><text x="45" y="375">Tổng lỗi: 2; lỗi trung bình: 1/2</text></g></svg>
