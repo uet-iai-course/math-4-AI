@@ -82,11 +82,11 @@ Theo `../CLAUDE.md` §Sub-agents và `CLAUDE.md` học phần (người rà `hig
 
 | Bài | Rà soát | Sửa | Tái kiểm | Kiểm tra | Commit |
 |---|---|---|---|---|---|
-| 10 | | | | | |
-| 11 | | | | | |
-| 12 | | | | | |
-| 13 | | | | | |
-| 14 | | | | | |
+| 10 | xong (toán–Murphy; mẫu–văn phong; xuyên bài) | xong (tái cấu trúc, bài tập, ánh xạ, bố cục 390 px) | xong (đến vòng 3–4) | đạt (forward_refs 0, đồng bộ, Playwright 1600×900 và 390×844, in, file://) | b20e756 |
+| 11 | xong (toán–Murphy; mẫu–văn phong; xuyên bài) | xong (tái cấu trúc, bài tập, ánh xạ, bố cục 390 px) | xong (đến vòng 3–4) | đạt (forward_refs 0, đồng bộ, Playwright 1600×900 và 390×844, in, file://) | b20e756 |
+| 12 | xong (toán–Murphy; mẫu–văn phong; xuyên bài) | xong (tái cấu trúc, bài tập, ánh xạ, bố cục 390 px) | xong (đến vòng 3–4) | đạt (forward_refs 0, đồng bộ, Playwright 1600×900 và 390×844, in, file://) | b20e756 |
+| 13 | xong (toán–Murphy; mẫu–văn phong; xuyên bài) | xong (tái cấu trúc, bài tập, ánh xạ, bố cục 390 px) | xong (đến vòng 3–4) | đạt (forward_refs 0, đồng bộ, Playwright 1600×900 và 390×844, in, file://) | b20e756 |
+| 14 | xong (toán–Murphy; mẫu–văn phong; xuyên bài) | xong (tái cấu trúc, bài tập, ánh xạ, bố cục 390 px) | xong (đến vòng 3–4) | đạt (forward_refs 0, đồng bộ, Playwright 1600×900 và 390×844, in, file://) | b20e756 |
 
 ## Quyết định sau lượt rà xuyên bài (2026-11-04)
 

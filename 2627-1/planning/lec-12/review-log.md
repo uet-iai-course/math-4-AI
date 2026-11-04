@@ -217,3 +217,7 @@ Tác tử bổ sung: Người sửa (tái cấu trúc, bài tập, ánh xạ d�
 | (12.27) | (8.5) | hội tụ đều theo VC |
 
 Ghi chú: mục `##` cũ 12.1–12.9 nay là `## 1.`–`## 12.` + Phụ lục (hồi quy §4, logistic §5, rủi ro §6, hội tụ đều §7, PAC/VC §8). Thuật ngữ cho số hạng $2\Delta_S$: "sai số ước lượng (còn gọi là sai số do lấy mẫu)", khớp với cách Bài 13 dòng 21 (bản HEAD) gọi "sai số do lấy mẫu".
+
+### Bàn giao
+
+Kết luận điều phối viên: **chấp nhận**. Mọi phát hiện chặn bàn giao và nghiêm trọng đã được giải quyết và kiểm lại. Commit `b20e756` (`fix(materials): Bài 10–14 rà soát theo mẫu statistical-learning-theory và nguồn Murphy`) đã push lên `origin/main` và được xác nhận bằng `git fetch` và `git branch -r --contains HEAD`.

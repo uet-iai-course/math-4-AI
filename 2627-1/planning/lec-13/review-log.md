@@ -162,3 +162,7 @@ Tác tử bổ sung: Người sửa (tái cấu trúc, bài tập, ánh xạ d�
 | (13.24) | (7.5) | mục tiêu từ mẫu $Y_t$ |
 | (13.25) | (7.6) | cập nhật Q-learning |
 | (13.26) | bỏ nhãn | hai xác suất có điều kiện của Tình huống 13.2 |
+
+### Bàn giao
+
+Kết luận điều phối viên: **chấp nhận**. Mọi phát hiện chặn bàn giao và nghiêm trọng đã được giải quyết và kiểm lại. Commit `b20e756` (`fix(materials): Bài 10–14 rà soát theo mẫu statistical-learning-theory và nguồn Murphy`) đã push lên `origin/main` và được xác nhận bằng `git fetch` và `git branch -r --contains HEAD`.

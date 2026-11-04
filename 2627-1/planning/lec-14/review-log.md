@@ -190,3 +190,7 @@ Tác tử bổ sung: Người sửa (tái cấu trúc, bài tập, ánh xạ d�
 | E14.3 + Bài tập 14.3 | Bài tập 14.9 | KL Gaussian, kỳ vọng tái tạo và ELBO (giữ dữ kiện E14.3; gộp câu sinh mẫu của Bài tập 14.3 cũ) |
 | E14.4 | Bài tập 14.10 | Mẫu tái tham số hóa và ước lượng gradient |
 | Bài tập 14.6 | Bài tập 14.11 | KL bằng không, mômen khớp và mô hình sai (vòng 2: dữ kiện mới ±2, bộ giải mã N(0,4)) |
+
+### Bàn giao
+
+Kết luận điều phối viên: **chấp nhận**. Mọi phát hiện chặn bàn giao và nghiêm trọng đã được giải quyết và kiểm lại. Commit `b20e756` (`fix(materials): Bài 10–14 rà soát theo mẫu statistical-learning-theory và nguồn Murphy`) đã push lên `origin/main` và được xác nhận bằng `git fetch` và `git branch -r --contains HEAD`.

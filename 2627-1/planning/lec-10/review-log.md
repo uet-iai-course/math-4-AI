@@ -281,3 +281,7 @@ Số liệu: người rà toán chạy 102 phép kiểm bằng phân số, khôn
 | lec-11 d.23 | Định lý 10.10 (toàn phần, Bayes) | Định lý 10.11 |
 | lec-11 d.942 | "phản ví dụ của Bài 10" | Ví dụ 10.10 (độ lệch kích thước) hoặc Bài tập 10.9 |
 | lec-13 d.19, d.99; lec-14 d.20, d.340, d.512 | dẫn bằng tên khái niệm, không số hiệu | không đổi (có thể thêm Định lý 10.11, Mệnh đề 10.32, Định nghĩa 10.13/10.16, Định lý 10.29, Định nghĩa 10.20) |
+
+### Bàn giao
+
+Kết luận điều phối viên: **chấp nhận**. Mọi phát hiện chặn bàn giao và nghiêm trọng đã được giải quyết và kiểm lại. Commit `b20e756` (`fix(materials): Bài 10–14 rà soát theo mẫu statistical-learning-theory và nguồn Murphy`) đã push lên `origin/main` và được xác nhận bằng `git fetch` và `git branch -r --contains HEAD`.
