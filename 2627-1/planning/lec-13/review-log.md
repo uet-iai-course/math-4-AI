@@ -174,3 +174,5 @@ Người kiểm định cuối mới (general-purpose, Opus 5.5 (opus), high, ch
 ### Vòng sửa sau kiểm định cuối và tái kiểm
 
 Người sửa của bài xử lý mọi phát hiện trung bình và nhẹ của kiểm định cuối; chính người kiểm định đó tái kiểm diff so với HEAD `9edae80`/`2caee87`: không còn phát hiện từ mức trung bình trở lên sau vòng sửa nhỏ cuối. Điều phối viên tự kiểm các số mới (Bài 12: hạng thiếu $w_0+w_1=7/3$, tổng bình phương sai số $14/3$; Bài 11: hậu nghiệm Beta $2/3$; Bài 13: giao điểm $v=8/9$ trên hình) và chạy lại: forward_refs 0, khối `:::` cân bằng, không ký tự điều khiển, SVG hợp lệ, `git diff --check` sạch, đồng bộ `--check` đạt, Playwright 20 lượt (10 tệp × 2 khổ) không lỗi, không công thức tràn quá 40 px ở 390 px. Kết luận: **chấp nhận**.
+
+- Sửa nhỏ sau tái kiểm vòng 3 trên `e3fcaae` (cả năm bài không còn phát hiện từ mức trung bình trở lên): dấu phẩy ở Bước 1 Mệnh đề 13.2; $\alpha,\beta,\gamma$ thay $a,b,c$ ở câu nhắc tính tuyến tính của Bài 11 (dòng 50). Diff một cụm chữ, điều phối viên đọc lại.

@@ -205,7 +205,7 @@ trong đó $P^0=I$. Mỗi $\mu_t$ có phần tử không âm và tổng bằng $
 ::: proof Chứng minh Mệnh đề 13.2
 **Lộ trình.** Áp dụng xác suất toàn phần với phân hoạch $\{S_t=i\}$, rồi quy nạp theo $t$.
 
-**Bước 1 (một bước).** Các biến cố $\{S_t=i\}$ với $\mu_t(i)>0$ có tổng xác suất $1$. Gộp các biến cố $\{S_t=i\}$ còn lại, có xác suất $0$, vào một trong số chúng ta được một phân hoạch mà mọi khối có xác suất dương; phần gộp thêm có xác suất $0$ nên không đổi các số hạng. Với mỗi trạng thái $j$, Định lý 10.11 cho
+**Bước 1 (một bước).** Các biến cố $\{S_t=i\}$ với $\mu_t(i)>0$ có tổng xác suất $1$. Gộp các biến cố $\{S_t=i\}$ còn lại, có xác suất $0$, vào một trong số chúng, ta được một phân hoạch mà mọi khối có xác suất dương; phần gộp thêm có xác suất $0$ nên không đổi các số hạng. Với mỗi trạng thái $j$, Định lý 10.11 cho
 $$
 \begin{aligned}
 &\mathbb P(S_{t+1}=j)\\
