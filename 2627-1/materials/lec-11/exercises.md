@@ -81,7 +81,7 @@ vì $m^{-10}>1$. Vậy điểm cực đại phải có $m=1$, tức $\pi_2=1-m=0
 
 **(b)** Trên mặt $\pi_2=0$, cần cực tiểu $F(\pi_1,\pi_3)=-4\log\pi_1-6\log\pi_3$ với ràng buộc $\pi_1+\pi_3=1$. Hàm Lagrange (Định nghĩa 03.4) là $\mathcal L=-4\log\pi_1-6\log\pi_3+\nu(\pi_1+\pi_3-1)$. Điều kiện dừng cho $4/\pi_1=\nu$ và $6/\pi_3=\nu$; cộng $\pi_1=4/\nu$ và $\pi_3=6/\nu$ rồi dùng ràng buộc được $10/\nu=1$, tức $\nu=10$. Vậy $\hat\pi=(0{,}4;\ 0;\ 0{,}6)$.
 
-Hàm $F$ lồi, khả vi hai lần liên tục trên tập mở lồi $\{\pi_1>0,\pi_3>0\}$, vì $-\log$ lồi; ma trận ràng buộc $A=(1,1)$ có hàng khác $0$. Theo Mệnh đề 04.2(b), điểm thỏa hệ Lagrange là nghiệm của bài toán trên mặt. Kết hợp với phần (a), $\hat\pi$ là cực đại trên toàn $\Delta_2$, đúng Định lý 11.7.
+Hàm $F$ lồi, khả vi hai lần liên tục trên tập mở lồi $\{\pi_1>0,\pi_3>0\}$, vì $-\log$ lồi; ma trận ràng buộc $A=(1,1)$ có hàng khác $0$. Theo Mệnh đề 04.2(b), điểm thỏa hệ Lagrange là nghiệm của bài toán trên mặt. Với mọi $\pi\in\Delta_2$ có $L(\pi)>0$: nếu $m<1$ thì phần (a) cho $L(\pi)<L(\pi')$ với $\pi'$ thuộc mặt, và $L(\pi')\le L(\hat\pi)$; nếu $m=1$ thì $\pi$ thuộc mặt và $L(\pi)\le L(\hat\pi)$. Các điểm có $L(\pi)=0$ không thể tốt hơn. Vậy $\hat\pi$ là cực đại trên toàn $\Delta_2$, đúng Định lý 11.7.
 
 **(c)** Hai vector có cùng $\pi_3=0{,}6$, nên
 
@@ -105,7 +105,7 @@ $$
 ::: exercise Bài tập 11.3
 Cho Gaussian hai chiều có trung bình $\mu=(0,0)^\top$ và ma trận hiệp phương sai $\Sigma=\begin{pmatrix}5&4\\4&5\end{pmatrix}$.
 
-**(a)** Tìm trị riêng, vector riêng đơn vị và bán trục của ellipse $d_\Sigma^2(x,\mu)=1$.
+**(a)** Tìm trị riêng, vector riêng đơn vị và bán trục của elip $d_\Sigma^2(x,\mu)=1$.
 
 **(b)** So sánh bình phương khoảng cách Euclid và bình phương khoảng cách Mahalanobis tới $\mu$ của $a=(3,1)^\top$ và $b=(1,-1)^\top$.
 
@@ -121,7 +121,7 @@ Dùng (8.9): chiếu độ lệch lên từng vector riêng đơn vị, bình ph
 :::
 
 ::: solution Lời giải Bài tập 11.3
-**(a)** Ta có $\Sigma(1,1)^\top=(9,9)^\top$ và $\Sigma(1,-1)^\top=(1,-1)^\top$. Vậy $\lambda_+=9$ với $u_+=(1,1)^\top/\sqrt2$, và $\lambda_-=1$ với $u_-=(1,-1)^\top/\sqrt2$. Theo Mệnh đề 11.17(b), ellipse $d_\Sigma^2=1$ có bán trục $\sqrt9=3$ theo $u_+$ và $1$ theo $u_-$.
+**(a)** Ta có $\Sigma(1,1)^\top=(9,9)^\top$ và $\Sigma(1,-1)^\top=(1,-1)^\top$. Vậy $\lambda_+=9$ với $u_+=(1,1)^\top/\sqrt2$, và $\lambda_-=1$ với $u_-=(1,-1)^\top/\sqrt2$. Theo Mệnh đề 11.17(b), elip $d_\Sigma^2=1$ có bán trục $\sqrt9=3$ theo $u_+$ và $1$ theo $u_-$.
 
 **(b)** Với $a=(3,1)^\top$: $\lVert a\rVert^2=10$, $z_+=(3+1)/\sqrt2=2\sqrt2$ và $z_-=(3-1)/\sqrt2=\sqrt2$, nên theo (8.9)
 
@@ -224,7 +224,7 @@ Trên miền $(0,1)$, trường hợp $0<s<n$ không đổi vì nghiệm $s/n$ n
 
 **(d)** Nếu $X_1=\cdots=X_{12}=Z$ với $Z\sim\operatorname{Bernoulli}(p)$, thì $\mathbb P(X_1=1,\ldots,X_{12}=1)=\mathbb P(Z=1)=p$. Công thức $p^{12}$ là tích các xác suất biên, chỉ đúng khi $12$ cờ độc lập (Định nghĩa 11.1). Với $0<p<1$, ta có $p^{12}<p$, nên mô hình i.i.d. đánh giá quá thấp xác suất của mẫu toàn thành công. Dưới cơ chế chép, mẫu có $9$ thành công và $3$ thất bại của bài có xác suất $0$.
 
-**(e)** Câu thứ nhất so sánh xác suất của dữ liệu dưới các giá trị $p$; câu thứ hai nói về phân phối của $p$ sau khi quan sát, và cần một tiên nghiệm. Theo mở rộng ở Mục 5 của ghi chú, tiên nghiệm Beta$(a,b)$ cho hậu nghiệm Beta$(a+9,\ b+3)$, với mật độ tỉ lệ với $p^{a+8}(1-p)^{b+2}$. Với $a,b$ nguyên dương, các số mũ là số nguyên, và hàm này có dạng (5.1) với $s=a+8$, $n=a+b+10$; theo Định lý 11.4, điểm lớn nhất của nó là $(a+8)/(a+b+10)$.
+**(e)** Câu thứ nhất so sánh xác suất của dữ liệu dưới các giá trị $p$; câu thứ hai nói về phân phối của $p$ sau khi quan sát, và cần một tiên nghiệm. Theo mở rộng ở Mục 5 của ghi chú, tiên nghiệm Beta$(a_0,b_0)$ cho hậu nghiệm Beta$(a_0+9,\ b_0+3)$, với mật độ tỉ lệ với $p^{a_0+8}(1-p)^{b_0+2}$. Với $a_0,b_0$ nguyên dương, các số mũ là số nguyên, và hàm này có dạng (5.1) với $s=a_0+8$, $n=a_0+b_0+10$; theo Định lý 11.4, điểm lớn nhất của nó là $(a_0+8)/(a_0+b_0+10)$.
 
 - Tiên nghiệm đều Beta$(1,1)$: điểm lớn nhất của hậu nghiệm là $9/12=3/4$, trùng MLE.
 - Tiên nghiệm Beta$(2,2)$: điểm lớn nhất của hậu nghiệm là $10/14=5/7\approx0{,}714$, khác MLE $0{,}75$.
@@ -296,7 +296,7 @@ $$
 
 Hai giả thiết là: hai quan sát mới có phân phối $\operatorname{Cat}(\hat\pi)$, tức cùng chế độ phân phối với dữ liệu và với tham số thay bằng giá trị ước lượng; và hai quan sát mới độc lập với nhau.
 
-**(c)** Hàm hợp lý là $L(\pi)=\pi_1^3\pi_3^{17}$. Một điểm cực đại có $\pi_1,\pi_3>0$ và $m=\pi_1+\pi_3\in(0,1]$. Nếu $m<1$, điểm $\pi'=(\pi_1/m,\ 0,\ \pi_3/m)$ cho $L(\pi')=m^{-20}L(\pi)>L(\pi)$. Vậy điểm cực đại có $m=1$, tức $\pi_2=0$. Trên mặt $\pi_1+\pi_3=1$, điều kiện dừng $3/\pi_1=17/\pi_3=\nu$ cho $\nu=20$, và $\hat\pi=(0{,}15;\ 0;\ 0{,}85)$, đúng (6.2). Theo Mệnh đề 04.2(b), áp dụng cho hàm lồi $-3\log\pi_1-17\log\pi_3$ trên tập mở $\{\pi_1>0,\pi_3>0\}$, điểm dừng này là cực đại trên mặt.
+**(c)** Hàm hợp lý là $L(\pi)=\pi_1^3\pi_3^{17}$. Một điểm cực đại có $\pi_1,\pi_3>0$ và $m=\pi_1+\pi_3\in(0,1]$. Nếu $m<1$, điểm $\pi'=(\pi_1/m,\ 0,\ \pi_3/m)$ cho $L(\pi')=m^{-20}L(\pi)>L(\pi)$. Vậy điểm cực đại có $m=1$, tức $\pi_2=0$. Trên mặt $\pi_1+\pi_3=1$, điều kiện dừng $3/\pi_1=17/\pi_3=\nu$ cho $\nu=20$, và $\hat\pi=(0{,}15;\ 0;\ 0{,}85)$, đúng (6.2). Theo Mệnh đề 04.2(b), áp dụng cho hàm lồi $-3\log\pi_1-17\log\pi_3$ trên tập mở $\{\pi_1>0,\pi_3>0\}$, điểm dừng này là cực đại trên mặt. Với mọi $\pi\in\Delta_2$ có $L(\pi)>0$: nếu $m<1$ thì $L(\pi)<L(\pi')\le L(\hat\pi)$; nếu $m=1$ thì $L(\pi)\le L(\hat\pi)$. Vậy $\hat\pi$ là cực đại trên toàn $\Delta_2$.
 
 **(d)** Với $q_k=n_k/n$, (6.3) cho
 
@@ -388,7 +388,7 @@ Bốn phép đo hai chiều là $(5,2)^\top$, $(-3,-2)^\top$, $(0,2)^\top$, $(2,
 
 **(b)** Tính ma trận hiệp phương sai không chệch và giải thích vì sao nó có cùng vector riêng với $S_4$.
 
-**(c)** Tìm các trị riêng và vector riêng đơn vị của $S_4$. Viết phương trình ellipse $d_{S_4}^2(x,\hat\mu)=1$ trong hệ trục riêng, cho hướng và độ dài các bán trục.
+**(c)** Tìm các trị riêng và vector riêng đơn vị của $S_4$. Viết phương trình elip $d_{S_4}^2(x,\hat\mu)=1$ trong hệ trục riêng, cho hướng và độ dài các bán trục.
 
 **(d)** So sánh bình phương khoảng cách Euclid và bình phương khoảng cách Mahalanobis tới trung bình đã ước lượng của hai quan sát mới $a=(9,4)^\top$ và $b=(-2,6)^\top$. Giải thích kết quả bằng hướng phân tán.
 
@@ -438,7 +438,7 @@ $$
 \end{aligned}
 $$
 
-cho $\lambda_1=10$ và $\lambda_2=5/2$. Với $\lambda_1=10$: $(17/2-10)w_1+3w_2=0$ cho $w_2=w_1/2$, nên $u_1=(2,1)^\top/\sqrt5$. Với $\lambda_2=5/2$: $6w_1+3w_2=0$ cho $w_2=-2w_1$, nên $u_2=(-1,2)^\top/\sqrt5$. Trong tọa độ riêng $z=U^\top(x-\hat\mu)$, ellipse $d_{S_4}^2(x,\hat\mu)=1$ là
+cho $\lambda_1=10$ và $\lambda_2=5/2$. Với $\lambda_1=10$: $(17/2-10)w_1+3w_2=0$ cho $w_2=w_1/2$, nên $u_1=(2,1)^\top/\sqrt5$. Với $\lambda_2=5/2$: $6w_1+3w_2=0$ cho $w_2=-2w_1$, nên $u_2=(-1,2)^\top/\sqrt5$. Trong tọa độ riêng $z=U^\top(x-\hat\mu)$, elip $d_{S_4}^2(x,\hat\mu)=1$ là
 
 $$
 \frac{z_1^2}{10}+\frac{z_2^2}{5/2}=1,
@@ -458,7 +458,7 @@ S_2&=\frac12\Bigl[2\begin{pmatrix}16&8\\8&4\end{pmatrix}\Bigr]\\
 \end{aligned}
 $$
 
-Vector $w=(1,-2)^\top$ vuông góc với cả hai vector sai lệch, và $S_2w=(16-16,\ 8-8)^\top=0$, nên $S_2$ có hạng $1$. Theo Định lý 11.14, log-hợp lý không bị chặn trên và không có MLE với $\Sigma\succ0$. Kết luận này đúng với mọi cặp phép đo trong $\mathbb R^2$: hai vector sai lệch luôn đối nhau, nên chúng chỉ sinh ra một đường thẳng, đúng cận $\min(d,n-1)=1$ ở sau (8.4).
+Vector $w=(1,-2)^\top$ vuông góc với cả hai vector sai lệch, và $S_2w=(16-16,\ 8-8)^\top=0$, nên $S_2$ có hạng $1$. Theo Định lý 11.14, log-hợp lý không bị chặn trên và không có MLE với $\Sigma\succ0$. Kết luận này đúng với mọi cặp phép đo trong $\mathbb R^2$: hai vector sai lệch luôn đối nhau, nên chúng sinh ra không quá một đường thẳng, đúng cận $\min(d,n-1)=1$ ở sau (8.4).
 
 Với $\Sigma=\operatorname{diag}(v_1,v_2)$, ta có $\det\Sigma=v_1v_2$ và $(x-\mu)^\top\Sigma^{-1}(x-\mu)=(x^{(1)}-\mu_1)^2/v_1+(x^{(2)}-\mu_2)^2/v_2$, nên mật độ là tích hai mật độ $\mathcal N(\mu_1,v_1)$ và $\mathcal N(\mu_2,v_2)$, và log-hợp lý là tổng hai log-hợp lý một chiều. Áp dụng Định lý 11.9 cho từng tọa độ: tọa độ thứ nhất $(5,-3)$ có trung bình $1$ và $Q=16+16=32>0$, nên $\hat v_1=16$; tọa độ thứ hai $(2,-2)$ có trung bình $0$ và $Q=4+4=8>0$, nên $\hat v_2=4$. Vậy MLE trong mô hình đường chéo tồn tại: $\hat\mu=(1,0)^\top$, $\hat\Sigma=\operatorname{diag}(16,4)$. Đây là thay đổi giả thiết vì nó thu hẹp miền tham số về các ma trận đường chéo, tức giả thiết hai số đo độc lập dưới mô hình Gaussian; dữ liệu cho thấy hai số đo cùng tăng, và mô hình đường chéo bỏ qua quan hệ đó.
 

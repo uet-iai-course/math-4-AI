@@ -194,3 +194,11 @@ Tác tử bổ sung: Người sửa (tái cấu trúc, bài tập, ánh xạ d�
 ### Bàn giao
 
 Kết luận điều phối viên: **chấp nhận**. Mọi phát hiện chặn bàn giao và nghiêm trọng đã được giải quyết và kiểm lại. Commit `b20e756` (`fix(materials): Bài 10–14 rà soát theo mẫu statistical-learning-theory và nguồn Murphy`) đã push lên `origin/main` và được xác nhận bằng `git fetch` và `git branch -r --contains HEAD`.
+
+### Kiểm định cuối độc lập trên commit 2caee87
+
+Người kiểm định cuối mới (general-purpose, Opus 5.5 (opus), high, chỉ đọc), kiểm bản đã commit theo tám mục: cấu trúc Q1, chứng minh trọng tâm Q4, khối hình thức, tính lại số bằng phân số, dẫn Murphy trong toàn văn, dẫn chéo, văn phong (no-ai-slop Detect), định nghĩa trước khi dùng. Kết quả: 140 phép kiểm số, 0 sai; 35 chỗ dẫn Murphy, 0 sai; Kingma–Welling 4/4; chứng minh trọng tâm đạt. 0 chặn, 0 nghiêm trọng, 3 trung bình (ký hiệu $d$ hai nghĩa; thiếu 'Trong học máy' sau Định lý 14.15; câu về $AA^\top=I_k$ bỏ qua phép quay trực giao), 6 nhẹ. Quyết định: chấp nhận mọi phát hiện trung bình và nhẹ → vòng sửa sau kiểm định.
+
+### Vòng sửa sau kiểm định cuối và tái kiểm
+
+Người sửa của bài xử lý mọi phát hiện trung bình và nhẹ của kiểm định cuối; chính người kiểm định đó tái kiểm diff so với HEAD `9edae80`/`2caee87`: không còn phát hiện từ mức trung bình trở lên sau vòng sửa nhỏ cuối. Điều phối viên tự kiểm các số mới (Bài 12: hạng thiếu $w_0+w_1=7/3$, tổng bình phương sai số $14/3$; Bài 11: hậu nghiệm Beta $2/3$; Bài 13: giao điểm $v=8/9$ trên hình) và chạy lại: forward_refs 0, khối `:::` cân bằng, không ký tự điều khiển, SVG hợp lệ, `git diff --check` sạch, đồng bộ `--check` đạt, Playwright 20 lượt (10 tệp × 2 khổ) không lỗi, không công thức tràn quá 40 px ở 390 px. Kết luận: **chấp nhận**.

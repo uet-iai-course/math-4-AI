@@ -1,6 +1,6 @@
 # Bài tập Bài 14 — Học biểu diễn và mô hình sinh dưới góc nhìn xác suất
 
-Các bài tập dưới đây đi kèm ghi chú Bài 14 và dẫn định nghĩa, mệnh đề, ví dụ cùng các công thức theo số hiệu của ghi chú. Ký hiệu theo §2 của ghi chú: $S$ là hiệp phương sai thực nghiệm (còn gọi là hiệp phương sai mẫu) với mẫu số $n$, tham số thứ hai của $\mathcal N(a,b)$ là phương sai, $\log$ là logarit tự nhiên, và trong ví dụ hai chiều $x=(x_1,x_2)^\top$. Hai chữ viết tắt theo ghi chú: phân tích thành phần chính (principal component analysis, PCA) và bộ tự mã hóa biến phân (variational autoencoder, VAE). Bài tập 14.1, 14.2 và 14.4 điều chỉnh từ bài trên lớp tuần 5 của học phần; Bài tập 14.6, 14.8, 14.9 và 14.10 điều chỉnh từ bộ bài tập tuần 5 của học phần.
+Các bài tập dưới đây đi kèm ghi chú Bài 14 và dẫn định nghĩa, mệnh đề, ví dụ cùng các công thức theo số hiệu của ghi chú. Ký hiệu theo §2 của ghi chú: $S$ là hiệp phương sai thực nghiệm (còn gọi là hiệp phương sai mẫu) với mẫu số $n$, tham số thứ hai của $\mathcal N(a,\beta)$ là phương sai, $\log$ là logarit tự nhiên, và trong ví dụ hai chiều $x=(x_1,x_2)^\top$. Hai chữ viết tắt theo ghi chú: phân tích thành phần chính (principal component analysis, PCA) và bộ tự mã hóa biến phân (variational autoencoder, VAE). Bài tập 14.1, 14.2 và 14.4 điều chỉnh từ bài trên lớp tuần 5 của học phần; Bài tập 14.6, 14.8, 14.9 và 14.10 điều chỉnh từ bộ bài tập tuần 5 của học phần.
 
 ## Bài tập trên lớp
 
@@ -182,7 +182,7 @@ Viết $u^\top Su=3\cos^2\alpha+\sin^2\alpha$ theo $\cos^2\alpha$ bằng $\sin^2
 
 **Lỗi tái tạo.** Theo (4.4), $\widehat J=4-(1+2\cos^2\alpha)=3-2\cos^2\alpha$.
 
-**Hướng tối ưu.** Phương sai lớn nhất và lỗi nhỏ nhất khi $\cos^2\alpha=1$, tức $\alpha=m\pi$ với $m$ nguyên, hay $u=\pm(1,0)^\top$. Khi đó phương sai bằng $3$ và lỗi bằng $1$.
+**Hướng tối ưu.** Phương sai lớn nhất và lỗi nhỏ nhất khi $\cos^2\alpha=1$, tức $\alpha=j\pi$ với $j$ nguyên, hay $u=\pm(1,0)^\top$. Khi đó phương sai bằng $3$ và lỗi bằng $1$.
 
 **Kiểm tra lại.** Hai đại lượng luôn cộng thành $4=\operatorname{tr}(S)$. Tại $\alpha=\pi/2$, $u=(0,1)^\top$ là vector riêng ứng với $\lambda_2$, nên phương sai bằng $\lambda_2=1$ và lỗi bằng $\operatorname{tr}(S)-\lambda_2=\lambda_1=3$.
 :::
@@ -243,7 +243,7 @@ $$
 \end{aligned}
 $$
 
-Lỗi nhỏ nhất khi $\sin2\alpha=1$, tức $\alpha=\pi/4+m\pi$ với $m$ nguyên, và giá trị nhỏ nhất là $1$. Hai giá trị $\alpha=\pi/4$ và $\alpha=5\pi/4$ cho $u$ và $-u$; vì $(-u)(-u)^\top=uu^\top$, tái tạo $uu^\top x$ không đổi, chỉ dấu của mã đổi.
+Lỗi nhỏ nhất khi $\sin2\alpha=1$, tức $\alpha=\pi/4+j\pi$ với $j$ nguyên, và giá trị nhỏ nhất là $1$. Hai giá trị $\alpha=\pi/4$ và $\alpha=5\pi/4$ cho $u$ và $-u$; vì $(-u)(-u)^\top=uu^\top$, tái tạo $uu^\top x$ không đổi, chỉ dấu của mã đổi.
 
 **Câu 4.** Các quan sát mới là $(2,6)^\top$, $(-2,-6)^\top$, $(1,-3)^\top$, $(-1,3)^\top$. Ma trận hiệp phương sai mới là
 
@@ -418,7 +418,7 @@ p_\theta(1)&=\frac1{2\pi}e^{-1/4}\sqrt\pi\\
 \end{aligned}
 $$
 
-tức $p_\theta(1)$ là mật độ $\mathcal N(0,2)$ tại $1$. Theo (6.3), hậu nghiệm tỉ lệ với $e^{-(z-1/2)^2}$, tức $r=p_\theta(\cdot\mid1)=\mathcal N(1/2,1/2)$. Bổ đề 14.17 với $a=1$, $b=1/4$, $c=1/2$, $d=1/2$ cho
+tức $p_\theta(1)$ là mật độ $\mathcal N(0,2)$ tại $1$. Theo (6.3), hậu nghiệm tỉ lệ với $e^{-(z-1/2)^2}$, tức $r=p_\theta(\cdot\mid1)=\mathcal N(1/2,1/2)$. Bổ đề 14.17 với $a=1$, $\beta=1/4$, $c=1/2$, $\gamma=1/2$ cho
 
 $$
 \begin{aligned}

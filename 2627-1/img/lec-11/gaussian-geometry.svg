@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 590" role="img" aria-labelledby="title desc">
 <title id="title">Hình học Gaussian với hiệp phương sai tương quan</title>
-<desc id="desc">Tâm (10,20), ma trận hiệp phương sai có hai trị riêng 4 và 1. Ellipse dài theo hướng (1,1). Điểm a (13,23) có khoảng cách Euclid bình phương 18 nhưng Mahalanobis bình phương 4,5; điểm b (12,18) có hai khoảng cách bình phương đều bằng 8. Ba đường đồng mức có khoảng cách Mahalanobis 1, 2 và 3.</desc>
+<desc id="desc">Tâm (10,20), ma trận hiệp phương sai có hai trị riêng 4 và 1. Elip dài theo hướng (1,1). Điểm a (13,23) có khoảng cách Euclid bình phương 18 nhưng Mahalanobis bình phương 4,5; điểm b (12,18) có hai khoảng cách bình phương đều bằng 8. Ba đường đồng mức có khoảng cách Mahalanobis 1, 2 và 3.</desc>
 <rect width="840" height="590" fill="#fff"/>
 <g font-family="Arial,sans-serif" fill="#172b4d">
 <text x="24" y="32" font-size="20" font-weight="bold">Gaussian: hướng phân tán và khoảng cách</text>

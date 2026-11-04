@@ -323,11 +323,11 @@ $$
 &\mathbb P(A=1\mid Y=1,S=a)=0{,}9,\\
 &\mathbb P(A=1\mid Y=1,S=b)=0{,}9,\\
 &\mathbb P(A=1\mid Y=0,S=b)=0,\\
-&\mathbb P(A=1\mid Y=0,S=a)=\alpha.
+&\mathbb P(A=1\mid Y=0,S=a)=\eta.
 \end{aligned}
 $$
 
-Tỉ lệ cảnh báo nhầm gộp là $\mathbb P(A=1\mid Y=0)=\alpha\,\mathbb P(S=a,Y=0)/\mathbb P(Y=0)=\alpha\cdot0{,}792/0{,}98$. Đặt nó bằng $0{,}05$ được $\alpha=0{,}049/0{,}792=49/792\approx0{,}0619$. Mô hình này khớp mọi số liệu đã cho, kể cả $\mathbb P(A=1)=0{,}9\cdot0{,}02+0{,}05\cdot0{,}98=0{,}067$, nhưng
+Tỉ lệ cảnh báo nhầm gộp là $\mathbb P(A=1\mid Y=0)=\eta\,\mathbb P(S=a,Y=0)/\mathbb P(Y=0)=\eta\cdot0{,}792/0{,}98$. Đặt nó bằng $0{,}05$ được $\eta=0{,}049/0{,}792=49/792\approx0{,}0619$. Mô hình này khớp mọi số liệu đã cho, kể cả $\mathbb P(A=1)=0{,}9\cdot0{,}02+0{,}05\cdot0{,}98=0{,}067$, nhưng
 
 $$
 \begin{aligned}

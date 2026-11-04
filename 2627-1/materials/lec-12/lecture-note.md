@@ -1,12 +1,12 @@
 # Bài 12 — Học máy, rủi ro thống kê và khả năng tổng quát hóa
 
-Bài 11 chọn tham số bằng cách cực đại hợp lý (maximum likelihood) trên mẫu; theo Mệnh đề 11.3, việc này tương đương cực tiểu tổng âm log-hợp lý của các quan sát. Bài 11 kết thúc với câu hỏi còn mở: một tham số khớp tốt trên tập huấn luyện thì dự đoán quan sát mới tốt đến đâu. Câu hỏi trung tâm của bài là: **tại sao một mô hình có thể khớp hoàn hảo dữ liệu huấn luyện nhưng dự đoán sai trên dữ liệu mới?**
+Ở Bài 11, chúng ta chọn tham số bằng cách cực đại hợp lý (maximum likelihood) trên mẫu; theo Mệnh đề 11.3, việc này tương đương cực tiểu tổng âm log-hợp lý của các quan sát. Câu hỏi còn mở ở cuối Bài 11 là: một tham số khớp tốt trên tập huấn luyện thì dự đoán quan sát mới tốt đến đâu. Câu hỏi trung tâm của bài là: **tại sao một mô hình có thể khớp hoàn hảo dữ liệu huấn luyện nhưng dự đoán sai trên dữ liệu mới?**
 
 Để trả lời, chúng ta xây dựng ba đối tượng, bao gồm:
 
 - mất mát huấn luyện suy ra từ mô hình xác suất của đầu ra (bình phương sai số cho hồi quy, entropy chéo cho phân loại);
-- hai loại rủi ro: *rủi ro kỳ vọng* (expected risk; còn gọi là rủi ro tổng thể, population risk) đo mất mát trung bình trên quan sát mới, *rủi ro thực nghiệm* đo mất mát trung bình trên tập huấn luyện;
-- các bảo đảm nối hai loại rủi ro: hội tụ đều cho lớp hữu hạn, học PAC và số chiều VC trên trục thực.
+- hai loại rủi ro: *rủi ro kỳ vọng* (expected risk; còn gọi là rủi ro tổng thể, population risk) đo mất mát trung bình trên quan sát mới, *rủi ro thực nghiệm* (empirical risk) đo mất mát trung bình trên tập huấn luyện;
+- các bảo đảm nối hai loại rủi ro: hội tụ đều cho lớp hữu hạn, học gần đúng với xác suất cao (PAC) và số chiều Vapnik–Chervonenkis (VC) trên trục thực.
 
 ## Câu hỏi mở đầu
 
@@ -23,7 +23,7 @@ Xét ba bộ phân loại:
 - $h_{0{,}3}(x)=\mathbf 1_{\{x\ge0{,}3\}}$, báo lỗi khi giá trị đo từ $0{,}3$ trở lên;
 - hàm ghi nhớ $g$, trả lại đúng nhãn đã quan sát tại bốn giá trị $x_1,\ldots,x_4$ và trả $0$ tại mọi giá trị khác,
 
-trong đó $\mathbf 1_{\{p\}}$ là hàm chỉ báo, bằng $1$ khi mệnh đề $p$ đúng và bằng $0$ khi $p$ sai.
+trong đó $\mathbf 1_{\{p\}}$ là hàm chỉ báo (indicator function), bằng $1$ khi mệnh đề $p$ đúng và bằng $0$ khi $p$ sai.
 
 **Câu hỏi.** Ba bộ phân loại này dự đoán tốt đến mức nào trên một sản phẩm mới?
 
@@ -45,10 +45,10 @@ Các mục tiêu thuộc CLO2 (xây dựng và phân tích mô hình học máy)
 ## Kiến thức tiên quyết
 
 - **Hợp lý cực đại (Bài 11).** Định nghĩa 11.2 cho hàm hợp lý (likelihood) $L(\theta;D)=\prod_{i=1}^np_\theta(x_i)$ của mẫu i.i.d. Mệnh đề 11.3: các tập nghiệm của cực đại $L$, cực đại $\log L$ và cực tiểu $-\frac1n\sum_i\log p_\theta(x_i)$ trùng nhau. Định lý 11.4: với dữ liệu Bernoulli, ước lượng hợp lý cực đại (maximum likelihood estimation, MLE) là $\hat p=\bar x$. Định lý 11.9: với dữ liệu Gaussian một chiều không hoàn toàn bằng nhau, $\hat\mu=\bar x$ và $\hat\sigma^2=\frac1n\sum_i(x_i-\bar x)^2$.
-- **Phương trình chuẩn (Mệnh đề 05.3).** Với $X\in\mathbb R^{n\times d}$, $y\in\mathbb R^n$, điểm $w$ cực tiểu hóa $\frac1{2n}\lVert Xw-y\rVert^2$ khi và chỉ khi $X^\top Xw=X^\top y$; phương trình này luôn có nghiệm, và nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$.
-- **Bất đẳng thức hợp (Hệ quả 10.7).** Với hai biến cố bất kỳ $E,F$, $\mathbb P(E\cup F)\le\mathbb P(E)+\mathbb P(F)$. Mệnh đề 05c.7 phát biểu dạng $q$ biến cố trên không gian xác suất rời rạc.
-- **Bất đẳng thức Hoeffding (Định lý 05c.47).** Nếu $Z_1,\ldots,Z_n$ độc lập và $m_i\le Z_i\le M_i$ trên mọi kết cục, thì với mọi $\varepsilon>0$,
-$$\begin{aligned}&\mathbb P\bigl(\lvert\bar Z_n-\mathbb E\bar Z_n\rvert\ge\varepsilon\bigr)\\&\quad\le2\exp\Bigl(-\frac{2n^2\varepsilon^2}V\Bigr),\\&V=\sum_{i=1}^n(M_i-m_i)^2 .\end{aligned}$$
+- **Phương trình chuẩn (normal equations; Mệnh đề 05.3).** Với $X\in\mathbb R^{n\times d}$, $y\in\mathbb R^n$, điểm $w$ cực tiểu hóa $\frac1{2n}\lVert Xw-y\rVert^2$ khi và chỉ khi $X^\top Xw=X^\top y$; phương trình này luôn có nghiệm, và nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$.
+- **Bất đẳng thức hợp (union bound; Hệ quả 10.7).** Với hai biến cố bất kỳ $E,F$, $\mathbb P(E\cup F)\le\mathbb P(E)+\mathbb P(F)$.
+- **Bất đẳng thức Hoeffding (Định lý 05c.47).** Nếu $Z_1,\ldots,Z_n$ độc lập và $l_i\le Z_i\le u_i$ trên mọi kết cục (Bài 05c viết $m_i$, $M_i$), thì với mọi $\varepsilon>0$,
+$$\begin{aligned}&\mathbb P\bigl(\lvert\bar Z_n-\mathbb E\bar Z_n\rvert\ge\varepsilon\bigr)\\&\quad\le2\exp\Bigl(-\frac{2n^2\varepsilon^2}V\Bigr),\\&V=\sum_{i=1}^n(u_i-l_i)^2 .\end{aligned}$$
 - **Rủi ro thực nghiệm tại một tham số cố định (Định lý 05c.52).** Viết bằng ký hiệu của bài: nếu hàm dự đoán $h$ được xác định trước khi lấy $n$ quan sát i.i.d. và mất mát nhận giá trị trong $[0,1]$, thì trung bình mẫu $\hat R_S(h)$ của mất mát lệch khỏi kỳ vọng $R(h)$ từ $\varepsilon$ trở lên với xác suất không quá $2e^{-2n\varepsilon^2}$ (Bài 05c viết $J(\theta)$, $R(\theta)$, $N$).
 
 **Câu hỏi ôn nhanh.**
@@ -58,7 +58,7 @@ $$\begin{aligned}&\mathbb P\bigl(\lvert\bar Z_n-\mathbb E\bar Z_n\rvert\ge\varep
 3. Dữ liệu Bernoulli là $1,1,0,1$. Tính ước lượng hợp lý cực đại của xác suất nhận giá trị $1$.
 
 ::: hint Đáp số câu hỏi ôn nhanh
-1. Theo Định lý 05c.47 với $m_i=0$, $M_i=1$, $V=200$: cận bằng $2\exp(-2\cdot200\cdot0{,}01)=2e^{-4}\approx0{,}0366$.
+1. Theo Định lý 05c.47 với $l_i=0$, $u_i=1$, $V=200$: cận bằng $2\exp(-2\cdot200\cdot0{,}01)=2e^{-4}\approx0{,}0366$.
 2. Áp Hệ quả 10.7 hai lần: cận bằng $0{,}03$, không cần giả thiết độc lập.
 3. Theo Định lý 11.4: $\hat p=3/4$.
 :::
@@ -78,7 +78,7 @@ Một bài toán học có giám sát gồm tám thành phần.
 
 Trong hồi quy và hồi quy logistic, khi chỉ cần chọn tham số trên dữ liệu đã thấy, ta có thể giữ các đầu vào $x_1,\ldots,x_n$ cố định và chỉ mô hình hóa phân phối của $Y$ khi biết $x$ (thiết kế cố định, fixed design). Khi đánh giá trên quan sát mới, các đầu vào lại là biến ngẫu nhiên theo $P$.
 
-Bảng dưới phân loại các đại lượng của bài theo nguồn ngẫu nhiên.
+Các đại lượng của bài chia theo nguồn ngẫu nhiên như sau.
 
 | Loại | Đại lượng |
 |---|---|
@@ -93,7 +93,7 @@ Bảng dưới phân loại các đại lượng của bài theo nguồn ngẫu 
 | $P$ | phân phối đích của cặp $(X,Y)$ | phân phối trên $\mathcal X\times\mathcal Y$ |
 | $S$, $n$ | tập huấn luyện, cỡ mẫu | $n$ cặp; số nguyên dương |
 | $\theta$; $w$ | tham số mô hình; hệ số | vector |
-| $m_\theta(x)$ | trung bình có điều kiện được mô hình hóa; với nhãn nhị phân, $m_\theta(x)=\mathbb P_\theta(Y=1\mid X=x)$ | số thực; $(0,1)$ với nhãn nhị phân |
+| $m_\theta(x)$ | trung bình có điều kiện được mô hình hóa; với nhãn nhị phân, $m_\theta(x)=\mathbb P_\theta(Y=1\mid X=x)$ | số thực; $[0,1]$ với nhãn nhị phân |
 | $\sigma^2$ | phương sai nhiễu Gaussian | số dương |
 | $A$, $y$ | ma trận thiết kế; vector đầu ra | $\mathbb R^{n\times p}$; $\mathbb R^n$ |
 | $\phi(x)$ | vector đặc trưng của đầu vào | $\mathbb R^p$ |
@@ -117,14 +117,13 @@ Trong bài, $\log$ là logarit tự nhiên.
 Các giả thiết thống kê dùng trong bài:
 
 - **(G1) Lấy mẫu.** Các cặp của $S$ i.i.d. theo $P$, và quan sát mới có cùng phân phối $P$, độc lập với $S$.
-- **(G2) Mất mát bị chặn.** $\ell(a,y)\in[0,1]$ với mọi $a,y$ (dùng từ Mục 7).
+- **(G2) Mất mát bị chặn.** $\ell(a,y)\in[0,1]$ với mọi $a,y$.
 - **(G3) Lớp chọn trước.** $\mathcal H$ được cố định trước khi xem $S$.
 
 Các giả thiết về mô hình và tối ưu:
 
-- **(E1) Nhiễu Gaussian.** Nhiễu có phân phối $\mathcal N(0,\sigma^2)$ với $\sigma^2$ đã biết (Mục 4).
-- **(E2) Không ràng buộc.** Bài toán tối ưu không có ràng buộc hoặc số hạng chính quy hóa theo tham số.
-- **(E3) Nghiệm gần đúng.** Bộ tối ưu trả về một hàm có rủi ro thực nghiệm cách cận dưới đúng không quá $\eta$.
+- **(E1) Nhiễu Gaussian.** Nhiễu có phân phối $\mathcal N(0,\sigma^2)$ với $\sigma^2$ đã biết.
+- **(E2) Nghiệm gần đúng.** Bộ tối ưu trả về một hàm có rủi ro thực nghiệm cách cận dưới đúng không quá $\eta$.
 
 ## 3. Ví dụ xuyên suốt
 
@@ -201,7 +200,7 @@ trong đó $m_\theta(x)$ là trung bình có điều kiện được mô hình h
 Mệnh đề sau dùng Định nghĩa 12.1 và phép lấy âm log của Mệnh đề 11.3. Murphy (2022), §4.2.7 và §11.2.2, trình bày cùng phép suy diễn với $\sigma^2$ cố định.
 
 ::: proposition Mệnh đề 12.2 (Hợp lý Gaussian dẫn tới mất mát bình phương) — chứng minh đầy đủ
-**Giả thiết.** Dữ liệu tuân theo mô hình (4.2); phương sai $\sigma^2>0$ đã biết và không phụ thuộc $\theta$.
+**Giả thiết.** Dữ liệu tuân theo mô hình (4.2), với (E1): phương sai $\sigma^2>0$ đã biết và không phụ thuộc $\theta$.
 
 **Kết luận.** Âm log-hợp lý có điều kiện bằng
 $$
@@ -241,12 +240,12 @@ $$
 $$
 tức (4.3).
 
-**Bước 4 (tập nghiệm).** Hàm $\log$ tăng chặt trên $(0,\infty)$ và $L(\theta)>0$, nên $L(\theta)\ge L(\theta')$ khi và chỉ khi $-\log L(\theta)\le-\log L(\theta')$; lập luận của Mệnh đề 11.3 không cần các quan sát cùng phân phối. Đặt $Q(\theta)=\sum_i(y_i-m_\theta(x_i))^2$. Theo (4.3), $-\log L(\theta)=a+b\,Q(\theta)$ với $a=\frac n2\log(2\pi\sigma^2)$ và $b=\frac1{2\sigma^2}>0$ không phụ thuộc $\theta$; ở đây ta dùng giả thiết $\sigma^2$ đã biết. Vì $b>0$, $a+bQ(\theta)\le a+bQ(\theta')$ khi và chỉ khi $Q(\theta)\le Q(\theta')$. $\square$
+**Bước 4 (tập nghiệm).** Hàm $\log$ tăng chặt trên $(0,\infty)$ và $L(\theta)>0$, nên $L(\theta)\ge L(\theta')$ khi và chỉ khi $-\log L(\theta)\le-\log L(\theta')$; lập luận của Mệnh đề 11.3 không cần các quan sát cùng phân phối. Đặt $Q(\theta)=\sum_i(y_i-m_\theta(x_i))^2$. Theo (4.3), $-\log L(\theta)=c_1+c_2\,Q(\theta)$ với $c_1=\frac n2\log(2\pi\sigma^2)$ và $c_2=\frac1{2\sigma^2}>0$ không phụ thuộc $\theta$; ở đây ta dùng giả thiết $\sigma^2$ đã biết. Vì $c_2>0$, $c_1+c_2Q(\theta)\le c_1+c_2Q(\theta')$ khi và chỉ khi $Q(\theta)\le Q(\theta')$. $\square$
 
-Như vậy, mất mát bình phương là hệ quả của giả thiết nhiễu Gaussian có phương sai chung, không phải một quy tắc tùy ý.
+Như vậy, mất mát bình phương là hệ quả của giả thiết nhiễu Gaussian có phương sai chung.
 :::
 
-Trong học máy, $m_\theta$ là bộ dự đoán đầu ra liên tục, và các hiệu $y_i-m_\theta(x_i)$ là *phần dư* (residual). Mệnh đề 12.2 cho phép đọc mục tiêu huấn luyện như một giả thiết về nhiễu. Nếu thay nhiễu Gaussian bằng nhiễu có mật độ tỉ lệ với $e^{-\lvert\xi\rvert/b}$ với $b$ cố định, cùng phép suy diễn cho tổng trị tuyệt đối $\sum_i\lvert y_i-m_\theta(x_i)\rvert$, như Ví dụ 11.6. Nghĩa là chọn mất mát bằng hợp lý thì cũng là chọn một mô hình nhiễu.
+Trong học máy, $m_\theta$ là bộ dự đoán đầu ra liên tục, và các hiệu $y_i-m_\theta(x_i)$ là *phần dư* (residual). Mệnh đề 12.2 cho phép đọc mục tiêu huấn luyện như một giả thiết về nhiễu. Nếu thay nhiễu Gaussian bằng nhiễu có mật độ tỉ lệ với $e^{-\lvert\xi\rvert/\beta}$ với $\beta>0$ cố định, cùng phép suy diễn cho tổng trị tuyệt đối $\sum_i\lvert y_i-m_\theta(x_i)\rvert$, như Ví dụ 11.6. Nghĩa là chọn mất mát bằng hợp lý thì cũng là chọn một mô hình nhiễu.
 
 ### 4.3. Nghiệm tuyến tính và vai trò của hạng
 
@@ -268,7 +267,7 @@ $$
 và (4.4) luôn có nghiệm.
 :::
 
-Hệ (4.4) được gọi là *phương trình chuẩn* (normal equations).
+Hệ (4.4) được gọi là *phương trình chuẩn*.
 
 Về mặt hình học, mọi vector khớp $Aw$ nằm trong không gian cột của $A$, và (4.4) nói rằng phần dư $y-A\hat w$ vuông góc với mọi cột của $A$. Khối nhắc lại trên trả lời câu hỏi tồn tại. Khi hạng cột thiếu, hệ số không duy nhất, và câu hỏi còn lại là các nghiệm khác nhau dự đoán giống nhau đến đâu.
 
@@ -372,7 +371,7 @@ cực tiểu khi $c=3$. Mọi cặp $(w_0,w_1)$ có $w_0+w_1=3$ là nghiệm, v�
 Các ví dụ trên giữ phương sai cố định và chung cho mọi quan sát. Nhận xét sau xét điều xảy ra khi bỏ từng giả thiết đó.
 
 ::: remark Nhận xét 12.4 (Phương sai chưa biết, phương sai thay đổi và mất mát bình phương không cần Gaussian)
-1. Nếu học thêm một phương sai chung và tổng bình phương phần dư tối ưu $\mathrm{SSE}>0$, phép tối ưu theo phương sai cho $\hat\sigma^2=\mathrm{SSE}/n$ (xem Murphy (2022), §11.2.3.6). Nếu có nghiệm khớp hoàn hảo ($\mathrm{SSE}=0$) và phương sai được phép tiến về $0$, hợp lý Gaussian không bị chặn trên; khi đó không có nghiệm hợp lý cực đại chung với phương sai dương.
+1. Nếu học thêm một phương sai chung và tổng bình phương phần dư (sum of squared errors, SSE) tối ưu $\mathrm{SSE}>0$, phép tối ưu theo phương sai cho $\hat\sigma^2=\mathrm{SSE}/n$ (xem Murphy (2022), §11.2.3.6). Nếu có nghiệm khớp hoàn hảo ($\mathrm{SSE}=0$) và phương sai được phép tiến về $0$, hợp lý Gaussian không bị chặn trên; khi đó không có nghiệm hợp lý cực đại chung với phương sai dương.
 2. Nếu phương sai đã biết nhưng thay đổi theo quan sát thành $\sigma_i^2$, âm log-hợp lý theo trung bình cho tổng bình phương có trọng số $\sum_i(y_i-m_\theta(x_i))^2/(2\sigma_i^2)$ (xem Murphy (2022), §11.2.2.4).
 3. Với nhãn có mô-men bậc hai hữu hạn, kỳ vọng có điều kiện $\mathbb E[Y\mid X=x]$ là dự đoán có kỳ vọng mất mát bình phương nhỏ nhất (xem Murphy (2022), §5.1.5.1). Do đó mất mát bình phương vẫn là tiêu chuẩn hợp lý để ước lượng trung bình có điều kiện khi nhiễu không Gaussian, nhưng khi đó nó không còn là âm log-hợp lý.
 :::
@@ -413,14 +412,18 @@ $$
 Một tọa độ của $\phi(x)$ có thể bằng $1$ để chứa hệ số tự do.
 :::
 
-Định nghĩa 12.5 tổng quát hóa mô hình Bernoulli của Định lý 11.4: ở đó mọi quan sát có chung một xác suất $p$, còn ở đây xác suất $m_w(x)$ thay đổi theo đầu vào nhưng được ràng buộc bởi một vector tham số chung. Ví dụ: với $\phi(x)=x$ và $w=\log3$, $m_w(1)=\frac1{1+1/3}=\frac34$ và $m_w(-1)=\frac1{1+3}=\frac14$. Với mọi $w$ hữu hạn, $0<m_w(x)<1$, nên cả hai nhãn có xác suất dương. Đẳng thức $\log\frac{m_w(x)}{1-m_w(x)}=w^\top\phi(x)$ cho thấy mô hình logistic giả thiết *log-tỉ số xác suất* (log-odds) tuyến tính theo đặc trưng, không giả thiết chính xác suất tuyến tính.
+Định nghĩa 12.5 tổng quát hóa mô hình Bernoulli của Định lý 11.4: ở đó mọi quan sát có chung một xác suất $p$, còn ở đây xác suất $m_w(x)$ thay đổi theo đầu vào nhưng được ràng buộc bởi một vector tham số chung. Ví dụ: với $\phi(x)=x$ và $w=\log3$, $m_w(1)=\frac1{1+1/3}=\frac34$ và $m_w(-1)=\frac1{1+3}=\frac14$.
+
+Với mọi $w$ hữu hạn, $0<m_w(x)<1$, nên cả hai nhãn có xác suất dương. Đẳng thức $\log\frac{m_w(x)}{1-m_w(x)}=w^\top\phi(x)$ cho thấy mô hình logistic giả thiết *log-tỉ số xác suất* (log-odds) tuyến tính theo đặc trưng, không giả thiết chính xác suất tuyến tính.
 
 ### 5.2. Entropy chéo từ hợp lý Bernoulli
 
-Từ Định nghĩa 12.1 và 12.5, phép lấy âm log cho kết quả sau. Murphy (2022), §4.2.3 và §10.2.3.1, viết cùng hàm mục tiêu và gọi nó là entropy chéo nhị phân.
+Từ Định nghĩa 12.1 và 12.5, phép lấy âm log cho kết quả sau. Murphy (2022), §4.2.3, viết âm log-hợp lý Bernoulli với một xác suất chung; §10.2.3.1 viết dạng có điều kiện và gọi nó là entropy chéo nhị phân.
 
 ::: proposition Mệnh đề 12.6 (Hợp lý Bernoulli dẫn tới entropy chéo) — chứng minh đầy đủ
-**Giả thiết.** Các nhãn $y_i\in\{0,1\}$ độc lập có điều kiện khi biết đầu vào, $Y_i$ có phân phối Bernoulli với xác suất $m_\theta(x_i)\in(0,1)$ cho mọi $\theta\in\Theta$.
+**Giả thiết.**
+- **Nhãn.** $y_i\in\{0,1\}$, độc lập có điều kiện khi biết đầu vào.
+- **Mô hình.** $Y_i$ có phân phối Bernoulli với xác suất $m_\theta(x_i)\in(0,1)$ cho mọi $\theta\in\Theta$.
 
 **Kết luận.** Âm log-hợp lý chia cho $n$ bằng
 $$
@@ -560,7 +563,9 @@ $$
 Với nhãn nhị phân và *mất mát $0$–$1$* $\ell(a,y)=\mathbf 1_{\{a\ne y\}}$, ta có $R(h)=\mathbb P(h(X)\ne Y)$.
 :::
 
-Trong (6.1), $h$ cố định và kỳ vọng lấy theo quan sát mới; $R(h)$ là một số. Trong (6.2), công thức viết cho một giá trị bất kỳ của $S$; khi $S$ ngẫu nhiên theo $P^n$, $\hat R_S(h)$ là một biến ngẫu nhiên. Vì $\mathcal H$ chứa ít hàm hơn tập mọi hàm đo được, $R_{\mathcal H}^*\ge R^*$. Ví dụ: trong Ví dụ 12.1, $R(h_0)=0$, nên $R^*=R_{\mathcal H_\uparrow}^*=0$, còn hai hàm hằng có rủi ro $\frac12$, nên $R_{\mathcal H_{\mathrm c}}^*=\frac12>R^*$.
+Trong (6.1), $h$ cố định và kỳ vọng lấy theo quan sát mới; $R(h)$ là một số. Trong (6.2), công thức viết cho một giá trị bất kỳ của $S$; khi $S$ ngẫu nhiên theo $P^n$, $\hat R_S(h)$ là một biến ngẫu nhiên.
+
+Vì $\mathcal H$ là tập con của tập mọi hàm dự đoán đo được, $R_{\mathcal H}^*\ge R^*$. Ví dụ: trong Ví dụ 12.1, $R(h_0)=0$, nên $R^*=R_{\mathcal H_\uparrow}^*=0$, còn hai hàm hằng có rủi ro $\frac12$, nên $R_{\mathcal H_{\mathrm c}}^*=\frac12>R^*$.
 
 Hai mục tiêu huấn luyện của Mục 4 và 5 là rủi ro thực nghiệm. Với $\ell(a,y)=(y-a)^2$, (4.3) bằng $\frac n2\log(2\pi\sigma^2)+\frac n{2\sigma^2}\hat R_S(m_\theta)$. Với $\ell(a,y)=-y\log a-(1-y)\log(1-a)$, $a\in(0,1)$, (5.1) chính là $\hat R_S(m_\theta)$. Như vậy, cực đại hợp lý là tối thiểu hóa một rủi ro thực nghiệm, và câu hỏi còn lại là rủi ro thực nghiệm nói gì về rủi ro kỳ vọng.
 
@@ -577,10 +582,13 @@ vì mỗi $(X_i,Y_i)$ có phân phối $P$. Khi $h=\hat h_S$ được chọn b�
 
 ### 6.2. Mở rộng: quy tắc Bayes cho mất mát $0$–$1$
 
-Khi phân phối đích đã biết, ta xác định được bộ phân loại đạt rủi ro Bayes. Kết quả sau là lý thuyết quyết định của Murphy (2022), §5.1.2.1: dưới mất mát $0$–$1$, chọn nhãn có xác suất hậu nghiệm lớn nhất. Quy tắc này cần biết $q$, nên chỉ dùng làm chuẩn so sánh cho sai số xấp xỉ ở Mục 7.
+Khi phân phối đích đã biết, ta xác định được bộ phân loại đạt rủi ro Bayes. Kết quả sau là lý thuyết quyết định của Murphy (2022), §5.1.2.1: dưới mất mát $0$–$1$, chọn nhãn có xác suất hậu nghiệm lớn nhất. Quy tắc này cần biết $q$, nên chỉ dùng làm chuẩn so sánh.
 
 ::: proposition Mệnh đề 12.9 (Quy tắc Bayes cho mất mát $0$–$1$) — chứng minh đầy đủ
-**Giả thiết.** $\mathcal Y=\{0,1\}$, mất mát $0$–$1$, và $q(x)=\mathbb P(Y=1\mid X=x)$ là một hàm đo được.
+**Giả thiết.**
+- **Nhãn.** $\mathcal Y=\{0,1\}$.
+- **Mất mát.** Mất mát $0$–$1$.
+- **Xác suất có điều kiện.** $q(x)=\mathbb P(Y=1\mid X=x)$ là một hàm đo được.
 
 **Kết luận.** Bộ phân loại
 $$
@@ -680,7 +688,7 @@ Trong Ví dụ 12.1, phân phối đích đã biết, nên ta tính được ch�
 **Giả thiết.**
 - **Phân phối đích.** $X\sim\operatorname{Uniform}[-1,1]$, $Y=\mathbf 1_{\{X\ge0\}}$.
 - **Lớp giả thuyết.** $\mathcal H_\uparrow=\{h_t:\ t\in\mathbb R\}$, $h_t(x)=\mathbf 1_{\{x\ge t\}}$; mất mát $0$–$1$.
-- **Mẫu.** $(x_1,y_1),\ldots,(x_n,y_n)$ với $y_i=\mathbf 1_{\{x_i\ge0\}}$, có ít nhất một $x_i<0$ và một $x_i\ge0$. Đặt $a=\max\{x_i:\ x_i<0\}$ và $b=\min\{x_i:\ x_i\ge0\}$.
+- **Mẫu.** $(x_1,y_1),\ldots,(x_n,y_n)$ với $y_i=\mathbf 1_{\{x_i\ge0\}}$, có ít nhất một $x_i<0$ và một $x_i\ge0$. Đặt $x_-=\max\{x_i:\ x_i<0\}$ và $x_+=\min\{x_i:\ x_i\ge0\}$.
 
 **Kết luận.**
 $$
@@ -692,7 +700,7 @@ t&\in\mathbb R,
 $$
 và tập nghiệm ERM là
 $$
-\bigl\{h_t:\ a<t\le b\bigr\},
+\bigl\{h_t:\ x_-<t\le x_+\bigr\},
 \tag{6.7}
 $$
 với rủi ro thực nghiệm cực tiểu bằng $0$.
@@ -708,11 +716,11 @@ với rủi ro thực nghiệm cực tiểu bằng $0$.
 
 Khi $t>1$, $h_t\equiv0$ trên $[-1,1]$ và sai trên $[0,1]$, nên $R(h_t)=\frac12$; khi $t<-1$, $h_t\equiv1$ trên $[-1,1]$ và sai trên $[-1,0)$, nên $R(h_t)=\frac12$. Gộp các trường hợp cho (6.6).
 
-**Bước 2 (điểm âm).** Mỗi $x_i<0$ có nhãn $0$ và được phân loại đúng khi và chỉ khi $x_i<t$. Mọi điểm âm đúng khi và chỉ khi $t>a$.
+**Bước 2 (điểm âm).** Mỗi $x_i<0$ có nhãn $0$ và được phân loại đúng khi và chỉ khi $x_i<t$. Mọi điểm âm đúng khi và chỉ khi $t>x_-$.
 
-**Bước 3 (điểm không âm).** Mỗi $x_i\ge0$ có nhãn $1$ và được phân loại đúng khi và chỉ khi $x_i\ge t$. Mọi điểm không âm đúng khi và chỉ khi $t\le b$.
+**Bước 3 (điểm không âm).** Mỗi $x_i\ge0$ có nhãn $1$ và được phân loại đúng khi và chỉ khi $x_i\ge t$. Mọi điểm không âm đúng khi và chỉ khi $t\le x_+$.
 
-**Bước 4 (tập nghiệm).** Vì $a<0\le b$, khoảng $(a,b]$ khác rỗng. Mỗi $t\in(a,b]$ cho $\hat R_S(h_t)=0$, là giá trị nhỏ nhất vì mất mát không âm. Mỗi $t\notin(a,b]$ sai ít nhất một nhãn, nên $\hat R_S(h_t)\ge\frac1n>0$. Do đó tập nghiệm ERM là (6.7). $\square$
+**Bước 4 (tập nghiệm).** Theo giả thiết về mẫu, mẫu có ít nhất một điểm âm và một điểm không âm, nên $x_-$ và $x_+$ xác định và $x_-<0\le x_+$; do đó khoảng $(x_-,x_+]$ khác rỗng. Mỗi $t\in(x_-,x_+]$ cho $\hat R_S(h_t)=0$, là giá trị nhỏ nhất vì mất mát không âm. Mỗi $t\notin(x_-,x_+]$ sai ít nhất một nhãn, nên $\hat R_S(h_t)\ge\frac1n>0$. Do đó tập nghiệm ERM là (6.7). $\square$
 
 Như vậy, ERM trên lớp ngưỡng chỉ xác định ngưỡng đến một khoảng, và các ngưỡng trong khoảng đó có rủi ro kỳ vọng khác nhau.
 :::
@@ -724,7 +732,7 @@ Như vậy, ERM trên lớp ngưỡng chỉ xác định ngưỡng đến một 
 - $(x_3,y_3)=(0{,}3;\,1)$
 - $(x_4,y_4)=(0{,}7;\,1)$
 
-**Tập nghiệm ERM.** Theo Mệnh đề 12.11 với $a=-0{,}2$ và $b=0{,}3$, tập nghiệm ERM gồm các $h_t$ với $-0{,}2<t\le0{,}3$.
+**Tập nghiệm ERM.** Theo Mệnh đề 12.11 với $x_-=-0{,}2$ và $x_+=0{,}3$, tập nghiệm ERM gồm các $h_t$ với $-0{,}2<t\le0{,}3$.
 
 **Hai loại rủi ro.** Rủi ro kỳ vọng theo (6.6); rủi ro thực nghiệm đếm số nhãn sai trong bốn quan sát.
 
@@ -762,7 +770,10 @@ Một cách trực quan, lớp càng chứa nhiều cách giải thích dữ li�
 Cận sau được viết lại từ Bài 05c với ký hiệu rủi ro của bài.
 
 ::: lemma Nhắc lại (Định lý 05c.52, viết theo ký hiệu rủi ro)
-**Giả thiết.** (G1) lấy mẫu i.i.d.; (G2) $\ell(a,y)\in[0,1]$ với mọi $a,y$; $h:\mathcal X\to\mathcal A$ là hàm đo được, xác định trước khi lấy mẫu.
+**Giả thiết.**
+- **Lấy mẫu.** (G1): mẫu i.i.d.
+- **Mất mát.** (G2): $\ell(a,y)\in[0,1]$ với mọi $a,y$.
+- **Hàm dự đoán.** $h:\mathcal X\to\mathcal A$ là hàm đo được, xác định trước khi lấy mẫu.
 
 **Bảo đảm.** Với mọi $\varepsilon>0$,
 $$
@@ -778,7 +789,7 @@ Bất đẳng thức (7.1) là Định lý 05c.52 với quan sát $\xi=(X,Y)$, t
 
 ::: proof Suy ra (7.1) từ Định lý 05c.47
 - **Các mất mát độc lập.** Đặt $Z_i=\ell(h(X_i),Y_i)$. Vì $h$ cố định, $Z_i$ là cùng một hàm đo được của cặp $(X_i,Y_i)$, nên các $Z_i$ độc lập, cùng phân phối, $\mathbb EZ_i=R(h)$ và $\bar Z_n=\hat R_S(h)$.
-- **Khoảng chặn trên mọi kết cục.** (G2) cho $0\le Z_i\le1$ trên mọi kết cục, đúng dạng giả thiết của Định lý 05c.47 với $[m_i,M_i]=[0,1]$.
+- **Khoảng chặn trên mọi kết cục.** (G2) cho $0\le Z_i\le1$ trên mọi kết cục, đúng dạng giả thiết của Định lý 05c.47 với $[l_i,u_i]=[0,1]$.
 - **Thay số.** $V=\sum_{i=1}^n(1-0)^2=n$, nên vế phải của Hoeffding hai phía bằng $2\exp(-2n^2\varepsilon^2/n)=2e^{-2n\varepsilon^2}$.
 
 Bài 05c chứng minh Định lý 05c.47 cho biến rời rạc. Với mất mát $0$–$1$, $Z_i\in\{0,1\}$ là biến rời rạc nên chứng minh đó áp dụng nguyên vẹn. Với mất mát bị chặn tổng quát, ta dùng phiên bản của bất đẳng thức Hoeffding cho biến bị chặn bất kỳ (Shalev-Shwartz và Ben-David, 2014, Bổ đề 4.5) mà không chứng minh lại, như Bài 05c đã làm với biến có mật độ. Vì $\{\lvert\hat R_S(h)-R(h)\rvert>\varepsilon\}\subseteq\{\lvert\hat R_S(h)-R(h)\rvert\ge\varepsilon\}$, (7.1) cũng chặn xác suất của biến cố với dấu $>$. $\square$
@@ -811,7 +822,7 @@ Trong (7.3), $P$ cố định trước, rồi xác suất lấy theo $S\sim P^n$
 
 **Lớp hai hàm hằng.** Hàm hằng $0$ sai khi $Y=1$, nên $R=\frac12$, và sai tại $x_3,x_4$, nên $\hat R_S=\frac24=\frac12$. Tương tự, hàm hằng $1$ có $R=\hat R_S=\frac12$. Do đó $\Delta_S=0$.
 
-**Lớp ngưỡng.** Giữa hai điểm mẫu liên tiếp, $\hat R_S(h_t)$ không đổi, còn $R(h_t)$ cho bởi (6.6) đơn điệu trên mỗi khoảng không chứa $0$ và có dạng chữ V trên khoảng chứa $0$. Do đó cận trên đúng của $\lvert R-\hat R_S\rvert$ trên mỗi khoảng đạt hoặc được tiến tới tại một đầu mút. Phụ lục A liệt kê các khoảng. Giá trị lớn nhất bằng $0{,}15$, đạt tại hai ngưỡng:
+**Lớp ngưỡng.** Giữa hai điểm mẫu liên tiếp, $\hat R_S(h_t)$ không đổi, còn $R(h_t)$ cho bởi (6.6) đơn điệu trên mỗi khoảng không chứa $0$ và có dạng chữ V trên khoảng chứa $0$. Do đó cận trên đúng của $\lvert R-\hat R_S\rvert$ trên mỗi khoảng đạt hoặc được tiến tới tại một đầu mút. Các khoảng được liệt kê ở Phụ lục A. Giá trị lớn nhất bằng $0{,}15$, đạt tại hai ngưỡng:
 $$
 \begin{aligned}
 t=0{,}3:&\quad\lvert R-\hat R_S\rvert=\lvert0{,}15-0\rvert\\
@@ -895,7 +906,7 @@ $$
 $$
 Với $\varepsilon=\varepsilon_n(M,\delta)$ theo (7.5), $2n\varepsilon^2=\log(2M/\delta)$, nên vế phải của (7.4) bằng $\delta$ và $\mathbb P_S(\Delta_S\le\varepsilon_n)=1-\mathbb P_S(\Delta_S>\varepsilon_n)\ge1-\delta$. Với $n\ge N_{\mathcal H}(\varepsilon,\delta)$, điều kiện tương đương ở dòng thứ hai cho $\mathbb P_S(\Delta_S>\varepsilon)\le\delta$, tức (7.3). $\square$
 
-Như vậy, chọn trong $M$ hàm định trước chỉ làm cận tăng theo $\log M$, nên một danh sách lớn các mô hình vẫn được kiểm soát với cỡ mẫu vừa phải.
+Như vậy, chọn trong $M$ hàm định trước chỉ làm cận tăng theo $\log M$.
 :::
 
 Trong học máy, Định lý 12.13 cho phép dùng tập huấn luyện để chọn trong một danh sách mô hình định trước, chẳng hạn một lưới hữu hạn các giá trị siêu tham số, mà vẫn kiểm soát độ lệch của mô hình được chọn. Theo Murphy (2022), §5.4.4.1, khoảng cách giữa rủi ro kỳ vọng và rủi ro thực nghiệm của hàm được chọn tăng theo kích thước lớp và giảm theo cỡ mẫu. Với $M=1$, (7.4) trở về (7.1) với dấu $>$; với $M>1$, phạm vi đồng thời rộng hơn nên cận lớn hơn một thừa số $M$. Ví dụ sau đọc Định lý 12.13 bằng số.
@@ -963,7 +974,7 @@ Bổ đề không cần $R_{\mathcal H}^*$ đạt được tại một hàm củ
 Kết hợp Bổ đề 12.14 với Định lý 12.13 cho bảo đảm xác suất cao cho ERM trên lớp hữu hạn.
 
 ::: corollary Hệ quả 12.15 (Rủi ro dư của ERM trên lớp hữu hạn) — chứng minh đầy đủ
-**Giả thiết.** Giả thiết của Định lý 12.13, và với mọi mẫu $S$, $\hat h_S$ là nghiệm ERM gần đúng mức $\eta\ge0$.
+**Giả thiết.** Giả thiết của Định lý 12.13, và (E2): với mọi mẫu $S$, $\hat h_S$ là nghiệm ERM gần đúng mức $\eta\ge0$.
 
 **Bảo đảm.** Với xác suất ít nhất $1-\delta$ theo $S\sim P^n$,
 $$
@@ -1154,9 +1165,9 @@ $$
 Lớp $\mathcal H$ *phá vỡ* (shatter) $C$ nếu $\mathcal H|_C=\{0,1\}^k$, tức biểu diễn được mọi cách gán $k$ nhãn. *Số chiều Vapnik–Chervonenkis* (Vapnik–Chervonenkis dimension, số chiều VC) $d_{\mathrm{VC}}(\mathcal H)$ là kích thước lớn nhất của một tập bị phá vỡ; nếu có tập bị phá vỡ với kích thước lớn tùy ý, đặt $d_{\mathrm{VC}}(\mathcal H)=+\infty$.
 :::
 
-Định nghĩa 12.18 đo độ phức tạp của lớp hàm trên tập điểm, không đo số chiều của đầu vào. Ví dụ: $\mathcal H_\uparrow$ phá vỡ mọi tập một điểm $\{x_0\}$, vì $t\le x_0$ cho nhãn $1$ và $t>x_0$ cho nhãn $0$. Phản ví dụ: theo Ví dụ 12.12, $\mathcal H_\uparrow$ không phá vỡ $\{-1,1\}$. Lớp $\mathcal H_{\mathrm{all}}$ của Ví dụ 12.1 phá vỡ mọi tập hữu hạn điểm phân biệt trong $[-1,1]$, vì mọi cách gán nhãn trên tập đó đều là thu hẹp của một hàm đo được, nên $d_{\mathrm{VC}}(\mathcal H_{\mathrm{all}})=+\infty$.
+Định nghĩa 12.18 đo độ phức tạp của lớp hàm bằng kích thước lớn nhất của một tập điểm mà lớp phá vỡ được. Ví dụ: $\mathcal H_\uparrow$ phá vỡ mọi tập một điểm $\{x_0\}$, vì $t\le x_0$ cho nhãn $1$ và $t>x_0$ cho nhãn $0$. Phản ví dụ: theo Ví dụ 12.12, $\mathcal H_\uparrow$ không phá vỡ $\{-1,1\}$. Lớp $\mathcal H_{\mathrm{all}}$ của Ví dụ 12.1 phá vỡ mọi tập hữu hạn điểm phân biệt trong $[-1,1]$, vì mọi cách gán nhãn trên tập đó đều là thu hẹp của một hàm đo được, nên $d_{\mathrm{VC}}(\mathcal H_{\mathrm{all}})=+\infty$.
 
-Để chứng minh $d_{\mathrm{VC}}(\mathcal H)=d$, cần hai việc: chỉ ra một tập $d$ điểm bị phá vỡ, và chứng minh không tập $d+1$ điểm nào bị phá vỡ. Định lý sau làm hai việc đó cho hai lớp (8.3), theo cách của Shalev-Shwartz và Ben-David (2014), §6.3.1–6.3.2.
+Để chứng minh $d_{\mathrm{VC}}(\mathcal H)=d$, cần hai việc: chỉ ra một tập $d$ điểm bị phá vỡ, và chứng minh không tập $d+1$ điểm nào bị phá vỡ. Định lý sau làm hai việc đó cho hai lớp (8.3), theo cách của Shalev-Shwartz và Ben-David (2014), §6.3.1 (lớp ngưỡng) và lập luận nhãn $101$ của §6.3.2 (lớp khoảng).
 
 ::: theorem Định lý 12.19 (Số chiều VC của hai lớp ngưỡng một chiều) — chứng minh đầy đủ
 **Giả thiết.** Miền đầu vào $\mathcal X=\mathbb R$; hai lớp $\mathcal H_\uparrow$ và $\mathcal H_{\mathrm{aff}}$ cho bởi (8.3).
@@ -1172,7 +1183,7 @@ $$
 :::
 
 ::: proof Chứng minh Định lý 12.19
-**Lộ trình.** Với mỗi lớp, chỉ ra một tập bị phá vỡ có kích thước cần thiết, rồi dùng thứ tự trên trục thực để chỉ ra một vector nhãn không biểu diễn được trên mọi tập lớn hơn một điểm.
+**Lộ trình.** Với mỗi lớp, chỉ ra một tập bị phá vỡ có kích thước cần thiết, rồi dùng thứ tự trên trục thực để chỉ ra một vector nhãn không biểu diễn được trên mọi tập có nhiều hơn $d$ điểm ($d=1$ cho $\mathcal H_\uparrow$, $d=2$ cho $\mathcal H_{\mathrm{aff}}$).
 
 **Bước 1 ($\mathcal H_\uparrow$ phá vỡ một điểm).** Với một điểm $x_0$, chọn $t\le x_0$ cho nhãn $1$ và $t>x_0$ cho nhãn $0$.
 
@@ -1220,7 +1231,7 @@ Chứng minh Định lý 12.20 nằm ngoài phạm vi học phần. Shalev-Shwar
 
 Kết hợp Định lý 12.20 với Bổ đề 12.14 cho một cận rủi ro dư của ERM trên $\mathcal H_\uparrow$ ($d=1$) và $\mathcal H_{\mathrm{aff}}$ ($d=2$), theo cùng cách Hệ quả 12.15 suy từ Định lý 12.13. Với $\mathcal H_{\mathrm{all}}$ của Ví dụ 12.1, $d_{\mathrm{VC}}=+\infty$, nên Định lý 12.20 không áp dụng; Shalev-Shwartz và Ben-David (2014), Định lý 6.7, cho thấy lớp có số chiều VC vô hạn không có tính hội tụ đều. Murphy (2022), §5.4.4.2, lưu ý rằng số chiều VC khó tính cho nhiều mô hình và các cận theo VC thường lỏng, nên cách tiếp cận này ít giá trị thực hành.
 
-Như vậy, Định nghĩa 12.17 tách tham số độ chính xác khỏi độ tin cậy, Định nghĩa 12.18 và Định lý 12.19 đo độ phức tạp của hai lớp vô hạn trên trục thực, và Định lý 12.20 nối số chiều VC hữu hạn với hội tụ đều. Tuy nhiên, mọi bảo đảm của Mục 7 và Mục 8 cần giả thiết (G1): quan sát mới có cùng phân phối với tập huấn luyện. Mục 9 xét hai tình huống áp dụng, trong đó tình huống thứ hai vi phạm giả thiết này.
+Như vậy, Định nghĩa 12.17 tách tham số độ chính xác khỏi độ tin cậy, Định nghĩa 12.18 và Định lý 12.19 đo độ phức tạp của hai lớp vô hạn trên trục thực, và Định lý 12.20 nối số chiều VC hữu hạn với hội tụ đều. Tuy nhiên, mọi bảo đảm của Mục 7 và Mục 8 cần giả thiết (G1): quan sát mới có cùng phân phối với tập huấn luyện. Trong Mục 9, chúng ta xét hai tình huống áp dụng: chọn lớp giả thuyết cho bộ phân loại cảm biến, và một tập huấn luyện chỉ quan sát một vùng của cảm biến, vi phạm giả thiết này.
 
 ## 9. Ý nghĩa, tác động và giới hạn
 
@@ -1267,7 +1278,7 @@ Tình huống sau chọn giữa hai lớp giả thuyết trên cùng bốn quan 
 
 ### 9.4. Tóm tắt
 
-Bài bắt đầu từ câu hỏi tại sao khớp hoàn hảo dữ liệu huấn luyện chưa bảo đảm dự đoán đúng trên dữ liệu mới. Mục 4 và 5 cho thấy mất mát huấn luyện là âm log-hợp lý của một mô hình xác suất: nhiễu Gaussian cho bình phương sai số, nhãn Bernoulli cho entropy chéo, và ngay cả bài toán lồi hai điểm có thể không có nghiệm hữu hạn. Mục 6 đặt rủi ro kỳ vọng bên cạnh rủi ro thực nghiệm và chỉ ra rằng hàm chọn bằng ERM có thể có hai rủi ro khác xa nhau. Mục 7 chứng minh hội tụ đều cho lớp hữu hạn, suy ra cận rủi ro dư cho ERM gần đúng, và tách rủi ro dư so với Bayes thành sai số xấp xỉ, sai số ước lượng và sai số tối ưu hóa. Mục 8 tách tham số độ chính xác khỏi độ tin cậy trong học PAC và đo độ phức tạp của lớp vô hạn trên trục thực bằng số chiều VC. Do đó tối ưu tốt chưa chắc học tốt: bộ tối ưu chỉ làm giảm sai số tối ưu hóa $\eta_S$, còn sai số xấp xỉ và sai số ước lượng phụ thuộc lớp giả thuyết và cỡ mẫu (Mệnh đề 12.16). Giới hạn còn lại là giả thiết quan sát mới cùng phân phối với tập huấn luyện.
+Chúng ta bắt đầu từ câu hỏi tại sao khớp hoàn hảo dữ liệu huấn luyện chưa bảo đảm dự đoán đúng trên dữ liệu mới. Mất mát huấn luyện là âm log-hợp lý của một mô hình xác suất (Mệnh đề 12.2, 12.6): nhiễu Gaussian cho bình phương sai số, nhãn Bernoulli cho entropy chéo, và ngay cả bài toán lồi hai điểm có thể không có nghiệm hữu hạn. Hàm chọn bằng ERM có thể có rủi ro kỳ vọng khác xa rủi ro thực nghiệm (Ví dụ 12.7, Mệnh đề 12.11). Hội tụ đều cho lớp hữu hạn (Định lý 12.13) cho cận rủi ro dư của ERM gần đúng (Hệ quả 12.15), và rủi ro dư so với Bayes tách thành sai số xấp xỉ, sai số ước lượng và sai số tối ưu hóa (Mệnh đề 12.16). Học PAC tách tham số độ chính xác khỏi độ tin cậy (Định nghĩa 12.17), và số chiều VC đo độ phức tạp của lớp vô hạn trên trục thực (Định lý 12.19). Do đó tối ưu tốt chưa chắc học tốt: bộ tối ưu chỉ làm giảm sai số tối ưu hóa $\eta_S$, còn sai số xấp xỉ và sai số ước lượng phụ thuộc lớp giả thuyết và cỡ mẫu (Mệnh đề 12.16). Giới hạn còn lại là giả thiết quan sát mới cùng phân phối với tập huấn luyện.
 
 | Nội dung | Kết quả cần tra lại |
 |---|---|
@@ -1277,11 +1288,11 @@ Bài bắt đầu từ câu hỏi tại sao khớp hoàn hảo dữ liệu huấ
 | Hội tụ đều và rủi ro dư | Định nghĩa 12.12; Định lý 12.13; Bổ đề 12.14; Hệ quả 12.15; Mệnh đề 12.16 |
 | PAC và số chiều VC | Định nghĩa 12.17, 12.18; Định lý 12.19; Định lý 12.20 (đọc thêm) |
 
-Các công thức cần nhớ là (4.3), (5.1), (6.1)–(6.2), (6.6), (7.4)–(7.5), (7.7)–(7.8) và hai số chiều VC trong (8.4). Ba câu hỏi ứng với ba số hạng của (7.8):
+Các công thức cần nhớ là (4.3), (5.1), (6.1)–(6.2), (6.6), (7.4)–(7.5), (7.7)–(7.8) và hai số chiều VC trong (8.4). Ba số hạng của (7.8) đo ba khả năng khác nhau:
 
-- Lớp giả thuyết có biểu diễn được lời giải tốt không? (sai số xấp xỉ)
-- Dữ liệu có đủ để chọn được lời giải tốt không? (sai số ước lượng)
-- Bộ tối ưu có đạt mục tiêu thực nghiệm đủ chính xác không? (sai số tối ưu hóa)
+- **Sai số xấp xỉ:** khả năng của lớp giả thuyết biểu diễn lời giải tốt;
+- **Sai số ước lượng:** khả năng của dữ liệu chọn được lời giải tốt trong lớp;
+- **Sai số tối ưu hóa:** độ chính xác của bộ tối ưu trên mục tiêu thực nghiệm.
 
 Hai giả thiết hay bị bỏ quên: các bảo đảm của Mục 7 cần mất mát bị chặn, nên không áp dụng trực tiếp cho mất mát bình phương hay entropy chéo không bị chặn; và mọi bảo đảm cần quan sát mới cùng phân phối với tập huấn luyện.
 
@@ -1302,7 +1313,7 @@ Hai giả thiết hay bị bỏ quên: các bảo đảm của Mục 7 cần m�
 6. **Bài tập 12.6** (Rủi ro chính xác của bộ phân loại ngưỡng dưới hai phân phối đầu vào): mục tiêu 3.
 7. **Bài tập 12.7** (Số chiều VC, giới hạn tổng quát hóa và lớp khoảng): mục tiêu 5, 6.
 8. **Bài tập 12.8** (Tham số độ chính xác và độ tin cậy trong một phát biểu PAC): mục tiêu 5.
-9. **Bài tập 12.9** (Hội tụ đều và nghiệm ERM gần đúng): mục tiêu 4, 6.
+9. **Bài tập 12.9** (Hội tụ đều và nghiệm ERM gần đúng): mục tiêu 4.
 
 ## 11. Câu hỏi cuối buổi và cầu nối
 
@@ -1320,7 +1331,7 @@ Hai giả thiết hay bị bỏ quên: các bảo đảm của Mục 7 cần m�
 
 Ba bộ phân loại $h_0$, $h_{0{,}3}$ và $g$ của câu hỏi mở đầu cùng có rủi ro thực nghiệm $0$ vì rủi ro thực nghiệm chỉ nhìn bốn điểm. Trên lớp ngưỡng, Ví dụ 12.9 cho độ lệch đều $0{,}15$, và mọi nghiệm ERM có rủi ro thực nghiệm $0$, nên rủi ro của chúng không quá $0+0{,}15=0{,}15$, và $h_{0{,}3}$ đạt đúng cận này. Trên lớp mọi hàm đo được, độ lệch đều bằng $1$, nên rủi ro thực nghiệm $0$ của $g$ không bảo đảm gì, và thực tế $R(g)=\frac12$. Một mô hình khớp hoàn hảo dữ liệu huấn luyện nhưng dự đoán sai trên dữ liệu mới khi lớp giả thuyết quá linh hoạt so với cỡ mẫu.
 
-Bài 12 giả thiết các quan sát i.i.d. theo một phân phối $P$ cố định, và Tình huống 12.2 cho thấy bảo đảm mất hiệu lực khi phân phối đổi. Trong ra quyết định tuần tự, hành động hiện tại làm đổi phân phối của trạng thái kế tiếp, nên dữ liệu không còn i.i.d. theo một $P$ cố định. Bài 13 mô hình hóa sự phụ thuộc đó bằng xác suất chuyển trạng thái và tìm chính sách tối ưu qua các phương trình Bellman.
+Trong bài này, các quan sát được giả thiết i.i.d. theo một phân phối $P$ cố định, và Tình huống 12.2 cho thấy bảo đảm mất hiệu lực khi phân phối đổi. Trong ra quyết định tuần tự, hành động hiện tại làm đổi phân phối của trạng thái kế tiếp, nên dữ liệu không còn i.i.d. theo một $P$ cố định. Bài 13 mô hình hóa sự phụ thuộc đó bằng xác suất chuyển trạng thái và tìm chính sách tối ưu qua các phương trình Bellman.
 
 ## 12. Tài liệu đọc
 

@@ -42,10 +42,10 @@ Các mục tiêu cụ thể hóa năng lực phân tích mô hình học máy th
 
 ## Kiến thức tiên quyết
 
-- **Đại số tuyến tính.** Tích vô hướng, cơ sở trực chuẩn, vết ma trận, phép chiếu trực giao và định lý phổ: ma trận đối xứng thực có một cơ sở trực chuẩn gồm các vector riêng. Mệnh đề 11.17 dùng định lý phổ để đọc các trục của đường đồng mức Gaussian.
+- **Đại số tuyến tính.** Tích vô hướng, cơ sở trực chuẩn, vết ma trận, phép chiếu trực giao và định lý phổ (spectral theorem): ma trận đối xứng thực có một cơ sở trực chuẩn gồm các vector riêng. Mệnh đề 11.17 dùng định lý phổ để đọc các trục của đường đồng mức Gaussian.
 - **Mạng nơ-ron.** Định nghĩa 06.6 (mạng hai tầng) và Mệnh đề 06.13: lan truyền ngược tính đúng gradient của mất mát theo mọi tham số của mạng.
 - **Gaussian và mômen.** Định nghĩa 10.20: mật độ $\mathcal N(\mu,\sigma^2)$ có tham số là kỳ vọng và phương sai; Gaussian nhiều chiều có mật độ cho bởi công thức (6.12) của Bài 10. Mệnh đề 10.24: $\operatorname{Var}(X)=\mathbb E[X^2]-(\mathbb E[X])^2$.
-- **Hiệp phương sai mẫu.** Định nghĩa 11.13: ma trận hiệp phương sai mẫu $S_n$ với mẫu số $n$ trong công thức (8.3) của Bài 11 luôn nửa xác định dương.
+- **Hiệp phương sai mẫu.** Định nghĩa 11.13 và đẳng thức (8.4) của Bài 11: ma trận hiệp phương sai mẫu $S_n$ với mẫu số $n$ trong công thức (8.3) của Bài 11 luôn nửa xác định dương.
 - **Lấy biên, Bayes và hợp lý cực đại.** Mệnh đề 10.32, Mệnh đề 10.33, Mệnh đề 11.3 và Mệnh đề 12.2 như đã nhắc ở đầu bài.
 
 **Câu hỏi ôn nhanh.**
@@ -97,8 +97,8 @@ Trong học máy, bài toán này là *học biểu diễn* (representation lear
 | $q_\phi(z\mid x)$ | hậu nghiệm xấp xỉ do bộ mã hóa cho | mật độ trên $\mathbb R^k$ |
 | $\tau^2$ | phương sai nhiễu quan sát | $\tau>0$ |
 | $\mu_\phi(x)$, $\sigma_\phi(x)$ | trung bình và độ lệch chuẩn của bộ mã hóa | $\mathbb R^k$; $(0,\infty)^k$ |
-| $\mathrm{KL}(q\,\|\,p)$ | phân kỳ Kullback–Leibler từ $q$ đến $p$ | $[0,\infty]$ |
-| $\mathcal L(\theta,\phi;x)$ | cận dưới bằng chứng (ELBO) tại $x$; trong bài, $\mathcal L$ chỉ mang nghĩa này | $\mathbb R$ khi các kỳ vọng hữu hạn |
+| $\mathrm{KL}(q\,\|\,p)$ | phân kỳ Kullback–Leibler (Kullback–Leibler divergence) từ $q$ đến $p$ | $[0,\infty]$ |
+| $\mathcal L(\theta,\phi;x)$ | cận dưới bằng chứng (evidence lower bound, ELBO) tại $x$; trong bài, $\mathcal L$ chỉ mang nghĩa này | $\mathbb R$ khi các kỳ vọng hữu hạn |
 | $\varepsilon$, $\odot$, $m$ | nhiễu chuẩn; tích theo từng tọa độ; số mẫu nhiễu | $\mathcal N(0,I_k)$; vector cùng chiều; số nguyên dương |
 | $\mathbb E_q$, $\log$ | kỳ vọng theo $q$; logarit tự nhiên | khi tích phân tồn tại; đơn vị nat |
 
@@ -372,7 +372,7 @@ Khi dùng dữ liệu đã tâm hóa, hai hàm được áp dụng cho $y=x-\bar
 
 PCA hạng $k$ là trường hợp $f(y)=U^\top y$ và $g(z)=Uz$ của Định nghĩa 14.7. Khi $f_\phi$ và $g_\theta$ là mạng nơ-ron như Định nghĩa 06.6, ảnh của bộ giải mã có thể là một tập cong, và gradient của (5.1) theo $(\theta,\phi)$ được tính bằng lan truyền ngược (Mệnh đề 06.13).
 
-Chiều $k<d$ tạo một nút thắt: nếu $k=d$, cặp $f(x)=x$, $g(z)=z$ cho lỗi $0$ mà không học được cấu trúc nào (Murphy (2022), §20.3). Nút thắt không ngăn việc ghi nhớ một mẫu hữu hạn: với các quan sát phân biệt, bộ mã hóa gán $x_i\mapsto i$ và bộ giải mã gán $i\mapsto x_i$ cho lỗi $0$ ngay cả khi $k=1$.
+Chiều $k<d$ tạo một *nút thắt* (bottleneck): nếu $k=d$, cặp $f(x)=x$, $g(z)=z$ cho lỗi $0$ mà không học được cấu trúc nào (Murphy (2022), §20.3). Nút thắt không ngăn việc ghi nhớ một mẫu hữu hạn: với các quan sát phân biệt, bộ mã hóa gán $x_i\mapsto i$ và bộ giải mã gán $i\mapsto x_i$ cho lỗi $0$ ngay cả khi $k=1$.
 
 Trường hợp tuyến tính cho phép tách hai đối tượng thường bị đồng nhất: ánh xạ tái tạo $g\circ f$ và hệ tọa độ của mã. Kết quả sau so sánh trường hợp này với PCA.
 
@@ -443,7 +443,9 @@ Như vậy bộ tự mã hóa tuyến tính tối ưu tái tạo đúng như PCA
 
 Khi các $y_i$ không sinh ra $\mathbb R^d$, đẳng thức $BA=V_kV_k^\top$ (Murphy (2022), §20.3.1) chỉ được bảo đảm trên không gian con do các $y_i$ sinh ra.
 
-Trong học máy, Mệnh đề 14.8 cho phép dùng lỗi PCA $\sum_{j>k}\lambda_j$ làm mốc so sánh cho mọi bộ tự mã hóa tuyến tính: thêm tham số tuyến tính không làm lỗi tối ưu nhỏ hơn. Mệnh đề nói về cực tiểu toàn cục; hạ gradient có thể dừng ở nghiệm khác, và các hàng của $A$ chỉ xác định đến phép biến đổi $R$. Muốn đọc từng tọa độ mã như một nhân tố riêng, cần thêm ràng buộc như $AA^\top=I_k$.
+Trong học máy, Mệnh đề 14.8 cho phép dùng lỗi PCA $\sum_{j>k}\lambda_j$ làm mốc so sánh cho mọi bộ tự mã hóa tuyến tính: thêm tham số tuyến tính không làm lỗi tối ưu nhỏ hơn. Mệnh đề nói về cực tiểu toàn cục: cặp $A=0$, $B=0$ có gradient của $\widehat J$ bằng $0$ nhưng không tối ưu khi $\lambda_1>0$, nên một điểm dừng của hạ gradient chưa chắc là nghiệm của Mệnh đề 14.8.
+
+Ràng buộc $AA^\top=I_k$ chỉ thu hẹp $R$ về các ma trận trực giao, nên mỗi tọa độ mã vẫn có thể là một tổ hợp quay của các thành phần chính. Với một nghiệm tối ưu của Mệnh đề 14.8 thỏa thêm $AA^\top=I_k$, và khi $\lambda_1>\cdots>\lambda_k$, hai điều kiện nữa sẽ chốt từng tọa độ: các tọa độ mã không tương quan trên mẫu và được xếp theo phương sai giảm dần. Khi đó ma trận hiệp phương sai của mã $R\operatorname{diag}(\lambda_1,\ldots,\lambda_k)R^\top$ là ma trận chéo với đường chéo giảm dần, nên $R$ là ma trận chéo với các phần tử $\pm1$, và mã trùng tọa độ PCA $V_k^\top y$ sai khác dấu từng tọa độ.
 
 ::: example Ví dụ 14.3 (Đổi độ lớn mã mà không đổi tái tạo)
 **Dữ kiện.** Bốn quan sát của Ví dụ 14.1, $k=1$, cặp PCA $A=(1\ \ 0)$, $B=(1\ \ 0)^\top$. Chọn $R=(2)$, nên $A'=RA=(2\ \ 0)$ và $B'=BR^{-1}=(1/2\ \ 0)^\top$.
@@ -609,7 +611,7 @@ $$
 \tag{7.1}
 $$
 
-với quy ước: nếu tập $\{z:q(z)>0,\ p(z)=0\}$ có xác suất dương theo $q$ thì $\mathrm{KL}(q\,\|\, p)=+\infty$. Ta nói $q$ *tuyệt đối liên tục* đối với $p$ nếu mọi tập có xác suất $0$ theo $p$ cũng có xác suất $0$ theo $q$.
+với quy ước: nếu tập $\{z:q(z)>0,\ p(z)=0\}$ có xác suất dương theo $q$ thì $\mathrm{KL}(q\,\|\, p)=+\infty$. Ta nói $q$ *tuyệt đối liên tục* (absolutely continuous) đối với $p$ nếu mọi tập có xác suất $0$ theo $p$ cũng có xác suất $0$ theo $q$.
 :::
 
 Định nghĩa 14.12 so sánh toàn bộ hai mật độ, không chỉ trung bình hay hiệp phương sai. Thứ tự hai đối số có vai trò: kỳ vọng được lấy theo $q$, và nói chung $\mathrm{KL}(q\,\|\, p)\ne \mathrm{KL}(p\,\|\, q)$. Vì không đối xứng, KL không phải một khoảng cách theo nghĩa metric.
@@ -623,38 +625,38 @@ Bài 11 đã dùng KL giữa hai phân phối trên $K$ nhóm để đọc lại
 :::
 
 ::: proof Chứng minh Bổ đề 14.13
-**Lộ trình.** Áp dụng bất đẳng thức $-\log t\ge1-t$ với $t=p/q$ trên miền hỗ trợ $A=\{q>0\}$ của $q$; đọc điều kiện dấu bằng từ một hàm không âm có tích phân $0$.
+**Lộ trình.** Áp dụng bất đẳng thức $-\log t\ge1-t$ với $t=p/q$ trên miền hỗ trợ $\mathcal S_q=\{q>0\}$ của $q$; đọc điều kiện dấu bằng từ một hàm không âm có tích phân $0$.
 
-**Bước 1 (bất đẳng thức logarit, như trong Kiến thức tiên quyết của Bài 11).** Hàm $\varphi(t)=t-1-\log t$ trên $(0,\infty)$ có $\varphi'(t)=1-1/t$, âm trên $(0,1)$ và dương trên $(1,\infty)$. Do đó $\varphi$ đạt giá trị nhỏ nhất $\varphi(1)=0$, nên $-\log t\ge1-t$ với mọi $t>0$, và dấu bằng xảy ra khi và chỉ khi $t=1$.
+**Bước 1 (bất đẳng thức logarit, như trong Kiến thức tiên quyết của Bài 11).** Hàm $\psi(t)=t-1-\log t$ trên $(0,\infty)$ có $\psi'(t)=1-1/t$, âm trên $(0,1)$ và dương trên $(1,\infty)$. Do đó $\psi$ đạt giá trị nhỏ nhất $\psi(1)=0$, nên $-\log t\ge1-t$ với mọi $t>0$, và dấu bằng xảy ra khi và chỉ khi $t=1$.
 
-**Bước 2 (trường hợp vô hạn).** Nếu tập $\{q>0,\ p=0\}$ có xác suất dương theo $q$, quy ước của Định nghĩa 14.12 cho $\mathrm{KL}=+\infty\ge0$; khi đó $q\ne p$ trên một tập có xác suất dương nên dấu bằng không xảy ra. Từ đây giả sử $p>0$ tại hầu mọi điểm của $A$, và đặt $t(z)=p(z)/q(z)\in(0,\infty)$ trên $A$.
+**Bước 2 (trường hợp vô hạn).** Nếu tập $\{q>0,\ p=0\}$ có xác suất dương theo $q$, quy ước của Định nghĩa 14.12 cho $\mathrm{KL}=+\infty\ge0$; khi đó $q\ne p$ trên một tập có xác suất dương nên dấu bằng không xảy ra. Từ đây giả sử $p>0$ tại hầu mọi điểm của $\mathcal S_q$, và đặt $t(z)=p(z)/q(z)\in(0,\infty)$ trên $\mathcal S_q$.
 
-**Bước 3 (tích phân xác định).** Trên $A$, Bước 1 cho
+**Bước 3 (tích phân xác định).** Trên $\mathcal S_q$, Bước 1 cho
 
 $$
 \begin{aligned}
 q\log\frac qp&=-q\log t\\
-&=q\,\varphi(t)+q(1-t)\\
-&=q\,\varphi(t)+q-p.
+&=q\,\psi(t)+q(1-t)\\
+&=q\,\psi(t)+q-p.
 \end{aligned}
 $$
 
-Vì $q\varphi(t)\ge0$ và $q\ge0$, hàm $q\log(q/p)$ không nhỏ hơn $-p$. Phần âm của hàm dưới dấu tích phân vì vậy bị chặn bởi $p$, một hàm khả tích, nên tích phân (7.1) xác định trong $(-\infty,+\infty]$.
+Vì $q\psi(t)\ge0$ và $q\ge0$, hàm $q\log(q/p)$ không nhỏ hơn $-p$. Phần âm của hàm dưới dấu tích phân vì vậy bị chặn bởi $p$, một hàm khả tích, nên tích phân (7.1) xác định trong $(-\infty,+\infty]$.
 
-**Bước 4 (không âm).** Lấy tích phân đẳng thức của Bước 3 trên $A$ và dùng $\int_Aq=1$:
+**Bước 4 (không âm).** Lấy tích phân đẳng thức của Bước 3 trên $\mathcal S_q$ và dùng $\int_{\mathcal S_q}q=1$:
 
 $$
 \begin{aligned}
 &\mathrm{KL}(q\,\|\,p)\\
-&\quad=\int_Aq\,\varphi(t)\,dz+\int_A(q-p)\,dz\\
-&\quad=\int_Aq\,\varphi(t)\,dz+\Big(1-\int_Ap\,dz\Big)\\
+&\quad=\int_{\mathcal S_q}q\,\psi(t)\,dz+\int_{\mathcal S_q}(q-p)\,dz\\
+&\quad=\int_{\mathcal S_q}q\,\psi(t)\,dz+\Big(1-\int_{\mathcal S_q}p\,dz\Big)\\
 &\quad\ge0.
 \end{aligned}
 $$
 
-Cả hai số hạng ở dòng thứ ba không âm: số hạng đầu vì $q\varphi(t)\ge0$, số hạng sau vì $\int_Ap\le\int p=1$.
+Cả hai số hạng ở dòng thứ ba không âm: số hạng đầu vì $q\psi(t)\ge0$, số hạng sau vì $\int_{\mathcal S_q}p\le\int p=1$.
 
-**Bước 5 (dấu bằng).** Nếu $\mathrm{KL}(q\,\|\, p)=0$, cả hai số hạng ở Bước 4 bằng $0$. Hàm không âm $q\varphi(t)$ có tích phân $0$ trên $A$ nên bằng $0$ hầu khắp nơi trên $A$; theo Bước 1, $t=1$, tức $p=q$ hầu khắp nơi trên $A$. Đẳng thức $\int_Ap=1$ cho $\int_{\{q=0\}}p=0$, nên $p=0=q$ hầu khắp nơi ngoài $A$. Ngược lại, nếu $p=q$ hầu khắp nơi thì $\log(q/p)=0$ hầu khắp nơi trên $A$ và $\mathrm{KL}=0$. $\square$
+**Bước 5 (dấu bằng).** Nếu $\mathrm{KL}(q\,\|\, p)=0$, cả hai số hạng ở Bước 4 bằng $0$. Hàm không âm $q\psi(t)$ có tích phân $0$ trên $\mathcal S_q$ nên bằng $0$ hầu khắp nơi trên $\mathcal S_q$; theo Bước 1, $t=1$, tức $p=q$ hầu khắp nơi trên $\mathcal S_q$. Đẳng thức $\int_{\mathcal S_q}p=1$ cho $\int_{\{q=0\}}p=0$, nên $p=0=q$ hầu khắp nơi ngoài $\mathcal S_q$. Ngược lại, nếu $p=q$ hầu khắp nơi thì $\log(q/p)=0$ hầu khắp nơi trên $\mathcal S_q$ và $\mathrm{KL}=0$. $\square$
 
 Như vậy KL là một mức phạt không âm, bằng $0$ đúng khi hai phân phối trùng nhau; đây là tính chất cần để biến một đẳng thức thành một cận.
 :::
@@ -750,6 +752,8 @@ Cho mô hình của Định nghĩa 14.10 với $\theta$ cố định, một quan
 
 Hai KL trong Định lý 14.15 đóng hai vai trò khác nhau. KL tới **tiên nghiệm** nằm trong mục tiêu (7.2) và tính được khi $q_\phi$ và $p(z)$ có dạng đơn giản. KL tới **hậu nghiệm** là khe hở của cận trong (7.3) và thường không tính được, vì hậu nghiệm chứa $p_\theta(x)$. Khi cả $\theta$ cũng thay đổi, khe hở phụ thuộc $\theta$, nên tăng $\mathcal L$ không bảo đảm $\log p_\theta(x)$ tăng.
 
+Trong học máy, $\log p_\theta(x)$ là mục tiêu của hợp lý cực đại (Mệnh đề 11.3) nhưng không tính được khi bộ giải mã là mạng nơ-ron, nên ELBO là đại lượng được tối ưu khi huấn luyện mô hình có biến ẩn. Khe hở (7.3) phụ thuộc họ hậu nghiệm xấp xỉ: với một họ hẹp như Gaussian có hiệp phương sai chéo, khe hở có thể lớn, nên một ELBO cao chỉ là cận dưới của log-hợp lý và không tự chứng minh mô hình khớp dữ liệu.
+
 Cận dưới cũng suy được từ bất đẳng thức Jensen cho hàm lõm $\log$: $\mathcal L\le\log\mathbb E_{q}[p_\theta(x,Z)/q(Z)]=\log\int_{\{q>0\}}p_\theta(x,z)\,dz\le\log p_\theta(x)$ (Murphy (2022), §20.3.5.1). Đường Jensen cho cận; đường Bayes ở trên cho thêm giá trị chính xác của khe hở.
 
 ### 7.3. KL giữa các phân phối Gaussian
@@ -757,14 +761,14 @@ Cận dưới cũng suy được từ bất đẳng thức Jensen cho hàm lõm 
 Để dùng (7.2), chúng ta cần tính KL tới tiên nghiệm. Với tiên nghiệm chuẩn và hậu nghiệm xấp xỉ Gaussian, KL có công thức đóng; bộ giải mã vẫn có thể là mạng phi tuyến. Bổ đề sau tính KL giữa hai Gaussian một chiều tùy ý; trường hợp tổng quát này cũng dùng để kiểm tra khe hở của cận trong các ví dụ.
 
 ::: lemma Bổ đề 14.17 (KL giữa hai Gaussian một chiều) — chứng minh đầy đủ
-**Giả thiết.** $q=\mathcal N(a,b)$ và $p=\mathcal N(c,d)$ với $a,c\in\mathbb R$ và các phương sai $b,d>0$.
+**Giả thiết.** $q=\mathcal N(a,\beta)$ và $p=\mathcal N(c,\gamma)$ với $a,c\in\mathbb R$ và các phương sai $\beta,\gamma>0$.
 
 **Kết luận.**
 
 $$
 \begin{aligned}
 &\mathrm{KL}(q\,\|\,p)\\
-&\quad=\frac12\Big[\log\frac db+\frac{b+(a-c)^2}{d}\\
+&\quad=\frac12\Big[\log\frac\gamma\beta+\frac{\beta+(a-c)^2}{\gamma}\\
 &\qquad-1\Big].
 \end{aligned}
 \tag{7.4}
@@ -778,19 +782,19 @@ $$
 
 $$
 \begin{aligned}
-\log\frac{q(z)}{p(z)}&=\frac12\log\frac db-\frac{(z-a)^2}{2b}\\
-&\quad+\frac{(z-c)^2}{2d}.
+\log\frac{q(z)}{p(z)}&=\frac12\log\frac\gamma\beta-\frac{(z-a)^2}{2\beta}\\
+&\quad+\frac{(z-c)^2}{2\gamma}.
 \end{aligned}
 $$
 
-**Bước 2 (hai mômen).** Dưới $q$, $\mathbb E_q[Z]=a$ và $\mathbb E_q[(Z-a)^2]=b$. Khai triển $Z-c=(Z-a)+(a-c)$:
+**Bước 2 (hai mômen).** Dưới $q$, $\mathbb E_q[Z]=a$ và $\mathbb E_q[(Z-a)^2]=\beta$. Khai triển $Z-c=(Z-a)+(a-c)$:
 
 $$
 \begin{aligned}
 &\mathbb E_q[(Z-c)^2]\\
-&\quad=b+2(a-c)\,\mathbb E_q[Z-a]\\
+&\quad=\beta+2(a-c)\,\mathbb E_q[Z-a]\\
 &\qquad+(a-c)^2\\
-&\quad=b+(a-c)^2.
+&\quad=\beta+(a-c)^2.
 \end{aligned}
 $$
 
@@ -798,9 +802,9 @@ $$
 
 $$
 \begin{aligned}
-\mathbb E_q\Big[\frac12\log\frac db\Big]&=\frac12\log\frac db,\\
-\mathbb E_q\Big[-\frac{(Z-a)^2}{2b}\Big]&=-\frac12,\\
-\mathbb E_q\Big[\frac{(Z-c)^2}{2d}\Big]&=\frac{b+(a-c)^2}{2d}.
+\mathbb E_q\Big[\frac12\log\frac\gamma\beta\Big]&=\frac12\log\frac\gamma\beta,\\
+\mathbb E_q\Big[-\frac{(Z-a)^2}{2\beta}\Big]&=-\frac12,\\
+\mathbb E_q\Big[\frac{(Z-c)^2}{2\gamma}\Big]&=\frac{\beta+(a-c)^2}{2\gamma}.
 \end{aligned}
 $$
 
@@ -809,7 +813,7 @@ Cộng ba dòng theo tính tuyến tính của kỳ vọng cho (7.4). $\square$
 Như vậy KL giữa hai Gaussian chỉ phụ thuộc hai trung bình và hai phương sai, nên tính được chính xác mà không cần lấy mẫu.
 :::
 
-Với $a=c$ và $b=d$, (7.4) bằng $0$, đúng như Bổ đề 14.13. Công thức cũng cho thấy KL không đối xứng. Với $q=\mathcal N(0,1)$ và $p=\mathcal N(0,2)$, ta có $\mathrm{KL}(q\,\|\, p)=\tfrac12(\log2+\tfrac12-1)=\tfrac12\log2-\tfrac14\approx0{,}0966$, còn $\mathrm{KL}(p\,\|\, q)=\tfrac12(\log\tfrac12+2-1)=\tfrac12(1-\log2)\approx0{,}1534$.
+Với $a=c$ và $\beta=\gamma$, (7.4) bằng $0$, đúng như Bổ đề 14.13. Công thức cũng cho thấy KL không đối xứng. Với $q=\mathcal N(0,1)$ và $p=\mathcal N(0,2)$, ta có $\mathrm{KL}(q\,\|\, p)=\tfrac12(\log2+\tfrac12-1)=\tfrac12\log2-\tfrac14\approx0{,}0966$, còn $\mathrm{KL}(p\,\|\, q)=\tfrac12(\log\tfrac12+2-1)=\tfrac12(1-\log2)\approx0{,}1534$.
 
 ::: proposition Mệnh đề 14.18 (KL từ Gaussian chéo tới Gaussian chuẩn) — chứng minh đầy đủ
 **Giả thiết.** $q=\mathcal N\big(\mu,\operatorname{diag}(s_1^2,\ldots,s_k^2)\big)$ với $\mu\in\mathbb R^k$ và mọi độ lệch chuẩn $s_j>0$; $p=\mathcal N(0,I_k)$.
@@ -842,9 +846,9 @@ $$
 
 **Bước 2 (phân phối biên của từng tọa độ).** Lấy tích phân $q(z)$ theo mọi tọa độ trừ $z_j$; mỗi thừa số còn lại có tích phân $1$, nên theo công thức mật độ biên (8.4) của Mệnh đề 10.32 trong Bài 10, $Z_j$ có phân phối biên $\mathcal N(\mu_j,s_j^2)$ dưới $q$.
 
-**Bước 3 (cộng các tọa độ).** Logarit của tỉ số là $\sum_j\log\big[\mathcal N(z_j;\mu_j,s_j^2)/\mathcal N(z_j;0,1)\big]$. Số hạng thứ $j$ chỉ phụ thuộc $z_j$, nên kỳ vọng của nó theo $q$ bằng kỳ vọng theo phân phối biên của $Z_j$. Bổ đề 14.17 với $a=\mu_j$, $b=s_j^2$, $c=0$, $d=1$ cho số hạng $\tfrac12(-\log s_j^2+s_j^2+\mu_j^2-1)$. Tính tuyến tính của kỳ vọng cho (7.5).
+**Bước 3 (cộng các tọa độ).** Logarit của tỉ số là $\sum_j\log\big[\mathcal N(z_j;\mu_j,s_j^2)/\mathcal N(z_j;0,1)\big]$. Số hạng thứ $j$ chỉ phụ thuộc $z_j$, nên kỳ vọng của nó theo $q$ bằng kỳ vọng theo phân phối biên của $Z_j$. Bổ đề 14.17 với $a=\mu_j$, $\beta=s_j^2$, $c=0$, $\gamma=1$ cho số hạng $\tfrac12(-\log s_j^2+s_j^2+\mu_j^2-1)$. Tính tuyến tính của kỳ vọng cho (7.5).
 
-**Bước 4 (dấu của từng số hạng).** Số hạng thứ $j$ bằng $\mu_j^2+\varphi(s_j^2)$ với $\varphi(t)=t-1-\log t$ của Bổ đề 14.13. Cả hai phần không âm, và tổng bằng $0$ khi và chỉ khi $\mu_j=0$ và $s_j^2=1$. $\square$
+**Bước 4 (dấu của từng số hạng).** Số hạng thứ $j$ bằng $\mu_j^2+\psi(s_j^2)$ với $\psi(t)=t-1-\log t$ của Bổ đề 14.13. Cả hai phần không âm, và tổng bằng $0$ khi và chỉ khi $\mu_j=0$ và $s_j^2=1$. $\square$
 
 Như vậy với tiên nghiệm chuẩn và hậu nghiệm xấp xỉ Gaussian chéo, số hạng KL của (7.2) có công thức đóng theo $\mu$ và $s$.
 :::
@@ -944,7 +948,7 @@ $$
 \end{aligned}
 $$
 
-**Kiểm tra lại.** Bổ đề 14.17 với $a=1$, $b=1/8$, $c=1$, $d=1/2$:
+**Kiểm tra lại.** Bổ đề 14.17 với $a=1$, $\beta=1/8$, $c=1$, $\gamma=1/2$:
 
 $$
 \begin{aligned}
@@ -1061,7 +1065,7 @@ $$
 \end{aligned}
 $$
 
-**Bước 4 (đổi đạo hàm và kỳ vọng).** Bước 3 với $h=h_\theta$ cho $\mathbb E_{q_\phi}[h_\theta(Z)]=\mathbb E_\varepsilon[F(\vartheta,\varepsilon)]$, trong đó phân phối của $\varepsilon$ không phụ thuộc $\vartheta$. Với mỗi tọa độ $\vartheta_r$, ba giả thiết khả vi, chặn khả tích và khả tích cho $\partial_r\mathbb E_\varepsilon[F]=\mathbb E_\varepsilon[\partial_rF]$; chi tiết bằng định lý giá trị trung bình và định lý hội tụ trội nằm ở Phụ lục B. Theo quy tắc dây chuyền, phần theo $\phi$ của gradient là
+**Bước 4 (đổi đạo hàm và kỳ vọng).** Bước 3 với $h=h_\theta$ cho $\mathbb E_{q_\phi}[h_\theta(Z)]=\mathbb E_\varepsilon[F(\vartheta,\varepsilon)]$, trong đó phân phối của $\varepsilon$ không phụ thuộc $\vartheta$. Với mỗi tọa độ $\vartheta_r$, ba giả thiết khả vi, chặn khả tích và khả tích cho $\partial_r\mathbb E_\varepsilon[F]=\mathbb E_\varepsilon[\partial_rF]$; chi tiết bằng định lý giá trị trung bình và định lý hội tụ trội (dominated convergence theorem) nằm ở Phụ lục B. Theo quy tắc dây chuyền, phần theo $\phi$ của gradient là
 
 $$
 \nabla_\phi h_\theta(Z_\phi)=(\nabla_\phi Z_\phi)^\top\nabla_zh_\theta(Z_\phi),
@@ -1149,7 +1153,7 @@ Như vậy Định nghĩa 14.19 ghép mô hình sinh, bộ mã hóa dùng chung 
 
 ## 9. Ý nghĩa, tác động và giới hạn
 
-Tình huống 14.1 áp dụng các kết quả của Mục 4–8 cho bốn quan sát của Ví dụ 14.1; Tình huống 14.2 xét dữ liệu hai cụm mà một Gaussian đơn không mô tả được.
+Một cảm biến hai chiều cần được nén về một tọa độ và được mô phỏng bằng một mô hình sinh; khi đầu ra của cảm biến tạo thành hai cụm, mô hình Gaussian đơn không còn phù hợp.
 
 ::: application Tình huống 14.1 (Nén và sinh quan sát cảm biến)
 **Bài toán và dữ kiện.** Bốn quan sát cảm biến đã tâm hóa là $(2,0)^\top$, $(-2,0)^\top$, $(0,1)^\top$, $(0,-1)^\top$. Mục tiêu thứ nhất là lưu một tọa độ cho mỗi quan sát; mục tiêu thứ hai là xây dựng một mô hình liên tục để tạo quan sát mô phỏng có cùng hiệp phương sai mẫu.
@@ -1242,7 +1246,7 @@ Bài 10–14 trả lời năm câu hỏi về vai trò của toán học trong A
 - **Bài 11. Tại sao học máy là bài toán tối ưu?** Mệnh đề 11.3 biến hợp lý cực đại thành cực tiểu một mất mát thực nghiệm.
 - **Bài 12. Tại sao tối ưu tốt chưa chắc học tốt?** Rủi ro thực nghiệm nhỏ không đồng nghĩa rủi ro kỳ vọng nhỏ; Định lý 12.13 và Hệ quả 12.15 cho điều kiện để hai đại lượng gần nhau.
 - **Bài 13. Tại sao AI cần quy hoạch động?** Hành động có hậu quả dài hạn; Định lý 13.19 phân rã bài toán quyết định tuần tự bằng phương trình Bellman.
-- **Bài 14. Tại sao AI cần biến ẩn và suy luận biến phân?** Cấu trúc tiềm ẩn giúp mô hình hóa dữ liệu phức tạp, còn Định lý 14.15 thay tích phân khó tính bằng một cận dưới tối ưu được.
+- **Bài 14. Tại sao AI cần biến ẩn và suy luận biến phân?** Biến ẩn $Z$ cho cơ chế sinh $z\sim p(z)$, $x\sim p_\theta(x\mid z)$, còn Định lý 14.15 thay tích phân khó tính bằng một cận dưới tối ưu được.
 
 Khi quan sát không bộc lộ đầy đủ trạng thái của một bài toán quyết định tuần tự như ở Bài 13, cần suy luận về một biến không quan sát được. Mô hình có biến ẩn (6.1), hậu nghiệm (6.3) và suy luận biến phân là các công cụ cho nhu cầu đó.
 
@@ -1290,6 +1294,8 @@ Bất đẳng thức thứ nhất dùng $\lambda_j\le\lambda_k$ và $b_j\ge0$ kh
 
 **Bước 4 (tính duy nhất).** Giả sử $k<d$, $\lambda_k>\lambda_{k+1}$ và $U$ là nghiệm. Bất đẳng thức thứ nhất ở Bước 2 là đẳng thức, tức $\sum_{j>k}(\lambda_k-\lambda_j)b_j=0$. Mỗi số hạng không âm và $\lambda_k-\lambda_j\ge\lambda_k-\lambda_{k+1}>0$ khi $j>k$, nên $b_j=0$, tức $U^\top v_j=0$ với mọi $j>k$. Mọi cột của $U$ vì vậy vuông góc với $v_{k+1},\ldots,v_d$, nên thuộc $\operatorname{span}(v_1,\ldots,v_k)$; do đó $U=V_kV_k^\top U=V_kQ$ với $Q=V_k^\top U$. Ta có $Q^\top Q=U^\top V_kV_k^\top U=U^\top U=I_k$, nên $Q$ vuông trực giao, $QQ^\top=I_k$ và $UU^\top=V_kQQ^\top V_k^\top=V_kV_k^\top$. Ngược lại, nếu $UU^\top=V_kV_k^\top$ thì $\operatorname{tr}(U^\top SU)=\operatorname{tr}(SUU^\top)=\operatorname{tr}(SV_kV_k^\top)=\operatorname{tr}(V_k^\top SV_k)=\sum_{j\le k}\lambda_j$, nên $U$ là nghiệm. $\square$
 
+Như vậy không gian con sinh bởi $k$ vector riêng đầu tiên cho phép nén tuyến tính trực giao có lỗi tái tạo bình phương nhỏ nhất trên mẫu.
+
 ### B. Đổi đạo hàm và kỳ vọng trong Mệnh đề 14.20
 
 **Lộ trình.** Viết đạo hàm riêng của $\mathbb E[F]$ là giới hạn của kỳ vọng các thương sai phân, chặn các thương sai phân bằng $G$ nhờ định lý giá trị trung bình, rồi chuyển giới hạn vào trong kỳ vọng bằng định lý hội tụ trội.
@@ -1307,7 +1313,7 @@ Vế phải có kỳ vọng hữu hạn, nên $\mathbb E\lvert F(\vartheta,\vare
 
 **Bước 2 (chặn thương sai phân).** Cố định tọa độ $r$ và vector đơn vị $e_r$. Với $\delta\ne0$ đủ nhỏ để $\vartheta+\delta e_r\in\mathcal B$, đặt $D_\delta(\varepsilon)=\big[F(\vartheta+\delta e_r,\varepsilon)-F(\vartheta,\varepsilon)\big]/\delta$. Định lý giá trị trung bình theo biến $\vartheta_r$ cho $D_\delta(\varepsilon)=\partial_rF(\vartheta+c\delta e_r,\varepsilon)$ với một $c\in(0,1)$ phụ thuộc $\varepsilon$, nên $\lvert D_\delta(\varepsilon)\rvert\le G(\varepsilon)$.
 
-**Bước 3 (chuyển giới hạn).** Theo Bước 1, $\mathbb E[D_\delta]=\big(\mathbb E[F(\vartheta+\delta e_r,\varepsilon)]-\mathbb E[F(\vartheta,\varepsilon)]\big)/\delta$. Khi $\delta\to0$, $D_\delta(\varepsilon)\to\partial_rF(\vartheta,\varepsilon)$ với hầu mọi $\varepsilon$, và $\lvert D_\delta\rvert\le G$ với $\mathbb E[G]<\infty$. Định lý hội tụ trội (dominated convergence theorem) của tích phân Lebesgue cho
+**Bước 3 (chuyển giới hạn).** Theo Bước 1, $\mathbb E[D_\delta]=\big(\mathbb E[F(\vartheta+\delta e_r,\varepsilon)]-\mathbb E[F(\vartheta,\varepsilon)]\big)/\delta$. Khi $\delta\to0$, $D_\delta(\varepsilon)\to\partial_rF(\vartheta,\varepsilon)$ với hầu mọi $\varepsilon$, và $\lvert D_\delta\rvert\le G$ với $\mathbb E[G]<\infty$. Định lý hội tụ trội của tích phân Lebesgue cho
 
 $$
 \begin{aligned}
@@ -1317,3 +1323,5 @@ $$
 $$
 
 Áp dụng cho mọi tọa độ $r$ được (8.3). $\square$
+
+Như vậy, dưới các giả thiết của Mệnh đề 14.20, lan truyền ngược qua các mẫu nhiễu cho đúng gradient của kỳ vọng tái tạo, không chỉ gradient tại một mẫu cố định.

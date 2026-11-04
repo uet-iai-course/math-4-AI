@@ -73,7 +73,7 @@ Tìm mọi nghiệm ERM. So sánh hai loại rủi ro của các ngưỡng $t=0{
 :::
 
 ::: hint Gợi ý 1
-Xác định điểm âm lớn nhất $a$ và điểm không âm nhỏ nhất $b$ của mẫu.
+Xác định điểm âm lớn nhất $x_-$ và điểm không âm nhỏ nhất $x_+$ của mẫu.
 :::
 
 ::: hint Gợi ý 2
@@ -81,7 +81,7 @@ Rủi ro kỳ vọng của $h_t$ là xác suất của đoạn giữa $t$ và $0
 :::
 
 ::: solution Lời giải Bài tập 12.2
-**Tập nghiệm ERM.** Các điểm âm đúng nhãn khi $t>-0{,}3$, các điểm không âm đúng nhãn khi $t\le0{,}2$. Theo Mệnh đề 12.11 với $a=-0{,}3$ và $b=0{,}2$, tập nghiệm ERM gồm các $h_t$ với $-0{,}3<t\le0{,}2$.
+**Tập nghiệm ERM.** Các điểm âm đúng nhãn khi $t>-0{,}3$, các điểm không âm đúng nhãn khi $t\le0{,}2$. Theo Mệnh đề 12.11 với $x_-=-0{,}3$ và $x_+=0{,}2$, tập nghiệm ERM gồm các $h_t$ với $-0{,}3<t\le0{,}2$.
 
 **Hai ngưỡng.** Cả $t=0{,}1$ và $t=-0{,}2$ thuộc khoảng trên, nên $\hat R_S(h_{0{,}1})=\hat R_S(h_{-0{,}2})=0$. Theo (6.6),
 $$
@@ -145,6 +145,7 @@ Giả sử các đầu ra độc lập có điều kiện, $Y_i\mid x_i\sim\math
 3. Nếu phương sai cũng được ước lượng, suy ra công thức hợp lý cực đại của phương sai và kiểm tra điều kiện tồn tại trên mẫu này.
 4. Thay các đầu ra bằng $(1,3,5)$. Phân biệt sự tồn tại nghiệm theo hệ số khi phương sai đã biết với sự tồn tại nghiệm hợp lý cực đại chung khi phương sai chưa biết.
 5. Nếu nhiễu không có trung bình có điều kiện bằng $0$, giả thiết nào trong cách đọc đường hồi quy như trung bình có điều kiện bị vi phạm? Giải thích vì sao giải đúng phương trình chuẩn chưa xác nhận mô hình nhiễu.
+6. Thay ba đầu vào bằng $x_1=x_2=x_3=1$, giữ các đầu ra $(1,2,4)$ và mô hình $w_0+w_1x$. Kiểm tra hạng của ma trận thiết kế, tìm toàn bộ tập nghiệm theo hệ số và vector khớp. Cho hai nghiệm có dự đoán khác nhau tại đầu vào mới $x=0$.
 :::
 
 ::: hint Gợi ý 1
@@ -181,7 +182,16 @@ $$
 
 **5. Giả thiết nhiễu.** Cách đọc $w_0+w_1x$ như $\mathbb E[Y\mid X=x]$ cần $\mathbb E[\xi\mid X=x]=0$. Phương trình chuẩn chỉ giải bài toán chiếu $y$ lên không gian cột của $A$ (Mệnh đề 12.3) và luôn có nghiệm với mọi dữ liệu, nên giải được nó không kiểm chứng được mô hình nhiễu.
 
-**Kiểm tra lại.** Ở câu 2, $\sum_ir_i=\frac16-\frac13+\frac16=0$ và $\sum_ix_ir_i=0-\frac13+\frac26=0$, đúng với $A^\top r=0$.
+**6. Hạng thiếu.** Ma trận thiết kế có ba hàng cùng bằng $(1,1)$, nên hạng bằng $1<2$. Đặt $c=w_0+w_1$; mục tiêu là $\sum_{i=1}^3(y_i-c)^2$, cực tiểu tại $c=\bar y=\frac{1+2+4}3=\frac73$, với tổng bình phương phần dư
+$$
+\begin{aligned}
+&\Bigl(1-\tfrac73\Bigr)^2+\Bigl(2-\tfrac73\Bigr)^2+\Bigl(4-\tfrac73\Bigr)^2\\
+&\quad=\frac{16+1+25}9=\frac{14}3 .
+\end{aligned}
+$$
+Tập nghiệm là $\{(w_0,w_1):\ w_0+w_1=\frac73\}=\{(\frac73,0)+(v,-v):\ v\in\mathbb R\}$, đúng dạng $\hat w+\ker A$ của Mệnh đề 12.3, và mọi nghiệm có cùng vector khớp $(\frac73,\frac73,\frac73)$. Tại $x=0$, nghiệm $(\frac73,0)$ dự đoán $\frac73$, còn nghiệm $(0,\frac73)$ dự đoán $0$: giá trị khớp duy nhất trên dữ liệu đã thấy, nhưng hệ số và dự đoán tại đầu vào mới thì không.
+
+**Kiểm tra lại.** Ở câu 2, $\sum_ir_i=\frac16-\frac13+\frac16=0$ và $\sum_ix_ir_i=0-\frac13+\frac26=0$, đúng với $A^\top r=0$. Ở câu 6, phần dư $(-\frac43,-\frac13,\frac53)$ có tổng $0$, đúng với $A^\top r=0$ khi hai cột của $A$ cùng bằng $(1,1,1)^\top$.
 :::
 
 ### Bài tập 12.5 (Entropy chéo, cực tiểu không đạt được và nhãn đổi)
@@ -274,7 +284,7 @@ Một tập hữu hạn điểm có xác suất $0$ dưới cả hai phân phố
 ::: solution Lời giải Bài tập 12.6
 **1. Phân phối đều.** Theo (6.6), $R(h_{-0{,}4})=\frac{0{,}4}2=0{,}2$ và $R(h_{0{,}2})=\frac{0{,}2}2=0{,}1$.
 
-**2. Tập nghiệm ERM.** Theo Mệnh đề 12.11 với $a=-0{,}1$, $b=0{,}4$, tập nghiệm ERM gồm các $h_t$ với $-0{,}1<t\le0{,}4$. Ví dụ: $t=0$ có rủi ro $0$, còn $t=0{,}4$ có rủi ro $0{,}2$; cả hai có rủi ro thực nghiệm $0$.
+**2. Tập nghiệm ERM.** Theo Mệnh đề 12.11 với $x_-=-0{,}1$, $x_+=0{,}4$, tập nghiệm ERM gồm các $h_t$ với $-0{,}1<t\le0{,}4$. Ví dụ: $t=0$ có rủi ro $0$, còn $t=0{,}4$ có rủi ro $0{,}2$; cả hai có rủi ro thực nghiệm $0$.
 
 **3. Mật độ không đều.** $\int_{-1}^1\frac{x+1}2\,dx=\frac12\bigl[\frac{x^2}2+x\bigr]_{-1}^1=\frac12\bigl[\frac32-(-\frac12)\bigr]=1$, và $f_X\ge0$, nên $f_X$ là mật độ.
 - $t\ge0$: $R_f(h_t)=\int_0^t\frac{x+1}2\,dx=\frac{t^2/2+t}2=\frac{t(t+2)}4$.
@@ -366,7 +376,7 @@ Nghĩa là ngưỡng cỡ mẫu đủ của lớp affine lớn hơn khoảng $25
 - $\mathcal H_{\mathrm{aff}}$: thêm $100,110$, tổng cộng $6$ vector; thiếu $010$ và $101$, vì chúng cần hai lần đổi nhãn.
 - $\mathcal H_{\mathrm{int}}$: mọi vector trừ $101$, tổng cộng $7$ vector: $000,100,010,001,110,011,111$.
 
-Ba lớp cùng nhận một số thực nhưng tạo $4$, $6$, $7$ vector nhãn. Độ phức tạp thuộc về lớp hàm, không thuộc về số chiều đầu vào. Lớp $\mathcal H_{\mathrm{aff}}$ và $\mathcal H_{\mathrm{int}}$ có cùng số chiều VC $2$ nhưng khác số vector nhãn trên ba điểm.
+Ba lớp cùng nhận một số thực nhưng tạo $4$, $6$, $7$ vector nhãn. Độ phức tạp được quyết định bởi lớp hàm. Lớp $\mathcal H_{\mathrm{aff}}$ và $\mathcal H_{\mathrm{int}}$ có cùng số chiều VC $2$ nhưng khác số vector nhãn trên ba điểm.
 
 **(b3) Ví dụ cảm biến.** Hàm khoảng phân loại đúng mẫu khi và chỉ khi $-0{,}2<a\le0{,}3$ (loại $-0{,}2$, giữ $0{,}3$) và $b\ge0{,}7$ (giữ $0{,}7$); điểm $-0{,}8<a$ tự động bị loại. Đó là tập nghiệm ERM, với rủi ro thực nghiệm $0$. Với $a\in[-1,1]$ và $b\ge\max\{a,0\}$, hàm khoảng khác nhãn thật trên đoạn giữa $a$ và $0$ (xác suất $\lvert a\rvert/2$) và trên $(b,1]$ khi $b<1$ (xác suất $(1-b)/2$), nên
 $$
@@ -412,7 +422,7 @@ So kết quả với (8.1) và (8.2) của Định nghĩa 12.17: đối tượng
 
 ### Bài tập 12.9 (Hội tụ đều và nghiệm ERM gần đúng)
 
-**Mức độ:** tính toán, chứng minh. **Mục tiêu:** mục tiêu học tập 4, 6; dùng Bổ đề 12.14 và Định lý 12.13 với số cụ thể.
+**Mức độ:** tính toán, chứng minh. **Mục tiêu:** mục tiêu học tập 4; dùng Bổ đề 12.14 và Định lý 12.13 với số cụ thể.
 
 ::: exercise Bài tập 12.9
 Một lớp cố định có $M$ bộ phân loại, dữ liệu i.i.d., mất mát $0$–$1$. Giả sử trên mẫu $S$ có $\Delta_S\le0{,}02$ và thuật toán đạt $\hat R_S(\hat h_S)\le\inf_{h\in\mathcal H}\hat R_S(h)+0{,}005$. Chứng minh rủi ro dư so với lớp không quá $0{,}045$. Viết một điều kiện đủ theo $n$, $M$, $\delta$ để biến cố $\Delta_S\le0{,}02$ có xác suất ít nhất $1-\delta$.

@@ -16,7 +16,7 @@ Một cảm biến kiểm định cảnh báo trên $90\%$ số sản phẩm l�
 
 **Câu hỏi.** Xác suất sản phẩm này bị lỗi bằng bao nhiêu?
 
-Câu trả lời "$90\%$, vì cảm biến phát hiện $90\%$ sản phẩm lỗi" là sai. Con số $90\%$ là tỉ lệ cảnh báo trong nhóm sản phẩm lỗi, còn câu hỏi cần tỉ lệ sản phẩm lỗi trong nhóm bị cảnh báo; câu trả lời này cũng bỏ qua việc sản phẩm lỗi chỉ chiếm một phần nhỏ của dây chuyền. Một nhầm lẫn thứ hai xuất hiện khi thiếu nguồn hàng: lấy trung bình cộng hai tỉ lệ lỗi, được $5\%$, trong khi nhà cung cấp $a$ giao nhiều hàng hơn. Chúng ta tính đúng cả hai đại lượng trong Mục 5 và Mục 8.
+Câu trả lời "$90\%$, vì cảm biến phát hiện $90\%$ sản phẩm lỗi" là sai. Con số $90\%$ là tỉ lệ cảnh báo trong nhóm sản phẩm lỗi, còn câu hỏi cần tỉ lệ sản phẩm lỗi trong nhóm bị cảnh báo; câu trả lời này cũng bỏ qua việc sản phẩm lỗi chỉ chiếm một phần nhỏ của dây chuyền. Một nhầm lẫn thứ hai xuất hiện khi thiếu nguồn hàng: lấy trung bình cộng hai tỉ lệ lỗi, được $5\%$, trong khi nhà cung cấp $a$ giao nhiều hàng hơn. Chúng ta sẽ tính đúng cả hai đại lượng.
 
 ## Mục tiêu học tập
 
@@ -34,7 +34,7 @@ Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích m�
 ## Kiến thức tiên quyết
 
 - **Tập hợp và phép đếm.** Hợp, giao, phần bù, tập con; số phần tử của tích Descartes hai tập hữu hạn bằng tích số phần tử.
-- **Xác suất rời rạc trong Bài 05c.** Trên không gian xác suất rời rạc (Định nghĩa 05c.1), Mệnh đề 05c.2 cho $P(\varnothing)=0$, $P(A^c)=1-P(A)$, $P(A)\le P(B)$ khi $A\subseteq B$ và $P(A\cup B)=P(A)+P(B)-P(A\cap B)$. Mệnh đề 05c.9, Mệnh đề 05c.10 và Định lý 05c.11 lần lượt là quy tắc nhân, xác suất toàn phần và công thức Bayes. Định nghĩa 05c.26 và Định lý 05c.28 cho kỳ vọng của biến rời rạc và tính tuyến tính của nó. Chúng ta phát biểu lại các kết quả ấy trên không gian xác suất tổng quát, thêm trường hợp có mật độ, và viết $\mathbb P$ cho xác suất ($P$ ở Bài 05c).
+- **Xác suất rời rạc trong Bài 05c.** Trên không gian xác suất rời rạc (Định nghĩa 05c.1), Mệnh đề 05c.2 cho $P(\varnothing)=0$, $P(E^c)=1-P(E)$, $P(E)\le P(F)$ khi $E\subseteq F$ và $P(E\cup F)=P(E)+P(F)-P(E\cap F)$. Mệnh đề 05c.9, Mệnh đề 05c.10 và Định lý 05c.11 lần lượt là quy tắc nhân, xác suất toàn phần và công thức Bayes. Định nghĩa 05c.26 và Định lý 05c.28 cho kỳ vọng của biến rời rạc và tính tuyến tính của nó. Chúng ta phát biểu lại các kết quả ấy trên không gian xác suất tổng quát, thêm trường hợp có mật độ, và viết $\mathbb P$ cho xác suất ($P$ ở Bài 05c).
 - **Tích phân một biến.** Tích phân $\int_a^bf(x)\,dx$ của hàm không âm là diện tích dưới đồ thị; $\int_{\mathbb R}e^{-u^2/2}\,du=\sqrt{2\pi}$.
 - **Đại số tuyến tính.** Vector trong $\mathbb R^d$, ma trận đối xứng xác định dương, nghịch đảo và định thức.
 
@@ -199,7 +199,7 @@ Bốn kết quả của (4.2) chưa đủ để tính tần suất của một l
 Một *không gian xác suất* (probability space) là bộ ba $(\Omega,\mathcal F,\mathbb P)$ gồm:
 
 - **Không gian mẫu:** tập khác rỗng $\Omega$.
-- **Họ biến cố:** một *sigma-đại số* $\mathcal F$ các tập con của $\Omega$, tức $\Omega\in\mathcal F$ và $\mathcal F$ đóng dưới phép lấy phần bù và hợp đếm được.
+- **Họ biến cố:** một *sigma-đại số* (σ-algebra) $\mathcal F$ các tập con của $\Omega$, tức $\Omega\in\mathcal F$ và $\mathcal F$ đóng dưới phép lấy phần bù và hợp đếm được.
 - **Độ đo xác suất:** hàm $\mathbb P:\mathcal F\to[0,1]$ thỏa ba tiên đề dưới đây.
 
 **(P1) Không âm.** $\mathbb P(E)\ge0$ với mọi $E\in\mathcal F$.
@@ -216,7 +216,7 @@ $$
 
 Định nghĩa 10.3 mở rộng Định nghĩa 05c.1 sang không gian mẫu bất kỳ. Khi $\Omega$ hữu hạn hoặc đếm được, ta lấy $\mathcal F=2^\Omega$ và trở lại không gian xác suất rời rạc của Bài 05c. Khi $\Omega$ không đếm được, chẳng hạn khi kết quả là một số đo thực, họ $\mathcal F$ cần được chọn nhỏ hơn $2^\Omega$.
 
-Tiên đề (P3) chỉ nói về dãy vô hạn biến cố. Trước khi dùng nó cho hai hay ba biến cố, chúng ta cần bổ đề sau. Đây là các phần 1 và 3 của Mệnh đề 05c.2, ở đây được chứng minh trên không gian xác suất tổng quát.
+Tiên đề (P3) chỉ nói về dãy vô hạn biến cố. Trước khi dùng nó cho hai hay ba biến cố, chúng ta cần bổ đề sau. Phần 1 và phần 3 của bổ đề là phần 1 và phần 3 của Mệnh đề 05c.2, ở đây được chứng minh trên không gian xác suất tổng quát.
 
 ::: lemma Bổ đề 10.4 (Tập rỗng, cộng tính hữu hạn và tính đơn điệu) — chứng minh đầy đủ
 **Giả thiết.** $(\Omega,\mathcal F,\mathbb P)$ là một không gian xác suất.
@@ -326,7 +326,7 @@ $$
 
 **Bước 1 (phần bù).** Hai tập $E$ và $E^c$ xung khắc, có hợp bằng $\Omega$. Bổ đề 10.4 và (P2) cho $1=\mathbb P(E)+\mathbb P(E^c)$, tức (4.8).
 
-**Bước 2 (hợp).** Ba tập $E\setminus F$, $E\cap F$, $F\setminus E$ thuộc $\mathcal F$ và đôi một xung khắc. Bổ đề 10.4 cho
+**Bước 2 (hợp).** Ba tập $E\setminus F=(E^c\cup F)^c$, $E\cap F=(E^c\cup F^c)^c$, $F\setminus E$ thuộc $\mathcal F$ và đôi một xung khắc; ba tập có hợp $E\cup F$, hai tập đầu có hợp $E$, hai tập sau có hợp $F$. Bổ đề 10.4 cho
 
 $$
 \begin{aligned}
@@ -339,10 +339,10 @@ $$
 
 Thế $\mathbb P(E\setminus F)=\mathbb P(E)-\mathbb P(E\cap F)$ và $\mathbb P(F\setminus E)=\mathbb P(F)-\mathbb P(E\cap F)$ từ hai dòng sau vào dòng đầu, ta được (4.9). $\square$
 
-Công thức hợp cho phép tính xác suất "ít nhất một loại lỗi" mà không cần giả thiết các loại lỗi độc lập.
+Công thức hợp cho phép tính xác suất "ít nhất một loại lỗi" mà không cần thêm giả thiết nào về quan hệ giữa các loại lỗi.
 :::
 
-Mệnh đề 10.6 không cần giả thiết $E$ và $F$ độc lập. Nếu chúng xung khắc thì $\mathbb P(E\cap F)=\mathbb P(\varnothing)=0$, và (4.9) trở thành công thức cộng. Một lỗi thường gặp là tính $\mathbb P(E\cup F)$ bằng $\mathbb P(E)+\mathbb P(F)$ khi giao khác rỗng; khi đó các kết quả trong giao bị cộng hai lần.
+Mệnh đề 10.6 không cần thêm điều kiện nào về quan hệ giữa $E$ và $F$. Nếu chúng xung khắc thì $\mathbb P(E\cap F)=\mathbb P(\varnothing)=0$, và (4.9) trở thành công thức cộng. Một lỗi thường gặp là tính $\mathbb P(E\cup F)$ bằng $\mathbb P(E)+\mathbb P(F)$ khi giao khác rỗng; khi đó các kết quả trong giao bị cộng hai lần.
 
 Khi chưa biết $\mathbb P(E\cap F)$, ta vẫn có một cận trên.
 
@@ -360,10 +360,10 @@ $$
 ::: proof Chứng minh Hệ quả 10.7
 Trong (4.9), số hạng bị trừ $\mathbb P(E\cap F)$ không âm theo (P1); bỏ số hạng đó ta được (4.10). $\square$
 
-Cận này đúng cả khi hai biến cố phụ thuộc và khi giao của chúng chưa biết.
+Cận này đúng với mọi cặp biến cố, kể cả khi giao của chúng chưa biết.
 :::
 
-Mệnh đề 05c.7 đã dùng dạng nhiều biến cố của bất đẳng thức này để chặn xác suất một hợp biến cố trong các cận tập trung.
+Mệnh đề 05c.7 là dạng nhiều biến cố của bất đẳng thức này và được dùng để chặn xác suất một hợp biến cố trong các cận tập trung.
 
 ### 4.5. Xác suất cảnh báo sai và bỏ sót
 
@@ -416,8 +416,6 @@ $$
 Tính bằng phần bù: $(H\cup C)^c=\{(\mathrm N,\mathrm Q)\}$, nên (4.8) cho $\mathbb P(H\cup C)=1-0{,}72=0{,}28$.
 
 **Kiểm tra lại.** Xác suất phản hồi đúng bằng $0{,}18+0{,}72=0{,}90$; cộng với xác suất phản hồi sai $0{,}10$ được $1$. Hai cách tính $\mathbb P(H\cup C)$ cho cùng kết quả.
-
-Ví dụ cho thấy từ một bảng bốn ô, mọi xác suất về cảnh báo sai, bỏ sót và phản hồi sai đều tính được bằng phép cộng.
 :::
 
 Con số $\mathbb P(H^c\cap C)=0{,}08$ là xác suất *đồng thời* không có người và có cảnh báo trên một khung hình được lấy theo quy trình đã chọn. Đó chưa phải xác suất cảnh báo trong số các khung hình không có người. Muốn tính đại lượng thứ hai, ta phải giới hạn việc xét vào biến cố $H^c$.
@@ -537,7 +535,7 @@ Quy tắc nhân cho phép dựng xác suất đồng thời của nhiều thành
 
 Mệnh đề 10.10 là Mệnh đề 05c.9 với hai và ba biến cố. Công thức (5.2) còn được gọi là *quy tắc chuỗi* (chain rule); nó không giả thiết độc lập, vì mọi phụ thuộc được giữ trong các xác suất có điều kiện.
 
-Một *phân hoạch* $B_1,\ldots,B_q$ của $\Omega$ là các biến cố đôi một xung khắc có hợp bằng $\Omega$: mỗi kết quả thuộc đúng một nhóm $B_j$. Nhóm có xác suất dương được dùng làm điều kiện; nhóm có xác suất $0$ góp $\mathbb P(E\cap B_j)\le\mathbb P(B_j)=0$ vào mọi tổng theo Bổ đề 10.4, nên có thể bỏ khỏi tổng.
+Một *phân hoạch* (partition) $B_1,\ldots,B_q$ của $\Omega$ là các biến cố đôi một xung khắc có hợp bằng $\Omega$: mỗi kết quả thuộc đúng một nhóm $B_j$. Nhóm có xác suất dương được dùng làm điều kiện; nhóm có xác suất $0$ góp $\mathbb P(E\cap B_j)\le\mathbb P(B_j)=0$ vào mọi tổng theo Bổ đề 10.4, nên có thể bỏ khỏi tổng.
 
 ::: theorem Định lý 10.11 (Xác suất toàn phần và Bayes) — chứng minh đầy đủ
 **Giả thiết.** $B_1,\ldots,B_q$ là một phân hoạch hữu hạn của $\Omega$ với $\mathbb P(B_j)>0$ cho mọi $j$; $E\in\mathcal F$.
@@ -588,7 +586,7 @@ $$
 Như vậy hậu nghiệm của mỗi nhóm tính được từ tiên nghiệm của các nhóm và xác suất của quan sát trong từng nhóm, không cần biết trước $\mathbb P(E)$.
 :::
 
-Định lý 10.11 gộp Mệnh đề 05c.10 và Định lý 05c.11. Điều Bài 10 thêm vào là cách đọc các thành phần của (5.4) như một phép cập nhật thông tin:
+Định lý 10.11 gộp Mệnh đề 05c.10 và Định lý 05c.11. Ở đây ta đọc các thành phần của (5.4) như một phép cập nhật thông tin:
 
 - $\mathbb P(B_k)$ là *xác suất tiên nghiệm* (prior) của giả thuyết $B_k$, trước khi quan sát;
 - $\mathbb P(E\mid B_k)$, xem như hàm của $k$ khi quan sát $E$ đã cố định, là *hàm hợp lý* (likelihood); tổng của nó theo $k$ không nhất thiết bằng $1$;
@@ -623,7 +621,7 @@ $$
 \tag{5.6}
 $$
 
-Xác suất $\mathbb P(A=1\mid Y=1)$ là *độ nhạy* (sensitivity) của cảm biến; $\mathbb P(A=1\mid Y=0)$ là xác suất *cảnh báo nhầm* (false positive). Ngoài ra, khi tình trạng $Y$ đã biết, nhà cung cấp không làm đổi xác suất cảnh báo: với mọi $y\in\{0,1\}$ và $s\in\{a,b\}$,
+Xác suất $\mathbb P(A=1\mid Y=1)$ là *độ nhạy* (sensitivity) của cảm biến; $\mathbb P(A=1\mid Y=0)$ là *tỉ lệ cảnh báo nhầm* (false positive rate, FPR). Tỉ lệ này là xác suất có điều kiện trong nhóm sản phẩm đạt; nó khác xác suất đồng thời của biến cố cảnh báo sai, như $\mathbb P(H^c\cap C)$ của camera. Ngoài ra, khi tình trạng $Y$ đã biết, nhà cung cấp không làm đổi xác suất cảnh báo: với mọi $y\in\{0,1\}$ và $s\in\{a,b\}$,
 
 $$
 \begin{aligned}
@@ -677,7 +675,7 @@ Các phép tính (5.8)–(5.9) chỉ dùng $\mathbb P(A=1\mid Y=y)$; giả thi�
 
 Trong $396+478=874$ sản phẩm bị cảnh báo, tỉ lệ sản phẩm lỗi là $396/874=198/437$, khớp (5.9).
 
-Ví dụ trả lời câu hỏi mở đầu: sau cảnh báo, xác suất lỗi tăng từ $0{,}044$ lên khoảng $0{,}4531$, thấp hơn nhiều so với $0{,}90$; trong nhóm bị cảnh báo vẫn có khoảng $0{,}5469$ sản phẩm đạt.
+Kết quả này trả lời câu hỏi mở đầu: sau cảnh báo, xác suất lỗi tăng từ $0{,}044$ lên khoảng $0{,}4531$, thấp hơn nhiều so với $0{,}90$; trong nhóm bị cảnh báo vẫn có khoảng $0{,}5469$ sản phẩm đạt.
 :::
 
 Cây dưới đây biểu diễn phần mô hình trước khi quan sát cảm biến. Mỗi đường từ gốc tới lá là một tích theo quy tắc nhân (Mệnh đề 10.10); cộng hai lá lỗi là công thức toàn phần (5.3). Các nhánh không đồng xác suất.
@@ -786,7 +784,7 @@ $$
 
 **Kiểm tra lại phần 1.** Trung bình có trọng số của hai xác suất cảnh báo theo nguồn hàng bằng $0{,}6\cdot0{,}067+0{,}4\cdot0{,}118=0{,}0402+0{,}0472=0{,}0874$, khớp (5.8).
 
-Ví dụ cho thấy giả thiết độc lập phải được nêu kèm điều kiện của nó: độc lập trong từng nhóm không suy ra độc lập khi gộp, và thêm một điều kiện có thể tạo ra phụ thuộc.
+Do đó giả thiết độc lập phải được nêu kèm điều kiện của nó: độc lập trong từng nhóm không suy ra độc lập khi gộp, và thêm một điều kiện có thể tạo ra phụ thuộc.
 :::
 
 Trong học máy, độc lập có điều kiện cho phép biểu diễn một phân phối nhiều biến bằng ít tham số hơn. Mỗi lần dùng nó cần một lý do mô hình hóa, chẳng hạn đáp ứng của cảm biến chỉ phụ thuộc tình trạng lỗi của sản phẩm.
@@ -849,13 +847,13 @@ $$
 
 Định nghĩa 10.15 trùng Định nghĩa 05c.17 và 05c.18. Tổng trong (6.2) bằng $1$ vì $\Omega$ là hợp đếm được của các biến cố xung khắc $\{X=x\}$, $x\in\mathcal X$, và (P3) áp dụng. Với $X$ rời rạc, cùng lập luận cho $F_X(t)=\sum_{x\le t}p_X(x)$.
 
-Hàm $F_X$ không giảm: nếu $s<t$ thì $\{X\le s\}\subseteq\{X\le t\}$, nên $F_X(s)\le F_X(t)$ theo Bổ đề 10.4. Ngoài ra $F_X$ liên tục phải, tiến về $0$ khi $t\to-\infty$ và về $1$ khi $t\to+\infty$; ba tính chất này cần tính liên tục của độ đo xác suất đối với dãy tập đơn điệu và được dùng trong bài mà không chứng minh. Mệnh đề 05c.19 đã chứng minh tính không giảm và công thức hiệu dưới đây cho biến rời rạc. Với $a<b$, hai biến cố $\{X\le a\}$ và $\{a<X\le b\}$ xung khắc và có hợp $\{X\le b\}$, nên
+Hàm $F_X$ không giảm: nếu $s<t$ thì $\{X\le s\}\subseteq\{X\le t\}$, nên $F_X(s)\le F_X(t)$ theo Bổ đề 10.4. Ngoài ra $F_X$ liên tục phải, tiến về $0$ khi $t\to-\infty$ và về $1$ khi $t\to+\infty$; ba tính chất này cần tính liên tục của độ đo xác suất đối với dãy tập đơn điệu và được dùng trong bài mà không chứng minh. Mệnh đề 05c.19 đã chứng minh tính không giảm và công thức hiệu dưới đây cho biến rời rạc. Với $t_1<t_2$, hai biến cố $\{X\le t_1\}$ và $\{t_1<X\le t_2\}$ xung khắc và có hợp $\{X\le t_2\}$, nên
 
 $$
-\mathbb P(a<X\le b)=F_X(b)-F_X(a).
+\mathbb P(t_1<X\le t_2)=F_X(t_2)-F_X(t_1).
 $$
 
-Dấu bằng ở hai đầu khoảng phải được giữ đúng: với phân phối rời rạc, thay $X>a$ bằng $X\ge a$ có thể thêm một khối xác suất dương.
+Dấu bằng ở hai đầu khoảng phải được giữ đúng: với phân phối rời rạc, thay $X>t_1$ bằng $X\ge t_1$ có thể thêm một khối xác suất dương.
 
 ::: example Ví dụ 10.7 (Biến ba giá trị và xác suất vượt ngưỡng)
 **Dữ kiện.** Mức xử lý một sản phẩm là $X\in\{0;1;2\}$, lần lượt ứng với không can thiệp, kiểm tra lại và sửa chữa, với $p_X(0)=0{,}70$, $p_X(1)=0{,}20$, $p_X(2)=0{,}10$.
@@ -987,12 +985,12 @@ $$
 $$
 :::
 
-Lấy $B=(-\infty,t]$ và $B=(a,b]$ trong (6.7), ta được
+Lấy $B=(-\infty,t]$ và $B=(t_1,t_2]$ trong (6.7), ta được
 
 $$
 \begin{gathered}
 F_X(t)=\int_{-\infty}^tf_X(x)\,dx,\\
-\mathbb P(a<X\le b)=\int_a^bf_X(x)\,dx.
+\mathbb P(t_1<X\le t_2)=\int_{t_1}^{t_2}f_X(x)\,dx.
 \end{gathered}
 \tag{6.8}
 $$
@@ -1031,7 +1029,7 @@ $$
 $$
 :::
 
-Với $0<\theta<1$, PMF Bernoulli viết gọn được thành $p_Y(y)=\theta^y(1-\theta)^{1-y}$, $y\in\{0,1\}$; hai trường hợp biên $\theta=0$ và $\theta=1$ đọc trực tiếp từ (6.9). Bernoulli là phân phối phân loại với $K=2$ nhóm, mã hóa bằng $0$ và $1$. Phân phối phân loại có $K$ tham số nhưng chỉ $K-1$ tham số tự do, vì tổng của chúng bằng $1$. Định nghĩa 10.19 là một phần của Định nghĩa 05c.20.
+Với $0<\theta<1$, PMF Bernoulli viết gọn được thành $p_Y(y)=\theta^y(1-\theta)^{1-y}$, $y\in\{0,1\}$; hai trường hợp biên $\theta=0$ và $\theta=1$ đọc trực tiếp từ (6.9). Bernoulli là phân phối phân loại với $K=2$ nhóm, mã hóa bằng $0$ và $1$. Phân phối phân loại có $K$ tham số nhưng chỉ $K-1$ tham số tự do, vì tổng của chúng bằng $1$. Phần Bernoulli của Định nghĩa 10.19 trùng mục 1 của Định nghĩa 05c.20; phân phối đều trên $\{1,\ldots,N\}$ của Định nghĩa 05c.20 là trường hợp riêng của phân phối phân loại với $K=N$ và $\pi_k=1/K$.
 
 Trong Ví dụ 10.4, $Y\sim\operatorname{Bernoulli}(0{,}044)$ khi chưa biết nhà cung cấp; khi biết $S=a$, phân phối có điều kiện của $Y$ là $\operatorname{Bernoulli}(0{,}02)$. Cùng một biến lỗi có các phân phối khác nhau dưới các mức thông tin khác nhau. Nếu sản phẩm có nhiều loại lỗi loại trừ lẫn nhau, phân phối phân loại mô tả được nhãn loại lỗi; nếu một sản phẩm có thể mang đồng thời nhiều lỗi, một nhãn phân loại đơn lẻ không mô tả trực tiếp các lỗi cùng xuất hiện.
 
@@ -1105,7 +1103,7 @@ Khi bộ phận kiểm định gán chi phí $g(x)$ cho kết quả $x$, đại 
 
 - **Biến:** $X$ rời rạc, nhận giá trị trong tập đếm được $\mathcal X\subseteq\mathbb R^d$; hoặc $X$ thực có mật độ $f_X$.
 - **Hàm:** $g:\mathcal X\to\mathbb R$ thỏa $\sum_{x\in\mathcal X}|g(x)|\,p_X(x)<\infty$ (trường hợp rời rạc); hoặc $g:\mathbb R\to\mathbb R$ đo được thỏa $\int_{\mathbb R}|g(x)|\,f_X(x)\,dx<\infty$ (trường hợp có mật độ).
-- **Tổ hợp tuyến tính:** $X,Z$ là hai biến thực rời rạc, khả tích; $a,b,c\in\mathbb R$.
+- **Tổ hợp tuyến tính:** $X,Z$ là hai biến thực rời rạc, khả tích; $\alpha,\beta,\gamma\in\mathbb R$.
 
 **Kết luận.** Biến $g(X)$ khả tích, và trong trường hợp rời rạc
 
@@ -1121,12 +1119,12 @@ $$
 \tag{7.4}
 $$
 
-Biến $aX+bZ+c$ khả tích và
+Biến $\alpha X+\beta Z+\gamma$ khả tích và
 
 $$
 \begin{aligned}
-&\mathbb E[aX+bZ+c]\\
-&\quad=a\,\mathbb E[X]+b\,\mathbb E[Z]+c.
+&\mathbb E[\alpha X+\beta Z+\gamma]\\
+&\quad=\alpha\,\mathbb E[X]+\beta\,\mathbb E[Z]+\gamma.
 \end{aligned}
 \tag{7.5}
 $$
@@ -1172,26 +1170,26 @@ $$
 \end{gathered}
 $$
 
-Từ $|ax+bz+c|\le|a||x|+|b||z|+|c|$ và hai đẳng thức trên,
+Từ $|\alpha x+\beta z+\gamma|\le|\alpha||x|+|\beta||z|+|\gamma|$ và hai đẳng thức trên,
 
 $$
 \begin{aligned}
-&\sum_{x,z}|ax+bz+c|\,p_{X,Z}(x,z)\\
-&\quad\le|a|\,\mathbb E|X|+|b|\,\mathbb E|Z|+|c|\\
+&\sum_{x,z}|\alpha x+\beta z+\gamma|\,p_{X,Z}(x,z)\\
+&\quad\le|\alpha|\,\mathbb E|X|+|\beta|\,\mathbb E|Z|+|\gamma|\\
 &\quad<\infty.
 \end{aligned}
 $$
 
-**Bước 5 (tách tổng).** Áp dụng (7.3) cho $W$ và hàm $g(x,z)=ax+bz+c$. Ba chuỗi dưới đây hội tụ tuyệt đối theo Bước 4, nên được phép tách:
+**Bước 5 (tách tổng).** Áp dụng (7.3) cho $W$ và hàm $g(x,z)=\alpha x+\beta z+\gamma$. Ba chuỗi dưới đây hội tụ tuyệt đối theo Bước 4, nên được phép tách:
 
 $$
 \begin{aligned}
-&\mathbb E[aX+bZ+c]\\
-&\quad=\sum_{x,z}(ax+bz+c)\,p_{X,Z}(x,z)\\
-&\quad=a\sum_xx\sum_zp_{X,Z}(x,z)\\
-&\qquad+b\sum_zz\sum_xp_{X,Z}(x,z)\\
-&\qquad+c\sum_{x,z}p_{X,Z}(x,z)\\
-&\quad=a\,\mathbb E[X]+b\,\mathbb E[Z]+c.
+&\mathbb E[\alpha X+\beta Z+\gamma]\\
+&\quad=\sum_{x,z}(\alpha x+\beta z+\gamma)\,p_{X,Z}(x,z)\\
+&\quad=\alpha\sum_xx\sum_zp_{X,Z}(x,z)\\
+&\qquad+\beta\sum_zz\sum_xp_{X,Z}(x,z)\\
+&\qquad+\gamma\sum_{x,z}p_{X,Z}(x,z)\\
+&\quad=\alpha\,\mathbb E[X]+\beta\,\mathbb E[Z]+\gamma.
 \end{aligned}
 $$
 
@@ -1207,7 +1205,7 @@ Mệnh đề 10.22 gộp Mệnh đề 05c.27 và Định lý 05c.28, và thêm c
 Tính tuyến tính không mở rộng thành $\mathbb E[g(X)]=g(\mathbb E[X])$ với $g$ phi tuyến. Với biến chỉ thị, (7.3) cho $\mathbb E[\mathbf 1_E]=1\cdot\mathbb P(E)+0\cdot\mathbb P(E^c)=\mathbb P(E)$. Do đó kỳ vọng của một chi phí được gán theo các biến cố tính được bằng xác suất của chính các biến cố ấy.
 
 ::: example Ví dụ 10.8 (Chi phí kỳ vọng của một bộ cảnh báo)
-**Dữ kiện.** Mô hình sản phẩm (5.6): $\mathbb P(Y=1)=0{,}044$, độ nhạy $0{,}9$, xác suất cảnh báo nhầm $0{,}05$. Bỏ sót một sản phẩm lỗi tốn $5$ đơn vị chi phí; cảnh báo trên một sản phẩm đạt tốn $1$ đơn vị; hai phản hồi đúng có chi phí $0$. Biến chi phí (mất mát) là
+**Dữ kiện.** Mô hình sản phẩm (5.6): $\mathbb P(Y=1)=0{,}044$, độ nhạy $0{,}9$, tỉ lệ cảnh báo nhầm $0{,}05$. Bỏ sót một sản phẩm lỗi tốn $5$ đơn vị chi phí; cảnh báo trên một sản phẩm đạt tốn $1$ đơn vị; hai phản hồi đúng có chi phí $0$. Biến chi phí (mất mát) là
 
 $$
 L=5\cdot\mathbf 1_{\{Y=1,A=0\}}+1\cdot\mathbf 1_{\{Y=0,A=1\}}.
@@ -1261,7 +1259,7 @@ $$
 Điều kiện $\mathbb E[X^2]<\infty$ kéo theo $X$ khả tích, vì $|x|\le1+x^2$ với mọi $x$; do đó $\mu$ xác định. Phương sai có đơn vị là bình phương đơn vị của $X$; độ lệch chuẩn có cùng đơn vị với $X$. Định nghĩa 10.23 là một phần của Định nghĩa 05c.30.
 
 ::: proposition Mệnh đề 10.24 (Công thức tính phương sai) — chứng minh đầy đủ (rời rạc); dựa trên phác thảo ở Phụ lục B (có mật độ)
-**Giả thiết.** $X$ rời rạc hoặc có mật độ, $\mathbb E[X^2]<\infty$; $a,b\in\mathbb R$.
+**Giả thiết.** $X$ rời rạc hoặc có mật độ, $\mathbb E[X^2]<\infty$; $\alpha,\beta\in\mathbb R$.
 
 **Kết luận.**
 
@@ -1269,7 +1267,7 @@ $$
 \begin{aligned}
 &\operatorname{Var}(X)=\mathbb E[X^2]-(\mathbb E[X])^2,\\
 &\operatorname{Var}(X)\ge0,\\
-&\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X).
+&\operatorname{Var}(\alpha X+\beta)=\alpha^2\operatorname{Var}(X).
 \end{aligned}
 \tag{7.7}
 $$
@@ -1295,27 +1293,27 @@ Trường hợp có mật độ giống hệt, với (7.4) và tích phân thay 
 
 **Bước 2 (không âm).** Vì $(x-\mu)^2\ge0$ với mọi $x$, tổng hoặc tích phân trong (7.6) không âm.
 
-**Bước 3 (biến đổi affine).** Áp dụng (7.3) hoặc (7.4) với $g(x)=ax+b$: $\mathbb E[aX+b]=a\mu+b$. Độ lệch của $aX+b$ quanh kỳ vọng của nó là $a(X-\mu)$, nên
+**Bước 3 (biến đổi affine).** Áp dụng (7.3) hoặc (7.4) với $g(x)=\alpha x+\beta$: $\mathbb E[\alpha X+\beta]=\alpha\mu+\beta$. Độ lệch của $\alpha X+\beta$ quanh kỳ vọng của nó là $\alpha(X-\mu)$, nên
 
 $$
 \begin{aligned}
-\operatorname{Var}(aX+b)&=\mathbb E\bigl[a^2(X-\mu)^2\bigr]\\
-&=a^2\,\mathbb E\bigl[(X-\mu)^2\bigr]\\
-&=a^2\operatorname{Var}(X).\ \square
+\operatorname{Var}(\alpha X+\beta)&=\mathbb E\bigl[\alpha^2(X-\mu)^2\bigr]\\
+&=\alpha^2\,\mathbb E\bigl[(X-\mu)^2\bigr]\\
+&=\alpha^2\operatorname{Var}(X).\ \square
 \end{aligned}
 $$
 
-Công thức thứ nhất của (7.7) cho phép tính phương sai từ hai mômen $\mathbb E[X]$ và $\mathbb E[X^2]$; công thức thứ hai cho biết đổi đơn vị đo (nhân với $a$) làm phương sai nhân với $a^2$, còn dịch gốc (cộng $b$) không làm đổi phương sai.
+Công thức thứ nhất của (7.7) cho phép tính phương sai từ hai mômen $\mathbb E[X]$ và $\mathbb E[X^2]$; công thức thứ hai cho biết đổi đơn vị đo (nhân với $\alpha$) làm phương sai nhân với $\alpha^2$, còn dịch gốc (cộng $\beta$) không làm đổi phương sai.
 :::
 
-Mệnh đề 10.24 là một phần của Mệnh đề 05c.31. Nếu $Y\sim\operatorname{Bernoulli}(q)$ thì $Y^2=Y$, nên $\mathbb E[Y^2]=\mathbb E[Y]=q$ và
+Công thức thứ nhất và công thức cuối của (7.7) là phần 1–2 của Mệnh đề 05c.31. Nếu $Y\sim\operatorname{Bernoulli}(\theta)$ thì $Y^2=Y$, nên $\mathbb E[Y^2]=\mathbb E[Y]=\theta$ và
 
 $$
-\operatorname{Var}(Y)=q-q^2=q(1-q).
+\operatorname{Var}(Y)=\theta-\theta^2=\theta(1-\theta).
 \tag{7.8}
 $$
 
-Trong mô hình sản phẩm, $q=0{,}044$ nên $\operatorname{Var}(Y)=0{,}044\cdot0{,}956=0{,}042064$.
+Trong mô hình sản phẩm, $\theta=0{,}044$ nên $\operatorname{Var}(Y)=0{,}044\cdot0{,}956=0{,}042064$.
 
 Với Gaussian $T\sim\mathcal N(\mu,\sigma^2)$ của Định nghĩa 10.20, tâm và tham số độ rộng chính là kỳ vọng và phương sai: $\mathbb E[T]=\mu$, $\operatorname{Var}(T)=\sigma^2$. Phép tính bằng đổi biến và tích phân từng phần nằm ở Phụ lục C.
 
@@ -1375,7 +1373,7 @@ $$
 \end{aligned}
 $$
 
-Với $Z=X$, ta có $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$. Với Gaussian nhiều chiều $T\sim\mathcal N(\mu,\Sigma)$ của Định nghĩa 10.20, $\mu$ là vector kỳ vọng và $\Sigma_{ij}=\operatorname{Cov}(T_i,T_j)$ (Murphy (2022), §3.2.1). Hệ số tương quan luôn nằm trong $[-1,1]$ (Bài tập 10.12) và đo mức quan hệ *tuyến tính* giữa hai biến, không đo độ dốc của quan hệ đó. Định nghĩa 10.25 là phần còn lại của Định nghĩa 05c.30.
+Với $Z=X$, ta có $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$. Với Gaussian nhiều chiều $T\sim\mathcal N(\mu,\Sigma)$ của Định nghĩa 10.20, $\mu$ là vector kỳ vọng và $\Sigma_{ij}=\operatorname{Cov}(T_i,T_j)$ (Murphy (2022), §3.2.1). Hệ số tương quan luôn nằm trong $[-1,1]$ (Bài tập 10.12) và đo mức quan hệ *tuyến tính* giữa hai biến, không đo độ dốc của quan hệ đó. Định nghĩa 10.25 lấy phần hiệp phương sai của Định nghĩa 05c.30 và thêm hệ số tương quan.
 
 Với một lô $n$ sản phẩm, số lỗi là tổng $N=\sum_{i=1}^nY_i$ của các biến chỉ thị lỗi. Mệnh đề sau cho phương sai của một tổng.
 
@@ -1458,7 +1456,7 @@ $$
 Trong học máy, khi các đặc trưng độc lập đôi một, ma trận hiệp phương sai của chúng là ma trận đường chéo.
 :::
 
-Mệnh đề 10.27 trùng Mệnh đề 05c.32. Kết hợp với Mệnh đề 10.26: nếu các biến chỉ thị lỗi $Y_1,\ldots,Y_n$ độc lập và cùng phân phối $\operatorname{Bernoulli}(q)$, thì $\operatorname{Var}(N)=nq(1-q)$. Nếu các sản phẩm cùng chịu ảnh hưởng của một lô nguyên liệu, các hiệp phương sai có thể dương và công thức này đánh giá thấp dao động của $N$.
+Mệnh đề 10.27 trùng Mệnh đề 05c.32. Kết hợp với Mệnh đề 10.26: nếu các biến chỉ thị lỗi $Y_1,\ldots,Y_n$ độc lập và cùng phân phối $\operatorname{Bernoulli}(\theta)$, thì $\operatorname{Var}(N)=n\theta(1-\theta)$. Nếu các sản phẩm cùng chịu ảnh hưởng của một lô nguyên liệu, các hiệp phương sai có thể dương và công thức này đánh giá thấp dao động của $N$.
 
 Chiều ngược lại của Mệnh đề 10.27 sai. Ví dụ sau dựng hai biến của dây chuyền có hiệp phương sai bằng $0$ nhưng phụ thuộc.
 
@@ -1727,7 +1725,7 @@ $$
 $$
 :::
 
-Định nghĩa 10.31 mở rộng Định nghĩa 05c.23 sang trường hợp có mật độ. Phân phối của từng biến riêng, suy ra từ phân phối đồng thời, gọi là *phân phối biên* (marginal distribution). Mệnh đề sau cho cách tính nó; phép tính này gọi là *lấy biên* (marginalization), còn Murphy gọi công thức rời rạc là *quy tắc tổng* (sum rule).
+Định nghĩa 10.31 mở rộng Định nghĩa 05c.23 sang trường hợp có mật độ. Phân phối của từng biến riêng, suy ra từ phân phối đồng thời, gọi là *phân phối biên* (marginal distribution); Bài 05c gọi hàm khối của nó là PMF lề. Mệnh đề sau cho cách tính nó; phép tính này gọi là *lấy biên* (marginalization), còn Murphy gọi công thức rời rạc là *quy tắc tổng* (sum rule).
 
 ::: proposition Mệnh đề 10.32 (Lấy biên) — chứng minh đầy đủ
 **Giả thiết.** $X,Z$ rời rạc với PMF đồng thời $p_{X,Z}$; hoặc $(X,Z)$ có mật độ đồng thời $f_{X,Z}$.
@@ -1779,7 +1777,7 @@ Như vậy, lấy biên là cách loại một biến chưa quan sát khỏi mô
 
 Khi $(X,Z)$ có mật độ đồng thời, tính tuyến tính (7.5) và Mệnh đề 10.27 vẫn đúng; Phụ lục B.1–B.2 phác thảo hai trường hợp này.
 
-Trong một bảng hai chiều, lấy biên nghĩa là cộng theo hàng hoặc theo cột. Với mật độ, miền tích phân phải phủ mọi giá trị của biến bị loại; tích phân trên cả $\mathbb R$ dùng được khi mật độ đã bằng $0$ ngoài miền giá trị. Viết $p_{X,Z}(x,z)=p_{X\mid Z}(x\mid z)\,p_Z(z)$, công thức (8.3) trở thành công thức toàn phần (5.3) với phân hoạch $\{Z=z\}$.
+Trong một bảng hai chiều, lấy biên nghĩa là cộng theo hàng hoặc theo cột. Với mật độ, miền tích phân phải phủ mọi giá trị của biến bị loại; tích phân trên cả $\mathbb R$ dùng được khi mật độ đã bằng $0$ ngoài miền giá trị. Viết $p_{X,Z}(x,z)=\mathbb P(X=x\mid Z=z)\,p_Z(z)$, công thức (8.3) trở thành công thức toàn phần (5.3) với phân hoạch $\{Z=z\}$.
 
 Phân phối đồng thời chứa nhiều thông tin hơn hai phân phối biên. Chẳng hạn, hai biến $\operatorname{Bernoulli}(1/2)$ có thể độc lập, hoặc bằng nhau tại mọi kết quả. Hai mô hình có cùng phân phối biên, nhưng xác suất cả hai bằng $1$ lần lượt là $1/4$ và $1/2$. Vì vậy ghép hai phân phối biên bằng phép nhân là một giả thiết độc lập, cần được nêu ra.
 
@@ -1807,7 +1805,7 @@ f_{X\mid Z}(x\mid z)=\frac{f_{X,Z}(x,z)}{f_Z(z)}
 \tag{8.6}
 $$
 
-không âm và có $\int_{\mathbb R}f_{X\mid Z}(x\mid z)\,dx=1$; nó được gọi là *mật độ có điều kiện* của $X$ khi biết $Z=z$.
+không âm và có $\int_{\mathbb R}f_{X\mid Z}(x\mid z)\,dx=1$; nó được gọi là *mật độ có điều kiện* (conditional density) của $X$ khi biết $Z=z$.
 :::
 
 ::: proof Chứng minh Mệnh đề 10.33
@@ -1817,7 +1815,7 @@ không âm và có $\int_{\mathbb R}f_{X\mid Z}(x\mid z)\,dx=1$; nó được g�
 
 **Bước 2 (có mật độ).** Tử số không âm, mẫu số dương, nên $f_{X\mid Z}\ge0$. Theo (8.4), $\int_{\mathbb R}f_{X,Z}(x,z)\,dx=f_Z(z)$; chia cho số dương hữu hạn $f_Z(z)$ được $1$. $\square$
 
-Phân phối có điều kiện là phân phối đồng thời được cắt tại giá trị quan sát rồi chuẩn hóa; đây là phép toán mà mọi bộ phân loại xác suất thực hiện khi trả về $p(y\mid x)$.
+Phân phối có điều kiện là phân phối đồng thời được cắt tại giá trị quan sát rồi chuẩn hóa; đại lượng $p(y\mid x)$ mà một bộ phân loại xác suất trả về là phân phối có điều kiện theo nghĩa này.
 :::
 
 Khi $Z$ có mật độ, biến cố $\{Z=z\}$ có xác suất $0$, nên (8.6) không phải phép chia $\mathbb P(X\in B,Z=z)/\mathbb P(Z=z)$. Nó xác định một mật độ theo giá trị quan sát của $Z$, phù hợp với phân tích $f_{X,Z}(x,z)=f_{X\mid Z}(x\mid z)\,f_Z(z)$. Hàm này chỉ được xác định duy nhất ngoài một tập giá trị $z$ có xác suất $0$; trong các mô hình có mật độ liên tục như Gaussian, công thức tỉ số là cách tính thông dụng.
@@ -1874,7 +1872,7 @@ Mệnh đề 10.17 với $U=A$, $V=S$, $W=Y$ và $p_{S,Y}(s,y)>0$ cho $\mathbb P
 
 **Bước 3 (lấy biên theo $s$ và $y$).** Mệnh đề 10.32 cho cặp $\bigl((Y,A),S\bigr)$ cho $p_{Y,A}(y,a')=\sum_sp_{S,Y,A}(s,y,a')$; các $s$ có $p_S(s)=0$ góp $0$. Lấy biên tiếp theo $y$ cho $p_A(a')=\sum_{y'}p_{Y,A}(y',a')$; các $y'$ có $p_Y(y')=0$ góp $0$.
 
-**Bước 4 (chuẩn hóa).** Mệnh đề 10.33 cho $p_{Y\mid A}(y\mid a')=p_{Y,A}(y,a')/p_A(a')$. Thay hai tổng của Bước 3, với số hạng cho bởi (8.7), được (8.8). $\square$
+**Bước 4 (chuẩn hóa).** Mệnh đề 10.33 cho $p_{Y\mid A}(y\mid a')=p_{Y,A}(y,a')/p_A(a')$. Thay hai tổng của Bước 3, với số hạng cho bởi (8.7), được (8.8). Nếu $p_Y(y)=0$ thì $p_{Y,A}(y,a')\le p_Y(y)=0$ theo Bổ đề 10.4, nên $p_{Y\mid A}(y\mid a')=0$. $\square$
 
 Như vậy hậu nghiệm của nhãn lỗi khi thiếu nguồn hàng tính được hoàn toàn từ ba nhân tử nhỏ của mô hình, không cần lập trước bảng đầy đủ của ba biến.
 :::
@@ -1995,7 +1993,7 @@ Loại sản phẩm có chi phí kỳ vọng nhỏ hơn khi và chỉ khi $5p>1-
 :::
 
 ::: application Tình huống 10.2 (Tỉ lệ lỗi thay đổi khi triển khai)
-**Bài toán.** Quy tắc "loại khi có cảnh báo" của Tình huống 10.1 được thiết kế với tỉ lệ lỗi $0{,}044$. Khi triển khai, cơ cấu nguồn hàng thay đổi và tỉ lệ lỗi chung giảm còn $0{,}01$; cảm biến giữ nguyên độ nhạy $0{,}90$ và xác suất cảnh báo nhầm $0{,}05$.
+**Bài toán.** Quy tắc "loại khi có cảnh báo" của Tình huống 10.1 được thiết kế với tỉ lệ lỗi $0{,}044$. Khi triển khai, cơ cấu nguồn hàng thay đổi và tỉ lệ lỗi chung giảm còn $0{,}01$; cảm biến giữ nguyên độ nhạy $0{,}90$ và tỉ lệ cảnh báo nhầm $0{,}05$.
 
 **Giả thiết không thỏa.** Định lý 10.11 vẫn đúng, nhưng tiên nghiệm dùng lúc thiết kế không còn là tiên nghiệm của luồng hàng thật.
 
@@ -2017,8 +2015,8 @@ $$
 Ngoài hai tình huống trên, các công cụ của bài xuất hiện trong học máy ở các chỗ sau.
 
 - **Bộ phân loại xác suất:** một mô hình trả về $p(y\mid x)$ là phân phối có điều kiện của Mệnh đề 10.33; quyết định từ $p(y\mid x)$ cần thêm chi phí như Tình huống 10.1.
-- **Rủi ro kỳ vọng:** đại lượng mà huấn luyện cố gắng làm nhỏ là kỳ vọng của mất mát theo phân phối dữ liệu, như $\mathbb E[L]$ của Ví dụ 10.8.
-- **Mô hình có biến ẩn:** khi một biến của mô hình không bao giờ được quan sát, như nhà cung cấp trong Mệnh đề 10.34, xác suất của dữ liệu được tính bằng lấy biên theo biến đó.
+- **Rủi ro kỳ vọng (expected risk):** đại lượng mà huấn luyện cố gắng làm nhỏ là kỳ vọng của mất mát theo phân phối dữ liệu, như $\mathbb E[L]$ của Ví dụ 10.8.
+- **Mô hình có biến ẩn (latent variable model):** khi một biến của mô hình không được quan sát, như nhà cung cấp của sản phẩm thiếu hồ sơ trong Mệnh đề 10.34, xác suất của dữ liệu được tính bằng lấy biên theo biến đó.
 
 Chúng ta bắt đầu từ các kết quả có thể xảy ra khi một hệ thống nhận đầu vào chưa biết trước. Không gian xác suất gán trọng số nhất quán cho các biến cố, và xác suất có điều kiện chuẩn hóa lại các trọng số sau quan sát. Quy tắc nhân và công thức toàn phần dẫn đến định lý Bayes, nhờ đó cảnh báo của cảm biến cập nhật xác suất sản phẩm lỗi từ $0{,}044$ lên $198/437$, thay cho con số $0{,}90$ hấp dẫn nhưng sai của câu hỏi mở đầu. Biến ngẫu nhiên mô tả các đại lượng quan sát; kỳ vọng và phương sai tóm tắt trung bình và mức dao động, nhưng hiệp phương sai bằng $0$ không loại trừ phụ thuộc. Phân phối đồng thời giữ mọi quan hệ phụ thuộc, và phép lấy biên loại biến chưa quan sát bằng tổng hoặc tích phân. Kết hợp lấy biên với Bayes cho hậu nghiệm khi thiếu thông tin nhà cung cấp. Hậu nghiệm ấy cần thêm chi phí để thành quyết định, và chỉ đúng khi tiên nghiệm cùng đặc tính cảm biến khớp với luồng hàng thật.
 
@@ -2042,7 +2040,7 @@ Các công thức cần nhớ là Bayes (5.4) và dạng tỉ lệ (5.5), lấy 
 
 Bộ bài tập đầy đủ, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 10](material-viewer.html?doc=materials/lec-10/exercises.md).
 
-Ba bài đầu dùng trên lớp, chín bài sau dùng để tự học; mỗi dòng ghi mục tiêu học tập mà bài kiểm tra.
+Ba bài đầu dùng trên lớp; sáu bài tự học và ba bài chọn từ Murphy dùng để tự học. Mỗi dòng ghi mục tiêu học tập mà bài kiểm tra.
 
 **Trên lớp**
 
@@ -2077,10 +2075,10 @@ Ba bài đầu dùng trên lớp, chín bài sau dùng để tự học; mỗi d
 
 **Quyết định.** Với chi phí $5$ cho việc chấp nhận một sản phẩm lỗi và $1$ cho việc loại một sản phẩm đạt, loại sản phẩm khi hậu nghiệm vượt $1/6$ (Tình huống 10.1); ở đây $0{,}4531>1/6$, nên loại. Khi tỉ lệ lỗi giảm còn $0{,}01$, hậu nghiệm giảm còn $2/13<1/6$, nên quyết định đổi thành chấp nhận (Tình huống 10.2).
 
-Tóm lại, AI cần xác suất vì dữ liệu và quan sát không đầy đủ: xác suất biểu diễn được cái chưa biết (tiên nghiệm, hợp lý), kết hợp được nhiều nguồn thông tin (quy tắc nhân, lấy biên) và cập nhật được khi có quan sát mới (định lý Bayes). Khi tỉ lệ lỗi giảm từ $0{,}044$ xuống $0{,}01$, chỉ cần thay tiên nghiệm vào (5.4) là hậu nghiệm sau cảnh báo giảm từ $198/437$ xuống $2/13$, và quyết định đổi từ loại sang chấp nhận.
+Tóm lại, AI cần xác suất vì dữ liệu và quan sát không đầy đủ: xác suất biểu diễn được cái chưa biết (tiên nghiệm, hợp lý), kết hợp được nhiều nguồn thông tin (quy tắc nhân, lấy biên) và cập nhật được khi có quan sát mới (định lý Bayes).
 :::
 
-Mọi tham số của bài được cho trước: tỉ lệ nguồn hàng $0{,}6$ và $0{,}4$, tỉ lệ lỗi $0{,}02$ và $0{,}08$, độ nhạy $0{,}9$, xác suất cảnh báo nhầm $0{,}05$. Trong thực tế, các con số này phải được ước lượng từ một mẫu sản phẩm đã kiểm định, và ước lượng có sai số. Tương tự, nếu cảm biến trả về một số đo liên tục với mô hình $T\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$, các tham số $\mu_y,\sigma_y^2$ cũng chưa biết. Câu hỏi còn mở là: chọn các tham số ấy từ dữ liệu như thế nào. Bài 11 giữ cấu trúc mô hình xác suất của bài này nhưng coi các tham số là chưa biết, và chọn chúng bằng hợp lý cực đại.
+Mọi tham số của bài được cho trước: tỉ lệ nguồn hàng $0{,}6$ và $0{,}4$, tỉ lệ lỗi $0{,}02$ và $0{,}08$, độ nhạy $0{,}9$, tỉ lệ cảnh báo nhầm $0{,}05$. Trong thực tế, các con số này phải được ước lượng từ một mẫu sản phẩm đã kiểm định, và ước lượng có sai số. Tương tự, nếu cảm biến trả về một số đo liên tục với mô hình $T\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$, các tham số $\mu_y,\sigma_y^2$ cũng chưa biết. Câu hỏi còn mở là: chọn các tham số ấy từ dữ liệu như thế nào. Bài 11 giữ cấu trúc mô hình xác suất của bài này nhưng coi các tham số là chưa biết, và chọn chúng bằng hợp lý cực đại.
 
 ## 12. Tài liệu đọc
 
@@ -2141,7 +2139,7 @@ Phân rã cho biết bao nhiêu phần dao động của $X$ được giải th�
 
 ### B. Trường hợp có mật độ (phác thảo)
 
-Các phác thảo dưới đây thừa nhận hai kết quả của lý thuyết tích phân Lebesgue: định lý hội tụ đơn điệu, và định lý Fubini–Tonelli (đổi thứ tự tích phân của hàm không âm, hoặc của hàm có tích phân giá trị tuyệt đối hữu hạn). Khi $g(X)$ không rời rạc và không có mật độ, $\mathbb E[g(X)]$ được hiểu theo tích phân Lebesgue trên $\Omega$.
+Các phác thảo dưới đây thừa nhận hai kết quả của lý thuyết tích phân Lebesgue: định lý hội tụ đơn điệu (monotone convergence theorem), và định lý Fubini–Tonelli (đổi thứ tự tích phân của hàm không âm, hoặc của hàm có tích phân giá trị tuyệt đối hữu hạn). Khi $g(X)$ không rời rạc và không có mật độ, $\mathbb E[g(X)]$ được hiểu theo tích phân Lebesgue trên $\Omega$.
 
 **B.1. Công thức (7.4) và tính tuyến tính.** Điều kiện: $\int|g|f_X<\infty$.
 
@@ -2149,7 +2147,7 @@ Các phác thảo dưới đây thừa nhận hai kết quả của lý thuyết
 - Nếu $g\ge0$, ta xấp xỉ $g$ từ dưới bằng dãy hàm $g_n=\min\bigl(n,\lfloor2^ng\rfloor/2^n\bigr)$, mỗi hàm chỉ nhận hữu hạn giá trị, tăng dần về $g$. Định lý hội tụ đơn điệu cho $\mathbb E[g_n(X)]\to\mathbb E[g(X)]$ và $\int g_nf_X\to\int gf_X$.
 - Trường hợp tổng quát: viết $g=g^+-g^-$ với $g^\pm\ge0$; điều kiện $\int|g|f_X<\infty$ làm cả hai tích phân hữu hạn.
 
-Khi $(X,Z)$ có mật độ đồng thời, cùng lập luận trên $\mathbb R^2$ cho $\mathbb E[h(X,Z)]=\iint h\,f_{X,Z}$. Với $h(x,z)=ax+bz+c$, tách tích phân kép thành ba số hạng; Fubini–Tonelli và (8.4) cho $\iint x\,f_{X,Z}(x,z)\,dz\,dx=\int xf_X(x)\,dx=\mathbb E[X]$, hợp lệ vì $\iint|x|f_{X,Z}=\mathbb E|X|<\infty$. Ta được (7.5).
+Khi $(X,Z)$ có mật độ đồng thời, cùng lập luận trên $\mathbb R^2$ cho $\mathbb E[h(X,Z)]=\iint h\,f_{X,Z}$. Với $h(x,z)=\alpha x+\beta z+\gamma$, tách tích phân kép thành ba số hạng; Fubini–Tonelli và (8.4) cho $\iint x\,f_{X,Z}(x,z)\,dz\,dx=\int xf_X(x)\,dx=\mathbb E[X]$, hợp lệ vì $\iint|x|f_{X,Z}=\mathbb E|X|<\infty$. Ta được (7.5).
 
 **B.2. Mệnh đề 10.27.** Nếu $X\perp Z$ và $(X,Z)$ có mật độ đồng thời, (6.4) và (8.2) cho cùng xác suất trên mọi hình chữ nhật $B_1\times B_2$ khi thay $f_{X,Z}$ bằng $f_Xf_Z$; ta thừa nhận rằng khi đó $f_{X,Z}=f_Xf_Z$ ngoài một tập có diện tích bằng $0$ trong $\mathbb R^2$. Theo B.1, $\mathbb E[XZ]=\iint xz\,f_X(x)f_Z(z)\,dz\,dx$. Vì $\iint|x||z|f_Xf_Z=\mathbb E|X|\,\mathbb E|Z|<\infty$, Fubini cho tích phân kép bằng $\bigl(\int xf_X\bigr)\bigl(\int zf_Z\bigr)=\mathbb E[X]\,\mathbb E[Z]$.
 
