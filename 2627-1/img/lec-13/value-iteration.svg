@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="800.39952pt" height="353.99952pt" viewBox="0 0 800.39952 353.99952" xmlns="http://www.w3.org/2000/svg" version="1.1" role="img" aria-labelledby="title desc">
-<title id="title">Phép cập nhật Bellman và hội tụ lặp giá trị</title><desc id="desc">Hai hàm hành động 1+0.45v và0.6+0.9v cắt nhau tại8/9. Điểm bất động tối ưu là6. Từ0, các giá trị lặp đầu là1,1.5,1.95,2.355 rồi tiến về6; A tạo vòng đầu và B được chọn từ vòng hai.</desc>
+<title id="title">Phép cập nhật Bellman và hội tụ lặp giá trị</title><desc id="desc">Hai hàm hành động 1+0,45v và 0,6+0,9v cắt nhau tại 8/9. Điểm bất động tối ưu là 6. Từ 0, các giá trị lặp đầu là 1; 1,5; 1,95; 2,355 rồi tiến về 6; A tạo vòng đầu và B được chọn từ vòng hai.</desc>
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
@@ -374,7 +374,7 @@ L 62.739609 36.370875
 " style="fill: none; stroke: #b34b36; stroke-width: 2; stroke-linecap: square"/>
     </g>
     <g id="text_21">
-     <!-- $Q_A(v)=1+0.45v$ -->
+     <!-- $Q_A(v)=1+0{,}45v$ -->
      <g transform="translate(69.939609 39.520875)">
       <text>
        <tspan x="0" y="-0.171875" style="font-style: oblique; font-size: 9px; font-family: 'DejaVu Sans'">Q</tspan>
@@ -387,7 +387,7 @@ L 62.739609 36.370875
        <tspan x="35.036279" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">1</tspan>
        <tspan x="42.515771" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">+</tspan>
        <tspan x="51.810205" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">0</tspan>
-       <tspan x="57.536279" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">.</tspan>
+       <tspan x="57.536279" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">,</tspan>
        <tspan x="60.397119" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">4</tspan>
        <tspan x="66.123193" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">5</tspan>
       </text>
@@ -400,7 +400,7 @@ L 62.739609 49.872984
 " style="fill: none; stroke: #2456a6; stroke-width: 2; stroke-linecap: square"/>
     </g>
     <g id="text_22">
-     <!-- $Q_B(v)=0.6+0.9v$ -->
+     <!-- $Q_B(v)=0{,}6+0{,}9v$ -->
      <g transform="translate(69.939609 53.022984)">
       <text>
        <tspan x="0" y="-0.171875" style="font-style: oblique; font-size: 9px; font-family: 'DejaVu Sans'">Q</tspan>
@@ -411,11 +411,11 @@ L 62.739609 49.872984
        <tspan x="20.489502" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">)</tspan>
        <tspan x="25.75415" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">=</tspan>
        <tspan x="35.048584" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">0</tspan>
-       <tspan x="40.774658" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">.</tspan>
+       <tspan x="40.774658" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">,</tspan>
        <tspan x="43.635498" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">6</tspan>
        <tspan x="51.11499" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">+</tspan>
        <tspan x="60.409424" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">0</tspan>
-       <tspan x="66.135498" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">.</tspan>
+       <tspan x="66.135498" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">,</tspan>
        <tspan x="68.996338" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">9</tspan>
       </text>
      </g>
@@ -427,7 +427,7 @@ L 62.739609 63.375094
 " style="fill: none; stroke-dasharray: 1.5,2.475; stroke-dashoffset: 0; stroke: #172b4d; stroke-width: 1.5"/>
     </g>
     <g id="text_23">
-     <!-- $T(v)=\max(Q_A,Q_B)$ -->
+     <!-- $T(v)=\max\{Q_A;Q_B\}$ -->
      <g transform="translate(69.939609 66.525094)">
       <text>
        <tspan x="0" y="-0.171875" style="font-style: oblique; font-size: 9px; font-family: 'DejaVu Sans'">T</tspan>
@@ -440,9 +440,9 @@ L 62.739609 63.375094
        <tspan x="28.894043" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">m</tspan>
        <tspan x="37.661133" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">a</tspan>
        <tspan x="43.17627" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">x</tspan>
-       <tspan x="48.502441" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">(</tspan>
-       <tspan x="63.653467" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">,</tspan>
-       <tspan x="79.919824" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">)</tspan>
+       <tspan x="48.502441" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">{</tspan>
+       <tspan x="63.653467" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">;</tspan>
+       <tspan x="79.919824" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">}</tspan>
        <tspan x="59.097656" y="1.178121" style="font-style: oblique; font-size: 6.3px; font-family: 'DejaVu Sans'">A</tspan>
        <tspan x="75.351709" y="1.178121" style="font-style: oblique; font-size: 6.3px; font-family: 'DejaVu Sans'">B</tspan>
       </text>
@@ -455,15 +455,12 @@ L 62.739609 76.877203
 " style="fill: none; stroke-dasharray: 4.81,2.08; stroke-dashoffset: 0; stroke: #8391a2; stroke-width: 1.3"/>
     </g>
     <g id="text_24">
-     <!-- $T(v)=v$ -->
+     <!-- $y=v$ -->
      <g transform="translate(69.939609 80.027203)">
       <text>
-       <tspan x="0" y="-0.171875" style="font-style: oblique; font-size: 9px; font-family: 'DejaVu Sans'">T</tspan>
-       <tspan x="9.008789" y="-0.171875" style="font-style: oblique; font-size: 9px; font-family: 'DejaVu Sans'">v</tspan>
-       <tspan x="28.894043" y="-0.171875" style="font-style: oblique; font-size: 9px; font-family: 'DejaVu Sans'">v</tspan>
-       <tspan x="5.497559" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">(</tspan>
-       <tspan x="14.334961" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">)</tspan>
-       <tspan x="19.599609" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">=</tspan>
+       <tspan x="0" y="-0.171875" style="font-style: oblique; font-size: 9px; font-family: 'DejaVu Sans'">y</tspan>
+       <tspan x="9.294434" y="-0.171875" style="font-size: 9px; font-family: 'DejaVu Sans'">=</tspan>
+       <tspan x="21.588867" y="-0.171875" style="font-style: oblique; font-size: 9px; font-family: 'DejaVu Sans'">v</tspan>
       </text>
      </g>
     </g>

@@ -1,1060 +1,1586 @@
 # Bài 13 — Ra quyết định tuần tự dưới điều kiện bất định
 
+Bài 07 giải bài toán quyết định hữu hạn tất định bằng phương trình Bellman (Định lý 07.49): với chi phí giai đoạn $g_k$, hàm chuyển $f_k$ và chi phí tối ưu còn lại $J_k$,
+$$
+\begin{aligned}
+J_k(\xi)&=\min_{u\in U_k(\xi)}\bigl\{g_k(\xi,u)\\
+&\qquad+J_{k+1}\bigl(f_k(\xi,u)\bigr)\bigr\},\\
+J_N&=g_N.
+\end{aligned}
+$$
+Khi trạng thái kế tiếp là ngẫu nhiên, vế phải cần một kỳ vọng theo trạng thái kế tiếp; khi số bước không giới hạn, không còn điều kiện cuối để truy hồi ngược, và giá trị cần tìm xuất hiện ở cả hai vế của phương trình. Bài 12 giả thiết dữ liệu i.i.d. theo một phân phối cố định; khi tác tử hành động, hành động hiện tại làm đổi phân phối của trạng thái kế tiếp, nên dữ liệu không còn i.i.d. Chúng ta mô hình hóa sự phụ thuộc đó bằng xác suất chuyển trạng thái có điều khiển. Câu hỏi trung tâm của bài là: **khi một hành động ảnh hưởng đến các trạng thái và phần thưởng trong tương lai, làm thế nào tìm chính sách tối ưu?**
+
+## Câu hỏi mở đầu
+
+Một robot ở trạng thái hoạt động $h$ chọn một trong hai hành động ở mỗi bước. Trạng thái $z$ là trạng thái dừng: robot ở lại $z$ mãi và không nhận thêm phần thưởng. Hai hành động tại $h$ là:
+
+- hành động $A$: nhận thưởng $1$, sau đó robot còn hoạt động với xác suất $1/2$ và dừng với xác suất $1/2$;
+- hành động $B$: nhận thưởng $0{,}6$, sau đó robot chắc chắn còn hoạt động.
+
+Phần thưởng nhận ở bước thứ $t$ (tính từ $t=0$) được nhân với $0{,}9^t$, và robot muốn tổng thưởng có trọng số này lớn nhất theo kỳ vọng.
+
+**Câu hỏi.** Robot nên chọn hành động nào tại $h$?
+
+Nếu chỉ so phần thưởng của bước hiện tại thì $A$ tốt hơn, vì $1>0{,}6$. Lựa chọn này sai: sau mỗi lần chọn $A$, robot dừng với xác suất $1/2$ và mất mọi phần thưởng về sau. Tổng thưởng chiết khấu kỳ vọng khi luôn chọn $A$ bằng $20/11\approx1{,}82$, còn khi luôn chọn $B$ bằng $0{,}6/(1-0{,}9)=6$. Để trả lời trọn vẹn, chúng ta còn phải so sánh với mọi cách chọn khác, kể cả cách chọn thay đổi theo lịch sử, và tìm được cách chọn tốt nhất mà không liệt kê tất cả.
+
 ## Mục tiêu học tập
 
 Sau bài này, người học có thể:
 
-1. Phát biểu tính Markov, phân biệt nó với độc lập, lập ma trận chuyển và tính phân phối trạng thái sau nhiều bước theo quy ước vector hàng.
-2. Mô hình hóa một quá trình quyết định Markov hữu hạn; xác định trạng thái, hành động, chuyển trạng thái, phần thưởng, chính sách và tổng thưởng chiết khấu.
-3. Suy ra phương trình Bellman cho một chính sách và chứng minh vì sao điểm bất động của toán tử tối ưu chính là giá trị tối ưu, thay vì chỉ là một nghiệm đại số.
-4. Chứng minh tính co, tính duy nhất và hội tụ của lặp giá trị; dùng chặn sai số và kiểm tra các giả thiết cần thiết.
-5. Phân biệt quy hoạch khi biết mô hình với học từ trải nghiệm; ước lượng một hàng chuyển tiếp từ số đếm và tính một mục tiêu Bellman.
-6. Phân tích giới hạn khi trạng thái không đủ thông tin, khi không có chiết khấu hoặc khi chỉ có dữ liệu tương tác; giải thích vì sao chứng minh cho lặp giá trị chính xác chưa phải chứng minh hội tụ của một thuật toán học.
+1. Phát biểu tính Markov, lập ma trận chuyển và tính phân phối trạng thái sau nhiều bước.
+2. Mô hình hóa một bài toán quyết định tuần tự thành một quá trình quyết định Markov hữu hạn: trạng thái, hành động, xác suất chuyển, phần thưởng, hệ số chiết khấu và chính sách.
+3. Suy ra phương trình Bellman cho một chính sách cố định và phương trình Bellman tối ưu.
+4. Chứng minh toán tử Bellman tối ưu là ánh xạ co, suy ra lặp giá trị hội tụ và chính sách tham lam theo điểm bất động là tối ưu.
+5. Thực hiện lặp giá trị bằng tay và giải thích vì sao hành động có phần thưởng tức thời lớn nhất có thể không tối ưu.
+6. Ước lượng xác suất chuyển từ số đếm, tính mục tiêu Bellman, và phân biệt quy hoạch khi biết mô hình với học tăng cường từ dữ liệu tương tác.
 
-Các mục tiêu cụ thể hóa năng lực xây dựng mô hình học máy thuộc CLO2 và năng lực nhận dạng bài toán tối ưu trong AI thuộc CLO4 của đề cương học phần. Đây là các mục tiêu biên soạn, không phải các mã chuẩn đầu ra bài học mới. Các Bài tập 13.1–13.6 kiểm tra sáu nhóm mục tiêu; bài trên lớp và bài tự học yêu cầu phối hợp mô hình hóa, tính toán và lập luận.
+Các mục tiêu thuộc CLO2 (xây dựng mô hình học máy) và CLO4 (nhận dạng bài toán tối ưu trong AI) của đề cương học phần.
 
-## Kiến thức tiên quyết và liên hệ với các bài trước
+## Kiến thức tiên quyết
 
-- **Quy hoạch động tất định.** Bài 07, Định nghĩa 07.46 mô tả trạng thái, điều khiển và chi phí theo giai đoạn; Định lý 07.49 cho phương trình Bellman hữu hạn tất định. Ta thay trạng thái kế tiếp xác định bằng một phân phối có điều kiện, rồi thay chi phí hữu hạn bằng tổng thưởng chiết khấu vô hạn. Dấu tối ưu đổi từ cực tiểu chi phí sang cực đại phần thưởng.
-- **Xác suất.** Cần biết xác suất có điều kiện, xác suất toàn phần và kỳ vọng toàn phần trong Bài 10. Phép lấy tổng theo trạng thái kế tiếp sẽ là phần xác suất của bước Bellman.
-- **Ước lượng.** Định lý 11.7 cho MLE của một vector xác suất phân loại từ các số đếm. Cùng công thức sẽ được dùng để ước lượng một hàng của mô hình chuyển tiếp khi có dữ liệu phù hợp.
-- **Học và tối ưu.** Bài 12 phân biệt sai số tối ưu trên mô hình đang dùng với hạn chế biểu diễn và sai số do lấy mẫu. Ở đây, lặp giá trị giải bài toán quy hoạch với một mô hình cố định; nếu mô hình được học, sai số của nó là một vấn đề bổ sung.
-- **Giải tích và đại số tuyến tính.** Cần biết tổng cấp số nhân, vector hữu hạn, nhân ma trận, chuẩn cực đại và khái niệm dãy Cauchy. Tính đầy đủ của không gian hữu hạn chiều được dùng trong chứng minh hội tụ; không cần định lý xác suất tiệm cận cho các thuật toán học tăng cường.
+- **Quy hoạch động tất định.** Định nghĩa 07.46, 07.48 và Định lý 07.49: với trạng thái $\xi$, điều khiển $u$, hàm chuyển $f_k$ và chi phí $g_k$, chi phí tối ưu còn lại thỏa $J_k(\xi)=\min_u\{g_k(\xi,u)+J_{k+1}(f_k(\xi,u))\}$, $J_N=g_N$. Nhận xét 07.47: một lựa chọn trạng thái là đủ khi chi phí và chuyển tiếp về sau không phụ thuộc lịch sử; khi không đủ, ta mở rộng trạng thái.
+- **Xác suất.** Quy tắc nhân $\mathbb P(E\cap F)=\mathbb P(E)\,\mathbb P(F\mid E)$ (Mệnh đề 10.10); xác suất toàn phần $\mathbb P(F)=\sum_i\mathbb P(E_i)\,\mathbb P(F\mid E_i)$ với phân hoạch $(E_i)$ (Định lý 10.11); độc lập có điều kiện (Định nghĩa 10.16); kỳ vọng có điều kiện theo một biến rời rạc (Định nghĩa 10.28) và kỳ vọng toàn phần $\mathbb E[X]=\sum_w\mathbb E[X\mid W=w]\,\mathbb P(W=w)$, tổng trên các $w$ có xác suất dương (Định lý 10.29).
+- **Ước lượng.** Định lý 11.7: với $m_k$ lần quan sát nhóm $k$ trong $m$ lần thử độc lập có cùng phân phối phân loại, ước lượng hợp lý cực đại (maximum likelihood estimation, MLE) duy nhất trên đơn hình đóng là $\hat\pi_k=m_k/m$ (Bài 11 viết $n$, $n_k$; ở đây ta viết $m$ cho số lần thử vì $n$ là trạng thái nghỉ).
+- **Ba nguồn sai số.** Mệnh đề 12.16 chặn rủi ro dư bằng tổng của sai số xấp xỉ, sai số ước lượng và sai số tối ưu hóa.
+- **Giải tích.** Tổng cấp số nhân $\sum_{j\ge0}\gamma^j=1/(1-\gamma)$ khi $0\le\gamma<1$; chuẩn cực đại $\|x\|_\infty=\max_i\lvert x_i\rvert$ trên $\mathbb R^d$; mọi dãy Cauchy số thực đều hội tụ (tính đầy đủ của $\mathbb R$).
 
-Trong Bài 07, trạng thái đủ thông tin cho phép chia bài toán thành những bài toán đuôi độc lập với cách đã đến trạng thái đó. Với chuyển trạng thái ngẫu nhiên, cùng yêu cầu đủ thông tin trở thành giả thiết Markov có điều kiện theo hành động. Kỳ vọng mô tả tương lai chưa biết, còn chiết khấu cho phép kiểm soát tổng thưởng qua vô hạn bước.
+**Câu hỏi ôn nhanh.**
 
-## Cách đọc và phân bổ thời gian
+1. Cho $\mathbb P(X=1)=0{,}4$, $\mathbb P(Y=1\mid X=1)=0{,}2$ và $\mathbb P(Y=1\mid X=0)=0{,}5$. Tính $\mathbb P(Y=1)$.
+2. Tính $\sum_{j=0}^{\infty}0{,}6\cdot0{,}9^j$.
+3. Trong $12$ lần thử độc lập, nhóm $1$ xuất hiện $9$ lần và nhóm $2$ xuất hiện $3$ lần. Tính MLE của vector xác suất.
 
-| Nội dung lý thuyết | Thời gian |
-|---|---:|
-| 13.1. Quá trình ngẫu nhiên và xích Markov | 25 phút |
-| 13.2. Mô hình quyết định, chính sách và chiết khấu | 25 phút |
-| 13.3. Bellman tối ưu và lặp giá trị | 40 phút |
-| 13.4. Biết mô hình và học từ trải nghiệm | 30 phút |
-| **Tổng lý thuyết** | **120 phút** |
+::: hint Đáp số câu hỏi ôn nhanh
+1. $0{,}4\cdot0{,}2+0{,}6\cdot0{,}5=0{,}08+0{,}30=0{,}38$ theo Định lý 10.11.
+2. $0{,}6/(1-0{,}9)=6$.
+3. $(9/12;\,3/12)=(3/4;\,1/4)$ theo Định lý 11.7.
+:::
 
-Ba bài trên lớp chiếm 30 phút riêng. Bốn bài tự học cần khoảng 180 phút; khoảng hai giờ còn lại dành cho đọc sách và kiểm tra các phép suy diễn, tổng cộng khoảng năm giờ tự học.
+## 1. Thiết lập bài toán
 
-Phần **cốt lõi** gồm các mô hình hữu hạn, phương trình Bellman, chứng minh tính co, tính tối ưu của điểm bất động, ví dụ tính lặp bằng tay, ước lượng chuyển tiếp từ số đếm và phân biệt quy hoạch với học từ trải nghiệm. Phần **mở rộng** gồm chặn sai số theo phần dư Bellman và phản ví dụ khi bỏ chiết khấu. Phần **đọc thêm** dẫn tới các phương pháp học giá trị; công thức cập nhật Q chỉ dùng để phân biệt phép lấy kỳ vọng chính xác với một phép cập nhật từ mẫu, không triển khai toàn bộ lý thuyết hội tụ.
+Một tác tử (agent), chẳng hạn robot, tương tác với môi trường qua các bước $t=0,1,2,\ldots$. Bài toán gồm sáu thành phần sau.
 
-Mọi số liệu dưới đây là số liệu giả lập phục vụ học tập. Ví dụ 13.1 giữ ma trận và phân phối đầu của ví dụ xích Markov trong `sources/part2/lecture_notes.pdf`, Tuần 4. Ví dụ 13.5 giữ mô hình hai trạng thái, hai hành động của nguồn đó. Các ví dụ khác được biên soạn hoặc điều chỉnh để làm rõ giả thiết và phép tính; không gán chúng thành ví dụ hay bài tập nguyên bản của Murphy.
+- **Trạng thái:** $S_t$ thuộc một tập hữu hạn $\mathcal S$; $S_t$ là ngẫu nhiên.
+- **Hành động:** $A_t$ thuộc tập hữu hạn $\mathcal A(S_t)$, được chọn sau khi quan sát lịch sử đến thời điểm $t$.
+- **Cơ chế chuyển:** cặp gồm trạng thái kế tiếp và phần thưởng $(S_{t+1},R_{t+1})$ có phân phối chỉ phụ thuộc cặp $(S_t,A_t)$; từ đó có xác suất chuyển $P(s'\mid s,a)$ và phần thưởng kỳ vọng $r(s,a)$.
+- **Mục tiêu:** chọn chính sách sao cho tổng thưởng chiết khấu kỳ vọng
+$$\mathbb E\Bigl[\sum_{t\ge0}\gamma^tR_{t+1}\Bigm|S_0=s\Bigr]$$
+lớn nhất tại mọi trạng thái đầu $s$.
+- **Đối tượng so sánh:** mọi chính sách, kể cả chính sách ngẫu nhiên phụ thuộc toàn bộ lịch sử.
+- **Thông tin có được:** hoặc biết $P$ và $r$, gọi là *quy hoạch* (planning), hoặc chỉ có các bộ $(s,a,r,s')$ quan sát được từ tương tác, gọi là *học tăng cường* (reinforcement learning).
 
-## Bảng ký hiệu
+Bảng dưới phân loại các đại lượng của bài theo nguồn ngẫu nhiên.
+
+| Loại | Đại lượng |
+|---|---|
+| Cố định | $\mathcal S$, $\mathcal A(s)$, $P$, $r$, $\gamma$, chính sách cho trước, các hàm giá trị $V^\pi$, $V^*$ |
+| Ngẫu nhiên theo quỹ đạo khi cố định chính sách và trạng thái đầu | $S_t$, $A_t$, $R_{t+1}$, lịch sử $H_t$, tổng thưởng $G_t$ |
+| Ngẫu nhiên theo dữ liệu thu thập | số đếm $N(s,a,s')$, mô hình ước lượng $\hat P$, $\hat r$, bảng $Q_t$ của Q-learning |
+
+## 2. Ký hiệu và giả thiết
 
 | Ký hiệu | Ý nghĩa | Miền hoặc kiểu |
 |---|---|---|
-| $t,k,N$ | thời điểm, chỉ số vòng lặp, số bước hữu hạn | số nguyên không âm |
-| $\mathcal S$, $s,s'$ | tập trạng thái; trạng thái hiện tại và kế tiếp | tập hữu hạn khác rỗng; phần tử của tập |
-| $S_t$ | trạng thái ngẫu nhiên tại thời điểm $t$ | biến ngẫu nhiên trên $\mathcal S$ |
-| $\mu_t$ | phân phối của $S_t$ | vector hàng xác suất |
-| $P_{ij}$ | xác suất chuyển từ trạng thái $i$ sang $j$ trong xích | phần tử của ma trận hàng ngẫu nhiên |
-| $\mathcal A(s)$, $a$ | tập hành động khả thi tại $s$; một hành động | tập hữu hạn khác rỗng; phần tử của tập |
-| $A_t$ | hành động được chọn tại thời điểm $t$ | thuộc $\mathcal A(S_t)$ |
-| $H_t$ | lịch sử quan sát đến trạng thái $S_t$ | chuỗi trạng thái, hành động và phần thưởng |
-| $P(s'\mid s,a)$ | mô hình chuyển trạng thái có điều khiển | không âm, tổng theo $s'$ bằng $1$ |
-| $R_{t+1}$ | phần thưởng ngẫu nhiên sau hành động $A_t$ | số thực bị chặn |
-| $r(s,a)$ | phần thưởng kỳ vọng một bước | $\mathbb E[R_{t+1}\mid S_t=s,A_t=a]$ theo mô hình |
-| $R_{\max}$ | chặn trị tuyệt đối phần thưởng | số hữu hạn không âm |
-| $\gamma$ | hệ số chiết khấu | $0\le\gamma<1$ trong các định lý chính |
-| $\rho$, $\pi$ | chính sách tổng quát; chính sách Markov dừng | quy tắc chọn hành động theo lịch sử; theo trạng thái |
-| $P^\pi$, $r^\pi$ | ma trận chuyển và vector thưởng dưới chính sách dừng | ma trận $|\mathcal S|\times|\mathcal S|$; vector cột |
-| $G_t$ | tổng thưởng chiết khấu từ thời điểm $t$ | biến ngẫu nhiên hữu hạn |
-| $V^\rho$, $V^\pi$, $V^*$ | giá trị của chính sách; giá trị tối ưu | hàm $\mathcal S\to\mathbb R$ |
-| $V_k$, $T$, $T^\pi$ | giá trị lặp; toán tử tối ưu; toán tử theo chính sách | vector; ánh xạ trên $\mathbb R^{|\mathcal S|}$ |
-| $Q_V(s,a)$, $Q(s,a)$ | giá trị nhìn trước theo $V$; bảng giá trị hành động được học | số thực; hàm trên cặp trạng thái–hành động |
-| $\|V\|_\infty$ | chuẩn cực đại $\max_s|V(s)|$ | số không âm |
-| $N(s,a,s')$, $N(s,a)$ | số chuyển tiếp và số lần quan sát một cặp | số nguyên không âm |
-| $\alpha$, $\varepsilon$ | bước học; mức sai số mong muốn | số dương; số dương |
+| $t$, $k$ | thời điểm; chỉ số vòng lặp | số nguyên không âm |
+| $\mathcal S$, $s,s'$ | tập trạng thái; trạng thái hiện tại, kế tiếp | tập hữu hạn khác rỗng; phần tử |
+| $S_t$, $\mu_t$ | trạng thái tại thời điểm $t$; phân phối của nó | biến ngẫu nhiên trên $\mathcal S$; vector hàng |
+| $P_{ij}$ | xác suất chuyển của xích Markov | phần tử của ma trận hàng ngẫu nhiên |
+| $\mathcal A(s)$, $a$ | tập hành động khả thi tại $s$; một hành động | tập hữu hạn khác rỗng; phần tử |
+| $A_t$, $R_{t+1}$ | hành động tại $t$; phần thưởng nhận sau $A_t$ | thuộc $\mathcal A(S_t)$; thuộc $\mathcal R$ |
+| $\mathcal R$, $R_{\max}$ | tập giá trị phần thưởng; chặn của nó | tập hữu hạn trong $[-R_{\max},R_{\max}]$ |
+| $H_t$, $\tau$ | lịch sử đến $S_t$; một giá trị cụ thể của lịch sử | biến ngẫu nhiên rời rạc; dãy hữu hạn |
+| $p(s',c\mid s,a)$ | mô hình chuyển: xác suất của trạng thái kế tiếp $s'$ và phần thưởng $c$ | số trong $[0,1]$ |
+| $P(s'\mid s,a)$, $r(s,a)$ | xác suất chuyển; phần thưởng kỳ vọng một bước | xác suất; số thực |
+| $\gamma$ | hệ số chiết khấu | $[0,1)$ |
+| $\rho$, $\pi$ | chính sách tổng quát; chính sách Markov dừng | quy tắc chọn theo lịch sử; theo trạng thái |
+| $P^\pi$, $r^\pi$ | ma trận chuyển, vector thưởng dưới $\pi$ | ma trận $\lvert\mathcal S\rvert\times\lvert\mathcal S\rvert$; vector cột |
+| $G_t$ | tổng thưởng chiết khấu từ $t$ | biến ngẫu nhiên bị chặn |
+| $V^\rho$, $V^*$ | hàm giá trị của $\rho$; giá trị tối ưu | hàm $\mathcal S\to\mathbb R$, đồng nhất với vector của $\mathbb R^{\lvert\mathcal S\rvert}$ |
+| $Q_U(s,a)$ | giá trị nhìn trước một bước theo $U$ | số thực |
+| $T^\pi$, $T$ | toán tử Bellman theo $\pi$; toán tử Bellman tối ưu | ánh xạ $\mathbb R^{\lvert\mathcal S\rvert}\to\mathbb R^{\lvert\mathcal S\rvert}$ |
+| $\pi_U$, $\bar V$ | chính sách tham lam theo $U$; điểm bất động của $T$ | chính sách tất định dừng; vector |
+| $V_k$, $\beta(V)$ | vector lặp giá trị; phần dư Bellman | vector; số không âm |
+| $\lVert x\rVert_\infty$ | chuẩn cực đại $\max_i\lvert x_i\rvert$ | số không âm |
+| $\kappa$ | hệ số co của một ánh xạ co | $[0,1)$ |
+| $\Delta(\mathcal S)$ | tập các hàng xác suất trên $\mathcal S$ | đơn hình đóng |
+| $N(s,a,s')$, $N(s,a)$ | số lần chuyển $(s,a)\to s'$; số lần thử cặp $(s,a)$ | số nguyên không âm |
+| $\hat P$, $\hat r$ | xác suất chuyển, phần thưởng ước lượng | hàng xác suất; số thực |
+| $\varepsilon$ | mức sai số mong muốn | số dương |
 
-## 13.1. Quá trình ngẫu nhiên và xích Markov
+Chúng ta dùng các giả thiết sau, tách thành hai nhóm.
 
-Một robot có thể đang hoạt động hoặc đang ở chế độ nghỉ. Trạng thái ngày mai chưa biết chắc, nhưng phụ thuộc vào trạng thái hiện tại. Để tính khả năng robot còn hoạt động sau hai bước, chúng ta cần một mô hình cho cả cách chuyển trạng thái lẫn phân phối trạng thái ban đầu.
+Giả thiết xác suất và thống kê:
 
-Một cách trực quan, trạng thái hiện tại được dùng như bản tóm tắt quá khứ đủ để dự đoán bước kế tiếp. Đây là trực giác về tính Markov; nó không nói các thời điểm độc lập và cũng không bảo đảm một quan sát cảm biến bất kỳ đã là một trạng thái đủ thông tin.
+- **(M1) Markov có điều khiển, thuần nhất:** phân phối của $(S_{t+1},R_{t+1})$ khi biết lịch sử $H_t$ và hành động $A_t$ chỉ phụ thuộc $(S_t,A_t)$, không phụ thuộc $t$.
+- **(M2) Phần thưởng hữu hạn giá trị:** $R_{t+1}$ nhận giá trị trong một tập hữu hạn $\mathcal R\subset[-R_{\max},R_{\max}]$. Khi đó mọi lịch sử $H_t$ là biến rời rạc và mọi kỳ vọng có điều kiện trong bài là kỳ vọng theo biến rời rạc của Định nghĩa 10.28.
+- **(M3) Lấy mẫu chuyển tiếp:** khi ước lượng, các lần thử tại một cặp $(s,a)$ độc lập và có cùng phân phối $P(\cdot\mid s,a)$.
 
-### Trạng thái đủ cho dự đoán một bước
+Giả thiết hữu hạn và tối ưu:
 
-::: definition Định nghĩa 13.1 (Quá trình ngẫu nhiên và xích Markov thuần nhất)
-Một **quá trình ngẫu nhiên rời rạc theo thời gian** là một dãy $S_0,S_1,\ldots$ các biến ngẫu nhiên. Trong bài này, chúng nhận giá trị trên cùng tập hữu hạn $\mathcal S$.
+- **(O1) Hữu hạn:** $\mathcal S$ và mọi $\mathcal A(s)$ hữu hạn, khác rỗng, nên mọi cực đại theo hành động được đạt.
+- **(O2) Chiết khấu:** $0\le\gamma<1$.
+- **(O3) Tính chính xác:** các phép lấy kỳ vọng và cực đại trong lặp giá trị được tính đúng theo mô hình đang dùng.
 
-Quá trình có **tính Markov** nếu phân phối của $S_{t+1}$ có điều kiện theo toàn bộ trạng thái quá khứ chỉ phụ thuộc $S_t$:
+## 3. Ví dụ xuyên suốt
 
-$$
-\mathbb P(S_{t+1}=s'\mid S_0=s_0,\ldots,S_t=s)
-=\mathbb P(S_{t+1}=s'\mid S_t=s),
-\tag{13.1}
-$$
+Hai ví dụ sau được dùng lại trong toàn bài. Ví dụ đầu nhỏ để tính bằng tay; ví dụ thứ hai là cùng robot đó khi một phần mô hình phải học từ dữ liệu.
 
-với mọi lịch sử có xác suất dương. Một **xích Markov thuần nhất theo thời gian** còn có xác suất chuyển không phụ thuộc $t$. Khi đó một ma trận $P$ xác định mô hình:
+::: example Ví dụ 13.1 (Robot với hai hành động)
+**Trạng thái.** $\mathcal S=\{h,z\}$, trong đó $h$ là trạng thái hoạt động và $z$ là trạng thái dừng.
 
-$$
-P_{ij}=\mathbb P(S_{t+1}=j\mid S_t=i),
-\qquad P_{ij}\ge0,\qquad\sum_jP_{ij}=1.
-\tag{13.2}
-$$
+**Hành động và chuyển tiếp.**
 
-Ma trận như vậy được gọi là **ma trận hàng ngẫu nhiên**: mỗi hàng là một phân phối trên trạng thái kế tiếp.
+- Tại $h$, hành động $A$ cho thưởng $1$, rồi $S_{t+1}=h$ với xác suất $1/2$ và $S_{t+1}=z$ với xác suất $1/2$.
+- Tại $h$, hành động $B$ cho thưởng $0{,}6$, rồi $S_{t+1}=h$ với xác suất $1$.
+- Tại $z$ chỉ có một hành động, thưởng $0$, và robot ở lại $z$ với xác suất $1$.
+
+**Chiết khấu.** $\gamma=0{,}9$.
+
+Trạng thái $z$ là một *trạng thái hấp thụ* (absorbing state): khi đã vào thì không ra và mọi phần thưởng sau đó bằng $0$. Mô hình này có $\mathcal R=\{0;\,0{,}6;\,1\}$ và $R_{\max}=1$.
 :::
 
-Định nghĩa 13.1 dùng độc lập có điều kiện của Bài 10: khi biết $S_t$, các trạng thái cũ hơn không còn đổi phân phối của $S_{t+1}$. Nó khác độc lập không điều kiện giữa $S_t$ và $S_{t+1}$. Tính thuần nhất cũng là giả thiết riêng; một xích có thể có tính Markov nhưng dùng các ma trận chuyển $P_t$ thay đổi theo thời gian.
+![Hai hình tròn là trạng thái: h (hoạt động) và z (hấp thụ). Từ h có hai ô hành động. Ô A ghi thưởng 1, có mũi tên về h với xác suất 0,5 và mũi tên sang z với xác suất 0,5. Ô B ghi thưởng 0,6, có mũi tên về h với xác suất 1. Tại z có vòng tự lặp xác suất 1, thưởng 0. Hệ số chiết khấu 0,9.](img/lec-13/robot-mdp.svg)
 
-Trong học máy, trạng thái là đối tượng mô hình hóa cần được chọn, không nhất thiết là toàn bộ dữ liệu thô hay chỉ một số đo đơn lẻ. Nếu pin và vị trí cùng ảnh hưởng tới bước kế tiếp của robot, chỉ ghi vị trí có thể làm mất tính Markov. Việc thêm biến vào trạng thái có thể giúp mô hình đủ thông tin nhưng cũng làm tăng số trạng thái cần ước lượng.
+*Hình 13.1. Robot của Ví dụ 13.1. Hai hình tròn là trạng thái; hai ô là hành động tại $h$. Hành động $A$ cho thưởng tức thời cao hơn nhưng chỉ giữ robot hoạt động với xác suất $0{,}5$.*
 
-### Truyền phân phối và quy ước vector hàng
+**Ứng dụng: robot học xác suất chuyển từ bộ mô phỏng.** Trong thực tế, xác suất robot còn hoạt động sau hành động $A$ chưa được biết trước. Một bộ mô phỏng cho phép đặt robot vào trạng thái $h$, thực hiện $A$ và ghi trạng thái kế tiếp. Từ các lần thử đó, ta ước lượng hàng chuyển $P(\cdot\mid h,A)$ bằng số đếm rồi quy hoạch trên mô hình ước lượng. Kết luận của phép quy hoạch khi đó chỉ đúng với mô hình ước lượng, và có thể sai với robot thật khi số lần thử ít.
 
-Giả sử $\mathcal S$ có $m$ trạng thái được xếp theo một thứ tự cố định. Ta biểu diễn phân phối bằng vector hàng $\mu_t=(\mathbb P(S_t=1),\ldots,\mathbb P(S_t=m))$. Về mặt trực quan, xác suất đến một trạng thái mới là tổng xác suất đi qua từng trạng thái hiện tại; đây là phép lấy biên qua trạng thái chưa quan sát.
+## 4. Xích Markov và phân phối trạng thái
 
-Mệnh đề tiếp theo dùng xác suất toàn phần và giả thiết thuần nhất trong Định nghĩa 13.1. Cơ sở đọc là Murphy (2023), tập II, §2.6.1 về tham số hóa xích Markov.
+Trước khi robot được chọn hành động, xét robot vận hành theo một quy tắc cố định: mỗi bước nó đang hoạt động ($h$) hoặc đang nghỉ ($n$), và trạng thái bước sau chưa biết chắc nhưng phụ thuộc trạng thái hiện tại. Để tính xác suất robot còn hoạt động sau hai bước, chúng ta cần một mô hình cho cả cách chuyển trạng thái lẫn phân phối trạng thái ban đầu.
 
-::: proposition Mệnh đề 13.2 (Phân phối sau nhiều bước)
-**Giả thiết.** $S_t$ là xích Markov hữu hạn thuần nhất với ma trận chuyển hàng $P$ và phân phối ban đầu $\mu_0$.
+Một cách trực quan, trạng thái hiện tại tóm tắt mọi thông tin của quá khứ cần cho việc dự đoán bước kế tiếp. Đây là trực giác về tính Markov, chưa phải định nghĩa.
 
-**Kết luận.**
+### 4.1. Tính Markov và ma trận chuyển
 
+Định nghĩa sau viết trực giác trên bằng xác suất có điều kiện và đưa vào ma trận chuyển.
+
+::: definition Định nghĩa 13.1 (Quá trình ngẫu nhiên và xích Markov thuần nhất)
+Một *quá trình ngẫu nhiên rời rạc theo thời gian* (discrete-time stochastic process) là một dãy biến ngẫu nhiên $S_0,S_1,\ldots$; trong bài này chúng nhận giá trị trên cùng một tập hữu hạn $\mathcal S$.
+
+Quá trình có *tính Markov* (Markov property) nếu với mọi $t\ge0$ và mọi $s_0,\ldots,s_t,s'\in\mathcal S$ sao cho $\mathbb P(S_0=s_0,\ldots,S_t=s_t)>0$,
 $$
-\mu_{t+1}=\mu_tP,
-\qquad
-\mu_t=\mu_0P^t.
-\tag{13.3}
+\begin{aligned}
+&\mathbb P\bigl(S_{t+1}=s'\\
+&\qquad\bigm|S_0=s_0,\ldots,S_t=s_t\bigr)\\
+&\quad=\mathbb P(S_{t+1}=s'\mid S_t=s_t).
+\end{aligned}
+\tag{4.1}
 $$
 
-Các vector này đều có phần tử không âm và tổng bằng $1$.
+Quá trình là một *xích Markov thuần nhất* (time-homogeneous Markov chain) nếu nó có tính Markov và có một ma trận $P$ cấp $\lvert\mathcal S\rvert\times\lvert\mathcal S\rvert$ không phụ thuộc $t$ sao cho
+$$
+\begin{gathered}
+P_{ij}=\mathbb P(S_{t+1}=j\mid S_t=i),\\
+P_{ij}\ge0,\qquad\sum_jP_{ij}=1,
+\end{gathered}
+\tag{4.2}
+$$
+với mọi $t$ và mọi $i$ có $\mathbb P(S_t=i)>0$. Ma trận $P$ được gọi là *ma trận chuyển* (transition matrix). Một ma trận có các phần tử không âm và tổng mỗi hàng bằng $1$ được gọi là *ma trận hàng ngẫu nhiên* (row-stochastic matrix).
+:::
 
-**Điều kiện áp dụng.** Thứ tự trạng thái trong các vector và trong hàng, cột của ma trận phải thống nhất. Công thức lũy thừa dùng cùng một ma trận ở mọi bước.
+Định nghĩa 13.1 là một trường hợp của độc lập có điều kiện (Định nghĩa 10.16): khi biết $S_t$, các trạng thái cũ hơn không đổi phân phối của $S_{t+1}$. Tính Markov không nói $S_t$ và $S_{t+1}$ độc lập: trạng thái hiện tại thường quyết định mạnh trạng thái kế tiếp. Tính thuần nhất là một giả thiết riêng: một xích có thể có tính Markov nhưng dùng các ma trận $P_t$ thay đổi theo thời gian.
 
-**Phạm vi.** Với ma trận thay đổi theo thời gian, công thức tương ứng là $\mu_t=\mu_0P_0P_1\cdots P_{t-1}$, không phải $\mu_0P^t$.
+Trong học máy, trạng thái là đối tượng mô hình hóa cần được chọn. Nếu cả mức pin và vị trí đều ảnh hưởng đến bước kế tiếp của robot, một trạng thái chỉ ghi vị trí có thể làm mất tính Markov. Thêm biến vào trạng thái giúp trạng thái đủ thông tin, nhưng làm tăng số trạng thái và số xác suất chuyển cần ước lượng.
+
+### 4.2. Truyền phân phối
+
+Xếp các trạng thái theo một thứ tự cố định và biểu diễn phân phối của $S_t$ bằng vector hàng $\mu_t=\bigl(\mathbb P(S_t=s)\bigr)_{s\in\mathcal S}$. Về mặt trực quan, xác suất đến một trạng thái ở bước sau là tổng xác suất đi qua từng trạng thái hiện tại. Mệnh đề sau viết điều đó thành phép nhân ma trận; nó cần xác suất toàn phần (Định lý 10.11) và tính thuần nhất.
+
+::: proposition Mệnh đề 13.2 (Phân phối sau nhiều bước) — chứng minh đầy đủ
+**Giả thiết.** $(S_t)$ là xích Markov thuần nhất trên $\mathcal S$ hữu hạn, với ma trận chuyển $P$ và phân phối ban đầu $\mu_0$.
+
+**Kết luận.** Với mọi $t\ge0$,
+$$
+\begin{gathered}
+\mu_{t+1}=\mu_tP,\\
+\mu_t=\mu_0P^t,
+\end{gathered}
+\tag{4.3}
+$$
+trong đó $P^0=I$. Mỗi $\mu_t$ có phần tử không âm và tổng bằng $1$.
 :::
 
 ::: proof Chứng minh Mệnh đề 13.2
-**Bước 1 (một bước).** Với mỗi trạng thái $j$, xác suất toàn phần cho
+**Lộ trình.** Áp dụng xác suất toàn phần với phân hoạch $\{S_t=i\}$, rồi quy nạp theo $t$.
 
+**Bước 1 (một bước).** Với mỗi trạng thái $j$, Định lý 10.11 với phân hoạch $\{S_t=i\}$, $i\in\mathcal S$, cho
 $$
-\mathbb P(S_{t+1}=j)
-=\sum_i\mathbb P(S_t=i)\mathbb P(S_{t+1}=j\mid S_t=i)
-=\sum_i\mu_t(i)P_{ij}.
+\begin{aligned}
+&\mathbb P(S_{t+1}=j)\\
+&\quad=\sum_{i:\,\mu_t(i)>0}\mathbb P(S_t=i)\\
+&\qquad\quad\times\mathbb P(S_{t+1}=j\mid S_t=i)\\
+&\quad=\sum_{i}\mu_t(i)P_{ij}.
+\end{aligned}
+$$
+Đẳng thức thứ hai dùng (4.2) và việc các số hạng có $\mu_t(i)=0$ bằng $0$. Vế phải là tọa độ thứ $j$ của $\mu_tP$.
+
+**Bước 2 (chuẩn hóa).** Các số hạng đều không âm. Đổi thứ tự hai tổng hữu hạn và dùng tổng mỗi hàng của $P$ bằng $1$:
+$$
+\begin{aligned}
+\sum_j\mu_{t+1}(j)&=\sum_i\mu_t(i)\sum_jP_{ij}\\
+&=\sum_i\mu_t(i)=1.
+\end{aligned}
 $$
 
-Đó là tọa độ thứ $j$ của $\mu_tP$.
+**Bước 3 (quy nạp).** Đẳng thức $\mu_0=\mu_0P^0$ đúng. Nếu $\mu_t=\mu_0P^t$ thì Bước 1 cho $\mu_{t+1}=\mu_0P^tP=\mu_0P^{t+1}$. $\square$
 
-**Bước 2 (chuẩn hóa).** Các số hạng đều không âm. Đổi thứ tự hai tổng hữu hạn và dùng tổng mỗi hàng của $P$ bằng $1$ cho
-
-$$
-\sum_j\mu_{t+1}(j)
-=\sum_i\mu_t(i)\sum_jP_{ij}
-=\sum_i\mu_t(i)=1.
-$$
-
-**Bước 3 (lặp).** Thay liên tiếp công thức một bước cho $\mu_t=\mu_0P^t$, với $P^0=I_m$. $\square$
+Như vậy, khi mô hình chuyển đã biết, phân phối trạng thái sau $t$ bước chỉ cần $t$ phép nhân vector với ma trận.
 :::
 
-Trong học máy, (13.3) truyền một phân phối trạng thái chưa biết chắc qua mô hình chuyển tiếp đã biết. Đây là phép suy luận xác suất, chưa phải một bài toán chọn hành động. Phần điều khiển chỉ xuất hiện khi hành động cho phép thay đổi hàng chuyển tiếp đang dùng.
+Ta còn cần xác suất của một chuỗi trạng thái cụ thể, chẳng hạn robot đi $h\to n\to h$. Hệ quả sau của Định nghĩa 13.1 suy từ quy tắc nhân (Mệnh đề 10.10) và (4.1).
 
-::: example Ví dụ 13.1 (Xích hai trạng thái, điều chỉnh từ nguồn khởi đầu)
-**Mô hình.** Hai trạng thái được xếp theo thứ tự $A,B$. Cho
+::: corollary Hệ quả 13.3 (Xác suất một quỹ đạo) — chứng minh đầy đủ
+**Giả thiết.** Như Mệnh đề 13.2.
 
+**Kết luận.** Với mọi $t\ge0$ và mọi $s_0,\ldots,s_t\in\mathcal S$,
 $$
-P=\begin{pmatrix}0.8&0.2\\0.35&0.65\end{pmatrix},
-\qquad \mu_0=(1,0).
-$$
-
-**Tính một bước.** $\mu_1=(1,0)P=(0.8,0.2)$.
-
-**Tính hai bước.**
-
-$$
-\mu_2=(0.8,0.2)P
-=(0.8\cdot0.8+0.2\cdot0.35,\ 0.8\cdot0.2+0.2\cdot0.65)
-=(0.71,0.29).
-$$
-
-**Kiểm tra và diễn giải.** Các hàng của $P$ và các vector $\mu_t$ đều không âm, có tổng bằng $1$. Xác suất ở $A$ sau hai bước bằng $0.71$; không bằng $0.8^2=0.64$ vì còn có đường đi $A\to B\to A$ đóng góp $0.2\cdot0.35=0.07$.
-:::
-
-::: example Ví dụ 13.2 (Xác suất chuyển khác xác suất đồng thời)
-**Dữ kiện.** Cho hai trạng thái $A,B$ với cùng ma trận $P=\begin{pmatrix}0.8&0.2\\0.35&0.65\end{pmatrix}$. Tại thời điểm đang xét, $\mu_t=(0.4,0.6)$.
-
-**Tính.** Mô hình cho $\mathbb P(S_{t+1}=B\mid S_t=A)=0.2$. Xác suất đồng thời là
-
-$$
-\mathbb P(S_t=A,S_{t+1}=B)=0.4\cdot0.2=0.08.
-$$
-
-Phân phối bước sau là $\mu_{t+1}=(0.53,0.47)$.
-
-**Kiểm tra độc lập.** Nếu hai trạng thái liên tiếp độc lập thì xác suất đồng thời vừa tính phải bằng $0.4\cdot0.47=0.188$, nhưng thực tế bằng $0.08$. Vì vậy tính Markov không khiến hai thời điểm độc lập.
-:::
-
-::: remark Nhận xét 13.3 (Những giả thiết khác nhau)
-1. Tính Markov nói về phân phối có điều kiện theo hiện tại; tính độc lập nói về việc biết một biến có thay đổi phân phối của biến khác hay không. Chúng không đồng nhất.
-2. Thuần nhất nói mô hình chuyển không đổi theo thời gian. Nếu một thiết bị hao mòn nhưng trạng thái không ghi mức hao mòn, một ma trận cố định có thể không còn mô tả đúng dữ liệu.
-3. Tổng mỗi hàng của $P$ bằng $1$; tổng mỗi cột không nhất thiết bằng $1$. Nếu dùng vector cột thay vì vector hàng, phép truyền phải được viết với ma trận chuyển vị tương ứng.
-:::
-
-::: exercise Bài tập 13.1 (Củng cố: phân phối trạng thái)
-Một xích có trạng thái $A,B$, ma trận chuyển hàng $P=\begin{pmatrix}0.8&0.2\\0.35&0.65\end{pmatrix}$ và phân phối đầu $\mu_0=(0,1)$. Tính $\mu_1,\mu_2$ và xác suất đồng thời $\mathbb P(S_0=B,S_1=A)$. Phân biệt số này với $P_{BA}$ về định nghĩa, dù chúng trùng giá trị trong dữ kiện này.
-:::
-
-::: hint Gợi ý Bài tập 13.1
-Nhân vector hàng từ bên trái. Xác suất đồng thời còn chứa xác suất trạng thái đầu; ở đây trạng thái đầu đã chắc chắn bằng $B$.
-:::
-
-::: solution Lời giải Bài tập 13.1
-Ta có $\mu_1=(0.35,0.65)$ và
-
-$$
-\mu_2=(0.35\cdot0.8+0.65\cdot0.35,\ 0.35\cdot0.2+0.65\cdot0.65)
-=(0.5075,0.4925).
-$$
-
-Xác suất đồng thời là $1\cdot0.35=0.35$. Phần tử $P_{BA}=0.35$ là xác suất có điều kiện khi đã biết $S_0=B$; hai số trùng nhau vì xác suất của điều kiện bằng $1$, không phải vì hai khái niệm đồng nhất.
-:::
-
-Định nghĩa 13.1 nêu điều kiện đủ thông tin của trạng thái và điều kiện mô hình không đổi theo thời gian. Mệnh đề 13.2 dùng các điều kiện đó để truyền phân phối, còn Nhận xét 13.3 tách chúng khỏi độc lập và các quy ước ma trận. Khi robot có thể chọn cách vận hành, phân phối bước sau phải phụ thuộc thêm hành động; ta cần một mô hình quyết định thay vì một xích cố định.
-
-## 13.2. Mô hình quyết định, chính sách và tổng thưởng chiết khấu
-
-Một robot có thể chọn cách vận hành mang lại phần thưởng lớn ngay nhưng dễ dừng hoạt động, hoặc cách ổn định nhận ít hơn mỗi bước và tiếp tục lâu hơn. Chỉ so phần thưởng của bước hiện tại bỏ qua ảnh hưởng của hành động lên những lần nhận thưởng sau. Chúng ta cần mô hình hóa đồng thời lựa chọn, chuyển trạng thái và tiêu chuẩn cho cả chuỗi tương lai.
-
-Một cách trực quan, một hành động chọn một phân phối của trạng thái kế tiếp và một cơ chế nhận thưởng. Chính sách quy định cách lựa chọn hành động; giá trị của nó là kỳ vọng tổng thưởng dài hạn. Đây là trực giác điều khiển, chưa xác định trạng thái nào đủ thông tin hay tổng vô hạn có tồn tại hay không.
-
-### Trạng thái, hành động và phần thưởng
-
-::: definition Định nghĩa 13.4 (Quá trình quyết định Markov hữu hạn)
-Một **quá trình quyết định Markov** (Markov decision process, MDP) hữu hạn trong bài này gồm:
-
-- Tập trạng thái hữu hạn khác rỗng $\mathcal S$.
-- Tập hành động hữu hạn khác rỗng $\mathcal A(s)$ tại mỗi $s$.
-- Một mô hình thuần nhất cho trạng thái kế tiếp $S_{t+1}$ và phần thưởng $R_{t+1}$ khi biết trạng thái hiện tại $S_t=s$ và hành động $A_t=a$.
-- Hệ số chiết khấu $0\le\gamma<1$.
-
-Đặt lịch sử $H_t=(S_0,A_0,R_1,S_1,\ldots,A_{t-1},R_t,S_t)$. **Giả thiết Markov có điều khiển** yêu cầu phân phối chung của $(S_{t+1},R_{t+1})$ có điều kiện theo $H_t,A_t$ chỉ phụ thuộc cặp $(S_t,A_t)$, không phụ thuộc thời gian hoặc phần còn lại của lịch sử.
-
-Ký hiệu các đại lượng của mô hình là
-
-$$
-P(s'\mid s,a)=\mathbb P(S_{t+1}=s'\mid S_t=s,A_t=a),
-\qquad \sum_{s'}P(s'\mid s,a)=1,
-$$
-
-$$
-r(s,a)=\mathbb E[R_{t+1}\mid S_t=s,A_t=a].
-\tag{13.4}
-$$
-
-Giả sử phần thưởng bị chặn gần chắc chắn: $|R_{t+1}|\le R_{\max}<\infty$ với mọi cặp khả thi. Các điều kiện phân phối được hiểu đối với lịch sử và hành động có thể xảy ra, hoặc như các hạt nhân chuyển được cho trước cho mọi cặp khả thi.
-:::
-
-Định nghĩa 13.4 mở rộng Định nghĩa 13.1 bằng một biến điều khiển. Yêu cầu Markov không chỉ áp dụng cho trạng thái kế tiếp mà còn cho cơ chế phần thưởng: một biến ẩn ảnh hưởng tới phần thưởng tương lai cũng cần được đưa vào trạng thái nếu muốn dùng mô hình này. Đại lượng $R_{t+1}$ là quan sát ngẫu nhiên, còn $r(s,a)$ là trung bình của mô hình; chúng không được dùng thay nhau trong một phép cập nhật từ dữ liệu.
-
-Nếu mô hình cho phần thưởng xác định theo cả trạng thái kế tiếp, viết $r(s,a,s')$, thì $r(s,a)=\sum_{s'}P(s'\mid s,a)r(s,a,s')$. Công thức (13.4) cũng cho phép phần thưởng và trạng thái kế tiếp cùng ngẫu nhiên và có tương quan. Khi tối ưu kỳ vọng tổng thưởng, tính tuyến tính của kỳ vọng cho phép dùng trung bình $r(s,a)$ mà không cần giả sử hai đại lượng này độc lập.
-
-### Chính sách và xích được tạo ra khi cố định lựa chọn
-
-::: definition Định nghĩa 13.5 (Chính sách tổng quát và chính sách Markov dừng)
-Một **chính sách** tổng quát $\rho$ chọn một phân phối $\rho_t(a\mid H_t)$ trên $\mathcal A(S_t)$ ở mỗi thời điểm. Nó có thể phụ thuộc thời gian, toàn lịch sử và có thể ngẫu nhiên hóa.
-
-Một **chính sách Markov dừng** $\pi$ chỉ dùng trạng thái hiện tại và không thay đổi theo thời gian: $\pi(a\mid s)$. Nó là tất định nếu tại mỗi trạng thái chọn một hành động duy nhất, ký hiệu $\pi(s)$.
-
-Với một chính sách Markov dừng, mô hình tạo ra xích thuần nhất với
-
-$$
-P^\pi(s,s')=\sum_{a\in\mathcal A(s)}\pi(a\mid s)P(s'\mid s,a),
-\qquad
-r^\pi(s)=\sum_{a\in\mathcal A(s)}\pi(a\mid s)r(s,a).
-\tag{13.5}
+\begin{aligned}
+&\mathbb P(S_0=s_0,S_1=s_1,\\
+&\qquad\ldots,S_t=s_t)\\
+&\quad=\mu_0(s_0)\prod_{k=0}^{t-1}P_{s_ks_{k+1}}.
+\end{aligned}
+\tag{4.4}
 $$
 :::
 
-Định nghĩa 13.5 tách quy luật môi trường khỏi quy tắc chọn hành động. Khi chính sách là Markov dừng, lấy tổng theo hành động cho một ma trận $P^\pi$ có tổng mỗi hàng bằng $1$, nên có thể dùng Mệnh đề 13.2. Với chính sách Markov phụ thuộc thời gian, ma trận có thể thay đổi theo bước; với chính sách phụ thuộc lịch sử, riêng dãy $S_t$ nói chung không còn là xích Markov. Giả thiết môi trường Markov có điều khiển không tự loại bỏ sự phụ thuộc lịch sử do chính sách tạo ra.
+::: proof Chứng minh Hệ quả 13.3
+**Lộ trình.** Quy nạp theo $t$, mỗi bước dùng quy tắc nhân một lần.
 
-::: example Ví dụ 13.3 (Một chính sách ngẫu nhiên tạo một xích)
-**MDP.** Hai trạng thái là $s$ đang hoạt động và $z$ hấp thụ. Tại $s$, hành động $A$ có thưởng $1$ và xác suất trở lại $s$ bằng $1/2$; hành động $B$ có thưởng $0.6$ và luôn trở lại $s$. Các xác suất còn lại đi tới $z$. Tại $z$, chỉ có một hành động với thưởng $0$ và ở lại $z$.
+**Bước 1 (khởi đầu).** Với $t=0$, vế phải là $\mu_0(s_0)$, đúng bằng vế trái.
 
-**Chính sách.** Chọn $A$ hoặc $B$ với xác suất $1/2$ tại mỗi lần ở $s$, độc lập với lịch sử khi biết trạng thái hiện tại. Đặt $\gamma=0.9$.
-
-**Tính mô hình dưới chính sách.** Theo (13.5), với thứ tự trạng thái $s,z$,
-
+**Bước 2 (quy nạp).** Đặt $E=\{S_0=s_0,\ldots,S_t=s_t\}$ và giả sử (4.4) đúng cho $E$. Nếu $\mathbb P(E)=0$ thì cả hai vế của (4.4) tại $t+1$ bằng $0$. Nếu $\mathbb P(E)>0$, quy tắc nhân, rồi (4.1) và (4.2) cho
 $$
-P^\pi=\begin{pmatrix}0.75&0.25\\0&1\end{pmatrix},
-\qquad
-r^\pi=\begin{pmatrix}0.8\\0\end{pmatrix}.
+\begin{aligned}
+&\mathbb P(E\cap\{S_{t+1}=s_{t+1}\})\\
+&\quad=\mathbb P(E)\,\mathbb P(S_{t+1}=s_{t+1}\mid E)\\
+&\quad=\mathbb P(E)\,\mathbb P(S_{t+1}=s_{t+1}\mid S_t=s_t)\\
+&\quad=\mathbb P(E)\,P_{s_ts_{t+1}}.
+\end{aligned}
 $$
+Thay giả thiết quy nạp cho $\mathbb P(E)$ được (4.4) tại $t+1$. $\square$
 
-**Kiểm tra và diễn giải.** Xác suất ở lại $s$ là $\frac12\cdot\frac12+\frac12\cdot1=3/4$. Thưởng kỳ vọng là $\frac12\cdot1+\frac12\cdot0.6=0.8$. Khi đã cố định chính sách, việc truyền phân phối dùng ma trận này; trước khi chọn chính sách, không có một ma trận chuyển duy nhất cho robot.
+Trong học máy, (4.4) là hợp lý của một chuỗi trạng thái quan sát được; ước lượng ma trận chuyển từ dữ liệu chuỗi bắt đầu từ công thức này.
 :::
 
-### Giá trị của một chuỗi quyết định
+Hai ví dụ sau dùng cùng một ma trận cho robot hoạt động hoặc nghỉ. Ví dụ đầu tính phân phối sau hai bước.
 
-Nếu chỉ cộng phần thưởng vô hạn mà không có điều kiện bổ sung, tổng có thể không hữu hạn. Chiết khấu làm phần đuôi xa bị chặn bởi một cấp số nhân. Một cách trực quan, nó giảm trọng số của phần thưởng đến muộn; đây là trực giác về tiêu chuẩn, không phải một giả thiết rằng mọi ứng dụng buộc phải có cùng một cách đánh giá thời gian.
-
-::: definition Định nghĩa 13.6 (Tổng thưởng chiết khấu và hàm giá trị)
-Với $0\le\gamma<1$, **tổng thưởng chiết khấu** từ thời điểm $t$ là
-
+::: example Ví dụ 13.2 (Robot hoạt động hoặc nghỉ sau hai bước)
+**Dữ kiện.** Hai trạng thái xếp theo thứ tự $h,n$, với
 $$
-G_t=\sum_{j=0}^{\infty}\gamma^jR_{t+j+1}.
-\tag{13.6}
+\begin{gathered}
+P=\begin{pmatrix}0{,}8&0{,}2\\0{,}35&0{,}65\end{pmatrix},\\
+\mu_0=(1;\,0).
+\end{gathered}
 $$
 
-Với một chính sách tổng quát $\rho$ được bắt đầu từ $S_0=s$, **hàm giá trị** là $V^\rho(s)=\mathbb E_\rho[G_0\mid S_0=s]$. Giá trị tối ưu được định nghĩa bằng cận trên đúng trên mọi chính sách tổng quát:
+**Một bước.** Theo (4.3), $\mu_1=(1;\,0)P=(0{,}8;\,0{,}2)$.
 
+**Hai bước.**
+$$
+\begin{aligned}
+\mu_2&=(0{,}8;\,0{,}2)P\\
+&=(0{,}8\cdot0{,}8+0{,}2\cdot0{,}35;\\
+&\qquad0{,}8\cdot0{,}2+0{,}2\cdot0{,}65)\\
+&=(0{,}64+0{,}07;\ 0{,}16+0{,}13)\\
+&=(0{,}71;\,0{,}29).
+\end{aligned}
+$$
+
+**Kiểm tra lại.** $0{,}71+0{,}29=1$. Theo (4.4), đường $h\to h\to h$ có xác suất $1\cdot0{,}8\cdot0{,}8=0{,}64$ và đường $h\to n\to h$ có xác suất $1\cdot0{,}2\cdot0{,}35=0{,}07$; tổng hai đường bằng $0{,}71$.
+
+Robot bắt đầu ở trạng thái hoạt động còn hoạt động sau hai bước với xác suất $0{,}71$. Con số này lớn hơn $0{,}8^2=0{,}64$ vì robot có thể nghỉ một bước rồi hoạt động lại.
+:::
+
+Xác suất chuyển $P_{hn}$ là một xác suất có điều kiện; xác suất để robot ở $h$ rồi sang $n$ là một xác suất đồng thời. Ví dụ sau tính cả hai trên cùng ma trận.
+
+::: example Ví dụ 13.3 (Xác suất chuyển và xác suất đồng thời)
+**Dữ kiện.** Cùng ma trận $P=\begin{pmatrix}0{,}8&0{,}2\\0{,}35&0{,}65\end{pmatrix}$ với thứ tự $h,n$. Tại thời điểm đang xét, $\mu_t=(0{,}4;\,0{,}6)$.
+
+**Xác suất chuyển.** Theo (4.2), $\mathbb P(S_{t+1}=n\mid S_t=h)=P_{hn}=0{,}2$.
+
+**Xác suất đồng thời.** Theo quy tắc nhân,
+$$
+\begin{aligned}
+\mathbb P(S_t=h,S_{t+1}=n)&=0{,}4\cdot0{,}2\\
+&=0{,}08.
+\end{aligned}
+$$
+
+**Phân phối bước sau.** Theo (4.3),
+$$
+\begin{aligned}
+\mu_{t+1}&=(0{,}4\cdot0{,}8+0{,}6\cdot0{,}35;\\
+&\qquad0{,}4\cdot0{,}2+0{,}6\cdot0{,}65)\\
+&=(0{,}53;\,0{,}47).
+\end{aligned}
+$$
+
+**Kiểm tra độc lập.** Nếu $S_t$ và $S_{t+1}$ độc lập thì $\mathbb P(S_t=h,S_{t+1}=n)=0{,}4\cdot0{,}47=0{,}188$. Giá trị thật là $0{,}08$, nên hai trạng thái liên tiếp không độc lập.
+
+Ví dụ cho thấy một xích Markov có thể có hai trạng thái liên tiếp phụ thuộc mạnh vào nhau; tính Markov chỉ nói quá khứ xa hơn không cung cấp thêm thông tin khi đã biết hiện tại.
+:::
+
+Nhận xét sau tách ba giả thiết thường bị dùng lẫn: tính Markov, tính độc lập và tính thuần nhất.
+
+::: remark Nhận xét 13.4 (Ba giả thiết dễ nhầm)
+1. Tính Markov nói về phân phối có điều kiện theo hiện tại; tính độc lập nói về việc biết một biến có đổi phân phối của biến kia hay không. Ví dụ 13.3 có tính Markov nhưng không độc lập.
+2. Thuần nhất nói ma trận chuyển không đổi theo thời gian. Nếu một thiết bị hao mòn nhưng trạng thái không ghi mức hao mòn, một ma trận cố định không mô tả đúng dữ liệu. Với các ma trận $P_0,P_1,\ldots$ thay đổi theo thời gian, Bước 1 của chứng minh Mệnh đề 13.2 cho $\mu_t=\mu_0P_0P_1\cdots P_{t-1}$.
+3. Tổng mỗi hàng của $P$ bằng $1$; tổng mỗi cột không nhất thiết bằng $1$. Nếu dùng vector cột cho phân phối, phép truyền là $\mu_{t+1}^\top=P^\top\mu_t^\top$.
+:::
+
+Như vậy, với một xích Markov thuần nhất, phân phối trạng thái được truyền bằng phép nhân $\mu_{t+1}=\mu_tP$ (Mệnh đề 13.2) và xác suất của một quỹ đạo là tích các xác suất chuyển (Hệ quả 13.3). Tuy nhiên, ở đây ma trận $P$ đã cố định; khi robot được chọn hành động, mỗi hành động cho một hàng chuyển khác nhau và một phần thưởng khác nhau. Trong Mục 5, chúng ta thêm hành động, phần thưởng và tiêu chuẩn đánh giá một chuỗi quyết định.
+
+## 5. Quá trình quyết định Markov, chính sách và tổng thưởng chiết khấu
+
+Robot của Ví dụ 13.1 có thể chọn hành động $A$ cho phần thưởng lớn ngay nhưng dễ dừng hoạt động, hoặc hành động $B$ cho phần thưởng nhỏ hơn mỗi bước nhưng giữ robot hoạt động. Chỉ so phần thưởng của bước hiện tại bỏ qua ảnh hưởng của hành động lên những lần nhận thưởng sau. Để so sánh hai cách chọn, chúng ta cần mô hình hóa đồng thời lựa chọn, chuyển trạng thái và một tiêu chuẩn cho cả chuỗi tương lai.
+
+Một cách trực quan, mỗi hành động chọn một hàng chuyển tiếp và một cơ chế nhận thưởng; chính sách là quy tắc chọn hành động, và giá trị của chính sách là kỳ vọng tổng thưởng dài hạn. Đây là trực giác, chưa phải định nghĩa.
+
+### 5.1. Mô hình quyết định và chính sách
+
+Mô hình sau thêm hành động vào xích Markov của Định nghĩa 13.1 và gắn mỗi bước với một phần thưởng.
+
+::: definition Định nghĩa 13.5 (Quá trình quyết định Markov hữu hạn)
+Một *quá trình quyết định Markov* (Markov decision process, MDP) hữu hạn gồm năm thành phần sau.
+
+- **Tập trạng thái:** $\mathcal S$ hữu hạn, khác rỗng.
+- **Tập hành động:** với mỗi $s\in\mathcal S$, tập $\mathcal A(s)$ hữu hạn, khác rỗng.
+- **Tập giá trị phần thưởng:** một tập hữu hạn $\mathcal R\subset[-R_{\max},R_{\max}]$, với $R_{\max}<\infty$.
+- **Mô hình chuyển:** các số $p(s',c\mid s,a)\ge0$, với $s'\in\mathcal S$, $c\in\mathcal R$, thỏa $\sum_{s'}\sum_{c}p(s',c\mid s,a)=1$ cho mọi $s$ và mọi $a\in\mathcal A(s)$.
+- **Hệ số chiết khấu** (discount factor): $\gamma\in[0,1)$.
+
+Quá trình bắt đầu từ trạng thái $S_0$. Tại thời điểm $t$, *lịch sử* (history) là $H_t=(S_0,A_0,R_1,S_1,\ldots,A_{t-1},R_t,S_t)$; tác tử quan sát $H_t$, chọn hành động $A_t\in\mathcal A(S_t)$, rồi môi trường sinh trạng thái kế tiếp $S_{t+1}$ và *phần thưởng* (reward) $R_{t+1}$. *Giả thiết Markov có điều khiển* yêu cầu: với mọi $t$, mọi giá trị $\tau$ của lịch sử có trạng thái cuối $s_\tau$ và mọi $a$ sao cho $\mathbb P(H_t=\tau,A_t=a)>0$,
+$$
+\begin{aligned}
+&\mathbb P\bigl(S_{t+1}=s',\,R_{t+1}=c\\
+&\qquad\bigm|H_t=\tau,\,A_t=a\bigr)\\
+&\quad=p(s',c\mid s_\tau,a).
+\end{aligned}
+\tag{5.1}
+$$
+
+Từ mô hình chuyển, *xác suất chuyển* và *phần thưởng kỳ vọng một bước* là
+$$
+\begin{aligned}
+&P(s'\mid s,a)\\
+&\quad=\sum_{c\in\mathcal R}p(s',c\mid s,a),\\
+&r(s,a)\\
+&\quad=\sum_{s'\in\mathcal S}\sum_{c\in\mathcal R}c\,p(s',c\mid s,a).
+\end{aligned}
+\tag{5.2}
+$$
+:::
+
+Định nghĩa 13.5 mở rộng Định nghĩa 13.1 bằng một biến điều khiển. Giả thiết Markov áp dụng cho cả phần thưởng: một biến ẩn ảnh hưởng đến phần thưởng tương lai phải được đưa vào trạng thái nếu muốn dùng mô hình này. Đại lượng $R_{t+1}$ là phần thưởng quan sát được, ngẫu nhiên; $r(s,a)$ là trung bình của nó theo mô hình. Vì $\mathcal S$, mọi $\mathcal A(s)$ và $\mathcal R$ hữu hạn, lịch sử $H_t$ nhận hữu hạn giá trị, nên các xác suất có điều kiện trong (5.1) là xác suất có điều kiện theo biến cố có xác suất dương như ở Bài 10.
+
+Với robot của Ví dụ 13.1, mô hình chuyển của hành động $A$ là $p(h,1\mid h,A)=p(z,1\mid h,A)=1/2$, nên $P(h\mid h,A)=1/2$ và $r(h,A)=1$. Khi phần thưởng là một hàm tất định $r(s,a,s')$ của bước chuyển, (5.2) cho $r(s,a)=\sum_{s'}P(s'\mid s,a)\,r(s,a,s')$. Phần thưởng và trạng thái kế tiếp có thể tương quan; tính tuyến tính của kỳ vọng cho phép chỉ dùng trung bình $r(s,a)$ khi tối ưu tổng thưởng kỳ vọng.
+
+Định nghĩa 13.5 chưa nói hành động $A_t$ được chọn thế nào. Định nghĩa sau gọi tên quy tắc chọn đó.
+
+::: definition Định nghĩa 13.6 (Chính sách)
+Một *chính sách* (policy) tổng quát $\rho=(\rho_t)_{t\ge0}$ gán cho mỗi thời điểm $t$ và mỗi giá trị $\tau$ của lịch sử, với trạng thái cuối $s_\tau$, một phân phối xác suất $\rho_t(\cdot\mid\tau)$ trên $\mathcal A(s_\tau)$. Hành động được chọn theo
+$$
+\mathbb P(A_t=a\mid H_t=\tau)=\rho_t(a\mid\tau)
+$$
+với mọi $\tau$ có $\mathbb P(H_t=\tau)>0$. Chính sách tổng quát có thể phụ thuộc thời gian, toàn bộ lịch sử và có thể ngẫu nhiên.
+
+Một *chính sách Markov dừng* (stationary Markov policy) $\pi$ chỉ dùng trạng thái hiện tại và không đổi theo thời gian: $\rho_t(a\mid\tau)=\pi(a\mid s_\tau)$. Nó là *tất định* (deterministic) nếu tại mỗi trạng thái nó chọn một hành động với xác suất $1$; hành động đó được ký hiệu $\pi(s)$.
+
+Với chính sách Markov dừng $\pi$, đặt
+$$
+\begin{aligned}
+&P^\pi(s,s')\\
+&\quad=\sum_{a\in\mathcal A(s)}\pi(a\mid s)\\
+&\qquad\quad\cdot P(s'\mid s,a),\\
+&r^\pi(s)\\
+&\quad=\sum_{a\in\mathcal A(s)}\pi(a\mid s)\,r(s,a).
+\end{aligned}
+\tag{5.3}
+$$
+:::
+
+Theo Định nghĩa 13.6, quy luật môi trường $p$ và quy tắc chọn hành động $\rho$ là hai đối tượng riêng. Khi cố định $\rho$ và $S_0=s$, phân phối của mọi lịch sử được xác định bằng cách áp dụng quy tắc nhân lần lượt cho từng hành động và từng bước chuyển, như trong chứng minh Hệ quả 13.3. Cụ thể, với $\tau=(s,a_0,c_1,s_1,\ldots,a_{t-1},c_t,s_t)$ và $\tau_k$ là đoạn đầu của $\tau$ đến $s_k$,
+$$
+\begin{aligned}
+&\mathbb P_\rho(H_t=\tau\mid S_0=s)\\
+&\quad=\prod_{k=0}^{t-1}\rho_k(a_k\mid\tau_k)\\
+&\qquad\times p(s_{k+1},c_{k+1}\mid s_k,a_k).
+\end{aligned}
+$$
+Ta viết $\mathbb P_\rho$, $\mathbb E_\rho$ cho xác suất và kỳ vọng theo phân phối quỹ đạo này.
+
+Với chính sách Markov dừng $\pi$, xác suất toàn phần theo $A_t$ cho $\mathbb P_\pi(S_{t+1}=s'\mid H_t=\tau)=\sum_a\pi(a\mid s_\tau)P(s'\mid s_\tau,a)=P^\pi(s_\tau,s')$. Xác suất này chỉ phụ thuộc trạng thái cuối, nên dãy $(S_t)$ là xích Markov thuần nhất với ma trận chuyển $P^\pi$; ma trận này không âm và có tổng mỗi hàng $\sum_a\pi(a\mid s)\sum_{s'}P(s'\mid s,a)=1$. Mệnh đề 13.2 vì vậy áp dụng được. Với chính sách phụ thuộc lịch sử, riêng dãy $(S_t)$ nói chung không còn là xích Markov, dù môi trường thỏa (5.1).
+
+Ví dụ sau tính $P^\pi$ và $r^\pi$ cho một chính sách ngẫu nhiên của robot.
+
+::: example Ví dụ 13.4 (Một chính sách ngẫu nhiên tạo ra một xích)
+**Dữ kiện.** Robot của Ví dụ 13.1: tại $h$, $A$ thưởng $1$ và giữ robot ở $h$ với xác suất $1/2$; $B$ thưởng $0{,}6$ và luôn giữ robot ở $h$; $z$ hấp thụ với thưởng $0$. Chính sách $\pi$ chọn $A$ hoặc $B$ với xác suất $1/2$ mỗi khi ở $h$.
+
+**Ma trận chuyển dưới $\pi$.** Theo (5.3), với thứ tự $h,z$,
+$$
+\begin{aligned}
+P^\pi(h,h)&=\tfrac12\cdot\tfrac12+\tfrac12\cdot1=0{,}75,\\
+P^\pi&=\begin{pmatrix}0{,}75&0{,}25\\0&1\end{pmatrix}.
+\end{aligned}
+$$
+
+**Thưởng kỳ vọng dưới $\pi$.** $r^\pi(h)=\tfrac12\cdot1+\tfrac12\cdot0{,}6=0{,}8$ và $r^\pi(z)=0$.
+
+**Kiểm tra lại.** Mỗi hàng của $P^\pi$ có tổng bằng $1$.
+
+Trước khi chọn chính sách, robot không có một ma trận chuyển duy nhất; sau khi cố định $\pi$, robot là một xích Markov với ma trận $P^\pi$.
+:::
+
+### 5.2. Tổng thưởng chiết khấu và hàm giá trị
+
+Nếu robot luôn chọn $B$ và ta cộng mọi phần thưởng không có trọng số, tổng $0{,}6+0{,}6+\cdots$ bằng $+\infty$, nên không so sánh được các chính sách. Một cách trực quan, chiết khấu giảm trọng số của phần thưởng nhận muộn: phần thưởng sau $t$ bước được nhân với $\gamma^t$.
+
+::: definition Định nghĩa 13.7 (Tổng thưởng chiết khấu và hàm giá trị)
+Trong MDP của Định nghĩa 13.5, *tổng thưởng chiết khấu* (discounted return) từ thời điểm $t$ là
+$$
+G_t=\sum_{j=0}^{\infty}\gamma^jR_{t+j+1},
+\tag{5.4}
+$$
+với quy ước $\gamma^0=1$. Với chính sách $\rho$ và trạng thái đầu $s$, *hàm giá trị* (value function) là $V^\rho(s)=\mathbb E_\rho[G_0\mid S_0=s]$. *Giá trị tối ưu* (optimal value) là cận trên đúng theo mọi chính sách tổng quát:
 $$
 V^*(s)=\sup_\rho V^\rho(s).
-\tag{13.7}
+\tag{5.5}
 $$
-
-Với chính sách Markov dừng $\pi$, ký hiệu tương ứng là $V^\pi$. Khi $\gamma=0$, tổng thưởng chỉ còn phần thưởng đầu tiên; dùng quy ước $\gamma^0=1$ trong (13.6).
+Chính sách $\rho^*$ là *tối ưu* nếu $V^{\rho^*}(s)=V^*(s)$ với mọi $s$.
 :::
 
-Định nghĩa 13.6 gán giá trị cho cả chuỗi lựa chọn, khác với thưởng một bước $r(s,a)$ trong Định nghĩa 13.4. Định nghĩa tối ưu (13.7) chưa giả sử rằng một chính sách dừng là đủ hoặc cận trên được đạt; điều đó sẽ được chứng minh ở Mục 13.3.
+Hàm giá trị gán một số cho cả chuỗi lựa chọn, còn $r(s,a)$ trong (5.2) chỉ là phần thưởng kỳ vọng của một bước. Định nghĩa (5.5) không giả sử cận trên được đạt, cũng không giả sử chỉ cần xét chính sách dừng. Mệnh đề sau cho biết các đại lượng này hữu hạn; nó dùng chặn $R_{\max}$ và tổng cấp số nhân.
 
-Mệnh đề tiếp theo dùng chặn phần thưởng trong Định nghĩa 13.4 và tổng cấp số nhân. Cơ sở là Murphy (2023), tập II, §34.5.3–34.5.4.
+::: proposition Mệnh đề 13.8 (Tồn tại giá trị và chặn phần đuôi) — chứng minh đầy đủ
+**Giả thiết.** MDP của Định nghĩa 13.5; $\rho$ là một chính sách bất kỳ.
 
-::: proposition Mệnh đề 13.7 (Tồn tại giá trị và chặn phần đuôi)
-**Giả thiết.** $|R_{t+1}|\le R_{\max}<\infty$, $0\le\gamma<1$, và $\rho$ là một chính sách khả thi bất kỳ.
-
-**Kết luận.** Tổng thưởng hội tụ tuyệt đối trên mọi quỹ đạo thỏa chặn phần thưởng, và
-
+**Kết luận.** Trên mọi quỹ đạo, chuỗi (5.4) hội tụ tuyệt đối và với mọi $K\ge0$,
 $$
-|G_t|\le\frac{R_{\max}}{1-\gamma},
-\qquad
-|V^\rho(s)|\le\frac{R_{\max}}{1-\gamma}.
-\tag{13.8}
+\begin{aligned}
+\lvert G_t\rvert&\le\frac{R_{\max}}{1-\gamma},\\
+\Bigl\lvert\sum_{t=K}^{\infty}\gamma^tR_{t+1}\Bigr\rvert&\le\frac{\gamma^KR_{\max}}{1-\gamma},\\
+\lvert V^\rho(s)\rvert&\le\frac{R_{\max}}{1-\gamma}.
+\end{aligned}
+\tag{5.6}
 $$
-
-Với $N\ge1$, phần đuôi từ bước $N$ bị chặn bởi $R_{\max}\gamma^N/(1-\gamma)$. Đặc biệt, mọi $V^\rho(s)$ và $V^*(s)$ trong (13.7) hữu hạn.
-
-**Điều kiện áp dụng.** Chặn phần thưởng phải đúng chung cho mọi thời điểm và mọi hành động khả thi.
-
-**Phạm vi.** Không suy ra cùng kết luận cho $\gamma=1$ hoặc phần thưởng không bị chặn mà không có giả thiết khác.
+Đặc biệt, $V^*(s)$ hữu hạn với mọi $s$.
 :::
 
-::: proof Chứng minh Mệnh đề 13.7
-**Bước 1 (tổng tuyệt đối).** Ta có $\sum_{j=0}^\infty\gamma^j|R_{t+j+1}|\le R_{\max}\sum_{j=0}^\infty\gamma^j=R_{\max}/(1-\gamma)$. Vì tổng vế phải hữu hạn, tổng thưởng hội tụ tuyệt đối và thỏa chặn thứ nhất.
+::: proof Chứng minh Mệnh đề 13.8
+**Lộ trình.** So sánh chuỗi với cấp số nhân, rồi lấy kỳ vọng.
 
-**Bước 2 (kỳ vọng và phần đuôi).** Lấy kỳ vọng của chặn tuyệt đối cho chặn giá trị. Thay tổng từ $j=0$ bằng tổng từ $j=N$ cho phần đuôi không quá $R_{\max}\gamma^N/(1-\gamma)$; nó tiến về $0$ khi $N\to\infty$. Mọi chính sách có cùng chặn, nên cận trên đúng theo chính sách cũng hữu hạn. $\square$
+**Bước 1 (hội tụ tuyệt đối).** Vì $\lvert R_{t+j+1}\rvert\le R_{\max}$ (Định nghĩa 13.5) và $0\le\gamma<1$,
+$$
+\begin{aligned}
+\sum_{j=0}^{\infty}\gamma^j\lvert R_{t+j+1}\rvert&\le R_{\max}\sum_{j=0}^{\infty}\gamma^j\\
+&=\frac{R_{\max}}{1-\gamma}<\infty.
+\end{aligned}
+$$
+Do đó chuỗi (5.4) hội tụ tuyệt đối và $\lvert G_t\rvert\le R_{\max}/(1-\gamma)$.
+
+**Bước 2 (phần đuôi).** Cùng phép so sánh cho tổng từ $t=K$:
+$$
+\begin{aligned}
+\Bigl\lvert\sum_{t=K}^{\infty}\gamma^tR_{t+1}\Bigr\rvert&\le R_{\max}\sum_{t=K}^{\infty}\gamma^t\\
+&=\frac{\gamma^KR_{\max}}{1-\gamma}.
+\end{aligned}
+$$
+
+**Bước 3 (kỳ vọng).** $G_0$ là biến ngẫu nhiên bị chặn, nên kỳ vọng của nó tồn tại và $\lvert V^\rho(s)\rvert\le\mathbb E_\rho[\lvert G_0\rvert\mid S_0=s]\le R_{\max}/(1-\gamma)$. Chặn này đúng cho mọi $\rho$, nên cận trên đúng $V^*(s)$ cũng thuộc $[-R_{\max}/(1-\gamma),R_{\max}/(1-\gamma)]$. $\square$
+
+Trong học máy, chặn phần đuôi cho biết khi cắt một quỹ đạo sau $K$ bước, sai số không vượt $\gamma^KR_{\max}/(1-\gamma)$.
 :::
 
-Trong học máy, chiết khấu cùng phần thưởng bị chặn cho phép so sánh các chính sách bằng những số hữu hạn và kiểm soát sai số khi cắt một chuỗi dài. Hệ số $\gamma$ gần $1$ làm phần đuôi giảm chậm hơn; vì thế ảnh hưởng dài hạn và yêu cầu tính toán đều có thể tăng. Giá trị của $\gamma$ thuộc về tiêu chuẩn mô hình hóa, không chỉ là một tham số kỹ thuật để chứng minh hội tụ.
+Với $\gamma$ gần $1$, phần đuôi giảm chậm, nên các phần thưởng xa vẫn có trọng số đáng kể và việc tính toán cần nhiều bước hơn. Với $\gamma$ nhỏ, tác tử gần như chỉ quan tâm đến phần thưởng trước mắt; khi $\gamma=0$, $G_0=R_1$. Giá trị của $\gamma$ vì vậy là một phần của tiêu chuẩn mô hình hóa.
 
-### Phương trình Bellman khi đã cố định chính sách
+### 5.3. Phương trình Bellman khi đã cố định chính sách
 
-Đẳng thức $G_t=R_{t+1}+\gamma G_{t+1}$ tách bước đầu khỏi phần còn lại. Với chính sách Markov dừng, giá trị của phần còn lại khi biết trạng thái kế tiếp là cùng một hàm $V^\pi$; đó là chỗ dùng cả trạng thái đủ thông tin lẫn tính dừng của chính sách.
+Đẳng thức $G_t=R_{t+1}+\gamma G_{t+1}$ tách bước đầu khỏi phần còn lại. Một cách trực quan, giá trị tại $s$ bằng phần thưởng của bước đầu cộng $\gamma$ nhân giá trị kỳ vọng tại trạng thái kế tiếp. Để viết điều đó thành phương trình, ta cần đại lượng "phần thưởng một bước cộng giá trị kế tiếp" cho một hàm $U$ bất kỳ.
 
-Định lý sau dựa trên Định nghĩa 13.4–13.6 và Mệnh đề 13.7. Nguồn chính là Murphy (2023), tập II, §34.5.4; đối chiếu bổ trợ với Sutton và Barto (2018), §3.5 và §4.1.
-
-::: theorem Định lý 13.8 (Bellman và đánh giá chính sách dừng)
-**Giả thiết.** MDP hữu hạn thỏa Định nghĩa 13.4; $\pi$ là một chính sách Markov dừng. Biểu diễn giá trị và thưởng bằng vector cột theo cùng thứ tự trạng thái.
-
-**Kết luận.** Hàm giá trị là nghiệm duy nhất của
-
+::: definition Định nghĩa 13.9 (Giá trị nhìn trước một bước và toán tử Bellman theo chính sách)
+Cho MDP của Định nghĩa 13.5 và một hàm $U:\mathcal S\to\mathbb R$, đồng nhất với vector của $\mathbb R^{\lvert\mathcal S\rvert}$. *Giá trị nhìn trước một bước* (one-step lookahead value) theo $U$ là
 $$
-V^\pi(s)=r^\pi(s)+\gamma\sum_{s'}P^\pi(s,s')V^\pi(s'),
-\qquad
-V^\pi=r^\pi+\gamma P^\pi V^\pi.
-\tag{13.9}
+\begin{aligned}
+&Q_U(s,a)\\
+&\quad=r(s,a)\\
+&\qquad+\gamma\sum_{s'\in\mathcal S}P(s'\mid s,a)\\
+&\qquad\quad\cdot U(s'),\\
+&s\in\mathcal S,\ a\in\mathcal A(s).
+\end{aligned}
+\tag{5.7}
 $$
-
-Nó có thể được tính bằng hệ tuyến tính $(I-\gamma P^\pi)V^\pi=r^\pi$.
-
-**Điều kiện áp dụng.** Phần thưởng kỳ vọng và mô hình chuyển trong (13.5) thuộc đúng chính sách đang đánh giá. Vector giá trị là vector cột, còn phân phối trạng thái ở Mục 13.1 là vector hàng.
-
-**Phạm vi.** Đây là phương trình cho một chính sách cố định, chưa phải một phương trình tối ưu theo hành động.
+Với chính sách Markov dừng $\pi$, *toán tử Bellman theo chính sách* (policy Bellman operator) $T^\pi:\mathbb R^{\lvert\mathcal S\rvert}\to\mathbb R^{\lvert\mathcal S\rvert}$ là
+$$
+\begin{aligned}
+&(T^\pi U)(s)\\
+&\quad=\sum_{a\in\mathcal A(s)}\pi(a\mid s)\\
+&\qquad\times Q_U(s,a).
+\end{aligned}
+\tag{5.8}
+$$
 :::
 
-::: proof Chứng minh Định lý 13.8
-**Bước 1 (tách tổng thưởng).** Mệnh đề 13.7 bảo đảm tổng và các kỳ vọng hữu hạn. Tách $G_0=R_1+\gamma G_1$, lấy kỳ vọng khi $S_0=s$, rồi dùng kỳ vọng toàn phần theo hành động và trạng thái kế tiếp. Tính Markov của môi trường và tính dừng của $\pi$ cho kỳ vọng phần thưởng đầu bằng $r^\pi(s)$ và giá trị kỳ vọng của phần đuôi bằng $\sum_{s'}P^\pi(s,s')V^\pi(s')$. Suy ra (13.9).
-
-**Bước 2 (tính duy nhất).** Nếu $V,W$ đều là nghiệm, $V-W=\gamma P^\pi(V-W)$. Vì mỗi hàng $P^\pi$ là một phân phối,
-
+Số $Q_U(s,a)$ là phần thưởng kỳ vọng khi chọn $a$ tại $s$ cộng $\gamma$ nhân giá trị trung bình của $U$ tại trạng thái kế tiếp, khi $U$ được dùng thay cho giá trị thật của phần còn lại. Thay (5.7) vào (5.8), đổi thứ tự hai tổng hữu hạn và dùng (5.3):
 $$
-\|V-W\|_\infty\le\gamma\|V-W\|_\infty.
+\begin{aligned}
+&(T^\pi U)(s)\\
+&\quad=r^\pi(s)\\
+&\qquad+\gamma\sum_{s'}P^\pi(s,s')\,U(s'),\\
+&\text{tức}\quad T^\pi U=r^\pi+\gamma P^\pi U.
+\end{aligned}
+\tag{5.9}
 $$
+Với robot, $Q_U(h,A)=1+0{,}45\,U(h)+0{,}45\,U(z)$ và $Q_U(h,B)=0{,}6+0{,}9\,U(h)$.
 
-Do $\gamma<1$, suy ra $V=W$. Giá trị được định nghĩa bằng kỳ vọng đã cho một nghiệm, nên hệ có nghiệm duy nhất. Cũng có thể thấy $I-\gamma P^\pi$ khả nghịch: phương trình thuần nhất chỉ có nghiệm $0$ và ma trận là vuông. $\square$
-:::
+Bổ đề đầu tính kỳ vọng của "phần thưởng một bước cộng $\gamma U$ tại trạng thái kế tiếp" khi biết toàn bộ lịch sử. Nó cần kỳ vọng toàn phần (Định lý 10.29) và giả thiết Markov (5.1).
 
-Trong học máy, Định lý 13.8 cho cách đánh giá một quy tắc điều khiển nếu mô hình đã biết. Nó giải thích vì sao tổng thưởng dài hạn có thể được tính bằng một phương trình nhất quán một bước. Tính duy nhất của giá trị dưới một chính sách không hàm ý chính sách đó tối ưu.
+::: lemma Bổ đề 13.10 (Kỳ vọng của một bước nhìn trước) — chứng minh đầy đủ
+**Giả thiết.**
 
-::: example Ví dụ 13.4 (So sánh ba chính sách của robot)
-**MDP.** Hai trạng thái là $s,z$, trong đó $z$ hấp thụ và luôn thưởng $0$. Tại $s$, $A$ thưởng $1$ và ở lại $s$ với xác suất $1/2$; $B$ thưởng $0.6$ và luôn ở lại $s$. Các xác suất còn lại tới $z$; đặt $\gamma=0.9$.
-
-**Luôn chọn $A$.** Do $V(z)=0$, (13.9) cho $V^A(s)=1+0.45V^A(s)$, nên $V^A(s)=1/0.55=20/11\approx1.8182$.
-
-**Luôn chọn $B$.** Ta có $V^B(s)=0.6+0.9V^B(s)$, nên $V^B(s)=6$.
-
-**Trộn đều hai hành động.** Chính sách chọn mỗi hành động với xác suất $1/2$ có thưởng kỳ vọng $0.8$ và xác suất ở lại $s$ bằng $0.75$. Vì vậy $V^{\mathrm{mix}}(s)=0.8+0.675V^{\mathrm{mix}}(s)$, cho $V^{\mathrm{mix}}(s)=32/13\approx2.4615$.
-
-**Kiểm tra và giới hạn.** Thế lại từng số vào phương trình tương ứng đều cho đẳng thức. Chính sách luôn chọn thưởng tức thời lớn nhất là $A$, nhưng giá trị của nó thấp hơn $B$. Việc so sánh ba chính sách này chưa tự chứng minh $B$ tốt hơn mọi chính sách có thể phụ thuộc lịch sử; điều đó cần định lý tối ưu ở Mục 13.3.
-:::
-
-::: exercise Bài tập 13.2 (Củng cố: chính sách và tổng thưởng)
-Một MDP có trạng thái $s,z$, $z$ hấp thụ với thưởng $0$, hệ số $\gamma=1/2$. Tại $s$, hành động $A$ thưởng $2$ rồi chắc chắn đến $z$; hành động $B$ thưởng $1$ rồi chắc chắn trở lại $s$. Tính giá trị của hai chính sách tất định dừng. Nếu chọn $A,B$ mỗi hành động với xác suất $1/2$ tại $s$, viết ma trận chuyển, thưởng kỳ vọng và giá trị của chính sách này.
-:::
-
-::: hint Gợi ý Bài tập 13.2
-Dùng $V(z)=0$, rồi viết một phương trình một biến cho $V(s)$ theo Định lý 13.8.
-:::
-
-::: solution Lời giải Bài tập 13.2
-Chính sách luôn chọn $A$ cho $V^A(s)=2$. Chính sách luôn chọn $B$ cho $V^B(s)=1+\frac12V^B(s)$, nên $V^B(s)=2$.
-
-Với chính sách trộn đều, theo thứ tự $s,z$,
-
-$$
-P^\pi=\begin{pmatrix}1/2&1/2\\0&1\end{pmatrix},
-\qquad r^\pi=\begin{pmatrix}3/2\\0\end{pmatrix}.
-$$
-
-Ta có $V^\pi(s)=3/2+\frac14V^\pi(s)$, suy ra $V^\pi(s)=2$. Ba chính sách khác nhau có cùng giá trị trong ví dụ này; điều đó không làm mất tính duy nhất của nghiệm đánh giá dưới mỗi chính sách. Việc đánh giá một chính sách và việc xác định tính duy nhất của chính sách là hai vấn đề khác nhau.
-:::
-
-Định nghĩa 13.4 bổ sung hành động và cơ chế phần thưởng vào mô hình Markov; Định nghĩa 13.5 cho cách biến một chính sách dừng thành xích thuần nhất. Định nghĩa 13.6 và Mệnh đề 13.7 làm tiêu chuẩn dài hạn xác định được, còn Định lý 13.8 biến đánh giá chính sách thành một hệ tuyến tính. Vấn đề còn lại là lựa chọn hành động để tối ưu thay vì chỉ đánh giá một lựa chọn có sẵn.
-
-## 13.3. Bellman tối ưu và lặp giá trị
-
-Định lý 13.8 đánh giá một chính sách đã cố định. Nếu liệt kê mọi chính sách rồi giải từng hệ, số phương án có thể tăng nhanh theo số trạng thái; cho phép phụ thuộc lịch sử còn tạo một phạm vi lựa chọn lớn hơn. Chúng ta cần một phương trình chọn hành động theo giá trị tương lai mà vẫn chứng minh được lựa chọn đó là tối ưu cho toàn chuỗi.
-
-Một cách trực quan, phần thưởng của một bước được cộng với kỳ vọng giá trị ở trạng thái kế tiếp, rồi ta chọn hành động tốt nhất trong các tổng đó. Đây là trực giác của bước Bellman, kế thừa Định lý 07.49 nhưng thay một trạng thái kế tiếp tất định bằng tổng có trọng số xác suất. Trực giác này chưa đủ để nhận một nghiệm điểm bất động là giá trị tối ưu; phần chứng minh phải xác lập cả sự tồn tại lẫn ý nghĩa quyết định của nghiệm.
-
-![Robot có trạng thái hoạt động s và trạng thái hấp thụ z; hành động A thưởng 1 và chỉ có xác suất 0.5 tiếp tục, hành động B thưởng 0.6 và luôn tiếp tục; z luôn thưởng 0.](img/lec-13/robot-mdp.svg)
-
-*Hình 13.1. Mô hình dùng trong các Ví dụ 13.3–13.5. Với $\gamma=0.9$, hành động có thưởng tức thời cao hơn chưa chắc cho tổng thưởng kỳ vọng lớn hơn, vì xác suất còn hoạt động để nhận thưởng tiếp theo khác nhau.*
-
-### Toán tử một bước và phép lấy cực đại
-
-::: definition Định nghĩa 13.9 (Toán tử Bellman)
-Với MDP hữu hạn trong Định nghĩa 13.4 và một hàm $V:\mathcal S\to\mathbb R$, đặt
-
-$$
-Q_V(s,a)=r(s,a)+\gamma\sum_{s'}P(s'\mid s,a)V(s').
-\tag{13.10}
-$$
-
-**Toán tử Bellman tối ưu** $T$ và **toán tử Bellman theo chính sách dừng** $T^\pi$ được định nghĩa bởi
-
-$$
-(TV)(s)=\max_{a\in\mathcal A(s)}Q_V(s,a),
-\qquad
-(T^\pi V)(s)=\sum_{a\in\mathcal A(s)}\pi(a\mid s)Q_V(s,a).
-\tag{13.11}
-$$
-
-Cả hai là ánh xạ từ $\mathbb R^{|\mathcal S|}$ vào chính nó. Chuẩn dùng trong phân tích là $\|V\|_\infty=\max_s|V(s)|$.
-:::
-
-Định nghĩa 13.9 tổng quát hóa vế phải của (13.9): toán tử theo chính sách lấy trung bình hành động, còn toán tử tối ưu lấy cực đại. Đại lượng $Q_V$ là giá trị nhìn trước một bước khi dùng $V$ cho phần đuôi; nó chưa phải giá trị hành động tối ưu nếu $V$ chưa được xác định là $V^*$. Tập hành động hữu hạn bảo đảm cực đại trong (13.11) được đạt tại mỗi trạng thái.
-
-Để kiểm soát toán tử $T$, ta cần biết phép lấy cực đại có thể khuếch đại sai số bao nhiêu. Bổ đề sau là một bất đẳng thức hữu hạn được dùng trong chứng minh tính co; phương pháp đối chiếu với Murphy (2023), tập II, §34.6.1.
-
-::: lemma Bổ đề 13.10 (Sai khác của hai cực đại)
-**Giả thiết.** $(u_a)$ và $(v_a)$ là hai họ số thực trên cùng tập hữu hạn khác rỗng $\mathcal A$.
+- **Mô hình:** MDP của Định nghĩa 13.5.
+- **Chính sách và trạng thái đầu:** chính sách $\rho$, trạng thái đầu $s$.
+- **Hàm:** $U:\mathcal S\to\mathbb R$.
+- **Lịch sử:** thời điểm $t$ và giá trị $\tau$ của lịch sử, có trạng thái cuối $s_\tau$, với $\mathbb P_\rho(H_t=\tau\mid S_0=s)>0$.
 
 **Kết luận.**
-
 $$
-\left|\max_a u_a-\max_a v_a\right|
-\le\max_a|u_a-v_a|.
-\tag{13.12}
+\begin{aligned}
+&\mathbb E_\rho\bigl[R_{t+1}+\gamma U(S_{t+1})\\
+&\qquad\bigm|H_t=\tau\bigr]\\
+&\quad=\sum_{a\in\mathcal A(s_\tau)}\rho_t(a\mid\tau)\\
+&\qquad\times Q_U(s_\tau,a).
+\end{aligned}
+\tag{5.10}
 $$
-
-**Điều kiện áp dụng.** Hai cực đại được lấy trên cùng một tập chỉ số.
-
-**Phạm vi.** Bất đẳng thức so sánh các giá trị cực đại; hai chỉ số đạt cực đại có thể khác nhau.
 :::
 
 ::: proof Chứng minh Bổ đề 13.10
-Đặt $d=\max_a|u_a-v_a|$. Với mọi $a$, $u_a\le v_a+d\le\max_bv_b+d$, nên $\max_au_a\le\max_av_a+d$. Đổi vai $u,v$ cho bất đẳng thức chiều ngược lại, rồi ghép hai chiều để được (13.12). $\square$
-:::
+**Lộ trình.** Phân hoạch theo hành động $A_t$, rồi dùng (5.1) cho từng hành động.
 
-### Tính co, điểm bất động và hội tụ
-
-Một toán tử là ánh xạ co nếu nó làm khoảng cách giữa hai đầu vào giảm bởi một hệ số nhỏ hơn $1$. Với (13.11), phép lấy kỳ vọng không tăng chuẩn cực đại và chiết khấu cung cấp hệ số $\gamma$. Bổ đề 13.10 cho phép giữ chặn đó sau khi chọn hành động cực đại.
-
-Định lý tiếp theo phát triển lặp Bellman của Bài 07 sang không gian vector giá trị hữu hạn với chiết khấu. Cơ sở là Murphy (2023), tập II, §34.6.1; đối chiếu bổ trợ với Sutton và Barto (2018), §4.4. Chứng minh điểm bất động được trình bày bằng dãy Cauchy, là trường hợp hữu hạn chiều của định lý ánh xạ co Banach.
-
-::: theorem Định lý 13.11 (Tính co và hội tụ của lặp giá trị)
-**Giả thiết.** MDP hữu hạn có phần thưởng bị chặn và $0\le\gamma<1$, toán tử $T$ được cho bởi (13.11).
-
-**Kết luận.** Với mọi $V,W$,
-
-$$
-\|TV-TW\|_\infty\le\gamma\|V-W\|_\infty.
-\tag{13.13}
-$$
-
-Toán tử có một điểm bất động duy nhất $\bar V=T\bar V$. Với mọi $V_0\in\mathbb R^{|\mathcal S|}$, dãy **lặp giá trị** $V_{k+1}=TV_k$ hội tụ tới $\bar V$ và
-
-$$
-\|V_k-\bar V\|_\infty\le\gamma^k\|V_0-\bar V\|_\infty,
-\qquad k\ge1.
-\tag{13.14}
-$$
-
-**Điều kiện áp dụng.** Mỗi hàng xác suất chuyển chuẩn hóa bằng $1$; các phép lấy kỳ vọng và cực đại được tính chính xác theo mô hình cố định.
-
-**Phạm vi.** Định lý xác lập một điểm bất động và thuật toán tìm nó. Việc chứng minh $\bar V$ là giá trị tối ưu được thực hiện riêng trong Định lý 13.12.
-:::
-
-::: proof Chứng minh Định lý 13.11
-**Bước 1 (chặn một hành động).** Với mỗi $s,a$, phần thưởng triệt tiêu khi lấy hiệu, và
-
+**Bước 1 (kỳ vọng toàn phần theo hành động).** Đặt $Y=R_{t+1}+\gamma U(S_{t+1})$, một biến rời rạc bị chặn. Xác suất có điều kiện $\mathbb P_\rho(\cdot\mid H_t=\tau)$ là một độ đo xác suất, và Định lý 10.29 áp dụng cho nó với biến điều kiện $A_t$:
 $$
 \begin{aligned}
-|Q_V(s,a)-Q_W(s,a)|
-&=\gamma\left|\sum_{s'}P(s'\mid s,a)(V(s')-W(s'))\right|\\
-&\le\gamma\sum_{s'}P(s'\mid s,a)|V(s')-W(s')|\\
-&\le\gamma\|V-W\|_\infty.
+&\mathbb E_\rho[Y\mid H_t=\tau]\\
+&\quad=\sum_{a:\,\rho_t(a\mid\tau)>0}\rho_t(a\mid\tau)\\
+&\qquad\times\mathbb E_\rho[Y\mid H_t=\tau,A_t=a].
 \end{aligned}
 $$
 
-Bước cuối dùng các xác suất không âm và có tổng bằng $1$.
-
-**Bước 2 (chặn sau khi tối ưu hành động).** Áp dụng Bổ đề 13.10 cho hai họ $Q_V(s,a),Q_W(s,a)$, rồi lấy cực đại theo $s$, cho (13.13).
-
-**Bước 3 (tồn tại khi $0<\gamma<1$).** Đặt $d_0=\|V_1-V_0\|_\infty$. Lặp (13.13) cho $\|V_{j+1}-V_j\|_\infty\le\gamma^jd_0$. Với $m>k$,
-
+**Bước 2 (dùng giả thiết Markov).** Với $a$ có $\rho_t(a\mid\tau)>0$, (5.1) và (5.2) cho
 $$
-\|V_m-V_k\|_\infty
-\le\sum_{j=k}^{m-1}\|V_{j+1}-V_j\|_\infty
-\le\frac{\gamma^k}{1-\gamma}d_0.
+\begin{aligned}
+&\mathbb E_\rho[R_{t+1}\mid H_t=\tau,A_t=a]\\
+&\quad=\sum_{s'}\sum_{c}c\,p(s',c\mid s_\tau,a)\\
+&\quad=r(s_\tau,a),\\
+&\mathbb E_\rho[U(S_{t+1})\\
+&\qquad\mid H_t=\tau,A_t=a]\\
+&\quad=\sum_{s'}U(s')\sum_cp(s',c\mid s_\tau,a)\\
+&\quad=\sum_{s'}P(s'\mid s_\tau,a)\,U(s').
+\end{aligned}
 $$
+Theo tính tuyến tính của kỳ vọng, $\mathbb E_\rho[Y\mid H_t=\tau,A_t=a]=Q_U(s_\tau,a)$ theo (5.7).
 
-Vế phải tiến về $0$, nên dãy là Cauchy. Không gian hữu hạn chiều với chuẩn cực đại là đầy đủ, do đó dãy có giới hạn $\bar V$. Tính co kéo theo tính liên tục của $T$, nên lấy giới hạn trong $V_{k+1}=TV_k$ cho $\bar V=T\bar V$.
+**Bước 3 (ghép).** Thay vào Bước 1. Các hành động có $\rho_t(a\mid\tau)=0$ đóng góp $0$ vào vế phải của (5.10), nên tổng được lấy trên mọi $a\in\mathcal A(s_\tau)$. $\square$
 
-**Bước 4 (tính duy nhất và tốc độ).** Nếu $U$ cũng là điểm bất động, (13.13) cho $\|U-\bar V\|_\infty\le\gamma\|U-\bar V\|_\infty$, nên $U=\bar V$. Lặp (13.13) với $W=\bar V$ cho (13.14).
-
-**Bước 5 (trường hợp $\gamma=0$).** Khi đó $(TV)(s)=\max_ar(s,a)$ không phụ thuộc $V$. Sau đúng một bước ta có điểm bất động; nó duy nhất và (13.14) đúng với mọi $k\ge1$. $\square$
+Bổ đề cho thấy kỳ vọng của một bước nhìn trước chỉ phụ thuộc lịch sử qua trạng thái hiện tại và phân phối hành động mà chính sách chọn tại lịch sử đó.
 :::
 
-Trong học máy, Định lý 13.11 giải thích hội tụ của một phép quy hoạch khi bảng mô hình được biết và các bước Bellman được tính chính xác. Sai số khởi tạo giảm theo $\gamma^k$; khi $\gamma$ gần $1$, sự giảm này chậm hơn. Định lý chưa phân tích sai số do lấy mẫu hoặc xấp xỉ hàm, vì các bước đó chưa xuất hiện trong toán tử đang xét.
+Bổ đề tiếp theo được dùng cho cả phương trình Bellman theo chính sách lẫn phương trình Bellman tối ưu. Nếu tại mọi lịch sử, kỳ vọng của một bước nhìn trước theo $U$ không vượt $U$ tại trạng thái hiện tại, thì cả chuỗi vô hạn cũng không vượt $U$. Chứng minh cộng các bước với tổng lồng, dùng kỳ vọng toàn phần theo lịch sử, rồi chặn phần đuôi bằng Mệnh đề 13.8.
 
-### Vì sao điểm bất động là giá trị tối ưu
+::: lemma Bổ đề 13.11 (So sánh theo từng bước) — chứng minh đầy đủ
+**Giả thiết.**
 
-Một phương trình có nghiệm duy nhất vẫn cần được nối với bài toán quyết định gốc. Chúng ta chứng minh hai chiều: có một chính sách đạt $\bar V$, và không chính sách nào, kể cả phụ thuộc toàn lịch sử, có giá trị cao hơn. Chính tính Markov có điều khiển cho phép thực hiện bước so sánh này ở mọi lịch sử.
-
-Nguồn chính của kết quả là Murphy (2023), tập II, §34.5.5 và §34.6.1; chứng minh dưới đây dùng Định lý 13.8, 13.11 và chặn phần đuôi của Mệnh đề 13.7.
-
-::: theorem Định lý 13.12 (Bellman tối ưu và chính sách đạt tối ưu)
-**Giả thiết.** MDP thỏa Định nghĩa 13.4, và $\bar V$ là điểm bất động trong Định lý 13.11. Với mỗi trạng thái, chọn một hành động
-
+- **Mô hình:** MDP của Định nghĩa 13.5.
+- **Hàm:** $U:\mathcal S\to\mathbb R$.
+- **Chính sách và trạng thái đầu:** chính sách $\rho$, trạng thái đầu $s$.
+- **So sánh một bước:** với mọi $t\ge0$ và mọi $\tau$ có $\mathbb P_\rho(H_t=\tau\mid S_0=s)>0$,
 $$
-\pi^*(s)\in\underset{a\in\mathcal A(s)}{\operatorname{argmax}}
-\left[r(s,a)+\gamma\sum_{s'}P(s'\mid s,a)\bar V(s')\right].
-\tag{13.15}
-$$
-
-**Kết luận.** Chính sách tất định Markov dừng $\pi^*$ đạt $V^{\pi^*}=\bar V=V^*$. Do đó giá trị tối ưu là nghiệm duy nhất của phương trình Bellman
-
-$$
-V^*(s)=\max_{a\in\mathcal A(s)}
-\left[r(s,a)+\gamma\sum_{s'}P(s'\mid s,a)V^*(s')\right].
-\tag{13.16}
+\begin{aligned}
+&\sum_{a\in\mathcal A(s_\tau)}\rho_t(a\mid\tau)\,Q_U(s_\tau,a)\\
+&\quad\le U(s_\tau).
+\end{aligned}
+\tag{5.11}
 $$
 
-**Điều kiện áp dụng.** Cực đại được đạt vì tập hành động hữu hạn; giả thiết Markov có điều khiển áp dụng cho cả trạng thái kế tiếp và phần thưởng.
+**Kết luận.** $V^\rho(s)\le U(s)$. Nếu (5.11) xảy ra dấu bằng với mọi $t$ và mọi $\tau$ như trên thì $V^\rho(s)=U(s)$.
+:::
 
-**Phạm vi.** Tối ưu trong (13.7) xét cả chính sách ngẫu nhiên phụ thuộc lịch sử, nhưng tồn tại một chính sách tất định dừng đạt cùng giá trị. Giá trị tối ưu duy nhất không bắt buộc chính sách tối ưu duy nhất.
+::: proof Chứng minh Bổ đề 13.11
+**Lộ trình.** Đặt $D_t=\gamma^tR_{t+1}+\gamma^{t+1}U(S_{t+1})-\gamma^tU(S_t)$. Mỗi $D_t$ có kỳ vọng không dương; tổng của $D_0,\ldots,D_{K-1}$ là tổng lồng; phần đuôi sau $K$ bước nhỏ khi $K$ lớn. Mọi xác suất và kỳ vọng dưới đây tính theo $\mathbb P_\rho(\cdot\mid S_0=s)$.
+
+**Bước 1 (một bước không làm tăng $U$ theo kỳ vọng).** Trên biến cố $\{H_t=\tau\}$ ta có $S_t=s_\tau$, nên $U(S_t)=U(s_\tau)$ là hằng số. Theo Bổ đề 13.10 và (5.11),
+$$
+\begin{aligned}
+&\mathbb E_\rho[D_t\mid H_t=\tau]\\
+&\quad=\gamma^t\Bigl(\mathbb E_\rho\bigl[R_{t+1}+\gamma U(S_{t+1})\\
+&\qquad\quad\bigm|H_t=\tau\bigr]-U(s_\tau)\Bigr)\\
+&\quad=\gamma^t\Bigl(\sum_a\rho_t(a\mid\tau)\,Q_U(s_\tau,a)\\
+&\qquad\quad-U(s_\tau)\Bigr)\\
+&\quad\le0.
+\end{aligned}
+$$
+
+**Bước 2 (kỳ vọng toàn phần theo lịch sử).** Theo giả thiết (M2) và (O1), $H_t$ là biến rời rạc nhận hữu hạn giá trị. Đặt $w_\tau=\mathbb P_\rho(H_t=\tau\mid S_0=s)$. Định lý 10.29 với biến điều kiện $H_t$ cho
+$$
+\begin{aligned}
+&\mathbb E_\rho[D_t\mid S_0=s]\\
+&\quad=\sum_{\tau:\,w_\tau>0}w_\tau\,\mathbb E_\rho[D_t\mid H_t=\tau]\\
+&\quad\le0.
+\end{aligned}
+$$
+
+**Bước 3 (tổng lồng).** Trên mỗi quỹ đạo và với mỗi $K\ge1$, đổi chỉ số $t+1\mapsto t$ trong tổng thứ hai:
+$$
+\begin{aligned}
+&\sum_{t=0}^{K-1}D_t\\
+&\quad=\sum_{t=0}^{K-1}\gamma^tR_{t+1}+\sum_{t=1}^{K}\gamma^tU(S_t)\\
+&\qquad\quad-\sum_{t=0}^{K-1}\gamma^tU(S_t)\\
+&\quad=\sum_{t=0}^{K-1}\gamma^tR_{t+1}+\gamma^KU(S_K)\\
+&\qquad\quad-U(S_0).
+\end{aligned}
+$$
+Các số hạng $\gamma^tU(S_t)$ với $1\le t\le K-1$ xuất hiện một lần với dấu cộng và một lần với dấu trừ, nên triệt tiêu.
+
+**Bước 4 (tổng hữu hạn bước).** Lấy kỳ vọng hai vế của Bước 3, dùng tính tuyến tính của kỳ vọng (mọi đại lượng bị chặn), $S_0=s$ và Bước 2:
+$$
+\begin{aligned}
+&\mathbb E_\rho\Bigl[\sum_{t=0}^{K-1}\gamma^tR_{t+1}\Bigm|S_0=s\Bigr]\\
+&\quad=U(s)-\gamma^K\,\mathbb E_\rho[U(S_K)\mid S_0=s]\\
+&\qquad\quad+\sum_{t=0}^{K-1}\mathbb E_\rho[D_t\mid S_0=s]\\
+&\quad\le U(s)+\gamma^K\lVert U\rVert_\infty.
+\end{aligned}
+$$
+
+**Bước 5 (phần đuôi và giới hạn).** Tách $G_0=\sum_{t=0}^{K-1}\gamma^tR_{t+1}+\sum_{t=K}^{\infty}\gamma^tR_{t+1}$. Theo (5.6), phần thứ hai có trị tuyệt đối không quá $\gamma^KR_{\max}/(1-\gamma)$ trên mọi quỹ đạo. Lấy kỳ vọng và dùng Bước 4:
+$$
+\begin{aligned}
+V^\rho(s)&\le U(s)\\
+&\quad+\gamma^K\Bigl(\lVert U\rVert_\infty+\frac{R_{\max}}{1-\gamma}\Bigr).
+\end{aligned}
+$$
+Bất đẳng thức đúng với mọi $K\ge1$. Vì $0\le\gamma<1$ (giả thiết O2), $\gamma^K\to0$ khi $K\to\infty$, nên $V^\rho(s)\le U(s)$.
+
+**Bước 6 (trường hợp dấu bằng).** Khi (5.11) là đẳng thức, Bước 1 và Bước 2 cho $\mathbb E_\rho[D_t\mid S_0=s]=0$, nên đẳng thức ở dòng thứ nhất của Bước 4 cho $\mathbb E_\rho[\sum_{t<K}\gamma^tR_{t+1}\mid S_0=s]=U(s)-\gamma^K\mathbb E_\rho[U(S_K)\mid S_0=s]$. Cùng phép chặn phần đuôi cho
+$$
+\begin{aligned}
+&\lvert V^\rho(s)-U(s)\rvert\\
+&\quad\le\gamma^K\Bigl(\lVert U\rVert_\infty+\frac{R_{\max}}{1-\gamma}\Bigr)\\
+&\quad\xrightarrow[K\to\infty]{}0.
+\end{aligned}
+$$
+Do đó $V^\rho(s)=U(s)$. $\square$
+
+Bổ đề đưa việc so sánh tổng thưởng trên vô hạn bước về việc kiểm tra một bất đẳng thức một bước tại từng lịch sử; đây là lý do phương trình Bellman chỉ cần mô hình một bước.
+:::
+
+Định lý sau dùng Bổ đề 13.11 với dấu bằng để đánh giá một chính sách dừng.
+
+::: theorem Định lý 13.12 (Phương trình Bellman cho chính sách dừng) — chứng minh đầy đủ
+**Giả thiết.** MDP của Định nghĩa 13.5; $\pi$ là chính sách Markov dừng; giá trị và thưởng được viết thành vector cột theo cùng thứ tự trạng thái.
+
+**Kết luận.** Ma trận $I-\gamma P^\pi$ khả nghịch, và $V^\pi$ là nghiệm duy nhất của phương trình $V=T^\pi V$, tức
+$$
+\begin{aligned}
+&V^\pi(s)\\
+&\quad=r^\pi(s)\\
+&\qquad+\gamma\sum_{s'}P^\pi(s,s')\\
+&\qquad\quad\cdot V^\pi(s'),\\
+&V^\pi=(I-\gamma P^\pi)^{-1}r^\pi.
+\end{aligned}
+\tag{5.12}
+$$
 :::
 
 ::: proof Chứng minh Định lý 13.12
-**Bước 1 (có một chính sách đạt điểm bất động).** Chọn $\pi^*$ theo (13.15). Ta có $T^{\pi^*}\bar V=T\bar V=\bar V$. Theo Định lý 13.8, phương trình đánh giá chính sách $V=T^{\pi^*}V$ có nghiệm duy nhất là $V^{\pi^*}$. Vì thế $V^{\pi^*}=\bar V$.
+**Lộ trình.** Chứng minh $I-\gamma P^\pi$ khả nghịch, lấy nghiệm $W$ của hệ tuyến tính, rồi dùng Bổ đề 13.11 với dấu bằng để có $V^\pi=W$.
 
-**Bước 2 (so sánh tại một lịch sử bất kỳ).** Cho một chính sách tổng quát $\rho$. Với $H_t$ có trạng thái cuối bằng $s$, tính Markov có điều khiển cho
-
+**Bước 1 ($P^\pi$ không làm tăng chuẩn cực đại).** Ma trận $P^\pi$ là ma trận hàng ngẫu nhiên (Mục 5.1). Với mọi $U\in\mathbb R^{\lvert\mathcal S\rvert}$ và mọi $s$,
 $$
 \begin{aligned}
-\mathbb E_\rho[R_{t+1}+\gamma\bar V(S_{t+1})\mid H_t]
-&=\sum_a\rho_t(a\mid H_t)
-\left[r(s,a)+\gamma\sum_{s'}P(s'\mid s,a)\bar V(s')\right]\\
-&\le(T\bar V)(s)=\bar V(s).
+&\lvert(P^\pi U)(s)\rvert\\
+&\quad\le\sum_{s'}P^\pi(s,s')\,\lvert U(s')\rvert\\
+&\quad\le\lVert U\rVert_\infty\sum_{s'}P^\pi(s,s')\\
+&\quad=\lVert U\rVert_\infty.
+\end{aligned}
+$$
+Lấy cực đại theo $s$ được $\lVert P^\pi U\rVert_\infty\le\lVert U\rVert_\infty$.
+
+**Bước 2 (khả nghịch).** Nếu $(I-\gamma P^\pi)U=0$ thì $U=\gamma P^\pi U$, và Bước 1 cho $\lVert U\rVert_\infty\le\gamma\lVert U\rVert_\infty$. Vì $\gamma<1$, $U=0$. Ma trận vuông có hạt nhân chỉ gồm vector $0$ thì khả nghịch. Đặt $W=(I-\gamma P^\pi)^{-1}r^\pi$; khi đó $W=r^\pi+\gamma P^\pi W$, tức $W=T^\pi W$ theo (5.9).
+
+**Bước 3 ($W$ là giá trị của $\pi$).** Với $\rho=\pi$, mọi $t$ và mọi lịch sử $\tau$, $\rho_t(a\mid\tau)=\pi(a\mid s_\tau)$, nên theo (5.8)
+$$
+\begin{aligned}
+&\sum_a\pi(a\mid s_\tau)\,Q_W(s_\tau,a)\\
+&\quad=(T^\pi W)(s_\tau)=W(s_\tau).
+\end{aligned}
+$$
+Đây là (5.11) với dấu bằng và $U=W$. Bổ đề 13.11 cho $V^\pi(s)=W(s)$ với mọi trạng thái đầu $s$.
+
+**Bước 4 (duy nhất).** Nếu $V=r^\pi+\gamma P^\pi V$ thì $(I-\gamma P^\pi)V=r^\pi$, nên $V=W=V^\pi$ theo Bước 2. $\square$
+
+Như vậy, đánh giá một chính sách dừng khi biết mô hình là giải một hệ tuyến tính $\lvert\mathcal S\rvert$ ẩn.
+:::
+
+Trong học máy, Định lý 13.12 là bước *đánh giá chính sách* (policy evaluation): khi biết $P$ và $r$, ta tính $V^\pi$ bằng cách giải $(I-\gamma P^\pi)V=r^\pi$, hoặc lặp $V\leftarrow r^\pi+\gamma P^\pi V$ khi $\lvert\mathcal S\rvert$ lớn. Phương trình (5.12) cũng là điều kiện nhất quán mà các thuật toán học giá trị cố gắng thỏa mãn từ dữ liệu. Tính duy nhất của $V^\pi$ không nói $\pi$ tốt hay xấu.
+
+Ví dụ sau dùng (5.12) để so sánh ba chính sách dừng của robot.
+
+::: example Ví dụ 13.5 (Giá trị của ba chính sách dừng của robot)
+**Dữ kiện.** Robot của Ví dụ 13.1: tại $h$, $A$ thưởng $1$ và giữ robot ở $h$ với xác suất $1/2$, còn lại sang $z$; $B$ thưởng $0{,}6$ và luôn giữ robot ở $h$; $z$ hấp thụ với thưởng $0$; $\gamma=0{,}9$.
+
+**Giá trị tại $z$.** Mọi phần thưởng nhận được từ $z$ bằng $0$, nên $V(z)=0$ với mọi chính sách; với chính sách dừng, (5.12) tại $z$ cũng cho $V(z)=0{,}9\,V(z)$, tức $V(z)=0$.
+
+**Luôn chọn $A$.** Theo (5.12),
+$$
+\begin{aligned}
+&V^A(h)\\
+&\quad=1+0{,}9\bigl(\tfrac12V^A(h)+\tfrac12\cdot0\bigr)\\
+&\quad=1+0{,}45\,V^A(h),\\
+&0{,}55\,V^A(h)=1,\\
+&V^A(h)=\frac{20}{11}\approx1{,}8182.
 \end{aligned}
 $$
 
-Bất đẳng thức đúng vì một trung bình theo hành động không vượt giá trị cực đại.
+**Luôn chọn $B$.** $V^B(h)=0{,}6+0{,}9\,V^B(h)$, nên $0{,}1\,V^B(h)=0{,}6$ và $V^B(h)=6$.
 
-**Bước 3 (cộng các bước và triệt tiêu phần giữa).** Bắt đầu từ $S_0=s$, nhân bất đẳng thức ở bước $t$ với $\gamma^t$, lấy kỳ vọng và cộng từ $t=0$ đến $N-1$. Các kỳ vọng của $\bar V(S_t)$ ở những thời điểm giữa triệt tiêu, cho
-
+**Trộn đều hai hành động.** Với $r^\pi(h)=0{,}8$ và $P^\pi(h,h)=0{,}75$ của Ví dụ 13.4,
 $$
-\mathbb E_\rho\left[\sum_{t=0}^{N-1}\gamma^tR_{t+1}
-+\gamma^N\bar V(S_N)\,\middle|\,S_0=s\right]
-\le\bar V(s).
+\begin{aligned}
+&V^\pi(h)\\
+&\quad=0{,}8+0{,}9\cdot0{,}75\,V^\pi(h)\\
+&\quad=0{,}8+0{,}675\,V^\pi(h),\\
+&0{,}325\,V^\pi(h)=0{,}8,\\
+&V^\pi(h)=\frac{32}{13}\approx2{,}4615.
+\end{aligned}
 $$
 
-**Bước 4 (cho số bước tăng).** Vì $\bar V$ là vector hữu hạn, $|\gamma^N\bar V(S_N)|\le\gamma^N\|\bar V\|_\infty\to0$. Chặn phần đuôi trong Mệnh đề 13.7 cho kỳ vọng tổng thưởng hữu hạn bước tiến tới $V^\rho(s)$. Do đó $V^\rho(s)\le\bar V(s)$ với mọi $\rho$. Kết hợp Bước 1, cận trên này được đạt bởi $\pi^*$, nên $V^*=\bar V$. Thay vào phương trình điểm bất động cho (13.16). $\square$
+**Kiểm tra lại.** $1+0{,}45\cdot\tfrac{20}{11}=1+\tfrac{9}{11}=\tfrac{20}{11}$; $0{,}6+0{,}9\cdot6=6$; $0{,}8+0{,}675\cdot\tfrac{32}{13}=\tfrac{10{,}4+21{,}6}{13}=\tfrac{32}{13}$.
+
+Chính sách luôn chọn phần thưởng tức thời lớn nhất ($A$) có giá trị thấp nhất trong ba chính sách. Ba con số này chỉ so sánh ba chính sách dừng; các chính sách phụ thuộc lịch sử chưa được xét.
 :::
 
-Trong học máy, Định lý 13.12 biến một chứng nhận đại số thành một quy tắc điều khiển có bảo đảm. Chọn hành động cực đại theo $V^*$ không phải chọn thưởng tức thời lớn nhất, vì vế phải còn chứa giá trị ở các trạng thái kế tiếp. Chứng minh cũng cho biết vì sao không cần tìm trong toàn bộ các quy tắc phụ thuộc lịch sử khi đúng giả thiết MDP hữu hạn chiết khấu.
+Như vậy, với một chính sách dừng $\pi$ cố định, giá trị $V^\pi$ là nghiệm duy nhất của hệ tuyến tính $(I-\gamma P^\pi)V=r^\pi$ (Định lý 13.12), và Bổ đề 13.11 cho phép so sánh giá trị của một chính sách bất kỳ với một hàm $U$ chỉ bằng kiểm tra một bước. Tuy nhiên, số chính sách tất định dừng là $\prod_s\lvert\mathcal A(s)\rvert$, tăng theo hàm mũ của số trạng thái, và tập chính sách phụ thuộc lịch sử còn lớn hơn. Trong Mục 6, chúng ta tìm một phương trình chọn hành động trực tiếp và chứng minh nghiệm của nó cho chính sách tối ưu.
 
-::: example Ví dụ 13.5 (Lặp giá trị và đổi hành động; điều chỉnh từ nguồn khởi đầu)
-**Mô hình đầy đủ.** Hai trạng thái là $s$ đang hoạt động và $z$ hấp thụ. Tại $z$, thưởng $0$ và ở lại $z$. Tại $s$, $A$ thưởng $1$ rồi ở lại $s$ với xác suất $0.5$, đến $z$ với xác suất $0.5$; $B$ thưởng $0.6$ rồi chắc chắn ở lại $s$. Đặt $\gamma=0.9$, $V_0(s)=V_0(z)=0$.
+## 6. Phương trình Bellman tối ưu và lặp giá trị
 
-**Rút về một biến.** Mọi vòng lặp giữ $V_k(z)=0$. Đặt $v_k=V_k(s)$; bước Bellman là
+Định lý 13.12 đánh giá một chính sách đã cố định. Chúng ta cần một phương trình chọn hành động theo giá trị tương lai, một cách giải phương trình đó, và một chứng minh rằng lựa chọn thu được là tối ưu trong mọi chính sách.
 
+Một cách trực quan, tại mỗi trạng thái ta cộng phần thưởng một bước với kỳ vọng giá trị ở trạng thái kế tiếp, rồi chọn hành động có tổng lớn nhất. Đây là bước Bellman của Định lý 07.49, với trạng thái kế tiếp tất định được thay bằng tổng có trọng số xác suất; nó chưa phải định nghĩa.
+
+### 6.1. Toán tử Bellman tối ưu và chính sách tham lam
+
+::: definition Định nghĩa 13.13 (Toán tử Bellman tối ưu và chính sách tham lam)
+Cho MDP của Định nghĩa 13.5 và $Q_U$ theo (5.7). *Toán tử Bellman tối ưu* (Bellman optimality operator) $T:\mathbb R^{\lvert\mathcal S\rvert}\to\mathbb R^{\lvert\mathcal S\rvert}$ là
 $$
-v_{k+1}=\max\{1+0.45v_k,\ 0.6+0.9v_k\}.
-\tag{13.17}
+\begin{aligned}
+&(TU)(s)\\
+&\quad=\max_{a\in\mathcal A(s)}Q_U(s,a)\\
+&\quad=\max_{a\in\mathcal A(s)}\Bigl[r(s,a)\\
+&\qquad+\gamma\sum_{s'}P(s'\mid s,a)\\
+&\qquad\quad\cdot U(s')\Bigr].
+\end{aligned}
+\tag{6.1}
 $$
-
-**Tính từng bước.**
-
-| $k$ | $v_k$ | $Q_{V_k}(s,A)$ | $Q_{V_k}(s,B)$ | Hành động đạt cực đại | $v_{k+1}$ |
-|---:|---:|---:|---:|---|---:|
-| 0 | 0 | 1 | 0.6 | $A$ | 1 |
-| 1 | 1 | 1.45 | 1.50 | $B$ | 1.50 |
-| 2 | 1.50 | 1.675 | 1.950 | $B$ | 1.950 |
-| 3 | 1.95 | 1.8775 | 2.355 | $B$ | 2.355 |
-
-**Giải và kiểm tra điểm bất động.** Ứng viên từ hành động $B$ thỏa $v=0.6+0.9v$, cho $v=6$. Tại $v=6$, nhánh $A$ bằng $1+0.45\cdot6=3.7<6$, nên $6$ thỏa đúng phương trình có cực đại. Định lý 13.11 bảo đảm đây là điểm bất động duy nhất; Định lý 13.12 cho $V^*(s)=6$ và chính sách tối ưu chọn $B$ tại $s$.
-
-**Diễn giải.** Nhánh $B$ thắng khi $0.6+0.9v\ge1+0.45v$, tương đương $v\ge8/9$. Vòng đầu chỉ thấy thưởng trước mắt nên chọn $A$; sau khi có giá trị phần đuôi đủ lớn, lựa chọn đổi thành $B$. Chỉ số $k$ là vòng tính toán, không phải thời điểm robot thực hiện hành động; bảng không mô tả một quỹ đạo bắt đầu bằng $A$ rồi chuyển sang $B$. Với bài toán chỉ còn hai bước, lựa chọn tối ưu là $B$ ở bước đầu và $A$ ở bước cuối nếu robot còn hoạt động. Quy tắc luôn chọn thưởng tức thời lớn nhất là $A$, có giá trị $20/11$ theo Ví dụ 13.4, thấp hơn giá trị tối ưu $6$.
+Một *chính sách tham lam* (greedy policy) theo $U$ là chính sách tất định dừng $\pi_U$ thỏa
+$$
+\begin{gathered}
+\pi_U(s)\in\underset{a\in\mathcal A(s)}{\operatorname{argmax}}\;Q_U(s,a)\\
+\text{với mọi }s\in\mathcal S,
+\end{gathered}
+\tag{6.2}
+$$
+trong đó khi có nhiều hành động đạt cực đại, ta chọn một hành động theo một quy tắc cố định.
 :::
 
-![Hai nhánh Bellman 1 cộng 0.45v và 0.6 cộng 0.9v tạo ánh xạ cực đại có điểm bất động 6; dãy lặp từ 0 tăng qua 1, 1.5, 1.95 và tiến tới 6.](img/lec-13/value-iteration.svg)
+Cực đại trong (6.1) được đạt vì $\mathcal A(s)$ hữu hạn (giả thiết O1), nên chính sách tham lam luôn tồn tại. Theo (5.8) và (6.2), $T^{\pi_U}U=TU$. Với một chính sách dừng $\pi$ bất kỳ, $(T^\pi U)(s)$ là một trung bình có trọng số không âm, tổng trọng số bằng $1$, của các số $Q_U(s,a)$, nên $T^\pi U\le TU$ theo từng tọa độ. Toán tử $T^\pi$ lấy trung bình theo hành động, còn $T$ lấy cực đại.
 
-*Hình 13.2. Nhánh có độ dốc lớn hơn giữ giá trị tương lai tốt hơn. Hai nhánh đổi thứ tự tại $v=8/9$; giao của ánh xạ cực đại với đường $v_{k+1}=v_k$ là giá trị tối ưu $6$. Đồ thị dãy lặp minh họa hội tụ của Ví dụ 13.5.*
+Với robot, $(TU)(h)=\max\{1+0{,}45\,U(h)+0{,}45\,U(z);\ 0{,}6+0{,}9\,U(h)\}$ và $(TU)(z)=0{,}9\,U(z)$. Với $U=0$, hai giá trị nhìn trước tại $h$ là $1$ và $0{,}6$, nên chính sách tham lam theo $U=0$ chọn $A$: nó chỉ nhìn phần thưởng một bước. Chính sách tham lam theo một $U$ khác có thể chọn khác.
 
-### Mở rộng: sai số tính toán và điều kiện dừng
+### 6.2. Ánh xạ co và điểm bất động
 
-Chặn (13.14) chứa $\bar V=V^*$ chưa biết, nên chưa luôn dùng trực tiếp để dừng thuật toán. Tuy nhiên, chênh lệch giữa $TV$ và $V$ tính được khi mô hình đã biết. Nó đo mức vi phạm phương trình Bellman của vector đang xét.
+Ta muốn tìm $U$ thỏa $U=TU$. Cách tự nhiên là lặp $U\leftarrow TU$ từ một vector ban đầu. Phép lặp này hội tụ nếu mỗi lần áp dụng $T$ làm khoảng cách giữa hai vector giảm đi một tỉ lệ cố định nhỏ hơn $1$. Khái niệm sau gọi tên tính chất đó.
 
-Hệ quả sau được suy trực tiếp từ tính co của Định lý 13.11; nguồn nền là Murphy (2023), tập II, §34.6.1. Đây là một chứng minh bổ sung để xác định rõ chỉ số của vector được chứng nhận.
+::: definition Định nghĩa 13.14 (Ánh xạ co và điểm bất động)
+Cho ánh xạ $F:\mathbb R^d\to\mathbb R^d$ và chuẩn cực đại $\lVert\cdot\rVert_\infty$. Ánh xạ $F$ là *ánh xạ co* (contraction mapping) với hệ số $\kappa\in[0,1)$ nếu
+$$
+\begin{gathered}
+\lVert F(x)-F(y)\rVert_\infty\le\kappa\,\lVert x-y\rVert_\infty\\
+\text{với mọi }x,y\in\mathbb R^d.
+\end{gathered}
+$$
+Một điểm $\bar x\in\mathbb R^d$ thỏa $F(\bar x)=\bar x$ được gọi là *điểm bất động* (fixed point) của $F$.
+:::
 
-::: corollary Hệ quả 13.13 (Chặn bằng phần dư Bellman)
-**Giả thiết.** MDP thỏa Định lý 13.11. Với một vector $V$, đặt $\beta(V)=\|TV-V\|_\infty$.
+Ví dụ: với $d=1$, ánh xạ $F(x)=x/2+1$ thỏa $\lvert F(x)-F(y)\rvert=\tfrac12\lvert x-y\rvert$, nên là ánh xạ co với $\kappa=1/2$; điểm bất động duy nhất là $2$. Phản ví dụ: $F(x)=x+1$ thỏa $\lvert F(x)-F(y)\rvert=\lvert x-y\rvert$ với mọi $x,y$, nên không có $\kappa<1$ nào dùng được, và $F$ không có điểm bất động vì $x=x+1$ vô nghiệm. Hệ số $\kappa$ phụ thuộc chuẩn được chọn; ở đây ta chỉ dùng chuẩn cực đại.
+
+Để chứng minh $T$ là ánh xạ co, ta cần biết phép lấy cực đại có thể khuếch đại sai số bao nhiêu. Bổ đề sau cho thấy phép lấy cực đại không khuếch đại sai số.
+
+::: lemma Bổ đề 13.15 (Sai khác của hai cực đại) — chứng minh đầy đủ
+**Giả thiết.** $f,g$ là hai hàm số thực trên cùng một tập hữu hạn khác rỗng $\mathcal A$.
 
 **Kết luận.**
-
 $$
-\|V-V^*\|_\infty\le\frac{\beta(V)}{1-\gamma},
-\qquad
-\|TV-V^*\|_\infty\le\frac{\gamma\beta(V)}{1-\gamma}.
-\tag{13.18}
+\begin{aligned}
+&\Bigl\lvert\max_{a\in\mathcal A}f(a)-\max_{a\in\mathcal A}g(a)\Bigr\rvert\\
+&\quad\le\max_{a\in\mathcal A}\lvert f(a)-g(a)\rvert.
+\end{aligned}
+\tag{6.3}
 $$
-
-**Điều kiện áp dụng.** Phần dư được tính bằng toán tử chính xác của cùng mô hình. Điều kiện $\beta(V)\le(1-\gamma)\varepsilon$ đủ để chứng nhận $V$ có sai số không quá $\varepsilon$.
-
-**Phạm vi.** Đây là chặn sai số giá trị, chưa phải chặn riêng cho mất mát giá trị của một chính sách lấy cực đại từ một vector gần đúng.
 :::
 
-::: proof Chứng minh Hệ quả 13.13
-Bất đẳng thức tam giác và tính co cho
+::: proof Chứng minh Bổ đề 13.15
+**Lộ trình.** Chặn từng chiều của hiệu, rồi ghép.
 
+**Bước 1 (một chiều).** Đặt $\delta=\max_a\lvert f(a)-g(a)\rvert$, có vì $\mathcal A$ hữu hạn. Với mọi $a$,
 $$
-\|V-V^*\|_\infty
-\le\|V-TV\|_\infty+\|TV-TV^*\|_\infty
-\le\beta(V)+\gamma\|V-V^*\|_\infty.
+\begin{aligned}
+f(a)&=g(a)+\bigl(f(a)-g(a)\bigr)\\
+&\le g(a)+\delta\\
+&\le\max_bg(b)+\delta.
+\end{aligned}
 $$
+Vế phải không phụ thuộc $a$, nên lấy cực đại theo $a$ ở vế trái được $\max_af(a)-\max_bg(b)\le\delta$.
 
-Chuyển vế và chia cho $1-\gamma>0$ cho chặn thứ nhất. Áp dụng tính co thêm một lần cho $TV$ cho chặn thứ hai. $\square$
+**Bước 2 (chiều ngược).** Đổi vai $f$ và $g$ trong Bước 1, với cùng $\delta$, được $\max_bg(b)-\max_af(a)\le\delta$.
+
+**Bước 3 (ghép).** Một số thực mà cả nó và số đối của nó đều không vượt $\delta$ thì có trị tuyệt đối không vượt $\delta$; đó là (6.3). $\square$
+
+Hai cực đại có thể đạt tại hai hành động khác nhau, nhưng chênh lệch giữa chúng không vượt chênh lệch lớn nhất giữa hai bảng giá trị.
 :::
 
-::: algorithm Thuật toán 13.1 (Lặp giá trị với chứng nhận sai số)
-**Đầu vào.** Một MDP hữu hạn đã biết $P,r$, $0\le\gamma<1$, vector $V_0$ và sai số mong muốn $\varepsilon>0$.
+Bổ đề 13.15 và tính chuẩn hóa của các hàng xác suất đủ để chặn sai khác của các toán tử Bellman.
 
-**Đầu ra.** Một vector $V_k$ có $\|V_k-V^*\|_\infty\le\varepsilon$ theo mô hình đang xét.
+::: proposition Mệnh đề 13.16 (Tính co của các toán tử Bellman) — chứng minh đầy đủ
+**Giả thiết.** MDP của Định nghĩa 13.5; $T$ theo (6.1); $\pi$ là chính sách Markov dừng và $T^\pi$ theo (5.8).
 
-1. Tính đồng thời $W=TV_k$ từ toàn bộ vector cũ $V_k$.
-2. Tính $\beta_k=\|W-V_k\|_\infty$.
-3. Nếu $\beta_k\le(1-\gamma)\varepsilon$, trả về $V_k$; nếu chưa đạt, đặt $V_{k+1}=W$ và lặp.
-
-**Điều kiện dừng.** Với tính toán chính xác, Định lý 13.11 cho $\beta_k\to0$, nên tiêu chuẩn đạt sau hữu hạn vòng. Khi $\gamma=0$, nhiều nhất một lần thay vector đưa đến nghiệm chính xác.
-
-**Chi phí mỗi vòng.** Với bảng chuyển dày, phép tính trực tiếp cần bậc $|\mathcal S|^2\max_s|\mathcal A(s)|$ phép toán; với bảng thưa có thể cộng chỉ trên các trạng thái kế tiếp có xác suất khác $0$.
-:::
-
-Trong học máy, Hệ quả 13.13 tách mức chính xác của phép quy hoạch khỏi mức đúng của mô hình. Một phần dư nhỏ chứng nhận việc gần giải đúng phương trình của $P,r$ đang dùng. Nó không chứng nhận rằng những bảng này mô tả chính xác robot ngoài thực tế.
-
-::: example Ví dụ 13.6 (Kiểm tra chỉ số trong chặn sai số)
-**Mô hình và vector đang xét.** Hai trạng thái là $s,z$; $z$ hấp thụ với thưởng $0$. Tại $s$, $A$ thưởng $1$ và ở lại $s$ với xác suất $0.5$, $B$ thưởng $0.6$ và luôn ở lại $s$; đặt $\gamma=0.9$. Xét $V(s)=1.95$, $V(z)=0$, giá trị từ ba bước lặp của Ví dụ 13.5.
-
-**Tính phần dư.** $TV(s)=\max(1.8775,2.355)=2.355$, $TV(z)=0$, nên $\beta(V)=0.405$.
-
-**Chứng nhận và kiểm tra.** Hệ quả 13.13 cho $\|V-V^*\|_\infty\le0.405/0.1=4.05$. Giá trị thật bằng $6$, nên sai số đúng bằng $6-1.95=4.05$. Với vector sau cập nhật, chặn là $0.9\cdot0.405/0.1=3.645$, cũng đúng bằng $6-2.355$.
-
-**Diễn giải.** Cùng một chênh lệch hai vòng cho hai chặn khác nhau tùy chứng nhận vector trước hay vector sau cập nhật. Không được đổi chỉ số mà giữ nguyên hệ số $\gamma$ một cách tùy ý.
-:::
-
-### Khi bỏ giả thiết chiết khấu
-
-::: remark Nhận xét 13.14 (Điểm bất động, chiết khấu và chân trời)
-1. Nếu $\gamma=1$, lập luận chuẩn chỉ cho hệ số không vượt $1$, không cho ánh xạ co. Giá trị có thể vô hạn hoặc phương trình Bellman có nhiều nghiệm.
-2. Một bài toán hữu hạn bước có thể không cần chiết khấu và vẫn giải bằng truy hồi theo thời gian như Bài 07. Đây là một thiết lập khác với bài toán vô hạn bước ở Định lý 13.11.
-3. Trạng thái hấp thụ với thưởng $0$ không tự bảo đảm mọi chính sách đều kết thúc. Trong ví dụ robot, hành động $B$ giữ robot ở $s$ mãi; vì thế không thể thay $\gamma<1$ bằng lập luận “mô hình có trạng thái kết thúc”.
-:::
-
-::: example Ví dụ 13.7 (Hai phản ví dụ khi hệ số bằng một)
-**Mô hình thứ nhất.** Một trạng thái $s$, một hành động, luôn quay lại $s$, nhận thưởng $1$ mỗi bước và đặt $\gamma=1$. Tổng thưởng bằng $+\infty$; phương trình Bellman $V(s)=1+V(s)$ không có nghiệm thực. Lặp từ $V_0(s)=0$ cho $V_k(s)=k$, không hội tụ tới giá trị hữu hạn.
-
-**Mô hình thứ hai.** Giữ một trạng thái tự lặp và $\gamma=1$ nhưng thưởng luôn bằng $0$. Tổng thưởng đúng bằng $0$, trong khi toán tử là $TV=V$. Mọi số thực đều là điểm bất động; phương trình không còn xác định duy nhất giá trị từ tiêu chuẩn tổng thưởng.
-
-**Kiểm tra.** Cả hai mô hình đều hữu hạn và có phần thưởng bị chặn. Giả thiết bị bỏ là chiết khấu nhỏ hơn $1$, nên chúng không mâu thuẫn Định lý 13.11–13.12.
-:::
-
-::: exercise Bài tập 13.3 (Củng cố: Bellman tối ưu)
-Một MDP có hai trạng thái $s,z$, $z$ hấp thụ với thưởng $0$, hệ số $\gamma=1/2$. Tại $s$, $A$ thưởng $2$ rồi đến $z$ chắc chắn, $B$ thưởng $1$ rồi trở lại $s$ chắc chắn. Viết toán tử Bellman theo $v=V(s)$ khi $V(z)=0$, tìm điểm bất động và tất cả các hành động đạt cực đại ở đó. Nêu kết quả nào cho phép nhận điểm bất động là giá trị tối ưu đối với cả chính sách phụ thuộc lịch sử.
-:::
-
-::: hint Gợi ý Bài tập 13.3
-Giải $v=\max(2,1+v/2)$ và kiểm tra cả hai nhánh tại ứng viên. Tách tính duy nhất của điểm bất động khỏi tính tối ưu.
-:::
-
-::: solution Lời giải Bài tập 13.3
-Ta có $Tv=\max(2,1+v/2)$. Điểm $v=2$ thỏa cả hai nhánh đều bằng $2$, nên là điểm bất động. Toán tử co với hệ số $1/2$ theo Định lý 13.11, do đó không có điểm bất động khác. Định lý 13.12 cho $V^*(s)=2$ và cho phép chọn một trong hai hành động; chứng minh so sánh mọi chính sách phụ thuộc lịch sử bảo đảm không chính sách nào vượt giá trị này.
-:::
-
-::: exercise Bài tập 13.4 (Củng cố: chứng minh co và đọc phần dư)
-Với một MDP hữu hạn có $\gamma=0.8$, phần thưởng bị chặn và ma trận chuyển chuẩn hóa, chứng minh $\|TV-TW\|_\infty\le0.8\|V-W\|_\infty$. Nếu một vector $V$ có phần dư Bellman chính xác $\|TV-V\|_\infty=0.02$, cho chặn sai số của $V$ và của $TV$ so với $V^*$.
-:::
-
-::: hint Gợi ý Bài tập 13.4
-Chặn riêng từng hành động, rồi dùng Bổ đề 13.10. Chứng nhận hai vector bằng hai bất đẳng thức của Hệ quả 13.13.
-:::
-
-::: solution Lời giải Bài tập 13.4
-Với mọi $s,a$, hiệu các giá trị một bước có trị tuyệt đối không quá $0.8\sum_{s'}P(s'\mid s,a)\|V-W\|_\infty=0.8\|V-W\|_\infty$. Bổ đề 13.10 giữ nguyên chặn khi lấy cực đại theo hành động; lấy cực đại theo trạng thái cho kết luận.
-
-Sai số của $V$ không quá $0.02/(1-0.8)=0.1$. Sai số của $TV$ không quá $0.8\cdot0.02/(1-0.8)=0.08$. Đây là chặn theo mô hình, không phải một xác suất đúng của mô hình.
-:::
-
-Định nghĩa 13.9 xây toán tử từ thưởng và phân phối bước sau; Bổ đề 13.10 cùng chuẩn hóa xác suất cho tính co trong Định lý 13.11. Định lý 13.12 bổ sung ý nghĩa tối ưu bằng một chính sách đạt điểm bất động và phép so sánh với mọi chính sách tổng quát. Hệ quả 13.13 chuyển hội tụ thành chứng nhận tính được, còn Nhận xét 13.14 xác định vì sao các kết luận có thể hỏng khi bỏ chiết khấu. Tất cả các bước đó vẫn giả sử mô hình được biết; dữ liệu tương tác tạo thêm bài toán ước lượng và thu thập thông tin.
-
-## 13.4. Biết mô hình và học từ trải nghiệm
-
-Trong ví dụ robot, bảng xác suất của mỗi hành động đã được cho trước. Một hệ thống mới thường chỉ ghi được những lần thử: trạng thái hiện tại, hành động đã chọn, phần thưởng và trạng thái kế tiếp. Chúng ta cần phân biệt việc giải một mô hình đã xác định với việc học mô hình hoặc giá trị khi các đại lượng ấy chưa biết.
-
-Một cách trực quan, quy hoạch tính kỳ vọng bằng một bảng xác suất, còn dữ liệu tương tác chỉ cung cấp những kết quả ngẫu nhiên của bảng chưa biết đó. Nhiều lần thử có thể giúp ước lượng, nhưng chính sách quyết định những cặp trạng thái–hành động nào được thử. Đây là trực giác về việc học từ trải nghiệm; nó chưa phải một bảo đảm rằng mọi hàng chuyển tiếp đều được học chính xác.
-
-### Ước lượng một hàng chuyển tiếp từ số đếm
-
-Giả sử có thể khởi tạo lại hệ thống tại cùng trạng thái $s$, thực hiện hành động $a$ và ghi trạng thái kế tiếp. Nếu những lần thử độc lập và môi trường không đổi, các trạng thái kế tiếp là một mẫu phân loại với cùng vector xác suất $P(\cdot\mid s,a)$. Định lý 11.7 vì vậy áp dụng trực tiếp, không cần xây dựng lại phép tối ưu Lagrange.
-
-::: definition Định nghĩa 13.15 (Số đếm và mô hình chuyển tiếp ước lượng)
-Với dữ liệu gồm các chuyển tiếp $(s_i,a_i,r_i,s'_i)$, đặt
-
+**Kết luận.** Với mọi $U,W\in\mathbb R^{\lvert\mathcal S\rvert}$,
 $$
-N(s,a,s')=\sum_i\mathbf1_{\{s_i=s,\ a_i=a,\ s'_i=s'\}},
-\qquad
-N(s,a)=\sum_{s'}N(s,a,s').
-\tag{13.19}
+\begin{aligned}
+&\lVert TU-TW\rVert_\infty\\
+&\quad\le\gamma\,\lVert U-W\rVert_\infty,\\
+&\lVert T^\pi U-T^\pi W\rVert_\infty\\
+&\quad\le\gamma\,\lVert U-W\rVert_\infty.
+\end{aligned}
+\tag{6.4}
 $$
-
-Một mô hình ước lượng gồm các hàng xác suất $\hat P(\cdot\mid s,a)$ và các phần thưởng kỳ vọng ước lượng $\hat r(s,a)$. Khi $N(s,a)>0$, trung bình phần thưởng quan sát tại cặp đó là
-
-$$
-\hat r(s,a)=\frac{1}{N(s,a)}\sum_{i:s_i=s,\ a_i=a}r_i.
-\tag{13.20}
-$$
-
-Nếu $N(s,a)=0$, các công thức chia theo số lần quan sát chưa được xác định. Việc đặt một giá trị mặc định hoặc thêm tiên nghiệm phải được ghi thành một giả thiết bổ sung.
-:::
-
-Định nghĩa 13.15 biến dữ liệu thành các đại lượng của một MDP đã khớp. Khác với ma trận được cho chính xác trong Định nghĩa 13.4, các hàng này còn có sai số lấy mẫu. Một hàng chuẩn hóa hợp lệ chưa chứng minh nó gần hàng của môi trường thật.
-
-Mệnh đề sau chuyên biệt hóa Định lý 11.7 cho một cặp cố định và một quy trình lấy mẫu được nêu rõ. Nguồn chính là Murphy (2023), tập II, §2.6.3 về ước lượng chuyển trạng thái và §35.1.4 về học tăng cường dựa trên mô hình.
-
-::: proposition Mệnh đề 13.16 (MLE chuyển tiếp tại một cặp được thử độc lập)
-**Giả thiết.** Một cặp $(s,a)$ được thử độc lập $n\ge1$ lần trong một môi trường không đổi. Các trạng thái kế tiếp có phân phối phân loại $P(\cdot\mid s,a)$ trên tập hữu hạn $\mathcal S$; không gian tham số là đơn hình đóng.
-
-**Kết luận.** Hàng chuyển tiếp MLE duy nhất là
-
-$$
-\hat P(s'\mid s,a)=\frac{N(s,a,s')}{N(s,a)},
-\qquad N(s,a)=n.
-\tag{13.21}
-$$
-
-**Điều kiện áp dụng.** Những lần thử dùng cùng cặp trạng thái–hành động và được lấy độc lập theo mô hình đang xét. Trạng thái kế tiếp chưa xuất hiện nhận xác suất MLE bằng $0$.
-
-**Phạm vi.** Với $n=0$, hợp lý không chứa thông tin về hàng đó: mọi hàng xác suất khả thi đều là MLE. Nếu $|\mathcal S|\ge2$, nghiệm không duy nhất; nếu chỉ có một trạng thái, chuẩn hóa đã xác định hàng duy nhất $(1)$. Trong cả hai trường hợp không dùng thương $0/0$.
+Nghĩa là $T$ và $T^\pi$ là ánh xạ co với hệ số $\gamma$.
 :::
 
 ::: proof Chứng minh Mệnh đề 13.16
-Với số đếm $n_{s'}=N(s,a,s')$, hợp lý của các lần thử độc lập là $\prod_{s'}P(s'\mid s,a)^{n_{s'}}$. Đây đúng là bài toán phân loại của Định lý 11.7 trên đơn hình đóng, nên nghiệm duy nhất bằng $n_{s'}/n$, kể cả khi một số số đếm bằng $0$. Nếu không có lần thử nào, tích rỗng bằng $1$ với mọi hàng xác suất; không thể phân biệt các hàng bằng dữ liệu đó. $\square$
-:::
+**Lộ trình.** Chặn sai khác của giá trị nhìn trước cho từng hành động, rồi giữ chặn đó qua phép lấy cực đại (Bổ đề 13.15) hoặc phép lấy trung bình.
 
-Trong học máy, (13.21) là một bước học mô hình môi trường. Sau bước này, lặp giá trị có thể chạy với $\hat P,\hat r$, nhưng kết luận của Định lý 13.11 lúc đó thuộc về MDP ước lượng. Muốn đánh giá chính sách trong môi trường thật, còn cần phân tích sai số mô hình và cách dữ liệu đã được thu thập.
-
-::: example Ví dụ 13.8 (Từ số đếm đến mục tiêu Bellman)
-**Dữ liệu và giả thiết.** Tại một cặp $(s,a)$, có $12$ lần thử độc lập: $9$ lần đến $s_1$ và $3$ lần đến $s_2$. Cho phần thưởng kỳ vọng đã biết $r(s,a)=2$, hệ số $\gamma=0.8$, và một vector tiếp diễn cố định với $V(s_1)=5$, $V(s_2)=1$.
-
-**Ước lượng.** Mệnh đề 13.16 cho $\hat P(s_1\mid s,a)=3/4$, $\hat P(s_2\mid s,a)=1/4$.
-
-**Tính mục tiêu.** Giá trị nhìn trước theo mô hình ước lượng là
-
+**Bước 1 (một hành động).** Với mỗi $s$ và $a$, phần thưởng $r(s,a)$ triệt tiêu khi lấy hiệu, nên
 $$
-\hat Q_V(s,a)
-=2+0.8\left(\frac34\cdot5+\frac14\cdot1\right)
-=2+0.8\cdot4=5.2.
-\tag{13.22}
+\begin{aligned}
+&\lvert Q_U(s,a)-Q_W(s,a)\rvert\\
+&\quad=\gamma\Bigl\lvert\sum_{s'}P(s'\mid s,a)\\
+&\qquad\quad\cdot\bigl(U(s')-W(s')\bigr)\Bigr\rvert\\
+&\quad\le\gamma\sum_{s'}P(s'\mid s,a)\\
+&\qquad\quad\cdot\lvert U(s')-W(s')\rvert\\
+&\quad\le\gamma\,\lVert U-W\rVert_\infty\sum_{s'}P(s'\mid s,a)\\
+&\quad=\gamma\,\lVert U-W\rVert_\infty.
+\end{aligned}
 $$
+Dòng thứ hai dùng bất đẳng thức tam giác và $P(s'\mid s,a)\ge0$; dòng thứ ba dùng tổng các xác suất chuyển bằng $1$.
 
-**Kiểm tra và giới hạn.** Hai xác suất không âm, tổng bằng $1$. Giá trị tiếp diễn trung bình là $4$, nằm giữa $1$ và $5$. Số $5.2$ là mục tiêu theo mô hình đã khớp; nó chưa phải giá trị tối ưu và chưa chứng minh xác suất thật đúng bằng $3/4,1/4$.
-:::
-
-### Dữ liệu quỹ đạo và vai trò của thăm dò
-
-Các trạng thái trên một quỹ đạo nói chung không độc lập cùng phân phối; không thể mặc nhiên áp dụng giả thiết i.i.d. Mệnh đề 13.16 đã chọn các lần thử độc lập tại một cặp để giữ giả thiết ước lượng minh bạch. Với dữ liệu từ tương tác liên tục, phải dùng quy luật có điều kiện của quỹ đạo thay vì coi toàn bộ các bộ chuyển tiếp là một mẫu i.i.d.
-
-Chẳng hạn, nếu chính sách thu thập dữ liệu chỉ dùng lịch sử trạng thái–hành động, với xác suất $\rho_t(a_t\mid h_t)$ đã xác định, và không xét phần thưởng trong phép lập hợp lý này, xác suất của một quỹ đạo trạng thái–hành động có dạng
-
+**Bước 2 (toán tử tối ưu).** Áp dụng Bổ đề 13.15 với $f(a)=Q_U(s,a)$, $g(a)=Q_W(s,a)$ trên $\mathcal A(s)$, rồi dùng Bước 1:
 $$
-\mathbb P_\theta(s_0,a_0,\ldots,a_{T-1},s_T)
-=\mu_0(s_0)\prod_{t=0}^{T-1}
-\rho_t(a_t\mid h_t)P_\theta(s_{t+1}\mid s_t,a_t).
-\tag{13.23}
+\begin{aligned}
+&\lvert(TU)(s)-(TW)(s)\rvert\\
+&\quad\le\max_a\lvert Q_U(s,a)-Q_W(s,a)\rvert\\
+&\quad\le\gamma\,\lVert U-W\rVert_\infty.
+\end{aligned}
 $$
+Lấy cực đại theo $s$ được bất đẳng thức thứ nhất của (6.4).
 
-Ở đây $h_t=(s_0,a_0,\ldots,a_{t-1},s_t)$. Nếu $\mu_0$ và quy tắc thu thập không phụ thuộc tham số tự do $\theta$, các nhân tử chính sách không ảnh hưởng nghiệm cực đại theo $\theta$ khi giữ dữ liệu đã thấy cố định. Các nhân tử chuyển tiếp còn lại có thể được nhóm theo số đếm. Điều này giải thích sự xuất hiện của cùng công thức tần suất trong nhiều bài toán học mô hình từ quỹ đạo, nhưng không biến các trạng thái thành độc lập.
-
-Công thức (13.23) là xác suất **chung** của trạng thái và hành động. Không được thay nó bằng một đẳng thức có điều kiện theo toàn bộ chuỗi hành động mà bỏ mẫu số: các hành động tương lai có thể tiết lộ thông tin về các trạng thái trước đó khi chính sách dùng dữ liệu để lựa chọn.
-
-Một chính sách luôn chọn cùng một hành động có thể không cung cấp dữ liệu về những hành động khác. Vì vậy cần **thăm dò** (exploration): lựa chọn hành động để thu thập thông tin, cùng với **khai thác** (exploitation): dùng thông tin hiện có để nhận phần thưởng. Sự đánh đổi này thuộc Murphy (2023), §35.1.5. Không thể kết luận một hàng chưa được thăm là xấu chỉ vì nó chưa có phần thưởng quan sát được.
-
-### Học dựa trên mô hình và học trực tiếp giá trị
-
-::: definition Định nghĩa 13.17 (Hai cách sử dụng trải nghiệm)
-Trong **học tăng cường dựa trên mô hình** (model-based reinforcement learning), hệ thống học hoặc duy trì $\hat P,\hat r$, rồi dùng một phép quy hoạch để lựa chọn hành động theo mô hình đó.
-
-Trong **học tăng cường không xây dựng mô hình chuyển tiếp tường minh** (model-free reinforcement learning), hệ thống có thể học trực tiếp giá trị hoặc chính sách từ các chuyển tiếp quan sát, thay vì ước lượng toàn bộ bảng $P$ trước khi quy hoạch. “Không xây dựng mô hình tường minh” không có nghĩa thuật toán không có giả thiết về môi trường hoặc dữ liệu.
-
-Một **mục tiêu Bellman từ mẫu** là một giá trị tính từ phần thưởng và trạng thái kế tiếp thực sự quan sát. Với một bảng $Q_t$ cho cặp trạng thái–hành động, mục tiêu dùng trong Q-learning là
-
+**Bước 3 (toán tử theo chính sách).** Vì các trọng số $\pi(a\mid s)$ không âm, có tổng bằng $1$,
 $$
-Y_t=R_{t+1}+\gamma\max_{a'\in\mathcal A(S_{t+1})}Q_t(S_{t+1},a').
-\tag{13.24}
+\begin{aligned}
+&\lvert(T^\pi U)(s)-(T^\pi W)(s)\rvert\\
+&\quad\le\sum_a\pi(a\mid s)\\
+&\qquad\quad\times\lvert Q_U(s,a)-Q_W(s,a)\rvert\\
+&\quad\le\gamma\,\lVert U-W\rVert_\infty.
+\end{aligned}
 $$
+Lấy cực đại theo $s$ được bất đẳng thức thứ hai. $\square$
+
+Phép lấy kỳ vọng theo trạng thái kế tiếp và phép chọn hành động đều không làm tăng sai số; chỉ có hệ số chiết khấu làm sai số co lại.
 :::
 
-Định nghĩa 13.17 tách đối tượng được học khỏi đối tượng cần tối ưu. Một phương pháp dựa trên mô hình vẫn phải học từ dữ liệu; một phương pháp học trực tiếp giá trị vẫn phải đối mặt với sai số lấy mẫu, thăm dò và lựa chọn cách biểu diễn trạng thái. Nguồn chính là Murphy (2023), §35.1.1, §35.1.4 và §35.2.2–35.2.5.
+Từ tính co, định lý sau cho sự tồn tại, tính duy nhất của điểm bất động và sự hội tụ của phép lặp. Đây là trường hợp hữu hạn chiều của định lý điểm bất động Banach. Chứng minh chỉ thừa nhận một kết quả của giải tích: mọi dãy Cauchy số thực đều hội tụ.
 
-Với bước học $0<\alpha_t\le1$, phép cập nhật minh họa Q-learning là
+::: theorem Định lý 13.17 (Điểm bất động của ánh xạ co trên $\mathbb R^d$) — chứng minh đầy đủ
+**Giả thiết.** $F:\mathbb R^d\to\mathbb R^d$ là ánh xạ co với hệ số $\kappa\in[0,1)$ trong chuẩn cực đại (Định nghĩa 13.14).
 
+**Bảo đảm.** $F$ có đúng một điểm bất động $\bar x$. Với mọi $x_0\in\mathbb R^d$, dãy $x_{k+1}=F(x_k)$ hội tụ tới $\bar x$, và với mọi $k\ge0$,
 $$
-Q_{t+1}(S_t,A_t)
-=Q_t(S_t,A_t)+\alpha_t\bigl[Y_t-Q_t(S_t,A_t)\bigr],
-\tag{13.25}
+\begin{aligned}
+&\lVert x_k-\bar x\rVert_\infty\\
+&\quad\le\kappa^k\,\lVert x_0-\bar x\rVert_\infty,\\
+&\lVert x_k-\bar x\rVert_\infty\\
+&\quad\le\frac{\kappa^k}{1-\kappa}\,\lVert x_1-x_0\rVert_\infty.
+\end{aligned}
+\tag{6.5}
 $$
-
-các phần tử khác giữ nguyên. Nếu $Q_t$ đã được xác định bởi lịch sử trước lần chuyển tiếp và môi trường thỏa giả thiết Markov, kỳ vọng của mục tiêu khi biết lịch sử và hành động dùng đúng mô hình chuyển tại cặp hiện tại. Tuy vậy một lần cập nhật chỉ dùng một kết quả ngẫu nhiên và thường chỉ đổi một phần tử, khác với phép tính đồng thời mọi kỳ vọng của lặp giá trị chính xác.
-
-::: example Ví dụ 13.9 (Một mục tiêu từ mẫu khác kỳ vọng)
-**Dữ kiện.** Tại cặp $(s,a)$, thưởng quan sát luôn bằng $2$, xác suất thật đi tới $s_1,s_2$ lần lượt $3/4,1/4$, và $\gamma=0.8$. Bảng hiện tại có $\max_{a'}Q_t(s_1,a')=5$, $\max_{a'}Q_t(s_2,a')=1$, $Q_t(s,a)=2$. Dùng $\alpha_t=1/4$.
-
-**Hai kết quả có thể xảy ra.** Nếu quan sát $s_1$, mục tiêu bằng $2+0.8\cdot5=6$, nên phần tử được cập nhật thành $2+\frac14(6-2)=3$. Nếu quan sát $s_2$, mục tiêu bằng $2+0.8\cdot1=2.8$, nên phần tử mới bằng $2+\frac14(2.8-2)=2.2$.
-
-**Kiểm tra bằng kỳ vọng.** Kỳ vọng mục tiêu là $\frac34\cdot6+\frac14\cdot2.8=5.2$. Kỳ vọng phần tử mới là $\frac34\cdot3+\frac14\cdot2.2=2.8$, cũng bằng $2+\frac14(5.2-2)$.
-
-**Diễn giải.** Kỳ vọng liên hệ với một phép Bellman theo bảng hiện tại, nhưng kết quả một lần cập nhật vẫn ngẫu nhiên. Phép tính này không chứng minh chuỗi các bảng Q hội tụ.
+Đây là bảo đảm tất định: hội tụ với tốc độ cấp số nhân hệ số $\kappa$ trong chuẩn cực đại, từ mọi điểm đầu.
 :::
 
-::: remark Nhận xét 13.18 (Phạm vi bảo đảm của quy hoạch và của học)
-1. Định lý 13.11–13.12 chứng minh hội tụ và tối ưu cho phép lặp chính xác trên một MDP hữu hạn, cố định. Khi dùng $\hat P,\hat r$, chúng chứng minh kết quả cho MDP ước lượng.
-2. Một hàng không có dữ liệu không được số đếm phân biệt với các hàng khả thi khác; chỉ những ràng buộc mô hình đã biết có thể xác định nó mà không cần quan sát. Chính sách thu thập dữ liệu cần bao phủ các cặp quan trọng cho quyết định, chứ không chỉ tối ưu trên những cặp đã thấy.
-3. Phân tích hội tụ của Q-learning cần các giả thiết riêng về bước học, việc thăm các cặp và nhiễu cập nhật. Xấp xỉ hàm hoặc mạng sâu tạo thêm các vấn đề ổn định; tính co của phép Bellman chính xác không tự giải quyết chúng.
-4. Trạng thái sai hoặc môi trường thay đổi làm vi phạm mô hình đang dùng. Giảm phần dư số học không sửa được những sai lệch mô hình ấy.
-:::
+::: proof Chứng minh Định lý 13.17
+**Lộ trình.** Tính co cho hiệu hai phần tử liên tiếp giảm theo cấp số nhân; từ đó dãy là Cauchy, từng tọa độ hội tụ, và giới hạn là điểm bất động. Tính duy nhất và tốc độ suy trực tiếp từ tính co.
 
-::: exercise Bài tập 13.5 (Củng cố: số đếm và mục tiêu từ mẫu)
-Một cặp $(s,a)$ được thử độc lập $8$ lần, tới $u$ trong $6$ lần và tới $v$ trong $2$ lần. Cho $r(s,a)=1$, $\gamma=1/2$, $V(u)=4$, $V(v)=0$. Tính hàng chuyển MLE và mục tiêu theo mô hình ước lượng. Nếu một lần thử mới cho thưởng đúng bằng $1$ và trạng thái kế tiếp là $v$, tính mục tiêu từ lần thử đó. Nêu sự khác nhau giữa hai đại lượng.
-:::
-
-::: hint Gợi ý Bài tập 13.5
-Chuẩn hóa số đếm theo $8$. Kỳ vọng theo mô hình dùng cả hai trạng thái; mục tiêu từ một mẫu chỉ dùng trạng thái vừa được quan sát.
-:::
-
-::: solution Lời giải Bài tập 13.5
-Hàng MLE là $(3/4,1/4)$. Mục tiêu theo mô hình bằng $1+\frac12(\frac34\cdot4+\frac14\cdot0)=2.5$. Nếu quan sát thưởng $1$ và trạng thái $v$, mục tiêu từ mẫu là $1+\frac12\cdot0=1$. Hai số khác nhau vì một số là kỳ vọng theo hàng đã khớp, còn một số dùng một kết quả chuyển tiếp cụ thể.
-:::
-
-::: exercise Bài tập 13.6 (Củng cố: kiểm tra một lời khẳng định hội tụ)
-Một hệ thống có hai trạng thái $s,z$, $z$ hấp thụ với thưởng $0$, và hai hành động tại $s$. Môi trường có hệ số $\gamma=0.9$. Nhật ký chỉ chứa các lần dùng hành động $A$; hành động $B$ chưa được thử. Nhóm xây dựng hệ thống tự đặt hàng chuyển của $B$, chạy lặp giá trị đến phần dư bằng $10^{-6}$, rồi kết luận chính sách là tối ưu trong môi trường thật. Xác định điều được chứng nhận bởi phần dư và ít nhất hai điều chưa được chứng nhận.
-:::
-
-::: hint Gợi ý Bài tập 13.6
-Áp dụng Hệ quả 13.13 cho đúng toán tử được tính. Kiểm tra nguồn gốc của hàng chuyển chưa được quan sát và giả thiết trạng thái đủ thông tin.
-:::
-
-::: solution Lời giải Bài tập 13.6
-Với toán tử của mô hình đã đặt, chặn sai số giá trị so với điểm bất động của chính mô hình đó là $10^{-6}/(1-0.9)=10^{-5}$. Phần dư không chứng nhận hàng chuyển của $B$ đúng với môi trường thật vì không có dữ liệu cho hàng đó. Nó cũng không chứng nhận các hàng khác được ước lượng đủ chính xác, trạng thái đang dùng thỏa Markov hoặc chính sách tốt trong môi trường thật. Chứng minh co vẫn có thể đúng cho bảng giả định trong khi quyết định dựa trên bảng đó sai.
-:::
-
-Định nghĩa 13.15 và Mệnh đề 13.16 nối ước lượng phân loại với từng hàng chuyển tiếp khi quy trình lấy mẫu phù hợp. Định nghĩa 13.17 phân biệt việc học mô hình với học trực tiếp giá trị; Ví dụ 13.9 tách một mục tiêu ngẫu nhiên khỏi kỳ vọng của nó. Nhận xét 13.18 giữ phạm vi của các bảo đảm: giải một phương trình chính xác theo mô hình đang có và học được một mô hình hoặc chính sách tốt từ tương tác là hai yêu cầu cần được kiểm tra riêng.
-
-## 13.5. Tình huống áp dụng và giới hạn của mô hình
-
-### Quy hoạch chính xác trên một mô hình ước lượng sai
-
-::: application Tình huống 13.1 (Robot và mười lần thử thuận lợi)
-**Môi trường thật.** Có hai trạng thái $s,z$, với $z$ hấp thụ và luôn thưởng $0$. Tại $s$, $A$ thưởng $1$ rồi ở lại $s$ với xác suất $1/2$, còn $B$ thưởng $0.6$ và chắc chắn ở lại $s$; đặt $\gamma=0.9$. Mô hình của $B$ được biết từ thiết kế, còn xác suất của $A$ cần được ước lượng.
-
-**Dữ liệu.** Một bộ mô phỏng cho phép khởi tạo lại tại $s$. Thực hiện $A$ trong $10$ lần thử độc lập và tình cờ cả $10$ lần đều trở lại $s$. Mệnh đề 13.16 cho $\hat P(s\mid s,A)=1$, $\hat P(z\mid s,A)=0$. Dưới môi trường thật, biến cố dữ liệu này có xác suất $(1/2)^{10}=1/1024>0$.
-
-**Quy hoạch trên mô hình đã khớp.** Toán tử rút gọn là $\hat Tv=\max(1+0.9v,0.6+0.9v)$. Nhánh $A$ luôn lớn hơn, nên điểm bất động bằng $10$ và chính sách tối ưu của mô hình ước lượng chọn $A$. Tại $v=10$, hai nhánh lần lượt bằng $10$ và $9.6$, xác nhận lựa chọn này.
-
-**Triển khai và đối chiếu.** Trong môi trường thật, chính sách luôn chọn $A$ có giá trị $1/(1-0.45)=20/11$, còn luôn chọn $B$ có giá trị $0.6/(1-0.9)=6$. Định lý 13.12 cho $B$ tối ưu thật, như có thể kiểm bằng $\max(1+0.45\cdot6,0.6+0.9\cdot6)=6$. Chính sách được quy hoạch từ mẫu thuận lợi có giá trị thấp hơn tối ưu thật một lượng $6-20/11=46/11$.
-
-**Giới hạn của chứng nhận.** Lặp giá trị hội tụ đúng trên mô hình ước lượng theo Định lý 13.11. Sai lệch nằm ở hàng chuyển tiếp chứ không ở phép giải phương trình. Một xác suất MLE bằng $0$ cho sự kiện chưa thấy không chứng minh sự kiện đó bất khả; đây là cùng giới hạn đã xuất hiện trong ước lượng phân loại của Bài 11.
-:::
-
-### Một quan sát chưa đủ làm trạng thái
-
-::: application Tình huống 13.2 (Cảm biến nhị phân bỏ mất thông tin quá khứ)
-**Cơ chế đầy đủ.** Một thiết bị có hai bit khởi đầu $Z_0,Z_1$ độc lập, mỗi bit có phân phối Bernoulli$(1/2)$. Sau đó thiết bị lặp lại theo quy luật $Z_{t+1}=Z_{t-1}$ với $t\ge1$. Chỉ có một hành động khả thi. Cảm biến tại thời điểm $t$ chỉ ghi $Z_t$; thưởng ở bước kế tiếp là $R_{t+1}=Z_{t+1}$, với $\gamma=1/2$.
-
-**Kiểm tra tính Markov của quan sát.** Hai lịch sử $(Z_0,Z_1)=(0,0)$ và $(1,0)$ đều có xác suất $1/4$ và cùng quan sát hiện tại $Z_1=0$. Tuy nhiên,
-
+**Bước 1 (duy nhất).** Nếu $\bar x$ và $\bar y$ đều là điểm bất động thì
 $$
-\mathbb P(Z_2=1\mid Z_0=0,Z_1=0)=0,
-\qquad
-\mathbb P(Z_2=1\mid Z_0=1,Z_1=0)=1.
-\tag{13.26}
+\begin{aligned}
+\lVert\bar x-\bar y\rVert_\infty&=\lVert F(\bar x)-F(\bar y)\rVert_\infty\\
+&\le\kappa\,\lVert\bar x-\bar y\rVert_\infty,
+\end{aligned}
+$$
+nên $(1-\kappa)\lVert\bar x-\bar y\rVert_\infty\le0$. Vì $\kappa<1$, $\bar x=\bar y$.
+
+**Bước 2 (hiệu liên tiếp).** Đặt $\delta_0=\lVert x_1-x_0\rVert_\infty$. Với $j\ge1$, tính co cho $\lVert x_{j+1}-x_j\rVert_\infty=\lVert F(x_j)-F(x_{j-1})\rVert_\infty\le\kappa\,\lVert x_j-x_{j-1}\rVert_\infty$. Quy nạp theo $j$ được $\lVert x_{j+1}-x_j\rVert_\infty\le\kappa^j\delta_0$ với mọi $j\ge0$.
+
+**Bước 3 (dãy Cauchy).** Với $\ell>k$, bất đẳng thức tam giác và Bước 2 cho
+$$
+\begin{aligned}
+&\lVert x_\ell-x_k\rVert_\infty\\
+&\quad\le\sum_{j=k}^{\ell-1}\lVert x_{j+1}-x_j\rVert_\infty\\
+&\quad\le\sum_{j=k}^{\ell-1}\kappa^j\delta_0\le\frac{\kappa^k}{1-\kappa}\,\delta_0.
+\end{aligned}
+\tag{6.6}
 $$
 
-Phân phối bước sau còn phụ thuộc bit cũ; riêng $Z_t$ không thỏa Định nghĩa 13.1.
+**Bước 4 (giới hạn).** Với mỗi tọa độ $i$, $\lvert x_\ell(i)-x_k(i)\rvert\le\lVert x_\ell-x_k\rVert_\infty\le\kappa^k\delta_0/(1-\kappa)$, và vế phải tiến về $0$ khi $k\to\infty$. Vậy dãy số thực $(x_k(i))_{k\ge0}$ là dãy Cauchy, nên hội tụ tới một số $\bar x(i)$ theo tính đầy đủ của $\mathbb R$. Cho $\ell\to\infty$ trong bất đẳng thức tọa độ được $\lvert\bar x(i)-x_k(i)\rvert\le\kappa^k\delta_0/(1-\kappa)$. Vì chỉ có $d$ tọa độ, lấy cực đại theo $i$ cho
+$$
+\begin{aligned}
+\lVert x_k-\bar x\rVert_\infty&\le\frac{\kappa^k}{1-\kappa}\,\delta_0\\
+&\xrightarrow[k\to\infty]{}0.
+\end{aligned}
+$$
+Đây là bất đẳng thức thứ hai của (6.5).
 
-**Hậu quả với giá trị.** Sau lịch sử $(0,0)$, mọi thưởng tương lai bằng $0$, nên tổng thưởng từ thời điểm $1$ bằng $0$. Sau lịch sử $(1,0)$, các thưởng từ bước kế tiếp là $1,0,1,0,\ldots$, nên tổng thưởng là $1+(1/2)^2+(1/2)^4+\cdots=4/3$. Một giá trị chỉ theo quan sát hiện tại $0$ không thể biểu diễn đồng thời hai giá trị có điều kiện theo lịch sử đó.
+**Bước 5 (giới hạn là điểm bất động).** Với mọi $k$, bất đẳng thức tam giác và tính co cho
+$$
+\begin{aligned}
+&\lVert F(\bar x)-\bar x\rVert_\infty\\
+&\quad\le\lVert F(\bar x)-F(x_k)\rVert_\infty\\
+&\qquad+\lVert x_{k+1}-\bar x\rVert_\infty\\
+&\quad\le\kappa\,\lVert\bar x-x_k\rVert_\infty\\
+&\qquad+\lVert x_{k+1}-\bar x\rVert_\infty.
+\end{aligned}
+$$
+Theo Bước 4, vế phải tiến về $0$ khi $k\to\infty$, còn vế trái không phụ thuộc $k$. Vậy $F(\bar x)=\bar x$.
 
-**Sửa trạng thái.** Với $t\ge1$, đặt trạng thái mở rộng $S_t=(Z_{t-1},Z_t)\in\{0,1\}^2$. Khi đó $S_{t+1}=(Z_t,Z_{t-1})$ xác định từ $S_t$, và thưởng kế tiếp là tọa độ thứ nhất của $S_t$. Mô hình mở rộng có bốn trạng thái, thưởng bị chặn và chiết khấu nhỏ hơn $1$, nên các định lý Bellman áp dụng được. Nếu hai bit không quan sát được, vấn đề còn cần một mô hình quan sát và suy luận về trạng thái ẩn; xem Murphy (2023), §34.5.2.
+**Bước 6 (tốc độ).** Vì $\bar x=F(\bar x)$, với $k\ge1$ ta có $\lVert x_k-\bar x\rVert_\infty=\lVert F(x_{k-1})-F(\bar x)\rVert_\infty\le\kappa\,\lVert x_{k-1}-\bar x\rVert_\infty$. Quy nạp được bất đẳng thức thứ nhất của (6.5); với $k=0$ nó là đẳng thức. $\square$
 
-**Diễn giải AI.** Tính co có thể đúng cho một bảng chuyển tiếp tùy ý trên các quan sát $0,1$, nhưng bảng ấy chưa mô tả đúng cơ chế dự đoán theo lịch sử. Lựa chọn biểu diễn trạng thái là một phần của việc xây dựng mô hình, cần kiểm tra trước khi diễn giải giá trị hoặc chính sách từ bảng.
+Khi $\kappa=0$, $F$ là hằng và dãy đạt điểm bất động sau một bước; khi $\kappa$ gần $1$, số vòng cần để đạt một độ chính xác cho trước tăng lên.
 :::
 
-Các công cụ của bài phục vụ những phần việc khác nhau: Mệnh đề 13.2 truyền bất định theo một mô hình; Định lý 13.8 đánh giá một chính sách; Định lý 13.12 lựa chọn tối ưu trong MDP đã xác định; Mệnh đề 13.16 học một phần của mô hình từ dữ liệu. Trong điều khiển robot và phân bổ tài nguyên tuần tự, phải xác định bước nào đang được thực hiện và giả thiết nào được bảo đảm. Khi quan sát không bộc lộ trạng thái đầy đủ, suy luận về biến ẩn trở thành một nhu cầu bổ sung, nối với góc nhìn biểu diễn xác suất của Bài 14 trong kế hoạch.
+Áp dụng Định lý 13.17 cho hai toán tử Bellman, với hệ số co $\gamma$ của Mệnh đề 13.16, được hệ quả sau.
 
-## 13.6. Tóm tắt chương
+::: corollary Hệ quả 13.18 (Hội tụ của lặp giá trị) — chứng minh đầy đủ
+**Giả thiết.** MDP của Định nghĩa 13.5; các toán tử $T$, $T^\pi$ được tính chính xác (giả thiết O3).
 
-Chúng ta bắt đầu từ việc truyền một phân phối qua xích Markov, rồi thêm hành động để mô hình hóa lựa chọn có hậu quả dài hạn. Chính sách Markov dừng tạo một xích và một phương trình Bellman riêng cho giá trị của nó. Chiết khấu cùng chặn phần thưởng làm tổng vô hạn và các kỳ vọng được xác định. Toán tử tối ưu là ánh xạ co, nên có một điểm bất động duy nhất và lặp giá trị hội tụ từ mọi vector ban đầu. Chính sách tham lam đạt điểm đó, còn mọi chính sách phụ thuộc lịch sử đều không vượt nó; vì vậy điểm bất động có ý nghĩa tối ưu chứ không chỉ là một nghiệm đại số. Ví dụ robot cho thấy thưởng tức thời lớn hơn có thể dẫn đến giá trị dài hạn thấp hơn. Khi mô hình chưa biết, số đếm, dữ liệu tương tác và thăm dò tạo thêm một bài toán thống kê mà chứng minh hội tụ của quy hoạch chính xác chưa giải quyết.
-
-| Mạch nội dung | Kết quả cần tra lại |
-|---|---|
-| Xích và phân phối trạng thái | Định nghĩa 13.1; Mệnh đề 13.2; Nhận xét 13.3 |
-| Mô hình và chính sách | Định nghĩa 13.4–13.6; Mệnh đề 13.7; Định lý 13.8 |
-| Bellman tối ưu | Định nghĩa 13.9; Bổ đề 13.10; Định lý 13.11–13.12 |
-| Sai số quy hoạch và giới hạn | Hệ quả 13.13; Thuật toán 13.1; Nhận xét 13.14 |
-| Học từ trải nghiệm | Định nghĩa 13.15; Mệnh đề 13.16; Định nghĩa 13.17; Nhận xét 13.18 |
-
-Các công thức cần nhớ là phép truyền (13.3), Bellman theo chính sách (13.9), Bellman tối ưu (13.16), chặn phần dư (13.18) và ước lượng từ số đếm (13.21). Các giả thiết dễ bị bỏ quên là trạng thái đủ thông tin, chuẩn hóa từng hàng xác suất, thưởng bị chặn, $\gamma<1$ và phân biệt mô hình thật với mô hình ước lượng. Biết có một trạng thái hấp thụ chưa đủ để bỏ chiết khấu; một chính sách vẫn có thể không bao giờ tới trạng thái ấy.
-
-## 13.7. Bài tập trên lớp: 30 phút
-
-Ba bài dưới đây dành cho 30 phút riêng; các lời giải được dùng để đối chiếu sau khi hoàn thành. Chúng tách khỏi bốn bài tự học ở Mục 13.8.
-
-::: exercise Bài tập 13.7 (Trên lớp, 10 phút: truyền phân phối)
-Một xích có hai trạng thái $A,B$, ma trận chuyển hàng $P=\begin{pmatrix}0.7&0.3\\0.2&0.8\end{pmatrix}$ và phân phối đầu $\mu_0=(1,0)$. Tính $\mu_1,\mu_2$. Giải thích vì sao xác suất ở $A$ sau hai bước không chỉ bằng $0.7^2$.
+**Bảo đảm.** Toán tử $T$ có đúng một điểm bất động $\bar V$. Với mọi $V_0\in\mathbb R^{\lvert\mathcal S\rvert}$, dãy *lặp giá trị* (value iteration) $V_{k+1}=TV_k$ thỏa
+$$
+\begin{aligned}
+&\lVert V_k-\bar V\rVert_\infty\\
+&\quad\le\gamma^k\,\lVert V_0-\bar V\rVert_\infty,\\
+&k\ge0.
+\end{aligned}
+\tag{6.7}
+$$
+Với mỗi chính sách Markov dừng $\pi$, điểm bất động duy nhất của $T^\pi$ là $V^\pi$.
 :::
 
-::: hint Gợi ý Bài tập 13.7
-Liệt kê hai đường đi từ $A$ tới $A$ sau hai bước và kiểm tra tổng của vector phân phối.
+::: proof Chứng minh Hệ quả 13.18
+Theo Mệnh đề 13.16, $T$ và $T^\pi$ là ánh xạ co hệ số $\gamma\in[0,1)$ trên $\mathbb R^{\lvert\mathcal S\rvert}$. Định lý 13.17 với $F=T$, $\kappa=\gamma$ cho điểm bất động duy nhất $\bar V$ và (6.7). Định lý 13.17 với $F=T^\pi$ cho điểm bất động duy nhất; theo Định lý 13.12, $V^\pi=T^\pi V^\pi$, nên điểm đó là $V^\pi$. $\square$
+
+Với mô hình đã biết, lặp giá trị hội tụ từ mọi vector ban đầu, và sai số giảm ít nhất theo hệ số $\gamma$ mỗi vòng.
 :::
 
-::: solution Lời giải Bài tập 13.7
-Ta có $\mu_1=(0.7,0.3)$ và $\mu_2=(0.7\cdot0.7+0.3\cdot0.2,\ 0.7\cdot0.3+0.3\cdot0.8)=(0.55,0.45)$. Tổng các tọa độ bằng $1$. Đường $A\to A\to A$ đóng góp $0.49$, còn đường $A\to B\to A$ đóng góp $0.06$; cả hai tạo xác suất $0.55$.
+Hệ quả 13.18 cho một vector $\bar V$ duy nhất thỏa $\bar V=T\bar V$ và một thuật toán tìm nó. Nó chưa cho biết $\bar V$ có bằng giá trị tối ưu $V^*$ của (5.5) hay không: $V^*$ được định nghĩa bằng cận trên theo mọi chính sách, còn $\bar V$ là nghiệm của một phương trình.
+
+Trong học máy, Hệ quả 13.18 giải thích sự hội tụ của một phép quy hoạch khi bảng mô hình $P,r$ được biết và các bước Bellman được tính chính xác. Sai số ban đầu giảm theo $\gamma^k$; với $\gamma=0{,}99$, cần khoảng $230$ vòng để giảm sai số đi $10$ lần ($0{,}99^{230}\approx0{,}099$). Hệ quả không nói gì về sai số do lấy mẫu hay do xấp xỉ hàm, vì toán tử đang xét không chứa các bước đó.
+
+### 6.3. Điểm bất động và giá trị tối ưu
+
+Để nối nghiệm $\bar V$ với bài toán quyết định, chúng ta chứng minh hai chiều: chính sách tham lam theo $\bar V$ đạt $\bar V$, và không chính sách nào, kể cả chính sách phụ thuộc toàn bộ lịch sử, có giá trị lớn hơn $\bar V$. Cả hai chiều là Bổ đề 13.11 áp dụng với $U=\bar V$.
+
+::: theorem Định lý 13.19 (Bellman tối ưu và chính sách tham lam tối ưu) — chứng minh đầy đủ
+**Giả thiết.**
+
+- **Mô hình:** MDP của Định nghĩa 13.5.
+- **Điểm bất động:** $\bar V=T\bar V$ (Hệ quả 13.18).
+- **Chính sách:** $\pi^*=\pi_{\bar V}$ là một chính sách tham lam theo $\bar V$, tức $\pi^*(s)\in\operatorname{argmax}_aQ_{\bar V}(s,a)$.
+
+**Kết luận.**
+
+- $V^{\pi^*}=\bar V=V^*$; do đó $\pi^*$ là chính sách tối ưu, và luôn tồn tại một chính sách tối ưu tất định dừng.
+- $V^*$ là nghiệm duy nhất của *phương trình Bellman tối ưu* (Bellman optimality equation)
+$$
+\begin{aligned}
+&V^*(s)\\
+&\quad=\max_{a\in\mathcal A(s)}\Bigl[r(s,a)\\
+&\qquad+\gamma\sum_{s'}P(s'\mid s,a)\\
+&\qquad\quad\cdot V^*(s')\Bigr],\\
+&s\in\mathcal S.
+\end{aligned}
+\tag{6.8}
+$$
 :::
 
-::: exercise Bài tập 13.8 (Trên lớp, 10 phút: lặp và điểm bất động)
-Một MDP có hai trạng thái $s,z$, $z$ hấp thụ và thưởng $0$, với $\gamma=1/2$. Tại $s$, hành động $A$ thưởng $1$ rồi chắc chắn tới $z$; $B$ thưởng $0.6$ rồi chắc chắn trở lại $s$. Bắt đầu bằng $V_0(s)=V_0(z)=0$. Tính ba giá trị lặp đầu tại $s$, ghi hành động dùng để tạo từng giá trị, rồi tìm giá trị tối ưu.
+::: proof Chứng minh Định lý 13.19
+**Lộ trình.** Bổ đề 13.11 với dấu bằng cho $V^{\pi^*}=\bar V$; Bổ đề 13.11 với dấu "$\le$" cho $V^\rho\le\bar V$ với mọi $\rho$; ghép hai chiều.
+
+**Bước 1 ($\pi^*$ đạt $\bar V$).** Với $\rho=\pi^*$, mọi $t$ và mọi lịch sử $\tau$, chính sách chọn $\pi^*(s_\tau)$ với xác suất $1$, nên
+$$
+\begin{aligned}
+&\sum_a\rho_t(a\mid\tau)\,Q_{\bar V}(s_\tau,a)\\
+&\quad=Q_{\bar V}\bigl(s_\tau,\pi^*(s_\tau)\bigr)\\
+&\quad=\max_aQ_{\bar V}(s_\tau,a)\\
+&\quad=(T\bar V)(s_\tau)=\bar V(s_\tau).
+\end{aligned}
+$$
+Đẳng thức thứ hai dùng (6.2), đẳng thức cuối dùng $\bar V=T\bar V$. Bổ đề 13.11 với dấu bằng cho $V^{\pi^*}(s)=\bar V(s)$ với mọi $s$.
+
+**Bước 2 (không chính sách nào vượt $\bar V$).** Cho $\rho$ là một chính sách tổng quát. Với mọi $t$ và mọi lịch sử $\tau$, các trọng số $\rho_t(a\mid\tau)$ không âm và có tổng bằng $1$, nên
+$$
+\begin{aligned}
+&\sum_a\rho_t(a\mid\tau)\,Q_{\bar V}(s_\tau,a)\\
+&\quad\le\sum_a\rho_t(a\mid\tau)\max_bQ_{\bar V}(s_\tau,b)\\
+&\quad=(T\bar V)(s_\tau)=\bar V(s_\tau).
+\end{aligned}
+$$
+Đây là (5.11) với $U=\bar V$. Bổ đề 13.11 cho $V^\rho(s)\le\bar V(s)$ với mọi $s$.
+
+**Bước 3 (giá trị tối ưu).** Theo Bước 1, định nghĩa (5.5) và Bước 2, với mọi $s$,
+$$
+\begin{aligned}
+\bar V(s)&=V^{\pi^*}(s)\le\sup_\rho V^\rho(s)\\
+&=V^*(s)\le\bar V(s).
+\end{aligned}
+$$
+Do đó $V^*=\bar V=V^{\pi^*}$, và $\pi^*$ là chính sách tối ưu.
+
+**Bước 4 (phương trình Bellman tối ưu).** Vì $V^*=\bar V=T\bar V=TV^*$, giá trị tối ưu thỏa (6.8). Nếu $U$ cũng thỏa (6.8) thì $U=TU$, và Hệ quả 13.18 cho $U=\bar V=V^*$. $\square$
+
+Lặp giá trị tìm $\bar V$; định lý này cho biết $\bar V$ chính là giá trị tối ưu và chính sách tham lam theo nó là tối ưu, nên chỉ cần tìm trong các chính sách tất định dừng.
 :::
 
-::: hint Gợi ý Bài tập 13.8
-Viết $v_{k+1}=\max(1,0.6+v_k/2)$ và kiểm tra nhánh cực đại tại điểm bất động.
+Định lý 13.19 trả lời câu hỏi trung tâm cho một MDP hữu hạn có chiết khấu và mô hình đã biết: giải $V^*=TV^*$, rồi tại mỗi trạng thái chọn hành động cực đại hóa $r(s,a)+\gamma\sum_{s'}P(s'\mid s,a)V^*(s')$. Hành động này không nhất thiết có phần thưởng tức thời lớn nhất, vì vế phải còn chứa giá trị ở các trạng thái kế tiếp. Giá trị tối ưu là duy nhất, nhưng chính sách tối ưu có thể không duy nhất khi nhiều hành động cùng đạt cực đại.
+
+::: remark Nhận xét 13.20 (Trường hợp tất định và quy hoạch động của Bài 07)
+1. Nếu mỗi hàng $P(\cdot\mid s,a)$ dồn toàn bộ xác suất vào một trạng thái $f(s,a)$, tổng theo $s'$ trong (6.8) chỉ còn một số hạng và phương trình thành $V^*(s)=\max_a\{r(s,a)+\gamma V^*(f(s,a))\}$.
+2. Đọc thêm: với $M$ giai đoạn, không chiết khấu, mô hình $P_k$ và phần thưởng $r_k$ đổi theo giai đoạn, lập luận một bước của Bổ đề 13.10 dẫn tới truy hồi ngược $W_k(s)=\max_a\bigl[r_k(s,a)+\sum_{s'}P_k(s'\mid s,a)W_{k+1}(s')\bigr]$ với giá trị cuối $W_M$ cho trước; truy hồi đó không được chứng minh lại ở đây. Khi chuyển tiếp tất định, $P_k(\cdot\mid s,a)$ dồn vào $f_k(s,a)$. Chọn $r_k=-g_k$ và $W_M=-g_M$; vì $\max_a(-d_a)=-\min_ad_a$, quy nạp ngược cho $W_k=-J_k$, với $J_k$ là chi phí tối ưu còn lại của Định nghĩa 07.48, và truy hồi trở thành phương trình của Định lý 07.49 (với $N=M$). Như vậy, Định lý 07.49 là trường hợp riêng tất định, hữu hạn bước của quy hoạch động.
+3. Với vô hạn bước và $\gamma<1$, không có điều kiện cuối để truy hồi ngược. Phương trình (6.8) không phụ thuộc thời gian, và nghiệm của nó được tìm như điểm bất động của $T$.
 :::
 
-::: solution Lời giải Bài tập 13.8
-Ta có $v_1=1$ từ $A$, $v_2=1.1$ từ $B$ và $v_3=1.15$ từ $B$. Ứng viên nhánh $B$ thỏa $v=0.6+v/2$, cho $v=1.2$; nhánh $A$ tại đó bằng $1<1.2$. Theo Định lý 13.11–13.12, đây là điểm bất động duy nhất và là giá trị tối ưu. Các hành động vừa ghi thuộc các vòng tính toán; chúng không yêu cầu robot thực hiện $A$ rồi $B$ trên một quỹ đạo.
+Ví dụ sau thực hiện lặp giá trị cho robot và trả lời câu hỏi mở đầu.
+
+::: example Ví dụ 13.6 (Lặp giá trị cho robot)
+**Dữ kiện.** Robot của Ví dụ 13.1: tại $h$, $A$ thưởng $1$ rồi ở lại $h$ với xác suất $0{,}5$ và sang $z$ với xác suất $0{,}5$; $B$ thưởng $0{,}6$ rồi chắc chắn ở lại $h$; $z$ hấp thụ với thưởng $0$; $\gamma=0{,}9$; $V_0(h)=V_0(z)=0$.
+
+**Rút về một biến.** Vì $(TV)(z)=0{,}9\,V(z)$ và $V_0(z)=0$, quy nạp cho $V_k(z)=0$ với mọi $k$. Đặt $v_k=V_k(h)$; theo (6.1), bước Bellman là
+$$
+\begin{aligned}
+v_{k+1}&=\max\{Q_{V_k}(h,A);\\
+&\qquad Q_{V_k}(h,B)\}\\
+&=\max\{1+0{,}45\,v_k;\\
+&\qquad0{,}6+0{,}9\,v_k\}.
+\end{aligned}
+\tag{6.9}
+$$
+
+**Bốn vòng đầu.** Cột "Hành động đạt cực đại" ghi hành động cho giá trị lớn hơn khi tính $v_{k+1}$ từ $v_k$.
+
+| $k$ | $v_k$ | $Q_{V_k}(h,A)=1+0{,}45\,v_k$ | $Q_{V_k}(h,B)=0{,}6+0{,}9\,v_k$ | Hành động đạt cực đại | $v_{k+1}$ |
+|---:|---:|---:|---:|---|---:|
+| 0 | 0 | 1 | 0,6 | $A$ | 1 |
+| 1 | 1 | 1,45 | 1,5 | $B$ | 1,5 |
+| 2 | 1,5 | 1,675 | 1,95 | $B$ | 1,95 |
+| 3 | 1,95 | 1,8775 | 2,355 | $B$ | 2,355 |
+
+**Điểm bất động.** Ứng viên từ nhánh $B$ thỏa $v=0{,}6+0{,}9v$, tức $0{,}1v=0{,}6$ và $v=6$. Tại $v=6$, nhánh $A$ bằng $1+0{,}45\cdot6=3{,}7<6$, nên $\max\{3{,}7;\,6\}=6$ và vector $(6;\,0)$ thỏa $V=TV$. Theo Hệ quả 13.18, đây là điểm bất động duy nhất; theo Định lý 13.19, $V^*(h)=6$ và chính sách tham lam theo $V^*$ chọn $B$ tại $h$.
+
+**Kiểm tra lại.** Giá trị của chính sách luôn chọn $B$ tính bằng (5.12) ở Ví dụ 13.5 cũng bằng $6$. Chặn (6.7) tại $k=3$: $\lvert v_3-6\rvert=4{,}05\le0{,}9^3\cdot6=4{,}374$.
+
+**Khi nào nhánh $B$ thắng.** $0{,}6+0{,}9v\ge1+0{,}45v$ tương đương $0{,}45v\ge0{,}4$, tức $v\ge8/9$. Vòng đầu có $v_0=0<8/9$ nên chọn $A$: khi chưa có giá trị cho phần đuôi, phép lặp chỉ thấy phần thưởng trước mắt. Với mọi $k\ge1$ ta có $v_k\ge1$: điều này đúng với $k=1$, và nếu $v_k\ge1$ thì $v_{k+1}\ge0{,}6+0{,}9\cdot1=1{,}5\ge1$. Do đó $v_k\ge1>8/9$, và nhánh $B$ thắng ở mọi vòng từ $k=1$.
+
+**Chỉ số vòng không phải thời gian.** Chỉ số $k$ đếm vòng tính toán, không phải thời điểm robot hành động; bảng không mô tả một quỹ đạo chọn $A$ rồi chuyển sang $B$. Chính sách tối ưu chọn $B$ tại $h$ ở mọi thời điểm và đạt $6$, còn chính sách luôn chọn phần thưởng tức thời lớn nhất ($A$) chỉ đạt $20/11\approx1{,}82$.
 :::
 
-::: exercise Bài tập 13.9 (Trên lớp, 10 phút: mục tiêu kỳ vọng và mục tiêu mẫu)
-Tại một cặp $(s,a)$, năm lần thử độc lập tới $u$ trong bốn lần và tới $v$ trong một lần. Cho thưởng luôn bằng $1$, $\gamma=1/2$, $V(u)=3$, $V(v)=-1$. Tính hàng MLE và mục tiêu Bellman theo mô hình. Nếu lần thử kế tiếp tới $u$, bảng giá trị hành động hiện tại có $Q(s,a)=1$ và các giá trị cực đại ở trạng thái kế tiếp bằng các giá trị $V$ vừa cho, tính một cập nhật Q-learning với $\alpha=0.2$.
+![Hai đồ thị. Bên trái: trục hoành là giá trị tiếp diễn v từ 0 đến 7, trục tung là giá trị sau một phép cập nhật. Đường Q_A(v) = 1 + 0,45v có độ dốc nhỏ, đường Q_B(v) = 0,6 + 0,9v có độ dốc lớn; hai đường cắt nhau tại v = 8/9; đường Q_B cắt đường chéo v_{k+1} = v_k tại v* = 6. Bên phải: giá trị tại trạng thái hoạt động theo số vòng lặp k từ 0 đến 30; dãy v_k tăng qua 1; 1,5; 1,95; 2,355 và tiến tới đường ngang v* = 6. Điểm đầu tiên được tạo bởi A, các điểm sau bởi B.](img/lec-13/value-iteration.svg)
+
+*Hình 13.2. Bên trái, hai nhánh Bellman của (6.9) đổi thứ tự tại $v=8/9$, và giao của nhánh trên với đường chéo là $V^*(h)=6$. Bên phải, dãy $v_k$ của Ví dụ 13.6 tăng dần và tiến tới $6$; nhánh $A$ chỉ tạo $v_1$.*
+
+### 6.4. Mở rộng: sai số tính toán và điều kiện dừng
+
+Chặn (6.7) chứa $\bar V=V^*$ chưa biết, nên không dùng trực tiếp được để dừng thuật toán. Tuy nhiên, chênh lệch giữa $TV$ và $V$ tính được khi mô hình đã biết; nó đo mức một vector vi phạm phương trình Bellman. Hệ quả sau suy từ tính co của $T$ (Mệnh đề 13.16) và Định lý 13.19.
+
+::: corollary Hệ quả 13.21 (Chặn bằng phần dư Bellman) — chứng minh đầy đủ
+**Giả thiết.** MDP của Định nghĩa 13.5; $V\in\mathbb R^{\lvert\mathcal S\rvert}$ bất kỳ; *phần dư Bellman* (Bellman residual, còn gọi là Bellman error) của $V$ là $\beta(V)=\lVert TV-V\rVert_\infty$.
+
+**Bảo đảm.** Với $V^*=TV^*$ theo Định lý 13.19,
+$$
+\begin{aligned}
+\lVert V-V^*\rVert_\infty&\le\frac{\beta(V)}{1-\gamma},\\
+\lVert TV-V^*\rVert_\infty&\le\frac{\gamma\,\beta(V)}{1-\gamma}.
+\end{aligned}
+\tag{6.10}
+$$
+Đây là chặn tất định, tính được từ $V$ và $TV$, theo mô hình $P,r$ đang dùng.
 :::
 
-::: hint Gợi ý Bài tập 13.9
-Tính kỳ vọng trước, rồi tính mục tiêu của riêng kết quả $u$; chỉ mục tiêu sau được dùng cho lần cập nhật từ mẫu.
+::: proof Chứng minh Hệ quả 13.21
+**Lộ trình.** Chèn $TV$ giữa $V$ và $V^*$, rồi dùng tính co.
+
+**Bước 1 (chặn thứ nhất).** Vì $V^*=TV^*$, bất đẳng thức tam giác và (6.4) cho
+$$
+\begin{aligned}
+&\lVert V-V^*\rVert_\infty\\
+&\quad\le\lVert V-TV\rVert_\infty\\
+&\qquad+\lVert TV-TV^*\rVert_\infty\\
+&\quad\le\beta(V)+\gamma\,\lVert V-V^*\rVert_\infty.
+\end{aligned}
+$$
+Chuyển vế và chia cho $1-\gamma>0$ được chặn thứ nhất.
+
+**Bước 2 (chặn thứ hai).** Lại dùng $V^*=TV^*$, (6.4) và Bước 1:
+$$
+\begin{aligned}
+\lVert TV-V^*\rVert_\infty&=\lVert TV-TV^*\rVert_\infty\\
+&\le\gamma\,\lVert V-V^*\rVert_\infty\\
+&\le\frac{\gamma\,\beta(V)}{1-\gamma}.
+\end{aligned}
+$$
+$\square$
+
+Điều kiện $\beta(V)\le(1-\gamma)\varepsilon$ đủ để bảo đảm $V$ cách $V^*$ không quá $\varepsilon$, và $TV$ cách $V^*$ không quá $\gamma\varepsilon$.
 :::
 
-::: solution Lời giải Bài tập 13.9
-Hàng MLE là $(4/5,1/5)$. Giá trị tiếp diễn kỳ vọng bằng $(4/5)3+(1/5)(-1)=2.2$, nên mục tiêu theo mô hình là $1+(1/2)2.2=2.1$. Khi quan sát $u$, mục tiêu mẫu bằng $1+(1/2)3=2.5$, cho giá trị mới $Q^+(s,a)=1+0.2(2.5-1)=1.3$. Một lần cập nhật này không thay thế phép lấy kỳ vọng $2.1$.
+Câu hỏi trung tâm cần một chính sách, không chỉ một vector giá trị. Khi dừng với một vector $V$ gần $V^*$, ta dùng chính sách tham lam theo $V$; mệnh đề sau chặn mất mát của chính sách đó.
+
+::: proposition Mệnh đề 13.22 (Chính sách tham lam theo một vector gần đúng) — chứng minh đầy đủ
+**Giả thiết.** MDP của Định nghĩa 13.5; $V\in\mathbb R^{\lvert\mathcal S\rvert}$ bất kỳ; $\pi_V$ là chính sách tham lam theo $V$ (6.2).
+
+**Bảo đảm.**
+$$
+\begin{aligned}
+&\lVert V^{\pi_V}-V^*\rVert_\infty\\
+&\quad\le\frac{2\gamma}{1-\gamma}\,\lVert V-V^*\rVert_\infty.
+\end{aligned}
+\tag{6.11}
+$$
 :::
 
-## 13.8. Bốn bài tự học: khoảng 180 phút
+::: proof Chứng minh Mệnh đề 13.22
+**Lộ trình.** Viết $V^{\pi_V}$ và $V^*$ là điểm bất động của $T^{\pi_V}$ và $T$, chèn $T^{\pi_V}V=TV$, rồi dùng tính co hai lần.
 
-Các bài được điều chỉnh từ W4.1–W4.4 trong `sources/part2/homework.pdf`. Mức **cơ bản** kiểm tra mô hình hóa và tính toán; mức **trung bình** cần suy diễn hoặc chứng minh; mức **vận dụng** yêu cầu kiểm tra giả thiết và diễn giải quyết định AI. Bốn bài bao phủ tính toán, suy diễn, kết nối AI và lập luận phản biện. Các gợi ý không thay thế lời giải cần trình bày của người học.
+**Bước 1 (ba đẳng thức).** Theo Định lý 13.12, $V^{\pi_V}=T^{\pi_V}V^{\pi_V}$. Theo Định lý 13.19, $V^*=TV^*$. Theo Định nghĩa 13.13, $T^{\pi_V}V=TV$.
 
-::: exercise E13.1 (Cơ bản đến trung bình; xích Markov, 40 phút)
-Một xích hai trạng thái $A,B$ có ma trận chuyển hàng $P=\begin{pmatrix}0.8&0.2\\0.35&0.65\end{pmatrix}$ và phân phối đầu $\mu_0=(0,1)$.
+**Bước 2 (chặn).** Bất đẳng thức tam giác và (6.4) cho
+$$
+\begin{aligned}
+&\lVert V^{\pi_V}-V^*\rVert_\infty\\
+&\quad\le\lVert T^{\pi_V}V^{\pi_V}-T^{\pi_V}V\rVert_\infty\\
+&\qquad+\lVert TV-TV^*\rVert_\infty\\
+&\quad\le\gamma\,\lVert V^{\pi_V}-V\rVert_\infty\\
+&\qquad+\gamma\,\lVert V-V^*\rVert_\infty\\
+&\quad\le\gamma\,\lVert V^{\pi_V}-V^*\rVert_\infty\\
+&\qquad+2\gamma\,\lVert V-V^*\rVert_\infty.
+\end{aligned}
+$$
+Dòng thứ nhất dùng Bước 1 để viết $V^{\pi_V}-V^*=(T^{\pi_V}V^{\pi_V}-T^{\pi_V}V)+(TV-TV^*)$; dòng cuối dùng $\lVert V^{\pi_V}-V\rVert_\infty\le\lVert V^{\pi_V}-V^*\rVert_\infty+\lVert V^*-V\rVert_\infty$.
 
-1. Tính $\mu_1,\mu_2$ bằng nhân ma trận, ghi rõ thứ tự trạng thái và kiểm tra chuẩn hóa.
-2. Liệt kê các đường đóng góp vào $\mathbb P(S_2=A)$ và kiểm tra kết quả bằng xác suất toàn phần.
-3. Tính $\mathbb P(S_0=B,S_1=A,S_2=B)$. Phân biệt tích xác suất này với một phần tử đơn lẻ của ma trận chuyển.
-4. Với phân phối hiện tại $(0.4,0.6)$, tính xác suất đồng thời $\mathbb P(S_t=A,S_{t+1}=B)$ và xác suất có điều kiện tương ứng. Dùng một phép kiểm số để xác định hai thời điểm có độc lập không.
-5. Nếu dùng một ma trận mới ở bước thứ hai, giải thích công thức $\mu_0P^2$ cần được thay đổi như thế nào.
+**Bước 3 (chuyển vế).** Chuyển $\gamma\lVert V^{\pi_V}-V^*\rVert_\infty$ sang vế trái và chia cho $1-\gamma>0$ được (6.11). $\square$
+
+Một vector giá trị sai lệch $\varepsilon$ cho một chính sách tham lam mất không quá $2\gamma\varepsilon/(1-\gamma)$ giá trị tại mọi trạng thái.
 :::
 
-::: hint Gợi ý E13.1
-Mỗi tọa độ bước sau lấy tổng theo mọi trạng thái hiện tại. Với câu 3, dùng phân tích xác suất theo thứ tự thời gian; không giả sử các thời điểm độc lập.
+Hai kết quả trên cho thuật toán sau: lặp $T$ đến khi phần dư đủ nhỏ, rồi trả về cả vector giá trị và chính sách tham lam theo nó.
+
+::: algorithm Thuật toán 13.23 (Lặp giá trị với chứng nhận sai số)
+**Đầu vào.** MDP hữu hạn với $P$, $r$ đã biết; $\gamma\in[0,1)$; mức sai số $\varepsilon>0$; vector ban đầu $V_0$ (thường lấy $V_0=0$).
+
+**Khởi tạo.** Đặt $k=0$.
+
+**Cập nhật.** Với mọi $s$ và mọi $a\in\mathcal A(s)$, tính $Q_{V_k}(s,a)$ theo (5.7) từ toàn bộ vector $V_k$. Đặt $W(s)=\max_aQ_{V_k}(s,a)$, tức $W=TV_k$, và $\beta_k=\lVert W-V_k\rVert_\infty$. Nếu điều kiện dừng chưa thỏa, đặt $V_{k+1}=W$, tăng $k$ thêm $1$ và lặp lại.
+
+**Điều kiện dừng.** $\beta_k\le(1-\gamma)\varepsilon$.
+
+**Đầu ra.** Vector $V_k$ và chính sách tham lam $\pi_k$ với $\pi_k(s)\in\operatorname{argmax}_aQ_{V_k}(s,a)$, lấy từ các giá trị đã tính ở bước cập nhật cuối. Theo Hệ quả 13.21, $\lVert V_k-V^*\rVert_\infty\le\varepsilon$; theo Mệnh đề 13.22, $\lVert V^{\pi_k}-V^*\rVert_\infty\le2\gamma\varepsilon/(1-\gamma)$.
+
+**Chi phí.** Mỗi vòng tính $\sum_s\lvert\mathcal A(s)\rvert$ giá trị nhìn trước, mỗi giá trị cần một tổng trên $\lvert\mathcal S\rvert$ trạng thái kế tiếp: bậc $\lvert\mathcal S\rvert^2\max_s\lvert\mathcal A(s)\rvert$ phép toán với bảng chuyển dày, ít hơn khi chỉ cộng trên các trạng thái kế tiếp có xác suất dương. Vì $\beta_k=\lVert V_{k+1}-V_k\rVert_\infty\le\gamma^k\beta_0$ (Bước 2 của chứng minh Định lý 13.17), điều kiện dừng thỏa sau hữu hạn vòng; khi $\gamma=0$, $\beta_1=0$ nên thuật toán dừng muộn nhất tại $k=1$.
 :::
 
-::: exercise E13.2 (Trung bình đến vận dụng; Bellman và giá trị dài hạn, 60 phút)
-Xét robot với trạng thái $s$ hoạt động và $z$ hấp thụ. Tại $z$, thưởng luôn $0$ và ở lại $z$. Tại $s$, $A$ thưởng $1$, ở lại $s$ với xác suất $1/2$ và tới $z$ với xác suất $1/2$; $B$ thưởng $0.6$ và luôn ở lại $s$. Cho $\gamma=0.9$, $V_0(s)=V_0(z)=0$.
+Với robot, $\varepsilon=0{,}1$ và $V_0=0$, điều kiện dừng là $\beta_k\le0{,}01$. Thuật toán dừng tại $k=39$ với $v_{39}\approx5{,}9088$; sai số thật $6-v_{39}\approx0{,}0912\le0{,}1$. Vì $v_k\ge1>8/9$ với mọi $k\ge1$ (Ví dụ 13.6), chính sách $\pi_{39}$ chọn $B$, đúng là chính sách tối ưu.
 
-1. Viết MDP, toán tử Bellman và công thức rút gọn theo $v_k=V_k(s)$.
-2. Tính $v_1,v_2,v_3,v_4$ cùng hai giá trị hành động ở mỗi vòng. Giải thích đúng chỉ số của hành động dùng để tạo $v_{k+1}$.
-3. Tìm điểm bất động của toán tử cực đại và xác định hành động tối ưu ở đó. Tính giá trị của chính sách luôn chọn $A$; diễn giải vì sao phần thưởng tức thời cao nhất không đủ để tối ưu tổng thưởng.
-4. Chứng minh toán tử là ánh xạ co trong chuẩn cực đại. Nêu vì sao tính co chưa tự xác nhận ý nghĩa tối ưu nếu thiếu lập luận đạt được và chặn mọi chính sách.
-5. Chứng minh $v_k=6-5(0.9)^{k-1}$ với mọi $k\ge1$. Từ đó tìm một số vòng đủ để sai số tại $s$ không quá $0.1$.
-6. Nếu thay $\gamma$ bằng $1$, phân tích giá trị của chính sách luôn chọn $B$ và chỉ ra giả thiết nào của chứng minh hội tụ không còn đúng.
+Trong học máy, Hệ quả 13.21 tách độ chính xác của phép quy hoạch khỏi độ đúng của mô hình. Một phần dư nhỏ chứng nhận rằng ta đã gần giải đúng phương trình Bellman của $P,r$ đang dùng; nó không chứng nhận rằng $P,r$ mô tả đúng robot ngoài thực tế.
+
+Ví dụ sau cho thấy cùng một phần dư cho hai chặn khác nhau, tùy vector được chứng nhận.
+
+::: example Ví dụ 13.7 (Chỉ số trong chặn phần dư)
+**Dữ kiện.** Robot của Ví dụ 13.1 với $\gamma=0{,}9$. Xét $V(h)=1{,}95$, $V(z)=0$, là $V_3$ của Ví dụ 13.6. Giá trị tối ưu $V^*(h)=6$, $V^*(z)=0$.
+
+**Phần dư.** Theo (6.1),
+$$
+\begin{aligned}
+Q_V(h,A)&=1+0{,}45\cdot1{,}95\\
+&=1{,}8775,\\
+Q_V(h,B)&=0{,}6+0{,}9\cdot1{,}95\\
+&=2{,}355,
+\end{aligned}
+$$
+nên $(TV)(h)=2{,}355$, $(TV)(z)=0$ và $\beta(V)=\lvert2{,}355-1{,}95\rvert=0{,}405$.
+
+**Hai chặn.** Theo (6.10), $\lVert V-V^*\rVert_\infty\le0{,}405/0{,}1=4{,}05$ và $\lVert TV-V^*\rVert_\infty\le0{,}9\cdot0{,}405/0{,}1=3{,}645$.
+
+**Kiểm tra lại.** Sai số thật là $6-1{,}95=4{,}05$ và $6-2{,}355=3{,}645$; cả hai chặn đều đạt dấu bằng.
+
+Chặn có hệ số $\gamma$ chỉ áp dụng cho vector sau cập nhật $TV$; dùng nó cho chính $V$ sẽ báo sai số $3{,}645$ trong khi sai số thật là $4{,}05$.
 :::
 
-::: hint Gợi ý E13.2
-Hai nhánh bằng nhau khi $v=8/9$. Sau vòng đầu, kiểm tra rằng nhánh $B$ tiếp tục được chọn, rồi giải truy hồi tuyến tính quanh điểm $6$. Không nhầm vòng tính toán với thời gian robot.
+### 6.5. Khi bỏ giả thiết chiết khấu
+
+Các kết quả của Mục 5 và Mục 6 dùng $\gamma<1$: Mệnh đề 13.8 và Bổ đề 13.11 cần nó để phần đuôi tiến về $0$, Định lý 13.17 cần $\kappa=\gamma<1$. Nhận xét và ví dụ sau cho thấy điều gì xảy ra khi bỏ giả thiết đó.
+
+::: remark Nhận xét 13.24 (Điểm bất động khi không chiết khấu)
+1. Với $\gamma=1$, Bước 1 của chứng minh Mệnh đề 13.16 chỉ cho hệ số $1$, nên $T$ không còn là ánh xạ co. Giá trị có thể vô hạn, hoặc phương trình Bellman có nhiều nghiệm.
+2. Một bài toán hữu hạn bước có thể không cần chiết khấu và vẫn giải được bằng truy hồi ngược như Bài 07 (Nhận xét 13.20). Đó là một thiết lập khác với bài toán vô hạn bước.
+3. Một trạng thái hấp thụ với thưởng $0$ không bảo đảm mọi chính sách đều đi tới nó. Trong robot, chính sách luôn chọn $B$ giữ robot ở $h$ mãi, nên không thể thay $\gamma<1$ bằng lập luận "mô hình có trạng thái kết thúc".
 :::
 
-::: exercise E13.3 (Trung bình; học mô hình và mục tiêu Bellman, 45 phút)
-Một bộ mô phỏng cho phép thử độc lập cùng cặp $(s,a)$ trong $12$ lần. Có $9$ lần tới $s_1$, $3$ lần tới $s_2$. Cho $r(s,a)=2$, $\gamma=0.8$, $V(s_1)=5$, $V(s_2)=1$.
+::: example Ví dụ 13.8 (Hai phản ví dụ khi hệ số chiết khấu bằng một)
+**Mô hình thứ nhất.** Một trạng thái $s$, một hành động, luôn quay lại $s$, thưởng $1$ mỗi bước, $\gamma=1$. Tổng thưởng bằng $+\infty$. Phương trình Bellman $V(s)=1+V(s)$ vô nghiệm. Lặp từ $V_0(s)=0$ cho $V_k(s)=k$, không hội tụ.
 
-1. Lập hợp lý của hàng chuyển trên đơn hình và suy ra MLE; có thể dùng Định lý 11.7 sau khi nêu đúng đối tượng.
-2. Tính mục tiêu Bellman theo mô hình ước lượng. Phân biệt nó với $V^*(s)$ và với mục tiêu từ một lần chuyển tiếp.
-3. Giả sử thưởng quan sát luôn bằng $2$. Liệt kê hai mục tiêu mẫu có thể nhận và kiểm tra kỳ vọng theo hàng ước lượng.
-4. Một hành động $b$ tại cùng trạng thái chưa được thử lần nào. Mô tả tập các hàng MLE của hành động đó và giải thích vì sao không thể dùng tỉ số số đếm để chọn duy nhất một hàng.
-5. Nếu thay bộ mô phỏng bằng một quỹ đạo do chính sách thu thập, nêu điều cần kiểm tra trước khi gọi dữ liệu là i.i.d. Phân biệt phân tích nhân tử của xác suất quỹ đạo chung với điều kiện theo toàn bộ các hành động tương lai.
+**Mô hình thứ hai.** Cùng trạng thái tự lặp và $\gamma=1$, nhưng thưởng luôn bằng $0$. Tổng thưởng bằng $0$, trong khi toán tử là $TV=V$; mọi số thực đều là điểm bất động, nên phương trình không xác định được giá trị.
+
+**Kiểm tra lại.** Cả hai mô hình hữu hạn và có phần thưởng bị chặn; giả thiết duy nhất bị bỏ là $\gamma<1$, nên chúng không mâu thuẫn với Hệ quả 13.18 và Định lý 13.19.
+
+Mô hình thứ nhất ứng với phản ví dụ $F(x)=x+1$ sau Định nghĩa 13.14: khoảng cách không co lại và điểm bất động không tồn tại.
 :::
 
-::: hint Gợi ý E13.3
-Công thức tần suất cần mẫu và miền tham số được xác định. Câu 4 xét hợp lý khi tích dữ liệu là tích rỗng; câu 5 dùng quy tắc nhân có điều kiện chứ không giả định độc lập của trạng thái.
+Như vậy, khi mô hình $P,r$ đã biết, toán tử Bellman tối ưu là ánh xạ co (Mệnh đề 13.16), lặp giá trị hội tụ tới điểm bất động duy nhất (Hệ quả 13.18), và điểm đó là giá trị tối ưu với chính sách tham lam tối ưu (Định lý 13.19); Thuật toán 13.23 dừng với chứng nhận sai số cho cả giá trị lẫn chính sách. Tuy nhiên, mọi bước đều giả sử biết chính xác $P$ và $r$. Trong Mục 7, chúng ta xét trường hợp các bảng này phải học từ dữ liệu tương tác.
+
+## 7. Biết mô hình và học từ trải nghiệm
+
+Trong Ví dụ 13.1, bảng xác suất của mỗi hành động được cho trước. Một hệ thống mới thường chỉ ghi được những lần thử: trạng thái hiện tại, hành động đã chọn, phần thưởng và trạng thái kế tiếp. Chúng ta cần phân biệt việc giải một mô hình đã biết với việc học mô hình hoặc học giá trị khi các bảng $P,r$ chưa biết.
+
+Một cách trực quan, quy hoạch tính kỳ vọng bằng một bảng xác suất, còn dữ liệu tương tác chỉ cho các kết quả ngẫu nhiên rút từ bảng chưa biết đó. Nhiều lần thử giúp ước lượng bảng, nhưng chính sách thu thập dữ liệu quyết định những cặp trạng thái–hành động nào được thử. Đây là trực giác, chưa phải định nghĩa.
+
+### 7.1. Ước lượng một hàng chuyển tiếp từ số đếm
+
+Giả sử có thể đặt hệ thống vào trạng thái $s$, thực hiện hành động $a$ và ghi trạng thái kế tiếp, lặp lại nhiều lần. Nếu các lần thử độc lập và môi trường không đổi, các trạng thái kế tiếp là một mẫu phân loại với cùng vector xác suất $P(\cdot\mid s,a)$, và Định lý 11.7 áp dụng trực tiếp. Định nghĩa sau gọi tên các đại lượng tính từ dữ liệu.
+
+::: definition Định nghĩa 13.25 (Số đếm và mô hình ước lượng)
+Cho dữ liệu gồm các bộ chuyển tiếp $(s_i,a_i,c_i,s'_i)$, đánh số bằng $i$, trong đó $c_i$ là phần thưởng quan sát. Đặt
+$$
+\begin{aligned}
+&N(s,a,s')\\
+&\quad=\sum_{i}\mathbf 1_{\{s_i=s,\ a_i=a,\ s'_i=s'\}},\\
+&N(s,a)\\
+&\quad=\sum_{s'\in\mathcal S}N(s,a,s'),
+\end{aligned}
+\tag{7.1}
+$$
+với $\mathbf 1_{\{\cdot\}}$ là hàm chỉ báo. Một *mô hình ước lượng* gồm các hàng xác suất $\hat P(\cdot\mid s,a)$ và các phần thưởng kỳ vọng ước lượng $\hat r(s,a)$. Khi $N(s,a)>0$, phần thưởng trung bình quan sát tại cặp đó là
+$$
+\hat r(s,a)=\frac{1}{N(s,a)}\sum_{\substack{i:\,s_i=s,\\a_i=a}}c_i.
+\tag{7.2}
+$$
+Khi $N(s,a)=0$, các thương trên chưa xác định; đặt một giá trị mặc định cho cặp đó là một giả thiết bổ sung của người lập mô hình. Ví dụ: cộng thêm một vào mọi số đếm $N(s,a,s')$ trước khi chuẩn hóa (*làm trơn cộng một*, add-one smoothing).
 :::
 
-::: exercise E13.4 (Vận dụng; giả thiết và bảo đảm, 35 phút)
-Hai hệ thống cùng có tập trạng thái và hành động hữu hạn, thưởng bị chặn và $\gamma=0.9$. Hệ thống thứ nhất biết chính xác $P,r$ và dùng cập nhật đồng thời $V_{k+1}=TV_k$. Hệ thống thứ hai chỉ nhận các bộ $(S_t,A_t,R_{t+1},S_{t+1})$, cập nhật một phần tử Q bằng mục tiêu từ mẫu và có thể dùng một mạng để biểu diễn Q.
+Khác với $P,r$ của Định nghĩa 13.5, các bảng $\hat P,\hat r$ phụ thuộc dữ liệu, nên ngẫu nhiên và có sai số lấy mẫu. Hệ quả sau chuyên biệt hóa Định lý 11.7 cho một cặp $(s,a)$.
 
-1. Viết một đoạn 4–6 câu phân biệt thông tin đã biết, đại lượng cần học và vai trò của thăm dò ở hai hệ thống.
-2. Liệt kê giả thiết và kết luận của định lý co áp dụng cho hệ thống thứ nhất. Giải thích vì sao không được coi định lý đó là một chứng minh hội tụ đầy đủ cho hệ thống thứ hai.
-3. Nêu một ví dụ trạng thái quan sát không đủ tính Markov, chỉ rõ hai lịch sử có cùng quan sát hiện tại nhưng phân phối bước sau khác nhau. Đề xuất một thay đổi biểu diễn hoặc một mô hình quan sát phù hợp.
-4. Phân biệt sai số quy hoạch số học, sai số mô hình do dữ liệu hữu hạn và hạn chế của cách biểu diễn giá trị. Giải thích tại sao chỉ giảm phần dư Bellman trên một mô hình đã khớp chưa kiểm soát mọi nguồn sai số này.
+::: corollary Hệ quả 13.26 (Ước lượng hợp lý cực đại của một hàng chuyển tiếp) — chứng minh đầy đủ
+**Giả thiết.**
+
+- **Lấy mẫu:** cặp $(s,a)$ được thử $m\ge0$ lần độc lập trong một môi trường không đổi (giả thiết M3).
+- **Mô hình:** các trạng thái kế tiếp có phân phối phân loại $P(\cdot\mid s,a)$ trên $\mathcal S$.
+- **Không gian tham số:** đơn hình đóng $\Delta(\mathcal S)$ các hàng xác suất trên $\mathcal S$.
+
+**Kết luận.** Nếu $m\ge1$, MLE của hàng chuyển tiếp là duy nhất và bằng
+$$
+\begin{gathered}
+\hat P(s'\mid s,a)=\frac{N(s,a,s')}{N(s,a)},\\
+N(s,a)=m.
+\end{gathered}
+\tag{7.3}
+$$
+Trạng thái kế tiếp chưa xuất hiện nhận xác suất ước lượng $0$. Nếu $m=0$, mọi hàng của $\Delta(\mathcal S)$ đều là MLE.
 :::
 
-::: hint Gợi ý E13.4
-Dẫn đúng Định lý 13.11–13.12 và Nhận xét 13.18. Phân tích trạng thái bằng phân phối có điều kiện theo lịch sử, không chỉ bằng mô tả rằng môi trường “có trí nhớ”.
+::: proof Chứng minh Hệ quả 13.26
+**Lộ trình.** Viết hợp lý của các lần thử độc lập, rồi áp dụng Định lý 11.7; xét riêng trường hợp chỉ có một trạng thái và trường hợp không có dữ liệu.
+
+**Bước 1 (hợp lý).** Ký hiệu $q=(q(s'))_{s'\in\mathcal S}\in\Delta(\mathcal S)$ là hàng tham số. Do các lần thử độc lập, hợp lý của dữ liệu là
+$$
+L(q)=\prod_{s'\in\mathcal S}q(s')^{N(s,a,s')}.
+$$
+
+**Bước 2 (từ hai trạng thái trở lên).** Khi $m\ge1$ và $\lvert\mathcal S\rvert\ge2$, đây đúng là bài toán của Định lý 11.7 với $\lvert\mathcal S\rvert$ nhóm, $m\ge1$ lần thử và số lần quan sát nhóm $s'$ bằng $N(s,a,s')$. Định lý 11.7 cho nghiệm duy nhất $\hat q(s')=N(s,a,s')/m$, kể cả khi một số số đếm bằng $0$.
+
+**Bước 3 (một trạng thái).** Khi $m\ge1$ và $\lvert\mathcal S\rvert=1$, đơn hình chỉ có một điểm $q=(1)$, nên MLE duy nhất là $(1)$; khi đó $N(s,a,s)=m$ và (7.3) cũng cho $1$.
+
+**Bước 4 (không có dữ liệu).** Khi $m=0$, mọi số mũ bằng $0$ và $L\equiv1$ trên $\Delta(\mathcal S)$, nên mọi hàng đều đạt cực đại; với $\lvert\mathcal S\rvert\ge2$ nghiệm không duy nhất, và thương $0/0$ trong (7.3) không xác định. $\square$
+
+Trong học máy, (7.3) là bước học mô hình môi trường từ các lần thử; chất lượng của nó phụ thuộc số lần thử $m$ tại từng cặp.
 :::
 
-## 13.9. Hướng dẫn đọc thêm và tài liệu tham khảo
+Sau bước ước lượng, lặp giá trị có thể chạy với $\hat P,\hat r$, nhưng kết luận của Hệ quả 13.18 và Định lý 13.19 khi đó thuộc về MDP ước lượng. Theo Nhận xét 11.8, một trạng thái kế tiếp chưa quan sát nhận xác suất $0$ dù xác suất thật có thể dương. Muốn đánh giá chính sách trong môi trường thật, còn cần chặn sai số của $\hat P$ và xét cách dữ liệu đã được thu thập.
 
-Tài liệu chính là Kevin P. Murphy (2023), *Probabilistic Machine Learning: Advanced Topics*, MIT Press. [Trang sách do tác giả cung cấp](https://probml.github.io/pml-book/book2.html) và [mục lục do nhà xuất bản cung cấp](https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/14319/TOC_MurphyPMLv2.pdf) xác định các chương và số mục dưới đây. Các phép tính và chứng minh được biên soạn lại cho mô hình hữu hạn của bài; không gán số trang, số định lý hoặc số bài tập Murphy chưa đối chiếu trực tiếp.
+Ví dụ sau đi từ số đếm đến giá trị nhìn trước theo mô hình ước lượng.
 
-| Phần của bài | Mục đọc chính xác ở Murphy II | Mục đích |
-|---|---|---|
-| 13.1 | §2.6.1 | Tham số hóa xích Markov, ma trận chuyển và quy ước xác suất |
-| 13.2 | §34.5.1, §34.5.3–34.5.4 | MDP, tổng thưởng và hàm giá trị |
-| 13.3 | §34.5.5, §34.6.1 | Giá trị và chính sách tối ưu, lặp giá trị |
-| 13.4, học mô hình | §2.6.3, §35.1.1, §35.1.4 | Ước lượng chuyển tiếp và học tăng cường dựa trên mô hình |
-| 13.4, thu thập dữ liệu | §35.1.5 | Thăm dò và khai thác khi chính sách ảnh hưởng dữ liệu |
-| 13.4, mục tiêu từ mẫu | §35.2.2, §35.2.5 | Học sai phân thời gian và Q-learning; chỉ lấy phần diễn giải nhập môn |
-| Đọc thêm về trạng thái không quan sát đầy đủ | §34.5.2 | MDP quan sát một phần và nhu cầu suy luận trạng thái |
+::: example Ví dụ 13.9 (Từ số đếm đến giá trị nhìn trước)
+**Dữ kiện.** Tại một cặp $(s,a)$, có $12$ lần thử độc lập: $9$ lần đến $s_1$ và $3$ lần đến $s_2$. Phần thưởng kỳ vọng đã biết $r(s,a)=2$; $\gamma=0{,}8$; một vector cố định $V$ với $V(s_1)=5$, $V(s_2)=1$.
 
-Định lý 13.11 có chứng minh hữu hạn chiều bằng tính co, dãy Cauchy và tính đầy đủ; đó là trường hợp cụ thể của định lý điểm bất động Banach. Định lý 13.12 bổ sung chứng minh đạt tối ưu bởi chính sách dừng và chặn mọi chính sách phụ thuộc lịch sử. Hệ quả 13.13 được suy từ tính co để tránh nhầm chỉ số trong điều kiện dừng. Các phát biểu này làm rõ những giả thiết cần cho cách tiếp cận Bellman và lặp giá trị, không nhận mọi chi tiết chứng minh bổ sung là phát biểu nguyên dạng trong giáo trình.
+**Ước lượng.** Theo Hệ quả 13.26, $\hat P(s_1\mid s,a)=9/12=3/4$ và $\hat P(s_2\mid s,a)=3/12=1/4$.
 
-Tài liệu bổ trợ là Richard S. Sutton và Andrew G. Barto (2018), *Reinforcement Learning: An Introduction*, ấn bản 2, MIT Press, bản nháp tác giả trong kho `statistical-learning-theory/sources/supp/sutton-barto-2018-draft.pdf`. Các mục §3.1, §3.3, §3.5–3.6 và §4.1, §4.4 hỗ trợ cách diễn giải MDP, tổng thưởng, Bellman và lặp giá trị; chúng không thay Murphy làm nguồn chính. Lý thuyết hội tụ của các thuật toán học từ mẫu và xấp xỉ hàm được dành cho đọc sâu hơn, không dùng như một bảo đảm đã chứng minh ở bài này.
+**Giá trị nhìn trước theo mô hình ước lượng.** Thay $\hat P$ vào (5.7):
+$$
+\begin{aligned}
+&\hat Q_V(s,a)\\
+&\quad=2+0{,}8\Bigl(\tfrac34\cdot5+\tfrac14\cdot1\Bigr)\\
+&\quad=2+0{,}8\cdot4=5{,}2.
+\end{aligned}
+\tag{7.4}
+$$
 
-Nguồn khởi đầu là *Probability: Mathematical Foundations for AI — Five-week bridge*, `sources/part2/lecture_notes.pdf`, Tuần 4, §8.1–8.4, trang in 19–21. Ví dụ 13.1 giữ ma trận hai trạng thái và phân phối đầu $(1,0)$; Ví dụ 13.5 giữ mô hình robot với hai hành động và sự thay đổi nhánh Bellman theo giá trị tiếp diễn. Các phép chứng minh, kiểm tra chỉ số và tình huống giới hạn được bổ sung trong ghi chú này. Không tự bổ sung tác giả hoặc năm xuất bản cho tệp khi nguồn chưa cung cấp căn cứ.
+**Kiểm tra lại.** $3/4+1/4=1$; giá trị tiếp diễn trung bình $4$ nằm giữa $1$ và $5$.
 
-Nguồn bài tự học là *Five-Week Homework — Probability and Probabilistic AI — UET.AI2012*, bản sinh viên trong `sources/part2/homework.pdf`, Tuần 4. E13.1 giữ dữ kiện W4.1 và thêm phân biệt xác suất chuyển với xác suất quỹ đạo; E13.2 giữ mô hình W4.2, thêm chứng minh co, công thức truy hồi và giới hạn khi bỏ chiết khấu; E13.3 giữ số đếm W4.3 và thêm phân tích hàng chưa được thử, mục tiêu mẫu và quy trình thu thập; E13.4 điều chỉnh W4.4 thành phân tích giả thiết và ba nguồn sai số. Đây là các bài tập điều chỉnh, không gán số bài tập nguyên bản của Murphy hoặc Sutton–Barto. Thời lượng được phân lại thành $40+60+45+35=180$ phút.
+Số $5{,}2$ là giá trị nhìn trước theo mô hình đã khớp và theo vector $V$ đang có; nó chưa phải giá trị tối ưu, và xác suất thật có thể khác $3/4$, $1/4$.
+:::
 
-Bài 14 tiếp tục việc xây dựng mô hình xác suất, nhưng chuyển từ trạng thái phục vụ quyết định sang biến ẩn phục vụ biểu diễn và sinh dữ liệu. Nhu cầu suy luận về đại lượng không quan sát đầy đủ vẫn còn, trong khi mục tiêu và công cụ tối ưu sẽ thay đổi theo mô hình được chọn.
+### 7.2. Dữ liệu quỹ đạo và thăm dò
+
+Các trạng thái trên một quỹ đạo nói chung không *độc lập cùng phân phối* (independent and identically distributed, i.i.d.): trạng thái kế tiếp phụ thuộc trạng thái hiện tại. Hệ quả 13.26 vì vậy được phát biểu cho các lần thử độc lập tại một cặp cố định. Với dữ liệu từ một quỹ đạo liên tục, xác suất của quỹ đạo phân tích thành tích các xác suất chọn hành động và các xác suất chuyển. Giả sử chính sách thu thập và phân phối ban đầu không phụ thuộc các tham số chuyển tiếp, và các hàng $P(\cdot\mid s,a)$ là các tham số tự do. Khi đó MLE của mỗi hàng vẫn là tỉ số số đếm (7.3); phép tính nằm ở Phụ lục A.
+
+Một chính sách luôn chọn cùng một hành động không cho dữ liệu về các hành động khác. Vì vậy học từ tương tác cần *thăm dò* (exploration), tức chọn hành động để thu thông tin, bên cạnh *khai thác* (exploitation), tức dùng thông tin hiện có để nhận phần thưởng; Murphy (2023), §35.1.5 trình bày sự đánh đổi giữa hai việc này. Một hành động chưa được thử có hàng chuyển tiếp chưa xác định theo Hệ quả 13.26, nên không thể kết luận hành động đó xấu.
+
+### 7.3. Hai cách dùng trải nghiệm
+
+Cùng một tập dữ liệu chuyển tiếp có thể được dùng theo hai cách: học mô hình rồi quy hoạch, hoặc học trực tiếp đại lượng cần cho quyết định. Định nghĩa sau gọi tên hai cách đó.
+
+::: definition Định nghĩa 13.27 (Học tăng cường dựa trên mô hình và không dựa trên mô hình)
+Trong *học tăng cường dựa trên mô hình* (model-based reinforcement learning), hệ thống học hoặc duy trì một mô hình ước lượng $\hat P,\hat r$, rồi dùng một phép quy hoạch, chẳng hạn Thuật toán 13.23, trên mô hình đó để chọn hành động.
+
+Trong *học tăng cường không dựa trên mô hình* (model-free reinforcement learning), hệ thống học trực tiếp giá trị hoặc chính sách từ các chuyển tiếp quan sát, không ước lượng toàn bộ bảng $P$ trước khi quy hoạch.
+:::
+
+Cả hai cách đều học từ cùng loại dữ liệu $(s,a,c,s')$ và đều cần giả thiết Markov (M1) cho trạng thái đang dùng. Cả hai đều cần thăm mọi cặp trạng thái–hành động quan trọng cho quyết định, và đều chịu sai số lấy mẫu. Murphy (2023), §35.1.1 và §35.1.4 mô tả học dựa trên mô hình như việc xen kẽ học mô hình và quy hoạch.
+
+### 7.4. Đọc thêm: học trực tiếp giá trị
+
+Với học không dựa trên mô hình, phép lấy kỳ vọng trong (6.1) được thay bằng một kết quả quan sát. Định nghĩa sau dùng bảng *giá trị hành động* (action value) $Q_t(s,a)$, là ước lượng tại thời điểm $t$ của giá trị khi chọn $a$ tại $s$ rồi hành động tối ưu.
+
+::: definition Định nghĩa 13.28 (Mục tiêu Bellman từ mẫu và cập nhật Q-learning)
+Cho bảng $Q_t$ trên các cặp trạng thái–hành động và một chuyển tiếp quan sát $(S_t,A_t,R_{t+1},S_{t+1})$. *Mục tiêu Bellman từ mẫu* (sample Bellman target) là
+$$
+\begin{aligned}
+Y_t&=R_{t+1}\\
+&+\gamma\max_{a'\in\mathcal A(S_{t+1})}Q_t(S_{t+1},a').
+\end{aligned}
+\tag{7.5}
+$$
+Với bước học $\alpha_t\in(0,1]$, cập nhật *Q-learning* thay một phần tử của bảng:
+$$
+\begin{aligned}
+&Q_{t+1}(S_t,A_t)\\
+&\quad=Q_t(S_t,A_t)\\
+&\qquad+\alpha_t\bigl[Y_t-Q_t(S_t,A_t)\bigr],
+\end{aligned}
+\tag{7.6}
+$$
+các phần tử khác giữ nguyên.
+:::
+
+Để phân biệt với $Y_t$, giá trị nhìn trước $Q_V(s,a)$ tính theo một mô hình, như (7.4), còn được gọi là *mục tiêu Bellman theo mô hình*.
+
+Nếu $Q_t$ đã được xác định bởi lịch sử trước chuyển tiếp và môi trường thỏa (5.1), lập luận của Bổ đề 13.10 cho $\mathbb E[Y_t\mid H_t,A_t=a]=r(S_t,a)+\gamma\sum_{s'}P(s'\mid S_t,a)\max_{a'}Q_t(s',a')$. Nghĩa là kỳ vọng của mục tiêu từ mẫu là phép Bellman tối ưu áp dụng cho bảng hiện tại; Murphy (2023), §35.1.2 nêu cùng kết luận. Một lần cập nhật chỉ dùng một kết quả ngẫu nhiên và chỉ đổi một phần tử, khác với lặp giá trị cập nhật đồng thời mọi trạng thái bằng kỳ vọng chính xác.
+
+Ví dụ sau so sánh mục tiêu từ một mẫu với kỳ vọng của nó trên cùng số liệu của Ví dụ 13.9.
+
+::: example Ví dụ 13.10 (Mục tiêu từ mẫu và kỳ vọng của nó)
+**Dữ kiện.** Tại cặp $(s,a)$, phần thưởng quan sát luôn bằng $2$; xác suất thật đi tới $s_1$, $s_2$ lần lượt là $3/4$, $1/4$; $\gamma=0{,}8$. Bảng hiện tại có $\max_{a'}Q_t(s_1,a')=5$, $\max_{a'}Q_t(s_2,a')=1$ và $Q_t(s,a)=2$; bước học $\alpha_t=1/4$.
+
+**Khi quan sát $s_1$.** Theo (7.5), $Y_t=2+0{,}8\cdot5=6$. Theo (7.6), phần tử mới là $2+\tfrac14(6-2)=3$.
+
+**Khi quan sát $s_2$.** $Y_t=2+0{,}8\cdot1=2{,}8$, và phần tử mới là $2+\tfrac14(2{,}8-2)=2{,}2$.
+
+**Kiểm tra lại bằng kỳ vọng.** $\mathbb E[Y_t]=\tfrac34\cdot6+\tfrac14\cdot2{,}8=4{,}5+0{,}7=5{,}2$, trùng giá trị nhìn trước (7.4). Kỳ vọng của phần tử mới là $\tfrac34\cdot3+\tfrac14\cdot2{,}2=2{,}8$, bằng $2+\tfrac14(5{,}2-2)$.
+
+Kỳ vọng của một lần cập nhật dịch phần tử về phía mục tiêu Bellman, nhưng kết quả của từng lần cập nhật vẫn ngẫu nhiên.
+:::
+
+Nhận xét sau tổng hợp phạm vi của các bảo đảm đã chứng minh khi chuyển từ quy hoạch sang học.
+
+::: remark Nhận xét 13.29 (Phạm vi bảo đảm của quy hoạch và của học)
+1. Hệ quả 13.18 và Định lý 13.19 chứng minh hội tụ và tối ưu cho phép lặp chính xác trên một MDP hữu hạn cố định. Khi dùng $\hat P,\hat r$, chúng cho kết luận về MDP ước lượng.
+2. Một hàng không có dữ liệu không được số đếm xác định (Hệ quả 13.26); chính sách thu thập dữ liệu cần thăm các cặp quan trọng cho quyết định.
+3. Hội tụ của Q-learning dạng bảng cần thêm giả thiết: mọi cặp được thăm vô hạn lần và bước học giảm dần thích hợp theo Murphy (2023), §35.2.5. Khi biểu diễn $Q$ bằng một hàm xấp xỉ, chẳng hạn mạng nơ-ron, tính co của phép Bellman chính xác không còn đủ để bảo đảm hội tụ.
+4. Nếu trạng thái không thỏa tính Markov hoặc môi trường thay đổi theo thời gian, mô hình đang dùng sai; giảm phần dư Bellman không sửa được sai lệch đó.
+:::
+
+Như vậy, khi mô hình chưa biết, số đếm cho MLE của từng hàng chuyển tiếp (Hệ quả 13.26), và mục tiêu Bellman từ mẫu có kỳ vọng bằng phép Bellman tối ưu áp dụng cho bảng hiện tại (Ví dụ 13.10). Tuy nhiên, các bảo đảm của Mục 6 chỉ nói về mô hình đang dùng; chất lượng dữ liệu, cách thăm dò và việc chọn trạng thái quyết định mô hình đó có đúng hay không. Mục 8 xét hai tình huống mà các giả thiết này bị vi phạm.
+
+## 8. Ý nghĩa, tác động và giới hạn
+
+Các kết quả của bài trả lời câu hỏi trung tâm dưới ba điều kiện: mô hình $P,r$ đúng, trạng thái thỏa tính Markov, và $\gamma<1$. Hai tình huống sau dùng lại robot và các kết quả đã chứng minh; trong cả hai, một giả thiết bị vi phạm và kết luận trên mô hình không còn đúng với hệ thống thật.
+
+::: application Tình huống 13.1 (Quy hoạch chính xác trên một mô hình ước lượng sai)
+**Môi trường thật.** Robot của Ví dụ 13.1: tại $h$, $A$ thưởng $1$ rồi ở lại $h$ với xác suất $1/2$, $B$ thưởng $0{,}6$ rồi chắc chắn ở lại $h$; $z$ hấp thụ với thưởng $0$; $\gamma=0{,}9$. Hàng chuyển của $B$ được biết từ thiết kế; hàng chuyển của $A$ phải ước lượng.
+
+**Dữ liệu.** Bộ mô phỏng đặt robot vào $h$ và thực hiện $A$ trong $10$ lần thử độc lập. Cả $10$ lần robot đều ở lại $h$. Dưới môi trường thật, biến cố này có xác suất $(1/2)^{10}=1/1024>0$.
+
+**Ước lượng.** Hệ quả 13.26 cho $\hat P(h\mid h,A)=10/10=1$ và $\hat P(z\mid h,A)=0$.
+
+**Quy hoạch trên mô hình ước lượng.** Với $V(z)=0$, toán tử rút gọn là $\hat Tv=\max\{1+0{,}9v;\ 0{,}6+0{,}9v\}$. Nhánh $A$ luôn lớn hơn nhánh $B$ đúng $0{,}4$, nên điểm bất động thỏa $v=1+0{,}9v$, tức $v=10$. Tại $v=10$, hai nhánh bằng $10$ và $9{,}6$; chính sách tham lam của mô hình ước lượng chọn $A$.
+
+**Đối chiếu với môi trường thật.** Theo Ví dụ 13.5, luôn chọn $A$ cho $20/11\approx1{,}82$, luôn chọn $B$ cho $6$. Theo Định lý 13.19, $B$ tối ưu trong môi trường thật: $\max\{1+0{,}45\cdot6;\ 0{,}6+0{,}9\cdot6\}=\max\{3{,}7;\ 6\}=6$. Chính sách quy hoạch từ mẫu thuận lợi mất $6-20/11=46/11\approx4{,}18$ so với tối ưu.
+
+**Giả thiết bị vi phạm.** Hệ quả 13.18 và Định lý 13.19 đúng cho MDP ước lượng; giả thiết "mô hình đúng" của chúng không thỏa với robot thật. Sai lệch nằm ở hàng $\hat P(\cdot\mid h,A)$, không nằm ở phép giải phương trình. Như Nhận xét 11.8, xác suất ước lượng $0$ của sự kiện chưa thấy không chứng minh sự kiện đó không xảy ra.
+:::
+
+::: application Tình huống 13.2 (Cảm biến bỏ mất thông tin quá khứ)
+**Cơ chế.** Một thiết bị có hai bit khởi đầu $X_0,X_1$ độc lập, mỗi bit có phân phối Bernoulli với tham số $1/2$, và lặp lại theo quy luật $X_{t+1}=X_{t-1}$ với $t\ge1$. Chỉ có một hành động. Cảm biến tại thời điểm $t$ chỉ ghi $X_t$; phần thưởng ở bước kế tiếp là $R_{t+1}=X_{t+1}$; $\gamma=1/2$.
+
+**Kiểm tra tính Markov của quan sát.** Hai lịch sử $(X_0,X_1)=(0,0)$ và $(1,0)$ đều có xác suất $1/4$ và cùng quan sát hiện tại $X_1=0$. Tuy nhiên,
+$$
+\begin{gathered}
+\mathbb P(X_2=1\mid X_0=0,X_1=0)=0,\\
+\mathbb P(X_2=1\mid X_0=1,X_1=0)=1.
+\end{gathered}
+$$
+Phân phối bước sau còn phụ thuộc bit cũ, nên riêng $X_t$ không thỏa (4.1).
+
+**Hậu quả với giá trị.** Sau lịch sử $(0,0)$, mọi phần thưởng về sau bằng $0$, nên tổng thưởng từ thời điểm $1$ bằng $0$. Sau lịch sử $(1,0)$, các phần thưởng $X_2,X_3,\ldots$ là $1,0,1,0,\ldots$, nên
+$$
+\begin{aligned}
+G_1&=1+\bigl(\tfrac12\bigr)^2+\bigl(\tfrac12\bigr)^4+\cdots\\
+&=\frac{1}{1-1/4}=\frac43.
+\end{aligned}
+$$
+Một hàm giá trị chỉ theo quan sát hiện tại $0$ không thể nhận đồng thời hai giá trị $0$ và $4/3$.
+
+**Sửa trạng thái.** Như Nhận xét 07.47, ta mở rộng trạng thái. Đánh số lại thời gian và đặt $\tilde S_u=(X_u,X_{u+1})\in\{0,1\}^2$ với $u\ge0$. Khi đó $\tilde S_{u+1}=(X_{u+1},X_{u+2})=(X_{u+1},X_u)$ xác định từ $\tilde S_u$, và phần thưởng kế tiếp $X_{u+2}=X_u$ là tọa độ thứ nhất của $\tilde S_u$. Mô hình mở rộng có bốn trạng thái, phần thưởng thuộc $\{0,1\}$ và $\gamma<1$, nên các kết quả của Mục 5 và Mục 6 áp dụng được. Với $\tilde S_0=(1,0)$, giá trị là $4/3$, đúng như trên.
+
+**Khi không quan sát được bit cũ.** Nếu thiết bị chỉ cho thấy $X_t$, trạng thái $(X_{t-1},X_t)$ không quan sát được trực tiếp. Khi đó cần một mô hình quan sát và suy luận phân phối của trạng thái ẩn từ lịch sử quan sát, tức mô hình MDP quan sát một phần của Murphy (2023), §34.5.2; một cách xấp xỉ là đưa vài quan sát gần nhất vào trạng thái.
+
+Tính co của $T$ vẫn đúng cho một bảng chuyển tiếp bất kỳ trên các quan sát $0$, $1$, nhưng bảng ấy không mô tả đúng cơ chế. Chọn trạng thái là một bước của mô hình hóa và cần kiểm tra trước khi đọc giá trị hay chính sách từ bảng.
+:::
+
+Bài bắt đầu từ việc truyền một phân phối qua xích Markov, rồi thêm hành động và phần thưởng để mô hình hóa lựa chọn có hậu quả dài hạn. Chiết khấu cùng phần thưởng bị chặn làm tổng thưởng và mọi hàm giá trị hữu hạn. Bổ đề so sánh theo từng bước đưa việc so sánh tổng thưởng vô hạn bước về một bất đẳng thức một bước, từ đó có phương trình Bellman cho chính sách dừng. Toán tử Bellman tối ưu là ánh xạ co, nên có điểm bất động duy nhất và lặp giá trị hội tụ từ mọi vector ban đầu. Chính sách tham lam theo điểm bất động đạt nó, còn mọi chính sách, kể cả chính sách phụ thuộc lịch sử, không vượt nó; vì vậy điểm bất động là giá trị tối ưu. Với robot, chính sách tối ưu chọn hành động có phần thưởng tức thời nhỏ hơn và đạt $6$ thay vì $20/11$. Khi mô hình chưa biết, số đếm và dữ liệu tương tác tạo thêm một bài toán thống kê, và các bảo đảm của quy hoạch chỉ nói về mô hình đang dùng.
+
+AI cần quy hoạch động vì hành động hiện tại ảnh hưởng đến phần thưởng tương lai: phương trình Bellman tối ưu (Định lý 13.19) đưa bài toán chọn trên vô số chính sách về một phương trình một bước giải được bằng lặp giá trị.
+
+Trong học máy, các kết quả của bài được dùng như sau.
+
+- **Đánh giá chính sách:** Định lý 13.12 tính giá trị của một quy tắc điều khiển cố định bằng một hệ tuyến tính.
+- **Quy hoạch có chứng nhận:** Thuật toán 13.23 trả về chính sách với chặn mất mát $2\gamma\varepsilon/(1-\gamma)$ (Mệnh đề 13.22).
+- **Học tăng cường dựa trên mô hình:** Hệ quả 13.26 ước lượng mô hình từ số đếm, rồi quy hoạch trên mô hình ước lượng (Định nghĩa 13.27); Tình huống 13.1 cho thấy giới hạn của cách làm này.
+
+Các kết quả chính của bài:
+
+- Mệnh đề 13.2 và Hệ quả 13.3: truyền phân phối $\mu_t=\mu_0P^t$ và xác suất một quỹ đạo.
+- Định nghĩa 13.5–13.7 và Mệnh đề 13.8: MDP hữu hạn, chính sách, tổng thưởng chiết khấu, hàm giá trị và chặn $R_{\max}/(1-\gamma)$.
+- Bổ đề 13.11: so sánh theo từng bước.
+- Định lý 13.12: $V^\pi=(I-\gamma P^\pi)^{-1}r^\pi$.
+- Định nghĩa 13.14, Mệnh đề 13.16, Định lý 13.17 và Hệ quả 13.18: ánh xạ co, tính co của $T$, điểm bất động và hội tụ của lặp giá trị.
+- Định lý 13.19: $V^*=TV^*$ và chính sách tham lam theo $V^*$ là tối ưu.
+- Hệ quả 13.21, Mệnh đề 13.22 và Thuật toán 13.23: chặn bằng phần dư Bellman, chặn $2\gamma\varepsilon/(1-\gamma)$ cho chính sách tham lam, và tiêu chuẩn dừng.
+- Hệ quả 13.26 và Định nghĩa 13.27–13.28: ước lượng từ số đếm, học dựa trên mô hình và không dựa trên mô hình, mục tiêu Bellman từ mẫu.
+
+Các giả thiết dễ bị bỏ quên là trạng thái đủ thông tin, chuẩn hóa từng hàng xác suất, phần thưởng bị chặn, $\gamma<1$, và sự khác nhau giữa mô hình thật với mô hình ước lượng. Có một trạng thái hấp thụ chưa đủ để bỏ chiết khấu, vì một chính sách có thể không bao giờ tới trạng thái đó.
+
+## 9. Bài tập
+
+Bộ bài tập đầy đủ, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 13](material-viewer.html?doc=materials/lec-13/exercises.md).
+
+Trên lớp:
+
+1. **Bài tập 13.1** (Truyền phân phối hai bước): mục tiêu học tập 1.
+2. **Bài tập 13.2** (Lặp giá trị và điểm bất động): mục tiêu học tập 4–5.
+3. **Bài tập 13.3** (Mục tiêu theo mô hình và mục tiêu từ một mẫu): mục tiêu học tập 6.
+
+Tự học:
+
+4. **Bài tập 13.4** (Xích Markov, xác suất chuyển và xác suất quỹ đạo): mục tiêu học tập 1.
+5. **Bài tập 13.5** (Lặp giá trị cho robot và giá trị dài hạn): mục tiêu học tập 3–5.
+6. **Bài tập 13.6** (Học mô hình và mục tiêu Bellman): mục tiêu học tập 6.
+7. **Bài tập 13.7** (Giả thiết và bảo đảm của quy hoạch và của học): mục tiêu học tập 4 và 6.
+8. **Bài tập 13.8** (Giá trị của chính sách dừng): mục tiêu học tập 2–3.
+9. **Bài tập 13.9** (Phương trình Bellman tối ưu có hai hành động cùng tối ưu): mục tiêu học tập 3–4.
+10. **Bài tập 13.10** (Tính co và phần dư Bellman): mục tiêu học tập 4.
+11. **Bài tập 13.11** (Kiểm tra một khẳng định hội tụ): mục tiêu học tập 6.
+
+## 10. Câu hỏi cuối buổi và cầu nối
+
+**Câu hỏi.** Vì sao AI cần quy hoạch động để ra quyết định tuần tự? Trả lời bằng robot của Ví dụ 13.1: nêu số chính sách cần so sánh nếu liệt kê, công cụ nào của bài thay thế việc liệt kê, và chính sách nhận được.
+
+::: solution Lời giải câu hỏi cuối buổi
+**Liệt kê không đủ.** Số chính sách tất định dừng là $\prod_s\lvert\mathcal A(s)\rvert$, tăng theo hàm mũ của số trạng thái; tập chính sách phụ thuộc lịch sử còn vô hạn. Với robot, $\lvert\mathcal A(h)\rvert=2$ và $\lvert\mathcal A(z)\rvert=1$, nên có $2\cdot1=2$ chính sách tất định dừng: luôn chọn $A$ cho $V^A(h)=20/11\approx1{,}82$, luôn chọn $B$ cho $V^B(h)=6$ (Ví dụ 13.5). Ví dụ 13.5 còn tính chính sách trộn đều, $V^\pi(h)=32/13\approx2{,}46$. Ba phép tính này chưa loại trừ được các chính sách phụ thuộc lịch sử, vốn không liệt kê hết được.
+
+**Quy hoạch động thay thế liệt kê.** Định lý 13.19 cho giá trị tối ưu là nghiệm duy nhất của phương trình Bellman tối ưu $V^*=TV^*$, chỉ cần mô hình một bước, và chính sách tham lam theo $V^*$ tối ưu trong mọi chính sách. Hệ quả 13.18 và Thuật toán 13.23 tìm $V^*$ bằng lặp giá trị với chứng nhận sai số.
+
+**Với robot.** Ví dụ 13.6 cho $V^*(h)=6$ và chính sách tối ưu chọn $B$ tại $h$ ở mọi thời điểm. Chỉ số $k$ của bảng lặp đếm vòng tính toán: vòng đầu chọn $A$ không có nghĩa robot chọn $A$ ở bước đầu. Chính sách luôn chọn phần thưởng tức thời lớn nhất ($A$) chỉ đạt $20/11\approx1{,}82$.
+:::
+
+Trong Tình huống 13.2, nếu cảm biến chỉ ghi $X_t$ thì bit $X_{t-1}$ là một biến ẩn, và phân phối của nó phải được suy luận từ lịch sử quan sát trước khi dùng phương trình Bellman. Bài 14 xét mô hình có biến ẩn $z$ với phân phối đồng thời $p_\theta(x,z)$. Phân phối hậu nghiệm $p_\theta(z\mid x)$ thường không tính được trực tiếp, nên Bài 14 xây dựng cận dưới bằng chứng (evidence lower bound, ELBO) của log-hợp lý để học $\theta$ và xấp xỉ hậu nghiệm cùng lúc.
+
+## 11. Tài liệu đọc
+
+Nguồn chính là Kevin P. Murphy (2023), *Probabilistic Machine Learning: Advanced Topics*, MIT Press, dẫn là Murphy (2023).
+
+- **Trước buổi học:** Murphy (2023), §2.6.1 (xích Markov và ma trận chuyển), §2.6.4.1 (truyền phân phối bằng vector hàng), §34.5.1, §34.5.3–34.5.4 (MDP, tổng thưởng, hàm giá trị).
+- **Sau buổi học:** Murphy (2023), §34.5.5 (giá trị và chính sách tối ưu; phương trình cho chính sách cố định ở cuối mục), §34.6.1 (lặp giá trị), §34.6.2 và công thức (34.88) (đánh giá chính sách dạng ma trận); §2.6.3.1–2.6.3.3 và công thức (34.74) (ước lượng ma trận chuyển, làm trơn số đếm, xác suất quỹ đạo); §35.1.1, §35.1.4 (học tăng cường dựa trên mô hình).
+- **Mở rộng:** Murphy (2023), §35.1.2 (kỳ vọng của sai số sai phân thời gian và sai số Bellman), §35.1.5 (thăm dò và khai thác), §35.2.2, §35.2.5 (học sai phân thời gian, Q-learning), §34.5.2 (MDP quan sát một phần), §34.6.2 (lặp chính sách); Sutton và Barto (2018), *Reinforcement Learning: An Introduction*, ấn bản 2, §3.5, §4.1, §4.4.
+
+Murphy nêu tính co của toán tử Bellman tối ưu và phương trình Bellman tối ưu mà không chứng minh; Bổ đề 13.11, Định lý 13.17, Định lý 13.19 và Mệnh đề 13.22 được chứng minh trong bài. Murphy đánh chỉ số phần thưởng $r_t$ bắt đầu từ $r_0$, dùng $T$ cho ma trận chuyển trong (34.88) và $\eta$ cho bước học; ở đây ta viết $R_{t+1}$, dùng $T$ cho toán tử Bellman và $\alpha_t$ cho bước học.
+
+## Phụ lục
+
+### A. Hợp lý của dữ liệu quỹ đạo
+
+Công thức số đếm (7.3) vẫn dùng được khi dữ liệu là một quỹ đạo, không phải các lần thử độc lập. Xét dữ liệu trạng thái–hành động $(s_0,a_0,s_1,\ldots,a_{M-1},s_M)$ và các điều kiện sau.
+
+- **Mô hình:** các hàng $P_\theta(\cdot\mid s,a)$ phụ thuộc tham số $\theta$ và là các tham số tự do, mỗi hàng thuộc $\Delta(\mathcal S)$.
+- **Chính sách thu thập:** $\mathbb P(A_t=a\mid S_0=s_0,A_0=a_0,\ldots,S_t=s_t)=\rho_t(a\mid\tau_t)$ với $\tau_t=(s_0,a_0,\ldots,s_t)$; chính sách không dùng phần thưởng và không phụ thuộc $\theta$.
+- **Phân phối ban đầu:** $\mu_0$ không phụ thuộc $\theta$.
+
+Bỏ phần thưởng khỏi điều kiện cần hai bước.
+
+- Cộng (5.1) theo giá trị phần thưởng $c$ được $\mathbb P(S_{t+1}=s'\mid H_t=\tau,A_t=a)=P_\theta(s'\mid s_\tau,a)$ với mọi lịch sử đầy đủ $\tau$.
+- Với $\sigma=(s_0,a_0,\ldots,a_{t-1},s_t)$ là phần trạng thái–hành động của lịch sử, xác suất toàn phần theo các phần thưởng quá khứ $c_{1:t}=(c_1,\ldots,c_t)$ cho
+$$
+\begin{aligned}
+&\mathbb P(S_{t+1}=s'\mid\sigma,A_t=a)\\
+&\quad=\sum_{c_{1:t}}\mathbb P(c_{1:t}\mid\sigma,A_t=a)\\
+&\qquad\times P_\theta(s'\mid s_t,a)\\
+&\quad=P_\theta(s'\mid s_t,a),
+\end{aligned}
+$$
+vì các trọng số $\mathbb P(c_{1:t}\mid\sigma,A_t=a)$ có tổng bằng $1$.
+
+Áp dụng quy tắc nhân lần lượt cho $S_0,A_0,S_1,\ldots,S_M$, như trong chứng minh Hệ quả 13.3,
+$$
+\begin{aligned}
+&\mathbb P_\theta(S_0=s_0,A_0=a_0,\ldots,\\
+&\qquad A_{M-1}=a_{M-1},S_M=s_M)\\
+&\quad=\mu_0(s_0)\prod_{t=0}^{M-1}\rho_t(a_t\mid\tau_t)\\
+&\qquad\times P_\theta(s_{t+1}\mid s_t,a_t).
+\end{aligned}
+\tag{A.1}
+$$
+
+Khi dữ liệu cố định, $\mu_0(s_0)$ và các nhân tử $\rho_t(a_t\mid\tau_t)$ không phụ thuộc $\theta$. Nhóm các nhân tử chuyển tiếp theo cặp $(s,a)$ với số đếm (7.1):
+$$
+\begin{aligned}
+&\prod_{t=0}^{M-1}P_\theta(s_{t+1}\mid s_t,a_t)\\
+&\quad=\prod_{(s,a)}\ \prod_{s'}P_\theta(s'\mid s,a)^{N(s,a,s')}.
+\end{aligned}
+$$
+Mỗi hàng chỉ xuất hiện trong nhân tử của chính nó, nên cực đại hóa theo từng hàng riêng rẽ. Với mỗi cặp có $N(s,a)>0$, Định lý 11.7 (hoặc Bước 3 của chứng minh Hệ quả 13.26 khi $\lvert\mathcal S\rvert=1$) cho lại (7.3). Các trạng thái trên quỹ đạo vẫn phụ thuộc nhau; điều làm (7.3) đúng là cấu trúc tích của (A.1), không phải tính độc lập.
+
+Công thức (A.1) là xác suất **đồng thời** của trạng thái và hành động. Xác suất của các trạng thái khi biết toàn bộ chuỗi hành động, kể cả hành động tương lai, phải chia cho xác suất của chuỗi hành động. Khi chính sách dùng trạng thái để chọn hành động, các hành động tương lai mang thông tin về các trạng thái trước đó, nên xác suất có điều kiện này nói chung không phải là tích các $P_\theta$.

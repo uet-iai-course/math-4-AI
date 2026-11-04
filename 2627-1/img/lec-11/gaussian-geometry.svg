@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 590" role="img" aria-labelledby="title desc">
 <title id="title">Hình học Gaussian với hiệp phương sai tương quan</title>
-<desc id="desc">Tâm (10,20), ma trận hiệp phương sai có hai trị riêng 4 và 1. Ellipse dài theo hướng (1,1). Điểm A (13,23) có khoảng cách Euclid bình phương 18 nhưng Mahalanobis bình phương 4,5; điểm B (12,18) có hai khoảng cách bình phương đều bằng 8. Ba đường đồng mức có khoảng cách Mahalanobis 1, 2 và 3.</desc>
+<desc id="desc">Tâm (10,20), ma trận hiệp phương sai có hai trị riêng 4 và 1. Ellipse dài theo hướng (1,1). Điểm a (13,23) có khoảng cách Euclid bình phương 18 nhưng Mahalanobis bình phương 4,5; điểm b (12,18) có hai khoảng cách bình phương đều bằng 8. Ba đường đồng mức có khoảng cách Mahalanobis 1, 2 và 3.</desc>
 <rect width="840" height="590" fill="#fff"/>
 <g font-family="Arial,sans-serif" fill="#172b4d">
 <text x="24" y="32" font-size="20" font-weight="bold">Gaussian: hướng phân tán và khoảng cách</text>
@@ -51,19 +51,19 @@
 <circle cx="300" cy="300" r="4" fill="#172b4d"/>
 <text x="278" y="321" font-size="16">μ</text>
 <path d="M423 165L435 177 M423 177L435 165" stroke="#a63826" stroke-width="3"/>
-<text x="440" y="164" font-size="18" fill="#a63826">A</text>
+<text x="440" y="164" font-size="18" fill="#a63826">a</text>
 <path d="M380 380L392 392 M380 392L392 380" stroke="#087b63" stroke-width="3"/>
-<text x="397" y="379" font-size="18" fill="#087b63">B</text>
-<text x="560" y="103" font-size="15" fill="#172b4d">Dữ liệu cảm biến (giả lập)</text>
+<text x="397" y="379" font-size="18" fill="#087b63">b</text>
+<text x="560" y="103" font-size="15" fill="#172b4d">Dữ liệu cảm biến nền</text>
 <text x="560" y="135" font-size="15" fill="#172b4d">μ = (10, 20)</text>
-<text x="560" y="167" font-size="15" fill="#172b4d">S = [[2,5; 1,5], [1,5; 2,5]]</text>
+<text x="560" y="167" font-size="15" fill="#172b4d">S₁₁ = S₂₂ = 2,5;  S₁₂ = 1,5</text>
 <text x="560" y="199" font-size="15" fill="#172b4d">λ+ = 4;  λ− = 1</text>
 <text x="560" y="231" font-size="15" fill="#172b4d">u+ = (1, 1) / √2</text>
 <text x="560" y="263" font-size="15" fill="#172b4d">u− = (1, −1) / √2</text>
 <text x="560" y="295" font-size="15" fill="#376bc6">Đường mức: d = 1, 2, 3</text>
-<text x="560" y="327" font-size="15" fill="#a63826">A = (13, 23)</text>
-<text x="560" y="359" font-size="15" fill="#a63826">||A − μ||² = 18;  d²(A) = 4,5</text>
-<text x="560" y="391" font-size="15" fill="#087b63">B = (12, 18)</text>
-<text x="560" y="423" font-size="15" fill="#087b63">||B − μ||² = 8;  d²(B) = 8</text>
+<text x="560" y="327" font-size="15" fill="#a63826">a = (13, 23)</text>
+<text x="560" y="359" font-size="15" fill="#a63826">||a − μ||² = 18;  d²(a) = 4,5</text>
+<text x="560" y="391" font-size="15" fill="#087b63">b = (12, 18)</text>
+<text x="560" y="423" font-size="15" fill="#087b63">||b − μ||² = 8;  d²(b) = 8</text>
 <text x="24" y="569" font-size="14">Cùng một tâm: độ lệch theo hướng phân tán rộng được chia cho trị riêng lớn hơn.</text>
 </g></svg>
