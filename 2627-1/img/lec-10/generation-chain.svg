@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 186" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif">
+  <title id="t">Chuỗi sinh dữ liệu của hệ thống sản phẩm</title>
+  <desc id="d">Ba khối nối bằng hai mũi tên từ trái sang phải. Khối nhà cung cấp S, viền nét đứt, ghi chưa quan sát vì thiếu hồ sơ; phía trên ghi p chỉ số S của s. Mũi tên thứ nhất ghi p chỉ số Y khi biết S của y khi biết s. Khối tình trạng lỗi Y, viền nét đứt, ghi cần suy luận. Mũi tên thứ hai ghi p chỉ số A khi biết Y của a phẩy khi biết y. Khối cảnh báo A, viền liền đậm, nền tô, ghi đã quan sát.</desc>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#444"/></marker></defs>
+  <rect width="520" height="186" fill="#ffffff"/>
+  <rect x="6" y="48" width="140" height="76" rx="10" fill="#ffffff" stroke="#2f3e7a" stroke-width="3" stroke-dasharray="10 6"/>
+  <rect x="190" y="48" width="140" height="76" rx="10" fill="#ffffff" stroke="#2f3e7a" stroke-width="3" stroke-dasharray="10 6"/>
+  <rect x="374" y="48" width="140" height="76" rx="10" fill="#dfe6f6" stroke="#2f3e7a" stroke-width="5"/>
+  <g font-size="20" text-anchor="middle" fill="#222">
+    <text x="76" y="80">Nhà cung cấp</text><text x="76" y="108" font-weight="700">S</text>
+    <text x="260" y="80">Tình trạng lỗi</text><text x="260" y="108" font-weight="700">Y</text>
+    <text x="444" y="80">Cảnh báo</text><text x="444" y="108" font-weight="700">A</text>
+  </g>
+  <g font-size="19" text-anchor="middle" fill="#444">
+    <text x="76" y="150">chưa quan sát</text><text x="76" y="174">(thiếu hồ sơ)</text>
+    <text x="260" y="150">cần suy luận</text>
+    <text x="444" y="150">đã quan sát</text>
+  </g>
+  <line x1="146" y1="86" x2="188" y2="86" stroke="#444" stroke-width="2.5" marker-end="url(#ar)"/>
+  <line x1="330" y1="86" x2="372" y2="86" stroke="#444" stroke-width="2.5" marker-end="url(#ar)"/>
+  <g font-size="20" text-anchor="middle" fill="#8a3d17" font-style="italic">
+    <text x="76" y="34">p<tspan font-size="15" dy="5">S</tspan><tspan dy="-5">(s)</tspan></text>
+    <text x="168" y="34">p<tspan font-size="15" dy="5">Y|S</tspan><tspan dy="-5">(y | s)</tspan></text>
+    <text x="352" y="34">p<tspan font-size="15" dy="5">A|Y</tspan><tspan dy="-5">(a′ | y)</tspan></text>
+  </g>
+</svg>

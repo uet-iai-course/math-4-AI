@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 252" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif">
+  <title id="t">Lưới bốn kết quả của camera và các biến cố</title>
+  <desc id="d">Lưới hai hàng, hai cột. Hàng trên là có người (biến cố H), hàng dưới là không có người (H mũ c). Cột trái là cảnh báo (biến cố C), cột phải là không cảnh báo (C mũ c). Ô có người và cảnh báo ghi H giao C. Ô có người và không cảnh báo được chấm, ghi bỏ sót. Ô không có người và cảnh báo được gạch chéo, ghi cảnh báo sai. Ô còn lại ghi H mũ c giao C mũ c. Hàng H có viền liền đậm, cột C có viền nét đứt.</desc>
+  <defs>
+    <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#b15a2b" stroke-width="3"/></pattern>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2.4" fill="#2f3e7a"/></pattern>
+  </defs>
+  <rect width="420" height="252" fill="#ffffff"/>
+  <g font-size="21" font-weight="700" text-anchor="middle" fill="#222">
+    <text x="153" y="27">C</text><text x="328" y="27">Cᶜ</text>
+    <text x="30" y="99">H</text><text x="30" y="194">Hᶜ</text>
+  </g>
+  <rect x="66" y="42" width="175" height="95" fill="#eef2fb" stroke="#555" stroke-width="1.5"/>
+  <rect x="241" y="42" width="175" height="95" fill="url(#dots)" fill-opacity="0.35" stroke="#555" stroke-width="1.5"/>
+  <rect x="66" y="137" width="175" height="95" fill="url(#hatch)" fill-opacity="0.45" stroke="#555" stroke-width="1.5"/>
+  <rect x="241" y="137" width="175" height="95" fill="#f6f6f6" stroke="#555" stroke-width="1.5"/>
+  <rect x="66" y="42" width="350" height="95" fill="none" stroke="#2f3e7a" stroke-width="5"/>
+  <rect x="62" y="38" width="183" height="198" fill="none" stroke="#b15a2b" stroke-width="4" stroke-dasharray="12 7"/>
+  <g font-size="20" text-anchor="middle">
+    <text x="153" y="96" fill="#222">H ∩ C</text>
+    <rect x="276" y="73" width="105" height="32" rx="6" fill="#ffffff"/>
+    <text x="328" y="96" font-weight="700" fill="#2f3e7a">bỏ sót</text>
+    <rect x="86" y="168" width="134" height="32" rx="6" fill="#ffffff"/>
+    <text x="153" y="191" font-weight="700" fill="#8a3d17">cảnh báo sai</text>
+    <text x="328" y="191" fill="#222">Hᶜ ∩ Cᶜ</text>
+  </g>
+</svg>

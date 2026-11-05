@@ -2038,7 +2038,7 @@ Các công thức cần nhớ là Bayes (5.4) và dạng tỉ lệ (5.5), lấy 
 
 ## 10. Bài tập
 
-Bộ bài tập đầy đủ, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 10](material-viewer.html?doc=materials/lec-10/exercises.md).
+Bộ bài tập đầy đủ, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 10](material-viewer.html?doc=materials/lec-10/exercises.md&deck=lecture-10-xac-suat-bieu-dien-bat-dinh.html).
 
 Ba bài đầu dùng trên lớp; sáu bài tự học và ba bài chọn từ Murphy dùng để tự học. Mỗi dòng ghi mục tiêu học tập mà bài kiểm tra.
 

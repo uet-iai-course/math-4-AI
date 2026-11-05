@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 232" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif">
+  <title id="t">Cây xác suất của nguồn hàng và tình trạng lỗi</title>
+  <desc id="d">Gốc S tách thành nhánh nhà cung cấp a với xác suất 0,6 và nhánh b với xác suất 0,4. Từ a: lỗi với xác suất 0,02, cho lá lỗi 0,012; đạt với xác suất 0,98, cho lá đạt 0,588. Từ b: lỗi 0,08, cho lá lỗi 0,032; đạt 0,92, cho lá đạt 0,368. Hai lá lỗi có viền liền đậm, hai lá đạt viền mảnh.</desc>
+  <rect width="420" height="232" fill="#ffffff"/>
+  <g stroke="#555" stroke-width="2" fill="none">
+    <line x1="52" y1="108" x2="155" y2="64"/>
+    <line x1="52" y1="124" x2="155" y2="168"/>
+    <line x1="186" y1="52" x2="268" y2="28"/>
+    <line x1="186" y1="64" x2="268" y2="88"/>
+    <line x1="186" y1="166" x2="268" y2="144"/>
+    <line x1="186" y1="178" x2="268" y2="204"/>
+  </g>
+  <g fill="#eef2fb" stroke="#2f3e7a" stroke-width="2">
+    <circle cx="36" cy="116" r="19"/><circle cx="171" cy="58" r="17"/><circle cx="171" cy="172" r="17"/>
+  </g>
+  <g font-size="20" font-weight="700" text-anchor="middle" fill="#222">
+    <text x="36" y="123">S</text><text x="171" y="65">a</text><text x="171" y="179">b</text>
+  </g>
+  <g font-size="19" fill="#222">
+    <text x="78" y="76">0,6</text><text x="78" y="172">0,4</text>
+    <text x="198" y="30">0,02</text><text x="198" y="104">0,98</text>
+    <text x="198" y="146">0,08</text><text x="198" y="221">0,92</text>
+  </g>
+  <rect x="270" y="8" width="144" height="38" rx="7" fill="#f7efe6" stroke="#8a3d17" stroke-width="3.5"/>
+  <rect x="270" y="70" width="144" height="38" rx="7" fill="#f4f4f4" stroke="#777" stroke-width="1.2"/>
+  <rect x="270" y="125" width="144" height="38" rx="7" fill="#f7efe6" stroke="#8a3d17" stroke-width="3.5"/>
+  <rect x="270" y="186" width="144" height="38" rx="7" fill="#f4f4f4" stroke="#777" stroke-width="1.2"/>
+  <g font-size="19" text-anchor="middle" fill="#222">
+    <text x="342" y="34" font-weight="700">lỗi 0,012</text>
+    <text x="342" y="96">đạt 0,588</text>
+    <text x="342" y="151" font-weight="700">lỗi 0,032</text>
+    <text x="342" y="212">đạt 0,368</text>
+  </g>
+</svg>

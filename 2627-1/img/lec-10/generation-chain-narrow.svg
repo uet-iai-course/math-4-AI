@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 384" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif">
+  <title id="t">Chuỗi sinh dữ liệu của hệ thống sản phẩm, xếp dọc</title>
+  <desc id="d">Ba khối xếp từ trên xuống, nối bằng hai mũi tên. Khối nhà cung cấp S, viền nét đứt, ghi chưa quan sát vì thiếu hồ sơ; phía trên ghi p chỉ số S của s. Mũi tên thứ nhất ghi p chỉ số Y khi biết S của y khi biết s. Khối tình trạng lỗi Y, viền nét đứt, ghi cần suy luận. Mũi tên thứ hai ghi p chỉ số A khi biết Y của a phẩy khi biết y. Khối cảnh báo A, viền liền đậm, nền tô, ghi đã quan sát.</desc>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#444"/></marker></defs>
+  <rect width="300" height="384" fill="#ffffff"/>
+  <rect x="10" y="34" width="220" height="92" rx="10" fill="#ffffff" stroke="#2f3e7a" stroke-width="3" stroke-dasharray="10 6"/>
+  <rect x="10" y="176" width="220" height="74" rx="10" fill="#ffffff" stroke="#2f3e7a" stroke-width="3" stroke-dasharray="10 6"/>
+  <rect x="10" y="300" width="220" height="74" rx="10" fill="#dfe6f6" stroke="#2f3e7a" stroke-width="5"/>
+  <g font-size="20" text-anchor="middle" fill="#222">
+    <text x="120" y="62">Nhà cung cấp <tspan font-weight="700">S</tspan></text>
+    <text x="120" y="204">Tình trạng lỗi <tspan font-weight="700">Y</tspan></text>
+    <text x="120" y="328">Cảnh báo <tspan font-weight="700">A</tspan></text>
+  </g>
+  <g font-size="19" text-anchor="middle" fill="#444">
+    <text x="120" y="89">chưa quan sát</text><text x="120" y="114">(thiếu hồ sơ)</text>
+    <text x="120" y="232">cần suy luận</text>
+    <text x="120" y="356">đã quan sát</text>
+  </g>
+  <line x1="120" y1="126" x2="120" y2="174" stroke="#444" stroke-width="2.5" marker-end="url(#ar)"/>
+  <line x1="120" y1="250" x2="120" y2="298" stroke="#444" stroke-width="2.5" marker-end="url(#ar)"/>
+  <g font-size="20" fill="#8a3d17" font-style="italic">
+    <text x="120" y="24" text-anchor="middle">p<tspan font-size="15" dy="5">S</tspan><tspan dy="-5">(s)</tspan></text>
+    <text x="132" y="157">p<tspan font-size="15" dy="5">Y|S</tspan><tspan dy="-5">(y | s)</tspan></text>
+    <text x="132" y="281">p<tspan font-size="15" dy="5">A|Y</tspan><tspan dy="-5">(a′ | y)</tspan></text>
+  </g>
+</svg>

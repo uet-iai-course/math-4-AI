@@ -143,7 +143,7 @@ $$
 \end{aligned}
 $$
 
-nên (6.5) sai tại $u=v=1$, $w=0$, và $U,V$ phụ thuộc khi biết $W$. Trước quan sát, biết $U$ không cho thông tin về $V$. Khi đã biết dây chuyền dừng ($W=0$), biết bộ phận thứ nhất vẫn hoạt động ($U=1$) thì suy ra chắc chắn bộ phận thứ hai hỏng ($V=0$). Trong AI, hai nguyên nhân độc lập trở nên phụ thuộc khi ta quan sát một hệ quả chung của chúng.
+nên (6.5) sai tại $u=v=1$, $w=0$, và $U,V$ phụ thuộc khi biết $W$. Trước quan sát, biết $U$ không cho thông tin về $V$. Khi đã biết dây chuyền dừng ($W=0$), biết bộ phận thứ nhất vẫn hoạt động ($U=1$) thì suy ra chắc chắn bộ phận thứ hai hỏng ($V=0$). Trong AI, hai nguyên nhân độc lập có thể trở nên phụ thuộc khi ta quan sát một hệ quả chung của chúng.
 
 **Kiểm tra lại.** Trong nhóm $W=0$, ba kết quả có xác suất có điều kiện $1/3$ mỗi kết quả, tổng bằng $1$. Theo Mệnh đề 10.17, với $\mathbb P(U=1,W=0)=1/4>0$: $\mathbb P(V=1\mid U=1,W=0)=0\ne1/3=\mathbb P(V=1\mid W=0)$, cùng kết luận.
 :::

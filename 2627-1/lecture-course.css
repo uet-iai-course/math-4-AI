@@ -765,3 +765,115 @@
   :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .slide-number { position:fixed; bottom:10px; left:10px; right:auto; font-size:17px; }
   :where(html[data-lecture="00"], html[data-lecture="01"], html[data-lecture="02"], html[data-lecture="03"]) .reveal .progress { position:fixed; bottom:92px; z-index:31; }
 }
+
+/* Bài 10: bố cục chung, chép từ khối Bài 07 (không gồm luật theo trang); màn hẹp đọc theo vùng cuộn dọc. */
+:where(html[data-lecture="10"]) .reveal h1,
+:where(html[data-lecture="10"]) .reveal h2 { color:#2f3e7a; }
+:where(html[data-lecture="10"]) .reveal h3 .katex,
+:where(html[data-lecture="10"]) .reveal h3 .katex * { text-transform:none!important; }
+:where(html[data-lecture="10"]) .note-source { font-size:.9em; color:#444; }
+:where(html[data-lecture="10"]) .box { border-left:5px solid #b15a2b; background:#f7efe6; padding:.5em .7em; border-radius:8px; }
+:where(html[data-lecture="10"]) .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:.7em; }
+:where(html[data-lecture="10"]) .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:.55em; }
+:where(html[data-lecture="10"]) .card { border:1px solid #ddd; border-radius:8px; padding:.45em .6em; }
+:where(html[data-lecture="10"]) .math-large { font-size:1.08em; text-align:center; }
+:where(html[data-lecture="10"]) .formula { font-size:.92em; text-align:center; }
+:where(html[data-lecture="10"]) .ok { color:#2e7d32; font-weight:700; }
+:where(html[data-lecture="10"]) .warn { color:#a33a1f; font-weight:700; }
+:where(html[data-lecture="10"]) .reveal table { font-size:.94em; }
+:where(html[data-lecture="10"]) .reveal th { background:#f7efe6; }
+:where(html[data-lecture="10"]) .visual img { width:100%; height:auto; max-height:410px; }
+:where(html[data-lecture="10"]) .check { background:#edf4ff; border:2px solid #2f3e7a; border-radius:8px; padding:.42em .62em; }
+:where(html[data-lecture="10"]) .tight li { margin:.12em 0; }
+:where(html[data-lecture="10"]) .responsive { display:grid; grid-template-columns:minmax(360px,1.15fr) minmax(0,.85fr); gap:.7em; align-items:center; }
+:where(html[data-lecture="10"]) .reveal .algorithm { font-size:.94em; text-align:left; background:#f5f7fb; border-radius:8px; padding:.5em .8em .5em 1.9em; margin-left:0; }
+:where(html[data-lecture="10"]) .algorithm li { margin:.12em 0; }
+:where(html[data-lecture="10"]) .flow { display:flex; align-items:stretch; justify-content:center; gap:.35em; }
+:where(html[data-lecture="10"]) .flow .node { flex:1; border:1px solid #ccd3e3; border-radius:8px; padding:.4em; }
+:where(html[data-lecture="10"]) .flow .arrow { align-self:center; color:#b15a2b; font-size:1.4em; }
+:where(html[data-lecture="10"]) .reveal>.lecture-viewport { height:100%; }
+:where(html[data-lecture="10"]) .formula { max-width:100%; overflow-x:auto; overflow-y:hidden; }
+:where(html[data-lecture="10"]) .table-scroll { width:100%; max-width:100%; overflow-x:auto; }
+:where(html[data-lecture="10"]) .grid2>*,
+:where(html[data-lecture="10"]) .grid3>*,
+:where(html[data-lecture="10"]) .responsive>* { min-width:0; }
+:where(html[data-lecture="10"]) .reveal [tabindex="0"]:focus-visible { outline:3px solid #287c74; outline-offset:2px; }
+@media screen and (max-width:760px) {
+  html:where([data-lecture="10"]),
+  :where(html[data-lecture="10"]) body { height:100dvh; overflow:hidden; }
+  :where(html[data-lecture="10"]) .reveal { font-size:24px; height:100dvh; overflow:visible; }
+  :where(html[data-lecture="10"]) .reveal>.lecture-viewport { height:calc(100dvh - 94px); overflow-y:auto; overflow-x:hidden; touch-action:pan-y; }
+  :where(html[data-lecture="10"]) .reveal .slides { position:relative!important; top:0!important; left:0!important; transform:none!important; width:100%!important; height:auto!important; margin:0!important; perspective:none!important; }
+  :where(html[data-lecture="10"]) .reveal .slides>section.present { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; padding:0; }
+  :where(html[data-lecture="10"]) .reveal .slides>section:not(.present),
+  :where(html[data-lecture="10"]) .reveal .slides>section>section:not(.present) { display:none!important; }
+  :where(html[data-lecture="10"]) .reveal h1 { font-size:34px; }
+  :where(html[data-lecture="10"]) .reveal h2 { font-size:30px; }
+  :where(html[data-lecture="10"]) .reveal h3 { font-size:24px; }
+  :where(html[data-lecture="10"]) .flow { display:grid; grid-template-columns:1fr; }
+  :where(html[data-lecture="10"]) .flow .arrow { transform:rotate(90deg); justify-self:center; }
+  :where(html[data-lecture="10"]) .visual img { max-height:none; }
+  :where(html[data-lecture="10"]) .formula { font-size:22px; text-align:left; }
+  :where(html[data-lecture="10"]) .formula .katex-display { text-align:left; }
+  :where(html[data-lecture="10"]) .math-large { font-size:22px; max-width:100%; overflow-x:auto; overflow-y:hidden; }
+  :where(html[data-lecture="10"]) .has-horizontal-overflow { border-block:2px solid #b15a2b; box-sizing:border-box; scrollbar-color:#b15a2b #f7efe6; }
+  :where(html[data-lecture="10"]) .has-horizontal-overflow::before { content:"↔"; display:block; position:sticky; left:0; width:100%; box-sizing:border-box; padding-right:6px; color:#2f3e7a; background:#f7efe6; text-align:right; font-size:22px; line-height:1.25; }
+  :where(html[data-lecture="10"]) .reveal table { display:table; max-width:none; font-size:22px; }
+  :where(html[data-lecture="10"]) .reveal td,
+  :where(html[data-lecture="10"]) .reveal th { min-width:64px; padding:.25em .3em; }
+  :where(html[data-lecture="10"]) .reveal .footer { display:none; }
+  :where(html[data-lecture="10"]) .reveal .controls[data-controls-layout] { position:fixed; top:auto; left:auto; bottom:8px; right:10px; z-index:31; }
+  :where(html[data-lecture="10"]) .reveal .slide-number { position:fixed; bottom:10px; left:10px; right:auto; font-size:17px; }
+  :where(html[data-lecture="10"]) .reveal .progress { position:fixed; bottom:92px; z-index:31; }
+}
+
+:where(html[data-lecture="10"]) .reveal .slides section[data-slide-id] { font-size:.8em; }
+:where(html[data-lecture="10"]) .reveal figure { margin:.2em 0; }
+:where(html[data-lecture="10"]) [data-slide-id="SL01"] .visual img { max-height:270px; }
+:where(html[data-lecture="10"]) [data-slide-id^="TK01"] table th:nth-child(1) { width:22%; }
+:where(html[data-lecture="10"]) [data-slide-id^="TK01"] table th:nth-child(2) { width:28%; }
+:where(html[data-lecture="10"]) [data-slide-id^="TK01"] td { padding:.15em .4em; }
+:where(html[data-lecture="10"]) [data-slide-id="TK01b"] table th:nth-child(1) { width:19%; }
+:where(html[data-lecture="10"]) [data-slide-id="TK01b"] table th:nth-child(2) { width:35%; }
+:where(html[data-lecture="10"]) .visual img { max-height:300px; object-fit:contain; }
+:where(html[data-lecture="10"]) .reveal .slides ul,
+:where(html[data-lecture="10"]) .reveal .slides ol { margin-top:.2em; margin-bottom:.2em; }
+@media screen and (max-width:760px) {
+  :where(html[data-lecture="10"]) .reveal .slides section[data-slide-id] { position:relative!important; top:0!important; left:0!important; transform:none!important; transition:none!important; width:100%!important; height:auto!important; min-height:calc(100dvh - 94px); font-size:22px!important; padding:22px 18px 38px!important; box-sizing:border-box; }
+  :where(html[data-lecture="10"]) .visual img { max-height:none; }
+  :where(html[data-lecture="10"]) .responsive,
+  :where(html[data-lecture="10"]) .grid2,
+  :where(html[data-lecture="10"]) .grid3 { grid-template-columns:1fr; }
+}
+@media screen and (min-width:761px) {
+  :where(html[data-lecture="10"]) .reveal .katex { white-space:nowrap; }
+  :where(html[data-lecture="10"]) [data-slide-id="KV10"] .responsive,
+  :where(html[data-lecture="10"]) [data-slide-id="SL12"] .responsive { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); }
+  :where(html[data-lecture="10"]) [data-slide-id="KV10"] .visual img,
+  :where(html[data-lecture="10"]) [data-slide-id="SL12"] .visual img { max-height:300px; }
+  :where(html[data-lecture="10"]) [data-slide-id="PP05"] .visual img { max-height:276px; }
+  :where(html[data-lecture="10"]) .reveal .slides section[data-slide-id] p { margin-top:.32em; margin-bottom:.32em; }
+  :where(html[data-lecture="10"]) .reveal .slides section[data-slide-id] .katex-display { margin:.3em 0; }
+}
+@media screen and (max-width:760px) {
+  :where(html[data-lecture="10"]) .reveal table.stack-table,
+  :where(html[data-lecture="10"]) .reveal table.stack-table tbody,
+  :where(html[data-lecture="10"]) .reveal table.stack-table tr,
+  :where(html[data-lecture="10"]) .reveal table.stack-table td { display:block; width:auto!important; min-width:0; }
+  :where(html[data-lecture="10"]) .reveal table.stack-table thead { display:none; }
+  :where(html[data-lecture="10"]) .reveal table.stack-table tr { border-top:2px solid #2f3e7a; padding:.3em 0; }
+  :where(html[data-lecture="10"]) .reveal table.stack-table td { border:0; padding:.12em .2em; text-align:left; }
+  :where(html[data-lecture="10"]) .reveal table.stack-table td[data-label]::before { content:attr(data-label) ": "; font-weight:700; color:#2f3e7a; }
+  :where(html[data-lecture="10"]) .table-scroll:has(> table.stack-table) { overflow-x:visible; }
+}
+:where(html[data-lecture="10"]) .visual img.only-narrow { display:none; }
+@media screen and (max-width:760px) {
+  :where(html[data-lecture="10"]) .visual img.only-wide { display:none; }
+  :where(html[data-lecture="10"]) .visual img.only-narrow { display:block; max-width:340px; margin:0 auto; }
+  :where(html[data-lecture="10"]) [data-slide-id="SL01"] .visual img.only-narrow { max-height:none; }
+  :where(html[data-lecture="10"]) [data-slide-id="SL09"] .reveal table td,
+  :where(html[data-lecture="10"]) [data-slide-id="SL09"] table td,
+  :where(html[data-lecture="10"]) [data-slide-id="SL09"] table th { min-width:0; padding:.2em .22em; }
+  :where(html[data-lecture="10"]) [data-slide-id="SL09"] table th:nth-child(5),
+  :where(html[data-lecture="10"]) [data-slide-id="SL09"] table td:nth-child(5) { display:none; }
+}

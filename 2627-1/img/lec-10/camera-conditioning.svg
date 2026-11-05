@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 252" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif">
+  <title id="t">Xác suất có điều kiện khi biết có cảnh báo</title>
+  <desc id="d">Lưới bốn ô của camera, hàng H và H mũ c, cột C và C mũ c. Cột C được giữ, viền liền đậm, gồm ô có người với trọng số 0,18 và ô không có người với trọng số 0,08; mỗi ô ghi chia cho 0,26. Cột C mũ c bị gạch chéo, chữ mờ, ghi 0,02 và 0,72.</desc>
+  <defs>
+    <pattern id="cross" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 0L14 14M14 0L0 14" stroke="#aaa" stroke-width="1.5"/></pattern>
+  </defs>
+  <rect width="420" height="252" fill="#ffffff"/>
+  <g font-size="21" font-weight="700" text-anchor="middle">
+    <text x="153" y="27" fill="#222">C: giữ</text><text x="328" y="27" fill="#777">Cᶜ: bỏ</text>
+    <text x="30" y="99" fill="#222">H</text><text x="30" y="194" fill="#222">Hᶜ</text>
+  </g>
+  <rect x="66" y="42" width="175" height="95" fill="#eef2fb" stroke="#2f3e7a" stroke-width="2"/>
+  <rect x="66" y="137" width="175" height="95" fill="#f7efe6" stroke="#2f3e7a" stroke-width="2"/>
+  <rect x="241" y="42" width="175" height="190" fill="url(#cross)" stroke="#aaa" stroke-width="1.5"/>
+  <rect x="62" y="38" width="183" height="198" fill="none" stroke="#2f3e7a" stroke-width="5"/>
+  <g text-anchor="middle" fill="#222">
+    <text x="153" y="84" font-size="24" font-weight="700">0,18</text>
+    <text x="153" y="115" font-size="20">÷ 0,26</text>
+    <text x="153" y="179" font-size="24" font-weight="700">0,08</text>
+    <text x="153" y="210" font-size="20">÷ 0,26</text>
+  </g>
+  <g font-size="21" text-anchor="middle">
+    <rect x="293" y="76" width="70" height="30" rx="5" fill="#ffffff"/>
+    <text x="328" y="98" fill="#777">0,02</text>
+    <rect x="293" y="171" width="70" height="30" rx="5" fill="#ffffff"/>
+    <text x="328" y="193" fill="#777">0,72</text>
+  </g>
+</svg>
