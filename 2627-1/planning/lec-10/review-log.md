@@ -605,7 +605,7 @@ Lỗi còn lại: chỉ mức nhẹ, đã ghi "chấp nhận giữ" (nút điề
 
 ## Rà tập trung lần ba trên trạng thái cuối — báo cáo đầy đủ (rv-storyline, commit 7304805)
 
-Tác tử rv-storyline (general-purpose, opus, high). Bản đối chiếu: `git show 7304805:2627-1/lecture-10-xac-suat-bieu-dien-bat-dinh.html`, trùng từng byte với cây làm việc và HEAD hiện tại (deck không đổi sau 7304805). 77 trang, thứ tự như lượt rà lại thứ hai; 7 section ngoài `mach-1`…`mach-7`, số và tên khớp "Nội dung". Kết luận: **đạt**; không phát hiện `chặn bàn giao`, `nghiêm trọng`, `trung bình`.
+Tác tử rv-storyline (general-purpose, opus, high). Bản đối chiếu: `git show 7304805:2627-1/lecture-10-xac-suat-bieu-dien-bat-dinh.html`, trùng từng byte với cây làm việc và HEAD hiện tại (deck không đổi sau 7304805) [đúng tại thời điểm ghi; sau đó commit d13265e sửa 7 dòng bổ sung giả thiết, xem mục "Hoàn tất sau d13265e"]. 77 trang, thứ tự như lượt rà lại thứ hai; 7 section ngoài `mach-1`…`mach-7`, số và tên khớp "Nội dung". Kết luận: **đạt**; không phát hiện `chặn bàn giao`, `nghiêm trọng`, `trung bình`.
 
 | Mạch | Câu hỏi trung tâm | Kết quả | Bằng chứng |
 |---|---|---|---|
@@ -626,3 +626,17 @@ Về hai ngoại lệ cấu trúc (điều phối viên): (i) MD02 "Nội dung" 
 ## Quyết định điều phối viên sau rà soát các trang chứng minh
 
 Chấp nhận: rà soát độc lập các trang chứng minh (proof-audit) kết luận ĐẠT, deck chặt chẽ hơn Murphy ở mọi kết quả; phát hiện trung bình SL04 và các mục nhẹ đã sửa, rà lại ĐẠT. Điều phối viên đã đọc diff deck (7 dòng: SL04, BY08, SL07, KV05 trên mặt trang; ghi chú KV07, KV08, KV11), xem ảnh SL04 ở 1600×900 và 390×844, chạy deck_check: 77 trang, console 0, pageerror 0, request hỏng 0, 0 OVERFLOW, 0 KATEX, 0 NARROW-H; cờ duy nhất MD02 LINES (ngoại lệ đã ghi). Bàn giao.
+
+## Hoàn tất sau d13265e (2026-11-05)
+
+**Người sửa d13265e.** Bảy dòng của deck (SL04, BY08, SL07, KV05 trên mặt trang; ghi chú KV07, KV08, KV11) do tác tử editor-lec10 (Agent, general-purpose, model opus, effort medium; cùng tác tử của hai đợt chỉnh sửa, tiếp tục qua SendMessage) áp dụng theo rà soát proof-audit. Chuỗi kiểm cho sửa trang: editor → rà lại toán (proof-audit: đạt) → rà lại mạch (dưới) → kiểm trình duyệt (dưới) → nhật ký.
+
+**Rà lại mạch.** rv-storyline (general-purpose, opus, high), phạm vi các trang đổi ±2 và ranh giới mạch: **đạt**. Cả bảy trang đổi nằm giữa mạch; vai và vào–ra không đổi (BY08: chuẩn hóa của mạch 3, vào BY05–BY07, ra BY09–BY10; KV05: dao động của mạch 5; SL04: chuẩn hóa của mạch 6, nối SL03 rõ hơn; SL07: dùng giả thiết của SL05; ghi chú KV07, KV08, KV11 chỉ đổi phạm vi/nguồn). Hai điểm nhẹ (lặp ý giữa giả thiết và dòng chứng minh ở SL04; câu phạm vi tuyến tính ở ghi chú KV07 trùng ghi chú KV02): **bác bỏ**, lý do: cả hai nêu giả thiết hoặc phạm vi toán học, không sai, giữ để mỗi trang tự đủ.
+
+**Kiểm định cuối, lượt 3** (final-lec10, general-purpose, opus, high), trên HEAD d13265e: **ĐẠT** cả 9 hạng mục. deck_check --shots: 77 trang, console 0, pageerror 0, request hỏng 0, 0 OVERFLOW/KATEX/NARROW-H/FONT, cờ duy nhất MD02 LINES (ngoại lệ); đã xem 77 ảnh 1600×900 và ảnh màn hẹp các trang đổi; trang đổi kết thúc trước đáy khung (SL04 843/882 px, KV05 845/882); bàn phím 77/77; storyboard và outline 77 mục khớp; "Đáp án" đếm 0 trong deck, lecture-note.md, exercises.md của Bài 10; viewer và liên kết L2041 đạt; hồi quy CSS Bài 05, 07 SAME; sync --check OK; HEAD = origin/main. Mục trung bình duy nhất (nhật ký chưa ghi người sửa d13265e và rà lại mạch) đã xử lý trong mục này.
+
+**Xác nhận của người dùng (2026-11-05, câu hỏi trực tiếp trong phiên).**
+- Thư mục đích: "2626-1/index.html" trong yêu cầu là `2627-1/index.html` (người dùng chọn "Đúng, 2627-1").
+- Ngoại lệ: trang "Nội dung" 7 dòng (bảy mạch) và tổng 77 trang (đích nội bộ 70 ± 6; quy định học phần không có trần số trang): người dùng chọn "Chấp nhận".
+
+Điều phối viên ký duyệt bàn giao Bài 10.
