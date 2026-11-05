@@ -785,3 +785,11 @@ Kiểm trực tiếp bằng pdftotext trên `murphy2022probabilistic-draft.pdf` 
 | Xác nhận người dùng | thư mục 2627-1; chấp nhận "Nội dung" 7 dòng và 77 trang |
 
 Bàn giao Bài 10: hoàn tất.
+
+## Kiểm toàn bộ trích dẫn Murphy trong deck (điều phối viên, HEAD a0f03c4)
+
+Script (scratchpad/murphycheck/chk.py) trích mọi đoạn "Murphy …" trong deck (mặt trang và ghi chú) của 77 trang, tách số mục § và số công thức, và đối chiếu với văn bản `pdftotext -layout` trang PDF 31–140 của `murphy2022probabilistic-draft.pdf` (tiêu đề mục và nhãn công thức). Kết quả: **64 trích dẫn, 31 mục/công thức khác nhau, 0 không tìm thấy.**
+
+Mục và trang PDF: §2.1 (63); §2.1.3, §2.1.3.1 (64); §2.1.3.4, §2.1.3.6, §2.2, §2.2.1 (65); §2.2.2, §2.2.2.1 (66); §2.2.3 (68); §2.2.4 (69); §2.2.5, §2.2.5.1 (70); §2.2.5.4 (71); §2.3 (74); §2.3.1 (76); §2.4.1 (79); §2.5.1 (83); §2.6.1 (87); §2.6.2 (88); §2.8.4 (99); §3.1.1 (107); §3.1.2 (108); §3.1.3 (109); §3.2.1 (111); §4.2 (137). Công thức: (2.28) 70; (2.41) 71; (2.44) 72; (2.165), (2.167) 100.
+
+§4.2 (Maximum likelihood estimation) chỉ ở ghi chú diễn giả TK05 như tài liệu đọc cho Bài 11; mặt trang không xem trước bài sau. Cùng với bảng 14 kết quả của proof-audit và 12 trích dẫn đã kiểm nội dung trước đó, mọi trích dẫn Murphy của deck đã được đối chiếu.
