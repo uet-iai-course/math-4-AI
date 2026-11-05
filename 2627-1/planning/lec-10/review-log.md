@@ -640,3 +640,132 @@ Chấp nhận: rà soát độc lập các trang chứng minh (proof-audit) kế
 - Ngoại lệ: trang "Nội dung" 7 dòng (bảy mạch) và tổng 77 trang (đích nội bộ 70 ± 6; quy định học phần không có trần số trang): người dùng chọn "Chấp nhận".
 
 Điều phối viên ký duyệt bàn giao Bài 10.
+
+## Rà tập trung lượt cuối riêng, đủ bảy mạch (rv-storyline, HEAD d9d29bf, deck ở d13265e)
+
+Tác tử rv-storyline (general-purpose, opus, high). Đọc lại toàn bộ mặt trang và ghi chú của 77 trang (deck HEAD trùng byte bản d13265e). Kiểm cấp bài đạt: 7 section `mach-1`…`mach-7`, `hashOneBasedIndex:true`, số/tên khớp MD02; dòng dẫn ≤25 âm tiết; ghi chú trang tiêu đề mạch ≤100 âm tiết (MD00 89, MH00 77, BY00 87, PP00 80, KV00 81, SL00 79, TK00 65); câu hỏi mở đầu trả lời trên mặt trang (198/437 BY10, SL09; 236/437 SL10, TK03; 1/6 SL12, TK01b, TK03); 9 trang "Ví dụ:" đều kết bằng "Diễn giải:". **Kết luận: cả bảy mạch đạt; toàn bài đạt.**
+
+### Mạch 1 · Mở đầu — đạt
+Câu hỏi: Một sản phẩm bị cảnh báo khi thiếu hồ sơ nguồn hàng có xác suất lỗi bao nhiêu, nguồn hàng nào khả dĩ hơn, và nên xử lý thế nào.
+
+| trang | chức năng thực tế | phần việc | đầu vào | đầu ra | đề xuất |
+|---|---|---|---|---|---|
+| MD00 | bìa; ghi chú nêu luận đề Bayes để cập nhật, lấy biên để loại biến chưa quan sát | khung bài | Bài 05c (ghi chú) | hai công cụ | giữ |
+| MD01 | sáu mục tiêu | đo lường | MD00 | mục tiêu 1–6 | giữ |
+| MD02 | danh sách 7 mạch | bản đồ bài | MD01 | số, tên khớp `#/N` | giữ (ngoại lệ 7 dòng, người dùng chấp nhận) |
+| MD03 | bài toán bằng số, "Câu hỏi:" | câu hỏi trung tâm | — | tham số 0,6/0,4; 0,02/0,08; 0,9; 0,05 | giữ |
+| MD04 | ký hiệu, giả thiết, ba đầu ra, vai camera | khung chung | MD03 | $S,Y,A$; $\mathbb P(Y=1\mid A=1)$, $\mathbb P(S=b\mid A=1)$, quyết định | giữ |
+
+### Mạch 2 · Mô hình xác suất — đạt
+Câu hỏi: Gán xác suất cho các kết quả của camera thế nào để mọi phép tính trên biến cố nhất quán.
+
+| trang | chức năng thực tế | phần việc | đầu vào | đầu ra | đề xuất |
+|---|---|---|---|---|---|
+| MH00 | tiêu đề mạch, dòng dẫn nêu câu hỏi | nhu cầu | MD03–MD04 | nhiệm vụ | giữ |
+| MH01 | "Nhu cầu:", bốn kết quả | kết quả | MH00 | danh sách | giữ |
+| MH02 | "Trực quan." phát biểu là tập ô | biến cố | MH01 | $H$, $C$, cảnh báo sai, bỏ sót | giữ |
+| MH03 | định nghĩa thí nghiệm, không gian mẫu, biến cố | biến cố | MH02 | $\Omega$, $E$ | giữ |
+| MH04 | "Trực quan." tỉ lệ khung hình; định nghĩa không gian xác suất | tiên đề | MH03 | (P1)–(P3) | giữ |
+| MH05 | bổ đề, bảng phát biểu–chứng minh | quy tắc tính | MH04 | cộng tính hữu hạn, đơn điệu | giữ |
+| MH06 | mệnh đề mô hình hữu hạn | dựng mô hình | MH05 | bảng trọng số | giữ |
+| MH09 | ví dụ bảng camera | trả lời câu hỏi cho camera | MH06 | 0,28; 8% cảnh báo sai, 2% bỏ sót | giữ |
+| MH07 | nhu cầu, trực quan (0,46 so với 0,28), mệnh đề phần bù và hợp | quy tắc tính | MH09 | hai công thức | giữ |
+| MH08 | chứng minh | quy tắc tính | MH05, MH07 | — | giữ |
+| MH10 | bài tập bảng sản phẩm, "Lời giải:" | đối tượng thứ hai | MH07 | 0,044; 0,0874; 0,0522 | giữ |
+
+### Mạch 3 · Xác suất có điều kiện và định lý Bayes — đạt
+Câu hỏi: Xác suất sản phẩm lỗi sau một cảnh báo, khi thiếu hồ sơ nguồn hàng, bằng bao nhiêu.
+
+| trang | chức năng thực tế | phần việc | đầu vào | đầu ra | đề xuất |
+|---|---|---|---|---|---|
+| BY00 | tiêu đề mạch | nhu cầu, phân rã | MH10 | nhiệm vụ | giữ |
+| BY01 | "Nhu cầu:", "Trực quan." chuẩn hóa | chuẩn hóa | 0,18; 0,26 | phép chia trong cột $C$ | giữ |
+| BY02 | định nghĩa xác suất có điều kiện | công cụ | BY01 | $\mathbb P(\cdot\mid F)$ | giữ |
+| BY03 | ví dụ, "Câu hỏi:" trước, lời giải fragment | hai chiều điều kiện | BY02 | 9/13 khác 0,90 | giữ |
+| BY04 | cây nguồn hàng; thiếu hồ sơ | tiên nghiệm | MH10 | 0,044 | giữ |
+| BY05 | quy tắc nhân, quy tắc chuỗi | phép nhân | BY04 | tích dọc đường | giữ |
+| BY06 | toàn phần, Bayes | kết quả trung tâm | BY05 | công thức | giữ |
+| BY07 | chứng minh toàn phần | mẫu số | BY06 | — | giữ |
+| BY08 | chứng minh Bayes ($\mathbb P(E)>0$, $\mathbb P(B_k)>0$) | chuẩn hóa | BY06, BY07 | — | giữ |
+| BY09 | định nghĩa tiên nghiệm, hợp lý, hậu nghiệm; ∝ | phân rã | BY06 | thuật ngữ | giữ |
+| BY10 | ví dụ, phân hoạch theo $Y$ | trả lời câu hỏi mạch | BY04, BY09 | 198/437 | giữ |
+| BY11 | bài tập camera tuyến vắng | đảo điều kiện | BY03, BY06 | 1/3 | giữ |
+
+### Mạch 4 · Biến ngẫu nhiên, phân phối và độc lập — đạt
+Câu hỏi: Phân phối của nhãn, nguồn hàng, tín hiệu đo là gì và các biến được ghép theo quy tắc nào.
+
+| trang | chức năng thực tế | phần việc | đầu vào | đầu ra | đề xuất |
+|---|---|---|---|---|---|
+| PP00 | tiêu đề mạch; ghi chú nêu giới hạn của mạch 3 | nhu cầu | BY10 | nhiệm vụ | giữ |
+| PP01 | "Nhu cầu:" (gồm giá trị đo); $S,Y,A$ là hàm | biến | PP00 | ba hàm | giữ |
+| PP02 | định nghĩa biến, phân phối, chỉ thị, phân loại, vector | phân phối | PP01 | $\mathbf 1_E$ | giữ |
+| PP03 | hàm khối; nhu cầu, trực quan, định nghĩa CDF | phân phối của nhãn | PP02 | $p_X$, $F_X$ | giữ |
+| PP04 | ví dụ ba mức | nhãn có thứ tự | PP03 | $F_X$ bậc thang | giữ |
+| PP05 | nhu cầu tín hiệu đo, trực quan, định nghĩa mật độ | tín hiệu đo | PP03 | $f_X$ | giữ |
+| PP06 | bài tập mật độ đều | tín hiệu đo | PP05 | 0,4 | giữ |
+| PP07 | nhu cầu; Bernoulli, phân loại | phân phối nhãn | PP03 | $\theta$, $\boldsymbol\pi$ | giữ |
+| PP08 | nhu cầu, trực quan; Gaussian một chiều | tín hiệu đo | PP05 | $\mathcal N(\mu,\sigma^2)$ | giữ |
+| PP09 | nhu cầu, trực quan, định nghĩa độc lập | quy tắc ghép | BY05 | dạng tích | giữ |
+| PP10 | trực quan, độc lập có điều kiện; giả thiết $A\perp S\mid Y$ | quy tắc ghép | PP09 | giả thiết | giữ |
+| PP12 | dạng tương đương (Mệnh đề 10.17) | dạng dùng trong phép nhân | PP10 | bỏ điều kiện $S$ | giữ |
+| PP11 | ví dụ cảnh báo và nguồn hàng | giới hạn của quy tắc | PP12 | 0,067; 0,118; 0,0874 | giữ |
+| PP13 | bài tập độc lập trước và sau quan sát | giới hạn | PP10 | 1/3; 0 | giữ |
+
+### Mạch 5 · Kỳ vọng, phương sai và hiệp phương sai — đạt
+Câu hỏi: Những con số nào tóm tắt phân phối của chi phí và nhãn lỗi: kỳ vọng, phương sai, hiệp phương sai, trung bình theo nhóm.
+
+| trang | chức năng thực tế | phần việc | đầu vào | đầu ra | đề xuất |
+|---|---|---|---|---|---|
+| KV00 | tiêu đề mạch | nhu cầu | PP13 | nhiệm vụ | giữ |
+| KV01 | nhu cầu, trực quan, định nghĩa kỳ vọng | kỳ vọng | PP03, PP05 | $\mathbb E$ | giữ |
+| KV02 | kỳ vọng của hàm, tuyến tính, chỉ thị | kỳ vọng của hàm | KV01 | $\mathbb E[\mathbf 1_E]=\mathbb P(E)$ | giữ |
+| KV03 | chứng minh kỳ vọng của hàm | — | KV02 | — | giữ |
+| KV03b | chứng minh tuyến tính | — | KV03 | — | giữ |
+| KV04 | ví dụ chi phí | chi phí | KV02, MH10 | 0,0698 | giữ |
+| KV05 | nhu cầu, trực quan, định nghĩa, mệnh đề phương sai | dao động | KV01, KV02 | Var; 0 và 1 | giữ |
+| KV06 | chứng minh | dao động | KV05 | — | giữ |
+| KV07 | nhu cầu tổng số lỗi; Cov; Var(X+Z) | tổng số lỗi | KV05 | Cov | giữ |
+| KV08 | không tương quan; độc lập ⇒ không tương quan | tổng số lỗi | PP09, KV07 | Cov = 0 | giữ |
+| KV09 | chứng minh | — | KV08 | — | giữ |
+| KV10 | phản ví dụ | giới hạn tóm tắt | KV08 | không tương quan nhưng phụ thuộc | giữ |
+| KV11 | nhu cầu trung bình nhóm; kỳ vọng toàn phần | trung bình theo nhóm | BY04, KV01 | định lý | giữ |
+| KV12 | chứng minh | trung bình theo nhóm | KV11 | — | giữ |
+| KV13 | bài tập $\mathbb E[Y]$, Var(Y) | trung bình nhóm, dao động | KV11, KV05 | 0,044; 0,042064 | giữ |
+
+### Mạch 6 · Phân phối đồng thời và phép lấy biên — đạt
+Câu hỏi: Sau cảnh báo, hậu nghiệm của nguồn hàng và của nhãn lỗi theo từng nguồn, trong một mô hình chung của $(S,Y,A)$, bằng bao nhiêu và quyết định là gì.
+
+| trang | chức năng thực tế | phần việc | đầu vào | đầu ra | đề xuất |
+|---|---|---|---|---|---|
+| SL00 | tiêu đề mạch | nhu cầu, phân rã | KV13, PP12, BY10 | nhiệm vụ | giữ |
+| SL01 | nhu cầu hai đại lượng mới; chuỗi sinh dữ liệu | phân phối đồng thời | PP10, BY10 | mô hình bộ ba | giữ |
+| SL02 | định nghĩa đồng thời, biên | phân phối đồng thời | SL01 | $p_{X,Z}$, $f_{X,Z}$ | giữ |
+| SL03 | mệnh đề lấy biên; nối cây nguồn hàng | lấy biên | SL02, BY04 | quy tắc tổng | giữ |
+| SL04 | có điều kiện từ đồng thời ($f_Z$ tích phân biên) | chuẩn hóa | SL03, BY02 | $p_{X\mid Z}$, $f_{X\mid Z}$ | giữ |
+| SL05 | phân tích nhân tử, hậu nghiệm | toàn bộ phân rã | PP12, SL03–SL04 | $q(s,y)$, công thức | giữ |
+| SL06 | chứng minh nhân tử | phân phối đồng thời | BY05, PP12 | — | giữ |
+| SL07 | chứng minh lấy biên, chuẩn hóa ($p_A(a')>0$) | lấy biên → chuẩn hóa | SL03–SL05 | — | giữ |
+| SL08 | thuật toán | phương pháp | SL05 | các bước | giữ |
+| SL09 | ví dụ bảng 8 ô | hậu nghiệm lỗi khi thiếu hồ sơ | SL08 | 198/437, khớp Bayes | giữ |
+| SL10 | hậu nghiệm nguồn hàng | nhu cầu riêng của mạch | SL09 | 236/437; 18/67; 36/59 | giữ |
+| SL11 | bài tập $A=0$ | kiểm thuật toán | SL09 | 22/4563 | giữ |
+| SL12 | quyết định theo hậu nghiệm và chi phí; bộ phân loại xác suất | chi phí | SL09, SL11, KV04 | ngưỡng 1/6 | giữ |
+
+### Mạch 7 · Tổng kết và chuyển tiếp — đạt
+Câu hỏi: Kết quả nào dùng được dưới giả thiết nào.
+
+| trang | chức năng thực tế | phần việc | đầu vào | đầu ra | đề xuất |
+|---|---|---|---|---|---|
+| TK00 | tiêu đề mạch | nhu cầu | SL12 | nhiệm vụ | giữ |
+| TK01 | bảng 5 hàng (phần bù và hợp; nhân; toàn phần và Bayes; lấy biên; nhân tử) | kết quả và giả thiết | mạch 2, 3, 6 | bảng | giữ |
+| TK01b | bảng 6 hàng (mật độ; tuyến tính; phương sai; không tương quan; kỳ vọng toàn phần; quyết định) | kết quả và giả thiết | mạch 4–6 | bảng | giữ |
+| TK02 | đề tổng hợp, câu (c) trọng tâm | tiên nghiệm đổi | toàn bài | — | giữ |
+| TK03 | lời giải 198/437, 236/437, 2/13, 1/13 | quyết định có điều kiện | TK02 | trả lời câu hỏi mở đầu | giữ |
+| TK04 | câu hỏi tự kiểm tra | giả thiết | toàn bài | — | giữ |
+| TK05 | tài liệu đọc; nhu cầu chọn tham số từ dữ liệu | giới hạn | toàn bài | nhu cầu Bài 11 bằng lời | giữ |
+
+Phát hiện: không `chặn bàn giao`, `nghiêm trọng`, `trung bình`. Ba mục nhẹ: (1) SL04 lặp ý giữa giả thiết và dòng chứng minh; (2) ghi chú KV07 trùng ý ghi chú KV02 — cả hai **bác bỏ** (đã quyết ở mục "Hoàn tất sau d13265e"); (3) outline.md L191 — **bác bỏ**: đã sửa ở 194de3b (điều phối viên kiểm L191 hiện ghi "tính trực tiếp từ bốn trọng số; … nhu cầu và trực quan của MH07"). Quyết định điều phối viên: **chấp nhận** báo cáo.
+
+## Điều phối viên tự kiểm trích dẫn Murphy của các trang chứng minh
+
+Kiểm trực tiếp bằng pdftotext trên `murphy2022probabilistic-draft.pdf` (trang PDF = trang in + 30), 12/12 khớp: (2.17), (2.18) PDF 68; (2.20), (2.23) PDF 69, có câu "This is called the product rule. By extending the product rule to D variables, we get the chain rule of probability"; (2.27), (2.28) PDF 70; (2.41) PDF 71; (2.42)–(2.43) PDF 72 (chứng minh kỳ vọng toàn phần cho biến rời rạc); (2.51), (2.53) PDF 75; (2.167) PDF 100 ($\mathbb V[x_1+x_2]=\mathbb V[x_1]+\mathbb V[x_2]+2\operatorname{Cov}[x_1,x_2]$); "Uncorrelated does not imply independent" PDF 109. Khớp với bảng 14 kết quả của proof-audit.
