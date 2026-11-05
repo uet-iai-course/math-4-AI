@@ -537,3 +537,21 @@ Stop hook của mục tiêu nêu bốn điểm; điều phối viên xử lý nh
 Bảng rà tập trung lần ba (tóm tắt): mạch 1 đạt (MD04 "Đầu ra:" đủ ba đại lượng); mạch 2 đạt (câu hỏi ở MH00, MH01; MH07 không trộn ví dụ); mạch 3 đạt (BY04 gọi tên thiếu hồ sơ; BY10 trả lời 198/437); mạch 4 đạt (PP10 → PP12 → PP11 → PP13 không dùng kết quả trước khi phát biểu); mạch 5 đạt (KV07 → KV08 khép bằng tổng số lỗi; đầu ra 0,0698 vào SL12); mạch 6 đạt (đóng góp riêng: hậu nghiệm nguồn hàng 236/437, khớp Bayes ở SL09; SL12 quyết định); mạch 7 đạt (TK01 năm hàng, TK01b sáu hàng, không lộ đáp số).
 
 Trạng thái bàn giao: mọi phát hiện `chặn bàn giao` và `nghiêm trọng` đã sửa và được rà lại; bảy mạch đạt rà tập trung trên bản cuối; outline, storyboard và review-log khớp deck; kiểm tra trình duyệt 1600×900 và 390×844 đạt; học liệu đồng bộ; index.html liên kết Bài 10. Điều phối viên ký duyệt.
+
+## Kiểm định cuối, lượt 2 (2026-11-05, HEAD 194de3b; deck ở 7304805)
+
+Tác tử final-lec10 (general-purpose, opus, high, tiếp tục qua SendMessage), chỉ đọc, chạy lại đủ 9 hạng mục trên HEAD sau khi sửa liên kết lecture-note.md L2041 và sửa `deck_check.py` (so với khung `.reveal .slides`). Kết luận: **ĐẠT để bàn giao**. Quyết định điều phối viên: **chấp nhận**.
+
+| Hạng mục | Kết quả | Bằng chứng chính |
+|---|---|---|
+| 1. Kỹ thuật | đạt | 84 section (7 + 77), 77 id không trùng; 21 đường dẫn tương đối, tồn tại; config và plugin đúng; không style/dense/raster/http; 77/77 aside.notes; 10/10 SVG hợp lệ |
+| 2. deck_check mới --shots | đạt | 77 trang, console 0, pageerror 0, request hỏng 0; 0 OVERFLOW (PP08 = 0), 0 KATEX, 0 NARROW-H, 0 FONT; cờ duy nhất MD02 LINES (ngoại lệ); đã xem 77 ảnh 1600×900 và các trang dày ở 390×844 |
+| 3. Trang tiêu đề mạch | đạt | `#/1`…`#/7` đúng ở hai kích thước; khớp "Nội dung" |
+| 4. Bàn phím | đạt | Space, →/↓, ↑, ←, Home, End; 77/77 trang |
+| 5. Planning | đạt | storyboard, outline: 77 mục, 0 khác biệt; review-log không còn mục mở |
+| 6. Index và viewer | đạt | thẻ Bài 10 ba liên kết đúng; liên kết L2041 mở exercises với &deck=; mọi neo và liên kết nội bộ của note và exercises trả 200; viewer Bài 11 mở bằng doc |
+| 7. Hồi quy CSS | đạt | 99 selector đều data-lecture="10"; computed style Bài 05, 07 không đổi; deck_check mới cho Bài 05, 07 chỉ có cờ có từ trước |
+| 8. Học liệu và git | đạt | sync --check OK (33); git diff --check sạch; HEAD = origin/main (194de3b) |
+| 9. Câu hỏi mở đầu | đạt | 198/437; 236/437; ngưỡng 1/6 và quyết định; 2/13 và 1/13 ở TK03 |
+
+Lỗi còn lại: chỉ mức nhẹ, đã ghi "chấp nhận giữ" (nút điều hướng chạm mép ở MH07, MH10, SL12; cảnh báo KaTeX chữ tiếng Việt trong `\text{}` của học liệu; MD02 7 dòng). Điều phối viên ký duyệt bàn giao.
