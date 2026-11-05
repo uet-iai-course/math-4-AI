@@ -188,7 +188,7 @@ P8 (Mệnh đề 10.32, phần rời rạc) chỉ có một quan hệ (cộng t�
 |---|---|---|
 | MH01 | Các kết quả có thể của một khung hình là gì | Bốn tổ hợp tình trạng × phản hồi |
 | MH02 | Phát biểu "cảnh báo sai", "bỏ sót" thành tập nào | Lưới 2×2 |
-| MH09 | $\mathbb P(H\cup C)$ tính trực tiếp bằng bao nhiêu và vì sao khác $\mathbb P(H)+\mathbb P(C)$; xác suất phản hồi sai | Bảng đầy đủ (lần duy nhất) |
+| MH09 | $\mathbb P(H\cup C)$ tính trực tiếp từ bốn trọng số; xác suất phản hồi sai (chênh lệch với $\mathbb P(H)+\mathbb P(C)$ là nhu cầu và trực quan của MH07) | Bảng đầy đủ (lần duy nhất) |
 | MH07 | Ô chung bị đếm hai lần ($0{,}46$ so với $0{,}28$) | $0{,}46$, $0{,}28$ |
 | BY01 | Trong các khung hình có cảnh báo, tỉ lệ có người bằng bao nhiêu | $0{,}18$, $0{,}08$, $\mathbb P(C)=0{,}26$ |
 | BY03 | $\mathbb P(H\mid C)$ và $\mathbb P(C\mid H)$ có bằng nhau không | $\mathbb P(H\cap C)=0{,}18$, $\mathbb P(H)=0{,}20$, $\mathbb P(C)=0{,}26$, $\mathbb P(H^c\cap C)=0{,}08$ |

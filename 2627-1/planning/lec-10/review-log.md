@@ -522,3 +522,18 @@ Phát hiện ghi theo bảng `mức độ | trang chiếu | vấn đề | bằng
 
 | Mức độ | Trang chiếu | Vấn đề | Bằng chứng | Đề xuất sửa | Quyết định | Lý do |
 |---|---|---|---|---|---|---|
+
+## Xác nhận cuối của điều phối viên (2026-11-05, sau commit 7304805)
+
+Stop hook của mục tiêu nêu bốn điểm; điều phối viên xử lý như sau.
+
+| Điểm | Xử lý | Bằng chứng |
+|---|---|---|
+| Trang "Nội dung" (MD02) có 7 dòng | Giữ: ngoại lệ có chủ đích đã ghi trong storyboard (trang liệt kê đủ bảy mạch, AGENTS.md cho phép vượt trần khi có ngoại lệ ghi lý do; tiền lệ trang "Nội dung" P02b của Bài 07 cũng 7 dòng). | deck_check: MD02 44 âm tiết, 7 dòng; lecture-07 P02b 7 dòng |
+| 77 trang so với đích 70 ± 6 | Không phải quy định học phần: đích nội bộ của điều phối viên (Q-H). Một trang vượt do tách bảng tổng kết (TK01, TK01b); quyết định "chấp nhận" đã ghi ở mục Soạn HTML. | mục "Soạn HTML", quyết định điều phối |
+| Cờ OVERFLOW ở PP08 | Báo nhầm của công cụ: `deck_check.py` so phần tử với khung `section` (cao theo nội dung khi `center:false`) thay vì khung trang. Đã sửa công cụ (`tools/courses/math-4-AI/2627-1/scripts/deck_check.py`, so với hộp `.reveal .slides`). Chạy lại trên bản commit 7304805: 77 trang, console 0, pageerror 0, request hỏng 0, 0 OVERFLOW, 0 KATEX, 0 NARROW-H, 0 FONT; cờ duy nhất MD02 LINES (ngoại lệ). Bài 07 chạy cùng công cụ: không có OVERFLOW (các cờ còn lại có từ trước). | scratchpad m-final-lecture-10…, m-final-lecture-07… |
+| Rà tập trung trên trạng thái cuối | Tác tử rv-storyline (general-purpose, opus, high, tiếp tục qua SendMessage) chạy rà tập trung bảy mạch trên bản commit 7304805 (trùng byte với cây làm việc): cả bảy mạch **đạt**; N1–N9 đã sửa; không có phát hiện `chặn bàn giao`, `nghiêm trọng`, `trung bình`. Một mục nhẹ: outline.md L191 (MH09) — đã sửa trong lượt này. Quyết định điều phối viên: **chấp nhận**. | báo cáo rv-storyline lần ba |
+
+Bảng rà tập trung lần ba (tóm tắt): mạch 1 đạt (MD04 "Đầu ra:" đủ ba đại lượng); mạch 2 đạt (câu hỏi ở MH00, MH01; MH07 không trộn ví dụ); mạch 3 đạt (BY04 gọi tên thiếu hồ sơ; BY10 trả lời 198/437); mạch 4 đạt (PP10 → PP12 → PP11 → PP13 không dùng kết quả trước khi phát biểu); mạch 5 đạt (KV07 → KV08 khép bằng tổng số lỗi; đầu ra 0,0698 vào SL12); mạch 6 đạt (đóng góp riêng: hậu nghiệm nguồn hàng 236/437, khớp Bayes ở SL09; SL12 quyết định); mạch 7 đạt (TK01 năm hàng, TK01b sáu hàng, không lộ đáp số).
+
+Trạng thái bàn giao: mọi phát hiện `chặn bàn giao` và `nghiêm trọng` đã sửa và được rà lại; bảy mạch đạt rà tập trung trên bản cuối; outline, storyboard và review-log khớp deck; kiểm tra trình duyệt 1600×900 và 390×844 đạt; học liệu đồng bộ; index.html liên kết Bài 10. Điều phối viên ký duyệt.
