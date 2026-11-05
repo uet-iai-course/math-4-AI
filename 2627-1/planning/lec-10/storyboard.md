@@ -935,6 +935,16 @@ CSS (chỉ phạm vi Bài 10): `white-space:nowrap` cho `.katex` khi `min-width:
 | TK04 | không khung |
 | ghi chú MD00, MH00, BY00, PP00, KV00, SL00, TK00, MH04, PP08, SL01, SL12, BY10, KV01, KV07, KV08 | thống nhất "phần"; rút câu bên lề; luật số lớn "khi $n\to\infty$"; KV08 dẫn Mệnh đề 10.26 |
 
+### Sửa theo rà soát độc lập các trang chứng minh (2026-11-05)
+
+| Trang | Thay đổi (`sửa`) |
+|---|---|
+| BY08 | căn cứ: "thứ hai: quy tắc nhân, dùng $\mathbb P(B_k)>0$" |
+| KV05 | "Mệnh đề. Với $X$ như trên, $\alpha,\beta\in\mathbb R$:" |
+| SL04 | trường hợp mật độ: $f_Z(z)=\int f_{X,Z}(x,z)\,dx\in(0,\infty)$ |
+| SL07 | bước hậu nghiệm: "dùng $p_A(a')>0$" |
+| KV07, KV08, KV11 | chỉ ghi chú: tuyến tính tổng quát thừa nhận (KV07); dẫn Mệnh đề 10.26 (KV08); nguồn Murphy theo mục và công thức |
+
 ## Phụ lục: kế hoạch ghi chú bài giảng (2026-11-02)
 
 Nội dung dưới đây là `storyboard.md` của kế hoạch ghi chú, giữ nguyên văn; chỉ hạ cấp tiêu đề hai bậc.

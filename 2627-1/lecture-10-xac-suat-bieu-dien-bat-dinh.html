@@ -275,7 +275,7 @@
     <h2>Chứng minh: định lý Bayes</h2>
     <p>Viết $\mathbb P(B_k\mid E)$ theo định nghĩa, rồi đổi chiều điều kiện ở tử số.</p>
     <div class="formula">$$\begin{aligned}&amp;\mathbb P(B_k\mid E)=\frac{\mathbb P(B_k\cap E)}{\mathbb P(E)}\\ &amp;\quad=\frac{\mathbb P(E\mid B_k)\,\mathbb P(B_k)}{\mathbb P(E)}.\end{aligned}$$</div>
-    <p>Đẳng thức thứ nhất: định nghĩa, cần $\mathbb P(E)>0$; thứ hai: quy tắc nhân.</p>
+    <p>Đẳng thức thứ nhất: định nghĩa, cần $\mathbb P(E)>0$; thứ hai: quy tắc nhân, dùng $\mathbb P(B_k)>0$.</p>
     <p><strong>Công thức Bayes.</strong> Thay mẫu số bằng công thức xác suất toàn phần.</p>
     <aside class="notes"><p>Phép đổi chiều điều kiện nằm ở tử số: $\mathbb P(B_k\cap E)$ được viết bằng quy tắc nhân với điều kiện $B_k$, hợp lệ vì $\mathbb P(B_k)>0$. Giả thiết $\mathbb P(E)>0$ chỉ dùng ở đẳng thức thứ nhất.</p><p>Sau khi thay mẫu số, xác suất $\mathbb P(B_k\mid E)$ của mỗi nhóm tính được từ xác suất của các nhóm và xác suất của quan sát trong từng nhóm, không cần biết trước $\mathbb P(E)$. Mẫu số giống nhau cho mọi $k$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Định lý 10.11, bước 2.</p></aside>
   </section>
@@ -542,7 +542,7 @@
     <p><strong>Trực quan.</strong> Bình phương độ lệch để độ lệch dương và âm không triệt tiêu nhau.</p>
     <p><strong>Định nghĩa.</strong> Với $\mathbb E[X^2]\lt\infty$, $\mu=\mathbb E[X]$, phương sai (variance) là $\operatorname{Var}(X)=\mathbb E\bigl[(X-\mu)^2\bigr]$; độ lệch chuẩn (standard deviation) là $\operatorname{Var}(X)^{1/2}$.</p>
     <p>Hai chi phí trên có phương sai $0$ và $\tfrac12(0-1)^2+\tfrac12(2-1)^2=1$.</p>
-    <p><strong>Mệnh đề.</strong></p>
+    <p><strong>Mệnh đề.</strong> Với $X$ như trên, $\alpha,\beta\in\mathbb R$:</p>
     <div class="formula">$$\begin{gathered}\operatorname{Var}(X)=\mathbb E[X^2]-(\mathbb E[X])^2,\\ \operatorname{Var}(X)\ge0,\\ \operatorname{Var}(\alpha X+\beta)=\alpha^2\operatorname{Var}(X).\end{gathered}$$</div>
     <aside class="notes"><p>Hai biến có cùng kỳ vọng có thể có phân phối rất khác nhau; chi phí thứ hai dao động quanh giá trị $1$, chi phí thứ nhất không dao động. Điều kiện $\mathbb E[X^2]\lt\infty$ kéo theo $X$ khả tích, vì $|x|\le1+x^2$ với mọi $x$; do đó $\mu$ xác định.</p><p>Phương sai có đơn vị là bình phương đơn vị của $X$; độ lệch chuẩn có cùng đơn vị với $X$. Công thức thứ nhất của mệnh đề tính phương sai từ hai mômen $\mathbb E[X]$ và $\mathbb E[X^2]$; công thức cuối cho biết đổi đơn vị đo nhân phương sai với $\alpha^2$, còn dịch gốc không làm đổi phương sai.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 10.23, Mệnh đề 10.24; Định nghĩa 05c.30, Mệnh đề 05c.31.</p></aside>
   </section>
@@ -563,7 +563,7 @@
     <div class="formula">$$\begin{aligned}\operatorname{Cov}(X,Z)&amp;=\mathbb E[(X-\mu_X)(Z-\mu_Z)]\\ &amp;=\mathbb E[XZ]-\mu_X\mu_Z.\end{aligned}$$</div>
     <p><strong>Mệnh đề.</strong> Với $X,Z$ như trên, $\operatorname{Var}(X+Z)=\operatorname{Var}(X)+\operatorname{Var}(Z)+2\operatorname{Cov}(X,Z)$.</p>
     <p><strong>Chứng minh.</strong> Khai triển $(X-\mu_X+Z-\mu_Z)^2$, dùng tính tuyến tính.</p>
-    <aside class="notes"><p>Tích $XZ$ khả tích vì $2|xz|\le x^2+z^2$. Khai triển tích trong định nghĩa và áp dụng tính tuyến tính cho bốn số hạng được dạng $\mathbb E[XZ]-\mu_X\mu_Z$. Với $Z=X$, $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$. Hệ số tương quan (correlation coefficient) $\rho_{XZ}=\operatorname{Cov}(X,Z)/(\operatorname{Var}(X)\operatorname{Var}(Z))^{1/2}$ được định nghĩa khi hai phương sai dương; nó luôn nằm trong $[-1,1]$ (Bài tập 10.12, tự học) và đo mức quan hệ tuyến tính giữa hai biến.</p><p>Ví dụ trên bảng camera: với $X=\mathbf 1_H$, $Z=\mathbf 1_C$, $\operatorname{Cov}(X,Z)=\mathbb P(H\cap C)-\mathbb P(H)\,\mathbb P(C)=0{,}18-0{,}052=0{,}128>0$: có người và cảnh báo có xu hướng cùng xảy ra.</p><p>Mệnh đề là trường hợp $n=2$ của công thức phương sai của tổng $\operatorname{Var}\bigl(\sum_iX_i\bigr)=\sum_i\operatorname{Var}(X_i)+2\sum_{i\lt j}\operatorname{Cov}(X_i,X_j)$ (Mệnh đề 10.26). Với số lỗi $N=\sum_iY_i$ của một lô, phương sai của $N$ chỉ bằng tổng các phương sai khi mọi hiệp phương sai bằng $0$; tổng số lỗi dao động mạnh hơn khi các lỗi có xu hướng cùng xuất hiện.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 10.25, Mệnh đề 10.26; Mệnh đề 05c.33; Murphy (2022), §3.1.1–3.1.2.</p></aside>
+    <aside class="notes"><p>Tích $XZ$ khả tích vì $2|xz|\le x^2+z^2$. Khai triển tích trong định nghĩa và áp dụng tính tuyến tính cho bốn số hạng được dạng $\mathbb E[XZ]-\mu_X\mu_Z$; tính tuyến tính chỉ được chứng minh cho biến rời rạc, trường hợp tổng quát được thừa nhận. Với $Z=X$, $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$. Hệ số tương quan (correlation coefficient) $\rho_{XZ}=\operatorname{Cov}(X,Z)/(\operatorname{Var}(X)\operatorname{Var}(Z))^{1/2}$ được định nghĩa khi hai phương sai dương; nó luôn nằm trong $[-1,1]$ (Bài tập 10.12, tự học) và đo mức quan hệ tuyến tính giữa hai biến.</p><p>Ví dụ trên bảng camera: với $X=\mathbf 1_H$, $Z=\mathbf 1_C$, $\operatorname{Cov}(X,Z)=\mathbb P(H\cap C)-\mathbb P(H)\,\mathbb P(C)=0{,}18-0{,}052=0{,}128>0$: có người và cảnh báo có xu hướng cùng xảy ra.</p><p>Mệnh đề là trường hợp $n=2$ của công thức phương sai của tổng $\operatorname{Var}\bigl(\sum_iX_i\bigr)=\sum_i\operatorname{Var}(X_i)+2\sum_{i\lt j}\operatorname{Cov}(X_i,X_j)$ (Mệnh đề 10.26). Với số lỗi $N=\sum_iY_i$ của một lô, phương sai của $N$ chỉ bằng tổng các phương sai khi mọi hiệp phương sai bằng $0$; tổng số lỗi dao động mạnh hơn khi các lỗi có xu hướng cùng xuất hiện.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 10.25, Mệnh đề 10.26; Mệnh đề 05c.33; Murphy (2022), §3.1.1–3.1.2, §2.8.4, (2.165)–(2.167).</p></aside>
   </section>
   <section data-slide-id="KV08">
     <h2>Độc lập kéo theo không tương quan</h2>
@@ -572,7 +572,7 @@
     <div class="formula">$$\begin{gathered}\mathbb E[XZ]=\mathbb E[X]\,\mathbb E[Z],\\ \text{do đó}\quad\operatorname{Cov}(X,Z)=0.\end{gathered}$$</div>
     <p><strong>Ý nghĩa:</strong> với chỉ thị lỗi độc lập đôi một, phương sai tổng số lỗi bằng tổng các phương sai.</p>
     <p><strong>Lưu ý:</strong> chiều ngược lại sai.</p>
-    <aside class="notes"><p>Mệnh đề là một điều kiện đủ để các hiệp phương sai bằng $0$. Kết hợp với phương sai của tổng $n$ biến (Mệnh đề 10.26): nếu các chỉ thị lỗi $Y_1,\ldots,Y_n$ độc lập và cùng phân phối $\operatorname{Bernoulli}(\theta)$ thì số lỗi của lô có phương sai $n\theta(1-\theta)$. Khi các sản phẩm cùng chịu ảnh hưởng của một lô nguyên liệu, các hiệp phương sai có thể dương và công thức này đánh giá thấp dao động. Với một vector đặc trưng (feature) có các thành phần độc lập đôi một, mọi hiệp phương sai giữa hai thành phần khác nhau bằng $0$, nên ma trận hiệp phương sai là ma trận đường chéo.</p><p>Trường hợp $(X,Z)$ có mật độ đồng thời được phác thảo ở ghi chú bài giảng, Phụ lục B.2.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Mệnh đề 10.27; trùng Mệnh đề 05c.32.</p></aside>
+    <aside class="notes"><p>Mệnh đề là một điều kiện đủ để các hiệp phương sai bằng $0$. Kết hợp với phương sai của tổng $n$ biến (Mệnh đề 10.26): nếu các chỉ thị lỗi $Y_1,\ldots,Y_n$ độc lập và cùng phân phối $\operatorname{Bernoulli}(\theta)$ thì số lỗi của lô có phương sai $n\theta(1-\theta)$. Khi các sản phẩm cùng chịu ảnh hưởng của một lô nguyên liệu, các hiệp phương sai có thể dương và công thức này đánh giá thấp dao động. Với một vector đặc trưng (feature) có các thành phần độc lập đôi một, mọi hiệp phương sai giữa hai thành phần khác nhau bằng $0$, nên ma trận hiệp phương sai là ma trận đường chéo.</p><p>Trường hợp $(X,Z)$ có mật độ đồng thời được phác thảo ở ghi chú bài giảng, Phụ lục B.2.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Mệnh đề 10.27, Mệnh đề 10.26 (dòng "Ý nghĩa:"); trùng Mệnh đề 05c.32; Murphy (2022), §3.1.3; §2.2.5.1, (2.28).</p></aside>
   </section>
   <section data-slide-id="KV09">
     <h2>Chứng minh: độc lập kéo theo không tương quan</h2>
@@ -605,7 +605,7 @@
     <p><strong>Định nghĩa.</strong> Với $\mathbb P(S=s)>0$, kỳ vọng có điều kiện (conditional expectation) $\psi(s)=\mathbb E[X\mid S=s]$ là kỳ vọng dưới $\mathbb P(\cdot\mid S=s)$; $\mathbb E[X\mid S]=\psi(S)$.</p>
     <p><strong>Định lý</strong> (law of total expectation)<strong>.</strong> $X$ rời rạc, khả tích; $S$ rời rạc; tổng theo $s$ với $\mathbb P(S=s)>0$:</p>
     <div class="formula">$$\begin{aligned}\mathbb E[X]&amp;=\sum_s\mathbb E[X\mid S=s]\,\mathbb P(S=s)\\ &amp;=\mathbb E\bigl[\mathbb E[X\mid S]\bigr].\end{aligned}$$</div>
-    <aside class="notes"><p>Công thức xác suất toàn phần cho xác suất của một biến cố; kỳ vọng toàn phần cho trung bình của mọi biến khả tích, như chi phí hay số lỗi. Xác suất là trường hợp chỉ thị: $\mathbb E[Y\mid S=s]=\mathbb P(Y=1\mid S=s)$. Với $X$ rời rạc, $\psi(s)=\sum_xx\,\mathbb P(X=x\mid S=s)$.</p><p>Ký hiệu $\mathbb E[X\mid S=s]$ chỉ một số khi $s$ cố định; $\mathbb E[X\mid S]=\psi(S)$ là một biến ngẫu nhiên vì giá trị của nó phụ thuộc $S$. Định lý còn đúng khi, với mỗi $s$, phân phối $\mathbb P(X\in\cdot\mid S=s)$ có mật độ (ghi chú bài giảng, Phụ lục B.3).</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 10.28, Định lý 10.29; phần 1 của Mệnh đề 05c.38; Murphy (2022), §2.2.5 (ví dụ tuổi thọ bóng đèn của hai nhà máy).</p></aside>
+    <aside class="notes"><p>Công thức xác suất toàn phần cho xác suất của một biến cố; kỳ vọng toàn phần cho trung bình của mọi biến khả tích, như chi phí hay số lỗi. Xác suất là trường hợp chỉ thị: $\mathbb E[Y\mid S=s]=\mathbb P(Y=1\mid S=s)$. Với $X$ rời rạc, $\psi(s)=\sum_xx\,\mathbb P(X=x\mid S=s)$.</p><p>Ký hiệu $\mathbb E[X\mid S=s]$ chỉ một số khi $s$ cố định; $\mathbb E[X\mid S]=\psi(S)$ là một biến ngẫu nhiên vì giá trị của nó phụ thuộc $S$. Định lý còn đúng khi, với mỗi $s$, phân phối $\mathbb P(X\in\cdot\mid S=s)$ có mật độ (ghi chú bài giảng, Phụ lục B.3).</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 10.28, Định lý 10.29; phần 1 của Mệnh đề 05c.38; Murphy (2022), §2.2.5.4, (2.41)–(2.44) (ví dụ tuổi thọ bóng đèn của hai nhà máy).</p></aside>
   </section>
   <section data-slide-id="KV12">
     <h2>Chứng minh: kỳ vọng toàn phần</h2>
@@ -674,7 +674,7 @@
     <h2>Phân phối có điều kiện từ phân phối đồng thời</h2>
     <p><strong>Mệnh đề.</strong> $X,Z$ rời rạc, $p_Z(z)>0$:</p>
     <div class="formula">$$\begin{gathered}p_{X\mid Z}(x\mid z)=\frac{p_{X,Z}(x,z)}{p_Z(z)},\\ \sum_xp_{X\mid Z}(x\mid z)=1.\end{gathered}$$</div>
-    <p>Có mật độ, $0\lt f_Z(z)\lt\infty$: $f_{X\mid Z}(x\mid z)=f_{X,Z}(x,z)/f_Z(z)$ là mật độ có điều kiện (conditional density): không âm, tích phân theo $x$ bằng $1$.</p>
+    <p>Có mật độ, $f_Z(z)=\int f_{X,Z}(x,z)\,dx\in(0,\infty)$: $f_{X\mid Z}(x\mid z)=f_{X,Z}(x,z)/f_Z(z)$ là mật độ có điều kiện (conditional density): không âm, tích phân theo $x$ bằng $1$.</p>
     <p><strong>Chứng minh.</strong> Rời rạc: định nghĩa có điều kiện, rồi cộng theo $x$ và lấy biên.</p>
     <p>Có mật độ: tích phân theo $x$ của tử số bằng $f_Z(z)$ (lấy biên).</p>
     <p><strong>Ý nghĩa:</strong> tử số là đồng thời, mẫu số là biên.</p>
@@ -705,7 +705,7 @@
     <p><strong>Phân phối đồng thời của $(Y,A)$.</strong> Lấy biên theo $s$ cho cặp $((Y,A),S)$:</p>
     <div class="formula">$$\begin{aligned}p_{Y,A}(y,a')&amp;=\sum_sp_{S,Y,A}(s,y,a')\\ &amp;=\sum_sq(s,y).\end{aligned}$$</div>
     <p><strong>Xác suất của quan sát.</strong> Lấy biên theo $y$: $p_A(a')=\sum_{y'}p_{Y,A}(y',a')$.</p>
-    <p><strong>Công thức hậu nghiệm.</strong> $p_{Y\mid A}(y\mid a')=p_{Y,A}(y,a')/p_A(a')$; thế hai tổng vào.</p>
+    <p><strong>Công thức hậu nghiệm.</strong> $p_{Y\mid A}(y\mid a')=p_{Y,A}(y,a')/p_A(a')$, dùng $p_A(a')>0$; thế hai tổng vào.</p>
     <aside class="notes"><p>Bước lấy biên theo $s$ xem $(Y,A)$ là một biến và $S$ là biến bị loại; các $s$ có $p_S(s)=0$ góp $0$. Bước lấy biên theo $y$ tương tự, các $y'$ có $p_Y(y')=0$ góp $0$. Bước cuối là phân phối có điều kiện từ phân phối đồng thời, hợp lệ vì $p_A(a')>0$. Nếu $p_Y(y)=0$ thì $p_{Y,A}(y,a')\le p_Y(y)=0$, nên hậu nghiệm bằng $0$.</p><p>Hậu nghiệm của nhãn lỗi khi thiếu nguồn hàng tính được hoàn toàn từ ba nhân tử nhỏ của mô hình, không cần lập trước bảng đầy đủ của ba biến.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Mệnh đề 10.34, bước 3–4.</p></aside>
   </section>
   <section data-slide-id="SL08">

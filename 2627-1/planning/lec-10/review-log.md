@@ -488,6 +488,53 @@ Kiểm tra đã chạy:
 - Xem ảnh các trang đã sửa ở hai kích thước; `sync-local-materials.py --check`: OK; `git diff --check`: sạch.
 
 
+### Rà soát độc lập các trang chứng minh
+
+| Tác tử | Vai | Loại | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|---|
+| proof-audit | Rà soát độc lập các trang chứng minh, đối chiếu ghi chú bài giảng và Murphy (2022) | general-purpose | opus | high | đạt; một mục trung bình (SL04) |
+
+| Trang | Kết quả | Phát biểu | Chứng minh | Ghi chú (dòng) | Murphy (mục, công thức, trang PDF; có/không chứng minh) | Nhận xét |
+|---|---|---|---|---|---|---|
+| MH05 | Bổ đề 10.4 | đúng | đúng | Bổ đề 10.4 | §2.1.3.1, PDF 64; không có tiên đề | deck chặt chẽ hơn |
+| MH07–MH08 | Mệnh đề 10.6 | đúng | đúng | Mệnh đề 10.6 | §2.1.3.3, (2.3)–(2.4), PDF 64–65; phần bù là định nghĩa | deck chứng minh từ tiên đề |
+| BY05 | Mệnh đề 10.10 | đúng | đúng | Mệnh đề 10.10 | §2.2.3, (2.19) product rule, (2.20) chain rule, PDF 68–69; không chứng minh | — |
+| BY06–BY08 | Định lý 10.11 | đúng | đúng | Định lý 10.11 | §2.3, (2.51)–(2.54), PDF 75–76 | căn cứ BY08 thêm $\mathbb P(B_k)>0$ |
+| PP12 | Mệnh đề 10.17 | đúng | đúng | Mệnh đề 10.17 | §2.2.4, (2.23), PDF 69; không chứng minh | — |
+| KV02–KV03 | Mệnh đề 10.22 (kỳ vọng của hàm) | đúng | đúng | Mệnh đề 10.22 | Murphy không phát biểu | — |
+| KV03b | Mệnh đề 10.22 (tuyến tính) | đúng | đúng | Mệnh đề 10.22 | (2.26)–(2.27), PDF 70; không chứng minh | — |
+| KV05–KV06 | Mệnh đề 10.24 | đúng | đúng | Mệnh đề 10.24 | (2.29)–(2.30), PDF 70 | "Mệnh đề." nêu giả thiết |
+| KV07 | Mệnh đề 10.26 ($n=2$) | đúng | đúng | Mệnh đề 10.26 | §2.8.4, (2.166)–(2.167), PDF 100 | ghi chú nêu tuyến tính tổng quát được thừa nhận |
+| KV08–KV09 | Mệnh đề 10.27 | đúng | đúng | Mệnh đề 10.27 | §3.1.3, PDF 109 | — |
+| KV11–KV12 | Định lý 10.29 | đúng | đúng | Định lý 10.29 | §2.2.5.4, (2.41)–(2.43), PDF 71–72; Murphy không bàn khả tích | — |
+| SL03 | Mệnh đề 10.32 | đúng | đúng | Mệnh đề 10.32 | (2.17), PDF 68; là định nghĩa ở Murphy | — |
+| SL04 | Mệnh đề 10.33 | thiếu giả thiết (đã sửa) | đúng | Mệnh đề 10.33, L1789 ("$f_Z$ cho bởi (8.4)") | — | phải nêu $f_Z(z)=\int f_{X,Z}(x,z)\,dx\in(0,\infty)$ |
+| SL05–SL07 | Mệnh đề 10.34 | đúng | đúng | Mệnh đề 10.34 | (2.20), (2.23), PDF 69; (2.53), PDF 75 | căn cứ SL07 thêm $p_A(a')>0$ |
+
+Kết luận của tác tử: deck chặt chẽ hơn Murphy ở mọi kết quả; không có `chặn bàn giao`, `nghiêm trọng`. Quyết định điều phối viên: chấp nhận tất cả.
+
+| Mức độ | Trang chiếu | Vấn đề | Đề xuất sửa | Quyết định | Trạng thái |
+|---|---|---|---|---|---|
+| trung bình | SL04 | trường hợp mật độ chỉ ghi $0<f_Z(z)<\infty$ | nêu $f_Z(z)=\int f_{X,Z}(x,z)\,dx\in(0,\infty)$ | chấp nhận | đã sửa trên mặt trang (59 âm tiết) |
+| nhẹ | BY08 | căn cứ đẳng thức thứ hai thiếu giả thiết | "quy tắc nhân, dùng $\mathbb P(B_k)>0$" | chấp nhận | đã sửa (38 âm tiết) |
+| nhẹ | SL07 | bước hậu nghiệm thiếu giả thiết | thêm "dùng $p_A(a')>0$" | chấp nhận | đã sửa (46 âm tiết) |
+| nhẹ | KV05 | "Mệnh đề." không nêu giả thiết | "Với $X$ như trên, $\alpha,\beta\in\mathbb R$:" ($\mathbb E[X^2]<\infty$ ở định nghĩa ngay trên) | chấp nhận | đã sửa (59 âm tiết) |
+| nhẹ | KV07, KV08 | tuyến tính tổng quát thừa nhận chưa nêu; KV08 chưa dẫn Mệnh đề 10.26 | ghi chú KV07; "(Mệnh đề 10.26)" sau "Ý nghĩa:" nếu vừa trần | chấp nhận | KV07: đã sửa ghi chú; KV08: dòng "Ý nghĩa:" đã 20 âm tiết, nên dẫn ở ghi chú (đoạn đầu và dòng nguồn) |
+| nhẹ | KV07, KV08, KV11 | dẫn nguồn Murphy chưa đủ mục, công thức | KV11 §2.2.5.4, (2.41)–(2.44); KV07 §2.8.4, (2.165)–(2.167); KV08 §3.1.3; (2.28) | chấp nhận | đã sửa |
+| nhẹ (tùy chọn) | KV03 | căn cứ gom nhóm | "hợp lệ vì $\sum_x\lvert g(x)\rvert p_X(x)<\infty$" nếu vừa trần | chấp nhận | không thêm: dòng căn cứ sẽ vượt 20 âm tiết; điều kiện đã ở ghi chú diễn giả KV03 |
+
+Kiểm tra: `deck_check.py` (không ảnh chụp, `scratchpad/chk10h`): 77 trang, 0 lỗi console, KaTeX, tràn; MD02 ngoại lệ; mọi trang trong trần mật độ (KV11 60, KV05 59, SL04 59). `git diff --check`: sạch.
+
+#### Rà lại (proof-audit, cùng tác tử)
+
+| Mục | Kết quả rà lại | Quyết định | Trạng thái |
+|---|---|---|---|
+| SL04, BY08, SL07, KV05 (mặt trang); ghi chú KV07, KV08, KV11 | đã sửa đúng | chấp nhận | đóng |
+| KV11: kết luận $\psi$ hữu hạn và $\psi(S)$ khả tích; KV02, KV03: điều kiện khả tích; SL03: sửa $f_X$ trên tập độ dài $0$ | để ở ghi chú diễn giả | chấp nhận | giữ ở ghi chú |
+| nhẹ (mới), KV08: dẫn nguồn Murphy thiếu mục của (2.28) | "Murphy (2022), §3.1.3; §2.2.5.1, (2.28)" | chấp nhận | đã sửa |
+
+Kết luận rà lại: ĐẠT.
+
 ### Kiểm định cuối
 
 Tác tử final-lec10 (general-purpose, opus, high). Quyết định điều phối viên cho tác tử chỉnh sửa đợt 1 và đợt 2: chấp nhận sau ba vòng rà lại đều đạt; điều phối viên đã kiểm diff CSS (mọi luật phạm vi Bài 10), diff viewer/index, sync --check, git diff --check và ảnh BY04, SL12, PP08, TK01 (390).
@@ -555,3 +602,27 @@ Tác tử final-lec10 (general-purpose, opus, high, tiếp tục qua SendMessage
 | 9. Câu hỏi mở đầu | đạt | 198/437; 236/437; ngưỡng 1/6 và quyết định; 2/13 và 1/13 ở TK03 |
 
 Lỗi còn lại: chỉ mức nhẹ, đã ghi "chấp nhận giữ" (nút điều hướng chạm mép ở MH07, MH10, SL12; cảnh báo KaTeX chữ tiếng Việt trong `\text{}` của học liệu; MD02 7 dòng). Điều phối viên ký duyệt bàn giao.
+
+## Rà tập trung lần ba trên trạng thái cuối — báo cáo đầy đủ (rv-storyline, commit 7304805)
+
+Tác tử rv-storyline (general-purpose, opus, high). Bản đối chiếu: `git show 7304805:2627-1/lecture-10-xac-suat-bieu-dien-bat-dinh.html`, trùng từng byte với cây làm việc và HEAD hiện tại (deck không đổi sau 7304805). 77 trang, thứ tự như lượt rà lại thứ hai; 7 section ngoài `mach-1`…`mach-7`, số và tên khớp "Nội dung". Kết luận: **đạt**; không phát hiện `chặn bàn giao`, `nghiêm trọng`, `trung bình`.
+
+| Mạch | Câu hỏi trung tâm | Kết quả | Bằng chứng |
+|---|---|---|---|
+| 1. Mở đầu | Sản phẩm bị cảnh báo khi thiếu hồ sơ nguồn hàng có xác suất lỗi bao nhiêu, nguồn hàng nào khả dĩ hơn, và nên xử lý thế nào. | đạt | MD03 đặt câu hỏi; MD04 "Đầu ra:" có $\mathbb P(Y=1\mid A=1)$, $\mathbb P(S=b\mid A=1)$ và quyết định. |
+| 2. Mô hình xác suất | Gán xác suất cho các kết quả của camera thế nào để mọi phép tính trên biến cố nhất quán. | đạt | Câu hỏi ở dòng dẫn MH00 và "Nhu cầu:" MH01; MH06 "họ mọi tập con $2^\Omega$"; MH07 phát biểu tổng quát, không trộn ví dụ; mọi ví dụ có "Diễn giải:" (MH09: 8% cảnh báo sai, 2% bỏ sót). |
+| 3. Xác suất có điều kiện và định lý Bayes | Xác suất sản phẩm lỗi sau một cảnh báo, khi thiếu hồ sơ nguồn hàng, bằng bao nhiêu. | đạt | Câu hỏi ở BY00, BY01; BY04 gọi tên thiếu hồ sơ; BY10 trả lời 198/437 và nêu phân hoạch theo $Y$; dạy lại nội dung 05c thuộc ngoại lệ 1. |
+| 4. Biến ngẫu nhiên, phân phối và độc lập | Phân phối của nhãn, nguồn hàng, tín hiệu đo là gì và các biến được ghép theo quy tắc nào. | đạt | Câu hỏi ở PP00, PP01 (cả tín hiệu đo); ghi chú PP00 nêu giới hạn tạo nhu cầu; thứ tự PP10 → PP12 → PP11 → PP13 không dùng kết quả trước khi phát biểu; PP12 "Ý nghĩa:" có điều kiện $\mathbb P(S=s,Y=y)>0$. |
+| 5. Kỳ vọng, phương sai và hiệp phương sai | Những con số nào tóm tắt phân phối của chi phí và nhãn lỗi. | đạt | Câu hỏi ở KV00, KV01; KV07 → KV08 khép bằng tổng số lỗi; KV11 nhu cầu thật; KV04 "Diễn giải:" nối 0,0522 của MH10; đầu ra $\mathbb E[\mathbf 1_E]=\mathbb P(E)$ và 0,0698 vào SL12. |
+| 6. Phân phối đồng thời và phép lấy biên | Sau cảnh báo, hậu nghiệm của nguồn hàng và của nhãn lỗi theo từng nguồn, trong một mô hình chung của $(S,Y,A)$, bằng bao nhiêu và quyết định là gì. | đạt | Câu hỏi ở SL00, SL01; SL09 tính lại 198/437 "khớp định lý Bayes" (không mâu thuẫn BY10); SL10 gọi tên công cụ, ghi chú nối $0{,}0472=0{,}4\cdot0{,}118$ với PP11; SL12 kết bằng quyết định và bộ phân loại xác suất. |
+| 7. Tổng kết và chuyển tiếp | Kết quả nào dùng được dưới giả thiết nào. | đạt | Câu hỏi ở TK00; TK01 năm hàng, TK01b sáu hàng, không "Kết luận:" lộ đáp số; TK02 "vẫn loại khi có cảnh báo"; Bài 11 chỉ nêu bằng lời. |
+
+Kiểm chung: không mạch nào xem trước bài sau trên mặt trang; bảng 8 ô chỉ ở SL09, bảng camera chỉ ở MH09; trùng lặp duy nhất 0,044 ở BY04 và KV13 thuộc ngoại lệ 8. Trạng thái N1–N9 (lượt rà lại thứ hai): cả chín đã sửa (outline TK01/TK01b/TK04; bản đồ MH09/MH07; bảng (a) mạch 5; "phần" thống nhất trong ghi chú; ghi chú MD00 113 → 89 âm tiết; SL10 công cụ và nối PP11; TK02 dữ kiện; câu nối PP00; MH06 $2^\Omega$). Mục nhẹ outline L191 đã sửa ở 194de3b.
+
+Các bảng theo từng trang của rà tập trung lần một và lần hai nằm ở các mục "Năm rà soát độc lập" và "Rà lại sau chỉnh sửa" phía trên.
+
+Về hai ngoại lệ cấu trúc (điều phối viên): (i) MD02 "Nội dung" 7 dòng — AGENTS.md §"Cấu trúc bộ trang chiếu mặc định" yêu cầu trang "Nội dung" đánh số **mọi** mạch, kể cả mạch mở đầu; với 7 mạch (trong khoảng 5–7 được phép) trang tất yếu có 7 dòng, và AGENTS.md §"Mật độ chữ" quy định cơ chế ngoại lệ ghi lý do trong storyboard (đã ghi). (ii) Quy định học phần không đặt trần số trang; 77 trang chỉ vượt đích nội bộ 70 ± 6 của kế hoạch (Q-H) một trang, do tách bảng tổng kết để không thu nhỏ chữ.
+
+## Quyết định điều phối viên sau rà soát các trang chứng minh
+
+Chấp nhận: rà soát độc lập các trang chứng minh (proof-audit) kết luận ĐẠT, deck chặt chẽ hơn Murphy ở mọi kết quả; phát hiện trung bình SL04 và các mục nhẹ đã sửa, rà lại ĐẠT. Điều phối viên đã đọc diff deck (7 dòng: SL04, BY08, SL07, KV05 trên mặt trang; ghi chú KV07, KV08, KV11), xem ảnh SL04 ở 1600×900 và 390×844, chạy deck_check: 77 trang, console 0, pageerror 0, request hỏng 0, 0 OVERFLOW, 0 KATEX, 0 NARROW-H; cờ duy nhất MD02 LINES (ngoại lệ đã ghi). Bàn giao.
