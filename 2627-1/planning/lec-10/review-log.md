@@ -769,3 +769,19 @@ Phát hiện: không `chặn bàn giao`, `nghiêm trọng`, `trung bình`. Ba m�
 ## Điều phối viên tự kiểm trích dẫn Murphy của các trang chứng minh
 
 Kiểm trực tiếp bằng pdftotext trên `murphy2022probabilistic-draft.pdf` (trang PDF = trang in + 30), 12/12 khớp: (2.17), (2.18) PDF 68; (2.20), (2.23) PDF 69, có câu "This is called the product rule. By extending the product rule to D variables, we get the chain rule of probability"; (2.27), (2.28) PDF 70; (2.41) PDF 71; (2.42)–(2.43) PDF 72 (chứng minh kỳ vọng toàn phần cho biến rời rạc); (2.51), (2.53) PDF 75; (2.167) PDF 100 ($\mathbb V[x_1+x_2]=\mathbb V[x_1]+\mathbb V[x_2]+2\operatorname{Cov}[x_1,x_2]$); "Uncorrelated does not imply independent" PDF 109. Khớp với bảng 14 kết quả của proof-audit.
+
+## Ký duyệt cuối của điều phối viên trên b80d39e (2026-11-05)
+
+Điều phối viên tự chạy lại mọi kiểm tra trên HEAD b80d39e (các commit sau d13265e chỉ đổi tệp này; deck chỉ khác 7304805 đúng 7 dòng của d13265e):
+
+| Hạng mục | Kết quả trên b80d39e |
+|---|---|
+| Phạm vi thay đổi | `git diff --stat d13265e HEAD`: chỉ review-log.md; `git diff --stat 7304805 HEAD -- 2627-1 ':!2627-1/planning'`: chỉ deck, 7 dòng |
+| deck_check --shots (1600×900, 390×844) | 77 trang; console 0, pageerror 0, request hỏng 0; 0 OVERFLOW, 0 KATEX, 0 NARROW-H, 0 FONT; cờ duy nhất MD02 LINES (ngoại lệ, người dùng chấp nhận); 199 ảnh; điều phối viên xem KV05, SL07 (và SL04 trước đó) |
+| "Đáp án" | 0 trong deck, lecture-note.md, exercises.md Bài 10 |
+| Index và viewer | thẻ Bài 10: deck + hai liên kết viewer có `&deck=`; nhấp liên kết bài tập trong ghi chú mở "Bài tập Bài 10 …", 0 lỗi KaTeX, 0 pageerror |
+| Học liệu, git | sync --check OK (33); git diff --check sạch; HEAD có trên origin/main |
+| Rà soát | rà tập trung đủ bảy mạch trên deck cuối: đạt; proof-audit và rà lại: đạt; kiểm định cuối lượt 3: đạt; 12/12 trích dẫn Murphy kiểm trực tiếp |
+| Xác nhận người dùng | thư mục 2627-1; chấp nhận "Nội dung" 7 dòng và 77 trang |
+
+Bàn giao Bài 10: hoàn tất.
