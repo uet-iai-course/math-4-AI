@@ -330,6 +330,7 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Quyết định:** `thêm`. **Bài tập:** không.
 - **Sửa (cổng):** #19: bỏ "Nhắc lại:" lặp (đã có ở HL01).
 - **Sửa (rà soát):** #24: "Định nghĩa." mở trang; câu mẫu i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$ đưa vào câu số đếm. D1: bỏ `\tag{6.1}`.
+- **Sửa (đồng bộ materials):** `p.note-source` thêm "vector xác suất viết $\pi$, không đậm" (lệch ký hiệu duy nhất còn lại so với ghi chú).
 - **Nguồn:** Định nghĩa 11.6 L429–456. Murphy §4.2.4 (4.26), PDF 141; §4.6.3.2 (4.151), PDF 168.
 - **Phác thảo:** (1) Định nghĩa. Với $K\ge2$ nhóm, đơn hình xác suất (probability simplex) là tập (12) (2) display $$\Delta_{K-1}=\Bigl\{\boldsymbol\pi\in\mathbb R^K:\ \pi_k\ge0,\ \sum_{k=1}^K\pi_k=1\Bigr\}.$$ (3) Với dữ liệu $D$ của mẫu i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$, $\mathbb P(X=k)=\pi_k$, số đếm của nhóm $k$ là $n_k=\sum_i\mathbf 1[x_i=k]$; $\sum_kn_k=n$. (11) (4) Hàm hợp lý phân loại trên $\Delta_{K-1}$, quy ước $\pi_k^0=1$: (8) (5) display $$L(\boldsymbol\pi;D)=\prod_{k=1}^K\pi_k^{n_k},\qquad\ell(\boldsymbol\pi;D)=\sum_{k:\,n_k>0}n_k\log\pi_k.$$ Số đo sau rà soát: 31 âm tiết, 5 dòng, 2 công thức hiển thị, dòng dài nhất 12.
 - **Ghi chú diễn giả:** Mỗi quan sát $x_i=k$ góp một thừa số $\pi_k$; nhóm $k$ góp $n_k$ thừa số như vậy, nên hàm hợp lý phân loại suy từ dạng tích $\prod_ip_\theta(x_i)$, và các số đếm là thống kê đủ. Các xác suất trong $\Delta_{K-1}$ mô tả một biến nhận đúng một trong $K$ giá trị. Chúng khác $K$ tham số Bernoulli của $K$ chỉ báo có thể đồng thời bằng $1$: các tham số đó không chịu ràng buộc tổng bằng $1$.
@@ -475,6 +476,7 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Quyết định:** `thêm`. **Bài tập:** không.
 - **Sửa (cổng):** #10: $g(v)$ đổi thành $\varphi(v)$ vì $g(\theta)$ là đại lượng cần ước lượng ở G109. #16: tên bước theo kết quả.
 - **Sửa (rà soát):** #46: lý do đổi $g\to\varphi$ chuyển sang `review-log.md`; `p.note-source` ghi "ghi chú bài giảng viết $g$".
+- **Sửa (đồng bộ materials):** `p.note-source` bỏ "ghi chú bài giảng viết $g$ cho $\varphi$": ghi chú nay viết $\varphi(v)$.
 - **Nguồn:** L682–704. Murphy §4.2.5 (4.36)–(4.38), PDF 142.
 - **Phác thảo:** (1) $Q/n$ cực đại $\varphi(v)=-\frac n2\log v-\frac Q{2v}$. Đạo hàm: (4) (2) display $$\varphi'(v)=-\frac n{2v}+\frac Q{2v^2}=\frac{Q-nv}{2v^2}.$$ (3) $\varphi'>0$ khi $v<Q/n$, $\varphi'<0$ khi $v>Q/n$; giả thiết $Q>0$ cho $Q/n$ thuộc miền $v>0$. (7) (4) Cực đại duy nhất tại $(\bar x,Q/n)$. $\ell(\mu,v;D)\le\ell(\bar x,v;D)\le\ell(\bar x,Q/n;D)$; dấu bằng chỉ khi $\mu=\bar x$, $v=Q/n$. (9) (5) $Q=0$: hợp lý không bị chặn. $\ell(\bar x,v;D)=-\frac n2\log(2\pi v)\to+\infty$ khi $v\downarrow0$; không điểm nào đạt cực đại. (12) Số đo sau rà soát: 32 âm tiết, 5 dòng, 1 công thức hiển thị, dòng dài nhất 12.
 - **Ghi chú diễn giả:** Sau khi thế $\mu=\bar x$, $\ell(\bar x,v;D)=-\frac n2\log(2\pi)+\varphi(v)$. Hàm $\varphi$ tăng chặt trên $(0,Q/n]$ và giảm chặt trên $[Q/n,\infty)$. Khi $Q=0$, với mọi $(\mu,v)$ có $v'>0$ đủ nhỏ cho $\ell(\bar x,v';D)>\ell(\mu,v;D)$. Khi học cả $v$, số hạng $\frac n2\log v$ của âm log-hợp lý phải được giữ: bỏ nó, phần còn lại $Q/(2v)$ giảm về $0$ khi $v\to\infty$ và không có điểm cực tiểu.
@@ -498,6 +500,7 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Quyết định:** `thêm`; bảng so sánh có trần 80 âm tiết; phép tính từng khúc của $h(\mu)$ trong ghi chú diễn giả (Q-K). Ứng viên cắt thứ ba (Q-H). **Bài tập:** không.
 - **Sửa (cổng):** #20: dòng "Diễn giải:" cụ thể hóa bằng hai con số; câu chung "đổi giả thiết thì đổi mất mát" chuyển vào ghi chú diễn giả.
 - **Sửa (rà soát):** #7: tham số Laplace đổi thành $\beta$. #17: "Diễn giải:" nêu nguyên lý và hai con số. #18: ghi chú diễn giả dùng $\psi(\mu)$.
+- **Sửa (đồng bộ materials):** `p.note-source` bỏ câu về tham số Laplace $b$: ghi chú nay viết $\beta$ và $\psi(\mu)$.
 - **Nguồn:** L706–708; Ví dụ 11.6 L743–773. Murphy §2.7.3 (2.134)–(2.135), PDF 93 (mật độ Laplace; ý trung vị không có trong mục đã đọc, chỉ dựa vào ghi chú).
 - **Phác thảo:** (1) Nhu cầu: chọn mất mát cho $\mu$ từ giả thiết về nhiễu $x_i=\mu+\varepsilon_i$, $\varepsilon_i$ độc lập. (13) (2) bảng (3) Diễn giải: đổi giả thiết nhiễu thì đổi mất mát; số đo $9$ kéo trung bình lên $3$, trung vị ở lại $0$. (20) Số đo sau rà soát: 54 âm tiết, 3 dòng, 0 công thức hiển thị, dòng dài nhất 20.
 - **Ghi chú diễn giả:** Mỗi mất mát là âm log-hợp lý, theo tương đương giữa hợp lý cực đại và rủi ro thực nghiệm, sau khi bỏ hằng số và hệ số dương. Với nhiễu Gaussian: $\frac n2\log(2\pi v)+\frac1{2v}\sum_i(x_i-\mu)^2$; với nhiễu Laplace: $\sum_i[\log(2\beta)+|x_i-\mu|/\beta]$. Nghiệm Gaussian là $\bar x=(0+0+9)/3=3$, theo bước tách tâm. Với Laplace, $\psi(\mu)=2|\mu|+|9-\mu|$ bằng $9-3\mu$ khi $\mu<0$, $9+\mu$ khi $0\le\mu\le9$, $3\mu-9$ khi $\mu>9$, nên cực tiểu duy nhất tại $\mu=0$, $\psi(0)=9$. Kiểm tra: $\psi(3)=12>9$; với Gaussian, $81>54$. Dưới mô hình Laplace, mật độ giảm theo $|\varepsilon|$ thay vì $\varepsilon^2$, nên số đo $9$ ít ảnh hưởng tới nghiệm hơn.
@@ -654,6 +657,7 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Sửa (cổng):** #11: tách "Nhắc lại:" (phân rã trị riêng) khỏi định nghĩa mới "Đặt $S_n^{1/2}$".
 - **Sửa (rà soát):** #21: tiêu đề theo kết quả "$h$ chỉ phụ thuộc $C$". #46: lý do đổi $a_j\to\alpha_j$ chuyển sang `review-log.md`.
 - **Sửa (kiểm định cuối):** F1: ký hiệu KaTeX trong tiêu đề không còn bị viết hoa (luật `.reveal h2 .katex` trong khối CSS Bài 11).
+- **Sửa (đồng bộ materials):** `p.note-source` bỏ câu về $a_j$: ghi chú nay viết $\alpha_j$.
 - **Nguồn:** L1070–1077; Phụ lục A L1514–1548 (bỏ đoạn "Song ánh", L1524).
 - **Phác thảo:** (1) $h$ chỉ phụ thuộc $C=S_n^{1/2}\Lambda S_n^{1/2}$ khi $S_n\succ0$. (4) (2) Nhắc lại: $S_n=W\operatorname{diag}(\alpha_j)W^\top$, $\alpha_j>0$, $W$ trực giao. (4) (3) Đặt $S_n^{1/2}=W\operatorname{diag}(\sqrt{\alpha_j})W^\top$: đối xứng, khả nghịch, $S_n^{1/2}S_n^{1/2}=S_n$. (5) (4) $C$ đối xứng; với $w\ne0$, $y=S_n^{1/2}w\ne0$ cho $w^\top Cw=y^\top\Lambda y>0$, nên $C\succ0$. (5) (5) display $$\begin{aligned}\det C&=\det\Lambda\,\det S_n,\\ \operatorname{tr}C&=\operatorname{tr}(\Lambda S_n^{1/2}S_n^{1/2})=\operatorname{tr}(\Lambda S_n).\end{aligned}$$ (6) Theo $\det(AB)=\det A\det B$ và $\operatorname{tr}(AB)=\operatorname{tr}(BA)$; suy ra $h(\Lambda)=\log\det C-\operatorname{tr}C-\log\det S_n$. (4) Số đo sau rà soát: 22 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 5.
 - **Ghi chú diễn giả:** Căn bậc hai $S_n^{1/2}$ có các trị riêng $\sqrt{\alpha_j}>0$ nên xác định dương; $S_n^{-1/2}=W\operatorname{diag}(1/\sqrt{\alpha_j})W^\top$ là nghịch đảo của nó, và $S_n^{-1/2}S_n^{-1/2}=S_n^{-1}$. Các định thức dương vì các ma trận xác định dương, nên lấy log được.
@@ -690,6 +694,7 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Quyết định:** `thêm`. **Bài tập:** không.
 - **Sửa (rà soát):** #9: khối mật độ tại tâm và câu ô vuông cạnh $\delta$ chuyển vào ghi chú diễn giả; nhiệm vụ "Tính $\hat\Sigma^{-1}$; kiểm tra $S_4\hat\Sigma^{-1}=I_2$"; "Diễn giải:" trả lời câu hỏi mạch (nghiệm duy nhất, $\hat\Sigma^{-1}$ cho mạch 6). #46: lý do $\delta$ chỉ ở `review-log.md`.
 - **Sửa (rà lại vòng 1):** R4: "Diễn giải:" viết $(\hat\mu,\hat\Sigma)=((10,20)^\top,S_4)$ là nghiệm duy nhất và $\hat\Sigma^{-1}$ tồn tại.
+- **Sửa (đồng bộ materials):** `p.note-source` bỏ câu về cạnh ô vuông $h$: ghi chú nay viết $\delta$.
 - **Nguồn:** Ví dụ 11.9 L1132–1162.
 - **Phác thảo:** (1) Bốn vector nền: $\bar x=(10,20)^\top$, $S_4=\begin{pmatrix}5/2&3/2\\3/2&5/2\end{pmatrix}\succ0$, $\det S_4=4$. (3) (2) Tính $\hat\Sigma^{-1}$; kiểm tra $S_4\hat\Sigma^{-1}=I_2$. (3) (3) display $$\hat\Sigma^{-1}=\frac14\begin{pmatrix}5/2&-3/2\\-3/2&5/2\end{pmatrix}=\frac18\begin{pmatrix}5&-3\\-3&5\end{pmatrix},\qquad S_4\hat\Sigma^{-1}=I_2.$$ (4) Diễn giải: $S_4\succ0$, nên $(\hat\mu,\hat\Sigma)=\bigl((10,20)^\top,S_4\bigr)$ là nghiệm hợp lý cực đại duy nhất, và $\hat\Sigma^{-1}$ tồn tại. (14) Số đo sau rà lại vòng 1: 20 âm tiết, 4 dòng, 1 công thức hiển thị, dòng dài nhất 14.
 - **Ghi chú diễn giả:** Nghịch đảo của ma trận đối xứng $2\times2$ khả nghịch: $\begin{pmatrix}\kappa_1&\kappa_2\\\kappa_2&\kappa_3\end{pmatrix}^{-1}=\frac1{\kappa_1\kappa_3-\kappa_2^2}\begin{pmatrix}\kappa_3&-\kappa_2\\-\kappa_2&\kappa_1\end{pmatrix}$. Kiểm tra: phần tử $(1,1)$ của $S_4\hat\Sigma^{-1}$ là $\frac18(\frac52\cdot5-\frac32\cdot3)=1$, phần tử $(1,2)$ bằng $0$. Mật độ đã khớp tại tâm là $\hat f(\hat\mu)=1/[2\pi(\det\hat\Sigma)^{1/2}]=1/(4\pi)\approx0{,}0796$, vì với $d=2$ hệ số chuẩn hóa là $(2\pi)^{d/2}(\det\hat\Sigma)^{1/2}=2\pi\cdot2=4\pi$. Số này là độ cao của mật độ tại tâm, có đơn vị nghịch đảo của diện tích: ô vuông nhỏ cạnh $\delta$ quanh tâm có xác suất xấp xỉ $0{,}0796\,\delta^2$.
@@ -1157,6 +1162,19 @@ Thay đổi so với mục (c) khi dựng HTML:
 | HH01 | 57 | 4 | 0 | 20 |
 
 GN06: thử "khi và chỉ khi" (R11) làm trang tràn khung 1600×900, nên giữ "$\iff$". TS10: lần đo đầu dòng hai 21 âm tiết; bỏ chữ "riêng" còn 20. TS13: đo lại sau khi thay "Nhắc lại:" bằng câu không ký hiệu (quyết định R2 của điều phối viên, `check-edit3/`).
+
+## (h) Bố cục mũi tên điều hướng (2026-11-07)
+
+Kiểm định cuối (mức nhẹ): ở 1600×900, nút `controlsLayout:"edges"` giao chữ. Nút trái 8–44 px giao chữ bắt đầu ở x = 32 px; nút lên (782–818 × 8–44) giao tiêu đề hai dòng; nút xuống (782–818 × 853–911) giao dòng cuối. Đo hộp chữ (Range trên nút văn bản, cả `img`/`svg`) của 76 trang, fragment hiện hết: 90 giao nhau trên 60 trang.
+
+Luật thêm trong `lecture-course.css`, khối Bài 11, `@media screen and (min-width:761px)` (màn hẹp giữ nguyên):
+
+- trang `section[data-slide-id]`: `padding-inline:16px; box-sizing:border-box`;
+- `.controls[data-controls-layout=edges]`: `--r-controls-spacing:0px` (nút trái/phải sát mép cửa sổ);
+- nút lên, xuống dời vào cột lề phải: lên ở `top:50%`, `margin-top:-6.2em`; xuống ở `top:50%`, `margin-top:2.6em`, `padding-bottom:0`;
+- GN06 (`p` lề .08em) và HH08 (`p` lề .06em), `.katex-display` lề 0: lề mới làm một dòng xuống dòng; thu khoảng cách khối, giữ cỡ chữ.
+
+Số đo sau: hộp nút ở 1600×900 là trái −10–26 (bật: 0–36), phải 1564–1600 × 432–468, lên 1564–1600 × 388–424, xuống 1564–1600 × 476–512 (nhích theo hiệu ứng nhấp nháy); chữ nằm trong x = 51–1549. Giao nhau: 0 trên 76 trang ở 1600×900, 1280×720, 1366×768, 1920×1080. Ở 1024×768 (4:3) còn 48 giao nhau với mũi tên trái/phải, ngoài phạm vi kiểm. Đáy chữ GN06 856 px, HH08 858 px, trên chân trang (863 px). `deck_check.py` (`check-layout/`): 0 lỗi console, 0 lỗi trang, 0 yêu cầu hỏng, 0 `.katex-error`; không trang tràn khung thật (chỉ cờ `path` dấu căn KaTeX đã biết trên 9 trang như trước); mật độ và số đo 390×844 của cả 76 trang trùng `check-edit5/`.
 
 ## Phụ lục: bảng mạch lập luận của ghi chú bài giảng
 

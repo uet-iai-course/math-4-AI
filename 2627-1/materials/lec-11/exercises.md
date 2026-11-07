@@ -178,7 +178,7 @@ Phần (d). Viết biến cố đồng thời qua biến gốc $Z$: $\{X_1=1,\ld
 :::
 
 ::: hint Gợi ý 3
-Phần (e). Hậu nghiệm Beta$(\alpha,\beta)$ có mật độ tỉ lệ với $p^{\alpha-1}(1-p)^{\beta-1}$. Khi $\alpha-1$ và $\beta-1$ là số nguyên dương, hàm này có dạng (5.1), nên Định lý 11.4 cho điểm lớn nhất của nó.
+Phần (e). Hậu nghiệm Beta$(a_1,b_1)$ có mật độ tỉ lệ với $p^{a_1-1}(1-p)^{b_1-1}$. Khi $a_1-1$ và $b_1-1$ là số nguyên dương, hàm này có dạng (5.1), nên Định lý 11.4 cho điểm lớn nhất của nó.
 :::
 
 ::: solution Lời giải Bài tập 11.4
@@ -298,16 +298,16 @@ Hai giả thiết là: hai quan sát mới có phân phối $\operatorname{Cat}(
 
 **(c)** Hàm hợp lý là $L(\pi)=\pi_1^3\pi_3^{17}$. Một điểm cực đại có $\pi_1,\pi_3>0$ và $m=\pi_1+\pi_3\in(0,1]$. Nếu $m<1$, điểm $\pi'=(\pi_1/m,\ 0,\ \pi_3/m)$ cho $L(\pi')=m^{-20}L(\pi)>L(\pi)$. Vậy điểm cực đại có $m=1$, tức $\pi_2=0$. Trên mặt $\pi_1+\pi_3=1$, điều kiện dừng $3/\pi_1=17/\pi_3=\nu$ cho $\nu=20$, và $\hat\pi=(0{,}15;\ 0;\ 0{,}85)$, đúng (6.2). Theo Mệnh đề 04.2(b), áp dụng cho hàm lồi $-3\log\pi_1-17\log\pi_3$ trên tập mở $\{\pi_1>0,\pi_3>0\}$, điểm dừng này là cực đại trên mặt. Với mọi $\pi\in\Delta_2$ có $L(\pi)>0$: nếu $m<1$ thì $L(\pi)<L(\pi')\le L(\hat\pi)$; nếu $m=1$ thì $L(\pi)\le L(\hat\pi)$. Vậy $\hat\pi$ là cực đại trên toàn $\Delta_2$.
 
-**(d)** Với $q_k=n_k/n$, (6.3) cho
+**(d)** Với $\hat\pi_k=n_k/n$, (6.3) cho
 
 $$
 \begin{aligned}
--\frac1n\ell(\pi)&=-\sum_{k:\,q_k>0}q_k\log\pi_k\\
-&=H(q)+\mathrm{KL}(q\,\|\,\pi),
+-\frac1n\ell(\pi)&=-\sum_{k:\,\hat\pi_k>0}\hat\pi_k\log\pi_k\\
+&=H(\hat\pi)+\mathrm{KL}(\hat\pi\,\|\,\pi),
 \end{aligned}
 $$
 
-tức âm log-hợp lý trung bình là entropy chéo giữa $q$ và $\pi$. Với $\hat\pi=(0{,}15;\ 0;\ 0{,}85)$, một quan sát kiểm tra thuộc nhóm $2$ có mất mát $-\log\hat\pi_2=-\log0=+\infty$. Một quan sát như vậy làm entropy chéo trung bình trên tập kiểm tra bằng $+\infty$, dù nhóm $2$ có thể có xác suất thật dương nhưng nhỏ; đây là bài toán số đếm bằng không của Nhận xét 11.8.
+tức âm log-hợp lý trung bình là entropy chéo giữa $\hat\pi$ và $\pi$. Với $\hat\pi=(0{,}15;\ 0;\ 0{,}85)$, một quan sát kiểm tra thuộc nhóm $2$ có mất mát $-\log\hat\pi_2=-\log0=+\infty$. Một quan sát như vậy làm entropy chéo trung bình trên tập kiểm tra bằng $+\infty$, dù nhóm $2$ có thể có xác suất thật dương nhưng nhỏ; đây là bài toán số đếm bằng không của Nhận xét 11.8.
 
 **Kiểm tra lại.** Ở phần (a), $3/0{,}15=5/0{,}25=12/0{,}6=20=\nu$ và $0{,}15+0{,}25+0{,}6=1$. Ở phần (b), cộng trực tiếp theo các cặp có thứ tự: $2(0{,}15\cdot0{,}25+0{,}15\cdot0{,}6+0{,}25\cdot0{,}6)=2\cdot0{,}2775=0{,}555$. Ở phần (c), $3/0{,}15=17/0{,}85=20$.
 :::
@@ -339,10 +339,10 @@ Phần (d). Giữ trung bình bằng $0$ khi tối ưu; không dùng các sai l�
 :::
 
 ::: solution Lời giải Bài tập 11.6
-**(a)** Với $n=4$, (7.1) cho $\ell(\mu,v)=-2\log(2\pi)-2\log v-\frac1{2v}\sum_i(x_i-\mu)^2$. Trung bình mẫu là $\bar x=(1+1+2+4)/4=2$; các sai lệch là $(-1,-1,0,2)$, nên $Q=1+1+0+4=6$. Theo (7.3), $\sum_i(x_i-\mu)^2=6+4(\mu-2)^2$, nên với mỗi $v$, $\ell$ lớn nhất duy nhất tại $\mu=2$. Thế $\mu=2$, phần phụ thuộc $v$ là $g(v)=-2\log v-3/v$, với
+**(a)** Với $n=4$, (7.1) cho $\ell(\mu,v)=-2\log(2\pi)-2\log v-\frac1{2v}\sum_i(x_i-\mu)^2$. Trung bình mẫu là $\bar x=(1+1+2+4)/4=2$; các sai lệch là $(-1,-1,0,2)$, nên $Q=1+1+0+4=6$. Theo (7.3), $\sum_i(x_i-\mu)^2=6+4(\mu-2)^2$, nên với mỗi $v$, $\ell$ lớn nhất duy nhất tại $\mu=2$. Thế $\mu=2$, phần phụ thuộc $v$ là $\varphi(v)=-2\log v-3/v$, với
 
 $$
-g'(v)=-\frac2v+\frac3{v^2}=\frac{3-2v}{v^2},
+\varphi'(v)=-\frac2v+\frac3{v^2}=\frac{3-2v}{v^2},
 $$
 
 dương khi $v<3/2$ và âm khi $v>3/2$. Vậy $\hat\mu=2$ và $\hat\sigma^2_{\mathrm{MLE}}=3/2=Q/n$.

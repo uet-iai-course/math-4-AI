@@ -47,7 +47,7 @@ Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích m�
 
 - **Độc lập.** Hai biến ngẫu nhiên $X,Z$ độc lập nếu $\mathbb P(X\in B,Z\in C)=\mathbb P(X\in B)\,\mathbb P(Z\in C)$ với mọi tập Borel $B,C$ (Định nghĩa 10.16). Các biến rời rạc $X_1,\ldots,X_n$ độc lập cùng phân phối (independent and identically distributed, i.i.d.) nếu hàm khối xác suất đồng thời bằng tích các hàm khối xác suất biên và các biến có cùng hàm khối xác suất (Định nghĩa 05c.23).
 - **Ba họ phân phối.** $Y\sim\operatorname{Bernoulli}(\theta)$ nếu $\mathbb P(Y=1)=\theta$, $\mathbb P(Y=0)=1-\theta$ với $\theta\in[0,1]$; $Z\sim\operatorname{Cat}(\pi)$ nếu $\mathbb P(Z=k)=\pi_k$ với $\pi_k\ge0$, $\sum_k\pi_k=1$ (Định nghĩa 10.19). Trong Bài 11, $\theta$ là ký hiệu chung cho tham số của một mô hình bất kỳ, nên tham số Bernoulli được viết là $p$. Gaussian một chiều $\mathcal N(\mu,\sigma^2)$ và nhiều chiều $\mathcal N(\mu,\Sigma)$ có các mật độ cho bởi công thức (6.11) và (6.12) của Bài 10, trong Định nghĩa 10.20; các mật độ này được viết lại tại chỗ dùng.
-- **Kỳ vọng, phương sai, hiệp phương sai.** Kỳ vọng tuyến tính: $\mathbb E[\alpha X+\beta Z+\gamma]=\alpha\,\mathbb EX+\beta\,\mathbb EZ+\gamma$ (Mệnh đề 10.22 cho biến rời rạc; nhận xét sau mệnh đề và Phụ lục B.1 của Bài 10 cho biến có mật độ). Phương sai $\operatorname{Var}(X)=\mathbb E[(X-\mathbb EX)^2]$ (Định nghĩa 10.23). Hiệp phương sai $\operatorname{Cov}(X,Z)=\mathbb E[(X-\mathbb EX)(Z-\mathbb EZ)]$ (Định nghĩa 10.25) bằng $0$ khi $X,Z$ độc lập và có mômen bậc hai hữu hạn (Mệnh đề 10.27; Phụ lục B.2 của Bài 10 cho biến có mật độ). Với $n$ biến có mômen bậc hai hữu hạn, $\operatorname{Var}\bigl(\sum_iX_i\bigr)=\sum_i\operatorname{Var}X_i+2\sum_{i<j}\operatorname{Cov}(X_i,X_j)$ (Mệnh đề 10.26), và $\operatorname{Var}(aX)=a^2\operatorname{Var}X$ (Mệnh đề 10.24).
+- **Kỳ vọng, phương sai, hiệp phương sai.** Kỳ vọng tuyến tính: $\mathbb E[\gamma_1X+\gamma_2Z+\gamma_3]=\gamma_1\mathbb EX+\gamma_2\mathbb EZ+\gamma_3$ (Mệnh đề 10.22 cho biến rời rạc; nhận xét sau mệnh đề và Phụ lục B.1 của Bài 10 cho biến có mật độ). Phương sai $\operatorname{Var}(X)=\mathbb E[(X-\mathbb EX)^2]$ (Định nghĩa 10.23). Hiệp phương sai $\operatorname{Cov}(X,Z)=\mathbb E[(X-\mathbb EX)(Z-\mathbb EZ)]$ (Định nghĩa 10.25) bằng $0$ khi $X,Z$ độc lập và có mômen bậc hai hữu hạn (Mệnh đề 10.27; Phụ lục B.2 của Bài 10 cho biến có mật độ). Với $n$ biến có mômen bậc hai hữu hạn, $\operatorname{Var}\bigl(\sum_iX_i\bigr)=\sum_i\operatorname{Var}X_i+2\sum_{i<j}\operatorname{Cov}(X_i,X_j)$ (Mệnh đề 10.26), và $\operatorname{Var}(\gamma X)=\gamma^2\operatorname{Var}X$ (Mệnh đề 10.24).
 - **Trung bình mẫu.** Nếu $X_1,\ldots,X_n$ có cùng kỳ vọng $\mu$, cùng phương sai $\sigma^2<\infty$ và không tương quan đôi một thì $\bar X=\frac1n\sum_iX_i$ có $\mathbb E\bar X=\mu$ và $\operatorname{Var}\bar X=\sigma^2/n$: Định lý 05c.35 cho biến rời rạc, và trường hợp tổng quát suy từ Mệnh đề 10.26 và Mệnh đề 10.24 vì $\operatorname{Var}\bar X=\frac1{n^2}\operatorname{Var}\bigl(\sum_iX_i\bigr)=\frac1{n^2}\cdot n\sigma^2$. Một ước lượng $\hat\mu$ của $\mu$ là không chệch nếu $\mathbb E\hat\mu=\mu$; hiệu $\mathbb E\hat\mu-\mu$ là độ chệch (Định nghĩa 05c.34).
 - **Rủi ro thực nghiệm.** Rủi ro thực nghiệm của tham số $\theta$ là trung bình của mất mát trên các quan sát của tập dữ liệu (Định nghĩa 05.5, Định nghĩa 05c.51).
 - **Tối ưu có ràng buộc đẳng thức.** Bài toán cực tiểu $F(u)$ với ràng buộc $Au=b$ có hàm Lagrange $\mathcal L(u,\nu)=F(u)+\nu^\top(Au-b)$, với vector nhân tử $\nu$ (Định nghĩa 03.4). Nếu $F$ lồi, khả vi hai lần liên tục trên một tập mở lồi và các hàng của $A$ độc lập tuyến tính, thì $u^*$ là nghiệm khi và chỉ khi tồn tại $\nu^*$ thỏa $\nabla F(u^*)+A^\top\nu^*=0$ và $Au^*=b$ (Mệnh đề 04.2(b)).
@@ -137,7 +137,7 @@ Các ví dụ của bài dùng chung một dây chuyền kiểm tra sản phẩm
 
 Trong Ví dụ 10.4, tỉ lệ lỗi của từng nhà cung cấp được cho trước. Với dây chuyền kiểm tra của bài này, xác suất gắn cờ, tỉ lệ ba chế độ tải, vị trí và mức phân tán của các số đo đều chưa biết, và dữ liệu là căn cứ duy nhất để xác định chúng. Để làm việc đó, chúng ta cần nói rõ dữ liệu được sinh ra như thế nào và một giá trị tham số "phù hợp với dữ liệu" nghĩa là gì.
 
-Một cách trực quan, mỗi giá trị tham số cho một phân phối trên các quan sát có thể xảy ra, và ta chọn giá trị làm cho dữ liệu đã thấy có khả năng xảy ra cao nhất. Câu này chưa phải định nghĩa: còn phải nói rõ khả năng xảy ra của cả bộ dữ liệu được tính từ phân phối của từng quan sát như thế nào.
+Một cách trực quan, mỗi giá trị tham số cho một phân phối trên các quan sát có thể xảy ra, và ta chọn giá trị làm cho dữ liệu đã thấy có khả năng xảy ra cao nhất. Hai định nghĩa sau biến ý tưởng này thành một tiêu chuẩn tính được, bằng cách nói rõ khả năng xảy ra của cả bộ dữ liệu được tính từ phân phối của từng quan sát như thế nào.
 
 ### 4.1. Mô hình và cách lấy mẫu
 
@@ -163,7 +163,7 @@ Trong Định nghĩa 11.1, tham số $\theta$ cố định nhưng chưa biết; 
 
 Khi mỗi $X_i$ có hàm khối xác suất hoặc mật độ $p_\theta$, tính độc lập tương đương với việc hàm khối xác suất hoặc mật độ đồng thời của $(X_1,\ldots,X_n)$ tại $(x_1,\ldots,x_n)$ bằng $\prod_ip_\theta(x_i)$. Với biến rời rạc, đó là đẳng thức tích, công thức (3.5) của Bài 05c, trong Định nghĩa 05c.23; với mật độ, ta thừa nhận sự tương đương này. Tính độc lập cũng được giữ qua phép lấy hàm: nếu $g$ là hàm đo được thì $g(X_1),\ldots,g(X_n)$ độc lập, vì $\{g(X_i)\in C\}=\{X_i\in g^{-1}(C)\}$.
 
-Giả thiết "cùng phân phối" chưa đủ để viết phân phối đồng thời thành tích. Hai số đo có cùng phân phối nhưng cùng chịu một nhiễu chung vẫn phụ thuộc nhau. Ví dụ sau so sánh hai cơ chế lấy mẫu cho cùng một chuỗi cờ.
+Giả thiết "cùng phân phối" không đủ để viết phân phối đồng thời thành tích. Hai số đo có cùng phân phối nhưng cùng chịu một nhiễu chung vẫn phụ thuộc nhau. Ví dụ sau so sánh hai cơ chế lấy mẫu cho cùng một chuỗi cờ.
 
 ::: example Ví dụ 11.1 (Sáu cờ cảnh báo dưới hai cơ chế lấy mẫu)
 **Dữ liệu và mô hình.** Sáu cờ cảnh báo $D=(1,0,1,1,0,0)$. Mỗi cờ $X_i$ có phân phối Bernoulli$(p)$ với cùng tham số $p\in[0,1]$.
@@ -241,13 +241,13 @@ Tập này có thể rỗng hoặc có nhiều phần tử. Ký hiệu $\hat\the
 
 Trong Định nghĩa 11.2, dữ liệu $D$ cố định còn $\theta$ thay đổi. Cùng biểu thức $\prod_ip_\theta(x_i)$, khi $\theta$ cố định và $(x_1,\ldots,x_n)$ thay đổi, là hàm khối xác suất hoặc mật độ đồng thời của mẫu; khi $D$ cố định và $\theta$ thay đổi, nó là hàm hợp lý. Dạng tích trong (4.1) dùng giả thiết độc lập; Ví dụ 11.1 cho thấy nó sai khi các quan sát là bản chép của nhau. Với dữ liệu liên tục, $L$ là tích các giá trị mật độ tại dữ liệu, vì xác suất của đúng một vector quan sát bằng $0$.
 
-Hàm hợp lý cũng khác phân phối hậu nghiệm của tham số. Trong tiếp cận Bayes, ta chọn thêm một phân phối tiên nghiệm (prior) $p(\theta)$ và nhận phân phối hậu nghiệm (posterior)
+Hàm hợp lý cũng khác phân phối hậu nghiệm của tham số. Trong tiếp cận Bayes, ta chọn thêm một phân phối tiên nghiệm (prior) $q(\theta)$ và nhận phân phối hậu nghiệm (posterior)
 
 $$
-p(\theta\mid D)\propto L(\theta;D)\,p(\theta).
+q(\theta\mid D)\propto L(\theta;D)\,q(\theta).
 $$
 
-Khi tiên nghiệm là đều, $p(\theta)\propto1$, điểm lớn nhất của hậu nghiệm trùng với ước lượng hợp lý cực đại (Murphy (2022), §4.2.2); với tiên nghiệm khác, hai điểm này có thể khác nhau. Ước lượng hợp lý cực đại chỉ so sánh xác suất của dữ liệu dưới từng giá trị tham số, còn phát biểu về xác suất của chính tham số cần thêm một tiên nghiệm.
+Khi tiên nghiệm là đều, $q(\theta)\propto1$, điểm lớn nhất của hậu nghiệm trùng với ước lượng hợp lý cực đại (Murphy (2022), §4.2.2); với tiên nghiệm khác, hai điểm này có thể khác nhau. Ước lượng hợp lý cực đại chỉ so sánh xác suất của dữ liệu dưới từng giá trị tham số, còn phát biểu về xác suất của chính tham số cần thêm một tiên nghiệm.
 
 Ví dụ 11.2 so sánh hai giá trị tham số bằng tỉ số của các tích. Với nhiều quan sát, ta làm việc với tổng log thay cho tích, rồi với trung bình của các mất mát. Mệnh đề sau phát biểu chính xác các phép đổi này (Murphy (2022), §4.2.1 và §4.3).
 
@@ -284,13 +284,13 @@ Hàm $\hat R_n$ là rủi ro thực nghiệm (empirical risk) của Định ngh�
 
 Trong học máy, tham số của phân phối trở thành biến tối ưu và âm log-hợp lý của từng quan sát trở thành hàm mất mát. Mỗi giả thiết phân phối cho một mất mát riêng, nên đổi giả thiết thì đổi mất mát. Mệnh đề 11.3 chỉ nói về dữ liệu đã thấy: nó không cho biết tham số tìm được dự đoán tốt đến đâu trên quan sát mới.
 
-Như vậy, Định nghĩa 11.1 cố định mô hình và cách lấy mẫu, Định nghĩa 11.2 biến dữ liệu thành hàm hợp lý của tham số, và Mệnh đề 11.3 đổi bài toán ước lượng thành bài toán tối ưu. Tuy nhiên, các kết quả này chưa cho công thức của nghiệm và chưa cho biết nghiệm có tồn tại hay không. Trong Mục 5, ta giải bài toán tối ưu đầu tiên: mô hình Bernoulli với một tham số trên đoạn đóng $[0,1]$, nơi cực đại có thể nằm ở đầu mút.
+Như vậy, Định nghĩa 11.1 cố định mô hình và cách lấy mẫu, Định nghĩa 11.2 biến dữ liệu thành hàm hợp lý của tham số, và Mệnh đề 11.3 đổi bài toán ước lượng thành bài toán tối ưu. Để có công thức của nghiệm và biết nghiệm có tồn tại hay không, cần giải bài toán tối ưu cho từng mô hình cụ thể. Trong Mục 5, ta giải bài toán tối ưu đầu tiên: mô hình Bernoulli với một tham số trên đoạn đóng $[0,1]$, nơi cực đại có thể nằm ở đầu mút.
 
 ## 5. Hợp lý cực đại cho mô hình Bernoulli
 
 Dây chuyền ghi được mười cờ cảnh báo $(1,0,1,1,0,1,1,0,1,1)$, trong đó có $7$ cờ bằng $1$. Tỉ lệ $7/10$ là ứng viên tự nhiên cho xác suất gắn cờ. Chúng ta cần chứng minh rằng tiêu chuẩn (4.2) dẫn đúng tới tỉ lệ đó, và xác định nghiệm khi mẫu không có cờ nào bằng $1$, lúc hàm hợp lý không có điểm dừng trong khoảng $(0,1)$.
 
-Một cách trực quan, tăng $p$ làm mỗi số $1$ có xác suất lớn hơn nhưng làm mỗi số $0$ có xác suất nhỏ hơn; khi cả hai giá trị đều xuất hiện, nghiệm cân bằng hai tác động này. Trực giác đó chưa phải lời giải: nó chưa xử lý mẫu toàn số $0$ hoặc toàn số $1$, khi chỉ một tác động có mặt.
+Một cách trực quan, tăng $p$ làm mỗi số $1$ có xác suất lớn hơn nhưng làm mỗi số $0$ có xác suất nhỏ hơn; khi cả hai giá trị đều xuất hiện, nghiệm cân bằng hai tác động này. Khi mẫu toàn số $0$ hoặc toàn số $1$, chỉ một tác động có mặt, nên cần xét riêng hai trường hợp này.
 
 ### 5.1. Hàm hợp lý Bernoulli và nghiệm
 
@@ -407,7 +407,7 @@ $$
 p^{a_0+s-1}(1-p)^{b_0+n-s-1},
 $$
 
-nên hậu nghiệm là Beta$(a_0+s,\,b_0+n-s)$ (Murphy (2022), §4.6.2.4). Kỳ vọng của Beta$(\alpha,\beta)$ là $\alpha/(\alpha+\beta)$ (Murphy (2022), §4.6.2.7), nên trung bình hậu nghiệm là
+nên hậu nghiệm là Beta$(a_0+s,\,b_0+n-s)$ (Murphy (2022), §4.6.2.4). Theo công thức kỳ vọng của phân phối Beta (Murphy (2022), §4.6.2.7), trung bình hậu nghiệm là
 
 $$
 \mathbb E[p\mid D]=\frac{a_0+s}{a_0+b_0+n}.
@@ -422,7 +422,7 @@ Như vậy, Định lý 11.4 giải trọn bài toán một tham số: dấu c�
 
 Trong mười bản ghi, dây chuyền ghi nhận chế độ tải thấp $2$ lần, trung bình $3$ lần và cao $5$ lần. Các tần suất $(0{,}2;\ 0{,}3;\ 0{,}5)$ là ứng viên cho ba xác suất chế độ. Nếu cực đại hóa riêng từng thừa số $\pi_k^{n_k}$ của hàm hợp lý, mỗi tọa độ $\pi_k$ đều muốn tăng tới $1$ và kết quả không còn là một phân phối. Chúng ta cần một bài toán tối ưu giữ ràng buộc chuẩn hóa $\sum_k\pi_k=1$.
 
-Một cách trực quan, tổng khối lượng xác suất bằng $1$ được chia cho các nhóm, và tăng xác suất của một nhóm buộc phải lấy bớt từ các nhóm khác. Trực giác này chưa cho biết cách chia nào làm hợp lý lớn nhất, và nhóm có số đếm bằng $0$ nhận bao nhiêu.
+Một cách trực quan, tổng khối lượng xác suất bằng $1$ được chia cho các nhóm, và tăng xác suất của một nhóm buộc phải lấy bớt từ các nhóm khác. Cách chia làm hợp lý lớn nhất, kể cả xác suất của nhóm có số đếm bằng $0$, là nghiệm của bài toán có ràng buộc đó.
 
 ### 6.1. Hàm hợp lý phân loại
 
@@ -435,7 +435,7 @@ Cho số nhóm $K\ge2$ và dữ liệu $D=(x_1,\ldots,x_n)$, $x_i\in\{1,\ldots,K
 $$
 \begin{aligned}
 &\Delta_{K-1}=\Bigl\{\pi\in\mathbb R^K:\\
-&\qquad\pi_k\ge0\ \text{với mọi }k,\\
+&\qquad\pi_k\ge0,\ k=1,\ldots,K,\\
 &\qquad\sum_{k=1}^K\pi_k=1\Bigr\}.
 \end{aligned}
 $$
@@ -562,39 +562,39 @@ Khi xác suất thật của nhóm thứ hai dương nhưng nhỏ, việc nhóm 
 
 ### 6.2. Mở rộng: diễn giải bằng phân kỳ Kullback–Leibler
 
-Định lý 11.7 còn có một cách đọc theo độ khác biệt giữa hai phân phối: phân phối tần suất của dữ liệu và phân phối của mô hình (Murphy (2022), §6.2). Với hai phân phối $q,\pi$ trên $K$ nhóm, *phân kỳ Kullback–Leibler* (Kullback–Leibler divergence, KL) từ $q$ đến $\pi$ là
+Định lý 11.7 còn có một cách đọc theo độ khác biệt giữa hai phân phối: phân phối tần suất của dữ liệu và phân phối của mô hình (Murphy (2022), §6.2). Với hai phân phối $\xi,\pi$ trên $K$ nhóm, *phân kỳ Kullback–Leibler* (Kullback–Leibler divergence, KL) từ $\xi$ đến $\pi$ là
 
 $$
-\mathrm{KL}(q\,\|\,\pi)=\sum_{k:\,q_k>0}q_k\log\frac{q_k}{\pi_k},
+\mathrm{KL}(\xi\,\|\,\pi)=\sum_{k:\,\xi_k>0}\xi_k\log\frac{\xi_k}{\pi_k},
 $$
 
-với giá trị $+\infty$ khi có $q_k>0$ mà $\pi_k=0$. Khi mọi $\pi_k$ trên tập $\{k:q_k>0\}$ đều dương, bất đẳng thức $\log t\le t-1$ với $t=\pi_k/q_k$ cho
+với giá trị $+\infty$ khi có $\xi_k>0$ mà $\pi_k=0$. Khi mọi $\pi_k$ trên tập $\{k:\xi_k>0\}$ đều dương, bất đẳng thức $\log t\le t-1$ với $t=\pi_k/\xi_k$ cho
 
 $$
 \begin{aligned}
--\mathrm{KL}(q\,\|\,\pi)
-&=\sum_{k:\,q_k>0}q_k\log\frac{\pi_k}{q_k}\\
-&\le\sum_{k:\,q_k>0}q_k\Bigl(\frac{\pi_k}{q_k}-1\Bigr)\\
-&=\sum_{k:\,q_k>0}\pi_k-1\\
+-\mathrm{KL}(\xi\,\|\,\pi)
+&=\sum_{k:\,\xi_k>0}\xi_k\log\frac{\pi_k}{\xi_k}\\
+&\le\sum_{k:\,\xi_k>0}\xi_k\Bigl(\frac{\pi_k}{\xi_k}-1\Bigr)\\
+&=\sum_{k:\,\xi_k>0}\pi_k-1\\
 &\le0.
 \end{aligned}
 $$
 
-Dòng thứ ba dùng $\sum_{k:\,q_k>0}q_k=1$; dòng cuối dùng $\sum_{k:\,q_k>0}\pi_k\le1$. Do đó $\mathrm{KL}(q\,\|\,\pi)\ge0$. Dấu bằng cần $\pi_k=q_k$ trên tập $\{k:q_k>0\}$ và $\pi$ không đặt khối lượng ngoài tập đó, tức $\pi=q$. Murphy chứng minh cùng kết quả bằng bất đẳng thức Jensen (§6.2.4); ở đây ta dùng $\log t\le t-1$ như trong Định lý 11.7.
+Dòng thứ ba dùng $\sum_{k:\,\xi_k>0}\xi_k=1$; dòng cuối dùng $\sum_{k:\,\xi_k>0}\pi_k\le1$. Do đó $\mathrm{KL}(\xi\,\|\,\pi)\ge0$. Dấu bằng cần $\pi_k=\xi_k$ trên tập $\{k:\xi_k>0\}$ và $\pi$ không đặt khối lượng ngoài tập đó, tức $\pi=\xi$. Murphy chứng minh cùng kết quả bằng bất đẳng thức Jensen (§6.2.4); ở đây ta dùng $\log t\le t-1$ như trong Định lý 11.7.
 
-Áp dụng cho phân phối tần suất $q_k=n_k/n$, ta tách âm log-hợp lý trung bình thành hai phần. Với mọi $\pi$ có $\pi_k>0$ trên $\{k:q_k>0\}$, thêm và bớt $\sum_{k:\,q_k>0}q_k\log q_k$ cho
+Áp dụng cho phân phối tần suất $\xi_k=n_k/n$, ta tách âm log-hợp lý trung bình thành hai phần. Với mọi $\pi$ có $\pi_k>0$ trên $\{k:\xi_k>0\}$, thêm và bớt $\sum_{k:\,\xi_k>0}\xi_k\log \xi_k$ cho
 
 $$
 \begin{aligned}
 &-\frac1n\ell(\pi;D)\\
-&\quad=-\sum_{k:\,q_k>0}q_k\log\pi_k\\
-&\quad=H(q)+\mathrm{KL}(q\,\|\,\pi),\\
-&H(q)=-\sum_{k:\,q_k>0}q_k\log q_k,
+&\quad=-\sum_{k:\,\xi_k>0}\xi_k\log\pi_k\\
+&\quad=H(\xi)+\mathrm{KL}(\xi\,\|\,\pi),\\
+&H(\xi)=-\sum_{k:\,\xi_k>0}\xi_k\log \xi_k,
 \end{aligned}
 \tag{6.3}
 $$
 
-trong đó $H(q)$ là *entropy* của phân phối tần suất. Vì $H(q)$ không phụ thuộc $\pi$, cực tiểu hóa entropy chéo nhiều lớp tương đương cực tiểu hóa $\mathrm{KL}(q\,\|\,\pi)$, và giá trị nhỏ nhất $0$ đạt duy nhất tại $\pi=q$, tức (6.2). Đây là một chứng minh thứ hai của Định lý 11.7 (Murphy (2022), §6.2.5).
+trong đó $H(\xi)$ là *entropy* của phân phối tần suất. Vì $H(\xi)$ không phụ thuộc $\pi$, cực tiểu hóa entropy chéo nhiều lớp tương đương cực tiểu hóa $\mathrm{KL}(\xi\,\|\,\pi)$, và giá trị nhỏ nhất $0$ đạt duy nhất tại $\pi=\xi$, tức (6.2). Đây là một chứng minh thứ hai của Định lý 11.7 (Murphy (2022), §6.2.5).
 
 Như vậy, Định lý 11.7 dùng nhân tử Lagrange để tìm ứng viên và bất đẳng thức $\log t\le t-1$ để chứng minh ứng viên là cực đại toàn cục trên đơn hình đóng, kể cả khi có nhóm vắng mặt; (6.3) đọc cùng kết quả là phép chọn phân phối mô hình gần phân phối tần suất nhất theo độ phân kỳ KL. Tuy nhiên, Mục 5 và Mục 6 chỉ xét dữ liệu nhận hữu hạn giá trị, với tham số là các xác suất. Trong Mục 7, ta chuyển sang số đo liên tục với mô hình Gaussian; khi đó tham số mô tả vị trí và mức phân tán, và hàm hợp lý chứa thêm một hệ số chuẩn hóa phụ thuộc phương sai.
 
@@ -602,7 +602,7 @@ Như vậy, Định lý 11.7 dùng nhân tử Lagrange để tìm ứng viên v�
 
 Một nhiệt kế đo độ lệch nhiệt độ của năm sản phẩm so với giá trị danh định và ghi được $(0,1,2,3,4)$. Ta cần ước lượng vị trí điển hình và mức dao động của độ lệch, dưới giả thiết nhiễu Gaussian. Khác với hai mục trước, phương sai xuất hiện cả trong số mũ lẫn trong hệ số chuẩn hóa của mật độ, nên không thể chỉ tối thiểu hóa phần số mũ.
 
-Một cách trực quan, dịch trung bình về gần dữ liệu làm giảm tổng bình phương sai lệch. Giảm phương sai làm mật độ cao hơn quanh tâm nhưng phạt nặng hơn các điểm lệch tâm. Trực giác này chưa cho biết vị trí chính xác của điểm cân bằng giữa hai tác động.
+Một cách trực quan, dịch trung bình về gần dữ liệu làm giảm tổng bình phương sai lệch. Giảm phương sai làm mật độ cao hơn quanh tâm nhưng phạt nặng hơn các điểm lệch tâm. Để xác định chính xác điểm cân bằng giữa hai tác động, chúng ta tính log-hợp lý và tìm điểm cực đại của nó theo cả hai tham số.
 
 ### 7.1. Log-hợp lý Gaussian và nghiệm
 
@@ -679,13 +679,13 @@ $$
 
 Với mỗi $v>0$, số hạng cuối không dương và bằng $0$ khi và chỉ khi $\mu=\bar x$. Do đó $\ell(\mu,v;D)\le\ell(\bar x,v;D)$, với dấu bằng khi và chỉ khi $\mu=\bar x$.
 
-**Bước 2 (tối ưu phương sai khi $Q>0$).** Ta có $\ell(\bar x,v;D)=-\frac n2\log(2\pi)+g(v)$ với $g(v)=-\frac n2\log v-\frac Q{2v}$. Đạo hàm của $g$ là
+**Bước 2 (tối ưu phương sai khi $Q>0$).** Ta có $\ell(\bar x,v;D)=-\frac n2\log(2\pi)+\varphi(v)$ với $\varphi(v)=-\frac n2\log v-\frac Q{2v}$. Đạo hàm của $\varphi$ là
 
 $$
-g'(v)=-\frac n{2v}+\frac Q{2v^2}=\frac{Q-nv}{2v^2}.
+\varphi'(v)=-\frac n{2v}+\frac Q{2v^2}=\frac{Q-nv}{2v^2}.
 $$
 
-Đạo hàm dương khi $v<Q/n$ và âm khi $v>Q/n$, nên $g$ tăng chặt trên $(0,Q/n]$, giảm chặt trên $[Q/n,\infty)$, và có điểm cực đại duy nhất $v=Q/n$. Giả thiết $Q>0$ được dùng ở đây: nó bảo đảm $Q/n$ thuộc miền $v>0$.
+Đạo hàm dương khi $v<Q/n$ và âm khi $v>Q/n$, nên $\varphi$ tăng chặt trên $(0,Q/n]$, giảm chặt trên $[Q/n,\infty)$, và có điểm cực đại duy nhất $v=Q/n$. Giả thiết $Q>0$ được dùng ở đây: nó bảo đảm $Q/n$ thuộc miền $v>0$.
 
 **Bước 3 (cực đại toàn cục).** Với mọi $\mu\in\mathbb R$ và $v>0$,
 
@@ -746,18 +746,18 @@ Mệnh đề 11.3 cho mỗi giả thiết phân phối một hàm mất mát. V�
 **Dữ liệu và hai mô hình.** Ba số đo $D=(0,0,9)$ của một đại lượng chưa biết $\mu\in\mathbb R$, với nhiễu cộng $x_i=\mu+\varepsilon_i$ và các nhiễu $\varepsilon_i$ độc lập. Xét hai giả thiết:
 
 - **Mô hình (G):** $\varepsilon_i\sim\mathcal N(0,v)$ với $v>0$ đã biết.
-- **Mô hình (L):** $\varepsilon_i$ có mật độ Laplace (Laplace distribution; Murphy (2022), §2.7.3) $f(\varepsilon)=\frac1{2b}e^{-|\varepsilon|/b}$ với $b>0$ đã biết.
+- **Mô hình (L):** $\varepsilon_i$ có mật độ Laplace (Laplace distribution; Murphy (2022), §2.7.3) $f(\varepsilon)=\frac1{2\beta}e^{-|\varepsilon|/\beta}$ với $\beta>0$ đã biết.
 
 **Mất mát từ mô hình (G).** Âm log-hợp lý theo $\mu$ là $\frac n2\log(2\pi v)+\frac1{2v}\sum_i(x_i-\mu)^2$. Bỏ hằng số và hệ số dương $1/(2v)$, mục tiêu cần cực tiểu là $\sum_i(x_i-\mu)^2$.
 
-**Mất mát từ mô hình (L).** Với mỗi quan sát, $-\log f(x_i-\mu)=\log(2b)+|x_i-\mu|/b$. Bỏ hằng số và hệ số dương $1/b$, mục tiêu cần cực tiểu là $\sum_i|x_i-\mu|$.
+**Mất mát từ mô hình (L).** Với mỗi quan sát, $-\log f(x_i-\mu)=\log(2\beta)+|x_i-\mu|/\beta$. Bỏ hằng số và hệ số dương $1/\beta$, mục tiêu cần cực tiểu là $\sum_i|x_i-\mu|$.
 
 **Nghiệm của (G).** Theo Bước 1 của chứng minh Định lý 11.9, điểm cực tiểu là $\bar x=(0+0+9)/3=3$.
 
-**Nghiệm của (L).** Mục tiêu là $h(\mu)=2|\mu|+|9-\mu|$. Bỏ dấu giá trị tuyệt đối trên từng khoảng:
+**Nghiệm của (L).** Mục tiêu là $\psi(\mu)=2|\mu|+|9-\mu|$. Bỏ dấu giá trị tuyệt đối trên từng khoảng:
 
 $$
-h(\mu)=
+\psi(\mu)=
 \begin{cases}
 9-3\mu, & \mu<0,\\
 9+\mu, & 0\le\mu\le9,\\
@@ -765,9 +765,9 @@ h(\mu)=
 \end{cases}
 $$
 
-Hàm $h$ giảm chặt trên $(-\infty,0]$ và tăng chặt trên $[0,\infty)$, nên điểm cực tiểu duy nhất là $\mu=0$, với $h(0)=9$.
+Hàm $\psi$ giảm chặt trên $(-\infty,0]$ và tăng chặt trên $[0,\infty)$, nên điểm cực tiểu duy nhất là $\mu=0$, với $\psi(0)=9$.
 
-**Kiểm tra lại.** Với (L), $h(3)=6+6=12>9=h(0)$. Với (G), $\sum_i(x_i-0)^2=81>54=9+9+36=\sum_i(x_i-3)^2$.
+**Kiểm tra lại.** Với (L), $\psi(3)=6+6=12>9=\psi(0)$. Với (G), $\sum_i(x_i-0)^2=81>54=9+9+36=\sum_i(x_i-3)^2$.
 
 **Diễn giải.** Hai giả thiết nhiễu cho hai hàm mất mát, bình phương và trị tuyệt đối, và hai ước lượng trên cùng dữ liệu: trung bình $3$ và trung vị $0$. Số đo $9$ kéo trung bình lên $3$; dưới mô hình Laplace, mật độ giảm theo $|\varepsilon|$ thay vì theo $\varepsilon^2$, nên số đo này ít ảnh hưởng hơn. Lựa chọn mô hình xác suất quyết định mục tiêu tối ưu, và do đó quyết định tham số học được.
 :::
@@ -877,7 +877,7 @@ Bốn sản phẩm vận hành bình thường cho các vector số đo $x_1=(12
 
 Để trả lời Câu hỏi mở đầu, chúng ta cần một đại lượng ghi cả mức phân tán của từng tọa độ lẫn xu hướng hai tọa độ cùng biến động, rồi một cách đo độ lệch theo mức phân tán của từng hướng.
 
-Về mặt hình học, một đám điểm kéo dài theo đường chéo cần một mô hình cho phép hướng phân tán chính quay khỏi các trục tọa độ. Ma trận hiệp phương sai ghi hướng đó qua các phần tử ngoài đường chéo. Mô tả này chưa chính xác: nó chưa cho biết hướng và độ dài của các trục phân tán, là những đại lượng mà trị riêng và vector riêng của ma trận xác định.
+Về mặt hình học, một đám điểm kéo dài theo đường chéo cần một mô hình cho phép hướng phân tán chính quay khỏi các trục tọa độ. Ma trận hiệp phương sai ghi hướng đó qua các phần tử ngoài đường chéo. Để xác định hướng và độ dài của các trục phân tán, chúng ta dùng trị riêng và vector riêng của ma trận này.
 
 ### 8.1. Ma trận hiệp phương sai và hiệp phương sai mẫu
 
@@ -954,7 +954,7 @@ $$
 
 nên $S_n\succeq0$, và $w^\top S_nw$ là phương sai mẫu, với mẫu số $n$, của các hình chiếu $w^\top x_i$.
 
-Ma trận $S_n$ chưa chắc xác định dương. Theo (8.4), $w^\top S_nw=0$ khi và chỉ khi $w$ vuông góc với mọi $\tilde x_i$. Do đó $S_n\succ0$ khi và chỉ khi các vector $\tilde x_1,\ldots,\tilde x_n$ sinh ra $\mathbb R^d$. Vì $\sum_i\tilde x_i=0$, vector $\tilde x_n$ là tổ hợp tuyến tính của $n-1$ vector còn lại, nên các $\tilde x_i$ sinh ra một không gian có số chiều không quá $\min(d,n-1)$. Điều kiện $n>d$ vì vậy là cần cho $S_n\succ0$, nhưng chưa đủ: ba điểm thẳng hàng trong $\mathbb R^2$ có $n=3>2$ mà các $\tilde x_i$ chỉ sinh ra một đường thẳng.
+Ma trận $S_n$ không nhất thiết xác định dương. Theo (8.4), $w^\top S_nw=0$ khi và chỉ khi $w$ vuông góc với mọi $\tilde x_i$. Do đó $S_n\succ0$ khi và chỉ khi các vector $\tilde x_1,\ldots,\tilde x_n$ sinh ra $\mathbb R^d$. Vì $\sum_i\tilde x_i=0$, vector $\tilde x_n$ là tổ hợp tuyến tính của $n-1$ vector còn lại, nên các $\tilde x_i$ sinh ra một không gian có số chiều không quá $\min(d,n-1)$. Điều kiện $n>d$ vì vậy là cần cho $S_n\succ0$, nhưng không đủ: ba điểm thẳng hàng trong $\mathbb R^2$ có $n=3>2$ mà các $\tilde x_i$ chỉ sinh ra một đường thẳng.
 
 Ví dụ sau tính $S_n$ cho bốn vector nền của Câu hỏi mở đầu và kiểm tra điều kiện $S_n\succ0$.
 
@@ -1099,22 +1099,22 @@ $$
 
 Dấu bằng thứ nhất chỉ xảy ra khi $\mu=\bar x$ (Bước 1), dấu bằng thứ hai chỉ xảy ra khi $\Sigma=S_n$ (Bước 3). Đó là (8.6).
 
-**Bước 5 ($S_n$ suy biến).** Gọi $r<d$ là hạng của $S_n$. Chọn cơ sở trực chuẩn $u_1,\ldots,u_d$ gồm các vector riêng của $S_n$, với trị riêng $a_1,\ldots,a_r>0$ và $a_{r+1}=\cdots=a_d=0$; khi đó $S_n=\sum_{j\le r}a_ju_ju_j^\top$. Với $\varepsilon>0$, đặt
+**Bước 5 ($S_n$ suy biến).** Gọi $r<d$ là hạng của $S_n$. Chọn cơ sở trực chuẩn $u_1,\ldots,u_d$ gồm các vector riêng của $S_n$, với trị riêng $\alpha_1,\ldots,\alpha_r>0$ và $\alpha_{r+1}=\cdots=\alpha_d=0$; khi đó $S_n=\sum_{j\le r}\alpha_ju_ju_j^\top$. Với $\varepsilon>0$, đặt
 
 $$
 \begin{aligned}
-\Sigma_\varepsilon&=\sum_{j\le r}a_ju_ju_j^\top+\varepsilon\sum_{j>r}u_ju_j^\top,\\
-\Sigma_\varepsilon^{-1}&=\sum_{j\le r}a_j^{-1}u_ju_j^\top\\
+\Sigma_\varepsilon&=\sum_{j\le r}\alpha_ju_ju_j^\top+\varepsilon\sum_{j>r}u_ju_j^\top,\\
+\Sigma_\varepsilon^{-1}&=\sum_{j\le r}\alpha_j^{-1}u_ju_j^\top\\
 &\quad+\varepsilon^{-1}\sum_{j>r}u_ju_j^\top.
 \end{aligned}
 $$
 
-Ma trận $\Sigma_\varepsilon$ đối xứng xác định dương vì mọi trị riêng của nó dương. Do $u_j^\top u_k=0$ khi $j\ne k$ và $u_j^\top u_j=1$, ta có $\Sigma_\varepsilon^{-1}S_n=\sum_{j\le r}u_ju_j^\top$, nên $\operatorname{tr}(\Sigma_\varepsilon^{-1}S_n)=\sum_{j\le r}u_j^\top u_j=r$. Ngoài ra $\log\det\Sigma_\varepsilon=\sum_{j\le r}\log a_j+(d-r)\log\varepsilon$. Theo Bước 1,
+Ma trận $\Sigma_\varepsilon$ đối xứng xác định dương vì mọi trị riêng của nó dương. Do $u_j^\top u_k=0$ khi $j\ne k$ và $u_j^\top u_j=1$, ta có $\Sigma_\varepsilon^{-1}S_n=\sum_{j\le r}u_ju_j^\top$, nên $\operatorname{tr}(\Sigma_\varepsilon^{-1}S_n)=\sum_{j\le r}u_j^\top u_j=r$. Ngoài ra $\log\det\Sigma_\varepsilon=\sum_{j\le r}\log \alpha_j+(d-r)\log\varepsilon$. Theo Bước 1,
 
 $$
 \begin{aligned}
 &\ell(\bar x,\Sigma_\varepsilon;D)\\
-&\quad=-\frac{nd}2\log(2\pi)-\frac n2\sum_{j\le r}\log a_j\\
+&\quad=-\frac{nd}2\log(2\pi)-\frac n2\sum_{j\le r}\log \alpha_j\\
 &\qquad-\frac{n(d-r)}2\log\varepsilon-\frac{nr}2\\
 &\quad\longrightarrow+\infty
 \end{aligned}
@@ -1158,7 +1158,7 @@ $$
 \end{aligned}
 $$
 
-**Diễn giải.** Số $0{,}0796$ là độ cao của mật độ tại tâm, có đơn vị nghịch đảo của diện tích. Theo mô hình đã khớp, xác suất một sản phẩm bình thường có vector số đo rơi vào một ô vuông nhỏ cạnh $h$ quanh tâm xấp xỉ $0{,}0796\,h^2$.
+**Diễn giải.** Số $0{,}0796$ là độ cao của mật độ tại tâm, có đơn vị nghịch đảo của diện tích. Theo mô hình đã khớp, xác suất một sản phẩm bình thường có vector số đo rơi vào một ô vuông nhỏ cạnh $\delta$ quanh tâm xấp xỉ $0{,}0796\,\delta^2$.
 :::
 
 Với bốn điểm có hai tọa độ phương sai khác nhau, Định lý 11.14 áp dụng theo cùng các bước.
@@ -1185,7 +1185,7 @@ $$
 
 **Kiểm tra lại.** Tổng hai trị riêng là $3=\operatorname{tr}S_4$ và tích là $(9-5)/4=1=\det S_4$. Mật độ đã khớp tại tâm bằng $1/\bigl(2\pi(\det S_4)^{1/2}\bigr)=1/(2\pi)\approx0{,}159$.
 
-**Hướng phân tán chính.** Với $\varphi=(1+\sqrt5)/2$, ta có $S_4(1,\varphi)^\top=(1+\varphi,\ 1+2\varphi)^\top$. Vì $1+\varphi=\frac{3+\sqrt5}2$ và $1+2\varphi=2+\sqrt5=\frac{3+\sqrt5}2\varphi$, vector $(1,\varphi)^\top\approx(1;\ 1{,}618)^\top$ là vector riêng ứng với trị riêng lớn $(3+\sqrt5)/2$.
+**Hướng phân tán chính.** Với $\tau=(1+\sqrt5)/2$, ta có $S_4(1,\tau)^\top=(1+\tau,\ 1+2\tau)^\top$. Vì $1+\tau=\frac{3+\sqrt5}2$ và $1+2\tau=2+\sqrt5=\frac{3+\sqrt5}2\tau$, vector $(1,\tau)^\top\approx(1;\ 1{,}618)^\top$ là vector riêng ứng với trị riêng lớn $(3+\sqrt5)/2$.
 
 **Diễn giải.** Ở Ví dụ 11.8, hai tọa độ có cùng phương sai và hướng phân tán chính là đường chéo $(1,1)^\top$. Ở đây tọa độ thứ hai có phương sai mẫu $2$, gấp đôi tọa độ thứ nhất, nên hướng phân tán chính $(1;\ 1{,}618)^\top$ nghiêng về trục thứ hai: hướng của đường đồng mức phụ thuộc cả hiệp phương sai lẫn tỉ lệ giữa hai phương sai.
 :::
@@ -1513,9 +1513,9 @@ Khi đọc Murphy (2022), §3.2.2, lưu ý rằng tọa độ riêng ở đây l
 
 ### A. Đổi biến ma trận trong chứng minh Định lý 11.14
 
-Bước 2 của chứng minh Định lý 11.14 dùng bốn sự kiện sau. Cho $S_n$ đối xứng xác định dương $d\times d$ với phân rã $S_n=W\operatorname{diag}(a_1,\ldots,a_d)W^\top$, $W$ trực giao, $a_j>0$.
+Bước 2 của chứng minh Định lý 11.14 dùng bốn sự kiện sau. Cho $S_n$ đối xứng xác định dương $d\times d$ với phân rã $S_n=W\operatorname{diag}(\alpha_1,\ldots,\alpha_d)W^\top$, $W$ trực giao, $\alpha_j>0$.
 
-**Căn bậc hai.** Đặt $S_n^{1/2}=W\operatorname{diag}(\sqrt{a_1},\ldots,\sqrt{a_d})W^\top$. Ma trận này đối xứng, có các trị riêng $\sqrt{a_j}>0$ nên xác định dương, và $S_n^{1/2}S_n^{1/2}=W\operatorname{diag}(a_j)W^\top=S_n$ vì $W^\top W=I_d$. Tương tự, $S_n^{-1/2}=W\operatorname{diag}(1/\sqrt{a_j})W^\top$ là nghịch đảo của $S_n^{1/2}$, và $S_n^{-1/2}S_n^{-1/2}=S_n^{-1}$.
+**Căn bậc hai.** Đặt $S_n^{1/2}=W\operatorname{diag}(\sqrt{\alpha_1},\ldots,\sqrt{\alpha_d})W^\top$. Ma trận này đối xứng, có các trị riêng $\sqrt{\alpha_j}>0$ nên xác định dương, và $S_n^{1/2}S_n^{1/2}=W\operatorname{diag}(\alpha_j)W^\top=S_n$ vì $W^\top W=I_d$. Tương tự, $S_n^{-1/2}=W\operatorname{diag}(1/\sqrt{\alpha_j})W^\top$ là nghịch đảo của $S_n^{1/2}$, và $S_n^{-1/2}S_n^{-1/2}=S_n^{-1}$.
 
 Cho $\Lambda$ đối xứng xác định dương và đặt $C=S_n^{1/2}\Lambda S_n^{1/2}$.
 

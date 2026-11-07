@@ -4,7 +4,7 @@ Nhật ký soạn và rà soát ghi chú bài giảng nay ở `review-log-lectur
 
 ## Trạng thái
 
-2026-11-07: giai đoạn A (planning) do author-lec11 soạn: `outline.md` (dàn ý deck, kế hoạch ghi chú cũ ở "Phụ lục"), `storyboard.md` (bảng mạch lập luận cũ ở "Phụ lục"), tệp này. Cổng storyboard: đạt có điều kiện (0 chặn bàn giao, 1 nghiêm trọng); 22 phát hiện đã sửa trong planning; storyboard có 75 mục trang (cổng #8 thêm TK04). Giai đoạn B (deck HTML, SVG) do author-lec11 soạn: deck 76 trang (TK01 tách thành TK01, TK01b), một SVG mới, khối CSS Bài 11; `deck_check.py` đạt (mục "Soạn HTML"). Năm rà soát độc lập trên bản đóng băng v1: 0 chặn bàn giao, 1 nghiêm trọng (TS15), quyết định gộp D1, D2 và 52 mục (mục "Năm rà soát độc lập"). Chỉnh sửa do editor-lec11 thực hiện (mục "Chỉnh sửa"); `deck_check.py` đạt. Rà lại vòng 1 (rv-math, rv-pedagogy, rv-storyline): cả ba đạt, 14 mục nhẹ R1–R14. Chỉnh sửa đợt 2 sửa R1–R10, R12–R14 (R11 giữ có lý do) và công bố deck trên `index.html`, trình xem tài liệu (mục "Chỉnh sửa đợt 2"). Kiểm định cuối (final-lec11): không đạt ở lượt đầu vì F1 (ký hiệu KaTeX bị viết hoa trong tiêu đề GN07–GN09) và F2 (thiếu báo cáo rà tập trung từng mạch); F1 đã sửa trong CSS Bài 11, F2 và F3 đã ghi (mục "Rà tập trung bảy mạch", "Kiểm định cuối"). Điều phối viên ký duyệt sau khi kiểm lại ảnh và deck_check (mục "Kiểm định cuối").
+2026-11-07: giai đoạn A (planning) do author-lec11 soạn: `outline.md` (dàn ý deck, kế hoạch ghi chú cũ ở "Phụ lục"), `storyboard.md` (bảng mạch lập luận cũ ở "Phụ lục"), tệp này. Cổng storyboard: đạt có điều kiện (0 chặn bàn giao, 1 nghiêm trọng); 22 phát hiện đã sửa trong planning; storyboard có 75 mục trang (cổng #8 thêm TK04). Giai đoạn B (deck HTML, SVG) do author-lec11 soạn: deck 76 trang (TK01 tách thành TK01, TK01b), một SVG mới, khối CSS Bài 11; `deck_check.py` đạt (mục "Soạn HTML"). Năm rà soát độc lập trên bản đóng băng v1: 0 chặn bàn giao, 1 nghiêm trọng (TS15), quyết định gộp D1, D2 và 52 mục (mục "Năm rà soát độc lập"). Chỉnh sửa do editor-lec11 thực hiện (mục "Chỉnh sửa"); `deck_check.py` đạt. Rà lại vòng 1 (rv-math, rv-pedagogy, rv-storyline): cả ba đạt, 14 mục nhẹ R1–R14. Chỉnh sửa đợt 2 sửa R1–R10, R12–R14 (R11 giữ có lý do) và công bố deck trên `index.html`, trình xem tài liệu (mục "Chỉnh sửa đợt 2"). Kiểm định cuối (final-lec11): không đạt ở lượt đầu vì F1 (ký hiệu KaTeX bị viết hoa trong tiêu đề GN07–GN09) và F2 (thiếu báo cáo rà tập trung từng mạch); F1 đã sửa trong CSS Bài 11, F2 và F3 đã ghi (mục "Rà tập trung bảy mạch", "Kiểm định cuối"). Điều phối viên ký duyệt sau khi kiểm lại ảnh và deck_check (mục "Kiểm định cuối"). Sau đó ghi chú và bài tập được đồng bộ ký hiệu theo deck, bố cục mũi tên điều hướng được sửa, và deck bỏ các câu "ghi chú bài giảng viết …" không còn đúng (mục "Đồng bộ tài liệu và bố cục"); deck_check `check-edit6` sạch.
 
 ## Phạm vi và yêu cầu người dùng
 
@@ -29,6 +29,8 @@ Ghi từ lời gọi công cụ của điều phối viên, không từ lời t�
 | rv-math, rv-pedagogy, rv-storyline (tiếp tục bằng SendMessage) | Rà lại vòng 1: toán trên nội dung đổi; văn phong (`no-ai-slop` Detect) trên chữ đổi; mạch lập luận và rà tập trung cả năm mạch nội dung | general-purpose | opus | high | Ba báo cáo: cả ba đạt, 15 mục nhẹ (R1–R14) | chấp nhận; sửa ở đợt 2 |
 | editor-lec11 (đợt 2 và hai lượt sửa nhỏ, tiếp tục bằng SendMessage) | Chỉnh sửa đợt 2: R1–R14, công bố (`index.html`, `material-viewer.js`, phiên bản tài nguyên); TS13 ($e\to$ câu không ký hiệu, $\nabla_{\boldsymbol\pi}$); sửa F1 và câu chữ TS13 theo kiểm định cuối | general-purpose | opus | medium | Mục "Chỉnh sửa đợt 2", "Kiểm định cuối" | chấp nhận: điều phối viên xem ảnh TS13, GN09 (1600×900) sau F1; deck_check `check-edit5` sạch |
 | final-lec11 | Kiểm định cuối | general-purpose | opus | high | Bảng 8 hạng mục (mục "Kiểm định cuối") | không đạt ở lượt đầu (F1, F2 nghiêm trọng; F3 trung bình); đã sửa: F1 bởi editor-lec11, F2 và F3 bởi điều phối viên (ghi nhật ký) |
+| materials-editor-lec11 | Đồng bộ ghi chú và bài tập Bài 11 theo ký hiệu của deck | general-purpose | opus | medium | `changes.md` (scratchpad điều phối, `materials-edit/`): đổi $b\to\beta$, $h(\mu)\to\psi(\mu)$, $p(\theta)\to q(\theta)$, $h\to\delta$, $a_j\to\alpha_j$, $g(v)\to\varphi(v)$, tỉ số vàng $\varphi\to\tau$; sửa sáu câu rào đón và Định nghĩa 11.6; giữ $\pi$ | chấp nhận |
+| layout-editor-lec11 | Bố cục mũi tên điều hướng Bài 11 | general-purpose | opus | medium | Luật trong khối Bài 11 của `lecture-course.css`; `storyboard.md`, mục (h) | chấp nhận |
 
 ## Quyết định điều phối (master, 2026-11-07, sau kế hoạch planner-lec11 và báo cáo sources-lec11)
 
@@ -52,18 +54,22 @@ Ghi từ lời gọi công cụ của điều phối viên, không từ lời t�
 ## Ngoại lệ có chủ đích
 
 1. **Giữ $\mathbb P$, không đổi sang `\Pr`** (tiền lệ Bài 10, ngoại lệ 2): deck theo ký hiệu của ghi chú Bài 11. Quy tắc `\mid` vẫn áp dụng.
-2. **Lệch ký hiệu so với ghi chú** (Q-F; cũng ghi ở `outline.md`, "Khóa ký hiệu"):
-   - vector tham số phân loại viết đậm $\boldsymbol\pi$, thành phần $\pi_k$ (ghi chú: $\pi$ thường, L102, L431–453), để phân biệt với hằng số $\pi$ của mật độ Gaussian và khớp deck 10 (PP07);
-   - trị riêng của $S_n$ trong chứng minh Định lý 11.14 viết $\alpha_j$ (ghi chú: $a_j$, L1102, L1516), vì $a$ là sản phẩm mới;
-   - cạnh ô vuông nhỏ trong diễn giải mật độ tại tâm viết $\delta$ (ghi chú: $h$, L1161), vì $h$ là hàm $h(\Lambda)$ của chứng minh trong cùng mạch; $\delta$ cũng là ký hiệu khoảng nhỏ của deck 10. Sau rà soát #9, câu này chỉ còn trong ghi chú diễn giả GN10, không lên mặt trang;
-   - tham số Bernoulli viết $p$ như ghi chú (L49); deck 10 viết $\operatorname{Bernoulli}(\theta)$. Ghi chú diễn giả HL01 nêu lý do: $\theta$ của Bài 11 là tham số chung của mô hình;
+2. **Ký hiệu so với ghi chú** (Q-F; cũng ghi ở `outline.md`, "Khóa ký hiệu"). Sau kiểm định cuối lượt 1, materials-editor-lec11 đổi ký hiệu của `lecture-note.md` và `exercises.md` theo deck (mục "Đồng bộ tài liệu và bố cục"). Lệch còn lại:
+   - vector tham số phân loại viết đậm $\boldsymbol\pi$, thành phần $\pi_k$; materials giữ $\pi$ thường (L102, L431–453; khoảng 250 chỗ trong hai tệp, không đổi). Lý do: phân biệt với hằng số $\pi$ của mật độ Gaussian và khớp deck 10 (PP07). `p.note-source` của TS11 ghi "vector xác suất viết $\pi$, không đậm".
+
+   Đã đồng bộ, nay deck và materials dùng cùng ký hiệu (lý do đổi giữ ở đây để tra cứu):
+   - trị riêng của $S_n$ trong chứng minh Định lý 11.14 là $\alpha_j$ (trước: $a_j$ trong ghi chú), vì $a$ là sản phẩm mới;
+   - cạnh ô vuông nhỏ trong diễn giải mật độ tại tâm là $\delta$ (trước: $h$, L1161), vì $h$ là hàm $h(\Lambda)$ của chứng minh trong cùng mạch; câu này chỉ có trong ghi chú diễn giả GN10 (rà soát #9);
+   - hàm một biến trong chứng minh Định lý 11.9 (G105) là $\varphi(v)$ (trước: $g(v)$, L682; cổng #10); tỉ số vàng của Ví dụ 11.10 trong ghi chú đổi thành $\tau$ để $\varphi$ chỉ còn một nghĩa;
+   - tham số tỉ lệ của phân phối Laplace (G107) là $\beta$ (trước: $b$, L749; rà soát #7);
+   - hàm từng khúc của Ví dụ 11.6 là $\psi(\mu)$ (trước: $h(\mu)$; rà soát #18);
+   - mật độ tiên nghiệm và hậu nghiệm là $q(\theta)$, $q(\theta\mid D)$ (trước: $p(\theta)$, L244–250; rà soát #40).
+
+   Giữ như ghi chú, không phải lệch:
+   - tham số Bernoulli viết $p$ như ghi chú (L49); deck 10 viết $\operatorname{Bernoulli}(\theta)$. Ghi chú diễn giả HL01 nêu: $\theta$ của Bài 11 là tham số chung của mô hình;
    - vector riêng của $S_n$ trong bước suy biến (GN09) giữ $u_j$ như ghi chú (L1102); khi $\hat\Sigma=S_n$ chúng là chính các $u_j$ của Mệnh đề 11.17 (điều phối viên chấp nhận, điểm 4);
-   - hàm một biến trong chứng minh Định lý 11.9 (G105) viết $\varphi(v)$ (ghi chú: $g(v)$, L682), vì $g(\theta)$ là đại lượng cần ước lượng của Định nghĩa 11.10 trong cùng mạch (cổng #10);
-   - tham số tỉ lệ của phân phối Laplace (G107) viết $\beta$ (ghi chú: $b$, L749), vì $b$ là sản phẩm mới của bài toán mở đầu (rà soát #7);
-   - hàm từng khúc của Ví dụ 11.6 trong ghi chú diễn giả G107 viết $\psi(\mu)$ (ghi chú: $h(\mu)$), vì $h(\Lambda)$ đã dùng ở GN06–GN08 (rà soát #18);
-   - mật độ tiên nghiệm và hậu nghiệm trong ghi chú diễn giả HL05, TK04 viết $q(\theta)$, $q(\theta\mid D)$ (ghi chú: $p(\theta)$, L244–250), để không trùng $p_\theta$ và tham số Bernoulli $p$ (rà soát #40);
-   - Bài tập 11.3 (HH07–HH08) giữ tên $a=(3,1)^\top$, $b=(1,-1)^\top$ của `exercises.md` (BT L106–112) dù trùng tên hai sản phẩm của bài toán mở đầu; HH07 ghi "hai điểm $a$, $b$ của bài tập này", ghi chú diễn giả HH07 nói rõ hai điểm khác hai sản phẩm (rà soát #28);
-   - lý do của các lệch ký hiệu trên chỉ ghi ở tệp này và `outline.md`; ghi chú diễn giả chỉ nêu trong `p.note-source` ký hiệu mà ghi chú bài giảng dùng (rà soát #46).
+   - Bài tập 11.3 (HH07–HH08) giữ tên $a=(3,1)^\top$, $b=(1,-1)^\top$ của `exercises.md` (BT L106–112) dù trùng tên hai sản phẩm của bài toán mở đầu; HH07 ghi "hai điểm $a$, $b$ của bài tập này", ghi chú diễn giả HH07 nói rõ hai điểm khác hai sản phẩm (rà soát #28).
+   - Các câu "ghi chú bài giảng viết …" trong `p.note-source` của G105, G107, GN07, GN10 đã xóa vì không còn đúng.
 2b. **Không dùng `\tag`; công thức và kết quả gọi theo tên** (D1, D2 của năm rà soát). Deck Bài 10 cũng không đánh số công thức. Số công thức và số kết quả của ghi chú chỉ còn trong `p.note-source`; số hiệu của bài khác (Mệnh đề 04.2(b), 10.26) đứng sau phát biểu bằng lời, nhiều nhất một lần mỗi trang.
 3. **Thứ tự và vai trò trang khác mẫu hành trình** (Q-K):
    - ví dụ của Mệnh đề 11.3 (entropy chéo nhị phân, TS07) đứng sau phát biểu HL06, vì mệnh đề là phép đổi thứ tự và ví dụ cụ thể cần một họ phân phối;
@@ -304,10 +310,56 @@ Tác tử final-lec11 (general-purpose, opus, high, chỉ đọc) chạy bảng 
 | nghiêm trọng | `review-log.md` | thiếu báo cáo rà tập trung từng mạch ("Done means") | grep "tập trung" chỉ có hai dòng | ghi bảng rà tập trung bảy mạch từ báo cáo rv-storyline | chấp nhận | đã sửa (điều phối viên ghi mục "Rà tập trung bảy mạch") |
 | trung bình | `review-log.md` | nhật ký tác tử thiếu ba vai rà lại và editor đợt 2; "Trạng thái" cũ | d.17–28, d.7 | bổ sung | chấp nhận | đã sửa (điều phối viên) |
 | nhẹ | TS13 | tên bước kết bằng công thức rồi công thức nối ngay sau dấu chấm | ảnh `wide-026-TS13.png` | "Từ …", "Thế vào: …" | chấp nhận | đã sửa; bỏ "trên $\mathcal K_+$" ở dòng cuối để không chạm chân trang (đã nêu ở dòng trên) |
-| nhẹ | TS13, GN09, G104, GN06 | mũi tên điều hướng sát chữ ở mép | ảnh 1600×900 | bố cục chung `controlsLayout:"edges"` | ghi nhận, không sửa trong commit này (chung mọi deck) | mở |
-| nhẹ | viewer Bài 10, 11 | cảnh báo KaTeX strict về chữ tiếng Việt trong công thức của Markdown | console viewer | đợt sửa ghi chú sau | ghi nhận, ngoài phạm vi deck | mở |
+| nhẹ | TS13, GN09, G104, GN06 | mũi tên điều hướng sát chữ ở mép | ảnh 1600×900 | bố cục chung `controlsLayout:"edges"` | ghi nhận; sau đó sửa trong khối Bài 11 của `lecture-course.css` (layout-editor-lec11) | đã sửa (`storyboard.md`, mục (h); mục "Đồng bộ tài liệu và bố cục") |
+| nhẹ | viewer Bài 10, 11 | cảnh báo KaTeX strict về chữ tiếng Việt trong công thức của Markdown | console viewer | đợt sửa ghi chú sau | ghi nhận; Bài 11 sửa trong ghi chú (materials-editor-lec11) | đã sửa cho viewer Bài 11 (Định nghĩa 11.6, L438; 0 cảnh báo KaTeX); cảnh báo của viewer Bài 10 vẫn ngoài phạm vi |
 
 Điều phối viên ký duyệt: các phát hiện nghiêm trọng đã sửa và kiểm lại; không mở lại vòng rà soát nội dung (chính sách kết thúc vòng lặp, Q-L).
+
+## Đồng bộ tài liệu và bố cục (sau kiểm định cuối lượt 1, 2026-11-07)
+
+- **Materials (materials-editor-lec11; general-purpose, opus, medium).** Sửa `lecture-note.md` và `exercises.md` theo yêu cầu của `CLAUDE.md` học phần ("Keeping slides and materials in sync"): khi deck đổi ký hiệu thì rà ghi chú và bài tập. Đổi ký hiệu theo deck: Laplace $b\to\beta$; $h(\mu)\to\psi(\mu)$; $p(\theta)\to q(\theta)$; cạnh ô vuông $h\to\delta$; $a_j\to\alpha_j$; $g(v)\to\varphi(v)$; tỉ số vàng $\varphi\to\tau$ (để $\varphi$ không hai nghĩa). Sửa sáu câu rào đón trạng thái (L140, 287, 293, 425, 605, 880) và công thức có chữ Việt của Định nghĩa 11.6 (L438), nên viewer Bài 11 hết cảnh báo KaTeX. Giữ $\pi$ thường (khoảng 250 chỗ), ghi ở ngoại lệ 2. Số dòng của ghi chú không đổi (mọi sửa trên cùng dòng). Quyết định của điều phối viên: chấp nhận.
+- **Bố cục (layout-editor-lec11; general-purpose, opus, medium).** Thêm luật bố cục mũi tên điều hướng trong khối Bài 11 của `lecture-course.css` (`storyboard.md`, mục (h)): 90 chỗ chồng giữa nút và chữ trên 60 trang → 0 ở 1600×900; GN06, HH08 giảm khoảng cách dọc, giữ cỡ chữ; mũi tên lên/xuống chuyển sang cột phải. Màn hẹp giữ nguyên. Quyết định của điều phối viên: chấp nhận.
+- **Deck (editor-lec11).** Xóa bốn câu không còn đúng trong `p.note-source`: "ghi chú bài giảng viết $g$ cho $\varphi$" (G105), "… $b$ cho tham số Laplace $\beta$" (G107), "… $a_j$ cho trị riêng $\alpha_j$" (GN07), "… $h$ cho cạnh ô vuông $\delta$" (GN10). Thêm vào `p.note-source` của TS11: "vector xác suất viết $\pi$, không đậm". Deck không dẫn số dòng ghi chú; số công thức và số kết quả trong `p.note-source` không đổi. Planning: `outline.md` ("Khóa ký hiệu") và `storyboard.md` (mục G105, G107, GN07, GN10, TS11) ghi ký hiệu đã đồng bộ; mục (h) của storyboard giữ nguyên.
+- **Kiểm tra.** `deck_check.py --shots` (`check-edit6/`): 76 trang; 0 lỗi console, 0 lỗi trang, 0 yêu cầu hỏng, 0 `.katex-error`; không tràn khung thật ở 1600×900; không cuộn ngang toàn trang ở 390×844; mật độ trong trần (MD01 77/80, MD02 7 dòng). `git diff --check`: sạch.
+
+
+### Rà lại materials và lượt sửa thứ hai (2026-11-07)
+
+Hai vai chỉ đọc rà diff của `materials/lec-11/` (tiếp tục bằng SendMessage): rv-math (general-purpose, opus, high) và rv-pedagogy (general-purpose, opus, high, `no-ai-slop` Detect). Cả hai **đạt**. Các phát hiện được materials-editor-lec11 sửa ở lượt thứ hai; điều phối viên đọc lại câu Beta (L410) sau sửa.
+
+| mức độ | vị trí | vấn đề | bằng chứng | đề xuất sửa | quyết định | trạng thái |
+|---|---|---|---|---|---|---|
+| trung bình | ghi chú §6.2 (L565–597); `exercises.md` 11.5(d) | $q$ có hai nghĩa: tiên nghiệm $q(\theta)$ và phân phối trong phân kỳ KL | L244, L565, BT L301 | giữ $q(\theta)$ (khớp deck); §6.2 dùng $\xi$; BT 11.5(d) dùng $\hat\pi$ | chấp nhận | đã sửa (40 + 6 chỗ) |
+| nhẹ | ghi chú L50, L410; `exercises.md` L181 | $\alpha,\beta,a$ trùng $\beta$ Laplace, $\alpha_j$, sản phẩm $a$ | L50, L410, BT L181 | L50 dùng $\gamma_1,\gamma_2,\gamma_3$, $\gamma$; L410 gọi tên công thức kỳ vọng Beta; BT dùng Beta$(a_1,b_1)$ | chấp nhận | đã sửa |
+| nhẹ | `review-log.md` ngoại lệ 2 | còn mô tả ký hiệu cũ của ghi chú | d.56–64 | rút gọn theo trạng thái đã đồng bộ | chấp nhận | đã sửa (editor-lec11) |
+| nhẹ | ghi chú L140 | lặp khuôn câu với L138 | L138, L140 | "Hai định nghĩa sau biến ý tưởng này thành một tiêu chuẩn tính được, …" | chấp nhận | đã sửa |
+| nhẹ | ghi chú L425 | nhắc lại nhu cầu L422 | L422, L425 | "Cách chia làm hợp lý lớn nhất, … là nghiệm của bài toán có ràng buộc đó." | chấp nhận | đã sửa |
+| nhẹ | ghi chú L605, L880 | câu kế hoạch dùng "ta" | giọng ghi chú: "chúng ta" cho kế hoạch | "chúng ta" | chấp nhận | đã sửa |
+| nhẹ | ghi chú L166, L957 | "chưa đủ" mang sắc thái thời gian; lệch deck GN03 | L166, L957 | "không đủ"; "không nhất thiết xác định dương" | chấp nhận | đã sửa |
+
+Kiểm sau lượt thứ hai (materials-editor-lec11): sync `--check` OK (33 tệp); `git diff --check` sạch; viewer ghi chú (1555 công thức) và bài tập (545): 0 `.katex-error`, 0 cảnh báo KaTeX, 0 lỗi trang. Lỗi CSP trên console là script do máy chủ xem trước chèn vào trang (final-lec11, hạng mục 6), không thuộc site.
+
+
+### Kiểm định cuối lượt 2 (final-lec11, 2026-11-07)
+
+final-lec11 (general-purpose, opus, high, tiếp tục bằng SendMessage) chạy lại đầy đủ trên trạng thái sau "Đồng bộ tài liệu và bố cục", thêm hạng mục 9 (materials) và 10 (bố cục). Kết luận: **đạt** cả 10 hạng mục.
+
+| # | Hạng mục | Kết quả |
+|---|---|---|
+| 1 | Kỹ thuật deck | đạt (diff CSS chỉ thêm luật phạm vi Bài 11; `lecture-style.css` không đổi) |
+| 2 | Trình duyệt | đạt (76 trang, 0 lỗi; chỉ cờ `path` dấu căn; bàn phím; tiêu đề GN07, GN09 đúng ký hiệu) |
+| 3 | Mật độ | đạt |
+| 4 | Toán học tái kiểm | đạt (TS13, HH08 tính lại) |
+| 5 | Đồng bộ planning | đạt (76/76; rà tập trung bảy mạch; nhật ký đủ vai) |
+| 6 | Công bố | đạt |
+| 7 | Git | đạt |
+| 8 | Văn phong (mẫu) | đạt |
+| 9 | Materials (nội dung toán không đổi, 0 câu rào đón, ký hiệu khớp deck trừ $\pi$/$\boldsymbol\pi$, 0 cảnh báo KaTeX, sync OK) | đạt |
+| 10 | Bố cục (0 giao nhau chữ–nút ở 1600×900 và 1280×720; deck Bài 10 có số đo trùng hệt trước và sau) | đạt |
+
+Mục nhẹ: phiên bản tài nguyên nâng thành `20261107-lec11-materials` vì `material-local-data.js` đổi (điều phối viên, đã làm); khoảng cách 7 px trên chân trang ở GN06, HH08 (ghi nhận); cảnh báo KaTeX của viewer Bài 10 (ngoài phạm vi Bài 11).
+
+Điều phối viên ký duyệt lượt 2.
 
 ## Nguồn đã tham khảo
 

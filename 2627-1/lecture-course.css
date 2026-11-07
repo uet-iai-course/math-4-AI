@@ -961,6 +961,16 @@
   :where(html[data-lecture="11"]) .reveal .katex { white-space:nowrap; }
   :where(html[data-lecture="11"]) .reveal .slides section[data-slide-id] p { margin-top:.32em; margin-bottom:.32em; }
   :where(html[data-lecture="11"]) .reveal .slides section[data-slide-id] .katex-display { margin:.3em 0; }
+  /* Bài 11: mũi tên điều hướng không chạm chữ ở màn rộng. Mũi tên sát mép cửa sổ, trang chừa lề trái/phải;
+     mũi tên lên/xuống dời vào cột lề phải, ngay trên và dưới mũi tên phải. */
+  :where(html[data-lecture="11"]) .reveal .slides section[data-slide-id] { padding-inline:16px; box-sizing:border-box; }
+  :where(html[data-lecture="11"]) .reveal .controls[data-controls-layout=edges] { --r-controls-spacing:0px; }
+  :where(html[data-lecture="11"]) .reveal .controls[data-controls-layout=edges] .navigate-up { top:50%; left:auto; right:var(--r-controls-spacing); margin:-6.2em 0 0; }
+  :where(html[data-lecture="11"]) .reveal .controls[data-controls-layout=edges] .navigate-down { top:50%; bottom:auto; left:auto; right:var(--r-controls-spacing); margin:2.6em 0 0; padding-bottom:0; }
+  /* GN06, HH08: một dòng xuống dòng do lề mới; thu khoảng cách khối, giữ cỡ chữ. */
+  :where(html[data-lecture="11"]) .reveal .slides section[data-slide-id="GN06"] p { margin-top:.08em; margin-bottom:.08em; }
+  :where(html[data-lecture="11"]) .reveal .slides section[data-slide-id="HH08"] p { margin-top:.06em; margin-bottom:.06em; }
+  :where(html[data-lecture="11"]) .reveal .slides section:is([data-slide-id="GN06"],[data-slide-id="HH08"]) .katex-display { margin:0; }
 }
 @media screen and (max-width:760px) {
   :where(html[data-lecture="11"]) .reveal table.stack-table,
