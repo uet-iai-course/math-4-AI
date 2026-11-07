@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="t d">
+<title id="t">Đường đồng mức của Gaussian đã khớp và hai sản phẩm mới</title>
+<desc id="d">Mặt phẳng độ lệch so với tâm (10, 20). Bốn điểm nền hình tròn tại (2, 2), (−2, −2), (1, −1), (−1, 1). Ba elip đồng tâm ứng với khoảng cách Mahalanobis 1, 2, 3, trục dài theo hướng u cộng (1, 1), trục ngắn theo hướng u trừ (1, −1); elip ứng với khoảng cách 1 có bán trục 2 và 1. Điểm a hình tam giác tại độ lệch (3, 3) nằm trên trục dài, giữa elip 2 và elip 3. Điểm b hình vuông tại độ lệch (2, −2) nằm trên trục ngắn, gần elip 3.</desc>
+<rect width="480" height="480" fill="#fff"/>
+<g stroke="#c9cfdb" stroke-width="1.5">
+<line x1="20" y1="240" x2="460" y2="240"/>
+<line x1="240" y1="20" x2="240" y2="460"/>
+</g>
+<g stroke="#8a93a6" stroke-width="2" stroke-dasharray="8 6">
+<line x1="50" y1="430" x2="430" y2="50"/>
+<line x1="50" y1="50" x2="430" y2="430"/>
+</g>
+<g fill="none" stroke="#2f3e7a" transform="rotate(-45 240 240)">
+<ellipse cx="240" cy="240" rx="80" ry="40" stroke-width="3"/>
+<ellipse cx="240" cy="240" rx="160" ry="80" stroke-width="3" stroke-dasharray="14 6"/>
+<ellipse cx="240" cy="240" rx="240" ry="120" stroke-width="3" stroke-dasharray="4 5"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="23" fill="#2f3e7a" font-weight="bold" text-anchor="middle" stroke="#fff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">
+<text x="188" y="326">1</text>
+<text x="131" y="382">2</text>
+<text x="75" y="439">3</text>
+<text x="408" y="40">u₊</text>
+<text x="410" y="462">u₋</text>
+</g>
+<g fill="#287c74" stroke="#1b4f4a" stroke-width="1.5">
+<circle cx="320" cy="160" r="7"/>
+<circle cx="160" cy="320" r="7"/>
+<circle cx="280" cy="280" r="7"/>
+<circle cx="200" cy="200" r="7"/>
+</g>
+<circle cx="240" cy="240" r="5" fill="#2f3e7a"/>
+<text x="270" y="214" font-family="Arial,sans-serif" font-size="22" fill="#2f3e7a" text-anchor="middle" stroke="#fff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">tâm</text>
+<polygon points="360,108 371,128 349,128" fill="#b15a2b" stroke="#6e3417" stroke-width="1.5"/>
+<text x="378" y="126" font-family="Arial,sans-serif" font-size="24" font-weight="bold" fill="#6e3417">a</text>
+<rect x="311" y="311" width="18" height="18" fill="#b15a2b" stroke="#6e3417" stroke-width="1.5"/>
+<text x="336" y="331" font-family="Arial,sans-serif" font-size="24" font-weight="bold" fill="#6e3417">b</text>
+</svg>
