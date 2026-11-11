@@ -21,7 +21,7 @@
   <text class="label" x="342" y="181" text-anchor="middle">a′=(a−55)/10</text>
   <text class="label" x="342" y="217" text-anchor="middle">b′=b−2</text>
   <text class="label" x="342" y="270" text-anchor="middle">φ=[1,a′,b′]ᵀ</text>
-  <text class="small" x="342" y="318" text-anchor="middle">Mỗi căn → một</text><text class="small" x="342" y="344" text-anchor="middle">véc-tơ 3 chiều</text>
+  <text class="small" x="342" y="318" text-anchor="middle">Mỗi căn → một</text><text class="small" x="342" y="344" text-anchor="middle">vector 3 chiều</text>
   <text class="small" x="342" y="390" text-anchor="middle">Giữ đúng đơn vị</text>
 
   <path class="arrow" d="M434 263 L470 263"/>
@@ -52,5 +52,5 @@
   <rect x="990" y="293" width="136" height="54" rx="10" fill="#fff" stroke="#16706a" stroke-width="2"/>
   <text class="title" x="1058" y="328" text-anchor="middle">1,6 tỷ</text>
   <text class="small" x="1058" y="378" text-anchor="middle">Xác suất bổ sung</text><text class="small" x="1058" y="402" text-anchor="middle">dải nhiễu.</text>
-  <text class="small" x="600" y="484" text-anchor="middle">Các mũi tên chỉ quan hệ tính toán; dữ liệu tổng hợp này không phải bằng chứng về thị trường.</text>
+  <text class="small" x="600" y="484" text-anchor="middle">Các mũi tên chỉ quan hệ tính toán giữa các khối.</text>
 </svg>

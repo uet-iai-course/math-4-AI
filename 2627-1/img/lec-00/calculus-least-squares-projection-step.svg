@@ -26,7 +26,7 @@
   <text class="label" x="302" y="222">r = ŷ − y</text>
   <text class="label" x="280" y="240" text-anchor="end">X<tspan baseline-shift="super" font-size="12">T</tspan>r = 0</text>
   <text class="label" x="322" y="302">ŷ = Xw<tspan baseline-shift="sub" font-size="12">LS</tspan></text>
-  <text class="small" x="294" y="458" text-anchor="middle">Mặt phẳng chỉ là sơ đồ của một không gian con trong ℝ⁴.</text>
+  <text class="small" x="294" y="458" text-anchor="middle">Mặt phẳng là sơ đồ của một không gian con trong ℝ⁴.</text>
 
   <rect class="panel" x="588" y="55" width="588" height="440" rx="14"/>
   <text class="title" x="882" y="88" text-anchor="middle">Lát tham số w₀ = 14</text>
@@ -55,5 +55,5 @@
   <text class="label halo c-orange" x="875" y="220" text-anchor="end">w<tspan baseline-shift="super" font-size="12">+</tspan> = (1,5; 1,3)</text>
   <text class="label halo c-teal" x="978" y="282">w<tspan baseline-shift="sub" font-size="12">LS</tspan> = (2; 1)</text>
   <text class="label" x="882" y="456" text-anchor="middle">f: 4,5 → 2,265; giá trị nhỏ nhất 2 tại w<tspan baseline-shift="sub" font-size="12">LS</tspan></text>
-  <text class="small" x="882" y="482" text-anchor="middle">Một bước tiến về nghiệm nhưng chưa đạt nghiệm.</text>
+  <text class="small" x="882" y="482" text-anchor="middle">Sau một bước, f còn cách giá trị nhỏ nhất 0,265.</text>
 </svg>

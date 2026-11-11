@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
   <title id="title">Hessian, độ cong theo hướng và Taylor bậc hai</title>
-  <desc id="desc">Đường mức elip quanh cực tiểu với hai hướng riêng của Hessian, hai lát cắt có độ cong khác nhau, và hiệu chỉnh Taylor từ 7,8 lên 7,82.</desc>
+  <desc id="desc">Đường mức elip quanh cực tiểu với hai hướng riêng của Hessian, hai hàm hạn chế có độ cong khác nhau, và hiệu chỉnh Taylor từ 7,8 lên 7,82.</desc>
   <defs>
     <marker id="arrowTeal" viewBox="0 0 9 9" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="18" refX="7" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#16706a"/></marker>
     <marker id="arrowOrange" viewBox="0 0 9 9" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="18" refX="7" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#b44b20"/></marker>
@@ -26,7 +26,7 @@
   <text class="small c-orange" x="48" y="466">hướng riêng nhiều cong: λ = 3 + √2</text>
 
   <rect class="panel" x="420" y="55" width="350" height="440" rx="14"/>
-  <text class="title" x="595" y="88" text-anchor="middle">Hai lát cắt theo hướng</text>
+  <text class="title" x="595" y="88" text-anchor="middle">Hai hàm hạn chế</text>
   <line x1="455" y1="375" x2="735" y2="375" stroke="#24324a" stroke-width="2"/>
   <line x1="595" y1="405" x2="595" y2="168" stroke="#24324a" stroke-width="2"/>
   <path class="curve1" d="M485 229.4 Q595 430.6 705 229.4"/>
@@ -34,10 +34,10 @@
   <text class="label c-orange" x="595" y="122" text-anchor="middle">d = (1, 1)/√2: d<tspan baseline-shift="super" font-size="13">T</tspan>Hd = 4</text>
   <text class="label c-teal" x="595" y="148" text-anchor="middle">d = e<tspan baseline-shift="sub" font-size="13">1</tspan>: d<tspan baseline-shift="super" font-size="13">T</tspan>Hd = 2</text>
   <text class="label" x="742" y="382">t</text>
-  <text class="label" x="603" y="182">φ(t)</text>
+  <text class="label" x="603" y="182">γ(t)</text>
   <text class="small" x="595" y="428" text-anchor="middle">Cùng điểm, đổi hướng</text>
   <text class="small" x="595" y="451" text-anchor="middle">→ độ cong thay đổi.</text>
-  <text class="small" x="595" y="478" text-anchor="middle">Đây không phải hai hướng riêng.</text>
+  <text class="small" x="595" y="478" text-anchor="middle">Hai hướng này khác hai hướng riêng.</text>
 
   <rect class="panel" x="790" y="55" width="390" height="440" rx="14"/>
   <text class="title" x="985" y="88" text-anchor="middle">Taylor tại P=(1,2)</text>

@@ -5,12 +5,12 @@
   <rect width="1200" height="540" fill="#f3f6fb"/><text class="title" x="600" y="34" text-anchor="middle">Kỳ vọng định vị tâm cân bằng; phương sai đo độ phân tán quanh tâm</text>
   <rect class="panel" x="24" y="58" width="560" height="450" rx="14"/><text class="title" x="304" y="94" text-anchor="middle">Bernoulli(0,3): hai khả năng không cân nhau</text>
   <line x1="92" y1="315" x2="520" y2="315" stroke="#24324a" stroke-width="6"/>
-  <polygon points="220,315 250,365 190,365" fill="#16706a"/><text class="label" x="220" y="395" text-anchor="middle">E[B] = 0,3</text>
+  <polygon points="220,315 250,365 190,365" fill="#16706a"/><text class="label" x="220" y="395" text-anchor="middle">E[V] = 0,3</text>
   <circle class="blue" cx="92" cy="286" r="31"/><text class="title" x="92" y="294" text-anchor="middle">0</text><text class="label" x="40" y="240">khối lượng 0,7</text>
   <circle class="orange" cx="520" cy="286" r="22"/><text class="title" x="520" y="294" text-anchor="middle">1</text><text class="label" x="568" y="240" text-anchor="end">khối lượng 0,3</text>
   <line x1="220" y1="180" x2="220" y2="315" class="mean"/>
   <text class="label" x="304" y="135" text-anchor="middle">0,7(0 − 0,3) + 0,3(1 − 0,3) = 0</text>
-  <text class="label" x="304" y="445" text-anchor="middle">Var(B) = 0,7(0 − 0,3)² + 0,3(1 − 0,3)² = 0,21</text>
+  <text class="label" x="304" y="445" text-anchor="middle">Var(V) = 0,7(0 − 0,3)² + 0,3(1 − 0,3)² = 0,21</text>
   <text class="small" x="304" y="478" text-anchor="middle">Bình phương làm hai phía đều đóng góp dương.</text>
 
   <rect class="panel" x="610" y="58" width="566" height="450" rx="14"/><text class="title" x="893" y="94" text-anchor="middle">Unif(0, 2): tâm ở 1, trải đều</text>

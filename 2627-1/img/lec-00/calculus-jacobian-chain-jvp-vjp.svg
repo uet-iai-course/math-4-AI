@@ -25,20 +25,20 @@
   <text class="label" x="620" y="290" text-anchor="middle">J<tspan baseline-shift="sub" font-size="12">F</tspan>d = (1, 2, 1)</text>
   <text class="small" x="620" y="322" text-anchor="middle">Jacobian có kích thước 3×2</text>
   <text class="title" x="1037" y="190" text-anchor="middle">Mất mát ℝ</text>
-  <text class="label" x="1037" y="225" text-anchor="middle">g(z) = ½‖z‖²</text>
-  <text class="label" x="1037" y="257" text-anchor="middle">a = ∇g(F) = F</text>
+  <text class="label" x="1037" y="225" text-anchor="middle">χ(z) = ½‖z‖²</text>
+  <text class="label" x="1037" y="257" text-anchor="middle">ν = ∇χ(F) = F</text>
   <text class="small" x="1037" y="288" text-anchor="middle">một độ nhạy đầu ra</text>
 
   <line class="forward" x1="315" y1="205" x2="470" y2="205"/>
   <line class="forward" x1="770" y1="205" x2="930" y2="205"/>
   <rect class="tag" x="337" y="116" width="112" height="48" rx="10"/><text class="label" x="393" y="146" text-anchor="middle">JVP: J<tspan baseline-shift="sub" font-size="12">F</tspan>d</text>
-  <text class="small" x="850" y="185" text-anchor="middle">F rồi g</text>
+  <text class="small" x="850" y="185" text-anchor="middle">F rồi χ</text>
 
   <line class="reverse" x1="930" y1="285" x2="770" y2="285"/>
   <line class="reverse" x1="470" y1="285" x2="315" y2="285"/>
-  <rect class="tag2" x="300" y="354" width="220" height="52" rx="10"/><text class="label" x="410" y="386" text-anchor="middle">VJP: J<tspan baseline-shift="sub" font-size="12">F</tspan><tspan baseline-shift="super" font-size="12">T</tspan>a = (6, 6)</text>
+  <rect class="tag2" x="300" y="354" width="220" height="52" rx="10"/><text class="label" x="410" y="386" text-anchor="middle">VJP: J<tspan baseline-shift="sub" font-size="12">F</tspan><tspan baseline-shift="super" font-size="12">T</tspan>ν = (6, 6)</text>
   <text class="small" x="850" y="326" text-anchor="middle">truyền ngược</text>
 
   <rect x="214" y="420" width="772" height="52" rx="12" fill="#fff" stroke="#bac5d6" stroke-width="2"/>
-  <text class="label" x="600" y="453" text-anchor="middle">∇ℓ(x) = J<tspan baseline-shift="sub" font-size="12">F</tspan>(x)<tspan baseline-shift="super" font-size="12">T</tspan>∇g(F(x)); kích thước (2×3)(3×1) = (2×1)</text>
+  <text class="label" x="600" y="453" text-anchor="middle">∇ℓ(x) = J<tspan baseline-shift="sub" font-size="12">F</tspan>(x)<tspan baseline-shift="super" font-size="12">T</tspan>∇χ(F(x)); kích thước (2×3)(3×1) = (2×1)</text>
 </svg>

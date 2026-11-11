@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
   <title id="title">Gradient, đạo hàm theo hướng và tuyến tính hóa</title>
-  <desc id="desc">Khung trái vẽ ba đường mức elip của h, trong đó đường mức h bằng 8 đi qua P bằng (1, 2); gradient (5, 7) vuông góc với tiếp tuyến của đường mức tại P và gần cùng phương với hướng đơn vị d bằng (3/5, 4/5). Khung phải vẽ lát phi(t) bằng h(P cộng t Delta) cùng tiếp tuyến tại t bằng 0, cho dự đoán tuyến tính 7,8 và giá trị đúng 7,82 tại t bằng 1; độ cong được phóng đại để dễ nhìn.</desc>
+  <desc id="desc">Khung trái vẽ ba đường mức elip của h, trong đó đường mức h bằng 8 đi qua P bằng (1, 2); gradient (5, 7) vuông góc với tiếp tuyến của đường mức tại P và gần cùng phương với hướng đơn vị d bằng (3/5, 4/5). Khung phải vẽ lát gamma(t) bằng h(P cộng t Delta) cùng tiếp tuyến tại t bằng 0, cho dự đoán tuyến tính 7,8 và giá trị đúng 7,82 tại t bằng 1; độ cong được phóng đại để dễ nhìn.</desc>
   <defs>
     <marker id="arrowDark" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#24324a"/></marker>
     <marker id="arrowOrange" viewBox="0 0 10 10" markerUnits="userSpaceOnUse" markerWidth="18" markerHeight="18" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b44b20"/></marker>
@@ -30,17 +30,17 @@
   <text class="small" x="80" y="450">Mũi tên d chỉ hướng; tích vô hướng cho tốc độ thay đổi.</text>
 
   <rect class="panel" x="601" y="55" width="575" height="420" rx="14"/>
-  <text x="889" y="88" text-anchor="middle" class="title">Tuyến tính hóa trên một lát cắt</text>
+  <text x="889" y="88" text-anchor="middle" class="title">Tuyến tính hóa trên hàm hạn chế</text>
   <line x1="650" y1="390" x2="1125" y2="390" stroke="#24324a" stroke-width="2" marker-end="url(#arrowDark)"/>
   <line x1="680" y1="420" x2="680" y2="115" stroke="#24324a" stroke-width="2" marker-end="url(#arrowDark)"/>
   <text class="label" x="1130" y="397">t</text>
-  <text class="label" x="672" y="122" text-anchor="end">φ(t)</text>
+  <text class="label" x="672" y="122" text-anchor="end">γ(t)</text>
   <line x1="760" y1="390" x2="760" y2="397" stroke="#24324a" stroke-width="2"/><text class="small" x="760" y="414" text-anchor="middle">0</text>
   <line x1="980" y1="390" x2="980" y2="397" stroke="#24324a" stroke-width="2"/><text class="small" x="980" y="414" text-anchor="middle">1</text>
-  <text class="label" x="1150" y="135" text-anchor="end">φ(t) = h(P + tΔ), Δ = (0,1; −0,1)</text>
+  <text class="label" x="1150" y="135" text-anchor="end">γ(t) = h(P + tΔ), Δ = (0,1; −0,1)</text>
   <line class="tangent" x1="694" y1="167" x2="1101" y2="370.5"/>
   <polyline class="curve" points="694,164 716,176.7 738,188.7 760,200 782,210.7 804,220.7 826,230 848,238.7 870,246.8 892,254.1 914,260.8 936,266.9 958,272.3 980,277 1002,281.1 1024,284.5 1046,287.2 1068,289.3 1090,290.8 1101,291.2"/>
-  <circle class="point" cx="760" cy="200" r="7"/><text class="small" x="775" y="185">φ(0) = h(P) = 8</text>
+  <circle class="point" cx="760" cy="200" r="7"/><text class="small" x="775" y="185">γ(0) = h(P) = 8</text>
   <line class="guide" x1="980" y1="390" x2="980" y2="277"/>
   <rect x="972" y="302" width="16" height="16" fill="white" stroke="#b44b20" stroke-width="3"/>
   <circle cx="980" cy="277" r="7" fill="#315d92"/>
