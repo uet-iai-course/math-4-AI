@@ -2404,7 +2404,7 @@ $$
 \end{aligned}
 $$
 
-**Hạng.** Đảo thứ tự các căn ($1\leftrightarrow4$, $2\leftrightarrow3$) giữ nguyên cột $1$ và cột $(a')^2$, đổi dấu cột $a'$ và cột $b'$. Gọi $\mathbb 1=(1,1,1,1)^T$. Nếu $(a')^2=\beta_0\mathbb 1+\beta_1a'+\beta_2b'$, phép đảo cho $(a')^2=\beta_0\mathbb 1-\beta_1a'-\beta_2b'$; cộng hai đẳng thức được $(a')^2=\beta_0\mathbb 1$, vô lý vì $2{,}25\ne0{,}25$. Cùng với Ví dụ 00.6, bốn cột độc lập tuyến tính, nên $\operatorname{rank}(X_{\mathrm q})=4$ và $X_{\mathrm q}$ khả nghịch theo Định lý 00.12.
+**Hạng.** Đảo thứ tự các căn ($1\leftrightarrow4$, $2\leftrightarrow3$) giữ nguyên cột $1$ và cột $(a')^2$, đổi dấu cột $a'$ và cột $b'$. Gọi $\mathbf 1=(1,1,1,1)^T$. Nếu $(a')^2=\beta_0\mathbf 1+\beta_1a'+\beta_2b'$, phép đảo cho $(a')^2=\beta_0\mathbf 1-\beta_1a'-\beta_2b'$; cộng hai đẳng thức được $(a')^2=\beta_0\mathbf 1$, vô lý vì $2{,}25\ne0{,}25$. Cùng với Ví dụ 00.6, bốn cột độc lập tuyến tính, nên $\operatorname{rank}(X_{\mathrm q})=4$ và $X_{\mathrm q}$ khả nghịch theo Định lý 00.12.
 
 **Áp dụng kết quả.** Theo Định lý 00.12, với mọi vector giá $y$, hệ $X_{\mathrm q}w_{\mathrm q}=y$ có nghiệm duy nhất, và nghiệm đó cho phần dư bằng $0$. Với giá đã cho, trừ hàng 2 khỏi hàng 3 được $w_{\mathrm q,1}=2$; trừ hàng 1 khỏi hàng 4 được $3w_{\mathrm q,1}+2w_{\mathrm q,2}=8$, nên $w_{\mathrm q,2}=1$; khi đó hàng 2 và hàng 1 cho $w_{\mathrm q,0}+0{,}25w_{\mathrm q,3}=13$ và $w_{\mathrm q,0}+2{,}25w_{\mathrm q,3}=15$, nên $w_{\mathrm q,3}=1$ và $w_{\mathrm q,0}=12{,}75$. Vậy $w_{\mathrm q}=(12{,}75;\ 2;\ 1;\ 1)^T$. Kiểm tra: căn 1 cho $12{,}75-3-1+2{,}25=11$, căn 2 cho $12{,}75-1+0{,}25=12$, căn 3 cho $12{,}75+1+0{,}25=14$, căn 4 cho $12{,}75+3+1+2{,}25=19$. SSE bằng $0$.
 

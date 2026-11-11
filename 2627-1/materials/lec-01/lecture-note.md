@@ -117,8 +117,8 @@ Vô hướng và vector viết chữ thường, ma trận viết chữ hoa, khô
 | $\ell_{\mathrm{hinge}}(m)$ | $\max(0,1-m)$ | — |
 | $\inf$, $\min$ | cận dưới đúng, giá trị nhỏ nhất | §4.3 |
 | $\theta$; $z_\theta=\theta x+(1-\theta)y$ | hệ số và điểm trên đoạn nối hai điểm $x$, $y$ | $\theta\in[0,1]$; ở §6–§8, $y$ là một điểm, không là vector đầu ra |
-| $\mathbb 1$ | vector có mọi tọa độ bằng $1$ | kích thước theo ngữ cảnh |
-| $\omega$; $\Delta_K$ | trọng số trộn; $\{\omega\in\mathbb R^K\mid\omega\ge0,\ \mathbb 1^T\omega=1\}$ | — |
+| $\mathbf 1$ | vector có mọi tọa độ bằng $1$ (in đậm để phân biệt với số $1$) | kích thước theo ngữ cảnh |
+| $\omega$; $\Delta_K$ | trọng số trộn; $\{\omega\in\mathbb R^K\mid\omega\ge0,\ \mathbf 1^T\omega=1\}$ | — |
 | $B(x_{\mathrm c},r)$ | quả cầu Euclid đóng tâm $x_{\mathrm c}$ bán kính $r$ | $r\ge0$ |
 | $S_\alpha(f)$ | $\{x\in C\mid f(x)\le\alpha\}$ | $\alpha\in\mathbb R$ |
 | $\nabla f$, $\nabla^2f$; $\varphi_{x,v}(\tau)=f(x+\tau v)$ | gradient, Hessian; hàm hạn chế lên đường thẳng | $\tau\in\mathbb R$ |
@@ -437,7 +437,7 @@ Hệ quả sau mô tả toàn bộ tập nghiệm của (4.5).
 
 Hạng cột đầy đủ đòi $n\ge d$.
 
-Trong học máy, giả thiết hạng cột đầy đủ bị vi phạm khi một *đặc trưng phân loại* (categorical feature) được *mã hóa one-hot* (one-hot encoding, dummy encoding), một cột nhị phân cho mỗi giá trị, trong khi $X$ đã có cột hệ số chặn: tổng các cột nhị phân bằng $\mathbb 1$, nên $\operatorname{Ker}(X)\ne\{0\}$. Khi đó các bộ giải hoặc các điểm khởi tạo khác nhau có thể cho các hệ số khác nhau với cùng dự đoán và cùng sai số. Hai cách khắc phục là bỏ một cột, hoặc cộng vào hàm mục tiêu số hạng phạt $\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$.
+Trong học máy, giả thiết hạng cột đầy đủ bị vi phạm khi một *đặc trưng phân loại* (categorical feature) được *mã hóa one-hot* (one-hot encoding, dummy encoding), một cột nhị phân cho mỗi giá trị, trong khi $X$ đã có cột hệ số chặn: tổng các cột nhị phân bằng $\mathbf 1$, nên $\operatorname{Ker}(X)\ne\{0\}$. Khi đó các bộ giải hoặc các điểm khởi tạo khác nhau có thể cho các hệ số khác nhau với cùng dự đoán và cùng sai số. Hai cách khắc phục là bỏ một cột, hoặc cộng vào hàm mục tiêu số hạng phạt $\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$.
 
 ::: example Ví dụ 01.4 (Đường hồi quy cân nặng – chiều cao)
 **Dữ kiện.** Năm người của Ví dụ 01.1: $s=(50,55,60,65,70)$ kg, $y=(158,162,164,169,172)$ cm; $a_i^T=[1\ \ s_i]$, $w=(w_0,w_1)^T$.
@@ -515,7 +515,7 @@ w'&=(w_0,w_1,w_2)^T .
 \end{aligned}
 $$
 
-**Hạt nhân.** Dự đoán $X'w'=w_0\mathbb 1+(w_1+w_2)(0,1,2)^T$ chỉ phụ thuộc tổng $w_1+w_2$. Hai cột đầu của $X'$ độc lập tuyến tính và cột thứ ba trùng cột thứ hai, nên $\operatorname{rank}(X')=2$ và $\dim\operatorname{Ker}(X')=3-2=1$ (Mệnh đề 00.8); vector $v=(0,1,-1)^T$ thỏa $X'v=0$, nên $\operatorname{Ker}(X')$ là đường thẳng sinh bởi $v$.
+**Hạt nhân.** Dự đoán $X'w'=w_0\mathbf 1+(w_1+w_2)(0,1,2)^T$ chỉ phụ thuộc tổng $w_1+w_2$. Hai cột đầu của $X'$ độc lập tuyến tính và cột thứ ba trùng cột thứ hai, nên $\operatorname{rank}(X')=2$ và $\dim\operatorname{Ker}(X')=3-2=1$ (Mệnh đề 00.8); vector $v=(0,1,-1)^T$ thỏa $X'v=0$, nên $\operatorname{Ker}(X')$ là đường thẳng sinh bởi $v$.
 
 **Tập nghiệm.** Vector $(7/6,1/2,0)^T$ cho cùng dự đoán như $w^*$ nên là một nghiệm. Theo Hệ quả 01.5(b),
 $$
@@ -526,7 +526,7 @@ S^*=\bigl\{&(7/6,\ \kappa,\ 1/2-\kappa)^T\\
 $$
 Mọi nghiệm cho cùng dự đoán $(7/6,5/3,13/6)^T$ và cùng giá trị tối ưu $\tfrac16$.
 
-**Kiểm tra lại.** Với $\kappa=\tfrac14$: $X'w'=\tfrac76\mathbb 1+(\tfrac14+\tfrac14)(0,1,2)^T=(7/6,5/3,13/6)^T$, đúng dự đoán của Ví dụ 01.5.
+**Kiểm tra lại.** Với $\kappa=\tfrac14$: $X'w'=\tfrac76\mathbf 1+(\tfrac14+\tfrac14)(0,1,2)^T=(7/6,5/3,13/6)^T$, đúng dự đoán của Ví dụ 01.5.
 :::
 
 ::: remark Nhận xét 01.6 (Thang đo, công thức nghịch đảo và Hessian)
@@ -558,7 +558,7 @@ Cột thứ hai của $X$ có tổng bằng $0$. Phần tử $(j,k)$ của $X^TX
 :::
 
 ::: exercise Bài tập 01.3 (Phần dư tại nghiệm bình phương nhỏ nhất)
-Cho $X\in\mathbb R^{n\times d}$ có cột thứ nhất là $\mathbb 1$, và $w^*$ là một nghiệm bất kỳ của (4.5). Chứng minh tổng các phần dư $\sum_i(a_i^Tw^*-y_i)$ bằng $0$, và tổng có trọng số $\sum_iX_{ij}(a_i^Tw^*-y_i)$ bằng $0$ với mọi cột $j$. Xác định hai kết luận này có còn đúng khi $w^*$ không duy nhất không.
+Cho $X\in\mathbb R^{n\times d}$ có cột thứ nhất là $\mathbf 1$, và $w^*$ là một nghiệm bất kỳ của (4.5). Chứng minh tổng các phần dư $\sum_i(a_i^Tw^*-y_i)$ bằng $0$, và tổng có trọng số $\sum_iX_{ij}(a_i^Tw^*-y_i)$ bằng $0$ với mọi cột $j$. Xác định hai kết luận này có còn đúng khi $w^*$ không duy nhất không.
 :::
 
 ::: hint
@@ -1129,7 +1129,7 @@ $$
 $$
 Đây là giao của một hộp theo $\delta$ và nghịch ảnh của hộp $[0,1]^d$ qua ánh xạ affine $\delta\mapsto x+\delta$, nên lồi theo Mệnh đề 01.18(d) và Mệnh đề 01.19(a), (c).
 
-**(d) Đơn hình xác suất.** *Đơn hình xác suất* (probability simplex) $\Delta_K=\{\omega\in\mathbb R^K\mid\omega\ge0,\ \mathbb 1^T\omega=1\}$ là giao của $K$ nửa không gian $\{\omega\mid-\omega_j\le0\}$ và tập affine $\{\omega\mid\mathbb 1^T\omega=1\}$, nên lồi theo Mệnh đề 01.18(b), (c) và Mệnh đề 01.19(a). Đầu ra của hàm softmax, trọng số chú ý (attention) và vector trọng số trộn của một tổ hợp mô hình nằm trong $\Delta_K$.
+**(d) Đơn hình xác suất.** *Đơn hình xác suất* (probability simplex) $\Delta_K=\{\omega\in\mathbb R^K\mid\omega\ge0,\ \mathbf 1^T\omega=1\}$ là giao của $K$ nửa không gian $\{\omega\mid-\omega_j\le0\}$ và tập affine $\{\omega\mid\mathbf 1^T\omega=1\}$, nên lồi theo Mệnh đề 01.18(b), (c) và Mệnh đề 01.19(a). Đầu ra của hàm softmax, trọng số chú ý (attention) và vector trọng số trộn của một tổ hợp mô hình nằm trong $\Delta_K$.
 
 **Kiểm tra lại.** Ở (a) với $u_{\max}=1$: hai phương án $-1$ và $1$ khả thi, và mọi tổ hợp lồi $\theta\cdot1+(1-\theta)(-1)=2\theta-1$ thuộc $[-1,1]$ khi $\theta\in[0,1]$. Ở (d) với $K=3$: $(\tfrac12,\tfrac12,0)$ và $(0,0,1)$ thuộc $\Delta_3$, và trung điểm $(\tfrac14,\tfrac14,\tfrac12)$ có tọa độ không âm, tổng bằng $1$.
 :::
@@ -1162,7 +1162,7 @@ Xác định tập nào sau đây lồi; với tập lồi, nêu căn cứ theo 
 
 **(b) Không lồi.** $x=(1,0)$ và $y=(0,-1)$ có tích tọa độ bằng $0$ nên thuộc tập. Với $\theta=\tfrac12$, $z=(\tfrac12,-\tfrac12)$ có $z_1z_2=-\tfrac14<0$.
 
-**(c) Lồi.** Tập là giao của ba nửa không gian $\{-\omega_j\le0\}$, tập affine $\{\mathbb 1^T\omega=1\}$ và nửa không gian $\{\omega_1\le\tfrac12\}$; lồi theo Mệnh đề 01.18(b), (c) và Mệnh đề 01.19(a).
+**(c) Lồi.** Tập là giao của ba nửa không gian $\{-\omega_j\le0\}$, tập affine $\{\mathbf 1^T\omega=1\}$ và nửa không gian $\{\omega_1\le\tfrac12\}$; lồi theo Mệnh đề 01.18(b), (c) và Mệnh đề 01.19(a).
 
 **Kiểm tra lại.** Ở (a), $(1,0)$ và $(0,1)$ thuộc tập và trung điểm $(\tfrac12,\tfrac12)$ có $\lvert x_1\rvert+\lvert x_2\rvert=1$, vẫn thuộc tập. Ở (c), $(\tfrac12,\tfrac14,\tfrac14)$ và $(0,0,1)$ thuộc tập, và trung điểm $(\tfrac14,\tfrac18,\tfrac58)$ có tổng $1$ và $\omega_1=\tfrac14\le\tfrac12$.
 :::
@@ -2359,13 +2359,13 @@ Miền là giao của một hộp và một tập affine. Mỗi hạng $(p_j-p_{
 :::
 
 ::: solution
-**(a)** Dữ kiện: $T$, $p_{\max}\ge0$, $E$, $c\in\mathbb R^T$, $\gamma\ge0$. Biến: $p\in\mathbb R^T$. Mục tiêu: $f_0(p)=c^Tp+\gamma\sum_{j\ge2}(p_j-p_{j-1})^2$. Miền: $C=\{p\mid0\le p_j\le p_{\max}\ \forall j,\ \mathbb 1^Tp=E\}$.
+**(a)** Dữ kiện: $T$, $p_{\max}\ge0$, $E$, $c\in\mathbb R^T$, $\gamma\ge0$. Biến: $p\in\mathbb R^T$. Mục tiêu: $f_0(p)=c^Tp+\gamma\sum_{j\ge2}(p_j-p_{j-1})^2$. Miền: $C=\{p\mid0\le p_j\le p_{\max}\ \forall j,\ \mathbf 1^Tp=E\}$.
 
-**(b) Miền lồi.** $C$ là giao của một hộp (Mệnh đề 01.18(d)) và tập affine $\{\mathbb 1^Tp=E\}$ (Mệnh đề 01.18(b)), lồi theo Mệnh đề 01.19(a). $C$ không rỗng khi và chỉ khi $0\le E\le Tp_{\max}$.
+**(b) Miền lồi.** $C$ là giao của một hộp (Mệnh đề 01.18(d)) và tập affine $\{\mathbf 1^Tp=E\}$ (Mệnh đề 01.18(b)), lồi theo Mệnh đề 01.19(a). $C$ không rỗng khi và chỉ khi $0\le E\le Tp_{\max}$.
 
 **(b) Mục tiêu lồi.** $c^Tp$ affine nên lồi. Mỗi $(p_j-p_{j-1})^2$ lồi theo Định lý 01.30(b). Tổng với hệ số $1$ và $\gamma\ge0$ lồi theo Định lý 01.30(a).
 
-**Kiểm tra lại.** Khi $0\le E\le Tp_{\max}$, điểm $p=(E/T)\mathbb 1$ có $0\le p_j\le p_{\max}$ và $\mathbb 1^Tp=E$, nên thuộc $C$; với $p$ hằng, hạng phạt bằng $0$ và $f_0(p)=(E/T)\sum_jc_j$.
+**Kiểm tra lại.** Khi $0\le E\le Tp_{\max}$, điểm $p=(E/T)\mathbf 1$ có $0\le p_j\le p_{\max}$ và $\mathbf 1^Tp=E$, nên thuộc $C$; với $p$ hằng, hạng phạt bằng $0$ và $f_0(p)=(E/T)\sum_jc_j$.
 :::
 
 ::: exercise Bài tập 01.15 (Đúng hay sai)

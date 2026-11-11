@@ -1558,3 +1558,81 @@ Quyết định của master (Fable 5.1), đợt đồng bộ học liệu 2026-
 **Quyết định của master:** chấp nhận (xem quyết định điều phối viên bên dưới).
 
 **Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-02 và decisions-common; kiểm các dòng Nhắc lại/Ký hiệu/Định nghĩa mới (tập lồi, hàm lồi, p* = inf, nửa không gian/siêu phẳng/đa diện, ⪰/≻, chuẩn một, hàm thay thế ≥ ℓ01, F̃, ρ_i); chấp nhận trang mới S01-02b, đổi R → F̃ và r_i → ρ_i, cách viết ràng buộc phủ không dùng nhãn ngoài danh sách; tự chạy deckcheck trên S01-02b, S01-04, S02-03, S03-02, S03-04b, S04-04, S05-02, S05-03, S05-09, S06-04: 0 lỗi, 0 FLAG; xem ảnh S01-02b, S02-03 ở 1600×900. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.
+
+## Viết lại ghi chú theo mẫu SLT và chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: `prompt_fix_lecture_notes_00_07.md` (U1–U4, Q-A đến Q-G), `planning/notes-10-14-slt-template.md` Q1–Q15, "The author's voice" của `../CLAUDE.md`; báo cáo phân tích `prompt_fix_00_07_audit/m4ai-audit-01-02.md` (không theo dõi). Mục này không xóa phát hiện cũ.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập kế hoạch (chỉ đọc) | medium | `plan.md` 15 phần |
+| Soạn, rồi biên tập ba vòng (cùng tác tử) | medium | ghi chú, `outline.md`, `map-lec-02.md`, hai SVG `-note` |
+| Rà 1/5 sinh viên năm hai | high | 0 chặn, 2 nghiêm trọng, 13 trung bình, 23 nhẹ |
+| Rà 2/5 chuyên gia miền | high | 0 chặn, 3 nghiêm trọng, 10 trung bình, 16 nhẹ |
+| Rà 3/5 độ chính xác toán; kiểm tra lại hai vòng | high | 0/0/9/18; vòng 1: 3 trung bình, 8 nhẹ; vòng 2: 1 nhẹ |
+| Rà 4/5 phê bình học thuật–sư phạm, `no-ai-slop` Detect | high | 0 chặn, 1 nghiêm trọng (độ dài), 19 trung bình, 39 nhẹ |
+| Rà 5/5 mạch và liên kết; kiểm tra lại hai vòng | high | 0/0/10/22; vòng 1: 3 trung bình, 9 nhẹ; vòng 2: 1 nhẹ |
+
+### Quyết định khi duyệt kế hoạch
+
+- **Q02-1.** Dạng (4.1) gọi "dạng phổ biến" như deck; với quy hoạch tuyến tính, dạng có $Ax=b$ là "dạng tổng quát (general form)" theo Boyd (4.27), tr. 146, "dạng bất đẳng thức" chỉ khi không có đẳng thức (4.29), tr. 147; "dạng chuẩn" cho LP và GP.
+- **Q02-2.** Ký hiệu một nghĩa: tổng bình phương phần dư $J$, số lỗi $E$, mục tiêu máy vector hỗ trợ $H_\lambda$, hệ số chặn $w_0$ (không dùng $b$ hai nghĩa), biến dạng chuẩn LP $\zeta$, cạnh hộp $x_1,x_2,x_3$, công suất tối ưu $p^{\mathrm{opt}}$, hệ số đường truyền $\chi_{ij}$, hệ số tự do $\beta_{ik}$, độ cong $\eta$ (Bổ đề 02.22).
+- **Q02-3.** Nguồn Hoffmann và cộng sự (2022) không có trong `sources/` và deck Bài 02 không có nội dung luật tỷ lệ; goal cho phép "kiểm hoặc bỏ": bỏ §4.5 cũ (chia ngân sách tính toán) và Ví dụ 02.23 cũ.
+- **Q02-4.** Câu hỏi mở đầu với mất mát bản lề trên bốn ảnh; câu trả lời tường minh ở §10.5.
+- **Q02-5.** Danh sách bài Boyd cho giai đoạn 2 không dùng 4.15, 4.10, 4.11(a,b) (trùng ghi chú), 4.20 (tựa lồi), 4.6 (cần tính liên tục của hàm lồi, chưa có ở Bài 00–01).
+- **Q02-6.** Giữ Mệnh đề 02.39 (máy vector hỗ trợ lề mềm), dẫn Bài tập 01.18 một lần, không tính lại câu hỏi cuối buổi của Bài 01.
+- **Q02-7, Q02-8, Q02-9.** Bỏ câu "nhánh – cận", "thủ thuật hạt nhân" (không nguồn); giả thiết (L1)–(L5); Định lý 01.29 dẫn với giả thiết lớp $C^2$.
+
+### Quyết định sau năm lượt rà — mọi phát hiện: chấp nhận, trừ các chỗ ghi "bác bỏ"/"giữ"
+
+| Mức độ | Vị trí (bản nháp 1) | Vấn đề | Quyết định |
+|---|---|---|---|
+| nghiêm trọng | 22–26 | Đoạn "ba lỗ hổng" sau câu hỏi mở đầu cho sẵn câu trả lời | chấp nhận: chuyển xuống phần trả lời §10.5 |
+| nghiêm trọng | bài toán hộp | Cạnh $a,b,c$ trùng $b$ của $Ax=b$ và $c$ | chấp nhận: $x_1,x_2,x_3$; hai SVG `-note` |
+| nghiêm trọng | Định nghĩa 02.9 | (5.2) có $Ax=b$ bị gọi "inequality form" | chấp nhận: dạng tổng quát (Boyd tr. 146–147) |
+| nghiêm trọng | Bài 03 dẫn sai số và tên | Ví dụ lùi một số, Thuật toán 02.44, "dạng chuẩn", $E$, $b$ | thuộc giai đoạn 3; ghi các dòng Bài 03 vào `map-lec-02.md` |
+| nghiêm trọng | độ dài | 32 707 > 28 000 | chấp nhận phần cắt hợp lệ (xem "Độ dài") |
+| trung bình | 2223, Nhận xét 02.37, 793, 1610, 3005, 1574, §1 mục 6 | Khẳng định quá mức hoặc lệch nguồn | chấp nhận: viết theo Hệ quả 02.3(b), không khả vi khi hai phần dư cùng đạt cực đại, bỏ "QCQP" cho mạng nơ-ron, LP chỉ khi lỗi mỗi nhóm affine, điều kiện Slater ở Boyd §5.2.3 |
+| trung bình | toàn bài | Ký hiệu nhiều nghĩa $z$, $\bar\alpha$, $\alpha$, $f$, $g$, $p^*$, $\eta$, $d$/$w$ | chấp nhận (Q02-2); $d$/$w$ ghi phạm vi trong bảng §2 |
+| trung bình | 2241, 1623, 3049 | `\ell_h`; $(\alpha,\rho_0)$; "(7.2)" | chấp nhận |
+| trung bình | Bài tập 02.15(c) | Hai đáp án | chấp nhận: lời giải nêu cả hai nghiệm |
+| trung bình | Ví dụ 02.26 | Tính lại câu hỏi cuối buổi Bài 01 | chấp nhận (Q02-6) |
+| trung bình | thuật ngữ | "phép xử lý", "phép đổi bài toán", "biến đổi tương đương" chồng nghĩa | chấp nhận: mỗi từ một nghĩa |
+| trung bình | lặp ý | 12 đoạn "Trong học máy"; ranh giới §6→§7 | chấp nhận: gom vào §10.4 |
+| — | đề xuất (ii) rút "Dữ kiện." của ví dụ, (iii) chuyển Nhận xét 02.40, Bài tập 02.12 | | bác bỏ: trái Q-A (ví dụ chép dữ kiện) và cắt khối đánh số |
+| nhẹ | Nhận xét 02.12 | Đề xuất bỏ đoạn "Đỉnh của đa diện" | giữ: Bài 07 dẫn đoạn này; nguồn Bertsimas (2009), Bài giảng 2 |
+| nhẹ | Ví dụ 02.11/02.12 | Đề xuất gộp | bác bỏ: bỏ khối đánh số và phải đánh lại số |
+
+Kiểm tra lại vòng 1–2 (đã sửa): đổi $z\to\zeta$ còn sót ở (5.3); $b_{ik}\to\beta_{ik}$; độ cong $a\to\eta$; lập luận $s\mapsto1/s$ giảm chặt ở Ví dụ 02.22 thay dẫn Mệnh đề 02.30(c); đoạn mở §8 tách bốn ảnh và bài toán chọn gói; câu nối ra khỏi §7.4 Đọc thêm; $f\to f_0$ ở Định nghĩa 02.41, Mệnh đề 02.42; mô tả Murphy (2022) §17.3.3 tương đương (8.1) với $\lambda=1/C$; dòng $\eta$ trong bảng §2. Không còn phát hiện chặn bàn giao, nghiêm trọng hay trung bình.
+
+Đổi số so với bản cũ: Ví dụ cũ 02.1–02.22 lùi một số (Ví dụ 02.1 mới là dữ liệu chung); Thuật toán 02.1 cũ thành 02.44, các khối cũ 02.44–02.46 thành 02.45–02.47; Hệ quả 02.3 ↔ Nhận xét 02.4 đổi chỗ (nhận xét chuyển lên sau Mệnh đề 02.2). Chi tiết ở `map-lec-02.md`.
+
+### Độ dài (U4)
+
+Ghi chú cũ 35 065 âm tiết; bản nháp 1: 32 707; bản cuối: 30 958, **vượt trần 28 000 khoảng 3 000**. Lý do: bài phủ bốn lớp bài toán (quy hoạch tuyến tính, quy hoạch bậc hai và ràng buộc bậc hai, quy hoạch hình học, xấp xỉ lồi và nới lỏng), mỗi lớp có định nghĩa, kết quả có chứng minh, ví dụ tính tay và tình huống mà deck và Bài 03, 05, 07 dẫn. Sau khi áp dụng mọi đề xuất cắt câu hợp lệ của năm người rà (lặp, độn, bên lề; §7.4 thành Đọc thêm thu gọn), khoảng 17 800 âm tiết nằm trong các khối đánh số (ví dụ 4 712, chứng minh 3 387, lời giải 2 414, tình huống 1 760…) và phần còn lại là câu dẫn bắt buộc, bảng §2, tiên quyết. Cắt thêm phải bỏ kết quả, con số hoặc lời giải, trái U4.
+
+### Nguồn gốc số liệu và đính chính
+
+- Dữ liệu chung (Ví dụ 02.1): năm quan sát hồi quy và bốn ảnh phân loại lấy từ ghi chú cũ và deck; bài toán chọn gói, hộp, công suất, pha trộn giữ số của ghi chú cũ; mọi số tính lại độc lập (`verify.py` của người rà toán, 77/80 kiểm đạt, 3 kiểm không đạt do bộ giải số chưa hội tụ, giá trị đúng xác nhận bằng tay).
+- Đính chính: Định nghĩa 02.9 (tên dạng); Phạm vi Mệnh đề 02.6, 02.25, 02.33 thành kết luận có chứng minh; dòng 2223 cũ; Bài tập 02.9 (điểm kiểm $(1,1,1,0)$ thay $(1,1,0,0)$ không khả thi); Nhận xét 02.47 theo heuristic Boyd tr. 310.
+- Bỏ: §4.5 và Ví dụ 02.23 cũ (Q02-3), câu "nhánh – cận", "thủ thuật hạt nhân", "hồi quy phân vị", các câu bên lề không nguồn.
+
+### Giáo trình đã tham khảo
+
+Boyd và Vandenberghe (2004) ch. 4 (§4.1.3 tr. 134, §4.2–4.5, §4.7.4 tr. 178–179), §5.2.3 tr. 226, ch. 6 (tr. 310); Murphy (2022) §4.3.2, §17.3.3; Bertsimas (2009) Bài giảng 2 (MIT 15.093J).
+
+### Lệch với deck (Q-F)
+
+- Thuật ngữ: deck S02-03 "dạng phổ biến" cho cả dạng (4.1) và LP; ghi chú dùng "dạng tổng quát" cho LP có $Ax=b$.
+- Ký hiệu: deck $b$ (hệ số chặn), $E$ cho tổng bình phương phần dư, $\rho_0$, $J^\star$, $S$; ghi chú $w_0$, $J$ (tổng bình phương), $E$ (số lỗi), $\Gamma_i$ (SINR), $x_1,x_2,x_3$ (cạnh hộp).
+- Nội dung: §4.5 cũ (luật tỷ lệ) không có trong deck và đã bỏ; §7.4 thành Đọc thêm.
+
+### Sửa chung Bài 00–02: vector toàn một
+
+KaTeX hiển thị `\mathbb 1` thành chữ số "1" thường (điều phối viên thấy trên ảnh chụp: "$1^Tt$"), nên vector toàn một dễ đọc nhầm là số $1$. Quyết định: viết $\mathbf 1$ (ký hiệu Boyd), ngoại lệ duy nhất của quy ước vector không in đậm, ghi rõ trong bảng ký hiệu Bài 01, 02. Đổi: Bài 00 ghi chú 4 chỗ, tệp bài tập 20 chỗ; Bài 01 ghi chú 13 chỗ; Bài 02 ghi chú 28 chỗ. Viewer mở bốn tệp này: 0 `.katex-error`, 0 lỗi console.
+
+### Kiểm của điều phối viên và trình duyệt
+
+forward_refs 0; bộ đếm 02.1–02.47, Ví dụ 02.1–02.29, Tình huống 02.1–02.3, Bài tập 02.1–02.17 liên tục; đồng bộ `--check`, `git diff --check` đạt. Playwright `material-viewer.html?doc=materials/lec-02/lecture-note.md&deck=lecture-02-cac-bai-toan-toi-uu-loi.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error` (3 429 công thức), 0 lỗi console, 0 request lỗi, không tràn ngang; bản in chứa đủ 20 chứng minh. Điều phối viên đã xem ảnh chụp.

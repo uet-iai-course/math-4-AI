@@ -187,3 +187,7 @@ Tác tử ánh xạ dẫn chiếu: `general-purpose`, `model: opus`, effort `med
 - Quyết định khi duyệt diff: lec-01:1599 dẫn Định nghĩa 00.30 thay Mệnh đề 00.33 (hướng $y-x$ không đơn vị; Mệnh đề 00.38 đòi $C^2$, chứng minh ở Bài 01 chỉ giả thiết khả vi) — `chấp nhận`.
 - Không gán số: lec-05:26 (ma trận Vandermonde không có ở Bài 00; giữ nguồn Strang); lec-04:35 ($Q^{1/2}\succ0$ nằm ở đoạn đọc không đánh số sau Định nghĩa 00.25). Ghi để Bài 04, 05 xử lý khi viết lại.
 - Điều phối viên kiểm diff (word-diff): chỉ phần dẫn và các câu nêu trên đổi; mọi số được dẫn tồn tại, đúng loại khối và đúng nội dung câu dẫn (đối chiếu tiêu đề 34 khối được dẫn). Đồng bộ học liệu `--check` đạt, `git diff --check` sạch. Viewer (`file://`, 1600×900) mở 10 ghi chú đã sửa: 0 `.katex-error`, 0 lỗi console.
+
+## Sửa ký hiệu vector toàn một (2026-11-12)
+
+`\mathbb 1` hiển thị thành chữ số "1" thường trong KaTeX; đổi thành `\mathbf 1` (ngoại lệ của quy ước vector không in đậm). Chi tiết và số chỗ đổi ở `planning/lec-02/review-log.md`, mục "Sửa chung Bài 00–02: vector toàn một".

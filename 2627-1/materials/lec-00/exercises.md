@@ -1,6 +1,6 @@
 # Bài tập Bài 00 — Ôn tập nền tảng toán học cho AI
 
-Bài tập 00.3–00.16 dưới đây đi kèm [ghi chú bài giảng](material-viewer.html?doc=materials/lec-00/lecture-note.md&deck=lecture-00-on-tap-nen-tang-toan-hoc.html) và [bài giảng](lecture-00-on-tap-nen-tang-toan-hoc.html) của Bài 00. Lời giải dẫn định nghĩa, định lý, mệnh đề và ví dụ theo số hiệu của ghi chú. Ký hiệu theo ghi chú: vector viết chữ thường, không in đậm, và là vector cột, $\mathbb 1=(1,\ldots,1)^T$. Trong mỗi bài, $h$ là hàm vô hướng do đề bài cho.
+Bài tập 00.3–00.16 dưới đây đi kèm [ghi chú bài giảng](material-viewer.html?doc=materials/lec-00/lecture-note.md&deck=lecture-00-on-tap-nen-tang-toan-hoc.html) và [bài giảng](lecture-00-on-tap-nen-tang-toan-hoc.html) của Bài 00. Lời giải dẫn định nghĩa, định lý, mệnh đề và ví dụ theo số hiệu của ghi chú. Ký hiệu theo ghi chú: vector viết chữ thường, không in đậm, và là vector cột, $\mathbf 1=(1,\ldots,1)^T$. Trong mỗi bài, $h$ là hàm vô hướng do đề bài cho.
 
 | Mục tiêu học tập | Bài tập trong ghi chú | Bài tập trong tệp này |
 |---|---|---|
@@ -408,27 +408,27 @@ $$
 **Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 2, 3; nhận ra một bài toán bình phương nhỏ nhất với ma trận thiết kế một cột và xác định số nghiệm của nó.
 
 ::: exercise Bài tập 00.13 (Xấp xỉ bằng vector hằng theo chuẩn $\ell_2$; Boyd và Vandenberghe, Bài 6.2, tr. 344)
-Cho $y\in\mathbb R^m$ và $\mathbb 1=(1,\ldots,1)^T\in\mathbb R^m$. Tìm nghiệm của *bài toán xấp xỉ theo chuẩn* (norm approximation) với một biến vô hướng: cực tiểu hóa $\lVert w\mathbb 1-y\rVert_2$ theo $w\in\mathbb R$.
+Cho $y\in\mathbb R^m$ và $\mathbf 1=(1,\ldots,1)^T\in\mathbb R^m$. Tìm nghiệm của *bài toán xấp xỉ theo chuẩn* (norm approximation) với một biến vô hướng: cực tiểu hóa $\lVert w\mathbf 1-y\rVert_2$ theo $w\in\mathbb R$.
 :::
 
 ::: hint Gợi ý 1
-Hàm $t\mapsto\tfrac12t^2$ tăng chặt trên $[0,\infty)$; so tập nghiệm của bài toán với tập nghiệm của bài toán cực tiểu hóa $\tfrac12\lVert w\mathbb 1-y\rVert_2^2$.
+Hàm $t\mapsto\tfrac12t^2$ tăng chặt trên $[0,\infty)$; so tập nghiệm của bài toán với tập nghiệm của bài toán cực tiểu hóa $\tfrac12\lVert w\mathbf 1-y\rVert_2^2$.
 :::
 
 ::: hint Gợi ý 2
-Bài toán thứ hai là bài toán của Định nghĩa 00.21 với ma trận thiết kế $X=\mathbb 1\in\mathbb R^{m\times1}$. Viết phương trình chuẩn (4.1) và tính $\mathbb 1^T\mathbb 1$, $\mathbb 1^Ty$.
+Bài toán thứ hai là bài toán của Định nghĩa 00.21 với ma trận thiết kế $X=\mathbf 1\in\mathbb R^{m\times1}$. Viết phương trình chuẩn (4.1) và tính $\mathbf 1^T\mathbf 1$, $\mathbf 1^Ty$.
 :::
 
 ::: solution Lời giải Bài tập 00.13
-**Đưa về bình phương nhỏ nhất.** Vì $\lVert w\mathbb 1-y\rVert_2\ge0$ và $t\mapsto\tfrac12t^2$ tăng chặt trên $[0,\infty)$, $w$ cực tiểu hóa $\lVert w\mathbb 1-y\rVert_2$ khi và chỉ khi $w$ cực tiểu hóa $f(w)=\tfrac12\lVert Xw-y\rVert_2^2$ với $X=\mathbb 1\in\mathbb R^{m\times1}$.
+**Đưa về bình phương nhỏ nhất.** Vì $\lVert w\mathbf 1-y\rVert_2\ge0$ và $t\mapsto\tfrac12t^2$ tăng chặt trên $[0,\infty)$, $w$ cực tiểu hóa $\lVert w\mathbf 1-y\rVert_2$ khi và chỉ khi $w$ cực tiểu hóa $f(w)=\tfrac12\lVert Xw-y\rVert_2^2$ với $X=\mathbf 1\in\mathbb R^{m\times1}$.
 
-**Nghiệm.** $\operatorname{rank}(\mathbb 1)=1$, bằng số cột của $X$, nên theo kết luận 3 của Định lý 00.22, nghiệm duy nhất là
+**Nghiệm.** $\operatorname{rank}(\mathbf 1)=1$, bằng số cột của $X$, nên theo kết luận 3 của Định lý 00.22, nghiệm duy nhất là
 $$
-w^\star=(\mathbb 1^T\mathbb 1)^{-1}\mathbb 1^Ty=\frac1m\sum_{i=1}^my_i ,
+w^\star=(\mathbf 1^T\mathbf 1)^{-1}\mathbf 1^Ty=\frac1m\sum_{i=1}^my_i ,
 $$
 trung bình các thành phần của $y$.
 
-**Kiểm tra lại.** Phần dư $r(w^\star)=w^\star\mathbb 1-y$ thỏa $\mathbb 1^Tr(w^\star)=mw^\star-\sum_iy_i=0$, đúng với kết luận 1 của Định lý 00.22. Với giá bốn căn nhà $y=(11,12,14,19)^T$ của Ví dụ 00.1, $w^\star=56/4=14$.
+**Kiểm tra lại.** Phần dư $r(w^\star)=w^\star\mathbf 1-y$ thỏa $\mathbf 1^Tr(w^\star)=mw^\star-\sum_iy_i=0$, đúng với kết luận 1 của Định lý 00.22. Với giá bốn căn nhà $y=(11,12,14,19)^T$ của Ví dụ 00.1, $w^\star=56/4=14$.
 :::
 
 **Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 1; dùng tích vô hướng, chuẩn $\ell_2$ và bất đẳng thức Cauchy–Schwarz để tính một khoảng cách hình học.
@@ -513,13 +513,13 @@ Câu (a): dùng Định lý 00.22. Câu (b): theo Định nghĩa 00.3, phần t�
 :::
 
 ::: hint Gợi ý 2
-Câu (b): cột thứ nhất của $X$ là $\mathbb 1$, cột thứ hai là $a=(a_1,\ldots,a_m)^T$. Viết hai hàng của $X^TXw=X^Ty$ rồi so với hai phương trình chuẩn dạng vô hướng.
+Câu (b): cột thứ nhất của $X$ là $\mathbf 1$, cột thứ hai là $a=(a_1,\ldots,a_m)^T$. Viết hai hàng của $X^TXw=X^Ty$ rồi so với hai phương trình chuẩn dạng vô hướng.
 :::
 
 ::: solution Lời giải Bài tập 00.15
 **Câu (a).** Theo Định lý 00.22, phương trình chuẩn là $X^TXw=X^Ty$, tức $X^Tr(w)=0$ với $r(w)=Xw-y$. Theo Mệnh đề 00.45, đây là điều kiện $\nabla f(w)=0$ của $f(w)=\tfrac12\lVert Xw-y\rVert_2^2$.
 
-**Câu (b).** Cột thứ nhất của $X$ là $\mathbb 1$, cột thứ hai là $a=(a_1,\ldots,a_m)^T$. Theo Định nghĩa 00.3,
+**Câu (b).** Cột thứ nhất của $X$ là $\mathbf 1$, cột thứ hai là $a=(a_1,\ldots,a_m)^T$. Theo Định nghĩa 00.3,
 $$
 \begin{gathered}
 X^TX=\begin{bmatrix}m&\sum_ia_i\\\sum_ia_i&\sum_ia_i^2\end{bmatrix},\\
@@ -535,7 +535,7 @@ w_0\sum_ia_i+w_1\sum_ia_i^2&=\sum_ia_iy_i .
 $$
 Chuyển vế phải sang trái: phương trình thứ nhất là phương trình chuẩn dạng vô hướng thứ hai, phương trình thứ hai là phương trình chuẩn dạng vô hướng thứ nhất. Mỗi bước là phép biến đổi tương đương, nên hai dạng có cùng tập nghiệm $w$.
 
-**Kiểm tra lại.** $\sum_i(y_i-w_0-w_1a_i)^2=2f(w)$, nên theo Mệnh đề 00.45 các đạo hàm riêng theo $w_0$, $w_1$ là $2(\mathbb 1^Tr(w))$ và $2(a^Tr(w))$; đặt chúng bằng $0$ là hai hàng của $X^Tr(w)=0$.
+**Kiểm tra lại.** $\sum_i(y_i-w_0-w_1a_i)^2=2f(w)$, nên theo Mệnh đề 00.45 các đạo hàm riêng theo $w_0$, $w_1$ là $2(\mathbf 1^Tr(w))$ và $2(a^Tr(w))$; đặt chúng bằng $0$ là hai hàng của $X^Tr(w)=0$.
 :::
 
 **Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 5; kiểm tra độc lập và độc lập có điều kiện từ bảng phân phối đồng thời.

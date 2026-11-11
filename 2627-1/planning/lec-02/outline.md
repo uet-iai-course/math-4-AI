@@ -1,4 +1,35 @@
-# Dàn ý Bài 02 — Khung sáu phần
+# Dàn ý Bài 02 — Các bài toán tối ưu lồi
+
+## Ghi chú bài giảng viết lại theo mẫu SLT (2026-11-12)
+
+Ghi chú `materials/lec-02/lecture-note.md` được viết lại theo `planning/notes-10-14-slt-template.md` (Q1–Q15) và quyết định U1–U4 của goal; kế hoạch và quyết định Q02-1 đến Q02-9 của điều phối viên lưu trong nhật ký phiên. Bảng số cũ → mới: `map-lec-02.md`. Phần "Khung sáu phần" bên dưới là dàn ý deck, giữ nguyên.
+
+**Câu hỏi trung tâm.** Khi nào một mô hình cho bằng danh sách ràng buộc viết được thành một bài toán lồi tương đương thuộc một lớp đã biết, và khi không viết được, bài toán lồi thay thế cho bảo đảm gì về bài toán gốc.
+
+**Câu hỏi mở đầu.** Bốn ảnh $u=(-2,-1,1,2)$, nhãn xen kẽ; ngưỡng làm tổng mất mát bản lề $H$ nhỏ nhất có làm số ảnh bị xếp sai $E$ nhỏ nhất không. Câu trả lời ở §10.5 (không: $\min H=4$ trên $[-1,1]$ với $E=2$, trong khi $\min E=1$).
+
+| Mục | Nội dung | Khối |
+|---|---|---|
+| Đoạn dẫn, Câu hỏi mở đầu, Mục tiêu (6), Tiên quyết (+ 3 câu hỏi ôn nhanh) | kết quả kế thừa Bài 00, 01 | — |
+| 1. Thiết lập bài toán | sáu thành phần của mô hình | — |
+| 2. Ký hiệu và giả thiết | bảng ký hiệu và phạm vi ký hiệu; giả thiết nêu trong từng kết quả, gom ở §9.1 | — |
+| 3. Ví dụ xuyên suốt | năm quan sát hồi quy; bốn ảnh | Ví dụ 02.1 |
+| 4. Bài toán tối ưu lồi và biến đổi tương đương (4.1–4.4) | dạng phổ biến (4.1), điều kiện (4.2), biến đổi tương đương (4.3), bốn trạng thái | Định nghĩa 02.1–Nhận xét 02.8 (v2: Nhận xét 02.3 trước Hệ quả 02.4); Ví dụ 02.2–02.5; Bài tập 02.1–02.2 |
+| 5. Quy hoạch tuyến tính (5.1–5.4) | pha trộn, dạng tổng quát (5.2) và dạng chuẩn, chứng nhận bằng tổ hợp không âm, biến phụ | 02.9–02.16; Ví dụ 02.6–02.10; Bài tập 02.3–02.4 |
+| 6. Quy hoạch bậc hai và ràng buộc bậc hai (6.1–6.4) | bình phương nhỏ nhất, bốn tổ hợp chính quy hóa, ngưỡng mềm, ràng buộc chặn chuẩn | 02.17–02.27; Ví dụ 02.11–02.19; Bài tập 02.5–02.6 |
+| 7. Quy hoạch hình học (7.1–7.4) | bài toán hộp, đơn thức, đổi biến logarit; 7.4 Đọc thêm: phân bổ công suất | 02.28–02.34; Ví dụ 02.20–02.23; Bài tập 02.7 |
+| 8. Xấp xỉ lồi và nới lỏng (8.1–8.4) | số lỗi, hàm thay thế, máy vector hỗ trợ lề mềm, nới lỏng | 02.35–02.43; Ví dụ 02.24–02.28; Bài tập 02.8–02.9 |
+| 9. Nhận dạng lớp bài toán và kiểm tra phép xử lý (9.1–9.2) | bảng nhận dạng, giả thiết (L1)–(L5), Thuật toán 02.44 (bước 8 gộp bảng kiểm tra), ràng buộc số đặc trưng | 02.44–02.47; Ví dụ 02.29; Bài tập 02.10 |
+| 10. Ý nghĩa, tác động và giới hạn | ba tình huống, ứng dụng, tóm tắt và câu trả lời câu hỏi mở đầu | Tình huống 02.1–02.3 |
+| 11. Bài tập | danh sách 02.1–02.10; 02.11–02.17 theo ba mức | Bài tập 02.11–02.17 |
+| 12. Câu hỏi cuối buổi và cầu nối | quy hoạch bậc hai $\min x_1^2+x_2^2$, $x_1+x_2\ge2$; cầu nối Bài 03 | — |
+| 13. Tài liệu đọc | Boyd và Vandenberghe (2004); Murphy (2022); MIT 6.079, 15.093J | — |
+
+**Thay đổi so với ghi chú cũ.** Bỏ §4.5 cũ (luật tỷ lệ) và Ví dụ cũ 02.23 (Q02-3); "dạng phổ biến" cho (4.1), "dạng chuẩn" chỉ cho quy hoạch tuyến tính và quy hoạch hình học (Q02-1); ký hiệu $J$ (tổng bình phương), $E$ (số lỗi), $H_\lambda$, $w_0$ (hệ số chặn), $\rho_0,\rho_i$, $m_i$, $\mathbb 1$, $\le$ cho vector, $\mathcal F$, $\mathcal W_k$ (Q02-2); hình `gp-log-transform-note.svg` là bản sao chỉ cho ghi chú, với biến $x_1,x_2$ và $z_1,z_2$.
+
+---
+
+## Dàn ý deck — Khung sáu phần
 
 Cập nhật ngày 2026-09-11 theo yêu cầu xóa toàn bộ trang chiếu hiện tại và tạo khung để cùng người dùng xây dựng từng phần.
 
