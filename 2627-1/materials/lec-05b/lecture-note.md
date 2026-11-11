@@ -19,8 +19,8 @@ Số hiệu `00.k`, `01.k`, `04.k`, `05c.k`, `06b.k` chỉ ghi chú Bài 00, 01,
 
 - **Xác suất rời rạc** (Bài 00, Định nghĩa 00.55, 00.62, Mệnh đề 00.57, 00.66; Định lý 05c.28, Định nghĩa 05c.30). Biến ngẫu nhiên $Z$ nhận hữu hạn giá trị $z_j$ có kỳ vọng $\mathbb EZ=\sum_jz_j\,\mathbb P(Z=z_j)$; kỳ vọng tuyến tính. Nếu $Z$, $W$ độc lập thì $\mathbb E[ZW]=\mathbb EZ\,\mathbb EW$. Phương sai là $\operatorname{Var}Z=\mathbb EZ^2-(\mathbb EZ)^2$.
 - **Kỳ vọng có điều kiện và bất đẳng thức Markov** (Định nghĩa 05c.37, Mệnh đề 05c.38, Định lý 05c.39). Các kết quả này được phát biểu lại ở dạng cần dùng tại Mục 5.2 và Mục 5.7.
-- **Cận dưới đúng, tính lồi, lồi mạnh** (Định nghĩa 01.10, 01.22, 01.39; Định lý 01.26; Hệ quả 01.41). $\inf_xf(x)$ có thể không đạt. Hàm khả vi $f$ lồi khi và chỉ khi $f(z)\ge f(x)+\nabla f(x)^T(z-x)$ với mọi $x,z$. $f$ lồi mạnh với hằng số $\mu>0$ khi $f-\tfrac\mu2\lVert\cdot\rVert^2$ lồi, tương đương $\nabla^2f\succeq\mu I$ khi $f$ khả vi hai lần (Nhận xét 01.40); khi đó $f$ có đúng một điểm cực tiểu.
-- **Mất mát logistic** (Mệnh đề 01.9). $\phi(s)=\log(1+\exp(-s))$ dương, $\phi'(s)=-1/(1+\exp(s))\in(-1,0)$, $\phi''(s)\in(0,\tfrac14]$, $\phi(s)\to0$ khi $s\to\infty$.
+- **Cận dưới đúng, tính lồi, lồi mạnh** (Định nghĩa 01.9, 01.21, 01.39; Định lý 01.25; Hệ quả 01.41). $\inf_xf(x)$ có thể không đạt. Hàm khả vi $f$ lồi khi và chỉ khi $f(z)\ge f(x)+\nabla f(x)^T(z-x)$ với mọi $x,z$. $f$ lồi mạnh với hằng số $\mu>0$ khi $f-\tfrac\mu2\lVert\cdot\rVert^2$ lồi, tương đương $\nabla^2f\succeq\mu I$ khi $f$ khả vi hai lần (Nhận xét 01.40); khi đó $f$ có đúng một điểm cực tiểu.
+- **Mất mát logistic** (Mệnh đề 01.8). $\phi(s)=\log(1+\exp(-s))$ dương, $\phi'(s)=-1/(1+\exp(s))\in(-1,0)$, $\phi''(s)\in(0,\tfrac14]$, $\phi(s)\to0$ khi $s\to\infty$.
 - **Bài 04, Mục 2.6** (Định nghĩa 04.17; Bổ đề 04.18, 04.20, 04.21, 04.23; Định lý 04.22, 04.24, 04.26; Mệnh đề 04.25). Gradient $L$-Lipschitz cho cận trên bậc hai $f(z)\le f(x)+\nabla f(x)^T(z-x)+\tfrac L2\lVert z-x\rVert^2$ và mức giảm ít nhất $\tfrac t2\lVert\nabla f\rVert^2$ của một bước $t\le\tfrac1L$. Với $f$ lồi có điểm cực tiểu, bước $\tfrac1L$ cho $f(x^k)-f^*\le L\lVert x^0-x^*\rVert^2/(2k)$; thêm lồi mạnh thì $f(x)-f^*\le\tfrac1{2\mu}\lVert\nabla f(x)\rVert^2$ và sai số co theo hệ số $1-\mu/L$. Quay lui Armijo (Định nghĩa 04.10) nhận bước đầu tiên trong $1,\beta,\beta^2,\ldots$ thỏa $f(x-t\nabla f(x))\le f(x)-\alpha t\lVert\nabla f(x)\rVert^2$; bước được nhận không nhỏ hơn $\min\{1,\beta/L\}$.
 - **Điểm dừng** (Định nghĩa 06b.7). Điểm $x^\circ$ với $\nabla f(x^\circ)=0$; có thể là cực tiểu, cực đại địa phương hoặc điểm yên ngựa.
 - **Gradient lô nhỏ (mini-batch)** (Định nghĩa 06b.10, Định lý 06b.11, Hệ quả 06b.12, Mệnh đề 06b.14). Với $f=\tfrac1N\sum_i\ell_i$ và $b$ chỉ số rút đều, độc lập, có hoàn lại, gradient lô không chệch, có hiệp phương sai $\Sigma(x)/b$ và sai số bình phương trung bình $\operatorname{tr}\Sigma(x)/b$.
@@ -304,7 +304,7 @@ Cho $f:\mathbb R^n\to\mathbb R$. Các bất đẳng thức dưới đây đúng 
 **H4 (có điểm cực tiểu).** Tồn tại $x^*\in\mathbb R^n$ với $f(x^*)=f_{\inf}$; khi đó viết $f^*=f(x^*)$.
 :::
 
-Về mặt hình học, mỗi giả thiết có một hình ảnh riêng. H0 nói rằng $f$ bị chặn dưới, tức đồ thị không đi xuống vô hạn. H1 nói tiếp tuyến tại mọi điểm nằm dưới đồ thị; theo Định lý 01.26 đây là tính lồi của hàm khả vi.
+Về mặt hình học, mỗi giả thiết có một hình ảnh riêng. H0 nói rằng $f$ bị chặn dưới, tức đồ thị không đi xuống vô hạn. H1 nói tiếp tuyến tại mọi điểm nằm dưới đồ thị; theo Định lý 01.25 đây là tính lồi của hàm khả vi.
 
 H2 là gradient $L$-Lipschitz của Định nghĩa 04.17, tức độ cong không vượt $L$ theo mọi hướng. H3 đặt một parabol độ cong $\mu$ tiếp xúc tại mỗi điểm nằm dưới đồ thị. H4 bảo đảm có một điểm để đo khoảng cách $d_k$.
 
@@ -314,7 +314,7 @@ $$
 h(z)-h(x)-\nabla h(x)^T(z-x)=f(z)-f(x)-\nabla f(x)^T(z-x)-\tfrac\mu2\lVert z-x\rVert^2,
 $$
 
-nên H3 nói vế phải không âm, và Định lý 01.26 cho $h$ lồi.
+nên H3 nói vế phải không âm, và Định lý 01.25 cho $h$ lồi.
 
 Giữa các giả thiết có bốn quan hệ:
 
@@ -330,7 +330,7 @@ Boyd và Vandenberghe (2004, mục 9.1.2, tr. 459–461) giả thiết $\nabla^2
 ::: example Ví dụ 05b.3 (Kiểm tra năm giả thiết trên năm hàm)
 **Dữ kiện.**
 
-Năm hàm: $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ của ví dụ xuyên suốt A; $f(x)=\tfrac12\bigl(3[x]_1^2+7[x]_2^2\bigr)$ của ví dụ xuyên suốt C; mất mát logistic $\phi(s)=\log(1+\exp(-s))$ với $\phi''(s)\in(0,\tfrac14]$ và $\phi''(s)\to0$ khi $\lvert s\rvert\to\infty$ (Mệnh đề 01.9); $f(x)=[x]_1^2$ trên $\mathbb R^2$; $f(x)=x^4$ trên $\mathbb R$. Tiêu chuẩn Hessian: H2 khi $-LI\preceq\nabla^2f\preceq LI$, H3 khi $\nabla^2f\succeq\mu I$.
+Năm hàm: $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ của ví dụ xuyên suốt A; $f(x)=\tfrac12\bigl(3[x]_1^2+7[x]_2^2\bigr)$ của ví dụ xuyên suốt C; mất mát logistic $\phi(s)=\log(1+\exp(-s))$ với $\phi''(s)\in(0,\tfrac14]$ và $\phi''(s)\to0$ khi $\lvert s\rvert\to\infty$ (Mệnh đề 01.8); $f(x)=[x]_1^2$ trên $\mathbb R^2$; $f(x)=x^4$ trên $\mathbb R$. Tiêu chuẩn Hessian: H2 khi $-LI\preceq\nabla^2f\preceq LI$, H3 khi $\nabla^2f\succeq\mu I$.
 
 **Kiểm tra.**
 
@@ -409,7 +409,7 @@ Hai ví dụ sau cho thấy hội tụ theo giá trị không tự kéo theo h�
 ::: example Ví dụ 05b.4 (Mất mát logistic: không có điểm cực tiểu)
 **Dữ kiện.**
 
-$\phi(s)=\log(1+\exp(-s))$ trên $\mathbb R$, với $\phi'(s)=-1/(1+\exp(s))<0$ và $\phi''(s)\in(0,\tfrac14]$ (Mệnh đề 01.9). Theo Ví dụ 05b.3, $\phi$ thỏa H0, H1 và H2 với $L=\tfrac14$, cận dưới đúng $\phi_{\inf}=0$ không được đạt. GD bước $\tfrac1L=4$ từ $s_0=0$:
+$\phi(s)=\log(1+\exp(-s))$ trên $\mathbb R$, với $\phi'(s)=-1/(1+\exp(s))<0$ và $\phi''(s)\in(0,\tfrac14]$ (Mệnh đề 01.8). Theo Ví dụ 05b.3, $\phi$ thỏa H0, H1 và H2 với $L=\tfrac14$, cận dưới đúng $\phi_{\inf}=0$ không được đạt. GD bước $\tfrac1L=4$ từ $s_0=0$:
 
 $$
 s_{k+1}=s_k-4\phi'(s_k)=s_k+\frac4{1+\exp(s_k)} .
@@ -454,7 +454,7 @@ $e_k=(1-2\eta)^{2k}[x_0]_1^2\to0$. Khoảng cách tới điểm cực tiểu $(0
 Với $\eta=\tfrac14$, $x_0=(1,1)$: $x_1=(\tfrac12,1)$, $f(x_1)=\tfrac14$, và khoảng cách tới $(0,0)$ bằng $\sqrt{\tfrac14+1}\approx1{,}12$, không giảm về $0$.
 :::
 
-Hai ví dụ trên chỉ ra hai nguồn tách rời giữa $e_k$ và $d_k$, là điểm cực tiểu không tồn tại và điểm cực tiểu không duy nhất. Giả thiết có điểm cực tiểu (H4) khắc phục nguồn thứ nhất. Độ cong dưới $\mu>0$ của giả thiết lồi mạnh (H3) khắc phục nguồn thứ hai và còn cho chiều từ $e$ sang $d$, trong khi chiều ngược lại, từ $d$ sang $e$, cần chặn độ cong từ trên, tức H2. Ký hiệu $f_{\inf}=\inf_xf(x)$ (Định nghĩa 01.10) dùng cho mọi hàm bị chặn dưới, kể cả khi cận dưới không đạt; mọi kết quả chỉ cần H0 sẽ được viết theo $f_{\inf}$.
+Hai ví dụ trên chỉ ra hai nguồn tách rời giữa $e_k$ và $d_k$, là điểm cực tiểu không tồn tại và điểm cực tiểu không duy nhất. Giả thiết có điểm cực tiểu (H4) khắc phục nguồn thứ nhất. Độ cong dưới $\mu>0$ của giả thiết lồi mạnh (H3) khắc phục nguồn thứ hai và còn cho chiều từ $e$ sang $d$, trong khi chiều ngược lại, từ $d$ sang $e$, cần chặn độ cong từ trên, tức H2. Ký hiệu $f_{\inf}=\inf_xf(x)$ (Định nghĩa 01.9) dùng cho mọi hàm bị chặn dưới, kể cả khi cận dưới không đạt; mọi kết quả chỉ cần H0 sẽ được viết theo $f_{\inf}$.
 
 ### 2.2 Cận trên bậc hai, bổ đề giảm và chuẩn gradient
 
@@ -1292,7 +1292,7 @@ Trên mỗi khoảng giữa hai quan sát, $f$ là hàm bậc nhất. Độ dố
 
 **Giả thiết.**
 
-$f$ lồi vì là tổng các hàm lồi $\lvert x-y_i\rvert$ nhân với $\tfrac13$ (Định lý 01.31). $f$ đạt cực tiểu, nên thỏa H4. H2 sai: với $x<1<x'$, $\lvert f'(x)-f'(x')\rvert\ge\tfrac23$ khi $x,x'$ gần $1$, nên tỉ số $\lvert f'(x)-f'(x')\rvert/\lvert x-x'\rvert$ không bị chặn khi $x,x'\to1$.
+$f$ lồi vì là tổng các hàm lồi $\lvert x-y_i\rvert$ nhân với $\tfrac13$ (Định lý 01.30). $f$ đạt cực tiểu, nên thỏa H4. H2 sai: với $x<1<x'$, $\lvert f'(x)-f'(x')\rvert\ge\tfrac23$ khi $x,x'$ gần $1$, nên tỉ số $\lvert f'(x)-f'(x')\rvert/\lvert x-x'\rvert$ không bị chặn khi $x,x'\to1$.
 
 **Kiểm tra lại.**
 
@@ -1312,7 +1312,7 @@ Về mặt hình học, tại điểm gãy $x=1$ của ví dụ xuyên suốt B 
 Đồ thị trên vẽ ba đường tựa độ dốc $\tfrac13$, $0$, $-\tfrac13$ và một đường độ dốc $0{,}6$. Đường $\tfrac43+s(x-1)$ nằm dưới đồ thị khi và chỉ khi $s$ không vượt độ dốc bên phải $\tfrac13$ và không nhỏ hơn độ dốc bên trái $-\tfrac13$. Đường độ dốc $0{,}6$ cho giá trị $\tfrac43+0{,}6\approx1{,}93$ tại $x=2$, lớn hơn $f(2)=\tfrac53$, nên cắt đồ thị. Chùm đường tựa này dẫn đến định nghĩa sau.
 
 ::: definition Định nghĩa 05b.21 (Dưới gradient và dưới vi phân)
-Cho $f:\mathbb R^n\to\mathbb R$ lồi (Định nghĩa 01.22) và $x\in\mathbb R^n$.
+Cho $f:\mathbb R^n\to\mathbb R$ lồi (Định nghĩa 01.21) và $x\in\mathbb R^n$.
 
 **Dưới gradient.** Vectơ $g\in\mathbb R^n$ là một dưới gradient (subgradient) của $f$ tại $x$ nếu
 
@@ -1324,7 +1324,7 @@ $$
 **Dưới vi phân.** Tập mọi dưới gradient của $f$ tại $x$ là dưới vi phân (subdifferential) của $f$ tại $x$, ký hiệu $\partial f(x)$.
 :::
 
-Trong định nghĩa trên, bất đẳng thức (4.1) là bất đẳng thức của H1 với $\nabla f(x)$ thay bằng $g$, tức hàm affine $z\mapsto f(x)+g^T(z-x)$ bằng $f$ tại $x$ và nằm dưới $f$ ở mọi nơi. Theo Định lý 01.26, nếu $f$ lồi và khả vi thì $\nabla f(x)$ là một dưới gradient. Như vậy, dưới gradient tổng quát hóa gradient sang hàm lồi có điểm gãy.
+Trong định nghĩa trên, bất đẳng thức (4.1) là bất đẳng thức của H1 với $\nabla f(x)$ thay bằng $g$, tức hàm affine $z\mapsto f(x)+g^T(z-x)$ bằng $f$ tại $x$ và nằm dưới $f$ ở mọi nơi. Theo Định lý 01.25, nếu $f$ lồi và khả vi thì $\nabla f(x)$ là một dưới gradient. Như vậy, dưới gradient tổng quát hóa gradient sang hàm lồi có điểm gãy.
 
 Với $f(x)=\lvert x\rvert$, (4.1) tại $x=0$ là $\lvert z\rvert\ge gz$ với mọi $z$, đúng khi và chỉ khi $g\in[-1,1]$, nên $\partial\lvert\cdot\rvert(0)=[-1,1]$. Một phản ví dụ: tại $x=1$ của ví dụ xuyên suốt B, $g=0{,}6$ không là dưới gradient vì đường tương ứng cắt đồ thị.
 
@@ -1348,7 +1348,7 @@ Bốn tính chất của dưới vi phân được dùng trong mục được go
 ::: proof Chứng minh Mệnh đề 05b.22
 **Bước 1 (phần a, gradient là dưới gradient).**
 
-Định lý 01.26 cho $f(z)\ge f(x)+\nabla f(x)^T(z-x)$ với mọi $z$, tức $\nabla f(x)\in\partial f(x)$.
+Định lý 01.25 cho $f(z)\ge f(x)+\nabla f(x)^T(z-x)$ với mọi $z$, tức $\nabla f(x)\in\partial f(x)$.
 
 **Bước 2 (phần a, không có dưới gradient khác).**
 
@@ -1473,7 +1473,7 @@ $$
 f\Bigl(\sum_{k<K}\lambda_kx_k\Bigr)\le\sum_{k<K}\lambda_kf(x_k).
 $$
 
-**Điều kiện áp dụng.** Chỉ cần tính lồi theo Định nghĩa 01.22.
+**Điều kiện áp dụng.** Chỉ cần tính lồi theo Định nghĩa 01.21.
 
 **Phạm vi.** Bất đẳng thức xảy ra dấu bằng khi mọi $x_k$ có trọng số dương nằm trên một đoạn mà $f$ là hàm bậc nhất.
 :::
@@ -1489,7 +1489,7 @@ Giả sử kết luận đúng cho mọi bộ $K$ điểm, và xét $K+1$ điể
 
 **Bước 3 (trường hợp $0<\lambda_K<1$).**
 
-Đặt $z=\sum_{k<K}\tfrac{\lambda_k}{1-\lambda_K}x_k$; các trọng số $\tfrac{\lambda_k}{1-\lambda_K}$ không âm và có tổng $1$. Định nghĩa 01.22 cho hai điểm $z$, $x_K$ rồi giả thiết quy nạp cho $z$:
+Đặt $z=\sum_{k<K}\tfrac{\lambda_k}{1-\lambda_K}x_k$; các trọng số $\tfrac{\lambda_k}{1-\lambda_K}$ không âm và có tổng $1$. Định nghĩa 01.21 cho hai điểm $z$, $x_K$ rồi giả thiết quy nạp cho $z$:
 
 $$
 \begin{aligned}
@@ -1499,7 +1499,7 @@ f\Bigl(\sum_{k\le K}\lambda_kx_k\Bigr)&=f\bigl((1-\lambda_K)z+\lambda_Kx_K\bigr)
 \end{aligned}
 $$
 
-Dòng thứ hai là Định nghĩa 01.22 với trọng số $\lambda_K$; dòng thứ ba là giả thiết quy nạp nhân với $1-\lambda_K>0$. $\square$
+Dòng thứ hai là Định nghĩa 01.21 với trọng số $\lambda_K$; dòng thứ ba là giả thiết quy nạp nhân với $1-\lambda_K>0$. $\square$
 :::
 
 Bổ đề 05b.25 tổng quát hóa định nghĩa hàm lồi từ hai điểm sang $K$ điểm: giá trị tại điểm trung bình không vượt trung bình các giá trị. Trên ví dụ xuyên suốt B với bước $4{,}5$, vế phải là trung bình các sai số $\tfrac14(\tfrac13+\tfrac16+\tfrac13+\tfrac16)=\tfrac14$, còn vế trái là sai số tại trung bình, $\tfrac1{12}$.
@@ -2836,7 +2836,7 @@ Cần chọn bước cho GD và số vòng lặp đủ để sai số giá trị
 
 **Mô hình hóa.**
 
-Vì $y_i^2=1$, Hessian là $\nabla^2f(x)=\tfrac1N\sum_i\phi''(y_ic_i^Tx)\,c_ic_i^T+\nu I$, với $\phi''\in(0,\tfrac14]$ (Mệnh đề 01.9).
+Vì $y_i^2=1$, Hessian là $\nabla^2f(x)=\tfrac1N\sum_i\phi''(y_ic_i^Tx)\,c_ic_i^T+\nu I$, với $\phi''\in(0,\tfrac14]$ (Mệnh đề 01.8).
 
 **Kiểm tra giả thiết.**
 
@@ -3223,6 +3223,6 @@ Vế phải của Hệ quả 05b.38(b) bằng khoảng $385$, không nhỏ hơn 
 - Herbert Robbins và Sutton Monro (1951), "A Stochastic Approximation Method", *Annals of Mathematical Statistics* 22(3), 400–407. Nguồn của điều kiện Robbins–Monro.
 - Ian Goodfellow, Yoshua Bengio và Aaron Courville (2016), *Deep Learning*, MIT Press, mục 8.3.1 (tr. 294–296: điều kiện bước của SGD, tốc độ $O(1/\sqrt k)$ và $O(1/k)$, nhận xét của Bottou và Bousquet về chi phí).
 - Yi-Shuai Niu (2024), *Optimization Methods for Machine Learning*, bài giảng BIMSA, Định lý 26–27 (tr. 96–98: hạ gradient trên hàm lồi và lồi mạnh) và Định lý 29 (tr. 114: SGD với hàm lồi mạnh).
-- Ghi chú Bài 01 (Định nghĩa 01.10, 01.22, 01.39; Định lý 01.26), Bài 04 (Mục 2.6: Bổ đề 04.18, 04.20, 04.21, 04.23; Định lý 04.22, 04.24, 04.26; Mệnh đề 04.25), Bài 06b (Mục 2: Định lý 06b.11, Hệ quả 06b.12, Mệnh đề 06b.14, Ví dụ 06b.14) và Bài 05c (kỳ vọng có điều kiện, bất đẳng thức tập trung) là tiên quyết trực tiếp.
+- Ghi chú Bài 01 (Định nghĩa 01.9, 01.21, 01.39; Định lý 01.25), Bài 04 (Mục 2.6: Bổ đề 04.18, 04.20, 04.21, 04.23; Định lý 04.22, 04.24, 04.26; Mệnh đề 04.25), Bài 06b (Mục 2: Định lý 06b.11, Hệ quả 06b.12, Mệnh đề 06b.14, Ví dụ 06b.14) và Bài 05c (kỳ vọng có điều kiện, bất đẳng thức tập trung) là tiên quyết trực tiếp.
 
 Các định lý của Mục 3, 5 và 6 được chứng minh trực tiếp từ các bổ đề của Mục 2 và 3; hằng số trong các phát biểu là hằng số của chứng minh trong ghi chú, có thể khác hằng số của nguồn. Mọi ví dụ số được tính từ công thức đã nêu; các con số có nhãn "mô phỏng" là ước lượng Monte Carlo với hạt giống ghi trong ví dụ.

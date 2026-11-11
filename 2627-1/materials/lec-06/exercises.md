@@ -87,7 +87,7 @@ Trung bình bốn mất mát là công thức cần chứng minh.
 
 Nếu $F$ lồi thì $F(\theta(\tfrac12))\le\tfrac12F(\theta(0))+\tfrac12F(\theta(1))=0{,}4100$, mâu thuẫn. Vậy $F$ không lồi.
 
-3. Tính lồi của $\theta\mapsto\ell(f(x_i;\theta),y_i)$ được bảo đảm khi $\theta\mapsto f(x_i;\theta)$ affine (Định lý 01.31(b)). Với mạng, $f$ chứa tích $w_2^\top\sigma(W_1x+b_1)$ giữa tham số tầng ra và kích hoạt của tham số tầng ẩn, nên $f$ không affine theo $\theta$; dọc đoạn trên, $f$ là $\lvert1-2t\rvert$ lần một hằng số, không affine theo $t$.
+3. Tính lồi của $\theta\mapsto\ell(f(x_i;\theta),y_i)$ được bảo đảm khi $\theta\mapsto f(x_i;\theta)$ affine (Định lý 01.30(b)). Với mạng, $f$ chứa tích $w_2^\top\sigma(W_1x+b_1)$ giữa tham số tầng ra và kích hoạt của tham số tầng ẩn, nên $f$ không affine theo $\theta$; dọc đoạn trên, $f$ là $\lvert1-2t\rvert$ lần một hằng số, không affine theo $t$.
 
 **Kiểm tra.** Ở $t=\tfrac14$, $f(0,1)=2\cdot\tfrac12=1$, đúng bằng giá trị của $\theta_A$ không nhân đôi, nên mất mát tại hai điểm lớp $1$ là $\log(1+e^{-1})$.
 :::

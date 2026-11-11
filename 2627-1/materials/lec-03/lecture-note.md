@@ -19,13 +19,13 @@ Mọi mục tiêu sau là minh chứng bộ phận của hai chuẩn đầu ra b
 
 Chương dùng các kết quả sau của Bài 01 và Bài 02. Số hiệu `01.k` chỉ ghi chú Bài 01, số hiệu `02.k` chỉ ghi chú Bài 02; mỗi kết quả được phát biểu lại đủ để dùng ngay.
 
-- **Cận dưới đúng và bài toán tối ưu** (Định nghĩa 01.10, 01.12). Cận dưới đúng $\inf_{x\in C}f(x)$ là số lớn nhất không vượt mọi giá trị $f(x)$, $x\in C$, bằng $-\infty$ khi $f$ không bị chặn dưới; nó có thể không đạt. Bài toán tối ưu có miền $D$, mục tiêu $f_0$, ràng buộc bất đẳng thức $f_i(x)\le0$ và đẳng thức; giá trị tối ưu $p^*$ là cận dưới đúng của $f_0$ trên tập khả thi, bằng $+\infty$ khi tập khả thi rỗng.
-- **Miền lồng nhau** (Mệnh đề 01.16). Nếu $C'\subseteq C$ thì $\inf_Cf_0\le\inf_{C'}f_0$.
-- **Tập lồi, hàm lồi, hàm lõm** (Định nghĩa 01.18, 01.22). Tập $C$ lồi nếu chứa mọi đoạn nối hai điểm của nó; $f$ lồi trên tập lồi $C$ nếu $f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$ với mọi $x,y\in C$, $\theta\in[0,1]$; $f$ lõm nếu $-f$ lồi.
-- **Điều kiện bậc nhất và bậc hai** (Định lý 01.26, Hệ quả 01.27, Định lý 01.30(a), (b)). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y$; hệ quả: nếu $f$ lồi, khả vi trên một tập mở lồi chứa $C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$, điều kiện (7.3) của Bài 01, thì $x^*$ là cực tiểu toàn cục của $f$ trên $C$; nói riêng, $\nabla f(x^*)=0$ cho cực tiểu toàn cục trên cả tập mở đó. Hàm khả vi hai lần trên tập mở lồi là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi chặt nếu Hessian xác định dương mọi nơi.
-- **Phép bảo toàn tính lồi** (Định lý 01.31). Tổng có hệ số không âm của các hàm lồi là lồi; hợp của hàm lồi với ánh xạ affine là lồi; cực đại từng điểm của hữu hạn hàm lồi là lồi, phần (c).
-- **Điều kiện cần bậc nhất không ràng buộc** (Bài 00, Định lý 00.42; nhắc lại ở Nhận xét 01.15). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
-- **Tồn tại và duy nhất** (Định lý 01.36, Weierstrass; Định lý 01.35). Hàm liên tục trên tập không rỗng, đóng, bị chặn của $\mathbb R^d$ đạt giá trị nhỏ nhất; hàm lồi chặt có nhiều nhất một điểm cực tiểu.
+- **Cận dưới đúng và bài toán tối ưu** (Định nghĩa 01.9, 01.11). Cận dưới đúng $\inf_{x\in C}f(x)$ là số lớn nhất không vượt mọi giá trị $f(x)$, $x\in C$, bằng $-\infty$ khi $f$ không bị chặn dưới; nó có thể không đạt. Bài toán tối ưu có miền $D$, mục tiêu $f_0$, ràng buộc bất đẳng thức $f_i(x)\le0$ và đẳng thức; giá trị tối ưu $p^*$ là cận dưới đúng của $f_0$ trên tập khả thi, bằng $+\infty$ khi tập khả thi rỗng.
+- **Miền lồng nhau** (Mệnh đề 01.15). Nếu $C'\subseteq C$ thì $\inf_Cf_0\le\inf_{C'}f_0$.
+- **Tập lồi, hàm lồi, hàm lõm** (Định nghĩa 01.17, 01.21). Tập $C$ lồi nếu chứa mọi đoạn nối hai điểm của nó; $f$ lồi trên tập lồi $C$ nếu $f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$ với mọi $x,y\in C$, $\theta\in[0,1]$; $f$ lõm nếu $-f$ lồi.
+- **Điều kiện bậc nhất và bậc hai** (Định lý 01.25, Hệ quả 01.26, Định lý 01.29(a), (b)). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y$; hệ quả: nếu $f$ lồi, khả vi trên một tập mở lồi chứa $C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$, điều kiện (7.3) của Bài 01, thì $x^*$ là cực tiểu toàn cục của $f$ trên $C$; nói riêng, $\nabla f(x^*)=0$ cho cực tiểu toàn cục trên cả tập mở đó. Hàm khả vi hai lần trên tập mở lồi là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi chặt nếu Hessian xác định dương mọi nơi.
+- **Phép bảo toàn tính lồi** (Định lý 01.30). Tổng có hệ số không âm của các hàm lồi là lồi; hợp của hàm lồi với ánh xạ affine là lồi; cực đại từng điểm của hữu hạn hàm lồi là lồi, phần (c).
+- **Điều kiện cần bậc nhất không ràng buộc** (Bài 00, Định lý 00.42; nhắc lại ở Nhận xét 01.14). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
+- **Tồn tại và duy nhất** (Định lý 01.35, Weierstrass; Định lý 01.34). Hàm liên tục trên tập không rỗng, đóng, bị chặn của $\mathbb R^d$ đạt giá trị nhỏ nhất; hàm lồi chặt có nhiều nhất một điểm cực tiểu.
 - **Dạng chuẩn của bài toán tối ưu lồi** (Định nghĩa 02.1). Miền $D$ lồi, các hàm $f_0,f_1,\ldots,f_m$ lồi, ràng buộc $f_i(x)\le0$ và $Ax=b$ với $A\in\mathbb R^{p\times n}$.
 - **Biến đổi tương đương (reformulation)** (Định nghĩa 02.5, Mệnh đề 02.6, Nhận xét 02.7). Hai bài toán tương đương khi có ánh xạ chuyển phương án khả thi qua lại và giữ thứ tự giá trị; nghiệm của bài toán này cho nghiệm của bài toán kia. Đối ngẫu phụ thuộc vào cách viết bài toán, nên chương luôn nêu rõ dạng được dùng.
 - **Chứng nhận bằng tổ hợp không âm các ràng buộc** (Mệnh đề 02.11). Với quy hoạch tuyến tính $\min c^Tx$, $a_i^Tx\ge\beta_i$, nếu có $\mu\succeq0$ với $c=\sum_i\mu_ia_i$ thì mọi điểm khả thi có $c^Tx\ge\sum_i\mu_i\beta_i$; một điểm khả thi đạt cận đó là nghiệm, và mọi ràng buộc có $\mu_i>0$ chặt tại mọi nghiệm.
@@ -78,7 +78,7 @@ $$
 
 ### 1.1 Cận trên và cận dưới của giá trị tối ưu
 
-Mỗi điểm khả thi cho một cận trên của giá trị tối ưu, vì theo định nghĩa cận dưới đúng (Định nghĩa 01.10), $p^*\le f_0(x)$ với mọi $x$ khả thi. Việc xác định cận dưới khó hơn, vì khẳng định $f_0(x)\ge\ell$ đòi hỏi một lập luận áp dụng đồng thời cho mọi điểm khả thi. Bài toán (1.1) đủ nhỏ để giải trực tiếp, nên chúng ta dùng nó làm ví dụ xuyên suốt chương và kiểm tra mọi công cụ mới trên một bài toán đã biết nghiệm. Trên trang chiếu, bài toán này được gọi là bài toán một biến trên đoạn $[2,4]$.
+Mỗi điểm khả thi cho một cận trên của giá trị tối ưu, vì theo định nghĩa cận dưới đúng (Định nghĩa 01.9), $p^*\le f_0(x)$ với mọi $x$ khả thi. Việc xác định cận dưới khó hơn, vì khẳng định $f_0(x)\ge\ell$ đòi hỏi một lập luận áp dụng đồng thời cho mọi điểm khả thi. Bài toán (1.1) đủ nhỏ để giải trực tiếp, nên chúng ta dùng nó làm ví dụ xuyên suốt chương và kiểm tra mọi công cụ mới trên một bài toán đã biết nghiệm. Trên trang chiếu, bài toán này được gọi là bài toán một biến trên đoạn $[2,4]$.
 
 ::: example Ví dụ 03.1 (Bài toán xuyên suốt)
 **Dữ kiện.**
@@ -154,7 +154,7 @@ Ba hàm $f_0+\lambda f_1$ với $\lambda=0,1,2$ trên hình trùng nhau tại ha
 
 ### 1.3 Cận dưới và chứng nhận tối ưu
 
-Ví dụ 03.2 dùng hai khái niệm chưa có tên, đó là một số không vượt $f_0$ trên tập khả thi và một điểm khả thi có giá trị bằng số đó. Với bài toán tối ưu tổng quát của Định nghĩa 01.12, hai khái niệm này được đặt tên theo định nghĩa sau.
+Ví dụ 03.2 dùng hai khái niệm chưa có tên, đó là một số không vượt $f_0$ trên tập khả thi và một điểm khả thi có giá trị bằng số đó. Với bài toán tối ưu tổng quát của Định nghĩa 01.11, hai khái niệm này được đặt tên theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.1 (Cận dưới, chứng nhận tối ưu, khoảng chứng nhận)
 Cho bài toán tối ưu với tập khả thi $C\subseteq\mathbb R^n$, mục tiêu $f_0:C\to\mathbb R$ và giá trị tối ưu $p^*=\inf_{x\in C}f_0(x)$.
@@ -168,11 +168,11 @@ Trong định nghĩa trên, cận dưới $\ell$ là một số không phụ thu
 
 Chẳng hạn, với bài toán (1.1), số $4{,}5$ là một cận dưới, cặp $(\hat x,\ell)=(2;4{,}5)$ có khoảng chứng nhận $0{,}5$, còn số $5$ là chứng nhận tối ưu cho $\hat x=2$. Ngược lại, số $5{,}5$ không phải cận dưới, vì điểm khả thi $x=2$ có giá trị $5<5{,}5$.
 
-Theo Định nghĩa 01.10, $p^*$ là cận dưới lớn nhất, nên mọi cận dưới $\ell$ thỏa $\ell\le p^*$. Một bài toán có vô số cận dưới, và chỉ cận dưới bằng $p^*$ có thể là chứng nhận.
+Theo Định nghĩa 01.9, $p^*$ là cận dưới lớn nhất, nên mọi cận dưới $\ell$ thỏa $\ell\le p^*$. Một bài toán có vô số cận dưới, và chỉ cận dưới bằng $p^*$ có thể là chứng nhận.
 
 Trong khi cận trên $f_0(\hat x)$ đến từ một điểm thì cận dưới là một khẳng định về toàn bộ tập khả thi. Quan hệ với chứng nhận của Bài 02 được nêu ở Nhận xét 03.3.
 
-Mệnh đề sau nêu thông tin mà một cặp (phương án, cận dưới) cho về giá trị tối ưu chưa biết. Chứng minh chỉ cần Định nghĩa 01.10 và Định nghĩa 03.1.
+Mệnh đề sau nêu thông tin mà một cặp (phương án, cận dưới) cho về giá trị tối ưu chưa biết. Chứng minh chỉ cần Định nghĩa 01.9 và Định nghĩa 03.1.
 
 ::: proposition Mệnh đề 03.2 (Cận dưới chặn sai số tối ưu và chứng nhận tối ưu)
 **Giả thiết.** Bài toán có tập khả thi $C\neq\varnothing$, $\hat x\in C$ và $\ell$ là một cận dưới theo Định nghĩa 03.1.
@@ -190,11 +190,11 @@ Mệnh đề sau nêu thông tin mà một cặp (phương án, cận dưới) c
 ::: proof Chứng minh Mệnh đề 03.2
 **Phần (a).**
 
-Vì $\ell\le f_0(x)$ với mọi $x\in C$, số $\ell$ là một cận dưới của tập giá trị $\{f_0(x)\mid x\in C\}$, nên không vượt cận dưới lớn nhất $p^*$ (Định nghĩa 01.10). Vì $\hat x\in C$, $p^*\le f_0(\hat x)$ theo cùng định nghĩa. Trừ hai vế của $\ell\le p^*$ khỏi $f_0(\hat x)$ cho $f_0(\hat x)-p^*\le f_0(\hat x)-\ell$.
+Vì $\ell\le f_0(x)$ với mọi $x\in C$, số $\ell$ là một cận dưới của tập giá trị $\{f_0(x)\mid x\in C\}$, nên không vượt cận dưới lớn nhất $p^*$ (Định nghĩa 01.9). Vì $\hat x\in C$, $p^*\le f_0(\hat x)$ theo cùng định nghĩa. Trừ hai vế của $\ell\le p^*$ khỏi $f_0(\hat x)$ cho $f_0(\hat x)-p^*\le f_0(\hat x)-\ell$.
 
 **Phần (b).**
 
-Nếu $f_0(\hat x)=\ell$ thì chuỗi ở (a) thành $\ell\le p^*\le\ell$, nên $p^*=\ell=f_0(\hat x)$; một điểm khả thi có giá trị bằng $p^*$ là nghiệm theo Định nghĩa 01.12. $\square$
+Nếu $f_0(\hat x)=\ell$ thì chuỗi ở (a) thành $\ell\le p^*\le\ell$, nên $p^*=\ell=f_0(\hat x)$; một điểm khả thi có giá trị bằng $p^*$ là nghiệm theo Định nghĩa 01.11. $\square$
 :::
 
 Theo Mệnh đề 03.2, việc chứng nhận tối ưu tách thành hai việc độc lập là tìm một phương án tốt và tìm một cận dưới tốt. Phần (a) dùng được cả khi chưa có chứng nhận, vì khi một bộ giải trả về phương án $\hat x$ và cận $\ell$, người dùng biết sai số tối ưu không quá $f_0(\hat x)-\ell$ mà không cần biết $p^*$. Áp dụng vào Ví dụ 03.2, cặp $(2;\,4{,}5)$ cho sai số của phương án $x=2$ không quá $0{,}5$, còn cặp $(2;\,5)$ cho sai số bằng $0$. Trong Ví dụ 03.1, sai số thật bằng $0$, nên con số $0{,}5$ chỉ là cận trên của sai số.
@@ -258,7 +258,7 @@ $$
 \tag{2.1}
 $$
 
-với tập khả thi $C=\{x\in D\mid f_i(x)\le0,\ i=1,\ldots,m;\ Ax=b\}$ và giá trị tối ưu $p^*=\inf_{x\in C}f_0(x)$. Bài toán (2.1) có dạng của Định nghĩa 01.12 với các hàm đẳng thức affine, và ta không giả thiết $D$ lồi, các $f_i$ lồi hay khả vi.
+với tập khả thi $C=\{x\in D\mid f_i(x)\le0,\ i=1,\ldots,m;\ Ax=b\}$ và giá trị tối ưu $p^*=\inf_{x\in C}f_0(x)$. Bài toán (2.1) có dạng của Định nghĩa 01.11 với các hàm đẳng thức affine, và ta không giả thiết $D$ lồi, các $f_i$ lồi hay khả vi.
 
 Miền $D$ chứa những điều kiện không được đưa vào hàm Lagrange. Trong hầu hết chương, $D=\mathbb R^n$, còn Ví dụ 03.7 và Tình huống 03.3 dùng $D=\{0,1\}^n$. Một ràng buộc dạng $h(x)\ge c$ được viết lại thành $c-h(x)\le0$ trước khi gán nhân tử, vì như ở Mục 1, viết sai dấu sẽ đảo chiều của bất đẳng thức dùng để lấy cận.
 
@@ -297,7 +297,7 @@ Nhầm lẫn thường gặp là cho rằng $L(x,\lambda,\nu)\le f_0(x)$ với m
 
 ### 2.3 Hàm đối ngẫu
 
-Ở Ví dụ 03.2, cận dưới là giá trị nhỏ nhất của $L(\cdot,\lambda)$ trên toàn $\mathbb R$. Khi $L$ không đạt cực tiểu, giá trị nhỏ nhất không tồn tại, nhưng cận dưới đúng vẫn tồn tại (Định nghĩa 01.10). Do đó, đối tượng cần định nghĩa là cận dưới đúng của $L$ theo $x$, coi như một hàm của nhân tử.
+Ở Ví dụ 03.2, cận dưới là giá trị nhỏ nhất của $L(\cdot,\lambda)$ trên toàn $\mathbb R$. Khi $L$ không đạt cực tiểu, giá trị nhỏ nhất không tồn tại, nhưng cận dưới đúng vẫn tồn tại (Định nghĩa 01.9). Do đó, đối tượng cần định nghĩa là cận dưới đúng của $L$ theo $x$, coi như một hàm của nhân tử.
 
 ::: definition Định nghĩa 03.5 (Hàm đối ngẫu và miền hữu hiệu)
 Cho bài toán (2.1) với hàm Lagrange (2.2). Hàm đối ngẫu Lagrange (Lagrange dual function) là $g:\mathbb R^m\times\mathbb R^p\to\mathbb R\cup\{-\infty\}$,
@@ -314,7 +314,7 @@ Công thức (2.3) cố định nhân tử rồi lấy cận dưới đúng theo
 
 Ví dụ tiếp theo tính $g$ của bài toán (1.1) đến công thức tường minh. Ngược lại, với $\lambda=-1$, hàm $L(x,-1)=6x-7$ không bị chặn dưới, nên $g(-1)=-\infty$ và $-1\notin\operatorname{dom}g$.
 
-Hàm đối ngẫu là hàm của nhân tử, còn hàm Lagrange là hàm của cả biến và nhân tử. Ta thu được $g$ từ $L$ bằng phép "lấy cận dưới đúng theo $x$", cùng phép đã định nghĩa $p^*$ từ $f_0$ (Định nghĩa 01.12), nhưng lấy trên $D$ thay vì trên $C$. Vì $C\subseteq D$, cận dưới đúng của $L$ trên $D$ không vượt cận dưới đúng trên $C$ (Mệnh đề 01.16(a)), và Định lý 03.8 dùng đúng bất đẳng thức này.
+Hàm đối ngẫu là hàm của nhân tử, còn hàm Lagrange là hàm của cả biến và nhân tử. Ta thu được $g$ từ $L$ bằng phép "lấy cận dưới đúng theo $x$", cùng phép đã định nghĩa $p^*$ từ $f_0$ (Định nghĩa 01.11), nhưng lấy trên $D$ thay vì trên $C$. Vì $C\subseteq D$, cận dưới đúng của $L$ trên $D$ không vượt cận dưới đúng trên $C$ (Mệnh đề 01.15(a)), và Định lý 03.8 dùng đúng bất đẳng thức này.
 
 ::: example Ví dụ 03.3 (Hàm đối ngẫu của bài toán xuyên suốt)
 **Dữ kiện.**
@@ -356,7 +356,7 @@ $g(1)$ và $g(2)$ trùng với hai cận của Ví dụ 03.2. Điểm đạt $x(
 
 Đồ thị của $g$ trên $\operatorname{dom}g=(-1,\infty)$ ở hình trên có phần nền tô là các nhân tử thỏa $\lambda\ge0$. Phần $-1<\lambda<0$ thuộc miền hữu hiệu, nhưng giá trị ở đó không được bảo đảm là cận dưới, vì Định lý 03.8 dưới đây cần $\lambda\ge0$. Đỉnh của đồ thị tại $\lambda=2$ có độ cao $5=p^*$, và đồ thị lõm. Tính lõm này không phải đặc điểm riêng của ví dụ.
 
-Mệnh đề sau cho biết cấu trúc của bài toán chọn nhân tử tối ưu. Chứng minh chỉ dùng định nghĩa hàm lõm, tức Định nghĩa 01.22 áp cho $-g$, và định nghĩa cận dưới đúng, theo lập luận của Boyd và Vandenberghe (2004, mục 5.1.2, tr. 216).
+Mệnh đề sau cho biết cấu trúc của bài toán chọn nhân tử tối ưu. Chứng minh chỉ dùng định nghĩa hàm lõm, tức Định nghĩa 01.21 áp cho $-g$, và định nghĩa cận dưới đúng, theo lập luận của Boyd và Vandenberghe (2004, mục 5.1.2, tr. 216).
 
 ::: proposition Mệnh đề 03.6 (Hàm đối ngẫu lõm)
 **Giả thiết.** Bài toán (2.1) với $D$ bất kỳ và các hàm $f_0,\ldots,f_m$ bất kỳ.
@@ -395,10 +395,10 @@ $$
 
 **Bước 3 (lấy cận dưới đúng).**
 
-Vế phải là một số không phụ thuộc $x$ và là một cận dưới của $\{L(x,\theta_\alpha)\mid x\in D\}$, nên không vượt cận dưới lớn nhất $g(\theta_\alpha)$ (Định nghĩa 01.10). Đó là bất đẳng thức cần chứng minh. Vế phải hữu hạn, nên $g(\theta_\alpha)>-\infty$, tức $\theta_\alpha\in\operatorname{dom}g$: $\operatorname{dom}g$ lồi (Định nghĩa 01.18), và $-g$ thỏa định nghĩa hàm lồi trên tập lồi này. $\square$
+Vế phải là một số không phụ thuộc $x$ và là một cận dưới của $\{L(x,\theta_\alpha)\mid x\in D\}$, nên không vượt cận dưới lớn nhất $g(\theta_\alpha)$ (Định nghĩa 01.9). Đó là bất đẳng thức cần chứng minh. Vế phải hữu hạn, nên $g(\theta_\alpha)>-\infty$, tức $\theta_\alpha\in\operatorname{dom}g$: $\operatorname{dom}g$ lồi (Định nghĩa 01.17), và $-g$ thỏa định nghĩa hàm lồi trên tập lồi này. $\square$
 :::
 
-Chứng minh trên cho thấy $g$ là cận dưới đúng của một họ hàm affine theo nhân tử, với chỉ số $x\in D$. Cận dưới đúng từng điểm của các hàm affine luôn lõm, bất kể họ hàm đó được xác định như thế nào. Mệnh đề 03.6 là phần đối ngẫu của Định lý 01.31(c), theo đó cực đại từng điểm của các hàm lồi là lồi.
+Chứng minh trên cho thấy $g$ là cận dưới đúng của một họ hàm affine theo nhân tử, với chỉ số $x\in D$. Cận dưới đúng từng điểm của các hàm affine luôn lõm, bất kể họ hàm đó được xác định như thế nào. Mệnh đề 03.6 là phần đối ngẫu của Định lý 01.30(c), theo đó cực đại từng điểm của các hàm lồi là lồi.
 
 Chứng minh không dùng tính lồi ở bất kỳ bước nào, nên kết luận đúng cả khi bài toán gốc không lồi. Ví dụ 03.7 với $D=\{0,1\}^3$ là một trường hợp như vậy, trong đó $g$ là cận dưới của tám hàm affine. Với bài toán (1.1), Mệnh đề 03.6 khớp với phép tính trực tiếp $g''(\lambda)=-\frac{18}{(1+\lambda)^3}<0$ trên $(-1,\infty)$.
 
@@ -412,7 +412,7 @@ Chiều ngược lại cũng xảy ra: bài toán gốc khó mà $g$ dễ tính.
 
 ### 2.4 Đối ngẫu yếu
 
-Ở Ví dụ 03.2, ta chứng minh riêng từng cận. Định lý sau cho biết mọi giá trị của $g$ tại nhân tử có $\lambda\succeq0$ đều là cận dưới. Chứng minh chỉ cần Định nghĩa 03.5 và Định nghĩa 01.10, và chỉ rõ bước sử dụng dấu của nhân tử.
+Ở Ví dụ 03.2, ta chứng minh riêng từng cận. Định lý sau cho biết mọi giá trị của $g$ tại nhân tử có $\lambda\succeq0$ đều là cận dưới. Chứng minh chỉ cần Định nghĩa 03.5 và Định nghĩa 01.9, và chỉ rõ bước sử dụng dấu của nhân tử.
 
 ::: theorem Định lý 03.8 (Đối ngẫu yếu)
 **Giả thiết.** Bài toán (2.1) với $D$ và $f_0,\ldots,f_m$ bất kỳ; $\lambda\in\mathbb R^m$ với $\lambda\succeq0$; $\nu\in\mathbb R^p$ bất kỳ.
@@ -444,7 +444,7 @@ Vì $x$ khả thi, $f_i(x)\le0$ với mọi $i$; vì $\lambda_i\ge0$, mỗi tíc
 
 **Bước 3 (kết luận về $p^*$).**
 
-Theo (2.4), $g(\lambda,\nu)$ không vượt $f_0(x)$ với mọi $x\in C$, nên là một cận dưới của $\{f_0(x)\mid x\in C\}$ và không vượt cận dưới lớn nhất $p^*$ (Định nghĩa 01.10). Nếu $C=\varnothing$, $p^*=+\infty$ và bất đẳng thức hiển nhiên. $\square$
+Theo (2.4), $g(\lambda,\nu)$ không vượt $f_0(x)$ với mọi $x\in C$, nên là một cận dưới của $\{f_0(x)\mid x\in C\}$ và không vượt cận dưới lớn nhất $p^*$ (Định nghĩa 01.9). Nếu $C=\varnothing$, $p^*=+\infty$ và bất đẳng thức hiển nhiên. $\square$
 :::
 
 Định lý 03.8 được gọi là đối ngẫu yếu (weak duality), và chứng minh của nó gồm hai bước có căn cứ khác nhau. Bước đầu là tính chất của cận dưới đúng: lấy cận dưới đúng trên miền lớn $D$ cho một số không vượt giá trị tại mọi điểm của miền nhỏ $C$. Bước sau dùng tính khả thi và dấu nhân tử.
@@ -786,7 +786,7 @@ Ví dụ là Bài tập 5.21 của Boyd và Vandenberghe (2004, tr. 280). Miền
 
 **Tính lồi.**
 
-$D$ là nửa mặt phẳng mở, lồi. $e^{-x}$ có đạo hàm bậc hai $e^{-x}>0$, lồi. Hàm $\frac{x^2}y$ có Hessian $\frac2{y^3}\begin{pmatrix}y^2&-xy\\-xy&x^2\end{pmatrix}=\frac2{y^3}\begin{pmatrix}y\\-x\end{pmatrix}\begin{pmatrix}y&-x\end{pmatrix}\succeq0$ trên $D$, nên lồi theo Định lý 01.30(a). Bài toán ở dạng chuẩn của Định nghĩa 02.1.
+$D$ là nửa mặt phẳng mở, lồi. $e^{-x}$ có đạo hàm bậc hai $e^{-x}>0$, lồi. Hàm $\frac{x^2}y$ có Hessian $\frac2{y^3}\begin{pmatrix}y^2&-xy\\-xy&x^2\end{pmatrix}=\frac2{y^3}\begin{pmatrix}y\\-x\end{pmatrix}\begin{pmatrix}y&-x\end{pmatrix}\succeq0$ trên $D$, nên lồi theo Định lý 01.29(a). Bài toán ở dạng chuẩn của Định nghĩa 02.1.
 
 **Giá trị gốc.**
 
@@ -858,22 +858,22 @@ Chứng minh dưới đây dùng ba tính chất của tập compact trong $\mat
 
 1. một tập là compact khi mọi họ tập mở phủ nó có một họ con hữu hạn vẫn phủ nó (Định nghĩa 2.32), và trong $\mathbb R^d$ tập đóng, bị chặn là compact (Định lý 2.41, tr. 40, định lý Heine–Borel);
 2. ảnh của tập compact qua ánh xạ liên tục là compact (Định lý 4.14, tr. 89);
-3. hàm liên tục trên tập compact không rỗng đạt giá trị nhỏ nhất, theo Định lý 01.36.
+3. hàm liên tục trên tập compact không rỗng đạt giá trị nhỏ nhất, theo Định lý 01.35.
 
 Về mặt ý tưởng, chứng minh tách gốc tọa độ khỏi tập hiệu $\mathcal C-\mathcal B$. Việc tách được làm trước hết cho mỗi tập con hữu hạn bằng điểm gần gốc nhất, rồi chuyển sang toàn bộ tập bằng tính compact của mặt cầu đơn vị.
 
 ::: proof Chứng minh Bổ đề 03.14
 **Bước 1 (tập hiệu).**
 
-Đặt $\mathcal E=\mathcal C-\mathcal B=\{z-w\mid z\in\mathcal C,\ w\in\mathcal B\}$. $\mathcal E$ không rỗng vì hai tập không rỗng. $\mathcal E$ lồi: với $e_1=z_1-w_1$, $e_2=z_2-w_2$ thuộc $\mathcal E$ và $\alpha\in[0,1]$, $\alpha e_1+(1-\alpha)e_2=z_\alpha-w_\alpha$ với $z_\alpha=\alpha z_1+(1-\alpha)z_2\in\mathcal C$ và $w_\alpha=\alpha w_1+(1-\alpha)w_2\in\mathcal B$ do tính lồi (Định nghĩa 01.18). $0\notin \mathcal E$: nếu $0=z-w$ thì $z=w\in\mathcal C\cap\mathcal B$, trái giả thiết rời nhau.
+Đặt $\mathcal E=\mathcal C-\mathcal B=\{z-w\mid z\in\mathcal C,\ w\in\mathcal B\}$. $\mathcal E$ không rỗng vì hai tập không rỗng. $\mathcal E$ lồi: với $e_1=z_1-w_1$, $e_2=z_2-w_2$ thuộc $\mathcal E$ và $\alpha\in[0,1]$, $\alpha e_1+(1-\alpha)e_2=z_\alpha-w_\alpha$ với $z_\alpha=\alpha z_1+(1-\alpha)z_2\in\mathcal C$ và $w_\alpha=\alpha w_1+(1-\alpha)w_2\in\mathcal B$ do tính lồi (Định nghĩa 01.17). $0\notin \mathcal E$: nếu $0=z-w$ thì $z=w\in\mathcal C\cap\mathcal B$, trái giả thiết rời nhau.
 
 **Bước 2 (một tập con hữu hạn).**
 
-Lấy tập hữu hạn không rỗng $F=\{e_1,\ldots,e_k\}\subseteq \mathcal E$ và đặt $K=\{\sum_{i=1}^k\alpha_ie_i\mid\alpha_i\ge0,\ \sum_i\alpha_i=1\}$. Tập hệ số $\Delta_k=\{\alpha\in\mathbb R^k\mid\alpha\succeq0,\ \mathbf 1^T\alpha=1\}$ đóng và bị chặn, nên compact; $K$ là ảnh của $\Delta_k$ qua ánh xạ tuyến tính, liên tục $\alpha\mapsto\sum_i\alpha_ie_i$, nên compact. Mỗi phần tử của $K$ là tổ hợp lồi của các điểm thuộc tập lồi $\mathcal E$, nên thuộc $\mathcal E$ (quy nạp theo $k$ trên Định nghĩa 01.18); do đó $0\notin K$.
+Lấy tập hữu hạn không rỗng $F=\{e_1,\ldots,e_k\}\subseteq \mathcal E$ và đặt $K=\{\sum_{i=1}^k\alpha_ie_i\mid\alpha_i\ge0,\ \sum_i\alpha_i=1\}$. Tập hệ số $\Delta_k=\{\alpha\in\mathbb R^k\mid\alpha\succeq0,\ \mathbf 1^T\alpha=1\}$ đóng và bị chặn, nên compact; $K$ là ảnh của $\Delta_k$ qua ánh xạ tuyến tính, liên tục $\alpha\mapsto\sum_i\alpha_ie_i$, nên compact. Mỗi phần tử của $K$ là tổ hợp lồi của các điểm thuộc tập lồi $\mathcal E$, nên thuộc $\mathcal E$ (quy nạp theo $k$ trên Định nghĩa 01.17); do đó $0\notin K$.
 
 **Bước 3 (điểm gần gốc nhất).**
 
-Hàm $x\mapsto\lVert x\rVert_2$ liên tục trên tập compact không rỗng $K$, nên đạt giá trị nhỏ nhất tại một $\pi\in K$ (Định lý 01.36), và $\pi\neq0$ vì $0\notin K$. Với $z\in K$ và $t\in(0,1]$, điểm $\pi+t(z-\pi)=(1-t)\pi+tz$ thuộc $K$ vì $K$ lồi, nên $\lVert\pi+t(z-\pi)\rVert_2^2\ge\lVert\pi\rVert_2^2$. Khai triển vế trái, trừ $\lVert\pi\rVert_2^2$ và chia cho $t>0$:
+Hàm $x\mapsto\lVert x\rVert_2$ liên tục trên tập compact không rỗng $K$, nên đạt giá trị nhỏ nhất tại một $\pi\in K$ (Định lý 01.35), và $\pi\neq0$ vì $0\notin K$. Với $z\in K$ và $t\in(0,1]$, điểm $\pi+t(z-\pi)=(1-t)\pi+tz$ thuộc $K$ vì $K$ lồi, nên $\lVert\pi+t(z-\pi)\rVert_2^2\ge\lVert\pi\rVert_2^2$. Khai triển vế trái, trừ $\lVert\pi\rVert_2^2$ và chia cho $t>0$:
 
 $$
 2\pi^T(z-\pi)+t\lVert z-\pi\rVert_2^2\ge0\qquad\forall t\in(0,1].
@@ -991,7 +991,7 @@ Bài toán (1.1): $\min_{x\in\mathbb R}f_0(x)=x^2+1$ với $f_1(x)=(x-2)(x-4)\le
 
 **Bài toán (1.1).**
 
-$f_0''(x)=2>0$ và $f_1''(x)=2>0$, nên hai hàm lồi trên $\mathbb R$ (Định lý 01.30). Điểm $\bar x=3$ cho $f_1(3)=1\cdot(-1)=-1<0$. Giá trị $p^*=5$ hữu hạn (Ví dụ 03.1). Định lý 03.15(a) cho $d^*=5$ và có $\lambda^*$; Ví dụ 03.4 đã tìm được $\lambda^*=2$.
+$f_0''(x)=2>0$ và $f_1''(x)=2>0$, nên hai hàm lồi trên $\mathbb R$ (Định lý 01.29). Điểm $\bar x=3$ cho $f_1(3)=1\cdot(-1)=-1<0$. Giá trị $p^*=5$ hữu hạn (Ví dụ 03.1). Định lý 03.15(a) cho $d^*=5$ và có $\lambda^*$; Ví dụ 03.4 đã tìm được $\lambda^*=2$.
 
 **Bài toán hai chiều của Ví dụ 03.6.**
 
@@ -1410,7 +1410,7 @@ $$
 Giá trị tối ưu của (4.1), ký hiệu $p^*(u,v)\in\mathbb R\cup\{\pm\infty\}$, gọi là hàm giá trị (value function); $p^*(0,0)=p^*$.
 :::
 
-Ở bài toán nhiễu, thành phần $u_i>0$ nới ràng buộc $i$, còn thành phần $u_i<0$ thắt chặt ràng buộc đó. Nới ràng buộc mở rộng tập khả thi, nên theo Mệnh đề 01.16(a), $p^*(u,v)$ không tăng khi $u$ tăng.
+Ở bài toán nhiễu, thành phần $u_i>0$ nới ràng buộc $i$, còn thành phần $u_i<0$ thắt chặt ràng buộc đó. Nới ràng buộc mở rộng tập khả thi, nên theo Mệnh đề 01.15(a), $p^*(u,v)$ không tăng khi $u$ tăng.
 
 Theo Định nghĩa 03.18, $p^*(u,v)=\inf\{t\mid(u,v,t)\in\mathcal A\}$, tức đồ thị của hàm giá trị là biên dưới của $\mathcal A$. Lưu ý rằng hàm giá trị khác hàm đối ngẫu, vì $p^*(u,v)$ là hàm của mức ràng buộc, còn $g(\lambda,\nu)$ là hàm của nhân tử.
 
@@ -1452,7 +1452,7 @@ Dòng đầu là giả thiết $g(\lambda^*,\nu^*)=d^*=p^*$. Dòng thứ hai là
 
 **Bước 3 (lấy cận dưới đúng).**
 
-Chuyển vế cho $f_0(x)\ge p^*-\lambda^{*T}u-\nu^{*T}v$ với mọi $x$ khả thi của (4.1). Lấy cận dưới đúng theo các $x$ đó cho (4.2) theo Định nghĩa 01.10. $\square$
+Chuyển vế cho $f_0(x)\ge p^*-\lambda^{*T}u-\nu^{*T}v$ với mọi $x$ khả thi của (4.1). Lấy cận dưới đúng theo các $x$ đó cho (4.2) theo Định nghĩa 01.9. $\square$
 :::
 
 Về mặt hình học, với một ràng buộc, vế phải $p^*-\lambda^*u$ của (4.2) là đường đỡ của Mệnh đề 03.20, và đồ thị hàm giá trị, tức biên dưới của $\mathcal A$, nằm trên đường đó.
@@ -1713,7 +1713,7 @@ Mệnh đề 03.27 tách điều kiện tối ưu thành hai phần có thể ki
 
 Phần 3 là phiên bản "theo cặp" của Hệ quả 03.10(c), trong đó ta không cần tính $g$ tại mọi nhân tử mà chỉ cần kiểm tra một điểm cực tiểu của một hàm.
 
-**Trong học máy.** Bù trừ cho biết ràng buộc nào không ảnh hưởng tới nghiệm. Trong máy vector hỗ trợ, ràng buộc lề của một mẫu nằm ngoài lề không hoạt động, nên nhân tử của mẫu đó bằng $0$ và mẫu không góp phần vào $w$ (Mệnh đề 03.36). Trong hồi quy có ràng buộc chuẩn, ràng buộc không hoạt động thì nhân tử bằng $0$ và nghiệm trùng nghiệm không phạt (Mệnh đề 03.34). Giả thiết của Mệnh đề 03.27 được bảo đảm trong cả hai bài toán nhờ điều kiện Slater và nghiệm gốc tồn tại (Mệnh đề 02.39(b) cho máy vector hỗ trợ khi có cả hai nhãn; Định lý 01.36 cho hồi quy có ràng buộc chuẩn).
+**Trong học máy.** Bù trừ cho biết ràng buộc nào không ảnh hưởng tới nghiệm. Trong máy vector hỗ trợ, ràng buộc lề của một mẫu nằm ngoài lề không hoạt động, nên nhân tử của mẫu đó bằng $0$ và mẫu không góp phần vào $w$ (Mệnh đề 03.36). Trong hồi quy có ràng buộc chuẩn, ràng buộc không hoạt động thì nhân tử bằng $0$ và nghiệm trùng nghiệm không phạt (Mệnh đề 03.34). Giả thiết của Mệnh đề 03.27 được bảo đảm trong cả hai bài toán nhờ điều kiện Slater và nghiệm gốc tồn tại (Mệnh đề 02.39(b) cho máy vector hỗ trợ khi có cả hai nhãn; Định lý 01.35 cho hồi quy có ràng buộc chuẩn).
 
 ::: example Ví dụ 03.16 (Bù trừ trong hai bài toán đã giải)
 **Dữ kiện.**
@@ -1790,7 +1790,7 @@ Vì $f_0(x^*)=p^*=d^*=g(\lambda^*,\nu^*)$, Mệnh đề 03.27 phần 1 cho nhóm
 
 **Bước 3 (dừng).**
 
-Mệnh đề 03.27 phần 2 cho $x^*$ cực tiểu hóa hàm khả vi $L(\cdot,\lambda^*,\nu^*)$ trên tập mở $\mathbb R^n$. Theo điều kiện cần bậc nhất (Bài 00, Định lý 00.42; Nhận xét 01.15), gradient tại $x^*$ bằng $0$; đó là (5.1). $\square$
+Mệnh đề 03.27 phần 2 cho $x^*$ cực tiểu hóa hàm khả vi $L(\cdot,\lambda^*,\nu^*)$ trên tập mở $\mathbb R^n$. Theo điều kiện cần bậc nhất (Bài 00, Định lý 00.42; Nhận xét 01.14), gradient tại $x^*$ bằng $0$; đó là (5.1). $\square$
 :::
 
 Kết hợp Định lý 03.30 với Định lý 03.15 cho bài toán lồi, ta được kết quả thường dùng sau.
@@ -1815,7 +1815,7 @@ $p^*=f_0(x^*)$ hữu hạn. Định lý 03.15(a) cho $d^*=p^*$ và một nghiệ
 Các giả thiết của Định lý 03.30 thỏa, nên $(x^*,\lambda^*,\nu^*)$ thỏa KKT. $\square$
 :::
 
-Chiều ngược, tức khi nào một bộ thỏa KKT là chứng nhận tối ưu, được phát biểu trong định lý sau. Chứng minh cần Định lý 01.31(a), Hệ quả 01.27 và Mệnh đề 03.27 phần 3, theo Boyd và Vandenberghe (2004, mục 5.5.3, tr. 244).
+Chiều ngược, tức khi nào một bộ thỏa KKT là chứng nhận tối ưu, được phát biểu trong định lý sau. Chứng minh cần Định lý 01.30(a), Hệ quả 01.26 và Mệnh đề 03.27 phần 3, theo Boyd và Vandenberghe (2004, mục 5.5.3, tr. 244).
 
 ::: theorem Định lý 03.32 (KKT là điều kiện đủ cho bài toán lồi)
 **Giả thiết.** Bài toán ở dạng chuẩn lồi với $D=\mathbb R^n$: $f_0,\ldots,f_m$ lồi, khả vi; $(\tilde x,\tilde\lambda,\tilde\nu)$ thỏa hệ KKT.
@@ -1824,17 +1824,17 @@ Chiều ngược, tức khi nào một bộ thỏa KKT là chứng nhận tối 
 
 **Điều kiện áp dụng.** Không cần điều kiện Slater.
 
-**Phạm vi.** Bỏ tính lồi thì kết luận sai (Nhận xét 03.33). Định lý không bảo đảm có bộ KKT; điều đó cần Hệ quả 03.31. Chứng minh giữ nguyên khi $D$ là tập mở lồi thay cho $\mathbb R^n$, vì Hệ quả 01.27 áp dụng trên tập mở lồi.
+**Phạm vi.** Bỏ tính lồi thì kết luận sai (Nhận xét 03.33). Định lý không bảo đảm có bộ KKT; điều đó cần Hệ quả 03.31. Chứng minh giữ nguyên khi $D$ là tập mở lồi thay cho $\mathbb R^n$, vì Hệ quả 01.26 áp dụng trên tập mở lồi.
 :::
 
 ::: proof Chứng minh Định lý 03.32
 **Bước 1 (hàm Lagrange lồi theo $x$).**
 
-$L(\cdot,\tilde\lambda,\tilde\nu)=f_0+\sum_i\tilde\lambda_if_i+\tilde\nu^T(A\,\cdot-b)$ là tổng của hàm lồi $f_0$, các hàm lồi $f_i$ nhân hệ số $\tilde\lambda_i\ge0$, và một hàm affine. Theo Định lý 01.31(a), hàm này lồi. Bước này dùng nhóm 2 và tính affine của đẳng thức.
+$L(\cdot,\tilde\lambda,\tilde\nu)=f_0+\sum_i\tilde\lambda_if_i+\tilde\nu^T(A\,\cdot-b)$ là tổng của hàm lồi $f_0$, các hàm lồi $f_i$ nhân hệ số $\tilde\lambda_i\ge0$, và một hàm affine. Theo Định lý 01.30(a), hàm này lồi. Bước này dùng nhóm 2 và tính affine của đẳng thức.
 
 **Bước 2 (dừng kéo theo cực tiểu toàn cục).**
 
-Nhóm 4 nói gradient của hàm lồi khả vi $L(\cdot,\tilde\lambda,\tilde\nu)$ bằng $0$ tại $\tilde x$. Theo Hệ quả 01.27, $\tilde x$ là cực tiểu toàn cục của nó trên $\mathbb R^n$.
+Nhóm 4 nói gradient của hàm lồi khả vi $L(\cdot,\tilde\lambda,\tilde\nu)$ bằng $0$ tại $\tilde x$. Theo Hệ quả 01.26, $\tilde x$ là cực tiểu toàn cục của nó trên $\mathbb R^n$.
 
 **Bước 3 (kết luận).**
 
@@ -1850,7 +1850,7 @@ Mệnh đề đó cho kết luận. $\square$
 
 Hai định lý có vai trò bổ sung cho nhau. Định lý 03.30 đi từ nghiệm tới nhân tử và cần đối ngẫu mạnh có nghiệm đối ngẫu, nhưng không cần lồi. Định lý 03.32 đi từ một bộ KKT tới nghiệm và cần lồi, nhưng không cần Slater.
 
-Với bài toán lồi khả vi thỏa Slater, hai chiều gộp lại thành một tương đương, theo đó $x^*$ là nghiệm khi và chỉ khi có $(\lambda,\nu)$ để $(x^*,\lambda,\nu)$ thỏa KKT. So với Hệ quả 01.27 của Bài 01, kết quả này thay điều kiện "$\nabla f_0(x^*)^T(x-x^*)\ge0$ với mọi $x$ khả thi", phải kiểm tra trên vô số điểm, bằng một hệ hữu hạn phương trình và bất phương trình.
+Với bài toán lồi khả vi thỏa Slater, hai chiều gộp lại thành một tương đương, theo đó $x^*$ là nghiệm khi và chỉ khi có $(\lambda,\nu)$ để $(x^*,\lambda,\nu)$ thỏa KKT. So với Hệ quả 01.26 của Bài 01, kết quả này thay điều kiện "$\nabla f_0(x^*)^T(x-x^*)\ge0$ với mọi $x$ khả thi", phải kiểm tra trên vô số điểm, bằng một hệ hữu hạn phương trình và bất phương trình.
 
 **Trong học máy.** Hầu hết bộ giải cho các bài toán lồi có ràng buộc của học máy được thiết kế như phương pháp giải hệ KKT. Boyd và Vandenberghe (2004, mục 5.5.3, tr. 244) nêu nhận xét này cho tối ưu lồi nói chung. Phương pháp điểm trong (interior-point method) thay bù trừ $\lambda_if_i(x)=0$ bằng $\lambda_if_i(x)=-\epsilon$ rồi giảm dần $\epsilon$. Thuật toán SMO của Platt dừng khi mọi mẫu vi phạm điều kiện KKT của Mệnh đề 03.36 ít hơn một ngưỡng cho trước.
 
@@ -1992,7 +1992,7 @@ $$
 
 **Kiểm tra giả thiết.**
 
-Mục tiêu và ràng buộc lồi, khả vi; $w=0$ là điểm Slater; tập khả thi đóng, bị chặn, nên có nghiệm (Định lý 01.36). Theo Hệ quả 03.31 và Định lý 03.32, giải hệ KKT là đủ.
+Mục tiêu và ràng buộc lồi, khả vi; $w=0$ là điểm Slater; tập khả thi đóng, bị chặn, nên có nghiệm (Định lý 01.35). Theo Hệ quả 03.31 và Định lý 03.32, giải hệ KKT là đủ.
 
 **Giải hệ KKT.**
 
@@ -2037,7 +2037,7 @@ Do đó với mọi $0<\tau<\varphi(0)$, phương trình $\varphi(\rho)=\tau$ c�
 ::: proof Chứng minh Mệnh đề 03.35
 **Bước 1 (công thức và tính liên tục).**
 
-Gradient của $E+\rho\lVert\cdot\rVert_2^2$ là $2(X^TX+\rho I)w-2X^Ty$. Ma trận $X^TX+\rho I\succ0$ vì $X^TX\succ0$ khi hạng cột đầy đủ, nên khả nghịch, và phương trình gradient bằng $0$ có đúng một nghiệm. Theo Hệ quả 01.27, nghiệm đó là cực tiểu toàn cục; hàm có Hessian $2(X^TX+\rho I)\succ0$ nên lồi chặt (Định lý 01.30(b)) và có nhiều nhất một nghiệm (Định lý 01.35). Các phần tử của ma trận nghịch đảo là hàm hữu tỷ của $\rho$ với mẫu khác $0$, nên liên tục.
+Gradient của $E+\rho\lVert\cdot\rVert_2^2$ là $2(X^TX+\rho I)w-2X^Ty$. Ma trận $X^TX+\rho I\succ0$ vì $X^TX\succ0$ khi hạng cột đầy đủ, nên khả nghịch, và phương trình gradient bằng $0$ có đúng một nghiệm. Theo Hệ quả 01.26, nghiệm đó là cực tiểu toàn cục; hàm có Hessian $2(X^TX+\rho I)\succ0$ nên lồi chặt (Định lý 01.29(b)) và có nhiều nhất một nghiệm (Định lý 01.34). Các phần tử của ma trận nghịch đảo là hàm hữu tỷ của $\rho$ với mẫu khác $0$, nên liên tục.
 
 **Bước 2 (đơn điệu).**
 

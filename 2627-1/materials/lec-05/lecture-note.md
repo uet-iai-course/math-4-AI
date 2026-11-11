@@ -15,10 +15,10 @@ Sau chương này, người học có thể:
 
 Số hiệu `01.k`, `02.k`, `04.k`, `05b.k`, `05c.k` chỉ ghi chú Bài 01, 02, 04 và hai bài bổ trợ 05b, 05c. Mỗi kết quả được phát biểu lại ở dạng cần dùng; nơi dùng nó trong chương nêu lại giả thiết.
 
-- **Bình phương nhỏ nhất** (Mệnh đề 01.6). Với $X\in\mathbb R^{n\times d}$ và $y\in\mathbb R^n$ tùy ý, phương trình chuẩn $X^TXw=X^Ty$ luôn có nghiệm; nếu $w^*$ là một nghiệm thì tập nghiệm là $\{w^*+v:\ v\in\ker X\}$; nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$.
+- **Bình phương nhỏ nhất** (Hệ quả 01.5). Với $X\in\mathbb R^{n\times d}$ và $y\in\mathbb R^n$ tùy ý, phương trình chuẩn $X^TXw=X^Ty$ luôn có nghiệm; nếu $w^*$ là một nghiệm thì tập nghiệm là $\{w^*+v:\ v\in\ker X\}$; nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$.
 - **Hồi quy với chính quy hóa bậc hai** (Mệnh đề 02.21(c)). Với $\lambda>0$, bài toán bình phương nhỏ nhất cộng số hạng phạt (penalty term) $\lambda\lVert w\rVert^2$ có đúng một nghiệm với mọi $X$.
-- **Mất mát logistic** (Định nghĩa 01.8, Mệnh đề 01.9). Với biên có dấu $m$, mất mát $\phi(m)=\log(1+e^{-m})$ dương, giảm chặt, $\phi'(m)=-1/(1+e^{m})\in(-1,0)$, $\phi''(m)\in(0,\tfrac14]$ đạt $\tfrac14$ tại $m=0$, và $\phi(m)\to0$ khi $m\to+\infty$. Bài 01 viết $\ell$ cho hàm này; ở đây chúng ta viết $\phi$ để dành $\ell$ cho mất mát của một mẫu.
-- **Sự tồn tại và tính duy nhất của điểm cực tiểu** (Định lý 01.36, Định nghĩa 01.37, Định lý 01.38, Hệ quả 01.41, Nhận xét 01.43). Hàm liên tục trên tập không rỗng, đóng, bị chặn đạt giá trị nhỏ nhất (Weierstrass). Hàm liên tục và cưỡng bức (coercive) trên $\mathbb R^d$, tức $f(w)\to\infty$ khi $\lVert w\rVert\to\infty$, đạt giá trị nhỏ nhất. Hàm khả vi lồi mạnh có đúng một điểm cực tiểu. Tính lồi chặt không bảo đảm sự tồn tại điểm cực tiểu.
+- **Mất mát logistic** (Định nghĩa 01.7, Mệnh đề 01.8). Với biên có dấu $m$, mất mát $\phi(m)=\log(1+e^{-m})$ dương, giảm chặt, $\phi'(m)=-1/(1+e^{m})\in(-1,0)$, $\phi''(m)\in(0,\tfrac14]$ đạt $\tfrac14$ tại $m=0$, và $\phi(m)\to0$ khi $m\to+\infty$. Bài 01 viết $\ell$ cho hàm này; ở đây chúng ta viết $\phi$ để dành $\ell$ cho mất mát của một mẫu.
+- **Sự tồn tại và tính duy nhất của điểm cực tiểu** (Định lý 01.35, Định nghĩa 01.37, Định lý 01.38, Hệ quả 01.41, Nhận xét 01.43). Hàm liên tục trên tập không rỗng, đóng, bị chặn đạt giá trị nhỏ nhất (Weierstrass). Hàm liên tục và cưỡng bức (coercive) trên $\mathbb R^d$, tức $f(w)\to\infty$ khi $\lVert w\rVert\to\infty$, đạt giá trị nhỏ nhất. Hàm khả vi lồi mạnh có đúng một điểm cực tiểu. Tính lồi chặt không bảo đảm sự tồn tại điểm cực tiểu.
 - **Hạ gradient trên hàm lồi mạnh** (Định lý 04.26, Định lý 05b.18). Nếu $f$ có gradient $L$-Lipschitz và lồi mạnh với hằng số $\mu$, dãy $w_{k+1}=w_k-\tfrac1L\nabla f(w_k)$ thỏa $f(w_k)-f^*\le(1-\mu/L)^k\bigl(f(w_0)-f^*\bigr)$.
 - **Hạ gradient khi không có điểm cực tiểu** (Hệ quả 05b.17). Nếu $f$ lồi và có gradient $L$-Lipschitz thì dãy hạ gradient với bước hằng $0<\eta\le\tfrac1L$ có $f(w_k)\to\inf f$, kể cả khi $\inf f$ không đạt.
 - **Phương pháp Newton** (Định nghĩa 04.28, 04.30, Thuật toán 04.2, Định lý 04.35). Hướng Newton tại $w$ là nghiệm $p$ của $\nabla^2f(w)\,p=-\nabla f(w)$; độ giảm Newton là $\delta_N(w)=\sqrt{-\nabla f(w)^Tp}$. Với quay lui Armijo, phương pháp có một giai đoạn tắt dần và một giai đoạn hội tụ bậc hai; định lý được phát biểu lại ở Mục 4.
@@ -130,7 +130,7 @@ Như vậy, chúng ta đã có lớp mô hình chung (Định nghĩa 05.1), năm
 
 ## 2. Hồi quy nhiều chiều
 
-Năm mẫu sau đây được sinh từ quan hệ thật $y=u$ cộng một nhiễu nhỏ: đầu vào $u=(-1,-\tfrac12,0,\tfrac12,1)$ và nhãn $y=(-0{,}9;\ -0{,}7;\ 0{,}2;\ 0{,}4;\ 1{,}0)$. Người lập mô hình không biết quan hệ thật và phải chọn một bộ đặc trưng đa thức $(1,u,\ldots,u^{d-1})$. Với $d=2$, mô hình là một đường thẳng; với $d=5$, mô hình là một đa thức bậc $4$ có đúng năm hệ số, bằng số mẫu. Bài 01 cho biết với mỗi $d$ cố định, nghiệm bình phương nhỏ nhất luôn tồn tại (Mệnh đề 01.6), nhưng chưa cho biết nên chọn $d$ nào.
+Năm mẫu sau đây được sinh từ quan hệ thật $y=u$ cộng một nhiễu nhỏ: đầu vào $u=(-1,-\tfrac12,0,\tfrac12,1)$ và nhãn $y=(-0{,}9;\ -0{,}7;\ 0{,}2;\ 0{,}4;\ 1{,}0)$. Người lập mô hình không biết quan hệ thật và phải chọn một bộ đặc trưng đa thức $(1,u,\ldots,u^{d-1})$. Với $d=2$, mô hình là một đường thẳng; với $d=5$, mô hình là một đa thức bậc $4$ có đúng năm hệ số, bằng số mẫu. Bài 01 cho biết với mỗi $d$ cố định, nghiệm bình phương nhỏ nhất luôn tồn tại (Hệ quả 01.5), nhưng chưa cho biết nên chọn $d$ nào.
 
 Để chọn được $d$, chúng ta cần biết nghiệm thay đổi thế nào khi $d$ tiến tới và vượt kích thước mẫu $n=5$. Chúng ta lần lượt xét ba câu hỏi: nghiệm dự đoán thế nào tại điểm mới, nghiệm còn duy nhất không, và nghiệm nhạy thế nào với nhiễu ở nhãn. Mỗi câu hỏi dẫn tới một khái niệm, theo cùng thứ tự: rủi ro kỳ vọng cùng tập xác thực, chế độ nội suy, và số điều kiện.
 
@@ -186,7 +186,7 @@ X^TXw=X^Ty .
 \tag{2.2}
 $$
 
-Phương trình (2.2) luôn có nghiệm, và nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$ (Mệnh đề 01.6).
+Phương trình (2.2) luôn có nghiệm, và nghiệm duy nhất khi và chỉ khi $\operatorname{rank}X=d$ (Hệ quả 01.5).
 
 **Điều kiện áp dụng.** Không cần giả thiết nào về $X$ và $y$.
 
@@ -202,12 +202,12 @@ $$
 
 có được khi khai triển $\lVert(Xw-y)+Xv\rVert^2$. Số hạng bậc nhất theo $v$ là $\nabla F(w)^Tv$ và số hạng bậc hai là $\tfrac12v^T\nabla^2F(w)v$, cho (2.1).
 
-**Bước 2 (điều kiện cực tiểu).** $F$ lồi vì Hessian $\frac1nX^TX$ nửa xác định dương: $v^TX^TXv=\lVert Xv\rVert^2\ge0$. Với hàm lồi khả vi, $w$ là điểm cực tiểu toàn cục khi và chỉ khi $\nabla F(w)=0$: chiều thuận là điều kiện cần bậc nhất của Bài 00 (Định lý 00.42; điểm cực tiểu của hàm khả vi trên $\mathbb R^d$ có gradient bằng không), chiều ngược là Hệ quả 01.27. Điều kiện $\nabla F(w)=0$ chính là (2.2) sau khi nhân với $n$.
+**Bước 2 (điều kiện cực tiểu).** $F$ lồi vì Hessian $\frac1nX^TX$ nửa xác định dương: $v^TX^TXv=\lVert Xv\rVert^2\ge0$. Với hàm lồi khả vi, $w$ là điểm cực tiểu toàn cục khi và chỉ khi $\nabla F(w)=0$: chiều thuận là điều kiện cần bậc nhất của Bài 00 (Định lý 00.42; điểm cực tiểu của hàm khả vi trên $\mathbb R^d$ có gradient bằng không), chiều ngược là Hệ quả 01.26. Điều kiện $\nabla F(w)=0$ chính là (2.2) sau khi nhân với $n$.
 
-**Bước 3 (tồn tại và duy nhất).** Đây là Mệnh đề 01.6(a) và (c) áp cho $X$, $y$. $\square$
+**Bước 3 (tồn tại và duy nhất).** Đây là Hệ quả 01.5(a) và (c) áp cho $X$, $y$. $\square$
 :::
 
-Mệnh đề 05.3 là Mệnh đề 01.6 viết ở dạng trung bình. Nó trả lời câu hỏi tồn tại cho mọi $d$, nhưng câu hỏi duy nhất phụ thuộc hạng của $X$. Với $n=5$ nút phân biệt và đặc trưng đa thức, $\operatorname{rank}X=\min(d,5)$, nên nghiệm duy nhất khi $d\le5$ và không duy nhất khi $d\ge6$. Khẳng định về hạng suy từ tính khả nghịch của ma trận Vandermonde $5\times5$ dựng trên năm nút, mà chúng ta dùng ở Mục 2.4 (Ví dụ 05.5, Mệnh đề 05.10).
+Mệnh đề 05.3 là Hệ quả 01.5 viết ở dạng trung bình. Nó trả lời câu hỏi tồn tại cho mọi $d$, nhưng câu hỏi duy nhất phụ thuộc hạng của $X$. Với $n=5$ nút phân biệt và đặc trưng đa thức, $\operatorname{rank}X=\min(d,5)$, nên nghiệm duy nhất khi $d\le5$ và không duy nhất khi $d\ge6$. Khẳng định về hạng suy từ tính khả nghịch của ma trận Vandermonde $5\times5$ dựng trên năm nút, mà chúng ta dùng ở Mục 2.4 (Ví dụ 05.5, Mệnh đề 05.10).
 
 ::: example Ví dụ 05.2 (Phương trình chuẩn với đường thẳng, $d=2$)
 **Dữ kiện.** Năm mẫu $u=(-1,-\tfrac12,0,\tfrac12,1)$, $y=(-0{,}9;\ -0{,}7;\ 0{,}2;\ 0{,}4;\ 1{,}0)$; đặc trưng $(1,u)$; $\sum_iu_i=0$, $\sum_iu_i^2=\tfrac52$, $\sum_iy_i=0$, $\sum_iu_iy_i=\tfrac{49}{20}$ (Ví dụ 05.1).
@@ -451,7 +451,7 @@ tức đa thức $p(u)=\tfrac15+\tfrac{23}{20}u-\tfrac{109}{60}u^2-\tfrac15u^3+\
 **Bước 3 (chiều).** Định lý hạng–số chiều cho $\dim\ker X=d-\operatorname{rank}X=d-n$. $\square$
 :::
 
-Mệnh đề 05.10 mở rộng Mệnh đề 01.6(b), vốn cho tập nghiệm $w^*+\ker X$ với mọi $X$, sang trường hợp $\operatorname{rank}X=n$, nơi nghiệm khớp đúng mọi nhãn. Ở chế độ này, sai số huấn luyện bằng $0$ là tính chất của số chiều, không nói gì về chất lượng của mô hình. Với đặc trưng đa thức trên $n$ nút phân biệt, $n$ cột đầu của $X$ tạo một ma trận Vandermonde khả nghịch, nên $\operatorname{rank}X=n$ với mọi $d\ge n$.
+Mệnh đề 05.10 mở rộng Hệ quả 01.5(b), vốn cho tập nghiệm $w^*+\ker X$ với mọi $X$, sang trường hợp $\operatorname{rank}X=n$, nơi nghiệm khớp đúng mọi nhãn. Ở chế độ này, sai số huấn luyện bằng $0$ là tính chất của số chiều, không nói gì về chất lượng của mô hình. Với đặc trưng đa thức trên $n$ nút phân biệt, $n$ cột đầu của $X$ tạo một ma trận Vandermonde khả nghịch, nên $\operatorname{rank}X=n$ với mọi $d\ge n$.
 
 ::: example Ví dụ 05.6 (Họ nghiệm với $d=6$)
 **Dữ kiện.** Năm nút $u=(-1,-\tfrac12,0,\tfrac12,1)$ và nhãn $y$ như Ví dụ 05.5; đặc trưng $(1,u,\ldots,u^5)$, nên $X\in\mathbb R^{5\times6}$ và $\operatorname{rank}X=5$. Tập xác thực gồm bốn điểm $u'=\pm\tfrac14,\pm\tfrac34$ với nhãn $u'$.
@@ -579,7 +579,7 @@ $$
 
 với dấu bằng tại vector riêng tương ứng. Đó là $\mu I\preceq\nabla^2F\preceq LI$ với hai hằng số tốt nhất trong (2.4).
 
-**Bước 2 ($\mu>0$ khi hạng đủ).** Khi $\operatorname{rank}X=d$, $X^TX\succ0$ (Bước 4 của chứng minh Mệnh đề 01.6), nên $\lambda_{\min}(X^TX)>0$.
+**Bước 2 ($\mu>0$ khi hạng đủ).** Khi $\operatorname{rank}X=d$, $X^TX\succ0$ (Bài 00, Mệnh đề 00.20, kết luận 3), nên $\lambda_{\min}(X^TX)>0$.
 
 **Bước 3 (số điều kiện).** Tỉ số $L/\mu$ không chứa thừa số $1/n$, nên bằng $\kappa(X^TX)$. $\square$
 :::
@@ -884,7 +884,7 @@ $$
 :::
 
 ::: proof Chứng minh Mệnh đề 05.19
-**Bước 1 (đạo hàm của $\phi$).** Theo Mệnh đề 01.9, $\phi'(m)=-1/(1+e^m)=-\sigma(-m)$. Đạo hàm tiếp, $\phi''(m)=\sigma'(-m)=\sigma(-m)\bigl(1-\sigma(-m)\bigr)=\sigma(-m)\sigma(m)$, ở đây dùng $\sigma'(z)=\sigma(z)(1-\sigma(z))$ và $1-\sigma(-m)=\sigma(m)$.
+**Bước 1 (đạo hàm của $\phi$).** Theo Mệnh đề 01.8, $\phi'(m)=-1/(1+e^m)=-\sigma(-m)$. Đạo hàm tiếp, $\phi''(m)=\sigma'(-m)=\sigma(-m)\bigl(1-\sigma(-m)\bigr)=\sigma(-m)\sigma(m)$, ở đây dùng $\sigma'(z)=\sigma(z)(1-\sigma(z))$ và $1-\sigma(-m)=\sigma(m)$.
 
 **Bước 2 (quy tắc dây chuyền).** $\nabla_wm_i=y_ix_i$. Do đó $\nabla\phi(m_i)=\phi'(m_i)y_ix_i=-\sigma(-m_i)y_ix_i$, và $\nabla^2\phi(m_i)=\phi''(m_i)\,y_i^2x_ix_i^T=\sigma(m_i)\sigma(-m_i)\,x_ix_i^T$ vì $y_i^2=1$. Lấy trung bình theo $i$ cho (3.2), với $\sum_iS_{ii}x_ix_i^T=X^TSX$.
 
@@ -893,7 +893,7 @@ $$
 **Bước 4 (cận Hessian).** Với mọi $v$, $v^TX^TSXv=\sum_iS_{ii}(x_i^Tv)^2$ nằm giữa $0$ và $\tfrac14\sum_i(x_i^Tv)^2=\tfrac14v^TX^TXv$. Chia cho $n$ cho (3.3); vế trái cho $F$ lồi. $\square$
 :::
 
-Mệnh đề trên là Định nghĩa 01.8 và Mệnh đề 01.9 viết ở dạng trung bình và dạng ma trận. Cận trên trong (3.3) đạt khi mọi biên bằng $0$, tức khi $Xw=0$, chẳng hạn tại $w=0$; cận dưới $0$ được tiến sát khi mọi biên lớn. Độ cong của $F$ vì vậy có thể nhỏ tùy ý theo một số hướng, và tính chất này giải thích các hiện tượng của Mục 3.3–3.7.
+Mệnh đề trên là Định nghĩa 01.7 và Mệnh đề 01.8 viết ở dạng trung bình và dạng ma trận. Cận trên trong (3.3) đạt khi mọi biên bằng $0$, tức khi $Xw=0$, chẳng hạn tại $w=0$; cận dưới $0$ được tiến sát khi mọi biên lớn. Độ cong của $F$ vì vậy có thể nhỏ tùy ý theo một số hướng, và tính chất này giải thích các hiện tượng của Mục 3.3–3.7.
 
 ### 3.3 Mất mát dọc một tia và tính tách được
 
@@ -932,7 +932,7 @@ $$
 
 tức $w_0=-\log2$. Giá trị nhỏ nhất là $F^*=\tfrac13\bigl[2\log\tfrac32+\log3\bigr]=\tfrac13\log\tfrac{27}4\approx0{,}6365$.
 
-**Kiểm tra lại.** Tại $w^*=(-\log2,0)$, mọi biên bằng $\pm\log2$, nên $S_{ii}=\sigma(\log2)\sigma(-\log2)=\tfrac23\cdot\tfrac13=\tfrac29$. Theo (3.2), $\nabla^2F(w^*)=\tfrac13\cdot\tfrac29\cdot X^TX=\tfrac2{27}\operatorname{diag}(3,2)\succ0$, nên $w^*$ là điểm cực tiểu chặt. Cấu trúc này giống Ví dụ 01.7.
+**Kiểm tra lại.** Tại $w^*=(-\log2,0)$, mọi biên bằng $\pm\log2$, nên $S_{ii}=\sigma(\log2)\sigma(-\log2)=\tfrac23\cdot\tfrac13=\tfrac29$. Theo (3.2), $\nabla^2F(w^*)=\tfrac13\cdot\tfrac29\cdot X^TX=\tfrac2{27}\operatorname{diag}(3,2)\succ0$, nên $w^*$ là điểm cực tiểu chặt. Cấu trúc này giống Ví dụ 01.8.
 :::
 
 Hai bộ đặc trưng trên cùng ba điểm cho hai kết luận ngược nhau về sự tồn tại điểm cực tiểu. Điều phân biệt hai trường hợp là việc có hay không một $\bar w$ với mọi biên dương. Định nghĩa sau đặt tên cho tính chất đó.
@@ -967,7 +967,7 @@ Mệnh đề 05.21 cho thấy chế độ nội suy của bình phương nhỏ n
 
 ### 3.4 Định lý không tồn tại điểm cực tiểu
 
-Ví dụ 05.11 gợi ý rằng trên dữ liệu tách được, mất mát logistic tiến về $0$ dọc tia $t\bar w$ mà không đạt $0$. Định lý sau chứng minh điều đó cho mọi dữ liệu tách được, và thêm một kết luận về mọi dãy làm $F$ nhỏ dần. Chứng minh dùng tính dương và tính giảm của $\phi$ (Mệnh đề 01.9) cùng định lý Weierstrass (Định lý 01.36).
+Ví dụ 05.11 gợi ý rằng trên dữ liệu tách được, mất mát logistic tiến về $0$ dọc tia $t\bar w$ mà không đạt $0$. Định lý sau chứng minh điều đó cho mọi dữ liệu tách được, và thêm một kết luận về mọi dãy làm $F$ nhỏ dần. Chứng minh dùng tính dương và tính giảm của $\phi$ (Mệnh đề 01.8) cùng định lý Weierstrass (Định lý 01.35).
 
 ::: theorem Định lý 05.22 (Mất mát logistic không có điểm cực tiểu trên dữ liệu tách được)
 **Giả thiết.** $F$ là mất mát logistic trung bình (3.1); dữ liệu tách được tuyến tính bởi $\bar w$.
@@ -993,10 +993,10 @@ $$
 
 Do đó $\inf F=0$. Theo Bước 1, không $w$ nào cho $F(w)=0$, nên cận dưới đúng không đạt. Đó là kết luận 1.
 
-**Bước 3 (dãy cực tiểu hóa phân kỳ).** Cố định $r>0$. Hình cầu đóng $B_r=\{w:\ \lVert w\rVert\le r\}$ không rỗng, đóng và bị chặn, và $F$ liên tục, nên theo Định lý 01.36, $F$ đạt giá trị nhỏ nhất $c_r$ trên $B_r$; theo Bước 1, $c_r>0$. Vì $F(w_k)\to0$, có $k_0$ để $F(w_k)<c_r$ với mọi $k\ge k_0$, và khi đó $w_k\notin B_r$, tức $\lVert w_k\rVert>r$. Vì $r$ tùy ý, $\lVert w_k\rVert\to\infty$. Đó là kết luận 2. $\square$
+**Bước 3 (dãy cực tiểu hóa phân kỳ).** Cố định $r>0$. Hình cầu đóng $B_r=\{w:\ \lVert w\rVert\le r\}$ không rỗng, đóng và bị chặn, và $F$ liên tục, nên theo Định lý 01.35, $F$ đạt giá trị nhỏ nhất $c_r$ trên $B_r$; theo Bước 1, $c_r>0$. Vì $F(w_k)\to0$, có $k_0$ để $F(w_k)<c_r$ với mọi $k\ge k_0$, và khi đó $w_k\notin B_r$, tức $\lVert w_k\rVert>r$. Vì $r$ tùy ý, $\lVert w_k\rVert\to\infty$. Đó là kết luận 2. $\square$
 :::
 
-Định lý trả lời câu hỏi của mục: một bài toán học lồi có thể không có điểm cực tiểu, và điều quyết định là hình học của dữ liệu, không phải tính lồi. Tính lồi, thậm chí lồi chặt, không bảo đảm sự tồn tại điểm cực tiểu (Nhận xét 01.43); ở đây độ cong của $F$ tiến về $0$ theo hướng $\bar w$ (Mệnh đề 05.19), nên không có gì ngăn $F$ tiếp tục giảm ra vô cùng. Ví dụ 01.6 của Bài 01, với hai mẫu một chiều, là trường hợp $d=1$ của định lý.
+Định lý trả lời câu hỏi của mục: một bài toán học lồi có thể không có điểm cực tiểu, và điều quyết định là hình học của dữ liệu, không phải tính lồi. Tính lồi, thậm chí lồi chặt, không bảo đảm sự tồn tại điểm cực tiểu (Nhận xét 01.43); ở đây độ cong của $F$ tiến về $0$ theo hướng $\bar w$ (Mệnh đề 05.19), nên không có gì ngăn $F$ tiếp tục giảm ra vô cùng. Ví dụ 01.7 của Bài 01, với hai mẫu một chiều, là trường hợp $d=1$ của định lý.
 
 Ghép Định lý 05.22 với Mệnh đề 05.21 cho một hệ quả về số chiều: khi $\operatorname{rank}X=n$, mất mát logistic không chính quy hóa không có điểm cực tiểu với mọi cách gán nhãn. Định lý cũng cho thấy không thể sửa tình trạng này bằng cách chọn một thuật toán tốt hơn, vì không có điểm nào để thuật toán hội tụ tới. Hệ quả sau mô tả điều thuật toán quen thuộc nhất làm trong tình huống đó.
 
@@ -1052,7 +1052,7 @@ nên $F$ cưỡng bức và có điểm cực tiểu trên $\mathbb R^d$.
 ::: proof Chứng minh Mệnh đề 05.24
 **Bước 1 (hàm phân loại sai lớn nhất).** Đặt $h(v)=\max_i\bigl(-m_i(v)\bigr)$. Mỗi $-m_i(v)=-y_ix_i^Tv$ là hàm tuyến tính, nên liên tục, và giá trị lớn nhất của hữu hạn hàm liên tục là hàm liên tục.
 
-**Bước 2 (hằng số $c$).** Trên mặt cầu đơn vị $\{v:\ \lVert v\rVert=1\}$, giả thiết cho mỗi $v$ một chỉ số $i$ với $-m_i(v)>0$, nên $h(v)>0$. Mặt cầu đơn vị không rỗng, đóng và bị chặn, nên theo Định lý 01.36, $h$ đạt giá trị nhỏ nhất $c$ trên đó, và $c>0$.
+**Bước 2 (hằng số $c$).** Trên mặt cầu đơn vị $\{v:\ \lVert v\rVert=1\}$, giả thiết cho mỗi $v$ một chỉ số $i$ với $-m_i(v)>0$, nên $h(v)>0$. Mặt cầu đơn vị không rỗng, đóng và bị chặn, nên theo Định lý 01.35, $h$ đạt giá trị nhỏ nhất $c$ trên đó, và $c>0$.
 
 **Bước 3 (cận dưới (3.4)).** Với $w\ne0$, viết $w=\lVert w\rVert v$ với $\lVert v\rVert=1$, và chọn $i$ với $-m_i(v)=h(v)\ge c$. Vì $m_i$ tuyến tính, $-m_i(w)=\lVert w\rVert\bigl(-m_i(v)\bigr)\ge c\lVert w\rVert$. Mọi số hạng của (3.1) dương, nên $F(w)$ không nhỏ hơn số hạng thứ $i$ chia $n$:
 
@@ -1069,7 +1069,7 @@ Bất đẳng thức (a) dùng tính giảm của $\phi$ và $m_i(w)\le-c\lVert 
 **Bước 4 (tồn tại điểm cực tiểu).** Theo (3.4), $F(w)\to\infty$ khi $\lVert w\rVert\to\infty$, tức $F$ cưỡng bức. $F$ liên tục, nên Định lý 01.38 cho $F$ đạt giá trị nhỏ nhất trên $\mathbb R^d$. $\square$
 :::
 
-Về tính duy nhất trong Phạm vi: nếu $\operatorname{rank}X=d$ thì $Xv\ne0$ với mọi $v\ne0$, nên $v^T\nabla^2F(w)v=\frac1n\sum_iS_{ii}(x_i^Tv)^2>0$ vì mọi $S_{ii}>0$. Hessian xác định dương ở mọi điểm, nên $F$ lồi chặt và có nhiều nhất một điểm cực tiểu (Định lý 01.35).
+Về tính duy nhất trong Phạm vi: nếu $\operatorname{rank}X=d$ thì $Xv\ne0$ với mọi $v\ne0$, nên $v^T\nabla^2F(w)v=\frac1n\sum_iS_{ii}(x_i^Tv)^2>0$ vì mọi $S_{ii}>0$. Hessian xác định dương ở mọi điểm, nên $F$ lồi chặt và có nhiều nhất một điểm cực tiểu (Định lý 01.34).
 
 Áp mệnh đề cho Ví dụ 05.12: ba biên là $m_1=w_1-w_0$, $m_2=w_0$, $m_3=-w_0-w_1$. Nếu cả ba không âm thì $w_1\ge w_0\ge0$ và $w_1\le-w_0\le0$, nên $w_0=w_1=0$. Vậy mọi $w\ne0$ có ít nhất một biên âm, giả thiết thỏa, và điểm cực tiểu tìm được ở Ví dụ 05.12 là điều mệnh đề bảo đảm.
 
@@ -1156,7 +1156,7 @@ Cận chuẩn ở kết luận 3 chỉ dùng $F\ge0$ và phép so sánh với $w
 
 **Kiểm tra lại.** Với $\lambda=0{,}05$: $0{,}05\cdot2{,}128=0{,}1064$ và $1/(1+e^{2{,}128})=0{,}1064$. Mọi $w_\lambda$ nằm dưới cận ở hàng cuối, đúng kết luận 3 của Định lý 05.26.
 
-**Đối chiếu Bài 01.** Hai mẫu của Ví dụ 01.6 có cùng biên $w$, nên trung bình mất mát của chúng là đúng hàm trên. Theo Nhận xét 05.2, $\lambda=\mu/2$, nên ba giá trị đầu của hàng $w_\lambda$ trùng các nghiệm $w^*_\mu$ với $\mu=1;\ 0{,}1;\ 0{,}01$ của Tình huống 01.1.
+**Đối chiếu Bài 01.** Hai mẫu của Ví dụ 01.7 có cùng biên $w$, nên trung bình mất mát của chúng là đúng hàm trên. Theo Nhận xét 05.2, $\lambda=\mu/2$, nên ba giá trị đầu của hàng $w_\lambda$ trùng các nghiệm $w^*_\mu$ với $\mu=1;\ 0{,}1;\ 0{,}01$ của Tình huống 01.1.
 :::
 
 Bảng cho thấy khi $\lambda$ giảm, $w_\lambda$ tăng và xác suất dự đoán $\sigma(w_\lambda)$ tiến về $1$, tức nghiệm tiến gần hành vi của bài toán không chính quy hóa trên dữ liệu tách được. Hệ quả sau chứng minh rằng điều này xảy ra trên mọi dữ liệu tách được.
@@ -2352,6 +2352,6 @@ Với dữ liệu thưa, một tích $Xv$ hoặc $X^Tv$ tốn bằng số phần
 - Gilbert Strang (2016), *Introduction to Linear Algebra*, ấn bản 5, Wellesley–Cambridge Press: phần bốn không gian con cơ bản và định lý hạng–số chiều; phần ma trận đối xứng và thương Rayleigh. Dùng cho Mệnh đề 05.10, 05.11, 05.16.
 - Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar và Nathan Srebro (2018), "The Implicit Bias of Gradient Descent on Separable Data", *Journal of Machine Learning Research* 19(70), 1–57. Đọc thêm cho Tình huống 05.2.
 - Chih-Jen Lin, Ruby C. Weng và S. Sathiya Keerthi (2008), "Trust Region Newton Method for Large-Scale Logistic Regression", *Journal of Machine Learning Research* 9, 627–650. Nguồn của phương pháp TRON ở Mục 5.2.
-- Ghi chú Bài 01 (Mệnh đề 01.6, 01.9; Định nghĩa 01.8, 01.42; Ví dụ 01.6, 01.7; Định lý 01.35, 01.36, 01.38; Hệ quả 01.41; Nhận xét 01.40, 01.43; Tình huống 01.1), Bài 02 (Mệnh đề 02.21), Bài 04 (Định nghĩa 04.28, 04.30, 04.33; Mệnh đề 04.31; Thuật toán 04.2; Định lý 04.26, 04.35), Bài 05b (Định nghĩa 05b.5; Bổ đề 05b.6; Hệ quả 05b.17; Định lý 05b.18, 05b.36, 05b.39, 05b.41, 05b.43) và Bài 05c (Định nghĩa 05c.51; Định lý 05c.52, 05c.53) là tiên quyết trực tiếp.
+- Ghi chú Bài 01 (Hệ quả 01.5, Mệnh đề 01.8; Định nghĩa 01.7, 01.42; Ví dụ 01.7, 01.8; Định lý 01.34, 01.35, 01.38; Hệ quả 01.41; Nhận xét 01.40, 01.43; Tình huống 01.1), Bài 02 (Mệnh đề 02.21), Bài 04 (Định nghĩa 04.28, 04.30, 04.33; Mệnh đề 04.31; Thuật toán 04.2; Định lý 04.26, 04.35), Bài 05b (Định nghĩa 05b.5; Bổ đề 05b.6; Hệ quả 05b.17; Định lý 05b.18, 05b.36, 05b.39, 05b.41, 05b.43) và Bài 05c (Định nghĩa 05c.51; Định lý 05c.52, 05c.53) là tiên quyết trực tiếp.
 
 Mọi số liệu của các ví dụ, trừ bảng RCV1, là số liệu sư phạm tự xây dựng và được tính lại từ dữ kiện nêu trong chương. Các chứng minh của Mục 2 và 3 được viết trực tiếp; Định lý 05.30 và 05.33 được phát biểu lại từ Bài 05b, Bài 04 và Boyd và Vandenberghe (2004).

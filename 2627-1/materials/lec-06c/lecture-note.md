@@ -1076,7 +1076,7 @@ $$
 
 Thay $d=d_j$, $q=q_j$, $\alpha=\alpha_j$ và $q_j^Tr_j=r_j^Tr_j$ được (e).
 
-**Bước 5 (phần f).** Đặt $\Phi(\upsilon)=\phi\bigl(d_0+\sum_{i<j}[\upsilon]_iq_i\bigr)$ với $\upsilon\in\mathbb R^j$; $\Phi$ lồi vì là hợp của hàm lồi $\phi$ với một ánh xạ affine. Điểm $d_j$ ứng với $[\upsilon]_i=\alpha_i$. Theo quy tắc dây chuyền và (d), với $j\le k+1$, đạo hàm riêng thứ $i$ của $\Phi$ tại đó là $\nabla\phi(d_j)^Tq_i=-r_j^Tq_i=0$. Theo Hệ quả 01.27, điểm có gradient bằng $0$ của hàm lồi khả vi là cực tiểu, nên $d_j$ là cực tiểu của $\phi$ trên tập đã nêu.
+**Bước 5 (phần f).** Đặt $\Phi(\upsilon)=\phi\bigl(d_0+\sum_{i<j}[\upsilon]_iq_i\bigr)$ với $\upsilon\in\mathbb R^j$; $\Phi$ lồi vì là hợp của hàm lồi $\phi$ với một ánh xạ affine. Điểm $d_j$ ứng với $[\upsilon]_i=\alpha_i$. Theo quy tắc dây chuyền và (d), với $j\le k+1$, đạo hàm riêng thứ $i$ của $\Phi$ tại đó là $\nabla\phi(d_j)^Tq_i=-r_j^Tq_i=0$. Theo Hệ quả 01.26, điểm có gradient bằng $0$ của hàm lồi khả vi là cực tiểu, nên $d_j$ là cực tiểu của $\phi$ trên tập đã nêu.
 
 **Bước 6 (phần g).** Theo (b), các phần dư khác $0$ đôi một trực giao, nên độc lập tuyến tính; trong $\mathbb R^p$ có nhiều nhất $p$ vector như vậy. Nếu $r_0,\ldots,r_{p-1}$ đều khác $0$ thì chúng là một cơ sở, và $r_p$ trực giao với cả cơ sở, nên $r_p=0$. Với $K\ge p$, thuật toán không dừng vì ngân sách trước vòng thứ $p$; theo (a), $Ad_m=b$ tại chỉ số $m$ đầu tiên có $r_m=0$. $\square$
 :::

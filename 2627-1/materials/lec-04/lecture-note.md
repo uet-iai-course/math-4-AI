@@ -22,14 +22,14 @@ Sau chương này, người học có thể:
 Trong chương này, chúng ta dùng các kết quả sau. Số hiệu `00.k` chỉ ghi chú Bài 00, số hiệu `01.k` chỉ ghi chú Bài 01, số hiệu `03.k` chỉ ghi chú Bài 03; các kết quả của Bài 00 được phát biểu lại đầy đủ.
 
 - **Gradient, Hessian và khai triển Taylor** (Bài 00, Định lý 00.40, Hệ quả 00.39 và Mệnh đề 00.38). Với $f:\mathbb R^n\to\mathbb R$ khả vi hai lần liên tục trên một tập mở chứa đoạn $[x,x+d]$, ta có $f(x+d)=f(x)+\nabla f(x)^Td+\tfrac12d^T\nabla^2f(x)d+o(\lVert d\rVert_2^2)$ khi $d\to0$. Gradient thỏa $\nabla f(x+d)-\nabla f(x)=\int_0^1\nabla^2f(x+\tau d)\,d\,d\tau$. Quy tắc dây chuyền cho $\frac{d}{dt}f(x+td)=\nabla f(x+td)^Td$.
-- **Điều kiện cần bậc nhất** (Bài 00, Định lý 00.42; nhắc lại ở Nhận xét 01.15). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
-- **Tập lồi, hàm lồi, tập mức dưới** (Định nghĩa 01.18, 01.22, 01.24). Hàm $f$ lồi chặt (còn gọi là lồi nghiêm ngặt) nếu bất đẳng thức lồi là chặt với mọi $x\ne y$ và $\theta\in(0,1)$. Tập mức dưới của $f$ ứng với mức $c$ là $\{x\mid f(x)\le c\}$.
-- **Điều kiện bậc nhất và bậc hai** (Định lý 01.26, Hệ quả 01.27, Định lý 01.30). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y$. Nếu $f$ lồi, khả vi trên tập mở lồi $D$ và $\nabla f(x^*)=0$ thì $x^*$ là cực tiểu toàn cục trên $D$. Hàm khả vi hai lần trên tập mở lồi là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi chặt nếu Hessian xác định dương mọi nơi.
-- **Hạn chế lên đường thẳng** (Bổ đề 01.28). Tính lồi của $f$ tương đương tính lồi của mọi hàm một biến $t\mapsto f(x+tv)$ trên khoảng các $t$ mà $x+tv$ thuộc miền.
-- **Phép bảo toàn tính lồi** (Định lý 01.31). Tổng có hệ số không âm của các hàm lồi là lồi; hợp với ánh xạ affine là lồi.
-- **Cực tiểu, tính duy nhất và sự tồn tại** (Định lý 01.33, 01.35, 01.36). Cực tiểu địa phương của hàm lồi trên tập lồi là cực tiểu toàn cục; hàm lồi chặt có nhiều nhất một điểm cực tiểu; hàm liên tục trên tập không rỗng, đóng, bị chặn đạt giá trị nhỏ nhất.
+- **Điều kiện cần bậc nhất** (Bài 00, Định lý 00.42; nhắc lại ở Nhận xét 01.14). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
+- **Tập lồi, hàm lồi, tập mức dưới** (Định nghĩa 01.17, 01.21, 01.23). Hàm $f$ lồi chặt (còn gọi là lồi nghiêm ngặt) nếu bất đẳng thức lồi là chặt với mọi $x\ne y$ và $\theta\in(0,1)$. Tập mức dưới của $f$ ứng với mức $c$ là $\{x\mid f(x)\le c\}$.
+- **Điều kiện bậc nhất và bậc hai** (Định lý 01.25, Hệ quả 01.26, Định lý 01.29). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y$. Nếu $f$ lồi, khả vi trên tập mở lồi $D$ và $\nabla f(x^*)=0$ thì $x^*$ là cực tiểu toàn cục trên $D$. Hàm khả vi hai lần trên tập mở lồi là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi chặt nếu Hessian xác định dương mọi nơi.
+- **Hạn chế lên đường thẳng** (Bổ đề 01.27). Tính lồi của $f$ tương đương tính lồi của mọi hàm một biến $t\mapsto f(x+tv)$ trên khoảng các $t$ mà $x+tv$ thuộc miền.
+- **Phép bảo toàn tính lồi** (Định lý 01.30). Tổng có hệ số không âm của các hàm lồi là lồi; hợp với ánh xạ affine là lồi.
+- **Cực tiểu, tính duy nhất và sự tồn tại** (Định lý 01.32, 01.34, 01.35). Cực tiểu địa phương của hàm lồi trên tập lồi là cực tiểu toàn cục; hàm lồi chặt có nhiều nhất một điểm cực tiểu; hàm liên tục trên tập không rỗng, đóng, bị chặn đạt giá trị nhỏ nhất.
 - **Hàm lồi mạnh** (Định nghĩa 01.39, Nhận xét 01.40, Hệ quả 01.41). Hàm $f$ lồi mạnh với hằng số $\mu>0$ nếu $f-\tfrac\mu2\lVert\cdot\rVert_2^2$ lồi; với $f$ khả vi hai lần, điều này tương đương $\nabla^2f(x)\succeq\mu I$ mọi nơi. Hàm lồi mạnh khả vi trên $\mathbb R^n$ có đúng một điểm cực tiểu.
-- **Hồi quy logistic và chính quy hóa** (Định nghĩa 01.8, Mệnh đề 01.9, Định nghĩa 01.42, Mệnh đề 01.46, Ví dụ 01.7). Mất mát logistic của biên $m$ là $\ell(m)=\log(1+e^{-m})$, với $\ell''(m)=\sigma(m)(1-\sigma(m))\in(0,\tfrac14]$, trong đó $\sigma(z)=1/(1+e^{-z})$. Bài toán có chính quy hóa $L(w)+\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$ có đúng một nghiệm với mọi dữ liệu.
+- **Hồi quy logistic và chính quy hóa** (Định nghĩa 01.7, Mệnh đề 01.8, Định nghĩa 01.42, Mệnh đề 01.46, Ví dụ 01.8). Mất mát logistic của biên $m$ là $\ell(m)=\log(1+e^{-m})$, với $\ell''(m)=\sigma(m)(1-\sigma(m))\in(0,\tfrac14]$, trong đó $\sigma(z)=1/(1+e^{-z})$. Bài toán có chính quy hóa $L(w)+\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$ có đúng một nghiệm với mọi dữ liệu.
 - **Hàm Lagrange và hệ KKT** (Định nghĩa 03.4, 03.29). Với bài toán $\min f_0(x)$, $f_i(x)\le0$, $Ax=b$, hàm Lagrange là $L(x,\lambda,\nu)=f_0(x)+\sum_i\lambda_if_i(x)+\nu^T(Ax-b)$. Hệ KKT gồm bốn nhóm: khả thi gốc, khả thi đối ngẫu $\lambda\succeq0$, bù trừ $\lambda_if_i(x)=0$, và dừng $\nabla f_0(x)+\sum_i\lambda_i\nabla f_i(x)+A^T\nu=0$.
 - **KKT và độ nhạy** (Định lý 03.32, Hệ quả 03.31, 03.24). Với bài toán lồi khả vi, một bộ thỏa hệ KKT cho nghiệm gốc, kể cả khi miền là tập mở lồi. Với bài toán lồi có điểm Slater, mọi nghiệm có nhân tử KKT. Gọi hàm giá trị $p^*(v)$ là giá trị tối ưu khi vế phải bị nhiễu thành $Ax-b=v$; khi $p^*$ khả vi tại $0$, $\nu_j^*=-\partial p^*/\partial v_j(0)$. Ví dụ 03.18(b) giải bài toán $\min x_1^2+x_2^2$ với $x_1+2x_2=5$ bằng hệ KKT tuyến tính, được $x=(1,2)$, $\nu=-2$. Ví dụ 03.19 giải bài toán hồi quy có ràng buộc chuẩn $\min\tfrac12\lVert w-y\rVert_2^2$, $\lVert w\rVert_2^2\le1$ với $y=(3,4)$, được $w^*=(0{,}6;\,0{,}8)$, $\lambda^*=2$ và mất mát tối ưu $8$.
 - **Đại số tuyến tính** (Bài 00, Hệ quả 00.19, Định nghĩa 00.25, Mệnh đề 00.5 và 00.8). Ma trận đối xứng $Q\succ0$ khả nghịch, có căn bậc hai đối xứng $Q^{1/2}\succ0$ và phân rã Cholesky $Q=R^TR$. Bất đẳng thức Cauchy–Schwarz: $\lvert a^Tb\rvert\le\lVert a\rVert_2\lVert b\rVert_2$. Với $A\in\mathbb R^{p\times n}$, phần bù trực giao của không gian hạt nhân $\ker A=\{d\mid Ad=0\}$ là không gian hàng $\{A^T\eta\mid\eta\in\mathbb R^p\}$; nếu các hàng của $A$ độc lập tuyến tính thì $A^T\eta=0$ kéo theo $\eta=0$ và $\dim\ker A=n-p$.
@@ -73,7 +73,7 @@ Trong cả chương, $\log$ là logarit tự nhiên. Mọi bộ số của ba v�
 
 ## 1. Điều kiện tối ưu và nhiệm vụ tạo bước lặp
 
-Trong Bài 03, chúng ta đã có một công cụ chứng nhận nghiệm: theo Định lý 03.32, với bài toán lồi khả vi, một bộ thỏa hệ KKT cho nghiệm toàn cục. Ví dụ 03.19 dùng công cụ này để giải trực tiếp bài toán hồi quy có ràng buộc chuẩn, trong đó điều kiện dừng $(w-y)+2\lambda w=0$ cho $w=y/(1+2\lambda)$, rồi điều kiện bù trừ cho $\lambda^*=2$ và $w^*=(0{,}6;\,0{,}8)$. Lời giải trực tiếp thực hiện được vì điều kiện dừng là một hệ tuyến tính theo $w$ khi $\lambda$ cố định. Tuy nhiên, với hồi quy logistic có chính quy hóa trên dữ liệu của Ví dụ 01.7, tham số là một số thực $w$, hệ số chính quy hóa là $\mu>0$, và điều kiện dừng là phương trình
+Trong Bài 03, chúng ta đã có một công cụ chứng nhận nghiệm: theo Định lý 03.32, với bài toán lồi khả vi, một bộ thỏa hệ KKT cho nghiệm toàn cục. Ví dụ 03.19 dùng công cụ này để giải trực tiếp bài toán hồi quy có ràng buộc chuẩn, trong đó điều kiện dừng $(w-y)+2\lambda w=0$ cho $w=y/(1+2\lambda)$, rồi điều kiện bù trừ cho $\lambda^*=2$ và $w^*=(0{,}6;\,0{,}8)$. Lời giải trực tiếp thực hiện được vì điều kiện dừng là một hệ tuyến tính theo $w$ khi $\lambda$ cố định. Tuy nhiên, với hồi quy logistic có chính quy hóa trên dữ liệu của Ví dụ 01.8, tham số là một số thực $w$, hệ số chính quy hóa là $\mu>0$, và điều kiện dừng là phương trình
 
 $$
 \frac{e^w-2}{1+e^w}+\mu w=0,
@@ -90,7 +90,7 @@ Hệ KKT mô tả nghiệm bằng phương trình. Khi phương trình phi tuy�
 ::: example Ví dụ 04.1 (Điều kiện dừng không có nghiệm dạng đóng)
 **Dữ kiện.**
 
-Dữ liệu của Ví dụ 01.7 có ba mẫu một chiều: $(a,y)=(1,+1)$, $(-1,-1)$ và $(1,-1)$. Biên có dấu là $w$, $w$ và $-w$, nên mất mát logistic là $L(w)=2\log(1+e^{-w})+\log(1+e^{w})$ và $L'(w)=\frac{e^w-2}{1+e^w}$. Thêm chính quy hóa với $\mu=1$ cho $J(w)=L(w)+\tfrac12w^2$.
+Dữ liệu của Ví dụ 01.8 có ba mẫu một chiều: $(a,y)=(1,+1)$, $(-1,-1)$ và $(1,-1)$. Biên có dấu là $w$, $w$ và $-w$, nên mất mát logistic là $L(w)=2\log(1+e^{-w})+\log(1+e^{w})$ và $L'(w)=\frac{e^w-2}{1+e^w}$. Thêm chính quy hóa với $\mu=1$ cho $J(w)=L(w)+\tfrac12w^2$.
 
 **Điều kiện dừng.**
 
@@ -135,7 +135,7 @@ Bài toán tổng quát (2.1) của Bài 03 có miền $D$, $m$ ràng buộc b�
 
 Ví dụ, $f(x)=\tfrac12(3x_1^2+7x_2^2)$ trên $\mathbb R^2$ là bài toán không ràng buộc, còn $\varphi(s)=s-\log s$ có miền mở $(0,\infty)$, nên điều kiện $s>0$ là miền chứ không phải ràng buộc bất đẳng thức. Phản ví dụ là bài toán $\min x$ với $x\ge0$: nó không thuộc hai lớp này vì nghiệm $x=0$ nằm trên biên của tập khả thi và đạo hàm tại đó bằng $1\ne0$.
 
-Mọi phương pháp của chương hướng tới việc giải một hệ phương trình, và mệnh đề sau xác định hệ đó. Chứng minh của mệnh đề chỉ cần điều kiện cần bậc nhất của Bài 00 (Định lý 00.42), Hệ quả 01.27 cùng một sự kiện đại số tuyến tính về không gian hạt nhân.
+Mọi phương pháp của chương hướng tới việc giải một hệ phương trình, và mệnh đề sau xác định hệ đó. Chứng minh của mệnh đề chỉ cần điều kiện cần bậc nhất của Bài 00 (Định lý 00.42), Hệ quả 01.26 cùng một sự kiện đại số tuyến tính về không gian hạt nhân.
 
 ::: proposition Mệnh đề 04.2 (Hệ KKT rút gọn là điều kiện cần và đủ)
 **Giả thiết.** Hai bài toán của Định nghĩa 04.1.
@@ -166,11 +166,11 @@ Vector $\nu^*$ khi đó là duy nhất.
 ::: proof Chứng minh Mệnh đề 04.2
 **Bước 1 (phần a).**
 
-Nếu $x^*$ là nghiệm thì nó là cực tiểu địa phương tại một điểm trong của miền mở, nên $\nabla f(x^*)=0$ theo điều kiện cần bậc nhất. Ngược lại, nếu $\nabla f(x^*)=0$ thì $x^*$ là cực tiểu toàn cục trên $\operatorname{dom}f$ theo Hệ quả 01.27, vì $f$ lồi, khả vi trên tập mở lồi.
+Nếu $x^*$ là nghiệm thì nó là cực tiểu địa phương tại một điểm trong của miền mở, nên $\nabla f(x^*)=0$ theo điều kiện cần bậc nhất. Ngược lại, nếu $\nabla f(x^*)=0$ thì $x^*$ là cực tiểu toàn cục trên $\operatorname{dom}f$ theo Hệ quả 01.26, vì $f$ lồi, khả vi trên tập mở lồi.
 
 **Bước 2 (phần b, chiều đủ).**
 
-Giả sử $(u^*,\nu^*)$ thỏa (1.2) và $u$ là một điểm khả thi bất kỳ. Hàm $F$ lồi nên theo Định lý 01.26,
+Giả sử $(u^*,\nu^*)$ thỏa (1.2) và $u$ là một điểm khả thi bất kỳ. Hàm $F$ lồi nên theo Định lý 01.25,
 
 $$
 \begin{aligned}
@@ -273,7 +273,7 @@ Nghiệm của bài toán con chỉ là ứng viên cho bước. Điểm $x^k+d^
 ::: solution
 **Câu (a).**
 
-$\nabla f(x)=(2x_1+x_2-3,\ x_1+2x_2)^T$. Hệ $2x_1+x_2=3$, $x_1+2x_2=0$ cho $x_1=-2x_2$, rồi $-4x_2+x_2=3$, nên $x_2=-1$, $x_1=2$. Hessian $\begin{bmatrix}2&1\\1&2\end{bmatrix}$ có định thức con chính $2>0$ và $3>0$, nên xác định dương; $f$ lồi chặt (Định lý 01.30(b)) và theo Mệnh đề 04.2(a), $x^*=(2,-1)^T$ là cực tiểu toàn cục, với $f^*=4-2+1-6=-3$.
+$\nabla f(x)=(2x_1+x_2-3,\ x_1+2x_2)^T$. Hệ $2x_1+x_2=3$, $x_1+2x_2=0$ cho $x_1=-2x_2$, rồi $-4x_2+x_2=3$, nên $x_2=-1$, $x_1=2$. Hessian $\begin{bmatrix}2&1\\1&2\end{bmatrix}$ có định thức con chính $2>0$ và $3>0$, nên xác định dương; $f$ lồi chặt (Định lý 01.29(b)) và theo Mệnh đề 04.2(a), $x^*=(2,-1)^T$ là cực tiểu toàn cục, với $f^*=4-2+1-6=-3$.
 
 **Câu (b).**
 
@@ -426,7 +426,7 @@ Với $W=I$: $d_G=-g$, $g^Td_G=-\lVert g\rVert_2^2$ và mức giảm mô hình l
 ::: proof Chứng minh Mệnh đề 04.9
 **Bước 1 (lồi chặt và điều kiện tối ưu).**
 
-Gradient của $Q_W$ theo $d$ là $g+Wd$, vì $W$ đối xứng; Hessian là $W\succ0$. Theo Định lý 01.30(b), $Q_W$ lồi chặt trên $\mathbb R^n$. Theo Mệnh đề 04.2(a) áp cho bài toán con không ràng buộc theo $d$, $d$ là nghiệm khi và chỉ khi $g+Wd=0$, tức (2.1). Ma trận $W\succ0$ khả nghịch, nên hệ có đúng một nghiệm $d=-W^{-1}g$.
+Gradient của $Q_W$ theo $d$ là $g+Wd$, vì $W$ đối xứng; Hessian là $W\succ0$. Theo Định lý 01.29(b), $Q_W$ lồi chặt trên $\mathbb R^n$. Theo Mệnh đề 04.2(a) áp cho bài toán con không ràng buộc theo $d$, $d$ là nghiệm khi và chỉ khi $g+Wd=0$, tức (2.1). Ma trận $W\succ0$ khả nghịch, nên hệ có đúng một nghiệm $d=-W^{-1}g$.
 
 **Bước 2 (hướng giảm).**
 
@@ -758,7 +758,7 @@ $$
 ::: proof Chứng minh Mệnh đề 04.15
 **Bước 1 (tồn tại nghiệm và hệ KKT).**
 
-Tập khả thi $\{v\mid v^TWv\le1\}$ đóng, bị chặn và không rỗng, mục tiêu tuyến tính liên tục, nên bài toán con có nghiệm theo Định lý 01.36. Bài toán con lồi và $v=0$ thỏa chặt ràng buộc ($0<1$), nên theo Hệ quả 03.31 và Định lý 03.32, $v$ là nghiệm khi và chỉ khi có $\zeta$ thỏa hệ KKT. Với hàm Lagrange $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$, bốn nhóm là:
+Tập khả thi $\{v\mid v^TWv\le1\}$ đóng, bị chặn và không rỗng, mục tiêu tuyến tính liên tục, nên bài toán con có nghiệm theo Định lý 01.35. Bài toán con lồi và $v=0$ thỏa chặt ràng buộc ($0<1$), nên theo Hệ quả 03.31 và Định lý 03.32, $v$ là nghiệm khi và chỉ khi có $\zeta$ thỏa hệ KKT. Với hàm Lagrange $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$, bốn nhóm là:
 
 1. dừng: $g+2\zeta Wv=0$;
 2. khả thi gốc: $v^TWv\le1$;
@@ -919,7 +919,7 @@ $$
 
 **Điều kiện áp dụng.** Không cần tính lồi.
 
-**Phạm vi.** Bổ đề cho cận trên; cận dưới tương ứng cần tính lồi (Định lý 01.26) hoặc lồi mạnh (Mệnh đề 04.25).
+**Phạm vi.** Bổ đề cho cận trên; cận dưới tương ứng cần tính lồi (Định lý 01.25) hoặc lồi mạnh (Mệnh đề 04.25).
 :::
 
 ::: proof Chứng minh Bổ đề 04.18
@@ -944,12 +944,12 @@ $$
 $\int_0^1L\tau\lVert\Delta\rVert_2^2\,d\tau=\frac L2\lVert\Delta\rVert_2^2$. Thay vào Bước 1, ta được (2.3). $\square$
 :::
 
-Bổ đề 04.18 cho thấy parabol $q(y)=f(x)+\nabla f(x)^T(y-x)+\tfrac L2\lVert y-x\rVert_2^2$, tiếp xúc với $f$ tại $x$, nằm trên đồ thị của $f$. Khi $f$ lồi, tiếp tuyến tại $x$ nằm dưới đồ thị (Định lý 01.26), nên $f$ bị chặn hai phía bởi một hàm affine và một parabol tại mỗi điểm.
+Bổ đề 04.18 cho thấy parabol $q(y)=f(x)+\nabla f(x)^T(y-x)+\tfrac L2\lVert y-x\rVert_2^2$, tiếp xúc với $f$ tại $x$, nằm trên đồ thị của $f$. Khi $f$ lồi, tiếp tuyến tại $x$ nằm dưới đồ thị (Định lý 01.25), nên $f$ bị chặn hai phía bởi một hàm affine và một parabol tại mỗi điểm.
 
 ::: remark Nhận xét 04.19 (Kiểm tra gradient Lipschitz qua Hessian)
 **Tiêu chuẩn.** Nếu $f$ khả vi hai lần và $-LI\preceq\nabla^2f(x)\preceq LI$ với mọi $x$, thì gradient $L$-Lipschitz. Thật vậy, $\nabla f(y)-\nabla f(x)=\int_0^1\nabla^2f(x+\tau(y-x))(y-x)\,d\tau$, và một ma trận đối xứng có mọi giá trị riêng trong $[-L,L]$ có chuẩn phổ không vượt $L$. Khi $f$ lồi, cận dưới tự đúng vì $\nabla^2f\succeq0$, nên chỉ cần $\nabla^2f\preceq LI$.
 
-**Hai ví dụ.** Hàm bậc hai $f(x)=\tfrac12(3x_1^2+7x_2^2)$ có $\nabla^2f=\operatorname{diag}(3,7)$, nên $L=7$. Hàm $s\mapsto\log(1+e^s)$, mất mát logistic viết theo $s=-m$, có đạo hàm bậc hai $\sigma(s)(1-\sigma(s))\le\tfrac14$ theo Mệnh đề 01.9(c), nên $L=\tfrac14$.
+**Hai ví dụ.** Hàm bậc hai $f(x)=\tfrac12(3x_1^2+7x_2^2)$ có $\nabla^2f=\operatorname{diag}(3,7)$, nên $L=7$. Hàm $s\mapsto\log(1+e^s)$, mất mát logistic viết theo $s=-m$, có đạo hàm bậc hai $\sigma(s)(1-\sigma(s))\le\tfrac14$ theo Mệnh đề 01.8(c), nên $L=\tfrac14$.
 
 **Dữ liệu nhiều mẫu.** Cho $N_s$ mẫu với đặc trưng $a_i\in\mathbb R^n$, xếp thành các hàng $a_i^T$ của ma trận $X\in\mathbb R^{N_s\times n}$, và nhãn $y_i\in\{-1,+1\}$. Mất mát logistic là tổng $\sum_{i=1}^{N_s}\ell(m_i)$ theo các biên $m_i=y_ia_i^Tw$. Hessian của tổng là $\sum_i\ell''(m_i)a_ia_i^T\preceq\tfrac14X^TX$, vì $y_i^2=1$, nên có thể lấy $L=\tfrac14\lambda_{\max}(X^TX)$.
 :::
@@ -1036,7 +1036,7 @@ Theo Bổ đề 04.20 với $t=\tfrac1L$, ta có $f(x^+)\le f(x)-\frac1{2L}\lVer
 
 **Bước 2 (tính lồi).**
 
-Theo Định lý 01.26 với hai điểm $x$ và $x^*$, ta có $f^*\ge f(x)+g^T(x^*-x)$, tức $f(x)\le f^*+g^T(x-x^*)$. Ghép với Bước 1, ta được
+Theo Định lý 01.25 với hai điểm $x$ và $x^*$, ta có $f^*\ge f(x)+g^T(x^*-x)$, tức $f(x)\le f^*+g^T(x-x^*)$. Ghép với Bước 1, ta được
 
 $$
 f(x^+)-f^*\le g^T(x-x^*)-\frac1{2L}\lVert g\rVert_2^2 .
@@ -1229,7 +1229,7 @@ $$
 ::: proof Chứng minh Mệnh đề 04.25
 **Bước 1 (phần a).**
 
-Hàm $h=f-\tfrac\mu2\lVert\cdot\rVert_2^2$ lồi, khả vi, với $\nabla h(x)=\nabla f(x)-\mu x$. Theo Định lý 01.26, $h(y)\ge h(x)+(\nabla f(x)-\mu x)^T(y-x)$. Chuyển các số hạng chứa $\mu$ sang vế phải, ta có
+Hàm $h=f-\tfrac\mu2\lVert\cdot\rVert_2^2$ lồi, khả vi, với $\nabla h(x)=\nabla f(x)-\mu x$. Theo Định lý 01.25, $h(y)\ge h(x)+(\nabla f(x)-\mu x)^T(y-x)$. Chuyển các số hạng chứa $\mu$ sang vế phải, ta có
 
 $$
 \begin{aligned}
@@ -1786,7 +1786,7 @@ $\varphi(\tfrac34)=0{,}75+0{,}2877=1{,}0377$. Dãy $1-s^k$: $-2$, $-\tfrac12$, $
 :::
 
 ::: exercise Bài tập 04.6
-Với mất mát logistic không chính quy hóa của Ví dụ 01.7, $L(w)=2\log(1+e^{-w})+\log(1+e^w)$, nghiệm là $w^*=\log2$.
+Với mất mát logistic không chính quy hóa của Ví dụ 01.8, $L(w)=2\log(1+e^{-w})+\log(1+e^w)$, nghiệm là $w^*=\log2$.
 
 - (a) Chứng minh $L''(w)=\frac{3e^w}{(1+e^w)^2}$.
 - (b) Từ $w^0=0$, tính hướng Newton, $\delta^2$, giảm mô hình và sai số mục tiêu $L(0)-L(\log2)$.
@@ -1794,7 +1794,7 @@ Với mất mát logistic không chính quy hóa của Ví dụ 01.7, $L(w)=2\lo
 :::
 
 ::: hint
-$\ell''(m)=\frac{e^m}{(1+e^m)^2}$ là hàm chẵn; $L$ là tổng ba số hạng $\ell(w)$, $\ell(w)$, $\ell(-w)$. $L(\log2)=\log\tfrac{27}4$ theo Ví dụ 01.7.
+$\ell''(m)=\frac{e^m}{(1+e^m)^2}$ là hàm chẵn; $L$ là tổng ba số hạng $\ell(w)$, $\ell(w)$, $\ell(-w)$. $L(\log2)=\log\tfrac{27}4$ theo Ví dụ 01.8.
 :::
 
 ::: solution
@@ -2511,7 +2511,7 @@ $$
 tại mọi $t$ mà $x+tv\in\operatorname{dom}f$.
 :::
 
-Định nghĩa 04.47 đòi bất đẳng thức đúng trên mọi đường thẳng qua miền, theo cách Bổ đề 01.28 đưa tính lồi về một chiều. Biến $t$ ở đây là tham số trên đường thẳng, không phải độ dài bước. Hằng số $2$ là quy ước chuẩn hóa để hàm $-\log s$ đạt đúng dấu bằng.
+Định nghĩa 04.47 đòi bất đẳng thức đúng trên mọi đường thẳng qua miền, theo cách Bổ đề 01.27 đưa tính lồi về một chiều. Biến $t$ ở đây là tham số trên đường thẳng, không phải độ dài bước. Hằng số $2$ là quy ước chuẩn hóa để hàm $-\log s$ đạt đúng dấu bằng.
 
 Ví dụ, hàm tuyến tính và hàm bậc hai lồi có $h'''=0$ trên mọi đường thẳng, nên tự điều chỉnh. Hàm $-\log s$ và $s-\log s$ khác nhau một số hạng tuyến tính, có cùng đạo hàm bậc hai và bậc ba, nên cả hai tự điều chỉnh. Phản ví dụ:
 
@@ -2523,7 +2523,7 @@ So với lồi mạnh và gradient Lipschitz, tính tự điều chỉnh chặn 
 
 Ngược lại, $f(s)=s^4+\tfrac1{100}s^2$ lồi mạnh vì $f''(s)=12s^2+0{,}02\ge0{,}02$, nhưng không tự điều chỉnh. Tại $s=0{,}05$: $f''=12\cdot0{,}0025+0{,}02=0{,}05$, $f''^{3/2}=0{,}05^{3/2}\approx0{,}01118$ và $\lvert f'''\rvert=24\cdot0{,}05=1{,}2$, nên tỷ số $\lvert f'''\rvert/f''^{3/2}\approx107>2$.
 
-Mệnh đề sau là phiên bản tự điều chỉnh của các phép bảo toàn tính lồi ở Định lý 01.31, với một hạn chế mới ở phép nhân hệ số.
+Mệnh đề sau là phiên bản tự điều chỉnh của các phép bảo toàn tính lồi ở Định lý 01.30, với một hạn chế mới ở phép nhân hệ số.
 
 ::: proposition Mệnh đề 04.48 (Phép bảo toàn tính tự điều chỉnh)
 **Giả thiết.** $f$, $f_1$, $f_2$ tự điều chỉnh; $a\ge1$; $B\in\mathbb R^{n\times m}$, $c\in\mathbb R^n$.

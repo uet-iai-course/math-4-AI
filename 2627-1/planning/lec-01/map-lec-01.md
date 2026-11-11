@@ -9,119 +9,121 @@
 - `lec-05/lecture-note.md` dòng 2355: "Mệnh đề 01.6, 01.9" → "Hệ quả 01.5, Mệnh đề 01.8".
 - Mọi "Mệnh đề 01.6(…)" → "Hệ quả 01.5(…)"; mọi "Mệnh đề 01.5(c)" → "Định lý 00.22, kết luận 1" (kèm "Bài 01" → "Bài 00").
 
+**Trạng thái giai đoạn 3 (2026-11-12).** Đã thay một lượt: 250 cụm dẫn ở 10 ghi chú, 1 tệp bài tập (lec-06) và 2 deck (01, 05). Sau khi thay, mọi số `01.k` có loại khối đứng trước ở các tệp này (364 lần) trỏ tới khối tồn tại, đúng loại, và mọi phần (a)–(e) được dẫn có trong khối đích. Cột cuối mỗi bảng ghi số chỗ đã thay.
+
 Số cũ là số trong ghi chú trước lần viết lại (HEAD ngày 2026-11-12). Cột "Dẫn chiếu hiện có cần đổi" đếm số lần số hiệu cũ xuất hiện trong ghi chú, tệp bài tập và deck khác (grep `materials/*/*.md` trừ `lec-01/`, và `lecture-*.html`, 2026-11-12; mỗi số trong cụm như "Mệnh đề 01.19 và 01.20(a)" được đếm riêng). Giai đoạn 3 grep lại trước khi thay.
 
 ## 1. Bộ đếm chung (định nghĩa, định lý, mệnh đề, bổ đề, hệ quả, nhận xét, thuật toán)
 
 Quy luật: 01.1–01.4 giữ số; Mệnh đề 01.5 bỏ; 01.6–01.36 lùi một số; Nhận xét 01.36 mới; 01.37–01.46 giữ số; Thuật toán 01.1 → 01.47.
 
-| Cũ | Mới | Gộp/tách/bỏ, thay đổi | Dẫn chiếu hiện có cần đổi |
-|---|---|---|---|
-| Định nghĩa 01.1 | Định nghĩa 01.1 | nhãn (2.1) → (4.1) | — |
-| Mệnh đề 01.2 | Mệnh đề 01.2 | nhãn (2.2), (2.3), (2.4) → (4.2), (4.3), (4.4); "Điều kiện áp dụng", "Phạm vi" thành câu đọc | — |
-| Nhận xét 01.3 | Nhận xét 01.3 | bỏ câu dẫn tiến Hệ quả cũ 01.27 | — |
-| Định nghĩa 01.4 | Định nghĩa 01.4 | nhãn (3.1) → (4.5); hàng của $X$ viết $a_i^T$ | lec-02: 1 (không đổi số) |
-| Mệnh đề 01.5 | — | **bỏ**: (a) → bước 1 chứng minh Định lý 00.22 (nhân 2); (b) → Mệnh đề 00.45 với $J=2f$; (c) → Định lý 00.22 kết luận 1. Phát biểu lại một đoạn ở §4.2 với nhãn (4.6). Dẫn ngoài đổi sang số Bài 00 (Q01-4), kể cả chữ "Bài 01" → "Bài 00" | lec-02: 2 |
-| Mệnh đề 01.6 | Hệ quả 01.5 | đổi loại khối; (a), (b), (c) giữ nghĩa; chứng minh từ Định lý 00.22, 00.9, Mệnh đề 00.20 | deck 05: 7; lec-02: 3; lec-05: 8 |
-| Nhận xét 01.7 | Nhận xét 01.6 | ba ý thành danh sách; bỏ ý tổng phần dư (có ở Bài tập 01.3); tiêu đề mới 'Thang đo, công thức nghịch đảo và Hessian' | — |
-| Định nghĩa 01.8 | Định nghĩa 01.7 | nhãn (4.1) → (4.7) | deck 05: 2; lec-04: 1; lec-05: 3; lec-05c: 2; lec-06b: 2 |
-| Mệnh đề 01.9 | Mệnh đề 01.8 | (a)–(d) giữ; hệ quả "$L>0$" thành (e) | deck 05: 2; lec-02: 3; lec-04: 2; lec-05: 5; lec-05b: 4; lec-05c: 1; lec-06b: 3 |
-| Định nghĩa 01.10 | Định nghĩa 01.9 |  | lec-03: 10; lec-05b: 3 |
-| Nhận xét 01.11 | Nhận xét 01.10 | gộp mệnh đề văn xuôi về sự tồn tại của dãy cực tiểu hóa | — |
-| Định nghĩa 01.12 | Định nghĩa 01.11 |  | lec-02: 2; lec-03: 5; lec-07: 1 |
-| Định nghĩa 01.13 | Định nghĩa 01.12 |  | lec-07: 2 |
-| Mệnh đề 01.14 | Mệnh đề 01.13 |  | — |
-| Nhận xét 01.15 | Nhận xét 01.14 |  | lec-03: 2; lec-04: 1 |
-| Mệnh đề 01.16 | Mệnh đề 01.15 |  | lec-02: 9; lec-03: 3 |
-| Nhận xét 01.17 | Nhận xét 01.16 | chỉ còn danh sách sáu câu hỏi; quy trình ở Thuật toán 01.47 | — |
-| Định nghĩa 01.18 | Định nghĩa 01.17 |  | lec-02: 2; lec-03: 4; lec-04: 1; lec-07: 1 |
-| Mệnh đề 01.19 | Mệnh đề 01.18 | (a)–(e) giữ; ký hiệu: $b\to c$, $a\to g$ (pháp tuyến), hộp $\underline x_j\le x_j\le\overline x_j$, tâm cầu $x_{\mathrm c}$ | lec-02: 3; lec-07: 3 |
-| Mệnh đề 01.20 | Mệnh đề 01.19 | (a)–(c) giữ; chỉ số $\gamma\in\Gamma\to j\in\mathcal J$, $b\to c$ | lec-02: 3; lec-07: 2 |
-| Nhận xét 01.21 | Nhận xét 01.20 | tiêu đề "Khi bỏ giả thiết: …"; thêm ý ánh xạ phi tuyến (tập vùng chết là nghịch ảnh của $[\tfrac14,1]$ qua $u\mapsto u^2$) | — |
-| Định nghĩa 01.22 | Định nghĩa 01.21 |  | lec-02: 2; lec-03: 2; lec-04: 1; lec-05b: 6; lec-05c: 2; lec-06: 3 |
-| Nhận xét 01.23 | Nhận xét 01.22 |  | lec-02: 1 |
-| Định nghĩa 01.24 | Định nghĩa 01.23 |  | lec-04: 1 |
-| Mệnh đề 01.25 | Mệnh đề 01.24 |  | lec-02: 5 |
-| Định lý 01.26 | Định lý 01.25 |  | lec-02: 1; lec-03: 1; lec-04: 6; lec-05b: 6 |
-| Hệ quả 01.27 | Hệ quả 01.26 |  | lec-02: 5; lec-03: 6; lec-04: 3; lec-05: 1; lec-06: 6; lec-06b: 1; lec-06c: 1 |
-| Bổ đề 01.28 | Bổ đề 01.27 | biến $t\to\tau$, $T_{x,v}\to\mathcal T_{x,v}$; "$\mathcal T_{x,v}$ là khoảng" vào Kết luận | lec-04: 2 |
-| Bổ đề 01.29 | Bổ đề 01.28 | (a), (b) giữ; $T\to\mathcal T$, $s,t\to\tau^\prime,\tau$ | — |
-| Định lý 01.30 | Định lý 01.29 | (a), (b) giữ; giả thiết ghi "lớp $C^2$" (cũ: "khả vi hai lần") cho khớp Mệnh đề 00.38 dùng trong chứng minh | lec-02: 15; lec-03: 4; lec-04: 3; lec-06b: 2 |
-| Định lý 01.31 | Định lý 01.30 | (a)–(c) giữ; $\alpha_j\to\gamma_j$, $g\to\psi$, $b\to c$ | lec-02: 13; lec-03: 4; lec-04: 2; lec-05b: 1; lec-06: 4; lec-06 (bài tập): 1; lec-07: 2 |
-| Nhận xét 01.32 | Nhận xét 01.31 | tiêu đề "Khi bỏ giả thiết: …" | — |
-| Định lý 01.33 | Định lý 01.32 |  | lec-02: 2; lec-04: 1 |
-| Hệ quả 01.34 | Hệ quả 01.33 |  | lec-02: 2; lec-06: 6; lec-07: 2 |
-| Định lý 01.35 | Định lý 01.34 |  | lec-02: 8; lec-03: 2; lec-04: 1; lec-05: 2; lec-07: 2 |
-| Định lý 01.36 | Định lý 01.35 | ba bước ý tưởng thành khối `proof` phác thảo | deck 05: 2; lec-02: 9; lec-03: 5; lec-04: 2; lec-05: 5 |
-| — | Nhận xét 01.36 | **mới**: Khi bỏ giả thiết của Định lý 01.35 (từ văn xuôi cũ) | — |
-| Định nghĩa 01.37 | Định nghĩa 01.37 |  | deck 05: 1; lec-05: 2; lec-05 (bài tập): 1 (không đổi số) |
-| Định lý 01.38 | Định lý 01.38 | trong chứng minh $x_0\to\bar x$, giới hạn $\bar x\to x^\prime$ | deck 05: 2; lec-02: 11; lec-05: 4; lec-05 (bài tập): 2 (không đổi số) |
-| Định nghĩa 01.39 | Định nghĩa 01.39 |  | lec-04: 3; lec-05b: 4; lec-06b: 1 (không đổi số) |
-| Nhận xét 01.40 | Nhận xét 01.40 |  | lec-04: 2; lec-05: 3; lec-05b: 2; lec-06b: 1 (không đổi số) |
-| Hệ quả 01.41 | Hệ quả 01.41 | hàm phụ $g\to\tilde f$ | deck 05: 2; lec-04: 2; lec-05: 4; lec-05b: 3 (không đổi số) |
-| Định nghĩa 01.42 | Định nghĩa 01.42 | ridge viết $J_\mu=J+\tfrac\mu2\lVert w\rVert_2^2$ (cũ: $J+\mu\lVert w\rVert_2^2=J_{2\mu}$) | lec-02: 1; lec-04: 1; lec-05: 2 (không đổi số) |
-| Nhận xét 01.43 | Nhận xét 01.43 | bỏ câu cuối liệt kê số hiệu | deck 05: 2; lec-05: 3 (không đổi số) |
-| Mệnh đề 01.44 | Mệnh đề 01.44 |  | — |
-| Mệnh đề 01.45 | Mệnh đề 01.45 | bước 2 dẫn Hệ quả 01.5(a) | — |
-| Mệnh đề 01.46 | Mệnh đề 01.46 |  | lec-04: 3 (không đổi số) |
-| Thuật toán 01.1 | Thuật toán 01.47 | vào bộ đếm chung; chín bước nhóm thành bốn giai đoạn (deck K06); ghi chú diễn giả K06 của deck 01 dẫn "Thuật toán 01.1" → đổi số | deck 01: 1; lec-02: 2 |
+| Cũ | Mới | Gộp/tách/bỏ, thay đổi | Dẫn chiếu hiện có cần đổi | Giai đoạn 3 (2026-11-12) |
+|---|---|---|---|---|
+| Định nghĩa 01.1 | Định nghĩa 01.1 | nhãn (2.1) → (4.1) | — | không đổi số |
+| Mệnh đề 01.2 | Mệnh đề 01.2 | nhãn (2.2), (2.3), (2.4) → (4.2), (4.3), (4.4); "Điều kiện áp dụng", "Phạm vi" thành câu đọc | — | không đổi số |
+| Nhận xét 01.3 | Nhận xét 01.3 | bỏ câu dẫn tiến Hệ quả cũ 01.27 | — | không đổi số |
+| Định nghĩa 01.4 | Định nghĩa 01.4 | nhãn (3.1) → (4.5); hàng của $X$ viết $a_i^T$ | lec-02: 1 (không đổi số) | không đổi số |
+| Mệnh đề 01.5 | — | **bỏ**: (a) → bước 1 chứng minh Định lý 00.22 (nhân 2); (b) → Mệnh đề 00.45 với $J=2f$; (c) → Định lý 00.22 kết luận 1. Phát biểu lại một đoạn ở §4.2 với nhãn (4.6). Dẫn ngoài đổi sang số Bài 00 (Q01-4), kể cả chữ "Bài 01" → "Bài 00" | lec-02: 2 | đã thay 2 chỗ, viết lại tay theo Q01-4 (lec-02 dòng 23, 1000) |
+| Mệnh đề 01.6 | Hệ quả 01.5 | đổi loại khối; (a), (b), (c) giữ nghĩa; chứng minh từ Định lý 00.22, 00.9, Mệnh đề 00.20 | deck 05: 7; lec-02: 3; lec-05: 8 | đã thay 18 chỗ (đổi cả loại khối); lec-05 dòng 582 "Bước 4 của chứng minh Mệnh đề 01.6" → "Bài 00, Mệnh đề 00.20, kết luận 3" |
+| Nhận xét 01.7 | Nhận xét 01.6 | ba ý thành danh sách; bỏ ý tổng phần dư (có ở Bài tập 01.3); tiêu đề mới 'Thang đo, công thức nghịch đảo và Hessian' | — | không có dẫn chiếu |
+| Định nghĩa 01.8 | Định nghĩa 01.7 | nhãn (4.1) → (4.7) | deck 05: 2; lec-04: 1; lec-05: 3; lec-05c: 2; lec-06b: 2 | đã thay 10 chỗ |
+| Mệnh đề 01.9 | Mệnh đề 01.8 | (a)–(d) giữ; hệ quả "$L>0$" thành (e) | deck 05: 2; lec-02: 3; lec-04: 2; lec-05: 5; lec-05b: 4; lec-05c: 1; lec-06b: 3 | đã thay 20 chỗ |
+| Định nghĩa 01.10 | Định nghĩa 01.9 |  | lec-03: 10; lec-05b: 3 | đã thay 13 chỗ |
+| Nhận xét 01.11 | Nhận xét 01.10 | gộp mệnh đề văn xuôi về sự tồn tại của dãy cực tiểu hóa | — | không có dẫn chiếu |
+| Định nghĩa 01.12 | Định nghĩa 01.11 |  | lec-02: 2; lec-03: 5; lec-07: 1 | đã thay 8 chỗ |
+| Định nghĩa 01.13 | Định nghĩa 01.12 |  | lec-07: 2 | đã thay 2 chỗ |
+| Mệnh đề 01.14 | Mệnh đề 01.13 |  | — | không có dẫn chiếu |
+| Nhận xét 01.15 | Nhận xét 01.14 |  | lec-03: 2; lec-04: 1 | đã thay 3 chỗ |
+| Mệnh đề 01.16 | Mệnh đề 01.15 |  | lec-02: 9; lec-03: 3 | đã thay 12 chỗ |
+| Nhận xét 01.17 | Nhận xét 01.16 | chỉ còn danh sách sáu câu hỏi; quy trình ở Thuật toán 01.47 | — | không có dẫn chiếu |
+| Định nghĩa 01.18 | Định nghĩa 01.17 |  | lec-02: 2; lec-03: 4; lec-04: 1; lec-07: 1 | đã thay 8 chỗ |
+| Mệnh đề 01.19 | Mệnh đề 01.18 | (a)–(e) giữ; ký hiệu: $b\to c$, $a\to g$ (pháp tuyến), hộp $\underline x_j\le x_j\le\overline x_j$, tâm cầu $x_{\mathrm c}$ | lec-02: 3; lec-07: 3 | đã thay 6 chỗ |
+| Mệnh đề 01.20 | Mệnh đề 01.19 | (a)–(c) giữ; chỉ số $\gamma\in\Gamma\to j\in\mathcal J$, $b\to c$ | lec-02: 3; lec-07: 2 | đã thay 5 chỗ |
+| Nhận xét 01.21 | Nhận xét 01.20 | tiêu đề "Khi bỏ giả thiết: …"; thêm ý ánh xạ phi tuyến (tập vùng chết là nghịch ảnh của $[\tfrac14,1]$ qua $u\mapsto u^2$) | — | không có dẫn chiếu |
+| Định nghĩa 01.22 | Định nghĩa 01.21 |  | lec-02: 2; lec-03: 2; lec-04: 1; lec-05b: 6; lec-05c: 2; lec-06: 3 | đã thay 16 chỗ |
+| Nhận xét 01.23 | Nhận xét 01.22 |  | lec-02: 1 | đã thay 1 chỗ |
+| Định nghĩa 01.24 | Định nghĩa 01.23 |  | lec-04: 1 | đã thay 1 chỗ |
+| Mệnh đề 01.25 | Mệnh đề 01.24 |  | lec-02: 5 | đã thay 5 chỗ |
+| Định lý 01.26 | Định lý 01.25 |  | lec-02: 1; lec-03: 1; lec-04: 6; lec-05b: 6 | đã thay 14 chỗ |
+| Hệ quả 01.27 | Hệ quả 01.26 |  | lec-02: 5; lec-03: 6; lec-04: 3; lec-05: 1; lec-06: 6; lec-06b: 1; lec-06c: 1 | đã thay 23 chỗ |
+| Bổ đề 01.28 | Bổ đề 01.27 | biến $t\to\tau$, $T_{x,v}\to\mathcal T_{x,v}$; "$\mathcal T_{x,v}$ là khoảng" vào Kết luận | lec-04: 2 | đã thay 2 chỗ |
+| Bổ đề 01.29 | Bổ đề 01.28 | (a), (b) giữ; $T\to\mathcal T$, $s,t\to\tau^\prime,\tau$ | — | không có dẫn chiếu |
+| Định lý 01.30 | Định lý 01.29 | (a), (b) giữ; giả thiết ghi "lớp $C^2$" (cũ: "khả vi hai lần") cho khớp Mệnh đề 00.38 dùng trong chứng minh | lec-02: 15; lec-03: 4; lec-04: 3; lec-06b: 2 | đã thay 24 chỗ |
+| Định lý 01.31 | Định lý 01.30 | (a)–(c) giữ; $\alpha_j\to\gamma_j$, $g\to\psi$, $b\to c$ | lec-02: 13; lec-03: 4; lec-04: 2; lec-05b: 1; lec-06: 4; lec-06 (bài tập): 1; lec-07: 2 | đã thay 27 chỗ |
+| Nhận xét 01.32 | Nhận xét 01.31 | tiêu đề "Khi bỏ giả thiết: …" | — | không có dẫn chiếu |
+| Định lý 01.33 | Định lý 01.32 |  | lec-02: 2; lec-04: 1 | đã thay 3 chỗ |
+| Hệ quả 01.34 | Hệ quả 01.33 |  | lec-02: 2; lec-06: 6; lec-07: 2 | đã thay 10 chỗ |
+| Định lý 01.35 | Định lý 01.34 |  | lec-02: 8; lec-03: 2; lec-04: 1; lec-05: 2; lec-07: 2 | đã thay 15 chỗ |
+| Định lý 01.36 | Định lý 01.35 | ba bước ý tưởng thành khối `proof` phác thảo | deck 05: 2; lec-02: 9; lec-03: 5; lec-04: 2; lec-05: 5 | đã thay 23 chỗ |
+| — | Nhận xét 01.36 | **mới**: Khi bỏ giả thiết của Định lý 01.35 (từ văn xuôi cũ) | — | — |
+| Định nghĩa 01.37 | Định nghĩa 01.37 |  | deck 05: 1; lec-05: 2; lec-05 (bài tập): 1 (không đổi số) | không đổi số |
+| Định lý 01.38 | Định lý 01.38 | trong chứng minh $x_0\to\bar x$, giới hạn $\bar x\to x^\prime$ | deck 05: 2; lec-02: 11; lec-05: 4; lec-05 (bài tập): 2 (không đổi số) | không đổi số |
+| Định nghĩa 01.39 | Định nghĩa 01.39 |  | lec-04: 3; lec-05b: 4; lec-06b: 1 (không đổi số) | không đổi số |
+| Nhận xét 01.40 | Nhận xét 01.40 |  | lec-04: 2; lec-05: 3; lec-05b: 2; lec-06b: 1 (không đổi số) | không đổi số |
+| Hệ quả 01.41 | Hệ quả 01.41 | hàm phụ $g\to\tilde f$ | deck 05: 2; lec-04: 2; lec-05: 4; lec-05b: 3 (không đổi số) | không đổi số |
+| Định nghĩa 01.42 | Định nghĩa 01.42 | ridge viết $J_\mu=J+\tfrac\mu2\lVert w\rVert_2^2$ (cũ: $J+\mu\lVert w\rVert_2^2=J_{2\mu}$) | lec-02: 1; lec-04: 1; lec-05: 2 (không đổi số) | không đổi số |
+| Nhận xét 01.43 | Nhận xét 01.43 | bỏ câu cuối liệt kê số hiệu | deck 05: 2; lec-05: 3 (không đổi số) | không đổi số |
+| Mệnh đề 01.44 | Mệnh đề 01.44 |  | — | không đổi số |
+| Mệnh đề 01.45 | Mệnh đề 01.45 | bước 2 dẫn Hệ quả 01.5(a) | — | không đổi số |
+| Mệnh đề 01.46 | Mệnh đề 01.46 |  | lec-04: 3 (không đổi số) | không đổi số |
+| Thuật toán 01.1 | Thuật toán 01.47 | vào bộ đếm chung; chín bước nhóm thành bốn giai đoạn (deck K06); ghi chú diễn giả K06 của deck 01 dẫn "Thuật toán 01.1" → đổi số | deck 01: 1; lec-02: 2 | đã thay 3 chỗ |
 
 ## 2. Ví dụ
 
 Quy luật (Q01-3): Ví dụ 01.1 mới (ví dụ xuyên suốt ở §3); Ví dụ cũ 01.k → 01.(k+1), $k=1,\ldots,15$; Ví dụ 01.17 mới (chiếu sáng, từ `exercises.md` Bài 9 và deck K05/K05B).
 
-| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có cần đổi |
-|---|---|---|---|
-| — | Ví dụ 01.1 (Ba quyết định) | mới: dữ kiện của ba tình huống | — |
-| Ví dụ 01.1 | Ví dụ 01.2 (Bộ số chuẩn của bài toán điều khiển) |  | — |
-| Ví dụ 01.2 | Ví dụ 01.3 (Ảnh hưởng của trọng số năng lượng) |  | — |
-| Ví dụ 01.3 | Ví dụ 01.4 (Đường hồi quy cân nặng – chiều cao) | cân nặng $m_i\to s_i$, chiều cao $h_i\to y_i$ | — |
-| Ví dụ 01.4 | Ví dụ 01.5 (Ba điểm dữ liệu) |  | — |
-| Ví dụ 01.5 | Ví dụ 01.6 (Hai cột trùng nhau) | tham số đường nghiệm $c\to\kappa$ | — |
-| Ví dụ 01.6 | Ví dụ 01.7 (Dữ liệu tách được tuyến tính, không có nghiệm) |  | deck 05: 5; lec-02: 1; lec-05: 3 |
-| Ví dụ 01.7 | Ví dụ 01.8 (Dữ liệu không tách được, có nghiệm) |  | deck 05: 2; lec-04: 5; lec-05: 2 |
-| Ví dụ 01.8 | Ví dụ 01.9 (Cực tiểu địa phương không toàn cục) |  | — |
-| Ví dụ 01.9 | Ví dụ 01.10 (Bốn loại kết luận trên ba trường hợp) |  | — |
-| Ví dụ 01.10 | Ví dụ 01.11 (Chứng nhận miền bằng phép ghép) | (d) đơn hình viết với $\omega$; (a)–(d) giữ | lec-02: 1 |
-| Ví dụ 01.11 | Ví dụ 01.12 (Kiểm tra bằng định nghĩa) |  | lec-02: 2 |
-| Ví dụ 01.12 | Ví dụ 01.13 (Điều kiện bậc nhất trên hai bài toán) | **bỏ phần (c)** (Q01-7); (a), (b) chứng nhận tính lồi bằng Định lý 01.25 | — |
-| Ví dụ 01.13 | Ví dụ 01.14 (Điều kiện bậc hai trên các hàm của bài) |  | — |
-| Ví dụ 01.14 | Ví dụ 01.15 (Chứng nhận tính lồi của các hàm mất mát) | (c) $h\to\ell_{\mathrm{hinge}}$ | lec-02: 2 |
-| Ví dụ 01.15 | Ví dụ 01.16 (Chính quy hóa bậc hai với hai đặc trưng trùng nhau) | bỏ ký hiệu $s$; nghiệm viết $w_1=w_2=2/(4+\mu)$ | — |
-| — | Ví dụ 01.17 (Phân bố công suất chiếu sáng) | mới; bộ số "Giả sử" $A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$, $\mathcal I_{\mathrm{des}}=(3,3)^T$, $p_{\max}=0{,}8$ (nguồn gốc ghi `review-log.md`) | — |
+| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có cần đổi | Giai đoạn 3 (2026-11-12) |
+|---|---|---|---|---|
+| — | Ví dụ 01.1 (Ba quyết định) | mới: dữ kiện của ba tình huống | — | — |
+| Ví dụ 01.1 | Ví dụ 01.2 (Bộ số chuẩn của bài toán điều khiển) |  | — | không có dẫn chiếu |
+| Ví dụ 01.2 | Ví dụ 01.3 (Ảnh hưởng của trọng số năng lượng) |  | — | không có dẫn chiếu |
+| Ví dụ 01.3 | Ví dụ 01.4 (Đường hồi quy cân nặng – chiều cao) | cân nặng $m_i\to s_i$, chiều cao $h_i\to y_i$ | — | không có dẫn chiếu |
+| Ví dụ 01.4 | Ví dụ 01.5 (Ba điểm dữ liệu) |  | — | không có dẫn chiếu |
+| Ví dụ 01.5 | Ví dụ 01.6 (Hai cột trùng nhau) | tham số đường nghiệm $c\to\kappa$ | — | không có dẫn chiếu |
+| Ví dụ 01.6 | Ví dụ 01.7 (Dữ liệu tách được tuyến tính, không có nghiệm) |  | deck 05: 5; lec-02: 1; lec-05: 3 | đã thay 9 chỗ |
+| Ví dụ 01.7 | Ví dụ 01.8 (Dữ liệu không tách được, có nghiệm) |  | deck 05: 2; lec-04: 5; lec-05: 2 | đã thay 9 chỗ |
+| Ví dụ 01.8 | Ví dụ 01.9 (Cực tiểu địa phương không toàn cục) |  | — | không có dẫn chiếu |
+| Ví dụ 01.9 | Ví dụ 01.10 (Bốn loại kết luận trên ba trường hợp) |  | — | không có dẫn chiếu |
+| Ví dụ 01.10 | Ví dụ 01.11 (Chứng nhận miền bằng phép ghép) | (d) đơn hình viết với $\omega$; (a)–(d) giữ | lec-02: 1 | đã thay 1 chỗ |
+| Ví dụ 01.11 | Ví dụ 01.12 (Kiểm tra bằng định nghĩa) |  | lec-02: 2 | đã thay 2 chỗ |
+| Ví dụ 01.12 | Ví dụ 01.13 (Điều kiện bậc nhất trên hai bài toán) | **bỏ phần (c)** (Q01-7); (a), (b) chứng nhận tính lồi bằng Định lý 01.25 | — | không có dẫn chiếu |
+| Ví dụ 01.13 | Ví dụ 01.14 (Điều kiện bậc hai trên các hàm của bài) |  | — | không có dẫn chiếu |
+| Ví dụ 01.14 | Ví dụ 01.15 (Chứng nhận tính lồi của các hàm mất mát) | (c) $h\to\ell_{\mathrm{hinge}}$ | lec-02: 2 | đã thay 2 chỗ |
+| Ví dụ 01.15 | Ví dụ 01.16 (Chính quy hóa bậc hai với hai đặc trưng trùng nhau) | bỏ ký hiệu $s$; nghiệm viết $w_1=w_2=2/(4+\mu)$ | — | không có dẫn chiếu |
+| — | Ví dụ 01.17 (Phân bố công suất chiếu sáng) | mới; bộ số "Giả sử" $A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$, $\mathcal I_{\mathrm{des}}=(3,3)^T$, $p_{\max}=0{,}8$ (nguồn gốc ghi `review-log.md`) | — | — |
 
 Giai đoạn 3: mọi "Ví dụ 01.k" ở bài khác đổi thành "Ví dụ 01.(k+1)", kể cả dẫn có phần như "Ví dụ 01.10(d)" → "Ví dụ 01.11(d)", "Ví dụ 01.14(c)" → "Ví dụ 01.15(c)". Dẫn "Ví dụ 01.12(c)" (nếu có) không còn đích: thay bằng Mệnh đề 01.46.
 
 ## 3. Tình huống và bài tập
 
-| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có cần đổi |
-|---|---|---|---|
-| Tình huống 01.1 | Tình huống 01.1 | giữ | deck 05: 2; lec-05: 3 |
-| Tình huống 01.2 | Tình huống 01.2 | trọng số $\theta\to\omega$ | lec-02: 1 |
-| Tình huống 01.3 | Tình huống 01.3 | đầu vào $z\to a$; $P_1,P_2\to\pi^{(1)},\pi^{(2)}$; phần dư $r\to\varrho$ | lec-05: 1 |
-| Bài tập 01.1 | Bài tập 01.1 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.2 | Bài tập 01.2 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.3 | Bài tập 01.3 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.4 | Bài tập 01.4 | biến phụ $s\to\rho$ | — |
-| Bài tập 01.5 | Bài tập 01.5 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.6 | Bài tập 01.6 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.7 | Bài tập 01.7 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.8 | Bài tập 01.8 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.9 | Bài tập 01.9 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.10 | Bài tập 01.10 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.11 | Bài tập 01.11 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.12 | Bài tập 01.12 | giữ ở cuối tiểu mục | — |
-| Bài tập 01.13 | Bài tập 01.13 | **sửa lập luận (a)**: cưỡng bức qua $\lambda_{\min}(X^TX)=4-\sqrt{10}$, tồn tại theo Định lý 01.38, duy nhất theo Định lý 01.34 (không dùng Hệ quả 01.41) | — |
-| Bài tập 01.14 | Bài tập 01.14 | chuyển vào §11.1; bỏ tiền tố "Nhận biết:" | — |
-| Bài tập 01.15 | Bài tập 01.15 | §11.1 | — |
-| Bài tập 01.16 | Bài tập 01.16 | §11.2 | — |
-| Bài tập 01.17 | Bài tập 01.17 | §11.2 | — |
-| Bài tập 01.18 | Bài tập 01.18 | §11.2; mất mát bản lề viết $\ell_{\mathrm{hinge}}$ | — |
-| Bài tập 01.19 | Bài tập 01.19 | §11.3; $R_\mu=J+\mu\lVert w\rVert_2^2$ với $\mu=1$ → $J_\mu$ với $\mu=2$; số giữ | — |
-| Bài tập 01.20 | Bài tập 01.20 | §11.3; $P_1,P_2\to\pi^{(1)},\pi^{(2)}$ | — |
-| Bài tập 01.21 | Bài tập 01.21 | §11.3 | — |
-| `exercises.md` Bài 1–8 | bỏ | lý do theo plan §10, ghi `review-log.md` | không bài khác dẫn số bài |
-| `exercises.md` Bài 9 | Ví dụ 01.17 | — | deck 01 K05/K05B (không dẫn số) |
+| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có cần đổi | Giai đoạn 3 (2026-11-12) |
+|---|---|---|---|---|
+| Tình huống 01.1 | Tình huống 01.1 | giữ | deck 05: 2; lec-05: 3 | không đổi số |
+| Tình huống 01.2 | Tình huống 01.2 | trọng số $\theta\to\omega$ | lec-02: 1 | không đổi số |
+| Tình huống 01.3 | Tình huống 01.3 | đầu vào $z\to a$; $P_1,P_2\to\pi^{(1)},\pi^{(2)}$; phần dư $r\to\varrho$ | lec-05: 1 | không đổi số |
+| Bài tập 01.1 | Bài tập 01.1 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.2 | Bài tập 01.2 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.3 | Bài tập 01.3 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.4 | Bài tập 01.4 | biến phụ $s\to\rho$ | — | không đổi số |
+| Bài tập 01.5 | Bài tập 01.5 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.6 | Bài tập 01.6 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.7 | Bài tập 01.7 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.8 | Bài tập 01.8 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.9 | Bài tập 01.9 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.10 | Bài tập 01.10 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.11 | Bài tập 01.11 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.12 | Bài tập 01.12 | giữ ở cuối tiểu mục | — | không đổi số |
+| Bài tập 01.13 | Bài tập 01.13 | **sửa lập luận (a)**: cưỡng bức qua $\lambda_{\min}(X^TX)=4-\sqrt{10}$, tồn tại theo Định lý 01.38, duy nhất theo Định lý 01.34 (không dùng Hệ quả 01.41) | — | không đổi số |
+| Bài tập 01.14 | Bài tập 01.14 | chuyển vào §11.1; bỏ tiền tố "Nhận biết:" | — | không đổi số |
+| Bài tập 01.15 | Bài tập 01.15 | §11.1 | — | không đổi số |
+| Bài tập 01.16 | Bài tập 01.16 | §11.2 | — | không đổi số |
+| Bài tập 01.17 | Bài tập 01.17 | §11.2 | — | không đổi số |
+| Bài tập 01.18 | Bài tập 01.18 | §11.2; mất mát bản lề viết $\ell_{\mathrm{hinge}}$ | — | không đổi số |
+| Bài tập 01.19 | Bài tập 01.19 | §11.3; $R_\mu=J+\mu\lVert w\rVert_2^2$ với $\mu=1$ → $J_\mu$ với $\mu=2$; số giữ | — | không đổi số |
+| Bài tập 01.20 | Bài tập 01.20 | §11.3; $P_1,P_2\to\pi^{(1)},\pi^{(2)}$ | — | không đổi số |
+| Bài tập 01.21 | Bài tập 01.21 | §11.3 | — | không đổi số |
+| `exercises.md` Bài 1–8 | bỏ | lý do theo plan §10, ghi `review-log.md` | không bài khác dẫn số bài | không có dẫn chiếu (grep lại) |
+| `exercises.md` Bài 9 | Ví dụ 01.17 | — | deck 01 K05/K05B (không dẫn số) | không có dẫn chiếu theo số |
 
 ## 4. Nhãn công thức
 

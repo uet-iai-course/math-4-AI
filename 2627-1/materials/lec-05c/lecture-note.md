@@ -22,11 +22,11 @@ Số hiệu `00.k`, `01.k`, `04.k` và `06b.k` chỉ ghi chú Bài 00, Bài 01, 
 
 - **Ôn tập xác suất** (Bài 00, Mục 6 và Mục 7). Bài 00 nêu định nghĩa không gian xác suất $(\Omega,\mathcal F,\Pr)$, biến ngẫu nhiên, hàm khối xác suất (PMF), mật độ, kỳ vọng, phương sai, độc lập và công thức Bayes, kèm ví dụ và chứng minh các quy tắc tính ở Mệnh đề 00.57 và 00.61, nhưng không nối chúng với gradient lô. Chương này chứng minh các quy tắc đó cho trường hợp rời rạc, thêm các bất đẳng thức tập trung, và dùng chúng để chứng minh các khẳng định về gradient lô của Bài 06.
 - **Giải tích một biến.** Tổng hữu hạn, chuỗi hình học $\sum_{k\ge0}r^k=\tfrac1{1-r}$ với $\lvert r\rvert<1$, hàm mũ và logarit tự nhiên $\ln$. Khai triển Taylor $e^x=\sum_{k\ge0}x^k/k!$ đúng với mọi $x$. Định lý Taylor với phần dư Lagrange: nếu $\varphi$ khả vi hai lần trên một khoảng chứa $0$ và $u$, thì có $\vartheta$ nằm giữa $0$ và $u$ để $\varphi(u)=\varphi(0)+\varphi'(0)u+\tfrac12\varphi''(\vartheta)u^2$. Tích phân một biến chỉ dùng ở Mục 3.3.
-- **Hàm lồi một biến** (Định nghĩa 01.22). Nếu $\varphi$ lồi trên đoạn $[m,M]$ thì đồ thị nằm dưới dây cung: $\varphi(y)\le\frac{M-y}{M-m}\varphi(m)+\frac{y-m}{M-m}\varphi(M)$ với mọi $y\in[m,M]$. Hàm mũ $y\mapsto e^{\lambda y}$ lồi với mọi $\lambda\in\mathbb R$.
+- **Hàm lồi một biến** (Định nghĩa 01.21). Nếu $\varphi$ lồi trên đoạn $[m,M]$ thì đồ thị nằm dưới dây cung: $\varphi(y)\le\frac{M-y}{M-m}\varphi(m)+\frac{y-m}{M-m}\varphi(M)$ với mọi $y\in[m,M]$. Hàm mũ $y\mapsto e^{\lambda y}$ lồi với mọi $\lambda\in\mathbb R$.
 - **Mất mát huấn luyện, rủi ro kỳ vọng và ví dụ ba quan sát** (Định nghĩa 06b.1, Ví dụ 06b.1). Mất mát huấn luyện là trung bình $J(\theta)=\frac1N\sum_{i=1}^N\ell_i(\theta)$ của $N$ mất mát riêng; rủi ro kỳ vọng $R(\theta)$ là mất mát trung bình trên một quan sát mới rút từ phân phối sinh dữ liệu. Với ba quan sát $y=(-1,1,3)$, mô hình hằng $\theta\in\mathbb R$ và $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$, mất mát huấn luyện là $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ với nghiệm $\theta^*=1$.
 - **Gradient lô** (Định nghĩa 06b.10, Định lý 06b.11). Với các chỉ số $I_1,\ldots,I_b$ rút độc lập, đều trên $\{1,\ldots,N\}$, gradient lô $\widehat g=\frac1b\sum_{r=1}^b\nabla\ell_{I_r}(\theta)$ có kỳ vọng $\nabla J(\theta)$ và hiệp phương sai $\Sigma(\theta)/b$. Bài 06b chứng minh định lý này bằng tính tuyến tính của kỳ vọng và tính độc lập; Mục 4 và Mục 6 của chương này dựng hai công cụ đó từ đầu.
 - **Gradient Lipschitz và bước $1/L$** (Định nghĩa 04.17, Bổ đề 04.20). Gradient $\nabla F$ là $L$-Lipschitz nếu $\lVert\nabla F(\theta)-\nabla F(\theta')\rVert\le L\lVert\theta-\theta'\rVert$ với mọi $\theta,\theta'$. Khi đó bước hạ gradient với độ dài bước $\eta\in(0,\tfrac1L]$ làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F(\theta)\rVert^2$.
-- **Hồi quy logistic** (Định nghĩa 01.8, Mệnh đề 01.9). Với nhãn $y\in\{-1,+1\}$, vectơ đặc trưng $a$ và tham số $\theta$, mất mát logistic là $\ln\bigl(1+\exp(-y\,a^T\theta)\bigr)$.
+- **Hồi quy logistic** (Định nghĩa 01.7, Mệnh đề 01.8). Với nhãn $y\in\{-1,+1\}$, vectơ đặc trưng $a$ và tham số $\theta$, mất mát logistic là $\ln\bigl(1+\exp(-y\,a^T\theta)\bigr)$.
 
 ## Bảng ký hiệu
 
@@ -2005,7 +2005,7 @@ $$
 ::: proof Chứng minh Bổ đề 05c.46
 **Bước 1 (trường hợp suy biến).** Vì $\mathbb EY=0$ và $m\le Y\le M$, phần 3 của Mệnh đề 05c.29 cho $m\le0\le M$. Nếu $m=0$ thì $Y\ge0$ có kỳ vọng $0$, nên $Y=0$ với xác suất $1$ và vế trái bằng $1$; trường hợp $M=0$ tương tự. Từ đây giả sử $m<0<M$ và đặt $\alpha=\frac{-m}{M-m}\in(0,1)$.
 
-**Bước 2 (dây cung).** Hàm $y\mapsto e^{\lambda y}$ lồi, nên theo Định nghĩa 01.22 áp cho hai điểm $m$, $M$, với mọi $y\in[m,M]$:
+**Bước 2 (dây cung).** Hàm $y\mapsto e^{\lambda y}$ lồi, nên theo Định nghĩa 01.21 áp cho hai điểm $m$, $M$, với mọi $y\in[m,M]$:
 
 $$
 e^{\lambda y}\le\frac{M-y}{M-m}e^{\lambda m}+\frac{y-m}{M-m}e^{\lambda M}.
@@ -2375,7 +2375,7 @@ thì với xác suất ít nhất $1-\delta$, mọi tọa độ thỏa $\bigl\lv
 Số chiều $d$ đi vào kích thước lô qua $\ln d$, nên tăng số tham số từ $10^3$ lên $10^6$ chỉ làm thừa số logarit $\ln(2d/\delta)$ tăng thêm $\ln1000\approx6{,}9$. Để có cận đồng thời, ta thay thừa số $\ln(2/\delta)$ của Hệ quả 05c.48 bằng $\ln(2d/\delta)$.
 
 ::: example Ví dụ 05c.36 (Gradient hồi quy logistic trên nhiều tọa độ)
-**Dữ kiện.** Hồi quy logistic với nhãn $y_i\in\{-1,+1\}$, vectơ đặc trưng $a_i\in[-1,1]^d$ và mất mát $\ell_i(\theta)=\ln\bigl(1+\exp(-y_ia_i^T\theta)\bigr)$ (Định nghĩa 01.8). Yêu cầu: $d=1000$, $\varepsilon=0{,}1$, $\delta=0{,}05$.
+**Dữ kiện.** Hồi quy logistic với nhãn $y_i\in\{-1,+1\}$, vectơ đặc trưng $a_i\in[-1,1]^d$ và mất mát $\ell_i(\theta)=\ln\bigl(1+\exp(-y_ia_i^T\theta)\bigr)$ (Định nghĩa 01.7). Yêu cầu: $d=1000$, $\varepsilon=0{,}1$, $\delta=0{,}05$.
 
 **Chặn gradient.** Đạo hàm cho $\nabla\ell_i(\theta)=-y_i\,a_i\,s_i$ với $s_i=\frac1{1+\exp(y_ia_i^T\theta)}\in(0,1)$. Vì $\lvert y_i\rvert=1$ và $\lvert[a_i]_j\rvert\le1$, mọi tọa độ nằm trong $(-1,1)$, nên $w=2$.
 

@@ -19,7 +19,7 @@ Số hiệu `00.k`, `01.k`, `04.k`, `05.k`, `05b.k`, `05c.k` chỉ ghi chú Bài
 
 - **Quy tắc dây chuyền dạng Jacobian chuyển vị** (Bài 00, Định lý 00.35). Nếu $\psi:\mathbb R^{d_u}\to\mathbb R^{d_v}$ khả vi với Jacobian $J_\psi(u)\in\mathbb R^{d_v\times d_u}$ và $g:\mathbb R^{d_v}\to\mathbb R$ khả vi, thì $\nabla(g\circ\psi)(u)=J_\psi(u)^\top\nabla g(\psi(u))$.
 - **Khai triển Taylor bậc hai và phép kiểm tra bậc hai bằng Hessian** (Bài 00, Định lý 00.40 và 00.43). Với $F$ khả vi liên tục hai lần, $F(\theta+s)=F(\theta)+\nabla F(\theta)^\top s+\tfrac12s^\top\nabla^2F(\theta)s+o(\lVert s\rVert^2)$; tại điểm có $\nabla F(\theta)=0$ và $\nabla^2F(\theta)\succ0$, $\theta$ là cực tiểu địa phương chặt.
-- **Tính lồi** (Định nghĩa 01.22; Định lý 01.31(b); Hệ quả 01.27; Hệ quả 01.34). Hợp của một hàm lồi với một ánh xạ affine là hàm lồi. Với $F$ lồi khả vi, mọi điểm có $\nabla F(\theta)=0$ là cực tiểu toàn cục. Tập nghiệm của bài toán cực tiểu hóa một hàm lồi là tập lồi.
+- **Tính lồi** (Định nghĩa 01.21; Định lý 01.30(b); Hệ quả 01.26; Hệ quả 01.33). Hợp của một hàm lồi với một ánh xạ affine là hàm lồi. Với $F$ lồi khả vi, mọi điểm có $\nabla F(\theta)=0$ là cực tiểu toàn cục. Tập nghiệm của bài toán cực tiểu hóa một hàm lồi là tập lồi.
 - **Gradient Lipschitz và bổ đề giảm** (Định nghĩa 04.17; Bổ đề 04.18, 04.20; Bổ đề 05b.6). Nếu $\nabla F$ là $L$-Lipschitz thì $F(\theta')\le F(\theta)+\nabla F(\theta)^\top(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert^2$, và một bước hạ gradient với bước $\eta\in(0,\tfrac2L)$ làm $F$ giảm.
 - **Kết luận của Bài 05.** Một bước hạ gradient trên $n$ mẫu với $d$ tham số tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$ (Mệnh đề 05.35). Dữ liệu XOR không tách được bằng điểm số affine (Mệnh đề 05.40), và số đơn thức bậc không quá $q$ của $d_0$ biến là $\binom{d_0+q}q$ (Mệnh đề 05.41). Tập xác thực, tập kiểm thử và dừng sớm được định nghĩa ở Định nghĩa 05.6 và Định nghĩa 05.38. Chính quy hóa bậc hai làm mất mát logistic lồi mạnh (Định lý 05.26).
 - **Bài 05b** (Định nghĩa 05b.5, 05b.31; Định lý 05b.36, 05b.39, 05b.41, 05b.43; Hệ quả 05b.44). Các giả thiết có tên được phát biểu lại tại chỗ dùng đầu: H0 (bị chặn dưới) và H2 (gradient Lipschitz) ở Định lý 06.20, H3 (lồi mạnh) và H4 (có điểm cực tiểu) ở Định lý 06.31, H6 (không chệch), H6a (chặn mômen bậc hai) và H6b (chặn phương sai) ở Định nghĩa 06.26. Bốn định lý hội tụ trên được phát biểu lại đầy đủ ở Mục 4 và 6, thành Định lý 06.20 (Định lý 05b.41), Định lý 06.31 (Định lý 05b.36), Định lý 06.32 (Định lý 05b.39) và Định lý 06.34 (Định lý 05b.43).
@@ -377,7 +377,7 @@ F(\theta)=\frac1n\sum_{i=1}^n\frac12\bigl(f(x_i;\theta)-y_i\bigr)^2 .
 \tag{2.2}
 $$
 
-Với mô hình tuyến tính $f=w^\top x+c$, mỗi số hạng là hợp của hàm lồi $t\mapsto\tfrac12(t-y_i)^2$ với ánh xạ affine $\theta\mapsto w^\top x_i+c$, nên lồi theo $\theta=(w,c)$ (Định lý 01.31(b)), và $F$ lồi như một tổng không âm của các hàm lồi. Với mạng, $f$ chứa tích của tham số tầng ra $w_2$ với kích hoạt $\sigma(W_1x+b_1)$ của tham số tầng ẩn, nên $\theta\mapsto f(x_i;\theta)$ không affine, và quy tắc hợp thành không áp dụng (Boyd và Vandenberghe, 2004, mục 3.2.2). "Không được bảo đảm lồi" chưa phải "không lồi"; để chứng minh $F$ không lồi, ta cần một phản ví dụ, và phản ví dụ đến từ một tính chất đối xứng của mạng.
+Với mô hình tuyến tính $f=w^\top x+c$, mỗi số hạng là hợp của hàm lồi $t\mapsto\tfrac12(t-y_i)^2$ với ánh xạ affine $\theta\mapsto w^\top x_i+c$, nên lồi theo $\theta=(w,c)$ (Định lý 01.30(b)), và $F$ lồi như một tổng không âm của các hàm lồi. Với mạng, $f$ chứa tích của tham số tầng ra $w_2$ với kích hoạt $\sigma(W_1x+b_1)$ của tham số tầng ẩn, nên $\theta\mapsto f(x_i;\theta)$ không affine, và quy tắc hợp thành không áp dụng (Boyd và Vandenberghe, 2004, mục 3.2.2). "Không được bảo đảm lồi" chưa phải "không lồi"; để chứng minh $F$ không lồi, ta cần một phản ví dụ, và phản ví dụ đến từ một tính chất đối xứng của mạng.
 
 ::: example Ví dụ 06.6 (Đổi chỗ hai đơn vị ẩn)
 **Dữ kiện.** Tham số $\theta_A$ của Ví dụ 06.4: $W_1=\begin{pmatrix}1&-1\\-1&1\end{pmatrix}$, $b_1=(0,0)$, $w_2=(1,1)$, $b_2=0$, với $f(x;\theta_A)=\lvert x_1-x_2\rvert$ trên bốn điểm XOR.
@@ -425,7 +425,7 @@ Mệnh đề 06.8 nói rằng ánh xạ $\theta\mapsto f(\cdot;\theta)$ từ tha
 
 Một hệ quả cho khởi tạo cũng suy ra trực tiếp: nếu hai đơn vị ẩn được khởi tạo giống hệt nhau, chúng nhận cùng gradient và giữ giống nhau sau mọi bước; khởi tạo được trình bày ở Bài 06b.
 
-Từ một cực tiểu toàn cục, đối xứng hoán vị sinh ra một cực tiểu toàn cục khác. Ghép điều này với tính lồi của tập nghiệm (Hệ quả 01.34), ta được một phép kiểm tra tính lồi.
+Từ một cực tiểu toàn cục, đối xứng hoán vị sinh ra một cực tiểu toàn cục khác. Ghép điều này với tính lồi của tập nghiệm (Hệ quả 01.33), ta được một phép kiểm tra tính lồi.
 
 ::: proposition Mệnh đề 06.9 (Phép kiểm tra tính lồi bằng đối xứng hoán vị)
 **Giả thiết.** $F$ là rủi ro thực nghiệm (2.2) của một mạng hai tầng; $F$ đạt cực tiểu toàn cục tại $\theta^*$; hai đơn vị ẩn $j\ne j'$ của $\theta^*$ có tham số khác nhau, tức $([W_1]_{j,:},[b_1]_j,[w_2]_j)\ne([W_1]_{j',:},[b_1]_{j'},[w_2]_{j'})$; $P$ là ma trận hoán vị đổi chỗ $j$ và $j'$.
@@ -444,7 +444,7 @@ Từ một cực tiểu toàn cục, đối xứng hoán vị sinh ra một cự
 ::: proof Chứng minh Mệnh đề 06.9
 **Bước 1 (kết luận 1).** Theo Mệnh đề 06.8, $F(P\theta^*)=F(\theta^*)=\min F$. Phép đổi chỗ $j$, $j'$ thay các hàng $j$, $j'$ của bộ $(W_1,b_1,w_2)$ cho nhau; vì hai hàng đó khác nhau, $P\theta^*\ne\theta^*$.
 
-**Bước 2 (kết luận 2).** Nếu $F$ lồi, tập nghiệm $\{\theta: F(\theta)=\min F\}$ là tập lồi (Hệ quả 01.34). Tập này chứa $\theta^*$ và $P\theta^*$, nên chứa cả đoạn nối hai điểm.
+**Bước 2 (kết luận 2).** Nếu $F$ lồi, tập nghiệm $\{\theta: F(\theta)=\min F\}$ là tập lồi (Hệ quả 01.33). Tập này chứa $\theta^*$ và $P\theta^*$, nên chứa cả đoạn nối hai điểm.
 
 **Bước 3 (kết luận 3).** Điểm $(1-t)\theta^*+tP\theta^*$ thuộc đoạn nối nhưng có giá trị lớn hơn $\min F$, trái với kết luận 2. Vậy $F$ không lồi. $\square$
 :::
@@ -479,7 +479,7 @@ $$
 
 ![Trục hoành t từ 0 đến 1, trục tung F(θ(t)) từ 0 đến 0,3. Đường liền bằng t² trên [0, ½] và (1 − t)² trên [½, 1], đạt đỉnh ¼ tại t = ½, nơi W₁ = 0. Hai đầu mút θ_A (t = 0) và θ_B (t = 1) có F = 0. Dây cung nét đứt nối hai cực tiểu nằm trên trục F = 0, dưới đồ thị, nên F không lồi.](img/lec-06/xor-symmetric-path.svg)
 
-Trên hình, dây cung nối hai điểm $(0,0)$ và $(1,0)$ của đồ thị nằm dưới đồ thị tại mọi $t\in(0,1)$, trái với định nghĩa hàm lồi (Định nghĩa 01.22), vốn đòi đồ thị nằm dưới dây cung. Đỉnh $\tfrac14$ đạt tại trung điểm, nơi hai đơn vị ẩn triệt tiêu nhau.
+Trên hình, dây cung nối hai điểm $(0,0)$ và $(1,0)$ của đồ thị nằm dưới đồ thị tại mọi $t\in(0,1)$, trái với định nghĩa hàm lồi (Định nghĩa 01.21), vốn đòi đồ thị nằm dưới dây cung. Đỉnh $\tfrac14$ đạt tại trung điểm, nơi hai đơn vị ẩn triệt tiêu nhau.
 
 ::: remark Nhận xét 06.10 (Phạm vi của kết luận không lồi)
 1. **Không phụ thuộc mất mát bình phương.** Với nhãn $\pm1$ và mất mát logistic $\log(1+e^{-y_\pm f})$, hai tham số $\theta_A$, $\theta_B$ cho cùng giá trị $F=\tfrac12\bigl(\log2+\log(1+e^{-1})\bigr)\approx0{,}503$. Trung điểm của chúng cho $f\equiv0$ và $F=\log2\approx0{,}693$, lớn hơn trung bình hai đầu mút, nên $F$ cũng không lồi.
@@ -517,7 +517,7 @@ $$
 F(t)=\frac14\cdot2\cdot\frac12\bigl(1-(1-2t)^2\bigr)^2=\frac14\bigl(1-(1-2t)^2\bigr)^2 .
 $$
 
-Tại $t=\tfrac12$, $F=\tfrac14$; tại $t=\tfrac14$, $F=\tfrac14\cdot(\tfrac34)^2=\tfrac9{64}$. Hai đầu mút là hai cực tiểu toàn cục với $F=0$ (câu 1 và câu 2). Nếu $F$ lồi, tập nghiệm là tập lồi (Hệ quả 01.34) và chứa cả đoạn nối, nhưng $F(\tfrac12)=\tfrac14>0$. Vậy $F$ không lồi.
+Tại $t=\tfrac12$, $F=\tfrac14$; tại $t=\tfrac14$, $F=\tfrac14\cdot(\tfrac34)^2=\tfrac9{64}$. Hai đầu mút là hai cực tiểu toàn cục với $F=0$ (câu 1 và câu 2). Nếu $F$ lồi, tập nghiệm là tập lồi (Hệ quả 01.33) và chứa cả đoạn nối, nhưng $F(\tfrac12)=\tfrac14>0$. Vậy $F$ không lồi.
 
 **Kiểm tra.** Ở đây đối xứng là phép đổi dấu, không phải hoán vị: với một đơn vị, Mệnh đề 06.8 chỉ cho phép hoán vị đồng nhất, còn tính chẵn của $\sigma$ sinh ra bản sao $-W_1$.
 :::
@@ -798,7 +798,7 @@ Như vậy, lan truyền ngược (Thuật toán 06.1) tính đúng gradient c�
 
 ## 4. Điểm dừng và bảo đảm của gradient khi không lồi
 
-Trong Bài 04, tiêu chí dừng $\lVert\nabla F(\theta_k)\rVert\le\varepsilon$ có một ý nghĩa rõ: với $F$ lồi khả vi, bất đẳng thức tiếp tuyến $F(\theta')\ge F(\theta)+\nabla F(\theta)^\top(\theta'-\theta)$ biến $\nabla F(\theta)=0$ thành $F(\theta')\ge F(\theta)$ với mọi $\theta'$ (Hệ quả 01.27), và gradient nhỏ kéo theo giá trị gần tối ưu. Không có tính lồi, bất đẳng thức tiếp tuyến mất đi, nên chúng ta phải xác định lại gradient bằng $0$ hoặc gradient nhỏ chứng nhận được điều gì. Chúng ta phân loại các điểm dừng trước, rồi xác định bảo đảm còn lại của hạ gradient.
+Trong Bài 04, tiêu chí dừng $\lVert\nabla F(\theta_k)\rVert\le\varepsilon$ có một ý nghĩa rõ: với $F$ lồi khả vi, bất đẳng thức tiếp tuyến $F(\theta')\ge F(\theta)+\nabla F(\theta)^\top(\theta'-\theta)$ biến $\nabla F(\theta)=0$ thành $F(\theta')\ge F(\theta)$ với mọi $\theta'$ (Hệ quả 01.26), và gradient nhỏ kéo theo giá trị gần tối ưu. Không có tính lồi, bất đẳng thức tiếp tuyến mất đi, nên chúng ta phải xác định lại gradient bằng $0$ hoặc gradient nhỏ chứng nhận được điều gì. Chúng ta phân loại các điểm dừng trước, rồi xác định bảo đảm còn lại của hạ gradient.
 
 ### 4.1 Điểm dừng và phân loại điểm dừng
 
@@ -820,8 +820,8 @@ Cho $F:\mathbb R^p\to\mathbb R$ khả vi và $\theta\in\mathbb R^p$.
 
 | | $F$ lồi, khả vi | $F$ không lồi |
 |---|---|---|
-| $\nabla F(\theta)=0$ chứng nhận | cực tiểu toàn cục (Hệ quả 01.27) | một điểm dừng: cực tiểu địa phương, cực đại địa phương hoặc điểm yên ngựa |
-| tập cực tiểu toàn cục | tập lồi (Hệ quả 01.34) | có thể không lồi; với mạng, chứa $\theta^*$ và $P\theta^*$ nhưng không chứa trọn đoạn nối (Ví dụ 06.7) |
+| $\nabla F(\theta)=0$ chứng nhận | cực tiểu toàn cục (Hệ quả 01.26) | một điểm dừng: cực tiểu địa phương, cực đại địa phương hoặc điểm yên ngựa |
+| tập cực tiểu toàn cục | tập lồi (Hệ quả 01.33) | có thể không lồi; với mạng, chứa $\theta^*$ và $P\theta^*$ nhưng không chứa trọn đoạn nối (Ví dụ 06.7) |
 | $\lVert\nabla F(\theta)\rVert\le\varepsilon$ chứng nhận | giá trị gần tối ưu khi thêm lồi mạnh | chỉ một điểm dừng $\varepsilon$-xấp xỉ |
 
 Nhầm lẫn thường gặp là coi "gradient bằng $0$" đồng nghĩa với "đã tối ưu". Trong Mục 3, mẫu $x=(0,0)$ có thể cho $\nabla_{W_1}\ell=0$ chỉ vì $x=0$, và đơn vị có tiền kích hoạt âm cho gradient bằng $0$ theo các tham số của nó; cả hai không nói gì về tính tối ưu.
@@ -2032,7 +2032,7 @@ Trong ba tình huống sau, chúng ta áp các kết quả của chương lên b
 
 **Kiểm tra giả thiết của Định lý 06.20.** H0 đúng với $F_{\inf}=0$. Tới bước dừng $k=8$, và cả tại $\theta_9$, mọi điểm lặp của hai lần chạy dưới đây nằm trong hình vuông $C=[-0{,}011;\ 0{,}011]^2$. Trên $C$, $u^2,v^2\le0{,}000121$ và $\lvert2uv-1\rvert\le1{,}000242$, nên theo phép chặn tổng hàng như Ví dụ 06.14, mọi trị riêng của Hessian có trị tuyệt đối không vượt $1{,}0004$. Vậy H2 đúng trên $C$ với $L=1{,}0004$, và bước $\eta=\tfrac12$ nhỏ hơn $\tfrac1L$.
 
-Với bước $\eta\le\tfrac1L$ thay cho đúng $\tfrac1L$, Bổ đề 06.19 cho mức giảm ít nhất $\tfrac\eta2\lVert\nabla F(\theta_k)\rVert^2$, nên chứng minh của Định lý 06.20 cho $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le\tfrac{2\Delta_0}{\eta K}$ với mọi $K\le9$. Giả thiết bị thiếu là tính lồi: theo Ví dụ 06.12, $F$ không lồi, nên Hệ quả 01.27 không áp dụng.
+Với bước $\eta\le\tfrac1L$ thay cho đúng $\tfrac1L$, Bổ đề 06.19 cho mức giảm ít nhất $\tfrac\eta2\lVert\nabla F(\theta_k)\rVert^2$, nên chứng minh của Định lý 06.20 cho $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le\tfrac{2\Delta_0}{\eta K}$ với mọi $K\le9$. Giả thiết bị thiếu là tính lồi: theo Ví dụ 06.12, $F$ không lồi, nên Hệ quả 01.26 không áp dụng.
 
 **Lần chạy thứ nhất, đúng trên đường chéo phụ.** Với $u=t$, $v=-t$, gradient là $\bigl(t(t^2+1),\,-t(t^2+1)\bigr)$, nên dãy ở mãi trên đường chéo phụ với $t_{k+1}=t_k-\tfrac12t_k(t_k^2+1)=\tfrac12t_k(1-t_k^2)$. Từ $t_0=0{,}01$: $t_1\approx5{,}0\cdot10^{-3}$, $t_{10}\approx9{,}8\cdot10^{-6}$, và $t_k\to0$. Khi đó $\lVert\nabla F\rVert^2=2t_k^2(1+t_k^2)^2\to0$: tiêu chí dừng thỏa lần đầu tại $k=8$ ($\lVert\nabla F\rVert^2\approx1{,}2\cdot10^{-8}$ tại $k=7$ và $3{,}1\cdot10^{-9}$ tại $k=8$), với $F\approx0{,}5$.
 
@@ -2046,7 +2046,7 @@ Với bước $\eta\le\tfrac1L$ thay cho đúng $\tfrac1L$, Bổ đề 06.19 cho
 
 **Kiểm tra lại.** Với $t_0=0{,}01$: $t_1=\tfrac12\cdot0{,}01\cdot(1-10^{-4})=0{,}0049995$.
 
-**Dẫn ngược.** Định nghĩa 06.16 (điểm dừng xấp xỉ, điểm yên ngựa); Mệnh đề 06.17 (phân loại tại $(0,0)$); Định lý 06.20 (giả thiết H0, H2 được kiểm tra ở bước đầu); Hệ quả 01.27 (giả thiết lồi bị thiếu).
+**Dẫn ngược.** Định nghĩa 06.16 (điểm dừng xấp xỉ, điểm yên ngựa); Mệnh đề 06.17 (phân loại tại $(0,0)$); Định lý 06.20 (giả thiết H0, H2 được kiểm tra ở bước đầu); Hệ quả 01.26 (giả thiết lồi bị thiếu).
 :::
 
 ::: application Tình huống 06.3 (Hồi quy có chính quy hóa trên mười triệu mẫu)
@@ -2142,7 +2142,7 @@ Mỗi phát biểu ứng với đúng một kết quả hoặc ví dụ của ch
 
 ::: solution
 1. **Sai.** Mạng tuyến tính một đơn vị là mạng hai tầng với $d=m=1$; gốc $(0,0)$ của $F(u,v)=\tfrac12(uv-1)^2$ có $\nabla F=0$ nhưng là điểm yên ngựa (Ví dụ 06.13, Mệnh đề 06.17).
-2. **Sai.** Cần $\theta\mapsto f(x_i;\theta)$ affine (Định lý 01.31(b)). Với mạng, $F$ không lồi (Ví dụ 06.7, Nhận xét 06.10).
+2. **Sai.** Cần $\theta\mapsto f(x_i;\theta)$ affine (Định lý 01.30(b)). Với mạng, $F$ không lồi (Ví dụ 06.7, Nhận xét 06.10).
 3. **Đúng.** Kết luận 2 của Định lý 06.25.
 4. **Sai.** Định lý 06.31 chỉ cho cận $(1-\eta\mu)^kD^2+\tfrac{\eta\sigma^2}\mu$, và trên ví dụ ba quan sát với bước $0{,}1$, giá trị chính xác tiến về $\tfrac8{57}>0$ (Ví dụ 06.22). Cần bước giảm dần (Định lý 06.32).
 5. **Sai.** Định lý 06.20 chặn $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2$; Ví dụ 06.16 có bước được chứng nhận với $F-F_{\inf}\approx0{,}5$ (Nhận xét 06.21).
@@ -2287,6 +2287,6 @@ Dưới tổng ngân sách cố định, nhóm lớn nhất mà bộ nhớ cho p
 - Léon Bottou, Frank E. Curtis và Jorge Nocedal (2018), "Optimization Methods for Large-Scale Machine Learning", *SIAM Review* 60(2), 223–311, mục 4. Đọc thêm cho Mục 6: định lý SGD với bước cố định và bước giảm dần cho hàm lồi mạnh và không lồi.
 - Ghi chú Bài 05b: Định nghĩa 05b.5, 05b.31; Bổ đề 05b.6, 05b.7, 05b.32; Hệ quả 05b.10, 05b.38, 05b.44; Định lý 05b.16, 05b.18, 05b.36, 05b.39, 05b.41, 05b.43; Ví dụ 05b.19, 05b.25. Các Định lý 06.20, 06.31, 06.32, 06.34 và Hệ quả 06.35 là các kết quả này phát biểu lại với ký hiệu của chương.
 - Ghi chú Bài 05c, Mục 6: Định nghĩa 05c.51; Định lý 05c.52, 05c.53; Mệnh đề 05c.56; Nhận xét 05c.58; Mục 6.6 và 6.7. Định lý 06.22 và 06.25 là hai định lý đầu phát biểu lại.
-- Ghi chú Bài 05: Định nghĩa 05.5, 05.6, 05.20, 05.38; Mệnh đề 05.35, 05.39, 05.40, 05.41; Định lý 05.22, 05.26, 05.30, 05.33; Ví dụ 05.24, 05.25; Nhận xét 05.42. Ghi chú Bài 01 (Định nghĩa 01.22; Định lý 01.31; Hệ quả 01.27, 01.34) và Bài 04 (Định nghĩa 04.17; Bổ đề 04.18, 04.20) là tiên quyết trực tiếp.
+- Ghi chú Bài 05: Định nghĩa 05.5, 05.6, 05.20, 05.38; Mệnh đề 05.35, 05.39, 05.40, 05.41; Định lý 05.22, 05.26, 05.30, 05.33; Ví dụ 05.24, 05.25; Nhận xét 05.42. Ghi chú Bài 01 (Định nghĩa 01.21; Định lý 01.30; Hệ quả 01.26, 01.33) và Bài 04 (Định nghĩa 04.17; Bổ đề 04.18, 04.20) là tiên quyết trực tiếp.
 
 Mọi mệnh đề, bổ đề, định lý và hệ quả của chương đều có chứng minh trong chương. Các định lý phát biểu lại từ Bài 05b và 05c được chứng minh lại ngắn gọn, với cùng hằng số như chứng minh gốc. Mọi số liệu của các ví dụ được tính lại từ công thức đã nêu bằng phân số chính xác hoặc đệ quy kỳ vọng; không có mô phỏng ngẫu nhiên.

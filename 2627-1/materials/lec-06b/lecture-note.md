@@ -24,8 +24,8 @@ Số hiệu `00.k`, `01.k`, `04.k`, `05b.k` và `05c.k` chỉ ghi chú Bài 00, 
 - **Giải tích** (Bài 00, Định lý 00.40, 00.35 và 00.42). Với $F:\mathbb R^p\to\mathbb R$ khả vi hai lần liên tục, $F(\theta+\Delta)=F(\theta)+\nabla F(\theta)^T\Delta+\tfrac12\Delta^T\nabla^2F(\theta)\Delta+o(\lVert\Delta\rVert_2^2)$, và với $F$ bậc hai đẳng thức đúng không có phần dư. Đạo hàm của hàm hợp là tích các đạo hàm dọc chuỗi hợp (quy tắc dây chuyền). Nếu $\theta$ là cực tiểu địa phương của $F$ khả vi thì $\nabla F(\theta)=0$.
 - **Xác suất** (Bài 00, Mệnh đề 00.66, 00.57, Định nghĩa 00.67 và Mệnh đề 00.68; Định lý 05c.35). Kỳ vọng tuyến tính; $\operatorname{Var}(aX)=a^2\operatorname{Var}X$; nếu $X$, $Y$ độc lập thì $\mathbb E[XY]=\mathbb EX\,\mathbb EY$. Hiệp phương sai của vectơ ngẫu nhiên $U$ là $\mathbb E[(U-\mathbb EU)(U-\mathbb EU)^T]$, có vết bằng $\mathbb E\lVert U-\mathbb EU\rVert_2^2$. Trung bình của $n$ biến không tương quan đôi một, cùng kỳ vọng và cùng phương sai có cùng kỳ vọng và phương sai chia cho $n$.
 - **Số phức.** Số phức $\zeta=\operatorname{Re}\zeta+\mathrm i\operatorname{Im}\zeta$, với $\mathrm i$ là đơn vị ảo, $\mathrm i^2=-1$, có môđun $\lvert\zeta\rvert=\sqrt{(\operatorname{Re}\zeta)^2+(\operatorname{Im}\zeta)^2}$ và viết được dưới dạng $\lvert\zeta\rvert(\cos\varpi+\mathrm i\sin\varpi)$, với $\varpi$ là góc của $\zeta$; môđun của tích bằng tích các môđun. Đa thức bậc hai hệ số thực có hai nghiệm phức liên hợp khi biệt thức âm.
-- **Tính lồi** (Hệ quả 01.27, Định lý 01.30, Định nghĩa 01.39, Nhận xét 01.40, Mệnh đề 04.2(a)). Với $F$ lồi khả vi trên $\mathbb R^p$, $\nabla F(\theta^*)=0$ vừa cần vừa đủ cho cực tiểu toàn cục. Hàm khả vi hai lần là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi mạnh với hằng số $\mu>0$ khi và chỉ khi $\nabla^2F\succeq\mu \mathrm I$ mọi nơi.
-- **Mất mát logistic** (Định nghĩa 01.8, Mệnh đề 01.9). Với biên có dấu $m$, mất mát $\log(1+\exp(-m))$ có đạo hàm bậc hai thuộc $(0,\tfrac14]$.
+- **Tính lồi** (Hệ quả 01.26, Định lý 01.29, Định nghĩa 01.39, Nhận xét 01.40, Mệnh đề 04.2(a)). Với $F$ lồi khả vi trên $\mathbb R^p$, $\nabla F(\theta^*)=0$ vừa cần vừa đủ cho cực tiểu toàn cục. Hàm khả vi hai lần là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi mạnh với hằng số $\mu>0$ khi và chỉ khi $\nabla^2F\succeq\mu \mathrm I$ mọi nơi.
+- **Mất mát logistic** (Định nghĩa 01.7, Mệnh đề 01.8). Với biên có dấu $m$, mất mát $\log(1+\exp(-m))$ có đạo hàm bậc hai thuộc $(0,\tfrac14]$.
 - **Gradient Lipschitz** (Định nghĩa 04.17, Bổ đề 04.18, Nhận xét 04.19). $\nabla F$ là $L$-Lipschitz nếu $\lVert\nabla F(\theta)-\nabla F(\theta')\rVert_2\le L\lVert\theta-\theta'\rVert_2$ với mọi $\theta,\theta'$; khi đó $F(\theta')\le F(\theta)+\nabla F(\theta)^T(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert_2^2$. Với $F$ lồi khả vi hai lần, $\nabla^2F\preceq L\mathrm I$ mọi nơi là đủ.
 - **Hạ gradient** (gradient descent; Bổ đề 04.20, Định lý 04.26, Nhận xét 04.13). Với bước $\eta\in(0,\tfrac1L]$, một bước gradient làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F\rVert_2^2$; nếu thêm $F$ lồi mạnh thì bước $\tfrac1L$ cho sai số co theo hệ số $1-\mu/L$. Trên hàm bậc hai, bước cố định nhân thành phần theo vectơ riêng thứ $i$ của Hessian với $1-\eta\lambda_i$.
 - **Hai ví dụ của Bài 04.** Ví dụ 04.7 chạy bước $\tfrac14$ trên chính hàm $q$ của Mục 3. Tình huống 04.3 cho hàm $\tfrac12(ab-1)^2$ có gốc là điểm yên ngựa, nơi hạ gradient xuất phát trên đường chéo $a=-b$ dừng lại.
@@ -496,7 +496,7 @@ So với Mệnh đề 04.2(a), mệnh đề này không cần tính lồi nhưng
 
 **Hessian.** $\nabla^2\psi=\operatorname{diag}(2,-2)$, với $\lambda_{\min}=-2$ âm và $\lambda_{\max}=2$ dương. Theo Mệnh đề 06b.8(c), gốc là điểm yên ngựa.
 
-**Kiểm tra lại.** Trực tiếp theo định nghĩa: với $u_1\ne0$, $\psi(u_1,0)=u_1^2$ lớn hơn $\psi(0,0)=0$; với $u_2\ne0$, $\psi(0,u_2)=-u_2^2<0$. Mọi lân cận của gốc chứa cả hai loại điểm. Hàm $\psi$ không lồi vì Hessian có giá trị riêng âm (Định lý 01.30).
+**Kiểm tra lại.** Trực tiếp theo định nghĩa: với $u_1\ne0$, $\psi(u_1,0)=u_1^2$ lớn hơn $\psi(0,0)=0$; với $u_2\ne0$, $\psi(0,u_2)=-u_2^2<0$. Mọi lân cận của gốc chứa cả hai loại điểm. Hàm $\psi$ không lồi vì Hessian có giá trị riêng âm (Định lý 01.29).
 :::
 
 ::: example Ví dụ 06b.6 (Hai cực tiểu cùng giá trị)
@@ -2560,7 +2560,7 @@ Tám bài đánh giá có đặc trưng $x_i$, số giờ ôn tập đã chuẩn
 
 **Mô hình hóa.**
 
-Đặt $m_i=y_ix_i$, biên có dấu của Định nghĩa 01.8 tính theo $\theta=1$; tám giá trị là $2,2,2,2,1,1,-1,-1$. Mất mát huấn luyện là
+Đặt $m_i=y_ix_i$, biên có dấu của Định nghĩa 01.7 tính theo $\theta=1$; tám giá trị là $2,2,2,2,1,1,-1,-1$. Mất mát huấn luyện là
 
 $$
 J(\theta)=\frac18\sum_{i=1}^8\log\bigl(1+\exp(-m_i\theta)\bigr),
@@ -2570,7 +2570,7 @@ bài toán không ràng buộc trên $\mathbb R$. Gradient mẫu là $g_i(\theta
 
 **Kiểm tra giả thiết.**
 
-1. Lồi: theo Mệnh đề 01.9(c), mỗi số hạng có đạo hàm bậc hai dương, nên $J$ lồi chặt.
+1. Lồi: theo Mệnh đề 01.8(c), mỗi số hạng có đạo hàm bậc hai dương, nên $J$ lồi chặt.
 2. Gradient Lipschitz: $J''(\theta)=\tfrac18\sum_im_i^2\sigma(m_i\theta)\sigma(-m_i\theta)$, và mỗi tích $\sigma(m_i\theta)\sigma(-m_i\theta)$ không vượt $\tfrac14$, nên $J''(\theta)\le\tfrac14\cdot\tfrac{20}8=0{,}625$; theo Nhận xét 04.19, $L=0{,}625$.
 3. Tồn tại nghiệm: có biên dương và biên âm, nên $J(\theta)\to\infty$ khi $\theta\to\pm\infty$. Phương pháp Newton của Bài 04 cho $\theta^*\approx1{,}0120$ và $J(\theta^*)\approx0{,}47007$.
 4. Gradient lô không chệch theo Định lý 06b.11 với chỉ số rút đều, độc lập, có hoàn lại.
@@ -2638,7 +2638,7 @@ $$
 
 **Giới hạn.** Với $N$ lớn, $\Sigma$ và $\lVert\nabla J\rVert_2$ chỉ ước lượng được từ một lô thử, và ngưỡng (2.5) đổi theo $\theta$.
 
-**Dẫn ngược lý thuyết.** Mệnh đề 01.9 và Nhận xét 04.19 ở bước kiểm tra giả thiết; Định lý 06b.11 và Hệ quả 06b.12 cho kỳ vọng, phương sai; Mệnh đề 06b.14 và ngưỡng (2.5) cho kích thước lô; Ví dụ 06b.14 và Nhận xét 06b.16 cho hành vi gần nghiệm.
+**Dẫn ngược lý thuyết.** Mệnh đề 01.8 và Nhận xét 04.19 ở bước kiểm tra giả thiết; Định lý 06b.11 và Hệ quả 06b.12 cho kỳ vọng, phương sai; Mệnh đề 06b.14 và ngưỡng (2.5) cho kích thước lô; Ví dụ 06b.14 và Nhận xét 06b.16 cho hành vi gần nghiệm.
 :::
 
 ::: application Tình huống 06b.2 (Momentum trên hồi quy tuyến tính có số điều kiện 100)

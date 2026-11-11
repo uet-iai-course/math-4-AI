@@ -27,8 +27,8 @@ Sau chương này, người học có thể:
 Số hiệu `01.k`, `02.k`, `03.k`, `06c.k` chỉ ghi chú Bài 01, Bài 02, Bài 03 và Bài 06c.
 
 - **Đại số tuyến tính.** Trong $\mathbb R^m$ có nhiều nhất $m$ vector độc lập tuyến tính; ma trận vuông có định thức khác $0$ thì khả nghịch và hệ tương ứng có nghiệm duy nhất. Định lý số chiều: hạng của các vector $a_i\in\mathbb R^n$, $i\in S$, cộng số chiều của không gian nghiệm $\{d\mid a_i^Td=0,\ i\in S\}$ bằng $n$; đặc biệt, hạng nhỏ hơn $n$ thì có $d\ne0$ với $a_i^Td=0$ cho mọi $i\in S$. Mỗi phép biến đổi hàng sơ cấp (chia một hàng cho một số khác $0$, trừ một bội của hàng này khỏi hàng khác) tương đương với nhân trái với một ma trận khả nghịch.
-- **Tập lồi** (Định nghĩa 01.18, Mệnh đề 01.19(c), 01.20(a)). Tập lồi chứa mọi tổ hợp lồi $\lambda x'+(1-\lambda)x''$, $\lambda\in[0,1]$, của hai điểm của nó; nửa không gian là tập lồi, và giao của các tập lồi là tập lồi.
-- **Bài toán tối ưu, cực tiểu, hàm lồi** (Định nghĩa 01.12, 01.13, Định lý 01.31, Hệ quả 01.34, Định lý 01.35). Nghiệm là điểm khả thi đạt giá trị tối ưu; cực tiểu toàn cục là khái niệm về giá trị hàm, khác điểm cực biên của Mục 3. Tổng các hàm lồi và cực đại các hàm affine là hàm lồi; tập nghiệm của bài toán lồi là tập lồi, và hàm lồi chặt (còn gọi là lồi nghiêm ngặt) có nhiều nhất một điểm cực tiểu. Bài toán cực đại đổi về bài toán cực tiểu hàm đối dấu, giữ tập nghiệm.
+- **Tập lồi** (Định nghĩa 01.17, Mệnh đề 01.18(c), 01.19(a)). Tập lồi chứa mọi tổ hợp lồi $\lambda x'+(1-\lambda)x''$, $\lambda\in[0,1]$, của hai điểm của nó; nửa không gian là tập lồi, và giao của các tập lồi là tập lồi.
+- **Bài toán tối ưu, cực tiểu, hàm lồi** (Định nghĩa 01.11, 01.12, Định lý 01.30, Hệ quả 01.33, Định lý 01.34). Nghiệm là điểm khả thi đạt giá trị tối ưu; cực tiểu toàn cục là khái niệm về giá trị hàm, khác điểm cực biên của Mục 3. Tổng các hàm lồi và cực đại các hàm affine là hàm lồi; tập nghiệm của bài toán lồi là tập lồi, và hàm lồi chặt (còn gọi là lồi nghiêm ngặt) có nhiều nhất một điểm cực tiểu. Bài toán cực đại đổi về bài toán cực tiểu hàm đối dấu, giữ tập nghiệm.
 - **Quy hoạch tuyến tính** (Định nghĩa 02.9, Mệnh đề 02.10). Thêm biến bù cho mỗi bất đẳng thức và tách biến tự do thành hiệu hai biến không âm đưa mọi quy hoạch tuyến tính về dạng chỉ có đẳng thức và điều kiện không âm, giữ giá trị mục tiêu.
 - **Chứng nhận bằng tổ hợp không âm** (Mệnh đề 02.11, 03.11, Định lý 03.15(b)). Với bài toán $\min c^Tx$ dưới $a_i^Tx\ge\beta_i$, nếu $\mu\ge0$ và $c=\sum_i\mu_ia_i$ thì $c^Tx\ge\sum_i\mu_i\beta_i$ tại mọi điểm khả thi. Bộ $\mu$ đó là điểm khả thi của bài toán đối ngẫu, và với quy hoạch tuyến tính khả thi có giá trị hữu hạn, hai giá trị tối ưu bằng nhau.
 - **Biến phụ cho cực đại affine** (Bổ đề 02.14, Định lý 02.15). Điều kiện $t\ge|r|$ tương đương với $t\ge r$ và $t\ge-r$; định lý được phát biểu lại ở Mục 1.3.
@@ -358,7 +358,7 @@ Bài toán (1.2) có mục tiêu tuyến tính và $2M$ ràng buộc tuyến tí
 Có hai nhầm lẫn thường gặp ở đây.
 
 - Hai bất phương trình chỉ cho $t_i\ge|r_i|$; dấu bằng tại nghiệm xuất hiện nhờ hệ số dương của $t_i$ trong mục tiêu cực tiểu. Nếu đổi sang cực đại $\sum_it_i$, bài toán (1.2) không bị chặn.
-- Không khả vi không có nghĩa không lồi: $\sum_i|r_i|$ lồi theo Định lý 01.31, nhưng gradient không xác định tại các điểm gãy.
+- Không khả vi không có nghĩa không lồi: $\sum_i|r_i|$ lồi theo Định lý 01.30, nhưng gradient không xác định tại các điểm gãy.
 
 **Trong học máy.** Hồi quy $L_1$ ước lượng trung vị có điều kiện của giá trị đích, nên ít nhạy với ngoại lai hơn bình phương nhỏ nhất. Koenker và Bassett (1978) mở rộng nó thành hồi quy phân vị. Hệ quả 07.4 cho phép giải nó bằng một bộ giải quy hoạch tuyến tính với $n+M$ biến và $2M$ ràng buộc thay cho phương pháp gradient; Mệnh đề 07.25 ở Mục 4 chứng minh thêm rằng, khi các vector đặc trưng sinh $\mathbb R^n$, bài toán (1.2) có một nghiệm làm ít nhất $n$ phần dư bằng $0$. Ở Tình huống 07.1, chúng ta dùng điều đó trên một bộ dữ liệu có ngoại lai.
 
@@ -429,7 +429,7 @@ Dòng thứ hai dùng $x_1\le30$, $x_1+2x_2\le54$ và hai hệ số không âm.
 **Kiểm tra lại.** Hai hệ số cho $\tfrac12+\tfrac32=2$ ở $x_1$ và $\tfrac32\cdot2=3$ ở $x_2$. Tại $(14,20)$: $\tfrac12\cdot14+\tfrac32\cdot54=7+81=88$, khớp $z=88$ vì $x_1+2x_2=54$ hoạt động tại đó.
 :::
 
-Trong Ví dụ 07.5, cận $2x_1+3x_2\le96$ được chứng minh bằng cơ chế của Mệnh đề 02.11 viết cho chiều cực đại, trong đó hai hệ số $\tfrac12$, $\tfrac32$ là nhân tử của bài toán đối ngẫu (Mệnh đề 03.11). Tuy nhiên, cách làm này cần đoán đúng hai ràng buộc hoạt động tại nghiệm, điều mà hình vẽ gợi ý được trong mặt phẳng nhưng không gợi ý được trong nhiều chiều. Để có một cách tìm ứng viên có hệ thống, trước hết chúng ta cần mô tả miền khả thi trong mọi số chiều. Bài 02 đã gọi miền khả thi của quy hoạch tuyến tính là đa diện, và Bài 01 đã chứng minh nửa không gian là tập lồi (Mệnh đề 01.19(c)). Chúng ta nhắc lại các khái niệm đó và bổ sung khái niệm đa diện bị chặn trong định nghĩa sau.
+Trong Ví dụ 07.5, cận $2x_1+3x_2\le96$ được chứng minh bằng cơ chế của Mệnh đề 02.11 viết cho chiều cực đại, trong đó hai hệ số $\tfrac12$, $\tfrac32$ là nhân tử của bài toán đối ngẫu (Mệnh đề 03.11). Tuy nhiên, cách làm này cần đoán đúng hai ràng buộc hoạt động tại nghiệm, điều mà hình vẽ gợi ý được trong mặt phẳng nhưng không gợi ý được trong nhiều chiều. Để có một cách tìm ứng viên có hệ thống, trước hết chúng ta cần mô tả miền khả thi trong mọi số chiều. Bài 02 đã gọi miền khả thi của quy hoạch tuyến tính là đa diện, và Bài 01 đã chứng minh nửa không gian là tập lồi (Mệnh đề 01.18(c)). Chúng ta nhắc lại các khái niệm đó và bổ sung khái niệm đa diện bị chặn trong định nghĩa sau.
 
 ::: definition Định nghĩa 07.5 (Siêu phẳng, nửa không gian, đa diện)
 Cho $a\in\mathbb R^n$, $a\ne0$, và $\beta\in\mathbb R$.
@@ -466,7 +466,7 @@ Trong mặt phẳng, siêu phẳng là một đường thẳng và nửa không 
 :::
 
 ::: proof Chứng minh Mệnh đề 07.6
-**Bước 1 (phần (a)).** Mỗi tập $\{x\mid a_i^Tx\le b_i\}$ lồi: với $a_i\ne0$ đó là nửa không gian, lồi theo Mệnh đề 01.19(c); với $a_i=0$ tập là $\mathbb R^n$ hoặc rỗng, cả hai đều lồi. $P$ là giao của $m$ tập lồi, nên lồi theo Mệnh đề 01.20(a).
+**Bước 1 (phần (a)).** Mỗi tập $\{x\mid a_i^Tx\le b_i\}$ lồi: với $a_i\ne0$ đó là nửa không gian, lồi theo Mệnh đề 01.18(c); với $a_i=0$ tập là $\mathbb R^n$ hoặc rỗng, cả hai đều lồi. $P$ là giao của $m$ tập lồi, nên lồi theo Mệnh đề 01.19(a).
 
 **Bước 2 (phần (b)).** Phương trình $A'x=b'$ tương đương với hai bất phương trình $A'x\le b'$ và $-A'x\le-b'$, còn $x\ge0$ tương đương với $-x\le0$. Do đó $Q=\{x\mid\tilde Ax\le\tilde b\}$ với $\tilde A$ xếp chồng $A'$, $-A'$, $-I$ và $\tilde b$ xếp chồng $b'$, $-b'$, $0$. $\square$
 :::
@@ -765,7 +765,7 @@ suy ra $x'=x''=v$. Trong chương này, "đỉnh" (vertex) là tên gọi khác 
 
 Trong định nghĩa trên, điều kiện $0<\lambda<1$ đòi $v$ nằm thật sự giữa $x'$ và $x''$. Với $\lambda=0$ hoặc $\lambda=1$, đẳng thức (3.1) thỏa tầm thường khi chọn $x''=v$ hoặc $x'=v$, nên hai giá trị đó bị loại. Để chứng minh $v$ không phải điểm cực biên, chỉ cần một cặp điểm $x'\ne x''$ của $C$ và một $\lambda\in(0,1)$ thỏa (3.1); chọn $\lambda=\tfrac12$ thường đủ.
 
-Điểm cực biên là tính chất hình học của tập $C$, không phụ thuộc hàm mục tiêu. Nó khác khái niệm cực đại hay cực tiểu của một hàm ở Định nghĩa 01.13: điểm $(0,0)$ là điểm cực biên của ngũ giác hộp hạt, đồng thời là điểm có giá trị mục tiêu nhỏ nhất.
+Điểm cực biên là tính chất hình học của tập $C$, không phụ thuộc hàm mục tiêu. Nó khác khái niệm cực đại hay cực tiểu của một hàm ở Định nghĩa 01.12: điểm $(0,0)$ là điểm cực biên của ngũ giác hộp hạt, đồng thời là điểm có giá trị mục tiêu nhỏ nhất.
 
 Một tập lồi có thể có vô số điểm cực biên, chẳng hạn mọi điểm $v$ trên đường tròn biên của hình tròn đơn vị đều là điểm cực biên. Nếu $v=\lambda x'+(1-\lambda)x''$ với $\lVert x'\rVert,\lVert x''\rVert\le1$ và $0<\lambda<1$ thì
 
@@ -1128,7 +1128,7 @@ Bài toán thứ nhất ở trên cho thấy câu "nghiệm tối ưu là đỉn
 **Bước 2 (phần (b)).** Với $\lambda\in[0,1]$, điểm $\lambda x'+(1-\lambda)x''$ thuộc $P^*$ theo (a). Các điểm này đôi một khác nhau khi $\lambda$ thay đổi, vì $x'\ne x''$. $\square$
 :::
 
-Phần (b) của Mệnh đề 07.22 cho thấy số nghiệm tối ưu của một quy hoạch tuyến tính chỉ có thể là $0$, $1$ hoặc vô số. Phần (a) có cùng kết luận với Hệ quả 01.34 (tập nghiệm của bài toán lồi là tập lồi) và cho thêm rằng tập nghiệm là một đa diện. Do mục tiêu tuyến tính không lồi chặt, khác với bài toán lồi chặt của Định lý 01.35, nghiệm duy nhất không được bảo đảm.
+Phần (b) của Mệnh đề 07.22 cho thấy số nghiệm tối ưu của một quy hoạch tuyến tính chỉ có thể là $0$, $1$ hoặc vô số. Phần (a) có cùng kết luận với Hệ quả 01.33 (tập nghiệm của bài toán lồi là tập lồi) và cho thêm rằng tập nghiệm là một đa diện. Do mục tiêu tuyến tính không lồi chặt, khác với bài toán lồi chặt của Định lý 01.34, nghiệm duy nhất không được bảo đảm.
 
 ### 4.2 Điểm cực biên tối ưu
 

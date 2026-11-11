@@ -916,3 +916,12 @@ Lỗi in trong lời giải sách, đã kiểm (tác tử soạn phát hiện, n
 ### Mục tiêu không có bài giáo trình
 
 Mục tiêu 2 (ba mô hình tối ưu của bài: điều khiển một bước, bình phương nhỏ nhất, hồi quy logistic) không có bài Boyd phù hợp trong phạm vi Q01-8; dựa vào Bài tập 01.1–01.21 của ghi chú. Mỗi mục tiêu 1–5 có ít nhất một bài (ghi chú hoặc tệp).
+
+## Cập nhật dẫn chiếu tới Bài 01 sau khi đánh số (giai đoạn 3, 2026-11-12)
+
+Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy từ lời gọi công cụ). Thay một lượt bằng script có chặn chạy lại (tránh lùi số hai lần), theo `map-lec-01.md`.
+
+- 250 cụm dẫn ở 13 tệp: ghi chú lec-02 (83), lec-03 (43), lec-04 (24), lec-05 (24), lec-05b (18), lec-06 (18), lec-07 (9), lec-06b (6), lec-05c (4), lec-06c (1); `lec-06/exercises.md` (1); deck 05 (18, gồm 7 chỗ "Mệnh đề 01.6" → "Hệ quả 01.5" trên mặt trang và ghi chú diễn giả); deck 01 (1, ghi chú diễn giả K06 "Thuật toán 01.1" → "Thuật toán 01.47"). Deck chỉ đổi số hiệu (Q-F).
+- Câu sửa ngoài phần số (Q01-4, Mệnh đề 01.5 cũ đã bỏ): lec-02:23 (cụm dẫn đổi sang Bài 00, Định lý 00.22 và Mệnh đề 00.45; Hệ quả 01.5, Mệnh đề 01.8, Ví dụ 01.15(c)); lec-02:1000 ("đẳng thức (3.2) của Bài 01 (Mệnh đề 01.5)" → "khai triển ở bước 1 của chứng minh Định lý 00.22 (Bài 00), nhân với $2$", vì Bài 00 khai triển $f=J/2$); lec-05:582 ("Bước 4 của chứng minh Mệnh đề 01.6" → "Bài 00, Mệnh đề 00.20, kết luận 3"); lec-05:2355 (cụm đổi loại khối) — `chấp nhận`.
+- Không bài nào dẫn số bài của `exercises.md` cũ. Ghi nhận cho Bài 02: lec-02:21 phát biểu "khả vi hai lần" cho Định lý 01.29, nay giả thiết lớp $C^2$ (câu vẫn đúng).
+- Kiểm của điều phối viên: script độc lập đối chiếu mọi cụm "Loại 01.k" trong ghi chú, tệp bài tập và deck với khối của ghi chú mới: 0 cụm trỏ tới khối không tồn tại hoặc sai loại. Đồng bộ học liệu `--check`, `git diff --check` đạt. Playwright trên các trang đã đổi: deck 05 HQ02, HQ07, HQ07a, HQ12 và deck 01 K06, ở 1600×900 và 390×844: 0 `.katex-error`, 0 lỗi console; điều phối viên đã xem ảnh. Ở 390 px, công thức hiển thị của HQ02 cuộn ngang trong khung KaTeX như trước khi sửa (không do lần đổi số này).
