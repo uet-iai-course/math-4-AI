@@ -2449,6 +2449,8 @@ Hai bài tập sau nằm trong thân bài; mỗi dòng ghi mục tiêu học t�
 1. **Bài tập 00.1** (Một bước hạ gradient với $\eta=0{,}05$): mục tiêu 1, 3; tính dự đoán, phần dư, gradient và một bước hạ gradient.
 2. **Bài tập 00.2** (Nhiễu, phần dư và độ rộng dải nhiễu): mục tiêu 4, 6; phân biệt nhiễu với phần dư và tính dải nhiễu.
 
+Bài tập 00.3–00.16, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 00](material-viewer.html?doc=materials/lec-00/exercises.md&deck=lecture-00-on-tap-nen-tang-toan-hoc.html).
+
 ## 10. Câu hỏi cuối buổi và cầu nối
 
 **Câu hỏi.** Theo Ví dụ 00.21, $x^*=(-6/7,5/7)$ là cực tiểu địa phương chặt của $h(u,v)=u^2+uv+2v^2+u-2v$. Xác định $x^*$ có là cực tiểu toàn cục của $h$ trên $\mathbb R^2$ không, và chỉ ra chỗ lập luận dùng việc $h$ là đa thức bậc hai.

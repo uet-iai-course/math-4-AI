@@ -121,3 +121,59 @@ Ghi chú cũ: 15 418 âm tiết (`wc -w`). Bản nháp 1: 23 732. Bản sau vòn
 - `forward_refs.py`: 0 tham chiếu tiến. Bộ đếm chung 00.1–00.74, Ví dụ 00.1–00.38, Tình huống 00.1–00.2, Bài tập 00.1–00.2 liên tục; không khối lồng; mỗi `exercise` có một `hint` và một `solution`. Grep các mẫu cấm của goal: 0. Đồng bộ học liệu `--check` đạt; `git diff --check` sạch.
 - Playwright (Chromium, venv chung), `material-viewer.html?doc=materials/lec-00/lecture-note.md&deck=lecture-00-on-tap-nen-tang-toan-hoc.html`: 1600×900 và 390×844 (cuộn tới cuối), `file://` 1600×900. 0 `.katex-error` (2 821 công thức), 0 lỗi console và trang (trừ cảnh báo CSP của script nạp lại do `reloadserver` chèn), 0 request lỗi, trang không tràn ngang (hình rộng 900 px nằm trong khung cuộn riêng theo `material-viewer-course.css`). Bản in PDF chứa đủ 21 chứng minh và các lời giải đang thu gọn. Điều phối viên đã xem ảnh chụp.
 - SVG sửa (chỉ của ghi chú, không có trong deck nào): 14 hình trong `img/lec-00/`; hình dùng chung với deck không sửa.
+
+## Tệp bài tập theo chuẩn 2026-11
+
+Bài 00 trước đây chưa có `exercises.md`. Tệp mới gồm 14 bài giáo trình, Bài tập 00.3–00.16, nối tiếp Bài tập 00.1–00.2 của ghi chú (U2, U3). Liên kết thêm ở §9 của ghi chú và thẻ Bài 00 trong `index.html` (Q-G).
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập danh sách bài (chỉ đọc) | medium | 14 bài, đã kiểm số bài và trang trong PDF |
+| Soạn, rồi biên tập (cùng tác tử) | medium | `exercises.md`, liên kết ghi chú, thẻ chỉ mục |
+| Rà độ chính xác (hai vòng) | high | vòng 1: 0 chặn, 0 nghiêm trọng, 1 trung bình, 5 nhẹ; vòng 2: 2 nhẹ |
+| Rà sinh viên năm hai | high | 0 chặn, 1 nghiêm trọng, 6 trung bình, 9 nhẹ |
+| Rà sư phạm và văn phong, `no-ai-slop` Detect (hai vòng) | high | vòng 1: 0 chặn, 1 nghiêm trọng, 6 trung bình, 15 nhẹ; vòng 2: 4 nhẹ |
+
+Điều phối viên tự mở PDF kiểm số bài và đề của Kupferschmid 28.9.6, 28.9.10, 28.9.15, 10.9.33; Boyd 2.5, 6.2; Koller 2.1, 2.2; Murphy (2022) 2.6 trước khi duyệt danh sách.
+
+### Danh sách bài và nguồn
+
+| Bài tập | Mức | Nguồn (trang in) | Lời giải trong nguồn |
+|---|---|---|---|
+| 00.3 Hai tích $AB$, $BA$ | nhận biết | Kupferschmid, Bài 28.9.10, tr. 957 | không |
+| 00.4 Tích trong, tích ngoài | nhận biết | Kupferschmid, Bài 28.9.15, tr. 958 (nhãn "(d)" trùng trong sách đổi thành (e)) | không |
+| 00.5 Ma trận $3\times3$ hạng 2 | nhận biết | Kupferschmid, Bài 28.9.22(b)(c), tr. 958 | không |
+| 00.6 Ma trận đơn vị, ma trận $0$ | nhận biết | Kupferschmid, Bài 10.9.31, tr. 372 | không |
+| 00.7 Xác định dương của ma trận $2\times2$ | tính toán | Kupferschmid, Bài 11.7.24(a)(b), tr. 391 (bỏ định thức con và Gerschgorin) | không |
+| 00.8 Gradient của $x^TAx$ với $A$ không đối xứng | tính toán | Kupferschmid, Bài 28.9.6, tr. 957 | không |
+| 00.9 Xấp xỉ Taylor bậc hai | tính toán | Kupferschmid, Bài 10.9.2, tr. 370 | không |
+| 00.10 Hessian Rosenbrock | tính toán | Kupferschmid, Bài 10.9.33, tr. 372, gộp 11.7.22(a), tr. 390 | không |
+| 00.11 Tính chất suy từ tiên đề xác suất | chứng minh | Koller và Friedman, Bài 2.1, tr. 39 | không |
+| 00.12 Phương sai của tổng | tính toán | Murphy (2022), Bài 2.6, tr. 75 | không |
+| 00.13 Xấp xỉ bằng vector hằng theo chuẩn $\ell_2$ | vận dụng | Boyd và Vandenberghe, Bài 6.2, tr. 344 (chỉ phần $\ell_2$) | có |
+| 00.14 Khoảng cách hai siêu phẳng song song | vận dụng | Boyd và Vandenberghe, Bài 2.5, tr. 60 (đề nêu định nghĩa khoảng cách hai tập) | có |
+| 00.15 Phương trình chuẩn dạng ma trận và dạng vô hướng | vận dụng | Kupferschmid, Bài 8.8.28, tr. 332 (định nghĩa chép từ §8.6.1, tr. 307–308) | không |
+| 00.16 Độc lập của hai biến nhị phân | vận dụng | Koller và Friedman, Bài 2.2, tr. 39 | không |
+
+Bài không có lời giải trong `sources/` do tác tử soạn tự giải; tác tử rà toán giải lại độc lập hai vòng (U3). Bản lời giải Boyd in sai phần $\ell_\infty$ của Bài 6.2 ("$(\max-\min)/2$"); bài chỉ dùng phần $\ell_2$. Phản ví dụ ở 00.16(b), (c) do người soạn dựng và người rà toán kiểm. Bài đã loại: Boyd 2.10 (cần tập lồi), Koller 2.11 và Murphy 3.4(a) (trùng kết quả ghi chú), Murphy 2.9, 2.10, 3.1, 3.2 (đã dùng ở Bài 10), Murphy 4.1 (thuộc Bài 11).
+
+### Quyết định
+
+| Mức độ | Vị trí | Vấn đề | Quyết định |
+|---|---|---|---|
+| nghiêm trọng | mọi bài nhiều bước | Một khối gợi ý; nhiều gợi ý lộ lời giải (Q15) | chấp nhận: `Gợi ý 1`, `Gợi ý 2` tăng dần cho 00.5, 00.7–00.16 |
+| trung bình | bảng mục tiêu | Bảng che vế chưa có bài | chấp nhận: tách theo vế, ghi "—" |
+| trung bình | 00.5 | Mục tiêu 2 "số nghiệm" không có bài | chấp nhận: thêm câu (c) trên ma trận của sách |
+| trung bình | 00.14 | Gán sai mục tiêu 2 | chấp nhận: gán mục tiêu 1 (phép toán trên vector); nhãn vế "tích vô hướng và chuẩn" không có nguyên văn trong mục tiêu 1, giữ vì là phép toán trên vector của mục tiêu đó |
+| trung bình | 00.12 | Gợi ý nêu đường tắt qua Mệnh đề 00.68 (lặp ghi chú) | chấp nhận: bỏ đường tắt |
+| trung bình | 00.9, 00.16(c), 00.6 | Ký hiệu điểm khai triển; biến nhị phân; "ma trận không" đọc nhầm | chấp nhận |
+| nhẹ | 00.16(b) | Phản ví dụ giữ $V$ nhị phân trái đề | chấp nhận: hai biến ba giá trị |
+| nhẹ | 00.15, 00.16 | Đề xuất đổi mức | bác bỏ: giữ phân mức và số hiệu đã duyệt |
+| nhẹ | bảng, vế "độc lập" ở mục tiêu 5 | Vế không có nguyên văn trong mục tiêu | giữ: độc lập là quan hệ giữa phân phối đồng thời và phân phối biên của mục tiêu 5 |
+| nhẹ | các chỗ khác | dẫn Định lý 00.12, Hessian đối xứng, "tăng chặt", tên tiếng Anh, dấu `\"` thừa, câu gợi ý 00.16(b) | chấp nhận |
+
+### Mục tiêu không có bài giáo trình
+
+Mỗi mục tiêu 1–6 có ít nhất một bài (ghi chú hoặc tệp). Các vế sau không có bài giáo trình phù hợp trong nguồn U3 không trùng Bài 10–11: ma trận Jacobian; kỳ vọng và phương sai từ PMF, PDF, CDF; hợp lý cực đại dưới nhiễu Gauss dẫn tới bình phương nhỏ nhất; công thức Bayes (Murphy 2.9 đã dùng ở Bài 10); điều kiện dùng bình phương nhỏ nhất tổng quát; quá khớp khi số trọng số bằng số mẫu. Phân biệt nhiễu với phần dư và dải nhiễu dựa vào Bài tập 00.2 của ghi chú; các vế còn lại dựa vào ví dụ có lời giải trong ghi chú.
