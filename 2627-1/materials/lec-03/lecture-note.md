@@ -24,7 +24,7 @@ Chương dùng các kết quả sau của Bài 01 và Bài 02. Số hiệu `01.k
 - **Tập lồi, hàm lồi, hàm lõm** (Định nghĩa 01.18, 01.22). Tập $C$ lồi nếu chứa mọi đoạn nối hai điểm của nó; $f$ lồi trên tập lồi $C$ nếu $f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$ với mọi $x,y\in C$, $\theta\in[0,1]$; $f$ lõm nếu $-f$ lồi.
 - **Điều kiện bậc nhất và bậc hai** (Định lý 01.26, Hệ quả 01.27, Định lý 01.30(a), (b)). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y$; hệ quả: nếu $f$ lồi, khả vi trên một tập mở lồi chứa $C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$, điều kiện (7.3) của Bài 01, thì $x^*$ là cực tiểu toàn cục của $f$ trên $C$; nói riêng, $\nabla f(x^*)=0$ cho cực tiểu toàn cục trên cả tập mở đó. Hàm khả vi hai lần trên tập mở lồi là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi chặt nếu Hessian xác định dương mọi nơi.
 - **Phép bảo toàn tính lồi** (Định lý 01.31). Tổng có hệ số không âm của các hàm lồi là lồi; hợp của hàm lồi với ánh xạ affine là lồi; cực đại từng điểm của hữu hạn hàm lồi là lồi, phần (c).
-- **Điều kiện cần bậc nhất không ràng buộc** (Bài 00, nhắc lại ở Nhận xét 01.15). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
+- **Điều kiện cần bậc nhất không ràng buộc** (Bài 00, Định lý 00.42; nhắc lại ở Nhận xét 01.15). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
 - **Tồn tại và duy nhất** (Định lý 01.36, Weierstrass; Định lý 01.35). Hàm liên tục trên tập không rỗng, đóng, bị chặn của $\mathbb R^d$ đạt giá trị nhỏ nhất; hàm lồi chặt có nhiều nhất một điểm cực tiểu.
 - **Dạng chuẩn của bài toán tối ưu lồi** (Định nghĩa 02.1). Miền $D$ lồi, các hàm $f_0,f_1,\ldots,f_m$ lồi, ràng buộc $f_i(x)\le0$ và $Ax=b$ với $A\in\mathbb R^{p\times n}$.
 - **Biến đổi tương đương (reformulation)** (Định nghĩa 02.5, Mệnh đề 02.6, Nhận xét 02.7). Hai bài toán tương đương khi có ánh xạ chuyển phương án khả thi qua lại và giữ thứ tự giá trị; nghiệm của bài toán này cho nghiệm của bài toán kia. Đối ngẫu phụ thuộc vào cách viết bài toán, nên chương luôn nêu rõ dạng được dùng.
@@ -1743,7 +1743,7 @@ Ví dụ 03.14 tại $u=8$ và Tình huống 03.1 với $\rho=4$ là hai trườ
 
 ### 5.2 Hệ điều kiện KKT
 
-Theo Mệnh đề 03.27 phần 2, $x^*$ là điểm cực tiểu của $L(\cdot,\lambda^*,\nu^*)$ trên $D$. Khi $D=\mathbb R^n$ và các hàm khả vi, điều kiện cần bậc nhất cho cực tiểu không ràng buộc (Bài 00) biến khẳng định này thành một phương trình gradient.
+Theo Mệnh đề 03.27 phần 2, $x^*$ là điểm cực tiểu của $L(\cdot,\lambda^*,\nu^*)$ trên $D$. Khi $D=\mathbb R^n$ và các hàm khả vi, điều kiện cần bậc nhất cho cực tiểu không ràng buộc (Bài 00, Định lý 00.42) biến khẳng định này thành một phương trình gradient.
 
 Về mặt trực quan, tại nghiệm của bài toán (1.1), $f_0'(2)=4$ và $\lambda^*f_1'(2)=2\cdot(2\cdot2-6)=-4$, tức gradient của mục tiêu bị gradient của ràng buộc, nhân với nhân tử, cân bằng đúng. Quan sát này chưa phải định nghĩa. Gộp nó với điều kiện bù trừ và hai điều kiện khả thi, ta có hệ điều kiện theo định nghĩa sau.
 
@@ -1767,7 +1767,7 @@ Hệ này tổng quát hóa điều kiện $\nabla f_0(x)=0$ cho bài toán khô
 
 Nhầm lẫn thường gặp là coi hệ KKT là điều kiện tối ưu, trong khi Nhận xét 03.33 có một bộ thỏa KKT mà không tối ưu, và một nghiệm không có bộ KKT nào.
 
-Định lý sau cho biết khi nào một nghiệm bắt buộc phải thỏa KKT. Chứng minh cần Mệnh đề 03.27 và điều kiện cần bậc nhất của Bài 00, theo Boyd và Vandenberghe (2004, mục 5.5.3, tr. 243).
+Định lý sau cho biết khi nào một nghiệm bắt buộc phải thỏa KKT. Chứng minh cần Mệnh đề 03.27 và điều kiện cần bậc nhất của Bài 00 (Định lý 00.42), theo Boyd và Vandenberghe (2004, mục 5.5.3, tr. 243).
 
 ::: theorem Định lý 03.30 (KKT là điều kiện cần khi có đối ngẫu mạnh)
 **Giả thiết.** Bài toán (2.1) với $D=\mathbb R^n$ và $f_0,\ldots,f_m$ khả vi; $x^*$ là nghiệm gốc; $(\lambda^*,\nu^*)$ là nghiệm đối ngẫu; $p^*=d^*$ hữu hạn.
@@ -1790,7 +1790,7 @@ Vì $f_0(x^*)=p^*=d^*=g(\lambda^*,\nu^*)$, Mệnh đề 03.27 phần 1 cho nhóm
 
 **Bước 3 (dừng).**
 
-Mệnh đề 03.27 phần 2 cho $x^*$ cực tiểu hóa hàm khả vi $L(\cdot,\lambda^*,\nu^*)$ trên tập mở $\mathbb R^n$. Theo điều kiện cần bậc nhất (Bài 00, Nhận xét 01.15), gradient tại $x^*$ bằng $0$; đó là (5.1). $\square$
+Mệnh đề 03.27 phần 2 cho $x^*$ cực tiểu hóa hàm khả vi $L(\cdot,\lambda^*,\nu^*)$ trên tập mở $\mathbb R^n$. Theo điều kiện cần bậc nhất (Bài 00, Định lý 00.42; Nhận xét 01.15), gradient tại $x^*$ bằng $0$; đó là (5.1). $\square$
 :::
 
 Kết hợp Định lý 03.30 với Định lý 03.15 cho bài toán lồi, ta được kết quả thường dùng sau.

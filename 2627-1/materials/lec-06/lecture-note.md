@@ -15,10 +15,10 @@ Sau chương này, người học có thể:
 
 ## Kiến thức tiên quyết
 
-Số hiệu `01.k`, `04.k`, `05.k`, `05b.k`, `05c.k` chỉ ghi chú Bài 01, 04, 05 và hai bài bổ trợ 05b, 05c. Ghi chú Bài 00 được dẫn bằng tên khái niệm. Mỗi kết quả được phát biểu lại tại đây hoặc tại chỗ dùng.
+Số hiệu `00.k`, `01.k`, `04.k`, `05.k`, `05b.k`, `05c.k` chỉ ghi chú Bài 00, 01, 04, 05 và hai bài bổ trợ 05b, 05c. Mỗi kết quả được phát biểu lại tại đây hoặc tại chỗ dùng.
 
-- **Quy tắc dây chuyền dạng Jacobian chuyển vị** (Bài 00). Nếu $\psi:\mathbb R^{d_u}\to\mathbb R^{d_v}$ khả vi với Jacobian $J_\psi(u)\in\mathbb R^{d_v\times d_u}$ và $g:\mathbb R^{d_v}\to\mathbb R$ khả vi, thì $\nabla(g\circ\psi)(u)=J_\psi(u)^\top\nabla g(\psi(u))$.
-- **Khai triển Taylor bậc hai và phép kiểm tra bậc hai bằng Hessian** (Bài 00). Với $F$ khả vi liên tục hai lần, $F(\theta+s)=F(\theta)+\nabla F(\theta)^\top s+\tfrac12s^\top\nabla^2F(\theta)s+o(\lVert s\rVert^2)$; tại điểm có $\nabla F(\theta)=0$ và $\nabla^2F(\theta)\succ0$, $\theta$ là cực tiểu địa phương chặt.
+- **Quy tắc dây chuyền dạng Jacobian chuyển vị** (Bài 00, Định lý 00.35). Nếu $\psi:\mathbb R^{d_u}\to\mathbb R^{d_v}$ khả vi với Jacobian $J_\psi(u)\in\mathbb R^{d_v\times d_u}$ và $g:\mathbb R^{d_v}\to\mathbb R$ khả vi, thì $\nabla(g\circ\psi)(u)=J_\psi(u)^\top\nabla g(\psi(u))$.
+- **Khai triển Taylor bậc hai và phép kiểm tra bậc hai bằng Hessian** (Bài 00, Định lý 00.40 và 00.43). Với $F$ khả vi liên tục hai lần, $F(\theta+s)=F(\theta)+\nabla F(\theta)^\top s+\tfrac12s^\top\nabla^2F(\theta)s+o(\lVert s\rVert^2)$; tại điểm có $\nabla F(\theta)=0$ và $\nabla^2F(\theta)\succ0$, $\theta$ là cực tiểu địa phương chặt.
 - **Tính lồi** (Định nghĩa 01.22; Định lý 01.31(b); Hệ quả 01.27; Hệ quả 01.34). Hợp của một hàm lồi với một ánh xạ affine là hàm lồi. Với $F$ lồi khả vi, mọi điểm có $\nabla F(\theta)=0$ là cực tiểu toàn cục. Tập nghiệm của bài toán cực tiểu hóa một hàm lồi là tập lồi.
 - **Gradient Lipschitz và bổ đề giảm** (Định nghĩa 04.17; Bổ đề 04.18, 04.20; Bổ đề 05b.6). Nếu $\nabla F$ là $L$-Lipschitz thì $F(\theta')\le F(\theta)+\nabla F(\theta)^\top(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert^2$, và một bước hạ gradient với bước $\eta\in(0,\tfrac2L)$ làm $F$ giảm.
 - **Kết luận của Bài 05.** Một bước hạ gradient trên $n$ mẫu với $d$ tham số tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$ (Mệnh đề 05.35). Dữ liệu XOR không tách được bằng điểm số affine (Mệnh đề 05.40), và số đơn thức bậc không quá $q$ của $d_0$ biến là $\binom{d_0+q}q$ (Mệnh đề 05.41). Tập xác thực, tập kiểm thử và dừng sớm được định nghĩa ở Định nghĩa 05.6 và Định nghĩa 05.38. Chính quy hóa bậc hai làm mất mát logistic lồi mạnh (Định lý 05.26).
@@ -601,7 +601,7 @@ Hình ghi giá trị của mỗi nút sau truyền xuôi và phép toán cục b
 
 ### 3.3 Truyền ngược trên ví dụ
 
-Về mặt ý tưởng, ta đi ngược đồ thị từ $\ell$ về các tham số, và tại mỗi nút nhân đạo hàm đã có của nút sau với đạo hàm cục bộ của phép toán tại nút đó. Đây mới là mô tả trực quan; bổ đề sau là quy tắc dây chuyền của Bài 00 viết chính xác cho một nút.
+Về mặt ý tưởng, ta đi ngược đồ thị từ $\ell$ về các tham số, và tại mỗi nút nhân đạo hàm đã có của nút sau với đạo hàm cục bộ của phép toán tại nút đó. Đây mới là mô tả trực quan; bổ đề sau là quy tắc dây chuyền của Bài 00 (Định lý 00.35) viết chính xác cho một nút.
 
 ::: lemma Bổ đề 06.12 (Truyền ngược qua một nút)
 **Giả thiết.** $u\in\mathbb R^{d_u}$; $v=g(u)\in\mathbb R^{d_v}$ với $g$ khả vi tại $u$ và Jacobian $J_g(u)\in\mathbb R^{d_v\times d_u}$; $\ell$ phụ thuộc $u$ chỉ qua $v$, tức $\ell=\phi(v)$ với $\phi$ khả vi tại $v$. Đặt $\delta_v=\nabla\phi(v)\in\mathbb R^{d_v}$.
@@ -618,7 +618,7 @@ Về mặt ý tưởng, ta đi ngược đồ thị từ $\ell$ về các tham s
 :::
 
 ::: proof Chứng minh Bổ đề 06.12
-**Bước 1 (dạng chung).** Quy tắc dây chuyền dạng Jacobian chuyển vị (Bài 00) áp cho $\ell=\phi\circ g$ cho $\nabla_u\ell=J_g(u)^\top\nabla\phi(v)$.
+**Bước 1 (dạng chung).** Quy tắc dây chuyền dạng Jacobian chuyển vị (Bài 00, Định lý 00.35) áp cho $\ell=\phi\circ g$ cho $\nabla_u\ell=J_g(u)^\top\nabla\phi(v)$.
 
 **Bước 2 (trường hợp 1).** Với $v_j=\sigma(u_j)$, $\partial v_j/\partial u_k=\sigma'(u_j)$ khi $j=k$ và $0$ khi $j\ne k$, nên $J_g=\operatorname{diag}\sigma'(u)$ và $J_g^\top\delta_v=\sigma'(u)\odot\delta_v$.
 
@@ -857,7 +857,7 @@ Trên hình, $F$ chỉ phụ thuộc tích $uv$, nên mọi đường mức là 
 
 ### 4.3 Phân loại điểm dừng bằng Hessian
 
-Gốc của Ví dụ 06.12 là điểm dừng nhưng không phải cực tiểu. Để phân biệt các loại điểm dừng mà không vẽ hình, ta dùng thông tin bậc hai. Mệnh đề sau nhắc lại phép kiểm tra bậc hai của Bài 00 và thêm một điều kiện cần.
+Gốc của Ví dụ 06.12 là điểm dừng nhưng không phải cực tiểu. Để phân biệt các loại điểm dừng mà không vẽ hình, ta dùng thông tin bậc hai. Mệnh đề sau nhắc lại phép kiểm tra bậc hai của Bài 00 (Định lý 00.43) và thêm một điều kiện cần.
 
 ::: proposition Mệnh đề 06.17 (Phân loại điểm dừng bằng Hessian)
 **Giả thiết.** $F:\mathbb R^p\to\mathbb R$ khả vi liên tục hai lần; $\nabla F(\theta)=0$; $H=\nabla^2F(\theta)$.
@@ -874,7 +874,7 @@ Gốc của Ví dụ 06.12 là điểm dừng nhưng không phải cực tiểu.
 :::
 
 ::: proof Chứng minh Mệnh đề 06.17
-Khai triển Taylor bậc hai tại điểm dừng (Bài 00) cho
+Khai triển Taylor bậc hai tại điểm dừng (Bài 00, Định lý 00.40) cho
 
 $$
 F(\theta+s)=F(\theta)+\tfrac12s^\top Hs+E_2(s),\qquad\frac{E_2(s)}{\lVert s\rVert^2}\to0\ \text{khi}\ s\to0 .
@@ -888,7 +888,7 @@ $$
 **Bước 3 (kết luận 3).** Nếu $H$ có một trị riêng âm, Bước 2 cho một hướng làm $F$ giảm ngay cạnh $\theta$, trái với giả thiết cực tiểu địa phương. Vậy mọi trị riêng của $H$ không âm. $\square$
 :::
 
-Kết luận 1 là phép kiểm tra bậc hai của Bài 00; kết luận 3 là điều kiện cần bậc hai và là phần thêm của mệnh đề. Goodfellow, Bengio và Courville (2016, mục 4.3.1, tr. 89–90) trình bày cùng phép kiểm tra, và lưu ý rằng phép kiểm tra không kết luận khi Hessian có trị riêng $0$ mà mọi trị riêng khác cùng dấu.
+Kết luận 1 là phép kiểm tra bậc hai của Bài 00 (Định lý 00.43); kết luận 3 là điều kiện cần bậc hai và là phần thêm của mệnh đề. Goodfellow, Bengio và Courville (2016, mục 4.3.1, tr. 89–90) trình bày cùng phép kiểm tra, và lưu ý rằng phép kiểm tra không kết luận khi Hessian có trị riêng $0$ mà mọi trị riêng khác cùng dấu.
 
 ::: example Ví dụ 06.13 (Phân loại ba điểm dừng của mạng tuyến tính một đơn vị)
 **Dữ kiện.** $F(u,v)=\tfrac12(uv-1)^2$, $\nabla^2F(u,v)=\begin{pmatrix}v^2&2uv-1\\2uv-1&u^2\end{pmatrix}$; ba điểm dừng $(0,0)$, $(1,1)$, $(2,\tfrac12)$.

@@ -23,7 +23,7 @@ Số hiệu `01.k`, `02.k`, `04.k`, `05b.k`, `05c.k` chỉ ghi chú Bài 01, 02,
 - **Hạ gradient khi không có điểm cực tiểu** (Hệ quả 05b.17). Nếu $f$ lồi và có gradient $L$-Lipschitz thì dãy hạ gradient với bước hằng $0<\eta\le\tfrac1L$ có $f(w_k)\to\inf f$, kể cả khi $\inf f$ không đạt.
 - **Phương pháp Newton** (Định nghĩa 04.28, 04.30, Thuật toán 04.2, Định lý 04.35). Hướng Newton tại $w$ là nghiệm $p$ của $\nabla^2f(w)\,p=-\nabla f(w)$; độ giảm Newton là $\delta_N(w)=\sqrt{-\nabla f(w)^Tp}$. Với quay lui Armijo, phương pháp có một giai đoạn tắt dần và một giai đoạn hội tụ bậc hai; định lý được phát biểu lại ở Mục 4.
 - **Trung bình mẫu tại tham số cố định** (Định lý 05c.52). Nếu các quan sát độc lập, cùng phân phối và tham số được chọn trước khi nhìn các quan sát đó thì trung bình mất mát là ước lượng không chệch của kỳ vọng mất mát.
-- **Đại số tuyến tính** (Bài 00; Strang 2016). Định lý hạng–số chiều: $\operatorname{rank}X+\dim\ker X=d$. Với ma trận đối xứng $A$, trị riêng lớn nhất và nhỏ nhất là giá trị lớn nhất và nhỏ nhất của thương Rayleigh $v^TAv/v^Tv$ trên $v\ne0$; $\lVert Av\rVert\le\lambda_{\max}(A)\lVert v\rVert$ khi $A\succeq0$. Ma trận Vandermonde dựng trên các nút phân biệt khả nghịch.
+- **Đại số tuyến tính** (Bài 00, Mệnh đề 00.8, 00.18 và Hệ quả 00.19; Strang 2016). Định lý hạng–số chiều: $\operatorname{rank}X+\dim\ker X=d$. Với ma trận đối xứng $A$, trị riêng lớn nhất và nhỏ nhất là giá trị lớn nhất và nhỏ nhất của thương Rayleigh $v^TAv/v^Tv$ trên $v\ne0$; $\lVert Av\rVert\le\lambda_{\max}(A)\lVert v\rVert$ khi $A\succeq0$. Ma trận Vandermonde dựng trên các nút phân biệt khả nghịch.
 
 Bài 01 viết $a_i$ cho vector đặc trưng và $\mu$ cho hệ số chính quy hóa ở dạng tổng; Bài 05b viết dãy lặp là $x_k$ và kích thước mẫu là $N$. Ở đây chúng ta viết $x_i$, $\lambda$, $w_k$ và $n$; Nhận xét 05.2 ghi đủ phép đổi ký hiệu.
 
@@ -202,7 +202,7 @@ $$
 
 có được khi khai triển $\lVert(Xw-y)+Xv\rVert^2$. Số hạng bậc nhất theo $v$ là $\nabla F(w)^Tv$ và số hạng bậc hai là $\tfrac12v^T\nabla^2F(w)v$, cho (2.1).
 
-**Bước 2 (điều kiện cực tiểu).** $F$ lồi vì Hessian $\frac1nX^TX$ nửa xác định dương: $v^TX^TXv=\lVert Xv\rVert^2\ge0$. Với hàm lồi khả vi, $w$ là điểm cực tiểu toàn cục khi và chỉ khi $\nabla F(w)=0$: chiều thuận là điều kiện cần bậc nhất của Bài 00 (điểm cực tiểu của hàm khả vi trên $\mathbb R^d$ có gradient bằng không), chiều ngược là Hệ quả 01.27. Điều kiện $\nabla F(w)=0$ chính là (2.2) sau khi nhân với $n$.
+**Bước 2 (điều kiện cực tiểu).** $F$ lồi vì Hessian $\frac1nX^TX$ nửa xác định dương: $v^TX^TXv=\lVert Xv\rVert^2\ge0$. Với hàm lồi khả vi, $w$ là điểm cực tiểu toàn cục khi và chỉ khi $\nabla F(w)=0$: chiều thuận là điều kiện cần bậc nhất của Bài 00 (Định lý 00.42; điểm cực tiểu của hàm khả vi trên $\mathbb R^d$ có gradient bằng không), chiều ngược là Hệ quả 01.27. Điều kiện $\nabla F(w)=0$ chính là (2.2) sau khi nhân với $n$.
 
 **Bước 3 (tồn tại và duy nhất).** Đây là Mệnh đề 01.6(a) và (c) áp cho $X$, $y$. $\square$
 :::

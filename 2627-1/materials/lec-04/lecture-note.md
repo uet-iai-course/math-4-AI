@@ -19,10 +19,10 @@ Sau chương này, người học có thể:
 
 ## Kiến thức tiên quyết
 
-Trong chương này, chúng ta dùng các kết quả sau. Số hiệu `01.k` chỉ ghi chú Bài 01, số hiệu `03.k` chỉ ghi chú Bài 03; Bài 00 không đánh số nên các kết quả của nó được phát biểu lại đầy đủ.
+Trong chương này, chúng ta dùng các kết quả sau. Số hiệu `00.k` chỉ ghi chú Bài 00, số hiệu `01.k` chỉ ghi chú Bài 01, số hiệu `03.k` chỉ ghi chú Bài 03; các kết quả của Bài 00 được phát biểu lại đầy đủ.
 
-- **Gradient, Hessian và khai triển Taylor** (Bài 00). Với $f:\mathbb R^n\to\mathbb R$ khả vi hai lần liên tục trên một tập mở chứa đoạn $[x,x+d]$, ta có $f(x+d)=f(x)+\nabla f(x)^Td+\tfrac12d^T\nabla^2f(x)d+o(\lVert d\rVert_2^2)$ khi $d\to0$. Gradient thỏa $\nabla f(x+d)-\nabla f(x)=\int_0^1\nabla^2f(x+\tau d)\,d\,d\tau$. Quy tắc dây chuyền cho $\frac{d}{dt}f(x+td)=\nabla f(x+td)^Td$.
-- **Điều kiện cần bậc nhất** (Bài 00, nhắc lại ở Nhận xét 01.15). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
+- **Gradient, Hessian và khai triển Taylor** (Bài 00, Định lý 00.40, Hệ quả 00.39 và Mệnh đề 00.38). Với $f:\mathbb R^n\to\mathbb R$ khả vi hai lần liên tục trên một tập mở chứa đoạn $[x,x+d]$, ta có $f(x+d)=f(x)+\nabla f(x)^Td+\tfrac12d^T\nabla^2f(x)d+o(\lVert d\rVert_2^2)$ khi $d\to0$. Gradient thỏa $\nabla f(x+d)-\nabla f(x)=\int_0^1\nabla^2f(x+\tau d)\,d\,d\tau$. Quy tắc dây chuyền cho $\frac{d}{dt}f(x+td)=\nabla f(x+td)^Td$.
+- **Điều kiện cần bậc nhất** (Bài 00, Định lý 00.42; nhắc lại ở Nhận xét 01.15). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
 - **Tập lồi, hàm lồi, tập mức dưới** (Định nghĩa 01.18, 01.22, 01.24). Hàm $f$ lồi chặt (còn gọi là lồi nghiêm ngặt) nếu bất đẳng thức lồi là chặt với mọi $x\ne y$ và $\theta\in(0,1)$. Tập mức dưới của $f$ ứng với mức $c$ là $\{x\mid f(x)\le c\}$.
 - **Điều kiện bậc nhất và bậc hai** (Định lý 01.26, Hệ quả 01.27, Định lý 01.30). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$ với mọi $x,y$. Nếu $f$ lồi, khả vi trên tập mở lồi $D$ và $\nabla f(x^*)=0$ thì $x^*$ là cực tiểu toàn cục trên $D$. Hàm khả vi hai lần trên tập mở lồi là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi chặt nếu Hessian xác định dương mọi nơi.
 - **Hạn chế lên đường thẳng** (Bổ đề 01.28). Tính lồi của $f$ tương đương tính lồi của mọi hàm một biến $t\mapsto f(x+tv)$ trên khoảng các $t$ mà $x+tv$ thuộc miền.
@@ -32,7 +32,7 @@ Trong chương này, chúng ta dùng các kết quả sau. Số hiệu `01.k` ch
 - **Hồi quy logistic và chính quy hóa** (Định nghĩa 01.8, Mệnh đề 01.9, Định nghĩa 01.42, Mệnh đề 01.46, Ví dụ 01.7). Mất mát logistic của biên $m$ là $\ell(m)=\log(1+e^{-m})$, với $\ell''(m)=\sigma(m)(1-\sigma(m))\in(0,\tfrac14]$, trong đó $\sigma(z)=1/(1+e^{-z})$. Bài toán có chính quy hóa $L(w)+\tfrac\mu2\lVert w\rVert_2^2$ với $\mu>0$ có đúng một nghiệm với mọi dữ liệu.
 - **Hàm Lagrange và hệ KKT** (Định nghĩa 03.4, 03.29). Với bài toán $\min f_0(x)$, $f_i(x)\le0$, $Ax=b$, hàm Lagrange là $L(x,\lambda,\nu)=f_0(x)+\sum_i\lambda_if_i(x)+\nu^T(Ax-b)$. Hệ KKT gồm bốn nhóm: khả thi gốc, khả thi đối ngẫu $\lambda\succeq0$, bù trừ $\lambda_if_i(x)=0$, và dừng $\nabla f_0(x)+\sum_i\lambda_i\nabla f_i(x)+A^T\nu=0$.
 - **KKT và độ nhạy** (Định lý 03.32, Hệ quả 03.31, 03.24). Với bài toán lồi khả vi, một bộ thỏa hệ KKT cho nghiệm gốc, kể cả khi miền là tập mở lồi. Với bài toán lồi có điểm Slater, mọi nghiệm có nhân tử KKT. Gọi hàm giá trị $p^*(v)$ là giá trị tối ưu khi vế phải bị nhiễu thành $Ax-b=v$; khi $p^*$ khả vi tại $0$, $\nu_j^*=-\partial p^*/\partial v_j(0)$. Ví dụ 03.18(b) giải bài toán $\min x_1^2+x_2^2$ với $x_1+2x_2=5$ bằng hệ KKT tuyến tính, được $x=(1,2)$, $\nu=-2$. Ví dụ 03.19 giải bài toán hồi quy có ràng buộc chuẩn $\min\tfrac12\lVert w-y\rVert_2^2$, $\lVert w\rVert_2^2\le1$ với $y=(3,4)$, được $w^*=(0{,}6;\,0{,}8)$, $\lambda^*=2$ và mất mát tối ưu $8$.
-- **Đại số tuyến tính.** Ma trận đối xứng $Q\succ0$ khả nghịch, có căn bậc hai đối xứng $Q^{1/2}\succ0$ và phân rã Cholesky $Q=R^TR$. Bất đẳng thức Cauchy–Schwarz: $\lvert a^Tb\rvert\le\lVert a\rVert_2\lVert b\rVert_2$. Với $A\in\mathbb R^{p\times n}$, phần bù trực giao của không gian hạt nhân $\ker A=\{d\mid Ad=0\}$ là không gian hàng $\{A^T\eta\mid\eta\in\mathbb R^p\}$; nếu các hàng của $A$ độc lập tuyến tính thì $A^T\eta=0$ kéo theo $\eta=0$ và $\dim\ker A=n-p$.
+- **Đại số tuyến tính** (Bài 00, Hệ quả 00.19, Định nghĩa 00.25, Mệnh đề 00.5 và 00.8). Ma trận đối xứng $Q\succ0$ khả nghịch, có căn bậc hai đối xứng $Q^{1/2}\succ0$ và phân rã Cholesky $Q=R^TR$. Bất đẳng thức Cauchy–Schwarz: $\lvert a^Tb\rvert\le\lVert a\rVert_2\lVert b\rVert_2$. Với $A\in\mathbb R^{p\times n}$, phần bù trực giao của không gian hạt nhân $\ker A=\{d\mid Ad=0\}$ là không gian hàng $\{A^T\eta\mid\eta\in\mathbb R^p\}$; nếu các hàng của $A$ độc lập tuyến tính thì $A^T\eta=0$ kéo theo $\eta=0$ và $\dim\ker A=n-p$.
 
 ## Bảng ký hiệu
 
@@ -135,7 +135,7 @@ Bài toán tổng quát (2.1) của Bài 03 có miền $D$, $m$ ràng buộc b�
 
 Ví dụ, $f(x)=\tfrac12(3x_1^2+7x_2^2)$ trên $\mathbb R^2$ là bài toán không ràng buộc, còn $\varphi(s)=s-\log s$ có miền mở $(0,\infty)$, nên điều kiện $s>0$ là miền chứ không phải ràng buộc bất đẳng thức. Phản ví dụ là bài toán $\min x$ với $x\ge0$: nó không thuộc hai lớp này vì nghiệm $x=0$ nằm trên biên của tập khả thi và đạo hàm tại đó bằng $1\ne0$.
 
-Mọi phương pháp của chương hướng tới việc giải một hệ phương trình, và mệnh đề sau xác định hệ đó. Chứng minh của mệnh đề chỉ cần điều kiện cần bậc nhất của Bài 00, Hệ quả 01.27 cùng một sự kiện đại số tuyến tính về không gian hạt nhân.
+Mọi phương pháp của chương hướng tới việc giải một hệ phương trình, và mệnh đề sau xác định hệ đó. Chứng minh của mệnh đề chỉ cần điều kiện cần bậc nhất của Bài 00 (Định lý 00.42), Hệ quả 01.27 cùng một sự kiện đại số tuyến tính về không gian hạt nhân.
 
 ::: proposition Mệnh đề 04.2 (Hệ KKT rút gọn là điều kiện cần và đủ)
 **Giả thiết.** Hai bài toán của Định nghĩa 04.1.
@@ -316,7 +316,7 @@ khi giới hạn tồn tại.
 - Khi $f$ khả vi tại $x$, vector $d$ gọi là một **hướng giảm** (descent direction) của $f$ tại $x$ nếu $\nabla f(x)^Td<0$.
 :::
 
-Trong định nghĩa trên, giới hạn lấy theo $t>0$ vì bước lặp chỉ đi về phía trước theo $d$. Vector $d$ không cần chuẩn hóa. Bài 00 chỉ định nghĩa đạo hàm theo hướng cho vector có chuẩn bằng $1$, còn ở đây độ dài của $d$ được giữ nguyên vì về sau độ dài đó mang thông tin về bước.
+Trong định nghĩa trên, giới hạn lấy theo $t>0$ vì bước lặp chỉ đi về phía trước theo $d$. Vector $d$ không cần chuẩn hóa. Bài 00 (Định nghĩa 00.32) chỉ định nghĩa đạo hàm theo hướng cho vector có chuẩn bằng $1$, còn ở đây độ dài của $d$ được giữ nguyên vì về sau độ dài đó mang thông tin về bước.
 
 Đạo hàm hướng tổng quát hóa đạo hàm riêng: với $d=e_i$, vector cơ sở thứ $i$, ta có $f'(x;e_i)=\partial f/\partial x_i$. Nó khác gradient ở chỗ gradient là một vector, còn đạo hàm hướng là một số gắn với một hướng cho trước. Mệnh đề sau nối hai đối tượng này và cho thấy định nghĩa hướng giảm bằng dấu của $\nabla f(x)^Td$ là hợp lý.
 

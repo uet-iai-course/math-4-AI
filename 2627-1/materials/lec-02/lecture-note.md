@@ -21,7 +21,7 @@ Chúng ta dùng các kết quả sau của Bài 01 (ghi chú Bài 01, số hiệ
 - **Điều kiện bậc nhất, bậc hai, phép bảo toàn tính lồi** (Định lý 01.26, Hệ quả 01.27, Định lý 01.30, 01.31). Hàm khả vi $f$ trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)$; nếu $f$ lồi, khả vi trên một tập mở chứa $C$ và $x^*\in C$ thỏa $\nabla f(x^*)^T(x-x^*)\ge0$ với mọi $x\in C$ (điều kiện (7.3) của Bài 01) thì $x^*$ là nghiệm. Hàm khả vi hai lần lồi khi và chỉ khi Hessian $\succeq0$ mọi nơi, và lồi chặt nếu Hessian $\succ0$ mọi nơi. Tổng có hệ số không âm, hợp với ánh xạ affine và cực đại từng điểm của các hàm lồi là lồi.
 - **Toàn cục, tồn tại, duy nhất** (Định lý 01.33, Hệ quả 01.34, Định lý 01.35, 01.36, 01.38). Với miền lồi và mục tiêu lồi, cực tiểu địa phương là toàn cục và tập nghiệm lồi; mục tiêu lồi chặt có nhiều nhất một nghiệm; hàm liên tục đạt cực tiểu trên tập không rỗng, đóng, bị chặn (Weierstrass), hoặc trên tập không rỗng, đóng nếu hàm cưỡng bức (coercive), tức $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$.
 - **Bình phương nhỏ nhất và mất mát phân loại** (Mệnh đề 01.5, 01.6, 01.9, Ví dụ 01.14(c)). Hàm $\lVert Xw-y\rVert_2^2$ có gradient $2X^T(Xw-y)$, Hessian $2X^TX\succeq0$, luôn đạt cực tiểu, và $w^*$ là nghiệm khi và chỉ khi $X^TXw^*=X^Ty$. Hàm bản lề $\max(0,1-m)$ lồi; hàm $\log(1+e^{-m})$ có đạo hàm bậc hai $e^m/(1+e^m)^2>0$.
-- **Đại số tuyến tính** (Bài 00, mục "Phân rã trị riêng"). Ma trận đối xứng $P$ viết được thành $P=V\Lambda V^T$ với $V$ trực giao và $\Lambda$ chéo chứa các giá trị riêng; bất đẳng thức Cauchy–Schwarz $\lvert a^Tb\rvert\le\lVert a\rVert_2\lVert b\rVert_2$.
+- **Đại số tuyến tính** (Bài 00, Định lý 00.16 và Mệnh đề 00.5). Ma trận đối xứng $P$ viết được thành $P=V\Lambda V^T$ với $V$ trực giao và $\Lambda$ chéo chứa các giá trị riêng; bất đẳng thức Cauchy–Schwarz $\lvert a^Tb\rvert\le\lVert a\rVert_2\lVert b\rVert_2$.
 - **Bất đẳng thức sơ cấp và logarit.** Bất đẳng thức tam giác $\lvert s+t\rvert\le\lvert s\rvert+\lvert t\rvert$; bất đẳng thức trung bình cộng – trung bình nhân cho ba số dương, $\tfrac13(s_1+s_2+s_3)\ge(s_1s_2s_3)^{1/3}$ với dấu bằng khi ba số bằng nhau. Ký hiệu $\log$ là logarit tự nhiên, tăng chặt trên $(0,\infty)$.
 
 ## Bảng ký hiệu
@@ -1025,7 +1025,7 @@ Câu hỏi đặt ra là khi nào quy hoạch bậc hai có đúng một nghiệ
 ::: proof Chứng minh Mệnh đề 02.18
 **Bước 1 (phần (a)).** Hàm $f_0(x)=\tfrac12x^TPx+q^Tx+s$ khả vi hai lần trên $\mathbb R^n$ với $\nabla f_0(x)=Px+q$ và $\nabla^2f_0(x)=P\succeq0$, nên lồi theo Định lý 01.30(a). Các ràng buộc affine, nên bài toán ở dạng (1.1).
 
-**Bước 2 (phần (b): chặn dưới bậc hai).** Theo phân rã trị riêng $P=V\Lambda V^T$ với $V$ trực giao và $\Lambda$ chéo (Bài 00, mục "Phân rã trị riêng"),
+**Bước 2 (phần (b): chặn dưới bậc hai).** Theo phân rã trị riêng $P=V\Lambda V^T$ với $V$ trực giao và $\Lambda$ chéo (Bài 00, Định lý 00.16),
 
 $$
 x^TPx=(V^Tx)^T\Lambda(V^Tx)\ge\lambda_{\min}\lVert V^Tx\rVert_2^2=\lambda_{\min}\lVert x\rVert_2^2,

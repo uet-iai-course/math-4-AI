@@ -18,9 +18,9 @@ Sau chương này, người học có thể:
 
 ## Kiến thức tiên quyết
 
-Số hiệu `01.k`, `04.k` và `06b.k` chỉ ghi chú Bài 01, Bài 04 và Bài 06b. Ghi chú Bài 00 không đánh số, nên các kết quả của nó được dẫn theo tên mục. Ghi chú bổ trợ Bài 05b được dẫn bằng tên khái niệm kèm phát biểu lại.
+Số hiệu `00.k`, `01.k`, `04.k` và `06b.k` chỉ ghi chú Bài 00, Bài 01, Bài 04 và Bài 06b. Ghi chú bổ trợ Bài 05b được dẫn bằng tên khái niệm kèm phát biểu lại.
 
-- **Ôn tập xác suất** (Bài 00, các mục "Xác suất một biến" và "Xác suất nhiều biến"). Bài 00 nêu định nghĩa không gian xác suất $(\Omega,\mathcal F,\Pr)$, biến ngẫu nhiên, hàm khối xác suất (PMF), mật độ, kỳ vọng, phương sai, độc lập và công thức Bayes, kèm ví dụ nhưng không chứng minh các quy tắc tính, và không nối chúng với gradient lô. Chương này chứng minh các quy tắc đó cho trường hợp rời rạc, thêm các bất đẳng thức tập trung, và dùng chúng để chứng minh các khẳng định về gradient lô của Bài 06.
+- **Ôn tập xác suất** (Bài 00, Mục 6 và Mục 7). Bài 00 nêu định nghĩa không gian xác suất $(\Omega,\mathcal F,\Pr)$, biến ngẫu nhiên, hàm khối xác suất (PMF), mật độ, kỳ vọng, phương sai, độc lập và công thức Bayes, kèm ví dụ và chứng minh các quy tắc tính ở Mệnh đề 00.57 và 00.61, nhưng không nối chúng với gradient lô. Chương này chứng minh các quy tắc đó cho trường hợp rời rạc, thêm các bất đẳng thức tập trung, và dùng chúng để chứng minh các khẳng định về gradient lô của Bài 06.
 - **Giải tích một biến.** Tổng hữu hạn, chuỗi hình học $\sum_{k\ge0}r^k=\tfrac1{1-r}$ với $\lvert r\rvert<1$, hàm mũ và logarit tự nhiên $\ln$. Khai triển Taylor $e^x=\sum_{k\ge0}x^k/k!$ đúng với mọi $x$. Định lý Taylor với phần dư Lagrange: nếu $\varphi$ khả vi hai lần trên một khoảng chứa $0$ và $u$, thì có $\vartheta$ nằm giữa $0$ và $u$ để $\varphi(u)=\varphi(0)+\varphi'(0)u+\tfrac12\varphi''(\vartheta)u^2$. Tích phân một biến chỉ dùng ở Mục 3.3.
 - **Hàm lồi một biến** (Định nghĩa 01.22). Nếu $\varphi$ lồi trên đoạn $[m,M]$ thì đồ thị nằm dưới dây cung: $\varphi(y)\le\frac{M-y}{M-m}\varphi(m)+\frac{y-m}{M-m}\varphi(M)$ với mọi $y\in[m,M]$. Hàm mũ $y\mapsto e^{\lambda y}$ lồi với mọi $\lambda\in\mathbb R$.
 - **Mất mát huấn luyện, rủi ro kỳ vọng và ví dụ ba quan sát** (Định nghĩa 06b.1, Ví dụ 06b.1). Mất mát huấn luyện là trung bình $J(\theta)=\frac1N\sum_{i=1}^N\ell_i(\theta)$ của $N$ mất mát riêng; rủi ro kỳ vọng $R(\theta)$ là mất mát trung bình trên một quan sát mới rút từ phân phối sinh dữ liệu. Với ba quan sát $y=(-1,1,3)$, mô hình hằng $\theta\in\mathbb R$ và $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$, mất mát huấn luyện là $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ với nghiệm $\theta^*=1$.
@@ -211,7 +211,7 @@ Phần 2 thuận tiện khi biến cố cần tính có dạng "có ít nhất m
 Trên ví dụ hai xúc xắc, với $A$ là "tổng ít nhất bằng 10" và $B$ là "hai mặt bằng nhau", mỗi biến cố có $6$ cặp và phần giao gồm hai cặp $(5,5)$, $(6,6)$. Phần 4 cho $P(A\cup B)=\tfrac6{36}+\tfrac6{36}-\tfrac2{36}=\tfrac{10}{36}$, và phần 2 kiểm tra lại kết quả này, vì phần bù có $26$ cặp.
 
 ::: remark Nhận xét 05c.3 (Quan hệ với Bài 00 và với không gian không đếm được)
-**Đối chiếu Bài 00.** Mục "Phép thử, không gian mẫu, biến cố và không gian xác suất" của Bài 00 định nghĩa không gian xác suất là bộ ba $(\Omega,\mathcal F,\Pr)$, với $\mathcal F$ là họ các biến cố. Khi $\Omega$ hữu hạn hoặc đếm được, có thể lấy $\mathcal F$ là họ mọi tập con, và Định nghĩa 05c.1 là trường hợp riêng đó, viết $P$ thay cho $\Pr$.
+**Đối chiếu Bài 00.** Định nghĩa 00.49 của Bài 00 định nghĩa không gian xác suất là bộ ba $(\Omega,\mathcal F,\Pr)$, với $\mathcal F$ là họ các biến cố. Khi $\Omega$ hữu hạn hoặc đếm được, có thể lấy $\mathcal F$ là họ mọi tập con, và Định nghĩa 05c.1 là trường hợp riêng đó, viết $P$ thay cho $\Pr$.
 
 **Không gian không đếm được.** Khi $\Omega=[0,1]$, không thể gán xác suất nhất quán, đều theo độ dài, cho mọi tập con, nên biến cố chỉ là các tập thuộc một họ $\mathcal F$ được chọn riêng; chương không đi vào lý thuyết đó và dùng biến liên tục chỉ qua mật độ (Mục 3.3).
 :::
@@ -574,7 +574,7 @@ $$
 
 khớp với cây tần số. Nếu tỉ lệ mắc là $0{,}01$ thay cho $0{,}001$, cùng phép tính cho $P(D\mid+)=0{,}0095/0{,}059\approx0{,}161$, tức tiên nghiệm tăng mười lần làm hậu nghiệm tăng gần chín lần.
 
-Chứng minh Định lý 05c.11 chỉ dùng (2.1) hai lần. Định lý được dùng để đi từ đại lượng đo được tới đại lượng cần cho quyết định, bằng cách đảo chiều điều kiện. Đối chiếu Bài 00: mục "Phân phối biên, có điều kiện, xác suất toàn phần và Bayes" phát biểu cùng hai công thức với ký hiệu $\Pr$.
+Chứng minh Định lý 05c.11 chỉ dùng (2.1) hai lần. Định lý được dùng để đi từ đại lượng đo được tới đại lượng cần cho quyết định, bằng cách đảo chiều điều kiện. Đối chiếu Bài 00: Mệnh đề 00.61 phát biểu cùng hai công thức cho hàm khối xác suất $p_{U,V}$.
 
 ::: example Ví dụ 05c.8 (Bộ lọc thư rác với một từ khóa)
 **Dữ kiện.** Trong luồng thư đến, $40\,\%$ là thư rác. Một từ khóa xuất hiện trong $25\,\%$ thư rác và trong $2\,\%$ thư thường. Gọi $Q$ là biến cố "thư là thư rác" và $E$ là biến cố "thư chứa từ khóa".
@@ -816,7 +816,7 @@ $$
 
 Công thức (3.2) cho biết xác suất để $X$ rơi vào một tập bằng tổng chiều cao các cột nằm trong tập đó. Đây là (1.3) chuyển từ kết cục sang giá trị, và cũng là cách ta đã tính $P(S\le7)$ ở Ví dụ 05c.11.
 
-Lưu ý rằng biến ngẫu nhiên là một hàm xác định, còn tính ngẫu nhiên nằm ở kết cục $\omega$. Hai biến khác nhau có thể cùng PMF, chẳng hạn mặt của xúc xắc thứ nhất và mặt của xúc xắc thứ hai là hai hàm khác nhau trên $\Omega$ nhưng cùng PMF đều. Đối chiếu Bài 00: mục "Biến rời rạc và hàm khối xác suất" dùng cùng ký hiệu $p_X$.
+Lưu ý rằng biến ngẫu nhiên là một hàm xác định, còn tính ngẫu nhiên nằm ở kết cục $\omega$. Hai biến khác nhau có thể cùng PMF, chẳng hạn mặt của xúc xắc thứ nhất và mặt của xúc xắc thứ hai là hai hàm khác nhau trên $\Omega$ nhưng cùng PMF đều. Đối chiếu Bài 00: Định nghĩa 00.51 viết hàm khối xác suất của biến $U$ là $p_U$, cùng dạng ký hiệu.
 
 Xác suất để biến không vượt một ngưỡng cho trước được gom thành một hàm theo định nghĩa sau.
 
@@ -853,7 +853,7 @@ Trong khi PMF cho "xác suất bằng $x$" thì CDF cho "xác suất không vư�
 **Bước 3 (đuôi phải).** $\{X>x\}$ là phần bù của $\{X\le x\}$; dùng phần 2 của Mệnh đề 05c.2. $\square$
 :::
 
-Phần 3 có dạng mà các bất đẳng thức của Mục 5 sẽ chặn, tức xác suất đuôi $P(X>x)$ hoặc $P(X\ge x)$. Đối chiếu Bài 00: mục "Hàm phân phối tích lũy và quan hệ PMF–PDF–CDF" nêu cùng các tính chất cho cả biến liên tục (Koller và Friedman, 2009, tr. 28).
+Phần 3 có dạng mà các bất đẳng thức của Mục 5 sẽ chặn, tức xác suất đuôi $P(X>x)$ hoặc $P(X\ge x)$. Đối chiếu Bài 00: Mệnh đề 00.54 nêu cùng các tính chất cho cả biến liên tục (Koller và Friedman, 2009, tr. 28).
 
 ### 3.2 Các phân phối rời rạc thường dùng
 
@@ -882,7 +882,7 @@ Cho $p\in[0,1]$ và các số nguyên dương $n$, $N$.
 
 Trong định nghĩa trên, phân phối Bernoulli mô tả một lần thử có hai kết quả, chẳng hạn một ảnh bị phân loại sai hay đúng (Goodfellow và cộng sự, 2016, mục 3.9.1, tr. 62). Phân phối nhị thức mô tả số lần thành công trong $n$ lần thử độc lập (Mệnh đề 05c.21). Mỗi $I_r$ của lô được rút có hoàn lại có phân phối đều (Mệnh đề 05c.14), còn phân phối hình học mô tả số lần thử tới lần thành công đầu tiên.
 
-Tổng các xác suất của phân phối hình học bằng $1$ theo chuỗi hình học, vì $\sum_{k\ge1}(1-p)^{k-1}p=p\cdot\tfrac1{1-(1-p)}=1$. Đối chiếu Bài 00: mục "Biến rời rạc và hàm khối xác suất" ký hiệu tham số Bernoulli là $\pi$, còn ở đây ta dùng $p$ vì nó trùng với tỉ lệ lỗi $p$ ở Mục 5 và Mục 6.
+Tổng các xác suất của phân phối hình học bằng $1$ theo chuỗi hình học, vì $\sum_{k\ge1}(1-p)^{k-1}p=p\cdot\tfrac1{1-(1-p)}=1$. Đối chiếu Bài 00: Định nghĩa 00.51 ký hiệu tham số Bernoulli là $\theta$, còn ở đây ta dùng $p$ vì nó trùng với tỉ lệ lỗi $p$ ở Mục 5 và Mục 6.
 
 Phân phối nhị thức xuất hiện đúng như số lần thành công của các phép thử độc lập, theo mệnh đề sau.
 
@@ -965,7 +965,7 @@ $$
 
 Lưu ý rằng mật độ không phải xác suất, chẳng hạn mật độ đều trên $[0;0{,}5]$ bằng $2$. Ký hiệu $p_X$ dùng chung cho PMF và mật độ vì tổng trong (3.2) được thay bằng tích phân trong (3.4).
 
-Phân phối Gauss chỉ được phát biểu để đặt tên cho định lý giới hạn trung tâm ở Mục 5.6 (Koller và Friedman, 2009, Định nghĩa 2.6–2.7, tr. 28). Bài 00, mục "Biến liên tục và hàm mật độ xác suất", viết phương sai Gauss là $\sigma^2$, còn ở đây ta viết $s^2$ để không trùng $\sigma_1^2$.
+Phân phối Gauss chỉ được phát biểu để đặt tên cho định lý giới hạn trung tâm ở Mục 5.6 (Koller và Friedman, 2009, Định nghĩa 2.6–2.7, tr. 28). Bài 00, Định nghĩa 00.58, viết phương sai Gauss là $\sigma^2$, còn ở đây ta viết $s^2$ để không trùng $\sigma_1^2$.
 
 Các chứng minh trong chương viết cho biến rời rạc. Với biến có mật độ, các kết quả về kỳ vọng, phương sai và các bất đẳng thức của Mục 5 vẫn đúng khi thay tổng theo giá trị bằng tích phân theo mật độ. Chúng ta dùng các phiên bản đó mà không chứng minh lại.
 
@@ -1004,7 +1004,7 @@ $$
 **Độc lập cùng phân phối.** $X_1,\ldots,X_n$ độc lập cùng phân phối (independent and identically distributed, i.i.d.) nếu chúng độc lập và có cùng PMF.
 :::
 
-Định nghĩa 05c.23 chuyển Định nghĩa 05c.12 từ biến cố sang biến. Cộng (3.5) theo giá trị của một số biến, ta được đẳng thức tích cho mọi họ con, nên các biến cố $\{X_i\in T_i\}$ độc lập theo (2.6) (Koller và Friedman, 2009, mục 2.1.4, tr. 24–25; Goodfellow và cộng sự, 2016, mục 3.7, tr. 60). Đối chiếu Bài 00: mục "Độc lập và độc lập có điều kiện".
+Định nghĩa 05c.23 chuyển Định nghĩa 05c.12 từ biến cố sang biến. Cộng (3.5) theo giá trị của một số biến, ta được đẳng thức tích cho mọi họ con, nên các biến cố $\{X_i\in T_i\}$ độc lập theo (2.6) (Koller và Friedman, 2009, mục 2.1.4, tr. 24–25; Goodfellow và cộng sự, 2016, mục 3.7, tr. 60). Đối chiếu Bài 00: Định nghĩa 00.62.
 
 Hai biến có cùng PMF lề không nhất thiết độc lập, và ngược lại hai biến độc lập không nhất thiết cùng PMF. Ví dụ 05c.15 cho trường hợp thứ nhất, vì khi rút không hoàn lại, $X_1$ và $X_2$ cùng PMF đều trên $\{-1,1,3\}$ nhưng phụ thuộc. Mặt của một xúc xắc và mặt của một đồng xu tung độc lập cho trường hợp thứ hai.
 
@@ -1158,7 +1158,7 @@ tổng lấy trên tập giá trị của $X$. Với biến có mật độ và 
 
 Điều kiện hội tụ tuyệt đối bảo đảm tổng (4.1) không phụ thuộc thứ tự cộng, và ở Mục 5.6, chúng ta sẽ gặp một biến không thỏa điều kiện này (Wasserman, 2004, mục 3.1). Kỳ vọng không nhất thiết là một giá trị mà biến nhận được, chẳng hạn biến Bernoulli$(p)$ có $\mathbb EX=p$ trong khi chỉ nhận $0$ hoặc $1$.
 
-Với mất mát 0–1, bằng $1$ khi phân loại sai và $0$ khi đúng, mất mát trên một quan sát mới là biến Bernoulli với tham số bằng tỉ lệ lỗi thật $p$, nên rủi ro kỳ vọng của mô hình chính là $p$. Đối chiếu Bài 00: mục "Kỳ vọng và kỳ vọng của một hàm" dùng cùng định nghĩa.
+Với mất mát 0–1, bằng $1$ khi phân loại sai và $0$ khi đúng, mất mát trên một quan sát mới là biến Bernoulli với tham số bằng tỉ lệ lỗi thật $p$, nên rủi ro kỳ vọng của mô hình chính là $p$. Đối chiếu Bài 00: Định nghĩa 00.55 dùng cùng định nghĩa.
 
 Nhiều đại lượng cần tính là kỳ vọng của một hàm của biến đã biết PMF, chẳng hạn $\mathbb ES^2$ hoặc $\mathbb Ee^{\lambda S}$. Mệnh đề sau cho phép tính chúng mà không lập PMF mới.
 
@@ -1345,7 +1345,7 @@ $$
 Hai biến không tương quan (uncorrelated) nếu $\operatorname{Cov}(X,Y)=0$.
 :::
 
-Độ lệch chuẩn có cùng đơn vị với $X$. Hiệp phương sai dương khi hai biến có xu hướng cùng lệch về một phía so với tâm, âm khi lệch ngược phía, và $\operatorname{Cov}(X,X)=\operatorname{Var}X$ (Goodfellow và cộng sự, 2016, mục 3.8, tr. 61–62). Đối chiếu Bài 00: mục "Phương sai, độ lệch chuẩn và biến đổi affine".
+Độ lệch chuẩn có cùng đơn vị với $X$. Hiệp phương sai dương khi hai biến có xu hướng cùng lệch về một phía so với tâm, âm khi lệch ngược phía, và $\operatorname{Cov}(X,X)=\operatorname{Var}X$ (Goodfellow và cộng sự, 2016, mục 3.8, tr. 61–62). Đối chiếu Bài 00: Định nghĩa 00.56 và Mệnh đề 00.57.
 
 Các công thức tính phương sai và hiệp phương sai thường dùng được gom trong mệnh đề sau.
 

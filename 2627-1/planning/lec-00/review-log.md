@@ -177,3 +177,13 @@ Bài không có lời giải trong `sources/` do tác tử soạn tự giải; t
 ### Mục tiêu không có bài giáo trình
 
 Mỗi mục tiêu 1–6 có ít nhất một bài (ghi chú hoặc tệp). Các vế sau không có bài giáo trình phù hợp trong nguồn U3 không trùng Bài 10–11: ma trận Jacobian; kỳ vọng và phương sai từ PMF, PDF, CDF; hợp lý cực đại dưới nhiễu Gauss dẫn tới bình phương nhỏ nhất; công thức Bayes (Murphy 2.9 đã dùng ở Bài 10); điều kiện dùng bình phương nhỏ nhất tổng quát; quá khớp khi số trọng số bằng số mẫu. Phân biệt nhiễu với phần dư và dải nhiễu dựa vào Bài tập 00.2 của ghi chú; các vế còn lại dựa vào ví dụ có lời giải trong ghi chú.
+
+## Cập nhật dẫn chiếu tới Bài 00 sau khi đánh số (giai đoạn 3)
+
+Tác tử ánh xạ dẫn chiếu: `general-purpose`, `model: opus`, effort `medium` (lấy từ lời gọi công cụ), tiếp tục một lần bằng `SendMessage` để sửa ba chỗ điều phối viên trả lại.
+
+- 66 chỗ dẫn Bài 00 theo tên mục ở 10 ghi chú (01, 02, 03, 04, 05, 05b, 05c, 06, 06b, 11) đổi sang số hiệu mới theo `map-lec-00.md` (cột "Trạng thái giai đoạn 3"). Không tệp `exercises.md` nào dẫn Bài 00. Deck chỉ nhắc "Bài 00" theo khái niệm, không dẫn tên mục hay số hiệu: không sửa deck.
+- Theo Q00-2 (mở rộng khi duyệt diff): sửa phần khẳng định đã thành sai về Bài 00 ở lec-01:29 ("Khác với Bài 00, …"), lec-04:22, lec-05b:18, lec-05c:21, lec-05c:23 ("không chứng minh các quy tắc tính" → chứng minh ở Mệnh đề 00.57, 00.61), lec-06:18, lec-06b:22, lec-05c:577 (ký hiệu của Mệnh đề 00.61), lec-05c:819 (Bài 00 viết $p_U$); theo Q00-3: lec-05c:885 tham số Bernoulli $\theta$.
+- Quyết định khi duyệt diff: lec-01:1599 dẫn Định nghĩa 00.30 thay Mệnh đề 00.33 (hướng $y-x$ không đơn vị; Mệnh đề 00.38 đòi $C^2$, chứng minh ở Bài 01 chỉ giả thiết khả vi) — `chấp nhận`.
+- Không gán số: lec-05:26 (ma trận Vandermonde không có ở Bài 00; giữ nguồn Strang); lec-04:35 ($Q^{1/2}\succ0$ nằm ở đoạn đọc không đánh số sau Định nghĩa 00.25). Ghi để Bài 04, 05 xử lý khi viết lại.
+- Điều phối viên kiểm diff (word-diff): chỉ phần dẫn và các câu nêu trên đổi; mọi số được dẫn tồn tại, đúng loại khối và đúng nội dung câu dẫn (đối chiếu tiêu đề 34 khối được dẫn). Đồng bộ học liệu `--check` đạt, `git diff --check` sạch. Viewer (`file://`, 1600×900) mở 10 ghi chú đã sửa: 0 `.katex-error`, 0 lỗi console.

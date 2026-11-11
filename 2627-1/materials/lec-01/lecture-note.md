@@ -15,9 +15,9 @@ Sau khi học chương này, người học làm được các việc sau. Mỗi
 Chương dùng các kết quả sau, đều đã có trong Bài 00 hoặc trong các học phần tiên quyết Giải tích 1 và Đại số tuyến tính cho kỹ thuật.
 
 - **Đạo hàm một biến và định lý giá trị trung bình.** Nếu $\varphi$ khả vi trên khoảng mở chứa đoạn nối $s$ và $t$ thì tồn tại $\xi$ nằm giữa $s$ và $t$ sao cho $\varphi(s)-\varphi(t)=\varphi'(\xi)(s-t)$. Nếu $\varphi'\ge0$ trên một khoảng thì $\varphi$ không giảm trên khoảng đó.
-- **Gradient, Hessian và quy tắc dây chuyền** (Bài 00, mục "Quy tắc dây chuyền" và "Đạo hàm riêng bậc hai và ma trận Hessian"). Với $f:\mathbb R^d\to\mathbb R$ khả vi hai lần, $x\in\mathbb R^d$ và hướng $v\in\mathbb R^d$, hàm một biến $\varphi(t)=f(x+tv)$ có $\varphi'(t)=\nabla f(x+tv)^Tv$ và $\varphi''(t)=v^T\nabla^2f(x+tv)v$.
-- **Dạng toàn phương** (Bài 00, mục "Dạng toàn phương"). Ma trận đối xứng $Q$ là nửa xác định dương, ký hiệu $Q\succeq0$, nếu $v^TQv\ge0$ với mọi $v$; là xác định dương, ký hiệu $Q\succ0$, nếu $v^TQv>0$ với mọi $v\ne0$. Với mọi ma trận $X\in\mathbb R^{n\times d}$, $X^TX\succeq0$, và $X^TX\succ0$ khi và chỉ khi $\operatorname{rank}X=d$.
-- **Không gian cột, hạt nhân và hạng** (Bài 00, mục "Không gian cột và hạt nhân" và "Hạng của ma trận"). Không gian cột $\mathcal R(X)=\{Xw\mid w\in\mathbb R^d\}$, hạt nhân $\ker X=\{v\mid Xv=0\}$, và $\operatorname{rank}X=d$ khi và chỉ khi $\ker X=\{0\}$. Với mọi ma trận $M$, $\mathcal R(M)=\ker(M^T)^\perp$, trong đó $V^\perp$ là tập các vector trực giao với mọi phần tử của $V$ (định lý cơ bản của đại số tuyến tính).
+- **Gradient, Hessian và quy tắc dây chuyền** (Bài 00, Định lý 00.35, Định nghĩa 00.36 và Mệnh đề 00.38). Với $f:\mathbb R^d\to\mathbb R$ khả vi hai lần, $x\in\mathbb R^d$ và hướng $v\in\mathbb R^d$, hàm một biến $\varphi(t)=f(x+tv)$ có $\varphi'(t)=\nabla f(x+tv)^Tv$ và $\varphi''(t)=v^T\nabla^2f(x+tv)v$.
+- **Dạng toàn phương** (Bài 00, Định nghĩa 00.17 và Mệnh đề 00.20). Ma trận đối xứng $Q$ là nửa xác định dương, ký hiệu $Q\succeq0$, nếu $v^TQv\ge0$ với mọi $v$; là xác định dương, ký hiệu $Q\succ0$, nếu $v^TQv>0$ với mọi $v\ne0$. Với mọi ma trận $X\in\mathbb R^{n\times d}$, $X^TX\succeq0$, và $X^TX\succ0$ khi và chỉ khi $\operatorname{rank}X=d$.
+- **Không gian cột, hạt nhân và hạng** (Bài 00, Định nghĩa 00.7 và Mệnh đề 00.8). Không gian cột $\mathcal R(X)=\{Xw\mid w\in\mathbb R^d\}$, hạt nhân $\ker X=\{v\mid Xv=0\}$, và $\operatorname{rank}X=d$ khi và chỉ khi $\ker X=\{0\}$. Với mọi ma trận $M$, $\mathcal R(M)=\ker(M^T)^\perp$, trong đó $V^\perp$ là tập các vector trực giao với mọi phần tử của $V$ (định lý cơ bản của đại số tuyến tính).
 - **Chuẩn Euclid và bất đẳng thức tam giác.** $\lVert x\rVert_2=\sqrt{x^Tx}$ và $\lVert x+y\rVert_2\le\lVert x\rVert_2+\lVert y\rVert_2$.
 - **Dãy và tập đóng.** Một tập $C\subseteq\mathbb R^d$ là đóng nếu giới hạn của mọi dãy hội tụ gồm các điểm của $C$ cũng thuộc $C$; là bị chặn nếu có $R>0$ sao cho $\lVert x\rVert_2\le R$ với mọi $x\in C$.
 - **Hàm mũ và logarit tự nhiên.** Trong chương, $\log$ là logarit cơ số $e$.
@@ -26,7 +26,7 @@ Chương dùng các kết quả sau, đều đã có trong Bài 00 hoặc trong 
 
 Bảng liệt kê các ký hiệu dùng xuyên suốt chương; ký hiệu chỉ dùng trong một ví dụ hoặc một chứng minh được giới thiệu tại chỗ.
 
-Khác với Bài 00, chương này viết vector và ma trận bằng chữ thường, không in đậm. Một vài chữ cái mang nghĩa khác nhau ở các mục khác nhau; cột thứ hai ghi rõ phạm vi. Các ký hiệu chỉ dùng trong một chứng minh, một ví dụ hay một bài tập được ghi "nêu tại chỗ".
+Chương này viết vector và ma trận bằng chữ thường, không in đậm. Một vài chữ cái mang nghĩa khác nhau ở các mục khác nhau; cột thứ hai ghi rõ phạm vi. Các ký hiệu chỉ dùng trong một chứng minh, một ví dụ hay một bài tập được ghi "nêu tại chỗ".
 
 | Ký hiệu | Ý nghĩa | Miền hoặc kiểu |
 |---|---|---|
@@ -53,7 +53,7 @@ Khác với Bài 00, chương này viết vector và ma trận bằng chữ thư
 
 ## 1. Ba quyết định cần tối ưu
 
-Trong Bài 00, chúng ta đã ôn lại gradient, Hessian và điều kiện điểm dừng: nếu một hàm khả vi đạt cực tiểu địa phương tại một điểm nằm trong miền mở thì gradient tại đó bằng không. Điều kiện này chỉ là điều kiện cần và chỉ nói về điểm trong, nên nó không xác định được một điểm dừng có phải cực tiểu toàn cục hay không, và không áp dụng được khi nghiệm nằm trên biên hoặc khi giá trị nhỏ nhất không đạt tại điểm nào. Chọn tác động điều khiển hay chọn tham số cho một mô hình học máy đều là chọn một điểm làm nhỏ nhất một tiêu chí trên một miền cho phép. Bài toán này được gọi là bài toán tối ưu. Trong chương này, chúng ta viết ba quyết định cụ thể thành ba bài toán tối ưu, rồi xây dựng tập lồi và hàm lồi để chứng nhận khi nào nghiệm là toàn cục, tồn tại và duy nhất.
+Trong Bài 00, chúng ta đã ôn lại gradient, Hessian và điều kiện điểm dừng (Định lý 00.42): nếu một hàm khả vi đạt cực tiểu địa phương tại một điểm nằm trong miền mở thì gradient tại đó bằng không. Điều kiện này chỉ là điều kiện cần và chỉ nói về điểm trong, nên nó không xác định được một điểm dừng có phải cực tiểu toàn cục hay không, và không áp dụng được khi nghiệm nằm trên biên hoặc khi giá trị nhỏ nhất không đạt tại điểm nào. Chọn tác động điều khiển hay chọn tham số cho một mô hình học máy đều là chọn một điểm làm nhỏ nhất một tiêu chí trên một miền cho phép. Bài toán này được gọi là bài toán tối ưu. Trong chương này, chúng ta viết ba quyết định cụ thể thành ba bài toán tối ưu, rồi xây dựng tập lồi và hàm lồi để chứng nhận khi nào nghiệm là toàn cục, tồn tại và duy nhất.
 
 Ba tình huống sau đây được dùng xuyên suốt chương. Mỗi tình huống có một đại lượng được chọn, một tiêu chí để so sánh các lựa chọn và có thể có giới hạn về lựa chọn.
 
@@ -412,7 +412,7 @@ $$
 0\le\lVert Xv\rVert_2^2\le\lVert X\rVert_F^2\lVert v\rVert_2^2
 $$
 
-theo bất đẳng thức Cauchy–Schwarz áp dụng cho từng hàng, với $\lVert X\rVert_F$ là chuẩn Frobenius của $X$ (Bài 00, mục "Chuẩn ma trận"). Do đó hạng dư chia cho $\lVert v\rVert_2$ dần tới $0$ khi $v\to0$. Theo định nghĩa khả vi (Bài 00, mục "Khả vi của hàm nhiều biến"), $\nabla J(w)=2X^T(Xw-y)$. Ánh xạ $w\mapsto2X^TXw-2X^Ty$ là affine với ma trận $2X^TX$, nên $\nabla^2J(w)=2X^TX$.
+theo bất đẳng thức Cauchy–Schwarz (Bài 00, Mệnh đề 00.5) áp dụng cho từng hàng, với $\lVert X\rVert_F$ là chuẩn Frobenius của $X$ (Bài 00, Định nghĩa 00.4). Do đó hạng dư chia cho $\lVert v\rVert_2$ dần tới $0$ khi $v\to0$. Theo định nghĩa khả vi (Bài 00, Định nghĩa 00.30), $\nabla J(w)=2X^T(Xw-y)$. Ánh xạ $w\mapsto2X^TXw-2X^Ty$ là affine với ma trận $2X^TX$, nên $\nabla^2J(w)=2X^TX$.
 
 **Bước 3 (phần (c), chiều đủ).** Nếu $w^*$ thỏa (3.3) thì $X^T(Xw^*-y)=0$. Thay $w=w^*$ vào (3.2), ta có
 
@@ -434,9 +434,9 @@ $$
 Suy ra $v^Tg=0$ với mọi $v$. Chọn $v=g$, ta được $\lVert g\rVert_2^2=0$, tức $g=0$, đó là (3.3). $\square$
 :::
 
-Mệnh đề 01.5 cho thấy với bình phương nhỏ nhất, điều kiện gradient bằng không vừa cần vừa đủ cho cực tiểu toàn cục, trong khi ở Bài 00 điều kiện này mới chỉ là điều kiện cần.
+Mệnh đề 01.5 cho thấy với bình phương nhỏ nhất, điều kiện gradient bằng không vừa cần vừa đủ cho cực tiểu toàn cục, trong khi ở Bài 00 (Định lý 00.42) điều kiện này mới chỉ là điều kiện cần.
 
-Phần (c) mạnh hơn kết quả của Bài 00 do dùng thêm cấu trúc bậc hai của $J$ qua (3.2). Phạm vi áp dụng của nó vì thế hẹp, do chứng minh không dùng được cho hàm mất mát khác. Mệnh đề này chưa cho biết phương trình (3.3) có nghiệm hay không và có bao nhiêu nghiệm, nên chúng ta cần mệnh đề sau.
+Phần (c) mạnh hơn kết quả của Bài 00 (Định lý 00.42) do dùng thêm cấu trúc bậc hai của $J$ qua (3.2). Phạm vi áp dụng của nó vì thế hẹp, do chứng minh không dùng được cho hàm mất mát khác. Mệnh đề này chưa cho biết phương trình (3.3) có nghiệm hay không và có bao nhiêu nghiệm, nên chúng ta cần mệnh đề sau.
 
 ::: proposition Mệnh đề 01.6 (Tồn tại và tập nghiệm của bình phương nhỏ nhất)
 **Giả thiết.** $X\in\mathbb R^{n\times d}$ và $y\in\mathbb R^n$ tùy ý.
@@ -464,7 +464,7 @@ Vậy $\mathcal R(X^TX)=\mathcal R(X^T)$, và $X^Ty\in\mathcal R(X^T)$ nên có 
 
 **Bước 3 (tập nghiệm; phần (b)).** Theo Mệnh đề 01.5(c), $w$ là nghiệm khi và chỉ khi $X^TXw=X^Ty=X^TXw^*$, tức $X^TX(w-w^*)=0$, và theo Bước 1, tức $X(w-w^*)=0$. Vậy $w-w^*\in\ker X$, và $Xw=Xw^*$. Đó là (b).
 
-**Bước 4 (tính duy nhất; phần (c)).** Theo (b), $S^*$ có đúng một phần tử khi và chỉ khi $\ker X=\{0\}$, tức $\operatorname{rank}X=d$. Khi đó $X^TX\succ0$ (Bài 00, mục "Dạng toàn phương") nên khả nghịch, và (3.3) cho $w^*=(X^TX)^{-1}X^Ty$. Đó là (c). $\square$
+**Bước 4 (tính duy nhất; phần (c)).** Theo (b), $S^*$ có đúng một phần tử khi và chỉ khi $\ker X=\{0\}$, tức $\operatorname{rank}X=d$. Khi đó $X^TX\succ0$ (Bài 00, Mệnh đề 00.20) nên khả nghịch (Bài 00, Hệ quả 00.19), và (3.3) cho $w^*=(X^TX)^{-1}X^Ty$. Đó là (c). $\square$
 :::
 
 Về mặt hình học, Mệnh đề 01.6 có cách đọc như sau. Tập các vector dự đoán đạt được là không gian cột $\mathcal R(X)$, một không gian con của $\mathbb R^n$. Cực tiểu $\lVert Xw-y\rVert_2$ là tìm điểm của $\mathcal R(X)$ gần $y$ nhất, tức hình chiếu trực giao $\widehat y$ của $y$. Điểm này luôn tồn tại và duy nhất.
@@ -703,7 +703,7 @@ Lưu ý rằng chữ "biên" mang ba nghĩa trong chương, được phân biệ
 
 Mất mát logistic còn có một cách đọc theo xác suất. Đặt hàm sigmoid $\sigma(s)=1/(1+e^{-s})$, có giá trị trong $(0,1)$ và thỏa $1-\sigma(s)=\sigma(-s)$. Nếu mô hình gán xác suất $P(y=+1\mid a)=\sigma(a^Tw)$ thì $P(y=-1\mid a)=\sigma(-a^Tw)$. Do đó trong cả hai trường hợp $P(y_i\mid a_i)=\sigma(y_ia_i^Tw)$, và $-\log\sigma(m)=\log(1+e^{-m})=\ell(m)$.
 
-Như vậy, $L(w)$ là âm logarit hàm hợp lý của dữ liệu khi các mẫu độc lập, và trong học máy nó còn được gọi là mất mát entropy chéo nhị phân (binary cross-entropy). Trong Bài 00 (mục "Nhiễu Gauss, hàm hợp lý và bình phương nhỏ nhất"), bình phương nhỏ nhất cũng đã được đọc là ước lượng hợp lý cực đại dưới nhiễu Gauss; mất mát logistic là cách đọc tương tự cho nhãn nhị phân.
+Như vậy, $L(w)$ là âm logarit hàm hợp lý của dữ liệu khi các mẫu độc lập, và trong học máy nó còn được gọi là mất mát entropy chéo nhị phân (binary cross-entropy). Trong Bài 00 (Mệnh đề 00.65), bình phương nhỏ nhất cũng đã được đọc là ước lượng hợp lý cực đại dưới nhiễu Gauss; mất mát logistic là cách đọc tương tự cho nhãn nhị phân.
 
 So với Định nghĩa 01.4, Định nghĩa 01.8 giữ nguyên miền $\mathbb R^d$ và cấu trúc dữ liệu theo hàng, nhưng thay hàm bình phương của phần dư bằng hàm $\ell$ của biên. Hàm $L$ không phải đa thức bậc hai, nên không có đẳng thức khai triển chính xác kiểu (3.2), và gradient của nó không tuyến tính theo $w$. Thay cho hai công cụ đó, chúng ta dùng các tính chất của hàm một biến $\ell$ trong mệnh đề sau.
 
@@ -1016,9 +1016,9 @@ Khung phải là một hàm lồi. Điểm cực tiểu được đánh dấu v�
 ::: remark Nhận xét 01.15 (Điểm dừng và cực tiểu trên biên)
 Hai nhầm lẫn thường gặp liên quan tới điều kiện đạo hàm.
 
-Thứ nhất, coi mọi điểm dừng là cực tiểu. Hàm $x^3$ có $f'(0)=0$ nhưng $0$ không phải cực trị, và điểm $x=-1$ của Ví dụ 01.8 có $f'(-1)=0$ nhưng là cực đại địa phương. Với nhiều biến, điểm dừng có thể là điểm yên ngựa (Bài 00, mục "Phân loại điểm dừng bằng Hessian").
+Thứ nhất, coi mọi điểm dừng là cực tiểu. Hàm $x^3$ có $f'(0)=0$ nhưng $0$ không phải cực trị, và điểm $x=-1$ của Ví dụ 01.8 có $f'(-1)=0$ nhưng là cực đại địa phương. Với nhiều biến, điểm dừng có thể là điểm yên ngựa (Bài 00, Định lý 00.43).
 
-Thứ hai, coi mọi cực tiểu địa phương đều có đạo hàm bằng không. Điều kiện cần $\nabla f_0(x^*)=0$ của Bài 00 chỉ áp dụng cho điểm trong của miền, còn cực tiểu toàn cục $x=-3$ của Ví dụ 01.8 nằm trên biên và có $f'(-3)=24$.
+Thứ hai, coi mọi cực tiểu địa phương đều có đạo hàm bằng không. Điều kiện cần $\nabla f_0(x^*)=0$ của Bài 00 (Định lý 00.42) chỉ áp dụng cho điểm trong của miền, còn cực tiểu toàn cục $x=-3$ của Ví dụ 01.8 nằm trên biên và có $f'(-3)=24$.
 :::
 
 ::: exercise Bài tập 01.5
@@ -1551,7 +1551,7 @@ Với $\alpha\ge0$, giải $\sqrt{\lvert x\rvert}\le\alpha$. Để bác bỏ tí
 
 ### 7.4 Điều kiện bậc nhất
 
-Kiểm tra (7.1) trực tiếp đòi hỏi xét mọi bộ $x,y,\theta$. Với hàm khả vi, có một tiêu chuẩn tương đương qua gradient, và tiêu chuẩn này còn biến điều kiện gradient bằng không thành điều kiện đủ cho cực tiểu toàn cục. Tiêu chuẩn này chỉ cần Định nghĩa 01.22 và khái niệm gradient của Bài 00.
+Kiểm tra (7.1) trực tiếp đòi hỏi xét mọi bộ $x,y,\theta$. Với hàm khả vi, có một tiêu chuẩn tương đương qua gradient, và tiêu chuẩn này còn biến điều kiện gradient bằng không thành điều kiện đủ cho cực tiểu toàn cục. Tiêu chuẩn này chỉ cần Định nghĩa 01.22 và khái niệm gradient của Bài 00 (Định nghĩa 00.30).
 
 Một cách trực quan, với hàm có đồ thị không vượt lên trên dây cung, tiếp tuyến tại mọi điểm nằm dưới đồ thị. Quan sát này được chứng minh ở định lý dưới đây, còn phép tính thủ công với hàm $q(u)=\tfrac32u^2-6u+9$ của Ví dụ 01.1 tại $u=1$ minh họa điều này. Ta có $q(1)=\tfrac92$ và $q'(1)=-3$, nên tiếp tuyến là $T(u)=\tfrac92-3(u-1)$.
 
@@ -1578,7 +1578,7 @@ $$
 
 Hơn nữa, nếu (7.2) đúng với dấu $>$ cho mọi $x\ne y$ thì $f$ lồi chặt.
 
-**Điều kiện áp dụng.** $C$ mở để mọi điểm là điểm trong, nơi gradient xác định theo Bài 00.
+**Điều kiện áp dụng.** $C$ mở để mọi điểm là điểm trong, nơi gradient xác định theo Bài 00 (Định nghĩa 00.30).
 
 **Phạm vi.** Không áp dụng trực tiếp cho hàm không khả vi như $\lvert x\rvert$ tại $0$, hoặc cho miền đóng có biên; khi miền đóng, áp dụng cho một miền mở chứa nó rồi hạn chế xuống.
 :::
@@ -1596,7 +1596,7 @@ $$
 \frac{f(x+\theta(y-x))-f(x)}{\theta}\le f(y)-f(x).
 $$
 
-**Bước 2 (chiều thuận: qua giới hạn).** Khi $\theta\to0^+$, vế trái dần tới đạo hàm theo hướng $y-x$ tại $x$, bằng $\nabla f(x)^T(y-x)$ vì $f$ khả vi tại điểm trong $x$ (Bài 00, mục "Đạo hàm theo hướng"). Giới hạn giữ chiều bất đẳng thức, cho (7.2).
+**Bước 2 (chiều thuận: qua giới hạn).** Khi $\theta\to0^+$, vế trái dần tới đạo hàm theo hướng $y-x$ tại $x$, bằng $\nabla f(x)^T(y-x)$ vì $f$ khả vi tại điểm trong $x$ (Bài 00, Định nghĩa 00.30). Giới hạn giữ chiều bất đẳng thức, cho (7.2).
 
 **Bước 3 (chiều đảo).** Giả sử (7.2) đúng. Lấy $x,y\in C$, $\theta\in[0,1]$ và $z=\theta x+(1-\theta)y$, thuộc $C$ vì $C$ lồi. Áp dụng (7.2) tại điểm $z$ cho hai điểm $x$ và $y$, ta có
 
@@ -1643,7 +1643,7 @@ $$
 **Bước 2 (trường hợp gradient bằng không).** Nếu $\nabla f(x^*)=0$, (7.3) đúng với mọi $x\in D$, và cùng lập luận cho $f(x)\ge f(x^*)$ trên $D$. $\square$
 :::
 
-Hệ quả 01.27 là bước suy ra đầu tiên từ tính lồi tới tính tối ưu toàn cục. Nó mạnh hơn điều kiện "gradient bằng không" của Bài 00 theo hai nghĩa: điều kiện cần trở thành điều kiện đủ, và áp dụng được cho nghiệm trên biên qua (7.3).
+Hệ quả 01.27 là bước suy ra đầu tiên từ tính lồi tới tính tối ưu toàn cục. Nó mạnh hơn điều kiện "gradient bằng không" của Bài 00 (Định lý 00.42) theo hai nghĩa: điều kiện cần trở thành điều kiện đủ, và áp dụng được cho nghiệm trên biên qua (7.3).
 
 Tuy nhiên, hệ quả cần giả thiết lồi. Với $f(x)=x^3$ trên $\mathbb R$, $f'(0)=0$ nhưng $0$ không phải cực tiểu, và giả thiết lồi bị vi phạm theo Nhận xét 01.32.
 
@@ -1755,7 +1755,7 @@ Ghép hai bổ đề trên, ta được điều kiện bậc hai cho hàm nhiề
 :::
 
 ::: proof Chứng minh Định lý 01.30
-**Bước 1 (đạo hàm bậc hai của hàm hạn chế).** Với $x\in C$ và $v\ne0$, tập $T_{x,v}$ là một khoảng mở chứa $0$, vì $C$ mở. Theo quy tắc dây chuyền (Bài 00), ta có
+**Bước 1 (đạo hàm bậc hai của hàm hạn chế).** Với $x\in C$ và $v\ne0$, tập $T_{x,v}$ là một khoảng mở chứa $0$, vì $C$ mở. Theo quy tắc dây chuyền (Bài 00, Mệnh đề 00.38), ta có
 
 $$
 \varphi_{x,v}''(t)=v^T\nabla^2f(x+tv)v .
@@ -2456,7 +2456,7 @@ $$
 
 **Xác minh giả thiết.** Miền $\mathbb R$ lồi (Mệnh đề 01.19(a)). $L_\mu''(w)=2\ell''(w)+\mu\ge\mu>0$ theo Mệnh đề 01.9(c), nên $L_\mu$ lồi mạnh với hằng số $\mu$ (Định nghĩa 01.39) và khả vi. Theo Hệ quả 01.41, bài toán có đúng một nghiệm $w^*_\mu$.
 
-Điều kiện cần bậc nhất của Bài 00 cho $L_\mu'(w^*_\mu)=0$. Điều kiện này nằm ở mục "Điểm dừng và điều kiện tối ưu bậc nhất" của Bài 00: hàm khả vi đạt cực tiểu địa phương tại một điểm trong của miền mở thì có gradient bằng không tại đó. Ngược lại, theo Hệ quả 01.27, mọi nghiệm của $L_\mu'(w)=0$ là cực tiểu toàn cục, nên trùng với $w^*_\mu$. Vậy $w^*_\mu$ là nghiệm duy nhất của phương trình $L_\mu'(w)=0$. Đây là trường hợp $d=1$ của Mệnh đề 01.46(b).
+Điều kiện cần bậc nhất của Bài 00 cho $L_\mu'(w^*_\mu)=0$. Điều kiện này là Định lý 00.42 của Bài 00: hàm khả vi đạt cực tiểu địa phương tại một điểm trong của miền mở thì có gradient bằng không tại đó. Ngược lại, theo Hệ quả 01.27, mọi nghiệm của $L_\mu'(w)=0$ là cực tiểu toàn cục, nên trùng với $w^*_\mu$. Vậy $w^*_\mu$ là nghiệm duy nhất của phương trình $L_\mu'(w)=0$. Đây là trường hợp $d=1$ của Mệnh đề 01.46(b).
 
 **Áp dụng.** Phương trình là
 
@@ -2570,7 +2570,7 @@ cả hai bằng $0$ tại $(0,0)$. Các đạo hàm bậc hai tại $(0,0)$ là:
 - $\partial^2F/\partial\beta^2=0$, vì mọi hạng chứa thừa số $\alpha$ hoặc $\tanh\beta$;
 - $\partial^2F/\partial\alpha\partial\beta=2\bigl[\alpha(1-\tanh^2\beta)\tanh\beta+r(1-\tanh^2\beta)\bigr]$, bằng $2\bigl[0+(-\tfrac12)\cdot1\bigr]=-1$ tại $(0,0)$.
 
-Hessian $\begin{bmatrix}0&-1\\-1&0\end{bmatrix}$ có hai giá trị riêng $\pm1$, nên $(0,0)$ là điểm yên ngựa (Bài 00, mục "Phân loại điểm dừng bằng Hessian"). Kiểm tra trực tiếp, $F(0{,}3;\ 0{,}3)\approx0{,}170<\tfrac14$ còn $F(0{,}3;\ -0{,}3)\approx0{,}345>\tfrac14$.
+Hessian $\begin{bmatrix}0&-1\\-1&0\end{bmatrix}$ có hai giá trị riêng $\pm1$, nên $(0,0)$ là điểm yên ngựa (Bài 00, Định lý 00.43). Kiểm tra trực tiếp, $F(0{,}3;\ 0{,}3)\approx0{,}170<\tfrac14$ còn $F(0{,}3;\ -0{,}3)\approx0{,}345>\tfrac14$.
 
 Hạ gradient khởi tạo đúng tại $(0,0)$ không bao giờ rời điểm này, vì gradient bằng $0$. Đây là lý do trọng số của mạng được khởi tạo ngẫu nhiên.
 
@@ -2634,7 +2634,7 @@ Dòng đầu là định nghĩa tập lồi và hàm lồi. Dòng thứ hai là 
 - Định lý 01.33 cần cả miền lồi và hàm lồi.
 - Lồi chặt (Định lý 01.35) chỉ cho "nhiều nhất một" nghiệm; tồn tại cần Định lý 01.36, 01.38 hoặc Hệ quả 01.41.
 - Hessian xác định dương tại mọi điểm không thay được lồi mạnh (Nhận xét 01.43).
-- Hệ quả 01.27 chỉ cho chiều đủ. Chiều cần "nghiệm thì gradient bằng không" là điều kiện bậc nhất của Bài 00 và chỉ đúng tại điểm trong của miền mở.
+- Hệ quả 01.27 chỉ cho chiều đủ. Chiều cần "nghiệm thì gradient bằng không" là điều kiện bậc nhất của Bài 00 (Định lý 00.42) và chỉ đúng tại điểm trong của miền mở.
 - Định lý 01.36 cần miền không rỗng, đóng và bị chặn, cả ba.
 - Công thức $(X^TX)^{-1}X^Ty$ cần $\operatorname{rank}X=d$.
 

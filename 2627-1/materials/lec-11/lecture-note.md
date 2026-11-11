@@ -52,7 +52,7 @@ Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích m�
 - **Rủi ro thực nghiệm.** Rủi ro thực nghiệm của tham số $\theta$ là trung bình của mất mát trên các quan sát của tập dữ liệu (Định nghĩa 05.5, Định nghĩa 05c.51).
 - **Tối ưu có ràng buộc đẳng thức.** Bài toán cực tiểu $F(u)$ với ràng buộc $Au=b$ có hàm Lagrange $\mathcal L(u,\nu)=F(u)+\nu^\top(Au-b)$, với vector nhân tử $\nu$ (Định nghĩa 03.4). Nếu $F$ lồi, khả vi hai lần liên tục trên một tập mở lồi và các hàng của $A$ độc lập tuyến tính, thì $u^*$ là nghiệm khi và chỉ khi tồn tại $\nu^*$ thỏa $\nabla F(u^*)+A^\top\nu^*=0$ và $Au^*=b$ (Mệnh đề 04.2(b)).
 - **Bất đẳng thức logarit.** $\log t\le t-1$ với mọi $t>0$, dấu bằng khi và chỉ khi $t=1$. Thật vậy, hàm $t\mapsto t-1-\log t$ có đạo hàm $1-1/t$, âm trên $(0,1)$ và dương trên $(1,\infty)$, nên đạt giá trị nhỏ nhất duy nhất bằng $0$ tại $t=1$.
-- **Đại số tuyến tính.** Ma trận đối xứng thực $A$ có phân rã trị riêng $A=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top$ với $U$ trực giao, các cột của $U$ là vector riêng đơn vị (Bài 00, mục "Phân rã trị riêng"). Ma trận đối xứng $A$ *xác định dương*, viết $A\succ0$, nếu $w^\top Aw>0$ với mọi $w\ne0$, và *nửa xác định dương*, viết $A\succeq0$, nếu $w^\top Aw\ge0$ với mọi $w$. Với các ma trận vuông cùng cỡ, $\operatorname{tr}(AB)=\operatorname{tr}(BA)$ và $\det(AB)=\det A\det B$.
+- **Đại số tuyến tính.** Ma trận đối xứng thực $A$ có phân rã trị riêng $A=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top$ với $U$ trực giao, các cột của $U$ là vector riêng đơn vị (Bài 00, Định lý 00.16). Ma trận đối xứng $A$ *xác định dương*, viết $A\succ0$, nếu $w^\top Aw>0$ với mọi $w\ne0$, và *nửa xác định dương*, viết $A\succeq0$, nếu $w^\top Aw\ge0$ với mọi $w$. Với các ma trận vuông cùng cỡ, $\operatorname{tr}(AB)=\operatorname{tr}(BA)$ và $\det(AB)=\det A\det B$.
 
 **Câu hỏi ôn nhanh.**
 
@@ -1263,7 +1263,7 @@ $$
 
 Với $\mu$ và $\Sigma$ cố định, khoảng cách Mahalanobis nhỏ hơn nghĩa là mật độ lớn hơn. Khi so sánh hai Gaussian có ma trận hiệp phương sai khác nhau, còn phải tính đến hệ số $(\det\Sigma)^{-1/2}$, nên so khoảng cách Mahalanobis thôi thì chưa so được mật độ.
 
-Để thấy $d_\Sigma$ đo độ lệch theo từng hướng, ta dùng phân rã trị riêng của ma trận đối xứng (Bài 00, mục "Phân rã trị riêng"). Mệnh đề sau theo cách trình bày của Murphy (2022), §3.2.2 và §7.4.4.
+Để thấy $d_\Sigma$ đo độ lệch theo từng hướng, ta dùng phân rã trị riêng của ma trận đối xứng (Bài 00, Định lý 00.16). Mệnh đề sau theo cách trình bày của Murphy (2022), §3.2.2 và §7.4.4.
 
 ::: proposition Mệnh đề 11.17 (Hướng và độ dài của đường đồng mức Gaussian) — chứng minh đầy đủ
 **Giả thiết.**

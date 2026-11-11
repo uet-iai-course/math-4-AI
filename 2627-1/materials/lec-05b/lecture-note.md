@@ -15,9 +15,9 @@ Sau chương này, người học có thể:
 
 ## Kiến thức tiên quyết
 
-Số hiệu `01.k`, `04.k`, `05c.k`, `06b.k` chỉ ghi chú Bài 01, 04, 05c và 06b. Ghi chú Bài 00 được dẫn bằng tên khái niệm. Mỗi kết quả được phát biểu lại tại đây.
+Số hiệu `00.k`, `01.k`, `04.k`, `05c.k`, `06b.k` chỉ ghi chú Bài 00, 01, 04, 05c và 06b. Mỗi kết quả được phát biểu lại tại đây.
 
-- **Xác suất rời rạc** (Bài 00; Định lý 05c.28, Định nghĩa 05c.30). Biến ngẫu nhiên $Z$ nhận hữu hạn giá trị $z_j$ có kỳ vọng $\mathbb EZ=\sum_jz_j\,\mathbb P(Z=z_j)$; kỳ vọng tuyến tính. Nếu $Z$, $W$ độc lập thì $\mathbb E[ZW]=\mathbb EZ\,\mathbb EW$. Phương sai là $\operatorname{Var}Z=\mathbb EZ^2-(\mathbb EZ)^2$.
+- **Xác suất rời rạc** (Bài 00, Định nghĩa 00.55, 00.62, Mệnh đề 00.57, 00.66; Định lý 05c.28, Định nghĩa 05c.30). Biến ngẫu nhiên $Z$ nhận hữu hạn giá trị $z_j$ có kỳ vọng $\mathbb EZ=\sum_jz_j\,\mathbb P(Z=z_j)$; kỳ vọng tuyến tính. Nếu $Z$, $W$ độc lập thì $\mathbb E[ZW]=\mathbb EZ\,\mathbb EW$. Phương sai là $\operatorname{Var}Z=\mathbb EZ^2-(\mathbb EZ)^2$.
 - **Kỳ vọng có điều kiện và bất đẳng thức Markov** (Định nghĩa 05c.37, Mệnh đề 05c.38, Định lý 05c.39). Các kết quả này được phát biểu lại ở dạng cần dùng tại Mục 5.2 và Mục 5.7.
 - **Cận dưới đúng, tính lồi, lồi mạnh** (Định nghĩa 01.10, 01.22, 01.39; Định lý 01.26; Hệ quả 01.41). $\inf_xf(x)$ có thể không đạt. Hàm khả vi $f$ lồi khi và chỉ khi $f(z)\ge f(x)+\nabla f(x)^T(z-x)$ với mọi $x,z$. $f$ lồi mạnh với hằng số $\mu>0$ khi $f-\tfrac\mu2\lVert\cdot\rVert^2$ lồi, tương đương $\nabla^2f\succeq\mu I$ khi $f$ khả vi hai lần (Nhận xét 01.40); khi đó $f$ có đúng một điểm cực tiểu.
 - **Mất mát logistic** (Mệnh đề 01.9). $\phi(s)=\log(1+\exp(-s))$ dương, $\phi'(s)=-1/(1+\exp(s))\in(-1,0)$, $\phi''(s)\in(0,\tfrac14]$, $\phi(s)\to0$ khi $s\to\infty$.
