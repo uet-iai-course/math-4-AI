@@ -785,3 +785,81 @@ Sửa bố cục phát sinh khi đo chiều cao nội dung ở 1600×900 (khung 
 - `git diff --check` sạch. Chưa chạy `sync-local-materials.py` (theo brief).
 
 **Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-01 và decisions-common; kiểm định nghĩa trên trang mới H03B (điểm trong, tập mở, tập đóng qua giới hạn dãy, tập bị chặn; ví dụ [−1,1], (0,1], ℝ), định nghĩa cực tiểu địa phương (H03), lời giải tách sang L04B (X'(0,1,−1)ᵀ = 0, rank X' = 2); chấp nhận các chỗ làm khác đề xuất (giữ ℓ''(m_i) thay σ_i vì σ là sigmoid; clip trong khối aligned; tiếng Anh xuống ghi chú khi tràn khung); bác bỏ đổi hàng loạt 'lề có dấu' theo quyết định chung 1; tự chạy deckcheck trên H03B, H03, L04, L04B, G01, G03, H07, K01, F01, D04: 0 lỗi, 0 FLAG; xem ảnh H03B, L04B, H03 ở 1600×900. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.
+
+## Viết lại ghi chú theo mẫu SLT và chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: `prompt_fix_lecture_notes_00_07.md` (U1–U4, Q-A đến Q-G), `planning/notes-10-14-slt-template.md` Q1–Q15, "The author's voice" của `../CLAUDE.md`; báo cáo phân tích `prompt_fix_00_07_audit/m4ai-audit-01-02.md` (không theo dõi). Mục này không xóa phát hiện cũ ở trên.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`)
+
+Điều phối viên: phiên chính Claude Opus 5.5. Mọi tác tử con: `general-purpose`, `model: opus`.
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập kế hoạch (chỉ đọc) | medium | `plan.md` 15 phần |
+| Soạn, rồi biên tập ba vòng (cùng tác tử, `SendMessage`) | medium | ghi chú, `outline.md`, `map-lec-01.md`, ba SVG `-note` |
+| Rà 1/5 sinh viên năm hai | high | 0 chặn, 0 nghiêm trọng, 8 trung bình, 15 nhẹ |
+| Rà 2/5 chuyên gia miền | high | 0 chặn, 1 nghiêm trọng, 6 trung bình, 16 nhẹ |
+| Rà 3/5 độ chính xác toán; sau đó kiểm tra lại hai vòng | high | 0/0/2/9; vòng 1: 2 trung bình, 6 nhẹ; vòng 2: 0 |
+| Rà 4/5 phê bình học thuật–sư phạm, `no-ai-slop` Detect | high | 0 chặn, 0 nghiêm trọng, 15 trung bình, 35 nhẹ |
+| Rà 5/5 mạch và liên kết; sau đó kiểm tra lại hai vòng | high | 0/0/11/15; vòng 1: 5 trung bình, 12 nhẹ; vòng 2: 1 nhẹ |
+
+### Quyết định khi duyệt kế hoạch
+
+- **Q01-1.** Câu hỏi cuối buổi: mất mát bản lề trên hai mẫu; cầu nối giữ cụm "đưa mất mát bản lề về quy hoạch tuyến tính bằng biến phụ" (Bài 02, Mệnh đề 02.36(c) làm đúng việc này).
+- **Q01-2.** Ký hiệu một nghĩa: cân nặng $s_i$, chiều cao $y_i$, hàng của ma trận thiết kế $a_i^T$, trọng số trộn $\omega$, ridge $J_\mu$, biến hạn chế $\tau$, $\ell_{\mathrm{hinge}}$, $\operatorname{Col}$, $\operatorname{Ker}$; trạng thái điều khiển giữ $x_0$, $x_1$ như deck và hai SVG. Mất mát một mẫu: bản cuối dùng $\operatorname{loss}(\hat y,y)$ (thay $\ell(g,y)$ trong kế hoạch).
+- **Q01-3.** §3 có khối Ví dụ 01.1 như Bài 00, 12; mọi Ví dụ cũ lùi một số.
+- **Q01-4.** Bỏ Mệnh đề 01.5 cũ (phương trình chuẩn), phát biểu lại Định lý 00.22 và Mệnh đề 00.45 (Q-D, Q00-4); Hệ quả 01.5 mới; giữ $J=\lVert Xw-y\rVert_2^2=2f$.
+- **Q01-5.** Thuật toán 01.47 là quy trình chứng nhận duy nhất.
+- **Q01-6 (sửa sau rà).** Bài chiếu sáng (MIT 6.079 lec01) thành Ví dụ 01.17 với bộ số "Giả sử" $A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$, $I_{\mathrm{des}}=(3,3)^T$, $p_{\max}=0{,}8$ do người lập kế hoạch dựng để có phép tính kiểm được; mục tiêu gốc có căn cứ ở slide. Quyết định ban đầu ghi tr. 1-8 đến 1-11 là sai (số trang PDF); chuyên gia miền và người rà toán kiểm PDF: nhãn in trên slide là **1-9 đến 1-12**, bản cuối dẫn theo nhãn này.
+- **Q01-7.** Ví dụ về điều kiện bậc nhất chứng nhận hai trường hợp bằng bất đẳng thức tiếp tuyến; bỏ phần logistic (Mệnh đề 01.46 chứng nhận lại).
+- **Q01-8.** Bài tập 01.18 (máy vector hỗ trợ lề mềm) ở lại Bài 01. Chia bài Boyd cho giai đoạn 2: Bài 01 lấy 2.1, 2.3, 2.12(a–c), 2.15, 3.1, 3.7, 3.16, 3.20(a), 3.32(a), 3.49(a), 4.3, 4.8(c), 4.61(a); Bài 02 lấy 4.1, 4.8(a,b,d), 4.61(b).
+- **Q01-9.** Dẫn bài sau chỉ ở cầu nối và Tài liệu đọc; "Bài 06" đổi thành "Bài 06b và 06c" đúng nghĩa.
+- **Q01-10, Q01-11, Q01-12.** Không thêm khối ngoài kế hoạch; không có tiểu mục Đọc thêm; giữ WGAN và attention như ví dụ đối tượng, không khẳng định định lượng.
+
+### Quyết định sau năm lượt rà (hàng đợi vòng 1) — mọi phát hiện: chấp nhận
+
+| Mức độ | Vị trí (bản nháp 1) | Vấn đề | Quyết định |
+|---|---|---|---|
+| nghiêm trọng | 355 | "tính tối ưu tại biên mới được kiểm tra … cho một bộ số" sai: Mệnh đề 01.2(b) đã chứng minh tổng quát | chấp nhận: bỏ vế |
+| trung bình | Câu hỏi mở đầu | Trả lời ngay câu hỏi chính (Q15) | chấp nhận: viết lại; câu trả lời ở §10.5 |
+| trung bình | 2531 cầu nối | Câu vị thế "Bài 01 … không nhận dạng … không giải"; Bài 03 cho KKT (phương trình và bất phương trình) | chấp nhận |
+| trung bình | §2 (K1)–(K5) | Dùng lồi chặt, lồi mạnh, cưỡng bức trước định nghĩa | chấp nhận: chuyển xuống cuối §8 (sau định nghĩa cưỡng bức, lồi mạnh) |
+| trung bình | toàn bài | Ký hiệu nhiều nghĩa: $a$, $\alpha$, $\beta$, $\xi$, $p^*$, $\sigma(s)$, $k$; "biên" boundary/margin | chấp nhận: $w_0,w_1$; $[\underline u,\overline u]$; $w_{\mathrm r},w_{\mathrm v},b_0$; $\tilde\tau$; $p^{\mathrm{opt}}$; $\zeta$; $n_{\mathrm{in}},n_{\mathrm{eq}},\Delta_K$; dãy $x^{(k)},w^{(k)}$ |
+| trung bình | hình g00, height-weight, g01 | Nhãn "minh họa"/"tự tạo"; trục $a_1,a_2$ lệch văn bản; hình dùng chung deck | chấp nhận: ba bản sao `-note.svg` chỉ của ghi chú, deck giữ hình cũ |
+| trung bình | 159 | "để tính tay" | chấp nhận: cắt |
+| trung bình | Bài tập 01.11, 01.17 | Tiêu chuẩn xác định dương $2\times2$ chưa trình bày | chấp nhận: dùng trị riêng (Mệnh đề 00.18) |
+| trung bình | 1717, 1731 | "Bài toán lồi" chưa định nghĩa | chấp nhận: câu định nghĩa trước Hệ quả 01.33 (Boyd §4.2.1) |
+| trung bình | 1631 | "$L$ lồi chặt" dùng trước khi chứng nhận | chấp nhận |
+| trung bình | Tình huống 01.3 | Nhãn khẳng định cho mọi $\mu$, lập luận chỉ cho $\mu<1$ | chấp nhận |
+| trung bình | toàn bài | Lặp "mạng nơ-ron không lồi" (6 đoạn), ba hiện tượng kể ba lần, §10.4 trùng Tóm tắt, phản ví dụ $x^4$, đoạn nối lặp ở 5 ranh giới mục | chấp nhận: cắt (bù độ dài) |
+| trung bình | 1869, 429 | Tên thuật ngữ weight decay, one-hot | chấp nhận |
+| trung bình | `map-lec-01.md` | Thiếu hướng dẫn thay một lượt và cụm đổi loại khối | chấp nhận |
+| nhẹ | 389 | Câu điểm ngoại lai chen đoạn đọc kích thước | giữ câu (Bài 07 dẫn ý này), chuyển vào đoạn tổng bình phương phần dư |
+| nhẹ | Bài tập 01.19(a), Mệnh đề 01.46 | Đề xuất bỏ lối qua Hessian | giữ làm phép kiểm (người rà cho phép) |
+
+Kiểm tra lại vòng 1 (đã sửa vòng 2): chỗ đổi tên sót ($\varphi'(\xi)$, $\sum_kp_j$, $(b,a)$), câu dẫn §9.2, cầu nối $1-\mu/L$ (viết bằng lời vì $L$ trùng mất mát logistic), định nghĩa biên theo Boyd §A.2.1, $L(w)=-\log\prod_i\sigma(y_ia_i^Tw)$ thay câu lặp tên với hàm hợp lý của Bài 00, hai SVG `-note` (khung, cỡ chữ). Vòng 2: thêm Mệnh đề 00.8 và Định lý 00.16 vào Kiến thức tiên quyết. Không còn phát hiện chặn bàn giao, nghiêm trọng hay trung bình.
+
+### Độ dài
+
+Ghi chú cũ 34 948 âm tiết; bản nháp 1: 27 992; bản cuối: 27 989, dưới trần 28 000 (U4).
+
+### Nguồn gốc số liệu và đính chính
+
+- Bộ số Ví dụ 01.17 (chiếu sáng) là bộ "Giả sử" mới (Q01-6). Các số khác giữ từ ghi chú cũ và deck, tính lại độc lập (người rà toán, `check_numbers.py`).
+- Đính chính: dòng 355 cũ; giả thiết Định lý 01.29 thành lớp $C^2$ (chứng minh dùng Mệnh đề 00.38); Bài tập 01.13(a) chứng minh cưỡng bức qua $\lambda_{\min}(X^TX)=4-\sqrt{10}$ thay dẫn Hệ quả ngoài phạm vi; trang MIT 6.079 lec01.
+- `exercises.md` cũ (9 bài tự dựng) xử lý ở giai đoạn 2.
+
+### Giáo trình đã tham khảo
+
+Boyd và Vandenberghe (2004) ch. 1–4 và Phụ lục A (§A.2.1, §2.1–2.3, §3.1–3.2, §4.1–4.2); MIT 6.079 (2009) lec01 (tr. 1-9 đến 1-12); Murphy (2022) cho hồi quy logistic và chính quy hóa; Rudin cho Weierstrass (theo ghi chú cũ).
+
+### Lệch với deck (Q-F, để đồng bộ deck sau)
+
+- Ký hiệu: hồi quy $w=(w_0,w_1)^T$, $\hat y=w_0+w_1s$ (deck $(b,a)$, $b+as_i$, $b+am_i$); cân nặng $s_i$, chiều cao $y_i$ (deck $m_i$, $h_i$); hàng ma trận thiết kế $a_i^T$ (deck L01B $x_i^T$); biến hạn chế $\tau$ (deck H05 $\varphi(t)$); trọng số mạng $w_{\mathrm r},w_{\mathrm v}$.
+- Thứ tự và nội dung: H07 xếp tồn tại → cưỡng bức → duy nhất, ghi chú xếp duy nhất (8.2) trước tồn tại (8.3); T03 năm loại kết luận, ghi chú bốn; T04 "sáu bước", ghi chú "sáu câu hỏi" và chín bước của Thuật toán 01.47 (K06 bốn bước); K04 ba hàng, bảng §9.1 bốn hàng; (K1)–(K5) chỉ có trong ghi chú; H03B nhắc tập mở và điểm trong.
+- Ba hình `-note.svg` thay hình chung trong ghi chú.
+
+### Kiểm của điều phối viên và trình duyệt
+
+forward_refs 0; bộ đếm 01.1–01.47, Ví dụ 01.1–01.17, Tình huống 01.1–01.3, Bài tập 01.1–01.21 liên tục; grep mẫu cấm 0; đồng bộ `--check` và `git diff --check` đạt. Playwright: `material-viewer.html?doc=materials/lec-01/lecture-note.md&deck=lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error` (3 157 công thức), 0 lỗi console, 0 request lỗi, không tràn ngang; bản in chứa đủ 23 chứng minh. Điều phối viên đã xem ảnh chụp.

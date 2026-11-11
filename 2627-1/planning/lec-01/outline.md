@@ -1,5 +1,95 @@
 # Dàn ý Bài 01: Giới thiệu tối ưu, tập lồi và hàm lồi
 
+## Ghi chú bài giảng viết lại theo mẫu SLT (2026-11-12)
+
+Mục này mô tả `materials/lec-01/lecture-note.md` sau lần viết lại theo `prompt_fix_lecture_notes_00_07.md` (U1–U4, Q-A đến Q-G) và quyết định Q01-1 đến Q01-12 của điều phối viên. Các mục phía dưới là lịch sử của deck và dàn ý cũ, giữ nguyên.
+
+### Câu hỏi trung tâm và câu hỏi mở đầu
+
+- Câu hỏi trung tâm: khi nào một điểm tìm được là nghiệm toàn cục, khi nào nghiệm tồn tại và khi nào nghiệm duy nhất.
+- Câu hỏi mở đầu: hồi quy logistic trên hai mẫu tách được, $L(w)=2\log(1+e^{-w})$, $L''>0$, thuật toán dừng ở $w=8$; câu trả lời hấp dẫn "có đúng một nghiệm, $w=8$ gần nghiệm" sai vì ba lý do. Câu trả lời tường minh ở §10.5 (đoạn "Do đó, với câu hỏi mở đầu, …").
+- Câu hỏi cuối buổi: cùng hai mẫu với mất mát bản lề; $S^*=[1,+\infty)$, có nghiệm nhưng không duy nhất.
+
+### Ví dụ xuyên suốt (Ví dụ 01.1, §3)
+
+- Điều khiển một bước: $x_0=0$, $t=3$, $u_{\max}=1$, $\lambda=\tfrac12$ (Ví dụ 01.2, 01.3, 01.13(a), 01.14(a); Mệnh đề 01.44).
+- Bình phương nhỏ nhất: năm người $s=(50,\ldots,70)$, $y=(158,\ldots,172)$ (Ví dụ 01.4); ba điểm $(0,1),(1,2),(2,2)$ (Ví dụ 01.5, 01.6, 01.13(b); Bài tập 01.13, 01.19).
+- Hồi quy logistic: hai mẫu $(1,+1),(-1,-1)$ và ba mẫu thêm $(1,-1)$ (Ví dụ 01.7, 01.8; Mệnh đề 01.46; Tình huống 01.1; Bài tập 01.20, 01.21; câu hỏi mở đầu và cuối buổi).
+
+### Mục và khối có số hiệu
+
+Bộ đếm chung 01.1–01.47 (12 định nghĩa, 10 mệnh đề, 7 định lý, 2 bổ đề, 4 hệ quả, 11 nhận xét, 1 thuật toán); Ví dụ 01.1–01.17; Tình huống 01.1–01.3; Bài tập 01.1–01.21 (01.1–01.13 cuối tiểu mục, 01.14–01.21 ở §11). Nhãn công thức (4.1)–(4.7), (5.1), (6.1), (7.1)–(7.3). Ánh xạ số cũ → số mới ở `map-lec-01.md`.
+
+- **Câu hỏi mở đầu**: (văn xuôi)
+- **Mục tiêu học tập**: (văn xuôi)
+- **Kiến thức tiên quyết**: (văn xuôi)
+- **1. Thiết lập bài toán**: (văn xuôi)
+- **2. Ký hiệu và giả thiết**: (văn xuôi)
+- **3. Ví dụ xuyên suốt: ba quyết định**: Ví dụ 01.1 (Ba quyết định)
+- **4. Ba mô hình tối ưu**: (văn xuôi)
+- **4.1. Điều khiển một bước và nghiệm trên biên**: Định nghĩa 01.1 (Bài toán điều khiển một bước); Mệnh đề 01.2 (Cực tiểu không ràng buộc và quy tắc cắt); Ví dụ 01.2 (Bộ số chuẩn của bài toán điều khiển); Nhận xét 01.3 (Đạo hàm khác không tại nghiệm biên); Ví dụ 01.3 (Ảnh hưởng của trọng số năng lượng); Bài tập 01.1
+- **4.2. Bình phương nhỏ nhất và tập nghiệm**: Định nghĩa 01.4 (Ma trận thiết kế và bài toán bình phương nhỏ nhất); Hệ quả 01.5 (Tập nghiệm của bài toán bình phương nhỏ nhất); Ví dụ 01.4 (Đường hồi quy cân nặng – chiều cao); Ví dụ 01.5 (Ba điểm dữ liệu); Ví dụ 01.6 (Hai cột trùng nhau); Nhận xét 01.6 (Phần dư, thang đo và các nhầm lẫn thường gặp); Bài tập 01.2; Bài tập 01.3
+- **4.3. Hồi quy logistic và nghiệm không tồn tại**: Định nghĩa 01.7 (Biên có dấu, mất mát logistic và bài toán hồi quy logistic); Mệnh đề 01.8 (Tính chất của mất mát logistic); Ví dụ 01.7 (Dữ liệu tách được tuyến tính, không có nghiệm); Ví dụ 01.8 (Dữ liệu không tách được, có nghiệm); Định nghĩa 01.9 (Cận dưới đúng, giá trị nhỏ nhất, dãy cực tiểu hóa); Nhận xét 01.10 (Dãy cực tiểu hóa luôn tồn tại và có thể không dẫn tới nghiệm); Bài tập 01.4
+- **5. Dạng tổng quát của bài toán tối ưu**: (văn xuôi)
+- **5.1. Bài toán tối ưu tổng quát**: Định nghĩa 01.11 (Bài toán tối ưu, khả thi, giá trị tối ưu và nghiệm)
+- **5.2. Cực tiểu địa phương và cực tiểu toàn cục**: Định nghĩa 01.12 (Cực tiểu địa phương, cực tiểu toàn cục, cực tiểu chặt); Mệnh đề 01.13 (Quan hệ giữa các loại cực tiểu); Ví dụ 01.9 (Cực tiểu địa phương không toàn cục); Nhận xét 01.14 (Điểm dừng và cực tiểu trên biên); Bài tập 01.5
+- **5.3. Miền lồng nhau và bốn loại kết luận**: Mệnh đề 01.15 (So sánh hai bài toán có miền lồng nhau); Ví dụ 01.10 (Bốn loại kết luận trên ba trường hợp); Nhận xét 01.16 (Sáu câu hỏi chứng nhận); Bài tập 01.6
+- **6. Tập lồi**: (văn xuôi)
+- **6.1. Đoạn nối và tổ hợp lồi**: Định nghĩa 01.17 (Tổ hợp lồi của hai điểm và tập lồi)
+- **6.2. Các tập lồi cơ bản và phép toán bảo toàn tính lồi**: Mệnh đề 01.18 (Các tập lồi cơ bản); Mệnh đề 01.19 (Các phép toán bảo toàn tính lồi của tập); Ví dụ 01.11 (Chứng nhận miền bằng phép ghép); Nhận xét 01.20 (Khi bỏ giả thiết: hợp, phần bù, ánh xạ phi tuyến, tính đóng và tính bị chặn); Bài tập 01.7; Bài tập 01.8
+- **7. Hàm lồi**: (văn xuôi)
+- **7.1. Định nghĩa qua dây cung**: Định nghĩa 01.21 (Hàm lồi, hàm lồi chặt, hàm lõm); Ví dụ 01.12 (Kiểm tra bằng định nghĩa); Nhận xét 01.22 (Hạn chế hàm lồi xuống tập con lồi)
+- **7.2. Tập mức dưới**: Định nghĩa 01.23 (Tập mức dưới); Mệnh đề 01.24 (Tập mức dưới của hàm lồi); Bài tập 01.9
+- **7.3. Điều kiện bậc nhất**: Định lý 01.25 (Điều kiện bậc nhất); Hệ quả 01.26 (Điều kiện đủ tối ưu cho hàm lồi khả vi); Ví dụ 01.13 (Điều kiện bậc nhất trên hai bài toán)
+- **7.4. Điều kiện bậc hai**: Bổ đề 01.27 (Hạn chế lên đường thẳng); Bổ đề 01.28 (Tiêu chuẩn bậc hai một biến); Định lý 01.29 (Điều kiện bậc hai); Ví dụ 01.14 (Điều kiện bậc hai trên các hàm của bài); Bài tập 01.10
+- **7.5. Các phép toán bảo toàn tính lồi**: Định lý 01.30 (Các phép toán bảo toàn tính lồi của hàm); Ví dụ 01.15 (Chứng nhận tính lồi của các hàm mất mát); Nhận xét 01.31 (Khi bỏ giả thiết: các phép toán không bảo toàn tính lồi); Bài tập 01.11
+- **8. Tính toàn cục, sự tồn tại và tính duy nhất của nghiệm**: (văn xuôi)
+- **8.1. Tính toàn cục**: Định lý 01.32 (Cực tiểu địa phương của hàm lồi là cực tiểu toàn cục); Hệ quả 01.33 (Tập nghiệm của bài toán lồi là tập lồi)
+- **8.2. Tính duy nhất**: Định lý 01.34 (Lồi chặt cho nhiều nhất một nghiệm)
+- **8.3. Sự tồn tại**: Định lý 01.35 (Định lý Weierstrass; còn gọi là định lý giá trị cực trị, extreme value theorem); Nhận xét 01.36 (Khi bỏ giả thiết của Định lý 01.35); Định nghĩa 01.37 (Hàm cưỡng bức); Định lý 01.38 (Tồn tại nghiệm với hàm cưỡng bức)
+- **8.4. Lồi mạnh và chính quy hóa bậc hai**: Định nghĩa 01.39 (Hàm lồi mạnh); Nhận xét 01.40 (Lồi mạnh qua Hessian; quan hệ với lồi chặt); Hệ quả 01.41 (Hàm lồi mạnh khả vi có nghiệm duy nhất); Định nghĩa 01.42 (Chính quy hóa bậc hai); Ví dụ 01.16 (Chính quy hóa bậc hai với hai đặc trưng trùng nhau); Nhận xét 01.43 (Các suy diễn sai về tồn tại và duy nhất); Bài tập 01.12
+- **9. Chứng nhận nghiệm**: (văn xuôi)
+- **9.1. Ba trường hợp xuyên suốt**: Mệnh đề 01.44 (Chứng nhận bài toán điều khiển); Mệnh đề 01.45 (Chứng nhận bình phương nhỏ nhất); Mệnh đề 01.46 (Chứng nhận hồi quy logistic, có và không có chính quy hóa)
+- **9.2. Quy trình chứng nhận**: Thuật toán 01.47 (Quy trình chứng nhận một mô hình tối ưu); Ví dụ 01.17 (Phân bố công suất chiếu sáng); Bài tập 01.13
+- **10. Ý nghĩa, tác động và giới hạn**: (văn xuôi)
+- **10.1. Chính quy hóa khi dữ liệu tách được**: Tình huống 01.1 (Hồi quy logistic có chính quy hóa trên dữ liệu tách được tuyến tính)
+- **10.2. Trọng số trộn của ba mô hình**: Tình huống 01.2 (Trọng số trộn của tổ hợp ba mô hình)
+- **10.3. Khi giả thiết lồi bị vi phạm**: Tình huống 01.3 (Mạng một nơ-ron ẩn: giả thiết lồi bị vi phạm)
+- **10.4. Ứng dụng trong học máy**: (văn xuôi)
+- **10.5. Tóm tắt**: (văn xuôi)
+- **11. Bài tập**: (văn xuôi)
+- **11.1. Mức nhận biết**: Bài tập 01.14 (Lập lịch sạc pin); Bài tập 01.15 (Đúng hay sai)
+- **11.2. Mức tính toán hoặc chứng minh**: Bài tập 01.16 (Điều khiển với cận không đối xứng); Bài tập 01.17 (Hessian xác định dương nhưng không có nghiệm); Bài tập 01.18 (Máy vector hỗ trợ lề mềm)
+- **11.3. Mức vận dụng**: Bài tập 01.19 (Hồi quy ridge); Bài tập 01.20 (Trung bình hai mô hình); Bài tập 01.21 (Ràng buộc chuẩn thay cho chính quy hóa)
+- **12. Câu hỏi cuối buổi và cầu nối**: (văn xuôi)
+- **13. Tài liệu đọc**: (văn xuôi)
+
+### Giả thiết của bài
+
+Sau vòng rà 1: danh sách (K1)–(K5) đặt ở cuối §8 (sau khi định nghĩa lồi chặt, cưỡng bức, lồi mạnh); §2 chỉ còn giả thiết về dữ liệu. Ký hiệu đổi sau vòng rà 1: xem `map-lec-01.md` §7.
+
+(K1) miền lồi; (K2) mục tiêu lồi; (K3) $C$ không rỗng, đóng, $f_0$ liên tục; (K4) $C$ bị chặn hoặc $f_0$ cưỡng bức; (K5) lồi chặt, hoặc lồi mạnh khi $C=\mathbb R^d$. Toàn cục ← (K1)+(K2); tồn tại ← (K3)+(K4); duy nhất ← (K1)+(K5).
+
+### Nguồn theo mục
+
+- §4.1: Boyd và Vandenberghe (2004) §1.1; deck D01–D04.
+- §4.2: Boyd và Vandenberghe (2004) §1.2.1 (tr. 4); Bài 00 Định nghĩa 00.21, Định lý 00.22, Mệnh đề 00.45, Định lý 00.9, Mệnh đề 00.20; deck L01–L04B.
+- §4.3: Murphy (2022) §10.2.1, §10.2.3; Bài 00 Định nghĩa 00.64, Mệnh đề 00.65; deck G00–G04.
+- §5: Boyd và Vandenberghe (2004) §4.1.1 (tr. 127–128), §4.2.2; deck T00–T04.
+- §6: Boyd và Vandenberghe (2004) §2.1 (tr. 21–26), §2.2.1–2.2.3 (tr. 27–30), §2.3.1–2.3.2 (tr. 36–38); deck F00–F05.
+- §7: Boyd và Vandenberghe (2004) §3.1.1, §3.1.3–3.1.4 (tr. 67–71), §3.1.6 (tr. 75), §3.2.1–3.2.3 (tr. 79–81), §4.2.3 (tr. 139–140); Bài 00 Định nghĩa 00.30, Mệnh đề 00.38; deck H01–H06.
+- §8: Boyd và Vandenberghe (2004) §4.2.2 (tr. 138), §9.1.2 (tr. 459), §6.3.2 (tr. 306); Rudin (1976) Định lý 2.41, 4.16; "cưỡng bức" không có trong Boyd (giữ định nghĩa của ghi chú cũ); deck H03, H07, H07B.
+- §9: deck K00–K06, K05/K05B; slide của Boyd và Vandenberghe cho MIT 6.079 (Boyd, Parrilo 2009) lec01, tr. 1–9 đến 1–12 (bài chiếu sáng; nhãn trang in trên slide).
+- §10: Tình huống 01.1–01.3 của ghi chú cũ; Boyd và Vandenberghe (2004) §8.6.1.
+- §12: Bài 02 §5.2 (Mệnh đề 02.36(c): mất mát bản lề về quy hoạch tuyến tính bằng biến phụ).
+
+### Lệch với deck (để đồng bộ sau, Q-F)
+
+- Ký hiệu: cân nặng, chiều cao $s_i$, $y_i$, hệ số $w_0$, $w_1$ (deck L01: $m_i$, $h_i$, $b$, $a$; ghi chú dùng bản sao `height-weight-regression-note.svg`, `g00-…-note.svg`, `g01-…-note.svg`); hàng ma trận thiết kế $a_i^T$ (deck L01B: $x_i^T$); biến hàm hạn chế $\tau$ (deck H05: $t$); độ sáng $\mathcal I$, số đèn $d$ (deck K05: $I$, $m$); $\operatorname{Col}(X)$ (deck K07: $\mathcal R(X)$).
+- Bố cục: deck gộp tập lồi, hàm lồi, toàn cục, tồn tại, duy nhất trong mạch 6; ghi chú tách §6–§8. Deck H07 gọi kết quả cưỡng bức và lồi chặt là "Mệnh đề"; ghi chú là Định lý 01.38 và 01.34. Deck T04 "sáu bước", K06 bốn bước; ghi chú: Nhận xét 01.16 (sáu câu hỏi) và Thuật toán 01.47 (bốn giai đoạn, chín bước).
+- Bài chiếu sáng: deck K05/K05B là bài tập; ghi chú là Ví dụ 01.17 có bộ số.
+- Mục tiêu: deck M02 bốn mục tiêu, ghi chú năm.
+
 ## Trạng thái
 
 Dàn ý triển khai ngày 2026-09-05. Bài được tổ chức theo hướng ứng dụng trước lý thuyết: ba nhu cầu cụ thể tạo dữ kiện và câu hỏi, sau đó mới trừu tượng hóa và xây công cụ chứng nhận. Bộ trang chiếu gồm đúng bảy mạch, tạo thành một tuyến trình chiếu liên tục.

@@ -182,7 +182,7 @@ Mỗi mục tiêu 1–6 có ít nhất một bài (ghi chú hoặc tệp). Các 
 
 Tác tử ánh xạ dẫn chiếu: `general-purpose`, `model: opus`, effort `medium` (lấy từ lời gọi công cụ), tiếp tục một lần bằng `SendMessage` để sửa ba chỗ điều phối viên trả lại.
 
-- 66 chỗ dẫn Bài 00 theo tên mục ở 10 ghi chú (01, 02, 03, 04, 05, 05b, 05c, 06, 06b, 11) đổi sang số hiệu mới theo `map-lec-00.md` (cột "Trạng thái giai đoạn 3"). Không tệp `exercises.md` nào dẫn Bài 00. Deck chỉ nhắc "Bài 00" theo khái niệm, không dẫn tên mục hay số hiệu: không sửa deck.
+- 63 chỗ (60 dòng) dẫn Bài 00 theo tên mục ở 10 ghi chú (01, 02, 03, 04, 05, 05b, 05c, 06, 06b, 11) đổi sang số hiệu mới theo `map-lec-00.md` (cột "Trạng thái giai đoạn 3"). Không tệp `exercises.md` nào dẫn Bài 00. Deck chỉ nhắc "Bài 00" theo khái niệm, không dẫn tên mục hay số hiệu: không sửa deck.
 - Theo Q00-2 (mở rộng khi duyệt diff): sửa phần khẳng định đã thành sai về Bài 00 ở lec-01:29 ("Khác với Bài 00, …"), lec-04:22, lec-05b:18, lec-05c:21, lec-05c:23 ("không chứng minh các quy tắc tính" → chứng minh ở Mệnh đề 00.57, 00.61), lec-06:18, lec-06b:22, lec-05c:577 (ký hiệu của Mệnh đề 00.61), lec-05c:819 (Bài 00 viết $p_U$); theo Q00-3: lec-05c:885 tham số Bernoulli $\theta$.
 - Quyết định khi duyệt diff: lec-01:1599 dẫn Định nghĩa 00.30 thay Mệnh đề 00.33 (hướng $y-x$ không đơn vị; Mệnh đề 00.38 đòi $C^2$, chứng minh ở Bài 01 chỉ giả thiết khả vi) — `chấp nhận`.
 - Không gán số: lec-05:26 (ma trận Vandermonde không có ở Bài 00; giữ nguồn Strang); lec-04:35 ($Q^{1/2}\succ0$ nằm ở đoạn đọc không đánh số sau Định nghĩa 00.25). Ghi để Bài 04, 05 xử lý khi viết lại.
