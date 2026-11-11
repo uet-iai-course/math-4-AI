@@ -2532,6 +2532,8 @@ Miền là một đoạn; $L'(w)=-2/(1+e^w)<0$. Dùng bảng của Ví dụ 01.7
 **Kiểm tra lại.** $L(1{,}9)=2\log(1+e^{-1{,}9})\approx0{,}2788>L(2)$, đúng với $L$ giảm chặt trên đoạn.
 :::
 
+Bài tập 01.22–01.34, lấy từ Boyd và Vandenberghe (2004), có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 01](material-viewer.html?doc=materials/lec-01/exercises.md&deck=lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html).
+
 ## 12. Câu hỏi cuối buổi và cầu nối
 
 **Câu hỏi.** Với hai mẫu $(a_1,y_1)=(1,+1)$, $(a_2,y_2)=(-1,-1)$ của Câu hỏi mở đầu, thay mất mát logistic bằng mất mát bản lề: $L_{\mathrm{hinge}}(w)=\ell_{\mathrm{hinge}}(m_1)+\ell_{\mathrm{hinge}}(m_2)$. Xác định ba kết luận (toàn cục, tồn tại, duy nhất) cho bài toán $\min_{w\in\mathbb R}L_{\mathrm{hinge}}(w)$, nêu kết quả dùng cho mỗi kết luận.

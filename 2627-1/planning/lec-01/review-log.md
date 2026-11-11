@@ -863,3 +863,56 @@ Boyd và Vandenberghe (2004) ch. 1–4 và Phụ lục A (§A.2.1, §2.1–2.3, 
 ### Kiểm của điều phối viên và trình duyệt
 
 forward_refs 0; bộ đếm 01.1–01.47, Ví dụ 01.1–01.17, Tình huống 01.1–01.3, Bài tập 01.1–01.21 liên tục; grep mẫu cấm 0; đồng bộ `--check` và `git diff --check` đạt. Playwright: `material-viewer.html?doc=materials/lec-01/lecture-note.md&deck=lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error` (3 157 công thức), 0 lỗi console, 0 request lỗi, không tràn ngang; bản in chứa đủ 23 chứng minh. Điều phối viên đã xem ảnh chụp.
+
+## Tệp bài tập theo chuẩn 2026-11 (2026-11-12)
+
+`exercises.md` cũ gồm 9 bài tự dựng; theo U2 không bài nào chuyển sang tệp mới: bài chiếu sáng (Bài 9 cũ) đã thành Ví dụ 01.17 của ghi chú; 8 bài còn lại bỏ vì không phủ vế mục tiêu nào mà ghi chú và tệp mới chưa phủ (người lập danh sách kiểm từng bài), bốn bài trong đó trùng bài tập của ghi chú. Tệp mới gồm 13 bài Boyd và Vandenberghe (2004), Bài tập 01.22–01.34, nối tiếp Bài tập 01.1–01.21 của ghi chú.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập danh sách (chỉ đọc) | medium | 13 bài, kiểm từng đề trong PDF |
+| Soạn, rồi biên tập ba vòng (cùng tác tử) | medium | `exercises.md`, câu liên kết ở §11 của ghi chú |
+| Rà độ chính xác (hai vòng) | high | vòng 1: 0/0/0/5; vòng 2: 2 nhẹ |
+| Rà sinh viên năm hai | high | 0/0/2/9 |
+| Rà sư phạm và văn phong, `no-ai-slop` Detect (hai vòng) | high | vòng 1: 0/0/5/13; vòng 2: 1 trung bình, 4 nhẹ |
+
+Điều phối viên tự mở `bv_cvxbook.pdf` kiểm số bài ở các trang PDF 74, 76, 127, 203, 206, 224 trước khi duyệt.
+
+### Danh sách bài và nguồn (Boyd và Vandenberghe 2004; trang in; mọi bài có lời giải trong `cvxbook-solutions.pdf`)
+
+| Bài tập | Mức | Nguồn |
+|---|---|---|
+| 01.22 | nhận biết | Bài 2.12(a–c), tr. 61 |
+| 01.23 | nhận biết | Bài 3.20(a), tr. 116 (chỉ chuẩn $\ell_2$) |
+| 01.24 | nhận biết | Bài 2.15(a–g), tr. 62 (bỏ (h), (i)) |
+| 01.25 | nhận biết | Bài 3.49(a), tr. 122 (phát biểu thành "chứng minh $\log f$ lõm") |
+| 01.26 | tính toán hoặc chứng minh | Bài 2.1, tr. 60 |
+| 01.27 | tính toán hoặc chứng minh | Bài 2.3, tr. 60 |
+| 01.28 | tính toán hoặc chứng minh | Bài 3.1, tr. 113 (bỏ yêu cầu vẽ hình) |
+| 01.29 | tính toán hoặc chứng minh | Bài 3.7, tr. 114 |
+| 01.30 | tính toán hoặc chứng minh | Bài 3.16(a), (b), (c), (e), tr. 116 (bỏ phần tựa lồi; nhãn câu đánh lại (a)–(d)) |
+| 01.31 | tính toán hoặc chứng minh | Bài 3.32(a), tr. 119 |
+| 01.32 | tính toán hoặc chứng minh | Bài 4.3, tr. 189 (thêm câu phụ về tính duy nhất, giải trên dữ kiện sách) |
+| 01.33 | vận dụng | Bài 4.8(c), tr. 192 |
+| 01.34 | vận dụng | Bài 4.61(a), tr. 210 (thêm câu (d): bước 7–8 của Thuật toán 01.47 trên chính bài toán, với các trường hợp tham số của sách) |
+
+Lỗi in trong lời giải sách, đã kiểm (tác tử soạn phát hiện, người rà toán xác nhận trên ảnh trang): 2.15(b) viết $\mathrm{prob}(x\ge\alpha)$ thay $\mathrm{prob}(x>\alpha)$; 2.15(g) viết $b^Tp+p^TAp\le\alpha$, đúng là $p^TAp-b^Tp\le-\alpha$; 4.3 viết $2(y_2+1)$ thay $2(y_3+1)$ và không kiểm $P\succeq0$; 4.8(c) định nghĩa $c^-=\max\{-c,0\}$ nhưng viết $p^*=l^Tc^++u^Tc^-$, đúng là $l^Tc^+-u^Tc^-$. Lời giải trong tệp viết đúng, không nhắc lỗi của sách.
+
+### Quyết định
+
+| Mức độ | Vị trí | Vấn đề | Quyết định |
+|---|---|---|---|
+| trung bình | bảng mục tiêu | Cột ghi chú lệch §11 của ghi chú | chấp nhận: sửa |
+| trung bình | 01.34 | Ký hiệu $p(x)$ trùng $p^*$; ma trận $F$ trùng hàm mất mát | chấp nhận: $\Pr(Y=1\mid x)$, $\Gamma$ |
+| trung bình | 01.24 | Gợi ý 2 lộ phản ví dụ | chấp nhận: ba gợi ý tăng dần |
+| trung bình | 3.49(a) | Lặp ghi chú, sai mức | chấp nhận: chuyển xuống mức nhận biết, đánh lại số (01.31 → 01.25) |
+| trung bình | 01.34 | Mục tiêu 5 chỉ phủ bước 4–6 | chấp nhận: thêm câu (d) bước 7–8; vòng 2: viết khẳng định kèm tham số cụ thể của bài |
+| trung bình | 2.1 | $\mu_i$ trùng $\mu$ | chấp nhận: $\tilde\theta_i$ |
+| nhẹ | 3.16(a) | Lặp Ví dụ 01.14(d), đề xuất thay bằng 3.16(d) | bác bỏ: giữ danh sách Q01-8; lời giải dẫn ví dụ |
+| nhẹ | các chỗ khác | ký hiệu $\beta$, $q$, $r$, $g$, $\varphi$; tên mục con trong tài liệu tham khảo; "hộp"; dịch "advertising effort"; "nói chung"; nhận xét bên lề | chấp nhận |
+
+### Mục tiêu không có bài giáo trình
+
+Mục tiêu 2 (ba mô hình tối ưu của bài: điều khiển một bước, bình phương nhỏ nhất, hồi quy logistic) không có bài Boyd phù hợp trong phạm vi Q01-8; dựa vào Bài tập 01.1–01.21 của ghi chú. Mỗi mục tiêu 1–5 có ít nhất một bài (ghi chú hoặc tệp).
