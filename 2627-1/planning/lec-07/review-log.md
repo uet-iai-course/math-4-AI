@@ -1057,3 +1057,67 @@ Kiểm định cuối vòng 2: 70 trang ở 1600×900 và 390×844; 0 lỗi cons
 ### Quyết định master
 
 **Chấp nhận (2026-10-29).** Bản đánh giá ngoài được áp dụng ở mức tương thích với AGENTS.md và CLAUDE.md: 2 sửa mặt trang (S11b, Z01) và bổ sung ghi chú ở 13 trang. Phần lớn đề xuất còn lại hoặc đã có trong deck, hoặc trái quy tắc kho (lý do ở phần phân loại). Người dùng chốt không thêm trang, không thêm fragment. Không còn phát hiện `chặn bàn giao`, `nghiêm trọng` hay `trung bình`. Ba mục nhẹ có từ trước để mở như bảng trên.
+
+## Viết lại ghi chú theo mẫu SLT và chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: `prompt_fix_lecture_notes_00_07.md` (U1–U4, Q-A đến Q-G), `planning/notes-10-14-slt-template.md` Q1–Q15, "The author's voice" của `../CLAUDE.md`; báo cáo `prompt_fix_00_07_audit/m4ai-audit-00-07.md` (không theo dõi). Phạm vi: người dùng yêu cầu "Làm nốt bài 07" (2026-11-12). Mục này không xóa phát hiện cũ.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập kế hoạch (chỉ đọc) | medium | `plan.md` 15 phần (scratchpad) |
+| Soạn, rồi biên tập hai vòng (cùng tác tử) | medium | ghi chú, `outline.md`, `map-lec-07.md`, `img/lec-07/extreme-point-def-note.svg` |
+| Rà 1/5 sinh viên năm hai | high | 0 chặn, 0 nghiêm trọng, 9 trung bình, 27 nhẹ |
+| Rà 2/5 chuyên gia miền | high | 0 chặn, 1 nghiêm trọng, 10 trung bình, 18 nhẹ |
+| Rà 3/5 độ chính xác toán; kiểm tra lại một vòng | high | 0/1/3/13; kiểm lại: 0 lỗi toán, 5 nhẹ |
+| Rà 4/5 phê bình học thuật–sư phạm, `no-ai-slop` Detect | high | 0 chặn, 1 nghiêm trọng, 18 trung bình, 50 nhẹ |
+| Rà 5/5 mạch và liên kết; kiểm tra lại một vòng | high | 0/2/6/24; kiểm lại: 0/0/0/10 |
+
+### Quyết định khi duyệt kế hoạch
+
+- **Q07-1.** Bổ đề đỉnh kề cải thiện (07.30 cũ, "tạm chấp nhận") phát biểu cho dạng chuẩn, dời sau định lý Bland thành Bổ đề 07.36, gộp hai chứng minh; Mệnh đề 07.37 ngay sau; Thuật toán 07.27 cho dạng chuẩn. Người rà toán xác nhận đúng (trường hợp suy biến qua bước xoay Bland đầu tiên có $\theta^*>0$ và Mệnh đề 07.26).
+- **Q07-3.** Bỏ ba khối trùng Bài 02: Định nghĩa 07.1 → 02.9, Hệ quả 07.4 → Định lý 02.15, Mệnh đề 07.8 → 02.10(b). Bốn thuật toán vào bộ đếm chung (07.27, 07.31, 07.44, 07.52). Bộ đếm 07.1–07.55; 07.45–07.51 giữ số (Bài 13 không đổi). Bảng: `map-lec-07.md`.
+- **Q07-4, Q07-10.** Ba vùng đọc thêm thu gọn (`:::: reading`): Nhận xét 07.38, Nhận xét 07.41, §8.7 Klee–Minty; mục tiêu 5 bỏ vế "số bước có thể tăng theo hàm mũ". Đích ≤ 36 000 (vượt 28 000 vì bài gộp quy hoạch tuyến tính, đơn hình, suy biến và quy tắc Bland, pha I, quy hoạch nguyên, quy hoạch động).
+- **Q07-5, Q07-6.** Bỏ đoạn hình tròn đơn vị (không khối nào dùng); phản ví dụ "khi bỏ giả thiết" vào Nhận xét 07.24.
+- **Q07-8.** Bỏ chín nguồn không có bản cục bộ (Bertsimas–Tsitsiklis, Bertsekas, Cormen, Bellman, Klee–Minty, Koenker, Rabiner, Sutton–Barto, Peyré–Cuturi); thay bằng Vanderbei (2014), Kupferschmid (2023), MIT 15.093J, Nguyễn Bích Vân ch8, Murphy (2022/2023) theo mục.
+- **Q07-9.** Đoạn `linprog` ngắn ở §11.5 theo docstring SciPy 1.18.1 (dấu của $c$ khi cực đại, cận mặc định `bounds=(0, None)`, `highs-ds`, `highs-ipm`, mã trạng thái 0/2/3).
+
+### Quyết định sau năm lượt rà — mọi phát hiện: chấp nhận, trừ chỗ ghi khác
+
+| Mức độ | Vị trí (bản nháp 1) | Vấn đề | Quyết định |
+|---|---|---|---|
+| nghiêm trọng | Nhận xét 07.24 | Ví dụ "khi bỏ (L3)" rơi vào kết luận (a) của Định lý 07.20; nó là phản ví dụ của Hệ quả 07.21 (lỗi có từ bản cũ) | chấp nhận: tiêu đề "Khi bỏ giả thiết của Định lý 07.20 và Hệ quả 07.21"; $\max_{v\in V}c^Tv=1$ trong khi $z^*=+\infty$ |
+| nghiêm trọng | 1082, 1590 | "Đường hồi quy ở đỉnh tối ưu nội suy ít nhất $n$ mẫu" sai cho nghiệm cơ sở của dạng chuẩn có tách $x=x^+-x^-$ | chấp nhận; điều phối viên tự kiểm phản ví dụ $y=(-1,1)$, $h_i=1$: $x=0$ tối ưu, không nội suy mẫu nào; phát biểu chỉ cho điểm cực biên tối ưu của (4.1) |
+| nghiêm trọng | 1572, 3009, 1650 | Dẫn "phương án ưu tiên loại 2 của câu hỏi mở đầu" (không có); Định lý 07.35 trả lời câu hỏi thứ ba, không phải thứ năm | chấp nhận |
+| nghiêm trọng | tiêu đề khối | 25/26 kết quả thiếu nhãn độ sâu chứng minh | chấp nhận: 26 khối "— chứng minh đầy đủ"; Định lý 07.35 "— chứng minh nằm ngoài phạm vi học phần (Vanderbei 2014, §3.4, tr. 31–33)" |
+| trung bình | pha I, Nhận xét 07.55, `linprog`, dòng 3/35, §11.5 | Pha I không nguồn; lời nguyền số chiều dẫn sai mục Murphy, thiếu $\gamma<1$; thiếu cận mặc định; mô tả sai Bài 04; Hệ quả 07.13 cho bài toán vận chuyển khi (L1) chưa thỏa | chấp nhận: Kupferschmid §2.8.2, tr. 78–82; Murphy (2023) §34.6, tr. 1134; bỏ phương trình thừa trước khi áp dụng |
+| trung bình | §4.3, Bài tập 07.2 | Trùng Bài 02 §5.4 và Bài tập 02.4(a) | §4.3 rút về câu dẫn Bổ đề 02.14, Nhận xét 02.16; Bài tập 07.2 giữ, gợi ý dẫn Bài tập 02.4(a) (bản sao trong `exercises.md` cũ thay ở giai đoạn 2) |
+| trung bình | ký hiệu | $x^+$ hai nghĩa, $s_4$ biến bù/biến dư, $e$ (biến dư/cột đơn vị), "suy biến" cho "không khả nghịch", "cơ sở" cho nơi sản xuất; hình dùng $u$, $w$ khác bảng | chấp nhận: $w$, $e_i$ biến dư, $\mathbf u_p$ cột đơn vị, "không khả nghịch", "xưởng"; bản sao hình `extreme-point-def-note.svg` (deck giữ hình cũ) |
+| trung bình | ranh giới mục | Câu nối ở cả hai phía; khuôn "Như vậy… Tuy nhiên…" lặp | chấp nhận: một câu nối ở một phía |
+| — | đổi dữ kiện Bài tập 07.2 | Đề xuất | không làm: dẫn Bài tập 02.4(a) trong gợi ý |
+| — | chuyển danh sách năm câu hỏi xuống §8 | Đề xuất (nhẹ) | không làm: vẫn cần dẫn ngược, lợi ích nhỏ |
+
+### Độ dài
+
+Ghi chú cũ 50 213 âm tiết; bản nháp 1: 35 995; bản cuối: 35 762 (trần 36 000, lý do vượt 28 000 ở Q07-10).
+
+### Nguồn gốc số liệu và đính chính
+
+- Mọi bảng đơn hình, pha I, Klee–Minty, Viterbi, ba lô, hồi quy $L_1$ (đối chiếu SciPy), câu hỏi mở đầu ($(14,20)$, $z=88$), ví dụ điểm cực biên $(30,0)$, $z=60$, câu hỏi cuối buổi ($J_0=5$): người lập kế hoạch, người soạn và người rà toán tính lại độc lập bằng số hữu tỉ chính xác.
+- Đính chính so với ghi chú cũ: Nhận xét 07.24; câu nội suy của hồi quy $L_1$; câu miền không bị chặn ở §4.1 (vẫn còn $x_1\le30$; viết lại: mọi $(0,-\theta)$, $\theta>0$ khả thi); Bổ đề 07.30 "tạm chấp nhận" phát biểu lại cho dạng chuẩn; ví dụ điểm cực biên dùng $(30,0)$; câu sai "Bài 07 là bài giảng cuối" thay bằng cầu nối sang Bài 13; Bài tập 07.18 thêm tập hòa $\{1,4\}$.
+
+### Giáo trình đã tham khảo
+
+Vanderbei (2014) ch. 1–4 (trang PDF/in lệch theo chương: +19, +18, +17, +16; §3.2, §3.4 tr. 31–33); Kupferschmid (2023) §2.8.2 (tr. 78–82), §4.4.1, §7.8; Boyd và Vandenberghe (2004) §2.2.4; Murphy (2022) §6.8.3, §8.5.3, §11.6.1; Murphy (2023) §9.2.6, §34.6 (tr. 1134); MIT 15.093J Bài giảng 2, 3, 16; Nguyễn Bích Vân ch8; tài liệu SciPy 1.18.1 `linprog`.
+
+### Lệch với deck (Q-F; không sửa deck)
+
+- C07c đặt bổ đề đỉnh kề trước thuật toán và phát biểu cho đa diện bất kỳ; C06 đứng trước C07.
+- Z02 còn dẫn Bertsimas–Tsitsiklis và "Buổi 9"; P02 có 4 mục tiêu, ghi chú 6.
+- Hình điểm cực biên của deck dùng nhãn $u$, $w$ (ghi chú dùng bản sao có tọa độ).
+- `sources/MIT/README.md` chưa có mục cho MIT 15.093J bài 3 (`simplex-method 1.pdf`).
+
+### Kiểm của điều phối viên và trình duyệt
+
+forward_refs 0 (bản cũ 33); bộ đếm 07.1–07.55, Ví dụ 07.1–07.30, Tình huống 07.1–07.4, Bài tập 07.1–07.18 liên tục; 26 chứng minh; ba vùng đọc thêm; không lệnh TeX hỏng; đồng bộ `--check`, `git diff --check` đạt. Playwright `material-viewer.html?doc=materials/lec-07/lecture-note.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang trang; 0/50 công thức tràn ở 390 px (mở mọi `details`); đã xem ảnh 390 (Ví dụ 07.19).

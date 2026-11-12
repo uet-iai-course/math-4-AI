@@ -139,3 +139,7 @@ Bảng trên là phân bổ trước 2026-10-23 cho Buổi 7. Mạch 5 (phương
 - Đảo quyết định cũ "Không đưa tableau, pivot, biến vào–ra hoặc tìm cơ sở ban đầu theo Phase I" (storyboard, mục "Quyết định cấu trúc"): lý do là yêu cầu người dùng 2026-10-23 đưa Chương 11 (phương pháp đơn hình) vào Bài 07.
 - Mạch 4 giữ hình học và thuật toán duyệt đỉnh kề ở mức khái niệm; mọi phép tính trên cơ sở lên mặt trang ở mạch 5.
 - Lược khỏi deck: hình học cột (11.5), phương pháp đơn hình cải tiến, quy tắc từ điển, ví dụ quay vòng, chiều ngược của điều kiện tối ưu khi không suy biến; các nội dung này nằm trong ghi chú bài giảng hoặc ghi chú diễn giả.
+
+## Ghi chú bài giảng viết lại theo mẫu SLT (2026-11-12)
+
+`materials/lec-07/lecture-note.md` được viết lại theo khung: đoạn dẫn, Câu hỏi mở đầu (bài toán hộp hạt), Mục tiêu (6), Kiến thức tiên quyết (+ câu hỏi ôn nhanh), §1 Thiết lập bài toán, §2 Ký hiệu và giả thiết ((L1)–(L4), (D1)–(D4)), §3 Ví dụ xuyên suốt (Ví dụ 07.1 và đồ thị tầng), §4–§10 (cũ Mục 1–7), §8.7 Đọc thêm (Klee–Minty), §11 Ý nghĩa, tác động và giới hạn (bốn tình huống, ứng dụng, tóm tắt), §12 Bài tập, §13 Câu hỏi cuối buổi và cầu nối, §14 Tài liệu đọc. Ba vùng đọc thêm thu gọn: Nhận xét 07.38 (§8.4), Nhận xét 07.41 (§8.5), §8.7. Bổ đề đỉnh kề cải thiện thành Bổ đề 07.36 (dạng chuẩn, sau định lý Bland). Ánh xạ số cũ → mới: `map-lec-07.md`. Deck không đổi; một dẫn chiếu trong ghi chú diễn giả (dòng 243, "Định lý 07.20" → 07.17) chờ giai đoạn 3.
