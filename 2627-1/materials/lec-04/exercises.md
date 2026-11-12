@@ -7,7 +7,7 @@ Bài tập 04.16–04.31 dưới đây đi kèm [ghi chú bài giảng](material
 - bài toán có ràng buộc đẳng thức viết $\min F(u)$ với $Au=b$, $A\in\mathbb R^{p\times n}$ đủ hạng hàng;
 - $Z$ là ma trận có các cột là một cơ sở của $\ker A$.
 
-Hai bài có nhãn "— đọc thêm" trong tên dùng phương pháp hàm chắn ở phần đọc thêm của ghi chú.
+Năm bài có nhãn "— đọc thêm" trong tên dùng nội dung ở phần đọc thêm của ghi chú: tính tự điều chỉnh, cận sai số theo độ giảm Newton và phương pháp hàm chắn.
 
 | Mục tiêu học tập | Bài tập trong ghi chú | Bài tập trong tệp này |
 |---|---|---|
@@ -16,17 +16,16 @@ Hai bài có nhãn "— đọc thêm" trong tên dùng phương pháp hàm chắ
 | 3. Một vòng lặp hạ gradient hoặc Newton với quay lui bằng số | 04.2, 04.5, 04.6, 04.15 | 04.21, 04.22, 04.23 |
 | 3. Mức giảm mô hình, mức giảm thực tế và sai số mục tiêu | 04.5, 04.10 | — |
 | 4. Cận hội tụ của hạ gradient và giả thiết của chúng | 04.4, 04.14 | 04.20, 04.23 |
-| 4. Tốc độ hội tụ của phương pháp Newton | 04.5, 04.6 | 04.22, 04.24 |
+| 4. Tốc độ hội tụ của phương pháp Newton | 04.5, 04.6 | 04.22 |
 | 5. Newton khả thi: hệ khối và khử biến | 04.7, 04.8, 04.12, 04.13 | 04.25, 04.26, 04.27, 04.30 |
 | 5. Newton từ điểm chưa khả thi | 04.9 | 04.17, 04.18 |
-| 6. Tính tự điều chỉnh | 04.10, 04.11 | 04.24, 04.28, 04.29 |
-| 6. Độ giảm Newton: chuẩn đối ngẫu và cận sai số | 04.10, 04.12 | 04.16 |
 | 6. Điều mỗi tiêu chí dừng chứng nhận trên mô hình học | 04.6, 04.15 | — |
-| Phương pháp hàm chắn (đọc thêm) | — | 04.19, 04.31 |
+| Đọc thêm: tính tự điều chỉnh và cận sai số theo độ giảm Newton | 04.10, 04.11, 04.12 | 04.24, 04.28, 04.29 |
+| Đọc thêm: phương pháp hàm chắn | — | 04.19, 04.31 |
 
 ## Mức nhận biết
 
-**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 2, 6; viết độ giảm Newton thành cận trên đúng theo mọi $v\ne0$.
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 2; viết độ giảm Newton thành cận trên đúng theo mọi $v\ne0$.
 
 ::: exercise Bài tập 04.16 (Độ giảm Newton dưới dạng cận trên đúng; Boyd và Vandenberghe, Bài 9.9, tr. 515)
 Cho $H=\nabla^2f(x)\succ0$ và $g=\nabla f(x)\ne0$. Chứng minh độ giảm Newton thỏa
@@ -354,9 +353,9 @@ Với $d=-g$, $t_0=\tfrac1L$, và kết quả này trùng phần đầu của B�
 **Kiểm tra lại.** Với $f(x)=\tfrac12(3x_1^2+7x_2^2)$, $x^0=(2,4)^T$, $d=-g=(-6,-28)^T$, $L=7$: $t_0=\tfrac{820}{7\cdot820}=\tfrac17$; với $\beta=\tfrac12$, cận là $\lceil\log7/\log2\rceil=\lceil2{,}81\rceil=3$. Với $\alpha=0{,}1$, lần thử $t=\tfrac14$ (sau hai lần co) cho $f(\tfrac12,-3)=31{,}875\le62-0{,}1\cdot\tfrac14\cdot820=41{,}5$, khớp cận.
 :::
 
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 4; đọc hằng số trong cận số bước Newton cho hàm tự điều chỉnh.
+**Mức độ:** tính toán. **Mục tiêu:** phần đọc thêm; đọc hằng số trong cận số bước Newton cho hàm tự điều chỉnh.
 
-::: exercise Bài tập 04.24 (Tham số quay lui tối ưu cho cận số bước Newton; Boyd và Vandenberghe, Bài 9.21, tr. 517)
+::: exercise Bài tập 04.24 (Tham số quay lui tối ưu cho cận số bước Newton — đọc thêm; Boyd và Vandenberghe, Bài 9.21, tr. 517)
 Định lý 04.57 chặn số bước của Thuật toán 04.34 trên một hàm tự điều chỉnh lồi chặt bởi
 $$
 \begin{aligned}
@@ -527,9 +526,9 @@ Số hạng thêm vào chỉ đổi Hessian ngoài $\ker A$. Vì $F$ lồi, $H\s
 **Kiểm tra lại.** Với $F(u)=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ \ 1]$, $b=14$, $u=(8,6)^T$, $Q=1$: $g=(16,30)^T$. Hệ gốc $2d_1+\eta=-16$, $5d_2+\eta=-30$, $d_1+d_2=0$ cho $d=(2,-2)^T$, $\eta=-20$. Hệ mới $4d_1+2d_2+\eta=-16$, $2d_1+7d_2+\eta=-30$, $d_1+d_2=0$ cũng cho $d=(2,-2)^T$, $\eta=-20$.
 :::
 
-**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 6; kiểm tra tính tự điều chỉnh trực tiếp và qua các phép bảo toàn.
+**Mức độ:** chứng minh. **Mục tiêu:** phần đọc thêm; kiểm tra tính tự điều chỉnh trực tiếp và qua các phép bảo toàn.
 
-::: exercise Bài tập 04.28 (Hàm nghịch đảo và hàm chắn nghịch đảo; Boyd và Vandenberghe, Bài 9.13, tr. 516)
+::: exercise Bài tập 04.28 (Hàm nghịch đảo và hàm chắn nghịch đảo — đọc thêm; Boyd và Vandenberghe, Bài 9.13, tr. 516)
 
 - **(a)** Chứng minh $f(x)=1/x$ với miền $(0,\tfrac89)$ tự điều chỉnh.
 - **(b)** Cho $a_i\in\mathbb R^n$, $b_i\in\mathbb R$, $i=1,\ldots,m$, tập $D=\{x\in\mathbb R^n\mid a_i^Tx<b_i,\ i=1,\ldots,m\}$ khác rỗng và bị chặn, và
@@ -569,9 +568,9 @@ tức $\sqrt x\le\frac{4\sqrt2}6=\frac{2\sqrt2}3$, hay $x\le\tfrac89$. Điều k
 **Kiểm tra lại.** Tại biên $y=\tfrac{8c}9$ với $c=1$: $\tfrac6{y^4}=6\cdot(\tfrac98)^4\approx9{,}611$ và $2\bigl(\tfrac2{y^3}\bigr)^{3/2}=2\bigl(2\cdot(\tfrac98)^3\bigr)^{3/2}\approx9{,}611$: dấu bằng xảy ra. Với $c=\tfrac12$, $y=0{,}44<\tfrac49$ thỏa điều kiện, còn $y=0{,}45>\tfrac49$ thì không.
 :::
 
-**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 6; viết lại điều kiện tự điều chỉnh của hàm một biến và tìm các hàm đạt dấu bằng.
+**Mức độ:** chứng minh. **Mục tiêu:** phần đọc thêm; viết lại điều kiện tự điều chỉnh của hàm một biến và tìm các hàm đạt dấu bằng.
 
-::: exercise Bài tập 04.29 (Hàm tự điều chỉnh một biến; Boyd và Vandenberghe, Bài 9.16, tr. 516)
+::: exercise Bài tập 04.29 (Hàm tự điều chỉnh một biến — đọc thêm; Boyd và Vandenberghe, Bài 9.16, tr. 516)
 Cho $f$ tự điều chỉnh trên một khoảng mở $\operatorname{dom}f\subseteq\mathbb R$ (Định nghĩa 04.51 với $n=1$).
 
 - **(a)** Giả sử $f''(x)\ne0$. Chứng minh điều kiện tự điều chỉnh tại $x$ tương đương với

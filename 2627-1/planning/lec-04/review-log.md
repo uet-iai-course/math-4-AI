@@ -1913,3 +1913,14 @@ Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medi
 - lec-05b:468 biến tích phân khi thuật lại chứng minh Bổ đề 04.19: $\tau$ → $\varsigma$ theo ghi chú mới (chấp nhận).
 
 Kiểm: tác tử quét mọi `materials/lec-*/*.md`, `materials/README.md`, mọi deck: 757 tham chiếu "Loại 04.k", 0 sai; điều phối viên chạy kiểm độc lập (mỗi số được dẫn tồn tại trong ghi chú/bài tập Bài 04 với đúng loại khối): 182 tham chiếu ngoài Bài 04, 0 sai; đối chiếu Nhận xét 04.20 (deck 05), Bổ đề 04.19, 04.24. forward_refs của các tệp đã sửa không đổi; `git diff --check`, đồng bộ `--check` đạt; notecheck lec-05, 05b, 06b, 06c (1600, 390, `file://`): 0 lỗi KaTeX, 0 chữ đỏ, 0 lỗi console. Không tệp nào dẫn nhãn công thức, `exercises.md` cũ hay ký hiệu cũ của Bài 04. Lệch deck: RZ03 của deck 04 (liệt kê bài của `exercises.md` cũ) — không sửa.
+
+## Mục 9 thành vùng đọc thêm thu gọn (yêu cầu người dùng, 2026-11-12)
+
+Yêu cầu: "sau khi xong giai đoạn 3, hãy đưa cả mục 9 trong ghi chú bài 4 thành đọc thêm (collapse)". Viewer cũ escape mọi HTML thô và chỉ thu gọn khối proof/hint/solution (thử `<details>` thô: thẻ thành chữ thường, đã hoàn tác). Người dùng chọn (AskUserQuestion) phương án sửa viewer: thêm vùng `:::: reading Tiêu đề` … `::::` (commit riêng `fix(materials): viewer thêm vùng đọc thêm thu gọn`; kiểu hiển thị trong `material-viewer-course.css`, không sửa `material-viewer.css` dùng chung).
+
+Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medium). Điều phối viên đọc diff viewer, CSS và nội dung, xem ảnh vùng đóng (1600) và sau khi bấm mục lục 9.2.
+
+- Ghi chú: `## 9. Đọc thêm: tính tự điều chỉnh và cận sai số` (ngoài vùng, kèm một câu dẫn); 9.1–9.4 trong vùng "Hàm tự điều chỉnh, cận sai số theo độ giảm Newton và phương pháp hàm chắn"; §9.4 bỏ tiền tố "Đọc thêm:". Mục tiêu 6 viết lại (bỏ vế tự điều chỉnh và cận theo độ giảm Newton). Đoạn mở, bảng tóm tắt §11.5, danh sách bài tập §12, câu trả lời câu hỏi mở đầu và câu hỏi cuối §13 ghi "(đọc thêm)" ở chỗ dẫn §9. Số khối và nhãn công thức không đổi. Không tệp nào khác dẫn §9 hay khối 04.50–04.62.
+- `exercises.md`: 04.24, 04.28, 04.29 thêm "— đọc thêm"; bảng mục tiêu có hai hàng đọc thêm; 04.16 chỉ còn mục tiêu 2.
+- Kiểm: hồi quy 34 tài liệu × (http, `file://`) trước/sau sửa viewer — 64 trang ngoài Bài 04 trùng mọi chỉ số (số khối, details, mục lục, heading, KaTeX, katexErr, katexRed, lỗi console, độ dài văn bản); Bài 04: vùng đóng mặc định, 511 công thức trong vùng, katexErr 0, katexRed 0; bấm mục lục 9.2 và tải URL có hash 9.3 mở vùng và cuộn đúng; PDF in có nội dung §9; 390 px không tràn. Ghi chú 27 565 âm tiết; forward_refs 0; `git diff --check`, đồng bộ `--check` đạt.
+- Tồn đọng: `AGENTS.md`, `CLAUDE.md` của học phần và `materials/_templates/` chưa mô tả cú pháp vùng (ngoài phạm vi ghi).

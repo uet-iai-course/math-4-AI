@@ -5,7 +5,7 @@ Bài 03 chứng nhận nghiệm của bài toán lồi khả vi bằng hệ đi�
 - hướng giảm, quay lui Armijo và hạ gradient, cùng các cận hội tụ;
 - hướng Newton, độ giảm Newton và tốc độ hội tụ của phương pháp Newton;
 - hai phương pháp Newton cho ràng buộc đẳng thức, từ điểm khả thi và từ điểm chưa khả thi;
-- tính tự điều chỉnh và cận sai số theo độ giảm Newton.
+- tính tự điều chỉnh và cận sai số theo độ giảm Newton (đọc thêm).
 
 ## Câu hỏi mở đầu
 
@@ -28,7 +28,7 @@ Sau bài này, người học có thể:
 3. Thực hiện bằng số một vòng lặp hạ gradient và một vòng lặp Newton với quay lui Armijo, phân biệt mức giảm của mô hình, mức giảm thực tế và sai số mục tiêu.
 4. Chứng minh các cận hội tụ của hạ gradient, phát biểu tốc độ hội tụ của phương pháp Newton, và nêu giả thiết của từng kết quả.
 5. Lập và giải hệ Newton cho bài toán có ràng buộc đẳng thức từ điểm khả thi, bằng hệ khối và bằng khử biến, và từ điểm chưa khả thi.
-6. Kiểm tra tính tự điều chỉnh, dùng độ giảm Newton làm cận sai số đúng giả thiết, và xác định điều mỗi tiêu chí dừng chứng nhận trên ba mô hình học của bài.
+6. Xác định điều mỗi tiêu chí dừng (chuẩn gradient, mức giảm mô hình, chuẩn phần dư) chứng nhận trên ba mô hình học của bài, cùng giả thiết của từng chứng nhận.
 
 ## Kiến thức tiên quyết
 
@@ -2139,7 +2139,11 @@ Bước đầy đủ: $u^+=(10,4)^T$, $\nu^+=2-22=-20$. Nhân tử của nghiệ
 
 Như vậy, Thuật toán 04.49 luôn tìm được bước và chứa Newton khả thi làm trường hợp riêng. Tuy nhiên, mọi tiêu chí dừng đã xét, gồm $\lVert g\rVert_2$, $\tfrac12\delta^2$, $\tfrac12\delta_{eq}^2$ và $\lVert r\rVert_2$, chỉ đo khoảng cách tới hệ KKT; theo Nhận xét 04.33, một cận sai số theo $\delta$ cần thêm giả thiết về sự thay đổi của độ cong.
 
-## 9. Tính tự điều chỉnh và cận sai số
+## 9. Đọc thêm: tính tự điều chỉnh và cận sai số
+
+Với hàm tự điều chỉnh, độ giảm Newton cho một cận sai số không chứa hằng số nào của hàm; phương pháp hàm chắn dùng kết quả này cho bài toán có ràng buộc bất đẳng thức.
+
+:::: reading Hàm tự điều chỉnh, cận sai số theo độ giảm Newton và phương pháp hàm chắn
 
 Với $\varphi(s)=s-\log s$ từ $s^0=\tfrac14$, các hằng số của Định lý 04.37 trên $S=\{s\mid\varphi(s)\le\varphi(\tfrac14)\}\approx[0{,}25;\,2{,}587]$ là $\mu\approx0{,}149$, $L=16$, $L_H=128$. Dùng $\mu$ này trên $S$, cận (5.5) cho $\varphi'(\tfrac14)^2/(2\mu)\approx30{,}1$, gấp khoảng $47$ lần sai số $0{,}636$; các hằng số này còn thay đổi khi đổi hệ tọa độ, trong khi bước Newton thì không (Mệnh đề 04.32(c)).
 
@@ -2455,7 +2459,7 @@ $s\mapsto1-s$ là hàm affine. Do đối xứng, $s^*=\tfrac12$.
 
 Như vậy, với hàm tự điều chỉnh bị chặn dưới, độ giảm Newton cho cận sai số tính được. Tuy nhiên, mất mát logistic không thuộc lớp này. Các phương pháp trên chỉ xử lý bài toán không ràng buộc và bài toán có ràng buộc đẳng thức; phương pháp hàm chắn sau đưa ràng buộc bất đẳng thức về dãy bài toán có đẳng thức.
 
-### 9.4. Đọc thêm: phương pháp hàm chắn (barrier method)
+### 9.4. Phương pháp hàm chắn (barrier method)
 
 Xét bài toán $\min f_0(x)$ với $f_i(x)\le0$, $i=1,\ldots,m$, và $Ax=b$. Một cách trực quan, ta thay mỗi ràng buộc bất đẳng thức bằng một số hạng tăng vô hạn khi $f_i(x)\to0^-$; bài toán còn lại chỉ có đẳng thức, giải bằng phương pháp Newton, với điểm lặp luôn khả thi ngặt.
 
@@ -2583,6 +2587,8 @@ Khi $\tau\to\infty$, $x^*(\tau)\to1=x^*$ và $\lambda^*(\tau)\to2$, nhân tử K
 :::
 
 Phân tích độ phức tạp của phương pháp và phương pháp điểm trong gốc – đối ngẫu (primal-dual interior-point method) nằm ngoài phạm vi học phần (Boyd và Vandenberghe 2004, §11.5, tr. 585–596; §11.7, tr. 609–615).
+
+::::
 
 ## 10. Tổng hợp: khung chung của bước lặp
 
@@ -2880,7 +2886,7 @@ Các khái niệm của bài xuất hiện trong các vấn đề sau của họ
 | Hội tụ của hạ gradient | Định nghĩa 04.18; Bổ đề 04.19, 04.21, 04.22, 04.24; Định lý 04.23, 04.25 (quay lui với $\alpha=\tfrac12$), 04.27; Mệnh đề 04.26 |
 | Phương pháp Newton | Định nghĩa 04.29, 04.31, 04.35; Mệnh đề 04.30, 04.32; Thuật toán 04.34; Định lý 04.36, 04.37 |
 | Newton có đẳng thức | Mệnh đề 04.39, 04.43, 04.47, 04.48; Định nghĩa 04.40, 04.46; Định lý 04.41; Thuật toán 04.44, 04.49 |
-| Tự điều chỉnh và cận sai số | Định nghĩa 04.51; Mệnh đề 04.52; Bổ đề 04.53; Định lý 04.54, 04.57; Hệ quả 04.55, 04.56 |
+| Tự điều chỉnh và cận sai số (đọc thêm) | Định nghĩa 04.51; Mệnh đề 04.52; Bổ đề 04.53; Định lý 04.54, 04.57; Hệ quả 04.55, 04.56 |
 | Phương pháp hàm chắn (đọc thêm) | Định nghĩa 04.59; Mệnh đề 04.60; Thuật toán 04.61 |
 | Tiêu chí dừng | Mệnh đề 04.62 |
 
@@ -2933,7 +2939,7 @@ Các bài tập trong thân bài và mục tiêu học tập mà mỗi bài ki�
 7. **Bài tập 04.7** (Newton khả thi từ $(8,6)^T$): mục tiêu 5; hệ (7.1), hệ (7.2) và $\eta$.
 8. **Bài tập 04.8** (Hệ khối và hệ rút gọn cho ba biến): mục tiêu 5; hệ khối, hệ rút gọn và $\delta_{eq}$.
 9. **Bài tập 04.9** (Newton cho phần dư từ $(4,2)^T$): mục tiêu 5; bước (8.1) và ngưỡng phần dư.
-10. **Bài tập 04.10** (Cận sai số cho $-\log s-\log(1-s)$): mục tiêu 6; cận (9.1) so với sai số thực tế.
+10. **Bài tập 04.10** (Cận sai số cho $-\log s-\log(1-s)$): đọc thêm; cận (9.1) so với sai số thực tế.
 
 Các bài tập tiếp theo củng cố toàn bài, chia theo ba mức.
 
@@ -3076,11 +3082,11 @@ Bài tập 04.16–04.31, có gợi ý và lời giải, nằm trong [tệp bài
 
 ## 13. Câu hỏi cuối buổi và cầu nối
 
-Mức giảm dự báo $\tfrac9{32}\approx0{,}281$ không dùng được làm cận trên của sai số $\varphi(\tfrac14)-\varphi^*$: sai số này bằng $\log4-\tfrac34\approx0{,}636$ (Ví dụ 04.15), vì parabol dùng độ cong $16$, lớn hơn độ cong của $\varphi$ trên phần còn lại của $[\tfrac14,1]$ (giảm từ $16$ xuống $1$). Cận (9.1) với $\delta=\tfrac34$ chứng nhận sai số này (Ví dụ 04.24).
+Mức giảm dự báo $\tfrac9{32}\approx0{,}281$ không dùng được làm cận trên của sai số $\varphi(\tfrac14)-\varphi^*$: sai số này bằng $\log4-\tfrac34\approx0{,}636$ (Ví dụ 04.15), vì parabol dùng độ cong $16$, lớn hơn độ cong của $\varphi$ trên phần còn lại của $[\tfrac14,1]$ (giảm từ $16$ xuống $1$). Ở phần đọc thêm, cận (9.1) với $\delta=\tfrac34$ chứng nhận sai số này (Ví dụ 04.24).
 
 **Câu hỏi.** Ở Tình huống 04.1, tại điểm lặp $w^2$ của phương pháp Newton, $\lVert\nabla J(w^2)\rVert_2\approx0{,}0359$, $\tfrac12\delta^2\approx6{,}6\cdot10^{-5}$ và $J$ lồi mạnh với $\mu=\rho=0{,}1$.
 
-- (a) Xác định cận nào trong hai cận (5.5) và (9.1) chứng nhận được sai số $J(w^2)-J^*$, và tính cận đó.
+- (a) Xác định cận nào trong hai cận (5.5) và (9.1) (cận thứ hai ở phần đọc thêm) chứng nhận được sai số $J(w^2)-J^*$, và tính cận đó.
 - (b) Thuật toán 04.34 với tiêu chí $\tfrac12\delta^2\le10^{-4}$ dừng tại $w^2$. Xác định sai số mà điểm dừng này được chứng nhận cho hồi quy logistic, và so với sai số thực tế $J(w^2)-J^*\approx6{,}6\cdot10^{-5}$.
 
 ::: solution Lời giải câu hỏi cuối buổi

@@ -19,8 +19,8 @@ Ghi chú `materials/lec-04/lecture-note.md` được viết lại theo `planning
 | 6. Phương pháp Newton (6.1–6.3) | hướng Newton (6.1), độ giảm Newton, tốc độ (6.2), hai pha | 04.29–04.38; Ví dụ 04.13–04.16; Bài tập 04.5, 04.6 |
 | 7. Newton khả thi (7.1–7.3) | hướng khả thi, hệ khối (7.1), khử biến (7.2) | 04.39–04.45; Ví dụ 04.17–04.19; Bài tập 04.7, 04.8 |
 | 8. Newton từ điểm chưa khả thi (8.1–8.3) | phần dư KKT, hệ (8.1), chuẩn phần dư | 04.46–04.50; Ví dụ 04.20–04.22; Bài tập 04.9 |
-| 9. Tự điều chỉnh và cận sai số (9.1–9.3) | tự điều chỉnh, cận (9.1), bài toán có đẳng thức, số bước | 04.51–04.58; Ví dụ 04.23, 04.24; Bài tập 04.10 |
-| 9.4. Đọc thêm: phương pháp hàm chắn | hàm chắn logarit, đường trung tâm, điều kiện tâm (9.2), điểm đối ngẫu, thuật toán (Boyd §11.1–11.3) | 04.59–04.61; Ví dụ 04.25 |
+| 9. Đọc thêm: tự điều chỉnh và cận sai số (9.1–9.4, vùng thu gọn `:::: reading`) | tự điều chỉnh, cận (9.1), bài toán có đẳng thức, số bước | 04.51–04.58; Ví dụ 04.23, 04.24; Bài tập 04.10 |
+| 9.4. Phương pháp hàm chắn | hàm chắn logarit, đường trung tâm, điều kiện tâm (9.2), điểm đối ngẫu, thuật toán (Boyd §11.1–11.3) | 04.59–04.61; Ví dụ 04.25 |
 | 10. Tổng hợp | bảng phương pháp, điều mỗi tiêu chí dừng chứng nhận | 04.62; Ví dụ 04.26 |
 | 11. Ý nghĩa, tác động và giới hạn | hồi quy logistic, trọng số trộn, mạng tuyến tính hai lớp (giả thiết không thỏa); ứng dụng; tóm tắt | Tình huống 04.1–04.3 |
 | 12. Bài tập | danh sách 04.1–04.10; 04.11–04.15 theo ba mức; liên kết `exercises.md` thêm ở giai đoạn 2 | Bài tập 04.11–04.15 |
@@ -28,6 +28,8 @@ Ghi chú `materials/lec-04/lecture-note.md` được viết lại theo `planning
 | 14. Tài liệu đọc | Boyd và Vandenberghe (2004) ch. 9–10, §11.1–11.3; Murphy (2022) §8.2, §8.3.1, §10.2.6; MIT 6.079 Lecture 16, 17; Goodfellow và cộng sự (2016); Martens (2010) | — |
 
 **Thay đổi so với ghi chú cũ.** Bốn thuật toán vào bộ đếm chung; mọi số từ cũ 04.13 trở đi dịch (bảng ở `map-lec-04.md`). Nhãn công thức đánh lại theo mục mới. Thêm §9.4 (yêu cầu người dùng 2026-11-12). Ký hiệu: $J$, $J_0$ cho mất mát logistic; $\rho$ cho hệ số chính quy hóa; $\mathcal L$, $\mathcal L_Q$; $Z$ cho cơ sở $\ker A$; $N$ cho số mẫu; $\varsigma$ cho biến tích phân; $\mathcal B$, $r_B$ cho hình cầu của Định lý 04.36. Bỏ: LLO/CLO, câu nguồn gốc số liệu, Nocedal–Wright, Beck, Bach, Strang (không có trong `sources/`), câu sai số dấu phẩy động của Nhận xét 04.45 (không tìm được căn cứ trong Boyd §10 hoặc MIT 6.079 Lecture 17, Q04-8). Nhận xét 04.42 dẫn Boyd Bài tập 10.1(b) cho số giá trị riêng âm (thu hẹp về trường hợp $H\succeq0$ của nguồn). Hai SVG chỉ dùng trong ghi chú được sửa tại chỗ: `quadratic-zigzag.svg` ($\rho\to c$), `equality-nullspace.svg` ($N\to Z$).
+
+**Yêu cầu người dùng sau giai đoạn 3 (2026-11-12).** Cả §9 thành phần đọc thêm: tiêu đề `## 9. Đọc thêm: …` ngoài vùng, thân 9.1–9.4 trong vùng thu gọn `:::: reading … ::::` (directive mới của viewer). Mục tiêu 6 chỉ còn điều mỗi tiêu chí dừng chứng nhận; tính tự điều chỉnh và cận (9.1) không còn là mục tiêu. Bài tập 04.24, 04.28, 04.29 (tệp bài tập) mang nhãn "— đọc thêm".
 
 **Vòng biên tập 1 (2026-11-12).** Câu hỏi mở đầu không cho sẵn $\varphi^*$ và hỏi mức giảm mô hình $\tfrac9{32}$ có làm cận trên của sai số được không; câu trả lời và lý do (độ cong giảm từ $16$ xuống $1$) chỉ ở §13. Thuật ngữ thống nhất: *mức giảm mô hình* (còn gọi là mức giảm dự báo), *hướng Newton khả thi*, *hàm chắn logarit* (chỉ in nghiêng ở Định nghĩa 04.59), *tham số chắn*. Ký hiệu: $m(d)\to Q_H$, $D(u)\to E(u)$, $X\to M$ ở Bài tập 04.15. Giả thiết từ ba ý viết thành danh sách. §9.4 viết tường minh bài toán có bất đẳng thức, thêm chứng minh $B$ lồi, dừng khi $m/\tau\le\varepsilon$.
 
