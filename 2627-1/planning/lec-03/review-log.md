@@ -1593,3 +1593,58 @@ Boyd và Vandenberghe (2004) ch. 5 (§5.1–5.6; §5.2.1 tr. 225, §5.2.3 tr. 22
 ### Kiểm của điều phối viên và trình duyệt
 
 forward_refs 0; bộ đếm 03.1–03.39, Ví dụ 03.1–03.20, Tình huống 03.1–03.3, Bài tập 03.1–03.17 liên tục; đồng bộ `--check`, `git diff --check` đạt. Năm SVG sửa tại chỗ (`dual-function`, `dual-geometry`, `kkt-active-projection`, `lagrangian-family`, `sensitivity-value`) không có trong deck nào (grep). Playwright `material-viewer.html?doc=materials/lec-03/lecture-note.md&deck=lecture-03-doi-ngau-lagrange.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang; bản in chứa đủ 18 chứng minh. Bản cuối 27 251 âm tiết.
+
+## Tệp bài tập theo chuẩn 2026-11 (2026-11-12)
+
+`exercises.md` cũ gồm 7 bài tự dựng; theo U2 không bài nào chuyển sang tệp mới. Hai bài phủ vế mục tiêu mà giáo trình không bù được (bài 3: Slater khi có ràng buộc đẳng thức; bài 6: KKT hồi quy một trọng số) đã có bài tương ứng trong ghi chú (Bài tập 03.4(a), Ví dụ 03.18(b); Ví dụ 03.19, Bài tập 03.9, Nhận xét 03.28), nên bỏ. Tệp mới gồm 16 bài Boyd và Vandenberghe (2004) chương 5, Bài tập 03.18–03.33.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập danh sách (chỉ đọc) | medium | 16 bài, kiểm đề và trang trong PDF, đọc lời giải sách |
+| Soạn, rồi biên tập hai vòng (cùng tác tử) | medium | `exercises.md`; §11 ghi chú (câu liên kết, mục tiêu Bài tập 03.10, 03.13, 03.15, 03.17) |
+| Rà độ chính xác (hai vòng) | high | vòng 1: 0/0/2/7 |
+| Rà sinh viên năm hai | high | 0/0/5/10 |
+| Rà sư phạm và văn phong, `no-ai-slop` Detect (hai vòng) | high | vòng 1: 0/0/6/16 |
+
+Điều phối viên đối chiếu số bài ở các trang PDF 287, 290, 293, 295, 297 của `bv_cvxbook.pdf` trước khi duyệt.
+
+### Danh sách bài và nguồn (Boyd và Vandenberghe 2004, chương 5; mọi bài có lời giải trong `cvxbook-solutions.pdf`)
+
+| Bài tập | Mức | Bài, trang in | Ghi chú |
+|---|---|---|---|
+| 03.18 | nhận biết | 5.2, tr. 273 | |
+| 03.19 | nhận biết | 5.23(c), tr. 281 | (a), (b) cần Farkas/định lý tách chặt, ngoài phạm vi |
+| 03.20 | tính toán | 5.4, tr. 273–274 | |
+| 03.21 | tính toán | 5.5, tr. 274 | |
+| 03.22 | tính toán | 5.22(a), (c), tr. 280 | (b) trùng Ví dụ 03.10, 03.13 |
+| 03.23 | tính toán | 5.22(d)–(f), tr. 280 | |
+| 03.24 | tính toán | 5.21(d), tr. 280 | |
+| 03.25 | chứng minh | 5.32, tr. 283 | |
+| 03.26 | chứng minh | 5.14, tr. 277 | |
+| 03.27 | chứng minh | 5.15, tr. 277 | |
+| 03.28 | tính toán | 5.26, tr. 282 | |
+| 03.29 | chứng minh | 5.27, tr. 282 | |
+| 03.30 | tính toán | 5.28, tr. 282 | |
+| 03.31 | chứng minh | 5.31, tr. 283 | |
+| 03.32 | vận dụng | 5.13, tr. 276–277 | (b) thêm giả thiết nới lỏng tuyến tính khả thi (trường hợp còn lại cần Farkas) |
+| 03.33 | vận dụng | 5.29, tr. 282 | đẳng thức không affine tách thành hai bất đẳng thức (Q03-8) |
+
+Lỗi trong tệp lời giải Boyd (người soạn phát hiện, người rà toán xác nhận bằng tính lại): 5.22(a) $\lambda^*=\tfrac12$ (sách ghi 1); 5.22(f) $\lambda^*=3$ (sách ghi 1); 5.29 "$\nu\ne-2$" (sách ghi $\nu\ne2$), dấu $x_3$ ở cả bốn nghiệm KKT và bốn giá trị $f_0$ sai theo; câu "special case of (5.32)" không chính xác; 5.28 thiếu chứng minh nghiệm duy nhất (tệp bổ sung bằng bù trừ với $\lambda^*=(3,2,2,7,0)$ và định thức $286$); lỗi in nhỏ ở 5.13 (thiếu hệ số $\tfrac14$), 5.5, 5.14 (chỉ trong lời giải). Tệp bài tập viết đúng, không nhắc lỗi sách.
+
+### Quyết định
+
+| Mức độ | Vị trí | Vấn đề | Quyết định |
+|---|---|---|---|
+| trung bình | 03.32(b) | Bằng nhau của hai cận chỉ chứng minh khi nới lỏng khả thi | chấp nhận: thêm giả thiết vào đề, ghi rút gọn |
+| trung bình | 03.20, 03.25, 03.29 | Ký hiệu hai nghĩa ($a$, $\beta$, $u_i$, $u$, $z$, $\tau$) | chấp nhận: $\bar a$, $\bar\beta$; $(u',v')$, $(u'',v'')$; $q$, $r=Mq$ |
+| trung bình | 03.20(a) | Gợi ý dựa vào Bài tập 02.21(b) (ngoài ghi chú) | chấp nhận: gợi ý tự đủ, giữ dẫn tham chiếu |
+| trung bình | phân mức | 5.22(a)(c) nhiều bước ở mức nhận biết, tách xa 5.22(d–f) | chấp nhận: đổi chỗ 03.19 ↔ 03.22 trước khi tệp được dẫn ở đâu |
+| trung bình | 03.28 | Tên và dòng Mục tiêu lộ đáp số; câu thiếu mệnh đề chính | chấp nhận |
+| trung bình | bảng mục tiêu, §11 ghi chú | Lệch dòng Mục tiêu; §11 gán mục tiêu chưa đúng cho 03.10, 03.13, 03.15, 03.17 | chấp nhận: dựng lại bảng; sửa §11 |
+| nhẹ | các chỗ khác | "KKT" lần đầu, "Lagrangian relaxation", "siêu phẳng đỡ" → "đường cận", "chỉ dùng", nhãn bước, tài liệu tham khảo | chấp nhận |
+
+### Mục tiêu không có bài giáo trình
+
+Mỗi mục tiêu có ít nhất một bài trong tệp. Các vế dựa vào bài trong ghi chú: khoảng đối ngẫu của một cặp và khoảng tối ưu; đối ngẫu mạnh khi bài toán gốc không đạt nghiệm; độ nhạy địa phương (giá bóng); hồi quy có ràng buộc chặn chuẩn và chia đôi hệ số phạt; đối ngẫu máy vector hỗ trợ (không có trong Boyd, Kupferschmid, Murphy).

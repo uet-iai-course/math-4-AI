@@ -2147,7 +2147,7 @@ Các bài tập trong thân bài và mục tiêu học tập mà mỗi bài ki�
 7. **Bài tập 03.7** (Hệ KKT của một bài toán hai biến): mục tiêu 5; giải KKT và đối chiếu với bài toán đối ngẫu.
 8. **Bài tập 03.8** (Bốn trường hợp bù trừ): mục tiêu 5, 4; bù trừ và giá bóng.
 9. **Bài tập 03.9** (Hồi quy ba trọng số với ràng buộc chuẩn): mục tiêu 6; ràng buộc chặn và số hạng phạt.
-10. **Bài tập 03.10** (Quy trình chứng nhận cho một bài toán chiếu): mục tiêu 5, 6; Thuật toán 03.39.
+10. **Bài tập 03.10** (Quy trình chứng nhận cho một bài toán chiếu): mục tiêu 1, 3, 4, 5; Thuật toán 03.39.
 
 Các bài tập tiếp theo củng cố toàn bài, chia theo ba mức.
 
@@ -2332,11 +2332,13 @@ Mục tiêu học tập mà các bài tập củng cố kiểm tra:
 
 11. **Bài tập 03.11** (Đúng hay sai): mục tiêu 2, 3, 5; giả thiết của các kết quả chính.
 12. **Bài tập 03.12** (Tìm lỗi trong một lời giải): mục tiêu 1; dấu của ràng buộc và miền lấy cận dưới đúng.
-13. **Bài tập 03.13** (Cách viết ràng buộc thay đổi bài toán đối ngẫu): mục tiêu 2, 3; tính lồi của cách viết.
+13. **Bài tập 03.13** (Cách viết ràng buộc thay đổi bài toán đối ngẫu): mục tiêu 2, 3, 6; tính lồi của cách viết và kết luận mất khi hàm ràng buộc không lồi.
 14. **Bài tập 03.14** (Bài toán nghiệm chuẩn nhỏ nhất): mục tiêu 1, 2; đối ngẫu với ràng buộc đẳng thức.
-15. **Bài tập 03.15** (Entropy cực đại và softmax): mục tiêu 5, 6; hệ KKT trên miền mở.
+15. **Bài tập 03.15** (Entropy cực đại và softmax): mục tiêu 5; hệ KKT trên miền mở.
 16. **Bài tập 03.16** (Máy vector hỗ trợ trên ba mẫu): mục tiêu 5, 6; vector hỗ trợ và miền của $\rho$.
-17. **Bài tập 03.17** (Giá bóng của ngân sách tính toán): mục tiêu 4, 5, 6; giá bóng và xấp xỉ bậc nhất.
+17. **Bài tập 03.17** (Giá bóng của ngân sách tính toán): mục tiêu 4, 5; giá bóng và xấp xỉ bậc nhất.
+
+Bài tập 03.18–03.33, lấy từ Boyd và Vandenberghe (2004), có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 03](material-viewer.html?doc=materials/lec-03/exercises.md&deck=lecture-03-doi-ngau-lagrange.html).
 
 ## 12. Câu hỏi cuối buổi và cầu nối
 
