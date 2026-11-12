@@ -1035,3 +1035,68 @@ Kết luận kiểm toán: không có phát hiện `nghiêm trọng`; phát hi�
 - Kiểm tra: `git diff --check` sạch; Playwright F00, F01, F04, F07, F07b, F08, F08b, G02, G04 ở 1600×900 và 390×844: 0 lỗi, 0 cảnh báo console, 0 `.katex-error`; chiều cao ở 1600: F00 564, F01 452, F04 569, F07 671, F07b 493, F08 371, F08b 384, G02 609, G04 514 (khung 675).
 - Kiểm toán tập trung mạch 6: đạt (S5 đóng nhờ S11-14).
 - Quyết định của master: Vòng 9–11 `chấp nhận`; S9-6 bác bỏ.
+
+## Viết lại ghi chú theo mẫu SLT và chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: `prompt_fix_lecture_notes_00_07.md` (U1–U4, Q-A đến Q-G), `planning/notes-10-14-slt-template.md` Q1–Q15, "The author's voice" của `../CLAUDE.md`; báo cáo `prompt_fix_00_07_audit/m4ai-audit-05-06.md` (không theo dõi). Phạm vi (người dùng, 2026-11-12): làm Bài 05 và 06, không làm Bài 07. Mục này không xóa phát hiện cũ.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập kế hoạch (chỉ đọc) | medium | `plan.md` 15 phần (scratchpad) |
+| Soạn, rồi biên tập hai vòng (cùng tác tử) | medium | ghi chú, `map-lec-06.md` |
+| Rà 1/5 sinh viên năm hai | high | 0 chặn, 0 nghiêm trọng, 10 trung bình, 30 nhẹ |
+| Rà 2/5 chuyên gia miền | high | 0 chặn, 4 nghiêm trọng, 9 trung bình, 21 nhẹ |
+| Rà 3/5 độ chính xác toán; kiểm tra lại một vòng | high | 0/0/4/16; kiểm lại: 0/0/1/4 |
+| Rà 4/5 phê bình học thuật–sư phạm, `no-ai-slop` Detect | high | 0 chặn, 2 nghiêm trọng, 14 trung bình, 25 nhẹ |
+| Rà 5/5 mạch và liên kết; kiểm tra lại một vòng | high | 0/0/7/22; kiểm lại: 0/0/1/11 |
+
+### Quyết định khi duyệt kế hoạch
+
+- **Q06-1.** Q-D ưu tiên hơn "giữ 21 chứng minh": bỏ Mệnh đề 06.4 (chứng minh trùng Mệnh đề 05.38(1)), Định nghĩa 06.3 (→ Định nghĩa 05.20), Định nghĩa 06.26 (nội dung vào §2), Nhận xét 06.42 (→ danh sách dẫn Nhận xét 05.40); Ví dụ 06.2 (→ 05.38(2)), 06.18 (→ Ví dụ 05.25). Còn 20 chứng minh. Bộ đếm chung 06.1–06.41, ba thuật toán vào bộ đếm (06.11, 06.25, 06.38). Bảng: `map-lec-06.md`.
+- **Q06-2.** "lô nhỏ (mini-batch)", "chính quy hóa bậc hai" như Bài 05; cận phương sai $\tau^2$ (tránh trùng hàm kích hoạt $\sigma$); hệ số chặn của mạng $c$, trị riêng $\alpha_j$.
+- **Q06-5.** Câu hỏi mở đầu: trung điểm hai cực tiểu đối xứng của XOR, $F=\tfrac14$; câu hỏi cuối buổi: một bước SGD từ $\theta^*$ với $b=1$, $b=4$ (79/128 và ½).
+- **Q06-6.** Bỏ phép thế cỡ độ lớn Bottou–Bousquet với hằng số tự chọn; giữ độ phức tạp của Bảng 13.2 (tr. 362).
+- **Q06-7.** Kupferschmid §25.6 là nguồn (sai phân, tr. 824). Giữ Ví dụ 06.11–06.12 và Tình huống 06.2, dẫn Tình huống 04.3, cắt phần lặp.
+- Bỏ nguồn không có trong `sources/`: Bottou, Curtis và Nocedal (2018).
+
+### Quyết định sau năm lượt rà — mọi phát hiện: chấp nhận, trừ chỗ ghi khác
+
+| Mức độ | Vị trí (bản nháp 1) | Vấn đề | Quyết định |
+|---|---|---|---|
+| nghiêm trọng | 151, lặp 1399, 1619, 1736, 1817, 2034, 2063, 2133, 2177 | "$\nabla F$ gián đoạn tại mọi tham số có tiền kích hoạt bằng 0" nói quá (phản ví dụ $\theta_A$: $z=0$ mà $F$ khả vi); đoạn đặt trước định nghĩa và lặp sáu lần | chấp nhận: phát biểu một lần ở Nhận xét 06.13 (bước nhảy $e_i[w_2]_j(x_i^\top,1)$; không khả vi khi $e_i[w_2]_j\ne0$ và các đầu vào đôi một khác nhau; (H0), (H2) không đúng trên tập lồi có phần trong chứa điểm như vậy); chỗ sau dẫn lùi |
+| nghiêm trọng | 151, 1817, 2066 | "Dạng cận của Định lý 06.33/Hệ quả 06.34 được dùng để chọn bước" trái Goodfellow tr. 295 | chấp nhận: thay bằng thử, theo dõi đường cong học, lịch (8.14) |
+| nghiêm trọng | 491, Tình huống 06.1 | Mệnh đề 06.7 "bác bỏ tính lồi mỗi khi có hai đơn vị ẩn khác nhau" | chấp nhận: điều kiện áp dụng; bác bỏ cần thêm một điểm trên đoạn nối có $F$ lớn hơn |
+| nghiêm trọng | 831 | Gradient nhỏ kéo theo gần tối ưu với $F$ chỉ lồi | chấp nhận: cần lồi mạnh |
+| trung bình | Ví dụ 06.20 | Gần nguyên văn Ví dụ 05b.19 (cùng dữ liệu, bảng, hình) | chấp nhận: bỏ khối, hai câu dẫn 05b.19; Ví dụ 06.21–06.23 → 06.20–06.22 |
+| trung bình | Mệnh đề 06.40 | Trùng chứng minh Mệnh đề 05.37 | giữ phát biểu (bước $\eta$ bất kỳ, so hai tỉ lệ là phần mới); chứng minh dẫn 05.37 cho phần chung |
+| trung bình | §4.1, Mệnh đề 06.16 | Dựng lại chứng minh 05.38; chứng minh lại phần điểm yên ngựa đã có ở Định lý 00.43 | chấp nhận: dẫn |
+| trung bình | 1122, 1126, 2090, 2092 | Điểm giới hạn còn phụ thuộc $\eta$; theo dõi mất mát xác thực (đúng: $F$ huấn luyện); "nhiễu dấu phẩy động đẩy dãy rời điểm yên ngựa" sai trên lần chạy đối xứng ($F=0{,}5$ tới $k=40$) | chấp nhận |
+| trung bình | Bài tập 06.7, Mệnh đề 06.3, (H2), Thuật toán 06.25 | Phản ví dụ ngoài lớp (cần "không có độ chệch"); hệ số chặn; (H2) cục bộ khác Định nghĩa 05b.5; đầu ra khi $K<T$ | chấp nhận |
+| trung bình | tổng kết | Mục 1.2 cũ, đoạn đóng §8, các ý lặp 4–6 lần | chấp nhận: tổng kết một lần |
+| — | 1373 | Thêm "lập luận của Bài 05c, Mục 6.7" | bác bỏ: câu chỉ đường người đọc không cần mở |
+| — | câu dẫn Mệnh đề 06.40 | Hàng đợi vòng 2 yêu cầu dẫn số Nhận xét 06.41 | không dẫn số (sẽ là tham chiếu tiến); viết nội dung so sánh |
+
+### Độ dài
+
+Ghi chú cũ 30 956 âm tiết; bản nháp 1: 27 886; bản cuối: 26 530 (trần 28 000).
+
+### Nguồn gốc số liệu và đính chính
+
+- Câu hỏi mở đầu, ôn nhanh, câu hỏi cuối buổi, 8/57, $1-e^{-0{,}007}\approx0{,}00698$, $(2m+d)b=98\,400$, $p^3\approx4{,}9\cdot10^{14}$: người lập kế hoạch, người soạn và người rà toán tính lại độc lập. Câu hỏi cuối buổi dùng cùng dữ liệu với một bài tự dựng của `exercises.md` cũ (bài tự dựng được ở lại ghi chú theo U2).
+- Đính chính so với ghi chú cũ: đoạn giả thiết bị vi phạm với ReLU; Mệnh đề 06.7; gradient nhỏ và gần tối ưu; chọn bước; dấu phẩy động và điểm yên ngựa; trang Thuật toán 7.1 của Goodfellow là tr. 247.
+
+### Giáo trình đã tham khảo
+
+Goodfellow và cộng sự (2016) §6.5, §7.8 (tr. 247), §8.1–8.3 (tr. 279, 286, 295), §11.5 (tr. 439); Murphy (2022) §13; Kupferschmid (2023) §25.6.4 (tr. 824); Bottou và Bousquet (2011) (13.2) tr. 354, Bảng 13.2 tr. 362, tr. 363; Boyd và Vandenberghe (2004).
+
+### Lệch với deck (Q-F; không sửa deck)
+
+- "nhóm nhỏ" (deck) / "lô nhỏ" (ghi chú); $\sigma^2$ (deck) / $\tau^2$; chu kỳ đánh giá $s$ (ghi chú diễn giả) / $T$.
+- Deck còn trang SVM trên RCV1 và phép thế cỡ độ lớn Bottou–Bousquet mà ghi chú đã bỏ; deck không có trang SGD cho hàm lồi mạnh (§8.2–8.3 ghi chú).
+- Các điểm cũ: "Bài 02" ở B07, $(cu, v/c)$ ở D02/D03, $e_k$ ở G01.
+
+### Kiểm của điều phối viên và trình duyệt
+
+forward_refs 0; bộ đếm 06.1–06.41, Ví dụ 06.1–06.22, Tình huống 06.1–06.3, Bài tập 06.1–06.11 liên tục, 20 chứng minh; không lệnh TeX hỏng; đồng bộ `--check`, `git diff --check` đạt. Playwright `material-viewer.html?doc=materials/lec-06/lecture-note.md&deck=lecture-06-mo-rong-mo-hinh-va-du-lieu.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang trang; 0/64 công thức tràn ở 390 px; đã xem ảnh 390 (Kiểm tra lại sai phân trung tâm và hình lan truyền ngược, hình rộng cuộn trong khung theo `material-viewer-course.css`).
