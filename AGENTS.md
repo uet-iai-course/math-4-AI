@@ -161,7 +161,7 @@ Mỗi đoạn móc nối là văn xuôi có luận điểm, không phải một 
 Mỗi khái niệm trọng tâm đi qua đủ các bước sau, theo thứ tự này, trong một hoặc nhiều tiểu mục `###`:
 
 1. **Nhu cầu**: bài toán hoặc câu hỏi chưa trả lời được bằng công cụ trước đó, nêu bằng ví dụ cụ thể có số liệu khi có thể.
-2. **Trực giác**: mô tả bằng lời hoặc hình (SVG có `alt`) điều khái niệm nắm bắt; nêu rõ đây là trực giác, chưa phải định nghĩa.
+2. **Trực giác**: mô tả bằng lời hoặc hình (SVG có `alt`) điều khái niệm nắm bắt; mở bằng "Một cách trực quan" hoặc "Về mặt ý tưởng", không thêm câu rào đón về vị thế của đoạn ("chưa phải định nghĩa"), mà nói thẳng bước tiếp theo, ví dụ "Để làm rõ khái niệm này, xem ví dụ sau." (nguyên tắc tác giả 2026-11-04, `../CLAUDE.md`).
 3. **Định nghĩa**: môi trường `definition`, ghi đủ miền, kiểu và chiều của mọi đối tượng, các giả thiết đặt ra, ký hiệu được đưa vào. Ngay sau đó là một đoạn diễn giải từng thành phần của định nghĩa và một hoặc hai ví dụ, phản ví dụ.
 4. **Kết quả**: môi trường `theorem`, `proposition` hoặc `lemma` theo mẫu bốn phần: giả thiết (đầu vào), kết luận (đầu ra), điều kiện áp dụng, phạm vi hoặc giới hạn. Phân biệt rõ $=$, $\approx$, $\propto$, hội tụ và tương đương. Với thuật toán, dùng `algorithm` ghi đầu vào, đầu ra, các bước đánh số, điều kiện dừng và chi phí mỗi bước.
 5. **Chứng minh**: môi trường `proof` viết đủ các bước; mỗi bước nêu quy tắc hoặc kết quả được dùng và chỉ ra chỗ giả thiết được sử dụng. Khi chứng minh vượt phạm vi học phần, ghi rõ "Chứng minh nằm ngoài phạm vi học phần" kèm nguồn có số trang và nêu ý tưởng chính trong một đoạn.
