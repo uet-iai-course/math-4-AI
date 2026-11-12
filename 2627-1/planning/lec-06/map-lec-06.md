@@ -20,7 +20,7 @@ Cột "Dẫn chiếu ngoài" đếm token "Loại 06.k" (grep `materials/*/*.md`
 | Định nghĩa 06.3 | **bỏ** → Định nghĩa 05.20 | §4.1 (câu) | Q-D | — | |
 | Mệnh đề 06.4 (+ chứng minh) | **bỏ** → Mệnh đề 05.38(1) | §4.1 (câu) | Q-D, Q06-1 | — (`lec-06/exercises.md:3` dẫn, tệp thay ở giai đoạn 2) | |
 | Mệnh đề 06.5 | Mệnh đề 06.3 | §4.2 | chứng minh dẫn 05.38(1) | — | |
-| Định nghĩa 06.6 | **Định nghĩa 06.4** | §4.3 | đổi số | lec-14: 3 (dòng 3, 46, 373) | đổi 3 token |
+| Định nghĩa 06.6 | **Định nghĩa 06.4** | §4.3 | đổi số | lec-14: 3 (dòng 3, 46, 373) | đã đổi 3 token (2026-11-12, `SP/lec06/phase3-changes.md`) |
 | Mệnh đề 06.7 | **Hệ quả 06.5** | §4.3 | đổi loại (vòng biên tập 1): suy từ Mệnh đề 06.3 | — | |
 | Mệnh đề 06.8 | Mệnh đề 06.6 | §4.4 | Phạm vi ($m!$ bản sao) thành câu sau khối | — | |
 | Mệnh đề 06.9 | Mệnh đề 06.7 | §4.4 | giả thiết thành danh sách | — | |
@@ -28,7 +28,7 @@ Cột "Dẫn chiếu ngoài" đếm token "Loại 06.k" (grep `materials/*/*.md`
 | Định nghĩa 06.11 | Định nghĩa 06.9 | §5.2 | | — | |
 | Bổ đề 06.12 | Bổ đề 06.10 | §5.3 | | — | |
 | Thuật toán 06.1 | **Thuật toán 06.11** | §5.4 | vào bộ đếm chung; thêm Điều kiện dừng, Chi phí ghi số | — | |
-| Mệnh đề 06.13 | **Mệnh đề 06.12** | §5.4 | đổi số | lec-14: 2 (dòng 46, 373) | đổi 2 token |
+| Mệnh đề 06.13 | **Mệnh đề 06.12** | §5.4 | đổi số | lec-14: 2 (dòng 46, 373) | đã đổi 2 token (2026-11-12) |
 | Nhận xét 06.14 | Nhận xét 06.13 | §5.4 | tiêu đề "Điểm gãy của ReLU và giả thiết (H2)"; thêm đoạn (H0), (H2) với ReLU (vòng biên tập 1–2) | — | |
 | Mệnh đề 06.15 | Mệnh đề 06.14 | §5.5 | bộ nhớ thành câu sau khối | — | |
 | Định nghĩa 06.16 | Định nghĩa 06.15 | §6.1 | | — | |

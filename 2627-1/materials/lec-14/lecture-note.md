@@ -1,6 +1,6 @@
 # Bài 14 — Học biểu diễn và mô hình sinh dưới góc nhìn xác suất
 
-Trong Tình huống 13.2 của Bài 13, khi cảm biến chỉ ghi giá trị hiện tại, giá trị trước đó là một biến ẩn, và phân phối của nó phải được suy luận từ các quan sát. Biến ẩn cũng xuất hiện khi học biểu diễn. Bài 05–06 học các ánh xạ đặc trưng và tham số của mạng nơ-ron (Định nghĩa 06.6) để dự đoán nhãn; khi bỏ nhãn, mã ít chiều của mỗi quan sát là một đại lượng không quan sát được, và chúng ta có câu hỏi trung tâm: **làm thế nào học một không gian biểu diễn có chiều thấp và sử dụng nó để mô hình hóa hoặc sinh dữ liệu mới?** Chúng ta dùng lại các kết quả sau của Bài 10–12.
+Trong Tình huống 13.2 của Bài 13, khi cảm biến chỉ ghi giá trị hiện tại, giá trị trước đó là một biến ẩn, và phân phối của nó phải được suy luận từ các quan sát. Biến ẩn cũng xuất hiện khi học biểu diễn. Bài 05–06 học các ánh xạ đặc trưng và tham số của mạng nơ-ron (Định nghĩa 06.4) để dự đoán nhãn; khi bỏ nhãn, mã ít chiều của mỗi quan sát là một đại lượng không quan sát được, và chúng ta có câu hỏi trung tâm: **làm thế nào học một không gian biểu diễn có chiều thấp và sử dụng nó để mô hình hóa hoặc sinh dữ liệu mới?** Chúng ta dùng lại các kết quả sau của Bài 10–12.
 
 - Mệnh đề 10.32 (lấy biên): mật độ biên thu được bằng tích phân mật độ đồng thời theo biến còn lại, $f_X(x)=\int f_{X,Z}(x,z)\,dz$.
 - Mệnh đề 10.33 (mật độ có điều kiện; Định lý 10.11 là công thức Bayes cho biến cố): mật độ có điều kiện bằng mật độ đồng thời chia cho mật độ biên, $f_{Z\mid X}(z\mid x)=f_{X,Z}(x,z)/f_X(x)$ khi $0<f_X(x)<\infty$.
@@ -43,7 +43,7 @@ Các mục tiêu cụ thể hóa năng lực phân tích mô hình học máy th
 ## Kiến thức tiên quyết
 
 - **Đại số tuyến tính.** Tích vô hướng, cơ sở trực chuẩn, vết ma trận, phép chiếu trực giao và định lý phổ (spectral theorem): ma trận đối xứng thực có một cơ sở trực chuẩn gồm các vector riêng. Mệnh đề 11.17 dùng định lý phổ để đọc các trục của đường đồng mức Gaussian.
-- **Mạng nơ-ron.** Định nghĩa 06.6 (mạng hai tầng) và Mệnh đề 06.13: lan truyền ngược tính đúng gradient của mất mát theo mọi tham số của mạng.
+- **Mạng nơ-ron.** Định nghĩa 06.4 (mạng hai tầng) và Mệnh đề 06.12: lan truyền ngược tính đúng gradient của mất mát theo mọi tham số của mạng.
 - **Gaussian và mômen.** Định nghĩa 10.20: mật độ $\mathcal N(\mu,\sigma^2)$ có tham số là kỳ vọng và phương sai; Gaussian nhiều chiều có mật độ cho bởi công thức (6.12) của Bài 10. Mệnh đề 10.24: $\operatorname{Var}(X)=\mathbb E[X^2]-(\mathbb E[X])^2$.
 - **Hiệp phương sai mẫu.** Định nghĩa 11.13 và đẳng thức (8.4) của Bài 11: ma trận hiệp phương sai mẫu $S_n$ với mẫu số $n$ trong công thức (8.3) của Bài 11 luôn nửa xác định dương.
 - **Lấy biên, Bayes và hợp lý cực đại.** Mệnh đề 10.32, Mệnh đề 10.33, Mệnh đề 11.3 và Mệnh đề 12.2 như đã nhắc ở đầu bài.
@@ -370,7 +370,7 @@ $$
 Khi dùng dữ liệu đã tâm hóa, hai hàm được áp dụng cho $y=x-\bar x$ và $\bar x$ được cộng lại ở đầu ra.
 :::
 
-PCA hạng $k$ là trường hợp $f(y)=U^\top y$ và $g(z)=Uz$ của Định nghĩa 14.7. Khi $f_\phi$ và $g_\theta$ là mạng nơ-ron như Định nghĩa 06.6, ảnh của bộ giải mã có thể là một tập cong, và gradient của (5.1) theo $(\theta,\phi)$ được tính bằng lan truyền ngược (Mệnh đề 06.13).
+PCA hạng $k$ là trường hợp $f(y)=U^\top y$ và $g(z)=Uz$ của Định nghĩa 14.7. Khi $f_\phi$ và $g_\theta$ là mạng nơ-ron như Định nghĩa 06.4, ảnh của bộ giải mã có thể là một tập cong, và gradient của (5.1) theo $(\theta,\phi)$ được tính bằng lan truyền ngược (Mệnh đề 06.12).
 
 Chiều $k<d$ tạo một *nút thắt* (bottleneck): nếu $k=d$, cặp $f(x)=x$, $g(z)=z$ cho lỗi $0$ mà không học được cấu trúc nào (Murphy (2022), §20.3). Nút thắt không ngăn việc ghi nhớ một mẫu hữu hạn: với các quan sát phân biệt, bộ mã hóa gán $x_i\mapsto i$ và bộ giải mã gán $i\mapsto x_i$ cho lỗi $0$ ngay cả khi $k=1$.
 

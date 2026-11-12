@@ -1129,3 +1129,11 @@ Căn cứ: U2, U3 của `prompt_fix_lecture_notes_00_07.md`; mẫu `materials/le
 ### Kiểm của điều phối viên và trình duyệt
 
 Bài tập 06.12–06.17 liên tục; ghi chú chỉ thêm một câu liên kết; forward_refs 0 cả hai tệp; đồng bộ `--check`, `git diff --check` đạt; `index.html` đã có liên kết. Playwright `material-viewer.html?doc=materials/lec-06/exercises.md&deck=lecture-06-mo-rong-mo-hinh-va-du-lieu.html`, 1600×900, 390×844, `file://`: 0 `.katex-error`, 0 chữ đỏ, 0 lỗi console, 0 request lỗi, không tràn ngang; 0/21 công thức tràn ở 390 px. `exercises.md` 3 221 âm tiết; ghi chú 26 547.
+
+## Cập nhật dẫn chiếu tới Bài 06 (giai đoạn 3, 2026-11-12)
+
+Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medium). Thay một lượt theo `map-lec-06.md` (từ điển 77 mục khóa theo loại khối, kể cả đổi loại Mệnh đề 06.7 → Hệ quả 06.5): 5 cụm, đều ở `materials/lec-14/lecture-note.md` — dòng 3 Định nghĩa 06.6 → 06.4; dòng 46, 373 Định nghĩa 06.6 → 06.4 và Mệnh đề 06.13 → 06.12. Không chỗ viết tay. Không tệp nào khác (05b, 05c, 06b, 06c, 10–13, deck, `materials/README.md`) dẫn số hiệu, nhãn công thức, số mục, khối bị bỏ hay `exercises.md` cũ của Bài 06.
+
+Kiểm: tác tử quét mọi tệp (0 sai, 0 dẫn khối bị bỏ); điều phối viên đọc word-diff (chỉ 5 số đổi). forward_refs Bài 14: 0; `git diff --check`, đồng bộ `--check` đạt; notecheck Bài 14 (1600, 390, `file://`): 0 lỗi KaTeX, 0 lỗi console, không tràn ngang trang.
+
+Lệch nội dung có từ trước (ghi lại, không sửa — ngoài phạm vi giai đoạn 3): Bài 14 dòng 373 dùng Định nghĩa 06.4 (tầng ra vô hướng) cho bộ mã hóa/giải mã đầu ra vector; dòng 46, 373 nói lan truyền ngược "tính đúng gradient" không kèm điều kiện của Mệnh đề 06.12 (với ReLU: không tiền kích hoạt nào bằng 0).
