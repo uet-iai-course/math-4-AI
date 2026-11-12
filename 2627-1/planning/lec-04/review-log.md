@@ -1785,3 +1785,74 @@ Không có mục `bác bỏ` trong `decisions-04.md`. Các mục liên bài số
 **Kiểm tra của tác tử biên tập.** `density.py`: chỉ RN07 (71/80, ngoại lệ bảng so sánh mới ghi), RZ03 (72/80) và RP03b (7 dòng) vượt trần 60/6, đều có ngoại lệ; không dòng nào > 20 âm tiết. `deckcheck.py` trên mọi trang mặt đổi ở 1600×900 và 390×844: không lỗi console, không `.katex-error`, không tràn khung 16:9; ba cờ tràn ngang ở khổ hẹp (RG05, RN05, RN07) do bảng trong `.table-scroll`, đã có trước đợt sửa (chạy lại trên bản cũ cho cùng ba cờ). Ảnh chụp sau khi trang ổn định (chờ 1,2 s) đã xem ở cả hai khổ. `git diff --check` sạch.
 
 **Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-04 và decisions-common; kiểm toán học dòng "d^TWd bằng hai lần mức giảm của mô hình" (đúng vì Hd=-g); tự chạy deckcheck trên RG02, RG12, RN07, RN07b, RE04, RE06, RS02, RG08: 0 lỗi console, 0 .katex-error, không tràn dọc ở 16:9; cờ cuộn ngang khổ hẹp của bảng RN07 có từ trước. Xem ảnh RG02, RG12, RN07 ở 1600×900 và RG02 ở 390×844. Gói học liệu cục bộ sẽ được đồng bộ một lần ở cuối đợt (các bài khác đang sửa song song).
+
+## Viết lại ghi chú theo mẫu SLT và chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: `prompt_fix_lecture_notes_00_07.md` (U1–U4, Q-A đến Q-G), `planning/notes-10-14-slt-template.md` Q1–Q15, "The author's voice" của `../CLAUDE.md`; báo cáo phân tích `prompt_fix_00_07_audit/` (không theo dõi). Mục này không xóa phát hiện cũ.
+
+### Yêu cầu của người dùng (2026-11-12)
+
+"bài 4 bổ sung phương pháp barrier (đọc thêm)". Thực hiện: `### 9.4. Đọc thêm: phương pháp hàm chắn (barrier method)` theo Boyd và Vandenberghe (2004) §11.1–11.3 (tr. 561–571, công thức 11.13 tr. 577): Định nghĩa 04.59 (hàm chắn logarit, bài toán tâm hóa, đường trung tâm), Mệnh đề 04.60 (điểm khả thi đối ngẫu, cận $m/\tau$; chứng minh qua Bài 03), Thuật toán 04.61 (phương pháp hàm chắn, giả thiết tâm hóa chính xác, tiêu chí $m/\tau\le\varepsilon$), Ví dụ 04.25 ($\min x^2$ với $x\ge1$). Ví dụ 04.25 do học phần dựng; số đã tính lại độc lập (người soạn, người rà toán, điều phối viên: $x^*(\tau)=\tfrac12(1+\sqrt{1+2/\tau})$, $\lambda^*=2x^*$, $g_{\mathrm d}(\lambda)=\lambda-\lambda^2/4$, khoảng đối ngẫu $1/\tau$). Ký hiệu $B$, $\tau$, $\zeta$ thay $\phi$, $t$, $\mu$ của Boyd (tránh trùng $\varphi$, độ dài bước, hằng số lồi mạnh). Không thêm mục tiêu học tập cho phần Đọc thêm.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập kế hoạch (chỉ đọc) | medium | `plan.md` 15 phần (scratchpad), gồm §9.4 theo yêu cầu người dùng |
+| Soạn, rồi biên tập hai vòng (cùng tác tử) | medium | ghi chú, `outline.md`, `map-lec-04.md`, hai SVG chỉ của ghi chú |
+| Rà 1/5 sinh viên năm hai | high | 0 chặn, 1 nghiêm trọng, 12 trung bình, 36 nhẹ |
+| Rà 2/5 chuyên gia miền | high | 0 chặn, 2 nghiêm trọng, 11 trung bình, 12 nhẹ |
+| Rà 3/5 độ chính xác toán; kiểm tra lại một vòng | high | 0/1/5/15; kiểm lại: 17/20 phát hiện cũ đã sửa, 1 trung bình mới (N1), 5 nhẹ |
+| Rà 4/5 phê bình học thuật–sư phạm, `no-ai-slop` Detect | high | 0 chặn, 2 nghiêm trọng, 10 trung bình, 32 nhẹ |
+| Rà 5/5 mạch và liên kết; kiểm tra lại một vòng | high | 0/0/8/22; kiểm lại: 4 trung bình, 12 nhẹ mới |
+
+### Quyết định khi duyệt kế hoạch
+
+- **Q04-1.** Thuật toán vào bộ đếm chung theo thứ tự đọc (Q-A, như Bài 03): Thuật toán 04.1/2/3/4 → 04.13/34/44/49; cũ 04.13–32 +1, 04.33–41 +2, 04.42–45 +3, 04.46–54 +4, 04.55 → 04.62; khối mới 04.59–04.61. Bảng đầy đủ: `map-lec-04.md`.
+- **Q04-2.** §3 (ví dụ xuyên suốt) không đặt trong khối đánh số; Ví dụ 04.1–04.24 giữ số, Ví dụ cũ 04.25 → 04.26.
+- **Q04-3.** Ký hiệu một nghĩa: $L$ chỉ là hằng số Lipschitz; mất mát logistic $J$, $J_0$; hệ số chính quy hóa $\rho$, $\mu$ chỉ là hằng số lồi mạnh; hàm Lagrange $\mathcal L$, $\mathcal L_Q$; cơ sở $\ker A$ là $Z$, số mẫu $N$; $\vartheta$; $\ge$ cho vector.
+- **Q04-5.** Giữ giả thiết $f^*>-\infty$ của Định lý 04.54 (bỏ giả thiết thừa là đổi nội dung toán, không phải sửa lỗi); bỏ câu bình luận về nó.
+- **Q04-8.** Nhận xét 04.45 (sai số dấu phẩy động) không có căn cứ trong Boyd ch. 10 hay MIT 6.079: khối giữ số, chỉ còn ý toán ($Au^k=b$ theo Định lý 04.41(e)).
+- **Q04-11.** Giai đoạn 2 dùng Boyd 9.3, 9.5, 9.9, 9.10(a); 9.1, 9.6, 9.11, 9.12, 9.24, 9.26, 9.31 để cho Bài 05/06; Boyd 11.1, 11.2 gắn phần Đọc thêm.
+- Bỏ nguồn không có trong `sources/`: Nocedal–Wright, Beck, Bach, Strang (Nhận xét 04.42 dẫn Boyd Bài tập 10.1(b), tr. 557, thu hẹp về điều kiện của nguồn).
+
+### Quyết định sau năm lượt rà — mọi phát hiện: chấp nhận, trừ chỗ ghi khác
+
+| Mức độ | Vị trí (bản nháp 1) | Vấn đề | Quyết định |
+|---|---|---|---|
+| nghiêm trọng | 12–22, câu hỏi mở đầu | Gợi câu trả lời (ba người rà) | chấp nhận: hỏi đúng hiện tượng; trả lời một lần ở §13 |
+| nghiêm trọng | 625, sau Ví dụ 04.8 | "$-g$ gần vuông góc với phương tới gốc" sai (góc ≈ 39°) | chấp nhận; điều phối viên tự tính $\arccos(110/\sqrt{200\cdot101})\approx39^\circ$, $g^{(0)T}g^{(1)}=0$; sửa thành hai gradient liên tiếp vuông góc |
+| nghiêm trọng | 2804, 1337 | Hàm ý "$f$ tự điều chỉnh thì $\tfrac12\delta^2$ chặn sai số" sai ($s-\log s$ tại $s=\tfrac14$: $0{,}281<0{,}636$) | chấp nhận; viết đúng cận (9.1) với điều kiện |
+| nghiêm trọng | 2039, Nhận xét 04.50 | Gọi kết quả Boyd §10.3.3 là cục bộ (Boyd tr. 536: hội tụ toàn cục hai pha) | chấp nhận |
+| nghiêm trọng | 154, 348, 517, 1393, 1990 và 27 đoạn cùng khuôn | Câu vị thế "không khẳng định / không cho biết" | chấp nhận: cắt hoặc viết nội dung dương |
+| trung bình | 1067 | $\log(1+e^s)$ không đạt cực tiểu, giả thiết Định lý 04.23, 04.25 không thỏa | chấp nhận |
+| trung bình | 2622, 2965 | "Mất mát logistic không tự điều chỉnh nên $J$ không" thiếu bước | chấp nhận: kiểm cụ thể $\rho=0{,}1$, $w=(-40;245)$, $v=(1,0)$, tỷ số $7{,}17>2$ |
+| trung bình | 2340, 2804, Nhận xét 04.58 | Khuyên kiểm riêng $f^*>-\infty$ dù chứng minh đã suy ra khi $\delta<1$ | chấp nhận |
+| trung bình | 1121 | "ngoài phạm vi học phần" mâu thuẫn Bài 05b | chấp nhận: bỏ cụm |
+| trung bình | §9.4 | Bài toán có bất đẳng thức chưa viết ra (nhãn (1.1) trùng), $B$ lồi chưa chứng tỏ, giả thiết tâm hóa chính xác, điều kiện Mệnh đề 04.52(a), tiêu chí dừng lệch công thức $\lceil\cdot\rceil$ | chấp nhận |
+| trung bình | Q3 | Giả thiết ≥ 3 ý viết thành một câu | chấp nhận: danh sách |
+| trung bình | 65 công thức | Tràn ngang ở 390 px | chấp nhận: ngắt `aligned`; còn 1 (hệ khối (8.1) có `\tag`) |
+| trung bình (kiểm lại) | 8 chỗ "dòng thứ k" | Trỏ sai sau khi ngắt công thức | chấp nhận: "quan hệ thứ k" |
+| — | SUMT | Đề xuất bỏ | giữ một cụm ngoặc theo Boyd tr. 569 kèm tên tiếng Anh đầy đủ |
+| — | Bài tập 04.12 ghi chú affine | Đề xuất thêm | không thêm: gợi ý đã dẫn Mệnh đề 04.52 |
+
+### Độ dài
+
+Ghi chú cũ 34 550 âm tiết; bản nháp 1: 27 933; bản cuối: 27 480 (trần 28 000).
+
+### Nguồn gốc số liệu và đính chính
+
+- Số của câu hỏi mở đầu ($\tfrac9{32}$, $\log4-\tfrac34\approx0{,}636$), Ví dụ 04.1 ($J'(0{,}2865)\approx-8{,}3\cdot10^{-5}$, $J'(0{,}2866)\approx9{,}1\cdot10^{-5}$, Newton $\tfrac27$, $0{,}286548$), Tình huống 04.1 (4 bước Newton, 580 bước hạ gradient, $\lVert\nabla J(w^2)\rVert_2\approx0{,}0359$, $\tfrac12\delta^2\approx6{,}6\cdot10^{-5}$), cận (5.5) $\approx30{,}11$: tính lại độc lập (người soạn, người rà toán). Kế hoạch ghi $+8{,}4\cdot10^{-5}$ cho $J'(0{,}2866)$, sai; bản cuối dùng $9{,}1\cdot10^{-5}$.
+- Đính chính so với ghi chú cũ: câu "$-g$ gần vuông góc" (Ví dụ 04.8); hàm ý về $\tfrac12\delta^2$; ví dụ $\log(1+e^s)$; Nhận xét 04.50; Nhận xét 04.42 (thu hẹp về điều kiện có nguồn).
+
+### Lệch với deck (Q-F; không sửa deck)
+
+- Đánh số mục (cũ k → mới k+3), số mục tiêu học tập, mở bài và cầu nối.
+- Ghi chú có §9.4 (hàm chắn) và ba tình huống mà deck không có.
+- Ký hiệu: deck dùng $m$ cho số mẫu và $L$ cho mất mát/hàm Lagrange; ghi chú dùng $N$, $J$, $\mathcal L$.
+- Giả thiết trên trang RS03.
+- Trang RZ03 liệt kê "Bài 1 … Bài 8" của `exercises.md` cũ; sẽ lệch sau giai đoạn 2 — cần đồng bộ deck sau.
+
+### Kiểm của điều phối viên và trình duyệt
+
+forward_refs 0; bộ đếm 04.1–04.62 liên tục (62 số khác nhau), Ví dụ 04.1–04.26, Tình huống 04.1–04.3, Bài tập 04.1–04.15; không lệnh TeX hỏng do thay ký hiệu (grep `\su…`, lệnh một chữ); đồng bộ `--check`, `git diff --check` đạt. Điều phối viên đọc diff v2 → v3 (đổi biến chứng minh Định lý 04.54 và Hệ quả 04.55: $\omega(t)$, $\omega_2$; kiểm $0{,}4624+0{,}68+\log0{,}32\approx0{,}0030$). Hai SVG sửa tại chỗ (`quadratic-zigzag`, `equality-nullspace`) không có trong deck. Playwright `material-viewer.html?doc=materials/lec-04/lecture-note.md&deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang trang; đã xem ảnh đầu trang 1600 và Thuật toán 04.49 ở 390.
