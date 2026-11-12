@@ -2309,6 +2309,8 @@ Dưới tổng ngân sách cố định, lô lớn nhất mà bộ nhớ cho ph�
 **Kiểm tra lại.** $p^2\cdot8=12\,591\,105^2\cdot8\approx1{,}268\cdot10^{15}$; $175\,321\cdot90\,112\approx1{,}5798\cdot10^{10}$, không vượt phần bộ nhớ còn lại.
 :::
 
+Bài tập 06.12–06.17, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 06](material-viewer.html?doc=materials/lec-06/exercises.md&deck=lecture-06-mo-rong-mo-hinh-va-du-lieu.html).
+
 ## 11. Câu hỏi cuối buổi và cầu nối
 
 Tại trung điểm của câu hỏi mở đầu, $W_1=0$ và mạng trả về $0$ tại mọi đầu vào, nên trung bình mất mát bằng $\tfrac14$ (Ví dụ 06.6). Hai đầu mút là hai cực tiểu toàn cục sinh ra nhau bởi đối xứng hoán vị (Mệnh đề 06.6), nên theo Mệnh đề 06.7, rủi ro thực nghiệm của mạng không lồi, dù mất mát bình phương lồi theo $f$.

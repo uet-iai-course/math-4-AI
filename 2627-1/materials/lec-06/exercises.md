@@ -1,393 +1,392 @@
 # Bài tập Bài 06 — Mở rộng mô hình và dữ liệu
 
-Bộ bài tập gồm mười một bài theo sáu phần của bài học, ở ba mức: nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI. Các Bài 1, 3, 5, 7, 9 và 11 dựa trên câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ; ở Bài 1, 5 và 9, một phần dữ kiện được đổi để không trùng các ví dụ đã giải trong ghi chú bài giảng. Lời giải mẫu của Bài 3 và Bài 7 có trên trang chiếu, và câu 5 của Bài 7 được tách thành một bài riêng ở đó; đáp án ngắn của Bài 11 nằm trong ghi chú diễn giả của trang câu hỏi tự kiểm tra. Ký hiệu, giả thiết H0–H6b và số hiệu theo ghi chú bài giảng Bài 06. Các kết quả hội tụ được gọi bằng phát biểu kèm số hiệu, như trên trang chiếu: bất đẳng thức một bước có số hạng nhiễu là Mệnh đề 06.29; hạ gradient trên hàm không lồi là Định lý 06.20 (Định lý 05b.41); SGD trên hàm không lồi là Định lý 06.34 (Định lý 05b.43), và cách chọn bước theo số bước là Hệ quả 06.35 (Hệ quả 05b.44). Hai định lý SGD trên hàm lồi mạnh, Định lý 06.31 (Định lý 05b.36) và Định lý 06.32 (Định lý 05b.39), chỉ có trong ghi chú bài giảng; bộ bài tập này chỉ dùng Định lý 06.32 như cách khác ở Bài 11. Trên trang chiếu, Mệnh đề 1, 2, 3 là Mệnh đề 06.4, 06.8, 06.9 của ghi chú.
-
-Bốn bộ dữ liệu dùng chung, được nêu lại trong từng bài khi cần:
-
-- Dữ liệu XOR: đầu vào $(0,0)$, $(0,1)$, $(1,0)$, $(1,1)$ với nhãn $y=0,1,1,0$; mất mát $\ell=\tfrac12(f-y)^2$.
-- Mạng của ví dụ đồ thị tính toán: $W_1=\begin{pmatrix}1&\tfrac12\\\tfrac12&-1\end{pmatrix}$, $b_1=(-\tfrac12,1)$, $w_2=(1,-2)$, $b_2=\tfrac12$, $\sigma(z)=\max\{0,z\}$.
-- Mạng tuyến tính một đơn vị: $F(u,v)=\tfrac12(uv-1)^2$.
-- Dữ liệu bốn điểm: $x=(-1,0,1,2)$, $y=(1,0,1,4)$, mô hình $wx+c$, $\theta=(w,c)$, $F=\tfrac14\sum_i\tfrac12(wx_i+c-y_i)^2$.
-
-Lời giải cần nêu kết quả được dùng ở từng bước. Số thập phân viết với dấu phẩy. Viết tắt: chuẩn đầu ra bài học (LLO), chuẩn đầu ra học phần (CLO), hạ gradient ngẫu nhiên (SGD).
-
-## Bài 1. Biểu diễn XOR và đối xứng của mạng
-
-Mức độ: tính toán. LLO11; CLO1, CLO2.
-
-::: exercise Bài 1
-Cho dữ liệu XOR với nhãn $y=(0,1,1,0)$ và mất mát bình phương.
-
-1. Tìm $w_0,w_1,w_2,w_3$ để $w_0+w_1x_1+w_2x_2+w_3x_1x_2$ khớp đúng nhãn $y_\pm=2y-1$ của XOR (tức $-1,1,1,-1$), và chứng minh nghiệm là duy nhất.
-2. Với mạng hai tầng ReLU có $W_1=\begin{pmatrix}1&1\\1&1\end{pmatrix}$, $b_1=(0,-1)$, $w_2=(1,-2)$, $b_2=0$, tính $z$, $h$, $f$ tại bốn đầu vào XOR.
-3. Viết tham số nhận được khi đổi chỗ hai đơn vị ẩn của mạng ở câu 2, rồi tính $F$ tại trung điểm của hai tham số. Kết luận gì về tính lồi của $F$?
-4. Tính số tham số $p$ của mạng hai tầng cho ảnh màu $32\times32$ ($d=3072$) với $m=256$ đơn vị ẩn.
-:::
-
-::: hint Gợi ý Bài 1
-Ở câu 1, viết bốn điều kiện khớp tại bốn đầu vào. Ở câu 3, đổi chỗ hai đơn vị là đổi chỗ đồng thời hai hàng của $W_1$, hai phần tử của $b_1$ và hai phần tử của $w_2$; dùng Mệnh đề 06.9.
-:::
-
-::: solution Lời giải Bài 1
-1. Bốn điều kiện là $w_0=-1$ tại $(0,0)$, $w_0+w_2=1$ tại $(0,1)$, $w_0+w_1=1$ tại $(1,0)$ và $w_0+w_1+w_2+w_3=-1$ tại $(1,1)$. Giải lần lượt: $w_0=-1$, $w_2=2$, $w_1=2$, $w_3=-1-(-1+2+2)=-4$. Hệ có bốn phương trình tuyến tính, bốn ẩn, và mỗi ẩn được xác định duy nhất theo thứ tự trên, nên nghiệm $(-1,2,2,-4)$ là duy nhất. Kiểm tra tại $(1,1)$: $-1+2+2-4=-1$. Nghiệm này bằng $2(0,1,1,-2)-(1,0,0,0)$, đúng với phép đổi nhãn $y_\pm=2y-1$.
-
-2. Hai hàng của $W_1$ bằng nhau, nên $z=(x_1+x_2,\ x_1+x_2-1)$. Theo thứ tự $(0,0)$, $(0,1)$, $(1,0)$, $(1,1)$:
-
-| $x$ | $z$ | $h$ | $f=h_1-2h_2$ |
-|---|---|---|---:|
-| $(0,0)$ | $(0,-1)$ | $(0,0)$ | $0$ |
-| $(0,1)$ | $(1,0)$ | $(1,0)$ | $1$ |
-| $(1,0)$ | $(1,0)$ | $(1,0)$ | $1$ |
-| $(1,1)$ | $(2,1)$ | $(2,1)$ | $0$ |
-
-Mạng biểu diễn đúng XOR, nên $F=0$ (Goodfellow, Bengio và Courville, 2016, (6.7)–(6.11)). Tại $(0,1)$ và $(1,0)$, đơn vị thứ hai có $z_2=0$, nằm ở điểm gãy; giá trị hàm vẫn xác định.
-
-3. Đổi chỗ hai đơn vị giữ nguyên $W_1$ (hai hàng bằng nhau), cho $b_1=(-1,0)$ và $w_2=(-2,1)$; theo Mệnh đề 06.8, tham số mới cũng có $F=0$. Trung điểm có $W_1$ không đổi và $b_1=w_2=(-\tfrac12,-\tfrac12)$, nên $z=(s-\tfrac12)(1,1)$ với $s=x_1+x_2$ và $f=-\tfrac12\bigl(\sigma(z_1)+\sigma(z_2)\bigr)=-\max\{0,s-\tfrac12\}$. Bốn giá trị là $f=0,\ -\tfrac12,\ -\tfrac12,\ -\tfrac32$, sai số $0,\ -\tfrac32,\ -\tfrac32,\ -\tfrac32$, nên
-
-$$
-F=\frac14\cdot\frac12\Bigl(0+\frac94+\frac94+\frac94\Bigr)=\frac{27}{32}>0 .
-$$
-
-Hai đầu mút là hai cực tiểu toàn cục khác nhau vì hai đơn vị có tham số khác nhau, và trung điểm có $F>0$; theo Mệnh đề 06.9, $F$ không lồi.
-
-4. $p=md+2m+1=3072\cdot256+512+1=786\,432+513=786\,945$.
-
-**Kiểm tra.** Ở câu 3, tại $(1,1)$: $z=(\tfrac32,\tfrac32)$, $f=-\tfrac12\cdot3=-\tfrac32$, sai số bình phương $\tfrac94$.
-:::
-
-## Bài 2. Tính không lồi với mất mát logistic
-
-Mức độ: tính toán hoặc chứng minh. LLO11; CLO1.
-
-::: exercise Bài 2
-Cho dữ liệu XOR với nhãn $y_\pm=2y-1\in\{-1,+1\}$ và mất mát logistic $\ell(f,y_\pm)=\log(1+e^{-y_\pm f})$, hàm kích hoạt $\sigma(z)=\max\{0,z\}$. Hai tham số $\theta_A'$ và $\theta_B'$ có $b_1=(0,0)$, $w_2=(1,1)$, $b_2=0$ và lần lượt $W_1=\begin{pmatrix}2&-2\\-2&2\end{pmatrix}$, $W_1=\begin{pmatrix}-2&2\\2&-2\end{pmatrix}$. Như vậy $\theta_A'$ là tham số $\theta_A$ của Ví dụ 06.4 ($W_1=\begin{pmatrix}1&-1\\-1&1\end{pmatrix}$, $b_1=(0,0)$, $w_2=(1,1)$, $b_2=0$, biểu diễn đúng XOR) với $W_1$ nhân đôi, và $\theta_B'$ nhận được bằng cách đổi chỗ hai đơn vị ẩn của $\theta_A'$.
-
-1. Chứng minh $\theta(t)=(1-t)\theta_A'+t\theta_B'$ cho $F(\theta(t))=\tfrac12\log2+\tfrac12\log\bigl(1+e^{-2\lvert1-2t\rvert}\bigr)$.
-2. Tính $F$ tại $t=0$, $t=\tfrac14$, $t=\tfrac12$, rồi chứng minh $F$ không lồi.
-3. Giải thích vì sao tính lồi của $\ell$ theo $f$ không chuyển thành tính lồi của $F$ theo $\theta$.
-:::
-
-::: hint Gợi ý Bài 2
-Ở câu 1, hai hàng của $W_1(t)$ đối dấu nhau, nên đúng như Ví dụ 06.7 của ghi chú, $f$ bằng tổng phần dương của hai tiền kích hoạt. Ở câu 2, so giá trị tại trung điểm với trung bình hai đầu mút.
-:::
-
-::: solution Lời giải Bài 2
-1. $W_1(t)=2(1-2t)\begin{pmatrix}1&-1\\-1&1\end{pmatrix}$, nên $z=2(1-2t)(x_1-x_2,\ x_2-x_1)$. Hai thành phần đối dấu nhau, nên tổng phần dương của chúng là $f=2\lvert1-2t\rvert\,\lvert x_1-x_2\rvert$.
-
-- Tại $(0,0)$ và $(1,1)$: $f=0$, mất mát $\log2$.
-- Tại $(0,1)$ và $(1,0)$: $y_\pm=1$, $f=2\lvert1-2t\rvert$, mất mát $\log\bigl(1+e^{-2\lvert1-2t\rvert}\bigr)$.
-
-Trung bình bốn mất mát là công thức cần chứng minh.
-
-2. Ba giá trị:
-
-- $F(\theta(0))=\tfrac12\bigl(\log2+\log(1+e^{-2})\bigr)\approx\tfrac12(0{,}6931+0{,}1269)=0{,}4100$, và $F(\theta(1))$ bằng giá trị đó vì $\lvert1-2t\rvert$ đối xứng quanh $t=\tfrac12$;
-- $F(\theta(\tfrac14))=\tfrac12\bigl(\log2+\log(1+e^{-1})\bigr)\approx0{,}5032$;
-- $F(\theta(\tfrac12))=\log2\approx0{,}6931$.
-
-Nếu $F$ lồi thì $F(\theta(\tfrac12))\le\tfrac12F(\theta(0))+\tfrac12F(\theta(1))=0{,}4100$, mâu thuẫn. Vậy $F$ không lồi.
-
-3. Tính lồi của $\theta\mapsto\ell(f(x_i;\theta),y_i)$ được bảo đảm khi $\theta\mapsto f(x_i;\theta)$ affine (Định lý 01.30(b)). Với mạng, $f$ chứa tích $w_2^\top\sigma(W_1x+b_1)$ giữa tham số tầng ra và kích hoạt của tham số tầng ẩn, nên $f$ không affine theo $\theta$; dọc đoạn trên, $f$ là $\lvert1-2t\rvert$ lần một hằng số, không affine theo $t$.
-
-**Kiểm tra.** Ở $t=\tfrac14$, $f(0,1)=2\cdot\tfrac12=1$, đúng bằng giá trị của $\theta_A$ không nhân đôi, nên mất mát tại hai điểm lớp $1$ là $\log(1+e^{-1})$.
-:::
-
-## Bài 3. Lan truyền ngược khi một đơn vị không hoạt động
-
-Mức độ: tính toán. LLO11; CLO1.
-
-::: exercise Bài 3
-Cho mạng của ví dụ đồ thị tính toán: $W_1=\begin{pmatrix}1&\tfrac12\\\tfrac12&-1\end{pmatrix}$, $b_1=(-\tfrac12,1)$, $w_2=(1,-2)$, $b_2=\tfrac12$, ReLU, mất mát bình phương. Mẫu $x=(0,0)$, $y=0$.
-
-1. Tính $z$, $h$, $f$, $\ell$.
-2. Tính $\partial\ell/\partial b_2$, $\nabla_{w_2}\ell$, $\delta_z$, $\nabla_{W_1}\ell$, $\nabla_{b_1}\ell$ bằng Thuật toán 06.1.
-3. Giải thích vì sao hàng một của $\nabla_{W_1}\ell$ và $[\nabla_{b_1}\ell]_1$ bằng $0$, và vì sao cả $\nabla_{W_1}\ell$ bằng $0$.
-4. Với $x=(0,1)$, xác định tiền kích hoạt và nêu quy ước cần dùng.
-:::
-
-::: hint Gợi ý Bài 3
-Với $x=0$, $z=b_1$. Một đơn vị có tiền kích hoạt âm có $\sigma'=0$. Mỗi phần tử $\partial\ell/\partial[W_1]_{ji}$ bằng $[\delta_z]_jx_i$. Ở câu 4, cả hai tiền kích hoạt rơi vào điểm gãy, nên kết quả phụ thuộc quy ước $\sigma'(0)=0$ của thuật toán.
-:::
-
-::: solution Lời giải Bài 3
-1. $z=W_1\cdot0+b_1=(-\tfrac12,1)$, $h=(0,1)$, $f=1\cdot0-2\cdot1+\tfrac12=-\tfrac32$, $\ell=\tfrac12\cdot\tfrac94=\tfrac98$.
-
-2. $e=f-y=-\tfrac32$. Tầng ra: $\partial\ell/\partial b_2=-\tfrac32$, $\nabla_{w_2}\ell=e\,h=(0,-\tfrac32)$. Tầng ẩn: $e\,w_2=(-\tfrac32,3)$, $\sigma'(z)=(0,1)$, nên $\delta_z=(0,3)$. Tham số tầng ẩn: $\nabla_{W_1}\ell=\delta_zx^\top=0$ và $\nabla_{b_1}\ell=\delta_z=(0,3)$.
-
-3. Đơn vị thứ nhất có $z_1=-\tfrac12<0$, nên $\sigma'(z_1)=0$ chặn mọi tín hiệu đi qua nó: $[\delta_z]_1=0$, kéo theo hàng một của $\delta_zx^\top$ và $[\nabla_{b_1}\ell]_1$ bằng $0$. Toàn bộ $\nabla_{W_1}\ell$ bằng $0$ vì mỗi phần tử $[\delta_z]_jx_i$ chứa $x_i=0$. Gradient bằng $0$ theo một khối tham số ở một mẫu không có nghĩa khối tham số đó đã tối ưu: $\nabla_{b_1}\ell$ và $\nabla_{w_2}\ell$ vẫn khác $0$, và mất mát $\tfrac98$ còn lớn.
-
-4. $z=(0+\tfrac12-\tfrac12,\ 0-1+1)=(0,0)$: cả hai đơn vị ở điểm gãy. Với quy ước $\sigma'(0)=0$, $\delta_z=0$ và lan truyền ngược trả $0$ cho $\nabla_{W_1}\ell$, $\nabla_{b_1}\ell$. Tại điểm này, $\ell$ không khả vi theo $W_1$, $b_1$, nên vector trả về là kết quả của quy ước $\sigma'(0)=0$ (Mệnh đề 06.13, Nhận xét 06.14).
-
-**Kiểm tra.** Tăng $b_2$ thêm $\varepsilon$ làm $f=-\tfrac32+\varepsilon$ và $\ell=\tfrac12(-\tfrac32+\varepsilon)^2$, đạo hàm tại $0$ bằng $-\tfrac32$.
-:::
-
-## Bài 4. Hằng số Lipschitz của gradient trên mạng tuyến tính một đơn vị
-
-Mức độ: tính toán hoặc chứng minh. LLO11; CLO1.
-
-::: exercise Bài 4
-Cho $F(u,v)=\tfrac12(uv-1)^2$ với $\nabla^2F(u,v)=\begin{pmatrix}v^2&2uv-1\\2uv-1&u^2\end{pmatrix}$.
-
-1. Chứng minh mọi trị riêng của $\nabla^2F$ trên $[-1,1]^2$ có trị tuyệt đối không vượt $4$, và giá trị $4$ đạt tại $(1,-1)$.
-2. Chứng minh không có hằng số $L$ nào để $\nabla F$ là $L$-Lipschitz trên toàn $\mathbb R^2$.
-3. Với $L=4$ và $\theta_0=(\tfrac12,\tfrac12)$, thực hiện một bước hạ gradient với $\eta=\tfrac1L$. So mức giảm thật với mức bảo đảm của Bổ đề 06.19.
-:::
-
-::: hint Gợi ý Bài 4
-Ở câu 1, với ma trận đối xứng, mọi trị riêng có trị tuyệt đối không vượt tổng trị tuyệt đối lớn nhất của một hàng. Ở câu 2, xét phần tử $u^2$ của Hessian dọc trục $u$. Ở câu 3, $\nabla F(\theta_0)=(-\tfrac38,-\tfrac38)$.
-:::
-
-::: solution Lời giải Bài 4
-1. Trên $[-1,1]^2$: $v^2\le1$, $u^2\le1$ và $-3\le2uv-1\le1$, nên tổng trị tuyệt đối mỗi hàng không vượt $1+3=4$, và mọi trị riêng có trị tuyệt đối không vượt $4$. Tại $(1,-1)$, Hessian là $\begin{pmatrix}1&-3\\-3&1\end{pmatrix}$ với trị riêng $1\pm3$, tức $4$ và $-2$.
-
-2. Tại $(u,0)$, Hessian là $\begin{pmatrix}0&-1\\-1&u^2\end{pmatrix}$, có vết $u^2$ nên trị riêng lớn nhất không nhỏ hơn $\tfrac{u^2}2$, không bị chặn khi $u\to\infty$. Nếu $\nabla F$ là $L$-Lipschitz trên $\mathbb R^2$ thì mọi trị riêng của Hessian có trị tuyệt đối không vượt $L$, mâu thuẫn.
-
-3. $\eta=\tfrac14$, $\theta_1=\theta_0+\tfrac14(\tfrac38,\tfrac38)=(\tfrac{19}{32},\tfrac{19}{32})\in[-1,1]^2$. $F(\theta_1)=\tfrac12\bigl(\tfrac{361}{1024}-1\bigr)^2\approx0{,}20960$. Mức giảm thật: $0{,}28125-0{,}20960=0{,}07165$. Bảo đảm: $\tfrac{\lVert\nabla F(\theta_0)\rVert^2}{2L}=\tfrac{9/32}8=\tfrac9{256}\approx0{,}0352$. Mức giảm thật gấp khoảng hai lần bảo đảm. So với $L=2$ trên $[0,1]^2$ (Ví dụ 06.14), hằng số lớn hơn cho bước nhỏ hơn và bảo đảm yếu hơn, dù cả hai đều đúng.
-
-**Kiểm tra.** Đoạn nối $\theta_0$ và $\theta_1$ nằm trong $[-1,1]^2$, tập lồi nơi $L=4$, nên Bổ đề 06.19 áp dụng.
-:::
-
-## Bài 5. Phân loại điểm dừng và số bước của hạ gradient trên hàm không lồi
-
-Mức độ: tính toán. LLO11; CLO1.
-
-::: exercise Bài 5
-Cho $F(u,v)=\tfrac12(uv-1)^2$.
-
-1. Xác định mọi điểm dừng.
-2. Tính Hessian tại $(4,\tfrac14)$, các trị riêng, và kết luận của phép kiểm tra bậc hai.
-3. Với $L=2$, $\theta_0=(\tfrac14,\tfrac14)$, tìm $K$ nhỏ nhất để cận của Định lý 06.20 bảo đảm $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le0{,}01$; so với số bước thực tế của hạ gradient bước $\tfrac12$.
-4. Nêu một kết luận mà Định lý 06.20 không cho.
-:::
-
-::: hint Gợi ý Bài 5
-Ở câu 1, $\nabla F=(uv-1)(v,u)$. Ở câu 3, $F_{\inf}=0$ và $\Delta_0=F(\theta_0)$; dãy ở trên đường chéo $u=v=t_k$ với $t_{k+1}=t_k+\tfrac12t_k(1-t_k^2)$ và $\lVert\nabla F\rVert^2=2t_k^2(1-t_k^2)^2$.
-:::
-
-::: solution Lời giải Bài 5
-1. $\nabla F=(uv-1)(v,u)=0$ khi $uv=1$ hoặc $(u,v)=(0,0)$. Các điểm dừng là gốc và mọi điểm của hyperbol $uv=1$.
-
-2. Tại $(4,\tfrac14)$, $uv=1$ nên $\nabla^2F=\begin{pmatrix}v^2&2uv-1\\2uv-1&u^2\end{pmatrix}=\begin{pmatrix}\tfrac1{16}&1\\1&16\end{pmatrix}$, định thức $1-1=0$, vết $16{,}0625$: trị riêng $0$ và $16{,}0625$. Mệnh đề 06.17 không kết luận, nhưng $F=0$ là giá trị nhỏ nhất có thể, nên đây là cực tiểu toàn cục. Trị riêng lớn cho thấy độ cong theo hướng pháp tuyến của hyperbol tăng khi cực tiểu nằm xa đường chéo.
-
-3. $\Delta_0=F(\theta_0)=\tfrac12(\tfrac1{16}-1)^2=\tfrac{225}{512}\approx0{,}43945$. Dãy tăng từ $t_0=\tfrac14$ về $1$ và ở trong $[0,1]^2$, nơi $L=2$ (Ví dụ 06.14). Cận $\tfrac{2L\Delta_0}K\le0{,}01$ khi $K\ge\tfrac{4\cdot0{,}43945}{0{,}01}\approx175{,}8$, tức $K=176$. Thực tế:
-
-| $k$ | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ |
-|---|---:|---:|---:|---:|---:|---:|
-| $t_k$ | $0{,}2500$ | $0{,}3672$ | $0{,}5260$ | $0{,}7163$ | $0{,}8907$ | $0{,}9827$ |
-| $\lVert\nabla F(\theta_k)\rVert^2$ | $0{,}1099$ | $0{,}2018$ | $0{,}2895$ | $0{,}2433$ | $0{,}0678$ | $0{,}0023$ |
-
-Giá trị đầu tiên không vượt $0{,}01$ ở $k=5$, nên $K=6$ đã đủ, nhỏ hơn cận khoảng $30$ lần. Chuẩn gradient tăng qua hai bước đầu vì dãy xuất phát gần vùng phẳng quanh điểm yên ngựa.
-
-4. Chẳng hạn, Định lý 06.20 không cho biết $\theta_k$ tới cực tiểu nào trên hyperbol, không chặn $F(\theta_k)$, và không loại trường hợp dãy dừng gần điểm yên ngựa (Nhận xét 06.21).
-
-**Kiểm tra.** Tại $k=5$: $t_5^2\approx0{,}96574$, $(1-t_5^2)^2\approx0{,}0011738$, nên $\lVert\nabla F\rVert^2\approx2\cdot0{,}96574\cdot0{,}0011738\approx0{,}00227$.
-:::
-
-## Bài 6. Chi phí một bước ở một quy mô mới
-
-Mức độ: vận dụng vào AI. LLO11, LLO15; CLO4.
-
-::: exercise Bài 6
-Một mô hình có $p=10^6$ tham số được huấn luyện trên $n=10^7$ mẫu, với máy giả định thực hiện $10^{12}$ phép nhân–cộng mỗi giây và số thực $8$ byte. Dùng mô hình chi phí của Ví dụ 06.17.
-
-1. Tính chi phí và thời gian một bước của hạ gradient đầy đủ, Newton và SGD với nhóm $b=256$.
-2. Tính bộ nhớ cần để lưu Hessian và số bước SGD trong một lượt dữ liệu.
-3. Với ngân sách $10$ giờ, mỗi phương pháp thực hiện được bao nhiêu bước?
-:::
-
-::: hint Gợi ý Bài 6
-Hạ gradient đầy đủ tốn $np$, Newton tốn $np^2+p^3$, SGD tốn $bp$ mỗi bước.
-:::
-
-::: solution Lời giải Bài 6
-1. Hạ gradient đầy đủ: $np=10^{13}$, tức $10$ giây. Newton: $np^2+p^3=10^{19}+10^{18}=1{,}1\cdot10^{19}$, tức $1{,}1\cdot10^7$ giây, khoảng $127$ ngày. SGD: $bp=2{,}56\cdot10^8$, tức $2{,}56\cdot10^{-4}$ giây.
-
-2. Hessian có $p^2=10^{12}$ phần tử, tức $8\cdot10^{12}$ byte. Một lượt dữ liệu gồm $n/b=10^7/256\approx39\,063$ bước SGD.
-
-3. Mười giờ là $36\,000$ giây. Hạ gradient đầy đủ: $3\,600$ bước. Newton: không hoàn thành một bước. SGD: $36\,000/(2{,}56\cdot10^{-4})\approx1{,}4\cdot10^8$ bước, khoảng $3\,600$ lượt dữ liệu, cùng số lượt với hạ gradient đầy đủ nhưng nhiều cập nhật hơn khoảng $39\,063$ lần.
-
-**Kiểm tra.** Mỗi lượt dữ liệu tốn $np=10^{13}$ phép tính cho cả hai phương pháp bậc nhất; khác biệt chỉ ở số cập nhật trong một lượt.
-:::
-
-## Bài 7. Một bước SGD trên mạng XOR
-
-Mức độ: tính toán. LLO11, LLO12; CLO1, CLO2.
-
-::: exercise Bài 7
-Cho mạng của ví dụ đồ thị tính toán ($W_1=\begin{pmatrix}1&\tfrac12\\\tfrac12&-1\end{pmatrix}$, $b_1=(-\tfrac12,1)$, $w_2=(1,-2)$, $b_2=\tfrac12$, ReLU, mất mát bình phương). Gradient của mẫu $((1,1),0)$ đã có: $\nabla_{W_1}\ell=\begin{pmatrix}\tfrac12&\tfrac12\\-1&-1\end{pmatrix}$, $\nabla_{b_1}\ell=(\tfrac12,-1)$, $\nabla_{w_2}\ell=(\tfrac12,\tfrac14)$, $\partial\ell/\partial b_2=\tfrac12$, với $\ell=\tfrac18$. Nhóm gồm hai mẫu $((1,1),0)$ và $((1,0),1)$; bước $\eta=0{,}02$.
-
-1. Tính gradient của mẫu $((1,0),1)$.
-2. Tính gradient nhóm $\widehat g$.
-3. Tính $\theta^+$ và mất mát trung bình trên nhóm trước và sau bước.
-4. Tính tiền kích hoạt tại $(0,1)$ và giải thích vì sao gradient của mẫu $((0,1),1)$ phụ thuộc quy ước $\sigma'(0)$.
-5. Với dữ liệu bốn điểm tại $\theta=(w,c)=(1,0)$: tính các gradient mẫu, $\operatorname{tr}\Sigma(\theta)$ và $\mathbb E\lVert\widehat g-\nabla F(\theta)\rVert^2$ cho nhóm $b=3$ chọn không hoàn lại.
-:::
-
-::: hint Gợi ý Bài 7
-Ở câu 1, chạy Thuật toán 06.1 với $x=(1,0)$, $y=1$; cả hai đơn vị hoạt động. Ở câu 5, dùng kết luận 2 của Định lý 06.25, rồi kiểm tra bằng cách liệt kê bốn nhóm ba mẫu.
-:::
-
-::: solution Lời giải Bài 7
-1. $z=(1+0-\tfrac12,\ \tfrac12+0+1)=(\tfrac12,\tfrac32)$, $h=z$, $f=\tfrac12-3+\tfrac12=-2$, $e=f-y=-3$, $\ell=\tfrac92$. Do đó $\partial\ell/\partial b_2=-3$, $\nabla_{w_2}\ell=e\,h=(-\tfrac32,-\tfrac92)$, $\delta_z=e\,w_2=(-3,6)$, $\nabla_{W_1}\ell=\delta_zx^\top=\begin{pmatrix}-3&0\\6&0\end{pmatrix}$, $\nabla_{b_1}\ell=(-3,6)$.
-
-2. Trung bình với gradient của mẫu $(1,1)$:
-
-$$
-\nabla_{W_1}=\begin{pmatrix}-\tfrac54&\tfrac14\\\tfrac52&-\tfrac12\end{pmatrix},\quad\nabla_{b_1}=\bigl(-\tfrac54,\tfrac52\bigr),\quad\nabla_{w_2}=\bigl(-\tfrac12,-\tfrac{17}8\bigr),\quad\nabla_{b_2}=-\tfrac54 .
-$$
-
-3. $\theta^+=\theta-0{,}02\,\widehat g$: $W_1^+=\begin{pmatrix}1{,}025&0{,}495\\0{,}45&-0{,}99\end{pmatrix}$, $b_1^+=(-0{,}475;\ 0{,}95)$, $w_2^+=(1{,}01;\ -1{,}9575)$, $b_2^+=0{,}525$. Mất mát trung bình trên nhóm giảm từ $\tfrac12(\tfrac18+\tfrac92)=\tfrac{37}{16}=2{,}3125$ xuống $1{,}9202$. Riêng mẫu $(1,1)$, mất mát tăng từ $0{,}125$ lên $0{,}3025$, còn mẫu $(1,0)$ giảm từ $4{,}5$ xuống $3{,}538$: bước theo gradient nhóm có thể làm tăng mất mát của một mẫu trong nhóm.
-
-4. $z=(0+\tfrac12-\tfrac12,\ 0-1+1)=(0,0)$: cả hai tiền kích hoạt ở điểm gãy. Tại đó $\ell$ không khả vi theo $W_1$, $b_1$, nên vector lan truyền ngược trả về phụ thuộc giá trị gán cho $\sigma'(0)$; với quy ước $\sigma'(0)=0$ thì $\delta_z=0$. Một bước SGD là một lần lan truyền ngược trên mỗi mẫu của nhóm, lấy trung bình, rồi cập nhật, nên quy ước ảnh hưởng trực tiếp tới bước.
-
-5. Phần dư $wx_i+c-y_i=-2,0,0,-2$, gradient mẫu $(2,-2)$, $(0,0)$, $(0,0)$, $(-4,-2)$, trung bình $\nabla F=(-\tfrac12,-1)$. Sai lệch là $(\tfrac52,-1)$, $(\tfrac12,1)$, $(\tfrac12,1)$, $(-\tfrac72,-1)$, với bình phương chuẩn $\tfrac{29}4,\tfrac54,\tfrac54,\tfrac{53}4$, nên $\operatorname{tr}\Sigma=\tfrac{23}4$. Theo Định lý 06.25 (không hoàn lại),
-
-$$
-\mathbb E\lVert\widehat g-\nabla F\rVert^2=\frac{23}4\cdot\frac13\cdot\frac{4-3}{4-1}=\frac{23}{36}.
-$$
-
-**Kiểm tra.** Nhóm ba mẫu bỏ mẫu $j$ cho
+Sáu bài tập dưới đây, đánh số tiếp theo các bài tập trong ghi chú, đi kèm [ghi chú bài giảng](material-viewer.html?doc=materials/lec-06/lecture-note.md&deck=lecture-06-mo-rong-mo-hinh-va-du-lieu.html) và [bài giảng](lecture-06-mo-rong-mo-hinh-va-du-lieu.html) của Bài 06. Các bài lấy từ Kupferschmid (2023), Chương 25; Murphy (2022), Chương 13; Boyd và Vandenberghe (2004), Chương 6; số trang là trang in của sách. Lời giải dẫn định nghĩa, bổ đề, mệnh đề, nhận xét, thuật toán và ví dụ theo số hiệu của ghi chú. Ký hiệu theo ghi chú gồm:
+
+- tham số là $\theta\in\mathbb R^p$, $\hat e_i$ là vector đơn vị thứ $i$ của $\mathbb R^p$, $\varepsilon>0$ là bước sai phân;
+- vector viết dạng cột, ví dụ $\hat e_1=(1,0,\ldots,0)^\top$;
+- $\sigma(z)=\max\{0,z\}$ là hàm kích hoạt ReLU, và $\mathbb 1[z>0]$ là vector có thành phần $j$ bằng $1$ khi $z_j>0$ và bằng $0$ khi $z_j\le0$, khớp quy ước $\sigma'(0)=0$ của Nhận xét 06.13.
+
+| Mục tiêu học tập | Bài tập trong ghi chú | Bài tập trong tệp này |
+|---|---|---|
+| 1. Đặc trưng affine và XOR, mạng hai tầng, tính không lồi | 06.1, 06.7, 06.8 | — |
+| 2. Lan truyền ngược, sai phân hữu hạn, đếm phép nhân | 06.2, 06.7, 06.9 | 06.12, 06.13, 06.14, 06.15, 06.17 |
+| 3. Điểm dừng, bổ đề giảm, hội tụ của chuẩn gradient khi không lồi | 06.3, 06.7, 06.8, 06.9 | — |
+| 4. Gradient lô nhỏ và thuật toán hạ gradient ngẫu nhiên | 06.4, 06.7 | — |
+| 5. Hội tụ của hạ gradient ngẫu nhiên, dừng sớm và chính quy hóa bậc hai | 06.5, 06.6, 06.7, 06.10 | 06.16 |
+| 6. Chọn phương pháp | 06.6, 06.11 | — |
+
+## Mức nhận biết
+
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 2; đếm số lần tính hàm của sai phân tiến.
+
+::: exercise Bài tập 06.12 (Số lần tính hàm của sai phân tiến; Kupferschmid, Bài 25.8.35(d)(e), tr. 844)
+Cho $\phi:\mathbb R^p\to\mathbb R$. Sai phân tiến xấp xỉ đạo hàm riêng bậc một và bậc hai của $\phi$ tại $\theta$ bằng
 
 $$
 \begin{aligned}
-\widehat g-\nabla F&=\tfrac13\bigl(4\nabla F-g_j\bigr)-\nabla F\\
-&=\tfrac13(\nabla F-g_j),
+&\frac{\partial\phi}{\partial\theta_i}(\theta)\\
+&\quad\approx\frac{\phi(\theta+\varepsilon\hat e_i)-\phi(\theta)}{\varepsilon},\\
+&\frac{\partial^2\phi}{\partial\theta_i\partial\theta_j}(\theta)\\
+&\quad\approx\frac1{\varepsilon^2}\bigl(\phi(\theta+\varepsilon\hat e_i+\varepsilon\hat e_j)\\
+&\qquad-\phi(\theta+\varepsilon\hat e_i)-\phi(\theta+\varepsilon\hat e_j)\\
+&\qquad+\phi(\theta)\bigr).
 \end{aligned}
 $$
 
-nên giá trị trung bình là $\tfrac19\cdot\tfrac14\sum_j\lVert g_j-\nabla F\rVert^2=\tfrac19\operatorname{tr}\Sigma=\tfrac{23}{36}$.
+- **(a)** Giải thích vì sao xấp xỉ gradient $\nabla\phi(\theta)$ bằng sai phân tiến cần $p+1$ lần tính giá trị của $\phi$.
+- **(b)** Giải thích vì sao xấp xỉ Hessian đối xứng $\nabla^2\phi(\theta)$ bằng sai phân tiến cần $(\tfrac12p+1)(p+1)$ lần tính giá trị của $\phi$.
 :::
 
-## Bài 8. Kích thước nhóm và nhiễu tại điểm cực tiểu
-
-Mức độ: tính toán. LLO12; CLO2.
-
-::: exercise Bài 8
-Cho dữ liệu bốn điểm tại điểm cực tiểu $\theta^*=(1,1)$, với gradient mẫu $(1,-1)$, $(0,1)$, $(1,1)$, $(-2,-1)$, $\operatorname{tr}\Sigma(\theta^*)=\tfrac52$, Hessian $H=\begin{pmatrix}1{,}5&0{,}5\\0{,}5&1\end{pmatrix}$, $L=\tfrac{5+\sqrt5}4$, $F^*=\tfrac12$; bước $\eta=\tfrac14$ từ $\theta_0=\theta^*$.
-
-1. Với nhóm $b=3$ chọn không hoàn lại, tính $\mathbb E\lVert\widehat g\rVert^2$ theo Định lý 06.25 và tính $\mathbb E\,F(\theta_1)$ bằng liệt kê.
-2. Kiểm tra bất đẳng thức một bước (Mệnh đề 06.29) với $\sigma^2$ bằng giá trị ở câu 1.
-3. So với nhóm $b=2$ không hoàn lại ($\mathbb EF(\theta_1)=\tfrac{69}{128}$, Ví dụ 06.21), nêu tác dụng của việc tăng kích thước nhóm lên mức tăng của $F$ sau một bước.
+::: hint Gợi ý 1
+Đếm các điểm khác nhau mà công thức cần giá trị của $\phi$; một giá trị dùng được cho nhiều thành phần thì chỉ tính một lần.
 :::
 
-::: hint Gợi ý Bài 8
-Nhóm ba mẫu bỏ mẫu $j$ có $\widehat g=-\tfrac13g_j$ vì tổng bốn gradient mẫu bằng $0$. Vì $F$ bậc hai và $\nabla F(\theta^*)=0$, $F(\theta_1)-F^*=\tfrac{\eta^2}2\widehat g^\top H\widehat g$.
+::: hint Gợi ý 2
+Ở (b), dùng tính đối xứng của Hessian để giảm số phần tử cần tính; với $i=j$, điểm $\theta+\varepsilon\hat e_i+\varepsilon\hat e_j$ là $\theta+2\varepsilon\hat e_i$.
 :::
 
-::: solution Lời giải Bài 8
-1. Định lý 06.25: $\mathbb E\lVert\widehat g\rVert^2=\tfrac52\cdot\tfrac13\cdot\tfrac{4-3}{4-1}=\tfrac5{18}$. Với $\widehat g=-\tfrac13g_j$, $F(\theta_1)-F^*=\tfrac1{32}\cdot\tfrac19g_j^\top Hg_j=\tfrac{g_j^\top Hg_j}{288}$. Bốn giá trị $g_j^\top Hg_j$ là $1{,}5$; $1$; $3{,}5$; $9$, trung bình $3{,}75$. Do đó $\mathbb EF(\theta_1)=\tfrac12+\tfrac{3{,}75}{288}=\tfrac{197}{384}\approx0{,}5130$. Bốn giá trị $F(\theta_1)$ ứng với $j=1,2,3,4$ là $\tfrac{97}{192}$, $\tfrac{145}{288}$, $\tfrac{295}{576}$, $\tfrac{17}{32}$.
+::: solution Lời giải Bài tập 06.12
+**Câu (a).** Thành phần $i$ cần $\phi(\theta+\varepsilon\hat e_i)$ và $\phi(\theta)$. Giá trị $\phi(\theta)$ dùng chung cho cả $p$ thành phần, nên cần $p$ giá trị $\phi(\theta+\varepsilon\hat e_i)$, $i=1,\ldots,p$, cộng một giá trị $\phi(\theta)$: tổng $p+1$.
 
-2. Tại $\theta^*$, $\nabla F=0$, nên vế phải của (6.1) là $F^*+\tfrac{L\eta^2}2\sigma^2=\tfrac12+\tfrac L{32}\cdot\tfrac5{18}\approx0{,}5157$, không nhỏ hơn $\mathbb EF(\theta_1)\approx0{,}5130$.
-
-3. Tăng $b$ từ $2$ lên $3$ giảm $\mathbb E\lVert\widehat g\rVert^2$ từ $\tfrac56$ xuống $\tfrac5{18}$, nhờ cả hệ số $\tfrac1b$ và hệ số $\tfrac{n-b}{n-1}$, và giảm mức tăng $\mathbb EF(\theta_1)-F^*$ từ $\tfrac5{128}\approx0{,}039$ xuống $\tfrac5{384}\approx0{,}013$. Mức tăng vẫn dương vì $b<n$; chỉ khi $b=n$ (gradient đầy đủ) bước từ $\theta^*$ mới đứng yên.
-
-**Kiểm tra.** Với $j=4$: $\widehat g=(\tfrac23,\tfrac13)$, $\theta_1=(1-\tfrac16,1-\tfrac1{12})$; trực tiếp, phần dư $wx_i+c-y_i$ là $-\varepsilon_i+(-\tfrac16x_i-\tfrac1{12})$ với $\varepsilon=(1,-1,-1,1)$, tức $(-\tfrac{11}{12},\tfrac{11}{12},\tfrac34,-\tfrac{17}{12})$, cho $F(\theta_1)=\tfrac18\cdot\tfrac{612}{144}=\tfrac{17}{32}$.
-:::
-
-## Bài 9. Bất đẳng thức một bước, cận không lồi và dừng sớm
-
-Mức độ: tính toán. LLO11, LLO12; CLO1, CLO2.
-
-::: exercise Bài 9
-1. Với $L=\sigma^2=1$ và $\lVert\nabla F(\theta_k)\rVert^2=1$, tìm mọi $\eta>0$ để bất đẳng thức một bước (Mệnh đề 06.29) bảo đảm giảm theo kỳ vọng, tức vế phải nhỏ hơn $F(\theta_k)$.
-2. Với $L=\Delta_0=\sigma^2=1$, tìm $K$ nhỏ nhất để cận của Hệ quả 06.35 không vượt $0{,}02$.
-3. Với $\eta=0{,}5$, $k=20$, trị riêng $\alpha=0{,}05$, tính tỉ lệ giữ của dừng sớm và của chính quy hóa với hệ số $\lambda=0{,}1$, rồi giải thích sai khác.
-:::
-
-::: hint Gợi ý Bài 9
-Ở câu 1, viết hai số hạng sau $F(\theta_k)$ ở vế phải của (6.1) thành một đa thức theo $\eta$ rồi xét dấu. Ở câu 2, với $K\ge2$, bước của Hệ quả 06.35 là $\sqrt{2/K}$ và cận là $\tfrac2K+\tfrac{2\sqrt2}{\sqrt K}$. Ở câu 3, xem Nhận xét 06.41.
-:::
-
-::: solution Lời giải Bài 9
-1. Theo (6.1), vế phải nhỏ hơn $F(\theta_k)$ khi và chỉ khi phần thay đổi
+**Câu (b).** Phần tử $(i,j)$ cần bốn giá trị: $\phi(\theta+\varepsilon\hat e_i+\varepsilon\hat e_j)$, $\phi(\theta+\varepsilon\hat e_i)$, $\phi(\theta+\varepsilon\hat e_j)$, $\phi(\theta)$. Vì Hessian đối xứng, chỉ cần các cặp $i\le j$, gồm $\tfrac12p(p+1)$ cặp, và mỗi cặp có một điểm $\theta+\varepsilon\hat e_i+\varepsilon\hat e_j$ riêng (với $i=j$ là $\theta+2\varepsilon\hat e_i$). Các giá trị $\phi(\theta+\varepsilon\hat e_i)$, $i=1,\ldots,p$, và $\phi(\theta)$ dùng chung. Tổng số lần tính là
 
 $$
 \begin{aligned}
-\Delta(\eta)&=-\eta\Bigl(1-\frac{L\eta}2\Bigr)\lVert\nabla F(\theta_k)\rVert^2+\frac{L\eta^2}2\sigma^2\\
-&=-\eta\Bigl(1-\frac\eta2\Bigr)+\frac{\eta^2}2\\
-&=-\eta+\eta^2=\eta(\eta-1)
+&\tfrac12p(p+1)+p+1\\
+&\quad=(\tfrac12p+1)(p+1).
 \end{aligned}
 $$
 
-là số âm. Với $\eta>0$, thừa số $\eta$ dương, nên $\Delta(\eta)<0$ khi và chỉ khi $\eta<1$. Khi $\eta\ge1$, số hạng nhiễu $\tfrac{\eta^2}2$ không nhỏ hơn phần giảm $\eta(1-\tfrac\eta2)$, và bất đẳng thức một bước không còn bảo đảm giảm theo kỳ vọng. Dù vậy, $\mathbb E[F(\theta_{k+1})\mid\theta_k]$ vẫn có thể nhỏ hơn $F(\theta_k)$, vì (6.1) chỉ là một cận trên.
+Với mạng hai tầng, mỗi lần tính $\ell$ là một lần truyền xuôi, nên câu (a) là kết luận 3 của Mệnh đề 06.14: $p+1$ lần truyền xuôi cho một gradient mẫu, như $78\,602$ lần ở Ví dụ 06.7.
 
-2. Giải $\tfrac2K+\tfrac{2\sqrt2}{\sqrt K}\le0{,}02$ cho $K=20\,200$ (cận $\approx0{,}0199998$); với $K=20\,199$, cận vượt $0{,}02$. Số hạng chính $\tfrac{2\sqrt2}{\sqrt K}$ cho ước lượng nhanh $K\approx(100\sqrt2)^2=20\,000$. Ngược lại, khi yêu cầu chặt hơn hai lần, từ $0{,}02$ xuống $0{,}01$, số bước tăng khoảng bốn lần ($80\,400$ so với $20\,200$), đúng với tốc độ $O(1/\sqrt K)$.
-
-3. Dừng sớm: $1-(1-0{,}025)^{20}\approx1-0{,}6027=0{,}3973$; chính quy hóa: $\tfrac{0{,}05}{0{,}05+0{,}1}=\tfrac13\approx0{,}3333$. Ở đây $\eta\alpha=0{,}025$ nhỏ, nên $0{,}975^{20}\approx0{,}6027$ gần $e^{-\eta\alpha k}=e^{-0{,}5}\approx0{,}6065$. Nhưng $\alpha/\lambda=0{,}5$ không nhỏ, nên $\tfrac\lambda{\alpha+\lambda}=\tfrac23\approx0{,}667$ khác $e^{-\alpha/\lambda}=e^{-0{,}5}\approx0{,}6065$. Sai khác đến từ điều kiện $\alpha\ll\lambda$.
-
-**Kiểm tra.** Ở câu 1, với $\eta=\tfrac12$: $\Delta=-\tfrac12\cdot\tfrac34+\tfrac18=-\tfrac14<0$; với $\eta=2$: $\Delta=-2\cdot0+2=2>0$. Hai giá trị nằm hai phía của $1$, khớp với dấu của $\eta(\eta-1)$.
+**Kiểm tra lại.** Với $p=1$: gradient cần $\phi(\theta+\varepsilon)$, $\phi(\theta)$, tức $2=p+1$ giá trị; đạo hàm bậc hai cần thêm $\phi(\theta+2\varepsilon)$, tức $3=(\tfrac12+1)\cdot2$ giá trị.
 :::
 
-## Bài 10. Ngân sách cố định và quy tắc dừng sớm
+## Mức tính toán hoặc chứng minh
 
-Mức độ: vận dụng vào AI. LLO11, LLO12; CLO2, CLO4.
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 2; chứng minh sai phân trung tâm chính xác với hàm bậc hai và đánh giá sai số chặt cụt của nó.
 
-::: exercise Bài 10
-1. Với $L=\Delta_0=\sigma_1^2=1$, $n=10^4$, $b=10$ (nhóm chọn có hoàn lại) và tổng ngân sách $\mathcal B=10^6$ gradient mẫu, tính cận của hạ gradient đầy đủ và cận của SGD theo Hệ quả 06.35 và Mệnh đề 06.37, rồi tính ngưỡng $\mathcal B$ mà từ đó hạ gradient đầy đủ có cận nhỏ hơn.
-2. Thuật toán 06.3 chạy với chu kỳ $s=100$ bước. Mất mát xác thực đo được tại các bước $100,200,\ldots,900$ là
+::: exercise Bài tập 06.13 (Sai phân trung tâm trên hàm bậc hai và sai số chặt cụt; Kupferschmid, Bài 25.8.39 và 25.8.42, tr. 844)
+Sai phân trung tâm xấp xỉ đạo hàm riêng bậc một và bậc hai của $\phi:\mathbb R^p\to\mathbb R$ tại $\theta$ bằng
 
 $$
-0{,}90;\ 0{,}62;\ 0{,}48;\ 0{,}45;\ 0{,}46;\ 0{,}44;\ 0{,}47;\ 0{,}49;\ 0{,}50 .
+\begin{aligned}
+&\frac{\partial\phi}{\partial\theta_i}(\theta)\\
+&\quad\approx\frac{\phi(\theta+\varepsilon\hat e_i)-\phi(\theta-\varepsilon\hat e_i)}{2\varepsilon},\\
+&\frac{\partial^2\phi}{\partial\theta_i\partial\theta_j}(\theta)\\
+&\quad\approx\frac1{4\varepsilon^2}\bigl(\phi(\theta+\varepsilon\hat e_i+\varepsilon\hat e_j)\\
+&\qquad-\phi(\theta-\varepsilon\hat e_i+\varepsilon\hat e_j)\\
+&\qquad-\phi(\theta+\varepsilon\hat e_i-\varepsilon\hat e_j)\\
+&\qquad+\phi(\theta-\varepsilon\hat e_i-\varepsilon\hat e_j)\bigr).
+\end{aligned}
 $$
 
-Với ngưỡng kiên nhẫn $r=3$, $r=2$ và $r=1$, xác định bước dừng và tham số được trả về.
-3. Giải thích vì sao giá trị $0{,}44$ không dùng được làm ước lượng của $R$ cho tham số được trả về.
+- **(a)** Chứng minh rằng nếu $\phi(\theta)=\tfrac12\theta^\top H\theta+\beta^\top\theta+\beta_0$ với $H\in\mathbb R^{p\times p}$ đối xứng, $\beta\in\mathbb R^p$, $\beta_0\in\mathbb R$, thì xấp xỉ trung tâm của mọi đạo hàm riêng bậc một là chính xác với mọi $\varepsilon>0$.
+- **(b)** Với cùng hàm bậc hai đó, xác định xấp xỉ trung tâm của Hessian có chính xác hay không.
+- **(c)** Cho $\phi:\mathbb R\to\mathbb R$ khả vi liên tục ba lần. Dùng khai triển Taylor, chứng minh sai số chặt cụt $\frac{\phi(t+\varepsilon)-\phi(t-\varepsilon)}{2\varepsilon}-\phi'(t)$ của sai phân trung tâm tỉ lệ với $\varepsilon^2$.
 :::
 
-::: hint Gợi ý Bài 10
-Ở câu 1, hạ gradient đầy đủ chạy $\mathcal B/n$ bước, SGD chạy $\mathcal B/b$ bước với $\sigma^2=\sigma_1^2/b$. Ở câu 2, theo dõi bộ đếm $t$ số lần liên tiếp không cải thiện, như Thuật toán 06.3.
+::: hint Gợi ý 1
+Với hàm bậc hai, khai triển Taylor bậc hai là đẳng thức chính xác; với hàm một biến khả vi liên tục ba lần, khai triển Taylor bậc hai có thêm phần dư bậc ba.
 :::
 
-::: solution Lời giải Bài 10
-1. Hạ gradient đầy đủ: $K=100$ bước, cận $\tfrac{2n}{\mathcal B}=0{,}02$. SGD: $K=10^5$, $\sigma^2=0{,}1$, cận $\tfrac{2b}{\mathcal B}+2\sqrt{\tfrac2{\mathcal B}}=0{,}00002+0{,}00283\approx0{,}00285$. Ngưỡng của Mệnh đề 06.37 là $\mathcal B^*=\tfrac{L\Delta_0(n-b)^2}{2\sigma_1^2}$; với $L=\Delta_0=\sigma_1^2=1$, $\mathcal B^*=\tfrac{(n-b)^2}2=\tfrac{9990^2}2\approx4{,}99\cdot10^7$, tức khoảng $5\,000$ lượt dữ liệu; ngân sách $10^6$ ứng với $100$ lượt, dưới ngưỡng, phù hợp với việc cận SGD nhỏ hơn.
-
-2. Theo dõi giá trị nhỏ nhất và bộ đếm:
-
-| bước | $100$ | $200$ | $300$ | $400$ | $500$ | $600$ | $700$ | $800$ | $900$ |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| $\widehat R$ | $0{,}90$ | $0{,}62$ | $0{,}48$ | $0{,}45$ | $0{,}46$ | $0{,}44$ | $0{,}47$ | $0{,}49$ | $0{,}50$ |
-| bộ đếm $t$ | $0$ | $0$ | $0$ | $0$ | $1$ | $0$ | $1$ | $2$ | $3$ |
-
-- $r=3$: dừng tại bước $900$, trả về tham số tại bước $600$ ($\widehat R=0{,}44$).
-- $r=2$: dừng tại bước $800$, trả về tham số tại bước $600$.
-- $r=1$: dừng tại bước $500$ khi $t=1$, trả về tham số tại bước $400$ ($\widehat R=0{,}45$); điểm tốt hơn ở bước $600$ bị bỏ lỡ.
-
-3. Tham số tại bước $600$ được chọn vì có $\widehat R$ nhỏ nhất, tức nó phụ thuộc chính tập xác thực. Định lý 06.22 chỉ cho $\widehat R$ không chệch tại một tham số cố định trước khi nhìn tập đánh giá, nên sau khi chọn, $0{,}44$ lệch về phía lạc quan (Nhận xét 06.39). Ước lượng $R$ cần một tập kiểm thử riêng.
-
-**Kiểm tra.** Ở câu 1, hai cận đúng thứ tự với Mệnh đề 06.37: $\mathcal B=10^6<4{,}99\cdot10^7$ nên cận SGD nhỏ hơn.
+::: hint Gợi ý 2
+Ở (a), (b), thế $w=\pm\varepsilon\hat e_i\pm\varepsilon\hat e_j$ vào $\phi(\theta+w)=\phi(\theta)+(H\theta+\beta)^\top w+\tfrac12w^\top Hw$. Ở (c), viết $\phi(t\pm\varepsilon)$ theo định lý Taylor với phần dư Lagrange, trừ hai đẳng thức, rồi dùng định lý giá trị trung gian cho $\phi'''$ (Giải tích 1).
 :::
 
-## Bài 11. Lựa chọn phương pháp và phạm vi của các bảo đảm
+::: solution Lời giải Bài tập 06.13
+**Câu (a).** Với mọi $w\in\mathbb R^p$, $\phi(\theta+w)=\phi(\theta)+(H\theta+\beta)^\top w+\tfrac12w^\top Hw$ chính xác, vì $\phi$ bậc hai. Do đó
 
-Mức độ: nhận biết và vận dụng vào AI. LLO11, LLO15; CLO1, CLO4.
+$$
+\begin{aligned}
+&\phi(\theta+v)-\phi(\theta-v)\\
+&\quad=2(H\theta+\beta)^\top v,
+\end{aligned}
+$$
 
-::: exercise Bài 11
-1. Chọn phương pháp cho: (a) $n=10^3$, $p=50$, hồi quy logistic có chính quy hóa; (b) $n=10^8$, $p=10^6$, cùng mô hình; (c) mạng, $n=p=10^7$.
-2. Giải thích vì sao Mệnh đề 06.9 không khẳng định mọi mạng đều cho $F$ không lồi.
-3. Định lý 06.34 (SGD trên hàm không lồi) chặn đại lượng nào, và không chặn đại lượng nào?
-4. Nêu giá trị giới hạn của vế phải cận trong Định lý 06.34 khi $K\to\infty$ với $\eta$ cố định, và cách chọn $\eta$ theo $K$.
+vì số hạng $\tfrac12v^\top Hv$ có mặt trong cả $\phi(\theta+v)$ lẫn $\phi(\theta-v)$ và triệt tiêu khi trừ. Với $v=\varepsilon\hat e_i$, thương sai phân bằng $(H\theta+\beta)_i=\frac{\partial\phi}{\partial\theta_i}(\theta)$, với mọi $\varepsilon>0$.
+
+**Câu (b).** Có. Đặt $u=\varepsilon\hat e_i$, $v=\varepsilon\hat e_j$ và $S=\phi(\theta+u+v)-\phi(\theta-u+v)-\phi(\theta+u-v)+\phi(\theta-u-v)$. Trong khai triển trên, các số hạng hằng có hệ số $1-1-1+1=0$, các số hạng bậc nhất có tổng $(H\theta+\beta)^\top\bigl((u+v)-(v-u)-(u-v)+(-u-v)\bigr)=0$, còn các số hạng bậc hai cho
+
+$$
+\begin{aligned}
+S&=\tfrac12(u+v)^\top H(u+v)\cdot2\\
+&\quad-\tfrac12(u-v)^\top H(u-v)\cdot2\\
+&=4u^\top Hv=4\varepsilon^2H_{ij},
+\end{aligned}
+$$
+
+dùng $(v-u)^\top H(v-u)=(u-v)^\top H(u-v)$. Vậy $S/(4\varepsilon^2)=H_{ij}=\frac{\partial^2\phi}{\partial\theta_i\partial\theta_j}$, kể cả khi $i=j$, với mọi $\varepsilon>0$.
+
+**Câu (c).** Theo định lý Taylor với phần dư Lagrange, có $t_+\in(t,t+\varepsilon)$ và $t_-\in(t-\varepsilon,t)$ để
+
+$$
+\begin{aligned}
+\phi(t\pm\varepsilon)&=\phi(t)\pm\varepsilon\phi'(t)\\
+&\quad+\tfrac{\varepsilon^2}2\phi''(t)\\
+&\quad\pm\tfrac{\varepsilon^3}6\phi'''(t_\pm).
+\end{aligned}
+$$
+
+Trừ hai đẳng thức rồi chia cho $2\varepsilon$:
+
+$$
+\begin{aligned}
+&\frac{\phi(t+\varepsilon)-\phi(t-\varepsilon)}{2\varepsilon}-\phi'(t)\\
+&\quad=\frac{\varepsilon^2}{12}\bigl(\phi'''(t_+)+\phi'''(t_-)\bigr).
+\end{aligned}
+$$
+
+Trung bình $\tfrac12\bigl(\phi'''(t_+)+\phi'''(t_-)\bigr)$ nằm giữa $\phi'''(t_-)$ và $\phi'''(t_+)$. Vì $\phi'''$ liên tục, định lý giá trị trung gian cho $t^\circ\in[t_-,t_+]\subset[t-\varepsilon,t+\varepsilon]$ với $\phi'''(t^\circ)$ bằng trung bình đó, nên sai số bằng $\tfrac{\varepsilon^2}6\phi'''(t^\circ)$ và có trị tuyệt đối không quá $\tfrac{\varepsilon^2}6\max_{[t-\varepsilon,t+\varepsilon]}\lvert\phi'''\rvert$. Khi $\varepsilon\to0$, sai số chia cho $\varepsilon^2$ tiến về $\tfrac16\phi'''(t)$. Sai phân trung tâm vì vậy có sai số chặt cụt bậc $\varepsilon^2$, nhỏ hơn bậc $\varepsilon$ của sai phân tiến (5.1); dòng **Kiểm tra lại** của Ví dụ 06.9 dùng đúng tính chính xác của câu (a) theo một tọa độ.
+
+**Kiểm tra lại.** Với $\phi(t)=t^3$, $t=1$: $\frac{(1+\varepsilon)^3-(1-\varepsilon)^3}{2\varepsilon}=\frac{6\varepsilon+2\varepsilon^3}{2\varepsilon}=3+\varepsilon^2$, nên sai số là $\varepsilon^2=\tfrac{\varepsilon^2}6\cdot6$, khớp $\phi'''\equiv6$. Với $\phi(t)=t^2$, sai số bằng $0$, khớp câu (a).
 :::
 
-::: hint Gợi ý Bài 11
-Ở câu 1, tính chi phí một bước theo bảng của Ví dụ 06.17 và dùng bảng lựa chọn ở Mục 7.2 của ghi chú. Ở câu 4, xét riêng hai số hạng $\tfrac{2\Delta_0}{\eta K}$ và $L\eta\sigma^2$ của cận, rồi dùng Hệ quả 06.35.
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 2; dựng cây tính toán của một hàm hợp và ghép đạo hàm cục bộ bằng quy tắc dây chuyền.
+
+::: exercise Bài tập 06.14 (Cây phân tích và quy tắc dây chuyền cho $\theta_2(1+e^{2\theta_1})$; Kupferschmid, Bài 25.8.58, tr. 846)
+Cho hàm $\phi(\theta)=\theta_2\bigl(1+e^{2\theta_1}\bigr)$ với $\theta=(\theta_1,\theta_2)^\top\in\mathbb R^2$.
+
+- **(a)** Vẽ một cây phân tích (parse tree), tức một đồ thị tính toán (Định nghĩa 06.9) có dạng cây, để tính giá trị của hàm.
+- **(b)** Viết biểu thức đạo hàm riêng của mỗi biến trung gian theo các đầu vào của phép toán sinh ra nó.
+- **(c)** Dùng quy tắc dây chuyền ghép các đạo hàm riêng đó để tìm $\nabla\phi(\theta)$.
 :::
 
-::: solution Lời giải Bài 11
-1. (a) Newton: một bước tốn $np^2+p^3=2{,}5\cdot10^6+1{,}25\cdot10^5\approx2{,}6\cdot10^6$ phép tính, và có hội tụ bậc hai cục bộ (Định lý 04.37). (b) SGD nhóm nhỏ với bước hằng chọn theo $K$ (Hệ quả 06.35). Giả thiết của bảo đảm là $F$ bị chặn dưới, gradient Lipschitz, gradient nhóm không chệch và chặn phương sai; mất mát logistic có chính quy hóa thỏa các giả thiết này. Bảo đảm là $O(1/\sqrt K)$ cho trung bình kỳ vọng bình phương chuẩn gradient; vì mục tiêu $\mu$-lồi mạnh, $F(\theta)-F^*\le\lVert\nabla F(\theta)\rVert^2/(2\mu)$ (Bổ đề 05b.8(b), tức Mệnh đề 04.26(b)), nên gradient nhỏ kéo theo giá trị gần tối ưu. Cách khác: khi biết $\mu$, bước giảm dần $\tfrac1{\mu(k+1)}$ cho tốc độ $O(1/k)$ theo kỳ vọng (Định lý 06.32, dòng 3 của bảng ở Mục 7.2); trang chiếu không trình bày định lý này. Lý do chính là chi phí một bước: hạ gradient đầy đủ tốn $np=10^{14}$, Newton tốn $np^2+p^3\approx10^{20}$, còn một bước SGD tốn $bp$. Chỉ báo bổ sung (so bậc cho SGD trên hàm lồi mạnh): theo Bottou và Bousquet (2011, Bảng 13.2), với $\kappa=10$ và độ chính xác $10^{-6}$, hai bậc thời gian bằng nhau khi $n$ trong khoảng $10^5$–$10^6$, và $n=10^8$ vượt xa bậc đó. (c) SGD nhóm nhỏ (Thuật toán 06.2) với lịch bước và dừng sớm (Thuật toán 06.3); Định lý 06.34 chỉ là định hướng nếu mạng dùng ReLU.
-
-2. Mệnh đề 06.9 là một phép kiểm tra tại một cặp cực tiểu toàn cục có hai đơn vị ẩn khác nhau. Trên dữ liệu khác, mọi cực tiểu có thể có các đơn vị trùng nhau; khi đó phép hoán vị không tạo cực tiểu mới và phép kiểm tra không kết luận.
-
-3. Định lý 06.34 chặn trung bình theo $k$ của kỳ vọng bình phương chuẩn gradient của dãy lặp. Nó không chặn khoảng cách tới một cực tiểu, không chặn giá trị $F$, không phân biệt điểm yên ngựa với cực tiểu, và không chặn $R$ của tham số được trả về theo tập xác thực (Nhận xét 06.36).
-
-4. Với $\eta$ cố định, số hạng $\tfrac{2\Delta_0}{\eta K}$ tiến về $0$ khi $K\to\infty$, còn số hạng $L\eta\sigma^2$ không phụ thuộc $K$; vế phải tiến về $L\eta\sigma^2$, nên cận không tiến về $0$. Muốn cận tiến về $0$, bước phải giảm theo $K$. Hệ quả 06.35 chọn $\eta=\min\{\tfrac1L,\sqrt{2\Delta_0/(L\sigma^2K)}\}$, tức $\eta$ tỉ lệ với $1/\sqrt K$ khi $K$ lớn; hai số hạng khi đó cùng bậc và cận là $O(1/\sqrt K)$.
-
-**Kiểm tra.** Ở câu 1(b): $10^8\cdot10^{12}+10^{18}=1{,}01\cdot10^{20}$.
+::: hint Gợi ý 1
+Đặt một biến trung gian cho mỗi phép toán cơ bản trong biểu thức.
 :::
 
-## Nguồn
+::: hint Gợi ý 2
+Ở (c), đi từ nút gốc về các đầu vào, nhân đạo hàm đã có của nút sau với đạo hàm cục bộ của nút đang xét.
+:::
 
-- Ian Goodfellow, Yoshua Bengio và Aaron Courville (2016), *Deep Learning*, MIT Press, mục 6.1 (nghiệm XOR (6.4)–(6.11) của Bài 1), mục 6.5 (lan truyền ngược), mục 7.8 (dừng sớm và (7.40)–(7.45) của Bài 9), mục 8.1–8.3.
-- Léon Bottou và Olivier Bousquet (2011), "The Tradeoffs of Large-Scale Learning", chương 13 trong Sra, Nowozin và Wright (biên tập), *Optimization for Machine Learning*, MIT Press, Bảng 13.2 (tr. 362), dùng ở Bài 11.
-- Ghi chú bài giảng Bài 06 và các ghi chú Bài 05b, 05c cho phát biểu và chứng minh của các định lý được dùng.
+::: solution Lời giải Bài tập 06.14
+**Câu (a).** Đặt các biến trung gian $v_1=2\theta_1$, $v_2=e^{v_1}$, $v_3=1+v_2$, $v_4=\theta_2v_3=\phi(\theta)$. Cây có các cạnh từ con lên cha:
 
-Mọi số liệu của các bài được tính lại bằng phân số chính xác hoặc đệ quy kỳ vọng; không có mô phỏng ngẫu nhiên.
+- $2\to v_1$ và $\theta_1\to v_1$;
+- $v_1\to v_2$;
+- $1\to v_3$ và $v_2\to v_3$;
+- $v_3\to v_4$ và $\theta_2\to v_4$.
+
+Nút gốc là $v_4$, các lá là $\theta_1$, $\theta_2$ và hằng số $2$, $1$.
+
+**Câu (b).** Các đạo hàm cục bộ là
+
+$$
+\begin{aligned}
+&\frac{\partial v_1}{\partial\theta_1}=2,\quad\frac{\partial v_2}{\partial v_1}=e^{v_1},\\
+&\frac{\partial v_3}{\partial v_2}=1,\\
+&\frac{\partial v_4}{\partial v_3}=\theta_2,\quad\frac{\partial v_4}{\partial\theta_2}=v_3 .
+\end{aligned}
+$$
+
+**Câu (c).** Theo Bổ đề 06.10 cho từng nút, đi ngược từ $v_4$:
+
+$$
+\begin{aligned}
+\frac{\partial\phi}{\partial v_3}&=\theta_2,\qquad\frac{\partial\phi}{\partial v_2}=\theta_2\cdot1,\\
+\frac{\partial\phi}{\partial v_1}&=\theta_2e^{v_1},\\
+\frac{\partial\phi}{\partial\theta_1}&=2\theta_2e^{2\theta_1},\\
+\frac{\partial\phi}{\partial\theta_2}&=v_3=1+e^{2\theta_1}.
+\end{aligned}
+$$
+
+Vậy $\nabla\phi(\theta)=\bigl(2\theta_2e^{2\theta_1},\ 1+e^{2\theta_1}\bigr)^\top$.
+
+**Kiểm tra lại.** Lấy đạo hàm trực tiếp: $\frac{\partial}{\partial\theta_1}\theta_2(1+e^{2\theta_1})=\theta_2\cdot2e^{2\theta_1}$ và $\frac{\partial}{\partial\theta_2}\theta_2(1+e^{2\theta_1})=1+e^{2\theta_1}$. Tại $\theta=(0,1)^\top$, cả hai cách cho $\nabla\phi=(2,2)^\top$.
+:::
+
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 2; chứng minh các công thức lan truyền ngược của mạng hai tầng với tầng ra softmax.
+
+::: exercise Bài tập 06.15 (Lan truyền ngược cho mạng hai tầng với tầng ra softmax; Murphy (2022), Bài 13.1, tr. 463–465)
+Cho mạng hai tầng của Định nghĩa 06.4 với tầng ra có $J$ thành phần, dùng cho phân loại $J$ lớp:
+
+$$
+\begin{aligned}
+z&=W_1x+b_1\in\mathbb R^m,\\
+h&=\sigma(z)\in\mathbb R^m,\\
+a&=W_2h+b_2\in\mathbb R^J,\\
+\hat y&=\operatorname{softmax}(a),\\
+\ell&=-\textstyle\sum_{k=1}^Jy_k\log\hat y_k,
+\end{aligned}
+$$
+
+với đầu vào $x\in\mathbb R^d$, $W_1\in\mathbb R^{m\times d}$, $b_1\in\mathbb R^m$, $W_2\in\mathbb R^{J\times m}$, $b_2\in\mathbb R^J$, $m$ đơn vị ẩn và nhãn $y\in\{0,1\}^J$ có đúng một thành phần bằng $1$. Hàm kích hoạt $\sigma$ là ReLU. Hàm softmax cho $\hat y_k=e^{a_k}/\sum_{l=1}^Je^{a_l}$, và $\ell$ là mất mát entropy chéo (cross-entropy) (Bài 02). Gradient theo một ma trận có cùng cỡ với ma trận đó. Tại điểm không có $z_j$ nào bằng $0$, gradient của $\ell$ theo $a$ và theo $z$ là
+
+$$
+\begin{aligned}
+\delta_a&=\nabla_a\ell=\hat y-y,\\
+\delta_z&=\nabla_z\ell=(W_2^\top\delta_a)\odot\mathbb 1[z>0].
+\end{aligned}
+$$
+
+Chứng minh
+
+$$
+\begin{aligned}
+&\nabla_{W_2}\ell=\delta_ah^\top,\quad\nabla_{b_2}\ell=\delta_a,\\
+&\nabla_{W_1}\ell=\delta_zx^\top,\quad\nabla_{b_1}\ell=\delta_z,\\
+&\nabla_x\ell=W_1^\top\delta_z .
+\end{aligned}
+$$
+:::
+
+::: hint Gợi ý 1
+Xét lần lượt ba nút $a$, $h$, $z$ theo thứ tự ngược của đồ thị.
+:::
+
+::: hint Gợi ý 2
+Mỗi nút là một phép affine $v=Mu+\beta$ hoặc một phép áp theo từng thành phần; dùng đúng trường hợp của Bổ đề 06.10.
+:::
+
+::: solution Lời giải Bài tập 06.15
+**Bước 1 (nút $a$).** $a=W_2h+b_2$ là trường hợp 2 của Bổ đề 06.10 với $M=W_2$, $u=h$, $\beta=b_2$ và $\delta_v=\delta_a$, nên
+
+$$
+\begin{aligned}
+&\nabla_{W_2}\ell=\delta_ah^\top,\quad\nabla_{b_2}\ell=\delta_a,\\
+&\delta_h=\nabla_h\ell=W_2^\top\delta_a .
+\end{aligned}
+$$
+
+**Bước 2 (nút $h$).** $h=\sigma(z)$ theo từng thành phần. Tại điểm không có $z_j=0$, $\sigma$ khả vi tại mọi $z_j$ với đạo hàm $\mathbb 1[z_j>0]$, nên trường hợp 1 của Bổ đề 06.10 cho $\nabla_z\ell=\mathbb 1[z>0]\odot\delta_h=(W_2^\top\delta_a)\odot\mathbb 1[z>0]$, đúng biểu thức $\delta_z$ đã cho.
+
+**Bước 3 (nút $z$).** $z=W_1x+b_1$ là trường hợp 2 với $M=W_1$, $u=x$, $\beta=b_1$ và $\delta_v=\delta_z$, nên $\nabla_{W_1}\ell=\delta_zx^\top$, $\nabla_{b_1}\ell=\delta_z$ và $\nabla_x\ell=W_1^\top\delta_z$.
+
+**Bước 4 (ghép).** Mỗi tham số chỉ ảnh hưởng tới $\ell$ qua đúng một nút ($W_2$, $b_2$ qua $a$; $W_1$, $b_1$, $x$ qua $z$), nên các đạo hàm ở Bước 1 và Bước 3 là các gradient cần tìm. Thuật toán 06.11 và Mệnh đề 06.12 xét tầng ra một chiều với mất mát $\ell(\cdot,y)$ khả vi bất kỳ; lời giải trên là bản $J$ chiều của chúng với mất mát entropy chéo.
+
+**Kiểm tra lại.** Dữ kiện $\delta_a$: vì $\sum_ky_k=1$, $\ell=-y^\top a+\log\sum_le^{a_l}$, nên $\partial\ell/\partial a_k=\hat y_k-y_k$. Với $J=2$, $a=(0,0)^\top$, $y=(1,0)^\top$: $\hat y=(\tfrac12,\tfrac12)^\top$, $\delta_a=(-\tfrac12,\tfrac12)^\top$, và $\partial\ell/\partial a_1=-1+\tfrac12=-\tfrac12$, khớp. Kích thước: $\delta_ah^\top\in\mathbb R^{J\times m}$ bằng cỡ $W_2$; $\delta_zx^\top\in\mathbb R^{m\times d}$ bằng cỡ $W_1$; $W_1^\top\delta_z\in\mathbb R^d$ bằng cỡ $x$.
+:::
+
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 5; giải bài toán chính quy hóa bậc hai qua phân rã giá trị kỳ dị và đọc hệ số co theo từng hướng.
+
+::: exercise Bài tập 06.16 (Chính quy hóa bậc hai qua phân rã giá trị kỳ dị; Boyd và Vandenberghe, Bài 6.7(a), tr. 346)
+Cho $A\in\mathbb R^{n\times p}$ có hạng $r_A$ và $y\in\mathbb R^n$, với phân rã giá trị kỳ dị (singular value decomposition, SVD) dạng rút gọn
+
+$$
+A=\sum_{i=1}^{r_A}\varsigma_i\,\zeta_i\xi_i^\top .
+$$
+
+Theo Định nghĩa 00.26 với $A=Q_1SQ_2^\top$, $\zeta_i\in\mathbb R^n$ và $\xi_i\in\mathbb R^p$ là cột thứ $i$ của $Q_1$ và $Q_2$, còn $\varsigma_i>0$ là phần tử $(i,i)$ của $S$, tức giá trị kỳ dị thứ $i$ (Định nghĩa 00.26 viết $s_i$). Với $\lambda>0$, chỉ ra cách tìm nghiệm của bài toán chính quy hóa bậc hai (còn gọi là chính quy hóa Tikhonov, Tikhonov regularization)
+
+$$
+\operatorname*{minimize}_{\theta\in\mathbb R^p}\ \lVert A\theta-y\rVert^2+\lambda\lVert\theta\rVert^2
+$$
+
+từ phân rã giá trị kỳ dị của $A$.
+:::
+
+::: hint Gợi ý 1
+Mục tiêu lồi chặt; viết điều kiện bậc nhất và biểu diễn $A^\top A$, $A^\top y$ theo $\varsigma_i$, $\zeta_i$, $\xi_i$.
+:::
+
+::: hint Gợi ý 2
+Viết $\theta=\sum_{i=1}^p\tilde\theta_i\xi_i$ theo các cột $\xi_1,\ldots,\xi_p$ của $Q_2$, rồi nhân điều kiện bậc nhất với từng $\xi_i^\top$.
+:::
+
+::: solution Lời giải Bài tập 06.16
+**Bước 1 (điều kiện bậc nhất).** Hessian của mục tiêu là $2(A^\top A+\lambda I)\succ0$. Do đó $A^\top A+\lambda I$ khả nghịch, mục tiêu lồi chặt nên có nhiều nhất một điểm cực tiểu (Định lý 01.34), và theo Hệ quả 01.26, nghiệm duy nhất của
+
+$$
+(A^\top A+\lambda I)\theta=A^\top y
+$$
+
+là điểm cực tiểu đó.
+
+**Bước 2 (viết theo các vector kỳ dị).** Từ phân rã và $\zeta_i^\top\zeta_k=0$ khi $i\ne k$, $\zeta_i^\top\zeta_i=1$:
+
+$$
+\begin{aligned}
+A^\top A&=\sum_{i=1}^{r_A}\varsigma_i^2\,\xi_i\xi_i^\top,\\
+A^\top y&=\sum_{i=1}^{r_A}\varsigma_i(\zeta_i^\top y)\,\xi_i .
+\end{aligned}
+$$
+
+Các cột $\xi_1,\ldots,\xi_p$ của $Q_2$ là một cơ sở trực chuẩn của $\mathbb R^p$; viết $\theta=\sum_{i=1}^p\tilde\theta_i\xi_i$. Nhân phương trình ở Bước 1 với $\xi_i^\top$:
+
+$$
+\begin{aligned}
+(\varsigma_i^2+\lambda)\tilde\theta_i&=\varsigma_i\,\zeta_i^\top y,\quad i\le r_A,\\
+\lambda\tilde\theta_i&=0,\quad i>r_A .
+\end{aligned}
+$$
+
+**Bước 3 (nghiệm).** Do đó
+
+$$
+\theta_\lambda=\sum_{i=1}^{r_A}\frac{\varsigma_i}{\varsigma_i^2+\lambda}\,(\zeta_i^\top y)\,\xi_i .
+$$
+
+Khi đã có phân rã, phép tính gồm $r_A$ tích vô hướng $\zeta_i^\top y$ trong $\mathbb R^n$ và tổ hợp $r_A$ vector $\xi_i$, tức bậc $(n+p)r_A$ phép nhân–cộng cho mỗi giá trị $\lambda$.
+
+**Bước 4 (so với Mệnh đề 06.40).** Đặt
+
+$$
+\theta^+=A^\dagger y=\sum_{i=1}^{r_A}\frac1{\varsigma_i}(\zeta_i^\top y)\,\xi_i ,
+$$
+
+với giả nghịch đảo $A^\dagger$ của Định nghĩa 00.27. Ta có $A^\top A\theta^+=\sum_{i\le r_A}\varsigma_i(\zeta_i^\top y)\xi_i=A^\top y$, nên $\theta^+$ là một nghiệm bình phương nhỏ nhất. Theo Định lý 00.9, các nghiệm khác của $A^\top A\theta=A^\top y$ bằng $\theta^+$ cộng một vector của $\operatorname{Ker}(A^\top A)=\operatorname{span}\{\xi_i:i>r_A\}$, trực giao với $\theta^+$, nên $\theta^+$ là nghiệm có chuẩn nhỏ nhất. Vì $A^\top(A\theta^+-y)=0$, khai triển $\lVert A(\theta-\theta^+)+(A\theta^+-y)\rVert^2$ cho
+
+$$
+\begin{aligned}
+&\tfrac12\lVert A\theta-y\rVert^2\\
+&\quad=\tfrac12(\theta-\theta^+)^\top A^\top A(\theta-\theta^+)\\
+&\qquad+\tfrac12\lVert A\theta^+-y\rVert^2 .
+\end{aligned}
+$$
+
+Mục tiêu của bài vì vậy bằng hai lần $Q(\theta)+\tfrac\lambda2\lVert\theta\rVert^2$ cộng một hằng số, với $Q$ của Mệnh đề 06.40, $H=A^\top A$, $\theta^*=\theta^+$ và trị riêng $\alpha_i=\varsigma_i^2$ theo $\xi_i$ với $i\le r_A$, $\alpha_i=0$ với $i>r_A$.
+
+- Khi $r_A=p$, mọi $\alpha_i>0$, và Mệnh đề 06.40 cho $\xi_i^\top\theta_\lambda=\frac{\alpha_i}{\alpha_i+\lambda}\,\xi_i^\top\theta^+$, khớp Bước 3.
+- Khi $r_A<p$, các hướng $\xi_i$ với $i>r_A$ có $\alpha_i=0$, nằm ngoài giả thiết $\alpha_j>0$ của mệnh đề. Theo các hướng đó, Bước 2 cho $\tilde\theta_i=0$, và $\theta^+$ cũng có thành phần $0$. Theo các hướng $i\le r_A$, Bước 3 cho thành phần của $\theta_\lambda$ bằng $\frac{\varsigma_i^2}{\varsigma_i^2+\lambda}$ lần thành phần của $\theta^+$, đúng tỉ lệ giữ của Mệnh đề 06.40.
+
+**Kiểm tra lại.** Với $n=p=1$, $A=\varsigma>0$ ($r_A=1$, $\zeta_1=\xi_1=1$): mục tiêu $(\varsigma\theta-y)^2+\lambda\theta^2$ có đạo hàm $2\varsigma(\varsigma\theta-y)+2\lambda\theta=0$, cho $\theta=\frac{\varsigma y}{\varsigma^2+\lambda}$, khớp công thức ở Bước 3.
+:::
+
+## Mức vận dụng
+
+**Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 2; đánh giá sai phân hữu hạn khi hàm không trơn và hệ quả cho phương pháp dựa trên gradient.
+
+::: exercise Bài tập 06.17 (Sai phân hữu hạn trên hàm không trơn; Kupferschmid, Bài 25.8.32, tr. 843)
+Giả sử sai phân hữu hạn được dùng để xấp xỉ gradient của một hàm không trơn $\phi$.
+
+- **(a)** Mô tả các cách gradient xấp xỉ khác gradient đúng, và cho một ví dụ.
+- **(b)** So sánh khả năng giải một bài toán không trơn của một phương pháp dựa trên gradient khi dùng đạo hàm giải tích và khi dùng xấp xỉ sai phân hữu hạn; nêu một lập luận hoặc một ví dụ làm căn cứ.
+:::
+
+::: hint Gợi ý 1
+Xét $\phi(\theta)=\lvert\theta\rvert$ trên $\mathbb R$ với bước sai phân $\varepsilon$, tại $\theta=0$ và tại các điểm $\theta$ với $\lvert\theta\rvert<\varepsilon$.
+:::
+
+::: hint Gợi ý 2
+Ở (b), so dãy hạ gradient bước hằng trên $\phi(\theta)=\lvert\theta\rvert$ khi dùng $\phi'(\theta)=\operatorname{sign}(\theta)$ và khi dùng sai phân trung tâm.
+:::
+
+::: solution Lời giải Bài tập 06.17
+**Câu (a).** Khi $\phi$ có điểm gãy, thương sai phân dùng giá trị của $\phi$ ở hai phía của điểm gãy, nên nó có thể khác đạo hàm cả về độ lớn lẫn về dấu, kể cả tại các điểm mà $\phi$ khả vi. Ví dụ với $\phi(\theta)=\lvert\theta\rvert$ và bước $\varepsilon>0$:
+
+- tại $\theta=0$, $\phi$ không khả vi; sai phân tiến cho $\frac{\lvert\varepsilon\rvert-0}{\varepsilon}=1$, sai phân lùi cho $-1$, sai phân trung tâm cho $0$, nên giá trị trả về do công thức quyết định;
+- với $\lvert\theta\rvert\le\varepsilon$, sai phân trung tâm bằng $\frac{(\theta+\varepsilon)-(\varepsilon-\theta)}{2\varepsilon}=\frac\theta\varepsilon$, trong khi $\phi'(\theta)=\operatorname{sign}(\theta)$ khi $\theta\ne0$; với $\varepsilon=0{,}1$, $\theta=0{,}025$, xấp xỉ là $0{,}25$ thay vì $1$;
+- với $-\varepsilon<\theta<0$, sai phân tiến bằng $\frac{(\theta+\varepsilon)+\theta}{\varepsilon}=1+\frac{2\theta}\varepsilon$; với $\varepsilon=0{,}1$, $\theta=-0{,}025$, xấp xỉ là $0{,}5$, trái dấu với $\phi'(\theta)=-1$.
+
+Hàm ReLU $\sigma(z)=\tfrac12(z+\lvert z\rvert)$ có cùng hiện tượng tại $z=0$, nơi lan truyền ngược dùng quy ước $\sigma'(0)=0$ (Nhận xét 06.13).
+
+**Câu (b).** Xét hạ gradient bước hằng $\eta=0{,}3$ trên $\phi(\theta)=\lvert\theta\rvert$ từ $\theta_0=1$.
+
+- Với đạo hàm giải tích $\operatorname{sign}(\theta)$: dãy là $1$; $0{,}7$; $0{,}4$; $0{,}1$; $-0{,}2$; $0{,}1$; $-0{,}2$; …, dao động mãi giữa $0{,}1$ và $-0{,}2$ và không tiến về điểm cực tiểu $0$.
+- Với sai phân trung tâm bước $\varepsilon=0{,}2$: ngoài khoảng $\lvert\theta\rvert<\varepsilon$ xấp xỉ bằng $\operatorname{sign}(\theta)$, trong khoảng đó bằng $\theta/\varepsilon$, đúng là đạo hàm của hàm trơn hóa $\tfrac{\theta^2}{2\varepsilon}+\tfrac\varepsilon2$. Dãy là $1$; $0{,}7$; $0{,}4$; $0{,}1$, rồi $\theta_{k+1}=(1-\tfrac\eta\varepsilon)\theta_k=-\tfrac12\theta_k$, tức $-0{,}05$; $0{,}025$; … $\to0$.
+
+Trên $\phi(\theta)=\lvert\theta\rvert$ với bước hằng $0{,}3$, đạo hàm giải tích cho dãy dao động, còn sai phân trung tâm cho dãy hội tụ, vì sai phân trung tâm là gradient của một hàm trơn gần $\phi$. Đổi lại, mỗi gradient xấp xỉ tốn $2p$ lần tính $\phi$ thay vì một lần lan truyền ngược (Mệnh đề 06.14), và theo câu (a), gần điểm gãy hướng xấp xỉ có thể sai dấu. Với mạng ReLU có rất nhiều điểm gãy, huấn luyện dùng gradient của lan truyền ngược kèm quy ước $\sigma'(0)=0$.
+
+**Kiểm tra lại.** Tại $\theta=0{,}025$, $\varepsilon=0{,}1$: $\frac{\lvert0{,}125\rvert-\lvert-0{,}075\rvert}{0{,}2}=\frac{0{,}05}{0{,}2}=0{,}25=\frac\theta\varepsilon$. Dãy dùng $\operatorname{sign}$: $0{,}1-0{,}3=-0{,}2$ và $-0{,}2+0{,}3=0{,}1$, nên dãy lặp lại hai giá trị này.
+:::
+
+## Tài liệu tham khảo
+
+- Kupferschmid, Michael (2023), *Introduction to Mathematical Programming*, first edition, giấy phép CC BY 4.0:
+  - §25.6.1–25.6.4 (tr. 820–827): sai phân tiến, sai phân trung tâm, chi phí và chọn bước sai phân;
+  - mục Exercises 25.8: Bài 25.8.32 (tr. 843), 25.8.35(d)(e), 25.8.39 và 25.8.42 (tr. 844), 25.8.58 (tr. 846).
+- Murphy, Kevin P. (2022), *Probabilistic Machine Learning: An Introduction*, MIT Press, bản trực tuyến của tác giả, mục Exercises của Chương 13 (§13.7):
+  - Bài 13.1 (Backpropagation for a MLP, tr. 463–465).
+- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Cambridge University Press, mục Exercises của Chương 6:
+  - Bài 6.7(a) (Bi-criterion optimization with Euclidean norms, tr. 346).

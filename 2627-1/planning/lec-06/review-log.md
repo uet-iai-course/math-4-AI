@@ -1100,3 +1100,32 @@ Goodfellow và cộng sự (2016) §6.5, §7.8 (tr. 247), §8.1–8.3 (tr. 279, 
 ### Kiểm của điều phối viên và trình duyệt
 
 forward_refs 0; bộ đếm 06.1–06.41, Ví dụ 06.1–06.22, Tình huống 06.1–06.3, Bài tập 06.1–06.11 liên tục, 20 chứng minh; không lệnh TeX hỏng; đồng bộ `--check`, `git diff --check` đạt. Playwright `material-viewer.html?doc=materials/lec-06/lecture-note.md&deck=lecture-06-mo-rong-mo-hinh-va-du-lieu.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang trang; 0/64 công thức tràn ở 390 px; đã xem ảnh 390 (Kiểm tra lại sai phân trung tâm và hình lan truyền ngược, hình rộng cuộn trong khung theo `material-viewer-course.css`).
+
+## Tệp bài tập theo chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: U2, U3 của `prompt_fix_lecture_notes_00_07.md`; mẫu `materials/lec-05/exercises.md`. `exercises.md` cũ (11 bài tự dựng) bỏ theo U2.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`/`SendMessage`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập danh sách và soạn, sửa hai vòng (cùng tác tử soạn ghi chú) | medium | 6 bài; `exercises.md`; câu liên kết ở ghi chú |
+| Rà toán (cùng tác tử rà toán ghi chú); kiểm lại một vòng | high | 0/0/0/4; kiểm lại: 0 lỗi toán, 2 nhẹ về đề (F1, F2) |
+| Rà sư phạm–văn phong, `no-ai-slop` Detect; kiểm lại một vòng | high | 0/0/4/8; kiểm lại: 6 nhẹ |
+| Rà sinh viên | high | 0/0/3/7 |
+
+### Quyết định
+
+- 6 bài 06.12–06.17: Kupferschmid (2023) 25.8.35(d)(e) (tr. 844), 25.8.39 gộp 25.8.42 (tr. 844), 25.8.58 (tr. 846), 25.8.32 (tr. 843); Murphy (2022) 13.1 (tr. 463–465); Boyd và Vandenberghe (2004) 6.7(a) (tr. 346). Năm bài tự giải đủ bước (sách không có lời giải), người rà toán giải lại độc lập.
+- Không dùng: Boyd 3.16 (đã dùng ở Bài tập 01.30), Koller 2.11.
+- Chỉ đề sách (U2): đề 06.13(c) giữ yêu cầu "tỉ lệ với $\varepsilon^2$" của Kupferschmid (dạng $\tfrac{\varepsilon^2}6\phi'''(t^\circ)$ chỉ ở lời giải); 06.15 cho sẵn $\delta_a$, $\delta_z$ như Murphy (13.121), (13.122), chỉ thêm định nghĩa softmax và entropy chéo để đề tự chứa. Công thức sai phân của Kupferschmid §25.6.1–25.6.2 chép vào đề 06.12, 06.13.
+- Mục tiêu không có bài giáo trình (dựa vào Bài tập 06.1–06.11 trong ghi chú): mục tiêu 1, 3, 4, 6 toàn bộ; mục tiêu 5 phần định lý hội tụ của SGD và ngân sách (chỉ vế chính quy hóa bậc hai có 06.16).
+
+### Lỗi trong giáo trình (tệp không nhắc)
+
+- Murphy (2022) 13.1: hai chữ $U$ (13.114) và $V$ (13.116) cho cùng một ma trận.
+- Lời giải Boyd 6.7: cực đại của $\sigma/(\delta+\sigma^2)$ ghi $1/(1+\delta)$ tại $\sigma=\delta$; đúng là $\tfrac1{2\sqrt\delta}$ tại $\sigma=\sqrt\delta$ (ngoài đề; tệp không dùng).
+
+### Kiểm của điều phối viên và trình duyệt
+
+Bài tập 06.12–06.17 liên tục; ghi chú chỉ thêm một câu liên kết; forward_refs 0 cả hai tệp; đồng bộ `--check`, `git diff --check` đạt; `index.html` đã có liên kết. Playwright `material-viewer.html?doc=materials/lec-06/exercises.md&deck=lecture-06-mo-rong-mo-hinh-va-du-lieu.html`, 1600×900, 390×844, `file://`: 0 `.katex-error`, 0 chữ đỏ, 0 lỗi console, 0 request lỗi, không tràn ngang; 0/21 công thức tràn ở 390 px. `exercises.md` 3 221 âm tiết; ghi chú 26 547.
