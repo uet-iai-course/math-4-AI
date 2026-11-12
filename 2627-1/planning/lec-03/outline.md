@@ -1,5 +1,35 @@
 # Dàn ý Bài 03 — Đối ngẫu Lagrange
 
+## Ghi chú bài giảng viết lại theo mẫu SLT (2026-11-12)
+
+Ghi chú `materials/lec-03/lecture-note.md` được viết lại theo `planning/notes-10-14-slt-template.md` (Q1–Q15) và quyết định U1–U4 của goal; kế hoạch và quyết định Q03-1 đến Q03-10 của điều phối viên lưu trong nhật ký phiên. Bảng số cũ → mới: `map-lec-03.md`. Phần "Phạm vi và tiêu chí hoàn thành" trở xuống là dàn ý deck, giữ nguyên.
+
+**Câu hỏi trung tâm.** Với một bài toán tối ưu có ràng buộc, làm thế nào sinh cận dưới cho giá trị tối ưu từ chính các hàm của bài toán, khi nào cận tốt nhất bằng giá trị tối ưu, và hệ điều kiện nào cho nghiệm cùng nhân tử mà không cần tính cận đó.
+
+**Câu hỏi mở đầu.** Bài toán $\min x^2+1$ với $(x-2)(x-4)\le0$; với $\lambda\ge0$ nào giá trị nhỏ nhất của $x^2+1+\lambda(x-2)(x-4)$ bằng $p^*=5$. Câu trả lời hấp dẫn: mọi $\lambda$ để điểm cực tiểu khả thi (tức $\lambda\ge2$). Câu trả lời ở câu đọc sau Mệnh đề 03.27 và §10.5: chỉ $\lambda=2$ (bù trừ); $\lambda=8$ cho $g(8)=1$.
+
+| Mục | Nội dung | Khối |
+|---|---|---|
+| Đoạn dẫn, Câu hỏi mở đầu, Mục tiêu (6), Tiên quyết (+ 3 câu hỏi ôn nhanh) | kết quả kế thừa Bài 00–02 | — |
+| 1. Thiết lập bài toán | bài toán gốc (1.1), sáu thành phần của bài toán chứng nhận | — |
+| 2. Ký hiệu và giả thiết | bảng ký hiệu; giả thiết (Đ1)–(Đ5) và giả thiết về dữ liệu | — |
+| 3. Ví dụ xuyên suốt | bài toán một biến trên đoạn $[2,4]$, nhãn (3.1) | Ví dụ 03.1 |
+| 4. Chứng nhận tối ưu và cận dưới (4.1–4.3) | cận dưới, cận khít/cận lỏng, khoảng chứng nhận | 03.1–03.3; Ví dụ 03.2; Bài tập 03.1 |
+| 5. Hàm và bài toán đối ngẫu Lagrange (5.1–5.4) | hàm Lagrange (5.1), hàm đối ngẫu (5.2), đối ngẫu yếu (5.3), bài toán đối ngẫu (5.4), đối ngẫu quy hoạch tuyến tính | 03.4–03.11; Ví dụ 03.3–03.6; Bài tập 03.2–03.3 |
+| 6. Đối ngẫu mạnh và điều kiện Slater (6.1–6.4) | khoảng dương, độ dư, điều kiện Slater (6.1), bổ đề tách, định lý Slater (6.2), giới hạn | 03.12–03.17; Ví dụ 03.7–03.11; Bài tập 03.4–03.5 |
+| 7. Hình học của đối ngẫu (7.1–7.3) | tập giá trị, tập trên, đường cận, siêu phẳng đỡ; bài toán nhiễu (7.1), độ nhạy (7.2), (7.3) | 03.18–03.25; Ví dụ 03.12–03.15; Bài tập 03.6 |
+| 8. Điều kiện KKT (8.1–8.4) | bù trừ, hệ KKT (8.1), tính cần và tính đủ; ràng buộc chặn và số hạng phạt; máy vector hỗ trợ (8.2), (8.3) | 03.26–03.38; Ví dụ 03.16–03.19; Bài tập 03.7–03.9 |
+| 9. Tổng hợp: quy trình chứng nhận bằng đối ngẫu | Thuật toán 03.39, bảng giả thiết – kết luận | 03.39; Ví dụ 03.20; Bài tập 03.10 |
+| 10. Ý nghĩa, tác động và giới hạn | ba tình huống (tình huống thứ ba vi phạm tính lồi), ứng dụng, tóm tắt và câu trả lời câu hỏi mở đầu | Tình huống 03.1–03.3 |
+| 11. Bài tập | danh sách 03.1–03.10; 03.11–03.17 theo ba mức; liên kết `exercises.md` thêm ở giai đoạn 2 | Bài tập 03.11–03.17 |
+| 12. Câu hỏi cuối buổi và cầu nối | $\min x_1^2+x_2^2$, $x_1+x_2\ge2$ (bài toán cuối buổi Bài 02): đối ngẫu, Slater, KKT, độ nhạy; cầu nối Bài 04, Bài 07 | — |
+| 13. Tài liệu đọc | Boyd và Vandenberghe (2004) ch. 5, §2.5.1, §8.6.1; Murphy (2022) §3.4.4, §8.5, §17.3; MIT 6.079 Lecture 5; Rudin (1976) | — |
+| Phụ lục A | chứng minh Bổ đề 03.14 | — |
+
+**Thay đổi so với ghi chú cũ.** Hai thuật toán vào bộ đếm chung (Thuật toán 03.1 → 03.36, 03.2 → 03.39), nên Mệnh đề 03.36 → 03.37, Nhận xét 03.37 → 03.38; mọi số 03.1–03.35 giữ nguyên. Nhãn công thức đánh lại theo mục mới. Thuật ngữ theo deck: "đường cận" (đường đỡ khi tiếp xúc), "cận khít", "cận lỏng". Ký hiệu: $J$ thay $E$; $w_0$ (hệ số chặn), $\eta_i$, $\Psi$ cho máy vector hỗ trợ; $w(0)$ cho nghiệm bình phương nhỏ nhất; $\rho_{\mathrm{lo}},\rho_{\mathrm{hi}},\rho_{\mathrm{mid}}$; $\vartheta$ cho trọng số tổ hợp lồi; $\ge$ thay $\succeq$ cho vector; $\sigma_j$ trong Ví dụ 03.7 và Nhận xét 03.7; $(\tilde\lambda,\tilde\nu,\kappa)$, $\gamma$ trong chứng minh Định lý 03.15; $\mathcal S_1,\mathcal S_2,\zeta,\zeta',\bar e,\mathcal U,\mathcal H_e$ trong Bổ đề 03.14; $\pi,\theta_i,\nu_1,\nu_2,\omega$ trong Bài tập 03.15. Định nghĩa 03.29, Định lý 03.30 phát biểu cho $D$ mở; Định lý 03.32 cho $D$ mở, lồi (Boyd §5.5.3). Bỏ: SMO/Platt, phương pháp điểm trong, nhánh – cận, hạt nhân, trường hợp $X$ thiếu hạng, câu Nocedal–Wright, nón pháp tuyến $N_D$. Độ nhạy (§7.3) giữ dù deck không có. Hai SVG chỉ dùng trong ghi chú được sửa tại chỗ: `kkt-active-projection.svg` (ô khả thi gốc $Ax^*=b$, ô dừng $\nabla_xL=0$), `dual-geometry.svg` (nhãn "Tập trên A", tiêu đề "đường cận").
+
+---
+
 **Trạng thái:** bản nội dung 57 trang, 6 mạch (47 trang trước đợt sửa văn phong 2026-10-12; thêm 5 trang tiêu đề mạch, 1 trang chứng minh tách và 4 trang lời giải mẫu); đã công bố trên chỉ mục.
 
 ## Phạm vi và tiêu chí hoàn thành

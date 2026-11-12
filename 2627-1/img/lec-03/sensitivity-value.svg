@@ -9,9 +9,9 @@
   <text x="171" y="184" font-size="18" fill="#2e7d32">p*(0)=5</text>
   <text x="125" y="230" font-size="18" fill="#b15a2b">5−2u</text>
   <line x1="560" y1="278" x2="560" y2="228" stroke="#16706a" stroke-width="2" stroke-dasharray="5 4"/>
-  <text x="548" y="220" text-anchor="end" font-size="16" fill="#16706a">u=8: hoạt động, λ*=0</text>
-  <text x="548" y="252" text-anchor="end" font-size="15" fill="#44516a">u&gt;8: không hoạt động</text>
-  <text x="104" y="52" text-anchor="end" font-size="17" fill="#a33a1f">u&lt;−1:</text><text x="104" y="74" text-anchor="end" font-size="17" fill="#a33a1f">vô nghiệm</text>
+  <text x="548" y="220" text-anchor="end" font-size="16" fill="#16706a">u=8: dấu bằng, nhân tử 0</text>
+  <text x="548" y="252" text-anchor="end" font-size="15" fill="#44516a">u&gt;8: ràng buộc dư</text>
+  <text x="104" y="52" text-anchor="end" font-size="17" fill="#a33a1f">u&lt;−1:</text><text x="104" y="74" text-anchor="end" font-size="17" fill="#a33a1f">không</text><text x="104" y="96" text-anchor="end" font-size="17" fill="#a33a1f">khả thi</text>
   <text x="110" y="320" text-anchor="middle" font-size="17">−1</text><text x="160" y="320" text-anchor="middle" font-size="17">0</text><path d="M160 300v6" stroke="#222" stroke-width="2"/><text x="560" y="320" text-anchor="middle" font-size="17">8</text>
   <text x="693" y="320" font-size="18">u</text><text x="118" y="24" font-size="18">p*(u)</text>
 </svg>

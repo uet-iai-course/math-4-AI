@@ -1521,3 +1521,75 @@ Không có mục bị bác bỏ.
 **Quyết định của master:** chấp nhận (xem quyết định điều phối viên bên dưới).
 
 **Quyết định của điều phối viên (Fable 5.1, 2026-10-12):** chấp nhận. Đã đối chiếu diff mặt trang với decisions-03 và decisions-common; kiểm Bước 1 của chứng minh Slater (tập lồi C các bộ giá trị đạt được rời nửa đường B dưới p*, định lý tách) và 'Ý nghĩa' ở S02-05c (cực đại g tương đương cực tiểu hàm lồi −g); tự chạy deckcheck trên S02-01, S02-04, S02-05c, S03-01, S03-02, S03-03, S03-03a, S04-01b, S05-05b, S07-01: 0 lỗi, 0 FLAG; xem ảnh S03-03a, S02-04 ở 1600×900. Việc đổi 'nhánh' → 'trường hợp' trong học liệu (31 chỗ) được chấp nhận theo bảng thuật ngữ 2026-10-11. Gói học liệu cục bộ đồng bộ ở commit cuối đợt.
+
+## Viết lại ghi chú theo mẫu SLT và chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: `prompt_fix_lecture_notes_00_07.md` (U1–U4, Q-A đến Q-G), `planning/notes-10-14-slt-template.md` Q1–Q15, "The author's voice" của `../CLAUDE.md`; báo cáo phân tích `prompt_fix_00_07_audit/m4ai-audit-03-04.md` (không theo dõi). Mục này không xóa phát hiện cũ.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập kế hoạch (chỉ đọc) | medium | `plan.md` 15 phần |
+| Soạn, rồi biên tập ba vòng (cùng tác tử) | medium | ghi chú, `outline.md`, `map-lec-03.md`, SVG chỉ của ghi chú |
+| Rà 1/5 sinh viên năm hai | high | 0 chặn, 2 nghiêm trọng, 9 trung bình, 20 nhẹ |
+| Rà 2/5 chuyên gia miền | high | 0 chặn, 1 nghiêm trọng, 6 trung bình, 17 nhẹ |
+| Rà 3/5 độ chính xác toán; kiểm tra lại hai vòng | high | 0/0/5/14; vòng 1: 1 chặn bàn giao (xem dưới), 5 nhẹ; vòng 2: 1 nhẹ |
+| Rà 4/5 phê bình học thuật–sư phạm, `no-ai-slop` Detect | high | 0 chặn, 1 nghiêm trọng, 16 trung bình, 28 nhẹ |
+| Rà 5/5 mạch và liên kết; kiểm tra lại hai vòng | high | 0/0/7/12; vòng 1: 1 chặn bàn giao, 4 trung bình, 7 nhẹ; vòng 2: 0 |
+
+### Quyết định khi duyệt kế hoạch
+
+- **Q03-1.** Câu hỏi mở đầu dùng bài toán một biến (ví dụ xuyên suốt); câu trả lời tường minh sau Mệnh đề 03.27 (phần 2) và nhắc ngắn ở §10.5.
+- **Q03-2.** "Đường cận" theo deck; "cận khít (tight)" theo Boyd §5.2.3, tr. 226; "cận lỏng (loose bound)" lấy từ deck (Boyd chỉ có "tight").
+- **Q03-3.** Ký hiệu: $J$ thay $E$ (khớp Bài 02), $\rho$ hệ số phạt, $z_i$, $w_0$ cho máy vector hỗ trợ, biên có dấu $\omega_i$, $\mathbf 1$; nhãn giả thiết (Đ1)–(Đ5).
+- **Q03-4.** Chứng minh Bổ đề 03.14 chuyển vào Phụ lục A.
+- **Q03-5.** Giữ mục độ nhạy (Boyd §5.6) dù deck đã bỏ mạch này.
+- **Q03-6.** KKT phát biểu cho $D$ mở (Định nghĩa 03.29, Định lý 03.30) và $D$ mở, lồi (Định lý 03.32), căn cứ Boyd §5.5.3, tr. 243–244.
+- **Q03-7.** Bỏ câu không có nguồn trong `sources/`: SMO/Platt, phương pháp điểm trong, nhánh – cận, hạt nhân, Nocedal–Wright; sau rà soát bỏ thêm "ràng buộc công bằng", "ngân sách tính toán", "chọn đặc trưng".
+- **Q03-8.** Danh sách bài giáo trình giai đoạn 2 theo kế hoạch (16 bài từ 03.18).
+- **Q03-9, Q03-10.** SVG chỉ của ghi chú sửa tại chỗ, hình chung deck tạo bản sao `-note`; `materials/README.md` dòng 15 ghi "Định lý 03.2" (đúng là 03.8) nằm ngoài phạm vi ghi, báo người dùng.
+
+### Quyết định sau năm lượt rà — mọi phát hiện: chấp nhận, trừ các chỗ ghi "giữ"/"bác bỏ"
+
+| Mức độ | Vị trí (bản nháp 1) | Vấn đề | Quyết định |
+|---|---|---|---|
+| nghiêm trọng | toàn bài | "Chặt" mang hai nghĩa ngược nhau ($f_i<0$ và $f_i=0$) | chấp nhận: "khả thi ngặt (strictly feasible)" cho $f_i<0$; "hoạt động (active), còn gọi là chặt (tight)" cho $f_i=0$, nêu một lần ở Định nghĩa 03.26 |
+| nghiêm trọng | 941, Nhận xét 03.17 | Đối ngẫu mạnh của bài toán bậc hai một ràng buộc bậc hai bỏ giả thiết Slater (Boyd tr. 229) | chấp nhận; điều phối viên tự kiểm phản ví dụ $\min x_1x_2$ với $x_1^2\le0$: $p^*=0$, $g\equiv-\infty$ |
+| trung bình | 1455 | Câu trả lời câu hỏi mở đầu chưa tường minh, viện bù trừ dù $f_1(2)=0$ | chấp nhận: "chỉ $\lambda=2$" theo Mệnh đề 03.27 phần 2 |
+| trung bình | 1930, Thuật toán 03.39 | Định lý 03.15 không bảo đảm nhân tử chứng nhận (cần thêm nghiệm gốc), chỉ cho $D=\mathbb R^n$ | chấp nhận |
+| trung bình | Hệ quả 03.31, các chỗ dẫn Hệ quả 03.24 | Thiếu giả thiết khả vi | chấp nhận |
+| trung bình | 1126 | Giải thích sai nguyên nhân cận lỏng ($\lambda=3$: điểm tiếp xúc khả thi mà $g(3)=4{,}75<5$) | chấp nhận |
+| trung bình | 1351, 1913 | Nhận xét 03.25 ý 2 và 03.38 ý 2 lập luận sai hoặc dẫn sai phạm vi | chấp nhận: viết lại; Murphy (2022) §17.3.2 chỉ cho máy lề cứng; (8.2) có $d+1+N$ biến |
+| trung bình | Tình huống 03.2 | $u$ trùng mức ràng buộc; thiếu sai số $\varepsilon$ để tái lập 8 lần lặp; tiêu đề "từ … tới" | chấp nhận: $\varepsilon=0{,}05$ (8 lần lặp đúng khi $0{,}03125\le\varepsilon<0{,}0625$) |
+| trung bình | hình `lagrangian-family`, `dual-function`, `sensitivity-value`, `kkt-active-projection` | Nhãn dùng Slater, $g$, $\lambda^*$, $d^*$, "hoạt động" trước định nghĩa; "khả thi chặt" | chấp nhận: sửa nhãn (hình chỉ của ghi chú); `slater-interior` dùng chung deck: bản sao `slater-interior-note.svg` |
+| trung bình | Ví dụ 03.9, 03.12 | Không chép $f_0$, $f_1$ | chấp nhận |
+| trung bình | Bài tập 03.2, Nhận xét 03.38(3), Tình huống 03.3 | Trùng Bài 02 không dẫn (Q-D) | chấp nhận: dẫn Bài tập 02.6, Tình huống 02.2, 02.3 |
+| trung bình | lặp ý | "Kết quả không cần tính lồi" (8 lần), "điểm đạt không khả thi" (7 lần), liên hệ Mệnh đề 02.11 (8 lần); đoạn nối lặp ở ranh giới mục | chấp nhận: cắt nhóm ✂ A |
+| — | Danh sách mục tiêu Bài tập 03.11–03.17 | Đề xuất chuyển lên nối danh sách 1–10 | giữ chỗ cũ: chuyển lên sinh 7 tham chiếu tiến (như Bài 02) |
+| — | Nhận xét 03.21(3), Nhận xét 03.38(2) | Đề xuất cắt | giữ (nội dung của nhầm lẫn được nêu; viết lại theo quyết định) |
+
+**Lỗi chặn bàn giao sinh ra ở vòng biên tập 1 (đã sửa vòng 2):** phép thay ký hiệu $m_i\to\omega_i$ khớp cả chuỗi con trong `\sum_i`, sinh `\su\omega_i` ở 15 dòng (Mệnh đề 03.37 và chứng minh, Tình huống 03.1, Bài tập 03.15–03.17). Cả hai người rà vòng 1 phát hiện độc lập; điều phối viên xác nhận bằng grep. Sửa về `\sum_i`; so tập lệnh TeX của bản cuối với bản nháp 1: chỉ thêm `\det` (có chủ ý). Bài học quy trình: KaTeX của viewer chạy với `throwOnError: false`, nên lệnh không tồn tại hiển thị thành chữ đỏ chứ không thành `.katex-error`; điều phối viên bổ sung phép đếm chữ đỏ vào kịch bản kiểm và chạy lại cho mọi tệp Bài 00–03: 0 chữ đỏ.
+
+### Độ dài
+
+Ghi chú cũ 31 113 âm tiết; bản nháp 1: 27 952; bản cuối: khoảng 27 250, dưới trần 28 000.
+
+### Nguồn gốc số liệu và đính chính
+
+- Mọi số của ví dụ xuyên suốt và các ví dụ giữ từ ghi chú cũ và deck; tính lại độc lập (người soạn và người rà toán; bảng chia đôi, $g$ tại $0,1,2,3,8$, $J^*\approx8{,}94128$, $\lambda^*\approx5{,}4693$, cận $8{,}4$ thấp hơn $J^*(0{,}5)$ một lượng $0{,}54$).
+- Đính chính: Nhận xét 03.17 (Slater); Thuật toán 03.39 bước 3; Hệ quả 03.31; Nhận xét 03.25, 03.38; nguyên nhân cận lỏng; Định lý 03.15(b) ghi "chứng minh được dẫn ở Boyd tr. 272 (Rockafellar)".
+
+### Giáo trình đã tham khảo
+
+Boyd và Vandenberghe (2004) ch. 5 (§5.1–5.6; §5.2.1 tr. 225, §5.2.3 tr. 226, tr. 229, tr. 232, §5.5.3 tr. 243–244, tr. 272), §8.6.1 tr. 423–427; Murphy (2022) §3.4.4, §10.3.6, §17.3.2; Rudin (1976) Định nghĩa 2.32 (như ghi chú cũ).
+
+### Lệch với deck (Q-F)
+
+- Thuật ngữ: "khả thi ngặt"/"hoạt động" thay "chặt" hai nghĩa; nhãn "Điểm Slater" trong `slater-interior.svg` của deck (ghi chú dùng bản sao "Điểm dư").
+- Ký hiệu: $J$ thay $E$; biên có dấu $\omega_i$; nhãn giả thiết (Đ1)–(Đ5).
+- Nội dung: mục độ nhạy giữ trong ghi chú (deck đã bỏ mạch này); KKT phát biểu cho miền mở.
+
+### Kiểm của điều phối viên và trình duyệt
+
+forward_refs 0; bộ đếm 03.1–03.39, Ví dụ 03.1–03.20, Tình huống 03.1–03.3, Bài tập 03.1–03.17 liên tục; đồng bộ `--check`, `git diff --check` đạt. Năm SVG sửa tại chỗ (`dual-function`, `dual-geometry`, `kkt-active-projection`, `lagrangian-family`, `sensitivity-value`) không có trong deck nào (grep). Playwright `material-viewer.html?doc=materials/lec-03/lecture-note.md&deck=lecture-03-doi-ngau-lagrange.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang; bản in chứa đủ 18 chứng minh. Bản cuối 27 251 âm tiết.

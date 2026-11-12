@@ -16,7 +16,7 @@
   <circle class="point" cx="190" cy="224" r="9"/><circle cx="410" cy="224" r="9" fill="#fff" stroke="#b44b20" stroke-width="4"/>
   <path d="M300 215l9 9-9 9-9-9Z" fill="#fff8e6" stroke="#16706a" stroke-width="3"/>
   <text class="label" x="190" y="256" text-anchor="middle">x=2</text><text class="label" x="300" y="256" text-anchor="middle">x=3</text><text class="label" x="410" y="256" text-anchor="middle">x=4</text>
-  <text class="note" x="300" y="288" text-anchor="middle">đoạn xanh: tập khả thi; hình thoi: khả thi chặt</text>
+  <text class="note" x="300" y="288" text-anchor="middle">đoạn xanh: tập khả thi; hình thoi: khả thi ngặt</text>
   <rect class="good" x="52" y="318" width="236" height="142" rx="12"/><text class="head" x="170" y="349" text-anchor="middle">Ứng viên x=2</text>
   <text class="label" x="170" y="383" text-anchor="middle">4−2λ=0 ⇒ λ=2≥0</text><text class="small" x="170" y="414" text-anchor="middle">hoạt động + đúng dấu</text><text class="small" x="170" y="442" text-anchor="middle">thỏa đủ bốn nhóm KKT</text>
   <rect class="bad" x="312" y="318" width="236" height="142" rx="12"/><text class="head" x="430" y="349" text-anchor="middle">Ứng viên x=4</text>
@@ -35,8 +35,8 @@
   <path d="M960 170l8 8-8 8-8-8Z" fill="#fff8e6" stroke="#16706a" stroke-width="3"/><text class="note" x="974" y="176">(1;1): Slater</text>
   <text class="note" x="890" y="488" text-anchor="middle">min x₁²+x₂² với x₁+x₂≥1;  x*=(1/2; 1/2), λ*=1</text>
 
-  <rect class="good" x="22" y="526" width="271" height="91" rx="12"/><text class="head" x="157" y="558" text-anchor="middle">Khả thi gốc</text><text class="small" x="157" y="590" text-anchor="middle">fᵢ(x*)≤0, hⱼ(x*)=0</text>
+  <rect class="good" x="22" y="526" width="271" height="91" rx="12"/><text class="head" x="157" y="558" text-anchor="middle">Khả thi gốc</text><text class="small" x="157" y="590" text-anchor="middle">fᵢ(x*)≤0, Ax*=b</text>
   <rect class="good" x="317" y="526" width="271" height="91" rx="12"/><text class="head" x="452" y="558" text-anchor="middle">Khả thi đối ngẫu</text><text class="small" x="452" y="590" text-anchor="middle">λ*≥0</text>
   <rect class="good" x="612" y="526" width="271" height="91" rx="12"/><text class="head" x="747" y="558" text-anchor="middle">Bù trừ</text><text class="small" x="747" y="590" text-anchor="middle">λᵢ fᵢ(x*)=0</text>
-  <rect class="good" x="907" y="526" width="271" height="91" rx="12"/><text class="head" x="1042" y="558" text-anchor="middle">Dừng</text><text class="small" x="1042" y="590" text-anchor="middle">0∈∇ₓL+N<tspan baseline-shift="sub" font-size="12">D</tspan>(x*)</text>
+  <rect class="good" x="907" y="526" width="271" height="91" rx="12"/><text class="head" x="1042" y="558" text-anchor="middle">Dừng</text><text class="small" x="1042" y="590" text-anchor="middle">∇ₓL(x*,λ*,ν*)=0</text>
 </svg>
