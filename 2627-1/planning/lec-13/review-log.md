@@ -176,3 +176,71 @@ Người kiểm định cuối mới (general-purpose, Opus 5.5 (opus), high, ch
 Người sửa của bài xử lý mọi phát hiện trung bình và nhẹ của kiểm định cuối; chính người kiểm định đó tái kiểm diff so với HEAD `9edae80`/`2caee87`: không còn phát hiện từ mức trung bình trở lên sau vòng sửa nhỏ cuối. Điều phối viên tự kiểm các số mới (Bài 12: hạng thiếu $w_0+w_1=7/3$, tổng bình phương sai số $14/3$; Bài 11: hậu nghiệm Beta $2/3$; Bài 13: giao điểm $v=8/9$ trên hình) và chạy lại: forward_refs 0, khối `:::` cân bằng, không ký tự điều khiển, SVG hợp lệ, `git diff --check` sạch, đồng bộ `--check` đạt, Playwright 20 lượt (10 tệp × 2 khổ) không lỗi, không công thức tràn quá 40 px ở 390 px. Kết luận: **chấp nhận**.
 
 - Sửa nhỏ sau tái kiểm vòng 3 trên `e3fcaae` (cả năm bài không còn phát hiện từ mức trung bình trở lên): dấu phẩy ở Bước 1 Mệnh đề 13.2; $\alpha,\beta,\gamma$ thay $a,b,c$ ở câu nhắc tính tuyến tính của Bài 11 (dòng 50). Diff một cụm chữ, điều phối viên đọc lại.
+
+
+## Rà nhẹ theo quy tắc 2026-11-09 và làm lại tệp bài tập từ giáo trình (2026-11-12)
+
+Yêu cầu của người dùng: "rà math-4-AI 10–14 và rl-plan 01–10: chỉ cần một lượt nhẹ, gồm rà theo quy tắc 09/11 và làm lại exercises.md từ giáo trình", rồi "chỉ làm lecture note và exercise" (không sửa deck).
+
+**Tác tử** (lấy từ lời gọi công cụ): mọi vai là `Agent`, `subagent_type: general-purpose`, `model: opus` (Claude Opus 5.5), `effort: high`.
+- Người rà chỉ đọc (`no-ai-slop` Detect), sau đó cũng tác tử đó làm biên tập viên (`no-ai-slop` Edit), tiếp tục bằng `SendMessage` để giữ ngữ cảnh.
+- Người kiểm tra độc lập chỉ đọc (tác tử mới): đối chiếu đề với PDF, giải lại mọi bài trước khi đọc lời giải, rà các hunk đã đổi của ghi chú; sau đó kiểm lại phần đã sửa.
+
+**Rà ghi chú:** 36 phát hiện (0 chặn bàn giao, 0 nghiêm trọng, 11 trung bình, 25 nhẹ): mã CLO (L37), "Đáp số" (L53), câu "chưa phải định nghĩa" (L153, L339, L770, L1276), câu "chưa nói/chưa xét/chưa cho biết" (L380, L761, L1005), rào đón không có số hoặc điều kiện (L496, L1076). Điều phối viên chấp nhận: cả 36 (bỏ mã CLO theo Q-C/Q7 của mẫu SLT; "Đáp số" thành "Lời giải").
+
+**Nguồn bài tập:** Murphy (2022, 2023) không có bài về xích Markov hay quá trình quyết định Markov (tập II không có bài tập), nên dùng Sutton và Barto (2018), ấn bản 2 (PDF, SHA-256 2dd0d71d…), sách ghi chú đã dẫn; đề đối chiếu với trang PDF (trang in = trang PDF − 22). Mười một bài 13.4–13.14: SB 3.9, 3.4, 3.11, 3.25–3.28 (gộp), 3.14, 3.29, 3.23, 3.15, 4.10, 3.22 (thêm các vòng lặp giá trị trên dữ kiện sách), 3.24. Ba bài tự dựng cũ (13.1, 13.10, 13.3) chuyển về ghi chú thành Bài tập 13.1 (cuối §4), 13.2 (cuối §6.4), 13.3 (cuối §7) vì kiểm mục tiêu không có bài sách; tám bài tự dựng còn lại bị bỏ.
+
+**Kiểm tra độc lập:** 0 chặn bàn giao, 1 nghiêm trọng (L486: vế "có thể không đạt tại chính sách nào" mâu thuẫn Định lý 13.19), 3 trung bình (L1451 gán "hàng chuyển" cho học không dựa trên mô hình; 13.6 thiếu phân phối đầu và câu nối sang Bổ đề 13.10; 13.12(b), (c) là chứng minh tự thêm, không phải phép tính trên dữ kiện SB 4.10, nên bị bỏ), 6 nhẹ; không lời giải sai; giải lại $V^*=(180/19;\,162/19;\,200/19)$ và $24{,}419$. Điều phối viên chấp nhận mọi phát hiện; biên tập viên sửa; kiểm lại: đạt, không phát hiện mới. Mục tiêu 6 còn dựa vào Bài tập 13.3 của ghi chú.
+
+### Cũ → mới
+
+| Cũ (`exercises.md` trước lượt này) | Mới | Vị trí mới | Ghi chú |
+|---|---|---|---|
+| 13.1 Truyền phân phối hai bước | 13.1 | ghi chú, cuối §4 (sau Nhận xét 13.4) | tự dựng, giữ vì mục tiêu 1 không có bài giáo trình; gộp hai gợi ý thành một |
+| 13.2 Lặp giá trị và điểm bất động | bỏ | — | mục tiêu 5 có SB 3.22, 3.24 |
+| 13.3 Mục tiêu theo mô hình và mục tiêu từ một mẫu | 13.3 | ghi chú, cuối §7 (sau Nhận xét 13.29) | tự dựng, giữ cho mục tiêu 6 |
+| 13.4 Xích Markov, xác suất quỹ đạo | bỏ | — | trùng số liệu Ví dụ 13.2–13.3 |
+| 13.5 Lặp giá trị cho robot | bỏ | — | |
+| 13.6 Học mô hình và mục tiêu Bellman | bỏ | — | |
+| 13.7 Giả thiết và bảo đảm | bỏ | — | |
+| 13.8 Giá trị của chính sách dừng | bỏ | — | |
+| 13.9 Hai hành động cùng tối ưu | bỏ | — | |
+| 13.10 Tính co và phần dư Bellman | 13.2 | ghi chú, cuối §6.4 (sau Ví dụ 13.7) | tự dựng, giữ cho mục tiêu 4 |
+| 13.11 Kiểm tra một khẳng định hội tụ | bỏ | — | |
+| (mới) | 13.4 | `exercises.md` | SB Bài 3.9, §3.3, tr. 56 |
+| (mới) | 13.5 | `exercises.md` | SB Bài 3.4, §3.1, tr. 53 |
+| (mới) | 13.6 | `exercises.md` | SB Bài 3.11, §3.5, tr. 58 |
+| (mới) | 13.7 | `exercises.md` | SB Bài 3.25–3.28, §3.6, tr. 67 |
+| (mới) | 13.8 | `exercises.md` | SB Bài 3.14, §3.5, tr. 60 |
+| (mới) | 13.9 | `exercises.md` | SB Bài 3.29, §3.6, tr. 67 |
+| (mới) | 13.10 | `exercises.md` | SB Bài 3.23, §3.6, tr. 67 |
+| (mới) | 13.11 | `exercises.md` | SB Bài 3.15, §3.5, tr. 61 |
+| (mới) | 13.12 | `exercises.md` | SB Bài 4.10, §4.4, tr. 84; chỉ giữ câu của sách (bỏ hai câu phụ tự thêm theo phát hiện của người kiểm), nên chỉ phủ mục tiêu 4 |
+| (mới) | 13.13 | `exercises.md` | SB Bài 3.22, §3.6, tr. 66 (thêm câu (b): ba vòng lặp giá trị trên dữ kiện sách) |
+| (mới) | 13.14 | `exercises.md` | SB Bài 3.24, §3.6, tr. 67 |
+
+SB = Sutton và Barto (2018), ấn bản 2. Trang in = trang PDF − 22; số, dấu và ký hiệu đã đối chiếu trên PDF các trang in 52–53, 56, 58, 60–61, 65–67, 84.
+
+### Mục tiêu không có bài giáo trình (ghi nhật ký, không ghi vào tệp)
+
+- Mục tiêu 1: chỉ có Bài tập 13.1 trong ghi chú.
+- Mục tiêu 4, vế tính co: Bài tập 13.2 trong ghi chú (sau vòng sửa được đặt ở cuối §6.4, sau Ví dụ 13.7, theo phát hiện của người kiểm).
+- Mục tiêu 6: chỉ có Bài tập 13.3 trong ghi chú; tệp bài tập không có bài cho mục tiêu này sau khi bỏ 13.12(c).
+
+### Dẫn chiếu đã cập nhật trong phạm vi
+
+- `math-4-AI/2627-1/materials/lec-13/lecture-note.md` §9 Bài tập: viết lại theo số mới, kèm câu liên kết tới tệp bài tập.
+- `math-4-AI/2627-1/materials/lec-13/exercises.md`: viết lại toàn bộ; bảng mục tiêu ↔ bài tập ở đoạn mở.
+
+### Dẫn chiếu ngoài phạm vi còn dùng số cũ
+
+- `math-4-AI/2627-1/planning/lec-13/outline.md` dòng 48–58: liệt kê Bài tập 13.1–13.11 với tên cũ.
+- `math-4-AI/2627-1/planning/lec-13/review-log.md` dòng 112: "Bài tập 13.7(3)" (bản ghi lịch sử).
+- `math-4-AI/2627-1/material-local-data.js`: bản chép của hai tệp Markdown, cần chạy script đồng bộ.
+- Deck: repo không có deck Bài 13. Tệp ghi chú, bài tập của bài khác không dẫn `Bài tập 13.k`; `lec-14/lecture-note.md` chỉ dẫn Tình huống 13.2 và Định lý 13.19 (không đổi).
+
+**Số liệu:** ghi chú 17 303 âm tiết (`wc -w`); `git diff --check` sạch; `forward_refs.py` báo 0; mỗi `exercise` có đúng một `hint` và một `solution` (ghi chú 3, cộng một khối gợi ý của câu hỏi ôn nhanh; tệp 11).
+
+**Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0 công thức tràn khung ở 390 px. Ghi chú: 17 công thức có sẵn từ trước tràn khung ở 390 px (ngoài lượt nhẹ, quy tắc D3). Bài 13 không có deck. `material-local-data.js` đồng bộ trong một commit riêng sau khi cả năm bài 10–14 xong.
+
+Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 13 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.

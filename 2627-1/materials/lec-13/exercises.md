@@ -1,526 +1,499 @@
 # Bài tập Bài 13 — Ra quyết định tuần tự dưới điều kiện bất định
 
-Các bài tập dưới đây đi kèm ghi chú Bài 13 và dẫn định nghĩa, kết quả, ví dụ theo số hiệu của ghi chú. Ký hiệu theo bảng ở Mục 2 của ghi chú: $h$ là trạng thái hoạt động, $z$ là trạng thái hấp thụ với thưởng $0$, $A$ và $B$ là hai hành động tại $h$; $Q_U(s,a)$ là giá trị nhìn trước một bước (5.7), $T$ là toán tử Bellman tối ưu (6.1). Ba bài trên lớp có lời giải đầy đủ để đối chiếu sau khi làm. Bốn bài tự học đầu (Bài tập 13.4–13.7) được điều chỉnh từ bộ bài tập tuần 4 của học phần; các bài còn lại củng cố từng mục của ghi chú.
+Các bài tập dưới đây, đánh số tiếp theo Bài tập 13.1–13.3 trong ghi chú, đi kèm [ghi chú bài giảng](material-viewer.html?doc=materials/lec-13/lecture-note.md) của Bài 13. Các bài lấy từ Sutton và Barto (2018), Chương 3 và 4; số trang là trang in của sách. Lời giải dẫn định nghĩa, định lý, bổ đề, hệ quả, ví dụ và công thức theo số hiệu của ghi chú. Ký hiệu theo ghi chú gồm:
 
-## Bài tập trên lớp
-
-### Bài tập 13.1 (Truyền phân phối hai bước)
-
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 1; dùng $\mu_{t+1}=\mu_tP$ và phân biệt các đường đi.
-
-::: exercise Bài tập 13.1
-Một robot có hai trạng thái xếp theo thứ tự $h$ (hoạt động), $n$ (nghỉ), ma trận chuyển
+- mô hình chuyển $p(s',c\mid s,a)$, xác suất chuyển $P(s'\mid s,a)$ và phần thưởng kỳ vọng $r(s,a)$ theo Định nghĩa 13.5 và (5.2); sách viết $p(s',r\mid s,a)$, $p(s'\mid s,a)$ và $r(s,a)$;
+- hàm giá trị $V^\pi$, giá trị tối ưu $V^*$ (Định nghĩa 13.7); sách viết $v_\pi$, $v_*$;
+- *giá trị hành động* (action value) của chính sách Markov dừng $\pi$ và giá trị hành động tối ưu, định nghĩa qua giá trị nhìn trước (5.7):
 $$
-P=\begin{pmatrix}0{,}7&0{,}3\\0{,}2&0{,}8\end{pmatrix}
+\begin{gathered}
+q_\pi(s,a)=Q_{V^\pi}(s,a),\\
+q_*(s,a)=Q_{V^*}(s,a);
+\end{gathered}
 $$
-và phân phối đầu $\mu_0=(1;\,0)$.
+- tổng thưởng chiết khấu $G_t$ theo (5.4), toán tử Bellman tối ưu $T$ theo (6.1).
 
-**(a)** Tính $\mu_1$ và $\mu_2$.
+| Mục tiêu học tập | Bài tập trong ghi chú | Bài tập trong tệp này |
+|---|---|---|
+| 1. Tính Markov, ma trận chuyển, phân phối sau nhiều bước | 13.1 | |
+| 2. Mô hình hóa quá trình quyết định Markov hữu hạn | | 13.4, 13.5, 13.6, 13.14 |
+| 3. Phương trình Bellman cho chính sách cố định và phương trình Bellman tối ưu | | 13.6, 13.7, 13.8, 13.9, 13.10, 13.11, 13.13 |
+| 4. Tính co, hội tụ của lặp giá trị, chính sách tham lam tối ưu | 13.2 | 13.7, 13.12 |
+| 5. Lặp giá trị bằng tay, phần thưởng tức thời và giá trị dài hạn | | 13.13, 13.14 |
+| 6. Ước lượng từ số đếm, mục tiêu Bellman, quy hoạch và học tăng cường | 13.3 | |
 
-**(b)** Giải thích vì sao xác suất ở $h$ sau hai bước không bằng $0{,}7^2$.
+## Mức nhận biết
+
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 2; tính tổng thưởng chiết khấu của một dãy phần thưởng vô hạn.
+
+::: exercise Bài tập 13.4 (Tổng thưởng chiết khấu của một dãy phần thưởng vô hạn; Sutton và Barto, Bài 3.9, §3.3, tr. 56)
+Cho $\gamma=0{,}9$ và dãy phần thưởng $R_1=2$, $R_k=7$ với mọi $k\ge2$. Tính $G_1$ và $G_0$ theo (5.4).
 :::
 
-::: hint Gợi ý 1
-Nhân vector hàng với $P$ từ bên phải (Mệnh đề 13.2). Liệt kê các đường đi từ $h$ tới $h$ sau hai bước.
-:::
-
-::: hint Gợi ý 2
-Theo Hệ quả 13.3, xác suất đường $h\to n\to h$ là $\mu_0(h)\,P_{hn}P_{nh}$; cộng với đường $h\to h\to h$ phải ra $\mu_2(h)$.
-:::
-
-::: solution Lời giải Bài tập 13.1
-**(a)** Theo (4.3), $\mu_1=(1;\,0)P=(0{,}7;\,0{,}3)$ và
-$$
-\begin{aligned}
-\mu_2&=\mu_1P\\
-&=(0{,}7\cdot0{,}7+0{,}3\cdot0{,}2;\\
-&\qquad0{,}7\cdot0{,}3+0{,}3\cdot0{,}8)\\
-&=(0{,}49+0{,}06;\ 0{,}21+0{,}24)\\
-&=(0{,}55;\,0{,}45).
-\end{aligned}
-$$
-
-**(b)** Theo Hệ quả 13.3, đường $h\to h\to h$ có xác suất $0{,}7\cdot0{,}7=0{,}49$, còn đường $h\to n\to h$ có xác suất $0{,}3\cdot0{,}2=0{,}06$. Số $0{,}7^2$ chỉ tính đường thứ nhất; robot cũng có thể nghỉ một bước rồi hoạt động lại.
-
-**Kiểm tra lại.** $0{,}55+0{,}45=1$, và $0{,}49+0{,}06=0{,}55=\mu_2(h)$.
-:::
-
-### Bài tập 13.2 (Lặp giá trị và điểm bất động)
-
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 4–5; thực hiện lặp giá trị bằng tay và phân biệt vòng lặp với thời gian.
-
-::: exercise Bài tập 13.2
-Một MDP có hai trạng thái $h$, $z$; $z$ hấp thụ với thưởng $0$; $\gamma=1/2$. Tại $h$, hành động $A$ thưởng $1$ rồi chắc chắn tới $z$; hành động $B$ thưởng $0{,}6$ rồi chắc chắn ở lại $h$. Bắt đầu với $V_0(h)=V_0(z)=0$.
-
-**(a)** Tính $v_k=V_k(h)$ với $k=1,2,3$ và ghi hành động đạt cực đại khi tạo mỗi giá trị.
-
-**(b)** Tìm giá trị tối ưu $V^*(h)$ và một chính sách tối ưu.
-:::
-
-::: hint Gợi ý 1
-Vì $V_k(z)=0$ với mọi $k$, bước Bellman là $v_{k+1}=\max\{1;\ 0{,}6+v_k/2\}$. Kiểm tra cả hai nhánh tại ứng viên điểm bất động.
-:::
-
-::: hint Gợi ý 2
-Ứng viên từ nhánh $B$ thỏa $v=0{,}6+v/2$. Để kết luận giá trị tối ưu, dùng Hệ quả 13.18 cho tính duy nhất và Định lý 13.19 cho ý nghĩa tối ưu.
-:::
-
-::: solution Lời giải Bài tập 13.2
-**(a)** Theo (6.1), $Q_{V_k}(h,A)=1+\tfrac12V_k(z)=1$ và $Q_{V_k}(h,B)=0{,}6+\tfrac12v_k$.
-
-- $v_1=\max\{1;\ 0{,}6\}=1$, đạt bởi $A$.
-- $v_2=\max\{1;\ 0{,}6+0{,}5\}=1{,}1$, đạt bởi $B$.
-- $v_3=\max\{1;\ 0{,}6+0{,}55\}=1{,}15$, đạt bởi $B$.
-
-**(b)** Ứng viên từ nhánh $B$ thỏa $v=0{,}6+v/2$, tức $v=1{,}2$. Tại $v=1{,}2$, nhánh $A$ bằng $1<1{,}2$, nên $\max\{1;\,1{,}2\}=1{,}2$ và $(1{,}2;\,0)$ là điểm bất động của $T$. Theo Hệ quả 13.18, đây là điểm bất động duy nhất; theo Định lý 13.19, $V^*(h)=1{,}2$ và chính sách tham lam chọn $B$ tại $h$ là tối ưu.
-
-Các hành động ghi ở (a) thuộc các vòng tính toán; chúng không yêu cầu robot thực hiện $A$ rồi $B$ trên một quỹ đạo.
-
-**Kiểm tra lại.** Theo (5.12), chính sách luôn chọn $B$ có $V^B(h)=0{,}6+\tfrac12V^B(h)$, tức $V^B(h)=1{,}2$, trùng $V^*(h)$.
-:::
-
-### Bài tập 13.3 (Mục tiêu theo mô hình và mục tiêu từ một mẫu)
-
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 6; phân biệt kỳ vọng theo mô hình ước lượng với một mục tiêu từ mẫu.
-
-::: exercise Bài tập 13.3
-Tại một cặp $(s,a)$, năm lần thử độc lập đi tới $s_1$ bốn lần và tới $s_2$ một lần. Phần thưởng luôn bằng $1$, $\gamma=1/2$, $V(s_1)=3$, $V(s_2)=-1$.
-
-**(a)** Tính hàng chuyển MLE và giá trị nhìn trước $\hat Q_V(s,a)$ theo mô hình ước lượng.
-
-**(b)** Lần thử kế tiếp đi tới $s_1$. Bảng giá trị hành động hiện tại có $Q(s,a)=1$, $\max_{a'}Q(s_1,a')=3$ và $\max_{a'}Q(s_2,a')=-1$. Tính mục tiêu từ mẫu (7.5) và một cập nhật Q-learning (7.6) với $\alpha=0{,}2$.
-:::
-
-::: hint Gợi ý 1
-Tính kỳ vọng theo hàng ước lượng trước; mục tiêu từ mẫu chỉ dùng trạng thái vừa quan sát.
-:::
-
-::: hint Gợi ý 2
-Hàng MLE là tỉ số số đếm (Hệ quả 13.26). Cập nhật (7.6) dịch $Q(s,a)$ một phần $\alpha$ của khoảng cách tới mục tiêu từ mẫu.
-:::
-
-::: solution Lời giải Bài tập 13.3
-**(a)** Theo Hệ quả 13.26, $\hat P(s_1\mid s,a)=4/5$ và $\hat P(s_2\mid s,a)=1/5$. Giá trị tiếp diễn kỳ vọng là $\tfrac45\cdot3+\tfrac15\cdot(-1)=2{,}4-0{,}2=2{,}2$, nên
-$$
-\hat Q_V(s,a)=1+\tfrac12\cdot2{,}2=2{,}1.
-$$
-
-**(b)** Theo (7.5), $Y=1+\tfrac12\cdot3=2{,}5$. Theo (7.6),
-$$
-\begin{aligned}
-Q^+(s,a)&=1+0{,}2\,(2{,}5-1)\\
-&=1+0{,}3=1{,}3.
-\end{aligned}
-$$
-Một lần cập nhật dịch $Q(s,a)$ về phía một mục tiêu ngẫu nhiên; nó không thay phép lấy kỳ vọng $2{,}1$.
-
-**Kiểm tra lại.** Nếu lần thử đi tới $s_2$, mục tiêu là $1+\tfrac12\cdot(-1)=0{,}5$. Kỳ vọng của mục tiêu theo hàng ước lượng là $\tfrac45\cdot2{,}5+\tfrac15\cdot0{,}5=2+0{,}1=2{,}1$, trùng $\hat Q_V(s,a)$.
-:::
-
-## Bài tập tự học
-
-### Bài tập 13.4 (Xích Markov, xác suất chuyển và xác suất quỹ đạo)
-
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 1; phân biệt xác suất chuyển, xác suất đồng thời và xác suất quỹ đạo.
-
-::: exercise Bài tập 13.4
-Robot có hai trạng thái xếp theo thứ tự $h$ (hoạt động), $n$ (nghỉ), ma trận chuyển
-$$
-P=\begin{pmatrix}0{,}8&0{,}2\\0{,}35&0{,}65\end{pmatrix}
-$$
-và phân phối đầu $\mu_0=(0;\,1)$.
-
-1. Tính $\mu_1$, $\mu_2$ bằng nhân ma trận và kiểm tra chuẩn hóa.
-2. Liệt kê các đường đóng góp vào $\mathbb P(S_2=h)$ và kiểm tra kết quả câu 1 bằng xác suất toàn phần.
-3. Tính $\mathbb P(S_0=n,S_1=h)$ và so sánh với phần tử $P_{nh}$; giải thích vì sao hai số trùng nhau trong dữ kiện này dù là hai khái niệm khác nhau. Tính $\mathbb P(S_0=n,S_1=h,S_2=n)$.
-4. Với phân phối hiện tại $\mu_t=(0{,}5;\,0{,}5)$, tính $\mathbb P(S_t=h,S_{t+1}=n)$ và $\mathbb P(S_{t+1}=n\mid S_t=h)$. Dùng một phép kiểm số để xác định $S_t$ và $S_{t+1}$ có độc lập không.
-5. Nếu ở bước thứ hai robot dùng một ma trận chuyển khác $P'$, công thức $\mu_2=\mu_0P^2$ phải thay bằng công thức nào?
-:::
-
-::: hint Gợi ý 1
-Mỗi tọa độ của $\mu_{t+1}$ là tổng theo mọi trạng thái hiện tại (Mệnh đề 13.2).
-:::
-
-::: hint Gợi ý 2
-Câu 3 dùng Hệ quả 13.3: xác suất của một quỹ đạo là xác suất trạng thái đầu nhân các xác suất chuyển. Không giả sử các thời điểm độc lập.
+::: hint Gợi ý Bài tập 13.4
+$G_1$ chỉ chứa các phần thưởng bằng $7$, nên là tổng của một cấp số nhân. Tách số hạng đầu của $G_0$ để viết $G_0$ theo $G_1$.
 :::
 
 ::: solution Lời giải Bài tập 13.4
-**1.** Theo (4.3), $\mu_1=(0;\,1)P=(0{,}35;\,0{,}65)$ và
+**Tính $G_1$.** Theo (5.4), $G_1=\sum_{j\ge0}\gamma^jR_{j+2}$, và mọi $R_{j+2}$ bằng $7$:
+$$
+G_1=7\sum_{j\ge0}0{,}9^j=\frac{7}{1-0{,}9}=70.
+$$
+
+**Tính $G_0$.** Tách số hạng $j=0$ và đổi chỉ số $j\mapsto j+1$ trong phần còn lại:
 $$
 \begin{aligned}
-\mu_2&=\mu_1P\\
-&=(0{,}35\cdot0{,}8+0{,}65\cdot0{,}35;\\
-&\qquad0{,}35\cdot0{,}2+0{,}65\cdot0{,}65)\\
-&=(0{,}28+0{,}2275;\ 0{,}07+0{,}4225)\\
-&=(0{,}5075;\,0{,}4925).
+G_0&=R_1+\gamma\sum_{j\ge0}\gamma^jR_{j+2}\\
+&=R_1+\gamma G_1\\
+&=2+0{,}9\cdot70=65.
 \end{aligned}
 $$
-Tổng các tọa độ: $0{,}35+0{,}65=1$ và $0{,}5075+0{,}4925=1$.
 
-**2.** Robot bắt đầu chắc chắn ở $n$. Hai đường tới $h$ sau hai bước:
+**Kiểm tra lại.** Tính trực tiếp, $G_0=2+7\sum_{j\ge1}0{,}9^j=2+7\cdot\frac{0{,}9}{0{,}1}=2+63=65$. Với $R_{\max}=7$, chặn (5.6) cho $\lvert G_t\rvert\le7/0{,}1=70$; cả hai giá trị thỏa chặn này, và $G_1$ đạt dấu bằng vì mọi phần thưởng từ thời điểm $1$ bằng $R_{\max}$.
+:::
 
-- $n\to h\to h$: $1\cdot0{,}35\cdot0{,}8=0{,}28$;
-- $n\to n\to h$: $1\cdot0{,}65\cdot0{,}35=0{,}2275$.
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 2; viết mô hình chuyển $p(s',c\mid s,a)$ của một MDP hữu hạn từ mô tả bằng lời.
 
-Xác suất toàn phần với phân hoạch theo $S_1$ cho $\mathbb P(S_2=h)=0{,}28+0{,}2275=0{,}5075$, trùng $\mu_2(h)$.
-
-**3.** Theo quy tắc nhân, $\mathbb P(S_0=n,S_1=h)=\mathbb P(S_0=n)\,P_{nh}=1\cdot0{,}35=0{,}35$. Phần tử $P_{nh}=0{,}35$ là xác suất có điều kiện khi đã biết $S_0=n$; hai số trùng nhau vì $\mathbb P(S_0=n)=1$. Với $\mu_0=(1/2;\,1/2)$, xác suất đồng thời sẽ là $0{,}175$ trong khi $P_{nh}$ vẫn là $0{,}35$. Theo (4.4),
+::: exercise Bài tập 13.5 (Mô hình chuyển của robot thu gom lon; Sutton và Barto, Bài 3.4, §3.1, tr. 53)
+Một robot thu gom vỏ lon (recycling robot) có hai trạng thái theo mức pin: $\mathrm h$ (pin cao) và $\mathrm l$ (pin thấp). Hành động gồm $\mathrm s$ (chủ động tìm lon), $\mathrm w$ (đứng chờ) và $\mathrm{re}$ (về trạm sạc), với
 $$
-\begin{aligned}
-&\mathbb P(S_0=n,S_1=h,S_2=n)\\
-&\quad=\mu_0(n)\,P_{nh}\,P_{hn}\\
-&\quad=1\cdot0{,}35\cdot0{,}2=0{,}07.
-\end{aligned}
+\begin{gathered}
+\mathcal A(\mathrm h)=\{\mathrm s,\mathrm w\},\\
+\mathcal A(\mathrm l)=\{\mathrm s,\mathrm w,\mathrm{re}\}.
+\end{gathered}
 $$
-Số này là xác suất của cả quỹ đạo, khác mỗi phần tử $P_{nh}=0{,}35$ và $P_{hn}=0{,}2$.
+Dữ kiện chuyển và phần thưởng (Sutton và Barto, Ví dụ 3.3, tr. 52):
 
-**4.** $\mathbb P(S_{t+1}=n\mid S_t=h)=P_{hn}=0{,}2$ và $\mathbb P(S_t=h,S_{t+1}=n)=0{,}5\cdot0{,}2=0{,}1$. Theo (4.3), $\mathbb P(S_{t+1}=n)=0{,}5\cdot0{,}2+0{,}5\cdot0{,}65=0{,}1+0{,}325=0{,}425$. Nếu hai trạng thái độc lập thì xác suất đồng thời bằng $0{,}5\cdot0{,}425=0{,}2125\ne0{,}1$; vậy chúng không độc lập.
+- tìm lon từ $\mathrm h$: robot ở lại $\mathrm h$ với xác suất $\alpha$ và sang $\mathrm l$ với xác suất $1-\alpha$, phần thưởng $r_{\mathrm s}$;
+- tìm lon từ $\mathrm l$: robot ở lại $\mathrm l$ với xác suất $\beta$, phần thưởng $r_{\mathrm s}$; với xác suất $1-\beta$ pin cạn, robot được cứu và sạc lại về $\mathrm h$, phần thưởng $-3$;
+- đứng chờ: trạng thái giữ nguyên, phần thưởng $r_{\mathrm w}$;
+- về trạm sạc từ $\mathrm l$: robot sang $\mathrm h$ với xác suất $1$, phần thưởng $0$.
 
-**5.** Bước 1 của chứng minh Mệnh đề 13.2 áp dụng cho từng bước với ma trận của bước đó: $\mu_1=\mu_0P$, $\mu_2=\mu_1P'=\mu_0PP'$.
+Ở đây $0<\alpha<1$, $0<\beta<1$, $r_{\mathrm s}>r_{\mathrm w}$, và phần thưởng của mỗi chuyển tiếp $(s,a,s')$ là tất định, bằng số đã cho.
 
-**Kiểm tra lại.** Bốn quỹ đạo dài hai bước bắt đầu từ $n$ có tổng xác suất $1$: $0{,}28+0{,}2275+0{,}07+0{,}4225=1$.
+- **(a)** Lập bảng gồm các cột $s$, $a$, $s'$, $c$, $p(s',c\mid s,a)$, mỗi dòng ứng với một bộ có $p(s',c\mid s,a)>0$.
+- **(b)** Từ bảng, tính $P(\mathrm h\mid\mathrm l,\mathrm s)$ và $r(\mathrm l,\mathrm s)$ theo (5.2).
 :::
 
-### Bài tập 13.5 (Lặp giá trị cho robot và giá trị dài hạn)
-
-**Mức độ:** tính toán, chứng minh. **Mục tiêu:** mục tiêu học tập 3–5; lặp giá trị, điểm bất động tối ưu, tốc độ hội tụ và vai trò của $\gamma<1$.
-
-::: exercise Bài tập 13.5
-Robot có trạng thái hoạt động $h$ và trạng thái hấp thụ $z$. Tại $z$, thưởng luôn bằng $0$ và robot ở lại $z$. Tại $h$, hành động $A$ thưởng $1$, ở lại $h$ với xác suất $1/2$ và tới $z$ với xác suất $1/2$; hành động $B$ thưởng $0{,}8$ và luôn ở lại $h$. Cho $\gamma=0{,}9$ và $V_0(h)=V_0(z)=0$.
-
-1. Viết toán tử Bellman tối ưu $T$ và công thức rút gọn theo $v_k=V_k(h)$.
-2. Tính $v_1,v_2,v_3,v_4$ cùng hai giá trị nhìn trước ở mỗi vòng. Nêu rõ hành động ghi ở mỗi vòng là hành động nào.
-3. Tìm điểm bất động của $T$ và hành động tối ưu tại $h$. Tính giá trị của chính sách luôn chọn $A$ và giải thích vì sao phần thưởng tức thời lớn nhất không cho tổng thưởng lớn nhất.
-4. Chứng minh trực tiếp $\lVert TV-TW\rVert_\infty\le0{,}9\,\lVert V-W\rVert_\infty$ cho MDP này. Nêu vì sao tính co chưa đủ để kết luận điểm bất động là giá trị tối ưu.
-5. Chứng minh $v_k=8-7\cdot0{,}9^{k-1}$ với mọi $k\ge1$. Từ đó tìm số vòng nhỏ nhất bảo đảm sai số tại $h$ không quá $0{,}1$.
-6. Thay $\gamma$ bằng $1$. Phân tích giá trị của chính sách luôn chọn $B$, dãy lặp giá trị, và chỉ ra giả thiết nào của Hệ quả 13.18 không còn đúng.
-:::
-
-::: hint Gợi ý 1
-Tìm giá trị $v$ tại đó hai nhánh $1+0{,}45v$ và $0{,}8+0{,}9v$ bằng nhau.
-:::
-
-::: hint Gợi ý 2
-Câu 5: chứng minh đồng thời $v_k\ge1$ và công thức đóng bằng quy nạp theo $k$.
+::: hint Gợi ý Bài tập 13.5
+Vì phần thưởng của mỗi chuyển tiếp là tất định, mỗi trạng thái kế tiếp có xác suất dương sau một cặp $(s,a)$ cho đúng một dòng của bảng.
 :::
 
 ::: solution Lời giải Bài tập 13.5
-**1.** Theo (6.1),
+**(a)** Bảng có bảy dòng:
+
+| $s$ | $a$ | $s'$ | $c$ | $p(s',c\mid s,a)$ |
+|---|---|---|---|---|
+| $\mathrm h$ | $\mathrm s$ | $\mathrm h$ | $r_{\mathrm s}$ | $\alpha$ |
+| $\mathrm h$ | $\mathrm s$ | $\mathrm l$ | $r_{\mathrm s}$ | $1-\alpha$ |
+| $\mathrm l$ | $\mathrm s$ | $\mathrm h$ | $-3$ | $1-\beta$ |
+| $\mathrm l$ | $\mathrm s$ | $\mathrm l$ | $r_{\mathrm s}$ | $\beta$ |
+| $\mathrm h$ | $\mathrm w$ | $\mathrm h$ | $r_{\mathrm w}$ | $1$ |
+| $\mathrm l$ | $\mathrm w$ | $\mathrm l$ | $r_{\mathrm w}$ | $1$ |
+| $\mathrm l$ | $\mathrm{re}$ | $\mathrm h$ | $0$ | $1$ |
+
+Mọi bộ $(s,a,s',c)$ khác có xác suất $0$.
+
+**(b)** Theo (5.2), cộng các dòng có $(s,a)=(\mathrm l,\mathrm s)$:
 $$
 \begin{aligned}
-&(TV)(h)\\
-&\quad=\max\bigl\{1+0{,}9\bigl(\tfrac12V(h)\\
-&\qquad\quad+\tfrac12V(z)\bigr);\ 0{,}8+0{,}9\,V(h)\bigr\},\\
-&(TV)(z)=0{,}9\,V(z).
+P(\mathrm h\mid\mathrm l,\mathrm s)&=1-\beta,\\
+r(\mathrm l,\mathrm s)&=\beta\,r_{\mathrm s}+(1-\beta)(-3)\\
+&=\beta\,r_{\mathrm s}-3(1-\beta).
 \end{aligned}
 $$
-Vì $V_0(z)=0$, quy nạp cho $V_k(z)=0$ với mọi $k$, và $v_{k+1}=\max\{1+0{,}45\,v_k;\ 0{,}8+0{,}9\,v_k\}$. Nhánh $B$ không nhỏ hơn nhánh $A$ khi $0{,}45v\ge0{,}2$, tức $v\ge4/9$.
 
-**2.** Hành động ghi ở dòng $k$ là hành động đạt cực đại khi tính $v_{k+1}$ từ $v_k$.
-
-| $k$ | $v_k$ | $Q_{V_k}(h,A)$ | $Q_{V_k}(h,B)$ | Hành động | $v_{k+1}$ |
-|---:|---:|---:|---:|---|---:|
-| 0 | 0 | 1 | 0,8 | $A$ | 1 |
-| 1 | 1 | 1,45 | 1,7 | $B$ | 1,7 |
-| 2 | 1,7 | 1,765 | 2,33 | $B$ | 2,33 |
-| 3 | 2,33 | 2,0485 | 2,897 | $B$ | 2,897 |
-
-Vậy $v_1=1$, $v_2=1{,}7$, $v_3=2{,}33$, $v_4=2{,}897$.
-
-**3.** Nhánh $B$: $v=0{,}8+0{,}9v$ cho $0{,}1v=0{,}8$, tức $v=8$; tại đó nhánh $A$ bằng $1+0{,}45\cdot8=4{,}6<8$. Vậy $(8;\,0)$ là điểm bất động, duy nhất theo Hệ quả 13.18, và theo Định lý 13.19, $V^*(h)=8$ với hành động tối ưu $B$. Chính sách luôn chọn $A$ thỏa $V^A(h)=1+0{,}45\,V^A(h)$, nên $V^A(h)=1/0{,}55=20/11\approx1{,}818$. Hành động $A$ cho thưởng $1>0{,}8$ nhưng làm robot dừng với xác suất $1/2$ mỗi lần chọn, nên mất phần thưởng về sau.
-
-**4.** Với mọi $V,W$, đặt $\delta=\lVert V-W\rVert_\infty$. Tại $h$, hai giá trị nhìn trước thỏa
-$$
-\begin{aligned}
-&\lvert Q_V(h,A)-Q_W(h,A)\rvert\\
-&\quad\le0{,}45\,\lvert V(h)-W(h)\rvert\\
-&\qquad+0{,}45\,\lvert V(z)-W(z)\rvert\\
-&\quad\le0{,}9\,\delta,\\
-&\lvert Q_V(h,B)-Q_W(h,B)\rvert\\
-&\quad=0{,}9\,\lvert V(h)-W(h)\rvert\le0{,}9\,\delta.
-\end{aligned}
-$$
-Bổ đề 13.15 cho $\lvert(TV)(h)-(TW)(h)\rvert\le0{,}9\,\delta$. Tại $z$, $\lvert(TV)(z)-(TW)(z)\rvert=0{,}9\,\lvert V(z)-W(z)\rvert\le0{,}9\,\delta$. Lấy cực đại theo trạng thái được $\lVert TV-TW\rVert_\infty\le0{,}9\,\delta$. Tính co chỉ cho một điểm bất động duy nhất; để biết nó bằng $V^*$ cần thêm hai chiều của Định lý 13.19: chính sách tham lam đạt điểm bất động, và mọi chính sách không vượt nó.
-
-**5.** Với $k=1$: $8-7\cdot0{,}9^0=1=v_1$. Giả sử $v_k=8-7\cdot0{,}9^{k-1}$. Vì $7\cdot0{,}9^{k-1}\le7$, ta có $v_k\ge1>4/9$, nên nhánh $B$ đạt cực đại và
-$$
-\begin{aligned}
-v_{k+1}&=0{,}8+0{,}9\bigl(8-7\cdot0{,}9^{k-1}\bigr)\\
-&=0{,}8+7{,}2-7\cdot0{,}9^k\\
-&=8-7\cdot0{,}9^k.
-\end{aligned}
-$$
-Sai số tại $h$ là $8-v_k=7\cdot0{,}9^{k-1}$. Điều kiện $7\cdot0{,}9^{k-1}\le0{,}1$ tương đương $0{,}9^{k-1}\le1/70$, tức
-$$
-\begin{aligned}
-k-1&\ge\frac{\ln70}{\ln(10/9)}\\
-&\approx\frac{4{,}248}{0{,}1054}\approx40{,}32.
-\end{aligned}
-$$
-Vậy $k=42$ là số vòng nhỏ nhất: $7\cdot0{,}9^{41}\approx0{,}0931\le0{,}1$ còn $7\cdot0{,}9^{40}\approx0{,}1035>0{,}1$. Chặn (6.7) với $\lVert V_0-V^*\rVert_\infty=8$ đòi $8\cdot0{,}9^k\le0{,}1$, tức $k\ge\ln80/\ln(10/9)\approx41{,}6$, cũng cho $k=42$.
-
-**6.** Với $\gamma=1$, chính sách luôn chọn $B$ có tổng thưởng $0{,}8+0{,}8+\cdots=+\infty$. Toán tử rút gọn là $v\mapsto\max\{1+0{,}5v;\ 0{,}8+v\}$; vì $0{,}8+v>v$, mọi $v$ thỏa $Tv>v$, nên không có điểm bất động thực. Dãy lặp: $v_1=1$; nhánh $B$ thắng khi $v\ge0{,}4$, nên $v_k=1+0{,}8(k-1)\to\infty$. Với $v,w\ge0{,}4$, $\lvert Tv-Tw\rvert=\lvert v-w\rvert$, nên hệ số co bằng $1$. Giả thiết bị vi phạm là $\gamma<1$ (giả thiết O2), cần cho Mệnh đề 13.8 và cho hệ số $\kappa<1$ trong Định lý 13.17.
-
-**Kiểm tra lại.** Công thức câu 5 cho $v_4=8-7\cdot0{,}729=8-5{,}103=2{,}897$, trùng bảng ở câu 2.
+**Kiểm tra lại.** Với mỗi cặp $(s,a)$, các xác suất trong bảng có tổng bằng $1$: $\alpha+(1-\alpha)$ cho $(\mathrm h,\mathrm s)$, $(1-\beta)+\beta$ cho $(\mathrm l,\mathrm s)$, và $1$ cho ba cặp còn lại.
 :::
 
-### Bài tập 13.6 (Học mô hình và mục tiêu Bellman)
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 2, 3; biểu diễn phần thưởng kỳ vọng một bước dưới một chính sách ngẫu nhiên theo mô hình chuyển.
 
-**Mức độ:** tính toán, kiểm tra giả thiết. **Mục tiêu:** mục tiêu học tập 6; ước lượng một hàng chuyển, tính mục tiêu theo mô hình và từ mẫu, nhận ra giới hạn của số đếm.
-
-::: exercise Bài tập 13.6
-Một bộ mô phỏng cho phép thử độc lập cùng một cặp $(s,a)$ trong $10$ lần: $7$ lần tới $s_1$ và $3$ lần tới $s_2$. Cho $r(s,a)=2$, $\gamma=0{,}8$, $V(s_1)=5$, $V(s_2)=1$.
-
-1. Lập hợp lý của hàng chuyển trên đơn hình và suy ra MLE.
-2. Tính mục tiêu Bellman theo mô hình ước lượng. Phân biệt nó với $V^*(s)$ và với mục tiêu từ một lần chuyển tiếp.
-3. Giả sử phần thưởng quan sát luôn bằng $2$. Liệt kê hai mục tiêu từ mẫu có thể nhận và kiểm tra kỳ vọng của chúng theo hàng ước lượng.
-4. Một hành động $b$ tại cùng trạng thái chưa được thử lần nào. Mô tả tập các hàng MLE của $(s,b)$ và giải thích vì sao tỉ số số đếm không chọn được một hàng duy nhất.
-5. Nếu dữ liệu đến từ một quỹ đạo do một chính sách thu thập, nêu những điều cần kiểm tra trước khi dùng công thức số đếm. Phân biệt xác suất đồng thời của quỹ đạo với xác suất có điều kiện theo toàn bộ chuỗi hành động.
+::: exercise Bài tập 13.6 (Phần thưởng kỳ vọng dưới một chính sách ngẫu nhiên; Sutton và Barto, Bài 3.11, §3.5, tr. 58)
+Trong một MDP hữu hạn (Định nghĩa 13.5), hành động được chọn theo một chính sách Markov dừng ngẫu nhiên $\pi$, và trạng thái đầu $S_0$ có phân phối $\mu_0$ bất kỳ. Cho thời điểm $t$ và trạng thái $s$ với $\mathbb P_\pi(S_t=s)>0$. Biểu diễn $\mathbb E_\pi[R_{t+1}\mid S_t=s]$ theo $\pi$ và mô hình chuyển $p(s',c\mid s,a)$, rồi đối chiếu kết quả với $r^\pi(s)$ trong (5.3).
 :::
 
-::: hint Gợi ý 1
-Câu 1: hợp lý là $q_1^7q_2^3$ với $q_1+q_2=1$. Câu 4: khi không có dữ liệu, hợp lý là tích rỗng.
-:::
-
-::: hint Gợi ý 2
-Câu 5: xem điều kiện của Phụ lục A trong ghi chú.
+::: hint Gợi ý Bài tập 13.6
+Áp dụng Bổ đề 13.10 với $U\equiv0$ cho từng lịch sử $\tau$ kết thúc tại $s$, rồi lấy kỳ vọng toàn phần theo các lịch sử đó.
 :::
 
 ::: solution Lời giải Bài tập 13.6
-**1.** Với hàng $(q_1;\,q_2)$, $q_1+q_2=1$, các lần thử độc lập cho $L(q_1)=q_1^7(1-q_1)^3$ trên $[0,1]$. Tại hai đầu mút $L=0$. Trên $(0,1)$,
+**Theo từng lịch sử.** Với $U\equiv0$, (5.7) cho $Q_U(s,a)=r(s,a)$. Xét một lịch sử $\tau$ có trạng thái cuối $s$ và $\mathbb P_\pi(H_t=\tau)>0$. Lịch sử $\tau$ chứa trạng thái đầu $s_0$ của nó, nên xác suất có điều kiện theo $\{H_t=\tau\}$ dưới $\mu_0$ trùng xác suất có điều kiện theo $\{H_t=\tau\}$ dưới $\mathbb P_\pi(\cdot\mid S_0=s_0)$. Bổ đề 13.10, với trạng thái đầu $s_0$ và $\rho_t(a\mid\tau)=\pi(a\mid s)$, cho
 $$
 \begin{aligned}
-\frac{d}{dq_1}\ln L&=\frac{7}{q_1}-\frac{3}{1-q_1}=0\\
-&\iff7(1-q_1)=3q_1\\
-&\iff q_1=\frac{7}{10}.
+&\mathbb E_\pi[R_{t+1}\mid H_t=\tau]\\
+&\quad=\sum_{a\in\mathcal A(s)}\pi(a\mid s)\,r(s,a).
 \end{aligned}
 $$
-Đạo hàm dương khi $q_1<7/10$ và âm khi $q_1>7/10$, nên MLE duy nhất là $(0{,}7;\,0{,}3)$, đúng như Hệ quả 13.26.
+Vế phải không phụ thuộc $\tau$.
 
-**2.** Theo (5.7) với $\hat P$:
+**Kỳ vọng toàn phần.** Biến cố $\{S_t=s\}$ là hợp rời của các biến cố $\{H_t=\tau\}$ với $\tau$ kết thúc tại $s$. Định lý 10.29, áp dụng cho xác suất có điều kiện $\mathbb P_\pi(\cdot\mid S_t=s)$ với biến điều kiện $H_t$, cho một trung bình có trọng số của cùng một số, nên
 $$
 \begin{aligned}
-&\hat Q_V(s,a)\\
-&\quad=2+0{,}8\,(0{,}7\cdot5+0{,}3\cdot1)\\
-&\quad=2+0{,}8\cdot3{,}8\\
-&\quad=2+3{,}04=5{,}04.
+&\mathbb E_\pi[R_{t+1}\mid S_t=s]\\
+&\quad=\sum_{a\in\mathcal A(s)}\pi(a\mid s)\\
+&\qquad\times\sum_{s'\in\mathcal S}\sum_{c\in\mathcal R}c\,p(s',c\mid s,a).
 \end{aligned}
 $$
-Số này khác $V^*(s)$ vì ba lẽ: $V$ là một vector cho trước, chưa phải $V^*$; chưa lấy cực đại theo hành động; và dùng $\hat P$ thay cho $P$. Nó cũng khác mục tiêu từ một lần chuyển tiếp, vốn chỉ dùng một trạng thái kế tiếp.
+Theo (5.2), tổng trong là $r(s,a)$, nên kết quả bằng $r^\pi(s)$ của (5.3).
 
-**3.** Nếu quan sát $s_1$: $Y=2+0{,}8\cdot5=6$, với xác suất ước lượng $0{,}7$. Nếu quan sát $s_2$: $Y=2+0{,}8\cdot1=2{,}8$, với xác suất ước lượng $0{,}3$. Kỳ vọng là $0{,}7\cdot6+0{,}3\cdot2{,}8=4{,}2+0{,}84=5{,}04$, trùng câu 2.
-
-**4.** Không có lần thử nào, nên mọi số mũ bằng $0$ và hợp lý $L\equiv1$ trên toàn đơn hình $\Delta(\mathcal S)$. Mọi hàng xác suất đều là MLE (Hệ quả 13.26 với $m=0$). Khi $\lvert\mathcal S\rvert\ge2$, nghiệm không duy nhất, và tỉ số $N(s,b,s')/N(s,b)=0/0$ không xác định.
-
-**5.** Cần kiểm tra: chính sách thu thập có dùng phần thưởng hay phụ thuộc tham số chuyển tiếp không; phân phối ban đầu có phụ thuộc tham số không; trạng thái có thỏa tính Markov và mô hình có thuần nhất không. Các trạng thái trên quỹ đạo không i.i.d., nhưng dưới các điều kiện trên, xác suất đồng thời (A.1) là tích, và các nhân tử chuyển tiếp nhóm theo số đếm, nên MLE của mỗi hàng vẫn là tỉ số số đếm. Xác suất có điều kiện theo toàn bộ chuỗi hành động, kể cả hành động tương lai, phải chia cho xác suất của chuỗi hành động; khi chính sách dùng trạng thái để chọn hành động, thương này nói chung không phải tích các xác suất chuyển.
-
-**Kiểm tra lại.** $\hat P$ có tổng $0{,}7+0{,}3=1$; giá trị $5{,}04$ nằm giữa hai mục tiêu từ mẫu $2{,}8$ và $6$.
+**Kiểm tra lại.** Với robot của Ví dụ 13.4 và chính sách chọn $A$, $B$ với xác suất $1/2$, công thức cho $\tfrac12\cdot1+\tfrac12\cdot0{,}6=0{,}8=r^\pi(h)$.
 :::
 
-### Bài tập 13.7 (Giả thiết và bảo đảm của quy hoạch và của học)
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 3, 4; chuyển qua lại giữa giá trị tối ưu, giá trị hành động tối ưu và chính sách tối ưu.
 
-**Mức độ:** kiểm tra giả thiết. **Mục tiêu:** mục tiêu học tập 4 và 6; đối chiếu giả thiết của các kết quả với hai hệ thống cụ thể.
+::: exercise Bài tập 13.7 (Giá trị tối ưu, giá trị hành động tối ưu và chính sách tối ưu; Sutton và Barto, Bài 3.25–3.28, §3.6, tr. 67)
+Trong một MDP hữu hạn (Định nghĩa 13.5), $q_*(s,a)=Q_{V^*}(s,a)$ theo (5.7). Viết:
 
-::: exercise Bài tập 13.7
-Hai hệ thống cùng có tập trạng thái và hành động hữu hạn, phần thưởng bị chặn và $\gamma=0{,}9$. Hệ thống thứ nhất biết chính xác $P,r$ và dùng cập nhật đồng thời $V_{k+1}=TV_k$. Hệ thống thứ hai chỉ nhận các bộ $(S_t,A_t,R_{t+1},S_{t+1})$, cập nhật một phần tử của bảng $Q$ bằng mục tiêu từ mẫu, và có thể dùng một mạng nơ-ron để biểu diễn $Q$.
-
-1. Viết một đoạn 4–6 câu phân biệt thông tin đã biết, đại lượng cần học và vai trò của thăm dò ở hai hệ thống.
-2. Liệt kê giả thiết và kết luận của Hệ quả 13.18 và Định lý 13.19 áp dụng cho hệ thống thứ nhất. Giải thích vì sao không được coi hai kết quả đó là chứng minh hội tụ cho hệ thống thứ hai.
-3. Nêu một ví dụ trạng thái quan sát không có tính Markov, khác cơ chế của Tình huống 13.2: chỉ ra hai lịch sử tại cùng một thời điểm, có xác suất dương và cùng quan sát hiện tại, nhưng phân phối bước sau khác nhau. Đề xuất một cách sửa.
-4. Phân biệt sai số của phép quy hoạch, sai số mô hình do dữ liệu hữu hạn và hạn chế của cách biểu diễn giá trị. Giải thích vì sao giảm phần dư Bellman trên một mô hình đã khớp chưa kiểm soát mọi nguồn sai số này.
+- **(a)** $V^*$ theo $q_*$;
+- **(b)** $q_*$ theo $V^*$ và mô hình chuyển $p(s',c\mid s,a)$;
+- **(c)** một chính sách tối ưu $\pi_*$ theo $q_*$;
+- **(d)** một chính sách tối ưu $\pi_*$ theo $V^*$ và $p(s',c\mid s,a)$.
 :::
 
-::: hint Gợi ý 1
-Câu 2: kiểm tra từng giả thiết (O1)–(O3) và mô hình đúng. Câu 3: xét một robot có mức pin không được ghi vào trạng thái. So sánh phân phối bước sau của hai lịch sử khác nhau tại cùng một thời điểm $t$, cùng quan sát hiện tại.
-:::
-
-::: hint Gợi ý 2
-Câu 3: một chu trình pin ẩn có pha ban đầu ngẫu nhiên cho hai lịch sử $(S_0,S_1)$ có cùng $S_1$ nhưng dẫn tới $S_2$ khác nhau. Câu 4: đối chiếu từng nguồn sai số với Hệ quả 13.21 và Mệnh đề 12.16.
+::: hint Gợi ý Bài tập 13.7
+Dùng phương trình Bellman tối ưu (6.8) và Định lý 13.19 cho chính sách tham lam; với (b) và (d), khai triển $r(s,a)$ và $P(s'\mid s,a)$ theo (5.2).
 :::
 
 ::: solution Lời giải Bài tập 13.7
-**1.** Hệ thống thứ nhất biết $P$ và $r$, nên mỗi vòng tính đúng kỳ vọng theo trạng thái kế tiếp và không cần thu dữ liệu. Hệ thống thứ hai không biết $P,r$; nó phải học bảng $Q$ từ các chuyển tiếp quan sát được, mỗi chuyển tiếp chỉ là một kết quả ngẫu nhiên. Dữ liệu của hệ thống thứ hai phụ thuộc chính sách nó dùng để chọn hành động. Nếu một cặp trạng thái–hành động không được thử, hệ thống không có thông tin về cặp đó. Vì vậy hệ thống thứ hai cần thăm dò, còn hệ thống thứ nhất thì không.
-
-**2.** Giả thiết: MDP hữu hạn (Định nghĩa 13.5), tập hành động khác rỗng, phần thưởng bị chặn, $\gamma<1$, mô hình $P,r$ đúng và toán tử được tính chính xác (O3). Kết luận: $T$ là ánh xạ co hệ số $\gamma$; có điểm bất động duy nhất $\bar V$; $V_k\to\bar V$ với $\lVert V_k-\bar V\rVert_\infty\le\gamma^k\lVert V_0-\bar V\rVert_\infty$; $\bar V=V^*$ và chính sách tham lam theo $\bar V$ là tối ưu. Hệ thống thứ hai không tính $T$: nó thay kỳ vọng bằng một mẫu, chỉ cập nhật một phần tử mỗi lần, và có thể biểu diễn $Q$ bằng một hàm xấp xỉ. Giả thiết (O3) bị vi phạm; hội tụ của Q-learning cần các giả thiết riêng về bước học và việc thăm các cặp (Nhận xét 13.29).
-
-**3.** Xét robot có quan sát $h$ (hoạt động) hoặc $n$ (nghỉ) và mức pin ẩn $b\in\{0,1\}$ không được ghi. Cặp (quan sát, pin) đi theo chu trình tất định gồm ba pha
+**(a)** Theo (6.8) và (5.7), $V^*(s)=\max_{a\in\mathcal A(s)}Q_{V^*}(s,a)$, tức
 $$
-\begin{gathered}
-(h,1)\to(h,0)\to(n,0)\\
-\to(h,1)\to\cdots,
-\end{gathered}
+V^*(s)=\max_{a\in\mathcal A(s)}q_*(s,a).
 $$
-tức robot hoạt động hai bước liên tiếp rồi nghỉ một bước để sạc. Pha ban đầu được chọn đều trong ba pha, mỗi pha xác suất $1/3$.
 
-**Ba quỹ đạo quan sát.** Theo pha ban đầu, $(S_0,S_1,S_2)$ là:
-
-- pha $(h,1)$: $(h,h,n)$;
-- pha $(h,0)$: $(h,n,h)$;
-- pha $(n,0)$: $(n,h,h)$.
-
-Mỗi quỹ đạo có xác suất $1/3$.
-
-**Hai lịch sử tại cùng thời điểm $t=1$.** Lịch sử $(S_0,S_1)=(h,h)$ và lịch sử $(S_0,S_1)=(n,h)$ đều có xác suất $1/3>0$ và cùng quan sát hiện tại $S_1=h$. Tuy nhiên,
+**(b)** Thay (5.2) vào (5.7) với $U=V^*$ và gộp hai tổng:
 $$
 \begin{aligned}
-&\mathbb P(S_2=n\mid S_0=h,S_1=h)\\
-&\quad=\frac{\mathbb P(h,h,n)}{\mathbb P(S_0=h,S_1=h)}\\
-&\quad=\frac{1/3}{1/3}=1,\\
-&\mathbb P(S_2=n\mid S_0=n,S_1=h)\\
-&\quad=\frac{0}{1/3}=0.
+q_*(s,a)&=\sum_{s'\in\mathcal S}\sum_{c\in\mathcal R}p(s',c\mid s,a)\\
+&\qquad\times\bigl[c+\gamma V^*(s')\bigr].
 \end{aligned}
 $$
-Trong khi đó $\mathbb P(S_2=n\mid S_1=h)=\frac{1/3}{2/3}=\frac12$, khác cả hai số trên. Vậy (4.1) không đúng tại $t=1$: quan sát $h$ không cho biết robot đang ở bước hoạt động thứ nhất hay thứ hai.
 
-**Cách sửa.** Như Nhận xét 07.47, mở rộng trạng thái thành cặp $(S_t,b_t)$, hoặc cặp hai quan sát gần nhất $(S_{t-1},S_t)$; với trạng thái mở rộng, bước sau được xác định hoàn toàn từ trạng thái hiện tại. Nếu không đo được pin và không giữ quan sát cũ, cần mô hình quan sát một phần và suy luận phân phối của $b_t$ từ lịch sử quan sát.
+**(c)** Chính sách tất định dừng $\pi_*$ với
+$$
+\pi_*(s)\in\underset{a\in\mathcal A(s)}{\operatorname{argmax}}\;q_*(s,a)
+$$
+là chính sách tham lam theo $V^*$ (6.2). Theo Định lý 13.19, $V^*$ là điểm bất động $\bar V$ của $T$ và chính sách tham lam theo $\bar V$ là tối ưu, nên $\pi_*$ tối ưu.
 
-**4.** Ba nguồn sai số:
+**(d)** Thay (b) vào (c):
+$$
+\begin{aligned}
+&\pi_*(s)\in\underset{a\in\mathcal A(s)}{\operatorname{argmax}}\\
+&\quad\sum_{s'}\sum_{c}p(s',c\mid s,a)\\
+&\qquad\times\bigl[c+\gamma V^*(s')\bigr].
+\end{aligned}
+$$
 
-- sai số quy hoạch: $V_k$ còn cách điểm bất động của mô hình đang dùng; Hệ quả 13.21 chặn nó bằng $\beta(V_k)/(1-\gamma)$;
-- sai số mô hình: $\hat P,\hat r$ khác $P,r$ do dữ liệu hữu hạn hoặc thu thập lệch;
-- hạn chế biểu diễn: lớp hàm dùng cho giá trị hoặc cách chọn trạng thái không biểu diễn được giá trị thật.
-
-Phần dư $\beta\to0$ chỉ kiểm soát nguồn thứ nhất. Cách tách này giống Mệnh đề 12.16, nơi rủi ro dư được chặn bằng tổng của sai số xấp xỉ, sai số ước lượng và sai số tối ưu hóa.
-
-**Kiểm tra lại.** Tình huống 13.1 của ghi chú là một ví dụ số: phép quy hoạch trên mô hình ước lượng hội tụ đúng, nhưng chính sách thu được mất $46/11$ so với tối ưu thật vì sai số mô hình.
+**Kiểm tra lại.** Với robot của Ví dụ 13.6, $V^*(h)=6$ và $V^*(z)=0$, nên $q_*(h,A)=1+0{,}45\cdot6=3{,}7$ và $q_*(h,B)=0{,}6+0{,}9\cdot6=6$. Theo (a), $V^*(h)=\max\{3{,}7;\,6\}=6$; theo (c), $\pi_*(h)=B$, đúng như Ví dụ 13.6.
 :::
 
-### Bài tập 13.8 (Giá trị của chính sách dừng)
+## Mức tính toán hoặc chứng minh
 
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 2–3; lập $P^\pi$, $r^\pi$ và giải phương trình Bellman cho chính sách cố định.
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 3; kiểm tra phương trình Bellman cho một chính sách cố định bằng các giá trị cho sẵn.
 
-::: exercise Bài tập 13.8
-Một MDP có hai trạng thái $h$, $z$; $z$ hấp thụ với thưởng $0$; $\gamma=1/2$. Tại $h$, hành động $A$ thưởng $2$ rồi chắc chắn tới $z$; hành động $B$ thưởng $1$ rồi chắc chắn ở lại $h$.
+::: exercise Bài tập 13.8 (Kiểm tra phương trình Bellman trên lưới ô vuông; Sutton và Barto, Bài 3.14, §3.5, tr. 60)
+Một tác tử di chuyển trên lưới $5\times5$ ô (Sutton và Barto, Ví dụ 3.5, tr. 60). Mỗi ô là một trạng thái; tại mỗi ô có bốn hành động bắc, nam, đông, tây, đưa tác tử sang ô kề theo hướng đó một cách tất định. Phần thưởng như sau:
 
-**(a)** Tính giá trị tại $h$ của hai chính sách tất định dừng.
+- hành động đưa tác tử ra ngoài lưới giữ nguyên vị trí và cho thưởng $-1$;
+- từ ô đặc biệt A, mọi hành động cho thưởng $+10$ và đưa tác tử tới ô A′; từ ô đặc biệt B, mọi hành động cho thưởng $+5$ và đưa tác tử tới ô B′;
+- mọi hành động khác cho thưởng $0$.
 
-**(b)** Chính sách $\pi$ chọn $A$ hoặc $B$ với xác suất $1/2$ tại $h$. Viết $P^\pi$, $r^\pi$ theo thứ tự $h,z$ và tính $V^\pi(h)$.
+Chính sách $\pi$ chọn bốn hành động với xác suất bằng nhau tại mọi ô, và $\gamma=0{,}9$. Ô ở chính giữa lưới không phải A, B và không nằm ở biên. Sách cho các giá trị $V^\pi$ làm tròn tới một chữ số thập phân: ô giữa có giá trị $0{,}7$; bốn ô kề phía bắc, đông, nam, tây có giá trị lần lượt $2{,}3$; $0{,}4$; $-0{,}4$; $0{,}7$.
 
-**(c)** Ba chính sách có cùng giá trị. Điều đó có mâu thuẫn với tính duy nhất trong Định lý 13.12 không?
+- **(a)** Kiểm tra bằng số phương trình Bellman (5.12) tại ô giữa.
+- **(b)** Mỗi giá trị cho sẵn sai khác giá trị thật không quá $0{,}05$. Chứng tỏ chênh lệch giữa hai vế ở (a) nằm trong phạm vi sai số làm tròn.
 :::
 
-::: hint Gợi ý 1
-Với mọi chính sách, $V(z)=0$. Viết một phương trình một ẩn cho $V(h)$ theo (5.12).
-:::
-
-::: hint Gợi ý 2
-Với chính sách trộn, lập $P^\pi$ và $r^\pi$ theo (5.3) trước, rồi giải $V^\pi(h)=r^\pi(h)+\tfrac12P^\pi(h,h)V^\pi(h)$.
+::: hint Gợi ý Bài tập 13.8
+Tại ô giữa, mỗi hành động cho thưởng $0$ và đưa tác tử sang một ô kề, nên $r^\pi$ bằng $0$ và mỗi ô kề có $P^\pi$ bằng $1/4$.
 :::
 
 ::: solution Lời giải Bài tập 13.8
-**(a)** Luôn chọn $A$: $V^A(h)=2+\tfrac12\cdot0=2$. Luôn chọn $B$: $V^B(h)=1+\tfrac12V^B(h)$, nên $V^B(h)=2$.
-
-**(b)** Theo (5.3),
+**(a)** Ô giữa không ở biên và không phải A, B, nên mọi hành động cho thưởng $0$ và $r^\pi(\text{giữa})=0$. Mỗi hành động có xác suất $1/4$ và đưa tác tử sang một ô kề khác nhau, nên theo (5.3) mỗi ô kề có $P^\pi(\text{giữa},\cdot)=1/4$. Vế phải của (5.12) là
 $$
-\begin{gathered}
-P^\pi=\begin{pmatrix}1/2&1/2\\0&1\end{pmatrix},\\
-r^\pi=\begin{pmatrix}3/2\\0\end{pmatrix}.
-\end{gathered}
+\begin{aligned}
+&0+0{,}9\cdot\tfrac14\\
+&\quad\times(2{,}3+0{,}4-0{,}4+0{,}7)\\
+&\quad=0{,}225\cdot3{,}0=0{,}675,
+\end{aligned}
 $$
-Theo (5.12), $V^\pi(h)=\tfrac32+\tfrac12\cdot\tfrac12\,V^\pi(h)=\tfrac32+\tfrac14V^\pi(h)$, nên $\tfrac34V^\pi(h)=\tfrac32$ và $V^\pi(h)=2$.
+và $0{,}675$ làm tròn tới một chữ số thập phân là $0{,}7$, bằng vế trái.
 
-**(c)** Không. Định lý 13.12 nói mỗi chính sách có đúng một vector giá trị; nó không nói hai chính sách khác nhau phải có giá trị khác nhau.
+**(b)** Gọi $x_i$ là giá trị thật và $\hat x_i$ là giá trị cho sẵn của ô kề thứ $i$, với $\lvert x_i-\hat x_i\rvert\le0{,}05$. Vế phải thật bằng $0{,}225\sum_ix_i$, nên nó sai khác $0{,}675$ không quá $0{,}225\cdot4\cdot0{,}05=0{,}045$, tức thuộc $[0{,}63;\ 0{,}72]$. Vế trái thật thuộc $[0{,}65;\ 0{,}75]$. Hai đoạn giao nhau theo $[0{,}65;\ 0{,}72]$, nên chênh lệch $0{,}7-0{,}675=0{,}025$ ở (a) phù hợp với sai số làm tròn.
 
-**Kiểm tra lại.** Thế lại: $1+\tfrac12\cdot2=2$ và $\tfrac32+\tfrac14\cdot2=2$.
+**Kiểm tra lại.** Hệ số của mỗi ô kề là $0{,}9/4=0{,}225$, và tổng bốn hệ số bằng $0{,}9=\gamma$, đúng như mỗi hàng của $\gamma P^\pi$ có tổng $\gamma$.
 :::
 
-### Bài tập 13.9 (Phương trình Bellman tối ưu có hai hành động cùng tối ưu)
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 3; viết bốn phương trình Bellman chỉ bằng xác suất chuyển và phần thưởng kỳ vọng.
 
-**Mức độ:** tính toán, khái niệm. **Mục tiêu:** mục tiêu học tập 3–4; giải phương trình Bellman tối ưu và tách tính duy nhất của giá trị khỏi tính duy nhất của chính sách.
-
-::: exercise Bài tập 13.9
-Dùng MDP của Bài tập 13.8: $z$ hấp thụ với thưởng $0$, $\gamma=1/2$; tại $h$, $A$ thưởng $2$ rồi tới $z$, $B$ thưởng $1$ rồi ở lại $h$. Viết toán tử Bellman tối ưu theo $v=V(h)$ khi $V(z)=0$, tìm điểm bất động và mọi hành động đạt cực đại tại đó. Nêu kết quả nào cho phép kết luận không chính sách nào, kể cả chính sách phụ thuộc lịch sử, có giá trị lớn hơn.
+::: exercise Bài tập 13.9 (Bốn phương trình Bellman theo xác suất chuyển và phần thưởng kỳ vọng; Sutton và Barto, Bài 3.29, §3.6, tr. 67)
+Trong một MDP hữu hạn (Định nghĩa 13.5), với chính sách Markov dừng $\pi$, đặt $q_\pi(s,a)=Q_{V^\pi}(s,a)$ và $q_*(s,a)=Q_{V^*}(s,a)$ theo (5.7). Viết bốn phương trình Bellman cho $V^\pi$, $V^*$, $q_\pi$ và $q_*$ chỉ dùng $\pi$, $\gamma$, xác suất chuyển $P(s'\mid s,a)$ và phần thưởng kỳ vọng $r(s,a)$ của (5.2).
 :::
 
-::: hint Gợi ý 1
-Giải $v=\max\{2;\ 1+v/2\}$ và kiểm tra cả hai nhánh tại ứng viên.
-:::
-
-::: hint Gợi ý 2
-Tính duy nhất của giá trị đến từ tính co (Mệnh đề 13.16); so sánh với chính sách phụ thuộc lịch sử nằm ở Bước 2 của chứng minh Định lý 13.19.
+::: hint Gợi ý Bài tập 13.9
+Hai phương trình cho $V^\pi$ và $V^*$ là (5.12) và (6.8) viết qua $P$ và $r$. Với giá trị hành động, thay $V^\pi(s')$ và $V^*(s')$ trong (5.7) bằng biểu thức theo $q_\pi$ và $q_*$.
 :::
 
 ::: solution Lời giải Bài tập 13.9
-Theo (6.1), $Q_V(h,A)=2+\tfrac12V(z)=2$ và $Q_V(h,B)=1+\tfrac12v$, nên $Tv=\max\{2;\ 1+v/2\}$. Tại $v=2$, cả hai nhánh bằng $2$, nên $v=2$ là điểm bất động. Theo Mệnh đề 13.16, $T$ co với hệ số $1/2$, nên điểm bất động là duy nhất (Hệ quả 13.18).
+**Giá trị của chính sách.** Thay (5.3) vào (5.12):
+$$
+\begin{aligned}
+&V^\pi(s)\\
+&\quad=\sum_{a\in\mathcal A(s)}\pi(a\mid s)\Bigl[r(s,a)\\
+&\qquad+\gamma\sum_{s'}P(s'\mid s,a)\,V^\pi(s')\Bigr].
+\end{aligned}
+$$
 
-Theo Định lý 13.19, $V^*(h)=2$, và mọi chính sách tham lam theo $V^*$ là tối ưu; ở đây cả $A$ và $B$ đều đạt cực đại, nên cả hai chính sách tất định dừng đều tối ưu. Bước 2 của chứng minh Định lý 13.19, dựa trên Bổ đề 13.11, so sánh với mọi chính sách tổng quát, nên không chính sách phụ thuộc lịch sử nào vượt $2$.
+**Giá trị tối ưu.** Đây là (6.8):
+$$
+\begin{aligned}
+&V^*(s)\\
+&\quad=\max_{a\in\mathcal A(s)}\Bigl[r(s,a)\\
+&\qquad+\gamma\sum_{s'}P(s'\mid s,a)\,V^*(s')\Bigr].
+\end{aligned}
+$$
 
-**Kiểm tra lại.** Giá trị $2$ trùng $V^A(h)=V^B(h)=2$ ở Bài tập 13.8. Giá trị tối ưu duy nhất, nhưng chính sách tối ưu không duy nhất.
+**Giá trị hành động của chính sách.** Theo Định lý 13.12, $V^\pi=T^\pi V^\pi$, và theo (5.8), $V^\pi(s')=\sum_{a'}\pi(a'\mid s')\,q_\pi(s',a')$. Thay vào (5.7) với $U=V^\pi$:
+$$
+\begin{aligned}
+&q_\pi(s,a)=r(s,a)\\
+&\quad+\gamma\sum_{s'}P(s'\mid s,a)\\
+&\qquad\times\sum_{a'\in\mathcal A(s')}\pi(a'\mid s')\,q_\pi(s',a').
+\end{aligned}
+$$
+
+**Giá trị hành động tối ưu.** Theo Bài tập 13.7(a), $V^*(s')=\max_{a'}q_*(s',a')$. Thay vào (5.7) với $U=V^*$:
+$$
+\begin{aligned}
+&q_*(s,a)=r(s,a)\\
+&\quad+\gamma\sum_{s'}P(s'\mid s,a)\\
+&\qquad\times\max_{a'\in\mathcal A(s')}q_*(s',a').
+\end{aligned}
+$$
+
+**Kiểm tra lại.** Với robot của Ví dụ 13.5 và chính sách luôn chọn $B$, phương trình thứ ba tại $(h,B)$ là $q_\pi(h,B)=0{,}6+0{,}9\,q_\pi(h,B)$, cho $q_\pi(h,B)=6=V^B(h)$.
 :::
 
-### Bài tập 13.10 (Tính co và phần dư Bellman)
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 3; viết phương trình Bellman cho giá trị hành động tối ưu của một MDP cụ thể.
 
-**Mức độ:** chứng minh, tính toán. **Mục tiêu:** mục tiêu học tập 4; chứng minh tính co trong một trường hợp cụ thể và đọc chặn phần dư.
+::: exercise Bài tập 13.10 (Phương trình Bellman cho giá trị hành động tối ưu của robot thu gom lon; Sutton và Barto, Bài 3.23, §3.6, tr. 67)
+Robot thu gom vỏ lon có hai trạng thái $\mathrm h$ (pin cao), $\mathrm l$ (pin thấp) và các hành động $\mathrm s$ (tìm lon), $\mathrm w$ (đứng chờ), $\mathrm{re}$ (về trạm sạc), với $\mathcal A(\mathrm h)=\{\mathrm s,\mathrm w\}$ và $\mathcal A(\mathrm l)=\{\mathrm s,\mathrm w,\mathrm{re}\}$. Dữ kiện (Sutton và Barto, Ví dụ 3.3, tr. 52):
 
-::: exercise Bài tập 13.10
-Cho một MDP hữu hạn với $\gamma=0{,}8$, phần thưởng bị chặn và các hàng xác suất chuyển chuẩn hóa.
+- tìm lon từ $\mathrm h$: ở lại $\mathrm h$ với xác suất $\alpha$, sang $\mathrm l$ với xác suất $1-\alpha$, phần thưởng $r_{\mathrm s}$;
+- tìm lon từ $\mathrm l$: ở lại $\mathrm l$ với xác suất $\beta$, phần thưởng $r_{\mathrm s}$; với xác suất $1-\beta$ pin cạn, robot được cứu và về $\mathrm h$, phần thưởng $-3$;
+- đứng chờ: trạng thái giữ nguyên, phần thưởng $r_{\mathrm w}$;
+- về trạm sạc từ $\mathrm l$: sang $\mathrm h$ với xác suất $1$, phần thưởng $0$.
 
-**(a)** Chứng minh $\lVert TV-TW\rVert_\infty\le0{,}8\,\lVert V-W\rVert_\infty$.
-
-**(b)** Một vector $V$ có phần dư Bellman chính xác $\beta(V)=\lVert TV-V\rVert_\infty=0{,}02$. Chặn sai số của $V$ và của $TV$ so với $V^*$.
-
-**(c)** Chặn mất mát giá trị của chính sách tham lam theo $V$.
+Cho $0\le\gamma<1$. Viết phương trình Bellman cho $q_*(s,a)=Q_{V^*}(s,a)$ tại năm cặp $(s,a)$.
 :::
 
-::: hint Gợi ý 1
-Chặn sai khác của từng giá trị nhìn trước, rồi dùng Bổ đề 13.15. Phần (b) và (c) dùng Hệ quả 13.21 và Mệnh đề 13.22.
-:::
-
-::: hint Gợi ý 2
-Phần (b): thay $\beta(V)=0{,}02$, $\gamma=0{,}8$ vào (6.10). Phần (c): dùng chặn $\lVert V-V^*\rVert_\infty\le0{,}1$ của phần (b) trong (6.11).
+::: hint Gợi ý Bài tập 13.10
+Dùng phương trình cho $q_*$ ở Bài tập 13.9. Tính $r(s,a)$ và $P(s'\mid s,a)$ của từng cặp theo (5.2), như Bài tập 13.5(b).
 :::
 
 ::: solution Lời giải Bài tập 13.10
-**(a)** Với mọi $s,a$, phần thưởng triệt tiêu khi lấy hiệu và
+**Phần thưởng kỳ vọng.** Theo (5.2), $r(\mathrm h,\mathrm s)=r_{\mathrm s}$, $r(\mathrm l,\mathrm s)=\beta r_{\mathrm s}-3(1-\beta)$, $r(\mathrm h,\mathrm w)=r(\mathrm l,\mathrm w)=r_{\mathrm w}$ và $r(\mathrm l,\mathrm{re})=0$.
+
+**Năm phương trình.** Đặt $M_{\mathrm h}=\max\{q_*(\mathrm h,\mathrm s),\,q_*(\mathrm h,\mathrm w)\}$ và $M_{\mathrm l}=\max\{q_*(\mathrm l,\mathrm s),\,q_*(\mathrm l,\mathrm w),\,q_*(\mathrm l,\mathrm{re})\}$. Phương trình cho $q_*$ ở Bài tập 13.9 cho
 $$
 \begin{aligned}
-&\lvert Q_V(s,a)-Q_W(s,a)\rvert\\
-&\quad\le0{,}8\sum_{s'}P(s'\mid s,a)\\
-&\qquad\quad\cdot\lvert V(s')-W(s')\rvert\\
-&\quad\le0{,}8\,\lVert V-W\rVert_\infty.
-\end{aligned}
-$$
-Bổ đề 13.15 cho $\lvert(TV)(s)-(TW)(s)\rvert\le\max_a\lvert Q_V(s,a)-Q_W(s,a)\rvert\le0{,}8\,\lVert V-W\rVert_\infty$; lấy cực đại theo $s$ được kết luận.
-
-**(b)** Theo (6.10), $\lVert V-V^*\rVert_\infty\le0{,}02/(1-0{,}8)=0{,}1$ và $\lVert TV-V^*\rVert_\infty\le0{,}8\cdot0{,}02/0{,}2=0{,}08$.
-
-**(c)** Theo (6.11) với $\lVert V-V^*\rVert_\infty\le0{,}1$,
-$$
-\begin{aligned}
-\lVert V^{\pi_V}-V^*\rVert_\infty&\le\frac{2\cdot0{,}8}{0{,}2}\cdot0{,}1\\
-&=0{,}8.
+&q_*(\mathrm h,\mathrm s)=r_{\mathrm s}\\
+&\quad+\gamma\bigl[\alpha M_{\mathrm h}+(1-\alpha)M_{\mathrm l}\bigr],\\
+&q_*(\mathrm h,\mathrm w)=r_{\mathrm w}+\gamma M_{\mathrm h},\\
+&q_*(\mathrm l,\mathrm s)=\beta r_{\mathrm s}-3(1-\beta)\\
+&\quad+\gamma\bigl[(1-\beta)M_{\mathrm h}+\beta M_{\mathrm l}\bigr],\\
+&q_*(\mathrm l,\mathrm w)=r_{\mathrm w}+\gamma M_{\mathrm l},\\
+&q_*(\mathrm l,\mathrm{re})=\gamma M_{\mathrm h}.
 \end{aligned}
 $$
 
-**Kiểm tra lại.** Chặn của $TV$ nhỏ hơn chặn của $V$ đúng hệ số $\gamma=0{,}8$. Các chặn này nói về mô hình đang dùng, không về một hệ thống thật có thể khác mô hình.
+**Kiểm tra lại.** Theo Bài tập 13.7(a), $V^*(\mathrm h)=M_{\mathrm h}$ và $V^*(\mathrm l)=M_{\mathrm l}$. Lấy cực đại hai phương trình đầu và ba phương trình sau được
+$$
+\begin{aligned}
+&V^*(\mathrm h)=\max\bigl\{r_{\mathrm s}\\
+&\quad+\gamma[\alpha V^*(\mathrm h)+(1-\alpha)V^*(\mathrm l)];\\
+&\quad r_{\mathrm w}+\gamma V^*(\mathrm h)\bigr\},\\
+&V^*(\mathrm l)=\max\bigl\{\beta r_{\mathrm s}-3(1-\beta)\\
+&\quad+\gamma[(1-\beta)V^*(\mathrm h)+\beta V^*(\mathrm l)];\\
+&\quad r_{\mathrm w}+\gamma V^*(\mathrm l);\ \gamma V^*(\mathrm h)\bigr\},
+\end{aligned}
+$$
+trùng phương trình Bellman tối ưu (6.8) cho mô hình này, như Sutton và Barto viết ở Ví dụ 3.9 (tr. 65–66).
 :::
 
-### Bài tập 13.11 (Kiểm tra một khẳng định hội tụ)
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 3; chứng minh rằng cộng một hằng số vào mọi phần thưởng chỉ dịch mọi giá trị đi một hằng số.
 
-**Mức độ:** kiểm tra giả thiết. **Mục tiêu:** mục tiêu học tập 6; tách điều phần dư chứng nhận khỏi điều nó không chứng nhận.
+::: exercise Bài tập 13.11 (Cộng một hằng số vào mọi phần thưởng; Sutton và Barto, Bài 3.15, §3.5, tr. 61)
+Cho một MDP hữu hạn (Định nghĩa 13.5) và một hằng số $b\in\mathbb R$. MDP mới giữ nguyên trạng thái, hành động và cơ chế chuyển, nhưng mỗi phần thưởng $R_{t+1}$ được thay bằng $R_{t+1}+b$. Ký hiệu $V_b^\pi$ là hàm giá trị của chính sách Markov dừng $\pi$ trong MDP mới.
 
-::: exercise Bài tập 13.11
-Một hệ thống có hai trạng thái $h$, $z$; $z$ hấp thụ với thưởng $0$; tại $h$ có hai hành động $A$, $B$; $\gamma=0{,}9$. Nhật ký chỉ chứa các lần dùng $A$; hành động $B$ chưa được thử. Nhóm phát triển tự đặt hàng chuyển của $B$, ước lượng hàng của $A$ từ nhật ký, chạy lặp giá trị đến khi phần dư bằng $10^{-6}$, rồi kết luận chính sách tham lam là tối ưu trong môi trường thật. Xác định điều được phần dư chứng nhận và ít nhất hai điều chưa được chứng nhận.
+- **(a)** Dùng (5.4), chứng minh tồn tại hằng số $v_b$ không phụ thuộc $s$ và $\pi$ sao cho $V_b^\pi(s)=V^\pi(s)+v_b$ với mọi $s$ và mọi $\pi$. Tính $v_b$ theo $b$ và $\gamma$.
+- **(b)** Suy ra thứ tự giá trị giữa các trạng thái dưới mỗi chính sách không đổi.
 :::
 
-::: hint Gợi ý 1
-Áp dụng Hệ quả 13.21 và Mệnh đề 13.22 cho đúng toán tử đã tính. Kiểm tra nguồn gốc của từng hàng chuyển và giả thiết trạng thái đủ thông tin.
-:::
-
-::: hint Gợi ý 2
-Phần dư $10^{-6}$ với $\gamma=0{,}9$ cho chặn $10^{-6}/0{,}1$ trong mô hình đã đặt; hàng của $B$ có $N(h,B)=0$, nên Hệ quả 13.26 với $m=0$ không xác định được hàng đó.
+::: hint Gợi ý Bài tập 13.11
+Dưới cùng một chính sách Markov dừng, phân phối của dãy trạng thái và hành động không đổi; chỉ mỗi phần thưởng tăng thêm $b$. Tách tổng thưởng mới thành hai chuỗi hội tụ tuyệt đối (Mệnh đề 13.8).
 :::
 
 ::: solution Lời giải Bài tập 13.11
-**Điều được chứng nhận.** Với toán tử $\hat T$ của mô hình đã đặt, Hệ quả 13.21 cho vector $V$ cách điểm bất động của $\hat T$ không quá $10^{-6}/(1-0{,}9)=10^{-5}$. Mệnh đề 13.22 cho chính sách tham lam mất không quá $2\cdot0{,}9\cdot10^{-5}/0{,}1=1{,}8\cdot10^{-4}$ so với tối ưu, cũng chỉ trong mô hình đã đặt.
+**Mô hình mới hợp lệ.** Tập giá trị phần thưởng mới $\{c+b:c\in\mathcal R\}$ hữu hạn và nằm trong $[-R_{\max}-\lvert b\rvert,\ R_{\max}+\lvert b\rvert]$, nên MDP mới thỏa Định nghĩa 13.5.
 
-**Điều chưa được chứng nhận.**
+**(a)** Chính sách $\pi$ chọn hành động chỉ theo trạng thái hiện tại, và xác suất chuyển $P(s'\mid s,a)$ không đổi, nên khi $S_0=s$, dãy $(S_t,A_t,R_{t+1})_{t\ge0}$ của MDP mới có cùng phân phối với dãy $(S_t,A_t,R_{t+1}+b)_{t\ge0}$ của MDP cũ. Trên mỗi quỹ đạo, theo (5.4), tổng thưởng mới là
+$$
+\begin{aligned}
+G_0^{(b)}&=\sum_{j\ge0}\gamma^j\bigl(R_{j+1}+b\bigr)\\
+&=\sum_{j\ge0}\gamma^jR_{j+1}+b\sum_{j\ge0}\gamma^j\\
+&=G_0+\frac{b}{1-\gamma}.
+\end{aligned}
+$$
+Tách thành hai chuỗi được vì cả hai hội tụ tuyệt đối (Mệnh đề 13.8 và $0\le\gamma<1$). Lấy kỳ vọng với $S_0=s$:
+$$
+V_b^\pi(s)=V^\pi(s)+\frac{b}{1-\gamma},
+$$
+tức $v_b=b/(1-\gamma)$, không phụ thuộc $s$ và $\pi$.
 
-- Hàng chuyển của $B$ đúng với môi trường thật: không có dữ liệu nào cho hàng này (Hệ quả 13.26 với $m=0$).
-- Hàng của $A$ được ước lượng đủ chính xác: số lần thử hữu hạn có thể cho ước lượng lệch, như Tình huống 13.1.
-- Trạng thái $\{h,z\}$ thỏa tính Markov cho hệ thống thật.
-- Chính sách tốt trong môi trường thật: điều này cần cả ba điều trên.
+**(b)** Với mọi $s_1,s_2$, $V_b^\pi(s_1)-V_b^\pi(s_2)=V^\pi(s_1)-V^\pi(s_2)$, nên thứ tự và hiệu giá trị giữa các trạng thái không đổi.
 
-**Kiểm tra lại.** Tính co của $\hat T$ đúng với mọi bảng chuyển chuẩn hóa, kể cả bảng tự đặt; vì vậy hội tụ của phép lặp không nói gì về độ đúng của bảng.
+**Kiểm tra lại.** Trong MDP mới, (5.3) cho thưởng $r^\pi+b\mathbf 1$ với $\mathbf 1$ là vector toàn số $1$, và ma trận $P^\pi$ không đổi. Vì $P^\pi\mathbf 1=\mathbf 1$, vector $V^\pi+\tfrac{b}{1-\gamma}\mathbf 1$ thỏa
+$$
+\begin{aligned}
+&r^\pi+b\mathbf 1+\gamma P^\pi\Bigl(V^\pi+\tfrac{b}{1-\gamma}\mathbf 1\Bigr)\\
+&\quad=V^\pi+\Bigl(b+\tfrac{\gamma b}{1-\gamma}\Bigr)\mathbf 1\\
+&\quad=V^\pi+\tfrac{b}{1-\gamma}\mathbf 1,
+\end{aligned}
+$$
+và theo tính duy nhất trong Định lý 13.12, đó là $V_b^\pi$.
 :::
+
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 4; viết lặp giá trị cho giá trị hành động.
+
+::: exercise Bài tập 13.12 (Lặp giá trị cho giá trị hành động; Sutton và Barto, Bài 4.10, §4.4, tr. 84)
+Trong một MDP hữu hạn (Định nghĩa 13.5), lặp giá trị (Hệ quả 13.18) tính $V_{k+1}=TV_k$, tức
+$$
+\begin{aligned}
+&V_{k+1}(s)\\
+&\quad=\max_{a\in\mathcal A(s)}\sum_{s'}\sum_{c}p(s',c\mid s,a)\\
+&\qquad\times\bigl[c+\gamma V_k(s')\bigr].
+\end{aligned}
+$$
+
+Viết phép cập nhật tương ứng cho bảng giá trị hành động, $q_{k+1}(s,a)$ theo $q_k$ và $p(s',c\mid s,a)$, sao cho $q_k=Q_{V_k}$ kéo theo $q_{k+1}=Q_{V_{k+1}}$. Chứng minh tính chất đó.
+:::
+
+::: hint Gợi ý Bài tập 13.12
+Thay $V_k(s')$ bằng $\max_{a'}q_k(s',a')$; theo (6.1), $\max_{a'}Q_{V_k}(s',a')=(TV_k)(s')$.
+:::
+
+::: solution Lời giải Bài tập 13.12
+Phép cập nhật là
+$$
+\begin{aligned}
+&q_{k+1}(s,a)\\
+&\quad=\sum_{s'}\sum_{c}p(s',c\mid s,a)\\
+&\qquad\times\Bigl[c+\gamma\max_{a'\in\mathcal A(s')}q_k(s',a')\Bigr].
+\end{aligned}
+$$
+Giả sử $q_k=Q_{V_k}$. Theo (6.1), $\max_{a'}Q_{V_k}(s',a')=(TV_k)(s')=V_{k+1}(s')$. Thay vào vế phải và dùng (5.2):
+$$
+\begin{aligned}
+&q_{k+1}(s,a)=r(s,a)\\
+&\quad+\gamma\sum_{s'}P(s'\mid s,a)\,V_{k+1}(s')\\
+&\quad=Q_{V_{k+1}}(s,a).
+\end{aligned}
+$$
+Nếu $q_0=Q_{V_0}$, quy nạp theo $k$ cho $q_k=Q_{V_k}$ với mọi $k$.
+
+**Kiểm tra lại.** Với robot của Ví dụ 13.6 và $V_0=0$: $q_0(h,A)=1$, $q_0(h,B)=0{,}6$, $q_0(z,\cdot)=0$. Phép cập nhật trên cho $q_1(h,A)=1+0{,}45\cdot1+0{,}45\cdot0=1{,}45$ và $q_1(h,B)=0{,}6+0{,}9\cdot1=1{,}5$, trùng dòng $k=1$ của bảng trong Ví dụ 13.6.
+:::
+
+## Mức vận dụng
+
+**Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 3, 5; xác định chính sách tối ưu theo hệ số chiết khấu và thực hiện lặp giá trị bằng tay.
+
+::: exercise Bài tập 13.13 (Chính sách tối ưu phụ thuộc hệ số chiết khấu; Sutton và Barto, Bài 3.22, §3.6, tr. 66)
+Một MDP không có trạng thái kết thúc gồm ba trạng thái $s_0$, $s_{\mathrm L}$, $s_{\mathrm R}$. Mọi chuyển tiếp và phần thưởng đều tất định:
+
+- tại $s_0$, hành động $\mathrm L$ (trái) cho thưởng $+1$ và đưa tác tử tới $s_{\mathrm L}$; hành động $\mathrm R$ (phải) cho thưởng $0$ và đưa tác tử tới $s_{\mathrm R}$;
+- tại $s_{\mathrm L}$ chỉ có một hành động, cho thưởng $0$ và đưa tác tử về $s_0$;
+- tại $s_{\mathrm R}$ chỉ có một hành động, cho thưởng $+2$ và đưa tác tử về $s_0$.
+
+Có đúng hai chính sách tất định dừng, $\pi_{\mathrm L}$ và $\pi_{\mathrm R}$, khác nhau ở hành động tại $s_0$.
+
+- **(a)** Xác định chính sách tối ưu khi $\gamma=0$, $\gamma=0{,}9$ và $\gamma=0{,}5$.
+- **(b)** Với $\gamma=0{,}9$ và $V_0=0$, tính $V_1$, $V_2$, $V_3$ bằng lặp giá trị và ghi hành động đạt cực đại tại $s_0$ ở mỗi vòng. Giải thích vì sao hành động $\mathrm L$ có phần thưởng tức thời lớn hơn nhưng không tối ưu.
+:::
+
+::: hint Gợi ý Bài tập 13.13
+Dưới mỗi chính sách, dãy phần thưởng từ $s_0$ lặp lại với chu kỳ hai bước: $1,0,1,0,\ldots$ hoặc $0,2,0,2,\ldots$. Tổng thưởng là một cấp số nhân theo $\gamma^2$.
+:::
+
+::: solution Lời giải Bài tập 13.13
+**Giá trị của hai chính sách.** Theo (5.4), từ $s_0$:
+$$
+\begin{aligned}
+V^{\pi_{\mathrm L}}(s_0)&=1+\gamma^2+\gamma^4+\cdots\\
+&=\frac{1}{1-\gamma^2},\\
+V^{\pi_{\mathrm R}}(s_0)&=2\gamma+2\gamma^3+\cdots\\
+&=\frac{2\gamma}{1-\gamma^2}.
+\end{aligned}
+$$
+Dưới cả hai chính sách, $V(s_{\mathrm L})=\gamma V(s_0)$ và $V(s_{\mathrm R})=2+\gamma V(s_0)$, nên chính sách có giá trị lớn hơn tại $s_0$ cũng có giá trị không nhỏ hơn tại mọi trạng thái.
+
+**(a)** Theo Định lý 13.19, có một chính sách tối ưu tất định dừng, tức là $\pi_{\mathrm L}$ hoặc $\pi_{\mathrm R}$; chính sách tối ưu là chính sách có giá trị lớn hơn tại $s_0$. So $1$ với $2\gamma$:
+
+- $\gamma=0$: $V^{\pi_{\mathrm L}}(s_0)=1>0=V^{\pi_{\mathrm R}}(s_0)$, nên $\pi_{\mathrm L}$ tối ưu.
+- $\gamma=0{,}9$: $V^{\pi_{\mathrm L}}(s_0)=100/19\approx5{,}263$ và $V^{\pi_{\mathrm R}}(s_0)=180/19\approx9{,}474$, nên $\pi_{\mathrm R}$ tối ưu.
+- $\gamma=0{,}5$: $1=2\gamma$, cả hai chính sách có cùng vector giá trị, với $V(s_0)=4/3$, nên cả hai đều tối ưu.
+
+**(b)** Theo (6.1), với thứ tự $(s_0;\,s_{\mathrm L};\,s_{\mathrm R})$,
+$$
+\begin{aligned}
+(TV)(s_0)&=\max\{1+0{,}9\,V(s_{\mathrm L});\\
+&\qquad0{,}9\,V(s_{\mathrm R})\},\\
+(TV)(s_{\mathrm L})&=0{,}9\,V(s_0),\\
+(TV)(s_{\mathrm R})&=2+0{,}9\,V(s_0).
+\end{aligned}
+$$
+
+| $k$ | $V_k(s_0)$ | $V_k(s_{\mathrm L})$ | $V_k(s_{\mathrm R})$ | Hành động đạt cực đại tại $s_0$ |
+|---:|---:|---:|---:|---|
+| 1 | $\max\{1;\,0\}=1$ | $0$ | $2$ | $\mathrm L$ |
+| 2 | $\max\{1;\,1{,}8\}=1{,}8$ | $0{,}9$ | $2{,}9$ | $\mathrm R$ |
+| 3 | $\max\{1{,}81;\,2{,}61\}=2{,}61$ | $1{,}62$ | $3{,}62$ | $\mathrm R$ |
+
+Ở vòng đầu, $V_0=0$ chưa chứa giá trị của phần đuôi, nên phép lặp chỉ so phần thưởng tức thời $1$ với $0$. Từ vòng thứ hai, nhánh $\mathrm R$ được cộng $0{,}9\cdot2$ của bước kế tiếp. Trên hai bước, $\mathrm L$ cho tổng chiết khấu $1$ còn $\mathrm R$ cho $2\gamma=1{,}8$; vì vậy $\mathrm R$ tối ưu dù phần thưởng tức thời bằng $0$.
+
+**Kiểm tra lại.** Điểm bất động là $V^*=(180/19;\ 162/19;\ 200/19)\approx(9{,}474;\ 8{,}526;\ 10{,}526)$. Tại $s_0$, nhánh $\mathrm L$ bằng $1+0{,}9\cdot162/19=164{,}8/19<180/19$, nên $TV^*=V^*$. Chặn (6.7) tại $k=3$: $\lVert V_3-V^*\rVert_\infty\approx6{,}906\le0{,}9^3\cdot200/19\approx7{,}674$.
+:::
+
+**Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 2, 5; tính giá trị tối ưu từ một chính sách tối ưu đã biết bằng tổng thưởng chiết khấu.
+
+::: exercise Bài tập 13.14 (Giá trị tối ưu của ô tốt nhất trên lưới ô vuông; Sutton và Barto, Bài 3.24, §3.6, tr. 67)
+Xét lưới $5\times5$ ô của Bài tập 13.8 (Sutton và Barto, Ví dụ 3.5 và 3.8, tr. 60 và 65): bốn hành động bắc, nam, đông, tây tất định; hành động ra ngoài lưới giữ nguyên vị trí và cho thưởng $-1$; từ A mọi hành động cho thưởng $+10$ và đưa tác tử tới A′; từ B mọi hành động cho thưởng $+5$ và đưa tác tử tới B′; mọi hành động khác cho thưởng $0$; $\gamma=0{,}9$. Đánh số hàng từ trên xuống và cột từ trái sang: A ở hàng 1, cột 2; A′ ở hàng 5, cột 2; B ở hàng 1, cột 4; B′ ở hàng 3, cột 4. Một chính sách tối ưu chọn hướng bắc tại các ô hàng 2 đến hàng 5 của cột 2. Sách cho $V^*(\mathrm A)\approx24{,}4$, làm tròn tới một chữ số thập phân.
+
+Dùng chính sách tối ưu này và (5.4), biểu diễn $V^*(\mathrm A)$ theo $\gamma$, rồi tính giá trị tới ba chữ số thập phân.
+:::
+
+::: hint Gợi ý Bài tập 13.14
+Theo chính sách đã cho, tác tử đi từ A tới A′ rồi bốn bước lên phía bắc về A; dãy phần thưởng lặp lại với chu kỳ năm bước.
+:::
+
+::: solution Lời giải Bài tập 13.14
+**Dãy phần thưởng.** Từ A, bước đầu cho thưởng $10$ và đưa tác tử tới A′ (hàng 5, cột 2). Bốn bước bắc tiếp theo đi qua hàng 4, 3, 2 của cột 2 rồi tới A; các bước này ở trong lưới, không xuất phát từ A hay B, nên cho thưởng $0$. Dãy phần thưởng là $10,0,0,0,0,10,0,0,0,0,\ldots$, với chu kỳ $5$.
+
+**Giá trị.** Chính sách và chuyển tiếp đều tất định nên tổng thưởng không ngẫu nhiên. Theo (5.4),
+$$
+G_0=10\sum_{m\ge0}\gamma^{5m}=\frac{10}{1-\gamma^5}.
+$$
+Chính sách đã cho là tối ưu, nên $V^*(\mathrm A)=10/(1-\gamma^5)$. Với $\gamma=0{,}9$, $\gamma^5=0{,}59049$ và
+$$
+V^*(\mathrm A)=\frac{10}{0{,}40951}\approx24{,}419.
+$$
+
+**Kiểm tra lại.** Từ A′, bốn bước thưởng $0$ rồi tới A, nên $V^*(\mathrm A')=\gamma^4V^*(\mathrm A)=0{,}6561\cdot24{,}419\approx16{,}02$, phù hợp giá trị $16{,}0$ sách cho tại A′. Phương trình (6.8) tại A thỏa: $10+0{,}9\cdot16{,}0216\approx24{,}419$.
+:::
+
+## Tài liệu tham khảo
+
+- Sutton, Richard S.; Barto, Andrew G. (2018), *Reinforcement Learning: An Introduction*, ấn bản 2, MIT Press:
+  - Ví dụ 3.3 (tr. 52), Ví dụ 3.5 (tr. 60), Ví dụ 3.8 và 3.9 (tr. 65–66);
+  - mục bài tập của Chương 3: Bài 3.4 (tr. 53), 3.9 (tr. 56), 3.11 (tr. 58), 3.14 (tr. 60), 3.15 (tr. 61), 3.22 (tr. 66), 3.23–3.29 (tr. 67);
+  - mục bài tập của Chương 4: Bài 4.10 (tr. 84).
