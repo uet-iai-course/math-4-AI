@@ -793,3 +793,78 @@ Script (scratchpad/murphycheck/chk.py) trích mọi đoạn "Murphy …" trong d
 Mục và trang PDF: §2.1 (63); §2.1.3, §2.1.3.1 (64); §2.1.3.4, §2.1.3.6, §2.2, §2.2.1 (65); §2.2.2, §2.2.2.1 (66); §2.2.3 (68); §2.2.4 (69); §2.2.5, §2.2.5.1 (70); §2.2.5.4 (71); §2.3 (74); §2.3.1 (76); §2.4.1 (79); §2.5.1 (83); §2.6.1 (87); §2.6.2 (88); §2.8.4 (99); §3.1.1 (107); §3.1.2 (108); §3.1.3 (109); §3.2.1 (111); §4.2 (137). Công thức: (2.28) 70; (2.41) 71; (2.44) 72; (2.165), (2.167) 100.
 
 §4.2 (Maximum likelihood estimation) chỉ ở ghi chú diễn giả TK05 như tài liệu đọc cho Bài 11; mặt trang không xem trước bài sau. Cùng với bảng 14 kết quả của proof-audit và 12 trích dẫn đã kiểm nội dung trước đó, mọi trích dẫn Murphy của deck đã được đối chiếu.
+
+
+## Rà nhẹ theo quy tắc 2026-11-09 và làm lại tệp bài tập từ giáo trình (2026-11-12)
+
+Yêu cầu của người dùng: "rà math-4-AI 10–14 và rl-plan 01–10: chỉ cần một lượt nhẹ, gồm rà theo quy tắc 09/11 và làm lại exercises.md từ giáo trình", rồi "chỉ làm lecture note và exercise" (không sửa deck).
+
+**Tác tử** (lấy từ lời gọi công cụ): mọi vai là `Agent`, `subagent_type: general-purpose`, `model: opus` (Claude Opus 5.5), `effort: high`.
+- Người rà chỉ đọc (`no-ai-slop` Detect), sau đó cũng tác tử đó làm biên tập viên (`no-ai-slop` Edit), tiếp tục bằng `SendMessage` để giữ ngữ cảnh.
+- Người kiểm tra độc lập chỉ đọc (tác tử mới): đối chiếu đề với PDF, giải lại mọi bài trước khi đọc lời giải, rà các hunk đã đổi của ghi chú; sau đó kiểm lại phần đã sửa.
+
+**Rà ghi chú:** 29 phát hiện (0 chặn bàn giao, 0 nghiêm trọng, 5 trung bình, 24 nhẹ): mã CLO2 (dòng 32), ý nói lại hai lần (342/345), bình luận kỹ thuật (669), lỗi nội dung dòng 1306 (dòng affine của (7.7) là công thức thứ ba, không phải thứ hai), "có thể dẫn đến quyết định khác" thay bằng ngưỡng $c_0/(c_0+c_1)$ (1992); "Đáp số" (47). Điều phối viên chấp nhận: cả 29; lỗi dòng 1306 đã đối chiếu (7.7).
+
+**Nguồn bài tập:** Murphy (2022), *Probabilistic Machine Learning: An Introduction*, bản PDF của tác giả (SHA-256 89749245…), trang của bản trực tuyến; đề đối chiếu với trang PDF (tr. 73–76, 103–104, 204). Mười hai bài 10.4–10.15: Murphy 2.10, 3.3, 2.9, 2.11, 2.3, 2.12, 2.5, 3.1, 3.2, 2.1, 3.5, 5.1 (5.1 thuộc phạm vi vì ghi chú có Tình huống 10.1 và ngưỡng chi phí). Ghi chú trước đó không có bài tập nào; ba bài tự dựng cũ chuyển về ghi chú (Bài tập 10.1 xúc xắc, cuối §4.4; 10.2 biến ba giá trị, cuối §7.3; 10.3 bảng $2\times2$, cuối §8.2) để phủ PMF/CDF rời rạc và lấy biên; các bài tự dựng còn lại bị bỏ.
+
+**Kiểm tra độc lập:** 0 chặn bàn giao, 0 nghiêm trọng, 1 trung bình (dòng 1911: bỏ "thường" làm câu thành khẳng định phổ quát sai, viết thành câu điều kiện), 8 nhẹ; không lời giải sai (giải lại 15/15). Giả thiết thêm được người kiểm xác nhận là suy ra từ dữ kiện sách hoặc bắt buộc: 10.4 (tiên nghiệm từ 800 000 dân), 10.7(b) (giải nghĩa "tình cờ"), 10.14 ($W\perp X$, thiếu thì câu (a) sai), 10.8, 10.15. Điều phối viên chấp nhận mọi phát hiện; biên tập viên sửa; kiểm lại: đạt, không phát hiện mới. Sau đó ngắt 23 công thức tràn khung của tệp bài tập theo quy tắc D3.
+
+**Mục tiêu không có bài:** mục tiêu 3, phần chọn mô hình Bernoulli/phân loại/Gaussian theo kiểu dữ liệu, không có bài sách và không có bài trong ghi chú. **Tham chiếu tiến có sẵn từ HEAD:** đoạn mở §9 (dòng 2107) dẫn Tình huống 10.2 ở dòng 2132, không do lượt này.
+
+Phương án phụ theo `decisions.md` mục math-10: 10.4, 10.7, 10.8 cũ về ghi chú (cuối §4.4, §7.3, §8.2); tệp bài tập mới gồm 12 bài Murphy (2022), số 10.4–10.15.
+
+### Cũ → mới
+
+| Cũ | Nội dung | Mới | Vị trí mới |
+|---|---|---|---|
+| 10.1 | Bảng camera đường vắng, đảo điều kiện (tự dựng) | bỏ | — |
+| 10.2 | Mật độ đều trên $[0;0{,}5]$ (tự dựng) | bỏ | — |
+| 10.3 | Hai bộ phận độc lập, phụ thuộc khi biết $W$ (tự dựng) | bỏ | — |
+| 10.4 | Hai xúc xắc (tự dựng) | 10.1 | ghi chú, cuối §4.4 |
+| 10.5 | Camera dưới quy trình lấy mẫu khác (tự dựng) | bỏ | — |
+| 10.6 | Bayes và lấy biên với số khác (tự dựng) | bỏ | — |
+| 10.7 | Phân phối rời rạc ba giá trị (tự dựng) | 10.2 | ghi chú, cuối §7.3 (trước đoạn nối sang §7.4) |
+| 10.8 | Bảng đồng thời $2\times2$ (tự dựng) | 10.3 | ghi chú, cuối §8.2 |
+| 10.9 | $X$ đều trên $\{\pm1,\pm2\}$, $Z=X^2$ (tự dựng) | bỏ | — |
+| 10.10 | Murphy 2.9 | 10.6 | `exercises.md` |
+| 10.11 | Murphy 3.1 | 10.11 | `exercises.md` (số không đổi) |
+| 10.12 | Murphy 3.2 | 10.12 | `exercises.md` (số không đổi) |
+| mới | Murphy 2.10 | 10.4 | `exercises.md`, nhận biết |
+| mới | Murphy 3.3 | 10.5 | `exercises.md`, nhận biết |
+| mới | Murphy 2.11 | 10.7 | `exercises.md`, tính toán |
+| mới | Murphy 2.3 | 10.8 | `exercises.md`, chứng minh |
+| mới | Murphy 2.12 | 10.9 | `exercises.md`, tính toán |
+| mới | Murphy 2.5 | 10.10 | `exercises.md`, tính toán |
+| mới | Murphy 2.1 | 10.13 | `exercises.md`, vận dụng |
+| mới | Murphy 3.5 | 10.14 | `exercises.md`, vận dụng |
+| mới | Murphy 5.1 | 10.15 | `exercises.md`, vận dụng |
+
+### Dẫn chiếu trong phạm vi (đã cập nhật)
+
+- `lecture-note.md`: "(Bài tập 10.12)" ở §7.4 và "(Bài tập 10.11)" ở §7.4 (đoạn sau Ví dụ 10.10) vẫn đúng (Murphy 3.2 và 3.1 giữ số). Mục `## 10. Bài tập` viết lại theo số mới.
+- `exercises.md`: viết lại toàn bộ.
+- Không tệp ghi chú hay bài tập nào khác của học phần dẫn "Bài tập 10.k".
+
+### Dẫn chiếu ngoài phạm vi còn dùng số cũ (không sửa; ghi nhật ký)
+
+Deck `2627-1/lecture-10-xac-suat-bieu-dien-bat-dinh.html`, phần notes:
+
+| Dòng | Văn bản hiện có | Số cũ trỏ tới | Tình trạng với số mới |
+|---|---|---|---|
+| 164 | "Bài tập 10.5 (bảng camera dưới một quy trình lấy mẫu…" | 10.5 cũ (bỏ) | 10.5 nay là Murphy 3.3: sai |
+| 319 | "Câu (b) trên trang là câu (c) của Bài tập 10.1…"; "Nguồn: Bài tập 10.1; Murphy (2022), Bài tập 2.10." | 10.1 cũ (bỏ) | 10.1 nay là bài xúc xắc trong ghi chú: sai; Murphy 2.10 nay là Bài tập 10.4 |
+| 378 | "Bài tập 10.7 (phân phối rời rạc ba giá trị) để tự học" | 10.7 cũ | nay là Bài tập 10.2 (ghi chú, §7.3); 10.7 nay là Murphy 2.11: sai |
+| 407 | "Câu (c) của Bài tập 10.2 để tự học…"; "Nguồn: Bài tập 10.2." | 10.2 cũ (bỏ) | 10.2 nay là bài ba giá trị: sai |
+| 475 | "Nguồn: Bài tập 10.3." | 10.3 cũ (bỏ) | 10.3 nay là bảng đồng thời: sai |
+| 566 | "(Bài tập 10.12, tự học)" | Murphy 3.2 | vẫn đúng số; bỏ chữ "tự học" nếu cần đồng bộ cách chia mức |
+| 584 | "Bài tập 10.12 (chứng minh hệ số tương quan thuộc $[-1,1]$…" | Murphy 3.2 | vẫn đúng |
+| 599 | "Bài tập 10.9 và 10.11 (bản liên tục với $X$ đều trên…" | 10.9 cũ (bỏ), 10.11 | 10.9 nay là Murphy 2.12: sai; 10.11 đúng |
+| 633 | "Bài tập 10.7 để tự học." | 10.7 cũ | nay là Bài tập 10.2: sai |
+
+Khác: `2627-1/planning/lec-10/outline.md` (dòng 3, 282), `storyboard.md` (dòng 3), `review-log.md` (dòng 77, 359) nhắc tệp bài tập, không dẫn số bài. `material-local-data.js` cần chạy lại script đồng bộ (điều phối viên).
+
+**Số liệu:** ghi chú 21 441 âm tiết (`wc -w`); `git diff --check` sạch; mỗi `exercise` có đúng một `hint` và một `solution` (ghi chú 3, cộng một khối gợi ý của câu hỏi ôn nhanh; tệp 12).
+
+**Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844, mở mọi khối gợi ý/lời giải khi đo: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0/34 công thức hiển thị tràn khung ở 390 px. Ghi chú: 44 công thức có sẵn từ trước tràn khung ở 390 px (ngoài lượt nhẹ, quy tắc D3). `material-local-data.js` đồng bộ trong commit riêng sau khi cả năm bài 10–14 xong.
+
+Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 10 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.

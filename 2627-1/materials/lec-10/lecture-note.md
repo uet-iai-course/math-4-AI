@@ -16,7 +16,7 @@ Một cảm biến kiểm định cảnh báo trên $90\%$ số sản phẩm l�
 
 **Câu hỏi.** Xác suất sản phẩm này bị lỗi bằng bao nhiêu?
 
-Câu trả lời "$90\%$, vì cảm biến phát hiện $90\%$ sản phẩm lỗi" là sai. Con số $90\%$ là tỉ lệ cảnh báo trong nhóm sản phẩm lỗi, còn câu hỏi cần tỉ lệ sản phẩm lỗi trong nhóm bị cảnh báo; câu trả lời này cũng bỏ qua việc sản phẩm lỗi chỉ chiếm một phần nhỏ của dây chuyền. Một nhầm lẫn thứ hai xuất hiện khi thiếu nguồn hàng: lấy trung bình cộng hai tỉ lệ lỗi, được $5\%$, trong khi nhà cung cấp $a$ giao nhiều hàng hơn. Chúng ta sẽ tính đúng cả hai đại lượng.
+Câu trả lời "$90\%$, vì cảm biến phát hiện $90\%$ sản phẩm lỗi" là sai. Con số $90\%$ là tỉ lệ cảnh báo trong nhóm sản phẩm lỗi, còn câu hỏi cần tỉ lệ sản phẩm lỗi trong nhóm bị cảnh báo. Câu trả lời này cũng bỏ qua việc sản phẩm lỗi chỉ chiếm một phần nhỏ của dây chuyền. Một nhầm lẫn thứ hai xuất hiện khi thiếu nguồn hàng: lấy trung bình cộng hai tỉ lệ lỗi, được $5\%$, trong khi nhà cung cấp $a$ giao nhiều hàng hơn. Chúng ta sẽ tính đúng cả hai đại lượng.
 
 ## Mục tiêu học tập
 
@@ -29,7 +29,7 @@ Sau bài này, người học có thể:
 5. Tính phân phối biên và phân phối có điều kiện từ phân phối đồng thời; suy luận về tình trạng sản phẩm khi nguồn hàng chưa được quan sát.
 6. Nêu các giả thiết mà một phép suy luận phụ thuộc vào, và phân biệt xác suất hậu nghiệm với quyết định dựa trên chi phí.
 
-Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích mô hình học máy của chuẩn đầu ra CLO2 trong đề cương học phần.
+Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong đề cương học phần.
 
 ## Kiến thức tiên quyết
 
@@ -44,7 +44,7 @@ Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích m�
 2. Gieo hai xúc xắc cân đối, phân biệt viên thứ nhất và viên thứ hai. Tính xác suất tổng hai mặt bằng $4$.
 3. Biến ngẫu nhiên $X$ có $\mathbb E[X]=3$. Tính $\mathbb E[2X+1]$.
 
-::: hint Đáp số câu hỏi ôn nhanh
+::: hint Lời giải câu hỏi ôn nhanh
 1. $\mathbb P(E\mid F)=0{,}1/0{,}25=0{,}4$.
 2. Có $3$ cặp $(1,3)$, $(2,2)$, $(3,1)$ có tổng bằng $4$ trong $36$ cặp đồng khả năng, nên xác suất bằng $3/36=1/12$.
 3. Theo tính tuyến tính của kỳ vọng, $\mathbb E[2X+1]=2\cdot3+1=7$.
@@ -55,7 +55,7 @@ Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích m�
 Ứng dụng xuyên suốt bài là một hệ thống phân loại sản phẩm lỗi trên dây chuyền. Trước khi sản phẩm kế tiếp đến, chúng ta chưa biết nó lỗi hay đạt, cũng chưa biết cảm biến sẽ báo gì. Bài toán gồm các thành phần sau.
 
 - **Thí nghiệm:** chọn ngẫu nhiên một sản phẩm từ luồng hàng rồi đưa qua cảm biến kiểm định.
-- **Đại lượng ngẫu nhiên:** nhà cung cấp, tình trạng lỗi và phản hồi của cảm biến của sản phẩm được chọn; chúng ngẫu nhiên vì sản phẩm được chọn ngẫu nhiên, theo phân phối do tỉ lệ nguồn hàng, tỉ lệ lỗi và đặc tính cảm biến xác định.
+- **Đại lượng ngẫu nhiên:** nhà cung cấp, tình trạng lỗi và phản hồi của cảm biến của sản phẩm được chọn. Chúng ngẫu nhiên vì sản phẩm được chọn ngẫu nhiên, theo phân phối do tỉ lệ nguồn hàng, tỉ lệ lỗi và đặc tính cảm biến xác định.
 - **Tham số:** tỉ lệ nguồn hàng, tỉ lệ lỗi của từng nhà cung cấp, xác suất cảnh báo trên sản phẩm lỗi và trên sản phẩm đạt; trong bài này chúng được cho trước.
 - **Quan sát:** phản hồi của cảm biến, có thể kèm hoặc không kèm thông tin nhà cung cấp; tình trạng lỗi không được quan sát.
 - **Mục tiêu:** xác suất sản phẩm lỗi sau khi có quan sát, và chi phí kỳ vọng của một quy tắc quyết định.
@@ -130,7 +130,7 @@ Ta cố định cách chọn một khung hình và cách chạy bộ phát hiệ
 *Không gian mẫu* (sample space) $\Omega$ là tập mọi kết quả có thể xảy ra theo cách mô hình hóa đã chọn. Mỗi $\omega\in\Omega$ là một *kết quả sơ cấp* (elementary outcome).
 :::
 
-Định nghĩa không đòi hỏi cơ chế bên trong phải ngẫu nhiên. Một thuật toán tất định chạy trên đầu vào chưa biết vẫn cho một kết quả chưa biết trước khi đầu vào được quan sát.
+Cơ chế sinh ra kết quả của thí nghiệm có thể tất định: một thuật toán tất định chạy trên đầu vào chưa biết vẫn cho một kết quả chưa biết trước khi đầu vào được quan sát.
 
 ::: example Ví dụ 10.1 (Hai lần tung đồng xu)
 **Quy trình.** Tung một đồng xu hai lần, ghi kết quả theo đúng thứ tự. Ký hiệu $\mathrm H$ là ngửa và $\mathrm T$ là sấp.
@@ -144,7 +144,7 @@ $$
 
 Kết quả $\mathrm{HT}$ là một phần tử của $\Omega$. Phát biểu "ít nhất một lần ngửa" đúng với ba kết quả, nên nó chưa phải một kết quả sơ cấp.
 
-**Kiểm tra lại.** Thứ tự phải được giữ: $\mathrm{HT}$ và $\mathrm{TH}$ là hai kết quả khác nhau. Nếu chỉ ghi số lần ngửa, ta được một không gian mẫu khác là $\{0;1;2\}$, và việc đổi cách ghi không cho phép gán xác suất $1/3$ cho mỗi giá trị.
+**Kiểm tra lại.** Thứ tự phải được giữ: $\mathrm{HT}$ và $\mathrm{TH}$ là hai kết quả khác nhau. Nếu chỉ ghi số lần ngửa, ta được một không gian mẫu khác là $\{0;1;2\}$; ba giá trị này ứng với $1$, $2$ và $1$ kết quả của (4.1), nên đổi cách ghi không làm chúng đồng xác suất.
 :::
 
 Với camera, một kết quả phải ghi đủ thông tin để biết bộ phát hiện đúng hay sai. Ta dùng các nhãn chữ đứng $\mathrm P$ (có người), $\mathrm N$ (không có người), $\mathrm A$ (có cảnh báo), $\mathrm Q$ (không cảnh báo); các nhãn này chỉ dùng cho camera và khác biến ngẫu nhiên $A$ của hệ thống sản phẩm. Không gian mẫu là
@@ -254,7 +254,7 @@ $$
 
 **Bước 3 (đơn điệu).** Ta có $F\setminus E=(F^c\cup E)^c$, thu được từ các tập trong $\mathcal F$ bằng phần bù và hợp, nên $F\setminus E\in\mathcal F$. Vì $E\subseteq F$, ta viết $F=E\cup(F\setminus E)$ với hai tập xung khắc. Bước 2 và (P1) cho $\mathbb P(F)=\mathbb P(E)+\mathbb P(F\setminus E)\ge\mathbb P(E)$. $\square$
 
-Như vậy mọi phép cộng xác suất trên một số hữu hạn biến cố xung khắc trong bài đều dựa trên (P3); tính đơn điệu cho phép bỏ qua các nhóm có xác suất $0$ khi lấy điều kiện.
+Như vậy mọi phép cộng xác suất trên một số hữu hạn biến cố xung khắc trong bài đều dựa trên (P3). Tính đơn điệu cho phép bỏ qua các nhóm có xác suất $0$ khi lấy điều kiện.
 :::
 
 Ba tiên đề không xác định xác suất của từng kết quả sơ cấp; chúng chỉ nêu các ràng buộc mà một cách gán hợp lệ phải thỏa. Với không gian mẫu hữu hạn, mệnh đề sau cho cách xây dựng trực tiếp từ trọng số của các kết quả sơ cấp, giống công thức (1.3) của Bài 05c.
@@ -300,7 +300,7 @@ Công thức (4.7) chỉ dùng cho mô hình đều. Trong Ví dụ 10.1, hai l�
 
 ### 4.4. Các quy tắc suy ra từ tiên đề
 
-Trong một hệ thống AI, ta thường cần xác suất "ít nhất một lỗi xảy ra" hoặc "không có lỗi nào xảy ra". Các công thức dưới đây suy ra từ tiên đề cộng tính qua Bổ đề 10.4; chúng là phần 2 và phần 4 của Mệnh đề 05c.2 trên không gian xác suất tổng quát.
+Trong một hệ thống AI, ta tính xác suất "ít nhất một lỗi xảy ra" và "không có lỗi nào xảy ra" bằng các công thức dưới đây. Chúng suy ra từ tiên đề cộng tính qua Bổ đề 10.4 và là phần 2 và phần 4 của Mệnh đề 05c.2 trên không gian xác suất tổng quát.
 
 ::: proposition Mệnh đề 10.6 (Phần bù và hợp hai biến cố) — chứng minh đầy đủ
 **Giả thiết.** $(\Omega,\mathcal F,\mathbb P)$ là một không gian xác suất; $E,F\in\mathcal F$.
@@ -342,7 +342,7 @@ Thế $\mathbb P(E\setminus F)=\mathbb P(E)-\mathbb P(E\cap F)$ và $\mathbb P(F
 Công thức hợp cho phép tính xác suất "ít nhất một loại lỗi" mà không cần thêm giả thiết nào về quan hệ giữa các loại lỗi.
 :::
 
-Mệnh đề 10.6 không cần thêm điều kiện nào về quan hệ giữa $E$ và $F$. Nếu chúng xung khắc thì $\mathbb P(E\cap F)=\mathbb P(\varnothing)=0$, và (4.9) trở thành công thức cộng. Một lỗi thường gặp là tính $\mathbb P(E\cup F)$ bằng $\mathbb P(E)+\mathbb P(F)$ khi giao khác rỗng; khi đó các kết quả trong giao bị cộng hai lần.
+Nếu $E$ và $F$ xung khắc thì $\mathbb P(E\cap F)=\mathbb P(\varnothing)=0$, và (4.9) trở thành công thức cộng. Một lỗi thường gặp là tính $\mathbb P(E\cup F)$ bằng $\mathbb P(E)+\mathbb P(F)$ khi giao khác rỗng; khi đó các kết quả trong giao bị cộng hai lần.
 
 Khi chưa biết $\mathbb P(E\cap F)$, ta vẫn có một cận trên.
 
@@ -359,11 +359,43 @@ $$
 
 ::: proof Chứng minh Hệ quả 10.7
 Trong (4.9), số hạng bị trừ $\mathbb P(E\cap F)$ không âm theo (P1); bỏ số hạng đó ta được (4.10). $\square$
-
-Cận này đúng với mọi cặp biến cố, kể cả khi giao của chúng chưa biết.
 :::
 
 Mệnh đề 05c.7 là dạng nhiều biến cố của bất đẳng thức này và được dùng để chặn xác suất một hợp biến cố trong các cận tập trung.
+
+Bài tập sau dùng quy tắc phần bù, công thức hợp và công thức đếm (4.7) trên một mô hình đều.
+
+::: exercise Bài tập 10.1 (Không gian mẫu đều với hai xúc xắc)
+Gieo hai xúc xắc cân đối, phân biệt viên thứ nhất và viên thứ hai. Giả sử cả $36$ cặp kết quả có cùng xác suất.
+
+- (a) Viết không gian mẫu bằng tích Descartes và nêu số phần tử.
+- (b) Đặt $E$ là biến cố "ít nhất một viên ra mặt $6$". Viết $E^c$ và tính $\mathbb P(E)$ bằng quy tắc phần bù.
+- (c) Đặt $F$ là biến cố "tổng hai viên bằng $7$". Tìm $|F|$, $|E\cap F|$ và $\mathbb P(E\cup F)$.
+- (d) Xác định công thức $\mathbb P(E)=|E|/|\Omega|$ còn dùng được hay không khi bỏ giả thiết các cặp đồng xác suất, và giải thích.
+:::
+
+::: hint
+Ở (b), $E^c$ gồm các cặp mà cả hai mặt đều thuộc $\{1,2,3,4,5\}$. Ở (c), liệt kê sáu cặp có tổng bằng $7$, rồi xác định cặp nào chứa mặt $6$.
+:::
+
+::: solution Lời giải Bài tập 10.1
+**(a)** $\Omega=\{1,\ldots,6\}\times\{1,\ldots,6\}$, nên $|\Omega|=6\cdot6=36$.
+
+**(b)** $E^c=\{1,\ldots,5\}\times\{1,\ldots,5\}$ có $25$ phần tử. Theo (4.7) và (4.8), $\mathbb P(E)=1-25/36=11/36$.
+
+**(c)** $F=\{(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)\}$, nên $|F|=6$. Giao $E\cap F=\{(1,6),(6,1)\}$ có $2$ phần tử. Theo (4.9),
+
+$$
+\begin{aligned}
+\mathbb P(E\cup F)&=\frac{11}{36}+\frac6{36}-\frac2{36}\\
+&=\frac{15}{36}=\frac5{12}.
+\end{aligned}
+$$
+
+**(d)** Không dùng được. Công thức (4.7) cần các kết quả sơ cấp đồng xác suất; khi bỏ giả thiết này, $\mathbb P(E)$ là tổng trọng số của các kết quả trong $E$ theo (4.6).
+
+**Kiểm tra lại.** Đếm trực tiếp: $E\cup F$ có $11+6-2=15$ cặp, đúng với $15/36=5/12$.
+:::
 
 ### 4.5. Xác suất cảnh báo sai và bỏ sót
 
@@ -482,7 +514,7 @@ $$
 \end{aligned}
 $$
 
-Trong các khung hình có người, hệ thống cảnh báo với xác suất $0{,}90$. Trong các khung hình bị cảnh báo, xác suất thực sự có người chỉ khoảng $0{,}6923$. Hai điều kiện chọn ra hai nhóm khung hình khác nhau, nên hai xác suất không có lý do phải bằng nhau.
+Trong các khung hình có người, hệ thống cảnh báo với xác suất $0{,}90$. Trong các khung hình bị cảnh báo, xác suất thực sự có người chỉ khoảng $0{,}6923$. Hai điều kiện chọn ra hai nhóm khung hình khác nhau, với mẫu số $\mathbb P(C)=0{,}26$ và $\mathbb P(H)=0{,}20$, nên hai xác suất khác nhau.
 
 **Kiểm tra lại.** Phần bù trong nhóm có cảnh báo cho $\mathbb P(H^c\mid C)=0{,}08/0{,}26=4/13$, và $9/13+4/13=1$.
 :::
@@ -607,7 +639,7 @@ trong đó $\propto$ nghĩa là hai vế bằng nhau sai khác một hằng số
 Camera chỉ có tình trạng thực và phản hồi của hệ thống. Hệ thống sản phẩm có thêm nhà cung cấp, và các nhà cung cấp có tỉ lệ lỗi khác nhau. Ví dụ sau đi qua giai đoạn 2 và giai đoạn 3 của hệ thống: tính tiên nghiệm từ tỉ lệ lỗi theo nhà cung cấp, rồi cập nhật bằng quan sát của cảm biến.
 
 ::: example Ví dụ 10.4 (Cập nhật xác suất sản phẩm lỗi)
-**Dữ kiện.** Chọn ngẫu nhiên một sản phẩm trong luồng hàng. Viết $\{S=a\}$, $\{S=b\}$ cho biến cố sản phẩm đến từ nhà cung cấp $a$, $b$; $\{Y=1\}$, $\{Y=0\}$ cho biến cố sản phẩm lỗi, đạt; $\{A=1\}$, $\{A=0\}$ cho biến cố cảm biến cảnh báo, không cảnh báo. Ở mục này ta chỉ dùng chúng như tên của các biến cố. Các tham số là
+**Dữ kiện.** Chọn ngẫu nhiên một sản phẩm trong luồng hàng. Viết $\{S=a\}$, $\{S=b\}$ cho biến cố sản phẩm đến từ nhà cung cấp $a$, $b$; $\{Y=1\}$, $\{Y=0\}$ cho biến cố sản phẩm lỗi, đạt; $\{A=1\}$, $\{A=0\}$ cho biến cố cảm biến cảnh báo, không cảnh báo. Các tham số là
 
 $$
 \begin{aligned}
@@ -666,8 +698,6 @@ $$
 \tag{5.9}
 $$
 
-Các phép tính (5.8)–(5.9) chỉ dùng $\mathbb P(A=1\mid Y=y)$; giả thiết (5.7) chỉ cần khi tính các xác suất có cả $S$ và $A$.
-
 **Kiểm tra lại.** Xét $10\,000$ sản phẩm theo đúng các tỉ lệ của mô hình:
 
 - $440$ sản phẩm lỗi, trong đó $0{,}9\cdot440=396$ bị cảnh báo;
@@ -675,10 +705,10 @@ Các phép tính (5.8)–(5.9) chỉ dùng $\mathbb P(A=1\mid Y=y)$; giả thi�
 
 Trong $396+478=874$ sản phẩm bị cảnh báo, tỉ lệ sản phẩm lỗi là $396/874=198/437$, khớp (5.9).
 
-Kết quả này trả lời câu hỏi mở đầu: sau cảnh báo, xác suất lỗi tăng từ $0{,}044$ lên khoảng $0{,}4531$, thấp hơn nhiều so với $0{,}90$; trong nhóm bị cảnh báo vẫn có khoảng $0{,}5469$ sản phẩm đạt.
+Kết quả này trả lời câu hỏi mở đầu: sau cảnh báo, xác suất lỗi tăng từ $0{,}044$ lên khoảng $0{,}4531$, thấp hơn nhiều so với $0{,}90$; trong nhóm bị cảnh báo, tỉ lệ sản phẩm đạt vẫn là $239/437\approx0{,}5469$.
 :::
 
-Cây dưới đây biểu diễn phần mô hình trước khi quan sát cảm biến. Mỗi đường từ gốc tới lá là một tích theo quy tắc nhân (Mệnh đề 10.10); cộng hai lá lỗi là công thức toàn phần (5.3). Các nhánh không đồng xác suất.
+Cây dưới đây biểu diễn phần mô hình trước khi quan sát cảm biến. Mỗi đường từ gốc tới lá là một tích theo quy tắc nhân (Mệnh đề 10.10); cộng hai lá lỗi là công thức toàn phần (5.3).
 
 ![Cây xác suất: chọn nhà cung cấp a với xác suất 0,60, rồi lỗi với xác suất 0,02 hoặc đạt với xác suất 0,98, cho hai xác suất đồng thời 0,012 và 0,588. Nhà cung cấp b có xác suất 0,40, rồi lỗi 0,08 hoặc đạt 0,92, cho 0,032 và 0,368. Cộng hai lá lỗi được xác suất lỗi 0,044.](img/lec-10/supplier-probability-tree.svg)
 
@@ -974,7 +1004,7 @@ Với $U=A$, $V=S$, $W=Y$, mệnh đề cho phép thay $\mathbb P(A=a'\mid S=s,Y
 
 ### 6.4. Mật độ và xác suất trên khoảng
 
-Một giá trị cảm biến như độ dài hoặc điện áp thường được mô hình hóa là một số thực bất kỳ trong một khoảng. Mô hình như vậy không gán khối xác suất dương cho từng số thực; nó mô tả xác suất trên các khoảng bằng diện tích dưới một đường mật độ.
+Ta mô hình hóa một giá trị cảm biến như độ dài hoặc điện áp bằng một số thực bất kỳ trong một khoảng. Mô hình như vậy mô tả xác suất trên các khoảng bằng diện tích dưới một đường mật độ và gán xác suất $0$ cho từng số thực.
 
 ::: definition Định nghĩa 10.18 (Phân phối có mật độ)
 Biến ngẫu nhiên thực $X$ có *hàm mật độ xác suất* (probability density function, PDF) $f_X$ nếu $f_X:\mathbb R\to[0,\infty)$ là hàm đo được, $\int_{\mathbb R}f_X(x)\,dx=1$, và với mọi tập Borel $B$,
@@ -1090,7 +1120,7 @@ $$
 Điều kiện hữu hạn trong mỗi trường hợp được viết gọn là $\mathbb E|X|<\infty$; khi đó $X$ được gọi là *khả tích* (integrable).
 :::
 
-Định nghĩa 10.21 mở rộng Định nghĩa 05c.26 sang biến có mật độ. Điều kiện khả tích bảo đảm chuỗi (7.1) hội tụ tuyệt đối, nên giá trị của nó không phụ thuộc thứ tự cộng. Với biến không âm, có thể định nghĩa kỳ vọng bằng tổng hoặc tích phân không âm và cho phép giá trị $+\infty$; mọi phép tính dưới đây chỉ dùng kỳ vọng hữu hạn.
+Định nghĩa 10.21 mở rộng Định nghĩa 05c.26 sang biến có mật độ. Điều kiện khả tích bảo đảm chuỗi (7.1) hội tụ tuyệt đối, nên giá trị của nó không phụ thuộc thứ tự cộng.
 
 Kỳ vọng là một số suy ra từ mô hình. Nó không nhất thiết là một giá trị mà $X$ có thể nhận: biến Bernoulli chỉ nhận $0$ và $1$, nhưng kỳ vọng của nó có thể là $0{,}044$. Trung bình mẫu $\frac1n\sum_{i=1}^nx_i$ là một số tính từ dữ liệu đã quan sát; luật số lớn yếu (Định lý 05c.41) cho biết, khi $x_1,\ldots,x_n$ là giá trị của $n$ biến độc lập cùng phân phối với phương sai hữu hạn, trung bình mẫu gần kỳ vọng với xác suất tiến về $1$ khi $n\to\infty$.
 
@@ -1239,7 +1269,7 @@ $$
 Xác suất phản hồi sai là $0{,}0044+0{,}0478=0{,}0522$, khác chi phí kỳ vọng $0{,}0698$ vì hai loại lỗi mang trọng số khác nhau. Với $n$ sản phẩm có cùng phân phối như trên, tổng chi phí có kỳ vọng $n\cdot0{,}0698$, kể cả khi kết quả của các sản phẩm phụ thuộc nhau.
 :::
 
-Trong học máy, một hàm mất mát gán một số cho mỗi cặp dự đoán và nhãn thật, như $L$ trong Ví dụ 10.8. Lấy kỳ vọng của mất mát đã là một bài toán xác suất trước khi chọn thuật toán tối ưu: đại lượng cần nhỏ là $\mathbb E[L]$, tính theo phân phối của dữ liệu.
+Trong học máy, một hàm mất mát gán một số cho mỗi cặp dự đoán và nhãn thật, như $L$ trong Ví dụ 10.8. Đại lượng cần làm nhỏ là $\mathbb E[L]$, tính theo phân phối của dữ liệu. Tính $\mathbb E[L]$ là một bài toán xác suất và không cần thuật toán tối ưu.
 
 ### 7.3. Phương sai
 
@@ -1303,7 +1333,7 @@ $$
 \end{aligned}
 $$
 
-Công thức thứ nhất của (7.7) cho phép tính phương sai từ hai mômen $\mathbb E[X]$ và $\mathbb E[X^2]$; công thức thứ hai cho biết đổi đơn vị đo (nhân với $\alpha$) làm phương sai nhân với $\alpha^2$, còn dịch gốc (cộng $\beta$) không làm đổi phương sai.
+Công thức thứ nhất của (7.7) cho phép tính phương sai từ hai mômen $\mathbb E[X]$ và $\mathbb E[X^2]$; công thức thứ ba cho biết đổi đơn vị đo (nhân với $\alpha$) làm phương sai nhân với $\alpha^2$, còn dịch gốc (cộng $\beta$) không làm đổi phương sai.
 :::
 
 Công thức thứ nhất và công thức cuối của (7.7) là phần 1–2 của Mệnh đề 05c.31. Nếu $Y\sim\operatorname{Bernoulli}(\theta)$ thì $Y^2=Y$, nên $\mathbb E[Y^2]=\mathbb E[Y]=\theta$ và
@@ -1336,6 +1366,64 @@ $$
 **Kiểm tra lại.** Theo định nghĩa (7.6): $0{,}5\cdot(0-1{,}1)^2+0{,}3\cdot(1-1{,}1)^2+0{,}2\cdot(4-1{,}1)^2=0{,}605+0{,}003+1{,}682=2{,}29$.
 
 Nếu thay $\mathbb E[X^2]$ bằng $(\mathbb E[X])^2=1{,}21$, phương sai bị tính thành $0$. Tính tuyến tính (7.5) cho phép đưa tổng và hằng số qua kỳ vọng, nhưng không cho phép đưa bình phương qua kỳ vọng.
+:::
+
+Bài tập sau tính kỳ vọng, phương sai và hàm phân phối tích lũy của một biến rời rạc, cùng phân phối của một hàm của nó.
+
+::: exercise Bài tập 10.2 (Phân phối rời rạc ba giá trị)
+Biến $X$ nhận các giá trị $-1$; $0$; $2$ với xác suất lần lượt $1/4$; $1/2$; $1/4$.
+
+- (a) Tính $\mathbb E[X]$, $\mathbb E[X^2]$ và $\operatorname{Var}(X)$.
+- (b) Viết $F_X(t)$ trên toàn trục số; tính $\mathbb P(X\ge0)$ và $F_X(0)$.
+- (c) Đặt $Z=X^2$. Tìm phân phối của $Z$ và dùng nó kiểm tra lại $\mathbb E[X^2]$.
+- (d) Giải thích vì sao $\mathbb E[X]$ không thuộc tập giá trị của $X$, và vì sao $F_X(0)$ khác $\mathbb P(X<0)$.
+:::
+
+::: hint
+Tại một điểm có khối xác suất, $F_X$ tính cả khối tại điểm đó. Ở (c), cộng xác suất của mọi giá trị $x$ có cùng ảnh $x^2$, như Bước 1 trong chứng minh Mệnh đề 10.22.
+:::
+
+::: solution Lời giải Bài tập 10.2
+**(a)** Theo (7.1), (7.3) và (7.7),
+
+$$
+\begin{aligned}
+\mathbb E[X]&=-1\cdot\tfrac14+0\cdot\tfrac12+2\cdot\tfrac14\\
+&=\tfrac14,\\
+\mathbb E[X^2]&=1\cdot\tfrac14+0\cdot\tfrac12+4\cdot\tfrac14\\
+&=\tfrac54,\\
+\operatorname{Var}(X)&=\tfrac54-\bigl(\tfrac14\bigr)^2\\
+&=\tfrac{20}{16}-\tfrac1{16}=\tfrac{19}{16}.
+\end{aligned}
+$$
+
+**(b)** Cộng các khối xác suất đến $t$:
+
+$$
+F_X(t)=\begin{cases}
+0,&t<-1,\\
+1/4,&-1\le t<0,\\
+3/4,&0\le t<2,\\
+1,&t\ge2.
+\end{cases}
+$$
+
+Do đó $\mathbb P(X\ge0)=1/2+1/4=3/4$ và $F_X(0)=1/4+1/2=3/4$.
+
+**(c)** $Z$ nhận $0$ (khi $X=0$), $1$ (khi $X=-1$) và $4$ (khi $X=2$), với xác suất $1/2$; $1/4$; $1/4$. Theo (7.1), $\mathbb E[Z]=0\cdot\tfrac12+1\cdot\tfrac14+4\cdot\tfrac14=\tfrac54$, khớp $\mathbb E[X^2]$ ở câu (a).
+
+**(d)** Kỳ vọng $1/4$ là trung bình có trọng số của $-1$, $0$, $2$, nên nằm giữa các giá trị ấy mà không trùng giá trị nào. $F_X(0)=\mathbb P(X\le0)$ tính cả khối $\mathbb P(X=0)=1/2$, còn $\mathbb P(X<0)=1/4$ không tính; hiệu $1/2$ của chúng là độ nhảy của $F_X$ tại $0$.
+
+**Kiểm tra lại.** Theo định nghĩa (7.6):
+
+$$
+\begin{aligned}
+&\tfrac14\bigl(-1-\tfrac14\bigr)^2+\tfrac12\bigl(0-\tfrac14\bigr)^2\\
+&\quad+\tfrac14\bigl(2-\tfrac14\bigr)^2\\
+&\quad=\tfrac{25}{64}+\tfrac{2}{64}+\tfrac{49}{64}\\
+&\quad=\tfrac{76}{64}=\tfrac{19}{16}.
+\end{aligned}
+$$
 :::
 
 Biết trung bình số lỗi chưa đủ để kết luận một lô cụ thể gần trung bình đến mức nào; bất đẳng thức Chebyshev (Hệ quả 05c.40) cần thêm phương sai. Phương sai của tổng số lỗi trong một lô lại phụ thuộc vào việc các lỗi có cùng xuất hiện hay không, nên chúng ta cần một đại lượng cho hai biến.
@@ -1818,9 +1906,58 @@ không âm và có $\int_{\mathbb R}f_{X\mid Z}(x\mid z)\,dx=1$; nó được g�
 Phân phối có điều kiện là phân phối đồng thời được cắt tại giá trị quan sát rồi chuẩn hóa; đại lượng $p(y\mid x)$ mà một bộ phân loại xác suất trả về là phân phối có điều kiện theo nghĩa này.
 :::
 
-Khi $Z$ có mật độ, biến cố $\{Z=z\}$ có xác suất $0$, nên (8.6) không phải phép chia $\mathbb P(X\in B,Z=z)/\mathbb P(Z=z)$. Nó xác định một mật độ theo giá trị quan sát của $Z$, phù hợp với phân tích $f_{X,Z}(x,z)=f_{X\mid Z}(x\mid z)\,f_Z(z)$. Hàm này chỉ được xác định duy nhất ngoài một tập giá trị $z$ có xác suất $0$; trong các mô hình có mật độ liên tục như Gaussian, công thức tỉ số là cách tính thông dụng.
+Khi $Z$ có mật độ, biến cố $\{Z=z\}$ có xác suất $0$, nên (8.6) không phải phép chia $\mathbb P(X\in B,Z=z)/\mathbb P(Z=z)$. Nó xác định một mật độ theo giá trị quan sát của $Z$, phù hợp với phân tích $f_{X,Z}(x,z)=f_{X\mid Z}(x\mid z)\,f_Z(z)$. Hàm này chỉ được xác định duy nhất ngoài một tập giá trị $z$ có xác suất $0$. Với mật độ liên tục như Gaussian, ta tính nó bằng công thức tỉ số (8.6).
 
-Trong học máy, đầu vào $x$ thường là một vector liên tục, còn nhãn $y$ rời rạc. Mô hình $p(y\mid x)$ mô tả xác suất của nhãn theo giá trị của đầu vào, và không đòi hỏi một ảnh hay một vector cảm biến cụ thể có xác suất dương.
+Trong học máy, khi đầu vào $x$ là một vector thực và nhãn $y$ rời rạc, mô hình $p(y\mid x)$ mô tả xác suất của nhãn theo giá trị của đầu vào, và không đòi hỏi một ảnh hay một vector cảm biến cụ thể có xác suất dương.
+
+Bài tập sau đi từ một bảng phân phối đồng thời đến phân phối biên, phân phối có điều kiện, hiệp phương sai và kỳ vọng toàn phần.
+
+::: exercise Bài tập 10.3 (Phân phối đồng thời và lấy biên)
+Hai biến nhị phân $X,Y$ có bảng xác suất đồng thời
+
+| | $Y=0$ | $Y=1$ |
+|---|---:|---:|
+| $X=0$ | $0{,}2$ | $0{,}3$ |
+| $X=1$ | $0{,}1$ | $0{,}4$ |
+
+- (a) Tìm hai phân phối biên và $\mathbb P(Y=1\mid X=1)$.
+- (b) Tính $\mathbb E[X]$, $\mathbb E[Y]$, $\mathbb E[XY]$ và $\operatorname{Cov}(X,Y)$; kiểm tra độc lập bằng một ô của bảng.
+- (c) Tính $\mathbb E[Y\mid X=0]$, $\mathbb E[Y\mid X=1]$ và kiểm tra công thức kỳ vọng toàn phần.
+- (d) Coi $X$ là nhóm sản phẩm và $Y$ là trạng thái lỗi. So sánh xác suất lỗi khi biết nhóm với xác suất lỗi khi chưa biết nhóm, và xác định các phép tính trên có đủ để kết luận nhóm gây ra lỗi hay không.
+:::
+
+::: hint
+Với biến nhị phân, kỳ vọng bằng xác suất nhận giá trị $1$; tích $XY$ chỉ khác $0$ ở ô $(1,1)$. Ở (c), $\mathbb E[Y\mid X=x]=\mathbb P(Y=1\mid X=x)=p_{X,Y}(x,1)/p_X(x)$.
+:::
+
+::: solution Lời giải Bài tập 10.3
+**(a)** Theo (8.3), cộng theo hàng được $p_X(0)=0{,}2+0{,}3=0{,}5$, $p_X(1)=0{,}1+0{,}4=0{,}5$; cộng theo cột được $p_Y(0)=0{,}3$, $p_Y(1)=0{,}7$. Theo (8.5), $\mathbb P(Y=1\mid X=1)=0{,}4/0{,}5=0{,}8$.
+
+**(b)** $\mathbb E[X]=0{,}5$, $\mathbb E[Y]=0{,}7$ và $\mathbb E[XY]=\mathbb P(X=1,Y=1)=0{,}4$. Do đó
+
+$$
+\begin{aligned}
+\operatorname{Cov}(X,Y)&=0{,}4-0{,}5\cdot0{,}7\\
+&=0{,}4-0{,}35=0{,}05.
+\end{aligned}
+$$
+
+Hai biến phụ thuộc: ô $(1,1)$ có $0{,}4\ne0{,}5\cdot0{,}7=0{,}35$.
+
+**(c)** $\mathbb E[Y\mid X=0]=0{,}3/0{,}5=0{,}6$ và $\mathbb E[Y\mid X=1]=0{,}8$. Theo (7.13),
+
+$$
+\begin{aligned}
+&\mathbb E\bigl[\mathbb E[Y\mid X]\bigr]\\
+&\quad=0{,}5\cdot0{,}6+0{,}5\cdot0{,}8\\
+&\quad=0{,}7=\mathbb E[Y].
+\end{aligned}
+$$
+
+**(d)** Khi chưa biết nhóm, xác suất lỗi là $0{,}7$; khi biết nhóm, nó là $0{,}6$ hoặc $0{,}8$. Bảng chỉ mô tả mức liên hệ giữa nhóm và lỗi. Nó không mô tả điều xảy ra khi ta can thiệp để đổi nhóm của một sản phẩm, và không loại trừ một yếu tố chung tác động lên cả hai biến, nên chưa đủ để kết luận quan hệ nhân quả (Murphy (2022), §3.1.4).
+
+**Kiểm tra lại.** Hai phân phối biên đều có tổng $1$; hiệp phương sai dương khớp với $\mathbb P(Y=1\mid X=1)=0{,}8>0{,}7=\mathbb P(Y=1)$.
+:::
 
 ### 8.3. Lấy biên trên biến chưa quan sát trong hệ thống sản phẩm
 
@@ -1877,7 +2014,7 @@ Mệnh đề 10.17 với $U=A$, $V=S$, $W=Y$ và $p_{S,Y}(s,y)>0$ cho $\mathbb P
 Như vậy hậu nghiệm của nhãn lỗi khi thiếu nguồn hàng tính được hoàn toàn từ ba nhân tử nhỏ của mô hình, không cần lập trước bảng đầy đủ của ba biến.
 :::
 
-Công thức (8.8) thực hiện hai thao tác khác nhau: cộng theo $s$ vì nhà cung cấp chưa được quan sát, rồi chuẩn hóa theo cảnh báo đã quan sát. Thay phép cộng bằng việc chọn nhà cung cấp có xác suất lớn nhất là một phép xấp xỉ khác và có thể cho hậu nghiệm khác. Giả thiết $A\perp S\mid Y$ cũng làm giảm số tham số: bảng đồng thời của $(S,Y,A)$ có $8$ ô, tức $7$ tham số tự do, trong khi (8.7) chỉ cần $1+2+2=5$ tham số, gồm một cho $p_S$, hai cho $p_{Y\mid S}$ và hai cho $p_{A\mid Y}$.
+Công thức (8.8) thực hiện hai thao tác khác nhau: cộng theo $s$ vì nhà cung cấp chưa được quan sát, rồi chuẩn hóa theo cảnh báo đã quan sát. Giả thiết $A\perp S\mid Y$ cũng làm giảm số tham số: bảng đồng thời của $(S,Y,A)$ có $8$ ô, tức $7$ tham số tự do, trong khi (8.7) chỉ cần $1+2+2=5$ tham số, gồm một cho $p_S$, hai cho $p_{Y\mid S}$ và hai cho $p_{A\mid Y}$.
 
 Mệnh đề 10.34 cho một quy trình tính cụ thể.
 
@@ -1891,7 +2028,7 @@ Mệnh đề 10.34 cho một quy trình tính cụ thể.
 
 **Đầu ra.** Phân phối hậu nghiệm $p_{Y\mid A}(\cdot\mid a')$.
 
-**Chi phí.** $2|\mathcal S||\mathcal Y|$ phép nhân ở bước 1, khoảng $|\mathcal S||\mathcal Y|$ phép cộng ở bước 2–3 và $|\mathcal Y|$ phép chia ở bước 4.
+**Chi phí.** $2|\mathcal S||\mathcal Y|$ phép nhân ở bước 1, $|\mathcal S||\mathcal Y|-1$ phép cộng ở bước 2–3 và $|\mathcal Y|$ phép chia ở bước 4.
 :::
 
 ::: example Ví dụ 10.12 (Suy luận từ bảng phân phối đồng thời)
@@ -1967,7 +2104,7 @@ Như vậy, Định nghĩa 10.31 và Mệnh đề 10.32 cho cách lấy biên, M
 
 ## 9. Ý nghĩa, tác động và giới hạn
 
-Các mục trước cho một hậu nghiệm, $198/437$ sau một cảnh báo. Hậu nghiệm này chưa phải một quyết định, và nó chỉ đúng dưới các giả thiết của mô hình. Tình huống 10.1 ghép hậu nghiệm với chi phí để được một quy tắc quyết định; Tình huống 10.2 tính lại quy tắc đó khi tỉ lệ lỗi của luồng hàng thay đổi.
+Các mục trước cho một hậu nghiệm, $198/437$ sau một cảnh báo. Để thành một quyết định, hậu nghiệm này cần thêm chi phí, và nó chỉ đúng dưới các giả thiết của mô hình. Tình huống 10.1 ghép hậu nghiệm với chi phí để được một quy tắc quyết định; Tình huống 10.2 tính lại quy tắc đó khi tỉ lệ lỗi của luồng hàng thay đổi.
 
 ::: application Tình huống 10.1 (Quyết định sau cảnh báo)
 **Bài toán.** Sau mỗi phản hồi của cảm biến, dây chuyền chọn một trong hai hành động: chấp nhận sản phẩm, hoặc loại sản phẩm để kiểm tra lại. Chấp nhận một sản phẩm lỗi tốn $5$ đơn vị; loại một sản phẩm đạt tốn $1$ đơn vị; hai trường hợp còn lại có chi phí $0$, như trong Ví dụ 10.8.
@@ -1989,7 +2126,7 @@ Loại sản phẩm có chi phí kỳ vọng nhỏ hơn khi và chỉ khi $5p>1-
 
 **Diễn giải.** Quy tắc thu được là "loại khi và chỉ khi có cảnh báo". Chi phí kỳ vọng của quy tắc này trên một sản phẩm chọn ngẫu nhiên là $5\cdot0{,}0044+1\cdot0{,}0478=0{,}0698$, đúng $\mathbb E[L]$ của Ví dụ 10.8.
 
-**Giới hạn.** Ngưỡng $1/6$ đến từ tỉ số chi phí, không đến từ mô hình xác suất: với chi phí khác, cùng hậu nghiệm có thể dẫn đến quyết định khác.
+**Giới hạn.** Ngưỡng $1/6$ đến từ tỉ số chi phí, không đến từ mô hình xác suất: với chi phí $c_1$ khi chấp nhận sản phẩm lỗi và $c_0$ khi loại sản phẩm đạt, ngưỡng là $c_0/(c_0+c_1)$.
 :::
 
 ::: application Tình huống 10.2 (Tỉ lệ lỗi thay đổi khi triển khai)
@@ -2009,7 +2146,7 @@ $$
 
 **Hậu quả.** Vì $2/13<1/6$, sau một cảnh báo, chấp nhận tốn trung bình $5\cdot2/13=10/13\approx0{,}7692$, còn loại tốn $11/13\approx0{,}8462$. Giữ quy tắc cũ làm mỗi sản phẩm bị cảnh báo tốn thêm trung bình $1/13\approx0{,}0769$ đơn vị.
 
-**Diễn giải.** Trong (5.4), hợp lý (đặc tính cảm biến) và tiên nghiệm (tỉ lệ lỗi của luồng hàng) là hai thành phần riêng. Khi chỉ tiên nghiệm thay đổi, ta tính lại hậu nghiệm mà không cần đánh giá lại cảm biến; khi bỏ qua sự thay đổi này, quyết định dựa trên hậu nghiệm cũ có thể sai. Murphy (2022), §2.3.1, cho hiện tượng tương tự với xét nghiệm y tế khi tỉ lệ mắc bệnh thay đổi.
+**Diễn giải.** Trong (5.4), hợp lý (đặc tính cảm biến) và tiên nghiệm (tỉ lệ lỗi của luồng hàng) là hai thành phần riêng. Khi chỉ tiên nghiệm thay đổi, ta tính lại hậu nghiệm mà không cần đánh giá lại cảm biến; khi bỏ qua sự thay đổi này, quy tắc cũ loại các sản phẩm bị cảnh báo dù chấp nhận rẻ hơn. Murphy (2022), §2.3.1, cho hiện tượng tương tự với xét nghiệm y tế khi tỉ lệ mắc bệnh thay đổi.
 :::
 
 Ngoài hai tình huống trên, các công cụ của bài xuất hiện trong học máy ở các chỗ sau.
@@ -2038,27 +2175,34 @@ Các công thức cần nhớ là Bayes (5.4) và dạng tỉ lệ (5.5), lấy 
 
 ## 10. Bài tập
 
-Bộ bài tập đầy đủ, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 10](material-viewer.html?doc=materials/lec-10/exercises.md&deck=lecture-10-xac-suat-bieu-dien-bat-dinh.html).
+Ba bài tập trong thân bài và mục tiêu học tập mà mỗi bài kiểm tra:
 
-Ba bài đầu dùng trên lớp; sáu bài tự học và ba bài chọn từ Murphy dùng để tự học. Mỗi dòng ghi mục tiêu học tập mà bài kiểm tra.
+1. **Bài tập 10.1** (Không gian mẫu đều với hai xúc xắc): mục tiêu 1.
+2. **Bài tập 10.2** (Phân phối rời rạc ba giá trị): mục tiêu 3, 4.
+3. **Bài tập 10.3** (Phân phối đồng thời và lấy biên): mục tiêu 4, 5.
 
-**Trên lớp**
+Các bài tiếp theo, chọn từ Murphy (2022), có gợi ý và lời giải trong [tệp bài tập của Bài 10](material-viewer.html?doc=materials/lec-10/exercises.md&deck=lecture-10-xac-suat-bieu-dien-bat-dinh.html), chia theo ba mức.
 
-1. **Bài tập 10.1** (Đọc điều kiện trên bảng camera): mục tiêu 2.
-2. **Bài tập 10.2** (Mật độ đều và xác suất trên khoảng): mục tiêu 3.
-3. **Bài tập 10.3** (Độc lập trước và sau khi quan sát): mục tiêu 2.
+**Mức nhận biết**
 
-**Tự học**
+4. **Bài tập 10.4** (Ngụy biện của công tố viên và của luật sư bào chữa; Murphy (2022), Bài tập 2.10): mục tiêu 2, 6.
+5. **Bài tập 10.5** (Hệ số tương quan của hai biến có quan hệ tuyến tính; Murphy (2022), Bài tập 3.3): mục tiêu 4.
 
-4. **Bài tập 10.4** (Không gian mẫu đều với hai xúc xắc): mục tiêu 1.
-5. **Bài tập 10.5** (Xác suất lỗi của camera dưới quy trình lấy mẫu khác): mục tiêu 1, 6.
-6. **Bài tập 10.6** (Bayes trong kiểm định sản phẩm): mục tiêu 2, 5, 6.
-7. **Bài tập 10.7** (Phân phối rời rạc ba giá trị): mục tiêu 3, 4.
-8. **Bài tập 10.8** (Phân phối đồng thời và lấy biên): mục tiêu 4, 5.
-9. **Bài tập 10.9** (Hiệp phương sai bằng không nhưng phụ thuộc): mục tiêu 4.
-10. **Bài tập 10.10** (Murphy (2022), Bài tập 2.9: chẩn đoán bệnh hiếm): mục tiêu 2.
-11. **Bài tập 10.11** (Murphy (2022), Bài tập 3.1: không tương quan với biến liên tục): mục tiêu 4.
-12. **Bài tập 10.12** (Murphy (2022), Bài tập 3.2: hệ số tương quan thuộc $[-1,1]$): mục tiêu 4.
+**Mức tính toán hoặc chứng minh**
+
+6. **Bài tập 10.6** (Chẩn đoán bệnh hiếm; Murphy (2022), Bài tập 2.9): mục tiêu 2.
+7. **Bài tập 10.7** (Xác suất phụ thuộc cách thu được quan sát; Murphy (2022), Bài tập 2.11): mục tiêu 1, 2, 6.
+8. **Bài tập 10.8** (Độc lập có điều kiện và phân tích nhân tử; Murphy (2022), Bài tập 2.3): mục tiêu 2, 5.
+9. **Bài tập 10.9** (Hằng số chuẩn hóa của Gaussian một chiều; Murphy (2022), Bài tập 2.12): mục tiêu 3.
+10. **Bài tập 10.10** (Kỳ vọng của điểm nằm bên trái; Murphy (2022), Bài tập 2.5): mục tiêu 3, 4.
+11. **Bài tập 10.11** (Không tương quan nhưng phụ thuộc với biến liên tục; Murphy (2022), Bài tập 3.1): mục tiêu 4.
+12. **Bài tập 10.12** (Hệ số tương quan thuộc $[-1,1]$; Murphy (2022), Bài tập 3.2): mục tiêu 4.
+
+**Mức vận dụng**
+
+13. **Bài tập 10.13** (Dữ kiện đủ để tính hậu nghiệm; Murphy (2022), Bài tập 2.1): mục tiêu 2, 5, 6.
+14. **Bài tập 10.14** (Hai biến Gaussian không tương quan nhưng phụ thuộc; Murphy (2022), Bài tập 3.5): mục tiêu 3, 4.
+15. **Bài tập 10.15** (Phương án từ chối trong phân loại; Murphy (2022), Bài tập 5.1): mục tiêu 6.
 
 ## 11. Câu hỏi cuối buổi và cầu nối
 
