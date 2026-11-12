@@ -19,9 +19,9 @@ Số hiệu `01.k`, `02.k`, `04.k`, `05b.k`, `05c.k` chỉ ghi chú Bài 01, 02,
 - **Hồi quy với chính quy hóa bậc hai** (Mệnh đề 02.21(c)). Với $\lambda>0$, bài toán bình phương nhỏ nhất cộng số hạng phạt (penalty term) $\lambda\lVert w\rVert^2$ có đúng một nghiệm với mọi $X$.
 - **Mất mát logistic** (Định nghĩa 01.7, Mệnh đề 01.8). Với biên có dấu $m$, mất mát $\phi(m)=\log(1+e^{-m})$ dương, giảm chặt, $\phi'(m)=-1/(1+e^{m})\in(-1,0)$, $\phi''(m)\in(0,\tfrac14]$ đạt $\tfrac14$ tại $m=0$, và $\phi(m)\to0$ khi $m\to+\infty$. Bài 01 viết $\ell$ cho hàm này; ở đây chúng ta viết $\phi$ để dành $\ell$ cho mất mát của một mẫu.
 - **Sự tồn tại và tính duy nhất của điểm cực tiểu** (Định lý 01.35, Định nghĩa 01.37, Định lý 01.38, Hệ quả 01.41, Nhận xét 01.43). Hàm liên tục trên tập không rỗng, đóng, bị chặn đạt giá trị nhỏ nhất (Weierstrass). Hàm liên tục và cưỡng bức (coercive) trên $\mathbb R^d$, tức $f(w)\to\infty$ khi $\lVert w\rVert\to\infty$, đạt giá trị nhỏ nhất. Hàm khả vi lồi mạnh có đúng một điểm cực tiểu. Tính lồi chặt không bảo đảm sự tồn tại điểm cực tiểu.
-- **Hạ gradient trên hàm lồi mạnh** (Định lý 04.26, Định lý 05b.18). Nếu $f$ có gradient $L$-Lipschitz và lồi mạnh với hằng số $\mu$, dãy $w_{k+1}=w_k-\tfrac1L\nabla f(w_k)$ thỏa $f(w_k)-f^*\le(1-\mu/L)^k\bigl(f(w_0)-f^*\bigr)$.
+- **Hạ gradient trên hàm lồi mạnh** (Định lý 04.27, Định lý 05b.18). Nếu $f$ có gradient $L$-Lipschitz và lồi mạnh với hằng số $\mu$, dãy $w_{k+1}=w_k-\tfrac1L\nabla f(w_k)$ thỏa $f(w_k)-f^*\le(1-\mu/L)^k\bigl(f(w_0)-f^*\bigr)$.
 - **Hạ gradient khi không có điểm cực tiểu** (Hệ quả 05b.17). Nếu $f$ lồi và có gradient $L$-Lipschitz thì dãy hạ gradient với bước hằng $0<\eta\le\tfrac1L$ có $f(w_k)\to\inf f$, kể cả khi $\inf f$ không đạt.
-- **Phương pháp Newton** (Định nghĩa 04.28, 04.30, Thuật toán 04.2, Định lý 04.35). Hướng Newton tại $w$ là nghiệm $p$ của $\nabla^2f(w)\,p=-\nabla f(w)$; độ giảm Newton là $\delta_N(w)=\sqrt{-\nabla f(w)^Tp}$. Với quay lui Armijo, phương pháp có một giai đoạn tắt dần và một giai đoạn hội tụ bậc hai; định lý được phát biểu lại ở Mục 4.
+- **Phương pháp Newton** (Định nghĩa 04.29, 04.31, Thuật toán 04.34, Định lý 04.37). Hướng Newton tại $w$ là nghiệm $p$ của $\nabla^2f(w)\,p=-\nabla f(w)$; độ giảm Newton là $\delta_N(w)=\sqrt{-\nabla f(w)^Tp}$. Với quay lui Armijo, phương pháp có một giai đoạn tắt dần và một giai đoạn hội tụ bậc hai; định lý được phát biểu lại ở Mục 4.
 - **Trung bình mẫu tại tham số cố định** (Định lý 05c.52). Nếu các quan sát độc lập, cùng phân phối và tham số được chọn trước khi nhìn các quan sát đó thì trung bình mất mát là ước lượng không chệch của kỳ vọng mất mát.
 - **Đại số tuyến tính** (Bài 00, Mệnh đề 00.8, 00.18 và Hệ quả 00.19; Strang 2016). Định lý hạng–số chiều: $\operatorname{rank}X+\dim\ker X=d$. Với ma trận đối xứng $A$, trị riêng lớn nhất và nhỏ nhất là giá trị lớn nhất và nhỏ nhất của thương Rayleigh $v^TAv/v^Tv$ trên $v\ne0$; $\lVert Av\rVert\le\lambda_{\max}(A)\lVert v\rVert$ khi $A\succeq0$. Ma trận Vandermonde dựng trên các nút phân biệt khả nghịch.
 
@@ -66,7 +66,7 @@ Mọi số liệu của hai ví dụ là số liệu sư phạm tự xây dựng
 
 ## 1. Bài toán trung tâm và khung chung
 
-Trong Bài 01–04, chúng ta đã làm việc trong một khung gọn. Hàm mục tiêu $F$ lồi và có điểm cực tiểu $w^*$; hạ gradient hội tụ tới $w^*$ với tốc độ tuyến tính khi $F$ lồi mạnh (Định lý 04.26), còn phương pháp Newton hội tụ bậc hai khi điểm lặp đủ gần $w^*$ (Định lý 04.35). Các ví dụ của những bài đó có vài tham số và vài mẫu, nên một bước của mỗi phương pháp tính thủ công được.
+Trong Bài 01–04, chúng ta đã làm việc trong một khung gọn. Hàm mục tiêu $F$ lồi và có điểm cực tiểu $w^*$; hạ gradient hội tụ tới $w^*$ với tốc độ tuyến tính khi $F$ lồi mạnh (Định lý 04.27), còn phương pháp Newton hội tụ bậc hai khi điểm lặp đủ gần $w^*$ (Định lý 04.37). Các ví dụ của những bài đó có vài tham số và vài mẫu, nên một bước của mỗi phương pháp tính thủ công được.
 
 Bài toán học máy thực tế khác các ví dụ ấy ở hai con số: số mẫu $n$ và số đặc trưng $d$. Một mô hình phân loại văn bản có thể có $n$ có bậc $10^6$ mẫu và $d$ có bậc $10^4$ đến $10^5$ đặc trưng. Câu hỏi đặt ra là khung của Bài 01–04 còn đúng tới đâu khi $n$ và $d$ lớn; để trả lời, chúng ta cần kiểm tra lại từng thành phần của khung.
 
@@ -553,7 +553,7 @@ Cho hàm $f$ khả vi hai lần với $\mu I\preceq\nabla^2f(w)\preceq LI$ tại
 
 Số điều kiện không nhỏ hơn $1$, và bằng $1$ khi mọi trị riêng bằng nhau, tức khi đường mức là đường tròn. Nó không đổi khi nhân $A$ với một hằng số dương, nên đo hình dạng chứ không đo kích thước. Với hàm bậc hai, hai cách định nghĩa trùng nhau theo mệnh đề sau, nên chúng ta dùng cùng ký hiệu $\kappa$.
 
-Định nghĩa 05.13 gắn với hai giả thiết của Bài 05b. Hằng số $L$ là hằng số trơn của giả thiết H2 (gradient $L$-Lipschitz), $\mu$ là hằng số lồi mạnh của giả thiết H3, và với $f$ khả vi hai lần, H2 và H3 cùng đúng khi và chỉ khi $\mu I\preceq\nabla^2f\preceq LI$ (Bài 05b, đoạn sau Định nghĩa 05b.5). Về tiêu chuẩn Hessian, Nhận xét 01.40 cho tương đương giữa H3 và $\nabla^2f\succeq\mu I$; Nhận xét 04.19 cho chiều đủ của H2: nếu $\lVert\nabla^2f\rVert\le L$ ở mọi điểm thì gradient $L$-Lipschitz.
+Định nghĩa 05.13 gắn với hai giả thiết của Bài 05b. Hằng số $L$ là hằng số trơn của giả thiết H2 (gradient $L$-Lipschitz), $\mu$ là hằng số lồi mạnh của giả thiết H3, và với $f$ khả vi hai lần, H2 và H3 cùng đúng khi và chỉ khi $\mu I\preceq\nabla^2f\preceq LI$ (Bài 05b, đoạn sau Định nghĩa 05b.5). Về tiêu chuẩn Hessian, Nhận xét 01.40 cho tương đương giữa H3 và $\nabla^2f\succeq\mu I$; Nhận xét 04.20 cho chiều đủ của H2: nếu $\lVert\nabla^2f\rVert\le L$ ở mọi điểm thì gradient $L$-Lipschitz.
 
 ::: proposition Mệnh đề 05.14 (Hằng số của mất mát bình phương)
 **Giả thiết.** $F(w)=\frac1{2n}\lVert Xw-y\rVert^2$ với $\operatorname{rank}X=d$.
@@ -1187,7 +1187,7 @@ $$
 
 ### 3.7 Hằng số trơn và số điều kiện của mục tiêu có chính quy hóa
 
-Định lý 05.26 cho hằng số lồi mạnh $\mu=\lambda$. Để có số điều kiện, và vì vậy số bước của hạ gradient theo Định lý 04.26, còn thiếu cận trên của Hessian. Ví dụ một chiều sau cho thấy hai cận đó trên một đồ thị.
+Định lý 05.26 cho hằng số lồi mạnh $\mu=\lambda$. Để có số điều kiện, và vì vậy số bước của hạ gradient theo Định lý 04.27, còn thiếu cận trên của Hessian. Ví dụ một chiều sau cho thấy hai cận đó trên một đồ thị.
 
 ::: example Ví dụ 05.15 (Độ cong của mục tiêu một chiều)
 **Dữ kiện.** Một mẫu $x_1=1$, $y_1=+1$; $F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2$.
@@ -1376,7 +1376,7 @@ w_{k+1}=w_k-\frac1L\nabla f(w_k).
 \tag{4.1}
 $$
 
-Phương pháp Newton nhân gradient với nghịch đảo Hessian, tức chia thành phần theo mỗi hướng riêng cho độ cong của chính hướng đó (Định nghĩa 04.28):
+Phương pháp Newton nhân gradient với nghịch đảo Hessian, tức chia thành phần theo mỗi hướng riêng cho độ cong của chính hướng đó (Định nghĩa 04.29):
 
 $$
 w_{k+1}=w_k-\bigl[\nabla^2f(w_k)\bigr]^{-1}\nabla f(w_k).
@@ -1413,7 +1413,7 @@ Thành phần theo hướng cong nhất bị triệt tiêu ngay ở bước đ�
 
 Trên hình, các chấm của hạ gradient rơi ngay xuống trục dài của elip sau bước đầu rồi tiến chậm dọc trục đó; đó là hướng gần phẳng của Mục 2.5. Mũi tên nét đứt của Newton đi thẳng tới gốc. Trên hàm bậc hai, mô hình bậc hai mà Newton dùng chính là hàm, nên một bước tới đúng nghiệm; trên $F_\lambda$ thì không, vì Hessian thay đổi theo $w$.
 
-Hệ số co $1-\eta s$ theo hướng có độ cong $s$ là lý do số điều kiện xuất hiện trong số bước. Với $\eta=\frac1L$, hướng phẳng nhất có hệ số $1-\frac\mu L=1-\frac1\kappa$, và đó chính là hệ số trong Định lý 04.26.
+Hệ số co $1-\eta s$ theo hướng có độ cong $s$ là lý do số điều kiện xuất hiện trong số bước. Với $\eta=\frac1L$, hướng phẳng nhất có hệ số $1-\frac\mu L=1-\frac1\kappa$, và đó chính là hệ số trong Định lý 04.27.
 
 ### 4.2 Hai phương pháp trên ví dụ một chiều
 
@@ -1442,11 +1442,11 @@ Newton đạt $10^{-8}$ sau $5$ bước. Hạ gradient đạt $10^{-8}$ ở bư�
 
 ![Trục tung logarit từ 10⁻¹⁰ đến 1, k từ 0 đến 75. Newton (ô vuông) giảm 0,635; 0,083; 0,014; 0,0011; 1,1·10⁻⁵; 1,4·10⁻⁹, đạt 10⁻⁸ sau 5 bước. Hạ gradient (chấm) giảm gần thẳng trên thang logarit, đạt 10⁻⁸ ở bước 71.](img/lec-05/cp-error-vs-iteration.svg)
 
-Trên thang logarit, sai số của hạ gradient là một đường gần thẳng, tức giảm theo một tỉ số gần cố định mỗi bước. Sai số của Newton đi xuống ngày càng dốc: từ $e_3\approx10^{-3}$ sang $e_4\approx10^{-5}$ rồi $e_5\approx10^{-9}$, số chữ số đúng gần gấp đôi mỗi bước. Đó là hai kiểu hội tụ, tuyến tính và bậc hai, của Định nghĩa 04.33. Ở Mục 4.3 và 4.4, chúng ta phát biểu hai định lý ứng với hai đường này.
+Trên thang logarit, sai số của hạ gradient là một đường gần thẳng, tức giảm theo một tỉ số gần cố định mỗi bước. Sai số của Newton đi xuống ngày càng dốc: từ $e_3\approx10^{-3}$ sang $e_4\approx10^{-5}$ rồi $e_5\approx10^{-9}$, số chữ số đúng gần gấp đôi mỗi bước. Đó là hai kiểu hội tụ, tuyến tính và bậc hai, của Định nghĩa 04.35. Ở Mục 4.3 và 4.4, chúng ta phát biểu hai định lý ứng với hai đường này.
 
 ### 4.3 Số bước của hạ gradient
 
-Định lý sau là Định lý 05b.18(b), cũng là Định lý 04.26, phát biểu lại với ký hiệu của chương. Chứng minh nằm ở hai chương đó; ở đây chúng ta dùng nó để đếm số bước.
+Định lý sau là Định lý 05b.18(b), cũng là Định lý 04.27, phát biểu lại với ký hiệu của chương. Chứng minh nằm ở hai chương đó; ở đây chúng ta dùng nó để đếm số bước.
 
 ::: theorem Định lý 05.30 (Hội tụ tuyến tính của hạ gradient)
 **Giả thiết.** $f:\mathbb R^d\to\mathbb R$ khả vi, có gradient $L$-Lipschitz (H2) và lồi mạnh với hằng số $\mu$ (H3), $0<\mu\le L$; $w^*$ là điểm cực tiểu; dãy (4.1) với bước $\frac1L$; $e_k=f(w_k)-f(w^*)$.
@@ -1460,7 +1460,7 @@ $$
 
 **Điều kiện áp dụng.** Cần biết $L$ để đặt bước; $\mu$ chỉ xuất hiện trong cận.
 
-**Phạm vi.** Định lý không nói gì về chi phí của mỗi bước; mỗi bước dùng $\nabla f$ trên toàn bộ dữ liệu. Chứng minh: Định lý 05b.18, phần (b), và Định lý 04.26.
+**Phạm vi.** Định lý không nói gì về chi phí của mỗi bước; mỗi bước dùng $\nabla f$ trên toàn bộ dữ liệu. Chứng minh: Định lý 05b.18, phần (b), và Định lý 04.27.
 :::
 
 Áp vào hồi quy logistic có chính quy hóa, Mệnh đề 05.28 cho $F_\lambda$ thỏa giả thiết với $\mu=\lambda$ và $L=\lambda_{\max}(X^TX)/(4n)+\lambda$. Hệ quả sau đổi (4.3) thành số bước.
@@ -1517,10 +1517,10 @@ Số bước vì vậy tỉ lệ gần với số điều kiện cục bộ $L/F
 
 ### 4.4 Số bước của phương pháp Newton
 
-Định lý sau là Định lý 04.35 của Bài 04, phát biểu với ký hiệu của chương: $\mu$, $L$ là cận dưới và cận trên của Hessian, $L_H$ là hằng số Lipschitz của Hessian. Boyd và Vandenberghe (2004, mục 9.5.3) viết ba hằng số này là $m$, $M$, $L$.
+Định lý sau là Định lý 04.37 của Bài 04, phát biểu với ký hiệu của chương: $\mu$, $L$ là cận dưới và cận trên của Hessian, $L_H$ là hằng số Lipschitz của Hessian. Boyd và Vandenberghe (2004, mục 9.5.3) viết ba hằng số này là $m$, $M$, $L$.
 
 ::: theorem Định lý 05.33 (Hội tụ hai giai đoạn của Newton với quay lui)
-**Giả thiết.** $f$ lồi, khả vi hai lần liên tục; trên tập mức dưới $C_0=\{w:\ f(w)\le f(w_0)\}$, $\mu I\preceq\nabla^2f\preceq LI$ với $\mu>0$, và $\lVert\nabla^2f(w)-\nabla^2f(z)\rVert\le L_H\lVert w-z\rVert$. Phương pháp Newton với quay lui Armijo tham số $\alpha\in(0,\tfrac12)$, $\beta\in(0,1)$ (Thuật toán 04.2).
+**Giả thiết.** $f$ lồi, khả vi hai lần liên tục; trên tập mức dưới $C_0=\{w:\ f(w)\le f(w_0)\}$, $\mu I\preceq\nabla^2f\preceq LI$ với $\mu>0$, và $\lVert\nabla^2f(w)-\nabla^2f(z)\rVert\le L_H\lVert w-z\rVert$. Phương pháp Newton với quay lui Armijo tham số $\alpha\in(0,\tfrac12)$, $\beta\in(0,1)$ (Thuật toán 04.34).
 
 **Kết luận.** Số bước để $f(w_k)-f^*\le\varepsilon_{\rm tol}$ không vượt
 
@@ -1556,7 +1556,7 @@ Số bước của giai đoạn bậc hai, $\log_2\log_2(\varepsilon_0/\varepsil
 **Kiểm tra lại.** Tại $s=\tfrac{3-\sqrt3}6\approx0{,}2113$: $0{,}2113\cdot0{,}7887\cdot0{,}5774\approx0{,}0962$.
 :::
 
-Hạ gradient bị elip dẹt làm chậm, Newton thì không. Mệnh đề sau giải thích điều đó bằng một tính chất hình học của bước Newton, đã gặp ở Mệnh đề 04.31(c).
+Hạ gradient bị elip dẹt làm chậm, Newton thì không. Mệnh đề sau giải thích điều đó bằng một tính chất hình học của bước Newton, đã gặp ở Mệnh đề 04.32(c).
 
 ::: proposition Mệnh đề 05.34 (Bất biến affine của bước Newton)
 **Giả thiết.** $f$ khả vi hai lần với $\nabla^2f(w)\succ0$; $T\in\mathbb R^{d\times d}$ khả nghịch; $\tilde f(z)=f(Tz)$ và $w=Tz$.
@@ -1615,7 +1615,7 @@ Dòng 3 dùng công thức gradient (3.2) viết lại: $\nabla F(w)=\frac1nX^Tr
 2. Tính $S_{ii}=\sigma(m_i)\sigma(-m_i)$ từ $z$: $O(n)$.
 3. Lập $H=\frac1nX^TSX+\lambda I$: $nd^2$.
 4. Giải $Hp=-g$ bằng phân tích Cholesky: bậc $d^3$.
-5. Tính $\delta_N^2=-g^Tp$, bình phương độ giảm Newton (Định nghĩa 04.30); nếu $\tfrac12\delta_N^2\le\varepsilon_{\rm tol}$: dừng.
+5. Tính $\delta_N^2=-g^Tp$, bình phương độ giảm Newton (Định nghĩa 04.31); nếu $\tfrac12\delta_N^2\le\varepsilon_{\rm tol}$: dừng.
 6. Quay lui Armijo theo hướng $p$: tính sẵn $Xp$ ($nd$), mỗi lần thử một $t$ tốn $O(n)$.
 7. Cập nhật $w\leftarrow w+tp$: $O(d)$.
 
@@ -1624,7 +1624,7 @@ Dòng 3 dùng công thức gradient (3.2) viết lại: $\nabla F(w)=\frac1nX^Tr
 **Chi phí mỗi bước.** $O(nd^2+d^3)$; bộ nhớ thêm cho $H$ với $d^2$ số và các vector độ dài $n$.
 :::
 
-Dòng 3 là tổng của $n$ tích ngoài $S_{ii}x_ix_i^T$, mỗi tích tốn $d^2$; dùng tính đối xứng thì chỉ cần khoảng $nd^2/2$. Phân tích Cholesky tốn khoảng $d^3/3$ phép tính, sau đó hai phép thế tốn $O(d^2)$. Theo Mệnh đề 04.31(a), $\tfrac12\delta_N^2$ là mức giảm của mô hình bậc hai và ước lượng $F_\lambda(w)-F_\lambda^*$ khi $w$ gần nghiệm. Newton cho hồi quy logistic ở dạng này còn gọi là bình phương nhỏ nhất có trọng số lặp (iteratively reweighted least squares, IRLS): mỗi bước giải một bài toán bình phương nhỏ nhất với trọng số $S$.
+Dòng 3 là tổng của $n$ tích ngoài $S_{ii}x_ix_i^T$, mỗi tích tốn $d^2$; dùng tính đối xứng thì chỉ cần khoảng $nd^2/2$. Phân tích Cholesky tốn khoảng $d^3/3$ phép tính, sau đó hai phép thế tốn $O(d^2)$. Theo Mệnh đề 04.32(a), $\tfrac12\delta_N^2$ là mức giảm của mô hình bậc hai và ước lượng $F_\lambda(w)-F_\lambda^*$ khi $w$ gần nghiệm. Newton cho hồi quy logistic ở dạng này còn gọi là bình phương nhỏ nhất có trọng số lặp (iteratively reweighted least squares, IRLS): mỗi bước giải một bài toán bình phương nhỏ nhất với trọng số $S$.
 
 ::: proposition Mệnh đề 05.35 (Chi phí một bước)
 **Giả thiết.** $X\in\mathbb R^{n\times d}$ dày đặc, $n\ge d$; đếm phép nhân–cộng và bỏ hằng số (G5).
@@ -2352,6 +2352,6 @@ Với dữ liệu thưa, một tích $Xv$ hoặc $X^Tv$ tốn bằng số phần
 - Gilbert Strang (2016), *Introduction to Linear Algebra*, ấn bản 5, Wellesley–Cambridge Press: phần bốn không gian con cơ bản và định lý hạng–số chiều; phần ma trận đối xứng và thương Rayleigh. Dùng cho Mệnh đề 05.10, 05.11, 05.16.
 - Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar và Nathan Srebro (2018), "The Implicit Bias of Gradient Descent on Separable Data", *Journal of Machine Learning Research* 19(70), 1–57. Đọc thêm cho Tình huống 05.2.
 - Chih-Jen Lin, Ruby C. Weng và S. Sathiya Keerthi (2008), "Trust Region Newton Method for Large-Scale Logistic Regression", *Journal of Machine Learning Research* 9, 627–650. Nguồn của phương pháp TRON ở Mục 5.2.
-- Ghi chú Bài 01 (Hệ quả 01.5, Mệnh đề 01.8; Định nghĩa 01.7, 01.42; Ví dụ 01.7, 01.8; Định lý 01.34, 01.35, 01.38; Hệ quả 01.41; Nhận xét 01.40, 01.43; Tình huống 01.1), Bài 02 (Mệnh đề 02.21), Bài 04 (Định nghĩa 04.28, 04.30, 04.33; Mệnh đề 04.31; Thuật toán 04.2; Định lý 04.26, 04.35), Bài 05b (Định nghĩa 05b.5; Bổ đề 05b.6; Hệ quả 05b.17; Định lý 05b.18, 05b.36, 05b.39, 05b.41, 05b.43) và Bài 05c (Định nghĩa 05c.51; Định lý 05c.52, 05c.53) là tiên quyết trực tiếp.
+- Ghi chú Bài 01 (Hệ quả 01.5, Mệnh đề 01.8; Định nghĩa 01.7, 01.42; Ví dụ 01.7, 01.8; Định lý 01.34, 01.35, 01.38; Hệ quả 01.41; Nhận xét 01.40, 01.43; Tình huống 01.1), Bài 02 (Mệnh đề 02.21), Bài 04 (Định nghĩa 04.29, 04.31, 04.35; Mệnh đề 04.32; Thuật toán 04.34; Định lý 04.27, 04.37), Bài 05b (Định nghĩa 05b.5; Bổ đề 05b.6; Hệ quả 05b.17; Định lý 05b.18, 05b.36, 05b.39, 05b.41, 05b.43) và Bài 05c (Định nghĩa 05c.51; Định lý 05c.52, 05c.53) là tiên quyết trực tiếp.
 
 Mọi số liệu của các ví dụ, trừ bảng RCV1, là số liệu sư phạm tự xây dựng và được tính lại từ dữ kiện nêu trong chương. Các chứng minh của Mục 2 và 3 được viết trực tiếp; Định lý 05.30 và 05.33 được phát biểu lại từ Bài 05b, Bài 04 và Boyd và Vandenberghe (2004).

@@ -20,7 +20,7 @@ Số hiệu `00.k`, `01.k`, `04.k`, `05.k`, `05b.k`, `05c.k` chỉ ghi chú Bài
 - **Quy tắc dây chuyền dạng Jacobian chuyển vị** (Bài 00, Định lý 00.35). Nếu $\psi:\mathbb R^{d_u}\to\mathbb R^{d_v}$ khả vi với Jacobian $J_\psi(u)\in\mathbb R^{d_v\times d_u}$ và $g:\mathbb R^{d_v}\to\mathbb R$ khả vi, thì $\nabla(g\circ\psi)(u)=J_\psi(u)^\top\nabla g(\psi(u))$.
 - **Khai triển Taylor bậc hai và phép kiểm tra bậc hai bằng Hessian** (Bài 00, Định lý 00.40 và 00.43). Với $F$ khả vi liên tục hai lần, $F(\theta+s)=F(\theta)+\nabla F(\theta)^\top s+\tfrac12s^\top\nabla^2F(\theta)s+o(\lVert s\rVert^2)$; tại điểm có $\nabla F(\theta)=0$ và $\nabla^2F(\theta)\succ0$, $\theta$ là cực tiểu địa phương chặt.
 - **Tính lồi** (Định nghĩa 01.21; Định lý 01.30(b); Hệ quả 01.26; Hệ quả 01.33). Hợp của một hàm lồi với một ánh xạ affine là hàm lồi. Với $F$ lồi khả vi, mọi điểm có $\nabla F(\theta)=0$ là cực tiểu toàn cục. Tập nghiệm của bài toán cực tiểu hóa một hàm lồi là tập lồi.
-- **Gradient Lipschitz và bổ đề giảm** (Định nghĩa 04.17; Bổ đề 04.18, 04.20; Bổ đề 05b.6). Nếu $\nabla F$ là $L$-Lipschitz thì $F(\theta')\le F(\theta)+\nabla F(\theta)^\top(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert^2$, và một bước hạ gradient với bước $\eta\in(0,\tfrac2L)$ làm $F$ giảm.
+- **Gradient Lipschitz và bổ đề giảm** (Định nghĩa 04.18; Bổ đề 04.19, 04.21; Bổ đề 05b.6). Nếu $\nabla F$ là $L$-Lipschitz thì $F(\theta')\le F(\theta)+\nabla F(\theta)^\top(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert^2$, và một bước hạ gradient với bước $\eta\in(0,\tfrac2L)$ làm $F$ giảm.
 - **Kết luận của Bài 05.** Một bước hạ gradient trên $n$ mẫu với $d$ tham số tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$ (Mệnh đề 05.35). Dữ liệu XOR không tách được bằng điểm số affine (Mệnh đề 05.40), và số đơn thức bậc không quá $q$ của $d_0$ biến là $\binom{d_0+q}q$ (Mệnh đề 05.41). Tập xác thực, tập kiểm thử và dừng sớm được định nghĩa ở Định nghĩa 05.6 và Định nghĩa 05.38. Chính quy hóa bậc hai làm mất mát logistic lồi mạnh (Định lý 05.26).
 - **Bài 05b** (Định nghĩa 05b.5, 05b.31; Định lý 05b.36, 05b.39, 05b.41, 05b.43; Hệ quả 05b.44). Các giả thiết có tên được phát biểu lại tại chỗ dùng đầu: H0 (bị chặn dưới) và H2 (gradient Lipschitz) ở Định lý 06.20, H3 (lồi mạnh) và H4 (có điểm cực tiểu) ở Định lý 06.31, H6 (không chệch), H6a (chặn mômen bậc hai) và H6b (chặn phương sai) ở Định nghĩa 06.26. Bốn định lý hội tụ trên được phát biểu lại đầy đủ ở Mục 4 và 6, thành Định lý 06.20 (Định lý 05b.41), Định lý 06.31 (Định lý 05b.36), Định lý 06.32 (Định lý 05b.39) và Định lý 06.34 (Định lý 05b.43).
 - **Bài 05c** (Định nghĩa 05c.51; Định lý 05c.52, 05c.53; Mệnh đề 05c.56; Nhận xét 05c.58). Rủi ro thực nghiệm tại một tham số cố định ước lượng không chệch rủi ro kỳ vọng; gradient trên một nhóm mẫu chọn ngẫu nhiên ước lượng không chệch gradient đầy đủ. Hai kết quả này được phát biểu lại ở Mục 5.
@@ -941,14 +941,14 @@ F(\theta')-F(\theta)-\nabla F(\theta)^\top s&=\int_0^1\bigl(\nabla F(\theta+ts)-
 \end{aligned}
 $$
 
-Dòng thứ hai dùng bất đẳng thức Cauchy–Schwarz và tính Lipschitz: $\lVert\nabla F(\theta+ts)-\nabla F(\theta)\rVert\le Lt\lVert s\rVert$ vì $\theta+ts\in C$. Đây là Bổ đề 04.18, với giả thiết Lipschitz chỉ cần trên $C$.
+Dòng thứ hai dùng bất đẳng thức Cauchy–Schwarz và tính Lipschitz: $\lVert\nabla F(\theta+ts)-\nabla F(\theta)\rVert\le Lt\lVert s\rVert$ vì $\theta+ts\in C$. Đây là Bổ đề 04.19, với giả thiết Lipschitz chỉ cần trên $C$.
 
 **Bước 2 (thế bước hạ gradient).** Lấy $\theta'=\theta-\eta\nabla F(\theta)$, tức $s=-\eta\nabla F(\theta)$. Số hạng bậc nhất bằng $-\eta\lVert\nabla F(\theta)\rVert^2$, số hạng bậc hai bằng $\tfrac{L\eta^2}2\lVert\nabla F(\theta)\rVert^2$. Cộng lại được (4.2).
 
 **Bước 3 (hai trường hợp riêng).** Với $\eta=\tfrac1L$, hệ số là $\tfrac1L\cdot\tfrac12=\tfrac1{2L}$. Với $0<\eta<\tfrac2L$, $1-\tfrac{L\eta}2>0$. $\square$
 :::
 
-Bổ đề 06.19 là Bổ đề 04.20 và Bổ đề 05b.6 phát biểu lại với giả thiết trơn chỉ trên một tập lồi. Sự thu hẹp này cần thiết cho mạng: với mạng tuyến tính một đơn vị, không có hằng số $L$ toàn cục, như ví dụ sau tính.
+Bổ đề 06.19 là Bổ đề 04.21 và Bổ đề 05b.6 phát biểu lại với giả thiết trơn chỉ trên một tập lồi. Sự thu hẹp này cần thiết cho mạng: với mạng tuyến tính một đơn vị, không có hằng số $L$ toàn cục, như ví dụ sau tính.
 
 ::: example Ví dụ 06.14 (Bổ đề giảm trên mạng tuyến tính một đơn vị)
 **Dữ kiện.** $F(u,v)=\tfrac12(uv-1)^2$, $\nabla F=(uv-1)(v,u)$, $\nabla^2F=\begin{pmatrix}v^2&2uv-1\\2uv-1&u^2\end{pmatrix}$; điểm $\theta_0=(\tfrac12,\tfrac12)$; vùng $C=[0,1]^2$.
@@ -2287,6 +2287,6 @@ Dưới tổng ngân sách cố định, nhóm lớn nhất mà bộ nhớ cho p
 - Léon Bottou, Frank E. Curtis và Jorge Nocedal (2018), "Optimization Methods for Large-Scale Machine Learning", *SIAM Review* 60(2), 223–311, mục 4. Đọc thêm cho Mục 6: định lý SGD với bước cố định và bước giảm dần cho hàm lồi mạnh và không lồi.
 - Ghi chú Bài 05b: Định nghĩa 05b.5, 05b.31; Bổ đề 05b.6, 05b.7, 05b.32; Hệ quả 05b.10, 05b.38, 05b.44; Định lý 05b.16, 05b.18, 05b.36, 05b.39, 05b.41, 05b.43; Ví dụ 05b.19, 05b.25. Các Định lý 06.20, 06.31, 06.32, 06.34 và Hệ quả 06.35 là các kết quả này phát biểu lại với ký hiệu của chương.
 - Ghi chú Bài 05c, Mục 6: Định nghĩa 05c.51; Định lý 05c.52, 05c.53; Mệnh đề 05c.56; Nhận xét 05c.58; Mục 6.6 và 6.7. Định lý 06.22 và 06.25 là hai định lý đầu phát biểu lại.
-- Ghi chú Bài 05: Định nghĩa 05.5, 05.6, 05.20, 05.38; Mệnh đề 05.35, 05.39, 05.40, 05.41; Định lý 05.22, 05.26, 05.30, 05.33; Ví dụ 05.24, 05.25; Nhận xét 05.42. Ghi chú Bài 01 (Định nghĩa 01.21; Định lý 01.30; Hệ quả 01.26, 01.33) và Bài 04 (Định nghĩa 04.17; Bổ đề 04.18, 04.20) là tiên quyết trực tiếp.
+- Ghi chú Bài 05: Định nghĩa 05.5, 05.6, 05.20, 05.38; Mệnh đề 05.35, 05.39, 05.40, 05.41; Định lý 05.22, 05.26, 05.30, 05.33; Ví dụ 05.24, 05.25; Nhận xét 05.42. Ghi chú Bài 01 (Định nghĩa 01.21; Định lý 01.30; Hệ quả 01.26, 01.33) và Bài 04 (Định nghĩa 04.18; Bổ đề 04.19, 04.21) là tiên quyết trực tiếp.
 
 Mọi mệnh đề, bổ đề, định lý và hệ quả của chương đều có chứng minh trong chương. Các định lý phát biểu lại từ Bài 05b và 05c được chứng minh lại ngắn gọn, với cùng hằng số như chứng minh gốc. Mọi số liệu của các ví dụ được tính lại từ công thức đã nêu bằng phân số chính xác hoặc đệ quy kỳ vọng; không có mô phỏng ngẫu nhiên.

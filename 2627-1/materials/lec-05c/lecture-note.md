@@ -25,7 +25,7 @@ Số hiệu `00.k`, `01.k`, `04.k` và `06b.k` chỉ ghi chú Bài 00, Bài 01, 
 - **Hàm lồi một biến** (Định nghĩa 01.21). Nếu $\varphi$ lồi trên đoạn $[m,M]$ thì đồ thị nằm dưới dây cung: $\varphi(y)\le\frac{M-y}{M-m}\varphi(m)+\frac{y-m}{M-m}\varphi(M)$ với mọi $y\in[m,M]$. Hàm mũ $y\mapsto e^{\lambda y}$ lồi với mọi $\lambda\in\mathbb R$.
 - **Mất mát huấn luyện, rủi ro kỳ vọng và ví dụ ba quan sát** (Định nghĩa 06b.1, Ví dụ 06b.1). Mất mát huấn luyện là trung bình $J(\theta)=\frac1N\sum_{i=1}^N\ell_i(\theta)$ của $N$ mất mát riêng; rủi ro kỳ vọng $R(\theta)$ là mất mát trung bình trên một quan sát mới rút từ phân phối sinh dữ liệu. Với ba quan sát $y=(-1,1,3)$, mô hình hằng $\theta\in\mathbb R$ và $\ell_i(\theta)=\tfrac12(\theta-y_i)^2$, mất mát huấn luyện là $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ với nghiệm $\theta^*=1$.
 - **Gradient lô** (Định nghĩa 06b.10, Định lý 06b.11). Với các chỉ số $I_1,\ldots,I_b$ rút độc lập, đều trên $\{1,\ldots,N\}$, gradient lô $\widehat g=\frac1b\sum_{r=1}^b\nabla\ell_{I_r}(\theta)$ có kỳ vọng $\nabla J(\theta)$ và hiệp phương sai $\Sigma(\theta)/b$. Bài 06b chứng minh định lý này bằng tính tuyến tính của kỳ vọng và tính độc lập; Mục 4 và Mục 6 của chương này dựng hai công cụ đó từ đầu.
-- **Gradient Lipschitz và bước $1/L$** (Định nghĩa 04.17, Bổ đề 04.20). Gradient $\nabla F$ là $L$-Lipschitz nếu $\lVert\nabla F(\theta)-\nabla F(\theta')\rVert\le L\lVert\theta-\theta'\rVert$ với mọi $\theta,\theta'$. Khi đó bước hạ gradient với độ dài bước $\eta\in(0,\tfrac1L]$ làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F(\theta)\rVert^2$.
+- **Gradient Lipschitz và bước $1/L$** (Định nghĩa 04.18, Bổ đề 04.21). Gradient $\nabla F$ là $L$-Lipschitz nếu $\lVert\nabla F(\theta)-\nabla F(\theta')\rVert\le L\lVert\theta-\theta'\rVert$ với mọi $\theta,\theta'$. Khi đó bước hạ gradient với độ dài bước $\eta\in(0,\tfrac1L]$ làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F(\theta)\rVert^2$.
 - **Hồi quy logistic** (Định nghĩa 01.7, Mệnh đề 01.8). Với nhãn $y\in\{-1,+1\}$, vectơ đặc trưng $a$ và tham số $\theta$, mất mát logistic là $\ln\bigl(1+\exp(-y\,a^T\theta)\bigr)$.
 
 ## Bảng ký hiệu
@@ -2416,7 +2416,7 @@ Hình trên minh họa hai hệ số theo $b$ cùng dải nơi trị tuyệt đ�
 **Kết luận.**
 
 1. Một bước độ dài $\eta$ theo $\widetilde g$ trùng một bước độ dài $\eta b$ theo $\widehat g$.
-2. $\nabla\widetilde J$ là $NL$-Lipschitz, nên điều kiện bước $\eta\le1/L$ của Bổ đề 04.20 áp cho $\widetilde J$ thành $\eta\le1/(NL)$.
+2. $\nabla\widetilde J$ là $NL$-Lipschitz, nên điều kiện bước $\eta\le1/L$ của Bổ đề 04.21 áp cho $\widetilde J$ thành $\eta\le1/(NL)$.
 3. Với gradient lô dạng tổng, phần tất định $\mathbb E[\theta-\eta\widetilde g]$ là một bước hạ gradient trên $J$ với độ dài $\eta b$, nên cùng điều kiện thành $\eta\le1/(bL)$.
 4. Trong trường hợp vô hướng, $\operatorname{Var}\widetilde g=b\,\sigma_1^2$ tăng theo $b$, trong khi $\operatorname{Var}\widehat g=\sigma_1^2/b$.
 

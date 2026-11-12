@@ -1902,3 +1902,14 @@ Bài tập 04.16–04.31 liên tục; ghi chú chỉ đổi một câu liên k�
 ### Lệch với deck (Q-F)
 
 Trang RZ03 của deck liệt kê "Bài 1 … Bài 8" của `exercises.md` cũ; nay lệch, cần đồng bộ deck sau.
+
+## Cập nhật dẫn chiếu tới Bài 04 (giai đoạn 3, 2026-11-12)
+
+Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medium). Thay một lượt theo `map-lec-04.md` bằng từ điển đồng thời (cụm mở bằng tên loại khối, ranh giới số, nhận cụm trộn): 111 cụm ở 10 tệp — 103 đổi số tự động (lec-05b 41, lec-05 20, lec-06b 18, lec-06c 10, lec-06 6, lec-05b/exercises 3, lec-05c 2, lec-06/exercises 1, deck 05: Nhận xét 04.19 → 04.20, deck 06: Bổ đề 04.18 → 04.19; diff deck chỉ đổi chữ số, Q-F) và 8 cụm viết tay:
+
+- lec-06b:66, :1091 "Ví dụ 04.2–04.7" → "Ví dụ 04.3–04.7" (Ví dụ 04.2 mới là hệ KKT rút gọn của Ví dụ 03.18(b)).
+- lec-05b:58 "$\alpha\in(0,\tfrac12)$ theo Định nghĩa 04.10, mở rộng tới $\alpha=\tfrac12$ theo Bổ đề 04.23" → "$\alpha\in(0,\tfrac12]$ theo Định nghĩa 04.10 và Bổ đề 04.24"; lec-06c:28 "$c_1\in(0,\tfrac12)$" → "$c_1\in(0,\tfrac12]$" (khoảng của Định nghĩa 04.10 là $(0,\tfrac12]$ ở cả bản cũ lẫn mới — lỗi dẫn có từ trước).
+- lec-05b:24, :72, :3226 "Mục 2.6" → "Mục 5.6".
+- lec-05b:468 biến tích phân khi thuật lại chứng minh Bổ đề 04.19: $\tau$ → $\varsigma$ theo ghi chú mới (chấp nhận).
+
+Kiểm: tác tử quét mọi `materials/lec-*/*.md`, `materials/README.md`, mọi deck: 757 tham chiếu "Loại 04.k", 0 sai; điều phối viên chạy kiểm độc lập (mỗi số được dẫn tồn tại trong ghi chú/bài tập Bài 04 với đúng loại khối): 182 tham chiếu ngoài Bài 04, 0 sai; đối chiếu Nhận xét 04.20 (deck 05), Bổ đề 04.19, 04.24. forward_refs của các tệp đã sửa không đổi; `git diff --check`, đồng bộ `--check` đạt; notecheck lec-05, 05b, 06b, 06c (1600, 390, `file://`): 0 lỗi KaTeX, 0 chữ đỏ, 0 lỗi console. Không tệp nào dẫn nhãn công thức, `exercises.md` cũ hay ký hiệu cũ của Bài 04. Lệch deck: RZ03 của deck 04 (liệt kê bài của `exercises.md` cũ) — không sửa.

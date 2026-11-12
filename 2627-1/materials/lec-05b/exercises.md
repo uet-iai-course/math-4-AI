@@ -1,6 +1,6 @@
 # Bài tập Bài 05b — Hội tụ của hạ gradient và hạ gradient ngẫu nhiên
 
-Bộ bài tập gồm mười bài tập ở ba mức: nhận biết (Bài 1), tính toán hoặc chứng minh (Bài 2–7, 10) và vận dụng vào AI (Bài 8–9). Các bài 1, 2, 4, 5, 7 và một phần Bài 9 là các câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ. Ký hiệu, giả thiết H0–H7 và số hiệu theo ghi chú bài giảng. Tên ngắn trên trang chiếu ứng với số hiệu như sau: T1, T1′ là Định lý 05b.16; T2a, T2b là Định lý 05b.18(a), (b); T2′ là Định lý 05b.20; T3 là Định lý 05b.26; T4 là Định lý 05b.34; T5 là Định lý 05b.36; T6 là Định lý 05b.39; T7 là Định lý 05b.41; T8 là Định lý 05b.43; T9 là Định lý 05b.47; BĐ1 là Bổ đề 04.18; BĐ2, BĐ3, BĐ4 là Bổ đề 05b.7, 05b.8, 05b.9; BĐ5 là Bổ đề 05b.25; BĐ6 là Bổ đề 05b.40. Bốn ví dụ dùng chung:
+Bộ bài tập gồm mười bài tập ở ba mức: nhận biết (Bài 1), tính toán hoặc chứng minh (Bài 2–7, 10) và vận dụng vào AI (Bài 8–9). Các bài 1, 2, 4, 5, 7 và một phần Bài 9 là các câu hỏi trên trang chiếu, ở đây có gợi ý và lời giải đầy đủ. Ký hiệu, giả thiết H0–H7 và số hiệu theo ghi chú bài giảng. Tên ngắn trên trang chiếu ứng với số hiệu như sau: T1, T1′ là Định lý 05b.16; T2a, T2b là Định lý 05b.18(a), (b); T2′ là Định lý 05b.20; T3 là Định lý 05b.26; T4 là Định lý 05b.34; T5 là Định lý 05b.36; T6 là Định lý 05b.39; T7 là Định lý 05b.41; T8 là Định lý 05b.43; T9 là Định lý 05b.47; BĐ1 là Bổ đề 04.19; BĐ2, BĐ3, BĐ4 là Bổ đề 05b.7, 05b.8, 05b.9; BĐ5 là Bổ đề 05b.25; BĐ6 là Bổ đề 05b.40. Bốn ví dụ dùng chung:
 
 - Ví dụ A: $J(\theta)=\tfrac12(\theta-1)^2+\tfrac43$ từ ba quan sát $y=(-1,1,3)$, gradient một mẫu $\theta-y_I$;
 - Ví dụ B: $f(x)=\tfrac13\bigl(\lvert x+1\rvert+\lvert x-1\rvert+\lvert x-3\rvert\bigr)$, $x^*=1$, $f^*=\tfrac43$;
@@ -34,9 +34,9 @@ $$
 $$
 
 3. (a) Hội tụ theo giá trị, dưới tuyến tính $O(1/k)$. Dưới H3 (và H4), Bổ đề 05b.8 cho $d_k^2\le\tfrac2\mu e_k\le\tfrac2\mu\cdot\tfrac{70}k$.
-(b) Hội tụ theo dãy lặp, tuyến tính hệ số $\tfrac47$ cho $d_k^2$. Dưới H2, Bổ đề 04.18 tại $x^*$ cho $e_k\le\tfrac L2d_k^2\le\tfrac L2\cdot20(\tfrac47)^k$.
+(b) Hội tụ theo dãy lặp, tuyến tính hệ số $\tfrac47$ cho $d_k^2$. Dưới H2, Bổ đề 04.19 tại $x^*$ cho $e_k\le\tfrac L2d_k^2\le\tfrac L2\cdot20(\tfrac47)^k$.
 (c) Hội tụ tới điểm dừng, đo bằng giá trị nhỏ nhất trên $K$ bước đầu, tốc độ $O(1/K)$. Dưới H3, Bổ đề 05b.8 cho $e_k\le\tfrac1{2\mu}\lVert\nabla f(x_k)\rVert^2$ với mọi $k$, nên $\min_{k<K}e_k\le\tfrac{C}{2\mu K}$.
-(d) Hội tụ theo kỳ vọng của bình phương khoảng cách, với phần nhiễu $0{,}267$ không giảm theo $k$: phần $0{,}9^k$ giảm tuyến tính, phần còn lại thì không. Dưới H2, Bổ đề 04.18 cho $\mathbb E\,e_k\le\tfrac L2\mathbb E\,d_k^2$; Markov (Bổ đề 05b.40) chuyển cận kỳ vọng thành cận xác suất.
+(d) Hội tụ theo kỳ vọng của bình phương khoảng cách, với phần nhiễu $0{,}267$ không giảm theo $k$: phần $0{,}9^k$ giảm tuyến tính, phần còn lại thì không. Dưới H2, Bổ đề 04.19 cho $\mathbb E\,e_k\le\tfrac L2\mathbb E\,d_k^2$; Markov (Bổ đề 05b.40) chuyển cận kỳ vọng thành cận xác suất.
 
 Theo Mục 3, 5, 6 của ghi chú bài giảng: (a), (b) là Định lý 05b.16 và 05b.18(a) trên Ví dụ C; (c) là dạng của Định lý 05b.41; (d) là Định lý 05b.36 trên Ví dụ A.
 :::

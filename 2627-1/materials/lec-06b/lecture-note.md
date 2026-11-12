@@ -26,8 +26,8 @@ Số hiệu `00.k`, `01.k`, `04.k`, `05b.k` và `05c.k` chỉ ghi chú Bài 00, 
 - **Số phức.** Số phức $\zeta=\operatorname{Re}\zeta+\mathrm i\operatorname{Im}\zeta$, với $\mathrm i$ là đơn vị ảo, $\mathrm i^2=-1$, có môđun $\lvert\zeta\rvert=\sqrt{(\operatorname{Re}\zeta)^2+(\operatorname{Im}\zeta)^2}$ và viết được dưới dạng $\lvert\zeta\rvert(\cos\varpi+\mathrm i\sin\varpi)$, với $\varpi$ là góc của $\zeta$; môđun của tích bằng tích các môđun. Đa thức bậc hai hệ số thực có hai nghiệm phức liên hợp khi biệt thức âm.
 - **Tính lồi** (Hệ quả 01.26, Định lý 01.29, Định nghĩa 01.39, Nhận xét 01.40, Mệnh đề 04.2(a)). Với $F$ lồi khả vi trên $\mathbb R^p$, $\nabla F(\theta^*)=0$ vừa cần vừa đủ cho cực tiểu toàn cục. Hàm khả vi hai lần là lồi khi và chỉ khi Hessian nửa xác định dương mọi nơi, và lồi mạnh với hằng số $\mu>0$ khi và chỉ khi $\nabla^2F\succeq\mu \mathrm I$ mọi nơi.
 - **Mất mát logistic** (Định nghĩa 01.7, Mệnh đề 01.8). Với biên có dấu $m$, mất mát $\log(1+\exp(-m))$ có đạo hàm bậc hai thuộc $(0,\tfrac14]$.
-- **Gradient Lipschitz** (Định nghĩa 04.17, Bổ đề 04.18, Nhận xét 04.19). $\nabla F$ là $L$-Lipschitz nếu $\lVert\nabla F(\theta)-\nabla F(\theta')\rVert_2\le L\lVert\theta-\theta'\rVert_2$ với mọi $\theta,\theta'$; khi đó $F(\theta')\le F(\theta)+\nabla F(\theta)^T(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert_2^2$. Với $F$ lồi khả vi hai lần, $\nabla^2F\preceq L\mathrm I$ mọi nơi là đủ.
-- **Hạ gradient** (gradient descent; Bổ đề 04.20, Định lý 04.26, Nhận xét 04.13). Với bước $\eta\in(0,\tfrac1L]$, một bước gradient làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F\rVert_2^2$; nếu thêm $F$ lồi mạnh thì bước $\tfrac1L$ cho sai số co theo hệ số $1-\mu/L$. Trên hàm bậc hai, bước cố định nhân thành phần theo vectơ riêng thứ $i$ của Hessian với $1-\eta\lambda_i$.
+- **Gradient Lipschitz** (Định nghĩa 04.18, Bổ đề 04.19, Nhận xét 04.20). $\nabla F$ là $L$-Lipschitz nếu $\lVert\nabla F(\theta)-\nabla F(\theta')\rVert_2\le L\lVert\theta-\theta'\rVert_2$ với mọi $\theta,\theta'$; khi đó $F(\theta')\le F(\theta)+\nabla F(\theta)^T(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert_2^2$. Với $F$ lồi khả vi hai lần, $\nabla^2F\preceq L\mathrm I$ mọi nơi là đủ.
+- **Hạ gradient** (gradient descent; Bổ đề 04.21, Định lý 04.27, Nhận xét 04.14). Với bước $\eta\in(0,\tfrac1L]$, một bước gradient làm $F$ giảm ít nhất $\tfrac\eta2\lVert\nabla F\rVert_2^2$; nếu thêm $F$ lồi mạnh thì bước $\tfrac1L$ cho sai số co theo hệ số $1-\mu/L$. Trên hàm bậc hai, bước cố định nhân thành phần theo vectơ riêng thứ $i$ của Hessian với $1-\eta\lambda_i$.
 - **Hai ví dụ của Bài 04.** Ví dụ 04.7 chạy bước $\tfrac14$ trên chính hàm $q$ của Mục 3. Tình huống 04.3 cho hàm $\tfrac12(ab-1)^2$ có gốc là điểm yên ngựa, nơi hạ gradient xuất phát trên đường chéo $a=-b$ dừng lại.
 
 ## Bảng ký hiệu
@@ -63,14 +63,14 @@ Bảng chỉ gồm ký hiệu dùng xuyên suốt chương; ký hiệu của m�
 Ba ví dụ xuyên suốt được giới thiệu tại chỗ và dùng lại ở nhiều mục:
 
 - **ví dụ ba quan sát**: dữ liệu $y=(-1,1,3)$, mô hình hằng $f_\theta=\theta\in\mathbb R$, mất mát bình phương (Mục 1, 2);
-- **hàm bậc hai $q$**: $q(\theta)=\tfrac12(3[\theta]_1^2+7[\theta]_2^2)$ trên $\mathbb R^2$ với điểm đầu $\theta_0=(2,4)^T$, là ví dụ xuyên suốt VD1 của Bài 04 (Ví dụ 04.2–04.7) viết theo biến $\theta$ (Mục 3);
+- **hàm bậc hai $q$**: $q(\theta)=\tfrac12(3[\theta]_1^2+7[\theta]_2^2)$ trên $\mathbb R^2$ với điểm đầu $\theta_0=(2,4)^T$, là ví dụ xuyên suốt VD1 của Bài 04 (Ví dụ 04.3–04.7) viết theo biến $\theta$ (Mục 3);
 - **mạng hai đơn vị ẩn**: $f_\theta(x)=a_1\phi(w_1x+c_1)+a_2\phi(w_2x+c_2)$ với hàm kích hoạt tuyến tính chỉnh lưu (ReLU), dùng ở Mục 4.
 
 Trong cả chương, $\log$ là logarit tự nhiên, $\exp$ là hàm mũ cơ số tự nhiên và $\mathrm I$ là ma trận đơn vị; chữ $e$ chỉ dùng cho sai số dự đoán, chữ $I$ có chỉ số chỉ dùng cho chỉ số được rút. Mọi bộ số của các ví dụ là số liệu sư phạm tự xây dựng, không phải kết quả đo trên dữ liệu thật.
 
 ## 1. Bài toán huấn luyện và tiêu chí đánh giá
 
-Trong Bài 04, chúng ta đã xây dựng hạ gradient và phương pháp Newton cho một hàm $F$ cho trước. Với hạ gradient, Bổ đề 04.20 cho biết bước $\tfrac1L$ làm $F$ giảm ít nhất $\tfrac1{2L}\lVert\nabla F\rVert_2^2$, và Định lý 04.26 cho biết khi $F$ lồi mạnh, sai số co theo hệ số $1-\mu/L$ ở mỗi bước. Các kết quả đó dựa trên ba giả định ngầm: hàm cần cực tiểu đã được cho, gradient đầy đủ tính được ở mỗi bước, và điểm đầu không ảnh hưởng tới chất lượng của nghiệm vì hàm lồi.
+Trong Bài 04, chúng ta đã xây dựng hạ gradient và phương pháp Newton cho một hàm $F$ cho trước. Với hạ gradient, Bổ đề 04.21 cho biết bước $\tfrac1L$ làm $F$ giảm ít nhất $\tfrac1{2L}\lVert\nabla F\rVert_2^2$, và Định lý 04.27 cho biết khi $F$ lồi mạnh, sai số co theo hệ số $1-\mu/L$ ở mỗi bước. Các kết quả đó dựa trên ba giả định ngầm: hàm cần cực tiểu đã được cho, gradient đầy đủ tính được ở mỗi bước, và điểm đầu không ảnh hưởng tới chất lượng của nghiệm vì hàm lồi.
 
 Khi huấn luyện một mạng nơ ron, cả ba giả định đều phải xem lại. Hàm cần cực tiểu được dựng từ một tập dữ liệu hữu hạn, trong khi điều cần đạt là dự đoán tốt trên quan sát mới. Gradient đầy đủ là trung bình trên $N$ quan sát, với $N$ có thể tới hàng triệu. Mất mát của mạng không lồi, nên điểm đầu và cách tham số khởi đầu ảnh hưởng tới nơi thuật toán dừng lại.
 
@@ -787,10 +787,10 @@ $$
 
 Hai đường cong trên hình được vẽ từ công thức, không phải đường học đo được, và mũi tên từ $1$ tới $0{,}8$ đi xuống trên đường mất mát mẫu nhưng đi lên trên $J$. Kết quả này không mâu thuẫn với Định lý 06b.11, vì kỳ vọng được tính trước khi biết lô, còn bước này là một hiện thực.
 
-Kỳ vọng của thay đổi đó được chặn theo mệnh đề sau, bằng cách ghép cận trên bậc hai của Bổ đề 04.18 với Hệ quả 06b.12.
+Kỳ vọng của thay đổi đó được chặn theo mệnh đề sau, bằng cách ghép cận trên bậc hai của Bổ đề 04.19 với Hệ quả 06b.12.
 
 ::: proposition Mệnh đề 06b.14 (Kỳ vọng mất mát sau một bước)
-**Giả thiết.** $J:\mathbb R^p\to\mathbb R$ khả vi với gradient $L$-Lipschitz (Định nghĩa 04.17). Tại $\theta$ cố định, $\widehat g$ là gradient lô của Định nghĩa 06b.10 với kích thước lô $b$; bước học $\eta>0$; $\theta^+=\theta-\eta\widehat g$.
+**Giả thiết.** $J:\mathbb R^p\to\mathbb R$ khả vi với gradient $L$-Lipschitz (Định nghĩa 04.18). Tại $\theta$ cố định, $\widehat g$ là gradient lô của Định nghĩa 06b.10 với kích thước lô $b$; bước học $\eta>0$; $\theta^+=\theta-\eta\widehat g$.
 
 **Kết luận.**
 
@@ -812,7 +812,7 @@ $$
 ::: proof Chứng minh Mệnh đề 06b.14
 **Bước 1 (cận trên cho mỗi lô).**
 
-Áp dụng Bổ đề 04.18 với hai điểm $\theta$ và $\theta^+=\theta-\eta\widehat g$:
+Áp dụng Bổ đề 04.19 với hai điểm $\theta$ và $\theta^+=\theta-\eta\widehat g$:
 
 $$
 J(\theta^+)\le J(\theta)-\eta\nabla J(\theta)^T\widehat g+\frac{L\eta^2}2\lVert\widehat g\rVert_2^2 .
@@ -833,9 +833,9 @@ Nếu $J(\theta)=J(\theta^*)+\tfrac L2\lVert\theta-\theta^*\rVert_2^2$ thì khai
 Với $\eta=\tfrac1L$: $\eta(1-\tfrac{L\eta}2)=\tfrac1{2L}$ và $\tfrac{L\eta^2}2=\tfrac1{2L}$. $\square$
 :::
 
-Trong (2.4), số hạng đầu của vế phải là giá trị hiện tại, còn số hạng thứ hai là mức giảm của một bước gradient đầy đủ, như Bổ đề 04.20 khi $\eta\le\tfrac1L$. Số hạng thứ ba là phần tăng do nhiễu, tỷ lệ với $\eta^2$ và với $\operatorname{tr}\Sigma/b$, và nó dương ngay cả khi $\nabla J(\theta)=0$.
+Trong (2.4), số hạng đầu của vế phải là giá trị hiện tại, còn số hạng thứ hai là mức giảm của một bước gradient đầy đủ, như Bổ đề 04.21 khi $\eta\le\tfrac1L$. Số hạng thứ ba là phần tăng do nhiễu, tỷ lệ với $\eta^2$ và với $\operatorname{tr}\Sigma/b$, và nó dương ngay cả khi $\nabla J(\theta)=0$.
 
-So với Bổ đề 04.20, mệnh đề thay gradient đầy đủ bằng một ước lượng không chệch và đổi kết luận từ "giảm chắc chắn" thành "giảm theo kỳ vọng khi tín hiệu lớn hơn nhiễu". Cụ thể, phần (c) cho thấy với $\eta=\tfrac1L$, kỳ vọng của $J$ giảm khi
+So với Bổ đề 04.21, mệnh đề thay gradient đầy đủ bằng một ước lượng không chệch và đổi kết luận từ "giảm chắc chắn" thành "giảm theo kỳ vọng khi tín hiệu lớn hơn nhiễu". Cụ thể, phần (c) cho thấy với $\eta=\tfrac1L$, kỳ vọng của $J$ giảm khi
 
 $$
 b>\frac{\operatorname{tr}\Sigma(\theta)}{\lVert\nabla J(\theta)\rVert_2^2}.
@@ -860,7 +860,7 @@ $$
 **Kiểm tra lại.** Liệt kê ba lô tại $\theta=1$: $\theta^+$ bằng $0{,}8$, $1$, $1{,}2$ với $J$ tăng $0{,}02$, $0$, $0{,}02$. Trung bình $\tfrac{0{,}04}3=\tfrac1{75}$, khớp công thức.
 :::
 
-**Trong học máy.** Đối tượng của Mệnh đề 06b.14 là một bước của bộ tối ưu SGD trên mất mát huấn luyện. Giả thiết gradient $L$-Lipschitz đúng với hồi quy tuyến tính và logistic (Nhận xét 04.19), nhưng với mạng sâu chỉ đúng cục bộ, trên một vùng tham số bị chặn; ngoài vùng đó (2.4) không được bảo đảm. Kết luận giải thích hai quan sát thực nghiệm: đường mất mát huấn luyện của SGD dao động chứ không giảm đơn điệu, và mức dao động giảm khi tăng kích thước lô hoặc giảm bước học. Tình huống 06b.1 dùng (2.5) để chọn kích thước lô cho một bài toán hồi quy logistic.
+**Trong học máy.** Đối tượng của Mệnh đề 06b.14 là một bước của bộ tối ưu SGD trên mất mát huấn luyện. Giả thiết gradient $L$-Lipschitz đúng với hồi quy tuyến tính và logistic (Nhận xét 04.20), nhưng với mạng sâu chỉ đúng cục bộ, trên một vùng tham số bị chặn; ngoài vùng đó (2.4) không được bảo đảm. Kết luận giải thích hai quan sát thực nghiệm: đường mất mát huấn luyện của SGD dao động chứ không giảm đơn điệu, và mức dao động giảm khi tăng kích thước lô hoặc giảm bước học. Tình huống 06b.1 dùng (2.5) để chọn kích thước lô cho một bài toán hồi quy logistic.
 
 ### 2.4 Thuật toán và quy tắc dừng sớm
 
@@ -1088,7 +1088,7 @@ q(\theta)=\tfrac12\bigl(3[\theta]_1^2+7[\theta]_2^2\bigr),\qquad\theta\in\mathbb
 \tag{3.1}
 $$
 
-tức ví dụ xuyên suốt VD1 của Bài 04 (Ví dụ 04.2–04.7), với điểm đầu $\theta_0=(2,4)^T$; ký hiệu $[\theta]_i$ chỉ tọa độ thứ $i$ của vectơ $\theta$, còn $\theta_t$ chỉ vectơ ở vòng $t$. Hàm có Hessian hằng $H=\operatorname{diag}(3,7)$, gradient $\nabla q(\theta)=H\theta$ và cực tiểu duy nhất tại gốc. Theo Ví dụ 04.7, bước cố định $\tfrac14$ làm tọa độ thứ hai đổi dấu ở mỗi bước, còn một bước nhỏ đủ để tránh đổi dấu thì làm tọa độ thứ nhất co chậm.
+tức ví dụ xuyên suốt VD1 của Bài 04 (Ví dụ 04.3–04.7), với điểm đầu $\theta_0=(2,4)^T$; ký hiệu $[\theta]_i$ chỉ tọa độ thứ $i$ của vectơ $\theta$, còn $\theta_t$ chỉ vectơ ở vòng $t$. Hàm có Hessian hằng $H=\operatorname{diag}(3,7)$, gradient $\nabla q(\theta)=H\theta$ và cực tiểu duy nhất tại gốc. Theo Ví dụ 04.7, bước cố định $\tfrac14$ làm tọa độ thứ hai đổi dấu ở mỗi bước, còn một bước nhỏ đủ để tránh đổi dấu thì làm tọa độ thứ nhất co chậm.
 
 Trong mọi phép so sánh của mục này, chúng ta giữ nguyên hàm $q$, điểm đầu và gradient đầy đủ, để khác biệt giữa các phương pháp không lẫn với khác biệt giữa các bài toán. Đầu tiên, chúng ta tìm điều kiện co của bước gradient trên hàm bậc hai. Sau đó, chúng ta xây dựng quy tắc momentum cùng dạng tổng có trọng số của nó, phân tích momentum như một hệ tuyến tính hai biến, rồi xét quy tắc Nesterov với điểm tính gradient dời về phía trước.
 
@@ -1122,7 +1122,7 @@ tức góc lệch khoảng $14{,}5^\circ$.
 
 Các đường mức của $q$ trên hình là những elip dài theo trục $[\theta]_1$, nơi độ cong nhỏ, và hẹp theo trục $[\theta]_2$, nơi độ cong lớn. Do mũi tên âm gradient vuông góc với đường mức qua $\theta_0$, nó chỉ về phía thành dốc của "thung lũng" hơn là dọc theo đáy. Về mặt trực quan, mỗi tọa độ được cập nhật theo độ cong riêng của nó, nên một bước học chung không thể hợp với cả hai độ cong.
 
-Mô tả này mới là trực giác, chưa phải phát biểu hình thức. Mệnh đề sau phát biểu chính xác ý đó cho mọi hàm bậc hai lồi chặt (còn gọi là lồi nghiêm ngặt), như một phiên bản chặt hơn của Nhận xét 04.13 với chứng minh đầy đủ.
+Mô tả này mới là trực giác, chưa phải phát biểu hình thức. Mệnh đề sau phát biểu chính xác ý đó cho mọi hàm bậc hai lồi chặt (còn gọi là lồi nghiêm ngặt), như một phiên bản chặt hơn của Nhận xét 04.14 với chứng minh đầy đủ.
 
 ::: proposition Mệnh đề 06b.17 (Bước gradient trên hàm bậc hai)
 **Giả thiết.** $q(\theta)=\tfrac12(\theta-\theta^*)^TH(\theta-\theta^*)$, với $H\in\mathbb R^{p\times p}$ đối xứng xác định dương, có phân tích $H=Q\Lambda Q^T$ trong đó $Q$ trực giao và $\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_p)$; $\mu=\min_i\lambda_i$, $L=\max_i\lambda_i$, $\kappa=L/\mu$. Dãy hạ gradient $\theta_{t+1}=\theta_t-\eta\nabla q(\theta_t)$ với bước cố định $\eta>0$.
@@ -1174,7 +1174,7 @@ Mệnh đề đọc theo từng phần như sau.
 - Phần (b): trong hệ tọa độ của các vectơ riêng, hạ gradient là $p$ phép nhân vô hướng độc lập, mỗi phép có hệ số co $1-\eta\lambda_i$.
 - Phần (c) và (d): độ cong lớn nhất chặn bước học, còn độ cong nhỏ nhất quyết định tốc độ; với bước tối ưu, hệ số co là $\tfrac{\kappa-1}{\kappa+1}$, gần $1$ khi $\kappa$ lớn.
 
-So với Định lý 04.26, mệnh đề hẹp hơn vì chỉ xét hàm bậc hai nhưng chính xác hơn. Định lý 04.26 chỉ cho cận $1-\tfrac1\kappa$ với bước $\tfrac1L$, trong khi phần (b) cho đúng hệ số co của từng tọa độ, và phần (c) cho cả điều kiện cần, điều mà một cận trên không cho.
+So với Định lý 04.27, mệnh đề hẹp hơn vì chỉ xét hàm bậc hai nhưng chính xác hơn. Định lý 04.27 chỉ cho cận $1-\tfrac1\kappa$ với bước $\tfrac1L$, trong khi phần (b) cho đúng hệ số co của từng tọa độ, và phần (c) cho cả điều kiện cần, điều mà một cận trên không cho.
 
 ::: example Ví dụ 06b.16 (Bước $\tfrac14$ và bước $\tfrac1{20}$ trên $q$)
 **Dữ kiện.** $q(\theta)=\tfrac12(3[\theta]_1^2+7[\theta]_2^2)$ (3.1), $\nabla q(\theta)=(3[\theta]_1,7[\theta]_2)^T$, Hessian $H=\operatorname{diag}(3,7)$, $Q=\mathrm I$, $\lambda_1=\mu=3$, $\lambda_2=L=7$, $\kappa=\tfrac73$; $\theta_0=(2,4)^T$, $g_0=(6,28)^T$ (Ví dụ 06b.15). Mệnh đề 06b.17: (a) $q(\theta-\eta g)=q(\theta)-\eta\lVert g\rVert_2^2+\tfrac{\eta^2}2g^THg$; (b) $[\chi_t]_i=(1-\eta\lambda_i)^t[\chi_0]_i$ với $\chi_t=Q^T(\theta_t-\theta^*)$; (c) dãy hội tụ với mọi $\theta_0$ khi và chỉ khi $0<\eta<\tfrac2L$; (d) $\max_i\lvert1-\eta\lambda_i\rvert\ge\frac{\kappa-1}{\kappa+1}$, dấu bằng tại $\eta=\frac2{\mu+L}$.
@@ -1689,7 +1689,7 @@ nên môđun không vượt $\tfrac{\sqrt\kappa-1}{\sqrt\kappa}=1-\tfrac1{\sqrt\
 Định lý 06b.23 cho hai thông tin trái chiều.
 
 - Phần (b): miền bước học ổn định của Nesterov hẹp hơn của momentum, và hẹp hơn cả của hạ gradient; với $\beta=0{,}5$, giới hạn là $\eta L<1{,}5$, so với $3$ của momentum và $2$ của hạ gradient.
-- Phần (c): với bước an toàn $\tfrac1L$ của Bổ đề 04.20 và một $\beta$ thích hợp, Nesterov đạt hệ số co $1-\tfrac1{\sqrt\kappa}$, cùng bậc $\sqrt\kappa$ với Hệ quả 06b.22, mà không cần biết $\mu$ để chọn bước học.
+- Phần (c): với bước an toàn $\tfrac1L$ của Bổ đề 04.21 và một $\beta$ thích hợp, Nesterov đạt hệ số co $1-\tfrac1{\sqrt\kappa}$, cùng bậc $\sqrt\kappa$ với Hệ quả 06b.22, mà không cần biết $\mu$ để chọn bước học.
 
 So với Định lý 06b.21, điểm khác duy nhất trong đa thức là thừa số $1-\eta\lambda_i$ nhân vào cả hai hệ số. Thừa số này giảm biên độ của thành phần cong mạnh, vì khi $\eta\lambda_i$ gần $1$, cả hai nghiệm gần $0$ và hướng cong mạnh bị triệt tiêu nhanh thay vì dao động như ở momentum.
 
@@ -1737,7 +1737,7 @@ $$
 
 **Chi phí như nhau.** Hai phương pháp lưu một vectơ trạng thái $p$ phần tử và tính một gradient lô mỗi vòng.
 
-**Bảo đảm lý thuyết.** Với hàm lồi có gradient $L$-Lipschitz, gradient đầy đủ và lịch hệ số $\beta_t$ thích hợp, phương pháp gia tốc của Nesterov (1983) đạt $J(\theta_t)-\inf J=O(1/t^2)$, so với $O(1/t)$ của Định lý 04.22. Bản dùng gradient lô, hệ số cố định, trên mạng không lồi không có bảo đảm đó; Sutskever cùng cộng sự (2013) báo cáo lợi ích thực nghiệm khi huấn luyện mạng sâu với khởi tạo cẩn thận.
+**Bảo đảm lý thuyết.** Với hàm lồi có gradient $L$-Lipschitz, gradient đầy đủ và lịch hệ số $\beta_t$ thích hợp, phương pháp gia tốc của Nesterov (1983) đạt $J(\theta_t)-\inf J=O(1/t^2)$, so với $O(1/t)$ của Định lý 04.23. Bản dùng gradient lô, hệ số cố định, trên mạng không lồi không có bảo đảm đó; Sutskever cùng cộng sự (2013) báo cáo lợi ích thực nghiệm khi huấn luyện mạng sâu với khởi tạo cẩn thận.
 
 **Cách cài đặt trong thư viện.** Một số thư viện, chẳng hạn PyTorch và Keras, cài Nesterov theo một tham số hóa tương đương, lưu điểm dự báo thay cho $\theta_t$, tức Thuật toán 06b.3 sau phép đổi biến $\theta\mapsto\theta+\beta v$.
 :::
@@ -2571,11 +2571,11 @@ bài toán không ràng buộc trên $\mathbb R$. Gradient mẫu là $g_i(\theta
 **Kiểm tra giả thiết.**
 
 1. Lồi: theo Mệnh đề 01.8(c), mỗi số hạng có đạo hàm bậc hai dương, nên $J$ lồi chặt.
-2. Gradient Lipschitz: $J''(\theta)=\tfrac18\sum_im_i^2\sigma(m_i\theta)\sigma(-m_i\theta)$, và mỗi tích $\sigma(m_i\theta)\sigma(-m_i\theta)$ không vượt $\tfrac14$, nên $J''(\theta)\le\tfrac14\cdot\tfrac{20}8=0{,}625$; theo Nhận xét 04.19, $L=0{,}625$.
+2. Gradient Lipschitz: $J''(\theta)=\tfrac18\sum_im_i^2\sigma(m_i\theta)\sigma(-m_i\theta)$, và mỗi tích $\sigma(m_i\theta)\sigma(-m_i\theta)$ không vượt $\tfrac14$, nên $J''(\theta)\le\tfrac14\cdot\tfrac{20}8=0{,}625$; theo Nhận xét 04.20, $L=0{,}625$.
 3. Tồn tại nghiệm: có biên dương và biên âm, nên $J(\theta)\to\infty$ khi $\theta\to\pm\infty$. Phương pháp Newton của Bài 04 cho $\theta^*\approx1{,}0120$ và $J(\theta^*)\approx0{,}47007$.
 4. Gradient lô không chệch theo Định lý 06b.11 với chỉ số rút đều, độc lập, có hoàn lại.
 
-**Bước học.** $\eta=\tfrac1L=1{,}6$, giá trị của Bổ đề 04.20 và Mệnh đề 06b.14(c).
+**Bước học.** $\eta=\tfrac1L=1{,}6$, giá trị của Bổ đề 04.21 và Mệnh đề 06b.14(c).
 
 **Kích thước lô tại điểm đầu.**
 
@@ -2638,7 +2638,7 @@ $$
 
 **Giới hạn.** Với $N$ lớn, $\Sigma$ và $\lVert\nabla J\rVert_2$ chỉ ước lượng được từ một lô thử, và ngưỡng (2.5) đổi theo $\theta$.
 
-**Dẫn ngược lý thuyết.** Mệnh đề 01.8 và Nhận xét 04.19 ở bước kiểm tra giả thiết; Định lý 06b.11 và Hệ quả 06b.12 cho kỳ vọng, phương sai; Mệnh đề 06b.14 và ngưỡng (2.5) cho kích thước lô; Ví dụ 06b.14 và Nhận xét 06b.16 cho hành vi gần nghiệm.
+**Dẫn ngược lý thuyết.** Mệnh đề 01.8 và Nhận xét 04.20 ở bước kiểm tra giả thiết; Định lý 06b.11 và Hệ quả 06b.12 cho kỳ vọng, phương sai; Mệnh đề 06b.14 và ngưỡng (2.5) cho kích thước lô; Ví dụ 06b.14 và Nhận xét 06b.16 cho hành vi gần nghiệm.
 :::
 
 ::: application Tình huống 06b.2 (Momentum trên hồi quy tuyến tính có số điều kiện 100)

@@ -25,9 +25,9 @@ Số hiệu `04.k`, `06b.k` và `05b.k` chỉ ghi chú Bài 04, Bài 06b và ghi
 
 - **Đại số tuyến tính.** Ma trận đối xứng $A\in\mathbb R^{p\times p}$ có phân tích phổ $A=U\Lambda U^T$ với $U$ trực giao và $\Lambda$ chéo chứa các giá trị riêng thực. Ma trận đối xứng $A$ gọi là xác định dương, viết $A\succ0$, nếu $z^TAz>0$ với mọi $z\ne0$; điều này tương đương mọi giá trị riêng dương, và khi đó $A^{-1}\succ0$. Với ma trận $2\times2$ đối xứng, $A\succ0$ khi và chỉ khi $A_{11}>0$ và $\det A>0$ (tiêu chuẩn Sylvester). Ma trận đơn vị viết $\mathrm I$.
 - **Đạo hàm theo hướng** (Mệnh đề 04.7). Nếu $F$ khả vi tại $\theta$ với $g=\nabla F(\theta)$ và $g^Td<0$ thì có $\bar\alpha>0$ để $F(\theta+\alpha d)<F(\theta)$ với mọi $\alpha\in(0,\bar\alpha]$; vector $d$ như vậy gọi là hướng giảm. Mệnh đề không cho biết giá trị của $\bar\alpha$.
-- **Mô hình bậc hai và tìm bước** (Định nghĩa 04.8, Mệnh đề 04.9, Định nghĩa 04.10, Mệnh đề 04.11). Với ma trận đối xứng $M\succ0$, hàm $d\mapsto g^Td+\tfrac12d^TMd$ có nghiệm duy nhất là nghiệm của $Md=-g$, và đó là hướng giảm khi $g\ne0$. Quay lui Armijo bắt đầu từ $\alpha=1$ và nhân $\alpha$ với một hệ số trong $(0,1)$ cho tới khi $F(\theta+\alpha d)\le F(\theta)+c_1\alpha\,g^Td$, với $c_1\in(0,1)$; Định nghĩa 04.10 lấy $c_1\in(0,\tfrac12)$, còn Mệnh đề 04.11 chỉ cần $c_1\in(0,1)$ để thủ tục kết thúc sau hữu hạn lần co khi $g^Td<0$.
-- **Số điều kiện và đổi biến** (Nhận xét 04.13, Nhận xét 04.16). Trên hàm bậc hai lồi chặt (còn gọi là lồi nghiêm ngặt), số điều kiện $\kappa=\lambda_{\max}/\lambda_{\min}$ của Hessian đo độ chậm của hạ gradient (gradient descent). Hướng $-M^{-1}g$ là hạ gradient trong hệ tọa độ đổi biến $\theta=M^{-1/2}\varphi$; phép đổi biến này gọi là tiền điều kiện.
-- **Phương pháp Newton** (Định nghĩa 04.28, Mệnh đề 04.29, Thuật toán 04.2, Định lý 04.34, Nhận xét 04.36). Với $H=\nabla^2F(\theta)\succ0$, hướng Newton là nghiệm của hệ $Hd=-g$ và là hướng giảm khi $g\ne0$. Bước đầy đủ hội tụ bậc hai khi điểm đầu đủ gần một cực tiểu có Hessian xác định dương và Hessian Lipschitz. Khi $H$ có giá trị riêng âm, hướng Newton có thể là hướng tăng (Tình huống 04.3, mạng tuyến tính hai lớp).
+- **Mô hình bậc hai và tìm bước** (Định nghĩa 04.8, Mệnh đề 04.9, Định nghĩa 04.10, Mệnh đề 04.11). Với ma trận đối xứng $M\succ0$, hàm $d\mapsto g^Td+\tfrac12d^TMd$ có nghiệm duy nhất là nghiệm của $Md=-g$, và đó là hướng giảm khi $g\ne0$. Quay lui Armijo bắt đầu từ $\alpha=1$ và nhân $\alpha$ với một hệ số trong $(0,1)$ cho tới khi $F(\theta+\alpha d)\le F(\theta)+c_1\alpha\,g^Td$, với $c_1\in(0,1)$; Định nghĩa 04.10 lấy $c_1\in(0,\tfrac12]$, còn Mệnh đề 04.11 chỉ cần $c_1\in(0,1)$ để thủ tục kết thúc sau hữu hạn lần co khi $g^Td<0$.
+- **Số điều kiện và đổi biến** (Nhận xét 04.14, Nhận xét 04.17). Trên hàm bậc hai lồi chặt (còn gọi là lồi nghiêm ngặt), số điều kiện $\kappa=\lambda_{\max}/\lambda_{\min}$ của Hessian đo độ chậm của hạ gradient (gradient descent). Hướng $-M^{-1}g$ là hạ gradient trong hệ tọa độ đổi biến $\theta=M^{-1/2}\varphi$; phép đổi biến này gọi là tiền điều kiện.
+- **Phương pháp Newton** (Định nghĩa 04.29, Mệnh đề 04.30, Thuật toán 04.34, Định lý 04.36, Nhận xét 04.38). Với $H=\nabla^2F(\theta)\succ0$, hướng Newton là nghiệm của hệ $Hd=-g$ và là hướng giảm khi $g\ne0$. Bước đầy đủ hội tụ bậc hai khi điểm đầu đủ gần một cực tiểu có Hessian xác định dương và Hessian Lipschitz. Khi $H$ có giá trị riêng âm, hướng Newton có thể là hướng tăng (Tình huống 04.3, mạng tuyến tính hai lớp).
 - **Gradient lô nhỏ (mini-batch) và hạ gradient ngẫu nhiên (stochastic gradient descent, SGD)** (Định nghĩa 06b.1, Định nghĩa 06b.10, Định lý 06b.11, Thuật toán 06b.1). Mất mát huấn luyện là trung bình $J(\theta)=\tfrac1N\sum_i\ell_i(\theta)$; gradient lô trên các chỉ số rút đều, độc lập là ước lượng không chệch của $\nabla J(\theta)$, có hiệp phương sai giảm theo kích thước lô.
 - **Bước gradient trên hàm bậc hai** (Mệnh đề 06b.17). Với Hessian hằng có giá trị riêng $\lambda_j>0$, bước cố định $\eta$ nhân thành phần theo vector riêng thứ $j$ với $1-\eta\lambda_j$; dãy hội tụ với mọi điểm đầu khi và chỉ khi $0<\eta<2/\lambda_{\max}$.
 - **Momentum** (Thuật toán 06b.2, Mệnh đề 06b.18, Định lý 06b.23). Vận tốc là tổng các gradient cũ với trọng số giảm theo cấp số nhân; Nesterov trên hàm bậc hai co theo hệ số $1-1/\sqrt\kappa$.
@@ -72,7 +72,7 @@ Trong Bài 06b, chúng ta đã xây quy trình huấn luyện từ gradient lô,
 
 Với hàm $F(\theta)=\tfrac12\bigl([\theta]_1^2+9[\theta]_2^2\bigr)$, điều kiện ổn định là $\eta<\tfrac29$. Khi đó tọa độ thứ nhất co theo hệ số lớn hơn $\tfrac79$ ở mỗi bước. Bước $\eta=1$ đưa tọa độ thứ nhất về đúng nghiệm trong một bước nhưng làm $F$ tăng từ $5$ lên $288$. Momentum và Nesterov của Bài 06b làm giảm số bước nhưng vẫn dùng một hệ số chung cho mọi tọa độ.
 
-Phương pháp Newton của Bài 04, phương pháp dùng đúng độ cong, gặp một giới hạn khác. Theo Nhận xét 04.36 và Tình huống 04.3, khi Hessian có giá trị riêng âm, hướng Newton có thể là hướng tăng. Bài toán trung tâm của chương này là thiết kế quá trình huấn luyện, trước hết là bước cập nhật, cho mất mát của mạng sâu, vốn không lồi theo tham số và có thể có Hessian với giá trị riêng âm.
+Phương pháp Newton của Bài 04, phương pháp dùng đúng độ cong, gặp một giới hạn khác. Theo Nhận xét 04.38 và Tình huống 04.3, khi Hessian có giá trị riêng âm, hướng Newton có thể là hướng tăng. Bài toán trung tâm của chương này là thiết kế quá trình huấn luyện, trước hết là bước cập nhật, cho mất mát của mạng sâu, vốn không lồi theo tham số và có thể có Hessian với giá trị riêng âm.
 
 Trong chương này, chúng ta tách quá trình huấn luyện thành bốn thành phần và thay bước học vô hướng bằng một ma trận tiền điều kiện (Mục 1). Ma trận đó được chọn từ thống kê gradient ở Mục 2, từ Hessian ở Mục 3 và từ sai phân gradient ở Mục 4. Ở Mục 5 và Mục 6, chúng ta thay các thành phần còn lại của quá trình huấn luyện. Ở Mục 7, các điều kiện được gom thành một quy tắc chọn phương pháp.
 
@@ -740,7 +740,7 @@ Dòng đầu là khai triển $(\lambda_{\max}+\lambda_{\min})^2$ chia cho tích
 **Bước 3 (chặn dưới).** Theo bất đẳng thức trung bình cộng và trung bình nhân, $(a+b)^2\ge4ab$, dấu bằng khi $a=b$. Do đó $\kappa+\tfrac1\kappa\ge\tfrac{16}3-2=\tfrac{10}3$. Hàm $\kappa\mapsto\kappa+\tfrac1\kappa$ đồng biến trên $[1,\infty)$ và bằng $\tfrac{10}3$ tại $\kappa=3$, nên $\kappa\ge3$. $\square$
 :::
 
-Mệnh đề 06c.12 cho thấy với ma trận nghiêng $Q$, đổi thang từng tọa độ theo bất kỳ cách nào cũng không làm số điều kiện nhỏ hơn $\kappa(Q)$. Theo Nhận xét 04.16, hạ gradient với ma trận tiền điều kiện $D$ là hạ gradient trong hệ tọa độ đổi biến $\theta=D^{-1/2}\varphi$, và Hessian trong hệ tọa độ đó là $D^{-1/2}QD^{-1/2}$. Do đó ba phương pháp của mục này, vốn dùng ma trận tiền điều kiện chéo, không thể hiệu chỉnh độ cong ghép của $Q$, và việc hiệu chỉnh đó đòi ma trận tiền điều kiện có phần tử ngoài đường chéo.
+Mệnh đề 06c.12 cho thấy với ma trận nghiêng $Q$, đổi thang từng tọa độ theo bất kỳ cách nào cũng không làm số điều kiện nhỏ hơn $\kappa(Q)$. Theo Nhận xét 04.17, hạ gradient với ma trận tiền điều kiện $D$ là hạ gradient trong hệ tọa độ đổi biến $\theta=D^{-1/2}\varphi$, và Hessian trong hệ tọa độ đó là $D^{-1/2}QD^{-1/2}$. Do đó ba phương pháp của mục này, vốn dùng ma trận tiền điều kiện chéo, không thể hiệu chỉnh độ cong ghép của $Q$, và việc hiệu chỉnh đó đòi ma trận tiền điều kiện có phần tử ngoài đường chéo.
 
 Đặt hai mệnh đề cạnh nhau, ta thấy thang đo khác nhau theo trục tọa độ không ảnh hưởng tới quỹ đạo của ba phương pháp (Mệnh đề 06c.11). Ngược lại, độ cong nghiêng so với trục thì không thang chéo nào sửa được (Mệnh đề 06c.12).
 
@@ -838,14 +838,14 @@ $$
 **Kiểm tra lại.** $Q(-1,0)^T=(-2,-1)^T=-g$.
 :::
 
-Bước Newton đạt nghiệm sau một bước nhờ ba điều kiện đồng thời: mục tiêu là hàm bậc hai xác định dương, hệ được giải chính xác, và độ dài bước bằng $1$. Với mục tiêu tổng quát, bước này chính là hướng Newton của Định nghĩa 04.28: tại điểm $\theta$ với $g=\nabla F(\theta)$ và $H=\nabla^2F(\theta)\succ0$, hướng Newton là nghiệm của
+Bước Newton đạt nghiệm sau một bước nhờ ba điều kiện đồng thời: mục tiêu là hàm bậc hai xác định dương, hệ được giải chính xác, và độ dài bước bằng $1$. Với mục tiêu tổng quát, bước này chính là hướng Newton của Định nghĩa 04.29: tại điểm $\theta$ với $g=\nabla F(\theta)$ và $H=\nabla^2F(\theta)\succ0$, hướng Newton là nghiệm của
 
 $$
 Hd=-g .
 \tag{3.1}
 $$
 
-Theo Mệnh đề 06c.3 với $M=H$, $\eta=1$, nó là nghiệm duy nhất của mô hình Taylor bậc hai và là hướng giảm khi $g\ne0$; Mệnh đề 04.29 còn cho một cách đọc khác: khi $g\ne0$, hướng Newton là hướng giảm dốc nhất theo chuẩn $\lVert d\rVert_H=\sqrt{d^THd}$. Thuật toán 04.2 lặp bước này với quay lui Armijo, và Định lý 04.34 cho hội tụ bậc hai cục bộ, với hằng số tỷ lệ thuận với hằng số Lipschitz $L_H$ của Hessian và tỷ lệ nghịch với cận dưới của các giá trị riêng của Hessian quanh nghiệm.
+Theo Mệnh đề 06c.3 với $M=H$, $\eta=1$, nó là nghiệm duy nhất của mô hình Taylor bậc hai và là hướng giảm khi $g\ne0$; Mệnh đề 04.30 còn cho một cách đọc khác: khi $g\ne0$, hướng Newton là hướng giảm dốc nhất theo chuẩn $\lVert d\rVert_H=\sqrt{d^THd}$. Thuật toán 04.34 lặp bước này với quay lui Armijo, và Định lý 04.36 cho hội tụ bậc hai cục bộ, với hằng số tỷ lệ thuận với hằng số Lipschitz $L_H$ của Hessian và tỷ lệ nghịch với cận dưới của các giá trị riêng của Hessian quanh nghiệm.
 
 Ngoài các kết quả của Bài 04, chúng ta cần thêm một tính chất giải thích vì sao Newton không gặp khó khăn của Mệnh đề 06c.12. Boyd và Vandenberghe (2004, mục 9.5.1) gọi tính chất này là tính bất biến affine. Trên Ví dụ 06c.11, quay hệ tọa độ $45^\circ$ biến $Q$ thành $\operatorname{diag}(3,1)$, và bước Newton trong hệ mới, quay ngược lại, vẫn là $(-1,0)^T$. Mệnh đề sau phát biểu tính chất này cho mọi phép đổi biến tuyến tính khả nghịch.
 
@@ -870,12 +870,12 @@ Ngoài các kết quả của Bài 04, chúng ta cần thêm một tính chất 
 **Bước 3 (phần b).** Bước trên $G$ là $-\eta S^Tg$; đổi về biến $\theta=S\varphi$ được $-\eta SS^Tg$. $\square$
 :::
 
-Phần (b) là cách viết khác của Nhận xét 04.16, theo đó hạ gradient trong hệ tọa độ đổi biến là hạ gradient với ma trận tiền điều kiện $(SS^T)^{-1}$. Theo phần (a), Newton tự chọn ma trận tiền điều kiện đúng trong mọi hệ tọa độ. Với $Q$ nghiêng, chọn $S$ là ma trận trực giao quay $45^\circ$ biến $Q$ thành $\operatorname{diag}(3,1)$; Newton cho cùng một bước trong cả hai hệ, còn thống kê chéo của Mục 2 cho các bước khác nhau.
+Phần (b) là cách viết khác của Nhận xét 04.17, theo đó hạ gradient trong hệ tọa độ đổi biến là hạ gradient với ma trận tiền điều kiện $(SS^T)^{-1}$. Theo phần (a), Newton tự chọn ma trận tiền điều kiện đúng trong mọi hệ tọa độ. Với $Q$ nghiêng, chọn $S$ là ma trận trực giao quay $45^\circ$ biến $Q$ thành $\operatorname{diag}(3,1)$; Newton cho cùng một bước trong cả hai hệ, còn thống kê chéo của Mục 2 cho các bước khác nhau.
 
 ::: remark Nhận xét 06c.14 (Chi phí và phạm vi của bước Newton)
 **Chi phí.** Hessian đặc có $p^2$ phần tử, và giải (3.1) bằng phân tích Cholesky tốn khoảng $\tfrac13p^3$ phép tính dấu phẩy động; với $p=10^6$, chỉ lưu Hessian đã cần $10^{12}$ số thực (Goodfellow, Bengio và Courville 2016, mục 8.6.1, tr. 313).
 
-**Hội tụ cục bộ.** Định lý 04.34 không áp dụng khi điểm đầu xa nghiệm hoặc Hessian bất định; trường hợp sau được xét ở Mục 3.3.
+**Hội tụ cục bộ.** Định lý 04.36 không áp dụng khi điểm đầu xa nghiệm hoặc Hessian bất định; trường hợp sau được xét ở Mục 3.3.
 :::
 
 **Trong học máy.** Với hồi quy logistic có chính quy hóa, $F$ lồi mạnh và Hessian xác định dương ở mọi điểm; Tình huống 04.1 cho Newton hội tụ trong vài bước trên một bài toán hai tham số. Với mạng sâu, cả hai giả thiết của bước Newton bị vi phạm: $p$ quá lớn để lập $H$, và mất mát không lồi nên $H$ có thể có giá trị riêng âm. Giả thiết thứ hai được sửa ở Mục 3.3, còn việc lập $H$ được tránh ở Mục 3.4–3.5.

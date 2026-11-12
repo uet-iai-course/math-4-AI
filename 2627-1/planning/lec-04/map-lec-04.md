@@ -13,129 +13,129 @@ Cột "Dẫn chiếu hiện có" đếm token "Loại 04.k" (grep `materials/*/*
 
 ## 1. Bộ đếm chung (định nghĩa, định lý, mệnh đề, bổ đề, hệ quả, nhận xét, thuật toán)
 
-| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có (grep 2026-11-12) |
-|---|---|---|---|
-| Định nghĩa 04.1 | Định nghĩa 04.1 | giữ | — |
-| Mệnh đề 04.2 | Mệnh đề 04.2 | giữ | deck-lecture-11: 1; lec-06b/lecture-note.md: 3; lec-11/exercises.md: 3; lec-11/lecture-note.md: 2 |
-| Nhận xét 04.3 | Nhận xét 04.3 | tên: (Khi bỏ giả thiết; nhân tử của đẳng thức tự do dấu) | — |
-| Định nghĩa 04.4 | Định nghĩa 04.4 | giữ | — |
-| Nhận xét 04.5 | Nhận xét 04.5 | giữ | — |
-| Định nghĩa 04.6 | Định nghĩa 04.6 | giữ | lec-06c/lecture-note.md: 1 |
-| Mệnh đề 04.7 | Mệnh đề 04.7 | giữ | lec-06c/lecture-note.md: 3 |
-| Định nghĩa 04.8 | Định nghĩa 04.8 | giữ | lec-06c/lecture-note.md: 2 |
-| Mệnh đề 04.9 | Mệnh đề 04.9 | giữ | lec-06c/lecture-note.md: 2 |
-| Định nghĩa 04.10 | Định nghĩa 04.10 | giữ | lec-05b/lecture-note.md: 3; lec-06c/lecture-note.md: 4 |
-| Mệnh đề 04.11 | Mệnh đề 04.11 | giữ | lec-05/lecture-note.md: 1; lec-06c/lecture-note.md: 2 |
-| Nhận xét 04.12 | Nhận xét 04.12 | giữ | — |
-| Thuật toán 04.1 | Thuật toán 04.13 | **đổi số** (thuật toán vào bộ đếm chung, Q-A); tên: (Hạ gradient với quay lui Armijo; gradient descent) | lec-05b/lecture-note.md: 2 |
-| Nhận xét 04.13 | Nhận xét 04.14 | **đổi số** | lec-06b/lecture-note.md: 2; lec-06c/lecture-note.md: 1 |
-| Định nghĩa 04.14 | Định nghĩa 04.15 | **đổi số** | — |
-| Mệnh đề 04.15 | Mệnh đề 04.16 | **đổi số** | — |
-| Nhận xét 04.16 | Nhận xét 04.17 | **đổi số** | lec-06c/lecture-note.md: 3 |
-| Định nghĩa 04.17 | Định nghĩa 04.18 | **đổi số**; tên: (Gradient Lipschitz; Lipschitz continuous gradient) | lec-05b/lecture-note.md: 2; lec-05c/lecture-note.md: 1; lec-06b/lecture-note.md: 2; lec-06/lecture-note.md: 2 |
-| Bổ đề 04.18 | Bổ đề 04.19 | **đổi số** | deck-lecture-06: 1; lec-05b/exercises.md: 3; lec-05b/lecture-note.md: 6; lec-06b/lecture-note.md: 3; lec-06/lecture-note.md: 3 |
-| Nhận xét 04.19 | Nhận xét 04.20 | **đổi số** | deck-lecture-05: 2; lec-05b/lecture-note.md: 2; lec-05/lecture-note.md: 1; lec-06b/lecture-note.md: 4 |
-| Bổ đề 04.20 | Bổ đề 04.21 | **đổi số**; tên: (Bổ đề giảm; descent lemma) | lec-05b/lecture-note.md: 2; lec-05c/lecture-note.md: 2; lec-06b/lecture-note.md: 6; lec-06/lecture-note.md: 1 |
-| Bổ đề 04.21 | Bổ đề 04.22 | **đổi số** | lec-05b/lecture-note.md: 5 |
-| Định lý 04.22 | Định lý 04.23 | **đổi số** | lec-05b/lecture-note.md: 10; lec-06b/lecture-note.md: 1 |
-| Bổ đề 04.23 | Bổ đề 04.24 | **đổi số** | lec-05b/lecture-note.md: 3 |
-| Định lý 04.24 | Định lý 04.25 | **đổi số** | lec-05b/lecture-note.md: 1 |
-| Mệnh đề 04.25 | Mệnh đề 04.26 | **đổi số** | lec-05b/lecture-note.md: 6; lec-06/exercises.md: 1 |
-| Định lý 04.26 | Định lý 04.27 | **đổi số** | lec-05b/lecture-note.md: 3; lec-05/lecture-note.md: 7; lec-06b/lecture-note.md: 4 |
-| Nhận xét 04.27 | Nhận xét 04.28 | **đổi số** | — |
-| Định nghĩa 04.28 | Định nghĩa 04.29 | **đổi số** | lec-05/lecture-note.md: 3; lec-06c/lecture-note.md: 2 |
-| Mệnh đề 04.29 | Mệnh đề 04.30 | **đổi số** | lec-06c/lecture-note.md: 2 |
-| Định nghĩa 04.30 | Định nghĩa 04.31 | **đổi số** | lec-05/lecture-note.md: 1 |
-| Mệnh đề 04.31 | Mệnh đề 04.32 | **đổi số** | lec-05/lecture-note.md: 3 |
-| Nhận xét 04.32 | Nhận xét 04.33 | **đổi số**; tên (vòng biên tập 1): (Ba đại lượng khác nhau: mức giảm mô hình, giảm thực tế, sai số mục tiêu) | — |
-| Thuật toán 04.2 | Thuật toán 04.34 | **đổi số** (thuật toán vào bộ đếm chung, Q-A) | lec-05/lecture-note.md: 3; lec-06c/lecture-note.md: 2 |
-| Định nghĩa 04.33 | Định nghĩa 04.35 | **đổi số** | lec-05/lecture-note.md: 1 |
-| Định lý 04.34 | Định lý 04.36 | **đổi số** | lec-06c/lecture-note.md: 3 |
-| Định lý 04.35 | Định lý 04.37 | **đổi số** | lec-05/lecture-note.md: 3 |
-| Nhận xét 04.36 | Nhận xét 04.38 | **đổi số**; tên: (Khi bỏ giả thiết của hội tụ bậc hai; Hessian không xác định dương) | lec-06c/lecture-note.md: 2 |
-| Mệnh đề 04.37 | Mệnh đề 04.39 | **đổi số** | — |
-| Định nghĩa 04.38 | Định nghĩa 04.40 | **đổi số**; tên (vòng biên tập 1): (Hướng Newton khả thi; feasible Newton step) | — |
-| Định lý 04.39 | Định lý 04.41 | **đổi số**; tên (vòng biên tập 1): (Hệ KKT của hướng Newton khả thi) | — |
-| Nhận xét 04.40 | Nhận xét 04.42 | **đổi số** | — |
-| Mệnh đề 04.41 | Mệnh đề 04.43 | **đổi số**; tên: (Khử biến và hệ Newton rút gọn; elimination) | — |
-| Thuật toán 04.3 | Thuật toán 04.44 | **đổi số** (thuật toán vào bộ đếm chung, Q-A); tên: (Newton khả thi; feasible start Newton method) | — |
-| Nhận xét 04.42 | Nhận xét 04.45 | **đổi số**; tên: (Tính khả thi của các điểm lặp); **đổi nội dung** | — |
-| Định nghĩa 04.43 | Định nghĩa 04.46 | **đổi số**; tên: (Phần dư KKT; KKT residual) | — |
-| Mệnh đề 04.44 | Mệnh đề 04.47 | **đổi số** | — |
-| Mệnh đề 04.45 | Mệnh đề 04.48 | **đổi số** | — |
-| Thuật toán 04.4 | Thuật toán 04.49 | **đổi số** (thuật toán vào bộ đếm chung, Q-A); tên: (Newton từ điểm chưa khả thi; infeasible start Newton method) | — |
-| Nhận xét 04.46 | Nhận xét 04.50 | **đổi số** | — |
-| Định nghĩa 04.47 | Định nghĩa 04.51 | **đổi số** | — |
-| Mệnh đề 04.48 | Mệnh đề 04.52 | **đổi số** | — |
-| Bổ đề 04.49 | Bổ đề 04.53 | **đổi số** | — |
-| Định lý 04.50 | Định lý 04.54 | **đổi số** | — |
-| Hệ quả 04.51 | Hệ quả 04.55 | **đổi số** | — |
-| Hệ quả 04.52 | Hệ quả 04.56 | **đổi số** | — |
-| Định lý 04.53 | Định lý 04.57 | **đổi số** | — |
-| Nhận xét 04.54 | Nhận xét 04.58 | **đổi số**; tên (vòng biên tập 1): (Kiểm tra giả thiết của cận sai số); **đổi nội dung** (điều kiện cần kiểm là $\delta<1$ và tính tự điều chỉnh) | — |
-| Mệnh đề 04.55 | Mệnh đề 04.62 | **đổi số** | — |
-| — | Định nghĩa 04.59 | **mới** (§9.4 Đọc thêm, yêu cầu người dùng 2026-11-12); (Hàm chắn logarit, bài toán tâm hóa và đường trung tâm) | — |
-| — | Mệnh đề 04.60 | **mới** (§9.4 Đọc thêm, yêu cầu người dùng 2026-11-12); (Điểm khả thi đối ngẫu từ đường trung tâm) | — |
-| — | Thuật toán 04.61 | **mới** (§9.4 Đọc thêm, yêu cầu người dùng 2026-11-12); (Phương pháp hàm chắn; barrier method) | — |
+| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có (grep 2026-11-12) | Giai đoạn 3 (2026-11-12) |
+|---|---|---|---|---|
+| Định nghĩa 04.1 | Định nghĩa 04.1 | giữ | — | không có dẫn chiếu |
+| Mệnh đề 04.2 | Mệnh đề 04.2 | giữ | deck-lecture-11: 1; lec-06b/lecture-note.md: 3; lec-11/exercises.md: 3; lec-11/lecture-note.md: 2 | 9 chỗ, không đổi số; đã đối chiếu nội dung |
+| Nhận xét 04.3 | Nhận xét 04.3 | tên: (Khi bỏ giả thiết; nhân tử của đẳng thức tự do dấu) | — | không có dẫn chiếu |
+| Định nghĩa 04.4 | Định nghĩa 04.4 | giữ | — | không có dẫn chiếu |
+| Nhận xét 04.5 | Nhận xét 04.5 | giữ | — | không có dẫn chiếu |
+| Định nghĩa 04.6 | Định nghĩa 04.6 | giữ | lec-06c/lecture-note.md: 1 | 1 chỗ, không đổi số; đã đối chiếu nội dung |
+| Mệnh đề 04.7 | Mệnh đề 04.7 | giữ | lec-06c/lecture-note.md: 3 | 3 chỗ, không đổi số; đã đối chiếu nội dung |
+| Định nghĩa 04.8 | Định nghĩa 04.8 | giữ | lec-06c/lecture-note.md: 2 | 2 chỗ, không đổi số; đã đối chiếu nội dung |
+| Mệnh đề 04.9 | Mệnh đề 04.9 | giữ | lec-06c/lecture-note.md: 2 | 2 chỗ, không đổi số; đã đối chiếu nội dung |
+| Định nghĩa 04.10 | Định nghĩa 04.10 | giữ | lec-05b/lecture-note.md: 3; lec-06c/lecture-note.md: 4 | 7 chỗ, không đổi số; đã đối chiếu nội dung; lec-05b:58, lec-06c:28 khoảng $(0,\tfrac12)$ → $(0,\tfrac12]$ (viết tay) |
+| Mệnh đề 04.11 | Mệnh đề 04.11 | giữ | lec-05/lecture-note.md: 1; lec-06c/lecture-note.md: 2 | 3 chỗ, không đổi số; đã đối chiếu nội dung |
+| Nhận xét 04.12 | Nhận xét 04.12 | giữ | — | không có dẫn chiếu |
+| Thuật toán 04.1 | Thuật toán 04.13 | **đổi số** (thuật toán vào bộ đếm chung, Q-A); tên: (Hạ gradient với quay lui Armijo; gradient descent) | lec-05b/lecture-note.md: 2 | 2 chỗ, đã đổi số |
+| Nhận xét 04.13 | Nhận xét 04.14 | **đổi số** | lec-06b/lecture-note.md: 2; lec-06c/lecture-note.md: 1 | 3 chỗ, đã đổi số |
+| Định nghĩa 04.14 | Định nghĩa 04.15 | **đổi số** | — | không có dẫn chiếu |
+| Mệnh đề 04.15 | Mệnh đề 04.16 | **đổi số** | — | không có dẫn chiếu |
+| Nhận xét 04.16 | Nhận xét 04.17 | **đổi số** | lec-06c/lecture-note.md: 3 | 3 chỗ, đã đổi số |
+| Định nghĩa 04.17 | Định nghĩa 04.18 | **đổi số**; tên: (Gradient Lipschitz; Lipschitz continuous gradient) | lec-05b/lecture-note.md: 2; lec-05c/lecture-note.md: 1; lec-06b/lecture-note.md: 2; lec-06/lecture-note.md: 2 | 7 chỗ, đã đổi số |
+| Bổ đề 04.18 | Bổ đề 04.19 | **đổi số** | deck-lecture-06: 1; lec-05b/exercises.md: 3; lec-05b/lecture-note.md: 6; lec-06b/lecture-note.md: 3; lec-06/lecture-note.md: 3 | 16 chỗ, đã đổi số |
+| Nhận xét 04.19 | Nhận xét 04.20 | **đổi số** | deck-lecture-05: 2; lec-05b/lecture-note.md: 2; lec-05/lecture-note.md: 1; lec-06b/lecture-note.md: 4 | 9 chỗ, đã đổi số |
+| Bổ đề 04.20 | Bổ đề 04.21 | **đổi số**; tên: (Bổ đề giảm; descent lemma) | lec-05b/lecture-note.md: 2; lec-05c/lecture-note.md: 2; lec-06b/lecture-note.md: 6; lec-06/lecture-note.md: 1 | 15 chỗ, đã đổi số |
+| Bổ đề 04.21 | Bổ đề 04.22 | **đổi số** | lec-05b/lecture-note.md: 5 | 7 chỗ, đã đổi số |
+| Định lý 04.22 | Định lý 04.23 | **đổi số** | lec-05b/lecture-note.md: 10; lec-06b/lecture-note.md: 1 | 11 chỗ, đã đổi số |
+| Bổ đề 04.23 | Bổ đề 04.24 | **đổi số** | lec-05b/lecture-note.md: 3 | 5 chỗ, đã đổi số; lec-05b:58 viết lại cùng câu Định nghĩa 04.10 |
+| Định lý 04.24 | Định lý 04.25 | **đổi số** | lec-05b/lecture-note.md: 1 | 3 chỗ, đã đổi số |
+| Mệnh đề 04.25 | Mệnh đề 04.26 | **đổi số** | lec-05b/lecture-note.md: 6; lec-06/exercises.md: 1 | 7 chỗ, đã đổi số |
+| Định lý 04.26 | Định lý 04.27 | **đổi số** | lec-05b/lecture-note.md: 3; lec-05/lecture-note.md: 7; lec-06b/lecture-note.md: 4 | 16 chỗ, đã đổi số |
+| Nhận xét 04.27 | Nhận xét 04.28 | **đổi số** | — | không có dẫn chiếu |
+| Định nghĩa 04.28 | Định nghĩa 04.29 | **đổi số** | lec-05/lecture-note.md: 3; lec-06c/lecture-note.md: 2 | 5 chỗ, đã đổi số |
+| Mệnh đề 04.29 | Mệnh đề 04.30 | **đổi số** | lec-06c/lecture-note.md: 2 | 2 chỗ, đã đổi số |
+| Định nghĩa 04.30 | Định nghĩa 04.31 | **đổi số** | lec-05/lecture-note.md: 1 | 3 chỗ, đã đổi số |
+| Mệnh đề 04.31 | Mệnh đề 04.32 | **đổi số** | lec-05/lecture-note.md: 3 | 3 chỗ, đã đổi số |
+| Nhận xét 04.32 | Nhận xét 04.33 | **đổi số**; tên (vòng biên tập 1): (Ba đại lượng khác nhau: mức giảm mô hình, giảm thực tế, sai số mục tiêu) | — | không có dẫn chiếu |
+| Thuật toán 04.2 | Thuật toán 04.34 | **đổi số** (thuật toán vào bộ đếm chung, Q-A) | lec-05/lecture-note.md: 3; lec-06c/lecture-note.md: 2 | 5 chỗ, đã đổi số |
+| Định nghĩa 04.33 | Định nghĩa 04.35 | **đổi số** | lec-05/lecture-note.md: 1 | 2 chỗ, đã đổi số |
+| Định lý 04.34 | Định lý 04.36 | **đổi số** | lec-06c/lecture-note.md: 3 | 3 chỗ, đã đổi số |
+| Định lý 04.35 | Định lý 04.37 | **đổi số** | lec-05/lecture-note.md: 3 | 4 chỗ, đã đổi số |
+| Nhận xét 04.36 | Nhận xét 04.38 | **đổi số**; tên: (Khi bỏ giả thiết của hội tụ bậc hai; Hessian không xác định dương) | lec-06c/lecture-note.md: 2 | 2 chỗ, đã đổi số |
+| Mệnh đề 04.37 | Mệnh đề 04.39 | **đổi số** | — | không có dẫn chiếu |
+| Định nghĩa 04.38 | Định nghĩa 04.40 | **đổi số**; tên (vòng biên tập 1): (Hướng Newton khả thi; feasible Newton step) | — | không có dẫn chiếu |
+| Định lý 04.39 | Định lý 04.41 | **đổi số**; tên (vòng biên tập 1): (Hệ KKT của hướng Newton khả thi) | — | không có dẫn chiếu |
+| Nhận xét 04.40 | Nhận xét 04.42 | **đổi số** | — | không có dẫn chiếu |
+| Mệnh đề 04.41 | Mệnh đề 04.43 | **đổi số**; tên: (Khử biến và hệ Newton rút gọn; elimination) | — | không có dẫn chiếu |
+| Thuật toán 04.3 | Thuật toán 04.44 | **đổi số** (thuật toán vào bộ đếm chung, Q-A); tên: (Newton khả thi; feasible start Newton method) | — | không có dẫn chiếu |
+| Nhận xét 04.42 | Nhận xét 04.45 | **đổi số**; tên: (Tính khả thi của các điểm lặp); **đổi nội dung** | — | không có dẫn chiếu |
+| Định nghĩa 04.43 | Định nghĩa 04.46 | **đổi số**; tên: (Phần dư KKT; KKT residual) | — | không có dẫn chiếu |
+| Mệnh đề 04.44 | Mệnh đề 04.47 | **đổi số** | — | không có dẫn chiếu |
+| Mệnh đề 04.45 | Mệnh đề 04.48 | **đổi số** | — | không có dẫn chiếu |
+| Thuật toán 04.4 | Thuật toán 04.49 | **đổi số** (thuật toán vào bộ đếm chung, Q-A); tên: (Newton từ điểm chưa khả thi; infeasible start Newton method) | — | không có dẫn chiếu |
+| Nhận xét 04.46 | Nhận xét 04.50 | **đổi số** | — | không có dẫn chiếu |
+| Định nghĩa 04.47 | Định nghĩa 04.51 | **đổi số** | — | không có dẫn chiếu |
+| Mệnh đề 04.48 | Mệnh đề 04.52 | **đổi số** | — | không có dẫn chiếu |
+| Bổ đề 04.49 | Bổ đề 04.53 | **đổi số** | — | không có dẫn chiếu |
+| Định lý 04.50 | Định lý 04.54 | **đổi số** | — | không có dẫn chiếu |
+| Hệ quả 04.51 | Hệ quả 04.55 | **đổi số** | — | không có dẫn chiếu |
+| Hệ quả 04.52 | Hệ quả 04.56 | **đổi số** | — | không có dẫn chiếu |
+| Định lý 04.53 | Định lý 04.57 | **đổi số** | — | không có dẫn chiếu |
+| Nhận xét 04.54 | Nhận xét 04.58 | **đổi số**; tên (vòng biên tập 1): (Kiểm tra giả thiết của cận sai số); **đổi nội dung** (điều kiện cần kiểm là $\delta<1$ và tính tự điều chỉnh) | — | không có dẫn chiếu |
+| Mệnh đề 04.55 | Mệnh đề 04.62 | **đổi số** | — | không có dẫn chiếu |
+| — | Định nghĩa 04.59 | **mới** (§9.4 Đọc thêm, yêu cầu người dùng 2026-11-12); (Hàm chắn logarit, bài toán tâm hóa và đường trung tâm) | — | — |
+| — | Mệnh đề 04.60 | **mới** (§9.4 Đọc thêm, yêu cầu người dùng 2026-11-12); (Điểm khả thi đối ngẫu từ đường trung tâm) | — | — |
+| — | Thuật toán 04.61 | **mới** (§9.4 Đọc thêm, yêu cầu người dùng 2026-11-12); (Phương pháp hàm chắn; barrier method) | — | — |
 
 ## 2. Ví dụ
 
-| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có (grep 2026-11-12) |
-|---|---|---|---|
-| Ví dụ 04.1 | Ví dụ 04.1 | tên (vòng biên tập 1): (Khoanh vùng nghiệm của điều kiện dừng) | — |
-| Ví dụ 04.2 | Ví dụ 04.2 | tên: (Hệ KKT rút gọn của bài toán Ví dụ 03.18(b)); **đổi nội dung** | lec-06b/lecture-note.md: 2 |
-| Ví dụ 04.3 | Ví dụ 04.3 | giữ | — |
-| Ví dụ 04.4 | Ví dụ 04.4 | giữ | — |
-| Ví dụ 04.5 | Ví dụ 04.5 | giữ | — |
-| Ví dụ 04.6 | Ví dụ 04.6 | giữ | — |
-| Ví dụ 04.7 | Ví dụ 04.7 | giữ | lec-05b/lecture-note.md: 1; lec-06b/lecture-note.md: 4 |
-| Ví dụ 04.8 | Ví dụ 04.8 | giữ | — |
-| Ví dụ 04.9 | Ví dụ 04.9 | giữ | — |
-| Ví dụ 04.10 | Ví dụ 04.10 | giữ | — |
-| Ví dụ 04.11 | Ví dụ 04.11 | giữ | — |
-| Ví dụ 04.12 | Ví dụ 04.12 | giữ | — |
-| Ví dụ 04.13 | Ví dụ 04.13 | giữ | — |
-| Ví dụ 04.14 | Ví dụ 04.14 | giữ | — |
-| Ví dụ 04.15 | Ví dụ 04.15 | giữ | — |
-| Ví dụ 04.16 | Ví dụ 04.16 | giữ | — |
-| Ví dụ 04.17 | Ví dụ 04.17 | tên: (Hướng Newton không ràng buộc rời đường $u_1+u_2=14$) | — |
-| Ví dụ 04.18 | Ví dụ 04.18 | giữ | — |
-| Ví dụ 04.19 | Ví dụ 04.19 | giữ | — |
-| Ví dụ 04.20 | Ví dụ 04.20 | giữ | — |
-| Ví dụ 04.21 | Ví dụ 04.21 | giữ | — |
-| Ví dụ 04.22 | Ví dụ 04.22 | giữ | — |
-| Ví dụ 04.23 | Ví dụ 04.23 | giữ | — |
-| Ví dụ 04.24 | Ví dụ 04.24 | giữ | — |
-| Ví dụ 04.25 | Ví dụ 04.26 | **đổi số** | — |
-| — | Ví dụ 04.25 | **mới** (§9.4 Đọc thêm); (Đường trung tâm của $\min x^2$ với $x\ge1$) | — |
+| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có (grep 2026-11-12) | Giai đoạn 3 (2026-11-12) |
+|---|---|---|---|---|
+| Ví dụ 04.1 | Ví dụ 04.1 | tên (vòng biên tập 1): (Khoanh vùng nghiệm của điều kiện dừng) | — | không có dẫn chiếu |
+| Ví dụ 04.2 | Ví dụ 04.2 | tên: (Hệ KKT rút gọn của bài toán Ví dụ 03.18(b)); **đổi nội dung** | lec-06b/lecture-note.md: 2 | 2 chỗ, không đổi số; đã đối chiếu nội dung; lec-06b:66, :1091 "Ví dụ 04.2–04.7" → "Ví dụ 04.3–04.7" (viết tay, Ví dụ 04.2 đổi nội dung) |
+| Ví dụ 04.3 | Ví dụ 04.3 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.4 | Ví dụ 04.4 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.5 | Ví dụ 04.5 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.6 | Ví dụ 04.6 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.7 | Ví dụ 04.7 | giữ | lec-05b/lecture-note.md: 1; lec-06b/lecture-note.md: 4 | 7 chỗ, không đổi số; đã đối chiếu nội dung |
+| Ví dụ 04.8 | Ví dụ 04.8 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.9 | Ví dụ 04.9 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.10 | Ví dụ 04.10 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.11 | Ví dụ 04.11 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.12 | Ví dụ 04.12 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.13 | Ví dụ 04.13 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.14 | Ví dụ 04.14 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.15 | Ví dụ 04.15 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.16 | Ví dụ 04.16 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.17 | Ví dụ 04.17 | tên: (Hướng Newton không ràng buộc rời đường $u_1+u_2=14$) | — | không có dẫn chiếu |
+| Ví dụ 04.18 | Ví dụ 04.18 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.19 | Ví dụ 04.19 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.20 | Ví dụ 04.20 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.21 | Ví dụ 04.21 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.22 | Ví dụ 04.22 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.23 | Ví dụ 04.23 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.24 | Ví dụ 04.24 | giữ | — | không có dẫn chiếu |
+| Ví dụ 04.25 | Ví dụ 04.26 | **đổi số** | — | không có dẫn chiếu |
+| — | Ví dụ 04.25 | **mới** (§9.4 Đọc thêm); (Đường trung tâm của $\min x^2$ với $x\ge1$) | — | — |
 
 ## 3. Tình huống
 
-| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có (grep 2026-11-12) |
-|---|---|---|---|
-| Tình huống 04.1 | Tình huống 04.1 | giữ | lec-06c/lecture-note.md: 1 |
-| Tình huống 04.2 | Tình huống 04.2 | giữ | — |
-| Tình huống 04.3 | Tình huống 04.3 | giữ | lec-05b/lecture-note.md: 1; lec-06b/lecture-note.md: 5; lec-06c/lecture-note.md: 6 |
+| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có (grep 2026-11-12) | Giai đoạn 3 (2026-11-12) |
+|---|---|---|---|---|
+| Tình huống 04.1 | Tình huống 04.1 | giữ | lec-06c/lecture-note.md: 1 | 1 chỗ, không đổi số; đã đối chiếu nội dung |
+| Tình huống 04.2 | Tình huống 04.2 | giữ | — | không có dẫn chiếu |
+| Tình huống 04.3 | Tình huống 04.3 | giữ | lec-05b/lecture-note.md: 1; lec-06b/lecture-note.md: 5; lec-06c/lecture-note.md: 6 | 12 chỗ, không đổi số; đã đối chiếu nội dung |
 
 ## 4. Bài tập trong ghi chú
 
-| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có (grep 2026-11-12) |
-|---|---|---|---|
-| Bài tập 04.1 | Bài tập 04.1 | tên: (Hệ KKT rút gọn của hai bài toán) | — |
-| Bài tập 04.2 | Bài tập 04.2 | tên: (Quay lui Armijo trên $x_1^2+4x_2^2$) | — |
-| Bài tập 04.3 | Bài tập 04.3 | tên: (Hướng dốc nhất có trọng số tại $x^1$) | — |
-| Bài tập 04.4 | Bài tập 04.4 | tên: (Bước cố định tối ưu và phân kỳ) | — |
-| Bài tập 04.5 | Bài tập 04.5 | tên: (Newton với quay lui từ $s^0=3$) | — |
-| Bài tập 04.6 | Bài tập 04.6 | tên: (Newton trên mất mát logistic không chính quy hóa) | — |
-| Bài tập 04.7 | Bài tập 04.7 | tên: (Newton khả thi từ $(8,6)^T$) | — |
-| Bài tập 04.8 | Bài tập 04.8 | tên: (Hệ khối và hệ rút gọn cho ba biến) | — |
-| Bài tập 04.9 | Bài tập 04.9 | tên: (Newton cho phần dư từ $(4,2)^T$) | — |
-| Bài tập 04.10 | Bài tập 04.10 | tên: (Cận sai số cho $-\log s-\log(1-s)$) | — |
-| Bài tập 04.11 | Bài tập 04.11 | tên: (Đúng hay sai) | — |
-| Bài tập 04.12 | Bài tập 04.12 | tên: (Newton khả thi cho bài toán tâm giải tích) | — |
-| Bài tập 04.13 | Bài tập 04.13 | tên: (Ma trận khối khi $H$ không xác định dương) | — |
-| Bài tập 04.14 | Bài tập 04.14 | tên: (Hạ gradient không cần tính lồi) | — |
-| Bài tập 04.15 | Bài tập 04.15 | tên: (Thang đo đặc trưng và số điều kiện) | — |
+| Cũ | Mới | Thay đổi | Dẫn chiếu hiện có (grep 2026-11-12) | Giai đoạn 3 (2026-11-12) |
+|---|---|---|---|---|
+| Bài tập 04.1 | Bài tập 04.1 | tên: (Hệ KKT rút gọn của hai bài toán) | — | không có dẫn chiếu |
+| Bài tập 04.2 | Bài tập 04.2 | tên: (Quay lui Armijo trên $x_1^2+4x_2^2$) | — | không có dẫn chiếu |
+| Bài tập 04.3 | Bài tập 04.3 | tên: (Hướng dốc nhất có trọng số tại $x^1$) | — | không có dẫn chiếu |
+| Bài tập 04.4 | Bài tập 04.4 | tên: (Bước cố định tối ưu và phân kỳ) | — | không có dẫn chiếu |
+| Bài tập 04.5 | Bài tập 04.5 | tên: (Newton với quay lui từ $s^0=3$) | — | không có dẫn chiếu |
+| Bài tập 04.6 | Bài tập 04.6 | tên: (Newton trên mất mát logistic không chính quy hóa) | — | không có dẫn chiếu |
+| Bài tập 04.7 | Bài tập 04.7 | tên: (Newton khả thi từ $(8,6)^T$) | — | không có dẫn chiếu |
+| Bài tập 04.8 | Bài tập 04.8 | tên: (Hệ khối và hệ rút gọn cho ba biến) | — | không có dẫn chiếu |
+| Bài tập 04.9 | Bài tập 04.9 | tên: (Newton cho phần dư từ $(4,2)^T$) | — | không có dẫn chiếu |
+| Bài tập 04.10 | Bài tập 04.10 | tên: (Cận sai số cho $-\log s-\log(1-s)$) | — | không có dẫn chiếu |
+| Bài tập 04.11 | Bài tập 04.11 | tên: (Đúng hay sai) | — | không có dẫn chiếu |
+| Bài tập 04.12 | Bài tập 04.12 | tên: (Newton khả thi cho bài toán tâm giải tích) | — | không có dẫn chiếu |
+| Bài tập 04.13 | Bài tập 04.13 | tên: (Ma trận khối khi $H$ không xác định dương) | — | không có dẫn chiếu |
+| Bài tập 04.14 | Bài tập 04.14 | tên: (Hạ gradient không cần tính lồi) | — | không có dẫn chiếu |
+| Bài tập 04.15 | Bài tập 04.15 | tên: (Thang đo đặc trưng và số điều kiện) | — | không có dẫn chiếu |
 
 ## 5. Nhãn công thức
 
@@ -209,3 +209,10 @@ Dẫn theo tên mục từ tệp khác: `lec-05b/lecture-note.md` ("Bài 04, M�
 - Chuỗi dễ bị thay hai lần (thay một lượt bằng từ điển, không tuần tự): `lec-06c/lecture-note.md:30`, `lec-05/lecture-note.md:24`, `:2355`.
 - "Mục 2.6" → "Mục 5.6" (gồm `lec-05b/lecture-note.md:72`).
 - Đổi tên khối (không đổi số): Nhận xét 04.33, Ví dụ 04.1, Định nghĩa 04.40, Định lý 04.41, Nhận xét 04.58; đổi nội dung: Ví dụ 04.2, Nhận xét 04.45, Nhận xét 04.58.
+
+## 9. Giai đoạn 3 (2026-11-12)
+
+- Nhãn công thức của Bài 04: không tệp nào dẫn.
+- "Mục 2.6" của Bài 04 → "Mục 5.6": lec-05b:24, :72, :3226 (viết tay).
+- lec-05b:468: biến tích phân trong câu thuật lại chứng minh Bổ đề 04.19 đổi $\tau\to\varsigma$ theo ghi chú mới (viết tay).
+- Chi tiết: `SP/lec04/phase3-changes.md`.
