@@ -1,5 +1,30 @@
 # Dàn bài Bài 05 — Không gian đặc trưng nhiều chiều
 
+## Ghi chú bài giảng viết lại theo mẫu SLT (2026-11-12)
+
+Ghi chú `materials/lec-05/lecture-note.md` được viết lại theo `planning/notes-10-14-slt-template.md` (Q1–Q15) và quyết định U1–U4 của goal; kế hoạch và quyết định Q05-1 đến Q05-10 của điều phối viên lưu trong nhật ký phiên. Bảng số cũ → mới: `map-lec-05.md`. Phần dưới đây (từ "Quy ước viết tắt") là dàn bài deck, giữ nguyên.
+
+**Câu hỏi trung tâm.** Với mô hình tuyến tính theo đặc trưng và mất mát lồi, điều gì thay đổi khi $d$ tăng so với $n$: điểm cực tiểu của mất mát huấn luyện có tồn tại và duy nhất không, nó dự đoán ra sao trên dữ liệu mới, và tính nó tốn bao nhiêu phép tính.
+
+**Câu hỏi mở đầu.** Ví dụ năm mẫu với đa thức bậc bốn: hạ gradient bước $1/L$ từ $w=0$; MSE huấn luyện $0{,}0147$ ở bước $79$ và $0{,}00047$ ở bước $1000$; điểm lặp nào dự đoán chính xác hơn tại $u=\pm\tfrac14,\pm\tfrac34$. Câu trả lời ở Ví dụ 05.24 và §10: bước $79$ ($0{,}00108$ so với $0{,}0341$), giải thích bằng Mệnh đề 05.37.
+
+| Mục | Nội dung | Khối |
+|---|---|---|
+| Đoạn dẫn, Câu hỏi mở đầu, Mục tiêu (4), Tiên quyết (+ 3 câu hỏi ôn nhanh) | kết quả kế thừa Bài 00, 01, 02, 04, 05b, 05c | — |
+| 1. Thiết lập bài toán | hai lý do; mô hình tuyến tính theo đặc trưng; đổi ký hiệu | 05.1, 05.2 |
+| 2. Ký hiệu và giả thiết | bảng ký hiệu; giả thiết (G1)–(G5) | — |
+| 3. Ví dụ xuyên suốt | năm mẫu, ba điểm, một mẫu (văn xuôi, không khối) | — |
+| 4. Hồi quy nhiều chiều (4.1–4.6) | phương trình chuẩn, rủi ro, tập xác thực, chế độ nội suy, số điều kiện, chính quy hóa | 05.3–05.18; Ví dụ 05.1–05.9; Bài tập 05.1–05.3 |
+| 5. Hồi quy logistic và chính quy hóa (5.1–5.7) | tách được, không tồn tại cực tiểu, điều kiện đủ, ranh giới, lồi mạnh, hằng số | 05.19–05.29; Ví dụ 05.10–05.16; Bài tập 05.4–05.6 |
+| 6. Độ cong và chi phí tính toán (6.1–6.7) | hai quy tắc; số bước (dẫn Định lý 04.27, 04.37, Mệnh đề 04.32(c)); chi phí một bước; ngưỡng hòa vốn | 05.30–05.35; Ví dụ 05.17–05.23; Bài tập 05.7–05.9 |
+| 7. Giới hạn của tối ưu tất định (7.1–7.4) | dừng sớm, RCV1, XOR, số đơn thức, bảo đảm còn lại | 05.36–05.40; Ví dụ 05.24, 05.25; Bài tập 05.10–05.12 |
+| 8. Ý nghĩa, tác động và giới hạn | ba tình huống; ứng dụng; tóm tắt | Tình huống 05.1–05.3 |
+| 9. Bài tập | danh sách 05.1–05.12; 05.13–05.15 theo ba mức; liên kết `exercises.md` thêm ở giai đoạn 2 | Bài tập 05.13–05.15 |
+| 10. Câu hỏi cuối buổi và cầu nối | XOR với đặc trưng $(1,u_1,u_2,u_1u_2)$; cầu nối Bài 05b, 05c, 06 | — |
+| 11. Tài liệu đọc | Goodfellow và cộng sự (2016); Boyd và Vandenberghe (2004) ch. 6, 7, 9; Bottou và Bousquet (2011); Murphy (2022) §10.2.6, §10.2.8, §11.3; MIT 6.079 Lecture 10 | — |
+
+**Thay đổi so với ghi chú cũ.** Bỏ bốn khối trùng Bài 04 mới (Định lý 05.30, Hệ quả 05.31, Định lý 05.33, Mệnh đề 05.34), hai thuật toán vào bộ đếm chung, Bài tập 05.13 ↔ 05.14 (bảng ở `map-lec-05.md`). Nhãn công thức đánh lại theo mục mới. Sửa lỗi toán: sai số sau $j$ bước của pha bậc hai là $\varepsilon_0(\tfrac12)^{2^{j+1}}$ (Boyd và Vandenberghe 2004, (9.35), tr. 488), ghi chú cũ viết $(\tfrac12)^{2^j}$. Nhận xét 05.25 nhận ví dụ ranh giới bốn mẫu từ Bài 6 của `exercises.md` cũ. Bỏ: LLO/CLO, bảng nhãn trang chiếu, câu nguồn gốc số liệu, Strang, Soudry và cộng sự (2018), Lin–Weng–Keerthi (2008) (không có trong `sources/`), câu scikit-learn/LIBLINEAR/`newton-cg`, câu cơ sở đa thức trực giao và định lý xen kẽ Cauchy (ý bên lề, Q05-9), công thức định thức Vandermonde (Q05-3), cận dưới định lượng của Bài 7 cũ (Q05-4). Ký hiệu $\lambda$, $n$, $d$, $F$ giữ như deck (Q05-2). SVG dùng chung với deck, không sửa.
+
 Quy ước viết tắt: lý thuyết (LT), bài tập (BT), chuẩn đầu ra bài học (LLO), chuẩn đầu ra học phần (CLO), hạ gradient ngẫu nhiên (SGD). Tệp liên quan: [storyboard.md](storyboard.md), [review-log.md](review-log.md).
 
 Quy ước mã trang: `MD` mở đầu, `HQ` hồi quy nhiều chiều (phiên A1), `LG` hồi quy logistic và chính quy hóa (phiên A2), `CP` độ cong và chi phí tính toán (phiên A3), `KL` kết luận. Mã trang, thời lượng và mã LLO chỉ dùng trong dàn bài, storyboard và nhật ký; không xuất hiện trên mặt trang chiếu hay trong ghi chú diễn giả. Mục **Ghi chú** của từng trang dưới đây là đặc tả nội dung cho ghi chú diễn giả; các mã trang của bài khác trong đó (RG17, RN07, C05, C06…) chỉ để truy nguyên, khi soạn ghi chú diễn giả phải thay bằng tên kết quả (ví dụ "định lý hội tụ tuyến tính của hạ gradient trong bài bổ trợ về hội tụ"). Các mã KQ, KN, MT, G1–G5, D, R, tên phiên A1–A3, "điểm hòa giải" và "giao diện A–B" cũng chỉ dùng trong kế hoạch. Trên mặt trang, kết quả được đánh số theo bài (Mệnh đề 1–5, Định lý 1–4); bảng Kết quả dùng lại ghi tương ứng giữa nhãn trên trang và mã KQ. Giữ nguyên các nhãn đã hiện trên mặt trang của bài khác: T2b, T5, T6, T7, T8 của Bài 05b (từ 2026-10-12 thay bằng số hiệu Định lý 05b.18(b), 05b.36, 05b.39, 05b.41, 05b.43 theo AGENTS.md, mục "Mã nội bộ của bài khác"); Mệnh đề 01.6, Định lý 01.38… của ghi chú Bài 01.

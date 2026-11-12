@@ -837,3 +837,74 @@ Kiểm tra: Playwright 1600×900 và 390×844 (chờ 1700 ms) trên MD04, HQ06�
 | Tái kiểm và rà tập trung mạch 2, 3 | general-purpose, opus, effort high, chỉ đọc | chấp nhận | Báo cáo rà tập trung hai mạch đã ghi ở trên |
 | Kiểm định hiển thị | general-purpose, opus, effort high, chỉ đọc | chấp nhận | 61 trang, 0 lỗi console, 0 `.katex-error`, không lấn footer; viewer học liệu 0 lỗi KaTeX |
 | Sửa vòng 2 | general-purpose, opus, effort medium | chấp nhận | Đã đọc mặt trang HQ09, LG06, LG09; `--check` đồng bộ và `git diff --check` sạch |
+
+## Viết lại ghi chú theo mẫu SLT và chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: `prompt_fix_lecture_notes_00_07.md` (U1–U4, Q-A đến Q-G), `planning/notes-10-14-slt-template.md` Q1–Q15, "The author's voice" của `../CLAUDE.md`; báo cáo phân tích `prompt_fix_00_07_audit/m4ai-audit-05-06.md` (không theo dõi). Phạm vi (người dùng, 2026-11-12): làm Bài 05 và 06, không làm Bài 07. Mục này không xóa phát hiện cũ.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập kế hoạch (chỉ đọc) | medium | `plan.md` 15 phần (scratchpad) |
+| Soạn, rồi biên tập hai vòng (cùng tác tử) | medium | ghi chú, `outline.md`, `map-lec-05.md` |
+| Rà 1/5 sinh viên năm hai | high | 0 chặn, 1 nghiêm trọng, 8 trung bình, 17 nhẹ |
+| Rà 2/5 chuyên gia miền | high | 0 chặn, 1 nghiêm trọng, 12 trung bình, 22 nhẹ |
+| Rà 3/5 độ chính xác toán; kiểm tra lại một vòng | high | 0/2/5/16; kiểm lại: 0/0/2/5 |
+| Rà 4/5 phê bình học thuật–sư phạm, `no-ai-slop` Detect | high | 0 chặn, 1 nghiêm trọng, 11 trung bình, 30 nhẹ |
+| Rà 5/5 mạch và liên kết; kiểm tra lại một vòng | high | 0/0/8/19; kiểm lại: 31 phát hiện cũ đã xử lý, 5 trung bình, 9 nhẹ mới |
+
+### Quyết định khi duyệt kế hoạch
+
+- **Q05-1.** Bỏ bốn khối trùng Bài 04 mới (Q-D): Định lý 05.30, Hệ quả 05.31 → câu dẫn Định lý 04.27; Định lý 05.33 → Định lý 04.37; Mệnh đề 05.34 → Mệnh đề 04.32(c). Thuật toán vào bộ đếm chung: Nhận xét 05.32 → 05.30; Thuật toán 05.1, 05.2 → 05.31, 05.32; cũ 05.35–05.42 → 05.33–05.40. Giữ 05.1–05.29 (Bài 11 dẫn 05.5, Bài 12 dẫn 05.3). Bảng đầy đủ: `map-lec-05.md`.
+- **Q05-2.** Giữ $\lambda$, $n$, $d$, $F$ như deck 05 và Bài 06 (SVG dùng chung có nhãn $\lambda$); Nhận xét 05.2 đối chiếu với Bài 04 ($\lambda$ bằng hệ số chính quy hóa của Bài 04 chia cho $N$). $\rho$ chỉ cho độ chính xác của Bottou–Bousquet như nguồn.
+- **Q05-3.** Bỏ dẫn Vandermonde (không có ở Bài 00); dùng "đa thức bậc $\le n-1$ có $n$ nghiệm phân biệt thì đồng nhất bằng 0".
+- **Q05-4, Q05-9.** Bỏ cận dưới định lượng của Bài 7 `exercises.md` cũ và định lý xen kẽ Cauchy (không kết quả nào dùng). Ví dụ ranh giới bốn mẫu (Bài 6 `exercises.md` cũ) đưa vào Nhận xét 05.25.
+- **Q05-5.** Câu hỏi mở đầu: hạ gradient trên đa thức bậc 4 của ví dụ năm mẫu, bước 79 so với bước 1000; trả lời ở cuối bài.
+- **Q05-6.** Đổi số Bài tập 05.13 ↔ 05.14 (không tệp ngoài dẫn).
+- **Q05-8.** Boyd 6.7(a) để cho Bài 06.
+- Bỏ nguồn không có trong `sources/`: Strang, Soudry và cộng sự (2018), Lin–Weng–Keerthi (2008), scikit-learn/LIBLINEAR.
+
+### Quyết định sau năm lượt rà — mọi phát hiện: chấp nhận, trừ chỗ ghi khác
+
+| Mức độ | Vị trí (bản nháp 1) | Vấn đề | Quyết định |
+|---|---|---|---|
+| nghiêm trọng | 2141, 405, 427, 781, 1889, 2161 | Khẳng định giả thiết Mệnh đề 05.7 thỏa cho tập xác thực/kiểm thử, trong khi đó là lưới điểm cố định | chấp nhận: chỉ nói $w$ không dùng các điểm đó; MSE trên lưới xấp xỉ $2R-\sigma_\varepsilon^2$ (quy tắc trung điểm) |
+| nghiêm trọng | 1559, 1568 | Pha bậc hai định nghĩa bằng "nhận bước đầy đủ" (phản ví dụ Ví dụ 05.18: nhận bước đầy đủ từ $k=0$ nhưng $e_0=0{,}635\gg\varepsilon_0/4$) | chấp nhận: ngưỡng $\lVert\nabla f\rVert<\bar g$ của Định lý 04.37(b) (Boyd tr. 488–489) |
+| nghiêm trọng | 153, 305, 1050, 1343 | Câu vị thế văn bản | chấp nhận: cắt hoặc viết nội dung dương |
+| trung bình | 1627, 1752, 2364 | Cholesky $d^3/3$ là flop của Boyd, bài đếm phép nhân–cộng | chấp nhận; điều phối viên tự kiểm: $d^3/6\approx2{,}08\cdot10^{13}$ ($d=5\cdot10^4$), cận hạ gradient $1{,}84\cdot10^{12}$, tỷ số $\approx11$ (cũ "hơn hai mươi lần") |
+| trung bình | 1694, 2407 | MIT 6.079 gọi "Lecture 10" | chấp nhận: Lecture 16, tr. 10–29, 10–30 |
+| trung bình | 704, 2221 | "Chuẩn hóa đặc trưng làm giảm $\kappa$" không nguồn, có phản ví dụ ($\kappa$ tăng từ $2{,}0\cdot10^4$ lên $2{,}9\cdot10^4$) | chấp nhận: bỏ |
+| trung bình | 1072, 531, 1700, 1963, 2219, 2368 | Gán sai nguồn (Goodfellow §7.3, (7.29); BFGS; TRON) | chấp nhận: tràn số (Goodfellow tr. 239); đọc giả nghịch đảo chuyển sang Nhận xét 05.18; L-BFGS (Goodfellow §8.6.3, tr. 317); TRON chỉ giữ điều Bottou–Bousquet tr. 362–365 nói |
+| trung bình | RCV1 | Thiếu: tập hoán đổi, bài toán CCAT; $\kappa$ của Bảng 13.2 là số điều kiện tại điểm cực tiểu ((13.10), tr. 360) | chấp nhận |
+| trung bình | 1115, 1483 | "nếu thêm" thừa (giả thiết buộc hạng $d$); hệ số co sai số giá trị là $(1-1/\kappa)^2$ | chấp nhận |
+| trung bình | ký hiệu | $w_0$, $r$, $s^2$/$s_j$, $\varepsilon$, $K$, $p$, $z$ nhiều nghĩa; ba tên cho MSE xác thực | chấp nhận; $w_0$ giữ nghĩa hệ số chặn, điểm đầu viết bằng lời khi $w$ có tọa độ chặn (quy ước trong bảng ký hiệu) |
+| trung bình | 1586 | Đoạn bất biến affine dựng lại Mệnh đề 04.32(c) | chấp nhận: một câu dẫn |
+| trung bình | 1967, 27/2390, 393 | "hai lý do" không khớp §1; 05b, 05c vừa tiên quyết vừa "bài sau"; Chebyshev dẫn sai khối | chấp nhận; Chebyshev là Hệ quả 05c.40 (hàng đợi ghi 05c.48 — người biên tập mở khối và sửa đúng) |
+| trung bình (kiểm lại) | 418, 2346, 2149, §3, 1763 | Ký hiệu sót; câu mồ côi; câu dẫn §3 trái danh sách; đồng nhất $\kappa$ | chấp nhận |
+| — | 2089 | Đề xuất cắt đoạn trong lời giải | bác bỏ: không cắt lời giải |
+| — | nhóm B của `rev-critique.md` | Cắt thêm | chỉ áp B6 (câu trả lời trùng ở Ví dụ 05.24); độ dài đã dưới trần |
+
+### Độ dài
+
+Ghi chú cũ 31 098 âm tiết; bản nháp 1: 27 809; bản cuối: 26 936 (trần 28 000).
+
+### Nguồn gốc số liệu và đính chính
+
+- Câu hỏi mở đầu (MSE huấn luyện 0,0147 tại bước 79 và 0,00047 tại bước 1000; MSE xác thực 0,00108 và 0,0341), ví dụ ranh giới bốn mẫu ($\inf F=\tfrac12\log2$ không đạt), XOR, Tình huống 05.3, Ví dụ 05.22 (252, $\kappa\approx137$, 366): người lập kế hoạch, người soạn và người rà toán tính lại độc lập.
+- Đính chính so với ghi chú cũ: cận pha bậc hai theo Boyd (9.35), tr. 488 là $\varepsilon_0(\tfrac12)^{2^{j+1}}$ (cũ $(\tfrac12)^{2^j}$, "sáu bước"; nay "năm bước → $2^{-64}$"); chi phí Cholesky theo phép nhân–cộng; điều kiện vào pha bậc hai; giả thiết Mệnh đề 05.7 với tập lưới.
+- Kết quả mới có chứng minh trong bài: Hessian của mục tiêu logistic $L_H$-Lipschitz với $L_H\le r^3/(6\sqrt3)$ (từ $\lvert\phi'''\rvert\le\tfrac1{6\sqrt3}$, $\lVert x_i\rVert\le r$), thay một dẫn chiếu chỉ đúng một chiều; người rà toán xác nhận.
+
+### Giáo trình đã tham khảo
+
+Boyd và Vandenberghe (2004) §9.5 (tr. 488–489), Phụ lục C (tr. 662, 670); Murphy (2022) §10.2.8, §11; Goodfellow và cộng sự (2016) §7.3 (tr. 239–240), §8.6.3 (tr. 317); Bottou và Bousquet (2011), trong Sra–Nowozin–Wright, tr. 360–365; MIT 6.079 Lecture 16, tr. 10–29, 10–30.
+
+### Lệch với deck (Q-F; không sửa deck)
+
+- Deck 05 còn trình bày các kết quả nay chỉ dẫn sang Bài 04 (Định lý 04.27, 04.37, Mệnh đề 04.32(c)); ghi chú diễn giả CP01 dẫn khối bị bỏ (xử lý số hiệu ở giai đoạn 3).
+- Cận pha bậc hai trên deck (nếu theo $(\tfrac12)^{2^j}$) và chi phí Cholesky $d^3/3$ cần đồng bộ.
+- Tên MIT "Lecture 10" nếu deck dùng.
+
+### Kiểm của điều phối viên và trình duyệt
+
+forward_refs 0; bộ đếm 05.1–05.40, Ví dụ 05.1–05.25, Tình huống 05.1–05.3, Bài tập 05.1–05.15 liên tục; không lệnh TeX hỏng; đồng bộ `--check`, `git diff --check` đạt. Playwright `material-viewer.html?doc=materials/lec-05/lecture-note.md&deck=lecture-05-khong-gian-dac-trung-nhieu-chieu.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang trang; 0/64 công thức hiển thị rộng hơn khung ở 390 px; đã xem ảnh Định lý 05.26 ở 390.
