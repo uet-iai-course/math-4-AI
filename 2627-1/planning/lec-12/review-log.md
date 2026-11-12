@@ -229,3 +229,103 @@ Người kiểm định cuối mới (general-purpose, Opus 5.5 (opus), high, ch
 ### Vòng sửa sau kiểm định cuối và tái kiểm
 
 Người sửa của bài xử lý mọi phát hiện trung bình và nhẹ của kiểm định cuối; chính người kiểm định đó tái kiểm diff so với HEAD `9edae80`/`2caee87`: không còn phát hiện từ mức trung bình trở lên sau vòng sửa nhỏ cuối. Điều phối viên tự kiểm các số mới (Bài 12: hạng thiếu $w_0+w_1=7/3$, tổng bình phương sai số $14/3$; Bài 11: hậu nghiệm Beta $2/3$; Bài 13: giao điểm $v=8/9$ trên hình) và chạy lại: forward_refs 0, khối `:::` cân bằng, không ký tự điều khiển, SVG hợp lệ, `git diff --check` sạch, đồng bộ `--check` đạt, Playwright 20 lượt (10 tệp × 2 khổ) không lỗi, không công thức tràn quá 40 px ở 390 px. Kết luận: **chấp nhận**.
+
+
+## Rà nhẹ theo quy tắc 2026-11-09 và làm lại tệp bài tập từ giáo trình (2026-11-12)
+
+Yêu cầu của người dùng: "rà math-4-AI 10–14 và rl-plan 01–10: chỉ cần một lượt nhẹ, gồm rà theo quy tắc 09/11 và làm lại exercises.md từ giáo trình", rồi "chỉ làm lecture note và exercise" (không sửa deck).
+
+**Tác tử** (lấy từ lời gọi công cụ): mọi vai là `Agent`, `subagent_type: general-purpose`, `model: opus` (Claude Opus 5.5), `effort: high`.
+- Người rà chỉ đọc (`no-ai-slop` Detect), sau đó cũng tác tử đó làm biên tập viên (`no-ai-slop` Edit), tiếp tục bằng `SendMessage` để giữ ngữ cảnh.
+- Người kiểm tra độc lập chỉ đọc (tác tử mới): đối chiếu đề với PDF, giải lại mọi bài trước khi đọc lời giải, rà các hunk đã đổi của ghi chú; sau đó kiểm lại phần đã sửa.
+
+**Rà ghi chú:** 25 phát hiện (0 chặn bàn giao, 5 nghiêm trọng, 8 trung bình, 12 nhẹ). Năm phát hiện nghiêm trọng là câu nói về vị thế của văn bản ("chưa phải định nghĩa" và tương tự) ở L168, L390, L537, L685, L1155; mã CLO (L43), "Đáp số" (L60). Các đoạn nối "Như vậy… Tuy nhiên…" do Q9 bắt buộc nên giữ. Điều phối viên chấp nhận: cả 25 (bỏ mã CLO, "Đáp số" thành "Lời giải", đồng bộ Bài 10–14).
+
+**Nguồn bài tập:** Murphy (2022) không có bài về ERM, hội tụ đều, PAC hay VC. Theo quy tắc "giáo trình mà ghi chú đã dẫn làm nguồn", dùng thêm Shalev-Shwartz và Ben-David (2014), *Understanding Machine Learning* (ghi chú dẫn 16 lần; PDF trong `statistical-learning-theory/sources/uml/`, chỉ đọc). Mười bốn bài 12.4–12.17: UML 6.1, 3.1, 9.2, 4.2, 6.9, 3.3, 4.1, 3.5, 5.2, 2.1; Murphy 11.1, 11.3, 10.1 (rút về hai lớp), 10.3 (c), (e). Murphy 5.1 thuộc Bài 10 nên không dùng. Đính chính sách (không ghi vào tệp): Murphy Bài 10.1 in sai dấu gradient của âm log-hợp lý; lời giải 12.9 ghi dấu đúng. Ba bài tự dựng cũ 12.4–12.6 chuyển về §10 của ghi chú thành 12.1–12.3; các bài tự dựng còn lại bị bỏ.
+
+**Kiểm tra độc lập:** 0 chặn bàn giao, 0 nghiêm trọng, 3 trung bình (12.16 thêm giả thiết miền bị chặn không có trong đề UML 5.2, nay chứng minh bằng $B\times[-j,j]^3$ và hội tụ bị chặn; dẫn UML 6.5 tr. 79 cho $d_{\mathrm{VC}}=2k$; Kiểm tra lại của 12.12 dẫn Ví dụ 12.8), 14 nhẹ; không lời giải sai ($L(M)=-0{,}4249$, $L(M')=-0{,}5978$ tính lại khớp). Điều phối viên chấp nhận mọi phát hiện; biên tập viên sửa; kiểm lại: đạt; một lỗi nhẹ mới ($k$ hai nghĩa ở 12.16) đã sửa bằng chỉ số $j$.
+
+**Mục tiêu chỉ có bài trong ghi chú:** mục tiêu 3 (rủi ro chính xác của ngưỡng một chiều; Bài tập 12.3). UML Bài 2.2 là ứng viên nếu sau này cần thêm. **Ngoài phạm vi:** `planning/lec-12/outline.md` còn dẫn số bài cũ.
+
+Tệp đã sửa:
+- `math-4-AI/2627-1/materials/lec-12/lecture-note.md`
+- `math-4-AI/2627-1/materials/lec-12/exercises.md`
+
+Bản trước khi sửa:
+- bản cũ trong lịch sử git
+- bản cũ trong lịch sử git
+
+### Số hiệu cũ → mới
+
+| Cũ (`exercises.md`) | Mới | Ghi chú |
+|---|---|---|
+| 12.1 (Suy ra và giải mục tiêu hồi quy từ ba số đo) | bỏ | Murphy 11.1 và 11.3 phủ mục tiêu 1, 2 |
+| 12.2 (Tập nghiệm ERM và hai loại rủi ro của lớp ngưỡng) | bỏ | 12.3 mới (câu 2) chứa cùng phép tính |
+| 12.3 (Các cách gán nhãn của hai lớp ngưỡng trên hai điểm) | bỏ | trùng Ví dụ 12.12; UML 6.1, 6.9 phủ mục tiêu 5 |
+| 12.4 (Hợp lý Gaussian, phương trình chuẩn và tồn tại nghiệm hợp lý cực đại) | ghi chú §10, **Bài tập 12.1** | gộp hai gợi ý thành một; câu 5 viết lại thành yêu cầu, không còn câu hỏi |
+| 12.5 (Entropy chéo, cực tiểu không đạt được và nhãn đổi) | ghi chú §10, **Bài tập 12.2** | gộp gợi ý; viết lại câu 5 và lời giải câu 5 |
+| 12.6 (Rủi ro chính xác của bộ phân loại ngưỡng dưới hai phân phối đầu vào) | ghi chú §10, **Bài tập 12.3** | gộp gợi ý; dữ liệu câu 2 viết mỗi điểm một dòng |
+| 12.7 (Số chiều VC, giới hạn tổng quát hóa và lớp khoảng) | bỏ | |
+| 12.8 (Tham số độ chính xác và độ tin cậy trong một phát biểu PAC) | bỏ | |
+| 12.9 (Hội tụ đều và nghiệm ERM gần đúng) | bỏ | UML 4.2 phủ mục tiêu 4 |
+
+### Bài giáo trình mới trong `exercises.md`
+
+| Mới | Nguồn | Mức | Mục tiêu |
+|---|---|---|---|
+| 12.4 | Shalev-Shwartz và Ben-David, Bài 6.1, tr. 78 | nhận biết | 5 |
+| 12.5 | Shalev-Shwartz và Ben-David, Bài 3.1, tr. 50 | nhận biết | 5 |
+| 12.6 | Murphy, Bài 11.1, §11.8, tr. 411 | tính toán | 1, 2 |
+| 12.7 | Murphy, Bài 11.3, §11.8, tr. 412 | chứng minh | 2 |
+| 12.8 | Shalev-Shwartz và Ben-David, Bài 9.2, tr. 128 | chứng minh | 2 |
+| 12.9 | Murphy, Bài 10.1, §10.6, tr. 367–368 (rút về hai lớp) | tính toán, chứng minh | 1 |
+| 12.10 | Shalev-Shwartz và Ben-David, Bài 4.2, tr. 59 | chứng minh | 4 |
+| 12.11 | Shalev-Shwartz và Ben-David, Bài 6.9, tr. 80 | chứng minh | 5 |
+| 12.12 | Murphy, Bài 10.3 (c), (e), §10.6, tr. 368–369 | vận dụng | 1, 6 |
+| 12.13 | Shalev-Shwartz và Ben-David, Bài 3.3, tr. 51 | vận dụng | 5 |
+| 12.14 | Shalev-Shwartz và Ben-David, Bài 4.1, tr. 58–59 | vận dụng | 5 |
+| 12.15 | Shalev-Shwartz và Ben-David, Bài 3.5, tr. 51–52 | vận dụng | 6 |
+| 12.16 | Shalev-Shwartz và Ben-David, Bài 5.2, tr. 66 | vận dụng | 6 |
+| 12.17 | Shalev-Shwartz và Ben-David, Bài 2.1, tr. 41 | vận dụng | 6 |
+
+Mọi đề đã đối chiếu với trang PDF (Read với `pages`), không chỉ với bản `pdftotext`:
+- Murphy: PDF trang 397–399 (tr. in 367–369) và 441–442 (tr. in 411–412);
+- Shalev-Shwartz và Ben-David: trang 36, 41, 50–52, 58–59, 66, 78, 80, 128 (PDF trùng trang in).
+
+### Ghi cho nhật ký (không viết vào tệp)
+
+- **Đính chính sách (Murphy, Bài 10.1 (b), tr. 368, (10.120)).** Sách ghi gradient của âm log-hợp lý (NLL) là $\sum_i(y_{ic}-\mu_{ic})x_i$, nhưng đó là gradient của log-hợp lý. Lời giải Bài tập 12.9 ghi $\nabla\ell=\sum_i(\mu_i-y_i)\phi_i$. Sách cũng yêu cầu chứng minh Hessian "positive definite". Ở trường hợp hai lớp, điều này chỉ đúng khi ma trận đặc trưng có hạng cột đầy đủ; đề 12.9 nêu rõ điều kiện đó.
+- **Cách dùng bài sách.**
+  - 12.9: rút Murphy 10.1 về hai lớp (sigmoid thay softmax).
+  - 12.12: chỉ lấy (c) và (e) của Murphy 10.3; bỏ (a), (b), (d) vì cần bộ phân loại sinh Gaussian ngoài bài. Thêm quy ước "$L(M)$ là cận trên đúng khi MLE không tồn tại".
+  - 12.11: đổi nhãn $\{-1,1\}$ của sách thành $\{0,1\}$ ($-s$ thành $1-s$).
+  - 12.6: nêu giả thiết nhiễu Gaussian $\sigma^2I_2$ đã biết; sách chỉ ghi "linear regression model".
+  - 12.5: chép định nghĩa $m_{\mathcal H}$ vào đề, vì Định nghĩa 12.17 chỉ nêu sự tồn tại của $N$.
+  - 12.16: thêm điều kiện miền giá trị của A, P, I bị chặn để $\mathcal H_2\subseteq\mathcal H_5$. Số chiều VC $2k$ dẫn từ đề Bài 6.8 của UML, tr. 80.
+- **Mục tiêu không có bài giáo trình.** Mục tiêu 3 trong `exercises.md` không có bài, vì Murphy 5.1 thuộc Bài 10 (D1). Ba vế sau dựa vào bài chuyển về ghi chú:
+  - mục tiêu 1, vế "hợp lý cực đại không có nghiệm hữu hạn" → 12.1, 12.2;
+  - mục tiêu 2, vế "giá trị khớp duy nhất" → 12.1, câu 6;
+  - mục tiêu 3, vế "rủi ro chính xác của ngưỡng" → 12.3.
+- **Định dạng tệp bài tập.** Mỗi bài có đúng một `hint` và một `solution`. Tệp có đoạn mở đầu, bảng mục tiêu, ba mức và mục Tài liệu tham khảo, theo mẫu `lec-07/exercises.md`.
+
+### Dẫn chiếu ngoài phạm vi còn dùng số cũ
+
+- Không có deck Bài 12 (`2627-1/lecture-12-*.html` không tồn tại).
+- Không có dẫn chiếu `Bài tập 12.k` trong `planning/`, trong ghi chú hay tệp bài tập của bài khác.
+- `2627-1/index.html` dòng 215 chỉ liên kết tới `lec-12/exercises.md`, không có số hiệu.
+- `2627-1/material-local-data.js` chưa đồng bộ; điều phối viên chạy `sync-local-materials.py`, vì tệp này nằm ngoài phạm vi ghi của biên tập viên.
+
+### Vòng sửa 2 (theo `SP/check/math-12.md`)
+
+- 12.16: bỏ giả thiết miền bị chặn; $R^*_{\mathcal H_5}\le R^*_{\mathcal H_2}$ chứng minh qua $B\times[-k,k]^3$ và hội tụ bị chặn. Gợi ý và tài liệu tham khảo dẫn UML Bài 6.5, tr. 79. Sửa câu 2 theo điều kiện chênh lệch cận; "Kiểm tra lại" chỉ giữ $4\le10$.
+- 12.12: thêm câu "mỗi mô hình gồm đúng một phân phối có điều kiện"; thay câu mô tả bằng các xác suất; "Kiểm tra lại" dẫn Ví dụ 12.8 ($h_{0{,}3}$: $0$ và $0{,}15$; $h_{-0{,}2}$: $\frac14$ và $0{,}1$).
+- 12.9: $\eta_i\to z_i$, sigmoid viết theo $z$.
+- Ghi chú: bỏ "Hệ (4.4) luôn có nghiệm."; sửa câu dẫn Định nghĩa 12.8, câu dấu $\ge$ tại ngưỡng (§6.4), bỏ câu lặp trong Diễn giải Ví dụ 12.9, câu sau Hệ quả 12.15, Diễn giải Ví dụ 12.11, bỏ vế "lớp sin…"; §10 chỉ còn một liên kết tới tệp bài tập.
+- Không thêm UML 2.2 (mục tiêu 3 dựa vào Bài tập 12.3 của ghi chú).
+- D3: `exercises.md` 0/50 công thức tràn ở 390 px. Ghi chú 20/75, đều là công thức có sẵn ngoài §10 và ngoài các câu đã sửa (12.1–12.3: 0).
+
+**Số liệu:** ghi chú 17915 âm tiết (`wc -w`); `git diff --check` sạch; `forward_refs.py` báo 0.
+
+**Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844, mở mọi khối khi đo: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0/50 công thức tràn khung ở 390 px. Ghi chú: 20 công thức có sẵn từ trước tràn khung (ngoài lượt nhẹ). Bài 12 không có deck.
+
+Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 12 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.
