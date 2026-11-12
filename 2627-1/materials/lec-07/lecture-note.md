@@ -2971,6 +2971,8 @@ Lượt xuôi cho tập $\{1,2\}$, dùng $7$ GB, lợi ích $11$; tập $\{1,3,4
 **Kiểm tra lại.** Các tập không vượt $8$ GB có lợi ích lớn nhất là $\{1,3,4\}$ ($12$), $\{1,2\}$ ($11$), $\{2,4\}$ ($10$), $\{2,3\}$ và $\{1,4\}$ ($9$); với hiệu chỉnh của câu (d), $\{1,3,4\}$ còn $10$.
 :::
 
+Bài tập 07.19–07.32, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 07](material-viewer.html?doc=materials/lec-07/exercises.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html).
+
 ## 13. Câu hỏi cuối buổi và cầu nối
 
 Phương án $(14,20)$ của Ví dụ 07.2, với $z=88$, đạt sản lượng tối đa của loại 2 và dùng hết giờ máy. Tính theo giờ máy, loại 1 mang lại $2$ đơn vị lợi ích còn loại 2 mang lại $1{,}5$, nên phương án đó chưa tối ưu; nghiệm là $(30,12)$ với $z^*=96$ (Ví dụ 07.5).

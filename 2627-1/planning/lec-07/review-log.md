@@ -1121,3 +1121,34 @@ Vanderbei (2014) ch. 1–4 (trang PDF/in lệch theo chương: +19, +18, +17, +1
 ### Kiểm của điều phối viên và trình duyệt
 
 forward_refs 0 (bản cũ 33); bộ đếm 07.1–07.55, Ví dụ 07.1–07.30, Tình huống 07.1–07.4, Bài tập 07.1–07.18 liên tục; 26 chứng minh; ba vùng đọc thêm; không lệnh TeX hỏng; đồng bộ `--check`, `git diff --check` đạt. Playwright `material-viewer.html?doc=materials/lec-07/lecture-note.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang trang; 0/50 công thức tràn ở 390 px (mở mọi `details`); đã xem ảnh 390 (Ví dụ 07.19).
+
+## Tệp bài tập theo chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: U2, U3 của `prompt_fix_lecture_notes_00_07.md`; mẫu `materials/lec-06/exercises.md`. `exercises.md` cũ: 15 bài chép nguyên từ ghi chú (07.1–07.15) chỉ ở lại ghi chú; bốn bài tự dựng 07.19–07.22 bỏ (U2).
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`/`SendMessage`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập danh sách và soạn, sửa hai vòng (cùng tác tử soạn ghi chú) | medium | 14 bài; `exercises.md`; câu liên kết ở ghi chú; hình `img/lec-07/ex-integer-dp-level-curves.svg` |
+| Rà toán (cùng tác tử rà toán ghi chú); kiểm lại một vòng | high | 0/0/0/4; kiểm lại: 2 trung bình (hai dẫn chiếu sang ghi chú bị đổi nhầm khi đánh lại số bài — đã sửa vòng 2, so dẫn chiếu v1/v3 bằng script), 4 nhẹ |
+| Rà sư phạm–văn phong, `no-ai-slop` Detect | high | 0/0/3/10 |
+| Rà sinh viên | high | 0/0/2/8 |
+
+### Quyết định
+
+- 14 bài 07.19–07.32 (kế hoạch ghi "12" là đếm sai; danh sách duyệt có 14 mục): Vanderbei (2014) 1.1; 1.3 cùng 2.19; 2.1; 2.5–2.7; 2.18; 3.4; 3.5; 3.7; 4.1 cùng 4.3; Boyd và Vandenberghe (2004) 2.8, 4.9; Kupferschmid (2023) 3.7.31, 7.10.48, 7.10.56. Mức: nhận biết 07.19–07.21, chứng minh/tính toán 07.22–07.31, vận dụng 07.32.
+- Bỏ Kupferschmid 4.6.43: vế (a) "khi và chỉ khi mọi $m$ cột của $[A,b]$ độc lập" chỉ là điều kiện đủ (phản ví dụ $A=\begin{bmatrix}1&1&0\\1&1&1\end{bmatrix}$, $b=(1,2)$; người rà toán xác nhận). Không dùng Boyd 4.8(f), 4.11, 4.17, 6.2 (trùng Bài 00–02).
+- Chỉ đề sách: thêm định nghĩa để đề tự chứa (07.24 tam giác, đa diện), chép Định lý 3.4 Vanderbei vào đề; bỏ vế "không dùng phương pháp đơn hình" không có trong sách (07.23(b)).
+- Bài tập 07.13 (vùng đọc thêm) không gắn mục tiêu 5 (Q07-4) — bác bỏ đề xuất của người rà sư phạm.
+- Mục tiêu không có bài giáo trình ghi ở bảng mục tiêu ("—"), dựa vào bài trong ghi chú.
+
+### Lỗi trong giáo trình (tệp không nhắc)
+
+- Kupferschmid 7.10.56: in $\mathbb Z^3$ (đúng $\mathbb Z^2$); bài có hai nghiệm $(13,6)$ và $(15,5)$, $z^*=110$ (vét cạn 182 điểm nguyên).
+- Kupferschmid 4.6.43(a): "khi và chỉ khi" phải là điều kiện đủ (lý do bỏ bài).
+- Boyd 2.8: lời giải sách bỏ sót trường hợp $g_1,g_2$ phụ thuộc và $n=1$ (tệp xét đủ).
+
+### Kiểm của điều phối viên và trình duyệt
+
+Bài tập 07.19–07.32 liên tục; ghi chú chỉ thêm một câu liên kết; điều phối viên kiểm 32 dẫn chiếu từ tệp bài tập sang ghi chú: 0 sai loại khối; forward_refs 0 cả hai tệp; đồng bộ `--check`, `git diff --check` đạt; `index.html` đã có liên kết. Playwright `material-viewer.html?doc=materials/lec-07/exercises.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html`, 1600×900, 390×844, `file://`: 0 `.katex-error`, 0 chữ đỏ, 0 lỗi console, 0 request lỗi; 0/13 công thức tràn ở 390 px. `exercises.md` 8 316 âm tiết; ghi chú 35 779.

@@ -1,912 +1,716 @@
 # Bài tập Bài 07 — Quy hoạch tuyến tính và quy hoạch động
 
-Bộ bài tập gồm mười chín bài theo năm mạch nội dung của bài học, ở ba mức: nhận biết, tính toán hoặc chứng minh, và vận dụng vào AI. Bài tập 07.1–07.15 giữ số hiệu, đề bài và lời giải của ghi chú bài giảng Bài 07; trong đó Bài tập 07.8–07.13 thuộc mục phương pháp đơn hình. Bài tập 07.16–07.18 nằm ở mục "Bài tập củng cố" của [ghi chú bài giảng](material-viewer.html?doc=materials/lec-07/lecture-note.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html) và không chép lại ở đây. Bài tập 07.19 là bài tập trên trang chiếu về nghiệm cơ sở. Ba bài 07.20–07.22 là bài vận dụng vào AI, chỉ có trong tệp này. Khi một bài trùng bài tập trên trang chiếu, dòng "Trùng trang chiếu" dẫn tới trang đó, và lời giải trong tệp có cùng kết quả với lời giải trên trang.
+Các bài tập dưới đây, đánh số tiếp theo các bài tập trong ghi chú, đi kèm [ghi chú bài giảng](material-viewer.html?doc=materials/lec-07/lecture-note.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html) và [bài giảng](lecture-07-quy-hoach-tuyen-tinh-va-dong.html) của Bài 07. Các bài lấy từ Vanderbei (2014), Chương 1–4; Boyd và Vandenberghe (2004), Chương 2 và 4; Kupferschmid (2023), Chương 3 và 7; số trang là trang in của sách. Lời giải dẫn định nghĩa, định lý, mệnh đề, hệ quả, nhận xét, thuật toán, ví dụ và bài tập theo số hiệu của ghi chú. Ký hiệu theo ghi chú gồm:
 
-| Mạch | Mở phần | Bài tập |
-| --- | --- | --- |
-| 1. Mở đầu | [Mở phần](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/1/1) | — |
-| 2. Mô hình hóa quy hoạch tuyến tính | [Mở phần](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/2/1) | 07.1, 07.2 |
-| 3. Đa diện và dạng chuẩn | [Mở phần](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/3/1) | 07.3, 07.19, 07.4 |
-| 4. Điểm cực biên và bảo đảm tối ưu | [Mở phần](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/4/1) | 07.5, 07.6, 07.7, 07.20, 07.21 |
-| 5. Phương pháp đơn hình | [Mở phần](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/5/1) | 07.8–07.13 |
-| 6. Quy hoạch động | [Mở phần](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/6/1) | 07.14, 07.15, 07.22 |
-| 7. Tổng kết và chuyển tiếp | [Mở phần](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/7/1) | — |
+- vector viết dạng cột, ví dụ $x=(x_1,x_2)^T$, và bất đẳng thức giữa hai vector hiểu theo từng thành phần;
+- bài toán viết ở chiều cực đại, trừ bài lấy từ Boyd và Vandenberghe, Bài 4.9, giữ chiều cực tiểu của sách;
+- $s_i=b_i-a_i^Tx\ge0$ là biến bù của ràng buộc thứ $i$, $\tilde s_i$ là biến nhân tạo của pha I, $\bar c_j$ là chi phí rút gọn;
+- bảng đơn hình theo (8.4): hàng cuối gồm các $\bar c_j$ và $-z$, mọi số viết bằng phân số;
+- quy tắc Dantzig chọn biến vào có $\bar c_j$ lớn nhất; quy tắc Bland chọn biến vào và biến ra có chỉ số nhỏ nhất theo thứ tự $x_1,\ldots,x_n,s_1,\ldots,s_m$, rồi đến các biến nhân tạo.
 
-## Hướng dẫn và ký hiệu
+| Mục tiêu học tập | Bài tập trong ghi chú | Bài tập trong tệp này |
+|---|---|---|
+| 1. Lập quy hoạch tuyến tính, hồi quy sai số tuyệt đối | 07.1, 07.2, 07.16, 07.18 | 07.23, 07.32 |
+| 2. Đa diện, dạng chuẩn, nghiệm cơ sở | 07.3, 07.4, 07.16, 07.17 | 07.22 |
+| 3. Điểm cực biên và điều kiện tồn tại | 07.5, 07.16, 07.17 | 07.19, 07.22, 07.24 |
+| 4. Kết cục, điểm cực biên tối ưu, duyệt đỉnh kề | 07.6, 07.7, 07.16, 07.17 | 07.19, 07.25, 07.26, 07.32 |
+| 5. Phương pháp đơn hình, quy tắc Bland, pha I | 07.8–07.12, 07.16 | 07.20, 07.27, 07.28, 07.29, 07.30 |
+| 6. Quy hoạch động | 07.14, 07.15, 07.16, 07.18 | 07.21, 07.31 |
 
-Ký hiệu, giả thiết và số hiệu theo ghi chú bài giảng Bài 07. Biến quyết định là $x\in\mathbb R^n$; bất đẳng thức giữa hai vector hiểu theo từng thành phần. Mỗi mục tiêu ghi rõ cực đại hay cực tiểu. Tên nút của đồ thị viết chữ đứng ($\mathrm s$, $\mathrm A$, …) để phân biệt với ma trận $A$ và tập chỉ số cơ sở $B$. Số thập phân viết với dấu phẩy; khi một vector có thành phần thập phân, các thành phần cách nhau bằng dấu chấm phẩy, như $(1{,}6;\,1{,}2)$.
+## Mức nhận biết
 
-Bài toán hộp hạt được dùng ở nhiều bài và được nêu lại trong từng bài dùng nó. Dữ kiện gốc: sản lượng hai loại hộp hạt là $x_1$, $x_2$ (nghìn hộp); mỗi nghìn hộp loại 1 và loại 2 đem lợi ích $2$ và $3$ đơn vị, dùng $1$ và $2$ giờ máy; hai loại dùng chung $54$ giờ máy; sản lượng tối đa của loại 1 là $30$, của loại 2 là $20$ nghìn hộp. Mô hình là cực đại $2x_1+3x_2$ dưới các ràng buộc
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 3, 4; kiểm tra giả thiết về điểm cực biên trước khi áp dụng một định lý về nghiệm đỉnh.
 
-$$
-\begin{aligned}
-x_1&\le30,\qquad x_2\le20,\\
-x_1+2x_2&\le54,\qquad x_1,x_2\ge0 .
-\end{aligned}
-$$
+::: exercise Bài tập 07.19 (Bài toán khả thi không có nghiệm đỉnh; Vanderbei, Bài 3.5, tr. 37)
+Xét bài toán cực đại $x_1+3x_2$ dưới $-2x_1\le-5$, $x_1\ge0$, trong đó $x_2\in\mathbb R$ không có ràng buộc dấu.
 
-Miền khả thi là ngũ giác có năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$; nghiệm tối ưu duy nhất là $(30,12)$ với $z^*=96$.
-
-Lời giải cần nêu kết quả được dùng ở từng bước. Bài toán hộp hạt phỏng theo Bài tập chương 8, câu 5 của học phần, giữ nguyên bộ số và đổi cách diễn giải đơn vị; các bộ số còn lại là số liệu sư phạm tự xây dựng. Viết tắt: chuẩn đầu ra bài học (LLO), chuẩn đầu ra học phần (CLO), bộ xử lý đồ họa (GPU).
-
-## Mô hình hóa quy hoạch tuyến tính
-
-### Bài tập 07.1. Dựng mô hình từ dữ kiện cho bằng lời
-
-Mức độ: tính toán. LLO17; CLO1. Trùng trang chiếu [Bài tập: dựng mô hình phân bổ GPU](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/2/8) và [trang lời giải](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/2/9): câu (a), (b), (d) và phần ràng buộc của câu (c).
-
-::: exercise Bài tập 07.1 (Dựng mô hình từ dữ kiện cho bằng lời)
-Hai luồng suy luận dùng chung một GPU trong một giờ. Mỗi nghìn yêu cầu của luồng 1 và luồng 2 mang lại lợi ích $4$ và $5$ đơn vị, và dùng $2$ và $1$ phút GPU. GPU có ngân sách $14$ phút trong giờ đó; luồng 1 nhận tối đa $8$ nghìn yêu cầu, luồng 2 nhận tối đa $6$ nghìn yêu cầu.
-
-- (a) Nêu biến quyết định và đơn vị.
-- (b) Viết hàm mục tiêu và chiều tối ưu.
-- (c) Viết mọi ràng buộc và miền biến; viết bài toán ở dạng (1.1) với $c$, $A$, $b$ cụ thể.
-- (d) Kiểm tra tính khả thi của phương án $(4,6)$ và tính giá trị mục tiêu tại đó.
+- **(a)** Chứng minh bài toán có phương án khả thi nhưng miền khả thi không có điểm cực biên.
+- **(b)** Định lý cơ bản của quy hoạch tuyến tính (Vanderbei, Định lý 3.4, tr. 33) phát biểu cho bài toán cực đại $c^Tx$ dưới $Ax\le b$, $x\ge0$ như sau: (1) nếu bài toán không có nghiệm tối ưu thì nó không khả thi hoặc không bị chặn; (2) nếu có phương án khả thi thì có nghiệm cơ sở khả thi; (3) nếu có nghiệm tối ưu thì có nghiệm cơ sở tối ưu. Đối chiếu kết quả của (a) với định lý này.
 :::
 
-::: hint Gợi ý Bài tập 07.1
-Một nghìn yêu cầu luồng 1 dùng $2$ phút; ràng buộc GPU so sánh tổng số phút với $14$ phút, không phải với $60$ phút của cả giờ.
+::: hint Gợi ý 1
+Viết miền khả thi thành một đa diện trong $\mathbb R^2$ và tính hạng của ma trận các hàng.
 :::
 
-::: solution Lời giải Bài tập 07.1
-**Câu (a).** $x_1$, $x_2$ là số nghìn yêu cầu của luồng 1 và luồng 2 được phục vụ trong giờ đó.
-
-**Câu (b).** Cực đại $4x_1+5x_2$, tính bằng đơn vị lợi ích.
-
-**Câu (c).** Ràng buộc GPU, tính bằng phút: $2x_1+x_2\le14$. Hai giới hạn yêu cầu, tính bằng nghìn yêu cầu: $x_1\le8$, $x_2\le6$. Miền biến: $x_1,x_2\ge0$. Dạng (1.1) có
-
-$$
-c=\begin{bmatrix}4\\5\end{bmatrix},\qquad A=\begin{bmatrix}2&1\\1&0\\0&1\end{bmatrix},\qquad b=\begin{bmatrix}14\\8\\6\end{bmatrix}.
-$$
-
-**Câu (d).** Phương án $(4,6)$ dùng $2\cdot4+6=14$ phút, đúng bằng ngân sách; $4\le8$ và $6\le6$. Vậy $(4,6)$ khả thi, với hai ràng buộc hoạt động là GPU và giới hạn luồng 2. Giá trị mục tiêu là $4\cdot4+5\cdot6=46$.
-
-**Kiểm tra lại.** Ba lỗi thường gặp: đảo hệ số thành $x_1+2x_2\le14$, dùng $60$ phút thay cho ngân sách $14$ phút, và quên miền biến. Với $Ax$ tại $(4,6)$: $(14,4,6)\le(14,8,6)$. Câu hỏi chỉ yêu cầu kiểm tra khả thi; kết luận $(4,6)$ có tối ưu hay không cần công cụ của Mục 4 (Bài tập 07.6 làm việc đó trên một đa giác khác).
-:::
-
-### Bài tập 07.2. Mô hình hằng với mất mát $L_1$
-
-Mức độ: tính toán. LLO17; CLO1.
-
-::: exercise Bài tập 07.2 (Mô hình hằng với mất mát $L_1$)
-Ba mẫu có giá trị đích $y_1=0$, $y_2=2$, $y_3=6$; mô hình hằng dự đoán cùng một số $x\in\mathbb R$ cho mọi mẫu, tức $h_i=1$.
-
-- (a) Viết bài toán cực tiểu $\sum_i|x-y_i|$ thành quy hoạch tuyến tính dạng (1.2); nêu số biến và số ràng buộc.
-- (b) Tìm nghiệm và giá trị tối ưu.
-- (c) Tìm nghiệm của bình phương nhỏ nhất $\sum_i(x-y_i)^2$, so với (b), và xác định mẫu làm nghiệm đó lệch khỏi trung vị nhiều nhất.
-:::
-
-::: hint Gợi ý Bài tập 07.2
-Ở (b), viết hàm $\sum_i|x-y_i|$ trên từng khoảng $(-\infty,0]$, $[0,2]$, $[2,6]$, $[6,\infty)$ và xét độ dốc.
-:::
-
-::: solution Lời giải Bài tập 07.2
-**Câu (a).** Biến $(x,t_1,t_2,t_3)\in\mathbb R^4$; cực tiểu $t_1+t_2+t_3$ dưới sáu ràng buộc $-t_1\le x\le t_1$, $-t_2\le x-2\le t_2$, $-t_3\le x-6\le t_3$.
-
-**Câu (b).** Độ dốc của $\sum_i|x-y_i|$ bằng số mẫu có $y_i<x$ trừ số mẫu có $y_i>x$.
-
-- Trên $(-\infty,0)$ độ dốc là $0-3=-3$.
-- Trên $(0,2)$ độ dốc là $1-2=-1$.
-- Trên $(2,6)$ độ dốc là $2-1=1$.
-- Trên $(6,\infty)$ độ dốc là $3-0=3$.
-
-Hàm giảm tới $x=2$ rồi tăng, nên nghiệm duy nhất là $x^*=2$, trung vị của ba giá trị, với giá trị $2+0+4=6$. Nghiệm của (1.2) là $(2,2,0,4)$.
-
-**Câu (c).** Bình phương nhỏ nhất cho trung bình $x=\tfrac{0+2+6}3=\tfrac83$. Mẫu $y_3=6$ ở xa nhất và làm trung bình tăng; trung vị không đổi nếu thay $6$ bằng $60$, còn trung bình thành $\tfrac{62}3$.
-
-**Kiểm tra lại.** Tại $x=2$: $|2-0|+|2-2|+|2-6|=6$; tại $x=\tfrac83$: $\tfrac83+\tfrac23+\tfrac{10}3=\tfrac{20}3>6$.
-:::
-
-## Đa diện và dạng chuẩn
-
-### Bài tập 07.3. Đưa về dạng chuẩn khi có ràng buộc $\ge$ và biến tự do
-
-Mức độ: tính toán. LLO18; CLO1.
-
-::: exercise Bài tập 07.3 (Đưa về dạng chuẩn khi có ràng buộc $\ge$ và biến tự do)
-Xét bài toán cực đại $3x_1+x_2$ dưới các ràng buộc $x_1-x_2\ge2$, $x_1+x_2\le6$, $x_1\ge0$, còn $x_2$ là biến tự do.
-
-- (a) Viết bài toán ở dạng chuẩn (2.2), nêu ma trận, vế phải và số biến.
-- (b) Kiểm tra tính khả thi của phương án $(x_1,x_2)=(4,-1)$ và viết một điểm của dạng chuẩn ứng với nó.
-- (c) Chỉ ra hai điểm khác nhau của dạng chuẩn cùng ứng với $(4,-1)$.
-:::
-
-::: hint Gợi ý Bài tập 07.3
-Ràng buộc $\ge$ nhận một biến dư $e_1\ge0$ với dấu trừ; biến tự do $x_2$ thay bằng $x_2^+-x_2^-$.
-:::
-
-::: solution Lời giải Bài tập 07.3
-**Câu (a).** Biến của dạng chuẩn là $(x_1,x_2^+,x_2^-,e_1,s_2)\in\mathbb R^5$, mọi biến không âm. Hai phương trình là $x_1-x_2^++x_2^--e_1=2$ và $x_1+x_2^+-x_2^-+s_2=6$; mục tiêu là cực đại $3x_1+x_2^+-x_2^-$. Ma trận và vế phải
-
-$$
-A=\begin{bmatrix}1&-1&1&-1&0\\1&1&-1&0&1\end{bmatrix},\qquad b=\begin{bmatrix}2\\6\end{bmatrix},
-$$
-
-có hai hàng độc lập (hai cột cuối là $(-1,0)^T$ và $(0,1)^T$), nên $\operatorname{rank}(A)=2=m$ và $n=5$.
-
-**Câu (b).** $4-(-1)=5\ge2$ và $4+(-1)=3\le6$, nên khả thi. Với $x_2^+=0$, $x_2^-=1$: $e_1=5-2=3$ và $s_2=6-3=3$, cho điểm $(4,0,1,3,3)$.
-
-**Câu (c).** Điểm $(4,0,1,3,3)$ và điểm $(4,2,3,3,3)$ đều thỏa hai phương trình và cùng cho $x_2=x_2^+-x_2^-=-1$.
-
-**Kiểm tra lại.** Tại $(4,2,3,3,3)$: $4-2+3-3=2$ và $4+2-3+3=6$; mục tiêu $12+2-3=11=3\cdot4+(-1)$.
-:::
-
-### Bài tập 07.19. Nghiệm cơ sở của bài toán hộp hạt
-
-Mức độ: nhận biết. LLO18; CLO1. Trùng trang chiếu [Bài tập: nghiệm cơ sở của bài toán hộp hạt](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/3/8) và [trang lời giải](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/3/9). Hai cơ sở của bài là hai dòng trong bảng mười cơ sở của Bài tập 07.4.
-
-::: exercise Bài tập 07.19 (Nghiệm cơ sở của bài toán hộp hạt)
-Bài toán hộp hạt: cực đại $2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$ (sản lượng tối đa, nghìn hộp), $x_1+2x_2\le54$ (giờ máy), $x_1,x_2\ge0$. Mỗi giới hạn nhận một biến bù, cho hệ dạng chuẩn với thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$:
-
-$$
-\begin{aligned}
-x_1+s_1&=30,\\
-x_2+s_2&=20,\\
-x_1+2x_2+s_3&=54,\\
-x_1,x_2,s_1,s_2,s_3&\ge0 .
-\end{aligned}
-$$
-
-Chỉ số cột: $1,2$ là $x_1,x_2$; $3,4,5$ là $s_1,s_2,s_3$. Gọi $\bar A$ là ma trận hệ số $3\times5$ của hệ này; với tập chỉ số $B$, ma trận $A_B$ gồm các cột của $\bar A$ có chỉ số thuộc $B$.
-
-1. Với $B=\{1,2,4\}$: viết $A_B$, tính $\det(A_B)$ và $x_B$; xác định điểm $(x_1,x_2)$.
-2. Với $B=\{1,2,5\}$: tính $x_B$ và giải thích vì sao nghiệm này không khả thi.
-:::
-
-::: hint Gợi ý Bài tập 07.19
-Với mỗi $B$, đặt hai biến ngoài cơ sở bằng $0$ rồi giải ba phương trình theo thứ tự thuận tiện. Định thức chỉ kiểm tra hệ có nghiệm duy nhất; dấu của $x_B$ quyết định tính khả thi.
+::: hint Gợi ý 2
+Ở (b), kiểm tra giả thiết về dấu của từng biến trong định lý, rồi đưa bài toán về đúng dạng đó bằng phép tách biến tự do.
 :::
 
 ::: solution Lời giải Bài tập 07.19
-**Câu 1.** $A_B$ gồm các cột $x_1,x_2,s_2$:
+**Câu (a).** Điểm $(\tfrac52,0)$ khả thi. Miền khả thi là $\{x\in\mathbb R^2\mid -2x_1\le-5,\ -x_1\le0\}$, với hai hàng $(-2,0)$, $(-1,0)$ có hạng $1<2$. Theo Định lý 07.17, miền không có điểm cực biên. Trực tiếp: mỗi điểm khả thi $(x_1,x_2)$ là trung điểm của hai điểm khả thi $(x_1,x_2-1)$ và $(x_1,x_2+1)$.
 
-$$
-A_B=\begin{bmatrix}1&0&0\\0&1&1\\1&2&0\end{bmatrix},\qquad \det(A_B)=1\cdot(1\cdot0-1\cdot2)=-2\ne0,
-$$
+**Câu (b).** Định lý 3.4 của Vanderbei đòi mọi biến không âm, còn $x_2$ là biến tự do, nên bài toán không thuộc dạng của định lý và kết luận (2) không áp dụng. Thay $x_2=x_2^+-x_2^-$ với $x_2^+,x_2^-\ge0$ (Mệnh đề 02.10(b)), ta được bài toán cực đại $x_1+3x_2^+-3x_2^-$ dưới $-2x_1\le-5$, $(x_1,x_2^+,x_2^-)\ge0$, đúng dạng của định lý. Bài toán mới có điểm cực biên $(\tfrac52,0,0)$, nơi ba ràng buộc $-2x_1=-5$, $x_2^+=0$, $x_2^-=0$ có ba hàng độc lập (Định lý 07.10), phù hợp kết luận (2).
 
-khai triển theo hàng đầu. Đặt $s_1=s_3=0$: phương trình thứ nhất cho $x_1=30$, phương trình thứ ba cho $30+2x_2=54$, tức $x_2=12$, phương trình thứ hai cho $s_2=20-12=8$. Vậy $x_B=(x_1,x_2,s_2)=(30,12,8)\ge0$. Ba biến cơ sở đều dương, nên đây là nghiệm cơ sở khả thi không suy biến, ứng với đỉnh $(30,12)$.
+Bài toán ban đầu không có nghiệm tối ưu: các điểm $(3,t)$, $t\ge0$, khả thi với mục tiêu $3+3t\to+\infty$. Đây là kết cục không bị chặn của Định lý 07.23, phù hợp kết luận (1). Định lý 07.20 cũng cần (L2), và (L2) không thỏa trên miền ban đầu.
 
-**Câu 2.** $A_B$ gồm các cột $x_1,x_2,s_3$:
-
-$$
-A_B=\begin{bmatrix}1&0&0\\0&1&0\\1&2&1\end{bmatrix},\qquad \det(A_B)=1,
-$$
-
-vì $A_B$ là ma trận tam giác dưới. Đặt $s_1=s_2=0$: $x_1=30$, $x_2=20$, $s_3=54-70=-16<0$. Đây là nghiệm cơ sở nhưng không khả thi. Điểm $(30,20)$ là giao của hai đường $x_1=30$ và $x_2=20$, nằm ngoài miền vì vượt $16$ giờ máy.
-
-Về hình học, mỗi nghiệm cơ sở của hệ này là giao của hai đường biên, và chỉ những giao điểm nằm trong ngũ giác mới là đỉnh.
-
-**Kiểm tra lại.** Tại $(30,12,0,8,0)$: $30+0=30$, $12+8=20$, $30+24+0=54$.
+**Kiểm tra lại.** Tại $(3,t)$: $-6\le-5$ và $3\ge0$. Tại $(\tfrac52,0,0)$ của bài toán đã tách biến, ma trận ba hàng hoạt động $(-2,0,0)$, $(0,-1,0)$, $(0,0,-1)$ có định thức $-2\ne0$.
 :::
 
-### Bài tập 07.4. Mười cách chọn cơ sở của bài toán hộp hạt
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 5; đọc các cặp biến vào, biến ra từ biểu diễn của biến cơ sở và áp dụng hai quy tắc chọn.
 
-Mức độ: tính toán. LLO18; CLO1.
-
-::: exercise Bài tập 07.4 (Mười cách chọn cơ sở của bài toán hộp hạt)
-Hệ dạng chuẩn của bài toán hộp hạt, thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$: $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$, mọi biến không âm.
-
-- (a) Liệt kê mười tập $B$ có ba phần tử. Với mỗi tập, xác định $A_B$ có khả nghịch không; nếu có, tính nghiệm cơ sở.
-- (b) Xác định các nghiệm cơ sở khả thi và điểm $(x_1,x_2)$ tương ứng. Đối chiếu với năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$.
-- (c) Giải thích bằng hình vì sao hai tập không khả nghịch.
-- (d) Trong các nghiệm cơ sở khả thi, nghiệm nào suy biến.
-:::
-
-::: hint Gợi ý Bài tập 07.4
-Một tập $B$ cho nghiệm cơ sở bằng cách đặt hai biến ngoài $B$ bằng $0$; hai biến đó ứng với hai đường biên, và nghiệm là giao điểm của hai đường.
-:::
-
-::: solution Lời giải Bài tập 07.4
-**Câu (a) và (b).** Bảng ghi tập $B$ theo tên biến, hai biến ngoài cơ sở đặt bằng $0$, và nghiệm $(x_1,x_2,s_1,s_2,s_3)$.
-
-| $B$ | Ngoài cơ sở | $\det(A_B)$ | Nghiệm cơ sở | Khả thi |
-|---|---|---:|---|---|
-| $x_1,x_2,s_1$ | $s_2,s_3$ | $-1$ | $(14,20,16,0,0)$ | có, đỉnh $(14,20)$ |
-| $x_1,x_2,s_2$ | $s_1,s_3$ | $-2$ | $(30,12,0,8,0)$ | có, đỉnh $(30,12)$ |
-| $x_1,x_2,s_3$ | $s_1,s_2$ | $1$ | $(30,20,0,0,-16)$ | không |
-| $x_1,s_1,s_2$ | $x_2,s_3$ | $1$ | $(54,0,-24,20,0)$ | không |
-| $x_1,s_1,s_3$ | $x_2,s_2$ | $0$ | không có | |
-| $x_1,s_2,s_3$ | $x_2,s_1$ | $1$ | $(30,0,0,20,24)$ | có, đỉnh $(30,0)$ |
-| $x_2,s_1,s_2$ | $x_1,s_3$ | $2$ | $(0,27,30,-7,0)$ | không |
-| $x_2,s_1,s_3$ | $x_1,s_2$ | $-1$ | $(0,20,30,0,14)$ | có, đỉnh $(0,20)$ |
-| $x_2,s_2,s_3$ | $x_1,s_1$ | $0$ | không có | |
-| $s_1,s_2,s_3$ | $x_1,x_2$ | $1$ | $(0,0,30,20,54)$ | có, đỉnh $(0,0)$ |
-
-Năm nghiệm cơ sở khả thi ứng đúng năm đỉnh, mỗi đỉnh một cơ sở. Ba nghiệm cơ sở không khả thi là ba giao điểm nằm ngoài ngũ giác: $(30,20)$, $(54,0)$, $(0,27)$. Trên hình sau, mỗi nghiệm cơ sở là giao của hai đường biên: chấm đặc là năm nghiệm cơ sở khả thi, chấm rỗng là ba nghiệm cơ sở không khả thi.
-
-![Ngũ giác khả thi của bài toán hộp hạt cùng ba đường biên kéo dài x1 = 30, x2 = 20, x1 + 2x2 = 54. Năm chấm đặc tại (0,0), (30,0), (30,12), (14,20), (0,20) là nghiệm cơ sở khả thi, cũng là năm đỉnh. Ba chấm rỗng tại (30,20), (54,0), (0,27) là nghiệm cơ sở không khả thi, nằm ngoài miền.](img/lec-07/basic-solutions-boxes.svg)
-
-**Câu (c).** Tập $\{x_1,s_1,s_3\}$ đặt $x_2=s_2=0$, tức hai đường song song $x_2=0$ và $x_2=20$; tập $\{x_2,s_2,s_3\}$ đặt $x_1=s_1=0$, tức hai đường song song $x_1=0$ và $x_1=30$. Về đại số, ở tập thứ nhất cả ba cột có hàng thứ hai bằng $0$.
-
-**Câu (d).** Không nghiệm nào suy biến: ở cả năm nghiệm cơ sở khả thi, ba biến cơ sở đều dương, chẳng hạn $(14,20,16)$ tại đỉnh $(14,20)$ và $(30,20,54)$ tại $(0,0)$. Về hình học, mỗi đỉnh của ngũ giác có đúng hai ràng buộc hoạt động.
-
-**Kiểm tra lại.** Tại $(14,20,16,0,0)$: $14+16=30$, $20+0=20$, $14+40+0=54$. Tại $(0,27,30,-7,0)$: $27-7=20$ và $54+0=54$.
-:::
-
-## Điểm cực biên và bảo đảm tối ưu
-
-### Bài tập 07.5. Dải phẳng và điểm cực biên
-
-Mức độ: chứng minh. LLO18; CLO1.
-
-::: exercise Bài tập 07.5 (Dải phẳng và điểm cực biên)
-Cho $P_2=\{x\in\mathbb R^2\mid -x_1+x_2\le1,\ x_1-x_2\le1\}$.
-
-- (a) Chứng minh $P_2$ chứa một đường thẳng và không có điểm cực biên, bằng khẳng định (ii) và (iii) của Định lý 07.20.
-- (b) Thêm ràng buộc $x_1\ge0$, được $P_3$. Xác định mọi điểm cực biên của $P_3$ bằng Định lý 07.13.
-:::
-
-::: hint Gợi ý Bài tập 07.5
-Ở (a), tìm $d\ne0$ với $-d_1+d_2=0$ và $d_1-d_2=0$. Ở (b), xét ba cặp hàng của $P_3$.
-:::
-
-::: solution Lời giải Bài tập 07.5
-**Câu (a).** Ma trận có hai hàng $(-1,1)$ và $(1,-1)$, hạng $1<2$. Hướng $d=(1,1)$ thỏa $Ad=0$, nên $(0,0)+\theta(1,1)\in P_2$ với mọi $\theta$. Theo Định lý 07.20, $P_2$ không có điểm cực biên.
-
-**Câu (b).** $P_3$ có ba hàng: (1) $-x_1+x_2\le1$, (2) $x_1-x_2\le1$, (3) $-x_1\le0$.
-
-- Cặp (1), (2): hai hàng song song, không có giao điểm duy nhất.
-- Cặp (1), (3): $x_1=0$, $x_2=1$; kiểm tra (2): $0-1=-1\le1$. Điểm $(0,1)$ là điểm cực biên.
-- Cặp (2), (3): $x_1=0$, $x_2=-1$; kiểm tra (1): $0-1=-1\le1$. Điểm $(0,-1)$ là điểm cực biên.
-
-**Kiểm tra lại.** Tại $(0,1)$: hàng (1) cho $-0+1=1$ và hàng (3) cho $0$, cả hai hoạt động; hai hàng $(-1,1)$, $(-1,0)$ độc lập. Tại $(0,-1)$: hàng (2) cho $0+1=1$, hàng (3) hoạt động; hai hàng $(1,-1)$, $(-1,0)$ độc lập.
-:::
-
-### Bài tập 07.6. Điểm cực biên và đỉnh kề trên một đa giác mới
-
-Mức độ: tính toán. LLO18; CLO1. Câu (a)–(d) trùng trang chiếu [Bài tập: điểm cực biên và đỉnh kề trên đa giác mới](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/4/14); đáp án của trang nằm trong ghi chú diễn giả của trang đó. Phép tính chi phí rút gọn trên đa giác này nằm ở Bài tập 07.9.
-
-::: exercise Bài tập 07.6 (Điểm cực biên và đỉnh kề trên một đa giác mới)
-Xét bài toán cực đại $x_1+x_2$ dưới $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x_1,x_2\ge0$.
-
-- (a) Vẽ miền khả thi và xác định bốn đỉnh bằng tiêu chuẩn hạng.
-- (b) Tính giá trị mục tiêu tại các đỉnh; xác định kết cục và nghiệm tối ưu.
-- (c) Từ $(0,0)$, viết một đường đi qua đỉnh kề có giá trị tăng chặt và nêu lý do dừng.
-- (d) Nêu định lý bảo đảm có điểm cực biên tối ưu và kiểm tra từng giả thiết.
-:::
-
-::: hint Gợi ý Bài tập 07.6
-Đường $x_1+2x_2=4$ cắt hai trục tại $(4,0)$, $(0,2)$; đường $3x_1+x_2=6$ cắt hai trục tại $(2,0)$, $(0,6)$. Trên mỗi trục, ràng buộc hạn chế hơn cho đỉnh.
-:::
-
-::: solution Lời giải Bài tập 07.6
-**Câu (a).** Trên trục $x_1$, ràng buộc thứ hai hạn chế hơn, cho đỉnh $(2,0)$; trên trục $x_2$, ràng buộc thứ nhất hạn chế hơn, cho đỉnh $(0,2)$. Giao của hai đường chéo: từ $x_2=6-3x_1$ và $x_1+2(6-3x_1)=4$ được $5x_1=8$, tức $x_1=1{,}6$ và $x_2=1{,}2$. Bốn đỉnh là $(0,0)$, $(2,0)$, $(1{,}6;\,1{,}2)$, $(0,2)$, mỗi đỉnh có hai hàng hoạt động độc lập.
-
-**Câu (b).** Giá trị lần lượt $0$, $2$, $2{,}8$, $2$. Miền bị chặn và khác rỗng, nên theo Hệ quả 07.24, $z^*=2{,}8$ tại $(1{,}6;\,1{,}2)$. Kết cục là tối ưu duy nhất: với $\mu_1=\tfrac25$, $\mu_2=\tfrac15$ giải từ $\mu_1+3\mu_2=1$, $2\mu_1+\mu_2=1$,
+::: exercise Bài tập 07.20 (Các cặp biến vào, biến ra; Vanderbei, Bài 3.7, tr. 37)
+Tại một nghiệm cơ sở khả thi của một bài toán cực đại với các biến $x_1,\ldots,x_6\ge0$, mục tiêu $z$ và các biến cơ sở $x_6$, $x_4$, $x_1$ được viết theo các biến ngoài cơ sở $x_2$, $x_3$, $x_5$ như sau:
 
 $$
 \begin{aligned}
-x_1+x_2&=\tfrac25(x_1+2x_2)+\tfrac15(3x_1+x_2)\\
-&\le\tfrac25\cdot4+\tfrac15\cdot6\\
-&=2{,}8,
+z&=5+2x_2-2x_3+3x_5,\\
+x_6&=4-2x_2-x_3+x_5,\\
+x_4&=2-x_2+x_3-x_5,\\
+x_1&=6-2x_2-2x_3-3x_5 .
 \end{aligned}
 $$
 
-và dấu bằng chỉ khi cả hai ràng buộc chéo hoạt động, tức chỉ tại $(1{,}6;\,1{,}2)$.
+Một bước xoay chọn một biến vào có hệ số dương trong $z$ và một biến ra đạt cực tiểu ở phép thử tỉ số.
 
-**Câu (c).** Đường $(0,0)\to(2,0)\to(1{,}6;\,1{,}2)$ với giá trị $0\to2\to2{,}8$; mỗi đoạn là một cạnh. Tại $(1{,}6;\,1{,}2)$, hai đỉnh kề $(2,0)$ và $(0,2)$ đều cho $2<2{,}8$, nên thuật toán dừng. Đường qua $(0,2)$ cũng hợp lệ.
-
-**Câu (d).** Định lý 07.23 cần hai giả thiết.
-
-1. Có điểm cực biên: miền khác rỗng (chứa $(0,0)$), và các hàng $-x_1\le0$, $-x_2\le0$ cho hạng $2$, nên theo Định lý 07.20 có điểm cực biên.
-2. Giá trị hữu hạn: $0\le x_1\le2$ và $0\le x_2\le2$, nên $z\le4$.
-
-**Kiểm tra lại.** Tại $(1{,}6;\,1{,}2)$: $1{,}6+2{,}4=4$ và $4{,}8+1{,}2=6$. Hai hệ số: $\tfrac25+\tfrac35=1$ và $\tfrac45+\tfrac15=1$.
+- **(a)** Liệt kê mọi cặp (biến vào, biến ra) có thể chọn.
+- **(b)** Liệt kê các cặp đó khi biến vào được chọn theo quy tắc Dantzig, tức có hệ số lớn nhất trong $z$.
+- **(c)** Liệt kê các cặp đó khi biến vào và biến ra được chọn theo quy tắc Bland, với thứ tự $x_1,\ldots,x_6$.
 :::
 
-### Bài tập 07.7. Đổi lợi ích của bài toán hộp hạt
-
-Mức độ: tính toán. LLO18; CLO1. Trùng trang chiếu [Bài tập: bài toán hộp hạt với lợi ích mới](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/4/15) và [trang lời giải](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/4/16); trang lời giải chạy đường thứ nhất của câu (c) và nêu đường thứ hai trong ghi chú diễn giả.
-
-::: exercise Bài tập 07.7 (Đổi lợi ích của bài toán hộp hạt)
-Miền khả thi $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$, với năm đỉnh $(0,0)$, $(30,0)$, $(30,12)$, $(14,20)$, $(0,20)$. Mục tiêu mới: cực đại $2x_1+4x_2$.
-
-- (a) Tính $z$ tại năm đỉnh; xác định kết cục và tập nghiệm tối ưu.
-- (b) Nêu định lý bảo đảm có điểm cực biên tối ưu và kiểm tra giả thiết.
-- (c) Chạy Thuật toán 07.1 từ $(0,0)$ theo hai đường khác nhau; xác định đỉnh dừng của mỗi đường.
+::: hint Gợi ý 1
+Khi một biến vào tăng từ $0$, biến cơ sở nào giảm là biến có hệ số âm của biến vào trong dòng của nó; tỉ số là hằng số của dòng chia cho giá trị tuyệt đối của hệ số đó.
 :::
 
-::: hint Gợi ý Bài tập 07.7
-So sánh vector $(2,4)$ với hàng $(1,2)$ của ràng buộc giờ máy. Ở câu (c), tiêu chuẩn dừng dùng bất đẳng thức chặt.
-:::
-
-::: solution Lời giải Bài tập 07.7
-**Câu (a).** Giá trị tại năm đỉnh: $0$; $2\cdot30=60$; $2\cdot30+4\cdot12=108$; $2\cdot14+4\cdot20=108$; $4\cdot20=80$. Vì $2x_1+4x_2=2(x_1+2x_2)\le2\cdot54=108$, đường mức song song với ràng buộc giờ máy, và giá trị tối ưu $108$ đạt trên cả cạnh nối $(30,12)$ và $(14,20)$. Trên đường $x_1+2x_2=54$, điều kiện $x_2\le20$ cho $x_1\ge14$ và $x_1\le30$, nên tập nghiệm tối ưu là $\{x\mid x_1+2x_2=54,\ 14\le x_1\le30\}$: kết cục nhiều nghiệm tối ưu. Trên hình sau, cạnh tối ưu tô đậm nằm trên đường mức $z=108$, vuông góc với hướng $c=(2,4)$.
-
-![Ngũ giác khả thi của bài toán hộp hạt. Đường mức 2x1 + 4x2 = 108 trùng đường giờ máy x1 + 2x2 = 54; cạnh nối (30,12) và (14,20) tô đậm, mọi điểm của cạnh tối ưu, kể cả trung điểm (22,16). Mũi tên chỉ hướng c = (2,4), vuông góc với cạnh.](img/lec-07/multiple-optima-boxes.svg)
-
-**Câu (b).** Định lý 07.23: miền khác rỗng, có điểm cực biên (hạng $2$), bị chặn nên $z\le2\cdot30+4\cdot20=140$; cả hai giả thiết thỏa.
-
-**Câu (c).**
-
-- Đường thứ nhất: $(0,0)\to(30,0)\to(30,12)$ với $z$: $0\to60\to108$. Tại $(30,12)$, đỉnh kề $(14,20)$ cũng cho $108$, không lớn hơn chặt, nên thuật toán dừng tại $(30,12)$.
-- Đường thứ hai: $(0,0)\to(0,20)\to(14,20)$ với $z$: $0\to80\to108$. Tại $(14,20)$, đỉnh kề $(30,12)$ không có giá trị lớn hơn chặt, nên thuật toán dừng tại $(14,20)$.
-
-Hai đỉnh dừng khác nhau cho cùng giá trị tối ưu. Thuật toán trả về một điểm cực biên tối ưu, không trả về cả cạnh; bất đẳng thức chặt ngăn thuật toán dao động giữa hai đỉnh cùng giá trị $108$.
-
-**Kiểm tra lại.** Trung điểm $(22,16)$ của cạnh tối ưu: $22+32=54$, $z=44+64=108$, và $16\le20$.
-:::
-
-### Bài tập 07.20. Trọng số trộn dữ liệu và điểm cực biên
-
-Mức độ: nhận biết (câu (a)–(c)) và tính toán (câu (d)), vận dụng vào AI. LLO18; CLO1. Bài dùng Định lý 07.15, Hệ quả 07.16 và Hệ quả 07.24.
-
-::: exercise Bài tập 07.20 (Trọng số trộn dữ liệu và điểm cực biên)
-Một nhóm huấn luyện mô hình ngôn ngữ trộn ba nguồn dữ liệu: nguồn 1 là văn bản web đã lọc, nguồn 2 là sách và bài báo khoa học, nguồn 3 là dữ liệu tổng hợp do một mô hình khác sinh ra. Trọng số $p_j$ là tỉ lệ của nguồn $j$ trong tập huấn luyện, với $p_j\ge0$ và $p_1+p_2+p_3=1$. Dữ liệu tổng hợp chiếm không quá $0{,}2$, tức $p_3\le0{,}2$. Thêm biến bù $s\ge0$ cho giới hạn này, được hệ dạng chuẩn với biến $(p_1,p_2,p_3,s)$:
-
-$$
-\begin{aligned}
-p_1+p_2+p_3&=1,\\
-p_3+s&=0{,}2,\\
-p_1,p_2,p_3,s&\ge0 .
-\end{aligned}
-$$
-
-- (a) Viết ma trận $A$, vế phải $b$, nêu $m$, $n$ và kiểm tra $\operatorname{rank}(A)=m$.
-- (b) Với mỗi điểm $q^{(1)}=(0{,}8;\,0;\,0{,}2;\,0)$, $q^{(2)}=(0{,}5;\,0{,}5;\,0;\,0{,}2)$, $q^{(3)}=(1;\,0;\,0;\,0{,}2)$, kiểm tra tính khả thi, rồi xác định điểm đó có là điểm cực biên hay không bằng khẳng định (iii) của Định lý 07.15. Với điểm không phải điểm cực biên, viết nó thành trung điểm của hai điểm khả thi khác nhau.
-- (c) Tính nghiệm cơ sở ứng với cơ sở gồm hai biến $p_3$, $s$, và giải thích vì sao nó không khả thi.
-- (d) Liệt kê mọi nghiệm cơ sở khả thi. Giả sử điểm đánh giá của mô hình sau huấn luyện xấp xỉ tuyến tính theo trọng số, bằng $3p_1+4p_2+6p_3$ (số liệu sư phạm). Dùng Hệ quả 07.24 để tìm trọng số trộn tối ưu.
-:::
-
-::: hint Gợi ý Bài tập 07.20
-Cột của $A$ là $A_1=A_2=(1,0)^T$, $A_3=(1,1)^T$, $A_4=(0,1)^T$. Ở (b), ba vector trong $\mathbb R^2$ luôn phụ thuộc tuyến tính. Ở (d), có $\binom42=6$ cách chọn cơ sở.
+::: hint Gợi ý 2
+Tính các tỉ số cho từng biến vào có thể chọn; chú ý các trường hợp tỉ số bằng nhau.
 :::
 
 ::: solution Lời giải Bài tập 07.20
-**Câu (a).**
+**Câu (a).** Hai biến có hệ số dương trong $z$ là $x_2$ (hệ số $2$) và $x_5$ (hệ số $3$).
 
-$$
-A=\begin{bmatrix}1&1&1&0\\0&0&1&1\end{bmatrix},\qquad b=\begin{bmatrix}1\\0{,}2\end{bmatrix},
-$$
+- Với $x_2$ vào: cả ba biến cơ sở giảm, với tỉ số $x_6$: $\tfrac42=2$, $x_4$: $\tfrac21=2$, $x_1$: $\tfrac62=3$. Cực tiểu $2$ đạt tại $x_6$ và $x_4$.
+- Với $x_5$ vào: $x_6$ tăng; $x_4$ và $x_1$ giảm, với tỉ số $x_4$: $\tfrac21=2$, $x_1$: $\tfrac63=2$. Cực tiểu $2$ đạt tại $x_4$ và $x_1$.
 
-với $m=2$ phương trình và $n=4$ biến. Hai cột $A_3=(1,1)^T$ và $A_4=(0,1)^T$ có định thức $1\cdot1-0\cdot1=1\ne0$, nên $\operatorname{rank}(A)=2=m$.
+Bốn cặp là $(x_2,x_6)$, $(x_2,x_4)$, $(x_5,x_4)$, $(x_5,x_1)$. Mỗi cực tiểu đạt tại hai biến, nên sau bước xoay biến cơ sở còn lại trong hai biến đó bằng $0$: nghiệm mới suy biến.
 
-**Câu (b).**
+**Câu (b).** Quy tắc Dantzig chọn $x_5$ (hệ số $3>2$), nên hai cặp là $(x_5,x_4)$ và $(x_5,x_1)$.
 
-- $q^{(1)}$: $0{,}8+0+0{,}2=1$ và $0{,}2+0=0{,}2$, khả thi. $\operatorname{supp}(q^{(1)})=\{1,3\}$; hai cột $A_1=(1,0)^T$, $A_3=(1,1)^T$ có định thức $1\ne0$, nên độc lập. Theo Định lý 07.15, $q^{(1)}$ là điểm cực biên, và là nghiệm cơ sở khả thi của cơ sở $\{p_1,p_3\}$.
-- $q^{(2)}$: $0{,}5+0{,}5+0=1$ và $0+0{,}2=0{,}2$, khả thi. $\operatorname{supp}(q^{(2)})=\{1,2,4\}$ gồm ba cột trong $\mathbb R^2$, phụ thuộc tuyến tính (ở đây $A_1=A_2$). Vậy $q^{(2)}$ không phải điểm cực biên; cũng theo Hệ quả 07.16, nó có ba thành phần dương, nhiều hơn $m=2$. Cụ thể, $q^{(2)}=\tfrac12(1;\,0;\,0;\,0{,}2)+\tfrac12(0;\,1;\,0;\,0{,}2)$, và hai điểm này đều khả thi.
-- $q^{(3)}$: $1+0+0=1$ và $0+0{,}2=0{,}2$, khả thi. $\operatorname{supp}(q^{(3)})=\{1,4\}$; hai cột $A_1=(1,0)^T$, $A_4=(0,1)^T$ độc lập. Vậy $q^{(3)}$ là điểm cực biên.
+**Câu (c).** Quy tắc Bland chọn biến vào có chỉ số nhỏ nhất trong $\{x_2,x_5\}$, tức $x_2$, rồi biến ra có chỉ số nhỏ nhất trong $\{x_6,x_4\}$, tức $x_4$. Cặp duy nhất là $(x_2,x_4)$.
 
-**Câu (c).** Đặt $p_1=p_2=0$. Phương trình thứ nhất cho $p_3=1$, phương trình thứ hai cho $s=0{,}2-1=-0{,}8<0$. Ma trận $A_B=\begin{bmatrix}1&0\\1&1\end{bmatrix}$ có định thức $1$, nên đây là nghiệm cơ sở, nhưng không khả thi: tập huấn luyện chỉ gồm dữ liệu tổng hợp vượt giới hạn $0{,}2$.
-
-**Câu (d).** Mọi định thức khác $0$ dưới đây đều bằng $1$.
-
-| Cơ sở | $\det(A_B)$ | Nghiệm cơ sở $(p_1,p_2,p_3,s)$ | Khả thi | $3p_1+4p_2+6p_3$ |
-|---|---:|---|---|---:|
-| $p_1,p_2$ | $0$ | không có | | |
-| $p_1,p_3$ | $1$ | $(0{,}8;\,0;\,0{,}2;\,0)$ | có | $3{,}6$ |
-| $p_1,s$ | $1$ | $(1;\,0;\,0;\,0{,}2)$ | có | $3$ |
-| $p_2,p_3$ | $1$ | $(0;\,0{,}8;\,0{,}2;\,0)$ | có | $4{,}4$ |
-| $p_2,s$ | $1$ | $(0;\,1;\,0;\,0{,}2)$ | có | $4$ |
-| $p_3,s$ | $1$ | $(0;\,0;\,1;\,-0{,}8)$ | không | |
-
-Giả thiết của Hệ quả 07.24 thỏa: bài toán ở dạng chuẩn với $\operatorname{rank}(A)=2$, khả thi (chứa $q^{(1)}$), và bị chặn vì $0\le p_j\le1$, $0\le s\le0{,}2$, nên giá trị tối ưu hữu hạn. Do đó $z^*=4{,}4$, đạt tại $p=(0;\,0{,}8;\,0{,}2)$: dùng hết giới hạn dữ liệu tổng hợp, phần còn lại dành cho nguồn 2, không dùng nguồn 1.
-
-Kết luận này phụ thuộc giả thiết điểm đánh giá tuyến tính theo trọng số. Khi lợi ích của mỗi nguồn giảm dần theo tỉ lệ của nó, mục tiêu không còn tuyến tính và Hệ quả 07.24 không áp dụng. Nghiệm tối ưu có hai thành phần dương, bằng $m$, đúng với Hệ quả 07.16; với $100$ nguồn và cùng hai phương trình, một nghiệm đỉnh vẫn có nhiều nhất hai thành phần dương, tính cả biến bù.
-
-**Kiểm tra lại.** Cận trực tiếp: $3p_1+4p_2+6p_3\le4(p_1+p_2+p_3)+2p_3\le4+2\cdot0{,}2=4{,}4$, dùng $3p_1\le4p_1$ và $p_3\le0{,}2$. Dấu bằng cần $p_1=0$ và $p_3=0{,}2$, tức đúng điểm $(0;\,0{,}8;\,0{,}2)$.
+**Kiểm tra lại.** Với cặp $(x_2,x_4)$, đặt $x_2=2$, $x_3=x_5=0$: $x_6=0$, $x_4=0$, $x_1=2$, và $z=9$. Với cặp $(x_5,x_4)$, đặt $x_5=2$, $x_2=x_3=0$: $x_6=6$, $x_4=0$, $x_1=0$, và $z=11$.
 :::
 
-### Bài tập 07.21. Phân bổ giờ gán nhãn dữ liệu
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 6; nêu các đặc điểm làm cho phương trình Bellman của quy hoạch động áp dụng được.
 
-Mức độ: tính toán, vận dụng vào AI. LLO17, LLO18; CLO1. Bài dùng Định lý 07.13 (tiêu chuẩn hạng) và cách chứng nhận cận trên bằng tổ hợp không âm của Ví dụ 07.5.
-
-::: exercise Bài tập 07.21 (Phân bổ giờ gán nhãn dữ liệu)
-Một nhóm chuẩn bị dữ liệu huấn luyện cho một mô hình phân loại ảnh thuê hai hình thức gán nhãn trong một tuần: chuyên gia và cộng tác viên. Nhãn dùng được là nhãn đã qua khâu kiểm duyệt. Năng lực kiểm duyệt chỉ đủ cho nhãn của tối đa $12$ giờ cộng tác viên; chuyên gia nhận tối đa $8$ giờ.
-
-| Dữ kiện | Chuyên gia | Cộng tác viên | Giới hạn chung |
-|---|---:|---:|---:|
-| Nhãn dùng được mỗi giờ | $40$ | $50$ | |
-| Chi phí mỗi giờ (trăm nghìn đồng) | $4$ | $2$ | $40$ |
-| Số giờ tối đa | $8$ | $12$ | |
-
-- (a) Nêu biến quyết định và đơn vị, hàm mục tiêu, các ràng buộc và miền biến; viết bài toán ở dạng (1.1) với $c$, $A$, $b$ cụ thể.
-- (b) Xác định năm đỉnh của miền khả thi bằng tiêu chuẩn hạng của Định lý 07.13, nêu các ràng buộc hoạt động tại mỗi đỉnh, và tính số nhãn dùng được tại mỗi đỉnh.
-- (c) Tìm các hệ số không âm như ở Ví dụ 07.5 để chứng minh một cận trên của số nhãn; chứng minh nghiệm tối ưu là duy nhất.
-- (d) Ngân sách tăng từ $40$ lên $42$. Dùng cùng các hệ số để tính cận trên mới, rồi tìm điểm khả thi đạt cận đó.
+::: exercise Bài tập 07.21 (Đặc điểm của bài toán giải được bằng quy hoạch động; Kupferschmid, Bài 7.10.48, tr. 288)
+Nêu các đặc điểm mà một bài toán tối ưu cần có để giải được bằng quy hoạch động.
 :::
 
-::: hint Gợi ý Bài tập 07.21
-Ở (b), đường ngân sách $4x_1+2x_2=40$ cắt hai trục tại $(10,0)$ và $(0,20)$; mỗi giao điểm này vi phạm một giới hạn số giờ. Ở (c), viết $40x_1+50x_2=\mu_1(4x_1+2x_2)+\mu_3x_2$ với chỉ số hệ số theo hàng của $A$, rồi so hệ số của $x_1$ trước.
+::: hint Gợi ý 1
+Xét bài toán đường đi ngắn nhất trên đồ thị tầng: các quyết định được chia thế nào, và thông tin nào đủ để tính phần chi phí còn lại.
+:::
+
+::: hint Gợi ý 2
+Với mỗi đặc điểm, xét phương trình Bellman còn viết được hay không khi đặc điểm đó không có.
 :::
 
 ::: solution Lời giải Bài tập 07.21
-**Câu (a).** $x_1$, $x_2$ là số giờ thuê chuyên gia và cộng tác viên trong tuần (giờ). Mục tiêu: cực đại số nhãn dùng được $40x_1+50x_2$. Ràng buộc:
+Bài toán cần các đặc điểm sau, tương ứng với các giả thiết (D1)–(D4) của Định lý 07.49:
 
-- ngân sách, tính bằng trăm nghìn đồng: $4x_1+2x_2\le40$;
-- số giờ tối đa, tính bằng giờ: $x_1\le8$, $x_2\le12$;
-- miền biến: $x_1,x_2\ge0$.
+- **chuỗi quyết định theo giai đoạn:** các biến quyết định được chọn lần lượt qua hữu hạn giai đoạn, mỗi giai đoạn chọn một điều khiển trong một tập hữu hạn (D1);
+- **trạng thái:** sau mỗi quyết định, một trạng thái xác định các lựa chọn còn lại, và trạng thái kế tiếp được tính từ trạng thái và điều khiển hiện tại, $\xi_{k+1}=f_k(\xi_k,u_k)$ (D2);
+- **mục tiêu tách được:** mục tiêu là tổng các đóng góp của từng giai đoạn cộng một đóng góp cuối (D3); Kupferschmid (§7.8.2, tr. 279) gọi mục tiêu như vậy là tách được (separable), tức tính được theo giai đoạn, mỗi giai đoạn chỉ chứa một biến;
+- **trạng thái đủ:** đóng góp và tập điều khiển của các giai đoạn sau chỉ phụ thuộc trạng thái hiện tại, không phụ thuộc cách đi tới trạng thái đó (D4).
 
-Dạng (1.1) có
+Khi đủ bốn đặc điểm, Định lý 07.49 cho phương trình Bellman (9.3), và Thuật toán 07.52 tính $J_k$ từ cuối về đầu. Khi (D4) không thỏa, mở rộng trạng thái theo Nhận xét 07.47. Để bảng $J_k$ lưu được, số trạng thái mỗi giai đoạn còn phải đủ nhỏ (Nhận xét 07.55).
 
-$$
-c=\begin{bmatrix}40\\50\end{bmatrix},\qquad A=\begin{bmatrix}4&2\\1&0\\0&1\end{bmatrix},\qquad b=\begin{bmatrix}40\\8\\12\end{bmatrix}.
-$$
-
-**Câu (b).** Miền có năm đường biên: $4x_1+2x_2=40$, $x_1=8$, $x_2=12$, $x_1=0$, $x_2=0$. Trong mười cặp đường, hai cặp song song ($x_1=0$ với $x_1=8$, $x_2=0$ với $x_2=12$). Tám cặp còn lại có hai hàng độc lập, nên mỗi cặp cho đúng một giao điểm; theo Định lý 07.13, giao điểm là đỉnh khi và chỉ khi nó khả thi.
-
-| Đỉnh | Ràng buộc hoạt động | Số nhãn $40x_1+50x_2$ |
-|---|---|---:|
-| $(0,0)$ | $x_1=0$, $x_2=0$ | $0$ |
-| $(8,0)$ | $x_1=8$, $x_2=0$ | $320$ |
-| $(8,4)$ | $x_1=8$, ngân sách | $320+200=520$ |
-| $(4,12)$ | ngân sách, $x_2=12$ | $160+600=760$ |
-| $(0,12)$ | $x_1=0$, $x_2=12$ | $600$ |
-
-Ba giao điểm còn lại không khả thi: $(10,0)$ vi phạm $x_1\le8$, $(0,20)$ vi phạm $x_2\le12$, và $(8,12)$ dùng $32+24=56>40$ trăm nghìn đồng.
-
-**Câu (c).** So hệ số trong $40x_1+50x_2=\mu_1(4x_1+2x_2)+\mu_3x_2$:
-
-- hệ số của $x_1$: $4\mu_1=40$, nên $\mu_1=10$;
-- hệ số của $x_2$: $2\mu_1+\mu_3=50$, nên $\mu_3=30$.
-
-Hai hệ số không âm, nên với mọi phương án khả thi
-
-$$
-\begin{aligned}
-40x_1+50x_2&=10(4x_1+2x_2)+30x_2\\
-&\le10\cdot40+30\cdot12\\
-&=760 .
-\end{aligned}
-$$
-
-Vì $\mu_1>0$ và $\mu_3>0$, dấu bằng xảy ra khi và chỉ khi $4x_1+2x_2=40$ và $x_2=12$, tức $x=(4,12)$. Điểm này khả thi ($4\le8$), nên nó là nghiệm tối ưu duy nhất với $z^*=760$: thuê $4$ giờ chuyên gia và $12$ giờ cộng tác viên.
-
-**Câu (d).** Các hệ số $\mu_1=10$, $\mu_3=30$ chỉ phụ thuộc $c$ và các hàng của $A$, nên vẫn dùng được. Cận mới là $10\cdot42+30\cdot12=780$. Dấu bằng cần $4x_1+2x_2=42$ và $x_2=12$, tức $x_1=4{,}5\le8$; điểm $(4{,}5;\,12)$ khả thi và cho $40\cdot4{,}5+50\cdot12=180+600=780$. Vậy mỗi trăm nghìn đồng ngân sách thêm cho $\mu_1=10$ nhãn dùng được, chừng nào giao điểm của hai ràng buộc hoạt động còn khả thi, tức $0\le x_1=\tfrac{\beta-24}4\le8$ với ngân sách $\beta$, hay $24\le\beta\le56$.
-
-**Kiểm tra lại.** Tại $(4,12)$: $16+24=40$, $4\le8$, $12\le12$. Hệ số $\mu_3=30$ cũng đo giá trị của năng lực kiểm duyệt: nâng giới hạn lên $x_2\le13$ cho giao điểm $4x_1=40-26$, tức $x_1=3{,}5$, và số nhãn $140+650=790=760+30$. Trong bài toán này, nâng năng lực kiểm duyệt thêm một giờ cộng tác viên đem lại $30$ nhãn, bằng mức tăng do ba trăm nghìn đồng ngân sách thêm.
+**Kiểm tra lại.** Bài toán cực đại $x_1+x_2$ theo $x_1,x_2\in\{0,1\}$ dưới $x_1+x_2\le1$ có đủ bốn đặc điểm: giai đoạn $k$ chọn $x_{k+1}$, trạng thái là ngân sách còn lại, $\xi_0=1$. Với $\Lambda_k=-J_k$ là lợi ích tối ưu còn lại, $\Lambda_1(1)=1$, $\Lambda_1(0)=0$ và $\Lambda_0(1)=\max\{0+\Lambda_1(1),\ 1+\Lambda_1(0)\}=1$, bằng giá trị lớn nhất tìm bằng liệt kê bốn điểm.
 :::
 
-## Phương pháp đơn hình
+## Mức tính toán hoặc chứng minh
 
-### Bài tập 07.8. Bảng đơn hình của bài toán hộp hạt với lợi ích mới
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 2, 3; nhận biết đa diện, viết nó bằng hữu hạn bất phương trình và phương trình tuyến tính.
 
-Mức độ: tính toán. LLO19; CLO1, CLO2. Trùng trang chiếu [Bài tập: phương pháp đơn hình, lợi ích mới](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/5/16) và [trang lời giải](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/5/17): câu (a)–(c).
+::: exercise Bài tập 07.22 (Bốn tập và đa diện; Boyd và Vandenberghe, Bài 2.8, tr. 60)
+Một đa diện là tập nghiệm của hữu hạn bất phương trình và phương trình tuyến tính, tức tập có dạng $\{x\mid A'x\le b',\ A''x=b''\}$. Ký hiệu $\mathbf 1$ là vector có mọi thành phần bằng $1$. Xác định tập $S$ nào dưới đây là đa diện; với mỗi tập là đa diện, viết $S$ ở dạng trên.
 
-::: exercise Bài tập 07.8 (Bảng đơn hình của bài toán hộp hạt với lợi ích mới)
-Miền khả thi $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x\ge0$; mục tiêu mới: cực đại $z=2x_1+4x_2$. Dạng chuẩn dùng biến bù $s_1,s_2,s_3$, thứ tự cột $(x_1,x_2,s_1,s_2,s_3)$.
-
-- (a) Chạy phương pháp đơn hình trên bảng đơn hình từ $(0,0)$, với biến vào có chi phí rút gọn lớn nhất. Ghi các bảng đơn hình, rồi tóm tắt các bước trong một bảng gồm cơ sở, đỉnh, $z$, chi phí rút gọn ngoài cơ sở, biến vào, các tỉ số và biến ra.
-- (b) Đọc chi phí rút gọn ở bảng dừng và kết luận về tính tối ưu.
-- (c) Ở bảng dừng có một chi phí rút gọn bằng $0$. Cho biến đó vào, thực hiện phép thử tỉ số và bước xoay; dùng Mệnh đề 07.33(a) để xác định toàn bộ tập nghiệm tối ưu.
+- **(a)** $S=\{\rho_1g_1+\rho_2g_2\mid -1\le\rho_1\le1,\ -1\le\rho_2\le1\}$, với $g_1,g_2\in\mathbb R^n$.
+- **(b)** $S=\{x\in\mathbb R^n\mid x\ge0,\ \mathbf 1^Tx=1,\ \sum_{i=1}^nx_i\alpha_i=\beta_1,\ \sum_{i=1}^nx_i\alpha_i^2=\beta_2\}$, với $\alpha_1,\ldots,\alpha_n\in\mathbb R$ và $\beta_1,\beta_2\in\mathbb R$.
+- **(c)** $S=\{x\in\mathbb R^n\mid x\ge0,\ x^Ty\le1$ với mọi $y$ có $\lVert y\rVert_2=1\}$.
+- **(d)** $S=\{x\in\mathbb R^n\mid x\ge0,\ x^Ty\le1$ với mọi $y$ có $\sum_{i=1}^n\lvert y_i\rvert=1\}$.
 :::
 
-::: hint Gợi ý Bài tập 07.8
-Chi phí rút gọn bằng $0$ nghĩa là $z$ không đổi dọc hướng cơ sở tương ứng. Ở (c), viết $z$ theo hai biến ngoài cơ sở của bảng dừng.
+::: hint Gợi ý 1
+Ở (a), viết $S$ là ảnh của hình vuông $[-1,1]^2$ qua ánh xạ $\rho\mapsto G\rho$ với $G=[g_1\ g_2]$, và xét theo hạng của $G$. Ở (c) và (d), với $x$ cố định, tính giá trị lớn nhất của $x^Ty$ trên tập các $y$ đã cho, rồi viết điều kiện của tập thành một điều kiện trên $x$.
 :::
 
-::: solution Lời giải Bài tập 07.8
-**Câu (a).** Bảng đầu là $[A\mid b]$ với hàng cuối $(2,4,0,0,0\mid0)$.
-
-| Bước | Cơ sở | Đỉnh | $z$ | $\bar c$ ngoài cơ sở | Vào | Tỉ số | Ra |
-|---|---|---|---:|---|---|---|---|
-| $0$ | $\{s_1,s_2,s_3\}$ | $(0,0)$ | $0$ | $x_1$: $2$; $x_2$: $4$ | $x_2$ | $s_2$: $20$; $s_3$: $27$ | $s_2$ |
-| $1$ | $\{s_1,x_2,s_3\}$ | $(0,20)$ | $80$ | $x_1$: $2$; $s_2$: $-4$ | $x_1$ | $s_1$: $30$; $s_3$: $14$ | $s_3$ |
-| $2$ | $\{x_1,x_2,s_1\}$ | $(14,20)$ | $108$ | $s_2$: $0$; $s_3$: $-2$ | dừng | | |
-
-Bước xoay thứ nhất ($x_2$ vào, $s_2$ ra) dùng phần tử xoay $1$ ở hàng $s_2$, cột $x_2$: hàng $s_3$ trừ $2$ lần hàng đó và hàng cuối trừ $4$ lần, được Bảng 1:
-
-| Cơ sở | $x_1$ | $x_2$ | $s_1$ | $s_2$ | $s_3$ | vế phải |
-|---|---:|---:|---:|---:|---:|---:|
-| $s_1$ | $1$ | $0$ | $1$ | $0$ | $0$ | $30$ |
-| $x_2$ | $0$ | $1$ | $0$ | $1$ | $0$ | $20$ |
-| $s_3$ | $1$ | $0$ | $0$ | $-2$ | $1$ | $14$ |
-| $\bar c$ và $-z$ | $2$ | $0$ | $0$ | $-4$ | $0$ | $-80$ |
-
-Bước xoay thứ hai ($x_1$ vào, $s_3$ ra) dùng phần tử xoay $1$ ở hàng $s_3$, cột $x_1$: hàng $s_1$ trừ $1$ lần hàng đó và hàng cuối trừ $2$ lần, được bảng dừng:
-
-| Cơ sở | $x_1$ | $x_2$ | $s_1$ | $s_2$ | $s_3$ | vế phải |
-|---|---:|---:|---:|---:|---:|---:|
-| $s_1$ | $0$ | $0$ | $1$ | $2$ | $-1$ | $16$ |
-| $x_2$ | $0$ | $1$ | $0$ | $1$ | $0$ | $20$ |
-| $x_1$ | $1$ | $0$ | $0$ | $-2$ | $1$ | $14$ |
-| $\bar c$ và $-z$ | $0$ | $0$ | $0$ | $0$ | $-2$ | $-108$ |
-
-**Câu (b).** Hai chi phí rút gọn ngoài cơ sở là $\bar c_{s_2}=0$ và $\bar c_{s_3}=-2$, đều không dương, nên theo Mệnh đề 07.33(b), $(14,20)$ tối ưu với $z^*=108$.
-
-**Câu (c).** Cho $s_2$ vào. Cột $s_2$ dương ở hàng $s_1$ (hệ số $2$) và hàng $x_2$ (hệ số $1$), với tỉ số $\tfrac{16}2=8$ và $\tfrac{20}1=20$, nên $\theta^*=8$ và $s_1$ ra. Điểm mới: $x_1=14+2\cdot8=30$, $x_2=20-8=12$, $s_2=8$, và $z=108+0\cdot8=108$. Cơ sở mới $\{x_1,x_2,s_2\}$ có $\bar c_{s_1}=0$, $\bar c_{s_3}=-2$, nên cũng tối ưu. Đây cũng là đỉnh dừng của quy tắc Bland, vốn đi $(0,0)\to(30,0)\to(30,12)$: với chi phí rút gọn bằng $0$ tại bước dừng, hai quy tắc dừng ở hai đỉnh khác nhau của cùng cạnh tối ưu.
-
-Theo Mệnh đề 07.33(a) tại bảng dừng, với mọi $x'\in P$,
-
-$$
-z(x')-108=0\cdot s_2'-2s_3' .
-$$
-
-Vậy $x'$ tối ưu khi và chỉ khi $s_3'=0$, tức $x_1+2x_2=54$. Trên đường đó, $x_2\le20$ cho $x_1\ge14$ và $x_1\le30$, nên tập nghiệm tối ưu là cạnh $\{x\mid x_1+2x_2=54,\ 14\le x_1\le30\}$ nối $(14,20)$ và $(30,12)$.
-
-**Kiểm tra lại.** $2\cdot30+4\cdot12=108$ và $2\cdot14+4\cdot20=108$. Kết quả khớp câu (a) của Bài tập 07.7, nơi tập nghiệm tối ưu được tìm bằng phép so sánh $2x_1+4x_2=2(x_1+2x_2)\le108$.
-:::
-
-### Bài tập 07.9. Phương pháp đơn hình trên đa giác của Bài tập 07.6
-
-Mức độ: tính toán. LLO19; CLO1, CLO2. Bài dùng lại đa giác của Bài tập 07.6.
-
-::: exercise Bài tập 07.9 (Phương pháp đơn hình trên đa giác của Bài tập 07.6)
-Xét bài toán cực đại $x_1+x_2$ dưới $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x_1,x_2\ge0$, với biến bù $s_1$, $s_2$ và thứ tự cột $(x_1,x_2,s_1,s_2)$.
-
-- (a) Chạy phương pháp đơn hình dạng bảng từ $(0,0)$ với quy tắc Bland; ghi mọi bảng.
-- (b) Đọc nghiệm tối ưu, giá trị tối ưu và hai chi phí rút gọn $\bar c_{s_1}$, $\bar c_{s_2}$ ở bảng cuối. Kiểm tra lại hai chi phí rút gọn bằng (5.1)–(5.2) tại $(1{,}6;\,1{,}2)$ với cơ sở $\{x_1,x_2\}$.
-- (c) Chạy lại với $x_2$ vào ở bước đầu; so sánh số bước xoay và đường đi.
-:::
-
-::: hint Gợi ý Bài tập 07.9
-Bảng đầu là $[A\mid b]$ vì cơ sở gồm hai biến bù. Ở (b), $A_B=\begin{bmatrix}1&2\\3&1\end{bmatrix}$ và hướng $d^{s_1}$ có $d_B=-A_B^{-1}(1,0)^T$.
-:::
-
-::: solution Lời giải Bài tập 07.9
-**Câu (a).** Bảng 0 có hàng $s_1$: $(1,2,1,0\mid4)$, hàng $s_2$: $(3,1,0,1\mid6)$, hàng cuối $(1,1,0,0\mid0)$. Theo quy tắc Bland, $x_1$ vào; tỉ số $s_1$: $4$, $s_2$: $\tfrac63=2$, nên $s_2$ ra với phần tử xoay $3$.
-
-Bảng 1: chia hàng $s_2$ cho $3$ được hàng $x_1$: $(1,\tfrac13,0,\tfrac13\mid2)$; hàng $s_1$ trừ hàng đó được $(0,\tfrac53,1,-\tfrac13\mid2)$; hàng cuối trừ hàng đó được $(0,\tfrac23,0,-\tfrac13\mid-2)$. Đỉnh $(2,0)$, $z=2$.
-
-Chỉ $\bar c_{x_2}=\tfrac23$ dương, nên $x_2$ vào; tỉ số $s_1$: $2/\tfrac53=\tfrac65$, $x_1$: $2/\tfrac13=6$, nên $s_1$ ra với phần tử xoay $\tfrac53$.
-
-| Cơ sở | $x_1$ | $x_2$ | $s_1$ | $s_2$ | vế phải |
-|---|---:|---:|---:|---:|---:|
-| $x_2$ | $0$ | $1$ | $\tfrac35$ | $-\tfrac15$ | $\tfrac65$ |
-| $x_1$ | $1$ | $0$ | $-\tfrac15$ | $\tfrac25$ | $\tfrac85$ |
-| $\bar c$ và $-z$ | $0$ | $0$ | $-\tfrac25$ | $-\tfrac15$ | $-\tfrac{14}5$ |
-
-Bảng 2 thu được bằng cách chia hàng $s_1$ cho $\tfrac53$, rồi trừ $\tfrac13$ lần hàng mới khỏi hàng $x_1$ và $\tfrac23$ lần khỏi hàng cuối.
-
-**Câu (b).** Hàng cuối không có phần tử dương, nên $(x_1,x_2)=(\tfrac85,\tfrac65)=(1{,}6;\,1{,}2)$ tối ưu với $z^*=\tfrac{14}5=2{,}8$, và $\bar c_{s_1}=-\tfrac25$, $\bar c_{s_2}=-\tfrac15$.
-
-Kiểm tra bằng (5.1)–(5.2): $A_B=\begin{bmatrix}1&2\\3&1\end{bmatrix}$ có định thức $1-6=-5$.
-
-- Hướng $d^{s_1}$: giải $A_Bd_B=-(1,0)^T$, tức $d_1+2d_2=-1$, $3d_1+d_2=0$, được $d_B=(\tfrac15,-\tfrac35)$; $\bar c_{s_1}=\tfrac15-\tfrac35=-\tfrac25$.
-- Hướng $d^{s_2}$: giải $A_Bd_B=-(0,1)^T$, tức $d_1+2d_2=0$, $3d_1+d_2=-1$, được $d_B=(-\tfrac25,\tfrac15)$; $\bar c_{s_2}=-\tfrac25+\tfrac15=-\tfrac15$.
-
-Hai số $-\bar c_{s_1}=\tfrac25$ và $-\bar c_{s_2}=\tfrac15$ là hai hệ số nhân $\mu_1$, $\mu_2$ ở câu (b) của Bài tập 07.6: $x_1+x_2=\tfrac25(x_1+2x_2)+\tfrac15(3x_1+x_2)\le\tfrac25\cdot4+\tfrac15\cdot6=2{,}8$.
-
-**Câu (c).** Với $x_2$ vào trước: tỉ số $s_1$: $\tfrac42=2$, $s_2$: $6$, nên $s_1$ ra; đỉnh $(0,2)$, $z=2$, và hàng cuối thành $(\tfrac12,0,-\tfrac12,0\mid-2)$. Khi đó $x_1$ vào; tỉ số $x_2$: $2/\tfrac12=4$, $s_2$: $4/\tfrac52=\tfrac85$, nên $s_2$ ra, tới $(1{,}6;\,1{,}2)$. Cả hai đường cần hai bước xoay; chúng là hai đường đi qua đỉnh kề của câu (c) trong Bài tập 07.6.
-
-**Kiểm tra lại.** Tại $(1{,}6;\,1{,}2)$: $1{,}6+2{,}4=4$ và $4{,}8+1{,}2=6$. Hướng $d^{s_1}=(\tfrac15,-\tfrac35,1,0)$ thỏa $\tfrac15-\tfrac65+1=0$ và $\tfrac35-\tfrac35=0$.
-:::
-
-### Bài tập 07.10. Phát hiện mục tiêu không bị chặn
-
-Mức độ: tính toán. LLO19; CLO1, CLO2.
-
-::: exercise Bài tập 07.10 (Phát hiện mục tiêu không bị chặn)
-Một biến thể của bài toán hộp hạt bỏ giới hạn sản lượng loại 1 và giới hạn giờ máy, giữ $x_2\le20$ và thêm yêu cầu sản lượng loại 2 không vượt sản lượng loại 1 quá $6$ nghìn hộp: cực đại $z=2x_1+3x_2$ dưới $x_2\le20$, $-x_1+x_2\le6$, $x_1,x_2\ge0$.
-
-- (a) Viết dạng chuẩn với biến bù $s_1$, $s_2$, thứ tự $(x_1,x_2,s_1,s_2)$.
-- (b) Chạy phương pháp đơn hình từ $(0,0)$ với biến vào có chi phí rút gọn lớn nhất, đến khi thuật toán dừng. Nêu lý do dừng và tia làm $z$ tăng không bị chặn.
-- (c) Chạy lại với quy tắc Bland và so sánh với (b).
-- (d) Giới hạn nào của mô hình hộp hạt ban đầu, nếu được thêm lại, làm bài toán bị chặn.
-:::
-
-::: hint Gợi ý Bài tập 07.10
-Ở mỗi bước, viết các biến cơ sở theo các biến ngoài cơ sở và xem cột của biến vào có hệ số nào làm một biến cơ sở giảm hay không.
-:::
-
-::: solution Lời giải Bài tập 07.10
-**Câu (a).** $x_2+s_1=20$, $-x_1+x_2+s_2=6$, mọi biến không âm; cơ sở xuất phát $\{s_1,s_2\}$ khả thi vì vế phải không âm.
-
-**Câu (b).**
-
-- Bước 0, tại $(0,0)$: $\bar c_{x_1}=2$, $\bar c_{x_2}=3$; $x_2$ vào. Tỉ số $s_1$: $20$, $s_2$: $6$, nên $s_2$ ra. Đỉnh $(0,6)$, $z=18$.
-- Bước 1: $x_2=6+x_1-s_2$, $s_1=14-x_1+s_2$, nên $z=2x_1+3(6+x_1-s_2)=18+5x_1-3s_2$. $x_1$ vào ($\bar c_{x_1}=5$); dọc $d^{x_1}$, $x_2$ tăng và $s_1$ giảm, tỉ số $s_1$: $14$. Đỉnh $(14,20)$, $z=88$.
-- Bước 2: $x_2=20-s_1$, $x_1=x_2-6+s_2=14-s_1+s_2$, nên $z=2(14-s_1+s_2)+3(20-s_1)=88-5s_1+2s_2$. $s_2$ vào ($\bar c_{s_2}=2$); $d^{s_2}$ có $d_{x_1}=1$, $d_{x_2}=0$, đều không âm.
-
-Theo Mệnh đề 07.34(a), bài toán không bị chặn: dọc tia $(x_1,x_2)=(14+\theta,20)$, $\theta\ge0$, mục tiêu là $z=88+2\theta$.
-
-**Câu (c).** Theo quy tắc Bland, ở bước 0 $x_1$ vào vì có chỉ số nhỏ nhất với $\bar c_{x_1}=2>0$. Ta có $s_1=20-x_2$ không phụ thuộc $x_1$, và $s_2=6+x_1-x_2$ tăng theo $x_1$, nên $d^{x_1}_B\ge0$. Thuật toán dừng ngay trong lần lặp đầu, tại bước 4 của Thuật toán 07.2: bài toán không bị chặn dọc tia $(\theta,0)$, với $z=2\theta$. Hai quy tắc cho hai tia khác nhau và cùng một kết luận.
-
-**Câu (d).** Miền bị chặn khi mọi biến bị chặn, và $x_2\le20$ đã có. Thêm lại $x_1\le30$ thì miền nằm trong hộp $[0,30]\times[0,20]$; thêm lại giờ máy $x_1+2x_2\le54$ thì $x_1\le54$. Mỗi cách đều làm miền bị chặn và khác rỗng, nên theo Định lý 07.26 bài toán có nghiệm tối ưu.
-
-**Kiểm tra lại.** Trên tia $(14+\theta,20)$: $x_2=20\le20$ và $-(14+\theta)+20=6-\theta\le6$. Trên tia $(\theta,0)$: $0\le20$ và $-\theta\le6$.
-:::
-
-### Bài tập 07.11. Đỉnh suy biến: quy tắc Dantzig, quy tắc Bland và bước xoay với $\theta^*=0$
-
-Mức độ: tính toán và chứng minh. LLO20; CLO2.
-
-::: exercise Bài tập 07.11 (Đỉnh suy biến: quy tắc Dantzig, quy tắc Bland và bước xoay với $\theta^*=0$)
-Đổi giới hạn giờ máy của bài toán hộp hạt thành $70$ giờ: cực đại $z=2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le70$, $x\ge0$. Dạng chuẩn dùng biến bù $s_1,s_2,s_3$, thứ tự $(x_1,x_2,s_1,s_2,s_3)$.
-
-- (a) Chứng minh $(30,20)$ là một đỉnh và nghiệm cơ sở khả thi tương ứng suy biến.
-- (b) Chạy phương pháp đơn hình từ $(0,0)$ với quy tắc Dantzig; khi tỉ số hòa, chọn biến ra có chỉ số nhỏ nhất. Đếm số bước xoay.
-- (c) Chạy lại với quy tắc Bland. Có bước xoay nào với $\theta^*=0$ không.
-- (d) Ở bước có tỉ số hòa trong (b), cho $s_3$ ra thay cho $s_1$. Tính chi phí rút gọn tại cơ sở thu được, giải thích vì sao Mệnh đề 07.33(b) chưa kết luận được, rồi thực hiện bước xoay tiếp theo.
-:::
-
-::: hint Gợi ý Bài tập 07.11
-Ở (a), đếm số ràng buộc hoạt động tại $(30,20)$ và số thành phần dương của nghiệm dạng chuẩn. Ở (d), một biến cơ sở bằng $0$ có thể làm phép thử tỉ số cho $\theta^*=0$.
-:::
-
-::: solution Lời giải Bài tập 07.11
-**Câu (a).** Tại $(30,20)$, ba ràng buộc $x_1\le30$, $x_2\le20$, $x_1+2x_2\le70$ cùng hoạt động: $30+40=70$. Hai hàng $(1,0)$, $(0,1)$ đã có hạng $2$, nên theo Định lý 07.13, $(30,20)$ là đỉnh. Ở dạng chuẩn, điểm là $(30,20,0,0,0)$ với hai thành phần dương, ít hơn $m=3$, nên mọi cơ sở của nó chứa một biến bù bằng $0$: nghiệm suy biến.
-
-**Câu (b).**
-
-- Bước 0, tại $(0,0)$: $x_2$ vào ($\bar c_{x_2}=3$); tỉ số $s_2$: $20$, $s_3$: $35$, nên $s_2$ ra. Đỉnh $(0,20)$, $z=60$.
-- Bước 1: $x_2=20-s_2$, $s_1=30-x_1$, $s_3=30-x_1+2s_2$, $z=60+2x_1-3s_2$. $x_1$ vào; tỉ số $s_1$: $30$, $s_3$: $30$ hòa; $s_1$ ra vì chỉ số nhỏ hơn. Điểm $(30,20)$, $z=120$, cơ sở $\{x_1,x_2,s_3\}$ với $s_3=0$.
-- Bước 2: $x_1=30-s_1$, $x_2=20-s_2$, nên $z=120-2s_1-3s_2$. Hai chi phí rút gọn âm: tối ưu.
-
-Thuật toán cần hai bước xoay và dừng tại $(30,20)$ với $z^*=120$.
-
-**Câu (c).** Theo quy tắc Bland, $x_1$ vào ở bước 0; tỉ số $s_1$: $30$, $s_3$: $70$, nên $s_1$ ra; đỉnh $(30,0)$, $z=60$. Khi đó $s_3=40+s_1-2x_2$ và $z=60-2s_1+3x_2$; $x_2$ vào, tỉ số $s_2$: $20$, $s_3$: $20$ hòa, $s_2$ ra vì chỉ số nhỏ hơn. Cơ sở $\{x_1,x_2,s_3\}$ cho $z=120-2s_1-3s_2$: tối ưu sau hai bước xoay. Cả hai đường đều không có bước nào với $\theta^*=0$.
-
-**Câu (d).** Nếu $s_3$ ra, cơ sở là $\{x_1,x_2,s_1\}$ với $s_1=0$. Giải theo biến cơ sở: $x_2=20-s_2$, $x_1=70-2x_2-s_3=30+2s_2-s_3$, $s_1=30-x_1=-2s_2+s_3$. Mục tiêu
-
-$$
-z=2(30+2s_2-s_3)+3(20-s_2)=120+s_2-2s_3,
-$$
-
-nên $\bar c_{s_2}=1>0$. Mệnh đề 07.33(b) không áp dụng được vì có một chi phí rút gọn dương, và phần (c) của mệnh đề cũng không áp dụng vì nghiệm suy biến. Cho $s_2$ vào: dọc $d^{s_2}$, $x_2$ giảm với tỉ số $20$ và $s_1$ giảm với tỉ số $\tfrac02=0$, nên $\theta^*=0$ và $s_1$ ra. Cơ sở mới $\{x_1,x_2,s_2\}$ cho $x_1=30-s_1$, $x_2=20+\tfrac12s_1-\tfrac12s_3$ và
-
-$$
-z=120-\tfrac12s_1-\tfrac32s_3,
-$$
-
-nên tối ưu. Điểm $(30,20)$ không đổi qua bước xoay: một đỉnh tối ưu suy biến có thể có một cơ sở với chi phí rút gọn dương.
-
-**Kiểm tra lại.** Trên miền, $2x_1+3x_2\le2\cdot30+3\cdot20=120$, nên $z^*=120$ đúng là giá trị tối ưu.
-:::
-
-### Bài tập 07.12. Pha I phát hiện bài toán không khả thi
-
-Mức độ: tính toán (câu (a)–(c)) và vận dụng vào AI (câu (d)). LLO19; CLO1, CLO2.
-
-::: exercise Bài tập 07.12 (Pha I phát hiện bài toán không khả thi)
-Bài toán hộp hạt có thêm hợp đồng buộc tổng sản lượng ít nhất $60$ nghìn hộp: cực đại $z=2x_1+3x_2$ dưới $x_1\le30$, $x_2\le20$, $x_1+2x_2\le54$, $x_1+x_2\ge60$, $x\ge0$.
-
-- (a) Viết dạng chuẩn với biến bù $s_1,s_2,s_3$, biến dư $s_4$ và một biến nhân tạo $\tilde s$; viết bài toán phụ của pha I.
-- (b) Chạy pha I bằng quy tắc Bland từ cơ sở $\{s_1,s_2,s_3,\tilde s\}$, thứ tự biến $(x_1,x_2,s_1,s_2,s_3,s_4,\tilde s)$.
-- (c) Kết luận bằng Mệnh đề 07.44, rồi kiểm tra kết luận bằng một cận trên của $x_1+x_2$ trên miền hộp hạt.
-- (d) Vận dụng vào AI. Một nhóm chia giờ GPU trong tuần giữa $x_1$ giờ tinh chỉnh mô hình và $x_2$ giờ sinh dữ liệu tổng hợp, với tổng giờ $x_1+x_2\le100$, năng lượng $3x_1+x_2\le180$ kWh, năng lực kiểm duyệt $x_2\le60$, $x\ge0$. Trưởng nhóm thêm yêu cầu ít nhất $70$ giờ tinh chỉnh. Viết bài toán phụ với biến bù $s_1,s_2,s_3$, biến dư $s_4$ và một biến nhân tạo, chạy pha I theo quy tắc Bland, kết luận, và dùng chi phí rút gọn ở bảng cuối để chỉ ra giới hạn nào mâu thuẫn với yêu cầu mới.
-:::
-
-::: hint Gợi ý Bài tập 07.12
-Ở (c), các chi phí rút gọn của $s_1$ và $s_3$ ở bảng cuối của pha I cho hai hệ số nhân của cận trên. Ở (d), một ràng buộc có biến bù nằm trong cơ sở ở bảng cuối không tham gia vào mâu thuẫn.
-:::
-
-::: solution Lời giải Bài tập 07.12
-**Câu (a).** $x_1+s_1=30$, $x_2+s_2=20$, $x_1+2x_2+s_3=54$, $x_1+x_2-s_4+\tilde s=60$, mọi biến không âm. Bài toán phụ: cực đại $\tilde z=-\tilde s$.
-
-**Câu (b).**
-
-- Bước 1: $\tilde s=60-x_1-x_2+s_4$, nên $\tilde z=-60+x_1+x_2-s_4$. $x_1$ vào; tỉ số $s_1$: $30$, $s_3$: $54$, $\tilde s$: $60$, nên $s_1$ ra. Điểm $(30,0)$, $\tilde s=30$, $\tilde z=-30$.
-- Bước 2: với $x_1=30-s_1$, $\tilde z=-30-s_1+x_2-s_4$. $x_2$ vào; tỉ số $s_2$: $20$, $s_3$: $\tfrac{24}2=12$, $\tilde s$: $30$, nên $s_3$ ra. Điểm $(30,12)$, $\tilde s=18$, $\tilde z=-18$.
-- Bước 3: với $x_2=12+\tfrac12s_1-\tfrac12s_3$, $\tilde s=60-x_1-x_2+s_4=18+\tfrac12s_1+\tfrac12s_3+s_4$, nên $\tilde z=-18-\tfrac12s_1-\tfrac12s_3-s_4$. Mọi chi phí rút gọn âm: pha I dừng với $\tilde z^*=-18$.
-
-**Câu (c).** $\tilde z^*=-18<0$, nên theo Mệnh đề 07.44(b), bài toán gốc không khả thi. Kiểm tra trực tiếp: với hai hệ số $\tfrac12$, $\tfrac12$ đọc từ chi phí rút gọn của $s_1$ và $s_3$,
-
-$$
-\begin{aligned}
-x_1+x_2&=\tfrac12x_1+\tfrac12(x_1+2x_2)\\
-&\le\tfrac12\cdot30+\tfrac12\cdot54\\
-&=42<60 .
-\end{aligned}
-$$
-
-**Câu (d).** Dạng chuẩn: $x_1+x_2+s_1=100$, $3x_1+x_2+s_2=180$, $x_2+s_3=60$, $x_1-s_4+\tilde s=70$, mọi biến không âm; bài toán phụ cực đại $\tilde z=-\tilde s$, thứ tự biến $(x_1,x_2,s_1,s_2,s_3,s_4,\tilde s)$.
-
-- Bước 1: $\tilde z=-70+x_1-s_4$, nên chỉ $\bar c_{x_1}=1$ dương; $x_1$ vào. Tỉ số $s_1$: $100$, $s_2$: $\tfrac{180}3=60$, $\tilde s$: $70$, nên $s_2$ ra. Điểm $(60,0)$, $\tilde s=10$.
-- Bước 2: $x_1=60-\tfrac13x_2-\tfrac13s_2$, nên $\tilde s=70-x_1+s_4=10+\tfrac13x_2+\tfrac13s_2+s_4$ và $\tilde z=-10-\tfrac13x_2-\tfrac13s_2-s_4$. Mọi chi phí rút gọn âm: pha I dừng với $\tilde z^*=-10<0$.
-
-Theo Mệnh đề 07.44(b), yêu cầu mới không thực hiện được. Biến bù $s_1$ và $s_3$ nằm trong cơ sở (bằng $40$ và $60$), nên giới hạn tổng giờ và giới hạn kiểm duyệt không tham gia. Hệ số $-\bar c_{s_2}=\tfrac13$ chỉ ra giới hạn năng lượng: $x_1\le\tfrac13(3x_1+x_2)\le\tfrac13\cdot180=60<70$. Mức thiếu hụt nhỏ nhất là $-\tilde z^*=10$ giờ tinh chỉnh; muốn đạt $70$ giờ, hạn mức năng lượng phải tăng ít nhất $30$ kWh.
-
-**Kiểm tra lại.** Giá trị $-\tilde z^*=18$ ở (b) bằng $60-42$, mức thiếu hụt nhỏ nhất của hợp đồng trên miền hộp hạt; tại $(30,12)$, $x_1+x_2=42$. Ở (d), tại $(60,0)$: $60+0\le100$, $180\le180$, $0\le60$, và $70-60=10$.
-:::
-
-### Bài tập 07.13. Bài toán Klee–Minty và đổi đơn vị
-
-Mức độ: tính toán và giải thích. LLO21 (một phần: hiệu quả tính toán); CLO2.
-
-::: exercise Bài tập 07.13 (Bài toán Klee–Minty và đổi đơn vị)
-Xét bài toán Klee–Minty hai biến: cực đại $z=10x_1+x_2$ dưới $x_1\le1$, $20x_1+x_2\le100$, $x\ge0$. Xuất phát từ $(0,0)$, quy tắc Dantzig cần ba bước xoay, qua $(1,0)$ và $(1,80)$, để tới nghiệm tối ưu $(0,100)$ với $z^*=100$.
-
-- (a) Đổi đơn vị của biến thứ nhất bằng $y_1=20x_1$. Viết lại bài toán theo $(y_1,x_2)$.
-- (b) Chạy phương pháp đơn hình với quy tắc Dantzig từ $(0,0)$ trên bài toán mới; đếm số bước xoay.
-- (c) Chạy lại với quy tắc Bland, thứ tự $(y_1,x_2,s_1,s_2)$; so sánh với (b) và với ba bước của bài toán gốc.
-- (d) Giải thích vì sao đổi đơn vị làm đổi đường đi của quy tắc Dantzig nhưng không đổi đường đi của quy tắc Bland.
-:::
-
-::: hint Gợi ý Bài tập 07.13
-Với $y_1=20x_1$, lợi ích $10x_1$ thành $\tfrac12y_1$. Ở (d), so sánh cách mỗi quy tắc dùng giá trị của $\bar c_j$.
-:::
-
-::: solution Lời giải Bài tập 07.13
-**Câu (a).** Cực đại $z=\tfrac12y_1+x_2$ dưới $y_1\le20$, $y_1+x_2\le100$, $y_1,x_2\ge0$; dạng chuẩn $y_1+s_1=20$, $y_1+x_2+s_2=100$.
-
-**Câu (b).** Tại $(0,0)$: $\bar c_{y_1}=\tfrac12$, $\bar c_{x_2}=1$; quy tắc Dantzig chọn $x_2$. Tỉ số $s_2$: $100$, nên $s_2$ ra; điểm $(y_1,x_2)=(0,100)$, $z=100$. Với $x_2=100-y_1-s_2$: $z=100-\tfrac12y_1-s_2$, tối ưu. Chỉ một bước xoay.
-
-**Câu (c).** Theo quy tắc Bland:
-
-- $y_1$ vào; tỉ số $s_1$: $20$, $s_2$: $100$; $s_1$ ra; điểm $(20,0)$, $z=10$.
-- $z=10-\tfrac12s_1+x_2$; $x_2$ vào; tỉ số $s_2$: $80$; điểm $(20,80)$, $z=90$.
-- $x_2=80+s_1-s_2$, nên $z=90+\tfrac12s_1-s_2$; $s_1$ vào; tỉ số $y_1$: $20$; điểm $(0,100)$, $z=100$, và $z=100-\tfrac12y_1-s_2$: tối ưu.
-
-Quy tắc Bland cần ba bước xoay, qua các điểm ứng với $(1,0)$ và $(1,80)$ của bài toán gốc: đúng đường của quy tắc Dantzig trên bài toán gốc.
-
-**Câu (d).** Đổi $x_j$ thành $y_j=\alpha x_j$ với $\alpha>0$ chia chi phí rút gọn của biến đó cho $\alpha$, giữ dấu của mọi $\bar c_j$. Quy tắc Dantzig so sánh độ lớn của các $\bar c_j$, nên lựa chọn đổi khi $\bar c_{x_1}=10$ thành $\bar c_{y_1}=\tfrac12$. Quy tắc Bland chỉ dùng dấu của $\bar c_j$ và thứ tự chỉ số; tập chỉ số đạt cực tiểu ở (5.3) cũng không đổi, vì mọi tỉ số cùng nhân với $\alpha$ khi biến vào được đổi đơn vị, và tử, mẫu cùng nhân với $\alpha$ khi một biến cơ sở được đổi đơn vị. Vanderbei (2014, §4.4, tr. 44) chỉ ra tính không bất biến này của quy tắc chi phí rút gọn lớn nhất trên bài toán Klee–Minty ba biến.
-
-**Kiểm tra lại.** Tại $(y_1,x_2)=(0,100)$: $0\le20$, $0+100\le100$, $z=100$, khớp $z^*$ của bài toán gốc tại $(0,100)$.
-:::
-
-## Quy hoạch động
-
-### Bài tập 07.14. Lịch bước học hai giai đoạn
-
-Mức độ: vận dụng vào AI. Phần bổ trợ, không gắn LLO của đề cương.
-
-::: exercise Bài tập 07.14 (Lịch bước học hai giai đoạn)
-Một quá trình huấn luyện được mô tả thô bằng ba mức mất mát, ký hiệu $3$ (cao), $2$ (vừa), $1$ (thấp). Ở mỗi giai đoạn $k=0,1$ chọn một trong hai điều khiển: bước học lớn $\eta_+$ hoặc bước học nhỏ $\eta_-$. Bảng chuyển trạng thái tất định (số liệu sư phạm):
-
-| Mức hiện tại | Sau bước lớn $\eta_+$ | Sau bước nhỏ $\eta_-$ |
-|---|---|---|
-| $3$ (cao) | $2$ | $3$ |
-| $2$ (vừa) | $2$ | $1$ |
-| $1$ (thấp) | $2$ | $1$ |
-
-Chi phí giai đoạn là số giờ GPU: bước lớn $1$ giờ, bước nhỏ $2$ giờ. Chi phí cuối theo mức mất mát sau giai đoạn $1$: mức $1$ chịu $0$, mức $2$ chịu $3$, mức $3$ chịu $6$. Trạng thái đầu là mức $3$.
-
-- (a) Nêu $N$, $X_k$, $U_k$, $f_k$, $g_k$, $g_N$ theo Định nghĩa 07.46.
-- (b) Tính $J_2$, $J_1$ và $J_0(3)$ bằng (6.3).
-- (c) Kiểm tra kết quả bằng liệt kê bốn chuỗi.
-:::
-
-::: hint Gợi ý Bài tập 07.14
-$J_1(\xi)$ cần cho cả ba mức $\xi$, kể cả mức không đi tới được từ mức $3$ sau một giai đoạn.
-:::
-
-::: solution Lời giải Bài tập 07.14
-**Câu (a).** $N=2$; $X_0=\{3\}$, $X_1=X_2=\{1,2,3\}$; $U_k(\xi)=\{\eta_+,\eta_-\}$; $f_k$ theo bảng; $g_k(\xi,\eta_+)=1$, $g_k(\xi,\eta_-)=2$; $g_2(1)=0$, $g_2(2)=3$, $g_2(3)=6$.
-
-**Câu (b).** $J_2=g_2$. Giai đoạn 1:
-
-- $J_1(3)=\min\{1+3,\ 2+6\}=4$, chọn $\eta_+$;
-- $J_1(2)=\min\{1+3,\ 2+0\}=2$, chọn $\eta_-$;
-- $J_1(1)=\min\{1+3,\ 2+0\}=2$, chọn $\eta_-$.
-
-Giai đoạn 0: $J_0(3)=\min\{1+J_1(2),\ 2+J_1(3)\}=\min\{1+2,\ 2+4\}$, tức $J_0(3)=3$, chọn $\eta_+$. Lịch tối ưu: bước lớn rồi bước nhỏ, chi phí $3$ giờ.
-
-**Câu (c).** Bốn chuỗi từ mức $3$:
-
-| Chuỗi | Mức đi qua | Chi phí |
-|---|---|---:|
-| $\eta_+,\eta_+$ | $2$, $2$ | $1+1+3=5$ |
-| $\eta_+,\eta_-$ | $2$, $1$ | $1+2+0=3$ |
-| $\eta_-,\eta_+$ | $3$, $2$ | $2+1+3=6$ |
-| $\eta_-,\eta_-$ | $3$, $3$ | $2+2+6=10$ |
-
-**Kiểm tra lại.** Nhỏ nhất là $3$ với chuỗi $\eta_+,\eta_-$, khớp $J_0(3)$. Lịch giảm bước học sau giai đoạn đầu xuất hiện từ phép tính, không được giả định trước.
-:::
-
-### Bài tập 07.15. Giải ngược khi hai chi phí thay đổi
-
-Mức độ: tính toán. Phần bổ trợ, không gắn LLO của đề cương. Câu (a)–(d) trùng trang chiếu [Bài tập: giải ngược Bellman với chi phí mới](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/6/9) và [trang lời giải](lecture-07-quy-hoach-tuyen-tinh-va-dong.html#/6/10). Câu (e) chỉ có trong ghi chú bài giảng.
-
-::: exercise Bài tập 07.15 (Giải ngược khi hai chi phí thay đổi)
-Đồ thị tầng có cùng cấu trúc với Mục 6 của ghi chú: nút $\mathrm s$ ở tầng 0; $\mathrm A$, $\mathrm B$ ở tầng 1; $\mathrm C$, $\mathrm D$ ở tầng 2; $\mathrm t$ ở tầng 3. Chi phí cạnh: $g(\mathrm s,\mathrm A)=2$, $g(\mathrm s,\mathrm B)=3$, $g(\mathrm A,\mathrm C)=4$, $g(\mathrm A,\mathrm D)=2$, $g(\mathrm B,\mathrm C)=1$, $g(\mathrm B,\mathrm D)=3$, $g(\mathrm C,\mathrm t)=0$, $g(\mathrm D,\mathrm t)=1$.
-
-- (a) Tính $J_2(\mathrm C)$, $J_2(\mathrm D)$.
-- (b) Tính $J_1(\mathrm A)$, $J_1(\mathrm B)$; ghi điều khiển đạt cực tiểu.
-- (c) Tính $J_0(\mathrm s)$ và dựng đường tối ưu bằng lượt xuôi.
-- (d) Kiểm tra trực tiếp tổng chi phí của đường tìm được và của ba đường còn lại.
-- (e) Tính $\sum_k\sum_{\xi\in X_k}\lvert U_k(\xi)\rvert$ cho đồ thị này và so với số đường đi. Làm lại cho một đồ thị cùng dạng với $N=10$ giai đoạn: nút $\mathrm s$, chín tầng giữa mỗi tầng hai nút, nút $\mathrm t$, mỗi nút nối với mọi nút của tầng sau; so với $q^N$ khi $q=2$.
-
-![Đồ thị bốn tầng: s ở tầng 0; A, B ở tầng 1; C, D ở tầng 2; t ở tầng 3. Tám chi phí cạnh: s–A 2, s–B 3, A–C 4, A–D 2, B–C 1, B–D 3, C–t 0, D–t 1. Hai cạnh s–B và C–t được tô màu vì chi phí đã đổi.](img/lec-07/dp-layered-graph-new-costs.svg)
-:::
-
-::: hint Gợi ý Bài tập 07.15
-Hai cạnh tô màu trên hình có chi phí khác với đồ thị của Mục 6, nơi $g(\mathrm s,\mathrm B)=5$ và $g(\mathrm C,\mathrm t)=3$. Bắt đầu từ tầng 2; tại mỗi nút, so sánh chi phí cạnh cộng giá trị $J$ ở nút cuối cạnh, không so sánh riêng chi phí cạnh. Ở (e), dùng Mệnh đề 07.53(a) và đếm riêng tầng cuối, nơi mỗi nút chỉ có một cạnh tới $\mathrm t$.
-:::
-
-::: solution Lời giải Bài tập 07.15
-**Câu (a).** $J_2(\mathrm C)=0+0=0$ và $J_2(\mathrm D)=1+0=1$.
-
-**Câu (b).**
-
-- $J_1(\mathrm A)=\min\{4+0,\ 2+1\}=3$, điều khiển đạt cực tiểu là $\mathrm D$.
-- $J_1(\mathrm B)=\min\{1+0,\ 3+1\}=1$, điều khiển đạt cực tiểu là $\mathrm C$.
-
-**Câu (c).** $J_0(\mathrm s)=\min\{2+3,\ 3+1\}=4$, điều khiển đạt cực tiểu là $\mathrm B$. Lượt xuôi cho đường $\mathrm s\to\mathrm B\to\mathrm C\to\mathrm t$. Trên hình sau, giá trị $J$ ghi cạnh mỗi nút và đường tối ưu được tô đậm.
-
-![Đồ thị tầng với chi phí mới s–A 2, s–B 3, A–C 4, A–D 2, B–C 1, B–D 3, C–t 0, D–t 1. Giá trị J(t)=0, J(C)=0, J(D)=1, J(A)=3, J(B)=1, J(s)=4; đường tối ưu s–B–C–t được tô đậm.](img/lec-07/dp-bellman-values-new-costs.svg)
-
-**Câu (d).** Đường tìm được có chi phí $3+1+0=4$. Ba đường còn lại: $\mathrm s\to\mathrm A\to\mathrm C\to\mathrm t$ có $2+4+0=6$; $\mathrm s\to\mathrm A\to\mathrm D\to\mathrm t$ có $2+2+1=5$; $\mathrm s\to\mathrm B\to\mathrm D\to\mathrm t$ có $3+3+1=7$.
-
-**Câu (e).** Tại $\mathrm s$, $\mathrm A$, $\mathrm B$ mỗi nút hai điều khiển, tại $\mathrm C$, $\mathrm D$ mỗi nút một: tổng $2+2+2+1+1=8$. Có $4$ đường đi; với đồ thị nhỏ này hai con số gần nhau. Với $N=10$:
-
-- giai đoạn $0$: $2$ biểu thức;
-- giai đoạn $1$ tới $8$: mỗi giai đoạn $2\cdot2=4$, cộng lại $32$;
-- giai đoạn $9$: hai nút, mỗi nút một cạnh tới $\mathrm t$, cộng lại $2$.
-
-Tổng $36$ biểu thức, trong khi số đường đi là $2^9=512$ và $q^N=2^{10}=1\,024$ là số chuỗi khi mọi giai đoạn đều có hai lựa chọn.
-
-**Kiểm tra lại.** Đường tối ưu cũ $\mathrm s\to\mathrm A\to\mathrm D\to\mathrm t$ không còn tối ưu. Thay đổi ở cạnh $\mathrm C\to\mathrm t$ làm $J_1(\mathrm B)$ giảm từ $4$ xuống $1$ và, cùng chi phí $\mathrm s\to\mathrm B$ mới, đổi lựa chọn ở tầng đầu; $J_1(\mathrm A)$ vẫn bằng $3$ vì điều khiển tối ưu tại $\mathrm A$ vẫn là $\mathrm D$.
-:::
-
-### Bài tập 07.22. Lập kế hoạch cho tác tử với giới hạn số hành động
-
-Mức độ: vận dụng vào AI. Phần bổ trợ, không gắn LLO của đề cương. Bài dùng Mệnh đề 07.50 (nguyên lý tối ưu), Nhận xét 07.47 (trạng thái đủ) và Định lý 07.49 (phương trình Bellman).
-
-::: exercise Bài tập 07.22 (Lập kế hoạch cho tác tử với giới hạn số hành động)
-Một tác tử (agent) lập kế hoạch trong một môi trường đã biết mô hình, như trong học tăng cường dựa trên mô hình. Môi trường có năm trạng thái $\mathrm s$, $\mathrm E$, $\mathrm F$, $\mathrm G$, $\mathrm t$; $\mathrm s$ là trạng thái đầu, $\mathrm t$ là đích. Mỗi hành động đi theo một cạnh có hướng, cho kết quả tất định và tốn một thời gian $g$ (giây):
-
-| Cạnh | $\mathrm s\to\mathrm E$ | $\mathrm s\to\mathrm F$ | $\mathrm E\to\mathrm F$ | $\mathrm E\to\mathrm G$ | $\mathrm F\to\mathrm G$ | $\mathrm F\to\mathrm t$ | $\mathrm G\to\mathrm t$ |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Thời gian $g$ | $1$ | $5$ | $2$ | $6$ | $3$ | $7$ | $2$ |
-
-Mọi cạnh đi theo thứ tự $\mathrm s,\mathrm E,\mathrm F,\mathrm G,\mathrm t$, nên đồ thị không có chu trình. Một đường từ $\mathrm s$ tới $\mathrm t$ có thể dùng $2$, $3$ hoặc $4$ hành động, nên các nút không xếp được thành tầng như đồ thị tầng của Mục 6.
-
-- (a) Đặt $J(v)$ là thời gian nhỏ nhất từ nút $v$ tới $\mathrm t$. Chứng minh $J(\mathrm t)=0$ và $J(v)=\min_{(v,w)}\{g(v,w)+J(w)\}$ với $v\ne\mathrm t$, trong đó cực tiểu lấy theo các cạnh đi ra từ $v$. Tính $J$ theo thứ tự $\mathrm G$, $\mathrm F$, $\mathrm E$, $\mathrm s$ và dựng đường tối ưu bằng lượt xuôi.
-- (b) Kiểm tra kết quả bằng liệt kê mọi đường từ $\mathrm s$ tới $\mathrm t$.
-- (c) Mỗi lượt chạy (episode) chỉ cho phép tối đa ba hành động. Chứng minh nút hiện tại không còn là trạng thái đủ. Mở rộng trạng thái, viết phương trình Bellman cho trạng thái mở rộng, rồi tính thời gian tối ưu từ $\mathrm s$ và đường tối ưu.
-- (d) Giả sử kết quả của một hành động là ngẫu nhiên. Xác định giả thiết nào của Định nghĩa 07.46 không còn thỏa và nêu vế phải của phương trình Bellman thay đổi thế nào.
-:::
-
-::: hint Gợi ý Bài tập 07.22
-Ở (a), mọi đường từ $v\ne\mathrm t$ bắt đầu bằng một cạnh $(v,w)$, phần còn lại là một đường từ $w$. Ở (c), so phần tương lai từ $\mathrm F$ của hai lịch sử $\mathrm s\to\mathrm F$ và $\mathrm s\to\mathrm E\to\mathrm F$; thêm vào trạng thái số hành động còn được dùng.
+::: hint Gợi ý 2
+Ở (a), khi $g_1$, $g_2$ độc lập, mỗi $x\in S$ có đúng một vector hệ số $\rho=(G^TG)^{-1}G^Tx$. Ở (c) với $n\ge2$, xét các điểm $x\ge0$ có $\lVert x\rVert_2=1$ và số điểm cực biên của một đa diện.
 :::
 
 ::: solution Lời giải Bài tập 07.22
-**Câu (a).** Tại $\mathrm t$, tác tử đã ở đích, nên $J(\mathrm t)=0$. Với $v\ne\mathrm t$, mọi đường từ $v$ tới $\mathrm t$ gồm một cạnh $(v,w)$ và một đường từ $w$ tới $\mathrm t$. Thời gian của phần sau không phụ thuộc cách đã đi tới $w$, nên phần sau tốt nhất có thời gian $J(w)$, và ghép cạnh $(v,w)$ với phần sau tốt nhất cho thời gian $g(v,w)+J(w)$. Lấy nhỏ nhất theo $w$ được công thức cần chứng minh; đây là lập luận của Mệnh đề 07.50. Vì mọi cạnh đi theo thứ tự $\mathrm s,\mathrm E,\mathrm F,\mathrm G,\mathrm t$, khi tính theo thứ tự ngược, mọi giá trị $J$ ở vế phải đã có sẵn.
+**Câu (a).** $S$ là đa diện. Đặt $G=[g_1\ g_2]\in\mathbb R^{n\times2}$, nên $S=\{G\rho\mid -\mathbf 1\le\rho\le\mathbf 1\}$ với $\rho\in\mathbb R^2$. Xét theo hạng của $G$.
 
+- **Hạng $2$.** $G^TG$ khả nghịch. Đặt $K=(G^TG)^{-1}G^T\in\mathbb R^{2\times n}$ và $R=I-GK$. Nếu $x=G\rho$ thì $Kx=\rho$ và $Rx=G\rho-G\rho=0$. Ngược lại, nếu $Rx=0$ thì $x=G(Kx)$. Do đó
 $$
 \begin{aligned}
-J(\mathrm G)&=2+0=2,\\
-J(\mathrm F)&=\min\{3+J(\mathrm G),\ 7+J(\mathrm t)\}=\min\{5,\ 7\}=5,\\
-J(\mathrm E)&=\min\{2+J(\mathrm F),\ 6+J(\mathrm G)\}=\min\{7,\ 8\}=7,\\
-J(\mathrm s)&=\min\{1+J(\mathrm E),\ 5+J(\mathrm F)\}=\min\{8,\ 10\}=8.
+S=\{x\mid\ &Kx\le\mathbf 1,\\
+&-Kx\le\mathbf 1,\\
+&Rx=0\},
 \end{aligned}
 $$
+tức $A'=\begin{bmatrix}K\\-K\end{bmatrix}$, $b'=\mathbf 1\in\mathbb R^4$, $A''=R$, $b''=0$.
+- **Hạng $1$.** Giả sử $g_1\ne0$ và $g_2=\kappa g_1$ (khi $g_1=0\ne g_2$, đổi vai hai vector). Khi $\rho_1$, $\rho_2$ chạy trên $[-1,1]$, số $\rho_1+\kappa\rho_2$ chạy khắp $[-(1+\lvert\kappa\rvert),1+\lvert\kappa\rvert]$, nên $S=\{tg_1\mid \lvert t\rvert\le1+\lvert\kappa\rvert\}$. Với $\ell=g_1/\lVert g_1\rVert_2^2$ và $R=I-g_1\ell^T$, $S=\{x\mid \ell^Tx\le1+\lvert\kappa\rvert,\ -\ell^Tx\le1+\lvert\kappa\rvert,\ Rx=0\}$.
+- **Hạng $0$.** $S=\{0\}=\{x\mid Ix=0\}$.
 
-Điều khiển đạt cực tiểu tại $\mathrm G$, $\mathrm F$, $\mathrm E$, $\mathrm s$ lần lượt là $\mathrm t$, $\mathrm G$, $\mathrm F$, $\mathrm E$. Lượt xuôi cho đường $\mathrm s\to\mathrm E\to\mathrm F\to\mathrm G\to\mathrm t$, thời gian $1+2+3+2=8$ giây, dùng bốn hành động.
+**Câu (b).** $S$ là đa diện: ba điều kiện $\mathbf 1^Tx=1$, $\sum_ix_i\alpha_i=\beta_1$, $\sum_ix_i\alpha_i^2=\beta_2$ tuyến tính theo $x$ vì $\alpha_i$, $\beta_1$, $\beta_2$ là số cho trước. Ta có $A'=-I$, $b'=0$, còn $A''$ có ba hàng $\mathbf 1^T$, $(\alpha_1,\ldots,\alpha_n)$, $(\alpha_1^2,\ldots,\alpha_n^2)$ và $b''=(1,\beta_1,\beta_2)$.
 
-**Câu (b).** Có năm đường:
+**Câu (c).** Theo bất đẳng thức Cauchy–Schwarz, $x^Ty\le\lVert x\rVert_2$ khi $\lVert y\rVert_2=1$, với dấu bằng tại $y=x/\lVert x\rVert_2$ khi $x\ne0$. Do đó $S=\{x\ge0\mid\lVert x\rVert_2\le1\}$.
 
-| Đường | Số hành động | Thời gian |
-|---|---:|---:|
-| $\mathrm s\to\mathrm E\to\mathrm F\to\mathrm G\to\mathrm t$ | $4$ | $1+2+3+2=8$ |
-| $\mathrm s\to\mathrm E\to\mathrm F\to\mathrm t$ | $3$ | $1+2+7=10$ |
-| $\mathrm s\to\mathrm E\to\mathrm G\to\mathrm t$ | $3$ | $1+6+2=9$ |
-| $\mathrm s\to\mathrm F\to\mathrm G\to\mathrm t$ | $3$ | $5+3+2=10$ |
-| $\mathrm s\to\mathrm F\to\mathrm t$ | $2$ | $5+7=12$ |
+- Với $n=1$, $S=[0,1]=\{x\mid -x\le0,\ x\le1\}$ là đa diện.
+- Với $n\ge2$, $S$ không là đa diện. Mỗi điểm $x\ge0$ có $\lVert x\rVert_2=1$ là một điểm cực biên của $S$: nếu $x=\lambda x'+(1-\lambda)x''$ với $x',x''\in S$, $0<\lambda<1$, thì $1=x^Tx=\lambda x^Tx'+(1-\lambda)x^Tx''$ trong khi $x^Tx'\le1$, $x^Tx''\le1$, nên $x^Tx'=1$; khi đó $\lVert x-x'\rVert_2^2=1-2+\lVert x'\rVert_2^2\le0$, tức $x'=x$, và tương tự $x''=x$. Các điểm $(\cos t,\sin t,0,\ldots,0)$, $t\in[0,\tfrac\pi2]$, cho vô số điểm cực biên. Một đa diện viết được ở dạng (5.1) bằng cách thay mỗi phương trình bằng hai bất phương trình, nên theo Hệ quả 07.11 nó có hữu hạn điểm cực biên.
 
-Nhỏ nhất là $8$, khớp $J(\mathrm s)$.
+**Câu (d).** Khi $\sum_i\lvert y_i\rvert=1$, $x^Ty\le\sum_i\lvert x_i\rvert\lvert y_i\rvert\le\max_i\lvert x_i\rvert$. Dấu bằng đạt khi chọn $k$ với $\lvert x_k\rvert=\max_i\lvert x_i\rvert$, $y_k=1$ nếu $x_k\ge0$, $y_k=-1$ nếu $x_k<0$, và $y_i=0$ với $i\ne k$. Do đó $S=\{x\mid 0\le x_i\le1,\ i=1,\ldots,n\}$ là đa diện, với $A'=\begin{bmatrix}-I\\I\end{bmatrix}$, $b'=(0,\mathbf 1)$ và không có phương trình.
 
-**Câu (c).** Đường tối ưu ở (a) dùng bốn hành động nên bị loại. Tại $\mathrm F$, lịch sử $\mathrm s\to\mathrm F$ còn hai hành động, và phần tương lai tốt nhất là $\mathrm F\to\mathrm G\to\mathrm t$ với thời gian $5$. Lịch sử $\mathrm s\to\mathrm E\to\mathrm F$ chỉ còn một hành động, và phần tương lai duy nhất là $\mathrm F\to\mathrm t$ với thời gian $7$. Cùng nút $\mathrm F$ nhưng phần tương lai khác nhau theo lịch sử, nên nút không còn là trạng thái đủ (Nhận xét 07.47).
-
-Mở rộng trạng thái thành cặp $(v,r)$, với $r$ là số hành động còn được dùng. Ta dùng quy ước $J(v,0)=+\infty$ khi $v\ne\mathrm t$, nghĩa là từ $v$ không còn tới được đích. Phương trình Bellman cho trạng thái mở rộng là
-
-$$
-J(\mathrm t,r)=0,\qquad r\ge0,
-$$
-
-và với $v\ne\mathrm t$, $r\ge1$,
-
-$$
-J(v,r)=\min_{(v,w)}\{g(v,w)+J(w,r-1)\}.
-$$
-
-Chỉ các trạng thái đi tới được từ $(\mathrm s,3)$ cần tính:
-
-$$
-\begin{aligned}
-J(\mathrm G,1)&=2+J(\mathrm t,0)=2,\\
-J(\mathrm F,1)&=\min\{3+J(\mathrm G,0),\ 7+J(\mathrm t,0)\}=\min\{+\infty,\ 7\}=7,\\
-J(\mathrm F,2)&=\min\{3+J(\mathrm G,1),\ 7+J(\mathrm t,1)\}=\min\{5,\ 7\}=5,\\
-J(\mathrm E,2)&=\min\{2+J(\mathrm F,1),\ 6+J(\mathrm G,1)\}=\min\{9,\ 8\}=8,\\
-J(\mathrm s,3)&=\min\{1+J(\mathrm E,2),\ 5+J(\mathrm F,2)\}=\min\{9,\ 10\}=9.
-\end{aligned}
-$$
-
-Điều khiển đạt cực tiểu tại $(\mathrm F,2)$, $(\mathrm E,2)$, $(\mathrm s,3)$ lần lượt là $\mathrm G$, $\mathrm G$, $\mathrm E$. Lượt xuôi: $(\mathrm s,3)\to(\mathrm E,2)\to(\mathrm G,1)\to(\mathrm t,0)$, tức đường $\mathrm s\to\mathrm E\to\mathrm G\to\mathrm t$ với thời gian $1+6+2=9$ giây. Tại $\mathrm E$, lựa chọn đổi từ $\mathrm F$ ở (a) sang $\mathrm G$: chính sách phụ thuộc cả số hành động còn lại. Với $k=3-r$, cặp $(v,r)$ là nút $v$ ở giai đoạn $k$ của một bài toán ba giai đoạn theo Định nghĩa 07.46, khi thêm tại $\mathrm t$ một điều khiển ở lại với thời gian $0$ và bỏ khỏi $X_k$ các nút không còn tới được đích. Số trạng thái tăng từ $5$ lên nhiều nhất $5\cdot4=20$. Trong học tăng cường với chân trời hữu hạn, hàm giá trị vì vậy được đánh chỉ số theo số bước còn lại, như $J(v,r)$ ở đây.
-
-**Câu (d).** Giả thiết tất định không còn thỏa: một hành động không dẫn tới đúng một trạng thái kế tiếp. Vế phải của phương trình Bellman lấy kỳ vọng theo trạng thái kế tiếp, $J(v)=\min_u\{g(v,u)+\mathbb E[J(w)]\}$, với $w$ là trạng thái kế tiếp ngẫu nhiên khi chọn $u$ tại $v$ (MIT 15.093J, bài giảng 16, trang 9; Sutton và Barto 2018, chương 3–4).
-
-**Kiểm tra lại.** Trong bảng ở (b), các đường dùng không quá ba hành động có thời gian $10$, $9$, $10$, $12$; nhỏ nhất là $9$ tại $\mathrm s\to\mathrm E\to\mathrm G\to\mathrm t$, khớp $J(\mathrm s,3)$.
+**Kiểm tra lại.** Ở (a) với $n=2$, $g_1=(1,0)$, $g_2=(1,1)$: $K=G^{-1}=\begin{bmatrix}1&-1\\0&1\end{bmatrix}$, $R=0$, nên $S=\{x\mid\lvert x_1-x_2\rvert\le1,\ \lvert x_2\rvert\le1\}$; bốn góc $G(\pm1,\pm1)$ là $(2,1)$, $(0,-1)$, $(0,1)$, $(-2,-1)$, và tại $(2,1)$: $x_1-x_2=1$, $x_2=1$.
 :::
 
-## Nguồn
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 1; lập quy hoạch tuyến tính từ dữ kiện cho bằng lời và giải bằng cách so sánh lợi nhuận trên một đơn vị tài nguyên chung.
 
-- Bertsimas, D. và Tsitsiklis, J. N. (1997), *Introduction to Linear Optimization*, Athena Scientific, §1.1–1.4 (mô hình hóa, Bài tập 07.1, 07.2, 07.21), §2.1–2.6 (đa diện, nghiệm cơ sở, điểm cực biên; Bài tập 07.3–07.7, 07.19, 07.20), §3.1–3.5 (phương pháp đơn hình, bảng, quy tắc Bland, pha I; Bài tập 07.8–07.12).
-- Vanderbei, R. J. (2014), *Linear Programming: Foundations and Extensions*, ấn bản 4, Springer, §3.2–3.4 (tr. 26–33: suy biến, quay vòng, quy tắc Bland; Bài tập 07.11) và §4.4 (tr. 41–44: bài toán Klee–Minty, đổi đơn vị; Bài tập 07.13).
-- Nguyễn Bích Vân (2025), Bài tập chương 8 của học phần, câu 5: nguồn của bài toán hộp hạt, giải bằng phương pháp đơn hình dạng bảng ở Bài tập 07.8 và trong ghi chú bài giảng.
-- MIT OpenCourseWare 15.093J/6.255J *Optimization Methods* (2009), bài giảng số 16 "Dynamic Programming", trang 2–9: khung quy hoạch động và phương trình Bellman; Bài tập 07.14, 07.15, 07.22.
-- Bertsekas, D. P. (2017), *Dynamic Programming and Optimal Control*, tập I, ấn bản 4, Athena Scientific, chương 1–2: mở rộng trạng thái và đường đi ngắn nhất; Bài tập 07.22.
-- Sutton, R. S. và Barto, A. G. (2018), *Reinforcement Learning: An Introduction*, ấn bản 2, MIT Press, chương 3–4: phương trình Bellman với chuyển tiếp ngẫu nhiên; Bài tập 07.22(d).
-- Ghi chú bài giảng Bài 07 cho phát biểu và chứng minh của các kết quả được dùng.
+::: exercise Bài tập 07.23 (Phân bổ giờ của máy cán thép; Vanderbei, Bài 1.1, tr. 7–8)
+Một công ty thép phân bổ thời gian của một máy cán trong tuần tới. Máy nhận phôi thép và sản xuất một trong hai bán thành phẩm: thép băng (bands) và thép cuộn (coils). Tốc độ sản xuất là $200$ tấn/giờ với thép băng và $140$ tấn/giờ với thép cuộn; lợi nhuận là $25$ USD/tấn với thép băng và $30$ USD/tấn với thép cuộn. Theo các đơn hàng đã nhận, sản lượng tối đa là $6\,000$ tấn thép băng và $4\,000$ tấn thép cuộn. Tuần này máy có $40$ giờ sản xuất.
+
+- **(a)** Lập quy hoạch tuyến tính chọn số tấn thép băng và thép cuộn để lợi nhuận lớn nhất.
+- **(b)** Giải bài toán bằng cách so sánh trực tiếp các dữ kiện.
+:::
+
+::: hint Gợi ý 1
+Số giờ máy dùng cho một loại bằng số tấn chia cho tốc độ sản xuất của loại đó.
+:::
+
+::: hint Gợi ý 2
+Tính lợi nhuận trên mỗi giờ máy của từng loại và so sánh.
+:::
+
+::: solution Lời giải Bài tập 07.23
+**Câu (a).** Gọi $x_1$, $x_2$ là số tấn thép băng và thép cuộn. Bài toán là cực đại $25x_1+30x_2$ (USD) dưới
+
+$$
+\begin{aligned}
+&\tfrac1{200}x_1+\tfrac1{140}x_2\le40,\\
+&x_1\le6\,000,\quad x_2\le4\,000,\\
+&x\ge0 .
+\end{aligned}
+$$
+
+Ràng buộc đầu tính bằng giờ, hai ràng buộc sau tính bằng tấn.
+
+**Câu (b).** Một giờ máy cho $25\cdot200=5\,000$ USD nếu cán thép băng và $30\cdot140=4\,200$ USD nếu cán thép cuộn. Do đó dùng giờ máy cho thép băng trước: $6\,000$ tấn cần $30$ giờ, và $10$ giờ còn lại cho $1\,400\le4\,000$ tấn thép cuộn. Phương án $(6\,000;\ 1\,400)$ cho lợi nhuận $150\,000+42\,000=192\,000$ USD.
+
+Phương án này tối ưu. Với mọi phương án khả thi,
+
+$$
+\begin{aligned}
+&25x_1+30x_2\\
+&\quad=4\,200\bigl(\tfrac{x_1}{200}+\tfrac{x_2}{140}\bigr)+4x_1\\
+&\quad\le4\,200\cdot40+4\cdot6\,000\\
+&\quad=192\,000,
+\end{aligned}
+$$
+
+vì $\tfrac{4\,200}{200}=21=25-4$ và $\tfrac{4\,200}{140}=30$. Dấu bằng cần ràng buộc giờ máy hoạt động và $x_1=6\,000$, tức $x_2=1\,400$: nghiệm tối ưu duy nhất. Hai hệ số $4\,200$ và $4$ đóng vai nhân tử của chứng nhận cận trên như ở Ví dụ 07.5 (Mệnh đề 02.11).
+
+**Kiểm tra lại.** $\tfrac{6\,000}{200}+\tfrac{1\,400}{140}=30+10=40$ giờ; $25\cdot6\,000+30\cdot1\,400=192\,000$.
+:::
+
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 3; biểu diễn các điểm của một tam giác bằng tổ hợp lồi của ba đỉnh.
+
+::: exercise Bài tập 07.24 (Biểu diễn tam giác bằng tổ hợp lồi của ba đỉnh; Kupferschmid, Bài 3.7.31, tr. 129)
+Cho $v^1,v^2,v^3\in\mathbb R^2$ là ba đỉnh của một tam giác đều. Tam giác $T$, gồm cả phần trong, là giao của ba nửa mặt phẳng; mỗi nửa mặt phẳng có biên là đường thẳng qua hai đỉnh và chứa đỉnh còn lại. Viết công thức tổ hợp lồi của ba đỉnh và chứng minh rằng khi thay đổi các tham số, công thức cho mọi điểm của $T$ và không cho điểm nào nằm ngoài $T$.
+:::
+
+::: hint Gợi ý 1
+Hai vector $v^2-v^1$, $v^3-v^1$ độc lập tuyến tính, nên mỗi $x\in\mathbb R^2$ viết được duy nhất dưới dạng $x=\lambda_1v^1+\lambda_2v^2+\lambda_3v^3$ với $\lambda_1+\lambda_2+\lambda_3=1$.
+:::
+
+::: hint Gợi ý 2
+Viết đường thẳng qua $v^2$, $v^3$ là $a^Tx=\beta$ và tính $a^Tx$ theo $\lambda_1,\lambda_2,\lambda_3$.
+:::
+
+::: solution Lời giải Bài tập 07.24
+Công thức là
+
+$$
+\begin{aligned}
+&x=\lambda_1v^1+\lambda_2v^2+\lambda_3v^3,\\
+&\lambda_1,\lambda_2,\lambda_3\ge0,\\
+&\lambda_1+\lambda_2+\lambda_3=1 .
+\end{aligned}
+$$
+
+**Lộ trình.** Gán cho mỗi điểm của mặt phẳng một bộ tham số duy nhất có tổng $1$, rồi chứng minh mỗi nửa mặt phẳng tạo nên $T$ là tập các điểm có một tham số không âm.
+
+**Bước 1 (bộ tham số).** Ba đỉnh không thẳng hàng, nên $v^2-v^1$, $v^3-v^1$ là một cơ sở của $\mathbb R^2$. Với mỗi $x$ có duy nhất $(\mu_2,\mu_3)$ để $x-v^1=\mu_2(v^2-v^1)+\mu_3(v^3-v^1)$. Đặt $\lambda_2=\mu_2$, $\lambda_3=\mu_3$, $\lambda_1=1-\mu_2-\mu_3$: ta được $x=\lambda_1v^1+\lambda_2v^2+\lambda_3v^3$ với tổng các $\lambda_i$ bằng $1$, và bộ $(\lambda_1,\lambda_2,\lambda_3)$ có tính chất này là duy nhất.
+
+**Bước 2 (một nửa mặt phẳng).** Chọn $a\ne0$ vuông góc với $v^3-v^2$ và đặt $\beta=a^Tv^2=a^Tv^3$, nên đường thẳng qua $v^2$, $v^3$ là $a^Tx=\beta$. Đổi dấu $a$ và $\beta$ nếu cần để $a^Tv^1<\beta$; nửa mặt phẳng chứa $v^1$ là $H_1=\{x\mid a^Tx\le\beta\}$. Với $x$ như ở Bước 1,
+
+$$
+\begin{aligned}
+a^Tx&=\lambda_1a^Tv^1+(\lambda_2+\lambda_3)\beta\\
+&=\beta-\lambda_1(\beta-a^Tv^1).
+\end{aligned}
+$$
+
+Vì $\beta-a^Tv^1>0$, $x\in H_1$ khi và chỉ khi $\lambda_1\ge0$. Tương tự, nửa mặt phẳng $H_2$ chứa $v^2$ ứng với $\lambda_2\ge0$, và $H_3$ chứa $v^3$ ứng với $\lambda_3\ge0$.
+
+**Bước 3 (kết luận).** $T=H_1\cap H_2\cap H_3$ là tập các $x$ có bộ tham số của Bước 1 không âm. Do đó mỗi điểm của $T$ là một tổ hợp lồi của ba đỉnh, và mỗi tổ hợp lồi của ba đỉnh thuộc $T$. $\square$
+
+Tính đều của tam giác không dùng tới.
+
+**Liên hệ với điểm cực biên.** Theo Bước 1, mỗi đỉnh, chẳng hạn $v^1$, có bộ tham số $(1,0,0)$. Nếu $v^1=\tau x'+(1-\tau)x''$ với $x',x''\in T$, $0<\tau<1$, thì tham số thứ nhất của $v^1$ là $\tau\lambda_1'+(1-\tau)\lambda_1''=1$, trong đó $\lambda_1'$, $\lambda_1''$ là tham số thứ nhất của $x'$, $x''$ và cùng không vượt $1$, nên $\lambda_1'=\lambda_1''=1$ và $x'=x''=v^1$: mỗi đỉnh là một điểm cực biên của $T$ (Định nghĩa 07.8).
+
+**Kiểm tra lại.** Với $v^1=(0,0)$, $v^2=(1,0)$, $v^3=(\tfrac12,\tfrac{\sqrt3}2)$, trọng tâm $\tfrac13(v^1+v^2+v^3)=(\tfrac12,\tfrac{\sqrt3}6)$ có bộ tham số $(\tfrac13,\tfrac13,\tfrac13)$. Điểm $(1,1)$ có $\mu_3=\tfrac2{\sqrt3}\approx1{,}155$, $\mu_2=1-\tfrac{\mu_3}2\approx0{,}423$, nên $\lambda_1\approx-0{,}577<0$: điểm nằm ngoài $T$.
+:::
+
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 4; xác định kết cục của một quy hoạch tuyến tính thuần nhất.
+
+::: exercise Bài tập 07.25 (Quy hoạch tuyến tính có vế phải bằng không; Vanderbei, Bài 3.4, tr. 36–37)
+Xét các quy hoạch tuyến tính có vế phải bằng $0$: cực đại $\sum_{j=1}^nc_jx_j$ dưới $\sum_{j=1}^na_{ij}x_j\le0$, $i=1,\ldots,m$, và $x_j\ge0$, $j=1,\ldots,n$. Chứng minh rằng hoặc $x=0$ là nghiệm tối ưu, hoặc bài toán không bị chặn.
+:::
+
+::: hint Gợi ý 1
+Nếu $x$ khả thi thì $\theta x$ khả thi với mọi $\theta\ge0$.
+:::
+
+::: hint Gợi ý 2
+Tách hai trường hợp theo việc có hay không một điểm khả thi với giá trị mục tiêu dương.
+:::
+
+::: solution Lời giải Bài tập 07.25
+Gọi $P=\{x\mid Ax\le0,\ x\ge0\}$, với $A$ có phần tử $a_{ij}$. Điểm $0$ thuộc $P$ và có giá trị $0$.
+
+- **Mọi $x\in P$ có $c^Tx\le0$.** Khi đó $c^Tx\le0=c^T0$ trên $P$, nên $x=0$ là nghiệm tối ưu và $z^*=0$.
+- **Có $\hat x\in P$ với $c^T\hat x>0$.** Với $\theta\ge0$, $A(\theta\hat x)=\theta A\hat x\le0$ và $\theta\hat x\ge0$, nên $\theta\hat x\in P$, và $c^T(\theta\hat x)=\theta c^T\hat x\to+\infty$ khi $\theta\to+\infty$: bài toán không bị chặn.
+
+Hai trường hợp loại trừ nhau và bao hết mọi khả năng. Theo Định lý 07.23, kết cục không khả thi không xảy ra vì $0\in P$; hai kết cục có $z^*$ hữu hạn ứng với trường hợp thứ nhất, với $z^*=0$.
+
+**Kiểm tra lại.** Với $n=m=1$: dưới $x\le0$, $x\ge0$ miền là $\{0\}$ và $x=0$ tối ưu; dưới $-x\le0$, $x\ge0$, mục tiêu $x$ không bị chặn, còn mục tiêu $-x$ đạt cực đại $0$ tại $x=0$.
+:::
+
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 4; tính giá trị tối ưu của một quy hoạch tuyến tính có ma trận vuông khả nghịch.
+
+::: exercise Bài tập 07.26 (Quy hoạch tuyến tính với ma trận vuông khả nghịch; Boyd và Vandenberghe, Bài 4.9, tr. 193)
+Xét bài toán cực tiểu $c^Tx$ dưới $Ax\le b$, với $A\in\mathbb R^{n\times n}$ khả nghịch và $b,c\in\mathbb R^n$. Ký hiệu $A^{-T}=(A^{-1})^T$. Chứng minh giá trị tối ưu $z^*=\inf\{c^Tx\mid Ax\le b\}$ bằng $c^TA^{-1}b$ khi $A^{-T}c\le0$, và bằng $-\infty$ trong trường hợp còn lại.
+:::
+
+::: hint Gợi ý 1
+Đổi biến $y=Ax$; tập khả thi theo $y$ là $\{y\mid y\le b\}$.
+:::
+
+::: hint Gợi ý 2
+Viết $c^Tx=d^Ty$ với $d=A^{-T}c$, rồi xét dấu từng thành phần của $d$.
+:::
+
+::: solution Lời giải Bài tập 07.26
+**Đổi biến.** Vì $A$ khả nghịch, $y=Ax$ là một song ánh của $\mathbb R^n$, với $x=A^{-1}y$. Điều kiện $Ax\le b$ thành $y\le b$, và $c^Tx=c^TA^{-1}y=d^Ty$ với $d=A^{-T}c$.
+
+**Trường hợp $d\le0$.** Với mọi $y\le b$, mỗi số hạng thỏa $d_iy_i\ge d_ib_i$ vì $d_i\le0$ và $y_i\le b_i$. Do đó $d^Ty\ge d^Tb=c^TA^{-1}b$, với dấu bằng tại $y=b$, tức $x=A^{-1}b$. Vậy $z^*=c^TA^{-1}b$ và được đạt.
+
+**Trường hợp có $d_k>0$.** Với $t\ge0$, lấy $y(t)$ có $y_k=b_k-t$ và $y_i=b_i$ khi $i\ne k$. Điểm $x(t)=A^{-1}y(t)$ khả thi và $c^Tx(t)=d^Tb-td_k\to-\infty$ khi $t\to+\infty$. Vậy $z^*=-\infty$: kết cục không bị chặn của Định lý 07.23, viết cho chiều cực tiểu.
+
+Trong trường hợp thứ nhất, $\mu=-d\ge0$ thỏa $c=A^T(-\mu)$, nên $c^Tx=-\mu^TAx\ge-\mu^Tb$ trên miền khả thi: đây là chứng nhận cận dưới của Mệnh đề 02.11 với các nhân tử $\mu$.
+
+**Kiểm tra lại.** Với $n=1$, $A=2$, $b=4$: miền là $x\le2$. Khi $c=-3$, $d=-\tfrac32\le0$ và $z^*=\tfrac{-3\cdot4}2=-6$, đạt tại $x=2$. Khi $c=3$, $d=\tfrac32>0$ và $3x\to-\infty$ khi $x\to-\infty$.
+:::
+
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 5; chạy phương pháp đơn hình dạng bảng trên một bài toán bốn biến.
+
+::: exercise Bài tập 07.27 (Phương pháp đơn hình cho một bài toán bốn biến; Vanderbei, Bài 2.1, tr. 20)
+Giải bài toán cực đại $6x_1+8x_2+5x_3+9x_4$ dưới
+
+$$
+\begin{aligned}
+2x_1+x_2+x_3+3x_4&\le5,\\
+x_1+3x_2+x_3+2x_4&\le3,
+\end{aligned}
+$$
+
+và $x_1,x_2,x_3,x_4\ge0$.
+:::
+
+::: hint Gợi ý 1
+Thêm biến bù $s_1$, $s_2$; vế phải không âm, nên cơ sở $\{s_1,s_2\}$ khả thi và bảng đầu là $[A\ I\mid b]$ với hàng cuối $[c^T\ 0\mid0]$.
+:::
+
+::: hint Gợi ý 2
+Theo quy tắc Bland, $x_1$ vào ở bước đầu với tỉ số $\tfrac52$ ở hàng $s_1$ và $3$ ở hàng $s_2$.
+:::
+
+::: solution Lời giải Bài tập 07.27
+Dạng chuẩn có thứ tự cột $(x_1,x_2,x_3,x_4,s_1,s_2)$. Chạy Thuật toán 07.31 dạng bảng (Mệnh đề 07.40) với quy tắc Bland.
+
+**Bảng 0.**
+
+| Cơ sở | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $s_1$ | $s_2$ | vế phải |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| $s_1$ | $2$ | $1$ | $1$ | $3$ | $1$ | $0$ | $5$ |
+| $s_2$ | $1$ | $3$ | $1$ | $2$ | $0$ | $1$ | $3$ |
+| $\bar c$ và $-z$ | $6$ | $8$ | $5$ | $9$ | $0$ | $0$ | $0$ |
+
+$x_1$ vào; tỉ số $s_1$: $\tfrac52$, $s_2$: $3$, nên $s_1$ ra với phần tử xoay $2$.
+
+**Bảng 1.**
+
+| Cơ sở | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $s_1$ | $s_2$ | vế phải |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| $x_1$ | $1$ | $\tfrac12$ | $\tfrac12$ | $\tfrac32$ | $\tfrac12$ | $0$ | $\tfrac52$ |
+| $s_2$ | $0$ | $\tfrac52$ | $\tfrac12$ | $\tfrac12$ | $-\tfrac12$ | $1$ | $\tfrac12$ |
+| $\bar c$ và $-z$ | $0$ | $5$ | $2$ | $0$ | $-3$ | $0$ | $-15$ |
+
+Điểm $(\tfrac52,0,0,0)$, $z=15$. $x_2$ vào; tỉ số $x_1$: $\tfrac52/\tfrac12=5$, $s_2$: $\tfrac12/\tfrac52=\tfrac15$, nên $s_2$ ra với phần tử xoay $\tfrac52$.
+
+**Bảng 2.**
+
+| Cơ sở | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $s_1$ | $s_2$ | vế phải |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| $x_1$ | $1$ | $0$ | $\tfrac25$ | $\tfrac75$ | $\tfrac35$ | $-\tfrac15$ | $\tfrac{12}5$ |
+| $x_2$ | $0$ | $1$ | $\tfrac15$ | $\tfrac15$ | $-\tfrac15$ | $\tfrac25$ | $\tfrac15$ |
+| $\bar c$ và $-z$ | $0$ | $0$ | $1$ | $-1$ | $-2$ | $-2$ | $-16$ |
+
+Điểm $(\tfrac{12}5,\tfrac15,0,0)$, $z=16$. Chỉ $\bar c_{x_3}=1$ dương; tỉ số $x_1$: $\tfrac{12}5/\tfrac25=6$, $x_2$: $\tfrac15/\tfrac15=1$, nên $x_2$ ra với phần tử xoay $\tfrac15$.
+
+**Bảng 3.**
+
+| Cơ sở | $x_1$ | $x_2$ | $x_3$ | $x_4$ | $s_1$ | $s_2$ | vế phải |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| $x_1$ | $1$ | $-2$ | $0$ | $1$ | $1$ | $-1$ | $2$ |
+| $x_3$ | $0$ | $5$ | $1$ | $1$ | $-1$ | $2$ | $1$ |
+| $\bar c$ và $-z$ | $0$ | $-5$ | $0$ | $-2$ | $-1$ | $-4$ | $-17$ |
+
+Mọi chi phí rút gọn ngoài cơ sở âm, nên theo Mệnh đề 07.29(b), $x^*=(2,0,1,0)$ tối ưu với $z^*=17$. Nghiệm này duy nhất: theo Mệnh đề 07.29(a), mọi phương án khả thi $x'$ có $c^Tx'-17=-5x_2'-2x_4'-s_1'-4s_2'$, âm khi một trong bốn biến ngoài cơ sở dương.
+
+Với quy tắc Dantzig, đường đi có bốn bước xoay:
+
+- $x_4$ vào ($\bar c_{x_4}=9$); tỉ số $s_1$: $\tfrac53$, $s_2$: $\tfrac32$; $s_2$ ra;
+- $x_1$ vào; tỉ số $s_1$: $1$, $x_4$: $3$; $s_1$ ra;
+- $x_2$ vào; chỉ $x_4$ giảm, với tỉ số $\tfrac15$; $x_4$ ra, tới cơ sở $\{x_1,x_2\}$ của bảng 2;
+- $x_3$ vào, $x_2$ ra như trên, tới cùng nghiệm.
+
+**Kiểm tra lại.** Tại $(2,0,1,0)$: $4+1=5$, $2+1=3$, $z=12+5=17$. Hai hệ số $-\bar c_{s_1}=1$, $-\bar c_{s_2}=4$ cho $6x_1+8x_2+5x_3+9x_4\le(2x_1+x_2+x_3+3x_4)+4(x_1+3x_2+x_3+2x_4)\le5+12=17$, vì $6\le6$, $8\le13$, $5\le5$, $9\le11$ và $x\ge0$.
+:::
+
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 5; dùng phương pháp hai pha để phát hiện ba kết cục: có nghiệm tối ưu, không khả thi, không bị chặn.
+
+::: exercise Bài tập 07.28 (Phương pháp hai pha trên ba bài toán; Vanderbei, Bài 2.5, 2.6, 2.7, tr. 20–21)
+Giải ba bài toán cực đại $x_1+3x_2$ với $x_1,x_2\ge0$ và các ràng buộc sau.
+
+- **(a)** $-x_1-x_2\le-3$, $-x_1+x_2\le-1$, $x_1+2x_2\le4$.
+- **(b)** $-x_1-x_2\le-3$, $-x_1+x_2\le-1$, $x_1+2x_2\le2$.
+- **(c)** $-x_1-x_2\le-3$, $-x_1+x_2\le-1$, $-x_1+2x_2\le2$.
+:::
+
+::: hint Gợi ý 1
+Vế phải của hai ràng buộc đầu âm, nên cơ sở gồm các biến bù không khả thi. Nhân hai phương trình đầu của dạng chuẩn với $-1$ và thêm hai biến nhân tạo $\tilde s_1$, $\tilde s_2$; phương trình thứ ba dùng biến bù $s_3$ trong cơ sở xuất phát.
+:::
+
+::: hint Gợi ý 2
+Hàng cuối của bảng đầu pha I là tổng hai hàng có biến nhân tạo, tính trên các cột không nhân tạo. Ở (a), khi $\tilde z=0$ mà một biến nhân tạo còn trong cơ sở, kiểm tra hàng cuối trước khi dừng pha I.
+:::
+
+::: solution Lời giải Bài tập 07.28
+Ba bài toán có chung hai ràng buộc đầu. Với biến bù $s_i\ge0$, hai phương trình đầu nhân với $-1$ là $x_1+x_2-s_1=3$, $x_1-x_2-s_2=1$; mỗi phương trình nhận một biến nhân tạo. Thứ tự cột $(x_1,x_2,s_1,s_2,s_3,\tilde s_1,\tilde s_2)$. Pha I cực đại $\tilde z=-\tilde s_1-\tilde s_2$ theo Thuật toán 07.44 với quy tắc Bland; hàng cuối ghi $\bar c$ và $-\tilde z$.
+
+**Câu (a).** Phương trình thứ ba là $x_1+2x_2+s_3=4$.
+
+| Bảng | Cơ sở | $x_1$ | $x_2$ | $s_1$ | $s_2$ | $s_3$ | $\tilde s_1$ | $\tilde s_2$ | vế phải |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 0 | $\tilde s_1$ | $1$ | $1$ | $-1$ | $0$ | $0$ | $1$ | $0$ | $3$ |
+| | $\tilde s_2$ | $1$ | $-1$ | $0$ | $-1$ | $0$ | $0$ | $1$ | $1$ |
+| | $s_3$ | $1$ | $2$ | $0$ | $0$ | $1$ | $0$ | $0$ | $4$ |
+| | $\bar c$, $-\tilde z$ | $2$ | $0$ | $-1$ | $-1$ | $0$ | $0$ | $0$ | $4$ |
+| 1 | $\tilde s_1$ | $0$ | $2$ | $-1$ | $1$ | $0$ | $1$ | $-1$ | $2$ |
+| | $x_1$ | $1$ | $-1$ | $0$ | $-1$ | $0$ | $0$ | $1$ | $1$ |
+| | $s_3$ | $0$ | $3$ | $0$ | $1$ | $1$ | $0$ | $-1$ | $3$ |
+| | $\bar c$, $-\tilde z$ | $0$ | $2$ | $-1$ | $1$ | $0$ | $0$ | $-2$ | $2$ |
+| 2 | $\tilde s_1$ | $0$ | $0$ | $-1$ | $\tfrac13$ | $-\tfrac23$ | $1$ | $-\tfrac13$ | $0$ |
+| | $x_1$ | $1$ | $0$ | $0$ | $-\tfrac23$ | $\tfrac13$ | $0$ | $\tfrac23$ | $2$ |
+| | $x_2$ | $0$ | $1$ | $0$ | $\tfrac13$ | $\tfrac13$ | $0$ | $-\tfrac13$ | $1$ |
+| | $\bar c$, $-\tilde z$ | $0$ | $0$ | $-1$ | $\tfrac13$ | $-\tfrac23$ | $0$ | $-\tfrac43$ | $0$ |
+| 3 | $s_2$ | $0$ | $0$ | $-3$ | $1$ | $-2$ | $3$ | $-1$ | $0$ |
+| | $x_1$ | $1$ | $0$ | $-2$ | $0$ | $-1$ | $2$ | $0$ | $2$ |
+| | $x_2$ | $0$ | $1$ | $1$ | $0$ | $1$ | $-1$ | $0$ | $1$ |
+| | $\bar c$, $-\tilde z$ | $0$ | $0$ | $0$ | $0$ | $0$ | $-1$ | $-1$ | $0$ |
+
+Các bước xoay:
+
+- bảng 0 → 1: $x_1$ vào; tỉ số $\tilde s_1$: $3$, $\tilde s_2$: $1$, $s_3$: $4$; $\tilde s_2$ ra;
+- bảng 1 → 2: $x_2$ vào; tỉ số $\tilde s_1$: $1$, $s_3$: $1$ hòa; theo quy tắc Bland $s_3$ ra;
+- bảng 2 → 3: $\tilde z=0$ nhưng $\tilde s_1=0$ còn trong cơ sở; $s_2$ vào ($\bar c_{s_2}=\tfrac13$), tỉ số $\tilde s_1$: $0$, $x_2$: $3$; $\tilde s_1$ ra trong một bước xoay suy biến ($\theta^*=0$). Pha I chưa tối ưu ở bảng 2 vì $\bar c_{s_2}>0$, nên đây là một bước xoay thường của Thuật toán 07.31.
+
+Pha I kết thúc với $\tilde z^*=0$ và cơ sở $\{s_2,x_1,x_2\}$ không chứa biến nhân tạo, nên không cần thủ tục của Mệnh đề 07.43(c). Bỏ hai cột nhân tạo; theo bảng 3, $x_1=2+2s_1+s_3$, $x_2=1-s_1-s_3$, nên
+
+$$
+\begin{aligned}
+z&=x_1+3x_2\\
+&=5-s_1-2s_3 .
+\end{aligned}
+$$
+
+Hai chi phí rút gọn $-1$, $-2$ âm, nên pha II dừng ngay: $x^*=(2,1)$, $z^*=5$, nghiệm duy nhất.
+
+**Câu (b).** Phương trình thứ ba là $x_1+2x_2+s_3=2$. Bảng 0 như ở (a), trừ vế phải hàng $s_3$ bằng $2$. Pha I theo quy tắc Bland:
+
+- $x_1$ vào; tỉ số $\tilde s_1$: $3$, $\tilde s_2$: $1$, $s_3$: $2$; $\tilde s_2$ ra; điểm $(1,0)$ với $\tilde s_1=2$, $s_3=1$, $\tilde z=-2$, và cột của $x_2$ có các phần tử $2$ (hàng $\tilde s_1$), $-1$ (hàng $x_1$), $3$ (hàng $s_3$);
+- $x_2$ vào; tỉ số $\tilde s_1$: $1$, $s_3$: $\tfrac13$; $s_3$ ra; điểm $(\tfrac43,\tfrac13)$ với $\tilde s_1=\tfrac43$, $\tilde z=-\tfrac43$, và cột của $s_2$ có các phần tử $\tfrac13$ (hàng $\tilde s_1$), $-\tfrac23$ (hàng $x_1$), $\tfrac13$ (hàng $x_2$);
+- $s_2$ vào ($\bar c_{s_2}=\tfrac13$); tỉ số $\tilde s_1$: $\tfrac43/\tfrac13=4$, $x_2$: $\tfrac13/\tfrac13=1$; $x_2$ ra.
+
+| Cơ sở | $x_1$ | $x_2$ | $s_1$ | $s_2$ | $s_3$ | $\tilde s_1$ | $\tilde s_2$ | vế phải |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| $\tilde s_1$ | $0$ | $-1$ | $-1$ | $0$ | $-1$ | $1$ | $0$ | $1$ |
+| $x_1$ | $1$ | $2$ | $0$ | $0$ | $1$ | $0$ | $0$ | $2$ |
+| $s_2$ | $0$ | $3$ | $0$ | $1$ | $1$ | $0$ | $-1$ | $1$ |
+| $\bar c$, $-\tilde z$ | $0$ | $-1$ | $-1$ | $0$ | $-1$ | $0$ | $-1$ | $1$ |
+
+Mọi chi phí rút gọn không dương, nên pha I dừng với $\tilde z^*=-1<0$. Theo Mệnh đề 07.43(b), bài toán không khả thi.
+
+**Câu (c).** Phương trình thứ ba là $-x_1+2x_2+s_3=2$. Pha I theo quy tắc Bland:
+
+- $x_1$ vào; $s_3$ tăng theo $x_1$, tỉ số $\tilde s_1$: $3$, $\tilde s_2$: $1$; $\tilde s_2$ ra; điểm $(1,0)$ với $\tilde s_1=2$, $s_3=3$, và cột của $x_2$ có các phần tử $2$ (hàng $\tilde s_1$), $-1$ (hàng $x_1$), $1$ (hàng $s_3$);
+- $x_2$ vào; tỉ số $\tilde s_1$: $\tfrac22=1$, $s_3$: $3$; $\tilde s_1$ ra, và $\tilde z=0$ với cơ sở $\{x_2,x_1,s_3\}$ tại $(2,1)$.
+
+Bỏ hai cột nhân tạo. Với cơ sở theo thứ tự $(x_2,x_1,s_3)$ và $c_B=(3,1,0)$, (8.2) cho $\bar c_{s_1}=0-\bigl(3\cdot(-\tfrac12)+1\cdot(-\tfrac12)\bigr)=2$, $\bar c_{s_2}=0-\bigl(3\cdot\tfrac12+1\cdot(-\tfrac12)\bigr)=-1$, và $z=3\cdot1+1\cdot2=5$. Pha II với quy tắc Bland:
+
+| Bảng | Cơ sở | $x_1$ | $x_2$ | $s_1$ | $s_2$ | $s_3$ | vế phải |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 0 | $x_2$ | $0$ | $1$ | $-\tfrac12$ | $\tfrac12$ | $0$ | $1$ |
+| | $x_1$ | $1$ | $0$ | $-\tfrac12$ | $-\tfrac12$ | $0$ | $2$ |
+| | $s_3$ | $0$ | $0$ | $\tfrac12$ | $-\tfrac32$ | $1$ | $2$ |
+| | $\bar c$, $-z$ | $0$ | $0$ | $2$ | $-1$ | $0$ | $-5$ |
+| 1 | $x_2$ | $0$ | $1$ | $0$ | $-1$ | $1$ | $3$ |
+| | $x_1$ | $1$ | $0$ | $0$ | $-2$ | $1$ | $4$ |
+| | $s_1$ | $0$ | $0$ | $1$ | $-3$ | $2$ | $4$ |
+| | $\bar c$, $-z$ | $0$ | $0$ | $0$ | $5$ | $-4$ | $-13$ |
+
+Ở bảng 0, $s_1$ vào và chỉ $s_3$ giảm, với tỉ số $2/\tfrac12=4$; $s_3$ ra, tới $(4,3)$ với $z=13$. Ở bảng 1, $s_2$ vào với $\bar c_{s_2}=5$, và cột của $s_2$ có ba phần tử $-1$, $-2$, $-3$ không dương. Theo Mệnh đề 07.30(a), bài toán không bị chặn: dọc tia $(x_1,x_2)=(4+2\theta,3+\theta)$, $\theta\ge0$, mục tiêu là $z=13+5\theta$.
+
+Ba câu cho ba kết cục của Định lý 07.23: tối ưu duy nhất, không khả thi, không bị chặn.
+
+**Kiểm tra lại.** (a) Tại $(2,1)$: $-3\le-3$, $-1\le-1$, $2+2=4\le4$; với $s_1=x_1+x_2-3$, $s_3=4-x_1-2x_2$, $5-s_1-2s_3=x_1+3x_2$. (b) Vì $x_2\ge0$, $x_1+x_2\le x_1+2x_2\le2<3$, trái ràng buộc đầu. (c) Trên tia: $-(7+3\theta)\le-3$, $-(1+\theta)\le-1$, $-(4+2\theta)+2(3+\theta)=2\le2$.
+:::
+
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 5; so sánh số bước xoay của hai quy tắc chọn biến vào.
+
+::: exercise Bài tập 07.29 (Quy tắc Dantzig và quy tắc Bland trên hai bài toán; Vanderbei, Bài 4.1 và 4.3, tr. 50–51)
+So sánh số bước xoay của quy tắc Dantzig và quy tắc Bland khi giải hai bài toán sau bằng phương pháp đơn hình từ $x=0$.
+
+- **(a)** Cực đại $4x_1+5x_2$ dưới $2x_1+2x_2\le9$, $x_1\le4$, $x_2\le3$, $x_1,x_2\ge0$.
+- **(b)** Cực đại $3x_1+5x_2$ dưới $x_1+2x_2\le5$, $x_1\le3$, $x_2\le2$, $x_1,x_2\ge0$.
+:::
+
+::: hint Gợi ý 1
+Với biến bù $s_1,s_2,s_3$, cơ sở $\{s_1,s_2,s_3\}$ khả thi; ở cả hai bài, quy tắc Dantzig chọn $x_2$ còn quy tắc Bland chọn $x_1$ ở bước đầu.
+:::
+
+::: hint Gợi ý 2
+Ghi mỗi bước thành một dòng gồm cơ sở, đỉnh, $z$, các chi phí rút gọn, biến vào, các tỉ số và biến ra, như Ví dụ 07.21.
+:::
+
+::: solution Lời giải Bài tập 07.29
+**Câu (a).** Quy tắc Dantzig:
+
+| Bước | Cơ sở | Đỉnh | $z$ | $\bar c$ ngoài cơ sở | Vào | Tỉ số | Ra |
+|---|---|---|---:|---|---|---|---|
+| $0$ | $\{s_1,s_2,s_3\}$ | $(0,0)$ | $0$ | $x_1$: $4$; $x_2$: $5$ | $x_2$ | $s_1$: $\tfrac92$; $s_3$: $3$ | $s_3$ |
+| $1$ | $\{s_1,s_2,x_2\}$ | $(0,3)$ | $15$ | $x_1$: $4$; $s_3$: $-5$ | $x_1$ | $s_1$: $\tfrac32$; $s_2$: $4$ | $s_1$ |
+| $2$ | $\{x_1,s_2,x_2\}$ | $(\tfrac32,3)$ | $21$ | $s_1$: $-2$; $s_3$: $-1$ | dừng | | |
+
+Quy tắc Bland:
+
+| Bước | Cơ sở | Đỉnh | $z$ | $\bar c$ ngoài cơ sở | Vào | Tỉ số | Ra |
+|---|---|---|---:|---|---|---|---|
+| $0$ | $\{s_1,s_2,s_3\}$ | $(0,0)$ | $0$ | $x_1$: $4$; $x_2$: $5$ | $x_1$ | $s_1$: $\tfrac92$; $s_2$: $4$ | $s_2$ |
+| $1$ | $\{s_1,x_1,s_3\}$ | $(4,0)$ | $16$ | $x_2$: $5$; $s_2$: $-4$ | $x_2$ | $s_1$: $\tfrac12$; $s_3$: $3$ | $s_1$ |
+| $2$ | $\{x_2,x_1,s_3\}$ | $(4,\tfrac12)$ | $\tfrac{37}2$ | $s_1$: $-\tfrac52$; $s_2$: $1$ | $s_2$ | $x_1$: $4$; $s_3$: $\tfrac52$ | $s_3$ |
+| $3$ | $\{x_2,x_1,s_2\}$ | $(\tfrac32,3)$ | $21$ | $s_1$: $-2$; $s_3$: $-1$ | dừng | | |
+
+Quy tắc Dantzig cần $2$ bước xoay, quy tắc Bland cần $3$; cả hai dừng ở $x^*=(\tfrac32,3)$, $z^*=21$.
+
+**Câu (b).** Quy tắc Dantzig:
+
+| Bước | Cơ sở | Đỉnh | $z$ | $\bar c$ ngoài cơ sở | Vào | Tỉ số | Ra |
+|---|---|---|---:|---|---|---|---|
+| $0$ | $\{s_1,s_2,s_3\}$ | $(0,0)$ | $0$ | $x_1$: $3$; $x_2$: $5$ | $x_2$ | $s_1$: $\tfrac52$; $s_3$: $2$ | $s_3$ |
+| $1$ | $\{s_1,s_2,x_2\}$ | $(0,2)$ | $10$ | $x_1$: $3$; $s_3$: $-5$ | $x_1$ | $s_1$: $1$; $s_2$: $3$ | $s_1$ |
+| $2$ | $\{x_1,s_2,x_2\}$ | $(1,2)$ | $13$ | $s_1$: $-3$; $s_3$: $1$ | $s_3$ | $s_2$: $1$; $x_2$: $2$ | $s_2$ |
+| $3$ | $\{x_1,s_3,x_2\}$ | $(3,1)$ | $14$ | $s_1$: $-\tfrac52$; $s_2$: $-\tfrac12$ | dừng | | |
+
+Quy tắc Bland:
+
+| Bước | Cơ sở | Đỉnh | $z$ | $\bar c$ ngoài cơ sở | Vào | Tỉ số | Ra |
+|---|---|---|---:|---|---|---|---|
+| $0$ | $\{s_1,s_2,s_3\}$ | $(0,0)$ | $0$ | $x_1$: $3$; $x_2$: $5$ | $x_1$ | $s_1$: $5$; $s_2$: $3$ | $s_2$ |
+| $1$ | $\{s_1,x_1,s_3\}$ | $(3,0)$ | $9$ | $x_2$: $5$; $s_2$: $-3$ | $x_2$ | $s_1$: $1$; $s_3$: $2$ | $s_1$ |
+| $2$ | $\{x_2,x_1,s_3\}$ | $(3,1)$ | $14$ | $s_1$: $-\tfrac52$; $s_2$: $-\tfrac12$ | dừng | | |
+
+Quy tắc Dantzig cần $3$ bước xoay, quy tắc Bland cần $2$; cả hai dừng ở $x^*=(3,1)$, $z^*=14$.
+
+**So sánh.** Ở (a) quy tắc Dantzig cần ít bước hơn, ở (b) quy tắc Bland cần ít bước hơn. Quy tắc Dantzig chọn $x_2$ vì $\bar c_{x_2}=5$ là tốc độ tăng lớn nhất của $z$ (Nhận xét 07.33). Số bước phụ thuộc vị trí của đỉnh tối ưu: ở (b), bước đầu theo $x_2$ cho $z=10>9$, nhưng từ $(0,2)$ còn hai cạnh tới $(3,1)$, còn từ $(3,0)$ chỉ một cạnh.
+
+**Kiểm tra lại.** (a) Tại $(\tfrac32,3)$: $3+6=9$, và $4x_1+5x_2=2(2x_1+2x_2)+x_2\le18+3=21$, với hai hệ số $2$, $1$ là $-\bar c_{s_1}$, $-\bar c_{s_3}$. (b) Tại $(3,1)$: $3+2=5$, và $3x_1+5x_2=\tfrac52(x_1+2x_2)+\tfrac12x_1\le\tfrac{25}2+\tfrac32=14$.
+:::
+
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 5; dùng phép biến đổi hàng của bước xoay để xác định dấu của chi phí rút gọn sau bước xoay.
+
+::: exercise Bài tập 07.30 (Chi phí rút gọn của biến vừa rời cơ sở; Vanderbei, Bài 2.18, tr. 22)
+Chứng minh rằng biến vừa rời cơ sở ở một bước xoay của phương pháp đơn hình (Thuật toán 07.31, bài toán cực đại) không thể vào cơ sở ở bước xoay ngay sau đó.
+:::
+
+::: hint Gợi ý 1
+Trước bước xoay, cột của biến ra $x_l$ trong bảng là cột của ma trận đơn vị ứng với hàng xoay, và chi phí rút gọn của nó bằng $0$.
+:::
+
+::: hint Gợi ý 2
+Theo dõi cột của $x_l$ qua ba phép biến đổi hàng của bước xoay, đặc biệt phép trừ ở hàng cuối.
+:::
+
+::: solution Lời giải Bài tập 07.30
+Xét một bước xoay của Thuật toán 07.31 trên bảng (8.4) của bài toán cực đại: biến vào $x_j$ có $\bar c_j>0$, hàng xoay $p$ có phần tử xoay $\alpha_p>0$, và biến ra là $x_l$ với $l=B(p)$.
+
+**Bước 1 (cột của $x_l$ trước bước xoay).** $x_l$ là biến cơ sở ở hàng $p$, nên ở phần trên cột của nó là cột thứ $p$ của $I$, và ở hàng cuối nó có chi phí rút gọn $0$.
+
+**Bước 2 (sau bước xoay).** Theo Mệnh đề 07.40, phép 1 chia hàng $p$ cho $\alpha_p$, nên phần tử của hàng $p$ mới ở cột $l$ là $\tfrac1{\alpha_p}$. Phép 3 trừ khỏi hàng cuối $\bar c_j$ lần hàng $p$ mới, nên chi phí rút gọn mới của $x_l$ là
+
+$$
+\bar c_l'=0-\bar c_j\cdot\tfrac1{\alpha_p}=-\tfrac{\bar c_j}{\alpha_p}<0 .
+$$
+
+**Bước 3 (kết luận).** Ở bước xoay kế tiếp, bước 3 của Thuật toán 07.31 chỉ chọn biến vào có chi phí rút gọn dương, nên $x_l$ không được chọn, với mọi quy tắc chọn biến vào. Lập luận không dùng $\theta^*>0$, nên đúng cả với bước xoay suy biến. $\square$
+
+**Kiểm tra lại.** Ở bước đầu của Bài tập 07.27, $x_1$ vào với $\bar c_{x_1}=6$ và phần tử xoay $2$ ở hàng $s_1$; bảng 1 có $\bar c_{s_1}=-3=-\tfrac62$.
+:::
+
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 6; giải một quy hoạch nguyên phi tuyến bằng đồ thị và bằng phương trình Bellman.
+
+::: exercise Bài tập 07.31 (Quy hoạch động cho một quy hoạch nguyên phi tuyến; Kupferschmid, Bài 7.10.56, tr. 289)
+Xét bài toán cực đại $z(x)=x_1x_2+x_2+2x_1$ theo $x\in\mathbb Z^2$ dưới $x_1+2x_2\le25$, $x_1\ge0$, $x_2\ge0$.
+
+- **(a)** Giải bài toán bằng đồ thị.
+- **(b)** Giải bài toán bằng quy hoạch động, và nêu các phương trình Bellman (phương trình truy hồi ngược) đã dùng.
+:::
+
+::: hint Gợi ý 1
+Viết lại mục tiêu để nó tách được theo giai đoạn: chọn $x_2$ ở giai đoạn đầu, chọn $x_1$ ở giai đoạn sau, và nhóm $x_1x_2+2x_1=x_1(x_2+2)$.
+:::
+
+::: hint Gợi ý 2
+Ở (a), $z=(x_1+1)(x_2+2)-2$, nên mỗi đường mức là một nhánh hyperbol. Ở (b), đóng góp của giai đoạn sau phụ thuộc $x_2$, nên trạng thái sau giai đoạn đầu cần chứa $x_2$ (Nhận xét 07.47).
+:::
+
+::: solution Lời giải Bài tập 07.31
+**Câu (a).** Ta có $z+2=(x_1+1)(x_2+2)$. Trên miền khả thi cả hai thừa số dương, nên $z$ tăng theo từng biến, và với mỗi $x_2$, giá trị lớn nhất đạt khi $x_1$ lớn nhất, tức $x_1=25-2x_2$, trên cạnh $x_1+2x_2=25$. Trên cạnh đó, $z=(26-2x_2)(x_2+2)-2$ là hàm bậc hai lõm của $x_2$, đạt cực đại tại $x_2=\tfrac{11}2$, $x_1=14$, với $z=15\cdot\tfrac{15}2-2=110{,}5$; đường mức $z=110{,}5$ tiếp xúc cạnh tại $(14;\,5{,}5)$, không phải điểm nguyên.
+
+![Phần miền khả thi quanh cạnh x1 + 2x2 = 25 với các điểm nguyên khả thi vẽ bằng chấm xám; đường mức z = 110 đi qua hai điểm nguyên (13,6) và (15,5), đánh dấu bằng chấm xanh lá lớn; vòng tròn rỗng tại (14; 5,5) là điểm nới lỏng liên tục đạt 110,5; không điểm nguyên khả thi nào khác nằm trên hoặc phía trên đường mức](img/lec-07/ex-integer-dp-level-curves.svg)
+
+Đường mức $z=110$, tức $(x_1+1)(x_2+2)=112$, đi qua hai điểm nguyên khả thi $(13,6)$ và $(15,5)$ trên cạnh. Không điểm nguyên khả thi nào khác có $z\ge110$. Điểm như vậy cần $(x_1+1)(x_2+2)\ge112$ và $x_1\le25-2x_2$; theo từng hàng:
+
+- $x_2=4$: $x_1\ge\tfrac{112}6-1=\tfrac{53}3$, trái $x_1\le17$;
+- $x_2=5$: $x_1\ge15$ và $x_1\le15$, cho $(15,5)$;
+- $x_2=6$: $x_1\ge13$ và $x_1\le13$, cho $(13,6)$;
+- $x_2=7$: $x_1\ge\tfrac{112}9-1=\tfrac{103}9$, trái $x_1\le11$;
+- $x_2\le3$ hoặc $x_2\ge8$: trên cạnh, $(26-2x_2)(x_2+2)-2\le98$ vì hàm bậc hai lõm này nhận giá trị $98$ tại $x_2=3$ và $x_2=8$.
+
+Vậy $z^*=110$, đạt tại $(13,6)$ và $(15,5)$.
+
+**Câu (b).** Viết $z=x_2+x_1(x_2+2)$: giai đoạn $0$ chọn $x_2$ với đóng góp $x_2$, giai đoạn $1$ chọn $x_1$ với đóng góp $x_1(x_2+2)$. Đóng góp thứ hai phụ thuộc $x_2$, nên trạng thái ở giai đoạn $1$ là cặp $\xi_1=(r,x_2)$ với $r=25-2x_2$ là ngân sách còn lại; trạng thái đầu là $\xi_0=25$. Với $\Lambda_k=-J_k$ là lợi ích tối ưu còn lại, như ở Bài tập 07.18, phương trình (9.3) cho
+
+$$
+\begin{aligned}
+&\Lambda_2=0,\\
+&\Lambda_1(r,x_2)\\
+&\quad=\max_{x_1=0,\ldots,r}x_1(x_2+2)\\
+&\quad=r(x_2+2),\\
+&\Lambda_0(25)\\
+&\quad=\max_{x_2=0,\ldots,12}\bigl\{x_2\\
+&\qquad+\Lambda_1(25-2x_2,x_2)\bigr\}.
+\end{aligned}
+$$
+
+Giá trị $x_2+(25-2x_2)(x_2+2)$ theo $x_2$:
+
+| $x_2$ | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ | $11$ | $12$ |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| $r$ | $25$ | $23$ | $21$ | $19$ | $17$ | $15$ | $13$ | $11$ | $9$ | $7$ | $5$ | $3$ | $1$ |
+| giá trị | $50$ | $70$ | $86$ | $98$ | $106$ | $110$ | $110$ | $106$ | $98$ | $86$ | $70$ | $50$ | $26$ |
+
+$\Lambda_0(25)=110$, đạt tại $x_2=5$ và $x_2=6$. Lượt xuôi chọn $x_1=r$, cho hai nghiệm tối ưu $(15,5)$ và $(13,6)$. Phương trình Bellman ở giai đoạn $0$ tính $13$ giá trị, so với $182$ điểm nguyên khả thi khi liệt kê.
+
+**Kiểm tra lại.** $z(15,5)=75+5+30=110$ và $z(13,6)=78+6+26=110$; hai điểm thỏa $15+10=25$ và $13+12=25$.
+:::
+
+## Mức vận dụng
+
+**Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 1, 4; lập và giải một quy hoạch tuyến tính chọn quy tắc quyết định giữa hai phân phối.
+
+::: exercise Bài tập 07.32 (Kiểm định giữa hai phân phối; Vanderbei, Bài 1.3, tr. 8–9, và Bài 2.19, tr. 22)
+Biến ngẫu nhiên $Y$ nhận một trong $n$ giá trị đã biết $\alpha_1,\ldots,\alpha_n$, và $Y$ có một trong hai phân phối: phân phối $p$ với $\Pr(Y=\alpha_j)=p_j$, hoặc phân phối $q$ với $\Pr(Y=\alpha_j)=q_j$. Các số $p_j$ không âm và có tổng bằng $1$; các số $q_j$ cũng vậy. Từ một lần quan sát $Y$, cần đoán $Y$ có phân phối $p$ hay $q$: với mỗi kết quả $\alpha_j$, ta khẳng định phân phối là $p$ với xác suất $x_j$ và là $q$ với xác suất $1-x_j$. Các xác suất $x_1,\ldots,x_n$ được chọn sao cho xác suất khẳng định $p$ khi phân phối thực là $q$ không vượt $\beta$, với $\beta$ là một số dương nhỏ (chẳng hạn $0{,}05$), và với ràng buộc đó, xác suất khẳng định $p$ khi phân phối thực là $p$ lớn nhất.
+
+- **(a)** Lập bài toán cực đại này thành một quy hoạch tuyến tính.
+- **(b)** Giả sử mọi $p_j>0$, mọi $q_j>0$, và $\frac{p_1}{q_1}<\frac{p_2}{q_2}<\cdots<\frac{p_n}{q_n}$. Giải quy hoạch tuyến tính ở (a).
+:::
+
+::: hint Gợi ý 1
+Xác suất khẳng định $p$ khi phân phối thực là $q$ bằng $\sum_jq_jx_j$.
+:::
+
+::: hint Gợi ý 2
+Ở (b), so sánh với Bài tập 07.18(c): mỗi kết quả $\alpha_j$ tiêu tốn $q_j$ ngân sách và mang lại $p_j$; chứng minh tối ưu bằng các nhân tử không âm.
+:::
+
+::: solution Lời giải Bài tập 07.32
+**Câu (a).** Khi phân phối thực là $p$, xác suất khẳng định $p$ là $\sum_jp_jx_j$; khi phân phối thực là $q$, xác suất đó là $\sum_jq_jx_j$. Bài toán là
+
+$$
+\begin{aligned}
+\max_{x\in\mathbb R^n}\quad&\sum_{j=1}^np_jx_j\\
+&\sum_{j=1}^nq_jx_j\le\beta,\\
+&0\le x_j\le1,\\
+&j=1,\ldots,n .
+\end{aligned}
+$$
+
+**Câu (b).** Nếu $\beta\ge1$, điểm $x=\mathbf 1$ khả thi vì $\sum_jq_j=1$, và cho giá trị $\sum_jp_j=1$, giá trị lớn nhất của một xác suất. Xét $0<\beta<1$. Đặt $Q_k=\sum_{j\ge k}q_j$, với $Q_{n+1}=0$. Dãy $Q_k$ giảm chặt từ $Q_1=1>\beta$ tới $Q_{n+1}=0\le\beta$, nên có đúng một $k$ với $Q_{k+1}\le\beta<Q_k$. Nghiệm là
+
+$$
+\begin{aligned}
+&x_j^*=1\ \ (j>k),\\
+&x_j^*=0\ \ (j<k),\\
+&x_k^*=\frac{\beta-Q_{k+1}}{q_k}\in[0,1),
+\end{aligned}
+$$
+
+với giá trị $V=\sum_{j>k}p_j+p_k\frac{\beta-Q_{k+1}}{q_k}$. Điểm $x^*$ khả thi và dùng hết ngân sách: $\sum_jq_jx_j^*=Q_{k+1}+(\beta-Q_{k+1})=\beta$.
+
+**Chứng nhận tối ưu.** Đặt $\pi_0=\frac{p_k}{q_k}>0$ và $\pi_j=\max(p_j-\pi_0q_j,0)$. Theo thứ tự các tỉ số, $\pi_j=p_j-\pi_0q_j>0$ khi $j>k$ và $\pi_j=0$ khi $j\le k$. Vì $p_j\le\pi_0q_j+\pi_j$ và $x_j\ge0$, mọi $x$ khả thi thỏa
+
+$$
+\begin{aligned}
+&\sum_jp_jx_j\\
+&\quad\le\pi_0\sum_jq_jx_j+\sum_j\pi_jx_j\\
+&\quad\le\pi_0\beta+\sum_{j>k}(p_j-\pi_0q_j)\\
+&\quad=\sum_{j>k}p_j+\pi_0(\beta-Q_{k+1})\\
+&\quad=V,
+\end{aligned}
+$$
+
+trong đó bất đẳng thức thứ hai dùng $\sum_jq_jx_j\le\beta$ và $x_j\le1$. Đây là chứng nhận bằng tổ hợp không âm của Mệnh đề 02.11, viết cho chiều cực đại; $x^*$ đạt cận nên tối ưu.
+
+**Diễn giải.** Quy tắc tối ưu khẳng định $p$ khi tỉ số $\frac{p_j}{q_j}$ của kết quả quan sát được vượt một ngưỡng, và chỉ ngẫu nhiên hóa ở một kết quả $\alpha_k$. Có nhiều nhất một thành phần phân số vì ở dạng chuẩn, với một biến bù cho ngân sách và một biến bù $t_j=1-x_j$ cho mỗi cận trên, có $m=n+1$ phương trình; theo Hệ quả 07.13, một điểm cực biên có nhiều nhất $n+1$ thành phần dương, trong khi mỗi cặp $(x_j,t_j)$ có ít nhất một thành phần dương. Hai thành phần phân số $x_j$, $x_{j'}$ cho bốn số dương $x_j,t_j,x_{j'},t_{j'}$, cùng với ít nhất một số dương ở mỗi cặp trong $n-2$ cặp còn lại, nên một điểm cực biên như vậy có ít nhất $n+2$ thành phần dương, mâu thuẫn.
+
+**Kiểm tra lại.** Với $n=3$, $p=(0{,}2;\,0{,}3;\,0{,}5)$, $q=(0{,}5;\,0{,}3;\,0{,}2)$, $\beta=0{,}3$: các tỉ số $0{,}4<1<2{,}5$; $Q_3=0{,}2\le0{,}3<Q_2=0{,}5$, nên $k=2$, $x^*=(0,\tfrac13,1)$ và $V=0{,}5+0{,}1=0{,}6$. Chứng nhận: $\pi_0=1$, $\pi=(0,0,0{,}3)$, cận $1\cdot0{,}3+0{,}3=0{,}6$.
+:::
+
+## Tài liệu tham khảo
+
+- Vanderbei, Robert J. (2014), *Linear Programming: Foundations and Extensions*, ấn bản 4, Springer:
+  - Định lý 3.4 (tr. 33);
+  - mục Exercises của Chương 1: Bài 1.1 (tr. 7–8), 1.3 (tr. 8–9);
+  - mục Exercises của Chương 2: Bài 2.1, 2.5 (tr. 20), 2.6, 2.7 (tr. 21), 2.18, 2.19 (tr. 22);
+  - mục Exercises của Chương 3: Bài 3.4 (tr. 36–37), 3.5, 3.7 (tr. 37);
+  - mục Exercises của Chương 4: Bài 4.1 (tr. 50), 4.3 (tr. 51).
+- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Cambridge University Press:
+  - mục Exercises của Chương 2: Bài 2.8 (tr. 60);
+  - mục Exercises của Chương 4: Bài 4.9 (tr. 193).
+- Kupferschmid, Michael (2023), *Introduction to Mathematical Programming*, first edition, giấy phép CC BY 4.0:
+  - §7.8.2 (tr. 279): mục tiêu tách được và quy hoạch động;
+  - mục Exercises 3.7: Bài 3.7.31 (tr. 129);
+  - mục Exercises 7.10: Bài 7.10.48 (tr. 288), 7.10.56 (tr. 289).
