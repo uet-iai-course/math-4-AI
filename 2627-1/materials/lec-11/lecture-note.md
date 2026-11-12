@@ -1,6 +1,6 @@
 # Bài 11 — Học từ dữ liệu qua ước lượng thống kê
 
-Bài 10 làm việc với các mô hình xác suất có tham số đã biết. Chẳng hạn, Định lý 10.11 (xác suất toàn phần và định lý Bayes) cập nhật xác suất một sản phẩm bị lỗi khi tỉ lệ lỗi của từng nhà cung cấp và độ nhạy của cảm biến đã được cho trước. Bài 10 kết thúc với nhận xét rằng trong thực tế các con số này chưa biết, và các tham số $\mu_y,\sigma_y^2$ của một số đo liên tục với mô hình $T\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$ cũng vậy; chúng phải được xác định từ dữ liệu. Câu hỏi trung tâm của bài là: **khi một mô hình có tham số chưa biết, ta dùng dữ liệu để xác định tham số đó như thế nào?**
+Bài 10 làm việc với các mô hình xác suất có tham số đã biết. Chẳng hạn, Định lý 10.11 (xác suất toàn phần và định lý Bayes) cập nhật xác suất một sản phẩm bị lỗi khi tỉ lệ lỗi của từng nhà cung cấp và độ nhạy của cảm biến đã được cho trước. Trong thực tế, các con số này và các tham số $\mu_y,\sigma_y^2$ của một số đo liên tục với mô hình $T\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$ đều chưa biết (nhận xét cuối Bài 10), và ta phải xác định chúng từ dữ liệu. Câu hỏi trung tâm của bài là: **khi một mô hình có tham số chưa biết, ta dùng dữ liệu để xác định tham số đó như thế nào?**
 
 Chúng ta dùng lại các họ phân phối của Bài 10 và xem tham số của chúng là chưa biết:
 
@@ -41,14 +41,12 @@ Sau bài này, người học có thể:
 5. Giải thích đường đồng mức của Gaussian bằng trị riêng, vector riêng và khoảng cách Mahalanobis, rồi dùng chúng để so sánh độ lệch của quan sát mới.
 6. Suy ra hàm mất mát từ một giả thiết phân phối và giải thích vì sao đổi mô hình xác suất thì đổi mục tiêu học tham số.
 
-Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích mô hình học máy thuộc CLO2 của học phần.
-
 ## Kiến thức tiên quyết
 
 - **Độc lập.** Hai biến ngẫu nhiên $X,Z$ độc lập nếu $\mathbb P(X\in B,Z\in C)=\mathbb P(X\in B)\,\mathbb P(Z\in C)$ với mọi tập Borel $B,C$ (Định nghĩa 10.16). Các biến rời rạc $X_1,\ldots,X_n$ độc lập cùng phân phối (independent and identically distributed, i.i.d.) nếu hàm khối xác suất đồng thời bằng tích các hàm khối xác suất biên và các biến có cùng hàm khối xác suất (Định nghĩa 05c.23).
-- **Ba họ phân phối.** $Y\sim\operatorname{Bernoulli}(\theta)$ nếu $\mathbb P(Y=1)=\theta$, $\mathbb P(Y=0)=1-\theta$ với $\theta\in[0,1]$; $Z\sim\operatorname{Cat}(\pi)$ nếu $\mathbb P(Z=k)=\pi_k$ với $\pi_k\ge0$, $\sum_k\pi_k=1$ (Định nghĩa 10.19). Trong Bài 11, $\theta$ là ký hiệu chung cho tham số của một mô hình bất kỳ, nên tham số Bernoulli được viết là $p$. Gaussian một chiều $\mathcal N(\mu,\sigma^2)$ và nhiều chiều $\mathcal N(\mu,\Sigma)$ có các mật độ cho bởi công thức (6.11) và (6.12) của Bài 10, trong Định nghĩa 10.20; các mật độ này được viết lại tại chỗ dùng.
+- **Ba họ phân phối.** $Y\sim\operatorname{Bernoulli}(\theta)$ nếu $\mathbb P(Y=1)=\theta$, $\mathbb P(Y=0)=1-\theta$ với $\theta\in[0,1]$; $Z\sim\operatorname{Cat}(\pi)$ nếu $\mathbb P(Z=k)=\pi_k$ với $\pi_k\ge0$, $\sum_k\pi_k=1$ (Định nghĩa 10.19). Trong Bài 11, $\theta$ là ký hiệu chung cho tham số của một mô hình bất kỳ, nên tham số Bernoulli được viết là $p$. Gaussian một chiều $\mathcal N(\mu,\sigma^2)$ và nhiều chiều $\mathcal N(\mu,\Sigma)$ có các mật độ cho bởi công thức (6.11) và (6.12) của Bài 10, trong Định nghĩa 10.20.
 - **Kỳ vọng, phương sai, hiệp phương sai.** Kỳ vọng tuyến tính: $\mathbb E[\gamma_1X+\gamma_2Z+\gamma_3]=\gamma_1\mathbb EX+\gamma_2\mathbb EZ+\gamma_3$ (Mệnh đề 10.22 cho biến rời rạc; nhận xét sau mệnh đề và Phụ lục B.1 của Bài 10 cho biến có mật độ). Phương sai $\operatorname{Var}(X)=\mathbb E[(X-\mathbb EX)^2]$ (Định nghĩa 10.23). Hiệp phương sai $\operatorname{Cov}(X,Z)=\mathbb E[(X-\mathbb EX)(Z-\mathbb EZ)]$ (Định nghĩa 10.25) bằng $0$ khi $X,Z$ độc lập và có mômen bậc hai hữu hạn (Mệnh đề 10.27; Phụ lục B.2 của Bài 10 cho biến có mật độ). Với $n$ biến có mômen bậc hai hữu hạn, $\operatorname{Var}\bigl(\sum_iX_i\bigr)=\sum_i\operatorname{Var}X_i+2\sum_{i<j}\operatorname{Cov}(X_i,X_j)$ (Mệnh đề 10.26), và $\operatorname{Var}(\gamma X)=\gamma^2\operatorname{Var}X$ (Mệnh đề 10.24).
-- **Trung bình mẫu.** Nếu $X_1,\ldots,X_n$ có cùng kỳ vọng $\mu$, cùng phương sai $\sigma^2<\infty$ và không tương quan đôi một thì $\bar X=\frac1n\sum_iX_i$ có $\mathbb E\bar X=\mu$ và $\operatorname{Var}\bar X=\sigma^2/n$: Định lý 05c.35 cho biến rời rạc, và trường hợp tổng quát suy từ Mệnh đề 10.26 và Mệnh đề 10.24 vì $\operatorname{Var}\bar X=\frac1{n^2}\operatorname{Var}\bigl(\sum_iX_i\bigr)=\frac1{n^2}\cdot n\sigma^2$. Một ước lượng $\hat\mu$ của $\mu$ là không chệch nếu $\mathbb E\hat\mu=\mu$; hiệu $\mathbb E\hat\mu-\mu$ là độ chệch (Định nghĩa 05c.34).
+- **Trung bình mẫu.** Nếu $X_1,\ldots,X_n$ có cùng kỳ vọng $\mu$, cùng phương sai $\sigma^2<\infty$ và không tương quan đôi một thì $\bar X=\frac1n\sum_iX_i$ có $\mathbb E\bar X=\mu$ và $\operatorname{Var}\bar X=\sigma^2/n$ (Định lý 05c.35; Mệnh đề 10.26 và Mệnh đề 10.24). Một ước lượng $\hat\mu$ của $\mu$ là không chệch nếu $\mathbb E\hat\mu=\mu$; hiệu $\mathbb E\hat\mu-\mu$ là độ chệch (Định nghĩa 05c.34).
 - **Rủi ro thực nghiệm.** Rủi ro thực nghiệm của tham số $\theta$ là trung bình của mất mát trên các quan sát của tập dữ liệu (Định nghĩa 05.5, Định nghĩa 05c.51).
 - **Tối ưu có ràng buộc đẳng thức.** Bài toán cực tiểu $F(u)$ với ràng buộc $Au=b$ có hàm Lagrange $\mathcal L(u,\nu)=F(u)+\nu^\top(Au-b)$, với vector nhân tử $\nu$ (Định nghĩa 03.4). Nếu $F$ lồi, khả vi hai lần liên tục trên một tập mở lồi và các hàng của $A$ độc lập tuyến tính, thì $u^*$ là nghiệm khi và chỉ khi tồn tại $\nu^*$ thỏa $\nabla F(u^*)+A^\top\nu^*=0$ và $Au^*=b$ (Mệnh đề 04.2(b)).
 - **Bất đẳng thức logarit.** $\log t\le t-1$ với mọi $t>0$, dấu bằng khi và chỉ khi $t=1$. Thật vậy, hàm $t\mapsto t-1-\log t$ có đạo hàm $1-1/t$, âm trên $(0,1)$ và dương trên $(1,\infty)$, nên đạt giá trị nhỏ nhất duy nhất bằng $0$ tại $t=1$.
@@ -60,7 +58,7 @@ Các mục tiêu này cụ thể hóa năng lực xây dựng và phân tích m�
 2. Cho $X_1,\ldots,X_n$ độc lập, cùng kỳ vọng và cùng phương sai $\sigma^2$. Tính $\operatorname{Var}(\bar X)$.
 3. Tìm trị riêng và vector riêng của ma trận $\begin{pmatrix}5/2&3/2\\3/2&5/2\end{pmatrix}$.
 
-::: hint Đáp số câu hỏi ôn nhanh
+::: hint Lời giải câu hỏi ôn nhanh
 1. Bằng $p(1-p)$: độc lập cho $\mathbb P(X_1=1,X_2=0)=\mathbb P(X_1=1)\,\mathbb P(X_2=0)$.
 2. Bằng $\sigma^2/n$: các biến độc lập nên không tương quan đôi một (Mệnh đề 10.27; Phụ lục B.2 của Bài 10 cho biến có mật độ), nên Mệnh đề 10.26 cho $\operatorname{Var}\bigl(\sum_iX_i\bigr)=n\sigma^2$, và Mệnh đề 10.24 cho $\operatorname{Var}\bar X=n\sigma^2/n^2$.
 3. Trị riêng $4$ với vector riêng $(1,1)^\top$, vì $\tfrac52+\tfrac32=4$; trị riêng $1$ với vector riêng $(1,-1)^\top$, vì $\tfrac52-\tfrac32=1$.
@@ -77,7 +75,7 @@ Một dây chuyền kiểm tra ghi lại cho mỗi sản phẩm một cờ cản
 - **Mục tiêu:** chọn $\hat\theta(D)$ sao cho phân phối $P_{\hat\theta}$ phù hợp nhất với dữ liệu theo tiêu chuẩn hợp lý cực đại.
 - **Tiêu chuẩn so sánh thứ hai:** tính không chệch, $\mathbb E_\theta[\hat\theta(X_1,\ldots,X_n)]=\theta$, đo hành vi của bộ ước lượng qua các lần lấy mẫu lặp lại.
 
-Bảng dưới phân loại các đại lượng của bài theo nguồn ngẫu nhiên.
+Các đại lượng của bài chia theo nguồn ngẫu nhiên như sau.
 
 | Loại | Đại lượng |
 |---|---|
@@ -127,9 +125,9 @@ Các giả thiết của bài chia thành hai nhóm.
 
 ## 3. Ví dụ xuyên suốt
 
-Các ví dụ của bài dùng chung một dây chuyền kiểm tra sản phẩm. Mỗi ví dụ chép lại dữ liệu nó dùng.
+Các ví dụ của bài dùng chung một dây chuyền kiểm tra sản phẩm.
 
-- **Dữ liệu cảm biến hai chiều.** Bốn vector nền $x_1=(12,22)^\top$, $x_2=(8,18)^\top$, $x_3=(11,19)^\top$, $x_4=(9,21)^\top$ và hai quan sát mới $a=(13,23)^\top$, $b=(12,18)^\top$ của Câu hỏi mở đầu. Đây là ví dụ tính tay chính của bài.
+- **Dữ liệu cảm biến hai chiều.** Bốn vector nền $x_1=(12,22)^\top$, $x_2=(8,18)^\top$, $x_3=(11,19)^\top$, $x_4=(9,21)^\top$ và hai quan sát mới $a=(13,23)^\top$, $b=(12,18)^\top$ của Câu hỏi mở đầu.
 - **Dữ liệu một chiều của cùng dây chuyền.** Mười cờ cảnh báo $(1,0,1,1,0,1,1,0,1,1)$; số lần ghi nhận ba chế độ tải thấp, trung bình, cao trong mười bản ghi, $(2,3,5)$; năm độ lệch nhiệt độ so với giá trị danh định, $(0,1,2,3,4)$.
 - **Ứng dụng.** Chấm điểm mức lệch của quan sát cảm biến mới bằng Gaussian đã khớp trên dữ liệu nền, như một bước của phát hiện bất thường (anomaly detection).
 
@@ -137,7 +135,7 @@ Các ví dụ của bài dùng chung một dây chuyền kiểm tra sản phẩm
 
 Trong Ví dụ 10.4, tỉ lệ lỗi của từng nhà cung cấp được cho trước. Với dây chuyền kiểm tra của bài này, xác suất gắn cờ, tỉ lệ ba chế độ tải, vị trí và mức phân tán của các số đo đều chưa biết, và dữ liệu là căn cứ duy nhất để xác định chúng. Để làm việc đó, chúng ta cần nói rõ dữ liệu được sinh ra như thế nào và một giá trị tham số "phù hợp với dữ liệu" nghĩa là gì.
 
-Một cách trực quan, mỗi giá trị tham số cho một phân phối trên các quan sát có thể xảy ra, và ta chọn giá trị làm cho dữ liệu đã thấy có khả năng xảy ra cao nhất. Hai định nghĩa sau biến ý tưởng này thành một tiêu chuẩn tính được, bằng cách nói rõ khả năng xảy ra của cả bộ dữ liệu được tính từ phân phối của từng quan sát như thế nào.
+Một cách trực quan, mỗi giá trị tham số cho một phân phối trên các quan sát có thể xảy ra, và ta chọn giá trị làm cho dữ liệu đã thấy có khả năng xảy ra cao nhất. Để biến ý tưởng này thành một tiêu chuẩn tính được, ta cần tính khả năng xảy ra của cả bộ dữ liệu từ phân phối của từng quan sát, xem hai định nghĩa sau.
 
 ### 4.1. Mô hình và cách lấy mẫu
 
@@ -184,7 +182,7 @@ $$
 
 **Kiểm tra lại.** Dưới cả hai cơ chế, mỗi $X_i$ có cùng phân phối biên: $\mathbb P(X_i=1)=p$. Hai cơ chế chỉ khác nhau ở phân phối đồng thời.
 
-**Diễn giải.** Xác suất của dữ liệu phụ thuộc vào cơ chế lấy mẫu, không chỉ vào phân phối của từng quan sát. Giả thiết độc lập phải dựa vào quy trình thu thập dữ liệu; trung bình mẫu $\bar x=1/2$ là như nhau dưới cả hai cơ chế và không cho biết giả thiết nào đúng.
+**Diễn giải.** Xác suất của dữ liệu phụ thuộc vào cơ chế lấy mẫu, không chỉ vào phân phối của từng quan sát. Giả thiết độc lập phải dựa vào quy trình thu thập dữ liệu.
 :::
 
 ### 4.2. Hàm hợp lý và bài toán tối ưu
@@ -213,7 +211,7 @@ $$
 
 **Kiểm tra lại.** Hàm $p^3(1-p)^3$ không đổi khi thay $p$ bằng $1-p$, nên tại $p=0{,}7$ ta cũng được $0{,}7^3\cdot0{,}3^3=0{,}009261$.
 
-**Diễn giải.** Chuỗi ba cờ trong sáu sản phẩm có khả năng xảy ra dưới $p=1/2$ cao gấp khoảng $1{,}69$ lần so với dưới $p=0{,}3$. Theo tiêu chuẩn này, $p=1/2$ phù hợp với dữ liệu hơn $p=0{,}3$.
+**Diễn giải.** Theo tiêu chuẩn so sánh xác suất của dữ liệu, $p=1/2$ phù hợp với chuỗi $D$ hơn $p=0{,}3$.
 :::
 
 Định nghĩa sau đặt tên cho hàm $p\mapsto p^3(1-p)^3$ của Ví dụ 11.2, cho một mô hình thống kê bất kỳ.
@@ -239,7 +237,7 @@ $$
 Tập này có thể rỗng hoặc có nhiều phần tử. Ký hiệu $\hat\theta_{\mathrm{MLE}}$ chỉ dùng khi đã chứng minh tập có đúng một phần tử.
 :::
 
-Trong Định nghĩa 11.2, dữ liệu $D$ cố định còn $\theta$ thay đổi. Cùng biểu thức $\prod_ip_\theta(x_i)$, khi $\theta$ cố định và $(x_1,\ldots,x_n)$ thay đổi, là hàm khối xác suất hoặc mật độ đồng thời của mẫu; khi $D$ cố định và $\theta$ thay đổi, nó là hàm hợp lý. Dạng tích trong (4.1) dùng giả thiết độc lập; Ví dụ 11.1 cho thấy nó sai khi các quan sát là bản chép của nhau. Với dữ liệu liên tục, $L$ là tích các giá trị mật độ tại dữ liệu, vì xác suất của đúng một vector quan sát bằng $0$.
+Trong Định nghĩa 11.2, dữ liệu $D$ cố định còn $\theta$ thay đổi. Cùng biểu thức $\prod_ip_\theta(x_i)$, khi $\theta$ cố định và $(x_1,\ldots,x_n)$ thay đổi, là hàm khối xác suất hoặc mật độ đồng thời của mẫu; khi $D$ cố định và $\theta$ thay đổi, nó là hàm hợp lý. Dạng tích trong (4.1) dùng giả thiết độc lập và sai khi các quan sát là bản chép của nhau, như cơ chế thứ hai của Ví dụ 11.1. Với dữ liệu liên tục, $L$ là tích các giá trị mật độ tại dữ liệu, vì xác suất của đúng một vector quan sát bằng $0$.
 
 Hàm hợp lý cũng khác phân phối hậu nghiệm của tham số. Trong tiếp cận Bayes, ta chọn thêm một phân phối tiên nghiệm (prior) $q(\theta)$ và nhận phân phối hậu nghiệm (posterior)
 
@@ -294,7 +292,7 @@ Một cách trực quan, tăng $p$ làm mỗi số $1$ có xác suất lớn hơ
 
 ### 5.1. Hàm hợp lý Bernoulli và nghiệm
 
-Nhắc lại Định nghĩa 10.19, với tham số Bernoulli viết là $p$ thay cho $\theta$ của Bài 10 vì $\theta$ ở đây là tham số chung của mô hình: $X\sim\operatorname{Bernoulli}(p)$ nếu $\mathbb P(X=1)=p$ và $\mathbb P(X=0)=1-p$, với $p\in[0,1]$. Với quy ước $0^0=1$, có thể viết gọn $\mathbb P(X=x)=p^x(1-p)^{1-x}$ cho $x\in\{0,1\}$. Gọi $s=\sum_ix_i$ là số quan sát bằng $1$. Thay vào (4.1), ta được
+Nhắc lại Định nghĩa 10.19: $X\sim\operatorname{Bernoulli}(p)$ nếu $\mathbb P(X=1)=p$ và $\mathbb P(X=0)=1-p$, với $p\in[0,1]$. Với quy ước $0^0=1$, có thể viết gọn $\mathbb P(X=x)=p^x(1-p)^{1-x}$ cho $x\in\{0,1\}$. Gọi $s=\sum_ix_i$ là số quan sát bằng $1$. Thay vào (4.1), ta được
 
 $$
 \begin{aligned}
@@ -350,7 +348,7 @@ Vì $p(1-p)>0$, dấu của $\ell'(p)$ là dấu của $s-np$: dương khi $p<s/
 Tần suất mẫu là ước lượng hợp lý cực đại của xác suất Bernoulli trong mọi trường hợp, với điều kiện miền tham số chứa cả hai đầu mút.
 :::
 
-Định lý 11.4 dùng hai giả thiết. Giả thiết i.i.d. cho dạng tích (5.1); khi các cờ là bản chép của nhau như cơ chế thứ hai của Ví dụ 11.1, hàm hợp lý khác hẳn. Giả thiết miền đóng $[0,1]$ bảo đảm nghiệm tồn tại khi $s\in\{0,n\}$: Bước 3 và Bước 4 dùng đúng hai đầu mút. Nghiệm $\hat p=0$ chỉ nói rằng dữ liệu đã thấy có hợp lý lớn nhất khi $p=0$; xác suất thật vẫn có thể dương.
+Định lý 11.4 dùng hai giả thiết. Giả thiết i.i.d. cho dạng tích (5.1); khi các cờ là bản chép của nhau như cơ chế thứ hai của Ví dụ 11.1, hàm hợp lý khác hẳn. Giả thiết miền đóng $[0,1]$ bảo đảm nghiệm tồn tại khi $s\in\{0,n\}$: Bước 3 và Bước 4 dùng đúng hai đầu mút.
 
 Trong học máy, Định lý 11.4 là cách học xác suất của một nhãn nhị phân khi mọi quan sát dùng chung một xác suất $p$, chưa dùng đặc trưng đầu vào. Chia âm log-hợp lý (5.1) cho $n$, ta được *entropy chéo nhị phân* (binary cross-entropy)
 
@@ -388,7 +386,6 @@ Tỉ số hai hợp lý là $2^{10}\cdot0{,}7^7\cdot0{,}3^3\approx2{,}277$.
 
 **Dự đoán thế tham số.** *Dự đoán thế tham số* (plug-in prediction) thay $\hat p$ vào mô hình để tính xác suất của quan sát mới. Theo mô hình đã khớp, sản phẩm tiếp theo bị gắn cờ với xác suất $0{,}7$.
 
-**Diễn giải.** Dưới $p=0{,}7$, chuỗi mười cờ đã thấy có khả năng xảy ra cao gấp khoảng $2{,}28$ lần so với dưới $p=1/2$. Xác suất gắn cờ thật của dây chuyền có thể khác $0{,}7$; mười quan sát chỉ xác định giá trị phù hợp nhất với dữ liệu đã thấy.
 :::
 
 Hai đầu mút của miền tham số quyết định Bước 3 và Bước 4 của chứng minh Định lý 11.4. Nhận xét sau cho thấy điều xảy ra khi bỏ chúng.
@@ -397,6 +394,37 @@ Hai đầu mút của miền tham số quyết định Bước 3 và Bước 4 c
 Nếu miền tham số là $(0,1)$ và mẫu toàn số $0$, hàm hợp lý $(1-p)^n$ tiến tới cận trên $1$ khi $p\downarrow0$ nhưng không đạt cận đó tại điểm nào của $(0,1)$. Vì vậy không tồn tại ước lượng hợp lý cực đại trên $(0,1)$, dù trên $[0,1]$ nghiệm là $\hat p=0$; đổi miền tham số thì đổi kết luận về sự tồn tại nghiệm.
 
 Trên miền $[0,1]$, nghiệm $\hat p=0$ gán xác suất $0$ cho mọi cờ bằng $1$ về sau, dù với mọi $0<p<1$, xác suất quan sát $n$ số $0$ là $(1-p)^n>0$. Murphy (2022) xem hiện tượng này là một dạng quá khớp (overfitting) (§4.5) và gọi nó là bài toán số đếm bằng không (zero-count problem) (§4.5.1).
+:::
+
+Bài tập sau kiểm tra cả nghiệm có điểm dừng bên trong lẫn nghiệm ở đầu mút của Định lý 11.4, và vai trò của miền tham số trong Nhận xét 11.5.
+
+::: exercise Bài tập 11.1 (Nghiệm trong và nghiệm biên của mô hình Bernoulli)
+Một mẫu gồm $8$ cờ cảnh báo của $8$ sản phẩm lấy độc lập, trong đó có $2$ cờ bằng $1$. Mô hình là i.i.d. Bernoulli$(p)$ với $p\in[0,1]$.
+
+- (a) Viết log-hợp lý, tìm ước lượng hợp lý cực đại và chứng minh đó là điểm cực đại trên $[0,1]$.
+- (b) Thay mẫu bằng tám cờ đều bằng $0$. Tìm ước lượng hợp lý cực đại trên $[0,1]$. Xác định ước lượng hợp lý cực đại trên $(0,1)$ có tồn tại hay không.
+:::
+
+::: hint Gợi ý Bài tập 11.1
+Ở (a), xét dấu của $\ell'(p)$ trên $(0,1)$ rồi so với giá trị của $L$ ở hai đầu mút. Ở (b), phương trình $\ell'(p)=0$ không có nghiệm trong $(0,1)$; xét trực tiếp tính đơn điệu của $L(p)=(1-p)^8$.
+:::
+
+::: solution Lời giải Bài tập 11.1
+**Câu (a).** Với $s=2$ và $n=8$, (5.1) cho $L(p)=p^2(1-p)^6$ và $\ell(p)=2\log p+6\log(1-p)$. Trên $(0,1)$,
+
+$$
+\begin{aligned}
+\ell'(p)&=\frac2p-\frac6{1-p}\\
+&=\frac{2(1-p)-6p}{p(1-p)}\\
+&=\frac{2-8p}{p(1-p)}.
+\end{aligned}
+$$
+
+Đạo hàm dương khi $p<1/4$ và âm khi $p>1/4$, nên $\ell$ tăng chặt trên $(0,1/4]$ và giảm chặt trên $[1/4,1)$. Ở hai đầu mút, $L(0)=L(1)=0<L(1/4)$. Vậy $\hat p=1/4=s/n$ là điểm cực đại duy nhất trên $[0,1]$, đúng Định lý 11.4.
+
+**Câu (b).** Với tám cờ bằng $0$, $L(p)=(1-p)^8$ giảm chặt trên $[0,1]$, nên ước lượng hợp lý cực đại trên $[0,1]$ là $\hat p=0$. Trên $(0,1)$, với mỗi $p$ luôn có $p'\in(0,p)$ cho $L(p')>L(p)$: hàm hợp lý tiến tới cận trên $1$ khi $p\downarrow0$ mà không đạt cận đó, nên không tồn tại ước lượng hợp lý cực đại (Nhận xét 11.5).
+
+**Kiểm tra lại.** Tại $p=1/4$, tử số $2-8p$ bằng $0$. Ở (b), phương trình $\ell'(p)=0$ vô nghiệm trong $(0,1)$, nhưng trên $[0,1]$ nghiệm vẫn tồn tại và nằm ở đầu mút $p=0$.
 :::
 
 ### 5.2. Mở rộng: ước lượng Bayes với tiên nghiệm Beta
@@ -414,7 +442,7 @@ $$
 \tag{5.3}
 $$
 
-Với tiên nghiệm đều $a_0=b_0=1$ và mẫu toàn số $0$, (5.3) cho $1/(n+2)>0$. Với mười cờ của Ví dụ 11.3 ($s=7$, $n=10$), (5.3) cho $8/12=2/3$, nằm giữa $\hat p=0{,}7$ và trung bình tiên nghiệm $1/2$. Trung bình hậu nghiệm dùng thêm giả thiết tiên nghiệm, nên nó là một phương pháp ước lượng khác với (5.2).
+Với tiên nghiệm đều $a_0=b_0=1$ và mẫu toàn số $0$, (5.3) cho $1/(n+2)>0$. Với mười cờ của Ví dụ 11.3 ($s=7$, $n=10$), (5.3) cho $8/12=2/3$, nằm giữa $\hat p=0{,}7$ và trung bình tiên nghiệm $1/2$.
 
 Như vậy, Định lý 11.4 giải trọn bài toán một tham số: dấu của đạo hàm xử lý phần trong, đánh giá trực tiếp xử lý hai đầu mút, và Nhận xét 11.5 cho thấy miền tham số quyết định sự tồn tại nghiệm. Tuy nhiên, với ba chế độ tải, ba xác suất phải cùng thỏa ràng buộc tổng bằng $1$, nên không thể tối ưu riêng từng tọa độ. Trong Mục 6, ta thay đoạn $[0,1]$ bằng đơn hình xác suất và dùng nhân tử Lagrange cho ràng buộc đó.
 
@@ -454,8 +482,6 @@ với quy ước $\pi_k^0=1$.
 :::
 
 Công thức (6.1) suy từ (4.1): mỗi quan sát $x_i=k$ góp một thừa số $\pi_k$, và nhóm $k$ góp $n_k$ thừa số như vậy. Hàm hợp lý chỉ phụ thuộc dữ liệu qua các số đếm $(n_1,\ldots,n_K)$, là thống kê đủ của mô hình. Với $K=2$, đặt $\pi=(1-p,p)$ sau khi đổi nhãn $0,1$ thành $1,2$; khi đó (6.1) trở lại (5.1), và ràng buộc $\pi_1+\pi_2=1$ chỉ để lại một bậc tự do. Với $K\ge3$, ràng buộc tổng liên kết mọi tọa độ cùng lúc.
-
-Các xác suất trong $\Delta_{K-1}$ mô tả một biến nhận đúng một trong $K$ giá trị. Chúng khác $K$ tham số Bernoulli của $K$ chỉ báo có thể đồng thời bằng $1$: các tham số đó không chịu ràng buộc tổng bằng $1$.
 
 Định lý sau giải bài toán cực đại (6.1) trên $\Delta_{K-1}$ (Murphy (2022), §4.2.4). Chứng minh dùng hàm Lagrange của Định nghĩa 03.4 để tìm ứng viên, rồi dùng bất đẳng thức $\log t\le t-1$ để chứng minh ứng viên là cực đại toàn cục.
 
@@ -549,7 +575,7 @@ $$
 
 **Kiểm tra lại.** Các tọa độ không âm và $0{,}2+0{,}3+0{,}5=1$. Điều kiện dừng của Bước 1 cũng đúng: $2/0{,}2=3/0{,}3=5/0{,}5=10=n$.
 
-**Diễn giải.** Chế độ tải cao có xác suất lớn nhất dưới mô hình đã khớp. Ba xác suất cùng mô tả một bản ghi có đúng một chế độ, nên tăng một xác suất buộc phải giảm các xác suất còn lại.
+**Diễn giải.** Chế độ tải cao có xác suất lớn nhất dưới mô hình đã khớp.
 :::
 
 Ví dụ 11.4 có mọi số đếm dương. Khi một nhóm vắng mặt, điều kiện dừng của Bước 1 không viết được cho nhóm đó, và kết luận về nhóm vắng mặt dựa vào Bước 2.
@@ -558,6 +584,58 @@ Ví dụ 11.4 có mọi số đếm dương. Khi một nhóm vắng mặt, đi�
 Với số đếm $(3,0,7)$, ta có $\mathcal K_+=\{1,3\}$, $n=10$, và Định lý 11.7 cho $\hat\pi=(0{,}3;\ 0;\ 0{,}7)$. Điều kiện dừng $n_2/\pi_2=\nu$ không viết được tại $\pi_2=0$ vì nó trở thành phép chia $0/0$; Bước 2 của chứng minh xử lý điểm biên này mà không cần đạo hàm.
 
 Khi xác suất thật của nhóm thứ hai dương nhưng nhỏ, việc nhóm đó vắng mặt trong một mẫu hữu hạn vẫn có xác suất dương, và mô hình đã khớp gán xác suất $0$ cho nhóm đó về sau. Đây là bài toán số đếm bằng không của Nhận xét 11.5, với $K=3$ nhóm. Với mô hình Bernoulli, Murphy (2022), §4.5.1 xử lý nó bằng tiên nghiệm Beta$(2,2)$, tương đương cộng thêm một vào mỗi số đếm (add-one smoothing).
+:::
+
+Bài tập sau giải lại bài toán của Định lý 11.7 khi có một nhóm vắng mặt, tách hai việc: chứng minh nghiệm nằm trên một mặt của đơn hình, rồi dùng nhân tử Lagrange trên mặt đó.
+
+::: exercise Bài tập 11.2 (Nhân tử Lagrange trên một mặt của đơn hình)
+Ba nhóm có số đếm $(n_1,n_2,n_3)=(4,0,6)$ trong $n=10$ quan sát của một mẫu i.i.d. $\operatorname{Cat}(\pi)$, $\pi\in\Delta_2$.
+
+- (a) Chứng minh mọi điểm cực đại của hàm hợp lý có $\pi_2=0$, không dùng điều kiện dừng theo $\pi_2$.
+- (b) Dùng nhân tử Lagrange với ràng buộc $\pi_1+\pi_3=1$ để tìm ước lượng hợp lý cực đại, và chứng minh nghiệm tìm được là cực đại trên $\Delta_2$.
+- (c) Tính tỉ số hợp lý giữa ước lượng hợp lý cực đại và $\pi=(0{,}3;\ 0{,}1;\ 0{,}6)$.
+- (d) Tính xác suất thế tham số để hai quan sát mới đều thuộc nhóm $3$, và nêu các giả thiết cần cho phép tính đó.
+:::
+
+::: hint Gợi ý Bài tập 11.2
+Ở (a), đặt $m=\pi_1+\pi_3$; nếu $m<1$, chuẩn hóa hai tọa độ đã thấy lên tổng bằng $1$ và so sánh hai hàm hợp lý. Ở (b), hàm $F(\pi_1,\pi_3)=-4\log\pi_1-6\log\pi_3$ lồi trên tập mở $\{\pi_1>0,\pi_3>0\}$; dùng Mệnh đề 04.2(b).
+:::
+
+::: solution Lời giải Bài tập 11.2
+**Câu (a).** Vì $n_2=0$, hàm hợp lý là $L(\pi)=\pi_1^4\pi_3^6$. Một điểm cực đại có hợp lý dương, nên $\pi_1>0$, $\pi_3>0$ và $m=\pi_1+\pi_3\in(0,1]$. Nếu $m<1$, đặt $\pi'=(\pi_1/m,\ 0,\ \pi_3/m)\in\Delta_2$. Khi đó
+
+$$
+\begin{aligned}
+L(\pi')&=\frac{\pi_1^4}{m^4}\cdot\frac{\pi_3^6}{m^6}\\
+&=m^{-10}L(\pi)\\
+&>L(\pi),
+\end{aligned}
+$$
+
+vì $m^{-10}>1$. Vậy điểm cực đại phải có $m=1$, tức $\pi_2=1-m=0$.
+
+**Câu (b).** Trên mặt $\pi_2=0$, ta cực tiểu $F(\pi_1,\pi_3)=-4\log\pi_1-6\log\pi_3$ với ràng buộc $\pi_1+\pi_3=1$. Hàm Lagrange (Định nghĩa 03.4) là $\mathcal L=-4\log\pi_1-6\log\pi_3+\nu(\pi_1+\pi_3-1)$. Điều kiện dừng cho $4/\pi_1=\nu$ và $6/\pi_3=\nu$. Cộng $\pi_1=4/\nu$ với $\pi_3=6/\nu$ rồi dùng ràng buộc, ta được $10/\nu=1$, tức $\nu=10$. Vậy $\hat\pi=(0{,}4;\ 0;\ 0{,}6)$.
+
+Hàm $F$ lồi, khả vi hai lần liên tục trên tập mở lồi $\{\pi_1>0,\pi_3>0\}$ vì $-\log$ lồi, và ma trận ràng buộc $A=(1,1)$ có hàng khác $0$. Theo Mệnh đề 04.2(b), điểm thỏa hệ Lagrange là nghiệm của bài toán trên mặt. Lấy $\pi\in\Delta_2$ bất kỳ có $L(\pi)>0$:
+
+- nếu $m<1$, câu (a) cho $L(\pi)<L(\pi')$ với $\pi'$ thuộc mặt, và $L(\pi')\le L(\hat\pi)$;
+- nếu $m=1$, $\pi$ thuộc mặt và $L(\pi)\le L(\hat\pi)$.
+
+Các điểm có $L(\pi)=0$ không vượt $\hat\pi$. Vậy $\hat\pi$ là điểm cực đại trên toàn $\Delta_2$, đúng Định lý 11.7.
+
+**Câu (c).** Hai vector có cùng $\pi_3=0{,}6$, nên
+
+$$
+\begin{aligned}
+\frac{L(\hat\pi)}{L(0{,}3;\,0{,}1;\,0{,}6)}&=\frac{0{,}4^4\cdot0{,}6^6}{0{,}3^4\cdot0{,}6^6}\\
+&=\Bigl(\frac43\Bigr)^4\\
+&=\frac{256}{81}\approx3{,}16.
+\end{aligned}
+$$
+
+**Câu (d).** Thay $\hat\pi$ vào mô hình: $\hat\pi_3^2=0{,}6^2=0{,}36$. Phép tính dùng hai giả thiết: hai quan sát mới có phân phối $\operatorname{Cat}(\hat\pi)$ của mô hình đã khớp, và chúng độc lập với nhau.
+
+**Kiểm tra lại.** Điều kiện dừng đúng tại $\hat\pi$: $4/0{,}4=6/0{,}6=10=n$.
 :::
 
 ### 6.2. Mở rộng: diễn giải bằng phân kỳ Kullback–Leibler
@@ -580,7 +658,7 @@ $$
 \end{aligned}
 $$
 
-Dòng thứ ba dùng $\sum_{k:\,\xi_k>0}\xi_k=1$; dòng cuối dùng $\sum_{k:\,\xi_k>0}\pi_k\le1$. Do đó $\mathrm{KL}(\xi\,\|\,\pi)\ge0$. Dấu bằng cần $\pi_k=\xi_k$ trên tập $\{k:\xi_k>0\}$ và $\pi$ không đặt khối lượng ngoài tập đó, tức $\pi=\xi$. Murphy chứng minh cùng kết quả bằng bất đẳng thức Jensen (§6.2.4); ở đây ta dùng $\log t\le t-1$ như trong Định lý 11.7.
+Dòng thứ ba dùng $\sum_{k:\,\xi_k>0}\xi_k=1$; dòng cuối dùng $\sum_{k:\,\xi_k>0}\pi_k\le1$. Do đó $\mathrm{KL}(\xi\,\|\,\pi)\ge0$. Dấu bằng cần $\pi_k=\xi_k$ trên tập $\{k:\xi_k>0\}$ và $\pi$ không đặt khối lượng ngoài tập đó, tức $\pi=\xi$ (Murphy (2022), §6.2.4).
 
 Áp dụng cho phân phối tần suất $\xi_k=n_k/n$, ta tách âm log-hợp lý trung bình thành hai phần. Với mọi $\pi$ có $\pi_k>0$ trên $\{k:\xi_k>0\}$, thêm và bớt $\sum_{k:\,\xi_k>0}\xi_k\log \xi_k$ cho
 
@@ -769,12 +847,12 @@ Hàm $\psi$ giảm chặt trên $(-\infty,0]$ và tăng chặt trên $[0,\infty)
 
 **Kiểm tra lại.** Với (L), $\psi(3)=6+6=12>9=\psi(0)$. Với (G), $\sum_i(x_i-0)^2=81>54=9+9+36=\sum_i(x_i-3)^2$.
 
-**Diễn giải.** Hai giả thiết nhiễu cho hai hàm mất mát, bình phương và trị tuyệt đối, và hai ước lượng trên cùng dữ liệu: trung bình $3$ và trung vị $0$. Số đo $9$ kéo trung bình lên $3$; dưới mô hình Laplace, mật độ giảm theo $|\varepsilon|$ thay vì theo $\varepsilon^2$, nên số đo này ít ảnh hưởng hơn. Lựa chọn mô hình xác suất quyết định mục tiêu tối ưu, và do đó quyết định tham số học được.
+**Diễn giải.** Hai giả thiết nhiễu cho hai hàm mất mát, bình phương và trị tuyệt đối, và hai ước lượng trên cùng dữ liệu: trung bình $3$ và trung vị $0$. Số đo $9$ kéo trung bình lên $3$; dưới mô hình Laplace, mật độ giảm theo $|\varepsilon|$ thay vì theo $\varepsilon^2$, nên số đo này ít ảnh hưởng hơn.
 :::
 
 ### 7.2. Hai mẫu số trong ước lượng phương sai
 
-Ước lượng $Q/n$ của Định lý 11.9 tối ưu hợp lý trên một mẫu cố định. Một tiêu chuẩn khác xét bộ ước lượng qua các lần lấy mẫu lặp lại. Với $n=1$, ta luôn có $Q=0$, nên công thức $Q/n$ cho $0$ với mọi dữ liệu, bất kể phương sai thật (Murphy (2022), §4.7.6.1). Với $n$ lớn hơn, theo (7.3), $\sum_i(x_i-\mu)^2=Q+n(\mu-\bar x)^2\ge Q$: các sai lệch đo quanh $\bar x$ có tổng bình phương nhỏ hơn các sai lệch đo quanh trung bình thật $\mu$, nên $Q/n$ có xu hướng nhỏ hơn phương sai thật.
+Ước lượng $Q/n$ của Định lý 11.9 tối ưu hợp lý trên một mẫu cố định. Một tiêu chuẩn khác xét bộ ước lượng qua các lần lấy mẫu lặp lại. Với $n=1$, ta luôn có $Q=0$, nên công thức $Q/n$ cho $0$ với mọi dữ liệu, bất kể phương sai thật (Murphy (2022), §4.7.6.1). Với $n\ge2$, theo (7.3), $\sum_i(x_i-\mu)^2=Q+n(\mu-\bar x)^2\ge Q$, nên $Q/n$ không vượt quá $\frac1n\sum_i(x_i-\mu)^2$, trung bình bình phương các sai lệch quanh trung bình thật $\mu$.
 
 **Câu hỏi.** Khi ước lượng phương sai, nên chia tổng bình phương sai lệch $Q$ cho $n$ hay cho $n-1$?
 
@@ -851,7 +929,7 @@ Chia cho $n$ và cho $n-1$, với $n-1\ge1$ do $n\ge2$, ta được hai đẳng 
 Đo sai lệch quanh trung bình mẫu thay vì quanh trung bình thật làm mất đúng một lượng $\sigma^2$ trong kỳ vọng của tổng bình phương, và mẫu số $n-1$ bù lại lượng đó.
 :::
 
-Mệnh đề 11.11 trả lời Câu hỏi ở đầu tiểu mục: mẫu số phụ thuộc tiêu chuẩn. Nếu cần nghiệm hợp lý cực đại của mô hình Gaussian, mẫu số là $n$ (Định lý 11.9); nếu cần bộ ước lượng không chệch của phương sai, mẫu số là $n-1$. Độ chệch $-\sigma^2/n$ của $Q_X/n$ tiến về $0$ khi $n$ tăng, nên với mẫu lớn hai ước lượng gần nhau.
+Mệnh đề 11.11 trả lời Câu hỏi ở đầu tiểu mục: mẫu số phụ thuộc tiêu chuẩn. Nếu cần nghiệm hợp lý cực đại của mô hình Gaussian, mẫu số là $n$ (Định lý 11.9); nếu cần bộ ước lượng không chệch của phương sai, mẫu số là $n-1$. Độ chệch $-\sigma^2/n$ của $Q_X/n$ tiến về $0$ khi $n$ tăng, và khi $Q>0$, tỉ số hai ước lượng bằng $(n-1)/n$.
 
 Trên năm độ lệch nhiệt độ của Ví dụ 11.5, hai mẫu số cho hai con số khác nhau từ cùng một tổng bình phương $Q$.
 
@@ -864,7 +942,7 @@ Trên năm độ lệch nhiệt độ của Ví dụ 11.5, hai mẫu số cho ha
 
 **Kiểm tra lại.** Tỉ số $2/2{,}5=0{,}8=4/5=(n-1)/n$, đúng hệ số trong (7.4).
 
-**Diễn giải.** Hai số tính từ cùng $Q=10$. Số $2$ là phương sai của mô hình Gaussian khớp dữ liệu tốt nhất; số $2{,}5$ là giá trị trên mẫu này của bộ ước lượng có kỳ vọng đúng bằng phương sai thật qua các lần lấy mẫu.
+**Diễn giải.** Số $2$ là phương sai của mô hình Gaussian khớp dữ liệu tốt nhất; số $2{,}5$ là giá trị trên mẫu này của bộ ước lượng có kỳ vọng đúng bằng phương sai thật qua các lần lấy mẫu.
 :::
 
 Trong học máy và tính toán thống kê, cả hai mẫu số đều được dùng: thư viện NumPy mặc định tính phương sai với mẫu số $n$, còn pandas mặc định dùng $n-1$ (Murphy (2022), §4.2.5, chú thích 4). Khi so sánh các con số phương sai từ hai công cụ trên cùng dữ liệu, cần biết công cụ dùng mẫu số nào.
@@ -995,7 +1073,7 @@ $$
 
 **Kiểm tra lại.** Hai phần tử đường chéo bằng $5/2$, trùng phương sai hợp lý cực đại của từng tọa độ ở đầu mục. Theo Câu hỏi ôn nhanh 3, các trị riêng của $S_4$ là $4$ và $1$, đều dương, nên $S_4\succ0$; cũng vậy, $\tilde x_1$ và $\tilde x_3$ độc lập tuyến tính nên các $\tilde x_i$ sinh ra $\mathbb R^2$.
 
-**Diễn giải.** Phần tử ngoài đường chéo $3/2>0$ ghi nhận rằng hai số đo có xu hướng cùng tăng hoặc cùng giảm, điều mà hai phương sai riêng không ghi lại.
+**Diễn giải.** Phần tử ngoài đường chéo $3/2>0$ đến từ hai vector sai lệch $(2,2)^\top$, $(-2,-2)^\top$, có hai tọa độ cùng dấu và lớn hơn hai vector còn lại; hai phương sai riêng không chứa thông tin này.
 :::
 
 ### 8.2. Ước lượng trung bình và ma trận hiệp phương sai
@@ -1015,7 +1093,7 @@ $$
 
 Chứng minh dưới đây dùng đẳng thức $w^\top Aw=\operatorname{tr}(Aww^\top)$ cho ma trận vuông $A$ và vector $w$: phần tử đường chéo thứ $j$ của $Aww^\top$ là $(Aw)_jw_j$, nên vết của nó bằng $\sum_j(Aw)_jw_j=w^\top Aw$.
 
-Định lý sau mở rộng Định lý 11.9 lên $d$ chiều (Murphy (2022), §4.2.6). Murphy tìm điểm dừng bằng đạo hàm theo ma trận; ở đây ta chứng minh cực đại toàn cục bằng bất đẳng thức $\log t\le t-1$ áp dụng cho các trị riêng, cùng công cụ với Định lý 11.7.
+Định lý sau mở rộng Định lý 11.9 lên $d$ chiều (Murphy (2022), §4.2.6). Chứng minh dùng bất đẳng thức $\log t\le t-1$ cho các trị riêng, cùng công cụ với Định lý 11.7, để có cực đại toàn cục.
 
 ::: theorem Định lý 11.14 (Ước lượng Gaussian nhiều chiều và điều kiện tồn tại) — chứng minh đầy đủ
 **Giả thiết.**
@@ -1038,7 +1116,7 @@ $$
 :::
 
 ::: proof Chứng minh Định lý 11.14
-**Lộ trình.** Như trong Định lý 11.9, Bước 1 tách tâm để tìm trung bình tối ưu với mọi $\Sigma$. Bước 2 đổi biến ma trận để đưa phần còn lại về một hàm của các trị riêng, và Bước 3 dùng $\log c\le c-1$ cho từng trị riêng. Bước 4 ghép các bước, Bước 5 xét $S_n$ suy biến. Các đẳng thức đại số của Bước 2 được chứng minh ở Phụ lục A.
+**Lộ trình.** Như trong Định lý 11.9, Bước 1 tách tâm để tìm trung bình tối ưu với mọi $\Sigma$. Bước 2 đổi biến ma trận để đưa phần còn lại về một hàm của các trị riêng, và Bước 3 dùng $\log c\le c-1$ cho từng trị riêng. Bước 4 ghép các bước, Bước 5 xét $S_n$ suy biến.
 
 **Bước 1 (tối ưu trung bình).** Đặt $\tilde x_i=x_i-\bar x$ và $\Lambda=\Sigma^{-1}$, gọi là *ma trận độ chính xác* (precision matrix); $\Lambda$ đối xứng xác định dương. Viết $x_i-\mu=\tilde x_i+(\bar x-\mu)$ và khai triển dạng toàn phương:
 
@@ -1125,9 +1203,9 @@ khi $\varepsilon\downarrow0$, vì $d-r\ge1$. Log-hợp lý không bị chặn tr
 Dưới mô hình Gaussian nhiều chiều, trung bình mẫu và hiệp phương sai mẫu với mẫu số $n$ là các tham số khớp dữ liệu tốt nhất, với điều kiện các vector sai lệch sinh ra toàn bộ $\mathbb R^d$.
 :::
 
-Khi $d=1$, $S_n=Q/n$ và Định lý 11.14 trở lại Định lý 11.9: điều kiện $S_n\succ0$ trở thành $Q>0$. Giả thiết $S_n\succ0$ là điều kiện trên dữ liệu; theo (8.4), nó đúng khi và chỉ khi các vector sai lệch sinh ra $\mathbb R^d$. Kết quả không áp dụng cho các mô hình ràng buộc $\Sigma$ là ma trận đường chéo hoặc bội của $I_d$ (các dạng hiệp phương sai chéo và cầu, Murphy (2022), §3.2.1): mỗi ràng buộc như vậy đổi miền tham số và cho một nghiệm khác.
+Khi $d=1$, $S_n=Q/n$ và Định lý 11.14 trở lại Định lý 11.9: điều kiện $S_n\succ0$ trở thành $Q>0$. Kết quả không áp dụng cho các mô hình ràng buộc $\Sigma$ là ma trận đường chéo hoặc bội của $I_d$ (các dạng hiệp phương sai chéo và cầu, Murphy (2022), §3.2.1): mỗi ràng buộc như vậy đổi miền tham số và cho một nghiệm khác.
 
-Trong học máy, Định lý 11.14 học một mô hình xác suất chung cho nhiều đặc trưng; các phần tử ngoài đường chéo của $\hat\Sigma$ giữ lại quan hệ tuyến tính giữa các số đo. Khi số chiều lớn so với cỡ mẫu, $S_n$ suy biến hoặc có trị riêng rất nhỏ, nên $S_n^{-1}$ không tồn tại hoặc rất nhạy với dữ liệu. Murphy (2022), §4.5.2 thay $S_n$ bằng ước lượng co (shrinkage estimate) $\rho\Sigma_0+(1-\rho)S_n$, với $\rho\in(0,1)$ và một ma trận $\Sigma_0$ chọn trước; đó là ước lượng dùng thêm giả thiết tiên nghiệm, khác nghiệm (8.6).
+Trong học máy, Định lý 11.14 học một mô hình xác suất chung cho nhiều đặc trưng; các phần tử ngoài đường chéo của $\hat\Sigma$ giữ lại quan hệ tuyến tính giữa các số đo. Khi $n\le d$, $S_n$ suy biến; khi $n>d$ nhưng $S_n$ có trị riêng gần $0$, $S_n^{-1}$ rất nhạy với dữ liệu. Murphy (2022), §4.5.2 thay $S_n$ bằng ước lượng co (shrinkage estimate) $\rho\Sigma_0+(1-\rho)S_n$, với $\rho\in(0,1)$ và một ma trận $\Sigma_0$ chọn trước; đó là ước lượng dùng thêm giả thiết tiên nghiệm, khác nghiệm (8.6).
 
 Với dữ liệu cảm biến nền, $S_4\succ0$, nên Định lý 11.14 cho Gaussian đã khớp; ví dụ sau viết mật độ của nó.
 
@@ -1187,7 +1265,7 @@ $$
 
 **Hướng phân tán chính.** Với $\tau=(1+\sqrt5)/2$, ta có $S_4(1,\tau)^\top=(1+\tau,\ 1+2\tau)^\top$. Vì $1+\tau=\frac{3+\sqrt5}2$ và $1+2\tau=2+\sqrt5=\frac{3+\sqrt5}2\tau$, vector $(1,\tau)^\top\approx(1;\ 1{,}618)^\top$ là vector riêng ứng với trị riêng lớn $(3+\sqrt5)/2$.
 
-**Diễn giải.** Ở Ví dụ 11.8, hai tọa độ có cùng phương sai và hướng phân tán chính là đường chéo $(1,1)^\top$. Ở đây tọa độ thứ hai có phương sai mẫu $2$, gấp đôi tọa độ thứ nhất, nên hướng phân tán chính $(1;\ 1{,}618)^\top$ nghiêng về trục thứ hai: hướng của đường đồng mức phụ thuộc cả hiệp phương sai lẫn tỉ lệ giữa hai phương sai.
+**Diễn giải.** Ở Ví dụ 11.8, hai tọa độ có cùng phương sai và hướng phân tán chính là đường chéo $(1,1)^\top$. Ở đây tọa độ thứ hai có phương sai mẫu $2$, gấp đôi tọa độ thứ nhất, nên hướng phân tán chính $(1;\ 1{,}618)^\top$ nghiêng về trục thứ hai. Hướng phân tán chính phụ thuộc cả hiệp phương sai lẫn tỉ lệ giữa hai phương sai.
 :::
 
 Mệnh đề 11.11 cho độ chệch của $Q/n$ ở một chiều. Áp dụng mệnh đề đó cho từng hình chiếu $w^\top X_i$, ta được độ chệch của $S_n$ như một ma trận.
@@ -1261,7 +1339,7 @@ f_{\mu,\Sigma}(x)&=\frac1{(2\pi)^{d/2}(\det\Sigma)^{1/2}}\\
 \end{aligned}
 $$
 
-Với $\mu$ và $\Sigma$ cố định, khoảng cách Mahalanobis nhỏ hơn nghĩa là mật độ lớn hơn. Khi so sánh hai Gaussian có ma trận hiệp phương sai khác nhau, còn phải tính đến hệ số $(\det\Sigma)^{-1/2}$, nên so khoảng cách Mahalanobis thôi thì chưa so được mật độ.
+Với $\mu$ và $\Sigma$ cố định, khoảng cách Mahalanobis nhỏ hơn nghĩa là mật độ lớn hơn. Với hai Gaussian có ma trận hiệp phương sai khác nhau, tỉ số mật độ còn chứa hệ số $(\det\Sigma)^{-1/2}$ của mỗi Gaussian.
 
 Để thấy $d_\Sigma$ đo độ lệch theo từng hướng, ta dùng phân rã trị riêng của ma trận đối xứng (Bài 00, Định lý 00.16). Mệnh đề sau theo cách trình bày của Murphy (2022), §3.2.2 và §7.4.4.
 
@@ -1317,9 +1395,9 @@ $$
 Khoảng cách Mahalanobis đo độ lệch theo từng hướng riêng, với đơn vị là độ lệch chuẩn theo hướng đó.
 :::
 
-Mệnh đề 11.17 nói rằng $d_\Sigma^2$ là tổng bình phương các tọa độ riêng, mỗi tọa độ chia cho phương sai theo hướng của nó. Độ lệch $z_j$ theo hướng có $\lambda_j$ lớn bị chia cho một số lớn nên đóng góp ít; độ lệch theo hướng có $\lambda_j$ nhỏ đóng góp nhiều. Bán trục tỉ lệ với $\sqrt{\lambda_j}$, tức độ lệch chuẩn theo hướng đó. Khi có trị riêng lặp, vector riêng trong không gian riêng tương ứng không duy nhất, nhưng (8.9) không phụ thuộc lựa chọn đó: tổng $\sum z_j^2$ trên một không gian riêng là bình phương độ dài hình chiếu của $x-\mu$ lên không gian đó.
+Theo (8.9), độ lệch $z_j$ theo hướng có $\lambda_j$ lớn bị chia cho một số lớn nên đóng góp ít; độ lệch theo hướng có $\lambda_j$ nhỏ đóng góp nhiều. Bán trục tỉ lệ với $\sqrt{\lambda_j}$, tức độ lệch chuẩn theo hướng đó. Khi có trị riêng lặp, vector riêng trong không gian riêng tương ứng không duy nhất, nhưng (8.9) không phụ thuộc lựa chọn đó: tổng $\sum z_j^2$ trên một không gian riêng là bình phương độ dài hình chiếu của $x-\mu$ lên không gian đó.
 
-Trong học máy, điểm $d_{\hat\Sigma}^2(x,\hat\mu)$ dưới Gaussian đã khớp là điểm lệch dùng trong phát hiện bất thường dựa trên Gaussian: quan sát có điểm lớn có mật độ thấp dưới mô hình nền. Một độ lệch Euclid lớn theo hướng phân tán rộng có thể nhận điểm thấp hơn một độ lệch Euclid nhỏ theo hướng phân tán hẹp. Để gắn nhãn bất thường, còn cần một ngưỡng, dữ liệu đánh giá và kiểm tra giả thiết Gaussian; Mệnh đề 11.17 chỉ cho cách tính điểm.
+Trong học máy, điểm $d_{\hat\Sigma}^2(x,\hat\mu)$ dưới Gaussian đã khớp là điểm lệch dùng trong phát hiện bất thường dựa trên Gaussian: quan sát có điểm lớn có mật độ thấp dưới mô hình nền. Một độ lệch Euclid lớn theo hướng phân tán rộng có thể nhận điểm thấp hơn một độ lệch Euclid nhỏ theo hướng phân tán hẹp. Để gắn nhãn bất thường, còn cần một ngưỡng, dữ liệu đánh giá và kiểm tra giả thiết Gaussian.
 
 Mệnh đề 11.17 cho phép trả lời Câu hỏi mở đầu bằng các tọa độ riêng của hai quan sát mới.
 
@@ -1362,7 +1440,7 @@ $$
 \end{aligned}
 $$
 
-**Diễn giải.** Độ lệch của $a$ nằm trọn theo hướng có phương sai $4$, còn độ lệch của $b$ nằm trọn theo hướng có phương sai $1$. Vì vậy $a$ xa tâm hơn theo khoảng cách Euclid nhưng có khoảng cách Mahalanobis nhỏ hơn, và mật độ của $a$ dưới mô hình nền lớn hơn mật độ của $b$ khoảng $5{,}8$ lần.
+**Diễn giải.** Độ lệch của $a$ nằm theo hướng phân tán rộng, độ lệch của $b$ theo hướng phân tán hẹp. Vì vậy $a$ xa tâm hơn theo khoảng cách Euclid nhưng có khoảng cách Mahalanobis nhỏ hơn và mật độ lớn hơn dưới mô hình nền.
 :::
 
 Ví dụ 11.11 trả lời Câu hỏi mở đầu: dưới Gaussian khớp với dữ liệu nền, sản phẩm $b$ lệch khỏi chế độ vận hành bình thường nhiều hơn sản phẩm $a$. Hình 11.1 vẽ lại phép so sánh này: $a$ nằm trên trục dài, giữa hai elip $d_{\hat\Sigma}=2$ và $d_{\hat\Sigma}=3$, còn $b$ nằm trên trục ngắn, gần elip $d_{\hat\Sigma}=3$.
@@ -1376,7 +1454,7 @@ Cách đọc hình học trên dựa vào các giả thiết của mô hình. Nh
 ::: remark Nhận xét 11.18 (Giới hạn của cách đọc hình học)
 1. Phần tử ngoài đường chéo của $\Sigma$ bằng $0$ chỉ suy ra hai tọa độ độc lập khi có thêm giả thiết, chẳng hạn hai tọa độ của một vector Gaussian. Với phân phối tổng quát, hai biến không tương quan vẫn có thể phụ thuộc, như trong Ví dụ 10.10: độ lệch kích thước $X$ và nhãn lỗi $Y=\mathbf 1_{\{|X|=2\}}$ có hiệp phương sai $0$ nhưng $X$ xác định hoàn toàn $Y$.
 2. Số $c$ trong Mệnh đề 11.17(b) chỉ chọn một đường đồng mức; nó không tự cho xác suất để một quan sát rơi vào trong ellipsoid. Khi $\hat\mu$, $\hat\Sigma$ được ước lượng từ bốn điểm, một ngưỡng đặt trên $d^2_{\hat\Sigma}$ còn chịu thêm sai số của chính phép ước lượng.
-3. Khoảng cách Euclid phụ thuộc đơn vị đo, còn khoảng cách Mahalanobis thì không, nếu trung bình và ma trận được đổi cùng dữ liệu. Với phép đổi biến khả nghịch $y=Ax+\eta$, trong đó $A$ khả nghịch và $\eta\in\mathbb R^d$, trung bình và ma trận mới là $A\mu+\eta$ và $A\Sigma A^\top$, và
+3. Khoảng cách Euclid phụ thuộc đơn vị đo, còn khoảng cách Mahalanobis thì không, nếu trung bình và ma trận được đổi cùng dữ liệu. Với phép đổi biến $y=Ax+\eta$, trong đó $A$ khả nghịch và $\eta\in\mathbb R^d$, trung bình và ma trận mới là $A\mu+\eta$ và $A\Sigma A^\top$, và
 $$
 \begin{aligned}
 &(Ax-A\mu)^\top(A\Sigma A^\top)^{-1}\\
@@ -1386,7 +1464,127 @@ $$
 &=d_\Sigma^2(x,\mu).
 \end{aligned}
 $$
-Nếu chỉ đổi đơn vị của dữ liệu mà giữ nguyên ma trận cũ, kết quả không còn ý nghĩa này.
+Nếu chỉ đổi đơn vị của dữ liệu mà giữ nguyên ma trận cũ, đẳng thức trên không còn đúng.
+:::
+
+Hai bài tập sau dùng Mệnh đề 11.17 để so sánh hai quan sát theo hai khoảng cách. Bài thứ hai bắt đầu từ dữ liệu, kiểm tra điều kiện tồn tại của Định lý 11.14 và xét trường hợp $S_n$ suy biến.
+
+::: exercise Bài tập 11.3 (Hình học Gaussian theo hướng riêng)
+Cho Gaussian hai chiều có trung bình $\mu=(0,0)^\top$ và ma trận hiệp phương sai $\Sigma=\begin{pmatrix}5&4\\4&5\end{pmatrix}$.
+
+- (a) Tìm trị riêng, vector riêng đơn vị và bán trục của elip $d_\Sigma^2(x,\mu)=1$.
+- (b) So sánh bình phương khoảng cách Euclid và bình phương khoảng cách Mahalanobis tới $\mu$ của $a=(3,1)^\top$ và $b=(1,-1)^\top$.
+- (c) Tính tỉ số mật độ $f_{\mu,\Sigma}(a)/f_{\mu,\Sigma}(b)$. Dùng các hướng phân tán để giải thích vì sao tỉ số hai bình phương khoảng cách Mahalanobis nhỏ hơn nhiều so với tỉ số hai bình phương khoảng cách Euclid.
+:::
+
+::: hint Gợi ý Bài tập 11.3
+Thử các vector $(1,1)^\top$ và $(1,-1)^\top$ rồi chuẩn hóa chúng. Dùng (8.9): chiếu độ lệch lên từng vector riêng đơn vị, bình phương, rồi chia cho trị riêng tương ứng.
+:::
+
+::: solution Lời giải Bài tập 11.3
+**Câu (a).** Ta có $\Sigma(1,1)^\top=(9,9)^\top$ và $\Sigma(1,-1)^\top=(1,-1)^\top$. Vậy $\lambda_+=9$ với $u_+=(1,1)^\top/\sqrt2$, và $\lambda_-=1$ với $u_-=(1,-1)^\top/\sqrt2$. Theo Mệnh đề 11.17(b), elip $d_\Sigma^2=1$ có bán trục $\sqrt9=3$ theo $u_+$ và $1$ theo $u_-$.
+
+**Câu (b).** Với $a=(3,1)^\top$: $\lVert a\rVert^2=10$, $z_+=(3+1)/\sqrt2=2\sqrt2$ và $z_-=(3-1)/\sqrt2=\sqrt2$, nên theo (8.9)
+
+$$
+\begin{aligned}
+d_\Sigma^2(a,\mu)&=\frac{(2\sqrt2)^2}9+\frac{(\sqrt2)^2}1\\
+&=\frac89+2\\
+&=\frac{26}9\approx2{,}89.
+\end{aligned}
+$$
+
+Với $b=(1,-1)^\top$: $\lVert b\rVert^2=2$, $z_+=0$ và $z_-=2/\sqrt2=\sqrt2$, nên $d_\Sigma^2(b,\mu)=(\sqrt2)^2/1=2$.
+
+**Câu (c).** Hai điểm được đánh giá dưới cùng một Gaussian, nên hệ số chuẩn hóa triệt tiêu và
+
+$$
+\begin{aligned}
+\frac{f_{\mu,\Sigma}(a)}{f_{\mu,\Sigma}(b)}&=\exp\Bigl[-\frac12\Bigl(\frac{26}9-2\Bigr)\Bigr]\\
+&=e^{-4/9}\approx0{,}641.
+\end{aligned}
+$$
+
+Tỉ số hai bình phương khoảng cách Euclid là $10/2=5$, còn tỉ số hai bình phương khoảng cách Mahalanobis là $(26/9)/2\approx1{,}44$. Trong bình phương độ dài $10$ của $a$, phần $z_+^2=8$ nằm theo hướng có phương sai $9$ nên chỉ đóng góp $8/9$; phần $z_-^2=2$ nằm theo hướng có phương sai $1$ và đóng góp đủ $2$, bằng toàn bộ đóng góp của $b$.
+
+**Kiểm tra lại.** Tổng hai trị riêng là $10=\operatorname{tr}\Sigma$ và tích là $9=25-16=\det\Sigma$. Tổng $z_+^2+z_-^2$ bằng $8+2=10$ cho $a$ và $2$ cho $b$, đúng bình phương khoảng cách Euclid. Tính trực tiếp bằng $\Sigma^{-1}=\frac19\begin{pmatrix}5&-4\\-4&5\end{pmatrix}$: $\Sigma^{-1}(3,1)^\top=\frac19(11,-7)^\top$, nên $d_\Sigma^2(a,\mu)=\frac19(33-7)=\frac{26}9$; $\Sigma^{-1}(1,-1)^\top=(1,-1)^\top$, nên $d_\Sigma^2(b,\mu)=2$.
+:::
+
+::: exercise Bài tập 11.4 (Ma trận hiệp phương sai, đường đồng mức và dữ liệu suy biến)
+Bốn phép đo hai chiều là $(5,2)^\top$, $(-3,-2)^\top$, $(0,2)^\top$, $(2,-2)^\top$, của một mẫu i.i.d. Gaussian hai chiều.
+
+- (a) Tính trung bình mẫu và hiệp phương sai mẫu $S_4$ với mẫu số $n$. Kiểm tra điều kiện tồn tại ước lượng hợp lý cực đại của Định lý 11.14.
+- (b) Tính hiệp phương sai mẫu không chệch và giải thích vì sao nó có cùng vector riêng với $S_4$.
+- (c) Tìm các trị riêng và vector riêng đơn vị của $S_4$. Viết phương trình elip $d_{S_4}^2(x,\hat\mu)=1$ trong hệ trục riêng, cho hướng và độ dài các bán trục.
+- (d) So sánh bình phương khoảng cách Euclid và bình phương khoảng cách Mahalanobis tới trung bình đã ước lượng của hai quan sát mới $a=(9,4)^\top$ và $b=(-2,6)^\top$. Giải thích kết quả bằng hướng phân tán.
+- (e) Chỉ giữ hai phép đo đầu, $(5,2)^\top$ và $(-3,-2)^\top$. Tính $S_2$ và hạng của nó, rồi kết luận về ước lượng hợp lý cực đại của mô hình Gaussian hai chiều không ràng buộc. Giải thích vì sao kết luận này đúng với mọi cặp hai phép đo trong $\mathbb R^2$. Với mô hình ràng buộc $\Sigma=\operatorname{diag}(v_1,v_2)$, $v_1,v_2>0$, tìm ước lượng hợp lý cực đại trên hai phép đo này và giải thích vì sao đổi sang mô hình đó là thay đổi giả thiết.
+:::
+
+::: hint Gợi ý Bài tập 11.4
+Ở (a), các vector sai lệch ghép thành hai cặp đối nhau. Ở (c), tổng hai trị riêng bằng vết, tích bằng định thức; ở (d), chiếu độ lệch lên từng vector riêng đơn vị rồi dùng (8.9). Ở (e), tìm một vector $w\ne0$ vuông góc với mọi vector sai lệch rồi dùng (8.4); với $\Sigma$ đường chéo, mật độ Gaussian hai chiều tách thành tích của hai mật độ một chiều.
+:::
+
+::: solution Lời giải Bài tập 11.4
+**Câu (a).** Trung bình mẫu là
+
+$$
+\bar x=\frac14\begin{pmatrix}5-3+0+2\\2-2+2-2\end{pmatrix}=\begin{pmatrix}1\\0\end{pmatrix}.
+$$
+
+Các vector sai lệch là $(4,2)^\top$, $(-4,-2)^\top$, $(-1,2)^\top$, $(1,-2)^\top$. Hai vector đầu cùng cho tích ngoài $\begin{pmatrix}16&8\\8&4\end{pmatrix}$, hai vector sau cùng cho $\begin{pmatrix}1&-2\\-2&4\end{pmatrix}$. Do đó
+
+$$
+\begin{aligned}
+S_4&=\frac14\Bigl[2\begin{pmatrix}16&8\\8&4\end{pmatrix}\\
+&\qquad+2\begin{pmatrix}1&-2\\-2&4\end{pmatrix}\Bigr]\\
+&=\frac14\begin{pmatrix}34&12\\12&16\end{pmatrix}\\
+&=\begin{pmatrix}17/2&3\\3&4\end{pmatrix}.
+\end{aligned}
+$$
+
+Ta có $\det S_4=34-9=25>0$ và $\operatorname{tr}S_4=25/2>0$, nên cả hai trị riêng dương và $S_4\succ0$. Theo Định lý 11.14, ước lượng hợp lý cực đại tồn tại: $\hat\mu=(1,0)^\top$, $\hat\Sigma=S_4$.
+
+**Câu (b).** Theo (8.7), $S_{n-1}=\frac43S_4=\begin{pmatrix}34/3&4\\4&16/3\end{pmatrix}$. Nếu $S_4u=\lambda u$ thì $\frac43S_4u=\frac43\lambda u$, nên hai ma trận có cùng vector riêng, và trị riêng của $S_{n-1}$ bằng $\frac43$ lần trị riêng của $S_4$.
+
+**Câu (c).** Hai trị riêng là nghiệm của $\lambda^2-\frac{25}2\lambda+25=0$, tức
+
+$$
+\begin{aligned}
+\lambda&=\frac{25/2\pm\sqrt{625/4-100}}2\\
+&=\frac{25/2\pm15/2}2,
+\end{aligned}
+$$
+
+cho $\lambda_1=10$ và $\lambda_2=5/2$. Với $\lambda_1=10$: $(17/2-10)w_1+3w_2=0$ cho $w_2=w_1/2$, nên $u_1=(2,1)^\top/\sqrt5$. Với $\lambda_2=5/2$: $6w_1+3w_2=0$ cho $w_2=-2w_1$, nên $u_2=(-1,2)^\top/\sqrt5$. Trong tọa độ riêng $z=U^\top(x-\hat\mu)$, elip $d_{S_4}^2(x,\hat\mu)=1$ là
+
+$$
+\frac{z_1^2}{10}+\frac{z_2^2}{5/2}=1,
+$$
+
+với bán trục $\sqrt{10}\approx3{,}16$ theo hướng $u_1$ và $\sqrt{5/2}\approx1{,}58$ theo hướng $u_2$ (Mệnh đề 11.17).
+
+**Câu (d).** Với $a-\hat\mu=(8,4)^\top$: $\lVert a-\hat\mu\rVert^2=80$, $z_1=(16+4)/\sqrt5=4\sqrt5$, $z_2=(-8+8)/\sqrt5=0$, nên $d_{S_4}^2(a,\hat\mu)=80/10=8$. Với $b-\hat\mu=(-3,6)^\top$: $\lVert b-\hat\mu\rVert^2=45$, $z_1=(-6+6)/\sqrt5=0$, $z_2=(3+12)/\sqrt5=3\sqrt5$, nên $d_{S_4}^2(b,\hat\mu)=45/(5/2)=18$. Độ lệch của $a$ nằm trọn theo hướng có phương sai $10$, độ lệch của $b$ nằm trọn theo hướng có phương sai $5/2$. Vì vậy $a$ xa tâm hơn theo khoảng cách Euclid nhưng gần hơn theo khoảng cách Mahalanobis.
+
+**Câu (e).** Với hai phép đo $(5,2)^\top$ và $(-3,-2)^\top$, trung bình mẫu là $(1,0)^\top$ và hai vector sai lệch là $(4,2)^\top$, $(-4,-2)^\top$. Do đó
+
+$$
+\begin{aligned}
+S_2&=\frac12\Bigl[2\begin{pmatrix}16&8\\8&4\end{pmatrix}\Bigr]\\
+&=\begin{pmatrix}16&8\\8&4\end{pmatrix},\\
+\det S_2&=64-64=0.
+\end{aligned}
+$$
+
+Vector $w=(1,-2)^\top$ vuông góc với cả hai vector sai lệch và $S_2w=(16-16,\ 8-8)^\top=0$, nên $S_2$ có hạng $1$. Theo Định lý 11.14, log-hợp lý không bị chặn trên và không có ước lượng hợp lý cực đại với $\Sigma\succ0$. Với mọi cặp phép đo trong $\mathbb R^2$, hai vector sai lệch luôn đối nhau, nên chúng sinh ra không quá một đường thẳng, đúng cận $\min(d,n-1)=1$ sau (8.4); kết luận trên vì vậy đúng với mọi cặp.
+
+Với $\Sigma=\operatorname{diag}(v_1,v_2)$, ta có $\det\Sigma=v_1v_2$ và $(x-\mu)^\top\Sigma^{-1}(x-\mu)=(x^{(1)}-\mu_1)^2/v_1+(x^{(2)}-\mu_2)^2/v_2$. Mật độ là tích hai mật độ $\mathcal N(\mu_1,v_1)$ và $\mathcal N(\mu_2,v_2)$, nên log-hợp lý là tổng hai log-hợp lý một chiều. Áp dụng Định lý 11.9 cho từng tọa độ:
+
+- tọa độ thứ nhất $(5,-3)$ có trung bình $1$ và $Q=16+16=32>0$, nên $\hat v_1=16$;
+- tọa độ thứ hai $(2,-2)$ có trung bình $0$ và $Q=4+4=8>0$, nên $\hat v_2=4$.
+
+Vậy trong mô hình đường chéo, ước lượng hợp lý cực đại tồn tại: $\hat\mu=(1,0)^\top$, $\hat\Sigma=\operatorname{diag}(16,4)$. Mô hình này thu hẹp miền tham số về các ma trận đường chéo, tức thêm giả thiết hai số đo độc lập dưới mô hình Gaussian. Hai vector sai lệch $(4,2)^\top$, $(-4,-2)^\top$ có hai tọa độ cùng dấu, và mô hình đường chéo bỏ qua quan hệ này.
+
+**Kiểm tra lại.** Ở (c), $10+5/2=25/2=\operatorname{tr}S_4$ và $10\cdot5/2=25=\det S_4$. Ở (d), tính trực tiếp bằng $S_4^{-1}=\frac1{25}\begin{pmatrix}4&-3\\-3&17/2\end{pmatrix}$: $S_4^{-1}(8,4)^\top=\frac1{25}(20,10)^\top$, nên $d_{S_4}^2(a,\hat\mu)=\frac1{25}(160+40)=8$; $S_4^{-1}(-3,6)^\top=\frac1{25}(-30,60)^\top$, nên $d_{S_4}^2(b,\hat\mu)=\frac1{25}(90+360)=18$.
 :::
 
 Như vậy, khi $S_n\succ0$, ta học được $\hat\mu=\bar x$ và $\hat\Sigma=S_n$ (Định lý 11.14); Hệ quả 11.15 cho phiên bản không chệch $S_{n-1}$; Định nghĩa 11.16 và Mệnh đề 11.17 đọc $\hat\Sigma$ thành các hướng phân tán và một khoảng cách theo mức phân tán của từng hướng. Với dữ liệu cảm biến nền, các kết quả này trả lời Câu hỏi mở đầu. Tuy nhiên, khi hai đặc trưng chứa cùng một thông tin, $S_n$ suy biến, mô hình Gaussian không ràng buộc không có ước lượng hợp lý cực đại, và khoảng cách Mahalanobis không tính được. Trong Mục 9, ta áp dụng các kết quả này cho dữ liệu cảm biến nền và xét đúng trường hợp suy biến đó.
@@ -1406,7 +1604,7 @@ Hai tình huống dưới đây dùng các kết quả của bài trên dữ li�
 
 **Chấm điểm.** Theo Định nghĩa 11.16 và Mệnh đề 11.17, $d^2_{\hat\Sigma}(a,\hat\mu)=9/2=4{,}5$ và $d^2_{\hat\Sigma}(b,\hat\mu)=8$ (Ví dụ 11.11). Với ngưỡng $6$, chỉ $b$ bị gắn cờ.
 
-**Diễn giải và giới hạn.** Quan sát $b$ lệch theo hướng ít biến động nên có mật độ thấp hơn, dù gần tâm hơn theo khoảng cách Euclid. Phát hiện bất thường dựa trên Gaussian dùng đúng quan hệ giữa mật độ và dạng toàn phương này. Để biết tỉ lệ báo động sai của ngưỡng $6$ và kiểm tra giả thiết Gaussian, cần thêm dữ liệu kiểm tra từ chế độ vận hành bình thường; bốn quan sát nền chỉ đủ để tính $\hat\mu$ và $\hat\Sigma$.
+**Diễn giải và giới hạn.** Quan sát $b$ lệch theo hướng ít biến động nên có mật độ thấp hơn, dù gần tâm hơn theo khoảng cách Euclid. Để biết tỉ lệ báo động sai của ngưỡng $6$ và kiểm tra giả thiết Gaussian, cần thêm dữ liệu kiểm tra từ chế độ vận hành bình thường; bốn quan sát nền chỉ đủ để tính $\hat\mu$ và $\hat\Sigma$.
 :::
 
 Tình huống sau giữ mô hình Gaussian hai chiều nhưng dùng dữ liệu mà hai cột chứa cùng một thông tin, nên giả thiết $S_n\succ0$ của Định lý 11.14 không thỏa.
@@ -1442,7 +1640,11 @@ Các bài toán khác của học máy dùng cùng công cụ của bài:
 - học một mô hình chung cho các đặc trưng tương quan dùng Định lý 11.14;
 - chọn hàm mất mát qua việc chọn mô hình nhiễu dùng Mệnh đề 11.3, như Ví dụ 11.6.
 
-Dưới mô hình đã chọn và trên dữ liệu đã thấy, các nghiệm (5.2), (6.2), (7.2), (8.6) là tham số có hợp lý lớn nhất, và chúng tồn tại khi dữ liệu không suy biến. Mức phù hợp của mô hình và chất lượng dự đoán trên quan sát mới phải được kiểm tra riêng, trên dữ liệu chưa dùng để ước lượng. Vì vậy, trong thực hành, cần nêu rõ mô hình và cách lấy mẫu trước khi viết hàm hợp lý, kiểm tra điều kiện không suy biến trước khi dùng công thức nghiệm, và đánh giá mô hình đã khớp trên dữ liệu khác với dữ liệu dùng để ước lượng.
+Dưới mô hình đã chọn và trên dữ liệu đã thấy, các nghiệm (5.2), (6.2), (7.2), (8.6) là tham số có hợp lý lớn nhất, và chúng tồn tại khi dữ liệu không suy biến. Vì vậy, trong thực hành, ta cần:
+
+- nêu rõ mô hình và cách lấy mẫu trước khi viết hàm hợp lý;
+- kiểm tra điều kiện không suy biến trước khi dùng công thức nghiệm;
+- đánh giá mô hình đã khớp trên dữ liệu khác với dữ liệu dùng để ước lượng.
 
 Tóm lại, khi một mô hình có tham số chưa biết, học từ dữ liệu là ước lượng tham số đó từ một mẫu i.i.d., và ta chọn ước lượng hợp lý cực đại. Đây là một bài toán tối ưu vì giả thiết độc lập viết hàm hợp lý thành tích, phép lấy log đổi nó thành tổng các mất mát của từng quan sát, nên ước lượng hợp lý cực đại là điểm cực tiểu của rủi ro thực nghiệm (Mệnh đề 11.3). Tối ưu trên đoạn $[0,1]$ cho tần suất Bernoulli, và ràng buộc chuẩn hóa trên đơn hình cho tần suất của các nhóm phân loại. Với Gaussian, cùng nguyên lý cho trung bình mẫu và hiệp phương sai mẫu với mẫu số $n$, và điều kiện không suy biến quyết định công thức đó có phải nghiệm hay không. Mẫu số $n-1$ phục vụ một tiêu chuẩn khác, tính không chệch qua các lần lấy mẫu. Phân rã trị riêng đọc ma trận hiệp phương sai thành các hướng phân tán và cho khoảng cách Mahalanobis, trả lời Câu hỏi mở đầu.
 
@@ -1464,21 +1666,24 @@ Các công thức cần nhớ là (4.3), (5.2), (6.2), (7.2), (7.4), (8.6), (8.7
 
 ## 10. Bài tập
 
-Đề, gợi ý và lời giải nằm trong [tệp bài tập của Bài 11](material-viewer.html?doc=materials/lec-11/exercises.md); mỗi dòng ghi mục tiêu học tập mà bài kiểm tra.
-
-**Trên lớp.**
+Các bài tập trong thân bài và mục tiêu học tập mà mỗi bài kiểm tra:
 
 1. **Bài tập 11.1** (Nghiệm trong và nghiệm biên của mô hình Bernoulli): mục tiêu học tập 2.
 2. **Bài tập 11.2** (Nhân tử Lagrange trên một mặt của đơn hình): mục tiêu học tập 3.
 3. **Bài tập 11.3** (Hình học Gaussian theo hướng riêng): mục tiêu học tập 5.
+4. **Bài tập 11.4** (Ma trận hiệp phương sai, đường đồng mức và dữ liệu suy biến): mục tiêu học tập 4, 5.
 
-**Tự học.**
+Các Bài tập 11.5–11.13 chọn từ mục bài tập của Murphy (2022) và nằm trong [tệp bài tập của Bài 11](material-viewer.html?doc=materials/lec-11/exercises.md&deck=lecture-11-hoc-tu-du-lieu-uoc-luong-thong-ke.html):
 
-4. **Bài tập 11.4** (Hợp lý Bernoulli, nghiệm biên và cơ chế lấy mẫu): mục tiêu học tập 1, 2.
-5. **Bài tập 11.5** (Ước lượng phân loại và entropy chéo): mục tiêu học tập 3, 6.
-6. **Bài tập 11.6** (Phương sai hợp lý cực đại và phương sai không chệch): mục tiêu học tập 4.
-7. **Bài tập 11.7** (Ma trận hiệp phương sai, đường đồng mức và dữ liệu suy biến): mục tiêu học tập 4, 5.
-8. **Bài tập 11.8** (Mất mát từ mô hình nhiễu có phương sai khác nhau): mục tiêu học tập 6.
+5. **Bài tập 11.5** (Trị riêng của một ma trận đường chéo): mục tiêu học tập 5.
+6. **Bài tập 11.6** (Ước lượng hợp lý cực đại của Gaussian một chiều): mục tiêu học tập 4.
+7. **Bài tập 11.7** (Đồng xu và người báo kết quả không tin cậy): mục tiêu học tập 1, 2, 3.
+8. **Bài tập 11.8** (Phương sai hợp lý cực đại là ước lượng chệch): mục tiêu học tập 1, 4.
+9. **Bài tập 11.9** (Ước lượng phương sai khi đã biết trung bình): mục tiêu học tập 4.
+10. **Bài tập 11.10** (Tổ hợp tuyến tính của vector ngẫu nhiên): mục tiêu học tập 5.
+11. **Bài tập 11.11** (Gộp số đo của hai cảm biến): mục tiêu học tập 6.
+12. **Bài tập 11.12** (Tiêu chuẩn BIC cho Gaussian với hiệp phương sai đầy đủ và đường chéo): mục tiêu học tập 4.
+13. **Bài tập 11.13** (Hằng số chuẩn hóa của Gaussian nhiều chiều): mục tiêu học tập 5.
 
 ## 11. Câu hỏi cuối buổi và cầu nối
 
@@ -1491,7 +1696,7 @@ Các công thức cần nhớ là (4.3), (5.2), (6.2), (7.2), (7.4), (8.6), (8.7
 ::: solution Lời giải câu hỏi cuối buổi
 1. Theo Mệnh đề 11.3, ước lượng hợp lý cực đại là điểm cực tiểu của rủi ro thực nghiệm $\hat R_n(\theta)=-\frac1n\sum_i\log p_\theta(x_i)$, công thức (4.3). Giả thiết độc lập được dùng khi viết hàm hợp lý thành tích (4.1); khi các quan sát là bản chép của nhau, như cơ chế thứ hai của Ví dụ 11.1, dạng tích sai và mục tiêu không còn là tổng trên từng quan sát.
 2. Với Bernoulli$(p)$, mất mát là entropy chéo nhị phân $-\frac1n\sum_i[x_i\log p+(1-x_i)\log(1-p)]$ (Mục 5). Với $\mathcal N(\mu,v)$ và $v$ đã biết, âm log-hợp lý trung bình bằng $\frac12\log(2\pi v)+\frac1{2vn}\sum_i(x_i-\mu)^2$; bỏ hằng số, mục tiêu là tổng bình phương sai lệch, với nghiệm $\hat\mu=\bar x$ (Bước 1 của chứng minh Định lý 11.9).
-3. Ta có $s=0$, $n=5$, nên Định lý 11.4 cho $\hat p=0$. Không thể kết luận thiết bị không bao giờ gắn cờ. Chẳng hạn, với $p=1/5$, xác suất năm cờ đều bằng $0$ là $(4/5)^5=1024/3125\approx0{,}328$; một mẫu như vậy xảy ra khá thường xuyên dù xác suất gắn cờ dương (Nhận xét 11.5). Nghiệm tối ưu trên mẫu đã thấy chưa cho biết chất lượng dự đoán trên quan sát mới.
+3. Ta có $s=0$, $n=5$, nên Định lý 11.4 cho $\hat p=0$. Không thể kết luận thiết bị không bao giờ gắn cờ. Chẳng hạn, với $p=1/5$, xác suất năm cờ đều bằng $0$ là $(4/5)^5=1024/3125\approx0{,}328$, dù xác suất gắn cờ dương (Nhận xét 11.5).
 :::
 
 Đến đây ta trả lời được hai câu hỏi. Thứ nhất, một hàm mất mát được suy ra từ một giả thiết phân phối bằng cách lấy âm log-hợp lý (Mệnh đề 11.3): giả thiết Gaussian cho tổng bình phương sai lệch, giả thiết Bernoulli cho entropy chéo nhị phân, giả thiết phân loại cho entropy chéo nhiều lớp. Thứ hai, lựa chọn mô hình xác suất quyết định cách học tham số: trên cùng dữ liệu $(0,0,9)$, nhiễu Gaussian cho ước lượng $3$ còn nhiễu Laplace cho ước lượng $0$ (Ví dụ 11.6).
@@ -1503,9 +1708,9 @@ Các công thức cần nhớ là (4.3), (5.2), (6.2), (7.2), (7.4), (8.6), (8.7
 Tài liệu chính là Kevin P. Murphy (2022), *Probabilistic Machine Learning: An Introduction*, MIT Press, dẫn theo số mục của bản trực tuyến do tác giả công bố ([trang sách](https://probml.github.io/pml-book/book1.html)).
 
 - **Trước buổi học:** Murphy (2022), §2.4–2.6 (Bernoulli, phân loại, Gaussian một chiều) và §3.2.1–3.2.2 (Gaussian nhiều chiều, khoảng cách Mahalanobis).
-- **Sau buổi học:** Murphy (2022), §4.1, §4.2.1–4.2.6 (ước lượng hợp lý cực đại cho Bernoulli, phân loại, Gaussian một chiều và nhiều chiều), §4.3 (tối thiểu hóa rủi ro thực nghiệm), §4.7.6.1 (độ chệch của bộ ước lượng); Bài tập 4.1, 4.7 và 4.8 của Murphy luyện thêm Định lý 11.9 và Mệnh đề 11.11.
+- **Sau buổi học:** Murphy (2022), §4.1, §4.2.1–4.2.6 (ước lượng hợp lý cực đại cho Bernoulli, phân loại, Gaussian một chiều và nhiều chiều), §4.3 (tối thiểu hóa rủi ro thực nghiệm), §4.7.6.1 (độ chệch của bộ ước lượng).
 - **Mở rộng:** Murphy (2022), §4.5–4.5.2 (bài toán số đếm bằng không, ước lượng co của ma trận hiệp phương sai), §4.6.2 (mô hình Beta–nhị thức), §6.2 (phân kỳ Kullback–Leibler và quan hệ với ước lượng hợp lý cực đại), §7.4.4–7.4.5 (hình học của dạng toàn phương, làm trắng dữ liệu).
-- **Đọc thêm:** Murphy (2022), §4.7.1–4.7.4 về phân phối mẫu và khoảng tin cậy. Một giá trị ước lượng đơn lẻ chưa cho biết bộ ước lượng dao động bao nhiêu qua các lần lấy mẫu; các mục này mô tả độ dao động đó.
+- **Đọc thêm:** Murphy (2022), §4.7.1–4.7.4: phân phối mẫu và khoảng tin cậy, tức độ dao động của bộ ước lượng qua các lần lấy mẫu.
 
 Khi đọc Murphy (2022), §3.2.2, lưu ý rằng tọa độ riêng ở đây là $z=U^\top(x-\mu)$, với các cột của $U$ là vector riêng của $\Sigma$.
 

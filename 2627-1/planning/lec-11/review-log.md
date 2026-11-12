@@ -385,3 +385,61 @@ Tác tử soạn tải kỹ năng `no-ai-slop` và tự kiểm các phác thảo
 | Định dạng: in đậm chỉ ở nhãn và tên bước; danh sách cho ý song song | đạt | Tên bước của trang chứng minh in đậm theo mẫu deck 10. |
 | Gạch dài (em dash) | đạt | Chỉ trong tiêu đề mục "MÃ — tiêu đề" của planning theo mẫu Bài 10; không có trong câu chữ dự kiến của mặt trang hay ghi chú diễn giả. |
 | Văn phong tác giả: công thức đứng tại chỗ được gọi tên; ba ý song song trở lên thành danh sách | đạt | Ví dụ: G101, GN05 đặt công thức ngay sau "mật độ … là"; ba cách đổi mô hình của GN11 được viết thành danh sách khi dựng ghi chú diễn giả. |
+
+
+## Rà nhẹ theo quy tắc 2026-11-09 và làm lại tệp bài tập từ giáo trình (2026-11-12)
+
+Yêu cầu của người dùng: "rà math-4-AI 10–14 và rl-plan 01–10: chỉ cần một lượt nhẹ, gồm rà theo quy tắc 09/11 và làm lại exercises.md từ giáo trình", rồi "chỉ làm lecture note và exercise" (không sửa deck).
+
+**Tác tử** (lấy từ lời gọi công cụ): mọi vai là `Agent`, `subagent_type: general-purpose`, `model: opus` (Claude Opus 5.5), `effort: high`.
+- Người rà chỉ đọc (`no-ai-slop` Detect), sau đó cũng tác tử đó làm biên tập viên (`no-ai-slop` Edit), tiếp tục bằng `SendMessage` để giữ ngữ cảnh.
+- Người kiểm tra độc lập chỉ đọc (tác tử mới): đối chiếu đề với PDF, giải lại mọi bài trước khi đọc lời giải, rà các hunk đã đổi của ghi chú; sau đó kiểm lại phần đã sửa.
+
+**Rà ghi chú:** 38 phát hiện (0 chặn bàn giao, 0 nghiêm trọng, 2 trung bình, 36 nhẹ): mã CLO (L44), "Đáp số câu hỏi ôn nhanh" (L63); Diễn giải lặp số dòng trên, câu tự nói về văn bản, rào đón ("có xu hướng", "khá thường xuyên"), nhận xét về cách chứng minh của Murphy, ba ý song song ở L1445 thành danh sách. Điều phối viên chấp nhận: cả 38; chọn phương án B để giữ các số 11.1–11.3 mà deck đang dẫn.
+
+**Nguồn bài tập:** Murphy (2022), bản PDF của tác giả (SHA-256 89749245…); Murphy (2023) không có bài tập. Đề đối chiếu với trang PDF (tr. 104–105, 164–166, 274). Chín bài 11.5–11.13: Murphy 7.2, 4.1, 4.5(a–c), 4.7, 4.8, 3.4, 3.7, 4.4, 3.6. Bài tự dựng cũ 11.1, 11.2, 11.3 chuyển về ghi chú giữ số (cuối §5.1, §6.1, §8.3), 11.7 cũ thành 11.4 (cuối §8.3); 11.4, 11.5, 11.6, 11.8 cũ bị bỏ. Murphy 2.8 và 3.5 không dùng (3.5 thuộc Bài 10).
+
+**Kiểm tra độc lập:** 0 chặn bàn giao, 1 nghiêm trọng (Diễn giải Ví dụ 11.1, dòng 185: "dữ liệu không cho biết cơ chế nào đúng" mâu thuẫn với chính ví dụ, $D$ có xác suất 0 dưới cơ chế thứ hai; đã bỏ), 4 trung bình ($D$ hai nghĩa ở 11.12; dấu "=" sau khi bỏ hằng số $-\tfrac{ND}2\log(2\pi)$; dẫn sai Mệnh đề 11.3 ở 11.11; Diễn giải Ví dụ 11.8 lặp phép tính), 12 nhẹ; không lời giải sai (giải lại 13/13). Điều phối viên chấp nhận mọi phát hiện; biên tập viên sửa; kiểm lại: đạt, không phát hiện mới; hằng số BIC kiểm bằng scipy. Sau đó ngắt 21 công thức tràn khung của tệp bài tập theo quy tắc D3.
+
+**Mục tiêu chỉ có bài trong ghi chú:** phần nghiệm biên của mục tiêu 2 và phần Lagrange của mục tiêu 3 (Bài tập 11.1, 11.2).
+
+| Cũ (`exercises.md`) | Mới | Vị trí mới |
+|---|---|---|
+| 11.1 Nghiệm trong và nghiệm biên của mô hình Bernoulli | 11.1 | ghi chú, cuối §5.1 (sau Nhận xét 11.5) |
+| 11.2 Nhân tử Lagrange trên một mặt của đơn hình | 11.2 | ghi chú, cuối §6.1 (sau Nhận xét 11.8) |
+| 11.3 Hình học Gaussian theo hướng riêng | 11.3 | ghi chú, cuối §8.3 (sau Nhận xét 11.18) |
+| 11.4 Hợp lý Bernoulli, nghiệm biên và cơ chế lấy mẫu | bỏ | — |
+| 11.5 Ước lượng phân loại và entropy chéo | bỏ | — |
+| 11.6 Phương sai hợp lý cực đại và phương sai không chệch | bỏ | — |
+| 11.7 Ma trận hiệp phương sai, đường đồng mức và dữ liệu suy biến | 11.4 | ghi chú, cuối §8.3 (sau Bài tập 11.3, trước đoạn kết của §8) |
+| 11.8 Mất mát từ mô hình nhiễu có phương sai khác nhau | bỏ | — |
+| — | 11.5 | `exercises.md`, Murphy (2022) Bài 7.2, tr. 274 |
+| — | 11.6 | `exercises.md`, Murphy Bài 4.1, tr. 164 |
+| — | 11.7 | `exercises.md`, Murphy Bài 4.5(a–c), tr. 165–166 |
+| — | 11.8 | `exercises.md`, Murphy Bài 4.7, tr. 166 |
+| — | 11.9 | `exercises.md`, Murphy Bài 4.8, tr. 166 |
+| — | 11.10 | `exercises.md`, Murphy Bài 3.4, tr. 104 |
+| — | 11.11 | `exercises.md`, Murphy Bài 3.7, tr. 105 |
+| — | 11.12 | `exercises.md`, Murphy Bài 4.4, tr. 165 |
+| — | 11.13 | `exercises.md`, Murphy Bài 3.6, tr. 104–105 |
+
+Lưu ý: các số 11.4–11.8 mang đề khác trước, nên một dẫn chiếu cũ tới "Bài tập 11.k" với k ≥ 4 không thể giữ nguyên số.
+
+### Dẫn chiếu trong phạm vi (đã cập nhật)
+
+- `2627-1/materials/lec-11/lecture-note.md` §10: danh sách viết lại theo số mới, kèm liên kết tệp bài tập.
+- Dòng "Bài tập 4.1, 4.7 và 4.8 của Murphy luyện thêm …" ở Tài liệu đọc: đã xóa.
+- `exercises.md` cũ (gợi ý của bài 11.5 cũ dẫn "Bài tập 11.2(a)"): tệp đã viết lại.
+
+### Dẫn chiếu ngoài phạm vi (không sửa)
+
+- `2627-1/lecture-11-hoc-tu-du-lieu-uoc-luong-thong-ke.html`: chú thích trên deck ở dòng 230 và 239 ghi "Bài tập 11.1", dòng 307 và 317 ghi "Bài tập 11.2", dòng 665 và 675 ghi "Bài tập 11.3". Cả ba số vẫn trỏ đúng đề (giữ số theo phương án B), nhưng các bài này giờ nằm trong ghi chú chứ không ở tệp bài tập.
+- `2627-1/index.html` dòng 203: liên kết tới `materials/lec-11/exercises.md`, không đổi.
+- `2627-1/material-local-data.js`: cần chạy lại `sync-local-materials.py` (biên tập viên chưa chạy vì tệp nằm ngoài phạm vi ghi).
+- Không ghi chú, tệp bài tập hay tệp planning nào của bài khác dẫn `Bài tập 11.k` (grep toàn repo).
+
+**Số liệu:** ghi chú 18 544 âm tiết (`wc -w`); `git diff --check` sạch; `forward_refs.py` báo 0; mỗi `exercise` có đúng một `hint` và một `solution` (ghi chú 4, cộng một khối gợi ý của câu hỏi ôn nhanh; tệp 9).
+
+**Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844, mở mọi khối khi đo: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0/39 công thức tràn khung ở 390 px. Ghi chú: 10 công thức có sẵn từ trước tràn khung (ngoài lượt nhẹ). `material-local-data.js` đồng bộ trong commit riêng.
+
+Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 11 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.
