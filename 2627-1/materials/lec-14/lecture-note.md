@@ -7,7 +7,7 @@ Trong Tình huống 13.2 của Bài 13, khi cảm biến chỉ ghi giá trị hi
 - Mệnh đề 11.3: ước lượng hợp lý cực đại (maximum likelihood estimation, MLE) trên mẫu độc lập cùng phân phối tương đương cực tiểu âm log-hợp lý (negative log-likelihood) trung bình $-\frac1n\sum_i\log p_\theta(x_i)$.
 - Mệnh đề 12.2: khi nhiễu Gaussian có phương sai cố định, âm log-hợp lý bằng tổng bình phương sai số nhân hằng số cộng hằng số.
 
-Ở Bài 10, hai mệnh đề đầu được phát biểu cho hai biến thực với ký hiệu mật độ $f$. Trong bài này, mọi mật độ được viết là $p$, và hai mệnh đề được dùng cho vector $X\in\mathbb R^d$, $Z\in\mathbb R^k$; chứng minh giữ nguyên với tích phân trên $\mathbb R^{d+k}$.
+Trong bài này, mật độ được viết là $p$, và hai mệnh đề đầu được dùng cho vector $X\in\mathbb R^d$, $Z\in\mathbb R^k$; chứng minh ở Bài 10 giữ nguyên với tích phân trên $\mathbb R^{d+k}$.
 
 ## Câu hỏi mở đầu
 
@@ -25,7 +25,7 @@ Một cách làm có vẻ hợp lý là lấy mã ngẫu nhiên $Z\sim\mathcal N
 - Mọi điểm sinh ra nằm trên trục ngang, nên không điểm nào giống $(0,1)^\top$ hay $(0,-1)^\top$.
 - Tọa độ thứ nhất có $\mathbb E[X_1^2]=\mathbb E[Z^2]=1$, trong khi trung bình bình phương tọa độ thứ nhất của bốn quan sát là $(4+4+0+0)/4=2$.
 
-Cặp $f,g$ không chỉ định phân phối của mã, cũng không mô tả độ phân tán của quan sát quanh $g(z)$. Để sinh dữ liệu, chúng ta cần thêm hai phân phối đó và một cách học chúng từ dữ liệu.
+Để sinh dữ liệu, ngoài cặp $f,g$ chúng ta cần thêm một phân phối của mã, một phân phối mô tả độ phân tán của quan sát quanh $g(z)$, và một cách học hai phân phối đó từ dữ liệu.
 
 ## Mục tiêu học tập
 
@@ -37,8 +37,6 @@ Sau bài này, người học có thể:
 4. Chứng minh tính không âm của phân kỳ Kullback–Leibler và phân rã log-hợp lý thành cận dưới cộng khe hở; phân biệt phân kỳ tới tiên nghiệm với phân kỳ tới hậu nghiệm.
 5. Tính phân kỳ giữa các phân phối Gaussian, kỳ vọng tái tạo và cận dưới trong một mô hình nhỏ; giải thích phép tái tham số hóa và điều kiện đưa gradient vào trong kỳ vọng.
 6. Phân biệt mục tiêu của phân tích thành phần chính, bộ tự mã hóa và bộ tự mã hóa biến phân; chẩn đoán trường hợp lỗi tái tạo nhỏ hoặc phân kỳ nhỏ vẫn đi cùng một mô hình sinh kém.
-
-Các mục tiêu cụ thể hóa năng lực phân tích mô hình học máy thuộc CLO2 và năng lực nhận dạng bài toán tối ưu trong AI thuộc CLO4 của đề cương học phần.
 
 ## Kiến thức tiên quyết
 
@@ -54,7 +52,7 @@ Các mục tiêu cụ thể hóa năng lực phân tích mô hình học máy th
 2. Cho $Z\sim\mathcal N(\mu,s^2)$. Tính $\mathbb E[Z^2]$.
 3. Hai biến $X,Z$ có mật độ đồng thời $p(x\mid z)p(z)$. Viết mật độ có điều kiện $p(z\mid x)$ theo $p(x\mid z)$, $p(z)$ và một tích phân.
 
-::: hint Đáp số câu hỏi ôn nhanh
+::: hint Lời giải câu hỏi ôn nhanh
 1. Trị riêng lớn nhất là $2$; vector riêng đơn vị là $(1,0)^\top$ hoặc $(-1,0)^\top$.
 2. $\mathbb E[Z^2]=\operatorname{Var}(Z)+(\mathbb E[Z])^2=s^2+\mu^2$ theo Mệnh đề 10.24.
 3. $p(z\mid x)=p(x\mid z)p(z)\big/\int p(x\mid z')p(z')\,dz'$, khi tích phân ở mẫu số dương và hữu hạn.
@@ -62,7 +60,7 @@ Các mục tiêu cụ thể hóa năng lực phân tích mô hình học máy th
 
 ## 1. Thiết lập bài toán
 
-Mọi đối tượng của bài được nêu trước theo bảy thành phần sau.
+Bài toán học biểu diễn và mô hình sinh gồm bảy thành phần sau.
 
 - **Dữ liệu:** các quan sát $x_1,\ldots,x_n\in\mathbb R^d$. Với nén dữ liệu, mẫu là một tập cố định và không cần giả thiết phân phối. Với mô hình sinh, các $x_i$ độc lập cùng phân phối theo một phân phối dữ liệu chưa biết.
 - **Biến ẩn:** mã $Z\in\mathbb R^k$ với $k<d$, không quan sát được.
@@ -102,7 +100,7 @@ Trong học máy, bài toán này là *học biểu diễn* (representation lear
 | $\varepsilon$, $\odot$, $m$ | nhiễu chuẩn; tích theo từng tọa độ; số mẫu nhiễu | $\mathcal N(0,I_k)$; vector cùng chiều; số nguyên dương |
 | $\mathbb E_q$, $\log$ | kỳ vọng theo $q$; logarit tự nhiên | khi tích phân tồn tại; đơn vị nat |
 
-Các kết quả của bài dùng hai nhóm giả thiết. Phần **Giả thiết.** của mỗi kết quả chỉ ra nhóm được dùng.
+Các kết quả của bài dùng hai nhóm giả thiết.
 
 **Giả thiết xác suất.**
 
@@ -119,7 +117,7 @@ Các kết quả của bài dùng hai nhóm giả thiết. Phần **Giả thiế
 
 ## 3. Ví dụ xuyên suốt
 
-Ví dụ xuyên suốt gồm một tập dữ liệu nhỏ tính được bằng tay và một ứng dụng.
+Ví dụ xuyên suốt của bài là bốn quan sát của một cảm biến hai chiều, dùng cho cả bài toán nén lẫn bài toán sinh.
 
 ::: example Ví dụ 14.1 (Bốn quan sát của một cảm biến hai chiều)
 **Dữ liệu.** Mẫu gồm $n=4$ quan sát trong $\mathbb R^2$:
@@ -153,7 +151,7 @@ $$
 Cho $1\le k\le d$ và ma trận $U\in\mathbb R^{d\times k}$ có các cột trực chuẩn, $U^\top U=I_k$. Mã của $x_i$ là $z_i=U^\top y_i\in\mathbb R^k$, và tái tạo của $x_i$ là $\widehat x_i=\bar x+UU^\top y_i$. Ma trận $P=UU^\top$ được gọi là *phép chiếu trực giao* lên ảnh của $U$. Khi $k=1$, ta viết $U=u$ với $u^\top u=1$.
 :::
 
-Ma trận $S$ trùng ma trận $S_n$ của Định nghĩa 11.13 (công thức (8.3) của Bài 11). Ở đây $S$ chỉ mô tả mẫu; không cần giả thiết dữ liệu tuân theo Gaussian. Nếu dùng mẫu số $n-1$ như Hệ quả 11.15 thì mọi trị riêng nhân với cùng hằng số $n/(n-1)$ và các vector riêng không đổi; công thức lỗi trung bình trong bài dùng mẫu số $n$.
+Ma trận $S$ trùng ma trận $S_n$ của Định nghĩa 11.13 (công thức (8.3) của Bài 11) và chỉ mô tả mẫu, nên không cần giả thiết Gaussian. Với mẫu số $n-1$ như Hệ quả 11.15, mọi trị riêng nhân với $n/(n-1)$ và các vector riêng không đổi.
 
 Các mã có trung bình bằng $0$, vì $n^{-1}\sum_iz_i=U^\top\big(n^{-1}\sum_iy_i\big)=0$. Do đó trung bình bình phương chuẩn của mã là tổng phương sai thực nghiệm của các tọa độ mã. Dùng $\|U^\top y\|_2^2=\operatorname{tr}(U^\top yy^\top U)$ và tính tuyến tính của vết, ta có
 
@@ -226,7 +224,7 @@ Bất đẳng thức đúng vì mỗi số hạng là tích của $\lambda_1-\la
 
 **Bước 4 (tập nghiệm).** Tổng các số hạng không âm ở Bước 3 bằng $0$ khi và chỉ khi mọi số hạng bằng $0$, tức $a_j=0$ với mọi $j$ có $\lambda_j<\lambda_1$. Điều này nghĩa là $u$ là tổ hợp của các $v_j$ có $\lambda_j=\lambda_1$, tức $u$ thuộc không gian riêng ứng với $\lambda_1$. $\square$
 
-Như vậy PCA một chiều có nghiệm dạng đóng: tính $S$ rồi lấy một vector riêng đơn vị ứng với trị riêng lớn nhất, không cần thuật toán lặp.
+Như vậy PCA một chiều có nghiệm dạng đóng: tính $S$ rồi lấy một vector riêng đơn vị ứng với trị riêng lớn nhất.
 :::
 
 Nếu $\lambda_1>\lambda_2$, không gian riêng ứng với $\lambda_1$ có chiều $1$ và hướng tối ưu duy nhất, sai khác dấu. Nếu trị riêng lớn nhất là bội, mọi vector đơn vị trong không gian riêng đó đều tối ưu. Điều kiện dừng của bài toán Lagrange (Murphy (2022), §20.1.2) chỉ cho biết $u$ là vector riêng; so sánh giá trị ở Bước 3 chọn trị riêng lớn nhất.
@@ -257,7 +255,7 @@ $$
 
 **Kiểm tra lại.** Với trục đứng $u=(0,1)^\top$, các mã là $0,0,1,-1$, các tái tạo là $(0,0)^\top$, $(0,0)^\top$, $(0,1)^\top$, $(0,-1)^\top$, và lỗi từng điểm là $4,4,0,0$, trung bình $2$. Ở cả hai hướng, phương sai giữ lại cộng lỗi trung bình bằng $\operatorname{tr}(S)=5/2$: $2+1/2=1/2+2$.
 
-Hướng có phương sai lớn hơn cũng cho lỗi tái tạo nhỏ hơn: trục ngang giữ $4/5$ tổng phương sai với lỗi trung bình $1/2$.
+Hướng có phương sai lớn hơn cũng cho lỗi tái tạo nhỏ hơn.
 :::
 
 ![Bốn điểm (2,0), (-2,0), (0,1), (0,-1) trên mặt phẳng; đường chiếu là trục ngang theo hướng u=(1,0); hai đoạn nét đứt dài 1 nối (0,1) và (0,-1) với gốc biểu diễn lỗi chiếu, tổng lỗi bình phương 2, lỗi trung bình 1/2.](img/lec-14/pca-projection.svg)
@@ -324,9 +322,9 @@ Trừ hai đẳng thức và dùng Bước 2 cho (4.4).
 Như vậy hướng có phương sai lớn nhất cũng cho phép chiếu trực giao có lỗi tái tạo bình phương nhỏ nhất trên mẫu.
 :::
 
-Khi dữ liệu chưa tâm hóa, tái tạo là $\bar x+UU^\top(x-\bar x)$; bỏ $\bar x$ sẽ làm (4.4) sai. Đẳng thức (4.4) đo lỗi trên chính mẫu dùng để tính $S$. Lỗi tái tạo của PCA trên tập kiểm tra tiếp tục giảm khi tăng $k$ (Murphy (2022), §20.1.4.1), nên lỗi tái tạo không đủ để chọn số chiều hay đánh giá một mô hình của phân phối dữ liệu.
+Khi dữ liệu chưa tâm hóa, tái tạo là $\bar x+UU^\top(x-\bar x)$; bỏ $\bar x$ sẽ làm (4.4) sai. Đẳng thức (4.4) đo lỗi trên chính mẫu dùng để tính $S$. Lỗi tái tạo của PCA trên tập kiểm tra tiếp tục giảm khi tăng $k$ (Murphy (2022), §20.1.4.1), nên lỗi tái tạo không xác định một số chiều tối ưu và không đánh giá được một mô hình của phân phối dữ liệu.
 
-Trong học máy, (4.4) cho cách chọn $k$: giữ tỉ lệ phương sai $\operatorname{tr}(U^\top SU)/\operatorname{tr}(S)$ trên một ngưỡng, hoặc chặn lỗi nén trên mẫu. Chuẩn hóa đặc trưng làm thay đổi $S$, nên cũng thay đổi hướng chính thứ nhất. Ví dụ, đổi một đặc trưng từ mét sang milimét nhân phương sai của nó với $10^6$.
+Trong học máy, (4.4) cho cách chọn $k$ theo một yêu cầu nén cho trước: giữ tỉ lệ phương sai được giải thích $\operatorname{tr}(U^\top SU)/\operatorname{tr}(S)$ (Murphy (2022), §20.1.4.2) trên một ngưỡng, hoặc chặn lỗi nén trên mẫu. Chuẩn hóa đặc trưng làm thay đổi $S$, nên cũng thay đổi hướng chính thứ nhất. Ví dụ, đổi một đặc trưng từ mét sang milimét nhân phương sai của nó với $10^6$.
 
 ::: remark Nhận xét 14.5 (Phương sai lớn và tín hiệu cần dự đoán)
 Xét $X=(M,N)$ với $M$ có phương sai $100$, $N\in\{-1,1\}$ có phương sai $1$, hai biến độc lập và có trung bình $0$. Ma trận hiệp phương sai là $\operatorname{diag}(100,1)$, nên PCA một chiều giữ $M$ và bỏ $N$. Nếu nhãn cần dự đoán là $N$, mã PCA không chứa thông tin nào về nhãn. Tiêu chuẩn (4.3) không dùng nhãn, nên không chọn đặc trưng theo khả năng dự đoán.
@@ -345,7 +343,7 @@ Với $k>1$, Mệnh đề 14.4 đưa bài toán nén về cực đại $\operato
 - **Tính duy nhất:** nếu $k<d$ và $\lambda_k>\lambda_{k+1}$, thì $U$ là nghiệm của (4.2) khi và chỉ khi $UU^\top=V_kV_k^\top$, tức các cột của $U$ sinh ra $\operatorname{span}(v_1,\ldots,v_k)$; khi đó $U=V_kQ$ với $Q\in\mathbb R^{k\times k}$ trực giao.
 :::
 
-Ta gọi $v_j$ là *thành phần chính* (principal component) thứ $j$ và $V_k^\top(x-\bar x)$ là tọa độ thành phần chính hạng $k$ của $x$. Với $k=1$, Định lý 14.6 cho lại giá trị tối ưu $\lambda_1$ của Mệnh đề 14.3. Tính duy nhất chỉ áp dụng cho không gian con và phép chiếu $UU^\top$: nhân $U$ bên phải với một ma trận trực giao $Q$ cho cùng phép chiếu nhưng tọa độ mã khác.
+Ta gọi $v_j$ là *thành phần chính* (principal component) thứ $j$ và $V_k^\top(x-\bar x)$ là tọa độ thành phần chính hạng $k$ của $x$. Tính duy nhất chỉ áp dụng cho không gian con và phép chiếu $UU^\top$: nhân $U$ bên phải với một ma trận trực giao $Q$ cho cùng phép chiếu nhưng tọa độ mã khác.
 
 Như vậy, trong lớp các phép chiếu trực giao, Mệnh đề 14.4 và Định lý 14.6 xác định đầy đủ phép nén tốt nhất. Tuy nhiên mã và tái tạo vẫn bị giới hạn ở dạng tuyến tính $U^\top y$ và $Uz$. Trong Mục 5, chúng ta học hai ánh xạ mã hóa và giải mã tổng quát, rồi so sánh trường hợp tuyến tính với PCA.
 
@@ -374,7 +372,7 @@ PCA hạng $k$ là trường hợp $f(y)=U^\top y$ và $g(z)=Uz$ của Định n
 
 Chiều $k<d$ tạo một *nút thắt* (bottleneck): nếu $k=d$, cặp $f(x)=x$, $g(z)=z$ cho lỗi $0$ mà không học được cấu trúc nào (Murphy (2022), §20.3). Nút thắt không ngăn việc ghi nhớ một mẫu hữu hạn: với các quan sát phân biệt, bộ mã hóa gán $x_i\mapsto i$ và bộ giải mã gán $i\mapsto x_i$ cho lỗi $0$ ngay cả khi $k=1$.
 
-Trường hợp tuyến tính cho phép tách hai đối tượng thường bị đồng nhất: ánh xạ tái tạo $g\circ f$ và hệ tọa độ của mã. Kết quả sau so sánh trường hợp này với PCA.
+Trong trường hợp tuyến tính, ta tách được hai đối tượng: ánh xạ tái tạo $g\circ f$ và hệ tọa độ của mã. Kết quả sau so sánh trường hợp này với PCA.
 
 ::: proposition Mệnh đề 14.8 (Bộ tự mã hóa tuyến tính và phân tích thành phần chính) — chứng minh đầy đủ
 **Giả thiết.**
@@ -460,7 +458,7 @@ Ràng buộc $AA^\top=I_k$ chỉ thu hẹp $R$ về các ma trận trực giao, 
 
 **Kiểm tra lại.** $8=R^2\cdot2$, đúng hệ số của phép đổi tọa độ.
 
-Phương sai của mã một bộ tự mã hóa không chuẩn hóa vì vậy không đọc được như trị riêng PCA, dù hai cặp cho cùng tái tạo.
+Vì vậy, với bộ tự mã hóa không chuẩn hóa, phương sai của mã không đọc được như trị riêng PCA, dù hai cặp cho cùng tái tạo.
 :::
 
 Mệnh đề 14.8 và Ví dụ 14.3 trả lời câu hỏi nén của Ví dụ 14.1. Câu hỏi sinh dữ liệu cần xét phân phối của mã, như ví dụ sau.
@@ -590,6 +588,65 @@ Các tham số $w^2=\lambda_1-\lambda_2$ và $\tau^2=\lambda_2$ chính là nghi�
 
 Ví dụ 14.5 tính được biên và hậu nghiệm vì log-mật độ đồng thời là hàm bậc hai theo $z$. Khi thay $wz$ bằng một mạng phi tuyến $g_\theta(z)$, số hạng $-\|x-g_\theta(z)\|_2^2/(2\tau^2)$ không còn bậc hai theo $z$, và tích phân (6.1) nói chung không có dạng đóng. Tính số bằng lưới $N$ điểm trên mỗi tọa độ của $z$ cần $N^k$ lần chạy bộ giải mã cho một quan sát; với $N=100$ và $k=10$, con số này là $10^{20}$. Công thức Bayes (6.3) vẫn đúng; khó khăn nằm ở mẫu số $p_\theta(x)$, cũng chính là đại lượng cần cho đánh giá hợp lý (Murphy (2023), §21.1).
 
+Bài tập sau áp dụng Mệnh đề 14.8, lập luận của Ví dụ 14.4 và mô hình (6.2) cho bốn quan sát nằm theo hai đường chéo.
+
+::: exercise Bài tập 14.1 (Bộ tự mã hóa theo đường chéo và giới hạn sinh dữ liệu)
+Cho bốn quan sát $(2,2)^\top$, $(-2,-2)^\top$, $(1,-1)^\top$, $(-1,1)^\top$. Chúng có $\bar x=0$,
+
+$$
+S=\begin{pmatrix}5/2&3/2\\3/2&5/2\end{pmatrix},
+$$
+
+và hướng chính thứ nhất $u=(1,1)^\top/\sqrt2$, vì $Su=4u$ và trị riêng còn lại bằng $1$. Cho $f(x)=x_1+x_2$ và $g(z)=(z/2,z/2)^\top$.
+
+1. Tính mã, tái tạo và lỗi bình phương tại $(2,2)^\top$ và $(1,-1)^\top$.
+2. Với $c\ne0$, đặt $f_c(x)=c(x_1+x_2)$ và $g_c(z)=\big(z/(2c),z/(2c)\big)^\top$. Chứng minh tái tạo không đổi. Xác định $c$ để mã bằng tọa độ PCA $u^\top x$.
+3. Xét hai phân phối của mã: $Z\sim\mathcal N(0,1)$, và $Z$ nhận $\pm4$ với xác suất $1/2$ mỗi giá trị. Với $X=g(Z)$, tính $\mathbb E[X_1^2]$ trong hai trường hợp và so sánh với trung bình $x_1^2$ trên bốn quan sát. Giải thích vì sao hai hàm $f,g$ chưa chỉ định một phân phối sinh.
+4. Với $Z\sim\mathcal N(0,1)$ và $X=g(Z)$, giải thích vì sao $X$ không có mật độ hai chiều. Nêu một thay đổi làm $X$ có mật độ trên $\mathbb R^2$, và tính ma trận hiệp phương sai cùng định thức của nó.
+:::
+
+::: hint
+Viết $g(f(x))$ thành $uu^\top x$. Ở câu 3, $X_1=Z/2$. Ở câu 4, dùng lập luận diện tích của Ví dụ 14.4 và mô hình (6.2).
+:::
+
+::: solution
+**Câu 1.** Tại $(2,2)^\top$: mã $4$, tái tạo $(2,2)^\top$, lỗi $0$. Tại $(1,-1)^\top$: mã $0$, tái tạo $(0,0)^\top$, lỗi $2$.
+
+**Câu 2.** Với mọi $x$,
+
+$$
+\begin{aligned}
+&g_c(f_c(x))\\
+&\quad=\Big(\frac{c(x_1+x_2)}{2c},\frac{c(x_1+x_2)}{2c}\Big)^\top\\
+&\quad=\Big(\frac{x_1+x_2}2,\frac{x_1+x_2}2\Big)^\top\\
+&\quad=uu^\top x,
+\end{aligned}
+$$
+
+không phụ thuộc $c$; đây là phép chiếu trực giao lên hướng chính thứ nhất $u$. Mã $c(x_1+x_2)=c\sqrt2\,u^\top x$ bằng $u^\top x$ khi và chỉ khi $c=1/\sqrt2$. Với $c=1$ như đề bài, mã gấp $\sqrt2$ lần tọa độ PCA, đúng phép đổi tọa độ của Mệnh đề 14.8 với $R=(\sqrt2)$.
+
+**Câu 3.** Vì $X_1=Z/2$, $\mathbb E[X_1^2]=\mathbb E[Z^2]/4$.
+
+- Với $Z\sim\mathcal N(0,1)$: $\mathbb E[X_1^2]=1/4$.
+- Với $Z=\pm4$: $\mathbb E[X_1^2]=16/4=4$.
+
+Trung bình $x_1^2$ trên bốn quan sát là $(4+4+1+1)/4=5/2$. Cùng bộ giải mã cho hai phân phối khác nhau khi đổi phân phối của mã, và không phân phối nào khớp dữ liệu. Hai hàm $f,g$ không chứa thông tin để chọn phân phối của $Z$.
+
+**Câu 4.** $X=(Z/2,Z/2)^\top$ nằm trên đường thẳng $x_1=x_2$ với xác suất $1$, một tập có diện tích bằng $0$. Nếu $X$ có mật độ hai chiều, xác suất của tập đó phải bằng $0$, mâu thuẫn. Thêm nhiễu $\eta\sim\mathcal N(0,\tau^2I_2)$ độc lập với $Z$, $\tau>0$, và đặt $X=g(Z)+\eta$: đây là mô hình (6.2), nên $X$ có mật độ (6.1). Vì $Z$ và $\eta$ độc lập và có trung bình $0$,
+
+$$
+\begin{aligned}
+&\operatorname{Cov}(X)\\
+&\quad=\frac14\begin{pmatrix}1&1\\1&1\end{pmatrix}+\tau^2I_2,\\
+&\det\operatorname{Cov}(X)\\
+&\quad=\Big(\frac14+\tau^2\Big)^2-\frac1{16}\\
+&\quad=\tau^2\Big(\tau^2+\frac12\Big)>0.
+\end{aligned}
+$$
+
+**Kiểm tra lại.** Khi $\tau\to0$, định thức dần về $0$, ứng với phân phối suy biến trên đường chéo ở đầu câu 4.
+:::
+
 Như vậy Định nghĩa 14.10 xây dựng phân phối dữ liệu bằng phép lấy biên, và Định nghĩa 14.11 tách sinh mẫu khỏi đánh giá hợp lý và suy luận hậu nghiệm. Tuy nhiên với bộ giải mã phi tuyến, cả $\log p_\theta(x)$ lẫn hậu nghiệm đều cần một tích phân không tính được. Trong Mục 7, chúng ta thay hậu nghiệm bằng một phân phối dễ tính và xây dựng một đại lượng tính được, kèm theo khoảng cách chính xác của nó tới $\log p_\theta(x)$.
 
 ## 7. Suy luận biến phân và cận dưới bằng chứng
@@ -614,7 +671,7 @@ $$
 với quy ước: nếu tập $\{z:q(z)>0,\ p(z)=0\}$ có xác suất dương theo $q$ thì $\mathrm{KL}(q\,\|\, p)=+\infty$. Ta nói $q$ *tuyệt đối liên tục* (absolutely continuous) đối với $p$ nếu mọi tập có xác suất $0$ theo $p$ cũng có xác suất $0$ theo $q$.
 :::
 
-Định nghĩa 14.12 so sánh toàn bộ hai mật độ, không chỉ trung bình hay hiệp phương sai. Thứ tự hai đối số có vai trò: kỳ vọng được lấy theo $q$, và nói chung $\mathrm{KL}(q\,\|\, p)\ne \mathrm{KL}(p\,\|\, q)$. Vì không đối xứng, KL không phải một khoảng cách theo nghĩa metric.
+KL phụ thuộc toàn bộ hai mật độ qua tỉ số $q(z)/p(z)$. Thứ tự hai đối số có vai trò: kỳ vọng được lấy theo $q$, và nói chung $\mathrm{KL}(q\,\|\, p)\ne \mathrm{KL}(p\,\|\, q)$. Vì không đối xứng, KL không phải một khoảng cách theo nghĩa metric.
 
 Bài 11 đã dùng KL giữa hai phân phối trên $K$ nhóm để đọc lại Định lý 11.7 qua đẳng thức (6.3) của Bài 11, và chứng minh KL không âm trong trường hợp rời rạc bằng bất đẳng thức $\log t\le t-1$. Kết quả sau mở rộng tính không âm sang mật độ với cùng bất đẳng thức; nó cho phép biến một đẳng thức chứa KL thành một cận.
 
@@ -627,7 +684,7 @@ Bài 11 đã dùng KL giữa hai phân phối trên $K$ nhóm để đọc lại
 ::: proof Chứng minh Bổ đề 14.13
 **Lộ trình.** Áp dụng bất đẳng thức $-\log t\ge1-t$ với $t=p/q$ trên miền hỗ trợ $\mathcal S_q=\{q>0\}$ của $q$; đọc điều kiện dấu bằng từ một hàm không âm có tích phân $0$.
 
-**Bước 1 (bất đẳng thức logarit, như trong Kiến thức tiên quyết của Bài 11).** Hàm $\psi(t)=t-1-\log t$ trên $(0,\infty)$ có $\psi'(t)=1-1/t$, âm trên $(0,1)$ và dương trên $(1,\infty)$. Do đó $\psi$ đạt giá trị nhỏ nhất $\psi(1)=0$, nên $-\log t\ge1-t$ với mọi $t>0$, và dấu bằng xảy ra khi và chỉ khi $t=1$.
+**Bước 1 (bất đẳng thức logarit).** Hàm $\psi(t)=t-1-\log t$ trên $(0,\infty)$ có $\psi'(t)=1-1/t$, âm trên $(0,1)$ và dương trên $(1,\infty)$. Do đó $\psi$ đạt giá trị nhỏ nhất $\psi(1)=0$, nên $-\log t\ge1-t$ với mọi $t>0$, và dấu bằng xảy ra khi và chỉ khi $t=1$.
 
 **Bước 2 (trường hợp vô hạn).** Nếu tập $\{q>0,\ p=0\}$ có xác suất dương theo $q$, quy ước của Định nghĩa 14.12 cho $\mathrm{KL}=+\infty\ge0$; khi đó $q\ne p$ trên một tập có xác suất dương nên dấu bằng không xảy ra. Từ đây giả sử $p>0$ tại hầu mọi điểm của $\mathcal S_q$, và đặt $t(z)=p(z)/q(z)\in(0,\infty)$ trên $\mathcal S_q$.
 
@@ -658,7 +715,7 @@ Cả hai số hạng ở dòng thứ ba không âm: số hạng đầu vì $q\ps
 
 **Bước 5 (dấu bằng).** Nếu $\mathrm{KL}(q\,\|\, p)=0$, cả hai số hạng ở Bước 4 bằng $0$. Hàm không âm $q\psi(t)$ có tích phân $0$ trên $\mathcal S_q$ nên bằng $0$ hầu khắp nơi trên $\mathcal S_q$; theo Bước 1, $t=1$, tức $p=q$ hầu khắp nơi trên $\mathcal S_q$. Đẳng thức $\int_{\mathcal S_q}p=1$ cho $\int_{\{q=0\}}p=0$, nên $p=0=q$ hầu khắp nơi ngoài $\mathcal S_q$. Ngược lại, nếu $p=q$ hầu khắp nơi thì $\log(q/p)=0$ hầu khắp nơi trên $\mathcal S_q$ và $\mathrm{KL}=0$. $\square$
 
-Như vậy KL là một mức phạt không âm, bằng $0$ đúng khi hai phân phối trùng nhau; đây là tính chất cần để biến một đẳng thức thành một cận.
+Như vậy KL là một mức phạt không âm, bằng $0$ đúng khi hai phân phối trùng nhau hầu khắp nơi.
 :::
 
 Trong học máy, Bổ đề 14.13 cho phép dùng KL để phạt sự lệch của phân phối mã hóa khỏi một phân phối tham chiếu. Phân phối tham chiếu có thể là tiên nghiệm $p(z)$ hoặc hậu nghiệm $p_\theta(z\mid x)$, và hai lựa chọn này đóng hai vai trò khác nhau trong kết quả của mục con sau.
@@ -683,7 +740,7 @@ khi các kỳ vọng trong (7.2) hữu hạn.
 
 Dạng thứ hai của (7.2) suy từ dạng thứ nhất bằng $p_\theta(x,z)=p_\theta(x\mid z)p(z)$ và tách logarit: $\log\frac{p_\theta(x,z)}{q_\phi}=\log p_\theta(x\mid z)-\log\frac{q_\phi}{p(z)}$. Số hạng đầu là *kỳ vọng tái tạo*, số hạng sau là KL tới tiên nghiệm.
 
-Trong bài này, $\mathcal L$ chỉ dùng cho ELBO. Định nghĩa 14.14 dùng một phân phối mã hóa thay cho mã đơn lẻ $f_\phi(x)$ của Định nghĩa 14.7. Phân phối $q_\phi$ chỉ là công cụ suy luận; mô hình sinh vẫn do $p(z)$ và $p_\theta(x\mid z)$ xác định.
+Định nghĩa 14.14 dùng một phân phối mã hóa thay cho mã đơn lẻ $f_\phi(x)$ của Định nghĩa 14.7. Phân phối $q_\phi$ chỉ là công cụ suy luận; mô hình sinh vẫn do $p(z)$ và $p_\theta(x\mid z)$ xác định.
 
 Kết quả sau dùng công thức Bayes (6.3) và Bổ đề 14.13 để đo chính xác khoảng cách giữa $\mathcal L$ và $\log p_\theta(x)$ (Murphy (2023), §10.1.1).
 
@@ -750,9 +807,9 @@ Như vậy bài toán tích phân khó $\log p_\theta(x)$ được thay bằng b
 Cho mô hình của Định nghĩa 14.10 với $\theta$ cố định, một quan sát $x$ và một họ $\mathcal Q$ các mật độ trên $\mathbb R^k$, chẳng hạn họ Gaussian có hiệp phương sai chéo. *Suy luận biến phân* (variational inference) là bài toán chọn $q\in\mathcal Q$ cực đại $\mathbb E_q[\log p_\theta(x,Z)-\log q(Z)]$. Theo Định lý 14.15, bài toán này tương đương cực tiểu $\mathrm{KL}(q\,\|\, p_\theta(\cdot\mid x))$ trên $\mathcal Q$.
 :::
 
-Hai KL trong Định lý 14.15 đóng hai vai trò khác nhau. KL tới **tiên nghiệm** nằm trong mục tiêu (7.2) và tính được khi $q_\phi$ và $p(z)$ có dạng đơn giản. KL tới **hậu nghiệm** là khe hở của cận trong (7.3) và thường không tính được, vì hậu nghiệm chứa $p_\theta(x)$. Khi cả $\theta$ cũng thay đổi, khe hở phụ thuộc $\theta$, nên tăng $\mathcal L$ không bảo đảm $\log p_\theta(x)$ tăng.
+Hai KL trong Định lý 14.15 đóng hai vai trò khác nhau. KL tới **tiên nghiệm** nằm trong mục tiêu (7.2) và tính được khi $q_\phi$ và $p(z)$ có dạng đơn giản. KL tới **hậu nghiệm** là khe hở của cận trong (7.3); hậu nghiệm (6.3) chia cho $p_\theta(x)$, nên KL này không tính được khi tích phân (6.1) không tính được. Khi cả $\theta$ cũng thay đổi, khe hở phụ thuộc $\theta$, nên tăng $\mathcal L$ không bảo đảm $\log p_\theta(x)$ tăng.
 
-Trong học máy, $\log p_\theta(x)$ là mục tiêu của hợp lý cực đại (Mệnh đề 11.3) nhưng không tính được khi bộ giải mã là mạng nơ-ron, nên ELBO là đại lượng được tối ưu khi huấn luyện mô hình có biến ẩn. Khe hở (7.3) phụ thuộc họ hậu nghiệm xấp xỉ: với một họ hẹp như Gaussian có hiệp phương sai chéo, khe hở có thể lớn, nên một ELBO cao chỉ là cận dưới của log-hợp lý và không tự chứng minh mô hình khớp dữ liệu.
+Trong học máy, $\log p_\theta(x)$ là mục tiêu của hợp lý cực đại (Mệnh đề 11.3) nhưng không tính được khi bộ giải mã là mạng nơ-ron, nên ELBO là đại lượng được tối ưu khi huấn luyện mô hình có biến ẩn. Khe hở (7.3) phụ thuộc họ hậu nghiệm xấp xỉ: khi hậu nghiệm thật không thuộc họ, chẳng hạn họ Gaussian có hiệp phương sai chéo, khe hở dương với mọi $q$ trong họ (Bổ đề 14.13), nên một ELBO cao chỉ là cận dưới của log-hợp lý và không tự chứng minh mô hình khớp dữ liệu.
 
 Cận dưới cũng suy được từ bất đẳng thức Jensen cho hàm lõm $\log$: $\mathcal L\le\log\mathbb E_{q}[p_\theta(x,Z)/q(Z)]=\log\int_{\{q>0\}}p_\theta(x,z)\,dz\le\log p_\theta(x)$ (Murphy (2022), §20.3.5.1). Đường Jensen cho cận; đường Bayes ở trên cho thêm giá trị chính xác của khe hở.
 
@@ -853,7 +910,7 @@ $$
 Như vậy với tiên nghiệm chuẩn và hậu nghiệm xấp xỉ Gaussian chéo, số hạng KL của (7.2) có công thức đóng theo $\mu$ và $s$.
 :::
 
-Trong học máy, số hạng tái tạo của (7.2) thường được ước lượng bằng *Monte Carlo*: kỳ vọng $\mathbb E_q[h(Z)]$ được thay bằng trung bình $m^{-1}\sum_{r=1}^mh(z^{(r)})$ với $z^{(r)}$ lấy độc lập từ $q$. Dạng giải tích (7.5) của Mệnh đề 14.18 không có nhiễu Monte Carlo (Murphy (2023), §10.2.1.1). Một mạng có thể xuất $a_j(x)=\log\sigma_{\phi,j}^2(x)$ rồi đặt $\sigma_{\phi,j}(x)=\exp(a_j(x)/2)$ để bảo đảm độ lệch chuẩn dương. Dạng chéo là một lựa chọn cho họ $\mathcal Q$, không phải giả thiết rằng hậu nghiệm thật có các tọa độ độc lập.
+Khi bộ giải mã là mạng phi tuyến, số hạng tái tạo của (7.2) được ước lượng bằng *Monte Carlo*: kỳ vọng $\mathbb E_q[h(Z)]$ được thay bằng trung bình $m^{-1}\sum_{r=1}^mh(z^{(r)})$ với $z^{(r)}$ lấy độc lập từ $q$. Dạng giải tích (7.5) của Mệnh đề 14.18 không có nhiễu Monte Carlo (Murphy (2023), §10.2.1.1). Một mạng có thể xuất $a_j(x)=\log\sigma_{\phi,j}^2(x)$ rồi đặt $\sigma_{\phi,j}(x)=\exp(a_j(x)/2)$ để bảo đảm độ lệch chuẩn dương. Dạng chéo là ràng buộc trên họ $\mathcal Q$; hậu nghiệm thật $p_\theta(z\mid x)$ vẫn có thể có các tọa độ phụ thuộc nhau.
 
 Số hạng còn lại là kỳ vọng tái tạo. Với $p_\theta(x\mid z)=\mathcal N(g_\theta(z),\tau^2I_d)$, mật độ Gaussian nhiều chiều của Định nghĩa 10.20 với $\Sigma=\tau^2I_d$ cho $\log p_\theta(x\mid z)=-\frac d2\log(2\pi\tau^2)-\|x-g_\theta(z)\|_2^2/(2\tau^2)$. Lấy kỳ vọng theo $q$,
 
@@ -960,7 +1017,96 @@ $$
 
 đúng bằng khe hở, như (7.3) khẳng định.
 
-Hậu nghiệm xấp xỉ có đúng trung bình hậu nghiệm nhưng phương sai $1/8$ nhỏ hơn $1/2$, nên ELBO thấp hơn log-hợp lý $0{,}3181$ nat; khe hở này không thấy được nếu chỉ tính KL tới tiên nghiệm.
+Hậu nghiệm xấp xỉ có đúng trung bình hậu nghiệm, nên toàn bộ khe hở đến từ phương sai $1/8$ nhỏ hơn $1/2$; KL tới tiên nghiệm không cho thấy khe hở này.
+:::
+
+Bài tập sau tính lại các đại lượng của Ví dụ 14.6 và Ví dụ 14.7 cho một quan sát và một hậu nghiệm xấp xỉ khác.
+
+::: exercise Bài tập 14.2 (KL Gaussian, kỳ vọng tái tạo và ELBO)
+Cho $p(z)=\mathcal N(0,1)$, $q(z\mid x)=\mathcal N(1,1/4)$, $p_\theta(x\mid z)=\mathcal N(z,1)$ và quan sát $x=1$.
+
+1. Tính KL tới tiên nghiệm bằng (7.5), giữ logarit ở dạng chính xác.
+2. Tính $\mathbb E_q[(1-Z)^2]$ và $\mathbb E_q[\log p_\theta(1\mid Z)]$. Xác định số hạng bị mất khi thay $Z$ bằng trung bình của nó.
+3. Kết hợp thành ELBO; giữ $\log(2\pi)$ ở dạng ký hiệu trước khi tính gần đúng.
+4. Tính biên $p_\theta(1)$ và hậu nghiệm $p_\theta(z\mid1)$ bằng hoàn bình phương. Tính KL tới hậu nghiệm để kiểm tra (7.3). Mô tả cách sinh một quan sát mới mà không cần biết hậu nghiệm.
+5. Với cùng mô hình, đổi $q$ thành hậu nghiệm chính xác. Tính ELBO và KL tới tiên nghiệm mới, rồi dùng kết quả để phân biệt cận chặt với KL tới tiên nghiệm nhỏ.
+:::
+
+::: hint
+Dùng $\mathbb E[(a-Z)^2]=(a-\mathbb EZ)^2+\operatorname{Var}(Z)$ (Mệnh đề 10.24) và (7.6) với $d=1$, $\tau^2=1$. Ở câu 4, dùng phép hoàn bình phương $-\tfrac{z^2}2-\tfrac{(x-z)^2}2=-(z-\tfrac x2)^2-\tfrac{x^2}4$ của Ví dụ 14.7 và Bổ đề 14.17; tham số thứ hai của mỗi Gaussian là phương sai.
+:::
+
+::: solution
+**Câu 1.** Theo (7.5) với $\mu=1$, $s^2=1/4$:
+
+$$
+\begin{aligned}
+&\mathrm{KL}(q\,\|\,p)\\
+&\quad=\frac12\Big(1+\frac14-1-\log\frac14\Big)\\
+&\quad=\frac18+\log2\approx0{,}8181.
+\end{aligned}
+$$
+
+**Câu 2.** Dưới $q$, $\mathbb E_qZ=1$ và $\operatorname{Var}_q(Z)=1/4$, nên $\mathbb E_q[(1-Z)^2]=(1-1)^2+1/4=1/4$. Theo (7.6),
+
+$$
+\begin{aligned}
+&\mathbb E_q[\log p_\theta(1\mid Z)]\\
+&\quad=-\frac12\log(2\pi)-\frac18.
+\end{aligned}
+$$
+
+Thay $Z$ bằng trung bình $1$ cho $(1-1)^2=0$, bỏ mất $\operatorname{Var}_q(Z)=1/4$ trong lỗi bình phương, tức số hạng $-1/8$ trong log-mật độ: với $h(z)=(1-z)^2$, $\mathbb E_q[h(Z)]=h(\mathbb E_qZ)+\operatorname{Var}_q(Z)$.
+
+**Câu 3.** Theo (7.2),
+
+$$
+\begin{aligned}
+\mathcal L&=-\frac12\log(2\pi)-\frac18\\
+&\quad-\frac18-\log2\\
+&=-\frac12\log(2\pi)-\frac14-\log2\\
+&\approx-1{,}8621.
+\end{aligned}
+$$
+
+**Câu 4.** Với $x=1$, $-\tfrac{z^2}2-\tfrac{(1-z)^2}2=-(z-\tfrac12)^2-\tfrac14$. Theo (6.1) và $\int e^{-(z-1/2)^2}dz=\sqrt\pi$,
+
+$$
+\begin{aligned}
+p_\theta(1)&=\frac1{2\pi}e^{-1/4}\sqrt\pi\\
+&=\frac1{\sqrt{4\pi}}e^{-1/4},\\
+\log p_\theta(1)&=-\frac12\log(4\pi)-\frac14\\
+&\approx-1{,}5155,
+\end{aligned}
+$$
+
+tức $p_\theta(1)$ là mật độ $\mathcal N(0,2)$ tại $1$. Theo (6.3), hậu nghiệm tỉ lệ với $e^{-(z-1/2)^2}$, tức $r=p_\theta(\cdot\mid1)=\mathcal N(1/2,1/2)$. Bổ đề 14.17 với $a=1$, $\beta=1/4$, $c=1/2$, $\gamma=1/2$ cho
+
+$$
+\begin{aligned}
+&\mathrm{KL}(q\,\|\,r)\\
+&\quad=\frac12\Big[\log\frac{1/2}{1/4}\\
+&\qquad+\frac{1/4+(1-1/2)^2}{1/2}-1\Big]\\
+&\quad=\frac12\log2\approx0{,}3466.
+\end{aligned}
+$$
+
+Cộng vào ELBO: $-\tfrac12\log(2\pi)-\tfrac14-\log2+\tfrac12\log2=-\tfrac12\log(4\pi)-\tfrac14=\log p_\theta(1)$, đúng (7.3).
+
+Để sinh một quan sát mới, lấy $z\sim\mathcal N(0,1)$ rồi lấy $x'\sim\mathcal N(z,1)$, tức $x'=z+\eta$ với $\eta\sim\mathcal N(0,1)$ độc lập; hậu nghiệm không xuất hiện. Quan sát mới có phương sai $2$, còn hậu nghiệm tại $x=1$ có phương sai $1/2$: hai phân phối phục vụ hai phép tính khác nhau của Định nghĩa 14.11.
+
+**Câu 5.** Nếu $q=r$, KL tới hậu nghiệm bằng $0$ và ELBO tăng lên $\log p_\theta(1)=-\tfrac12\log(4\pi)-\tfrac14$. KL tới tiên nghiệm khi đó là
+
+$$
+\begin{aligned}
+&\frac12\Big(\frac14+\frac12-1-\log\frac12\Big)\\
+&\quad=\frac12\log2-\frac18\approx0{,}2216.
+\end{aligned}
+$$
+
+Kỳ vọng lỗi bình phương là $(1-1/2)^2+1/2=3/4$, nên kỳ vọng tái tạo là $-\tfrac12\log(2\pi)-\tfrac38$, và trừ KL mới cho đúng $\log p_\theta(1)$. Vậy cận chặt khi $q$ khớp hậu nghiệm, dù KL tới tiên nghiệm khi đó dương.
+
+**Kiểm tra lại.** Ở câu 5, $-\tfrac12\log(2\pi)-\tfrac38-\tfrac12\log2+\tfrac18=-\tfrac12\log(4\pi)-\tfrac14$. Khe hở ở câu 4 dương, đúng Bổ đề 14.13.
 :::
 
 Như vậy Bổ đề 14.13 cho dấu của KL, Định lý 14.15 xác định khe hở của ELBO, và Mệnh đề 14.18 cùng (7.6) cho hai số hạng của ELBO trong lựa chọn Gaussian. Tuy nhiên hai vấn đề còn lại khi học từ $n$ quan sát. Chọn riêng một hậu nghiệm xấp xỉ cho mỗi quan sát làm số tham số tăng theo $n$, và kỳ vọng tái tạo phụ thuộc $\phi$ qua chính phân phối lấy mẫu, nên chưa lấy đạo hàm trực tiếp được. Trong Mục 8, chúng ta giải quyết cả hai bằng bộ tự mã hóa biến phân.
@@ -995,7 +1141,16 @@ $$
 \end{aligned}
 $$
 
-trong đó $\mu_{\phi,j}$ và $\sigma_{\phi,j}$ được tính tại $x$. Nghĩa là mục tiêu VAE gồm lỗi tái tạo bình phương của một bộ tự mã hóa với mã ngẫu nhiên, cộng một số hạng KL kéo phân phối mã hóa về tiên nghiệm.
+trong đó $\mu_{\phi,j}$ và $\sigma_{\phi,j}$ được tính tại $x$. Vì $\tau$ cố định, cực đại $\mathcal L$ tương đương cực tiểu
+
+$$
+\begin{aligned}
+&\frac{\mathbb E_{q_\phi}\|x-g_\theta(Z)\|_2^2}{2\tau^2}\\
+&\quad+\mathrm{KL}\big(q_\phi(\cdot\mid x)\,\|\,p\big),
+\end{aligned}
+$$
+
+tức lỗi tái tạo bình phương kỳ vọng với mã lấy từ $q_\phi$, cộng số hạng KL kéo phân phối mã hóa về tiên nghiệm.
 
 Tham số $\theta$ quyết định phân phối quan sát có điều kiện; tham số $\phi$ quyết định các mã dùng để xấp xỉ hậu nghiệm. KL tới tiên nghiệm không chứa $\theta$, nhưng cả hai nhóm tham số đều ảnh hưởng kỳ vọng tái tạo.
 
@@ -1078,7 +1233,7 @@ với ma trận Jacobi $\nabla_\phi Z_\phi$ có $k$ hàng; trong thiết lập n
 Như vậy gradient của kỳ vọng tái tạo theo cả $\theta$ lẫn $\phi$ được ước lượng không chệch bằng các mẫu nhiễu chuẩn, và tính được bằng lan truyền ngược qua (8.2).
 :::
 
-Trong học máy, Mệnh đề 14.20 cho đường tính gradient từ bộ giải mã, qua mẫu mã (8.2), tới các đầu ra $\mu_\phi(x),\sigma_\phi(x)$ của bộ mã hóa (Murphy (2023), §10.2.1). Số hạng KL lấy đạo hàm trực tiếp từ (7.5), còn kỳ vọng tái tạo dùng ước lượng Monte Carlo. Ước lượng với $m$ hữu hạn vẫn có phương sai, và mệnh đề không áp dụng cho mã rời rạc, vì khi đó không có biểu diễn khả vi như (8.2). Mạng dùng hàm kích hoạt không khả vi tại một số điểm, như ReLU, không thỏa giả thiết khả vi liên tục ở dạng đã nêu.
+Trong học máy, Mệnh đề 14.20 cho đường tính gradient từ bộ giải mã, qua mẫu mã (8.2), tới các đầu ra $\mu_\phi(x),\sigma_\phi(x)$ của bộ mã hóa (Murphy (2023), §10.2.1). Số hạng KL lấy đạo hàm trực tiếp từ (7.5), còn kỳ vọng tái tạo dùng ước lượng Monte Carlo. Ước lượng với $m$ hữu hạn vẫn có phương sai. Mệnh đề không áp dụng cho mã rời rạc, vì khi đó không có biểu diễn khả vi như (8.2). Mạng dùng hàm kích hoạt không khả vi tại một số điểm, như ReLU, không thỏa giả thiết khả vi liên tục ở dạng đã nêu.
 
 ![Hai cột. Đường suy luận: quan sát x đi qua bộ mã hóa thành trung bình μφ(x) và độ lệch chuẩn σφ(x); cùng nhiễu ε ∼ N(0, I) tạo mã z = μφ(x) + σφ(x) ⊙ ε. Đường sinh mẫu: lấy z từ tiên nghiệm N(0, I) rồi lấy x theo phân phối giải mã.](img/lec-14/vae-paths.svg)
 
@@ -1136,7 +1291,62 @@ Theo Mệnh đề 14.20, với nhóm $I$ cố định, kỳ vọng theo nhiễu 
 
 **Kiểm tra lại.** Viết $\partial h/\partial\mu=-\mu-\sigma\varepsilon$ và $\partial h/\partial\sigma=-\mu\varepsilon-\sigma\varepsilon^2$. Ba giá trị nhiễu có trung bình $0$, nên cột theo $\mu$ cho đúng $-\mu=-1$; chúng có trung bình bình phương $2/3$ thay vì $1$, nên cột theo $\sigma$ cho $-\sigma\cdot\tfrac23=-\tfrac43$ thay vì $-2$.
 
-Tính không chệch trong Mệnh đề 14.20 là phát biểu về kỳ vọng khi nhiễu được lấy ngẫu nhiên đúng phân phối, với $\mathbb E[\varepsilon]=0$ và $\mathbb E[\varepsilon^2]=1$; một bộ ba giá trị cụ thể có thể lệch khỏi gradient chính xác.
+Tính không chệch trong Mệnh đề 14.20 là phát biểu về kỳ vọng khi nhiễu được lấy ngẫu nhiên đúng phân phối, với $\mathbb E[\varepsilon]=0$ và $\mathbb E[\varepsilon^2]=1$.
+:::
+
+Bài tập sau lặp lại Ví dụ 14.8 với dữ kiện khác, kiểm tra các giả thiết của Mệnh đề 14.20 và cộng thêm gradient của số hạng KL.
+
+::: exercise Bài tập 14.3 (Mẫu tái tham số hóa và ước lượng gradient)
+Cho tiên nghiệm $p(z)=\mathcal N(0,1)$, đầu ra bộ mã hóa $\mu=2$, $\sigma=1/2$, và $Z=\mu+\sigma\varepsilon$ với $\varepsilon\sim\mathcal N(0,1)$.
+
+1. Tính $z$ với các giá trị nhiễu $\varepsilon=-1,0,2$. Xác định phương sai của $Z$.
+2. Với $x=1$ và $h(z)=\log\mathcal N(1;z,1)$, tính đạo hàm theo $\mu$ và theo $\sigma$ của $h(\mu+\sigma\varepsilon)$ tại mỗi giá trị nhiễu, rồi tính trung bình ba giá trị trong mỗi cột.
+3. Tính gradient chính xác của $\mathbb E[h(Z)]$ theo $\mu,\sigma$. So sánh với câu 2 và giải thích ý nghĩa của tính không chệch.
+4. Kiểm tra các giả thiết của Mệnh đề 14.20 trên lân cận $|\mu-2|<1$, $|\sigma-1/2|<1/4$, với một hàm chặn $G$ cụ thể. Tính gradient của toàn ELBO theo $\mu,\sigma$ tại $\mu=2$, $\sigma=1/2$.
+:::
+
+::: hint
+Dùng $\partial z/\partial\mu=1$, $\partial z/\partial\sigma=\varepsilon$, $h'(z)=1-z$ và, theo Mệnh đề 10.24, $\mathbb E[h(Z)]=-\tfrac12\log(2\pi)-\tfrac12\big[(1-\mu)^2+\sigma^2\big]$. Ở câu 4, chặn $|1-\mu-\sigma\varepsilon|$ bằng $|1-\mu|+\sigma|\varepsilon|$; gradient của ELBO bằng gradient của kỳ vọng tái tạo trừ gradient của (7.5).
+:::
+
+::: solution
+**Câu 1.** $z=2+\varepsilon/2$ cho $z=3/2,\ 2,\ 3$. Phương sai của $Z$ là $\sigma^2=1/4$.
+
+**Câu 2.** Với $h(z)=-\tfrac12\log(2\pi)-\tfrac12(1-z)^2$, quy tắc dây chuyền cho $\partial h/\partial\mu=1-z$ và $\partial h/\partial\sigma=(1-z)\varepsilon$.
+
+| $\varepsilon$ | $z$ | $\partial h/\partial\mu$ | $\partial h/\partial\sigma$ |
+|---|---:|---:|---:|
+| $-1$ | $3/2$ | $-1/2$ | $1/2$ |
+| $0$ | $2$ | $-1$ | $0$ |
+| $2$ | $3$ | $-2$ | $-4$ |
+
+Trung bình cột theo $\mu$ là $(-1/2-1-2)/3=-7/6$; trung bình cột theo $\sigma$ là $(1/2+0-4)/3=-7/6$.
+
+**Câu 3.** Từ biểu thức trong gợi ý, đạo hàm theo $\mu$ là $1-\mu=-1$ và theo $\sigma$ là $-\sigma=-1/2$. Viết $\partial h/\partial\mu=1-\mu-\sigma\varepsilon$ và $\partial h/\partial\sigma=(1-\mu)\varepsilon-\sigma\varepsilon^2$. Ba giá trị nhiễu có trung bình $1/3$ và trung bình bình phương $5/3$, nên trung bình ba mẫu là $-1-\tfrac12\cdot\tfrac13=-\tfrac76$ và $-\tfrac13-\tfrac12\cdot\tfrac53=-\tfrac76$. Tính không chệch nói rằng khi $\varepsilon$ được lấy ngẫu nhiên theo $\mathcal N(0,1)$, với $\mathbb E[\varepsilon]=0$ và $\mathbb E[\varepsilon^2]=1$, kỳ vọng của ước lượng bằng gradient chính xác $(-1,-1/2)$.
+
+**Câu 4.** Đặt $F(\mu,\sigma,\varepsilon)=h(\mu+\sigma\varepsilon)$, một đa thức theo $(\mu,\sigma)$, nên khả vi liên tục. Hình chữ nhật $|\mu-2|<1$, $|\sigma-1/2|<1/4$ chứa hình cầu mở $\mathcal B$ bán kính $1/4$ quanh $(2,1/2)$, nên các chặn dưới đây đúng trên $\mathcal B$. Trên hình chữ nhật đó, $|1-\mu|<2$ và $\sigma<3/4$, nên
+
+$$
+\begin{aligned}
+|\partial_\mu F|&=|1-\mu-\sigma\varepsilon|\\
+&\le2+\tfrac34|\varepsilon|,\\
+|\partial_\sigma F|&=|1-\mu-\sigma\varepsilon|\,|\varepsilon|\\
+&\le2|\varepsilon|+\tfrac34\varepsilon^2.
+\end{aligned}
+$$
+
+Do đó $\|\nabla F\|_2\le|\partial_\mu F|+|\partial_\sigma F|\le G(\varepsilon)=2+3|\varepsilon|+\varepsilon^2$, và $\mathbb E[G(\varepsilon)]=2+3\sqrt{2/\pi}+1<\infty$. Tại $(\mu,\sigma)=(2,1/2)$, $|F|\le\tfrac12\log(2\pi)+\tfrac12(1+\tfrac12|\varepsilon|)^2$ có kỳ vọng hữu hạn. Ba giả thiết của Mệnh đề 14.20 thỏa trên $\mathcal B$.
+
+Theo (7.5), KL tới tiên nghiệm là $\tfrac12(\mu^2+\sigma^2-1-\log\sigma^2)$, có đạo hàm theo $\mu$ bằng $\mu=2$ và theo $\sigma$ bằng $\sigma-1/\sigma=1/2-2=-3/2$. Gradient của ELBO là gradient của kỳ vọng tái tạo trừ gradient của KL:
+
+$$
+\begin{aligned}
+\frac{\partial\mathcal L}{\partial\mu}&=-1-2=-3,\\
+\frac{\partial\mathcal L}{\partial\sigma}&=-\frac12-\Big(-\frac32\Big)=1.
+\end{aligned}
+$$
+
+**Kiểm tra lại.** Phép tái tham số hóa dùng độ lệch chuẩn $\sigma=1/2$, còn KL dùng $\sigma^2$ và $\log\sigma^2=2\log\sigma$; đạo hàm của $-\tfrac12\log\sigma^2$ theo $\sigma$ là $-1/\sigma$.
 :::
 
 ### 8.2. Giới hạn của mục tiêu
@@ -1149,7 +1359,34 @@ Lỗi tái tạo nhỏ trên mẫu chỉ kiểm tra bộ giải mã tại các m
 KL tới tiên nghiệm nhỏ có nghĩa $q_\phi(\cdot\mid x)\approx p(z)$, tức mã gần như không phụ thuộc $x$ và không mang thông tin riêng của từng quan sát. Nếu bộ giải mã cũng bỏ qua $z$, hậu nghiệm thật bằng tiên nghiệm, nên chọn $q_\phi=p(z)$ làm KL tới hậu nghiệm bằng $0$ và cận (7.3) chặt, trong khi biến ẩn không được dùng. Hiện tượng này được gọi là *suy sụp hậu nghiệm* (posterior collapse) (Murphy (2023), §21.4). Cận chặt khi đó chỉ nói ELBO bằng log-hợp lý của một mô hình không dùng biến ẩn; nó không nói mô hình ấy khớp dữ liệu.
 :::
 
-Như vậy Định nghĩa 14.19 ghép mô hình sinh, bộ mã hóa dùng chung tham số và ELBO thành một bài toán học; Mệnh đề 14.18 và Mệnh đề 14.20 làm hai số hạng của mục tiêu tính được và lấy đạo hàm được. Tuy nhiên Nhận xét 14.22 cho thấy giá trị của từng số hạng không đủ để đánh giá mô hình sinh. Mục 9 xét hai tình huống áp dụng, trong đó một tình huống có giả thiết mô hình không thỏa.
+Bài tập sau xét một mô hình có KL tới tiên nghiệm bằng $0$, cận chặt và mômen bậc hai khớp dữ liệu.
+
+::: exercise Bài tập 14.4 (KL bằng không, mômen khớp và mô hình sai)
+Dữ liệu một chiều nhận giá trị $-2$ hoặc $2$ với xác suất bằng nhau. Chọn $p(z)=q_\phi(z\mid x)=\mathcal N(0,1)$ với mọi $x$, và $p_\theta(x\mid z)=\mathcal N(0,4)$ không phụ thuộc $z$.
+
+1. Tính KL tới tiên nghiệm, log-mật độ giải mã và ELBO tại hai quan sát.
+2. Xác định hậu nghiệm và phân phối biên của mô hình. Cận có chặt không?
+3. So sánh $\mathbb E[X^2]$ của mô hình và của dữ liệu, rồi so sánh xác suất của khoảng $(-1,1)$ dưới mô hình và dưới dữ liệu.
+4. Đánh giá kết luận "KL bằng $0$, cận chặt và mômen bậc hai khớp nên mô hình sinh tốt".
+:::
+
+::: hint
+Khi $p_\theta(x\mid z)$ không phụ thuộc $z$, mật độ đồng thời là tích $p_\theta(x)p(z)$; dùng (6.3). Với $X\sim\mathcal N(0,4)$, $X/2\sim\mathcal N(0,1)$, nên $\mathbb P(|X|<1)=2\Phi(1/2)-1$, với $\Phi$ là hàm phân phối chuẩn.
+:::
+
+::: solution
+**Câu 1.** KL tới tiên nghiệm bằng $0$ vì $q_\phi=p$ (Bổ đề 14.13). Tại $x=\pm2$, $\log\mathcal N(\pm2;0,4)=-\tfrac12\log(8\pi)-\tfrac48=-\tfrac12\log(8\pi)-\tfrac12\approx-2{,}1121$. Giá trị này không phụ thuộc $z$, nên kỳ vọng tái tạo bằng nó và ELBO bằng $-\tfrac12\log(8\pi)-\tfrac12$.
+
+**Câu 2.** Theo (6.3), $p_\theta(z\mid x)=p_\theta(x\mid z)p(z)/p_\theta(x)=p(z)$, vì $p_\theta(x\mid z)=p_\theta(x)$ không phụ thuộc $z$. Phân phối biên của mô hình là $\mathcal N(0,4)$. Hậu nghiệm xấp xỉ trùng hậu nghiệm, nên KL tới hậu nghiệm bằng $0$ và cận chặt: ELBO bằng $\log p_\theta(x)$ (Định lý 14.15).
+
+**Câu 3.** Mô hình có $\mathbb E[X^2]=4$, dữ liệu có $\mathbb E[X^2]=(4+4)/2=4$: mômen bậc hai khớp. Dưới mô hình, $\mathbb P(|X|<1)=2\Phi(1/2)-1\approx0{,}3829$; dưới dữ liệu, xác suất này bằng $0$ vì dữ liệu chỉ nhận $\pm2$.
+
+**Câu 4.** Kết luận sai. Mô hình đặt khoảng $38\%$ xác suất vào khoảng $(-1,1)$, nơi dữ liệu không bao giờ xuất hiện, và mật độ của mô hình lớn nhất tại $0$. Biến ẩn không được dùng, nên mô hình là một Gaussian đơn và không biểu diễn được hai giá trị tách biệt. Cả ba đại lượng KL, khe hở của cận và mômen bậc hai đều không phát hiện sự lệch này.
+
+**Kiểm tra lại.** $\tfrac12\log(8\pi)=\tfrac12(\log8+\log\pi)\approx\tfrac12(2{,}0794+1{,}1447)=1{,}6121$, nên log-mật độ ở câu 1 xấp xỉ $-1{,}6121-0{,}5=-2{,}1121$.
+:::
+
+Như vậy Định nghĩa 14.19 ghép mô hình sinh, bộ mã hóa dùng chung tham số và ELBO thành một bài toán học; Mệnh đề 14.18 và Mệnh đề 14.20 làm hai số hạng của mục tiêu tính được và lấy đạo hàm được. Tuy nhiên Nhận xét 14.22 cho thấy giá trị của từng số hạng không đủ để đánh giá mô hình sinh. Trong Mục 9, chúng ta áp dụng các kết quả vào hai tình huống, trong đó tình huống thứ hai vi phạm giả thiết mô hình.
 
 ## 9. Ý nghĩa, tác động và giới hạn
 
@@ -1203,28 +1440,22 @@ Chúng ta xuất phát từ nhu cầu biểu diễn một quan sát hai chiều 
 | Suy luận biến phân | Định nghĩa 14.12, 14.14, 14.16; Bổ đề 14.13; Định lý 14.15. Miền hỗ trợ, chuẩn hóa và tính hữu hạn của các kỳ vọng. |
 | VAE | Bổ đề 14.17; Mệnh đề 14.18, 14.20; Định nghĩa 14.19; Thuật toán 14.21; Nhận xét 14.22. Độ lệch chuẩn dương, gradient qua nhiễu và giới hạn của mục tiêu. |
 
-Ba công thức nối toàn bài là lỗi chiếu (4.4), mật độ biên (6.1) và phân rã ELBO (7.3). Trong (7.3), KL tới hậu nghiệm là khe hở của cận; trong mục tiêu (7.2), KL tới tiên nghiệm tính được bằng công thức đóng. Hai vị trí này không thay thế cho nhau.
+Ba công thức nối toàn bài là lỗi chiếu (4.4), mật độ biên (6.1) và phân rã ELBO (7.3). Trong (7.3), KL tới hậu nghiệm là khe hở của cận; trong mục tiêu (7.2), KL tới tiên nghiệm tính được bằng công thức đóng.
 
 ## 10. Bài tập
 
-Bộ bài tập đầy đủ, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 14](material-viewer.html?doc=materials/lec-14/exercises.md).
+Các bài tập trong thân bài và mục tiêu học tập mà mỗi bài kiểm tra:
 
-**Trên lớp**
+1. **Bài tập 14.1** (Bộ tự mã hóa theo đường chéo và giới hạn sinh dữ liệu): mục tiêu 2 và 6.
+2. **Bài tập 14.2** (KL Gaussian, kỳ vọng tái tạo và ELBO): mục tiêu 4 và 5.
+3. **Bài tập 14.3** (Mẫu tái tham số hóa và ước lượng gradient): mục tiêu 5.
+4. **Bài tập 14.4** (KL bằng không, mômen khớp và mô hình sai): mục tiêu 6.
 
-1. **Bài tập 14.1** (Phân tích thành phần chính của bốn quan sát trên hai trục): mục tiêu học tập 1; tính hiệp phương sai, hướng chính thứ nhất và lỗi tái tạo.
-2. **Bài tập 14.2** (Mô hình sinh từ bộ tự mã hóa trục ngang): mục tiêu học tập 3; dựng mô hình sinh, tính phân phối biên, phân biệt đường sinh mẫu với đường suy luận.
-3. **Bài tập 14.3** (Hai vai trò của KL trong phân rã ELBO): mục tiêu học tập 4; phân biệt KL tới hậu nghiệm với KL tới tiên nghiệm.
+Các bài tập 14.5–14.11, lấy từ Murphy (2022) và có gợi ý cùng lời giải, nằm trong [tệp bài tập của Bài 14](material-viewer.html?doc=materials/lec-14/exercises.md):
 
-**Tự học**
-
-4. **Bài tập 14.4** (KL tới tiên nghiệm và tái tham số hóa): mục tiêu học tập 5; tính KL Gaussian và tham số của phép tái tham số hóa.
-5. **Bài tập 14.5** (Phương sai mã và lỗi tái tạo theo góc): mục tiêu học tập 1; đọc phương sai giữ lại và lỗi tái tạo theo hướng chiếu.
-6. **Bài tập 14.6** (Phân tích thành phần chính của dữ liệu theo đường chéo): mục tiêu học tập 1; hướng tối ưu theo góc và ảnh hưởng của đơn vị đo.
-7. **Bài tập 14.7** (Mã, tái tạo và xác suất của một miền): mục tiêu học tập 2 và 3; phân biệt ánh xạ tái tạo với phân phối của dữ liệu sinh.
-8. **Bài tập 14.8** (Bộ tự mã hóa theo đường chéo và giới hạn sinh dữ liệu): mục tiêu học tập 2 và 6; tọa độ mã không duy nhất và giới hạn khi sinh dữ liệu.
-9. **Bài tập 14.9** (KL Gaussian, kỳ vọng tái tạo và ELBO): mục tiêu học tập 4 và 5; tính từng số hạng của ELBO và kiểm tra phân rã (7.3).
-10. **Bài tập 14.10** (Mẫu tái tham số hóa và ước lượng gradient): mục tiêu học tập 5; gradient theo đường mẫu, điều kiện của Mệnh đề 14.20 và gradient của toàn ELBO.
-11. **Bài tập 14.11** (KL bằng không, mômen khớp và mô hình sai): mục tiêu học tập 6; chẩn đoán một mô hình có KL bằng $0$ và cận chặt nhưng không phù hợp dữ liệu.
+- **Mức nhận biết.** Bài tập 14.5 (Phương sai của PCA xác suất theo các hướng chính): mục tiêu 3.
+- **Mức tính toán hoặc chứng minh.** Bài tập 14.6 (Lỗi tái tạo bằng tổng các trị riêng bị bỏ) và 14.7 (Thành phần chính thứ hai): mục tiêu 1. Bài tập 14.8 (Tổng của hai biến Gaussian độc lập) và 14.9 (Hậu nghiệm của PCA xác suất): mục tiêu 3.
+- **Mức vận dụng.** Bài tập 14.10 (Phân tích thành phần chính bằng phép khử dần): mục tiêu 1. Bài tập 14.11 (KL thuận và KL ngược với xấp xỉ dạng tích): mục tiêu 4.
 
 ## 11. Câu hỏi cuối buổi và cầu nối
 

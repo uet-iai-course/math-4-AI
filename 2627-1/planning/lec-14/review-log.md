@@ -202,3 +202,58 @@ Người kiểm định cuối mới (general-purpose, Opus 5.5 (opus), high, ch
 ### Vòng sửa sau kiểm định cuối và tái kiểm
 
 Người sửa của bài xử lý mọi phát hiện trung bình và nhẹ của kiểm định cuối; chính người kiểm định đó tái kiểm diff so với HEAD `9edae80`/`2caee87`: không còn phát hiện từ mức trung bình trở lên sau vòng sửa nhỏ cuối. Điều phối viên tự kiểm các số mới (Bài 12: hạng thiếu $w_0+w_1=7/3$, tổng bình phương sai số $14/3$; Bài 11: hậu nghiệm Beta $2/3$; Bài 13: giao điểm $v=8/9$ trên hình) và chạy lại: forward_refs 0, khối `:::` cân bằng, không ký tự điều khiển, SVG hợp lệ, `git diff --check` sạch, đồng bộ `--check` đạt, Playwright 20 lượt (10 tệp × 2 khổ) không lỗi, không công thức tràn quá 40 px ở 390 px. Kết luận: **chấp nhận**.
+
+
+## Rà nhẹ theo quy tắc 2026-11-09 và làm lại tệp bài tập từ giáo trình (2026-11-12)
+
+Yêu cầu của người dùng: "rà math-4-AI 10–14 và rl-plan 01–10: chỉ cần một lượt nhẹ, gồm rà theo quy tắc 09/11 và làm lại exercises.md từ giáo trình", rồi "chỉ làm lecture note và exercise" (không sửa deck).
+
+**Tác tử** (lấy từ lời gọi công cụ): mọi vai là `Agent`, `subagent_type: general-purpose`, `model: opus` (Claude Opus 5.5), `effort: high`.
+- Người rà chỉ đọc (`no-ai-slop` Detect), sau đó cũng tác tử đó làm biên tập viên (`no-ai-slop` Edit), tiếp tục bằng `SendMessage` để giữ ngữ cảnh.
+- Người kiểm tra độc lập chỉ đọc (tác tử mới): đối chiếu đề với PDF, giải lại mọi bài trước khi đọc lời giải, rà các hunk đã đổi của ghi chú; sau đó kiểm lại phần đã sửa.
+
+**Rà ghi chú:** 27 phát hiện (0 chặn bàn giao, 0 nghiêm trọng, 6 trung bình, 21 nhẹ): mã CLO (L41), "Đáp số" (L57), L327 và L329 mâu thuẫn về cách chọn $k$, "thường" (L753, L856), L998 nêu mục tiêu VAE không rõ chiều tối ưu. Điều phối viên chấp nhận: cả 27; L998 viết rõ cực tiểu lỗi tái tạo chia $2\tau^2$ cộng KL; L327/329 theo Murphy §20.1.4.1–20.1.4.2.
+
+**Nguồn bài tập:** Murphy (2022), bản PDF của tác giả (SHA-256 89749245…), trang PDF = trang in + 30; Murphy (2023) không có bài tập; ghi chú không dẫn giáo trình khác. Bảy bài 14.5–14.11: Murphy 20.6, 20.4, 20.3, 2.4, 20.7, 20.5, 6.4 (7.2 thuộc Bài 11). Ở 20.5 sách in $\tilde X=(I-v_1v_1^\top)X$, sai chiều với $X\in\mathbb R^{n\times d}$; tệp viết $X(I-P)$ và thêm giả thiết trị riêng phân biệt (người kiểm xác nhận cần thiết). Bốn bài tự dựng cũ 14.8–14.11 chuyển về ghi chú thành 14.1–14.4 (cuối §6, §7, §8.1, §8.2); 14.1–14.7 cũ bị bỏ.
+
+**Kiểm tra độc lập:** 0 chặn bàn giao, 0 nghiêm trọng, 1 trung bình (mục "3." của 14.11 bị nhập vào đoạn trên do thiếu dòng trống), 6 nhẹ; không lời giải sai (giải lại 11/11; KL thuận nhỏ nhất $\tfrac32\log2$; ba cực tiểu KL ngược $\log2,\log4,\log4$). Điều phối viên chấp nhận mọi phát hiện; biên tập viên sửa; kiểm lại: đạt, không phát hiện mới; các công thức đã ngắt dòng giữ nguyên nội dung.
+
+**Mục tiêu chỉ có bài trong ghi chú:** 2, 5, 6 và phần phân rã ELBO của mục tiêu 4 (Murphy 2022 không có bài về bộ tự mã hóa hay VAE).
+
+Áp dụng một lần theo bảng; số 14.1–14.4 và 14.8–14.11 được dùng lại cho nội dung khác, không thay thế dây chuyền.
+
+| Cũ (`exercises.md` trước lượt này) | Mới | Vị trí mới |
+|---|---|---|
+| 14.1 (PCA bốn quan sát trên hai trục) | bỏ | — |
+| 14.2 (Mô hình sinh từ bộ tự mã hóa trục ngang) | bỏ | — |
+| 14.3 (Hai vai trò của KL trong phân rã ELBO) | bỏ | — |
+| 14.4 (KL tới tiên nghiệm và tái tham số hóa) | bỏ | — |
+| 14.5 (Phương sai mã và lỗi tái tạo theo góc) | bỏ | — |
+| 14.6 (PCA của dữ liệu theo đường chéo) | bỏ | — (dữ liệu chép vào Bài tập 14.1 mới) |
+| 14.7 (Mã, tái tạo và xác suất của một miền) | bỏ | — |
+| 14.8 (Bộ tự mã hóa theo đường chéo và giới hạn sinh dữ liệu) | 14.1 | ghi chú, cuối §6 |
+| 14.9 (KL Gaussian, kỳ vọng tái tạo và ELBO) | 14.2 | ghi chú, cuối §7 |
+| 14.10 (Mẫu tái tham số hóa và ước lượng gradient) | 14.3 | ghi chú, cuối §8.1 |
+| 14.11 (KL bằng không, mômen khớp và mô hình sai) | 14.4 | ghi chú, cuối §8.2 |
+| — Murphy (2022) Bài 20.6, tr. 714 | 14.5 | `exercises.md`, nhận biết |
+| — Murphy (2022) Bài 20.4, tr. 713 | 14.6 | `exercises.md`, tính toán hoặc chứng minh |
+| — Murphy (2022) Bài 20.3, tr. 712 | 14.7 | `exercises.md`, tính toán hoặc chứng minh |
+| — Murphy (2022) Bài 2.4, tr. 74 | 14.8 | `exercises.md`, tính toán hoặc chứng minh |
+| — Murphy (2022) Bài 20.7, tr. 714 | 14.9 | `exercises.md`, tính toán hoặc chứng minh |
+| — Murphy (2022) Bài 20.5, tr. 713 | 14.10 | `exercises.md`, vận dụng |
+| — Murphy (2022) Bài 6.4, tr. 227 | 14.11 | `exercises.md`, vận dụng |
+
+### Dẫn chiếu ngoài phạm vi còn dùng số cũ
+
+- `2627-1/planning/lec-14/outline.md`, dòng 58–68: danh sách 14.1–14.11 cũ.
+- Deck: không có deck Bài 14; deck khác không dẫn `Bài tập 14.k`.
+- Ghi chú và bài tập Bài 00–13: không dẫn `Bài tập 14.k`.
+- `2627-1/material-local-data.js`: cần chạy `sync-local-materials.py` (điều phối viên).
+
+Dẫn chiếu trong phạm vi đã cập nhật: §10 của ghi chú (danh sách 14.1–14.11 mới); trong `exercises.md` không còn câu nguồn gốc cũ và không còn dẫn "Bài tập 14.6" cũ.
+
+**Số liệu:** ghi chú 17055 âm tiết (`wc -w`); `git diff --check` sạch; `forward_refs.py` báo 0.
+
+**Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844, mở mọi khối khi đo: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0/34 công thức tràn khung ở 390 px. Ghi chú: 15 công thức có sẵn từ trước tràn khung (ngoài lượt nhẹ). Bài 14 không có deck. `material-local-data.js` đồng bộ trong commit riêng.
+
+Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 14 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.

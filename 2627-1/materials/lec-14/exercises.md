@@ -1,542 +1,534 @@
 # Bài tập Bài 14 — Học biểu diễn và mô hình sinh dưới góc nhìn xác suất
 
-Các bài tập dưới đây đi kèm ghi chú Bài 14 và dẫn định nghĩa, mệnh đề, ví dụ cùng các công thức theo số hiệu của ghi chú. Ký hiệu theo §2 của ghi chú: $S$ là hiệp phương sai thực nghiệm (còn gọi là hiệp phương sai mẫu) với mẫu số $n$, tham số thứ hai của $\mathcal N(a,\beta)$ là phương sai, $\log$ là logarit tự nhiên, và trong ví dụ hai chiều $x=(x_1,x_2)^\top$. Hai chữ viết tắt theo ghi chú: phân tích thành phần chính (principal component analysis, PCA) và bộ tự mã hóa biến phân (variational autoencoder, VAE). Bài tập 14.1, 14.2 và 14.4 điều chỉnh từ bài trên lớp tuần 5 của học phần; Bài tập 14.6, 14.8, 14.9 và 14.10 điều chỉnh từ bộ bài tập tuần 5 của học phần.
+Các bài tập dưới đây, đánh số tiếp theo các bài tập trong ghi chú, đi kèm [ghi chú bài giảng](material-viewer.html?doc=materials/lec-14/lecture-note.md) của Bài 14. Các bài lấy từ Murphy (2022), Chương 2, 6 và 20; số trang là trang in của bản trực tuyến của sách. Lời giải dẫn định nghĩa, mệnh đề, định lý, ví dụ và công thức theo số hiệu của ghi chú. Ký hiệu theo ghi chú gồm:
 
-## Bài tập trên lớp
+- $y_1,\ldots,y_n\in\mathbb R^d$ là các quan sát đã tâm hóa, $\sum_iy_i=0$, và $S=\frac1n\sum_iy_iy_i^\top$ là hiệp phương sai thực nghiệm (4.1), mẫu số $n$;
+- $\lambda_1\ge\cdots\ge\lambda_d\ge0$ là các trị riêng của $S$ với các vector riêng trực chuẩn $v_1,\ldots,v_d$, và $V_k=(v_1,\ldots,v_k)$;
+- tham số thứ hai của $\mathcal N(a,\beta)$ là phương sai; $\tau^2$ là phương sai nhiễu quan sát (Murphy viết $\sigma^2$);
+- $\log$ là logarit tự nhiên; phân tích thành phần chính viết tắt là PCA (principal component analysis), PCA xác suất là PPCA (probabilistic PCA).
 
-### Bài tập 14.1 (Phân tích thành phần chính của bốn quan sát trên hai trục)
+| Mục tiêu học tập | Bài tập trong ghi chú | Bài tập trong tệp này |
+|---|---|---|
+| 1. Hướng chính, phương sai giữ lại và lỗi tái tạo | — | 14.6, 14.7, 14.10 |
+| 2. Bộ tự mã hóa tuyến tính và PCA | 14.1 | — |
+| 3. Mô hình sinh có biến ẩn: sinh mẫu, hợp lý, hậu nghiệm | — | 14.5, 14.8, 14.9 |
+| 4. Tính không âm của KL và phân rã ELBO | 14.2 | 14.11 |
+| 5. KL Gaussian, ELBO và tái tham số hóa | 14.2, 14.3 | — |
+| 6. So sánh PCA, bộ tự mã hóa và VAE; chẩn đoán mô hình sinh kém | 14.1, 14.4 | — |
 
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 1; tính hiệp phương sai, hướng chính và lỗi tái tạo.
+## Mức nhận biết
 
-::: exercise Bài tập 14.1
-Cho bốn quan sát $(0,3)^\top$, $(0,-3)^\top$, $(1,0)^\top$, $(-1,0)^\top$.
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 3; đọc ma trận hiệp phương sai biên của PCA xác suất theo các hướng chính.
 
-1. Tính trung bình $\bar x$ và ma trận hiệp phương sai $S$ với mẫu số $4$.
-2. Xác định một hướng chính thứ nhất.
-3. Tính mã, tái tạo và lỗi bình phương của riêng quan sát $(1,0)^\top$.
-4. Tính lỗi tái tạo trung bình trên bốn quan sát.
-:::
+::: exercise Bài tập 14.5 (Phương sai của PCA xác suất theo các hướng chính; Murphy, Bài 20.6, §20.6, tr. 714)
+Mô hình PCA xác suất với $1\le k<d$ gồm tiên nghiệm $p(z)=\mathcal N(0,I_k)$ và phân phối quan sát có điều kiện $p(x\mid z)=\mathcal N(Wz+\mu,\tau^2I_d)$, với $W\in\mathbb R^{d\times k}$ và $\tau>0$. Mật độ biên của mô hình là $\mathcal N(\mu,C)$ với
 
-::: hint Gợi ý 1
-Phần tử đường chéo thứ $j$ của $S$ là trung bình bình phương tọa độ thứ $j$; phần tử ngoài đường chéo là trung bình tích hai tọa độ.
-:::
+$$
+C=WW^\top+\tau^2I_d
+$$
 
-::: hint Gợi ý 2
-Với ma trận chéo, các vector đơn vị của hai trục là vector riêng. Dùng Mệnh đề 14.3, rồi kiểm tra câu 4 bằng (4.4).
-:::
-
-::: solution Lời giải Bài tập 14.1
-**Câu 1.** Tổng bốn quan sát bằng $(0,0)^\top$, nên $\bar x=(0,0)^\top$. Mỗi quan sát có một tọa độ bằng $0$, nên các phần tử ngoài đường chéo bằng $0$. Hai phần tử đường chéo là
+(Murphy (2022), (20.41)–(20.42), tr. 668). Nghiệm hợp lý cực đại (Murphy (2022), (20.45)–(20.46), tr. 668–669) là
 
 $$
 \begin{gathered}
-\frac{0+0+1+1}{4}=\frac12,\\
-\frac{9+9+0+0}{4}=\frac92,
+W=V_k(\Lambda_k-\tau^2I_k)^{1/2}R,\\
+\tau^2=\frac1{d-k}\sum_{j=k+1}^d\lambda_j,
 \end{gathered}
 $$
 
-nên $S=\operatorname{diag}(1/2,9/2)$.
+trong đó $\Lambda_k=\operatorname{diag}(\lambda_1,\ldots,\lambda_k)$ và $R\in\mathbb R^{k\times k}$ là một ma trận trực giao. Phương sai của mô hình theo hướng đơn vị $v$, $v^\top v=1$, là $v^\top Cv$.
 
-**Câu 2.** Trị riêng lớn nhất là $\lambda_1=9/2$ với vector riêng $(0,1)^\top$. Theo Mệnh đề 14.3, một hướng chính thứ nhất là $u=(0,1)^\top$ (hoặc $-u$).
-
-**Câu 3.** Mã của $(1,0)^\top$ là $u^\top(1,0)^\top=0$, tái tạo là $u\cdot0=(0,0)^\top$, và lỗi bình phương là $\|(1,0)^\top\|_2^2=1$.
-
-**Câu 4.** Hai quan sát $(0,\pm3)^\top$ được dựng lại đúng, lỗi $0$; hai quan sát $(\pm1,0)^\top$ có lỗi $1$. Lỗi trung bình là $(0+0+1+1)/4=1/2$.
-
-**Kiểm tra lại.** Theo (4.4), lỗi trung bình bằng $\operatorname{tr}(S)-\lambda_1=5-9/2=1/2$, khớp câu 4. Lỗi của riêng một điểm ($1$ ở câu 3) khác lỗi trung bình trên cả mẫu ($1/2$).
+1. Giả sử $v$ vuông góc với không gian chính $\operatorname{span}(v_1,\ldots,v_k)$, tức $v^\top V_k=0$. Chứng minh $v^\top Cv=\tau^2$.
+2. Giả sử $v=v_i$ với $1\le i\le k$. Chứng minh $v^\top Cv=(\lambda_i-\tau^2)+\tau^2=\lambda_i$.
 :::
 
-### Bài tập 14.2 (Mô hình sinh từ bộ tự mã hóa trục ngang)
-
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 3; dựng mô hình sinh, tính phân phối biên và phân biệt đường sinh mẫu với đường suy luận.
-
-::: exercise Bài tập 14.2
-Một bộ tự mã hóa tất định dùng $f(x)=x_1$ và $g(z)=(z,0)^\top$.
-
-1. Viết một mô hình sinh Gaussian hai chiều dùng cùng hàm $g$, với tiên nghiệm chuẩn và phương sai nhiễu $1/2$.
-2. Tính phân phối biên của $X$ và hậu nghiệm $Z\mid X=x$ bằng hoàn bình phương.
-3. Viết một bộ mã hóa Gaussian cho VAE dùng mô hình này.
-4. Mô tả đường sinh một quan sát mới và đường suy luận từ một quan sát.
+::: hint
+Tính $WW^\top$ trước: vì $RR^\top=I_k$, ta có $WW^\top=V_k(\Lambda_k-\tau^2I_k)V_k^\top$. Sau đó tính $V_k^\top v$ trong từng trường hợp.
 :::
 
-::: hint Gợi ý 1
-Làm như Ví dụ 14.5 với $w=1$ thay cho $w=\sqrt{3/2}$: hoàn bình phương $-\tfrac{z^2}2-(x_1-z)^2$ theo $z$.
-:::
-
-::: hint Gợi ý 2
-Tiên nghiệm và phân phối quan sát có điều kiện xác định mô hình sinh. Bộ mã hóa là công cụ suy luận, không phải một phần của mô hình sinh.
-:::
-
-::: solution Lời giải Bài tập 14.2
-**Câu 1.** Theo (6.2) với $k=1$, $d=2$: $p(z)=\mathcal N(0,1)$ và $p_\theta(x\mid z)=\mathcal N\big((z,0)^\top,\tfrac12I_2\big)$.
-
-**Câu 2.** Với $\tau^2=1/2$, log-mật độ đồng thời là một hằng số cộng $-\tfrac{z^2}2-(x_1-z)^2-x_2^2$. Hoàn bình phương theo $z$:
+::: solution
+**Ma trận $WW^\top$.** Vì $\Lambda_k-\tau^2I_k$ là ma trận chéo và $RR^\top=I_k$,
 
 $$
 \begin{aligned}
-&-\frac{z^2}{2}-(x_1-z)^2\\
-&\quad=-\frac32z^2+2x_1z-x_1^2\\
-&\quad=-\frac32\Big(z-\frac{2x_1}{3}\Big)^2+\frac23x_1^2-x_1^2\\
-&\quad=-\frac32\Big(z-\frac{2x_1}{3}\Big)^2-\frac{x_1^2}{3}.
+WW^\top&=V_k(\Lambda_k-\tau^2I_k)^{1/2}RR^\top\\
+&\qquad\cdot(\Lambda_k-\tau^2I_k)^{1/2}V_k^\top\\
+&=V_k(\Lambda_k-\tau^2I_k)V_k^\top.
 \end{aligned}
 $$
 
-Lấy tích phân theo $z$ như (6.1): $p(x)\propto\exp\big(-\tfrac{x_1^2}{3}-x_2^2\big)=\exp\big(-\tfrac{x_1^2}{2\cdot3/2}-\tfrac{x_2^2}{2\cdot1/2}\big)$, nên $X\sim\mathcal N\big(0,\operatorname{diag}(3/2,1/2)\big)$. Theo (6.3), hậu nghiệm tỉ lệ với $\exp\big(-\tfrac32(z-2x_1/3)^2\big)$, tức $Z\mid X=x\sim\mathcal N(2x_1/3,1/3)$.
+Căn bậc hai xác định vì $\tau^2$ là trung bình của $\lambda_{k+1},\ldots,\lambda_d$, nên $\tau^2\le\lambda_{k+1}\le\lambda_j$ với mọi $j\le k$. Đặt $a=V_k^\top v\in\mathbb R^k$. Khi đó
 
-**Câu 3.** Một bộ mã hóa VAE là $q_\phi(z\mid x)=\mathcal N(\mu_\phi(x),\sigma_\phi^2(x))$ với $\sigma_\phi(x)>0$, trong đó $\mu_\phi$ và $\sigma_\phi$ được học bằng (8.1), không suy ra từ $f$. Trong mô hình này, hậu nghiệm đúng thuộc họ đó, với $\mu(x)=2x_1/3$ và $\sigma^2(x)=1/3$.
+$$
+\begin{aligned}
+v^\top Cv&=a^\top(\Lambda_k-\tau^2I_k)a\\
+&\quad+\tau^2v^\top v.
+\end{aligned}
+$$
 
-**Câu 4.** Sinh mẫu: lấy $z\sim\mathcal N(0,1)$ và nhiễu $\eta\sim\mathcal N(0,\tfrac12I_2)$ độc lập, rồi trả về $(z,0)^\top+\eta$. Suy luận: đưa quan sát $x$ qua bộ mã hóa để được phân phối $q_\phi(\cdot\mid x)$ của mã.
+**Câu 1.** Với $a=V_k^\top v=0$, số hạng đầu bằng $0$ và $v^\top v=1$, nên $v^\top Cv=\tau^2$.
 
-**Kiểm tra lại.** Viết $X_1=Z+\eta_1$ thì $\mathbb E[X_1^2]=1+0+1/2=3/2$, khớp câu 2. Ma trận hiệp phương sai có định thức $3/4>0$, nên $X$ có mật độ hai chiều, khác với cơ chế không nhiễu của Ví dụ 14.4.
+**Câu 2.** Với $v=v_i$, $i\le k$, các cột của $V_k$ trực chuẩn nên $a=V_k^\top v_i=e_i$, vector đơn vị thứ $i$ của $\mathbb R^k$. Do đó
+
+$$
+\begin{aligned}
+v_i^\top Cv_i&=e_i^\top(\Lambda_k-\tau^2I_k)e_i+\tau^2\\
+&=(\lambda_i-\tau^2)+\tau^2=\lambda_i.
+\end{aligned}
+$$
+
+**Diễn giải.** Theo mỗi hướng chính $v_i$, $i\le k$, mô hình có đúng phương sai thực nghiệm $\lambda_i$: biến ẩn đóng góp $\lambda_i-\tau^2$, nhiễu đóng góp $\tau^2$. Theo mọi hướng vuông góc với không gian chính, kể cả $v_{k+1},\ldots,v_d$, mô hình chỉ có phương sai nhiễu $\tau^2$, bằng trung bình của $\lambda_{k+1},\ldots,\lambda_d$.
+
+**Kiểm tra lại.** Với dữ liệu của Ví dụ 14.2, $d=2$, $k=1$, $\lambda_1=2$, $\lambda_2=1/2$, $v_1=(1,0)^\top$: $\tau^2=\lambda_2=1/2$ và $W=v_1\sqrt{3/2}$ (với $R=(1)$), nên $C=\operatorname{diag}(3/2,0)+\tfrac12I_2=\operatorname{diag}(2,1/2)=S$, khớp mô hình của Ví dụ 14.5.
 :::
 
-### Bài tập 14.3 (Hai vai trò của KL trong phân rã ELBO)
+## Mức tính toán hoặc chứng minh
 
-**Mức độ:** khái niệm. **Mục tiêu:** mục tiêu học tập 4; phân biệt KL tới hậu nghiệm với KL tới tiên nghiệm.
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 1; chứng minh lỗi tái tạo khi giữ $k$ thành phần chính bằng tổng các trị riêng bị bỏ.
 
-::: exercise Bài tập 14.3
-Với $\theta$ cố định, giả sử $\log p_\theta(x)=-3$. Hai hậu nghiệm xấp xỉ $q_1,q_2$ có KL tới hậu nghiệm lần lượt là $0{,}7$ và $0{,}2$.
+::: exercise Bài tập 14.6 (Lỗi tái tạo bằng tổng các trị riêng bị bỏ; Murphy, Bài 20.4, §20.6, tr. 713)
+Với $1\le k\le d$, đặt $z_{ij}=v_j^\top y_i$ là tọa độ thứ $j$ của $y_i$ trong cơ sở riêng.
 
-1. Tính hai giá trị ELBO.
-2. Nếu một hậu nghiệm xấp xỉ có KL tới tiên nghiệm bằng $0$, có thể kết luận ELBO bằng $-3$ không?
+1. Chứng minh
+
+$$
+\begin{aligned}
+&\Big\|y_i-\sum_{j=1}^kz_{ij}v_j\Big\|_2^2\\
+&\quad=y_i^\top y_i-\sum_{j=1}^kv_j^\top y_iy_i^\top v_j.
+\end{aligned}
+$$
+
+2. Chứng minh
+
+$$
+\begin{aligned}
+&J_k:=\frac1n\sum_{i=1}^n\Big(y_i^\top y_i\\
+&\qquad-\sum_{j=1}^kv_j^\top y_iy_i^\top v_j\Big)\\
+&\quad=\frac1n\sum_{i=1}^ny_i^\top y_i-\sum_{j=1}^k\lambda_j.
+\end{aligned}
+$$
+
+3. Khi $k=d$, phép khai triển không bị cắt nên $J_d=0$. Dùng điều này để chứng minh rằng với $k<d$,
+
+$$
+J_k=\sum_{j=k+1}^d\lambda_j.
+$$
 :::
 
-::: hint Gợi ý 1
-Dùng (7.3).
+::: hint
+Ở câu 1, khai triển bình phương chuẩn và dùng $v_j^\top v_j=1$, $v_j^\top v_l=0$ khi $j\ne l$; xét trường hợp $k=2$ trước. Ở câu 2, dùng $\frac1n\sum_iv_j^\top y_iy_i^\top v_j=v_j^\top Sv_j=\lambda_j$. Ở câu 3, tách $\sum_{j=1}^d\lambda_j$ thành $\sum_{j\le k}\lambda_j$ và $\sum_{j>k}\lambda_j$.
 :::
 
-::: hint Gợi ý 2
-Xác định phân phối ở vị trí thứ hai trong mỗi KL, rồi dùng điều kiện dấu bằng của Bổ đề 14.13.
+::: solution
+**Câu 1.** Đặt $\widehat y_i=\sum_{j\le k}z_{ij}v_j$. Khai triển
+
+$$
+\begin{aligned}
+&\|y_i-\widehat y_i\|_2^2\\
+&\quad=y_i^\top y_i-2\sum_{j\le k}z_{ij}v_j^\top y_i\\
+&\qquad+\sum_{j\le k}\sum_{l\le k}z_{ij}z_{il}v_j^\top v_l\\
+&\quad=y_i^\top y_i-2\sum_{j\le k}z_{ij}^2\\
+&\qquad+\sum_{j\le k}z_{ij}^2\\
+&\quad=y_i^\top y_i-\sum_{j\le k}z_{ij}^2.
+\end{aligned}
+$$
+
+Dòng thứ hai dùng $v_j^\top y_i=z_{ij}$ và tính trực chuẩn: chỉ các số hạng $l=j$ còn lại, với $v_j^\top v_j=1$. Cuối cùng $z_{ij}^2=(v_j^\top y_i)(y_i^\top v_j)=v_j^\top y_iy_i^\top v_j$.
+
+**Câu 2.** Lấy trung bình theo $i$ và đổi thứ tự hai tổng hữu hạn:
+
+$$
+\begin{aligned}
+J_k&=\frac1n\sum_{i=1}^ny_i^\top y_i\\
+&\quad-\sum_{j=1}^kv_j^\top\Big(\frac1n\sum_{i=1}^ny_iy_i^\top\Big)v_j\\
+&=\frac1n\sum_{i=1}^ny_i^\top y_i-\sum_{j=1}^kv_j^\top Sv_j.
+\end{aligned}
+$$
+
+Vì $Sv_j=\lambda_jv_j$ và $v_j^\top v_j=1$, ta có $v_j^\top Sv_j=\lambda_j$, cho đẳng thức cần chứng minh.
+
+**Câu 3.** Khi $k=d$, các $v_j$ là một cơ sở trực chuẩn của $\mathbb R^d$, nên $\sum_{j=1}^dz_{ij}v_j=y_i$ và $J_d=0$. Câu 2 với $k=d$ cho
+
+$$
+\frac1n\sum_{i=1}^ny_i^\top y_i=\sum_{j=1}^d\lambda_j.
+$$
+
+Thế vào câu 2 với $k<d$:
+
+$$
+J_k=\sum_{j=1}^d\lambda_j-\sum_{j=1}^k\lambda_j=\sum_{j=k+1}^d\lambda_j.
+$$
+
+**Kiểm tra lại.** Câu 3 cho $\frac1n\sum_i\|y_i\|_2^2=\operatorname{tr}(S)$ và $J_k=\operatorname{tr}(S)-\operatorname{tr}(V_k^\top SV_k)$, đúng (4.4) với $U=V_k$ và lỗi nhỏ nhất của Định lý 14.6. Với Ví dụ 14.2, $J_1=\lambda_2=1/2$, bằng lỗi trung bình đã tính trực tiếp.
 :::
 
-::: solution Lời giải Bài tập 14.3
-**Câu 1.** Theo (7.3), $\mathcal L=\log p_\theta(x)-\mathrm{KL}(q\,\|\, p_\theta(\cdot\mid x))$, nên hai ELBO là $-3-0{,}7=-3{,}7$ và $-3-0{,}2=-3{,}2$. Khi mô hình cố định, KL tới hậu nghiệm nhỏ hơn cho cận chặt hơn.
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 1; tìm thành phần chính thứ hai bằng điều kiện dừng của hàm Lagrange và so sánh giá trị.
 
-**Câu 2.** KL tới tiên nghiệm bằng $0$ cho $q=p(z)$ hầu khắp nơi (Bổ đề 14.13). Dấu bằng của cận đòi hỏi $q=p_\theta(\cdot\mid x)$ (Định lý 14.15). Hai điều kiện trùng nhau chỉ khi hậu nghiệm bằng tiên nghiệm, nên nói chung không kết luận được ELBO bằng $-3$.
+::: exercise Bài tập 14.7 (Thành phần chính thứ hai; Murphy, Bài 20.3, §20.6, tr. 712)
+Cho $d\ge2$ và vector riêng đơn vị $v_1$ với $Sv_1=\lambda_1v_1$; đặt $z_{i1}=v_1^\top y_i$. Với một vector đơn vị $w\perp v_1$ và các số $z_{12},\ldots,z_{n2}$, đặt $r_i=y_i-z_{i1}v_1-z_{i2}w$ và xét lỗi tái tạo hai chiều
 
-Ví dụ cụ thể: trong mô hình của Ví dụ 14.7 tại $x=2$, hậu nghiệm là $\mathcal N(1,1/2)$. Với $q=p(z)=\mathcal N(0,1)$, Bổ đề 14.17 cho KL tới hậu nghiệm bằng $\tfrac12\big[\log\tfrac{1/2}{1}+\tfrac{1+1}{1/2}-1\big]=\tfrac12(3-\log2)\approx1{,}1534>0$, nên ELBO nhỏ hơn log-hợp lý.
+$$
+J(w,z_2)=\frac1n\sum_{i=1}^nr_i^\top r_i.
+$$
 
-**Kiểm tra lại.** Cả hai ELBO ở câu 1 nhỏ hơn $-3$, đúng chiều của cận dưới.
+1. Chứng minh $\partial J/\partial z_{i2}=0$ cho $z_{i2}=w^\top y_i$.
+2. Thế $z_{i2}=w^\top y_i$ vào $J$ và chứng minh $J=\frac1n\sum_iy_i^\top y_i-\lambda_1-w^\top Sw$.
+3. Hàm Lagrange của bài toán cực tiểu $-w^\top Sw$ với hai ràng buộc $w^\top w=1$, $w^\top v_1=0$ là
+
+$$
+\begin{aligned}
+\tilde J(w)&=-w^\top Sw+\nu(w^\top w-1)\\
+&\quad+\nu_{12}(w^\top v_1-0).
+\end{aligned}
+$$
+
+Chứng minh mọi điểm dừng của $\tilde J$ thỏa hai ràng buộc là một vector riêng đơn vị của $S$ vuông góc với $v_1$. Chứng minh giá trị nhỏ nhất của $-w^\top Sw$ trên tập ràng buộc bằng $-\lambda_2$ và đạt tại $w=v_2$, vector riêng ứng với trị riêng lớn thứ hai.
 :::
 
-## Bài tập tự học
-
-### Bài tập 14.4 (KL tới tiên nghiệm và tái tham số hóa)
-
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 5; tính KL Gaussian, tham số của phép tái tham số hóa, và đánh giá kết luận rút ra từ KL.
-
-::: exercise Bài tập 14.4
-Cho $q(z\mid x)=\mathcal N(0,4)$ và $p(z)=\mathcal N(0,1)$.
-
-1. Tính $\mathrm{KL}(q\,\|\, p)$. Phân kỳ có bằng $0$ không?
-2. Xác định $\mu,\sigma$ để $z=\mu+\sigma\varepsilon$, $\varepsilon\sim\mathcal N(0,1)$, có phân phối $q$. Tính $z$ tại $\varepsilon=-1$. Giải thích vì sao dùng $\sigma=4$ là sai.
-3. Nếu giảm KL này về $0$ mà không biết số hạng tái tạo, có thể kết luận mẫu sinh tốt hơn không?
+::: hint
+Dùng $\partial(x^\top Ax)/\partial x=(A+A^\top)x$, $Sv_1=\lambda_1v_1$, $v_1^\top w=0$ và $w^\top w=1$. Ở câu 3, nhân điều kiện dừng bên trái với $v_1^\top$ để tìm $\nu_{12}$; để so sánh giá trị, khai triển $w$ theo $v_2,\ldots,v_d$ như Bước 2–3 trong chứng minh Mệnh đề 14.3.
 :::
 
-::: hint Gợi ý 1
-Tham số thứ hai trong $\mathcal N(0,4)$ là phương sai. Dùng (7.5) với $k=1$.
+::: solution
+**Câu 1.** Chỉ số hạng thứ $i$ của tổng chứa $z_{i2}$, và $\partial r_i/\partial z_{i2}=-w$, nên
+
+$$
+\begin{aligned}
+&\frac{\partial J}{\partial z_{i2}}=-\frac2nw^\top r_i\\
+&\quad=-\frac2n\big(w^\top y_i-z_{i1}w^\top v_1\\
+&\qquad-z_{i2}w^\top w\big)\\
+&\quad=-\frac2n\big(w^\top y_i-z_{i2}\big).
+\end{aligned}
+$$
+
+Dòng cuối dùng $w^\top v_1=0$ và $w^\top w=1$. Đạo hàm bằng $0$ khi và chỉ khi $z_{i2}=w^\top y_i$.
+
+**Câu 2.** Với $z_{i1}=v_1^\top y_i$, $z_{i2}=w^\top y_i$ và $\{v_1,w\}$ trực chuẩn, khai triển như câu 1 của Bài tập 14.6 với hai vector $v_1,w$ cho $\|r_i\|_2^2=y_i^\top y_i-(v_1^\top y_i)^2-(w^\top y_i)^2$. Lấy trung bình theo $i$:
+
+$$
+\begin{aligned}
+&J=\frac1n\sum_iy_i^\top y_i-v_1^\top Sv_1\\
+&\qquad-w^\top Sw\\
+&\quad=\frac1n\sum_iy_i^\top y_i-\lambda_1-w^\top Sw.
+\end{aligned}
+$$
+
+Như vậy cực tiểu $J$ theo $w$ tương đương cực tiểu $-w^\top Sw$ trên tập ràng buộc.
+
+**Câu 3.** *Điểm dừng.* Vì $S$ đối xứng, $\nabla_w(w^\top Sw)=2Sw$, nên điều kiện dừng là
+
+$$
+-2Sw+2\nu w+\nu_{12}v_1=0.
+$$
+
+Nhân bên trái với $v_1^\top$: $v_1^\top Sw=(Sv_1)^\top w=\lambda_1v_1^\top w=0$ và $v_1^\top w=0$, nên còn $\nu_{12}v_1^\top v_1=\nu_{12}=0$. Do đó $Sw=\nu w$: mọi điểm dừng thỏa ràng buộc là một vector riêng đơn vị của $S$ vuông góc với $v_1$, với giá trị $-w^\top Sw=-\nu$.
+
+*So sánh giá trị.* Mọi vector riêng đơn vị vuông góc với $v_1$ đều thỏa điều kiện dừng, nên ta so sánh giá trị của chúng. Mọi $w$ thỏa ràng buộc viết được $w=\sum_{j=2}^da_jv_j$ với $a_j=v_j^\top w$ và $\sum_{j\ge2}a_j^2=1$, vì $v_1^\top w=0$. Như Bước 2–3 trong chứng minh Mệnh đề 14.3,
+
+$$
+\begin{aligned}
+w^\top Sw&=\sum_{j=2}^d\lambda_ja_j^2\\
+&\le\lambda_2\sum_{j=2}^da_j^2=\lambda_2.
+\end{aligned}
+$$
+
+Với $w=v_2$, ta có $a_2=1$ và $w^\top Sw=\lambda_2$. Vậy giá trị nhỏ nhất của $-w^\top Sw$ là $-\lambda_2$, đạt tại vector riêng $v_2$ ứng với trị riêng lớn thứ hai.
+
+**Kiểm tra lại.** Tại $w=v_2$, câu 2 cho $J=\frac1n\sum_iy_i^\top y_i-\lambda_1-\lambda_2=\sum_{j\ge3}\lambda_j$, đúng $J_2$ của Bài tập 14.6.
 :::
 
-::: hint Gợi ý 2
-Ở câu 3, đối chiếu hai vai trò của KL trong Định lý 14.15 và số liệu của Tình huống 14.2.
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 3; tính mật độ biên và hậu nghiệm của một mô hình có biến ẩn Gaussian một chiều.
+
+::: exercise Bài tập 14.8 (Tổng của hai biến Gaussian độc lập; Murphy, Bài 2.4, §2.9, tr. 74)
+Cho $X_1\sim\mathcal N(\mu_1,\sigma_1^2)$ và $X_2\sim\mathcal N(\mu_2,\sigma_2^2)$ độc lập, và $Y=X_1+X_2$. Mật độ của $Y$ là tích chập của hai mật độ Gaussian.
+
+1. Xem $Z=X_1$ là biến ẩn. Viết tiên nghiệm $p(z)$, phân phối có điều kiện $p(y\mid z)$, và mật độ của $Y$ dưới dạng tích phân (6.1).
+2. Tính tích phân ở câu 1 bằng hoàn bình phương theo $z$ để chứng minh $Y\sim\mathcal N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$.
+3. Tính hậu nghiệm $p(z\mid y)$.
 :::
 
-::: solution Lời giải Bài tập 14.4
-**Câu 1.** Theo (7.5) với $\mu=0$, $s^2=4$:
+::: hint
+Đổi biến $(x_1,x_2)\mapsto(z,y)=(x_1,x_1+x_2)$ có định thức Jacobi bằng $1$. Đặt $s=\sigma_1^2$, $t=\sigma_2^2$, $a=y-\mu_2$, rồi hoàn bình phương $t(z-\mu_1)^2+s(z-a)^2$ theo $z$ như Ví dụ 14.5.
+:::
+
+::: solution
+**Câu 1.** Mật độ đồng thời của $(X_1,X_2)$ là tích $\mathcal N(x_1;\mu_1,s)\mathcal N(x_2;\mu_2,t)$ vì hai biến độc lập. Phép đổi biến $(z,y)=(x_1,x_1+x_2)$ có nghịch đảo $(x_1,x_2)=(z,y-z)$ và định thức Jacobi bằng $1$, nên
+
+$$
+\begin{aligned}
+p(z,y)&=\mathcal N(z;\mu_1,s)\\
+&\qquad\cdot\mathcal N(y-z;\mu_2,t)\\
+&=\mathcal N(z;\mu_1,s)\\
+&\qquad\cdot\mathcal N(y;z+\mu_2,t).
+\end{aligned}
+$$
+
+Do đó tiên nghiệm là $p(z)=\mathcal N(\mu_1,s)$, phân phối có điều kiện là $p(y\mid z)=\mathcal N(z+\mu_2,t)$, và theo (6.1),
+
+$$
+\begin{aligned}
+p(y)&=\int_{\mathbb R}\mathcal N(y;z+\mu_2,t)\\
+&\qquad\cdot\mathcal N(z;\mu_1,s)\,dz.
+\end{aligned}
+$$
+
+**Câu 2.** Với $a=y-\mu_2$, hàm dưới dấu tích phân bằng $\frac1{2\pi\sqrt{st}}\exp\big(-Q(z)/(2st)\big)$ với $Q(z)=t(z-\mu_1)^2+s(z-a)^2$. Đặt $m=(t\mu_1+sa)/(s+t)$. Khai triển theo $z$:
+
+$$
+\begin{aligned}
+&Q(z)=(s+t)z^2-2(t\mu_1+sa)z\\
+&\qquad+t\mu_1^2+sa^2\\
+&\quad=(s+t)(z-m)^2\\
+&\qquad+t\mu_1^2+sa^2\\
+&\qquad-\frac{(t\mu_1+sa)^2}{s+t}\\
+&\quad=(s+t)(z-m)^2\\
+&\qquad+\frac{st(a-\mu_1)^2}{s+t}.
+\end{aligned}
+$$
+
+Dòng cuối dùng $(s+t)(t\mu_1^2+sa^2)-(t\mu_1+sa)^2=st\mu_1^2+sta^2-2st\mu_1a=st(a-\mu_1)^2$. Vì $\int_{\mathbb R}\exp\big(-\tfrac{s+t}{2st}(z-m)^2\big)dz=\sqrt{2\pi st/(s+t)}$,
+
+$$
+\begin{aligned}
+&p(y)=\frac1{2\pi\sqrt{st}}\sqrt{\frac{2\pi st}{s+t}}\\
+&\qquad\cdot\exp\Big(-\frac{(a-\mu_1)^2}{2(s+t)}\Big)\\
+&\quad=\frac1{\sqrt{2\pi(s+t)}}\\
+&\qquad\cdot\exp\Big(-\frac{(y-\mu_1-\mu_2)^2}{2(s+t)}\Big),
+\end{aligned}
+$$
+
+tức $Y\sim\mathcal N(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$.
+
+**Câu 3.** Theo (6.3), với $y$ cố định, $p(z\mid y)$ tỉ lệ với $\exp\big(-\tfrac{s+t}{2st}(z-m)^2\big)$, nên
+
+$$
+\begin{gathered}
+Z\mid Y=y\sim\mathcal N\Big(m,\ \frac{st}{s+t}\Big),\\
+m=\mu_1+\frac{s(y-\mu_1-\mu_2)}{s+t}.
+\end{gathered}
+$$
+
+Dòng thứ hai suy từ $m=(t\mu_1+sa)/(s+t)$ và $a=y-\mu_2$. Phương sai hậu nghiệm $st/(s+t)$ nhỏ hơn phương sai tiên nghiệm $s$.
+
+**Kiểm tra lại.** Theo tính tuyến tính của kỳ vọng và phương sai của tổng hai biến độc lập, $\mathbb E[Y]=\mu_1+\mu_2$ và $\operatorname{Var}(Y)=s+t$, khớp câu 2. Với $\mu_1=\mu_2=0$, $s=t=1$, câu 2 và câu 3 cho $Y\sim\mathcal N(0,2)$ và $Z\mid Y=y\sim\mathcal N(y/2,1/2)$, đúng mô hình vô hướng của Ví dụ 14.7.
+:::
+
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 3; suy luận hậu nghiệm trong PCA xác suất.
+
+::: exercise Bài tập 14.9 (Hậu nghiệm của PCA xác suất; Murphy, Bài 20.7, §20.6, tr. 714)
+Mô hình PCA xác suất gồm tiên nghiệm $p(z)=\mathcal N(0,I_k)$ và phân phối quan sát có điều kiện $p(x\mid z)=\mathcal N(Wz+\mu,\tau^2I_d)$, với $W\in\mathbb R^{d\times k}$, $\mu\in\mathbb R^d$ và $\tau>0$ (Murphy (2022), §20.2.2, tr. 668). Đặt $M=W^\top W+\tau^2I_k$.
+
+1. Chứng minh $p(z\mid x)=\mathcal N\big(M^{-1}W^\top(x-\mu),\ \tau^2M^{-1}\big)$.
+2. Viết kết quả câu 1 khi $k=1$ và $W=w\in\mathbb R^d$.
+3. Giả sử $W$ có hạng cột bằng $k$. Tìm giới hạn của trung bình và hiệp phương sai hậu nghiệm khi $\tau^2\to0$.
+:::
+
+::: hint
+Theo (6.3), $\log p(z\mid x)$ bằng $\log p(x\mid z)+\log p(z)$ cộng một hằng số không phụ thuộc $z$. Gom các số hạng bậc hai và bậc nhất theo $z$, rồi hoàn bình phương với ma trận $M/\tau^2$.
+:::
+
+::: solution
+**Câu 1.** Đặt $b=W^\top(x-\mu)$. Theo (6.3) và các mật độ Gaussian của Định nghĩa 10.20, phần phụ thuộc $z$ của $\log p(z\mid x)$ là
+
+$$
+\begin{aligned}
+&-\frac{\|x-\mu-Wz\|_2^2}{2\tau^2}-\frac{z^\top z}{2}\\
+&\quad=-\frac{z^\top W^\top Wz+\tau^2z^\top z}{2\tau^2}\\
+&\qquad+\frac{z^\top b}{\tau^2}+c_1\\
+&\quad=-\frac{z^\top Mz-2z^\top b}{2\tau^2}+c_1,
+\end{aligned}
+$$
+
+trong đó $c_1$ không phụ thuộc $z$. Ma trận $M$ đối xứng và xác định dương vì $z^\top Mz=\|Wz\|_2^2+\tau^2\|z\|_2^2>0$ khi $z\ne0$, nên khả nghịch. Với $m=M^{-1}b$,
+
+$$
+\begin{aligned}
+&z^\top Mz-2z^\top b\\
+&\quad=(z-m)^\top M(z-m)\\
+&\qquad-b^\top M^{-1}b.
+\end{aligned}
+$$
+
+Số hạng cuối không phụ thuộc $z$, nên $p(z\mid x)$ tỉ lệ với $\exp\big(-\tfrac12(z-m)^\top(M/\tau^2)(z-m)\big)$. Đây là mật độ $\mathcal N(m,\tau^2M^{-1})$ nhân một hằng số; hai mật độ tỉ lệ cùng có tích phân $1$ nên bằng nhau:
+
+$$
+\begin{gathered}
+p(z\mid x)=\mathcal N\big(m,\ \tau^2M^{-1}\big),\\
+m=M^{-1}W^\top(x-\mu).
+\end{gathered}
+$$
+
+**Câu 2.** Khi $k=1$, $M=\|w\|_2^2+\tau^2$ là một số dương, nên
+
+$$
+\begin{gathered}
+Z\mid X=x\sim\mathcal N(m,v),\\
+m=\frac{w^\top(x-\mu)}{\|w\|_2^2+\tau^2},\\
+v=\frac{\tau^2}{\|w\|_2^2+\tau^2}.
+\end{gathered}
+$$
+
+**Câu 3.** Khi $W$ có hạng cột bằng $k$, ma trận $W^\top W$ khả nghịch. Khi $\tau^2\to0$, $M\to W^\top W$, và phép nghịch đảo liên tục trên tập ma trận khả nghịch, nên
+
+$$
+\begin{aligned}
+&M^{-1}W^\top(x-\mu)\\
+&\quad\to(W^\top W)^{-1}W^\top(x-\mu),\\
+&\tau^2M^{-1}\to0.
+\end{aligned}
+$$
+
+Trung bình giới hạn là tọa độ của hình chiếu trực giao của $x-\mu$ lên ảnh của $W$: điểm $W(W^\top W)^{-1}W^\top(x-\mu)$ thỏa $W^\top\big[(x-\mu)-W(W^\top W)^{-1}W^\top(x-\mu)\big]=0$. Hậu nghiệm suy biến về một mã tất định, như bộ mã hóa tuyến tính của PCA.
+
+**Kiểm tra lại.** Với mô hình của Ví dụ 14.5, $d=2$, $k=1$, $w=(\sqrt{3/2},0)^\top$, $\mu=0$, $\tau^2=1/2$: $\|w\|_2^2+\tau^2=2$, nên câu 2 cho trung bình $\sqrt{3/2}\,x_1/2$ và phương sai $(1/2)/2=1/4$, khớp hậu nghiệm của Ví dụ 14.5.
+:::
+
+## Mức vận dụng
+
+**Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 1; tìm lần lượt các thành phần chính bằng phép khử và một hàm tìm vector riêng lớn nhất.
+
+::: exercise Bài tập 14.10 (Phân tích thành phần chính bằng phép khử dần; Murphy, Bài 20.5, §20.6, tr. 713)
+Cho ma trận dữ liệu đã tâm hóa $X\in\mathbb R^{n\times d}$ với các hàng $y_1^\top,\ldots,y_n^\top$, nên $S=\frac1nX^\top X$. Cho $2\le k<d$ và giả sử $\lambda_1>\lambda_2>\cdots>\lambda_k>\lambda_{k+1}$. Các vector riêng $v_1,\ldots,v_k$ ứng với $k$ trị riêng lớn nhất, với $v_j^\top v_l=0$ khi $j\ne l$ và $v_j^\top v_j=1$, được gọi là các *vector cơ sở chính* (principal basis vectors). Đặt $P=v_1v_1^\top$,
+
+$$
+\begin{gathered}
+\tilde y_i=(I_d-P)y_i,\\
+\tilde X=X(I_d-P),
+\end{gathered}
+$$
+
+tức $\tilde y_i$ là hình chiếu trực giao của $y_i$ lên phần bù trực giao của $v_1$, và $\tilde X$, có các hàng $\tilde y_i^\top$, là *ma trận khử* (deflated matrix).
+
+1. Dùng $X^\top Xv_1=n\lambda_1v_1$ (nên $v_1^\top X^\top X=n\lambda_1v_1^\top$) và $v_1^\top v_1=1$, chứng minh hiệp phương sai của ma trận khử là
+
+$$
+\tilde S=\frac1n\tilde X^\top\tilde X=S-\lambda_1v_1v_1^\top.
+$$
+
+2. Gọi $u$ là một vector riêng đơn vị ứng với trị riêng lớn nhất của $\tilde S$. Giải thích vì sao $u=\pm v_2$.
+3. Giả sử có hàm $[\lambda,u]=f(A)$ trả về trị riêng lớn nhất và một vector riêng đơn vị tương ứng của một ma trận đối xứng nửa xác định dương $A$ có trị riêng lớn nhất đơn. Viết các bước của một thuật toán nhận $S$, $k$, $f$ và trả về $v_j,\lambda_j$ với $j=1,\ldots,k$, chỉ dùng $f$ và phép tính vector, không dùng phân tích trị riêng đầy đủ.
+:::
+
+::: hint
+Ở câu 1, khai triển $(I_d-P)S(I_d-P)$ và dùng $PS=SP=\lambda_1P$, $P^2=P$. Ở câu 2, tính $\tilde Sv_j$ với mọi $j$. Ở câu 3, lặp câu 1 và câu 2: sau khi tìm $v_j$, trừ $\lambda_jv_jv_j^\top$ khỏi ma trận hiện tại.
+:::
+
+::: solution
+**Câu 1.** Ma trận $P$ đối xứng, $P^2=v_1(v_1^\top v_1)v_1^\top=P$, và $\tilde X^\top\tilde X=(I_d-P)X^\top X(I_d-P)=n(I_d-P)S(I_d-P)$. Từ $Sv_1=\lambda_1v_1$ và $S$ đối xứng, $PS=v_1(Sv_1)^\top=\lambda_1P$ và $SP=(Sv_1)v_1^\top=\lambda_1P$. Do đó
+
+$$
+\begin{aligned}
+\tilde S&=(I_d-P)S(I_d-P)\\
+&=S-PS-SP+PSP\\
+&=S-\lambda_1P-\lambda_1P+\lambda_1P^2\\
+&=S-\lambda_1v_1v_1^\top.
+\end{aligned}
+$$
+
+**Câu 2.** Lấy cơ sở trực chuẩn $v_1,\ldots,v_d$ gồm các vector riêng của $S$. Ta có $\tilde Sv_1=\lambda_1v_1-\lambda_1v_1=0$ và, với $j\ge2$, $\tilde Sv_j=Sv_j-\lambda_1v_1(v_1^\top v_j)=\lambda_jv_j$. Vậy $\tilde S$ có các trị riêng $0,\lambda_2,\ldots,\lambda_d$ với cùng các vector riêng. Vì $\lambda_2>\lambda_3\ge\cdots\ge\lambda_d\ge0$, trị riêng lớn nhất của $\tilde S$ là $\lambda_2>0$ và không gian riêng của nó là $\operatorname{span}(v_2)$. Vector đơn vị trong không gian này là $\pm v_2$, nên $u=\pm v_2$.
+
+**Câu 3.**
+
+1. Đặt $A\leftarrow S$.
+2. Với $j=1,\ldots,k$: tính $[\lambda_j,v_j]=f(A)$, rồi đặt $A\leftarrow A-\lambda_jv_jv_j^\top$.
+3. Trả về $v_1,\ldots,v_k$ và $\lambda_1,\ldots,\lambda_k$.
+
+Theo câu 1 và câu 2 lặp lại, trước lần gọi thứ $j$ ma trận hiện tại là $A=\sum_{l\ge j}\lambda_lv_lv_l^\top$, vì $S=\sum_{l=1}^d\lambda_lv_lv_l^\top$ (Bước 1 của Phụ lục A trong ghi chú). Ma trận này đối xứng, nửa xác định dương, có trị riêng lớn nhất $\lambda_j$ đơn vì $\lambda_j>\lambda_{j+1}$ và $\lambda_j>0$. Do đó $f$ trả về $\lambda_j$ và $\pm v_j$; phép trừ $\lambda_jv_jv_j^\top$ không phụ thuộc dấu của $v_j$.
+
+**Kiểm tra lại.** Với $S=\operatorname{diag}(2,1/2)$ của Ví dụ 14.2 và lần gọi thứ nhất: $f(S)$ cho $\lambda_1=2$, $v_1=\pm(1,0)^\top$, và $\tilde S=\operatorname{diag}(0,1/2)$, có trị riêng lớn nhất $1/2=\lambda_2$ với vector riêng $\pm(0,1)^\top$.
+:::
+
+**Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 4; so sánh KL thuận và KL ngược khi xấp xỉ một phân phối bằng một phân phối dạng tích.
+
+::: exercise Bài tập 14.11 (KL thuận và KL ngược với xấp xỉ dạng tích; Murphy, Bài 6.4, §6.4, tr. 227)
+Với hai phân phối rời rạc $p,q$ trên một tập hữu hạn, $\mathrm{KL}(p\,\|\,q)=\sum_{p>0}p\log(p/q)$, và $\mathrm{KL}(p\,\|\,q)=+\infty$ khi có một điểm với $p>0$, $q=0$ (Bài 11, §6.2). Xét xấp xỉ dạng tích $q(x,y)=q_1(x)q_2(y)$ cho một phân phối đồng thời $p(x,y)$ có các phân phối biên $p_X,p_Y$.
+
+1. Chứng minh để cực tiểu KL thuận $\mathrm{KL}(p\,\|\,q)$, cần chọn $q_1=p_X$ và $q_2=p_Y$, tức xấp xỉ tối ưu là tích các phân phối biên.
+2. Xét phân phối đồng thời sau trên $\{1,2,3,4\}^2$, trong đó hàng ứng với $y$ và cột ứng với $x$.
+
+| $y\backslash x$ | $1$ | $2$ | $3$ | $4$ |
+|---|---|---|---|---|
+| $1$ | $1/8$ | $1/8$ | $0$ | $0$ |
+| $2$ | $1/8$ | $1/8$ | $0$ | $0$ |
+| $3$ | $0$ | $0$ | $1/4$ | $0$ |
+| $4$ | $0$ | $0$ | $0$ | $1/4$ |
+
+Tính giá trị nhỏ nhất của KL thuận ở câu 1 cho phân phối này.
+
+3. Với phân phối ở câu 2, chứng minh KL ngược $\mathrm{KL}(q\,\|\,p)$ trên họ dạng tích có ba cực tiểu khác nhau: tập các $q$ có KL ngược hữu hạn tách thành ba phần rời nhau, và trên mỗi phần KL ngược đạt giá trị nhỏ nhất tại một điểm. Xác định ba cực tiểu và tính $\mathrm{KL}(q\,\|\,p)$ tại mỗi cực tiểu. Tính $\mathrm{KL}(q\,\|\,p)$ khi $q(x,y)=p_X(x)p_Y(y)$.
+:::
+
+::: hint
+Ở câu 1, dùng $\sum_yp(x,y)=p_X(x)$ để tách $\mathrm{KL}(p\,\|\,q)$ thành $-H(p)$ cộng hai tổng chỉ chứa $q_1$ và $q_2$, với $H(\xi)=-\sum\xi\log\xi$, rồi dùng tính không âm của KL. Ở câu 3, KL ngược hữu hạn khi và chỉ khi $p(x,y)>0$ tại mọi điểm có $q_1(x)q_2(y)>0$; miền hỗ trợ của $q$ là một tích $A\times B$.
+:::
+
+::: solution
+**Câu 1.** Nếu $q_1(x)=0$ tại một $x$ có $p_X(x)>0$ thì có $y$ với $p(x,y)>0=q(x,y)$, và KL thuận bằng $+\infty$; tương tự với $q_2$. Ngoài trường hợp đó,
+
+$$
+\begin{aligned}
+&\mathrm{KL}(p\,\|\,q)\\
+&\quad=-H(p)\\
+&\qquad-\sum_{x,y}p(x,y)\log q_1(x)\\
+&\qquad-\sum_{x,y}p(x,y)\log q_2(y)\\
+&\quad=-H(p)\\
+&\qquad-\sum_xp_X(x)\log q_1(x)\\
+&\qquad-\sum_yp_Y(y)\log q_2(y)\\
+&\quad=-H(p)+H(p_X)+H(p_Y)\\
+&\qquad+\mathrm{KL}(p_X\,\|\,q_1)\\
+&\qquad+\mathrm{KL}(p_Y\,\|\,q_2).
+\end{aligned}
+$$
+
+Dòng cuối dùng $-\sum_xp_X\log q_1=-\sum_xp_X\log p_X+\sum_xp_X\log(p_X/q_1)$. Theo Bài 11, §6.2, mỗi KL không âm và bằng $0$ khi và chỉ khi hai phân phối trùng nhau. Vậy KL thuận nhỏ nhất khi và chỉ khi $q_1=p_X$ và $q_2=p_Y$, với giá trị $H(p_X)+H(p_Y)-H(p)$.
+
+**Câu 2.** Tổng mỗi cột và mỗi hàng bằng $1/4$, nên $p_X=p_Y=(1/4,1/4,1/4,1/4)$ và $H(p_X)=H(p_Y)=\log4=2\log2$. Bảng có bốn ô bằng $1/8$ và hai ô bằng $1/4$, nên
+
+$$
+\begin{aligned}
+H(p)&=4\cdot\frac18\log8+2\cdot\frac14\log4\\
+&=\frac32\log2+\log2\\
+&=\frac52\log2.
+\end{aligned}
+$$
+
+Giá trị nhỏ nhất của KL thuận là $4\log2-\tfrac52\log2=\tfrac32\log2\approx1{,}0397$.
+
+**Câu 3.** *Miền hỗ trợ.* Đặt $A=\{x:q_1(x)>0\}$ và $B=\{y:q_2(y)>0\}$, hai tập khác rỗng; miền hỗ trợ của $q$ là $A\times B$. KL ngược hữu hạn khi và chỉ khi $p>0$ trên $A\times B$. Miền hỗ trợ của $p$ là $\{1,2\}^2\cup\{(3,3)\}\cup\{(4,4)\}$.
+
+- Nếu $3\in A$: với mọi $y\in B$, $p(3,y)>0$ buộc $y=3$, nên $B=\{3\}$; khi đó với mọi $x\in A$, $p(x,3)>0$ buộc $x=3$, nên $A\times B=\{(3,3)\}$.
+- Tương tự, nếu $4\in A$ thì $A\times B=\{(4,4)\}$.
+- Nếu $A\subseteq\{1,2\}$: với $x\in A$, $p(x,y)>0$ buộc $y\in\{1,2\}$, nên $A\times B\subseteq\{1,2\}^2$.
+
+Vậy tập các $q$ có KL ngược hữu hạn gồm ba phần rời nhau, ứng với ba khối của $p$.
+
+*Phần thứ nhất.* Trên $\{1,2\}^2$, $p=1/8$, nên
 
 $$
 \begin{aligned}
 &\mathrm{KL}(q\,\|\,p)\\
-&\quad=\frac12\big(0+4-1-\log4\big)\\
-&\quad=\frac12(3-\log4)\approx0{,}8069.
+&\quad=\sum_{x,y}q_1(x)q_2(y)\\
+&\qquad\cdot\log\big(8q_1(x)q_2(y)\big)\\
+&\quad=\log8-H(q_1)-H(q_2)\\
+&\quad\ge\log8-2\log2=\log2,
 \end{aligned}
 $$
 
-Vì $\log4\approx1{,}3863<3$, KL dương. Theo Mệnh đề 14.18, KL bằng $0$ trong họ này khi và chỉ khi trung bình bằng $0$ và phương sai bằng $1$.
+vì phân phối trên hai điểm có entropy lớn nhất $\log2$, đạt khi và chỉ khi phân phối đều. Cực tiểu là $q_1=q_2=$ phân phối đều trên $\{1,2\}$, tức $q=1/4$ trên bốn ô của khối, với $\mathrm{KL}(q\,\|\,p)=\log2\approx0{,}6931$.
 
-**Câu 2.** Theo Mệnh đề 14.20 với $k=1$, $\mu=0$ và $\sigma=\sqrt4=2$. Tại $\varepsilon=-1$, $z=0+2\cdot(-1)=-2$. Nếu dùng $\sigma=4$, mẫu có phương sai $16$, không phải $4$.
+*Phần thứ hai và thứ ba.* Phần thứ hai chỉ gồm $q=\mathbb 1[(x,y)=(3,3)]$, với $\mathrm{KL}(q\,\|\,p)=1\cdot\log\frac1{1/4}=\log4\approx1{,}3863$. Phần thứ ba chỉ gồm $q=\mathbb 1[(x,y)=(4,4)]$, cũng với giá trị $\log4$.
 
-**Câu 3.** Không. KL tới tiên nghiệm nhỏ chỉ cho biết bộ mã hóa gần tiên nghiệm; nó không cho biết mã giữ thông tin của quan sát hay bộ giải mã mô tả dữ liệu ra sao. Trong Tình huống 14.2, KL bằng $0$ nhưng mô hình có $\mathbb E[X_1^2]=1$ trong khi dữ liệu có $\mathbb E[X_1^2]=9$.
+*Tích các biên.* $q(x,y)=p_X(x)p_Y(y)=1/16$ tại mọi ô, kể cả ô $(x,y)=(3,1)$ có $p=0$, nên $\mathrm{KL}(q\,\|\,p)=+\infty$.
 
-**Kiểm tra lại.** $\operatorname{Var}(2\varepsilon)=4\operatorname{Var}(\varepsilon)=4$ theo Mệnh đề 10.24. Lỗi thường gặp là đọc tham số thứ hai của $\mathcal N(0,4)$ là độ lệch chuẩn.
+**Diễn giải.** KL thuận bằng $+\infty$ khi $q=0$ tại một điểm có $p>0$, nên nghiệm của câu 1 đặt khối lượng lên cả ba khối của $p$. KL ngược bằng $+\infty$ khi $q>0$ tại một điểm có $p=0$, nên mọi xấp xỉ dạng tích có KL ngược hữu hạn chỉ đặt khối lượng trong một khối. Suy luận biến phân (Định nghĩa 14.16) cực tiểu KL theo chiều ngược, $\mathrm{KL}(q\,\|\,p_\theta(\cdot\mid x))$.
+
+**Kiểm tra lại.** Với $q=1/4$ trên khối $\{1,2\}^2$: $\mathrm{KL}(q\,\|\,p)=4\cdot\tfrac14\log\tfrac{1/4}{1/8}=\log2$, khớp phần thứ nhất.
 :::
 
-### Bài tập 14.5 (Phương sai mã và lỗi tái tạo theo góc)
-
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 1; dùng (4.4) để đọc phương sai giữ lại và lỗi tái tạo theo hướng chiếu.
-
-::: exercise Bài tập 14.5
-Cho dữ liệu đã tâm hóa có $S=\operatorname{diag}(3,1)$. Với $u=(\cos\alpha,\sin\alpha)^\top$, biểu diễn phương sai của mã và lỗi tái tạo trung bình theo $\alpha$. Xác định mọi hướng tối ưu và kiểm tra tổng của hai đại lượng.
-:::
-
-::: hint Gợi ý 1
-Tính $u^\top Su$ rồi áp dụng (4.4) với $\operatorname{tr}(S)=4$.
-:::
-
-::: hint Gợi ý 2
-Viết $u^\top Su=3\cos^2\alpha+\sin^2\alpha$ theo $\cos^2\alpha$ bằng $\sin^2\alpha=1-\cos^2\alpha$; giá trị lớn nhất của $\cos^2\alpha$ là $1$.
-:::
-
-::: solution Lời giải Bài tập 14.5
-**Phương sai của mã.** $u^\top Su=3\cos^2\alpha+\sin^2\alpha=1+2\cos^2\alpha$.
-
-**Lỗi tái tạo.** Theo (4.4), $\widehat J=4-(1+2\cos^2\alpha)=3-2\cos^2\alpha$.
-
-**Hướng tối ưu.** Phương sai lớn nhất và lỗi nhỏ nhất khi $\cos^2\alpha=1$, tức $\alpha=j\pi$ với $j$ nguyên, hay $u=\pm(1,0)^\top$. Khi đó phương sai bằng $3$ và lỗi bằng $1$.
-
-**Kiểm tra lại.** Hai đại lượng luôn cộng thành $4=\operatorname{tr}(S)$. Tại $\alpha=\pi/2$, $u=(0,1)^\top$ là vector riêng ứng với $\lambda_2$, nên phương sai bằng $\lambda_2=1$ và lỗi bằng $\operatorname{tr}(S)-\lambda_2=\lambda_1=3$.
-:::
-
-### Bài tập 14.6 (Phân tích thành phần chính của dữ liệu theo đường chéo)
-
-**Mức độ:** tính toán, chứng minh. **Mục tiêu:** mục tiêu học tập 1; tính PCA cho dữ liệu không nằm trên trục, chứng minh hướng tối ưu bằng tham số góc, và đánh giá ảnh hưởng của đơn vị đo.
-
-::: exercise Bài tập 14.6
-Cho bốn quan sát $(2,2)^\top$, $(-2,-2)^\top$, $(1,-1)^\top$, $(-1,1)^\top$.
-
-1. Tính $\bar x$, $S=n^{-1}\sum_i(x_i-\bar x)(x_i-\bar x)^\top$, các trị riêng và một vector riêng đơn vị ứng với trị riêng lớn nhất.
-2. Tính mã và tái tạo một chiều của từng quan sát. Tính tổng và trung bình lỗi bình phương, rồi so sánh trung bình với trị riêng nhỏ.
-3. Với $u=(\cos\alpha,\sin\alpha)^\top$, suy ra biểu thức lỗi trung bình theo $\alpha$ và xác định mọi $\alpha$ tối ưu. Giải thích vì sao đổi dấu vector riêng không đổi tái tạo.
-4. Nhân tọa độ thứ hai của mọi quan sát với $3$. Tính ma trận hiệp phương sai mới, chứng tỏ $(1,1)^\top/\sqrt2$ không còn là vector riêng, và diễn giải ảnh hưởng của đơn vị đo.
-:::
-
-::: hint Gợi ý 1
-Tích ngoài của $(2,2)^\top$ là $\begin{pmatrix}4&4\\4&4\end{pmatrix}$, của $(1,-1)^\top$ là $\begin{pmatrix}1&-1\\-1&1\end{pmatrix}$. Ma trận dạng $\begin{pmatrix}a&b\\b&a\end{pmatrix}$ có các vector riêng $(1,1)^\top$ và $(1,-1)^\top$.
-:::
-
-::: hint Gợi ý 2
-Ở câu 3, dùng (4.4) và $2\sin\alpha\cos\alpha=\sin2\alpha$. Ở câu 4, nhân ma trận mới với $(1,1)^\top$.
-:::
-
-::: solution Lời giải Bài tập 14.6
-**Câu 1.** Tổng bốn quan sát bằng $(0,0)^\top$, nên $\bar x=0$. Theo (4.1),
-
-$$
-\begin{aligned}
-S&=\frac14\Bigg[2\begin{pmatrix}4&4\\4&4\end{pmatrix}\\
-&\qquad+2\begin{pmatrix}1&-1\\-1&1\end{pmatrix}\Bigg]\\
-&=\frac14\begin{pmatrix}10&6\\6&10\end{pmatrix}\\
-&=\begin{pmatrix}5/2&3/2\\3/2&5/2\end{pmatrix}.
-\end{aligned}
-$$
-
-Ta có $S(1,1)^\top=(4,4)^\top$ và $S(1,-1)^\top=(1,-1)^\top$, nên các trị riêng là $\lambda_1=4$, $\lambda_2=1$. Một vector riêng đơn vị ứng với $\lambda_1$ là $u=(1,1)^\top/\sqrt2$.
-
-**Câu 2.** Các mã $u^\top x$ là $4/\sqrt2=2\sqrt2$, $-2\sqrt2$, $0$, $0$. Các tái tạo $u\,(u^\top x)$ là $(2,2)^\top$, $(-2,-2)^\top$, $(0,0)^\top$, $(0,0)^\top$. Lỗi từng điểm là $0,0,2,2$ (vì $\|(1,-1)^\top\|_2^2=2$), tổng bằng $4$ và trung bình bằng $1=\lambda_2$.
-
-**Câu 3.** Phương sai giữ lại là
-
-$$
-\begin{aligned}
-u^\top Su&=\frac52\cos^2\alpha+\frac52\sin^2\alpha\\
-&\quad+2\cdot\frac32\sin\alpha\cos\alpha\\
-&=\frac52+\frac32\sin2\alpha.
-\end{aligned}
-$$
-
-Theo (4.4) với $\operatorname{tr}(S)=5$,
-
-$$
-\begin{aligned}
-\widehat J(\alpha)&=5-\Big(\frac52+\frac32\sin2\alpha\Big)\\
-&=\frac52-\frac32\sin2\alpha.
-\end{aligned}
-$$
-
-Lỗi nhỏ nhất khi $\sin2\alpha=1$, tức $\alpha=\pi/4+j\pi$ với $j$ nguyên, và giá trị nhỏ nhất là $1$. Hai giá trị $\alpha=\pi/4$ và $\alpha=5\pi/4$ cho $u$ và $-u$; vì $(-u)(-u)^\top=uu^\top$, tái tạo $uu^\top x$ không đổi, chỉ dấu của mã đổi.
-
-**Câu 4.** Các quan sát mới là $(2,6)^\top$, $(-2,-6)^\top$, $(1,-3)^\top$, $(-1,3)^\top$. Ma trận hiệp phương sai mới là
-
-$$
-\begin{aligned}
-S'&=\frac14\Bigg[2\begin{pmatrix}4&12\\12&36\end{pmatrix}\\
-&\qquad+2\begin{pmatrix}1&-3\\-3&9\end{pmatrix}\Bigg]\\
-&=\frac14\begin{pmatrix}10&18\\18&90\end{pmatrix}\\
-&=\begin{pmatrix}5/2&9/2\\9/2&45/2\end{pmatrix}.
-\end{aligned}
-$$
-
-Ta có $S'(1,1)^\top=(7,27)^\top$, không tỉ lệ với $(1,1)^\top$, nên $(1,1)^\top/\sqrt2$ không còn là vector riêng. Phương trình đặc trưng $\lambda^2-25\lambda+36=0$ cho $\lambda_1'=(25+\sqrt{481})/2\approx23{,}47$ và $\lambda_2'=(25-\sqrt{481})/2\approx1{,}53$. Vector riêng ứng với $\lambda_1'$ có tỉ số tọa độ $v_2/v_1=(\lambda_1'-5/2)/(9/2)\approx4{,}66$, tức hướng chính lệch khoảng $77{,}9^\circ$ so với trục ngang thay vì $45^\circ$. Đổi đơn vị của một tọa độ làm thay đổi $S$ và kéo hướng chính về phía tọa độ đó; chọn đơn vị hay chuẩn hóa đặc trưng là một lựa chọn mô hình.
-
-**Kiểm tra lại.** Trước khi đổi đơn vị, $\lambda_1+\lambda_2=5=\operatorname{tr}(S)$; sau khi đổi, $\lambda_1'+\lambda_2'=25=\operatorname{tr}(S')$ và $\lambda_1'\lambda_2'=36=\det S'$.
-:::
-
-### Bài tập 14.7 (Mã, tái tạo và xác suất của một miền)
-
-**Mức độ:** tính toán, khái niệm. **Mục tiêu:** mục tiêu học tập 2 và 3; phân biệt ánh xạ tái tạo với phân phối của dữ liệu sinh.
-
-::: exercise Bài tập 14.7
-Cho $f(x)=3x_1$, $g(z)=(z/3,0)^\top$ và $x=(1,2)^\top$.
-
-1. Tính mã, tái tạo và lỗi bình phương.
-2. Xác định ánh xạ $g\circ f$.
-3. Giải thích vì sao chỉ từ hai hàm $f,g$ không thể gán xác suất cho miền quan sát $\{x:x_1>1/2\}$. Minh họa bằng hai phân phối khác nhau của $Z$.
-:::
-
-::: hint Gợi ý 1
-Tính hợp $g\circ f$ trên một $x$ tổng quát, rồi phân biệt ánh xạ với phân phối của đầu vào ánh xạ.
-:::
-
-::: hint Gợi ý 2
-So sánh $Z$ nhận $\pm3$ với xác suất $1/2$ mỗi giá trị và $Z\sim\mathcal N(0,1)$, với $X=g(Z)$.
-:::
-
-::: solution Lời giải Bài tập 14.7
-**Câu 1.** Mã là $f(x)=3$, tái tạo là $g(3)=(1,0)^\top$, và lỗi là $\|(1,2)^\top-(1,0)^\top\|_2^2=4$.
-
-**Câu 2.** Với mọi $x$, $g(f(x))=(3x_1/3,0)^\top=(x_1,0)^\top$: phép chiếu lên trục ngang, dù mã đã được nhân với $3$ (như phép đổi tọa độ của Mệnh đề 14.8 với $R=(3)$).
-
-**Câu 3.** Hai hàm không chỉ định phân phối cho $Z$ hay nhiễu quan sát, nên chưa có xác suất của một miền dữ liệu. Với $X=g(Z)$, ta có $X_1=Z/3$, nên $\{X_1>1/2\}=\{Z>3/2\}$.
-
-- Nếu $Z$ nhận $\pm3$ với xác suất $1/2$ mỗi giá trị, $\mathbb P(Z>3/2)=\mathbb P(Z=3)=1/2$.
-- Nếu $Z\sim\mathcal N(0,1)$, $\mathbb P(Z>3/2)=1-\Phi(1{,}5)\approx0{,}0668$, với $\Phi$ là hàm phân phối chuẩn.
-
-Cùng hàm $g$ cho hai xác suất khác nhau của cùng một miền.
-
-**Kiểm tra lại.** Lỗi ở câu 1 bằng bình phương tọa độ thứ hai bị bỏ, $2^2=4$, đúng với phép chiếu lên trục ngang ở câu 2.
-:::
-
-### Bài tập 14.8 (Bộ tự mã hóa theo đường chéo và giới hạn sinh dữ liệu)
-
-**Mức độ:** tính toán, kiểm tra giả thiết. **Mục tiêu:** mục tiêu học tập 2 và 6; tính tái tạo, chỉ ra sự không duy nhất của tọa độ mã và giới hạn của bộ tự mã hóa khi sinh dữ liệu.
-
-::: exercise Bài tập 14.8
-Dùng bốn quan sát của Bài tập 14.6. Cho $f(x)=x_1+x_2$ và $g(z)=(z/2,z/2)^\top$.
-
-1. Tính mã, tái tạo và lỗi bình phương tại $(2,2)^\top$ và $(1,-1)^\top$.
-2. Với $c\ne0$, đặt $f_c(x)=c(x_1+x_2)$ và $g_c(z)=\big(z/(2c),z/(2c)\big)^\top$. Chứng minh tái tạo không đổi. Với giá trị nào của $c$ thì mã bằng tọa độ PCA $u^\top x$, $u=(1,1)^\top/\sqrt2$?
-3. Xét hai phân phối của mã: $Z\sim\mathcal N(0,1)$, và $Z$ nhận $\pm4$ với xác suất $1/2$ mỗi giá trị. Với $X=g(Z)$, tính $\mathbb E[X_1^2]$ trong hai trường hợp và so sánh với trung bình $x_1^2$ trên bốn quan sát. Giải thích vì sao hai hàm $f,g$ chưa chỉ định một phân phối sinh.
-4. Với $Z\sim\mathcal N(0,1)$ và $X=g(Z)$, giải thích vì sao $X$ không có mật độ hai chiều. Nêu một thay đổi làm $X$ có mật độ trên $\mathbb R^2$, và tính ma trận hiệp phương sai cùng định thức của nó.
-:::
-
-::: hint Gợi ý 1
-Ở câu 1 và 2, viết $g(f(x))$ thành $uu^\top x$. Ở câu 3, $X_1=Z/2$.
-:::
-
-::: hint Gợi ý 2
-Ở câu 4, xem lập luận diện tích trong Ví dụ 14.4 và mô hình (6.2).
-:::
-
-::: solution Lời giải Bài tập 14.8
-**Câu 1.** Tại $(2,2)^\top$: mã $4$, tái tạo $(2,2)^\top$, lỗi $0$. Tại $(1,-1)^\top$: mã $0$, tái tạo $(0,0)^\top$, lỗi $2$.
-
-**Câu 2.** Với mọi $x$,
-
-$$
-\begin{aligned}
-&g_c(f_c(x))\\
-&\quad=\Big(\frac{c(x_1+x_2)}{2c},\frac{c(x_1+x_2)}{2c}\Big)^\top\\
-&\quad=\Big(\frac{x_1+x_2}2,\frac{x_1+x_2}2\Big)^\top\\
-&\quad=uu^\top x,
-\end{aligned}
-$$
-
-không phụ thuộc $c$; đây là phép chiếu PCA của Bài tập 14.6. Mã $c(x_1+x_2)=c\sqrt2\,u^\top x$ bằng $u^\top x$ khi và chỉ khi $c=1/\sqrt2$. Với $c=1$ như đề bài, mã gấp $\sqrt2$ lần tọa độ PCA, đúng phép đổi tọa độ của Mệnh đề 14.8 với $R=(\sqrt2)$.
-
-**Câu 3.** Vì $X_1=Z/2$, $\mathbb E[X_1^2]=\mathbb E[Z^2]/4$.
-
-- Với $Z\sim\mathcal N(0,1)$: $\mathbb E[X_1^2]=1/4$.
-- Với $Z=\pm4$: $\mathbb E[X_1^2]=16/4=4$.
-
-Trung bình $x_1^2$ trên bốn quan sát là $(4+4+1+1)/4=5/2$. Cùng bộ giải mã cho hai phân phối khác nhau khi đổi phân phối của mã, và không phân phối nào khớp dữ liệu; hai hàm $f,g$ không chứa thông tin để chọn phân phối của $Z$.
-
-**Câu 4.** $X=(Z/2,Z/2)^\top$ nằm trên đường thẳng $x_1=x_2$ với xác suất $1$, một tập có diện tích bằng $0$. Nếu $X$ có mật độ hai chiều, xác suất của tập đó phải bằng $0$, mâu thuẫn. Thêm nhiễu $\eta\sim\mathcal N(0,\tau^2I_2)$ độc lập với $Z$, $\tau>0$, và đặt $X=g(Z)+\eta$: đây là mô hình (6.2), nên $X$ có mật độ (6.1). Vì $Z$ và $\eta$ độc lập, có trung bình $0$,
-
-$$
-\begin{aligned}
-\operatorname{Cov}(X)&=\frac14\begin{pmatrix}1&1\\1&1\end{pmatrix}+\tau^2I_2,\\
-\det\operatorname{Cov}(X)&=\Big(\frac14+\tau^2\Big)^2-\frac1{16}\\
-&=\tau^2\Big(\tau^2+\frac12\Big)>0.
-\end{aligned}
-$$
-
-**Kiểm tra lại.** Khi $\tau\to0$, định thức dần về $0$, ứng với phân phối suy biến trên đường chéo ở đầu câu 4.
-:::
-
-### Bài tập 14.9 (KL Gaussian, kỳ vọng tái tạo và ELBO)
-
-**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 4 và 5; tính từng số hạng của ELBO, tính biên và hậu nghiệm, kiểm tra phân rã (7.3).
-
-::: exercise Bài tập 14.9
-Cho $p(z)=\mathcal N(0,1)$, $q(z\mid x)=\mathcal N(1,1/4)$, $p_\theta(x\mid z)=\mathcal N(z,1)$ và quan sát $x=1$.
-
-1. Tính KL tới tiên nghiệm bằng (7.5), giữ logarit ở dạng chính xác.
-2. Tính $\mathbb E_q[(1-Z)^2]$ và $\mathbb E_q[\log p_\theta(1\mid Z)]$. Vì sao thay $Z$ bằng trung bình của nó làm mất một số hạng?
-3. Kết hợp thành ELBO; giữ $\log(2\pi)$ ở dạng ký hiệu trước khi tính gần đúng.
-4. Tính biên $p_\theta(1)$ và hậu nghiệm $p_\theta(z\mid1)$ bằng hoàn bình phương. Tính KL tới hậu nghiệm để kiểm tra (7.3). Mô tả cách sinh một quan sát mới mà không cần biết hậu nghiệm.
-5. Với cùng mô hình, nếu đổi $q$ thành hậu nghiệm chính xác, ELBO và KL tới tiên nghiệm thay đổi ra sao? Dùng kết quả để phân biệt cận chặt với KL tới tiên nghiệm nhỏ.
-:::
-
-::: hint Gợi ý 1
-Dùng $\mathbb E[(a-Z)^2]=(a-\mathbb EZ)^2+\operatorname{Var}(Z)$ (Mệnh đề 10.24) và (7.6) với $d=1$, $\tau^2=1$.
-:::
-
-::: hint Gợi ý 2
-Ở câu 4, dùng phép hoàn bình phương $-\tfrac{z^2}2-\tfrac{(x-z)^2}2=-(z-\tfrac x2)^2-\tfrac{x^2}4$ và Bổ đề 14.17; phương sai là tham số thứ hai của mỗi Gaussian.
-:::
-
-::: solution Lời giải Bài tập 14.9
-**Câu 1.** Theo (7.5) với $\mu=1$, $s^2=1/4$:
-
-$$
-\begin{aligned}
-&\mathrm{KL}(q\,\|\,p)\\
-&\quad=\frac12\Big(1+\frac14-1-\log\frac14\Big)\\
-&\quad=\frac18+\log2\approx0{,}8181.
-\end{aligned}
-$$
-
-**Câu 2.** Dưới $q$, $\mathbb E_qZ=1$ và $\operatorname{Var}_q(Z)=1/4$, nên $\mathbb E_q[(1-Z)^2]=(1-1)^2+1/4=1/4$. Theo (7.6),
-
-$$
-\begin{aligned}
-&\mathbb E_q[\log p_\theta(1\mid Z)]\\
-&\quad=-\frac12\log(2\pi)-\frac18.
-\end{aligned}
-$$
-
-Thay $Z$ bằng trung bình $1$ cho $(1-1)^2=0$, bỏ mất $\operatorname{Var}_q(Z)=1/4$ trong lỗi bình phương, tức số hạng $-1/8$ trong log-mật độ. Nói chung không thể đưa một hàm phi tuyến ra khỏi kỳ vọng.
-
-**Câu 3.** Theo (7.2),
-
-$$
-\begin{aligned}
-\mathcal L&=-\frac12\log(2\pi)-\frac18-\frac18-\log2\\
-&=-\frac12\log(2\pi)-\frac14-\log2\\
-&\approx-1{,}8621.
-\end{aligned}
-$$
-
-**Câu 4.** Với $x=1$, $-\tfrac{z^2}2-\tfrac{(1-z)^2}2=-(z-\tfrac12)^2-\tfrac14$. Theo (6.1) và $\int e^{-(z-1/2)^2}dz=\sqrt\pi$,
-
-$$
-\begin{aligned}
-p_\theta(1)&=\frac1{2\pi}e^{-1/4}\sqrt\pi\\
-&=\frac1{\sqrt{4\pi}}e^{-1/4},\\
-\log p_\theta(1)&=-\frac12\log(4\pi)-\frac14\\
-&\approx-1{,}5155,
-\end{aligned}
-$$
-
-tức $p_\theta(1)$ là mật độ $\mathcal N(0,2)$ tại $1$. Theo (6.3), hậu nghiệm tỉ lệ với $e^{-(z-1/2)^2}$, tức $r=p_\theta(\cdot\mid1)=\mathcal N(1/2,1/2)$. Bổ đề 14.17 với $a=1$, $\beta=1/4$, $c=1/2$, $\gamma=1/2$ cho
-
-$$
-\begin{aligned}
-&\mathrm{KL}(q\,\|\,r)\\
-&\quad=\frac12\Big[\log\frac{1/2}{1/4}\\
-&\qquad+\frac{1/4+(1-1/2)^2}{1/2}-1\Big]\\
-&\quad=\frac12\log2\approx0{,}3466.
-\end{aligned}
-$$
-
-Cộng vào ELBO: $-\tfrac12\log(2\pi)-\tfrac14-\log2+\tfrac12\log2=-\tfrac12\log(4\pi)-\tfrac14=\log p_\theta(1)$, đúng (7.3).
-
-Để sinh một quan sát mới, lấy $z\sim\mathcal N(0,1)$ rồi lấy $x'\sim\mathcal N(z,1)$, tức $x'=z+\eta$ với $\eta\sim\mathcal N(0,1)$ độc lập; hậu nghiệm không xuất hiện. Quan sát mới có phương sai $2$, còn hậu nghiệm tại $x=1$ có phương sai $1/2$: hai phân phối phục vụ hai phép tính khác nhau của Định nghĩa 14.11.
-
-**Câu 5.** Nếu $q=r$, KL tới hậu nghiệm bằng $0$ và ELBO tăng lên $\log p_\theta(1)=-\tfrac12\log(4\pi)-\tfrac14$. KL tới tiên nghiệm khi đó là
-
-$$
-\begin{aligned}
-&\frac12\Big(\frac14+\frac12-1-\log\frac12\Big)\\
-&\quad=\frac12\log2-\frac18\approx0{,}2216,
-\end{aligned}
-$$
-
-vẫn dương. Kỳ vọng lỗi bình phương là $(1-1/2)^2+1/2=3/4$, nên kỳ vọng tái tạo là $-\tfrac12\log(2\pi)-\tfrac38$, và trừ KL mới cho đúng $\log p_\theta(1)$. Cận chặt đòi hỏi $q$ khớp hậu nghiệm, không đòi hỏi KL tới tiên nghiệm bằng $0$.
-
-**Kiểm tra lại.** Ở câu 5, $-\tfrac12\log(2\pi)-\tfrac38-\tfrac12\log2+\tfrac18=-\tfrac12\log(4\pi)-\tfrac14$. Khe hở ở câu 4 dương, đúng Bổ đề 14.13.
-:::
-
-### Bài tập 14.10 (Mẫu tái tham số hóa và ước lượng gradient)
-
-**Mức độ:** tính toán, kiểm tra giả thiết. **Mục tiêu:** mục tiêu học tập 5; tính mẫu và gradient theo đường mẫu, kiểm tra điều kiện của Mệnh đề 14.20, và tính gradient của toàn ELBO.
-
-::: exercise Bài tập 14.10
-Cho tiên nghiệm $p(z)=\mathcal N(0,1)$, đầu ra bộ mã hóa $\mu=2$, $\sigma=1/2$, và $Z=\mu+\sigma\varepsilon$ với $\varepsilon\sim\mathcal N(0,1)$.
-
-1. Tính $z$ với các giá trị nhiễu $\varepsilon=-1,0,2$. Xác định phương sai của $Z$.
-2. Với $x=1$ và $h(z)=\log\mathcal N(1;z,1)$, tính đạo hàm theo $\mu$ và theo $\sigma$ của $h(\mu+\sigma\varepsilon)$ tại mỗi giá trị nhiễu, rồi tính trung bình ba giá trị trong mỗi cột.
-3. Tính gradient chính xác của $\mathbb E[h(Z)]$ theo $\mu,\sigma$. So sánh với câu 2 và giải thích ý nghĩa của tính không chệch.
-4. Kiểm tra các giả thiết của Mệnh đề 14.20 trên lân cận $|\mu-2|<1$, $|\sigma-1/2|<1/4$, với một hàm chặn $G$ cụ thể. Tính gradient của toàn ELBO theo $\mu,\sigma$ tại $\mu=2$, $\sigma=1/2$.
-:::
-
-::: hint Gợi ý 1
-Dùng $\partial z/\partial\mu=1$, $\partial z/\partial\sigma=\varepsilon$ và $h'(z)=1-z$. Theo Mệnh đề 10.24, $\mathbb E[h(Z)]=-\tfrac12\log(2\pi)-\tfrac12\big[(1-\mu)^2+\sigma^2\big]$.
-:::
-
-::: hint Gợi ý 2
-Ở câu 4, chặn $|1-\mu-\sigma\varepsilon|$ bằng $|1-\mu|+\sigma|\varepsilon|$ trên lân cận; gradient của ELBO bằng gradient của kỳ vọng tái tạo trừ gradient của (7.5).
-:::
-
-::: solution Lời giải Bài tập 14.10
-**Câu 1.** $z=2+\varepsilon/2$ cho $z=3/2,\ 2,\ 3$. Phương sai của $Z$ là $\sigma^2=1/4$.
-
-**Câu 2.** Với $h(z)=-\tfrac12\log(2\pi)-\tfrac12(1-z)^2$, quy tắc dây chuyền cho $\partial h/\partial\mu=1-z$ và $\partial h/\partial\sigma=(1-z)\varepsilon$.
-
-| $\varepsilon$ | $z$ | $\partial h/\partial\mu$ | $\partial h/\partial\sigma$ |
-|---|---:|---:|---:|
-| $-1$ | $3/2$ | $-1/2$ | $1/2$ |
-| $0$ | $2$ | $-1$ | $0$ |
-| $2$ | $3$ | $-2$ | $-4$ |
-
-Trung bình cột theo $\mu$ là $(-1/2-1-2)/3=-7/6$; trung bình cột theo $\sigma$ là $(1/2+0-4)/3=-7/6$.
-
-**Câu 3.** Từ biểu thức trong Gợi ý 1, đạo hàm theo $\mu$ là $1-\mu=-1$ và theo $\sigma$ là $-\sigma=-1/2$. Ba giá trị nhiễu có trung bình $1/3$ và trung bình bình phương $5/3$, thay vì $0$ và $1$; vì $\partial h/\partial\mu=1-\mu-\sigma\varepsilon$ và $\partial h/\partial\sigma=(1-\mu)\varepsilon-\sigma\varepsilon^2$, trung bình ba mẫu là $-1-\tfrac12\cdot\tfrac13=-\tfrac76$ và $-\tfrac13-\tfrac12\cdot\tfrac53=-\tfrac76$. Tính không chệch nói rằng khi $\varepsilon$ được lấy ngẫu nhiên theo $\mathcal N(0,1)$, kỳ vọng của ước lượng bằng gradient chính xác; nó không khẳng định đẳng thức cho một bộ ba giá trị cụ thể.
-
-**Câu 4.** Đặt $F(\mu,\sigma,\varepsilon)=h(\mu+\sigma\varepsilon)$, một đa thức theo $(\mu,\sigma)$, nên khả vi liên tục. Hình chữ nhật $|\mu-2|<1$, $|\sigma-1/2|<1/4$ chứa hình cầu mở $\mathcal B$ bán kính $1/4$ quanh $(2,1/2)$, nên các chặn dưới đây đúng trên $\mathcal B$. Trên hình chữ nhật đó, $|1-\mu|<2$ và $\sigma<3/4$, nên
-
-$$
-\begin{aligned}
-|\partial_\mu F|&=|1-\mu-\sigma\varepsilon|\\
-&\le2+\tfrac34|\varepsilon|,\\
-|\partial_\sigma F|&=|1-\mu-\sigma\varepsilon|\,|\varepsilon|\\
-&\le2|\varepsilon|+\tfrac34\varepsilon^2.
-\end{aligned}
-$$
-
-Do đó $\|\nabla F\|_2\le|\partial_\mu F|+|\partial_\sigma F|\le G(\varepsilon)=2+3|\varepsilon|+\varepsilon^2$, và $\mathbb E[G(\varepsilon)]=2+3\sqrt{2/\pi}+1<\infty$. Tại $(\mu,\sigma)=(2,1/2)$, $|F|\le\tfrac12\log(2\pi)+\tfrac12(1+\tfrac12|\varepsilon|)^2$ có kỳ vọng hữu hạn. Ba giả thiết của Mệnh đề 14.20 thỏa trên $\mathcal B$.
-
-Theo (7.5), KL tới tiên nghiệm là $\tfrac12(\mu^2+\sigma^2-1-\log\sigma^2)$, có đạo hàm theo $\mu$ bằng $\mu=2$ và theo $\sigma$ bằng $\sigma-1/\sigma=1/2-2=-3/2$. Gradient của ELBO là gradient của kỳ vọng tái tạo trừ gradient của KL:
-
-$$
-\begin{aligned}
-\frac{\partial\mathcal L}{\partial\mu}&=-1-2=-3,\\
-\frac{\partial\mathcal L}{\partial\sigma}&=-\frac12-\Big(-\frac32\Big)=1.
-\end{aligned}
-$$
-
-**Kiểm tra lại.** Phép tái tham số hóa dùng độ lệch chuẩn $\sigma=1/2$, còn KL dùng $\sigma^2$ và $\log\sigma^2=2\log\sigma$; đạo hàm của $-\tfrac12\log\sigma^2$ theo $\sigma$ là $-1/\sigma$, không phải $-1/(2\sigma^2)$.
-:::
-
-### Bài tập 14.11 (KL bằng không, mômen khớp và mô hình sai)
-
-**Mức độ:** kiểm tra giả thiết. **Mục tiêu:** mục tiêu học tập 6; chẩn đoán một mô hình có KL bằng $0$, cận chặt và mômen bậc hai khớp dữ liệu nhưng không phù hợp dữ liệu.
-
-::: exercise Bài tập 14.11
-Dữ liệu một chiều nhận giá trị $-2$ hoặc $2$ với xác suất bằng nhau. Chọn $p(z)=q_\phi(z\mid x)=\mathcal N(0,1)$ với mọi $x$, và $p_\theta(x\mid z)=\mathcal N(0,4)$ không phụ thuộc $z$.
-
-1. Tính KL tới tiên nghiệm, log-mật độ giải mã và ELBO tại hai quan sát.
-2. Xác định hậu nghiệm và phân phối biên của mô hình. Cận có chặt không?
-3. So sánh $\mathbb E[X^2]$ của mô hình và của dữ liệu, rồi so sánh xác suất của khoảng $(-1,1)$ dưới mô hình và dưới dữ liệu.
-4. Đánh giá kết luận "KL bằng $0$, cận chặt và mômen bậc hai khớp nên mô hình sinh tốt".
-:::
-
-::: hint Gợi ý 1
-Khi $p_\theta(x\mid z)$ không phụ thuộc $z$, mật độ đồng thời là tích $p_\theta(x)p(z)$; dùng (6.3).
-:::
-
-::: hint Gợi ý 2
-Với $X\sim\mathcal N(0,4)$, $X/2\sim\mathcal N(0,1)$, nên $\mathbb P(|X|<1)=\mathbb P(|X/2|<1/2)=2\Phi(1/2)-1$, với $\Phi$ là hàm phân phối chuẩn.
-:::
-
-::: solution Lời giải Bài tập 14.11
-**Câu 1.** KL tới tiên nghiệm bằng $0$ vì $q_\phi=p$ (Bổ đề 14.13). Tại $x=\pm2$, $\log\mathcal N(\pm2;0,4)=-\tfrac12\log(8\pi)-\tfrac48=-\tfrac12\log(8\pi)-\tfrac12\approx-2{,}1121$. Giá trị này không phụ thuộc $z$, nên kỳ vọng tái tạo bằng nó và ELBO bằng $-\tfrac12\log(8\pi)-\tfrac12$.
-
-**Câu 2.** Theo (6.3), $p_\theta(z\mid x)=p_\theta(x\mid z)p(z)/p_\theta(x)=p(z)$, vì $p_\theta(x\mid z)=p_\theta(x)$ không phụ thuộc $z$. Phân phối biên của mô hình là $\mathcal N(0,4)$. Hậu nghiệm xấp xỉ trùng hậu nghiệm, nên KL tới hậu nghiệm bằng $0$ và cận chặt: ELBO bằng $\log p_\theta(x)$ (Định lý 14.15).
-
-**Câu 3.** Mô hình có $\mathbb E[X^2]=4$, dữ liệu có $\mathbb E[X^2]=(4+4)/2=4$: mômen bậc hai khớp. Dưới mô hình, $\mathbb P(|X|<1)=2\Phi(1/2)-1\approx0{,}3829$; dưới dữ liệu, xác suất này bằng $0$ vì dữ liệu chỉ nhận $\pm2$.
-
-**Câu 4.** Kết luận sai. Mô hình đặt khoảng $38\%$ xác suất vào khoảng $(-1,1)$, nơi dữ liệu không bao giờ xuất hiện, và mật độ của mô hình lớn nhất tại $0$. Biến ẩn không được dùng, nên mô hình là một Gaussian đơn, không biểu diễn được hai giá trị tách biệt; KL bằng $0$, cận chặt và mômen bậc hai khớp đều không phát hiện sự lệch này.
-
-**Kiểm tra lại.** $\tfrac12\log(8\pi)=\tfrac12(\log8+\log\pi)\approx\tfrac12(2{,}0794+1{,}1447)=1{,}6121$, nên log-mật độ ở câu 1 xấp xỉ $-1{,}6121-0{,}5=-2{,}1121$.
-:::
+## Tài liệu tham khảo
+
+- Murphy, Kevin P. (2022), *Probabilistic Machine Learning: An Introduction*, MIT Press, bản trực tuyến của tác giả:
+  - §20.2.2 (tr. 668–669): mô hình PCA xác suất, công thức (20.41)–(20.46) và (20.52);
+  - mục Exercises của Chương 2: Bài 2.4 (tr. 74);
+  - mục Exercises của Chương 6: Bài 6.4 (tr. 227);
+  - mục Exercises của Chương 20: Bài 20.3 (tr. 712), 20.4, 20.5 (tr. 713), 20.6, 20.7 (tr. 714).
