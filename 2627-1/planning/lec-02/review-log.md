@@ -1693,3 +1693,12 @@ Lỗi trong tệp lời giải Boyd (đề trong sách in đúng; người rà t
 ### Mục tiêu không có bài giáo trình
 
 Mỗi mục tiêu 1–6 có ít nhất một bài (ghi chú hoặc tệp). Các vế không có bài giáo trình phù hợp, dựa vào bài trong ghi chú: đưa về dạng chuẩn (mục tiêu 2), ngưỡng mềm trên dữ liệu nhỏ (mục tiêu 3), hàm thay thế lồi, mất mát bản lề, nới lỏng và cận từ nới lỏng tuyến tính (mục tiêu 5; Q02-5 đã loại Boyd 4.15, 4.10), chọn đặc trưng và công bằng giữa các nhóm (mục tiêu 6).
+
+## Cập nhật dẫn chiếu tới Bài 02 sau khi đánh số (giai đoạn 3, 2026-11-12)
+
+Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy từ lời gọi công cụ); thay một lượt bằng script có chặn chạy lại.
+
+- 12 chỗ, tất cả ở `lec-03/lecture-note.md`: 5 chỗ đổi số (Ví dụ 02.5 → 02.6, 02.7 → 02.8 hai lần, Mệnh đề 02.45 → 02.46, Ví dụ 02.17 → 02.18) và 7 cụm viết lại: "dạng chuẩn (lồi)" → "dạng phổ biến (Định nghĩa 02.1)" ở dòng 29, 789, 821, 904; dòng 2477–2480 dùng $u$, $w=(w_1,w_0)$ của Bài 02 và "Ví dụ 02.1(a)" (điều phối viên tính lại $E(w)=10w_1^2+5w_0^2-20w_1-6w_0+19$ từ dữ liệu chung: $\sum u_i^2=10$, $\sum u_iy_i=10$, $\sum y_i=3$, $\sum y_i^2=19$); dòng 2015 giữ ký hiệu $E$ của Bài 03 và thêm "tức $J(w)$ của Bài 02" (lệch map có chủ ý: $E$ được Bài 03 dùng tiếp ở dòng 2017–2081 và Tình huống 03.2) — `chấp nhận`.
+- Không thay ở tệp khác: Bài 05, 07 dẫn các số không đổi (đối chiếu nội dung và phần (a)–(c)); deck 05 (Mệnh đề 02.21(c)) và deck 07 (Mệnh đề 02.10) giữ số, không sửa deck. Không tệp nào dẫn Ví dụ 02.23 cũ, §4.5 cũ hay `exercises.md` cũ.
+- Để lại cho lần viết lại Bài 03, 07: lec-03 dòng 32–33, 294, 1064, 1950, 2417, 2421 dẫn Mệnh đề 02.26, 02.39, Tình huống 02.2 với ký hiệu cũ ($\ell,\rho$; $b$, $z$); lec-07 phát biểu lại Định lý 02.15 với ký hiệu cục bộ cũ.
+- Kiểm của điều phối viên: word-diff chỉ đổi phần dẫn và các cụm trên; script kiểm 85 cụm "Loại 02.k" ở 45 tệp: 0 sai loại hoặc không tồn tại; đồng bộ `--check`, `git diff --check` đạt; viewer `file://` mở ghi chú Bài 03: 0 `.katex-error`, 0 lỗi console.

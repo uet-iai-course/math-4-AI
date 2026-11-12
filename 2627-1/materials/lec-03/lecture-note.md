@@ -26,7 +26,7 @@ Chương dùng các kết quả sau của Bài 01 và Bài 02. Số hiệu `01.k
 - **Phép bảo toàn tính lồi** (Định lý 01.30). Tổng có hệ số không âm của các hàm lồi là lồi; hợp của hàm lồi với ánh xạ affine là lồi; cực đại từng điểm của hữu hạn hàm lồi là lồi, phần (c).
 - **Điều kiện cần bậc nhất không ràng buộc** (Bài 00, Định lý 00.42; nhắc lại ở Nhận xét 01.14). Nếu $f$ khả vi tại một điểm trong $x^*$ của miền và $x^*$ là cực tiểu địa phương thì $\nabla f(x^*)=0$.
 - **Tồn tại và duy nhất** (Định lý 01.35, Weierstrass; Định lý 01.34). Hàm liên tục trên tập không rỗng, đóng, bị chặn của $\mathbb R^d$ đạt giá trị nhỏ nhất; hàm lồi chặt có nhiều nhất một điểm cực tiểu.
-- **Dạng chuẩn của bài toán tối ưu lồi** (Định nghĩa 02.1). Miền $D$ lồi, các hàm $f_0,f_1,\ldots,f_m$ lồi, ràng buộc $f_i(x)\le0$ và $Ax=b$ với $A\in\mathbb R^{p\times n}$.
+- **Dạng phổ biến của bài toán tối ưu lồi** (Định nghĩa 02.1). Miền $D$ lồi, các hàm $f_0,f_1,\ldots,f_m$ lồi, ràng buộc $f_i(x)\le0$ và $Ax=b$ với $A\in\mathbb R^{p\times n}$.
 - **Biến đổi tương đương (reformulation)** (Định nghĩa 02.5, Mệnh đề 02.6, Nhận xét 02.7). Hai bài toán tương đương khi có ánh xạ chuyển phương án khả thi qua lại và giữ thứ tự giá trị; nghiệm của bài toán này cho nghiệm của bài toán kia. Đối ngẫu phụ thuộc vào cách viết bài toán, nên chương luôn nêu rõ dạng được dùng.
 - **Chứng nhận bằng tổ hợp không âm các ràng buộc** (Mệnh đề 02.11). Với quy hoạch tuyến tính $\min c^Tx$, $a_i^Tx\ge\beta_i$, nếu có $\mu\succeq0$ với $c=\sum_i\mu_ia_i$ thì mọi điểm khả thi có $c^Tx\ge\sum_i\mu_i\beta_i$; một điểm khả thi đạt cận đó là nghiệm, và mọi ràng buộc có $\mu_i>0$ chặt tại mọi nghiệm.
 - **Quy hoạch bậc hai, ràng buộc bậc hai, phạt và ràng buộc chặn** (Định nghĩa 02.17, 02.24, Mệnh đề 02.26). Nghiệm $w_\rho$ của bài toán có phạt $\min_w\ell(w)+\rho R(w)$ với $\rho\ge0$ là nghiệm của bài toán với mức chặn $\min\ell(w)$ với $R(w)\le R(w_\rho)$; Bài 02 để ngỏ chiều ngược.
@@ -595,7 +595,7 @@ Mệnh đề 03.11 trả lời câu hỏi thứ nhất mà Bài 02 để lại. 
 ::: example Ví dụ 03.5 (Đối ngẫu của bài toán pha trộn)
 **Lập bài toán đối ngẫu.**
 
-Bài toán pha trộn của Ví dụ 02.5, có nghiệm ở Ví dụ 02.7: $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$; chi phí tính theo đơn vị $10$ nghìn đồng. Viết bốn ràng buộc ở dạng của Mệnh đề 03.11: $a_1=(2,1)$, $\beta_1=4$; $a_2=(1,2)$, $\beta_2=5$; $a_3=(1,0)$, $\beta_3=0$; $a_4=(0,1)$, $\beta_4=0$. Điều kiện $\sum_i\lambda_ia_i=c=(3,2)$ là $2\lambda_1+\lambda_2+\lambda_3=3$ và $\lambda_1+2\lambda_2+\lambda_4=2$. Khử $\lambda_3,\lambda_4\ge0$ cho bài toán đối ngẫu
+Bài toán pha trộn của Ví dụ 02.6, có nghiệm ở Ví dụ 02.8: $\min3x_1+2x_2$ với $2x_1+x_2\ge4$, $x_1+2x_2\ge5$, $x_1\ge0$, $x_2\ge0$; chi phí tính theo đơn vị $10$ nghìn đồng. Viết bốn ràng buộc ở dạng của Mệnh đề 03.11: $a_1=(2,1)$, $\beta_1=4$; $a_2=(1,2)$, $\beta_2=5$; $a_3=(1,0)$, $\beta_3=0$; $a_4=(0,1)$, $\beta_4=0$. Điều kiện $\sum_i\lambda_ia_i=c=(3,2)$ là $2\lambda_1+\lambda_2+\lambda_3=3$ và $\lambda_1+2\lambda_2+\lambda_4=2$. Khử $\lambda_3,\lambda_4\ge0$ cho bài toán đối ngẫu
 
 $$
 \underset{\lambda_1,\lambda_2}{\operatorname{maximize}}\quad4\lambda_1+5\lambda_2\qquad\text{subject to}\quad2\lambda_1+\lambda_2\le3,\quad\lambda_1+2\lambda_2\le2,\quad\lambda_1,\lambda_2\ge0 .
@@ -611,7 +611,7 @@ Giải hệ hai ràng buộc chặt $2\lambda_1+\lambda_2=3$, $\lambda_1+2\lambd
 
 **Kiểm tra lại.**
 
-$\lambda_3=3-\tfrac83-\tfrac13=0$ và $\lambda_4=2-\tfrac43-\tfrac23=0$, không âm. Đây đúng là bộ hệ số $\mu$ của Ví dụ 02.7. Một điểm đối ngẫu khả thi khác, $\lambda=(0,1,2,0)$, cho $g=5\le7$, đúng với Định lý 03.8.
+$\lambda_3=3-\tfrac83-\tfrac13=0$ và $\lambda_4=2-\tfrac43-\tfrac23=0$, không âm. Đây đúng là bộ hệ số $\mu$ của Ví dụ 02.8. Một điểm đối ngẫu khả thi khác, $\lambda=(0,1,2,0)$, cho $g=5\le7$, đúng với Định lý 03.8.
 :::
 
 Khi giải hệ hai ràng buộc chặt của bài toán đối ngẫu trong Ví dụ 03.5, ta đã dùng một trực giác chưa được chứng minh, rằng ở nghiệm, ràng buộc nào có nhân tử dương thì chặt. Trực giác này được chứng minh ở Mục 5 dưới tên điều kiện bù trừ.
@@ -786,7 +786,7 @@ Ví dụ là Bài tập 5.21 của Boyd và Vandenberghe (2004, tr. 280). Miền
 
 **Tính lồi.**
 
-$D$ là nửa mặt phẳng mở, lồi. $e^{-x}$ có đạo hàm bậc hai $e^{-x}>0$, lồi. Hàm $\frac{x^2}y$ có Hessian $\frac2{y^3}\begin{pmatrix}y^2&-xy\\-xy&x^2\end{pmatrix}=\frac2{y^3}\begin{pmatrix}y\\-x\end{pmatrix}\begin{pmatrix}y&-x\end{pmatrix}\succeq0$ trên $D$, nên lồi theo Định lý 01.29(a). Bài toán ở dạng chuẩn của Định nghĩa 02.1.
+$D$ là nửa mặt phẳng mở, lồi. $e^{-x}$ có đạo hàm bậc hai $e^{-x}>0$, lồi. Hàm $\frac{x^2}y$ có Hessian $\frac2{y^3}\begin{pmatrix}y^2&-xy\\-xy&x^2\end{pmatrix}=\frac2{y^3}\begin{pmatrix}y\\-x\end{pmatrix}\begin{pmatrix}y&-x\end{pmatrix}\succeq0$ trên $D$, nên lồi theo Định lý 01.29(a). Bài toán ở dạng phổ biến (Định nghĩa 02.1).
 
 **Giá trị gốc.**
 
@@ -818,7 +818,7 @@ Hình trên đặt điểm Slater $\bar x=3$ và nghiệm $x^*=2$ trên cùng tr
 Độ dư tại một điểm được viết thành điều kiện trên các hàm ràng buộc theo định nghĩa sau.
 
 ::: definition Định nghĩa 03.13 (Điều kiện Slater và dạng yếu)
-Cho bài toán (2.1) ở dạng chuẩn lồi của Định nghĩa 02.1 với $D=\mathbb R^n$. Bài toán thỏa điều kiện Slater (Slater's condition) nếu tồn tại $\bar x\in\mathbb R^n$ với
+Cho bài toán (2.1) ở dạng phổ biến (Định nghĩa 02.1) với $D=\mathbb R^n$. Bài toán thỏa điều kiện Slater (Slater's condition) nếu tồn tại $\bar x\in\mathbb R^n$ với
 
 $$
 f_i(\bar x)<0,\quad i=1,\ldots,m,\qquad A\bar x=b .
@@ -901,7 +901,7 @@ Ví dụ $\mathcal C=(0,1)$, $\mathcal B=\{0\}$ cho thấy vì sao chỉ có tá
 Câu hỏi khi nào $d^*=p^*$ và có nhân tử đạt cận được trả lời bằng định lý sau. Chứng minh cần đối ngẫu yếu (Định lý 03.8), Bổ đề 03.14 và tính lồi của các hàm ràng buộc, theo cấu trúc của Boyd và Vandenberghe (2004, mục 5.3.2, tr. 234–236).
 
 ::: theorem Định lý 03.15 (Định lý Slater)
-**Giả thiết.** Bài toán (2.1) ở dạng chuẩn lồi (Định nghĩa 02.1) với $D=\mathbb R^n$: các hàm $f_0,f_1,\ldots,f_m:\mathbb R^n\to\mathbb R$ lồi, ràng buộc đẳng thức $Ax=b$; giá trị tối ưu $p^*$ hữu hạn.
+**Giả thiết.** Bài toán (2.1) ở dạng phổ biến (Định nghĩa 02.1) với $D=\mathbb R^n$: các hàm $f_0,f_1,\ldots,f_m:\mathbb R^n\to\mathbb R$ lồi, ràng buộc đẳng thức $Ax=b$; giá trị tối ưu $p^*$ hữu hạn.
 
 **Kết luận.**
 
@@ -1979,7 +1979,7 @@ Bài toán với mức chặn $r'$ là bài toán nhiễu (4.1) với $u=r'-r$. 
 
 Mệnh đề 03.34 cùng Mệnh đề 02.26 cho quan hệ hai chiều giữa ràng buộc chặn và hình phạt khi bài toán lồi có điểm Slater. Hệ số phạt tương ứng với một mức chặn chính là nhân tử của ràng buộc đó, và theo Hệ quả 03.24, nó đo tốc độ giảm của mất mát khi nới ràng buộc chặn.
 
-Không có tính lồi, chiều ngược không còn được bảo đảm. Khi miền không lồi, như miền giới hạn số đặc trưng của Mệnh đề 02.45, Mệnh đề 03.34 không áp dụng.
+Không có tính lồi, chiều ngược không còn được bảo đảm. Khi miền không lồi, như miền giới hạn số đặc trưng của Mệnh đề 02.46, Mệnh đề 03.34 không áp dụng.
 
 ::: example Ví dụ 03.19 (Hồi quy hai trọng số với ràng buộc chuẩn)
 **Mô hình.**
@@ -2012,7 +2012,7 @@ Theo Mệnh đề 03.34, $w^*$ cũng là nghiệm của bài toán có phạt $\
 Bài toán có phạt: dừng $(w-y)+4w=0$ cho $w=\frac y5=(0{,}6;\,0{,}8)$. Bốn nhóm KKT: $\lVert w^*\rVert_2^2=0{,}36+0{,}64=1$; $\lambda^*=2\ge0$; $2\cdot0=0$; $(0{,}6-3)+4\cdot0{,}6=0$ và $(0{,}8-4)+4\cdot0{,}8=0$.
 :::
 
-Ví dụ 03.19 dùng $X=I$, nên nghiệm có công thức đóng. Với $X$ tổng quát, từ đây đến hết mục ta dùng mục tiêu $E(w)=\lVert Xw-y\rVert_2^2$ như Bài 02, không có hệ số $\tfrac12$.
+Ví dụ 03.19 dùng $X=I$, nên nghiệm có công thức đóng. Với $X$ tổng quát, từ đây đến hết mục ta dùng mục tiêu $E(w)=\lVert Xw-y\rVert_2^2$, tức $J(w)$ của Bài 02, không có hệ số $\tfrac12$.
 
 Với ràng buộc $\lVert w\rVert_2^2\le\tau$ và nhân tử $\lambda$, phương trình dừng của hệ KKT là $(X^TX+\lambda I)w=X^Ty$. Đó cũng là phương trình dừng của bài toán có phạt $E+\rho\lVert w\rVert_2^2$ với $\rho=\lambda$. Với mục tiêu có hệ số $\tfrac12$ như Ví dụ 03.19, phương trình dừng là $(X^TX+2\lambda I)w=X^Ty$, nên nhân tử của cách viết không có $\tfrac12$ bằng hai lần nhân tử của cách viết có $\tfrac12$.
 
@@ -2474,10 +2474,10 @@ $\varphi(\lambda)=\lVert w(\lambda)\rVert_2^2$, với $w(\lambda)$ là nghiệm 
 
 **Bài toán và dữ liệu.**
 
-Dữ liệu chung của Bài 02: đặc trưng $s=(-2,-1,0,1,2)$, mà Bài 02 viết là $u$, đầu ra $y=(-2,-1,3,1,2)$, mô hình $\hat y=as+b$, $w=(a,b)$. Theo Ví dụ 02.11, $X^TX=\operatorname{diag}(10,5)$ và $X^Ty=(10,3)$, nên
+Dữ liệu chung của Bài 02: đặc trưng $u=(-2,-1,0,1,2)$, đầu ra $y=(-2,-1,3,1,2)$, mô hình $\hat y=w_1u+w_0$, $w=(w_1,w_0)$. Theo Ví dụ 02.1(a), $X^TX=\operatorname{diag}(10,5)$ và $X^Ty=(10,3)$, nên
 
 $$
-E(w)=10a^2+5b^2-20a-6b+19 .
+E(w)=10w_1^2+5w_0^2-20w_1-6w_0+19 .
 $$
 
 Nghiệm bình phương nhỏ nhất $(1;\,0{,}6)$ có $\lVert w\rVert_2^2=1{,}36$. Yêu cầu: ràng buộc $\lVert w\rVert_2^2\le\tau$ với $\tau=0{,}29$ và $\tau=0{,}5$; tìm hệ số phạt tương ứng và đo giá bóng của ràng buộc.
@@ -2512,7 +2512,7 @@ Theo (4.2) với $\lambda^*=10$ tại $\tau=0{,}29$: $E^*(0{,}5)\ge10{,}5-10\cdo
 
 **Diễn giải.**
 
-Trần $0{,}29$ tương đương phạt ridge $E+10\lVert w\rVert_2^2$, đúng nghiệm của Ví dụ 02.17; Mệnh đề 03.34 cho chiều mà Mệnh đề 02.26 còn thiếu. Giá bóng $10$ nghĩa là tăng mức chặn từ $0{,}29$ thêm $0{,}01$ giảm tổng bình phương sai số khoảng $0{,}1$. Ở mức chặn $0{,}5$, giá bóng còn khoảng $5{,}47$.
+Trần $0{,}29$ tương đương phạt ridge $E+10\lVert w\rVert_2^2$, đúng nghiệm của Ví dụ 02.18; Mệnh đề 03.34 cho chiều mà Mệnh đề 02.26 còn thiếu. Giá bóng $10$ nghĩa là tăng mức chặn từ $0{,}29$ thêm $0{,}01$ giảm tổng bình phương sai số khoảng $0{,}1$. Ở mức chặn $0{,}5$, giá bóng còn khoảng $5{,}47$.
 
 **Giới hạn.**
 
