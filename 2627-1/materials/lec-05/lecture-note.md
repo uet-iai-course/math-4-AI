@@ -2376,6 +2376,8 @@ Với dữ liệu thưa, một tích $Xv$ hoặc $X^Tv$ tốn bằng số phần
 **Kiểm tra lại.** $\log10^8=18{,}42$; $9{,}2\cdot10^4\cdot2\cdot10^7=1{,}84\cdot10^{12}$ và $1{,}84\cdot10^{12}/1{,}0\cdot10^{10}\approx180$.
 :::
 
+Bài tập 05.16–05.23, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 05](material-viewer.html?doc=materials/lec-05/exercises.md&deck=lecture-05-khong-gian-dac-trung-nhieu-chieu.html).
+
 ## 10. Câu hỏi cuối buổi và cầu nối
 
 Điểm lặp ở bước $79$ dự đoán chính xác hơn: MSE xác thực bằng $0{,}00108$ ở bước $79$ và $0{,}0341$ ở bước $1000$ (Ví dụ 05.24). Hạ gradient khớp trước các hướng có độ cong lớn và khớp sau cùng hướng phẳng nhất (Mệnh đề 05.37); trên ví dụ năm mẫu, phần nghiệm theo hướng này là phần làm sai số xác thực tăng.

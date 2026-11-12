@@ -1,396 +1,330 @@
 # Bài tập Bài 05 — Không gian đặc trưng nhiều chiều
 
-Bộ bài tập gồm mười hai bài theo bốn mạch của chương: hồi quy nhiều chiều (Bài 1–3), hồi quy logistic và chính quy hóa (Bài 4–7), độ cong và chi phí tính toán (Bài 8–9), giới hạn của tối ưu tất định (Bài 10–12). Mức độ của từng bài ghi ở đầu bài: nhận biết, tính toán hoặc chứng minh, vận dụng vào AI. Bài 1, 4 và 8 là ba bài tập trên trang chiếu có lời giải mẫu ngay trên trang chiếu; ở đây lời giải được viết đầy đủ hơn và kèm số hiệu. Bài 10 là bài tự kiểm tra ở mạch kết luận, trên trang chiếu chỉ có đề; câu 3 trên trang chiếu là bản rút gọn của câu 3 ở đây. Bài 7 và Bài 5 là hai bài tập về nhà nêu ở trang "Tài liệu đọc và bài tập về nhà" cuối bộ trang chiếu.
+Tám bài tập dưới đây, đánh số tiếp theo các bài tập trong ghi chú, đi kèm [ghi chú bài giảng](material-viewer.html?doc=materials/lec-05/lecture-note.md&deck=lecture-05-khong-gian-dac-trung-nhieu-chieu.html) và [bài giảng](lecture-05-khong-gian-dac-trung-nhieu-chieu.html) của Bài 05. Các bài lấy từ Boyd và Vandenberghe (2004), Chương 7 và Chương 9; số trang là trang in của sách. Lời giải dẫn định nghĩa, định lý, mệnh đề, ví dụ và bài tập theo số hiệu của ghi chú. Ký hiệu theo ghi chú gồm:
 
-Ký hiệu và số hiệu theo ghi chú bài giảng. Tên ngắn trên trang chiếu ứng với số hiệu như sau: Mệnh đề 1 là Mệnh đề 05.10; Mệnh đề 2 là Mệnh đề 05.21; Định lý 1 là Định lý 05.22; Mệnh đề 3 là Mệnh đề 05.24; Định lý 2 là Định lý 05.26; Mệnh đề 4 là Mệnh đề 05.28; Định lý 3 là Định lý 05.30; Định lý 4 là Định lý 05.33; Mệnh đề 5 là Mệnh đề 05.35. Hai ví dụ dùng chung:
+- biến là $w\in\mathbb R^d$, $g$ và $H$ là gradient và Hessian tại điểm đang xét, $p$ là hướng Newton, $t$ là độ dài bước, $\delta_N$ là độ giảm Newton;
+- vector viết dạng cột, ví dụ $g=(2,1)^T$;
+- $n$ là số số hạng (số mẫu), phép đếm chi phí theo giả thiết (G5) của ghi chú.
 
-- Ví dụ năm mẫu: $u=(-1,-\tfrac12,0,\tfrac12,1)$, $y=(-0{,}9;\ -0{,}7;\ 0{,}2;\ 0{,}4;\ 1{,}0)$, đặc trưng $(1,u,\ldots,u^{d-1})$, mất mát $F(w)=\frac1{2n}\lVert Xw-y\rVert^2$ với $n=5$; tập xác thực bốn điểm $u'=\pm\tfrac14,\pm\tfrac34$ với nhãn $u'$ không nhiễu.
-- Ví dụ một mẫu: $x_1=1$, $y_1=+1$, $F_\lambda(w)=\log(1+e^{-w})+\frac\lambda2w^2$, $L=\tfrac14+\lambda$, $\mu=\lambda$.
+| Mục tiêu học tập | Bài tập trong ghi chú | Bài tập trong tệp này |
+|---|---|---|
+| 1. Phương trình chuẩn, hạng, nghiệm chuẩn nhỏ nhất, số điều kiện; chọn và báo cáo mô hình | 05.1, 05.2, 05.3, 05.13, 05.14 | 05.16 |
+| 2. Tách được, sự tồn tại điểm cực tiểu, tính lồi mạnh và hằng số độ cong | 05.4, 05.5, 05.6, 05.11, 05.13 | 05.22 |
+| 3. Chi phí một bước, số bước và tổng chi phí của hạ gradient và Newton | 05.7, 05.8, 05.9, 05.13, 05.15 | 05.17, 05.18, 05.19, 05.20, 05.21, 05.23 |
+| 4. Dừng sớm, hai giới hạn của khung tất định, các bảo đảm còn lại | 05.10, 05.11, 05.12 | — |
 
-Lời giải cần nêu giả thiết được dùng ở từng bước. Số thập phân viết với dấu phẩy; $\log$ là logarit tự nhiên. Viết tắt: chuẩn đầu ra bài học (LLO), chuẩn đầu ra học phần (CLO), sai số bình phương trung bình (MSE), hạ gradient ngẫu nhiên (SGD).
+## Mức nhận biết
 
-## Bài 1. Hạng, nghiệm và chọn số đặc trưng
+**Mức độ:** nhận biết. **Mục tiêu:** mục tiêu học tập 1; nhận ra khi nào hàm bậc hai không bị chặn dưới.
 
-Mức độ: nhận biết. LLO11, CLO1.
+::: exercise Bài tập 05.16 (Hàm bậc hai không bị chặn dưới; Boyd và Vandenberghe, Bài 9.1, tr. 514)
+Cho $f(w)=\tfrac12w^TPw+q^Tw+c_0$ với $P\in\mathbb R^{d\times d}$ đối xứng, $q\in\mathbb R^d$, $c_0\in\mathbb R$.
 
-::: exercise Bài 1
-Ví dụ năm mẫu có đầu vào $u=(-1,-\tfrac12,0,\tfrac12,1)$, nhãn $y=(-0{,}9;\ -0{,}7;\ 0{,}2;\ 0{,}4;\ 1{,}0)$ và đặc trưng đa thức $(1,u,\ldots,u^{d-1})$.
-
-1. Với $d=7$, tính $\operatorname{rank}X$, $\dim\ker X$ và $\min F$.
-2. Với $d=3$, ma trận $X^TX=\begin{pmatrix}5&0&\frac52\\0&\frac52&0\\\frac52&0&\frac{17}8\end{pmatrix}$. Tính $\kappa(X^TX)$ và so với $\kappa=2$ của $d=2$.
-3. Ba mô hình có sai số xác thực (MSE trên bốn điểm $u=\pm\tfrac14,\pm\tfrac34$) như sau. Chọn một mô hình và nêu tập dùng để báo cáo sai số cuối.
-
-| mô hình | $d=2$, $\lambda=0$ | $d=5$, $\lambda=0{,}01$ | $d=5$, $\lambda=0$ |
-|---|---:|---:|---:|
-| sai số xác thực | $0{,}000125$ | $0{,}00261$ | $0{,}0487$ |
+- **(a)** Chứng minh nếu $P$ không nửa xác định dương thì $f$ không bị chặn dưới.
+- **(b)** Giả sử $P\succeq0$ nhưng hệ $Pw=-q$ vô nghiệm. Chứng minh $f$ không bị chặn dưới.
 :::
 
-::: hint Gợi ý Bài 1
-Ở câu 1, năm cột đầu của $X\in\mathbb R^{5\times7}$ tạo một ma trận Vandermonde. Ở câu 2, phần tử $(j,k)$ của $X^TX$ là $\sum_iu_i^{j+k}$, và các tổng lũy thừa lẻ bằng $0$ vì các nút đối xứng quanh $0$; vì vậy cột thứ hai tách riêng, còn trị riêng của khối $2\times2$ gồm hàng và cột thứ nhất, thứ ba tìm được từ vết và định thức. Ở câu 3, so sai số xác thực trên toàn họ mô hình, chứ không so sai số huấn luyện; tập đã dùng để chọn không dùng để báo cáo.
+::: hint Gợi ý 1
+Ở cả hai câu, tìm một hướng $v$ sao cho $f(sv)\to-\infty$ khi $s\to\infty$.
 :::
 
-::: solution Lời giải Bài 1
-1. Năm cột đầu của $X$ là ma trận Vandermonde dựng trên năm nút phân biệt, nên khả nghịch; do đó năm hàng của $X$ độc lập tuyến tính và $\operatorname{rank}X=5$. Định lý hạng–số chiều cho $\dim\ker X=7-5=2$. Theo Mệnh đề 05.10, $\min F=0$, và tập nghiệm là một không gian affine chiều $2$: có vô số đa thức bậc không quá $6$ đi qua năm điểm, nên nghiệm không duy nhất.
-
-2. Ta có $\sum_i1=5$, $\sum_iu_i^2=\tfrac52$ và $\sum_iu_i^4=1+\tfrac1{16}+0+\tfrac1{16}+1=\tfrac{17}8$, còn các tổng lũy thừa lẻ bằng $0$; đó là các phần tử của ma trận đã cho. Cột thứ hai chỉ có phần tử chéo $\tfrac52$, nên $\tfrac52$ là một trị riêng. Khối còn lại $\begin{pmatrix}5&\frac52\\\frac52&\frac{17}8\end{pmatrix}$ có vết $\tfrac{57}8$ và định thức $\tfrac{85}8-\tfrac{25}4=\tfrac{35}8$, nên hai trị riêng là nghiệm của $t^2-\tfrac{57}8t+\tfrac{35}8=0$, tức $t=\frac{57\pm\sqrt{2129}}{16}$, xấp xỉ $6{,}446$ và $0{,}679$. Vậy $\lambda_{\max}\approx6{,}446$, $\lambda_{\min}\approx0{,}679$ và $\kappa(X^TX)\approx9{,}50$, lớn hơn $\kappa=2$ của $d=2$. Thêm cột $u^2$ làm $\lambda_{\min}$ giảm từ $2{,}5$ xuống $0{,}679$ và $\lambda_{\max}$ tăng từ $5$ lên $6{,}446$, đúng chiều mà định lý xen kẽ Cauchy bảo đảm (Mệnh đề 05.16). Kiểm tra: tổng ba trị riêng $\tfrac52+\tfrac{57}8=\tfrac{77}8$ bằng vết $5+\tfrac52+\tfrac{17}8$.
-
-3. Chọn $d=2$, $\lambda=0$, mô hình có sai số xác thực nhỏ nhất. Nếu chọn theo sai số huấn luyện sẽ được $d=5$, $\lambda=0$ với sai số huấn luyện bằng $0$, đúng mô hình quá khớp (Định nghĩa 05.6). Sai số cuối được báo cáo trên một tập kiểm thử riêng, không tham gia lựa chọn: $0{,}000125$ là số nhỏ nhất trong ba số, nên theo Nhận xét 05.8 có xu hướng thấp hơn rủi ro của mô hình được chọn.
+::: hint Gợi ý 2
+Ở (b), hệ $Pw=-q$ vô nghiệm nghĩa là $q\notin\operatorname{Col}(P)$; phân tích $q$ theo Mệnh đề 00.8(1) với $A=P$.
 :::
 
-## Bài 2. Chính quy hóa đường thẳng
+::: solution Lời giải Bài tập 05.16
+**Câu (a).** Có $v$ với $v^TPv<0$. Khi đó $f(sv)=\tfrac{s^2}2v^TPv+s\,q^Tv+c_0\to-\infty$ khi $s\to\infty$, vì hệ số của $s^2$ âm.
 
-Mức độ: tính toán. LLO11, CLO1.
-
-::: exercise Bài 2
-Cho ví dụ năm mẫu với $d=2$ và $\lambda=0{,}1$, mục tiêu $F_\lambda(w)=\frac1{10}\lVert Xw-y\rVert^2+\frac\lambda2\lVert w\rVert^2$, trong đó hệ số chặn cũng bị phạt.
-
-1. Lập và giải hệ $\bigl(\frac1nX^TX+\lambda I\bigr)w=\frac1nX^Ty$.
-2. Tính MSE huấn luyện, MSE xác thực và số điều kiện của ma trận hệ.
-3. So với nghiệm không chính quy hóa $w=(0;\ 0{,}98)$, có MSE huấn luyện $0{,}0198$ và MSE xác thực $0{,}000125$. Giải thích vì sao chính quy hóa làm cả hai sai số tăng trong trường hợp này.
-:::
-
-::: hint Gợi ý Bài 2
-$\frac1nX^TX=\operatorname{diag}(1;\ 0{,}5)$ và $\frac1nX^Ty=(0;\ 0{,}49)$. Ở câu 2, sai số tại điểm xác thực $u'$ là $(w_1-1)u'$, và trung bình của $u'^2$ bằng $0{,}3125$.
-:::
-
-::: solution Lời giải Bài 2
-1. Hệ là $\operatorname{diag}(1{,}1;\ 0{,}6)\,w=(0;\ 0{,}49)$, nên $w_0=0$ và $w_1=0{,}49/0{,}6=0{,}8167$.
-
-2. Phần dư $0{,}8167u_i-y_i$ tại năm mẫu là
-
-   $$
-   \begin{aligned}
-   &(0{,}0833;\ 0{,}2917;\ -0{,}2;\\
-   &\ \ 0{,}0083;\ -0{,}1833),
-   \end{aligned}
-   $$
-
-   có tổng bình phương $0{,}1657$, nên MSE huấn luyện $\approx0{,}0331$. Sai số xác thực là $(0{,}8167-1)u'=-0{,}1833u'$, nên MSE xác thực $=0{,}1833^2\cdot0{,}3125\approx0{,}0105$. Ma trận hệ có trị riêng $1{,}1$ và $0{,}6$, nên $\kappa=1{,}83$, nhỏ hơn $\kappa=2$ khi $\lambda=0$ (Mệnh đề 05.17).
-
-3. Với $d=2$, mô hình đã đúng dạng với quan hệ thật $y=u$, nghiệm không chính quy hóa duy nhất và $\kappa=2$ nhỏ. Số hạng phạt kéo $w_1$ về $0$, xa giá trị đúng $1$, nên sai số xác thực tăng gần $84$ lần. Chính quy hóa có lợi khi mô hình quá lớn so với dữ liệu, như $d=5$ trong Ví dụ 05.9, không phải khi mô hình đã vừa. Đây là lý do $\lambda$ phải được chọn trên tập xác thực, với $\lambda=0$ nằm trong danh sách ứng viên.
-:::
-
-## Bài 3. Tập xác thực có nhiễu và thiên lệch khi chọn
-
-Mức độ: chứng minh. LLO11, CLO1.
-
-::: exercise Bài 3
-Giả sử nhãn sinh theo $y=u+\varepsilon$, với nhiễu $\varepsilon$ độc lập với $u$, $\mathbb E\varepsilon=0$, $\operatorname{Var}\varepsilon=s^2$.
-
-1. Cho $w$ cố định và một tập xác thực $n_{\rm xt}$ điểm $u'_1,\ldots,u'_{n_{\rm xt}}$ cố định với nhãn có nhiễu $y'_j=u'_j+\varepsilon'_j$, các $\varepsilon'_j$ độc lập, cùng phân phối với $\varepsilon$, và độc lập với $w$. Chứng minh
+**Câu (b).** Theo Mệnh đề 00.8(1) với $A=P$ đối xứng, $q=q_1+q_2$ với $q_1\in\operatorname{Col}(P)$, $q_2\in\operatorname{Ker}(P)$, $q_1\perp q_2$. Vì $q\notin\operatorname{Col}(P)$, $q_2\ne0$. Với $Pq_2=0$ và $q^Tq_2=\lVert q_2\rVert^2$,
 
 $$
-\mathbb E\Bigl[\frac1{n_{\rm xt}}\sum_{j=1}^{n_{\rm xt}}(x_j'^Tw-y'_j)^2\Bigr]=\frac1{n_{\rm xt}}\sum_{j=1}^{n_{\rm xt}}(x_j'^Tw-u'_j)^2+s^2 .
+f(-sq_2)=-s\lVert q_2\rVert^2+c_0\to-\infty
 $$
 
-2. Suy ra: nếu hai tham số $w^{(1)}$, $w^{(2)}$ cố định có MSE trên các nhãn không nhiễu thỏa $a_1<a_2$, thì kỳ vọng của MSE trên nhãn có nhiễu giữ nguyên thứ tự.
-3. Hai mô hình có cùng rủi ro $R$. Sai số xác thực của mỗi mô hình nhận giá trị $R-\delta$ hoặc $R+\delta$ với xác suất $\tfrac12$, độc lập giữa hai mô hình, $\delta>0$. Tính kỳ vọng của sai số xác thực nhỏ nhất, và nêu kết luận về việc báo cáo con số này.
+khi $s\to\infty$.
+
+**Kiểm tra lại.** Với $d=1$, $P=p<0$: $f(s)=\tfrac p2s^2+qs+c_0\to-\infty$. Với $d=1$, $P=0$, $q\ne0$: $Pw=-q$ vô nghiệm, $q_2=q$, và $f(-sq)=-sq^2+c_0\to-\infty$.
 :::
 
-::: hint Gợi ý Bài 3
-Ở câu 1, khai triển $(x_j'^Tw-u'_j-\varepsilon'_j)^2$ và dùng $\mathbb E\varepsilon'_j=0$. Ở câu 3, liệt kê bốn trường hợp đồng khả năng.
+## Mức tính toán hoặc chứng minh
+
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 3; tách hệ Newton theo các khối của Hessian, đếm chi phí và suy ra tính tách được của $f$.
+
+::: exercise Bài tập 05.17 (Hessian khối chéo trong hệ Newton; Boyd và Vandenberghe, Bài 9.24, tr. 518)
+Cho $f:\mathbb R^d\to\mathbb R$ lồi, lớp $C^2$. Chia $w$ thành $J$ khối $w=(w_{(1)},\ldots,w_{(J)})$ với $w_{(j)}\in\mathbb R^{d_j}$, $d_1+\cdots+d_J=d$.
+
+- **(a)** Giả sử tại một điểm $w$, $H=\nabla^2f(w)\succ0$ là ma trận khối chéo $\operatorname{diag}(H_1,\ldots,H_J)$ với $H_j\in\mathbb R^{d_j\times d_j}$. Chứng minh hướng Newton $p$ gồm các khối $p_{(j)}=-H_j^{-1}g_{(j)}$, và so số phép nhân–cộng của $J$ phép phân tích Cholesky cỡ $d_j$ với một phép phân tích Cholesky cỡ $d$.
+- **(b)** Giả sử $\nabla^2f(w)$ khối chéo theo cùng cách chia tại mọi $w\in\mathbb R^d$. Chứng minh $f(w)=f(0)+\sum_j\bigl(f(\hat w_{(j)})-f(0)\bigr)$, với $\hat w_{(j)}$ là vector chỉ giữ khối $j$ của $w$ và đặt các khối khác bằng $0$.
 :::
 
-::: solution Lời giải Bài 3
-1. Đặt $e_j=x_j'^Tw-u'_j$, một số cố định. Khi đó
+::: hint Gợi ý 1
+Ở (a), viết hệ $Hp=-g$ theo khối. Phân tích Cholesky ma trận cỡ $k$ tốn khoảng $k^3/6$ phép nhân–cộng (ghi chú, đoạn sau Thuật toán 05.32).
+:::
+
+::: hint Gợi ý 2
+Ở (b), xét $\partial f/\partial w_i$ dọc một đoạn chỉ làm thay đổi các khối khác khối chứa $i$, rồi dùng $f(w)-f(0)=\int_0^1\nabla f(sw)^Tw\,ds$.
+:::
+
+::: solution Lời giải Bài tập 05.17
+**Câu (a).** Hệ $Hp=-g$ theo khối là $H_jp_{(j)}=-g_{(j)}$, $j=1,\ldots,J$, vì các khối ngoài đường chéo bằng $0$. Mỗi $H_j\succ0$ là ma trận con chính của $H\succ0$, nên khả nghịch, và $p_{(j)}=-H_j^{-1}g_{(j)}$. Giải từng khối bằng Cholesky tốn khoảng $\sum_jd_j^3/6$ phép nhân–cộng, so với $d^3/6$ cho cả hệ. Với $J$ khối bằng nhau, $d_j=d/J$, tỉ số là $J\cdot(d/J)^3/d^3=1/J^2$.
+
+**Câu (b).** Lấy $i$ thuộc khối $j$. Dọc đoạn từ $\hat w_{(j)}$ tới $w$, chỉ các khối khác khối $j$ thay đổi, và mọi đạo hàm riêng $\partial^2f/\partial w_k\partial w_i$ với $k$ ngoài khối $j$ bằng $0$; theo công thức Newton–Leibniz, $\partial f/\partial w_i$ không đổi dọc đoạn đó. Vậy $\nabla_{(j)}f(w)=\nabla_{(j)}f(\hat w_{(j)})$ với mọi $w$, và
 
 $$
 \begin{aligned}
-\mathbb E(e_j-\varepsilon'_j)^2&=e_j^2-2e_j\,\mathbb E\varepsilon'_j+\mathbb E\varepsilon_j'^2&&\text{(a)}\\
-&=e_j^2+s^2&&\text{(b)}.
+&f(w)-f(0)\\
+&=\int_0^1\nabla f(sw)^Tw\,ds\\
+&=\sum_j\int_0^1\nabla_{(j)}f(s\hat w_{(j)})^Tw_{(j)}\,ds\\
+&=\sum_j\bigl(f(\hat w_{(j)})-f(0)\bigr).
 \end{aligned}
 $$
 
-Dòng (a) khai triển bình phương với $e_j$ cố định; dòng (b) dùng $\mathbb E\varepsilon'_j=0$ và $\mathbb E\varepsilon_j'^2=\operatorname{Var}\varepsilon'_j=s^2$. Lấy trung bình theo $j$ và dùng tính tuyến tính của kỳ vọng cho đẳng thức cần chứng minh.
+Quan hệ cuối là công thức tích phân của $f$ dọc đoạn từ $0$ tới $\hat w_{(j)}$. Vậy $f$ là tổng của $J$ hàm của các khối rời nhau, và bài toán cực tiểu hóa tách thành $J$ bài toán độc lập. Kết luận cần Hessian khối chéo tại mọi $w$: chẳng hạn $f(w)=w_1^2+w_2^2+(w_1+w_2)^4$ lồi, $\nabla^2f(0)=2I$, nhưng $\partial^2f/\partial w_1\partial w_2=12(w_1+w_2)^2\ne0$ khi $w_1+w_2\ne0$, nên $f$ không tách thành tổng của một hàm theo $w_1$ và một hàm theo $w_2$.
 
-2. Theo câu 1, hai kỳ vọng là $a_1+s^2$ và $a_2+s^2$, nên $a_1<a_2$ kéo theo $a_1+s^2<a_2+s^2$. Nhiễu nhãn cộng cùng một hằng số cho mọi mô hình, như Nhận xét 05.9 đã nêu cho rủi ro kỳ vọng; nó làm tăng phương sai của phép so sánh nhưng không đổi thứ tự trung bình.
+**Kiểm tra lại.** Với $J=1$, tỉ số $1/J^2=1$, đúng vì chỉ có một hệ. Với $J=d$ (mọi khối cỡ $1$), $H$ chéo và $p_i=-g_i/h_{ii}$ cần $d$ phép chia. Với $f(w)=w_1^2+e^{w_2}$, Hessian chéo tại mọi $w$ và $f(0)+(f(\hat w_{(1)})-f(0))+(f(\hat w_{(2)})-f(0))=1+w_1^2+(e^{w_2}-1)=f(w)$, khớp (b).
+:::
 
-3. Bốn trường hợp $(R\pm\delta,R\pm\delta)$ đồng khả năng với xác suất $\tfrac14$. Giá trị nhỏ nhất bằng $R+\delta$ chỉ khi cả hai bằng $R+\delta$, và bằng $R-\delta$ trong ba trường hợp còn lại. Do đó
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 3; so hướng hạ gradient và hướng Newton trên một hàm và trên hàm hợp của nó.
+
+::: exercise Bài tập 05.18 (Hạ gradient và Newton trên hàm hợp; Boyd và Vandenberghe, Bài 9.11, tr. 515)
+Cho $f:\mathbb R^d\to\mathbb R$ lồi, lớp $C^2$, với $\nabla^2f(w)\succ0$ tại mọi $w$, và $\psi:\mathbb R\to\mathbb R$ lớp $C^2$, lồi, với $\psi'>0$. Đặt $h(w)=\psi(f(w))$. *Tìm kiếm đường chính xác* (exact line search) theo hướng $v$ chọn $t$ cực tiểu hóa hàm cần tối ưu dọc tia $w+tv$, $t>0$.
+
+- **(a)** Chứng minh $h$ lồi, $\nabla h(w)=\psi'(f(w))\nabla f(w)$, và hạ gradient với tìm kiếm đường chính xác cho cùng dãy lặp trên $f$ và trên $h$.
+- **(b)** Dùng công thức Sherman–Morrison (bổ đề nghịch đảo ma trận, matrix inversion lemma) $(M+uu^T)^{-1}=M^{-1}-\frac{M^{-1}uu^TM^{-1}}{1+u^TM^{-1}u}$ với $M\succ0$, chứng minh hướng Newton của $h$ bằng $\frac1{1+\theta\delta_N^2}$ nhân hướng Newton $p$ của $f$, với $\theta=\psi''(f(w))/\psi'(f(w))$ và $\delta_N^2=\nabla f(w)^T\nabla^2f(w)^{-1}\nabla f(w)$. So hai phương pháp Newton khi dùng tìm kiếm đường chính xác và khi dùng bước đầy đủ $t=1$.
+:::
+
+::: hint Gợi ý 1
+Tính $\nabla^2h$ theo quy tắc dây chuyền. Hai hướng là bội dương của nhau thì cùng một tia.
+:::
+
+::: hint Gợi ý 2
+Ở (b), áp công thức với $M=\psi'\nabla^2f$ và $u=\sqrt{\psi''}\,\nabla f$, rồi nhân với $\nabla h$.
+:::
+
+::: solution Lời giải Bài tập 05.18
+**Câu (a).** Theo quy tắc dây chuyền, $\nabla h=\psi'(f)\nabla f$ và $\nabla^2h=\psi''(f)\nabla f\nabla f^T+\psi'(f)\nabla^2f\succeq0$, vì $\psi''\ge0$ và $\psi'>0$; vậy $h$ lồi (Định lý 01.29). Hướng hạ gradient của $h$ là $-\psi'(f)\nabla f$, bội dương của hướng của $f$, nên hai phương pháp đi trên cùng một tia. Vì $\psi$ tăng, $t\mapsto h(w+tv)=\psi(f(w+tv))$ và $t\mapsto f(w+tv)$ có cùng điểm cực tiểu, nên tìm kiếm đường chính xác chọn cùng điểm mới. Từ cùng điểm đầu, quy nạp cho hai dãy lặp trùng nhau.
+
+**Câu (b).** Viết $a=\psi'(f(w))>0$, $c=\psi''(f(w))\ge0$, $z=\nabla f(w)$, $G=\nabla^2f(w)$, nên $\delta_N^2=z^TG^{-1}z$. Công thức với $M=aG$, $u=\sqrt c\,z$ cho
 
 $$
 \begin{aligned}
-\mathbb E\min&=\tfrac34(R-\delta)+\tfrac14(R+\delta)\\&=R-\tfrac\delta2<R .
+(\nabla^2h)^{-1}z&=\tfrac1aG^{-1}z\\
+&\quad-\tfrac{c\,\delta_N^2}{a(a+c\,\delta_N^2)}\,G^{-1}z\\
+&=\tfrac1a\Bigl(1-\tfrac{c\delta_N^2}{a+c\delta_N^2}\Bigr)G^{-1}z\\
+&=\frac{G^{-1}z}{a+c\,\delta_N^2}.
 \end{aligned}
 $$
 
-Sai số xác thực nhỏ nhất đánh giá thấp rủi ro của mô hình được chọn một lượng $\tfrac\delta2$ theo kỳ vọng, dù mỗi sai số xác thực riêng lẻ không chệch. Con số báo cáo phải lấy trên một tập kiểm thử không tham gia lựa chọn.
+Hướng Newton của $h$ là $-(\nabla^2h)^{-1}\nabla h=-a(\nabla^2h)^{-1}z=\frac{a}{a+c\delta_N^2}\bigl(-G^{-1}z\bigr)=\frac1{1+\theta\delta_N^2}\,p$. Hệ số nằm trong $(0,1]$, nên với tìm kiếm đường chính xác hai phương pháp Newton cho cùng dãy lặp như ở (a). Với bước đầy đủ $t=1$, bước trên $h$ ngắn hơn bước trên $f$ khi $\psi''(f(w))>0$ và $\nabla f(w)\ne0$, nên hai dãy lặp khác nhau.
+
+**Kiểm tra lại.** Với $d=1$: hướng Newton của $f$ là $-f'/f''$, và của $h$ là $-\frac{\psi'f'}{\psi''f'^2+\psi'f''}=-\frac{f'/f''}{1+\theta f'^2/f''}$, khớp công thức vì $\delta_N^2=f'^2/f''$.
 :::
 
-## Bài 4. Tách được, sự tồn tại cực tiểu và các hằng số
+**Mức độ:** chứng minh. **Mục tiêu:** mục tiêu học tập 3; nối bước miền tin cậy với mô hình bậc hai có số hạng phạt.
 
-Mức độ: tính toán. LLO11, CLO1, CLO2.
+::: exercise Bài tập 05.19 (Bước miền tin cậy và mô hình bậc hai có phạt; Boyd và Vandenberghe, Bài 9.12, tr. 515)
+Cho $H\in\mathbb R^{d\times d}$ đối xứng, $H\succeq0$, $g\in\mathbb R^d$ và bán kính $\vartheta>0$. *Bước miền tin cậy* (trust region step) $v_{\rm tc}$ là nghiệm của bài toán cực tiểu hóa $\tfrac12v^THv+g^Tv$ với ràng buộc $\lVert v\rVert\le\vartheta$.
 
-::: exercise Bài 4
-1. Bốn điểm $u=(-2,-1,1,2)$, nhãn $y=(-1,-1,+1,+1)$, đặc trưng $(1,u)$. Dữ liệu có tách được không; mất mát logistic không chính quy hóa $F$ có điểm cực tiểu không.
-2. Cùng $u$, nhãn $y=(-1,+1,-1,+1)$. Trả lời như câu 1.
-3. Cho $\lambda=0{,}02$; mỗi $x_i$ gồm tọa độ hằng $1$ và phần đặc trưng có chuẩn không quá $1$. Cho $\mu$, cận trên của $L$ và của $\kappa$, và cận trên của $\lVert w_\lambda\rVert$ của mục tiêu logistic có chính quy hóa.
+- **(a)** Chứng minh có $\hat\beta\ge0$ sao cho $v_{\rm tc}$ cực tiểu hóa $\tfrac12v^THv+g^Tv+\hat\beta\lVert v\rVert^2$ trên $\mathbb R^d$.
+- **(b)** Với $\hat\beta$ của (a), chứng minh $\hat\beta=0$ khi $\lVert v_{\rm tc}\rVert<\vartheta$, và khi $\hat\beta>0$ thì $(H+2\hat\beta I)v_{\rm tc}=-g$ với $\lVert v_{\rm tc}\rVert=\vartheta$.
 :::
 
-::: hint Gợi ý Bài 4
-Ở câu 1, thử $\bar w=(0,1)$. Ở câu 2, điểm số affine $w_0+w_1u$ đổi dấu nhiều nhất một lần; để kiểm tra giả thiết của Mệnh đề 05.24, viết bốn biên rồi giả sử cả bốn không âm. Ở câu 3, $\lVert x_i\rVert^2\le1+1$, rồi dùng Định lý 05.26 và Mệnh đề 05.28.
+::: hint Gợi ý 1
+Viết ràng buộc thành $\tfrac12\lVert v\rVert^2-\tfrac12\vartheta^2\le0$ và kiểm tra bài toán là bài toán lồi có điểm thỏa ràng buộc chặt.
 :::
 
-::: solution Lời giải Bài 4
-1. Với $\bar w=(0,1)$, các biên là $y_iu_i=(2,1,1,2)$, đều dương, nên dữ liệu tách được (Định nghĩa 05.20). Theo Định lý 05.22, $\inf F=0$ không đạt, nên $F$ không có điểm cực tiểu, và mọi dãy làm $F$ về $0$ có chuẩn tiến ra vô cùng. Ví dụ này cho thấy tách được không cần $\operatorname{rank}X=n$: ở đây $d=2<n=4$.
-
-2. Dãy nhãn $-,+,-,+$ đổi dấu ba lần, nên không điểm số affine nào đúng dấu tại cả bốn điểm. Kiểm tra giả thiết của Mệnh đề 05.24: các biên là $m_1=2w_1-w_0$, $m_2=w_0-w_1$, $m_3=-w_0-w_1$, $m_4=w_0+2w_1$. Nếu cả bốn không âm:
-
-- từ $m_2\ge0$ và $m_3\ge0$: $w_1\le w_0\le-w_1$, nên $w_1\le0$;
-- từ $m_1\ge0$ và $m_4\ge0$: $-2w_1\le w_0\le2w_1$, nên $w_1\ge0$;
-- vậy $w_1=0$, rồi $0\le w_0\le0$ cho $w_0=0$.
-
-Mọi $w\ne0$ có một biên âm, nên theo Mệnh đề 05.24, $F$ cưỡng bức (coercive), tức $F(w)\to+\infty$ khi $\lVert w\rVert\to\infty$ (Định nghĩa 01.37), và có điểm cực tiểu.
-
-3. $\lVert x_i\rVert^2\le2$, tức $r^2=2$. Theo Định lý 05.26 và Mệnh đề 05.28: $\mu=\lambda=0{,}02$; $L\le\tfrac24+0{,}02=0{,}52$; $\kappa\le0{,}52/0{,}02=26$; $\lVert w_\lambda\rVert\le\sqrt{2\log2/0{,}02}=\sqrt{69{,}3}\approx8{,}33$.
+::: hint Gợi ý 2
+Hệ quả 03.31 cho một nhân tử $\omega\ge0$; đọc điều kiện dừng và điều kiện bù trừ của hệ KKT (Định lý 03.32).
 :::
 
-## Bài 5. Chứng minh đầy đủ Mệnh đề 05.24
-
-Mức độ: chứng minh. LLO11, CLO1. Bài tập về nhà.
-
-::: exercise Bài 5
-Cho mất mát logistic trung bình $F(w)=\frac1n\sum_i\log(1+e^{-m_i(w)})$, $m_i(w)=y_ix_i^Tw$, và giả thiết: với mọi $w\ne0$ tồn tại $i$ với $m_i(w)<0$. Chứng minh đầy đủ rằng $F$ cưỡng bức và có điểm cực tiểu. Có hai cách: dùng hàm $v\mapsto\max_i(-m_i(v))$ trên mặt cầu đơn vị, như chứng minh trong ghi chú bài giảng, hoặc phản chứng bằng dãy. Bài này đi theo cách thứ hai, qua các bước sau.
-
-1. Giả sử có dãy $(w_k)$ với $\lVert w_k\rVert\to\infty$ và $F(w_k)\le C$ với mọi $k$. Chứng minh $-m_i(w_k)\le nC$ với mọi $i$, $k$.
-2. Đặt $v_k=w_k/\lVert w_k\rVert$. Chứng minh có dãy con hội tụ về một $v$ với $\lVert v\rVert=1$, và $m_i(v)\ge0$ với mọi $i$.
-3. Suy ra mâu thuẫn, và kết luận $F$ có điểm cực tiểu.
-:::
-
-::: hint Gợi ý Bài 5
-Ở câu 1, mỗi số hạng của $F$ dương, nên $\log(1+e^{-m_i})\le nF$, và $\log(1+e^s)\ge s$. Ở câu 2, mặt cầu đơn vị là tập compact (định lý Bolzano–Weierstrass), và $m_i$ tuyến tính nên $m_i(v_k)=m_i(w_k)/\lVert w_k\rVert$.
-:::
-
-::: solution Lời giải Bài 5
-1. Mọi số hạng của $F$ dương, nên với mỗi $i$, $\frac1n\log\bigl(1+e^{-m_i(w_k)}\bigr)\le F(w_k)\le C$. Vì $\log(1+e^s)\ge s$ với mọi $s$, ta có $-m_i(w_k)\le\log\bigl(1+e^{-m_i(w_k)}\bigr)\le nC$.
-
-2. Các $v_k$ nằm trên mặt cầu đơn vị, một tập đóng và bị chặn của $\mathbb R^d$. Theo định lý Bolzano–Weierstrass, có dãy con $v_{k_j}\to v$, và $\lVert v\rVert=1$ vì chuẩn liên tục. Vì $m_i$ tuyến tính, $-m_i(v_{k_j})=-m_i(w_{k_j})/\lVert w_{k_j}\rVert\le nC/\lVert w_{k_j}\rVert\to0$. Chuyển qua giới hạn, dùng tính liên tục của $m_i$: $-m_i(v)\le0$, tức $m_i(v)\ge0$ với mọi $i$.
-
-3. $v\ne0$ và mọi biên của $v$ không âm, trái giả thiết. Giả thiết phản chứng của câu 1 là phủ định của tính cưỡng bức: $F$ không cưỡng bức khi và chỉ khi có $C$ và dãy $\lVert w_k\rVert\to\infty$ với $F(w_k)\le C$. Mâu thuẫn vừa nhận được cho thấy với mọi $C$, tập $\{w:\ F(w)\le C\}$ bị chặn, tức $F(w)\to\infty$ khi $\lVert w\rVert\to\infty$. $F$ liên tục, nên Định lý 01.38 cho $F$ có điểm cực tiểu.
-
-So với chứng minh trong ghi chú, cách này không cho hằng số $c$ trong cận $F(w)\ge\frac cn\lVert w\rVert$; nó chỉ cho tính cưỡng bức.
-:::
-
-## Bài 6. Trường hợp ranh giới
-
-Mức độ: chứng minh. LLO11, CLO1.
-
-::: exercise Bài 6
-Bốn mẫu với đặc trưng $(1,u)$: $(u,y)=(-1,-1)$, $(0,+1)$, $(0,-1)$, $(1,+1)$; hai mẫu tại $u=0$ trùng vector đặc trưng nhưng khác nhãn.
-
-1. Chứng minh dữ liệu không tách được tuyến tính, nhưng có $w\ne0$ với mọi biên không âm. Vì vậy cả Định lý 05.22 lẫn Mệnh đề 05.24 đều không áp dụng.
-2. Viết $F(w_0,w_1)$ và chứng minh $F(w)>\tfrac12\log2$ với mọi $w$.
-3. Chứng minh $\inf F=\tfrac12\log2$, và kết luận về sự tồn tại điểm cực tiểu.
-:::
-
-::: hint Gợi ý Bài 6
-Hai mẫu tại $u=0$ có biên $w_0$ và $-w_0$. Với mọi số thực $a$, $\log(1+e^{-a})+\log(1+e^{a})=\log(2+e^a+e^{-a})\ge\log4$. Ở câu 3, xét $w=(0,t)$ với $t\to\infty$.
-:::
-
-::: solution Lời giải Bài 6
-1. Biên của hai mẫu tại $u=0$ là $w_0$ và $-w_0$; chúng không thể cùng dương, nên dữ liệu không tách được. Với $w=(0,1)$, bốn biên là $1,0,0,1$, đều không âm, nên giả thiết của Mệnh đề 05.24 không thỏa.
-
-2. Các biên là $m_1=w_1-w_0$, $m_2=w_0$, $m_3=-w_0$, $m_4=w_0+w_1$, nên
-
-$$
-F(w)=\tfrac14\bigl[\phi(w_1-w_0)+\phi(w_0)+\phi(-w_0)+\phi(w_0+w_1)\bigr],\qquad\phi(m)=\log(1+e^{-m}).
-$$
-
-Theo gợi ý, $\phi(w_0)+\phi(-w_0)\ge\log4=2\log2$, và hai số hạng còn lại dương. Vậy $F(w)>\tfrac14\cdot2\log2=\tfrac12\log2$.
-
-3. Với $w=(0,t)$: $F=\tfrac14\bigl[2\phi(t)+2\log2\bigr]=\tfrac12\phi(t)+\tfrac12\log2\to\tfrac12\log2$ khi $t\to\infty$. Kết hợp câu 2, $\inf F=\tfrac12\log2\approx0{,}3466$ và không đạt, nên $F$ không có điểm cực tiểu. Số liệu: $F(0,1)=0{,}5032$, $F(0,5)=0{,}3499$, $F(0,10)=0{,}34660$. Trường hợp ranh giới này giống trường hợp tách được ở chỗ điểm cực tiểu không tồn tại, nhưng cận dưới đúng dương. Số hạng phạt $\lambda>0$ vẫn sửa được bài toán theo Định lý 05.26.
-:::
-
-## Bài 7. Cận dưới định lượng của chuẩn nghiệm khi $\lambda\to0$
-
-Mức độ: chứng minh. LLO11, CLO1, CLO2. Bài tập về nhà.
-
-::: exercise Bài 7
-Dữ liệu tách được bởi $\bar w$ với $\lVert\bar w\rVert=1$ và biên nhỏ nhất $\gamma=\min_im_i(\bar w)>0$; đặt $r=\max_i\lVert x_i\rVert$. Gọi $w_\lambda$ là điểm cực tiểu của mục tiêu logistic có chính quy hóa $F_\lambda=F+\frac\lambda2\lVert w\rVert^2$, với $0<\lambda<1$.
-
-1. Chứng minh $F(w)\ge\log2\cdot e^{-r\lVert w\rVert}$ với mọi $w$.
-2. Chứng minh $F(w_\lambda)\le e^{-t\gamma}+\frac\lambda2t^2$ với mọi $t>0$.
-3. Chọn $t=\log(1/\lambda)/\gamma$ để suy ra cận dưới (\*) dưới đây, và kết luận $\lVert w_\lambda\rVert\to\infty$ khi $\lambda\to0$.
-4. Áp dụng cho ví dụ một mẫu ($\gamma=r=1$, $\bar w=1$) với $\lambda=0{,}05$ và $\lambda=0{,}0005$, và so với các nghiệm $w_\lambda=2{,}1280$ và $5{,}8342$.
-
-Cận dưới (\*) là
-
-$$
-\lVert w_\lambda\rVert\ge\frac1r\log\frac{\log2}{\lambda\bigl(1+\log^2(1/\lambda)/(2\gamma^2)\bigr)} .
-$$
-:::
-
-::: hint Gợi ý Bài 7
-Ở câu 1, mọi biên thỏa $m_i(w)\le\lVert x_i\rVert\lVert w\rVert\le r\lVert w\rVert$ (Cauchy–Schwarz), và hàm lõm $a\mapsto\log(1+a)$ nằm trên dây cung nối $(0,0)$ với $(1,\log2)$. Ở câu 2, so $F_\lambda(w_\lambda)$ với $F_\lambda(t\bar w)$ và dùng $\log(1+a)\le a$.
-:::
-
-::: solution Lời giải Bài 7
-1. Đặt $s=r\lVert w\rVert\ge0$. Vì $\phi$ giảm và $m_i(w)\le s$, mỗi số hạng thỏa $\phi(m_i(w))\ge\phi(s)$, nên $F(w)\ge\phi(s)=\log(1+e^{-s})$. Với $a=e^{-s}\in(0,1]$, tính lõm cho $\log(1+a)\ge a\log2$. Vậy $F(w)\ge\log2\cdot e^{-r\lVert w\rVert}$.
-
-2. Vì $w_\lambda$ cực tiểu hóa $F_\lambda$ và số hạng phạt không âm,
+::: solution Lời giải Bài tập 05.19
+**Câu (a).** Mục tiêu liên tục trên hình cầu đóng, bị chặn $\{\lVert v\rVert\le\vartheta\}$, nên nghiệm $v_{\rm tc}$ tồn tại (Định lý 01.35). Mục tiêu lồi vì $H\succeq0$, ràng buộc $\tfrac12\lVert v\rVert^2-\tfrac12\vartheta^2\le0$ lồi, và $v=0$ thỏa ràng buộc chặt (điều kiện Slater). Theo Hệ quả 03.31, có $\omega\ge0$ sao cho $(v_{\rm tc},\omega)$ thỏa hệ KKT:
 
 $$
 \begin{aligned}
-F(w_\lambda)&\le F_\lambda(w_\lambda)\\
-&\le F_\lambda(t\bar w)\\
-&=F(t\bar w)+\tfrac\lambda2t^2\lVert\bar w\rVert^2\\
-&\le\log\bigl(1+e^{-t\gamma}\bigr)+\tfrac\lambda2t^2&&\text{(a)}\\
-&\le e^{-t\gamma}+\tfrac\lambda2t^2&&\text{(b)}.
+&Hv_{\rm tc}+g+\omega v_{\rm tc}=0,\\
+&\omega\bigl(\lVert v_{\rm tc}\rVert^2-\vartheta^2\bigr)=0.
 \end{aligned}
 $$
 
-Dòng (a) dùng Bước 2 của chứng minh Định lý 05.22 và $\lVert\bar w\rVert=1$; dòng (b) dùng $\log(1+a)\le a$.
+Phương trình thứ nhất là điều kiện $\nabla q_\omega(v_{\rm tc})=0$ của hàm lồi $q_\omega(v)=\tfrac12v^THv+g^Tv+\tfrac\omega2\lVert v\rVert^2$, nên $v_{\rm tc}$ cực tiểu hóa $q_\omega$ trên $\mathbb R^d$ (Hệ quả 01.26). Vậy $\hat\beta=\omega/2$.
 
-3. Với $t=\log(1/\lambda)/\gamma>0$ (vì $\lambda<1$), $e^{-t\gamma}=\lambda$, và câu 2 cho $F(w_\lambda)\le\lambda\bigl(1+\log^2(1/\lambda)/(2\gamma^2)\bigr)$. Ghép với câu 1:
+**Câu (b).** Theo điều kiện bù trừ, $\lVert v_{\rm tc}\rVert<\vartheta$ buộc $\omega=0$. Khi $\hat\beta>0$, tức $\omega>0$, điều kiện bù trừ cho $\lVert v_{\rm tc}\rVert=\vartheta$, và phương trình thứ nhất là $(H+2\hat\beta I)v_{\rm tc}=-g$. Ma trận $H+2\hat\beta I\succ0$ khả nghịch, cùng dạng với Hessian $\nabla^2F+\lambda I$ của mục tiêu có chính quy hóa ở Định lý 05.26; TRON của Ví dụ 05.25 là một phương pháp Newton miền tin cậy.
+
+**Kiểm tra lại.** Nếu $H\succ0$ và $\lVert H^{-1}g\rVert\le\vartheta$, cặp $v=-H^{-1}g$, $\omega=0$ thỏa hệ KKT, nên theo Định lý 03.32, $v=-H^{-1}g$ là nghiệm; mục tiêu lồi chặt vì $H\succ0$, nên nghiệm duy nhất (Định lý 01.34). Vậy $\hat\beta=0$ và bước miền tin cậy trùng hướng Newton, đúng như (b).
+:::
+
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 3; giảm chi phí mỗi lần thử của tìm kiếm đường bằng một phép tính sẵn.
+
+::: exercise Bài tập 05.20 (Tính sẵn cho tìm kiếm đường; Boyd và Vandenberghe, Bài 9.23(a), (b), tr. 518)
+Cho $A\in\mathbb R^{n\times d}$ dày đặc với hàng thứ $i$ là $a_i^T$, $c\in\mathbb R^n$, điểm $w$ và hướng $p$. Tìm kiếm đường đánh giá $h(t)=f(w+tp)$ và $h'(t)$ tại nhiều giá trị $t$. Với mỗi hàm sau, nêu một phép tính sẵn (pre-computation), chi phí của nó, và chi phí đánh giá $h(t)$, $h'(t)$ có và không có phép tính sẵn:
+
+- **(a)** $f(w)=-\sum_{i=1}^n\log(c_i-a_i^Tw)$, với giả thiết $s=c-Aw>0$ đã có;
+- **(b)** $f(w)=\log\sum_{i=1}^n\exp(a_i^Tw+c_i)$.
+:::
+
+::: hint Gợi ý 1
+Không tính sẵn, mỗi lần đánh giá cần $A(w+tp)$. Tìm các đại lượng chỉ phụ thuộc $w$ và $p$ mà $h(t)$ dùng.
+:::
+
+::: hint Gợi ý 2
+Ở (a), tách $c_i-a_i^T(w+tp)$ thành $s_i$ nhân một biểu thức bậc nhất theo $t$. Ở (b), viết $a_i^T(w+tp)+c_i$ thành tổng của hai số không phụ thuộc $t$, một số nhân với $t$.
+:::
+
+::: solution Lời giải Bài tập 05.20
+**Câu (a).** Không tính sẵn, mỗi lần đánh giá cần $A(w+tp)$, tức $nd$ phép nhân–cộng, cộng $O(n)$. Tính sẵn $Ap$ ($nd$) rồi $\omega_i=a_i^Tp/s_i$ ($O(n)$). Khi đó $c_i-a_i^T(w+tp)=s_i(1-t\omega_i)$, nên
 
 $$
-\log2\cdot e^{-r\lVert w_\lambda\rVert}\le\lambda\Bigl(1+\frac{\log^2(1/\lambda)}{2\gamma^2}\Bigr).
+\begin{aligned}
+h(t)&=h(0)-\sum_i\log(1-t\omega_i),\\
+h'(t)&=\sum_i\frac{\omega_i}{1-t\omega_i},
+\end{aligned}
 $$
 
-Lấy logarit hai vế và chia cho $r$ cho cận cần chứng minh. Khi $\lambda\to0$, $\lambda\log^2(1/\lambda)\to0$, nên mẫu số dưới dấu logarit tiến về $0$ và vế phải tiến ra vô cùng; cận tăng như $\frac1r\log\frac1\lambda$ trừ một số hạng bậc $\log\log\frac1\lambda$. Đây là phiên bản định lượng của Hệ quả 05.27.
+với miền $1-t\omega_i>0$, và mỗi lần đánh giá tốn $O(n)$.
 
-4. Với $\lambda=0{,}05$: $\log(1/\lambda)=2{,}996$, $1+2{,}996^2/2=5{,}488$, nên cận là $\log\bigl(0{,}6931/(0{,}05\cdot5{,}488)\bigr)=\log2{,}526\approx0{,}93\le2{,}128$. Với $\lambda=0{,}0005$: $\log(1/\lambda)=7{,}601$, $1+7{,}601^2/2=29{,}89$, nên cận là $\log\bigl(0{,}6931/0{,}01495\bigr)=\log46{,}37\approx3{,}84\le5{,}834$. Cận đúng nhưng không chặt; nó bắt được tốc độ tăng theo $\log\frac1\lambda$ của nghiệm.
+**Câu (b).** Không tính sẵn, mỗi lần đánh giá tốn $nd$ cộng $O(n)$. Tính sẵn $\zeta=Aw+c$ và $q=Ap$, tốn $2nd$. Khi đó $h(t)=\log\sum_ie^{\zeta_i+tq_i}$ và $h'(t)=\sum_i\pi_i(t)q_i$ với $\pi_i(t)=e^{\zeta_i+tq_i}/\sum_je^{\zeta_j+tq_j}$, mỗi lần đánh giá tốn $O(n)$. Dòng 6 của Thuật toán 05.32 dùng đúng cách này: tính sẵn $Xp$, rồi mỗi lần thử một $t$ tốn $O(n)$.
+
+**Kiểm tra lại.** Ở (a), $h'(0)=\sum_i\omega_i=\sum_ia_i^Tp/s_i$, và $\nabla f(w)=\sum_ia_i/s_i$, nên $h'(0)=\nabla f(w)^Tp$, đúng đạo hàm theo hướng. Ở (b), $h'(0)=\sum_i\pi_i(0)a_i^Tp=\nabla f(w)^Tp$ với $\nabla f(w)=\sum_i\pi_i(0)a_i$.
 :::
 
-## Bài 8. Chi phí của hai phương pháp và cấu trúc hạng thấp
+**Mức độ:** tính toán. **Mục tiêu:** mục tiêu học tập 3; nhận ra Hessian ba đường chéo và đếm chi phí bước Newton.
 
-Mức độ: tính toán. LLO15, LLO11; CLO4, CLO1.
+::: exercise Bài tập 05.21 (Hessian ba đường chéo của bài toán làm trơn; Boyd và Vandenberghe, Bài 9.25(a), tr. 518)
+Cho $y\in\mathbb R^d$, $\lambda>0$ và hàm phạt $\psi:\mathbb R\to\mathbb R$ lồi, lớp $C^2$, với $\psi''>0$. Xét
 
-::: exercise Bài 8
-1. Cho $F_\lambda(w)=\log(1+e^{-w})+0{,}025w^2$ ($\lambda=0{,}05$) và $w_0=0$. Tính hai bước Newton với bước đầy đủ, và so với nghiệm $w_\lambda=2{,}1280$.
-2. Cho $n=10^6$, $d=10^4$, $\kappa=1000$, $e_0/\varepsilon_{\rm tol}=10^8$, $N_{\rm N}=10$. So tổng chi phí của hạ gradient và Newton theo (4.6), (4.7), và tính bộ nhớ của Hessian ở độ chính xác kép.
-3. Cho $n=10^4$, $d=10^5$. Tính chi phí một bước Newton khi tận dụng cấu trúc đường chéo cộng hạng thấp của Hessian, và so với $nd^2+d^3$.
+$$
+\begin{aligned}
+f(w)&=\sum_{i=1}^d\psi(w_i-y_i)\\
+&\quad+\lambda\sum_{i=1}^{d-1}(w_{i+1}-w_i)^2 ,
+\end{aligned}
+$$
+
+với $w\in\mathbb R^d$ là bản làm trơn của $y$.
+
+- **(a)** Viết $\nabla^2f(w)$ và chỉ ra cấu trúc của nó.
+- **(b)** Chứng minh thừa số $R$ của phân tích Cholesky $\nabla^2f=R^TR$ (phân rã Cholesky, Định nghĩa 00.25) chỉ có đường chéo chính và đường chéo ngay trên, và đếm bậc chi phí của một bước Newton theo $d$.
 :::
 
-::: hint Gợi ý Bài 8
-Ở câu 1, $F_\lambda'(w)=-\sigma(-w)+\lambda w$ và $F_\lambda''(w)=\sigma(w)\sigma(-w)+\lambda$. Ở câu 3, dùng Mệnh đề 05.36.
+::: hint Gợi ý 1
+Số hạng $(w_{i+1}-w_i)^2$ chỉ chứa hai biến liền nhau, nên chỉ đóng góp vào bốn phần tử của Hessian.
 :::
 
-::: solution Lời giải Bài 8
-1. Tại $w_0=0$: $F'_\lambda=-0{,}5$, $F''_\lambda=0{,}25+0{,}05=0{,}3$, nên $w_1=0{,}5/0{,}3=1{,}6667$. Tại $w_1$: $F'_\lambda=-0{,}07554$, $F''_\lambda=0{,}18363$, nên $w_2=1{,}6667+0{,}07554/0{,}18363=2{,}0780$. Khoảng cách tới nghiệm giảm từ $2{,}128$ xuống $0{,}461$ rồi $0{,}050$; bước thứ ba cho $2{,}1274$, khoảng cách $0{,}0006$, đúng kiểu hội tụ bậc hai.
-
-2. $\log10^8=18{,}42$. Hạ gradient: $C_{\rm HG}\approx nd\cdot\kappa\log(e_0/\varepsilon_{\rm tol})=10^{10}\cdot1000\cdot18{,}42\approx1{,}84\cdot10^{14}$. Newton: $C_{\rm N}\approx10\cdot(nd^2+d^3)=10\cdot(10^{14}+10^{12})=1{,}01\cdot10^{15}$. Hai cận cùng bậc độ lớn, khoảng $10^{14}$–$10^{15}$; tính cả hằng số của Thuật toán 05.1 và 05.2, chúng là $2nd\cdot1000\cdot18{,}42\approx3{,}7\cdot10^{14}$ và $10\cdot(2nd+nd^2/2+d^3/3)\approx5{,}0\cdot10^{14}$. Theo Ví dụ 05.22, khi hai cận cùng bậc, phép đếm chỉ cho kết luận ở mức bậc độ lớn: hai phương pháp tốn cùng bậc số phép tính, và cận của hạ gradient còn bi quan (Ví dụ 05.19). Hessian cần $8d^2=8\cdot10^8$ byte, tức 800 MB.
-
-3. Theo Mệnh đề 05.36, chi phí là $n^2d+n^3=10^{13}+10^{12}=1{,}1\cdot10^{13}$, so với $nd^2+d^3=10^{14}+10^{15}=1{,}1\cdot10^{15}$: rẻ hơn $100$ lần. Ma trận cần phân tích có kích thước $n\times n$, chiếm $8\cdot10^8$ byte thay cho $8\cdot10^{10}$ byte.
+::: hint Gợi ý 2
+Ở (b), so phần tử $(i,k)$ của $R^TR$ với của $\nabla^2f$, lần lượt theo $i=1,2,\ldots$.
 :::
 
-## Bài 9. Số bước bảo đảm trên ví dụ năm mẫu
+::: solution Lời giải Bài tập 05.21
+**Câu (a).** Phần thứ nhất có Hessian $\operatorname{diag}\bigl(\psi''(w_i-y_i)\bigr)$. Phần thứ hai là $\lambda\lVert Dw\rVert^2$ với $D\in\mathbb R^{(d-1)\times d}$ có hàng thứ $i$ bằng $-1$ ở cột $i$, bằng $1$ ở cột $i+1$ và bằng $0$ ở các cột khác, nên có Hessian $2\lambda D^TD$. Vậy
 
-Mức độ: tính toán. LLO11, LLO15; CLO1, CLO4.
+$$
+\begin{aligned}
+\nabla^2f&=\operatorname{diag}\bigl(\psi''(w_i-y_i)\bigr)\\
+&\quad+2\lambda D^TD,
+\end{aligned}
+$$
 
-::: exercise Bài 9
-Trên ví dụ năm mẫu với $d=5$, mục tiêu bình phương có chính quy hóa có số điều kiện $\kappa=553{,}7$ khi $\lambda=0$ và $\kappa=123{,}2$ khi $\lambda=0{,}01$ (Ví dụ 05.9).
+trong đó $D^TD$ có đường chéo $(1,2,\ldots,2,1)$ và các phần tử ngay trên, ngay dưới đường chéo bằng $-1$. Hessian là ma trận ba đường chéo, xác định dương vì mọi $\psi''>0$ và $D^TD\succeq0$.
 
-1. Với $e_0/\varepsilon_{\rm tol}=10^6$, tính số bước hạ gradient đủ theo Hệ quả 05.31 cho hai giá trị $\lambda$.
-2. Phương pháp Newton cần bao nhiêu bước trên hai mục tiêu này. Giải thích.
-3. Với $n=5$, $d=5$, chi phí mỗi bước của hai phương pháp theo bậc là bao nhiêu, và phương pháp nào nên dùng cho bài toán kích thước này.
+**Câu (b).** Viết $h_{ik}$ cho các phần tử của $\nabla^2f$. Quy nạp theo hàng: giả sử các hàng $1,\ldots,i-1$ của $R$ chỉ có phần tử khác $0$ ở cột của chính hàng và cột kế tiếp. So phần tử $(i,k)$ với $k>i$: $h_{ik}=\sum_{l\le i}r_{li}r_{lk}=r_{ii}r_{ik}$, vì với $l<i$ và $k>i\ge l+1$ thì $r_{lk}=0$ theo giả thiết quy nạp. Do đó $r_{ik}=h_{ik}/r_{ii}$, bằng $0$ khi $k>i+1$. Các phần tử khác $0$ là
+
+$$
+\begin{aligned}
+r_{ii}&=\sqrt{h_{ii}-r_{i-1,i}^2},\\
+r_{i,i+1}&=h_{i,i+1}/r_{ii},
+\end{aligned}
+$$
+
+mỗi hàng tốn $O(1)$. Lập Hessian, phân tích và hai phép thế với ma trận hai đường chéo đều tốn $O(d)$, nên một bước Newton tốn $O(d)$, so với khoảng $d^3/6$ phép nhân–cộng của phân tích Cholesky dày đặc (ghi chú, đoạn sau Thuật toán 05.32).
+
+**Kiểm tra lại.** Với $d=2$: $\nabla^2f=\begin{pmatrix}\psi_1''+2\lambda&-2\lambda\\-2\lambda&\psi_2''+2\lambda\end{pmatrix}$ với $\psi_i''=\psi''(w_i-y_i)$; $r_{11}=\sqrt{\psi_1''+2\lambda}$, $r_{12}=-2\lambda/r_{11}$, và $r_{12}^2+r_{22}^2=\psi_2''+2\lambda$, khớp phần tử $(2,2)$.
 :::
 
-::: hint Gợi ý Bài 9
-Hai mục tiêu là hàm bậc hai; Hessian của chúng không đổi theo $w$.
+## Mức vận dụng
+
+**Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 2; lập bài toán ước lượng của mô hình probit thành bài toán lồi.
+
+::: exercise Bài tập 05.22 (Mô hình probit dưới dạng bài toán lồi; Boyd và Vandenberghe, Bài 7.3, tr. 393)
+Cho $n$ mẫu $(u_i,y_i)$ với $y_i\in\{0,1\}$ và $x_i=(1,u_i)$. Mô hình probit giả sử $y_i=1$ khi $x_i^Tw+\xi_i\le0$ và $y_i=0$ khi $x_i^Tw+\xi_i>0$, với các $\xi_i$ độc lập, phân phối chuẩn tắc. Gọi $\Phi$ là hàm phân phối tích lũy của phân phối chuẩn tắc; theo Boyd và Vandenberghe (2004, Ví dụ 3.39, tr. 104), $\log\Phi$ là hàm lõm.
+
+- **(a)** Tính $\Pr(y_i=1)$ và $\Pr(y_i=0)$ theo $\Phi$ và $x_i^Tw$.
+- **(b)** Lập bài toán ước lượng hợp lý cực đại của $w$ thành bài toán cực tiểu hóa một hàm lồi.
 :::
 
-::: solution Lời giải Bài 9
-1. $\log10^6=13{,}82$. Với $\lambda=0$: $553{,}7\cdot13{,}82\approx7650$ bước. Với $\lambda=0{,}01$: $123{,}2\cdot13{,}82\approx1702$ bước. Chính quy hóa giảm số bước bảo đảm khoảng $4{,}5$ lần, cùng tỉ lệ với $\kappa$.
-
-2. Một bước. Với hàm bậc hai $f(w)=\tfrac12w^THw-b^Tw+c$, $H\succ0$, mô hình bậc hai của Newton trùng với $f$, nên bước đầy đủ $w_1=w_0-H^{-1}(Hw_0-b)=H^{-1}b$ là nghiệm, như trong Ví dụ 05.17. Bước đó chính là giải phương trình chuẩn (2.6).
-
-3. Một bước hạ gradient tốn khoảng $nd=25$ phép nhân–cộng, một bước Newton khoảng $nd^2+d^3=250$; Newton một bước rẻ hơn hàng nghìn bước hạ gradient. Với bài toán kích thước này, giải trực tiếp phương trình chuẩn là lựa chọn đúng; hạ gradient chỉ có ý nghĩa ở Ví dụ 05.24 vì các điểm lặp trung gian của nó được dùng để dừng sớm.
+::: hint Gợi ý 1
+$\Pr(y_i=1)=\Pr(\xi_i\le-x_i^Tw)$, và phân phối chuẩn tắc đối xứng.
 :::
 
-## Bài 10. Phân loại với nhiều đặc trưng hơn mẫu
-
-Mức độ: vận dụng vào AI. LLO11, LLO15; CLO1, CLO2, CLO4.
-
-::: exercise Bài 10
-Bài toán phân loại hai lớp có $n=200$ mẫu và $d=500$ đặc trưng đa thức.
-
-1. Nêu ba hệ quả đối với mất mát logistic $F$ và mục tiêu có chính quy hóa $F_\lambda$.
-2. Nêu phương án tính bước Newton và chi phí của nó.
-3. Khi huấn luyện bằng hạ gradient và dừng sớm, bước dừng được chọn bằng tập nào; vì sao sai số trên tập đó không phải ước lượng cuối của rủi ro kỳ vọng.
+::: hint Gợi ý 2
+Các mẫu độc lập, nên hàm hợp lý là tích. Hợp của hàm lồi với ánh xạ affine là lồi (Định lý 01.30).
 :::
 
-::: hint Gợi ý Bài 10
-$d>n$ nên $\operatorname{rank}X\le200$. Hessian của $F_\lambda$ là $\lambda I$ cộng một ma trận có hạng không quá $n$.
+::: solution Lời giải Bài tập 05.22
+**Câu (a).** $\Pr(y_i=1)=\Pr(\xi_i\le-x_i^Tw)=\Phi(-x_i^Tw)$ và $\Pr(y_i=0)=1-\Phi(-x_i^Tw)=\Phi(x_i^Tw)$, vì phân phối chuẩn tắc đối xứng.
+
+**Câu (b).** Các mẫu độc lập, nên cực đại hóa hàm hợp lý tương đương cực tiểu hóa *hàm âm log-hợp lý* (negative log-likelihood) trung bình
+
+$$
+\begin{aligned}
+F(w)&=-\tfrac1n\sum_{y_i=1}\log\Phi(-x_i^Tw)\\
+&\quad-\tfrac1n\sum_{y_i=0}\log\Phi(x_i^Tw).
+\end{aligned}
+$$
+
+Hàm $z\mapsto-\log\Phi(z)$ lồi vì $\log\Phi$ lõm, và $w\mapsto\pm x_i^Tw$ tuyến tính, nên mỗi số hạng lồi (Định lý 01.30); tổng có hệ số dương cũng lồi. Bài toán ước lượng là bài toán lồi không ràng buộc $\min_wF(w)$.
+
+Với nhãn $\tilde y_i=1-2y_i\in\{-1,+1\}$, hai tổng gộp thành $F(w)=\frac1n\sum_i\bigl(-\log\Phi(m_i)\bigr)$ với biên có dấu $m_i=\tilde y_ix_i^Tw$: đúng dạng của Định nghĩa 05.1, với mất mát logistic $\phi(m)=-\log\sigma(m)$ thay bằng $-\log\Phi(m)$.
+
+**Kiểm tra lại.** $\Pr(y_i=1)+\Pr(y_i=0)=\Phi(-z)+\Phi(z)=1$ với $z=x_i^Tw$. Tại $z=0$: $(\log\Phi)''(0)=\frac{\Phi''(0)}{\Phi(0)}-\Bigl(\frac{\Phi'(0)}{\Phi(0)}\Bigr)^2=0-\Bigl(\frac{1/\sqrt{2\pi}}{1/2}\Bigr)^2=-\frac2\pi<0$, đúng chiều lõm.
 :::
 
-::: solution Lời giải Bài 10
-1. Ba hệ quả:
+**Mức độ:** vận dụng. **Mục tiêu:** mục tiêu học tập 3; giải hệ Newton khi Hessian dày đặc nhưng là tổng của các số hạng hạng thấp, thưa.
 
-- Nếu $\operatorname{rank}X=200$, mọi cách gán nhãn tách được (Mệnh đề 05.21), nên $F$ không có điểm cực tiểu (Định lý 05.22) và hạ gradient làm chuẩn tham số tăng không bị chặn (Hệ quả 05.23).
-- Với $\lambda>0$, $F_\lambda$ lồi mạnh và có đúng một nghiệm với $\lVert w_\lambda\rVert\le\sqrt{2\log2/\lambda}$ (Định lý 05.26).
-- Số điều kiện $\kappa\le1+\lambda_{\max}(X^TX)/(800\lambda)$ (Mệnh đề 05.28) tăng theo $1/\lambda$, nên $\lambda$ nhỏ làm hạ gradient chậm.
+::: exercise Bài tập 05.23 (Hệ Newton có cấu trúc tuyến tính thưa; Boyd và Vandenberghe, Bài 9.26, tr. 518–519)
+Xét $f(w)=\sum_{i=1}^n\psi_i(B_iw+c_i)$, với $B_i\in\mathbb R^{k_i\times d}$ rất thưa, $k_i\ll d$, $c_i\in\mathbb R^{k_i}$, và $\psi_i:\mathbb R^{k_i}\to\mathbb R$ lồi, lớp $C^2$, với $H_i=\nabla^2\psi_i(B_iw+c_i)\succ0$, $g_i=\nabla\psi_i(B_iw+c_i)$. Khi đó
 
-2. Hessian là $\lambda I+\frac1nX^TSX$ với phần thứ hai có hạng không quá $200$. Theo Mệnh đề 05.36, giải hệ Newton qua một hệ $200\times200$ tốn $O(n^2d+n^3)=2\cdot10^7+8\cdot10^6=2{,}8\cdot10^7$, rẻ hơn hệ $500\times500$ với $nd^2+d^3=5\cdot10^7+1{,}25\cdot10^8=1{,}75\cdot10^8$ khoảng $6$ lần.
+$$
+\begin{aligned}
+g&=\sum_iB_i^Tg_i,\\
+H&=\sum_iB_i^TH_iB_i;
+\end{aligned}
+$$
 
-3. Bước dừng chọn bằng tập xác thực (Định nghĩa 05.38). Sai số xác thực tại bước được chọn là giá trị nhỏ nhất trên cả quỹ đạo, nên theo Nhận xét 05.8 có xu hướng thấp hơn rủi ro kỳ vọng. Ước lượng cuối lấy trên một tập kiểm thử riêng, không tham gia chọn $\lambda$ hay bước dừng (Mệnh đề 05.7).
+giả sử $H\succ0$ dày đặc.
+
+- **(a)** Chứng minh hệ Newton $Hp=-g$ tương đương với hệ cỡ $\bar k+d$, $\bar k=\sum_ik_i$, theo ẩn $(\chi_1,\ldots,\chi_n,p)$, với $i=1,\ldots,n$:
+
+$$
+\begin{aligned}
+-H_i^{-1}\chi_i+B_ip&=0,\\
+\textstyle\sum_iB_i^T\chi_i&=-g .
+\end{aligned}
+$$
+
+- **(b)** So bộ nhớ của hai cách giải: lập $H$ dày đặc rồi phân tích Cholesky, và giải hệ ở (a) bằng một bộ giải hệ thưa.
 :::
 
-## Bài 11. Đặc trưng bình phương trên đầu vào nhị phân
-
-Mức độ: nhận biết. LLO11, CLO2.
-
-::: exercise Bài 11
-Cho bốn điểm XOR: $u\in\{0,1\}^2$, nhãn $+1$ tại $(0,1)$ và $(1,0)$, nhãn $-1$ tại $(0,0)$ và $(1,1)$.
-
-1. Với đặc trưng $(1,u_1,u_2,u_1^2,u_2^2)$, chứng minh dữ liệu vẫn không tách được.
-2. Với đặc trưng $(1,u_1,u_2,u_1u_2)$, tính $\operatorname{rank}X$ và dùng Mệnh đề 05.21 để kết luận về mọi cách gán nhãn cho bốn điểm này.
-3. Với đặc trưng của câu 2, mất mát logistic không chính quy hóa có điểm cực tiểu không.
+::: hint Gợi ý 1
+Hệ (a) có ẩn phụ $\chi_i\in\mathbb R^{k_i}$; tìm biểu thức của $\chi_i$ theo $p$ từ phương trình thứ nhất.
 :::
 
-::: hint Gợi ý Bài 11
-Với $u_i\in\{0,1\}$, $u_i^2=u_i$. Ở câu 2, ma trận $X$ là $4\times4$.
+::: hint Gợi ý 2
+Ở (b), đếm số phần tử khác $0$ của ma trận hệ (a) theo các khối $H_i^{-1}$, $B_i$, $B_i^T$.
 :::
 
-::: solution Lời giải Bài 11
-1. Tại bốn điểm, $u_1^2=u_1$ và $u_2^2=u_2$, nên điểm số $w_0+w_1u_1+w_2u_2+w_3u_1^2+w_4u_2^2$ bằng $w_0+(w_1+w_3)u_1+(w_2+w_4)u_2$, một hàm affine theo $u$. Theo Mệnh đề 05.40, không hàm affine nào đúng dấu tại cả bốn điểm. Các cột $u_i^2$ trùng cột $u_i$, nên không thêm thông tin.
+::: solution Lời giải Bài tập 05.23
+**Câu (a).** Nếu $Hp=-g$, đặt $\chi_i=H_iB_ip$; khi đó $-H_i^{-1}\chi_i+B_ip=0$ và $\sum_iB_i^T\chi_i=\sum_iB_i^TH_iB_ip=Hp=-g$. Ngược lại, nếu $(\chi,p)$ thỏa hệ (a) thì $\chi_i=H_iB_ip$, và thế vào phương trình cuối cho $Hp=-g$. Hai hệ có cùng $p$.
 
-2. Các hàng của $X$ là $(1,0,0,0)$, $(1,1,0,0)$, $(1,0,1,0)$, $(1,1,1,1)$. Ma trận này tam giác dưới với đường chéo bằng $1$, nên khả nghịch và $\operatorname{rank}X=4=n$. Theo Mệnh đề 05.21, mọi cách gán nhãn trong $2^4=16$ cách cho bốn điểm đều tách được, trong đó có XOR.
+**Câu (b).** Cách dày đặc lưu $H$ với $d^2$ số (khoảng $d^2/2$ nếu dùng tính đối xứng), và phân tích Cholesky tốn khoảng $d^3/6$ phép nhân–cộng. Ma trận hệ (a) có cỡ $\bar k+d$ nhưng chỉ có các phần tử khác $0$ ở các khối $H_i^{-1}$ ($\sum_ik_i^2$ số), ở $B_i$ và $B_i^T$ ($2\,\mathrm{nnz}$ số, với $\mathrm{nnz}$ là tổng số phần tử khác $0$ của các $B_i$), và khối $d\times d$ góc dưới phải bằng $0$. Khi $\sum_ik_i^2+2\,\mathrm{nnz}$ nhỏ hơn $d^2$ nhiều bậc, chẳng hạn khi $k_i\ll d$, các $B_i$ rất thưa và số số hạng $n$ không quá lớn, bộ nhớ ban đầu của hệ (a) nhỏ hơn nhiều so với cách dày đặc; phép phân tích hệ thưa có thể tạo thêm phần tử khác $0$ (fill-in). Ma trận hệ (a) không xác định dương vì khối $-H_i^{-1}$ âm.
 
-3. Không. Dữ liệu tách được, chẳng hạn bởi $\bar w=(-\tfrac12,1,1,-2)$ với mọi biên bằng $\tfrac12$ (Mệnh đề 05.40), nên theo Định lý 05.22, $\inf F=0$ không đạt.
+Hồi quy logistic không chính quy hóa có dạng này với $k_i=1$, $B_i=x_i^T$, $c_i=0$, $\psi_i(z)=\frac1n\phi(y_iz)$, nên $H_i=\frac1nS_{ii}$ và $H=\frac1nX^TSX$, phần dữ liệu của Hessian ở dòng 3 của Thuật toán 05.32.
+
+**Kiểm tra lại.** Kích thước: $\chi_i\in\mathbb R^{k_i}$, $B_ip\in\mathbb R^{k_i}$ và $B_i^T\chi_i\in\mathbb R^d$, khớp hai nhóm phương trình. Với $n=1$, $k_1=d$, $B_1=I$: hệ (a) cho $\chi_1=-g$ và $p=H_1^{-1}\chi_1=-H_1^{-1}g=-H^{-1}g$, đúng hướng Newton.
 :::
 
-## Bài 12. Dừng sớm với tham số kiên nhẫn
+## Tài liệu tham khảo
 
-Mức độ: vận dụng vào AI. LLO11, CLO1.
-
-::: exercise Bài 12
-Trên ví dụ năm mẫu với $d=5$ và $\lambda=0$, hạ gradient bước $\frac1L$ từ $w_0=0$ được đánh giá trên tập xác thực sau mỗi $25$ bước:
-
-| $k$ | MSE xác thực |
-|---:|---:|
-| $25$ | $0{,}00573$ |
-| $50$ | $0{,}00200$ |
-| $75$ | $0{,}00110$ |
-| $100$ | $0{,}00134$ |
-| $125$ | $0{,}00205$ |
-| $150$ | $0{,}00293$ |
-| $175$ | $0{,}00388$ |
-| $200$ | $0{,}00487$ |
-
-Quy tắc dừng: lưu tham số có sai số xác thực nhỏ nhất đã gặp, và dừng khi sai số xác thực không cải thiện trong $p$ lần đánh giá liên tiếp.
-
-1. Với $p=2$, xác định bước dừng và tham số được trả về.
-2. Tính tỉ số số lượt qua dữ liệu so với việc chạy tới khi MSE huấn luyện dưới $10^{-6}$, tức $2701$ bước.
-3. Giải thích vì sao $p$ lớn hơn an toàn hơn khi đường xác thực có nhiễu, và chi phí của lựa chọn đó.
-:::
-
-::: hint Gợi ý Bài 12
-Đếm số lần đánh giá liên tiếp không nhỏ hơn giá trị tốt nhất. Mỗi bước hạ gradient tốn một lượt qua dữ liệu.
-:::
-
-::: solution Lời giải Bài 12
-1. Giá trị tốt nhất giảm tới $0{,}00110$ tại $k=75$. Tại $k=100$ ($0{,}00134$) và $k=125$ ($0{,}00205$), không cải thiện hai lần liên tiếp, nên thuật toán dừng tại $k=125$ và trả về $w_{75}$. Theo Ví dụ 05.24, cực tiểu chính xác của đường xác thực nằm ở $k=79$ với $0{,}00108$; đánh giá mỗi $25$ bước chỉ thấy $k=75$.
-
-2. $125$ bước so với $2701$ bước: ít hơn khoảng $21{,}6$ lần số lượt qua dữ liệu, và sai số xác thực của tham số trả về, $0{,}00110$, nhỏ hơn giới hạn $0{,}0487$ của nghiệm chính xác khoảng $44$ lần.
-
-3. Khi tập xác thực nhỏ hoặc nhãn có nhiễu, đường xác thực có thể tăng tạm thời rồi giảm lại; $p$ nhỏ khi đó dừng quá sớm. $p$ lớn chống lại điều này, đổi lại phải chạy thêm $p$ lần đánh giá, tức $25p$ bước, sau điểm tốt nhất. Giá trị xác thực tốt nhất vẫn là giá trị nhỏ nhất trên quỹ đạo, nên báo cáo cuối lấy trên tập kiểm thử (Nhận xét 05.8).
-:::
-
-## Nguồn
-
-- Ghi chú bài giảng Bài 05 (các số hiệu `05.k`); Bài 01 (Định lý 01.38), Bài 05b, Bài 05c.
-- Ian Goodfellow, Yoshua Bengio và Aaron Courville (2016), *Deep Learning*, MIT Press, mục 5.2, 6.1, 7.3, 7.8 (Thuật toán 7.1, tham số kiên nhẫn).
-- Stephen Boyd và Lieven Vandenberghe (2004), *Convex Optimization*, Cambridge University Press, mục 9.5.3, 9.7.2.
-- Léon Bottou và Olivier Bousquet (2011), "The Tradeoffs of Large-Scale Learning", trong *Optimization for Machine Learning*, MIT Press, chương 13.
-
-Mọi số liệu là số liệu sư phạm tự xây dựng và được tính lại từ dữ kiện của đề.
+- Boyd, Stephen; Vandenberghe, Lieven (2004), *Convex Optimization*, Cambridge University Press, mục Exercises của các chương:
+  - Chương 7: Bài 7.3 (Estimation, tr. 393);
+  - Chương 9: Bài 9.1 (Unconstrained minimization, tr. 514), Bài 9.11 và 9.12 (Newton's method, tr. 515), Bài 9.23(a), (b), 9.24, 9.25(a) và 9.26 (Implementation, tr. 518–519);
+  - Ví dụ 3.39 (tr. 104) cho tính lõm của $\log\Phi$.

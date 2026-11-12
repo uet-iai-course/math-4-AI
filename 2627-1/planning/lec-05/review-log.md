@@ -908,3 +908,38 @@ Boyd và Vandenberghe (2004) §9.5 (tr. 488–489), Phụ lục C (tr. 662, 670)
 ### Kiểm của điều phối viên và trình duyệt
 
 forward_refs 0; bộ đếm 05.1–05.40, Ví dụ 05.1–05.25, Tình huống 05.1–05.3, Bài tập 05.1–05.15 liên tục; không lệnh TeX hỏng; đồng bộ `--check`, `git diff --check` đạt. Playwright `material-viewer.html?doc=materials/lec-05/lecture-note.md&deck=lecture-05-khong-gian-dac-trung-nhieu-chieu.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang trang; 0/64 công thức hiển thị rộng hơn khung ở 390 px; đã xem ảnh Định lý 05.26 ở 390.
+
+## Tệp bài tập theo chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: U2, U3 của `prompt_fix_lecture_notes_00_07.md`; mẫu `materials/lec-04/exercises.md`. `exercises.md` cũ (12 bài tự dựng) bỏ theo U2; nội dung Bài 6 cũ (ví dụ ranh giới bốn mẫu) đã nằm trong Nhận xét 05.25.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`/`SendMessage`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập danh sách và soạn, sửa hai vòng (cùng tác tử soạn ghi chú) | medium | 8 bài; `exercises.md`; câu liên kết ở ghi chú |
+| Rà toán (cùng tác tử rà toán ghi chú); kiểm lại một vòng | high | 0/0/0/9; kiểm lại: 0 lỗi toán, 4 nhẹ |
+| Rà sư phạm–văn phong, `no-ai-slop` Detect; kiểm lại một vòng | high | 0/0/4/10; kiểm lại: 7 nhẹ |
+| Rà sinh viên | high | 0/0/2/15 |
+
+### Quyết định
+
+- 8 bài 05.16–05.23, đều từ Boyd và Vandenberghe (2004): 9.1(a)(b), 9.24, 9.11, 9.12, 9.23(a)(b), 9.25(a), 7.3, 9.26.
+- Murphy (2022) 11.2 (trong danh sách duyệt kế hoạch) bỏ: đã là Bài tập 02.27 (Q-D). Boyd 6.7(a) để cho Bài 06.
+- **Bỏ mọi phần tự dựng thêm vào đề gốc (U2)**, dù người rà toán xác nhận đúng: câu tính số trên dữ kiện tự dựng ở 9.24, 9.11, 9.12, phần "Áp dụng" của 9.23, câu (c) thêm ở 9.1, phần kết luận về dữ liệu tách được ở 7.3, số hạng $\frac\lambda2\lVert w\rVert^2$ thêm vào 9.26. Liên hệ với ghi chú chỉ nằm trong lời giải. Dòng **Kiểm tra lại.** dùng dữ kiện của chính bài sách, tính tay được.
+- Còn lại ba yêu cầu suy luận trên dữ kiện của bài sách (05.18(b), 05.21(b), 05.23(b): so chi phí/bộ nhớ) — giữ.
+- Đoạn mở viết "Tám bài tập dưới đây…" (không ghi dải số, tránh tham chiếu tiến); câu liên kết ở ghi chú nêu dải 05.16–05.23.
+- Mục tiêu không có bài giáo trình (dựa vào bài trong ghi chú): toàn bộ mục tiêu 4 (dừng sớm, XOR, số đơn thức, bảng bảo đảm); mục tiêu 1 phần chọn mô hình trên tập xác thực và báo cáo trên tập kiểm thử; mục tiêu 2 phần số điều kiện của $F_\lambda$, tính tách được và sự tồn tại điểm cực tiểu (Bài tập 05.4, 05.5, 05.6, 05.11, 05.13) — trong tệp mục tiêu 2 chỉ còn tính lồi (05.22).
+
+### Lỗi trong lời giải của giáo trình (tệp viết lời giải đúng, không nhắc lỗi)
+
+- B 7.3: $Q(z)$ thiếu dấu trừ ở số mũ $e^{-t^2/2}$; lẫn ký hiệu $P$, $Q$ ("$1-Q(a^Tu+b)=P(-a^Tu-b)$").
+- B 9.11: hướng Newton của hàm hợp thiếu thừa số; hệ số đúng $1/(1+\frac{\varphi''}{\varphi'}\delta_N^2)$ (kiểm số ngẫu nhiên).
+- B 9.12: $v^Tv\le\gamma$ và $\beta(\lVert v\rVert^2-\gamma)$ phải là $\gamma^2$; điều kiện dừng $Hv+g+\beta v=0$ phải là $2\beta v$; bỏ qua bước Slater.
+- B 9.24: kết luận "hàm tách được" cần Hessian khối chéo tại mọi điểm.
+- B 9.26: "$y_i=A_i^Tv$", "$y_i=H_iA_i^Tv$" sai kích thước (đúng $H_iB_iv$ theo ký hiệu tệp).
+- B 9.25(a): lời giải chỉ có một từ ("Tridiagonal"); tệp chứng minh thừa số hai đường chéo bằng quy nạp.
+
+### Kiểm của điều phối viên và trình duyệt
+
+Bài tập 05.16–05.23 liên tục; ghi chú chỉ thêm một câu liên kết (diff); forward_refs 0; đồng bộ `--check`, `git diff --check` đạt; `index.html` đã có liên kết. Playwright `material-viewer.html?doc=materials/lec-05/exercises.md&deck=lecture-05-khong-gian-dac-trung-nhieu-chieu.html`, 1600×900, 390×844, `file://`: 0 `.katex-error`, 0 chữ đỏ, 0 lỗi console, 0 request lỗi, không tràn ngang; 0/11 công thức tràn ở 390 px. `exercises.md` 3 296 âm tiết; ghi chú 26 953.
