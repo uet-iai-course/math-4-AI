@@ -1152,3 +1152,16 @@ Căn cứ: U2, U3 của `prompt_fix_lecture_notes_00_07.md`; mẫu `materials/le
 ### Kiểm của điều phối viên và trình duyệt
 
 Bài tập 07.19–07.32 liên tục; ghi chú chỉ thêm một câu liên kết; điều phối viên kiểm 32 dẫn chiếu từ tệp bài tập sang ghi chú: 0 sai loại khối; forward_refs 0 cả hai tệp; đồng bộ `--check`, `git diff --check` đạt; `index.html` đã có liên kết. Playwright `material-viewer.html?doc=materials/lec-07/exercises.md&deck=lecture-07-quy-hoach-tuyen-tinh-va-dong.html`, 1600×900, 390×844, `file://`: 0 `.katex-error`, 0 chữ đỏ, 0 lỗi console, 0 request lỗi; 0/13 công thức tràn ở 390 px. `exercises.md` 8 316 âm tiết; ghi chú 35 779.
+
+## Cập nhật dẫn chiếu tới Bài 07 (giai đoạn 3, 2026-11-12)
+
+Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medium). Thay một lượt theo `map-lec-07.md` (từ điển 121 mục khóa theo loại khối) trên mọi ghi chú, tệp bài tập và deck ngoài Bài 07:
+
+- Deck 07 dòng 243 (ghi chú diễn giả): "Định lý 07.20" → "Định lý 07.17" (tự động; word-diff chỉ đổi số).
+- `lec-13` dòng 1080 (viết tay): nguồn của truy hồi ngược "Bertsekas (2017), §1.1–1.3, đã dẫn ở Bài 07" → "MIT OpenCourseWare 15.093J (2009, Bài giảng 16, slide 7–9), đã dẫn ở Bài 07" (Bài 07 mới không còn dẫn Bertsekas; slide 7 động học có nhiễu, slide 9 truy hồi $J_k=\min E[g_k+J_{k+1}]$).
+- `lec-03` dòng 2361 (viết tay): "… cùng giá bóng của từng ràng buộc" → "chi phí rút gọn của các biến bù ở cơ sở tối ưu, đổi dấu, cho một nghiệm đối ngẫu của Mệnh đề 03.11" (khớp đoạn sau Ví dụ 07.19 của Bài 07 mới).
+- Tác tử còn bỏ vế "; nó chưa phải định nghĩa" ở `lec-13` dòng 770; điều phối viên **hoàn tác** vì không phải dẫn chiếu (ngoài phạm vi giai đoạn 3) — để khi viết lại Bài 13.
+
+Giữ số, đã kiểm nội dung: Bài 13 (Định nghĩa 07.46, 07.48, Nhận xét 07.47, Định lý 07.49; dòng 3, 41, 770, 1080, 1473; `lec-13/exercises.md` 376), deck dẫn Bài tập 07.1, 07.6–07.8, 07.8–07.13, 07.15, Ví dụ 07.10. Kiểm: 574 tham chiếu "Loại 07.k" ở 5 tệp, 0 sai; không còn dẫn khối bị bỏ, thuật toán, nhãn công thức, số mục hay bài tập cũ; forward_refs lec-03, lec-13 không đổi (0); `git diff --check`, đồng bộ `--check` đạt; notecheck lec-03, lec-13 và deck 07 (1600, 390): 0 lỗi.
+
+Còn lại (báo người dùng): `lec-13` dòng 1542 (Tài liệu đọc, Mở rộng) vẫn dẫn Bertsekas (2017), không có bản trong `sources/`; `lec-13` dòng 770 câu vị thế "nó chưa phải định nghĩa".

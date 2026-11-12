@@ -33,7 +33,7 @@ Cột "Dẫn chiếu ngoài" đếm token "Loại 07.k" (grep `materials/*/*.md`
 | Nhận xét 07.17 | Nhận xét 07.14 | §6.3 | | — | |
 | Định nghĩa 07.18 | Định nghĩa 07.15 | §6.4 | | — | |
 | Bổ đề 07.19 | Bổ đề 07.16 | §6.4 | | — | |
-| Định lý 07.20 | **Định lý 07.17** | §6.4 | | deck `lecture-07-…html` dòng 243 ×1 (ghi chú diễn giả) | đổi 1 token |
+| Định lý 07.20 | **Định lý 07.17** | §6.4 | | deck `lecture-07-…html` dòng 243 ×1 (ghi chú diễn giả) | đã đổi (2026-11-12) |
 | Hệ quả 07.21 | Hệ quả 07.18 | §6.4 | | — | |
 | Mệnh đề 07.22 | Mệnh đề 07.19 | §7.1 | | — | |
 | Định lý 07.23 | Định lý 07.20 | §7.2 | giả thiết viết "(L2)" | — | |
@@ -62,10 +62,10 @@ Cột "Dẫn chiếu ngoài" đếm token "Loại 07.k" (grep `materials/*/*.md`
 | Mệnh đề 07.44 | Mệnh đề 07.43 | §8.6 | | — | |
 | Thuật toán 07.3 | **Thuật toán 07.44** | §8.6 | vào bộ đếm chung; thêm Điều kiện dừng | — | |
 | Nhận xét 07.45 | Nhận xét 07.45 | §8.7, vùng đọc thêm | giữ số; câu Bertsimas Ch. 8–9 bỏ; câu `highs-ipm` bỏ ở vòng 1 (đã có ở §11.5), thay bằng công thức đo của Vanderbei tr. 49 | — | |
-| Định nghĩa 07.46 | Định nghĩa 07.46 | §9.1 | giữ số; bốn giả thiết thành (D1)–(D4) ở §2 | lec-13 ×1 (dòng 41) | giữ |
-| Nhận xét 07.47 | Nhận xét 07.47 | §9.1 | giữ số | lec-13 ×2 (41, 1473), lec-13/exercises ×1 (376) | giữ |
-| Định nghĩa 07.48 | Định nghĩa 07.48 | §9.2 | giữ số; (9.2) viết $J_k(\xi)=\min_{\mathcal U_k(\xi)}G_k$ | lec-13 ×2 (41, 1080) | giữ |
-| Định lý 07.49 | Định lý 07.49 | §9.2 | giữ số; giả thiết "(D1)–(D4)" | lec-13 ×5 (3, 41, 770, 1080 ×2) | giữ |
+| Định nghĩa 07.46 | Định nghĩa 07.46 | §9.1 | giữ số; bốn giả thiết thành (D1)–(D4) ở §2 | lec-13 ×1 (dòng 41) | giữ, đã kiểm nội dung |
+| Nhận xét 07.47 | Nhận xét 07.47 | §9.1 | giữ số | lec-13 ×2 (41, 1473), lec-13/exercises ×1 (376) | giữ, đã kiểm nội dung |
+| Định nghĩa 07.48 | Định nghĩa 07.48 | §9.2 | giữ số; (9.2) viết $J_k(\xi)=\min_{\mathcal U_k(\xi)}G_k$ | lec-13 ×2 (41, 1080) | giữ, đã kiểm nội dung |
+| Định lý 07.49 | Định lý 07.49 | §9.2 | giữ số; giả thiết "(D1)–(D4)" | lec-13 ×5 (3, 41, 770, 1080 ×2) | giữ, đã kiểm nội dung |
 | Mệnh đề 07.50 | Mệnh đề 07.50 | §9.2 | giữ số | — | |
 | Định nghĩa 07.51 | Định nghĩa 07.51 | §10.1 | giữ số | — | |
 | Thuật toán 07.4 | **Thuật toán 07.52** | §10.1 | vào bộ đếm chung; thêm Điều kiện dừng | — | |
@@ -131,3 +131,5 @@ Chỉ ghi, không sửa tệp ngoài Bài 07 ở vòng này.
 - `lec-03/lecture-note.md` dòng 2361: "…điều kiện dừng của nó cho một nghiệm đối ngẫu của Mệnh đề 03.11 cùng giá bóng của từng ràng buộc." Bài 07 mới nối chi phí rút gọn với hệ số của Mệnh đề 02.11 (sau Ví dụ 07.19) và 03.11 (sau Ví dụ 07.5), nhưng không phát biểu giá bóng; Tình huống 07.2 cho thấy tại đỉnh suy biến không có giá bóng duy nhất. Viết tay: "Bài 07 trở lại quy hoạch tuyến tính: phương pháp đơn hình tìm đỉnh tối ưu, và chi phí rút gọn của các biến bù ở cơ sở tối ưu, đổi dấu, cho một nghiệm đối ngẫu của Mệnh đề 03.11." (Bài 07 nêu điều này sau Ví dụ 07.19, dẫn Mệnh đề 02.11 và 03.11.)
 - `lec-07/exercises.md`: Bài tập 07.2 giữ dữ kiện $y=(0,2,6)$ (bản sao trong `exercises.md`); ghi chú chỉ thêm câu nối tới Bài tập 02.4(a) ở gợi ý. Nếu `exercises.md` chép gợi ý, thêm cùng câu.
 - Hình mới `img/lec-07/extreme-point-def-note.svg` (bản ghi chú của `extreme-point-def.svg`, nhãn $u$, $w$ thay bằng tọa độ): cần `git add` khi commit.
+
+**Trạng thái giai đoạn 3 (2026-11-12).** Deck dòng 243: "Định lý 07.20" → "Định lý 07.17" (đã đổi). `lec-13` dòng 1080: "Bertsekas (2017), §1.1–1.3, đã dẫn ở Bài 07" → "MIT OpenCourseWare 15.093J (2009, Bài giảng 16, slide 7–9), đã dẫn ở Bài 07" (đã viết tay; slide 7 là động học có nhiễu, slide 9 là truy hồi $J_k=\min E[g_k+J_{k+1}]$). `lec-13` dòng 770: không sửa ở giai đoạn 3 (không phải dẫn chiếu số; để khi làm Bài 13). `lec-03` dòng 2361: câu viết tay đã thay. Danh sách đầy đủ: `SP/lec07/phase3-changes.md`.

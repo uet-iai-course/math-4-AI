@@ -2358,7 +2358,7 @@ Bài tập 03.18–03.33, lấy từ Boyd và Vandenberghe (2004), có gợi ý 
 **Kiểm tra lại.** $L(x,2)=(x_1-1)^2+(x_2-1)^2+2\ge2$, bằng $2$ tại $(1,1)$.
 :::
 
-Hệ KKT của Bài 03 được giải theo từng trường hợp của điều kiện bù trừ; cách giải này khả thi khi có ít ràng buộc và khi điều kiện dừng có nghiệm dạng đóng, như Ví dụ 03.18(b) và Ví dụ 03.19. Khi mục tiêu không bậc hai, điều kiện dừng là một hệ phi tuyến. Bài 04 xây dựng phương pháp Newton cho bài toán không ràng buộc và bài toán có ràng buộc đẳng thức, trong đó mỗi bước giải một hệ KKT tuyến tính. Bài 07 trở lại quy hoạch tuyến tính: phương pháp đơn hình tìm đỉnh tối ưu, và điều kiện dừng của nó cho một nghiệm đối ngẫu của Mệnh đề 03.11 cùng giá bóng của từng ràng buộc.
+Hệ KKT của Bài 03 được giải theo từng trường hợp của điều kiện bù trừ; cách giải này khả thi khi có ít ràng buộc và khi điều kiện dừng có nghiệm dạng đóng, như Ví dụ 03.18(b) và Ví dụ 03.19. Khi mục tiêu không bậc hai, điều kiện dừng là một hệ phi tuyến. Bài 04 xây dựng phương pháp Newton cho bài toán không ràng buộc và bài toán có ràng buộc đẳng thức, trong đó mỗi bước giải một hệ KKT tuyến tính. Bài 07 trở lại quy hoạch tuyến tính: phương pháp đơn hình tìm đỉnh tối ưu, và chi phí rút gọn của các biến bù ở cơ sở tối ưu, đổi dấu, cho một nghiệm đối ngẫu của Mệnh đề 03.11.
 
 ## 13. Tài liệu đọc
 
