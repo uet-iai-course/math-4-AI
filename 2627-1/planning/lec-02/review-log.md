@@ -1636,3 +1636,60 @@ KaTeX hiển thị `\mathbb 1` thành chữ số "1" thường (điều phối v
 ### Kiểm của điều phối viên và trình duyệt
 
 forward_refs 0; bộ đếm 02.1–02.47, Ví dụ 02.1–02.29, Tình huống 02.1–02.3, Bài tập 02.1–02.17 liên tục; đồng bộ `--check`, `git diff --check` đạt. Playwright `material-viewer.html?doc=materials/lec-02/lecture-note.md&deck=lecture-02-cac-bai-toan-toi-uu-loi.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error` (3 429 công thức), 0 lỗi console, 0 request lỗi, không tràn ngang; bản in chứa đủ 20 chứng minh. Điều phối viên đã xem ảnh chụp.
+
+## Tệp bài tập theo chuẩn 2026-11 (2026-11-12)
+
+`exercises.md` cũ gồm 14 bài tự dựng, không có khối `exercise` nào (chặn bàn giao theo báo cáo phân tích). Theo U2 không bài nào chuyển sang tệp mới: người lập danh sách kiểm từng bài, các vế mục tiêu chúng phủ đã có bài trong ghi chú. Tệp mới gồm 15 bài giáo trình, Bài tập 02.18–02.32.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập danh sách (chỉ đọc) | medium | 15 bài, kiểm đề và trang trong PDF |
+| Soạn, rồi biên tập ba vòng (cùng tác tử) | medium | `exercises.md`; §11 của ghi chú (câu liên kết, mục tiêu Bài tập 02.1 và 02.11–02.17); Nhận xét 02.16 ý 2 |
+| Rà độ chính xác (hai vòng) | high | vòng 1: 0/0/1/6; vòng 2: đạt |
+| Rà sinh viên năm hai | high | 0/0/5/15 |
+| Rà sư phạm và văn phong, `no-ai-slop` Detect (hai vòng) | high | vòng 1: 0/0/5/14; vòng 2: 3 nhẹ |
+
+Điều phối viên đối chiếu số trang các bài Boyd (2.10, 4.11, 4.12, 4.17, 4.21, 4.22, 4.33, 4.35) với văn bản giáo trình và tìm Murphy 11.2, 11.4 trong PDF trước khi duyệt.
+
+### Danh sách bài và nguồn (trang in)
+
+| Bài tập | Mức | Nguồn | Lời giải trong nguồn |
+|---|---|---|---|
+| 02.18 | nhận biết | Boyd và Vandenberghe, Bài 2.10(a), tr. 61 | có |
+| 02.19 | nhận biết | Boyd và Vandenberghe, Bài 4.35, tr. 200 | có |
+| 02.20 | tính toán hoặc chứng minh | Boyd và Vandenberghe, Bài 4.1, tr. 189 | có (không ghi giá trị tối ưu; tác tử soạn tính bổ sung) |
+| 02.21 | tính toán hoặc chứng minh | Boyd và Vandenberghe, Bài 4.8(a), (b), tr. 192 | có |
+| 02.22 | tính toán hoặc chứng minh | Boyd và Vandenberghe, Bài 4.8(d), (e), tr. 192 | có |
+| 02.23 | tính toán hoặc chứng minh | Boyd và Vandenberghe, Bài 6.2 (phần $\ell_1$, $\ell_\infty$), tr. 344 | có |
+| 02.24 | tính toán hoặc chứng minh | Boyd và Vandenberghe, Bài 4.11(c)–(e), tr. 193 | có |
+| 02.25 | tính toán hoặc chứng minh | Boyd và Vandenberghe, Bài 4.21(a), (b), tr. 196–197 | có |
+| 02.26 | tính toán hoặc chứng minh | Boyd và Vandenberghe, Bài 4.22, tr. 197 (lời giải chỉ dùng điều kiện (4.2) và Cauchy–Schwarz, không KKT; thêm câu (b) bài toán có phạt trên dữ kiện sách) | có |
+| 02.27 | tính toán hoặc chứng minh | Murphy (2022), Bài 11.2, tr. 411–412 | không |
+| 02.28 | tính toán hoặc chứng minh | Murphy (2022), Bài 11.4, tr. 412 | không |
+| 02.29 | tính toán hoặc chứng minh | Boyd và Vandenberghe, Bài 4.33(a)–(c), tr. 199 | có |
+| 02.30 | vận dụng | Boyd và Vandenberghe, Bài 4.12, tr. 193 (thêm câu (b) dạng chuẩn trên dữ kiện sách) | có |
+| 02.31 | vận dụng | Boyd và Vandenberghe, Bài 4.17, tr. 195 | có |
+| 02.32 | vận dụng | Boyd và Vandenberghe, Bài 4.61(b), tr. 210 | có |
+
+Lỗi trong tệp lời giải Boyd (đề trong sách in đúng; người rà toán xác nhận): 6.2(c) "midrange" là $(\max+\min)/2$, giá trị tối ưu là $(\max-\min)/2$; 4.12 đảo dấu luồng vào và luồng ra; 4.8(b) "$c^Tab=\lambda b$" chỉ đúng khi $\lVert a\rVert_2=1$. Tệp bài tập viết đúng, không nhắc lỗi sách. Murphy 11.2, 11.4 không có lời giải trong `sources/`: tác tử soạn tự giải, người rà toán giải lại độc lập (kiểm số trên vài trăm bộ dữ liệu ngẫu nhiên).
+
+### Quyết định
+
+| Mức độ | Vị trí | Vấn đề | Quyết định |
+|---|---|---|---|
+| trung bình | 02.32 | Dẫn Định lý 01.30(b) cho $-\log$ xác định trên $(0,\infty)$ | chấp nhận: Định lý 01.29(a) trên tập mở lồi, Hessian $\succeq0$ |
+| trung bình | 02.26, 02.21, 02.25, 02.23, 02.31 | Ký hiệu trùng ghi chú ($\lambda$, $\mu$, $y$, $\varrho$, $I_i$, $\pi_j$) | chấp nhận: $\tau$, $\zeta$, $\kappa_v$, $\mathcal I_i$, $\varpi_j$ |
+| trung bình | 02.18, 02.28 | Gợi ý lộ kết quả | chấp nhận |
+| trung bình | 02.23(b), 02.24 | Dẫn "dòng thứ hai"; đoạn cuối lời giải sai và lặp | chấp nhận |
+| trung bình | bảng, §11 | Mục tiêu của Bài tập 02.1 lệch; 02.11–02.17 chưa ghi mục tiêu; 02.30 gán mục tiêu 6 không có nội dung | chấp nhận: sửa §11 ghi chú và bảng |
+| trung bình | tiêu đề khối Murphy | Thiếu năm | chấp nhận |
+| nhẹ | ghi chú Nhận xét 02.16 ý 2 | "Đẳng thức chỉ đúng tại nghiệm" sai theo nghĩa đen | chấp nhận: tại điểm khả thi chỉ có $t_i\ge\lvert r_i\rvert$, đẳng thức đúng tại mọi nghiệm |
+| nhẹ | $\beta$ ở 02.21, 02.22, 02.30 | Nghĩa khác nhau giữa các bài | giữ: ký hiệu cục bộ trong từng bài |
+| nhẹ | Định nghĩa 02.5 câu $T(s)=s$ | Khác các $T$ dùng trong tệp bài tập | giữ: câu đúng cho các mục của ghi chú |
+| nhẹ | §11 | Chuyển danh sách mục tiêu lên trước §11.1; chia "Trên lớp"/"Tự học" | bác bỏ: sinh tham chiếu tiến; đồng dạng Bài 00, 01 |
+
+### Mục tiêu không có bài giáo trình
+
+Mỗi mục tiêu 1–6 có ít nhất một bài (ghi chú hoặc tệp). Các vế không có bài giáo trình phù hợp, dựa vào bài trong ghi chú: đưa về dạng chuẩn (mục tiêu 2), ngưỡng mềm trên dữ liệu nhỏ (mục tiêu 3), hàm thay thế lồi, mất mát bản lề, nới lỏng và cận từ nới lỏng tuyến tính (mục tiêu 5; Q02-5 đã loại Boyd 4.15, 4.10), chọn đặc trưng và công bằng giữa các nhóm (mục tiêu 6).

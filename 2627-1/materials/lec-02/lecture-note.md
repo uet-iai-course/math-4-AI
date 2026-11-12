@@ -932,7 +932,7 @@ Trên hình, nghiệm minimax dời đường lên $1{,}5$ đơn vị để chia
 
 ::: remark Nhận xét 02.16 (Các lỗi thường gặp khi dùng biến phụ)
 1. Chỉ viết một phía $t_i\ge r_i$: với dữ liệu chung, $w=(0,-\Lambda)$ và $t_i=r_i=-\Lambda-y_i$ cho $\mathbf 1^Tt=-5\Lambda-\sum_iy_i=-5\Lambda-3\to-\infty$ khi $\Lambda\to+\infty$.
-2. Coi $t_i=\lvert r_i\rvert$ tại mọi điểm khả thi: điểm $(w,t)=((1,0),(1,1,3,1,1))$ khả thi mà $t_1>\lvert r_1\rvert=0$. Đẳng thức chỉ đúng tại nghiệm (Định lý 02.15(b)).
+2. Coi $t_i=\lvert r_i\rvert$ tại mọi điểm khả thi: điểm $(w,t)=((1,0),(1,1,3,1,1))$ khả thi mà $t_1>\lvert r_1\rvert=0$. Tại một điểm khả thi bất kỳ chỉ có $t_i\ge\lvert r_i\rvert$; đẳng thức đúng tại mọi nghiệm (Định lý 02.15(b)).
 3. Dùng biến phụ cho bài toán cực đại: $\max_{-1\le x\le1}\lvert x\rvert=1$, còn "$\max t$ với $t\ge\pm x$" không bị chặn trên.
 4. Gọi việc chuyển từ $\lVert r\rVert_1$ sang $\lVert r\rVert_\infty$ là biến đổi tương đương: đổi hàm gộp là đổi bài toán.
 :::
@@ -2953,7 +2953,7 @@ Các giả thiết cần nhớ là (L1)–(L5) ở §9.1, cùng Nhận xét 02.3
 
 Các bài tập trong thân bài và mục tiêu học tập mà mỗi bài kiểm tra:
 
-1. **Bài tập 02.1** (Biến đổi tương đương bằng đổi biến logarit): mục tiêu 1; dựng $\varphi$, $\psi$, $T$.
+1. **Bài tập 02.1** (Biến đổi tương đương bằng đổi biến logarit): mục tiêu 4, 5; dựng $\varphi$, $\psi$, $T$.
 2. **Bài tập 02.2** (Hình tròn và điều kiện bậc nhất): mục tiêu 1; chứng nhận, tồn tại, duy nhất.
 3. **Bài tập 02.3** (Thuê máy tiền xử lý dữ liệu): mục tiêu 2; dạng chuẩn và chứng nhận bằng tổ hợp không âm.
 4. **Bài tập 02.4** (Trung vị và trung điểm): mục tiêu 2; biến phụ cho hai tiêu chí.
@@ -3214,6 +3214,18 @@ $$
 
 **Kiểm tra lại.** Với $\omega=0{,}4$, hai nhóm có lỗi $0{,}38$ và $0{,}3$; với $\omega=0{,}6$, có lỗi $0{,}32$ và $0{,}4$. Cả hai giá trị lớn nhất đều vượt $0{,}35$.
 :::
+
+Mục tiêu học tập mà các bài tập củng cố kiểm tra:
+
+11. **Bài tập 02.11** (Đúng hay sai): mục tiêu 1, 5; tính lồi, tồn tại nghiệm, nới lỏng và hàm thay thế.
+12. **Bài tập 02.12** (Kiểm tra một biến đổi tương đương sai): mục tiêu 2, 5, 6; điều kiện của biến phụ ở bước 8 của Thuật toán 02.44.
+13. **Bài tập 02.13** (Máy vector hỗ trợ với bản lề bình phương): mục tiêu 3, 5; hàm thay thế và quy hoạch bậc hai tương đương.
+14. **Bài tập 02.14** (Đường đi nghiệm của LASSO, solution path): mục tiêu 3; ngưỡng mềm theo $\lambda$ và so sánh với ridge.
+15. **Bài tập 02.15** (Hồi quy với một ngoại lai): mục tiêu 2; chứng nhận nghiệm hồi quy sai số tuyệt đối bằng tổ hợp $\nu$ với $\lvert\nu_i\rvert\le1$.
+16. **Bài tập 02.16** (Tổng hai đơn thức với tích bị chặn): mục tiêu 4; dạng lồi và nghiệm của quy hoạch hình học.
+17. **Bài tập 02.17** (Cực tiểu hóa mất mát của nhóm chịu thiệt nhất): mục tiêu 2, 6; biến phụ cho cực đại và chứng nhận bằng tổ hợp không âm.
+
+Bài tập 02.18–02.32, lấy từ Boyd và Vandenberghe (2004) và Murphy (2022), có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 02](material-viewer.html?doc=materials/lec-02/exercises.md&deck=lecture-02-cac-bai-toan-toi-uu-loi.html).
 
 ## 12. Câu hỏi cuối buổi và cầu nối
 
