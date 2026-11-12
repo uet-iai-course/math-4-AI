@@ -1648,3 +1648,7 @@ Lỗi trong tệp lời giải Boyd (người soạn phát hiện, người rà 
 ### Mục tiêu không có bài giáo trình
 
 Mỗi mục tiêu có ít nhất một bài trong tệp. Các vế dựa vào bài trong ghi chú: khoảng đối ngẫu của một cặp và khoảng tối ưu; đối ngẫu mạnh khi bài toán gốc không đạt nghiệm; độ nhạy địa phương (giá bóng); hồi quy có ràng buộc chặn chuẩn và chia đôi hệ số phạt; đối ngẫu máy vector hỗ trợ (không có trong Boyd, Kupferschmid, Murphy).
+
+## Cập nhật dẫn chiếu tới Bài 03 (giai đoạn 3, 2026-11-12)
+
+Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy từ lời gọi công cụ). Mọi số khối Bài 03 mà bài khác dẫn đều giữ nguyên; chỉ hai chỗ ở `lec-04/lecture-note.md` đổi, viết tay: dòng 134 nhãn "(2.1)" → "(1.1)" theo `map-lec-03.md`; dòng 761 "$v=0$ thỏa chặt ràng buộc" → "$v=0$ là điểm khả thi ngặt" (Bài 03 nay dùng "khả thi ngặt" cho $f_i<0$, Định nghĩa 03.13) — `chấp nhận`. Không deck nào dẫn số hiệu ghi chú Bài 03; không tệp nào dẫn `exercises.md` cũ, các thuật toán, Mệnh đề 03.36 hay Nhận xét 03.37 cũ. Script kiểm 547 cụm "Loại 03.k" ở 7 tệp: một cụm sai là `materials/README.md:15` "Định lý 03.2" (Q03-10, ngoài phạm vi ghi, báo người dùng). Để lại cho lần viết lại Bài 04: dòng 228 "như Bài 03" (Bài 03 không tách đẳng thức thành hai bất đẳng thức). Đồng bộ `--check`, `git diff --check` đạt.

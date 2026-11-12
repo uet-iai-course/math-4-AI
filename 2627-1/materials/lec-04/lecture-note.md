@@ -131,7 +131,7 @@ với giá trị tối ưu $F^*=\inf\{F(u)\mid u\in\operatorname{dom}F,\ Au=b\}$
 
 Trong định nghĩa trên có ba loại giả thiết. Miền mở làm mọi điểm của miền là điểm trong, nên gradient xác định ở mọi nơi và không có điều kiện riêng tại biên. Tính lồi làm điều kiện dừng thành điều kiện đủ. Giả thiết các hàng của $A$ độc lập tuyến tính, gọi là $A$ đủ hạng hàng, loại các ràng buộc thừa, vì nếu một hàng là tổ hợp của các hàng khác thì hoặc nó thừa, hoặc hệ $Au=b$ vô nghiệm.
 
-Bài toán tổng quát (2.1) của Bài 03 có miền $D$, $m$ ràng buộc bất đẳng thức $f_i(x)\le0$ và ràng buộc đẳng thức $Ax=b$. Định nghĩa 04.1 là trường hợp $m=0$ với $D$ là tập mở lồi. Bài toán không ràng buộc là trường hợp riêng $p=0$ của bài toán có đẳng thức.
+Bài toán tổng quát (1.1) của Bài 03 có miền $D$, $m$ ràng buộc bất đẳng thức $f_i(x)\le0$ và ràng buộc đẳng thức $Ax=b$. Định nghĩa 04.1 là trường hợp $m=0$ với $D$ là tập mở lồi. Bài toán không ràng buộc là trường hợp riêng $p=0$ của bài toán có đẳng thức.
 
 Ví dụ, $f(x)=\tfrac12(3x_1^2+7x_2^2)$ trên $\mathbb R^2$ là bài toán không ràng buộc, còn $\varphi(s)=s-\log s$ có miền mở $(0,\infty)$, nên điều kiện $s>0$ là miền chứ không phải ràng buộc bất đẳng thức. Phản ví dụ là bài toán $\min x$ với $x\ge0$: nó không thuộc hai lớp này vì nghiệm $x=0$ nằm trên biên của tập khả thi và đạo hàm tại đó bằng $1\ne0$.
 
@@ -758,7 +758,7 @@ $$
 ::: proof Chứng minh Mệnh đề 04.15
 **Bước 1 (tồn tại nghiệm và hệ KKT).**
 
-Tập khả thi $\{v\mid v^TWv\le1\}$ đóng, bị chặn và không rỗng, mục tiêu tuyến tính liên tục, nên bài toán con có nghiệm theo Định lý 01.35. Bài toán con lồi và $v=0$ thỏa chặt ràng buộc ($0<1$), nên theo Hệ quả 03.31 và Định lý 03.32, $v$ là nghiệm khi và chỉ khi có $\zeta$ thỏa hệ KKT. Với hàm Lagrange $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$, bốn nhóm là:
+Tập khả thi $\{v\mid v^TWv\le1\}$ đóng, bị chặn và không rỗng, mục tiêu tuyến tính liên tục, nên bài toán con có nghiệm theo Định lý 01.35. Bài toán con lồi và $v=0$ là điểm khả thi ngặt ($0<1$), nên theo Hệ quả 03.31 và Định lý 03.32, $v$ là nghiệm khi và chỉ khi có $\zeta$ thỏa hệ KKT. Với hàm Lagrange $L_s(v,\zeta)=g^Tv+\zeta(v^TWv-1)$, bốn nhóm là:
 
 1. dừng: $g+2\zeta Wv=0$;
 2. khả thi gốc: $v^TWv\le1$;
