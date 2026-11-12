@@ -3072,6 +3072,8 @@ $M^TM$ là ma trận đường chéo. Dữ liệu mới là $\tilde M=M\operator
 **Kiểm tra lại.** $\kappa=400{,}1/4{,}1\approx97{,}6$.
 :::
 
+Bài tập 04.16–04.31, có gợi ý và lời giải, nằm trong [tệp bài tập của Bài 04](material-viewer.html?doc=materials/lec-04/exercises.md&deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html).
+
 ## 13. Câu hỏi cuối buổi và cầu nối
 
 Mức giảm dự báo $\tfrac9{32}\approx0{,}281$ không dùng được làm cận trên của sai số $\varphi(\tfrac14)-\varphi^*$: sai số này bằng $\log4-\tfrac34\approx0{,}636$ (Ví dụ 04.15), vì parabol dùng độ cong $16$, lớn hơn độ cong của $\varphi$ trên phần còn lại của $[\tfrac14,1]$ (giảm từ $16$ xuống $1$). Cận (9.1) với $\delta=\tfrac34$ chứng nhận sai số này (Ví dụ 04.24).

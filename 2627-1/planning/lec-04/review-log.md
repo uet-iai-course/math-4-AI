@@ -1856,3 +1856,49 @@ Ghi chú cũ 34 550 âm tiết; bản nháp 1: 27 933; bản cuối: 27 480 (tr�
 ### Kiểm của điều phối viên và trình duyệt
 
 forward_refs 0; bộ đếm 04.1–04.62 liên tục (62 số khác nhau), Ví dụ 04.1–04.26, Tình huống 04.1–04.3, Bài tập 04.1–04.15; không lệnh TeX hỏng do thay ký hiệu (grep `\su…`, lệnh một chữ); đồng bộ `--check`, `git diff --check` đạt. Điều phối viên đọc diff v2 → v3 (đổi biến chứng minh Định lý 04.54 và Hệ quả 04.55: $\omega(t)$, $\omega_2$; kiểm $0{,}4624+0{,}68+\log0{,}32\approx0{,}0030$). Hai SVG sửa tại chỗ (`quadratic-zigzag`, `equality-nullspace`) không có trong deck. Playwright `material-viewer.html?doc=materials/lec-04/lecture-note.md&deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`, 1600×900, 390×844 (cuộn tới cuối), `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang trang; đã xem ảnh đầu trang 1600 và Thuật toán 04.49 ở 390.
+
+## Tệp bài tập theo chuẩn 2026-11 (2026-11-12)
+
+Căn cứ: U2, U3 của `prompt_fix_lecture_notes_00_07.md`; mẫu `materials/lec-03/exercises.md`. `exercises.md` cũ (13 bài tự dựng) bỏ theo U2; mỗi bài có chỗ bù trong ghi chú hoặc tệp mới.
+
+### Tác tử (lấy từ lời gọi công cụ `Agent`/`SendMessage`; `general-purpose`, `model: opus`)
+
+| Vai trò | Effort | Kết quả |
+|---|---|---|
+| Lập danh sách và soạn, sửa hai vòng (cùng tác tử soạn ghi chú) | medium | danh sách 17 bài → 16 bài; `exercises.md`; câu liên kết ở ghi chú |
+| Rà toán (cùng tác tử rà toán ghi chú); kiểm lại một vòng | high | 0/0/1/5; kiểm lại: 0 lỗi mới, 4 nhẹ; giải lại độc lập K 13.5.4 bằng phân số |
+| Rà sư phạm–văn phong, `no-ai-slop` Detect; kiểm lại một vòng | high | 0/0/5/18; kiểm lại: 9 nhẹ |
+| Rà sinh viên | high | 0/0/3/11 |
+
+### Quyết định
+
+- 16 bài 04.16–04.31: Boyd và Vandenberghe (2004) 9.3, 9.5, 9.9, 9.10(a), 9.13, 9.16, 9.21, 10.1(a), 10.2, 10.5, 10.7(b), 10.8, 10.9(a)(b), 11.1, 11.2; Kupferschmid (2023) 13.5.4(a)(b). B 11.1, 11.2 gắn phần đọc thêm về phương pháp hàm chắn (tên kết thúc "— đọc thêm").
+- Không dùng (để cho Bài 05/06, Q-D): B 9.1, 9.6 (trùng Ví dụ 04.8), 9.11, 9.12, 9.24, 9.25, 9.26, 9.31.
+- B 9.3 có câu (c) là chứng minh: chuyển sang mức chứng minh (04.20).
+- Mục tiêu không có bài giáo trình (dựa vào bài trong ghi chú): chứng minh hệ (1.1)/(1.2) cần và đủ; một vòng hạ gradient với quay lui bằng số; cận $O(1/k)$; giải bằng số hệ khối và hệ rút gọn; điều mỗi tiêu chí dừng chứng nhận trên ba mô hình học.
+- Câu liên kết trong ghi chú theo mẫu Bài 00 (không nêu tên sách, vì Kupferschmid không có trong Tài liệu đọc của ghi chú).
+- Giữ "ma trận Jacobian" và $\operatorname{Col}(A^T)$ theo ghi chú đã commit (bác bỏ đề xuất đổi của người rà sư phạm).
+
+### Lỗi trong lời giải của giáo trình (tệp viết lời giải đúng, không nhắc lỗi)
+
+- B 9.3: (c) ghi "gets stuck at (1,1)", nhưng $(1,1)\notin\operatorname{dom}f$; dãy hội tụ về điểm đó với $f\to2>f^*=1$; (b) không trả lời câu hỏi lồi mạnh.
+- B 9.5: "$\beta^kt\le t_0$" phải là $\beta^k\le t_0$; thiếu trường hợp $t_0\ge1$.
+- B 9.9: $\nabla f^{-1/2}$ phải là $\nabla^2f^{-1/2}$.
+- B 9.10(a): cột $f(x^{(k)})-p^\star$ lệch một dòng.
+- B 9.13(b): phép đổi biến bỏ sót hệ số $\tfrac89$; lời giải tính trực tiếp: $c/y$ tự điều chỉnh khi $y\le\tfrac{8c}9$.
+- B 9.16(b): $f$ phải là $f''$.
+- B 9.21: cận chỉ đạt khi $\beta\to1$; $\alpha^*=(30-\sqrt{740})/16\approx0{,}1748$, giá trị $\approx251{,}6$.
+- B 10.1(a): một câu thừa trong lập luận. B 10.2(c): thiếu giả thiết gradient Lipschitz.
+- B 10.5: ma trận thiếu hệ số 2; ký hiệu nhân tử lẫn $\tilde w$, $\hat w$.
+- B 10.8: công thức co theo $\prod(1-t)$ chỉ đúng cho $r_p$.
+- B 10.9(a): "$g(t)$" phải là $g'(t)\to-\infty$; nhãn (c), (d) đổi chỗ.
+- B 11.1: lời giải chỉ có hình; đã tính $x^*(\tau)=2{,}7437;\ 2{,}2016;\ 2{,}0244;\ 2{,}0025$ ($\tau=0{,}1;1;10;100$), khoảng đối ngẫu $2/\tau$.
+- K 13.5.4: sách không có lời giải; tự giải $d=(\tfrac{19}{256},\tfrac{15}{64},-\tfrac{17}{16})^T$, $\delta^2=\tfrac{677}{256}$ (người soạn và người rà toán, độc lập).
+
+### Kiểm của điều phối viên và trình duyệt
+
+Bài tập 04.16–04.31 liên tục; ghi chú chỉ đổi một câu liên kết (diff); forward_refs: chỉ dải 04.16–04.31 trỏ sang tệp bài tập; đồng bộ `--check`, `git diff --check` đạt; `index.html` đã có liên kết tới tệp. Playwright `material-viewer.html?doc=materials/lec-04/exercises.md&deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`, 1600×900, 390×844, `file://`: 0 `.katex-error`, 0 chữ đỏ KaTeX, 0 lỗi console, 0 request lỗi, không tràn ngang; đã xem ảnh Bài tập 04.20 ở 390. `exercises.md` 6 760 âm tiết; ghi chú 27 497.
+
+### Lệch với deck (Q-F)
+
+Trang RZ03 của deck liệt kê "Bài 1 … Bài 8" của `exercises.md` cũ; nay lệch, cần đồng bộ deck sau.
