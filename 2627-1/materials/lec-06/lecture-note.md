@@ -21,7 +21,7 @@ Số hiệu `00.k`, `01.k`, `04.k`, `05.k`, `05b.k`, `05c.k` chỉ ghi chú Bài
 - **Khai triển Taylor bậc hai và phép kiểm tra bậc hai bằng Hessian** (Bài 00, Định lý 00.40 và 00.43). Với $F$ khả vi liên tục hai lần, $F(\theta+s)=F(\theta)+\nabla F(\theta)^\top s+\tfrac12s^\top\nabla^2F(\theta)s+o(\lVert s\rVert^2)$; tại điểm có $\nabla F(\theta)=0$ và $\nabla^2F(\theta)\succ0$, $\theta$ là cực tiểu địa phương chặt.
 - **Tính lồi** (Định nghĩa 01.21; Định lý 01.30(b); Hệ quả 01.26; Hệ quả 01.33). Hợp của một hàm lồi với một ánh xạ affine là hàm lồi. Với $F$ lồi khả vi, mọi điểm có $\nabla F(\theta)=0$ là cực tiểu toàn cục. Tập nghiệm của bài toán cực tiểu hóa một hàm lồi là tập lồi.
 - **Gradient Lipschitz và bổ đề giảm** (Định nghĩa 04.18; Bổ đề 04.19, 04.21; Bổ đề 05b.6). Nếu $\nabla F$ là $L$-Lipschitz thì $F(\theta')\le F(\theta)+\nabla F(\theta)^\top(\theta'-\theta)+\tfrac L2\lVert\theta'-\theta\rVert^2$, và một bước hạ gradient với bước $\eta\in(0,\tfrac2L)$ làm $F$ giảm.
-- **Kết luận của Bài 05.** Một bước hạ gradient trên $n$ mẫu với $d$ tham số tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$ (Mệnh đề 05.35). Dữ liệu XOR không tách được bằng điểm số affine (Mệnh đề 05.40), và số đơn thức bậc không quá $q$ của $d_0$ biến là $\binom{d_0+q}q$ (Mệnh đề 05.41). Tập xác thực, tập kiểm thử và dừng sớm được định nghĩa ở Định nghĩa 05.6 và Định nghĩa 05.38. Chính quy hóa bậc hai làm mất mát logistic lồi mạnh (Định lý 05.26).
+- **Kết luận của Bài 05.** Một bước hạ gradient trên $n$ mẫu với $d$ tham số tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$ (Mệnh đề 05.33). Dữ liệu XOR không tách được bằng điểm số affine (Mệnh đề 05.38), và số đơn thức bậc không quá $q$ của $d_0$ biến là $\binom{d_0+q}q$ (Mệnh đề 05.39). Tập xác thực, tập kiểm thử và dừng sớm được định nghĩa ở Định nghĩa 05.6 và Định nghĩa 05.36. Chính quy hóa bậc hai làm mất mát logistic lồi mạnh (Định lý 05.26).
 - **Bài 05b** (Định nghĩa 05b.5, 05b.31; Định lý 05b.36, 05b.39, 05b.41, 05b.43; Hệ quả 05b.44). Các giả thiết có tên được phát biểu lại tại chỗ dùng đầu: H0 (bị chặn dưới) và H2 (gradient Lipschitz) ở Định lý 06.20, H3 (lồi mạnh) và H4 (có điểm cực tiểu) ở Định lý 06.31, H6 (không chệch), H6a (chặn mômen bậc hai) và H6b (chặn phương sai) ở Định nghĩa 06.26. Bốn định lý hội tụ trên được phát biểu lại đầy đủ ở Mục 4 và 6, thành Định lý 06.20 (Định lý 05b.41), Định lý 06.31 (Định lý 05b.36), Định lý 06.32 (Định lý 05b.39) và Định lý 06.34 (Định lý 05b.43).
 - **Bài 05c** (Định nghĩa 05c.51; Định lý 05c.52, 05c.53; Mệnh đề 05c.56; Nhận xét 05c.58). Rủi ro thực nghiệm tại một tham số cố định ước lượng không chệch rủi ro kỳ vọng; gradient trên một nhóm mẫu chọn ngẫu nhiên ước lượng không chệch gradient đầy đủ. Hai kết quả này được phát biểu lại ở Mục 5.
 
@@ -62,7 +62,7 @@ Mọi số liệu của các ví dụ là số liệu sư phạm tự xây dựn
 
 ## 1. Bài toán huấn luyện khi mô hình và dữ liệu lớn
 
-Bài 05 khép lại với hai giới hạn có số liệu cụ thể. Giới hạn thứ nhất thuộc về phương pháp: mỗi bước hạ gradient trên $n$ mẫu với $d$ tham số tốn khoảng $nd$ phép nhân–cộng, mỗi bước Newton tốn khoảng $nd^2+d^3$ (Mệnh đề 05.35). Với $n=d=10^9$, riêng một bước hạ gradient đã cần $10^{18}$ phép tính, tức khoảng $11{,}6$ ngày trên một máy giả định thực hiện $10^{12}$ phép mỗi giây. Giới hạn thứ hai thuộc về mô hình: trên bốn điểm XOR, không điểm số affine nào phân lớp đúng cả bốn điểm (Mệnh đề 05.40). Thêm đặc trưng thủ công sửa được giới hạn này, nhưng với $d$ biến đầu vào và mọi đơn thức tới bậc $q$, số đặc trưng là $\binom{d+q}q$ (Mệnh đề 05.41).
+Bài 05 khép lại với hai giới hạn có số liệu cụ thể. Giới hạn thứ nhất thuộc về phương pháp: mỗi bước hạ gradient trên $n$ mẫu với $d$ tham số tốn khoảng $nd$ phép nhân–cộng, mỗi bước Newton tốn khoảng $nd^2+d^3$ (Mệnh đề 05.33). Với $n=d=10^9$, riêng một bước hạ gradient đã cần $10^{18}$ phép tính, tức khoảng $11{,}6$ ngày trên một máy giả định thực hiện $10^{12}$ phép mỗi giây. Giới hạn thứ hai thuộc về mô hình: trên bốn điểm XOR, không điểm số affine nào phân lớp đúng cả bốn điểm (Mệnh đề 05.38). Thêm đặc trưng thủ công sửa được giới hạn này, nhưng với $d$ biến đầu vào và mọi đơn thức tới bậc $q$, số đặc trưng là $\binom{d+q}q$ (Mệnh đề 05.39).
 
 Để vượt qua cả hai giới hạn, chúng ta cần một mô hình có đặc trưng học được từ dữ liệu và một phương pháp có chi phí mỗi bước không phụ thuộc $n$. Bài toán trung tâm của chương là huấn luyện bằng gradient một mô hình như vậy, đủ để biểu diễn XOR, khi một gradient đầy đủ vượt ngân sách mỗi bước. Bốn câu hỏi được trả lời lần lượt: mô hình nào biểu diễn được XOR và khi đó tính lồi còn giữ hay không (Mục 2); gradient theo mọi tham số được tính với chi phí bao nhiêu (Mục 3); gradient bằng $0$ hoặc gradient nhỏ chứng nhận điều gì khi mục tiêu không lồi (Mục 4); tốc độ hội tụ nào còn lại khi gradient đầy đủ được thay bằng gradient trên một nhóm nhỏ mẫu (Mục 5 và Mục 6).
 
@@ -198,7 +198,7 @@ Các dấu bằng chỉ dùng định nghĩa của $g$ tại bốn điểm.
 
 Đẳng thức tổng có một nghĩa hình học. Hai đường chéo của hình vuông có chung trung điểm $(\tfrac12,\tfrac12)$, và giá trị của một hàm affine tại trung điểm của một đoạn bằng trung bình giá trị tại hai đầu mút. Nếu $g>0$ tại hai điểm lớp $1$ thì $g(\tfrac12,\tfrac12)>0$; nếu $g<0$ tại hai điểm lớp $0$ thì $g(\tfrac12,\tfrac12)<0$. Một điểm không thể có cả hai dấu.
 
-Mệnh đề 06.4 là Mệnh đề 05.40 (kết luận 1) phát biểu lại; chứng minh dùng cùng đẳng thức tổng. Mệnh đề mạnh hơn Ví dụ 06.1 ở chỗ nó loại trừ mọi $(w,c)$, không chỉ nghiệm bình phương nhỏ nhất. Ngược lại, nó không nói gì về mô hình có đặc trưng khác $(x_1,x_2)$; khả năng này được xét ở Mục 2.2.
+Mệnh đề 06.4 là Mệnh đề 05.38 (kết luận 1) phát biểu lại; chứng minh dùng cùng đẳng thức tổng. Mệnh đề mạnh hơn Ví dụ 06.1 ở chỗ nó loại trừ mọi $(w,c)$, không chỉ nghiệm bình phương nhỏ nhất. Ngược lại, nó không nói gì về mô hình có đặc trưng khác $(x_1,x_2)$; khả năng này được xét ở Mục 2.2.
 
 ### 2.2 Đặc trưng thủ công và chi phí theo số chiều
 
@@ -219,7 +219,7 @@ Mệnh đề 06.4 đặt giới hạn vào không gian đặc trưng, nên đổ
 **Kiểm tra lại.** $f(0,0)=0$, $f(0,1)=f(1,0)=1$, $f(1,1)=1+1-2=0$.
 :::
 
-Cách sửa này cần biết trước dạng tương tác. Khi không biết, phải thêm mọi đơn thức tới một bậc $q$, và Mệnh đề 05.41 cho số đơn thức bậc không quá $q$ của $d$ biến, kể cả đơn thức hằng, là $\binom{d+q}q$. Ký hiệu $q$ được chọn để không trùng số tham số $p$; Bài 05 viết cùng công thức là $\binom{d_0+q}q$ với $d_0$ biến đầu vào, vì ở đó $d$ là số đặc trưng.
+Cách sửa này cần biết trước dạng tương tác. Khi không biết, phải thêm mọi đơn thức tới một bậc $q$, và Mệnh đề 05.39 cho số đơn thức bậc không quá $q$ của $d$ biến, kể cả đơn thức hằng, là $\binom{d+q}q$. Ký hiệu $q$ được chọn để không trùng số tham số $p$; Bài 05 viết cùng công thức là $\binom{d_0+q}q$ với $d_0$ biến đầu vào, vì ở đó $d$ là số đặc trưng.
 
 | $d$ | $q=1$ | $q=2$ | $q=3$ |
 |---:|---:|---:|---:|
@@ -1122,7 +1122,7 @@ Thay gradient đầy đủ bằng một ước lượng rẻ hơn đặt ra hai 
 
 ### 5.1 Chi phí một bước của ba phương pháp
 
-Ba phương pháp được so sánh là hạ gradient đầy đủ, Newton và hạ gradient ngẫu nhiên trên nhóm $b$ mẫu. Mô hình chi phí đếm phép nhân–cộng của một bước: hạ gradient đầy đủ tốn $np$ (lan truyền ngược trên $n$ mẫu, Mệnh đề 06.15); Newton tốn $np^2+p^3$ (lập Hessian từ $n$ mẫu và giải hệ $p\times p$, Mệnh đề 05.35); SGD trên nhóm $b$ mẫu tốn $bp$.
+Ba phương pháp được so sánh là hạ gradient đầy đủ, Newton và hạ gradient ngẫu nhiên trên nhóm $b$ mẫu. Mô hình chi phí đếm phép nhân–cộng của một bước: hạ gradient đầy đủ tốn $np$ (lan truyền ngược trên $n$ mẫu, Mệnh đề 06.15); Newton tốn $np^2+p^3$ (lập Hessian từ $n$ mẫu và giải hệ $p\times p$, Mệnh đề 05.33); SGD trên nhóm $b$ mẫu tốn $bp$.
 
 ::: example Ví dụ 06.17 (Chi phí một bước ở ba quy mô)
 **Dữ kiện.** Ba bộ $(n,p,b)$ minh họa; máy giả định thực hiện $10^{12}$ phép nhân–cộng mỗi giây; một năm bằng $3{,}156\cdot10^7$ giây; bỏ hằng số và song song phần cứng.
@@ -1138,7 +1138,7 @@ Ba phương pháp được so sánh là hạ gradient đầy đủ, Newton và h
 **Kiểm tra lại.** Quy mô thứ ba: $10^{18}/10^{12}=10^6$ s, chia cho $86\,400$ được $11{,}57$ ngày; $2\cdot10^{27}/10^{12}=2\cdot10^{15}$ s, chia cho $3{,}156\cdot10^7$ được $6{,}34\cdot10^7$ năm.
 :::
 
-Bảng chỉ so chi phí một bước, không so số bước. Một lượt dữ liệu (epoch) tốn $np$ cho cả hạ gradient đầy đủ và SGD: hạ gradient đầy đủ thực hiện một cập nhật, SGD thực hiện $n/b$ cập nhật. Với Newton, giai đoạn hội tụ bậc hai cần khoảng $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước và không chứa số điều kiện $\kappa=L/\mu$, nhưng ngưỡng $\varepsilon_0$ và giai đoạn tắt dần trước đó phụ thuộc chặn dưới $\mu$, chặn trên $L$ của trị riêng Hessian và hằng số Lipschitz $L_H$ của Hessian (Định lý 05.33).
+Bảng chỉ so chi phí một bước, không so số bước. Một lượt dữ liệu (epoch) tốn $np$ cho cả hạ gradient đầy đủ và SGD: hạ gradient đầy đủ thực hiện một cập nhật, SGD thực hiện $n/b$ cập nhật. Với Newton, pha bậc hai cần khoảng $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước và không chứa số điều kiện $\kappa=L/\mu$, nhưng ngưỡng $\varepsilon_0$ và pha tắt dần trước đó phụ thuộc chặn dưới $\mu$, chặn trên $L$ của trị riêng Hessian và hằng số Lipschitz $L_H$ của Hessian (Định lý 04.37).
 
 ### 5.2 Ước lượng rủi ro kỳ vọng bằng rủi ro thực nghiệm
 
@@ -1801,7 +1801,7 @@ Mệnh đề 06.37 chỉ cho cận $O(1/\sqrt{\mathcal B})$ cho bình phương c
 
 ### 6.6 Dừng sớm theo tập xác thực
 
-Trong Bài 05, chúng ta đã định nghĩa dừng sớm (Định nghĩa 05.38): chạy một thuật toán lặp và trả về điểm lặp có sai số trên tập xác thực nhỏ nhất. Trên ví dụ năm mẫu của Bài 05, sai số xác thực nhỏ nhất bằng $0{,}00108$ tại bước $79$, nhỏ hơn khoảng $45$ lần giới hạn $0{,}0487$ của nghiệm chính xác (Ví dụ 05.24). Tập xác thực và tập kiểm thử là hai tập mẫu tách khỏi tập huấn luyện; tập xác thực dùng để chọn siêu tham số và bước dừng, tập kiểm thử chỉ dùng để báo cáo $R$ (Định nghĩa 05.6).
+Trong Bài 05, chúng ta đã định nghĩa dừng sớm (Định nghĩa 05.36): chạy một thuật toán lặp và trả về điểm lặp có sai số trên tập xác thực nhỏ nhất. Trên ví dụ năm mẫu của Bài 05, sai số xác thực nhỏ nhất bằng $0{,}00108$ tại bước $79$, nhỏ hơn khoảng $45$ lần giới hạn $0{,}0487$ của nghiệm chính xác (Ví dụ 05.24). Tập xác thực và tập kiểm thử là hai tập mẫu tách khỏi tập huấn luyện; tập xác thực dùng để chọn siêu tham số và bước dừng, tập kiểm thử chỉ dùng để báo cáo $R$ (Định nghĩa 05.6).
 
 ![Mất mát huấn luyện có xu hướng giảm; mất mát xác thực nằm phía trên, giảm rồi tăng. Điểm thấp nhất của đường xác thực, đánh dấu bằng đường đứt thẳng đứng, là điểm dừng sớm. Đây là sơ đồ định tính.](img/lec-06/risk-curves.svg)
 
@@ -1820,7 +1820,7 @@ Hình là sơ đồ định tính, không phải số liệu thực nghiệm. M�
 **Chi phí.** Mỗi lần đánh giá tốn một lần truyền xuôi trên tập xác thực.
 :::
 
-Thuật toán 06.3 là Định nghĩa 05.38 với hai tham số thực hành: chu kỳ $s$ và ngưỡng kiên nhẫn $r$ (patience), như Thuật toán 7.1 của Goodfellow, Bengio và Courville (2016, mục 7.8).
+Thuật toán 06.3 là Định nghĩa 05.36 với hai tham số thực hành: chu kỳ $s$ và ngưỡng kiên nhẫn $r$ (patience), như Thuật toán 7.1 của Goodfellow, Bengio và Courville (2016, mục 7.8).
 
 ::: remark Nhận xét 06.39 (Tập xác thực sau khi đã dùng để chọn)
 Tại $\theta$ cố định, $\widehat R$ là ước lượng không chệch của $R(\theta)$ (Định lý 06.22). Tham số $\widehat\theta$ được chọn vì có $\widehat R$ nhỏ nhất, nên sau khi chọn, $\widehat R(\widehat\theta)$ lệch về phía lạc quan; báo cáo $R$ cần một tập kiểm thử riêng. Tham số trả về được chọn theo $R$ ước lượng; Định lý 06.34 bảo đảm cho dãy lặp, không cho tham số này.
@@ -1828,7 +1828,7 @@ Tại $\theta$ cố định, $\widehat R$ là ước lượng không chệch c�
 
 ### 6.7 Dừng sớm và chính quy hóa $\ell_2$ trên mục tiêu toàn phương
 
-Trong Bài 05 (Mệnh đề 05.39), chúng ta đã thấy hạ gradient trên bình phương nhỏ nhất khớp trước các hướng có độ cong lớn và khớp muộn các hướng phẳng, và nghiệm có chính quy hóa có dạng tương tự. Câu hỏi còn lại là định lượng: dừng sau $k$ bước tương ứng với hệ số chính quy hóa nào. Mệnh đề sau trả lời trên một mục tiêu toàn phương. Trong mục này, trị riêng của Hessian viết là $\alpha$ để không trùng hệ số chính quy hóa $\lambda$; Goodfellow, Bengio và Courville viết ngược lại.
+Trong Bài 05 (Mệnh đề 05.37), chúng ta đã thấy hạ gradient trên bình phương nhỏ nhất khớp trước các hướng có độ cong lớn và khớp muộn các hướng phẳng, và nghiệm có chính quy hóa có dạng tương tự. Câu hỏi còn lại là định lượng: dừng sau $k$ bước tương ứng với hệ số chính quy hóa nào. Mệnh đề sau trả lời trên một mục tiêu toàn phương. Trong mục này, trị riêng của Hessian viết là $\alpha$ để không trùng hệ số chính quy hóa $\lambda$; Goodfellow, Bengio và Courville viết ngược lại.
 
 ::: proposition Mệnh đề 06.40 (Tỉ lệ giữ của dừng sớm và của chính quy hóa $\ell_2$)
 **Giả thiết.** $Q(\theta)=\tfrac12(\theta-\theta^*)^\top H(\theta-\theta^*)$ với $H\in\mathbb R^{p\times p}$ đối xứng, $H=\sum_j\alpha_jv_jv_j^\top$, $\alpha_j>0$, $v_j$ trực chuẩn. Hạ gradient bước $\eta$ với $0<\eta\alpha_j<1$ từ $\theta_0=0$. Nghiệm chính quy hóa $\theta_\lambda=\arg\min_\theta Q(\theta)+\tfrac\lambda2\lVert\theta\rVert^2$ với $\lambda>0$.
@@ -1950,20 +1950,20 @@ Như vậy, khi gradient có nhiễu, bảo đảm còn lại bắt đầu từ 
 
 ### 7.1 Những bảo đảm mất đi và những bảo đảm còn lại
 
-Hai điều kiện làm mất bảo đảm là hai giới hạn của Bài 05: (i) chi phí, khi gradient nhóm nhỏ thay gradient đầy đủ; (ii) biểu diễn, khi mô hình phi tuyến theo tham số làm mục tiêu không lồi. Nhận xét sau dùng cùng bốn dòng và cùng thứ tự với Nhận xét 05.42, với cột phải nay ghi kết quả đã chứng minh trong chương.
+Hai điều kiện làm mất bảo đảm là hai giới hạn của Bài 05: (i) chi phí, khi gradient nhóm nhỏ thay gradient đầy đủ; (ii) biểu diễn, khi mô hình phi tuyến theo tham số làm mục tiêu không lồi. Nhận xét sau dùng cùng bốn dòng và cùng thứ tự với Nhận xét 05.40, với cột phải nay ghi kết quả đã chứng minh trong chương.
 
 ::: remark Nhận xét 06.42 (Điều không còn giữ được và điều còn giữ được)
 | Mất (khi nào) | Còn giữ được (kết quả của chương) |
 |---|---|
 | Đích là nghiệm chính xác (đã mất ở Bài 05) | Đích là $R$ nhỏ: $F$ chỉ thay thế cho $R$ (Định lý 06.22, Nhận xét 06.23); dừng theo tập xác thực (Thuật toán 06.3) |
-| Tốc độ tuyến tính tất định của Định lý 05.30 (khi (i) hoặc (ii)) | Gradient đầy đủ: $F$ giảm mỗi bước (Bổ đề 06.19). SGD trên $F_\lambda=F+\tfrac\lambda2\lVert\theta\rVert^2$ lồi mạnh: bước hằng giữ $\mathbb E\lVert\theta_k-\theta^*\rVert^2$ ở mức bậc $\eta\sigma^2/\mu$, tức bán kính bậc $\sqrt{\eta\sigma^2/\mu}$ (Định lý 06.31), bước giảm dần tới cực tiểu với tốc độ $O(1/k)$ (Định lý 06.32) |
+| Tốc độ tuyến tính tất định của Định lý 04.27 (khi (i) hoặc (ii)) | Gradient đầy đủ: $F$ giảm mỗi bước (Bổ đề 06.19). SGD trên $F_\lambda=F+\tfrac\lambda2\lVert\theta\rVert^2$ lồi mạnh: bước hằng giữ $\mathbb E\lVert\theta_k-\theta^*\rVert^2$ ở mức bậc $\eta\sigma^2/\mu$, tức bán kính bậc $\sqrt{\eta\sigma^2/\mu}$ (Định lý 06.31), bước giảm dần tới cực tiểu với tốc độ $O(1/k)$ (Định lý 06.32) |
 | Cực tiểu toàn cục (khi (ii); Mệnh đề 06.9) | Điểm dừng xấp xỉ: $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2\le\tfrac{2L\Delta_0}K$ (Định lý 06.20); SGD bước hằng: $\tfrac1K\sum_{k<K}\mathbb E\lVert\nabla F(\theta_k)\rVert^2\le\tfrac{2\Delta_0}{\eta K}+L\eta\sigma^2$ (Định lý 06.34) |
 | Chi phí $O(np)$ mỗi bước (khi (i)) | Gradient nhóm nhỏ không chệch, $O(bp)$ mỗi bước (Định lý 06.25, Thuật toán 06.2) |
 :::
 
 Ba điểm của bảng hay bị đọc sai.
 
-1. Tốc độ tuyến tính tất định $\Delta_k\le(1-\tfrac1\kappa)^k\Delta_0$ của Định lý 05.30, với $\Delta_k=F_\lambda(\theta_k)-\min F_\lambda$, mất khi gradient đầy đủ được thay bằng gradient nhóm, dù mục tiêu vẫn là $F_\lambda$ lồi mạnh, và cũng mất khi mục tiêu không còn lồi mạnh; chỉ cần một trong hai điều kiện. Dưới (ii) với gradient đầy đủ, bảo đảm tất định còn ở dạng bổ đề giảm và Định lý 06.20.
+1. Tốc độ tuyến tính tất định $\Delta_k\le(1-\tfrac1\kappa)^k\Delta_0$ của Định lý 04.27, với $\Delta_k=F_\lambda(\theta_k)-\min F_\lambda$, mất khi gradient đầy đủ được thay bằng gradient nhóm, dù mục tiêu vẫn là $F_\lambda$ lồi mạnh, và cũng mất khi mục tiêu không còn lồi mạnh; chỉ cần một trong hai điều kiện. Dưới (ii) với gradient đầy đủ, bảo đảm tất định còn ở dạng bổ đề giảm và Định lý 06.20.
 2. Cực tiểu toàn cục chỉ mất khi mục tiêu không lồi. Với $F_\lambda$ lồi mạnh, Định lý 06.32 vẫn cho hội tụ theo kỳ vọng tới cực tiểu, còn Định lý 06.31 chỉ cho hội tụ tuyến tính tới một lân cận.
 3. SGD chỉ giữ một bất đẳng thức một bước có số hạng nhiễu (Mệnh đề 06.29), nên chỉ giảm $F$ theo kỳ vọng khi gradient đủ lớn so với nhiễu, và có thể làm $F$ tăng theo kỳ vọng (Ví dụ 06.21: $\tfrac{69}{128}>\tfrac12$).
 
@@ -1975,7 +1975,7 @@ Bảng sau chuyển các kết quả thành quy tắc. Các ngưỡng "nhỏ", "
 
 | Tình huống | Phương pháp | Mỗi bước | Bảo đảm | Giới hạn |
 |---|---|---|---|---|
-| $n$, $p$ nhỏ; lồi mạnh | Newton | $O(np^2+p^3)$ | bậc hai cục bộ (Định lý 05.33) | bộ nhớ $p^2$ |
+| $n$, $p$ nhỏ; lồi mạnh | Newton | $O(np^2+p^3)$ | bậc hai cục bộ (Định lý 04.37) | bộ nhớ $p^2$ |
 | $p$ lớn, $n$ vừa; lồi mạnh, trơn | hạ gradient | $O(np)$ | tuyến tính (Định lý 05b.18) | quét toàn bộ dữ liệu mỗi bước |
 | $n$ lớn; lồi mạnh | SGD, $\eta_k=\tfrac1{\mu(k+1)}$ | $O(bp)$ | $O(1/k)$ theo kỳ vọng (Định lý 06.32) | cần biết $\mu$ |
 | không lồi (mạng), $n$ lớn | SGD nhóm nhỏ, bước chọn theo $K$ | $O(bp)$ | $O(1/\sqrt K)$ cho trung bình $\mathbb E\lVert\nabla F\rVert^2$ (Hệ quả 06.35), cần $F$ trơn | chỉ điểm dừng; với ReLU chỉ là định hướng |
@@ -1983,7 +1983,7 @@ Bảng sau chuyển các kết quả thành quy tắc. Các ngưỡng "nhỏ", "
 
 Năm dòng của bảng có các điều kiện sau.
 
-1. Dòng thứ nhất dành cho bài toán như hồi quy logistic có chính quy hóa với ít tham số. Giai đoạn hội tụ bậc hai của Newton cần khoảng $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, không chứa $\kappa$, nhưng ngưỡng $\varepsilon_0$ và giai đoạn tắt dần phụ thuộc $\mu$, $L$ và $L_H$ (Định lý 05.33).
+1. Dòng thứ nhất dành cho bài toán như hồi quy logistic có chính quy hóa với ít tham số. Pha bậc hai của Newton cần khoảng $\log_2\log_2(\varepsilon_0/\varepsilon)$ bước, không chứa $\kappa$, nhưng ngưỡng $\varepsilon_0$ và pha tắt dần phụ thuộc $\mu$, $L$ và $L_H$ (Định lý 04.37).
 2. Dòng thứ hai dùng Định lý 05b.18, cần $O(\kappa\log\tfrac1\varepsilon)$ bước. Với hàm lồi trơn nhưng không lồi mạnh, hạ gradient chỉ có tốc độ $O(1/k)$ (Định lý 05b.16).
 3. Dòng thứ ba cần đúng bước $\tfrac1{\mu(k+1)}$ (Nhận xét 06.33).
 4. Dòng thứ tư cần H2 và H6b trên một vùng chứa dãy lặp; lịch bước và dừng sớm là thực hành, ngoài phạm vi chứng minh của Định lý 06.34.
@@ -2287,6 +2287,6 @@ Dưới tổng ngân sách cố định, nhóm lớn nhất mà bộ nhớ cho p
 - Léon Bottou, Frank E. Curtis và Jorge Nocedal (2018), "Optimization Methods for Large-Scale Machine Learning", *SIAM Review* 60(2), 223–311, mục 4. Đọc thêm cho Mục 6: định lý SGD với bước cố định và bước giảm dần cho hàm lồi mạnh và không lồi.
 - Ghi chú Bài 05b: Định nghĩa 05b.5, 05b.31; Bổ đề 05b.6, 05b.7, 05b.32; Hệ quả 05b.10, 05b.38, 05b.44; Định lý 05b.16, 05b.18, 05b.36, 05b.39, 05b.41, 05b.43; Ví dụ 05b.19, 05b.25. Các Định lý 06.20, 06.31, 06.32, 06.34 và Hệ quả 06.35 là các kết quả này phát biểu lại với ký hiệu của chương.
 - Ghi chú Bài 05c, Mục 6: Định nghĩa 05c.51; Định lý 05c.52, 05c.53; Mệnh đề 05c.56; Nhận xét 05c.58; Mục 6.6 và 6.7. Định lý 06.22 và 06.25 là hai định lý đầu phát biểu lại.
-- Ghi chú Bài 05: Định nghĩa 05.5, 05.6, 05.20, 05.38; Mệnh đề 05.35, 05.39, 05.40, 05.41; Định lý 05.22, 05.26, 05.30, 05.33; Ví dụ 05.24, 05.25; Nhận xét 05.42. Ghi chú Bài 01 (Định nghĩa 01.21; Định lý 01.30; Hệ quả 01.26, 01.33) và Bài 04 (Định nghĩa 04.18; Bổ đề 04.19, 04.21) là tiên quyết trực tiếp.
+- Ghi chú Bài 05: Định nghĩa 05.5, 05.6, 05.20, 05.36; Mệnh đề 05.33, 05.37, 05.38, 05.39; Định lý 05.22, 05.26; Ví dụ 05.24, 05.25; Nhận xét 05.40. Ghi chú Bài 01 (Định nghĩa 01.21; Định lý 01.30; Hệ quả 01.26, 01.33) và Bài 04 (Định nghĩa 04.18; Bổ đề 04.19, 04.21; Định lý 04.27, 04.37) là tiên quyết trực tiếp.
 
 Mọi mệnh đề, bổ đề, định lý và hệ quả của chương đều có chứng minh trong chương. Các định lý phát biểu lại từ Bài 05b và 05c được chứng minh lại ngắn gọn, với cùng hằng số như chứng minh gốc. Mọi số liệu của các ví dụ được tính lại từ công thức đã nêu bằng phân số chính xác hoặc đệ quy kỳ vọng; không có mô phỏng ngẫu nhiên.

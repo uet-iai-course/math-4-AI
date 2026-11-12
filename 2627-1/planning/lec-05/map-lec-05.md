@@ -15,10 +15,10 @@ Cột "Dẫn chiếu hiện có" đếm token "Loại 05.k" (grep `materials/*/*
 |---|---|---|---|---|
 | Định nghĩa 05.1 | Định nghĩa 05.1 | giữ | — | |
 | Nhận xét 05.2 | Nhận xét 05.2 | giữ; viết lại thành danh sách Bài 01, Bài 04, Bài 05b/05c; bỏ gạch Bài 06 | — | |
-| Mệnh đề 05.3 | Mệnh đề 05.3 | giữ; chứng minh rút về Mệnh đề 00.45, Định lý 00.22, Hệ quả 01.5 | lec-12: 2 | |
+| Mệnh đề 05.3 | Mệnh đề 05.3 | giữ; chứng minh rút về Mệnh đề 00.45, Định lý 00.22, Hệ quả 01.5 | lec-12: 2 |  giữ số; lec-12:48, 259 đã đối chiếu (phương trình chuẩn, tồn tại, duy nhất khi hạng $d$) |
 | Mệnh đề 05.4 | Mệnh đề 05.4 | giữ | — | |
-| Định nghĩa 05.5 | Định nghĩa 05.5 | giữ | lec-11: 1; lec-06: 2 | |
-| Định nghĩa 05.6 | Định nghĩa 05.6 | giữ | lec-06: 3 | |
+| Định nghĩa 05.5 | Định nghĩa 05.5 | giữ | lec-11: 1; lec-06: 2 |  giữ số; lec-11:52, lec-06:89, 2290 đã đối chiếu |
+| Định nghĩa 05.6 | Định nghĩa 05.6 | giữ | lec-06: 3 |  giữ số; lec-06:24, 2290 đã đối chiếu |
 | Mệnh đề 05.7 | Mệnh đề 05.7 | giữ; "kể cả để chọn $d$ hay $\lambda$" vào Giả thiết | — | |
 | Nhận xét 05.8, 05.9 | giữ | giữ | — | |
 | Mệnh đề 05.10, 05.11 | giữ | giữ | — | |
@@ -27,31 +27,31 @@ Cột "Dẫn chiếu hiện có" đếm token "Loại 05.k" (grep `materials/*/*
 | Mệnh đề 05.14–05.17 | giữ | giữ | — | |
 | Nhận xét 05.18 | Nhận xét 05.18 | giữ | — | |
 | Mệnh đề 05.19 | Mệnh đề 05.19 | giữ | — | |
-| Định nghĩa 05.20 | Định nghĩa 05.20 | giữ | lec-06: 2 | |
+| Định nghĩa 05.20 | Định nghĩa 05.20 | giữ | lec-06: 2 |  giữ số; lec-06:168, 2290 đã đối chiếu |
 | Mệnh đề 05.21 | Mệnh đề 05.21 | giữ | — | |
-| Định lý 05.22 | Định lý 05.22 | giữ | lec-06: 2 | |
+| Định lý 05.22 | Định lý 05.22 | giữ | lec-06: 2 |  giữ số; lec-06:103, 2290 đã đối chiếu |
 | Hệ quả 05.23 | Hệ quả 05.23 | giữ; dẫn Nhận xét 04.20 thay H2 của 05b | — | |
 | Mệnh đề 05.24 | Mệnh đề 05.24 | giữ | — | |
-| Nhận xét 05.25 | Nhận xét 05.25 | giữ số; **đổi nội dung**: ví dụ ranh giới bốn mẫu (từ Bài 6 của `exercises.md` cũ) thay phản ví dụ cũ | deck 05: 1 (LG06) | |
-| Định lý 05.26 | Định lý 05.26 | giữ; Bước 2 dẫn thêm Mệnh đề 01.46(b) | lec-06: 3 | |
+| Nhận xét 05.25 | Nhận xét 05.25 | giữ số; **đổi nội dung**: ví dụ ranh giới bốn mẫu (từ Bài 6 của `exercises.md` cũ) thay phản ví dụ cũ | deck 05: 1 (LG06) |  giữ số; deck 05:298 đã đối chiếu (trường hợp ranh giới) |
+| Định lý 05.26 | Định lý 05.26 | giữ; Bước 2 dẫn thêm Mệnh đề 01.46(b) | lec-06: 3 |  giữ số; lec-06:24, 1554, 2290 đã đối chiếu |
 | Hệ quả 05.27 | Hệ quả 05.27 | giữ; bỏ Điều kiện áp dụng, Phạm vi (Bài 7 cũ, Q05-4) | — | |
 | Mệnh đề 05.28 | Mệnh đề 05.28 | giữ | — | |
 | Nhận xét 05.29 | Nhận xét 05.29 | giữ; bỏ bảng chép Ví dụ 05.14, 05.15; "H3" → Mệnh đề 04.26(a) | — | |
-| Định lý 05.30 | **bỏ** → Định lý 04.27 | câu dẫn ở §6.3 | lec-06: 3 | |
+| Định lý 05.30 | **bỏ** → Định lý 04.27 | câu dẫn ở §6.3 | lec-06: 3 |  viết tay → Định lý 04.27: lec-06:1959, 1966; lec-06:2290 chuyển sang cụm Bài 04 |
 | Hệ quả 05.31 | **bỏ** → Định lý 04.27 (phần "Do đó") | câu dẫn ở §6.3 | — | |
 | Nhận xét 05.32 | Nhận xét 05.30 | **đổi số** | — | |
-| Định lý 05.33 | **bỏ** → Định lý 04.37 | đoạn phát biểu lại ở §6.4 (ký hiệu $\bar g$, $\gamma_1$ của Bài 04); câu (9.35) sửa | lec-06: 4; lec-06/exercises: 1 | |
-| Mệnh đề 05.34 | **bỏ** → Mệnh đề 04.32(c) | đoạn ở §6.4 | deck 05: 1 | |
+| Định lý 05.33 | **bỏ** → Định lý 04.37 | đoạn phát biểu lại ở §6.4 (ký hiệu $\bar g$, $\gamma_1$ của Bài 04); câu (9.35) sửa | lec-06: 4; lec-06/exercises: 1 |  viết tay → Định lý 04.37: lec-06:1141, 1978, 1986 ("giai đoạn" → "pha" ở 1141, 1986), lec-06/exercises:376; lec-06:2290 chuyển sang cụm Bài 04 |
+| Mệnh đề 05.34 | **bỏ** → Mệnh đề 04.32(c) | đoạn ở §6.4 | deck 05: 1 |  viết tay: deck 05:395 → "Mệnh đề 04.32(c) của ghi chú Bài 04" |
 | Thuật toán 05.1 | Thuật toán 05.31 | **đổi số** (Q-A); thêm **Điều kiện dừng.** | — | |
 | Thuật toán 05.2 | Thuật toán 05.32 | **đổi số** (Q-A); thêm **Điều kiện dừng.** | — | |
-| Mệnh đề 05.35 | Mệnh đề 05.33 | **đổi số** | lec-06: 4 | |
+| Mệnh đề 05.35 | Mệnh đề 05.33 | **đổi số** | lec-06: 4 |  đã đổi: lec-06:24, 65, 1125, 2290 |
 | Mệnh đề 05.36 | Mệnh đề 05.34 | **đổi số** | — | |
 | Nhận xét 05.37 | Nhận xét 05.35 | **đổi số**; bỏ câu Bài 06c | — | |
-| Định nghĩa 05.38 | Định nghĩa 05.36 | **đổi số** | lec-06: 4 | |
-| Mệnh đề 05.39 | Mệnh đề 05.37 | **đổi số** | lec-06: 2; deck 05: 1 | |
-| Mệnh đề 05.40 | Mệnh đề 05.38 | **đổi số** | lec-06: 4; deck 06: 2 | |
-| Mệnh đề 05.41 | Mệnh đề 05.39 | **đổi số**; Phạm vi ($d_0^q/q!$) vào Kết luận | lec-06: 4 | |
-| Nhận xét 05.42 | Nhận xét 05.40 | **đổi số**; điểm 3 bỏ ví dụ $\tfrac{69}{128}$ của Bài 06, viết bất đẳng thức một bước bằng công thức (Q05-10: 05b không có khối riêng; bất đẳng thức là Bước 2 chứng minh Định lý 05b.43) | lec-06: 2 | |
+| Định nghĩa 05.38 | Định nghĩa 05.36 | **đổi số** | lec-06: 4 |  đã đổi: lec-06:24, 1804, 1823, 2290 |
+| Mệnh đề 05.39 | Mệnh đề 05.37 | **đổi số** | lec-06: 2; deck 05: 1 |  đã đổi: lec-06:1831, 2290; deck 05:537 |
+| Mệnh đề 05.40 | Mệnh đề 05.38 | **đổi số** | lec-06: 4; deck 06: 2 |  đã đổi: lec-06:24, 65, 201, 2290; deck 06:78, 87 |
+| Mệnh đề 05.41 | Mệnh đề 05.39 | **đổi số**; Phạm vi ($d_0^q/q!$) vào Kết luận | lec-06: 4 |  đã đổi: lec-06:24, 65, 222, 2290 |
+| Nhận xét 05.42 | Nhận xét 05.40 | **đổi số**; điểm 3 bỏ ví dụ $\tfrac{69}{128}$ của Bài 06, viết bất đẳng thức một bước bằng công thức (Q05-10: 05b không có khối riêng; bất đẳng thức là Bước 2 chứng minh Định lý 05b.43) | lec-06: 2 |  đã đổi: lec-06:1953, 2290 |
 | khối không số "Hàm cưỡng bức (nhắc lại Định nghĩa 01.37)" | bỏ khối, thành câu | §5.5 | — | |
 
 Tổng token ngoài phải đổi: lec-06/lecture-note.md 27, lec-06/exercises.md 1, deck 05: 2 (05.34 → 04.32(c), 05.39 → 05.37), deck 06: 2 (05.40 → 05.38). Grep sau khi viết (2026-11-12, đếm dòng): deck 05: 2, deck 06: 2, lec-06/exercises.md: 1, lec-06/lecture-note.md: 15 dòng, lec-05/exercises.md: 9 (giai đoạn 2).
@@ -127,3 +127,8 @@ Dẫn theo tên mục từ tệp khác: `lec-06/lecture-note.md:87` ("các kết
 - Khóa của từ điển gồm cả loại khối: `lec-06` chứa cả "Mệnh đề 05.35" (→ 05.33) lẫn "Định lý 05.33" (→ 04.37), "Định nghĩa 05.38" (→ 05.36) lẫn "Mệnh đề 05.38" mới.
 - `lec-05/exercises.md` cũ (12 bài tự dựng) được thay ở giai đoạn 2 nên không chạy từ điển; nếu tệp được giữ tạm, phải chạy cùng từ điển (dẫn Định lý 05.30, 05.33, Hệ quả 05.31, Mệnh đề 05.35, 05.36 ×3, 05.40 ×2, Định nghĩa 05.38, Thuật toán 05.1).
 - Vòng biên tập 1 không đổi số khối nào; đổi tên: Định lý 05.26 (Tính lồi mạnh của mục tiêu có chính quy hóa bậc hai), Nhận xét 05.9 (Tập xác thực không nhiễu xấp xỉ $2R-\sigma_\varepsilon^2$), Ví dụ 05.4 (Sai số huấn luyện và sai số xác thực theo $d$), §4.3, §5.4.
+
+
+## 7. Giai đoạn 3 (2026-11-12)
+
+25 cụm ở 5 tệp: 17 tự động, 8 viết tay (lec-06 ghi chú 6, lec-06 bài tập 1, deck 05 một). Chi tiết: `SP/lec05/phase3-changes.md`. Validate: mọi "Loại 05.k" ở mọi tệp tồn tại đúng loại, không còn dẫn tới khối bị bỏ. Ví dụ 05.24, 05.25 giữ số, đã đối chiếu (lec-06:1201, 1804; deck 06:392).

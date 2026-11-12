@@ -943,3 +943,15 @@ Căn cứ: U2, U3 của `prompt_fix_lecture_notes_00_07.md`; mẫu `materials/le
 ### Kiểm của điều phối viên và trình duyệt
 
 Bài tập 05.16–05.23 liên tục; ghi chú chỉ thêm một câu liên kết (diff); forward_refs 0; đồng bộ `--check`, `git diff --check` đạt; `index.html` đã có liên kết. Playwright `material-viewer.html?doc=materials/lec-05/exercises.md&deck=lecture-05-khong-gian-dac-trung-nhieu-chieu.html`, 1600×900, 390×844, `file://`: 0 `.katex-error`, 0 chữ đỏ, 0 lỗi console, 0 request lỗi, không tràn ngang; 0/11 công thức tràn ở 390 px. `exercises.md` 3 296 âm tiết; ghi chú 26 953.
+
+## Cập nhật dẫn chiếu tới Bài 05 (giai đoạn 3, 2026-11-12)
+
+Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medium). Thay một lượt theo `map-lec-05.md` (từ điển đồng thời khóa theo loại khối, ranh giới số): 25 cụm ở 4 tệp — 17 đổi số tự động (Mệnh đề 05.35, 05.39, 05.40, 05.41 → 05.33, 05.37, 05.38, 05.39; Định nghĩa 05.38 → 05.36; Nhận xét 05.42 → 05.40; ở lec-06, deck 05, deck 06) và 8 cụm viết tay cho bốn khối bị bỏ:
+
+- Định lý 05.30 → Định lý 04.27 (lec-06:1959, 1966); Định lý 05.33 → Định lý 04.37 (lec-06:1141, 1978, 1986; lec-06/exercises:376), "giai đoạn" → "pha" ở 1141, 1986 vì câu mô tả kết quả của Định lý 04.37.
+- lec-06:2290: cụm Bài 05 còn "Định lý 05.22, 05.26"; Định lý 04.27, 04.37 chuyển sang cụm Bài 04.
+- Deck 05 ghi chú diễn giả CP01: "(Mệnh đề 05.34 của ghi chú bài giảng)" → "(Mệnh đề 04.32(c) của ghi chú Bài 04)" — đổi cả cụm chỉ nơi vì số dẫn nay thuộc bài khác (coi là một phần của số hiệu, Q-F). Ngoài chỗ này, diff deck chỉ đổi chữ số.
+
+Giữ số, đã đối chiếu nội dung: Mệnh đề 05.3 (lec-12), Định nghĩa 05.5 (lec-11, lec-06), Định nghĩa 05.6, 05.20, Định lý 05.22, 05.26, Ví dụ 05.24, 05.25, Nhận xét 05.25. Không tệp nào dẫn nhãn công thức, số mục, thuật toán cũ hay `exercises.md` cũ của Bài 05.
+
+Kiểm: tác tử quét mọi `materials/lec-*/*.md`, `materials/README.md`, mọi deck: 0 sai, không còn dẫn tới khối bị bỏ; điều phối viên kiểm độc lập (số được dẫn tồn tại trong Bài 05 với đúng loại khối): 44 tham chiếu ngoài Bài 05, 0 sai; đọc diff hai deck. forward_refs lec-06 không đổi (20, có từ trước); `git diff --check`, đồng bộ `--check` đạt; deck 05, 06 (1600, 390): 0 lỗi console, 0 `.katex-error`; notecheck lec-06: 0 lỗi. Lệch thuật ngữ để Bài 06 xử lý: "gradient nhóm nhỏ" (lec-06:1953, deck 06) so với "lô nhỏ" của Bài 05.
