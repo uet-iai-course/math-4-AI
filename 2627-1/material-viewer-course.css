@@ -50,3 +50,38 @@
     padding-left: 1.6em;
   }
 }
+
+/* Vùng đọc thêm thu gọn (:::: reading … ::::): khung đứt nét, tiêu đề đậm và
+   con trỏ tay để thấy là bấm được; nội dung giữ lề như phần thân. */
+.material-region {
+  margin: 1.4em 0;
+  padding: 14px 18px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 16px;
+}
+
+.material-region > summary {
+  cursor: pointer;
+  color: var(--accent-dark);
+  font-weight: 750;
+}
+
+.material-region > summary::after {
+  content: " (bấm để mở)";
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.material-region[open] > summary::after {
+  content: " (bấm để thu gọn)";
+}
+
+.material-region__body {
+  margin-top: 1em;
+}
+
+@media print {
+  .material-region > summary::after {
+    content: none;
+  }
+}

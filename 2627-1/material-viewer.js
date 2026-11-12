@@ -28,6 +28,16 @@
   const DIRECTIVE_BLOCK_PATTERN = new RegExp(
     `^:::[ \\t]*(${DIRECTIVE_ALTERNATION})(?:[ \\t]+([^\\n]+))?[ \\t]*\\n([\\s\\S]*?)\\n:::[ \\t]*(?:\\n|$)`
   );
+  // Vùng thu gọn :::: <loại> <tiêu đề> … :::: (bốn dấu hai chấm); chứa được các khối ::: và Markdown, không lồng vùng.
+  const REGION_LABELS = Object.freeze({
+    reading: "Đọc thêm"
+  });
+  const REGION_ALTERNATION = Object.keys(REGION_LABELS).join("|");
+  const REGION_OPEN_PATTERN = new RegExp(`^::::[ \\t]*(${REGION_ALTERNATION})(?:[ \\t]+(.+?))?[ \\t]*$`);
+  const REGION_START_PATTERN = new RegExp(`^::::[ \\t]*(?:${REGION_ALTERNATION})(?:\\s|$)`, "m");
+  const REGION_BLOCK_PATTERN = new RegExp(
+    `^::::[ \\t]*(${REGION_ALTERNATION})(?:[ \\t]+([^\\n]+))?[ \\t]*\\n([\\s\\S]*?)\\n::::[ \\t]*(?:\\n|$)`
+  );
 
   const statusElement = document.getElementById("material-status");
   const layoutElement = document.getElementById("material-layout");
@@ -91,6 +101,7 @@
 
   function validateDirectives(markdown) {
     let openDirective = null;
+    let openRegion = null;
     const lines = markdown.split(/\r?\n/);
 
     let fence = null;
@@ -109,6 +120,27 @@
         return;
       }
       if (/^(?: {4}|\t)/.test(line)) {
+        return;
+      }
+      if (/^::::/.test(trimmed)) {
+        if (trimmed === "::::") {
+          if (!openRegion) {
+            throw new Error(`Dấu đóng vùng :::: không có dấu mở ở dòng ${index + 1}.`);
+          }
+          if (openDirective) {
+            throw new Error(`Khối “${openDirective}” chưa đóng trước dấu đóng vùng ở dòng ${index + 1}.`);
+          }
+          openRegion = null;
+          return;
+        }
+        const regionOpening = REGION_OPEN_PATTERN.exec(trimmed);
+        if (!regionOpening) {
+          throw new Error(`Vùng :::: không được hỗ trợ ở dòng ${index + 1}.`);
+        }
+        if (openRegion || openDirective) {
+          throw new Error(`Không được mở vùng :::: bên trong vùng hoặc khối khác ở dòng ${index + 1}.`);
+        }
+        openRegion = regionOpening[1];
         return;
       }
       const opening = /^:::[ \t]*(\S+)(?:\s+.*)?$/.exec(trimmed);
@@ -133,6 +165,9 @@
 
     if (openDirective) {
       throw new Error(`Khối “${openDirective}” chưa có dấu đóng :::.`);
+    }
+    if (openRegion) {
+      throw new Error(`Vùng “${openRegion}” chưa có dấu đóng ::::.`);
     }
   }
 
@@ -203,6 +238,33 @@
       }
     };
 
+    const region = {
+      name: "materialRegion",
+      level: "block",
+      start(source) {
+        const index = source.match(REGION_START_PATTERN)?.index;
+        return typeof index === "number" ? index : undefined;
+      },
+      tokenizer(source) {
+        const match = REGION_BLOCK_PATTERN.exec(source);
+        if (!match) {
+          return undefined;
+        }
+        return {
+          type: "materialRegion",
+          raw: match[0],
+          kind: match[1],
+          title: match[2]?.trim() || "",
+          tokens: this.lexer.blockTokens(match[3], [])
+        };
+      },
+      renderer(token) {
+        const title = escapeHtml(token.title || REGION_LABELS[token.kind]);
+        const body = this.parser.parse(token.tokens);
+        return `<details class="material-region material-region--${token.kind}"><summary>${title}</summary><div class="material-region__body">${body}</div></details>`;
+      }
+    };
+
     window.marked.use({
       gfm: true,
       breaks: false,
@@ -211,7 +273,7 @@
           return escapeHtml(token.text);
         }
       },
-      extensions: [directive]
+      extensions: [region, directive]
     });
   }
 
@@ -245,7 +307,9 @@
   }
 
   function buildTableOfContents() {
-    const headings = Array.from(contentElement.querySelectorAll(":scope > h2, :scope > h3"));
+    const headings = Array.from(contentElement.querySelectorAll(
+      ":scope > h2, :scope > h3, :scope > .material-region > .material-region__body > h2, :scope > .material-region > .material-region__body > h3"
+    ));
     const usedIds = new Map();
     const list = document.createElement("ol");
 
@@ -351,6 +415,55 @@
     return mathErrors.length;
   }
 
+  function revealTarget(hash) {
+    if (!hash || hash.length < 2) {
+      return false;
+    }
+    let id;
+    try {
+      id = decodeURIComponent(hash.slice(1));
+    } catch (error) {
+      return false;
+    }
+    const target = document.getElementById(id);
+    if (!target || !contentElement.contains(target)) {
+      return false;
+    }
+    const opened = [];
+    for (let node = target.parentElement; node && node !== contentElement; node = node.parentElement) {
+      if (node.tagName === "DETAILS" && !node.open) {
+        node.open = true;
+        opened.push(node);
+      }
+    }
+    target.scrollIntoView();
+    // Hình trong vùng vừa mở tải sau khi mở và đẩy đích xuống; cuộn lại khi mỗi hình tải xong.
+    const pending = opened.flatMap((node) => Array.from(node.querySelectorAll("img"))).filter((img) => !img.complete);
+    pending.forEach((img) => {
+      img.addEventListener("load", () => target.scrollIntoView(), { once: true });
+      img.addEventListener("error", () => target.scrollIntoView(), { once: true });
+    });
+    return true;
+  }
+
+  function setupFragmentNavigation() {
+    tocList.addEventListener("click", (event) => {
+      const link = event.target.closest("a[href^='#']");
+      if (!link) {
+        return;
+      }
+      const hash = link.getAttribute("href");
+      if (revealTarget(hash)) {
+        event.preventDefault();
+        if (window.location.hash !== hash) {
+          history.pushState(null, "", hash);
+        }
+      }
+    });
+    window.addEventListener("hashchange", () => revealTarget(window.location.hash));
+    revealTarget(window.location.hash);
+  }
+
   function preparePrinting() {
     let previouslyOpen = [];
     window.addEventListener("beforeprint", () => {
@@ -442,6 +555,7 @@
         statusElement.hidden = false;
       }
       layoutElement.hidden = false;
+      setupFragmentNavigation();
     } catch (error) {
       fail(error.message, error);
     }
