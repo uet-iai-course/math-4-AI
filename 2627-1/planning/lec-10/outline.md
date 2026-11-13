@@ -47,10 +47,10 @@ Theo kế hoạch của người dùng (phụ lục, mục "Mạch và thời gi
 - **Lệch ký hiệu có chủ đích so với ghi chú** (ghi trong `review-log.md`):
   - khoảng nhỏ trong xấp xỉ mật độ: $\delta$ thay $\Delta$ (L1002), vì $\Delta(t)$ là dạng toàn phương của Gaussian;
   - hậu nghiệm trong quy tắc quyết định (SL12): $r=\mathbb P(Y=1\mid A=a')$ thay $p$ (L1975), tránh trùng $p_X$, $p(\omega)$ và $q(s,y)$; trục của `decision-threshold.svg` ghi $r$;
-  - phân hoạch trong Định lý 10.11: $B_1,\ldots,B_m$ thay $B_1,\ldots,B_q$ (L541), vì $q$ đã dành cho tích nhân tử; Mệnh đề 10.5 viết tổng theo $\omega\in\Omega$, không cần chỉ số $m$;
+  - (bỏ 2026-11-13) phân hoạch trong Định lý 10.11 trước đây viết $B_1,\ldots,B_m$; từ đợt sửa 2026-11-13 deck viết $B_1,\ldots,B_q$ như bảng ký hiệu §2 của ghi chú (quyết định G1 của điều phối viên); $q$ dùng làm số nhóm ở BY06–BY07 và làm tên hàm $q(s,y)$ ở SL05–SL08, TK01, hai ngữ cảnh tách biệt như trong ghi chú;
   - tích nhân tử trong Mệnh đề 10.34 và Thuật toán 10.35 giữ $q(s,y)$ như ghi chú (L1853, L1887); Thuật toán 10.35 trên mặt trang không đặt tên $r(y)$ và $c$ của ghi chú (L1888–1890): bước 2 viết $p_{Y,A}(y,a')=\sum_sq(s,y)$, bước 3 viết $p_A(a')=\sum_yp_{Y,A}(y,a')$;
-  - Gaussian tổng quát viết cho biến $X$ với mật độ $f_X$ (ghi chú dùng $T$, L1037), vì $T$ là thời gian xử lý trong Bài tập 10.2 (BT L56–62), bài được đưa lên mặt trang; số đo cảm biến trong ghi chú diễn giả TK05 cũng viết $X$;
-  - tập Borel trong định nghĩa độc lập của biến (PP09) và mật độ đồng thời (SL02): $B,B'$ thay $B_1,B_2$ (L897, L1730), để $B_1,\ldots,B_m$ chỉ là phân hoạch của Định lý 10.11 (rà soát v1);
+  - Gaussian tổng quát viết cho biến $X$ với mật độ $f_X$ (ghi chú dùng $T$, L1037), vì $T$ là thời gian xử lý trong bài tập trên lớp PP06 (mật độ đều trên một đoạn); số đo cảm biến trong ghi chú diễn giả TK05 cũng viết $X$;
+  - tập Borel trong định nghĩa độc lập của biến (PP09) và mật độ đồng thời (SL02): $B,B'$ thay $B_1,B_2$ (L897, L1730), để $B_1,\ldots,B_q$ chỉ là phân hoạch của Định lý 10.11 (rà soát v1);
   - tham số của phân phối phân loại (PP07): vector $\boldsymbol\pi=(\pi_1,\ldots,\pi_K)$ viết đậm, phân biệt với hằng số $\pi$ trong mật độ Gaussian;
   - giá trị quan sát của cảm biến: $a'\in\{0,1\}$ (SL05, "Ký hiệu:"), như ghi chú;
   - ghi chú diễn giả KV03b không đặt tên $W=(X,Z)$, vì $W$ là biến điều kiện của PP10–PP13.
@@ -79,7 +79,7 @@ Cột "Khối ghi chú" ghi số hiệu và dòng của `lecture-note.md` (hoặ
 | Mạch | Mã | Tiêu đề dự kiến | Vai trò | Khối ghi chú |
 |---|---|---|---|---|
 | 1 | MD00 | Xác suất: ngôn ngữ biểu diễn bất định trong AI | Bìa; trang tiêu đề mạch 1 (`id="mach-1"`) | L1–6 |
-| 1 | MD01 | Mục tiêu học tập | Sáu mục tiêu rút gọn, CLO2 | L21–32 |
+| 1 | MD01 | Mục tiêu học tập | Sáu mục tiêu rút gọn theo ghi chú (thêm phân biệt độc lập, xung khắc, độc lập có điều kiện; nêu giả thiết; 2026-11-13) | L21–32 |
 | 1 | MD02 | Nội dung | Bảy mạch đánh số; tài liệu đọc trước trong ghi chú diễn giả | L2083–2087 |
 | 1 | MD03 | Sản phẩm bị cảnh báo khi thiếu hồ sơ nguồn hàng | Bài toán trung tâm, "Câu hỏi:" mở | Câu hỏi mở đầu L8–19 |
 | 1 | MD04 | Ngữ cảnh | Đối tượng, giả thiết, đầu ra (≤4 dòng) | §1 L53–64; §2 L94–101; §3 L103–113 |
@@ -105,21 +105,21 @@ Cột "Khối ghi chú" ghi số hiệu và dòng của `lecture-note.md` (hoặ
 | 3 | BY08 | Chứng minh: định lý Bayes | P2, bước 2 | L575–587 |
 | 3 | BY09 | Tiên nghiệm, hợp lý và hậu nghiệm | Đọc (5.4), dạng tỉ lệ (5.5) | L589–603 |
 | 3 | BY10 | Ví dụ: cập nhật xác suất sản phẩm lỗi | Ứng dụng; $198/437$ trả lời một nửa câu hỏi mở đầu | Ví dụ 10.4 L609–679; L685 |
-| 3 | BY11 | Bài tập: đọc điều kiện trên bảng camera | Bài 10.1 (a), (c), lời giải trên mặt trang | BT L7–50 |
+| 3 | BY11 | Bài tập: đọc điều kiện trên bảng camera | Bài trên lớp, lời giải trên mặt trang; nguồn: Murphy (2022), Bài tập 2.10 (Bài tập 10.4 của tệp bài tập) đặt trên bảng camera | `exercises.md` Bài tập 10.4; ghi chú Ví dụ 10.3 |
 | 4 | PP00 | 4. Biến ngẫu nhiên, phân phối và độc lập | Trang tiêu đề mạch (`id="mach-4"`) | §6 L796 |
 | 4 | PP01 | Đại lượng quan sát của một lần kiểm định | Nhu cầu + ví dụ dẫn nhập + trực quan | L796–800; L818–820 |
 | 4 | PP02 | Biến ngẫu nhiên và phân phối | Định nghĩa 10.14: biến chỉ thị, biến phân loại, vector ngẫu nhiên | L802–820 |
 | 4 | PP03 | Hàm khối xác suất và hàm phân phối tích lũy | Định nghĩa 10.15 | L824–856 |
 | 4 | PP04 | Ví dụ: mức xử lý sản phẩm | Ví dụ CDF, hình `cdf-three-levels.svg` | Ví dụ 10.7 L858–880 |
 | 4 | PP05 | Mật độ xác suất | Nhu cầu + trực quan (hình `density-area.svg`) + Định nghĩa 10.18 | L977–1004 |
-| 4 | PP06 | Bài tập: mật độ đều trên một đoạn | Bài 10.2 (a), (b), lời giải trên mặt trang; (c) tự học | BT L52–97 |
+| 4 | PP06 | Bài tập: mật độ đều trên một đoạn | Bài trên lớp, lời giải trên mặt trang; hàm phân phối tích lũy trong ghi chú diễn giả | ghi chú §6.4, Định nghĩa 10.18 |
 | 4 | PP07 | Phân phối Bernoulli và phân phối phân loại | Định nghĩa 10.19 | L1008–1034 |
 | 4 | PP08 | Phân phối Gaussian | Định nghĩa 10.20 | L1036–1061 |
 | 4 | PP09 | Độc lập của biến cố và của biến ngẫu nhiên | Nhu cầu + Định nghĩa 10.12, 10.16 (phần 1) | L689–704; L884–917 |
 | 4 | PP10 | Độc lập có điều kiện | Định nghĩa 10.13, 10.16 (phần 2); đọc (5.7) | L718–741; L899–919; (5.7) L624–632 |
 | 4 | PP12 | Dạng tương đương của độc lập có điều kiện | Mệnh đề 10.17, "Chứng minh." ngắn | L919–973 |
 | 4 | PP11 | Ví dụ: cảnh báo và nguồn hàng | Độc lập có điều kiện nhưng phụ thuộc | Ví dụ 10.6 phần 1 L745–773, L785–790 |
-| 4 | PP13 | Bài tập: độc lập trước và sau khi quan sát | Bài 10.3, lời giải trên mặt trang | BT L99–149 |
+| 4 | PP13 | Bài tập: độc lập trước và sau khi quan sát | Bài trên lớp, lời giải trên mặt trang; Bài tập 10.8 tự học | ghi chú §5.4, Ví dụ 10.6 phần 2 |
 | 5 | KV00 | 5. Kỳ vọng, phương sai và hiệp phương sai | Trang tiêu đề mạch (`id="mach-5"`) | §7 L1067 |
 | 5 | KV01 | Kỳ vọng | Nhu cầu + trực quan + Định nghĩa 10.21 | L1067–1095 |
 | 5 | KV02 | Kỳ vọng của hàm và tính tuyến tính | Mệnh đề 10.22; $\mathbb E[\mathbf 1_E]=\mathbb P(E)$ | L1099–1131; L1201–1205 |
@@ -192,7 +192,7 @@ P8 (Mệnh đề 10.32, phần rời rạc) chỉ có một quan hệ (cộng t�
 | MH07 | Ô chung bị đếm hai lần ($0{,}46$ so với $0{,}28$) | $0{,}46$, $0{,}28$ |
 | BY01 | Trong các khung hình có cảnh báo, tỉ lệ có người bằng bao nhiêu | $0{,}18$, $0{,}08$, $\mathbb P(C)=0{,}26$ |
 | BY03 | $\mathbb P(H\mid C)$ và $\mathbb P(C\mid H)$ có bằng nhau không | $\mathbb P(H\cap C)=0{,}18$, $\mathbb P(H)=0{,}20$, $\mathbb P(C)=0{,}26$, $\mathbb P(H^c\cap C)=0{,}08$ |
-| BY11 | (bảng khác, tuyến đường vắng) Phép đảo điều kiện cho $1/3$ thay vì $0{,}90$ | Bảng của Bài tập 10.1 |
+| BY11 | (bảng khác, tuyến đường vắng) Phép đảo điều kiện cho $1/3$ thay vì $0{,}90$ | Bảng camera tuyến đường vắng; hiện tượng của Murphy (2022), Bài tập 2.10 |
 | PP09 (ghi chú diễn giả) | $H$ và $C$ có độc lập không ($0{,}052\ne0{,}18$) | Ví dụ 10.5, chỉ trong ghi chú |
 
 **Hệ thống sản phẩm hai nhà cung cấp** (tham số (5.6)).

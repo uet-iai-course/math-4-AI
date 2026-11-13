@@ -899,3 +899,67 @@ Tác tử chạy `deck_check.py` trên server tạm (cổng 8781, đã tắt): 7
 **Đã kiểm, không lỗi:** mọi số Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả, Ví dụ, Nhận xét, Thuật toán, Tình huống, mục, phụ lục và nhãn công thức mà deck dẫn vẫn đúng khối (khung đánh số của ghi chú không đổi, chỉ thêm bài tập). Số liệu tính lại khớp: 198/437, 236/437, 18/67, 36/59, 22/4563, 0,0698, 2/13, 0,576, 0,042064 = 0,0412 + 0,000864.
 
 **Ghi chú:** mục "Dẫn chiếu ngoài phạm vi còn dùng số cũ" của đợt 2026-11-12 trong nhật ký này đã liệt kê các dòng 164, 319, 378, 407, 475, 599, 633; đợt rà này bổ sung TK05 trên mặt trang và BY11 "câu (b) của tệp bài tập".
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Tác tử (theo lời gọi công cụ của điều phối viên):** biên tập viên (worker), `Agent`, `general-purpose`, `opus` (Opus 5.5); `no-ai-slop` chế độ Edit cho mặt trang và ghi chú diễn giả. Phạm vi ghi: deck Bài 10, `planning/lec-10/{storyboard.md, outline.md, review-log.md}`. Không sửa `materials/`, CSS, SVG. Không commit.
+
+Không thêm, tách, gộp hay bỏ trang: 77 trang trước và sau; mã trang và thứ tự không đổi. Không số liệu nào đổi; các số giữ nguyên đã được tính lại khi kiểm: BY11 $0{,}09/0{,}10=0{,}9$, $0{,}18/0{,}90=0{,}2$, $0{,}09/0{,}27=1/3$; PP06 $\int_0^{0{,}5}2\,dt=1$, $2\cdot0{,}2=0{,}4$, $F_T(0{,}3)-F_T(0{,}1)=0{,}4$; PP13 $(1/4)/(3/4)=1/3$, $0\ne1/9$.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| nghiêm trọng: nguồn của ba bài trên lớp trỏ bài 10.1–10.3 cũ | sửa theo D10: BY11 "Nguồn: Murphy (2022), Bài tập 2.10 (Bài tập 10.4), đặt trên bảng camera; ghi chú bài giảng, Ví dụ 10.3", bỏ câu "câu (b)/(c)"; PP06 nguồn ghi chú §6.4 (Định nghĩa 10.18 và phân phối đều trên $[0;\,0{,}1]$), đoạn $F_T$ giữ làm phần giải thích; PP13 nguồn ghi chú §5.4, Ví dụ 10.6 phần 2 (điều kiện $\{U=V\}$ thay cho $\{W=0\}$), thêm Bài tập 10.8 tự học | BY11, PP06, PP13 | mặt trang giữ nguyên; ba bài không đưa lại vào ghi chú |
+| nghiêm trọng: số bài tự học sai trong ghi chú diễn giả | MH07 → Bài tập 10.1 (hai xúc xắc, có phần bù và hợp); PP04, KV13 → 10.2; KV10 → 10.11 và 10.14 | MH07, PP04, KV10, KV13 | KV07, KV09 (10.12) vẫn đúng |
+| trung bình: dải số bài tập trên mặt trang TK05 | "Bài tập 10.1–10.3 (ghi chú bài giảng) và 10.4–10.15 (tệp bài tập)." | TK05 | 44 âm tiết |
+| nhẹ: KV08 dẫn dòng "Ý nghĩa:" không có thật | nguồn "Mệnh đề 10.27 và mục 7.4" | KV08 | |
+| nhẹ: chỉ số phân hoạch $m$ / $q$ | deck viết $B_1,\ldots,B_q$ theo bảng ký hiệu §2 của ghi chú (G1) | BY06, BY07 | bỏ lệch ký hiệu có chủ đích cũ trong `outline.md`; $q$ là số nhóm ở BY06–BY07 và tên hàm $q(s,y)$ ở SL05–SL08, TK01, hai ngữ cảnh tách biệt như trong ghi chú |
+| nhẹ: MD01 thiếu hai ý của mục tiêu ghi chú | sáu mục tiêu viết lại; thêm "phân biệt độc lập, xung khắc, độc lập có điều kiện" và "Nêu giả thiết"; công thức toàn phần, phân phối biên và có điều kiện, phân biệt hậu nghiệm với quyết định chuyển vào ghi chú diễn giả để giữ trần | MD01 | 78/80 âm tiết (đo) |
+| nhẹ: SL00 dòng dẫn không có mệnh đề chính | "Muốn tính hậu nghiệm của nguồn hàng và nhãn lỗi rồi quyết định theo chi phí, cần phân phối đồng thời và phép lấy biên." | SL00 | 25 âm tiết |
+| nhẹ: từ làm mềm, nhận xét phụ (MD00, KV08, SL05) | MD00 bỏ "thường"; SL05 bỏ câu về phép xấp xỉ chọn nhà cung cấp (không có trong ghi chú); KV08 giữ ý (có ở ghi chú L1547) nhưng viết thành câu điều kiện: "khi … các hiệp phương sai dương, phương sai thật lớn hơn $n\theta(1-\theta)$" | MD00, KV08, SL05 | cách khác đề xuất ở KV08: ý có trong ghi chú và có nội dung điều kiện |
+| nhẹ: lặp ý, câu bình luận văn bản (MH10, PP11/PP13) | MH10: gộp hai câu "phản hồi sai là hợp…" vào dòng Gợi ý, bỏ câu "Bảng cho sẵn … không nêu nguồn gốc"; PP13 bỏ câu lặp "hai nguyên nhân độc lập …", giữ ở PP11 | MH10, PP11, PP13 | |
+| nhẹ: số ghi chú đứng trước phát biểu (MH05, PP12) | bỏ số khỏi mặt trang; số còn ở dòng nguồn của ghi chú diễn giả | MH05, PP12 | G4 cho phép, không bắt buộc, dẫn số trên mặt trang |
+| (2026-11-12) dẫn chiếu ngoài phạm vi còn dùng số cũ, dòng 164, 319, 378, 407, 475, 566, 584, 599, 633 | đã xử lý trong các dòng trên; 566 bỏ "tự học" | như trên | |
+
+**Kế hoạch:** `storyboard.md` có mục "Sửa deck theo bảng phát hiện 2026-11-13" (quyết định từng trang), sửa dòng dẫn SL00 ở bảng (a), bản đồ hành trình và các mục MD01, BY06, BY11, PP04, PP06, PP13, SL00, TK05; vẫn 77 mục cho 77 trang. `outline.md`: hàng MD01, BY11, PP06, PP13 và ví dụ xuyên suốt BY11; bỏ lệch ký hiệu $B_m$. Phụ lục kế hoạch ghi chú 2026-11-02 trong `outline.md` giữ nguyên làm lịch sử (đánh số bài tập cũ).
+
+**Kiểm tra:** `deck_check.py --shots` trên `http://127.0.0.1:8810/2627-1/lecture-10-xac-suat-bieu-dien-bat-dinh.html`: 77 trang, 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 lỗi KaTeX, không OVERFLOW, không phần tử rộng hơn 390 px; MD01 78 âm tiết (trần 80). Đã xem ảnh 1600×900 và 390×844 của MD01, BY06, SL00, TK05. `git diff --check` sạch.
+
+Trạng thái: chờ điều phối viên duyệt.
+
+### Lượt sửa sau kiểm lại (2026-11-13)
+
+Điều phối viên duyệt danh sách sau kiểm toán (A: đạt) và kiểm mạch (B: một phát hiện trung bình). Cùng biên tập viên, cùng phạm vi tệp, không commit.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| trung bình: MD01 mục tiêu 4 viết thành mệnh đề | "Chứng minh kỳ vọng toàn phần; phân biệt không tương quan, độc lập."; công thức phương sai chuyển vào ghi chú diễn giả | MD01 | |
+| MD01 mục tiêu 3, 6 | (3) "hàm phân phối tích lũy" đủ tên; (6) "Nêu giả thiết suy luận; phân biệt hậu nghiệm với quyết định theo chi phí."; (5) rút thành "Tính hậu nghiệm bằng lấy biên." để giữ trần | MD01 | số 78 trước đây sai (công cụ không tính tiêu đề); sau khi rút mục tiêu 2 thành "…; phân biệt độc lập (có điều kiện), xung khắc.": 80 âm tiết (trần 80) |
+| ghi chú diễn giả MD01: nhịp lặp "Mục tiêu N gồm …" | viết lại thành hai đoạn: phần lược của mục tiêu 2–4 trong một câu liệt kê; mục tiêu 5–6 gộp, có "nêu các giả thiết của phép suy luận, và phân biệt hậu nghiệm với quyết định dựa trên chi phí" | MD01 | |
+| KV08 câu về lô nguyên liệu | "Khi các chỉ thị lỗi, vẫn cùng phân phối $\operatorname{Bernoulli}(\theta)$, có hiệp phương sai dương, chẳng hạn vì cùng một lô nguyên liệu, $\operatorname{Var}(N)$ lớn hơn $n\theta(1-\theta)$." | KV08 | đúng vì $\operatorname{Var}(N)=n\theta(1-\theta)+2\sum_{i<j}\operatorname{Cov}(Y_i,Y_j)$ |
+| KV13 dẫn trùng 10.2 với PP04; mạch 6 thiếu bài tự học | KV13 dẫn Bài tập 10.3 (phân phối đồng thời và lấy biên); SL11 thêm Bài tập 10.13 (dữ kiện đủ để tính hậu nghiệm, Murphy 2.1: bộ dữ kiện nào đủ để tính $P(H\mid e_1,e_2)$, có trường hợp độc lập có điều kiện) | KV13, SL11 | đã đọc đề 10.13 và 10.15; chọn 10.13 vì khớp phép lấy biên và chuẩn hóa của SL11 |
+| Bài tập 10.12 dẫn hai lần | bỏ ở KV07, giữ ở KV09 | KV07 | |
+| BY11 "đặt trên bảng camera" | "chuyển sang bảng camera" | BY11 | |
+| storyboard: bản đồ (b), mục (c) PP06, BY11, PP13, MD01 | bỏ "Bài tập 10.2/10.3" cũ ở cột thời lượng của bản đồ (thay "bài tập trên lớp PP06/PP13"); trường "Bài tập:" và "Ghi chú diễn giả" của BY11, PP06, PP13 theo deck; MD01 ghi số đo không tính tiêu đề; cập nhật KV07, KV08, KV13, SL11 | `storyboard.md` | |
+
+**Kiểm tra:** `deck_check.py --shots` (cổng 8810): 77 trang, 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 lỗi KaTeX, không OVERFLOW. Cờ: MD02 LINES (ngoại lệ cũ). Điều phối viên đếm lại MD01 được 82 (báo cáo trước ghi 78 là sai); đã rút mục tiêu 2, đo lại: `wc -w` 80, `deck_check.py` 80, không cờ SYLL. Đã xem ảnh MD01 ở 1600×900 và 390×844: vừa khung, không tràn. `git diff --check` sạch.
+
+**Bốn chỗ nhẹ cuối (2026-11-13, điều phối viên đã duyệt):**
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| MD01 mục tiêu 2 dùng ngoặc | "phân biệt độc lập, độc lập có điều kiện, xung khắc"; bù âm tiết ở mục tiêu 6: "Nêu giả thiết; phân biệt hậu nghiệm với quyết định theo chi phí." ("giả thiết của phép suy luận" có trong ghi chú diễn giả) | MD01 | `wc -w` sáu dòng `li` = 80, `deck_check.py` = 80 (trần 80) |
+| ghi chú diễn giả MD01 mở bằng câu về văn bản | bỏ "Trên mặt trang, các mục tiêu được viết gọn."; đoạn mở bằng "Mục tiêu 2 còn gồm …" | MD01 | |
+| KV08: $N$ chưa định nghĩa ở trang | "phương sai của số lỗi lớn hơn $n\theta(1-\theta)$" | KV08 | |
+| storyboard PP06 trỏ tệp bài tập cũ | bỏ "(BT L83–96)", ghi nguồn ghi chú §6.4 (Định nghĩa 10.18) | `storyboard.md` | |
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; ba lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | đạt (hai lượt) |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (MD01 mục tiêu 4, trung bình) → đạt sau lượt sửa |
+
+Kiểm của điều phối viên: đọc diff deck; đếm lại MD01 bằng `wc -w` trên sáu dòng `li` (lượt 2 báo 78 nhưng đo được 82, **yêu cầu sửa**; lượt 3 đạt 80/80); storyboard 77 mục cho 77 trang; `deck_check.py` (cổng 8810): 77 trang, 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW; cờ duy nhất MD02 LINES (ngoại lệ đã có). Đã xem ảnh 1600×900 và 390×844 của MD01, BY06, KV08, SL00, SL11, TK05: vừa khung, không chồng chữ.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.

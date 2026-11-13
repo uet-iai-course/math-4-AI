@@ -22,19 +22,19 @@
     <h3>Biến cố, định lý Bayes, phân phối, kỳ vọng và lấy biên · Bài 10</h3>
     <p>Cơ sở toán học cho AI · Học kỳ 1, 2026–2027</p>
     <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
-    <aside class="notes"><p>Một hệ thống AI thường phải kết luận khi thông tin không đầy đủ hoặc có nhiễu. Xác suất phục vụ hai việc: cập nhật xác suất của một nhãn chưa quan sát sau một tín hiệu, bằng định lý Bayes; và loại một biến không quan sát được, bằng phép lấy biên.</p><p>Bài 05c đã có các kết quả này trên không gian rời rạc; ở đây chúng được phát biểu tổng quát, thêm trường hợp có mật độ, cho một hệ thống phân loại sản phẩm lỗi.</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §2.1–2.3; ghi chú bài giảng Bài 10.</p></aside>
+    <aside class="notes"><p>Một hệ thống AI phải kết luận khi thông tin không đầy đủ hoặc có nhiễu. Xác suất phục vụ hai việc: cập nhật xác suất của một nhãn chưa quan sát sau một tín hiệu, bằng định lý Bayes; và loại một biến không quan sát được, bằng phép lấy biên.</p><p>Bài 05c đã có các kết quả này trên không gian rời rạc; ở đây chúng được phát biểu tổng quát, thêm trường hợp có mật độ, cho một hệ thống phân loại sản phẩm lỗi.</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §2.1–2.3; ghi chú bài giảng Bài 10.</p></aside>
   </section>
   <section data-slide-id="MD01">
     <h2>Mục tiêu học tập</h2>
     <ol>
-      <li>Lập mô hình xác suất hữu hạn; chứng minh quy tắc phần bù, hợp.</li>
-      <li>Chứng minh quy tắc nhân, công thức toàn phần, định lý Bayes.</li>
+      <li>Lập mô hình xác suất hữu hạn, suy ra quy tắc phần bù, hợp.</li>
+      <li>Chứng minh quy tắc nhân, định lý Bayes; phân biệt độc lập, độc lập có điều kiện, xung khắc.</li>
       <li>Mô tả biến bằng hàm khối xác suất, hàm phân phối tích lũy, mật độ.</li>
-      <li>Chứng minh công thức kỳ vọng, phương sai, kỳ vọng toàn phần; phân biệt không tương quan, độc lập.</li>
-      <li>Lấy biên, tính hậu nghiệm dưới giả thiết độc lập có điều kiện.</li>
-      <li>Quyết định theo chi phí kỳ vọng.</li>
+      <li>Chứng minh kỳ vọng toàn phần; phân biệt không tương quan, độc lập.</li>
+      <li>Tính hậu nghiệm bằng lấy biên.</li>
+      <li>Nêu giả thiết; phân biệt hậu nghiệm với quyết định theo chi phí.</li>
     </ol>
-    <aside class="notes"><p>Sáu mục tiêu cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong chuẩn đầu ra của học phần.</p><p>Mục tiêu 2 gồm cả việc kiểm tra độc lập có điều kiện; mục tiêu 3 gồm việc chọn mô hình Bernoulli, phân loại hay Gaussian theo kiểu dữ liệu. Mục tiêu 4 có một phản ví dụ: hai biến không tương quan nhưng phụ thuộc. Mục tiêu 5 và 6 được đo trên chính bài toán mở đầu: một sản phẩm bị cảnh báo khi hồ sơ nguồn hàng bị thiếu; mục tiêu 6 phân biệt hậu nghiệm với quyết định dựa trên nó.</p></aside>
+    <aside class="notes"><p>Sáu mục tiêu cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong chuẩn đầu ra của học phần.</p><p>Mục tiêu 2 còn gồm công thức xác suất toàn phần và việc kiểm tra độc lập có điều kiện; mục tiêu 3, việc chọn mô hình Bernoulli, phân loại hay Gaussian theo kiểu dữ liệu; mục tiêu 4, các công thức của kỳ vọng, phương sai, hiệp phương sai và một phản ví dụ hai biến không tương quan nhưng phụ thuộc.</p><p>Mục tiêu 5 và 6 được đo trên chính bài toán mở đầu: từ phân phối đồng thời, tính phân phối biên và phân phối có điều kiện khi nguồn hàng của sản phẩm bị cảnh báo chưa được quan sát; nêu các giả thiết của phép suy luận, và phân biệt hậu nghiệm với quyết định dựa trên chi phí.</p></aside>
   </section>
   <section data-slide-id="MD02">
     <h2>Nội dung</h2>
@@ -124,7 +124,7 @@
   </section>
   <section data-slide-id="MH05">
     <h2>Cộng tính hữu hạn và tính đơn điệu</h2>
-    <p><strong>Bổ đề.</strong> Trên mọi không gian xác suất (Bổ đề 10.4):</p>
+    <p><strong>Bổ đề.</strong> Trên mọi không gian xác suất:</p>
     <div class="table-scroll"><table class="stack-table"><thead><tr><th>Phát biểu</th><th>Chứng minh</th></tr></thead><tbody>
       <tr><td data-label="Phát biểu">$\mathbb P(\varnothing)=0$</td><td data-label="Chứng minh">dãy $\Omega,\varnothing,\varnothing,\ldots$ xung khắc: $1=1+\sum_{i\ge2}\mathbb P(\varnothing)$</td></tr>
       <tr><td data-label="Phát biểu">$E_1,\ldots,E_n$ đôi một xung khắc thì $\mathbb P\bigl(\bigcup_{i=1}^nE_i\bigr)=\sum_{i=1}^n\mathbb P(E_i)$</td><td data-label="Chứng minh">thêm $E_{n+1}=E_{n+2}=\cdots=\varnothing$, áp dụng (P3)</td></tr>
@@ -161,7 +161,7 @@
     <p><strong>Trực quan.</strong> $\mathbb P(H)+\mathbb P(C)=0{,}46$ đếm ô chung hai lần; $\mathbb P(H\cup C)=0{,}28$.</p>
     <p><strong>Mệnh đề.</strong> Với mọi $E,F\in\mathcal F$:</p>
     <div class="formula">$$\begin{aligned}\mathbb P(E^c)&amp;=1-\mathbb P(E),\\ \mathbb P(E\cup F)&amp;=\mathbb P(E)+\mathbb P(F)\\ &amp;\quad-\mathbb P(E\cap F).\end{aligned}$$</div>
-    <aside class="notes"><p>Trên bảng camera, công thức hợp cho $\mathbb P(H\cup C)=0{,}20+0{,}26-0{,}18=0{,}28$, khớp phép cộng trực tiếp ba ô; công thức phần bù cho cùng số $1-0{,}72$, vì $(H\cup C)^c$ chỉ gồm kết quả (không có người, không cảnh báo). Bài tập 10.5 (bảng camera dưới một quy trình lấy mẫu khác) để tự học.</p><p>Hai công thức không cần giả thiết nào về quan hệ giữa $E$ và $F$. Khi $E$ và $F$ xung khắc, $\mathbb P(E\cap F)=\mathbb P(\varnothing)=0$ và công thức hợp trở thành công thức cộng. Lỗi thường gặp là cộng $\mathbb P(E)+\mathbb P(F)$ khi giao khác rỗng; các kết quả trong giao khi đó bị cộng hai lần.</p><p>Bỏ số hạng không âm $\mathbb P(E\cap F)$ được bất đẳng thức hợp $\mathbb P(E\cup F)\le\mathbb P(E)+\mathbb P(F)$ (Hệ quả 10.7), đúng cả khi chưa biết giao.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Mệnh đề 10.6; trùng phần 2 và 4 của Mệnh đề 05c.2; Murphy (2022), §2.1.3.</p></aside>
+    <aside class="notes"><p>Trên bảng camera, công thức hợp cho $\mathbb P(H\cup C)=0{,}20+0{,}26-0{,}18=0{,}28$, khớp phép cộng trực tiếp ba ô; công thức phần bù cho cùng số $1-0{,}72$, vì $(H\cup C)^c$ chỉ gồm kết quả (không có người, không cảnh báo). Bài tập 10.1 (không gian mẫu đều với hai xúc xắc) để tự học.</p><p>Hai công thức không cần giả thiết nào về quan hệ giữa $E$ và $F$. Khi $E$ và $F$ xung khắc, $\mathbb P(E\cap F)=\mathbb P(\varnothing)=0$ và công thức hợp trở thành công thức cộng. Lỗi thường gặp là cộng $\mathbb P(E)+\mathbb P(F)$ khi giao khác rỗng; các kết quả trong giao khi đó bị cộng hai lần.</p><p>Bỏ số hạng không âm $\mathbb P(E\cap F)$ được bất đẳng thức hợp $\mathbb P(E\cup F)\le\mathbb P(E)+\mathbb P(F)$ (Hệ quả 10.7), đúng cả khi chưa biết giao.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Mệnh đề 10.6; trùng phần 2 và 4 của Mệnh đề 05c.2; Murphy (2022), §2.1.3.</p></aside>
   </section>
   <section data-slide-id="MH08">
     <h2>Chứng minh: phần bù và hợp hai biến cố</h2>
@@ -183,7 +183,7 @@
       <p>Phản hồi sai: $0{,}0044+0{,}0478=0{,}0522$; phần bù cho $1-(0{,}0396+0{,}9082)$, cùng số.</p>
       <p><strong>Diễn giải:</strong> khoảng $5{,}2\%$ sản phẩm nhận phản hồi sai.</p>
     </div>
-    <aside class="notes"><p>Bảng cho xác suất đồng thời của tình trạng và phản hồi. Hệ thống sản phẩm ở giai đoạn đầu có cùng cấu trúc với camera: tình trạng thực là lỗi hoặc đạt, phản hồi là cảnh báo hoặc không. Ở đây $\{Y=1\}$ và $\{A=1\}$ chỉ dùng như tên của các biến cố "lỗi" và "cảnh báo".</p><p>Gợi ý: xác suất lỗi là tổng hàng "lỗi" ($0{,}0396+0{,}0044$), xác suất cảnh báo là tổng cột "cảnh báo" ($0{,}0396+0{,}0478$), còn phản hồi sai là hợp của hai biến cố xung khắc.</p><p>Phản hồi sai là hợp của hai biến cố xung khắc $\{Y=1\}\cap\{A=0\}$ và $\{Y=0\}\cap\{A=1\}$. Bảng cho sẵn tỉ lệ lỗi chung $0{,}044$ mà không nêu nguồn gốc của nó; con số này dựng được từ tỉ lệ lỗi của từng nhà cung cấp. Tỉ lệ lỗi trong nhóm bị cảnh báo cần thêm một phép chia cho $0{,}0874$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 4.5 (bảng giai đoạn 1).</p></aside>
+    <aside class="notes"><p>Bảng cho xác suất đồng thời của tình trạng và phản hồi. Hệ thống sản phẩm ở giai đoạn đầu có cùng cấu trúc với camera: tình trạng thực là lỗi hoặc đạt, phản hồi là cảnh báo hoặc không. Ở đây $\{Y=1\}$ và $\{A=1\}$ chỉ dùng như tên của các biến cố "lỗi" và "cảnh báo".</p><p>Gợi ý: xác suất lỗi là tổng hàng "lỗi" ($0{,}0396+0{,}0044$), xác suất cảnh báo là tổng cột "cảnh báo" ($0{,}0396+0{,}0478$), còn phản hồi sai là hợp của hai biến cố xung khắc $\{Y=1\}\cap\{A=0\}$ và $\{Y=0\}\cap\{A=1\}$.</p><p>Tỉ lệ lỗi chung $0{,}044$ dựng được từ tỉ lệ lỗi của từng nhà cung cấp. Tỉ lệ lỗi trong nhóm bị cảnh báo cần thêm một phép chia cho $0{,}0874$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 4.5 (bảng giai đoạn 1).</p></aside>
   </section>
 </section>
 
@@ -256,18 +256,18 @@
   </section>
   <section data-slide-id="BY06">
     <h2>Xác suất toàn phần và định lý Bayes</h2>
-    <p><strong>Định lý.</strong> $B_1,\ldots,B_m$ là một phân hoạch (partition) của $\Omega$: đôi một xung khắc, hợp bằng $\Omega$; $\mathbb P(B_j)>0$; $E\in\mathcal F$.</p>
+    <p><strong>Định lý.</strong> $B_1,\ldots,B_q$ là một phân hoạch (partition) của $\Omega$: đôi một xung khắc, hợp bằng $\Omega$; $\mathbb P(B_j)>0$; $E\in\mathcal F$.</p>
     <p>Công thức xác suất toàn phần (law of total probability):</p>
-    <div class="formula">$$\mathbb P(E)=\sum_{j=1}^m\mathbb P(E\mid B_j)\,\mathbb P(B_j).$$</div>
-    <p>Nếu thêm $\mathbb P(E)>0$, định lý Bayes (Bayes' rule) cho, với $k=1,\ldots,m$:</p>
-    <div class="formula">$$\begin{aligned}&amp;\mathbb P(B_k\mid E)\\ &amp;\quad=\frac{\mathbb P(E\mid B_k)\,\mathbb P(B_k)}{\sum_{j=1}^m\mathbb P(E\mid B_j)\,\mathbb P(B_j)}.\end{aligned}$$</div>
+    <div class="formula">$$\mathbb P(E)=\sum_{j=1}^q\mathbb P(E\mid B_j)\,\mathbb P(B_j).$$</div>
+    <p>Nếu thêm $\mathbb P(E)>0$, định lý Bayes (Bayes' rule) cho, với $k=1,\ldots,q$:</p>
+    <div class="formula">$$\begin{aligned}&amp;\mathbb P(B_k\mid E)\\ &amp;\quad=\frac{\mathbb P(E\mid B_k)\,\mathbb P(B_k)}{\sum_{j=1}^q\mathbb P(E\mid B_j)\,\mathbb P(B_j)}.\end{aligned}$$</div>
     <aside class="notes"><p>Mỗi kết quả thuộc đúng một nhóm $B_j$. Nhóm có xác suất $0$ góp $\mathbb P(E\cap B_j)\le\mathbb P(B_j)=0$ vào mọi tổng theo tính đơn điệu, nên có thể bỏ khỏi tổng; vì vậy giả thiết $\mathbb P(B_j)>0$ không làm mất tính tổng quát.</p><p>Trên cây nguồn hàng, phân hoạch là $\{S=a\},\{S=b\}$ và $E=\{Y=1\}$: công thức toàn phần là phép cộng hai lá lỗi. Định lý Bayes là phép "giữ các đường phù hợp quan sát rồi chia cho tổng".</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định lý 10.11; gộp Mệnh đề 05c.10 và Định lý 05c.11; Murphy (2022), §2.3.</p></aside>
   </section>
   <section data-slide-id="BY07">
     <h2>Chứng minh: xác suất toàn phần</h2>
     <p>Biến cố $E$ được chia theo các nhóm $B_j$ rồi cộng lại.</p>
     <p><strong>Các mảnh xung khắc.</strong> Các $E\cap B_j$ đôi một xung khắc, hợp bằng $E\cap\Omega=E$.</p>
-    <div class="formula">$$\begin{aligned}\mathbb P(E)&amp;=\sum_{j=1}^m\mathbb P(E\cap B_j)\\ &amp;=\sum_{j=1}^m\mathbb P(E\mid B_j)\,\mathbb P(B_j).\end{aligned}$$</div>
+    <div class="formula">$$\begin{aligned}\mathbb P(E)&amp;=\sum_{j=1}^q\mathbb P(E\cap B_j)\\ &amp;=\sum_{j=1}^q\mathbb P(E\mid B_j)\,\mathbb P(B_j).\end{aligned}$$</div>
     <p>Đẳng thức thứ nhất: cộng tính hữu hạn; thứ hai: quy tắc nhân, dùng $\mathbb P(B_j)>0$.</p>
     <aside class="notes"><p>Mục tiêu là tính xác suất của quan sát $E$ từ các xác suất trong từng nhóm. Các $E\cap B_j$ thuộc $\mathcal F$ vì $\mathcal F$ đóng với giao hữu hạn, và xung khắc vì $(E\cap B_i)\cap(E\cap B_j)\subseteq B_i\cap B_j=\varnothing$ khi $i\ne j$.</p><p>Cộng tính hữu hạn là Bổ đề 10.4, phần 2. Trên cây nguồn hàng, đẳng thức thứ nhất cộng hai lá lỗi $0{,}012+0{,}032$; đẳng thức thứ hai viết mỗi lá thành tích dọc đường.</p><p>Công thức toàn phần đi từ các nhóm tới xác suất của quan sát; định lý Bayes đi theo chiều ngược lại.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Định lý 10.11, bước 1.</p></aside>
   </section>
@@ -316,7 +316,7 @@
       <p>(b) Phát biểu sai vì đảo điều kiện: $\mathbb P(C\mid H)=0{,}9$ nhưng $\mathbb P(H\mid C)=1/3$.</p>
       <p><strong>Cách khác:</strong> định lý Bayes cho $0{,}9\cdot0{,}1/(0{,}9\cdot0{,}1+0{,}2\cdot0{,}9)=1/3$.</p>
     </div>
-    <aside class="notes"><p>Đây là một camera khác, đặt trên tuyến đường vắng: tiên nghiệm có người là $0{,}10$ thay cho $0{,}20$, tỉ lệ cảnh báo nhầm là $0{,}2$ thay cho $0{,}10$. Gợi ý: mẫu số của mỗi xác suất có điều kiện là xác suất của biến cố đứng sau dấu "$\mid$"; tổng một hàng cho $\mathbb P(H)=0{,}10$, tổng một cột cho $\mathbb P(C)=0{,}27$.</p><p>Câu (b) trên trang là câu (c) của Bài tập 10.1; câu (b) của tệp bài tập để tự học.</p><p>Kiểm tra trên $100$ khung hình: $10$ khung hình có người, $9$ bị cảnh báo; $90$ khung hình không có người, $18$ bị cảnh báo; tỉ lệ có người trong $27$ cảnh báo là $9/27=1/3$. Trên tuyến đường vắng, các cảnh báo nhầm lấn át các cảnh báo đúng. Nhầm lẫn này còn được gọi là ngụy biện của công tố viên (prosecutor's fallacy).</p><p class="note-source"><strong>Nguồn:</strong> Bài tập 10.1; Murphy (2022), Bài tập 2.10.</p></aside>
+    <aside class="notes"><p>Đây là một camera khác, đặt trên tuyến đường vắng: tiên nghiệm có người là $0{,}10$ thay cho $0{,}20$, tỉ lệ cảnh báo nhầm là $0{,}2$ thay cho $0{,}10$. Gợi ý: mẫu số của mỗi xác suất có điều kiện là xác suất của biến cố đứng sau dấu "$\mid$"; tổng một hàng cho $\mathbb P(H)=0{,}10$, tổng một cột cho $\mathbb P(C)=0{,}27$.</p><p>Kiểm tra trên $100$ khung hình: $10$ khung hình có người, $9$ bị cảnh báo; $90$ khung hình không có người, $18$ bị cảnh báo; tỉ lệ có người trong $27$ cảnh báo là $9/27=1/3$. Trên tuyến đường vắng, các cảnh báo nhầm lấn át các cảnh báo đúng. Nhầm lẫn này còn được gọi là ngụy biện của công tố viên (prosecutor's fallacy).</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), Bài tập 2.10 (Bài tập 10.4), chuyển sang bảng camera; ghi chú bài giảng, Ví dụ 10.3.</p></aside>
   </section>
 </section>
 
@@ -375,7 +375,7 @@
       </div>
     </div>
     <p><strong>Diễn giải:</strong> $\mathbb P(X\ge1)$ là xác suất cần can thiệp, lớn hơn $\mathbb P(X\gt1)$ một khối $0{,}20.$</p>
-    <aside class="notes"><p>Ba mức là không can thiệp, kiểm tra lại, sửa chữa. Hàm phân phối tích lũy cộng các khối xác suất đến $t$; tại mỗi giá trị $0,1,2$ nó nhảy lên đúng bằng khối tại đó. Chấm đặc ở đầu trái mỗi bậc thể hiện tính liên tục phải.</p><p>Kiểm tra: $\mathbb P(0\lt X\le2)=F_X(2)-F_X(0)=1-0{,}70=0{,}30$, khớp tổng hai khối $0{,}20+0{,}10$. Các mức $0,1,2$ là mã quy ước; khoảng cách giữa chúng chỉ có ý nghĩa khi cách mã hóa phản ánh một đại lượng thật, chẳng hạn chi phí xử lý.</p><p>Bài tập 10.7 (phân phối rời rạc ba giá trị) để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 10.7.</p></aside>
+    <aside class="notes"><p>Ba mức là không can thiệp, kiểm tra lại, sửa chữa. Hàm phân phối tích lũy cộng các khối xác suất đến $t$; tại mỗi giá trị $0,1,2$ nó nhảy lên đúng bằng khối tại đó. Chấm đặc ở đầu trái mỗi bậc thể hiện tính liên tục phải.</p><p>Kiểm tra: $\mathbb P(0\lt X\le2)=F_X(2)-F_X(0)=1-0{,}70=0{,}30$, khớp tổng hai khối $0{,}20+0{,}10$. Các mức $0,1,2$ là mã quy ước; khoảng cách giữa chúng chỉ có ý nghĩa khi cách mã hóa phản ánh một đại lượng thật, chẳng hạn chi phí xử lý.</p><p>Bài tập 10.2 (phân phối rời rạc ba giá trị) để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 10.7.</p></aside>
   </section>
   <section data-slide-id="PP05">
     <h2>Mật độ xác suất</h2>
@@ -404,7 +404,7 @@
         <p><strong>Diễn giải:</strong> $f_T(0{,}2)=2$ là mật độ, có đơn vị nghịch đảo của giây.</p>
       </div>
     </div>
-    <aside class="notes"><p>Gợi ý: xác suất trên một khoảng là diện tích dưới đồ thị mật độ trên khoảng đó; khoảng ở câu (b) dài $0{,}2$ giây, một điểm có độ dài $0$.</p><p>Câu (c) của Bài tập 10.2 để tự học: tích phân $f_T$ từ $-\infty$ đến $t$ cho $F_T(t)=0$ khi $t\lt0$, $F_T(t)=2t$ khi $0\le t\le0{,}5$, $F_T(t)=1$ khi $t>0{,}5$. Kiểm tra: $F_T(0{,}3)-F_T(0{,}1)=0{,}6-0{,}2=0{,}4$, khớp câu (b); vì $\mathbb P(T=0{,}1)=0$, tính hay không tính đầu mút không đổi kết quả.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập 10.2.</p></aside>
+    <aside class="notes"><p>Gợi ý: xác suất trên một khoảng là diện tích dưới đồ thị mật độ trên khoảng đó; khoảng ở câu (b) dài $0{,}2$ giây, một điểm có độ dài $0$.</p><p>Hàm phân phối tích lũy: tích phân $f_T$ từ $-\infty$ đến $t$ cho $F_T(t)=0$ khi $t\lt0$, $F_T(t)=2t$ khi $0\le t\le0{,}5$, $F_T(t)=1$ khi $t>0{,}5$. Kiểm tra: $F_T(0{,}3)-F_T(0{,}1)=0{,}6-0{,}2=0{,}4$, khớp câu (b); vì $\mathbb P(T=0{,}1)=0$, tính hay không tính đầu mút không đổi kết quả.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 6.4 (Định nghĩa 10.18 và phân phối đều trên $[0;\,0{,}1]$).</p></aside>
   </section>
   <section data-slide-id="PP07">
     <h2>Phân phối Bernoulli và phân phối phân loại</h2>
@@ -445,7 +445,7 @@
   </section>
   <section data-slide-id="PP12">
     <h2>Dạng tương đương của độc lập có điều kiện</h2>
-    <p><strong>Mệnh đề.</strong> $U,V,W$ rời rạc, $p_W(w)>0$. Hai phát biểu sau tương đương (Mệnh đề 10.17):</p>
+    <p><strong>Mệnh đề.</strong> $U,V,W$ rời rạc, $p_W(w)>0$. Hai phát biểu sau tương đương:</p>
     <p>(i) $\mathbb P(U=u,V=v\mid W=w)=\mathbb P(U=u\mid W=w)\,\mathbb P(V=v\mid W=w)$, mọi $u,v$;</p>
     <p>(ii) với mọi $u$ và mọi $v$ có $\mathbb P(V=v,W=w)>0$:</p>
     <div class="formula">$$\mathbb P(U=u\mid V=v,W=w)=\mathbb P(U=u\mid W=w).$$</div>
@@ -472,7 +472,7 @@
       <div class="formula">$$\begin{gathered}\mathbb P(U=1\mid W=0)=\mathbb P(V=1\mid W=0)=\tfrac13,\\ \mathbb P(U=1,V=1\mid W=0)=0\ne\tfrac13\cdot\tfrac13.\end{gathered}$$</div>
       <p><strong>Diễn giải:</strong> khi dây chuyền dừng, biết bộ phận thứ nhất hoạt động thì bộ phận thứ hai hỏng.</p>
     </div>
-    <aside class="notes"><p>$\mathbb P(W=0)=3/4$, nên mỗi xác suất có điều kiện bằng $(1/4)/(3/4)=1/3$. Gợi ý: vì $U,V$ độc lập và cân đối, bốn cặp $(U,V)$ có cùng xác suất $1/4$; điều kiện $W=0$ giữ lại ba kết quả, trừ $(1,1)$.</p><p>Tích $\frac13\cdot\frac13=\frac19$ khác $0$, nên đẳng thức độc lập có điều kiện sai tại $u=v=1$, $w=0$: $U$ và $V$ phụ thuộc khi biết $W$. Kiểm tra bằng dạng tương đương: $\mathbb P(V=1\mid U=1,W=0)=0\ne1/3=\mathbb P(V=1\mid W=0)$.</p><p>Trước quan sát, biết $U$ không cho thông tin về $V$. Trong AI, hai nguyên nhân độc lập có thể trở nên phụ thuộc khi ta quan sát một hệ quả chung của chúng.</p><p class="note-source"><strong>Nguồn:</strong> Bài tập 10.3.</p></aside>
+    <aside class="notes"><p>$\mathbb P(W=0)=3/4$, nên mỗi xác suất có điều kiện bằng $(1/4)/(3/4)=1/3$. Gợi ý: vì $U,V$ độc lập và cân đối, bốn cặp $(U,V)$ có cùng xác suất $1/4$; điều kiện $W=0$ giữ lại ba kết quả, trừ $(1,1)$.</p><p>Tích $\frac13\cdot\frac13=\frac19$ khác $0$, nên đẳng thức độc lập có điều kiện sai tại $u=v=1$, $w=0$: $U$ và $V$ phụ thuộc khi biết $W$. Kiểm tra bằng dạng tương đương: $\mathbb P(V=1\mid U=1,W=0)=0\ne1/3=\mathbb P(V=1\mid W=0)$.</p><p>Trước quan sát, biết $U$ không cho thông tin về $V$. Bài tập 10.8 (độc lập có điều kiện và phân tích nhân tử) để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 5.4, Ví dụ 10.6, phần 2 (cùng hiện tượng, điều kiện $\{U=V\}$ thay cho $\{W=0\}$).</p></aside>
   </section>
 </section>
 
@@ -563,7 +563,7 @@
     <div class="formula">$$\begin{aligned}\operatorname{Cov}(X,Z)&amp;=\mathbb E[(X-\mu_X)(Z-\mu_Z)]\\ &amp;=\mathbb E[XZ]-\mu_X\mu_Z.\end{aligned}$$</div>
     <p><strong>Mệnh đề.</strong> Với $X,Z$ như trên, $\operatorname{Var}(X+Z)=\operatorname{Var}(X)+\operatorname{Var}(Z)+2\operatorname{Cov}(X,Z)$.</p>
     <p><strong>Chứng minh.</strong> Khai triển $(X-\mu_X+Z-\mu_Z)^2$, dùng tính tuyến tính.</p>
-    <aside class="notes"><p>Tích $XZ$ khả tích vì $2|xz|\le x^2+z^2$. Khai triển tích trong định nghĩa và áp dụng tính tuyến tính cho bốn số hạng được dạng $\mathbb E[XZ]-\mu_X\mu_Z$; tính tuyến tính chỉ được chứng minh cho biến rời rạc, trường hợp tổng quát được thừa nhận. Với $Z=X$, $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$. Hệ số tương quan (correlation coefficient) $\rho_{XZ}=\operatorname{Cov}(X,Z)/(\operatorname{Var}(X)\operatorname{Var}(Z))^{1/2}$ được định nghĩa khi hai phương sai dương; nó luôn nằm trong $[-1,1]$ (Bài tập 10.12, tự học) và đo mức quan hệ tuyến tính giữa hai biến.</p><p>Ví dụ trên bảng camera: với $X=\mathbf 1_H$, $Z=\mathbf 1_C$, $\operatorname{Cov}(X,Z)=\mathbb P(H\cap C)-\mathbb P(H)\,\mathbb P(C)=0{,}18-0{,}052=0{,}128>0$: có người và cảnh báo có xu hướng cùng xảy ra.</p><p>Mệnh đề là trường hợp $n=2$ của công thức phương sai của tổng $\operatorname{Var}\bigl(\sum_iX_i\bigr)=\sum_i\operatorname{Var}(X_i)+2\sum_{i\lt j}\operatorname{Cov}(X_i,X_j)$ (Mệnh đề 10.26). Với số lỗi $N=\sum_iY_i$ của một lô, phương sai của $N$ chỉ bằng tổng các phương sai khi mọi hiệp phương sai bằng $0$; tổng số lỗi dao động mạnh hơn khi các lỗi có xu hướng cùng xuất hiện.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 10.25, Mệnh đề 10.26; Mệnh đề 05c.33; Murphy (2022), §3.1.1–3.1.2, §2.8.4, (2.165)–(2.167).</p></aside>
+    <aside class="notes"><p>Tích $XZ$ khả tích vì $2|xz|\le x^2+z^2$. Khai triển tích trong định nghĩa và áp dụng tính tuyến tính cho bốn số hạng được dạng $\mathbb E[XZ]-\mu_X\mu_Z$; tính tuyến tính chỉ được chứng minh cho biến rời rạc, trường hợp tổng quát được thừa nhận. Với $Z=X$, $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$. Hệ số tương quan (correlation coefficient) $\rho_{XZ}=\operatorname{Cov}(X,Z)/(\operatorname{Var}(X)\operatorname{Var}(Z))^{1/2}$ được định nghĩa khi hai phương sai dương; nó luôn nằm trong $[-1,1]$ và đo mức quan hệ tuyến tính giữa hai biến.</p><p>Ví dụ trên bảng camera: với $X=\mathbf 1_H$, $Z=\mathbf 1_C$, $\operatorname{Cov}(X,Z)=\mathbb P(H\cap C)-\mathbb P(H)\,\mathbb P(C)=0{,}18-0{,}052=0{,}128>0$: có người và cảnh báo có xu hướng cùng xảy ra.</p><p>Mệnh đề là trường hợp $n=2$ của công thức phương sai của tổng $\operatorname{Var}\bigl(\sum_iX_i\bigr)=\sum_i\operatorname{Var}(X_i)+2\sum_{i\lt j}\operatorname{Cov}(X_i,X_j)$ (Mệnh đề 10.26). Với số lỗi $N=\sum_iY_i$ của một lô, phương sai của $N$ chỉ bằng tổng các phương sai khi mọi hiệp phương sai bằng $0$; tổng số lỗi dao động mạnh hơn khi các lỗi có xu hướng cùng xuất hiện.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 10.25, Mệnh đề 10.26; Mệnh đề 05c.33; Murphy (2022), §3.1.1–3.1.2, §2.8.4, (2.165)–(2.167).</p></aside>
   </section>
   <section data-slide-id="KV08">
     <h2>Độc lập kéo theo không tương quan</h2>
@@ -572,7 +572,7 @@
     <div class="formula">$$\begin{gathered}\mathbb E[XZ]=\mathbb E[X]\,\mathbb E[Z],\\ \text{do đó}\quad\operatorname{Cov}(X,Z)=0.\end{gathered}$$</div>
     <p><strong>Ý nghĩa:</strong> với chỉ thị lỗi độc lập đôi một, phương sai tổng số lỗi bằng tổng các phương sai.</p>
     <p><strong>Lưu ý:</strong> chiều ngược lại sai.</p>
-    <aside class="notes"><p>Mệnh đề là một điều kiện đủ để các hiệp phương sai bằng $0$. Kết hợp với phương sai của tổng $n$ biến (Mệnh đề 10.26): nếu các chỉ thị lỗi $Y_1,\ldots,Y_n$ độc lập và cùng phân phối $\operatorname{Bernoulli}(\theta)$ thì số lỗi của lô có phương sai $n\theta(1-\theta)$. Khi các sản phẩm cùng chịu ảnh hưởng của một lô nguyên liệu, các hiệp phương sai có thể dương và công thức này đánh giá thấp dao động. Với một vector đặc trưng (feature) có các thành phần độc lập đôi một, mọi hiệp phương sai giữa hai thành phần khác nhau bằng $0$, nên ma trận hiệp phương sai là ma trận đường chéo.</p><p>Trường hợp $(X,Z)$ có mật độ đồng thời được phác thảo ở ghi chú bài giảng, Phụ lục B.2.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Mệnh đề 10.27, Mệnh đề 10.26 (dòng "Ý nghĩa:"); trùng Mệnh đề 05c.32; Murphy (2022), §3.1.3; §2.2.5.1, (2.28).</p></aside>
+    <aside class="notes"><p>Mệnh đề là một điều kiện đủ để các hiệp phương sai bằng $0$. Kết hợp với phương sai của tổng $n$ biến (Mệnh đề 10.26): nếu các chỉ thị lỗi $Y_1,\ldots,Y_n$ độc lập và cùng phân phối $\operatorname{Bernoulli}(\theta)$ thì số lỗi của lô có phương sai $n\theta(1-\theta)$. Khi các chỉ thị lỗi, vẫn cùng phân phối $\operatorname{Bernoulli}(\theta)$, có hiệp phương sai dương, chẳng hạn vì cùng một lô nguyên liệu, phương sai của số lỗi lớn hơn $n\theta(1-\theta)$. Với một vector đặc trưng (feature) có các thành phần độc lập đôi một, mọi hiệp phương sai giữa hai thành phần khác nhau bằng $0$, nên ma trận hiệp phương sai là ma trận đường chéo.</p><p>Trường hợp $(X,Z)$ có mật độ đồng thời được phác thảo ở ghi chú bài giảng, Phụ lục B.2.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Mệnh đề 10.27 và mục 7.4; trùng Mệnh đề 05c.32; Murphy (2022), §3.1.3; §2.2.5.1, (2.28).</p></aside>
   </section>
   <section data-slide-id="KV09">
     <h2>Chứng minh: độc lập kéo theo không tương quan</h2>
@@ -596,7 +596,7 @@
       </div>
     </div>
     <p><strong>Diễn giải:</strong> chọn đặc trưng theo tương quan sẽ loại $X$, dù $|X|$ xác định đúng nhãn.</p>
-    <aside class="notes"><p>Kiểm tra mô hình: $2\cdot0{,}022+2\cdot0{,}2+0{,}556=1$, và $\mathbb P(Y=1)=0{,}022+0{,}022=0{,}044$, bằng tỉ lệ lỗi chung của mô hình hai nhà cung cấp. Biến $XY$ bằng $X$ khi $|X|=2$ và bằng $0$ trong các trường hợp còn lại.</p><p>Hai phương sai dương: $\operatorname{Var}(X)=\mathbb E[X^2]=4\cdot0{,}044+1\cdot0{,}4=0{,}576$ và $\operatorname{Var}(Y)=0{,}044\cdot0{,}956=0{,}042064$; hiệp phương sai bằng $0$ không đến từ một biến hằng. Phụ thuộc cũng đọc được qua $\mathbb P(X=0,Y=1)=0\ne0{,}556\cdot0{,}044$.</p><p>Độ lệch xác định hoàn toàn nhãn lỗi, nhưng quan hệ không tuyến tính: lệch về hai phía đều gây lỗi, nên đóng góp của $X=-2$ và $X=2$ vào $\mathbb E[XY]$ triệt tiêu nhau. Bài tập 10.9 và 10.11 (bản liên tục với $X$ đều trên $(-1,1)$ và $X^2$) để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 10.10; Murphy (2022), §3.1.3 (bản liên tục của hiện tượng).</p></aside>
+    <aside class="notes"><p>Kiểm tra mô hình: $2\cdot0{,}022+2\cdot0{,}2+0{,}556=1$, và $\mathbb P(Y=1)=0{,}022+0{,}022=0{,}044$, bằng tỉ lệ lỗi chung của mô hình hai nhà cung cấp. Biến $XY$ bằng $X$ khi $|X|=2$ và bằng $0$ trong các trường hợp còn lại.</p><p>Hai phương sai dương: $\operatorname{Var}(X)=\mathbb E[X^2]=4\cdot0{,}044+1\cdot0{,}4=0{,}576$ và $\operatorname{Var}(Y)=0{,}044\cdot0{,}956=0{,}042064$; hiệp phương sai bằng $0$ không đến từ một biến hằng. Phụ thuộc cũng đọc được qua $\mathbb P(X=0,Y=1)=0\ne0{,}556\cdot0{,}044$.</p><p>Độ lệch xác định hoàn toàn nhãn lỗi, nhưng quan hệ không tuyến tính: lệch về hai phía đều gây lỗi, nên đóng góp của $X=-2$ và $X=2$ vào $\mathbb E[XY]$ triệt tiêu nhau. Bài tập 10.11 (bản liên tục với $X$ đều trên $(-1,1)$ và $X^2$) và Bài tập 10.14 (hai biến Gaussian không tương quan nhưng phụ thuộc) để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 10.10; Murphy (2022), §3.1.3 (bản liên tục của hiện tượng).</p></aside>
   </section>
   <section data-slide-id="KV11">
     <h2>Kỳ vọng toàn phần</h2>
@@ -630,7 +630,7 @@
       <p>(b) $Y^2=Y$ nên $\mathbb E[Y^2]=0{,}044$ và $\operatorname{Var}(Y)=0{,}044-0{,}044^2=0{,}042064$.</p>
       <p><strong>Diễn giải:</strong> khi tỉ trọng nhóm đổi, $\mathbb E[Y]$ đổi dù tỉ lệ lỗi trong từng nhóm giữ nguyên.</p>
     </div>
-    <aside class="notes"><p>Câu (b) là trường hợp riêng $\operatorname{Var}(Y)=\theta(1-\theta)$ của phân phối Bernoulli, với $\theta=0{,}044$. Với biến chỉ thị, kỳ vọng toàn phần chính là công thức xác suất toàn phần, nên câu (a) tính lại con số của cây nguồn hàng bằng một công cụ khác.</p><p>Trong một hệ thống AI, $S$ có thể là nguồn dữ liệu hoặc nhóm môi trường; khi tỉ trọng các nhóm thay đổi, trung bình chung thay đổi dù trung bình trong từng nhóm giữ nguyên. Phương sai $0{,}042064$ tách thành $0{,}0412$ trong nhóm và $0{,}000864$ giữa các nhóm (Ví dụ 10.11). Bài tập 10.7 để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 7.3 và 7.5.</p></aside>
+    <aside class="notes"><p>Câu (b) là trường hợp riêng $\operatorname{Var}(Y)=\theta(1-\theta)$ của phân phối Bernoulli, với $\theta=0{,}044$. Với biến chỉ thị, kỳ vọng toàn phần chính là công thức xác suất toàn phần, nên câu (a) tính lại con số của cây nguồn hàng bằng một công cụ khác.</p><p>Trong một hệ thống AI, $S$ có thể là nguồn dữ liệu hoặc nhóm môi trường; khi tỉ trọng các nhóm thay đổi, trung bình chung thay đổi dù trung bình trong từng nhóm giữ nguyên. Phương sai $0{,}042064$ tách thành $0{,}0412$ trong nhóm và $0{,}000864$ giữa các nhóm (Ví dụ 10.11). Bài tập 10.3 (phân phối đồng thời và lấy biên) để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 7.3 và 7.5.</p></aside>
   </section>
 </section>
 
@@ -638,7 +638,7 @@
   <section data-slide-id="SL00" id="mach-6" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">6.</span>Phân phối đồng thời và phép lấy biên</h2>
-      <p class="strand-lead">Muốn tính hậu nghiệm của nguồn hàng và nhãn lỗi từ một mô hình chung, rồi quyết định theo chi phí.</p>
+      <p class="strand-lead">Muốn tính hậu nghiệm của nguồn hàng và nhãn lỗi rồi quyết định theo chi phí, cần phân phối đồng thời và phép lấy biên.</p>
       <p class="strand-keys">Phân phối đồng thời · Lấy biên · Phân phối có điều kiện · Suy luận · Quyết định</p>
     </div>
     <aside class="notes"><p>Các phần trước cho hậu nghiệm $198/437$ của nhãn lỗi, giả thiết $A\perp S\mid Y$ ở dạng dùng được trong phép nhân và đẳng thức $\mathbb E[\mathbf 1_E]=\mathbb P(E)$. Hậu nghiệm của nguồn hàng và xác suất lỗi theo từng nguồn sau cảnh báo cần phân phối của cả bộ ba nhà cung cấp, tình trạng lỗi, cảnh báo. Việc cần làm: dựng phân phối đồng thời, loại nhà cung cấp bằng một tổng, chuẩn hóa theo cảnh báo, rồi so hai chi phí kỳ vọng.</p></aside>
@@ -688,7 +688,7 @@
     <p>Đặt $q(s,y)=p_S(s)\,p_{Y\mid S}(y\mid s)\,p_{A\mid Y}(a'\mid y)$. Nếu $p_A(a')>0$ thì</p>
     <div class="formula">$$p_{Y\mid A}(y\mid a')=\frac{\sum_sq(s,y)}{\sum_{y'}\sum_sq(s,y')}.$$</div>
     <p><strong>Ý nghĩa:</strong> cộng theo $s$ vì nguồn hàng chưa quan sát; chia để chuẩn hóa theo cảnh báo.</p>
-    <aside class="notes"><p>Các tổng chạy trên các $s$ có $p_S(s)>0$ và các $y'$ có $p_Y(y')>0$; nếu $p_Y(y)=0$ thì hậu nghiệm của $y$ bằng $0$. Ba nhân tử là ba dữ kiện của bài toán: tỉ lệ nguồn hàng, tỉ lệ lỗi theo nhà cung cấp, tỉ lệ cảnh báo theo tình trạng lỗi.</p><p>Giả thiết $A\perp S\mid Y$ còn làm giảm số tham số: bảng đồng thời của $(S,Y,A)$ có $8$ ô, tức $7$ tham số tự do, trong khi phân tích nhân tử chỉ cần $1+2+2=5$ tham số. Thay phép cộng theo $s$ bằng việc chọn nhà cung cấp có xác suất lớn nhất là một phép xấp xỉ khác và có thể cho hậu nghiệm khác.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Mệnh đề 10.34; Murphy (2022), §2.2.3–2.2.4.</p></aside>
+    <aside class="notes"><p>Các tổng chạy trên các $s$ có $p_S(s)>0$ và các $y'$ có $p_Y(y')>0$; nếu $p_Y(y)=0$ thì hậu nghiệm của $y$ bằng $0$. Ba nhân tử là ba dữ kiện của bài toán: tỉ lệ nguồn hàng, tỉ lệ lỗi theo nhà cung cấp, tỉ lệ cảnh báo theo tình trạng lỗi.</p><p>Giả thiết $A\perp S\mid Y$ còn làm giảm số tham số: bảng đồng thời của $(S,Y,A)$ có $8$ ô, tức $7$ tham số tự do, trong khi phân tích nhân tử chỉ cần $1+2+2=5$ tham số.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Mệnh đề 10.34; Murphy (2022), §2.2.3–2.2.4.</p></aside>
   </section>
   <section data-slide-id="SL06">
     <h2>Chứng minh: phân tích nhân tử</h2>
@@ -755,7 +755,7 @@
       <div class="formula">$$\begin{aligned}&amp;\mathbb P(Y=1\mid A=0)\\ &amp;\quad=\frac{0{,}0012+0{,}0032}{0{,}9126}\\ &amp;\quad=\frac{22}{4563}\approx0{,}0048.\end{aligned}$$</div>
       <p><strong>Diễn giải:</strong> không cảnh báo làm xác suất lỗi giảm từ $0{,}044$ xuống khoảng $0{,}005$.</p>
     </div>
-    <aside class="notes"><p>Gợi ý: bước 2 cộng theo $s$ hai ô $Y=1$ của cột $A=0$; bước 3 lấy tổng cột; bước 4 chia. Tổng cột $0{,}9126=1-0{,}0874$ khớp xác suất không cảnh báo tính bằng phần bù. Kiểm tra bằng định lý Bayes: $0{,}1\cdot0{,}044/(1-0{,}0874)=0{,}0044/0{,}9126=22/4563$.</p><p>Hậu nghiệm này cùng với hậu nghiệm $198/437$ khi có cảnh báo là hai đầu vào của quyết định chấp nhận hay loại.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Tình huống 10.1 (số $22/4563$) và Ví dụ 10.12.</p></aside>
+    <aside class="notes"><p>Gợi ý: bước 2 cộng theo $s$ hai ô $Y=1$ của cột $A=0$; bước 3 lấy tổng cột; bước 4 chia. Tổng cột $0{,}9126=1-0{,}0874$ khớp xác suất không cảnh báo tính bằng phần bù. Kiểm tra bằng định lý Bayes: $0{,}1\cdot0{,}044/(1-0{,}0874)=0{,}0044/0{,}9126=22/4563$.</p><p>Hậu nghiệm này cùng với hậu nghiệm $198/437$ khi có cảnh báo là hai đầu vào của quyết định chấp nhận hay loại. Bài tập 10.13 (dữ kiện đủ để tính hậu nghiệm) để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Tình huống 10.1 (số $22/4563$) và Ví dụ 10.12.</p></aside>
   </section>
   <section data-slide-id="SL12">
     <h2>Quyết định theo hậu nghiệm và chi phí</h2>
@@ -848,7 +848,7 @@
     <ul>
       <li>Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §2.1–§2.3.</li>
       <li>Đọc sau buổi học: Murphy (2022), phân phối và mômen: §2.4.1, §2.5.1, §2.6.1–§2.6.2, §3.1.1–§3.1.3, §3.2.1.</li>
-      <li>Bài tập tự học 10.4–10.12 trong tệp bài tập của Bài 10.</li>
+      <li>Bài tập 10.1–10.3 (ghi chú bài giảng) và 10.4–10.15 (tệp bài tập).</li>
     </ul>
     <p><strong>Nhu cầu:</strong> mọi tham số của bài được cho trước; trong thực tế phải chọn chúng từ dữ liệu.</p>
     <aside class="notes"><p>Trước buổi học: Murphy, §2.1 (nhất là xác suất của biến cố, hợp và phần bù) và §2.2.1–§2.2.2. Sau buổi học: §2.1.3.4–§2.1.3.6 và §2.2.3–§2.3 cho xác suất có điều kiện, quy tắc tổng, quy tắc nhân và định lý Bayes; §2.2.1–§2.2.2, §2.2.4, §2.4.1, §2.5.1, §2.6.1–§2.6.2 và phần định nghĩa của §3.2.1 cho phân phối; §2.2.5 và §3.1.1–§3.1.3 cho mômen.</p><p>Các tỉ lệ $0{,}6$, $0{,}4$, $0{,}02$, $0{,}08$, $0{,}9$, $0{,}05$ phải được ước lượng từ một mẫu sản phẩm đã kiểm định, và ước lượng có sai số. Nếu cảm biến trả về một số đo liên tục $X$ với $X\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$, các tham số $\mu_y,\sigma_y^2$ cũng chưa biết. Bài 11 giữ cấu trúc mô hình xác suất của bài này nhưng coi các tham số là chưa biết và chọn chúng từ dữ liệu; đọc mở rộng: Murphy, §4.2.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11–12; Murphy (2022).</p></aside>
