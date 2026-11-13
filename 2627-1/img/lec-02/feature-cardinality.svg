@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 340" role="img" aria-labelledby="feature-title feature-desc">
   <title id="feature-title">Miền có tối đa một hệ số khác không</title>
-  <desc id="feature-desc">Hai trục w1 và w2 là tập F. A bằng (1; 0), B bằng (0; 1) thuộc F. Đoạn nét đứt AB chứa trung điểm M bằng (0,5; 0,5), không thuộc F. Hai trục cùng tỷ lệ và kéo dài theo cả hai chiều.</desc>
+  <desc id="feature-desc">Hai trục w1 và w2 là tập W1 gồm các vector có tối đa một tọa độ khác 0. A bằng (1; 0), B bằng (0; 1) thuộc W1. Đoạn nét đứt AB chứa trung điểm M bằng (0,5; 0,5), không thuộc W1. Hai trục cùng tỷ lệ và kéo dài theo cả hai chiều.</desc>
   <defs>
     <marker id="feature-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 Z" fill="#B15A2B"/>
@@ -27,7 +27,7 @@
     <text x="274" y="237">1</text>
     <text x="421" y="240" font-size="22">w₁</text>
     <text x="130" y="39" font-size="22">w₂</text>
-    <text x="310" y="303">F: hai trục</text>
+    <text x="310" y="303">W₁: hai trục</text>
   </g>
   <line id="feature-segment" x1="280" y1="210" x2="170" y2="100" stroke="#2F3E7A" stroke-width="2.5" stroke-dasharray="7 6"/>
   <circle id="feature-a" cx="280" cy="210" r="6" fill="#2F3E7A"/>

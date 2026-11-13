@@ -44,13 +44,13 @@ Tên mạch trùng trang "Nội dung" `S01-02` và trang tiêu đề mạch `S02
 5. Xấp xỉ lồi và nới lỏng (`S05`).
 6. Tổng hợp và vận dụng (`S06`).
 
-Phần 1 có 9 trang; phần 2 có 13; phần 3 có 15; phần 4 có 17; phần 5 có 17; phần 6 có 10. Toàn bài có 81 trang trong sáu section ngoài; sáu trang thêm trong đợt sửa văn phong 2026-10-12 là trang mục tiêu học tập `S01-01b` và năm trang lời giải bài tập `S02-11`, `S03-10`, `S04-16`, `S05-15`, `S06-07b`; trang nhắc lại `S01-02b` thêm trong đợt rà soát thuật ngữ cùng ngày. Không ấn định thời lượng mới. Danh sách trang của từng phần bên dưới ghi theo thời điểm triển khai; tiêu đề và trang thêm của đợt 2026-10-12 nằm trong mục cuối tệp này và trong `storyboard.md`.
+Sau đợt sửa 2026-11-13: phần 1 có 9 trang; phần 2 có 14 (thêm `S02-06b`); phần 3 có 15; phần 4 có 15 (gộp `S04-11` vào `S04-10`, `S04-13` vào `S04-12`); phần 5 có 17; phần 6 có 10; toàn bài 80 trang. Trước đó: phần 1 có 9 trang; phần 2 có 13; phần 3 có 15; phần 4 có 17; phần 5 có 17; phần 6 có 10. Toàn bài có 81 trang trong sáu section ngoài; sáu trang thêm trong đợt sửa văn phong 2026-10-12 là trang mục tiêu học tập `S01-01b` và năm trang lời giải bài tập `S02-11`, `S03-10`, `S04-16`, `S05-15`, `S06-07b`; trang nhắc lại `S01-02b` thêm trong đợt rà soát thuật ngữ cùng ngày. Không ấn định thời lượng mới. Danh sách trang của từng phần bên dưới ghi theo thời điểm triển khai; tiêu đề và trang thêm của đợt 2026-10-12 nằm trong mục cuối tệp này và trong `storyboard.md`.
 
 ## Phần 1 hiện tại
 
 1. Bài 02: Các bài toán tối ưu lồi — thông tin học phần, Viện Trí tuệ nhân tạo, năm học và học kỳ.
 2. Nội dung — danh sách đánh số sáu mạch.
-3. Tập lồi, hàm lồi và giá trị tối ưu (`S01-02b`, thêm 2026-10-12) — "Nhắc lại:" định nghĩa tập lồi, hàm lồi, giá trị tối ưu $p^\star=\inf_{x\in C}f_0(x)$ và nghiệm tối ưu $x^\star$.
+3. Tập lồi, hàm lồi và giá trị tối ưu (`S01-02b`, thêm 2026-10-12) — "Nhắc lại:" định nghĩa tập lồi, hàm lồi, giá trị tối ưu $p^*=\inf_{x\in C}f_0(x)$ và nghiệm tối ưu $x^*$.
 4. Bài toán tối ưu lồi tổng quát — mục tiêu lồi và tập khả thi lồi.
 5. Dạng phổ biến của tối ưu lồi — biến $x\in\mathbb{R}^n$, mục tiêu và các hàm bất đẳng thức lồi, đẳng thức affine; tập mức dưới của hàm lồi là tập lồi.
 6. Ví dụ: hàm bậc hai — cực tiểu hóa $(x-2)^2$ trên $[0,1]$, nghiệm ở biên.
@@ -72,12 +72,13 @@ Trang điều kiện riêng được bỏ theo yêu cầu người dùng vì n�
 1. Quy hoạch tuyến tính.
 2. Pha trộn cho một vườn ươm — câu chuyện, nhu cầu dinh dưỡng, lựa chọn nguyên liệu.
 3. Mô hình pha trộn — dữ liệu, biến, chi phí và ràng buộc.
-4. Dạng phổ biến của quy hoạch tuyến tính — nhận dạng và chứng nhận tính lồi.
+4. Dạng tổng quát của quy hoạch tuyến tính — nhận dạng và chứng nhận tính lồi (tên theo Định nghĩa 02.9, sửa 2026-11-13).
 5. Dạng chuẩn của quy hoạch tuyến tính — đẳng thức, biến không âm và cách chuyển từ bài toán tổng quát.
 6. Nghiệm của bài toán pha trộn — hình học, nghiệm (1,2), chi phí 70 nghìn đồng.
 7. Hồi quy với sai số tuyệt đối — năm điểm dữ liệu và mô hình tuyến tính.
 8. Biến phụ cho giá trị tuyệt đối — một cận trên cho mỗi phần dư.
-9. Tính tương đương của phép cải dạng — hai chiều, giá trị tối ưu, khôi phục nghiệm.
+8b. Biến đổi tương đương — Định nghĩa 02.5 ($\varphi$, $\psi$, $T$) và Mệnh đề 02.6 (thêm 2026-11-13).
+9. Tính tương đương của phép biến đổi — áp dụng định nghĩa với $\varphi(w)=(w,|r|)$, $\psi(w,t)=w$; khôi phục nghiệm.
 10. Nghiệm hồi quy với sai số tuyệt đối — đường dự đoán y=u, tổng sai số 3.
 11. Hồi quy với sai số lớn nhất — đường dự đoán y=u+1,5, sai số lớn nhất 1,5.
 12. Nhận dạng quy hoạch tuyến tính — ba biến thể kiểm tra và chuyển sang quy hoạch bậc hai.
@@ -115,17 +116,16 @@ Cả bốn mô hình dùng cùng dữ liệu và phạt toàn bộ hệ số đ�
 3. Mô hình thiết kế hộp.
 4. Đơn thức và tổng đơn thức dương.
 5. Dạng chuẩn của quy hoạch hình học.
-6. Cải dạng về quy hoạch hình học.
+6. Biến đổi về dạng chuẩn quy hoạch hình học.
 7. Phép đổi biến logarit.
 8. Dạng lồi của quy hoạch hình học.
-9. Cải dạng bài toán thiết kế hộp.
+9. Biến đổi bài toán thiết kế hộp.
 10. Kích thước hộp tối ưu.
-11. Phân bổ công suất cho hai đường truyền.
-12. Mô hình chất lượng đường truyền.
-13. Cải dạng bài phân bổ công suất.
-14. Dạng lồi của bài phân bổ công suất.
-15. Nghiệm phân bổ công suất.
-16. Nhận dạng và giới hạn cải dạng.
+11. Phân bổ công suất cho hai đường truyền (đọc thêm) — bối cảnh và mô hình chất lượng gộp một trang (2026-11-13).
+12. Biến đổi bài toán phân bổ công suất (đọc thêm) — ngưỡng, dạng chuẩn GP; dạng logarit trong ghi chú diễn giả (2026-11-13).
+13. Nghiệm phân bổ công suất (đọc thêm).
+14. Bài tập: nhận dạng quy hoạch hình học.
+15. Bài tập: nhận dạng quy hoạch hình học (lời giải).
 
 Dạng tổng quát có vế phải đơn thức được chuẩn hóa bằng phép chia; cực đại hóa đơn thức chuyển thành cực tiểu hóa nghịch đảo. Đổi biến logarit sau đó tạo mô hình lồi tương đương. Phải phân biệt ba bước này, chứng nhận tính lồi và khôi phục đại lượng ban đầu. Nguồn chính: Boyd–Vandenberghe, §4.5; bối cảnh công suất phỏng theo Bài tập 4.20, còn dữ liệu và cải dạng GP tự xây dựng. Không phân bổ thời lượng mới.
 
@@ -227,8 +227,17 @@ Thêm đúng một trang sau hàm mất mát bản lề và trước cải dạn
 
 ## Đợt rà soát thuật ngữ và thứ tự định nghĩa — 2026-10-12
 
-- Thêm `S01-02b` "Tập lồi, hàm lồi và giá trị tối ưu" sau "Nội dung": nhắc lại hai định nghĩa lồi, giá trị tối ưu $p^\star$ và nghiệm tối ưu $x^\star$ trước khi `S01-03`–`S01-08` dùng chúng. Số mạch, trang "Nội dung" và `#/N` không đổi.
-- Thuật ngữ thống nhất trong deck, kế hoạch và học liệu: "số hạng phạt (penalty term)" thay "hình phạt", "hàm phạt" cho $R(w)$; "đường mức (level curve)" thay "đồng mức"; "ràng buộc chặn chuẩn" cho $\|w\|_2^2\le R^2$, "ràng buộc đếm" cho $\|w\|_0\le k$; "phép toán bảo toàn tính lồi" thay "quy tắc cấu tạo"; "logarit tổng hàm mũ (log-sum-exp)"; "vector"; "biến ban đầu" thay "biến gốc"; "bảng các lớp bài toán" thay "bảng dạng chuẩn"; "biến bù (slack variable)" cho biến bù của ràng buộc $\le$, "biến dư (surplus variable)" chỉ cho biến trừ đi ở ràng buộc $\ge$.
+- Thêm `S01-02b` "Tập lồi, hàm lồi và giá trị tối ưu" sau "Nội dung": nhắc lại hai định nghĩa lồi, giá trị tối ưu $p^*$ và nghiệm tối ưu $x^*$ trước khi `S01-03`–`S01-08` dùng chúng. Số mạch, trang "Nội dung" và `#/N` không đổi.
+- Thuật ngữ thống nhất trong deck, kế hoạch và học liệu: "số hạng phạt (penalty term)" thay "hình phạt", "hàm phạt" cho $R(w)$; "đường mức (level curve)" thay "đồng mức"; "ràng buộc chặn chuẩn" cho $\|w\|_2^2\le\Delta^2$, "ràng buộc đếm" cho $\|w\|_0\le k$; "phép toán bảo toàn tính lồi" thay "quy tắc cấu tạo"; "logarit tổng hàm mũ (log-sum-exp)"; "vector"; "biến ban đầu" thay "biến gốc"; "bảng các lớp bài toán" thay "bảng dạng chuẩn"; "biến bù (slack variable)" cho biến bù của ràng buộc $\le$, "biến dư (surplus variable)" chỉ cho biến trừ đi ở ràng buộc $\ge$.
 - Định nghĩa đặt trước lần dùng: "Định nghĩa." cho LP (`S02-03`) và GP (`S04-04`); "Nhắc lại:" cho nửa không gian, siêu phẳng, đa diện (`S02-03`), nửa xác định dương (`S03-02`), tập mức dưới (`S01-04`); "Ký hiệu:" cho $\mathbf 1$ (`S02-06`) và chuẩn (`S03-04b`); "Định nghĩa." cho hàm thay thế (`S05-03`).
-- Ký hiệu: hằng số của QP/QCQP là $\rho_i$ (không trùng phần dư $r_i$ và biến bù $s_i$); chi phí tối ưu khi mua nguyên gói là $J^\star$; tập khả thi của bài toán nới lỏng là $\tilde F$; GP dùng $h_j$ cho đẳng thức ở cả `S04-04` và `S06-02`.
+- Ký hiệu (cập nhật 2026-11-13 theo ghi chú): hằng số của QP/QCQP là $\rho_i$ (không trùng phần dư $r_i$ và biến bù $\sigma$); chi phí tối ưu khi mua nguyên gói là $p^*_{\mathcal F}$; tập khả thi của bài toán gốc và bài toán nới lỏng là $\mathcal F$, $\tilde{\mathcal F}$; GP dùng $g_j$ cho đẳng thức ở cả `S04-04` và `S06-02`.
 - Chi tiết từng trang: `storyboard.md`, mục cùng tên; phát hiện và quyết định: `review-log.md`.
+
+## Sửa deck theo bảng phát hiện — 2026-11-13
+
+Deck theo ghi chú bài giảng viết lại ngày 2026-11-12 (quyết định G1–G10 của điều phối viên).
+
+- **Mục tiêu học tập.** Ba mục tiêu cũ của deck thay bằng sáu mục tiêu của ghi chú, viết gọn trên `S01-01b` (80 âm tiết, trần 80); ánh xạ mục tiêu → trang ở `storyboard.md`, mục 2026-11-13.
+- **Thứ tự khái niệm.** Thêm định nghĩa biến đổi tương đương (Định nghĩa 02.5, Mệnh đề 02.6) ở `S02-06b`, sau biến phụ và trước chứng minh tương đương của hồi quy sai số tuyệt đối. Ghi chú đặt định nghĩa này ở §4.3, trước quy hoạch tuyến tính; deck đặt nó ngay sau ví dụ biến phụ để có trực quan và ví dụ trước phát biểu hình thức. Ghi chú diễn giả của `S04-07` nêu phép đổi biến logarit là biến đổi tương đương với $T=\log$.
+- **Phần đọc thêm.** Phân bổ công suất (§7.4 "Đọc thêm" của ghi chú) rút từ năm trang còn ba, tiêu đề ghi "(đọc thêm)".
+- **Ký hiệu** theo bảng ký hiệu §2 của ghi chú: $J$ (tổng bình phương), $E$ (số lỗi), $m_i$ (biên có dấu), $w=(w_1,w_0)$, $N$ mẫu và $d$ cột, $\vartheta$ (hệ số tổ hợp lồi), $p^*$, $x^*$, $\zeta,\tilde c,\tilde b,\sigma$ (dạng chuẩn LP), $g$, $g_j$ (đơn thức), $\bar\alpha_j,\bar\beta_j$, $x_1,x_2,x_3$ và $\mathcal S$ (hộp), $z_1,z_2,z_3$, $\chi_{ij},\varepsilon_i,\Gamma_i$, $p^{\mathrm{opt}}$, $\ell_{\mathrm{hinge}}$, $H_\lambda$, $\mathcal F,\tilde{\mathcal F}$, $p^*_{\mathcal F}$, $\tilde x$, $\mathcal W_k$, bán kính $\Delta$. Tên gọi: "dạng tổng quát" của quy hoạch tuyến tính (Định nghĩa 02.9); "quy hoạch bậc hai có ràng buộc bậc hai"; "tập kiểm định".

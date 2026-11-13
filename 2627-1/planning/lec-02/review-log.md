@@ -1733,3 +1733,87 @@ Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy t�
 | nhẹ | (kế hoạch) | `storyboard.md:579` nói `exercises.md` liên kết tới các trang với tiêu đề hiện có; nay sai. | `exercises.md:3` | Cập nhật storyboard |
 
 **Đã kiểm, không lỗi / bác bỏ cờ quét:** mật độ S01-06/07/08 đếm lại (bỏ SVG, KaTeX) là 24/28/26 âm tiết; cờ 67–72 của lượt quét cơ học tính cả chữ trong SVG, **bác bỏ**. Tệp `revise/de_xuat_chinh_sua_lecture_02_toi_uu_loi.md` mô tả một deck cũ (41 trang, có SDP và tối ưu tựa lồi); deck hiện tại theo một phần đề xuất (hồi quy xuyên suốt, quy trình chín bước), bỏ SDP và tối ưu tựa lồi, vẫn đặt LP trước QP.
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Tác tử.** Vai trò: biên tập (worker) sửa deck Bài 02 theo bảng phát hiện của mục "Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)" và quyết định G1–G10 của điều phối viên; `no-ai-slop` chế độ Edit cho mặt trang và ghi chú diễn giả. Loại tác tử, mô hình và effort: điều phối viên ghi theo lời gọi công cụ. Không commit.
+
+**Phạm vi tệp.** `lecture-02-cac-bai-toan-toi-uu-loi.html`; `img/lec-02/qp-geometry.svg`, `qp-bound.svg`, `qp-penalties.svg`, `ap-hinge.svg`, `gp-wireless.svg`, `feature-cardinality.svg` (chỉ nhãn, `title`/`desc`); `planning/lec-02/storyboard.md`, `outline.md`, mục này. Không sửa `materials/`, CSS hay bài khác.
+
+**Số trang.** 81 → 80: thêm `S02-06b`; gộp `S04-11` vào `S04-10`, `S04-13` vào `S04-12`. Không đổi `id`/`data-slide-id` của trang giữ lại.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| nghiêm trọng — $E$ hai nghĩa (tổng bình phương, số lỗi), $r$ hai nghĩa (phần dư, biên có dấu) | Tổng bình phương phần dư là $J(w)$; biên có dấu là $m_i(\theta)=y_i(u_i-\theta)$; $\ell_{01}(m)$, $\ell_{\mathrm{hinge}}(m)$; $E$ chỉ còn nghĩa số lỗi, $r$ chỉ còn nghĩa phần dư | `S03-01`–`S03-07`, `S05-02`–`S05-06`, `S06-03` (mặt trang và ghi chú); `ap-hinge.svg` trục "Biên có dấu m" | đã sửa |
+| nghiêm trọng — $w=(a,b)$, $b$ trùng vế phải $Ax=b$ | $w=(w_1,w_0)$, $\hat y_i=w_1u_i+w_0$ trên mặt trang và trong mọi phép tính ở ghi chú diễn giả ($d=a-1\to\delta=w_1-1$, cận dưới, ngưỡng mềm, ridge, chặn chuẩn); hệ số chặn của bộ phân loại $b\to w_0$ | `S02-05`–`S02-10`, `S03-01`–`S03-10`, `S05-06`, `S06-04`–`S06-07b`; `qp-geometry.svg`, `qp-bound.svg`, `qp-penalties.svg` trục $w_1,w_0$ | đã tính lại mọi số: $J=10(w_1-1)^2+5(w_0-\tfrac35)^2+\tfrac{36}5$; nghiệm $(1,\tfrac35)$, $(\tfrac12,\tfrac35)$ với $J=\tfrac{97}{10}$, $(1,0)$, $(1,\tfrac32)$, $(\tfrac34,\tfrac18)$ với $\tfrac{107}{16}$, $(\tfrac45,\tfrac15)$ với $\tfrac{62}5$, $(\tfrac12,\tfrac15)$ với $\tfrac{67}5$, $J=\tfrac{21}2$ — khớp Ví dụ 02.9–02.19 |
+| trung bình — "Dạng phổ biến của quy hoạch tuyến tính" | Tiêu đề "Dạng tổng quát của quy hoạch tuyến tính", "dạng tổng quát (general form)", nhắc "dạng bất đẳng thức" khi $p=0$ trong ghi chú; Boyd (4.27), tr. 146 | `S02-03`, `S02-03b`, ghi chú `S02` | đã sửa |
+| trung bình — $m$ là số điểm dữ liệu, trùng $m$ số bất đẳng thức | $N$ mẫu, $d$ cột: $X\in\mathbb R^{N\times d}$, $\mathbf 1\in\mathbb R^N$, "$2N$ bất đẳng thức", $P=\operatorname{diag}(2\lambda I_d,0_{N\times N})$ | `S02-06`, `S02-09`, `S03-02`, `S03-04d`, `S03-04e`, `S05-06`, `S06-04` | đã sửa |
+| trung bình — lệch ký hiệu (gộp) | đơn thức $g$, đẳng thức $g_j$; $\bar\alpha_j,\bar\beta_j,\bar c_j$; trung bình trọng số $\hat\alpha$; $\chi_{ij},\varepsilon_i,\Gamma_i$, $p^{\mathrm{opt}}$; $\ell_{\mathrm{hinge}}$; $\mathcal F,\tilde{\mathcal F}$, $p^*_{\mathcal F}$, $p^*_{\tilde{\mathcal F}}$, $\tilde x$ (thay $x^R$); $p^*$, $x^*$ thay $\star$; dạng chuẩn LP $\zeta,\tilde c,\tilde b,\sigma$; hệ số tổ hợp lồi $\vartheta$; thêm: hộp $x_1,x_2,x_3$, $\mathcal S$, $z_1,z_2,z_3$ (thay $a,b,c$, $A,B,C$), bán kính chặn chuẩn $\Delta$ (thay $R$, trùng hàm phạt $R$), $\mathcal W_1$ (thay $F$) | `S01-02b`–`S01-08`, `S02-03b`, `S04-01`–`S04-14`, `S05-03`–`S05-15`, `S06-02`–`S06-08`; `gp-wireless.svg` ($\chi_{ij}$), `feature-cardinality.svg` ($W_1$); `S04-01`, `S04-09` dùng `gp-box-note.svg`, `gp-box-contour-note.svg` của ghi chú | $\theta$ chỉ còn nghĩa ngưỡng |
+| trung bình — câu xuất xứ số liệu (mặt trang `S02-05`, `S05-01`; khoảng 20 câu trong ghi chú diễn giả) | Cắt dòng "Dữ liệu minh họa đã chuẩn hóa." (`S02-05`), chú thích "Dữ liệu minh họa: …" (`S05-01`) và mọi câu "tự xây dựng", "tự tạo", "giả định", "tự chọn", "tự vẽ", "do nhóm soạn"; giữ các dòng "Nguồn: Boyd và Vandenberghe …" | toàn deck | grep sau sửa: 0 lần. Xuất xứ ghi một lần ở dưới bảng |
+| trung bình — rào đón về trạng thái văn bản | Cắt "chưa chứng minh ứng viên nào là nghiệm" (`S03-01`), "chưa chứng minh được ứng viên nào tối ưu" (`S04-02`), "đây là trực quan, không bảo đảm …" (`S03-04b`, thay bằng lập luận đỉnh hình thoi theo Murphy §11.4.2), "Hình chỉ gợi ý nghiệm" (`S02-04`, thay "Hình cho vị trí nghiệm; tổ hợp không âm … chứng minh nó tối ưu"); cắt thêm "Lập luận đó riêng cho ví dụ, không tự đúng …" (`S04-12` cũ), "Điều này riêng cho dữ liệu này …" (`S02-09`), "Chứng minh này không phụ thuộc vào bộ giải số" (`S05-10`) | `S02-04`, `S02-09`, `S03-01`, `S03-04b`, `S04-02`, `S04-12`, `S05-10` | đã sửa |
+| trung bình — `S05-03b` "$E\le H$ chỉ đúng trên dữ liệu huấn luyện" (sai); "tập kiểm tra" lệch ghi chú | "**Lưu ý:** $E\le H$ đúng tại mọi ngưỡng; $\min H$ trên dữ liệu huấn luyện không cho số lỗi trên dữ liệu mới."; bảng và ghi chú dùng "tập kiểm định (validation set)" theo Nhận xét 02.37; tiêu đề "Hàm thay thế trong thiết kế phương pháp học" | `S05-03b`, ghi chú `S05-15` | đã sửa |
+| trung bình — thiếu "Nhu cầu:" ở trang nội dung đầu mạch 1 và mạch 3 | Thêm "**Nhu cầu:** kiểm tra từng dòng của mô hình để kết luận bài toán lồi." và "**Nhu cầu:** chứng nhận lồi và giải hồi quy theo tổng bình phương phần dư." | `S01-02b`, `S03-01` | mạch 2, 5 sửa thêm dòng dẫn trang tiêu đề mạch cho khớp câu hỏi trung tâm (storyboard 2026-11-13) |
+| trung bình — thiếu biến đổi tương đương tổng quát (Định nghĩa 02.5, Mệnh đề 02.6) | Thêm `S02-06b` "Biến đổi tương đương" (định nghĩa với $\varphi,\psi,T$; mệnh đề; "Ý nghĩa:"); `S02-07` phát biểu lại theo $\varphi(w)=(w,|r|)$, $\psi(w,t)=w$, $T(s)=s$ (Định lý 02.15); ghi chú `S04-07`, `S05-04`, `S05-13`, `S06-03` dùng cùng ngôn ngữ | `S02-06b` (mới), `S02-07` | 47 âm tiết, 5 dòng; chứng minh Mệnh đề 02.6(b) trong ghi chú diễn giả |
+| nhẹ — $P\succeq0$ là điều kiện chứng nhận thay vì một phần định nghĩa; "QCQP với ràng buộc bậc hai" | Định nghĩa QP "Với $P=P^T\succeq0$, …"; định nghĩa QCQP "Với $P_i=P_i^T\succeq0$, $i=0,\ldots,m$, …", bỏ dòng "Giả thiết:"; tiêu đề "Định nghĩa quy hoạch bậc hai", "Quy hoạch bậc hai có ràng buộc bậc hai" | `S03-03`, `S03-08` | phản ví dụ $x_1^2-x_2^2\le1$ của ghi chú vào ghi chú diễn giả `S03-08` |
+| nhẹ — phân bổ công suất là "§7.4 Đọc thêm" trong ghi chú nhưng chiếm năm trang | Rút còn ba trang có "(đọc thêm)" trong tiêu đề: `S04-10` (gộp `S04-11`), `S04-12` (gộp `S04-13`, dạng logarit vào ghi chú diễn giả), `S04-14` | `S04-10`, `S04-12`, `S04-14`; bỏ `S04-11`, `S04-13` | ô chia đều ở `S04-10` bỏ vì trùng `S04-14` |
+| nhẹ — trang ví dụ thiếu dòng "Tính …"; nhãn đậm ngoài danh sách | Thêm "Xác định tính lồi và nghiệm." (`S01-06`, `S01-07`), "Xác định tính lồi và giá trị tối ưu." (`S01-08`) ở đầu cột chữ; bỏ đậm "Hàm mục tiêu", "Tập khả thi" (`S01-03`), "Nguyên liệu I/II" (`S02-01b`), "Từ bài toán gốc", "Từ bài toán có biến phụ" (`S02-07`), "Dạng chuẩn", "Chuyển đổi" (`S02-03b`, thay bằng "Định nghĩa.", "Mệnh đề.") | `S01-03`, `S01-06`–`S01-08`, `S02-01b`, `S02-03b`, `S02-07` | giữ số thứ tự đậm "1.", "2.", "3." trong thẻ câu hỏi `S02-10`, `S03-09`, `S04-15` vì là đánh số |
+| nhẹ — `storyboard.md:579` nói `exercises.md` liên kết tới các trang | Ghi chú tại chỗ rằng lý do (2) hết hiệu lực từ 2026-11-12; hàng `S06-07b` dẫn Ví dụ 02.29 thay "Bài 14a"; mục storyboard 2026-11-13 ghi cột đối chiếu `exercises.md` cũ hết hiệu lực | `storyboard.md` | đã sửa |
+
+**Sửa thêm ngoài bảng.**
+
+- Mục tiêu học tập `S01-01b`: sáu mục tiêu của ghi chú thay ba mục tiêu cũ (G3), 80 âm tiết; ghi chú bìa nêu câu hỏi trung tâm của ghi chú.
+- Dạng phổ biến `S01-04` theo Định nghĩa 02.1: miền lồi $D$, nhãn "Định nghĩa.", "Mệnh đề." (Mệnh đề 02.2).
+- `S02-04` thêm chứng nhận nghiệm trên mặt trang bằng tổ hợp không âm $\tfrac43(2x_1+x_2)+\tfrac13(x_1+2x_2)\ge7$ (Mệnh đề 02.11), phục vụ mục tiêu 2 "chứng nhận nghiệm".
+- Dẫn chiếu (G4): ghi chú diễn giả dẫn số khối hiện tại của ghi chú (Định nghĩa 02.1, 02.5, 02.9, 02.13, 02.17, 02.20, 02.24, 02.28, 02.29, 02.35, 02.38, 02.41, 02.45; Mệnh đề 02.2, 02.6, 02.10, 02.11, 02.18, 02.25, 02.26, 02.30, 02.36, 02.39, 02.42, 02.46; Định lý 02.15, 02.32, 02.33; Bổ đề 02.14, 02.22, 02.31; Nhận xét 02.7, 02.8, 02.12, 02.34, 02.37, 02.43, 02.47; các Ví dụ 02.1–02.29 được dẫn), đã đối chiếu loại khối và nội dung; mặt trang có nhiều nhất một số hiệu mỗi trang. Bài tập trên lớp giữ nguyên; nguồn ghi trong ghi chú diễn giả (G5) trỏ tới khối có thật: Bài tập 02.7, 02.10, 02.11(c), Ví dụ 02.29, Nhận xét 02.34, 02.43, 02.47.
+- KaTeX: `\text{với}` trong 24 hệ ràng buộc thay bằng `\text{sao cho}` (ký tự ASCII); chữ Việt có dấu trong `\text{}` sinh hai cảnh báo mỗi lần hiển thị. Cảnh báo console 120 → 0.
+- `S05-02` (trước có OVERFLOW): bỏ `\underbrace`, tách định nghĩa $\ell_{01}$ và bài toán thành hai khối.
+
+**Xuất xứ số liệu (G6, ghi một lần).** Các bộ số sau do học phần dựng để tính tay, theo khung của nguồn ghi trong ghi chú diễn giả: bảng giá và hàm lượng của bài toán pha trộn (khung bài toán khẩu phần, Boyd và Vandenberghe (2004), §4.3.1); năm quan sát hồi quy và bốn ảnh phân loại (Ví dụ 02.1 của ghi chú); hộp dung tích $8\,\mathrm{dm}^3$ (khung §4.5); hệ số đường truyền, tạp âm và ngân sách của bài toán công suất (bối cảnh Bài tập 4.20, tr. 196); giá ba gói dữ liệu (phỏng theo Bài tập 4.15, tr. 193); bốn mẫu của phản ví dụ chuẩn một (Ví dụ 02.29). Các hình SVG của bài do học phần vẽ.
+
+**Kiểm tra đã chạy.** `deck_check.py --url http://127.0.0.1:8810/2627-1/lecture-02-cac-bai-toan-toi-uu-loi.html --shots`: 80 trang, console 0, page error 0, request lỗi 0, KaTeX lỗi 0, không OVERFLOW, không LINES, không LINE20; mật độ lớn nhất `S01-01b` 80 (trần 80), `S06-08` 61 (trần 80), trang nội dung lớn nhất `S06-03` 58. Đã xem ảnh 1600×900 của mọi trang (bảng ghép) và ảnh 390×844 của `S02-06b`, `S04-10`, `S05-03b`; ở màn hẹp, các khối công thức rộng cuộn ngang theo cơ chế sẵn có (cờ NARROW-H, như trước đợt sửa). `git diff --check` sạch.
+
+**Đề nghị sửa ghi chú.** Không có phát hiện nào đòi sửa ghi chú. Sáu hình dùng chung với ghi chú đã đổi nhãn theo ký hiệu của ghi chú ($w_1,w_0$, $J$, $m$, $\chi_{ij}$, $W_1$); văn bản thay thế của các hình này trong `lecture-note.md` vẫn khớp.
+
+### Lượt sửa sau kiểm lại
+
+Danh sách 18 mục đã duyệt của điều phối viên (`tools/courses/math-4-AI/2627-1/deck-fix-2026-11-13/merge-02.md`, gồm quyết định đổi `\text{sao cho}` → `\text{subject to}` như ghi chú và trả `S01-04` về $x\in\mathbb R^n$). Cùng tác tử biên tập, cùng phạm vi tệp; không commit.
+
+| mục | xử lý | trang / tệp |
+|---|---|---|
+| QĐ — `\text{sao cho}` → `\text{subject to}` | 25 chỗ đổi; `S02-06` viết ràng buộc theo $r$ ($-t\le r\le t$, với $r=Xw-y$ trên mặt trang) để hệ không tràn cột | toàn deck |
+| 1 TB — desc `qp-regularized.svg` còn a, b, lambda | desc dùng $w_1$, $w_0$, λ | `img/lec-02/qp-regularized.svg` |
+| 2 nhẹ — nhãn kết quả | "Định lý." cho Định lý 02.15, 02.33 | `S02-07`, `S04-07` |
+| 3 nhẹ — $g$ trùng ký hiệu đơn thức | $V(w)$ (`S03-04d`), $f_1(w)$ (`S03-07`) trong ghi chú diễn giả | `S03-04d`, `S03-07` |
+| 4 nhẹ — $e^{v^*}$ | "$f_0(x^*)=e^{F_0(z^*)}$" | ghi chú `S06-02` |
+| 5 nhẹ — nguồn bài tập | "câu 1 theo Nhận xét 02.27; câu 2 theo nhận xét sau Định nghĩa 02.24; câu 3 theo Định lý 02.15(b)" | ghi chú `S03-09` |
+| 6 nhẹ (tùy chọn) — $\mathcal W_1$ trong SVG | không đổi: giữ "W₁" vì ký tự toán U+1D4B2 trong phông sans-serif của SVG có thể hiện thành ô trống; `desc` và mặt trang dùng $\mathcal W_1$ | `feature-cardinality.svg` |
+| 7 nhẹ — desc `lp-minimax.svg` | "ŷ=u+1,5", thêm khoảng trắng trước "1,5" | `img/lec-02/lp-minimax.svg` |
+| 8 NT — $D$ trên `S01-04` trái yêu cầu cũ của người dùng | mặt trang về $\min_{x\in\mathbb R^n}$, "với $f_0,\ldots,f_m$ lồi"; $C=\{x\mid\cdots\}$; miền $D$ của Định nghĩa 02.1 chỉ nêu trong ghi chú diễn giả. Đảo phần "S01-04 theo Định nghĩa 02.1 (có miền $D$)" của mục trên | `S01-04`; storyboard dòng `S01-04` và mục khung chung giữ "bỏ ký hiệu $D$" |
+| 9 TB — "Nhu cầu:" chỉ nêu nhu cầu của ví dụ | "Nhu cầu:" nêu nhiệm vụ của mạch, ví dụ đặt sau ("Ví dụ: …"): `S02-01b` (nhận dạng LP và chứng nhận nghiệm), `S04-01` (đưa mô hình chứa tích biến dương về bài toán lồi tương đương), `S05-01` (câu theo danh sách), `S06-04` (áp dụng quy trình chứng nhận) | 4 trang; storyboard mục 2026-11-13 |
+| 10 TB — `S02-06b` | thêm "Nhu cầu:" (câu theo danh sách) và "Trực quan." ($|x-2|$ và dạng có $t$, theo §4.3 của ghi chú) trước "Định nghĩa."; bỏ "Ý nghĩa:"; mệnh đề rút một dòng, số Mệnh đề 02.6 chuyển vào ghi chú; 43 âm tiết, 6 dòng; bản đồ hành trình ghi bước bài tập là câu 3 của `S03-09` | `S02-06b`; storyboard |
+| 11 TB — storyboard còn ký hiệu cũ | sửa các hàng nêu trong danh sách theo ký hiệu deck ($w_1,w_0$, $N,d$, $J$, $m_i$, $x_i$, $z_i$, $\chi$, $\varepsilon_i$, $\mathcal F,\tilde{\mathcal F}$, $p^*_{\mathcal F}$, $\mathcal W_1$, $w_0$, $p^*$, $x^*$, "sáu mục tiêu"); thêm câu nói các mục trước 2026-11-13 là lịch sử; hàng trong bảng thay đổi lịch sử gắn tiền tố "lịch sử" để mỗi trang chỉ có một mục hiện hành | `storyboard.md` |
+| 12 nhẹ — mục tiêu 5; câu xuất xứ trong ghi chú | mục tiêu 5 thêm "; lấy cận bằng nới lỏng", rút mục tiêu 2, 3 cho vừa trần (80 âm tiết); cắt "Sáu mục tiêu là sáu mục tiêu của ghi chú…"; bảng ánh xạ đã có `S02-06b` ở mục tiêu 5 | `S01-01b` |
+| 13 nhẹ — "Lưu ý:" `S05-03b` trả lời trước câu 1 `S05-15` | "Lưu ý:" thành "đổi mục tiêu đòi ba điều kiện kiểm chứng dưới đây."; câu $E\le H$ / dữ liệu mới chuyển vào ghi chú; cắt câu về logistic, entropy chéo và mạng nơ-ron | `S05-03b` |
+| 14 nhẹ — câu dẫn hướng | cắt "Ô kết luận phân biệt … ở trang trước … ở phần 2" (`S03-02`), "ở trang kế" (`S05-03b`), "Phép xử lý thứ tư … xuất hiện ở phần 6" (`S05-13`), "làm điểm tựa cho bước nhận dạng" (`S06-01`) | ghi chú 4 trang |
+| 15 nhẹ — phân bổ công suất (đọc thêm) | dòng dẫn `S04` theo danh sách; bỏ từ khóa "phân bổ công suất"; ghi chú `S06-02` ghi "phần đọc thêm" | `S04`, `S06-02` |
+| 16 nhẹ — Hessian `S03-02` | câu "Hessian $2X^TX\succeq0$ vì" gộp vào "Nhắc lại:" | `S03-02` |
+| 17 nhẹ — `S06-08` lặp bảng `S06-01` | cột công thức hai hàng đầu: "biến phụ $-t\le Xw-y\le t$", "$v^TP_iv\ge0\ \forall v$" thay dạng bài toán đã có ở `S06-01` | `S06-08` |
+| 18 nhẹ — outline | ký hiệu dòng ký hiệu 2026-10-12 cập nhật ($\Delta$, $p^*_{\mathcal F}$, $\mathcal F$, $g_j$, $\sigma$, $p^*$); danh sách phần 4 đánh số liên tục 1–15 | `outline.md` |
+
+**Kiểm tra.** `deck_check.py --out …/scratchpad/check-02/r1 --shots`: 80 trang; console 0, page error 0, request lỗi 0, KaTeX lỗi 0; không OVERFLOW, LINES, LINE20, SYLL; `S01-01b` 80 âm tiết. Đã xem ảnh 1600×900 và 390×844 của các trang đổi mặt trang (`S01-01b`, `S01-04`, `S02-01b`, `S02-06`, `S02-06b`, `S02-07`, `S03-02`, `S04`, `S04-01`, `S04-07`, `S05-01`, `S05-03b`, `S06-04`, `S06-08`) và hai trang mẫu có "subject to" (`S03-08`, `S05-04`). Storyboard: kiểm bằng script, mỗi `data-slide-id` có đúng một hàng hiện hành. `git diff --check` sạch.
+
+**Lượt sửa nhỏ sau kiểm toán (2026-11-13).** (1) `S03-02`: khối công thức Hessian gộp vào dòng "Nhắc lại:" ("Hessian $2X^TX\succeq0$ vì $v^T(2X^TX)v=2\|Xv\|_2^2\ge0$ với mọi $v$"). (2) `S02-06b` trực quan: "từ $x$ lấy $t=|x-2|$; từ $(x,t)$ giữ $x$". (3) `S05-03b`: "Lưu ý:" thành "đổi mục tiêu phải được kiểm chứng theo ba thành phần."; ghi chú cắt "bài toán lồi giải được bằng quy hoạch tuyến tính hoặc bậc hai". (4) Ghi chú `S06-01` cắt "(bảng nhận dạng §9.1 của ghi chú)". `deck_check` (`check-02/r2`, `S02-06b`, `S03-02`, `S05-03b`): console 0, KaTeX lỗi 0, không OVERFLOW; đã xem ảnh 1600×900 và 390×844; `git diff --check` sạch.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (desc `qp-regularized.svg` còn $(a,b)$, trung bình) → đạt |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (S01-04 đưa lại $D$ trái yêu cầu người dùng, nghiêm trọng; câu hỏi đầu mạch; S02-06b; storyboard) → đạt |
+
+Quyết định của điều phối viên: `\text{sao cho}` → `\text{subject to}` như ghi chú Bài 02; S01-04 giữ $x\in\mathbb R^n$ theo yêu cầu cũ của người dùng (miền $D$ chỉ trong ghi chú diễn giả); giữ nhãn "W₁" trong `feature-cardinality.svg` (glyph 𝒲 có thể không hiển thị trong phông SVG). Chấp nhận dòng "Ví dụ: …" ngay sau "Nhu cầu:" ở S02-01b, S04-01 (nhẹ; nhãn dẫn vào ví dụ dẫn nhập).
+
+Kiểm của điều phối viên: đọc diff; 80 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW, LINES hay SYLL. Đã xem ảnh 1600×900 và 390×844 của S01-01b, S01-04, S02-01b, S02-06, S02-06b, S03-02, S05-01, S05-03b, S06-08: vừa khung.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.

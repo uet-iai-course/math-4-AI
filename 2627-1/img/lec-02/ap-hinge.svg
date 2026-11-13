@@ -137,7 +137,7 @@ L 0 3.5
      </g>
     </g>
     <g id="text_10">
-     <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #2f3e7a" x="248.741641" y="291.444219" transform="rotate(-0 248.741641 291.444219)">Biên có dấu r</text>
+     <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #2f3e7a" x="248.741641" y="291.444219" transform="rotate(-0 248.741641 291.444219)">Biên có dấu m</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
@@ -291,7 +291,7 @@ L 303.833906 30.483906
 " style="fill: none; stroke: #b15a2b; stroke-width: 2.5; stroke-linecap: square"/>
     </g>
     <g id="text_19">
-     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start" x="312.633906" y="34.333906" transform="rotate(-0 312.633906 34.333906)">Bản lề max(0, 1 − r)</text>
+     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start" x="312.633906" y="34.333906" transform="rotate(-0 312.633906 34.333906)">Bản lề max(0, 1 − m)</text>
     </g>
     <g id="line2d_23">
      <path d="M 281.833906 48.251484
@@ -300,7 +300,7 @@ L 303.833906 48.251484
 " style="fill: none; stroke-dasharray: 7.4,3.2; stroke-dashoffset: 0; stroke: #2f3e7a; stroke-width: 2"/>
     </g>
     <g id="text_20">
-     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start" x="312.633906" y="52.101484" transform="rotate(-0 312.633906 52.101484)">Đếm lỗi: 1 nếu r ≤ 0</text>
+     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start" x="312.633906" y="52.101484" transform="rotate(-0 312.633906 52.101484)">Đếm lỗi: 1 nếu m ≤ 0</text>
     </g>
    </g>
   </g>
