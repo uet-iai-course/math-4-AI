@@ -26,108 +26,112 @@ Ghi chú `materials/lec-03/lecture-note.md` được viết lại theo `planning
 | 13. Tài liệu đọc | Boyd và Vandenberghe (2004) ch. 5, §2.5.1, §8.6.1; Murphy (2022) §3.4.4, §8.5, §17.3; MIT 6.079 Lecture 5; Rudin (1976) | — |
 | Phụ lục A | chứng minh Bổ đề 03.14 | — |
 
-**Thay đổi so với ghi chú cũ.** Hai thuật toán vào bộ đếm chung (Thuật toán 03.1 → 03.36, 03.2 → 03.39), nên Mệnh đề 03.36 → 03.37, Nhận xét 03.37 → 03.38; mọi số 03.1–03.35 giữ nguyên. Nhãn công thức đánh lại theo mục mới. Thuật ngữ theo deck: "đường cận" (đường đỡ khi tiếp xúc), "cận khít", "cận lỏng". Ký hiệu: $J$ thay $E$; $w_0$ (hệ số chặn), $\eta_i$, $\Psi$ cho máy vector hỗ trợ; $w(0)$ cho nghiệm bình phương nhỏ nhất; $\rho_{\mathrm{lo}},\rho_{\mathrm{hi}},\rho_{\mathrm{mid}}$; $\vartheta$ cho trọng số tổ hợp lồi; $\ge$ thay $\succeq$ cho vector; $\sigma_j$ trong Ví dụ 03.7 và Nhận xét 03.7; $(\tilde\lambda,\tilde\nu,\kappa)$, $\gamma$ trong chứng minh Định lý 03.15; $\mathcal S_1,\mathcal S_2,\zeta,\zeta',\bar e,\mathcal U,\mathcal H_e$ trong Bổ đề 03.14; $\pi,\theta_i,\nu_1,\nu_2,\omega$ trong Bài tập 03.15. Định nghĩa 03.29, Định lý 03.30 phát biểu cho $D$ mở; Định lý 03.32 cho $D$ mở, lồi (Boyd §5.5.3). Bỏ: SMO/Platt, phương pháp điểm trong, nhánh – cận, hạt nhân, trường hợp $X$ thiếu hạng, câu Nocedal–Wright, nón pháp tuyến $N_D$. Độ nhạy (§7.3) giữ dù deck không có. Hai SVG chỉ dùng trong ghi chú được sửa tại chỗ: `kkt-active-projection.svg` (ô khả thi gốc $Ax^*=b$, ô dừng $\nabla_xL=0$), `dual-geometry.svg` (nhãn "Tập trên A", tiêu đề "đường cận").
+**Thay đổi so với ghi chú cũ.** Hai thuật toán vào bộ đếm chung (Thuật toán 03.1 → 03.36, 03.2 → 03.39), nên Mệnh đề 03.36 → 03.37, Nhận xét 03.37 → 03.38; mọi số 03.1–03.35 giữ nguyên. Nhãn công thức đánh lại theo mục mới. Thuật ngữ theo deck: "đường cận" (đường đỡ khi tiếp xúc), "cận khít", "cận lỏng". Ký hiệu: $J$ thay $E$; $w_0$ (hệ số chặn), $\eta_i$, $\Psi$ cho máy vector hỗ trợ; $w(0)$ cho nghiệm bình phương nhỏ nhất; $\rho_{\mathrm{lo}},\rho_{\mathrm{hi}},\rho_{\mathrm{mid}}$; $\vartheta$ cho trọng số tổ hợp lồi; $\ge$ thay $\succeq$ cho vector; $\sigma_j$ trong Ví dụ 03.7 và Nhận xét 03.7; $(\tilde\lambda,\tilde\nu,\kappa)$, $\gamma$ trong chứng minh Định lý 03.15; $\mathcal S_1,\mathcal S_2,\zeta,\zeta',\bar e,\mathcal U,\mathcal H_e$ trong Bổ đề 03.14; $\pi,\theta_i,\nu_1,\nu_2,\omega$ trong Bài tập 03.15. Định nghĩa 03.29, Định lý 03.30 phát biểu cho $D$ mở; Định lý 03.32 cho $D$ mở, lồi (Boyd §5.5.3). Bỏ: SMO/Platt, phương pháp điểm trong, nhánh – cận, hạt nhân, trường hợp $X$ thiếu hạng, câu Nocedal–Wright, nón pháp tuyến $N_D$. Độ nhạy (§7.3) giữ trong ghi chú; trên deck chỉ nêu trong ghi chú diễn giả S04-04b (quyết định người dùng 2026-11-13). Hai SVG chỉ dùng trong ghi chú được sửa tại chỗ: `kkt-active-projection.svg` (ô khả thi gốc $Ax^*=b$, ô dừng $\nabla_xL=0$), `dual-geometry.svg` (nhãn "Tập trên A", tiêu đề "đường cận").
 
 ---
 
-**Trạng thái:** bản nội dung 57 trang, 6 mạch (47 trang trước đợt sửa văn phong 2026-10-12; thêm 5 trang tiêu đề mạch, 1 trang chứng minh tách và 4 trang lời giải mẫu); đã công bố trên chỉ mục.
+**Trạng thái:** bản nội dung 59 trang, 6 mạch, sau đợt sửa deck theo bảng phát hiện 2026-11-13 và lượt sửa sau kiểm lại (57 → 59 trang: thêm S02-07c, S03-01b, S05-06c; bỏ S03-02). Deck theo ký hiệu, mục tiêu và ví dụ của ghi chú viết lại ngày 2026-11-12; sáu dòng mục tiêu trên S01-02 gộp từ sáu mục tiêu của ghi chú, trừ phần đọc độ nhạy (quyết định người dùng).
 
 ## Phạm vi và tiêu chí hoàn thành
 
 Buổi 3 theo đề cương DOCX chính thức: Chương 4, Đối ngẫu; 2 tiết lý thuyết và 1 tiết bài tập. Chuẩn đầu ra bài học (LLO) 4: “Hiểu được hàm đối ngẫu và bài toán đối ngẫu Lagrange”; LLO5: “Thể hiện được minh họa hình học của hàm đối ngẫu”; cùng liên quan chuẩn đầu ra học phần (CLO) 1. Đánh giá qua bài tập cá nhân và nhóm. Tiên quyết: gradient, hàm lồi và hoàn thành bình phương.
 
-Tiêu chí: sinh viên có thể tự tạo cận, kiểm tra Slater, giải và kiểm tra bốn nhóm KKT, giải thích hình học, vận dụng cho nhiều biến và phân biệt tính cần với tính đủ của KKT. RevealJS, ghi chú diễn giả, tài liệu đọc và bảy bài tập có lời giải phải nhất quán.
+Tiêu chí: sinh viên có thể tự tạo cận, kiểm tra Slater, giải và kiểm tra bốn nhóm KKT, giải thích hình học, vận dụng cho nhiều biến và phân biệt tính cần với tính đủ của KKT. RevealJS, ghi chú diễn giả, ghi chú bài giảng và tệp bài tập phải nhất quán; năm bài tập trên lớp của deck lấy từ khối bài tập của ghi chú (Bài tập 03.2, 03.4, 03.6, 03.9, 03.10).
 
-Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, được đọc tại máy. Giữ cấu trúc ngoài–trong, bảng màu, kiểu chữ, hộp, lưới hai cột, chân trang và runtime cục bộ. Giữ thứ tự sáu mạch còn lại sau khi bỏ độ nhạy theo yêu cầu người dùng; thêm S02-05b (phép tính g) và S05-05b (chứng minh tính đủ KKT) để tách lập luận, không thu nhỏ chữ. Ví dụ chính: $\min x^2+1$ với $(x-2)(x-4)\le0$, kết quả $x^*=2$, $p^*=5$, $\lambda^*=2$.
+Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, được đọc tại máy. Giữ cấu trúc ngoài–trong, bảng màu, kiểu chữ, hộp, lưới hai cột, chân trang và runtime cục bộ. Giữ sáu mạch; độ nhạy và giá bóng chỉ nêu trong ghi chú diễn giả cuối mạch 4 (quyết định người dùng 2026-11-13); thêm S02-05b (phép tính g) và S05-05b (chứng minh tính đủ KKT) để tách lập luận, không thu nhỏ chữ. Ví dụ chính: $\min x^2+1$ với $(x-2)(x-4)\le0$, kết quả $x^*=2$, $p^*=5$, $\lambda^*=2$.
 
 ## Danh sách mạch và trang
+
+Mỗi trang có một mục trong `storyboard.md`; bảng dưới chỉ ghi vai trò.
 
 ### 1. Mở đầu
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S01-01 | Bài 03: Đối ngẫu Lagrange | Đặt vấn đề chứng nhận nghiệm, tạo động cơ cho cận dưới trước mọi ký hiệu. |
-| S01-02 | Mục tiêu học tập | Định nghĩa minh chứng học được và nhắc đúng tiên quyết dùng trong phép tính. |
-| S01-03 | Nội dung | Cho người học biết quan hệ giữa các công cụ và vị trí của ví dụ xuyên suốt. |
+| S01-01 | Bài 03: Đối ngẫu Lagrange | Đặt vấn đề chứng nhận nghiệm bằng cận dưới. |
+| S01-02 | Mục tiêu học tập | Sáu mục tiêu theo ghi chú. |
+| S01-03 | Nội dung | Sáu mạch đánh số. |
 
 ### 2. Hàm và bài toán đối ngẫu Lagrange
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S02-00 | 2. Hàm và bài toán đối ngẫu Lagrange | Trang tiêu đề mạch: nhu cầu cận dưới của p*. |
-| S02-01 | Cận dưới cho giá trị tối ưu | Nêu bài toán cực tiểu có ràng buộc, giải thích điểm khả thi và nhu cầu chứng nhận tối ưu bằng cận dưới khít. |
-| S02-02 | Ví dụ: bài toán một biến trên đoạn [2,4] | Nêu rõ việc cần tìm x để x²+1 nhỏ nhất trên [2,4], rồi viết ràng buộc tương đương và xác định nghiệm tối ưu. |
-| S02-03 | Họ hàm tạo cận dưới | Cho thấy lý do cộng một hạng không dương tạo cận, và vì sao cực tiểu L có thể không khả thi. |
-| S02-04 | Hàm Lagrange | Chuyển phép cộng trong ví dụ thành dạng nhiều ràng buộc, giải thích dấu và kích thước nhân tử. |
-| S02-05 | Hàm đối ngẫu | Ngăn nhầm inf với min và ngăn áp lại ràng buộc gốc khi tính g. |
-| S02-05c | Tính lõm của hàm đối ngẫu | Phát biểu tính lõm của g, ý nghĩa và ý chứng minh; không cần bài toán gốc lồi. |
-| S02-05d | Chứng minh: tính lõm của hàm đối ngẫu | Hai bước: tính affine theo nhân tử, rồi lấy infimum theo x. |
-| S02-05a | Ví dụ: bài toán một biến, lập hàm Lagrange | Thay hàm mục tiêu và ràng buộc, khai triển tích, gom hệ số theo x trước khi tính g. |
-| S02-05b | Ví dụ: bài toán một biến, tính hàm đối ngẫu | Nhắc bài toán đang xét, thêm rồi bớt cùng một hạng để hoàn thành bình phương và suy ra g. |
-| S02-06 | Đối ngẫu yếu | Chứng minh cận hợp lệ bằng hai bước độc lập, chỉ rõ không dùng tính lồi. |
-| S02-07 | Bài toán đối ngẫu | Biến họ cận thành quyết định chọn cận tốt nhất, đồng thời phân biệt lõm với dễ tính. |
-| S02-07a | Ví dụ: bài toán hai biến, tính hàm đối ngẫu | Chuyển từ một biến sang hai biến, gán nhân tử riêng cho hai ràng buộc và tính inf theo từng biến. |
-| S02-07b | Ví dụ: bài toán hai biến, giải bài toán đối ngẫu | Giải đối ngẫu hai nhân tử bằng hoàn thành bình phương và kiểm tra điểm khả thi đạt cận. |
-| S02-08 | Bài tập: cận dưới cho ràng buộc affine | Đo khả năng chuyển giao sang ràng buộc affine và phát hiện lỗi bỏ hằng số. |
-| S02-08b | Bài tập: cận dưới cho ràng buộc affine | Lời giải mẫu trên mặt trang, trùng bài 2 của tài liệu bài tập. |
+| S02-00 | 2. Hàm và bài toán đối ngẫu Lagrange | Trang tiêu đề mạch: nhu cầu cận dưới của $p^*$. |
+| S02-01 | Cận dưới cho giá trị tối ưu | "Nhắc lại:" tập khả thi, $p^*$; "Nhu cầu:" cận dưới. |
+| S02-02 | Ví dụ: bài toán một biến trên đoạn [2,4] | Ví dụ xuyên suốt, $x^*=2$, $p^*=5$. |
+| S02-03 | Họ hàm tạo cận dưới | Trực quan: cộng $\lambda f_1$, cận 4,5 và 5. |
+| S02-04 | Hàm Lagrange | Định nghĩa; $A\in\mathbb R^{p\times n}$, $\nu\in\mathbb R^p$. |
+| S02-05 | Hàm đối ngẫu | Định nghĩa $g$. |
+| S02-05c | Tính lõm của hàm đối ngẫu | Mệnh đề, ý nghĩa, ý chứng minh. |
+| S02-05d | Chứng minh: tính lõm của hàm đối ngẫu | Hai bước, trọng số $\vartheta$. |
+| S02-05a | Ví dụ: bài toán một biến, lập hàm Lagrange | Gom hệ số theo $x$. |
+| S02-05b | Ví dụ: bài toán một biến, tính hàm đối ngẫu | $g(\lambda)=10-\lambda-\frac9{1+\lambda}$. |
+| S02-06 | Đối ngẫu yếu | $g\le L\le f_0$, không cần tính lồi. |
+| S02-07 | Bài toán đối ngẫu | Định nghĩa $d^*$, nghiệm đối ngẫu. |
+| S02-07c | Ví dụ: bài toán một biến, giải bài toán đối ngẫu | $\lambda^*=2$, $d^*=p^*=5$ (Ví dụ 03.4). |
+| S02-07a | Ví dụ: bài toán hai biến, tính hàm đối ngẫu | Hai nhân tử (Ví dụ 03.6). |
+| S02-07b | Ví dụ: bài toán hai biến, giải bài toán đối ngẫu | Chứng nhận $x^*=(1,2)$. |
+| S02-08 | Bài tập: đối ngẫu của hàm tuyến tính trên hình tròn | Bài tập 03.2. |
+| S02-08b | Bài tập: đối ngẫu của hàm tuyến tính trên hình tròn | Lời giải trên mặt trang. |
 
 ### 3. Đối ngẫu mạnh và điều kiện Slater
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S03-00 | 3. Đối ngẫu mạnh và điều kiện Slater | Trang tiêu đề mạch: nhu cầu điều kiện bảo đảm d*=p*. |
-| S03-01 | Khoảng đối ngẫu | Ngăn đồng nhất khoảng đối ngẫu của cặp với khoảng đối ngẫu tối ưu trước khi nói cận khít. |
-| S03-02 | Cận khít và đối ngẫu mạnh | Đặt tên đối ngẫu mạnh sau một chứng nhận bằng bình phương có thể kiểm tra. |
-| S03-03 | Điều kiện Slater | Cung cấp một giả thiết kiểm tra được thay cho việc phải giải hai bài toán mới biết cận khít. |
-| S03-02b | Trực quan của điều kiện Slater | Minh họa độ dư quanh cùng một điểm Slater, phân biệt điểm Slater và nghiệm tối ưu sau khi đã phát biểu định lý. |
-| S03-03a | Chứng minh: định lý Slater | Giải thích vì sao điểm Slater bảo đảm cận khít và đạt đối ngẫu. |
-| S03-03b | Chứng minh: định lý Slater, hệ số bất đẳng thức | Khai triển tổng không âm nhưng từng số hạng không dương; dấu chặt buộc mọi hệ số bằng không. |
-| S03-03c | Chứng minh: định lý Slater, hệ số đẳng thức | Dùng một điểm cụ thể để suy ra bình phương chuẩn bằng không, rồi dùng các hàng độc lập để kết luận hệ số bằng không. |
-| S03-04 | Ví dụ: điều kiện Slater cho bài toán một biến | Tách vai trò điểm Slater và nghiệm tối ưu, đồng thời thực hành kiểm tra tính lồi. |
-| S03-05 | Giới hạn của điều kiện Slater | Phản ví dụ buộc tách ba mệnh đề Slater, đối ngẫu mạnh và sự đạt nghiệm đối ngẫu. |
-| S03-06 | Bài tập: điều kiện Slater cho bài toán hai biến | Đo khả năng kiểm tra cùng một điểm Slater và tính hữu hạn trước khi dùng định lý. |
-| S03-06b | Bài tập: điều kiện Slater cho bài toán hai biến | Lời giải mẫu trên mặt trang, trùng bài 7 câu 1 của tài liệu bài tập. |
+| S03-00 | 3. Đối ngẫu mạnh và điều kiện Slater | Trang tiêu đề mạch: nhu cầu điều kiện bảo đảm $d^*=p^*$. |
+| S03-01 | Khoảng đối ngẫu và đối ngẫu mạnh | "Nhu cầu:" và ba định nghĩa. |
+| S03-01b | Ví dụ: khoảng đối ngẫu dương | Bài toán chọn gói, $d^*=3<4=p^*$ (Ví dụ 03.7). |
+| S03-03 | Điều kiện Slater | Định nghĩa, định lý (a) và dạng yếu (b). |
+| S03-02b | Trực quan của điều kiện Slater | Độ dư quanh $\bar x=3$. |
+| S03-03a | Chứng minh: định lý Slater | Bốn bước, $(\tilde\lambda,\tilde\nu,\kappa)$, $\mathcal A$, $\mathcal B$. |
+| S03-03b | Chứng minh: định lý Slater, hệ số bất đẳng thức | Dấu chặt buộc $\tilde\lambda=0$. |
+| S03-03c | Chứng minh: định lý Slater, hệ số đẳng thức | Các hàng độc lập buộc $\tilde\nu=0$. |
+| S03-04 | Ví dụ: điều kiện Slater cho bài toán một biến | Kiểm tra ba giả thiết. |
+| S03-05 | Ví dụ: bài toán không có điểm Slater | $\min x_1+x_2$, $x_1^2+x_2^2\le0$ (Ví dụ 03.10). |
+| S03-06 | Bài tập: điều kiện Slater cho ba bài toán | Bài tập 03.4. |
+| S03-06b | Bài tập: điều kiện Slater cho ba bài toán | Lời giải trên mặt trang. |
 
 ### 4. Hình học của đối ngẫu
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S04-00 | 4. Hình học của đối ngẫu | Trang tiêu đề mạch: đọc nhân tử và cận trên cùng hình. |
-| S04-01 | Mặt phẳng giá trị | Nêu đối tượng mới, mặt phẳng giá trị (u,t), nhắc bài toán và giải thích hai trục trước ký hiệu G. |
-| S04-01a | Điểm và tập giá trị | Tính tọa độ từ x, vẽ G và phân biệt phần G khả thi với nửa mặt phẳng. |
-| S04-01b | Hàm Lagrange trong mặt phẳng giá trị | Suy diễn đường cận từ L và g; giải thích tung độ gốc là cận dưới. |
-| S04-02 | Đường cận trong mặt phẳng giá trị | Ánh xạ nhân tử sang độ dốc và inf sang tung độ gốc; điểm tiếp xúc không khả thi cho giới hạn trực giác. |
-| S04-03 | Tiếp xúc và đối ngẫu mạnh | Dùng đẳng thức bình phương xác nhận hình học cận khít, không suy luận chỉ bằng nhìn hình. |
-| S04-04 | Bài tập: đọc cận trên mặt phẳng giá trị | Đo khả năng đọc cận và chặn trên sai số tối ưu từ đường thẳng, không nhầm khoảng tối ưu. |
-| S04-04b | Bài tập: đọc cận trên mặt phẳng giá trị | Lời giải mẫu trên mặt trang, trùng bài 5 câu 2 của tài liệu bài tập. |
+| S04-00 | 4. Hình học của đối ngẫu | Trang tiêu đề mạch: nhân tử là độ dốc, cận dưới là tung độ gốc. |
+| S04-01 | Mặt phẳng giá trị | "Nhu cầu:" và hai trục. |
+| S04-01a | Điểm và tập giá trị | Bốn điểm của $G$. |
+| S04-01b | Hàm Lagrange trong mặt phẳng giá trị | Định nghĩa đường cận. |
+| S04-02 | Đường cận trong mặt phẳng giá trị | $\lambda=1$, điểm tiếp xúc không khả thi. |
+| S04-03 | Tiếp xúc và đối ngẫu mạnh | $\lambda=2$, tiếp xúc tại $(0,5)$. |
+| S04-04 | Bài tập: tập giá trị và đường cận | Bài tập 03.6, câu (a), (b). |
+| S04-04b | Bài tập: tập giá trị và đường cận | Lời giải trên mặt trang; ghi chú diễn giả nêu độ nhạy, giá bóng. |
 
 ### 5. Điều kiện Karush–Kuhn–Tucker
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
-| S05-00 | 5. Điều kiện Karush–Kuhn–Tucker | Trang tiêu đề mạch: tìm nghiệm không cần công thức của g. |
-| S05-01 | Dấu bằng trong chuỗi đối ngẫu yếu | Dẫn hệ KKT từ nhu cầu tránh tính g và từ các điều kiện xảy ra đẳng thức trong chuỗi cận. |
-| S05-02 | Ràng buộc hoạt động và bù trừ | Làm rõ logic bù trừ trước khi viết hệ tổng quát; phản ví dụ sửa chiều suy luận sai. |
-| S05-03 | Bốn nhóm điều kiện KKT | Tổ chức các điều kiện thành bốn nhóm để sinh viên kiểm tra có hệ thống. |
-| S05-04 | Ví dụ: hệ KKT của bài toán một biến | Minh họa quy trình giải theo từng trường hợp của điều kiện bù trừ và loại ứng viên theo tính khả thi, không chỉ giải phương trình. |
-| S05-05 | Điều kiện cần và điều kiện đủ | Tách giả thiết cho tính cần và tính đủ, tránh coi Slater là điều kiện bắt buộc của chứng nhận. |
-| S05-05b | Chứng minh: điều kiện đủ của KKT | Chứng minh điểm dùng tính lồi để bảo đảm toàn cục và nối KKT trở lại đối ngẫu yếu. |
-| S05-05c | Chứng minh: điều kiện cần của KKT | Dùng nhân tử đạt đối ngẫu và chuỗi cận khít để suy ra riêng bù trừ và dừng. |
-| S05-05a | Ví dụ: nghiệm tối ưu không có nhân tử KKT | Dùng miền chỉ có một điểm để thấy nghiệm tối ưu có thể không có nhân tử KKT khi thiếu giả thiết chính quy. |
-| S05-06 | KKT trong hồi quy có ràng buộc chuẩn | Áp dụng các kết quả vừa học cho mô hình AI có kích thước thực tế; giải thích vai trò giới hạn trọng số. |
-| S05-06a | Giải hệ KKT của hồi quy | Giải hệ dừng, xét nghiệm bình phương nhỏ nhất và trường hợp nhân tử dương mà không giả định X đủ hạng. |
-| S05-06b | Ví dụ: hồi quy hai trọng số | Tính hai trọng số, nhân tử và mất mát đến kết quả số; kiểm tra đầy đủ bốn nhóm KKT. |
-| S05-07 | Bài tập: KKT cho hồi quy một trọng số | Đo khả năng tự giải đủ các trường hợp và bốn nhóm KKT trên hồi quy một trọng số. |
-| S05-07b | Bài tập: KKT cho hồi quy một trọng số | Lời giải mẫu trên mặt trang, trùng bài 6 câu 1–2 của tài liệu bài tập. |
+| S05-00 | 5. Điều kiện Karush–Kuhn–Tucker | Trang tiêu đề mạch: tìm nghiệm không cần $g$. |
+| S05-01 | Dấu bằng trong chuỗi đối ngẫu yếu | "Nhu cầu:" và Mệnh đề 03.27. |
+| S05-02 | Ràng buộc hoạt động và bù trừ | Định nghĩa bù trừ; Nhận xét 03.28. |
+| S05-03 | Bốn nhóm điều kiện KKT | Định nghĩa hệ KKT. |
+| S05-04 | Ví dụ: hệ KKT của bài toán một biến | Ba ứng viên, lọc. |
+| S05-05 | Điều kiện cần và điều kiện đủ | Bảng giả thiết – kết luận. |
+| S05-05b | Chứng minh: điều kiện đủ của KKT | Tính lồi. |
+| S05-05c | Chứng minh: điều kiện cần của KKT | Slater cho nghiệm đối ngẫu. |
+| S05-05a | Ví dụ: nghiệm tối ưu không có nhân tử KKT | Bài toán của S03-05. |
+| S05-06 | KKT trong hồi quy có ràng buộc chuẩn | $J=\|Xw-y\|_2^2$, hệ KKT. |
+| S05-06a | Giải hệ KKT của hồi quy | $w(\rho)$, $w(0)$, hai trường hợp, quan hệ hệ số 2. |
+| S05-06b | Ví dụ: hồi quy hai trọng số | Ví dụ 03.19: $\lambda^*=2$, mất mát 8. |
+| S05-06c | Ví dụ: vector hỗ trợ đọc từ nhân tử | Tình huống 03.1, $\rho=1$: $\alpha^*=(0,\tfrac12,\tfrac12,0)$. |
+| S05-07 | Bài tập: hồi quy ba trọng số với ràng buộc chuẩn | Bài tập 03.9, câu (a), (b). |
+| S05-07b | Bài tập: hồi quy ba trọng số với ràng buộc chuẩn | Lời giải trên mặt trang. |
 
 ### 6. Tổng hợp và vận dụng
 
 | Mã | Tiêu đề | Vai trò |
 |---|---|---|
 | S07-00 | 6. Tổng hợp và vận dụng | Trang tiêu đề mạch, `id="mach-6"`. |
-| S07-01 | Ba bước chứng nhận | Bảng kết quả, giả thiết không được bỏ và công thức của ba bước chứng nhận; không biến Slater thành bước bắt buộc trước chiều KKT đủ. |
-| S07-02 | Bài tập: chứng nhận nghiệm của bài toán hai biến | Đánh giá tích hợp trong hai chiều. |
-| S07-03 | Tài liệu và nội dung mở rộng | Chỉ đường tự học và nguồn kiểm chứng; tách kiến thức nâng cao khỏi tiên quyết của bài tập. |
+| S07-01 | Ba bước chứng nhận | Bảng kết quả – giả thiết – công thức; bốn vai trò của nhân tử. |
+| S07-02 | Bài tập: quy trình chứng nhận cho một bài toán chiếu | Bài tập 03.10, tự làm. |
+| S07-03 | Tài liệu và nội dung mở rộng | Nguồn, máy vector hỗ trợ, chủ đề mở rộng. |
 
 ## Nguồn đã kiểm kê và vai trò
 
@@ -136,7 +140,7 @@ Bài 02 là mẫu bố cục và phong cách do người dùng chỉ định, đ
 | DOCX đề cương UET.AI2012 chính thức trong sources/ | Đề cương | Buổi 3, phạm vi Chương 4, LLO4–5/CLO1, 2 tiết lý thuyết + 1 tiết bài tập |
 | Bài 02 HTML và lecture-02-style.css | Mẫu cấu trúc và thị giác | Chia phần, tiêu đề, lưới, hộp, màu, runtime; chỉ đọc tại máy |
 | sources/bv_cvxbook.pdf, Boyd–Vandenberghe (2004) | Nguồn nội dung | §5.1–5.3, §5.5; đọc và đối chiếu tại máy |
-| sources/dual.pdf và bản trùng bài 5 MIT | Nguồn tham khảo trình tự khái niệm | Lagrange → đối ngẫu → hình học → tối ưu; phần độ nhạy của nguồn không dùng; không sao chép hình |
+| sources/dual.pdf và bản trùng bài 5 MIT | Nguồn tham khảo trình tự khái niệm | Lagrange → đối ngẫu → hình học → tối ưu; phần độ nhạy của nguồn chỉ dùng trong ghi chú diễn giả S04-04b; không sao chép hình |
 | sources/Bài tập chương 4.pdf và bản lời giải | Nguồn ví dụ cũ | Ví dụ bậc hai được tự tính lại; không mặc định lời giải nguồn đúng |
 | Ghi chú và hình của Bài 03 phiên bản trước | Tài liệu cũ cần đồng bộ | Viết lại ghi chú; không dùng hình cũ cho tuyến mới |
 

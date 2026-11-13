@@ -1681,3 +1681,83 @@ Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy t�
 | nhẹ | ghi chú diễn giả S03-02b, S05-03, S05-06b, S07-03 | Quy tắc (văn phong tác giả). | "Hình minh họa giả thiết, không chứng minh đối ngẫu mạnh."; "Định nghĩa chưa nói gì về tối ưu"; câu xuất xứ "Hình tự vẽ…", "ví dụ tính trực tiếp" 5 lần (html:277, 480, 606) | Cắt |
 
 **Đã kiểm, không lỗi:** định nghĩa trước trực quan ở S03-03 → S03-02b có ngoại lệ ở `storyboard.md:23`. Mật độ S03-03a: 54 âm tiết (dưới trần); storyboard vẫn ghi 40, cần cập nhật số. Deck không dẫn số khối hay nhãn công thức của ghi chú. Số liệu tính lại khớp: $(3/4,1/8)$ với $107/16$; $(4/5,1/5)$ với $62/5$; $(1/2,1/5)$ với $21/2$; $g(2)=5$; điểm $(1{,}25;3{,}25)$; $w^*=(0{,}6;0{,}8)$, mất mát 8.
+
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Vai trò.** Người sửa (worker) theo lời giao của điều phối viên; quyết định G1–G10 trong tệp quyết định của phiên. Phạm vi ghi: `lecture-03-doi-ngau-lagrange.html`, `planning/lec-03/{storyboard.md, outline.md, review-log.md}`. Không sửa `materials/`, CSS, SVG (không SVG nào cần đổi nhãn). Không commit. Văn bản mặt trang và ghi chú diễn giả viết theo `no-ai-slop` chế độ Edit, tự kiểm theo `eval.md`.
+
+**Kết quả.** 57 → 60 trang, 6 mạch. Thêm S02-07c (tách số liệu khỏi S02-07), S03-01b (khoảng đối ngẫu dương), S04-05 và S04-05b (độ nhạy); bỏ S03-02 (định nghĩa gộp vào S03-01, ví dụ trùng S02-07c). Bốn bài tập có lời giải trên mặt trang và bài tập tổng hợp nay lấy từ khối bài tập của ghi chú: Bài tập 03.2 (S02-08), 03.4 (S03-06), 03.6 (S04-04), 03.9 (S05-07), 03.10 (S07-02); id trang giữ nguyên.
+
+**Đảo một quyết định trước đây.** Năm trang độ nhạy S06-01–05 từng bị bỏ theo yêu cầu người dùng. Theo mục tiêu người dùng 2026-11-13 "nội dung theo ghi chú bài giảng" (G1), phát hiện "thiếu độ nhạy và giá bóng" của bảng 2026-11-13 và việc Bài 04, Bài 07 dẫn Hệ quả 03.24, người sửa đưa lại độ nhạy ở dạng gọn: hai trang trong mạch 4, không thêm mạch. Cần điều phối viên xác nhận.
+
+**Xuất xứ số liệu.** Mọi số liệu trên mặt trang lấy từ ghi chú bài giảng (Ví dụ 03.1–03.4, 03.6, 03.7, 03.9, 03.10, 03.14, 03.19; Bài tập 03.2, 03.4, 03.6, 03.9, 03.10) hoặc tính lại từ đó; không có số liệu tự dựng mới. Hình `sensitivity-value.svg` là hình của ghi chú (Ví dụ 03.14), dùng lại trên S04-05. Câu xuất xứ "Hình tự vẽ…", "ví dụ tính trực tiếp" đã cắt khỏi ghi chú diễn giả theo G6.
+
+**Tính lại số liệu.** $g(\lambda)=-\frac1{2\lambda}-2\lambda$, $g'(\frac12)=0$, $g(\frac12)=-2$, $f_1(-1,-1)=0$. Chọn gói: $\sigma_1+\sigma_2+\sigma_3=6-2\sum\lambda_i$, $g\le3$, $g(1,1,1)=3$. Hai biến không Slater: $g(\lambda)=2\cdot(-\frac1{4\lambda})=-\frac1{2\lambda}$. Hàm giá trị: với $s=\sqrt{1+u}$, $p^*(u)=(3-s)^2+1=11+u-6s$, $p^*(u)-(5-2u)=3(s-1)^2$, $p^{*\prime}(0)=1-3=-2$. Bài tập 03.6: $g(\lambda)=\lambda-\frac{\lambda^2}4$, $\lambda^*=2$, $g(2)=1$, $p^*(u)=(1-u)^2$, $(1-u)^2-(1-2u)=u^2$. Hồi quy: với $J=\|Xw-y\|_2^2$, $\nabla J+2\lambda w=0\iff(X^TX+\lambda I)w=X^Ty$; với mục tiêu có $\tfrac12$, $(X^TX+2\lambda I)w=X^Ty$; Ví dụ 03.19 giữ quy ước có $\tfrac12$ của ghi chú: $\frac5{1+2\lambda}=1$, $\lambda^*=2$, mất mát $\tfrac12(5{,}76+10{,}24)=8$, $p^*(\tau)=\tfrac12(5-\sqrt\tau)^2$, $p^{*\prime}(1)=-2$. Bài tập 03.9: $\frac3{1+2\lambda}=1$, $\lambda^*=1$, mất mát $\tfrac12\cdot\frac{36}9=2$, $\frac{dp^*}{d\tau}(1)=-\frac{3-1}{2}=-1$. Bài tập 03.10: $\lambda^*=1$, $x^*=(1{,}5;-0{,}5)$, $g(1)=0{,}5$, $p^*(u)=\tfrac12(1-u)^2$.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| nghiêm trọng — dẫn "bài 2/5/6/7 trong tài liệu bài tập" không còn | Bỏ mọi câu dẫn tới tài liệu bài tập; bốn bài tập trên lớp và bài tổng hợp thay bằng khối bài tập có thật của ghi chú; nguồn ghi trong ghi chú diễn giả | S01-03, S02-08/08b, S03-06/06b, S04-04/04b, S05-07/07b, S07-02 | `storyboard.md` viết lại, không còn dòng 75, 89 cũ |
+| trung bình — $w_0$ cho nghiệm bình phương nhỏ nhất | Đổi thành $w(0)$, thêm $w(\rho)$ theo bảng ký hiệu của ghi chú; giả thiết hạng cột đầy đủ như Mệnh đề 03.35 | S05-06a, S05-06b | bỏ trường hợp $X$ thiếu hạng, như ghi chú |
+| trung bình — quy ước $\tfrac12$ làm nhân tử lệch hệ số 2 | Trang tổng quát theo ghi chú: $J=\|Xw-y\|_2^2$, $(X^TX+\lambda I)w=X^Ty$; "Lưu ý:" nêu quan hệ hệ số 2; ví dụ và bài tập giữ mục tiêu có $\tfrac12$ như Ví dụ 03.19 và Bài tập 03.9 | S05-06, S05-06a, S05-06b, S05-07b | số liệu tính lại, khớp ghi chú |
+| trung bình — số đẳng thức $r$ thay vì $p$ | Đổi $r\to p$ trên mặt trang và ghi chú diễn giả | S02-04, S02-05d, S03-03a–c, S05-03 | — |
+| trung bình — thiếu độ nhạy, khoảng dương, dạng yếu Slater, đối ngẫu quy hoạch tuyến tính; 4 mục tiêu | Thêm S04-05, S04-05b (độ nhạy, giá bóng), S03-01b (khoảng dương); dạng yếu vào hộp định lý S03-03; đối ngẫu quy hoạch tuyến tính và Ví dụ 03.8 trong ghi chú diễn giả; 6 mục tiêu | S01-02, S03-01b, S03-03, S04-05, S04-05b, S02-07 (ghi chú) | máy vector hỗ trợ (mục tiêu 6) chỉ ở trang đọc S07-03; lý do trong storyboard |
+| trung bình — "dạng chuẩn" cho $f_i\le0$ | Đổi thành "dạng $f_i(x)\le0$" | S02-02, S02-07a (ghi chú) | S03-06 thay bài nên câu cũ không còn |
+| trung bình — S02-01 dạy lại điểm khả thi, $p^*$, nghiệm | Gom thành một dòng "Nhắc lại:" | S02-01 | 55 → 37 âm tiết |
+| trung bình — thiếu "Nhu cầu:" ở trang nội dung đầu mạch | Thêm "Nhu cầu:" | S02-01, S03-01, S04-01, S05-01 | dòng dẫn S04-00 cũng chuyển sang "Nhu cầu:" |
+| trung bình — trộn phát biểu với số của ví dụ | S02-07 chỉ giữ định nghĩa, số và hình sang S02-07c; số của S05-01 vào ghi chú; S03-02 bỏ, số vào ghi chú S03-01 | S02-07, S02-07c, S05-01, S03-01 | — |
+| nhẹ — ký hiệu chứng minh Slater lệch ghi chú | $(\tilde\lambda,\tilde\nu,\kappa)$, $\mathcal A$, $\mathcal B$, bốn bước như ghi chú | S03-03a–c | — |
+| nhẹ — $\tilde x$, $\alpha$, thuật ngữ in đậm, nhãn ngoài danh sách | $\hat x$, $\vartheta$; thuật ngữ mới in nghiêng; bỏ "Khả thi gốc:", "Dừng:", "Nếu …:" | S01-01, S02-00, S02-01, S02-04, S02-05, S02-05c–d, S02-07, S03-01, S03-03, S04-05b, S05-02, S05-03, S05-06a | — |
+| nhẹ — câu rào đón, câu xuất xứ trong ghi chú diễn giả | Cắt "Hình minh họa giả thiết…", "Định nghĩa chưa nói gì…", "Hình tự vẽ…", "ví dụ tính trực tiếp", "chưa giải thích…" | S03-02b, S05-03, S04-01a, S04-00, S02-07a/b, S05-05a, S05-06a/b, S07-03 | — |
+| (đã kiểm) mật độ S03-03a ghi 40 trong storyboard | Storyboard ghi số đo mới: 50 âm tiết | S03-03a | — |
+
+**Sửa thêm ngoài bảng.** Bỏ `\text{với …}` trong KaTeX (20 cảnh báo console "Unrecognized Unicode character"); công thức hiển thị chuyển từ `p` sang `div` (mỗi công thức một dòng, như các deck khác); ví dụ thiếu Slater đổi sang bài toán hai biến của ghi chú (Ví dụ 03.10) ở S03-05 và S05-05a; ví dụ "hoạt động nhưng nhân tử 0" đổi sang Nhận xét 03.28 ở S05-02; S02-07b, S03-04, S03-05, S05-05a, S05-06b kết thúc bằng "Diễn giải:".
+
+**Kiểm tra đã chạy.** `deck_check.py --shots` trên `http://127.0.0.1:8810/2627-1/lecture-03-doi-ngau-lagrange.html`: 60 trang, 0 lỗi console, 0 lỗi trang, 0 request hỏng, 0 `.katex-error`, không OVERFLOW ở 16:9; mọi trang ≤ 6 dòng và ≤ 3 công thức hiển thị; vượt 60 âm tiết chỉ S01-02 (72) và S07-01 (71), cả hai trần 80. Cờ NARROW-H (công thức hiển thị cuộn ngang ở 390 px, có gợi ý cuộn) còn trên một số trang như trước đợt sửa; trang không cuộn ngang. Đã xem ảnh 1600×900 và 390×844 của S01-02, S02-07c, S03-01, S03-01b, S03-03, S03-03a, S03-06b, S04-04b, S04-05, S04-05b, S05-01, S05-03, S05-06, S05-06a, S05-06b, S05-07b, S07-01. `git diff --check` sạch.
+
+### Lượt sửa sau kiểm lại (2026-11-13)
+
+**Quyết định người dùng (2026-11-13, qua điều phối viên):** độ nhạy và giá bóng chỉ nêu trong ghi chú diễn giả. Bỏ S04-05, S04-05b; Định nghĩa 03.22, Mệnh đề 03.23 (kèm chứng minh một dòng), Hệ quả 03.24, Ví dụ 03.14 và câu (c) của Bài tập 03.6 chuyển vào ghi chú diễn giả S04-04b (trang cuối mạch 4). Mạch 4 trở lại tên "Hình học của đối ngẫu", dòng dẫn "Nhu cầu: đọc nhân tử và cận dưới như độ dốc và tung độ gốc của một đường thẳng." Mục tiêu đọc độ nhạy của ghi chú không có trên S01-02 (ngoại lệ G3 theo quyết định người dùng, ghi trong ghi chú diễn giả S01-02). Quyết định điều phối viên: không viết lại công thức để né cờ báo nhầm của `deck_check.py` trên dấu căn KaTeX.
+
+**Kết quả:** 60 → 59 trang (bỏ S04-05, S04-05b; thêm S05-06c).
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| Quyết định người dùng: độ nhạy chỉ trong ghi chú diễn giả | Bỏ S04-05, S04-05b; độ nhạy vào ghi chú S04-04b; câu (c) của Bài tập 03.6 và 03.9 chuyển vào ghi chú lời giải; S07-01 hộp và S07-02 câu hỏi bỏ giá bóng; ghi chú S05-02, S05-06, S05-06b, S07-00, S07-01 dẫn tới ghi chú cuối mạch 4 | S04-00, S04-03, S04-04/04b, S05-02, S05-06, S05-06b, S05-07/07b, S07-00–02, S01-01–03 | tên mạch 4, dòng dẫn, từ khóa đổi |
+| A1 "bài toán nới" | "bài toán nhiễu (perturbed problem)" trong ghi chú S04-04, S04-04b; "nới" chỉ còn làm động từ | S04-04, S04-04b | các trang chứa phần lớn cụm từ đã bỏ |
+| A2 S03-01b câu Ví dụ 03.8 | "Bài toán lồi vẫn có thể có khoảng dương: …" | S03-01b (ghi chú) | — |
+| A3 S02-06 $\nu\in\mathbb R^r$ | $\mathbb R^p$ | S02-06 (ghi chú) | — |
+| A4 S05-05c câu nối | $\min x_1+x_2$ với $x_1^2+x_2^2\le0$ | S05-05c (ghi chú) | — |
+| A5 S03-04 dẫn số | $\lambda^*=2$ từ Ví dụ 03.4; Ví dụ 03.9 cho phép kiểm tra giả thiết | S03-04 (ghi chú) | — |
+| A6 S03-01 định nghĩa | "Với $\hat x$ khả thi và $(\lambda,\nu)$ khả thi đối ngẫu:" | S03-01 | — |
+| A7/B "Ví dụ." trên trang định nghĩa | Bỏ dòng ví dụ khỏi mặt trang; Nhận xét 03.28 giữ trong ghi chú | S05-02 | 4 → 3 dòng |
+| B8 mục tiêu 6 không có trang | Thêm S05-06c "Ví dụ: vector hỗ trợ đọc từ nhân tử" (Tình huống 03.1, $\rho=1$); mục tiêu gộp 1–2, thêm "máy vector hỗ trợ", bỏ độ nhạy | S05-06c, S01-02 | số kiểm lại: $\rho w=\alpha_2+\alpha_3=1$, $\alpha_2=\alpha_3=\frac12$, $\omega_{1,4}=2$, $\Psi(\alpha^*)=1-\frac12=\frac12=p^*$; S01-02 75 âm tiết (trần 80) |
+| B9 miền $D$ ở bài toán chọn gói | "Lưu ý: $g$ lấy infimum của $L$ trên $D$ thay cho $\mathbb R^n$; đối ngẫu yếu giữ nguyên."; ràng buộc gộp vào "Nhắc lại:"; câu ghi chú S02-04 về miền sửa | S03-01b, S02-04 (ghi chú) | 6 dòng |
+| B10 "thỏa chặt" nghĩa $f_i<0$ | "thỏa ngặt", "dấu ngặt", "bất đẳng thức ngặt"; "chặt" chỉ còn nghĩa hoạt động | S03-02b, S03-03, S03-03a, S03-04, S01-02 (ghi chú) | — |
+| B11 S04-01 Nhu cầu | "Nhu cầu: đọc nhân tử $\lambda$ trên một hình gồm tính khả thi, chi phí và cận dưới." | S04-01 | — |
+| B12 nhãn ngoài danh sách | Viết thành câu: "Điều kiện dừng …", "Ràng buộc hoạt động: …", "Bài toán có phạt …" (S05-07b); "(bù trừ)", "(dừng)" cuối câu (S05-05c); "Ràng buộc:" gộp vào "Nhắc lại:" (S03-01b) | S05-07b, S05-05c, S03-01b | — |
+| B13 $(\cdot)^{1/2}$ trên S05-07b | Mục chứa $\tau^{1/2}$ rời mặt trang cùng câu (c); ghi chú dùng $\sqrt\tau$ | S05-07b | không còn $(\cdot)^{1/2}$ trong deck |
+| B14 câu "Mỗi mục tiêu ứng với…" | Cắt | S01-02 (ghi chú) | — |
+| B15 S02-07 lặp "Ý nghĩa:" của S02-05c | Hộp chỉ còn "Theo đối ngẫu yếu, $d^*\le p^*$." | S02-07 | — |
+| B16 câu nối S03-06b, S07-00 | Theo câu hỏi mạch 4 mới; từ khóa S07-00 "chứng nhận cận khít" | S03-06b, S07-00 | — |
+| B17 outline.md câu về độ nhạy | Sửa câu nguồn và câu trạng thái, bỏ S04-05/05b khỏi danh sách trang | `outline.md` | — |
+
+**Kiểm tra đã chạy.** `deck_check.py --shots --out …/check-03/r1`: 59 trang, 0 lỗi console, 0 lỗi trang, 0 request hỏng, 0 `.katex-error`, không OVERFLOW, mọi trang ≤ 6 dòng; vượt 60 âm tiết chỉ S01-02 (75) và S07-01 (69), trần 80. Đã xem ảnh 1600×900 và 390×844 của S01-02, S03-01b, S04-04b, S05-06c, S05-07b. `git diff --check` sạch. Storyboard: 59 mục, mỗi trang một mục.
+
+**Bổ sung sau rà nhanh (2026-11-13).** S05-06c: dòng "Nhắc lại:" nêu bài toán gốc $\min\tfrac\rho2w^2+\sum_i\xi_i$ với $y_i(wz_i+w_0)\ge1-\xi_i$, $\xi_i\ge0$, $\rho=1$; "$\omega_i>1\Rightarrow\alpha_i=0$" chỉ còn trong ghi chú diễn giả; "Dừng:" thành "Điều kiện dừng cho …" (44 âm tiết, 5 dòng). Ghi chú S04-04, S05-07: cắt câu chỉ đường về câu (c). `deck_check.py --ids S05-06c` (…/check-03/r2): 59 trang, 0 lỗi, không OVERFLOW; đã xem ảnh 1600×900 và 390×844; `git diff --check` sạch.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa ("bài toán nới" → "bài toán nhiễu"; câu Ví dụ 03.8, trung bình) → đạt |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (mục tiêu 6 thiếu SVM; infimum trên $D$; "thỏa chặt") → đạt |
+
+Quyết định người dùng (2026-11-13, hỏi trực tiếp): độ nhạy và giá bóng chỉ nêu trong ghi chú diễn giả — bỏ S04-05, S04-05b; Định nghĩa 03.22, Mệnh đề 03.23, Hệ quả 03.24, Ví dụ 03.14 nằm trong ghi chú diễn giả S04-04b; ngoại lệ G3 cho phần độ nhạy của mục tiêu.
+
+Quyết định của điều phối viên: thêm S05-06c (vector hỗ trợ, Tình huống 03.1) cho mục tiêu 6; hoàn lại $\sqrt{\cdot}$ (người sửa từng đổi thành lũy thừa $1/2$ để né cờ báo nhầm).
+
+Kiểm của điều phối viên: đọc diff; 59 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW; S07-01 SYLL 69 (trang tổng kết, trần 80, ngoại lệ đã ghi). Đã xem ảnh 1600×900 và 390×844 của S01-02, S02-07c, S03-01, S03-01b, S04-00, S04-04b, S05-06c, S05-07b, S07-01: vừa khung.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
