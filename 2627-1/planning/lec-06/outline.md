@@ -137,6 +137,19 @@ Tiêu đề đổi: A02 “Mục tiêu học tập”; A04 “Ngữ cảnh: bài
 
 Thuật ngữ thống nhất: tầng ẩn (hidden layer), mạng nơ-ron, sai số vượt (excess error), độ chệch (bias) cho $b_1,b_2$ và hệ số chặn $c$ cho mô hình tuyến tính, sai số xác thực, phép kiểm tra bậc hai, tập mức dưới; “cỡ” chỉ độ lớn đổi thành “khoảng” (số cụ thể) hoặc “bậc” (bậc độ lớn), trừ “cỡ chữ”.
 
+### 1.10. Sửa theo bảng phát hiện và ghi chú bài giảng viết lại (2026-11-13)
+
+Ghi chú bài giảng viết lại ngày 2026-11-12 là chuẩn nội dung (quyết định G1 của điều phối viên). Các thay đổi của dàn bài gồm:
+
+- **Mục tiêu học tập.** A02 có năm mục tiêu, khớp sáu mục tiêu của ghi chú: (1) mạng hai tầng biểu diễn XOR và tính không lồi; (2) lan truyền ngược, phân loại điểm dừng, định lý chuẩn gradient; (3) sai số của gradient lô nhỏ, SGD lô nhỏ; (4) định lý hội tụ SGD cho hàm lồi mạnh và không lồi, dừng sớm và chính quy hóa; (5) lựa chọn phương pháp.
+- **Ký hiệu và thuật ngữ** theo Nhận xét 06.2 và bảng §2 của ghi chú: “lô nhỏ (mini-batch)” thay “nhóm nhỏ”; chặn phương sai $\tau^2$, $\tau_1^2$ thay $\sigma^2$, $\sigma_1^2$ ($\sigma$ chỉ còn là hàm kích hoạt); chu kỳ đánh giá $T$ thay $s$; “chính quy hóa bậc hai”; phương sai của mất mát $V(\theta)$.
+- **Đánh số.** Bỏ “Mệnh đề 1/2/3” riêng của deck; dẫn Mệnh đề 05.38, 06.6, 06.7 và các số 06.xx của ghi chú cho kết quả 05b/05c được phát biểu lại.
+- **Trang mới (73 → 76 trang).** B07b “Ví dụ: đổi chỗ hai đơn vị ẩn của mạng XOR” tách từ B08; F03b “Hạ gradient ngẫu nhiên trên hàm lồi mạnh” đưa lại §8.2–8.3 của ghi chú ở dạng phát biểu gọn; ví dụ ba quan sát (Ví dụ 06.20) nằm trong ghi chú diễn giả F03b, không có trang riêng (quyết định D06 và lựa chọn “Giữ gọn” của người dùng 2026-11-13, tránh trùng deck 05b; đảo một phần yêu cầu 2026-10-22; thời lượng lấy lại từ ba trang đã bỏ, 0,06 + 0,01); F07c “Ví dụ: tỉ lệ giữ trên mục tiêu toàn phương ba trị riêng” tách từ F07 (thời lượng lấy từ F07).
+- **Thứ tự.** Cụm dừng sớm và chính quy hóa theo ghi chú: F07 (trực quan + Mệnh đề 06.40) → F07c (Ví dụ 06.22) → F07b (Nhận xét 06.41).
+- **Bảng lựa chọn G02** thêm dòng “$n$ lớn; lồi mạnh: SGD, $\eta_k=\tfrac1{\mu(k+1)}$, $O(1/k)$” theo mục 9.4 của ghi chú; G01, G03 thêm kết quả lồi mạnh.
+
+Các mục trang ở phần 6 dưới đây giữ nội dung lập kế hoạch ban đầu; trạng thái hiện hành của từng trang ghi trong `storyboard.md` (mục “Sửa 2026-11-13” của từng trang).
+
 ## 2. Đối chiếu LLO
 
 Đề cương: Buổi 5 có LLO11 (khác biệt tối ưu học máy và tối ưu thuần túy; thách thức: điều kiện hóa kém, nhiều cực trị địa phương, độ sâu đồ thị tính toán; CLO1), LLO12 (SGD, momentum, Nesterov; CLO2), LLO13 (khởi tạo; CLO2). Buổi 6 có LLO14 (AdaGrad, RMSProp, Adam; CLO4+CLO5), LLO15 (Newton, gradient liên hợp, BFGS; CLO4+CLO5), LLO16 (chuẩn hóa theo lô, hạ theo tọa độ, trung bình Polyak, tiền huấn luyện có giám sát, tiếp diễn, học theo chương trình; CLO4+CLO5).
@@ -230,15 +243,15 @@ Giới hạn bắt buộc phải nói: T7, T8 áp dụng cho mạng có hàm kí
 | Mạch | Chức năng | Đầu vào | Đầu ra | Trang | Tiết LT | Tiết BT | Trang kiểm tra |
 |---|---|---|---|---|---|---|---|
 | A. Bài toán huấn luyện khi mô hình và dữ liệu lớn | Nhận hai giới hạn của Bài 05, nêu luận đề “mất gì, giữ gì”, cố định ký hiệu | Kết luận Bài 05: chi phí $O(nd)$ và $O(nd^2+d^3)$; XOR; chính quy hóa $\ell_2$ | Ba câu hỏi của bài (biểu diễn, chứng nhận, tốc độ dưới nhiễu) và khung ký hiệu | A01–A03b (7 trang: A01, A02, A02b, A04, A04b, A03, A03b; A04b, A03b thêm 2026-10-21) | 0,12 | 0,00 | (không) |
-| B. Biểu diễn phi tuyến và mạng hai tầng (khối B1) | **Nhu cầu:** dự đoán tuyến tính không đủ cho XOR. Xây mạng hai tầng và chỉ ra chi phí: rủi ro thực nghiệm không lồi | Giới hạn (ii) của Bài 05 | Mô hình $f(x;\theta)$, $F(\theta)$ không lồi, nhiều cực tiểu đối xứng | B00–B10b (14) | 0,55 | 0,33 | B10, B10b |
+| B. Biểu diễn phi tuyến và mạng hai tầng (khối B1) | **Nhu cầu:** dự đoán tuyến tính không đủ cho XOR. Xây mạng hai tầng và chỉ ra chi phí: rủi ro thực nghiệm không lồi | Giới hạn (ii) của Bài 05 | Mô hình $f(x;\theta)$, $F(\theta)$ không lồi, nhiều cực tiểu đối xứng | B00–B10b (15; B07b thêm 2026-11-13) | 0,55 | 0,33 | B10, B10b |
 | C. Lan truyền ngược trên đồ thị tính toán (khối B2, phần 1) | **Nhu cầu:** mọi phương pháp bậc nhất cần $\nabla F(\theta)\in\mathbb R^p$; tính nó với chi phí cùng bậc truyền xuôi | Mô hình và $F$ của mạch B; dây chuyền của Bài 00 | Thuật toán và chi phí; gradient chính xác của một mẫu; một bước hạ gradient | C00–C07b (9) | 0,36 | 0,14 | C07, C07b |
 | D. Điểm dừng và bảo đảm của gradient khi không lồi (khối B2, phần 2) | **Nhu cầu:** xác định điều mà gradient bằng 0 hoặc gradient nhỏ chứng nhận khi $F$ không lồi | Gradient từ C; tính không lồi từ B | Phân loại điểm dừng; bổ đề giảm và T7: bảo đảm có được là điểm dừng xấp xỉ | D00–D07b (12; D04b thêm 2026-10-12) | 0,32 | 0,18 | D07, D07b |
-| E. Gradient nhóm nhỏ và chi phí mỗi bước (khối B3, phần 1) | **Nhu cầu:** một gradient đầy đủ vượt ngân sách; $F$ chỉ là đại lượng thay thế | Thuật toán GD và T7 của D; chi phí của C | Ước lượng không chệch, phương sai, thuật toán SGD, chi phí mỗi bước độc lập với $n$ | E00–E06c (11) | 0,30 | 0,14 | E06–E06c |
-| F. Tốc độ hội tụ dưới nhiễu và dừng sớm (khối B3, phần 2) | **Nhu cầu:** chặn chuẩn gradient của hạ gradient ngẫu nhiên sau $K$ bước và chọn thời điểm dừng (sửa 2026-10-22; trước: xác định tốc độ hội tụ còn lại khi gradient có nhiễu, và lý do tốc độ đó đủ dưới ngân sách cố định với mục tiêu thay thế | SGD và phương sai của E | Bất đẳng thức một bước có nhiễu và chứng minh; T8 phát biểu lại với phạm vi; so sánh dưới ngân sách cố định; dừng sớm | F00–F08b (14; F01c thêm, F02, F02b, F03 bỏ 2026-10-22) | 0,24 | 0,12 | F08, F08b |
+| E. Gradient lô nhỏ và chi phí mỗi bước (khối B3, phần 1) | **Nhu cầu:** một gradient đầy đủ vượt ngân sách; $F$ chỉ là đại lượng thay thế | Hạ gradient và Định lý 06.19 của D; chi phí của C | Ước lượng không chệch, sai số bình phương trung bình, thuật toán SGD lô nhỏ, chi phí mỗi bước độc lập với $n$ | E00–E06c (11) | 0,30 | 0,14 | E06–E06c |
+| F. Tốc độ hội tụ dưới nhiễu và dừng sớm (khối B3, phần 2) | **Nhu cầu:** chặn sai số của SGD sau $K$ bước, cho hàm lồi mạnh và không lồi, và chọn thời điểm dừng (sửa 2026-11-13) | SGD lô nhỏ và sai số của E | Bất đẳng thức một bước có nhiễu và chứng minh; Định lý 06.30, 06.31 (lồi mạnh); Định lý 06.33, Hệ quả 06.34 với phạm vi; so sánh dưới ngân sách cố định; dừng sớm và chính quy hóa bậc hai | F00–F08b (16; F03b, F07c thêm 2026-11-13) | 0,30 | 0,13 | F08, F08b |
 | G. Tổng hợp và lựa chọn phương pháp | Khép luận đề: những gì mất, những gì giữ; chọn phương pháp theo $(n,p)$ và tính lồi | Kết quả của B–F | Bảng quyết định có điều kiện áp dụng | G00–G04 (6) | 0,05 | 0,08 | G04 |
-| **Tổng** | | | | **73** | **1,94** | **0,99** | |
+| **Tổng** | | | | **76** | **2,00** | **1,00** | |
 
-Kiểm tổng (sửa 2026-10-22): LT $0{,}12+0{,}55+0{,}36+0{,}32+0{,}30+0{,}24+0{,}05=1{,}94$; BT $0{,}33+0{,}14+0{,}18+0{,}14+0{,}12+0{,}08=0{,}99$. Khối B1 = $0{,}12+0{,}55+0{,}33=1{,}00$; B2 = $0{,}36+0{,}14+0{,}32+0{,}18=1{,}00$; B3 = $0{,}30+0{,}14+0{,}24+0{,}12+0{,}05+0{,}08=0{,}93$ (thời lượng của F02, F02b, F03 trừ đi, không phân bổ lại).
+Kiểm tổng (sửa 2026-11-13): LT $0{,}12+0{,}55+0{,}36+0{,}32+0{,}30+0{,}30+0{,}05=2{,}00$; BT $0{,}33+0{,}14+0{,}18+0{,}14+0{,}13+0{,}08=1{,}00$. Khối B1 = $0{,}12+0{,}55+0{,}33=1{,}00$; B2 = $0{,}36+0{,}14+0{,}32+0{,}18=1{,}00$; B3 = $0{,}30+0{,}14+0{,}30+0{,}13+0{,}05+0{,}08=1{,}00$. Thời lượng 0,06 LT + 0,01 BT của F02, F02b, F03 (trừ ngày 2026-10-22) nay giao cho F03b.
 
 Ranh giới cần giữ (từ 2026-10-12 mỗi ranh giới có trang tiêu đề mạch B00–G00 xen giữa): B10b→C01 chuyển từ “mô hình nào” sang “tính gradient của nó thế nào”; C07b→D01 chuyển từ “tính được” sang “chứng nhận được gì”; D07b→E01 giữ định lý hội tụ chuẩn gradient nhưng thay giả thiết gradient đầy đủ bằng ngân sách cố định; E06c→F01 chuyển từ “một bước” sang “tốc độ sau $K$ bước”.
 
@@ -409,6 +422,12 @@ Nhu cầu của mạch (câu hỏi trung tâm B1 viết lại): dự đoán tuy�
 - **Liên kết:** Kế thừa định nghĩa B06; tạo nhu cầu cho KN3.
 - **Quyết định:** thêm; tách bước “quy tắc lồi không áp dụng” khỏi bước “phản ví dụ” để không nhảy kết luận.
 - **Hành trình:** KN2 ứng dụng; KN3 nhu cầu. **LLO/CLO:** LLO11; CLO1. **Thời lượng:** 0,05 + 0,00.
+
+#### B07b. Ví dụ: đổi chỗ hai đơn vị ẩn của mạng XOR
+
+- **Điểm trung tâm:** đổi chỗ hai đơn vị ẩn của $\theta_A$ cho $\theta_B\ne\theta_A$ cùng hàm $\lvert x_1-x_2\rvert$, $F(\theta_B)=0$ (Ví dụ 06.5).
+- **Mặt trang:** dữ kiện $\theta_A$; phép đổi chỗ; bảng $\theta_A$, $\theta_B$, $F$; “Diễn giải:” cực tiểu toàn cục không duy nhất.
+- **Quyết định:** tách từ B08 (2026-11-13). **Hành trình:** KN3 trực quan + ví dụ. **Thời lượng:** lấy từ B08.
 
 #### B08. Đối xứng hoán vị các đơn vị ẩn
 
@@ -652,7 +671,7 @@ Nhu cầu của mạch (câu hỏi B2, nửa sau): khi $F$ không lồi, cần b
 
 Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_k)$ ở mỗi bước, chi phí $O(np)$; cần biết bỏ gradient đầy đủ thì mất gì.
 
-#### E00. Gradient nhóm nhỏ và chi phí mỗi bước (trang tiêu đề mạch)
+#### E00. Gradient lô nhỏ và chi phí mỗi bước (trang tiêu đề mạch)
 
 - **Mặt trang:** “5.”, tên mạch, dòng dẫn “Muốn mỗi bước tốn ít hơn $O(np)$ khi $n$ lớn, với ước lượng không chệch của $\nabla F$.”
 - **Quyết định:** thêm (2026-10-12; mục 1.8).
@@ -685,7 +704,7 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 - **Quyết định:** tách từ E02 (2026-10-12; mục 1.8).
 - **Hành trình:** KN7 nhu cầu (ví dụ dẫn nhập). **Thời lượng:** 0,02 + 0,00.
 
-#### E03. Ví dụ: gradient nhóm nhỏ trên dữ liệu bốn điểm, sáu gradient nhóm
+#### E03. Ví dụ: gradient lô nhỏ trên dữ liệu bốn điểm, sáu lô
 
 - **Điểm trung tâm:** Sáu nhóm hai mẫu cho sáu gradient khác nhau, trung bình đúng bằng gradient đầy đủ; một nhóm làm $F$ tăng sau bước cập nhật.
 - **Mặt trang:** **Ví dụ.** $x=(-1,0,1,2)$, $y=(1,0,1,4)$, $f(x;w,c)=wx+c$, $\theta_0=(0,0)$, $F(\theta_0)=\tfrac94$. Gradient mẫu $\nabla\ell_i=(wx_i+c-y_i)(x_i,1)$: $(1,-1),(0,0),(-1,-1),(-8,-4)$; $\nabla F(\theta_0)=(-2;\,-1{,}5)$. Bảng sáu nhóm $b=2$, $\eta=\tfrac14$: $\{1,2\}$: $\widehat g=(\tfrac12,-\tfrac12)$, $F(\theta_1)=2{,}324$; $\{1,3\}$: $(0,-1)$, $1{,}906$; $\{1,4\}$: $(-\tfrac72,-\tfrac52)$, $0{,}605$; $\{2,3\}$: $(-\tfrac12,-\tfrac12)$, $1{,}840$; $\{2,4\}$: $(-4,-2)$, $0{,}625$; $\{3,4\}$: $(-\tfrac92,-\tfrac52)$, $0{,}559$. Trung bình $\widehat g$: $(-2;\,-1{,}5)$. Bước đầy đủ: $\theta=(\tfrac12,\tfrac38)$, $F=1{,}039$.
@@ -695,13 +714,13 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 - **Quyết định:** thêm; yêu cầu một bước số trên 3–4 điểm với $b=2$; ví dụ đặt trước phát biểu hình thức.
 - **Hành trình:** KN7 trực quan + ví dụ. **LLO/CLO:** LLO12; CLO1. **Thời lượng:** 0,06 + 0,03.
 
-#### E03b. Ví dụ: gradient nhóm nhỏ trên dữ liệu bốn điểm, một bước theo từng nhóm
+#### E03b. Ví dụ: gradient lô nhỏ trên dữ liệu bốn điểm, một bước theo từng lô
 
 - **Mặt trang:** Bảng sáu nhóm, $F(\theta_1)$, kỳ vọng $\tfrac{503}{384}$, “Diễn giải:”.
 - **Quyết định:** tách từ E03 (2026-10-12; mục 1.8).
 - **Hành trình:** KN7 ví dụ. **Thời lượng:** 0,03 + 0,02.
 
-#### E04. Tính không chệch và phương sai của gradient nhóm
+#### E04. Tính không chệch và sai số của gradient lô nhỏ
 
 - **Điểm trung tâm:** Gradient nhóm chọn đều là ước lượng không chệch của $\nabla F(\theta)$ với sai số bình phương trung bình $\operatorname{tr}\Sigma(\theta)/b$, nhân $\tfrac{n-b}{n-1}$ khi chọn không hoàn lại.
 - **Mặt trang:** **Định lý 05c.53 (Bài 05c, phát biểu lại).** $\theta$ cố định; $B$ gồm $b$ chỉ số chọn đều. Có hoàn lại: $\mathbb E\widehat g=\nabla F(\theta)$, $\mathbb E\lVert\widehat g-\nabla F(\theta)\rVert^2=\operatorname{tr}\Sigma(\theta)/b$. Không hoàn lại: cùng kỳ vọng, phương sai nhân $\frac{n-b}{n-1}$. Kiểm trên dữ liệu bốn điểm: $\operatorname{tr}\Sigma(\theta_0)=\tfrac{59}{4}$; trung bình sáu giá trị $\lVert\widehat g-\nabla F\rVert^2$ bằng $\tfrac{59}{12}=\tfrac{59}{4}\cdot\tfrac12\cdot\tfrac23$.
@@ -711,7 +730,7 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 - **Quyết định:** thêm; yêu cầu dẫn 05c với nhãn, phát biểu lại, không chứng minh lại.
 - **Hành trình:** KN7 hình thức. **LLO/CLO:** LLO12; CLO1. **Thời lượng:** 0,06 + 0,00.
 
-#### E05. Thuật toán hạ gradient ngẫu nhiên nhóm nhỏ
+#### E05. Thuật toán hạ gradient ngẫu nhiên lô nhỏ
 
 - **Điểm trung tâm:** SGD nhóm nhỏ cập nhật bằng $\widehat g_k$ với chi phí mỗi bước $O(bp)$, độc lập với $n$.
 - **Mặt trang:** **Thuật toán.** Đầu vào: dữ liệu, $\theta_0$, $b$, lịch bước $(\eta_k)$, số bước $K$, tập xác thực. Với $k=0,\dots,K-1$: chọn $B_k$ ($b$ chỉ số đều, độc lập với lịch sử); tính $\widehat g_k$ bằng lan truyền ngược trên $B_k$; $\theta_{k+1}=\theta_k-\eta_k\widehat g_k$; định kỳ đánh giá trên tập xác thực và lưu tham số tốt nhất. Đầu ra: tham số có sai số xác thực nhỏ nhất đã lưu. Chi phí: mỗi bước $O(bp)$; một lượt dữ liệu $n/b$ bước, tổng $O(np)$.
@@ -737,7 +756,7 @@ Nhu cầu của mạch (câu hỏi B3, nửa đầu): T7 cần $\nabla F(\theta_
 - **Quyết định:** tách từ ghi chú E06 (2026-10-12; mục 1.8).
 - **Hành trình:** KN4, KN7 bài tập. **Thời lượng:** 0,00 + 0,03.
 
-#### E06c. Bài tập: phương sai của gradient nhóm ba mẫu
+#### E06c. Bài tập: sai số của gradient lô nhỏ ba mẫu
 
 - **Mặt trang:** “Câu hỏi:” câu 5 cũ của E06 và “Lời giải:” dạng fragment, khớp Bài 7 câu 5.
 - **Quyết định:** tách từ E06 (2026-10-12; mục 1.8).
@@ -756,7 +775,7 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 - **Hành trình:** KN8 nhu cầu. **Thời lượng:** 0,01 + 0,00.
 - **Sửa 2026-10-22 (bỏ F02, F02b, F03):** từ khóa “Bất đẳng thức một bước · cận không lồi · ngân sách cố định · dừng sớm”; ghi chú theo mạch mới.
 
-#### F01. Nhiễu của gradient nhóm tại nghiệm
+#### F01. Nhiễu của gradient lô nhỏ tại điểm cực tiểu
 
 - **Điểm trung tâm:** Tại $\theta^*$, $\nabla F=0$ nhưng gradient nhóm vẫn khác 0, nên SGD bước hằng không dừng ở $\theta^*$ mà dao động quanh nó, và một bước từ $\theta^*$ làm $F$ tăng theo kỳ vọng.
 - **Mặt trang:** Gradient mẫu tại $\theta^*=(1,1)$ của dữ liệu bốn điểm, $\operatorname{tr}\Sigma(\theta^*)=\tfrac52$, $\mathbb E\lVert\widehat g\rVert^2=\tfrac56$; một bước $\eta=\tfrac14$: $\mathbb E\lVert\theta_1-\theta^*\rVert^2=\tfrac5{96}$, $\mathbb EF(\theta_1)=\tfrac{69}{128}>\tfrac12$; dòng “**Trực quan.** Khi $\operatorname{tr}\Sigma(\theta^*)>0$ và $b<n$, dãy bước hằng dao động quanh $\theta^*$, không dừng tại đó.” Không có hình (hình ví dụ ba quan sát chuyển sang F02b ngày 2026-10-12).
@@ -784,6 +803,13 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 - **Quyết định:** thêm (yêu cầu người dùng 2026-10-22; chứng minh ở trang riêng theo quyết định của master).
 - **Hành trình:** KN8 hình thức (chứng minh). **LLO/CLO:** LLO12; CLO1. **Thời lượng:** 0,01 + 0,00.
 - **Sửa 2026-10-22 (bỏ F02, F02b, F03):** liên kết F01b → F01c → F04.
+
+#### F03b. Hạ gradient ngẫu nhiên trên hàm lồi mạnh
+
+- **Điểm trung tâm:** hai định lý cho hàm lồi mạnh: bước hằng tới lân cận có mức nhiễu nền $\tfrac{\eta\tau^2}\mu$ (Định lý 06.30); bước $\tfrac1{\mu(k+1)}$ cho $O(1/k)$ (Định lý 06.31).
+- **Mặt trang:** giả thiết chung; (i) và (ii) với điều kiện áp dụng; hai cận; “Ý nghĩa:”.
+- **Ghi chú diễn giả:** Ví dụ 06.20 (ví dụ ba quan sát, hai lịch bước, bảng $k=10,16,20$).
+- **Quyết định:** thêm (D06, 2026-11-13; giữ gọn theo người dùng 2026-11-13). **Hành trình:** KN8 hình thức. **Thời lượng:** 0,06 + 0,01.
 
 #### F04. Hạ gradient ngẫu nhiên cho hàm không lồi
 
@@ -844,6 +870,11 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 - **Hành trình:** KN9 ví dụ + hình thức (nhận xét) + ứng dụng. **LLO/CLO:** LLO11; CLO1, CLO2. **Thời lượng:** 0,03 + 0,01.
 - **Sửa 2026-10-22 (tiêu đề):** tiêu đề cũ “Ví dụ: tỉ lệ giữ của dừng sớm và chính quy hóa $\ell_2$” → “Dừng sớm so với chính quy hóa” (yêu cầu người dùng); trang vẫn là trang ví dụ, kết bằng “Diễn giải:”.
 
+#### F07c. Ví dụ: tỉ lệ giữ trên mục tiêu toàn phương ba trị riêng
+
+- **Điểm trung tâm:** Ví dụ 06.22, bảng tỉ lệ giữ với $\eta=0{,}5$, $k=20$, $\lambda=0{,}1$.
+- **Quyết định:** tách từ F07 (2026-11-13). **Hành trình:** KN9 ví dụ. **Thời lượng:** lấy từ F07.
+
 #### F07b. Tương ứng giữa số bước dừng và hệ số chính quy hóa
 
 - **Mặt trang:** “Nhận xét.”, “Ý nghĩa:”, “Lưu ý:”; hình `early-stopping-shrinkage.svg`.
@@ -851,7 +882,7 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 - **Hành trình:** KN9 hình thức, ứng dụng. **Thời lượng:** 0,01 + 0,00.
 - **Sửa 2026-10-22 (vòng 11):** tiêu đề cũ “Dừng sớm và chính quy hóa $\ell_2$ trên mục tiêu bậc hai” → “Tương ứng giữa số bước dừng và hệ số chính quy hóa”.
 
-#### F08. Bài tập: bất đẳng thức một bước, cận không lồi và dừng sớm
+#### F08. Bài tập: tốc độ hội tụ dưới nhiễu và dừng sớm
 
 - **Điểm trung tâm:** Kiểm khả năng đọc và dùng ba kết quả của mạch.
 - **Mặt trang:** **Câu hỏi:** (a) Ví dụ A (ba quan sát $-1,1,3$; $\mu=L=1$; $\sigma^2=\tfrac83$; $\theta_0=0$): tính $\mathbb E(\theta_k-1)^2$ tại $k=10$ và $k=20$ cho bước hằng $0{,}1$ (dùng $0{,}81^k+\tfrac8{57}(1-0{,}81^k)$) và cho $\eta_k=\tfrac1{k+1}$. Lịch nào tốt hơn ở mỗi $k$. (b) Với $L=\Delta_0=\sigma^2=1$, tìm $K$ nhỏ nhất để cận hệ quả của T8 không vượt $0{,}01$. (c) Với $\eta=0{,}5$, $k=20$, trị riêng $\alpha=0{,}1$: tính tỉ lệ giữ của dừng sớm và của chính quy hóa hệ số $\lambda=0{,}1$; giải thích sai khác.
@@ -863,7 +894,7 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 - **Sửa 2026-10-22 (bỏ F02, F02b, F03):** tiêu đề mới; câu 1: “Với $L=\sigma^2=1$ và $\lVert\nabla F(\theta_k)\rVert^2=\tfrac12$: tìm mọi $\eta>0$ để bất đẳng thức một bước bảo đảm giảm theo kỳ vọng.”; câu 2, 3 giữ.
 - **Sửa 2026-10-22 (vòng 11):** câu 3 $k=20$ → $k=10$; đáp án $0{,}401$ và $0{,}5$.
 
-#### F08b. Bài tập: bất đẳng thức một bước, cận không lồi và dừng sớm
+#### F08b. Bài tập: tốc độ hội tụ dưới nhiễu và dừng sớm
 
 - **Mặt trang:** “Lời giải:” ba đáp án.
 - **Quyết định:** tách từ ghi chú F08 (2026-10-12; mục 1.8).
@@ -928,14 +959,14 @@ Sau kiểm định storyboard 2026-10-11, mạch F có 8 trang: F02 cũ (T5 và 
 | Mạch | Phân bổ | Tổng |
 |---|---|---|
 | A | A01 0,01; A02 0,02; A02b 0,01; A04 0,02; A04b 0,01; A03 0,03; A03b 0,02 | 0,12 + 0,00 |
-| B | B00 0,01; B01 0,04; B02 0,05+0,02; B02b 0,02; B03 0,06+0,02; B04 0,05; B05 0,06+0,04; B06 0,07; B07 0,05; B08 0,06+0,02; B09 0,05+0,01; B09b 0,03+0,02; B10 0+0,10; B10b 0+0,10 | 0,55 + 0,33 |
+| B | B00 0,01; B01 0,04; B02 0,05+0,02; B02b 0,02; B03 0,06+0,02; B04 0,05; B05 0,06+0,04; B06 0,07; B07 0,05; B07b 0,03+0,01; B08 0,03+0,01; B09 0,05+0,01; B09b 0,03+0,02; B10 0+0,10; B10b 0+0,10 | 0,55 + 0,33 |
 | C | C00 0,01; C01 0,04; C02 0,06+0,02; C03 0,07+0,03; C04 0,08; C05 0,05+0,01; C06 0,05+0,02; C07 0+0,03; C07b 0+0,03 | 0,36 + 0,14 |
 | D | D00 0,01; D01b 0,02; D01 0,02; D02 0,06+0,03; D03 0,05+0,01; D04 0,03; D04b 0,02; D05 0,04; D05b 0,02; D06 0,05+0,02; D07 0+0,06; D07b 0+0,06 | 0,32 + 0,18 |
 | E | E00 0,01; E01 0,05+0,01; E02 0,04; E02b 0,02; E03 0,03+0,01; E03b 0,03+0,02; E04 0,06; E05 0,06+0,02; E06 0+0,03; E06b 0+0,03; E06c 0+0,02 | 0,30 + 0,14 |
-| F | F00 0,01; F01 0,04+0,01; F01b 0,01; F01c 0,01; F04 0,04; F04b 0,02; F05 0,03+0,01; F05b 0,02+0,01; F06 0,01; F06b 0,02; F07 0,02+0,01; F07b 0,01; F08 0+0,04; F08b 0+0,04 | 0,24 + 0,12 (0,30 + 0,13 trước khi bỏ F02, F02b, F03 ngày 2026-10-22) |
+| F | F00 0,01; F01 0,04+0,01; F01b 0,01; F01c 0,01; F03b 0,06+0,01; F04 0,04; F04b 0,02; F05 0,03+0,01; F05b 0,02+0,01; F06 0,01; F06b 0,02; F07 0,01; F07c 0,01+0,01; F07b 0,01; F08 0+0,04; F08b 0+0,04 | 0,30 + 0,13 |
 | G | G00 0,01; G01 0,01; G01b 0,01; G02 0,01+0,02; G03 0,01; G04 0+0,06 | 0,05 + 0,08 |
 
-Kiểm tổng theo khối: B1 = A + B = $0{,}12+0{,}55+0{,}33=1{,}00$; B2 = C + D = $0{,}36+0{,}14+0{,}32+0{,}18=1{,}00$; B3 = E + F + G = $0{,}30+0{,}14+0{,}24+0{,}12+0{,}05+0{,}08=0{,}93$. Tổng 1,94 tiết lý thuyết + 0,99 tiết bài tập. Từ 2026-10-22, thời lượng của F02, F02b, F03 (0,06 LT + 0,01 BT) được trừ, không phân bổ lại (quyết định của master); khối B3 còn 0,93 tiết.
+Kiểm tổng theo khối: B1 = A + B = $0{,}12+0{,}55+0{,}33=1{,}00$; B2 = C + D = $0{,}36+0{,}14+0{,}32+0{,}18=1{,}00$; B3 = E + F + G = $0{,}30+0{,}14+0{,}30+0{,}13+0{,}05+0{,}08=1{,}00$. Tổng 2,00 tiết lý thuyết + 1,00 tiết bài tập. Ngày 2026-10-22, thời lượng của F02, F02b, F03 (0,06 LT + 0,01 BT) được trừ; từ 2026-11-13 phần này giao cho F03b. B07b chia đôi thời lượng của B08, F07c lấy một phần của F07.
 
 ## 8. Ví dụ số (đã tính lại)
 

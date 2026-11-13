@@ -1167,3 +1167,76 @@ Lệch nội dung có từ trước (ghi lại, không sửa — ngoài phạm v
 | nhẹ | B03, F06; G04 | Quy tắc (mật độ): dòng 25 và 22 âm tiết; G04 khoảng 84 token (storyboard ghi 76, trần 80). | html:105, 519, 605–609 | Tách dòng; đếm lại và rút G04 |
 
 **Đã kiểm, không lỗi:** mọi số hiệu 05/05b/05c/04/02 mà deck dẫn tồn tại và đúng khối (05b.6, 05b.8(b), 05b.16, 05b.18, 05b.31, 05b.39, 05b.41, 05b.43, 05b.44; 05c.52, 05c.53, 05c.56, 05c.58, Mục 6.6, 6.7; 05.38, 05.25; 04.19); vấn đề chỉ là nên dẫn 06.xx. Số liệu E01, F04b tính lại khớp. A04 vượt trần nhưng có ngoại lệ ghi trong storyboard.
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Bối cảnh.** Người sửa (một tác tử, theo quyết định G1–G10 và D06 của điều phối viên, `edit-decisions-2026-11-13.md`) sửa `lecture-06-mo-rong-mo-hinh-va-du-lieu.html` theo bảng phát hiện ở mục trước, lấy ghi chú bài giảng viết lại 2026-11-12 làm chuẩn nội dung. `no-ai-slop` chế độ Edit cho mặt trang và ghi chú diễn giả. Loại tác tử, mô hình và effort do điều phối viên ghi theo lời gọi công cụ. Không sửa `materials/`, CSS hay deck khác; không commit.
+
+**Kết quả.** 73 → 77 trang, 7 mạch. Thêm B07b (tách từ B08), F03b và F03c (D06: SGD trên hàm lồi mạnh, Định lý 06.30, 06.31, Ví dụ 06.20), F07c (tách từ F07). Mọi trang khác giữ `data-slide-id`. `img/lec-06/batch-gradients.svg`: tiêu đề và mô tả thay “gradient nhóm” bằng “gradient lô nhỏ”.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| nghiêm trọng — số riêng “Mệnh đề 1/2/3” | Bỏ số riêng trên mặt trang và trong ghi chú diễn giả: “Mệnh đề. … (Mệnh đề 05.38)”, “Mệnh đề (Mệnh đề 06.6)”, “Mệnh đề (Mệnh đề 06.7)”; B06 thành “Hệ quả. … (Hệ quả 06.5)”; ghi chú B04 dẫn Mệnh đề 06.3. Grep “Mệnh đề [123]” trên deck: 0 kết quả. | B01, B02, B02b, B03, B04, B05, B06, B07, B08, B09, B10, D01, D02, G01b, G03, G04 | Mỗi trang tối đa một số hiệu trên mặt trang. |
+| nghiêm trọng — thuật ngữ, ký hiệu lệch ghi chú | “nhóm nhỏ”/“gradient nhóm” → “lô nhỏ (mini-batch)”/“gradient lô nhỏ” (63 chỗ); $\sigma^2,\sigma_1^2\to\tau^2,\tau_1^2$; $\sigma>0\to\tau>0$; chu kỳ $s\to T$ (F06b, E05 thêm $T$ theo Thuật toán 06.25); “chính quy hóa $\ell_2$” → “chính quy hóa bậc hai”; $V(\theta)$ ở E02. Ghi chú A04b, E04, G01 bỏ ba câu khẳng định ngược lại; A04 đối chiếu ký hiệu theo Nhận xét 06.2. | A01–A04b, E00–E06c, F00–F08b, G00–G04 | $\sigma$ chỉ còn là hàm kích hoạt. SVG `batch-gradients.svg` sửa theo. |
+| trung bình — dẫn 05b/05c thay vì 06.xx | Dẫn Bổ đề 06.18 (D04, thay “Nhắc lại: Bổ đề 05b.6”), Định lý 06.19 (D05), 06.21 (E02), 06.24 (E03b, E04, E06c), 06.33 (D07b, F01c, F04), Hệ quả 06.34 (F04b), Mệnh đề 06.28 (F01b), Thuật toán 06.11, 06.25, 06.38, Mệnh đề 06.16, 06.36, 06.40, Nhận xét 06.41. Số 05b còn lại chỉ ở ghi chú diễn giả để đối chiếu (05b.6, 05b.8(b), 05b.16, 05b.36, 05b.39, 05b.19, 05c.56). | D03, D04, D05, E02, E04, E05, F01b, F01c, F04, F04b, F06b, F07, F07b, G01b, G02, G03, G04 | |
+| trung bình — ghi chú A02 “không chứng minh lại” | Viết lại: ghi chú bài giảng Bài 06 phát biểu lại và chứng minh đầy đủ; trên lớp phát biểu và kiểm tra trên ví dụ. Ghi chú D05, E02, F04 cũng sửa câu “không chứng minh lại”. | A02, D05, E02, F04 | |
+| trung bình — mạch 6 thiếu §8.2–8.3, mục tiêu lồi mạnh; A02 3 mục tiêu | D06: thêm F03b (Định lý 06.30, 06.31, một trang, điều kiện áp dụng) và F03c (Ví dụ 06.20 có “Diễn giải:”); F00 dòng dẫn và F01 “Nhu cầu:” nêu sai số cho hàm lồi mạnh và không lồi; F08 thêm câu 2 (Bài tập 06.5 câu 1); G01, G02, G03 thêm kết quả lồi mạnh; A02 năm mục tiêu khớp sáu mục tiêu của ghi chú (77 âm tiết, trần 80). | A02, F00, F01, F03b, F03c, F08, F08b, G01, G02, G03 | Đảo quyết định 2026-10-22 theo mục tiêu người dùng 2026-11-13; ghi trong storyboard. Số tính lại: xem mục F03c của storyboard. |
+| trung bình — bài tập trên deck không có trong ghi chú; G04 trỏ bài tập không còn | Giữ bài tập trên lớp (G5); thêm dòng “Nguồn:” trong ghi chú diễn giả trỏ tới khối có thật (Ví dụ 06.4, 06.8, 06.9, 06.11, 06.12, 06.14, Mệnh đề 05.38(2), 06.7, 06.24, 06.28, 06.40, Hệ quả 06.34, Nhận xét 06.20, 06.41, Goodfellow và cộng sự (6.4)–(6.11)) và tới Bài tập 06.1–06.6, 06.11 cùng kỹ năng. G04 thay câu “Lời giải chi tiết nằm trong bài tập của Bài 06” bằng dẫn Bài tập 06.11. | B10, C07, D07, E06, E06c, F08, G04 | Không ánh xạ bài trên lớp sang Bài tập 06.1–06.11: G5 yêu cầu giữ bài của deck; F08 câu 2 lấy từ Bài tập 06.5. |
+| trung bình — thiếu “Nhu cầu:” ở trang nội dung đầu mạch | Thêm dòng “Nhu cầu:” nêu câu hỏi trung tâm. | C01, D01b, E01 | C01 48 → 56, D01b 48 → 58, E01 54 → 52 âm tiết. |
+| trung bình — trang phát biểu chứa trường hợp cụ thể | B08: bảng $\theta_A/\theta_B$ tách thành trang ví dụ B07b. D03: dòng “Tại cực tiểu (1,1)…” thay bằng “Lưu ý:” tổng quát, trường hợp cụ thể xuống ghi chú. E04: dòng dữ liệu bốn điểm xuống ghi chú (Ví dụ 06.18). F07: bảng tách thành F07c. | B07b, B08, D03, E04, F07, F07c | |
+| trung bình — “Trực quan.” đứng sau phát biểu và ví dụ (F07 → F07b) | “Trực quan.” chuyển lên đầu F07, trước Mệnh đề 06.40; F07b chỉ còn Nhận xét 06.41, hai xấp xỉ mũ và “Lưu ý:”. | F07, F07b | Thứ tự theo ghi chú: Mệnh đề 06.40 → Ví dụ 06.22 → Nhận xét 06.41. |
+| trung bình — danh sách treo trên phủ định (D05b); từ làm mềm “thường” (A03) | D05b viết khẳng định: “định lý chặn $\min_{k<K}\lVert\nabla F(\theta_k)\rVert^2$, tức điểm lặp tốt nhất; điểm đó có thể nằm cạnh điểm yên ngựa”, dòng lồi mạnh, hai dòng phạm vi. A03: “khi $F$ không lồi: điểm dừng xấp xỉ”. E05 ghi chú bỏ “thường”. | A03, D05b, E05 | |
+| nhẹ — “cận chỉ dùng làm định hướng” | Viết điều kiện: gradient Lipschitz không thỏa trên vùng chứa điểm gãy, nên định lý/hệ quả/hai cận không áp dụng. F07b: “được chứng minh cho mục tiêu toàn phương”. G02 chú thích: “dòng 4–5 cần gradient Lipschitz trên vùng chứa dãy lặp”. Grep “định hướng” trên deck: 0. | D05b, F04b, G01b, G02, F07b, G04 | |
+| nhẹ — tự rào đón, câu xuất xứ, “deck” | Cắt: “Ở đây mới có …” (B04), “chưa phải ‘không lồi’” (B07), “Các quy mô là minh họa” (E01), “minh họa có nguồn, không phải quy luật chung” (E02b), “không phải sai số thật” (F05), câu xuất xứ hình (F06), hai câu về deck Bài 05 (B02); “không phải một ngưỡng” (F05b). | B02, B04, B07, E01, E02b, F05, F05b, F06 | Xuất xứ: hình `risk-curves.svg` là sơ đồ định tính sao chép từ Bài 06b (Q4, 2026-10-12), không phải số liệu đo; ba quy mô ở E01 là bộ $(n,p,b)$ do học phần chọn để so bậc (Ví dụ 06.16); bảng E02b lấy từ Bottou và Bousquet (2011), Bảng 13.3. |
+| nhẹ — mật độ B03, F06, G04 | B03: “Nhận xét.” rút (dòng 25 → 15, 59 → 55 âm tiết). F06: dòng “Trực quan” 22 âm tiết tách hai dòng (54 → 52). G04: câu 2, 3 viết lại, tài liệu rút (76 → 68 âm tiết theo deck_check, trần 80). | B03, F06, G04 | |
+
+**Kiểm tra tự làm (2026-11-13).** `deck_check.py --shots` trên `http://127.0.0.1:8810/2627-1/lecture-06-mo-rong-mo-hinh-va-du-lieu.html`: 77 trang, 0 lỗi console, 0 lỗi trang, 0 request hỏng, 0 `.katex-error`. Mọi trang nội dung ≤ 60 âm tiết, ≤ 6 dòng, dòng dài nhất ≤ 20, ≤ 3 công thức hiển thị, trừ ngoại lệ ghi trong storyboard (A02 77, A02b 7 dòng, G01 75, G02 61, G03 76, G04 68; trần 80). Cờ OVERFLOW ở D05, E02, F04b, F05, F08b, G02 và NARROW-H ở năm trang đó đều do phần tử `path` của ký hiệu căn KaTeX (`\sqrt`), rộng hàng nghìn px nhưng bị phần tử `.katex` chứa nó cắt; phần tử `.katex` nằm trong khung (kiểm bằng Playwright), và cùng bộ cờ có trên bản gốc trước khi sửa. Tràn ngang thật ở 390 px trên B10b, E04, F03c (công thức nội dòng trong ngoặc nhóm KaTeX) đã sửa bằng bỏ ngoặc nhóm. Đã xem ảnh chụp 1600×900 và 390×844 của B07b, B08, B10b, D05b, E04, F03b, F03c, F04b, F07, F07c, F07b, F08, G02, G03. `git diff --check` sạch.
+
+**Đề nghị sửa ghi chú:** không có. **Yêu cầu CSS:** không có.
+
+### Lượt sửa sau kiểm lại (2026-11-13)
+
+**Đầu vào.** Danh sách 20 mục đã duyệt của điều phối viên (`tools/courses/math-4-AI/2627-1/deck-fix-2026-11-13/merge-06.md`; kiểm lại toán và kiểm lại mạch) và quyết định của người dùng cho mục 10: “Giữ gọn”. Cùng phạm vi tệp, không commit. Không viết lại công thức để né cờ báo nhầm của dấu căn KaTeX.
+
+**Kết quả.** 77 → 76 trang: bỏ F03c, ví dụ ba quan sát (Ví dụ 06.20) chuyển vào ghi chú diễn giả F03b. Quyết định của người dùng đảo một phần yêu cầu 2026-10-22 (“hàm lồi không quan trọng ở đây nữa”): giữ một trang phát biểu gọn cho hàm lồi mạnh, không có trang ví dụ riêng vì trùng deck 05b (E06, E08, E10, E12).
+
+| mục | xử lý | trang |
+|---|---|---|
+| 1 | Ghi chú: cận $O(1/\sqrt K)$ “cho bình phương chuẩn gradient (Hệ quả 06.34)”. | A02b |
+| 2 | “Lưu ý: hai tỉ lệ giữ chỉ được chứng minh cho mục tiêu toàn phương.” | F07b |
+| 3 | Ghi chú: phép co giãn $(u,v)\mapsto(\omega u,v/\omega)$; câu ReLU theo Nhận xét 06.17 (mọi $\omega\ge0$, cần $\omega>0$ để chia). | D02, D03 |
+| 4 | $\hat e_j$ thay $e_j$ (mặt trang C01 và công thức sai phân C01, C03). | C01, C03 |
+| 5 | Ghi chú: $\zeta=(1,-1,-1,1)$. | E03 |
+| 6 | “$\eta=1/L$” ở dòng 2. | G03 |
+| 7 | Ghi chú: “khi biết lịch sử $\mathcal F_k$” (định nghĩa $\mathcal F_k$ ở F01b, F03b). | F01b, F01c, F03b |
+| 8 | Bước 3: “không cho $\widehat R$ nhỏ hơn giá trị nhỏ nhất đã có”. | F06b |
+| 9 | Giữ “(Định lý 06.30, 06.31)” một cụm (quyết định điều phối viên). | F03b |
+| 10 | “Giữ gọn”: F03b giữ, F03c bỏ, ví dụ vào ghi chú F03b; ghi trong storyboard (đoạn 2026-11-13, mục F03b, KN8) và outline §1.10. | F03b, F03c |
+| 11 | Ghi chú: phép tách $\mathbb E\lVert\widehat g\rVert^2\le\lVert\nabla F\rVert^2+\tau^2$ dùng lại cho hai định lý lồi mạnh; cộng bất đẳng thức một bước cho Định lý 06.33; câu nối F01c → hai định lý lồi mạnh → 06.33. | F00, F01b, F01c, G01 |
+| 12 | G03 năm dòng, mỗi dòng một mục tiêu A02 (thêm sai số $\tfrac{\operatorname{tr}\Sigma}b\cdot\tfrac{n-b}{n-1}$, mức nhiễu nền, tỉ lệ giữ, bảng lựa chọn); “$L\text{-Lipschitz}$” trong một KaTeX; 72 âm tiết. | G03 |
+| 13 | Cột “Giới hạn”; hàng 4 “chỉ điểm dừng; ReLU ngoài giả thiết”, hàng 5 “so cận trên; chỉ điểm dừng”. Lượt thử đầu làm bảng tràn khung 16:9 (58 phần tử), nên rút cột Bảo đảm ($O(1/k)$, $O(1/\sqrt K)$; “theo kỳ vọng”, “trung bình theo $k$” chuyển xuống chú thích và ghi chú) và hàng 3 “SGD, bước $\tfrac1{\mu(k+1)}$”. 63 âm tiết. | G02 |
+| 14 | Storyboard sửa tại chỗ: đoạn Phạm vi (76 trang), Luận đề, Đối tượng và ký hiệu, Giả thiết, Chuỗi định nghĩa, Giới hạn áp dụng (bỏ T5–T8, “Mệnh đề 1/2/3”, $\sigma^2$, “định hướng”, “nhóm nhỏ”), hàng E, F của bảng mạch, KN6, KN7, KN8 viết lại theo deck hiện hành; mục F03c bỏ. Mục cũ “Sửa 2026-10-…” của từng trang giữ làm lịch sử. | storyboard |
+| 15 | Outline §5 (76 trang, mạch B 15, mạch F 16, tổng 2,00 + 1,00), §7 (B07b, B08 chia đôi; F03b 0,06 + 0,01; F07, F07c), §1.10 thống nhất với 0,06 LT + 0,01 BT đã trừ 2026-10-22; mục F03c ở §6 bỏ. | outline |
+| 16 | F03b: (ii) dùng $\mathbb E[\lVert\widehat g_k\rVert^2\mid\mathcal F_k]\le G^2$ và mở bằng “Để tới chính $\theta^*$, bước giảm dần”; 57 âm tiết, 6 dòng. | F03b |
+| 17 | Không áp dụng (F03c bỏ). | — |
+| 18 | “Nhu cầu: một bước tốn ít hơn $np$ khi $n$ lớn.” | E01 |
+| 19 | Ghi chú: cắt câu chỉ đường. | F07c, A03, A03b |
+| 20 | Câu “Mạng không lồi mạnh…” chỉ còn ở F04. | F03b, F04 |
+
+**Kiểm tra.** `deck_check.py --shots` (`scratchpad/check-06/r1`): 76 trang, 0 lỗi console, 0 lỗi trang, 0 request hỏng, 0 `.katex-error`. Cờ OVERFLOW/NARROW-H chỉ còn ở D05, E02, F04b, F05, F08b, G02 và đều là `path` của dấu căn KaTeX (G02: một phần tử `path`, sau khi sửa tràn thật của lượt thử đầu). Đã xem ảnh 1600×900 và 390×844 của C01, E01, F03b, F06b, F07b, G02, G03 (A02b không đổi mặt trang). Storyboard: 76 mục, đúng thứ tự deck. `git diff --check` sạch.
+
+**Bốn chỗ nhẹ cuối (2026-11-13, sau hai lượt kiểm lại đạt).** (1) Ghi chú F03b: “tiến về $\tfrac8{57}$”. (2) Ghi chú F00: câu bốn ý tách thành năm câu ngắn. (3) Storyboard: “Mệnh đề 1/2/3” ở KN1, KN3 và các mục B02, B02b, B03, B06, B08, B09, B09b, D02, G01, G01b, G03 (trường mô tả, 26 dòng) → Mệnh đề 05.38, 06.6, 06.7; các dòng lịch sử “Sửa …” giữ nguyên. (4) Mặt trang F01b, F01c: điều kiện viết “khi biết lịch sử $\mathcal F_k$”, kỳ vọng $\mathbb E[\cdot\mid\mathcal F_k]$ (cả ghi chú F01c); $\mathcal F_k$ định nghĩa trong ghi chú F01b, như F03b. deck_check (`scratchpad/check-06/r2`): 76 trang, 0 lỗi; F01b 35, F01c 24 âm tiết, dòng dài nhất 20 và 14; G02 chỉ còn cờ `path` của dấu căn. Đã xem ảnh 1600×900 và 390×844 của F01b, F01c và bản cuối của G02 (bảng cuộn ngang trong vùng `.table-scroll`, chú thích hiển thị đủ). `git diff --check` sạch.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (A02b "bình phương chuẩn", trung bình) → đạt |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (F03b/F03c trùng 05b và đảo yêu cầu 2026-10-22; G02, G03, storyboard, outline) → đạt |
+
+Quyết định người dùng (2026-11-13, hỏi trực tiếp): "Giữ gọn" — giữ F03b (Định lý 06.30, 06.31) dạng phát biểu ngắn, chuyển Ví dụ 06.20 vào ghi chú diễn giả, bỏ trang F03c. Quyết định này đảo một phần yêu cầu 2026-10-22.
+
+Kiểm của điều phối viên: đọc diff; 76 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`; A02b LINES và SYLL ở G01 (75), G02 (63), G04 (68) là ngoại lệ đã ghi trong storyboard (trang tổng kết); cờ OVERFLOW/NARROW-H ở D05, E02, F04b, F05, F08b, G02 là đuôi SVG dấu căn KaTeX bị cắt (báo nhầm). Đã xem ảnh 1600×900 và 390×844 của A02, B02, E01, F01b, F03b, F07b, G02, G03: vừa khung.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
