@@ -474,3 +474,70 @@ Tác tử chạy `deck_check.py` trên server tạm (cổng 8781, đã tắt): 7
 **Đã kiểm, không lỗi:** mọi số khối, mục, phụ lục và nhãn công thức mà deck dẫn vẫn đúng. Số liệu tính lại khớp: $\ell(2,2)\approx-8{,}828$, $\ell(2,1)\approx-9{,}595$; 26/9, $e^{-4/9}$; 256/81; $S_4$, trị riêng 4 và 1.
 
 **Ghi chú:** đợt 2026-11-12 trong nhật ký này đã liệt kê sáu chỗ ghi "tệp bài tập"; đợt rà này bổ sung TK05 (mặt trang và ghi chú diễn giả), G112 (11.6) và GN13 (11.7).
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Tác tử (theo lời gọi công cụ của điều phối viên).** Vai trò: biên tập viên (worker) cho deck Bài 11; `no-ai-slop` chế độ Edit cho mặt trang và ghi chú diễn giả. Đầu vào: quyết định G1–G10, D11 (`edit-decisions-2026-11-13.md`), bảng phát hiện ở mục trên, mục 2026-11-12 về dẫn chiếu "tệp bài tập". Phạm vi ghi: deck, `img/lec-11/`, `storyboard.md`, `outline.md`, nhật ký này (chỉ thêm). Không sửa `materials/`, CSS, công cụ; không commit.
+
+**Phạm vi thay đổi.** 76 trang trước và sau; không thêm, tách, gộp hay bỏ trang; mã trang và thứ tự giữ nguyên (G7). SVG trong `img/lec-11/` không đổi (không chứa ký hiệu $\boldsymbol\pi$ hay số bài tập).
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| trung bình · TK05 mặt trang: "Bài tập tự học 11.4–11.8 trong tệp bài tập" | Sửa thành "Bài tập 11.4 (ghi chú bài giảng) và 11.5–11.13 (tệp bài tập)." | TK05 | Khớp note §10 (L1667–1686). 38 âm tiết. |
+| trung bình · ghi chú diễn giả GN13 "Bài tập tự học 11.7", G112 "11.6" | GN13: "Bài tập 11.4(b) của ghi chú bài giảng"; G112: "Bài tập 11.6 và 11.8 của tệp bài tập" | GN13, G112 | 11.4(b) hỏi đúng $S_{n-1}$ cùng vector riêng với $S_4$; 11.6 là MLE Gaussian một chiều, 11.8 là độ chệch của phương sai hợp lý cực đại. |
+| nhẹ · nguồn "tệp bài tập Bài 11, Bài tập 11.x" | Đổi thành "ghi chú bài giảng, Bài tập 11.x" | TS08, TS09, TS16, TS17, HH07, HH08 | TS09 gộp thành "ghi chú bài giảng, Bài tập 11.1, Nhận xét 11.5". Câu (d) mà ghi chú diễn giả TS16 nêu có trong đề 11.2 của ghi chú (L591–597). |
+| nhẹ · ghi chú diễn giả TK05 "Bài tập 4.1, 4.7 và 4.8 của Murphy" | "Bài tập 11.6, 11.8 và 11.9" | TK05 | Ba bài này là Murphy 4.1, 4.7, 4.8 theo số mới. |
+| nhẹ · rào đón TS06, TK03 | TS06: bỏ câu "Xác suất gắn cờ thật … có thể khác $0{,}7$"; TK03: "Với $p=1/5$, năm cờ $0$ xảy ra với xác suất $(4/5)^5=1024/3125\approx0{,}328$, dù xác suất gắn cờ dương." | TS06, TK03 | Đã tính lại: $4^5=1024$, $5^5=3125$, $1024/3125=0{,}32768$. |
+| nhẹ · mã CLO2 trong ghi chú diễn giả MD01 | "chuẩn đầu ra của học phần" | MD01 | `outline.md`, `storyboard.md` giữ mã CLO2 vì là tệp kế hoạch. |
+| nhẹ · câu chỉ đường, câu tự nói về văn bản MD03, GN04, HH06 | MD03: bỏ "Câu hỏi được trả lời ở phần 6."; GN04: thay vế "định lý tiếp theo cho biết nó cực đại hợp lý" bằng "ứng viên hợp lệ cho tham số $\Sigma\succ0$"; HH06: bỏ "Đây là câu trả lời cho câu hỏi mở đầu." | MD03, GN04, HH06 | Chọn bỏ thay vì nêu $9/2<8$ ở MD03, để ghi chú diễn giả trang mở đầu không lộ đáp án; HH06 đã nêu kết luận bằng số trên mặt trang. |
+| nhẹ · $a$, $b$ mang nghĩa thứ hai ở HH07, HH08 | **Không sửa**, giữ tên của ghi chú | HH07, HH08 | Ghi chú dùng $a$, $b$ cho ba cặp điểm (Câu hỏi mở đầu, Bài tập 11.3, Bài tập 11.4); đổi tên chỉ trên deck làm deck lệch ghi chú (G1). Mặt trang HH07 định nghĩa lại "hai điểm … của bài tập này", ghi chú diễn giả phân biệt với hai sản phẩm mở đầu. Đề nghị (không bắt buộc) cho ghi chú: đổi tên điểm ở Bài tập 11.3, 11.4, ví dụ $a'$, $b'$, rồi deck đổi theo. |
+| nhẹ · $\boldsymbol\pi$ đậm trên deck, $\pi$ thường trong ghi chú | Thống nhất theo ghi chú: $\pi$ thường ở mọi chỗ (22 chỗ); bỏ câu giải thích in đậm ở HL01 và chú thích "(… không đậm)" ở TS11 | HL01, TS11–TS17 | G1: deck theo bảng ký hiệu của ghi chú (L101–102). Hằng số $\pi$ của mật độ Gaussian chỉ xuất hiện ở mạch 4–6, vector $\pi$ ở mạch 3; ghi chú cũng dùng chung chữ. `outline.md` (Q-F) cập nhật. |
+| nhẹ · ghi chú diễn giả G112 lặp dòng "Diễn giải:" | Bỏ đoạn đầu | G112 | Ghi chú diễn giả còn đoạn NumPy/pandas và dẫn bài tập. |
+| D11 · OVERFLOW ở G101, HH07 | **Không sửa deck**: báo nhầm | G101, HH07 (và GN07, GN14, HH02, HH03, HH05, HH06, HH08) | Đo lại từng phần tử bị cờ (Playwright, 1600×900 và 390×844, tắt hiệu ứng chuyển trang): mọi phần tử là `path` của dấu căn hoặc ngoặc co giãn KaTeX, bị `svg` cha (`overflow` khác `visible`) cắt trong khung; `docScrollWidth` 390 ở màn hẹp. Ảnh chụp G101, HH07 ở hai cỡ không có tràn. Đề nghị sửa `deck_check.py` bỏ qua phần tử bị tổ tiên cắt. |
+| G3 · mục tiêu học tập khớp ghi chú | MD01 (3) thêm "kể cả nhóm vắng mặt"; (4) "Ước lượng tham số Gaussian"; ghi chú diễn giả nêu mục tiêu 4 gồm trung bình, phương sai, ma trận hiệp phương sai, mục tiêu 5 gồm so độ lệch của quan sát mới | MD01 | 77 → 79/80 âm tiết. Mỗi mục tiêu của ghi chú có trang phục vụ (bản đồ hành trình khái niệm không đổi). |
+
+**Kiểm tra.** `deck_check.py --shots` (server cổng 8810; `check-11/` trong scratchpad điều phối): 76 trang, 0 lỗi console, 0 lỗi trang, 0 yêu cầu hỏng, 0 `.katex-error`; mật độ trong trần (MD01 79/80; MD02 7 dòng theo ngoại lệ Q-K); cờ OVERFLOW chỉ là `path` KaTeX như trên. Đã xem ảnh chụp 1600×900 và 390×844 của MD01, G101, TS17, HH07 (cả ảnh cuộn hết), TK05. `git diff --check` sạch.
+
+**Đề nghị sửa ghi chú:** không bắt buộc; xem dòng $a$, $b$.
+
+### Lượt sửa sau kiểm lại
+
+Điều phối viên duyệt kiểm toán (A) và mạch (B): đạt; giao bảy mục nhẹ cho cùng biên tập viên (tiếp tục bằng `SendMessage`). Tên $a$, $b$ giữ theo G1; điều phối viên báo người dùng đề nghị sửa ghi chú.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| nhẹ · MD01 mục tiêu 4 mất động từ "Chứng minh" của ghi chú L40 | "Chứng minh ước lượng Gaussian; xét tồn tại, độ chệch." | MD01 | 79/80 âm tiết (đo lại). |
+| nhẹ · ghi chú diễn giả MD01 thiếu mục tiêu 1, câu mục tiêu 4 dài | Thêm "Mục tiêu 1 gồm việc phân biệt mẫu ngẫu nhiên, dữ liệu quan sát, thống kê và bộ ước lượng."; câu mục tiêu 4 viết lại theo mẫu của điều phối viên | MD01 | — |
+| nhẹ · TS12 dùng ba tên cho cùng một nhóm | "Nhóm vắng mặt" thay "Nhóm chưa xuất hiện" và "nhóm chưa thấy" | TS12 | Thống nhất với MD01, TS16, TS17. |
+| nhẹ · ghi chú diễn giả GN04 câu cuối lặp GN03 | "Vì $S_4\succ0$, ma trận này thuộc miền tham số $\Sigma\succ0$; để biết nó có cực đại hợp lý không, cần kết quả cho Gaussian nhiều chiều." | GN04 | Câu nối nêu nhu cầu của GN05. |
+| nhẹ · ghi chú diễn giả TS06, TK03 lặp mặt trang | TS06: thay câu định nghĩa dự đoán thế tham số bằng "Dưới mô hình thế tham số, hai cờ tiếp theo độc lập, nên xác suất cả hai bằng $1$ là $0{,}7^2=0{,}49$."; TK03: rút còn "$(4/5)^5=1024/3125$." | TS06, TK03 | $0{,}7^2=0{,}49$ tính lại. |
+| nhẹ · GN13 chỉ dẫn bài ma trận | Thêm "Bài tập 11.8 của tệp bài tập (bản một chiều của lập luận độ chệch)" cạnh 11.4(b) | GN13 | — |
+| nhẹ · storyboard, outline còn dẫn "BT L…" và "Bài tập 11.7 (tự học)" | Bản đồ (b): "Bài tập 11.4(b) (ghi chú bài giảng) và Bài tập 11.8 (tệp bài tập)"; nguồn TS08 L401–424, TS09 L401–410 và L425–428, TS16 L591–616, TS17 L617–639, HH07 L1472–1486, HH08 L1487–1511 của ghi chú, cả trong `outline.md` (dòng 69 và bảng trang) | storyboard, outline | Ranh giới câu (a)/(b) đo theo dòng "**Câu (b).**" của từng lời giải trong ghi chú. |
+
+**Kiểm tra lại.** `deck_check.py --shots` (`check-11/`): 76 trang, 0 lỗi console, 0 lỗi trang, 0 yêu cầu hỏng, 0 `.katex-error`; MD01 79/80, TS06 48, TS12 46, GN04 29, GN13 45, TK03 40 âm tiết; MD02 7 dòng (ngoại lệ Q-K); cờ OVERFLOW/NARROW-H chỉ còn `path` KaTeX đã biết. Đã xem ảnh 1600×900 của MD01, TS12. `git diff --check` sạch.
+
+**Ba chỗ nhẹ cuối (điều phối viên đã duyệt).**
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| nhẹ · TS06 ghi chú diễn giả dùng "mô hình thế tham số" chưa định nghĩa | "Theo mô hình đã khớp, hai cờ tiếp theo độc lập, nên xác suất cả hai bằng $1$ là $0{,}7^2=0{,}49$." | TS06 | Storyboard chép theo. |
+| nhẹ · storyboard GN04, trường "Ghi chú diễn giả" lệch deck | Chép đúng ghi chú diễn giả hiện có trên deck | storyboard GN04 | — |
+| nhẹ · storyboard MD01, trường "Ghi chú diễn giả" thiếu câu mục tiêu 5 | Thêm câu mục tiêu 5 như trên deck | storyboard MD01 | — |
+
+`git diff --check` sạch.
+
+Quyết định của điều phối viên: chờ duyệt.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng, hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | đạt (hai lượt) |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | đạt sau lượt sửa ba chỗ nhẹ cuối |
+
+Kiểm của điều phối viên: đọc diff deck; đếm lại MD01 (79/80 âm tiết, không tính tiêu đề); storyboard 76 mục cho 76 trang; `deck_check.py` (cổng 8810): 76 trang, 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`; cờ OVERFLOW/NARROW-H ở các trang có dấu căn và ngoặc KaTeX (G101, GN07, GN14, HH02–HH08) là `path` bị `svg` cha cắt, đã xem ảnh 1600×900 và 390×844 (cuộn hết) của MD01, TS06, TS12, TS17, HH07, TK05: không tràn, không chồng chữ, không cuộn ngang.
+
+Phát hiện không sửa: tên $a$, $b$ ở HH07–HH08 giữ theo ghi chú (G1); đề nghị người dùng đổi tên điểm ở Bài tập 11.3, 11.4 của ghi chú.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.

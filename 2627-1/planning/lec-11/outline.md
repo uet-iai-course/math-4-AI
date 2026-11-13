@@ -9,7 +9,7 @@ Tài liệu này là dàn ý của bộ trang chiếu `2627-1/lecture-11-hoc-tu-
 - Chuẩn đầu ra: CLO2 (ghi chú L44, năng lực xây dựng và phân tích mô hình học máy). Đề cương không có mã LLO riêng cho buổi này; không tự tạo mã.
 - Sáu mục tiêu học tập của ghi chú (L37–42) được rút gọn trên MD01; mỗi trang ở storyboard ghi mục tiêu nó phục vụ.
 - Tiên quyết (L46–55): Bài 10 đã có bộ trang chiếu, nên họ phân phối, kỳ vọng, phương sai, hiệp phương sai, độc lập chỉ xuất hiện sau nhãn "Nhắc lại:". Hàm Lagrange (Bài 03), bất đẳng thức $\log t\le t-1$ và phân rã trị riêng (Bài 00) cũng chỉ "Nhắc lại:".
-- Sản phẩm học tập: $\hat p=0{,}7$ cho mười cờ; $\hat{\boldsymbol\pi}=(0{,}2;\ 0{,}3;\ 0{,}5)$ cho ba chế độ tải; $\hat\mu=2$, $\hat\sigma^2=2$ và $Q/(n-1)=2{,}5$ cho năm độ lệch nhiệt độ; $\hat\mu=(10,20)^\top$, $\hat\Sigma=S_4$ cho dữ liệu cảm biến nền; $d^2_{\hat\Sigma}(a,\hat\mu)=9/2$, $d^2_{\hat\Sigma}(b,\hat\mu)=8$ và quyết định gắn cờ $b$ với ngưỡng $6$.
+- Sản phẩm học tập: $\hat p=0{,}7$ cho mười cờ; $\hat{\pi}=(0{,}2;\ 0{,}3;\ 0{,}5)$ cho ba chế độ tải; $\hat\mu=2$, $\hat\sigma^2=2$ và $Q/(n-1)=2{,}5$ cho năm độ lệch nhiệt độ; $\hat\mu=(10,20)^\top$, $\hat\Sigma=S_4$ cho dữ liệu cảm biến nền; $d^2_{\hat\Sigma}(a,\hat\mu)=9/2$, $d^2_{\hat\Sigma}(b,\hat\mu)=8$ và quyết định gắn cờ $b$ với ngưỡng $6$.
 
 ## Nguồn
 
@@ -50,8 +50,8 @@ Theo kế hoạch ghi chú (Phụ lục, "Đích học tập và thời lượng
 
 - **Bài toán trung tâm.** Bốn sản phẩm vận hành bình thường cho các vector số đo $x_1=(12,22)^\top$, $x_2=(8,18)^\top$, $x_3=(11,19)^\top$, $x_4=(9,21)^\top$; hai sản phẩm mới cho $a=(13,23)^\top$, $b=(12,18)^\top$ (L14–20). Nhiệm vụ: xác định sản phẩm lệch khỏi chế độ vận hành bình thường nhiều hơn. Khoảng cách Euclid tới $\bar x=(10,20)^\top$ cho $18$ và $8$ (L22–29) nhưng bỏ qua mức phân tán theo từng hướng. Câu hỏi tổng quát của bài: khi mô hình có tham số chưa biết, dùng dữ liệu để xác định tham số đó thế nào (L3).
 - **Nơi bài toán được trả lời.** GN01 (phương sai từng tọa độ đều bằng $5/2$, không phân biệt được hai hướng) → GN04 ($S_4$, phần tử ngoài đường chéo $3/2$) → GN10 ($\hat\Sigma^{-1}$) → **HH06** ($d^2_{\hat\Sigma}(a,\hat\mu)=9/2<8=d^2_{\hat\Sigma}(b,\hat\mu)$, tỉ số mật độ $e^{7/4}\approx5{,}8$; L1344–1368) → **HH09** (ngưỡng $6$: chỉ $b$ bị gắn cờ; L1407).
-- **Đối tượng và ký hiệu.** Theo bảng ký hiệu L91–113: $\mathcal X$, $\{P_\theta:\theta\in\Theta\}$, $p_\theta$, $X_i$, $x_i$, $D$, $L(\theta;D)$, $\ell(\theta;D)$, $\hat R_n$, $p$, $s$, $K$, $n_k$, $\boldsymbol\pi$, $\Delta_{K-1}$, $\mu$, $v=\sigma^2$, $\bar x$, $Q$, $\operatorname{Cov}(X)$, $\Sigma$, $\tilde x_i$, $S_n$, $S_{n-1}$, $\Lambda$, $u_j$, $\lambda_j$, $d_\Sigma$; các lệch có chủ đích ở mục "Khóa ký hiệu".
-- **Giả thiết** (L117–126): mẫu i.i.d.; họ phân phối chọn trước; mômen bậc hai hữu hạn (chỉ cho kết quả về độ chệch, không cần giả thiết Gaussian); miền tham số $p\in[0,1]$, $\boldsymbol\pi\in\Delta_{K-1}$ đóng, $v>0$, $\Sigma\succ0$; dữ liệu không suy biến $Q>0$, $S_n\succ0$.
+- **Đối tượng và ký hiệu.** Theo bảng ký hiệu L91–113: $\mathcal X$, $\{P_\theta:\theta\in\Theta\}$, $p_\theta$, $X_i$, $x_i$, $D$, $L(\theta;D)$, $\ell(\theta;D)$, $\hat R_n$, $p$, $s$, $K$, $n_k$, $\pi$, $\Delta_{K-1}$, $\mu$, $v=\sigma^2$, $\bar x$, $Q$, $\operatorname{Cov}(X)$, $\Sigma$, $\tilde x_i$, $S_n$, $S_{n-1}$, $\Lambda$, $u_j$, $\lambda_j$, $d_\Sigma$; các lệch có chủ đích ở mục "Khóa ký hiệu".
+- **Giả thiết** (L117–126): mẫu i.i.d.; họ phân phối chọn trước; mômen bậc hai hữu hạn (chỉ cho kết quả về độ chệch, không cần giả thiết Gaussian); miền tham số $p\in[0,1]$, $\pi\in\Delta_{K-1}$ đóng, $v>0$, $\Sigma\succ0$; dữ liệu không suy biến $Q>0$, $S_n\succ0$.
 - **Chuỗi định nghĩa → kết quả → phương pháp.** Mô hình thống kê, mẫu i.i.d., bộ ước lượng (Định nghĩa 11.1) → hàm hợp lý dạng tích và ước lượng hợp lý cực đại (Định nghĩa 11.2) → hợp lý cực đại tương đương cực tiểu rủi ro thực nghiệm với mất mát âm log-hợp lý (Mệnh đề 11.3) → nghiệm theo từng họ: Bernoulli bằng dấu đạo hàm và hai đầu mút (Định lý 11.4); phân loại bằng nhân tử Lagrange để tìm ứng viên và $\log t\le t-1$ để chứng minh cực đại toàn cục (Định lý 11.7); Gaussian một chiều bằng tách tâm và dấu đạo hàm (Định lý 11.9); Gaussian nhiều chiều bằng tách tâm, đổi biến $C=S_n^{1/2}\Lambda S_n^{1/2}$ và $\log c\le c-1$ trên trị riêng (Định lý 11.14) → tiêu chuẩn thứ hai, không chệch (Định nghĩa 11.10, Mệnh đề 11.11, Hệ quả 11.15) → đọc $\hat\Sigma$ bằng phân rã trị riêng và khoảng cách Mahalanobis (Định nghĩa 11.16, Mệnh đề 11.17) → chấm điểm lệch (Tình huống 11.1).
 - **Phương pháp chung của các chứng minh.** (i) Tách phần chỉ phụ thuộc trung bình, hoặc dùng điều kiện cần để tìm ứng viên; (ii) chứng minh ứng viên là cực đại toàn cục bằng một bất đẳng thức (dấu đạo hàm, $\log t\le t-1$), không dừng ở điểm dừng; (iii) xét riêng trường hợp biên hoặc suy biến.
 - **Giới hạn áp dụng.** Nghiệm chỉ tối ưu trên mẫu đã thấy; chất lượng dự đoán trên quan sát mới phải kiểm tra trên dữ liệu khác (L1445). Sự tồn tại nghiệm phụ thuộc miền tham số (đóng hay mở) và tính không suy biến của dữ liệu. Mẫu số $n$ hay $n-1$ tùy tiêu chuẩn. Mô hình của bài dùng chung một tham số cho mọi quan sát; Bài 12 cho tham số phụ thuộc đầu vào (nêu bằng lời ở TK05). Ngưỡng trên $d^2_{\hat\Sigma}$ cần thêm dữ liệu kiểm tra để biết tỉ lệ báo động sai (L1409).
@@ -59,14 +59,14 @@ Theo kế hoạch ghi chú (Phụ lục, "Đích học tập và thời lượng
 ## Khóa ký hiệu và dữ kiện
 
 - Dữ liệu cảm biến nền (L14–31, L961–999, L1134–1162, L1326–1368): $\bar x=(10,20)^\top$; $\tilde x_1=(2,2)^\top$, $\tilde x_2=(-2,-2)^\top$, $\tilde x_3=(1,-1)^\top$, $\tilde x_4=(-1,1)^\top$; $S_4=\begin{pmatrix}5/2&3/2\\3/2&5/2\end{pmatrix}$, $\det S_4=4$, trị riêng $4$ và $1$ với vector riêng $u_\pm=(1,\pm1)^\top/\sqrt2$; $\hat\Sigma^{-1}=\tfrac18\begin{pmatrix}5&-3\\-3&5\end{pmatrix}$; $\hat f(\hat\mu)=1/(4\pi)\approx0{,}0796$; $a$: Euclid bình phương $18$, $z=(3\sqrt2,0)$, $d^2=9/2$; $b$: Euclid bình phương $8$, $z=(0,2\sqrt2)$, $d^2=8$; $\hat f(a)/\hat f(b)=e^{7/4}\approx5{,}755$; $S_{n-1}=\tfrac43S_4$, trị riêng $16/3$, $4/3$ (chỉ ghi chú diễn giả).
-- Dây chuyền kiểm tra một chiều (L133): sáu cờ $(1,0,1,1,0,0)$, $s=3$, $L(1/2)=1/64\approx0{,}0156$, $L(0{,}3)=0{,}009261\approx0{,}0093$, tỉ số $\approx1{,}69$; mười cờ $(1,0,1,1,0,1,1,0,1,1)$, $s=7$, $L(1/2)=1/1024\approx0{,}000977$, $L(0{,}7)\approx0{,}002224$, tỉ số $\approx2{,}28$; ba chế độ tải $(2,3,5)$, $\hat{\boldsymbol\pi}=(0{,}2;\ 0{,}3;\ 0{,}5)$; năm độ lệch nhiệt độ $(0,1,2,3,4)$, $\bar x=2$, $Q=10$, $\ell(2,2)\approx-8{,}828$, $\ell(2,1)\approx-9{,}595$, $Q/n=2$, $Q/(n-1)=2{,}5$.
+- Dây chuyền kiểm tra một chiều (L133): sáu cờ $(1,0,1,1,0,0)$, $s=3$, $L(1/2)=1/64\approx0{,}0156$, $L(0{,}3)=0{,}009261\approx0{,}0093$, tỉ số $\approx1{,}69$; mười cờ $(1,0,1,1,0,1,1,0,1,1)$, $s=7$, $L(1/2)=1/1024\approx0{,}000977$, $L(0{,}7)\approx0{,}002224$, tỉ số $\approx2{,}28$; ba chế độ tải $(2,3,5)$, $\hat{\pi}=(0{,}2;\ 0{,}3;\ 0{,}5)$; năm độ lệch nhiệt độ $(0,1,2,3,4)$, $\bar x=2$, $Q=10$, $\ell(2,2)\approx-8{,}828$, $\ell(2,1)\approx-9{,}595$, $Q/n=2$, $Q/(n-1)=2{,}5$.
 - Ví dụ phụ: ba số đo $(0,0,9)$ dưới nhiễu Gaussian (nghiệm $3$) và nhiễu Laplace (nghiệm $0$) (Ví dụ 11.6); bốn điểm $(1,1)^\top,(3,3)^\top,(1,3)^\top,(3,5)^\top$ với $\bar x=(2,3)^\top$, $S_4=\begin{pmatrix}1&1\\1&2\end{pmatrix}$, trị riêng $(3\pm\sqrt5)/2$ (Ví dụ 11.10, bài tập GN14); hai cột trùng thông tin $(0,0)^\top,(1,2)^\top,(2,4)^\top$, $S_3=\tfrac23\begin{pmatrix}1&2\\2&4\end{pmatrix}$, $\det S_3=0$ (Tình huống 11.2).
 - **Ký hiệu so với ghi chú** (Q-F; ghi trong `review-log.md`, "Ngoại lệ có chủ đích"). Sau kiểm định cuối lượt 1, ghi chú và bài tập đã đổi theo deck: $\alpha_j$ (trị riêng của $S_n$), $\delta$ (cạnh ô vuông), $\varphi(v)$ (chứng minh Định lý 11.9; tỉ số vàng trong ghi chú đổi thành $\tau$), $\beta$ (Laplace), $\psi(\mu)$ (Ví dụ 11.6), $q(\theta)$ (tiên nghiệm). Lệch còn lại:
-  - vector tham số phân loại viết đậm $\boldsymbol\pi=(\pi_1,\ldots,\pi_K)$, thành phần $\pi_k$ thường; ghi chú và bài tập viết $\pi$ thường (L102, L431–453; khoảng 250 chỗ, không đổi). Lý do: tránh trùng hằng số $\pi$ trong $2\pi$ của mật độ Gaussian (mạch 4–6) và khớp deck 10 (PP07); `p.note-source` của TS11 ghi điều này;
+  - (đã bỏ 2026-11-13) vector xác suất phân loại trước viết đậm trên deck; nay deck viết $\pi$ thường như ghi chú (L101–102), theo G1 của đợt sửa deck 2026-11-13;
   - tham số Bernoulli là $p$ như ghi chú (L49, L297); deck 10 (PP07) viết $\operatorname{Bernoulli}(\theta)$. Ghi chú diễn giả HL01 nêu: $\theta$ của Bài 11 là tham số chung của mô hình;
   - deck không dùng `\tag`; công thức và kết quả của Bài 11 được gọi bằng tên trên mặt trang (D1, D2 của `review-log.md`).
 - Giữ như ghi chú: $\mathbb P$ (không đổi sang `\Pr`, tiền lệ Bài 10), `\mid`, số thập phân `{,}`, $v=\sigma^2$ trong chứng minh Định lý 11.9, $Q$ (số) và $Q_X$ (biến ngẫu nhiên), $\Lambda$, $C$, $c_j$, hằng số mức $c$ của Mệnh đề 11.17 (khác mạch với $c_j$), $d$ cho số chiều và $d_\Sigma$ cho khoảng cách.
-- Bài tập 11.3 dùng lại tên $a$, $b$ cho hai điểm khác ($a=(3,1)^\top$, $b=(1,-1)^\top$, BT L106–112); HH07 nêu lại dữ kiện đầy đủ và ghi "hai điểm $a$, $b$ của bài tập này" (rà soát #28).
+- Bài tập 11.3 dùng lại tên $a$, $b$ cho hai điểm khác ($a=(3,1)^\top$, $b=(1,-1)^\top$, ghi chú L1472–1478); HH07 nêu lại dữ kiện đầy đủ và ghi "hai điểm $a$, $b$ của bài tập này" (rà soát #28).
 
 ## Bảy mạch và câu hỏi trung tâm
 
@@ -109,16 +109,16 @@ Cột "Khối ghi chú" ghi số hiệu và dòng của `lecture-note.md` (hoặ
 | 3 | TS05 | Chứng minh: ước lượng Bernoulli, nghiệm biên | P2, bước 3–4; "Lưu ý:" miền mở (Nhận xét 11.5) | L346–353; L396–400 |
 | 3 | TS06 | Ví dụ: mười cờ cảnh báo | $\hat p=0{,}7$; tỉ số $2{,}28$; dự đoán thế tham số | Ví dụ 11.3 L368–392 |
 | 3 | TS07 | Entropy chéo nhị phân | Ứng dụng của Mệnh đề 11.3 cho Bernoulli | L355–364 |
-| 3 | TS08 | Bài tập: nghiệm trong và nghiệm biên (a) | Bài 11.1, đề (a), (b); lời giải (a) | BT L7–41 |
-| 3 | TS09 | Bài tập: nghiệm trong và nghiệm biên (b) | Lời giải (b) | BT L23–25; BT L40–43 |
+| 3 | TS08 | Bài tập: nghiệm trong và nghiệm biên (a) | Bài 11.1, đề (a), (b); lời giải (a) | ghi chú L401–424 |
+| 3 | TS09 | Bài tập: nghiệm trong và nghiệm biên (b) | Lời giải (b) | ghi chú L401–410, L425–428 |
 | 3 | TS10 | Ba chế độ tải | Nhu cầu + "Trực quan." của ràng buộc chuẩn hóa | L423–425 |
 | 3 | TS11 | Đơn hình xác suất và hàm hợp lý phân loại | Định nghĩa 11.6 | L429–456 |
 | 3 | TS12 | Ước lượng phân loại | Định lý 11.7 | L460–479 |
 | 3 | TS13 | Chứng minh: ước lượng phân loại, ứng viên | P3, bước 1 (Lagrange chỉ tìm ứng viên, Q-C1) | L481–499 |
 | 3 | TS14 | Chứng minh: ước lượng phân loại, cực đại toàn cục | P3, bước 2–3 | L501–518 |
 | 3 | TS15 | Ví dụ: ba chế độ tải trong mười bản ghi | $(0{,}2;\ 0{,}3;\ 0{,}5)$; kiểm điều kiện dừng | Ví dụ 11.4 L536–553 |
-| 3 | TS16 | Bài tập: Lagrange khi có nhóm vắng mặt (a) | Bài 11.2, đề (a)–(c); lời giải (a) | BT L45–80 |
-| 3 | TS17 | Bài tập: Lagrange khi có nhóm vắng mặt (b), (c) | Lời giải (b), (c); (d) trong ghi chú diễn giả | BT L82–99 |
+| 3 | TS16 | Bài tập: Lagrange khi có nhóm vắng mặt (a) | Bài 11.2, đề (a)–(c); lời giải (a) | ghi chú L591–616 |
+| 3 | TS17 | Bài tập: Lagrange khi có nhóm vắng mặt (b), (c) | Lời giải (b), (c); (d) trong ghi chú diễn giả | ghi chú L617–639 |
 | 4 | G100 | 4. Gaussian một chiều và độ chệch | Trang tiêu đề mạch (`id="mach-4"`) | §7 L601 |
 | 4 | G101 | Năm độ lệch nhiệt độ | Nhu cầu + "Trực quan." + "Nhắc lại:" mật độ | L603–616 |
 | 4 | G102 | Log-hợp lý Gaussian | (7.1); $\bar x$, $Q$ | L618–629 |
@@ -154,8 +154,8 @@ Cột "Khối ghi chú" ghi số hiệu và dòng của `lecture-note.md` (hoặ
 | 6 | HH04 | Chứng minh: hướng và độ dài của đường đồng mức | P8 | L1285–1320 |
 | 6 | HH05 | Ví dụ: hai quan sát mới, tọa độ riêng | Phân rã trị riêng, bán trục, $z$ của $a$, $b$ | Ví dụ 11.11 L1324–1342 |
 | 6 | HH06 | Ví dụ: hai quan sát mới, hai khoảng cách | Bảng Euclid/Mahalanobis; tỉ số mật độ; trả lời câu hỏi mở đầu | L1344–1368 |
-| 6 | HH07 | Bài tập: hình học Gaussian theo hướng riêng (a) | Bài 11.3, đề; lời giải (a) | BT L101–125 |
-| 6 | HH08 | Bài tập: hình học Gaussian theo hướng riêng (b), (c) | Lời giải (b), (c) | BT L126–152 |
+| 6 | HH07 | Bài tập: hình học Gaussian theo hướng riêng (a) | Bài 11.3, đề; lời giải (a) | ghi chú L1472–1486 |
+| 6 | HH08 | Bài tập: hình học Gaussian theo hướng riêng (b), (c) | Lời giải (b), (c) | ghi chú L1487–1511 |
 | 6 | HH09 | Chấm điểm lệch cho quan sát cảm biến | Ứng dụng cuối mạch nội dung (Q-K) | Tình huống 11.1 L1398–1410; Nhận xét 11.18 L1376–1390 |
 | 7 | TK00 | 7. Tổng kết và chuyển tiếp | Trang tiêu đề mạch (`id="mach-7"`) | L1392; L1447 |
 | 7 | TK01 | Kết quả và giả thiết: mô hình một chiều | Bảng bốn hàng (tách khi dựng HTML) | L1449–1463 |
@@ -175,7 +175,7 @@ Mỗi chứng minh có trang "Chứng minh: <kết quả>" riêng (Q-C): dòng �
 |---|---|---|---|---|---|
 | P1 | Mệnh đề 11.3 | HL06 ("Nhu cầu:", "Trực quan." trước phát biểu, cổng #1) → HL07 | "$L$ và $\ell$ cùng điểm cực đại"; "$\ell$ và $\hat R_n$ đảo thứ tự" | Mẫu i.i.d. cho dạng tích (4.1); quy ước $\log0=-\infty$ | L273–281 |
 | P2 | Định lý 11.4 | TS03 → TS04 (nghiệm trong), TS05 (nghiệm biên) | TS04: "$\ell$ tăng rồi giảm" ($\ell'=(s-np)/[p(1-p)]$); "hai đầu mút có hợp lý $0$". TS05: "$s=0$: hợp lý giảm chặt"; "$s=n$: hợp lý tăng chặt" | $0<s<n$ (TS04); miền đóng $[0,1]$, $n\ge1$ (TS05) | L328–353 |
-| P3 | Định lý 11.7 | TS12 → TS13 (ứng viên), TS14 (cực đại toàn cục, duy nhất) | TS13: "điểm có hợp lý dương có $\pi_k>0$ trên $\mathcal K_+$"; "điều kiện dừng cho $\pi_k=n_k/\nu$"; "ràng buộc cho $\nu=n$". TS14: "$\ell(\boldsymbol\pi)-\ell(\hat{\boldsymbol\pi})\le0$" bằng $\log t\le t-1$; "dấu bằng chỉ tại $\hat{\boldsymbol\pi}$" | Đơn hình đóng; $\sum_kn_k=n$. Không viện dẫn Mệnh đề 04.2(b) (Q-C1). Tách TS14 thành hai trang nếu chuỗi sáu dòng tràn ở 390 px | L481–518 |
+| P3 | Định lý 11.7 | TS12 → TS13 (ứng viên), TS14 (cực đại toàn cục, duy nhất) | TS13: "điểm có hợp lý dương có $\pi_k>0$ trên $\mathcal K_+$"; "điều kiện dừng cho $\pi_k=n_k/\nu$"; "ràng buộc cho $\nu=n$". TS14: "$\ell(\pi)-\ell(\hat{\pi})\le0$" bằng $\log t\le t-1$; "dấu bằng chỉ tại $\hat{\pi}$" | Đơn hình đóng; $\sum_kn_k=n$. Không viện dẫn Mệnh đề 04.2(b) (Q-C1). Tách TS14 thành hai trang nếu chuỗi sáu dòng tràn ở 390 px | L481–518 |
 | P4 | Định lý 11.9 | G103 → G104 (trung bình), G105 (phương sai, $Q=0$) | G104: "$\sum(x_i-\mu)^2=Q+n(\mu-\bar x)^2$"; "$\ell(\mu,v)\le\ell(\bar x,v)$". G105: "$\varphi'(v)=(Q-nv)/(2v^2)$, cực đại tại $Q/n$" ($\varphi$ thay $g$ của ghi chú, cổng #10); "cực đại duy nhất tại $(\bar x,Q/n)$"; "$Q=0$: hợp lý không bị chặn" | $\sum_i(x_i-\bar x)=0$; $Q>0$ để $Q/n$ thuộc miền $v>0$ | L653–704 |
 | P5 | Mệnh đề 11.11 | G110 → G111 | "$Q_X=\sum(X_i-\mu)^2-n(\bar X-\mu)^2$"; "$\mathbb E(\bar X-\mu)^2=\sigma^2/n$"; "$\mathbb EQ_X=(n-1)\sigma^2$" | Độc lập ⇒ không tương quan (Bài 10); mômen bậc hai hữu hạn; $n\ge2$; không cần Gaussian | L819–852 |
 | P6 | Định lý 11.14 | GN05 → GN06, GN07, GN08, GN09 | GN06: "trung bình tối ưu với mọi $\Sigma$" (tách tâm, $h(\Lambda)$). GN07: "$h$ chỉ phụ thuộc $C=S_n^{1/2}\Lambda S_n^{1/2}$" ($C\succ0$, định thức, vết). GN08: "$\sum_j(\log c_j-c_j)\le-d$, dấu bằng khi $\Sigma=S_n$"; "cực đại duy nhất tại $(\bar x,S_n)$". GN06 hiển thị (8.5) trên mặt trang (cổng #5). GN09: "hợp lý không bị chặn khi $S_n$ suy biến" | $\Lambda\succ0$; $S_n\succ0$ (GN07, GN08); $S_n^{1/2}$ khả nghịch cho $C=I_d\Rightarrow\Lambda=S_n^{-1}$; không dùng ý song ánh (Q-C2); $d-r\ge1$ (GN09) | L1040–1126; Phụ lục A L1514–1548 |
@@ -208,7 +208,7 @@ Q-C cho phép Định lý 11.14 dùng 3 hoặc 4 trang; planning chọn 4 vì GN
 | TS01 | Tỉ lệ $7/10$ có phải nghiệm hợp lý cực đại; mẫu toàn $0$ hoặc toàn $1$ cho gì | Mười cờ, $s=7$ |
 | TS06 | Tính $\hat p$, so với $p=1/2$, dự đoán sản phẩm tiếp theo | Mười cờ |
 | TS10 | Ba xác suất chế độ phải thỏa tổng bằng $1$ | $(2,3,5)$ |
-| TS15 | Tính $\hat{\boldsymbol\pi}$ và kiểm điều kiện dừng | $(2,3,5)$ |
+| TS15 | Tính $\hat{\pi}$ và kiểm điều kiện dừng | $(2,3,5)$ |
 | G101 | Vị trí và mức dao động của độ lệch nhiệt độ | $(0,1,2,3,4)$ |
 | G106 | Tính $\hat\mu$, $\hat\sigma^2$ và so với $\mathcal N(2,1)$ | $(0,1,2,3,4)$ |
 | G112 | Hai mẫu số cho hai số khác nhau từ cùng $Q$ | $n=5$, $\bar x=2$, $Q=10$ |
@@ -304,15 +304,23 @@ Ghi chú được tái cấu trúc theo Q1 của `planning/notes-10-14-slt-templ
 - 12. Tài liệu đọc
 - Phụ lục
 
-Tệp bài tập:
+Bài tập trong ghi chú (đánh số lại 2026-11-12):
 
-- Bài tập 11.1 (Nghiệm trong và nghiệm biên của mô hình Bernoulli)
-- Bài tập 11.2 (Nhân tử Lagrange trên một mặt của đơn hình)
-- Bài tập 11.3 (Hình học Gaussian theo hướng riêng)
-- Bài tập 11.4 (Hợp lý Bernoulli, nghiệm biên và cơ chế lấy mẫu)
-- Bài tập 11.5 (Ước lượng phân loại và entropy chéo)
-- Bài tập 11.6 (Phương sai hợp lý cực đại và phương sai không chệch)
-- Bài tập 11.7 (Ma trận hiệp phương sai, đường đồng mức và dữ liệu suy biến)
-- Bài tập 11.8 (Mất mát từ mô hình nhiễu có phương sai khác nhau)
+- Bài tập 11.1 (Nghiệm trong và nghiệm biên của mô hình Bernoulli), cuối §5.1
+- Bài tập 11.2 (Nhân tử Lagrange trên một mặt của đơn hình), cuối §6.1
+- Bài tập 11.3 (Hình học Gaussian theo hướng riêng), cuối §8.3
+- Bài tập 11.4 (Ma trận hiệp phương sai, đường đồng mức và dữ liệu suy biến), cuối §8.3
 
-Ánh xạ số hiệu cũ → mới: xem `review-log.md`, mục "Ánh xạ số hiệu cũ → mới".
+Tệp bài tập (Murphy 2022):
+
+- Bài tập 11.5 (Trị riêng của một ma trận đường chéo)
+- Bài tập 11.6 (Ước lượng hợp lý cực đại của Gaussian một chiều)
+- Bài tập 11.7 (Đồng xu và người báo kết quả không tin cậy)
+- Bài tập 11.8 (Phương sai hợp lý cực đại là ước lượng chệch)
+- Bài tập 11.9 (Ước lượng phương sai khi đã biết trung bình)
+- Bài tập 11.10 (Tổ hợp tuyến tính của vector ngẫu nhiên)
+- Bài tập 11.11 (Gộp số đo của hai cảm biến)
+- Bài tập 11.12 (Tiêu chuẩn BIC cho Gaussian với hiệp phương sai đầy đủ và đường chéo)
+- Bài tập 11.13 (Hằng số chuẩn hóa của Gaussian nhiều chiều)
+
+Ánh xạ số hiệu cũ → mới: bảng trong `review-log.md`, mục "Rà nhẹ theo quy tắc 2026-11-09 và làm lại tệp bài tập từ giáo trình (2026-11-12)".

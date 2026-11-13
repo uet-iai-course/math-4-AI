@@ -29,12 +29,12 @@
     <ol>
       <li>Phát biểu mô hình thống kê, viết hàm hợp lý theo cách lấy mẫu.</li>
       <li>Chứng minh ước lượng hợp lý cực đại (maximum likelihood estimation, MLE) Bernoulli, kể cả nghiệm biên.</li>
-      <li>Dùng nhân tử Lagrange cho phân loại; chứng minh cực đại toàn cục.</li>
-      <li>Ước lượng trung bình, hiệp phương sai Gaussian; xét tồn tại, độ chệch.</li>
+      <li>Dùng nhân tử Lagrange cho phân loại; chứng minh cực đại toàn cục, kể cả nhóm vắng mặt.</li>
+      <li>Chứng minh ước lượng Gaussian; xét tồn tại, độ chệch.</li>
       <li>Đọc đường đồng mức Gaussian bằng trị riêng, khoảng cách Mahalanobis.</li>
       <li>Suy ra mất mát từ giả thiết phân phối.</li>
     </ol>
-    <aside class="notes"><p>Sáu mục tiêu cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong chuẩn đầu ra CLO2 của học phần.</p><p>Mục tiêu 4 gồm việc phân biệt nghiệm hợp lý cực đại, với mẫu số $n$, và ước lượng không chệch, với mẫu số $n-1$. Mục tiêu 6 gồm việc giải thích vì sao đổi mô hình xác suất thì đổi mục tiêu học tham số.</p></aside>
+    <aside class="notes"><p>Sáu mục tiêu cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong chuẩn đầu ra của học phần.</p><p>Mục tiêu 1 gồm việc phân biệt mẫu ngẫu nhiên, dữ liệu quan sát, thống kê và bộ ước lượng. Mục tiêu 4 gồm ước lượng trung bình, phương sai, ma trận hiệp phương sai và phân biệt nghiệm hợp lý cực đại (mẫu số $n$) với ước lượng không chệch (mẫu số $n-1$). Mục tiêu 5 gồm việc dùng khoảng cách Mahalanobis để so sánh độ lệch của quan sát mới. Mục tiêu 6 gồm việc giải thích vì sao đổi mô hình xác suất thì đổi mục tiêu học tham số.</p></aside>
   </section>
   <section data-slide-id="MD02">
     <h2>Nội dung</h2>
@@ -59,7 +59,7 @@
       <p>Trung bình bốn vector $\bar x=(10,20)^\top$; $\lVert a-\bar x\rVert^2=18$, $\lVert b-\bar x\rVert^2=8$.</p>
       <p>Khoảng cách Euclid xếp $a$ xa hơn.</p>
     </div>
-    <aside class="notes"><p>Hai số đo đã được đưa về cùng một đơn vị quy ước. Khoảng cách Euclid coi mọi hướng có cùng mức phân tán.</p><p>Các độ lệch nền $(2,2)^\top$, $(-2,-2)^\top$, $(1,-1)^\top$, $(-1,1)^\top$ cho thấy dữ liệu nền dao động mạnh theo hướng $(1,1)^\top$ và yếu theo hướng $(1,-1)^\top$. Độ lệch $a-\bar x=(3,3)^\top$ nằm trọn theo hướng thứ nhất, độ lệch $b-\bar x=(2,-2)^\top$ nằm trọn theo hướng thứ hai.</p><p>Để so sánh theo mức phân tán của từng hướng, cần ước lượng từ dữ liệu nền cả trung bình lẫn ma trận hiệp phương sai. Câu hỏi được trả lời ở phần 6.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Câu hỏi mở đầu.</p></aside>
+    <aside class="notes"><p>Hai số đo đã được đưa về cùng một đơn vị quy ước. Khoảng cách Euclid coi mọi hướng có cùng mức phân tán.</p><p>Các độ lệch nền $(2,2)^\top$, $(-2,-2)^\top$, $(1,-1)^\top$, $(-1,1)^\top$ cho thấy dữ liệu nền dao động mạnh theo hướng $(1,1)^\top$ và yếu theo hướng $(1,-1)^\top$. Độ lệch $a-\bar x=(3,3)^\top$ nằm trọn theo hướng thứ nhất, độ lệch $b-\bar x=(2,-2)^\top$ nằm trọn theo hướng thứ hai.</p><p>Để so sánh theo mức phân tán của từng hướng, cần ước lượng từ dữ liệu nền cả trung bình lẫn ma trận hiệp phương sai.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Câu hỏi mở đầu.</p></aside>
   </section>
   <section data-slide-id="MD04">
     <h2>Ngữ cảnh</h2>
@@ -83,10 +83,10 @@
   <section data-slide-id="HL01">
     <h2>Tham số chưa biết của dây chuyền</h2>
     <p><strong>Nhu cầu:</strong> xác định tham số của mô hình dây chuyền bằng một bài toán tối ưu theo $\theta$.</p>
-    <p><strong>Nhắc lại:</strong> $\operatorname{Bernoulli}(p)$: $\mathbb P(X=1)=p$; $\operatorname{Cat}(\boldsymbol\pi)$: $\mathbb P(X=k)=\pi_k$; $\mathcal N(\mu,\sigma^2)$, $\mathcal N(\mu,\Sigma)$.</p>
+    <p><strong>Nhắc lại:</strong> $\operatorname{Bernoulli}(p)$: $\mathbb P(X=1)=p$; $\operatorname{Cat}(\pi)$: $\mathbb P(X=k)=\pi_k$; $\mathcal N(\mu,\sigma^2)$, $\mathcal N(\mu,\Sigma)$.</p>
     <p><strong>Trực quan.</strong> Mỗi giá trị tham số cho một phân phối trên các bộ dữ liệu có thể.</p>
     <p>Chọn giá trị làm dữ liệu đã thấy có khả năng xảy ra cao nhất.</p>
-    <aside class="notes"><p>Các tham số $p$, $\boldsymbol\pi$, $\mu$, $\sigma^2$, $\Sigma$ cố định nhưng chưa biết, và dữ liệu là căn cứ duy nhất để xác định chúng.</p><p>Bài 10 cập nhật xác suất sản phẩm lỗi khi tỉ lệ lỗi và độ nhạy của cảm biến đã cho trước (Định lý 10.11). Các tham số $\mu_y,\sigma_y^2$ của mô hình $T\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$ cho số đo liên tục cũng chưa biết.</p><p>Trong bài này, $\theta$ là ký hiệu chung cho tham số của mô hình, nên tham số Bernoulli được viết là $p$. Vector xác suất phân loại viết đậm $\boldsymbol\pi$ để phân biệt với hằng số $\pi$ trong mật độ Gaussian.</p><p>Để câu trực quan thành một tiêu chuẩn tính được, cần nói rõ xác suất của cả bộ dữ liệu được tính từ phân phối của từng quan sát thế nào. Ví dụ sau cho thấy điều đó phụ thuộc cơ chế lấy mẫu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, phần mở đầu và mục 4; Murphy (2022), §4.1.</p></aside>
+    <aside class="notes"><p>Các tham số $p$, $\pi$, $\mu$, $\sigma^2$, $\Sigma$ cố định nhưng chưa biết, và dữ liệu là căn cứ duy nhất để xác định chúng.</p><p>Bài 10 cập nhật xác suất sản phẩm lỗi khi tỉ lệ lỗi và độ nhạy của cảm biến đã cho trước (Định lý 10.11). Các tham số $\mu_y,\sigma_y^2$ của mô hình $T\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$ cho số đo liên tục cũng chưa biết.</p><p>Trong bài này, $\theta$ là ký hiệu chung cho tham số của mô hình, nên tham số Bernoulli được viết là $p$.</p><p>Để câu trực quan thành một tiêu chuẩn tính được, cần nói rõ xác suất của cả bộ dữ liệu được tính từ phân phối của từng quan sát thế nào. Ví dụ sau cho thấy điều đó phụ thuộc cơ chế lấy mẫu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, phần mở đầu và mục 4; Murphy (2022), §4.1.</p></aside>
   </section>
   <section data-slide-id="HL02">
     <h2>Ví dụ: sáu cờ cảnh báo dưới hai cơ chế lấy mẫu</h2>
@@ -208,7 +208,7 @@
     <div class="formula">$$\begin{aligned}L(1/2;D)&amp;=1/1024\approx0{,}000977,\\ L(0{,}7;D)&amp;=0{,}7^7\cdot0{,}3^3\approx0{,}002224,\\ L(0{,}7;D)/L(1/2;D)&amp;\approx2{,}28.\end{aligned}$$</div>
     <p><em>Dự đoán thế tham số</em> (plug-in prediction): theo mô hình đã khớp, cờ tiếp theo bằng $1$ với xác suất $0{,}7$.</p>
     <p><strong>Diễn giải:</strong> $0{,}7$ là giá trị phù hợp nhất với mười cờ đã thấy.</p>
-    <aside class="notes"><p>Kiểm tra lại bằng bước đầu của chứng minh: $\ell'(p)=(7-10p)/[p(1-p)]$ dương khi $p&lt;0{,}7$, bằng $0$ tại $p=0{,}7$ và âm khi $p&gt;0{,}7$. Tỉ số hai hợp lý là $2^{10}\cdot0{,}7^7\cdot0{,}3^3\approx2{,}277$.</p><p>Dự đoán thế tham số thay $\hat p$ vào mô hình để tính xác suất của quan sát mới. Xác suất gắn cờ thật của dây chuyền có thể khác $0{,}7$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 11.3; Murphy (2022), §4.2.3.</p></aside>
+    <aside class="notes"><p>Kiểm tra lại bằng bước đầu của chứng minh: $\ell'(p)=(7-10p)/[p(1-p)]$ dương khi $p&lt;0{,}7$, bằng $0$ tại $p=0{,}7$ và âm khi $p&gt;0{,}7$. Tỉ số hai hợp lý là $2^{10}\cdot0{,}7^7\cdot0{,}3^3\approx2{,}277$.</p><p>Theo mô hình đã khớp, hai cờ tiếp theo độc lập, nên xác suất cả hai bằng $1$ là $0{,}7^2=0{,}49$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 11.3; Murphy (2022), §4.2.3.</p></aside>
   </section>
   <section data-slide-id="TS07">
     <h2>Entropy chéo nhị phân</h2>
@@ -227,7 +227,7 @@
       <div class="formula">$$\ell'(p)=\frac{2-8p}{p(1-p)}.$$</div>
       <p>$\ell'&gt;0$ khi $p&lt;1/4$, $\ell'&lt;0$ khi $p&gt;1/4$; $L(0)=L(1)=0&lt;L(1/4)$, nên $\hat p=1/4=s/n$.</p>
     </div>
-    <aside class="notes"><p>Gợi ý: tính $\ell'(p)$ trên $(0,1)$, xét dấu, rồi so với giá trị của $L$ ở hai đầu mút.</p><p>Chi tiết: $\ell'(p)=2/p-6/(1-p)=[2(1-p)-6p]/[p(1-p)]$. Kiểm tra lại: tại $p=1/4$, tử số $2-8p$ bằng $0$.</p><p class="note-source"><strong>Nguồn:</strong> tệp bài tập Bài 11, Bài tập 11.1.</p></aside>
+    <aside class="notes"><p>Gợi ý: tính $\ell'(p)$ trên $(0,1)$, xét dấu, rồi so với giá trị của $L$ ở hai đầu mút.</p><p>Chi tiết: $\ell'(p)=2/p-6/(1-p)=[2(1-p)-6p]/[p(1-p)]$. Kiểm tra lại: tại $p=1/4$, tử số $2-8p$ bằng $0$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Bài tập 11.1.</p></aside>
   </section>
   <section data-slide-id="TS09">
     <h2>Bài tập: nghiệm trong và nghiệm biên <span class="nocase">(b)</span></h2>
@@ -236,7 +236,7 @@
     <p>Trên $(0,1)$: với mỗi $p$ có $p'\in(0,p)$ cho $L(p')&gt;L(p)$.</p>
     <p>$L\to1$ khi $p\downarrow0$ nhưng không đạt; không tồn tại ước lượng hợp lý cực đại trên $(0,1)$.</p>
     <p><strong>Lưu ý:</strong> $\ell'(p)=0$ vô nghiệm trên $(0,1)$; nghiệm trên $[0,1]$ nằm ở đầu mút $p=0$.</p>
-    <aside class="notes"><p>Gợi ý: phương trình $\ell'(p)=0$ không có nghiệm trong $(0,1)$; xét trực tiếp tính đơn điệu của $(1-p)^8$.</p><p>Một lỗi thường gặp là giải $\ell'(p)=0$, không thấy nghiệm, rồi kết luận không có nghiệm trên $[0,1]$. Câu (b) là trường hợp $n=8$ của hiện tượng miền mở đã nêu ở chứng minh nghiệm biên.</p><p class="note-source"><strong>Nguồn:</strong> tệp bài tập Bài 11, Bài tập 11.1; ghi chú bài giảng, Nhận xét 11.5.</p></aside>
+    <aside class="notes"><p>Gợi ý: phương trình $\ell'(p)=0$ không có nghiệm trong $(0,1)$; xét trực tiếp tính đơn điệu của $(1-p)^8$.</p><p>Một lỗi thường gặp là giải $\ell'(p)=0$, không thấy nghiệm, rồi kết luận không có nghiệm trên $[0,1]$. Câu (b) là trường hợp $n=8$ của hiện tượng miền mở đã nêu ở chứng minh nghiệm biên.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Bài tập 11.1, Nhận xét 11.5.</p></aside>
   </section>
   <section data-slide-id="TS10">
     <h2>Ba chế độ tải</h2>
@@ -249,25 +249,25 @@
   <section data-slide-id="TS11">
     <h2>Đơn hình xác suất và hàm hợp lý phân loại</h2>
     <p><strong>Định nghĩa.</strong> Với $K\ge2$ nhóm, <em>đơn hình xác suất</em> (probability simplex) là tập</p>
-    <div class="formula">$$\Delta_{K-1}=\Bigl\{\boldsymbol\pi\in\mathbb R^K:\ \pi_k\ge0,\ \sum_{k=1}^K\pi_k=1\Bigr\}.$$</div>
-    <p>Với dữ liệu $D$ của mẫu i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$, $\mathbb P(X=k)=\pi_k$, <em>số đếm</em> của nhóm $k$ là $n_k=\sum_i\mathbf 1[x_i=k]$; $\sum_kn_k=n$.</p>
+    <div class="formula">$$\Delta_{K-1}=\Bigl\{\pi\in\mathbb R^K:\ \pi_k\ge0,\ \sum_{k=1}^K\pi_k=1\Bigr\}.$$</div>
+    <p>Với dữ liệu $D$ của mẫu i.i.d. $\operatorname{Cat}(\pi)$, $\mathbb P(X=k)=\pi_k$, <em>số đếm</em> của nhóm $k$ là $n_k=\sum_i\mathbf 1[x_i=k]$; $\sum_kn_k=n$.</p>
     <p><em>Hàm hợp lý phân loại</em> trên $\Delta_{K-1}$, quy ước $\pi_k^0=1$:</p>
-    <div class="formula">$$L(\boldsymbol\pi;D)=\prod_{k=1}^K\pi_k^{n_k},\qquad\ell(\boldsymbol\pi;D)=\sum_{k:\,n_k&gt;0}n_k\log\pi_k.$$</div>
-    <aside class="notes"><p>Mỗi quan sát $x_i=k$ góp một thừa số $\pi_k$; nhóm $k$ góp $n_k$ thừa số như vậy, nên hàm hợp lý phân loại suy từ dạng tích $\prod_ip_\theta(x_i)$, và các số đếm là thống kê đủ.</p><p>Các xác suất trong $\Delta_{K-1}$ mô tả một biến nhận đúng một trong $K$ giá trị. Chúng khác $K$ tham số Bernoulli của $K$ chỉ báo có thể đồng thời bằng $1$: các tham số đó không chịu ràng buộc tổng bằng $1$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 11.6 (vector xác suất viết $\pi$, không đậm); Murphy (2022), §4.2.4, (4.26); §4.6.3.2.</p></aside>
+    <div class="formula">$$L(\pi;D)=\prod_{k=1}^K\pi_k^{n_k},\qquad\ell(\pi;D)=\sum_{k:\,n_k&gt;0}n_k\log\pi_k.$$</div>
+    <aside class="notes"><p>Mỗi quan sát $x_i=k$ góp một thừa số $\pi_k$; nhóm $k$ góp $n_k$ thừa số như vậy, nên hàm hợp lý phân loại suy từ dạng tích $\prod_ip_\theta(x_i)$, và các số đếm là thống kê đủ.</p><p>Các xác suất trong $\Delta_{K-1}$ mô tả một biến nhận đúng một trong $K$ giá trị. Chúng khác $K$ tham số Bernoulli của $K$ chỉ báo có thể đồng thời bằng $1$: các tham số đó không chịu ràng buộc tổng bằng $1$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định nghĩa 11.6; Murphy (2022), §4.2.4, (4.26); §4.6.3.2.</p></aside>
   </section>
   <section data-slide-id="TS12">
     <h2>Ước lượng phân loại</h2>
-    <p><strong>Định lý.</strong> <strong>Giả thiết:</strong> $n\ge1$ quan sát của mẫu i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$, số đếm $n_1,\ldots,n_K$; miền $\Delta_{K-1}$ đóng, cho phép $\pi_k=0$.</p>
+    <p><strong>Định lý.</strong> <strong>Giả thiết:</strong> $n\ge1$ quan sát của mẫu i.i.d. $\operatorname{Cat}(\pi)$, số đếm $n_1,\ldots,n_K$; miền $\Delta_{K-1}$ đóng, cho phép $\pi_k=0$.</p>
     <p><strong>Kết luận:</strong> hàm hợp lý phân loại có đúng một điểm cực đại trên $\Delta_{K-1}$:</p>
     <div class="formula">$$\hat\pi_k=\frac{n_k}n,\qquad k=1,\ldots,K.$$</div>
-    <p>Nhóm chưa xuất hiện ($n_k=0$) nhận $\hat\pi_k=0$.</p>
-    <p><strong>Ý nghĩa:</strong> dành khối lượng cho nhóm chưa thấy làm giảm hợp lý.</p>
-    <aside class="notes"><p>Với hai nhóm và $\boldsymbol\pi=(1-p,p)$, công thức $\hat\pi_k=n_k/n$ cho $\hat p=n_2/n$, đúng công thức Bernoulli.</p><p>Miền đóng quyết định sự tồn tại nghiệm: nếu đòi mọi $\pi_k&gt;0$ mà có $n_k=0$, cận trên của hợp lý không đạt được.</p><p>Chứng minh dùng nhân tử Lagrange để tìm ứng viên, rồi bất đẳng thức $\log t\le t-1$ để chứng minh ứng viên là cực đại toàn cục.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định lý 11.7; Murphy (2022), §4.2.4, (4.27)–(4.31).</p></aside>
+    <p>Nhóm vắng mặt ($n_k=0$) nhận $\hat\pi_k=0$.</p>
+    <p><strong>Ý nghĩa:</strong> dành khối lượng cho nhóm vắng mặt làm giảm hợp lý.</p>
+    <aside class="notes"><p>Với hai nhóm và $\pi=(1-p,p)$, công thức $\hat\pi_k=n_k/n$ cho $\hat p=n_2/n$, đúng công thức Bernoulli.</p><p>Miền đóng quyết định sự tồn tại nghiệm: nếu đòi mọi $\pi_k&gt;0$ mà có $n_k=0$, cận trên của hợp lý không đạt được.</p><p>Chứng minh dùng nhân tử Lagrange để tìm ứng viên, rồi bất đẳng thức $\log t\le t-1$ để chứng minh ứng viên là cực đại toàn cục.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Định lý 11.7; Murphy (2022), §4.2.4, (4.27)–(4.31).</p></aside>
   </section>
   <section data-slide-id="TS13">
     <h2>Chứng minh: ước lượng phân loại, ứng viên</h2>
     <p>Lagrange tìm ứng viên; $\log t\le t-1$ chứng minh cực đại toàn cục.</p>
-    <p><strong>Nhắc lại:</strong> hàm Lagrange cộng vào hàm mục tiêu tích của nhân tử $\nu$ với ràng buộc đẳng thức; điểm dừng: $\nabla_{\boldsymbol\pi}\mathcal L=0$.</p>
+    <p><strong>Nhắc lại:</strong> hàm Lagrange cộng vào hàm mục tiêu tích của nhân tử $\nu$ với ràng buộc đẳng thức; điểm dừng: $\nabla_{\pi}\mathcal L=0$.</p>
     <p><strong>Hợp lý dương cần $\pi_k&gt;0$ trên $\mathcal K_+=\{k:n_k&gt;0\}$.</strong> Cực tiểu $F=-\sum_{k\in\mathcal K_+}n_k\log\pi_k$ với $\sum_{k\in\mathcal K_+}\pi_k=1$ (đặt $\pi_k=0$ ngoài $\mathcal K_+$; bước sau so với mọi điểm):</p>
     <div class="formula">$$\mathcal L=-\sum_{k\in\mathcal K_+}n_k\log\pi_k+\nu\Bigl(\sum_{k\in\mathcal K_+}\pi_k-1\Bigr).$$</div>
     <p><strong>Điều kiện dừng cho $\pi_k=n_k/\nu$.</strong> Từ $-n_k/\pi_k+\nu=0$.</p>
@@ -277,21 +277,21 @@
   <section data-slide-id="TS14">
     <h2>Chứng minh: ước lượng phân loại, cực đại toàn cục</h2>
     <p><strong>Nhắc lại:</strong> $\log t\le t-1$ với $t&gt;0$, dấu bằng khi và chỉ khi $t=1$.</p>
-    <p><strong>$\ell(\boldsymbol\pi)\le\ell(\hat{\boldsymbol\pi})$ trên $\Delta_{K-1}$.</strong> Nếu $\pi_k=0$ với một $k\in\mathcal K_+$ thì $L(\boldsymbol\pi;D)=0$; ngược lại:</p>
+    <p><strong>$\ell(\pi)\le\ell(\hat{\pi})$ trên $\Delta_{K-1}$.</strong> Nếu $\pi_k=0$ với một $k\in\mathcal K_+$ thì $L(\pi;D)=0$; ngược lại:</p>
     <div class="grid2">
-      <div class="formula">$$\begin{aligned}&amp;\ell(\boldsymbol\pi;D)-\ell(\hat{\boldsymbol\pi};D)\\ &amp;=\sum_{k\in\mathcal K_+}n_k\log\frac{\pi_k}{\hat\pi_k}\\ &amp;\le\sum_{k\in\mathcal K_+}n_k\Bigl(\frac{\pi_k}{\hat\pi_k}-1\Bigr)\\ &amp;=n\Bigl(\sum_{k\in\mathcal K_+}\pi_k-1\Bigr)\le0.\end{aligned}$$</div>
+      <div class="formula">$$\begin{aligned}&amp;\ell(\pi;D)-\ell(\hat{\pi};D)\\ &amp;=\sum_{k\in\mathcal K_+}n_k\log\frac{\pi_k}{\hat\pi_k}\\ &amp;\le\sum_{k\in\mathcal K_+}n_k\Bigl(\frac{\pi_k}{\hat\pi_k}-1\Bigr)\\ &amp;=n\Bigl(\sum_{k\in\mathcal K_+}\pi_k-1\Bigr)\le0.\end{aligned}$$</div>
       <div>
         <p>Do $n_k/\hat\pi_k=n$, $\sum_{k\in\mathcal K_+}n_k=n$ và $\sum_{k\in\mathcal K_+}\pi_k\le1$.</p>
-        <p><strong>Dấu bằng chỉ tại $\hat{\boldsymbol\pi}$.</strong> Cần $\pi_k=\hat\pi_k$ trên $\mathcal K_+$ và $\pi_k=0$ ngoài $\mathcal K_+$.</p>
+        <p><strong>Dấu bằng chỉ tại $\hat{\pi}$.</strong> Cần $\pi_k=\hat\pi_k$ trên $\mathcal K_+$ và $\pi_k=0$ ngoài $\mathcal K_+$.</p>
       </div>
     </div>
-    <aside class="notes"><p>Bất đẳng thức thứ nhất dùng $\log t\le t-1$ với $t=\pi_k/\hat\pi_k&gt;0$. Đẳng thức tiếp theo dùng $n_k/\hat\pi_k=n$ và $\sum_{k\in\mathcal K_+}n_k=n$. Bất đẳng thức cuối dùng $\sum_{k\in\mathcal K_+}\pi_k\le\sum_k\pi_k=1$.</p><p>Dấu bằng ở bất đẳng thức thứ nhất cần mọi $t=1$, tức $\pi_k=\hat\pi_k$ trên $\mathcal K_+$; ở bất đẳng thức cuối cần $\boldsymbol\pi$ không đặt khối lượng ngoài $\mathcal K_+$. Hai điều kiện cùng cho $\boldsymbol\pi=\hat{\boldsymbol\pi}$.</p><p>Cùng bất đẳng thức cho tính không âm của phân kỳ Kullback–Leibler (Kullback–Leibler divergence, KL); đó là một chứng minh thứ hai của định lý (ghi chú bài giảng, mục 6.2).</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Định lý 11.7, Bước 2–3; Murphy (2022), §6.2.</p></aside>
+    <aside class="notes"><p>Bất đẳng thức thứ nhất dùng $\log t\le t-1$ với $t=\pi_k/\hat\pi_k&gt;0$. Đẳng thức tiếp theo dùng $n_k/\hat\pi_k=n$ và $\sum_{k\in\mathcal K_+}n_k=n$. Bất đẳng thức cuối dùng $\sum_{k\in\mathcal K_+}\pi_k\le\sum_k\pi_k=1$.</p><p>Dấu bằng ở bất đẳng thức thứ nhất cần mọi $t=1$, tức $\pi_k=\hat\pi_k$ trên $\mathcal K_+$; ở bất đẳng thức cuối cần $\pi$ không đặt khối lượng ngoài $\mathcal K_+$. Hai điều kiện cùng cho $\pi=\hat{\pi}$.</p><p>Cùng bất đẳng thức cho tính không âm của phân kỳ Kullback–Leibler (Kullback–Leibler divergence, KL); đó là một chứng minh thứ hai của định lý (ghi chú bài giảng, mục 6.2).</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Định lý 11.7, Bước 2–3; Murphy (2022), §6.2.</p></aside>
   </section>
   <section data-slide-id="TS15">
     <h2>Ví dụ: ba chế độ tải trong mười bản ghi</h2>
-    <p>Mười bản ghi lấy độc lập, số đếm $(n_1,n_2,n_3)=(2,3,5)$; mô hình i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$ trên $\Delta_2$.</p>
-    <p>Tính $\hat{\boldsymbol\pi}$; mọi số đếm dương, $\mathcal K_+=\{1,2,3\}$, $n=10$.</p>
-    <div class="formula">$$\hat{\boldsymbol\pi}=\Bigl(\frac2{10},\frac3{10},\frac5{10}\Bigr)=(0{,}2;\ 0{,}3;\ 0{,}5).$$</div>
+    <p>Mười bản ghi lấy độc lập, số đếm $(n_1,n_2,n_3)=(2,3,5)$; mô hình i.i.d. $\operatorname{Cat}(\pi)$ trên $\Delta_2$.</p>
+    <p>Tính $\hat{\pi}$; mọi số đếm dương, $\mathcal K_+=\{1,2,3\}$, $n=10$.</p>
+    <div class="formula">$$\hat{\pi}=\Bigl(\frac2{10},\frac3{10},\frac5{10}\Bigr)=(0{,}2;\ 0{,}3;\ 0{,}5).$$</div>
     <p>Kiểm tra điều kiện dừng: $2/0{,}2=3/0{,}3=5/0{,}5=10=n$.</p>
     <p>Chia âm log-hợp lý cho $n$ được <em>entropy chéo nhiều lớp</em> (categorical cross-entropy, log loss) $-\sum_k\frac{n_k}n\log\pi_k$.</p>
     <p><strong>Diễn giải:</strong> chế độ tải cao có xác suất ước lượng lớn nhất, $0{,}5$; ba xác suất có tổng bằng $1$.</p>
@@ -299,22 +299,22 @@
   </section>
   <section data-slide-id="TS16">
     <h2>Bài tập: Lagrange khi có nhóm vắng mặt <span class="nocase">(a)</span></h2>
-    <div class="check"><p><strong>Câu hỏi:</strong> số đếm $(n_1,n_2,n_3)=(4,0,6)$ trong $n=10$ quan sát i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$, $\boldsymbol\pi\in\Delta_2$.</p><p>(a) Chứng minh mọi điểm cực đại có $\pi_2=0$, không dùng điều kiện dừng theo $\pi_2$.</p><p>(b) Dùng nhân tử Lagrange với $\pi_1+\pi_3=1$ tìm nghiệm; chứng minh đó là cực đại.</p><p>(c) Tính tỉ số hợp lý giữa nghiệm và $(0{,}3;\ 0{,}1;\ 0{,}6)$.</p></div>
+    <div class="check"><p><strong>Câu hỏi:</strong> số đếm $(n_1,n_2,n_3)=(4,0,6)$ trong $n=10$ quan sát i.i.d. $\operatorname{Cat}(\pi)$, $\pi\in\Delta_2$.</p><p>(a) Chứng minh mọi điểm cực đại có $\pi_2=0$, không dùng điều kiện dừng theo $\pi_2$.</p><p>(b) Dùng nhân tử Lagrange với $\pi_1+\pi_3=1$ tìm nghiệm; chứng minh đó là cực đại.</p><p>(c) Tính tỉ số hợp lý giữa nghiệm và $(0{,}3;\ 0{,}1;\ 0{,}6)$.</p></div>
     <div class="fragment">
       <p><strong>Lời giải:</strong> (a) $L=\pi_1^4\pi_3^6$; điểm cực đại có $L&gt;0$, nên $\pi_1,\pi_3&gt;0$.</p>
-      <p>Nếu $m=\pi_1+\pi_3&lt;1$, đặt $\boldsymbol\pi'=(\pi_1/m,\ 0,\ \pi_3/m)$: $L(\boldsymbol\pi')=m^{-10}L(\boldsymbol\pi)&gt;L(\boldsymbol\pi)$, nên $m=1$ và $\pi_2=0$.</p>
+      <p>Nếu $m=\pi_1+\pi_3&lt;1$, đặt $\pi'=(\pi_1/m,\ 0,\ \pi_3/m)$: $L(\pi')=m^{-10}L(\pi)&gt;L(\pi)$, nên $m=1$ và $\pi_2=0$.</p>
     </div>
-    <aside class="notes"><p>Do $\pi_1,\pi_3&gt;0$, $m\in(0,1]$. Gợi ý: chuẩn hóa hai tọa độ đã thấy lên tổng bằng $1$ và so sánh hai hàm hợp lý.</p><p>Câu (d) của đề: xác suất thế tham số để hai quan sát mới đều thuộc nhóm $3$ là $\hat\pi_3^2=0{,}36$. Phép tính dùng hai giả thiết: hai quan sát mới có phân phối $\operatorname{Cat}(\hat{\boldsymbol\pi})$ của mô hình đã khớp, và chúng độc lập với nhau.</p><p class="note-source"><strong>Nguồn:</strong> tệp bài tập Bài 11, Bài tập 11.2.</p></aside>
+    <aside class="notes"><p>Do $\pi_1,\pi_3&gt;0$, $m\in(0,1]$. Gợi ý: chuẩn hóa hai tọa độ đã thấy lên tổng bằng $1$ và so sánh hai hàm hợp lý.</p><p>Câu (d) của đề: xác suất thế tham số để hai quan sát mới đều thuộc nhóm $3$ là $\hat\pi_3^2=0{,}36$. Phép tính dùng hai giả thiết: hai quan sát mới có phân phối $\operatorname{Cat}(\hat{\pi})$ của mô hình đã khớp, và chúng độc lập với nhau.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Bài tập 11.2.</p></aside>
   </section>
   <section data-slide-id="TS17">
     <h2>Bài tập: Lagrange khi có nhóm vắng mặt <span class="nocase">(b), (c)</span></h2>
     <p class="check"><strong>Câu hỏi:</strong> (b) Lagrange với $\pi_1+\pi_3=1$, chứng minh cực đại; (c) tỉ số hợp lý với $(0{,}3;\ 0{,}1;\ 0{,}6)$.</p>
     <p><strong>Lời giải:</strong> (b) với $\pi_2=0$: $\mathcal L=-4\log\pi_1-6\log\pi_3+\nu(\pi_1+\pi_3-1)$.</p>
-    <p>Điều kiện dừng $4/\pi_1=6/\pi_3=\nu$; ràng buộc cho $\nu=10$, $\hat{\boldsymbol\pi}=(0{,}4;\ 0;\ 0{,}6)$.</p>
-    <p>$F$ lồi trên tập mở $\{\pi_1&gt;0,\pi_3&gt;0\}$, nên điểm dừng là nghiệm khi $\pi_2=0$ (Mệnh đề 04.2(b)); cùng (a), $\hat{\boldsymbol\pi}$ cực đại trên $\Delta_2$.</p>
-    <div class="formula">$$\text{(c)}\quad\frac{L(\hat{\boldsymbol\pi})}{L(0{,}3;\,0{,}1;\,0{,}6)}=\frac{0{,}4^4}{0{,}3^4}=\frac{256}{81}\approx3{,}16.$$</div>
+    <p>Điều kiện dừng $4/\pi_1=6/\pi_3=\nu$; ràng buộc cho $\nu=10$, $\hat{\pi}=(0{,}4;\ 0;\ 0{,}6)$.</p>
+    <p>$F$ lồi trên tập mở $\{\pi_1&gt;0,\pi_3&gt;0\}$, nên điểm dừng là nghiệm khi $\pi_2=0$ (Mệnh đề 04.2(b)); cùng (a), $\hat{\pi}$ cực đại trên $\Delta_2$.</p>
+    <div class="formula">$$\text{(c)}\quad\frac{L(\hat{\pi})}{L(0{,}3;\,0{,}1;\,0{,}6)}=\frac{0{,}4^4}{0{,}3^4}=\frac{256}{81}\approx3{,}16.$$</div>
     <p><strong>Diễn giải:</strong> dành khối lượng $0{,}1$ cho nhóm vắng mặt làm hợp lý giảm hơn ba lần.</p>
-    <aside class="notes"><p>Ở đây $F(\pi_1,\pi_3)=-4\log\pi_1-6\log\pi_3$; $-\log$ lồi, ma trận ràng buộc $(1,1)$ có hàng khác $0$. Với mọi $\boldsymbol\pi$ có hợp lý dương: nếu $m&lt;1$, câu (a) cho một điểm có $\pi_2=0$ và hợp lý lớn hơn; nếu $m=1$ thì $\pi_2=0$.</p><p>Ở câu (c), hai vector có cùng $\pi_3=0{,}6$, nên thừa số $0{,}6^6$ triệt tiêu. Kiểm tra lại: $4/0{,}4=6/0{,}6=10=n$.</p><p>Cách khác cho tính cực đại: bất đẳng thức $\log t\le t-1$ như chứng minh định lý ước lượng phân loại, với $\mathcal K_+=\{1,3\}$.</p><p class="note-source"><strong>Nguồn:</strong> tệp bài tập Bài 11, Bài tập 11.2.</p></aside>
+    <aside class="notes"><p>Ở đây $F(\pi_1,\pi_3)=-4\log\pi_1-6\log\pi_3$; $-\log$ lồi, ma trận ràng buộc $(1,1)$ có hàng khác $0$. Với mọi $\pi$ có hợp lý dương: nếu $m&lt;1$, câu (a) cho một điểm có $\pi_2=0$ và hợp lý lớn hơn; nếu $m=1$ thì $\pi_2=0$.</p><p>Ở câu (c), hai vector có cùng $\pi_3=0{,}6$, nên thừa số $0{,}6^6$ triệt tiêu. Kiểm tra lại: $4/0{,}4=6/0{,}6=10=n$.</p><p>Cách khác cho tính cực đại: bất đẳng thức $\log t\le t-1$ như chứng minh định lý ước lượng phân loại, với $\mathcal K_+=\{1,3\}$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Bài tập 11.2.</p></aside>
   </section>
 </section>
 
@@ -436,7 +436,7 @@
       <p>$Q/n=10/5=2$; $Q/(n-1)=10/4=2{,}5$; tỉ số $2/2{,}5=0{,}8=(n-1)/n$.</p>
       <p><strong>Diễn giải:</strong> $2$ là phương sai của Gaussian khớp dữ liệu nhất; $2{,}5$ là giá trị của bộ ước lượng không chệch.</p>
     </div>
-    <aside class="notes"><p>Hai số tính từ cùng $Q=10$. Số $2$ là phương sai của mô hình Gaussian khớp dữ liệu tốt nhất; số $2{,}5$ là giá trị trên mẫu này của bộ ước lượng có kỳ vọng đúng bằng phương sai thật qua các lần lấy mẫu.</p><p>Cả hai mẫu số đều được dùng trong tính toán: NumPy mặc định tính phương sai với mẫu số $n$, pandas mặc định dùng $n-1$. Khi so phương sai từ hai công cụ trên cùng dữ liệu, cần biết công cụ dùng mẫu số nào. Bài tập tự học 11.6 luyện thêm phần này.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 11.7; Murphy (2022), §4.2.5, chú thích 4.</p></aside>
+    <aside class="notes"><p>Cả hai mẫu số đều được dùng trong tính toán: NumPy mặc định tính phương sai với mẫu số $n$, pandas mặc định dùng $n-1$. Khi so phương sai từ hai công cụ trên cùng dữ liệu, cần biết công cụ dùng mẫu số nào. Bài tập 11.6 và 11.8 của tệp bài tập luyện thêm phần này.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 11.7; Murphy (2022), §4.2.5, chú thích 4.</p></aside>
   </section>
 </section>
 
@@ -485,7 +485,7 @@
     <div class="formula">$$S_4=\frac14\begin{pmatrix}10&amp;6\\6&amp;10\end{pmatrix}=\begin{pmatrix}5/2&amp;3/2\\3/2&amp;5/2\end{pmatrix}.$$</div>
     <p>Trị riêng $4$ và $1$, đều dương, nên $S_4\succ0$.</p>
     <p><strong>Diễn giải:</strong> phần tử $3/2&gt;0$ nghĩa là hai số đo có xu hướng cùng tăng hoặc cùng giảm.</p>
-    <aside class="notes"><p>Hai phần tử đường chéo bằng $5/2$, trùng phương sai hợp lý cực đại của từng tọa độ. Trị riêng: $S_4(1,1)^\top=(4,4)^\top$ và $S_4(1,-1)^\top=(1,-1)^\top$. Cũng vậy, $\tilde x_1$ và $\tilde x_3$ độc lập tuyến tính nên các $\tilde x_i$ sinh ra $\mathbb R^2$.</p><p>Phần tử ngoài đường chéo ghi điều mà phương sai từng tọa độ không ghi. Vì $S_4\succ0$, ma trận này là một ứng viên hợp lệ cho $\Sigma$; định lý tiếp theo cho biết nó cực đại hợp lý.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 11.8.</p></aside>
+    <aside class="notes"><p>Hai phần tử đường chéo bằng $5/2$, trùng phương sai hợp lý cực đại của từng tọa độ. Trị riêng: $S_4(1,1)^\top=(4,4)^\top$ và $S_4(1,-1)^\top=(1,-1)^\top$. Cũng vậy, $\tilde x_1$ và $\tilde x_3$ độc lập tuyến tính nên các $\tilde x_i$ sinh ra $\mathbb R^2$.</p><p>Phần tử ngoài đường chéo ghi điều mà phương sai từng tọa độ không ghi. Vì $S_4\succ0$, ma trận này thuộc miền tham số $\Sigma\succ0$; để biết nó có cực đại hợp lý không, cần kết quả cho Gaussian nhiều chiều.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 11.8.</p></aside>
   </section>
   <section data-slide-id="GN05">
     <h2>Ước lượng hợp lý cực đại Gaussian nhiều chiều</h2>
@@ -568,7 +568,7 @@
     <p><strong>$w^\top\mathbb E[S_n]w=\frac{n-1}nw^\top\Sigma w$.</strong> Hiệu chỉnh phương sai mẫu cho $\mathbb EQ_Y=(n-1)w^\top\Sigma w$; kỳ vọng tuyến tính.</p>
     <p>Đặt $M=\mathbb E[S_n]-\frac{n-1}n\Sigma$, đối xứng, $w^\top Mw=0$ với mọi $w$.</p>
     <p><strong>Dạng toàn phương bằng $0$ thì $M=0$.</strong> $w=e_j$ cho $M_{jj}=0$; $w=e_j+e_k$ cho $M_{jj}+M_{kk}+2M_{jk}=0$, nên $M_{jk}=0$.</p>
-    <aside class="notes"><p>Các $Y_i$ độc lập vì là hàm đo được của các $X_i$ độc lập; cùng phân phối vì là cùng một hàm của các $X_i$ cùng phân phối. $\operatorname{Var}Y_i=w^\top\Sigma w$ theo đẳng thức $\operatorname{Var}(w^\top X)=w^\top\operatorname{Cov}(X)\,w$.</p><p>Nhân $\mathbb E[S_n]=\frac{n-1}n\Sigma$ với $\frac n{n-1}$ cho $\mathbb E[S_{n-1}]=\Sigma$. Bài tập tự học 11.7 luyện thêm phần này.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Hệ quả 11.15.</p></aside>
+    <aside class="notes"><p>Các $Y_i$ độc lập vì là hàm đo được của các $X_i$ độc lập; cùng phân phối vì là cùng một hàm của các $X_i$ cùng phân phối. $\operatorname{Var}Y_i=w^\top\Sigma w$ theo đẳng thức $\operatorname{Var}(w^\top X)=w^\top\operatorname{Cov}(X)\,w$.</p><p>Nhân $\mathbb E[S_n]=\frac{n-1}n\Sigma$ với $\frac n{n-1}$ cho $\mathbb E[S_{n-1}]=\Sigma$. Bài tập 11.4(b) của ghi chú bài giảng và Bài tập 11.8 của tệp bài tập (bản một chiều của lập luận độ chệch) luyện thêm phần này.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Hệ quả 11.15.</p></aside>
   </section>
   <section data-slide-id="GN14">
     <h2>Bài tập: bốn điểm hai chiều với phương sai khác nhau</h2>
@@ -653,7 +653,7 @@
     <p>Kiểm tra bằng $\hat\Sigma^{-1}$: $\frac18(18+18)=\frac92$ và $\frac18(32+32)=8$.</p>
     <div class="formula">$$\frac{\hat f(a)}{\hat f(b)}=\exp\Bigl[-\frac12\Bigl(\frac92-8\Bigr)\Bigr]=e^{7/4}\approx5{,}755.$$</div>
     <p><strong>Diễn giải:</strong> $b$ lệch khỏi chế độ vận hành bình thường nhiều hơn $a$; mật độ của $a$ lớn gấp khoảng $5{,}8$ lần.</p>
-    <aside class="notes"><p>Hai quan sát được đánh giá dưới cùng một Gaussian, nên hệ số chuẩn hóa triệt tiêu trong tỉ số mật độ. Kiểm tra trực tiếp: $\hat\Sigma^{-1}(3,3)^\top=\frac18(6,6)^\top$ và $\hat\Sigma^{-1}(2,-2)^\top=\frac18(16,-16)^\top$.</p><p>$z_+^2+z_-^2$ bằng $18$ cho $a$ và $8$ cho $b$, đúng bình phương độ dài Euclid, vì phép đổi tọa độ bảo toàn độ dài. $a$ xa tâm hơn theo khoảng cách Euclid nhưng có khoảng cách Mahalanobis nhỏ hơn, vì độ lệch của nó nằm theo hướng phân tán rộng. Đây là câu trả lời cho câu hỏi mở đầu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 11.11.</p></aside>
+    <aside class="notes"><p>Hai quan sát được đánh giá dưới cùng một Gaussian, nên hệ số chuẩn hóa triệt tiêu trong tỉ số mật độ. Kiểm tra trực tiếp: $\hat\Sigma^{-1}(3,3)^\top=\frac18(6,6)^\top$ và $\hat\Sigma^{-1}(2,-2)^\top=\frac18(16,-16)^\top$.</p><p>$z_+^2+z_-^2$ bằng $18$ cho $a$ và $8$ cho $b$, đúng bình phương độ dài Euclid, vì phép đổi tọa độ bảo toàn độ dài. $a$ xa tâm hơn theo khoảng cách Euclid nhưng có khoảng cách Mahalanobis nhỏ hơn, vì độ lệch của nó nằm theo hướng phân tán rộng.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 11.11.</p></aside>
   </section>
   <section data-slide-id="HH07">
     <h2>Bài tập: hình học Gaussian theo hướng riêng <span class="nocase">(a)</span></h2>
@@ -662,7 +662,7 @@
       <p><strong>Lời giải:</strong> (a) $\Sigma(1,1)^\top=(9,9)^\top$, $\Sigma(1,-1)^\top=(1,-1)^\top$: $\lambda_+=9$, $u_+=(1,1)^\top/\sqrt2$; $\lambda_-=1$, $u_-=(1,-1)^\top/\sqrt2$.</p>
       <p>Bán trục $\sqrt9=3$ theo $u_+$ và $1$ theo $u_-$.</p>
     </div>
-    <aside class="notes"><p>Hai điểm $a$, $b$ của bài tập khác hai sản phẩm của bài toán mở đầu.</p><p>Gợi ý: thử các vector $(1,1)^\top$ và $(1,-1)^\top$, chuẩn hóa chúng trước khi chiếu; dùng $d_\Sigma^2=\sum_jz_j^2/\lambda_j$: chiếu độ lệch lên từng vector riêng đơn vị, bình phương, rồi chia cho trị riêng tương ứng. Kiểm tra: tổng hai trị riêng $10=\operatorname{tr}\Sigma$, tích $9=25-16=\det\Sigma$.</p><p class="note-source"><strong>Nguồn:</strong> tệp bài tập Bài 11, Bài tập 11.3.</p></aside>
+    <aside class="notes"><p>Hai điểm $a$, $b$ của bài tập khác hai sản phẩm của bài toán mở đầu.</p><p>Gợi ý: thử các vector $(1,1)^\top$ và $(1,-1)^\top$, chuẩn hóa chúng trước khi chiếu; dùng $d_\Sigma^2=\sum_jz_j^2/\lambda_j$: chiếu độ lệch lên từng vector riêng đơn vị, bình phương, rồi chia cho trị riêng tương ứng. Kiểm tra: tổng hai trị riêng $10=\operatorname{tr}\Sigma$, tích $9=25-16=\det\Sigma$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Bài tập 11.3.</p></aside>
   </section>
   <section data-slide-id="HH08">
     <h2>Bài tập: hình học Gaussian theo hướng riêng <span class="nocase">(b), (c)</span></h2>
@@ -672,7 +672,7 @@
     <div class="formula">$$\text{(c)}\quad\frac{f_{\mu,\Sigma}(a)}{f_{\mu,\Sigma}(b)}=\exp\Bigl[-\frac12\Bigl(\frac{26}9-2\Bigr)\Bigr]=e^{-4/9}\approx0{,}641.$$</div>
     <p>Bình phương khoảng cách của $a$ gấp $5$ lần của $b$ theo Euclid, chỉ gấp $13/9\approx1{,}44$ lần theo Mahalanobis.</p>
     <p><strong>Diễn giải:</strong> phần $z_+^2=8$ của $a$ nằm theo hướng phương sai $9$, chỉ góp $8/9$.</p>
-    <aside class="notes"><p>Phần $z_-^2=2$ theo hướng có phương sai $1$ đóng góp đủ $2$, bằng toàn bộ đóng góp của $b$. Mật độ tại $a$ bằng khoảng $64\%$ mật độ tại $b$.</p><p>Kiểm tra trực tiếp bằng $\Sigma^{-1}=\frac19\begin{pmatrix}5&amp;-4\\-4&amp;5\end{pmatrix}$: $\Sigma^{-1}(3,1)^\top=\frac19(11,-7)^\top$, nên $d_\Sigma^2(a,\mu)=\frac19(33-7)=\frac{26}9$; $\Sigma^{-1}(1,-1)^\top=(1,-1)^\top$, nên $d_\Sigma^2(b,\mu)=2$.</p><p class="note-source"><strong>Nguồn:</strong> tệp bài tập Bài 11, Bài tập 11.3.</p></aside>
+    <aside class="notes"><p>Phần $z_-^2=2$ theo hướng có phương sai $1$ đóng góp đủ $2$, bằng toàn bộ đóng góp của $b$. Mật độ tại $a$ bằng khoảng $64\%$ mật độ tại $b$.</p><p>Kiểm tra trực tiếp bằng $\Sigma^{-1}=\frac19\begin{pmatrix}5&amp;-4\\-4&amp;5\end{pmatrix}$: $\Sigma^{-1}(3,1)^\top=\frac19(11,-7)^\top$, nên $d_\Sigma^2(a,\mu)=\frac19(33-7)=\frac{26}9$; $\Sigma^{-1}(1,-1)^\top=(1,-1)^\top$, nên $d_\Sigma^2(b,\mu)=2$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Bài tập 11.3.</p></aside>
   </section>
   <section data-slide-id="HH09">
     <h2>Chấm điểm lệch cho quan sát cảm biến</h2>
@@ -724,7 +724,7 @@
     <p>Gaussian: $\frac12\log(2\pi v)+\frac1{2vn}\sum_i(x_i-\mu)^2$; bỏ hằng số và hệ số dương $\frac1{2vn}$, còn tổng bình phương sai lệch, nghiệm $\hat\mu=\bar x$.</p>
     <p>(b) $s=0$, $n=5$: $\hat p=0$ (định lý ước lượng Bernoulli).</p>
     <p>(c) Không kết luận được: với $p=1/5$, xác suất năm cờ $0$ là $(4/5)^5\approx0{,}328$.</p>
-    <aside class="notes"><p>$(4/5)^5=1024/3125$: một mẫu năm cờ $0$ xảy ra khá thường xuyên dù xác suất gắn cờ dương. Nghiệm tối ưu trên mẫu đã thấy chưa cho biết chất lượng dự đoán trên quan sát mới.</p><p>Một hàm mất mát được suy ra từ một giả thiết phân phối bằng cách lấy âm log-hợp lý, bao gồm:</p><ul><li>giả thiết Gaussian cho tổng bình phương sai lệch;</li><li>giả thiết Bernoulli cho entropy chéo nhị phân;</li><li>giả thiết phân loại cho entropy chéo nhiều lớp.</li></ul><p>Trên cùng dữ liệu $(0,0,9)$, nhiễu Gaussian cho ước lượng $3$, nhiễu Laplace cho ước lượng $0$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11, lời giải câu hỏi cuối buổi.</p></aside>
+    <aside class="notes"><p>$(4/5)^5=1024/3125$. Nghiệm tối ưu trên mẫu đã thấy chưa cho biết chất lượng dự đoán trên quan sát mới.</p><p>Một hàm mất mát được suy ra từ một giả thiết phân phối bằng cách lấy âm log-hợp lý, bao gồm:</p><ul><li>giả thiết Gaussian cho tổng bình phương sai lệch;</li><li>giả thiết Bernoulli cho entropy chéo nhị phân;</li><li>giả thiết phân loại cho entropy chéo nhiều lớp.</li></ul><p>Trên cùng dữ liệu $(0,0,9)$, nhiễu Gaussian cho ước lượng $3$, nhiễu Laplace cho ước lượng $0$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11, lời giải câu hỏi cuối buổi.</p></aside>
   </section>
   <section data-slide-id="TK04">
     <h2>Câu hỏi tự kiểm tra</h2>
@@ -742,10 +742,10 @@
     <ul>
       <li>Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1.</li>
       <li>Mở rộng: Murphy (2022), §4.5–4.5.2, §4.6.2, §6.2, §7.4.4–7.4.5.</li>
-      <li>Bài tập tự học 11.4–11.8 trong tệp bài tập của Bài 11.</li>
+      <li>Bài tập 11.4 (ghi chú bài giảng) và 11.5–11.13 (tệp bài tập).</li>
     </ul>
     <p><strong>Nhu cầu:</strong> cho tham số phụ thuộc đầu vào và đo chất lượng dự đoán trên quan sát mới.</p>
-    <aside class="notes"><p>Trước buổi học: Murphy §2.4–2.6 và §3.2.1–3.2.2. Sau buổi học: §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1; Bài tập 4.1, 4.7 và 4.8 của Murphy luyện thêm phần Gaussian một chiều và hiệu chỉnh phương sai. Đọc thêm §4.7.1–4.7.4 về phân phối mẫu và khoảng tin cậy.</p><p>Ở các mô hình của bài, mọi quan sát dùng chung một tham số, và chất lượng của tham số chỉ được đo trên mẫu đã thấy. Bài 12 cho tham số của phân phối phụ thuộc đầu vào, dưới dạng mô hình có điều kiện $p_\theta(y\mid x)$, và xét câu hỏi: một tham số khớp tốt trên tập huấn luyện thì dự đoán quan sát mới tốt đến đâu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11–12; Murphy (2022).</p></aside>
+    <aside class="notes"><p>Trước buổi học: Murphy §2.4–2.6 và §3.2.1–3.2.2. Sau buổi học: §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1; Bài tập 11.6, 11.8 và 11.9 luyện thêm phần Gaussian một chiều và hiệu chỉnh phương sai. Đọc thêm §4.7.1–4.7.4 về phân phối mẫu và khoảng tin cậy.</p><p>Ở các mô hình của bài, mọi quan sát dùng chung một tham số, và chất lượng của tham số chỉ được đo trên mẫu đã thấy. Bài 12 cho tham số của phân phối phụ thuộc đầu vào, dưới dạng mô hình có điều kiện $p_\theta(y\mid x)$, và xét câu hỏi: một tham số khớp tốt trên tập huấn luyện thì dự đoán quan sát mới tốt đến đâu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11–12; Murphy (2022).</p></aside>
   </section>
 </section>
 

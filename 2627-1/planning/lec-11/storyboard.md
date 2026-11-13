@@ -37,7 +37,7 @@ Thứ tự trang trong mạch 3: TS00, TS01, TS03–TS17 (mã TS02 không dùng;
 | Độ chệch và tính không chệch | G108 ("Nhu cầu:" đánh giá $Q/n$ qua các lần lấy mẫu lặp lại) | G108 ("Trực quan.": tổng bình phương sai lệch quanh $\bar x$ không vượt tổng quanh $\mu$ thật) | G108 (ví dụ dẫn nhập: $n=1$ cho $Q/n=0$ với mọi dữ liệu) | G109 (Định nghĩa 11.10), G110, G111 (P5) | G112; GN12–GN13 (dạng ma trận) | G112 | Một mẫu cố định → hành vi qua các lần lấy mẫu; mục tiêu 4 | $Q$ của (7.3) thành $Q_X$ ngẫu nhiên ở G110 | Nhu cầu, ví dụ dẫn nhập và trực quan gộp ở G108. G112 vừa là ứng dụng vừa là bài tập: phép chia hai mẫu số trên cùng $Q$ là thao tác người học cần tái tạo. Câu nối G111→G112: "hai mẫu số trên cùng năm độ lệch". 10 phút. |
 | Ma trận hiệp phương sai và hiệp phương sai mẫu | GN00 (dòng dẫn), GN01 ("Nhu cầu:" mức phân tán theo mọi hướng) | GN01 ("Trực quan.": đám điểm kéo dài theo $(1,1)^\top$) | GN01 (ví dụ dẫn nhập: phương sai từng tọa độ đều $5/2$), GN04 | GN02 (Định nghĩa 11.12, (8.2)), GN03 (Định nghĩa 11.13, (8.4)) | GN04 (phần tử ngoài đường chéo $3/2$) | GN14 | Phương sai → ma trận; điều kiện $S_n\succ0$; mục tiêu 4 | Các sai lệch $(2,-2,1,-1)$, $(2,-2,-1,1)$ của GN01 là $\tilde x_i$ của GN04 | Nhu cầu, ví dụ dẫn nhập và trực quan gộp ở GN01. Câu nối GN01→GN02: "một đại lượng ghi cả xu hướng hai tọa độ cùng biến động". 7 phút. |
 | Ước lượng Gaussian nhiều chiều và điều kiện tồn tại (kết quả trung tâm) | GN00, GN01 | GN01; GN03 ("Trực quan.": $S_n$ là ứng viên cho $\Sigma$ như $Q/n$ cho $\sigma^2$) | GN04, GN10, GN11 (trường hợp suy biến) | GN05, GN06–GN09 (P6) | GN10 (nghiệm duy nhất $\mathcal N((10,20)^\top,S_4)$; $\hat\Sigma^{-1}$ cho mạch 6; mật độ tại tâm trong ghi chú diễn giả) | GN14 (bài có lời giải trên mặt trang, số của Ví dụ 11.10) | $S_n$ → $\hat\Sigma=S_n$ khi $S_n\succ0$; không có nghiệm khi suy biến; mục tiêu 4 | $S_4$ của GN04 là $S_n$ của (8.6); $\Lambda$, $C$ chỉ trong chứng minh | Câu nối GN05→GN06: "chứng minh theo bốn bước: trung bình, đổi biến, trị riêng, suy biến"; GN09→GN10: "dữ liệu cảm biến có $S_4\succ0$". 15 phút. |
-| Hiệp phương sai mẫu không chệch (khái niệm phụ) | GN12 (dòng "Ý nghĩa:" nối với Mệnh đề 11.11) | (đã có ở G108) | ghi chú diễn giả GN12 ($S_{n-1}=\tfrac43S_4$) | GN12, GN13 (P7) | GN11 (nhân $3/2$ không đổi hạng) | Bài tập 11.7 (tự học, ghi chú diễn giả GN13) | Mẫu số $n-1$ → ma trận; mục tiêu 4 | $Y_i=w^\top X_i$ đưa ma trận về trường hợp một chiều | Chu trình rút gọn nhu cầu → hình thức → kiểm tra: cùng trực quan của G108 áp cho từng hướng. 4 phút. |
+| Hiệp phương sai mẫu không chệch (khái niệm phụ) | GN12 (dòng "Ý nghĩa:" nối với Mệnh đề 11.11) | (đã có ở G108) | ghi chú diễn giả GN12 ($S_{n-1}=\tfrac43S_4$) | GN12, GN13 (P7) | GN11 (nhân $3/2$ không đổi hạng) | Bài tập 11.4(b) (ghi chú bài giảng) và Bài tập 11.8 (tệp bài tập), tự học, ghi chú diễn giả GN13 | Mẫu số $n-1$ → ma trận; mục tiêu 4 | $Y_i=w^\top X_i$ đưa ma trận về trường hợp một chiều | Chu trình rút gọn nhu cầu → hình thức → kiểm tra: cùng trực quan của G108 áp cho từng hướng. 4 phút. |
 | Khoảng cách Mahalanobis và hình học Gaussian | HH00 (dòng dẫn), HH01 ("Nhu cầu:" so độ lệch của $a$, $b$ theo $\hat\Sigma$) | HH01 ("Trực quan.": quay trục, chia độ lệch chuẩn; hình `gaussian-geometry-deck.svg`) | HH05 | HH02 (Định nghĩa 11.16), HH03, HH04 (P8) | HH06 (trả lời câu hỏi mở đầu), HH09 (quyết định với ngưỡng $6$) | HH07–HH08 (Bài tập 11.3, trên lớp) | $\hat\Sigma$ → hướng, bán trục, $d^2_{\hat\Sigma}$; mục tiêu 5 | $\lambda_\pm=4,1$, $u_\pm$ của HH05 là $\lambda_j$, $u_j$ của (8.9) | Nhu cầu và trực quan gộp ở HH01. Ứng dụng HH09 đứng sau bài tập theo tiền lệ Bài 10 (Q-K). Câu nối HH04→HH05: "áp dụng cho $\hat\Sigma=S_4$". 15 phút. |
 
 Tổng thời lượng các cụm khớp bảng (a): mạch 2: 12 phút + trang tiêu đề và HL08; mạch 3: 26 phút; mạch 4: 24 phút; mạch 5: 26 phút; mạch 6: 15 phút.
@@ -64,9 +64,10 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** MD00 → sáu mục tiêu.
 - **Vị trí:** mạch 1; ngoài hành trình khái niệm. **Mục tiêu:** cả sáu (L44, CLO2).
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** mục tiêu khớp ghi chú L37–42 (G3): (3) thêm "kể cả nhóm vắng mặt"; (4) "Chứng minh ước lượng Gaussian" (động từ của ghi chú L40) thay "Ước lượng trung bình, hiệp phương sai Gaussian" để giữ trần. Ghi chú diễn giả: bỏ mã CLO2 ("chuẩn đầu ra của học phần"); nêu mục tiêu 4 gồm trung bình, phương sai, ma trận hiệp phương sai, mục tiêu 5 gồm so độ lệch của quan sát mới. Ghi chú diễn giả thêm nội dung mục tiêu 1 (mẫu ngẫu nhiên, dữ liệu quan sát, thống kê, bộ ước lượng). Âm tiết 77 → 79 (trần 80).
 - **Nguồn:** L33–44.
-- **Phác thảo:** danh sách đánh số: (1) Phát biểu mô hình thống kê, viết hàm hợp lý theo cách lấy mẫu. (14) (2) Chứng minh ước lượng hợp lý cực đại (maximum likelihood estimation, MLE) Bernoulli, kể cả nghiệm biên. (17) (3) Dùng nhân tử Lagrange cho phân loại; chứng minh cực đại toàn cục. (13) (4) Ước lượng trung bình, hiệp phương sai Gaussian; xét tồn tại, độ chệch. (13) (5) Đọc đường đồng mức Gaussian bằng trị riêng, khoảng cách Mahalanobis. (11) (6) Suy ra mất mát từ giả thiết phân phối. (9) ≈77 âm tiết (trần 80), 6 dòng, dòng dài nhất 17. Thuật ngữ tiếng Anh và viết tắt MLE ở lần dùng đầu (Q-G).
-- **Ghi chú diễn giả:** các mục tiêu cụ thể hóa CLO2 của đề cương (L44); mục tiêu 4 gồm phân biệt nghiệm hợp lý cực đại (mẫu số $n$) với ước lượng không chệch (mẫu số $n-1$); mục tiêu 6 gồm giải thích vì sao đổi mô hình xác suất thì đổi mục tiêu học tham số (L42).
+- **Phác thảo:** danh sách đánh số: (1) Phát biểu mô hình thống kê, viết hàm hợp lý theo cách lấy mẫu. (14) (2) Chứng minh ước lượng hợp lý cực đại (maximum likelihood estimation, MLE) Bernoulli, kể cả nghiệm biên. (17) (3) Dùng nhân tử Lagrange cho phân loại; chứng minh cực đại toàn cục, kể cả nhóm vắng mặt. (18) (4) Chứng minh ước lượng Gaussian; xét tồn tại, độ chệch. (10) (5) Đọc đường đồng mức Gaussian bằng trị riêng, khoảng cách Mahalanobis. (11) (6) Suy ra mất mát từ giả thiết phân phối. (9) 79 âm tiết theo `deck_check.py` 2026-11-13 (trần 80), 6 dòng, dòng dài nhất 17. Thuật ngữ tiếng Anh và viết tắt MLE ở lần dùng đầu (Q-G).
+- **Ghi chú diễn giả:** các mục tiêu cụ thể hóa chuẩn đầu ra của học phần; mục tiêu 1 gồm phân biệt mẫu ngẫu nhiên, dữ liệu quan sát, thống kê và bộ ước lượng; mục tiêu 4 gồm trung bình, phương sai, ma trận hiệp phương sai và phân biệt nghiệm hợp lý cực đại (mẫu số $n$) với ước lượng không chệch (mẫu số $n-1$); mục tiêu 5 gồm việc dùng khoảng cách Mahalanobis để so sánh độ lệch của quan sát mới; mục tiêu 6 gồm giải thích vì sao đổi mô hình xác suất thì đổi mục tiêu học tham số (L42).
 
 #### MD02 — Nội dung
 - **Lý do tồn tại:** trang "Nội dung" bắt buộc; số và tên khớp bảy trang tiêu đề mạch và `#/N`.
@@ -84,6 +85,7 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** không → dữ liệu và câu hỏi, được trả lời ở HH06, HH09.
 - **Vị trí:** bài toán trung tâm của sườn; nêu câu hỏi trung tâm của mạch 1. **Mục tiêu:** 4, 5.
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** ghi chú diễn giả bỏ câu chỉ đường "Câu hỏi được trả lời ở phần 6."
 - **Sửa (cổng):** #21: $\bar x$ được gọi tên "trung bình bốn vector" trước khi dùng.
 - **Nguồn:** L12–31. Murphy §3.2.2, PDF 113 (Mahalanobis, chỉ trong ghi chú diễn giả).
 - **Phác thảo:** (1) Bốn sản phẩm vận hành bình thường cho các vector số đo (9) (2) display `aligned` hai dòng: $x_1=(12,22)^\top,\ x_2=(8,18)^\top,$ / $x_3=(11,19)^\top,\ x_4=(9,21)^\top.$ (3) Hai sản phẩm mới: $a=(13,23)^\top$, $b=(12,18)^\top$. (4) (4) **Câu hỏi:** Sản phẩm nào lệch khỏi chế độ vận hành bình thường nhiều hơn? (13) (5) fragment: Trung bình bốn vector $\bar x=(10,20)^\top$; $\lVert a-\bar x\rVert^2=18$, $\lVert b-\bar x\rVert^2=8$. (1) (6) fragment: Khoảng cách Euclid xếp $a$ xa hơn. (7) ≈37 âm tiết, 6 dòng, 1 công thức hiển thị.
@@ -119,11 +121,12 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** HL00 → ba họ phân phối với tham số chưa biết; ý "chọn tham số làm dữ liệu có khả năng xảy ra cao nhất".
 - **Vị trí:** đối tượng của sườn; phần việc: "mô hình". **Mục tiêu:** 1.
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** ghi chú diễn giả bỏ câu về $\pi$ in đậm; vector xác suất phân loại viết $\pi$ thường như ghi chú (L101–102).
 - **Sửa (cổng):** #2: "Nhu cầu:" nêu đủ câu hỏi trung tâm (bài toán tối ưu trên $\Theta$).
 - **Sửa (rà soát):** #27: "Nhu cầu:" viết "bài toán tối ưu theo $\theta$" ($\Theta$ chưa định nghĩa). #46: bỏ câu so ký hiệu với deck Bài 10 khỏi ghi chú diễn giả.
 - **Nguồn:** L3–8; L49; L138–140 (không chép câu rào đón L140, Q-J). Murphy §4.1 (4.1), PDF 137. **Mẫu (chỉ planning):** MAT1101 b10.1 S7.
-- **Phác thảo:** (1) Nhu cầu: xác định tham số của mô hình dây chuyền bằng một bài toán tối ưu theo $\theta$. (18) (2) Nhắc lại: $\operatorname{Bernoulli}(p)$: $\mathbb P(X=1)=p$; $\operatorname{Cat}(\boldsymbol\pi)$: $\mathbb P(X=k)=\pi_k$; $\mathcal N(\mu,\sigma^2)$, $\mathcal N(\mu,\Sigma)$. (2) (3) Trực quan. Mỗi giá trị tham số cho một phân phối trên các bộ dữ liệu có thể. (18) (4) Chọn giá trị làm dữ liệu đã thấy có khả năng xảy ra cao nhất. (15) Số đo sau rà soát: 53 âm tiết, 4 dòng, 0 công thức hiển thị, dòng dài nhất 18.
-- **Ghi chú diễn giả:** Các tham số $p$, $\boldsymbol\pi$, $\mu$, $\sigma^2$, $\Sigma$ cố định nhưng chưa biết, và dữ liệu là căn cứ duy nhất để xác định chúng. Bài 10 cập nhật xác suất sản phẩm lỗi khi tỉ lệ lỗi và độ nhạy của cảm biến đã cho trước (Định lý 10.11). Các tham số $\mu_y,\sigma_y^2$ của mô hình $T\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$ cho số đo liên tục cũng chưa biết. Trong bài này, $\theta$ là ký hiệu chung cho tham số của mô hình, nên tham số Bernoulli được viết là $p$. Vector xác suất phân loại viết đậm $\boldsymbol\pi$ để phân biệt với hằng số $\pi$ trong mật độ Gaussian. Để câu trực quan thành một tiêu chuẩn tính được, cần nói rõ xác suất của cả bộ dữ liệu được tính từ phân phối của từng quan sát thế nào. Ví dụ sau cho thấy điều đó phụ thuộc cơ chế lấy mẫu.
+- **Phác thảo:** (1) Nhu cầu: xác định tham số của mô hình dây chuyền bằng một bài toán tối ưu theo $\theta$. (18) (2) Nhắc lại: $\operatorname{Bernoulli}(p)$: $\mathbb P(X=1)=p$; $\operatorname{Cat}(\pi)$: $\mathbb P(X=k)=\pi_k$; $\mathcal N(\mu,\sigma^2)$, $\mathcal N(\mu,\Sigma)$. (2) (3) Trực quan. Mỗi giá trị tham số cho một phân phối trên các bộ dữ liệu có thể. (18) (4) Chọn giá trị làm dữ liệu đã thấy có khả năng xảy ra cao nhất. (15) Số đo sau rà soát: 53 âm tiết, 4 dòng, 0 công thức hiển thị, dòng dài nhất 18.
+- **Ghi chú diễn giả:** Các tham số $p$, $\pi$, $\mu$, $\sigma^2$, $\Sigma$ cố định nhưng chưa biết, và dữ liệu là căn cứ duy nhất để xác định chúng. Bài 10 cập nhật xác suất sản phẩm lỗi khi tỉ lệ lỗi và độ nhạy của cảm biến đã cho trước (Định lý 10.11). Các tham số $\mu_y,\sigma_y^2$ của mô hình $T\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$ cho số đo liên tục cũng chưa biết. Trong bài này, $\theta$ là ký hiệu chung cho tham số của mô hình, nên tham số Bernoulli được viết là $p$. Để câu trực quan thành một tiêu chuẩn tính được, cần nói rõ xác suất của cả bộ dữ liệu được tính từ phân phối của từng quan sát thế nào. Ví dụ sau cho thấy điều đó phụ thuộc cơ chế lấy mẫu.
 
 #### HL02 — Ví dụ: sáu cờ cảnh báo dưới hai cơ chế lấy mẫu
 - **Lý do tồn tại:** ví dụ của cụm mô hình thống kê: cùng phân phối biên, hai phân phối đồng thời.
@@ -269,11 +272,12 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TS01, TS03 → $\hat p=0{,}7$; tỉ số hợp lý $2{,}28$; xác suất gắn cờ của sản phẩm tiếp theo theo mô hình đã khớp.
 - **Vị trí:** ví dụ xuyên suốt một chiều; ứng dụng của cụm Bernoulli. **Mục tiêu:** 2.
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** ghi chú diễn giả bỏ câu rào đón "Xác suất gắn cờ thật … có thể khác $0{,}7$" (quy tắc 2026-11-09); câu định nghĩa dự đoán thế tham số (lặp mặt trang) thay bằng phép tính hai cờ tiếp theo đều bằng $1$: $0{,}7^2=0{,}49$.
 - **Sửa (cổng):** #20: bỏ vế rào đón "xác suất thật có thể khác" (giữ trong ghi chú diễn giả).
 - **Sửa (rà soát):** #35: dự đoán thế tham số thêm "theo mô hình đã khớp"; ghi chú diễn giả bỏ vế lặp (#48).
 - **Nguồn:** Ví dụ 11.3 L368–392. Murphy §4.2.3, PDF 140. **Mẫu (chỉ planning):** MAT1101 b10.1 S12.
 - **Phác thảo:** (1) Mười cờ $(1,0,1,1,0,1,1,0,1,1)$ của mười sản phẩm lấy độc lập; mô hình i.i.d. Bernoulli$(p)$. (13) (2) Tính $\hat p$; so với $p=1/2$. (3) (3) $s=7$, $n=10$, $0<s<n$: $\hat p=7/10=0{,}7$. (0) (4) display $$\begin{aligned}L(1/2;D)&=1/1024\approx0{,}000977,\\ L(0{,}7;D)&=0{,}7^7\cdot0{,}3^3\approx0{,}002224,\\ L(0{,}7;D)/L(1/2;D)&\approx2{,}28.\end{aligned}$$ (5) Dự đoán thế tham số (plug-in prediction): theo mô hình đã khớp, cờ tiếp theo bằng $1$ với xác suất $0{,}7$. (19) (6) Diễn giải: $0{,}7$ là giá trị phù hợp nhất với mười cờ đã thấy. (13) Số đo sau rà soát: 48 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 19.
-- **Ghi chú diễn giả:** Kiểm tra lại bằng bước đầu của chứng minh: $\ell'(p)=(7-10p)/[p(1-p)]$ dương khi $p<0{,}7$, bằng $0$ tại $p=0{,}7$ và âm khi $p>0{,}7$. Tỉ số hai hợp lý là $2^{10}\cdot0{,}7^7\cdot0{,}3^3\approx2{,}277$. Dự đoán thế tham số thay $\hat p$ vào mô hình để tính xác suất của quan sát mới. Xác suất gắn cờ thật của dây chuyền có thể khác $0{,}7$.
+- **Ghi chú diễn giả:** Kiểm tra lại bằng bước đầu của chứng minh: $\ell'(p)=(7-10p)/[p(1-p)]$ dương khi $p<0{,}7$, bằng $0$ tại $p=0{,}7$ và âm khi $p>0{,}7$. Tỉ số hai hợp lý là $2^{10}\cdot0{,}7^7\cdot0{,}3^3\approx2{,}277$. Theo mô hình đã khớp, hai cờ tiếp theo độc lập, nên xác suất cả hai bằng $1$ là $0{,}7^2=0{,}49$.
 
 #### TS07 — Entropy chéo nhị phân
 - **Lý do tồn tại:** ứng dụng của Mệnh đề 11.3 cho Bernoulli; ví dụ cụ thể của $\hat R_n$ (Q-K).
@@ -294,8 +298,9 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TS03–TS05 → $\hat p=1/4$.
 - **Vị trí:** kiểm tra cụm Bernoulli. **Mục tiêu:** 2.
 - **Quyết định:** `thêm`. **Bài tập:** trên lớp, lời giải trên mặt trang (fragment).
+- **Sửa (2026-11-13, bảng phát hiện):** nguồn: "ghi chú bài giảng, Bài tập 11.1" (bài nằm cuối §5.1 của ghi chú).
 - **Sửa (rà soát):** #32: nhãn "(a)" trong tiêu đề giữ chữ thường (`span.nocase`).
-- **Nguồn:** BT L7–41.
+- **Nguồn:** ghi chú bài giảng L401–424 (Bài tập 11.1: đề, gợi ý, lời giải câu (a)).
 - **Phác thảo:** (1) Câu hỏi: $8$ cờ của $8$ sản phẩm lấy độc lập, có $2$ cờ bằng $1$; mô hình i.i.d. Bernoulli$(p)$, $p\in[0,1]$. (16) (2) (a) Viết log-hợp lý, tìm ước lượng hợp lý cực đại, chứng minh đó là cực đại trên $[0,1]$. (18) (3) (b) Thay bằng tám cờ đều bằng $0$: tìm nghiệm trên $[0,1]$; xét sự tồn tại nghiệm trên $(0,1)$. (16) (4) Lời giải: (a) $\ell(p)=2\log p+6\log(1-p)$ và (4) (5) display $$\ell'(p)=\frac{2-8p}{p(1-p)}.$$ (6) $\ell'>0$ khi $p<1/4$, $\ell'<0$ khi $p>1/4$; $L(0)=L(1)=0<L(1/4)$, nên $\hat p=1/4=s/n$. (3) Số đo sau rà soát: 57 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 18.
 - **Ghi chú diễn giả:** Gợi ý: tính $\ell'(p)$ trên $(0,1)$, xét dấu, rồi so với giá trị của $L$ ở hai đầu mút. Chi tiết: $\ell'(p)=2/p-6/(1-p)=[2(1-p)-6p]/[p(1-p)]$. Kiểm tra lại: tại $p=1/4$, tử số $2-8p$ bằng $0$.
 
@@ -305,8 +310,9 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TS05 → $\hat p=0$ trên $[0,1]$; không có nghiệm trên $(0,1)$.
 - **Vị trí:** kiểm tra cụm Bernoulli (trường hợp biên). **Mục tiêu:** 2.
 - **Quyết định:** `thêm`. **Bài tập:** trên lớp, lời giải trên mặt trang.
+- **Sửa (2026-11-13, bảng phát hiện):** nguồn: "ghi chú bài giảng, Bài tập 11.1, Nhận xét 11.5".
 - **Sửa (rà soát):** #32: nhãn "(b)" trong tiêu đề giữ chữ thường (`span.nocase`).
-- **Nguồn:** BT L25–43.
+- **Nguồn:** ghi chú bài giảng L401–410, L425–428 (Bài tập 11.1: đề, gợi ý, lời giải câu (b)).
 - **Phác thảo:** (1) Câu hỏi: (b) tám cờ đều bằng $0$; nghiệm trên $[0,1]$ và trên $(0,1)$. (11) (2) Lời giải: $L(p)=(1-p)^8$ giảm chặt trên $[0,1]$, nên $\hat p=0$ trên $[0,1]$. (7) (3) Trên $(0,1)$: với mỗi $p$ có $p'\in(0,p)$ cho $L(p')>L(p)$. (5) (4) $L\to1$ khi $p\downarrow0$ nhưng không đạt; không tồn tại ước lượng hợp lý cực đại trên $(0,1)$. (14) (5) Lưu ý: $\ell'(p)=0$ vô nghiệm trên $(0,1)$; nghiệm trên $[0,1]$ nằm ở đầu mút $p=0$. (11) Số đo sau rà soát: 48 âm tiết, 5 dòng, 0 công thức hiển thị, dòng dài nhất 14.
 - **Ghi chú diễn giả:** Gợi ý: phương trình $\ell'(p)=0$ không có nghiệm trong $(0,1)$; xét trực tiếp tính đơn điệu của $(1-p)^8$. Một lỗi thường gặp là giải $\ell'(p)=0$, không thấy nghiệm, rồi kết luận không có nghiệm trên $[0,1]$. Câu (b) là trường hợp $n=8$ của hiện tượng miền mở đã nêu ở chứng minh nghiệm biên.
 
@@ -328,11 +334,12 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TS10 → $\Delta_{K-1}$, $n_k$, (6.1).
 - **Vị trí:** đối tượng của sườn (họ thứ hai). **Mục tiêu:** 3.
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** $\pi$ thường trên mặt trang và ghi chú diễn giả; bỏ chú thích "(vector xác suất viết $\pi$, không đậm)" trong nguồn.
 - **Sửa (cổng):** #19: bỏ "Nhắc lại:" lặp (đã có ở HL01).
-- **Sửa (rà soát):** #24: "Định nghĩa." mở trang; câu mẫu i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$ đưa vào câu số đếm. D1: bỏ `\tag{6.1}`.
+- **Sửa (rà soát):** #24: "Định nghĩa." mở trang; câu mẫu i.i.d. $\operatorname{Cat}(\pi)$ đưa vào câu số đếm. D1: bỏ `\tag{6.1}`.
 - **Sửa (đồng bộ materials):** `p.note-source` thêm "vector xác suất viết $\pi$, không đậm" (lệch ký hiệu duy nhất còn lại so với ghi chú).
 - **Nguồn:** Định nghĩa 11.6 L429–456. Murphy §4.2.4 (4.26), PDF 141; §4.6.3.2 (4.151), PDF 168.
-- **Phác thảo:** (1) Định nghĩa. Với $K\ge2$ nhóm, đơn hình xác suất (probability simplex) là tập (12) (2) display $$\Delta_{K-1}=\Bigl\{\boldsymbol\pi\in\mathbb R^K:\ \pi_k\ge0,\ \sum_{k=1}^K\pi_k=1\Bigr\}.$$ (3) Với dữ liệu $D$ của mẫu i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$, $\mathbb P(X=k)=\pi_k$, số đếm của nhóm $k$ là $n_k=\sum_i\mathbf 1[x_i=k]$; $\sum_kn_k=n$. (11) (4) Hàm hợp lý phân loại trên $\Delta_{K-1}$, quy ước $\pi_k^0=1$: (8) (5) display $$L(\boldsymbol\pi;D)=\prod_{k=1}^K\pi_k^{n_k},\qquad\ell(\boldsymbol\pi;D)=\sum_{k:\,n_k>0}n_k\log\pi_k.$$ Số đo sau rà soát: 31 âm tiết, 5 dòng, 2 công thức hiển thị, dòng dài nhất 12.
+- **Phác thảo:** (1) Định nghĩa. Với $K\ge2$ nhóm, đơn hình xác suất (probability simplex) là tập (12) (2) display $$\Delta_{K-1}=\Bigl\{\pi\in\mathbb R^K:\ \pi_k\ge0,\ \sum_{k=1}^K\pi_k=1\Bigr\}.$$ (3) Với dữ liệu $D$ của mẫu i.i.d. $\operatorname{Cat}(\pi)$, $\mathbb P(X=k)=\pi_k$, số đếm của nhóm $k$ là $n_k=\sum_i\mathbf 1[x_i=k]$; $\sum_kn_k=n$. (11) (4) Hàm hợp lý phân loại trên $\Delta_{K-1}$, quy ước $\pi_k^0=1$: (8) (5) display $$L(\pi;D)=\prod_{k=1}^K\pi_k^{n_k},\qquad\ell(\pi;D)=\sum_{k:\,n_k>0}n_k\log\pi_k.$$ Số đo sau rà soát: 31 âm tiết, 5 dòng, 2 công thức hiển thị, dòng dài nhất 12.
 - **Ghi chú diễn giả:** Mỗi quan sát $x_i=k$ góp một thừa số $\pi_k$; nhóm $k$ góp $n_k$ thừa số như vậy, nên hàm hợp lý phân loại suy từ dạng tích $\prod_ip_\theta(x_i)$, và các số đếm là thống kê đủ. Các xác suất trong $\Delta_{K-1}$ mô tả một biến nhận đúng một trong $K$ giá trị. Chúng khác $K$ tham số Bernoulli của $K$ chỉ báo có thể đồng thời bằng $1$: các tham số đó không chịu ràng buộc tổng bằng $1$.
 
 #### TS12 — Ước lượng phân loại
@@ -341,10 +348,11 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TS11 → (6.2).
 - **Vị trí:** kết quả của sườn (họ thứ hai). **Mục tiêu:** 3.
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** $\pi$ thường; "nhóm vắng mặt" thay "nhóm chưa xuất hiện", "nhóm chưa thấy" (thống nhất với TS16, TS17).
 - **Sửa (rà soát):** D1: "hàm hợp lý phân loại" thay cho "(6.1)"; bỏ `\tag{6.2}`.
 - **Nguồn:** L460–479. Murphy §4.2.4 (4.27)–(4.31), PDF 141.
-- **Phác thảo:** (1) Định lý. Giả thiết: $n\ge1$ quan sát của mẫu i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$, số đếm $n_1,\ldots,n_K$; miền $\Delta_{K-1}$ đóng, cho phép $\pi_k=0$. (15) (2) Kết luận: hàm hợp lý phân loại có đúng một điểm cực đại trên $\Delta_{K-1}$: (14) (3) display $$\hat\pi_k=\frac{n_k}n,\qquad k=1,\ldots,K.$$ (4) Nhóm chưa xuất hiện ($n_k=0$) nhận $\hat\pi_k=0$. (5) (5) Ý nghĩa: dành khối lượng cho nhóm chưa thấy làm giảm hợp lý. (13) Số đo sau rà soát: 47 âm tiết, 5 dòng, 1 công thức hiển thị, dòng dài nhất 15.
-- **Ghi chú diễn giả:** Với hai nhóm và $\boldsymbol\pi=(1-p,p)$, công thức $\hat\pi_k=n_k/n$ cho $\hat p=n_2/n$, đúng công thức Bernoulli. Miền đóng quyết định sự tồn tại nghiệm: nếu đòi mọi $\pi_k>0$ mà có $n_k=0$, cận trên của hợp lý không đạt được. Chứng minh dùng nhân tử Lagrange để tìm ứng viên, rồi bất đẳng thức $\log t\le t-1$ để chứng minh ứng viên là cực đại toàn cục.
+- **Phác thảo:** (1) Định lý. Giả thiết: $n\ge1$ quan sát của mẫu i.i.d. $\operatorname{Cat}(\pi)$, số đếm $n_1,\ldots,n_K$; miền $\Delta_{K-1}$ đóng, cho phép $\pi_k=0$. (15) (2) Kết luận: hàm hợp lý phân loại có đúng một điểm cực đại trên $\Delta_{K-1}$: (14) (3) display $$\hat\pi_k=\frac{n_k}n,\qquad k=1,\ldots,K.$$ (4) Nhóm vắng mặt ($n_k=0$) nhận $\hat\pi_k=0$. (5) (5) Ý nghĩa: dành khối lượng cho nhóm vắng mặt làm giảm hợp lý. (13) Số đo sau rà soát: 47 âm tiết, 5 dòng, 1 công thức hiển thị, dòng dài nhất 15.
+- **Ghi chú diễn giả:** Với hai nhóm và $\pi=(1-p,p)$, công thức $\hat\pi_k=n_k/n$ cho $\hat p=n_2/n$, đúng công thức Bernoulli. Miền đóng quyết định sự tồn tại nghiệm: nếu đòi mọi $\pi_k>0$ mà có $n_k=0$, cận trên của hợp lý không đạt được. Chứng minh dùng nhân tử Lagrange để tìm ứng viên, rồi bất đẳng thức $\log t\le t-1$ để chứng minh ứng viên là cực đại toàn cục.
 
 #### TS13 — Chứng minh: ước lượng phân loại, ứng viên
 - **Lý do tồn tại:** P3, bước 1 (Q-C, Q-C1).
@@ -352,12 +360,13 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TS12 → ứng viên $\hat\pi_k=n_k/n$ (điều kiện cần).
 - **Vị trí:** phương pháp của sườn (ứng viên). **Mục tiêu:** 3.
 - **Quyết định:** `thêm`. Theo Q-C1: Lagrange chỉ cho ứng viên; không viện dẫn tính đủ của Mệnh đề 04.2(b). **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** $\pi$ thường.
 - **Sửa (cổng):** #12: nêu lý do tọa độ ngoài $\mathcal K_+$ của ứng viên bằng $0$ và vai trò của bước so sánh.
 - **Sửa (rà soát):** #25: lý do ràng buộc trên $\mathcal K_+$ nêu ngay khi đặt bài toán; dòng cuối bỏ mệnh đề lặp.
-- **Sửa (rà lại vòng 1):** R2: "Nhắc lại:" viết thành câu không đặt tên vế phải ("hàm Lagrange cộng vào hàm mục tiêu tích của nhân tử $\nu$ với ràng buộc đẳng thức; điểm dừng: $\nabla_{\boldsymbol\pi}\mathcal L=0$"), vì $b$ là sản phẩm mới và $e$ trùng số $e$, $e_j$ (quyết định của điều phối viên). Gradient viết $\nabla_{\boldsymbol\pi}\mathcal L$ vì $\boldsymbol\pi$ (định nghĩa ở TS11) là biến của bài toán trên trang, còn $u$ không còn được giới thiệu (quyết định của điều phối viên).
+- **Sửa (rà lại vòng 1):** R2: "Nhắc lại:" viết thành câu không đặt tên vế phải ("hàm Lagrange cộng vào hàm mục tiêu tích của nhân tử $\nu$ với ràng buộc đẳng thức; điểm dừng: $\nabla_{\pi}\mathcal L=0$"), vì $b$ là sản phẩm mới và $e$ trùng số $e$, $e_j$ (quyết định của điều phối viên). Gradient viết $\nabla_{\pi}\mathcal L$ vì $\pi$ (định nghĩa ở TS11) là biến của bài toán trên trang, còn $u$ không còn được giới thiệu (quyết định của điều phối viên).
 - **Sửa (kiểm định cuối):** tên bước 2 và 3 có câu dẫn "Từ …", "Thế vào: …"; dòng cuối bỏ "trên $\mathcal K_+$" (đã nêu "đặt $\pi_k=0$ ngoài $\mathcal K_+$") để trang không chạm chân trang ở 1600×900. Số đo: 58 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 20.
 - **Nguồn:** L481–499. Murphy §4.2.4 (4.27)–(4.31), PDF 141; Lagrange §8.5.1, PDF 332 (Murphy viết $-\lambda(1-\sum_k\theta_k)$, ghi chú $+\nu(\sum_k\pi_k-1)$).
-- **Phác thảo:** (1) Lagrange tìm ứng viên; $\log t\le t-1$ chứng minh cực đại toàn cục. (10) (2) Nhắc lại: hàm Lagrange cộng vào hàm mục tiêu tích của nhân tử $\nu$ với ràng buộc đẳng thức; điểm dừng: $\nabla_{\boldsymbol\pi}\mathcal L=0$. (20) (3) Hợp lý dương cần $\pi_k>0$ trên $\mathcal K_+=\{k:n_k>0\}$. Cực tiểu $F=-\sum_{k\in\mathcal K_+}n_k\log\pi_k$ với $\sum_{k\in\mathcal K_+}\pi_k=1$ (đặt $\pi_k=0$ ngoài $\mathcal K_+$; bước sau so với mọi điểm): (16) (4) display $$\mathcal L=-\sum_{k\in\mathcal K_+}n_k\log\pi_k+\nu\Bigl(\sum_{k\in\mathcal K_+}\pi_k-1\Bigr).$$ (5) Điều kiện dừng cho $\pi_k=n_k/\nu$. Từ $-n_k/\pi_k+\nu=0$. (5) (6) Ràng buộc cho $\nu=n$. Thế vào: $1=\sum_{k\in\mathcal K_+}n_k/\nu=n/\nu$; ứng viên $\hat\pi_k=n_k/n$. (7) Số đo sau kiểm định cuối: 58 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 20.
+- **Phác thảo:** (1) Lagrange tìm ứng viên; $\log t\le t-1$ chứng minh cực đại toàn cục. (10) (2) Nhắc lại: hàm Lagrange cộng vào hàm mục tiêu tích của nhân tử $\nu$ với ràng buộc đẳng thức; điểm dừng: $\nabla_{\pi}\mathcal L=0$. (20) (3) Hợp lý dương cần $\pi_k>0$ trên $\mathcal K_+=\{k:n_k>0\}$. Cực tiểu $F=-\sum_{k\in\mathcal K_+}n_k\log\pi_k$ với $\sum_{k\in\mathcal K_+}\pi_k=1$ (đặt $\pi_k=0$ ngoài $\mathcal K_+$; bước sau so với mọi điểm): (16) (4) display $$\mathcal L=-\sum_{k\in\mathcal K_+}n_k\log\pi_k+\nu\Bigl(\sum_{k\in\mathcal K_+}\pi_k-1\Bigr).$$ (5) Điều kiện dừng cho $\pi_k=n_k/\nu$. Từ $-n_k/\pi_k+\nu=0$. (5) (6) Ràng buộc cho $\nu=n$. Thế vào: $1=\sum_{k\in\mathcal K_+}n_k/\nu=n/\nu$; ứng viên $\hat\pi_k=n_k/n$. (7) Số đo sau kiểm định cuối: 58 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 20.
 - **Ghi chú diễn giả:** Điều kiện dừng chỉ là điều kiện cần. Nhóm có $n_k=0$ không có số hạng $n_k\log\pi_k$, nên điều kiện dừng $n_k/\pi_k=\nu$ không viết được tại $\pi_k=0$, vì nó thành phép chia $0/0$; nhóm đó được xử lý ở bước so sánh với mọi điểm của đơn hình. Tổng các tọa độ thuộc $\mathcal K_+$ của ứng viên đã bằng $1$, nên các tọa độ còn lại phải bằng $0$ để ứng viên thuộc $\Delta_{K-1}$.
 
 #### TS14 — Chứng minh: ước lượng phân loại, cực đại toàn cục
@@ -366,21 +375,23 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TS13 → (6.2) đã chứng minh; công cụ $\log t\le t-1$ cho GN08.
 - **Vị trí:** phương pháp của sườn (bất đẳng thức cho cực đại toàn cục). **Mục tiêu:** 3.
 - **Quyết định:** `thêm`; `tách` thành hai trang (so sánh; dấu bằng) nếu khối `aligned` sáu dòng tràn ở 390 px. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** $\pi$ thường.
 - **Sửa (rà soát):** #39: "(Kullback–Leibler divergence, KL)" trong ghi chú diễn giả.
 - **Nguồn:** L501–518 (Murphy không có bước này).
-- **Phác thảo:** (1) Nhắc lại: $\log t\le t-1$ với $t>0$, dấu bằng khi và chỉ khi $t=1$. (9) (2) $\ell(\boldsymbol\pi)\le\ell(\hat{\boldsymbol\pi})$ trên $\Delta_{K-1}$. Nếu $\pi_k=0$ với một $k\in\mathcal K_+$ thì $L(\boldsymbol\pi;D)=0$; ngược lại: (7) (3) display $$\begin{aligned}&\ell(\boldsymbol\pi;D)-\ell(\hat{\boldsymbol\pi};D)\\ &=\sum_{k\in\mathcal K_+}n_k\log\frac{\pi_k}{\hat\pi_k}\\ &\le\sum_{k\in\mathcal K_+}n_k\Bigl(\frac{\pi_k}{\hat\pi_k}-1\Bigr)\\ &=n\Bigl(\sum_{k\in\mathcal K_+}\pi_k-1\Bigr)\le0.\end{aligned}$$ (4) Do $n_k/\hat\pi_k=n$, $\sum_{k\in\mathcal K_+}n_k=n$ và $\sum_{k\in\mathcal K_+}\pi_k\le1$. (2) (5) Dấu bằng chỉ tại $\hat{\boldsymbol\pi}$. Cần $\pi_k=\hat\pi_k$ trên $\mathcal K_+$ và $\pi_k=0$ ngoài $\mathcal K_+$. (8) Số đo sau rà soát: 26 âm tiết, 5 dòng, 1 công thức hiển thị, dòng dài nhất 9.
-- **Ghi chú diễn giả:** Bất đẳng thức thứ nhất dùng $\log t\le t-1$ với $t=\pi_k/\hat\pi_k>0$. Đẳng thức tiếp theo dùng $n_k/\hat\pi_k=n$ và $\sum_{k\in\mathcal K_+}n_k=n$. Bất đẳng thức cuối dùng $\sum_{k\in\mathcal K_+}\pi_k\le\sum_k\pi_k=1$. Dấu bằng ở bất đẳng thức thứ nhất cần mọi $t=1$, tức $\pi_k=\hat\pi_k$ trên $\mathcal K_+$; ở bất đẳng thức cuối cần $\boldsymbol\pi$ không đặt khối lượng ngoài $\mathcal K_+$. Hai điều kiện cùng cho $\boldsymbol\pi=\hat{\boldsymbol\pi}$. Cùng bất đẳng thức cho tính không âm của phân kỳ Kullback–Leibler (Kullback–Leibler divergence, KL); đó là một chứng minh thứ hai của định lý (ghi chú bài giảng, mục 6.2).
+- **Phác thảo:** (1) Nhắc lại: $\log t\le t-1$ với $t>0$, dấu bằng khi và chỉ khi $t=1$. (9) (2) $\ell(\pi)\le\ell(\hat{\pi})$ trên $\Delta_{K-1}$. Nếu $\pi_k=0$ với một $k\in\mathcal K_+$ thì $L(\pi;D)=0$; ngược lại: (7) (3) display $$\begin{aligned}&\ell(\pi;D)-\ell(\hat{\pi};D)\\ &=\sum_{k\in\mathcal K_+}n_k\log\frac{\pi_k}{\hat\pi_k}\\ &\le\sum_{k\in\mathcal K_+}n_k\Bigl(\frac{\pi_k}{\hat\pi_k}-1\Bigr)\\ &=n\Bigl(\sum_{k\in\mathcal K_+}\pi_k-1\Bigr)\le0.\end{aligned}$$ (4) Do $n_k/\hat\pi_k=n$, $\sum_{k\in\mathcal K_+}n_k=n$ và $\sum_{k\in\mathcal K_+}\pi_k\le1$. (2) (5) Dấu bằng chỉ tại $\hat{\pi}$. Cần $\pi_k=\hat\pi_k$ trên $\mathcal K_+$ và $\pi_k=0$ ngoài $\mathcal K_+$. (8) Số đo sau rà soát: 26 âm tiết, 5 dòng, 1 công thức hiển thị, dòng dài nhất 9.
+- **Ghi chú diễn giả:** Bất đẳng thức thứ nhất dùng $\log t\le t-1$ với $t=\pi_k/\hat\pi_k>0$. Đẳng thức tiếp theo dùng $n_k/\hat\pi_k=n$ và $\sum_{k\in\mathcal K_+}n_k=n$. Bất đẳng thức cuối dùng $\sum_{k\in\mathcal K_+}\pi_k\le\sum_k\pi_k=1$. Dấu bằng ở bất đẳng thức thứ nhất cần mọi $t=1$, tức $\pi_k=\hat\pi_k$ trên $\mathcal K_+$; ở bất đẳng thức cuối cần $\pi$ không đặt khối lượng ngoài $\mathcal K_+$. Hai điều kiện cùng cho $\pi=\hat{\pi}$. Cùng bất đẳng thức cho tính không âm của phân kỳ Kullback–Leibler (Kullback–Leibler divergence, KL); đó là một chứng minh thứ hai của định lý (ghi chú bài giảng, mục 6.2).
 
 #### TS15 — Ví dụ: ba chế độ tải trong mười bản ghi
 - **Lý do tồn tại:** ví dụ và ứng dụng của Định lý 11.7 trên ví dụ xuyên suốt.
 - **Nhu cầu/khoảng trống:** chuyển (6.2) thành số và kiểm tra bằng điều kiện dừng.
-- **Đầu vào → đầu ra:** TS10, TS12 → $\hat{\boldsymbol\pi}=(0{,}2;\ 0{,}3;\ 0{,}5)$.
+- **Đầu vào → đầu ra:** TS10, TS12 → $\hat{\pi}=(0{,}2;\ 0{,}3;\ 0{,}5)$.
 - **Vị trí:** ví dụ xuyên suốt một chiều. **Mục tiêu:** 3.
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** $\pi$ thường.
 - **Sửa (cổng):** #7: ứng dụng (entropy chéo nhiều lớp) lên mặt trang thay dòng diễn giả 18 âm tiết; diễn giải vào ghi chú diễn giả.
 - **Sửa (rà soát):** #15: gộp dòng nhiệm vụ, thêm "Diễn giải:" (6 dòng). #36: "log loss". #1 (nghiêm trọng): ghi chú diễn giả sửa add-one thành MAP với tiên nghiệm Dirichlet$(2,2,2)$, Beta$(2,2)$ khi hai nhóm; nguồn Murphy §4.5.1 (4.96), §4.6.3.4.
 - **Nguồn:** Ví dụ 11.4 L536–553. Murphy §4.2.4, PDF 141.
-- **Phác thảo:** (1) Mười bản ghi lấy độc lập, số đếm $(n_1,n_2,n_3)=(2,3,5)$; mô hình i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$ trên $\Delta_2$. (12) (2) Tính $\hat{\boldsymbol\pi}$; mọi số đếm dương, $\mathcal K_+=\{1,2,3\}$, $n=10$. (5) (3) display $$\hat{\boldsymbol\pi}=\Bigl(\frac2{10},\frac3{10},\frac5{10}\Bigr)=(0{,}2;\ 0{,}3;\ 0{,}5).$$ (4) Kiểm tra điều kiện dừng: $2/0{,}2=3/0{,}3=5/0{,}5=10=n$. (5) (5) Chia âm log-hợp lý cho $n$ được entropy chéo nhiều lớp (categorical cross-entropy, log loss) $-\sum_k\frac{n_k}n\log\pi_k$. (14) (6) Diễn giải: chế độ tải cao có xác suất ước lượng lớn nhất, $0{,}5$; ba xác suất có tổng bằng $1$. (19) Số đo sau rà soát: 55 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 19.
+- **Phác thảo:** (1) Mười bản ghi lấy độc lập, số đếm $(n_1,n_2,n_3)=(2,3,5)$; mô hình i.i.d. $\operatorname{Cat}(\pi)$ trên $\Delta_2$. (12) (2) Tính $\hat{\pi}$; mọi số đếm dương, $\mathcal K_+=\{1,2,3\}$, $n=10$. (5) (3) display $$\hat{\pi}=\Bigl(\frac2{10},\frac3{10},\frac5{10}\Bigr)=(0{,}2;\ 0{,}3;\ 0{,}5).$$ (4) Kiểm tra điều kiện dừng: $2/0{,}2=3/0{,}3=5/0{,}5=10=n$. (5) (5) Chia âm log-hợp lý cho $n$ được entropy chéo nhiều lớp (categorical cross-entropy, log loss) $-\sum_k\frac{n_k}n\log\pi_k$. (14) (6) Diễn giải: chế độ tải cao có xác suất ước lượng lớn nhất, $0{,}5$; ba xác suất có tổng bằng $1$. (19) Số đo sau rà soát: 55 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 19.
 - **Ghi chú diễn giả:** Ba xác suất cùng mô tả một bản ghi có đúng một chế độ, nên tăng một xác suất buộc phải giảm các xác suất còn lại. Entropy chéo nhiều lớp là mất mát log của phân loại nhiều lớp; tổng chỉ chạy trên các nhóm có $n_k>0$. Với số đếm $(3,0,7)$, định lý cho $(0{,}3;\ 0;\ 0{,}7)$, và mô hình đã khớp gán xác suất $0$ cho nhóm thứ hai về sau. Cộng thêm một vào mỗi số đếm (add-one smoothing) là ước lượng hậu nghiệm cực đại (maximum a posteriori, MAP) với tiên nghiệm Dirichlet$(2,2,2)$; khi chỉ có hai nhóm, tiên nghiệm này là Beta$(2,2)$. Ước lượng này khác nghiệm hợp lý cực đại ở trên. Khi các xác suất được tính bằng một mô hình có tham số dùng chung cho nhiều đầu vào, các $\pi_k$ không chọn tự do được trên đơn hình, nên công thức tần suất chỉ áp dụng cho mô hình phân loại không có ràng buộc thêm.
 
 #### TS16 — Bài tập: Lagrange khi có nhóm vắng mặt (a)
@@ -389,22 +400,24 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TS12–TS14 → mọi điểm cực đại có $\pi_2=0$.
 - **Vị trí:** kiểm tra cụm phân loại. **Mục tiêu:** 3.
 - **Quyết định:** `thêm`. **Bài tập:** trên lớp, lời giải trên mặt trang (fragment); câu (d) trong ghi chú diễn giả.
+- **Sửa (2026-11-13, bảng phát hiện):** $\pi$ thường; nguồn: "ghi chú bài giảng, Bài tập 11.2" (cuối §6.1 của ghi chú; câu (d) có trong đề ghi chú).
 - **Sửa (rà soát):** #31: tiêu đề "Lagrange khi có nhóm vắng mặt (a)". #6: lời giải (a) thêm $L>0\Rightarrow\pi_1,\pi_3>0$, tách hai dòng. #32: `span.nocase`.
-- **Nguồn:** BT L45–80.
-- **Phác thảo:** (1) Câu hỏi: số đếm $(n_1,n_2,n_3)=(4,0,6)$ trong $n=10$ quan sát i.i.d. $\operatorname{Cat}(\boldsymbol\pi)$, $\boldsymbol\pi\in\Delta_2$. (8) (2) (a) Chứng minh mọi điểm cực đại có $\pi_2=0$, không dùng điều kiện dừng theo $\pi_2$. (14) (3) (b) Dùng nhân tử Lagrange với $\pi_1+\pi_3=1$ tìm nghiệm; chứng minh đó là cực đại. (14) (4) (c) Tính tỉ số hợp lý giữa nghiệm và $(0{,}3;\ 0{,}1;\ 0{,}6)$. (9) (5) Lời giải: (a) $L=\pi_1^4\pi_3^6$; điểm cực đại có $L>0$, nên $\pi_1,\pi_3>0$. (8) (6) Nếu $m=\pi_1+\pi_3<1$, đặt $\boldsymbol\pi'=(\pi_1/m,\ 0,\ \pi_3/m)$: $L(\boldsymbol\pi')=m^{-10}L(\boldsymbol\pi)>L(\boldsymbol\pi)$, nên $m=1$ và $\pi_2=0$. (4) Số đo sau rà soát: 56 âm tiết, 6 dòng, 0 công thức hiển thị, dòng dài nhất 14.
-- **Ghi chú diễn giả:** Do $\pi_1,\pi_3>0$, $m\in(0,1]$. Gợi ý: chuẩn hóa hai tọa độ đã thấy lên tổng bằng $1$ và so sánh hai hàm hợp lý. Câu (d) của đề: xác suất thế tham số để hai quan sát mới đều thuộc nhóm $3$ là $\hat\pi_3^2=0{,}36$. Phép tính dùng hai giả thiết: hai quan sát mới có phân phối $\operatorname{Cat}(\hat{\boldsymbol\pi})$ của mô hình đã khớp, và chúng độc lập với nhau.
+- **Nguồn:** ghi chú bài giảng L591–616 (Bài tập 11.2: đề, gợi ý, lời giải câu (a)).
+- **Phác thảo:** (1) Câu hỏi: số đếm $(n_1,n_2,n_3)=(4,0,6)$ trong $n=10$ quan sát i.i.d. $\operatorname{Cat}(\pi)$, $\pi\in\Delta_2$. (8) (2) (a) Chứng minh mọi điểm cực đại có $\pi_2=0$, không dùng điều kiện dừng theo $\pi_2$. (14) (3) (b) Dùng nhân tử Lagrange với $\pi_1+\pi_3=1$ tìm nghiệm; chứng minh đó là cực đại. (14) (4) (c) Tính tỉ số hợp lý giữa nghiệm và $(0{,}3;\ 0{,}1;\ 0{,}6)$. (9) (5) Lời giải: (a) $L=\pi_1^4\pi_3^6$; điểm cực đại có $L>0$, nên $\pi_1,\pi_3>0$. (8) (6) Nếu $m=\pi_1+\pi_3<1$, đặt $\pi'=(\pi_1/m,\ 0,\ \pi_3/m)$: $L(\pi')=m^{-10}L(\pi)>L(\pi)$, nên $m=1$ và $\pi_2=0$. (4) Số đo sau rà soát: 56 âm tiết, 6 dòng, 0 công thức hiển thị, dòng dài nhất 14.
+- **Ghi chú diễn giả:** Do $\pi_1,\pi_3>0$, $m\in(0,1]$. Gợi ý: chuẩn hóa hai tọa độ đã thấy lên tổng bằng $1$ và so sánh hai hàm hợp lý. Câu (d) của đề: xác suất thế tham số để hai quan sát mới đều thuộc nhóm $3$ là $\hat\pi_3^2=0{,}36$. Phép tính dùng hai giả thiết: hai quan sát mới có phân phối $\operatorname{Cat}(\hat{\pi})$ của mô hình đã khớp, và chúng độc lập với nhau.
 
 #### TS17 — Bài tập: Lagrange khi có nhóm vắng mặt (b), (c)
 - **Lý do tồn tại:** lời giải (b), (c) của bài 11.2.
 - **Nhu cầu/khoảng trống:** người học áp dụng Lagrange trên mặt $\pi_2=0$ và đo mất mát hợp lý khi dành khối lượng cho nhóm vắng mặt.
-- **Đầu vào → đầu ra:** TS16 → $\hat{\boldsymbol\pi}=(0{,}4;\ 0;\ 0{,}6)$; tỉ số $256/81$.
+- **Đầu vào → đầu ra:** TS16 → $\hat{\pi}=(0{,}4;\ 0;\ 0{,}6)$; tỉ số $256/81$.
 - **Vị trí:** kiểm tra cụm phân loại. **Mục tiêu:** 3.
 - **Quyết định:** `thêm`. Lời giải (b) theo `exercises.md` dùng Mệnh đề 04.2(b) cho bài toán lồi trên mặt; xem mục "Điểm cần điều phối viên quyết định" của `review-log.md`. **Bài tập:** trên lớp, lời giải trên mặt trang.
+- **Sửa (2026-11-13, bảng phát hiện):** $\pi$ thường; nguồn: "ghi chú bài giảng, Bài tập 11.2".
 - **Sửa (rà soát):** #31: tiêu đề "… (b), (c)"; "(b) với $\pi_2=0$", bỏ chữ "mặt". #30: thêm dòng "Câu hỏi:" nhắc đề (b), (c). #32: `span.nocase`.
 - **Sửa (rà lại vòng 1):** R6: ghi chú diễn giả "câu (a) cho một điểm có $\pi_2=0$ và hợp lý lớn hơn".
-- **Nguồn:** BT L82–99.
-- **Phác thảo:** (1) Câu hỏi: (b) Lagrange với $\pi_1+\pi_3=1$, chứng minh cực đại; (c) tỉ số hợp lý với $(0{,}3;\ 0{,}1;\ 0{,}6)$. (15) (2) Lời giải: (b) với $\pi_2=0$: $\mathcal L=-4\log\pi_1-6\log\pi_3+\nu(\pi_1+\pi_3-1)$. (4) (3) Điều kiện dừng $4/\pi_1=6/\pi_3=\nu$; ràng buộc cho $\nu=10$, $\hat{\boldsymbol\pi}=(0{,}4;\ 0;\ 0{,}6)$. (6) (4) $F$ lồi trên tập mở $\{\pi_1>0,\pi_3>0\}$, nên điểm dừng là nghiệm khi $\pi_2=0$ (Mệnh đề 04.2(b)); cùng (a), $\hat{\boldsymbol\pi}$ cực đại trên $\Delta_2$. (18) (5) display $$\text{(c)}\quad\frac{L(\hat{\boldsymbol\pi})}{L(0{,}3;\,0{,}1;\,0{,}6)}=\frac{0{,}4^4}{0{,}3^4}=\frac{256}{81}\approx3{,}16.$$ (6) Diễn giải: dành khối lượng $0{,}1$ cho nhóm vắng mặt làm hợp lý giảm hơn ba lần. (16) Số đo sau rà lại vòng 1: 59 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 18.
-- **Ghi chú diễn giả:** Ở đây $F(\pi_1,\pi_3)=-4\log\pi_1-6\log\pi_3$; $-\log$ lồi, ma trận ràng buộc $(1,1)$ có hàng khác $0$. Với mọi $\boldsymbol\pi$ có hợp lý dương: nếu $m<1$, câu (a) cho một điểm có $\pi_2=0$ và hợp lý lớn hơn; nếu $m=1$ thì $\pi_2=0$. Ở câu (c), hai vector có cùng $\pi_3=0{,}6$, nên thừa số $0{,}6^6$ triệt tiêu. Kiểm tra lại: $4/0{,}4=6/0{,}6=10=n$. Cách khác cho tính cực đại: bất đẳng thức $\log t\le t-1$ như chứng minh định lý ước lượng phân loại, với $\mathcal K_+=\{1,3\}$.
+- **Nguồn:** ghi chú bài giảng L617–639 (Bài tập 11.2: lời giải câu (b)–(d)).
+- **Phác thảo:** (1) Câu hỏi: (b) Lagrange với $\pi_1+\pi_3=1$, chứng minh cực đại; (c) tỉ số hợp lý với $(0{,}3;\ 0{,}1;\ 0{,}6)$. (15) (2) Lời giải: (b) với $\pi_2=0$: $\mathcal L=-4\log\pi_1-6\log\pi_3+\nu(\pi_1+\pi_3-1)$. (4) (3) Điều kiện dừng $4/\pi_1=6/\pi_3=\nu$; ràng buộc cho $\nu=10$, $\hat{\pi}=(0{,}4;\ 0;\ 0{,}6)$. (6) (4) $F$ lồi trên tập mở $\{\pi_1>0,\pi_3>0\}$, nên điểm dừng là nghiệm khi $\pi_2=0$ (Mệnh đề 04.2(b)); cùng (a), $\hat{\pi}$ cực đại trên $\Delta_2$. (18) (5) display $$\text{(c)}\quad\frac{L(\hat{\pi})}{L(0{,}3;\,0{,}1;\,0{,}6)}=\frac{0{,}4^4}{0{,}3^4}=\frac{256}{81}\approx3{,}16.$$ (6) Diễn giải: dành khối lượng $0{,}1$ cho nhóm vắng mặt làm hợp lý giảm hơn ba lần. (16) Số đo sau rà lại vòng 1: 59 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 18.
+- **Ghi chú diễn giả:** Ở đây $F(\pi_1,\pi_3)=-4\log\pi_1-6\log\pi_3$; $-\log$ lồi, ma trận ràng buộc $(1,1)$ có hàng khác $0$. Với mọi $\pi$ có hợp lý dương: nếu $m<1$, câu (a) cho một điểm có $\pi_2=0$ và hợp lý lớn hơn; nếu $m=1$ thì $\pi_2=0$. Ở câu (c), hai vector có cùng $\pi_3=0{,}6$, nên thừa số $0{,}6^6$ triệt tiêu. Kiểm tra lại: $4/0{,}4=6/0{,}6=10=n$. Cách khác cho tính cực đại: bất đẳng thức $\log t\le t-1$ như chứng minh định lý ước lượng phân loại, với $\mathcal K_+=\{1,3\}$.
 
 ### Mạch 4 · Gaussian một chiều và độ chệch
 
@@ -557,11 +570,12 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** G106, G110 → $2$ và $2{,}5$; tỉ số $0{,}8$.
 - **Vị trí:** kiểm tra mạch 4; ví dụ xuyên suốt một chiều. **Mục tiêu:** 4.
 - **Quyết định:** `thêm`. **Bài tập:** có lời giải trên mặt trang (fragment).
+- **Sửa (2026-11-13, bảng phát hiện):** ghi chú diễn giả bỏ đoạn đầu lặp dòng "Diễn giải:"; dẫn "Bài tập 11.6 và 11.8 của tệp bài tập" (11.6 cũ nay là MLE Gaussian, bài hai mẫu số là 11.8).
 - **Sửa (cổng):** #6 (phương án A): đề chỉ cho dữ liệu; người học tự tính lại $\bar x$, $Q$ và hai ước lượng; một dòng diễn giải.
 - **Sửa (rà soát):** D1: "kiểm tra tỉ số $(n-1)/n$" thay "với (7.4)" (dòng 21 → 18 âm tiết).
 - **Nguồn:** L856–870.
 - **Phác thảo:** (1) Câu hỏi: Năm độ lệch nhiệt độ $D=(0,1,2,3,4)$. (7) (2) Tính $\bar x$, $Q$, phương sai hợp lý cực đại, phương sai không chệch; kiểm tra tỉ số $(n-1)/n$. (15) (3) Lời giải: $\bar x=2$; sai lệch $(-2,-1,0,1,2)$, $Q=10$. (4) (4) $Q/n=10/5=2$; $Q/(n-1)=10/4=2{,}5$; tỉ số $2/2{,}5=0{,}8=(n-1)/n$. (2) (5) Diễn giải: $2$ là phương sai của Gaussian khớp dữ liệu nhất; $2{,}5$ là giá trị của bộ ước lượng không chệch. (20) Số đo sau rà soát: 48 âm tiết, 5 dòng, 0 công thức hiển thị, dòng dài nhất 20.
-- **Ghi chú diễn giả:** Hai số tính từ cùng $Q=10$. Số $2$ là phương sai của mô hình Gaussian khớp dữ liệu tốt nhất; số $2{,}5$ là giá trị trên mẫu này của bộ ước lượng có kỳ vọng đúng bằng phương sai thật qua các lần lấy mẫu. Cả hai mẫu số đều được dùng trong tính toán: NumPy mặc định tính phương sai với mẫu số $n$, pandas mặc định dùng $n-1$. Khi so phương sai từ hai công cụ trên cùng dữ liệu, cần biết công cụ dùng mẫu số nào. Bài tập tự học 11.6 luyện thêm phần này.
+- **Ghi chú diễn giả:** Cả hai mẫu số đều được dùng trong tính toán: NumPy mặc định tính phương sai với mẫu số $n$, pandas mặc định dùng $n-1$. Khi so phương sai từ hai công cụ trên cùng dữ liệu, cần biết công cụ dùng mẫu số nào. Bài tập 11.6 và 11.8 của tệp bài tập luyện thêm phần này.
 
 ### Mạch 5 · Ước lượng Gaussian nhiều chiều
 
@@ -618,10 +632,11 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** GN01, GN03 → $S_4$, trị riêng $4$ và $1$.
 - **Vị trí:** ví dụ xuyên suốt cảm biến. **Mục tiêu:** 4.
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** ghi chú diễn giả bỏ câu tự nói về văn bản "định lý tiếp theo cho biết…"; kết bằng câu nối "ma trận này thuộc miền tham số $\Sigma\succ0$; để biết nó có cực đại hợp lý không, cần kết quả cho Gaussian nhiều chiều".
 - **Sửa (rà soát):** #45: "Diễn giải:" viết thành câu ("nghĩa là"). #13: ghi chú diễn giả "phương sai từng tọa độ".
 - **Nguồn:** Ví dụ 11.8 L959–999.
 - **Phác thảo:** (1) Bốn vector nền $(12,22)^\top$, $(8,18)^\top$, $(11,19)^\top$, $(9,21)^\top$; tính $S_4$, kiểm tra $S_4\succ0$. (6) (2) $\bar x=(10,20)^\top$; $\tilde x_1=(2,2)^\top$, $\tilde x_2=(-2,-2)^\top$, $\tilde x_3=(1,-1)^\top$, $\tilde x_4=(-1,1)^\top$. (0) (3) display $$\tilde x_1\tilde x_1^\top=\tilde x_2\tilde x_2^\top=\begin{pmatrix}4&4\\4&4\end{pmatrix},\qquad\tilde x_3\tilde x_3^\top=\tilde x_4\tilde x_4^\top=\begin{pmatrix}1&-1\\-1&1\end{pmatrix},$$ (4) display $$S_4=\frac14\begin{pmatrix}10&6\\6&10\end{pmatrix}=\begin{pmatrix}5/2&3/2\\3/2&5/2\end{pmatrix}.$$ (5) Trị riêng $4$ và $1$, đều dương, nên $S_4\succ0$. (6) (6) Diễn giải: phần tử $3/2>0$ nghĩa là hai số đo có xu hướng cùng tăng hoặc cùng giảm. (17) Số đo sau rà soát: 29 âm tiết, 6 dòng, 2 công thức hiển thị, dòng dài nhất 17.
-- **Ghi chú diễn giả:** Hai phần tử đường chéo bằng $5/2$, trùng phương sai hợp lý cực đại của từng tọa độ. Trị riêng: $S_4(1,1)^\top=(4,4)^\top$ và $S_4(1,-1)^\top=(1,-1)^\top$. Cũng vậy, $\tilde x_1$ và $\tilde x_3$ độc lập tuyến tính nên các $\tilde x_i$ sinh ra $\mathbb R^2$. Phần tử ngoài đường chéo ghi điều mà phương sai từng tọa độ không ghi. Vì $S_4\succ0$, ma trận này là một ứng viên hợp lệ cho $\Sigma$; định lý tiếp theo cho biết nó cực đại hợp lý.
+- **Ghi chú diễn giả:** Hai phần tử đường chéo bằng $5/2$, trùng phương sai hợp lý cực đại của từng tọa độ. Trị riêng: $S_4(1,1)^\top=(4,4)^\top$ và $S_4(1,-1)^\top=(1,-1)^\top$. Cũng vậy, $\tilde x_1$ và $\tilde x_3$ độc lập tuyến tính nên các $\tilde x_i$ sinh ra $\mathbb R^2$. Phần tử ngoài đường chéo ghi điều mà phương sai từng tọa độ không ghi. Vì $S_4\succ0$, ma trận này thuộc miền tham số $\Sigma\succ0$; để biết nó có cực đại hợp lý không, cần kết quả cho Gaussian nhiều chiều.
 
 #### GN05 — Ước lượng hợp lý cực đại Gaussian nhiều chiều
 - **Lý do tồn tại:** phát biểu Định lý 11.14, kết quả trung tâm của mạch.
@@ -727,10 +742,11 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** G110, GN02 ((8.2)), GN03 ((8.4)) → (8.7) đã chứng minh.
 - **Vị trí:** kết quả của sườn. **Mục tiêu:** 4.
 - **Quyết định:** `thêm`; ứng viên cắt thứ tư: gộp vào một dòng "Chứng minh." trên GN12 (Q-H). **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** ghi chú diễn giả dẫn "Bài tập 11.4(b) của ghi chú bài giảng và Bài tập 11.8 của tệp bài tập" thay "Bài tập tự học 11.7" (11.7 nay là bài đồng xu).
 - **Sửa (rà soát):** D1: "theo định nghĩa của $S_n$" với đẳng thức viết đủ. D2: "Hiệu chỉnh phương sai mẫu cho" thay "Mệnh đề 11.11 cho".
 - **Nguồn:** L1216–1233.
 - **Phác thảo:** (1) Áp dụng hiệu chỉnh phương sai cho mọi hình chiếu $w^\top X_i$, rồi khôi phục ma trận. (15) (2) $w^\top S_nw=Q_Y/n$. Đặt $Y_i=w^\top X_i$: các $Y_i$ i.i.d., $\operatorname{Var}Y_i=w^\top\Sigma w$; theo định nghĩa của $S_n$, $w^\top S_nw=\frac1n\sum_i(w^\top X_i-w^\top\bar X)^2=\frac1n\sum_i(Y_i-\bar Y)^2$. (7) (3) $w^\top\mathbb E[S_n]w=\frac{n-1}nw^\top\Sigma w$. Hiệu chỉnh phương sai mẫu cho $\mathbb EQ_Y=(n-1)w^\top\Sigma w$; kỳ vọng tuyến tính. (10) (4) Đặt $M=\mathbb E[S_n]-\frac{n-1}n\Sigma$, đối xứng, $w^\top Mw=0$ với mọi $w$. (5) (5) Dạng toàn phương bằng $0$ thì $M=0$. $w=e_j$ cho $M_{jj}=0$; $w=e_j+e_k$ cho $M_{jj}+M_{kk}+2M_{jk}=0$, nên $M_{jk}=0$. (8) Số đo sau rà soát: 45 âm tiết, 5 dòng, 0 công thức hiển thị, dòng dài nhất 15.
-- **Ghi chú diễn giả:** Các $Y_i$ độc lập vì là hàm đo được của các $X_i$ độc lập; cùng phân phối vì là cùng một hàm của các $X_i$ cùng phân phối. $\operatorname{Var}Y_i=w^\top\Sigma w$ theo đẳng thức $\operatorname{Var}(w^\top X)=w^\top\operatorname{Cov}(X)\,w$. Nhân $\mathbb E[S_n]=\frac{n-1}n\Sigma$ với $\frac n{n-1}$ cho $\mathbb E[S_{n-1}]=\Sigma$. Bài tập tự học 11.7 luyện thêm phần này.
+- **Ghi chú diễn giả:** Các $Y_i$ độc lập vì là hàm đo được của các $X_i$ độc lập; cùng phân phối vì là cùng một hàm của các $X_i$ cùng phân phối. $\operatorname{Var}Y_i=w^\top\Sigma w$ theo đẳng thức $\operatorname{Var}(w^\top X)=w^\top\operatorname{Cov}(X)\,w$. Nhân $\mathbb E[S_n]=\frac{n-1}n\Sigma$ với $\frac n{n-1}$ cho $\mathbb E[S_{n-1}]=\Sigma$. Bài tập 11.4(b) của ghi chú bài giảng và Bài tập 11.8 của tệp bài tập (bản một chiều của lập luận độ chệch) luyện thêm phần này.
 
 #### GN14 — Bài tập: bốn điểm hai chiều với phương sai khác nhau
 - **Lý do tồn tại:** bài có lời giải trên mặt trang của mạch 5 (Q-B), dùng số của Ví dụ 11.10; đo đúng câu hỏi trung tâm (tính $\bar x$, $S_n$, kiểm tra tồn tại).
@@ -817,10 +833,11 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** HH05 → $d^2(a)=9/2$, $d^2(b)=8$; $\hat f(a)/\hat f(b)=e^{7/4}$; $b$ lệch hơn.
 - **Vị trí:** bài toán trung tâm được trả lời. **Mục tiêu:** 5.
 - **Quyết định:** `thêm`. **Bài tập:** không.
+- **Sửa (2026-11-13, bảng phát hiện):** ghi chú diễn giả bỏ câu "Đây là câu trả lời cho câu hỏi mở đầu."
 - **Sửa (rà soát):** D1: nhiệm vụ viết $d_{\hat\Sigma}^2=\sum_jz_j^2/\lambda_j$ thay "(8.9)".
 - **Nguồn:** L1344–1368.
 - **Phác thảo:** (1) Tính $d_{\hat\Sigma}^2=\sum_jz_j^2/\lambda_j$ và so với khoảng cách Euclid. (7) (2) bảng (3) Kiểm tra bằng $\hat\Sigma^{-1}$: $\frac18(18+18)=\frac92$ và $\frac18(32+32)=8$. (4) (4) display $$\frac{\hat f(a)}{\hat f(b)}=\exp\Bigl[-\frac12\Bigl(\frac92-8\Bigr)\Bigr]=e^{7/4}\approx5{,}755.$$ (5) Diễn giải: $b$ lệch khỏi chế độ vận hành bình thường nhiều hơn $a$; mật độ của $a$ lớn gấp khoảng $5{,}8$ lần. (19) Số đo sau rà soát: 30 âm tiết, 5 dòng, 1 công thức hiển thị, dòng dài nhất 19.
-- **Ghi chú diễn giả:** Hai quan sát được đánh giá dưới cùng một Gaussian, nên hệ số chuẩn hóa triệt tiêu trong tỉ số mật độ. Kiểm tra trực tiếp: $\hat\Sigma^{-1}(3,3)^\top=\frac18(6,6)^\top$ và $\hat\Sigma^{-1}(2,-2)^\top=\frac18(16,-16)^\top$. $z_+^2+z_-^2$ bằng $18$ cho $a$ và $8$ cho $b$, đúng bình phương độ dài Euclid, vì phép đổi tọa độ bảo toàn độ dài. $a$ xa tâm hơn theo khoảng cách Euclid nhưng có khoảng cách Mahalanobis nhỏ hơn, vì độ lệch của nó nằm theo hướng phân tán rộng. Đây là câu trả lời cho câu hỏi mở đầu.
+- **Ghi chú diễn giả:** Hai quan sát được đánh giá dưới cùng một Gaussian, nên hệ số chuẩn hóa triệt tiêu trong tỉ số mật độ. Kiểm tra trực tiếp: $\hat\Sigma^{-1}(3,3)^\top=\frac18(6,6)^\top$ và $\hat\Sigma^{-1}(2,-2)^\top=\frac18(16,-16)^\top$. $z_+^2+z_-^2$ bằng $18$ cho $a$ và $8$ cho $b$, đúng bình phương độ dài Euclid, vì phép đổi tọa độ bảo toàn độ dài. $a$ xa tâm hơn theo khoảng cách Euclid nhưng có khoảng cách Mahalanobis nhỏ hơn, vì độ lệch của nó nằm theo hướng phân tán rộng.
 
 #### HH07 — Bài tập: hình học Gaussian theo hướng riêng (a)
 - **Lý do tồn tại:** bài trên lớp 11.3 (Q-B); đề và lời giải (a).
@@ -828,9 +845,10 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** HH03–HH06 → $\lambda_+=9$, $\lambda_-=1$, bán trục $3$ và $1$.
 - **Vị trí:** kiểm tra cụm Mahalanobis. **Mục tiêu:** 5.
 - **Quyết định:** `thêm`. Bài tập dùng lại tên $a$, $b$ cho hai điểm khác; trang nêu lại dữ kiện và ghi "hai điểm". **Bài tập:** trên lớp, lời giải trên mặt trang (fragment).
+- **Sửa (2026-11-13, bảng phát hiện):** nguồn: "ghi chú bài giảng, Bài tập 11.3" (cuối §8.3). Giữ tên $a$, $b$ như ghi chú (Bài tập 11.3, 11.4 của ghi chú cũng dùng $a$, $b$); đổi tên chỉ trên deck làm lệch deck với ghi chú (G1). Mặt trang đã định nghĩa lại "hai điểm … của bài tập này" và ghi chú diễn giả phân biệt với hai sản phẩm mở đầu.
 - **Sửa (rà soát):** #28: "hai điểm $a$, $b$ của bài tập này" (giữ tên của `exercises.md`). #32: `span.nocase`.
 - **Sửa (rà lại vòng 1):** R7: ghi chú diễn giả bỏ vế "tên giữ như trong tệp bài tập" (lý do ở `review-log.md`).
-- **Nguồn:** BT L101–124.
+- **Nguồn:** ghi chú bài giảng L1472–1486 (Bài tập 11.3: đề, gợi ý, lời giải câu (a)).
 - **Phác thảo:** (1) Câu hỏi: Gaussian hai chiều, $\mu=(0,0)^\top$, $\Sigma=\begin{pmatrix}5&4\\4&5\end{pmatrix}$; hai điểm $a=(3,1)^\top$, $b=(1,-1)^\top$ của bài tập này. (11) (2) (a) Tìm trị riêng, vector riêng đơn vị và bán trục của elip $d_\Sigma^2=1$. (13) (3) (b) So sánh bình phương khoảng cách Euclid và Mahalanobis của $a$, $b$ tới $\mu$. (12) (4) (c) Tính $f_{\mu,\Sigma}(a)/f_{\mu,\Sigma}(b)$; giải thích bằng hướng phân tán. (8) (5) Lời giải: (a) $\Sigma(1,1)^\top=(9,9)^\top$, $\Sigma(1,-1)^\top=(1,-1)^\top$: $\lambda_+=9$, $u_+=(1,1)^\top/\sqrt2$; $\lambda_-=1$, $u_-=(1,-1)^\top/\sqrt2$. (3) (6) Bán trục $\sqrt9=3$ theo $u_+$ và $1$ theo $u_-$. (5) Số đo sau rà lại vòng 1: 51 âm tiết, 6 dòng, 0 công thức hiển thị, dòng dài nhất 13.
 - **Ghi chú diễn giả:** Hai điểm $a$, $b$ của bài tập khác hai sản phẩm của bài toán mở đầu. Gợi ý: thử các vector $(1,1)^\top$ và $(1,-1)^\top$, chuẩn hóa chúng trước khi chiếu; dùng $d_\Sigma^2=\sum_jz_j^2/\lambda_j$: chiếu độ lệch lên từng vector riêng đơn vị, bình phương, rồi chia cho trị riêng tương ứng. Kiểm tra: tổng hai trị riêng $10=\operatorname{tr}\Sigma$, tích $9=25-16=\det\Sigma$.
 
@@ -840,8 +858,9 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** HH07 → $26/9$, $2$; tỉ số mật độ $e^{-4/9}\approx0{,}641$.
 - **Vị trí:** kiểm tra cụm Mahalanobis. **Mục tiêu:** 5.
 - **Quyết định:** `thêm`. **Bài tập:** trên lớp, lời giải trên mặt trang.
+- **Sửa (2026-11-13, bảng phát hiện):** nguồn: "ghi chú bài giảng, Bài tập 11.3"; tên $a$, $b$ giữ như HH07.
 - **Sửa (rà soát):** #30: thêm dòng "Câu hỏi:" nhắc đề (b), (c). #29: so sánh viết theo bình phương khoảng cách, $13/9\approx1{,}44$. #32: `span.nocase`.
-- **Nguồn:** BT L126–149.
+- **Nguồn:** ghi chú bài giảng L1487–1511 (Bài tập 11.3: lời giải câu (b), (c)).
 - **Phác thảo:** (1) Câu hỏi: (b) bình phương khoảng cách Euclid, Mahalanobis của $a$, $b$; (c) $f_{\mu,\Sigma}(a)/f_{\mu,\Sigma}(b)$. (11) (2) Lời giải: (b) $a$: $\lVert a\rVert^2=10$, $z_+=2\sqrt2$, $z_-=\sqrt2$, $d_\Sigma^2(a,\mu)=\frac89+2=\frac{26}9\approx2{,}89$. (3) (3) $b$: $\lVert b\rVert^2=2$, $z_+=0$, $z_-=\sqrt2$, $d_\Sigma^2(b,\mu)=2$. (0) (4) display $$\text{(c)}\quad\frac{f_{\mu,\Sigma}(a)}{f_{\mu,\Sigma}(b)}=\exp\Bigl[-\frac12\Bigl(\frac{26}9-2\Bigr)\Bigr]=e^{-4/9}\approx0{,}641.$$ (5) Bình phương khoảng cách của $a$ gấp $5$ lần của $b$ theo Euclid, chỉ gấp $13/9\approx1{,}44$ lần theo Mahalanobis. (15) (6) Diễn giải: phần $z_+^2=8$ của $a$ nằm theo hướng phương sai $9$, chỉ góp $8/9$. (11) Số đo sau rà soát: 40 âm tiết, 6 dòng, 1 công thức hiển thị, dòng dài nhất 15.
 - **Ghi chú diễn giả:** Phần $z_-^2=2$ theo hướng có phương sai $1$ đóng góp đủ $2$, bằng toàn bộ đóng góp của $b$. Mật độ tại $a$ bằng khoảng $64\%$ mật độ tại $b$. Kiểm tra trực tiếp bằng $\Sigma^{-1}=\frac19\begin{pmatrix}5&-4\\-4&5\end{pmatrix}$: $\Sigma^{-1}(3,1)^\top=\frac19(11,-7)^\top$, nên $d_\Sigma^2(a,\mu)=\frac19(33-7)=\frac{26}9$; $\Sigma^{-1}(1,-1)^\top=(1,-1)^\top$, nên $d_\Sigma^2(b,\mu)=2$.
 
@@ -909,11 +928,12 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Đầu vào → đầu ra:** TK02 → entropy chéo nhị phân, tổng bình phương, $\hat p=0$, $(4/5)^5\approx0{,}328$.
 - **Vị trí:** kiểm tra tổng hợp. **Mục tiêu:** 2, 6.
 - **Quyết định:** `thêm`. **Bài tập:** lời giải trên mặt trang.
+- **Sửa (2026-11-13, bảng phát hiện):** ghi chú diễn giả bỏ "xảy ra khá thường xuyên" (quy tắc 2026-11-09), chỉ giữ $(4/5)^5=1024/3125$ vì mặt trang đã nêu $\approx0{,}328$.
 - **Sửa (cổng):** #20: dòng "Diễn giải:" (kết luận không điều kiện) chuyển vào ghi chú diễn giả; trang kết bằng con số $0{,}328$.
 - **Sửa (rà soát):** #33: tiêu đề "…, lời giải". #43: "bỏ hằng số và hệ số dương $\frac1{2vn}$". D2: "(định lý ước lượng Bernoulli)". #49: ghi chú diễn giả thành danh sách.
 - **Nguồn:** L1491–1495.
 - **Phác thảo:** (1) Lời giải: (a) Bernoulli: entropy chéo nhị phân $-\frac1n\sum_i[x_i\log p+(1-x_i)\log(1-p)]$. (8) (2) Gaussian: $\frac12\log(2\pi v)+\frac1{2vn}\sum_i(x_i-\mu)^2$; bỏ hằng số và hệ số dương $\frac1{2vn}$, còn tổng bình phương sai lệch, nghiệm $\hat\mu=\bar x$. (15) (3) (b) $s=0$, $n=5$: $\hat p=0$ (định lý ước lượng Bernoulli). (6) (4) (c) Không kết luận được: với $p=1/5$, xác suất năm cờ $0$ là $(4/5)^5\approx0{,}328$. (11) Số đo sau rà soát: 40 âm tiết, 4 dòng, 0 công thức hiển thị, dòng dài nhất 15.
-- **Ghi chú diễn giả:** $(4/5)^5=1024/3125$: một mẫu năm cờ $0$ xảy ra khá thường xuyên dù xác suất gắn cờ dương. Nghiệm tối ưu trên mẫu đã thấy chưa cho biết chất lượng dự đoán trên quan sát mới. Một hàm mất mát được suy ra từ một giả thiết phân phối bằng cách lấy âm log-hợp lý, bao gồm:giả thiết Gaussian cho tổng bình phương sai lệch; giả thiết Bernoulli cho entropy chéo nhị phân; giả thiết phân loại cho entropy chéo nhiều lớp.Trên cùng dữ liệu $(0,0,9)$, nhiễu Gaussian cho ước lượng $3$, nhiễu Laplace cho ước lượng $0$.
+- **Ghi chú diễn giả:** $(4/5)^5=1024/3125$. Nghiệm tối ưu trên mẫu đã thấy chưa cho biết chất lượng dự đoán trên quan sát mới. Một hàm mất mát được suy ra từ một giả thiết phân phối bằng cách lấy âm log-hợp lý, bao gồm:giả thiết Gaussian cho tổng bình phương sai lệch; giả thiết Bernoulli cho entropy chéo nhị phân; giả thiết phân loại cho entropy chéo nhiều lớp.Trên cùng dữ liệu $(0,0,9)$, nhiễu Gaussian cho ước lượng $3$, nhiễu Laplace cho ước lượng $0$.
 
 #### TK04 — Câu hỏi tự kiểm tra
 - **Lý do tồn tại:** câu hỏi tự kiểm tra thuộc mạch kết luận (AGENTS.md, "Mở bài và kết bài"); tiền lệ TK04 của Bài 10.
@@ -933,10 +953,11 @@ Các mục sửa theo cổng storyboard (2026-11-07, `review-log.md`, "Cổng st
 - **Nhu cầu/khoảng trống:** người học cần biết đọc gì và giới hạn nào của bài dẫn tới bài sau.
 - **Đầu vào → đầu ra:** TK03 → nhu cầu: tham số phụ thuộc đầu vào, chất lượng trên quan sát mới.
 - **Vị trí:** giới hạn áp dụng của sườn. **Mục tiêu:** cả sáu.
-- **Quyết định:** `thêm`; mã TK05 như kế hoạch; TK04 là trang câu hỏi tự kiểm tra (cổng #8). **Bài tập:** tự học 11.4–11.8 (gợi ý trong tệp bài tập).
+- **Quyết định:** `thêm`; mã TK05 như kế hoạch; TK04 là trang câu hỏi tự kiểm tra (cổng #8). **Bài tập:** tự học: Bài tập 11.4 (ghi chú bài giảng) và 11.5–11.13 (tệp bài tập).
+- **Sửa (2026-11-13, bảng phát hiện):** mặt trang: "Bài tập 11.4 (ghi chú bài giảng) và 11.5–11.13 (tệp bài tập)." (số âm tiết 38). Ghi chú diễn giả: "Bài tập 11.6, 11.8 và 11.9" thay "Bài tập 4.1, 4.7 và 4.8 của Murphy".
 - **Nguồn:** L1497–1510.
-- **Phác thảo:** (1) Murphy (2022), *Probabilistic Machine Learning: An Introduction*, §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1. (6) (2) Mở rộng: Murphy (2022), §4.5–4.5.2, §4.6.2, §6.2, §7.4.4–7.4.5. (2) (3) Bài tập tự học 11.4–11.8 trong tệp bài tập của Bài 11. (12) (4) **Nhu cầu:** cho tham số phụ thuộc đầu vào và đo chất lượng dự đoán trên quan sát mới. (19) ≈45 âm tiết, 4 dòng.
-- **Ghi chú diễn giả:** trước buổi học: Murphy §2.4–2.6 và §3.2.1–3.2.2; sau buổi học: §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1; Bài tập 4.1, 4.7, 4.8 của Murphy luyện thêm Định lý 11.9 và Mệnh đề 11.11 (L1505–1506). Đọc thêm §4.7.1–4.7.4 về phân phối mẫu và khoảng tin cậy (L1508). Ở các mô hình của bài, mọi quan sát dùng chung một tham số, và chất lượng của tham số chỉ được đo trên mẫu đã thấy. Bài 12 cho tham số phụ thuộc đầu vào, dưới dạng mô hình có điều kiện $p_\theta(y\mid x)$, và xét câu hỏi: tham số khớp tốt trên tập huấn luyện dự đoán quan sát mới tốt đến đâu (L1499).
+- **Phác thảo:** (1) Murphy (2022), *Probabilistic Machine Learning: An Introduction*, §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1. (6) (2) Mở rộng: Murphy (2022), §4.5–4.5.2, §4.6.2, §6.2, §7.4.4–7.4.5. (2) (3) Bài tập 11.4 (ghi chú bài giảng) và 11.5–11.13 (tệp bài tập). (10) (4) **Nhu cầu:** cho tham số phụ thuộc đầu vào và đo chất lượng dự đoán trên quan sát mới. (19) ≈45 âm tiết, 4 dòng.
+- **Ghi chú diễn giả:** trước buổi học: Murphy §2.4–2.6 và §3.2.1–3.2.2; sau buổi học: §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1; Bài tập 11.6, 11.8 và 11.9 luyện thêm phần Gaussian một chiều và hiệu chỉnh phương sai. Đọc thêm §4.7.1–4.7.4 về phân phối mẫu và khoảng tin cậy (L1508). Ở các mô hình của bài, mọi quan sát dùng chung một tham số, và chất lượng của tham số chỉ được đo trên mẫu đã thấy. Bài 12 cho tham số phụ thuộc đầu vào, dưới dạng mô hình có điều kiện $p_\theta(y\mid x)$, và xét câu hỏi: tham số khớp tốt trên tập huấn luyện dự đoán quan sát mới tốt đến đâu (L1499).
 
 ## (d) Trang có nguy cơ vượt trần và quyết định
 
@@ -1175,6 +1196,16 @@ Luật thêm trong `lecture-course.css`, khối Bài 11, `@media screen and (min
 - GN06 (`p` lề .08em) và HH08 (`p` lề .06em), `.katex-display` lề 0: lề mới làm một dòng xuống dòng; thu khoảng cách khối, giữ cỡ chữ.
 
 Số đo sau: hộp nút ở 1600×900 là trái −10–26 (bật: 0–36), phải 1564–1600 × 432–468, lên 1564–1600 × 388–424, xuống 1564–1600 × 476–512 (nhích theo hiệu ứng nhấp nháy); chữ nằm trong x = 51–1549. Giao nhau: 0 trên 76 trang ở 1600×900, 1280×720, 1366×768, 1920×1080. Ở 1024×768 (4:3) còn 48 giao nhau với mũi tên trái/phải, ngoài phạm vi kiểm. Đáy chữ GN06 856 px, HH08 858 px, trên chân trang (863 px). `deck_check.py` (`check-layout/`): 0 lỗi console, 0 lỗi trang, 0 yêu cầu hỏng, 0 `.katex-error`; không trang tràn khung thật (chỉ cờ `path` dấu căn KaTeX đã biết trên 9 trang như trước); mật độ và số đo 390×844 của cả 76 trang trùng `check-edit5/`.
+
+## (i) Sửa theo bảng phát hiện 2026-11-13
+
+Đợt sửa theo bảng phát hiện cuối `review-log.md` (rà soát 2026-11-13) và quyết định điều phối G1–G10, D11. Không thêm, tách, gộp hay bỏ trang: 76 trang, 7 mạch, mã trang và thứ tự giữ nguyên (G7). Bảng mạch, câu hỏi trung tâm và bản đồ hành trình khái niệm không đổi. Các mục (c) có dòng "Sửa (2026-11-13, bảng phát hiện)" ghi thay đổi của từng trang.
+
+- **Ký hiệu.** Vector xác suất phân loại viết $\pi$ thường như ghi chú (bảng ký hiệu L101–102), trên TS11–TS17 và ghi chú diễn giả HL01; bỏ lệch ký hiệu đã ghi ở `outline.md` (Q-F).
+- **Dẫn bài tập.** Bài tập 11.1–11.4 nằm trong ghi chú bài giảng; 11.5–11.13 trong tệp bài tập (đánh số lại 2026-11-12).
+- **Tên $a$, $b$ ở HH07, HH08.** Giữ như ghi chú (lý do ở mục HH07).
+- **Mật độ.** MD01 77 → 79/80 âm tiết; TK05 38; các trang còn lại có mặt trang không đổi số âm tiết. MD02 giữ 7 dòng (ngoại lệ Q-K, mục (d)).
+- **Kiểm tra** (`deck_check.py`, 1600×900 và 390×844): 0 lỗi console, 0 lỗi trang, 0 yêu cầu hỏng, 0 `.katex-error`. Cờ OVERFLOW/NARROW-H trên G101, GN07, GN14, HH02, HH03, HH05–HH08 đều do `path` SVG của dấu căn và ngoặc co giãn KaTeX, bị chính `svg` cha cắt trong khung (đo lại từng phần tử: không phần tử nào ra ngoài khung); ảnh chụp G101, HH07 ở cả hai cỡ không có tràn.
 
 ## Phụ lục: bảng mạch lập luận của ghi chú bài giảng
 
