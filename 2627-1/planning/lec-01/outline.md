@@ -85,6 +85,8 @@ Sau vòng rà 1: danh sách (K1)–(K5) đặt ở cuối §8 (sau khi định n
 
 ### Lệch với deck (để đồng bộ sau, Q-F)
 
+Đã đồng bộ trong đợt sửa deck 2026-11-13 (mục "Sửa deck theo bảng phát hiện 2026-11-13" của `review-log.md`): deck dùng ký hiệu $s_i$, $y_i$, $w_0$, $w_1$, $a_i^T$, $\tau$, $v$, $\nabla^2f$, $\mathcal I$, $d$ đèn, $\operatorname{Col}$, $\operatorname{Ker}$; H07 dùng "Định lý."; T04 thành "Sáu câu hỏi chứng nhận"; M02 có năm mục tiêu. Các dòng dưới đây giữ làm lịch sử.
+
 - Ký hiệu: cân nặng, chiều cao $s_i$, $y_i$, hệ số $w_0$, $w_1$ (deck L01: $m_i$, $h_i$, $b$, $a$; ghi chú dùng bản sao `height-weight-regression-note.svg`, `g00-…-note.svg`, `g01-…-note.svg`); hàng ma trận thiết kế $a_i^T$ (deck L01B: $x_i^T$); biến hàm hạn chế $\tau$ (deck H05: $t$); độ sáng $\mathcal I$, số đèn $d$ (deck K05: $I$, $m$); $\operatorname{Col}(X)$ (deck K07: $\mathcal R(X)$).
 - Bố cục: deck gộp tập lồi, hàm lồi, toàn cục, tồn tại, duy nhất trong mạch 6; ghi chú tách §6–§8. Deck H07 gọi kết quả cưỡng bức và lồi chặt là "Mệnh đề"; ghi chú là Định lý 01.38 và 01.34. Deck T04 "sáu bước", K06 bốn bước; ghi chú: Nhận xét 01.16 (sáu câu hỏi) và Thuật toán 01.47 (bốn giai đoạn, chín bước).
 - Bài chiếu sáng: deck K05/K05B là bài tập; ghi chú là Ví dụ 01.17 có bộ số.
@@ -108,26 +110,27 @@ Dàn ý triển khai ngày 2026-09-05. Bài được tổ chức theo hướng �
 
 Vấn đề trung tâm: từ một nhu cầu cụ thể, xây dựng mô hình tối ưu và xác định điều kiện để kết luận về nghiệm toàn cục, sự tồn tại và tính duy nhất.
 
-Sau bài học, sinh viên phải làm được bốn việc:
+Sau bài học, sinh viên phải làm được năm việc (theo mục "Mục tiêu học tập" của ghi chú bài giảng, đồng bộ 2026-11-13):
 
-1. Tách dữ kiện, biến quyết định, hàm mục tiêu và miền khả thi.
-2. Lập mô hình cho điều khiển một bước, hồi quy tuyến tính và hồi quy logistic.
-3. Kiểm tra tính lồi của miền và mục tiêu bằng định nghĩa hoặc đạo hàm.
-4. Chứng nhận ba kết luận về nghiệm: cực tiểu toàn cục, tồn tại, duy nhất.
+1. Tách dữ kiện, biến, mục tiêu, miền; viết bài toán ở dạng tổng quát.
+2. Lập và giải bài toán điều khiển, bình phương nhỏ nhất, hồi quy logistic.
+3. Kiểm tra tính lồi của tập và hàm bằng định nghĩa, đạo hàm, phép toán bảo toàn.
+4. Chứng nhận riêng ba kết luận: toàn cục, tồn tại, duy nhất.
+5. Áp dụng quy trình chứng nhận cho mô hình mới, chỉ ra kết luận mất khi bỏ giả thiết.
 
-Bốn mục tiêu trùng nguyên văn trang `M02` (đồng bộ 2026-10-12).
+Năm mục tiêu trùng nguyên văn trang `M02` (đồng bộ 2026-11-13).
 
-## Bảy mạch và 54 trang lá
+## Bảy mạch và 58 trang lá
 
-Trạng thái sau đợt sửa văn phong 2026-10-12. Mỗi mạch trừ mạch mở đầu mở bằng một trang tiêu đề mạch (`id="mach-N"`); tên mạch trùng trang "Nội dung" `M02B`.
+Trạng thái sau đợt sửa deck 2026-11-13. Mỗi mạch trừ mạch mở đầu mở bằng một trang tiêu đề mạch (`id="mach-N"`); tên mạch trùng trang "Nội dung" `M02B`.
 
 1. **Mở đầu và ba bài toán tối ưu — M01, M01A, M01B, M02, M02B, M03 (6 trang):** bìa, hai phần học phần, kiểm tra đánh giá, mục tiêu, nội dung, nhu cầu trung tâm với ba quyết định cần tối ưu.
 2. **Điều khiển một bước — D00–D04 (5 trang):** mô hình phương trình trạng thái, hàm chi phí bám đích–năng lượng, ví dụ nghiệm trên biên, bài tập chứng minh nghiệm biên.
 3. **Hồi quy tuyến tính — L00, L01, L01B, L02–L04, L04B (7 trang):** dự đoán chiều cao từ cân nặng, khái quát sang nhiều đặc trưng, bình phương nhỏ nhất, ví dụ ba điểm, bài tập cột trùng (lời giải ở L04B).
 4. **Hồi quy logistic — GT, G00–G04 (6 trang):** phân loại cam, biên có dấu, mất mát logistic, ví dụ hai mẫu tách được tuyến tính, bài tập dãy cực tiểu hóa.
-5. **Dạng tổng quát của bài toán tối ưu — T00–T04 (5 trang):** ba thành phần, ba bài toán trong dạng tổng quát, bốn loại kết luận, sáu bước kiểm tra.
-6. **Tập lồi và hàm lồi — F00–F05, H01–H03, H03B, H04–H07, H07B (15 trang):** tập lồi, hàm lồi, nhắc lại tập mở, đóng, bị chặn, điều kiện vi phân, phép toán bảo toàn tính lồi, định lý địa phương–toàn cục, tồn tại và duy nhất, bài tập hàm mũ.
-7. **Chứng nhận ba bài toán — K00–K04, K06, K05, K05B, K07, K08 (10 trang):** chứng nhận từng trường hợp, so sánh, quy trình chứng nhận, bài tập chiếu sáng có lời giải, tổng kết theo kết quả, tài liệu đọc.
+5. **Dạng tổng quát của bài toán tối ưu — T00–T02, T02B, T03, T04 (6 trang):** ba thành phần, ba bài toán trong dạng tổng quát, cực tiểu địa phương và toàn cục, bốn loại kết luận, sáu câu hỏi chứng nhận.
+6. **Tập lồi và hàm lồi — F00–F05, H01, H02, H03B, H04–H06, H03, H07, H07B, H08, H09 (17 trang):** tập lồi, hàm lồi, nhắc lại tập mở, đóng, bị chặn, điều kiện vi phân, phép toán bảo toàn tính lồi, định lý địa phương–toàn cục (sau các tiêu chuẩn, theo §8.1 của ghi chú), tồn tại và duy nhất, bài tập hàm mũ, hàm lồi mạnh, chính quy hóa bậc hai.
+7. **Chứng nhận nghiệm và tổng kết — K00–K04, K06, K05, K05B, K07, K07B, K08 (11 trang):** mạch kết luận: chứng nhận từng trường hợp, so sánh bốn trường hợp, quy trình chứng nhận, bài tập chiếu sáng có lời giải, bảng tổng kết, bài tập tự kiểm tra hồi quy ridge, tài liệu đọc.
 
 ## Phân bổ nội bộ theo tiết
 
@@ -139,7 +142,7 @@ Trạng thái sau đợt sửa văn phong 2026-10-12. Mỗi mạch trừ mạch 
 | 4. Hồi quy logistic | 0,30 tiết lý thuyết | Ca lồi có thể không đạt nghiệm |
 | 5. Dạng tổng quát của bài toán tối ưu | 0,20 tiết lý thuyết | Trừu tượng hóa ba trường hợp |
 | 6. Tập lồi và hàm lồi | 0,75 tiết lý thuyết | Xây công cụ chứng nhận |
-| 7. Chứng nhận ba bài toán | 1,00 tiết bài tập | Chứng nhận, diễn giải và chuyển giao |
+| 7. Chứng nhận nghiệm và tổng kết | 1,00 tiết bài tập | Chứng nhận, diễn giải và chuyển giao |
 
 Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đề cương; đây là dữ liệu điều phối nội bộ, không hiển thị trên trang chiếu hoặc ghi chú diễn giả.
 
@@ -180,6 +183,7 @@ Tổng phân bổ là 2 tiết lý thuyết và 1 tiết bài tập, đúng đ�
 - Phép toán bảo toàn tính lồi: tổng không âm và hợp với ánh xạ affine.
 - Nhắc lại điểm trong, tập mở, tập đóng, tập bị chặn (H03B), vì Bài 00 không ôn các khái niệm này.
 - Phân biệt tồn tại và duy nhất; định lý Weierstrass trên miền đóng, bị chặn; vai trò của tính cưỡng bức.
+- Hàm lồi mạnh (Định nghĩa 01.39, Hệ quả 01.41) và chính quy hóa bậc hai (Định nghĩa 01.42), thêm vào deck ngày 2026-11-13 (H08, H09) theo §8.4 của ghi chú.
 
 Không đưa nón lồi, nón nửa xác định dương, epigraph, tập mức dưới (sublevel set), Jensen, liên hợp, tựa lồi, log-lồi hoặc log-lõm vào tuyến chính vì chúng không cần để chứng nhận ba ca.
 
@@ -195,6 +199,7 @@ Thứ tự khai thác nguồn vẫn là lec01 → lec02 → lec03. Thứ tự tr
 
 ## Tài sản trực quan
 
+- Bản sao cho deck (2026-11-13): `optimization-model-anatomy-deck.svg` (nhãn "x: d thành phần"), `first-second-order-convexity-deck.svg` (nhãn $\tau$, $v$, $\nabla^2f$); deck dùng bản `-note` của `height-weight-regression`, `g00-orange-quality-pipeline`, `g01-linear-boundary-2d`; `lighting-distribution.svg` đổi nhãn $I$ thành $\mathcal I$.
 - Giữ và dùng: `optimization-model-anatomy.svg`, `convex-set-and-combination.svg`, `convex-concave-strict.svg`, `local-versus-global-minimum.svg`, `first-second-order-convexity.svg`, `existence-and-uniqueness.svg`.
 - Sửa: `logistic-loss-convex-case.svg` để ca chính dùng miền $\mathbb R$ và làm rõ cận dưới đúng không đạt; phần ràng buộc đóng, bị chặn được chuyển thành đối chiếu trong mạch kết luận.
 - Tạo mới mười SVG: `one-step-control.svg`, `height-weight-regression.svg`, `linear-regression-fit.svg`, `d03-cost-parabola-feasible.svg`, `g00-orange-quality-pipeline.svg`, `g01-linear-boundary-2d.svg`, `lighting-distribution.svg` và ba hình khái quát ở M03 (`m03-control-target.svg`, `m03-linear-fit-sketch.svg`, `m03-logistic-classes.svg`).

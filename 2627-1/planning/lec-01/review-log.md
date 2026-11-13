@@ -958,3 +958,69 @@ Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy t�
 | nhẹ | (kế hoạch) | `storyboard.md:98` còn "Thuật toán 01.1" (số cũ). | — | Đổi thành 01.47 |
 
 **Đã kiểm, không lỗi:** số liệu D03, G03, L03, L04B, K01, K03 tính lại khớp ghi chú. Bài tập trên deck không trùng `exercises.md`.
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Bối cảnh.** Người sửa (vai editor) sửa `lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html` theo bảng phát hiện của mục trước, theo quyết định G1–G10 của điều phối viên và theo ghi chú bài giảng viết lại ngày 2026-11-12. `no-ai-slop` chế độ Edit cho mặt trang và ghi chú diễn giả. Vai, loại tác tử, mô hình và effort do điều phối viên ghi theo lời gọi công cụ. Không sửa `materials/`, CSS hay bài khác; không commit.
+
+**Kết quả.** 54 → 58 trang lá, bảy mạch giữ nguyên. Thêm T02B (tách từ H03), H08, H09, K07B; đổi thứ tự H03 xuống sau H06; không bỏ trang nào; không đổi `data-slide-id` của trang hiện có. Mạch 7 đổi tên "Chứng nhận nghiệm và tổng kết" và định vai lại thành mạch kết luận (lý do trong `storyboard.md`, mục "Mạch kết luận").
+
+**Xuất xứ số liệu (ghi một lần, G6).** Năm cặp cân nặng–chiều cao (L01), các điểm cam trên hình G00, G01 và độ dài thanh độ sáng trên hình K05 là số liệu do học phần dựng để tính tay; chúng không còn được ghi nhãn xuất xứ trên mặt trang, trong SVG deck dùng hay trong ghi chú diễn giả.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| F1 (trung bình) Ký hiệu một nghĩa, lệch ghi chú: $m_i$ hai nghĩa, $a,b$ ba nghĩa, $x_i$/$x$, $I$ hai nghĩa, $m$ đèn | Đã sửa: $s_i,y_i,w_0,w_1$ (L01–L04B), hàng $a_i^T$ (L01B, L02, H06), $m_i$ chỉ là biên có dấu; F03 dùng $\underline x_j,\overline x_j$, $Ax=c$, $g^Tx\le\beta$; F04 $Ax+c\in E$; K03 $I_d$; K05 $d$ đèn, $\mathcal I$, $A\in\mathbb R^{n\times d}$; L04 $w'=(w_0,w_1,w_2)$, L04B $\kappa$ | L01, L01B, L02, L03, L04, L04B, G01, F03, F04, H06, K03, K05, K05B | Hình L01, G00, G01 đổi sang bản `-note` có ký hiệu của ghi chú; `lighting-distribution.svg` đổi nhãn $I$ → $\mathcal I$ |
+| F2 (trung bình) Lồi mạnh và chính quy hóa chỉ một dòng ở K03; K07 không ghi | Đã sửa: thêm H08 "Hàm lồi mạnh" (Định nghĩa 01.39, Hệ quả 01.41) và H09 "Chính quy hóa bậc hai" (Định nghĩa 01.42, Nhận xét 01.40) ở mạch 6 theo §8.4; K03 dẫn tới lồi mạnh và Hệ quả 01.41; K07 thêm hàng "Đúng một nghiệm"; K04 thêm hàng logistic có chính quy hóa | H08, H09, K03, K04, K07 | Theo đề xuất thứ nhất (trang định nghĩa và hệ quả) |
+| F3 (trung bình) Mạch 7 trộn nội dung với tổng kết, tài liệu | Đã xử lý bằng định vai: mạch 7 là mạch kết luận; nội dung mới (lồi mạnh) chuyển lên mạch 6, mạch 7 chỉ còn tổng hợp, bài tập tổng hợp, tổng kết, tự kiểm tra, tài liệu đọc | K00–K08, M02B | Không tách mạch thứ tám vì vượt 5–7 mạch và bảy mạch là cấu trúc người dùng cố định; lý do ghi trong `storyboard.md`. Điều phối viên quyết định có chấp nhận cách định vai này không |
+| F4 (trung bình) Trang nội dung đầu mạch thiếu "Nhu cầu:" | Đã sửa: thêm "Nhu cầu:" nêu câu hỏi của mạch ở D01, G00 (thay câu hỏi cuối trang), T01, F01 (kèm phân rã câu 2 / câu 3–6), K01 | D01, G00, T01, F01, K01 | D01, K01 bỏ tiêu đề thẻ để giữ ≤ 6 dòng và khung 720 px |
+| F5 (trung bình) Nhãn hình trái mặt trang (T01, H05) | Đã sửa: tạo `optimization-model-anatomy-deck.svg` ("x: d thành phần") và `first-second-order-convexity-deck.svg` ($\tau$, $\varphi(\tau)$, $v^T\nabla^2f(x)v\ge0$, $\nabla^2f(x)$, lớp $C^2$); bỏ câu giải thích chỗ lệch trong ghi chú diễn giả | T01, H05 | Không sửa hai SVG gốc vì ghi chú bài giảng dùng chúng và có câu đọc nhãn cũ ($n$; $d$, $t$, $H(x)$); xem "Đề nghị sửa ghi chú" trong báo cáo |
+| F6 (nhẹ) Lý thuyết Bài 00 không gắn "Nhắc lại:" | Đã sửa: H05 "Nhắc lại: … (Định nghĩa 00.17)"; L03 "Nhắc lại: nghiệm thỏa phương trình chuẩn … (Định lý 00.22)" | H05, L03 | |
+| F7 (nhẹ) Lệch ghi chú về nhãn, số loại, ký hiệu, thứ tự | Đã sửa: H07 thẻ (b), (c) "Định lý."; T03 bốn loại kết luận theo Ví dụ 01.10, toàn cục ở dòng "Lưu ý:"; $\operatorname{Col}$, $\operatorname{Ker}$ (K02, L04B); K02 tồn tại theo phương trình chuẩn (Hệ quả 01.5); định nghĩa cực tiểu địa phương lên T02B (§5.2), định lý H03 xuống sau H06 (§8.1) | H07, T03, K02, L04B, T02B, H03 | T04 đổi "Sáu bước kiểm tra" → "Sáu câu hỏi chứng nhận" theo Nhận xét 01.16 |
+| F8 (nhẹ) M02 thiếu mục tiêu 5 | Đã sửa: M02 năm mục tiêu (76 âm tiết, trần 80); thêm K07B "Bài tập: hồi quy ridge" (Bài tập 01.19) phục vụ mục tiêu 5; K05B ghi chú nêu kết luận mất khi $\operatorname{rank}(A)<d$ | M02, K07B, K05B, M01B | |
+| F9 (nhẹ) L02 dòng "Lưu ý" bên lề; H03 định nghĩa, định lý, chứng minh trên một trang | Đã sửa: bỏ dòng "Lưu ý" ở L02; định nghĩa và hình của H03 tách sang T02B, H03 còn định lý, "Ý nghĩa:", "Chứng minh." | L02, H03, T02B | |
+| F10 (nhẹ) Rào đón, xuất xứ trong ghi chú diễn giả | Đã sửa: bỏ các câu ở L01, G00, K05, L03, D04, F03, F05, H01 nêu trong bảng phát hiện; bỏ thêm ở D02 ("một cách gộp khác…"), L01 ("lựa chọn mô hình chủ quan"), L02 ("dữ liệu không quyết định…"), G03 (ràng buộc $\lvert w\rvert\le1$), F02 (khẳng định về tập đóng không có trong ghi chú bài giảng), K05B (đoạn $c^Tp\le P$), và cụm "hình được vẽ lại cục bộ" | nhiều trang | Dòng "Nguồn: …" được giữ và bổ sung số khối của ghi chú bài giảng |
+| F11 (nhẹ) Ghi chú diễn giả dài (D01, L01, G01, K03) | Đã sửa: D01 262 → 154, L01 232 → 166, G01 237 → 143, K03 274 → 123 âm tiết | D01, L01, G01, K03 | M03 (254) giữ, không thuộc bảng phát hiện |
+| F12 (nhẹ) `storyboard.md:98` còn "Thuật toán 01.1" | Đã sửa: storyboard viết lại, dùng "Thuật toán 01.47" | (kế hoạch) | |
+
+**Sửa thêm ngoài bảng.** D02 bỏ `\underbrace{\text{bám đích}}`, G00 bỏ `\text{vết}`: hai chỗ này gây 8 cảnh báo KaTeX (ký tự tiếng Việt trong chế độ toán) và D02 tràn 6 px ở lần đo gốc. K04 rút ô bảng để không tràn.
+
+**Kiểm tra.** `deck_check.py --shots` (1600×900 và 390×844) ngày 2026-11-13: 58 trang, 0 lỗi console, 0 lỗi trang, 0 request hỏng, 0 `.katex-error`, không OVERFLOW; còn cờ LINES ở M02B (ngoại lệ 7 mạch) và NARROW-H (cuộn ngang có gợi ý ở màn hẹp) ở các trang có công thức hoặc bảng rộng. Người sửa đã xem ảnh chụp các trang đổi. `git diff --check` sạch.
+
+### Lượt sửa sau kiểm lại (2026-11-13)
+
+Người sửa xử lý 13 mục điều phối viên duyệt (`tools/courses/math-4-AI/2627-1/deck-fix-2026-11-13/merge-01.md`). Vai, loại tác tử, mô hình và effort do điều phối viên ghi theo lời gọi công cụ.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| 1 (trung bình, toán) "Duy nhất cần lồi chặt" | Đã sửa: "Lồi chặt đủ cho nhiều nhất một nghiệm; lồi mạnh cho cả tồn tại và duy nhất." | K04 (ghi chú) | |
+| 2 (nhẹ) "kết luận duy nhất mất" ở bài có ràng buộc hộp | Đã sửa: "chứng nhận duy nhất không còn và nghiệm có thể có nhiều" | K05B (ghi chú) | |
+| 3 (nhẹ) $F_\mu$ lồi mạnh trước "đúng một nghiệm" | Đã sửa, gộp với mục 8 | H09 | |
+| 4, 11 (nhẹ) "Nhu cầu:" của F01 | Đã sửa: "điều kiện trên $C$ cho câu 2, trên $f_0$ cho câu 3, trên cả hai cho câu 4 đến câu 6" | F01 | |
+| 5 (nhẹ, tùy chọn) "lớp $C^2$" cạnh tập $C$ | Không sửa trên mặt trang: H05 với "có đạo hàm riêng bậc hai liên tục" tràn 1 px và có dòng 21 âm tiết; H08 vượt trần 60 | H05, H08 | Giữ "thuộc lớp $C^2$" như ghi chú bài giảng (Định lý 01.29) |
+| 6 (nhẹ) nhãn SVG G00 "A(vết)/A(quả)" | Đã sửa bằng bản sao `g00-orange-quality-pipeline-deck.svg` (từ bản `-note`), nhãn "A(spot) / A(fruit)" | G00 | Bản `-note` giữ nguyên cho ghi chú bài giảng |
+| 7 (trung bình, mạch) Hình T02B có khung "Hàm lồi: địa phương cũng là toàn cục" trước Định lý 01.32 | Đã sửa: hai bản sao `local-versus-global-minimum-deck-left.svg` (khung hàm không lồi, T02B) và `-deck-right.svg` (khung hàm lồi, H03); ghi chú diễn giả và bản đồ hành trình sửa theo | T02B, H03 | |
+| 8 (trung bình, mạch) H09 thiếu "Nhu cầu:" | Đã sửa: H09 "Nghiệm duy nhất và chính quy hóa bậc hai" có "Nhu cầu:", Hệ quả 01.41, Định nghĩa 01.42, dòng cuối "$F_\mu$ lồi mạnh với hằng số $\mu$ và có đúng một nghiệm"; câu trực quan và câu nối sang mạch 7 trong ghi chú | H09 | 56 âm tiết |
+| 9 (trung bình, mạch) Câu hỏi trung tâm mạch 2–4 chưa lên mặt trang | Đã sửa dòng dẫn D00, L00, GT (≤ 25 âm tiết) cho đủ câu hỏi; bảng mạch trong storyboard ghi đúng câu trên mặt trang | D00, L00, GT | Thêm vế vào "Nhu cầu:" D01 làm tràn 3 px nên chỉ sửa dòng dẫn |
+| 10 (nhẹ) H08 "Nhu cầu:" hai dấu hai chấm; thứ tự số khối | Đã sửa: "Nhu cầu:" một mệnh đề; H08 = 01.39, 01.40; H09 = 01.41, 01.42 | H08, H09 | 56 âm tiết |
+| 12 (nhẹ) storyboard | Đã sửa: câu nối thật ở cuối ghi chú H09; dòng H02 ghi câu nối nằm ở H03B; thêm ngoại lệ "lối quy nạp" của cụm chứng nhận | (kế hoạch) | |
+| 13 (nhẹ) M01, M01A ghi chú | Đã sửa | M01, M01A | |
+
+**Kiểm tra.** `deck_check.py --shots --out …/check-01/r1`: 58 trang, 0 lỗi console, 0 lỗi trang, 0 request hỏng, 0 lỗi KaTeX, không OVERFLOW; còn LINES ở M02B (ngoại lệ). Đã xem ảnh 1600×900 và 390×844 của T02B, H03, H08, H09, F01, D00, L00, GT. `git diff --check` sạch.
+
+**Ba chỗ nhẹ cuối (2026-11-13, điều phối viên đã duyệt).** (1) Storyboard ghi ngoại lệ: "Nhu cầu:" của D01, L01, G00 chỉ nêu vế đầu câu hỏi trung tâm, vế sau ở dòng dẫn D00, L00, GT, vì thêm vào D01 làm tràn khung. (2) H09: Hệ quả 01.41 lên đầu trang, "Nhu cầu:" đứng ngay trước Định nghĩa 01.42; ghi chú diễn giả rút từ 207 xuống 135 âm tiết. (3) H08: "Độ cong theo mọi hướng". `deck_check --ids H08,H09` (`check-01/r2`): 0 lỗi, không OVERFLOW, H08 57, H09 56 âm tiết; đã xem ảnh hai cỡ; `git diff --check` sạch.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (K04 "lồi chặt cần", trung bình) → đạt |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (T02B xem trước Định lý 01.32; H09 thiếu nhu cầu; câu hỏi mạch 2–4) → đạt |
+
+Quyết định của điều phối viên: chấp nhận định vai lại mạch 7 thành mạch kết luận (nội dung lồi mạnh chuyển lên mạch 6) thay cho mạch thứ tám; chấp nhận giữ "lớp $C^2$" ở H05/H08 như ghi chú.
+
+Kiểm của điều phối viên: đọc diff; 58 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW; cờ duy nhất M02B LINES (ngoại lệ đã ghi). Đã xem ảnh 1600×900 và 390×844 của M02, T02B, H03, H08, H09, K04, K07B: vừa khung; bảng K04 cuộn ngang trong khung ở 390 px như các bảng khác.
+
+Đề nghị sửa ghi chú (báo người dùng): ghi chú dùng hai SVG gốc có nhãn cũ ($n$, $H(x)$) và hai câu giải thích nhãn (§5.1, sau Định lý 01.29); có thể chuyển sang bản `-deck` và bỏ hai câu đó.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
