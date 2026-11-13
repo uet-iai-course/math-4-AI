@@ -955,3 +955,34 @@ Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medi
 Giữ số, đã đối chiếu nội dung: Mệnh đề 05.3 (lec-12), Định nghĩa 05.5 (lec-11, lec-06), Định nghĩa 05.6, 05.20, Định lý 05.22, 05.26, Ví dụ 05.24, 05.25, Nhận xét 05.25. Không tệp nào dẫn nhãn công thức, số mục, thuật toán cũ hay `exercises.md` cũ của Bài 05.
 
 Kiểm: tác tử quét mọi `materials/lec-*/*.md`, `materials/README.md`, mọi deck: 0 sai, không còn dẫn tới khối bị bỏ; điều phối viên kiểm độc lập (số được dẫn tồn tại trong Bài 05 với đúng loại khối): 44 tham chiếu ngoài Bài 05, 0 sai; đọc diff hai deck. forward_refs lec-06 không đổi (20, có từ trước); `git diff --check`, đồng bộ `--check` đạt; deck 05, 06 (1600, 390): 0 lỗi console, 0 `.katex-error`; notecheck lec-06: 0 lỗi. Lệch thuật ngữ để Bài 06 xử lý: "gradient nhóm nhỏ" (lec-06:1953, deck 06) so với "lô nhỏ" của Bài 05.
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-05/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 04–05; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** cần sửa. Các số dẫn tới ghi chú và bài tập không còn đúng sau đợt viết lại 2026-11-12; ký hiệu và thuật ngữ lệch ghi chú mới; mục tiêu khác ghi chú; ghi chú diễn giả còn câu rào đón.
+
+**Điều phối viên kiểm lại:** deck còn "Bài tập 1 của học liệu", "Bài tập 4 của học liệu". Đúng như báo cáo.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| trung bình | ghi chú diễn giả HQ11/HQ11a, LG11/LG11a, CP10/CP10a, TK03/TK03a, TK04 | Lệch ghi chú: dẫn "Bài tập 1/4/5/7/8/9/10 của học liệu Bài 05"; `exercises.md` mới chỉ có 05.16–05.23 (từ giáo trình); "Bài tập 7" và "Bài tập 5" nay là Hệ quả 05.27 và chứng minh Mệnh đề 05.24. | html:210, 219, 352, 362, 489, 498, 579, 586, 595 | Bỏ, hoặc dẫn số đúng: TK04 → Hệ quả 05.27, Mệnh đề 05.24; CP10 câu 3 ↔ Bài tập 05.9 |
+| trung bình | ghi chú diễn giả MD01, MD04, LG09, LG10, CP04 | Lệch ghi chú: hội tụ của hạ gradient dẫn "Định lý 05b.18", "ghi chú Bài 05b"; ghi chú mới dẫn Định lý 04.27, 04.37, Định nghĩa 04.18, Nhận xét 04.20. | html:18, 62, 332, 343, 417 | Đổi sang số của Bài 04 |
+| trung bình | HQ04 (tiêu đề, bảng); ghi chú diễn giả HQ01, HQ03, HQ05 | Lệch ghi chú: "sai số/MSE ngoài mẫu"; map §5 đổi thành "MSE xác thực"; cùng bốn điểm đó HQ07a gọi "xác thực". | html:108–110; map-lec-05 §5 | Đổi thành "MSE xác thực" |
+| trung bình | HQ08/CP*, LG05a/CP04, LG05a/LG09, HQ07/TK01; ghi chú diễn giả HQ05, CP06 | Lệch ghi chú, ký hiệu hai nghĩa. | $\varepsilon$ vừa là nhiễu vừa là dung sai (ghi chú $\varepsilon_{\rm tol}$); $\gamma$ vừa là biên vừa là mức giảm Newton (ghi chú $\gamma_1$); $r$ vừa là bán kính vừa là cận của $\lVert x_i\rVert$ (ghi chú $a$); $w_0$ vừa là một nghiệm vừa là hệ số chặn hoặc điểm đầu (ghi chú $\hat w$); $s^2$ (ghi chú $\sigma_\varepsilon^2$); $z$, $r_i$ (ghi chú $m$, $\nu$) (html:145, 164, 286–287, 329, 398, 415, 433–435) | Dùng ký hiệu của ghi chú |
+| trung bình | CP04 | Quy tắc và lệch ghi chú: "Định lý 4" dùng $\gamma$, $\varepsilon_0$ không định nghĩa trên mặt trang; thiếu giả thiết "tập mức dưới $S$ đóng"; "giai đoạn" / ghi chú "pha". | html:414–417; ghi chú §6.4 | Ghi "(Định lý 04.37)", định nghĩa $\gamma_1$, $\varepsilon_0$, dùng "pha" |
+| trung bình | MD02 | Lệch ghi chú: deck 3 mục tiêu, ghi chú 4; thiếu nghiệm chuẩn nhỏ nhất, dừng sớm theo hướng riêng, hai giới hạn và bảo đảm còn lại. | html:22–26; ghi chú dòng 18–23 | Đồng bộ mục tiêu |
+| trung bình | ghi chú diễn giả KL03 | Lệch ghi chú: "XOR … chứng minh ở Bài 06"; Mệnh đề 05.38 đã chứng minh trong Bài 05. | html:544 | Dẫn Mệnh đề 05.38 |
+| trung bình | ghi chú diễn giả HQ01, HQ03, HQ04, HQ05, LG07, CP02, CP09 | Quy tắc (văn phong tác giả, `no-ai-slop` Detect): rào đón, câu về trạng thái văn bản, xuất xứ. | "Dữ liệu được dựng để mọi phép tính kiểm tra được thủ công"; "Ví dụ năm điểm chỉ minh họa định tính"; "một quy ước minh họa, không phải mẫu lấy từ $P$"; "Cực tiểu dọc một tia chỉ là trực giác"; "kết luận 'Newton tốt hơn' chưa rút ra được"; "chỉ để so bậc, không mô tả cách thí nghiệm thực sự chạy"; "dữ liệu/câu hỏi tự xây dựng" (html:86, 106, 118, 126, 311, 408, 480) | Viết khẳng định ("Bốn điểm là lưới chọn trước, nhãn $y=u$"; "Một cách trực quan, …"); xuất xứ vào nhật ký này |
+| trung bình | HQ10 | Quy tắc (mật độ): 7 dòng (trần 6), storyboard không ghi ngoại lệ. | html:184–199 | Chuyển dòng "Cột $\kappa$…" vào ghi chú diễn giả |
+| nhẹ | HQ01 | Quy tắc: một dòng 23 âm tiết (trần 20). | html:74 | Tách khung "Nhu cầu" thành hai dòng |
+| nhẹ | ghi chú diễn giả CP06, CP08, CP08a | Lệch ghi chú (hằng số): Cholesky "$d^3/3$" phép nhân–cộng, cho $5{,}05\cdot10^{10}$; 253; 365. Ví dụ 05.22 của ghi chú: $d^3/6$; $5{,}04\cdot10^{10}$; 252; 366. | html:440, 461, 470 | Sửa theo ghi chú |
+| nhẹ | HQ09, CP07a; mọi trang có "Mệnh đề 1–5/Định lý 1–4" | Lệch ghi chú: deck gọi "Nhận xét", ghi chú gọi Mệnh đề 05.15, 05.16, 05.34; số khối riêng của deck không đối chiếu được với ghi chú (05.10, 05.21, 05.24, 05.28, 05.33, 05.22, 05.26); LG05 nên dẫn Hệ quả 05.23. | — | Dẫn số ghi chú, mỗi trang tối đa một lần |
+| nhẹ | LG07, LG12, CP03; CP06, CP08a; HQ02, HQ09, CP08 | Quy tắc: trang mang ví dụ nhưng tiêu đề không phải "Ví dụ: …"; trang ví dụ thiếu "Tính …" hoặc "Diễn giải:"; trang phát biểu trộn ví dụ. | — | Sửa nhãn, tiêu đề, hoặc ghi ngoại lệ |
+| nhẹ | ghi chú diễn giả CP07, KL01a, MD04, LG09 | Quy tắc: trỏ tới bài sau ("BFGS … Bài 06c", đã bỏ khỏi Nhận xét 05.35; "Bài 06"; "$x$ của Bài 06"); "nhóm nhỏ" / ghi chú "lô nhỏ"; lỗi gõ ",,". | html:447, 537, 62, 332 | Cắt và sửa |
+
+**Đã kiểm, không lỗi / bác bỏ cờ quét:** chuỗi "dense" chỉ là "dày đặc (dense)" (html:62, 443), không phải lớp CSS, **bác bỏ**. Mật độ: MD02 62 (trang mục tiêu, trần 80), KL01a và HQ05a 60 (đúng trần). Các số dẫn trên deck tồn tại và đúng nội dung: 01.5, 01.7, 01.8, 01.35, 01.37, 01.38, 01.41, 01.43, 02.21(c), 04.20, 04.32(c), 05b.17, 05c.52, 05.25, 05.37, Tình huống 01.1. Số liệu khớp Ví dụ 05.4, 05.9, 05.16, 05.19, 05.22, 05.24.

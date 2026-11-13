@@ -1652,3 +1652,32 @@ Mỗi mục tiêu có ít nhất một bài trong tệp. Các vế dựa vào b�
 ## Cập nhật dẫn chiếu tới Bài 03 (giai đoạn 3, 2026-11-12)
 
 Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy từ lời gọi công cụ). Mọi số khối Bài 03 mà bài khác dẫn đều giữ nguyên; chỉ hai chỗ ở `lec-04/lecture-note.md` đổi, viết tay: dòng 134 nhãn "(2.1)" → "(1.1)" theo `map-lec-03.md`; dòng 761 "$v=0$ thỏa chặt ràng buộc" → "$v=0$ là điểm khả thi ngặt" (Bài 03 nay dùng "khả thi ngặt" cho $f_i<0$, Định nghĩa 03.13) — `chấp nhận`. Không deck nào dẫn số hiệu ghi chú Bài 03; không tệp nào dẫn `exercises.md` cũ, các thuật toán, Mệnh đề 03.36 hay Nhận xét 03.37 cũ. Script kiểm 547 cụm "Loại 03.k" ở 7 tệp: một cụm sai là `materials/README.md:15` "Định lý 03.2" (Q03-10, ngoài phạm vi ghi, báo người dùng). Để lại cho lần viết lại Bài 04: dòng 228 "như Bài 03" (Bài 03 không tách đẳng thức thành hai bất đẳng thức). Đồng bộ `--check`, `git diff --check` đạt.
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-03/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 02–03; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** cần sửa. Bốn chỗ trong ghi chú diễn giả trỏ tới bài tập không còn; hai quy ước lệch ghi chú làm nhân tử sai khác hệ số; một phần nội dung cốt lõi của ghi chú không có trên deck.
+
+**Điều phối viên kiểm lại:** html:210 "bài 2 trong tài liệu bài tập"; `exercises.md` có 16 khối, bắt đầu từ Bài tập 03.18. Đúng như báo cáo.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| nghiêm trọng | S02-08, S03-06, S04-04, S05-07, S01-03 | Lệch ghi chú: dẫn "bài 2/5/6/7 trong tài liệu bài tập"; `exercises.md` nay chỉ có Bài tập 03.18–03.33 lấy từ giáo trình. | html:210 "câu 1–3 của bài 2"; html:349 "bài 7"; html:429 "bài 5"; html:574 "bài 6"; html:45 "Lời giải đầy đủ của mọi bài nằm trong tài liệu bài tập" | Bỏ các câu dẫn, hoặc trỏ tới Ví dụ 03.x / Bài tập 03.x có thật; sửa `storyboard.md` dòng 75, 89 |
+| trung bình | S05-06a, S05-06b | Lệch ghi chú: $w_0$ dùng cho nghiệm bình phương nhỏ nhất chuẩn nhỏ nhất; cả hai ghi chú dùng $w_0$ cho hệ số chặn và viết $w(0)$. | html:551; note:122–123 | Đổi thành $w(0)$ |
+| trung bình | S05-06, S05-06a | Lệch quy ước: deck dùng $\tfrac12\lVert Xw-y\rVert^2$, nên phương trình là $(X^TX+2\lambda I)$; ghi chú dùng $J$ không có $\tfrac12$, phương trình $(X^TX+\lambda I)$; nhân tử sai khác hệ số 2. | html:541; note:1720 "nhân tử … bằng hai lần" | Theo ghi chú, hoặc nêu rõ quy ước trên trang |
+| trung bình | S02-04, S03-03a/c, S05-03 | Lệch ghi chú: số đẳng thức là $r$ ($A\in\mathbb R^{r\times n}$); ghi chú dùng $p$; Bài 02 dùng $r$ cho phần dư. | html:94; note:99, 105 | Đổi thành $p$ |
+| trung bình | S01-02, toàn deck | Lệch ghi chú: thiếu độ nhạy và giá bóng (§7.3, Hệ quả 03.24, được Bài 04 và 07 dẫn), ví dụ khoảng đối ngẫu dương (Ví dụ 03.7, 03.8), dạng yếu của Slater (Định lý 03.15(b)), đối ngẫu quy hoạch tuyến tính (Mệnh đề 03.11); deck 4 mục tiêu, ghi chú 6. | note:31–36, 680–742, 1183–1263 | Ít nhất thêm độ nhạy và một ví dụ khoảng dương, hoặc ghi lý do vào storyboard |
+| trung bình | S02-02, S02-07a, S03-06 | Lệch thuật ngữ: gọi $f_i\le0$ là "dạng chuẩn"; ghi chú Bài 02 chỉ dùng "dạng chuẩn" cho LP và GP. | html:77, 190, 346; note02:218 | "dạng $f_i(x)\le0$" |
+| trung bình | S02-01 | Quy tắc: dạy lại điểm khả thi, $p^*$, nghiệm tối ưu mà không gắn "Nhắc lại:". | html:63 | Gắn "Nhắc lại:" và rút gọn |
+| trung bình | S02-01, S03-01, S04-01, S05-01 | Quy tắc (tập trung của mạch): trang nội dung đầu mạch thiếu "Nhu cầu:". | html:63, 238, 377, 457 | Thêm |
+| trung bình | S02-07, S03-02, S05-01 | Quy tắc: trộn phát biểu tổng quát với số của ví dụ. | html:177 "$g(0)=1$…"; html:247 | Chuyển số vào ghi chú diễn giả hoặc trang "Ví dụ:" |
+| nhẹ | S03-03a–c | Lệch ký hiệu chứng minh. | $(a,\beta,\mu)$, $C,B$; ghi chú dùng $(\tilde\lambda,\tilde\nu,\kappa)$, $\mathcal A,\mathcal B$ ($C$ trùng tập khả thi); đánh số bước khác (html:284; note:841–865) | Đồng bộ |
+| nhẹ | nhiều trang | Lệch ký hiệu và quy tắc nhãn. | $\tilde x$, $\alpha$ / ghi chú $\hat x$, $\vartheta$; thuật ngữ mới in đậm thay vì nghiêng; nhãn ngoài danh sách ("Khả thi gốc:", "Dừng:", "Nếu …:") (html:63, 113, 476, 551) | Sửa |
+| nhẹ | ghi chú diễn giả S03-02b, S05-03, S05-06b, S07-03 | Quy tắc (văn phong tác giả). | "Hình minh họa giả thiết, không chứng minh đối ngẫu mạnh."; "Định nghĩa chưa nói gì về tối ưu"; câu xuất xứ "Hình tự vẽ…", "ví dụ tính trực tiếp" 5 lần (html:277, 480, 606) | Cắt |
+
+**Đã kiểm, không lỗi:** định nghĩa trước trực quan ở S03-03 → S03-02b có ngoại lệ ở `storyboard.md:23`. Mật độ S03-03a: 54 âm tiết (dưới trần); storyboard vẫn ghi 40, cần cập nhật số. Deck không dẫn số khối hay nhãn công thức của ghi chú. Số liệu tính lại khớp: $(3/4,1/8)$ với $107/16$; $(4/5,1/5)$ với $62/5$; $(1/2,1/5)$ với $21/2$; $g(2)=5$; điểm $(1{,}25;3{,}25)$; $w^*=(0{,}6;0{,}8)$, mất mát 8.

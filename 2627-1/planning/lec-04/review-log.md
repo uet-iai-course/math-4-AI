@@ -1924,3 +1924,33 @@ Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medi
 - `exercises.md`: 04.24, 04.28, 04.29 thêm "— đọc thêm"; bảng mục tiêu có hai hàng đọc thêm; 04.16 chỉ còn mục tiêu 2.
 - Kiểm: hồi quy 34 tài liệu × (http, `file://`) trước/sau sửa viewer — 64 trang ngoài Bài 04 trùng mọi chỉ số (số khối, details, mục lục, heading, KaTeX, katexErr, katexRed, lỗi console, độ dài văn bản); Bài 04: vùng đóng mặc định, 511 công thức trong vùng, katexErr 0, katexRed 0; bấm mục lục 9.2 và tải URL có hash 9.3 mở vùng và cuộn đúng; PDF in có nội dung §9; 390 px không tràn. Ghi chú 27 565 âm tiết; forward_refs 0; `git diff --check`, đồng bộ `--check` đạt.
 - Tồn đọng: `AGENTS.md`, `CLAUDE.md` của học phần và `materials/_templates/` chưa mô tả cú pháp vùng (ngoài phạm vi ghi).
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-04/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 04–05; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** cần sửa. Mặt trang RZ03 liệt kê bài tập không còn; ghi chú diễn giả trỏ tới mục cũ; ký hiệu lệch ghi chú mới; lồi mạnh bị dạy lại như định nghĩa mới.
+
+**Điều phối viên kiểm lại:** html:1240–1246, bảng "Bài 1, 2 … Bài 8". Đúng như báo cáo.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| nghiêm trọng | RZ03 | Lệch ghi chú: mặt trang liệt kê "Bài 1–8" của `exercises.md` cũ; tệp mới bắt đầu từ 04.16, ghi chú có 04.1–04.15. | html:1240–1246; map-lec-04 dòng 12 | Thay bằng số đúng, ví dụ 04.2–04.4, 04.5–04.6, 04.7–04.8, 04.9, 04.10, cùng các bài 04.16 trở đi |
+| trung bình | ghi chú diễn giả RG14, RG15, RG16b, RG17b, RG18, RN07, RN07b, RZ03; RP01, RP02, RP04, RE01 | Lệch ghi chú: "ghi chú bài giảng, mục B/C" là tên mục cũ; tên mục Bài 03 ("Bốn nhóm điều kiện KKT", "Chứng minh điều kiện đủ của KKT", "Giải hệ KKT của hồi quy") không còn. | html:457, 474, 503, 534, 548, 680, 695, 1252; 71, 107, 125, 756 | Dẫn Định lý 04.23, 04.25, 04.27, 04.36 (§5.6, §6.3) và Bài 03 §5.1, §8.2, §8.3 |
+| trung bình | RG17 | Quy tắc và lệch ghi chú: lồi mạnh (Định nghĩa 01.39) dạy lại như "Định nghĩa." bằng bất đẳng thức bậc nhất; trang 6 dòng gồm định nghĩa, hệ quả, ví dụ. | html:512; ghi chú Mệnh đề 04.26(a) | "Nhắc lại: (Định nghĩa 01.39) …"; dạng bậc nhất ghi là Mệnh đề 04.26 |
+| trung bình | RP04, RE01, RG08, RE03, RE06 | Lệch ghi chú, ký hiệu hai nghĩa: $L$, $L_s$, $L_m$ cho hàm Lagrange và $LL^T$ cho Cholesky trùng hằng số Lipschitz $L$; ghi chú dùng $\mathcal L$, $\mathcal L_Q$, $\mathcal L_s(v,\chi)$. | html:119, 747, 308, 788, 838 | Dùng ký hiệu của ghi chú |
+| trung bình | RE06, RE08, RS04 | Lệch ghi chú: cơ sở của $\ker A$ viết $N$; ghi chú (map §7) viết $Z$. | html:839, 874, 1116 | Đổi thành $Z$ |
+| trung bình | RG00–RG18 | Quy tắc (tập trung của mạch): dòng dẫn chỉ nêu hướng và độ dài bước; câu hỏi số bước hội tụ chỉ xuất hiện từ RG12 (nửa sau mạch); cụm hội tụ không có "Lời giải:" trên mặt trang (RG18 để tự làm). | html:135, 407, 540–551 | Thêm "và số bước để $f(x^k)-f^*\le\varepsilon$" vào dòng dẫn; thêm trang RG18b có lời giải |
+| trung bình | RP03 | Lệch ghi chú: deck 4 mục tiêu chung, ghi chú 6 (thiếu chứng minh cận hội tụ, hệ khối và khử biến). | html:33–38; ghi chú dòng 24–31 | Đồng bộ mục tiêu |
+| trung bình | RS00–RS05b | Lệch ghi chú: §9 của ghi chú là "Đọc thêm" (khối `:::: reading` thu gọn, yêu cầu người dùng 2026-11-12), deck dạy thành mạch chính và đưa vào bảng tổng kết. | ghi chú dòng 2142–2146 | Chờ người dùng quyết định vai trò; ghi quyết định vào nhật ký |
+| nhẹ | RG01, RG13, RG15, RG16b, RG17, RG17b, RN02, RN03, RS03 | Quy tắc: dòng "Ví dụ." đặt trên trang phát biểu. | — | Chuyển vào ghi chú diễn giả, hoặc ghi ngoại lệ |
+| nhẹ | RN07 | Quy tắc: chỉ đường trên mặt trang "(định nghĩa ở mạch 6)". | html:676 | Bỏ cụm này |
+| nhẹ | RN07b, RZ01c | Lệch ghi chú: $\gamma$, $\eta_0$ / ghi chú $\gamma_1$, $\bar g$; "giai đoạn" / "pha"; mặt trang thiếu "S đóng"; nhãn "Ký hiệu:" dùng cho một định nghĩa. | html:689–695 | Theo Định lý 04.37 |
+| nhẹ | RS03 | Lệch ghi chú: giả thiết "đạt cực tiểu trong miền"; Định lý 04.54 chỉ cần $f^*=\inf f>-\infty$. | html:1102 | Đồng bộ giả thiết |
+| nhẹ | ghi chú diễn giả RG06, RG17b; khoảng 11 dòng nguồn | Lệch ghi chú và văn phong: $\lambda_i$ / $\lambda_i(P)$; dòng nguồn "ví dụ số tự xây dựng". | html:269, 534, 577 … | Sửa ký hiệu; chuyển xuất xứ vào nhật ký này |
+
+**Bác bỏ cờ quét cơ học:** "MIT 6.079" chỉ có trên mặt trang ở dòng "Tài liệu đọc" của RZ03 (html:1248), không phải chân trang nguồn, khớp §14 của ghi chú; các chỗ khác nằm trong ghi chú diễn giả. Không phải vi phạm.

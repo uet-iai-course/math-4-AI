@@ -868,3 +868,34 @@ Khác: `2627-1/planning/lec-10/outline.md` (dòng 3, 282), `storyboard.md` (dòn
 **Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844, mở mọi khối gợi ý/lời giải khi đo: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0/34 công thức hiển thị tràn khung ở 390 px. Ghi chú: 44 công thức có sẵn từ trước tràn khung ở 390 px (ngoài lượt nhẹ, quy tắc D3). `material-local-data.js` đồng bộ trong commit riêng sau khi cả năm bài 10–14 xong.
 
 Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 10 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-10/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 10–11; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** cần sửa. Tám chỗ dẫn bài tập trỏ sai, một dòng trên mặt trang sai dải số, ba bài tập trên mặt trang ghi nguồn là bài đã bị xóa khỏi học liệu.
+
+**Điều phối viên kiểm lại:** html:851 "Bài tập tự học 10.4–10.12 trong tệp bài tập của Bài 10."; `exercises.md` kết thúc ở Bài tập 10.15. Đúng như báo cáo.
+
+Tác tử chạy `deck_check.py` trên server tạm (cổng 8781, đã tắt): 77 trang, 0 lỗi console, 0 request lỗi, 0 lỗi KaTeX; mọi trang trong trần mật độ (MD01 80, trần 80 của trang mục tiêu; KV05 59, KV11 60, TK02 60); cờ duy nhất MD02 LINES, ngoại lệ đã được chấp nhận. Các cờ >60 của lượt quét cơ học tính cả KaTeX nội dòng, **bác bỏ**.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| nghiêm trọng | BY11, PP06, PP13 | Lệch ghi chú: dòng "Nguồn:" và câu dẫn trỏ tới bài 10.1, 10.2, 10.3 cũ (camera đường vắng, mật độ đều, U·V·W), nay đã xóa; số mới là xúc xắc, ba giá trị, bảng đồng thời. | html:319 "câu (c) của Bài tập 10.1; câu (b) của tệp bài tập"; html:407 "Câu (c) của Bài tập 10.2"; html:475 "Nguồn: Bài tập 10.3"; note:2180–2182 | BY11: nguồn Murphy 2.10, tức Bài tập 10.4; bỏ câu "câu (b)/(c)". PP06: nguồn ghi chú §6.4 (Định nghĩa 10.18). PP13: ghi chú §5.4 (Ví dụ 10.6, phần 2); tự học 10.8. Chờ người dùng quyết định có đưa lại ba bài vào ghi chú hay không |
+| nghiêm trọng | ghi chú diễn giả MH07, PP04, KV10, KV13 | Lệch ghi chú: số bài tự học sai. | html:164 "Bài tập 10.5 (bảng camera…)" (đã bỏ; 10.5 nay là Murphy 3.3); html:378, 633 "Bài tập 10.7" (nay là 10.2); html:599 "Bài tập 10.9 và 10.11" (10.9 nay là Murphy 2.12) | MH07: bỏ hoặc dẫn 10.1; PP04, KV13: 10.2; KV10: "10.11 và 10.14" |
+| trung bình | TK05 (mặt trang) | Lệch ghi chú: dải số bài tập sai. | html:851 "Bài tập tự học 10.4–10.12 trong tệp bài tập"; note:2178–2205 (10.1–10.3 trong ghi chú, 10.4–10.15 trong tệp) | "Bài tập 10.1–10.3 (ghi chú bài giảng) và 10.4–10.15 (tệp bài tập)." |
+| nhẹ | ghi chú diễn giả KV08 | Lệch ghi chú: dẫn một dòng "Ý nghĩa:" không có trong ghi chú. | html:575 "Mệnh đề 10.26 (dòng "Ý nghĩa:")"; nội dung ở note:1547, sau Mệnh đề 10.27 | "ghi chú bài giảng, mục 7.4" |
+| nhẹ | BY06–BY08, TK01 | Lệch ghi chú: chỉ số phân hoạch $m$ / ghi chú $q$. | html:259–263 $B_1,\ldots,B_m$; note:573 $B_1,\ldots,B_q$ | Thống nhất |
+| nhẹ | MD01 | Lệch ghi chú: mục tiêu 2 thiếu "phân biệt độc lập, xung khắc và độc lập có điều kiện"; mục tiêu 6 thiếu "nêu giả thiết". | html:31, 35; note:24, 29 | Bổ sung, giữ ≤ 80 âm tiết |
+| nhẹ | SL00 | Quy tắc: dòng dẫn không có mệnh đề chính. | html:641 "Muốn tính hậu nghiệm …, rồi quyết định theo chi phí." | "Muốn tính hậu nghiệm … rồi quyết định theo chi phí, cần phân phối đồng thời và phép lấy biên." (≤ 25 âm tiết) |
+| nhẹ | ghi chú diễn giả MD00, KV08, SL05 | Quy tắc 2026-11-09: từ làm mềm không có số liệu; nhận xét phụ không dùng lại. | html:25 "thường phải kết luận"; html:575 "các hiệp phương sai có thể dương và công thức này đánh giá thấp"; html:691 "là một phép xấp xỉ khác và có thể cho hậu nghiệm khác" (không có trong ghi chú) | Bỏ "thường"; bỏ hai câu ở KV08, SL05, hoặc ở SL05 nêu số ($36/59$ khi chọn $b$) |
+| nhẹ | ghi chú diễn giả MH10, PP11/PP13 | Quy tắc: lặp ý, câu bình luận về văn bản. | html:186 "Phản hồi sai là hợp của hai biến cố xung khắc" (lặp sau Gợi ý); "Bảng cho sẵn … mà không nêu nguồn gốc của nó"; html:463 và 475 cùng nhận xét hệ quả chung | Giữ một lần; bỏ câu về nguồn gốc bảng |
+| nhẹ | MH05, PP12 | Quy tắc: số ghi chú đứng trước phát biểu. | html:127 "Trên mọi không gian xác suất (Bổ đề 10.4):"; html:448 | Chuyển số xuống cuối phát biểu |
+
+**Đã kiểm, không lỗi:** mọi số Định nghĩa, Định lý, Mệnh đề, Bổ đề, Hệ quả, Ví dụ, Nhận xét, Thuật toán, Tình huống, mục, phụ lục và nhãn công thức mà deck dẫn vẫn đúng khối (khung đánh số của ghi chú không đổi, chỉ thêm bài tập). Số liệu tính lại khớp: 198/437, 236/437, 18/67, 36/59, 22/4563, 0,0698, 2/13, 0,576, 0,042064 = 0,0412 + 0,000864.
+
+**Ghi chú:** mục "Dẫn chiếu ngoài phạm vi còn dùng số cũ" của đợt 2026-11-12 trong nhật ký này đã liệt kê các dòng 164, 319, 378, 407, 475, 599, 633; đợt rà này bổ sung TK05 trên mặt trang và BY11 "câu (b) của tệp bài tập".

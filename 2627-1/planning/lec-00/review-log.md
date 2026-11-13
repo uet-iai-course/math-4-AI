@@ -191,3 +191,35 @@ Tác tử ánh xạ dẫn chiếu: `general-purpose`, `model: opus`, effort `med
 ## Sửa ký hiệu vector toàn một (2026-11-12)
 
 `\mathbb 1` hiển thị thành chữ số "1" thường trong KaTeX; đổi thành `\mathbf 1` (ngoại lệ của quy ước vector không in đậm). Chi tiết và số chỗ đổi ở `planning/lec-02/review-log.md`, mục "Sửa chung Bài 00–02: vector toàn một".
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-00/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 00–01; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** cần sửa. Ký hiệu, thứ tự khái niệm và căn cứ của $\sigma=1$ chưa đồng bộ với ghi chú viết lại ngày 2026-11-12; mặt trang còn câu xuất xứ dữ liệu và một câu chỉ đường. Phần lớn các lệch B đã được ghi ở mục "Lệch với deck (Q-F)" của nhật ký này và `outline.md:73-80`, nhưng deck chưa sửa theo.
+
+**Điều phối viên kiểm lại:** E04 "$\sigma=1$ chọn để minh họa" (deck) đối với `lecture-note.md:2335` ($\hat\sigma^2=\mathrm{SSE}/m=4/4$); H01 "Dữ liệu được tạo để tính thủ công." (1 lần); "véc-tơ" 33 lần trên deck. Đúng như báo cáo.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| nghiêm trọng | E04 | Lệch ghi chú: căn cứ của $\sigma=1$ ngược với ghi chú. | deck html:121 "$\sigma=1$ chọn để minh họa"; ghi chú diễn giả "giả định minh họa, không ước lượng từ bốn mẫu"; `lecture-note.md:2335` "$\sigma^2=1$ trùng ước lượng hợp lý cực đại $\hat\sigma^2=\mathrm{SSE}/m=4/4$" | "Giả thiết: … $\sigma=1$, bằng $\hat\sigma=\sqrt{\mathrm{SSE}/m}$"; bỏ vế "không ước lượng" |
+| trung bình | C10–C13, D06 | Lệch ghi chú và quy tắc: hàm hợp lý dùng tính độc lập trước khi định nghĩa; mặt trang có câu chỉ đường. | html:95 "Lưu ý: $\varepsilon_i$ độc lập khi … (xem mạch 6)"; ghi chú đặt nhiễu–hợp lý ở 7.3, sau Định nghĩa 00.62 | Chuyển C11–C14 sang mạch 6 sau D06 (như ghi chú); bỏ "(xem mạch 6)" |
+| trung bình | toàn deck | Lệch ghi chú: ký hiệu. | Deck in đậm $\mathbf X,\mathbf w,\boldsymbol\phi$, ghi chú (dòng 99) không in đậm; C04 tham số Bernoulli $\pi$ / Định nghĩa 00.51 dùng $\theta$; C03–C09 dùng $X$ cho biến ngẫu nhiên / ghi chú dùng $U$ ("$X$ chỉ dùng cho ma trận thiết kế"); $D_{\mathbf u}h$ / $D_dh$; $\mathbf H_h$ / $\nabla^2h$; $J$ / $J_{\mathrm{GLS}}$; $\widetilde{\mathbf w}$ / $w_{\mathrm q}$; $g$ (hàm ngoài) / $\chi$ ($g$ dành cho gradient) | Đồng bộ theo bảng ký hiệu §2 của ghi chú |
+| trung bình | toàn deck | Lệch ghi chú: thuật ngữ. | Deck "véc-tơ" (33 lần); ghi chú Bài 00, ghi chú và deck Bài 01 viết "vector"; tên mạch 6 khác tên mục 7 | Đổi sang "vector"; đặt tên mạch 6 theo mục 7 |
+| trung bình | P01, B16–B17, E07 | Lệch ghi chú: thiếu nội dung lõi. | Ghi chú 6 mục tiêu, deck 4: thiếu Bayes/hiệp phương sai/GLS (mục tiêu 5) và "phân loại điểm dừng bằng Hessian" (mục tiêu 3); deck không có Định lý 00.42, 00.43, 00.16 mà Bài 01 dựa vào (lec-01 note:3, 52-60) | Thêm mục tiêu; thêm trang "điều kiện cần bậc nhất / bậc hai" ở mạch 4 và một dòng trong bảng tổng kết E07 |
+| trung bình | H01; ghi chú diễn giả H01, H03, D02, E04, E05 | Quy tắc (văn phong tác giả): câu xuất xứ dữ liệu, rào đón. | html:26 "Dữ liệu được tạo để tính thủ công."; notes "dữ liệu tổng hợp cho mục đích sư phạm, không phải bằng chứng…", "trường hợp biên minh họa…, không phải bằng chứng", "Nguồn: Ví dụ tự xây dựng" | Xóa; xuất xứ ghi vào nhật ký này |
+| trung bình | H01, A01, B01, C01, E01 | Quy tắc (tập trung của mạch): trang nội dung đầu mạch không có "Nhu cầu:" nêu câu hỏi của mạch. | A01 "Nhu cầu: biết kiểu và kích thước…" không phải câu hỏi của mạch 3 | Thêm dòng "Nhu cầu:" lấy từ dòng dẫn trang tiêu đề mạch |
+| trung bình | A05, A06, C03, C05 | Quy tắc (hành trình khái niệm): mở bằng định nghĩa, chưa có nhu cầu hay trực quan. | A05 "Định nghĩa." ở dòng đầu; A06 "Cho $\mathbf Q$… Định nghĩa." | Thêm "Nhu cầu:" hoặc "Trực quan." trước định nghĩa (ghi chú 6.2 có "dụng cụ đo") |
+| trung bình | B12–B13; E02–E05 | Quy tắc (tập trung của mạch): tích phân không phục vụ câu hỏi mạch 4; mạch 7 trộn nội dung mới (Định nghĩa quá khớp) với tổng kết và tài liệu đọc. | html:69-70, 122, 125 | Chuyển tích phân sang đầu mạch 5; tách tổng kết E07 thành mạch kết luận, hoặc ghi ngoại lệ |
+| trung bình | E05 | Quy tắc (mật độ): một dòng 33 âm tiết, hai câu. | "Định nghĩa. Quá khớp … SSE huấn luyện thấp hơn không chứng minh…" | Giữ định nghĩa, chuyển câu thứ hai vào ghi chú diễn giả |
+| trung bình | (kế hoạch) | Quy tắc: không có `planning/lec-00/storyboard.md`. | `planning/lec-00/` chỉ có map, outline, review-log (storyboard cũ nằm ở `2627-1/lecture-00-storyboard.md`) | Lập storyboard theo khuôn hiện hành |
+| nhẹ | E00 | Ghi chú diễn giả tự mâu thuẫn. | "Bảng tổng kết giả thiết và tài liệu đọc chuyển sang Bài 01", nhưng E07 có bảng tổng kết | Bỏ câu |
+| nhẹ | B18, B19L | Lệch ghi chú: phát biểu yếu hơn (5.1), thuật ngữ khác. | "khi đổi bước, cần tính lại $f$"; ghi chú (5.1): $f$ giảm khi và chỉ khi $0<\eta<2\eta^\star$; "bước gradient" / "bước hạ gradient" | Nêu $\eta^\star=\lVert g\rVert^2/\lVert Xg\rVert^2\approx0{,}146$; dùng "hạ gradient" |
+| nhẹ | C07, B05 | Lệch ghi chú: điều kiện và định nghĩa. | C07 đặt "$\mathbb E\lvert X\rvert<\infty$" trong chính định nghĩa $\mathbb E$ (vòng); ghi chú dùng $\sum\lvert u\rvert p<\infty$; B05 lấy $\nabla h^T\mathbf u$ làm định nghĩa, ghi chú định nghĩa bằng giới hạn (00.32) | Theo Định nghĩa 00.55 và 00.32 |
+| nhẹ | C12, E02, D06 | Quy tắc: tương phản nhị phân, nhận xét bên lề. | "Gauss là giả thiết mô hình, không phải kết luận từ bốn mẫu."; hai câu "Lưu ý: … nhân quả" | "Giả thiết: nhiễu Gauss."; bỏ các nhận xét nhân quả |
+
+**Đã kiểm, không lỗi:** số liệu B05–B19L, C12, D08, D10B, E03–E05 tính lại khớp ghi chú. Cấu trúc: 7 mạch, trang tiêu đề mạch đúng số, `id`, dòng dẫn.

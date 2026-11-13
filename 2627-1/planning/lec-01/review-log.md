@@ -929,3 +929,32 @@ Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy t�
 ## Sửa ký hiệu vector toàn một (2026-11-12)
 
 `\mathbb 1` hiển thị thành chữ số "1" thường trong KaTeX; đổi thành `\mathbf 1` (ngoại lệ của quy ước vector không in đậm). Chi tiết và số chỗ đổi ở `planning/lec-02/review-log.md`, mục "Sửa chung Bài 00–02: vector toàn một".
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-01/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 00–01; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** lệch nhẹ. Định lý, giả thiết và số liệu khớp ghi chú, kể cả ánh xạ sang chín bước của Thuật toán 01.47 ở ghi chú diễn giả K06. Lệch chính là đặt tên ký hiệu và một số câu rào đón trong ghi chú diễn giả.
+
+**Điều phối viên kiểm lại:** `storyboard.md:98` còn "Thuật toán 01.1". Đúng như báo cáo.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| trung bình | L01, L01B, G01, F03, K03, K05 | Quy tắc (mỗi ký hiệu một nghĩa) và lệch ghi chú. | $m_i$ vừa là cân nặng (L01) vừa là biên có dấu (G01); $a$ là hệ số góc, $a_i$ là đặc trưng, $a,b$ là cận (F03); $x_i$ là hàng, $x$ là biến quyết định; $I$ vừa là độ sáng vừa là ma trận đơn vị; $m$ đèn trùng $n$ mẫu. Ghi chú dùng $s_i$, $w_0,w_1$, hàng $a_i^T$, $\mathcal I$, $d$ đèn (note:110-118, 2084) | Theo bảng ký hiệu §2 của ghi chú |
+| trung bình | K03 | Quy tắc: chính quy hóa và lồi mạnh chỉ có một dòng. | "$\nabla^2L_\mu-\mu I\succeq0$; nghiệm tồn tại và duy nhất"; ghi chú có mục 8.4 (01.39, 01.41, 01.42), Thuật toán 01.47 bước 7 dùng nó; K07 không ghi | Thêm trang định nghĩa và hệ quả lồi mạnh, hoặc nêu rõ hai bước (cưỡng bức, rồi lồi chặt); bổ sung vào K07 |
+| trung bình | K01–K08 | Quy tắc: mạch 7 trộn nội dung với tổng kết và tài liệu đọc. | html:834-986 | Tách K07–K08 thành mạch kết luận, hoặc ghi ngoại lệ trong storyboard |
+| trung bình | D01, G00, T01, F01, K01 | Quy tắc (tập trung của mạch): trang nội dung đầu mạch thiếu "Nhu cầu:". | html:145, 365, 478, 567, 834 | Thêm dòng "Nhu cầu:" |
+| trung bình | T01, H05 | Quy tắc: nhãn hình trái với mặt trang. | `optimization-model-anatomy.svg` ghi "x: n thành phần"; `first-second-order-convexity.svg` dùng $H(x)$ và $d$; ghi chú diễn giả phải giải thích chỗ lệch | Sửa SVG thành $d$, $\nabla^2f$, $v$; bỏ câu giải thích |
+| nhẹ | H05, L03 | Quy tắc: lý thuyết Bài 00 không gắn "Nhắc lại:". | H05 "Ký hiệu: … $A\succeq0$" sau khi đã dùng; L03 dùng phương trình chuẩn | "Nhắc lại: … (Định nghĩa 00.17)", "(Định lý 00.22)" |
+| nhẹ | H07, T03, K02, H03 | Lệch ghi chú: nhãn, số loại kết luận, ký hiệu, thứ tự. | H07 "Mệnh đề." / ghi chú Định lý 01.38 và 01.34; T03 "năm loại" / Ví dụ 01.10 "Bốn loại"; $\mathcal R(X)$, $\ker$ / $\operatorname{Col}$, $\operatorname{Ker}$; định lý cực tiểu địa phương là toàn cục đứng trước điều kiện bậc nhất, ghi chú đặt ở 8.1 | Đồng bộ nhãn, số loại và ký hiệu |
+| nhẹ | M02 | Lệch ghi chú: mục tiêu. | Deck 4 mục tiêu; ghi chú 5 (mục tiêu 5: áp dụng cho mô hình mới, chỉ ra kết luận bị mất) | Thêm mục tiêu 5 |
+| nhẹ | L02, H03 | Quy tắc. | L02 "Lưu ý: … trị tuyệt đối cho mô hình khác" (nhận xét bên lề); H03 có định nghĩa, định lý và chứng minh trên một trang | Bỏ dòng Lưu ý; tách định nghĩa |
+| nhẹ | ghi chú diễn giả L01, G00, K05, L03, D04, F03, F05, H01 | Quy tắc (văn phong tác giả): rào đón, xuất xứ. | "dữ liệu minh họa tự tạo, không phải kết quả thực nghiệm"; "được dùng ở đây trước khi chứng minh; … sẽ chứng minh nó"; "Tính toán trực tiếp này chưa cho một tiêu chuẩn tổng quát"; "Bài 01 không mở rộng sang nón…" | Xóa |
+| nhẹ | ghi chú diễn giả D01, L01, G01, K03 | Quy tắc: ghi chú dài (khoảng 300–450 âm tiết). | — | Rút gọn, chuyển phần dư sang `lecture-note.md` |
+| nhẹ | (kế hoạch) | `storyboard.md:98` còn "Thuật toán 01.1" (số cũ). | — | Đổi thành 01.47 |
+
+**Đã kiểm, không lỗi:** số liệu D03, G03, L03, L04B, K01, K03 tính lại khớp ghi chú. Bài tập trên deck không trùng `exercises.md`.

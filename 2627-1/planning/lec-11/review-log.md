@@ -443,3 +443,34 @@ Lưu ý: các số 11.4–11.8 mang đề khác trước, nên một dẫn chi�
 **Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844, mở mọi khối khi đo: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0/39 công thức tràn khung ở 390 px. Ghi chú: 10 công thức có sẵn từ trước tràn khung (ngoài lượt nhẹ). `material-local-data.js` đồng bộ trong commit riêng.
 
 Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 11 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-11/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 10–11; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** lệch nhẹ. Định lý, số liệu và thứ tự khái niệm khớp ghi chú; chỉ lệch ở chỗ dẫn bài tập (một chỗ trên mặt trang) và vài câu rào đón đã bị cắt khỏi ghi chú.
+
+**Điều phối viên kiểm lại:** html:745 "Bài tập tự học 11.4–11.8 trong tệp bài tập của Bài 11."; `exercises.md` bắt đầu từ Bài tập 11.5. Đúng như báo cáo.
+
+Tác tử chạy `deck_check.py` trên server tạm (cổng 8781, đã tắt): 76 trang, 0 lỗi console, 0 request lỗi, 0 lỗi KaTeX; mọi trang trong trần mật độ (MD01 77, trần 80; GN01 56). Các cờ >60 của lượt quét cơ học tính cả KaTeX nội dòng, **bác bỏ**. Công cụ báo OVERFLOW ở G101 và HH07 trên `path` SVG; có thể là báo nhầm nhưng **chưa xem ảnh chụp, chưa kết luận**.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| trung bình | TK05 (mặt trang) | Lệch ghi chú: dải số bài tập sai. | html:745 "Bài tập tự học 11.4–11.8 trong tệp bài tập"; note:1673–1686 (11.4 trong ghi chú, 11.5–11.13 trong tệp) | "Bài tập 11.4 (ghi chú bài giảng) và 11.5–11.13 (tệp bài tập)." |
+| trung bình | ghi chú diễn giả GN13, G112 | Lệch ghi chú: số bài tự học sai. | html:571 "Bài tập tự học 11.7" (nay là đồng xu và người báo không tin cậy); html:439 "11.6" (nay là MLE Gaussian; bài hai mẫu số là 11.8) | GN13: "Bài tập 11.4"; G112: "Bài tập 11.6, 11.8" |
+| nhẹ | TS08, TS09, TS16, TS17, HH07, HH08 | Lệch ghi chú: số đề đúng, vị trí ghi sai. | html:230, 239, 307, 317, 665, 675 "tệp bài tập Bài 11, Bài tập 11.x"; các bài này nay ở note:401, 591, 1472 | "ghi chú bài giảng, Bài tập 11.x" |
+| nhẹ | ghi chú diễn giả TK05 | Lệch ghi chú: câu đã bị xóa khỏi ghi chú. | html:748 "Bài tập 4.1, 4.7 và 4.8 của Murphy" | "Bài tập 11.6, 11.8, 11.9" |
+| nhẹ | ghi chú diễn giả TS06, TK03 | Quy tắc 2026-11-09: rào đón, từ làm mềm đã bị cắt khỏi ghi chú nhưng deck còn giữ. | html:211 "Xác suất gắn cờ thật … có thể khác $0{,}7$"; html:727 "xảy ra khá thường xuyên" | Bỏ câu ở TS06; TK03: "xảy ra với xác suất khoảng $0{,}328$" |
+| nhẹ | ghi chú diễn giả MD01 | Quy tắc: mã CLO, ghi chú đã bỏ. | html:37 "chuẩn đầu ra CLO2" | "chuẩn đầu ra của học phần" (như Bài 10) |
+| nhẹ | ghi chú diễn giả MD03, GN04, HH06 | Quy tắc: câu chỉ đường, câu tự nói về văn bản. | html:62 "Câu hỏi được trả lời ở phần 6."; html:488 "định lý tiếp theo cho biết…"; html:656 "Đây là câu trả lời cho câu hỏi mở đầu." | Nêu thẳng kết luận ($9/2<8$) hoặc bỏ |
+| nhẹ | HH07, HH08 | Quy tắc (mỗi ký hiệu một nghĩa): $a, b$ mang nghĩa thứ hai trong cùng bài; ghi chú cũng dùng như vậy. | html:660 "$a=(3,1)^\top$, $b=(1,-1)^\top$ của bài tập này" | Đổi tên điểm ở cả deck và Bài tập 11.3 của ghi chú, hoặc chấp nhận và ghi lý do |
+| nhẹ | TS11–TS17 | Lệch ghi chú: $\boldsymbol\pi$ in đậm trên deck, $\pi$ thường trong ghi chú; ghi chú diễn giả có nói ra. | html:256 "(vector xác suất viết $\pi$, không đậm)"; note:111 | Thống nhất |
+| nhẹ | ghi chú diễn giả G112 | Quy tắc: đoạn đầu lặp dòng "Diễn giải:" trên mặt trang. | html:437 và 439 | Bỏ đoạn lặp |
+
+**Đã kiểm, không lỗi:** mọi số khối, mục, phụ lục và nhãn công thức mà deck dẫn vẫn đúng. Số liệu tính lại khớp: $\ell(2,2)\approx-8{,}828$, $\ell(2,1)\approx-9{,}595$; 26/9, $e^{-4/9}$; 256/81; $S_4$, trị riêng 4 và 1.
+
+**Ghi chú:** đợt 2026-11-12 trong nhật ký này đã liệt kê sáu chỗ ghi "tệp bài tập"; đợt rà này bổ sung TK05 (mặt trang và ghi chú diễn giả), G112 (11.6) và GN13 (11.7).

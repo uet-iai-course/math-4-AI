@@ -1702,3 +1702,34 @@ Tác tử ánh xạ: `general-purpose`, `model: opus`, effort `medium` (lấy t�
 - Không thay ở tệp khác: Bài 05, 07 dẫn các số không đổi (đối chiếu nội dung và phần (a)–(c)); deck 05 (Mệnh đề 02.21(c)) và deck 07 (Mệnh đề 02.10) giữ số, không sửa deck. Không tệp nào dẫn Ví dụ 02.23 cũ, §4.5 cũ hay `exercises.md` cũ.
 - Để lại cho lần viết lại Bài 03, 07: lec-03 dòng 32–33, 294, 1064, 1950, 2417, 2421 dẫn Mệnh đề 02.26, 02.39, Tình huống 02.2 với ký hiệu cũ ($\ell,\rho$; $b$, $z$); lec-07 phát biểu lại Định lý 02.15 với ký hiệu cục bộ cũ.
 - Kiểm của điều phối viên: word-diff chỉ đổi phần dẫn và các cụm trên; script kiểm 85 cụm "Loại 02.k" ở 45 tệp: 0 sai loại hoặc không tồn tại; đồng bộ `--check`, `git diff --check` đạt; viewer `file://` mở ghi chú Bài 03: 0 `.katex-error`, 0 lỗi console.
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-02/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 02–03; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** cần sửa. Deck vẫn dùng ký hiệu và tên gọi trước đợt viết lại ghi chú ngày 2026-11-12, có hai ký hiệu mang hai nghĩa, và ghi chú diễn giả có khoảng 20 câu nêu xuất xứ số liệu.
+
+**Điều phối viên kiểm lại:** html:572 "$E(w)=\sum_{i=1}^{5}(au_i+b-y_i)^2$". Đúng như báo cáo.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| nghiêm trọng | S03-01–S03-07; S05-02–S05-15 | Lệch ghi chú và quy tắc: $E$ có hai nghĩa (tổng bình phương, số lỗi); $r$ có hai nghĩa (phần dư, biên có dấu). | html:572 "$E(w)=\sum(au_i+b-y_i)^2$"; html:1161 "$r_i(\theta)=y_i(u_i-\theta)$"; note:95 dùng $J(w)$, note:101 dùng $m_i$; map-lec-02 "Bài 02 đổi $E\to J$" | Tổng bình phương là $J$, biên có dấu là $m_i$ |
+| nghiêm trọng | S02-05–S03-07, S06-04 | Lệch ghi chú: $w=(a,b)$ với $b$ là hệ số chặn, trùng $b$ của $Ax=b$; ghi chú viết $w=(w_1,w_0)$. | html:398 "$w=(a,b)$"; note:93 | Đổi sang $(w_1,w_0)$, cả trong số học ở ghi chú diễn giả |
+| trung bình | S02-03, S02-03b, ghi chú S02 | Lệch ghi chú: "Dạng phổ biến của quy hoạch tuyến tính"; ghi chú gọi (5.2) là *dạng tổng quát* (general form). | html:311; note:574–580; map Định nghĩa 02.9 "bỏ 'dạng phổ biến'" | Đổi tiêu đề và ghi chú diễn giả |
+| trung bình | S02-06, S03-02, S05-06, S06-04 | Quy tắc (mỗi ký hiệu một nghĩa) và lệch ghi chú: $m$ là số điểm dữ liệu, trong khi S01-04/S02-03 dùng $m$ cho số bất đẳng thức; ghi chú dùng $N$ mẫu, $d$ cột. | html:425 "Với $m$ điểm"; html:589 "$X\in\mathbb R^{m\times n}$"; note:79, 92 | Đổi thành $N$, $d$ |
+| trung bình | S04-03, S04-07, S04-10–14, S05-03, S05-09–12, S02-03b | Lệch ký hiệu (gộp). | đơn thức $m(x)$ / $g$; $\gamma_j,\delta_j$ / $\bar\alpha_j,\bar\beta_j$; $G_{ij},\sigma_i,S_i$ / $\chi_{ij},\varepsilon_i,\Gamma_i$; $\ell_h$ / $\ell_{\mathrm{hinge}}$; $F,\tilde F$ / $\mathcal F,\tilde{\mathcal F}$; $J^\star$, $p^\star$ / $p^*$; dạng chuẩn LP $z,d,e$ / $\zeta,\tilde c,\tilde b$ ($z$ trùng biến logarit); $\theta$ trọng số tổ hợp lồi trùng ngưỡng $\theta$ / $\vartheta$ (html:889, 952, 1022, 1182, 1313, 336; map-lec-02 §1) | Đồng bộ theo bảng ký hiệu note:81–104 |
+| trung bình | S02-05, S05-01 (mặt trang); ghi chú diễn giả khoảng 15 trang | Quy tắc (văn phong tác giả): câu xuất xứ số liệu. | html:397 "Dữ liệu minh họa đã chuẩn hóa."; html:1147; html:1015 "Dữ liệu và hình tự xây dựng, không phải kết quả đo…"; html:1287 "giá giả định để minh họa, không phải dữ liệu thực"; "tự xây dựng" 17 lần | Chuyển xuất xứ vào nhật ký này; chỉ giữ dòng "Nguồn: Boyd…" |
+| trung bình | ghi chú diễn giả S03-01, S04-02, S02-04, S03-04b | Quy tắc (văn phong tác giả): rào đón về trạng thái của văn bản. | html:581 "Phép so sánh này chưa chứng minh ứng viên nào là nghiệm."; html:881 "chưa chứng minh được"; html:664 "đây là trực quan, không bảo đảm…" | Cắt, hoặc nói thẳng bước tiếp theo |
+| trung bình | S05-03b | Chính xác toán học và lệch ghi chú. | html:1198 "$E\le H$ chỉ đúng trên dữ liệu huấn luyện" (bất đẳng thức đúng từng điểm trên mọi dữ liệu); ghi chú diễn giả nói "tập kiểm tra", note:2230 nói "tập kiểm định" | "Từ $\min H$ trên dữ liệu huấn luyện không suy ra số lỗi trên dữ liệu mới"; thống nhất tên tập dữ liệu |
+| trung bình | S01-02b, S03-01 | Quy tắc (tập trung của mạch): trang nội dung đầu mạch 1 và mạch 3 thiếu "Nhu cầu:". | html:60, 571 | Thêm dòng "Nhu cầu:" |
+| trung bình | toàn deck | Lệch ghi chú: thiếu biến đổi tương đương tổng quát (Định nghĩa 02.5, Mệnh đề 02.6), trục của câu hỏi trung tâm, được Bài 03 dẫn. | note:301–334 | Thêm một trang phát biểu trước S02-07 |
+| nhẹ | S03-03, S03-08 | Lệch ghi chú: ghi chú đưa $P\succeq0$ vào định nghĩa, deck để thành điều kiện chứng nhận; "QCQP … *với* ràng buộc bậc hai" / "*có*". | html:613, 794; note:1064, 1457 | Đồng bộ định nghĩa và tên |
+| nhẹ | S04-10–S04-14 | Lệch tỷ trọng: ghi chú hạ phân bổ công suất xuống "§7.4 Đọc thêm", deck dành năm trang nội dung chính. | note:2020 | Ghi quyết định vào storyboard hoặc rút gọn |
+| nhẹ | S01-06–08; nhiều nhãn | Quy tắc: trang ví dụ thiếu dòng "Tính …"; nhãn đậm ngoài danh sách ("Chuyển đổi", "Từ bài toán gốc"). | html:146–152, 342, 452 | Sửa theo mẫu |
+| nhẹ | (kế hoạch) | `storyboard.md:579` nói `exercises.md` liên kết tới các trang với tiêu đề hiện có; nay sai. | `exercises.md:3` | Cập nhật storyboard |
+
+**Đã kiểm, không lỗi / bác bỏ cờ quét:** mật độ S01-06/07/08 đếm lại (bỏ SVG, KaTeX) là 24/28/26 âm tiết; cờ 67–72 của lượt quét cơ học tính cả chữ trong SVG, **bác bỏ**. Tệp `revise/de_xuat_chinh_sua_lecture_02_toi_uu_loi.md` mô tả một deck cũ (41 trang, có SDP và tối ưu tựa lồi); deck hiện tại theo một phần đề xuất (hồi quy xuyên suốt, quy trình chín bước), bỏ SDP và tối ưu tựa lồi, vẫn đặt LP trước QP.

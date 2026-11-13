@@ -1137,3 +1137,33 @@ Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medi
 Kiểm: tác tử quét mọi tệp (0 sai, 0 dẫn khối bị bỏ); điều phối viên đọc word-diff (chỉ 5 số đổi). forward_refs Bài 14: 0; `git diff --check`, đồng bộ `--check` đạt; notecheck Bài 14 (1600, 390, `file://`): 0 lỗi KaTeX, 0 lỗi console, không tràn ngang trang.
 
 Lệch nội dung có từ trước (ghi lại, không sửa — ngoài phạm vi giai đoạn 3): Bài 14 dòng 373 dùng Định nghĩa 06.4 (tầng ra vô hướng) cho bộ mã hóa/giải mã đầu ra vector; dòng 46, 373 nói lan truyền ngược "tính đúng gradient" không kèm điều kiện của Mệnh đề 06.12 (với ReLU: không tiền kích hoạt nào bằng 0).
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-06/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 06–07; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** cần sửa. Mặt trang khá đúng quy tắc, nhưng deck lệch ghi chú mới ở ký hiệu ($\sigma^2$, "nhóm nhỏ", $s$ so với $\tau^2$, "lô nhỏ", $T$), ở số hiệu "Mệnh đề 1–3" và ở phần SGD lồi mạnh.
+
+**Điều phối viên kiểm lại:** deck "Mệnh đề 1 (đánh số của Bài 06)"; `lecture-note.md:91` và `:117` dùng $\tau^2$. Đúng như báo cáo.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| nghiêm trọng | B02, B08, B09, D01, G01b, G04 (cả ghi chú diễn giả) | Lệch ghi chú: deck đánh số riêng "Mệnh đề 1/2/3". Ghi chú không có Mệnh đề 1 (dẫn 05.38(1)); Mệnh đề 2 = 06.6; Mệnh đề 3 = 06.7; "Mệnh đề 06.3" của ghi chú là kết quả khác. | html:82, 151, 157, 281, 582, 606; note:194, 225, 378, 408 | Bỏ số riêng; gọi bằng tên, kèm tối đa một số hiệu mỗi trang: "(Mệnh đề 05.38)", "(Mệnh đề 06.6)", "(Mệnh đề 06.7)" |
+| nghiêm trọng | E00–G04 (mặt trang và ghi chú diễn giả) | Lệch ghi chú: ghi chú đổi "nhóm nhỏ" → "lô nhỏ (mini-batch)", $\sigma^2,\sigma_1^2\to\tau^2,\tau_1^2$, $s\to T$, "chính quy hóa $\ell_2$" → "chính quy hóa bậc hai"; ghi chú diễn giả của deck còn khẳng định điều ngược lại. | html:44 "Bài 05b, 05c gọi là lô nhỏ"; html:578 "giữ $\sigma^2$ … như Bài 05b và 05c"; html:525 "chu kỳ đánh giá $s$"; note:91 "$\tau^2$, như Bài 05", :113, :122 | Đổi thuật ngữ và ký hiệu theo Nhận xét 06.2 và bảng §2; sửa hai câu ghi chú diễn giả |
+| trung bình | D04, D05, E02, E04, F01b, F04, F04b, G01b, G03, G04 | Lệch ghi chú: deck dẫn 05b/05c, ghi chú 06 nay phát biểu lại và chứng minh đầy đủ; D04 dẫn Bổ đề 05b.6 (trên $\mathbb R^n$) cho bản trên tập lồi. | html:303, 319, 378, 414, 488, 495; note:924 (06.18), 992 (06.19), 1166 (06.21), 1260 (06.24), 1445 (06.28), 1681 (06.33), 1730 (06.34) | Dẫn số 06.xx (có thể kèm 05b.xx) |
+| trung bình | ghi chú diễn giả A02 | Lệch ghi chú: "không chứng minh lại", ghi chú ghi "chứng minh đầy đủ". | html:23; note:992 | Sửa câu |
+| trung bình | toàn mạch 6; A02 | Lệch ghi chú: ghi chú có §8.2–8.3 (Định lý 06.30, 06.31, Ví dụ 06.20) và mục tiêu 5 "định lý hội tụ … cho hàm lồi mạnh"; deck đã bỏ F02, F02b, F03 theo yêu cầu người dùng 2026-10-22; deck 3 mục tiêu, ghi chú 6. | note:33, 1514–1672; storyboard:5; html:22 | Chờ người dùng quyết định chiều đồng bộ (deck thêm lại, hoặc ghi chú thu phạm vi) |
+| trung bình | B10, C07, D07, E06, E06c, F08, G04 | Lệch ghi chú: không bài tập nào trên deck có trong ghi chú hay `exercises.md`; G04 trỏ tới bài tập không còn. | html:610 "Lời giải chi tiết nằm trong bài tập của Bài 06"; storyboard G04 "trùng Bài 11"; `exercises.md:22` bắt đầu từ 06.12 | Sửa câu dẫn; cân nhắc ánh xạ sang Bài tập 06.1–06.11 |
+| trung bình | C01, D01b, E01 | Quy tắc (tập trung của mạch): trang nội dung đầu mạch thiếu "Nhu cầu:" (câu hỏi trung tâm chỉ ở dòng dẫn). | html:199, 271, 367 | Thêm dòng "Nhu cầu:" |
+| trung bình | B08, D03, E04, F07 | Quy tắc: trang phát biểu chứa trường hợp cụ thể (Ví dụ $\theta_A/\theta_B$; "Tại cực tiểu (1,1)…"; "Dữ liệu bốn điểm…"; bảng ví dụ). | html:145, 299, 417, 535 | Chuyển sang trang "Ví dụ: …" hoặc ghi chú diễn giả |
+| trung bình | F07 → F07b | Quy tắc (hành trình khái niệm): "Trực quan." đứng sau phát biểu hình thức và ví dụ. | html:544 | Đưa trực quan lên trước F07 |
+| trung bình | D05b; A03 | Quy tắc, văn phong tác giả: danh sách treo trên phủ định ("Không khẳng định…", "Không phân biệt…"); từ làm mềm "thường chỉ điểm dừng xấp xỉ". | html:327–330, 50 | Viết khẳng định: "Định lý chặn $\min_k\lVert\nabla F\rVert^2$; …"; "khi $F$ không lồi: điểm dừng xấp xỉ" |
+| nhẹ | D05b, F04b, G01b, G02 | "cận chỉ dùng làm định hướng" là câu né, không nêu điều kiện. | html:330, 498, 584, 593 | "(H2) không thỏa trên vùng chứa điểm gãy, nên định lý không áp dụng" |
+| nhẹ | ghi chú diễn giả B04, B07, E01, E02b, F05, F06; B02 | Văn phong tác giả: tự rào đón, câu xuất xứ ("Ở đây mới có…", "chưa phải 'không lồi'", "Các quy mô là minh họa", "không phải quy luật chung", "không phải số liệu thực nghiệm"); B02 nói về "deck". | html:112, 142, 374, 392, 508, 522, 87 | Cắt hoặc viết khẳng định |
+| nhẹ | B03, F06; G04 | Quy tắc (mật độ): dòng 25 và 22 âm tiết; G04 khoảng 84 token (storyboard ghi 76, trần 80). | html:105, 519, 605–609 | Tách dòng; đếm lại và rút G04 |
+
+**Đã kiểm, không lỗi:** mọi số hiệu 05/05b/05c/04/02 mà deck dẫn tồn tại và đúng khối (05b.6, 05b.8(b), 05b.16, 05b.18, 05b.31, 05b.39, 05b.41, 05b.43, 05b.44; 05c.52, 05c.53, 05c.56, 05c.58, Mục 6.6, 6.7; 05.38, 05.25; 04.19); vấn đề chỉ là nên dẫn 06.xx. Số liệu E01, F04b tính lại khớp. A04 vượt trần nhưng có ngoại lệ ghi trong storyboard.

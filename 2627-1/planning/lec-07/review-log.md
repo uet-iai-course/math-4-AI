@@ -1165,3 +1165,30 @@ Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medi
 Giữ số, đã kiểm nội dung: Bài 13 (Định nghĩa 07.46, 07.48, Nhận xét 07.47, Định lý 07.49; dòng 3, 41, 770, 1080, 1473; `lec-13/exercises.md` 376), deck dẫn Bài tập 07.1, 07.6–07.8, 07.8–07.13, 07.15, Ví dụ 07.10. Kiểm: 574 tham chiếu "Loại 07.k" ở 5 tệp, 0 sai; không còn dẫn khối bị bỏ, thuật toán, nhãn công thức, số mục hay bài tập cũ; forward_refs lec-03, lec-13 không đổi (0); `git diff --check`, đồng bộ `--check` đạt; notecheck lec-03, lec-13 và deck 07 (1600, 390): 0 lỗi.
 
 Còn lại (báo người dùng): `lec-13` dòng 1542 (Tài liệu đọc, Mở rộng) vẫn dẫn Bertsekas (2017), không có bản trong `sources/`; `lec-13` dòng 770 câu vị thế "nó chưa phải định nghĩa".
+
+## Rà soát deck theo quy tắc deck hiện hành và đối chiếu ghi chú viết lại (2026-11-13)
+
+**Bối cảnh.** Ghi chú bài giảng và tệp bài tập được viết lại, đánh số lại ngày 2026-11-12; deck chưa cập nhật theo. Đợt này chỉ đọc: kiểm deck theo `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Văn phong và mật độ mặt trang chiếu", `CLAUDE.md` của học phần và mục "The author's voice" của `../CLAUDE.md`, rồi đối chiếu deck với `materials/lec-07/`.
+
+**Tác tử (theo lời gọi công cụ).** Vai trò: rà soát chỉ đọc (quy tắc deck và đối chiếu ghi chú), một tác tử cho cặp Bài 06–07; loại `general-purpose`, mô hình `opus` (Opus 5.5), effort `high`; `no-ai-slop` chế độ Detect. Không ghi tệp, không commit. Điều phối viên chạy trước một lượt quét cơ học (số mạch, trang tiêu đề mạch, `<style>`, inline style, nhãn cấm, số âm tiết thô) và giao kết quả cho tác tử kiểm lại.
+
+**Quyết định của điều phối viên:** **chấp nhận** báo cáo làm danh sách việc cần sửa, sau khi kiểm lại các phát hiện ghi dưới đây trên tệp gốc. Mọi phát hiện ở trạng thái **mở**; deck chưa được sửa.
+
+**Kết luận:** cần sửa. Quy tắc mặt trang được giữ tốt và mọi số hiệu ghi chú trong ghi chú diễn giả trỏ đúng khối, nhưng ký hiệu của mạch 6 và thứ tự lập luận của mạch 4 lệch ghi chú.
+
+**Điều phối viên kiểm lại:** deck mạch 6 "$x_k\in X_k$, điều khiển $u_k\in U\ldots$"; ghi chú dùng `\xi_k` (10 chỗ). Đúng như báo cáo.
+
+| mức độ | trang chiếu | vấn đề | bằng chứng | đề xuất sửa |
+|---|---|---|---|---|
+| nghiêm trọng | D04, D04b, D05 (cả ghi chú diễn giả) | Lệch ghi chú: trạng thái là $x_k$, $x_0$, $x\in X_k$; ghi chú dùng $\xi_k$, $U_k(\xi)$ để tách khỏi biến quyết định $x$; ghi chú diễn giả D04 còn giải thích "chữ $x_k$ ở đây là trạng thái". | html:493, 495, 499–501, 508–510; note:119–121, 2182 | Đổi sang $\xi$; bỏ câu giải thích |
+| trung bình | C06 → C07 → C07c → C08 | Lệch ghi chú (thứ tự lập luận): ghi chú đi 07.20 (chỉ giả thiết L2, kết luận $z^*=+\infty$ hoặc có đỉnh tối ưu) → 07.23 bốn kết cục (suy từ 07.20) → Thuật toán 07.27 trên dạng chuẩn → Bổ đề 07.36 chứng minh bằng đơn hình kèm quy tắc Bland (§8.4) → 07.37. Deck nêu bốn kết cục trước, bổ đề cho đa diện tổng quát "tính chất (không chứng minh)", đầu ra thuật toán là "tối ưu" ngay ở mạch 4. Ghi chú để ngỏ 5 câu hỏi, deck 4. | html:246, 255, 276–279, 283–285, 287; note:1006, 1099, 1190–1229, 1629, 1653 | Theo ghi chú: C08 trả về "điểm cực biên khi dừng", tính tối ưu chuyển về sau quy tắc Bland; hoặc ghi chú bổ sung con đường của deck |
+| trung bình | B04, S10b | Lệch ghi chú: biến dư viết $s$, $s_4$; ghi chú viết $e$, $e_4$. | html:153, 438; note:470, 1855 | Đổi thành $e$, $e_4$ |
+| nhẹ | ghi chú diễn giả Z01, C05b | Lệch ghi chú: "max hữu hạn" ghi là giả thiết; ở 07.20 tính hữu hạn là một nhánh của kết luận. | html:549, 243; note:1006–1014 | "có điểm cực biên (L2); khi $z^*$ hữu hạn" |
+| nhẹ | C02–C03; P02 | Lệch ghi chú: thiếu tiêu chuẩn hạng (Định lý 07.10, mục tiêu 3 của ghi chú); deck 4 mục tiêu, ghi chú 6. | note:20, 715 | Thêm một dòng hoặc ghi rõ phạm vi |
+| nhẹ | S05; S11 | Lệch ghi chú: "Nhận xét." trên deck ứng với Định lý 07.32; S11 ghi "trùng Bài tập 07.8", nhưng 07.8 yêu cầu bảng đơn hình và có câu (c). | html:370, 448; note:1516, 1872–1879 | Đổi nhãn thành "Định lý."; ghi "câu (a), (b)" |
+| nhẹ | ghi chú diễn giả Z01, B06b; nhiều dòng nguồn "Ví dụ/Bài tập tự tạo" | Văn phong tác giả: "Vấn đề trung tâm có câu trả lời có điều kiện" (câu bị cấm); "Thường có thể đổi…"; câu xuất xứ. | html:551, 179, 75, 83, 99… | Cắt; xuất xứ vào nhật ký này |
+| nhẹ | B06b | Quy tắc: Định nghĩa, Ví dụ và Diễn giải trên cùng một trang. | html:175–178 | Tách trang ví dụ |
+| nhẹ | P01 | Quy tắc (mở bài): trang tiên quyết đứng trước mục tiêu (chuẩn: bìa → mục tiêu → Nội dung → Ngữ cảnh). | html:27–38 | Đổi chỗ hoặc gộp tiên quyết vào ghi chú diễn giả |
+| nhẹ | Z02, S09c, Z01b | Quy tắc (mật độ, ngữ pháp): dòng 30 và 23 âm tiết; Z02 khoảng 71 token (storyboard ghi 60); "phụ thuộc đã qua A hay B". | html:562, 424, 556 | Tách câu; "phụ thuộc vào việc đã qua A hay B" |
+
+**Đã kiểm, không lỗi:** Ví dụ 07.10, Định lý 07.17 Bước 3–4, Bài tập 07.1, 07.6–07.13, 07.15 trỏ đúng. Số liệu D07b, S07, S10b, D06b tính lại khớp. Mật độ S05 61; các trang khác ≤ 60 hoặc có ngoại lệ trong storyboard (A04b, A02b, P02b, Z01).
