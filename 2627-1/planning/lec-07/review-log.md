@@ -1192,3 +1192,86 @@ Còn lại (báo người dùng): `lec-13` dòng 1542 (Tài liệu đọc, Mở 
 | nhẹ | Z02, S09c, Z01b | Quy tắc (mật độ, ngữ pháp): dòng 30 và 23 âm tiết; Z02 khoảng 71 token (storyboard ghi 60); "phụ thuộc đã qua A hay B". | html:562, 424, 556 | Tách câu; "phụ thuộc vào việc đã qua A hay B" |
 
 **Đã kiểm, không lỗi:** Ví dụ 07.10, Định lý 07.17 Bước 3–4, Bài tập 07.1, 07.6–07.13, 07.15 trỏ đúng. Số liệu D07b, S07, S10b, D06b tính lại khớp. Mật độ S05 61; các trang khác ≤ 60 hoặc có ngoại lệ trong storyboard (A04b, A02b, P02b, Z01).
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Phạm vi.** Sửa `lecture-07-quy-hoach-tuyen-tinh-va-dong.html` theo bảng phát hiện của mục trước và quyết định G1–G10 của điều phối viên; cập nhật `storyboard.md` (bảng từng trang, bản đồ hành trình, bảng mạch, mục "Sửa deck theo bảng phát hiện 2026-11-13") và `outline.md`. Không sửa `materials/`, CSS hay SVG. Không commit.
+
+**Tác tử.** Người sửa (editor) theo lời giao của điều phối viên; loại, mô hình và effort do điều phối viên ghi từ lời gọi công cụ. `no-ai-slop` chế độ Edit cho mặt trang và ghi chú diễn giả.
+
+**Kết quả.** 70 → 73 trang, bảy mạch. Thêm C02b, B06c, S08c; C07c chuyển sang mạch 5 (giữ mã); mạch 4 đổi thứ tự C04 → C07 → C06; P01 đặt sau P02b.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| nghiêm trọng: trạng thái DP viết $x_k$, $x_0$, $x\in X_k$; ghi chú dùng $\xi$ | đã sửa: $\xi_k$, $\xi_0$, $\xi_N$, $U_k(\xi)$, $J_k(\xi)$, $f_k(\xi,u)$, $u_k^*(\xi)$, $(\xi,u)$ trên mặt trang và ghi chú; bỏ câu "Chữ $x_k$ ở đây là trạng thái …" | D04, D04b, D05, D05b | SVG mạch 6 không chứa $x_k$, không phải sửa |
+| trung bình: thứ tự lập luận mạch 4 lệch ghi chú (bốn kết cục trước, bổ đề "tính chất không chứng minh", đầu ra "tối ưu"; bốn câu hỏi thay năm) | đã sửa theo ghi chú: C04 (Ví dụ 07.14) → C07 (Định lý 07.20, một giả thiết, kết luận $z^*=+\infty$ hoặc có điểm cực biên tối ưu) → C06 (Định lý 07.23, suy từ 07.20, có "Chứng minh.") → C07b → C08 (Thuật toán 07.27 trên dạng chuẩn, đầu ra "nghiệm cơ sở khả thi $v$ khi dừng", năm câu hỏi trong ghi chú diễn giả); C07c (Bổ đề 07.36, chứng minh bằng chi phí rút gọn và quy tắc Bland) chuyển sau S08b; thêm S08c (Mệnh đề 07.37). C09 kết luận tối ưu bằng so năm giá trị đỉnh, như Ví dụ 07.17 | C04, C07, C06, C07b, C08, C09, C07c, S08c, S00, S08b | chọn nhánh "theo ghi chú" của đề xuất; không cần sửa ghi chú |
+| trung bình: biến dư viết $s$, $s_4$; ghi chú viết $e$, $e_4$ | đã sửa: bảng và ghi chú B04 dùng $e$; S10b dùng $e_4$ trên mặt trang, bảng lặp và ghi chú | B04, S10b | $s_4$ ở S07–S08 là biến bù của $x_1+x_2\le30$, giữ |
+| nhẹ: "max hữu hạn" ghi là giả thiết ở Z01, C05b | đã sửa: Z01 "có điểm cực biên; khi $z^*$ hữu hạn"; ghi chú C05b nói tính hữu hạn là một nhánh của kết luận | Z01, C05b | Z01b câu 1 đổi thành "rơi vào trường hợp nào", lời giải theo nhánh (a) |
+| nhẹ: thiếu tiêu chuẩn hạng (Định lý 07.10); deck 4 mục tiêu, ghi chú 6 | đã sửa: thêm C02b (định lý, "Chứng minh." một dòng, ví dụ trong ghi chú diễn giả); P02 bốn thẻ gộp sáu mục tiêu, thẻ 2 nêu "nhận biết điểm cực biên bằng hạng"; C10 câu 1 "bằng tiêu chuẩn hạng" | C02b, P02, C10 | chọn thêm trang vì C03 phát biểu cho dạng chuẩn, 07.10 cho $Ax\le b$ |
+| nhẹ: S05 "Nhận xét." ứng với Định lý 07.32; S11 ghi "trùng Bài tập 07.8" | đã sửa: nhãn "Định lý."; nguồn S11, S11b "Bài tập 07.8, câu (a), (b) và phần tập nghiệm tối ưu của câu (c); bảng lặp thay cho bảng đơn hình" | S05, S11, S11b | |
+| nhẹ: văn phong tác giả ("Vấn đề trung tâm có câu trả lời có điều kiện", "Thường có thể đổi …", câu xuất xứ) | đã sửa: cắt hai câu; mọi dòng nguồn "Ví dụ/Bài tập tự tạo", "hình tự vẽ", "phép tính kiểm tra …", "Chuyển thể …" thay bằng khối ghi chú bài giảng tương ứng cùng giáo trình; cắt câu xuất xứ ở S09b, Z02; cắt hai câu rào đón ở A08 ("Câu hỏi chỉ yêu cầu …") và B07b ("… mới được kiểm tra …") | Z01, B06b, A02–A08, B02–B07b, C04, C06, C09–C11b, S01, S06, S07, S09b, S09c, S10b, S11, S11b, D03, D06, D06b, Z02 | xuất xứ ghi ở dòng dưới bảng |
+| nhẹ: B06b có Định nghĩa, Ví dụ, Diễn giải chung trang | đã sửa: tách B06c "Ví dụ: một nghiệm cơ sở khả thi suy biến" (Ví dụ 07.9); B06b giữ định nghĩa và "Ý nghĩa:" | B06b, B06c | |
+| nhẹ: P01 (tiên quyết) đứng trước mục tiêu | đã sửa: P00 → P02 → P02b → P01 → P03; câu nối trong ghi chú P00, P02b, P01 | P00, P02, P02b, P01 | không còn liên kết `#/` nào phụ thuộc thứ tự (G7) |
+| nhẹ: dòng 30 và 23 âm tiết (Z02, S09c); Z02 khoảng 71 token; "phụ thuộc đã qua A hay B" | đã sửa: Z02 "Nhu cầu:" tách hai câu (13, 10), tổng 58; S09c "Diễn giải:" tách hai câu (13, 10); Z01b câu 3 "phụ thuộc vào nút đã qua" | Z02, S09c, Z01b | đo bằng `deck_check.py` |
+
+**Sửa thêm ngoài bảng (cùng đợt).**
+
+- KaTeX ghi 60 cảnh báo console "No character metrics" cho chữ tiếng Việt trong `\text{}`. Bỏ mọi `\text{…}` có chữ tiếng Việt: A03 (đơn vị chuyển lên dòng văn), A04, A05, S10 (`aligned` hai dòng), A07, B04 (dạng tập $\min\{\ldots:\ldots\}$, $\max\{\ldots:\ldots\}$; bản `aligned` tràn khung), B07b (hai ma trận trong đoạn văn), S04 ($=\frac{x_l}{-d^j_l}$), D05b ("… nên số phép tính bằng"), D06b ($u^*(A)=D$, …). Sau sửa: 0 cảnh báo; A05 hết tràn ngang ở 390 px.
+- C07b "Dạng khác:" viết theo Mệnh đề 07.26 ("hai cơ sở khác một chỉ số cho hai điểm phân biệt thì kề nhau") thay chiều ngược chỉ đúng khi không suy biến.
+- C11b câu 2 và ghi chú C10, C11b kiểm giả thiết theo Định lý 07.20 (một giả thiết; tính bị chặn chọn trường hợp (b)).
+
+**Xuất xứ dữ liệu (G6, chuyển từ ghi chú diễn giả).** Bài toán hộp hạt chuyển thể từ Bài tập chương 8, câu 5, của học phần (Nguyễn Bích Vân 2025): hộp hạt trộn, ba giới hạn nguyên liệu đổi thành giới hạn sản lượng và giờ máy. Bài toán phân bổ GPU, đa giác của C10, ví dụ một biến, ví dụ suy biến hai cơ sở, các biến thể hộp hạt (lợi ích $2x_1+4x_2$, giới hạn $x_1+x_2\le30$, hợp đồng $x_1+x_2\ge40$), đồ thị tầng và bộ chi phí mới của D06 do học phần dựng, đồ thị tầng theo khung của MIT 15.093J, Bài 16; các hình SVG do học phần vẽ. Mọi số liệu trùng các khối tương ứng của `materials/lec-07/lecture-note.md`.
+
+**Tính lại.** C07: hộp hạt $z\le2\cdot30+3\cdot20=120$; năm giá trị đỉnh $0,60,96,88,60$. C07c (ghi chú): từ đỉnh suy biến $(30,0)$, bước 1 có $\theta^*=0$, bước 2 tới $(10,20)$, $z=60+20=80$; $(30,0)$ và $(10,20)$ cùng nằm trên $x_1+x_2=30$ nên kề nhau. C06 (ghi chú): $\max0\cdot x$ trên $[0,1]$ có $z^*=0$, vô số nghiệm. S10b: đổi tên $s_4\to e_4$, số không đổi ($e_4=2$ tại $(30,12)$ vì $42-40=2$). D06b: $u^*(A)=D$ ($2+1<4+0$), $u^*(B)=C$ ($1+0<3+1$), $u^*(s)=B$ ($3+1<2+3$).
+
+**Kiểm tra.** `deck_check.py --url http://127.0.0.1:8810/2627-1/lecture-07-quy-hoach-tuyen-tinh-va-dong.html`: 73 trang, console 0, lỗi trang 0, yêu cầu hỏng 0, `.katex-error` 0, không OVERFLOW, không NARROW-H; mọi trang ≤ 60 âm tiết trừ P02 (71) và Z01 (71), trần 80; dòng dài nhất ≤ 20 trừ dòng dẫn trang tiêu đề mạch (trần 25); P02 (8 khối thẻ) và P02b (7 dòng) là ngoại lệ dòng đã ghi trong storyboard. Đã xem ảnh 1600×900 và 390×844 của các trang sửa. `git diff --check` sạch.
+
+**Chưa xử lý, chuyển điều phối viên.** Ghi chú viết tên nút đồ thị tầng bằng chữ đứng ($\mathrm s$, $\mathrm A$, …); công thức trên deck mạch 6 vẫn viết chữ nghiêng ($s$, $A$, …), nhãn SVG đã là chữ đứng. Không có trong bảng phát hiện; đổi cần sửa khoảng 30 công thức, nên để điều phối viên quyết định.
+
+### Lượt sửa sau kiểm lại (2026-11-13)
+
+Nguồn: danh sách 23 mục đã duyệt `tools/courses/math-4-AI/2627-1/deck-fix-2026-11-13/merge-07.md` (kiểm lại mạch và toán) và quyết định của điều phối viên về tên nút chữ đứng. Người sửa như mục trên; không commit.
+
+| mục | xử lý | trang |
+|---|---|---|
+| 1 | dòng dẫn S00 "Muốn duyệt đỉnh kề bằng phép tính, cần điều kiện dừng, bước xoay, cơ sở xuất phát và tính tối ưu khi suy biến." (22 âm tiết); S01 "Nhu cầu: điều kiện dừng, bước xoay, cơ sở xuất phát và tính tối ưu khi suy biến." | S00, S01 |
+| 2 | storyboard: cột lý do và quan hệ viết lại theo deck hiện hành cho P00, P02, P01, B06b, C03, C04, C05b, C07, C06, C07b, C07c, C08, S08b, S09 | storyboard |
+| 3 | bản đồ hành trình: tách cụm "Tính tối ưu của đỉnh dừng" (nhu cầu ghi chú C08, C07c; hình thức C07c, S08c; bài tập "không áp dụng" có lý do); cụm "Thuật toán duyệt đỉnh kề" chỉ còn C07b, C08, C09 | storyboard |
+| 4 | "Diễn giải: đỉnh dừng $(30,12)$ đạt $z=108$ lớn nhất; thuật toán trả về một đỉnh, không cả cạnh."; câu 3 rút "đỉnh kề" để dòng diễn giải không chạm chân trang | C11b |
+| 5 | "… nên chỉ đòi được một điểm cực biên tối ưu." ("chỉ có thể đòi" làm dòng 21 âm tiết) | C04 |
+| 6 | "Nhu cầu: ở dạng chuẩn, tiêu chuẩn hạng thành điều kiện trên cột, tính được bằng giải hệ." (bản đề xuất 22 âm tiết, rút còn 17) | C03 |
+| 7 | ghi chú: "Giả thiết $z^*$ hữu hạn loại trường hợp (a) của định lý điểm cực biên tối ưu." | C08 |
+| 8 | ghi chú P00 "… ứng với sáu mục tiêu học tập …; trang mục tiêu gộp chúng thành bốn nhóm"; Z00 gọi bốn nhóm theo tên thẻ | P00, Z00 |
+| 9 | thẻ 3 "Giải bằng bảng đơn hình; xử lý suy biến; tìm cơ sở xuất phát bằng pha I." | P02 |
+| 10 | "Nhu cầu: chứng minh đỉnh dừng của thuật toán duyệt đỉnh kề là tối ưu." | C07c |
+| 11 | ghi chú: "Ý tưởng: một chiều dùng hướng của đường thẳng, chiều kia tăng dần số ràng buộc hoạt động độc lập." | C05b |
+| 12 | storyboard: P01 "giữ trước P02" ghi đảo ngày 2026-11-13; bản đồ B06b → B06c; DP $\xi_k$; S00 và bảng mạch "năm câu hỏi … §7.5"; cột quan hệ P00, P02 | storyboard |
+| 13 | tổ hợp lồi $y,z$ → $x',x''$ trên mặt trang và ghi chú; định nghĩa C02 tách công thức, điều kiện $x',x''\in P$, $0<\lambda<1$ lên dòng văn (bản một dòng tràn khung) | C02, C02b, C03 |
+| 14 | tên nút chữ đứng `\mathrm` trong mọi công thức có tên nút (180 lần thay ở P03, D02–D06b, Z01b, Z02, mặt trang và ghi chú; nhãn SVG đã chữ đứng); cắt câu "Các chữ … là tên nút, không liên quan …" ở D02 | P03, D02–D06b, Z01b, Z02 |
+| 15 | D03 "Đặt $J(\xi)$ là chi phí nhỏ nhất từ nút $\xi$ tới $\mathrm t$"; D04b bỏ vế "$J_k(v)=J(v)$" khỏi mặt trang, ghi chú "viết $J(\mathrm A)$ thay $J_1(\mathrm A)$" | D03, D04b |
+| 16 | ghi chú: $g(\mathrm s,\mathrm B)=3$, $g(\mathrm C,\mathrm t)=0$ | D06 |
+| 17 | cặp trạng thái (nút trước, nút hiện tại), giá trị tại $(\mathrm B,\mathrm C)$ và $(\mathrm A,\mathrm C)$ | D02, Z01b (ghi chú) |
+| 18 | `extreme-point-def.svg`: nhãn $w$ và câu trong `desc` đổi thành $(10,10)$; alt và ghi chú C02 theo | C02 |
+| 19 | ghi chú: "Định lý trả lời câu hỏi thứ ba của thuật toán duyệt đỉnh kề; dùng nó, bổ đề sau trả lời câu hỏi thứ năm khi $z^*$ hữu hạn." | S08b |
+| 20 | ghi chú: hộp hạt "miền khác rỗng và bị chặn nên không chứa đường thẳng, do đó có điểm cực biên" | C07 |
+| 21 | ghi chú: minh chứng mục tiêu 5 là Bài tập 07.8–07.12 (bỏ 07.13, đọc thêm) | P02 |
+| 22 | trùng mục 8 | Z00 |
+| 23 | "Dạng khác:" → "Mệnh đề." | C07b |
+
+**Kiểm tra.** `deck_check.py --out …/check-07/final2`: 73 trang, console 0, lỗi trang 0, yêu cầu hỏng 0, KaTeX lỗi 0, không OVERFLOW, không NARROW-H; mọi trang ≤ 60 âm tiết trừ P02, Z01 (71, trần 80); dòng ≤ 20 âm tiết trừ dòng dẫn trang tiêu đề mạch. Đã xem ảnh 1600×900 của S00, S01, C02, C03, C04, C07b, C11b, D02, D03, D04, D04b, D06, D06b, Z01b, P02 (mặt trang C02b, D05, D05b, Z02 không đổi ở lượt này; C02b đã xem ở lượt trước). `git diff --check` sạch.
+
+**Lượt sửa cuối (2026-11-13, điều phối viên yêu cầu sau hai lượt kiểm lại đạt).** C03 "Nhu cầu: tiêu chuẩn hạng thành điều kiện trên cột; nghiệm cơ sở khả thi tính được bằng giải hệ." (20 âm tiết; bỏ "ở dạng chuẩn" để dòng ≤ 20, định lý đã nêu dạng chuẩn). C07b: khối `aligned` hai cơ sở $(30,0)$, $(30,12)$ chuyển vào ghi chú diễn giả; mặt trang còn "Nhu cầu:", Định nghĩa, Mệnh đề và hình (60 âm tiết, 3 dòng). `deck_check.py --out …/check-07/final3 --ids C03,C07b`: console 0, không OVERFLOW; đã xem ảnh 1600×900 hai trang; `git diff --check` sạch.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (tổ hợp lồi $y,z$, trung bình) → đạt |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (khung mạch 5, storyboard mâu thuẫn, hành trình đảo) → đạt |
+
+Quyết định của điều phối viên: tên nút đồ thị tầng viết chữ đứng như ghi chú (G1), áp dụng cho mọi công thức mạch 6; thứ tự lập luận mạch 4–5 theo ghi chú (07.20 → 07.23 → Thuật toán 07.27; Bổ đề 07.36 với quy tắc Bland ở mạch 5).
+
+Kiểm của điều phối viên: đọc diff; 73 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW; P02 LINES (bốn thẻ mục tiêu) và P02b LINES là ngoại lệ đã ghi. Đã xem ảnh 1600×900 và 390×844 của P02, C02, C03, C07, C07b, C08, C07c, S08c, D03, D06b, Z01: vừa khung.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.

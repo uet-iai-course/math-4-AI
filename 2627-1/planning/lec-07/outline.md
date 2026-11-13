@@ -14,7 +14,9 @@
 - Tiên quyết: hệ tuyến tính, độc lập tuyến tính, hạng ma trận, tập lồi và tổ hợp lồi.
 - Sản phẩm: mô hình LP đầy đủ; chuyển về dạng chuẩn; nhận dạng điểm cực biên/nghiệm cơ sở khả thi và bốn kết cục; áp dụng bảo đảm điểm cực biên; chạy phương pháp đơn hình trên bảng (chi phí rút gọn, phép thử tỉ số, quy tắc Bland, pha I); tính Bellman trên đồ thị tầng nhỏ.
 
-## Bảy mạch và 70 trang
+## Bảy mạch và 73 trang
+
+Cập nhật 2026-11-13 (sửa theo bảng phát hiện, khớp ghi chú viết lại): 70 → 73 trang. Thêm C02b (tiêu chuẩn hạng), B06c (tách ví dụ suy biến khỏi B06b), S08c (Mệnh đề 07.37); C07c chuyển sang mạch 5 sau S08b; mạch 4 đổi thứ tự C04 → C07 → C06; P01 đặt sau P02b.
 
 Cập nhật 2026-10-23 (yêu cầu người dùng): thêm mạch 5 "Phương pháp đơn hình" (S00, S01–S11b; 14 trang, thành 17 trang sau vòng chỉnh sửa cùng ngày: tách S08b, S09c, thêm S10b) giữa mạch 4 và quy hoạch động; quy hoạch động thành mạch 6 (D01, `id="mach-6"`), tổng kết thành mạch 7 (Z00, `id="mach-7"`). Mã trang cũ giữ nguyên. Deck từ 53 lên 67 trang.
 
@@ -23,9 +25,9 @@ Cập nhật 2026-10-12 theo AGENTS.md, mục “Trang tiêu đề mạch” và
 | Mạch | Mã | Tiêu đề | Vai trò |
 |---|---|---|---|
 | 1 · Mở đầu | P00 | Quy hoạch tuyến tính và quy hoạch động | Định danh; trang tiêu đề của mạch mở đầu |
-| 1 | P01 | Tiên quyết và quy ước | Khóa ký hiệu |
-| 1 | P02 | Mục tiêu học tập | Khóa minh chứng |
+| 1 | P02 | Mục tiêu học tập | Khóa minh chứng; bốn thẻ gộp sáu mục tiêu của ghi chú (2026-11-13) |
 | 1 | P02b | Nội dung | Danh sách bảy mạch (từ 2026-10-23) |
+| 1 | P01 | Tiên quyết và quy ước | Khóa ký hiệu; trang ngữ cảnh, đặt sau "Nội dung" từ 2026-11-13 |
 | 1 | P03 | Vấn đề trung tâm | Vấn đề trung tâm và hình hai cấu trúc |
 | 2 · Mô hình hóa quy hoạch tuyến tính | A01 | 2. Mô hình hóa quy hoạch tuyến tính | Trang tiêu đề mạch; nhu cầu |
 | 2 | A02 | Bài toán sản xuất hộp hạt | Nhu cầu và ví dụ dẫn nhập |
@@ -42,21 +44,22 @@ Cập nhật 2026-10-12 theo AGENTS.md, mục “Trang tiêu đề mạch” và
 | 3 | B04 | Dạng chuẩn | Hình thức đại số |
 | 3 | B05 | Ví dụ: bài toán hộp hạt dạng chuẩn | Ứng dụng chuyển dạng |
 | 3 | B06 | Nghiệm cơ sở khả thi | Định nghĩa |
-| 3 | B06b | Nghiệm cơ sở suy biến | Định nghĩa và ví dụ suy biến |
+| 3 | B06b | Nghiệm cơ sở suy biến | Định nghĩa và "Ý nghĩa:" (tách ví dụ 2026-11-13) |
+| 3 | B06c | Ví dụ: một nghiệm cơ sở khả thi suy biến | Ví dụ 07.9: hai cơ sở, một điểm |
 | 3 | B07 | Bài tập: nghiệm cơ sở của bài toán hộp hạt | Đề bài tập LLO18 |
 | 3 | B07b | Bài tập: nghiệm cơ sở của bài toán hộp hạt | Lời giải trên mặt trang |
 | 4 · Điểm cực biên và bảo đảm tối ưu | C01 | 4. Điểm cực biên và bảo đảm tối ưu | Trang tiêu đề mạch; nhu cầu |
 | 4 | C02 | Điểm cực biên | Hình thức hình học |
+| 4 | C02b | Tiêu chuẩn hạng cho điểm cực biên | Định lý 07.10 (thêm 2026-11-13) |
 | 4 | C03 | Điểm cực biên và nghiệm cơ sở khả thi | Định lý tương đương |
 | 4 | C03b | Số điểm cực biên | Hệ quả hữu hạn, chứng minh một dòng, hình nhắc lại |
 | 4 | C05 | Đa diện chứa đường thẳng | Nhu cầu, phản ví dụ, định nghĩa chứa đường thẳng |
 | 4 | C05b | Định lý tồn tại điểm cực biên | Định lý và hệ quả dạng chuẩn |
-| 4 | C06 | Bốn kết cục của quy hoạch tuyến tính | Phân loại |
-| 4 | C07 | Điểm cực biên tối ưu | Định lý |
-| 4 | C04 | Ví dụ: bài toán có nhiều nghiệm tối ưu | Giới hạn kết luận của định lý (đặt sau C07 từ 2026-10-22) |
-| 4 | C07b | Đỉnh kề | Định nghĩa |
-| 4 | C07c | Bổ đề đỉnh kề cải thiện | Bổ đề và tiêu chuẩn dừng |
-| 4 | C08 | Thuật toán duyệt đỉnh kề | Thuật toán ở mức khái niệm |
+| 4 | C04 | Ví dụ: bài toán có nhiều nghiệm tối ưu | Giới hạn phát biểu về đỉnh (Ví dụ 07.14; đặt trước C07 từ 2026-11-13) |
+| 4 | C07 | Điểm cực biên tối ưu | Định lý 07.20: chỉ giả thiết có điểm cực biên; $z^*=+\infty$ hoặc có điểm cực biên tối ưu |
+| 4 | C06 | Bốn kết cục của quy hoạch tuyến tính | Định lý 07.23, suy từ 07.20 qua dạng chuẩn (đặt sau C07 từ 2026-11-13) |
+| 4 | C07b | Đỉnh kề | Định nghĩa; "Mệnh đề." theo Mệnh đề 07.26 |
+| 4 | C08 | Thuật toán duyệt đỉnh kề | Thuật toán 07.27 trên dạng chuẩn; đầu ra là nghiệm cơ sở khả thi khi dừng; năm câu hỏi mở |
 | 4 | C09 | Ví dụ: duyệt đỉnh kề trên bài toán hộp hạt | Trực quan thuật toán |
 | 4 | C10 | Bài tập: điểm cực biên và đỉnh kề trên đa giác mới | Bài tự làm LLO18 |
 | 4 | C11 | Bài tập: bài toán hộp hạt với lợi ích mới | Đề bài tích hợp LLO17–18 |
@@ -66,11 +69,13 @@ Cập nhật 2026-10-12 theo AGENTS.md, mục “Trang tiêu đề mạch” và
 | 5 | S02 | Hướng cơ sở và chi phí rút gọn | Định nghĩa $d^j$, $\bar c_j$ |
 | 5 | S03 | Điều kiện tối ưu theo chi phí rút gọn | Mệnh đề (a), (b), chứng minh một dòng, lưu ý suy biến |
 | 5 | S04 | Phép thử tỉ số và bước xoay | Mệnh đề (i) không bị chặn, (ii) $\theta^*$, $B'$ |
-| 5 | S05 | Thuật toán đơn hình | Đầu vào, ba bước, đầu ra, dừng hữu hạn khi không suy biến |
+| 5 | S05 | Thuật toán đơn hình | Đầu vào, ba bước, đầu ra, "Định lý." dừng hữu hạn khi không suy biến (Định lý 07.32) |
 | 5 | S06 | Ví dụ: bài toán hộp hạt, ba bước đơn hình | Bảng lặp, quy tắc $\bar c_j$ lớn nhất |
 | 5 | S07 | Ví dụ: bài toán hộp hạt có đỉnh suy biến | Thêm $x_1+x_2\le30$; bước có $\theta^*=0$ |
 | 5 | S08 | Quay vòng tại đỉnh suy biến | Nhu cầu, trực quan (hình đỉnh suy biến) |
 | 5 | S08b | Quy tắc Bland | Định nghĩa, định lý, ý nghĩa |
+| 5 | C07c | Bổ đề đỉnh kề cải thiện | Bổ đề 07.36 trên dạng chuẩn, chứng minh bằng chi phí rút gọn và quy tắc Bland (chuyển từ mạch 4, 2026-11-13; giữ mã) |
+| 5 | S08c | Thuật toán duyệt đỉnh kề dừng tại nghiệm tối ưu | Mệnh đề 07.37 (thêm 2026-11-13) |
 | 5 | S09 | Bảng đơn hình | Nhu cầu, định nghĩa, quy tắc xoay |
 | 5 | S09b | Ví dụ: bảng đơn hình hộp hạt, bước xoay đầu | Hai bảng, phần tử xoay, quy tắc Bland |
 | 5 | S09c | Ví dụ: bảng đơn hình hộp hạt, bảng cuối | Bảng cuối, nghiệm tối ưu duy nhất; hình hai đường đơn hình |
@@ -128,9 +133,9 @@ Bảng trên là phân bổ trước 2026-10-23 cho Buổi 7. Mạch 5 (phương
 - Ví dụ điểm cực biên: $\max x_1+x_2$ với $x_1+x_2\le2$, $x\ge0$ (trước 2026-10-03 viết dạng tương đương $\min -x_1-x_2$); cả cạnh $x_1+x_2=2$ tối ưu.
 - Bài tập C11 (lợi ích mới trên miền hộp hạt): miền hộp hạt với $\max 2x_1+4x_2$; giá trị tại năm đỉnh $0,60,108,108,80$; cả cạnh $(30,12)$–$(14,20)$ tối ưu; thuật toán từ $(0,0)$ dừng tại $(30,12)$.
 - Bài chuyển giao C10: $\max x_1+x_2$ với $x_1+2x_2\le4$, $3x_1+x_2\le6$, $x\ge0$; đường đỉnh kề $(0,0)\to(2,0)\to(1{,}6;\,1{,}2)$ có giá trị $0\to2\to2{,}8$.
-- Phương pháp đơn hình (2026-10-23): dạng chuẩn cực đại; cơ sở $B$, $A_B$, $x_B$, $c_B$; chỉ số ngoài cơ sở viết "$j\notin B$" hoặc $B^{\mathrm c}$ (không dùng $N$, vì $N$ là số giai đoạn của quy hoạch động); hướng cơ sở $d^j$ ($d^j_j=1$, $d^j_B=-A_B^{-1}A_j$); chi phí rút gọn $\bar c_j=c_j-c_B^TA_B^{-1}A_j$; biến vào khi $\bar c_j>0$, dừng khi mọi $\bar c_j\le0$; phép thử tỉ số $\theta^*$ đạt tại chỉ số ra $l$; cơ sở mới $B'$; bảng đơn hình có hàng cuối $[\bar c^T\mid -z]$; biến nhân tạo $\tilde s$ (không dùng $a$, trùng hàng $a_i^T$), biến dư $s_4$; không dùng $u$, $p$, $\mu$ cho đại lượng mới.
+- Phương pháp đơn hình (2026-10-23): dạng chuẩn cực đại; cơ sở $B$, $A_B$, $x_B$, $c_B$; chỉ số ngoài cơ sở viết "$j\notin B$" hoặc $B^{\mathrm c}$ (không dùng $N$, vì $N$ là số giai đoạn của quy hoạch động); hướng cơ sở $d^j$ ($d^j_j=1$, $d^j_B=-A_B^{-1}A_j$); chi phí rút gọn $\bar c_j=c_j-c_B^TA_B^{-1}A_j$; biến vào khi $\bar c_j>0$, dừng khi mọi $\bar c_j\le0$; phép thử tỉ số $\theta^*$ đạt tại chỉ số ra $l$; cơ sở mới $B'$; bảng đơn hình có hàng cuối $[\bar c^T\mid -z]$; biến nhân tạo $\tilde s$ (không dùng $a$, trùng hàng $a_i^T$), biến dư $e_4$ (từ 2026-11-13, khớp bảng ký hiệu của ghi chú); không dùng $u$, $p$, $\mu$ cho đại lượng mới.
 - Số liệu mạch 5 (kiểm bằng phân số chính xác): đường $\bar c_j$ lớn nhất $(0,0)\to(0,20)\to(14,20)\to(30,12)$, $z=0,60,88,96$, tại $(30,12)$ $\bar c_{s_1}=-\tfrac12$, $\bar c_{s_3}=-\tfrac32$; đường theo chỉ số nhỏ nhất (bảng S09b–S09c) $(0,0)\to(30,0)\to(30,12)$; thêm $x_1+x_2\le30$: $(0,0)\to(30,0)\xrightarrow{\theta^*=0}(30,0)\to(10,20)$, $z^*=80$; pha I với $x_1+x_2\ge40$: $(0,0)\to(30,0)\to(30,10)$, $\tilde s=40\to10\to0$, pha II tới $(30,12)$; bài tập $c=(2,4)$: $(0,0)\to(0,20)\to(14,20)$, $z^*=108$, $\bar c_{s_2}=0$, $\theta^*=8$ tới $(30,12)$.
-- DP hữu hạn tất định: $x_{k+1}=f_k(x_k,u)$, $u\in U_k(x_k)$, chi phí $g_k$, chi phí cuối $g_N$, hàm giá trị $J_k$.
+- DP hữu hạn tất định (từ 2026-11-13, khớp ghi chú): trạng thái $\xi_k\in X_k$, $\xi_{k+1}=f_k(\xi_k,u)$, $u\in U_k(\xi_k)$, chi phí $g_k$, chi phí cuối $g_N$, hàm giá trị $J_k$.
 - Đồ thị tầng: các cạnh có chi phí $s$–$A$: $2$, $s$–$B$: $5$, $A$–$C$: $4$, $A$–$D$: $2$, $B$–$C$: $1$, $B$–$D$: $3$, $C$–$t$: $3$, $D$–$t$: $1$. Khi giải ngược, $J(C)=3$, $J(D)=1$, $J(A)=3$, $J(B)=4$, $J(s)=5$; đường tối ưu là $s\to A\to D\to t$.
 - Bài chuyển giao D06 đổi $c(s,B)=3$, $c(C,t)=0$ và giữ các cạnh khác: $J(C)=0$, $J(D)=1$, $J(A)=3$, $J(B)=1$, $J(s)=4$; đường tối ưu là $s\to B\to C\to t$.
 
@@ -143,3 +148,9 @@ Bảng trên là phân bổ trước 2026-10-23 cho Buổi 7. Mạch 5 (phương
 ## Ghi chú bài giảng viết lại theo mẫu SLT (2026-11-12)
 
 `materials/lec-07/lecture-note.md` được viết lại theo khung: đoạn dẫn, Câu hỏi mở đầu (bài toán hộp hạt), Mục tiêu (6), Kiến thức tiên quyết (+ câu hỏi ôn nhanh), §1 Thiết lập bài toán, §2 Ký hiệu và giả thiết ((L1)–(L4), (D1)–(D4)), §3 Ví dụ xuyên suốt (Ví dụ 07.1 và đồ thị tầng), §4–§10 (cũ Mục 1–7), §8.7 Đọc thêm (Klee–Minty), §11 Ý nghĩa, tác động và giới hạn (bốn tình huống, ứng dụng, tóm tắt), §12 Bài tập, §13 Câu hỏi cuối buổi và cầu nối, §14 Tài liệu đọc. Ba vùng đọc thêm thu gọn: Nhận xét 07.38 (§8.4), Nhận xét 07.41 (§8.5), §8.7. Bổ đề đỉnh kề cải thiện thành Bổ đề 07.36 (dạng chuẩn, sau định lý Bland). Ánh xạ số cũ → mới: `map-lec-07.md`. Deck không đổi; một dẫn chiếu trong ghi chú diễn giả (dòng 243, "Định lý 07.20" → 07.17) chờ giai đoạn 3.
+
+## Quyết định cấu trúc đợt 2026-11-13
+
+- Ghi chú bài giảng viết lại (2026-11-12) là chuẩn nội dung. Mạch 4 theo thứ tự lập luận của ghi chú: Định lý 07.20 (chỉ giả thiết có điểm cực biên; kết luận $z^*=+\infty$ hoặc có điểm cực biên tối ưu) → Định lý 07.23 bốn kết cục (suy từ 07.20) → Thuật toán 07.27 trên dạng chuẩn, đầu ra "nghiệm cơ sở khả thi khi dừng". Bổ đề đỉnh kề cải thiện (07.36) cần quy tắc Bland khi suy biến, nên đứng ở mạch 5 sau S08b, kèm Mệnh đề 07.37 (S08c).
+- Ký hiệu: biến dư $e$, $e_4$; trạng thái của quy hoạch động $\xi$. Tên nút đồ thị tầng viết chữ đứng ($\mathrm s,\mathrm A,\ldots$) như ghi chú (quyết định điều phối viên, lượt 2 ngày 2026-11-13). Tổ hợp lồi trong định nghĩa điểm cực biên viết $x',x''$.
+- Mục tiêu học tập: bốn thẻ trên P02 gộp sáu mục tiêu của ghi chú; thẻ 2 thêm tiêu chuẩn hạng (C02b).
