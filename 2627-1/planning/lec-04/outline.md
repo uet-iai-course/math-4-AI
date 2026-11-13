@@ -41,6 +41,17 @@ Ghi chú `materials/lec-04/lecture-note.md` được viết lại theo `planning
 
 Căn cứ: KKT thực tế trong [Bài 03](../../lecture-03-doi-ngau-lagrange.html), bản Bài 04 trước sửa, đề cương DOCX chính thức và các mục nguồn nêu dưới. Đợt biên tập ngày 2026-09-26 dùng các tác tử GPT-6-Astra native theo chỉ định của người dùng; không gọi OpenRouter, script cầu nối hoặc đọc tệp môi trường và bí mật. Quyền và quy trình OpenRouter trong các mục lịch sử không áp dụng cho đợt này.
 
+**Cập nhật ngày 2026-11-13 (deck theo ghi chú viết lại và bảng phát hiện):** deck có **74 trang trong 7 mạch** (2: 25 trang, 3: 12, 6: 4; các mạch khác không đổi; 7 + 25 + 12 + 10 + 9 + 4 + 7 = 74). Thêm RG18b (lời giải bài tập hội tụ), RN03b (ví dụ một bước Newton), RS06 (ví dụ cận sai số); bỏ RS01, RS04, RS05, RS05b. Mạch 6 thành phần đọc thêm theo §9 của ghi chú (D04): "Nội dung" ghi "6. Tính tự điều chỉnh và cận sai số (đọc thêm)", bảng RZ01b ghi "(đọc thêm)" ở hai hàng theo độ giảm Newton. Mục tiêu học tập trên RP03 thay bằng sáu mục tiêu của ghi chú bài giảng (bảng dưới thay bảng MT1–MT5 ở §3 cho deck hiện hành). Ký hiệu theo §2 của ghi chú: $\mathcal L$, $\mathcal L_s(v,\chi)$, $\mathcal L_Q(d,\eta)$; $Z$ cho cơ sở của $\ker A$; $C$ cho hằng số hội tụ bậc hai; $\gamma_1$, $\bar g$ cho Định lý 04.37; "mức giảm mô hình". Giả thiết của cận sai số: $f^*=\inf f>-\infty$ (Định lý 04.54). Chi tiết từng trang: [storyboard.md](storyboard.md), mục "Đợt sửa theo bảng phát hiện — 2026-11-13".
+
+| Mục tiêu (RP03, theo ghi chú) | Chuẩn | Trang phục vụ |
+|---|---|---|
+| 1. Viết hệ KKT rút gọn; chứng minh tính đủ khi mục tiêu lồi | LLO6 / CLO1 | RP02, RP04 (lời giải có chứng minh tính đủ) |
+| 2. Suy ra hướng ngược gradient, dốc nhất có trọng số, Newton từ mô hình bậc hai | LLO6, LLO9 | RG02, RG08–RG10, RN02, RN03 |
+| 3. Một vòng lặp hạ gradient và Newton bằng số; mức giảm mô hình, giảm thực tế, sai số mục tiêu | LLO8 | RG05, RG11b, RN03b, RN05, RN08b |
+| 4. Cận hội tụ của hạ gradient; tốc độ của Newton cùng giả thiết | LLO8 / CLO2 | RG12–RG17b, RG18b, RN07, RN07b |
+| 5. Hệ Newton có đẳng thức: hệ khối, khử biến, điểm chưa khả thi | LLO9, LLO10 | RE03–RE08b, RR01–RR07b |
+| 6. Tiêu chí dừng nào chặn sai số, dưới giả thiết nào | LLO7 / CLO2 | RZ01b, RZ02b; RS03, RS06 (đọc thêm) |
+
 **Cập nhật ngày 2026-10-12 (văn phong và mật độ mặt trang chiếu):** deck có **75 trang trong 7 mạch**; luận đề, thứ tự mạch, dữ kiện và kết quả toán học không đổi. Danh sách mạch (số và tên trùng trang "Nội dung" RP03b và trang tiêu đề mạch):
 
 | Số | Mạch | Trang tiêu đề | Số trang |

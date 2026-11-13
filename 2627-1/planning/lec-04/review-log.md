@@ -1954,3 +1954,88 @@ Tác tử: cùng tác tử soạn (`general-purpose`, `model: opus`, effort medi
 | nhẹ | ghi chú diễn giả RG06, RG17b; khoảng 11 dòng nguồn | Lệch ghi chú và văn phong: $\lambda_i$ / $\lambda_i(P)$; dòng nguồn "ví dụ số tự xây dựng". | html:269, 534, 577 … | Sửa ký hiệu; chuyển xuất xứ vào nhật ký này |
 
 **Bác bỏ cờ quét cơ học:** "MIT 6.079" chỉ có trên mặt trang ở dòng "Tài liệu đọc" của RZ03 (html:1248), không phải chân trang nguồn, khớp §14 của ghi chú; các chỗ khác nằm trong ghi chú diễn giả. Không phải vi phạm.
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Vai trò:** người sửa (editor) của điều phối viên cho Bài 04; ghi tệp trong phạm vi được giao (deck, `planning/lec-04/{storyboard.md, outline.md, review-log.md}`), không sửa `materials/`, CSS hay SVG, không commit. Loại tác tử, mô hình và effort do điều phối viên ghi từ lời gọi công cụ. `no-ai-slop` chế độ Edit cho mặt trang và ghi chú diễn giả. Căn cứ: quyết định G1–G10 và D04 (`edit-decisions-2026-11-13.md` của điều phối viên), bảng phát hiện ở mục trên, ghi chú bài giảng viết lại 2026-11-12 làm chuẩn nội dung.
+
+**Kết quả:** 75 → 74 trang, bảy mạch giữ nguyên. Thêm RG18b, RN03b, RS06; bỏ RS01, RS04, RS05, RS05b (mạch 6 thành phần đọc thêm, D04). Mã các trang hiện có giữ nguyên (G7).
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| nghiêm trọng, RZ03: bảng "Bài 1–8" của `exercises.md` cũ | sửa | RZ03 | Bảng ba cột: mạch, Bài tập 04.1–04.15 của ghi chú, Bài tập 04.16–04.31 của tệp bài tập; mỗi số đối chiếu tiêu đề khối trong `lecture-note.md` và `exercises.md`. 04.19, 04.31 (hàm chắn, §9.4 đọc thêm) chỉ nêu trong ghi chú diễn giả vì deck không dạy hàm chắn. 58 âm tiết (trần 80). |
+| trung bình, ghi chú diễn giả dẫn "mục B/C" và tên mục cũ của Bài 03 | sửa | RP01, RP02, RP04, RG14–RG18b, RN07, RN07b, RE01, RR01–RR07b và các trang khác có dòng nguồn | Dẫn số khối hiện hành (Bổ đề 04.22, Định lý 04.23, 04.25, 04.27, 04.36, 04.37, Mệnh đề 04.26, 04.47, Định nghĩa 04.46 …) và Bài 03 §5.1 (Định nghĩa 03.4), §8.2 (Định nghĩa 03.29, Định lý 03.32), §8.3 (Ví dụ 03.19). Grep sau sửa: không còn "mục B", "mục C", "Bài 03, mục". |
+| trung bình, RG17: lồi mạnh dạy lại như "Định nghĩa." | sửa | RG17 | "Nhắc lại:" Định nghĩa 01.39 ($f-\tfrac\mu2\lVert\cdot\rVert_2^2$ lồi); dạng bậc nhất, tính duy nhất cực tiểu và $\lVert\nabla f\rVert_2^2\ge2\mu(f-f^*)$ thành một "Mệnh đề." (Mệnh đề 04.26, số ghi trong ghi chú diễn giả vì mặt trang đã có một số hiệu); "Ví dụ." vào ghi chú; công thức bậc nhất xuống hai dòng `aligned` vì tràn ở 390 px. 57 âm tiết, 6 dòng. |
+| trung bình, ký hiệu $L$, $L_s$, $L_m$, $LL^T$ | sửa | RP04, RE01, RG08, RG09, RG09b, RG09c, RE03, RE06 | $\mathcal L(u,\nu)$, $\mathcal L_s(v,\chi)$ (nhân tử $\chi$ thay $\zeta$ theo map §7), $\mathcal L_Q(d,\eta)$; RE06 "phân rã Cholesky" không ghi $LL^T$. |
+| trung bình, cơ sở $\ker A$ viết $N$ | sửa | RE06, RE07 (ghi chú), RE08, RE08b, RS03 | $Z$ ở mặt trang và ghi chú. |
+| trung bình, tập trung mạch 2 | sửa, thêm | RG00, RG01, RG18b | Dòng dẫn RG00 và dòng "Nhu cầu:" mới của RG01 nêu ba phần: hướng, độ dài bước, số bước để $f(x^k)-f^*\le\varepsilon$. RG18b (mới) đưa lời giải ba câu của RG18 lên mặt trang. |
+| trung bình, RP03: 4 mục tiêu so với 6 của ghi chú | sửa | RP03 | Sáu mục tiêu theo ghi chú, rút gọn câu; 79 âm tiết, 6 dòng (trần 80). Ghi chú diễn giả nêu LLO/CLO; `outline.md` có bảng mục tiêu → trang phục vụ. |
+| trung bình, RS00–RS05b: §9 là đọc thêm | sửa, gộp, bỏ, thêm | RP03b, RS00, RS02, RS03, RS06; bỏ RS01, RS04, RS05, RS05b; RZ01b, RZ03 | Theo D04: mạch 6 còn tiêu đề và ba trang (nhu cầu + định nghĩa; định lý + hệ quả có đẳng thức; ví dụ hai điểm). "(đọc thêm)" ở RP03b, dòng dẫn RS00, hàng mạch 6 của RZ03 và hai hàng theo độ giảm Newton của RZ01b. RN07 bỏ hàng tự điều chỉnh. |
+| nhẹ, "Ví dụ." trên trang phát biểu | sửa 8, giữ 1 | RG13, RG15, RG16b, RG17, RG17b → ghi chú; RN02, RN03 → RN03b (mới); RS03 → RS06; RG01 → "Nhu cầu:" | RG01 giữ dữ kiện hàm bậc hai ở dòng "Nhu cầu:" (ví dụ dẫn nhập đặt cùng nhu cầu là chuỗi hợp lệ của AGENTS.md); ví dụ hướng $(-1,0)^T$ ở ghi chú và hình. |
+| nhẹ, RN07: "(định nghĩa ở mạch 6)" | sửa | RN07 | Bỏ cả hàng tự điều chỉnh (đọc thêm; Định lý 04.57 nêu trong ghi chú diễn giả). RN07 62 → 37 âm tiết, hết vượt trần 60. |
+| nhẹ, RN07b, RZ01c: $\gamma$, $\eta_0$, "giai đoạn", thiếu "S đóng", "Ký hiệu:" cho định nghĩa | sửa | RN07, RN07b, RZ01c | Theo Định lý 04.37: $f\in C^2$, $S=\{x\mid f(x)\le f(x^0)\}$ đóng, $\gamma_1$, $\bar g$, "pha tắt dần", "pha bậc hai". Nhãn "Ký hiệu:" bỏ ở RN07 và RN07b. Hằng số hội tụ bậc hai $C$ (Định nghĩa 04.35) thay $c$ ở RN07, RN08b. |
+| nhẹ, RS03: "đạt cực tiểu trong miền" | sửa | RS03, RZ01b | $f^*=\inf f>-\infty$ theo Định lý 04.54. |
+| nhẹ, $\lambda_i$; "ví dụ số tự xây dựng" | sửa | RG06, RG17b (ghi chú); 11 dòng nguồn | $\lambda_i(\nabla^2f)$, $\lambda_i(P)$. Bỏ cụm "ví dụ số tự xây dựng" khỏi mọi ghi chú diễn giả (grep: 0 chỗ còn lại). |
+| bác bỏ cờ "MIT 6.079" trên mặt trang (mục trên) | giữ | RZ03 | Dòng "Tài liệu đọc" của trang tài liệu đọc; không phải chân trang nguồn. |
+
+**Sửa thêm ngoài bảng (G1, G6 và văn phong tác giả):**
+
+- "mức giảm mô hình" thay "giảm mô hình" trên mặt trang và ghi chú (RN04, RN05, RN08b, RS02, RS03, RS06), theo map §7.
+- RN06 ghi $\alpha\in(0,\tfrac12)$, $\beta\in(0,1)$ theo Thuật toán 04.34; RZ01 thêm hàng "Dốc nhất theo $\lVert\cdot\rVert_W$" theo bảng §10 của ghi chú.
+- Bỏ chỉ đường trong ghi chú diễn giả ("giải ở phần tính tự điều chỉnh", "xây dựng ở phần Newton", "được định nghĩa và chứng minh trong phần hội tụ", "của phần Newton", "phần mở đầu", "vẫn là câu hỏi mở", "đối tượng của bài tập 8").
+- Hai cảnh báo console của KaTeX ("Unrecognized Unicode character ớ/ứ") do `\text{với}` ở RG08 và `\text{tức}` ở RG10: chuyển chữ ra khỏi công thức. Lượt kiểm trước sửa có 8 cảnh báo, sau sửa 0.
+- RN07b: công thức số bước xuống hai dòng (`gathered`) vì cắt ở 390 px.
+
+**Xuất xứ số liệu (G6).** Các số của ba bài toán tính tay (hàm bậc hai $\tfrac12(3x_1^2+7x_2^2)$, hàm $s-\log s$, bài toán trên đường $u_1+u_2=14$), các điểm của bài tập trên lớp ($x^1=(1/2,-3)^T$, $s^1=7/16$, $(8,6)^T$, $(4,2)^T$ với $\nu=2$) và dữ liệu kiểm tra số ở RZ02b ($M=\operatorname{diag}(1,2)$, $y=0$, $\rho=1$) do học phần dựng để tính tay; chúng trùng §3 của ghi chú bài giảng, các Ví dụ 04.3–04.24 và Bài tập 04.3, 04.7, 04.9, riêng dữ liệu kiểm tra số của RZ02b chỉ có trên deck; dòng "ví dụ số tự xây dựng" không còn trong ghi chú diễn giả.
+
+**Số liệu tính lại (trang mới hoặc đổi số):** RG18b: $6(16/49)^k\le0{,}01$ khi $k\ge\ln600/\ln(49/16)\approx5{,}72$ ($k=5$: $0{,}0223$; $k=6$: $0{,}0073$); $\ln6200/\ln(7/4)\approx15{,}6$; tại $t=1/16$, điểm $(13/8,9/4)^T$, $f=2775/128\le291/8=62-410/16$; $t_{\min}=1/28$, cận $20\cdot28/(2k)=280/k$. RN03b: $16d=3$, $s^1=7/16$, $\varphi'(7/16)=-9/7$. RS06: $\log4-3/4\approx0{,}63629$, $\log2-1/2\approx0{,}19315$, $1/2-\log(3/2)\approx0{,}09453$, $0{,}28125/0{,}63629\approx0{,}442$. RN07b: $\bar g$, $\gamma_1$, $\varepsilon_0=2\mu^3/L_H^2$ đối chiếu Định lý 04.37.
+
+**Kiểm tra (người sửa chạy):** `deck_check.py --shots` tại `http://127.0.0.1:8810/2627-1/lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html`: 74 trang, 0 lỗi console, 0 lỗi trang, 0 request hỏng, 0 `.katex-error`; không trang nội dung nào vượt 60 âm tiết hay 6 dòng (RP03 79/80; RP03b 7 dòng, ngoại lệ đã ghi); không trang nào cuộn ngang ở 390 px. Năm trang RG08, RG09b, RG09c, RG10, RN04 báo OVERFLOW (RG08, RG09c thêm NARROW-H 1), như lượt kiểm trước sửa: phần tử bị đếm là `path` trong SVG dấu căn của KaTeX (`\sqrt`), rộng khoảng 400em và bị chính thẻ `svg` cắt; mép phải của `svg` nằm trong khung (ví dụ RG09c: `path` +9808 px, `svg` −150 px ở 390 px), ảnh chụp 1600×900 và 390×844 không có nội dung tràn. Đã xem ảnh chụp các trang RP03, RG01, RG17, RG18b, RN03b, RN07, RN07b, RS02, RS03, RS06, RZ01, RZ03, RG09b ở hai kích thước. `git diff --check` sạch. Storyboard có đúng một mục cho mỗi trong 74 trang (đối chiếu tự động mã `data-slide-id` với tiêu đề `### …`).
+
+### Lượt sửa sau kiểm lại (2026-11-13)
+
+Theo danh sách 25 mục đã duyệt của điều phối viên (`merge-04.md`) và một mục thêm từ kiểm lại Bài 03. Cùng phạm vi tệp, không commit.
+
+| mục | xử lý | trang |
+|---|---|---|
+| 1 [NT] $\psi$ ở RZ01b sau khi bỏ RS04 | ô viết lại: "tự điều chỉnh, $Z^T\nabla^2F\,Z\succ0$, $F^*>-\infty$, $\delta_{eq}<1$, $u$ khả thi" | RZ01b |
+| 2 câu hỏi ba phần mạch 3 | dòng dẫn RN00 và "Nhu cầu:" RN01 nêu hướng theo Hessian, tiêu chí dừng, số bước | RN00, RN01 |
+| 3 storyboard dẫn tới trang đã bỏ | sửa Đầu vào/Đầu ra/Vị trí/ranh giới của RS00, RS02, RS03, RZ00, RZ01b (nối RS06 → RZ01b) | storyboard |
+| 4 "Nội dung trên trang" cũ | viết lại cho RN02, RN03, RN05 (tiêu đề khớp deck), RS02, RS03, RG17, RG18, RN07, RN07b, RZ01b, RZ03, RE01, RG10, RE06, RR01; nguồn "mục B/C" ở RG14, RG15, RG17, RG17b, RN07 đổi sang số khối | storyboard |
+| 5 số trang | mạch 2: 25; tổng 7 + 25 + 12 + 10 + 9 + 4 + 7 = 74; tiêu đề "Đặc tả hiện hành" ghi 74 trang | storyboard, outline |
+| 6 thứ tự mục | RP03, RP03b chuyển lên sau RP00; thứ tự mục storyboard trùng thứ tự trình chiếu (kiểm tự động) | storyboard |
+| 7 RE01 | thêm "Nhu cầu:"; hệ KKT gộp thành một dòng, $\mathcal L$ vào ghi chú (giữ ≤ 6 dòng) | RE01 |
+| 8 "Ví dụ." trên trang phát biểu | chuyển vào ghi chú diễn giả; RE06 dòng kết đổi thành "$d=Z\Delta z$ trùng hướng của hệ khối …" | RG10, RE06, RR01 |
+| 9 RS06 "Diễn giải:" | "cận không nhỏ hơn sai số ở cả hai điểm, bằng nhau tại $s=1/4$, nơi $\delta^2/2$ bằng khoảng $44\%$ sai số" (kiểm: $0{,}193\ge0{,}095$; $0{,}28125/0{,}63629\approx0{,}442$); rút một âm tiết để dòng ≤ 20 | RS06 |
+| 10, 23 | RN07 "Định nghĩa. Dãy $x^k\to x^*$ hội tụ bậc hai …", Hessian Lipschitz "nếu … với mọi $x,y$"; RN07b "Ký hiệu:" thay "Hằng số:" | RN07, RN07b |
+| 11 RP03 | mục 2 và 6 theo câu đề nghị; mục 1 "chứng minh tính đủ khi lồi", RP04 thêm câu hỏi và dòng lời giải chứng minh tính đủ trên mặt trang (tính cần ở ghi chú RP02) | RP03, RP04, outline |
+| 12 RG00 | "chọn hướng làm $f$ giảm và độ dài bước, rồi đếm số bước để …" | RG00 |
+| 13, 14 | bỏ "6 bước"/"$k=16$" khỏi ghi chú RG17, RG17b; ý "cận chỉ dùng tính lồi và gradient Lipschitz" giữ ở RG16b, bỏ ở RG17, RG18b | ghi chú |
+| 15 | bỏ "Phần mở đầu đặt hai vấn đề" (RZ01), câu chỉ đường (RR07b); RP03b "biến tiêu chí dừng … thành một cận" | ghi chú |
+| 16 | $\delta_N^2/2$ ở RZ01 | RZ01 |
+| 17 | bỏ câu "sai lệch $Au-b$ có thể tích lũy do sai số máy" | RE07 ghi chú |
+| 18 | số mẫu $N$ thay $m$ | RZ02, RZ02b |
+| 19, 20 | "không chứa $\mu$, $L$, $L_H$"; (9.35) cho pha bậc hai, (9.36) cho tổng số bước | RN07, RN07b ghi chú |
+| 21 | $\log$ thay $\ln$ | RG18b |
+| 22 | "tại mọi điểm khả thi" | RS03 |
+| 24 | "$k\ge1$" ở "Nhu cầu:" RG17; "khi $d\ne0$" ở RE07 | RG17, RE07 |
+| 25 | $h(t)$ thay $\varphi(t)$ (ghi chú RG03), $\varsigma$ thay $\tau$ (ghi chú RG12); "mức giảm mô hình/thực tế" ở RG10, RN05 (bảng), RN08b, RE05 (mặt trang: "mức giảm thực tế $266-140=126$ bằng mức giảm mô hình $\tfrac12d^THd$") | nhiều trang |
+| thêm (kiểm lại Bài 03) | RP01 ghi mục tiêu $\tfrac12\lVert Xw-y\rVert_2^2$ trước hệ $(X^TX+2\lambda I)w=X^Ty$, khớp Ví dụ 03.19 và ghi chú Bài 04 | RP01 |
+
+**Kiểm tra:** `deck_check.py --shots --out …/check-04/r1`: 74 trang; 0 lỗi console, lỗi trang, request hỏng, KaTeX; không trang nào vượt trần âm tiết, dòng hay 20 âm tiết mỗi dòng (RP03 79/80; RP03b 7 dòng là ngoại lệ đã ghi); không trang nào cuộn ngang ở 390 px. Cờ OVERFLOW còn ở RG08, RG09b, RG09c, RG10, RN04, là phần tử `path` của dấu căn KaTeX như đã ghi ở mục trên; công thức không viết lại để né cờ. Đã xem ảnh 1600×900 và 390×844 của RP01, RP04, RE01, RG10, RR01, RS06, RZ01b, RN07, RE06, RN01. `git diff --check` sạch.
+
+**Hai mục nhẹ cuối (2026-11-13):** RN07: câu Hessian $L_H$-Lipschitz gắn nhãn "Định nghĩa." (42 âm tiết, 3 dòng). RZ01: ghi chú diễn giả thêm câu nối sang bảng tiêu chí dừng RZ01b. `deck_check` (RN07, RZ01; `…/check-04/r2`): 0 lỗi console, lỗi trang, request hỏng, KaTeX; không vượt trần; đã xem ảnh RN07 ở 1600×900 và 390×844 (bảng cuộn ngang trong `.table-scroll` ở 390 px, như trước). `git diff --check` sạch.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (RE07 câu sai số máy, RZ02 $m\to N$, trung bình) → đạt |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (RZ01b dùng $\psi$ đã mất định nghĩa, nghiêm trọng; câu hỏi mạch 3; storyboard) → đạt |
+
+Quyết định của điều phối viên: theo D04, mạch 6 (RS) rút còn RS00, RS02, RS03, RS06 và ghi "(đọc thêm)" như §9 của ghi chú; thêm mục RP01 (mục tiêu $\tfrac12$) từ lượt kiểm lại Bài 03.
+
+Kiểm của điều phối viên: đọc diff; 74 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`; RP03b LINES (ngoại lệ đã ghi); cờ OVERFLOW/NARROW-H ở RG08, RG09b, RG09c, RG10, RN04 là đuôi SVG dấu căn KaTeX bị cắt (báo nhầm). Đã xem ảnh 1600×900 và 390×844 của RP03, RG09c, RG17, RG18b, RN07, RN07b, RS03, RS06, RZ01b, RZ03: vừa khung.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
