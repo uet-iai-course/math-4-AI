@@ -51,7 +51,7 @@ Dàn bài này lập ngày 2026-10-11 theo thiết kế hai bài do người dù
 1. **Tính toán không cho phép dùng toàn bộ dữ liệu ở mỗi bước.** Một gradient đầy đủ tốn $O(nd)$, một bước Newton tốn $O(nd^2+d^3)$; với $n$ và $d$ của bài toán hiện đại, ngay một bước như vậy mỗi lần cập nhật đã vượt ngân sách. Phiên A3 đếm các chi phí này; kết luận nêu thành giới hạn (i), Bài 06 (B3) mang hệ quả: SGD theo nhóm nhỏ là phương án còn lại khi ngân sách mỗi bước cố định, và nhiễu cùng tốc độ yếu hơn là hệ quả phải chấp nhận, không phải mục tiêu thiết kế.
 2. **Cực tiểu chính xác của mất mát huấn luyện không phải đích.** $F$ là đại lượng thay thế cho rủi ro trên dữ liệu mới $R$. Phiên A1 cho thấy khớp dữ liệu huấn luyện tốt hơn khi $d$ tăng nhưng sai số trên dữ liệu ngoài mẫu xấu đi; phiên A2 cho thấy trên dữ liệu tách được, cực tiểu chính xác không tồn tại và chính quy hóa là thành phần làm bài toán đặt chỉnh. Kết luận cho thấy dừng sớm cho sai số xác thực nhỏ hơn nghiệm chính xác; vì vậy dừng sớm và chính quy hóa là một phần của phương pháp.
 
-Điều còn giữ được khi rời khung tất định (KL04, chính xác hóa sau cổng storyboard Bài 06 và sau rà soát 2026-10-12; từ 2026-10-15 KL04 bỏ khỏi deck, nội dung thuộc G01 của Bài 06 và Nhận xét 05.42 của ghi chú bài giảng): tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ khi còn tính được (bổ đề giảm); với SGD, bất đẳng thức một bước có thêm số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu với tốc độ $O(1/k)$ (T6); điểm dừng xấp xỉ theo nghĩa của T7 ($\min_{k<K}$ chuẩn gradient) và T8 (trung bình kỳ vọng, có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước.
+Điều còn giữ được khi rời khung tất định (KL04, chính xác hóa sau cổng storyboard Bài 06 và sau rà soát 2026-10-12; từ 2026-10-15 KL04 bỏ khỏi deck, nội dung thuộc G01 của Bài 06 và Nhận xét 05.40 của ghi chú bài giảng; từ 2026-11-13 ghi chú diễn giả KL03 dẫn Nhận xét 05.40 để đọc thêm): tính giảm mỗi bước của hạ gradient dùng gradient đầy đủ khi còn tính được (bổ đề giảm); với SGD, bất đẳng thức một bước có thêm số hạng nhiễu; với $F_\lambda$ lồi mạnh, bước hằng tới lân cận với $\mathbb E\lVert w_k-w^*\rVert^2$ có bậc $\eta\tau^2/\mu$ (T5), bước giảm dần tới cực tiểu với tốc độ $O(1/k)$ (T6); điểm dừng xấp xỉ theo nghĩa của T7 ($\min_{k<K}$ chuẩn gradient) và T8 (trung bình kỳ vọng, có mức nhiễu nền). SGD không bảo đảm $F$ giảm theo kỳ vọng ở mỗi bước.
 
 **Tệp kế hoạch cũ.** Dàn bài và storyboard của deck Bài 05 cũ (từ ngày 2026-10-12 là Bài 06b, `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html`, 37 trang) nằm ở `planning/lec-06b/outline.md` và `storyboard.md` (trước đó là `outline.old-2026-10-01.md` và `storyboard.old-2026-10-01.md` trong thư mục này); nhật ký cũ nằm ở `planning/lec-06b/review-log.md` và `review-log-lecture-note.md`, nhật ký của kế hoạch mới ở `planning/lec-05/review-log.md`.
 
@@ -70,9 +70,10 @@ Dàn bài này lập ngày 2026-10-11 theo thiết kế hai bài do người dù
 
 | Mục tiêu của bài | Hành vi kiểm tra được | Chuẩn đầu ra |
 |---|---|---|
-| MT1 | Giải phương trình chuẩn, xác định hạng và số điều kiện; phân biệt sai số huấn luyện với sai số ngoài mẫu khi $d$ tăng; chọn mô hình bằng tập xác thực | LLO11 → CLO1 |
-| MT2 | Chứng minh mất mát logistic không có cực tiểu trên dữ liệu tách được; chứng nhận $F_\lambda$ lồi mạnh, tính $\mu$, $L$, $\kappa$ | LLO11 → CLO1; CLO2 |
-| MT3 | Đếm chi phí một bước của hạ gradient và Newton; chọn phương pháp theo $(n,d,\kappa,\varepsilon)$ | LLO15 (Newton) → CLO4; LLO11 |
+| MT1 | Giải phương trình chuẩn với đặc trưng đa thức; xác định hạng, tập nghiệm, nghiệm chuẩn nhỏ nhất và số điều kiện; chọn mô hình trên tập xác thực, báo cáo trên tập kiểm thử (sửa 2026-11-13 theo mục tiêu 1 của ghi chú) | LLO11 → CLO1 |
+| MT2 | Chứng minh mất mát logistic không có cực tiểu trên dữ liệu tách được; nêu điều kiện đủ cho sự tồn tại cực tiểu; chứng nhận $F_\lambda$ lồi mạnh, tính $\mu$, $L$, $\kappa$ (sửa 2026-11-13) | LLO11 → CLO1; CLO2 |
+| MT3 | Đếm chi phí một bước của hạ gradient và Newton; đổi Định lý 04.27, 04.37 thành số bước; so tổng chi phí theo $(n,d,\kappa)$ (sửa 2026-11-13) | LLO15 (Newton) → CLO4; LLO11 |
+| MT4 | Giải thích dừng sớm bằng hạ gradient theo hướng riêng; nêu hai giới hạn của khung tất định (thêm 2026-11-13, mục tiêu 4 của ghi chú; phần "bảo đảm còn lại" là ngoại lệ G3, chỉ ở ghi chú diễn giả KL03) | LLO11 → CLO1 |
 
 LLO12 (SGD, momentum, Nesterov), LLO13 (khởi tạo), LLO14 (AdaGrad, RMSProp, Adam), LLO16 (chuẩn hóa theo lô, hạ theo tọa độ, trung bình Polyak, tiền huấn luyện có giám sát, phương pháp liên tục, curriculum learning) không được Bài 05 mới hỗ trợ. Phần SGD của LLO12 thuộc B3 của Bài 06 mới. Theo quyết định của điều phối viên, bài không được bổ sung các nội dung này để phủ đủ LLO.
 
@@ -139,7 +140,7 @@ Với mô hình tuyến tính theo đặc trưng và mất mát lồi, xác đ�
 
 - Mô hình tuyến tính theo đặc trưng và mất mát lồi; không xét mô hình phi lồi (Bài 06).
 - Phương pháp tất định dùng toàn bộ dữ liệu ở mỗi bước; gradient ngẫu nhiên thuộc B3 của Bài 06.
-- Hai giới hạn của khung, (i) chi phí theo $n$ của mỗi bước và (ii) biểu diễn của đặc trưng cố định, được nêu ở KL03, trang cuối mạch 5. Các bảo đảm còn lại khi rời khung tất định (SGD, mục tiêu không lồi) không phát biểu trên deck Bài 05 từ 2026-10-15; chúng thuộc F02–F04, G01–G01b của Bài 06 và Nhận xét 05.42 của ghi chú bài giảng.
+- Hai giới hạn của khung, (i) chi phí theo $n$ của mỗi bước và (ii) biểu diễn của đặc trưng cố định, được nêu ở KL03, trang cuối mạch 5. Các bảo đảm còn lại khi rời khung tất định (SGD, mục tiêu không lồi) không phát biểu trên deck Bài 05 từ 2026-10-15; chúng thuộc D05, E04, F03b, F04, G01–G01b của Bài 06 và Nhận xét 05.40 của ghi chú bài giảng (đọc thêm, dẫn trong ghi chú diễn giả KL03; ngoại lệ G3 ngày 2026-11-13).
 - Cận số bước là cận trên. Trên ví dụ của bài, số bước thực của hạ gradient nhỏ hơn cận khoảng 9 đến 20 lần (CP03).
 - Chi phí đếm theo bậc với ma trận dày đặc, $n\ge d$; trường hợp $d>n$ và dữ liệu thưa nêu ở ghi chú CP07.
 - Sai số trên vài điểm ngoài mẫu chỉ là ước lượng của $R$; ví dụ $n=5$ minh họa định tính, không phải thực nghiệm. Ví dụ thu nhỏ có tập xác thực bốn điểm, không có tập kiểm thử riêng.
@@ -1142,3 +1143,24 @@ Câu hỏi trung tâm. Mạch 2: khi $d$ tăng so với $n$, nghiệm bình phư
 - **Mạch 3.** LG00 dòng dẫn gắn $d$, $n$ và $\kappa$; LG01 nhãn $d=2$, $d=3=n$; LG02, LG04, LG06, LG08 nhãn "Nhắc lại:" cho lý thuyết Bài 01; LG03 bỏ dòng cực tiểu với $(1,u)$, giá trị $F^*$ chuyển sang dòng Ví dụ của LG06; LG05 thêm hệ quả cho $\operatorname{rank}X=n$ (từ LG10); LG07 mở bằng "Nhu cầu:", "Ký hiệu: $F_\lambda$" thay "Định nghĩa."; LG08–LG09, LG12 như các mục ở trên; LG10 thêm dữ kiện và dòng "Tính …", bỏ dòng năm mẫu; LG11a câu 2 nêu điều kiện biên âm.
 - **Thời lượng:** không đổi theo mạch (HQ $0{,}56+0{,}34$, LG $0{,}67+0{,}33$); trong LG, LG08 $0{,}08\to0{,}06$, LG12 $0{,}06\to0{,}08$.
 - **Sửa vòng 2 (2026-10-15):** HQ06, LG03 đổi tiêu đề thành "Ví dụ: nội suy khi $d=n$", "Ví dụ: mất mát dọc một tia"; HQ09 trường hợp số của cận độ nhạy vào ghi chú, bất đẳng thức thành khối công thức; LG04 bỏ dòng "Ví dụ."; LG06 dòng "Ví dụ." thành "Ý nghĩa:"; LG09 nhãn "Trực quan."; LG01 "Nhu cầu:" thêm vế "Khi không có, sửa mục tiêu và tính $\kappa$"; LG05 bỏ "như năm mẫu với $d=5$"; HQ08 chú thích hình vào `alt`; sửa ngắt dòng ở nhiều trang. Thời lượng không đổi.
+
+## Cập nhật 2026-11-13: sửa deck theo bảng phát hiện và ghi chú viết lại
+
+Ghi chú bài giảng viết lại ngày 2026-11-12 là chuẩn nội dung của deck (quyết định G1–G10 của điều phối viên). Các mục từng trang ở trên giữ đặc tả lịch sử; mặt trang hiện hành, lý do và số âm tiết nằm ở storyboard (dòng "Sửa 2026-11-13"), nhật ký ở review-log.
+
+- **Mục tiêu.** Bốn mục tiêu MT1–MT4 như bảng ở mục Đối chiếu LLO/CLO, khớp bốn mục tiêu của ghi chú; MD02 viết gọn (73 âm tiết, trần 80; mục tiêu 2 có hai ý con). Mục MD02 ở trên (ba mục tiêu) được thay bằng bản này.
+- **Số trang.** 61 → 64, sáu mạch không đổi (KL06 thêm ở lượt đầu, bỏ ở lượt sửa 1 sau kiểm lại):
+
+| Mạch | Trang tiêu đề | Trang theo thứ tự |
+|---|---|---|
+| 1. Bài toán trung tâm và khung chung | MD01 | MD01, MD02, MD03a, MD03b, MD03c, MD04 (6) |
+| 2. Hồi quy nhiều chiều | HQ00 | HQ00–HQ05, HQ05a, HQ06, HQ07, HQ07a, HQ07b, HQ08, HQ09, HQ09a, HQ10, HQ11, HQ11a, HQ12 (18) |
+| 3. Hồi quy logistic và chính quy hóa | LG00 | LG00–LG05, LG05a, LG06–LG11, LG11a, LG12 (15) |
+| 4. Độ cong và chi phí tính toán | CP00 | CP00, CP01, CP02, CP04, CP03, CP06, CP07, CP07a, CP08, CP08a, CP09, CP10, CP10a, CP11 (14) |
+| 5. Giới hạn của tối ưu tất định | KL00 | KL00, KL01, KL01a, KL01b, KL03 (5) |
+| 6. Tổng hợp và chuyển giao | TK00 | TK00–TK03, TK03a, TK04 (6) |
+
+- **Câu hỏi trung tâm của mạch 5** không đổi: độ chính xác tối ưu cần thiết khi đích là $R$ nhỏ và hai giới hạn của khung tất định. Các bảo đảm còn lại khi rời khung tất định (Nhận xét 05.40) chỉ ở ghi chú diễn giả KL03 (ngoại lệ G3). Đề nghị người dùng: đánh dấu §7.4 của ghi chú là "Đọc thêm" hoặc bỏ cụm này khỏi mục tiêu 4 của ghi chú.
+- **Ký hiệu** theo bảng §2 của ghi chú: $\varepsilon_{\rm tol}$ cho độ chính xác đích ($\varepsilon$ chỉ nhiễu nhãn, $\sigma_\varepsilon^2$ phương sai nhiễu); $\gamma$ là biên nhỏ nhất, $\gamma_1$ mức giảm mỗi bước của pha tắt dần Newton; $r$ là cận của $\lVert x_i\rVert$, bán kính trong chứng minh Định lý 05.22 là $a$; $\hat w$ là một nghiệm của $Xw=y$, $w_0$ là hệ số chặn, điểm đầu "từ $w=0$"; $m$, $\nu$ trong bước hạ gradient (Thuật toán 05.31); "pha" thay "giai đoạn"; "sai số xác thực" thay "sai số ngoài mẫu".
+- **Số hiệu.** Kết quả của deck mang số khối của ghi chú (Mệnh đề 05.10, 05.11, 05.15, 05.21, 05.24, 05.28, 05.33, 05.34, 05.37; Định lý 05.22, 05.26; Định lý 04.27, 04.37 dưới "Nhắc lại:"), tối đa một số trên mặt trang.
+- **Hằng số** của phép đếm có hằng số theo Ví dụ 05.22: Cholesky $d^3/6$ phép nhân–cộng, bước Newton $\approx5{,}04\cdot10^{10}$, tỉ số $252$, ngưỡng $137$, chênh $366$ lần ở $\lambda=10^{-5}$.

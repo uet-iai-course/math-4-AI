@@ -986,3 +986,71 @@ Kiểm: tác tử quét mọi `materials/lec-*/*.md`, `materials/README.md`, m�
 | nhẹ | ghi chú diễn giả CP07, KL01a, MD04, LG09 | Quy tắc: trỏ tới bài sau ("BFGS … Bài 06c", đã bỏ khỏi Nhận xét 05.35; "Bài 06"; "$x$ của Bài 06"); "nhóm nhỏ" / ghi chú "lô nhỏ"; lỗi gõ ",,". | html:447, 537, 62, 332 | Cắt và sửa |
 
 **Đã kiểm, không lỗi / bác bỏ cờ quét:** chuỗi "dense" chỉ là "dày đặc (dense)" (html:62, 443), không phải lớp CSS, **bác bỏ**. Mật độ: MD02 62 (trang mục tiêu, trần 80), KL01a và HQ05a 60 (đúng trần). Các số dẫn trên deck tồn tại và đúng nội dung: 01.5, 01.7, 01.8, 01.35, 01.37, 01.38, 01.41, 01.43, 02.21(c), 04.20, 04.32(c), 05b.17, 05c.52, 05.25, 05.37, Tình huống 01.1. Số liệu khớp Ví dụ 05.4, 05.9, 05.16, 05.19, 05.22, 05.24.
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Bối cảnh.** Biên tập viên sửa `lecture-05-khong-gian-dac-trung-nhieu-chieu.html` theo bảng phát hiện của mục trên, quyết định G1–G10 của điều phối viên (ghi chú bài giảng là chuẩn nội dung) và quy tắc deck hiện hành. Phạm vi ghi: deck, `img/lec-05/*.svg`, `storyboard.md`, `outline.md`, nhật ký này. Không sửa `materials/`, CSS, bài khác. Chưa commit. Vai trò: biên tập viên (worker), `no-ai-slop` chế độ Edit; loại tác tử, mô hình và effort do điều phối viên ghi theo lời gọi công cụ.
+
+**Kết quả.** 61 → 65 trang, sáu mạch. Thêm HQ07b (Mệnh đề 05.11), KL01b (Mệnh đề 05.37), KL06 (Nhận xét 05.40); tách HQ09a từ HQ09; ví dụ của CP08 gộp vào CP08a. Ba SVG (`hq-data-points.svg`, `hq-errors-vs-d.svg`, `hq-fits-d2-d5.svg`) đổi nhãn, `title`, `desc` "ngoài mẫu" thành "xác thực"; giữ `role="img"`. Chi tiết từng trang: storyboard, dòng "Sửa 2026-11-13".
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| trung bình — dẫn "Bài tập k của học liệu Bài 05" trong ghi chú diễn giả | sửa: nguồn trỏ khối thật của ghi chú (Mệnh đề, Định lý, Ví dụ, Tình huống) và "cùng dạng Bài tập 05.4, 05.5, 05.9"; TK04 dẫn Hệ quả 05.27, Mệnh đề 05.24; TK04 thêm bài 3 "Làm Bài tập 05.13–05.23" | HQ11, HQ11a, LG11, LG11a, CP10, CP10a, TK03, TK03a, TK04 | giữ bài tập trên lớp của deck (G5) |
+| trung bình — "Định lý 05b.18", "ghi chú Bài 05b" cho hội tụ hạ gradient | sửa: Định lý 04.27, 04.37, Định nghĩa 04.18, Nhận xét 04.20, Nhận xét 01.40; Hệ quả 05b.17 chỉ còn ở MD01 (tiên quyết) và ghi chú LG05 qua Hệ quả 05.23 | MD01, MD04, LG09, LG10, CP04 | |
+| trung bình — "sai số/MSE ngoài mẫu" | sửa: "MSE xác thực", "sai số xác thực", "điểm xác thực", "sai số trên dữ liệu mới" (dòng dẫn HQ00) | HQ00, HQ01, HQ03, HQ04, HQ05, MD03a, MD03c, ba SVG | |
+| trung bình — ký hiệu hai nghĩa ($\varepsilon$, $\gamma$, $r$, $w_0$, $s^2$, $z$, $r_i$) | sửa: $\varepsilon_{\rm tol}$ (18 chỗ); $\gamma_1$ cho Newton; $a$, $c_a$ trong chứng minh; $\hat w$ cho một nghiệm, "từ $w=0$" cho điểm đầu khi có hệ số chặn; $\sigma_\varepsilon^2$; $m$, $\nu$ | HQ05, HQ07, HQ07a, LG05a, CP01–CP04, CP06, CP07, CP08, CP08a, CP10, KL01, TK01, TK02 | HQ08 bỏ ví dụ $w^\circ$, dùng Ví dụ 05.7 |
+| trung bình — CP04 "Định lý 4" thiếu giả thiết, $\gamma$, $\varepsilon_0$ chưa định nghĩa, "giai đoạn" | sửa: "Nhắc lại: … (Định lý 04.27, 04.37)"; tập mức dưới đóng; $\varepsilon_0=2\mu^3/L_H^2$ trên mặt trang; $\gamma_1$ trong "Ý nghĩa:"; "pha tắt dần", "pha bậc hai"; $\bar g$, $\gamma_1=\alpha\beta\bar g^2\mu/L^2$ trong ghi chú | CP04, TK02, LG12 (ghi chú) | 54 âm tiết |
+| trung bình — MD02 ba mục tiêu, ghi chú bốn | sửa: bốn mục tiêu theo ghi chú; thêm HQ07b, KL01b, KL06 để mỗi mục tiêu có trang (G3); outline MT1–MT4 | MD02, HQ07b, KL01b, KL06, TK01, TK02, TK00 | 76 âm tiết (trần 80) |
+| trung bình — KL03 "XOR … chứng minh ở Bài 06" | sửa: dẫn Mệnh đề 05.38, 05.39, Ví dụ 05.25 | KL03 | |
+| trung bình — rào đón, câu về trạng thái văn bản, xuất xứ trong ghi chú diễn giả | sửa: bỏ hoặc viết thành câu khẳng định ("Nhãn là $y_i=u_i+\varepsilon_i$…", "Bốn điểm xác thực là lưới chọn trước…", "Một cách trực quan…", "Với $n$, $d$ lớn, một bước Newton đắt hơn…", "Bảng đếm theo ma trận dày đặc (G5)…"); bỏ "dữ liệu/câu hỏi tự xây dựng" | HQ01, HQ03, HQ04, HQ05, HQ05a, HQ10, LG01, LG07, CP02, CP09, câu hỏi bài tập | xuất xứ ghi ở đoạn dưới |
+| trung bình — HQ10 7 dòng | sửa: dòng "Cột $\kappa$…" ghép vào dòng cực tiểu hóa; 6 dòng, 42 âm tiết | HQ10 | |
+| nhẹ — HQ01 dòng 23 âm tiết | sửa: khung "Nhu cầu:" hai dòng (10, 13) | HQ01 | |
+| nhẹ — hằng số Cholesky $d^3/3$, $5{,}05\cdot10^{10}$, 253, 365 | sửa theo Ví dụ 05.22: $d^3/6$ phép nhân–cộng ($\tfrac13d^3$ flop), $5{,}04\cdot10^{10}$, 252, 137, 366; $C_{\rm N}\approx5{,}0\cdot10^{11}$ | CP06, CP08a, CP10a | kiểm lại: $2nd+nd^2/2+d^3/6=5{,}037\cdot10^{10}$; $\tfrac{3{,}684\cdot10^9\cdot50\,001}{5{,}037\cdot10^{11}}=365{,}7$ |
+| nhẹ — "Nhận xét" thay Mệnh đề 05.15, 05.16, 05.34; số khối riêng của deck | sửa: số khối của ghi chú, tối đa một số trên mặt trang; số khác chuyển vào ghi chú; bảng TK01, TK02 bỏ số trong ô | toàn deck | |
+| nhẹ — trang ví dụ thiếu tiêu đề "Ví dụ:", "Tính", "Diễn giải:"; trang phát biểu trộn ví dụ | sửa: LG07, LG12, CP03, HQ02 đổi tiêu đề "Ví dụ: …"; thêm "Tính …"/"Diễn giải:" ở HQ02, HQ07a, LG07, LG12, CP03, CP06, CP08a; HQ09 tách HQ09a; ví dụ CP08 gộp vào CP08a | HQ02, HQ07a, HQ09, HQ09a, LG07, LG12, CP03, CP06, CP08, CP08a | LG06 giữ dòng "Ý nghĩa:" về ba điểm (không trong bảng phát hiện) |
+| nhẹ — trỏ bài sau, "nhóm nhỏ", lỗi ",," | sửa: bỏ "Bài 06c", "$x$ của Bài 06", "Bài 06 phát biểu…"; "lô nhỏ"; sửa ",," | CP07, KL01a, MD04, MD03c, LG09, LG01, CP11 | giữ một câu nối sang Bài 06 ở KL06 và TK04 |
+
+**Xuất xứ số liệu (G6, ghi một lần).** Dữ liệu năm mẫu $u=(-1,-\tfrac12,0,\tfrac12,1)$, $y=u+\varepsilon$ với $\varepsilon=(0{,}1;-0{,}2;0{,}2;-0{,}1;0)$ và bốn điểm xác thực; ba điểm $(-1,0,1)$ nhãn $(-1,+1,-1)$; ví dụ một mẫu; các bộ dữ liệu của HQ11, LG11, CP10, TK03 là dữ liệu sư phạm do học phần dựng, cùng số liệu với ghi chú bài giảng (mục 3, Ví dụ 05.4–05.24, Tình huống 05.1–05.3). Kích thước RCV1 và Bảng 13.3 lấy từ Bottou và Bousquet (2011).
+
+**Quyết định cần điều phối viên xác nhận.** KL06 đảo quyết định `bỏ` KL04/KL04a ngày 2026-10-15 để mục tiêu 4 của ghi chú có trang (G3); lý do và rủi ro trùng một phần với G01, G01b của Bài 06 ghi ở storyboard, mục KL06. Phương án thay thế: chuyển nội dung KL06 vào ghi chú diễn giả KL03 và bỏ cụm "bảo đảm còn lại" khỏi MD02.
+
+**Kiểm tra đã chạy.** `deck_check.py --url http://127.0.0.1:8810/2627-1/lecture-05-khong-gian-dac-trung-nhieu-chieu.html --out <scratchpad>/check-05 --shots`: 65 trang, 0 lỗi console, 0 lỗi trang, 0 request hỏng, 0 `.katex-error`. Không trang nào vượt 60 âm tiết (trang mục tiêu 76, bảng tổng kết 52 và 62, trần 80); không dòng nội dung nào quá 20 âm tiết (dòng dẫn trang tiêu đề mạch tối đa 25, trần 25); MD03a 7 dòng (ngoại lệ có từ trước, ghi ở storyboard). Cờ OVERFLOW còn ở HQ09, HQ11a, LG08, LG10, LG11a, CP07a: một script Playwright riêng xác nhận mọi phần tử bị cờ là `path` trong `.hide-tail` của dấu căn KaTeX (`overflow: hidden`, mép phải của span nằm trong khung), tức không tràn thật; cờ NARROW-H cùng nguồn, `scrollWidth` của trang bằng 390. Đã xem ảnh 1600×900 của MD02, HQ07b, HQ09, HQ10, CP04, CP06, CP08a, KL01b, KL06, TK01, TK02 và ảnh 390×844 của HQ09a, CP08a, KL06 (bảng cuộn ngang trong `.table-scroll`, không tràn trang); CP06 chạm chân trang ở lượt đầu, đã rút dòng "Nhu cầu:" vào ghi chú và chụp lại. `git diff --check` sạch cho các tệp của Bài 05.
+
+### Lượt sửa sau kiểm lại (2026-11-13)
+
+Theo danh sách 16 mục đã duyệt của điều phối viên (`tools/courses/math-4-AI/2627-1/deck-fix-2026-11-13/merge-05.md`). Deck 65 → 64 trang.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| 1 [NT] KL06 dùng SGD, lô nhỏ, $\tau^2$ chưa giới thiệu trong chuỗi bài chính; lặp Bài 06 G01/G01b | bỏ KL06; ghi chú diễn giả KL03 nêu bốn bảo đảm bằng lời, dẫn Nhận xét 05.40 (đọc thêm); MD02 mục tiêu 4 bỏ "bảo đảm còn lại"; sửa theo ghi chú MD03a, KL00 (từ khóa, ghi chú), TK00, TK04; storyboard 64 mục, outline | KL03, MD02, MD03a, KL00, TK00, TK04 | **ngoại lệ G3**; đề nghị người dùng đánh dấu §7.4 (Nhận xét 05.40) của ghi chú là "Đọc thêm" hoặc bỏ cụm khỏi mục tiêu 4 |
+| 2 [TB] "Nhận xét 05.42", đồng bộ outline/storyboard | đổi thành 05.40 (và Mệnh đề 05.38, 05.39, mục 7.2–7.4) ở outline:54, 143, storyboard:21 và đoạn "Trang đã bỏ 2026-10-15" | planning | |
+| 3 [nhẹ] TK01 ghi chú "Ba dòng đầu" | "Hai dòng đầu … Hai dòng sau" | TK01 | |
+| 4 [nhẹ] MD02 ghi chú "đo lại ở hai bảng tổng kết" | sửa: hai bảng đo mục tiêu 1–3 và phần dừng sớm của mục tiêu 4; hai giới hạn tổng kết ở KL03 | MD02 | |
+| 5 [nhẹ] tiêu đề mục storyboard khác h2 | đồng bộ HQ02, HQ04, HQ10, LG07, LG12, CP03; bảng mạch hàng HQ "trên dữ liệu mới" | storyboard | kiểm bằng script: chỉ khác số mạch ở trang tiêu đề mạch |
+| 6 [nhẹ] "Ý nghĩa:" về ba điểm ở LG06; bảng $d=5$ trên HQ10 | LG06: dòng chuyển vào ghi chú (49 → 35 âm tiết); HQ10 thành "Ví dụ: chính quy hóa bậc hai trên năm mẫu" với "Tính $w_\lambda$" và "Diễn giải:" | LG06, HQ10 | |
+| 7 [nhẹ] KL00 dấu tách từ khóa | "&nbsp;·" | KL00 | |
+| 8 [nhẹ] alt HQ08 "ở trang sau"; LG01 "trở lại ở cuối mạch 5" | bỏ | HQ08, LG01 | |
+| 9 [nhẹ] CP07a $d\ge n$ / $d>n$ | "Nhu cầu:" ghi $d>n$ | CP07a | |
+| 10 [nhẹ] KL01b "Ý nghĩa:" | "dừng ở bước $k$ bỏ phần nghiệm theo các hướng có $s_j\ll L/k$, tức các hướng gần phẳng"; ghi chú: hệ số $\approx ks_j/L$ khi $ks_j/L$ nhỏ | KL01b | |
+| 11 [nhẹ] MD02 "nêu điều kiện đủ cho sự tồn tại cực tiểu" | mục tiêu 2 thành hai ý con; 73 âm tiết, dòng dài nhất 19 | MD02 | |
+| 12 [TB] "(Nhận xét 05.8)", "thấp hơn $R$" trên lưới xác thực không ngẫu nhiên | HQ11a, HQ10, KL01a: "số nhỏ nhất …, nên báo cáo cuối cần tập kiểm thử riêng"; KL01a số $0{,}00092$ (kiểm thử) và $0{,}00108$ (xác thực) khớp Tình huống 05.1 | HQ10, HQ11a, KL01a | TK03a (mẫu rút từ $P$) giữ Nhận xét 05.8, viết đúng dạng kỳ vọng |
+| 13 [nhẹ] HQ05 thiếu "$\varepsilon$ độc lập với $u$" | thêm | HQ05 | |
+| 14 [nhẹ] HQ05a $m$ | $n_{\rm kt}$ | HQ05a | |
+| 15 [nhẹ] $\nu_i$ chưa định nghĩa trên mặt trang | CP06: ô $g$ thêm $\nu_i=-y_i\sigma(-m_i)$; CP07: dòng chứng minh | CP06, CP07 | |
+| 16 [nhẹ] giả thiết thiếu | KL01b $0<s_1\le\dots\le s_d=L$; TK02 Newton "$\mu I\preceq\nabla^2f\preceq LI$" trên tập mức dưới, hướng riêng $\operatorname{rank}X=d$ | KL01b, TK02 | TK02 65 âm tiết (trần 80) |
+
+**Kiểm tra.** `deck_check.py … --out <scratchpad>/check-05/r1 --shots`: 64 trang, 0 lỗi console, lỗi trang, request hỏng, `.katex-error`; không trang vượt trần âm tiết, không dòng nội dung quá 20 âm tiết; MD03a 7 dòng (ngoại lệ cũ). Cờ OVERFLOW chỉ còn ở sáu trang có dấu căn KaTeX (HQ09, HQ11a, LG08, LG10, LG11a, CP07a), cùng nguồn `.hide-tail` đã xác minh ở lượt đầu; không viết lại công thức. Đã xem ảnh 1600×900 của MD02, HQ10, CP06, TK02 và 390×844 của MD02, KL01b. `git diff --check` sạch trên các tệp Bài 05.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | đạt (1 trung bình về Nhận xét 05.8 → đã sửa); đạt lượt 2 |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (KL06 nghiêm trọng) → đạt sau khi bỏ KL06 |
+
+Quyết định của điều phối viên: bỏ KL06 (dùng SGD, lô nhỏ, $\tau^2$ chưa giới thiệu trong chuỗi bài chính, dựa vào bài bổ trợ đang ẩn, lặp Bài 06 G01/G01b); ngoại lệ G3 cho cụm "bảo đảm còn lại" của mục tiêu 4, chỉ dẫn Nhận xét 05.40 trong ghi chú diễn giả KL03. Đề nghị người dùng: đánh dấu §7.4 của ghi chú là "Đọc thêm" hoặc bỏ cụm đó khỏi mục tiêu 4 của ghi chú.
+
+Kiểm của điều phối viên: đọc diff; 64 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`; MD03a LINES (ngoại lệ cũ); cờ OVERFLOW/NARROW-H ở HQ09, HQ11a, LG08, LG10, LG11a, CP07a là đuôi SVG dấu căn KaTeX bị cắt (báo nhầm, đã xác minh). Đã xem ảnh 1600×900 và 390×844 của MD02, HQ07b, HQ09a, HQ10, CP06, KL01b, KL03, TK02: vừa khung.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
