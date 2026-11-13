@@ -223,3 +223,96 @@ Tác tử ánh xạ dẫn chiếu: `general-purpose`, `model: opus`, effort `med
 | nhẹ | C12, E02, D06 | Quy tắc: tương phản nhị phân, nhận xét bên lề. | "Gauss là giả thiết mô hình, không phải kết luận từ bốn mẫu."; hai câu "Lưu ý: … nhân quả" | "Giả thiết: nhiễu Gauss."; bỏ các nhận xét nhân quả |
 
 **Đã kiểm, không lỗi:** số liệu B05–B19L, C12, D08, D10B, E03–E05 tính lại khớp ghi chú. Cấu trúc: 7 mạch, trang tiêu đề mạch đúng số, `id`, dòng dẫn.
+
+## Sửa deck theo bảng phát hiện 2026-11-13
+
+**Căn cứ.** Quyết định G1–G10 và D00 của điều phối viên (2026-11-13); bảng phát hiện ở mục trên; `AGENTS.md` §"Cấu trúc bộ trang chiếu mặc định" đến §"Tiêu chuẩn trình bày và khả năng đọc"; mục "Deck structure and content" của `CLAUDE.md` học phần; mục "Writing course content" và "The author's voice" của `../CLAUDE.md`. Chuẩn nội dung: `materials/lec-00/lecture-note.md` và `exercises.md` (chỉ đọc). `no-ai-slop` chế độ Edit cho mặt trang và ghi chú diễn giả.
+
+**Tác tử.** Vai trò: biên tập (worker), một tác tử, ghi `lecture-00-on-tap-nen-tang-toan-hoc.html`, `planning/lec-00/storyboard.md` (tạo mới), `outline.md`, mục này. Loại, mô hình và effort do điều phối viên ghi từ lời gọi công cụ. Không commit.
+
+**Kết quả.** 89 → 93 trang; 7 mạch giữ nguyên. Thêm B11A, B11B, B11C (điều kiện tối ưu) và C14L (lời giải). Chuyển: A08–A10 lên trước A05; A04 sau A05B; A06 sau A12; B12–B13 sang mạch 5; C10 lên đầu mạch 5; C11, C13, C14 sang mạch 6 sau D06; A11 sang mạch 7 trước E05. Không bỏ hay gộp trang. Mã trang giữ nguyên (G7). Chi tiết từng trang trong `storyboard.md`.
+
+**Xuất xứ số liệu (G6).** Bốn căn nhà $(40,1,11)$, $(50,2,12)$, $(60,2,14)$, $(70,3,19)$, bảng $p_{U,V}$ $0{,}30/0{,}20/0{,}10/0{,}40$, các ma trận $\begin{bmatrix}1&0{,}5\\0{,}5&1\end{bmatrix}$ và $\begin{bmatrix}1&0{,}8\\0{,}8&1\end{bmatrix}$, hàm $h$, $F$ là số liệu học phần dựng để tính tay, lấy từ ghi chú bài giảng (Ví dụ 00.1, 00.15, 00.32, 00.37, 00.38). Các câu xuất xứ trên mặt trang và trong ghi chú diễn giả đã bỏ.
+
+**Tính lại các số đổi hoặc mới.** $\eta^\star=34/233\approx0{,}1459$, $2\eta^\star\approx0{,}292$; $Xg=(10{,}5;2{,}5;-2{,}5;-10{,}5)$, $\lVert Xg\rVert^2=233$; $f(w^{(0)}-\eta g)=4{,}5-34\eta+116{,}5\eta^2$ cho $2{,}265$ ($\eta=0{,}1$) và $3{,}09125$ ($\eta=0{,}05$). Điểm dừng của $h$: $(-6/7,5/7)$, $h=-8/7$, giá trị riêng $3\pm\sqrt2\approx1{,}59;\,4{,}41$. $\lVert\phi_1\rVert_2=4{,}25^{1/2}\approx2{,}06$. $\rho=0{,}1/0{,}06^{1/2}\approx0{,}408$; giá trị riêng của $\Sigma_Z$ $0{,}345$ và $0{,}145$. Gauss $\rho=0{,}8$: $10/9$, $10$, tỉ số $e^{40/9}\approx85$. Bài tập 00.2: $\varepsilon=(2,0,0,2)$, $X^T\varepsilon=(4,0,0)$, dải $\sigma=0{,}5$: $[15{,}02;16{,}98]$. $s=u^2-v^2$: Hessian $\operatorname{diag}(2,-2)$ bất định dấu. Taylor của $h$ tại $(0,1)$: $0{,}21$; $\nabla\ell(0,1)=(0,2)$. Mọi số khớp ghi chú.
+
+| phát hiện | xử lý | trang | ghi chú |
+|---|---|---|---|
+| F1 nghiêm trọng: căn cứ của $\sigma=1$ ngược ghi chú | sửa: "Giả thiết: (P1) với $\sigma^2=1$, bằng $\hat\sigma^2=\mathrm{SSE}/m=4/4$"; ghi chú diễn giả dẫn Murphy §11.2.3.6, bỏ vế "không ước lượng từ bốn mẫu" | E04 | viết bằng phương sai để tránh căn bậc hai trên mặt trang |
+| F2 trung bình: hợp lý dùng độc lập trước định nghĩa; "(xem mạch 6)" | sửa: C11, C13, C14 (+C14L) chuyển sang mạch 6 sau D06; D06 định nghĩa độc lập cho $k$ biến và có "Nhu cầu:" nối sang hợp lý; bỏ câu chỉ đường; C12 thành trang Gauss một biến ở mạch 5 theo §6.5 | C11, C12, C13, C14, D06 | — |
+| F3 trung bình: ký hiệu lệch bảng §2 | sửa toàn deck: bỏ in đậm; $X$ chỉ cho ma trận thiết kế, biến ngẫu nhiên $U$, $V$; $\pi\to\theta$; $D_{\mathbf u}h\to D_dh$; $\mathbf H_h\to\nabla^2h$; $J\to J_{\mathrm{GLS}}$; $\widetilde{\mathbf w}\to w_{\mathrm q}$; $g\to\chi$; $\varphi\to\gamma$; $Q,d\to A,x$ ở dạng toàn phương; $G,\Sigma_G\to Z,\Sigma$ ở Gauss nhiều biến; bỏ $\Phi$; nhãn SVG nội tuyến (A13, C04, C12, D09) đổi theo | toàn deck | ký hiệu vi phân $\mathrm dh$, $\mathrm dr$ (ghi chú không dùng) bỏ ở B06, B14 |
+| F4 trung bình: "véc-tơ"; tên mạch 6 | sửa: "vector" (42 chỗ); tên mạch 5 "Xác suất một biến", mạch 6 "Vector ngẫu nhiên, nhiễu và phân phối nhiều biến" theo mục 6, 7 | P02, C00, D00, toàn deck | — |
+| F5 trung bình: thiếu mục tiêu và Định lý 00.42, 00.43, 00.16 | sửa: P01 năm dòng phủ sáu mục tiêu (75 âm tiết); thêm B11A (Định lý 00.42), B11B (Định lý 00.43), B11C (Ví dụ 00.20–00.21); B17 kết luận bằng điều kiện bậc hai; E07 thêm dòng cực tiểu địa phương chặt; D05 phát biểu Bayes tổng quát với tiên nghiệm, hậu nghiệm | P01, B11A–B11C, B17, D05, E07 | Định lý 00.16 dẫn trong ghi chú diễn giả A06 (trị riêng của $X^TX$); không thêm trang trị riêng vì Bài 00 là bài ôn và mục tiêu không đo phân rã |
+| F6 trung bình: câu xuất xứ, rào đón | sửa: bỏ "Dữ liệu được tạo để tính thủ công.", "dữ liệu tổng hợp cho mục đích sư phạm…", "trường hợp biên minh họa…", mọi "Nguồn: Ví dụ tự xây dựng/tự tính", "Bài tập tổng hợp từ…"; nguồn trỏ khối của ghi chú | H01, H03, D02, E04, E05 và các trang có nguồn tự dựng | xuất xứ ghi ở đoạn trên |
+| F7 trung bình: trang đầu mạch thiếu "Nhu cầu:" nêu câu hỏi mạch | sửa: thêm "Nhu cầu:" lấy từ dòng dẫn | H01, A01, B01, C10 (đầu mạch 5), D01, E01 | — |
+| F8 trung bình: mở bằng định nghĩa | sửa: A05 thêm "Nhu cầu:" và "Trực quan." ($Xw$ là tổ hợp các cột); A06 "Nhu cầu:" theo §4.6; C03 "Trực quan." (dụng cụ đo, §6.2); C05 "Nhu cầu:" (xác suất từng điểm bằng $0$) | A05, A06, C03, C05 | — |
+| F9 trung bình: tích phân lạc mạch 4; mạch 7 trộn nội dung mới với tổng kết | sửa: B12–B13 sang mạch 5 ngay trước C05 (đề xuất là "đầu mạch 5"; đặt cạnh hàm mật độ vì đó là nơi dùng); B00 đổi từ khóa. Mạch 7: ghi ngoại lệ trong `storyboard.md` (mạch 7 là mạch kết luận; tách mạch thứ tám vượt trần 7 mạch) | B00, B12, B13, E00–E07 | — |
+| F10 trung bình: E05 một dòng 33 âm tiết | sửa: khung chỉ giữ Định nghĩa 00.74; câu SSE chuyển vào ghi chú diễn giả | E05 | 53 → 44 âm tiết |
+| F11 trung bình: thiếu `storyboard.md` | sửa: lập `planning/lec-00/storyboard.md` theo khuôn hiện hành (bảng mạch có câu hỏi trung tâm, bản đồ hành trình, 93 mục) | — | storyboard cũ giữ nguyên (D00) |
+| F12 nhẹ: ghi chú E00 tự mâu thuẫn | sửa: bỏ câu "chuyển sang Bài 01" | E00 | — |
+| F13 nhẹ: phát biểu yếu hơn (5.1); "bước gradient" | sửa: B18 nêu $\eta^\star=34/233\approx0{,}146$ và $f$ giảm khi và chỉ khi $0<\eta<2\eta^\star$; "hạ gradient" ở B18, B19, B19L, E06 | B18, B19, B19L, E06 | — |
+| F14 nhẹ: điều kiện vòng ở kỳ vọng; định nghĩa đạo hàm theo hướng | sửa: C07 theo Định nghĩa 00.55 ($\sum\lvert u\rvert p_U<\infty$); B05 định nghĩa bằng giới hạn (00.32), công thức $\nabla h^Td$ là mệnh đề (00.33) | C07, B05 | — |
+| F15 nhẹ: tương phản nhị phân, nhận xét bên lề | sửa: bỏ "Gauss là giả thiết mô hình, không phải kết luận từ bốn mẫu"; bỏ hai "Lưu ý:" nhân quả (E02, D06) và câu nhân quả trong ghi chú B15 | C12, E02, D06, B15 | — |
+
+**Sửa thêm ngoài bảng.**
+
+- Bỏ `\text{…}` tiếng Việt trong KaTeX (A14, B17, C05): 36 cảnh báo console "No character metrics" về 0.
+- Thay $\sqrt{\cdot}$ trên mặt trang bằng lũy thừa $1/2$ (A02, B10, C08, C12, D08): hình SVG của dấu căn trong KaTeX rộng 400em và bị `deck_check.py` tính là OVERFLOW ở năm trang trước đợt sửa.
+- A06, E07 tràn khung 16:9 sau khi thêm nội dung: rút chữ (A06 bỏ tên tiếng Anh sang ghi chú, ví dụ viết một dòng; E07 rút ô bảng, bỏ dòng gradient không có giả thiết riêng).
+- Bài tập: B19 bỏ câu tích phân (chuyển sang C09), thêm câu phân loại điểm dừng; C09 thêm câu dải $0{,}95$ của $\mathcal N(16,1)$; C14 thay bốn câu hỏi bằng lời bằng Bài tập 00.2 câu 1–2; E06 câu 4 thành Bài tập 00.2 câu 3 (câu cũ trùng C14).
+- Ghi chú diễn giả: bỏ các câu chỉ đường ("ở mạch sau", "sẽ", "xem mạch 6", "trang bất định của giá") và các khẳng định về trạng thái của văn bản.
+
+**Kiểm tra.** `deck_check.py --shots` (server 8810): 93 trang, console 0, pageerror 0, request lỗi 0, KaTeX lỗi 0, OVERFLOW 0; cờ còn lại: `P02` LINES (ngoại lệ 7 dòng, ghi trong storyboard); NARROW-H ở các trang có công thức hoặc bảng rộng (vùng cuộn ngang có gợi ý, `docScrollW` bằng bề rộng 390 px ở mọi trang; có từ trước đợt sửa). Đã xem ảnh 1600×900 của A06, E07, B05, B11A–B11C, B14, B18, C03, C07, C12, C13, C14L, D06, D09, D10, E04, E05 và ảnh 390×844 của A05, B11C, C12, C13, D10, D10B, E07. `git diff --check` sạch.
+
+**Đề nghị sửa ghi chú.** Không có.
+
+### Lượt sửa sau kiểm lại
+
+**Căn cứ.** Danh sách 27 mục đã duyệt và quyết định của điều phối viên trong `tools/courses/math-4-AI/2627-1/deck-fix-2026-11-13/merge-00.md` (kiểm lại toán và kiểm lại mạch). Cùng tác tử biên tập, cùng phạm vi tệp; không commit.
+
+**Quyết định điều phối viên đã thực hiện.** Hoàn lại dấu căn $\sqrt{\cdot}$ ở A02, B10, C08, C12, D08 (và ghi chú D11); cờ OVERFLOW của `deck_check.py` trên phần SVG của dấu căn KaTeX là báo nhầm, được chấp nhận. Mục "Sửa thêm ngoài bảng" ở trên về lũy thừa $1/2$ không còn hiệu lực.
+
+| mục | xử lý | trang |
+|---|---|---|
+| 1 | dòng dải nhiễu: "(P1), $\sigma$ đã biết; $w=w_{\mathrm{LS}}$" | E07 |
+| 2, 23 | ghi chú: "nhiễu Gauss độc lập, cùng phương sai"; khung OLS/GLS chuyển vào ghi chú | E01 |
+| 3 | "một bước hạ gradient" | E06 |
+| 4, 26 | "$w$ không duy nhất"; ghi chú định nghĩa $\operatorname{Ker}(X)$, nêu $\operatorname{Ker}(X)=\{0\}$ (Ví dụ 00.6) | A14 |
+| 5 | "Cho $h\in C^2$ trên một tập mở chứa $x$" | B10 |
+| 6 | vế phải $c$; $\operatorname{Col}(A)=\{Ax:x\in\mathbb R^n\}$ | A04, A05B |
+| 7 | $0{,}4$ bọc `{,}` | D08 (ghi chú) |
+| 8 | bộ số có thập phân dùng ";" (32 bộ, bằng script trên các khối KaTeX, đã duyệt danh sách) | A02, A15, A15L, B06, B11, B15, B18, B19, C14, E05, E06L và các ghi chú liên quan |
+| 9 | giữ $\Sigma_Z$, lý do ghi trong storyboard | D08 |
+| 10 | nhãn hình $p_V(v)$, $F_U(t)=t/2$ | C04, C06 |
+| 11 | hình: trục tung tại $x=0$, $\psi(0)=1$, $\psi(1)=3$ đúng tỉ lệ (chiều cao 40 và 120 đơn vị SVG), thêm nhãn 1, 3 | B12 |
+| 12, 16 | B13 gộp vào ghi chú diễn giả B12 (`gộp`); C09 câu 2 thành $\int_0^2u^2p_U(u)\,du=4/3$ | B12, B13, C09 |
+| 13 | "khác với ví dụ căn 2 (Ví dụ 00.35)" | C14 |
+| 14 | D07 thêm "Nhu cầu:" (từ (P1) sang nhiễu tương quan); D08 thêm "Trực quan." (§7.4); $\rho$ viết một dòng để hết tràn 84 px | D07, D08 |
+| 15 | dòng dẫn và "Nhu cầu:" thêm "và chọn giữa hai mô hình"; A11 thêm "Nhu cầu:", bỏ khung lặp vector đặc trưng | E00, E01, A11 |
+| 17 | thêm "Trực quan.": tập $q(x)=\tau>0$ là elip với $A=\operatorname{diag}(1,4)$ | A06 |
+| 18 | ghi ngoại lệ trong storyboard (bài ôn tập, các bước chung một trang) | A04, A05, A05B, A06, B03D–B06, C01, C03–C05, D04–D06 |
+| 19 | "Nhu cầu:" lặp đủ câu hỏi mạch; storyboard sửa câu hỏi mạch 4 | A01, D01, B00, B01 |
+| 20 | ghi chú mở bằng bài toán $\min\tfrac12\lVert Xw-y\rVert_2^2$ | A13 |
+| 21 | câu 4 thành Bài tập 00.10(b)–(c) (Rosenbrock); lời giải trong ghi chú: $200(z_2-2z_1)^2+2z_1^2>0$ | B19 |
+| 22 | "Trực quan." dùng $\tfrac12\Delta^T\nabla^2h(x^*)\Delta$ | B11B |
+| 24 | "Nhu cầu: viết phân phối đồng thời của bốn nhiễu từ các phân phối biên." | D06 |
+| 25 | ghi chú thêm kiểm số $-\log L(w^{(0)})+\log L(w_{\mathrm{LS}})=(9-4)/2=2{,}5$ với $\sigma=1$ | C13 |
+| 27 | cắt câu tự mô tả P01, câu ký hiệu B08, C03; B03D dẫn Nhận xét 00.31; H04, H05 viết lại câu nhân quả trực tiếp | P01, B03D, B08, C03, H04, H05 |
+
+**Kiểm tra.** `deck_check.py --shots --out …/check-00/r1`: 92 trang, console 0, pageerror 0, request lỗi 0, KaTeX lỗi 0. OVERFLOW chỉ còn ở A02, B10, C08, C12, D08 và đều là phần tử SVG của dấu căn KaTeX (báo nhầm đã được chấp nhận); không trang nào tràn thật. `P02` LINES là ngoại lệ đã ghi. Đã xem ảnh 1600×900 của A06, A11, B12, B19, C04, C06, D07, D08 và ảnh 390×844 của A06, A11, B12, C04, D08. Storyboard: 92 mục khớp thứ tự DOM. `git diff --check` sạch.
+
+**Lượt sửa 2 (bốn chỗ nhẹ sau rà nhanh).** Ghi chú C09: nguồn câu 2 dẫn Ví dụ 00.31 thay 00.24. Storyboard, bản đồ hành trình: hàng "Dạng toàn phương" ghi trực quan A06 (elip $q(x)=\tau$), bỏ câu "gộp"; hàng hiệp phương sai ghi nhu cầu D07, D09, D10 và trực quan D08, D09; hàng hợp lý thêm ví dụ ở ghi chú C13 ($2{,}5$). `git diff --check` sạch.
+
+### Kiểm lại và duyệt của điều phối viên (2026-11-13)
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Người sửa | `general-purpose` | `opus` (Opus 5.5) | medium | Sửa theo bảng; hai lượt sửa sau kiểm lại |
+| Kiểm lại A (toán học) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (E07 mất giả thiết Gauss, trung bình) → đạt |
+| Kiểm lại B (mạch truyện, `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | cần sửa (hành trình hiệp phương sai, câu hỏi mạch 7, B13, A06) → đạt |
+
+Quyết định của điều phối viên: lập `planning/lec-00/storyboard.md` mới theo khuôn hiện hành (bản cũ `2627-1/lecture-00-storyboard.md` giữ nguyên); mạch 7 định vai thành mạch kết luận (như Bài 01); Định lý 00.16 chỉ dẫn trong ghi chú diễn giả A06; **yêu cầu sửa** việc người sửa đổi $\sqrt{\cdot}$ thành lũy thừa $1/2$ để né cờ OVERFLOW báo nhầm — đã hoàn lại.
+
+Kiểm của điều phối viên: đọc diff; 92 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`; P02 LINES (ngoại lệ đã ghi); cờ OVERFLOW/NARROW-H ở A02, B10, C08, C12, D08 là đuôi SVG dấu căn KaTeX bị cắt (báo nhầm). Đã xem ảnh 1600×900 và 390×844 của P01, A06, A11, B11B, B12, C12, D07, D08, E04, E07: vừa khung.
+
+Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.

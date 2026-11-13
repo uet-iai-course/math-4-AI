@@ -73,8 +73,10 @@ Bộ đếm chung: 00.1–00.74, gồm 43 định nghĩa (5 trong Đọc thêm),
 ## Lệch so với kế hoạch và deck
 
 - Đọc thêm ở 4.8 (Q00-9); thêm Cholesky (queue-v1, quyết định 5).
-- Nhiễu Gauss, phần dư, hàm hợp lý chuyển từ 6.5 sang 7.3, sau định nghĩa độc lập (queue-v1, quyết định 4); 6.5 chỉ còn phân phối Gauss một biến. Deck đặt nhiễu và hợp lý ở mạch "Xác suất một biến và nhiễu" (C10–C13), trước mạch xác suất nhiều biến.
-- Tên mục 6 "Xác suất một biến", mục 7 "Vector ngẫu nhiên, nhiễu và phân phối nhiều biến" lệch tên mạch deck.
-- Thứ tự lệch deck khác: A04 (hệ, nghịch đảo) sau A05 (hạng); A06 (dạng toàn phương) sau A08–A10 (ma trận thiết kế); B12–B13 (tích phân) sau B14–B18 (mất mát bình phương); A11 sang 8.2; B16 sang 4.7.
+- Nhiễu Gauss, phần dư, hàm hợp lý chuyển từ 6.5 sang 7.3, sau định nghĩa độc lập (queue-v1, quyết định 4); 6.5 chỉ còn phân phối Gauss một biến. Deck theo ghi chú từ đợt sửa 2026-11-13: C11, C13, C14, C14L nằm ở mạch 6 sau D06; C12 thành trang "Phân phối Gauss một biến"; C10 mở mạch 5.
+- Tên mạch 5, 6 của deck đổi theo tên mục 6, 7 của ghi chú (đợt sửa 2026-11-13).
+- Thứ tự deck sau đợt sửa 2026-11-13: A08–A10 trước A05, A05B, A04 (theo 4.1–4.3); A06 sau A12 (theo 4.6); B12 (tích phân) chuyển sang mạch 5 trước C05 (ghi chú đặt 5.9 cuối mục 5, deck đặt ngay trước hàm mật độ, nơi dùng tới); B13 (tích phân kép) gộp vào ghi chú diễn giả B12 ở lượt sửa 1; A11 sang mạch 7 trước E05 (theo 8.2). Còn lệch: B16 (giải phương trình chuẩn) ở mạch giải tích, ghi chú giải ở Ví dụ 00.14 (4.7); deck giữ vì câu hỏi mạch 4 là tìm điểm dừng.
+- Deck thêm B11A, B11B, B11C cho 5.6–5.7 (Định lý 00.42, 00.43, Ví dụ 00.20–00.21) và C14L (lời giải Bài tập 00.2 câu 1–2). Deck không có trang cho 4.4 (cơ sở trực chuẩn), 4.5 (trị riêng, chỉ trong ghi chú diễn giả A06, B10), 4.8 (Đọc thêm), 7.5 phần Mahalanobis và làm trắng.
+- Ký hiệu deck theo bảng §2 của ghi chú từ đợt sửa 2026-11-13 (không in đậm, $U$/$V$, $\theta$, $D_dh$, $\nabla^2h$, $\chi$, $J_{\mathrm{GLS}}$, $w_{\mathrm q}$).
 - Hình `calculus-least-squares-projection-step.svg` đặt ở 5.8.
 - Ký hiệu đổi so với deck và plan: ánh xạ ngoài $K$, hàm ngoài $\chi$, độ nhạy $\nu$; không gian con $\mathcal W$; biến điều kiện $T$; $U_{\mathrm s}=100U+20$; mô hình mở rộng $X_{\mathrm q}$, $w_{\mathrm q}$, $\phi_{\mathrm q,i}$; LU viết $PA=NM$, SVD viết $A=Q_1SQ_2^T$; biến tích phân của Hệ quả 00.39 là $t$; hàm o nhỏ $\zeta(\Delta)$; hàm trong của quy tắc dây chuyền một biến $\iota$; ma trận ví dụ $B_1$, $B_2$; cận tích phân kép $[\alpha_1,\beta_1]\times[\alpha_2,\beta_2]$; hằng số $k_1$, $k_2$; mục tiêu GLS $J_{\mathrm{GLS}}$ (theo nhãn hình).
