@@ -220,6 +220,8 @@ Tiêu chuẩn này áp dụng cho ghi chú mới và là đích rà soát lại 
 
 ## Cấu trúc bộ trang chiếu mặc định
 
+> **Bộ trang chiếu dựng từ ghi chú bài giảng (từ Bài 12, quyết định của tác giả 2026-11-14 và 2026-11-15):** áp dụng 28 nguyên tắc NT1–NT28 trong `../tools/courses/math-4-AI/2627-1/deck-build/common-brief.md` (tóm tắt ở `CLAUDE.md`, mục "Slide decks built from the lecture note"). Các nguyên tắc này thắng các quy định dưới đây khi mâu thuẫn: dòng dẫn trang tiêu đề mạch là câu trần thuật nêu điều người học đạt được, không "Muốn …"/"Nhu cầu:"; không dùng nhãn "Nhu cầu:"; trang "Vấn đề trung tâm" mở đầu chỉ một hộp; mạch kết luận tên "Tổng kết"; trang cuối "Tài liệu tham khảo". Bộ trang chiếu 00–11 giữ quy định cũ cho tới đợt sửa có ghi nhật ký theo yêu cầu người dùng.
+
 Nếu mẫu người dùng không quy định khác, bộ trang chiếu gồm:
 
 1. Trang tiêu đề: tên học phần, số bài, chủ đề, đơn vị. Trang này đồng thời là trang tiêu đề của mạch mở đầu.
