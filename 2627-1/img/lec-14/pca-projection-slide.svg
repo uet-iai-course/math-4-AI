@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="t d">
+<title id="t">Phân tích thành phần chính một chiều của bốn quan sát</title>
+<desc id="d">Bốn điểm (2, 0), (−2, 0), (0, 1), (0, −1). Đường chiếu là trục ngang, hướng u. Hai đoạn nét đứt dài 1 nối (0, 1) và (0, −1) với gốc là phần bị bỏ khi chiếu. Tổng lỗi 2, lỗi trung bình 1/2.</desc>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L9 5L0 10Z" fill="#166534"/></marker></defs>
+<rect width="600" height="420" fill="#fff"/>
+<g stroke="#64748b" stroke-width="2"><path d="M30 200H570M300 345V30"/></g>
+<path d="M50 200H550" stroke="#166534" stroke-width="5"/>
+<path d="M300 200H390" stroke="#166534" stroke-width="5" marker-end="url(#a)"/>
+<g stroke="#b45309" stroke-width="3" stroke-dasharray="8 6"><path d="M300 100V200M300 300V200"/></g>
+<g fill="#1e40af"><circle cx="500" cy="200" r="9"/><circle cx="100" cy="200" r="9"/><circle cx="300" cy="100" r="9"/><circle cx="300" cy="300" r="9"/></g>
+<circle cx="300" cy="200" r="8" fill="#fff" stroke="#166534" stroke-width="3"/>
+<g font-family="Arial,sans-serif" font-size="32" fill="#172033">
+<text x="445" y="248">(2, 0)</text><text x="55" y="248">(−2, 0)</text><text x="318" y="110">(0, 1)</text><text x="318" y="312">(0, −1)</text>
+<text x="268" y="245">0</text><text x="545" y="185">x₁</text><text x="312" y="35">x₂</text>
+<text x="370" y="180" fill="#166534">u</text>
+<text x="20" y="400" font-size="30">Tổng lỗi: 2; lỗi trung bình: 1/2</text>
+</g>
+</svg>

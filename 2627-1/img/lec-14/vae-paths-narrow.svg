@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1046" role="img" aria-labelledby="t d">
+<title id="t">Hai đường tính của bộ tự mã hóa biến phân</title>
+<desc id="d">Hai phần xếp dọc. Suy luận từ x: quan sát x qua bộ mã hóa cho trung bình μφ(x) và độ lệch chuẩn σφ(x), từ đó lấy mẫu mã z. Sinh mẫu mới: lấy z từ tiên nghiệm p(z) rồi qua bộ giải mã lấy x mới; đường sinh không đi qua bộ mã hóa.</desc>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L9 5L0 10Z" fill="#334155"/></marker></defs>
+<rect width="600" height="1046" fill="#fff"/>
+<g font-family="Arial,sans-serif" fill="#172033">
+<text x="40" y="40" font-weight="bold" font-size="30">Suy luận từ x</text>
+<rect x="40" y="56" width="520" height="72" rx="10" fill="#eff6ff" stroke="#1e40af" stroke-width="2.5"/>
+<text x="300.0" y="102.0" text-anchor="middle" font-size="30">Quan sát x</text>
+<path d="M300.0 128V168" stroke="#334155" stroke-width="2.5" fill="none" marker-end="url(#a)"/>
+<rect x="40" y="174" width="520" height="72" rx="10" fill="#eff6ff" stroke="#1e40af" stroke-width="2.5"/>
+<text x="300.0" y="220.0" text-anchor="middle" font-size="30">Bộ mã hóa</text>
+<path d="M300.0 246V286" stroke="#334155" stroke-width="2.5" fill="none" marker-end="url(#a)"/>
+<rect x="40" y="292" width="520" height="110" rx="10" fill="#eff6ff" stroke="#1e40af" stroke-width="2.5"/>
+<text x="300.0" y="336" text-anchor="middle" font-size="30">Trung bình μφ(x),</text>
+<text x="300.0" y="376" text-anchor="middle" font-size="30">độ lệch chuẩn σφ(x)</text>
+<path d="M300.0 402V442" stroke="#334155" stroke-width="2.5" fill="none" marker-end="url(#a)"/>
+<rect x="40" y="448" width="520" height="72" rx="10" fill="#eff6ff" stroke="#1e40af" stroke-width="2.5"/>
+<text x="300.0" y="494.0" text-anchor="middle" font-size="30">Mẫu mã z</text>
+<text x="40" y="580" font-weight="bold" font-size="30">Sinh mẫu mới</text>
+<rect x="40" y="596" width="520" height="72" rx="10" fill="#f0fdf4" stroke="#166534" stroke-width="2.5" stroke-dasharray="10 6"/>
+<text x="300.0" y="642.0" text-anchor="middle" font-size="30">Tiên nghiệm p(z)</text>
+<path d="M300.0 668V708" stroke="#334155" stroke-width="2.5" fill="none" marker-end="url(#a)"/>
+<rect x="40" y="714" width="520" height="72" rx="10" fill="#f0fdf4" stroke="#166534" stroke-width="2.5" stroke-dasharray="10 6"/>
+<text x="300.0" y="760.0" text-anchor="middle" font-size="30">Lấy mẫu z</text>
+<path d="M300.0 786V826" stroke="#334155" stroke-width="2.5" fill="none" marker-end="url(#a)"/>
+<rect x="40" y="832" width="520" height="72" rx="10" fill="#f0fdf4" stroke="#166534" stroke-width="2.5" stroke-dasharray="10 6"/>
+<text x="300.0" y="878.0" text-anchor="middle" font-size="30">Bộ giải mã</text>
+<path d="M300.0 904V944" stroke="#334155" stroke-width="2.5" fill="none" marker-end="url(#a)"/>
+<rect x="40" y="950" width="520" height="72" rx="10" fill="#f0fdf4" stroke="#166534" stroke-width="2.5" stroke-dasharray="10 6"/>
+<text x="300.0" y="996.0" text-anchor="middle" font-size="30">Lấy mẫu x mới</text>
+</g>
+</svg>

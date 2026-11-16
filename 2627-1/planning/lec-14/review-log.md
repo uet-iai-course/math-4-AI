@@ -257,3 +257,72 @@ Dẫn chiếu trong phạm vi đã cập nhật: §10 của ghi chú (danh sách
 **Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844, mở mọi khối khi đo: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0/34 công thức tràn khung ở 390 px. Ghi chú: 15 công thức có sẵn từ trước tràn khung (ngoài lượt nhẹ). Bài 14 không có deck. `material-local-data.js` đồng bộ trong commit riêng.
 
 Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 14 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.
+
+## Bộ trang chiếu (dựng từ ghi chú, 2026-11-16)
+
+Yêu cầu của người dùng (2026-11-16): "hoàn thiện slide deck các bài 12,13,14 … theo các nguyên tắc mới về slide deck, thống nhất với ghi chú bài giảng, hãy liệt kê các nguyên tắc này phù hợp với khoá học và đảm bảo các agent tuân thủ" (khoá math-4-AI). Nguyên tắc NT1–NT28: `../tools/courses/math-4-AI/2627-1/deck-build/common-brief.md`; tóm tắt trong `CLAUDE.md` mục "Slide decks built from the lecture note"; ghi chú ở đầu mục "Cấu trúc bộ trang chiếu mặc định" của `AGENTS.md`. Bản giao việc từng vai cùng thư mục.
+
+### Nhật ký tác tử (theo lời gọi công cụ)
+
+| Giai đoạn | Vai | Loại | Mô hình | Nỗ lực | Ghi tệp |
+|---|---|---|---|---|---|
+| Storyboard | Người lập storyboard (kế hoạch + phân tích nguồn) | general-purpose | opus (Opus 5.5) | medium | `planning/lec-14/storyboard.md` |
+| Cổng storyboard | Người duyệt cổng storyboard | general-purpose | opus (Opus 5.5) | high | `planning/lec-14/reviews/deck-storyboard-gate.md` |
+
+**Storyboard (2026-11-16): chấp nhận có điều kiện.** 59 trang, 7 mạch, 120 phút, không ví dụ mới; Q11 bác bỏ (tiêu đề tiếng Việt). Quyết định ghi cuối `storyboard.md`. Đề xuất sửa ghi chú cho tác giả (nhẹ): N1 Bài tập 14.1 đo cả mục tiêu 3 (`exercises.md` dòng 15, ghi chú dòng 1449); N2 ký hiệu $c$ ba nghĩa (dòng 166, 603, 821); N3 ký hiệu $r$ ba nghĩa (dòng 913/1252, 1083, 1545); N4 Tình huống 14.2 và Bài tập 14.4 cùng cấu trúc.
+
+**Cổng storyboard (2026-11-16): đạt khi sửa** (0 chặn, 3 nghiêm trọng, 10 trung bình, 15 nhẹ; báo cáo `reviews/deck-storyboard-gate.md`). Điều phối viên kiểm S1 (tiêu đề L14-5-03/07/08/11, L14-6-08/09 còn "KL", "ELBO"), M2 (ghi chú và bài tập viết "hoàn bình phương": 2 và 3 chỗ, storyboard viết "hoàn chỉnh bình phương": 8 chỗ), Q12 (số của `elbo-gap.svg` thuộc Ví dụ 14.7, điều phối viên ghi nhầm 14.6; đã sửa). Quyết định: **chấp nhận** mọi phát hiện; gửi lại người lập storyboard sửa. N5 (dòng 327 khẳng định tổng quát về chuẩn hóa đặc trưng) ghi làm đề xuất sửa ghi chú cho tác giả. Người duyệt cổng không chạy được Python tính lại lần hai (Bash bị chặn tạm thời); các số đã được người lập storyboard tính bằng script và người duyệt tính tay.
+
+**Storyboard sau cổng duyệt (2026-11-16): chấp nhận.** Người lập storyboard sửa đủ 28 phát hiện (bảng "Sửa theo cổng duyệt" cuối storyboard). Điều phối viên kiểm: 0 tiêu đề còn "KL"/"ELBO", 0 chỗ "hoàn chỉnh bình phương", câu hỏi mạch 3 trên L14-3-01. Chấp nhận hai ngoại lệ mới: L14-1-03 (100/80 âm tiết, giữ đủ sáu mục tiêu; người viết thử rút chữ trước), L14-3-06 (7 dòng, mỗi cặp điểm dữ liệu một dòng). Chuyển sang người viết deck.
+
+| Viết deck | Người viết bộ trang chiếu | general-purpose | opus (Opus 5.5) | medium | `lecture-14-hoc-bieu-dien-mo-hinh-sinh.html`, `img/lec-14/` (SVG mới), `storyboard.md` |
+
+**Bản nháp deck (2026-11-16): chấp nhận để duyệt.** Điều phối viên chạy trên CSS thật (khối Bài 11 của `lecture-course.css` mở rộng cho Bài 12–14): `deck_check.py` console 0, pageerrors 0, failed 0; `footer_check.py` 0 trang; `deck_lint.py` chỉ còn ngoại lệ có lý do trong storyboard; xem ảnh ghép 1600×900. Bản đóng băng: `scratchpad/master/frozen/`.
+
+| Duyệt | sinh-vien, toan-hoc, chuyen-gia, su-pham, mach-truyen (5 tác tử độc lập, chỉ đọc) | general-purpose | opus (Opus 5.5) | high | `planning/lec-14/reviews/deck-<vai>.md` |
+
+### Năm báo cáo duyệt và quyết định của điều phối viên (2026-11-16)
+
+| Vai | Kết luận | Chặn | Nghiêm trọng | Trung bình | Nhẹ |
+|---|---|---|---|---|---|
+| sinh-vien | đạt khi sửa | 0 | 0 | 5 | 11 |
+| toan-hoc | đạt khi sửa | 0 | 2 | 4 | 5 |
+| chuyen-gia | đạt khi sửa | 0 | 1 | 6 | 9 |
+| su-pham | đạt khi sửa | 0 | 2 | 9 | 26 |
+| mach-truyen | đạt khi sửa | 0 | 0 | 5 | 14 |
+
+Điều phối viên tính lại phản ví dụ của toan-hoc cho L14-5-02: $q=\mathcal N(0,1)$, $p=\mathcal N(0,\tfrac12)$, tại $z=0$: $q\log(q/p)=0{,}399\cdot\log(0{,}399/0{,}564)\approx-0{,}138<0$; câu "Trực quan." hiện tại sai. **Quyết định chung: chấp nhận mọi phát hiện**, với các chốt:
+
+- E1 (toan-hoc, chuyen-gia, sinh-vien, su-pham: L14-5-02): "Trực quan." viết lại theo cơ chế đúng ($q\log\frac qp\ge q-p$ tại mỗi điểm, $\int(q-p)\ge0$), khớp bước 2 của L14-5-03; bỏ câu "tuyệt đối liên tục … $+\infty$ không xảy ra" ở ghi chú diễn giả.
+- E2 (toan-hoc, chuyen-gia: L14-5-06): đường Jensen chép đúng chuỗi của ghi chú dòng 814 ($=\log\int_{\{q>0\}}p_\theta(x,z)\,dz\le\log p_\theta(x)$).
+- E3 (su-pham, sinh-vien: L14-1-03): mục tiêu học tập viết đúng nghĩa ghi chú, đủ động từ, dùng "phân biệt" như ghi chú; ngoại lệ tới 110 âm tiết (< 1,5 × 80) ghi ở storyboard.
+- E4 (toan-hoc, chuyen-gia, su-pham: L14-1-02): nhắc lại Mệnh đề 11.3 giữ "mẫu độc lập cùng phân phối"; thêm "Nhắc lại:" mạng nơ-ron và lan truyền ngược (Định nghĩa 06.4, Mệnh đề 06.12) theo mach-truyen.
+- E5 (sinh-vien: công thức tràn ở 390 px, khoảng 21 trang): mọi công thức hiển thị có kết luận hoặc số hiệu bị che ở 390 px được ngắt bằng `aligned`, mỗi quan hệ một dòng (quy tắc "Display formulas" của `../CLAUDE.md`); đo lại trong trình duyệt.
+- E6 (sinh-vien: `vae-paths-wide.svg`): mũi tên cho từng đoạn (không `marker-end` trên path nhiều đoạn); ở màn hẹp dùng `img.only-narrow` (lớp có sẵn trong khối CSS Bài 11–14) với bản dọc mới `vae-paths-narrow.svg` (chữ ≥ 16 px ở 390 px), bản rộng mang `only-wide`.
+- E7 (sinh-vien: hộp chữ): trang bài tập có hơn một hộp hoặc hộp hơn hai câu ghi ngoại lệ NT17 trong storyboard (đề giữ câu chữ), hoặc chuyển phần đề ra ngoài hộp.
+- E8 (chuyen-gia, mach-truyen): PCA xác suất xuất hiện lần đầu ở mạch 4 (một dòng trên L14-4-05), không lần đầu ở Tổng kết; mạch 4 có câu hỏi ở trang nội dung đầu tiên (nguyên văn ghi chú dòng 21); L14-2-08/09 đổi chỗ theo thứ tự ghi chú; KL mở bằng vấn đề, không bằng định nghĩa.
+- E9: thuật ngữ thống nhất "cận dưới bằng chứng (evidence lower bound, ELBO; còn gọi là cận dưới của log-hợp lý)" ở lần đầu, sau đó một tên.
+- E10: bảng `Mục | Bài tập` đánh dấu "(trên lớp)" cho bài có trên trang chiếu (quy ước chung 12–14); storyboard cập nhật mã trang mạch 7 và bỏ `elbo-gap.svg`.
+- Trần 60 trang; mọi trang thêm ghi vào storyboard kèm thời lượng.
+
+**Đề xuất sửa ghi chú cho tác giả (từ năm báo cáo, đều nhẹ):** N5 dòng 327 (chuẩn hóa đặc trưng); tiêu đề Ví dụ 14.4 (tùy tác giả); ký hiệu $a,b,c,C$ nhiều nghĩa (đã có N2).
+
+| Biên tập | Biên tập viên (tiếp tục tác tử viết deck 14 qua SendMessage, theo `brief-editor.md`) | general-purpose | opus (Opus 5.5) | medium | deck 14, `img/lec-14/`, `storyboard.md` |
+
+**Biên tập (2026-11-16): xong, chờ kiểm lại.** 60 trang; E1, E2 sửa; công thức ở 390 px không còn tràn (người biên tập đo 354 px); `vae-paths-narrow.svg` mới. Không sửa: chữ `pca-projection.svg` ở 390 px (SVG của ghi chú; mọi số của hình đã có trong chữ trên trang). Sửa một phần: ô bộ giải mã trên hàng suy luận của hình VAE (ở ghi chú diễn giả). `deck_lint` 19 phát hiện, người biên tập ghi ngoại lệ ở storyboard: điều phối viên giao người kiểm lại đánh giá từng ngoại lệ.
+
+| Kiểm lại | Người kiểm lại (chỉ đọc) | general-purpose | opus (Opus 5.5) | high | `planning/lec-14/reviews/deck-kiem-lai-1.md` |
+
+**Kiểm lại lượt 1 (2026-11-16): đạt khi sửa** (0 chặn, 0 nghiêm trọng, 4 trung bình, 16 nhẹ; `reviews/deck-kiem-lai-1.md`). Đã xác nhận: E1, E2 đúng toán (khớp ghi chú dòng 699–701, 814); số hiệu công thức chuyển vào chữ khớp `\tag` của ghi chú; hai SVG VAE đạt; 0 công thức tràn ở 390 px. Quyết định: **chấp nhận** mọi phát hiện. R1: khôi phục kết luận thứ ba của Định lý 14.15 trên L14-5-05. R2: dòng "Chứng minh." đặt sau phát biểu, kèm lý do "mật độ chéo là tích theo tọa độ". R3: L14-7-03 rút về ≤ 60 hoặc tách. R4: mỗi dòng > 20 âm tiết được tách hoặc ghi ngoại lệ. R14: vẽ `img/lec-14/pca-projection-slide.svg` (cùng dữ liệu Hình 14.1, chữ ≥ 16 px ở 390 px), SVG của ghi chú giữ nguyên. R19: chấp nhận sửa bằng ghi chú diễn giả, hình giữ đúng dữ liệu Hình 14.2.
+
+**Sửa sau kiểm lại lượt 1 (2026-11-16).** Biên tập viên sửa R1–R20 (R19 giữ), vẽ `pca-projection-slide.svg`; diff mặt trang 28 trang. Điều phối viên chạy `deck_lint`: 25 phát hiện (13 trang nội dung 62–86 âm tiết, 6 trang 7 dòng, một ghi chú diễn giả 160). **Quyết định: yêu cầu sửa** — chỉ giữ ngoại lệ L14-1-03 (≤ 110), L14-3-06 (7 dòng), đề bài tập nguyên văn L14-4-06, L14-5-11, L14-6-08 (< 1,5 × trần), L14-7-08 (tài liệu tham khảo ≤ 80); mọi trang khác về ≤ 60 âm tiết, ≤ 6 dòng bằng cách chuyển diễn giải xuống ghi chú diễn giả, không bỏ giả thiết, lượng từ, hằng số, "Trực quan."; L14-6-01 giữ "suy luận dùng chung tham số (amortized inference)" trên mặt trang (NT21).
+
+**Lượt mật độ và kiểm lại lượt 2 (2026-11-16).** Biên tập viên đưa 17 trang về ≤ 60 âm tiết, ≤ 6 dòng; khôi phục "tất định" ở câu hỏi 1 L14-7-06 theo yêu cầu điều phối viên. Kiểm lại lượt 2 (`reviews/deck-kiem-lai-2.md`): **đạt khi sửa**, 0 chặn, 0 nghiêm trọng, 2 trung bình (N1 L14-6-07 mất định nghĩa suy sụp hậu nghiệm; N2 ba dòng > 20 âm tiết), 7 nhẹ; xác nhận lượt mật độ không mất giả thiết, lượng từ, hằng số, loại bảo đảm, "Trực quan." của kết quả chính; Định nghĩa 14.16 đúng và đủ. Quyết định: chấp nhận N1–N9; L14-6-07 được ngoại lệ ≤ 75 âm tiết. Lượt sửa cuối, sau đó điều phối viên kiểm cuối.
+
+**Sửa N1–N9 (2026-11-16): xong.** L14-6-07 có lại định nghĩa và điều kiện suy sụp hậu nghiệm (75 âm tiết, ngoại lệ ≤ 75 đã duyệt). Điều phối viên duyệt ba thay đổi: L14-6-02 bỏ "τ>0" (đã nêu ở L14-4-02, (6.2)); L14-6-01 "$2kn$ biến" (đúng: $(\mu_i,s_i)\in\mathbb R^{2k}$ cho mỗi $i$); L14-6-04 "ReLU không khả vi liên tục như giả thiết" (nói về giả thiết, không phủ nhận phương pháp). Chấp nhận.
+
+### Kiểm cuối và duyệt của điều phối viên (2026-11-16)
+
+Máy chủ tĩnh tạm (cổng 8777, CSS thật): `deck_lint.py` 7 ngoại lệ đã duyệt (L14-1-03 110/80; L14-3-06 7 dòng; đề bài tập nguyên văn L14-4-06 81, L14-5-11 89, L14-6-08 86; L14-6-07 75; L14-7-08 72 tài liệu tham khảo); `footer_check.py` 0 trang; `deck_check.py --shots` console 0, pageerrors 0, failed 0, 0 `.katex-error`, OVERFLOW chỉ ở đuôi `\sqrt` (L14-3-06, 4-04, 4-05, 7-05; báo động giả đã biết); 390×844: 0 công thức cuộn ngang; bàn phím →, ↓, Space, Esc đúng; `#/1`…`#/7` mở đúng trang tiêu đề mạch; liên kết trình xem có `&deck=`. Ảnh ghép 1600×900 và 390×844 đã xem. Trình xem ghi chú và bài tập với `&deck=`: 0 `.katex-error`, 0 `:::`, 0 lỗi console, 0 request hỏng ở hai kích thước. `sync-local-materials.py --check` đạt. `index.html`: thẻ Bài 14 có **Bài giảng** và `&deck=`; `material-viewer.js`: `DECKLESS_LECTURES` chỉ còn "05c"; `outline.md`: danh sách bài tập đồng bộ.
+
+**Duyệt: chấp nhận.** Mọi phát hiện chặn và nghiêm trọng của cổng, năm báo cáo và hai lượt kiểm lại đã giải quyết. Còn chờ tác giả: các đề xuất sửa ghi chú đã ghi ở trên.

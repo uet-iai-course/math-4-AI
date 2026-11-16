@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 990 380" role="img" aria-labelledby="t d">
+<title id="t">Hai đường tính của bộ tự mã hóa biến phân</title>
+<desc id="d">Hàng trên, suy luận từ x: quan sát x qua bộ mã hóa cho trung bình μφ(x) và độ lệch chuẩn σφ(x), từ đó lấy mẫu mã z. Hàng dưới, sinh mẫu mới: lấy z từ tiên nghiệm p(z) rồi qua bộ giải mã lấy x mới; đường sinh không đi qua bộ mã hóa.</desc>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L9 5L0 10Z" fill="#334155"/></marker></defs>
+<rect width="990" height="380" fill="#fff"/>
+<g font-family="Arial,sans-serif" font-size="28" font-weight="bold" fill="#172033"><text x="5" y="32">Suy luận từ x</text><text x="5" y="222">Sinh mẫu mới</text></g>
+<g fill="#eff6ff" stroke="#1e40af" stroke-width="2.5"><rect x="5" y="48" width="185" height="120" rx="10"/><rect x="235" y="48" width="185" height="120" rx="10"/><rect x="465" y="48" width="300" height="120" rx="10"/><rect x="810" y="48" width="175" height="120" rx="10"/></g>
+<g fill="#f0fdf4" stroke="#166534" stroke-width="2.5" stroke-dasharray="10 6"><rect x="5" y="238" width="185" height="120" rx="10"/><rect x="235" y="238" width="185" height="120" rx="10"/><rect x="465" y="238" width="300" height="120" rx="10"/><rect x="810" y="238" width="175" height="120" rx="10"/></g>
+<g stroke="#334155" stroke-width="2.5" fill="none" marker-end="url(#a)"><path d="M190 108H226"/><path d="M420 108H456"/><path d="M765 108H801"/><path d="M190 298H226"/><path d="M420 298H456"/><path d="M765 298H801"/></g>
+<g font-family="Arial,sans-serif" font-size="28" text-anchor="middle" fill="#172033">
+<text x="97" y="118">Quan sát x</text><text x="327" y="118">Bộ mã hóa</text><text x="615" y="98">Trung bình μφ(x)</text><text x="615" y="138">Độ lệch chuẩn σφ(x)</text><text x="897" y="118">Mẫu mã z</text>
+<text x="97" y="288">Tiên nghiệm</text><text x="97" y="326">p(z)</text><text x="327" y="308">Lấy mẫu z</text><text x="615" y="308">Bộ giải mã</text><text x="897" y="288">Lấy mẫu</text><text x="897" y="326">x mới</text>
+</g>
+</svg>

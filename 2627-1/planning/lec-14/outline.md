@@ -55,16 +55,16 @@ Ghi chú được tái cấu trúc theo Q1 của `planning/notes-10-14-slt-templ
 
 Tệp bài tập:
 
-- Bài tập 14.1 (Phân tích thành phần chính của bốn quan sát trên hai trục)
-- Bài tập 14.2 (Mô hình sinh từ bộ tự mã hóa trục ngang)
-- Bài tập 14.3 (Hai vai trò của KL trong phân rã ELBO)
-- Bài tập 14.4 (KL tới tiên nghiệm và tái tham số hóa)
-- Bài tập 14.5 (Phương sai mã và lỗi tái tạo theo góc)
-- Bài tập 14.6 (Phân tích thành phần chính của dữ liệu theo đường chéo)
-- Bài tập 14.7 (Mã, tái tạo và xác suất của một miền)
-- Bài tập 14.8 (Bộ tự mã hóa theo đường chéo và giới hạn sinh dữ liệu)
-- Bài tập 14.9 (KL Gaussian, kỳ vọng tái tạo và ELBO)
-- Bài tập 14.10 (Mẫu tái tham số hóa và ước lượng gradient)
-- Bài tập 14.11 (KL bằng không, mômen khớp và mô hình sai)
+- Bài tập 14.1 (Bộ tự mã hóa theo đường chéo và giới hạn sinh dữ liệu)
+- Bài tập 14.2 (KL Gaussian, kỳ vọng tái tạo và ELBO)
+- Bài tập 14.3 (Mẫu tái tham số hóa và ước lượng gradient)
+- Bài tập 14.4 (KL bằng không, mômen khớp và mô hình sai)
+- Bài tập 14.5 (Phương sai của PCA xác suất theo các hướng chính)
+- Bài tập 14.6 (Lỗi tái tạo bằng tổng các trị riêng bị bỏ)
+- Bài tập 14.7 (Thành phần chính thứ hai)
+- Bài tập 14.8 (Tổng của hai biến Gaussian độc lập)
+- Bài tập 14.9 (Hậu nghiệm của PCA xác suất)
+- Bài tập 14.10 (Phân tích thành phần chính bằng phép khử dần)
+- Bài tập 14.11 (KL thuận và KL ngược với xấp xỉ dạng tích)
 
 Ánh xạ số hiệu cũ → mới: xem `review-log.md`, mục "Ánh xạ số hiệu cũ → mới".

@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="vi" data-lecture="14">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Bài 14: Học biểu diễn và mô hình sinh dưới góc nhìn xác suất</title>
+  <link rel="icon" href="data:,"/>
+  <link rel="stylesheet" href="revealjs/dist/reset.css"/>
+  <link rel="stylesheet" href="revealjs/dist/reveal.css"/>
+  <link rel="stylesheet" href="revealjs/dist/theme/white.css"/>
+  <link rel="stylesheet" href="plugin/highlight/monokai.css"/>
+  <link rel="stylesheet" href="lecture-style.css"/>
+  <link rel="stylesheet" href="lecture-course.css"/>
+
+</head>
+<body>
+<div class="reveal"><div class="lecture-viewport" tabindex="0" role="region" aria-label="Nội dung trang chiếu"><div class="slides">
+
+<section>
+  <section data-slide-id="L14-1-01" id="mach-1">
+    <h1>Học biểu diễn và mô hình sinh dưới góc nhìn xác suất</h1>
+    <h3>Phân tích thành phần chính, bộ tự mã hóa và cận dưới bằng chứng · Bài 14</h3>
+    <p>Với phân phối của mã và nhiễu quan sát, một biểu diễn ít chiều sinh được dữ liệu mới và được học bằng một cận dưới của log-hợp lý khi tích phân biên không tính được.</p>
+    <p>Cơ sở toán học cho AI · Học kỳ 1, 2026–2027</p>
+    <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
+    <aside class="notes"><p>Bài khép lại chuỗi Bài 10–14. Trong Tình huống 13.2, khi cảm biến chỉ ghi giá trị hiện tại, giá trị trước đó là một biến ẩn. Bài 05–06 học ánh xạ đặc trưng để dự đoán nhãn. Khi bỏ nhãn, mã ít chiều của mỗi quan sát là đại lượng không quan sát được.</p><p>Ba phương pháp tối ưu ba đại lượng: phân tích thành phần chính tối ưu lỗi chiếu trực giao, bộ tự mã hóa tối ưu lỗi tái tạo của hợp hai ánh xạ, bộ tự mã hóa biến phân tối ưu một cận dưới của log-hợp lý. Với nén dữ liệu, mẫu là một tập cố định, không cần giả thiết phân phối; với mô hình sinh, các quan sát độc lập cùng phân phối chưa biết.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, phần mở đầu, Câu hỏi mở đầu, §7, §11.</p></aside>
+  </section>
+  <section data-slide-id="L14-1-02">
+    <h2>Tiên quyết và quy ước</h2>
+    <p><strong>Nhắc lại:</strong> định lý phổ (spectral theorem): ma trận đối xứng thực có cơ sở trực chuẩn gồm vector riêng.</p>
+    <ul>
+      <li>$p(x)=\int p(x,z)\,dz$; $p(z\mid x)=p(x,z)/p(x)$ khi $0&lt;p(x)&lt;\infty$; $\operatorname{Var}(X)=\mathbb E[X^2]-(\mathbb EX)^2$.</li>
+      <li>Hợp lý cực đại trên mẫu độc lập cùng phân phối: cực tiểu $-\frac1n\sum_i\log p_\theta(x_i)$.</li>
+      <li>Nhiễu Gaussian, $\sigma^2$ cố định: $-\log p_\theta(y\mid x)=\frac{(y-m_\theta(x))^2}{2\sigma^2}+\frac12\log(2\pi\sigma^2)$.</li>
+      <li>Lan truyền ngược tính gradient của mạng nơ-ron theo mọi tham số.</li>
+    </ul>
+    <p><strong>Ký hiệu:</strong> $X\in\mathbb R^d$, mã $Z\in\mathbb R^k$, $k&lt;d$; mật độ $p$; $\mathcal N(a,\beta)$ có phương sai $\beta$.</p>
+    <aside class="notes"><p>Các dòng nhắc lại là Mệnh đề 10.32, 10.33, 10.24, 11.3 (hợp lý cực đại, maximum likelihood estimation, MLE), 12.2 và Định nghĩa 06.4 cùng Mệnh đề 06.12. Hai mệnh đề lấy biên và Bayes của Bài 10 áp dụng nguyên cho vector $X\in\mathbb R^d$, $Z\in\mathbb R^k$ với tích phân trên $\mathbb R^{d+k}$. Giả thiết độc lập cùng phân phối biến log-hợp lý của mẫu thành tổng $\sum_i\log p_\theta(x_i)$.</p><p>Định lý phổ đã dùng ở Mệnh đề 11.17 để đọc các trục của đường đồng mức Gaussian; ở bài này nó cho nghiệm của phân tích thành phần chính. Hiệp phương sai mẫu $S_n$ của Định nghĩa 11.13 (mẫu số $n$) luôn nửa xác định dương.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, phần mở đầu, Kiến thức tiên quyết.</p></aside>
+  </section>
+  <section data-slide-id="L14-1-03">
+    <h2>Mục tiêu học tập</h2>
+    <ol>
+      <li>Chứng minh hướng chính: vector riêng của trị riêng lớn nhất, cực tiểu lỗi chiếu.</li>
+      <li>Thiết lập bộ tự mã hóa; chứng minh bản tuyến tính tái tạo như hướng chính, mã không duy nhất.</li>
+      <li>Dựng mô hình biến ẩn; phân biệt sinh mẫu, hợp lý, hậu nghiệm.</li>
+      <li>Chứng minh phân kỳ Kullback–Leibler không âm, phân rã log-hợp lý; phân biệt phân kỳ tới tiên nghiệm, hậu nghiệm.</li>
+      <li>Tính phân kỳ Gaussian, kỳ vọng tái tạo, cận dưới; giải thích tái tham số hóa, điều kiện đưa gradient vào kỳ vọng.</li>
+      <li>Phân biệt ba phương pháp; chẩn đoán mô hình sinh kém khi lỗi tái tạo hoặc phân kỳ nhỏ.</li>
+    </ol>
+    <aside class="notes"><p>Mục tiêu 1–2 thuộc bài toán nén, 3–5 thuộc bài toán sinh, 6 so sánh hai bài toán. Mục tiêu 1 gồm cả đẳng thức: giữ phương sai tương đương giảm lỗi chiếu, tức lỗi tái tạo trực giao. Mục tiêu 3 dựng mô hình từ tiên nghiệm và phân phối quan sát có điều kiện.</p><p>Phân kỳ tới tiên nghiệm nằm trong mục tiêu học; phân kỳ tới hậu nghiệm là khe hở của cận. Mục tiêu 5 tính trong một mô hình nhỏ; điều kiện đưa gradient vào kỳ vọng gồm tính khả vi và một hàm chặn khả tích. Ba phương pháp ở mục tiêu 6 là phân tích thành phần chính, bộ tự mã hóa và bộ tự mã hóa biến phân.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, Mục tiêu học tập.</p></aside>
+  </section>
+  <section data-slide-id="L14-1-04">
+    <h2>Nội dung</h2>
+    <ol>
+      <li><a href="#/1">Mở đầu</a></li>
+      <li><a href="#/2">Phân tích thành phần chính</a></li>
+      <li><a href="#/3">Bộ tự mã hóa tất định</a></li>
+      <li><a href="#/4">Mô hình sinh có biến ẩn</a></li>
+      <li><a href="#/5">Cận dưới bằng chứng</a></li>
+      <li><a href="#/6">Bộ tự mã hóa biến phân</a></li>
+      <li><a href="#/7">Tổng kết</a></li>
+    </ol>
+    <p>Đọc trước: Murphy (2022), §20.1 và §6.2.3–6.2.4.</p>
+    <aside class="notes"><p>Mạch 2–3 giải bài toán nén; mạch 4–6 giải bài toán sinh. Mỗi mạch nhận một giới hạn của mạch trước: phép chiếu tuyến tính, thiếu phân phối của mã, tích phân biên không tính được, gradient theo tham số của phân phối lấy mẫu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §12 (trước buổi học); Murphy (2022), §20.1, §6.2.3–6.2.4.</p></aside>
+  </section>
+  <section data-slide-id="L14-1-05">
+    <h2>Vấn đề trung tâm</h2>
+    <div class="check"><p><strong>Câu hỏi:</strong> Làm thế nào học một không gian biểu diễn có chiều thấp và sử dụng nó để mô hình hóa hoặc sinh dữ liệu mới?</p></div>
+    <aside class="notes"><p>Bài toán gồm dữ liệu $x_1,\ldots,x_n\in\mathbb R^d$, mã $Z\in\mathbb R^k$ với $k&lt;d$ không quan sát được, bộ mã hóa và bộ giải mã, mục tiêu nén (lỗi tái tạo bình phương trung bình) và mục tiêu sinh (log-hợp lý trung bình).</p><p>Câu trả lời theo mạch: mạch 2 tìm không gian con tuyến tính tốt nhất theo lỗi chiếu; mạch 3 học hai ánh xạ, trường hợp tuyến tính tái tạo như phân tích thành phần chính nhưng không có phân phối của mã; mạch 4 thêm tiên nghiệm và nhiễu, cho mật độ biên và hậu nghiệm; mạch 5 thay log-hợp lý bằng cận dưới, khe hở là phân kỳ tới hậu nghiệm; mạch 6 tối ưu cận dưới bằng gradient và nêu giới hạn của mục tiêu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, phần mở đầu, §1.</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="L14-2-00" id="mach-2" class="strand-title">
+    <div class="strand-title-body">
+      <h2><span class="strand-number">2.</span>Phân tích thành phần chính</h2>
+      <p class="strand-lead">Hướng giữ nhiều phương sai nhất cũng là hướng nén có lỗi bình phương nhỏ nhất.</p>
+      <p class="strand-keys">Hiệp phương sai thực nghiệm · Hướng chính · Lỗi tái tạo · Phương sai được giải thích</p>
+    </div>
+    <aside class="notes"><p>Mạch nhận định lý phổ và hiệp phương sai mẫu của Bài 11. Việc của mạch là so sánh mọi đường thẳng qua tâm dữ liệu bằng phương sai của mã, tìm nghiệm bằng vector riêng và chứng minh tiêu chuẩn này trùng tiêu chuẩn lỗi tái tạo. Mạch trao cho mạch 3 phép nén tốt nhất trong lớp phép chiếu và lỗi $\sum_{j&gt;k}\lambda_j$ làm mốc so sánh.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.</p></aside>
+  </section>
+  <section data-slide-id="L14-2-01">
+    <h2>Ví dụ: bốn quan sát của cảm biến hai chiều</h2>
+    <p><strong>Ví dụ 14.1.</strong> Mỗi quan sát chỉ được lưu bằng một số thực. Dữ liệu, $n=4$:</p>
+    <ul>
+      <li>$(2,0)^\top$, $(-2,0)^\top$;</li>
+      <li>$(0,1)^\top$, $(0,-1)^\top$.</li>
+    </ul>
+    <p>Trục ngang: $f(x)=x_1$, $g(z)=(z,0)^\top$; lỗi bình phương $0,0,1,1$, trung bình $1/2$.</p>
+    <p>Trục đứng giữ hai điểm nằm dọc và làm mất hai điểm nằm ngang.</p>
+    <p class="check"><strong>Câu hỏi:</strong> Đường thẳng qua gốc nào giữ nhiều thông tin nhất của bốn quan sát?</p>
+    <aside class="notes"><p>Bộ mã hóa $f$ nén quan sát thành một số, bộ giải mã $g$ dựng lại quan sát từ số đó. Hai điểm nằm ngang được dựng lại đúng; hai điểm nằm dọc thành gốc tọa độ, lỗi bình phương $1$ mỗi điểm.</p><p>Để trả lời câu hỏi, cần một tiêu chuẩn so sánh mọi đường thẳng qua tâm dữ liệu và một cách tìm đường tốt nhất. Cùng bốn quan sát này được dùng lại ở mạch 3 và mạch 4 cho câu hỏi sinh dữ liệu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, Câu hỏi mở đầu, §3 (Ví dụ 14.1).</p></aside>
+  </section>
+  <section data-slide-id="L14-2-02">
+    <h2>Phương sai của mã</h2>
+    <p><strong>Trực quan.</strong> Hình chiếu bỏ thành phần vuông góc, nên phần giữ lại đo bằng phương sai của mã.</p>
+    <p><strong>Định nghĩa 14.1.</strong> $\bar x=\frac1n\sum_ix_i$, $y_i=x_i-\bar x$; hiệp phương sai thực nghiệm (còn gọi là hiệp phương sai mẫu) $S=\frac1n\sum_iy_iy_i^\top$.</p>
+    <p>Với $U^\top U=I_k$: mã $z_i=U^\top y_i$, tái tạo $\bar x+UU^\top y_i$, và $\frac1n\sum_i\|z_i\|_2^2=\operatorname{tr}(U^\top SU)$.</p>
+    <p><strong>Định nghĩa 14.2.</strong> Phân tích thành phần chính (principal component analysis, PCA) hạng $k$: cực đại $\operatorname{tr}(U^\top SU)$ trên $U^\top U=I_k$; với $k=1$:</p>
+    <div class="formula">$$\max_{u\in\mathbb R^d,\ \|u\|_2=1}u^\top Su\quad(4.3)$$</div>
+    <aside class="notes"><p>$S$ trùng $S_n$ của Định nghĩa 11.13, chỉ mô tả mẫu và không cần giả thiết Gaussian; mẫu số $n-1$ nhân mọi trị riêng với $n/(n-1)$, vector riêng không đổi.</p><p>Mã có trung bình $0$, nên $\operatorname{tr}(U^\top SU)$ là tổng phương sai thực nghiệm của các tọa độ mã; đẳng thức dùng $\|U^\top y\|^2=\operatorname{tr}(U^\top yy^\top U)$. Ràng buộc $\|u\|_2=1$ làm các hướng so sánh được: thay $u$ bằng $cu$ nhân $u^\top Su$ với $c^2$ chỉ vì đổi đơn vị của mã. Nghiệm của (4.3) gọi là hướng chính thứ nhất.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.1 (Định nghĩa 14.1, 14.2); Murphy (2022), §20.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-2-03">
+    <h2>Hướng chính thứ nhất</h2>
+    <p><strong>Mệnh đề 14.3.</strong> <strong>Giả thiết:</strong> $S$ như Định nghĩa 14.1; định lý phổ cho $Sv_j=\lambda_jv_j$, $\lambda_1\ge\cdots\ge\lambda_d$, $v_1,\ldots,v_d$ trực chuẩn.</p>
+    <p><strong>Kết luận:</strong> mọi $\lambda_j\ge0$; (4.3) có giá trị tối ưu $\lambda_1$; vector đơn vị $u$ là nghiệm khi và chỉ khi $Su=\lambda_1u$.</p>
+    <p><strong>Ý nghĩa:</strong> nghiệm có dạng đóng: một vector riêng đơn vị của trị riêng lớn nhất.</p>
+    <p>Nếu $\lambda_1&gt;\lambda_2$, hướng tối ưu là duy nhất, sai khác dấu.</p>
+    <aside class="notes"><p>Nếu trị riêng lớn nhất là bội, mọi vector đơn vị trong không gian riêng của nó đều tối ưu. Điều kiện dừng của hàm Lagrange chỉ cho biết $u$ là vector riêng; so sánh giá trị $u^\top Su=\lambda_j$ mới chọn được trị riêng lớn nhất.</p><p>Trong học máy, $u$ cho ánh xạ đặc trưng $x\mapsto u^\top(x-\bar x)$ học từ mẫu không nhãn; nghiệm toàn cục có ngay từ phân rã trị riêng, không cần một vòng lặp tối ưu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.1 (Mệnh đề 14.3); Murphy (2022), §20.1.2.</p></aside>
+  </section>
+  <section data-slide-id="L14-2-04">
+    <h2>Ý tưởng chứng minh: hướng chính thứ nhất</h2>
+    <div class="grid2">
+      <div>
+      <ol>
+      <li>$\lambda_j=v_j^\top Sv_j=\frac1n\sum_i(v_j^\top y_i)^2\ge0$.</li>
+      <li>Viết $u=\sum_ja_jv_j$, $a_j=v_j^\top u$; giả thiết $\|u\|_2=1$ cho $\sum_ja_j^2=1$, và $u^\top Su=\sum_j\lambda_ja_j^2$.</li>
+      <li>Hiệu với trị riêng lớn nhất không âm, bằng $0$ tại $u=v_1$:</li>
+    </ol>
+      </div>
+      <div class="formula">$$\begin{aligned}\lambda_1-u^\top Su&amp;=\sum_{j=1}^d(\lambda_1-\lambda_j)a_j^2\\&amp;\ge0.\end{aligned}$$</div>
+    </div>
+    <ol start="4">
+      <li>Dấu bằng khi và chỉ khi $a_j=0$ với mọi $j$ có $\lambda_j&lt;\lambda_1$.</li>
+    </ol>
+    <p><strong>Kỹ thuật.</strong> Trong cơ sở riêng, $u^\top Su$ là trung bình có trọng số $a_j^2$ của các trị riêng, nên không vượt $\lambda_1$.</p>
+    <aside class="notes"><p>Bước 2 dùng tính trực chuẩn hai lần: $\sum_ja_j^2=\|u\|_2^2$, và $v_j^\top v_l=0$ khi $j\ne l$ làm mất các số hạng chéo. Bước 4: tổng các số hạng không âm bằng $0$ khi và chỉ khi mọi số hạng bằng $0$; điều kiện đó tương đương $u$ nằm trong không gian riêng của $\lambda_1$, tức $Su=\lambda_1u$.</p><p>Bỏ ràng buộc chuẩn đơn vị thì $u^\top Su$ không bị chặn khi $\lambda_1&gt;0$. Mẹo trung bình có trọng số được dùng lại ở chứng minh Định lý 14.6 với trọng số $b_j\in[0,1]$ có tổng $k$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.1 (chứng minh Mệnh đề 14.3).</p></aside>
+  </section>
+  <section data-slide-id="L14-2-05">
+    <h2>Ví dụ: phân tích thành phần chính của bốn quan sát</h2>
+    <div class="responsive">
+      <div>
+        <p><strong>Ví dụ 14.2.</strong> Dữ kiện: $(\pm2,0)^\top$, $(0,\pm1)^\top$, $\bar x=0$. Tính $S$, hướng chính, mã, lỗi.</p>
+        <p>$S=\frac14\big(2\operatorname{diag}(4,0)+2\operatorname{diag}(0,1)\big)=\operatorname{diag}(2,\tfrac12)$.</p>
+        <p>$\lambda_1=2$, $u=(1,0)^\top$; mã $2,-2,0,0$ trùng $f(x)=x_1$, nên lỗi trung bình $1/2$.</p>
+        <p>Trục đứng $u=(0,1)^\top$: lỗi $4,4,0,0$, trung bình $2$.</p>
+        <p><strong>Diễn giải:</strong> ở cả hai hướng, phương sai giữ lại cộng lỗi bằng $\operatorname{tr}(S)$: $2+\tfrac12=\tfrac12+2=\tfrac52$.</p>
+      </div>
+      <figure class="visual"><img src="img/lec-14/pca-projection-slide.svg" alt="Bốn điểm (2, 0), (−2, 0), (0, 1), (0, −1) trên mặt phẳng; đường chiếu là trục ngang theo hướng u; hai đoạn nét đứt dài 1 nối (0, 1) và (0, −1) với gốc là phần bị bỏ khi chiếu; tổng lỗi 2, lỗi trung bình 1/2."/></figure>
+    </div>
+    <aside class="notes"><p>Hai quan sát nằm ngang có tích ngoài $\operatorname{diag}(4,0)$, hai quan sát nằm dọc có tích ngoài $\operatorname{diag}(0,1)$. Ma trận chéo có vector riêng là hai trục tọa độ.</p><p>Trên hình, hai đoạn nét đứt dài $1$ là phần bị bỏ khi nén, tổng bình phương độ dài bằng $2$. Phương sai của mã $u^\top Su=2$ chiếm $4/5$ tổng phương sai. Hướng có phương sai lớn hơn cũng cho lỗi nhỏ hơn; mệnh đề tiếp theo chứng minh đẳng thức với $\operatorname{tr}(S)$ cho mọi dữ liệu đã tâm hóa.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.1 (Ví dụ 14.2, Hình 14.1).</p></aside>
+  </section>
+  <section data-slide-id="L14-2-06">
+    <h2>Phương sai giữ lại và lỗi tái tạo</h2>
+    <p><strong>Trực quan.</strong> $\|y\|_2^2$ là phần giữ lại $\|U^\top y\|_2^2$ cộng phần bị bỏ; tổng cố định.</p>
+    <p><strong>Mệnh đề 14.4.</strong> <strong>Giả thiết:</strong> $y_1,\ldots,y_n$ đã tâm hóa, hiệp phương sai $S$; $U^\top U=I_k$; tái tạo của $y_i$ là $UU^\top y_i$.</p>
+    <p><strong>Kết luận:</strong> lỗi tái tạo (reconstruction error), (4.4):</p>
+    <div class="formula">$$\begin{aligned}\widehat J(U)&amp;=\frac1n\sum_{i=1}^n\|y_i-UU^\top y_i\|_2^2\\&amp;=\operatorname{tr}(S)-\operatorname{tr}(U^\top SU)\end{aligned}$$</div>
+    <p>Với mỗi $k$, $U$ cực tiểu $\widehat J$ khi và chỉ khi $U$ là nghiệm của bài toán PCA hạng $k$.</p>
+    <p>Với $k=1$, lỗi nhỏ nhất bằng $\operatorname{tr}(S)-\lambda_1$.</p>
+    <aside class="notes"><p>Mệnh đề biến quan sát $2+\frac12=\frac12+2$ của bốn quan sát thành đẳng thức cho mọi dữ liệu đã tâm hóa: cực đại phương sai và cực tiểu lỗi tái tạo là cùng một bài toán. Lỗi ở đây đo trên chính mẫu dùng để tính $S$.</p><p>Với bốn quan sát, $\operatorname{tr}(S)-\lambda_1=\frac52-2=\frac12$, đúng lỗi trung bình đã tính.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.2 (Mệnh đề 14.4).</p></aside>
+  </section>
+  <section data-slide-id="L14-2-07">
+    <h2>Ý tưởng chứng minh: phương sai giữ lại và lỗi tái tạo</h2>
+    <ol>
+      <li>$P=UU^\top$ thỏa $P^\top=P$ và $P^2=U(U^\top U)U^\top=P$ (giả thiết $U^\top U=I_k$).</li>
+      <li><strong>Nhắc lại:</strong> định lý Pythagore.</li>
+    </ol>
+    <div class="formula">$$\begin{aligned}\|y\|_2^2&amp;=\|Py\|_2^2\\&amp;\quad+\|(I_d-P)y\|_2^2,\\\|Py\|_2&amp;=\|U^\top y\|_2.\end{aligned}$$</div>
+    <ol start="3">
+      <li>Lấy trung bình bằng vết: $\frac1n\sum_i\|y_i\|_2^2=\operatorname{tr}(S)$, $\frac1n\sum_i\|U^\top y_i\|_2^2=\operatorname{tr}(U^\top SU)$; trừ hai đẳng thức được (4.4).</li>
+      <li>$\operatorname{tr}(S)$ không phụ thuộc $U$, nên hai bài toán cùng tập nghiệm.</li>
+    </ol>
+    <p><strong>Lưu ý:</strong> dữ liệu chưa tâm hóa thì tái tạo là $\bar x+UU^\top(x-\bar x)$; bỏ $\bar x$ làm (4.4) sai.</p>
+    <aside class="notes"><p>Số hạng chéo $(Py)^\top(I_d-P)y=y^\top(P-P^2)y=0$ dùng cả $P^\top=P$ lẫn $P^2=P$. Dòng $\|Py\|_2=\|U^\top y\|_2$ dùng lại $U^\top U=I_k$: $\|UU^\top y\|_2^2=y^\top U(U^\top U)U^\top y$.</p><p>Bước 3 dùng $\|y_i\|_2^2=\operatorname{tr}(y_iy_i^\top)$ và tính tuyến tính của vết. Giả thiết tâm hóa vào ở Bước 3: $S$ được tính từ $y_i$, không từ $x_i$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.2 (chứng minh Mệnh đề 14.4).</p></aside>
+  </section>
+  <section data-slide-id="L14-2-08">
+    <h2>Phương sai lớn và tín hiệu cần dự đoán</h2>
+    <p><strong>Nhận xét 14.5.</strong> $X=(M,N)$ độc lập, trung bình $0$; $\operatorname{Var}(M)=100$; $N\in\{-1,1\}$, $\operatorname{Var}(N)=1$.</p>
+    <p>$S=\operatorname{diag}(100,1)$: PCA một chiều giữ $M$, bỏ $N$.</p>
+    <p>Nhãn cần dự đoán là $N$ thì mã PCA không chứa thông tin về nhãn.</p>
+    <p>Đổi đơn vị của $N$ (nhân với $10^3$): $\operatorname{Var}(10^3N)=10^6$, $S=\operatorname{diag}(100,10^6)$, PCA một chiều giữ $N$.</p>
+    <p class="check"><strong>Câu hỏi:</strong> Vì sao tiêu chuẩn (4.3) không chọn đặc trưng theo khả năng dự đoán?</p>
+    <aside class="notes"><p>Lời giải: (4.3) chỉ dùng $S$, không dùng nhãn. Nhân $M$ với $10^3$ thì $S=\operatorname{diag}(10^8,1)$, hướng chính không đổi; đổi đơn vị của $N$ thì hướng chính đổi sang trục của $N$. Do đó chuẩn hóa đặc trưng và chọn $k$ cần dựa vào nhiệm vụ.</p><p>Mệnh đề 14.4 vẫn định lượng chính xác phương sai bị bỏ khi giữ $k$ hướng.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.2 (Nhận xét 14.5); Murphy (2022), §20.1.4.2.</p></aside>
+  </section>
+  <section data-slide-id="L14-2-09">
+    <h2>Phân tích thành phần chính hạng $k$</h2>
+    <p><strong>Trực quan.</strong> Quay trong không gian con của $v_1,\ldots,v_k$ giữ phép chiếu.</p>
+    <p><strong>Định lý 14.6.</strong> <strong>Giả thiết:</strong> $S$, $\lambda_j$, $v_j$ như Mệnh đề 14.3; $1\le k\le d$; $V_k=(v_1,\ldots,v_k)$; $v_j$: thành phần chính (principal component).</p>
+    <p><strong>Kết luận:</strong> giá trị tối ưu $\sum_{j\le k}\lambda_j$ tại $U=V_k$; lỗi tái tạo nhỏ nhất $\sum_{j&gt;k}\lambda_j$.</p>
+    <p>Nếu $k&lt;d$, $\lambda_k&gt;\lambda_{k+1}$: nghiệm khi và chỉ khi $UU^\top=V_kV_k^\top$, tức $U=V_kQ$, $Q$ trực giao.</p>
+    <p>Tỉ lệ phương sai được giải thích $\operatorname{tr}(U^\top SU)/\operatorname{tr}(S)$; mã và tái tạo vẫn tuyến tính.</p>
+    <aside class="notes"><p>Với bốn quan sát, tỉ lệ phương sai được giải thích bằng $2/(5/2)=4/5$.</p><p>Ý tưởng chứng minh: đặt $b_j=\|U^\top v_j\|_2^2$; khi đó $\operatorname{tr}(U^\top SU)=\sum_j\lambda_jb_j$ với $0\le b_j\le1$ và $\sum_jb_j=k$. Trung bình có trọng số này không vượt $\sum_{j\le k}\lambda_j$ và bằng nhau tại $V_k$; khe $\lambda_k&gt;\lambda_{k+1}$ buộc $b_j=0$ khi $j&gt;k$.</p><p>Chọn $k$ theo ngưỡng tỉ lệ phương sai được giải thích hoặc chặn lỗi nén trên mẫu. Lỗi tái tạo trên tập kiểm tra tiếp tục giảm khi tăng $k$, nên lỗi tái tạo không xác định một số chiều tối ưu. Mã và tái tạo tuyến tính là giới hạn mà bộ tự mã hóa bỏ đi.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §4.2–4.3 (Định lý 14.6), Phụ lục A; Murphy (2022), §20.1.4.1, §20.1.4.2.</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="L14-3-00" id="mach-3" class="strand-title">
+    <div class="strand-title-body">
+      <h2><span class="strand-number">3.</span>Bộ tự mã hóa tất định</h2>
+      <p class="strand-lead">Hai ánh xạ học từ dữ liệu xác định phép tái tạo nhưng không xác định phân phối của mã.</p>
+      <p class="strand-keys">Bộ mã hóa · Bộ giải mã · Đổi tọa độ mã · Phân phối của mã</p>
+    </div>
+    <aside class="notes"><p>Mạch nhận phép nén tốt nhất trong lớp phép chiếu và lỗi $\sum_{j&gt;k}\lambda_j$. Việc của mạch là thay phép chiếu bằng hai ánh xạ học được, so sánh trường hợp tuyến tính với phân tích thành phần chính, rồi kiểm tra cặp ánh xạ có sinh được dữ liệu không. Mạch trao cho mạch 4 một giới hạn cụ thể: cùng bộ giải mã và cùng lỗi tái tạo đi với nhiều phân phối sinh.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §5.</p></aside>
+  </section>
+  <section data-slide-id="L14-3-01">
+    <h2>Bộ tự mã hóa</h2>
+    <p><strong>Trực quan.</strong> Bộ mã hóa gán tọa độ dọc đường cong gần dữ liệu; bộ giải mã dựng lại điểm.</p>
+    <p><strong>Định nghĩa 14.7.</strong> Bộ tự mã hóa (autoencoder, AE): bộ mã hóa (encoder) $f_\phi:\mathbb R^d\to\mathbb R^k$, bộ giải mã (decoder) $g_\theta:\mathbb R^k\to\mathbb R^d$, $1\le k\le d$; (5.1):</p>
+    <div class="formula">$$\begin{aligned}&amp;\min_{\theta,\phi}\widehat J(\theta,\phi),\\&amp;\widehat J(\theta,\phi)\\&amp;=\frac1n\sum_{i=1}^n\|x_i-g_\theta(f_\phi(x_i))\|_2^2\end{aligned}$$</div>
+    <p class="check"><strong>Câu hỏi:</strong> Hai ánh xạ xác định gì: phép tái tạo, tọa độ mã, phân phối của mã?</p>
+    <aside class="notes"><p>Phân tích thành phần chính là trường hợp $f(y)=U^\top y$, $g(z)=Uz$; với mạng nơ-ron (Định nghĩa 06.4), gradient của (5.1) tính bằng lan truyền ngược (Mệnh đề 06.12). Khi dùng dữ liệu tâm hóa, hai hàm áp dụng cho $y=x-\bar x$ và cộng $\bar x$ ở đầu ra.</p><p>Với bốn quan sát, mã $z=x_1$ đưa hai điểm nằm dọc về gốc. Với dữ liệu gần một đường cong, một tọa độ chạy dọc đường cong giữ được phần biến thiên mà mọi đường thẳng bỏ.</p><p>Chiều $k&lt;d$ tạo nút thắt (bottleneck): với $k=d$, cặp $f(x)=x$, $g(z)=z$ cho lỗi $0$ mà không học được cấu trúc nào. Nút thắt không ngăn ghi nhớ: với các quan sát phân biệt, $x_i\mapsto i$ và $i\mapsto x_i$ cho lỗi $0$ ngay cả khi $k=1$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §5 (Định nghĩa 14.7); Murphy (2022), §20.3.</p></aside>
+  </section>
+  <section data-slide-id="L14-3-02">
+    <h2>Bộ tự mã hóa tuyến tính và phân tích thành phần chính</h2>
+    <p><strong>Trực quan.</strong> $BAy$ nằm trong ảnh của $B$; điểm gần $y$ nhất của ảnh là hình chiếu.</p>
+    <p><strong>Mệnh đề 14.8.</strong> <strong>Giả thiết:</strong> $y_i$ tâm hóa; $f(y)=Ay$, $g(z)=Bz$, $A\in\mathbb R^{k\times d}$, $B\in\mathbb R^{d\times k}$, không ràng buộc khác; $\widehat J(A,B)=\frac1n\sum_i\|y_i-BAy_i\|_2^2$.</p>
+    <p><strong>Kết luận:</strong> $\min_{A,B}\widehat J(A,B)=\sum_{j&gt;k}\lambda_j$, đạt tại $(V_k^\top,V_k)$;</p>
+    <ul>
+      <li>với $R$ khả nghịch, $(RA,BR^{-1})$ cùng $BA$, cùng lỗi;</li>
+      <li>thêm $k&lt;d$, $\lambda_k&gt;\lambda_{k+1}$, $y_i$ sinh $\mathbb R^d$: mọi nghiệm có $BA=V_kV_k^\top$, dạng $(RV_k^\top,V_kR^{-1})$.</li>
+    </ul>
+    <p><strong>Ý nghĩa:</strong> $\sum_{j&gt;k}\lambda_j$ là mốc cho mọi bộ tự mã hóa tuyến tính; mã xác định sai khác phép đổi $R$.</p>
+    <aside class="notes"><p>Mệnh đề nói về cực tiểu toàn cục: cặp $A=0$, $B=0$ có gradient bằng $0$ nhưng không tối ưu khi $\lambda_1&gt;0$, nên một điểm dừng của hạ gradient chưa chắc là nghiệm.</p><p>Thêm ràng buộc $AA^\top=I_k$ chỉ thu hẹp $R$ về ma trận trực giao. Chốt từng tọa độ cần thêm $\lambda_1&gt;\cdots&gt;\lambda_k$, mã không tương quan và xếp theo phương sai giảm dần; khi đó $R$ chéo với phần tử $\pm1$. Khi các $y_i$ không sinh ra $\mathbb R^d$, $BA=V_kV_k^\top$ chỉ được bảo đảm trên không gian con của dữ liệu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §5 (Mệnh đề 14.8); Murphy (2022), §20.3.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-3-03">
+    <h2>Ý tưởng chứng minh: bộ tự mã hóa tuyến tính</h2>
+    <div class="grid2">
+      <div>
+      <ol>
+      <li>$BAy_i$ thuộc ảnh $W$ của $B$, $\dim W\le k$.</li>
+      <li>Pythagore: điểm của $W$ gần $y$ nhất là hình chiếu $P_Wy$.</li>
+      <li>Bổ sung cơ sở trực chuẩn của $W$ thành $U$, $U^\top U=I_k$; ảnh của $U$ chứa $W$; Định lý 14.6 cho</li>
+    </ol>
+      </div>
+      <div class="formula">$$\begin{aligned}&amp;\widehat J(A,B)\\&amp;\ge\frac1n\sum_{i=1}^n\|y_i-UU^\top y_i\|_2^2\\&amp;\ge\sum_{j&gt;k}\lambda_j.\end{aligned}$$</div>
+    </div>
+    <ol start="4">
+      <li>Đạt chặn tại $(V_k^\top,V_k)$; $(BR^{-1})(RA)=BA$; tại nghiệm tối ưu các bất đẳng thức là đẳng thức, và (giả thiết $k&lt;d$, $\lambda_k&gt;\lambda_{k+1}$, $y_i$ sinh $\mathbb R^d$) $BA=V_kV_k^\top$.</li>
+    </ol>
+    <p><strong>Kỹ thuật.</strong> Chặn dưới tái tạo trong một không gian con bằng hình chiếu trực giao.</p>
+    <aside class="notes"><p>Bổ sung cơ sở thực hiện được vì $k\le d$. Bước 3 gộp ba bất đẳng thức: từng điểm (Bước 2), thay $P_W$ bằng $UU^\top$ (ảnh của $U$ chứa $W$), và Định lý 14.6.</p><p>Ở Bước 4, giả thiết $\lambda_k&gt;\lambda_{k+1}$ cho $UU^\top=V_kV_k^\top$ (tính duy nhất); giả thiết $y_i$ sinh $\mathbb R^d$ biến đẳng thức trên dữ liệu thành đẳng thức ma trận $BA=V_kV_k^\top$. Khi đó $BA$ có hạng $k$, nên $B=V_kM$ với $M$ khả nghịch, và $R=M^{-1}$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §5 (chứng minh Mệnh đề 14.8).</p></aside>
+  </section>
+  <section data-slide-id="L14-3-04">
+    <h2>Ví dụ: đổi độ lớn mã mà không đổi tái tạo</h2>
+    <p><strong>Ví dụ 14.3.</strong> Dữ kiện:</p>
+    <ul>
+      <li>bốn quan sát $(\pm2,0)^\top$, $(0,\pm1)^\top$; $k=1$;</li>
+      <li>$A=(1\ \ 0)$, $B=(1\ \ 0)^\top$, $R=(2)$, nên $A'=RA=(2\ \ 0)$, $B'=BR^{-1}=(\tfrac12\ \ 0)^\top$.</li>
+    </ul>
+    <p>Tính mã, tái tạo: $(2,0)^\top$ có mã $2$ thành $4$, tái tạo $(2,0)^\top$; $(0,1)^\top$ có mã $0$, tái tạo $(0,0)^\top$.</p>
+    <p>$B'A'=\operatorname{diag}(1,0)=BA$: lỗi trung bình vẫn $1/2$; phương sai của mã $2=\lambda_1$ và $8=R^2\cdot2$.</p>
+    <p><strong>Diễn giải:</strong> phương sai mã nhân với $R^2$, nên không đọc được như trị riêng $\lambda_1$.</p>
+    <aside class="notes"><p>Ví dụ là kết luận đổi tọa độ của Mệnh đề 14.8 với $R=(2)$: bộ giải mã chia đôi đúng phần bộ mã hóa nhân đôi. Mọi tái tạo giữ nguyên nên lỗi giữ nguyên; chỉ thang đo của mã đổi.</p><p>Phương sai của mã: $(4+4+0+0)/4=2$ với $(A,B)$ và $(16+16+0+0)/4=8$ với $(A',B')$. Kiểm tra: $8=R^2\cdot2$, đúng hệ số của phép đổi tọa độ.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §5 (Ví dụ 14.3).</p></aside>
+  </section>
+  <section data-slide-id="L14-3-05">
+    <h2>Ví dụ: tái tạo đúng chưa xác định phân phối</h2>
+    <p><strong>Ví dụ 14.4.</strong> Dữ kiện:</p>
+    <ul>
+      <li>hai quan sát $(-2,0)^\top$, $(2,0)^\top$;</li>
+      <li>$f(x)=x_1$, $g(z)=(z,0)^\top$, $X=g(Z)$; lỗi trên mẫu $0$.</li>
+    </ul>
+    <p>Cơ chế $Z=\pm2$ (xác suất $\tfrac12$ mỗi giá trị) cho $\mathbb E[X_1^2]=4$; cơ chế $Z\sim\mathcal N(0,1)$ cho $1$.</p>
+    <p>Cả hai đặt xác suất $1$ lên trục ngang, diện tích $0$: không có mật độ hai chiều.</p>
+    <p><strong>Diễn giải:</strong> cùng $g$, cùng lỗi $0$, hai phân phối khác nhau: bộ tự mã hóa không chứa phân phối của mã.</p>
+    <aside class="notes"><p>Cơ chế thứ nhất chỉ sinh lại hai quan sát huấn luyện; cơ chế thứ hai trải điểm dọc toàn trục ngang. Nếu $X$ có mật độ hai chiều thì xác suất của một tập diện tích $0$ bằng $0$, mâu thuẫn với xác suất $1$ của trục ngang.</p><p>Bộ giải mã chỉ được khớp tại các mã của mẫu. Nhận xét 14.9: bộ tự mã hóa phi tuyến giảm được lỗi trên mẫu, nhưng Định nghĩa 14.7 không quy định phân phối của mã và không ràng buộc bộ giải mã tại các mã không xuất hiện khi huấn luyện. Do đó lỗi huấn luyện nhỏ không cho biết giải mã một mã ngẫu nhiên có cho dữ liệu phù hợp.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §5 (Ví dụ 14.4, Nhận xét 14.9); Murphy (2022), §20.3.5.3.</p></aside>
+  </section>
+  <section data-slide-id="L14-3-06">
+    <h2>Bài tập: tái tạo và tọa độ mã trên đường chéo</h2>
+    <div class="grid2">
+      <div>
+        <p><strong>Bài tập 14.1.</strong> Dữ liệu:</p>
+        <ul>
+          <li>$(2,2)^\top$, $(-2,-2)^\top$;</li>
+          <li>$(1,-1)^\top$, $(-1,1)^\top$.</li>
+        </ul>
+      </div>
+      <p>$\bar x=0$, $S=\begin{pmatrix}5/2&amp;3/2\\3/2&amp;5/2\end{pmatrix}$, $u=(1,1)^\top/\sqrt2$, $Su=4u$.</p>
+    </div>
+    <div class="check"><p><strong>Câu hỏi:</strong> (1) Với $f(x)=x_1+x_2$, $g(z)=(z/2,z/2)^\top$, tính mã, tái tạo và lỗi bình phương tại $(2,2)^\top$ và $(1,-1)^\top$.</p>
+    <p>(2) Với $c\ne0$, $f_c(x)=c(x_1+x_2)$, $g_c(z)=\big(z/(2c),z/(2c)\big)^\top$: chứng minh tái tạo không đổi; xác định $c$ để mã bằng tọa độ PCA $u^\top x$.</p></div>
+    <p class="fragment"><strong>Lời giải:</strong> (1) $(2,2)^\top$: mã $4$, tái tạo $(2,2)^\top$, lỗi $0$; $(1,-1)^\top$: mã $0$, tái tạo $(0,0)^\top$, lỗi $2$. (2) $g_c(f_c(x))=uu^\top x$; $c(x_1+x_2)=c\sqrt2\,u^\top x$ nên $c=1/\sqrt2$.</p>
+    <aside class="notes"><p>Gợi ý: viết $g(f(x))$ thành $uu^\top x$, phép chiếu trực giao lên hướng chính thứ nhất. Trị riêng còn lại bằng $1$, nên lỗi trung bình nhỏ nhất là $1$: hai điểm trên đường $x_1=x_2$ có lỗi $0$, hai điểm còn lại có lỗi $2$.</p><p>Với $c=1$ như đề, mã gấp $\sqrt2$ lần tọa độ PCA, đúng phép đổi tọa độ của Mệnh đề 14.8 với $R=(\sqrt2)$. Câu 3–4 của bài xét phân phối của mã và nhiễu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §6.1 (Bài tập 14.1, câu 1–2).</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="L14-4-00" id="mach-4" class="strand-title">
+    <div class="strand-title-body">
+      <h2><span class="strand-number">4.</span>Mô hình sinh có biến ẩn</h2>
+      <p class="strand-lead">Mô hình sinh lấy mã ngẫu nhiên rồi thêm nhiễu quanh đầu ra của bộ giải mã.</p>
+      <p class="strand-keys">Tiên nghiệm · Phân phối quan sát có điều kiện · Mật độ biên · Hậu nghiệm</p>
+    </div>
+    <aside class="notes"><p>Mạch nhận từ mạch 3 kết luận: bộ tự mã hóa tất định không chứa phân phối của mã. Việc của mạch là thêm tiên nghiệm cho mã và nhiễu cho quan sát, viết mật độ biên và hậu nghiệm, rồi tính chúng trong một mô hình sinh tuyến tính Gaussian. Mạch trao cho mạch 5 khó khăn còn lại: với bộ giải mã phi tuyến, tích phân biên không có dạng đóng.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §6.</p></aside>
+  </section>
+  <section data-slide-id="L14-4-01">
+    <h2>Ví dụ: sinh dữ liệu từ bộ giải mã trục ngang</h2>
+    <p>Dữ kiện: bốn quan sát $(\pm2,0)^\top$, $(0,\pm1)^\top$; $g(z)=(z,0)^\top$; sinh thử $Z\sim\mathcal N(0,1)$, $X=g(Z)$.</p>
+    <p class="check"><strong>Câu hỏi:</strong> Làm thế nào dùng cặp ánh xạ $f,g$ để sinh thêm những quan sát giống bốn quan sát trên?</p>
+    <p>$\mathbb E[X_1^2]=\mathbb E[Z^2]=1$, dữ liệu có $2$: phân phối của mã chưa khớp.</p>
+    <p>$X_2\equiv0$, dữ liệu có $x_2=\pm1$: thiếu nhiễu quanh $g(z)$.</p>
+    <p><strong>Trực quan.</strong> Mô hình sinh (generative model) chọn trạng thái ẩn, rồi tạo quan sát quanh nó.</p>
+    <aside class="notes"><p>Cách sinh thử này lấy từ Câu hỏi mở đầu; nó sai vì hai lý do trên: phân phối của mã không khớp mômen bậc hai của dữ liệu, và mọi điểm sinh ra nằm trên trục ngang. Ví dụ 14.4 cho thấy bộ tự mã hóa không cho căn cứ để chọn phân phối của $Z$.</p><p>Mô hình sinh tạo quan sát qua hai bước. Trực quan hai bước tách tính ngẫu nhiên của mã khỏi nhiễu của quan sát; định nghĩa tiếp theo viết hai bước đó thành hai mật độ.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, Câu hỏi mở đầu, §6.</p></aside>
+  </section>
+  <section data-slide-id="L14-4-02">
+    <h2>Mô hình sinh có biến ẩn</h2>
+    <p><strong>Định nghĩa 14.10.</strong> Mô hình sinh có biến ẩn (latent variable model) gồm:</p>
+    <ul>
+      <li>tiên nghiệm (prior) $p(z)$ của biến ẩn (latent variable) $Z\in\mathbb R^k$;</li>
+      <li>phân phối quan sát có điều kiện $p_\theta(x\mid z)$, chuẩn hóa theo $x$ trên $\mathbb R^d$; mật độ đồng thời và mật độ biên (6.1):</li>
+    </ul>
+    <div class="grid2">
+      <div class="formula">$$\begin{aligned}p_\theta(x,z)&amp;=p_\theta(x\mid z)p(z),\\p_\theta(x)&amp;=\int_{\mathbb R^k}p_\theta(x\mid z)p(z)\,dz\end{aligned}$$</div>
+      <div>
+      <p>Lựa chọn Gaussian (6.2), với $g_\theta(z)$ là trung bình có điều kiện:</p>
+      <div class="formula">$$\begin{aligned}p(z)&amp;=\mathcal N(0,I_k),\\p_\theta(x\mid z)&amp;=\mathcal N(g_\theta(z),\tau^2I_d),\\\tau&amp;&gt;0\end{aligned}$$</div>
+      </div>
+    </div>
+    <aside class="notes"><p>Mật độ biên (6.1) là phép lấy biên của Mệnh đề 10.32 cho cặp $(X,Z)$. Đổi thứ tự tích phân của hàm không âm: $\int p_\theta(x)\,dx=\int p(z)\big(\int p_\theta(x\mid z)\,dx\big)dz=1$, nên mô hình được chuẩn hóa ngay cả khi tích phân biên tại một quan sát cụ thể không tính được.</p><p>Nhiễu $\tau^2&gt;0$ làm $X$ có mật độ trên toàn $\mathbb R^d$. Khi $\tau=0$ và $k&lt;d$, $X=g_\theta(Z)$ nằm trên ảnh của bộ giải mã và không có mật độ trên $\mathbb R^d$ nếu ảnh có thể tích $0$, như lập luận diện tích của Ví dụ 14.4. Bộ tự mã hóa tất định chỉ có trung bình $g_\theta$, thiếu cả tiên nghiệm lẫn nhiễu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §6 (Định nghĩa 14.10).</p></aside>
+  </section>
+  <section data-slide-id="L14-4-03">
+    <h2>Sinh mẫu, hợp lý và suy luận hậu nghiệm</h2>
+    <p><strong>Định nghĩa 14.11.</strong> Với mô hình (6.1):</p>
+    <ol>
+      <li>Sinh mẫu: lấy $z\sim p(z)$ rồi lấy $x\sim p_\theta(x\mid z)$.</li>
+      <li>Đánh giá hợp lý: tính $p_\theta(x)$ hoặc $\log p_\theta(x)$ bằng tích phân (6.1).</li>
+      <li>Suy luận hậu nghiệm (posterior) tại $x$ có $0&lt;p_\theta(x)&lt;\infty$, (6.3):</li>
+    </ol>
+    <div class="formula">$$p_\theta(z\mid x)=\frac{p_\theta(x\mid z)p(z)}{p_\theta(x)}$$</div>
+    <p>Sinh mẫu cần một lần lấy $z$, một lần giải mã; hợp lý và hậu nghiệm cần tích phân (6.1).</p>
+    <aside class="notes"><p>(6.3) là công thức Bayes cho mật độ, Mệnh đề 10.33 với mật độ đồng thời $p_\theta(x\mid z)p(z)$. Trong đánh giá hợp lý, $x$ cố định và $\theta$ là tham số cần học, như hàm hợp lý của Định nghĩa 11.2.</p><p>Nhầm lẫn dễ gặp: sinh mẫu không cần hậu nghiệm, còn hậu nghiệm và hợp lý cùng cần mẫu số $p_\theta(x)$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §6.1 (Định nghĩa 14.11).</p></aside>
+  </section>
+  <section data-slide-id="L14-4-04">
+    <h2>Hoàn bình phương</h2>
+    <p><strong>Kỹ thuật.</strong> Với $\kappa&gt;0$:</p>
+    <div class="formula">$$\begin{aligned}-\kappa z^2+\nu z&amp;=-\kappa\Big(z-\frac\nu{2\kappa}\Big)^2\\&amp;\quad+\frac{\nu^2}{4\kappa}.\end{aligned}$$</div>
+    <p>Dùng khi log-mật độ đồng thời là hàm bậc hai theo $z$.</p>
+    <p>Phần chứa $z$ cho hậu nghiệm $\mathcal N\big(\tfrac\nu{2\kappa},\tfrac1{2\kappa}\big)$.</p>
+    <p>Tích phân theo $z$ chỉ thêm hằng số $\int_{\mathbb R}e^{-\kappa(z-z_0)^2}dz=\sqrt{\pi/\kappa}$; phần còn lại cho mật độ biên.</p>
+    <p>Chỗ dùng: mật độ biên và hậu nghiệm của mô hình sinh tuyến tính Gaussian.</p>
+    <aside class="notes"><p>Hệ số $\nu$ phụ thuộc quan sát $x$, nên trung bình hậu nghiệm $\nu/(2\kappa)$ là hàm của $x$, còn phương sai hậu nghiệm $1/(2\kappa)$ thì không. Tích phân Gaussian không phụ thuộc tâm $z_0$, nên lấy biên chỉ giữ số hạng $\nu^2/(4\kappa)$ cùng các số hạng không chứa $z$.</p><p>Hai mật độ tỉ lệ với nhau và cùng có tích phân $1$ thì bằng nhau, nên chỉ cần đọc dạng của số mũ. Kỹ thuật dùng lại ở mô hình vô hướng của mạch 5 và ở các Bài tập 14.2, 14.8, 14.9.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §6.1 (Ví dụ 14.5), §7.3 (Ví dụ 14.7, Bài tập 14.2).</p></aside>
+  </section>
+  <section data-slide-id="L14-4-05">
+    <h2>Ví dụ: mô hình sinh tuyến tính Gaussian hai chiều</h2>
+    <p><strong>Ví dụ 14.5.</strong> Tính mật độ biên và hậu nghiệm; dữ kiện, theo (6.2):</p>
+    <div class="grid2">
+      <div>
+      <ul>
+      <li>$k=1$, $d=2$, $g(z)=(wz,0)^\top$;</li>
+      <li>$w=\sqrt{3/2}$, $\tau^2=1/2$, nên $1/(2\tau^2)=1$.</li>
+    </ul>
+      </div>
+      <div class="formula">$$\begin{aligned}&amp;\log p(x,z)-\mathrm{const}\\&amp;=-\frac{z^2}2-(x_1-wz)^2-x_2^2\\&amp;=-2\Big(z-\frac{wx_1}2\Big)^2-\frac{x_1^2}4-x_2^2\end{aligned}$$</div>
+    </div>
+    <p>Biên $X\sim\mathcal N\big(0,\operatorname{diag}(2,\tfrac12)\big)$, kiểm tra $\mathbb E[X_1^2]=w^2+\tau^2=2$; hậu nghiệm $Z\mid X=x\sim\mathcal N(wx_1/2,1/4)$.</p>
+    <p><strong>Diễn giải:</strong> hiệp phương sai biên bằng $S$; $w^2=\lambda_1-\lambda_2$, $\tau^2=\lambda_2$: nghiệm hợp lý cực đại của PCA xác suất (probabilistic PCA, PPCA), $k=1$.</p>
+    <aside class="notes"><p>Hiệp phương sai biên trùng $S$ của bốn quan sát; PCA xác suất ở đây có một chiều ẩn. Hằng số $\mathrm{const}$ không chứa $x$, $z$. Hoàn bình phương với $\kappa=2$, $\nu=2wx_1$; số hạng $\frac{w^2x_1^2}2-x_1^2=-\frac{x_1^2}4$ vì $w^2=\frac32$. Hậu nghiệm có hệ số $2=1/(2\cdot\frac14)$; tại $x=(2,0)^\top$ trung bình hậu nghiệm là $w$. Kiểm tra viết $X_1=wZ+\eta_1$, $\eta_1\sim\mathcal N(0,\frac12)$ độc lập với $Z$.</p><p>Biến ẩn góp $3/2$ vào phương sai ngang, nhiễu góp $1/2$ cho mỗi tọa độ; mô hình sinh điểm ngoài trục ngang. Phân phối Gaussian liên tục này vẫn khác phân phối thực nghiệm đặt khối lượng $1/4$ tại mỗi quan sát. Khi thay $wz$ bằng mạng phi tuyến, log-mật độ đồng thời không còn bậc hai theo $z$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §6.1 (Ví dụ 14.5); Murphy (2022), §20.2.2.</p></aside>
+  </section>
+  <section data-slide-id="L14-4-06">
+    <h2>Bài tập: phân phối của mã và nhiễu</h2>
+    <p><strong>Bài tập 14.1.</strong> Dữ liệu $(2,2)^\top$, $(-2,-2)^\top$, $(1,-1)^\top$, $(-1,1)^\top$; $f(x)=x_1+x_2$, $g(z)=(z/2,z/2)^\top$, $X=g(Z)$.</p>
+    <div class="grid2">
+      <div>
+        <p class="check"><strong>Câu hỏi:</strong> (3) Với $Z\sim\mathcal N(0,1)$ và với $Z=\pm4$ (xác suất $\tfrac12$ mỗi giá trị), tính $\mathbb E[X_1^2]$; so với trung bình $x_1^2$ trên dữ liệu. Giải thích vì sao hai hàm $f,g$ chưa chỉ định một phân phối sinh.</p>
+        <p class="fragment"><strong>Lời giải:</strong> (3) $\frac14$ và $4$, so với $\frac52$; cặp $f,g$ không xác định phân phối của $Z$.</p>
+      </div>
+      <div>
+        <p class="check">(4) Với $Z\sim\mathcal N(0,1)$: vì sao $X$ không có mật độ hai chiều? Nêu một thay đổi làm $X$ có mật độ trên $\mathbb R^2$; tính hiệp phương sai và định thức.</p>
+        <p class="fragment">(4) $X$ nằm trên đường $x_1=x_2$; thêm $\eta\sim\mathcal N(0,\tau^2I_2)$, $\tau&gt;0$: $\det\operatorname{Cov}(X)=\tau^2\big(\tau^2+\tfrac12\big)&gt;0$.</p>
+      </div>
+    </div>
+    <aside class="notes"><p>Câu 3: $X_1=Z/2$ nên $\mathbb E[X_1^2]=\mathbb E[Z^2]/4$; trung bình $x_1^2$ trên dữ liệu là $(4+4+1+1)/4=5/2$. Không phân phối nào trong hai phân phối khớp $5/2$, và cùng bộ giải mã cho hai phân phối khác nhau.</p><p>Câu 4 dùng lập luận diện tích của Ví dụ 14.4: đường $x_1=x_2$ có diện tích $0$. Với nhiễu $\eta$ độc lập với $Z$, $X=g(Z)+\eta$ là mô hình (6.2) nên có mật độ (6.1). Vì $Z$ và $\eta$ độc lập, trung bình $0$: $\operatorname{Cov}(X)=\frac14\begin{pmatrix}1&amp;1\\1&amp;1\end{pmatrix}+\tau^2I_2$, định thức $(\frac14+\tau^2)^2-\frac1{16}=\tau^2(\tau^2+\frac12)$. Kiểm tra: khi $\tau\to0$, định thức dần về $0$, ứng với phân phối suy biến trên đường chéo.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §6.1 (Bài tập 14.1, câu 3–4).</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="L14-5-00" id="mach-5" class="strand-title">
+    <div class="strand-title-body">
+      <h2><span class="strand-number">5.</span>Cận dưới bằng chứng</h2>
+      <p class="strand-lead">Log-hợp lý của mô hình biến ẩn có một cận dưới tính được, và khe hở của cận có biểu thức chính xác.</p>
+      <p class="strand-keys">Phân kỳ Kullback–Leibler · Hậu nghiệm xấp xỉ · Cận dưới bằng chứng · Suy luận biến phân</p>
+    </div>
+    <aside class="notes"><p>Mạch nhận mô hình (6.1) và hợp lý cực đại của Mệnh đề 11.3. Việc của mạch là đưa ra thước đo khác nhau giữa hai phân phối, dựng một cận dưới của $\log p_\theta(x)$ chỉ gồm kỳ vọng theo một phân phối dễ lấy mẫu, đo đúng khe hở, rồi tính hai số hạng của cận trong lựa chọn Gaussian. Mạch trao cho mạch 6 mục tiêu (7.2) với hai số hạng có công thức.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.</p></aside>
+  </section>
+  <section data-slide-id="L14-5-01">
+    <h2>Log-hợp lý của mô hình có biến ẩn</h2>
+    <p>Hợp lý cực đại cần $\log p_\theta(x_i)$ từ (6.1); với $g_\theta$ phi tuyến, (6.1) nói chung không có dạng đóng.</p>
+    <p>Lưới $N$ điểm mỗi tọa độ: $N^k$ lần giải mã ($10^{20}$ khi $N=100$, $k=10$).</p>
+    <p><strong>Trực quan.</strong> Thay hậu nghiệm bằng phân phối dễ lấy mẫu; cần đo độ lệch.</p>
+    <p class="check"><strong>Câu hỏi:</strong> Đại lượng nào chỉ gồm kỳ vọng theo phân phối tự chọn, và lệch khỏi $\log p_\theta(x)$ bao nhiêu?</p>
+    <aside class="notes"><p>Với $g_\theta$ phi tuyến, số hạng $-\|x-g_\theta(z)\|_2^2/(2\tau^2)$ không còn bậc hai theo $z$, nên hoàn bình phương không áp dụng. Công thức Bayes (6.3) vẫn đúng; khó khăn nằm ở mẫu số $p_\theta(x)$, cũng là đại lượng cần cho đánh giá hợp lý.</p><p>Phân phối thay thế nên đặt khối lượng nơi hậu nghiệm lớn. Thước đo khác nhau giữa hai phân phối là phân kỳ ở định nghĩa tiếp theo; nó vừa đo độ gần hậu nghiệm, vừa đo khe hở của cận.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §6.1, §7; Murphy (2023), §21.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-5-02">
+    <h2>Phân kỳ Kullback–Leibler</h2>
+    <div class="grid2">
+      <div>
+      <p><strong>Định nghĩa 14.12.</strong> Với mật độ chuẩn hóa $q,p$ trên $\mathbb R^k$, phân kỳ Kullback–Leibler (Kullback–Leibler divergence, KL), (7.1):</p>
+      <p>Quy ước: $\mathrm{KL}(q\,\|\,p)=+\infty$ nếu $\{q&gt;0,\ p=0\}$ có xác suất dương theo $q$.</p>
+      </div>
+      <div class="formula">$$\begin{aligned}&amp;\mathrm{KL}(q\,\|\,p)\\&amp;=\int_{\{q&gt;0\}}q(z)\log\frac{q(z)}{p(z)}\,dz\end{aligned}$$</div>
+    </div>
+    <p><strong>Nhắc lại:</strong> $\log t\le t-1$ với $t&gt;0$.</p>
+    <p><strong>Trực quan.</strong> Suy ra $q\log\frac qp\ge q-p$ tại mỗi điểm, và $\int(q-p)\ge0$.</p>
+    <p><strong>Bổ đề 14.13.</strong> <strong>Giả thiết:</strong> $q,p$ mật độ chuẩn hóa. <strong>Kết luận:</strong> $\mathrm{KL}(q\,\|\,p)\in[0,+\infty]$, bằng $0\iff q=p$ hầu khắp nơi.</p>
+    <aside class="notes"><p>Thứ tự hai đối số có vai trò: kỳ vọng lấy theo $q$, và nói chung $\mathrm{KL}(q\,\|\,p)\ne\mathrm{KL}(p\,\|\,q)$; vì không đối xứng nên KL không phải metric. Tập $\{q&gt;0\}$ là miền hỗ trợ (support) của $q$.</p><p>Hàm dưới dấu tích phân $q\log(q/p)$ có thể âm tại một điểm; bất đẳng thức đúng tại mỗi điểm là $q\log\frac qp\ge q-p$, còn $q-p$ có tích phân $1-\int_{\{q&gt;0\}}p\ge0$. Ví dụ: $q=\mathcal N(0,1)$, $p=\mathcal N(0,\frac12)$, tại $z=0$ có $q\log(q/p)\approx-0{,}138$.</p><p>"Hầu khắp nơi" nghĩa là ngoài một tập thể tích $0$. $q$ tuyệt đối liên tục (absolutely continuous) đối với $p$ nếu mọi tập có xác suất $0$ theo $p$ cũng có xác suất $0$ theo $q$. Bài 11 dùng KL giữa hai phân phối trên $K$ nhóm để đọc lại Định lý 11.7. Bổ đề cho phép biến một đẳng thức chứa KL thành một cận.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.1 (Định nghĩa 14.12, Bổ đề 14.13).</p></aside>
+  </section>
+  <section data-slide-id="L14-5-03">
+    <h2>Ý tưởng chứng minh: tính không âm của phân kỳ Kullback–Leibler</h2>
+    <p><strong>Nhắc lại:</strong> $\psi(t)=t-1-\log t\ge0$ với mọi $t&gt;0$, dấu bằng khi và chỉ khi $t=1$.</p>
+    <div class="grid2">
+      <ol>
+        <li>Nếu $\{q&gt;0,\ p=0\}$ có xác suất dương theo $q$: $\mathrm{KL}=+\infty$. Ngược lại đặt $t=p/q$ trên $\mathcal S_q=\{q&gt;0\}$.</li>
+        <li>$q\log\frac qp=q\,\psi(t)+q-p\ge-p$: phần âm bị chặn bởi $p$ khả tích, nên (7.1) xác định.</li>
+      </ol>
+      <div>
+      <ol start="3">
+        <li>Giả thiết chuẩn hóa: $\int_{\mathcal S_q}q=1$, $\int_{\mathcal S_q}p\le1$, nên</li>
+      </ol>
+      <div class="formula">$$\begin{aligned}\mathrm{KL}(q\|p)&amp;=\int_{\mathcal S_q}q\psi(t)\,dz\\&amp;\quad+1-\int_{\mathcal S_q}p\,dz\ge0.\end{aligned}$$</div>
+      </div>
+    </div>
+    <ol start="4">
+      <li>Dấu bằng: $q\,\psi(t)=0$ hầu khắp nơi, nên $p=q$ hầu khắp nơi trên $\mathcal S_q$; ngoài $\mathcal S_q$, tích phân của $p$ bằng $0$ nên $p=q=0$ hầu khắp nơi.</li>
+    </ol>
+    <aside class="notes"><p>$\psi'(t)=1-1/t$ âm trên $(0,1)$, dương trên $(1,\infty)$, nên $\psi$ nhỏ nhất tại $t=1$; đây là bất đẳng thức $\log t\le t-1$ đã dùng ở Bài 11.</p><p>Bước 2 là điểm kỹ thuật của trường hợp liên tục: hàm dưới dấu tích phân có thể âm, nên cần một chặn dưới khả tích trước khi tích phân. Ở Bước 3, số hạng thứ hai không âm; nó dương khi $p$ đặt khối lượng ngoài miền hỗ trợ của $q$. Bước 4: hàm không âm có tích phân $0$ thì bằng $0$ hầu khắp nơi; chiều ngược lại suy ra từ $\log(q/p)=0$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.1 (chứng minh Bổ đề 14.13).</p></aside>
+  </section>
+  <section data-slide-id="L14-5-04">
+    <h2>Cận dưới bằng chứng</h2>
+    <div class="grid2">
+      <div>
+      <p><strong>Định nghĩa 14.14.</strong> $x$ cố định; mật độ dễ lấy mẫu $q_\phi(z\mid x)$ thay $p_\theta(z\mid x)$: hậu nghiệm xấp xỉ (approximate posterior).</p>
+    <p>$\log p_\theta(x)$: log-hợp lý biên (còn gọi là bằng chứng, evidence).</p>
+    <p>Cận dưới bằng chứng (evidence lower bound, ELBO; còn gọi là cận dưới của log-hợp lý), (7.2):</p>
+      </div>
+      <div class="formula">$$\begin{aligned}&amp;\mathcal L(\theta,\phi;x)\\&amp;=\mathbb E_{q_\phi(z\mid x)}\Big[\log\frac{p_\theta(x,Z)}{q_\phi(Z\mid x)}\Big]\\&amp;=\mathbb E_{q_\phi(z\mid x)}[\log p_\theta(x\mid Z)]\\&amp;\quad-\mathrm{KL}\big(q_\phi(\cdot\mid x)\,\|\,p\big)\end{aligned}$$</div>
+    </div>
+    <p>(7.2) cần kỳ vọng hữu hạn; hai số hạng: kỳ vọng tái tạo, KL tới tiên nghiệm.</p>
+    <aside class="notes"><p>Dạng thứ hai suy từ dạng thứ nhất bằng $p_\theta(x,z)=p_\theta(x\mid z)p(z)$ và tách logarit: $\log\frac{p_\theta(x,z)}{q_\phi(z\mid x)}=\log p_\theta(x\mid z)-\log\frac{q_\phi(z\mid x)}{p(z)}$.</p><p>Định nghĩa dùng một phân phối mã hóa thay cho mã đơn lẻ $f_\phi(x)$ của bộ tự mã hóa tất định. Trong cả bài, $\mathcal L$ chỉ mang nghĩa cận dưới bằng chứng. $q_\phi$ là công cụ suy luận; mô hình sinh vẫn do $p(z)$ và $p_\theta(x\mid z)$ xác định.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.2 (Định nghĩa 14.14); Murphy (2023), §10.1.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-5-05">
+    <h2>Phân rã log-hợp lý qua cận dưới bằng chứng</h2>
+    <p><strong>Trực quan.</strong> $\log p_\theta(x)$ gồm phần tính được $\mathcal L$ và khe hở; khe nhỏ khi $q_\phi$ gần hậu nghiệm.</p>
+    <p><strong>Định lý 14.15.</strong> <strong>Giả thiết:</strong> $x$ cố định; <strong>mật độ biên</strong>: $0&lt;p_\theta(x)&lt;\infty$;</p>
+    <ul>
+      <li><strong>miền hỗ trợ</strong> (support): $p_\theta(x,z)&gt;0$ tại hầu mọi $z$ có $q_\phi(z\mid x)&gt;0$;</li>
+      <li><strong>tính hữu hạn</strong>: $\mathbb E_{q_\phi}|\log q_\phi(Z\mid x)|&lt;\infty$, $\mathbb E_{q_\phi}|\log p_\theta(x,Z)|&lt;\infty$.</li>
+    </ul>
+    <div class="grid2">
+      <div>
+      <p><strong>Kết luận:</strong> (7.3); $\mathcal L\le\log p_\theta(x)$, dấu bằng $\iff q_\phi(\cdot\mid x)=p_\theta(\cdot\mid x)$ hầu khắp nơi; $\theta$ cố định: $\max_\phi\mathcal L\iff\min_\phi$ KL tới hậu nghiệm.</p>
+      </div>
+      <div class="formula">$$\begin{aligned}\log p_\theta(x)&amp;=\mathcal L(\theta,\phi;x)\\&amp;\quad+\mathrm{KL}\bigl(q_\phi(\cdot\mid x)\\&amp;\qquad\|\,p_\theta(\cdot\mid x)\bigr)\end{aligned}$$</div>
+    </div>
+    <aside class="notes"><p>Khe hở đúng bằng KL từ hậu nghiệm xấp xỉ tới hậu nghiệm thật, nên một $q_\phi$ gần hậu nghiệm cho cận chặt. Với $\theta$ cố định, cực đại $\mathcal L$ theo $\phi$ tương đương cực tiểu KL tới hậu nghiệm theo $\phi$ (bước 3 của ý tưởng chứng minh).</p><p>Giả thiết miền hỗ trợ kéo theo $q_\phi(\cdot\mid x)$ tuyệt đối liên tục đối với $p_\theta(\cdot\mid x)$. Bài toán tích phân khó được thay bằng bài toán tối ưu một cận chỉ gồm kỳ vọng theo $q_\phi$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.2 (Định lý 14.15); Murphy (2023), §10.1.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-5-06">
+    <h2>Ý tưởng chứng minh: phân rã log-hợp lý</h2>
+    <ol>
+      <li>Giả thiết miền hỗ trợ và (6.3): tại $z$ có $q_\phi(z\mid x)&gt;0$,</li>
+    </ol>
+    <div class="formula">$$\begin{aligned}&amp;\log\frac{q_\phi(z\mid x)}{p_\theta(z\mid x)}\\&amp;=\log q_\phi(z\mid x)-\log p_\theta(x,z)\\&amp;\quad+\log p_\theta(x).\end{aligned}$$</div>
+    <ol start="2">
+      <li>Kỳ vọng theo $q_\phi$ (giả thiết tính hữu hạn): KL tới hậu nghiệm $=\log p_\theta(x)-\mathcal L$; Bổ đề 14.13 cho cận, dấu bằng.</li>
+      <li>$\log p_\theta(x)$ không phụ thuộc $\phi$: $\theta$ cố định, cực đại $\mathcal L$ là cực tiểu KL tới hậu nghiệm.</li>
+    </ol>
+    <p><strong>Định nghĩa 14.16.</strong> Suy luận biến phân (variational inference): $\theta$ cố định, họ mật độ $\mathcal Q$; chọn $q\in\mathcal Q$ cực đại $\mathcal L$.</p>
+    <aside class="notes"><p>Số hạng $\log p_\theta(x)$ là hằng số theo $z$, và $q_\phi$ chuẩn hóa nên kỳ vọng của nó bằng chính nó; giả thiết $0&lt;p_\theta(x)&lt;\infty$ làm logarit hữu hạn. Giả thiết tính hữu hạn cho phép tách kỳ vọng của hiệu thành hiệu các kỳ vọng.</p><p>Cách khác: đường Jensen viết $\mathcal L\le\log\mathbb E_q[p_\theta(x,Z)/q(Z)]=\log\int_{\{q&gt;0\}}p_\theta(x,z)\,dz\le\log p_\theta(x)$ và chỉ cho cận; đường Bayes cho đẳng thức (7.3). Khi $\theta$ cũng thay đổi, khe hở phụ thuộc $\theta$.</p><p>Theo bước 3, cực đại $\mathcal L$ trên $\mathcal Q$ tương đương cực tiểu KL tới hậu nghiệm trên $\mathcal Q$. Định nghĩa 14.16 đầy đủ: với $\theta$ cố định và họ $\mathcal Q$, chọn $q\in\mathcal Q$ cực đại $\mathbb E_q[\log p_\theta(x,Z)-\log q(Z)]$, tức cực tiểu $\mathrm{KL}(q\,\|\,p_\theta(\cdot\mid x))$ trên $\mathcal Q$. Ví dụ của họ $\mathcal Q$: Gaussian có hiệp phương sai chéo. Khi hậu nghiệm thật không thuộc họ, khe hở dương với mọi $q$ trong họ.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.2 (chứng minh Định lý 14.15, Định nghĩa 14.16); Murphy (2022), §20.3.5.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-5-07">
+    <h2>Hai vai trò của phân kỳ Kullback–Leibler</h2>
+    <div class="table-scroll"><table class="stack-table"><thead><tr><th></th><th>KL tới tiên nghiệm</th><th>KL tới hậu nghiệm</th></tr></thead><tbody>
+      <tr><td data-label="Tiêu chí">Vị trí</td><td data-label="KL tới tiên nghiệm">trong mục tiêu (7.2)</td><td data-label="KL tới hậu nghiệm">khe hở của cận (7.3)</td></tr>
+      <tr><td data-label="Tiêu chí">Tính được</td><td data-label="KL tới tiên nghiệm">khi $q_\phi$, $p(z)$ đơn giản</td><td data-label="KL tới hậu nghiệm">không, khi (6.1) không tính được</td></tr>
+      <tr><td data-label="Tiêu chí">Tham số</td><td data-label="KL tới tiên nghiệm">$\phi$</td><td data-label="KL tới hậu nghiệm">$\theta$ và $\phi$</td></tr>
+      <tr><td data-label="Tiêu chí">Vai trò</td><td data-label="KL tới tiên nghiệm">phạt $q_\phi$ lệch khỏi $p(z)$</td><td data-label="KL tới hậu nghiệm">đo độ chặt của cận</td></tr>
+    </tbody></table></div>
+    <p>Khi $\theta$ thay đổi, khe hở đổi theo: tăng $\mathcal L$ không bảo đảm $\log p_\theta(x)$ tăng.</p>
+    <aside class="notes"><p>Hậu nghiệm (6.3) chia cho $p_\theta(x)$, nên KL tới hậu nghiệm không tính được đúng lúc cần cận dưới. Cận dưới bằng chứng cao vẫn chỉ là cận dưới của log-hợp lý, không tự chứng minh mô hình khớp dữ liệu.</p><p>Trong học máy, cận dưới bằng chứng là đại lượng được tối ưu khi huấn luyện mô hình có biến ẩn với bộ giải mã là mạng nơ-ron. Nhầm lẫn dễ gặp: cận chặt và KL tới tiên nghiệm nhỏ là hai điều khác nhau; câu 5 của bài tập cuối mạch cho cận chặt với KL tới tiên nghiệm dương.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.2.</p></aside>
+  </section>
+  <section data-slide-id="L14-5-08">
+    <h2>Phân kỳ giữa các phân phối Gaussian</h2>
+    <p><strong>Trực quan.</strong> Log-mật độ Gaussian bậc hai theo $z$: KL tới tiên nghiệm (7.2) cần hai mômen.</p>
+    <div class="grid2">
+      <div>
+      <p><strong>Bổ đề 14.17.</strong> <strong>Giả thiết:</strong> $q=\mathcal N(a,\beta)$, $p=\mathcal N(c,\gamma)$, $a,c\in\mathbb R$, $\beta,\gamma&gt;0$. <strong>Kết luận:</strong> (7.4).</p>
+    <div class="formula">$$\begin{aligned}&amp;\mathrm{KL}(q\|p)=\tfrac12\Big[\log\frac\gamma\beta\\&amp;\qquad+\frac{\beta+(a-c)^2}\gamma-1\Big]\end{aligned}$$</div>
+      </div>
+      <div>
+      <p><strong>Mệnh đề 14.18.</strong> <strong>Giả thiết:</strong> $q=\mathcal N\big(\mu,\operatorname{diag}(s_1^2,\ldots,s_k^2)\big)$, $s_j&gt;0$; $p=\mathcal N(0,I_k)$. <strong>Kết luận:</strong> (7.5); số hạng thứ $j$ không âm, bằng $0$ khi và chỉ khi $\mu_j=0$, $s_j=1$.</p>
+    <div class="formula">$$\begin{aligned}&amp;\mathrm{KL}(q\|p)\\&amp;=\tfrac12\textstyle\sum_{j=1}^k\big(\mu_j^2+s_j^2\\&amp;\qquad-1-\log s_j^2\big)\end{aligned}$$</div>
+      </div>
+    </div>
+    <p><strong>Chứng minh.</strong> Mật độ chéo là tích theo tọa độ; (7.4) với $c=0,\gamma=1$ từng tọa độ.</p>
+    <aside class="notes"><p>Lý do: log-mật độ Gaussian bậc hai theo $z$. Mật độ chéo là tích theo tọa độ, nên KL của (7.5) là tổng KL từng tọa độ; số hạng KL tới tiên nghiệm của (7.2) có dạng này. Chứng minh (7.4): lấy hiệu hai log-mật độ rồi dùng hai mômen $\mathbb E_q[Z]=a$, $\mathbb E_q[(Z-c)^2]=\beta+(a-c)^2$. Với $a=c$, $\beta=\gamma$, (7.4) bằng $0$.</p><p>Công thức cho thấy KL không đối xứng: $\mathrm{KL}(\mathcal N(0,1)\,\|\,\mathcal N(0,2))=\frac12\log2-\frac14\approx0{,}0966$, còn $\mathrm{KL}(\mathcal N(0,2)\,\|\,\mathcal N(0,1))=\frac12(1-\log2)\approx0{,}1534$. Số hạng thứ $j$ của (7.5) bằng $\frac12\big(\mu_j^2+\psi(s_j^2)\big)$ với $\psi$ của chứng minh Bổ đề 14.13.</p><p>Dạng giải tích (7.5) không có nhiễu Monte Carlo. Một mạng có thể xuất $\log\sigma_{\phi,j}^2(x)$ để bảo đảm độ lệch chuẩn dương. Dạng chéo là ràng buộc trên họ $\mathcal Q$; hậu nghiệm thật vẫn có thể có các tọa độ phụ thuộc nhau.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.3 (Bổ đề 14.17, Mệnh đề 14.18); Murphy (2023), §10.2.1.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-5-09">
+    <h2>Kỳ vọng tái tạo và lỗi bình phương</h2>
+    <div class="grid2">
+      <div>
+      <p><strong>Nhắc lại:</strong> với $z$ cố định, $-\log p_\theta(x\mid z)$ bằng $\|x-g_\theta(z)\|_2^2/(2\tau^2)$ cộng hằng số (Mệnh đề 12.2); kỳ vọng theo $q$ cho (7.6):</p>
+      </div>
+      <div class="formula">$$\begin{aligned}&amp;\mathbb E_q[\log p_\theta(x\mid Z)]\\&amp;=-\frac d2\log(2\pi\tau^2)\\&amp;\quad-\frac{\mathbb E_q\|x-g_\theta(Z)\|_2^2}{2\tau^2}\end{aligned}$$</div>
+    </div>
+    <p><strong>Ví dụ 14.6.</strong> Dữ kiện: $g_\theta(z)=(z,0)^\top$, $\tau^2=1/2$, $d=2$; $x=(0,1)^\top$, $q=\mathcal N(0,1/4)$. Tính kỳ vọng tái tạo.</p>
+    <p>$\mathbb E_q\|x-g_\theta(Z)\|_2^2=\mathbb E_q[Z^2]+1=\frac54$; kỳ vọng tái tạo $-\log\pi-\frac54\approx-2{,}3947$.</p>
+    <p><strong>Diễn giải:</strong> mã thay bằng trung bình $0$ cho $-\log\pi-1$; phạt thêm $\operatorname{Var}_q(Z)/(2\tau^2)=1/4$.</p>
+    <aside class="notes"><p>(7.6) dùng mật độ Gaussian nhiều chiều với hiệp phương sai $\tau^2I_d$: $\log p_\theta(x\mid z)=-\frac d2\log(2\pi\tau^2)-\|x-g_\theta(z)\|_2^2/(2\tau^2)$, rồi thay bình phương sai số bằng kỳ vọng của nó theo mã.</p><p>Với $d=2$, $\tau^2=\frac12$: $-\frac22\log(2\pi\cdot\frac12)=-\log\pi\approx-1{,}1447$, hệ số $1/(2\tau^2)=1$. $\mathbb E_q[Z^2]=0^2+\frac14$ theo Mệnh đề 10.24. Hằng số $-\log\pi$ phải giữ khi báo giá trị của cận dưới, và chỉ được bỏ khi tối ưu theo tham số không làm nó thay đổi. Khi bộ giải mã phi tuyến, kỳ vọng này được ước lượng bằng Monte Carlo.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.3 ((7.6), Ví dụ 14.6).</p></aside>
+  </section>
+  <section data-slide-id="L14-5-10">
+    <h2>Ví dụ: cận dưới bằng chứng và khe hở trong mô hình vô hướng</h2>
+    <p><strong>Ví dụ 14.7.</strong> Tính $\mathcal L$, $\log p_\theta(2)$ và khe hở; dữ kiện:</p>
+    <ul>
+      <li>$p(z)=\mathcal N(0,1)$, $p_\theta(x\mid z)=\mathcal N(z,1)$;</li>
+      <li>$x=2$, $q=\mathcal N(1,1/8)$.</li>
+    </ul>
+    <p>KL tới tiên nghiệm theo (7.5): $\frac1{16}+\frac32\log2\approx1{,}1022$; kỳ vọng tái tạo theo (7.6), với $\mathbb E_q[(2-Z)^2]=\frac98$: $-\frac12\log(2\pi)-\frac9{16}$; $\mathcal L\approx-2{,}5837$.</p>
+    <p>Hoàn bình phương: $X\sim\mathcal N(0,2)$, $Z\mid X=2\sim\mathcal N(1,\tfrac12)$, $\log p_\theta(2)\approx-2{,}2655$.</p>
+    <p>Khe hở $\log2-\frac38\approx0{,}3181$, bằng $\mathrm{KL}\big(q\,\|\,\mathcal N(1,\tfrac12)\big)$ theo (7.4), đúng (7.3).</p>
+    <aside class="notes"><p>$\mathcal L=-\frac12\log(2\pi)-\frac58-\frac32\log2$. Hoàn bình phương $-\frac{z^2}2-\frac{(x-z)^2}2=-(z-\frac x2)^2-\frac{x^2}4$, và $\int e^{-(z-x/2)^2}dz=\sqrt\pi$ cho $p_\theta(x)=e^{-x^2/4}/\sqrt{4\pi}$. Khe hở: $-\frac12\log2-1+\frac58+\frac32\log2=\log2-\frac38$; hiệu hai số đã làm tròn là $0{,}3182$.</p><p>Hậu nghiệm xấp xỉ có đúng trung bình hậu nghiệm, nên toàn bộ khe hở đến từ phương sai $1/8$ nhỏ hơn $1/2$. KL tới tiên nghiệm ($\approx1{,}1022$) không cho thấy khe hở này.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.3 (Ví dụ 14.7).</p></aside>
+  </section>
+  <section data-slide-id="L14-5-11">
+    <h2>Bài tập: phân kỳ và cận dưới bằng chứng</h2>
+    <p><strong>Bài tập 14.2.</strong> $p(z)=\mathcal N(0,1)$, $q(z\mid x)=\mathcal N(1,\frac14)$, $p_\theta(x\mid z)=\mathcal N(z,1)$, $x=1$; câu 3: $\mathcal L=-\frac12\log(2\pi)-\frac14-\log2$.</p>
+    <div class="grid2">
+      <div>
+        <p class="check"><strong>Câu hỏi:</strong> (4) Tính biên $p_\theta(1)$ và hậu nghiệm $p_\theta(z\mid1)$ bằng hoàn bình phương. Tính KL tới hậu nghiệm để kiểm tra (7.3). Mô tả cách sinh một quan sát mới mà không cần biết hậu nghiệm.</p>
+      </div>
+      <div>
+        <p class="check">(5) Với cùng mô hình, đổi $q$ thành hậu nghiệm chính xác. Tính ELBO và KL tới tiên nghiệm mới, rồi dùng kết quả để phân biệt cận chặt với KL tới tiên nghiệm nhỏ.</p>
+      </div>
+    </div>
+    <p class="fragment"><strong>Lời giải:</strong> (4) $\log p_\theta(1)\approx-1{,}5155$, $p_\theta(z\mid1)=\mathcal N(\frac12,\frac12)$, KL $\frac12\log2$; $z\sim\mathcal N(0,1)$, $x'\sim\mathcal N(z,1)$. (5) $q$ là hậu nghiệm: $\mathcal L=\log p_\theta(1)$, cận chặt dù KL tới tiên nghiệm $\approx0{,}2216&gt;0$.</p>
+    <aside class="notes"><p>Lời giải câu 1–3: KL tới tiên nghiệm $\frac18+\log2\approx0{,}8181$; $\mathbb E_q[(1-Z)^2]=\frac14$, kỳ vọng tái tạo $-\frac12\log(2\pi)-\frac18$; thay $Z$ bằng trung bình $1$ bỏ mất $\operatorname{Var}_q(Z)=\frac14$ trong lỗi, tức $-\frac18$ trong log-mật độ; $\mathcal L\approx-1{,}8621$.</p><p>Câu 4: $-\frac{z^2}2-\frac{(1-z)^2}2=-(z-\frac12)^2-\frac14$, nên $\log p_\theta(1)=-\frac12\log(4\pi)-\frac14$; KL theo Bổ đề 14.17 với $a=1,\beta=\frac14,c=\frac12,\gamma=\frac12$; kiểm tra $-1{,}8621+0{,}3466=-1{,}5155$. Quan sát mới có phương sai $2$, còn hậu nghiệm tại $x=1$ có phương sai $\frac12$: hai phân phối phục vụ hai phép tính khác nhau.</p><p>Câu 5: KL tới tiên nghiệm mới $\frac12(\frac14+\frac12-1-\log\frac12)=\frac12\log2-\frac18$; kỳ vọng lỗi $(1-\frac12)^2+\frac12=\frac34$, kỳ vọng tái tạo $-\frac12\log(2\pi)-\frac38$. Cận chặt trong khi KL tới tiên nghiệm dương: hai vai trò của KL khác nhau.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.3 (Bài tập 14.2).</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="L14-6-00" id="mach-6" class="strand-title">
+    <div class="strand-title-body">
+      <h2><span class="strand-number">6.</span>Bộ tự mã hóa biến phân</h2>
+      <p class="strand-lead">Cận dưới bằng chứng trở thành mục tiêu huấn luyện bằng gradient khi mã được viết như hàm của nhiễu chuẩn.</p>
+      <p class="strand-keys">Suy luận dùng chung tham số · Tái tham số hóa · Gradient không chệch · Suy sụp hậu nghiệm</p>
+    </div>
+    <aside class="notes"><p>Mạch nhận cận dưới (7.2) với hai số hạng có công thức (7.5) và (7.6). Khi học từ $n$ quan sát còn hai vấn đề: một hậu nghiệm xấp xỉ riêng cho mỗi quan sát làm số tham số tăng theo $n$, và kỳ vọng tái tạo phụ thuộc $\phi$ qua chính phân phối lấy mẫu. Mạch giải hai vấn đề đó, cho thuật toán huấn luyện và nêu điều mà giá trị của mục tiêu không chứng minh được.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §8.</p></aside>
+  </section>
+  <section data-slide-id="L14-6-01">
+    <h2>Suy luận dùng chung tham số và mục tiêu học</h2>
+    <p>Mỗi $x_i$ một hậu nghiệm xấp xỉ, tham số $(\mu_i,s_i)\in\mathbb R^{2k}$: $2kn$ biến.</p>
+    <p><strong>Trực quan.</strong> Mạng chung $x\mapsto(\mu_\phi,\sigma_\phi)$: suy luận dùng chung tham số (amortized inference).</p>
+    <div class="responsive">
+      <div>
+        <p><strong>Định nghĩa 14.19.</strong> Bộ tự mã hóa biến phân (variational autoencoder, VAE): mô hình sinh $p(z)$, $p_\theta(x\mid z)$; bộ mã hóa $q_\phi(\cdot\mid x)$ chung $\phi$;</p>
+        <p>mục tiêu (8.1): $\max_{\theta,\phi}\frac1n\sum_{i=1}^n\mathcal L(\theta,\phi;x_i)$, $\tau$ cố định.</p>
+      </div>
+      <figure class="visual"><img class="only-wide" src="img/lec-14/vae-paths-wide.svg" alt="Hai hàng. Hàng trên, suy luận từ x: quan sát x qua bộ mã hóa cho trung bình μφ(x) và độ lệch chuẩn σφ(x), từ đó lấy mẫu mã z. Hàng dưới, sinh mẫu mới: lấy z từ tiên nghiệm p(z) rồi qua bộ giải mã lấy x mới; đường sinh không đi qua bộ mã hóa."/><img class="only-narrow" src="img/lec-14/vae-paths-narrow.svg" alt="Hai phần xếp dọc. Phần trên, suy luận từ x: quan sát x qua bộ mã hóa cho trung bình μφ(x) và độ lệch chuẩn σφ(x), từ đó lấy mẫu mã z. Phần dưới, sinh mẫu mới: lấy z từ tiên nghiệm p(z) rồi qua bộ giải mã lấy x mới; đường sinh không đi qua bộ mã hóa."/></figure>
+    </div>
+    <p class="check"><strong>Câu hỏi:</strong> Tính gradient (8.1) thế nào, và (8.1) nói gì về mô hình sinh?</p>
+    <aside class="notes"><p>Số biến tăng tuyến tính theo $n$, và một quan sát mới lại cần một bài toán suy luận biến phân mới. Định nghĩa 14.19 có ba thành phần: mô hình sinh $p(z)$, $p_\theta(x\mid z)$; bộ mã hóa $x\mapsto q_\phi(\cdot\mid x)$, cùng $\phi$ cho mọi quan sát; mục tiêu (8.1) trên mẫu độc lập cùng phân phối. Lựa chọn Gaussian là trường hợp dùng trong bài.</p><p>Với lựa chọn này và $\tau$ cố định, cực đại $\mathcal L$ tương đương cực tiểu lỗi tái tạo bình phương kỳ vọng với mã lấy từ $q_\phi$, chia $2\tau^2$, cộng KL kéo phân phối mã hóa về tiên nghiệm.</p><p>Hình: khi huấn luyện, mã $z$ của đường suy luận đi qua bộ giải mã để tính kỳ vọng tái tạo; đường sinh mẫu bắt đầu từ tiên nghiệm, không cần bộ mã hóa.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §1, §8 (Định nghĩa 14.19, Hình 14.2); Murphy (2023), §10.1.5.</p></aside>
+  </section>
+  <section data-slide-id="L14-6-02">
+    <h2>Tái tham số hóa</h2>
+    <p>Với lựa chọn Gaussian $q_\phi(z\mid x)=\mathcal N(\mu_\phi(x),\operatorname{diag}(\sigma_\phi^2(x)))$, $\sigma_{\phi,j}&gt;0$, và $h_\theta(z)=\log p_\theta(x\mid z)$: $\mathbb E_{q_\phi}[h_\theta(Z)]$ phụ thuộc $\phi$ qua phân phối của $Z$.</p>
+    <p><strong>Trực quan.</strong> Nguồn ngẫu nhiên vào $\varepsilon$; mẫu mã là hàm khả vi của tham số.</p>
+    <p><strong>Kỹ thuật.</strong> Tái tham số hóa (reparameterization trick), $\odot$ tích từng tọa độ:</p>
+    <div class="formula">$$\begin{aligned}Z_\phi&amp;=\mu_\phi(x)+\sigma_\phi(x)\odot\varepsilon,\\\varepsilon&amp;\sim\mathcal N(0,I_k)\quad(8.2)\end{aligned}$$</div>
+    <p>Dùng khi cần gradient theo tham số của phân phối lấy mẫu.</p>
+    <p><strong>Kỹ thuật.</strong> Monte Carlo: $\mathbb E_q[h(Z)]\approx\frac1m\sum_{r=1}^mh(z^{(r)})$, $z^{(r)}\overset{\text{iid}}{\sim}q$; dùng khi không có dạng đóng.</p>
+    <aside class="notes"><p>Lựa chọn Gaussian của Định nghĩa 14.19: (6.2) cho mô hình sinh, cùng $q_\phi$ trên mặt trang. Coi một mẫu $z$ đã rút là hằng số khi lấy đạo hàm theo $\phi$ thì bỏ mất sự thay đổi của phân phối mã hóa. Gradient theo $\theta$ đưa được vào trong kỳ vọng vì $q_\phi$ không chứa $\theta$; gradient theo $\phi$ thì không.</p><p>Phép tái tham số hóa chuyển nguồn ngẫu nhiên sang một biến nhiễu có phân phối không phụ thuộc tham số, rồi viết mẫu mã như một hàm của tham số. Monte Carlo thay kỳ vọng bằng trung bình mẫu, ví dụ kỳ vọng tái tạo khi $g_\theta$ phi tuyến; số hạng KL không cần Monte Carlo vì đã có (7.5).</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §7.3, §8.1; Murphy (2023), §10.2.</p></aside>
+  </section>
+  <section data-slide-id="L14-6-03">
+    <h2>Tái tham số hóa Gaussian và gradient</h2>
+    <p><strong>Mệnh đề 14.20.</strong> <strong>Giả thiết:</strong> $x$ cố định, $\vartheta=(\theta,\phi)$; <strong>nhiễu</strong>: $\varepsilon\sim\mathcal N(0,I_k)$ không chứa $\vartheta$; <strong>mẫu mã</strong>: (8.2), $\sigma_{\phi,j}&gt;0$;</p>
+    <ul>
+      <li><strong>khả vi</strong>: với hầu mọi $\varepsilon$, $F(\vartheta,\varepsilon)=h_\theta(Z_\phi)$ khả vi liên tục theo $\vartheta$ trên hình cầu mở $\mathcal B$ quanh điểm đang xét;</li>
+      <li><strong>chặn khả tích</strong>: $\|\nabla_\vartheta F\|_2\le G(\varepsilon)$ trên $\mathcal B$, $\mathbb E[G]&lt;\infty$; <strong>khả tích</strong>: $\mathbb E|F(\vartheta_0,\varepsilon)|&lt;\infty$, $\vartheta_0\in\mathcal B$.</li>
+    </ul>
+    <div class="responsive">
+      <div>
+      <p><strong>Kết luận:</strong> $Z_\phi\sim q_\phi(\cdot\mid x)$; $\mathbb E_{q_\phi}[h(Z)]=\mathbb E_\varepsilon[h(Z_\phi)]$ với mọi $h$ có kỳ vọng hữu hạn; (8.3):</p>
+      </div>
+      <div class="formula">$$\begin{aligned}&amp;\nabla_\vartheta\,\mathbb E_{q_\phi}[h_\theta(Z)]\\&amp;=\mathbb E_\varepsilon\big[\nabla_\vartheta h_\theta(Z_\phi)\big],\ \vartheta\in\mathcal B\end{aligned}$$</div>
+    </div>
+    <p>Ước lượng $\frac1m\sum_{r\le m}\nabla_\vartheta h_\theta\big(\mu_\phi(x)+\sigma_\phi(x)\odot\varepsilon^{(r)}\big)$, các bản sao $\varepsilon^{(r)}$ độc lập, không chệch cho vế trái (8.3).</p>
+    <aside class="notes"><p>Ba giả thiết khả vi, chặn khả tích, khả tích chỉ dùng cho phép đổi đạo hàm và kỳ vọng.</p><p>Trong học máy, mệnh đề cho đường tính gradient từ bộ giải mã, qua mẫu mã (8.2), tới các đầu ra $\mu_\phi(x)$, $\sigma_\phi(x)$ của bộ mã hóa. Ước lượng với $m$ hữu hạn vẫn có phương sai.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §8.1 (Mệnh đề 14.20); Murphy (2023), §10.2.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-6-04">
+    <h2>Ý tưởng chứng minh: tái tham số hóa Gaussian</h2>
+    <ol>
+      <li>Giả thiết $\sigma_{\phi,j}(x)&gt;0$, hàm phân phối: $\mu_j+\sigma_j\varepsilon_j\sim\mathcal N(\mu_j,\sigma_j^2)$; $\varepsilon_j$ độc lập nên $Z_\phi\sim q_\phi(\cdot\mid x)$.</li>
+      <li>Đổi biến, định thức Jacobi $\prod_j\sigma_{\phi,j}(x)&gt;0$:</li>
+    </ol>
+    <div class="formula">$$\begin{aligned}&amp;\mathbb E_{q_\phi}[h(Z)]\\&amp;=\mathbb E_\varepsilon\big[h(\mu_\phi(x)+\sigma_\phi(x)\odot\varepsilon)\big].\end{aligned}$$</div>
+    <ol start="3">
+      <li>Khả vi, chặn khả tích, khả tích; định lý hội tụ trội: đổi thứ tự đạo hàm và kỳ vọng.</li>
+      <li>Tuyến tính của kỳ vọng: không chệch.</li>
+    </ol>
+    <p><strong>Lưu ý:</strong> mã rời rạc không có dạng (8.2); ReLU không khả vi liên tục như giả thiết.</p>
+    <aside class="notes"><p>Bước 1: với $\Phi$ là hàm phân phối của $\mathcal N(0,1)$, $\mathbb P(\mu_j+\sigma_j\varepsilon_j\le t)=\Phi\big((t-\mu_j)/\sigma_j\big)$; phép chia cho $\sigma_j&gt;0$ giữ chiều bất đẳng thức, đó là chỗ dùng giả thiết độ lệch chuẩn dương. Bước 2 dùng $q_\phi(z\mid x)\prod_j\sigma_{\phi,j}=\prod_j\rho(\varepsilon_j)$ với $\rho$ là mật độ của $\mathcal N(0,1)$.</p><p>Bước 3 dùng định lý hội tụ trội (dominated convergence theorem); giả thiết khả tích tại $\vartheta_0$ cùng hàm chặn $G$ cho $F$ khả tích trên cả $\mathcal B$; thương sai phân bị chặn bởi $G$ theo định lý giá trị trung bình, nên giới hạn chuyển được vào trong kỳ vọng. Phần theo $\phi$ của gradient là $(\nabla_\phi Z_\phi)^\top\nabla_zh_\theta(Z_\phi)$.</p><p>Mạng dùng ReLU không thỏa giả thiết khả vi liên tục ở dạng đã nêu, vì ReLU không khả vi tại một số điểm; giả thiết của mệnh đề là điều kiện đủ.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §8.1 (chứng minh Mệnh đề 14.20), Phụ lục B; Murphy (2023), §10.2.1.</p></aside>
+  </section>
+  <section data-slide-id="L14-6-05">
+    <h2>Huấn luyện bộ tự mã hóa biến phân</h2>
+    <p><strong>Thuật toán 14.21.</strong> <strong>Đầu vào:</strong> $x_1,\ldots,x_n\in\mathbb R^d$; $k$, $\tau^2$; mạng $\mu_\phi$, $\log\sigma_\phi^2$, $g_\theta$; bước học $\alpha&gt;0$, cỡ nhóm $b$, $m$ mẫu nhiễu, $T$ vòng lặp. <strong>Đầu ra:</strong> $\theta$, $\phi$ sau $T$ vòng lặp.</p>
+    <div class="grid2">
+      <div>
+      <ol>
+      <li>Chọn ngẫu nhiên một nhóm $I$ gồm $b$ chỉ số.</li>
+      <li>Với $i\in I$, $r\le m$: $z^{(i,r)}=\mu_\phi(x_i)+\sigma_\phi(x_i)\odot\varepsilon^{(i,r)}$, $\varepsilon^{(i,r)}\sim\mathcal N(0,I_k)$ độc lập.</li>
+      <li>Tính $\widehat{\mathcal L}_I=\frac1b\sum_{i\in I}\widehat{\mathcal L}_i$ với</li>
+    </ol>
+      </div>
+      <div class="formula">$$\begin{aligned}\widehat{\mathcal L}_i&amp;=-\frac d2\log(2\pi\tau^2)\\&amp;\quad-\frac1{2m\tau^2}\sum_{r=1}^m\\&amp;\qquad\|x_i-g_\theta(z^{(i,r)})\|_2^2\\&amp;\quad-\mathrm{KL}\big(q_\phi(\cdot\mid x_i)\,\|\,p\big).\end{aligned}$$</div>
+    </div>
+    <ol start="4">
+      <li>Lan truyền ngược ($\varepsilon^{(i,r)}$ cố định); cập nhật $(\theta,\phi)\leftarrow(\theta,\phi)+\alpha\nabla_{\theta,\phi}\widehat{\mathcal L}_I$.</li>
+    </ol>
+    <aside class="notes"><p>Khởi tạo $\theta$, $\phi$ tùy chọn; bốn bước lặp với $t=1,\ldots,T$. KL ở bước 3 tính bằng (7.5), kỳ vọng tái tạo thay bằng trung bình trên $m$ mẫu mã. Theo Mệnh đề 14.20, với nhóm $I$ cố định, kỳ vọng theo nhiễu của gradient ở bước 4 bằng gradient của $b^{-1}\sum_{i\in I}\mathcal L(\theta,\phi;x_i)$.</p><p>Hai nhóm tham số cập nhật cùng bước vì cùng ảnh hưởng kỳ vọng tái tạo: với $\theta$ cố định, một bước tăng $\mathcal L$ theo $\phi$ thu hẹp khe hở (7.3); bước theo $\theta$ đổi chính mô hình sinh, nên khe hở có thể tăng hoặc giảm. Thuật toán không bảo đảm hội tụ tới cực đại toàn cục của (8.1). Chi phí mỗi vòng lặp: $b$ lần chạy bộ mã hóa, $bm$ lần chạy bộ giải mã và lan truyền ngược qua các lần chạy đó.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §8.1 (Thuật toán 14.21).</p></aside>
+  </section>
+  <section data-slide-id="L14-6-06">
+    <h2>Ví dụ: mẫu tái tham số hóa và gradient theo hai tham số</h2>
+    <p><strong>Ví dụ 14.8.</strong> Dữ kiện: $k=d=1$, $\mu=1$, $\sigma=2$, nhiễu $\varepsilon=-1,0,1$; $p_\theta(x\mid z)=\mathcal N(z,1)$, $x=0$, nên $h(z)=-\frac12\log(2\pi)-\frac{z^2}2$. Tính đạo hàm theo đường mẫu.</p>
+    <p>$z=1+2\varepsilon$; quy tắc dây chuyền: $\partial h/\partial\mu=-z$, $\partial h/\partial\sigma=-z\varepsilon$.</p>
+    <div class="grid2">
+    <div class="table-scroll"><table><thead><tr><th>$\varepsilon$</th><th>$z$</th><th>$\partial h/\partial\mu$</th><th>$\partial h/\partial\sigma$</th></tr></thead><tbody>
+      <tr><td>$-1$</td><td>$-1$</td><td>$1$</td><td>$-1$</td></tr>
+      <tr><td>$0$</td><td>$1$</td><td>$-1$</td><td>$0$</td></tr>
+      <tr><td>$1$</td><td>$3$</td><td>$-3$</td><td>$-3$</td></tr>
+    </tbody></table></div>
+    <div>
+    <p>Trung bình ba mẫu: $-1$ và $-4/3$; gradient chính xác $(-\mu,-\sigma)=(-1,-2)$.</p>
+    <p><strong>Diễn giải:</strong> ba nhiễu có trung bình bình phương $2/3$ thay vì $1$; không chệch là phát biểu về kỳ vọng.</p>
+    </div>
+    </div>
+    <aside class="notes"><p>$h(z)=\log\mathcal N(0;z,1)$, $h'(z)=-z$, $\partial z/\partial\mu=1$, $\partial z/\partial\sigma=\varepsilon$. Gradient chính xác: $\mathbb E[h(Z)]=-\frac12\log(2\pi)-\frac12(\mu^2+\sigma^2)$ vì $\mathbb E[Z^2]=\mu^2+\sigma^2$ (Mệnh đề 10.24).</p><p>Kiểm tra: $\partial h/\partial\mu=-\mu-\sigma\varepsilon$, $\partial h/\partial\sigma=-\mu\varepsilon-\sigma\varepsilon^2$; cột theo $\mu$ đúng $-1$ vì trung bình ba nhiễu bằng $0$, cột theo $\sigma$ cho $-\sigma\cdot\frac23=-\frac43$.</p><p>Bài tập 14.3 (bài về nhà) lặp phép tính với $\mu=2$, $\sigma=\frac12$, $\varepsilon=-1,0,2$: hai cột cùng trung bình $-\frac76$, gradient chính xác $(-1,-\frac12)$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §8.1 (Ví dụ 14.8, Bài tập 14.3).</p></aside>
+  </section>
+  <section data-slide-id="L14-6-07">
+    <h2>Giới hạn của mục tiêu</h2>
+    <p><strong>Nhận xét 14.22.</strong> Lỗi tái tạo chỉ kiểm tra bộ giải mã tại $z\sim q_\phi(\cdot\mid x_i)$.</p>
+    <p>Sinh mẫu dùng mã từ $p(z)$: cần kiểm tra bộ giải mã ở vùng đó, dữ liệu mới.</p>
+    <p>KL tới tiên nghiệm nhỏ: $q_\phi\approx p(z)$, mã gần như không phụ thuộc $x$.</p>
+    <p>Nếu bộ giải mã cũng bỏ qua $z$: hậu nghiệm bằng $p(z)$, $q_\phi=p(z)$ cho cận chặt.</p>
+    <p>Biến ẩn không được dùng: suy sụp hậu nghiệm (posterior collapse).</p>
+    <p>Cận chặt không chứng minh mô hình khớp dữ liệu.</p>
+    <aside class="notes"><p>Sinh mẫu lấy mã từ $p(z)$, nên bộ giải mã cần được kiểm tra ở vùng mã mà tiên nghiệm sinh ra. Suy sụp hậu nghiệm: biến ẩn không được dùng. Lý do cận chặt: khi bộ giải mã bỏ qua $z$, hậu nghiệm thật bằng tiên nghiệm, nên $q_\phi=p(z)$ làm KL tới hậu nghiệm bằng $0$; với $q_\phi\approx p(z)$, khe hở bằng $\mathrm{KL}(q_\phi\,\|\,p)$ nên cận chỉ gần chặt. Cận chặt khi đó chỉ cho log-hợp lý của một mô hình không dùng biến ẩn.</p><p>Bài tập tiếp theo kiểm tra điều này trên một mô hình có KL bằng $0$, cận chặt và mômen bậc hai khớp dữ liệu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §8.2 (Nhận xét 14.22); Murphy (2023), §21.4.</p></aside>
+  </section>
+  <section data-slide-id="L14-6-08">
+    <h2>Bài tập: phân kỳ bằng không, mômen khớp và mô hình sai</h2>
+    <p><strong>Bài tập 14.4.</strong> Dữ liệu một chiều nhận $-2$ hoặc $2$ với xác suất bằng nhau; $p(z)=q_\phi(z\mid x)=\mathcal N(0,1)$ với mọi $x$, $p_\theta(x\mid z)=\mathcal N(0,4)$ không phụ thuộc $z$.</p>
+    <div class="check"><p><strong>Câu hỏi:</strong> (1) Tính KL tới tiên nghiệm, log-mật độ giải mã và ELBO tại hai quan sát.</p>
+    <p>(2) Xác định hậu nghiệm và phân phối biên của mô hình. Cận có chặt không?</p>
+    <p>(3) So sánh $\mathbb E[X^2]$, xác suất của khoảng $(-1,1)$ dưới mô hình và dưới dữ liệu.</p>
+    <p>(4) Đánh giá kết luận "KL bằng $0$, cận chặt và mômen bậc hai khớp nên mô hình sinh tốt".</p></div>
+    <aside class="notes"><p>Gợi ý: khi $p_\theta(x\mid z)$ không phụ thuộc $z$, mật độ đồng thời là tích $p_\theta(x)p(z)$; dùng (6.3). Với $X\sim\mathcal N(0,4)$, $X/2\sim\mathcal N(0,1)$, nên $\mathbb P(|X|&lt;1)=2\Phi(1/2)-1$ với $\Phi$ là hàm phân phối của $\mathcal N(0,1)$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §8.2 (Bài tập 14.4).</p></aside>
+  </section>
+  <section data-slide-id="L14-6-09">
+    <h2>Bài tập: phân kỳ bằng không, mômen khớp và mô hình sai</h2>
+    <p><strong>Lời giải:</strong></p>
+    <ol>
+      <li>$q_\phi=p$ nên KL bằng $0$; $\log\mathcal N(\pm2;0,4)=-\frac12\log(8\pi)-\frac12\approx-2{,}1121$ không phụ thuộc $z$, bằng ELBO.</li>
+      <li>Theo (6.3), $p_\theta(z\mid x)=p(z)$; biên $\mathcal N(0,4)$; $q_\phi$ trùng hậu nghiệm nên cận chặt.</li>
+      <li>$\mathbb E[X^2]=4$ ở cả hai; với $\Phi$ hàm phân phối của $\mathcal N(0,1)$, $\mathbb P(|X|&lt;1)=2\Phi(1/2)-1\approx0{,}3829$ dưới mô hình, $0$ dưới dữ liệu.</li>
+      <li>Kết luận sai: một Gaussian đơn đặt khoảng $38\%$ xác suất vào $(-1,1)$, không biểu diễn được hai giá trị tách biệt.</li>
+    </ol>
+    <aside class="notes"><p>Mật độ của mô hình lớn nhất tại $0$, nơi dữ liệu không bao giờ xuất hiện. Cả ba đại lượng KL, khe hở và mômen bậc hai đều không phát hiện sự lệch này. Kiểm tra: $\frac12\log(8\pi)\approx\frac12(2{,}0794+1{,}1447)=1{,}6121$.</p><p>Cảm biến hai cụm (Tình huống 14.2) cho cùng hiện tượng: đầu ra $(\pm3,0)^\top$, bộ giải mã $\mathcal N((0,0)^\top,I_2)$ bỏ qua $z$, cận dưới bằng $-\log(2\pi)-\frac92\approx-6{,}3379$, đúng bằng log-mật độ biên. Dữ liệu có $\mathbb E[X_1^2]=9$, mô hình có $1$. Giảm phân kỳ không sửa được giả thiết sai; cần đổi họ mô hình hoặc cách dùng biến ẩn, rồi đánh giá trên quan sát mới.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §8.2 (lời giải Bài tập 14.4), §9 (Tình huống 14.2).</p></aside>
+  </section>
+</section>
+
+<section>
+  <section data-slide-id="L14-7-00" id="mach-7" class="strand-title">
+    <div class="strand-title-body">
+      <h2><span class="strand-number">7.</span>Tổng kết</h2>
+      <p class="strand-lead">Phân tích thành phần chính, bộ tự mã hóa và bộ tự mã hóa biến phân tối ưu ba đại lượng khác nhau.</p>
+      <p class="strand-keys">Lỗi chiếu · Lỗi tái tạo · Cận dưới bằng chứng</p>
+    </div>
+    <aside class="notes"><p>Mạch nhận các kết quả của mạch 2–6. Việc của mạch là đặt các kết quả cạnh giả thiết không được bỏ, trả lời câu hỏi trung tâm cho cả bài, kiểm tra bằng một bài tập nối phân tích thành phần chính với mô hình sinh, rồi giao bài và tài liệu. Ba đại lượng là lỗi chiếu trực giao bình phương, lỗi tái tạo của hợp hai ánh xạ và cận dưới bằng chứng.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §9 (phần mở đầu của mục).</p></aside>
+  </section>
+  <section data-slide-id="L14-7-01">
+    <h2>Kết quả và giả thiết của bài toán nén</h2>
+    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead><tbody>
+      <tr><td data-label="Kết quả">Hướng chính (14.3)</td><td data-label="Giả thiết">$S$ hiệp phương sai thực nghiệm; $\|u\|_2=1$</td><td data-label="Công thức">$\max u^\top Su=\lambda_1$</td></tr>
+      <tr><td data-label="Kết quả">Lỗi tái tạo (14.4, 14.6)</td><td data-label="Giả thiết">tâm hóa; $U^\top U=I_k$</td><td data-label="Công thức">(4.4) trên mẫu; $\min\widehat J=\sum_{j&gt;k}\lambda_j$</td></tr>
+      <tr><td data-label="Kết quả">Bộ tự mã hóa tuyến tính (14.8)</td><td data-label="Giả thiết">mọi nghiệm: $k&lt;d$, $\lambda_k&gt;\lambda_{k+1}$, $y_i$ sinh $\mathbb R^d$</td><td data-label="Công thức">$(V_k^\top,V_k)$; $(RA,BR^{-1})$</td></tr>
+    </tbody></table></div>
+    <aside class="notes"><p>Ba kết quả đầu thuộc bài toán nén. Mỗi hàng ghi giả thiết mà bỏ đi thì kết luận sai: thiếu ràng buộc $\|u\|_2=1$ thì $u^\top Su$ không bị chặn khi $\lambda_1&gt;0$; dữ liệu chưa tâm hóa thì (4.4) sai; thiếu $\lambda_k&gt;\lambda_{k+1}$ hoặc $y_i$ sinh $\mathbb R^d$ thì kết luận về mọi nghiệm của bộ tự mã hóa tuyến tính không còn được bảo đảm. Lỗi chiếu (4.4) là công thức nối thứ nhất của bài.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §9 (bảng kết quả), §4–§5.</p></aside>
+  </section>
+  <section data-slide-id="L14-7-02">
+    <h2>Kết quả và giả thiết của mô hình sinh</h2>
+    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead><tbody>
+      <tr><td data-label="Kết quả">Mô hình biến ẩn (14.10)</td><td data-label="Giả thiết">mật độ chuẩn hóa; $\tau&gt;0$</td><td data-label="Công thức">(6.1), (6.3)</td></tr>
+      <tr><td data-label="Kết quả">Phân rã log-hợp lý (14.15)</td><td data-label="Giả thiết">$0&lt;p_\theta(x)&lt;\infty$; miền hỗ trợ; kỳ vọng hữu hạn</td><td data-label="Công thức">(7.3)</td></tr>
+      <tr><td data-label="Kết quả">Phân kỳ Gaussian (14.18)</td><td data-label="Giả thiết">mọi $s_j&gt;0$; $p=\mathcal N(0,I_k)$</td><td data-label="Công thức">(7.5)</td></tr>
+      <tr><td data-label="Kết quả">Tái tham số hóa (14.20)</td><td data-label="Giả thiết">nhiễu không chứa tham số; $\sigma_{\phi,j}&gt;0$; khả vi liên tục; chặn khả tích; khả tích</td><td data-label="Công thức">(8.3), ước lượng không chệch; Thuật toán 14.21</td></tr>
+    </tbody></table></div>
+    <aside class="notes"><p>Hai công thức nối còn lại của bài là mật độ biên (6.1) và phân rã (7.3). Trong (7.3), KL tới hậu nghiệm là khe hở của cận; trong mục tiêu (7.2), KL tới tiên nghiệm tính được bằng công thức đóng. Giả thiết của Bổ đề 14.13 (hai mật độ chuẩn hóa) nằm trong giả thiết của Định lý 14.15.</p><p>Loại bảo đảm: (7.3) là đẳng thức; (8.3) là đẳng thức gradient trên $\mathcal B$, cho ước lượng không chệch. Giới hạn chung: lỗi tái tạo nhỏ hay KL nhỏ không chứng minh mô hình sinh tốt.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §9 (bảng kết quả), §6–§8.</p></aside>
+  </section>
+  <section data-slide-id="L14-7-03">
+    <h2>Vấn đề trung tâm</h2>
+    <ul>
+      <li>PCA: không gian con có lỗi chiếu nhỏ nhất trên mẫu.</li>
+      <li>Bộ tự mã hóa học $f,g$ theo lỗi tái tạo; bản tuyến tính như PCA, mã không duy nhất.</li>
+      <li>Bộ tự mã hóa biến phân: sinh $z\sim p(z)$, $x\sim p_\theta(x\mid z)$; học bằng cận dưới bằng chứng.</li>
+    </ul>
+    <p>Bốn quan sát, PCA: $u=(1,0)^\top$, lỗi $1/2$.</p>
+    <p>Ví dụ 14.5: đúng hiệp phương sai $S$, khác phân phối thực nghiệm.</p>
+    <aside class="notes"><p>Các bước của bài: Mệnh đề 14.3, 14.4 (hướng chính, lỗi chiếu); Mệnh đề 14.8 và Ví dụ 14.4 (tọa độ mã, thiếu phân phối); Định nghĩa 14.10 (tiên nghiệm, nhiễu); Định lý 14.15 (cận dưới, khe hở là KL tới hậu nghiệm); Mệnh đề 14.18, 14.20 (tối ưu bằng gradient).</p><p>Phân tích thành phần chính tìm không gian con tuyến tính tốt nhất theo lỗi chiếu trực giao bình phương; bộ tự mã hóa học hai ánh xạ theo lỗi tái tạo. Với bốn quan sát (Tình huống 14.1), mô hình sinh là $(\sqrt{3/2}\,z+\eta_1,\eta_2)^\top$ với $z\sim\mathcal N(0,1)$, $\eta_j\sim\mathcal N(0,\frac12)$, tổng phương sai của mô hình là $2+\frac12=\operatorname{tr}(S)$; khớp hiệp phương sai không chứng minh phân phối Gaussian là cơ chế tạo ra bốn quan sát.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §9 (Tình huống 14.1).</p></aside>
+  </section>
+  <section data-slide-id="L14-7-04">
+    <h2>Bài tập: phương sai của PCA xác suất</h2>
+    <p><strong>Bài tập 14.5.</strong> PCA xác suất, $1\le k&lt;d$: $p(z)=\mathcal N(0,I_k)$, $p(x\mid z)=\mathcal N(Wz+\mu,\tau^2I_d)$, $W\in\mathbb R^{d\times k}$, $\tau&gt;0$; biên $\mathcal N(\mu,C)$, $C=WW^\top+\tau^2I_d$.</p>
+    <div class="grid2">
+      <div>
+      <p>Nghiệm hợp lý cực đại, với $\Lambda_k=\operatorname{diag}(\lambda_1,\ldots,\lambda_k)$ và $R\in\mathbb R^{k\times k}$ trực giao:</p>
+      </div>
+      <div class="formula">$$\begin{aligned}W&amp;=V_k(\Lambda_k-\tau^2I_k)^{1/2}R,\\\tau^2&amp;=\frac1{d-k}\sum_{j=k+1}^d\lambda_j.\end{aligned}$$</div>
+    </div>
+    <div class="check"><p><strong>Câu hỏi:</strong> Phương sai của mô hình theo hướng đơn vị $v$ là $v^\top Cv$. (1) $v^\top V_k=0$: chứng minh $v^\top Cv=\tau^2$. (2) $v=v_i$, $1\le i\le k$: chứng minh $v^\top Cv=(\lambda_i-\tau^2)+\tau^2=\lambda_i$.</p></div>
+    <aside class="notes"><p>PCA xác suất là mô hình của Ví dụ 14.5 với $d$, $k$ tổng quát. Bài nối hai nửa của bài: trị riêng của phân tích thành phần chính (mạch 2) và mô hình sinh tuyến tính Gaussian (mạch 4). Gợi ý: tính $WW^\top$ trước, dùng $RR^\top=I_k$, rồi tính $V_k^\top v$ trong từng trường hợp.</p><p class="note-source"><strong>Nguồn:</strong> tệp bài tập Bài 14 (Bài tập 14.5); Murphy (2022), §20.2.2, (20.41)–(20.46), Bài tập 20.6.</p></aside>
+  </section>
+  <section data-slide-id="L14-7-05">
+    <h2>Bài tập: phương sai của PCA xác suất</h2>
+    <p><strong>Lời giải:</strong> $\Lambda_k-\tau^2I_k$ chéo và $RR^\top=I_k$, nên $WW^\top=V_k(\Lambda_k-\tau^2I_k)V_k^\top$.</p>
+    <p>Đặt $a=V_k^\top v$: $v^\top Cv=a^\top(\Lambda_k-\tau^2I_k)a+\tau^2v^\top v$.</p>
+    <p>(1) $a=0$, $v^\top v=1$: $v^\top Cv=\tau^2$. (2) $a=e_i$, vector đơn vị thứ $i$: $v_i^\top Cv_i=(\lambda_i-\tau^2)+\tau^2=\lambda_i$.</p>
+    <p>Kiểm tra trên bốn quan sát, $k=1$: $\tau^2=\tfrac12$, $W=\sqrt{3/2}\,v_1$, $C=\operatorname{diag}(2,\tfrac12)=S$.</p>
+    <p><strong>Diễn giải:</strong> theo $v_i$, $i\le k$, phương sai của mô hình là $\lambda_i$; theo hướng vuông góc với các cột của $V_k$, là $\tau^2$.</p>
+    <aside class="notes"><p>Căn bậc hai xác định vì $\tau^2$ là trung bình của $\lambda_{k+1},\ldots,\lambda_d$, nên $\tau^2\le\lambda_{k+1}\le\lambda_j$ với mọi $j\le k$. Biến ẩn đóng góp $\lambda_i-\tau^2$, nhiễu đóng góp $\tau^2$.</p><p>Phép kiểm tra khớp mô hình sinh tuyến tính Gaussian hai chiều của mạch 4 ($w^2=\frac32$, $\tau^2=\frac12$): với $\lambda_1=2$, $\lambda_2=\frac12$, $W=v_1\sqrt{2-\frac12}$.</p><p class="note-source"><strong>Nguồn:</strong> tệp bài tập Bài 14 (lời giải Bài tập 14.5).</p></aside>
+  </section>
+  <section data-slide-id="L14-7-06">
+    <h2>Câu hỏi tự kiểm tra</h2>
+    <p><strong>Câu hỏi:</strong> Biến ẩn $Z$ làm được gì mà bộ tự mã hóa tất định không làm được?</p>
+    <p>Hợp lý cực đại cần đại lượng nào không tính được, thay bằng gì, sai khác bao nhiêu?</p>
+    <p>VAE có KL tới tiên nghiệm bằng $0$ tại mọi $x_i$.</p>
+    <p>Mã mang thông tin gì về $x_i$, và có kết luận được mẫu sinh tốt không?</p>
+    <aside class="notes"><p>Một cơ chế sinh dữ liệu mới: $z\sim p(z)$ rồi $x\sim p_\theta(x\mid z)$; bộ tự mã hóa tất định không chỉ định phân phối của mã, nên cùng bộ giải mã đi với nhiều cơ chế sinh (Ví dụ 14.4).</p><p>(2) $\log p_\theta(x)$, chứa tích phân (6.1); thay bằng cận dưới (7.2); $\log p_\theta(x)-\mathcal L=\mathrm{KL}(q_\phi(\cdot\mid x)\,\|\,p_\theta(\cdot\mid x))\ge0$, và Mệnh đề 14.20 cho phép tối ưu cận dưới bằng gradient.</p><p>(3) KL bằng $0$ cho $q_\phi(\cdot\mid x_i)=p(z)$ hầu khắp nơi: phân phối của mã không phụ thuộc quan sát, mã không mang thông tin riêng của $x_i$. Không kết luận được về mẫu sinh (Bài tập 14.4, cảm biến hai cụm).</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §11 (lời giải câu hỏi cuối buổi).</p></aside>
+  </section>
+  <section data-slide-id="L14-7-07">
+    <h2>Bài tập về nhà</h2>
+    <div class="table-scroll"><table><thead><tr><th>Mục</th><th>Bài tập</th></tr></thead><tbody>
+      <tr><td>2. Phân tích thành phần chính</td><td>14.6, 14.7, 14.10</td></tr>
+      <tr><td>4. Mô hình sinh có biến ẩn</td><td>14.1 (trên lớp), 14.5 (trên lớp), 14.8, 14.9</td></tr>
+      <tr><td>5. Cận dưới bằng chứng</td><td>14.2 (câu 4–5 trên lớp), 14.11</td></tr>
+      <tr><td>6. Bộ tự mã hóa biến phân</td><td>14.3, 14.4 (trên lớp)</td></tr>
+    </tbody></table></div>
+    <p><a href="material-viewer.html?doc=materials/lec-14/lecture-note.md&amp;deck=lecture-14-hoc-bieu-dien-mo-hinh-sinh.html">Ghi chú bài giảng</a> · <a href="material-viewer.html?doc=materials/lec-14/exercises.md&amp;deck=lecture-14-hoc-bieu-dien-mo-hinh-sinh.html">Bài tập</a></p>
+    <aside class="notes"><p>Mỗi bài được xếp vào mạch cung cấp kiến thức cuối cùng bài cần: 14.1 câu 4 cần mô hình (6.2); 14.5 cần mật độ biên của mô hình sinh tuyến tính Gaussian; 14.8, 14.9 dùng hoàn bình phương; 14.11 so sánh KL thuận và KL ngược; 14.3 cần Mệnh đề 14.20 và (7.5); 14.4 cần Nhận xét 14.22. Bài 14.1–14.4 nằm trong ghi chú, 14.5–14.11 trong tệp bài tập, mỗi bài có gợi ý và lời giải.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §10; tệp bài tập Bài 14.</p></aside>
+  </section>
+  <section data-slide-id="L14-7-08">
+    <h2>Tài liệu tham khảo</h2>
+    <ul>
+      <li>Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>: §20.1, §6.2.3–6.2.4, §20.3, §20.3.5, §20.2.2.</li>
+      <li>Murphy (2023), <em>Probabilistic Machine Learning: Advanced Topics</em>: §10.1.1, §10.1.5, §10.2.1, §21.1–§21.2, §21.4.</li>
+      <li>Kingma và Welling, <em>Auto-Encoding Variational Bayes</em>, arXiv:1312.6114: §2.2–§2.4, §3.</li>
+    </ul>
+    <p>Bài toán quyết định tuần tự ở Bài 13 có quan sát không bộc lộ đầy đủ trạng thái.</p>
+    <p>Mô hình có biến ẩn, hậu nghiệm và suy luận biến phân cho phép suy luận về trạng thái đó.</p>
+    <aside class="notes"><p>Trước buổi học: Murphy (2022), §20.1, đặc biệt §20.1.2, và §6.2.3–6.2.4. Sau buổi học: Murphy (2022), §20.1.4.1, §20.3, §20.3.1, §20.3.5; Murphy (2023), §10.1.1, §10.1.5, §10.2.1, §21.1–§21.2 (gồm §21.2.1–§21.2.3). Mở rộng: Murphy (2022), §20.2.2; Murphy (2023), §10.1.6, §21.3.1, §21.4; Kingma và Welling.</p><p>Khi quan sát không bộc lộ đầy đủ trạng thái của một bài toán quyết định tuần tự như ở Bài 13, mô hình có biến ẩn (6.1), hậu nghiệm (6.3) và suy luận biến phân là các công cụ cho nhu cầu đó. Bài 10–14 trả lời năm câu hỏi về vai trò của toán học trong AI; với Bài 14, biến ẩn cho cơ chế sinh, và Định lý 14.15 thay tích phân khó tính bằng một cận dưới tối ưu được.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 14, §11–§12.</p></aside>
+  </section>
+</section>
+
+
+<div class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 14</div>
+</div></div></div>
+<script src="revealjs/dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/math/math.js"></script>
+<script>Reveal.initialize({width:1280,height:720,margin:.04,controlsLayout:"edges",slideNumber:true,hashOneBasedIndex:true,hash:true,scrollActivationWidth:null,katex:{local:"vendor/katex"},plugins:[RevealMarkdown,RevealHighlight,RevealNotes,RevealMath.KaTeX]});</script>
+<script>
+Reveal.on("slidechanged",function(){document.querySelector(".lecture-viewport").scrollTop=0;});
+// Đánh dấu công thức hoặc bảng tràn ngang ở màn hẹp để người đọc biết cần cuộn.
+let scrollHintFrame;
+function updateScrollHints(){
+  const slide=Reveal.getCurrentSlide();
+  if(!slide) return;
+  const narrow=window.matchMedia('(max-width:760px)').matches;
+  slide.querySelectorAll('.formula,.math-large,.table-scroll').forEach(region=>{
+    const overflow=region.clientWidth>0 && region.scrollWidth>region.clientWidth+2;
+    region.classList.toggle('has-horizontal-overflow',narrow && overflow);
+    if(narrow && overflow) region.tabIndex=0; else region.removeAttribute('tabindex');
+  });
+}
+function scheduleScrollHints(){ cancelAnimationFrame(scrollHintFrame); scrollHintFrame=requestAnimationFrame(updateScrollHints); }
+Reveal.on('ready',scheduleScrollHints);
+Reveal.on('slidechanged',scheduleScrollHints);
+window.addEventListener('resize',scheduleScrollHints);
+document.fonts.ready.then(scheduleScrollHints);
+document.querySelectorAll('.slides img').forEach(img=>img.addEventListener('load',scheduleScrollHints));
+// Giữ phím cuộn trong vùng đang nhận tiêu điểm.
+document.querySelector(".lecture-viewport").addEventListener("keydown",function(event){
+  const region=event.target.closest('.formula,.math-large,.table-scroll,.lecture-viewport');
+  if(!region || event.altKey || event.ctrlKey || event.metaKey) return;
+  const horizontal=region.scrollWidth>region.clientWidth+2;
+  const vertical=region.scrollHeight>region.clientHeight+2;
+  if(horizontal && ["ArrowLeft","ArrowRight"].includes(event.key)){
+    event.preventDefault(); event.stopPropagation();
+    region.scrollLeft+=(event.key==="ArrowRight"?1:-1)*80;
+  } else if(vertical && ["ArrowUp","ArrowDown","PageUp","PageDown","Home","End"].includes(event.key)){
+    event.preventDefault(); event.stopPropagation();
+    if(event.key==="Home") region.scrollTop=0;
+    else if(event.key==="End") region.scrollTop=region.scrollHeight;
+    else region.scrollTop+=(event.key==="ArrowUp"||event.key==="PageUp"?-1:1)*(event.key.startsWith("Arrow")?60:region.clientHeight*.8);
+  }
+});
+</script>
+</body>
+</html>
