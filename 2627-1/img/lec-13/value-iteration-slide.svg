@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" role="img" aria-labelledby="title desc">
+<title id="title">Hai nhánh của phép cập nhật Bellman và hội tụ của lặp giá trị cho robot</title>
+<desc id="desc">Hai đồ thị. Bên trái: trục hoành là giá trị v tại trạng thái hoạt động từ 0 đến 7, trục tung là giá trị sau một phép cập nhật. Nhánh A có độ dốc nhỏ, nhánh B có độ dốc lớn; hai nhánh cắt nhau tại v = 8/9; nhánh B cắt đường chéo tại điểm bất động 6. Bên phải: giá trị v_k theo số vòng lặp k từ 0 đến 30; dãy tăng qua 1; 1,5; 1,95; 2,355 và tiến tới đường ngang 6. Điểm v_1 tạo bởi nhánh A là hình tam giác, các điểm sau tạo bởi nhánh B là hình tròn.</desc>
+<rect width="1000" height="420" fill="white"/>
+<g font-family="DejaVu Sans,Arial,sans-serif" fill="#17304e">
+<rect x="70" y="50" width="380" height="290" fill="none" stroke="#94a3b8"/>
+<line x1="70.0" y1="340" x2="70.0" y2="346" stroke="#334155"/><text x="70.0" y="370.0" font-size="24" text-anchor="middle">0</text>
+<line x1="64" y1="340.0" x2="70" y2="340.0" stroke="#334155"/><text x="60" y="348.4" font-size="24" text-anchor="end">0</text>
+<line x1="124.3" y1="340" x2="124.3" y2="346" stroke="#334155"/><text x="124.3" y="370.0" font-size="24" text-anchor="middle">1</text>
+<line x1="64" y1="298.6" x2="70" y2="298.6" stroke="#334155"/><text x="60" y="307.0" font-size="24" text-anchor="end">1</text>
+<line x1="178.6" y1="340" x2="178.6" y2="346" stroke="#334155"/><text x="178.6" y="370.0" font-size="24" text-anchor="middle">2</text>
+<line x1="64" y1="257.1" x2="70" y2="257.1" stroke="#334155"/><text x="60" y="265.5" font-size="24" text-anchor="end">2</text>
+<line x1="232.9" y1="340" x2="232.9" y2="346" stroke="#334155"/><text x="232.9" y="370.0" font-size="24" text-anchor="middle">3</text>
+<line x1="64" y1="215.7" x2="70" y2="215.7" stroke="#334155"/><text x="60" y="224.1" font-size="24" text-anchor="end">3</text>
+<line x1="287.1" y1="340" x2="287.1" y2="346" stroke="#334155"/><text x="287.1" y="370.0" font-size="24" text-anchor="middle">4</text>
+<line x1="64" y1="174.3" x2="70" y2="174.3" stroke="#334155"/><text x="60" y="182.7" font-size="24" text-anchor="end">4</text>
+<line x1="341.4" y1="340" x2="341.4" y2="346" stroke="#334155"/><text x="341.4" y="370.0" font-size="24" text-anchor="middle">5</text>
+<line x1="64" y1="132.9" x2="70" y2="132.9" stroke="#334155"/><text x="60" y="141.3" font-size="24" text-anchor="end">5</text>
+<line x1="395.7" y1="340" x2="395.7" y2="346" stroke="#334155"/><text x="395.7" y="370.0" font-size="24" text-anchor="middle">6</text>
+<line x1="64" y1="91.4" x2="70" y2="91.4" stroke="#334155"/><text x="60" y="99.8" font-size="24" text-anchor="end">6</text>
+<line x1="450.0" y1="340" x2="450.0" y2="346" stroke="#334155"/><text x="450.0" y="370.0" font-size="24" text-anchor="middle">7</text>
+<line x1="64" y1="50.0" x2="70" y2="50.0" stroke="#334155"/><text x="60" y="58.4" font-size="24" text-anchor="end">7</text>
+<line x1="70.0" y1="340.0" x2="450.0" y2="50.0" stroke="#64748b" stroke-width="2" stroke-dasharray="8 6"/>
+<line x1="70.0" y1="298.6" x2="450.0" y2="168.1" stroke="#b34b36" stroke-width="3"/>
+<line x1="70.0" y1="315.1" x2="456.0" y2="50.0" stroke="#2456a6" stroke-width="3"/>
+<text x="319.7" y="244.0" font-size="24" fill="#b34b36">nhánh A</text>
+<text x="189.4" y="218.7" font-size="24" fill="#2456a6" text-anchor="end">nhánh B</text>
+<text x="314.3" y="178.4" font-size="24" fill="#475569">đường chéo</text>
+<text x="70" y="38" font-size="24">giá trị sau một lần cập nhật</text>
+<circle cx="118.3" cy="282.0" r="7" fill="white" stroke="#17304e" stroke-width="2.5"/>
+<text x="130.3" y="310.8" font-size="24">8/9</text>
+<circle cx="395.7" cy="91.4" r="8" fill="#17304e"/>
+<text x="383.7" y="79.4" font-size="24" text-anchor="end">6</text>
+<text x="260.0" y="398.8" font-size="24" text-anchor="middle">v</text>
+<rect x="600" y="50" width="380" height="290" fill="none" stroke="#94a3b8"/>
+<line x1="600.0" y1="340" x2="600.0" y2="346" stroke="#334155"/><text x="600.0" y="370.0" font-size="24" text-anchor="middle">0</text>
+<line x1="663.3" y1="340" x2="663.3" y2="346" stroke="#334155"/><text x="663.3" y="370.0" font-size="24" text-anchor="middle">5</text>
+<line x1="726.7" y1="340" x2="726.7" y2="346" stroke="#334155"/><text x="726.7" y="370.0" font-size="24" text-anchor="middle">10</text>
+<line x1="790.0" y1="340" x2="790.0" y2="346" stroke="#334155"/><text x="790.0" y="370.0" font-size="24" text-anchor="middle">15</text>
+<line x1="853.3" y1="340" x2="853.3" y2="346" stroke="#334155"/><text x="853.3" y="370.0" font-size="24" text-anchor="middle">20</text>
+<line x1="916.7" y1="340" x2="916.7" y2="346" stroke="#334155"/><text x="916.7" y="370.0" font-size="24" text-anchor="middle">25</text>
+<line x1="980.0" y1="340" x2="980.0" y2="346" stroke="#334155"/><text x="980.0" y="370.0" font-size="24" text-anchor="middle">30</text>
+<line x1="594" y1="340.0" x2="600" y2="340.0" stroke="#334155"/><text x="590" y="348.4" font-size="24" text-anchor="end">0</text>
+<line x1="594" y1="298.6" x2="600" y2="298.6" stroke="#334155"/><text x="590" y="307.0" font-size="24" text-anchor="end">1</text>
+<line x1="594" y1="257.1" x2="600" y2="257.1" stroke="#334155"/><text x="590" y="265.5" font-size="24" text-anchor="end">2</text>
+<line x1="594" y1="215.7" x2="600" y2="215.7" stroke="#334155"/><text x="590" y="224.1" font-size="24" text-anchor="end">3</text>
+<line x1="594" y1="174.3" x2="600" y2="174.3" stroke="#334155"/><text x="590" y="182.7" font-size="24" text-anchor="end">4</text>
+<line x1="594" y1="132.9" x2="600" y2="132.9" stroke="#334155"/><text x="590" y="141.3" font-size="24" text-anchor="end">5</text>
+<line x1="594" y1="91.4" x2="600" y2="91.4" stroke="#334155"/><text x="590" y="99.8" font-size="24" text-anchor="end">6</text>
+<line x1="594" y1="50.0" x2="600" y2="50.0" stroke="#334155"/><text x="590" y="58.4" font-size="24" text-anchor="end">7</text>
+<line x1="600" y1="91.4" x2="980" y2="91.4" stroke="#64748b" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="600" y="38" font-size="24">vₖ</text>
+<text x="967.3" y="81.4" font-size="24" text-anchor="end">6</text>
+<polyline points="600.0,340.0 612.7,298.6 625.3,277.9 638.0,259.2 650.7,242.4 663.3,227.3 676.0,213.7 688.7,201.5 701.3,190.5 714.0,180.6 726.7,171.7 739.3,163.7 752.0,156.4 764.7,149.9 777.3,144.1 790.0,138.8 802.7,134.1 815.3,129.8 828.0,126.0 840.7,122.5 853.3,119.4 866.0,116.6 878.7,114.1 891.3,111.8 904.0,109.8 916.7,108.0 929.3,106.3 942.0,104.8 954.7,103.5 967.3,102.3 980.0,101.2" fill="none" stroke="#2456a6" stroke-width="2"/>
+<circle cx="600.0" cy="340.0" r="4.5" fill="#17304e"/>
+<polygon points="612.7,288.6 603.7,305.6 621.7,305.6" fill="#b34b36"/>
+<circle cx="625.3" cy="277.9" r="4.5" fill="#2456a6"/>
+<circle cx="638.0" cy="259.2" r="4.5" fill="#2456a6"/>
+<circle cx="650.7" cy="242.4" r="4.5" fill="#2456a6"/>
+<circle cx="663.3" cy="227.3" r="4.5" fill="#2456a6"/>
+<circle cx="676.0" cy="213.7" r="4.5" fill="#2456a6"/>
+<circle cx="688.7" cy="201.5" r="4.5" fill="#2456a6"/>
+<circle cx="701.3" cy="190.5" r="4.5" fill="#2456a6"/>
+<circle cx="714.0" cy="180.6" r="4.5" fill="#2456a6"/>
+<circle cx="726.7" cy="171.7" r="4.5" fill="#2456a6"/>
+<circle cx="739.3" cy="163.7" r="4.5" fill="#2456a6"/>
+<circle cx="752.0" cy="156.4" r="4.5" fill="#2456a6"/>
+<circle cx="764.7" cy="149.9" r="4.5" fill="#2456a6"/>
+<circle cx="777.3" cy="144.1" r="4.5" fill="#2456a6"/>
+<circle cx="790.0" cy="138.8" r="4.5" fill="#2456a6"/>
+<circle cx="802.7" cy="134.1" r="4.5" fill="#2456a6"/>
+<circle cx="815.3" cy="129.8" r="4.5" fill="#2456a6"/>
+<circle cx="828.0" cy="126.0" r="4.5" fill="#2456a6"/>
+<circle cx="840.7" cy="122.5" r="4.5" fill="#2456a6"/>
+<circle cx="853.3" cy="119.4" r="4.5" fill="#2456a6"/>
+<circle cx="866.0" cy="116.6" r="4.5" fill="#2456a6"/>
+<circle cx="878.7" cy="114.1" r="4.5" fill="#2456a6"/>
+<circle cx="891.3" cy="111.8" r="4.5" fill="#2456a6"/>
+<circle cx="904.0" cy="109.8" r="4.5" fill="#2456a6"/>
+<circle cx="916.7" cy="108.0" r="4.5" fill="#2456a6"/>
+<circle cx="929.3" cy="106.3" r="4.5" fill="#2456a6"/>
+<circle cx="942.0" cy="104.8" r="4.5" fill="#2456a6"/>
+<circle cx="954.7" cy="103.5" r="4.5" fill="#2456a6"/>
+<circle cx="967.3" cy="102.3" r="4.5" fill="#2456a6"/>
+<circle cx="980.0" cy="101.2" r="4.5" fill="#2456a6"/>
+<text x="626.7" y="304.6" font-size="24" fill="#b34b36">A</text>
+<text x="701.3" y="226.5" font-size="24" fill="#2456a6">B</text>
+<text x="790.0" y="398.8" font-size="24" text-anchor="middle">vòng lặp k</text>
+</g></svg>

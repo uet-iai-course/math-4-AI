@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-labelledby="title desc">
+<title id="title">Hai hành động của robot trong mô hình quyết định Markov</title>
+<desc id="desc">Hai hình tròn là trạng thái: h (hoạt động) và z (hấp thụ). Từ h có hai ô hành động. Ô A ghi thưởng 1, có mũi tên về h với xác suất 0,5 và mũi tên sang z với xác suất 0,5. Ô B ghi thưởng 0,6, có mũi tên về h với xác suất 1. Tại z có vòng tự lặp xác suất 1, thưởng 0. Hệ số chiết khấu 0,9.</desc>
+<defs>
+<marker id="ag" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#56677f"/></marker>
+<marker id="aa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b34b36"/></marker>
+<marker id="ab" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2456a6"/></marker>
+<marker id="az" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker>
+</defs>
+<rect width="900" height="500" fill="white"/>
+<g font-family="DejaVu Sans,Arial,sans-serif" fill="#17304e">
+<circle cx="180" cy="245" r="58" fill="#edf4ff" stroke="#2456a6" stroke-width="3"/>
+<text x="180" y="261" font-size="46" text-anchor="middle">h</text>
+<circle cx="740" cy="245" r="58" fill="#f3f4f6" stroke="#64748b" stroke-width="3"/>
+<text x="740" y="261" font-size="46" text-anchor="middle">z</text>
+<rect x="330" y="25" width="280" height="110" rx="10" fill="#fff0ed" stroke="#b34b36" stroke-width="3"/>
+<text x="470" y="70" font-size="34" text-anchor="middle">Hành động A</text>
+<text x="470" y="114" font-size="34" text-anchor="middle">thưởng 1</text>
+<rect x="330" y="335" width="280" height="110" rx="10" fill="#eaf4ff" stroke="#2456a6" stroke-width="3"/>
+<text x="470" y="380" font-size="34" text-anchor="middle">Hành động B</text>
+<text x="470" y="424" font-size="34" text-anchor="middle">thưởng 0,6</text>
+<g fill="none" stroke-width="2.6">
+<path d="M226 212 L326 132" stroke="#56677f" marker-end="url(#ag)"/>
+<path d="M226 278 L326 345" stroke="#56677f" marker-end="url(#ag)"/>
+<path d="M380 25 C300 -20 150 30 166 185" stroke="#b34b36" marker-end="url(#aa)"/>
+<path d="M610 80 C670 80 712 125 724 187" stroke="#b34b36" marker-end="url(#aa)"/>
+<path d="M330 410 C240 470 150 400 166 305" stroke="#2456a6" marker-end="url(#ab)"/>
+<path d="M712 297 C680 390 800 390 768 301" stroke="#64748b" marker-end="url(#az)"/>
+</g>
+<text x="250" y="88" font-size="34" fill="#b34b36" text-anchor="middle">0,5</text>
+<text x="690" y="66" font-size="34" fill="#b34b36" text-anchor="middle">0,5</text>
+<text x="140" y="452" font-size="34" fill="#2456a6" text-anchor="middle">1</text>
+<text x="740" y="424" font-size="34" text-anchor="middle">1; thưởng 0</text>
+<text x="450" y="490" font-size="34" text-anchor="middle">h: hoạt động · z: hấp thụ · γ = 0,9</text>
+</g></svg>

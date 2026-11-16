@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 490" role="img" aria-labelledby="title desc">
+<title id="title">Các đường đi hai bước của robot hoạt động hoặc nghỉ</title>
+<desc id="desc">Cây hai bước của robot bắt đầu ở trạng thái hoạt động h. Bước một: sang h với xác suất 0,8, sang n với xác suất 0,2. Bước hai từ h: sang h 0,8, sang n 0,2; từ n: sang h 0,35, sang n 0,65. Bốn lá ghi xác suất đường đi: h, h, h là 0,64; h, h, n là 0,16; h, n, h là 0,07; h, n, n là 0,13.</desc>
+<defs><marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#53677f"/></marker></defs>
+<rect width="680" height="490" fill="white"/>
+<g font-family="DejaVu Sans,Arial,sans-serif" fill="#17304e">
+<text x="70" y="32" font-size="34" text-anchor="middle">t = 0</text>
+<text x="300" y="32" font-size="34" text-anchor="middle">t = 1</text>
+<text x="530" y="32" font-size="34" text-anchor="middle">t = 2</text>
+<g stroke="#53677f" stroke-width="2.4" fill="none" marker-end="url(#arr)">
+<line x1="93" y1="248" x2="274" y2="154"/>
+<line x1="93" y1="272" x2="272" y2="366"/>
+<line x1="325" y1="134" x2="502" y2="87"/>
+<line x1="325" y1="147" x2="502" y2="193"/>
+<line x1="327" y1="373" x2="503" y2="327"/>
+<line x1="327" y1="387" x2="502" y2="433"/>
+</g>
+<g font-size="34">
+<text x="150" y="180" text-anchor="middle">0,8</text>
+<text x="150" y="362" text-anchor="middle">0,2</text>
+<text x="405" y="94" text-anchor="middle">0,8</text>
+<text x="405" y="204" text-anchor="middle">0,2</text>
+<text x="405" y="334" text-anchor="middle">0,35</text>
+<text x="405" y="446" text-anchor="middle">0,65</text>
+</g>
+<g stroke="#2456a6" stroke-width="4" fill="#edf4ff">
+<circle cx="70" cy="260" r="26"/>
+<circle cx="300" cy="140" r="26"/>
+<circle cx="530" cy="80" r="26"/>
+<circle cx="530" cy="320" r="26"/>
+</g>
+<g stroke="#64748b" stroke-width="2" fill="#f3f4f6">
+<rect x="274" y="354" width="52" height="52"/>
+<rect x="504" y="174" width="52" height="52"/>
+<rect x="504" y="414" width="52" height="52"/>
+</g>
+<g font-size="36" text-anchor="middle">
+<text x="70" y="272">h</text>
+<text x="300" y="152">h</text>
+<text x="300" y="392">n</text>
+<text x="530" y="92">h</text>
+<text x="530" y="212">n</text>
+<text x="530" y="332">h</text>
+<text x="530" y="452">n</text>
+</g>
+<g font-size="34" font-weight="bold">
+<text x="566" y="90">0,64</text>
+<text x="566" y="210">0,16</text>
+<text x="566" y="330">0,07</text>
+<text x="566" y="450">0,13</text>
+</g>
+</g></svg>

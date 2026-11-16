@@ -244,3 +244,69 @@ SB = Sutton và Barto (2018), ấn bản 2. Trang in = trang PDF − 22; số, d
 **Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0 công thức tràn khung ở 390 px. Ghi chú: 17 công thức có sẵn từ trước tràn khung ở 390 px (ngoài lượt nhẹ, quy tắc D3). Bài 13 không có deck. `material-local-data.js` đồng bộ trong một commit riêng sau khi cả năm bài 10–14 xong.
 
 Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 13 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.
+
+## Bộ trang chiếu (dựng từ ghi chú, 2026-11-16)
+
+Yêu cầu của người dùng (2026-11-16): "hoàn thiện slide deck các bài 12,13,14 … theo các nguyên tắc mới về slide deck, thống nhất với ghi chú bài giảng, hãy liệt kê các nguyên tắc này phù hợp với khoá học và đảm bảo các agent tuân thủ" (khoá math-4-AI). Nguyên tắc NT1–NT28: `../tools/courses/math-4-AI/2627-1/deck-build/common-brief.md`; tóm tắt trong `CLAUDE.md` mục "Slide decks built from the lecture note"; ghi chú ở đầu mục "Cấu trúc bộ trang chiếu mặc định" của `AGENTS.md`. Bản giao việc từng vai cùng thư mục.
+
+### Nhật ký tác tử (theo lời gọi công cụ)
+
+| Giai đoạn | Vai | Loại | Mô hình | Nỗ lực | Ghi tệp |
+|---|---|---|---|---|---|
+| Storyboard | Người lập storyboard (kế hoạch + phân tích nguồn) | general-purpose | opus (Opus 5.5) | medium | `planning/lec-13/storyboard.md` |
+| Cổng storyboard | Người duyệt cổng storyboard | general-purpose | opus (Opus 5.5) | high | `planning/lec-13/reviews/deck-storyboard-gate.md` |
+
+**Storyboard (2026-11-16): chấp nhận có điều kiện.** 55 trang, 7 mạch, 120 phút; một ví dụ mới (dãy lặp của $F(x)=x/2+1$ từ $0$: $1;\ 1{,}5;\ 1{,}75$, ánh xạ có trong ghi chú), một SVG mới `two-step-paths.svg` (số của Ví dụ 13.2). Quyết định điều phối viên ghi cuối `storyboard.md`. Đề xuất sửa ghi chú cho tác giả: d.1451 dẫn (7.6) trước khi định nghĩa ở d.1466–1475.
+
+**Cổng storyboard (2026-11-16): đạt khi sửa** (0 chặn, 2 nghiêm trọng, 12 trung bình, 18 nhẹ; báo cáo `reviews/deck-storyboard-gate.md`). Điều phối viên kiểm N1 (ghi chú d.1437: chính sách thu thập **và phân phối ban đầu** không phụ thuộc tham số chuyển, các hàng $P(\cdot\mid s,a)$ là tham số tự do), N2 (d.1480: điều kiện "$Q_t$ đã được xác định bởi lịch sử trước chuyển tiếp"), T1 (storyboard dòng 405, 475 còn nhãn "Kỹ thuật." với tên khác deck 12). Quyết định: **chấp nhận** mọi phát hiện; T11: cho phép tối đa 58 trang (trần 60, lý do ghi ở storyboard) để có chỗ cho các sửa thêm chữ. Đề xuất sửa ghi chú cho tác giả: G1 (d.1437 thiếu điều kiện chính sách thu thập không dùng phần thưởng mà Phụ lục A d.1658 cần), G2 ($U_k(\xi)$ ở d.6 trùng $U$ hàm giá trị ở §5–6).
+
+**Storyboard sau cổng duyệt (2026-11-16): chấp nhận.** Sửa mọi phát hiện (bảng "Sửa theo cổng duyệt"); 57 trang (thêm L13-3-02 lịch sử và (M1), L13-7-02 bảng tổng kết tiếp), 120 phút; ngoại lệ L13-7-04 (63 âm tiết, đề Bài tập 13.13 giữ câu chữ). Điều phối viên kiểm N1 (L13-6-02 đủ ba giả thiết d.1437), T1 (L13-4-04, L13-5-05 "Nhắc lại:" đúng hai tên của deck 12). Chuyển sang người viết deck.
+
+| Viết deck | Người viết bộ trang chiếu | general-purpose | opus (Opus 5.5) | medium | `lecture-13-quyet-dinh-tuan-tu-bat-dinh.html`, `img/lec-13/` (SVG mới), `storyboard.md` |
+
+**Bản nháp deck (2026-11-16): chấp nhận để duyệt.** Điều phối viên chạy trên CSS thật (khối Bài 11 của `lecture-course.css` mở rộng cho Bài 12–14): `deck_check.py` console 0, pageerrors 0, failed 0; `footer_check.py` 0 trang; `deck_lint.py` chỉ còn ngoại lệ có lý do trong storyboard; xem ảnh ghép 1600×900. Bản đóng băng: `scratchpad/master/frozen/`.
+
+| Duyệt | sinh-vien, toan-hoc, chuyen-gia, su-pham, mach-truyen (5 tác tử độc lập, chỉ đọc) | general-purpose | opus (Opus 5.5) | high | `planning/lec-13/reviews/deck-<vai>.md` |
+
+### Năm báo cáo duyệt và quyết định của điều phối viên (2026-11-16)
+
+| Vai | Kết luận | Chặn | Nghiêm trọng | Trung bình | Nhẹ |
+|---|---|---|---|---|---|
+| sinh-vien | đạt khi sửa | 0 | 1 | 3 | 13 |
+| toan-hoc | đạt khi sửa | 0 | 0 | 1 | 14 |
+| chuyen-gia | đạt khi sửa | 0 | 0 | 4 | 6 |
+| su-pham | đạt khi sửa | 0 | 0 | 7 | 28 |
+| mach-truyen | đạt khi sửa | 0 | 0 | 1 | 8 |
+
+Điều phối viên kiểm bằng ảnh ghép: nhãn "(6.4" bị cắt ở L13-4-03 (đúng như sinh-vien đo). **Quyết định chung: chấp nhận mọi phát hiện**, với các chốt sau:
+
+- D1 (sinh-vien, nghiêm trọng): vẽ `img/lec-13/value-iteration-slide.svg` (cùng dữ liệu Hình 13.2, chữ ≥ 16 px, không công thức trong hình; nhãn hai nhánh bằng chữ, công thức ở mặt trang). SVG của ghi chú giữ nguyên.
+- D2: (6.4), (6.9) không được tràn khung 1248 px ở 1600×900 (ngắt `aligned` hoặc tách hai dòng).
+- D3 (su-pham 1): mục tiêu học tập viết đúng nghĩa ghi chú, đủ động từ; ngoại lệ mật độ cho phép tới 110 âm tiết (< 1,5 × 80), ghi ở storyboard.
+- D4 (chuyen-gia 1, sinh-vien, su-pham 6): L13-6-03 tách hai trang; $Q_t$ gọi "bảng giá trị hành động (action value)"; dòng "Lưu ý:" Q-learning hội tụ chỉ khi thêm giả thiết; kỳ vọng của $Y_t$ giữ đủ hai điều kiện (d.1480).
+- D5 (mach-truyen P1): trang "Vấn đề trung tâm" ở Tổng kết trả lời câu hỏi cả bài theo chuỗi §10 của ghi chú (dùng 6 dòng đề xuất, đếm lại).
+- D6 (toan-hoc 18 điều kiện bị lược): khôi phục mọi điều kiện, lượng từ.
+- D7 (mach-truyen P8): Bài tập 13.14 xếp vào mạch 3.
+- D8 (kỹ thuật dùng chung, sửa quyết định Q8 của điều phối viên): chứng minh Bổ đề 12.14 không có bước chuyển vế. Deck 12 gọi mẹo là "chèn một đại lượng trung gian"; deck 13 L13-5-05: "Nhắc lại: chèn một đại lượng trung gian; ở đây chèn $TV$ rồi chuyển vế".
+- D9: bảng `Mục | Bài tập` đánh dấu "(trên lớp)" cho bài có trên trang chiếu, như deck 12 (quy ước chung 12–14).
+- D10 (su-pham 3): thêm số liệu robot lên mặt trang định nghĩa L13-3-01…03 khi còn chỗ; nếu không, đặt một trang ví dụ gộp ngay sau.
+- D11: bỏ cụm "Gợi ý của ghi chú:" và các câu lặp giữa ghi chú diễn giả liền kề; sửa nhãn "đọc thêm" ở L13-5-01 (mục 2 của Nhận xét 13.20).
+- Trần 60 trang; mọi trang thêm ghi vào storyboard kèm thời lượng.
+
+**Đề xuất sửa ghi chú cho tác giả (từ năm báo cáo):** Mệnh đề 12.16 ở mục tiên quyết (d.42) không được dùng; "trạng thái đủ" (Bài 07) và "trạng thái đủ thông tin" (Bài 13); đổi tên Định lý 13.19 thành "Phương trình Bellman tối ưu và chính sách tham lam tối ưu"; thống nhất "hàng chuyển"/"hàng chuyển tiếp"; `exercises.md` lời giải Bài tập 13.4 "từ thời điểm 1" → "$R_k=R_{\max}$ với mọi $k\ge2$"; chữ Hình 13.2 nhỏ trong trình xem ghi chú; §7.2 thiếu điều kiện "chính sách thu thập không dùng phần thưởng" (đã ghi ở G1).
+
+| Biên tập | Biên tập viên (tiếp tục tác tử viết deck 13 qua SendMessage, theo `brief-editor.md`) | general-purpose | opus (Opus 5.5) | medium | deck 13, `img/lec-13/`, `storyboard.md` |
+
+**Biên tập (2026-11-16): xong, chờ kiểm lại.** 60 trang (thêm L13-3-05, L13-4-08, L13-6-04); SVG mới `value-iteration-slide.svg`, `value-iteration-slide-narrow.svg` (ngoài tên được giao, cùng dữ liệu, dùng `only-narrow`; chấp nhận). Người biên tập báo `deck_check` 0/0/0, `footer_check` 0, `deck_lint` 2 ngoại lệ có lý do (L13-1-03 110, L13-7-04 68). Điều phối viên giao kiểm lại riêng điểm "(6.9) bỏ vế giữa" (NT2).
+
+| Kiểm lại | Người kiểm lại (chỉ đọc) | general-purpose | opus (Opus 5.5) | high | `planning/lec-13/reviews/deck-kiem-lai-1.md` |
+
+**Kiểm lại lượt 1 (2026-11-16): đạt** (0 chặn, 0 nghiêm trọng, 0 trung bình, 9 nhẹ; `reviews/deck-kiem-lai-1.md`). Đã xác nhận: (6.9) chỉ bỏ đẳng thức trung gian, phát biểu đúng và đủ; không mất giả thiết khi rút chữ; ba trang mới khớp ghi chú; hai SVG mới đúng tọa độ, chữ ≥ 16 px. Quyết định: **chấp nhận** cả 9 phát hiện nhẹ; gửi lại biên tập viên một lượt sửa nhỏ. Lưu ý quy trình: reloadserver ở 8765 tải lại trang khi deck khác đang được ghi, nên kiểm tra cuối chạy trên máy chủ tĩnh tạm.
+
+**Sửa sau kiểm lại (2026-11-16).** Lượt N1–N9; lượt ngắt công thức tràn ở 390 px (khoảng 30 công thức `aligned`, 19 trang `grid2`; quy tắc "Display formulas" của `../CLAUDE.md`, điều phối viên yêu cầu sau khi xem ảnh 390 px); kiểm lại lượt 2 (`reviews/deck-kiem-lai-2.md`): đạt khi sửa, 1 trung bình (P1), 3 nhẹ; lượt P1–P4 (P1 sửa một phần: số liệu robot ở ghi chú diễn giả vì trang chạm chân trang, người kiểm lại chấp nhận). Chấp nhận.
+
+### Kiểm cuối và duyệt của điều phối viên (2026-11-16)
+
+Máy chủ tĩnh tạm (cổng 8777, CSS thật): `deck_lint.py` 2 ngoại lệ đã ghi (L13-1-03 111/80, L13-7-04 68 đề Bài tập 13.13); `footer_check.py` 0 trang; `deck_check.py --shots` console 0, pageerrors 0, failed 0, 0 `.katex-error`, 0 OVERFLOW; 390×844: 0 công thức cuộn ngang; bàn phím →, ↓, Space, Esc đúng; `#/1`…`#/7` mở đúng trang tiêu đề mạch; liên kết trình xem có `&deck=`. Ảnh ghép 1600×900 và 390×844 đã xem. Trình xem ghi chú và bài tập với `&deck=`: 0 `.katex-error`, 0 `:::`, 0 lỗi console, 0 request hỏng ở hai kích thước. `sync-local-materials.py --check` đạt. `index.html`: thẻ Bài 13 có **Bài giảng** và `&deck=`; `material-viewer.js`: bỏ "13" khỏi `DECKLESS_LECTURES`; `outline.md`: danh sách bài tập đồng bộ.
+
+**Duyệt: chấp nhận.** Mọi phát hiện chặn và nghiêm trọng của cổng, năm báo cáo và hai lượt kiểm lại đã giải quyết. Còn chờ tác giả: các đề xuất sửa ghi chú đã ghi ở trên.

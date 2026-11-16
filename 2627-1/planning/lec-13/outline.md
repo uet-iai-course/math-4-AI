@@ -46,15 +46,18 @@ Ghi chú được tái cấu trúc theo Q1 của `planning/notes-10-14-slt-templ
 Tệp bài tập:
 
 - Bài tập 13.1 (Truyền phân phối hai bước)
-- Bài tập 13.2 (Lặp giá trị và điểm bất động)
+- Bài tập 13.2 (Tính co và phần dư Bellman)
 - Bài tập 13.3 (Mục tiêu theo mô hình và mục tiêu từ một mẫu)
-- Bài tập 13.4 (Xích Markov, xác suất chuyển và xác suất quỹ đạo)
-- Bài tập 13.5 (Lặp giá trị cho robot và giá trị dài hạn)
-- Bài tập 13.6 (Học mô hình và mục tiêu Bellman)
-- Bài tập 13.7 (Giả thiết và bảo đảm của quy hoạch và của học)
-- Bài tập 13.8 (Giá trị của chính sách dừng)
-- Bài tập 13.9 (Phương trình Bellman tối ưu có hai hành động cùng tối ưu)
-- Bài tập 13.10 (Tính co và phần dư Bellman)
-- Bài tập 13.11 (Kiểm tra một khẳng định hội tụ)
+- Bài tập 13.4 (Tổng thưởng chiết khấu của một dãy phần thưởng vô hạn)
+- Bài tập 13.5 (Mô hình chuyển của robot thu gom lon)
+- Bài tập 13.6 (Phần thưởng kỳ vọng dưới một chính sách ngẫu nhiên)
+- Bài tập 13.7 (Giá trị tối ưu, giá trị hành động tối ưu và chính sách tối ưu)
+- Bài tập 13.8 (Kiểm tra phương trình Bellman trên lưới ô vuông)
+- Bài tập 13.9 (Bốn phương trình Bellman theo xác suất chuyển và phần thưởng kỳ vọng)
+- Bài tập 13.10 (Phương trình Bellman cho giá trị hành động tối ưu của robot thu gom lon)
+- Bài tập 13.11 (Cộng một hằng số vào mọi phần thưởng)
+- Bài tập 13.12 (Lặp giá trị cho giá trị hành động)
+- Bài tập 13.13 (Chính sách tối ưu phụ thuộc hệ số chiết khấu)
+- Bài tập 13.14 (Giá trị tối ưu của ô tốt nhất trên lưới ô vuông)
 
 Ánh xạ số hiệu cũ → mới: xem `review-log.md`, mục "Ánh xạ số hiệu cũ → mới".
