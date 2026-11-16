@@ -218,64 +218,27 @@ Trước khi công bố trên chỉ mục, tác tử rà soát lập bảng đ�
 
 Tiêu chuẩn này áp dụng cho ghi chú mới và là đích rà soát lại cho các ghi chú đã công bố. Việc nâng cấp một ghi chú đã có đi qua quy trình đa tác tử rút gọn: tác tử soạn viết lại theo mẫu, tác tử rà toán tính lại toàn bộ số liệu, tác tử rà mạch truyện kiểm tra tám bước và liên kết mục, điều phối viên duyệt rồi mới chạy đồng bộ và cập nhật chỉ mục.
 
-## Bộ trang chiếu dựng từ ghi chú bài giảng (NT1–NT28)
+## Tham số trang chiếu của học phần
 
-Mục này áp dụng cho bộ trang chiếu dựng từ ghi chú bài giảng đã hoàn thành, từ Bài 12 trở đi (yêu cầu người dùng 2026-11-16), và ghi các quyết định của tác giả ngày 2026-11-14 và 2026-11-15 (`../nhat-ky/yeu-cau-thay-doi-2026-11-13.md`, dòng 1–8). Khi mâu thuẫn, các nguyên tắc NT1–NT28 thắng mọi quy định khác của tệp này về trang chiếu; bộ trang chiếu 00–11 giữ quy định cũ cho tới đợt sửa có ghi nhật ký theo yêu cầu người dùng. Người duyệt dẫn số NT trong cột "vấn đề" của bảng phát hiện.
+Bộ trang chiếu mới hoặc dựng lại của học phần (từ Bài 12, yêu cầu người dùng 2026-11-16) theo các nguyên tắc NT1–NT28 trong `NGUYEN-TAC-TRANG-CHIEU.md` ở gốc repo. Tệp đó là bản chép giống hệt của `shared/docs/nguyen-tac-trang-chieu.md` trong workspace, không sửa trong repo; nó thắng các quy định về trang chiếu trong tệp này khi mâu thuẫn, trừ các tham số dưới đây. Bộ trang chiếu 00–11 giữ quy định cũ cho tới đợt sửa có ghi nhật ký theo yêu cầu người dùng.
 
-Trong các nguyên tắc dưới đây, `REPO` là thư mục gốc của học phần (`math-4-AI/`). Các công cụ `deck_lint.py`, `footer_check.py`, `contact_sheet.py` và bản giao việc từng vai nằm ở `../tools/courses/math-4-AI/2627-1/deck-build/`; `deck_check.py` ở `../tools/courses/math-4-AI/2627-1/scripts/`.
-
-### A. Nguồn và thống nhất với ghi chú
-
-- **NT1. Ghi chú là nguồn.** Nội dung deck lấy từ `lecture-note.md` và `exercises.md` của bài. Không dùng PPTX/PDF cũ trong `REPO/sources/` làm nguồn nội dung. Murphy (2022)/(2023), Sutton và Barto (2018), UML chỉ được dẫn đúng như ghi chú dẫn. Không thêm khẳng định, con số, nguồn hay ví dụ không có cơ sở trong ghi chú.
-- **NT2. Thống nhất với ghi chú, từng trang.** Cùng ký hiệu, nhãn giả thiết, thuật ngữ, tên và số hiệu kết quả (một "(Định lý NN.k)" trên trang là đúng khối số đó của ghi chú, nội dung khớp). Phát biểu rút gọn được bỏ chữ, không được bỏ giả thiết, lượng từ, hằng số hay loại bảo đảm (kỳ vọng, xác suất cao, hội tụ). Thứ tự khái niệm theo thứ tự mục; mỗi mạch ứng với các mục liên tiếp của ghi chú. Ví dụ lấy từ ghi chú giữ dữ liệu và kết quả; ví dụ mới dùng ký hiệu ghi chú, không mâu thuẫn con số nào của ghi chú, mọi số tính lại và ghi cách dựng trong storyboard.
-- **NT3. Lỗi của ghi chú** (sai, thiếu, lệch với bài tập): deck vẫn theo ghi chú; ghi vào mục "Đề xuất sửa ghi chú" của báo cáo. Không tác tử nào sửa ghi chú hay bài tập.
-
-### B. Mục đích của deck
-
-- **NT4. Deck làm rõ, không chép ghi chú.** Ghi chú đã có đủ định nghĩa, phát biểu, chứng minh. Deck tập trung vào: **trực quan** của từng kết quả chính (vì sao đúng, mỗi đại lượng đo gì, trường hợp cực biên, hình vẽ); **ý tưởng chứng minh** (lộ trình 3–5 bước, bất đẳng thức hoặc mẹo then chốt, giả thiết vào ở bước nào, bỏ giả thiết thì hỏng ở đâu); **kỹ thuật** đáng nhớ; **ví dụ bổ trợ** tính tay được, phản ví dụ khi bỏ giả thiết; **ứng dụng trong AI** dùng thật kết quả vừa xây dựng. Chứng minh đầy đủ, phép tính dài, mọi nhận xét phụ ở lại ghi chú.
-- **NT5. Trang kết quả.** Phát biểu gọn với hai phần như khối của ghi chú: "Giả thiết:" và "Kết luận:" (hoặc "Bảo đảm:" khi ghi chú dùng **Bảo đảm.**, nêu loại bảo đảm: xác suất cao theo tập huấn luyện, hội tụ, cận sai số); trích số hiệu ghi chú một lần mỗi trang. Kết quả ghi chú đánh dấu *đọc thêm* thì ghi chú diễn giả nói rõ. Định nghĩa phát biểu gọn ở nơi cần, hoặc nhắc lại bằng "Nhắc lại:".
-- **NT6. Ý tưởng chứng minh** của mỗi kết quả chính nằm trên trang riêng, tiêu đề "Ý tưởng chứng minh: <tên kết quả>", không gộp với trang phát biểu: 3–5 bước đánh số, bất đẳng thức then chốt ở một công thức hiển thị, "(giả thiết …)" ở bước dùng giả thiết.
-- **NT7. Kỹ thuật.** Kỹ thuật dùng lại qua nhiều bài (ví dụ: bất đẳng thức hợp, Hoeffding, nguyên lý ánh xạ co, bất đẳng thức Jensen, hoàn chỉnh bình phương, tái tham số hóa) có một trang nhãn "Kỹ thuật." ở nơi deck của học phần dùng lần đầu: dạng tổng quát một dòng, "Dùng khi …", chỗ dùng trong bài. Tiêu đề trang là tên kỹ thuật, không "Kỹ thuật: …". Kỹ thuật đã có ở deck trước (Bài 00–11) hoặc đã dạy ở ghi chú bài trước thì chỉ "Nhắc lại:" một dòng. Mẹo chỉ dùng trong một chứng minh: một dòng "Kỹ thuật." trên trang ý tưởng chứng minh. Storyboard giữ danh sách kỹ thuật đã giới thiệu.
-
-### C. Hành trình khái niệm và định nghĩa trước khi dùng
-
-- **NT8. Hành trình** cho mỗi khái niệm hoặc kết quả chính: vấn đề (câu khẳng định ngắn hoặc ví dụ cụ thể) → trực quan ("Trực quan.") → ví dụ → phát biểu → ý tưởng chứng minh → ứng dụng trong AI → kiểm tra ("Câu hỏi:", phản ví dụ, bài tập). Các bước có thể chung trang, không đảo, không bỏ ngầm. Không mở khái niệm trọng tâm bằng định nghĩa hay ký hiệu.
-- **NT9. Định nghĩa hoặc nhắc lại trước khi dùng.** Mọi ký hiệu, thuật ngữ, giả thiết, kết quả trên mặt trang đã có ở trang trước của deck hoặc có dòng "Nhắc lại:" đứng trước công thức dùng nó; không dẫn kết quả của trang sau hay bài sau. Trang tổng quan (bìa, "Mục tiêu học tập", "Nội dung", "Vấn đề trung tâm" mở đầu) viết bằng lời, không ký hiệu mới. Lý thuyết bài trước chỉ "Nhắc lại:", không dạy lại; không xem trước bài sau trên mặt trang.
-
-### D. Bố cục mạch (quyết định của tác giả 2026-11-14)
-
-- **NT10. Mạch:** 5–7 `<section>` ngoài, gồm mở đầu và "Tổng kết"; mỗi mạch có chức năng, đầu vào từ mạch trước, đầu ra cho mạch sau.
-- **NT11. Mạch mở đầu**, theo thứ tự: bìa (`h1` tên bài như ghi chú; `h3` phụ đề "… · Bài NN"; **luận điểm đúng một câu, có điều kiện**; "Cơ sở toán học cho AI · Học kỳ 1, 2026–2027"; "Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội"); "Tiên quyết và quy ước" ("Nhắc lại:" các kết quả bài trước mà bài dùng, theo mục "Kiến thức tiên quyết" của ghi chú; "Ký hiệu:" miền, chỉ số, quy ước); "Mục tiêu học tập" (giữ đủ các mục tiêu của ghi chú, rút gọn chữ); "Nội dung" (danh sách đánh số mọi mạch, liên kết `#/N` khớp vị trí mạch, tùy chọn một dòng tài liệu đọc trước); "Vấn đề trung tâm": **một hộp duy nhất** "Câu hỏi:" nêu đúng câu hỏi trung tâm in đậm của ghi chú; câu trả lời theo từng mạch chỉ ở ghi chú diễn giả.
-- **NT12. Trang tiêu đề mạch** (mọi mạch trừ mạch mở đầu): `section.strand-title`, `id="mach-N"`, `div.strand-title-body` > `h2` (`span.strand-number` "N." + tên mạch là cụm danh từ, khác tiêu đề trang nội dung đầu tiên) + `p.strand-lead` + tùy chọn `p.strand-keys` (≤ 5 cụm danh từ ngăn bằng " · "). **Dòng dẫn** là một câu trần thuật ngắn (≤ 25 âm tiết) nêu điều người học sẽ biết, hiểu hoặc làm được sau mạch, thường là ý cốt lõi của mạch (mẫu của tác giả: "Tác tử chọn hành động, môi trường cho phản hồi."), chỉ dùng từ thông thường và khái niệm đã có; **không** "Nhu cầu:", **không** khuôn "Muốn …, phải …", không mở bằng "Người học …", không lặp một khuôn câu qua các mạch. Không định nghĩa, công thức, hình, "Đầu vào/Đầu ra", mã trên mặt trang. Ghi chú diễn giả 40–100 âm tiết bằng câu thường (kết quả kế thừa, việc của mạch, kết quả trao đi), không nhãn "Kế thừa:/Nhiệm vụ:".
-- **NT13. Tập trung của mạch** (`AGENTS.md` §"Tập trung của mạch", điều chỉnh): mỗi mạch nội dung trả lời đúng một câu hỏi, ghi trong bảng mạch của storyboard. Câu hỏi (và phân rã nếu có) xuất hiện trên mặt trang nội dung đầu tiên của mạch, dưới dạng một câu khẳng định ngắn nêu vấn đề hoặc một dòng "Câu hỏi:", không dùng "Nhu cầu:". Mọi trang phục vụ câu hỏi đó; câu nối giữa hai mạch hoặc hai cụm (kết quả có được, cái còn thiếu, vì sao cần bước sau) có trên mặt trang, không chỉ trong ghi chú diễn giả. Không trùng lặp bảng, chứng minh, ví dụ trong bài hay với deck liền kề.
-- **NT14. Không nhãn "Nhu cầu:" ở bất kỳ đâu.** Khái niệm mở bằng một câu ngắn, khẳng định, hoặc vào thẳng ví dụ cụ thể. Trang mở một ví dụ liệt kê ngay dữ kiện (đối tượng, lựa chọn, kết quả hoặc hệ quả của từng lựa chọn) dạng danh sách.
-- **NT15. Mạch kết luận tên "Tổng kết"** (không thêm "và chuyển tiếp"), gồm: bảng tổng kết `Kết quả | Giả thiết không được bỏ | Công thức hoặc thuật toán` (mỗi kết quả chính một hàng, giữ đủ lượng từ và loại bảo đảm); trang tiêu đề **"Vấn đề trung tâm"** liệt kê câu trả lời cho câu hỏi trung tâm của **cả bài** (không tóm tắt theo mạch); một bài tập tổng hợp ("Bài tập: …", lấy từ bài tập của bài) với "Lời giải:" trên mặt trang; "Câu hỏi tự kiểm tra" (2–4 câu ngắn, mở bằng "Câu hỏi:", đáp án ở ghi chú diễn giả, trả lời được chỉ bằng ghi chú); "Bài tập về nhà" với bảng `Mục | Bài tập` (xếp mỗi bài vào mạch cung cấp kiến thức cuối cùng bài đó cần) và liên kết "Ghi chú bài giảng · Bài tập" tới trình xem (`material-viewer.html?doc=materials/lec-NN/lecture-note.md&deck=<tệp deck>`, tương tự `exercises.md`); trang cuối tiêu đề **"Tài liệu tham khảo"** (nguồn mà ghi chú dẫn ở mục "Tài liệu đọc") cùng một dòng nối sang bài sau (Bài 14 là bài cuối: dòng nối theo mục "Câu hỏi cuối buổi và cầu nối" của ghi chú). Không khái niệm mới.
-- **NT16. Tiêu đề** là cụm danh từ tiếng Việt tự nhiên gọi tên khái niệm, bài toán hay kết quả; không dịch sát cấu trúc tiếng Anh ("X như một bài toán Y" → "Ví dụ: X"); không câu hỏi, không "Từ … đến …". Tiền tố chức năng "Ví dụ: …", "Bài tập: …", "Chứng minh: …", "Ý tưởng chứng minh: …" đứng trước cụm danh từ. Ví dụ tiếp tục qua nhiều trang thêm tên bước sau dấu phẩy. Công thức trong tiêu đề viết bằng KaTeX.
-
-### E. Văn phong và mật độ
-
-- **NT17. Mật độ** (MAT1101): âm tiết = token cách nhau bởi khoảng trắng, không tính tiêu đề, KaTeX, số trong ô bảng, nhãn hình, ghi chú diễn giả; **số viết trong câu có tính**. Trang nội dung nhắm ≤ 40, trần 60 (80 cho "Mục tiêu học tập", "Nội dung", bảng tổng kết, bảng so sánh); ≤ 6 dòng nội dung; ≤ 20 âm tiết mỗi dòng; mỗi gạch đầu dòng ≤ 2 dòng hiển thị; ≤ 3 công thức hiển thị; ≤ 1 hộp chữ ≤ 2 câu. Vượt trần thì tách trang hoặc chuyển chữ sang ghi chú; không thu nhỏ chữ. Ngoại lệ ghi trong storyboard kèm lý do và số âm tiết.
-- **NT18. Câu trên mặt trang:** câu toán học ngắn ("Đặt …", "Suy ra …", "Thế vào được …", "Do … nên …"); không "ta thấy", "rõ ràng", "chúng ta", "hãy", câu hỏi tu từ, lời chỉ đường, "=" thay cho "là". Tối đa một câu kết cuối trang, là kết luận có điều kiện hoặc con số, không khẩu hiệu, không chuỗi mũi tên.
-- **NT19. Nhãn hợp lệ duy nhất** (in đậm). Có dấu chấm: Định nghĩa. Định lý. Mệnh đề. Bổ đề. Hệ quả. Nhận xét. Thuật toán. Chứng minh. Trực quan. Ví dụ. Ý tưởng chứng minh. Kỹ thuật. — Có dấu hai chấm: Ý nghĩa: Diễn giải: Lưu ý: Nhắc lại: Cách khác: Dạng khác: Ký hiệu: Giả thiết: Kết luận: Bảo đảm: Đầu vào: Đầu ra: Câu hỏi: Gợi ý: Lời giải: — Nhãn có số hiệu của ghi chú ("Định lý 12.13.") được phép. Không "Nhu cầu:", không "Đáp án", không chữ viết tắt làm nhãn ("ERM:", "KL:"). "Diễn giải:" chỉ dùng số có trên chính trang đó.
-- **NT20. Giọng tác giả** (`../CLAUDE.md` "The author's voice"): ý song song từ ba mục trở lên thành danh sách; đối tượng cụ thể viết ra (dữ liệu mỗi điểm một dòng, hàm và phân phối bằng công thức); công thức đứng tại chỗ được gọi tên; không câu rào đón, câu nguồn gốc ("số liệu tự dựng"), câu nói về trạng thái của chính văn bản ("đây mới là trực giác", "chưa phải định nghĩa"), câu điều hướng ("ở §4 …", "bài sau sẽ …"), nhận xét phụ không dùng lại; diễn giải đi thẳng vào ý (không vòng vo, không phủ định kép, không chủ ngữ xa động từ). "Trực quan." nêu cơ chế hay cách đọc kết quả (đơn vị, trường hợp cực biên), không lặp phát biểu.
-- **NT21. Thuật ngữ và số:** theo ghi chú và `notes-10-14-slt-template.md` Q8, Q13, Q14 (phân phối, kỳ vọng, rủi ro kỳ vọng, hàm mất mát, hợp lý cực đại, tập huấn luyện); tiếng Anh trong ngoặc ở lần đầu trên trang nội dung, kèm mọi tên tiếng Anh thông dụng và chữ viết tắt chuẩn như ghi chú; tên tiếng Việt đầy đủ trước, viết tắt sau; dấu thập phân là dấu phẩy (`0{,}05` trong KaTeX); `\mid` trong xác suất có điều kiện; không dấu cách trước "?".
-- **NT22. Ghi chú diễn giả** (`<aside class="notes">`) giải thích cho giảng viên và người học: giả thiết, cách đọc công thức hay hình, nhầm lẫn dễ gặp, nối với trang sau, gợi ý hoặc lời giải. Không ID trang, mã storyboard, câu quy trình hay nguồn gốc ("dựng mới", "giữ nguyên chữ"), chỉ dẫn cho tác giả, thời lượng; không mở bằng "Trang này …"; không chỉ lặp mặt trang. 40–150 âm tiết (đến ~250 cho ý tưởng chứng minh, bài tập, lời giải). Kết thúc bằng `<p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài NN, §k (Định lý NN.x); Murphy (2022), §a.b.</p>` (chỉ nguồn mà ghi chú dẫn cho nội dung đó).
-
-### F. Ví dụ và bài tập
-
-- **NT23. Trang ví dụ** "Ví dụ: <đối tượng>": dữ kiện có số (liệt kê ngay) → "Tính …"/"Xác định …" → mỗi bước một dòng → kết quả với "Diễn giải:" gắn câu hỏi của mạch hoặc dòng kiểm tra. Ưu tiên một hai ví dụ xuyên suốt của ghi chú (mục "Ví dụ xuyên suốt"), gọi bằng tên đối tượng, nêu lại dữ kiện trên trang dùng lại; mỗi lần dùng lại trả lời câu hỏi mới. Trang dẫn "Ví dụ NN.k" thì trang chứa ví dụ đó ghi số hiệu ấy trên mặt trang.
-- **NT24. Trang bài tập** "Bài tập: <chủ đề>" chỉ lấy từ bài tập của bài (mục "Bài tập" của ghi chú hoặc `exercises.md`), giữ dữ liệu, câu chữ đề và kết quả, ghi số hiệu "Bài tập NN.k"; đề mở bằng "Câu hỏi:" gõ bằng chữ và KaTeX. Mỗi cụm khái niệm lớn có một bài với "Lời giải:" trên mặt trang (fragment hoặc trang kế tiếp cùng tiêu đề, mỗi dòng một bước, kết bằng kết luận ngắn); bài tự làm để gợi ý và đáp án trong ghi chú diễn giả. Ca tính mẫu của ghi chú là trang "Ví dụ: …", không phải "Bài tập".
-
-### G. Hình và kỹ thuật
-
-- **NT25. Hình:** chỉ SVG trong `REPO/2627-1/img/lec-NN/` (dùng lại SVG có sẵn của ghi chú khi phù hợp; hình mới phải mang thông tin, không trang trí), `role="img"`, `<title>`, `alt` cụ thể trên `<img>`; chữ ≥ 16 px ở kích thước hiển thị; màu không là tín hiệu duy nhất; công thức, bảng, giả mã là KaTeX hoặc HTML, không vẽ vào SVG; chú thích nêu dữ liệu, không "minh họa"/"giá trị giả định". Con số trên hình mà chữ hoặc trang sau dùng đến phải có cả trong chữ trên mặt trang. Không raster.
-- **NT26. Kỹ thuật HTML:** tệp `REPO/2627-1/lecture-NN-<slug>.html` (slug ASCII từ tên bài, do storyboard chốt); `<html lang="vi" data-lecture="NN">`; `<head>`, `div.lecture-viewport`, chân trang `Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài NN`, cấu hình `Reveal.initialize` và các script cuối tệp chép từ deck 11 (`controlsLayout:"edges"`, `slideNumber`, `hash`, `hashOneBasedIndex`, plugin cục bộ, `katex:{local:"vendor/katex"}`); meta viewport `width=device-width,initial-scale=1`. `data-slide-id` dạng `LNN-k-mm` (mạch $k$, trang $mm$; bìa `LNN-1-01`; trang tiêu đề mạch `LNN-k-00`). **Không** khối `<style>`, không `style=""` tĩnh, không tệp CSS riêng; cần lớp mới thì đề xuất cho điều phối viên (sẽ thêm vào `lecture-course.css`, phạm vi `:where(html[data-lecture="NN"])`). Không `\text{}` chứa tiếng Việt trong KaTeX. Mã trang chỉ ở HTML và tài liệu planning.
-- **NT27. Thời lượng và số trang:** deck phủ ≈ 120 trong 150 phút (30 phút còn lại cho bài tập); 45–55 trang, trần 60 khi có lý do trong storyboard. Thời lượng chỉ ở storyboard.
-- **NT28. Kiểm tra máy trước khi trả bài:** `deck_check.py` (console=0, pageerrors=0, failed=0, không `.katex-error`, không OVERFLOW thật; báo động giả đã biết: OVERFLOW trên đuôi SVG của `\sqrt` KaTeX, không sửa √ để né); `footer_check.py` báo 0 trang chạm chân trang ở 1600×900; `deck_lint.py` báo 0 phát hiện hoặc mỗi phát hiện còn lại có lý do trong storyboard; xem ảnh 1600×900 và 390×844 (màn hẹp cuộn tới cuối, xem cả ảnh `-end`).
+| Mã | Tham số | Giá trị của học phần | Căn cứ |
+|---|---|---|---|
+| P1 | Nguồn nội dung | `ghi chú`: `lecture-note.md` và `exercises.md` là nguồn duy nhất; slide mẫu và PDF trong `sources/` không là nguồn nội dung của deck dựng từ ghi chú | yêu cầu người dùng 2026-11-16; deck 10–14 |
+| P2 | Thuật ngữ, chính tả | "Ký hiệu", "kỳ vọng", "phân phối", "rủi ro kỳ vọng", "hàm mất mát", "hợp lý cực đại", "tập huấn luyện"; dấu thập phân là dấu phẩy (`0{,}05`) | `2627-1/planning/notes-10-14-slt-template.md` Q8, Q13, Q14 |
+| P3 | Nhãn kết luận, nhãn bổ sung | "Kết luận:"; "Bảo đảm:" cho kết quả xác suất cao hay hội tụ như khối của ghi chú. Nhãn bổ sung: "Cách khác:", "Dạng khác:", "Đầu vào:", "Đầu ra:" | Q3; mục "Nhãn dẫn dắt" |
+| P4 | Cột thứ ba bảng tổng kết | `Công thức hoặc thuật toán` | mục "Mở bài và kết bài" |
+| P5 | Trang bổ sung ở mạch mở đầu | "Ngữ cảnh" (≤ 4 dòng) khi bài dùng một khung chung; ví dụ dẫn nhập khi ghi chú mở bằng chính ví dụ đó | mục "Cấu trúc bộ trang chiếu mặc định"; deck 13 |
+| P6 | Thời lượng, số trang | 120 trong 150 phút; 45–55 trang, trần 60 | deck 10–14 |
+| P7 | Khung kỹ thuật | khung của deck 11 (`<head>`, `div.lecture-viewport`, script màn hẹp, `Reveal.initialize`); chân trang "Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài NN"; `data-slide-id` `LNN-k-mm`; không `<style>`, không `style=""`; luật CSS riêng trong `2627-1/lecture-course.css`, khối `:where(html[data-lecture="11"],…)` (thêm số bài mới vào khối này) | `CLAUDE.md` mục CSS |
+| P8 | Nguồn ngoài | các nguồn ghi chú dẫn (Murphy 2022, 2023; Sutton và Barto 2018; Shalev-Shwartz và Ben-David 2014; Boyd và Vandenberghe; Nocedal và Wright; Goodfellow và cộng sự; MIT OCW) | mục "Tiêu chuẩn giáo trình cho ghi chú bài giảng" |
+| P9 | Tác tử | Opus 5.5; người lập storyboard, người viết, biên tập viên: `medium`; cổng duyệt, năm vai duyệt, kiểm lại, kiểm cuối: `high` | `CLAUDE.md` mục "Sub-agents" |
+| P10 | Kiểm tra riêng | `deck_lint.py --course math-4-AI`; `sync-local-materials.py --check`; khi deck xuất bản: bỏ số bài khỏi `DECKLESS_LECTURES` trong `2627-1/material-viewer.js`, thêm **Bài giảng** và `&deck=` vào thẻ chỉ mục | `CLAUDE.md` mục "Lecture notes and exercises" |
+| P11 | Nguyên tắc bổ sung | NT-M4A-1: người duyệt mạch truyện nộp bảng rà tập trung theo từng mạch như mục "Tập trung của mạch" (câu hỏi trung tâm, bảng chức năng từng trang). NT-M4A-2: khi bài có ứng dụng AI xuyên suốt, trang cuối của mạch nội dung cuối nối kết quả với ứng dụng bằng một phép tính hoặc quyết định cụ thể (mục "Mở bài và kết bài"). | các mục đã dẫn |
 
 ## Cấu trúc bộ trang chiếu mặc định
 
-> **Bộ trang chiếu dựng từ ghi chú bài giảng (từ Bài 12):** áp dụng mục "Bộ trang chiếu dựng từ ghi chú bài giảng (NT1–NT28)" ngay trên. Các nguyên tắc đó thắng các quy định dưới đây khi mâu thuẫn. Bộ trang chiếu 00–11 giữ quy định cũ cho tới đợt sửa có ghi nhật ký theo yêu cầu người dùng.
+> **Bộ trang chiếu mới hoặc dựng lại:** theo `NGUYEN-TAC-TRANG-CHIEU.md` và mục "Tham số trang chiếu của học phần" ngay trên; các quy định dưới đây còn hiệu lực ở những điểm không mâu thuẫn với tệp đó.
 
 Nếu mẫu người dùng không quy định khác, bộ trang chiếu gồm:
 
@@ -325,7 +288,7 @@ Mỗi mạch, trừ mạch mở đầu, bắt đầu bằng một trang tiêu đ
 
 - số thứ tự của mạch viết bằng chữ số ("2.", "3.", …), trùng với số trên trang "Nội dung" và với chỉ số ngang của RevealJS (`hashOneBasedIndex: true` nên mạch 3 mở tại `#/3`). Quy định này áp dụng cho mọi bộ trang chiếu, kể cả Bài 07 đang ghi "A."–"D." trên trang mở mạch;
 - tên mạch là cụm danh từ gọi tên khái niệm hay kết quả, không dạng câu hỏi, không kể tiến trình; tên không trùng tiêu đề của trang nội dung đầu tiên trong mạch;
-- một dòng dẫn, tối đa 25 âm tiết, nêu nhu cầu hoặc nhiệm vụ mà mạch giải quyết, mở bằng "Muốn …" hoặc nhãn "Nhu cầu:", là câu trần thuật, không kết thúc bằng dấu hỏi;
+- một dòng dẫn, tối đa 25 âm tiết: câu trần thuật ngắn nêu điều người học sẽ biết, hiểu hoặc làm được sau mạch, không "Nhu cầu:", không khuôn "Muốn …, phải …" (quyết định của tác giả 2026-11-14; `NGUYEN-TAC-TRANG-CHIEU.md`, NT12);
 - tùy chọn một dòng từ khóa, tối đa năm cụm danh từ ngăn bằng " · ".
 
 Cấu trúc HTML: khối `div.strand-title-body` chứa `<h2>` với số thứ tự trong `span.strand-number` đứng trước tên mạch, rồi `p.strand-lead` cho dòng dẫn và `p.strand-keys` cho dòng từ khóa. Kiểu của các lớp này nằm trong `lecture-style.css`, không viết lại theo bài.
@@ -340,7 +303,7 @@ Mã trang theo quy ước `<tiền tố mạch>00` (ví dụ `B00`, `HQ00`, `RG0
 
 Yêu cầu người dùng 2026-10-15, rút ra từ đợt rà mạch 4–5 của Bài 05. Mỗi mạch nội dung trả lời đúng một câu hỏi trung tâm, suy ra từ vấn đề trung tâm của bài và ghi trong bảng chức năng mạch của `storyboard.md`. Mọi trang trên mặt trang của mạch phải phục vụ câu hỏi đó.
 
-- **Đặt khung từ đầu mạch.** Câu hỏi trung tâm, cùng cách phân rã nếu có (ví dụ "tổng chi phí = số bước × chi phí một bước"), xuất hiện ở dòng dẫn của trang tiêu đề mạch và ở dòng "Nhu cầu:" của trang nội dung đầu tiên. Không để khung chỉ lộ ra ở cuối mạch.
+- **Đặt khung từ đầu mạch.** Câu hỏi trung tâm, cùng cách phân rã nếu có (ví dụ "tổng chi phí = số bước × chi phí một bước"), xuất hiện trên mặt trang nội dung đầu tiên của mạch, dưới dạng một câu khẳng định ngắn hoặc một dòng "Câu hỏi:" (NT13). Không để khung chỉ lộ ra ở cuối mạch.
 - **Mỗi trang gọi tên phần việc của nó.** Storyboard ghi trang trả lời phần nào của câu hỏi trung tâm; câu nối trên mặt trang hoặc trong ghi chú nói trang điền phần nào. Trang không phục vụ câu hỏi trung tâm được chuyển vào ghi chú diễn giả hoặc ghi chú bài giảng, hoặc bỏ. Một tính chất đúng nhưng không được mạch sau dùng tới không đủ lý do để ở trên mặt trang.
 - **Lý thuyết bài trước chỉ nhắc lại.** Định nghĩa và định lý đã dạy ở bài trước đặt sau nhãn "Nhắc lại:", gộp gọn (thường một trang cho một cụm); chi tiết giả thiết và hằng số để trong ghi chú. Không dạy lại.
 - **Không xem trước bài sau trên mặt trang.** Không dùng khái niệm, ký hiệu hay định lý chưa được giới thiệu trong bài (thuật toán, định lý hội tụ của bài sau) để phát biểu hay kết luận trên mặt trang. Nhu cầu chuyển sang bài sau được nêu bằng lời. Nội dung bài sau trình bày đầy đủ thì để ở bài sau.
@@ -400,7 +363,7 @@ Mặt trang chiếu là văn bản toán học ngắn gồm tiêu đề, vài d�
 
 ### Mở một khái niệm
 
-Trang nhu cầu mở bằng một câu "Muốn …" hoặc nhãn "Nhu cầu:", tiếp theo là một đến ba ví dụ dẫn nhập cụ thể, có số liệu hoặc đối tượng đếm được. Trang hình thức kế tiếp có thể giữ cùng tiêu đề với trang nhu cầu. Bước trực quan đứng trước phát biểu hình thức; nhãn "Ý nghĩa:" sau một định lý là diễn giải bổ sung, không thay cho bước trực quan.
+Trang mở một khái niệm bắt đầu bằng một câu ngắn, khẳng định, hoặc vào thẳng một đến ba ví dụ dẫn nhập cụ thể, có số liệu hoặc đối tượng đếm được, liệt kê dữ kiện ngay; không dùng nhãn "Nhu cầu:" (NT14). Trang hình thức kế tiếp có thể giữ cùng tiêu đề với trang nhu cầu. Bước trực quan đứng trước phát biểu hình thức; nhãn "Ý nghĩa:" sau một định lý là diễn giải bổ sung, không thay cho bước trực quan.
 
 ### Trang phát biểu kết quả
 
@@ -440,8 +403,8 @@ Dùng bảng so sánh khi hai đến bốn phương pháp được đối chiế
 ### Nhãn dẫn dắt
 
 Chỉ dùng các nhãn sau, viết đậm:
-- **Môi trường hình thức, kết thúc bằng dấu chấm:** "Định nghĩa.", "Định lý.", "Mệnh đề.", "Bổ đề.", "Hệ quả.", "Nhận xét.", "Thuật toán.", "Chứng minh.", "Trực quan.", "Ví dụ.".
-- **Nhãn dẫn, kết thúc bằng dấu hai chấm:** "Nhu cầu:", "Ý nghĩa:", "Diễn giải:", "Lưu ý:", "Nhắc lại:", "Cách khác:", "Dạng khác:", "Ký hiệu:", "Giả thiết:", "Kết luận:", "Đầu vào:", "Đầu ra:", "Câu hỏi:", "Gợi ý:", "Lời giải:".
+- **Môi trường hình thức, kết thúc bằng dấu chấm:** "Định nghĩa.", "Định lý.", "Mệnh đề.", "Bổ đề.", "Hệ quả.", "Nhận xét.", "Thuật toán.", "Chứng minh.", "Trực quan.", "Ví dụ.", "Ý tưởng chứng minh.", "Kỹ thuật.".
+- **Nhãn dẫn, kết thúc bằng dấu hai chấm:** "Ý nghĩa:", "Diễn giải:", "Lưu ý:", "Nhắc lại:", "Cách khác:", "Dạng khác:", "Ký hiệu:", "Giả thiết:", "Kết luận:", "Bảo đảm:", "Đầu vào:", "Đầu ra:", "Câu hỏi:", "Gợi ý:", "Lời giải:".
 
 Không dùng nhãn quy trình, nhãn cảm thán hay nhãn quảng bá.
 
@@ -451,7 +414,7 @@ Mặt trang phát biểu giả thiết và kết quả bằng lời, và gọi v
 
 ### Mở bài và kết bài
 
-Mạch mở đầu gồm bìa, mục tiêu học tập, "Nội dung" và khi cần "Ngữ cảnh". Mạch kết luận gồm một bảng tổng kết "kết quả | giả thiết không được bỏ | công thức hoặc thuật toán", câu hỏi tự kiểm tra và tài liệu đọc. Khi bài có ứng dụng AI xuyên suốt, trang cuối của mạch nội dung cuối cùng nối kết quả với ứng dụng đó bằng một phép tính hoặc quyết định cụ thể.
+Mạch mở đầu và mạch kết luận theo NT11 và NT15 của `NGUYEN-TAC-TRANG-CHIEU.md` (mạch kết luận tên "Tổng kết", trang cuối "Tài liệu tham khảo"), với trang "Ngữ cảnh" khi cần (P5) và bảng tổng kết "kết quả | giả thiết không được bỏ | công thức hoặc thuật toán" (P4). Khi bài có ứng dụng AI xuyên suốt, trang cuối của mạch nội dung cuối cùng nối kết quả với ứng dụng đó bằng một phép tính hoặc quyết định cụ thể.
 
 ### Những điểm của MAT1101 không áp dụng
 
