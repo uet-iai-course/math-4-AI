@@ -329,3 +329,71 @@ Mọi đề đã đối chiếu với trang PDF (Read với `pages`), không ch�
 **Kiểm tra trình duyệt (điều phối viên):** cổng 8791, 1600×900 và 390×844, mở mọi khối khi đo: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console (trừ CSP của reloadserver), 0 request lỗi, không tràn ngang trang. Tệp bài tập: 0/50 công thức tràn khung ở 390 px. Ghi chú: 20 công thức có sẵn từ trước tràn khung (ngoài lượt nhẹ). Bài 12 không có deck.
 
 Quyết định của điều phối viên: **chấp nhận**; commit `fix(materials): Bài 12 rà theo quy tắc 2026-11-09, làm lại bài tập từ giáo trình`.
+
+## Bộ trang chiếu (dựng từ ghi chú, 2026-11-16)
+
+Yêu cầu của người dùng (2026-11-16): "hoàn thiện slide deck các bài 12,13,14 … theo các nguyên tắc mới về slide deck, thống nhất với ghi chú bài giảng, hãy liệt kê các nguyên tắc này phù hợp với khoá học và đảm bảo các agent tuân thủ" (khoá math-4-AI). Nguyên tắc NT1–NT28: `../tools/courses/math-4-AI/2627-1/deck-build/common-brief.md`; tóm tắt trong `CLAUDE.md` mục "Slide decks built from the lecture note"; ghi chú ở đầu mục "Cấu trúc bộ trang chiếu mặc định" của `AGENTS.md`. Bản giao việc từng vai cùng thư mục.
+
+### Nhật ký tác tử (theo lời gọi công cụ)
+
+| Giai đoạn | Vai | Loại | Mô hình | Nỗ lực | Ghi tệp |
+|---|---|---|---|---|---|
+| Storyboard | Người lập storyboard (kế hoạch + phân tích nguồn) | general-purpose | opus (Opus 5.5) | medium | `planning/lec-12/storyboard.md` |
+| Cổng storyboard | Người duyệt cổng storyboard | general-purpose | opus (Opus 5.5) | high | `planning/lec-12/reviews/deck-storyboard-gate.md` |
+
+**Storyboard (2026-11-16): chấp nhận có điều kiện.** 59 trang, 7 mạch, 120 phút, không ví dụ mới; điều phối viên đọc khung, bảng mạch, dòng dẫn, bảng kết quả, mục 12. Quyết định Q1–Q7 ghi cuối `storyboard.md` (Q4 bác bỏ: giữ thứ tự ghi chú). Đề xuất sửa ghi chú cho tác giả: N1 (`threshold-risks.svg` ghi "rủi ro mẫu", $\widehat R_4$ thay cho "rủi ro thực nghiệm", $\hat R_S$); N2 (chữ trong hai SVG của ghi chú 10–13 px, một nhãn 5,85 px); N3 (`vc-one-dimensional.svg` "Nhãn (0, 0)" so với "00" ở Ví dụ 12.12).
+
+**Cổng storyboard (2026-11-16): đạt khi sửa** (0 chặn, 3 nghiêm trọng, 13 trung bình, 24 nhẹ; báo cáo `reviews/deck-storyboard-gate.md`, dòng tổng ghi nhầm 12 trung bình). Điều phối viên kiểm G2 (ghi chú dòng 1117: "$6636$ quan sát là đủ"; storyboard dòng 731: "ERM chính xác cần $6636$ quan sát") và G1 (Q4 chưa áp dụng ở L12-6-01). Quyết định: **chấp nhận** mọi phát hiện; trần 60 trang giữ nguyên, nếu cần chỗ thì dùng các phương án rút trang đã nêu ở Q1. Đề xuất sửa ghi chú cho tác giả: D1 ($\ell$ đổi nghĩa so với Bài 11), D2 ("quá khớp" chưa định nghĩa trong thân ghi chú). `outline.md` còn số hiệu bài tập cũ: điều phối viên đồng bộ khi chốt deck.
+
+**Storyboard sau cổng duyệt (2026-11-16): chấp nhận.** Người lập storyboard sửa mọi phát hiện (bảng "Sửa theo cổng duyệt"); thêm L12-3-12 (Bài tập 12.2 câu 3) theo T9, deck 60 trang (bằng trần, chấp nhận; Q1 cập nhật). Điều phối viên kiểm G1 (L12-6-01: khả thực trước, "mọi $P$ khả thực", "lớp các bộ phân loại, mất mát 0–1"), G2 (L12-6-02: "$6636$ quan sát đủ"). Chỉ thị thêm cho người viết: trang Mục tiêu học tập viết tên đầy đủ "tối thiểu hóa rủi ro thực nghiệm" thay cho "ERM" (NT21; trang này đứng trước định nghĩa), rút chữ chỗ khác để giữ ≤ 80.
+
+| Viết deck | Người viết bộ trang chiếu | general-purpose | opus (Opus 5.5) | medium | `lecture-12-hoc-may-rui-ro-thong-ke-tong-quat-hoa.html`, `img/lec-12/` (SVG mới), `storyboard.md` |
+
+**Bản nháp deck (2026-11-16): chấp nhận để duyệt.** 60 trang. Điều phối viên chạy trên CSS thật: `deck_check.py` console 0, pageerrors 0, failed 0; `footer_check.py` 0 trang; `deck_lint.py` 0 phát hiện; xem ảnh ghép 1600×900. Bản đóng băng: `scratchpad/master/frozen/`.
+
+| Duyệt | sinh-vien, toan-hoc, chuyen-gia, su-pham, mach-truyen (5 tác tử độc lập, chỉ đọc) | general-purpose | opus (Opus 5.5) | high | `planning/lec-12/reviews/deck-<vai>.md` |
+
+### Năm báo cáo duyệt và quyết định của điều phối viên (2026-11-16)
+
+| Vai | Kết luận | Chặn | Nghiêm trọng | Trung bình | Nhẹ |
+|---|---|---|---|---|---|
+| sinh-vien | đạt khi sửa | 0 | 0 | 5 | 11 |
+| toan-hoc | đạt khi sửa | 0 | 1 | 4 | 4 |
+| chuyen-gia | đạt khi sửa | 0 | 2 | 8 | 10 |
+| su-pham | đạt khi sửa | 0 | 0 | 10 | 24 |
+| mach-truyen | đạt khi sửa | 0 | 0 | 2 | 10 |
+
+Điều phối viên kiểm: ghi chú Bài 12 không có cụm "quá khớp" (`grep` 0 kết quả). **Quyết định chung: chấp nhận mọi phát hiện**, với các chốt:
+
+- F1 (toan-hoc, chuyen-gia: L12-7-01): hàng Định lý 12.13 ghi "lớp hữu hạn, $M$ hàm"; "hạng cột đầy đủ" chỉ gắn với (4.5); hàng Mệnh đề 12.11 thêm $Y=\mathbf 1_{\{X\ge0\}}$, $X$ đều trên $[-1,1]$. Cột "Công thức hoặc thuật toán" ghi công thức (gọn), không chỉ số hiệu; loại bảo đảm không đặt ở cột giả thiết (sinh-vien, su-pham). Nếu vượt 80 âm tiết, tách bảng hai trang và rút trang khác để giữ trần 60.
+- F2 (toan-hoc, chuyen-gia: L12-3-03): "Ý nghĩa:" viết đúng chiều Mệnh đề 12.2: với nhiễu Gaussian phương sai chung, hợp lý cực đại là bình phương tối thiểu; giữ Nhận xét 12.4 ý 3.
+- F3 (sinh-vien: công thức, bảng tràn ở 390 px che kết luận): ngắt bằng `aligned`, mỗi quan hệ một dòng; bảng L12-2-01, L12-4-06 dùng `stack-table` hoặc tách; đo lại trong trình duyệt.
+- F4 (su-pham S1, S2, mach-truyen): PAC, VC không xuất hiện trước tên đầy đủ: "học gần đúng với xác suất cao (probably approximately correct, PAC)", "số chiều Vapnik–Chervonenkis (VC)"; trang Nội dung và dòng dẫn mạch 6 viết tên tiếng Việt.
+- F5 (su-pham S5): bỏ mã "CLO2, CLO4" khỏi ghi chú diễn giả (NT22).
+- F6 (mach-truyen): bỏ "quá khớp" khỏi L12-7-03 (ghi chú không có thuật ngữ này; NT1, NT2, NT15); ghi đề xuất cho tác giả.
+- F7 (toan-hoc nhẹ, sửa quyết định Q8): dòng "Kỹ thuật." L12-5-07 gọi "chèn một đại lượng trung gian" (không "rồi chuyển vế"); deck 13 nhắc lại tên này và tự nói bước chuyển vế.
+- F8 (chuyen-gia, mach-truyen): một dòng "Lưu ý:" trên mặt trang mạch 5: mất mát bình phương và entropy chéo không bị chặn, nằm ngoài (G2); cái cố định, cái ngẫu nhiên nêu trên mặt trang L12-2-02/L12-4-01; Bổ đề 12.14 phát biểu một dòng trên mặt trang trước khi dẫn.
+- F9 (su-pham S4, sinh-vien): mục tiêu học tập viết đúng nghĩa ghi chú, đủ động từ; ngoại lệ tới 110 âm tiết ghi ở storyboard.
+- F10 (mach-truyen 1): L12-3-09 gộp bước đã có ở deck 11 thành "Nhắc lại:"; công thức hiển thị dành cho phần mới.
+- F11: bảng `Mục | Bài tập` giữ đánh dấu "(trên lớp)" (quy ước chung 12–14).
+- Trần 60 trang.
+
+**Đề xuất sửa ghi chú cho tác giả (từ năm báo cáo):** định nghĩa "quá khớp" (tại Ví dụ 12.7 hoặc Tình huống 12.1); định nghĩa sai số ước lượng bằng công thức; "khoảng 95 lần" → "ít nhất khoảng 95 lần"; §9.3 "mỗi mất mát mang theo một mô hình xác suất" và §9.4 "Mất mát huấn luyện là âm log-hợp lý" khái quát quá Nhận xét 12.4 ý 3; tiêu đề §7, §8, Mệnh đề 12.11, Hệ quả 12.15 trộn ERM, PAC; $\ell$ đổi nghĩa so với Bài 11 (D1, cổng).
+
+| Biên tập | Biên tập viên (tiếp tục tác tử viết deck 12 qua SendMessage, theo `brief-editor.md`) | general-purpose | opus (Opus 5.5) | medium | deck 12, `img/lec-12/`, `storyboard.md` |
+
+**Biên tập (2026-11-16): xong, chờ kiểm lại.** 60 trang: tách bảng tổng kết thành L12-7-01/L12-7-01b, gộp L12-6-05 vào L12-6-04, dời L12-3-11 (giữ ID). Không sửa: S18 (L12-3-05 sát trần), S30 ("ERM" là tên kết quả của ghi chú, chờ tác giả); sửa một phần: câu hỏi L12-6-01, mật độ chung. Người biên tập báo `deck_lint` 1 ngoại lệ (L12-1-03, 110), `footer_check` 0, `deck_check` 0/0/0. Điều phối viên giao kiểm riêng: tên mạch 6 khớp trang Nội dung (NT11), Định lý 12.19 gộp còn đủ giả thiết, L12-3-11 dời chỗ.
+
+| Kiểm lại | Người kiểm lại (chỉ đọc) | general-purpose | opus (Opus 5.5) | high | `planning/lec-12/reviews/deck-kiem-lai-1.md` |
+
+**Kiểm lại lượt 1 (2026-11-16): đạt khi sửa** (0 chặn, 0 nghiêm trọng, 3 trung bình, 13 nhẹ; `reviews/deck-kiem-lai-1.md`). Đã xác nhận: Định lý 12.19 trên L12-6-04 đủ giả thiết; F1 đầy đủ; F3 đạt (không công thức, bảng nào cuộn ngang ở 390 px); $Q(\theta)$ có trong ghi chú (dòng 241), $m_i$ định nghĩa trước khi dùng. Quyết định: **chấp nhận** mọi phát hiện. K1: tên mạch 6 thống nhất "Học gần đúng với xác suất cao và số chiều VC" ở trang tiêu đề mạch, trang Nội dung và bảng bài tập về nhà; chữ PAC giữ ở định nghĩa L12-6-01 cùng tên đầy đủ. K2, K3: khôi phục "mỗi đầu vào $x$" (Định nghĩa 12.1) và "với $\mathcal H$ chọn trước" (Định nghĩa 12.10). Gửi lại biên tập viên một lượt sửa.
+
+**Sửa sau kiểm lại lượt 1 và kiểm lại lượt 2 (2026-11-16).** Biên tập viên sửa K1–K16; mục 3, 4 của L12-1-03 theo câu chữ điều phối viên chốt (trang 119 âm tiết, ngoại lệ ≤ 120 vì giữ nghĩa mục tiêu của ghi chú; điều phối viên đếm nhầm một lần, `deck_lint` là số chuẩn). Kiểm lại lượt 2 (`reviews/deck-kiem-lai-2.md`): **đạt**, còn 4 nhẹ (R1–R4). Quyết định: chấp nhận R1–R3; R4 chỉ thêm "của" ở mục 5 và ghi ngoại lệ dòng 27 âm tiết; mục 1 giữ "hai mất mát" (tên đủ ở ghi chú diễn giả) vì trang đã ở trần 120. Lượt sửa nhỏ cuối, sau đó điều phối viên kiểm cuối.
+
+**Sửa R1–R4 (2026-11-16): xong.** R2 dùng "trung bình mẫu chỉ dùng $n$ quan sát" (giữ trần 60); L12-1-03 120 âm tiết (≤ 1,5 × 80, ngoại lệ đã duyệt).
+
+### Kiểm cuối và duyệt của điều phối viên (2026-11-16)
+
+Điều phối viên chạy trên máy chủ tĩnh tạm (cổng 8777, CSS thật): `deck_lint.py` 2 ngoại lệ đã ghi (L12-1-03 120/80, L12-7-06 62 bảng bài tập về nhà); `footer_check.py` 0 trang; `deck_check.py --shots` console 0, pageerrors 0, failed 0, 0 `.katex-error`, OVERFLOW chỉ ở đuôi `\sqrt` (L12-5-03, L12-5-05, báo động giả đã biết); đo ở 390×844: 0 công thức cuộn ngang; bàn phím →, ↓, Space, Esc (tổng quan) đúng; `#/1`…`#/7` mở L12-1-01, L12-2-00 … L12-7-00; liên kết trình xem có `&deck=`. Xem ảnh ghép 1600×900 và 390×844 (gồm ảnh `-end`). Trình xem ghi chú và bài tập với `&deck=` ở hai kích thước: 0 `.katex-error`, 0 `:::` sót, 0 lỗi console, 0 request hỏng. `sync-local-materials.py --check` đạt. `index.html`: thẻ Bài 12 có **Bài giảng**, liên kết ghi chú và bài tập thêm `&deck=`; `material-viewer.js`: bỏ "12" khỏi `DECKLESS_LECTURES`; `outline.md`: danh sách bài tập đồng bộ với ghi chú và `exercises.md`. `lecture-course.css`: khối bố cục Bài 11 mở rộng cho Bài 12–14 (chỉ thêm phạm vi; deck 11 kiểm lại sạch).
+
+**Duyệt: chấp nhận.** Mọi phát hiện chặn và nghiêm trọng của cổng, năm báo cáo và hai lượt kiểm lại đã giải quyết. Còn chờ tác giả: S30 ("ERM" trong tiêu đề kết quả của ghi chú) và các đề xuất sửa ghi chú đã ghi ở trên.

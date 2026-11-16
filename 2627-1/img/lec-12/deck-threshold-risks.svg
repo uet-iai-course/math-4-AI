@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-25 130 780 356" role="img" aria-labelledby="t d">
+<title id="t">Hai loại rủi ro của ngưỡng trên bốn sản phẩm</title>
+<desc id="d">Trục ngang là ngưỡng t từ −1 đến 1, đánh dấu bốn đầu vào mẫu −0,8; −0,2; 0,3; 0,7 và điểm 0. Trục đứng là rủi ro, có vạch 0,25 và 0,5. Rủi ro kỳ vọng (đường liền) bằng trị tuyệt đối của t chia 2, dạng chữ V với đỉnh 0 tại t = 0 và giá trị 0,5 ở hai đầu. Rủi ro thực nghiệm (đường đứt nét) là hàm bậc thang: 1/2 khi t ≤ −0,8; 1/4 trên (−0,8; −0,2]; 0 trên (−0,2; 0,3]; 1/4 trên (0,3; 0,7]; 1/2 khi t &gt; 0,7. Chấm đặc ở đầu mút thuộc khoảng, chấm rỗng ở đầu mút không thuộc. Dải gạch chéo đánh dấu khoảng (−0,2; 0,3] nơi rủi ro thực nghiệm bằng 0. Điểm (0,3; 0,15) trên đường chữ V được ghi 0,15.</desc>
+<defs>
+<pattern id="hatch" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+<rect width="16" height="16" fill="#f7efe6"/>
+<line x1="0" y1="0" x2="0" y2="16" stroke="#d9b99a" stroke-width="4"/>
+</pattern>
+</defs>
+<rect x="-25" y="130" width="780" height="356" fill="#fff"/>
+<!-- dải (-0,2; 0,3]: x = 385 + 300 t -->
+<rect x="325" y="245" width="150" height="195" fill="url(#hatch)"/>
+<!-- trục: y = 440 - 600 r -->
+<g stroke="#555" stroke-width="2">
+<line x1="85" y1="440" x2="690" y2="440"/>
+<line x1="85" y1="140" x2="85" y2="440"/>
+<line x1="145" y1="440" x2="145" y2="452"/>
+<line x1="325" y1="440" x2="325" y2="452"/>
+<line x1="385" y1="440" x2="385" y2="452"/>
+<line x1="475" y1="440" x2="475" y2="452"/>
+<line x1="595" y1="440" x2="595" y2="452"/>
+<line x1="73" y1="140" x2="85" y2="140"/>
+<line x1="73" y1="290" x2="85" y2="290"/>
+</g>
+<!-- rủi ro kỳ vọng |t|/2 -->
+<polyline points="85,140 385,440 685,140" fill="none" stroke="#2f3e7a" stroke-width="5" stroke-linejoin="round"/>
+<!-- rủi ro thực nghiệm -->
+<g stroke="#b15a2b" stroke-width="6" stroke-dasharray="14 8" fill="none">
+<line x1="85" y1="140" x2="145" y2="140"/>
+<line x1="145" y1="290" x2="325" y2="290"/>
+<line x1="325" y1="440" x2="475" y2="440"/>
+<line x1="475" y1="290" x2="595" y2="290"/>
+<line x1="595" y1="140" x2="685" y2="140"/>
+</g>
+<g stroke="#b15a2b" stroke-width="4">
+<circle cx="145" cy="140" r="8" fill="#b15a2b"/>
+<circle cx="145" cy="290" r="8" fill="#fff"/>
+<circle cx="325" cy="290" r="8" fill="#b15a2b"/>
+<circle cx="325" cy="440" r="8" fill="#fff"/>
+<circle cx="475" cy="440" r="8" fill="#b15a2b"/>
+<circle cx="475" cy="290" r="8" fill="#fff"/>
+<circle cx="595" cy="290" r="8" fill="#b15a2b"/>
+<circle cx="595" cy="140" r="8" fill="#fff"/>
+</g>
+<!-- điểm (0,3; 0,15) -->
+<rect x="465" y="340" width="20" height="20" fill="#2f3e7a" transform="rotate(45 475 350)"/>
+<g font-family="Arial,sans-serif" font-size="38" fill="#222">
+<text x="496" y="400">0,15</text>
+<text x="145" y="477" text-anchor="middle">−0,8</text>
+<text x="302" y="477" text-anchor="middle">−0,2</text>
+<text x="482" y="477" text-anchor="middle">0,3</text>
+<text x="595" y="477" text-anchor="middle">0,7</text>
+<text x="704" y="450" font-style="italic">t</text>
+<text x="385" y="477" text-anchor="middle">0</text>
+<text x="64" y="153" text-anchor="end">0,5</text>
+<text x="64" y="303" text-anchor="end">0,25</text>
+</g>
+<!-- chú giải -->
+<g font-family="Arial,sans-serif" font-size="38" fill="#222">
+<line x1="200" y1="165" x2="260" y2="165" stroke="#2f3e7a" stroke-width="5"/>
+<text x="272" y="176">rủi ro kỳ vọng</text>
+<line x1="200" y1="212" x2="260" y2="212" stroke="#b15a2b" stroke-width="6" stroke-dasharray="14 8"/>
+<text x="272" y="223">rủi ro thực nghiệm</text>
+</g>
+</svg>

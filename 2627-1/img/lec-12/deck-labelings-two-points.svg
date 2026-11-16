@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 400" role="img" aria-labelledby="t d">
+<title id="t">Bốn cách gán nhãn trên hai điểm</title>
+<desc id="d">Bốn ô ứng với bốn vector nhãn 00, 01, 10, 11 trên hai điểm −1 và 1 của trục số. Hình tròn đặc là nhãn 1, hình tròn rỗng là nhãn 0; vạch đứng là biên quyết định, mũi tên chỉ phía nhận nhãn 1. Ô 00: ngưỡng t = 2. Ô 01: ngưỡng t = 0. Ô 11: ngưỡng t = −2. Ô 10: chỉ lớp affine tạo được, với w = −1, b = 0, mũi tên chỉ sang trái; lớp ngưỡng không tạo được 10.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f3e7a"/></marker></defs>
+<rect width="560" height="400" fill="#fff"/>
+<g transform="translate(0 0)">
+<rect x="4" y="4" width="272" height="192" rx="10" fill="none" stroke="#c9cfdb" stroke-width="2"/>
+<text x="16" y="40" font-family="Arial,sans-serif" font-size="30" font-weight="bold" fill="#2f3e7a">00</text>
+<text x="266" y="40" text-anchor="end" font-family="Arial,sans-serif" font-size="28" fill="#222">t = 2</text>
+<line x1="20" y1="118" x2="262" y2="118" stroke="#555" stroke-width="2"/>
+<line x1="236" y1="76" x2="236" y2="136" stroke="#2f3e7a" stroke-width="4"/>
+<line x1="236" y1="84" x2="268" y2="84" stroke="#2f3e7a" stroke-width="4" marker-end="url(#ah)"/>
+<circle cx="92" cy="118" r="11" fill="#fff" stroke="#b15a2b" stroke-width="4"/>
+<circle cx="188" cy="118" r="11" fill="#fff" stroke="#b15a2b" stroke-width="4"/>
+<text x="92" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#222">−1</text>
+<text x="188" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#222">1</text>
+</g>
+<g transform="translate(280 0)">
+<rect x="4" y="4" width="272" height="192" rx="10" fill="none" stroke="#c9cfdb" stroke-width="2"/>
+<text x="16" y="40" font-family="Arial,sans-serif" font-size="30" font-weight="bold" fill="#2f3e7a">01</text>
+<text x="266" y="40" text-anchor="end" font-family="Arial,sans-serif" font-size="28" fill="#222">t = 0</text>
+<line x1="20" y1="118" x2="262" y2="118" stroke="#555" stroke-width="2"/>
+<line x1="140" y1="76" x2="140" y2="136" stroke="#2f3e7a" stroke-width="4"/>
+<line x1="140" y1="84" x2="172" y2="84" stroke="#2f3e7a" stroke-width="4" marker-end="url(#ah)"/>
+<circle cx="92" cy="118" r="11" fill="#fff" stroke="#b15a2b" stroke-width="4"/>
+<circle cx="188" cy="118" r="11" fill="#b15a2b" stroke="#b15a2b" stroke-width="4"/>
+<text x="92" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#222">−1</text>
+<text x="188" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#222">1</text>
+</g>
+<g transform="translate(0 200)">
+<rect x="4" y="4" width="272" height="192" rx="10" fill="none" stroke="#c9cfdb" stroke-width="2"/>
+<text x="16" y="40" font-family="Arial,sans-serif" font-size="30" font-weight="bold" fill="#2f3e7a">10</text>
+<text x="266" y="40" text-anchor="end" font-family="Arial,sans-serif" font-size="28" fill="#222">w = −1, b = 0</text>
+<line x1="20" y1="118" x2="262" y2="118" stroke="#555" stroke-width="2"/>
+<line x1="140" y1="76" x2="140" y2="136" stroke="#2f3e7a" stroke-width="4"/>
+<line x1="140" y1="84" x2="108" y2="84" stroke="#2f3e7a" stroke-width="4" marker-end="url(#ah)"/>
+<circle cx="92" cy="118" r="11" fill="#b15a2b" stroke="#b15a2b" stroke-width="4"/>
+<circle cx="188" cy="118" r="11" fill="#fff" stroke="#b15a2b" stroke-width="4"/>
+<text x="92" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#222">−1</text>
+<text x="188" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#222">1</text>
+<text x="140" y="190" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-style="italic" fill="#a33a1f">chỉ lớp affine</text>
+</g>
+<g transform="translate(280 200)">
+<rect x="4" y="4" width="272" height="192" rx="10" fill="none" stroke="#c9cfdb" stroke-width="2"/>
+<text x="16" y="40" font-family="Arial,sans-serif" font-size="30" font-weight="bold" fill="#2f3e7a">11</text>
+<text x="266" y="40" text-anchor="end" font-family="Arial,sans-serif" font-size="28" fill="#222">t = −2</text>
+<line x1="20" y1="118" x2="262" y2="118" stroke="#555" stroke-width="2"/>
+<line x1="44" y1="76" x2="44" y2="136" stroke="#2f3e7a" stroke-width="4"/>
+<line x1="44" y1="84" x2="76" y2="84" stroke="#2f3e7a" stroke-width="4" marker-end="url(#ah)"/>
+<circle cx="92" cy="118" r="11" fill="#b15a2b" stroke="#b15a2b" stroke-width="4"/>
+<circle cx="188" cy="118" r="11" fill="#b15a2b" stroke="#b15a2b" stroke-width="4"/>
+<text x="92" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#222">−1</text>
+<text x="188" y="164" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" fill="#222">1</text>
+</g>
+</svg>

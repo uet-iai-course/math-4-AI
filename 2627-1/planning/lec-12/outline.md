@@ -48,14 +48,22 @@ Ghi chú được tái cấu trúc theo Q1 của `planning/notes-10-14-slt-templ
 
 Tệp bài tập:
 
-- Bài tập 12.1 (Suy ra và giải mục tiêu hồi quy từ ba số đo)
-- Bài tập 12.2 (Tập nghiệm ERM và hai loại rủi ro của lớp ngưỡng)
-- Bài tập 12.3 (Các cách gán nhãn của hai lớp ngưỡng trên hai điểm)
-- Bài tập 12.4 (Hợp lý Gaussian, phương trình chuẩn và tồn tại nghiệm hợp lý cực đại)
-- Bài tập 12.5 (Entropy chéo, cực tiểu không đạt được và nhãn đổi)
-- Bài tập 12.6 (Rủi ro chính xác của bộ phân loại ngưỡng dưới hai phân phối đầu vào)
-- Bài tập 12.7 (Số chiều VC, giới hạn tổng quát hóa và lớp khoảng)
-- Bài tập 12.8 (Tham số độ chính xác và độ tin cậy trong một phát biểu PAC)
-- Bài tập 12.9 (Hội tụ đều và nghiệm ERM gần đúng)
+- Bài tập 12.1 (Hợp lý Gaussian, phương trình chuẩn và tồn tại nghiệm hợp lý cực đại)
+- Bài tập 12.2 (Entropy chéo, cực tiểu không đạt được và nhãn đổi)
+- Bài tập 12.3 (Rủi ro chính xác của bộ phân loại ngưỡng dưới hai phân phối đầu vào)
+- Bài tập 12.4 (Tính đơn điệu của số chiều VC)
+- Bài tập 12.5 (Tính đơn điệu của cỡ mẫu PAC theo $\varepsilon$ và $\delta$)
+- Bài tập 12.6 (Hồi quy tuyến tính hai đầu ra trên đầu vào nhị phân)
+- Bài tập 12.7 (Đạo hàm riêng của tổng bình phương phần dư)
+- Bài tập 12.8 (Điều kiện khả nghịch của ma trận phương trình chuẩn)
+- Bài tập 12.9 (Gradient và Hessian của entropy chéo nhị phân)
+- Bài tập 12.10 (Cỡ mẫu cho mất mát nhận giá trị trong $[a,b]$)
+- Bài tập 12.11 (Số chiều VC của lớp khoảng có dấu)
+- Bài tập 12.12 (So sánh log-hợp lý huấn luyện và tỉ lệ phân loại sai)
+- Bài tập 12.13 (Học PAC lớp đường tròn đồng tâm)
+- Bài tập 12.14 (Bảo đảm $(\varepsilon,\delta)$ và rủi ro kỳ vọng tiến về $0$)
+- Bài tập 12.15 (Mẫu độc lập nhưng không cùng phân phối)
+- Bài tập 12.16 (Chọn số đặc trưng cho bộ phân loại hình chữ nhật)
+- Bài tập 12.17 (Hàm ghi nhớ là một đa thức lấy ngưỡng)
 
 Ánh xạ số hiệu cũ → mới: xem `review-log.md`, mục "Ánh xạ số hiệu cũ → mới".
