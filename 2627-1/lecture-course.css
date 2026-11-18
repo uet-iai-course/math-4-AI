@@ -199,7 +199,10 @@
 :where(html[data-lecture="00"]) .reveal section[data-slide-id="A02"] .grid2 { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
 :where(html[data-lecture="00"]) .reveal section[data-slide-id="A02"] .card { min-width:0; }
 :where(html[data-lecture="00"]) .reveal section:first-of-type.present:has(> section[data-slide-id="P01"].present)~.footer,
-:where(html[data-lecture="00"]) .reveal section:first-of-type.present:has(> section[data-slide-id="P02"].present)~.footer { display:block; }
+:where(html[data-lecture="00"]) .reveal section:first-of-type.present:has(> section[data-slide-id="P02"].present)~.footer,
+/* hai trang thêm ở mạch mở đầu, đợt sửa deck theo NT mức 2 2026-11-18 */
+:where(html[data-lecture="00"]) .reveal section:first-of-type.present:has(> section[data-slide-id="P00a"].present)~.footer,
+:where(html[data-lecture="00"]) .reveal section:first-of-type.present:has(> section[data-slide-id="P03"].present)~.footer { display:block; }
 
 /* Bài 01: bố cục và điều chỉnh riêng trong bảng kiểu chung. */
 :root:where([data-lecture="01"]) { --lec-primary: #2f3e7a; --lec-accent: #b15a2b; --lec-ink: #172033; }
@@ -529,6 +532,10 @@
 @media screen and (min-width:761px) {
   :where(html[data-lecture="05"]) .reveal section[data-slide-id="KL01"] figure img { max-height:320px; }
 }
+
+/* Bài 05, trang TK02: bảng tổng kết có cột thứ ba "Công thức hoặc thuật toán" (P4); lề ô dọc hẹp hơn để bảng nằm trên chân trang, giữ cỡ chữ (đợt sửa deck theo NT mức 2 2026-11-18). */
+:where(html[data-lecture="05"]) .reveal section[data-slide-id="TK02"] th,
+:where(html[data-lecture="05"]) .reveal section[data-slide-id="TK02"] td { padding-top:7px; padding-bottom:7px; }
 
 /* Bài 06c (bổ trợ, trước ngày 2026-10-12 là Bài 06): bố cục và điều chỉnh riêng trong bảng kiểu chung. */
 :where(html[data-lecture="06c"]) .reveal>.lecture-viewport { height:100%; }
