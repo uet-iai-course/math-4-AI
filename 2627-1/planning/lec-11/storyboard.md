@@ -1226,3 +1226,66 @@ Tài liệu chỉ có ghi chú; đây là bảng kiểm mạch khái niệm, kh�
 Bài10 cung cấp các họ phân phối và hiệp phương sai. Bài03 cung cấp nhân tử Lagrange; Bài05 cung cấp góc nhìn tối ưu hàm mất mát. Bài11 dùng các công cụ này để xây dựng nguyên lý ước lượng. Giới hạn còn lại là khớp mẫu chưa bảo đảm dự đoán tốt trên mẫu mới; Bài12 trong kế hoạch xử lý rủi ro và tổng quát hóa.
 
 Mỗi mạch có chứng minh, ví dụ tính tay, giới hạn giả thiết và bài củng cố có gợi ý/lời giải. Hai tình huống áp dụng cuối phần nội dung nêu cả mô hình phù hợp và trường hợp giả thiết bị vi phạm. Mở rộng Bayes/KL được tách khỏi tuyến chính.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Phạm vi: NT11–NT16, NT19, NT22 theo `nhat-ky/ke-hoach-sua-deck-theo-NT.md` mục 1 "Mức 2". Giữ đủ 76 `data-slide-id` cũ, thêm 3 trang (79 trang), 7 mạch. Nội dung toán học, giả thiết, lượng từ, hằng số không đổi. Số âm tiết lấy theo cách đếm của `deck_lint.py`.
+
+**Trang thêm**
+
+| ID | Vị trí | Tiêu đề | Nội dung | Nguồn trong ghi chú | Lý do |
+|---|---|---|---|---|---|
+| MD00a | sau bìa | Tiên quyết và quy ước | "Nhắc lại:" dạng tích của mẫu độc lập cùng phân phối (Định nghĩa 05c.23), rủi ro thực nghiệm (Định nghĩa 05c.51), kỳ vọng và phương sai của trung bình mẫu (Định lý 05c.35), phân rã trị riêng (Định lý 00.16); "Ký hiệu:" $A\succ0$, $A\succeq0$ | Kiến thức tiên quyết | NT11: deck thiếu trang này. Hàm Lagrange, $\log t\le t-1$, các họ phân phối, mật độ Gaussian và tính không chệch đã có "Nhắc lại:" tại chỗ dùng (HL01, TS13, TS14, G101, G109, GN05) nên không lặp; giới hạn 6 dòng. 59 âm tiết |
+| MD05 | cuối mạch mở đầu | Vấn đề trung tâm | Một hộp "Câu hỏi:" nêu câu hỏi trung tâm; câu trả lời theo phần 2–6 ở ghi chú diễn giả | đoạn mở đầu; mục 9 | NT11: deck thiếu trang này. 23 âm tiết |
+| TK01c | sau TK01b | Vấn đề trung tâm | Năm câu trả lời cho cả bài: hợp lý cực đại là cực tiểu rủi ro thực nghiệm; các công thức nghiệm và điều kiện không suy biến; mẫu số $n-1$; đổi giả thiết nhiễu thì đổi mất mát trên $(0,0,9)$; $d^2_{\hat\Sigma}(b,\hat\mu)=8>9/2=d^2_{\hat\Sigma}(a,\hat\mu)$ | mục 9 (đoạn "Tóm lại"), mục 11, Ví dụ 11.6, Ví dụ 11.11 | NT15: mạch Tổng kết thiếu trang này. 55 âm tiết |
+
+**Trang di chuyển:** không. Mạch mở đầu sau sửa: MD00 bìa → MD00a Tiên quyết và quy ước → MD01 Mục tiêu học tập → MD02 Nội dung → MD03 ví dụ dẫn nhập (P5, giữ nguyên) → MD04 Ngữ cảnh (P5, giữ nguyên) → MD05 Vấn đề trung tâm.
+
+**Trang đổi trên mặt trang**
+
+| ID | Thay đổi | Âm tiết trước → sau |
+|---|---|---|
+| MD00 | thêm luận điểm một câu có điều kiện | 39 → 77 |
+| MD02 | mục thành liên kết `#/1`–`#/7`; mục 7 "Tổng kết"; thêm dòng "Đọc trước" theo ghi chú mục 12 | 40 → 43 |
+| HL00, TS00, G100, GN00, HH00, TK00 | dòng dẫn viết lại theo NT12 (bỏ khuôn "Muốn …, cần …"); TK00: tên "7. Tổng kết", `strand-keys` theo các trang của mạch | dòng dẫn 20, 25, 24, 25, 25, 24 |
+| HL01, HL04, HL06, TS01, TS07, TS10, G101, G107, G108, GN01, HH01, HH09 | bỏ nhãn "Nhu cầu:", viết thành câu khẳng định hoặc câu nêu dữ kiện, giữ ký hiệu và điều kiện | HL01 53→53, HL04 47→45, HL06 58→59, TS01 56→56, TS07 49→51, TS10 58→58, G101 51→54, G107 56→54, G108 55→54, GN01 58→58, HH01 57→57, HH09 52→50 |
+| TS16, TS17 | tiêu đề "Bài tập: Lagrange …" → "Bài tập: nhân tử Lagrange …" (NT16, tên của Bài tập 11.2) | không đổi |
+| TK01, TK01b | tiêu đề cột thứ ba "Công thức" → "Công thức hoặc thuật toán" (P4); các hàng giữ nguyên | 36 → 39; 30 → 33 |
+| TK05 | tiêu đề "Tài liệu đọc và chuyển tiếp" → "Tài liệu tham khảo"; danh mục Murphy (2022) đủ các mục của ghi chú mục 12; dòng "Nhu cầu:" → dòng nối sang Bài 12; liên kết "Ghi chú bài giảng · Bài tập" tới trình xem | 50 → 55 |
+
+**Ghi chú diễn giả đã sửa:** MD00 (thêm đoạn giải thích hai điều kiện của luận điểm); HL00, TS00, G100, GN00, HH00 ("Phần này kế thừa" và nhãn "Nhiệm vụ:" → câu thường, NT12, NT22); TK00 (bỏ "Nhiệm vụ:", "nhu cầu"; thêm việc trả lời câu hỏi trung tâm); TK05 (thêm vị trí của Bài tập 11.4 và 11.5–11.13, chuyển từ mặt trang).
+
+**Ngoại lệ**
+
+- **MD00, SYLL60 77 > 60.** Bìa giữ ID cũ `MD00` nên `deck_lint` không nhận ra bìa (chỉ miễn ID `L11-1-01`); 38 âm tiết của luận điểm là phần NT11 yêu cầu. Bìa không phải trang nội dung của NT17.
+- **MD00, STRUCT "bìa không có ID LNN-1-01".** Giữ mã cũ của deck theo bất biến của đợt.
+- **TS15, NOTES150 174 > 150.** Có từ trước, ngoài phạm vi mức 2.
+- **MD01 "Mục tiêu học tập".** Giữ chữ hiện có (79/80 âm tiết). Các vế "phân biệt mẫu ngẫu nhiên, dữ liệu quan sát, thống kê và bộ ước lượng" (mục tiêu 1), "phân biệt ước lượng hợp lý cực đại với ước lượng không chệch" (mục tiêu 4), "dùng chúng để so sánh độ lệch của quan sát mới" (mục tiêu 5) nằm trong ghi chú diễn giả; đưa lên mặt trang sẽ vượt trần 80. Chờ tác giả.
+- **"Bài tập về nhà" (NT15).** Mạch Tổng kết chưa có trang này; không thêm ở đợt mức 2. Danh sách Bài tập 11.4–11.13 và liên kết trình xem tạm đặt trên TK05. Chờ tác giả.
+- **Mạch Tổng kết.** Giữ TK02–TK03 (bài tập tổng hợp từ câu hỏi cuối buổi của ghi chú mục 11) và TK04 (Câu hỏi tự kiểm tra) tại chỗ; không có khái niệm mới, nên mạch đổi tên "Tổng kết".
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+Các dòng dưới đây thay các mục tương ứng ở bảng và danh sách ngoại lệ ngay trên.
+
+| ID | Sau sửa | Lý do | Âm tiết |
+|---|---|---|---|
+| MD00 | luận điểm: "Với mẫu độc lập cùng phân phối theo họ Bernoulli, phân loại hoặc Gaussian chọn trước, ước lượng hợp lý cực đại là điểm cực tiểu của rủi ro thực nghiệm và, với Gaussian, tồn tại khi dữ liệu không suy biến." | phạm vi theo ghi chú mục 9: các nghiệm (5.2), (6.2), (7.2), (8.6); "không suy biến" ($Q>0$, $S_n\succ0$) chỉ là điều kiện của Gaussian, Bernoulli và phân loại luôn có nghiệm nhờ miền đóng (Định lý 11.4, 11.7) | 77 → 81 |
+| MD00a | dòng thứ nhất "hàm khối đồng thời bằng tích $n$ hàm khối biên như nhau"; "Ký hiệu: $A$ đối xứng, …" với $\forall$ trong KaTeX; "trên tập dữ liệu" → "trên dữ liệu" | thiếu vế "cùng hàm khối xác suất" (ghi chú, Kiến thức tiên quyết); giữ ≤ 60 | 59 → 60 |
+| MD01 | sáu mục tiêu đủ nghĩa và động từ của ghi chú: phân biệt mẫu, dữ liệu, thống kê, bộ ước lượng; suy ra MLE phân loại bằng nhân tử Lagrange; điều kiện tồn tại và phân biệt với ước lượng không chệch; so độ lệch quan sát mới theo khoảng cách Mahalanobis; giải thích vì sao đổi mô hình thì đổi mục tiêu; ghi chú diễn giả khớp lại | NT11, quyết định chung của điều phối viên | 79 → 119 (ngoại lệ NT17 cho trang mục tiêu, trần 120 của đợt; vừa khung 1600×900, dòng cuối sát mép dưới, mạch mở đầu không hiện chân trang) |
+| HL00 | dòng dẫn "… của một mẫu độc lập cùng phân phối …" | đủ giả thiết | 20 → 23 |
+| HL01 | "Một bài toán tối ưu theo $\theta$ xác định tham số của mô hình dây chuyền." | chủ ngữ trực tiếp, bỏ lặp khuôn "cần được" | 53 → 50 |
+| HL04 | "Dữ liệu $D$ cố định; hai giá trị $p=1/2$, $p=0{,}3$ được so qua xác suất của $D$." | mở bằng dữ kiện (NT14), không lặp tiêu đề | 45 → 46 |
+| HL06 | "Hàm hợp lý dạng tích được đổi thành một trung bình mất mát cần cực tiểu." | câu tự nhiên hơn | 59 → 60 |
+| G100 | dòng dẫn "Phương sai hợp lý cực đại của Gaussian chia cho cỡ mẫu, phương sai không chệch chia cho cỡ mẫu trừ một." | câu rõ hơn | 22 |
+| G101 | "Với dữ liệu $(0,1,2,3,4)$ có ba việc: …" | câu tự nhiên hơn | 54 → 55 |
+| HH00 | dòng dẫn "Khoảng cách Mahalanobis đo độ lệch theo mức phân tán của từng hướng và xếp lại thứ tự lệch của hai sản phẩm mới." | bản trước biến kết quả riêng của $b$ thành hệ quả chung | 24 |
+| HH01 | "Đo độ lệch của $a=(13,23)^\top$, $b=(12,18)^\top$ khỏi $\hat\mu=(10,20)^\top$ theo $\hat\Sigma$." | bỏ nhãn "Nhu cầu:", không lặp khuôn "cần được"; thước đo là $d_{\hat\Sigma}$, không phải $\hat\Sigma$ (sửa sau lượt kiểm lại thứ hai) | 57 → 55 |
+| TK01c | gạch 1 "… nên ước lượng hợp lý cực đại là điểm cực tiểu của rủi ro thực nghiệm."; gạch 3 "Với $n\ge2$, mẫu số $n-1$ cho ước lượng không chệch." | đủ thuật ngữ và giả thiết | 55 → 60 |
+| TK05 | "Mở rộng: §4.5–4.5.2, §4.6.2, §6.2, §7.4.4–7.4.5. Đọc thêm: §4.7.1–4.7.4."; "Bài 12 cho tham số của phân phối phụ thuộc đầu vào và đo chất lượng dự đoán trên quan sát mới." | theo ghi chú mục 11–12 | 55 → 57 |
+
+**Ngoại lệ sau sửa:** MD00 SYLL60 81 > 60 (bìa giữ ID cũ, lint không miễn; luận điểm theo NT11, nay 42 âm tiết vì nêu đúng phạm vi); MD01 119 > 80 (ngoại lệ trang mục tiêu, trần 120 của đợt); TS15 NOTES150 và STRUCT ID bìa như cũ. Ngoại lệ "MD01 giữ chữ hiện có" ở trên không còn hiệu lực.
+
+MD01, mục tiêu 4: đề nghị thêm "một và nhiều chiều", "xác định điều kiện tồn tại" (+6 âm tiết) vượt trần 120 (hiện 119), nên giữ nguyên.
+
+TS16, TS17: trả tiêu đề về bản cũ "Bài tập: Lagrange khi có nhóm vắng mặt (a)" / "(b), (c)". Cả "… nhân tử Lagrange khi có nhóm vắng mặt" lẫn "… nhân tử Lagrange, nhóm vắng mặt" đều xuống hai dòng khi in hoa ở 1600×900 (đo `h2` 155 px so với 77 px), làm TS17 chạm chân trang; dòng TS16, TS17 trong bảng "Trang đổi trên mặt trang" ở trên không còn hiệu lực.

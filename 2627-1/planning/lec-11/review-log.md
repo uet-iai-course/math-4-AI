@@ -541,3 +541,28 @@ Kiểm của điều phối viên: đọc diff deck; đếm lại MD01 (79/80 â
 Phát hiện không sửa: tên $a$, $b$ ở HH07–HH08 giữ theo ghi chú (G1); đề nghị người dùng đổi tên điểm ở Bài tập 11.3, 11.4 của ghi chú.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18. Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec11.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi từ `deck_lint --course math-4-AI` (HEAD 2d93133: 38 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` từ ghi chú, bài tập hay chỉ mục vào deck.
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | bốn lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 chưa đạt (3 nghiêm trọng, 3 trung bình); lượt 2 đạt (2 nhẹ) |
+
+**Các lượt và quyết định của điều phối viên:**
+- Lượt 1: thêm MD00a "Tiên quyết và quy ước", MD05 "Vấn đề trung tâm" (một hộp), TK01c "Vấn đề trung tâm" của Tổng kết; bìa có luận điểm; "Nội dung" có liên kết; dòng dẫn mạch và 13 câu "Nhu cầu:" viết lại; mạch 7 "Tổng kết"; TK05 "Tài liệu tham khảo"; cột P4.
+- Sau lượt 1 (**yêu cầu sửa**, điều phối viên đã đối chiếu ghi chú dòng 46, 124, 1607, 1643): bìa mở rộng điều kiện tồn tại ra mọi họ phân phối; MD00a mất vế "cùng phân phối"; dòng dẫn HH00 tổng quát hóa kết quả riêng của sản phẩm $b$; MD01 mục tiêu viết kiểu điện tín (quyết định chung: ≤ 120 âm tiết theo ngoại lệ NT17); G100; HL04; 6 điểm nhẹ.
+- Sau lượt 2: HH01 "Đo độ lệch … theo $\hat\Sigma$" (thước đo là $d_{\hat\Sigma}$); MD01 mục 4 giữ vì trần 120.
+- Kiểm cuối thấy TS17 mới chạm chân trang 1 px do tiêu đề dài thêm "nhân tử" (xuống hai dòng khi viết hoa) → tiêu đề TS16, TS17 trả về như HEAD; footer_check trùng HEAD → **chấp nhận**.
+
+**Kiểm cuối của điều phối viên** (127.0.0.1:8771, HEAD ở 8773):
+- `deck_lint`: 4 phát hiện, đều là ngoại lệ ghi trong storyboard: MD00 SYLL60 81 (bìa giữ ID cũ), MD01 119/80 (trang mục tiêu, ≤ 120), STRUCT ID bìa, TS15 NOTES150 (có từ trước).
+- `deck_check`: 79 trang, console 0, pageerrors 0, failed 0, `.katex-error` 0; cờ OVERFLOW/NARROW-H ở G101, GN07, GN14, HH02, HH03, HH05–HH08 trùng hệt bản HEAD (có từ trước).
+- `footer_check` 1600×900: TS04, TS08, GN07, GN09, HH08 — trùng HEAD. `formula_overflow` 390 px: 32 trang, trùng HEAD.
+- Ảnh đã xem: MD00, MD00a, MD01, MD05, HH00, TK01c, TK05 ở hai cỡ (người kiểm lại xác nhận MD01 không bị cắt ở 1600×900). `git diff --check` sạch. Số trang 76 → 79.
+
+**Còn lại, chờ tác giả:** trang "Bài tập về nhà" (bảng `Mục | Bài tập`) của NT15; MD01 mục 4 lược "một và nhiều chiều" (trần 120); tràn công thức và chạm chân trang có từ trước.
+
+**Quyết định:** **chấp nhận**.

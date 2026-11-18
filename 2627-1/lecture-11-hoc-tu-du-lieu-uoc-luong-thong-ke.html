@@ -20,33 +20,47 @@
   <section data-slide-id="MD00" id="mach-1">
     <h1>Học từ dữ liệu qua ước lượng thống kê</h1>
     <h3>Hàm hợp lý, ước lượng hợp lý cực đại, hiệp phương sai và khoảng cách Mahalanobis · Bài 11</h3>
+    <p>Với mẫu độc lập cùng phân phối theo họ Bernoulli, phân loại hoặc Gaussian chọn trước, ước lượng hợp lý cực đại là điểm cực tiểu của rủi ro thực nghiệm và, với Gaussian, tồn tại khi dữ liệu không suy biến.</p>
     <p>Cơ sở toán học cho AI · Học kỳ 1, 2026–2027</p>
     <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
-    <aside class="notes"><p>Bài 10 tính xác suất với các tham số đã biết, chẳng hạn tỉ lệ lỗi của từng nhà cung cấp. Trong thực tế các tham số này chưa biết và phải xác định từ dữ liệu.</p><p>Bài này dùng lại các họ Bernoulli, phân loại, Gaussian và chọn tham số bằng một nguyên lý chung: tham số làm dữ liệu đã quan sát có xác suất hoặc mật độ lớn nhất.</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §4.1–4.2; ghi chú bài giảng Bài 11.</p></aside>
+    <aside class="notes"><p>Bài 10 tính xác suất với các tham số đã biết, chẳng hạn tỉ lệ lỗi của từng nhà cung cấp. Trong thực tế các tham số này chưa biết và phải xác định từ dữ liệu.</p><p>Bài này dùng lại các họ Bernoulli, phân loại, Gaussian và chọn tham số bằng một nguyên lý chung: tham số làm dữ liệu đã quan sát có xác suất hoặc mật độ lớn nhất.</p><p>Luận điểm có hai điều kiện: mẫu độc lập cùng phân phối cho dạng tích của hàm hợp lý; dữ liệu không suy biến, tức $Q&gt;0$ ở một chiều và $S_n\succ0$ ở nhiều chiều, cho nghiệm Gaussian tồn tại. Với Bernoulli và phân loại, miền tham số đóng bảo đảm nghiệm luôn tồn tại, cả khi có số đếm bằng $0$.</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §4.1–4.2; ghi chú bài giảng Bài 11.</p></aside>
+  </section>
+  <section data-slide-id="MD00a">
+    <h2>Tiên quyết và quy ước</h2>
+    <p><strong>Nhắc lại:</strong></p>
+    <ul>
+      <li>độc lập cùng phân phối: hàm khối đồng thời bằng tích $n$ hàm khối biên như nhau (Định nghĩa 05c.23);</li>
+      <li>rủi ro thực nghiệm: trung bình mất mát trên dữ liệu (Định nghĩa 05c.51);</li>
+      <li>$X_i$ cùng kỳ vọng $\mu$, phương sai $\sigma^2&lt;\infty$, không tương quan đôi một: $\mathbb E\bar X=\mu$, $\operatorname{Var}\bar X=\sigma^2/n$ (Định lý 05c.35);</li>
+      <li>$A$ đối xứng thực: $A=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top$, $U$ trực giao (Định lý 00.16).</li>
+    </ul>
+    <p><strong>Ký hiệu:</strong> $A$ đối xứng, $A\succ0$: $w^\top Aw&gt;0\ \forall w\ne0$; $A\succeq0$: $w^\top Aw\ge0\ \forall w$.</p>
+    <aside class="notes"><p>Bốn kết quả được dùng lại nguyên dạng: dạng tích của hàm khối đồng thời ở hàm hợp lý; rủi ro thực nghiệm ở phép đổi hợp lý cực đại thành cực tiểu trung bình mất mát; kỳ vọng và phương sai của trung bình mẫu ở hiệu chỉnh phương sai mẫu; phân rã trị riêng ở hình học Gaussian. Các cột của $U$ là vector riêng đơn vị của $A$.</p><p>Trong bài, $\theta$ là ký hiệu chung cho tham số của một mô hình bất kỳ, nên tham số Bernoulli được viết là $p$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Kiến thức tiên quyết.</p></aside>
   </section>
   <section data-slide-id="MD01">
     <h2>Mục tiêu học tập</h2>
     <ol>
-      <li>Phát biểu mô hình thống kê, viết hàm hợp lý theo cách lấy mẫu.</li>
+      <li>Phát biểu mô hình thống kê; phân biệt mẫu, dữ liệu, thống kê, bộ ước lượng; viết hàm hợp lý theo cách lấy mẫu.</li>
       <li>Chứng minh ước lượng hợp lý cực đại (maximum likelihood estimation, MLE) Bernoulli, kể cả nghiệm biên.</li>
-      <li>Dùng nhân tử Lagrange cho phân loại; chứng minh cực đại toàn cục, kể cả nhóm vắng mặt.</li>
-      <li>Chứng minh ước lượng Gaussian; xét tồn tại, độ chệch.</li>
-      <li>Đọc đường đồng mức Gaussian bằng trị riêng, khoảng cách Mahalanobis.</li>
-      <li>Suy ra mất mát từ giả thiết phân phối.</li>
+      <li>Dùng nhân tử Lagrange tìm MLE phân loại, chứng minh cực đại toàn cục, kể cả nhóm vắng mặt.</li>
+      <li>Chứng minh MLE Gaussian (trung bình, hiệp phương sai), điều kiện tồn tại; phân biệt với ước lượng không chệch.</li>
+      <li>Giải thích đường đồng mức Gaussian bằng trị riêng; so độ lệch quan sát mới theo khoảng cách Mahalanobis.</li>
+      <li>Suy ra mất mát từ giả thiết phân phối; giải thích vì sao đổi mô hình thì đổi mục tiêu.</li>
     </ol>
-    <aside class="notes"><p>Sáu mục tiêu cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong chuẩn đầu ra của học phần.</p><p>Mục tiêu 1 gồm việc phân biệt mẫu ngẫu nhiên, dữ liệu quan sát, thống kê và bộ ước lượng. Mục tiêu 4 gồm ước lượng trung bình, phương sai, ma trận hiệp phương sai và phân biệt nghiệm hợp lý cực đại (mẫu số $n$) với ước lượng không chệch (mẫu số $n-1$). Mục tiêu 5 gồm việc dùng khoảng cách Mahalanobis để so sánh độ lệch của quan sát mới. Mục tiêu 6 gồm việc giải thích vì sao đổi mô hình xác suất thì đổi mục tiêu học tham số.</p></aside>
+    <aside class="notes"><p>Sáu mục tiêu cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong chuẩn đầu ra của học phần.</p><p>Ở mục tiêu 1, mẫu gồm các biến ngẫu nhiên $X_i$, dữ liệu gồm các giá trị quan sát $x_i$. Ở mục tiêu 4, nghiệm hợp lý cực đại dùng mẫu số $n$, còn ước lượng không chệch của phương sai dùng mẫu số $n-1$. Ở mục tiêu 5, độ lệch của quan sát mới được đo theo mức phân tán của từng hướng riêng. Ở mục tiêu 6, nhiễu Gaussian cho mất mát bình phương, nhiễu Laplace cho mất mát trị tuyệt đối.</p></aside>
   </section>
   <section data-slide-id="MD02">
     <h2>Nội dung</h2>
     <ol>
-      <li>Mở đầu</li>
-      <li>Mô hình thống kê và hàm hợp lý</li>
-      <li>Ước lượng xác suất từ số đếm</li>
-      <li>Gaussian một chiều và độ chệch</li>
-      <li>Ước lượng Gaussian nhiều chiều</li>
-      <li>Khoảng cách Mahalanobis và hình học Gaussian</li>
-      <li>Tổng kết và chuyển tiếp</li>
+      <li><a href="#/1">Mở đầu</a></li>
+      <li><a href="#/2">Mô hình thống kê và hàm hợp lý</a></li>
+      <li><a href="#/3">Ước lượng xác suất từ số đếm</a></li>
+      <li><a href="#/4">Gaussian một chiều và độ chệch</a></li>
+      <li><a href="#/5">Ước lượng Gaussian nhiều chiều</a></li>
+      <li><a href="#/6">Khoảng cách Mahalanobis và hình học Gaussian</a></li>
+      <li><a href="#/7">Tổng kết</a></li>
     </ol>
+    <p>Đọc trước: Murphy (2022), §2.4–2.6, §3.2.1–3.2.2.</p>
     <aside class="notes"><p>Phần 2 dựng nguyên lý chung: viết xác suất của dữ liệu thành hàm của tham số rồi tối ưu. Phần 3 đến phần 5 giải bài toán tối ưu đó cho từng họ phân phối. Phần 6 đọc ma trận hiệp phương sai đã ước lượng thành các hướng phân tán và trả lời câu hỏi mở đầu.</p><p>Tài liệu đọc trước: Murphy (2022), §2.4–2.6 (Bernoulli, phân loại, Gaussian một chiều) và §3.2.1–3.2.2 (Gaussian nhiều chiều, khoảng cách Mahalanobis).</p></aside>
   </section>
   <section data-slide-id="MD03">
@@ -69,20 +83,25 @@
     <p>Điểm lệch dùng trong phát hiện bất thường (anomaly detection).</p>
     <aside class="notes"><p>Dây chuyền ghi cho mỗi sản phẩm một cờ cảnh báo, một trong ba chế độ tải và các số đo liên tục.</p><p>Tham số cố định nhưng chưa biết; các quan sát ngẫu nhiên $X_i$ và bộ ước lượng là ngẫu nhiên; các giá trị đã quan sát $x_i$ và giá trị ước lượng là số. Tiêu chuẩn thứ hai của bài là tính không chệch, đo hành vi của bộ ước lượng qua các lần lấy mẫu lặp lại.</p><p>Bảng ký hiệu đầy đủ ở ghi chú bài giảng, mục 2.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 1–3; Murphy (2022), §4.2.1.</p></aside>
   </section>
+  <section data-slide-id="MD05">
+    <h2>Vấn đề trung tâm</h2>
+    <div class="box"><p><strong>Câu hỏi:</strong> Khi một mô hình có tham số chưa biết, dùng dữ liệu để xác định tham số đó như thế nào?</p></div>
+    <aside class="notes"><p>Câu trả lời theo phần:</p><ul><li>phần 2: với mẫu i.i.d., hàm hợp lý là tích; lấy log và đổi dấu, ước lượng hợp lý cực đại là điểm cực tiểu của rủi ro thực nghiệm;</li><li>phần 3: tối ưu trên đoạn $[0,1]$ cho tần suất Bernoulli, ràng buộc chuẩn hóa trên đơn hình cho tần suất của các nhóm phân loại;</li><li>phần 4: Gaussian một chiều cho trung bình mẫu và phương sai với mẫu số $n$ khi $Q&gt;0$; mẫu số $n-1$ phục vụ tính không chệch;</li><li>phần 5: Gaussian nhiều chiều cho hiệp phương sai mẫu $S_n$ khi $S_n\succ0$;</li><li>phần 6: phân rã trị riêng đọc ma trận hiệp phương sai thành các hướng phân tán, cho khoảng cách Mahalanobis và trả lời câu hỏi về hai sản phẩm mới.</li></ul><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, đoạn mở đầu, mục 9.</p></aside>
+  </section>
 </section>
 
 <section>
   <section data-slide-id="HL00" id="mach-2" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">2.</span>Mô hình thống kê và hàm hợp lý</h2>
-      <p class="strand-lead">Muốn chọn tham số phù hợp với dữ liệu, cần viết xác suất của dữ liệu thành hàm của tham số rồi tối ưu.</p>
+      <p class="strand-lead">Cực đại hợp lý của một mẫu độc lập cùng phân phối tương đương cực tiểu trung bình mất mát trên dữ liệu.</p>
       <p class="strand-keys">Mô hình thống kê · Mẫu i.i.d. · Hàm hợp lý · Rủi ro thực nghiệm</p>
     </div>
-    <aside class="notes"><p>Phần này kế thừa các họ phân phối của Bài 10 và khung dữ liệu, mô hình của trang ngữ cảnh. Nhiệm vụ: nêu rõ dữ liệu được sinh ra thế nào, viết xác suất của cả bộ dữ liệu thành hàm của tham số, rồi đổi bài toán cực đại thành cực tiểu một trung bình mất mát. Kết quả giao cho các phần sau là bài toán cực tiểu rủi ro thực nghiệm $\hat R_n(\theta)=-\frac1n\sum_i\log p_\theta(x_i)$.</p></aside>
+    <aside class="notes"><p>Phần 2 dùng lại các họ phân phối của Bài 10 và khung dữ liệu, mô hình của trang ngữ cảnh, nêu rõ dữ liệu được sinh ra thế nào, viết xác suất của cả bộ dữ liệu thành hàm của tham số, rồi đổi bài toán cực đại thành cực tiểu một trung bình mất mát. Kết quả giao cho các phần sau là bài toán cực tiểu rủi ro thực nghiệm $\hat R_n(\theta)=-\frac1n\sum_i\log p_\theta(x_i)$.</p></aside>
   </section>
   <section data-slide-id="HL01">
     <h2>Tham số chưa biết của dây chuyền</h2>
-    <p><strong>Nhu cầu:</strong> xác định tham số của mô hình dây chuyền bằng một bài toán tối ưu theo $\theta$.</p>
+    <p>Một bài toán tối ưu theo $\theta$ xác định tham số của mô hình dây chuyền.</p>
     <p><strong>Nhắc lại:</strong> $\operatorname{Bernoulli}(p)$: $\mathbb P(X=1)=p$; $\operatorname{Cat}(\pi)$: $\mathbb P(X=k)=\pi_k$; $\mathcal N(\mu,\sigma^2)$, $\mathcal N(\mu,\Sigma)$.</p>
     <p><strong>Trực quan.</strong> Mỗi giá trị tham số cho một phân phối trên các bộ dữ liệu có thể.</p>
     <p>Chọn giá trị làm dữ liệu đã thấy có khả năng xảy ra cao nhất.</p>
@@ -108,7 +127,7 @@
   </section>
   <section data-slide-id="HL04">
     <h2>Ví dụ: so sánh hai giá trị tham số trên sáu cờ</h2>
-    <p><strong>Nhu cầu:</strong> so sánh hai giá trị của $p$ khi dữ liệu đã cố định.</p>
+    <p>Dữ liệu $D$ cố định; hai giá trị $p=1/2$, $p=0{,}3$ được so qua xác suất của $D$.</p>
     <p><strong>Trực quan.</strong> Giữ $D$ cố định, xem xác suất của $D$ là hàm của $p$.</p>
     <p>Sáu cờ $D=(1,0,1,1,0,0)$ lấy độc lập; xác suất của $D$ là $p^3(1-p)^3$.</p>
     <div class="formula">$$\begin{aligned}p=1/2:&amp;\quad(1/2)^6=1/64\approx0{,}0156,\\ p=0{,}3:&amp;\quad0{,}3^3\cdot0{,}7^3=0{,}009261\approx0{,}0093.\end{aligned}$$</div>
@@ -127,7 +146,7 @@
   </section>
   <section data-slide-id="HL06">
     <h2>Hợp lý cực đại và rủi ro thực nghiệm</h2>
-    <p><strong>Nhu cầu:</strong> đổi tích hợp lý thành trung bình mất mát cần cực tiểu.</p>
+    <p>Hàm hợp lý dạng tích được đổi thành một trung bình mất mát cần cực tiểu.</p>
     <p><strong>Trực quan.</strong> $\log$ biến tích thành tổng và giữ thứ tự; đổi dấu biến cực đại thành cực tiểu.</p>
     <p><strong>Mệnh đề.</strong> Với mẫu i.i.d. $D$, $n\ge1$, ba tập nghiệm bằng nhau:</p>
     <div class="formula">$$\begin{aligned}&amp;\underset{\theta\in\Theta}{\operatorname{argmax}}\,L(\theta;D)=\underset{\theta\in\Theta}{\operatorname{argmax}}\,\ell(\theta;D)=\underset{\theta\in\Theta}{\operatorname{argmin}}\,\hat R_n(\theta),\\ &amp;\hat R_n(\theta)=-\frac1n\sum_{i=1}^n\log p_\theta(x_i).\end{aligned}$$</div>
@@ -159,14 +178,14 @@
   <section data-slide-id="TS00" id="mach-3" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">3.</span>Ước lượng xác suất từ số đếm</h2>
-      <p class="strand-lead">Muốn ước lượng xác suất từ số đếm, cần cực đại hợp lý với ràng buộc tổng bằng một, kể cả số đếm bằng không.</p>
+      <p class="strand-lead">Tần suất mẫu là ước lượng hợp lý cực đại cho hai nhóm và cho nhiều nhóm, kể cả nhóm có số đếm bằng không.</p>
       <p class="strand-keys">Bernoulli · Nghiệm biên · Đơn hình xác suất · Nhân tử Lagrange · Entropy chéo</p>
     </div>
-    <aside class="notes"><p>Phần này kế thừa bài toán cực tiểu rủi ro thực nghiệm của phần 2. Nguyên lý đó không tự cho công thức nghiệm. Bài toán thứ nhất có một tham số trên đoạn đóng $[0,1]$, nơi cực đại có thể nằm ở đầu mút. Bài toán thứ hai có ba xác suất chịu ràng buộc tổng bằng $1$, giải bằng nhân tử Lagrange. Kết quả giao cho các phần sau: hai công thức tần suất, entropy chéo và bất đẳng thức $\log t\le t-1$.</p></aside>
+    <aside class="notes"><p>Phần 3 dùng lại bài toán cực tiểu rủi ro thực nghiệm của phần 2. Nguyên lý đó không tự cho công thức nghiệm. Bài toán thứ nhất có một tham số trên đoạn đóng $[0,1]$, nơi cực đại có thể nằm ở đầu mút. Bài toán thứ hai có ba xác suất chịu ràng buộc tổng bằng $1$, giải bằng nhân tử Lagrange. Kết quả giao cho các phần sau: hai công thức tần suất, entropy chéo và bất đẳng thức $\log t\le t-1$.</p></aside>
   </section>
   <section data-slide-id="TS01">
     <h2>Mười cờ cảnh báo</h2>
-    <p><strong>Nhu cầu:</strong> ước lượng xác suất từ số đếm, với hai nhóm rồi với nhiều nhóm.</p>
+    <p>Ước lượng xác suất từ số đếm gồm hai bài toán: hai nhóm, rồi nhiều nhóm.</p>
     <p>Mười cờ $(1,0,1,1,0,1,1,0,1,1)$ có $s=7$; chứng minh $7/10$ cực đại hợp lý.</p>
     <p>Mẫu toàn $0$ hoặc toàn $1$ xét riêng: hàm hợp lý không có điểm dừng trong $(0,1)$.</p>
     <p><strong>Trực quan.</strong> Tăng $p$ lợi cho các số $1$, hại cho các số $0$; nghiệm cân bằng hai tác động.</p>
@@ -212,7 +231,7 @@
   </section>
   <section data-slide-id="TS07">
     <h2>Entropy chéo nhị phân</h2>
-    <p><strong>Nhu cầu:</strong> hàm mất mát cho nhãn nhị phân khi mọi quan sát dùng chung một xác suất $p$.</p>
+    <p>Mất mát cho nhãn nhị phân, khi mọi quan sát dùng chung một xác suất $p$, suy từ log-hợp lý Bernoulli.</p>
     <p>Chia $-\ell(p;D)$ cho $n$:</p>
     <div class="formula">$$\hat R_n(p)=-\frac1n\sum_{i=1}^n\bigl[x_i\log p+(1-x_i)\log(1-p)\bigr].$$</div>
     <p>Hàm này gọi là <em>entropy chéo nhị phân</em> (binary cross-entropy, log loss).</p>
@@ -240,7 +259,7 @@
   </section>
   <section data-slide-id="TS10">
     <h2>Ba chế độ tải</h2>
-    <p><strong>Nhu cầu:</strong> ước lượng ba xác suất chế độ tải từ số đếm $(2,3,5)$ của mười bản ghi.</p>
+    <p>Mười bản ghi cho số đếm $(2,3,5)$ của ba chế độ tải; cần ước lượng ba xác suất.</p>
     <p>Hàm hợp lý là $\pi_1^2\pi_2^3\pi_3^5$; cực đại từng thừa số đẩy mỗi $\pi_k$ tới $1$, và kết quả không còn là phân phối.</p>
     <p>Ràng buộc: $\pi_1+\pi_2+\pi_3=1$, $\pi_k\ge0$.</p>
     <p><strong>Trực quan.</strong> Tổng khối lượng xác suất bằng $1$ chia cho ba nhóm; tăng một nhóm thì bớt nhóm khác.</p>
@@ -322,14 +341,14 @@
   <section data-slide-id="G100" id="mach-4" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">4.</span>Gaussian một chiều và độ chệch</h2>
-      <p class="strand-lead">Muốn ước lượng vị trí và độ phân tán của số đo liên tục, cần cực đại hợp lý Gaussian và chọn mẫu số.</p>
+      <p class="strand-lead">Phương sai hợp lý cực đại của Gaussian chia cho cỡ mẫu, phương sai không chệch chia cho cỡ mẫu trừ một.</p>
       <p class="strand-keys">Log-hợp lý Gaussian · Trung bình mẫu · Phương sai mẫu · Độ chệch · Mất mát bình phương</p>
     </div>
-    <aside class="notes"><p>Phần này kế thừa bài toán cực tiểu rủi ro thực nghiệm và cách chứng minh hai bước của phần trước: tìm ứng viên, rồi chứng minh cực đại toàn cục. Hai mô hình của phần 3 dành cho biến rời rạc; số đo liên tục cần một mô hình mật độ; với mật độ Gaussian, phương sai nằm cả trong số mũ lẫn trong hệ số chuẩn hóa. Kết quả giao cho phần sau: $\hat\mu=\bar x$, $\hat\sigma^2=Q/n$, đẳng thức tách tâm, điều kiện $Q&gt;0$, mất mát bình phương suy từ nhiễu Gaussian và lý do của mẫu số $n-1$.</p></aside>
+    <aside class="notes"><p>Phần 4 dùng lại bài toán cực tiểu rủi ro thực nghiệm và cách chứng minh hai bước của phần trước: tìm ứng viên, rồi chứng minh cực đại toàn cục. Hai mô hình của phần 3 dành cho biến rời rạc; số đo liên tục cần một mô hình mật độ; với mật độ Gaussian, phương sai nằm cả trong số mũ lẫn trong hệ số chuẩn hóa. Kết quả giao cho phần sau: $\hat\mu=\bar x$, $\hat\sigma^2=Q/n$, đẳng thức tách tâm, điều kiện $Q&gt;0$, mất mát bình phương suy từ nhiễu Gaussian và lý do của mẫu số $n-1$.</p></aside>
   </section>
   <section data-slide-id="G101">
     <h2>Năm độ lệch nhiệt độ</h2>
-    <p><strong>Nhu cầu:</strong> ước lượng vị trí, mức dao động của $(0,1,2,3,4)$; xét tồn tại nghiệm, chọn mẫu số.</p>
+    <p>Với dữ liệu $(0,1,2,3,4)$ có ba việc: ước lượng vị trí và mức dao động, xét tồn tại nghiệm, chọn mẫu số.</p>
     <p><strong>Nhắc lại:</strong> với $\mu\in\mathbb R$, $\sigma^2&gt;0$, mật độ của $\mathcal N(\mu,\sigma^2)$ là</p>
     <div class="formula">$$f_{\mu,\sigma^2}(x)=\frac1{\sqrt{2\pi\sigma^2}}\exp\Bigl[-\frac{(x-\mu)^2}{2\sigma^2}\Bigr],\qquad x\in\mathbb R.$$</div>
     <p><strong>Trực quan.</strong> Dịch $\mu$ về gần dữ liệu làm giảm tổng bình phương sai lệch.</p>
@@ -383,7 +402,7 @@
   </section>
   <section data-slide-id="G107">
     <h2>Mất mát từ giả thiết nhiễu</h2>
-    <p><strong>Nhu cầu:</strong> chọn mất mát cho $\mu$ từ giả thiết về nhiễu $x_i=\mu+\varepsilon_i$, $\varepsilon_i$ độc lập.</p>
+    <p>Giả thiết về nhiễu $x_i=\mu+\varepsilon_i$, $\varepsilon_i$ độc lập, quyết định mất mát cho $\mu$.</p>
     <div class="table-scroll"><table class="stack-table"><thead><tr><th>Giả thiết nhiễu</th><th>Mất mát cần cực tiểu</th><th>Nghiệm trên $(0,0,9)$</th></tr></thead><tbody>
       <tr><td data-label="Giả thiết nhiễu">$\varepsilon_i\sim\mathcal N(0,v)$, $v$ đã biết</td><td data-label="Mất mát">$\sum_i(x_i-\mu)^2$</td><td data-label="Nghiệm">trung bình $3$</td></tr>
       <tr><td data-label="Giả thiết nhiễu">phân phối Laplace (Laplace distribution) $\frac1{2\beta}e^{-|\varepsilon|/\beta}$, $\beta$ đã biết</td><td data-label="Mất mát">$\sum_i|x_i-\mu|$</td><td data-label="Nghiệm">trung vị $0$</td></tr>
@@ -393,7 +412,7 @@
   </section>
   <section data-slide-id="G108">
     <h2>Hai mẫu số của phương sai</h2>
-    <p><strong>Nhu cầu:</strong> đánh giá bộ ước lượng $Q_X/n$, $Q_X=\sum_i(X_i-\bar X)^2$, qua các lần lấy mẫu lặp lại.</p>
+    <p>Bộ ước lượng $Q_X/n$, $Q_X=\sum_i(X_i-\bar X)^2$, được đánh giá qua các lần lấy mẫu lặp lại.</p>
     <p>Với $n=1$: $Q=0$, nên $Q/n=0$ với mọi dữ liệu.</p>
     <p><strong>Trực quan.</strong> Theo đẳng thức tách tâm, $\sum_i(x_i-\mu)^2=Q+n(\mu-\bar x)^2\ge Q$.</p>
     <p>Tổng bình phương sai lệch quanh $\bar x$ không vượt tổng quanh $\mu$ thật, nên $Q_X/n$ có xu hướng nhỏ hơn $\sigma^2$.</p>
@@ -444,14 +463,14 @@
   <section data-slide-id="GN00" id="mach-5" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">5.</span>Ước lượng Gaussian nhiều chiều</h2>
-      <p class="strand-lead">Muốn ước lượng trung bình và ma trận hiệp phương sai từ dữ liệu nền, cần biết khi nào nghiệm tồn tại.</p>
+      <p class="strand-lead">Với dữ liệu không suy biến, trung bình và hiệp phương sai của mẫu là ước lượng hợp lý cực đại của Gaussian nhiều chiều.</p>
       <p class="strand-keys">Ma trận hiệp phương sai · Hiệp phương sai mẫu · Ma trận độ chính xác · Điều kiện tồn tại</p>
     </div>
-    <aside class="notes"><p>Phần này kế thừa phép tách tâm và điều kiện $Q&gt;0$ của Gaussian một chiều, cùng bất đẳng thức $\log t\le t-1$ của ước lượng phân loại. Nhiệm vụ: thay phương sai bằng ma trận hiệp phương sai, thay bình phương bằng tích ngoài, rồi tìm cực đại trên tập ma trận xác định dương. Kết quả giao cho phần sau là $\hat\mu=(10,20)^\top$, $\hat\Sigma=S_4$ và $\hat\Sigma^{-1}$ của dữ liệu cảm biến nền.</p></aside>
+    <aside class="notes"><p>Phần 5 dùng lại phép tách tâm và điều kiện $Q&gt;0$ của Gaussian một chiều, cùng bất đẳng thức $\log t\le t-1$ của ước lượng phân loại. Ma trận hiệp phương sai thay cho phương sai, tích ngoài thay cho bình phương, và cực đại được tìm trên tập ma trận xác định dương. Kết quả giao cho phần sau là $\hat\mu=(10,20)^\top$, $\hat\Sigma=S_4$ và $\hat\Sigma^{-1}$ của dữ liệu cảm biến nền.</p></aside>
   </section>
   <section data-slide-id="GN01">
     <h2>Phương sai từng tọa độ của dữ liệu cảm biến nền</h2>
-    <p><strong>Nhu cầu:</strong> ước lượng $\mu$, $\Sigma$ từ bốn vector nền; xác định khi nào nghiệm tồn tại.</p>
+    <p>Từ bốn vector nền cần ước lượng $\mu$, $\Sigma$ và xác định khi nào nghiệm tồn tại.</p>
     <p>$x_1=(12,22)^\top$, $x_2=(8,18)^\top$, $x_3=(11,19)^\top$, $x_4=(9,21)^\top$.</p>
     <p>Tọa độ 1: trung bình $10$, sai lệch $(2,-2,1,-1)$; tọa độ 2: trung bình $20$, sai lệch $(2,-2,-1,1)$.</p>
     <p>Cả hai tọa độ có phương sai hợp lý cực đại $(4+4+1+1)/4=5/2$.</p>
@@ -587,17 +606,17 @@
   <section data-slide-id="HH00" id="mach-6" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">6.</span>Khoảng cách Mahalanobis và hình học Gaussian</h2>
-      <p class="strand-lead">Muốn so độ lệch của hai sản phẩm mới, cần đo theo mức phân tán của từng hướng riêng.</p>
+      <p class="strand-lead">Khoảng cách Mahalanobis đo độ lệch theo mức phân tán của từng hướng và xếp lại thứ tự lệch của hai sản phẩm mới.</p>
       <p class="strand-keys">Phân rã trị riêng · Tọa độ riêng · Đường đồng mức · Khoảng cách Mahalanobis</p>
     </div>
-    <aside class="notes"><p>Phần này kế thừa Gaussian đã khớp với tâm $(10,20)^\top$ và $\hat\Sigma=S_4$. Nhiệm vụ: dùng phân rã trị riêng để đọc $\hat\Sigma$ thành các hướng phân tán, định nghĩa một khoảng cách theo mức phân tán của từng hướng, rồi trả lời câu hỏi mở đầu. Phần kết thúc bằng quy tắc chấm điểm lệch cho quan sát mới.</p></aside>
+    <aside class="notes"><p>Phần 6 dùng lại Gaussian đã khớp với tâm $(10,20)^\top$ và $\hat\Sigma=S_4$. Phân rã trị riêng đọc $\hat\Sigma$ thành các hướng phân tán; một khoảng cách theo mức phân tán của từng hướng trả lời câu hỏi mở đầu. Phần kết thúc bằng quy tắc chấm điểm lệch cho quan sát mới.</p></aside>
   </section>
   <section data-slide-id="HH01">
     <h2>Độ lệch của hai sản phẩm mới</h2>
     <div class="responsive">
       <figure class="visual"><img src="img/lec-11/gaussian-geometry-deck.svg" alt="Mặt phẳng độ lệch quanh tâm (10, 20). Bốn điểm nền hình tròn tại (2, 2), (−2, −2), (1, −1), (−1, 1). Ba elip đồng tâm ghi 1, 2, 3 là các đường khoảng cách Mahalanobis 1, 2, 3, trục dài theo hướng u cộng (1, 1), trục ngắn theo hướng u trừ (1, −1). Điểm a hình tam giác tại (3, 3) trên trục dài, giữa elip 2 và 3; điểm b hình vuông tại (2, −2) trên trục ngắn, gần elip 3."/></figure>
       <div>
-        <p><strong>Nhu cầu:</strong> so độ lệch của $a=(13,23)^\top$, $b=(12,18)^\top$ khỏi $\hat\mu=(10,20)^\top$ theo $\hat\Sigma$.</p>
+        <p>Đo độ lệch của $a=(13,23)^\top$, $b=(12,18)^\top$ khỏi $\hat\mu=(10,20)^\top$ theo $\hat\Sigma$.</p>
         <p>Khoảng cách Euclid xếp $a$ xa hơn (bình phương $18$ so với $8$) và bỏ qua $\hat\Sigma$.</p>
         <p><strong>Trực quan.</strong> Quay trục theo hướng phân tán chính, chia mỗi tọa độ cho độ lệch chuẩn theo hướng đó.</p>
         <p>Elip ghi $1$, $2$, $3$ gồm các điểm cách tâm $1$, $2$, $3$ sau phép quay trục và chia độ lệch chuẩn.</p>
@@ -676,7 +695,7 @@
   </section>
   <section data-slide-id="HH09">
     <h2>Chấm điểm lệch cho quan sát cảm biến</h2>
-    <p><strong>Nhu cầu:</strong> quyết định gắn cờ sản phẩm nào theo quy tắc $d_{\hat\Sigma}^2&gt;6$.</p>
+    <p>Quy tắc vận hành gắn cờ một sản phẩm khi $d_{\hat\Sigma}^2&gt;6$.</p>
     <p>Mô hình nền i.i.d. $\mathcal N(\mu,\Sigma)$ trên bốn vector nền; $S_4\succ0$ nên $\hat\mu=(10,20)^\top$, $\hat\Sigma=S_4$.</p>
     <p>Quan sát cần chấm điểm không được ghép vào mẫu ước lượng.</p>
     <p>$d_{\hat\Sigma}^2(a,\hat\mu)=4{,}5\le6$, $d_{\hat\Sigma}^2(b,\hat\mu)=8&gt;6$: chỉ $b$ bị gắn cờ.</p>
@@ -688,15 +707,15 @@
 <section>
   <section data-slide-id="TK00" id="mach-7" class="strand-title">
     <div class="strand-title-body">
-      <h2><span class="strand-number">7.</span>Tổng kết và chuyển tiếp</h2>
-      <p class="strand-lead">Muốn dùng đúng các công thức ước lượng, cần ghi kèm giả thiết mà mỗi công thức đòi hỏi.</p>
-      <p class="strand-keys">Giả thiết · Miền tham số · Không suy biến · Hàm mất mát</p>
+      <h2><span class="strand-number">7.</span>Tổng kết</h2>
+      <p class="strand-lead">Các công thức ước lượng của bài cần mẫu độc lập cùng phân phối, đúng miền tham số và dữ liệu không suy biến.</p>
+      <p class="strand-keys">Giả thiết không được bỏ · Vấn đề trung tâm · Hàm mất mát · Tài liệu tham khảo</p>
     </div>
-    <aside class="notes"><p>Phần kết luận kế thừa mọi kết quả của các phần 2–6. Nhiệm vụ: xếp các kết quả cùng giả thiết không được bỏ, luyện lại phép suy ra hàm mất mát và trường hợp nghiệm biên, rồi nêu nhu cầu của bài sau: tham số phụ thuộc đầu vào và chất lượng dự đoán trên quan sát mới.</p></aside>
+    <aside class="notes"><p>Phần kết luận gom các kết quả của các phần 2–6 cùng giả thiết không được bỏ, trả lời câu hỏi trung tâm cho cả bài, luyện lại phép suy ra hàm mất mát và trường hợp nghiệm biên, rồi nối sang bài sau: tham số phụ thuộc đầu vào và chất lượng dự đoán trên quan sát mới.</p></aside>
   </section>
   <section data-slide-id="TK01">
     <h2>Kết quả và giả thiết: mô hình một chiều</h2>
-    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức</th></tr></thead><tbody>
+    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead><tbody>
       <tr><td data-label="Kết quả">Hợp lý cực đại tương đương rủi ro thực nghiệm</td><td data-label="Giả thiết">mẫu i.i.d.</td><td data-label="Công thức">$\operatorname{argmax}L=\operatorname{argmin}\hat R_n$</td></tr>
       <tr><td data-label="Kết quả">Ước lượng Bernoulli</td><td data-label="Giả thiết">miền đóng $[0,1]$</td><td data-label="Công thức">$\hat p=s/n$</td></tr>
       <tr><td data-label="Kết quả">Ước lượng phân loại</td><td data-label="Giả thiết">đơn hình đóng</td><td data-label="Công thức">$\hat\pi_k=n_k/n$</td></tr>
@@ -706,12 +725,23 @@
   </section>
   <section data-slide-id="TK01b">
     <h2>Kết quả và giả thiết: độ chệch, nhiều chiều, hình học</h2>
-    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức</th></tr></thead><tbody>
+    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead><tbody>
       <tr><td data-label="Kết quả">Hiệu chỉnh phương sai và hiệp phương sai mẫu</td><td data-label="Giả thiết">$n\ge2$, mômen bậc hai hữu hạn</td><td data-label="Công thức">$\mathbb E[Q_X/(n-1)]=\sigma^2$, $\mathbb E[S_{n-1}]=\Sigma$</td></tr>
       <tr><td data-label="Kết quả">Gaussian nhiều chiều</td><td data-label="Giả thiết">$S_n\succ0$</td><td data-label="Công thức">$\hat\mu=\bar x$, $\hat\Sigma=S_n$</td></tr>
       <tr><td data-label="Kết quả">Đường đồng mức Gaussian</td><td data-label="Giả thiết">$\Sigma\succ0$</td><td data-label="Công thức">$d_\Sigma^2=\sum_jz_j^2/\lambda_j$</td></tr>
     </tbody></table></div>
     <aside class="notes"><p>Hiệu chỉnh phương sai không cần giả thiết Gaussian; $S_n$ suy biến làm hợp lý Gaussian nhiều chiều không bị chặn; khoảng cách Mahalanobis cần $\Sigma$ khả nghịch.</p><p>Với dữ liệu cảm biến nền, $d^2_{\hat\Sigma}(a,\hat\mu)=9/2&lt;8=d^2_{\hat\Sigma}(b,\hat\mu)$: $b$ lệch hơn dù gần tâm hơn theo khoảng cách Euclid.</p><p>Các bài toán khác của học máy dùng cùng công cụ, bao gồm:</p><ul><li>ước lượng phân phối nhãn của một tập dữ liệu phân loại;</li><li>học trung bình của một tín hiệu dưới nhiễu Gaussian;</li><li>học một mô hình chung cho các đặc trưng tương quan;</li><li>chọn hàm mất mát qua việc chọn mô hình nhiễu.</li></ul><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 9.</p></aside>
+  </section>
+  <section data-slide-id="TK01c">
+    <h2>Vấn đề trung tâm</h2>
+    <ul>
+      <li>Mẫu i.i.d.: hàm hợp lý là tích, nên ước lượng hợp lý cực đại là điểm cực tiểu của rủi ro thực nghiệm.</li>
+      <li>Nghiệm là tần suất $s/n$, $n_k/n$, trung bình mẫu, $Q/n$ và $S_n$; nghiệm Gaussian cần $Q&gt;0$ hoặc $S_n\succ0$.</li>
+      <li>Với $n\ge2$, mẫu số $n-1$ cho ước lượng không chệch.</li>
+      <li>Đổi giả thiết nhiễu thì đổi mất mát: trên $(0,0,9)$, Gaussian cho $3$, Laplace cho $0$.</li>
+      <li>Theo $\hat\Sigma$, $d^2_{\hat\Sigma}(b,\hat\mu)=8&gt;9/2=d^2_{\hat\Sigma}(a,\hat\mu)$: $b$ lệch nhiều hơn $a$.</li>
+    </ul>
+    <aside class="notes"><p>Học từ dữ liệu là ước lượng tham số chưa biết từ một mẫu i.i.d. bằng hợp lý cực đại. Trong thực hành, cần nêu rõ mô hình và cách lấy mẫu trước khi viết hàm hợp lý, kiểm tra điều kiện không suy biến trước khi dùng công thức nghiệm, và đánh giá mô hình đã khớp trên dữ liệu khác với dữ liệu dùng để ước lượng.</p><p>Với Bernoulli và phân loại, miền đóng cho nghiệm cả khi có số đếm bằng $0$. Mẫu số $n-1$ phục vụ tính không chệch qua các lần lấy mẫu. Với hai sản phẩm mới, khoảng cách Euclid xếp $a$ xa hơn, còn khoảng cách Mahalanobis xếp $b$ lệch hơn vì độ lệch của $b$ nằm theo hướng ít phân tán.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, đoạn mở đầu, mục 9, mục 11; Ví dụ 11.6, Ví dụ 11.11.</p></aside>
   </section>
   <section data-slide-id="TK02">
     <h2>Bài tập: hàm mất mát từ giả thiết phân phối</h2>
@@ -738,14 +768,14 @@
     <aside class="notes"><p>(1) Không: dạng tích dùng giả thiết độc lập; với cờ chép, mọi chuỗi có cả $0$ lẫn $1$ có xác suất $0$.</p><p>(2) Không: các $\tilde x_i$ nằm trên một đường thẳng, $S_3$ suy biến, log-hợp lý không bị chặn trên.</p><p>(3) Không: $Q=0$, log-hợp lý tăng vô hạn khi $v\downarrow0$.</p><p>(4) Hàm của tham số $\theta$. Phát biểu về xác suất của tham số cần thêm một mật độ tiên nghiệm $q(\theta)$, cho hậu nghiệm $q(\theta\mid D)\propto L(\theta;D)\,q(\theta)$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 9 (các giả thiết hay bị bỏ quên).</p></aside>
   </section>
   <section data-slide-id="TK05">
-    <h2>Tài liệu đọc và chuyển tiếp</h2>
+    <h2>Tài liệu tham khảo</h2>
     <ul>
-      <li>Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1.</li>
-      <li>Mở rộng: Murphy (2022), §4.5–4.5.2, §4.6.2, §6.2, §7.4.4–7.4.5.</li>
-      <li>Bài tập 11.4 (ghi chú bài giảng) và 11.5–11.13 (tệp bài tập).</li>
+      <li>Kevin P. Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, MIT Press: §2.4–2.6, §3.2.1–3.2.2, §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1.</li>
+      <li>Mở rộng: §4.5–4.5.2, §4.6.2, §6.2, §7.4.4–7.4.5. Đọc thêm: §4.7.1–4.7.4.</li>
     </ul>
-    <p><strong>Nhu cầu:</strong> cho tham số phụ thuộc đầu vào và đo chất lượng dự đoán trên quan sát mới.</p>
-    <aside class="notes"><p>Trước buổi học: Murphy §2.4–2.6 và §3.2.1–3.2.2. Sau buổi học: §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1; Bài tập 11.6, 11.8 và 11.9 luyện thêm phần Gaussian một chiều và hiệu chỉnh phương sai. Đọc thêm §4.7.1–4.7.4 về phân phối mẫu và khoảng tin cậy.</p><p>Ở các mô hình của bài, mọi quan sát dùng chung một tham số, và chất lượng của tham số chỉ được đo trên mẫu đã thấy. Bài 12 cho tham số của phân phối phụ thuộc đầu vào, dưới dạng mô hình có điều kiện $p_\theta(y\mid x)$, và xét câu hỏi: một tham số khớp tốt trên tập huấn luyện thì dự đoán quan sát mới tốt đến đâu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11–12; Murphy (2022).</p></aside>
+    <p>Bài 12 cho tham số của phân phối phụ thuộc đầu vào và đo chất lượng dự đoán trên quan sát mới.</p>
+    <p>Bài tập 11.4–11.13: <a href="material-viewer.html?doc=materials/lec-11/lecture-note.md&amp;deck=lecture-11-hoc-tu-du-lieu-uoc-luong-thong-ke.html">Ghi chú bài giảng</a> · <a href="material-viewer.html?doc=materials/lec-11/exercises.md&amp;deck=lecture-11-hoc-tu-du-lieu-uoc-luong-thong-ke.html">Bài tập</a></p>
+    <aside class="notes"><p>Trước buổi học: Murphy §2.4–2.6 và §3.2.1–3.2.2. Sau buổi học: §4.1, §4.2.1–4.2.6, §4.3, §4.7.6.1; Bài tập 11.6, 11.8 và 11.9 luyện thêm phần Gaussian một chiều và hiệu chỉnh phương sai. Đọc thêm §4.7.1–4.7.4 về phân phối mẫu và khoảng tin cậy. Bài tập 11.4 nằm trong ghi chú bài giảng, các Bài tập 11.5–11.13 trong tệp bài tập.</p><p>Ở các mô hình của bài, mọi quan sát dùng chung một tham số, và chất lượng của tham số chỉ được đo trên mẫu đã thấy. Bài 12 cho tham số của phân phối phụ thuộc đầu vào, dưới dạng mô hình có điều kiện $p_\theta(y\mid x)$, và xét câu hỏi: một tham số khớp tốt trên tập huấn luyện thì dự đoán quan sát mới tốt đến đâu.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11–12; Murphy (2022).</p></aside>
   </section>
 </section>
 
