@@ -1817,3 +1817,31 @@ Quyết định của điều phối viên: `\text{sao cho}` → `\text{subject 
 Kiểm của điều phối viên: đọc diff; 80 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW, LINES hay SYLL. Đã xem ảnh 1600×900 và 390×844 của S01-01b, S01-04, S02-01b, S02-06, S02-06b, S03-02, S05-01, S05-03b, S06-08: vừa khung.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18. Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec02.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi từ `deck_lint --course math-4-AI` (HEAD 2d93133: 109 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` nào từ ghi chú, bài tập hay chỉ mục vào deck.
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | bốn lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 chưa đạt (2 nghiêm trọng, 5 trung bình); lượt 2 đạt (4 nhẹ) |
+
+Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu học tập" giữ đủ nghĩa mục tiêu của ghi chú (NT11), tối đa 120 âm tiết (ngoại lệ NT17); trang "Tài liệu tham khảo" trần 80 (NT17), `deck_lint` báo theo trần 60; bìa giữ ID cũ nên lint đếm âm tiết bìa.
+
+**Các lượt và quyết định của điều phối viên:**
+- Lượt 1: footer `<div class="footer">` như deck 11, viewport P7; thêm S01-01a "Tiên quyết và quy ước", S01-02a "Vấn đề trung tâm" (một hộp), S06-09 "Vấn đề trung tâm" của Tổng kết, S06-10 "Tài liệu tham khảo"; bìa có luận điểm và phụ đề; "Nội dung" có liên kết `#/1`–`#/6`; dòng dẫn mạch và 13 câu "Nhu cầu:" viết lại; nhãn "**1.**"… thành chữ thường; S05-04 tiêu đề theo NT16.
+- Ngoại lệ tên mạch 6 "Tổng hợp và vận dụng": S06-04–06 đưa vào Định nghĩa 02.45, Mệnh đề 02.46, Ví dụ 02.29 (§9.2), NT15 không cho khái niệm mới trong "Tổng kết"; người kiểm lại xác nhận → chờ tác giả.
+- Sau lượt 1 (**yêu cầu sửa**, điều phối viên đối chiếu (L3), (L4) ở ghi chú dòng 2561–2581): S06-09 bỏ điều kiện LP/GP và viết sai bảo đảm của hàm thay thế ($E\le H$ thay cho $\min E\le\min H$), cận nới lỏng thiếu "khả thi"; ghi chú S05 đổi nghĩa; dòng dẫn S02, S04 và S04-01 thiếu điều kiện; S02-01b nêu sẵn kết quả; S06-10 "hệ số nhân" và dẫn "Câu hỏi cuối buổi" không có trong deck; S01-01b mục tiêu (quyết định chung); nhẹ (tiêu đề ", lời giải", "Bảng tổng kết", …).
+- Sau lượt 2: S06-09 "(mọi $P_i\succeq0$)"; S04-01 sai về diện tích (Ví dụ 02.20) → sửa; ghi chú S01-01a trả lại phần (b) Định lý 01.29; bìa "của" → **chấp nhận**.
+- Kiểm cuối thấy S02-05, S03-04b mới chạm chân trang so với HEAD → biên tập viên viết gọn hai dòng công thức S02-05 (giữ mọi ký hiệu) và gộp câu "Chính quy hóa (regularization) …" vào câu mở S03-04b → đo lại trùng HEAD → **chấp nhận**.
+
+**Kiểm cuối của điều phối viên** (127.0.0.1:8771, HEAD ở 8773):
+- `deck_lint`: 72 phát hiện = 63 NOTES150 (không trang nào tăng), SYLL60 S01-01 65 (bìa), S01-01b 120/80 (mục tiêu), S06-10 79 (tài liệu tham khảo), S01-06/07/08 (có từ trước, không đổi), STRUCT ID bìa và tên mạch 6 ×2 (ngoại lệ).
+- `deck_check`: 84 trang, console 0, pageerrors 0, failed 0, `.katex-error` 0; không cờ OVERFLOW mới.
+- `footer_check` 1600×900: 3 trang (S02-06, S05-09, S05-10), trùng HEAD. `formula_overflow` 390 px: trùng HEAD.
+- `git diff --check` sạch. Số trang 80 → 84, mọi `data-slide-id` cũ giữ.
+
+**Còn lại, chờ tác giả:** tên mạch 6; trang "Câu hỏi tự kiểm tra" và "Bài tập về nhà" của NT15; đơn vị trên bìa "Viện Trí tuệ nhân tạo" khác các deck khác ("Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội"); ghi chú diễn giả S06-06 dẫn Boyd–Vandenberghe §6.2 trong khi ghi chú §13 dẫn §6.1, §6.3.1–6.3.2.
+
+**Quyết định:** **chấp nhận**.

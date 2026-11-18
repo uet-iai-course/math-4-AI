@@ -2,7 +2,7 @@
 <html lang="vi" data-lecture="02">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bài 02: Các bài toán tối ưu lồi</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="revealjs/dist/reset.css">
@@ -18,38 +18,54 @@
     <section id="section-1">
       <section id="mach-1" data-slide-id="S01-01">
         <h1>Bài 02: Các bài toán tối ưu lồi</h1>
-        <h3>Cơ sở toán học cho AI</h3>
+        <h3>Lớp bài toán lồi, hàm thay thế và nới lỏng</h3>
+        <p>Bài toán lồi thuộc lớp đã biết cho nghiệm của mô hình chứa trị tuyệt đối, cực đại, tích biến dương khi có biến đổi tương đương; nếu không, bài toán lồi thay thế chỉ cho bảo đảm một chiều.</p>
+        <p>Cơ sở toán học cho AI · Học kỳ 1, 2026–2027</p>
         <p>Viện Trí tuệ nhân tạo</p>
-        <p>Năm học 2026–2027 · Học kỳ 1</p>
         <aside class="notes">
           <p>Bài 01 cho tập lồi, hàm lồi, các phép toán bảo toàn tính lồi và một quy trình chứng nhận cho mô hình đã viết sẵn. Một mô hình thực tế được cho bằng một danh sách ràng buộc, có thể chứa trị tuyệt đối, cực đại, tích của các đại lượng dương hay biến nhị phân.</p>
           <p>Câu hỏi trung tâm của Bài 02: khi nào một mô hình như vậy viết được thành một bài toán lồi tương đương thuộc một lớp đã biết, và khi không viết được, bài toán lồi thay thế cho bảo đảm gì về bài toán gốc. Kiến thức cần dùng gồm định nghĩa tập lồi và hàm lồi, điều kiện bậc hai, ma trận nửa xác định dương, bất đẳng thức tam giác và bình phương nhỏ nhất của Bài 01.</p>
         </aside>
       </section>
+      <section id="tien-quyet-va-quy-uoc" data-slide-id="S01-01a">
+        <h2>Tiên quyết và quy ước</h2>
+        <p><strong>Nhắc lại:</strong></p>
+        <ul>
+          <li>hàm $C^2$ trên tập mở lồi: lồi $\iff$ Hessian $\succeq0$ mọi điểm (Định lý 01.29);</li>
+          <li>tổng hệ số không âm, hợp affine, cực đại từng điểm giữ tính lồi (Định lý 01.30);</li>
+          <li>bài toán lồi: cực tiểu địa phương là toàn cục; lồi chặt: tối đa một nghiệm (Định lý 01.32, 01.34);</li>
+          <li>$J(w)=\lVert Xw-y\rVert_2^2$: $w^*$ nghiệm $\iff X^TXw^*=X^Ty$.</li>
+        </ul>
+        <p><strong>Ký hiệu:</strong> $Gx\le h$ theo tọa độ; $\succeq$, $\succ$ cho ma trận.</p>
+        <aside class="notes">
+          <p>Bốn kết quả của Bài 01 được dùng lại: điều kiện bậc hai chứng nhận các mục tiêu bậc hai, các phép toán bảo toàn tính lồi chứng nhận trị tuyệt đối, cực đại và hàm bản lề, tính toàn cục và tính duy nhất cho kết luận về nghiệm, phương trình chuẩn (Hệ quả 01.5) cho nghiệm bình phương nhỏ nhất.</p>
+          <p>Nếu $C'\subseteq C$ thì $\inf_Cf_0\le\inf_{C'}f_0$, và một nghiệm trên $C$ thuộc $C'$ là nghiệm trên $C'$ (Mệnh đề 01.15), cơ sở của cận nới lỏng. Hàm $C^2$ lồi chặt nếu Hessian xác định dương tại mọi điểm. Hàm liên tục đạt cực tiểu trên tập không rỗng, đóng, bị chặn, và trên tập không rỗng, đóng nếu hàm cưỡng bức (coercive). Bất đẳng thức giữa hai vector, như $Gx\le h$, hiểu theo từng tọa độ; $x&gt;0$ nghĩa là mọi tọa độ dương; $\log$ là logarit tự nhiên.</p>
+          <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 02, Kiến thức tiên quyết, §2.</p>
+        </aside>
+      </section>
       <section id="muc-tieu-hoc-tap" data-slide-id="S01-01b">
         <h2>Mục tiêu học tập</h2>
         <ol>
-          <li>Chứng nhận bài toán lồi; phân biệt "lồi" với "có nghiệm".</li>
-          <li>Lập quy hoạch tuyến tính, dạng chuẩn; chứng nhận nghiệm; dùng biến phụ.</li>
-          <li>Nhận dạng quy hoạch bậc hai; phân biệt phạt với chặn chuẩn.</li>
-          <li>Đưa tích, tỷ số đại lượng dương về quy hoạch hình học.</li>
-          <li>Phân biệt biến đổi tương đương với thay thế, phạt, nới lỏng; lấy cận bằng nới lỏng.</li>
-          <li>Áp dụng quy trình nhận dạng; chỉ ra kết luận mất khi bỏ giả thiết.</li>
+          <li>Chứng nhận bài toán lồi trên từng dòng; phân biệt "lồi" với "có nghiệm".</li>
+          <li>Lập quy hoạch tuyến tính, dạng chuẩn, chứng nhận nghiệm; dùng biến phụ cho trị tuyệt đối, cực đại hàm affine.</li>
+          <li>Nhận dạng quy hoạch bậc hai, cả ràng buộc bậc hai; giải hồi quy chính quy hóa trên dữ liệu nhỏ; phân biệt phạt với chặn chuẩn.</li>
+          <li>Đưa tích, tỷ số đại lượng dương về quy hoạch hình học, đổi biến logarit thành bài toán lồi tương đương.</li>
+          <li>Phân biệt biến đổi tương đương với thay thế, phạt, nới lỏng; lấy cận nhờ nới lỏng tuyến tính.</li>
+          <li>Nhận dạng lớp của mô hình học máy mới; chỉ ra kết luận mất khi bỏ giả thiết.</li>
         </ol>
         <aside class="notes">
-          <p>Sáu mục tiêu là minh chứng bộ phận của chuẩn đầu ra bài học (LLO) LLO3 của buổi 2, gắn với chuẩn đầu ra học phần (CLO) CLO1.</p>
           <p>Mục tiêu 1 ứng với dạng phổ biến và ba ví dụ một biến ở phần 1; mục tiêu 2 với quy hoạch tuyến tính, dạng chuẩn, chứng nhận bằng tổ hợp không âm và biến phụ ở phần 2; mục tiêu 3 với phần 3; mục tiêu 4 với đổi biến logarit ở phần 4; mục tiêu 5 với hàm thay thế và nới lỏng ở phần 5 và số hạng phạt thay ràng buộc đếm ở phần 6; mục tiêu 6 với bảng nhận dạng, quy trình chứng nhận và biến thể giới hạn số đặc trưng ở phần 6.</p>
         </aside>
       </section>
       <section id="noi-dung-chinh" data-slide-id="S01-02">
         <h2>Nội dung</h2>
         <ol class="agenda">
-          <li>Mô hình hóa và chứng nhận tính lồi</li>
-          <li>Quy hoạch tuyến tính</li>
-          <li>Quy hoạch bậc hai và ràng buộc bậc hai</li>
-          <li>Quy hoạch hình học</li>
-          <li>Xấp xỉ lồi và nới lỏng</li>
-          <li>Tổng hợp và vận dụng</li>
+          <li><a href="#/1">Mô hình hóa và chứng nhận tính lồi</a></li>
+          <li><a href="#/2">Quy hoạch tuyến tính</a></li>
+          <li><a href="#/3">Quy hoạch bậc hai và ràng buộc bậc hai</a></li>
+          <li><a href="#/4">Quy hoạch hình học</a></li>
+          <li><a href="#/5">Xấp xỉ lồi và nới lỏng</a></li>
+          <li><a href="#/6">Tổng hợp và vận dụng</a></li>
         </ol>
         <aside class="notes">
           <p>Phần 1 lập dạng phổ biến của bài toán tối ưu lồi và khung chứng nhận từng dòng, kiểm tra trên ba hàm một biến. Phần 2 xét quy hoạch tuyến tính qua bài toán pha trộn, định nghĩa biến đổi tương đương và dùng biến phụ đưa hồi quy sai số tuyệt đối, hồi quy minimax về quy hoạch tuyến tính. Phần 3 đổi tiêu chí sang tổng bình phương phần dư, thêm số hạng phạt và ràng buộc chặn chuẩn, dẫn tới quy hoạch bậc hai và quy hoạch bậc hai có ràng buộc bậc hai.</p>
@@ -57,9 +73,25 @@
           <p>Hai bộ dữ liệu chung được dùng lại: năm quan sát hồi quy ở phần 2 và phần 3, bốn ảnh phân loại ở phần 5 (Ví dụ 02.1).</p>
         </aside>
       </section>
+      <section id="van-de-trung-tam" data-slide-id="S01-02a">
+        <h2>Vấn đề trung tâm</h2>
+        <div class="box"><p><strong>Câu hỏi:</strong> Khi nào một mô hình chứa trị tuyệt đối, cực đại, tích các đại lượng dương hay biến nhị phân viết được thành một bài toán lồi tương đương thuộc một lớp đã biết, và khi không viết được, bài toán lồi thay thế cho bảo đảm gì về bài toán gốc?</p></div>
+        <aside class="notes">
+          <p>Câu trả lời theo phần:</p>
+          <ul>
+            <li>phần 1: dạng phổ biến cho phép chứng nhận tính lồi trên từng dòng; tính lồi không bảo đảm có nghiệm;</li>
+            <li>phần 2: biến phụ đưa trị tuyệt đối và cực đại của hàm affine về quy hoạch tuyến tính tương đương;</li>
+            <li>phần 3: bình phương phần dư có số hạng phạt cho quy hoạch bậc hai, ràng buộc chặn chuẩn cho ràng buộc bậc hai;</li>
+            <li>phần 4: tích, tỷ số đại lượng dương cho quy hoạch hình học, lồi sau đổi biến logarit;</li>
+            <li>phần 5: hàm thay thế cho cận trên của số lỗi nhỏ nhất, nới lỏng cho cận dưới; nghiệm phải được kiểm tra lại trên bài toán gốc;</li>
+            <li>phần 6: giới hạn số đặc trưng cho miền không lồi; số hạng phạt chuẩn một không bảo đảm giới hạn đó.</li>
+          </ul>
+          <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 02, đoạn mở đầu, §10.5.</p>
+        </aside>
+      </section>
       <section id="nhac-lai-loi-va-gia-tri-toi-uu" data-slide-id="S01-02b">
         <h2>Tập lồi, hàm lồi và giá trị tối ưu</h2>
-        <p><strong>Nhu cầu:</strong> kiểm tra từng dòng của mô hình để kết luận bài toán lồi.</p>
+        <p>Để kết luận bài toán lồi, ta kiểm tra từng dòng của mô hình.</p>
         <p><strong>Nhắc lại:</strong> $C\subseteq\mathbb{R}^n$ là tập lồi khi $\vartheta x+(1-\vartheta)x'\in C$ với mọi $x,x'\in C$, $\vartheta\in[0,1]$.</p>
         <p>$f_0:C\to\mathbb{R}$ là hàm lồi khi với mọi $x,x'\in C$, $\vartheta\in[0,1]$:</p>
         <div class="math-large">
@@ -248,17 +280,17 @@
   <section id="mach-2" data-slide-id="S02" class="strand-title">
   <div class="strand-title-body">
     <h2><span class="strand-number">2.</span> Quy hoạch tuyến tính</h2>
-    <p class="strand-lead">Muốn nhận dạng và chứng nhận nghiệm quy hoạch tuyến tính, kể cả mục tiêu chứa trị tuyệt đối.</p>
+    <p class="strand-lead">Cực tiểu trị tuyệt đối, cực đại hàm affine với hệ số không âm là quy hoạch tuyến tính sau khi thêm biến phụ.</p>
     <p class="strand-keys">Pha trộn nguyên liệu · dạng tổng quát · dạng chuẩn · biến phụ · biến đổi tương đương</p>
   </div>
   <aside class="notes">
-    <p>Khung chứng nhận của phần 1 gồm mục tiêu lồi, bất đẳng thức $f_i(x)\le0$ với $f_i$ lồi, đẳng thức affine. Hàm affine vừa lồi vừa lõm, nên mọi bài toán có mục tiêu và ràng buộc affine thỏa khung đó; lớp này là quy hoạch tuyến tính (linear programming, LP). Bài toán pha trộn cho dạng tổng quát, dạng chuẩn và cách chứng nhận nghiệm bằng tổ hợp không âm các ràng buộc. Biến phụ cùng định nghĩa biến đổi tương đương đưa hồi quy sai số tuyệt đối và hồi quy minimax về quy hoạch tuyến tính; hai công cụ này được dùng lại ở phần 3 và phần 5.</p>
+    <p>Khung chứng nhận của phần 1 gồm mục tiêu lồi, bất đẳng thức $f_i(x)\le0$ với $f_i$ lồi, đẳng thức affine. Hàm affine vừa lồi vừa lõm, nên mọi bài toán có mục tiêu và ràng buộc affine thỏa khung đó; lớp này là quy hoạch tuyến tính (linear programming, LP). Bài toán pha trộn cho dạng tổng quát, dạng chuẩn và cách chứng nhận nghiệm bằng tổ hợp không âm các ràng buộc. Biến phụ cùng định nghĩa biến đổi tương đương đưa hồi quy sai số tuyệt đối và hồi quy minimax về quy hoạch tuyến tính.</p>
   </aside>
 </section>
 
   <section id="lp-cau-chuyen-pha-tron" data-slide-id="S02-01b" class="lp-slide">
     <h2>Pha trộn cho một vườn ươm</h2>
-    <p><strong>Nhu cầu:</strong> nhận dạng quy hoạch tuyến tính và chứng nhận nghiệm.</p>
+    <p>Cần phương án trộn chi phí nhỏ nhất và một chứng nhận tối ưu không liệt kê mọi phương án.</p>
     <p>Ví dụ: hỗn hợp bón đủ nitơ, phốtpho, chi phí thấp nhất.</p>
     <div class="grid2">
       <div class="card"><p>Nguyên liệu I: nhiều nitơ, giá cao.</p></div>
@@ -384,7 +416,7 @@
 
   <section id="lp-hoi-quy-tuyet-doi" data-slide-id="S02-05" class="lp-slide">
     <h2>Hồi quy với sai số tuyệt đối</h2>
-    <p><strong>Nhu cầu:</strong> khớp đường thẳng theo tổng độ lệch tuyệt đối.</p>
+    <p>Đường thẳng được khớp theo tổng độ lệch tuyệt đối.</p>
     <div class="grid2">
       <div>
         <table class="lp-data">
@@ -395,9 +427,9 @@
             <tr><td>$y_i$</td><td>$-2$</td><td>$-1$</td><td>$3$</td><td>$1$</td><td>$2$</td></tr>
           </tbody>
         </table>
-        <p>Mô hình: $\hat{y}_i=w_1u_i+w_0$, $w=(w_1,w_0)$.</p>
+        <p>$\hat{y}_i=w_1u_i+w_0$, $w=(w_1,w_0)$.</p>
         <p>$X\in\mathbb{R}^{5\times2}$ có hàng thứ $i$ là $(u_i,1)$.</p>
-        <p>$r=Xw-y$, mục tiêu $\min_w \|r\|_1=\sum_i |r_i|$.</p>
+        <p>$\min_w \|r\|_1=\sum_i |r_i|$, $r=Xw-y$.</p>
       </div>
       <figure class="example-plot">
         <img class="lp-plot" src="img/lec-02/lp-data.svg" alt="Năm điểm dữ liệu (u_i, y_i) và đường thử ŷ = u + 1 với các đoạn phần dư">
@@ -444,7 +476,7 @@
   </section>
   <section id="lp-bien-doi-tuong-duong" data-slide-id="S02-06b" class="lp-slide">
     <h2>Biến đổi tương đương</h2>
-    <p><strong>Nhu cầu:</strong> giải LP thay cho $\min_w\|r\|_1$ mà không mất nghiệm.</p>
+    <p>Giải LP thay cho $\min_w\|r\|_1$ cần một quan hệ giữ nghiệm giữa hai bài toán.</p>
     <p><strong>Trực quan.</strong> $\min_x|x-2|$ và $\min_{x,t}t$ với $t\ge\pm(x-2)$: từ $x$ lấy $t=|x-2|$; từ $(x,t)$ giữ $x$.</p>
     <p><strong>Định nghĩa.</strong> Cho $(\mathrm P)$: $\min_{x\in C}f_{\mathrm P}(x)$ và $(\mathrm Q)$: $\min_{\zeta\in C'}f_{\mathrm Q}(\zeta)$.</p>
     <p>$(\mathrm Q)$ là biến đổi tương đương của $(\mathrm P)$ khi có $\varphi\colon C\to C'$, $\psi\colon C'\to C$, $T$ tăng chặt sao cho</p>
@@ -536,14 +568,14 @@
     <p><strong>Câu hỏi:</strong> phân loại ba biến thể và giải thích tính lồi.</p>
     <div class="grid2">
       <div class="card">
-        <p><strong>1.</strong> Thêm $w_1\ge 0$ vào bài toán hồi quy sai số tuyệt đối.</p>
+        <p>1. Thêm $w_1\ge 0$ vào bài toán hồi quy sai số tuyệt đối.</p>
       </div>
       <div class="card">
-        <p><strong>2.</strong> Buộc $x_1, x_2$ nguyên trong bài toán pha trộn.</p>
+        <p>2. Buộc $x_1, x_2$ nguyên trong bài toán pha trộn.</p>
       </div>
     </div>
     <div class="card">
-      <p><strong>3.</strong> Đổi mục tiêu hồi quy sang $\sum_i (w_1u_i+w_0-y_i)^2$.</p>
+      <p>3. Đổi mục tiêu hồi quy sang $\sum_i (w_1u_i+w_0-y_i)^2$.</p>
     </div>
     <aside class="notes">
       <p>Ba biến thể kiểm tra việc nhận dạng lớp bài toán khi mô hình đổi đúng một giả thiết. Câu trả lời cần nêu lớp bài toán và lý do lồi hoặc không lồi.</p>
@@ -553,7 +585,7 @@
   </section>
 
   <section id="lp-nhan-dang-loi-giai" data-slide-id="S02-11" class="lp-slide">
-    <h2>Bài tập: nhận dạng quy hoạch tuyến tính</h2>
+    <h2>Bài tập: nhận dạng quy hoạch tuyến tính, lời giải</h2>
     <p><strong>Lời giải:</strong></p>
     <ol>
       <li>Thêm $w_1\ge0$: thêm một bất đẳng thức tuyến tính; vẫn là LP, lồi.</li>
@@ -573,17 +605,17 @@
 <section id="mach-3" data-slide-id="S03" class="strand-title">
   <div class="strand-title-body">
     <h2><span class="strand-number">3.</span> Quy hoạch bậc hai và ràng buộc bậc hai</h2>
-    <p class="strand-lead">Muốn chứng nhận lồi cho hồi quy bình phương có số hạng phạt hoặc giới hạn độ lớn hệ số.</p>
+    <p class="strand-lead">Hồi quy bình phương có số hạng phạt hay giới hạn độ lớn hệ số vẫn là một bài toán lồi.</p>
     <p class="strand-keys">Bình phương nhỏ nhất · ma trận nửa xác định dương · chính quy hóa · ràng buộc chặn chuẩn</p>
   </div>
   <aside class="notes">
-    <p>Biến thể tổng bình phương phần dư ở cuối phần 2 có mục tiêu lồi vì Hessian $2X^TX\succeq0$, nhưng không tuyến tính nên nằm ngoài lớp LP. Trên năm quan sát của dữ liệu chung, bình phương nhỏ nhất được khái quát thành quy hoạch bậc hai (quadratic programming, QP), rồi bổ sung số hạng phạt và một ràng buộc chặn chuẩn cho độ lớn hệ số. Cách chứng nhận theo biến ban đầu là đầu vào của phần 4, nơi tích các biến làm cách này không còn đủ; hai lớp bậc hai và điều kiện $P_i\succeq0$ được dùng lại ở phần 6.</p>
+    <p>Biến thể tổng bình phương phần dư ở cuối phần 2 có mục tiêu lồi vì Hessian $2X^TX\succeq0$, nhưng không tuyến tính nên nằm ngoài lớp LP. Trên năm quan sát của dữ liệu chung, bình phương nhỏ nhất được khái quát thành quy hoạch bậc hai (quadratic programming, QP), rồi bổ sung số hạng phạt và một ràng buộc chặn chuẩn cho độ lớn hệ số. Cách chứng nhận theo biến ban đầu là đầu vào của phần 4, nơi tích các biến làm cách này không còn đủ.</p>
   </aside>
 </section>
 
 <section id="qp-hoi-quy" data-slide-id="S03-01" class="qp-slide">
   <h2>Hồi quy với tổng bình phương sai số</h2>
-  <p><strong>Nhu cầu:</strong> chứng nhận lồi và giải hồi quy theo tổng bình phương phần dư.</p>
+  <p>Tiêu chí khớp mới là tổng bình phương phần dư, cần chứng nhận lồi trước khi giải.</p>
   <div class="grid2">
     <div>
       <p>Năm quan sát của phần 2; $w=(w_1,w_0)$, $\hat y_i=w_1u_i+w_0$.</p>
@@ -661,21 +693,20 @@
 
 <section id="qp-chinh-quy-hoa" data-slide-id="S03-04b" class="qp-slide">
   <h2>Chính quy hóa trong hồi quy</h2>
-  <p><strong>Nhu cầu:</strong> vừa khớp dữ liệu, vừa kiểm soát độ lớn hệ số.</p>
+  <p>Với chính quy hóa (regularization), mô hình vừa khớp dữ liệu, vừa kiểm soát độ lớn hệ số.</p>
   <div class="example-grid">
     <div>
       <div class="math-large">$$\min_w\;L(w)+\lambda R(w),\quad\lambda\ge0.$$</div>
       <p><strong>Ký hiệu:</strong> $\|v\|_1=\sum_j|v_j|$ (chuẩn một), $\|v\|_2^2=\sum_jv_j^2$ (bình phương chuẩn hai).</p>
       <p>Hàm sai số: $L(w)=\|r\|_1$ hoặc $\|r\|_2^2$.</p>
       <p>Số hạng phạt (penalty term): $\lambda R(w)$, với $R(w)=\|w\|_1$ hoặc $\|w\|_2^2$.</p>
-      <p>Chính quy hóa (regularization) thêm yêu cầu vào mô hình.</p>
     </div>
     <figure class="example-plot">
       <img class="qp-plot" src="img/lec-02/qp-penalties.svg" alt="Đường mức chuẩn một là hình thoi, bình phương chuẩn hai là đường tròn; các trục w₁ và w₀ cùng tỷ lệ">
     </figure>
   </div>
   <aside class="notes">
-    <p>Hai tiêu chí sai số $\|r\|_1$ của phần 2 và $\|r\|_2^2$ vừa xét chỉ đo mức khớp dữ liệu. Nhu cầu mới là kiểm soát độ lớn hệ số $w$, và nhu cầu này làm đổi mô hình.</p>
+    <p>Hai tiêu chí sai số $\|r\|_1$ của phần 2 và $\|r\|_2^2$ vừa xét chỉ đo mức khớp dữ liệu. Yêu cầu mới là kiểm soát độ lớn hệ số $w$, và yêu cầu này làm đổi mô hình.</p>
     <p>Mục tiêu có chính quy hóa là $L(w)+\lambda R(w)$, trong đó $L$ là hàm sai số, $R$ là hàm phạt và $\lambda\ge0$ cân bằng hai thành phần (Định nghĩa 02.20). Tham số $\lambda$ là dữ liệu do người lập mô hình chọn; $w$ là biến cần tối ưu; $\lambda=0$ cho lại bài toán không chính quy hóa. Hai lựa chọn của $L$ và hai lựa chọn của $R$ tạo bốn tổ hợp, ký hiệu $\ell_1+\ell_1$, $\ell_1+\ell_2^2$, $\ell_2^2+\ell_1$, $\ell_2^2+\ell_2^2$ theo thứ tự (sai số, số hạng phạt); tổ hợp $\ell_2^2+\ell_1$ là LASSO (least absolute shrinkage and selection operator), tổ hợp $\ell_2^2+\ell_2^2$ là hồi quy ridge (còn gọi là chính quy hóa Tikhonov). Chuẩn một $\|w\|_1=|w_1|+|w_0|$ khác bình phương chuẩn hai $\|w\|_2^2=w_1^2+w_0^2$.</p>
     <p>Hình vẽ trên mặt phẳng $(w_1,w_0)$ với hai trục cùng tỷ lệ: tập mức của chuẩn một là hình thoi có đỉnh trên các trục, tập mức của bình phương chuẩn hai là đường tròn. Khi một đường mức elip của sai số tiếp xúc hình thoi tại một đỉnh, một tọa độ của điểm tiếp xúc bằng 0; do đó chính quy hóa chuẩn một có thể cho một hệ số bằng đúng 0, còn chính quy hóa bậc hai thu nhỏ hệ số (Murphy (2022), §11.4.2). Các ví dụ trên năm quan sát phạt cả hệ số chặn $w_0$; hồi quy ridge trong thực hành không phạt hệ số chặn (Murphy (2022), §11.3). Thang đo của đặc trưng ảnh hưởng mức phạt, nên đặc trưng cần được chuẩn hóa trước khi giải. Nguồn: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §6.3.2.</p>
     <p>Tổ hợp đầu tiên, sai số tuyệt đối với chuẩn một, chỉ chứa trị tuyệt đối, nên kỹ thuật biến phụ của phần 2 áp dụng cho cả hai số hạng.</p>
@@ -783,7 +814,7 @@
 
 <section id="qp-gioi-han-he-so" data-slide-id="S03-07" class="qp-slide">
   <h2>Hồi quy với giới hạn độ lớn hệ số</h2>
-  <p><strong>Nhu cầu:</strong> một mức chặn bắt buộc cho độ lớn hệ số.</p>
+  <p>Độ lớn hệ số có một mức chặn bắt buộc.</p>
   <div class="example-grid">
     <figure class="example-plot">
       <img class="qp-plot" src="img/lec-02/qp-bound.svg" alt="Miền hình tròn w₁²+w₀²≤0,29; đường mức J=10,5 tiếp xúc tại (0,5;0,2), nghiệm tự do (1;0,6) nằm ngoài">
@@ -825,9 +856,9 @@
 <section id="qp-kiem-tra" data-slide-id="S03-09" class="qp-slide">
   <h2>Bài tập: nhận dạng bài toán bậc hai</h2>
   <p><strong>Câu hỏi:</strong> phân loại và giải thích từng biến thể.</p>
-  <div class="card"><p><strong>1.</strong> Thêm $\|w\|_1\le\Delta$, $\Delta\ge0$, vào hồi quy bình phương sai số có chính quy hóa chuẩn một.</p></div>
-  <div class="card"><p><strong>2.</strong> Đổi ràng buộc chặn chuẩn thành $\|w\|_2^2\ge\Delta^2$, $\Delta>0$.</p></div>
-  <div class="card"><p><strong>3.</strong> Đặt $\lambda=0$: có buộc $v=|w|$ tại nghiệm tối ưu?</p></div>
+  <div class="card"><p>1. Thêm $\|w\|_1\le\Delta$, $\Delta\ge0$, vào hồi quy bình phương sai số có chính quy hóa chuẩn một.</p></div>
+  <div class="card"><p>2. Đổi ràng buộc chặn chuẩn thành $\|w\|_2^2\ge\Delta^2$, $\Delta>0$.</p></div>
+  <div class="card"><p>3. Đặt $\lambda=0$: có buộc $v=|w|$ tại nghiệm tối ưu?</p></div>
   <aside class="notes">
     <p>Ba biến thể kiểm tra việc nhận dạng lớp bài toán của phần 3 khi mô hình đổi một giả thiết. Câu trả lời cần nêu lớp bài toán, lý do lồi hoặc không lồi, và quan hệ giữa biến phụ với nghiệm.</p>
     <p><strong>Gợi ý:</strong> biểu diễn $\|w\|_1\le\Delta$ bằng chính biến phụ $v$ của số hạng phạt chuẩn một; với chiều $\ge$, thử hai điểm đối nhau trên đường tròn bán kính $\Delta$; với $\lambda=0$, xét hệ số của $v$ trong mục tiêu.</p>
@@ -836,7 +867,7 @@
 </section>
 
 <section id="qp-kiem-tra-loi-giai" data-slide-id="S03-10" class="qp-slide">
-  <h2>Bài tập: nhận dạng bài toán bậc hai</h2>
+  <h2>Bài tập: nhận dạng bài toán bậc hai, lời giải</h2>
   <p><strong>Lời giải:</strong></p>
   <ol>
     <li>Thêm $\mathbf 1^Tv\le \Delta$, dùng chung biến phụ $-v\le w\le v$: mọi ràng buộc affine, vẫn là QP.</li>
@@ -856,18 +887,18 @@
 <section id="mach-4" data-slide-id="S04" class="strand-title">
   <div class="strand-title-body">
     <h2><span class="strand-number">4.</span> Quy hoạch hình học</h2>
-    <p class="strand-lead">Muốn đưa mô hình chứa tích, tỷ số biến dương về bài toán lồi tương đương.</p>
+    <p class="strand-lead">Khi tích và tỷ số của biến dương có cấu trúc phù hợp, phép đổi biến logarit cho một bài toán lồi tương đương.</p>
     <p class="strand-keys">Đơn thức · tổng đơn thức dương · đổi biến logarit · thiết kế hộp</p>
   </div>
   <aside class="notes">
-    <p>Tính lồi ở phần 2 và phần 3 được chứng nhận theo biến ban đầu hoặc sau khi thêm biến phụ. Diện tích và thể tích hộp $x_1x_2x_3$ là tích của các biến dương, nên mô hình thiết kế hộp không lồi theo kích thước. Dạng chuẩn của quy hoạch hình học (geometric programming, GP) cùng phép đổi biến $z=\log x$ cho một bài toán lồi tương đương, và nghiệm được khôi phục bằng $x^*=e^{z^*}$. Bài toán phân bổ công suất, chứa tỷ số của các biến, là phần đọc thêm. Điều kiện áp dụng của phép đổi biến, gồm biến dương và hàm đúng cấu trúc, là đầu vào của phần 5.</p>
+    <p>Tính lồi ở phần 2 và phần 3 được chứng nhận theo biến ban đầu hoặc sau khi thêm biến phụ. Diện tích và thể tích hộp $x_1x_2x_3$ là tích của các biến dương, nên mô hình thiết kế hộp không lồi theo kích thước. Dạng chuẩn của quy hoạch hình học (geometric programming, GP) cùng phép đổi biến $z=\log x$ cho một bài toán lồi tương đương, và nghiệm được khôi phục bằng $x^*=e^{z^*}$. Bài toán phân bổ công suất, chứa tỷ số của các biến, là phần đọc thêm. Phép đổi biến cần biến dương và hàm đúng cấu trúc.</p>
   </aside>
 </section>
 <section id="gp-hop-cau-chuyen" data-slide-id="S04-01" class="gp-slide">
   <h2>Hộp đựng và chi phí vật liệu</h2>
   <div class="grid2">
     <div>
-      <p><strong>Nhu cầu:</strong> đưa mô hình chứa tích biến dương về bài toán lồi tương đương.</p>
+      <p>Diện tích và dung tích hộp chứa tích các kích thước dương; mô hình không lồi theo kích thước.</p>
       <p>Ví dụ: hộp kín dung tích $8\,\mathrm{dm}^3$, dùng ít vật liệu nhất.</p>
       <p>Cần chọn chiều dài, chiều rộng và chiều cao.</p>
       <div class="box"><p>Cùng một vật liệu cho mọi mặt: chi phí tỷ lệ với diện tích bề mặt.</p></div>
@@ -1021,7 +1052,7 @@
   <h2>Phân bổ công suất cho hai đường truyền (đọc thêm)</h2>
   <div class="grid2">
     <div>
-      <p><strong>Nhu cầu:</strong> chia công suất tổng 6 để cải thiện đường truyền yếu hơn.</p>
+      <p>Công suất tổng 6 được chia cho hai đường truyền để cải thiện đường truyền yếu hơn.</p>
       <p>Tỷ số tín hiệu trên nhiễu và tạp âm (SINR):</p>
       <p>$\Gamma_1(p)=p_1/(1+p_2/4)$,</p>
       <p>$\Gamma_2(p)=p_2/(1+3p_1/2)$.</p>
@@ -1076,9 +1107,9 @@
 <section id="gp-kiem-tra" data-slide-id="S04-15" class="gp-slide">
   <h2>Bài tập: nhận dạng quy hoạch hình học</h2>
   <p><strong>Câu hỏi:</strong> hai câu đầu xét $x_1,x_2>0$.</p>
-  <div class="card"><p><strong>1.</strong> $x_1+x_2\le x_1x_2$: đưa về dạng chuẩn. Xét cả chiều ngược $x_1+x_2\ge x_1x_2$.</p></div>
-  <div class="card"><p><strong>2.</strong> $x_1+x_2=1$: có là đẳng thức đơn thức không? Có lồi theo $(x_1,x_2)$ không?</p></div>
-  <div class="card"><p><strong>3.</strong> $\min x$ với $0\le x\le1$: đổi $x=e^z$ có giữ nghiệm tối ưu không?</p></div>
+  <div class="card"><p>1. $x_1+x_2\le x_1x_2$: đưa về dạng chuẩn. Xét cả chiều ngược $x_1+x_2\ge x_1x_2$.</p></div>
+  <div class="card"><p>2. $x_1+x_2=1$: có là đẳng thức đơn thức không? Có lồi theo $(x_1,x_2)$ không?</p></div>
+  <div class="card"><p>3. $\min x$ với $0\le x\le1$: đổi $x=e^z$ có giữ nghiệm tối ưu không?</p></div>
   <aside class="notes">
     <p>Hai ví dụ của phần đều thỏa các điều kiện của GP. Ba câu hỏi kiểm tra giới hạn của phép biến đổi khi đổi chiều bất đẳng thức, dùng đẳng thức không phải đơn thức hoặc cho biến bằng 0.</p>
     <p><strong>Gợi ý:</strong> ở câu 1, chia hai vế cho đơn thức $x_1x_2$; ở câu 2, tách cấu trúc quy hoạch hình học khỏi tính lồi theo biến ban đầu; ở câu 3, so miền mà $x=e^z$ biểu diễn được với điểm nghiệm.</p>
@@ -1087,7 +1118,7 @@
 </section>
 
 <section id="gp-kiem-tra-loi-giai" data-slide-id="S04-16" class="gp-slide">
-  <h2>Bài tập: nhận dạng quy hoạch hình học</h2>
+  <h2>Bài tập: nhận dạng quy hoạch hình học, lời giải</h2>
   <p><strong>Lời giải:</strong></p>
   <ol>
     <li>$x_1+x_2\le x_1x_2\iff 1/x_1+1/x_2\le1$: dạng GP. Chiều $\ge$ nằm ngoài dạng GP và cho tập không lồi.</li>
@@ -1107,17 +1138,17 @@
 <section id="mach-5" data-slide-id="S05" class="strand-title">
   <div class="strand-title-body">
     <h2><span class="strand-number">5.</span> Xấp xỉ lồi và nới lỏng</h2>
-    <p class="strand-lead">Muốn biết bài toán lồi thay thế bảo đảm gì về bài toán gốc khi không có biến đổi tương đương.</p>
+    <p class="strand-lead">Khi không có biến đổi tương đương, bài toán lồi thay thế chỉ cho bảo đảm một chiều về bài toán gốc.</p>
     <p class="strand-keys">Mất mát đếm lỗi · mất mát bản lề · điều kiện nhị phân · cận dưới</p>
   </div>
   <aside class="notes">
-    <p>Các trường hợp vi phạm điều kiện cấu trúc của quy hoạch hình học ở cuối phần 4 để lại những bài toán không lồi chưa có biến đổi tương đương. Hai bài toán được xét là số lỗi phân loại theo ngưỡng $\theta$ trên bốn ảnh của dữ liệu chung và mua nguyên gói dữ liệu. Hai cách xử lý được tách bạch: thay mục tiêu bằng một hàm thay thế lồi chặn trên số lỗi, và nới điều kiện nhị phân thành khoảng $[0,1]$ để có cận dưới. Ba quan hệ với bài toán gốc, gồm tương đương, thay mục tiêu và nới lỏng, là đầu vào của phần 6.</p>
+    <p>Các trường hợp vi phạm điều kiện cấu trúc của quy hoạch hình học ở cuối phần 4 để lại những bài toán không lồi chưa có biến đổi tương đương. Hai bài toán được xét là số lỗi phân loại theo ngưỡng $\theta$ trên bốn ảnh và mua nguyên gói dữ liệu. Hai cách xử lý là thay mục tiêu bằng một hàm thay thế lồi chặn trên số lỗi, và nới điều kiện nhị phân thành khoảng $[0,1]$ để có cận dưới. Ba quan hệ với bài toán gốc là tương đương, thay mục tiêu và nới lỏng.</p>
   </aside>
 </section>
 
 <section id="ap-phan-loai" data-slide-id="S05-01" class="ap-slide">
   <h2>Phân loại bằng ngưỡng</h2>
-  <p><strong>Nhu cầu:</strong> biết ngưỡng làm nhỏ hàm thay thế lồi bảo đảm gì về số ảnh xếp sai.</p>
+  <p><strong>Câu hỏi:</strong> ngưỡng làm nhỏ hàm thay thế lồi bảo đảm gì về số ảnh xếp sai?</p>
   <div class="grid2">
     <div>
       <table class="card">
@@ -1199,7 +1230,7 @@
 </section>
 
 <section id="ap-ban-le-lp" data-slide-id="S05-04" class="ap-slide">
-  <h2>Biến đổi bài toán hàm bản lề thành LP</h2>
+  <h2>Biến phụ cho hàm bản lề</h2>
   <p>Biến phụ $\xi_i$ biểu diễn từng số hạng bản lề.</p>
   <div class="math-large">$$\begin{aligned}
     \min_{\theta,\,\xi}\;&\sum_{i=1}^{4}\xi_i\\
@@ -1258,7 +1289,7 @@
 </section>
 <section id="ap-goi-du-lieu" data-slide-id="S05-07" class="ap-slide">
   <h2>Chọn các gói dữ liệu</h2>
-  <p><strong>Nhu cầu:</strong> ảnh gán nhãn cho bộ nhận diện người đi bộ, đủ ba bối cảnh, chi phí thấp nhất.</p>
+  <p>Cần mua ảnh gán nhãn đủ ba bối cảnh cho bộ nhận diện người đi bộ, chi phí thấp nhất.</p>
   <div class="card">
     <table>
       <tr><th>Gói</th><th>Ảnh có sẵn</th><th>Giá (triệu đồng)</th></tr>
@@ -1405,7 +1436,7 @@
 </section>
 
 <section id="ap-kiem-tra-loi-giai" data-slide-id="S05-15" class="ap-slide">
-  <h2>Bài tập: đánh giá nghiệm theo bài toán gốc</h2>
+  <h2>Bài tập: đánh giá nghiệm theo bài toán gốc, lời giải</h2>
   <p><strong>Lời giải:</strong></p>
   <ol>
     <li>$0\le E(\hat\theta)\le H(\hat\theta)=0$ nên $E(\hat\theta)=0$; không có bảo đảm trên dữ liệu mới.</li>
@@ -1424,11 +1455,11 @@
 <section id="mach-6" data-slide-id="S06" class="strand-title">
   <div class="strand-title-body">
     <h2><span class="strand-number">6.</span> Tổng hợp và vận dụng</h2>
-    <p class="strand-lead">Nhu cầu: áp dụng trọn chu trình nhận dạng, biến đổi và chứng nhận cho một bài toán mới.</p>
+    <p class="strand-lead">Chu trình nhận dạng, biến đổi và chứng nhận áp dụng được cho một mô hình học máy mới.</p>
     <p class="strand-keys">Bảng các lớp bài toán · chứng nhận bốn bước · giới hạn số đặc trưng · số hạng phạt chuẩn một</p>
   </div>
   <aside class="notes">
-    <p>Ba quan hệ của phần 5 và các lớp bài toán đã học được gom vào hai trang ôn tập và một quy trình chứng nhận bốn bước. Quy trình này được áp dụng cho bộ phân loại bản lề chỉ được dùng tối đa $k$ đặc trưng: ràng buộc đếm làm miền không lồi, còn số hạng phạt chuẩn một cho mô hình thay thế lồi nhưng không bảo đảm giới hạn $k$. Mạch kết thúc bằng bài tập có lời giải và bảng tổng kết kết quả, giả thiết và công thức gắn với sáu mục tiêu của bài.</p>
+    <p>Ba quan hệ của phần 5 và các lớp bài toán đã học được gom vào hai trang ôn tập và một quy trình chứng nhận bốn bước. Quy trình này được áp dụng cho bộ phân loại bản lề chỉ được dùng tối đa $k$ đặc trưng: ràng buộc đếm làm miền không lồi, còn số hạng phạt chuẩn một cho mô hình thay thế lồi nhưng không bảo đảm giới hạn $k$. Mạch kết thúc bằng bài tập có lời giải, bảng tổng kết, câu trả lời cho câu hỏi trung tâm và tài liệu tham khảo.</p>
   </aside>
 </section>
 
@@ -1501,7 +1532,7 @@
 
 <section id="tong-hop-gioi-han-dac-trung" data-slide-id="S06-04" class="ap-slide">
   <h2>Giới hạn số đặc trưng</h2>
-  <p><strong>Nhu cầu:</strong> áp dụng quy trình chứng nhận cho bộ phân loại chỉ dùng tối đa $k$ đặc trưng.</p>
+  <p>Quy trình chứng nhận được áp dụng cho bộ phân loại chỉ dùng tối đa $k$ đặc trưng.</p>
   <p>Dữ liệu: $u_i\in\mathbb R^d$, $y_i\in\{\pm1\}$, $i=1,\dots,N$; $k\in\{1,\dots,d-1\}$, $d\ge 2$. Biến: $w\in\mathbb R^d$, $w_0\in\mathbb R$.</p>
   <div class="math-large">$$H(w,w_0)=\sum_{i=1}^N \max\bigl(0,\,1-y_i(w^Tu_i+w_0)\bigr)$$</div>
   <div class="math-large">$$\min_{w,w_0}\ H(w,w_0)\quad\text{subject to}\quad \|w\|_0\le k$$</div>
@@ -1538,7 +1569,7 @@
 
 <section id="tong-hop-phat-chuan-mot" data-slide-id="S06-06" class="ap-slide">
   <h2>Thay bằng số hạng phạt chuẩn một</h2>
-  <p><strong>Nhu cầu:</strong> vừa giữ mất mát nhỏ, vừa khuyến khích hệ số bằng 0.</p>
+  <p>Bài toán có số hạng phạt vừa giữ mất mát nhỏ, vừa khuyến khích hệ số bằng 0.</p>
   <p class="math-large">$\min_{w,w_0}\ H(w,w_0)+\lambda\|w\|_1$, $\lambda\ge 0$ chọn trước; $w,w_0$ tự do</p>
   <p>$H$ và chuẩn một đều lồi, nên mục tiêu lồi.</p>
   <table class="ap-data">
@@ -1573,7 +1604,7 @@
 </section>
 
 <section id="tong-hop-kiem-tra-loi-giai" data-slide-id="S06-07b" class="ap-slide">
-  <h2>Bài tập: biến thể giới hạn số đặc trưng</h2>
+  <h2>Bài tập: biến thể giới hạn số đặc trưng, lời giải</h2>
   <p><strong>Lời giải:</strong></p>
   <ol>
     <li>$|w_1|+|w_2|\le2$ là tập mức dưới của chuẩn một nên lồi; $(1,1)$ được phép dù dùng 2 đặc trưng.</li>
@@ -1588,7 +1619,7 @@
 </section>
 
 <section id="tong-ket-bai" data-slide-id="S06-08" class="ap-slide">
-  <h2>Tổng kết bài giảng</h2>
+  <h2>Bảng tổng kết</h2>
   <table class="ap-data">
     <thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead>
     <tbody>
@@ -1598,16 +1629,50 @@
       <tr><td>Thay thế: cận trên $\min E$; nới lỏng: cận dưới $p^*_{\mathcal F}$</td><td>$E(\theta)\le H(\theta)\ \forall\theta;$ $\mathcal F\subseteq\tilde{\mathcal F}$; phương án nguyên khả thi</td><td>$\min E\le\min H$; $p^*_{\tilde{\mathcal F}}\le p^*_{\mathcal F}\le$ chi phí phương án</td></tr>
     </tbody>
   </table>
-  <p class="ref">Đọc thêm: Boyd–Vandenberghe (2004), chương 4; §6.2; §6.3.2.</p>
   <aside class="notes">
     <p>Bảng tổng kết đọc theo sáu mục tiêu học tập. Cột kết quả gọi tên bốn nhóm LP, QP và QCQP, quy hoạch hình học, xấp xỉ lồi (mục tiêu 1–4); cột công thức ghi biến phụ $-t\le Xw-y\le t$, phép đổi biến $z=\log x$, hàm thay thế và nới lỏng (mục tiêu 2, 4, 5); cột giả thiết ghi điều kiện mà nếu bỏ thì kết quả không còn đúng (mục tiêu 6).</p>
     <p>Hàng LP: biến liên tục; trị tuyệt đối đứng trong mục tiêu cực tiểu với hệ số không âm, hoặc ở vế trái của ràng buộc dạng $\le$. Khi cực đại $\|r\|_1$ hoặc gặp ràng buộc $|r_i|\ge c$, biến phụ không cho bài toán tương đương. Hàng QP, QCQP: nếu một $P_i$ có giá trị riêng âm thì khung chứng nhận không còn áp dụng, và tập khả thi có thể không lồi, như ràng buộc $\|w\|_2^2\ge\Delta^2$. Hàng quy hoạch hình học: biến bằng 0 nằm ngoài miền của $x=e^z$, và chiều $\ge$ của tổng đơn thức dương ra ngoài dạng chuẩn.</p>
     <p>Hàng xấp xỉ: $E(\theta)\le H(\theta)$ tại mọi $\theta$ chỉ cho $\min E\le\min H$, không cho cùng tập nghiệm. Tập khả thi gốc nằm trong tập nới lỏng nên giá trị tối ưu LP không lớn hơn $p^*_{\mathcal F}$; một phương án nguyên khả thi cho cận trên. Thay ràng buộc đếm bằng số hạng phạt chuẩn một không giữ ràng buộc gốc. Nghiệm của bài toán thay thế hay bài toán nới lỏng phải được đánh giá lại theo bài toán gốc.</p>
-    <p>Mỗi mô hình hoàn chỉnh gồm sáu thành phần: dữ liệu, biến, mục tiêu, ràng buộc, chứng nhận và ý nghĩa nghiệm. Sai thường gặp ở thành phần cuối: giá trị của $H$ bị đọc thành số lỗi, nghiệm phân số bị đọc thành phương án mua. Câu hỏi tự kiểm tra nằm ở các trang bài tập cuối mỗi phần; bài tập thêm ở §11 của ghi chú và tệp bài tập. Nguồn đọc thêm: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, chương 4 cho các lớp bài toán; §6.2 và §6.3.2 cho xấp xỉ theo chuẩn một và chính quy hóa; Murphy (2022), §11.3–11.4 cho hồi quy ridge và LASSO.</p>
+    <p>Mỗi mô hình hoàn chỉnh gồm sáu thành phần: dữ liệu, biến, mục tiêu, ràng buộc, chứng nhận và ý nghĩa nghiệm. Sai thường gặp ở thành phần cuối: giá trị của $H$ bị đọc thành số lỗi, nghiệm phân số bị đọc thành phương án mua. Câu hỏi tự kiểm tra nằm ở các trang bài tập cuối mỗi phần; bài tập thêm ở §11 của ghi chú và tệp bài tập.</p>
+  </aside>
+</section>
+
+<section id="van-de-trung-tam-tong-ket" data-slide-id="S06-09" class="ap-slide">
+  <h2>Vấn đề trung tâm</h2>
+  <ul>
+    <li>Biến đổi tương đương: cặp ánh xạ $\varphi$, $\psi$ chuyển nghiệm giữa hai cách viết.</li>
+    <li>Cực tiểu trị tuyệt đối, cực đại hàm affine (hệ số $\ge0$): LP; bình phương có phạt $(P\succeq0)$: QP; chặn chuẩn (mọi $P_i\succeq0$): QCQP; tổng đơn thức dương, biến dương: GP với $z=\log x$.</li>
+    <li>Không tương đương: hàm thay thế, số hạng phạt, nới lỏng cho bảo đảm một chiều, như $\min E\le\min H$ và $p^*_{\tilde{\mathcal F}}\le p^*_{\mathcal F}\le f_0(\hat x)$, $\hat x\in\mathcal F$.</li>
+  </ul>
+  <aside class="notes">
+    <p>Với bốn ảnh, một ngưỡng làm $H$ nhỏ nhất không làm số ảnh bị xếp sai nhỏ nhất: mọi ngưỡng trong $[-1,1]$ cho $\min H=4$ nhưng xếp sai hai ảnh, còn số lỗi nhỏ nhất $1$ đạt trên $(-2,-1)\cup(1,2)$ (Ví dụ 02.24, Ví dụ 02.25). Lập luận "kéo $H$ xuống thì $E$ cũng xuống" có ba lỗ hổng:</p>
+    <ul>
+      <li>$E\le H$ chỉ so sánh giá trị của hai hàm tại cùng một ngưỡng, nên không cho biết hai hàm có cùng điểm cực tiểu;</li>
+      <li>tính lồi là của bài toán đã thay, còn $E$ là hàm bậc thang;</li>
+      <li>từ $E\le H$ chỉ suy ra $\inf_\theta E\le\inf_\theta H$, một cận trên cho số lỗi nhỏ nhất, ở đây $1\le4$.</li>
+    </ul>
+    <p>Phép thay $\ell_{01}$ bằng $\ell_{\mathrm{hinge}}$ là một phép đổi bài toán, nên số lỗi phải được đo lại tại nghiệm của bài toán thay thế.</p>
+    <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 02, §10.5 (Mệnh đề 02.36, Mệnh đề 02.42, Nhận xét 02.43).</p>
+  </aside>
+</section>
+
+<section id="tai-lieu-tham-khao" data-slide-id="S06-10" class="ap-slide">
+  <h2>Tài liệu tham khảo</h2>
+  <ul>
+    <li>Stephen Boyd, Lieven Vandenberghe (2004), <em>Convex Optimization</em>, Cambridge University Press: §3.1.5, §4.1.1, §4.1.3, §4.2.1, §4.2.3, §4.3, §4.4, §4.5.1–4.5.3, §4.7.4, §5.2.3, §6.1, §6.3.1–6.3.2, §8.6.1.</li>
+    <li>Kevin P. Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, MIT Press: §2.5.2, §2.5.4, §4.3.2, §10.2.8, §11.3, §11.4.2, §11.6.1, §17.3.3.</li>
+    <li>MIT OpenCourseWare: Boyd, 6.079 (2009); Bertsimas, 15.093J (2009).</li>
+  </ul>
+  <p>Bài 03: hàm Lagrange và bài toán đối ngẫu tìm có hệ thống hệ số không âm của ràng buộc cho cận dưới.</p>
+  <p><a href="material-viewer.html?doc=materials/lec-02/lecture-note.md&amp;deck=lecture-02-cac-bai-toan-toi-uu-loi.html">Ghi chú bài giảng</a> · <a href="material-viewer.html?doc=materials/lec-02/exercises.md&amp;deck=lecture-02-cac-bai-toan-toi-uu-loi.html">Bài tập</a></p>
+  <aside class="notes">
+    <p>Trước buổi học: Boyd và Vandenberghe (2004), §4.1.1, §4.1.3, §4.2.1, §4.3. Sau buổi học: Boyd và Vandenberghe §3.1.5, §4.2.3, §4.4, §4.5.1–4.5.3, §4.7.4, §5.2.3, §6.1, §6.3.1–6.3.2, §8.6.1, Bài tập 4.15 và 4.20; Murphy (2022), §2.5.2, §2.5.4, §4.3.2, §10.2.8, §11.3, §11.4.2, §11.6.1, §17.3.3. Mở rộng: slide của Boyd cho MIT OpenCourseWare 6.079 <em>Introduction to Convex Optimization</em> (lec02–lec04) và của Bertsimas cho 15.093J <em>Optimization Methods</em> (Bài giảng 2 và 16).</p>
+    <p>Xét $\min_{x\in\mathbb R^2}x_1^2+x_2^2$ với ràng buộc $x_1+x_2\ge2$. Từ $(x_1-1)^2+(x_2-1)^2\ge0$, mọi $x$ khả thi thỏa $x_1^2+x_2^2\ge2(x_1+x_2)-2\ge2$, bằng $p^*=2$ tại $x^*=(1,1)$: cộng $2$ lần ràng buộc vào một cận dưới affine của mục tiêu cho cận dưới tốt nhất, dù mục tiêu không tuyến tính. Bài 03 tìm hệ số đó một cách có hệ thống bằng hàm Lagrange và bài toán đối ngẫu, và dùng điều kiện Slater và điều kiện Karush–Kuhn–Tucker để biết khi nào hệ số đó tồn tại.</p>
+    <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 02, §12, §13.</p>
   </aside>
 </section>
 </section>
-    <footer class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 02</footer>
+    <div class="footer">Cơ sở toán học cho AI · Học kỳ 1, 2026–2027 · Bài 02</div>
   </div></div>
 </div>
 <script src="revealjs/dist/reveal.js"></script>

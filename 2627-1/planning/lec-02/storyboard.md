@@ -681,3 +681,77 @@ Không trang nào vượt trần sau đợt sửa. `S01-01b` 80 âm tiết, bằ
 | Tổng hợp | `S06-07` | `S06-07b` | Ví dụ 02.29; Nhận xét 02.43, 02.47 |
 
 Mục "Bài tập có lời giải trên mặt trang" (2026-10-12) đối chiếu với `exercises.md` cũ (Bài 3, 4, 8–14); tệp mới (Bài tập 02.18–02.32) không còn các bài đó, nên cột đối chiếu ở mục cũ hết hiệu lực.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Đợt sửa bố cục theo NT10–NT16, NT19, NT22 (`nhat-ky/ke-hoach-sua-deck-theo-NT.md`, mục 1 "Mức 2"). Nội dung toán học, giả thiết, lượng từ và hằng số của các trang cũ giữ nguyên; mọi `data-slide-id` cũ (80) giữ nguyên; thêm 4 trang cấu trúc, tổng 84 trang. Số âm tiết lấy từ `deck_lint.py`.
+
+### Trang thêm
+
+| ID | Vị trí | Tiêu đề | Lý do | Nguồn trong ghi chú | Âm tiết |
+|---|---|---|---|---|---|
+| `S01-01a` | sau bìa | Tiên quyết và quy ước | NT11: deck chưa có trang này. Trang `S01-02b` chỉ nhắc ba định nghĩa (tập lồi, hàm lồi, giá trị tối ưu) và mở mạch chứng nhận bằng câu dẫn tới `S01-03`, nên giữ tại chỗ; trang mới nhắc các kết quả khác của Bài 01 mà bài dùng (điều kiện bậc hai, phép toán bảo toàn tính lồi, toàn cục và duy nhất, phương trình chuẩn) và các quy ước ký hiệu | Kiến thức tiên quyết; §2 | 60 |
+| `S01-02a` | sau "Nội dung", trước `S01-02b` | Vấn đề trung tâm | NT11: một hộp "Câu hỏi:" nêu câu hỏi trung tâm (đoạn mở đầu của ghi chú), bằng lời; câu trả lời theo sáu phần ở ghi chú diễn giả | đoạn mở đầu; §10.5 | 54 |
+| `S06-09` | sau bảng tổng kết `S06-08` | Vấn đề trung tâm | NT15: câu trả lời cho câu hỏi trung tâm của cả bài; ví dụ bốn ảnh (Câu hỏi mở đầu) và ba lỗ hổng của lập luận mở đầu ở ghi chú diễn giả | §10.5 | 60 |
+| `S06-10` | trang cuối | Tài liệu tham khảo | NT15: tách khỏi trang tổng kết (dòng "Đọc thêm" của `S06-08` chuyển sang đây); nguồn theo §13 của ghi chú, dòng nối sang Bài 03 theo §12, liên kết "Ghi chú bài giảng · Bài tập" | §12, §13 | 56 |
+
+### Trang đổi
+
+| ID | Đổi | Âm tiết trước → sau |
+|---|---|---|
+| `S01-01` | phụ đề "Lớp bài toán lồi, thay thế và nới lỏng"; luận điểm một câu có điều kiện; dòng học phần và học kỳ theo chân trang; giữ `h1`, đơn vị | 17 → 60 |
+| `S01-01b` | ghi chú diễn giả: bỏ câu mã chuẩn đầu ra (LLO3, CLO1), NT22; mặt trang giữ nguyên | 80 → 80 |
+| `S01-02` | sáu mục thành liên kết `#/1`–`#/6` | 36 → 36 |
+| `S01-02b` | bỏ nhãn "Nhu cầu:" (NT14) | 37 → 35 |
+| `S02`, `S03`, `S04`, `S05`, `S06` | dòng dẫn viết lại thành câu trần thuật (NT12); ghi chú diễn giả cắt câu chỉ đường "được dùng lại ở phần …" để về 40–100 âm tiết | 34 → 37, 37 → 38, 28 → 35, 35 → 36, 38 → 38 |
+| `S02-01b`, `S02-05`, `S02-06b`, `S03-01`, `S03-04b`, `S03-07`, `S04-01`, `S04-10`, `S05-07`, `S06-04`, `S06-06` | bỏ nhãn "Nhu cầu:", viết thành câu khẳng định (NT14) | 45 → 48, 32 → 32, 44 → 48, 29 → 32, 42 → 42, 12 → 10, 51 → 50, 24 → 27, 50 → 49, 34 → 33, 45 → 47 |
+| `S05-01` | "Nhu cầu:" thành dòng "Câu hỏi:" (câu hỏi của mạch, NT13) | 45 → 44 |
+| `S03-04b` | ghi chú diễn giả: "Nhu cầu mới" → "Yêu cầu mới" (cụm bị cấm) | — |
+| `S02-10`, `S03-09`, `S04-15` | số câu "**1.**", "**2.**", "**3.**" bỏ in đậm (NT19); giữ thẻ để không đổi bố cục | không đổi |
+| `S05-04` | tiêu đề "Biến đổi bài toán hàm bản lề thành LP" → "Biến phụ cho hàm bản lề" (NT16: không viết tắt tiếng Anh trong tiêu đề; bản "… thành quy hoạch tuyến tính" xuống hai dòng ở 1600×900, nên chọn tên ngắn song song với "Biến phụ cho giá trị tuyệt đối" ở `S02-06`) | không đổi |
+| `S06-08` | bỏ dòng "Đọc thêm" (chuyển sang `S06-10`); ghi chú diễn giả chuyển câu nguồn đọc thêm sang `S06-10` | 71 → 63 |
+| khung | meta viewport `width=device-width,initial-scale=1`; chân trang `<footer>` → `<div class="footer">` như deck 11 | — |
+
+### Ngoại lệ, chờ tác giả
+
+- **Mạch 6 giữ tên "Tổng hợp và vận dụng"** (mục chung 8 của bản giao việc): mạch có các trang `S06-04`–`S06-06` đưa vào khái niệm và kết quả mới chưa có ở mạch trước (ràng buộc số đặc trưng, Định nghĩa 02.45; miền không lồi, Mệnh đề 02.46; phản ví dụ số hạng phạt chuẩn một, Ví dụ 02.29; §9.2 của ghi chú), nên không đổi tên thành "Tổng kết". `deck_lint` còn báo STRUCT "tiêu đề cũ" và "mạch cuối không tên Tổng kết". Các trang Tổng kết (`S06-08` bảng tổng kết, `S06-09` "Vấn đề trung tâm", `S06-10` "Tài liệu tham khảo") nằm cuối mạch này. Lựa chọn khác cho tác giả: đổi tên mạch theo §9 của ghi chú ("Nhận dạng lớp bài toán và kiểm tra phép xử lý") và chấp nhận không có mạch "Tổng kết" riêng, hoặc thêm mạch thứ 7 "Tổng kết" (ngoài phạm vi mức 2).
+- **Mục 1 của "Nội dung"** giữ tên "Mô hình hóa và chứng nhận tính lồi": mạch mở đầu chứa các trang nội dung `S01-02b`–`S01-08` (§4 của ghi chú), không có trang tiêu đề mạch riêng; liên kết `#/1` tới bìa.
+- **"Mục tiêu học tập" `S01-01b`** đang ở trần 80 âm tiết và viết gọn kiểu điện tín (mục 3 thiếu "giải hồi quy có chính quy hóa", mục 4 thiếu "đổi biến logarit để được bài toán lồi tương đương"); viết đủ động từ theo ghi chú sẽ vượt 80, nên giữ nguyên ở mức này.
+- **NT15 chưa đủ:** không có trang "Câu hỏi tự kiểm tra" và "Bài tập về nhà" (bảng `Mục | Bài tập`); bài tập tổng hợp `S06-07`/`S06-07b` có sẵn. Không thêm ở mức 2.
+- **SYLL60 cũ** `S01-06` (71), `S01-07` (76), `S01-08` (77): không đổi. Bìa `S01-01` 60 âm tiết (dưới trần; `deck_lint` không miễn bìa vì ID không theo mẫu `LNN-1-01`).
+- **Chân trang chạm** (`footer_check`, 1600×900): `S02-05`, `S02-06`, `S03-04b`, `S05-09`, `S05-10` chạm vùng chân trang 0–17 px; cùng bố cục với bản trước (vị trí các khối của `S03-04b`, `S02-06` không đổi; `S02-05` thấp hơn bản trước). Có từ trước, chờ lượt mật độ.
+- **Footer ẩn ở mạch mở đầu** theo luật chung `section:first-of-type.present~.footer` của `lecture-style.css`, như các deck khác.
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+Các dòng dưới đây thay cho mô tả tương ứng ở các bảng trên (bìa, `S01-01b`, `S06-08`, `S06-09`, `S06-10`, các câu mở trang). Đối chiếu ghi chú §9.1 (L3), (L4), §10.5, §12, §13.
+
+| ID | Sửa | Âm tiết sau |
+|---|---|---|
+| `S06-09` | gạch 2 thêm điều kiện (L4) "Cực tiểu …, (hệ số $\ge0$)", (L2) $(P\succeq0)$, "(mọi $P_i\succeq0$)" (kể cả ma trận của mục tiêu), (L3) "tổng đơn thức dương, biến dương"; gạch 3: bảo đảm hàm thay thế $\min E\le\min H$, cận nới lỏng $p^*_{\tilde{\mathcal F}}\le p^*_{\mathcal F}\le f_0(\hat x)$, $\hat x\in\mathcal F$ | 60 |
+| `S02`, `S04` | dòng dẫn thêm điều kiện (cực tiểu, hệ số không âm; cấu trúc phù hợp của tích và tỷ số biến dương) | 39, 36 |
+| `S04-01` | câu mở nêu mô hình của trang: "Diện tích và dung tích hộp chứa tích các kích thước dương; mô hình không lồi theo kích thước." (diện tích $\mathcal S=2(x_1x_2+x_1x_3+x_2x_3)$ là tổng các tích, Ví dụ 02.20) | 55 |
+| `S02-01b` | câu mở nêu vấn đề (phương án trộn rẻ nhất, chứng nhận không liệt kê) thay cho câu nêu sẵn kết quả | 53 |
+| `S01-02b`, `S03-01`, `S05-07`, `S06-06` | câu mở viết lại theo đề xuất của người kiểm lại | 36, 31, 50, 49 |
+| `S05` | ghi chú: trả lại "để lại những bài toán không lồi …" | — |
+| `S06-10` | nguồn đúng từng mục §13, có nhà xuất bản; dòng nối "Bài 03: … tìm có hệ thống hệ số không âm của ràng buộc cho cận dưới."; ghi chú thay câu dẫn "Câu hỏi cuối buổi" bằng ví dụ của §12 | 79 |
+| `S01-01` | luận điểm theo đề xuất của điều phối viên ("Bài toán lồi thuộc lớp đã biết cho nghiệm của mô hình chứa …"); phụ đề "Lớp bài toán lồi, hàm thay thế và nới lỏng" | 65 |
+| `S01-01a` | ghi chú: thêm Mệnh đề 01.15 (miền lồng nhau), cơ sở của cận nới lỏng; giữ câu "Hàm $C^2$ lồi chặt nếu Hessian xác định dương tại mọi điểm" (phần (b) của Định lý 01.29, dùng ở phần 3; mặt trang chỉ nêu phần lồi); bỏ cụm "nguyên dạng" để ghi chú còn 150 âm tiết | 60 |
+| `S01-01b` | sáu mục tiêu viết đủ nghĩa theo ghi chú (mục 3 "giải hồi quy chính quy hóa trên dữ liệu nhỏ", mục 4 "đổi biến logarit thành bài toán lồi tương đương", mục 6 "mô hình học máy mới"); vừa khung 1600×900, không chạm chân trang, cỡ chữ không đổi | 120 |
+| `S02-11`, `S03-10`, `S04-16`, `S05-15`, `S06-07b` | thêm ", lời giải" vào tiêu đề (NT16) | không đổi |
+| `S06-08` | tiêu đề "Tổng kết bài giảng" → "Bảng tổng kết" | 63 |
+
+Ngoại lệ mật độ (thay mục "Mục tiêu học tập" ở danh sách ngoại lệ trên):
+
+- `S01-01b` 120 âm tiết (`deck_lint` báo trần 80): quyết định chung của điều phối viên, ngoại lệ NT17 cho trang mục tiêu, tối đa 120.
+- `S06-10` 79 âm tiết (`deck_lint` dùng trần 60 cho tiêu đề này; NT17 cho trang tài liệu tham khảo trần 80): danh sách mục của §13 giữ đủ.
+- `S01-01` bìa 65 âm tiết: luận điểm theo câu của điều phối viên, phụ đề và hai dòng học phần, đơn vị bắt buộc; `deck_lint` chỉ miễn bìa có ID `LNN-1-01`.
+
+Sửa chân trang sau kiểm cuối (đối chiếu `footer_check` với bản HEAD 2d93133): `S02-05` và `S03-04b` chạm vùng chân trang ở 1600×900. Câu mở trang của hai trang vẫn một dòng; nguyên nhân là các dòng công thức xuống hai dòng (`S02-05`) và dòng cuối cột trái xuống hai dòng (`S03-04b`); bản HEAD cũng tràn khi hình đã tải xong (`S02-05` đáy 903), `footer_check` trên HEAD không báo vì đo trước khi hình tải.
+
+| ID | trước | sau | Âm tiết |
+|---|---|---|---|
+| `S02-05` | "Tiêu chí khớp đường thẳng là tổng độ lệch tuyệt đối." / "Mô hình: $\hat{y}_i=w_1u_i+w_0$, $w=(w_1,w_0)$." / "$r=Xw-y$, mục tiêu $\min_w \|r\|_1=\sum_i \lvert r_i\rvert$." | "Đường thẳng được khớp theo tổng độ lệch tuyệt đối." / "$\hat{y}_i=w_1u_i+w_0$, $w=(w_1,w_0)$." / "$\min_w \|r\|_1=\sum_i \lvert r_i\rvert$, $r=Xw-y$." (mỗi dòng một dòng hiển thị; đáy 808) | 32 → 27 |
+| `S03-04b` | "Mô hình vừa khớp dữ liệu, vừa kiểm soát độ lớn hệ số." / dòng cuối "Chính quy hóa (regularization) thêm yêu cầu vào mô hình." | "Với chính quy hóa (regularization), mô hình vừa khớp dữ liệu, vừa kiểm soát độ lớn hệ số." (thuật ngữ và tên tiếng Anh chuyển lên câu mở; dòng cuối bỏ; đáy 815) | 42 → 34 |
+
+`footer_check` (1600×900): bản sửa và HEAD cùng còn `S02-06`, `S05-09`, `S05-10` (có từ trước).
