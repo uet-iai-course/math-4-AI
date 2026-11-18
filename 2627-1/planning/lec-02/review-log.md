@@ -1845,3 +1845,10 @@ Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu h
 **Còn lại, chờ tác giả:** tên mạch 6; trang "Câu hỏi tự kiểm tra" và "Bài tập về nhà" của NT15; đơn vị trên bìa "Viện Trí tuệ nhân tạo" khác các deck khác ("Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội"); ghi chú diễn giả S06-06 dẫn Boyd–Vandenberghe §6.2 trong khi ghi chú §13 dẫn §6.1, §6.3.1–6.3.2.
 
 **Quyết định:** **chấp nhận**.
+
+### Xác nhận sau commit và kiểm liên kết (2026-11-18)
+
+- Người kiểm lại (cùng tác tử `general-purpose`, `opus`, high) kiểm riêng các chỗ sửa sau báo cáo cuối của mình trên tệp trùng commit `c548d5e` (`git diff` rỗng): lượt 3 đạt, không phát hiện mới (S02-05, S03-04b hết chạm chân trang; bốn điểm nhẹ lượt 2 đã sửa đúng).
+- Điều phối viên kiểm liên kết trong deck so với HEAD 2d93133: deck không có liên kết `#/N/k` (trước và sau); mọi liên kết `#/N` của "Nội dung" tới đúng trang tiêu đề mạch, tên mục trùng tên mạch. Grep toàn workspace (ghi chú, bài tập, `index.html`, `material-viewer.js`, các học phần khác) không có liên kết `#/…` nào trỏ vào deck; trình xem không thêm hash vào liên kết deck.
+
+**Quyết định:** giữ **chấp nhận**.

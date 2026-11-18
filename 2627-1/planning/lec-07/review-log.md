@@ -1302,3 +1302,10 @@ Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu h
 **Còn lại, chờ tác giả:** dòng `note-source` ở nhiều trang còn dẫn Bertsimas và Tsitsiklis (1997) và đề cương, không có trong mục tài liệu đọc của ghi chú (P8); bài tập tổng hợp và "Bài tập về nhà" của NT15; P02 hai mục còn gọn (trần 120); đề xuất sửa ghi chú: alt hình `central-problem-dp.svg` dòng 82 ghi "bốn tầng", hình và deck ghi "ba tầng".
 
 **Quyết định:** **chấp nhận**.
+
+### Xác nhận sau commit và kiểm liên kết (2026-11-18)
+
+- Người kiểm lại (cùng tác tử `general-purpose`, `opus`, high) kiểm riêng các chỗ sửa sau báo cáo cuối của mình trên tệp trùng commit `b305160` (`git diff` rỗng): lượt 3 đạt; 1 điểm nhẹ (ở 390 px dấu phẩy giữa hai công thức của P01 rơi xuống đầu dòng).
+- Điều phối viên kiểm liên kết trong deck so với HEAD 2d93133: deck không có liên kết `#/N/k` (trước và sau); mọi liên kết `#/N` của "Nội dung" tới đúng trang tiêu đề mạch, tên mục trùng tên mạch. Grep toàn workspace (ghi chú, bài tập, `index.html`, `material-viewer.js`, các học phần khác) không có liên kết `#/…` nào trỏ vào deck; trình xem không thêm hash vào liên kết deck.
+
+**Quyết định:** giữ **chấp nhận**.

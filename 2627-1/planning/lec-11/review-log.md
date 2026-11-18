@@ -566,3 +566,10 @@ Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 �
 **Còn lại, chờ tác giả:** trang "Bài tập về nhà" (bảng `Mục | Bài tập`) của NT15; MD01 mục 4 lược "một và nhiều chiều" (trần 120); tràn công thức và chạm chân trang có từ trước.
 
 **Quyết định:** **chấp nhận**.
+
+### Xác nhận sau commit và kiểm liên kết (2026-11-18)
+
+- Người kiểm lại (cùng tác tử `general-purpose`, `opus`, high) kiểm riêng các chỗ sửa sau báo cáo cuối của mình trên tệp trùng commit `e6dd56e` (`git diff` rỗng): lượt 3 đạt (HH01; TS16, TS17 trả về tiêu đề HEAD).
+- Điều phối viên kiểm liên kết trong deck so với HEAD 2d93133: deck không có liên kết `#/N/k` (trước và sau); mọi liên kết `#/N` của "Nội dung" tới đúng trang tiêu đề mạch, tên mục trùng tên mạch. Grep toàn workspace (ghi chú, bài tập, `index.html`, `material-viewer.js`, các học phần khác) không có liên kết `#/…` nào trỏ vào deck; trình xem không thêm hash vào liên kết deck.
+
+**Quyết định:** giữ **chấp nhận**.

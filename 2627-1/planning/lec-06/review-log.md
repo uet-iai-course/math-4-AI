@@ -1267,3 +1267,10 @@ Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu h
 **Còn lại, chờ tác giả:** bài tập tổng hợp và "Bài tập về nhà" của NT15; bìa giữ `h2.title-slide`; A02 mục 5 thiếu "bậc hai", mục 6 thiếu "đầy đủ" (trần 120); C03, G03 chạm chân trang có từ trước; cụm "tạo nhu cầu" trong vài ghi chú diễn giả.
 
 **Quyết định:** **chấp nhận**.
+
+### Xác nhận sau commit và kiểm liên kết (2026-11-18)
+
+- Người kiểm lại (cùng tác tử `general-purpose`, `opus`, high) kiểm riêng các chỗ sửa sau báo cáo cuối của mình trên tệp trùng commit `6b523a0` (`git diff` rỗng): lượt 4 đạt; 1 điểm nhẹ (A02 mục 6 bỏ "kèm").
+- Điều phối viên kiểm liên kết trong deck so với HEAD 2d93133: deck không có liên kết `#/N/k` (trước và sau); mọi liên kết `#/N` của "Nội dung" tới đúng trang tiêu đề mạch, tên mục trùng tên mạch. Grep toàn workspace (ghi chú, bài tập, `index.html`, `material-viewer.js`, các học phần khác) không có liên kết `#/…` nào trỏ vào deck; trình xem không thêm hash vào liên kết deck.
+
+**Quyết định:** giữ **chấp nhận**.

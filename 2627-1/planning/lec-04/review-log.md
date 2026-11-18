@@ -2066,3 +2066,10 @@ Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu h
 **Còn lại, chờ tác giả:** trang "Câu hỏi tự kiểm tra" và bảng `Mục | Bài tập` có "(trên lớp)" cho "Bài tập về nhà" (NT15); RP03 mục 5 thiếu "Lập" (trần 120); ghi chú trang tiêu đề mạch RG00, RZ00 khoảng 100–104 âm tiết.
 
 **Quyết định:** **chấp nhận**.
+
+### Xác nhận sau commit và kiểm liên kết (2026-11-18)
+
+- Người kiểm lại (cùng tác tử `general-purpose`, `opus`, high) kiểm riêng các chỗ sửa sau báo cáo cuối của mình trên tệp trùng commit `d640e6b` (`git diff` rỗng): lượt 3 đạt, không phát hiện mới.
+- Điều phối viên kiểm liên kết trong deck so với HEAD 2d93133: deck không có liên kết `#/N/k` (trước và sau); mọi liên kết `#/N` của "Nội dung" tới đúng trang tiêu đề mạch, tên mục trùng tên mạch. Grep toàn workspace (ghi chú, bài tập, `index.html`, `material-viewer.js`, các học phần khác) không có liên kết `#/…` nào trỏ vào deck; trình xem không thêm hash vào liên kết deck.
+
+**Quyết định:** giữ **chấp nhận**.

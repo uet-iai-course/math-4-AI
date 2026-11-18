@@ -1052,3 +1052,10 @@ Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu h
 **Còn lại, chờ tác giả:** tên mạch 7; trang "Câu hỏi tự kiểm tra", "Bài tập về nhà" của NT15; K05/K05B là ca tính mẫu của ghi chú (Ví dụ 01.17) nhưng đặt tiêu đề "Bài tập" (NT24); trang chạm chân trang và công thức tràn có từ trước.
 
 **Quyết định:** **chấp nhận**.
+
+### Xác nhận sau commit và kiểm liên kết (2026-11-18)
+
+- Người kiểm lại (cùng tác tử `general-purpose`, `opus`, high) kiểm riêng các chỗ sửa sau báo cáo cuối của mình trên tệp trùng commit `36e68b9` (`git diff` rỗng): lượt 3 đạt; 2 điểm nhẹ về trình bày ("tính toàn cục" trên bìa; K08 ngắt dòng sau dấu gạch nối).
+- Điều phối viên kiểm liên kết trong deck so với HEAD 2d93133: deck không có liên kết `#/N/k` (trước và sau); mọi liên kết `#/N` của "Nội dung" tới đúng trang tiêu đề mạch, tên mục trùng tên mạch. Grep toàn workspace (ghi chú, bài tập, `index.html`, `material-viewer.js`, các học phần khác) không có liên kết `#/…` nào trỏ vào deck; trình xem không thêm hash vào liên kết deck.
+
+**Quyết định:** giữ **chấp nhận**.
