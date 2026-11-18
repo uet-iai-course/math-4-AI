@@ -1761,3 +1761,27 @@ Quyết định của điều phối viên: thêm S05-06c (vector hỗ trợ, T�
 Kiểm của điều phối viên: đọc diff; 59 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW; S07-01 SYLL 69 (trang tổng kết, trần 80, ngoại lệ đã ghi). Đã xem ảnh 1600×900 và 390×844 của S01-02, S02-07c, S03-01, S03-01b, S04-00, S04-04b, S05-06c, S05-07b, S07-01: vừa khung.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18. Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec03.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi từ `deck_lint --course math-4-AI` (HEAD 2d93133: 67 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` từ ghi chú, bài tập hay chỉ mục vào deck.
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | ba lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 chưa đạt (7 trung bình); lượt 2 chưa đạt (S03-00) |
+
+**Các lượt và quyết định của điều phối viên:**
+- Lượt 1: footer `<div class="footer">` như deck 11, viewport P7; thêm S01-01a "Tiên quyết và quy ước", S01-04 "Vấn đề trung tâm" (một hộp), S07-01a "Vấn đề trung tâm" của Tổng kết; bìa có luận điểm; "Nội dung" có liên kết; dòng dẫn và bốn câu "Nhu cầu:" viết lại; mạch 6 "Tổng kết"; S07-03 "Tài liệu tham khảo" theo §13; cột P4.
+- Sau lượt 1 (**yêu cầu sửa**, điều phối viên đã đối chiếu): bìa "Nhân tử không âm" chặt hơn Định lý 03.8 ($\nu$ tự do); S07-01a dùng vế $\lambda>2$ chưa có trên mặt trang (NT9); S03-01, S05-01 đổi điều kiện đủ/cần; ghi chú S07-03 có chủ đề không thuộc ghi chú (NT1); S03-00 dùng "điểm Slater" trước định nghĩa; cùng 7 điểm nhẹ.
+- Sau lượt 2: dòng dẫn S03-00 (theo mẫu câu của điều phối viên) mất điều kiện $Ax=b$ → sửa nguyên văn đề xuất của người kiểm lại: "Cận tốt nhất bằng giá trị tối ưu hữu hạn khi bài toán lồi có điểm khả thi thỏa ngặt mọi bất đẳng thức." → **chấp nhận**.
+- Ngoại lệ được điều phối viên chấp nhận: S07-01 78 âm tiết (tiêu đề cột P4; bảng tổng kết, trần 80); S07-03 70 (trang tài liệu tham khảo, trần 80 theo NT17).
+
+**Kiểm cuối của điều phối viên** (127.0.0.1:8771, HEAD ở 8773):
+- `deck_lint`: 45 phát hiện = NOTES150 ×38 (có từ trước), REPEAT ×4 (dòng nguồn trong ghi chú diễn giả, có từ trước), STRUCT ID bìa, SYLL60 S07-01, S07-03 (ngoại lệ trên).
+- `deck_check`: console 0, pageerrors 0, failed 0, `.katex-error` 0. `footer_check`: 0 (HEAD 0). `formula_overflow` 390 px: 19 trang, trùng HEAD.
+- `git diff --check` sạch. Số trang 59 → 62, mọi `data-slide-id` cũ giữ.
+
+**Còn lại, chờ tác giả:** mạch Tổng kết chưa có "Câu hỏi tự kiểm tra" và "Bài tập về nhà"; mục tiêu "đọc độ nhạy" vắng trên S01-02 (quyết định G3, 2026-11-13); tràn công thức 390 px (có từ trước).
+
+**Quyết định:** **chấp nhận**.

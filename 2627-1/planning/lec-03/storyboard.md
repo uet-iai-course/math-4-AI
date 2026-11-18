@@ -113,3 +113,63 @@ Trang bỏ: S03-02 "Cận khít và đối ngẫu mạnh" — quyết định **
 - Đợt rà soát thuật ngữ 2026-10-12: "khoảng đối ngẫu của cặp", "sai số tối ưu", "vector", "trường hợp" thay "nhánh", "điểm Slater", "hồi quy có ràng buộc chuẩn".
 
 Chi tiết từng đợt trong `review-log.md`.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Phạm vi: NT11–NT16, NT19, NT22 và khung kỹ thuật P7. Không đổi nội dung toán học, không bớt hay gộp trang, giữ mọi `data-slide-id` cũ. Số trang: 59 → 62 (thêm 3 trang cấu trúc); số mạch giữ 6.
+
+### Trang đổi
+
+| ID | Thay đổi | Căn cứ |
+|---|---|---|
+| (khung) | `<footer class="footer">` → `<div class="footer">` (cùng vị trí cuối `.slides` như deck 11); meta viewport `width=device-width,initial-scale=1` | P7, NT26 |
+| S01-01 | Bìa: phụ đề `h3` "Đối ngẫu mạnh, điều kiện Karush–Kuhn–Tucker"; luận điểm một câu có điều kiện thay hộp "Chứng nhận nghiệm tối ưu bằng cận dưới."; dòng học phần thêm học kỳ; ghi chú diễn giả: đoạn cuối (sáu mục tiêu) thay bằng giả thiết của từng vế luận điểm và vế KKT | NT11; ghi chú §mở đầu, §10.5 |
+| S01-03 | "Nội dung": mục là liên kết `#/1`–`#/6`, bỏ dấu chấm cuối mục, mục 6 "Tổng kết"; thêm dòng "Đọc trước" theo §13; câu nối cuối ghi chú diễn giả trỏ tới câu hỏi trung tâm | NT11 |
+| S02-00, S03-00, S04-00, S05-00 | Dòng dẫn "Nhu cầu: …" → câu trần thuật nêu ý cốt lõi của mạch (20, 23, 23, 16 âm tiết), không KaTeX; `strand-keys` S04-00 bỏ "$G$" | NT12, NT14 |
+| S07-00 | "6. Tổng hợp và vận dụng" → "6. Tổng kết"; dòng dẫn "Muốn …" → câu trần thuật (18 âm tiết); `strand-keys` theo các trang của mạch; ghi chú diễn giả thêm trang "Vấn đề trung tâm" | NT12, NT15 |
+| S02-01, S03-01, S04-01, S05-01 | Bỏ nhãn "Nhu cầu:", câu khẳng định giữ nguyên ký hiệu và điều kiện | NT14 |
+| S02-05d, S03-03a | "**Bước k.**" in đậm → chữ thường "Bước k." | NT19 |
+| S03-03 | Ghi chú diễn giả: bỏ "minh họa" (cụm bị cấm) | NT22 |
+| S07-01 | Cột thứ ba "Công thức" → "Công thức hoặc thuật toán"; trang này đóng vai bảng tổng kết; ghi chú diễn giả: câu nối cuối trỏ tới trang "Vấn đề trung tâm" | P4, NT15 |
+| S07-03 | "Tài liệu và nội dung mở rộng" → "Tài liệu tham khảo"; danh sách nguồn theo §13 (Boyd và Vandenberghe; Murphy 2022; Boyd, MIT OCW 6.079; Rudin 1976); bỏ hai dòng không phải nguồn (máy vector hỗ trợ ở ghi chú §8.4, §10.1; chủ đề đọc tiếp không có trong ghi chú, vẫn nêu trong ghi chú diễn giả); thêm dòng nối Bài 04 theo §12; liên kết "Bài tập và lời giải" → "Bài tập"; ghi chú diễn giả thêm Murphy, Rudin và cầu nối Bài 04 | NT15 |
+
+### Trang thêm
+
+| ID | Vị trí | Tiêu đề | Nội dung | Nguồn | Lý do |
+|---|---|---|---|---|---|
+| S01-01a | sau bìa | Tiên quyết và quy ước | "Nhắc lại:" cận dưới đúng (Định nghĩa 01.9, 01.11), tổng không âm của hàm lồi (Định lý 01.30), Hệ quả 01.26, Mệnh đề 02.26; "Ký hiệu:" $n$, $m$, $p$, bất đẳng thức theo tọa độ | ghi chú, Kiến thức tiên quyết, §2 | deck thiếu trang NT11 |
+| S01-04 | sau "Nội dung" | Vấn đề trung tâm | một hộp "Câu hỏi:" nêu câu hỏi trung tâm của ghi chú; câu trả lời theo phần 2–5 trong ghi chú diễn giả | ghi chú, đoạn mở đầu, §10.5 | deck thiếu trang NT11 |
+| S07-01a | sau bảng tổng kết S07-01 | Vấn đề trung tâm | câu trả lời cho cả bài: cận dưới (đối ngẫu yếu), cận khít (Slater), hệ KKT (đủ, cần), câu trả lời $\lambda=2$ cho câu hỏi mở đầu | ghi chú, đoạn mở đầu, Câu hỏi mở đầu, §10.5 | deck thiếu trang NT15 |
+
+Thứ tự mạch mở đầu sau khi sửa: S01-01 → S01-01a → S01-02 → S01-03 → S01-04. Không có liên kết sâu `#/1/k` từ ngoài vào deck (đã kiểm bằng grep).
+
+### Ngoại lệ
+
+- **S07-01, mật độ:** 78 âm tiết (trước 75; +3 do tiêu đề cột "Công thức hoặc thuật toán" theo P4). Trang là bảng tổng kết, trần 80 theo NT17; `deck_lint` dùng trần 60 vì tiêu đề "Ba bước chứng nhận" không khớp mẫu tiêu đề bảng tổng kết. Tiêu đề giữ vì đúng NT16.
+- **S01-01, ID bìa:** giữ mã cũ (ngoại lệ đã biết của đợt). Bìa 60 âm tiết (`deck_lint` áp trần 60 do ID không là `L03-1-01`).
+- **S01-02, mục tiêu:** giữ sáu mục tiêu hiện có; mục tiêu đọc độ nhạy của ghi chú không có trên mặt trang (ngoại lệ G3, quyết định người dùng 2026-11-13).
+- **Mạch Tổng kết, thiếu trang NT15:** chưa có "Câu hỏi tự kiểm tra", "Bài tập về nhà" (bảng `Mục | Bài tập`); bài tập tổng hợp S07-02 có lời giải trong ghi chú diễn giả, không có "Lời giải:" trên mặt trang. Không thêm ở mức 2, chờ tác giả.
+- **NOTES150 (38 trang), REPEAT (dòng "Nguồn:" lặp trong ghi chú diễn giả):** ngoài phạm vi mức 2.
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+| ID | Trước | Sau | Lý do |
+|---|---|---|---|
+| S01-01 | `h3` "Đối ngẫu mạnh, điều kiện Karush–Kuhn–Tucker"; luận điểm "Nhân tử không âm cho cận dưới của giá trị tối ưu; … cận tốt nhất đạt giá trị đó." | `h3` "Điều kiện Karush–Kuhn–Tucker"; luận điểm "Bội không âm của ràng buộc cho cận dưới của giá trị tối ưu; khi bài toán lồi, có điểm Slater và giá trị tối ưu hữu hạn, cận tốt nhất bằng giá trị đó." | "nhân tử không âm" chặt hơn Định lý 03.8 ($\nu$ tự do); "đạt" mập mờ. `h3` rút để bìa giữ ≤ 60 âm tiết |
+| S01-01 (ghi chú) | "Luận điểm có hai vế …" | "Câu trên bìa có hai vế …", tách câu; bội không âm cho bất đẳng thức, bội tùy ý cho đẳng thức | gọi nội dung thay cho tên quy trình |
+| S01-01a | "**Ký hiệu:** $n$ biến, $m$ bất đẳng thức, $p$ đẳng thức; $\lambda\ge0$ theo từng tọa độ." | "**Ký hiệu:** bất đẳng thức vector hiểu theo từng tọa độ."; $n$, $m$, $p$ và ví dụ $\lambda\ge0$ chuyển vào ghi chú diễn giả | theo ghi chú §2; giữ ≤ 60 âm tiết |
+| S01-02 (ghi chú) | đoạn 2 nhắc gradient, tổng hàm lồi, hoàn thành bình phương | chỉ giữ hoàn thành bình phương | bỏ phần lặp với S01-01a |
+| S01-03 (ghi chú) | "một bài tập lấy từ ghi chú bài giảng" | "một bài tập" | câu nguồn gốc (NT22) |
+| S03-00 | "Bài toán lồi có điểm Slater và giá trị tối ưu hữu hạn có cận dưới tốt nhất bằng giá trị tối ưu." | "Khi giá trị tối ưu hữu hạn, bài toán lồi có một điểm thỏa ngặt mọi bất đẳng thức thì cận tốt nhất bằng nó." (25 âm tiết) | "điểm Slater" chưa định nghĩa trước trang tiêu đề mạch (NT12) |
+| S03-01 | "Cận tốt nhất $d^*$ bằng $p^*$ cần một điều kiện trên dữ liệu bài toán." | "Một điều kiện trên dữ liệu bài toán bảo đảm cận tốt nhất $d^*$ bằng $p^*$." | câu cũ đọc thành điều kiện cần; Slater là điều kiện đủ |
+| S05-01 | "… được đặc trưng bằng điều kiện không cần công thức của $g$." | "… thỏa những điều kiện không cần công thức của $g$." | Mệnh đề 03.27 chỉ cho điều kiện cần |
+| S07-00 (ghi chú) | một câu dài, có "sau đó là tài liệu tham khảo" | tách hai câu, bỏ cụm điều hướng | NT22 |
+| S07-01a | "đạt tại nhân tử"; "Nghiệm không cần $g$"; ý 4 có vế "với $\lambda>2$ …" | "đạt tại một nhân tử"; "Nghiệm và nhân tử không qua $g$"; ý 4 chỉ còn "$g(\lambda)=5=p^*$ tại đúng $\lambda=2$" (đã có ở S02-07c) | vế $\lambda>2$ chưa có trên mặt trang trước (NT9, NT15) |
+| S07-01a (ghi chú) | "Vế cuối trả lời câu hỏi mở đầu của ghi chú: …" | vế $\lambda>2$ với $x(\lambda)=\frac{3\lambda}{1+\lambda}$ và Mệnh đề 03.27 | chuyển từ mặt trang; bỏ "của ghi chú" |
+| S07-02 (ghi chú) | "Các kết quả của bài được mở rộng sang máy vector hỗ trợ, miền hàm tổng quát và ràng buộc theo nón trong phần đọc tiếp." | bỏ | câu nối tới các chủ đề đã bỏ, không có trong ghi chú bài giảng (NT1) |
+| S07-03 | Boyd và Vandenberghe "§2.5.1, §5.1–5.6, §8.6.1"; "Bài 04: phương pháp Newton, mỗi bước giải một hệ KKT tuyến tính." | "§2.5.1, §5.1–5.3, §5.4.4, §5.5–5.6, §8.6.1"; "Bài 04: phương pháp Newton cho bài toán có ràng buộc đẳng thức, mỗi bước giải một hệ KKT tuyến tính." | đúng các mục của §13; cầu nối theo §12 |
+| S07-03 (ghi chú) | đoạn về nội tương đối, điểm yên ngựa, bất đẳng thức suy rộng theo nón | bỏ, giữ câu về máy vector hỗ trợ | không có trong ghi chú bài giảng (NT1) |
+
+Ngoại lệ mới: **S07-03, mật độ** 70 âm tiết. Đây là trang tài liệu tham khảo, trần 80 theo NT17; `deck_lint` áp trần 60 vì không nhận ra tiêu đề "Tài liệu tham khảo". Cần đủ các mục của §13 và dòng nối Bài 04. Bìa nay 59 âm tiết, S01-01a 59, S07-01a dưới 60. S07-01 (78) được điều phối viên chấp nhận là ngoại lệ do P4.
+
+Lượt kiểm lại thứ hai (2026-11-18), S03-00 dòng dẫn: "Khi giá trị tối ưu hữu hạn, bài toán lồi có một điểm thỏa ngặt mọi bất đẳng thức thì cận tốt nhất bằng nó." → "Cận tốt nhất bằng giá trị tối ưu hữu hạn khi bài toán lồi có điểm khả thi thỏa ngặt mọi bất đẳng thức." Lý do: câu trước mất điều kiện $Ax=b$ của điểm Slater ("khả thi" mang điều kiện này) và sai ngữ pháp. Câu mới ≤ 25 âm tiết (`deck_lint` không báo LEAD25). Ghi chú diễn giả S03-00 không cần sửa.
