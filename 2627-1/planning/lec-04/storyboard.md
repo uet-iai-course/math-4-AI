@@ -1441,3 +1441,65 @@ Bốn trang dưới đây bị bỏ khi mạch 6 thành phần đọc thêm (D04
 - **Đầu ra:** $-\log s$ không đạt cực tiểu; tại $s=3/2$ cận $0{,}193$, sai số $0{,}095$.
 - **Vị trí trong khung:** bước `bài tập` của cụm tự điều chỉnh.
 - **LLO/CLO:** LLO7.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Biên tập viên mức 2 theo `brief-muc2-bien-tap-chung.md` và `brief-muc2-lec04.md`. Số trang 74 → 78 (thêm 4 trang cấu trúc); số mạch giữ 7; mọi `data-slide-id` cũ giữ nguyên; không trang nội dung nào đổi mạch hay đổi chỗ.
+
+### Thứ tự mạch mở đầu (NT11)
+
+`RP00` bìa → `RP05` Tiên quyết và quy ước (mới) → `RP03` Mục tiêu học tập → `RP03b` Nội dung → `RP01` Tính đủ của điều kiện KKT (trang theo P5: ví dụ dẫn nhập, vì ghi chú mở bài bằng chính Định lý 03.32 và Ví dụ 03.19) → `RP06` Vấn đề trung tâm (mới) → `RP01b`, `RP02`, `RP04` (trang nội dung của mạch 1 "Điều kiện tối ưu và bước lặp", giữ nguyên chỗ và chữ). `RP01` không dùng làm "Tiên quyết và quy ước" vì trang đó là ví dụ dẫn tới câu hỏi trung tâm, không liệt kê kiến thức tiên quyết.
+
+### Trang thêm
+
+| ID | Tiêu đề | Vị trí | Lý do | Nguồn trong ghi chú |
+|---|---|---|---|---|
+| `RP05` | Tiên quyết và quy ước | sau bìa | NT11: deck chưa có trang nhắc lại kiến thức tiên quyết và quy ước ký hiệu | Kiến thức tiên quyết (Định lý 00.40, 01.25, Định nghĩa 01.39, hệ KKT Bài 03); §2 (ký hiệu $g$, $H$, $\mathcal L$, $L$) |
+| `RP06` | Vấn đề trung tâm | sau `RP01` | NT11: thiếu trang một hộp "Câu hỏi:"; câu trả lời theo mạch ở ghi chú diễn giả | đoạn mở đầu (câu hỏi trung tâm), Câu hỏi mở đầu, §13 |
+| `RZ01d` | Vấn đề trung tâm | sau bảng tổng kết `RZ01c` | NT15: trả lời câu hỏi trung tâm cho cả bài | §10, §11.5, §13, Mệnh đề 04.62 |
+| `RZ04` | Tài liệu tham khảo | cuối deck | NT15: trang cuối gộp "Bài tập về nhà và tài liệu đọc" không thể mang tiêu đề "Tài liệu tham khảo"; tách phần tài liệu thành trang riêng | §14 (đủ năm nguồn: Boyd và Vandenberghe, Murphy, MIT 6.079, Goodfellow và cộng sự, Martens); dòng nối Bài 05 theo §13 |
+
+### Trang đổi
+
+| ID | Đổi |
+|---|---|
+| `RP00` | thêm luận điểm một câu có điều kiện trong khung phụ đề; ghi chú thêm một câu đọc luận điểm và dòng nguồn |
+| `RP03` | chữ mục tiêu giữ nguyên; ghi chú bỏ mã chuẩn đầu ra (LLO, CLO) và câu nguồn gốc "Sáu mục tiêu trùng …" (NT22) |
+| `RP03b` | mỗi mục thành liên kết `#/1`…`#/7`; mục 7 "Tổng kết"; "(đọc thêm)" đứng ngoài liên kết mục 6; thêm dòng đọc trước theo §14 |
+| `RP01`, `RG01`, `RG12`, `RG17`, `RN01`, `RE01`, `RE06`, `RR01`, `RS02` | bỏ nhãn "Nhu cầu:" (NT14), giữ đủ ký hiệu và điều kiện |
+| `RG00`, `RN00`, `RE00`, `RR00`, `RS00`, `RZ00` | dòng dẫn mạch viết lại theo NT12 (20–24 âm tiết, không KaTeX) |
+| `RS00` | ghi chú: "Mạch này là phần đọc thêm" → "Tính tự điều chỉnh và cận sai số thuộc phần đọc thêm" |
+| `RZ00` | tên mạch "7. Tổng hợp và chuyển giao" → "7. Tổng kết" |
+| `RZ01c` | tiêu đề cột "Phương pháp | … | Kết luận" → "Kết quả | Giả thiết không được bỏ | Công thức hoặc thuật toán" (P4); hàng giữ nguyên |
+| `RZ03` | tiêu đề "Bài tập về nhà"; hàng mạch 7 "7. Tổng kết"; dòng tài liệu đọc chuyển sang `RZ04`, thay bằng liên kết "Ghi chú bài giảng · Bài tập"; đoạn ghi chú về Bài 06 chuyển sang `RZ04` |
+
+### Quyết định và ngoại lệ
+
+- **Mạch 7 đổi tên "Tổng kết":** `RZ01`, `RZ01b`, `RZ01c` chỉ tổng hợp kết quả đã có ở mạch 2–6 (cận $\|g\|_2^2/(2\mu)$ ở `RG17`, chuẩn phần dư ở mạch 5, cận tự điều chỉnh ở `RS03`, các định lý hội tụ ở `RG15`, `RG16b`, `RG17b`, `RN07b`); `RZ02`/`RZ02b` là bài tập tổng hợp từ Bài tập 04.15. Không khái niệm mới, nên không cần ngoại lệ.
+- **Bìa `RP00`, SYLL60 82 (trước 44):** luận điểm bắt buộc theo NT11. Lint chỉ đếm vì bìa giữ ID cũ (`STRUCT` "bìa không có ID LNN-1-01"); bìa theo mã `LNN-1-01` được miễn trần.
+- **"Mục tiêu học tập" `RP03`:** chữ giữ nguyên (79/80 âm tiết). Mục 1 (ghi chú: "vừa cần vừa đủ") và mục 3 (ghi chú: "với quay lui Armijo, phân biệt mức giảm của mô hình, mức giảm thực tế và sai số mục tiêu") rút gọn hơn ghi chú; thêm chữ vượt trần 80, nên để tác giả quyết.
+- **Chưa thêm (chờ tác giả):** trang "Câu hỏi tự kiểm tra" của NT15; bảng "Bài tập về nhà" giữ ba cột "Mạch | Ghi chú bài giảng | Tệp bài tập", chưa đánh dấu "(trên lớp)".
+- **Ghi chú trang tiêu đề mạch > 100 âm tiết:** `RG00` 104, `RZ00` 104 (có từ trước, ngoài phạm vi mức 2).
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+Thay cho các dòng tương ứng ở trên khi mâu thuẫn (dòng dẫn mạch 2, 5, 6, 7; luận điểm bìa; "Mục tiêu học tập").
+
+| ID | Sửa | Lý do |
+|---|---|---|
+| `RZ01d` | ý 4 thêm $\nabla^2f\succ0$, $f^*>-\infty$; ý 5 tách: $\delta^2/2$ không chặn sai số (ví dụ $s-\log s$), $\|r\|_2$ chỉ đo mức thỏa KKT; ý 1 rút để giữ trần 60; ghi chú bỏ suy luận "tiến tới nghiệm vì … giảm", nêu giả thiết hội tụ, nói thẳng con số | đủ giả thiết Định lý 04.54; Mệnh đề 04.62(d) |
+| `RP00` | luận điểm: chuẩn gradient và độ giảm Newton chứng nhận dưới giả thiết riêng, chuẩn phần dư chỉ đo mức thỏa KKT; ghi chú thêm $\delta<1$, $\nabla^2f\succ0$, $f^*>-\infty$ | Mệnh đề 04.62(d) |
+| `RZ00` | dòng dẫn mới (24 âm tiết) | như trên |
+| `RS00` | dòng dẫn thêm "nhỏ hơn 1" (25 âm tiết), bỏ "(đọc thêm)" (đã có ở "Nội dung" và ghi chú) | điều kiện $\delta<1$ |
+| `RR00`, `RG00` | đổi khuôn câu; `RG00` nói cả hướng giảm và quay lui | NT12 |
+| `RP05` | "$L$: hằng số Lipschitz của gradient"; "mọi $x,y$" → $\forall x,y$ để giữ 60; ghi chú sửa câu về lồi mạnh | độ chính xác |
+| `RP06` | ghi chú thêm điều kiện của $O(1/k)$ và của cận tự điều chỉnh | NT2 |
+| `RZ04` | §11.1–11.3.1, §11.3.3; dòng nối "Bài 05 đếm chi phí …"; ghi chú đưa lại hai ý về Bài 05b và Bài 06, rút phần lặp danh sách nguồn | §13, §14 |
+| `RP03` | sáu mục tiêu viết đủ nghĩa ghi chú (vừa cần vừa đủ; quay lui Armijo và ba đại lượng; giả thiết của từng kết quả; ba mô hình học) | NT11 |
+
+**Ngoại lệ mật độ (âm tiết theo `deck_lint`):**
+- `RP03` "Mục tiêu học tập": 120, vượt trần 80; dưới mức 120 điều phối viên cho phép cho trang mục tiêu trong đợt này. Vừa khung ở 1600×900, không chạm chân trang, không thu chữ.
+- `RP00` bìa: 93, do luận điểm; bìa mang ID cũ nên bị đếm.
+- `RZ04` "Tài liệu tham khảo": 64 > 60 theo lint, dưới trần 80 của NT17 cho trang tài liệu tham khảo (năm nguồn của §14 và dòng nối).
+- **Bổ sung (2026-11-18, yêu cầu điều phối viên):** `RP03` mục 5 thêm "và" ("… từ điểm khả thi (hệ khối, khử biến) và từ điểm chưa khả thi"); mục 1 "vừa cần vừa đủ" → "cần và đủ" (cùng nghĩa, bớt một âm tiết). Trang giữ 120 âm tiết theo `deck_lint`, vừa khung ở 1600×900 và 390×844.
+- **Bổ sung sau lượt kiểm lại thứ hai (2026-11-18):** dòng dẫn `RR00` → "Bước Newton từ điểm đầu chưa khả thi giảm chuẩn phần dư của hệ KKT thay cho giá trị mục tiêu." (21 âm tiết, khác khuôn `RE00`); ghi chú `RZ01d` nêu đủ giả thiết như `RZ01c` (có điểm cực tiểu cho $O(1/k)$; $\nabla^2f\preceq LI$ và Hessian Lipschitz trên tập mức dưới đóng cho Newton, Định lý 04.37); `RP03` mục 2 mở bằng "Lập bài toán con bậc hai, suy ra …" (vẫn 120). Mục 5 giữ "Giải hệ Newton …": "Lập và giải" đưa trang lên 122 > 120.

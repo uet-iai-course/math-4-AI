@@ -2039,3 +2039,30 @@ Quyết định của điều phối viên: theo D04, mạch 6 (RS) rút còn RS
 Kiểm của điều phối viên: đọc diff; 74 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`; RP03b LINES (ngoại lệ đã ghi); cờ OVERFLOW/NARROW-H ở RG08, RG09b, RG09c, RG10, RN04 là đuôi SVG dấu căn KaTeX bị cắt (báo nhầm). Đã xem ảnh 1600×900 và 390×844 của RP03, RG09c, RG17, RG18b, RN07, RN07b, RS03, RS06, RZ01b, RZ03: vừa khung.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18 ("Sửa deck math-4-AI 00, 01, 02, 03, 04, 05, 06, 07, 10, 11 theo MỨC 2"). Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec04.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi do điều phối viên lập từ `deck_lint --course math-4-AI` (HEAD 2d93133: 73 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` nào từ ghi chú, bài tập hay chỉ mục vào deck (điều phối viên grep toàn repo).
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | bốn lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 chưa đạt (1 nghiêm trọng, 7 trung bình); lượt 2 đạt (3 nhẹ) |
+
+Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu học tập" giữ đủ nghĩa và động từ các mục tiêu của ghi chú (NT11), tối đa 120 âm tiết theo ngoại lệ NT17 cho trang mục tiêu; trang "Tiên quyết và quy ước", "Vấn đề trung tâm" của Tổng kết tối đa 90 với ngoại lệ ghi trong storyboard; trang "Tài liệu tham khảo" trần 80 (NT17), `deck_lint` báo theo trần 60 vì không nhận tiêu đề này; bìa giữ ID cũ nên lint đếm âm tiết bìa (ngoại lệ).
+
+**Các lượt và quyết định của điều phối viên:**
+- Lượt 1: thêm RP05 "Tiên quyết và quy ước", RP06 "Vấn đề trung tâm" (một hộp), RZ01d "Vấn đề trung tâm" của Tổng kết, RZ04 "Tài liệu tham khảo" (§14; RZ03 thành "Bài tập về nhà"); bìa có luận điểm; "Nội dung" có liên kết; dòng dẫn mạch và 9 câu "Nhu cầu:" viết lại; mạch 7 "Tổng kết" (RZ01–RZ01c chỉ tổng hợp kết quả đã có); RZ01c cột P4.
+- Sau lượt 1 (**yêu cầu sửa**, điều phối viên đối chiếu giả thiết Định lý 04.54): RZ01d ý 4 thiếu $\nabla^2f\succ0$, $f^*>-\infty$; bìa và RZ00 nói quá về chuẩn phần dư (Mệnh đề 04.62(d)); ghi chú RZ03 bị rút hai ý ngoài phạm vi → đưa lại vào RZ04 theo §13; ghi chú RP05 đảo nghĩa; RZ01d ý 5 gán ví dụ sai; RS00 thiếu $\delta<1$; RP03 mục tiêu (quyết định chung); nhẹ.
+- Sau lượt 2: RR00 đổi khuôn, ghi chú RZ01d đủ giả thiết, RP03 "Lập …" → **chấp nhận**; RZ04 64 chấp nhận (trần 80).
+
+**Kiểm cuối của điều phối viên** (máy chủ tĩnh tạm 127.0.0.1:8771, bản HEAD 2d93133 ở 8773):
+- `deck_lint`: 48 phát hiện = 42 NOTES150 (cùng tập trang như HEAD, RP03 và RZ03 giảm), 2 REPEAT (có từ trước), STRUCT ID bìa, SYLL60 RP00 93 (bìa), RP03 120/80 (mục tiêu), RZ04 64 (tài liệu tham khảo).
+- `deck_check`: 78 trang, console 0, pageerrors 0, failed 0, `.katex-error` 0; không cờ OVERFLOW mới.
+- `footer_check`: 0 trang (HEAD 0). `formula_overflow` 390 px: trùng HEAD.
+- `git diff --check` sạch. Số trang 74 → 78, mọi `data-slide-id` cũ giữ.
+
+**Còn lại, chờ tác giả:** trang "Câu hỏi tự kiểm tra" và bảng `Mục | Bài tập` có "(trên lớp)" cho "Bài tập về nhà" (NT15); RP03 mục 5 thiếu "Lập" (trần 120); ghi chú trang tiêu đề mạch RG00, RZ00 khoảng 100–104 âm tiết.
+
+**Quyết định:** **chấp nhận**.

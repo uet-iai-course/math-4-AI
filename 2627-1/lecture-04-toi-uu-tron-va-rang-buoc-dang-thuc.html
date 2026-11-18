@@ -21,38 +21,59 @@
   <p class="term">Năm học 2026–2027 · Học kỳ 1</p>
   <div class="panel">
     <p>Ba cơ sở của bước lặp: điều kiện Karush–Kuhn–Tucker (KKT), mô hình cục bộ và quy tắc chọn bước.</p>
+    <p>Với mục tiêu lồi, mỗi bước giải hệ KKT của một mô hình bậc hai và chọn độ dài bước bằng quay lui; chuẩn gradient và độ giảm Newton chứng nhận sai số mục tiêu chỉ dưới giả thiết riêng, còn chuẩn phần dư chỉ đo mức thỏa KKT.</p>
   </div>
 <aside class="notes">
   <p>Bài 03 xây dựng hàm Lagrange và bốn nhóm điều kiện Karush–Kuhn–Tucker (KKT). Với bài toán lồi, một bộ điểm và nhân tử thỏa KKT chứng nhận điểm đó là nghiệm tối ưu toàn cục. Chiều ngược lại, KKT là điều kiện cần, đòi thêm một điều kiện chính quy về ràng buộc (constraint qualification), chẳng hạn Slater. Bài 04 xét hai lớp không có bất đẳng thức: tối ưu không ràng buộc và tối ưu chỉ có ràng buộc đẳng thức. Ở hai lớp này nhân tử đẳng thức tự do dấu và hệ KKT chỉ gồm phương trình.</p>
+  <p>Chuẩn gradient chặn sai số khi biết hằng số lồi mạnh; độ giảm Newton $\delta&lt;1$ chặn sai số khi hàm tự điều chỉnh, $\nabla^2f\succ0$, $f^*&gt;-\infty$; chuẩn phần dư chỉ đo mức thỏa KKT.</p>
+  <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 04, đoạn mở đầu, §11.5, Mệnh đề 04.62.</p>
+</aside>
+</section>
+
+<section data-slide-id="RP05">
+  <h2>Tiên quyết và quy ước</h2>
+  <p><strong>Nhắc lại:</strong></p>
+  <ul>
+    <li>$f\in C^2$ trên tập mở chứa $[x,x+d]$: $f(x+d)=f(x)+\nabla f(x)^Td+\tfrac12d^T\nabla^2f(x)d+o(\|d\|_2^2)$ (Định lý 00.40);</li>
+    <li>$f$ khả vi trên tập mở lồi là lồi khi và chỉ khi $f(y)\ge f(x)+\nabla f(x)^T(y-x)\ \forall x,y$ (Định lý 01.25);</li>
+    <li>$f$ lồi mạnh với hằng số $\mu&gt;0$ nếu $f-\tfrac\mu2\|\cdot\|_2^2$ lồi (Định nghĩa 01.39);</li>
+    <li>hệ KKT: khả thi gốc, khả thi đối ngẫu $\lambda\ge0$, bù trừ, dừng (Bài 03).</li>
+  </ul>
+  <p><strong>Ký hiệu:</strong> $g=\nabla f(x)$, $H=\nabla^2f(x)$ tại điểm lặp $x$; $\mathcal L$: hàm Lagrange; $L$: hằng số Lipschitz của gradient.</p>
+<aside class="notes">
+  <p>Khai triển Taylor bậc hai là cơ sở của mọi mô hình cục bộ trong bài. Điều kiện bậc nhất của hàm lồi cho hệ quả: nếu $\nabla f(x^*)=0$ thì $x^*$ là điểm cực tiểu toàn cục (Hệ quả 01.26); cùng bất đẳng thức đó chứng minh tính đủ của hệ KKT rút gọn. Khi $f$ lớp $C^2$, lồi mạnh với hằng số $\mu$ tương đương $\nabla^2f\succeq\mu I$; hàm lồi mạnh khả vi trên $\mathbb R^n$ có đúng một điểm cực tiểu.</p>
+  <p>Bài 03 viết hàm Lagrange là $L$; Bài 04 viết $\mathcal L$ và dành $L$ cho hằng số Lipschitz của gradient. Bài toán không ràng buộc dùng cặp $(f,x)$, bài toán có ràng buộc đẳng thức dùng $(F,u)$. Câu ôn nhanh: với $P$ đối xứng, $f(x)=\tfrac12x^TPx+q^Tx$ có $\nabla f(x)=Px+q$ và $\nabla^2f(x)=P$.</p>
+  <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 04, Kiến thức tiên quyết, §2.</p>
 </aside>
 </section>
 
 <section data-slide-id="RP03">
   <h2>Mục tiêu học tập</h2>
   <ol class="steps">
-    <li>Viết hệ KKT rút gọn; chứng minh tính đủ khi lồi.</li>
-    <li>Suy ra ba hướng từ mô hình bậc hai: ngược gradient, dốc nhất có trọng số, Newton.</li>
-    <li>Thực hiện bằng số một vòng lặp hạ gradient và Newton.</li>
-    <li>Chứng minh cận hội tụ của hạ gradient; nêu tốc độ của Newton.</li>
-    <li>Giải hệ Newton có đẳng thức: hệ khối, khử biến, điểm chưa khả thi.</li>
-    <li>Xác định tiêu chí dừng nào chặn sai số, dưới giả thiết nào.</li>
+    <li>Viết hệ KKT rút gọn cho hai lớp bài toán; chứng minh hệ cần và đủ khi lồi.</li>
+    <li>Lập bài toán con bậc hai, suy ra hướng ngược gradient, dốc nhất có trọng số, Newton.</li>
+    <li>Thực hiện bằng số một vòng lặp hạ gradient và Newton với quay lui Armijo; phân biệt mức giảm mô hình, mức giảm thực tế, sai số mục tiêu.</li>
+    <li>Chứng minh cận hội tụ của hạ gradient, nêu tốc độ Newton và giả thiết của từng kết quả.</li>
+    <li>Giải hệ Newton có đẳng thức từ điểm khả thi (hệ khối, khử biến) và từ điểm chưa khả thi.</li>
+    <li>Xác định điều mỗi tiêu chí dừng chứng nhận trên ba mô hình học, cùng giả thiết.</li>
   </ol>
 <aside class="notes">
-  <p>Sáu mục tiêu trùng sáu mục tiêu của ghi chú bài giảng. Mục tiêu 1 đo hệ $\nabla f(x^*)=0$ và hệ $\nabla F(u^*)+A^T\nu^*=0$, $Au^*=b$, cùng chứng minh tính đủ ở bài tập KKT với ràng buộc đẳng thức; tính cần nằm trong ghi chú diễn giả và Mệnh đề 04.2 (chuẩn đầu ra bài học (LLO) 6; chuẩn đầu ra học phần (CLO) 1). Mục tiêu 2 đo việc lập bài toán con bậc hai $Q_W$ và giải KKT của nó cho ba hướng (LLO6, LLO9). Mục tiêu 3 đo một vòng lặp bằng số trên hàm bậc hai $\tfrac12(3x_1^2+7x_2^2)$ và hàm $s-\log s$, gồm phép kiểm tra Armijo và việc phân biệt mức giảm mô hình, mức giảm thực tế, sai số mục tiêu (LLO8). Mục tiêu 4 đo các cận $O(1/k)$, cận tuyến tính và định lý hai pha của Newton (LLO8; CLO2). Mục tiêu 5 đo hệ khối, hệ rút gọn và hệ Newton cho phần dư trên bài toán trên đường $u_1+u_2=14$ (LLO9, LLO10). Mục tiêu 6 đo bảng tiêu chí dừng: chuẩn gradient chặn sai số khi biết hằng số lồi mạnh, chuẩn phần dư chỉ đo mức thỏa KKT (LLO7; CLO2). Cận theo độ giảm Newton cho hàm tự điều chỉnh thuộc phần đọc thêm.</p>
+  <p>Mục tiêu 1 đo hệ $\nabla f(x^*)=0$ và hệ $\nabla F(u^*)+A^T\nu^*=0$, $Au^*=b$, cùng chứng minh tính đủ ở bài tập KKT với ràng buộc đẳng thức; tính cần là Mệnh đề 04.2. Mục tiêu 2 đo việc lập bài toán con bậc hai $Q_W$ và giải KKT của nó cho ba hướng. Mục tiêu 3 đo một vòng lặp bằng số trên hàm bậc hai $\tfrac12(3x_1^2+7x_2^2)$ và hàm $s-\log s$, gồm phép kiểm tra Armijo và việc phân biệt mức giảm mô hình, mức giảm thực tế, sai số mục tiêu. Mục tiêu 4 đo các cận $O(1/k)$, cận tuyến tính và định lý hai pha của Newton. Mục tiêu 5 đo hệ khối, hệ rút gọn và hệ Newton cho phần dư trên bài toán trên đường $u_1+u_2=14$. Mục tiêu 6 đo bảng tiêu chí dừng: chuẩn gradient chặn sai số khi biết hằng số lồi mạnh, chuẩn phần dư chỉ đo mức thỏa KKT. Cận theo độ giảm Newton cho hàm tự điều chỉnh thuộc phần đọc thêm.</p>
 </aside>
 </section>
 
 <section data-slide-id="RP03b">
   <h2>Nội dung</h2>
   <ol class="steps">
-    <li>Điều kiện tối ưu và bước lặp</li>
-    <li>Hướng giảm và độ dài bước</li>
-    <li>Phương pháp Newton</li>
-    <li>Newton giữ ràng buộc đẳng thức</li>
-    <li>Newton từ điểm chưa khả thi</li>
-    <li>Tính tự điều chỉnh và cận sai số (đọc thêm)</li>
-    <li>Tổng hợp và chuyển giao</li>
+    <li><a href="#/1">Điều kiện tối ưu và bước lặp</a></li>
+    <li><a href="#/2">Hướng giảm và độ dài bước</a></li>
+    <li><a href="#/3">Phương pháp Newton</a></li>
+    <li><a href="#/4">Newton giữ ràng buộc đẳng thức</a></li>
+    <li><a href="#/5">Newton từ điểm chưa khả thi</a></li>
+    <li><a href="#/6">Tính tự điều chỉnh và cận sai số</a> (đọc thêm)</li>
+    <li><a href="#/7">Tổng kết</a></li>
   </ol>
+  <p>Đọc trước: Boyd và Vandenberghe (2004), §9.1–9.3, §10.1; Murphy (2022), §8.2.</p>
 <aside class="notes">
   <p>Điều kiện KKT là đích chung của mọi phương pháp trong bài (mạch 1). Hướng lấy từ một bài toán con bậc hai: hướng ngược gradient và hướng dốc nhất theo chuẩn có trọng số, cùng số bước của hạ gradient (mạch 2), rồi hướng Newton (mạch 3). Ràng buộc đẳng thức được xử lý khi điểm đầu khả thi (mạch 4) và khi chưa khả thi (mạch 5). Mạch 6 là phần đọc thêm, ứng với §9 của ghi chú bài giảng: giả thiết tự điều chỉnh biến tiêu chí dừng của Newton thành một cận sai số mục tiêu. Mạch 7 đặt các phương pháp vào một khung và áp dụng cho hồi quy ridge có ràng buộc.</p>
   <p>Ví dụ 03.19, hồi quy hai trọng số với ràng buộc chuẩn, mở phần nhắc lại: điều kiện dừng của nó là một hệ phương trình cần giải.</p>
@@ -64,11 +85,28 @@
   <p><strong>Nhắc lại:</strong> với bài toán lồi, khả vi, bộ $(x^*,\lambda^*,\nu^*)$ thỏa KKT chứng nhận $x^*$ tối ưu toàn cục (Định lý 03.32).</p>
   <p><strong>Ví dụ.</strong> Hồi quy với mục tiêu $\tfrac12\|Xw-y\|_2^2$ và $\|w\|_2^2\le\tau$: với $\lambda$ cố định, điều kiện dừng là</p>
   <div class="formula" tabindex="0">$$(X^TX+2\lambda I)w=X^Ty.$$</div>
-  <p><strong>Nhu cầu:</strong> khi số biến lớn hoặc điều kiện dừng phi tuyến, nghiệm phải tìm bằng một dãy điểm lặp.</p>
+  <p>Khi số biến lớn hoặc điều kiện dừng phi tuyến, nghiệm được tìm bằng một dãy điểm lặp.</p>
 <aside class="notes">
   <p>Kết quả chính được dùng lại từ Bài 03 là tính đủ của KKT: trong bài toán lồi, một bộ $(x^*,\lambda^*,\nu^*)$ thỏa bốn nhóm điều kiện chứng nhận $x^*$ là nghiệm tối ưu toàn cục, và tính đủ này không cần Slater. Kết quả đó cho biết điểm cần đạt. Nó chưa cho cách tìm điểm ấy khi hệ điều kiện lớn hoặc phi tuyến.</p>
   <p>Ví dụ 03.19, với ma trận dữ liệu $X$ và vector nhãn $y$, cực tiểu $\tfrac12\|Xw-y\|_2^2$ với $\|w\|_2^2\le\tau$. Điều kiện dừng $X^T(Xw-y)+2\lambda w=0$ được viết lại thành hệ tuyến tính $(X^TX+2\lambda I)w=X^Ty$. Với $X=I_2$, $y=(3,4)^T$, $\tau=1$, hệ cho $w^*=(3/5,4/5)^T$, $\lambda^*=2$ và mất mát tối ưu bằng 8. Khi mục tiêu không bậc hai, như hồi quy logistic, điều kiện dừng là hệ phi tuyến và không giải được bằng biến đổi đại số (Ví dụ 04.1 của ghi chú bài giảng).</p>
   <p>Nguồn: Bài 03, §8.2 (Định lý 03.32) và §8.3 (Ví dụ 03.19); Boyd và Vandenberghe (2004), §5.5.3.</p>
+</aside>
+</section>
+
+<section data-slide-id="RP06">
+  <h2>Vấn đề trung tâm</h2>
+  <div class="question"><p><strong>Câu hỏi:</strong> Với bài toán không ràng buộc và bài toán chỉ có ràng buộc đẳng thức, làm thế nào sinh một dãy điểm tiến tới nghiệm của hệ KKT sao cho mục tiêu giảm ở mỗi bước, và khi nào một điểm lặp được chứng nhận là đủ gần nghiệm?</p></div>
+<aside class="notes">
+  <p>Câu trả lời theo mạch:</p>
+  <ul>
+    <li>mạch 2: hướng ngược gradient và quay lui Armijo làm $f$ giảm ở mỗi bước; cận $O(1/k)$ khi $f$ lồi, đạt cực tiểu và gradient Lipschitz, cận tuyến tính khi thêm lồi mạnh;</li>
+    <li>mạch 3: hướng Newton dùng Hessian tại điểm lặp và hội tụ bậc hai cục bộ; mức giảm mô hình $\delta^2/2$ dùng làm tiêu chí dừng;</li>
+    <li>mạch 4: thêm điều kiện $Ad=0$ vào bài toán con, mọi điểm lặp giữ $Au=b$;</li>
+    <li>mạch 5: từ điểm chưa khả thi, tuyến tính hóa hệ KKT và giảm chuẩn phần dư;</li>
+    <li>mạch 6 (đọc thêm): với hàm tự điều chỉnh, $\nabla^2f\succ0$, $f^*&gt;-\infty$ và $\delta&lt;1$, $f(x)-f^*\le-\delta-\log(1-\delta)$.</li>
+  </ul>
+  <p>Câu hỏi mở đầu của ghi chú bài giảng dùng $\varphi(s)=s-\log s$ tại $s^0=1/4$: mức giảm dự báo $9/32\approx0{,}28$ của parabol bậc hai không chặn được sai số $\varphi(1/4)-\varphi^*=\log4-3/4\approx0{,}64$.</p>
+  <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 04, đoạn mở đầu, Câu hỏi mở đầu, §13.</p>
 </aside>
 </section>
 
@@ -133,7 +171,7 @@
 <section data-slide-id="RG00" class="strand-title" id="mach-2">
   <div class="strand-title-body">
     <h2><span class="strand-number">2.</span> Hướng giảm và độ dài bước</h2>
-    <p class="strand-lead">Nhu cầu: chọn hướng làm $f$ giảm và độ dài bước, rồi đếm số bước để $f(x^k)-f^*\le\varepsilon$.</p>
+    <p class="strand-lead">Hướng giảm và quay lui Armijo làm mục tiêu giảm ở mỗi bước; hạ gradient có cận số bước tới sai số cho trước.</p>
     <p class="strand-keys">Đạo hàm hướng · quay lui Armijo · hướng dốc nhất · gradient Lipschitz · tốc độ hội tụ</p>
   </div>
 <aside class="notes">
@@ -146,7 +184,7 @@
 <div class="lec-grid lec-grid--45-55">
 <div>
 <img class="plot" src="img/lec-04/descent-directions.svg" alt="Các đường mức của f(x)=½(3x₁²+7x₂²) và ba hướng tại x⁰=(2,4) với gᵀd âm, bằng không và dương">
-<p><strong>Nhu cầu:</strong> <span class="math-nowrap">$f=\tfrac12(3x_1^2+7x_2^2)$</span> tại <span class="math-nowrap">$x^0=(2,4)^T$</span> có <span class="math-nowrap">$g=(6,28)^T\ne0$;</span> cần hướng làm $f$ giảm, độ dài bước và số bước tới sai số $\varepsilon$.</p>
+<p><span class="math-nowrap">$f=\tfrac12(3x_1^2+7x_2^2)$</span> tại <span class="math-nowrap">$x^0=(2,4)^T$</span> có <span class="math-nowrap">$g=(6,28)^T\ne0$,</span> nên cần hướng làm $f$ giảm, độ dài bước và số bước tới sai số $\varepsilon$.</p>
 </div>
 <div>
 <div class="panel">
@@ -401,7 +439,7 @@
 
 <section data-slide-id="RG12">
 <h2>Gradient Lipschitz</h2>
-<p><strong>Nhu cầu:</strong> đếm số bước hạ gradient với bước $t=1/L$ để $f(x^k)-f^*\le\varepsilon$, $f^*=\inf f$.</p>
+<p>Đếm số bước hạ gradient với bước $t=1/L$ để $f(x^k)-f^*\le\varepsilon$, $f^*=\inf f$.</p>
 <div class="lec-grid lec-grid--40-60">
 <div>
 <img class="plot" src="img/lec-04/lipschitz-upper-bound.svg" alt="Hàm mất mát logistic f(s)=log(1+e^s), parabol cận trên với L=1/4 và tiếp tuyến tại s=1: parabol nằm trên f, tiếp tuyến nằm dưới f.">
@@ -501,7 +539,7 @@
 
 <section data-slide-id="RG17">
 <h2>Hàm lồi mạnh</h2>
-<p><strong>Nhu cầu:</strong> với $f=\tfrac12(3x_1^2+7x_2^2)$, cận $O(1/k)$ đòi $7000$ bước cho sai số $0{,}01$, còn $t=1/7$ cho $f(x^k)=6\,(16/49)^k$, $k\ge1$.</p>
+<p>Với $f=\tfrac12(3x_1^2+7x_2^2)$, cận $O(1/k)$ đòi $7000$ bước cho sai số $0{,}01$, còn $t=1/7$ cho $f(x^k)=6\,(16/49)^k$, $k\ge1$.</p>
 <p><strong>Trực quan.</strong> Đồ thị $f$ nằm trên một parabol độ cong $\mu$ tựa tại mỗi điểm.</p>
 <p><strong>Nhắc lại:</strong> $f$ lồi mạnh với hằng số $\mu&gt;0$ nếu $f-\tfrac\mu2\|\cdot\|_2^2$ lồi (Định nghĩa 01.39).</p>
 <p><strong>Mệnh đề.</strong> Nếu $f$ khả vi trên $\mathbb R^n$, lồi mạnh với hằng số $\mu$ thì với mọi $x,y$:</p>
@@ -561,7 +599,7 @@
 <section data-slide-id="RN00" class="strand-title" id="mach-3">
   <div class="strand-title-body">
     <h2><span class="strand-number">3.</span> Phương pháp Newton</h2>
-    <p class="strand-lead">Nhu cầu: thay $W$ cố định bằng Hessian tại từng điểm, chọn tiêu chí dừng và đếm số bước.</p>
+    <p class="strand-lead">Hướng Newton dùng Hessian tại từng điểm lặp và hội tụ bậc hai gần nghiệm khi hàm lồi mạnh, Hessian Lipschitz.</p>
     <p class="strand-keys">Mô hình bậc hai · hệ Newton · độ giảm Newton · hội tụ bậc hai</p>
   </div>
 <aside class="notes">
@@ -571,7 +609,7 @@
 
 <section data-slide-id="RN01">
 <h2>Mô hình bậc hai cục bộ</h2>
-<p><strong>Nhu cầu:</strong> với $\varphi(s)=s-\log s$, độ cong $1/s^2$ đổi theo $s$: cần hướng theo $H$ tại điểm hiện tại, tiêu chí dừng và số bước.</p>
+<p>Với $\varphi(s)=s-\log s$, độ cong $1/s^2$ đổi theo $s$, nên cần hướng theo $H$ tại điểm hiện tại, tiêu chí dừng và số bước.</p>
 <div class="lec-grid ratio60"><div>
 <img class="plot" src="img/lec-04/phi-local-model.svg" alt="Hàm φ(s)=s−log s, tiếp tuyến và parabol bậc hai tại s=1/4; parabol khớp gần điểm hiện tại rồi tách khỏi hàm gốc.">
 </div><div class="panel"><p><strong>Ví dụ.</strong> <span class="math-nowrap">$\varphi(s)=s-\log s$</span> ($\log$ tự nhiên), $s&gt;0$, nghiệm $s^*=1$.</p>
@@ -752,7 +790,7 @@
 <section data-slide-id="RE00" class="strand-title" id="mach-4">
   <div class="strand-title-body">
     <h2><span class="strand-number">4.</span> Newton giữ ràng buộc đẳng thức</h2>
-    <p class="strand-lead">Muốn mọi điểm lặp thỏa $Au=b$ khi điểm đầu đã khả thi.</p>
+    <p class="strand-lead">Từ một điểm đầu khả thi, bước Newton có thêm ràng buộc trên hướng giữ mọi điểm lặp trong tập khả thi.</p>
     <p class="strand-keys">Hướng khả thi · hệ khối KKT · khử biến · Newton khả thi</p>
   </div>
 <aside class="notes">
@@ -767,7 +805,7 @@
       <img class="plot" src="img/lec-04/equality-start-new.svg" alt="Hai trục u1, u2 với đường thẳng u1 + u2 = 14, điểm khả thi (16, −2) và điểm nghiệm (10, 4) nằm trên đường đó; không có điều kiện không âm.">
     </div>
     <div>
-      <p><strong>Nhu cầu:</strong> từ $(16,-2)^T$ khả thi, bước Newton phải giữ $u_1+u_2=14$.</p>
+      <p>Từ $(16,-2)^T$ khả thi, bước Newton phải giữ $u_1+u_2=14$.</p>
       <p>Bài toán: $\min_u F(u)$ với $Au=b$, <span class="math-nowrap">$A\in\mathbb R^{p\times n}$.</span></p>
       <p><strong>Ví dụ.</strong> $F=\tfrac12(2u_1^2+5u_2^2)$, $A=[1\ 1]$, $b=14$; điểm đầu khả thi <span class="math-nowrap">$(16,-2)^T$.</span></p>
       <p>Hệ KKT: $2u_1+\nu=0$, $5u_2+\nu=0$, $u_1+u_2=14$.</p>
@@ -860,7 +898,7 @@
 
 <section data-slide-id="RE06">
 <h2>Hệ Newton rút gọn</h2>
-<p><strong>Nhu cầu:</strong> phân rã Cholesky cần ma trận xác định dương, nên không áp dụng trực tiếp cho hệ khối.</p>
+<p>Phân rã Cholesky cần ma trận xác định dương, nên không áp dụng trực tiếp cho hệ khối.</p>
 <p><strong>Ký hiệu:</strong> $A\hat u=b$; cột của <span class="math-nowrap">$Z\in\mathbb R^{n\times(n-p)}$</span> là cơ sở của $\ker A$; $u=\hat u+Zz$, $d=Z\Delta z$.</p>
 <p>Nhân hàng dừng với $Z^T$, dùng $Z^TA^T=0$:</p>
 <div class="formula emphasis" tabindex="0">$$Z^T(g+HZ\Delta z+A^T\eta)=0\ \Rightarrow\ Z^THZ\Delta z=-Z^Tg.$$</div>
@@ -925,7 +963,7 @@
 <section data-slide-id="RR00" class="strand-title" id="mach-5">
   <div class="strand-title-body">
     <h2><span class="strand-number">5.</span> Newton từ điểm chưa khả thi</h2>
-    <p class="strand-lead">Nhu cầu: điểm đầu chưa thỏa $Au=b$; mỗi bước phải giảm chuẩn của phần dư KKT.</p>
+    <p class="strand-lead">Bước Newton từ điểm đầu chưa khả thi giảm chuẩn phần dư của hệ KKT thay cho giá trị mục tiêu.</p>
     <p class="strand-keys">Phần dư đối ngẫu và gốc · tuyến tính hóa · cập nhật nhân tử · chuẩn phần dư</p>
   </div>
 <aside class="notes">
@@ -935,7 +973,7 @@
 
 <section data-slide-id="RR01">
 <h2>Phần dư KKT</h2>
-<p><strong>Nhu cầu:</strong> đo vi phạm KKT tại điểm chưa khả thi, với nhân tử ước lượng $\nu$.</p>
+<p>Tại điểm chưa khả thi, với nhân tử ước lượng $\nu$, mức vi phạm KKT được đo bằng hai phần dư.</p>
 <p><strong>Trực quan.</strong> $r_d$, $r_p$ là vế trái hai phương trình KKT tại điểm hiện tại; bằng 0 đúng tại nghiệm.</p>
 <div class="panel"><p><strong>Định nghĩa.</strong> Với $u\in\operatorname{dom}F$, $\nu\in\mathbb R^p$:</p>
 <div class="formula" tabindex="0">$$r_d=\nabla F(u)+A^T\nu,\qquad r_p=Au-b.$$</div></div>
@@ -1066,11 +1104,11 @@
 <section data-slide-id="RS00" class="strand-title" id="mach-6">
   <div class="strand-title-body">
     <h2><span class="strand-number">6.</span> Tính tự điều chỉnh và cận sai số</h2>
-    <p class="strand-lead">Muốn biết khi nào độ giảm Newton chặn được sai số $f(x)-f^*$ (đọc thêm).</p>
+    <p class="strand-lead">Khi tốc độ đổi của độ cong bị chặn theo chính độ cong, độ giảm Newton nhỏ hơn 1 chặn được sai số mục tiêu.</p>
     <p class="strand-keys">Biến thiên độ cong · hàm tự điều chỉnh · cận sai số theo độ giảm Newton</p>
   </div>
 <aside class="notes">
-  <p>Mạch này là phần đọc thêm, ứng với §9 của ghi chú bài giảng. Newton, Newton khả thi và Newton từ điểm chưa khả thi dừng theo $\delta_N^2/2$, $\delta_{eq}^2/2$ hoặc chuẩn phần dư. Trên hàm $s-\log s$ tại $s=1/4$, mức giảm mô hình $9/32$ nhỏ hơn sai số mục tiêu $\log4-3/4$, nên tiêu chí trên mô hình chưa chặn sai số. Giả thiết tự điều chỉnh so đạo hàm bậc ba với lũy thừa $3/2$ của độ cong và cho cận $f(x)-f^*\le-\delta-\log(1-\delta)$ khi $\delta&lt;1$; tại điểm khả thi, cận áp dụng cho bài toán có đẳng thức qua hàm rút gọn.</p>
+  <p>Tính tự điều chỉnh và cận sai số thuộc phần đọc thêm, ứng với §9 của ghi chú bài giảng. Newton, Newton khả thi và Newton từ điểm chưa khả thi dừng theo $\delta_N^2/2$, $\delta_{eq}^2/2$ hoặc chuẩn phần dư. Trên hàm $s-\log s$ tại $s=1/4$, mức giảm mô hình $9/32$ nhỏ hơn sai số mục tiêu $\log4-3/4$, nên tiêu chí trên mô hình chưa chặn sai số. Giả thiết tự điều chỉnh so đạo hàm bậc ba với lũy thừa $3/2$ của độ cong và cho cận $f(x)-f^*\le-\delta-\log(1-\delta)$ khi $\delta&lt;1$; tại điểm khả thi, cận áp dụng cho bài toán có đẳng thức qua hàm rút gọn.</p>
 </aside>
 </section>
 
@@ -1081,7 +1119,7 @@
       <img class="plot" src="img/lec-04/self-concordance-ratio.svg" alt="Đồ thị tỷ số trị tuyệt đối đạo hàm bậc ba chia lũy thừa ba phần hai của đạo hàm bậc hai của hàm s − log s trên s &gt; 0: đường nằm ngang ở mức 2, minh họa bất đẳng thức |φ‴| ≤ 2(φ'')^{3/2} đúng với mọi s.">
     </div>
     <div>
-      <p><strong>Nhu cầu:</strong> với $\varphi=s-\log s$ tại $s=1/4$, mức giảm mô hình $9/32$ nhỏ hơn sai số $\log4-3/4$; $\varphi''=1/s^2$ không bị chặn.</p>
+      <p>Với $\varphi=s-\log s$ tại $s=1/4$, mức giảm mô hình $9/32$ nhỏ hơn sai số $\log4-3/4$; $\varphi''=1/s^2$ không bị chặn.</p>
       <p><strong>Trực quan.</strong> Chặn tốc độ thay đổi của độ cong theo thang của chính độ cong.</p>
       <div class="panel">
         <p><strong>Định nghĩa.</strong> Hàm lồi $f\in C^3$ trên miền mở lồi gọi là <em>tự điều chỉnh</em> (self-concordant) nếu với mọi $x\in\operatorname{dom}f$, $v\in\mathbb R^n$:</p>
@@ -1129,8 +1167,8 @@
 <section>
 <section data-slide-id="RZ00" class="strand-title" id="mach-7">
   <div class="strand-title-body">
-    <h2><span class="strand-number">7.</span> Tổng hợp và chuyển giao</h2>
-    <p class="strand-lead">Nhu cầu: đặt các phương pháp vào một khung chung và áp dụng cho hồi quy ridge có ràng buộc.</p>
+    <h2><span class="strand-number">7.</span> Tổng kết</h2>
+    <p class="strand-lead">Mỗi bước giải KKT của mô hình bậc hai; chỉ chuẩn gradient và độ giảm Newton chặn được sai số, dưới giả thiết riêng.</p>
     <p class="strand-keys">Khung bước lặp · tiêu chí dừng · cận sai số · hồi quy ridge</p>
   </div>
 <aside class="notes">
@@ -1170,7 +1208,7 @@
 
 <section data-slide-id="RZ01c">
 <h2>Định lý hội tụ</h2>
-<div class="table-scroll" tabindex="0"><table><thead><tr><th>Phương pháp</th><th>Giả thiết không được bỏ</th><th>Kết luận</th></tr></thead><tbody>
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead><tbody>
 <tr><td>Hạ gradient, <span class="math-nowrap">$t=1/L$</span></td><td>lồi, $\nabla f$ $L$-Lipschitz, đạt cực tiểu</td><td><span class="math-nowrap">$f(x^k)-f^*\le\frac{L\|x^0-x^*\|_2^2}{2k}$</span></td></tr>
 <tr><td>Hạ gradient, quay lui</td><td>như trên, $\alpha=\tfrac12$</td><td><span class="math-nowrap">$f(x^k)-f^*\le\frac{\|x^0-x^*\|_2^2}{2t_{\min}k}$</span></td></tr>
 <tr><td>Hạ gradient, <span class="math-nowrap">$t=1/L$</span></td><td>thêm lồi mạnh $\mu$</td><td>$e_k\le(1-\mu/L)^ke_0$</td></tr>
@@ -1179,6 +1217,22 @@
 <aside class="notes">
   <p>Bốn định lý chặn tốc độ giảm sai số mục tiêu, mỗi định lý dưới giả thiết riêng. Hai cận $O(1/k)$ chỉ dùng tính lồi và gradient $L$-Lipschitz; cận tuyến tính cần thêm lồi mạnh và phụ thuộc số điều kiện $\kappa=L/\mu$. Số bước của Newton gồm pha tắt dần, tỷ lệ với $f(x^0)-f^*$, và pha bậc hai, chỉ tăng theo $\log_2\log_2(1/\varepsilon)$. Với hàm tự điều chỉnh, cận số bước của Newton không phụ thuộc hằng số $\mu$, $L$, $L_H$ (Định lý 04.57, phần đọc thêm; Boyd và Vandenberghe, §9.6.4).</p>
   <p>Với một mô hình học có ràng buộc đẳng thức, gradient và Hessian của hàm mất mát cho trực tiếp các khối của hệ trong khung này.</p>
+</aside>
+</section>
+
+<section data-slide-id="RZ01d">
+<h2>Vấn đề trung tâm</h2>
+<ul>
+<li>Mỗi bước giải $Wd=-g$, KKT của mô hình $Q_W$: $W=I$ cho hạ gradient, $W=H$ cho Newton.</li>
+<li>Đẳng thức: thêm $Ad=0$ từ điểm khả thi; tuyến tính hóa hệ KKT từ điểm chưa khả thi.</li>
+<li>Quay lui Armijo $f(x+td)\le f(x)+\alpha t\,g^Td$ làm $f$ giảm; từ điểm chưa khả thi, $\|r\|_2$ giảm.</li>
+<li>Chứng nhận: $f(x)-f^*\le\|\nabla f(x)\|_2^2/(2\mu)$ khi lồi mạnh; $f(x)-f^*\le-\delta-\log(1-\delta)$ khi tự điều chỉnh, $\nabla^2f\succ0$, $f^*&gt;-\infty$, $\delta&lt;1$.</li>
+<li>$\delta^2/2$ không chặn sai số (tại $s=1/4$ của $s-\log s$, $9/32&lt;\log4-3/4$); $\|r\|_2$ chỉ đo mức thỏa KKT.</li>
+</ul>
+<aside class="notes">
+  <p>Mục tiêu hoặc chuẩn phần dư giảm ở mỗi bước chưa đủ cho hội tụ; các định lý của bảng tổng kết cần thêm giả thiết: gradient Lipschitz và có điểm cực tiểu cho cận $O(1/k)$, thêm lồi mạnh cho cận tuyến tính, lồi mạnh, $\nabla^2f\preceq LI$ và Hessian Lipschitz trên tập mức dưới đóng cho Newton. Điểm lặp được chứng nhận đủ gần nghiệm chỉ qua một cận có giả thiết riêng (Mệnh đề 04.62).</p>
+  <p>Tại $s=1/4$ của $\varphi(s)=s-\log s$, mức giảm dự báo $9/32\approx0{,}281$ nhỏ hơn sai số $\log4-3/4\approx0{,}636$, vì parabol dùng độ cong $16$, lớn hơn độ cong của $\varphi$ trên phần còn lại của $[1/4,1]$. Với hồi quy logistic có chính quy hóa, $\mu=\rho=0{,}1$ và $\|\nabla J(w^2)\|_2\approx0{,}0359$ cho cận $6{,}4\cdot10^{-3}$; $J$ không tự điều chỉnh nên $\tfrac12\delta^2\approx6{,}6\cdot10^{-5}$ không chứng nhận sai số.</p>
+  <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 04, §10, §11.5, §13 (Mệnh đề 04.62).</p>
 </aside>
 </section>
 
@@ -1210,7 +1264,7 @@
 </section>
 
 <section data-slide-id="RZ03">
-<h2>Bài tập về nhà và tài liệu đọc</h2>
+<h2>Bài tập về nhà</h2>
 <div class="table-scroll" tabindex="0"><table><thead><tr><th>Mạch</th><th>Ghi chú bài giảng</th><th>Tệp bài tập</th></tr></thead><tbody>
 <tr><td>1. Điều kiện tối ưu và bước lặp</td><td>04.1</td><td>—</td></tr>
 <tr><td>2. Hướng giảm và độ dài bước</td><td>04.2, 04.3, 04.4, 04.14</td><td>04.20, 04.23</td></tr>
@@ -1218,14 +1272,30 @@
 <tr><td>4. Newton giữ ràng buộc đẳng thức</td><td>04.7, 04.8, 04.12, 04.13</td><td>04.25, 04.26, 04.27</td></tr>
 <tr><td>5. Newton từ điểm chưa khả thi</td><td>04.9</td><td>04.17, 04.18</td></tr>
 <tr><td>6. Tính tự điều chỉnh và cận sai số (đọc thêm)</td><td>04.10</td><td>04.24, 04.28, 04.29</td></tr>
-<tr><td>7. Tổng hợp và chuyển giao</td><td>04.11, 04.15</td><td>04.30</td></tr>
+<tr><td>7. Tổng kết</td><td>04.11, 04.15</td><td>04.30</td></tr>
 </tbody></table></div>
-<p>Tài liệu đọc: Boyd và Vandenberghe (2004), §5.5.3, §§9.2–9.6, 10.1–10.3; MIT 6.079, bài giảng 16–17.</p>
+<p><a href="material-viewer.html?doc=materials/lec-04/lecture-note.md&amp;deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html">Ghi chú bài giảng</a> · <a href="material-viewer.html?doc=materials/lec-04/exercises.md&amp;deck=lecture-04-toi-uu-tron-va-rang-buoc-dang-thuc.html">Bài tập</a></p>
 <aside class="notes">
   <p>Cột giữa là các bài tập đánh số trong ghi chú bài giảng (Bài tập 04.1–04.15), cột phải là các bài trong tệp bài tập (Bài tập 04.16–04.31), lấy từ Boyd và Vandenberghe (2004), chương 9–11, và Kupferschmid (2023), chương 13. Mỗi bài có gợi ý và lời giải gập để đối chiếu.</p>
   <p>Bài tập 04.1 đo hệ KKT rút gọn và dấu nhân tử. Bài tập 04.2–04.4 đo quay lui Armijo, hướng dốc nhất có trọng số và ngưỡng phân kỳ của bước cố định; 04.14 bỏ tính lồi khỏi cận của hạ gradient; 04.20 và 04.23 đo giả thiết tập mức dưới và chặn dưới bước quay lui. Bài tập 04.5, 04.6, 04.16, 04.21, 04.22 đo hướng Newton, độ giảm Newton, phân rã Cholesky và miền hội tụ của bước đầy đủ. Bài tập 04.7, 04.8, 04.12, 04.13, 04.25–04.27 đo hệ khối, hệ rút gọn và tính khả nghịch của ma trận khối; 04.9, 04.17, 04.18 đo hệ Newton cho phần dư KKT. Bài tập 04.10, 04.24, 04.28, 04.29 thuộc phần đọc thêm về tính tự điều chỉnh; 04.19 và 04.31 thuộc phần đọc thêm về phương pháp hàm chắn (§9.4 của ghi chú). Bài tập 04.11 (đúng hay sai), 04.15 (thang đo đặc trưng và số điều kiện) và 04.30 (cực đại entropy có ràng buộc đẳng thức) dùng kiến thức của nhiều mạch.</p>
   <p>Nguồn: Boyd và Vandenberghe (2004), §5.5.3 về KKT, chương 9 về tối ưu không ràng buộc, chương 10 về ràng buộc đẳng thức; MIT 6.079, mùa thu 2009, bài giảng 16 và 17.</p>
-  <p>Bài 06 (mở rộng mô hình và dữ liệu) thay gradient đầy đủ bằng gradient trên lô nhỏ (mini-batch) và xét hàm mất mát không lồi; ở đó $\nabla f=0$ chỉ xác định điểm dừng, không còn chứng nhận tối ưu toàn cục như tính đủ của KKT, và mục tiêu chỉ có ước lượng nên phép kiểm tra Armijo không áp dụng nguyên dạng.</p>
+</aside>
+</section>
+
+<section data-slide-id="RZ04">
+<h2>Tài liệu tham khảo</h2>
+<ul>
+<li>Boyd và Vandenberghe (2004), <em>Convex Optimization</em>: §5.5.3, §9.1–9.6, §10.1–10.4, §11.1–11.3.1, §11.3.3.</li>
+<li>Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>: §8.2, §8.3.1, §10.2.6.</li>
+<li>Boyd, MIT OpenCourseWare 6.079 (2009), bài giảng 16–17.</li>
+<li>Goodfellow, Bengio và Courville (2016), <em>Deep Learning</em>: §4.3, §8.2, §8.5–8.6.</li>
+<li>Martens (2010), <em>Deep learning via Hessian-free optimization</em>, ICML.</li>
+</ul>
+<p>Bài 05 đếm chi phí mỗi bước của hạ gradient và Newton khi số đặc trưng tăng.</p>
+<aside class="notes">
+  <p>Trước buổi học: Boyd và Vandenberghe §9.1–9.3, §10.1; Murphy §8.2. Các mục còn lại của Boyd và Vandenberghe, Murphy và slide MIT 6.079 (giấy phép CC BY-NC-SA 4.0) đọc sau buổi học; Goodfellow và cộng sự, Martens (Newton không lập Hessian) là phần mở rộng.</p>
+  <p>Mọi phương pháp của bài dùng gradient trên toàn bộ dữ liệu và giả thiết mất mát lồi. Bài 05b chứng minh hội tụ cho hàm không lồi, khi $\nabla f=0$ chỉ là điều kiện cần, không còn chứng nhận tối ưu toàn cục, và cho gradient ngẫu nhiên, kế thừa bổ đề giảm. Bài 06 dùng gradient trên lô nhỏ (mini-batch), khi giá trị mất mát chỉ là ước lượng nên quay lui Armijo không áp dụng nguyên dạng.</p>
+  <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 04, §13, §14.</p>
 </aside>
 </section>
 
