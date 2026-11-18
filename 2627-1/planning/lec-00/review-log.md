@@ -316,3 +316,31 @@ Quyết định của điều phối viên: lập `planning/lec-00/storyboard.md
 Kiểm của điều phối viên: đọc diff; 92 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`; P02 LINES (ngoại lệ đã ghi); cờ OVERFLOW/NARROW-H ở A02, B10, C08, C12, D08 là đuôi SVG dấu căn KaTeX bị cắt (báo nhầm). Đã xem ảnh 1600×900 và 390×844 của P01, A06, A11, B11B, B12, C12, D07, D08, E04, E07: vừa khung.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18 ("Sửa deck math-4-AI 00, 01, 02, 03, 04, 05, 06, 07, 10, 11 theo MỨC 2"). Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec00.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi do điều phối viên lập từ `deck_lint --course math-4-AI` (HEAD 2d93133: 55 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` nào từ ghi chú, bài tập hay chỉ mục vào deck (điều phối viên grep toàn repo).
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | ba lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 chưa đạt (2 nghiêm trọng, 2 trung bình); lượt 2 chưa đạt (P01, NT9) |
+
+Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu học tập" giữ đủ nghĩa và động từ các mục tiêu của ghi chú (NT11), tối đa 120 âm tiết theo ngoại lệ NT17 cho trang mục tiêu; trang "Tiên quyết và quy ước", "Vấn đề trung tâm" của Tổng kết tối đa 90 với ngoại lệ ghi trong storyboard; trang "Tài liệu tham khảo" trần 80 (NT17), `deck_lint` báo theo trần 60 vì không nhận tiêu đề này; bìa giữ ID cũ nên lint đếm âm tiết bìa (ngoại lệ).
+
+**Các lượt và quyết định của điều phối viên:**
+- Lượt 1: thêm P00a "Tiên quyết và quy ước", P03 "Vấn đề trung tâm" (một hộp), E08 "Vấn đề trung tâm" của Tổng kết, E09 "Tài liệu tham khảo" (§11) với dòng nối Bài 01 và liên kết trình xem; bìa có luận điểm; P01 đổi tên "Mục tiêu học tập"; "Nội dung" có liên kết `#/1`–`#/7`; dòng dẫn mạch và 21 câu "Nhu cầu:" viết lại; D04 nhãn theo NT19; E07 "Bảng tổng kết" với cột P4. Điều phối viên thêm hai bộ chọn trong `lecture-course.css` để chân trang hiện ở P00a, P03 (như P01, P02).
+- Ngoại lệ tên mạch 7 "Tổng hợp mô hình giá nhà" (không đổi thành "Tổng kết"): mạch có Định nghĩa 00.74 (quá khớp, E05) và thuật ngữ dải nhiễu (§8.1), là khái niệm mới, NT15 không cho trong "Tổng kết"; người kiểm lại xác nhận lý do đứng → chờ tác giả.
+- Sau lượt 1 (**yêu cầu sửa**): bìa thiếu "cùng phương sai", "coi trọng số bằng $w_{\mathrm{LS}}$" (§8.1, §8.3); E08 viết $\sigma^2=\mathrm{SSE}/m$ (đồng nhất phương sai đã biết với ước lượng); B01 mới chạm chân trang; P00a thiếu giả thiết điều kiện cực trị; P01 mục tiêu đủ nghĩa (quyết định chung); các điểm nhẹ.
+- Sau lượt 2: P01 dùng ký hiệu $Xw=y$, $\nabla f$, $w_{\mathrm{LS}}$, (P1) trên trang tổng quan (NT9) → viết bằng lời theo ghi chú, một số vế chuyển xuống ghi chú diễn giả để giữ 120; P00a, E08 nhẹ. Điều phối viên đọc lại mặt trang P01 (không còn ký hiệu) → **chấp nhận**.
+
+**Kiểm cuối của điều phối viên** (máy chủ tĩnh tạm 127.0.0.1:8771, bản HEAD 2d93133 ở 8773):
+- `deck_lint`: 9 phát hiện, đều là ngoại lệ ghi trong storyboard: SYLL60 P00 70 (bìa), P00a 67 (≤ 90), P01 120/80 (mục tiêu), E09 73 (tài liệu tham khảo, trần 80), E06 61 (có từ trước); NOTES150 B12, E07 (có từ trước); STRUCT ID bìa, tên mạch 7 (ngoại lệ trên).
+- `deck_check`: 96 trang, console 0, pageerrors 0, failed 0, `.katex-error` 0; không cờ OVERFLOW mới so với HEAD.
+- `footer_check` 1600×900: 8 trang, trùng HEAD (H02, A06, B07, B19, C04, C05, C12, C13). `formula_overflow` 390 px: 19 trang, trùng HEAD.
+- `git diff --check` sạch. Số trang 92 → 96, mọi `data-slide-id` cũ giữ.
+
+**Còn lại, chờ tác giả:** tên mạch 7; trang "Câu hỏi tự kiểm tra" và "Bài tập về nhà" của NT15; một số vế mục tiêu chỉ ở ghi chú diễn giả (P01, trần 120); trang chạm chân trang và công thức tràn 390 px có từ trước.
+
+**Quyết định:** **chấp nhận**.

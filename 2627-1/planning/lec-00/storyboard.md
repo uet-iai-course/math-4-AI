@@ -166,3 +166,67 @@ Cột "Âm tiết" ghi số âm tiết chữ trên mặt trang do `deck_check.py
 | E06 | Bài tập: tổng hợp mô hình giá nhà | Bài tập tổng hợp | E05 → E06L | Bài tập lời giải trên mặt trang (câu 1, 2, 5) | MT1–MT5 | 54 → 58 | `sửa`: câu 4 thành Bài tập 00.2 câu 3 (câu nhiễu–phần dư cũ trùng C14). Lượt sửa 1: câu 2 "một bước hạ gradient" (#3) |
 | E06L | Bài tập: tổng hợp mô hình giá nhà | Lời giải | E06 → E07 | Lời giải | MT1–MT5 | 44 → 44 | `sửa`: nguồn. Lượt sửa 1: bộ số dùng ";" (#8) |
 | E07 | Tổng kết | Bảng kết quả, giả thiết, công thức; tài liệu đọc | E06L → hết | Tổng kết sườn | MT1–MT5 | 61 → 49 | `sửa` (F5): thêm dòng điều kiện tối ưu, bỏ dòng gradient (không có giả thiết riêng), rút ô để hết tràn. Lượt sửa 1: dòng dải nhiễu thêm (P1) (#1) |
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Phạm vi: NT10–NT16, NT19, NT22 theo `nhat-ky/ke-hoach-sua-deck-theo-NT.md` mục "Mức 2". Giữ đủ 92 mã cũ, thêm 4 trang (96 trang lá), bảy `<section>` ngoài không đổi. Số âm tiết lấy từ cách đếm của `deck_lint.py` (mặt trang, không tính tiêu đề, KaTeX).
+
+**Mạch mở đầu (NT11).** Thứ tự mới: `P00` bìa → `P00a` "Tiên quyết và quy ước" (thêm) → `P01` "Mục tiêu học tập" → `P02` "Nội dung" → `P03` "Vấn đề trung tâm" (thêm). Không có trang ngữ cảnh hay ví dụ dẫn nhập (P5); bộ dữ liệu bốn căn nằm ở mạch 2.
+
+**Trang thêm.**
+
+| Mã | Tiêu đề | Lý do | Nguồn trong ghi chú | Âm tiết |
+|---|---|---|---|---:|
+| `P00a` | Tiên quyết và quy ước | NT11: deck thiếu trang tiên quyết; "Nhắc lại:" bốn dòng gom tám sự kiện tiên quyết, "Ký hiệu:" quy ước vector cột, chữ hoa cho biến ngẫu nhiên, dấu thập phân | Kiến thức tiên quyết; §2 | 60 |
+| `P03` | Vấn đề trung tâm | NT11, NT9: một hộp "Câu hỏi:" nêu câu hỏi trung tâm (dòng 3 của ghi chú); câu trả lời theo phần ở ghi chú diễn giả; hộp "Nhu cầu:" của `P02` (cùng nội dung) bỏ khỏi `P02` | đoạn mở đầu; Câu hỏi mở đầu; §8.3 | 33 |
+| `E08` | Vấn đề trung tâm | NT15: câu trả lời cho câu hỏi trung tâm của cả bài, đặt sau bảng tổng kết `E07` | §8.1–8.3 (Tình huống 00.1, 00.2) | 60 |
+| `E09` | Tài liệu tham khảo | NT15: trang cuối; nguồn của §11 (trước buổi học, sau buổi học, mở rộng), dòng nối sang Bài 01 theo §10, liên kết "Ghi chú bài giảng · Bài tập"; dòng "Đọc thêm" của `E07` chuyển sang đây | §10, §11 | 73 |
+
+**Trang đổi trên mặt trang.**
+
+| Mã | Đổi | Âm tiết trước → sau |
+|---|---|---|
+| `P00` | thêm luận điểm một câu có điều kiện (rút từ câu hỏi trung tâm và §8.3); dòng học phần thêm "· Học kỳ 1, 2026–2027"; xếp lại: phụ đề, luận điểm, học phần, đơn vị | 27 → 65 |
+| `P01` | tiêu đề "Mục tiêu bài học" → "Mục tiêu học tập"; năm mục tiêu giữ nguyên chữ (bảng đối chiếu với sáu mục tiêu của ghi chú ở đầu tệp) | 80 → 80 (trần 80) |
+| `P02` | mỗi mục là liên kết `#/1`–`#/7`; bỏ hộp "Nhu cầu:" (sang `P03`); thêm dòng "Đọc trước:" theo §11 | 62 → 54 |
+| `H00`, `A00`, `B00`, `C00`, `D00`, `E00` | dòng dẫn viết lại thành câu trần thuật nêu ý cốt lõi của mạch (bỏ "Muốn …", "Nhu cầu:", KaTeX) | 31→35, 32→37, 27→32, 34→38, 37→38, 30→36 |
+| `H01`, `H05`, `A01`, `A05`, `A06`, `B01`, `B05`, `B11A`, `B11B`, `C10`, `B12`, `C05`, `C12`, `D01`, `D06`, `D07`, `D09`, `D10`, `E01`, `A11` | bỏ nhãn "Nhu cầu:", câu khẳng định giữ đủ ký hiệu và điều kiện (NT14) | mọi trang ≤ 60, thay đổi trong khoảng −2…+3 |
+| `D04` | "**Quy tắc nhân.**" → "**Mệnh đề.** Quy tắc nhân, … (Mệnh đề 00.61)" theo khối của ghi chú (NT19) | 7 → 12 |
+| `E07` | tiêu đề "Tổng kết" → "Bảng tổng kết"; cột thứ ba "Công thức hoặc thuật toán" (P4); dòng "Đọc thêm" sang `E09` | 57 → 51 |
+
+**Ghi chú diễn giả đã sửa.** `P00` (giả thiết của luận điểm, nguồn ghi chú); `P01` (bỏ câu và nguồn có mã CLO, NT22); `C00` (bỏ "Mạch này"); `E00` (câu cuối liệt kê thêm trang "Vấn đề trung tâm", "Tài liệu tham khảo"; 100 âm tiết); `E07` (bỏ câu "Bài 01 dùng lại hồi quy … logistic …": không có trong ghi chú, cầu nối sang Bài 01 nay ở `E09` theo §10).
+
+**Ngoại lệ.**
+
+- **Tên mạch 7 giữ "Tổng hợp mô hình giá nhà"** (brief chung mục 8): mạch đưa vào khái niệm mới chưa có ở mạch trước: Định nghĩa 00.74 (quá khớp, `E05`) và thuật ngữ dải nhiễu (`E04`, §8.1, Tình huống 00.1). Chờ tác giả quyết định tách hay đổi tên; `deck_lint` còn báo STRUCT "mạch cuối không tên Tổng kết".
+- **`P00` 70 âm tiết** (sau lượt kiểm lại): bìa; `deck_lint` chỉ miễn đếm cho bìa có mã `LNN-1-01`, còn deck giữ mã cũ `P00`. Phụ đề, học phần và đơn vị chiếm 31 âm tiết, luận điểm 39 (đủ hai điều kiện: nhiễu Gauss độc lập cùng phương sai đã biết, trọng số coi bằng nghiệm bình phương nhỏ nhất).
+- **`E09` 73 âm tiết:** trang tài liệu tham khảo, trần 80 theo NT17 (`deck_lint` áp trần 60 cho tiêu đề này); giữ đủ chín nguồn của §11.
+- **Thiếu "Câu hỏi tự kiểm tra" và "Bài tập về nhà" (NT15):** ngoài phạm vi mức 2, không thêm; chờ tác giả. Bài tập tổng hợp `E06`/`E06L` giữ tại chỗ.
+- **Chân trang của `P00a`, `P03`:** `lecture-course.css` (dòng 201–202) chỉ bật chân trang trong mạch 1 cho `P01`, `P02`; cần thêm hai mã mới vào quy tắc đó (đề xuất, chưa sửa CSS).
+- Giữ nguyên: `E06` 61 âm tiết, NOTES150 ở `B12` (151) và `E07` (187), bìa không có mã `L00-1-01`.
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+| Mã | Sửa | Âm tiết trước → sau |
+|---|---|---|
+| `P00` | luận điểm thêm "cùng phương sai" và "coi trọng số bằng nghiệm bình phương nhỏ nhất" (§8.1, §8.3) | 65 → 70 (ngoại lệ bìa) |
+| `E08` | "Vì $\operatorname{rank}(X)=3$ nên …"; "Dưới (P1) với $\sigma^2=1$ (bằng $\hat\sigma^2=\mathrm{SSE}/m$) …" như `E04` và §8.3; rút chữ ở dòng 2 và 4 để giữ trần | 60 → 59 |
+| `B01` | câu mở rút còn một dòng ("Đạo hàm đo độ nhạy …"); hết chạm chân trang theo `footer_check` | 41 → 37 |
+| `P00a` | điều kiện cực trị đủ giả thiết ($\gamma$ khả vi, cực tiểu địa phương tại điểm trong $t_0$); "quy tắc dây chuyền một biến" gộp sang dòng Newton–Leibniz; thêm "với mọi hàm $\psi_i$" và "ma trận … viết chữ hoa" | 60 → 70 (ngoại lệ ≤ 90 theo điều phối viên) |
+| `P01` | đủ sáu mục tiêu của ghi chú, danh sách đánh số (kích thước phép nhân ở mục 1, Taylor bậc hai ở mục 3); bỏ dòng "Người học có thể:"; ghi chú diễn giả viết lại theo sáu mục tiêu (136 âm tiết) | 80 → 118 (ngoại lệ trang mục tiêu ≤ 120, quyết định chung của đợt); vừa khung 1600×900, không chạm chân trang |
+| `A05` | "**Câu hỏi:** Những vector dự đoán nào có dạng $Xw$?" | 47 → 46 |
+| `E01` | "Ta dự đoán giá căn nhà …" | 46 → 46 |
+| `D01` | "Nhiễu của bốn căn được mô tả đồng thời bằng một vector ngẫu nhiên, để suy ra hàm mất mát." | 47 → 46 |
+| `B11A` | "Khi không có công thức nghiệm, ta tìm ứng viên cực tiểu từ điều kiện cần bậc nhất." | 58 → 60 |
+| `D04` | nhãn "**Mệnh đề 00.61.** Quy tắc nhân, với $p_U(u)>0$:" | 12 → 10 |
+| `E09` | nhóm "Sau buổi học" thành một gạch gồm bốn nguồn, khớp §11 | 73 → 73 |
+
+Ngoại lệ mạch 7: lý do sửa thành Định nghĩa 00.74 và thuật ngữ dải nhiễu; bỏ vế "đặc trưng phi tuyến" (đã có ở §3 của ghi chú).
+
+Lượt kiểm lại thứ hai (yêu cầu của điều phối viên, 2026-11-18):
+
+| Mã | Sửa | Âm tiết trước → sau |
+|---|---|---|
+| `P01` | bỏ ký hiệu trên trang tổng quan (NT9): mục 2 "… số nghiệm của hệ tuyến tính và của bình phương nhỏ nhất"; mục 3 "… giải bình phương nhỏ nhất từ gradient bằng không …"; mục 4 "… hợp lý cực đại dưới nhiễu Gauss độc lập dẫn tới bình phương nhỏ nhất". Để giữ trần: mục 1 bỏ "trọng số, phần dư", mục 3 bỏ "Jacobian", "bậc hai" và "bằng Hessian", mục 4 bỏ "kỳ vọng, phương sai"; các ý này chuyển vào ghi chú diễn giả (147 âm tiết). Mục 5 giữ dạng cũ vì dạng đầy đủ vượt 120 | 118 → 120 (ngoại lệ trang mục tiêu ≤ 120); vừa khung 1600×900, `footer_check` không báo |
+| `P00a` | bỏ "với mọi hàm $\psi_i$" trên mặt trang; ghi chú diễn giả thêm điều kiện "mọi hàm sao cho $\psi_i(U_i)$ là biến ngẫu nhiên" | 70 → 67 (ngoại lệ ≤ 90) |
+| `E08` | dòng 4 "… so sánh hai mô hình cần dữ liệu không dùng để khớp."; dòng 2 bỏ "(1,6 tỷ)" để giữ trần | 59 → 60 |
