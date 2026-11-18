@@ -20,32 +20,45 @@
   <section data-slide-id="MD00" id="mach-1">
     <h1>Xác suất: ngôn ngữ biểu diễn bất định trong AI</h1>
     <h3>Biến cố, định lý Bayes, phân phối, kỳ vọng và lấy biên · Bài 10</h3>
+    <p>Khi tham số của mô hình xác suất đã biết và quan sát có xác suất dương, định lý Bayes cập nhật xác suất của một nhãn chưa quan sát sau một tín hiệu, còn phép lấy biên loại một biến không quan sát được khỏi phép suy luận.</p>
     <p>Cơ sở toán học cho AI · Học kỳ 1, 2026–2027</p>
     <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
-    <aside class="notes"><p>Một hệ thống AI phải kết luận khi thông tin không đầy đủ hoặc có nhiễu. Xác suất phục vụ hai việc: cập nhật xác suất của một nhãn chưa quan sát sau một tín hiệu, bằng định lý Bayes; và loại một biến không quan sát được, bằng phép lấy biên.</p><p>Bài 05c đã có các kết quả này trên không gian rời rạc; ở đây chúng được phát biểu tổng quát, thêm trường hợp có mật độ, cho một hệ thống phân loại sản phẩm lỗi.</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §2.1–2.3; ghi chú bài giảng Bài 10.</p></aside>
+    <aside class="notes"><p>Một hệ thống AI phải kết luận khi thông tin không đầy đủ hoặc có nhiễu. Xác suất phục vụ hai việc: cập nhật xác suất của một nhãn chưa quan sát sau một tín hiệu, bằng định lý Bayes; và loại một biến không quan sát được, bằng phép lấy biên.</p><p>Bài 05c đã có các kết quả này trên không gian rời rạc; ở đây chúng được phát biểu tổng quát, thêm trường hợp có mật độ, cho một hệ thống phân loại sản phẩm lỗi.</p><p>Hai điều kiện của luận điểm là giả thiết tham số cho trước và giả thiết mẫu số dương: mọi biến cố dùng làm điều kiện có xác suất dương.</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §2.1–2.3; ghi chú bài giảng Bài 10.</p></aside>
+  </section>
+  <section data-slide-id="MD00b">
+    <h2>Tiên quyết và quy ước</h2>
+    <p><strong>Nhắc lại:</strong></p>
+    <ul>
+      <li>xác suất rời rạc: phần bù, hợp, tính đơn điệu (05c.2); quy tắc nhân, xác suất toàn phần, công thức Bayes (05c.9–05c.11);</li>
+      <li>kỳ vọng của biến rời rạc, tính tuyến tính (05c.26, 05c.28);</li>
+      <li>tích phân một biến: $\int_{\mathbb R}e^{-u^2/2}\,du=\sqrt{2\pi}$;</li>
+      <li>đại số tuyến tính: ma trận đối xứng xác định dương.</li>
+    </ul>
+    <p><strong>Ký hiệu:</strong> $\mathbb P$ là xác suất, thay cho $P$ ở Bài 05c.</p>
+    <aside class="notes"><p>Bài này phát biểu lại các kết quả của Bài 05c trên không gian xác suất tổng quát và thêm trường hợp có mật độ: quy tắc nhân là Mệnh đề 05c.9, xác suất toàn phần là Mệnh đề 05c.10, công thức Bayes là Định lý 05c.11; kỳ vọng là Định nghĩa 05c.26, tính tuyến tính là Định lý 05c.28. Tích phân của $e^{-u^2/2}$ cho hằng số chuẩn hóa của mật độ Gaussian; ma trận đối xứng xác định dương, nghịch đảo và định thức xuất hiện trong mật độ Gaussian nhiều chiều. Ngoài ra bài dùng phép toán tập hợp và quy tắc đếm: tích Descartes của hai tập hữu hạn có số phần tử bằng tích số phần tử.</p><p>Câu ôn nhanh: với $\mathbb P(F)=0{,}25$ và $\mathbb P(E\cap F)=0{,}1$, xác suất có điều kiện là $\mathbb P(E\mid F)=0{,}1/0{,}25=0{,}4$; nếu $\mathbb E[X]=3$ thì $\mathbb E[2X+1]=7$ theo tính tuyến tính.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 10, Kiến thức tiên quyết.</p></aside>
   </section>
   <section data-slide-id="MD01">
     <h2>Mục tiêu học tập</h2>
     <ol>
-      <li>Lập mô hình xác suất hữu hạn, suy ra quy tắc phần bù, hợp.</li>
-      <li>Chứng minh quy tắc nhân, định lý Bayes; phân biệt độc lập, độc lập có điều kiện, xung khắc.</li>
-      <li>Mô tả biến bằng hàm khối xác suất, hàm phân phối tích lũy, mật độ.</li>
-      <li>Chứng minh kỳ vọng toàn phần; phân biệt không tương quan, độc lập.</li>
-      <li>Tính hậu nghiệm bằng lấy biên.</li>
-      <li>Nêu giả thiết; phân biệt hậu nghiệm với quyết định theo chi phí.</li>
+      <li>Lập mô hình xác suất hữu hạn; suy ra phần bù, hợp từ tiên đề.</li>
+      <li>Chứng minh quy tắc nhân, xác suất toàn phần, định lý Bayes; phân biệt độc lập, xung khắc, độc lập có điều kiện.</li>
+      <li>Mô tả biến bằng hàm khối xác suất, hàm phân phối tích lũy, mật độ; chọn mô hình Bernoulli, phân loại, Gaussian.</li>
+      <li>Tính và chứng minh công thức kỳ vọng, phương sai, hiệp phương sai, kỳ vọng toàn phần; dựng phản ví dụ không tương quan mà phụ thuộc.</li>
+      <li>Tính phân phối biên, có điều kiện từ phân phối đồng thời; suy luận khi thiếu nguồn hàng.</li>
+      <li>Nêu giả thiết suy luận; phân biệt hậu nghiệm với quyết định theo chi phí.</li>
     </ol>
-    <aside class="notes"><p>Sáu mục tiêu cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong chuẩn đầu ra của học phần.</p><p>Mục tiêu 2 còn gồm công thức xác suất toàn phần và việc kiểm tra độc lập có điều kiện; mục tiêu 3, việc chọn mô hình Bernoulli, phân loại hay Gaussian theo kiểu dữ liệu; mục tiêu 4, các công thức của kỳ vọng, phương sai, hiệp phương sai và một phản ví dụ hai biến không tương quan nhưng phụ thuộc.</p><p>Mục tiêu 5 và 6 được đo trên chính bài toán mở đầu: từ phân phối đồng thời, tính phân phối biên và phân phối có điều kiện khi nguồn hàng của sản phẩm bị cảnh báo chưa được quan sát; nêu các giả thiết của phép suy luận, và phân biệt hậu nghiệm với quyết định dựa trên chi phí.</p></aside>
+    <aside class="notes"><p>Sáu mục tiêu cụ thể hóa năng lực xây dựng và phân tích mô hình học máy trong chuẩn đầu ra của học phần.</p><p>Mục tiêu 1 gồm lập không gian mẫu và biến cố cho một tình huống AI; mục tiêu 3 chọn họ phân phối theo kiểu dữ liệu.</p><p>Mục tiêu 5 và 6 được đo trên chính bài toán mở đầu: suy luận về tình trạng của sản phẩm bị cảnh báo khi nguồn hàng chưa được quan sát, và quyết định chấp nhận hay loại sản phẩm dựa trên hậu nghiệm cùng chi phí.</p></aside>
   </section>
   <section data-slide-id="MD02">
     <h2>Nội dung</h2>
     <ol>
-      <li>Mở đầu</li>
-      <li>Mô hình xác suất</li>
-      <li>Xác suất có điều kiện và định lý Bayes</li>
-      <li>Biến ngẫu nhiên, phân phối và độc lập</li>
-      <li>Kỳ vọng, phương sai và hiệp phương sai</li>
-      <li>Phân phối đồng thời và phép lấy biên</li>
-      <li>Tổng kết và chuyển tiếp</li>
+      <li><a href="#/1">Mở đầu</a></li>
+      <li><a href="#/2">Mô hình xác suất</a></li>
+      <li><a href="#/3">Xác suất có điều kiện và định lý Bayes</a></li>
+      <li><a href="#/4">Biến ngẫu nhiên, phân phối và độc lập</a></li>
+      <li><a href="#/5">Kỳ vọng, phương sai và hiệp phương sai</a></li>
+      <li><a href="#/6">Phân phối đồng thời và phép lấy biên</a></li>
+      <li><a href="#/7">Tổng kết</a></li>
     </ol>
     <aside class="notes"><p>Phần 2 và phần 3 làm việc với biến cố: gán xác suất nhất quán, rồi cập nhật xác suất sau một quan sát. Phần 4 đến phần 6 làm việc với biến ngẫu nhiên: phân phối của từng biến, các con số tóm tắt phân phối, và phân phối đồng thời của nhiều biến khi một biến không được quan sát.</p><p>Tài liệu đọc trước: Murphy (2022), §2.1 (xác suất của biến cố, hợp và phần bù) và §2.2.1–2.2.2 (biến rời rạc, hàm phân phối tích lũy, mật độ).</p></aside>
   </section>
@@ -68,20 +81,25 @@
     <p>Camera phát hiện người đi bộ: bảng bốn ô tình trạng × phản hồi, cùng cấu trúc.</p>
     <aside class="notes"><p>Thí nghiệm là chọn ngẫu nhiên một sản phẩm từ luồng hàng rồi đưa qua cảm biến kiểm định. Bộ phân loại và cảm biến được cố định; xác suất mô tả cách sản phẩm được chọn từ luồng hàng.</p><p>Ngoài hai giả thiết trên mặt trang, mọi biến cố được dùng làm điều kiện có xác suất dương, và kỳ vọng chỉ được dùng cho biến khả tích. Tình trạng lỗi không được quan sát; quan sát là phản hồi của cảm biến, có thể kèm hoặc không kèm nguồn hàng.</p><p>Bảng camera có số nhỏ, tính được bằng tay; mỗi quy tắc được thử trên camera trước rồi mới dùng cho hệ thống sản phẩm.</p></aside>
   </section>
+  <section data-slide-id="MD05">
+    <h2>Vấn đề trung tâm</h2>
+    <div class="box"><p><strong>Câu hỏi:</strong> Một hệ thống AI suy luận hợp lý như thế nào khi thông tin không đầy đủ hoặc có nhiễu?</p></div>
+    <aside class="notes"><p>Câu trả lời theo phần:</p><ul><li>phần 2: không gian xác suất gán trọng số nhất quán cho các biến cố; phần bù và hợp tính được từ các tiên đề;</li><li>phần 3: xác suất có điều kiện chuẩn hóa lại trọng số sau quan sát, và định lý Bayes đưa xác suất lỗi sau cảnh báo từ $0{,}044$ lên $198/437$;</li><li>phần 4: biến ngẫu nhiên và phân phối mô tả các đại lượng quan sát; độc lập có điều kiện ghép chúng bằng phép nhân;</li><li>phần 5: kỳ vọng và phương sai tóm tắt trung bình và mức dao động; hiệp phương sai bằng $0$ vẫn cho phép hai biến phụ thuộc;</li><li>phần 6: phân phối đồng thời và phép lấy biên cho hậu nghiệm khi thiếu nguồn hàng; hậu nghiệm cần thêm chi phí để thành quyết định.</li></ul><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 10, đoạn mở đầu và mục 9.</p></aside>
+  </section>
 </section>
 
 <section>
   <section data-slide-id="MH00" id="mach-2" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">2.</span>Mô hình xác suất</h2>
-      <p class="strand-lead">Muốn tính xác suất cảnh báo sai của camera, cần gán xác suất nhất quán cho mọi biến cố.</p>
+      <p class="strand-lead">Ba tiên đề của xác suất cho quy tắc phần bù, quy tắc hợp và cách dựng mô hình từ một bảng trọng số.</p>
       <p class="strand-keys">Không gian mẫu · Biến cố · Tiên đề · Phần bù và hợp</p>
     </div>
     <aside class="notes"><p>Bài toán sản phẩm và ví dụ camera đều hỏi xác suất của những tình huống như "cảnh báo khi không có người". Để trả lời, cần liệt kê các kết quả có thể, gọi tên các tình huống bằng tập con, gán trọng số thỏa ba tiên đề rồi suy ra quy tắc phần bù và quy tắc hợp. Kết quả giao cho phần sau là xác suất đồng thời $0{,}18$ của "có người và cảnh báo".</p></aside>
   </section>
   <section data-slide-id="MH01">
     <h2>Kết quả của một khung hình camera</h2>
-    <p><strong>Nhu cầu:</strong> gán xác suất cho các kết quả của camera để tính tần suất cảnh báo sai.</p>
+    <p>Tần suất cảnh báo sai của camera được tính từ xác suất gán cho các kết quả của nó.</p>
     <p>Mỗi kết quả ghi tình trạng thực và phản hồi của bộ phát hiện:</p>
     <ul>
       <li>(có người, cảnh báo);</li>
@@ -157,7 +175,7 @@
   </section>
   <section data-slide-id="MH07">
     <h2>Phần bù và hợp hai biến cố</h2>
-    <p><strong>Nhu cầu:</strong> tính xác suất của phần bù và của hợp từ xác suất của từng biến cố.</p>
+    <p>Xác suất của phần bù và của hợp tính được từ xác suất của từng biến cố.</p>
     <p><strong>Trực quan.</strong> $\mathbb P(H)+\mathbb P(C)=0{,}46$ đếm ô chung hai lần; $\mathbb P(H\cup C)=0{,}28$.</p>
     <p><strong>Mệnh đề.</strong> Với mọi $E,F\in\mathcal F$:</p>
     <div class="formula">$$\begin{aligned}\mathbb P(E^c)&amp;=1-\mathbb P(E),\\ \mathbb P(E\cup F)&amp;=\mathbb P(E)+\mathbb P(F)\\ &amp;\quad-\mathbb P(E\cap F).\end{aligned}$$</div>
@@ -166,10 +184,10 @@
   <section data-slide-id="MH08">
     <h2>Chứng minh: phần bù và hợp hai biến cố</h2>
     <p>Mỗi biến cố được viết thành hợp các mảnh xung khắc, rồi áp dụng cộng tính hữu hạn.</p>
-    <p><strong>Công thức phần bù.</strong> $E$, $E^c$ xung khắc, hợp bằng $\Omega$, nên $1=\mathbb P(E)+\mathbb P(E^c)$.</p>
-    <p><strong>Ba mảnh xung khắc.</strong> $E\cup F$ là hợp của $E\setminus F$, $E\cap F$, $F\setminus E$:</p>
+    <p>Phần bù: $E$, $E^c$ xung khắc, hợp bằng $\Omega$, nên $1=\mathbb P(E)+\mathbb P(E^c)$.</p>
+    <p>Hợp: $E\cup F$ là hợp của ba mảnh xung khắc $E\setminus F$, $E\cap F$, $F\setminus E$:</p>
     <div class="formula">$$\begin{aligned}\mathbb P(E\cup F)&amp;=\mathbb P(E\setminus F)+\mathbb P(E\cap F)+\mathbb P(F\setminus E),\\ \mathbb P(E)&amp;=\mathbb P(E\setminus F)+\mathbb P(E\cap F),\\ \mathbb P(F)&amp;=\mathbb P(F\setminus E)+\mathbb P(E\cap F).\end{aligned}$$</div>
-    <p><strong>Công thức hợp.</strong> Thế $\mathbb P(E\setminus F)=\mathbb P(E)-\mathbb P(E\cap F)$ và tương tự cho $F\setminus E$ vào dòng đầu.</p>
+    <p>Thế $\mathbb P(E\setminus F)=\mathbb P(E)-\mathbb P(E\cap F)$ và tương tự cho $F\setminus E$ vào dòng đầu, được công thức hợp.</p>
     <aside class="notes"><p>Mục tiêu là chỉ ra số hạng giao bị trừ ở đâu. Bước phần bù dùng (P2) và cộng tính hữu hạn cho hai tập.</p><p>Ba mảnh thuộc $\mathcal F$ vì $E\setminus F=(E^c\cup F)^c$, $E\cap F=(E^c\cup F^c)^c$, $F\setminus E=(F^c\cup E)^c$, thu được từ các tập trong $\mathcal F$ bằng phần bù và hợp. Chúng đôi một xung khắc; ba mảnh có hợp $E\cup F$, hai mảnh đầu có hợp $E$, hai mảnh sau có hợp $F$. Mỗi dòng của khối công thức là cộng tính hữu hạn (Bổ đề 10.4, phần 2).</p><p>Thế hai dòng sau vào dòng đầu: $\mathbb P(E\cup F)=\mathbb P(E)-\mathbb P(E\cap F)+\mathbb P(E\cap F)+\mathbb P(F)-\mathbb P(E\cap F)$, tức công thức hợp.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Mệnh đề 10.6.</p></aside>
   </section>
   <section data-slide-id="MH10">
@@ -191,14 +209,14 @@
   <section data-slide-id="BY00" id="mach-3" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">3.</span>Xác suất có điều kiện và định lý Bayes</h2>
-      <p class="strand-lead">Muốn biết xác suất lỗi sau một cảnh báo, nhân tỉ lệ lỗi với tỉ lệ cảnh báo trong từng nhóm rồi chuẩn hóa.</p>
+      <p class="strand-lead">Định lý Bayes tính xác suất lỗi sau một cảnh báo từ tỉ lệ lỗi và tỉ lệ cảnh báo của từng nhóm.</p>
       <p class="strand-keys">Xác suất có điều kiện · Quy tắc nhân · Xác suất toàn phần · Định lý Bayes</p>
     </div>
     <aside class="notes"><p>Phần trước cho một độ đo $\mathbb P$ trên các biến cố và xác suất đồng thời $0{,}18$ của "có người và cảnh báo". Người dùng hệ thống cần tỉ lệ trong một nhóm: trong các khung hình bị cảnh báo, trong các sản phẩm bị cảnh báo. Việc cần làm là chuẩn hóa trong một nhóm, ghép các tỉ lệ trong nhóm bằng phép nhân, rồi đảo chiều điều kiện. Kết quả giao cho phần sau là hậu nghiệm $198/437$ và quy tắc nhân, dùng lại khi ghép ba biến.</p></aside>
   </section>
   <section data-slide-id="BY01">
     <h2>Khung hình có cảnh báo</h2>
-    <p><strong>Nhu cầu:</strong> tỉ lệ có người trong các khung hình bị cảnh báo.</p>
+    <p>Cần tính tỉ lệ có người trong các khung hình bị cảnh báo.</p>
     <p>Xác suất lỗi của một sản phẩm bị cảnh báo cần cùng phép tính.</p>
     <div class="responsive">
       <figure class="visual"><img src="img/lec-10/camera-conditioning.svg" alt="Lưới bốn ô của camera, hàng H và H mũ c, cột C và C mũ c. Cột C được giữ, gồm ô có người 0,18 và ô không có người 0,08, mỗi ô ghi chia cho 0,26; cột C mũ c bị gạch chéo."/></figure>
@@ -234,7 +252,7 @@
   </section>
   <section data-slide-id="BY04">
     <h2>Cây xác suất của nguồn hàng và lỗi</h2>
-    <p><strong>Nhu cầu:</strong> thiếu hồ sơ nguồn hàng; tính xác suất lỗi từ tỉ lệ lỗi của từng nhà cung cấp.</p>
+    <p>Khi thiếu hồ sơ nguồn hàng, xác suất lỗi được tính từ tỉ lệ lỗi của từng nhà cung cấp.</p>
     <div class="responsive">
       <figure class="visual"><img src="img/lec-10/supplier-tree-deck.svg" alt="Cây xác suất: gốc S tách thành nhà cung cấp a với xác suất 0,6 và b với xác suất 0,4. Từ a: lỗi 0,02 cho lá lỗi 0,012, đạt 0,98 cho lá đạt 0,588. Từ b: lỗi 0,08 cho lá lỗi 0,032, đạt 0,92 cho lá đạt 0,368. Hai lá lỗi viền đậm."/></figure>
       <div>
@@ -243,7 +261,7 @@
       </div>
     </div>
     <p><strong>Diễn giải:</strong> xác suất lỗi trước quan sát $4{,}4\%$ là trung bình có trọng số $0{,}6$, $0{,}4$.</p>
-    <aside class="notes"><p>Ở đây $\{S=a\}$, $\{Y=1\}$ chỉ là tên của các biến cố "sản phẩm đến từ nhà cung cấp $a$" và "sản phẩm lỗi". Các nhánh không đồng xác suất: nhánh $a$ có xác suất $0{,}6$, nhánh $b$ có xác suất $0{,}4$.</p><p>Trung bình cộng $5\%$ của hai tỉ lệ lỗi bỏ qua việc nhà cung cấp $a$ giao nhiều hàng hơn; trọng số đúng là tỉ lệ nguồn hàng.</p><p>Mỗi lá là một xác suất đồng thời, chẳng hạn $\mathbb P(S=b,Y=1)=0{,}4\cdot0{,}08=0{,}032$; bốn lá có tổng bằng $1$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 10.4 (bước tiên nghiệm) và hình cây ở mục 5.3; hình vẽ lại cho trang chiếu.</p></aside>
+    <aside class="notes"><p>Ở đây $\{S=a\}$, $\{Y=1\}$ chỉ là tên của các biến cố "sản phẩm đến từ nhà cung cấp $a$" và "sản phẩm lỗi". Các nhánh không đồng xác suất: nhánh $a$ có xác suất $0{,}6$, nhánh $b$ có xác suất $0{,}4$.</p><p>Trung bình cộng $5\%$ của hai tỉ lệ lỗi bỏ qua việc nhà cung cấp $a$ giao nhiều hàng hơn; trọng số đúng là tỉ lệ nguồn hàng.</p><p>Mỗi lá là một xác suất đồng thời, chẳng hạn $\mathbb P(S=b,Y=1)=0{,}4\cdot0{,}08=0{,}032$; bốn lá có tổng bằng $1$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, Ví dụ 10.4 (bước tiên nghiệm) và hình cây ở mục 5.3.</p></aside>
   </section>
   <section data-slide-id="BY05">
     <h2>Quy tắc nhân</h2>
@@ -266,7 +284,7 @@
   <section data-slide-id="BY07">
     <h2>Chứng minh: xác suất toàn phần</h2>
     <p>Biến cố $E$ được chia theo các nhóm $B_j$ rồi cộng lại.</p>
-    <p><strong>Các mảnh xung khắc.</strong> Các $E\cap B_j$ đôi một xung khắc, hợp bằng $E\cap\Omega=E$.</p>
+    <p>Các mảnh $E\cap B_j$ đôi một xung khắc, hợp bằng $E\cap\Omega=E$.</p>
     <div class="formula">$$\begin{aligned}\mathbb P(E)&amp;=\sum_{j=1}^q\mathbb P(E\cap B_j)\\ &amp;=\sum_{j=1}^q\mathbb P(E\mid B_j)\,\mathbb P(B_j).\end{aligned}$$</div>
     <p>Đẳng thức thứ nhất: cộng tính hữu hạn; thứ hai: quy tắc nhân, dùng $\mathbb P(B_j)>0$.</p>
     <aside class="notes"><p>Mục tiêu là tính xác suất của quan sát $E$ từ các xác suất trong từng nhóm. Các $E\cap B_j$ thuộc $\mathcal F$ vì $\mathcal F$ đóng với giao hữu hạn, và xung khắc vì $(E\cap B_i)\cap(E\cap B_j)\subseteq B_i\cap B_j=\varnothing$ khi $i\ne j$.</p><p>Cộng tính hữu hạn là Bổ đề 10.4, phần 2. Trên cây nguồn hàng, đẳng thức thứ nhất cộng hai lá lỗi $0{,}012+0{,}032$; đẳng thức thứ hai viết mỗi lá thành tích dọc đường.</p><p>Công thức toàn phần đi từ các nhóm tới xác suất của quan sát; định lý Bayes đi theo chiều ngược lại.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Định lý 10.11, bước 1.</p></aside>
@@ -276,7 +294,7 @@
     <p>Viết $\mathbb P(B_k\mid E)$ theo định nghĩa, rồi đổi chiều điều kiện ở tử số.</p>
     <div class="formula">$$\begin{aligned}&amp;\mathbb P(B_k\mid E)=\frac{\mathbb P(B_k\cap E)}{\mathbb P(E)}\\ &amp;\quad=\frac{\mathbb P(E\mid B_k)\,\mathbb P(B_k)}{\mathbb P(E)}.\end{aligned}$$</div>
     <p>Đẳng thức thứ nhất: định nghĩa, cần $\mathbb P(E)>0$; thứ hai: quy tắc nhân, dùng $\mathbb P(B_k)>0$.</p>
-    <p><strong>Công thức Bayes.</strong> Thay mẫu số bằng công thức xác suất toàn phần.</p>
+    <p>Thay mẫu số bằng công thức xác suất toàn phần, được định lý Bayes.</p>
     <aside class="notes"><p>Phép đổi chiều điều kiện nằm ở tử số: $\mathbb P(B_k\cap E)$ được viết bằng quy tắc nhân với điều kiện $B_k$, hợp lệ vì $\mathbb P(B_k)>0$. Giả thiết $\mathbb P(E)>0$ chỉ dùng ở đẳng thức thứ nhất.</p><p>Sau khi thay mẫu số, xác suất $\mathbb P(B_k\mid E)$ của mỗi nhóm tính được từ xác suất của các nhóm và xác suất của quan sát trong từng nhóm, không cần biết trước $\mathbb P(E)$. Mẫu số giống nhau cho mọi $k$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Định lý 10.11, bước 2.</p></aside>
   </section>
   <section data-slide-id="BY09">
@@ -316,7 +334,7 @@
       <p>(b) Phát biểu sai vì đảo điều kiện: $\mathbb P(C\mid H)=0{,}9$ nhưng $\mathbb P(H\mid C)=1/3$.</p>
       <p><strong>Cách khác:</strong> định lý Bayes cho $0{,}9\cdot0{,}1/(0{,}9\cdot0{,}1+0{,}2\cdot0{,}9)=1/3$.</p>
     </div>
-    <aside class="notes"><p>Đây là một camera khác, đặt trên tuyến đường vắng: tiên nghiệm có người là $0{,}10$ thay cho $0{,}20$, tỉ lệ cảnh báo nhầm là $0{,}2$ thay cho $0{,}10$. Gợi ý: mẫu số của mỗi xác suất có điều kiện là xác suất của biến cố đứng sau dấu "$\mid$"; tổng một hàng cho $\mathbb P(H)=0{,}10$, tổng một cột cho $\mathbb P(C)=0{,}27$.</p><p>Kiểm tra trên $100$ khung hình: $10$ khung hình có người, $9$ bị cảnh báo; $90$ khung hình không có người, $18$ bị cảnh báo; tỉ lệ có người trong $27$ cảnh báo là $9/27=1/3$. Trên tuyến đường vắng, các cảnh báo nhầm lấn át các cảnh báo đúng. Nhầm lẫn này còn được gọi là ngụy biện của công tố viên (prosecutor's fallacy).</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), Bài tập 2.10 (Bài tập 10.4), chuyển sang bảng camera; ghi chú bài giảng, Ví dụ 10.3.</p></aside>
+    <aside class="notes"><p>Đây là một camera khác, đặt trên tuyến đường vắng: tiên nghiệm có người là $0{,}10$ thay cho $0{,}20$, tỉ lệ cảnh báo nhầm là $0{,}2$ thay cho $0{,}10$. Gợi ý: mẫu số của mỗi xác suất có điều kiện là xác suất của biến cố đứng sau dấu "$\mid$"; tổng một hàng cho $\mathbb P(H)=0{,}10$, tổng một cột cho $\mathbb P(C)=0{,}27$.</p><p>Kiểm tra trên $100$ khung hình: $10$ khung hình có người, $9$ bị cảnh báo; $90$ khung hình không có người, $18$ bị cảnh báo; tỉ lệ có người trong $27$ cảnh báo là $9/27=1/3$. Trên tuyến đường vắng, các cảnh báo nhầm lấn át các cảnh báo đúng. Nhầm lẫn này còn được gọi là ngụy biện của công tố viên (prosecutor's fallacy).</p><p class="note-source"><strong>Nguồn:</strong> Murphy (2022), Bài tập 2.10 (Bài tập 10.4) cho cùng hiện tượng; ghi chú bài giảng, Ví dụ 10.3.</p></aside>
   </section>
 </section>
 
@@ -324,14 +342,14 @@
   <section data-slide-id="PP00" id="mach-4" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">4.</span>Biến ngẫu nhiên, phân phối và độc lập</h2>
-      <p class="strand-lead">Muốn mô tả nhãn, nguồn hàng, tín hiệu đo và ghép chúng, cần phân phối của từng biến và quy tắc độc lập.</p>
+      <p class="strand-lead">Mỗi đại lượng quan sát có một phân phối, và độc lập có điều kiện cho phép ghép các phân phối bằng phép nhân.</p>
       <p class="strand-keys">Hàm khối xác suất · Hàm phân phối tích lũy · Mật độ · Họ phân phối · Độc lập có điều kiện</p>
     </div>
     <aside class="notes"><p>Định lý Bayes đã cho hậu nghiệm $198/437$; hậu nghiệm của nguồn hàng còn cần biết cảnh báo phụ thuộc nguồn hàng thế nào. Nhà cung cấp, nhãn lỗi, cảnh báo và tín hiệu đo là các hàm của một kết quả kiểm định, có phân phối riêng và được ghép bằng độc lập có điều kiện. Kết quả giao cho các phần sau là phân phối của nhãn lỗi và giả thiết $A\perp S\mid Y$ ở dạng dùng được trong phép nhân.</p></aside>
   </section>
   <section data-slide-id="PP01">
     <h2>Đại lượng quan sát của một lần kiểm định</h2>
-    <p><strong>Nhu cầu:</strong> một lần kiểm định cho cùng lúc nguồn hàng, tình trạng lỗi, cảnh báo, giá trị đo.</p>
+    <p>Một lần kiểm định cho cùng lúc nguồn hàng, tình trạng lỗi, cảnh báo và giá trị đo.</p>
     <p>Mỗi đại lượng gán một giá trị cho mỗi kết quả $\omega$.</p>
     <p><strong>Ví dụ.</strong> $S(\omega)\in\{a,b\}$; $Y(\omega)=1$ nếu sản phẩm lỗi; $A(\omega)=1$ nếu có cảnh báo.</p>
     <p><strong>Trực quan.</strong> Hàm cố định; giá trị chưa biết vì $\omega$ chưa biết.</p>
@@ -355,7 +373,7 @@
         <div class="formula">$$\begin{gathered}p_X(x)=\mathbb P(X=x),\\ p_X(x)\ge0,\quad \sum_{x\in\mathcal X}p_X(x)=1.\end{gathered}$$</div>
       </div>
       <div>
-        <p><strong>Nhu cầu:</strong> xác suất $X$ không vượt ngưỡng $t$, với mọi $t$.</p>
+        <p>Với mọi ngưỡng $t$, ta cần biết xác suất $X$ không vượt $t$.</p>
         <p><strong>Trực quan.</strong> Cộng dồn các khối xác suất đến $t$.</p>
         <p><strong>Định nghĩa.</strong> $X$ thực: hàm phân phối tích lũy (cumulative distribution function, CDF) là $F_X(t)=\mathbb P(X\le t)$; với $t_1\lt t_2{:}$</p>
         <div class="formula">$$\begin{aligned}&amp;\mathbb P(t_1\lt X\le t_2)\\ &amp;\quad=F_X(t_2)-F_X(t_1).\end{aligned}$$</div>
@@ -382,7 +400,7 @@
     <div class="responsive">
       <figure class="visual"><img src="img/lec-10/density-area.svg" alt="Mật độ bằng 10 trên đoạn từ 0 đến 0,1 và bằng 0 ngoài đoạn. Diện tích hình chữ nhật bằng 10 nhân 0,1 bằng 1. Một dải hẹp độ rộng delta tại x không được gạch chéo, xác suất của dải xấp xỉ f tại x không nhân delta."/></figure>
       <div>
-        <p><strong>Nhu cầu:</strong> tín hiệu đo như điện áp nhận mọi giá trị trong một khoảng; xác suất mỗi điểm bằng $0$.</p>
+        <p>Tín hiệu đo như điện áp nhận mọi giá trị trong một khoảng, và xác suất của mỗi điểm bằng $0$.</p>
         <p><strong>Trực quan.</strong> Xác suất trên một khoảng là diện tích dưới đường mật độ.</p>
       </div>
     </div>
@@ -408,7 +426,7 @@
   </section>
   <section data-slide-id="PP07">
     <h2>Phân phối Bernoulli và phân phối phân loại</h2>
-    <p><strong>Nhu cầu:</strong> nhãn lỗi nhận hai giá trị, loại lỗi nhận $K$ giá trị.</p>
+    <p>Nhãn lỗi nhận hai giá trị, còn loại lỗi nhận $K$ giá trị.</p>
     <p><strong>Định nghĩa.</strong> $Y\in\{0,1\}$ có phân phối Bernoulli tham số $\theta\in[0,1]$ nếu $\mathbb P(Y=1)=\theta$, $\mathbb P(Y=0)=1-\theta$.</p>
     <p>$Z\in\{1,\ldots,K\}$ có phân phối phân loại (categorical distribution) tham số $\boldsymbol\pi=(\pi_1,\ldots,\pi_K)$ nếu</p>
     <div class="formula">$$\mathbb P(Z=k)=\pi_k,\qquad \pi_k\ge0,\qquad \sum_{k=1}^K\pi_k=1.$$</div>
@@ -417,7 +435,7 @@
   </section>
   <section data-slide-id="PP08">
     <h2>Phân phối Gaussian</h2>
-    <p><strong>Nhu cầu:</strong> số đo cảm biến $X$ khi biết $Y=y$ cần một họ mật độ có tâm và độ rộng.</p>
+    <p>Số đo cảm biến $X$ khi biết $Y=y$ cần một họ mật độ có tâm và độ rộng.</p>
     <p><strong>Trực quan.</strong> Mật độ hình chuông, đối xứng quanh tâm; độ rộng lớn thì chuông thấp và trải rộng.</p>
     <p><strong>Định nghĩa.</strong> $X$ có phân phối Gaussian (còn gọi là phân phối chuẩn) $\mathcal N(\mu,\sigma^2)$, $\mu\in\mathbb R$, $\sigma^2>0$, nếu có mật độ</p>
     <div class="formula">$$f_X(x)=(2\pi\sigma^2)^{-1/2}\exp\Bigl(-\frac{(x-\mu)^2}{2\sigma^2}\Bigr).$$</div>
@@ -425,7 +443,7 @@
   </section>
   <section data-slide-id="PP09">
     <h2>Độc lập của biến cố và của biến ngẫu nhiên</h2>
-    <p><strong>Nhu cầu:</strong> thay $\mathbb P(E\mid F)$ bằng $\mathbb P(E)$ trong quy tắc nhân chỉ đúng dưới một giả thiết.</p>
+    <p>Phép thay $\mathbb P(E\mid F)$ bằng $\mathbb P(E)$ trong quy tắc nhân chỉ đúng dưới một giả thiết.</p>
     <p><strong>Trực quan.</strong> Biết $F$ không đổi xác suất của $E$: khi $\mathbb P(F)>0$, $\mathbb P(E\mid F)=\mathbb P(E)$.</p>
     <p><strong>Định nghĩa.</strong> $E,F$ độc lập (independent) nếu $\mathbb P(E\cap F)=\mathbb P(E)\,\mathbb P(F)$.</p>
     <p>$X\perp Z$ nếu $\mathbb P(X\in B,Z\in B')=\mathbb P(X\in B)\,\mathbb P(Z\in B')$ với mọi tập Borel $B,B'$.</p>
@@ -480,14 +498,14 @@
   <section data-slide-id="KV00" id="mach-5" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">5.</span>Kỳ vọng, phương sai và hiệp phương sai</h2>
-      <p class="strand-lead">Muốn tóm tắt chi phí và nhãn lỗi bằng vài con số, cần kỳ vọng, phương sai, hiệp phương sai và trung bình theo nhóm.</p>
+      <p class="strand-lead">Kỳ vọng, phương sai và hiệp phương sai tóm tắt một phân phối bằng vài con số, như chi phí trung bình.</p>
       <p class="strand-keys">Kỳ vọng · Tính tuyến tính · Phương sai · Hiệp phương sai · Kỳ vọng toàn phần</p>
     </div>
     <aside class="notes"><p>Phần trước cho phân phối của nhãn lỗi và cảnh báo, cùng quy tắc ghép chúng. Một phân phối là cả một hàm, trong khi đơn vị vận hành cần vài con số: chi phí trung bình của một quy tắc cảnh báo, mức dao động quanh trung bình, quan hệ giữa hai đại lượng, trung bình khi dữ liệu gồm nhiều nhóm. Kết quả giao cho phần sau là đẳng thức $\mathbb E[\mathbf 1_E]=\mathbb P(E)$ và chi phí kỳ vọng $0{,}0698$ của bộ cảnh báo.</p></aside>
   </section>
   <section data-slide-id="KV01">
     <h2>Kỳ vọng</h2>
-    <p><strong>Nhu cầu:</strong> tóm tắt phân phối của nhãn lỗi bằng một con số; $Y\in\{0,1\}$, $\mathbb P(Y=1)=0{,}044$.</p>
+    <p>Phân phối của nhãn lỗi $Y\in\{0,1\}$, $\mathbb P(Y=1)=0{,}044$, cần được tóm tắt bằng một con số.</p>
     <p><strong>Trực quan.</strong> Trung bình các giá trị, trọng số là xác suất: $\mathbb E[Y]=0\cdot0{,}956+1\cdot0{,}044=0{,}044$.</p>
     <p><strong>Định nghĩa.</strong> Kỳ vọng (expectation) của $X$ là</p>
     <div class="grid2"><p>$X$ rời rạc: $\displaystyle\mathbb E[X]=\sum_{x\in\mathcal X}x\,p_X(x)$;</p><p>$X$ có mật độ: $\displaystyle\mathbb E[X]=\int_{\mathbb R}x\,f_X(x)\,dx$.</p></div>
@@ -510,7 +528,7 @@
   <section data-slide-id="KV03">
     <h2>Chứng minh: kỳ vọng của hàm</h2>
     <p>Các $x$ có cùng ảnh $u=g(x)$ được gom thành một nhóm.</p>
-    <p><strong>Phân phối của $g(X)$.</strong> Cộng tính đếm được cho $\mathbb P(g(X)=u)=\sum_{x:\,g(x)=u}p_X(x)$.</p>
+    <p>Cộng tính đếm được cho phân phối của $g(X)$: $\mathbb P(g(X)=u)=\sum_{x:\,g(x)=u}p_X(x)$.</p>
     <div class="formula">$$\begin{aligned}\mathbb E[g(X)]&amp;=\sum_{u}u\,\mathbb P(g(X)=u)\\&amp;=\sum_{u}\ \sum_{x:\,g(x)=u}g(x)\,p_X(x)=\sum_{x}g(x)\,p_X(x).\end{aligned}$$</div>
     <p>Đẳng thức thứ nhất: định nghĩa kỳ vọng; thứ hai: phân phối của $g(X)$; thứ ba: mỗi $x$ thuộc đúng một nhóm.</p>
     <aside class="notes"><p>Biến $g(X)$ nhận giá trị trong tập đếm được $g(\mathcal X)$. Biến cố $\{g(X)=u\}$ là hợp đếm được của các biến cố xung khắc $\{X=x\}$ với $g(x)=u$, nên (P3) cho phân phối của $g(X)$.</p><p>Gom nhóm hợp lệ vì chuỗi $\sum_x|g(x)|\,p_X(x)$ hữu hạn. Gom nhóm một chuỗi các số hạng không âm không đổi tổng, nên $\sum_u|u|\,\mathbb P(g(X)=u)=\sum_x|g(x)|\,p_X(x)\lt\infty$: biến $g(X)$ khả tích. Vì chuỗi $\sum_xg(x)p_X(x)$ hội tụ tuyệt đối, được phép nhóm các số hạng theo giá trị $u=g(x)$. Trường hợp có mật độ được phác thảo ở ghi chú bài giảng, Phụ lục B.1.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Mệnh đề 10.22, bước 1–3.</p></aside>
@@ -538,7 +556,7 @@
   </section>
   <section data-slide-id="KV05">
     <h2>Phương sai</h2>
-    <p><strong>Nhu cầu:</strong> phân biệt hai chi phí cùng kỳ vọng $1$: luôn bằng $1$, hoặc bằng $0$, $2$ với xác suất $1/2$.</p>
+    <p>Hai chi phí cùng kỳ vọng $1$ cần phân biệt: một luôn bằng $1$, một bằng $0$ hoặc $2$ với xác suất $1/2$.</p>
     <p><strong>Trực quan.</strong> Bình phương độ lệch để độ lệch dương và âm không triệt tiêu nhau.</p>
     <p><strong>Định nghĩa.</strong> Với $\mathbb E[X^2]\lt\infty$, $\mu=\mathbb E[X]$, phương sai (variance) là $\operatorname{Var}(X)=\mathbb E\bigl[(X-\mu)^2\bigr]$; độ lệch chuẩn (standard deviation) là $\operatorname{Var}(X)^{1/2}$.</p>
     <p>Hai chi phí trên có phương sai $0$ và $\tfrac12(0-1)^2+\tfrac12(2-1)^2=1$.</p>
@@ -549,15 +567,15 @@
   <section data-slide-id="KV06">
     <h2>Chứng minh: công thức tính phương sai</h2>
     <p>Trường hợp rời rạc (có mật độ: thay tổng bằng tích phân); kỳ vọng của hàm cho $(x-\mu)^2$.</p>
-    <p><strong>Công thức hai mômen.</strong></p>
+    <p>Công thức hai mômen:</p>
     <div class="formula">$$\begin{aligned}\mathbb E[(X-\mu)^2]&amp;=\sum_x(x^2-2\mu x+\mu^2)\,p_X(x)\\&amp;=\mathbb E[X^2]-2\mu^2+\mu^2=\mathbb E[X^2]-\mu^2.\end{aligned}$$</div>
-    <p><strong>Không âm.</strong> $(x-\mu)^2\ge0$ với mọi $x$.</p>
-    <p><strong>Phương sai của $\alpha X+\beta$.</strong> $\mathbb E[\alpha X+\beta]=\alpha\mu+\beta$, độ lệch bằng $\alpha(X-\mu)$, nên $\operatorname{Var}(\alpha X+\beta)=\alpha^2\operatorname{Var}(X)$.</p>
+    <p>Phương sai không âm vì $(x-\mu)^2\ge0$ với mọi $x$.</p>
+    <p>Với $\alpha X+\beta$: $\mathbb E[\alpha X+\beta]=\alpha\mu+\beta$, độ lệch bằng $\alpha(X-\mu)$, nên $\operatorname{Var}(\alpha X+\beta)=\alpha^2\operatorname{Var}(X)$.</p>
     <aside class="notes"><p>Hàm $g(x)=(x-\mu)^2$ thỏa $|g(x)|\le x^2+2|\mu||x|+\mu^2$, nên $g(X)$ khả tích. Đẳng thức thứ hai của khối công thức tách tổng thành $\sum x^2p_X-2\mu\sum xp_X+\mu^2\sum p_X$, hợp lệ cho chuỗi hội tụ tuyệt đối.</p><p>Với biến đổi affine: $\operatorname{Var}(\alpha X+\beta)=\mathbb E[\alpha^2(X-\mu)^2]=\alpha^2\,\mathbb E[(X-\mu)^2]$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Mệnh đề 10.24.</p></aside>
   </section>
   <section data-slide-id="KV07">
     <h2>Hiệp phương sai</h2>
-    <p><strong>Nhu cầu:</strong> phương sai của tổng số lỗi phụ thuộc việc các lỗi cùng xuất hiện.</p>
+    <p>Phương sai của tổng số lỗi phụ thuộc việc các lỗi cùng xuất hiện.</p>
     <p><strong>Trực quan.</strong> Đo mức hai biến cùng lệch khỏi kỳ vọng của chúng.</p>
     <p><strong>Định nghĩa.</strong> Với $\mathbb E[X^2],\mathbb E[Z^2]\lt\infty$, $\mu_X=\mathbb E[X]$, $\mu_Z=\mathbb E[Z]$, hiệp phương sai (covariance) là</p>
     <div class="formula">$$\begin{aligned}\operatorname{Cov}(X,Z)&amp;=\mathbb E[(X-\mu_X)(Z-\mu_Z)]\\ &amp;=\mathbb E[XZ]-\mu_X\mu_Z.\end{aligned}$$</div>
@@ -580,7 +598,7 @@
     <div class="formula">$$\begin{aligned}\mathbb E[XZ]&amp;=\sum_{x,z}xz\,\mathbb P(X=x,Z=z)=\sum_{x,z}xz\,p_X(x)\,p_Z(z)\\&amp;=\Bigl(\sum_xx\,p_X(x)\Bigr)\Bigl(\sum_zz\,p_Z(z)\Bigr)=\mathbb E[X]\,\mathbb E[Z].\end{aligned}$$</div>
     <p>Đẳng thức thứ nhất: kỳ vọng của hàm, hợp lệ vì $\mathbb E|XZ|\le\tfrac12(\mathbb E[X^2]+\mathbb E[Z^2])$.</p>
     <p>Đẳng thức thứ hai: dạng tích của độc lập; thứ ba: tách chuỗi hội tụ tuyệt đối.</p>
-    <p><strong>Không tương quan.</strong> Thế vào $\operatorname{Cov}(X,Z)=\mathbb E[XZ]-\mathbb E[X]\,\mathbb E[Z]$ được $0$.</p>
+    <p>Thế vào $\operatorname{Cov}(X,Z)=\mathbb E[XZ]-\mathbb E[X]\,\mathbb E[Z]$ được $0$, tức $X,Z$ không tương quan.</p>
     <aside class="notes"><p>Đẳng thức thứ nhất là kỳ vọng của hàm cho cặp $(X,Z)$ với $g(x,z)=xz$, và $2|xz|\le x^2+z^2$ cho bất đẳng thức trên mặt trang. Đẳng thức thứ hai dùng $\mathbb P(X=x,Z=z)=p_X(x)\,p_Z(z)$ với mọi $x,z$. Đẳng thức thứ ba cần chuỗi kép hội tụ tuyệt đối: $\sum_{x,z}|x||z|\,p_X(x)p_Z(z)=\mathbb E|X|\,\mathbb E|Z|$ hữu hạn vì $X,Z$ khả tích.</p><p>Giả thiết mômen bậc hai được dùng ở đẳng thức thứ nhất (để $XZ$ khả tích) và trong định nghĩa hiệp phương sai. Bài tập 10.12 (chứng minh hệ số tương quan thuộc $[-1,1]$) để tự học.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Mệnh đề 10.27.</p></aside>
   </section>
   <section data-slide-id="KV10">
@@ -600,7 +618,7 @@
   </section>
   <section data-slide-id="KV11">
     <h2>Kỳ vọng toàn phần</h2>
-    <p><strong>Nhu cầu:</strong> trung bình chung của chi phí, số lỗi từ trung bình theo nhóm nguồn hàng.</p>
+    <p>Trung bình chung của chi phí, số lỗi được tính từ trung bình theo nhóm nguồn hàng.</p>
     <p><strong>Trực quan.</strong> Trung bình các trung bình nhóm, trọng số là xác suất nhóm.</p>
     <p><strong>Định nghĩa.</strong> Với $\mathbb P(S=s)>0$, kỳ vọng có điều kiện (conditional expectation) $\psi(s)=\mathbb E[X\mid S=s]$ là kỳ vọng dưới $\mathbb P(\cdot\mid S=s)$; $\mathbb E[X\mid S]=\psi(S)$.</p>
     <p><strong>Định lý</strong> (law of total expectation)<strong>.</strong> $X$ rời rạc, khả tích; $S$ rời rạc; tổng theo $s$ với $\mathbb P(S=s)>0$:</p>
@@ -613,11 +631,11 @@
     <div class="grid2">
       <div class="formula">$$\begin{aligned}&amp;\mathbb E[X]=\sum_xx\,p_X(x)\\ &amp;=\sum_s\sum_xx\,\mathbb P(X=x,S=s)\\ &amp;=\sum_s\psi(s)\,\mathbb P(S=s).\end{aligned}$$</div>
       <div>
-        <p><strong>Tổng kép theo $(x,s)$.</strong> (P3) cho $p_X(x)=\sum_s\mathbb P(X=x,S=s)$; đổi thứ tự hợp lệ vì $X$ khả tích.</p>
-        <p><strong>Tổng trong bằng $\psi(s)\,\mathbb P(S=s)$.</strong> Quy tắc nhân cho $\mathbb P(X=x,S=s)$.</p>
+        <p>Đẳng thức thứ hai: (P3) cho $p_X(x)=\sum_s\mathbb P(X=x,S=s)$; đổi thứ tự hợp lệ vì $X$ khả tích.</p>
+        <p>Đẳng thức thứ ba: quy tắc nhân cho $\mathbb P(X=x,S=s)$, nên tổng trong bằng $\psi(s)\,\mathbb P(S=s)$.</p>
       </div>
     </div>
-    <p><strong>Tổng cuối bằng $\mathbb E[\psi(S)]$.</strong> Kỳ vọng của hàm cho $S$ và $g=\psi$.</p>
+    <p>Tổng cuối bằng $\mathbb E[\psi(S)]$ theo kỳ vọng của hàm cho $S$ và $g=\psi$.</p>
     <aside class="notes"><p>Biến cố $\{X=x\}$ được chia theo giá trị của $S$, rồi đổi thứ tự hai tổng. Trong chứng minh, $\sum_s$ chạy trên các $s$ có $\mathbb P(S=s)>0$. Bước phân hoạch: $\{X=x\}$ là hợp đếm được của các biến cố xung khắc $\{X=x,S=s\}$; các $s$ có $\mathbb P(S=s)=0$ góp $\mathbb P(X=x,S=s)\le\mathbb P(S=s)=0$; với các $s$ còn lại, quy tắc nhân cho $\mathbb P(X=x,S=s)=\mathbb P(X=x\mid S=s)\,\mathbb P(S=s)$.</p><p>Đổi thứ tự hợp lệ vì $\sum_{x,s}|x|\,\mathbb P(X=x,S=s)=\mathbb E|X|\lt\infty$. Mỗi $\psi(s)$ hữu hạn vì $\sum_x|x|\,\mathbb P(X=x\mid S=s)\le\mathbb E|X|/\mathbb P(S=s)$. Biến $\psi(S)$ khả tích vì $\sum_s|\psi(s)|\,\mathbb P(S=s)\le\mathbb E|X|$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Định lý 10.29.</p></aside>
   </section>
   <section data-slide-id="KV13">
@@ -638,14 +656,14 @@
   <section data-slide-id="SL00" id="mach-6" class="strand-title">
     <div class="strand-title-body">
       <h2><span class="strand-number">6.</span>Phân phối đồng thời và phép lấy biên</h2>
-      <p class="strand-lead">Muốn tính hậu nghiệm của nguồn hàng và nhãn lỗi rồi quyết định theo chi phí, cần phân phối đồng thời và phép lấy biên.</p>
+      <p class="strand-lead">Khi nguồn hàng không được quan sát, lấy biên trên phân phối đồng thời vẫn cho hậu nghiệm; thêm chi phí thì có quyết định.</p>
       <p class="strand-keys">Phân phối đồng thời · Lấy biên · Phân phối có điều kiện · Suy luận · Quyết định</p>
     </div>
     <aside class="notes"><p>Các phần trước cho hậu nghiệm $198/437$ của nhãn lỗi, giả thiết $A\perp S\mid Y$ ở dạng dùng được trong phép nhân và đẳng thức $\mathbb E[\mathbf 1_E]=\mathbb P(E)$. Hậu nghiệm của nguồn hàng và xác suất lỗi theo từng nguồn sau cảnh báo cần phân phối của cả bộ ba nhà cung cấp, tình trạng lỗi, cảnh báo. Việc cần làm: dựng phân phối đồng thời, loại nhà cung cấp bằng một tổng, chuẩn hóa theo cảnh báo, rồi so hai chi phí kỳ vọng.</p></aside>
   </section>
   <section data-slide-id="SL01">
     <h2>Ba biến của hệ thống sản phẩm</h2>
-    <p><strong>Nhu cầu:</strong> hậu nghiệm của nguồn hàng và của nhãn lỗi trong cùng một mô hình.</p>
+    <p>Hậu nghiệm của nguồn hàng và của nhãn lỗi được tính trong cùng một mô hình.</p>
     <p>$\mathbb P(S=s\mid A=1)$, $\mathbb P(Y=1\mid A=1,S=s)$ cần phân phối của cả bộ $(S,Y,A)$.</p>
     <p><strong>Trực quan.</strong> Dữ liệu sinh theo chuỗi: chọn nhà cung cấp, rồi tình trạng lỗi, rồi phản hồi cảm biến.</p>
     <figure class="visual"><img class="only-narrow" src="img/lec-10/generation-chain-narrow.svg" alt="Ba khối xếp dọc nối bằng mũi tên: nhà cung cấp S viền nét đứt, chưa quan sát vì thiếu hồ sơ; tình trạng lỗi Y viền nét đứt, cần suy luận; cảnh báo A viền liền đậm, đã quan sát. Phía trên khối S ghi p chỉ số S của s; hai mũi tên ghi p chỉ số Y khi biết S của y khi biết s, và p chỉ số A khi biết Y của a phẩy khi biết y."/><img class="only-wide" src="img/lec-10/generation-chain.svg" alt="Ba khối nối bằng mũi tên: nhà cung cấp S viền nét đứt, chưa quan sát vì thiếu hồ sơ; tình trạng lỗi Y viền nét đứt, cần suy luận; cảnh báo A viền liền đậm, đã quan sát. Phía trên khối S ghi p chỉ số S của s; hai mũi tên ghi p chỉ số Y khi biết S của y khi biết s, và p chỉ số A khi biết Y của a phẩy khi biết y."/></figure>
@@ -693,19 +711,19 @@
   <section data-slide-id="SL06">
     <h2>Chứng minh: phân tích nhân tử</h2>
     <p>Quy tắc chuỗi theo thứ tự sinh dữ liệu, rồi bỏ điều kiện $S$ nhờ $A\perp S\mid Y$.</p>
-    <p><strong>Tích ba nhân tử có điều kiện.</strong> Quy tắc chuỗi, với $p_{S,Y}(s,y)>0$:</p>
+    <p>Quy tắc chuỗi cho tích ba nhân tử có điều kiện, với $p_{S,Y}(s,y)>0$:</p>
     <div class="formula">$$\begin{aligned}&amp;p_{S,Y,A}(s,y,a')=p_S(s)\,p_{Y\mid S}(y\mid s)\\ &amp;\qquad\times\mathbb P(A=a'\mid S=s,Y=y).\end{aligned}$$</div>
-    <p><strong>Nhân tử cảm biến chỉ phụ thuộc $y$.</strong> Dạng tương đương của độc lập có điều kiện, với $U=A$, $V=S$, $W=Y$: $\mathbb P(A=a'\mid S=s,Y=y)=p_{A\mid Y}(a'\mid y)$.</p>
-    <p><strong>Ô xác suất $0$ cũng thỏa.</strong> Nếu $p_{S,Y}(s,y)=0$: vế phải bằng $0$ vì $p_{Y\mid S}(y\mid s)=0$; vế trái bằng $0$ vì $p_{S,Y,A}\le p_{S,Y}$.</p>
+    <p>Nhân tử cảm biến chỉ phụ thuộc $y$, theo dạng tương đương của độc lập có điều kiện, với $U=A$, $V=S$, $W=Y$: $\mathbb P(A=a'\mid S=s,Y=y)=p_{A\mid Y}(a'\mid y)$.</p>
+    <p>Nếu $p_{S,Y}(s,y)=0$, đẳng thức vẫn đúng: vế phải bằng $0$ vì $p_{Y\mid S}(y\mid s)=0$; vế trái bằng $0$ vì $p_{S,Y,A}\le p_{S,Y}$.</p>
     <aside class="notes"><p>Quy tắc chuỗi áp dụng cho $E=\{S=s\}$, $F=\{Y=y\}$, $G=\{A=a'\}$; điều kiện $\mathbb P(E\cap F)=p_{S,Y}(s,y)>0$ bảo đảm mọi xác suất có điều kiện xác định. Bước thứ hai là chỗ duy nhất dùng giả thiết độc lập có điều kiện, qua dạng tương đương đã chứng minh (Mệnh đề 10.17).</p><p>Ô xác suất $0$: $p_{Y\mid S}(y\mid s)=p_{S,Y}(s,y)/p_S(s)=0$, và bất đẳng thức của vế trái là tính đơn điệu, vì $\{S=s,Y=y,A=a'\}\subseteq\{S=s,Y=y\}$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Mệnh đề 10.34, bước 1–2.</p></aside>
   </section>
   <section data-slide-id="SL07">
     <h2>Chứng minh: lấy biên và chuẩn hóa</h2>
     <p>Phân tích nhân tử được cộng theo biến chưa quan sát, rồi chia cho xác suất của quan sát.</p>
-    <p><strong>Phân phối đồng thời của $(Y,A)$.</strong> Lấy biên theo $s$ cho cặp $((Y,A),S)$:</p>
+    <p>Lấy biên theo $s$ cho cặp $((Y,A),S)$ được phân phối đồng thời của $(Y,A)$:</p>
     <div class="formula">$$\begin{aligned}p_{Y,A}(y,a')&amp;=\sum_sp_{S,Y,A}(s,y,a')\\ &amp;=\sum_sq(s,y).\end{aligned}$$</div>
-    <p><strong>Xác suất của quan sát.</strong> Lấy biên theo $y$: $p_A(a')=\sum_{y'}p_{Y,A}(y',a')$.</p>
-    <p><strong>Công thức hậu nghiệm.</strong> $p_{Y\mid A}(y\mid a')=p_{Y,A}(y,a')/p_A(a')$, dùng $p_A(a')>0$; thế hai tổng vào.</p>
+    <p>Lấy biên theo $y$ được xác suất của quan sát: $p_A(a')=\sum_{y'}p_{Y,A}(y',a')$.</p>
+    <p>Hậu nghiệm $p_{Y\mid A}(y\mid a')=p_{Y,A}(y,a')/p_A(a')$, dùng $p_A(a')>0$; thế hai tổng vào.</p>
     <aside class="notes"><p>Bước lấy biên theo $s$ xem $(Y,A)$ là một biến và $S$ là biến bị loại; các $s$ có $p_S(s)=0$ góp $0$. Bước lấy biên theo $y$ tương tự, các $y'$ có $p_Y(y')=0$ góp $0$. Bước cuối là phân phối có điều kiện từ phân phối đồng thời, hợp lệ vì $p_A(a')>0$. Nếu $p_Y(y)=0$ thì $p_{Y,A}(y,a')\le p_Y(y)=0$, nên hậu nghiệm bằng $0$.</p><p>Hậu nghiệm của nhãn lỗi khi thiếu nguồn hàng tính được hoàn toàn từ ba nhân tử nhỏ của mô hình, không cần lập trước bảng đầy đủ của ba biến.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, chứng minh Mệnh đề 10.34, bước 3–4.</p></aside>
   </section>
   <section data-slide-id="SL08">
@@ -777,34 +795,44 @@
 <section>
   <section data-slide-id="TK00" id="mach-7" class="strand-title">
     <div class="strand-title-body">
-      <h2><span class="strand-number">7.</span>Tổng kết và chuyển tiếp</h2>
-      <p class="strand-lead">Muốn dùng đúng các kết quả của bài, cần ghi kèm giả thiết mà mỗi kết quả đòi hỏi.</p>
-      <p class="strand-keys">Giả thiết · Hậu nghiệm · Quyết định · Tham số chưa biết</p>
+      <h2><span class="strand-number">7.</span>Tổng kết</h2>
+      <p class="strand-lead">Các kết quả của bài đúng dưới giả thiết riêng, và hậu nghiệm cần thêm chi phí để thành quyết định.</p>
+      <p class="strand-keys">Giả thiết không được bỏ · Vấn đề trung tâm · Bài tập tổng hợp · Câu hỏi tự kiểm tra · Tài liệu tham khảo</p>
     </div>
-    <aside class="notes"><p>Các phần trước cho hậu nghiệm $198/437$ của nhãn lỗi, hậu nghiệm $236/437$ của nhà cung cấp $b$ và ngưỡng quyết định $1/6$. Mỗi kết quả được đặt cạnh giả thiết không được bỏ; bài toán mở đầu được giải lại khi tỉ lệ lỗi của luồng hàng thay đổi. Câu hỏi còn mở: các tham số của mô hình được chọn từ dữ liệu như thế nào.</p></aside>
+    <aside class="notes"><p>Các phần trước cho hậu nghiệm $198/437$ của nhãn lỗi, hậu nghiệm $236/437$ của nhà cung cấp $b$ và ngưỡng quyết định $1/6$. Mỗi kết quả được đặt cạnh giả thiết không được bỏ, câu hỏi trung tâm được trả lời cho cả bài, và bài toán mở đầu được giải lại khi tỉ lệ lỗi của luồng hàng thay đổi. Câu hỏi còn mở: các tham số của mô hình được chọn từ dữ liệu như thế nào.</p></aside>
   </section>
   <section data-slide-id="TK01">
     <h2>Kết quả và giả thiết: suy luận xác suất</h2>
-    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức</th></tr></thead><tbody>
-      <tr><td data-label="Kết quả">Phần bù, hợp</td><td data-label="Giả thiết">không gian xác suất</td><td data-label="Công thức">$\mathbb P(E\cup F)=\mathbb P(E)+\mathbb P(F)-\mathbb P(E\cap F)$</td></tr>
-      <tr><td data-label="Kết quả">Quy tắc nhân</td><td data-label="Giả thiết">$\mathbb P(F)>0$</td><td data-label="Công thức">$\mathbb P(E\cap F)=\mathbb P({E\mid F})\,\mathbb P(F)$</td></tr>
-      <tr><td data-label="Kết quả">Toàn phần, Bayes</td><td data-label="Giả thiết">phân hoạch; $\mathbb P(B_j)>0$, $\mathbb P(E)>0$</td><td data-label="Công thức">$\mathbb P({B_k\mid E})\propto\mathbb P({E\mid B_k})\,\mathbb P(B_k)$</td></tr>
-      <tr><td data-label="Kết quả">Lấy biên</td><td data-label="Giả thiết">không thêm giả thiết</td><td data-label="Công thức">$p_X(x)=\sum_zp_{X,Z}(x,z)$</td></tr>
-      <tr><td data-label="Kết quả">Phân tích nhân tử</td><td data-label="Giả thiết">$A\perp S\mid Y$, $p_A(a')>0$</td><td data-label="Công thức">$p_{Y\mid A}({y\mid a'})\propto\sum_sq(s,y)$ theo $y$</td></tr>
+    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead><tbody>
+      <tr><td data-label="Kết quả">Phần bù, hợp</td><td data-label="Giả thiết">không gian xác suất</td><td data-label="Công thức hoặc thuật toán">$\mathbb P(E\cup F)=\mathbb P(E)+\mathbb P(F)-\mathbb P(E\cap F)$</td></tr>
+      <tr><td data-label="Kết quả">Quy tắc nhân</td><td data-label="Giả thiết">$\mathbb P(F)>0$</td><td data-label="Công thức hoặc thuật toán">$\mathbb P(E\cap F)=\mathbb P({E\mid F})\,\mathbb P(F)$</td></tr>
+      <tr><td data-label="Kết quả">Toàn phần, Bayes</td><td data-label="Giả thiết">phân hoạch; $\mathbb P(B_j)>0$, $\mathbb P(E)>0$</td><td data-label="Công thức hoặc thuật toán">$\mathbb P({B_k\mid E})\propto\mathbb P({E\mid B_k})\,\mathbb P(B_k)$</td></tr>
+      <tr><td data-label="Kết quả">Lấy biên</td><td data-label="Giả thiết">không thêm giả thiết</td><td data-label="Công thức hoặc thuật toán">$p_X(x)=\sum_zp_{X,Z}(x,z)$</td></tr>
+      <tr><td data-label="Kết quả">Phân tích nhân tử</td><td data-label="Giả thiết">$A\perp S\mid Y$, $p_A(a')>0$</td><td data-label="Công thức hoặc thuật toán">$p_{Y\mid A}({y\mid a'})\propto\sum_sq(s,y)$ theo $y$</td></tr>
     </tbody></table></div>
     <aside class="notes"><p>Ở hàng cuối, $q(s,y)=p_S(s)\,p_{Y\mid S}(y\mid s)\,p_{A\mid Y}(a'\mid y)$ và hằng số tỉ lệ là $1/p_A(a')$. Không gian xác suất gán trọng số nhất quán cho các biến cố, và xác suất có điều kiện chuẩn hóa lại các trọng số sau quan sát. Quy tắc nhân và công thức toàn phần dẫn đến định lý Bayes, nhờ đó cảnh báo cập nhật xác suất sản phẩm lỗi từ $0{,}044$ lên $198/437$, thay cho con số $0{,}90$ của câu trả lời nhanh. Phân phối đồng thời giữ mọi quan hệ phụ thuộc, và phép lấy biên loại biến chưa quan sát bằng tổng; phân tích nhân tử chỉ đúng dưới giả thiết $A\perp S\mid Y$.</p><p>Các nhầm lẫn thường gặp: dùng định lý Bayes với mẫu số bằng $0$; nhân các xác suất không điều kiện khi chưa có giả thiết độc lập; sau một quan sát vẫn dùng tiên nghiệm $0{,}6$ và $0{,}4$ làm trọng số của nhà cung cấp.</p></aside>
   </section>
   <section data-slide-id="TK01b">
     <h2>Kết quả và giả thiết: phân phối, kỳ vọng và quyết định</h2>
-    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức</th></tr></thead><tbody>
-      <tr><td data-label="Kết quả">Mật độ</td><td data-label="Giả thiết">$X$ có mật độ $f_X$</td><td data-label="Công thức">$\mathbb P(X\in B)=\int_Bf_X$</td></tr>
-      <tr><td data-label="Kết quả">Tính tuyến tính</td><td data-label="Giả thiết">khả tích; không cần độc lập</td><td data-label="Công thức">$\mathbb E[\alpha X+\beta Z]=\alpha\mathbb E[X]+\beta\mathbb E[Z]$</td></tr>
-      <tr><td data-label="Kết quả">Phương sai</td><td data-label="Giả thiết">$\mathbb E[X^2]\lt\infty$</td><td data-label="Công thức">$\operatorname{Var}(X)=\mathbb E[X^2]-{(\mathbb E[X])^2}$</td></tr>
-      <tr><td data-label="Kết quả">Không tương quan</td><td data-label="Giả thiết">$X\perp Z$, $\mathbb E[X^2],\mathbb E[Z^2]\lt\infty$</td><td data-label="Công thức">$\operatorname{Cov}(X,Z)=0$</td></tr>
-      <tr><td data-label="Kết quả">Kỳ vọng toàn phần</td><td data-label="Giả thiết">$X$ khả tích, $S$ rời rạc</td><td data-label="Công thức">$\mathbb E[X]=\mathbb E\bigl[\mathbb E[{X\mid S}]\bigr]$</td></tr>
-      <tr><td data-label="Kết quả">Quyết định</td><td data-label="Giả thiết">chi phí cho trước</td><td data-label="Công thức">loại khi $r>1/6$</td></tr>
+    <div class="table-scroll"><table class="stack-table"><thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead><tbody>
+      <tr><td data-label="Kết quả">Mật độ</td><td data-label="Giả thiết">$X$ có mật độ $f_X$</td><td data-label="Công thức hoặc thuật toán">$\mathbb P(X\in B)=\int_Bf_X$</td></tr>
+      <tr><td data-label="Kết quả">Tính tuyến tính</td><td data-label="Giả thiết">khả tích; không cần độc lập</td><td data-label="Công thức hoặc thuật toán">$\mathbb E[\alpha X+\beta Z]=\alpha\mathbb E[X]+\beta\mathbb E[Z]$</td></tr>
+      <tr><td data-label="Kết quả">Phương sai</td><td data-label="Giả thiết">$\mathbb E[X^2]\lt\infty$</td><td data-label="Công thức hoặc thuật toán">$\operatorname{Var}(X)=\mathbb E[X^2]-{(\mathbb E[X])^2}$</td></tr>
+      <tr><td data-label="Kết quả">Không tương quan</td><td data-label="Giả thiết">$X\perp Z$, $\mathbb E[X^2],\mathbb E[Z^2]\lt\infty$</td><td data-label="Công thức hoặc thuật toán">$\operatorname{Cov}(X,Z)=0$</td></tr>
+      <tr><td data-label="Kết quả">Kỳ vọng toàn phần</td><td data-label="Giả thiết">$X$ khả tích, $S$ rời rạc</td><td data-label="Công thức hoặc thuật toán">$\mathbb E[X]=\mathbb E\bigl[\mathbb E[{X\mid S}]\bigr]$</td></tr>
+      <tr><td data-label="Kết quả">Quyết định</td><td data-label="Giả thiết">chi phí cho trước</td><td data-label="Công thức hoặc thuật toán">loại khi $r>1/6$</td></tr>
     </tbody></table></div>
     <aside class="notes"><p>Mật độ cho xác suất bằng diện tích; giá trị của mật độ tại một điểm không phải xác suất. Kỳ vọng và phương sai tóm tắt trung bình và mức dao động; hiệp phương sai bằng $0$ vẫn cho phép hai biến phụ thuộc, như độ lệch kích thước và nhãn lỗi. Hậu nghiệm cần thêm chi phí để thành quyết định, và chỉ đúng khi tiên nghiệm và đặc tính cảm biến khớp với luồng hàng thật.</p><p>Các nhầm lẫn thường gặp: đọc độ cao của mật độ như một xác suất; dùng công thức phương sai hoặc hiệp phương sai khi chưa kiểm tra mômen bậc hai hữu hạn.</p></aside>
+  </section>
+  <section data-slide-id="TK01c">
+    <h2>Vấn đề trung tâm</h2>
+    <ul>
+      <li>Tiên nghiệm $0{,}044$ và hợp lý $0{,}9$, $0{,}05$ biểu diễn cái chưa biết.</li>
+      <li>Quy tắc nhân kết hợp các nguồn thông tin; phép lấy biên loại nguồn hàng chưa quan sát.</li>
+      <li>Định lý Bayes cập nhật sau quan sát: xác suất lỗi sau cảnh báo là $198/437$, khác độ nhạy $0{,}9$.</li>
+      <li>Quyết định cần thêm chi phí: loại khi $r>1/6$.</li>
+    </ul>
+    <aside class="notes"><p>Một hệ thống AI suy luận hợp lý khi thông tin không đầy đủ bằng ba việc: biểu diễn cái chưa biết bằng xác suất, kết hợp các nguồn thông tin bằng quy tắc nhân và phép lấy biên, cập nhật khi có quan sát mới bằng định lý Bayes. Trên sản phẩm bị cảnh báo và thiếu hồ sơ, hậu nghiệm là $198/437\approx0{,}4531$, và trọng số của nhà cung cấp $b$ sau cảnh báo là $236/437\approx0{,}54$ thay cho tiên nghiệm $0{,}4$.</p><p>Các kết quả này cần ba giả thiết: tham số cho trước, mọi biến cố dùng làm điều kiện có xác suất dương, và $A\perp S\mid Y$ cho phân tích nhân tử. Hậu nghiệm chỉ đúng khi tiên nghiệm và đặc tính cảm biến khớp với luồng hàng thật; ngưỡng $1/6$ đến từ tỉ số chi phí $5$ và $1$.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 10, mục 9 và lời giải câu hỏi cuối buổi ở mục 11.</p></aside>
   </section>
   <section data-slide-id="TK02">
     <h2>Bài tập: sản phẩm bị cảnh báo khi thiếu hồ sơ nguồn hàng</h2>
@@ -844,14 +872,15 @@
     <aside class="notes"><p>Lời giải: (1) khi quan sát có xác suất $0$, vì định nghĩa xác suất có điều kiện cần mẫu số dương. (2) đẳng thức tích chính là định nghĩa độc lập; không có giả thiết đó, mọi phụ thuộc phải được giữ trong xác suất có điều kiện. (3) không: mật độ không phải xác suất; mật độ đều bằng $10$ trên $[0;\,0{,}1]$ có diện tích toàn phần bằng $1$. (4) không nhất thiết: độ lệch kích thước $X$ và nhãn lỗi $Y=\mathbf 1_{\{|X|=2\}}$ có $\operatorname{Cov}(X,Y)=0$, nhưng $\mathbb P(Y=1\mid X=2)=1\ne0{,}044=\mathbb P(Y=1)$.</p></aside>
   </section>
   <section data-slide-id="TK05">
-    <h2>Tài liệu đọc và chuyển tiếp</h2>
+    <h2>Tài liệu tham khảo</h2>
     <ul>
-      <li>Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §2.1–§2.3.</li>
-      <li>Đọc sau buổi học: Murphy (2022), phân phối và mômen: §2.4.1, §2.5.1, §2.6.1–§2.6.2, §3.1.1–§3.1.3, §3.2.1.</li>
-      <li>Bài tập 10.1–10.3 (ghi chú bài giảng) và 10.4–10.15 (tệp bài tập).</li>
+      <li>Kevin P. Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, MIT Press.</li>
+      <li>Trước buổi học: §2.1, §2.2.1–§2.2.2.</li>
+      <li>Sau buổi học: §2.1.2–§2.3, §2.4.1, §2.5.1, §2.6.1–§2.6.2, §2.8.1, §2.8.4, §3.1.1–§3.1.5, §3.2.1.</li>
     </ul>
-    <p><strong>Nhu cầu:</strong> mọi tham số của bài được cho trước; trong thực tế phải chọn chúng từ dữ liệu.</p>
-    <aside class="notes"><p>Trước buổi học: Murphy, §2.1 (nhất là xác suất của biến cố, hợp và phần bù) và §2.2.1–§2.2.2. Sau buổi học: §2.1.3.4–§2.1.3.6 và §2.2.3–§2.3 cho xác suất có điều kiện, quy tắc tổng, quy tắc nhân và định lý Bayes; §2.2.1–§2.2.2, §2.2.4, §2.4.1, §2.5.1, §2.6.1–§2.6.2 và phần định nghĩa của §3.2.1 cho phân phối; §2.2.5 và §3.1.1–§3.1.3 cho mômen.</p><p>Các tỉ lệ $0{,}6$, $0{,}4$, $0{,}02$, $0{,}08$, $0{,}9$, $0{,}05$ phải được ước lượng từ một mẫu sản phẩm đã kiểm định, và ước lượng có sai số. Nếu cảm biến trả về một số đo liên tục $X$ với $X\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$, các tham số $\mu_y,\sigma_y^2$ cũng chưa biết. Bài 11 giữ cấu trúc mô hình xác suất của bài này nhưng coi các tham số là chưa biết và chọn chúng từ dữ liệu; đọc mở rộng: Murphy, §4.2.</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11–12; Murphy (2022).</p></aside>
+    <p>Bài tập 10.1–10.3: <a href="material-viewer.html?doc=materials/lec-10/lecture-note.md&amp;deck=lecture-10-xac-suat-bieu-dien-bat-dinh.html">Ghi chú bài giảng</a> · 10.4–10.15: <a href="material-viewer.html?doc=materials/lec-10/exercises.md&amp;deck=lecture-10-xac-suat-bieu-dien-bat-dinh.html">Bài tập</a></p>
+    <p>Bài 11 coi các tham số là chưa biết và chọn chúng từ dữ liệu bằng hợp lý cực đại.</p>
+    <aside class="notes"><p>Sau buổi học, theo phần: §2.1.2, §2.1.3.1–§2.1.3.3 cho mô hình xác suất; §2.1.3.4–§2.1.3.6, §2.2.3, §2.3 cho xác suất có điều kiện và định lý Bayes; §2.2.1, §2.2.2.1–§2.2.2.2, §2.2.4, §2.4.1, §2.5.1, §2.6.1–§2.6.2 và phần định nghĩa của §3.2.1 cho phân phối; §2.2.5–§2.2.6, §2.8.1, §2.8.4, §3.1.1–§3.1.3 cho mômen; §2.2.3, §2.2.4, §2.3, §3.1.4–§3.1.5 cho suy luận nhiều biến.</p><p>Các tỉ lệ $0{,}6$, $0{,}4$, $0{,}02$, $0{,}08$, $0{,}9$, $0{,}05$ phải được ước lượng từ một mẫu sản phẩm đã kiểm định, và ước lượng có sai số. Nếu cảm biến trả về một số đo liên tục $X$ với $X\mid Y=y\sim\mathcal N(\mu_y,\sigma_y^2)$, các tham số $\mu_y,\sigma_y^2$ cũng chưa biết. Bài 11 giữ cấu trúc mô hình xác suất của bài này nhưng coi các tham số là chưa biết và chọn chúng từ dữ liệu. Đọc mở rộng: Murphy, §6.3 (thông tin tương hỗ) và §4.2 (ước lượng hợp lý cực đại).</p><p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng, mục 11–12; Murphy (2022).</p></aside>
   </section>
 </section>
 

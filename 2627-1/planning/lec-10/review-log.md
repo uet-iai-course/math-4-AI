@@ -963,3 +963,27 @@ Trạng thái: chờ điều phối viên duyệt.
 Kiểm của điều phối viên: đọc diff deck; đếm lại MD01 bằng `wc -w` trên sáu dòng `li` (lượt 2 báo 78 nhưng đo được 82, **yêu cầu sửa**; lượt 3 đạt 80/80); storyboard 77 mục cho 77 trang; `deck_check.py` (cổng 8810): 77 trang, 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW; cờ duy nhất MD02 LINES (ngoại lệ đã có). Đã xem ảnh 1600×900 và 390×844 của MD01, BY06, KV08, SL00, SL11, TK05: vừa khung, không chồng chữ.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18 ("Sửa deck math-4-AI 00, 01, 02, 03, 04, 05, 06, 07, 10, 11 theo MỨC 2"). Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec10.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi do điều phối viên lập từ `deck_lint --course math-4-AI` (HEAD 2d93133: 51 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` nào từ ghi chú, bài tập hay chỉ mục vào deck (điều phối viên grep toàn repo).
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | bốn lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 đạt (2 trung bình, 8 nhẹ); lượt 2 đạt; lượt 3 chưa đạt (MD01 mục tiêu 4, 5) |
+
+**Các lượt và quyết định của điều phối viên:**
+- Lượt 1: thêm "Tiên quyết và quy ước" (MD00b), "Vấn đề trung tâm" mở đầu (MD05, một hộp) và Tổng kết (TK01c); bìa có luận điểm; "Nội dung" có liên kết `#/1`–`#/7`; dòng dẫn mạch viết lại (không "Muốn …", không "Nhu cầu:"); 16 câu "Nhu cầu:" thành câu khẳng định; mạch 7 "Tổng kết"; TK05 "Tài liệu tham khảo"; cột P4; nhãn bước in đậm ngoài NT19 thành câu thường. **chấp nhận** sau khi điều phối viên đối chiếu `exercises.md` (bắt đầu 10.4) và mục Kiến thức tiên quyết.
+- Sau lượt 1 (yêu cầu sửa): MD00b gán sai nhóm tiên quyết; TK05 mất vị trí bài tập 10.1–10.3 / 10.4–10.15; các điểm nhẹ (ghi chú MD00, TK01c ý 2, PP03, SL06, SL00, ghi chú TK05). BY01 giữ.
+- Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu học tập" giữ đủ nghĩa mục tiêu của ghi chú (NT11), tối đa 120 âm tiết theo ngoại lệ NT17 cho trang mục tiêu. MD01 viết lại (120); lượt 3 bắt mục tiêu 4, 5 mất động từ → sửa nguyên văn đề xuất; điều phối viên đọc lại mặt trang → **chấp nhận**. Hai sửa nhẹ (mục 4 "hai biến", mục 6 "của phép") không làm vì vượt 120.
+
+**Kiểm cuối của điều phối viên** (máy chủ tĩnh tạm 127.0.0.1:8771, bản HEAD ở 8773):
+- `deck_lint`: 7 phát hiện, đều là ngoại lệ ghi trong storyboard: MD00 SYLL60 84 (bìa giữ ID cũ nên lint không miễn), MD01 120/80 (trang mục tiêu, ≤ 120), STRUCT ID bìa, NOTES150 ở BY10, PP08, KV07, SL12 (có từ trước, ngoài mức 2).
+- `deck_check`: 80 trang, console 0, pageerrors 0, failed 0, `.katex-error` 0; cờ OVERFLOW ở MD00b là đuôi SVG của `\sqrt` (báo động giả đã biết, NT28), ảnh 1600×900 và 390×844 không cắt chữ.
+- `footer_check` 1600×900: 0 trang (HEAD 0). `formula_overflow` 390 px: 13 trang, trùng HEAD (không công thức nào đổi).
+- Ảnh đã xem: MD00b, MD01, MD05, TK01c, TK05 ở hai cỡ. `git diff --check` sạch. Số trang 77 → 80, mọi `data-slide-id` cũ giữ.
+
+**Còn lại, chờ tác giả:** trang "Bài tập về nhà" (bảng `Mục | Bài tập`) của NT15 chưa có; NOTES150 ở bốn trang; tràn công thức ở 390 px (có từ trước).
+
+**Quyết định:** **chấp nhận**.

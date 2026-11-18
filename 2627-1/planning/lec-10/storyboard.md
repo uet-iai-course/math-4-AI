@@ -997,3 +997,57 @@ Nội dung dưới đây là `storyboard.md` của kế hoạch ghi chú, giữ 
 | Cuối chương | Cần trả lời hai câu hỏi suy luận và chuẩn bị ước lượng | Tổng hợp Bayes và lấy biên, phân biệt mô hình/ước lượng/quyết định | Ba bài trên lớp, bốn bài tự học, lời giải phụ lục |
 
 Các chứng minh và phép tính được đặt ngay sau kết quả. Giữ camera ở phần đã có, chuyển minh bạch sang sản phẩm lỗi ở Mục 2; không đổi bảng số của phần hiện có. Hình SVG tự tạo minh họa nhân theo nhánh và cộng lấy biên, không sao chép hình Murphy. Phần Gaussian nhiều chiều chỉ nêu mật độ và giả thiết, không chứng minh hình học của Bài11. Kết quả concentration Bài05c được dẫn và phát biểu lại chỗ cần dùng, không tái tạo chương đó.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Phạm vi: NT11–NT16, NT19, NT22 theo `nhat-ky/ke-hoach-sua-deck-theo-NT.md`, mục 1 "Mức 2". Không đổi nội dung toán học, không bớt hay gộp trang; số mạch giữ 7; mọi `data-slide-id` cũ giữ nguyên (77 trang cũ + 3 trang thêm = 80). Số âm tiết lấy từ `deck_lint.py --course math-4-AI`.
+
+### Trang thêm
+
+| ID | Vị trí | Tiêu đề | Lý do | Nội dung và nguồn | Âm tiết |
+|---|---|---|---|---|---|
+| MD00b | mạch 1, sau bìa | Tiên quyết và quy ước | NT11: mạch mở đầu thiếu trang tiên quyết | "Nhắc lại:" phần bù, hợp, đơn điệu (Mệnh đề 05c.2); quy tắc nhân, toàn phần, Bayes (05c.9–05c.11); kỳ vọng rời rạc, tuyến tính (05c.26, 05c.28); tích phân Gauss, ma trận đối xứng xác định dương. "Ký hiệu:" $\mathbb P$ thay $P$ của Bài 05c. Nguồn: ghi chú, "Kiến thức tiên quyết" | 58 |
+| MD05 | mạch 1, cuối | Vấn đề trung tâm | NT11: thiếu trang một hộp "Câu hỏi:" | Câu hỏi trung tâm ở dòng 3 của ghi chú; câu trả lời theo phần 2–6 ở ghi chú diễn giả (đoạn mở đầu và mục 9) | 22 |
+| TK01c | mạch 7, sau TK01b | Vấn đề trung tâm | NT15: thiếu trang trả lời câu hỏi trung tâm cho cả bài | Bốn ý theo lời giải câu hỏi cuối buổi (mục 11: biểu diễn cái chưa biết, kết hợp thông tin, cập nhật bằng Bayes) và mục 9 (quyết định cần chi phí, ngưỡng $1/6$); số $0{,}044$, $0{,}9$, $0{,}05$, $198/437$ của ghi chú | 55 |
+
+### Trang di chuyển
+
+Không có. Thứ tự mạch mở đầu sau sửa: MD00 bìa → MD00b Tiên quyết và quy ước → MD01 Mục tiêu học tập → MD02 Nội dung → MD03 ví dụ dẫn nhập (P5) → MD04 Ngữ cảnh (P5) → MD05 Vấn đề trung tâm. MD03 đứng trước MD04 như cũ vì "Ngữ cảnh" đặt ký hiệu $S,Y,A$ cho chính ví dụ đó.
+
+### Trang đổi
+
+| ID | Thay đổi | Âm tiết trước → sau |
+|---|---|---|
+| MD00 | thêm luận điểm một câu, có điều kiện (đoạn mở đầu và giả thiết "tham số cho trước", "mẫu số dương" ở mục 2 của ghi chú); ghi chú diễn giả thêm một câu nêu hai điều kiện | 35 → 84 (xem ngoại lệ) |
+| MD02 | mục là liên kết `#/1`–`#/7`; mục cuối "Tổng kết" | 44 → 41 |
+| MH00, BY00, PP00, KV00, SL00, TK00 | dòng dẫn viết lại theo NT12 (bỏ khuôn "Muốn …, cần …") | 19→24, 24→23, 23→24, 25→22, 25→25, 19→21 (dòng dẫn) |
+| TK00 | tên "7. Tổng kết"; `strand-keys` khớp các trang của mạch; ghi chú diễn giả nêu trang "Vấn đề trung tâm" | — |
+| MH01, MH07, BY01, BY04, PP01, PP03, PP05, PP07, PP08, PP09, KV01, KV05, KV07, KV11, SL01 | bỏ nhãn "Nhu cầu:", câu khẳng định giữ đủ ký hiệu và điều kiện (NT14) | MH01 52→53, MH07 29→28, PP01 52→51, PP03 50→49, PP07 46→45, PP08 53→51, PP09 54→53, KV05 59→60, KV07 50→48; còn lại không đổi |
+| MH08, BY07, BY08, KV03, KV06, KV09, KV12, SL06, SL07 | nhãn in đậm ngoài NT19 ("Công thức phần bù.", "Công thức Bayes.", "Không âm.", "Tổng kép theo $(x,s)$." …) thành chữ thường trong câu | BY07 35→32, BY08 38→39, KV06 32→33, KV09 48→49, KV12 40→47, SL06 56→57; còn lại không đổi |
+| TK01, TK01b | cột thứ ba "Công thức hoặc thuật toán" (P4), cả `data-label` | 35→38, 44→47 |
+| TK05 | tiêu đề "Tài liệu tham khảo"; nguồn theo mục 12 của ghi chú (Murphy 2022, trước và sau buổi học); liên kết "Ghi chú bài giảng · Bài tập"; dòng nối sang Bài 11 thay "Nhu cầu:"; mở rộng §6.3, §4.2 chuyển xuống ghi chú diễn giả | 54 → 56 |
+| BY04, BY11 | ghi chú diễn giả: bỏ câu quy trình "hình vẽ lại cho trang chiếu"; "chuyển sang bảng camera" thành "cho cùng hiện tượng" (NT22) | — |
+
+### Ngoại lệ
+
+- **MD00, SYLL60 84 > 60:** `deck_lint` chỉ miễn trần cho bìa mang ID `LNN-1-01`; bìa của deck giữ ID cũ `MD00` (bất biến của đợt). Luận điểm 40 âm tiết là phần bắt buộc của NT11; bìa không phải trang nội dung.
+- **MD00, STRUCT "bìa không có ID LNN-1-01":** ngoại lệ đã biết, giữ ID cũ.
+- **MD01 Mục tiêu học tập:** giữ nguyên chữ. Sáu mục ở dạng rút gọn (ví dụ mục 3 thiếu "chọn mô hình Bernoulli, phân loại hay Gaussian", mục 5 chỉ còn "Tính hậu nghiệm bằng lấy biên"); phần lược nằm ở ghi chú diễn giả. Trang đang ở 80/80 âm tiết nên không thêm chữ được ở mức này; chờ tác giả quyết định (tách hai trang hoặc giữ).
+- **NT15, chưa có trang "Bài tập về nhà"** (bảng `Mục | Bài tập`): ngoài phạm vi mức 2, chờ tác giả. Bài tập tổng hợp (TK02, TK03) và "Câu hỏi tự kiểm tra" (TK04) đã có.
+- **NOTES150** ở BY10 (155), PP08 (155), KV07 (156), SL12 (182): không sửa ở mức này.
+- **Tràn công thức ở 390 px** (`formula_overflow.py`): MH08, BY03, PP07, PP10, PP12, PP11, PP13, KV03, KV04, KV06, KV09, KV13, SL05; có từ trước, không khối công thức hiển thị nào đổi trong đợt này.
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+| ID | Thay đổi | Âm tiết trước → sau |
+|---|---|---|
+| MD00b | "Nhắc lại:" đứng riêng; bốn mục nhóm theo "Kiến thức tiên quyết" của ghi chú: xác suất rời rạc (Bài 05c, 05c.2, 05c.9–05c.11); kỳ vọng, tính tuyến tính (Bài 05c, 05c.26, 05c.28); tích phân một biến; đại số tuyến tính | 58 → 60 |
+| TK05 | khôi phục vị trí bài tập: "Bài tập 10.1–10.3: Ghi chú bài giảng · 10.4–10.15: Bài tập" (hai liên kết); ghi chú diễn giả liệt kê mục Murphy theo từng phần như §12 của ghi chú | 56 → 57 |
+| MD00 | ghi chú diễn giả: "giả thiết tham số cho trước và giả thiết mẫu số dương" | — |
+| TK01c | ý 2: "Quy tắc nhân kết hợp các nguồn thông tin; phép lấy biên loại nguồn hàng chưa quan sát." | 55 → 54 |
+| PP03 | "Với mọi ngưỡng $t$, ta cần biết xác suất $X$ không vượt $t$." | 49 → 51 |
+| SL06 | dấu phẩy trước "với $U=A$, $V=S$, $W=Y$" | 57 → 57 |
+| SL00 | dòng dẫn: "Khi nguồn hàng không được quan sát, lấy biên trên phân phối đồng thời vẫn cho hậu nghiệm; thêm chi phí thì có quyết định." | 25 → 25 |
+| MD01 | mục tiêu đưa đủ nghĩa của ghi chú lên mặt trang (quyết định chung của điều phối viên cho đợt): thêm "xác suất toàn phần", "xung khắc", "chọn mô hình Bernoulli, phân loại hay Gaussian", "phương sai, hiệp phương sai", "dựng phản ví dụ không tương quan mà phụ thuộc", "phân phối biên và có điều kiện từ phân phối đồng thời khi thiếu nguồn hàng"; ghi chú diễn giả giữ các vế còn rút ("cho một tình huống AI", "theo kiểu dữ liệu", "suy luận về tình trạng sản phẩm") | 80 → 120 (ngoại lệ NT17: trang mục tiêu, ≤ 1,5 × 80; vừa khung 1600×900, không chạm chân trang, ổn ở 390 px) |
+| MD00b | "toàn phần" → "xác suất toàn phần", "Bayes" → "công thức Bayes"; bỏ "(Bài 05c)" ở mục 1 và "Bài 05c," ở mục 2 (số hiệu 05c.x đã chỉ nguồn) | 60 → 60 |
+| MD01 (lượt 2) | mục 5: "Tính phân phối biên, có điều kiện từ phân phối đồng thời; suy luận khi thiếu nguồn hàng."; mục 4 mở bằng "Tính và chứng minh"; bù âm tiết: mục 1 "suy ra phần bù, hợp", mục 3 "Bernoulli, phân loại, Gaussian"; ghi chú diễn giả bỏ vế "mục tiêu 4 gồm cả tính các đại lượng ấy trên ví dụ". Không đủ ngân sách cho "hai biến" (mục 4) và "của phép" (mục 6) | 120 → 120 (ngoại lệ NT17 như trên; vừa khung 1600×900, không chạm chân trang, ổn ở 390 px) |
