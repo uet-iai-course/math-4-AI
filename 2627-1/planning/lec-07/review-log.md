@@ -1275,3 +1275,30 @@ Quyết định của điều phối viên: tên nút đồ thị tầng viết 
 Kiểm của điều phối viên: đọc diff; 73 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`, không OVERFLOW; P02 LINES (bốn thẻ mục tiêu) và P02b LINES là ngoại lệ đã ghi. Đã xem ảnh 1600×900 và 390×844 của P02, C02, C03, C07, C07b, C08, C07c, S08c, D03, D06b, Z01: vừa khung.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18 ("Sửa deck math-4-AI 00, 01, 02, 03, 04, 05, 06, 07, 10, 11 theo MỨC 2"). Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec07-bien-tap.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi do điều phối viên lập từ `deck_lint --course math-4-AI` (HEAD 2d93133: 90 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` nào từ ghi chú, bài tập hay chỉ mục vào deck (điều phối viên grep toàn repo).
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | ba lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 chưa đạt (1 nghiêm trọng, 6 trung bình); lượt 2 chưa đạt (P01, nghiêm trọng) |
+
+Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu học tập" giữ đủ nghĩa và động từ các mục tiêu của ghi chú (NT11), tối đa 120 âm tiết theo ngoại lệ NT17 cho trang mục tiêu; trang "Tiên quyết và quy ước", "Vấn đề trung tâm" của Tổng kết tối đa 90 với ngoại lệ ghi trong storyboard; trang "Tài liệu tham khảo" trần 80 (NT17), `deck_lint` báo theo trần 60 vì không nhận tiêu đề này; bìa giữ ID cũ nên lint đếm âm tiết bìa (ngoại lệ).
+
+**Các lượt và quyết định của điều phối viên:**
+- Đây là deck đầu tiên của đợt (bản giao việc riêng `brief-muc2-lec07-bien-tap.md`, `brief-muc2-lec07-kiem-lai.md`). Lượt 1: P01 đưa lên sau bìa (NT11); bìa có luận điểm; "Nội dung" có liên kết `#/1`–`#/7`; P03 một hộp "Câu hỏi:" (hai hình rời mặt trang; thử đặt ở Tổng kết nhưng tràn khung); sáu dòng dẫn mạch viết lại; 17 câu "Nhu cầu:" thành câu khẳng định; A07 tiêu đề theo NT16; mạch 7 "Tổng kết", Z01 "Bảng tổng kết" cột P4; thêm Z01a "Vấn đề trung tâm"; Z02 "Tài liệu tham khảo" theo §14 (bỏ Bertsimas–Tsitsiklis, đề cương và dòng luồng mạng không có trong ghi chú).
+- Sau lượt 1 (**yêu cầu sửa**, điều phối viên đối chiếu §11.6 dòng 2822): Z01a "cần pha I và quy tắc Bland" sai giả thiết, thiếu bảo đảm hữu hạn (Định lý 07.32, 07.35); Z00 thiếu (D1)–(D4); Z02 dòng nối; A07 tên khác; bìa hai mệnh đề; P01 "Nhắc lại:" chỉ liệt kê chủ đề; P02 mục tiêu (quyết định chung); nhẹ.
+- Sau lượt 2: P01 dòng Mệnh đề 02.11 thiếu "với mọi $x$ thỏa $a_i^Tx\ge\beta_i$" → sửa nguyên văn đề xuất → **chấp nhận**. A07 bỏ "hơn bình phương" trên mặt trang (còn trong ghi chú diễn giả) để không chạm chân trang: chấp nhận.
+
+**Kiểm cuối của điều phối viên** (máy chủ tĩnh tạm 127.0.0.1:8771, bản HEAD 2d93133 ở 8773):
+- `deck_lint`: 54 phát hiện = NOTES150 (có từ trước), STRUCT ID bìa, SYLL60 P00 84 (bìa), P01 82, Z01a 75 (≤ 90), P02 120/80 (mục tiêu), Z02 75 (tài liệu tham khảo), S05 62, Z01b 61 (có từ trước, không tăng).
+- `deck_check`: 74 trang, console 0, pageerrors 0, failed 0, `.katex-error` 0; không cờ OVERFLOW mới.
+- `footer_check`: 5 trang (A04, C03b, C06, S09c, D04), trùng HEAD. `formula_overflow` 390 px: 10 trang, trùng HEAD.
+- `git diff --check` sạch. Số trang 73 → 74, mọi `data-slide-id` cũ giữ.
+
+**Còn lại, chờ tác giả:** dòng `note-source` ở nhiều trang còn dẫn Bertsimas và Tsitsiklis (1997) và đề cương, không có trong mục tài liệu đọc của ghi chú (P8); bài tập tổng hợp và "Bài tập về nhà" của NT15; P02 hai mục còn gọn (trần 120); đề xuất sửa ghi chú: alt hình `central-problem-dp.svg` dòng 82 ghi "bốn tầng", hình và deck ghi "ba tầng".
+
+**Quyết định:** **chấp nhận**.

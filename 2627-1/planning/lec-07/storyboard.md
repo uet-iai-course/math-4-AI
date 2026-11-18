@@ -273,3 +273,57 @@ Nguồn yêu cầu: bảng phát hiện "Rà soát deck theo quy tắc deck hi�
 | Z02 | 59 / 5 / 29 | 58 / 6 / 15 | sửa dòng 29 âm tiết |
 
 Không trang nào vượt 60 âm tiết ngoài P02 và Z01 (trần 80). KaTeX: bỏ mọi chữ tiếng Việt trong `\text{}` (A03, A04, A05, A07, B04, B07b, S04, S10, D05b, D06b) vì KaTeX ghi 60 cảnh báo "No character metrics"; sau sửa 0 cảnh báo console.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Đợt sửa bố cục theo NT10–NT16, NT19, NT22 của `NGUYEN-TAC-TRANG-CHIEU.md` (deck làm thử của math-4-AI). Giữ mọi `data-slide-id` cũ; thêm một trang `Z01a`; số trang 73 → 74. Nội dung toán học không đổi. Số âm tiết lấy theo cách đếm của `deck_lint.py` (trước / sau).
+
+| Trang | Thay đổi | Âm tiết |
+|---|---|---|
+| P00 | thêm luận điểm một câu, có điều kiện (đoạn mở đầu và §11.6 của ghi chú); ghi chú diễn giả thêm một đoạn nêu điều kiện của hai vế | 33 / 94 |
+| P01 | chuyển lên ngay sau bìa (NT11); bỏ câu nối cuối ghi chú diễn giả vì trang kế tiếp đã đổi | 39 / 39 |
+| P02 | chỉ ghi chú diễn giả: bỏ mã chuẩn đầu ra (NT22) | 71 / 71 |
+| P02b | mục thành liên kết `#/1`–`#/7`, mục cuối "Tổng kết"; thêm dòng "Đọc trước" theo §14 của ghi chú; ghi chú diễn giả đổi tài liệu đọc trước theo ghi chú, thêm `note-source` | 34 / 44 |
+| P03 | một hộp "Câu hỏi:" nêu câu hỏi trung tâm (dòng 3 của ghi chú); bỏ hai hình và hai câu trả lời khỏi mặt trang; ghi chú diễn giả thành câu trả lời theo phần | 51 / 37 |
+| A01, B01, C01, S00, D01, Z00 | dòng dẫn mới (NT12), ≤ 25 âm tiết, không khuôn "Muốn …"; A01 bỏ KaTeX khỏi `strand-keys`; ghi chú diễn giả C01, S00, Z00 rút về ≤ 100 âm tiết; Z00 thêm `note-source` | dòng dẫn 22, 20, 23, 22, 24, 20 |
+| Z00 | tên "7. Tổng kết"; `strand-keys` theo bốn trang của mạch | 18 / 20 |
+| A02, A07, B02, B04, C02, C02b, C03, C05, C07b, S01, S04, S08, C07c, S09, S10, D01b | bỏ nhãn "Nhu cầu:", thành câu khẳng định (NT14); A02 sửa câu "Dòng nhu cầu" trong ghi chú diễn giả | xem bảng dưới |
+| A07 | tiêu đề "Ví dụ: hồi quy sai số tuyệt đối" (NT16, tên §4.3 của ghi chú) | 43 / 43 |
+| Z01 | tiêu đề "Bảng tổng kết" (khác tên mạch); cột thứ ba "Công thức hoặc thuật toán" (P4); bỏ dòng "Kết luận:" vì câu trả lời chuyển sang Z01a (NT13, không trùng lặp) và để bù 3 âm tiết của tiêu đề cột | 81 / 67 |
+| Z01a | mới: "Vấn đề trung tâm" trả lời cho cả bài (NT15), ba gạch đầu dòng; hai hình `central-problem-*.svg` không dùng lại vì chạm chân trang ở 1600×900 | — / 60 |
+| Z02 | tiêu đề "Tài liệu tham khảo"; danh sách theo §14 của ghi chú (bỏ Bertsimas và Tsitsiklis, đề cương vì ghi chú không dẫn ở mục tài liệu đọc); thay dòng "Nhu cầu: luồng mạng" (không có trong ghi chú) bằng dòng nối sang Bài 13 theo §13; thêm liên kết "Ghi chú bài giảng · Bài tập"; ghi chú diễn giả viết lại theo §13, §14 | 70 / 69 |
+
+Âm tiết các trang bỏ "Nhu cầu:" (trước / sau): A02 56/56, A07 43/43, B02 55/58, B04 50/48, C02 51/51, C02b 59/59, C03 51/53, C05 46/44, C07b 60/59, S01 55/57, S04 60/60, S08 46/44, C07c 54/56, S09 59/57, S10 60/59, D01b 56/57. Không trang nào vượt trần mới.
+
+**Ngoại lệ (có lý do):**
+
+- **P00, SYLL60 94 > 60:** bìa mang luận điểm theo NT11; NT17 không áp trần cho bìa, `deck_lint` chỉ miễn khi ID là `LNN-1-01`. Deck giữ mã cũ `P00` (bất biến của đợt), nên lỗi STRUCT "bìa không có ID LNN-1-01" và SYLL60 của bìa là ngoại lệ đã biết.
+- **S05 62, Z01b 61, Z02 69 (trần 60 theo `deck_lint`):** vượt từ trước, không tăng; Z02 là trang tài liệu tham khảo (NT17 cho trần 80, `deck_lint` chưa nhận tiêu đề này).
+- **NOTES150:** ngoài phạm vi mức 2, chưa sửa.
+- **Bài tập tổng hợp và "Bài tập về nhà" của NT15:** chưa thêm ở đợt này (ngoài phạm vi mức 2), chờ tác giả.
+- **Nguồn trong `note-source`:** nhiều ghi chú diễn giả còn dẫn Bertsimas và Tsitsiklis (1997) và đề cương, là nguồn mà ghi chú Bài 07 không dẫn ở mục tài liệu đọc (P8); chỉ các trang viết lại ghi chú diễn giả trong đợt này (P02b, P03, Z00, Z01a, Z02) đã đổi nguồn sang ghi chú. Các dòng `note-source` còn lại giữ nguyên theo bất biến của đợt, chờ quyết định.
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+Các dòng dưới đây thay cho dòng tương ứng ở bảng trên. Âm tiết theo cách đếm của `deck_lint.py` (sau lượt 1 / sau lượt này).
+
+| Trang | Thay đổi | Âm tiết |
+|---|---|---|
+| Z01a | dòng 2 nêu đúng giả thiết và bảo đảm của §11.6: từ một cơ sở khả thi, dừng sau hữu hạn bước khi không suy biến (L4, Định lý 07.32) hoặc theo quy tắc Bland (Định lý 07.35); pha I và nhánh (L4) vào ghi chú diễn giả | 60 / 75 |
+| Z00 | dòng dẫn đủ bốn giả thiết quy hoạch động; ghi chú bỏ câu điều hướng | 20 / 25 |
+| Z02 | dòng nối "Bài 13 mở rộng …" theo §13; mục cuối "Mở rộng: Boyd và Vandenberghe (2004), *Convex Optimization*; Murphy (2022, 2023)." | 69 / 75 |
+| A07 | tiêu đề "Hồi quy sai số tuyệt đối" (trang dựng công thức tổng quát, không phải ví dụ); tên tiếng Anh và tên khác ở câu đầu cột phải theo dòng 288 của ghi chú; để trang không chạm chân trang ở 1600×900: bỏ "hơn bình phương" ở câu đó và "đều", "một" ở dòng "Diễn giải:" | 43 / 50 |
+| P00 | luận điểm rút còn một câu 50 âm tiết, đủ điều kiện hai vế; ghi chú bỏ đoạn bình luận luận điểm và cụm "trang mục tiêu gộp …" | 94 / 84 |
+| P01 | "Nhắc lại:" thành bốn kết quả của mục Kiến thức tiên quyết (Mệnh đề 00.8, Định lý 00.9; Mệnh đề 01.18, 01.19; Mệnh đề 02.10; Mệnh đề 02.11, 03.11, Định lý 02.15); hai quy ước gộp vào dòng "Ký hiệu:"; ghi chú nêu chỗ dùng từng kết quả và Nhận xét 02.12 | 40 / 79 |
+| P02 | sáu mục tiêu của ghi chú thành danh sách đánh số (bỏ bốn thẻ); ghi chú viết lại, bỏ câu về chuẩn đầu ra | 78 / 120 |
+| A01, B01, D01 | dòng dẫn theo đề xuất (B01 không nêu trước kết quả mạch 4) | 22/24, 20/21, 24/25 |
+| C02b, S04 | câu mở trang theo đề xuất; S04 "Phương pháp đơn hình đi xa nhất theo $d^j$ có $\bar c_j>0$, giữ $x\ge0$." để giữ 60 | 59/60, 60/60 |
+| C01, S00 | chỉ ghi chú: "năm câu hỏi về cách thực hiện thuật toán"; "quy tắc chống quay vòng, như quy tắc Bland"; giữ ≤ 100 âm tiết | — |
+
+**Ngoại lệ mật độ của lượt này (trong giới hạn điều phối viên cho phép):**
+
+- **Z01a 75** (trần 60, ≤ 90): dòng phương pháp đơn hình phải giữ đủ giả thiết xuất phát và hai nhánh bảo đảm hữu hạn của §11.6.
+- **P01 79** (≤ 90): trang tiên quyết theo NT11 phải nêu kết quả của bài trước, không chỉ tên chủ đề.
+- **P02 120** (≤ 120): giữ đủ nghĩa sáu mục tiêu của ghi chú; vừa khung ở 1600×900, không chạm chân trang.
+- **Z02 75**: trang tài liệu tham khảo, NT17 cho trần 80.
+- **P01, lượt kiểm lại thứ hai (nghiêm trọng):** gạch đầu dòng thứ tư thêm giả thiết của Mệnh đề 02.11: "Với mọi $x$ thỏa $a_i^Tx\ge\beta_i$: $\mu\ge0$, $c=\sum_i\mu_ia_i$ cho $c^Tx\ge\sum_i\mu_i\beta_i$ (Mệnh đề 02.11, 03.11); …". Âm tiết 79 → 82 (≤ 90, ngoại lệ như trên); vừa khung ở 1600×900 và 390×844.
