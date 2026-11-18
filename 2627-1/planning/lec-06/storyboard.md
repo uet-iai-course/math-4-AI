@@ -1284,3 +1284,84 @@ Ba mục dưới đây không còn trong deck; giữ để truy vết.
 - **Quyết định:** `thêm` — tách từ F02 cũ theo kiểm định storyboard; cần phát biểu lại tốc độ lồi mạnh $O(1/k)$ kèm giả thiết và hằng số.
 - **Sửa 2026-10-12 (văn phong và mật độ):** `sửa` — 41 → 36 âm tiết; gỡ `.dense`; định lý phát biểu bằng lời (bỏ T6, H3, H4, H6, H6a) kèm (Định lý 05b.39); “Ví dụ A” gọi là ví dụ ba quan sát.
 - **Quyết định 2026-10-22:** `bỏ` — yêu cầu người dùng 2026-10-22 (“bỏ từ slide Mức nhiễu nền của bước hằng đến slide Bước giảm dần cho hàm lồi mạnh vì hàm lồi không quan trọng ở đây nữa”); kết quả lồi mạnh của SGD nằm ngoài mạch kể của bài, deck chỉ giữ bảo đảm không lồi (F04, F04b). Kết quả vẫn có trong ghi chú bài giảng và Bài 05b.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Phạm vi: NT11–NT16, NT19, NT22 theo `nhat-ky/ke-hoach-sua-deck-theo-NT.md`, mục 1 "Mức 2". Giữ mọi `data-slide-id` cũ (76), số mạch (7), không bớt, gộp hay di chuyển trang nội dung. Thêm 4 trang (76 → 80).
+
+### Trang thêm
+
+| ID | Vị trí | Tiêu đề | Lý do | Nguồn trong ghi chú | Âm tiết |
+|---|---|---|---|---|---|
+| `A01b` | sau bìa `A01` | Tiên quyết và quy ước | NT11: mạch mở đầu thiếu trang này; `A03b` chỉ nhắc lại một kết quả (lồi ⇒ cực tiểu toàn cục) và nêu hai giới hạn, nên giữ chức năng dẫn nhập tại chỗ, không thay được trang tiên quyết | Kiến thức tiên quyết (Định lý 00.35, 00.43; Bổ đề 04.19; kết luận Bài 05); §2 (ký hiệu) | 86 (sau lượt sửa, xem tiểu mục cuối) |
+| `A05` | cuối mạch mở đầu, sau `A03b` | Vấn đề trung tâm | NT11: thiếu trang; một hộp "Câu hỏi:", câu trả lời theo phần ở ghi chú diễn giả | đoạn mở đầu (câu hỏi trung tâm); §9.6 | 44 |
+| `G03b` | sau bảng tổng kết `G03` | Vấn đề trung tâm | NT15: câu trả lời cho câu hỏi trung tâm của cả bài | §9.6, §11 | 53 |
+| `G05` | cuối deck, sau `G04` | Tài liệu tham khảo | NT15: tách trang gộp `G04` "Câu hỏi tự kiểm tra và tài liệu đọc"; năm nguồn của §12, dòng nối sang Bài 06b, 06c (§11), liên kết ghi chú và bài tập | §11, §12 | 65 |
+
+### Trang đổi
+
+| ID | Thay đổi |
+|---|---|
+| `A01` | thêm luận điểm một câu, có điều kiện; dòng học phần thêm học kỳ; ghi chú thêm dòng nguồn |
+| `A02` | ghi chú: bỏ đoạn mã chuẩn đầu ra (LLO, CLO) (NT22) |
+| `A02b` | mục là liên kết `#/1`–`#/7`; mục 1 "Mở đầu", mục 7 "Tổng kết"; thêm dòng đọc trước theo §12 (Trước buổi học: §6.1, §8.1); ghi chú: dòng đọc trước cũ thay bằng dòng nguồn |
+| `A04b` | bỏ nhãn "Nhu cầu:" (câu khẳng định), 49 → 52 âm tiết; ghi chú "Dòng nhu cầu" → "Dòng cuối" |
+| `B00`, `C00`, `D00`, `E00`, `F00` | dòng dẫn viết lại thành câu trần thuật (NT12); `C00` bỏ KaTeX khỏi `strand-keys`; `F00` ghi chú rút về 97 âm tiết |
+| `B01`, `B03`, `C01`, `E01`, `F01` | bỏ nhãn "Nhu cầu:" (câu khẳng định ngắn; `B01` viết lại ở tiểu mục cuối); âm tiết 26→24, 57→57, 56→56, 47→46, 41→40 |
+| `D01b` | "Nhu cầu:" → dòng "Câu hỏi:" (NT13), 60 → 60 âm tiết; ghi chú: "của mạch này" → "(Định lý 06.19)" |
+| `D03` | ghi chú: "Nhu cầu tiếp theo là …" → "Vì vậy cần …" |
+| `B08`, `B09`, `C04`, `D03`, `D04`, `F03b`, `F06b`, `F07`, `F07b` | nhãn "Mệnh đề (Mệnh đề 06.6)." → "Mệnh đề 06.6." (tương tự; NT19) |
+| `G00` | tên mạch "7. Tổng kết"; dòng dẫn và `strand-keys` mới; ghi chú khớp các trang của mạch, 97 âm tiết |
+| `G03` | tiêu đề "Bảng tổng kết"; cột thứ ba hàng 1 "trung điểm $\tfrac12(\theta^*+P\theta^*)$", hàng 5 "Newton, hạ gradient, SGD" (P4); 80 → 79 âm tiết |
+| `G04` | tiêu đề "Câu hỏi tự kiểm tra"; dòng tài liệu chuyển sang `G05`; 74 → 61 âm tiết |
+| khung | meta viewport `width=device-width,initial-scale=1` |
+
+### Ngoại lệ có lý do
+
+- **Mạch 7 giữ các trang `G01`, `G01b`, `G02`** (điều mất, điều còn giữ, lựa chọn phương pháp): chúng tổng hợp kết quả của các mạch trước (§9.4, §9.6), không đưa khái niệm hay kết quả mới, nên mạch đổi tên "Tổng kết" theo NT15.
+- **Bìa `A01` giữ `h2.title-slide`** thay cho `h1`: kiểu bìa của deck 05, 05b, 06, 06b nằm trong `lecture-course.css` theo `.title-slide h2`; đổi thẻ làm hỏng kiểu chữ. ID bìa giữ mã cũ (`STRUCT` đã biết); vì ID không là `LNN-1-01`, `deck_lint` đếm cả bìa (97 âm tiết), không phải trang nội dung.
+- **SYLL60 có trước, không tăng:** `A03` 64, `F04` 61, `G01` 77, `G02` 74 (bảng so sánh), `G04` 61 (giảm từ 74).
+- **`G05` 65 âm tiết:** NT17 cho trang tài liệu tham khảo trần 80; `deck_lint` dùng trần 60 cho mọi tiêu đề ngoài danh sách của nó.
+- **Không thêm** bài tập tổng hợp và "Bài tập về nhà" của NT15 (ngoài phạm vi mức 2); chờ tác giả.
+- **Có trước, ngoài phạm vi mức 2:** NOTES150 (32 trang), REPEAT ở ghi chú `D05`, `E02`, `F04`; `G03` (706 px) và `C03` chạm chân trang ở 1600×900; công thức tràn ở 390 px trên `A04b`, `A03b`, `B02b`, `B08`, `C01`, `D04`, `E02`, `F01`, `F01b`, `F01c`, `F03b`, `F04` (không trang nào trong số đó có công thức bị sửa).
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+| Mục | ID | Trước | Sau | Âm tiết |
+|---|---|---|---|---|
+| 1, 2 | `G03b` | gạch 2 "Khi $F$ không lồi, gradient chỉ chứng nhận điểm dừng xấp xỉ: …"; gạch 3 "… mất hội tụ tuyến tính kể cả khi $F$ lồi mạnh"; gạch 4 "Lồi mạnh: nhiễu nền … ; không lồi: $O(1/\sqrt K)$" | gạch 2 "Hạ gradient bước $\tfrac1L,$ $F$ bị chặn dưới, $\nabla F$ $L$-Lipschitz: chỉ chứng nhận điểm dừng xấp xỉ, …" (Định lý 06.19); gạch 3 "Gradient lô nhỏ không chệch, $O(bp)$ mỗi bước."; gạch 4 "Theo kỳ vọng, lồi mạnh: mức nhiễu nền $\tfrac{\eta\tau^2}\mu$ (bước hằng), $O(1/k)$ (bước giảm dần); không lồi, bước chọn theo $K$: $O(1/\sqrt K)$ cho trung bình $\mathbb E\lVert\nabla F\rVert^2$." (Định lý 06.30, 06.31, Hệ quả 06.34) | 53 → 54 |
+| 2 | `A05` (ghi chú) | phần 4 không nêu giả thiết | thêm "với hạ gradient đầy đủ bước $\tfrac1L$, $F$ bị chặn dưới và $\nabla F$ là $L$-Lipschitz"; bỏ câu định nghĩa ngân sách mỗi bước để giữ độ dài | — |
+| 3 | `A01` | luận điểm hai vế nối bằng dấu chấm phẩy, "mất tốc độ tuyến tính" | "Khi mạng học đặc trưng và gradient lô nhỏ thay gradient đầy đủ, gradient nhỏ chỉ chứng nhận điểm dừng xấp xỉ, còn hạ gradient ngẫu nhiên chỉ hội tụ theo kỳ vọng và không còn hội tụ tuyến tính tới điểm cực tiểu, kể cả trên hàm lồi mạnh." | luận điểm 50 |
+| 4 | `C00` | `strand-keys` "… · chi phí $O(p)$" (lượt trước chưa sửa được) | "… · chi phí tuyến tính theo số tham số" | — |
+| 5 | `A01b` | bốn mục nhắc lại (Bài 00, 04, 05) | thêm Hệ quả 01.33 (tập nghiệm của hàm lồi là tập lồi, dùng ở `B09`), Định lý 04.27 (hạ gradient hội tụ tuyến tính trên hàm lồi mạnh), Bài 05b, 05c (tách phương sai, gradient lô nhỏ không chệch); "nếu $\nabla F$ là $L$-Lipschitz thì …"; "$\lVert\cdot\rVert$: chuẩn Euclid" | 55 → 86 |
+| 6 | `A02` | năm dòng mục tiêu (gộp mục tiêu 2, 3 của ghi chú) | sáu mục tiêu như ghi chú: thêm sai phân hữu hạn, đếm phép nhân, đại lượng được chặn, kiểm tra giả thiết, "kèm bảo đảm, giả thiết"; ghi chú `A02` và `G03` đánh số lại mục tiêu (mạch 3 → mục tiêu 2, mạch 4 → 3, mạch 5 → 4, mạch 6 → 5, bảng lựa chọn → 6) | 81 → 119 |
+| 7 | `A05` | "Câu hỏi: khi …" | "Câu hỏi: Khi …" | — |
+| 8 | `G03b` (ghi chú) | "Bốn dòng trên, cùng dừng sớm, thay bốn bảo đảm …" | danh sách theo Nhận xét 05.40, thêm vế Bổ đề 06.18 (gradient đầy đủ: $F$ giảm ở mỗi bước) | — |
+| 9 | `G03` | hàng 5 "Newton, hạ gradient, SGD" | giữ: bảng đã chạm chân trang từ trước (706 px trên khung 675) và thêm hai âm tiết làm trang vượt trần 80 | 79 |
+| 10 | `G00` | "Chi phí một bước, giả thiết và bảo đảm hội tụ quyết định việc chọn phương pháp." | "Phương pháp được chọn theo chi phí một bước, giả thiết và bảo đảm hội tụ." | — |
+| 11 | `B01` | "Mô hình tuyến tính … cần phân lớp đúng bốn điểm XOR." | "Bài toán: phân lớp đúng bốn điểm XOR bằng mô hình tuyến tính ${f(x;w,c)=w^\top x+c}.$" | 24 → 26 |
+
+Ngoại lệ mới:
+- `A01b` 86 âm tiết (trần 60, tối đa 90 theo điều phối viên): trang phải nhắc đủ mục "Kiến thức tiên quyết" của ghi chú (Bài 00, 01, 04, 05, 05b, 05c); đã rút chữ (bỏ nhãn "Bài NN:" ở ba mục) trước khi ghi ngoại lệ.
+- `A02` 119 âm tiết (ngoại lệ NT17 cho trang mục tiêu, ≤ 120; quyết định chung của điều phối viên): giữ đủ sáu mục tiêu của ghi chú. Trang cao 591 px trên khung 675, không chạm chân trang, không thu chữ.
+
+Lượt kiểm lại thứ hai (cùng ngày), sửa tiếp:
+
+| ID | Trước | Sau | Âm tiết |
+|---|---|---|---|
+| `G03b` gạch 2 | "Hạ gradient bước $\tfrac1L,$ $F$ bị chặn dưới, $\nabla F$ $L$-Lipschitz: chỉ chứng nhận điểm dừng xấp xỉ, …" | "$F$ không lồi, bị chặn dưới, $\nabla F$ $L$-Lipschitz, hạ gradient bước $\tfrac1L$: chỉ chứng nhận điểm dừng xấp xỉ, …" | 54 → 56 |
+| `G03b` (ghi chú) | — | thêm "Với gradient lô nhỏ, hạ gradient ngẫu nhiên không còn hội tụ tuyến tính tới điểm cực tiểu, kể cả trên hàm lồi mạnh." (§9.6; trên mặt trang vế này làm trang lên 66 > 60); bỏ câu điểm yên ngựa và rút hai mục danh sách để ghi chú ≤ 150 | — |
+| `A02` mục 1 | "Chứng minh XOR không tách được tuyến tính; dựng mạng biểu diễn XOR; chứng minh rủi ro thực nghiệm không lồi." | "Chứng minh XOR không tách được tuyến tính và rủi ro thực nghiệm không lồi; dựng mạng cho XOR." | — |
+| `A02` mục 6 | "Chọn hạ gradient đầy đủ, Newton hay SGD theo $n,$ $p,$ tính lồi, kèm bảo đảm, giả thiết." | "Chọn hạ gradient, Newton hay SGD theo số mẫu, số tham số, tính lồi, kèm bảo đảm, giả thiết." (NT9: không ký hiệu chưa định nghĩa) | 119 → 120 |
+| `A02` mục 5 | "… so dừng sớm với chính quy hóa." | giữ: thêm "bậc hai" làm trang lên 122 > 120 | — |
+| `A01b` dòng 3 | "hàm lồi mạnh: hạ gradient hội tụ tuyến tính (Định lý 04.27)" | "hàm lồi mạnh, bước $\tfrac1L$: hạ gradient hội tụ tuyến tính (Định lý 04.27)" | 86 → 87 |
+| `A05` (ghi chú, phần 6) | "trên hàm lồi mạnh, SGD bước hằng …; trên hàm không lồi, bước chọn theo $K$ cho $O(1/\sqrt K)$" | "theo kỳ vọng, trên hàm lồi mạnh, SGD bước hằng …; trên hàm không lồi, bước chọn theo $K$ cho $O(1/\sqrt K)$ với trung bình $\mathbb E\lVert\nabla F\rVert^2$" | — |
+
+Ngoại lệ cập nhật: `A01b` 87 âm tiết (≤ 90); `A02` 120 âm tiết (≤ 120), cao 632 px trên khung 675, không chạm chân trang.
+
+Lượt kiểm lại thứ ba (cùng ngày), sửa tiếp:
+
+| ID | Trước | Sau | Âm tiết |
+|---|---|---|---|
+| `A02` mục 1, mục 6 | "Chứng minh XOR không tách được tuyến tính và rủi ro thực nghiệm không lồi; dựng mạng cho XOR." / "… tính lồi, kèm bảo đảm, giả thiết." | "Chứng minh XOR không tách được tuyến tính; dựng mạng cho XOR; chứng minh rủi ro của mạng không lồi." / "… tính lồi, bảo đảm, giả thiết." ("đầy đủ" chưa trả lại: trang đã ở 120) | 120 → 120; cao 591 px trên khung 675 |
+| `G03b` (ghi chú) | "… mức nhiễu nền (bước hằng) hoặc $O(1/k)$ (Định lý 06.30, 06.31)"; "Với gradient lô nhỏ, hạ gradient ngẫu nhiên không còn …" | "… mức nhiễu nền (bước hằng) hoặc $O(1/k)$ (bước giảm dần) (Định lý 06.30, 06.31)"; "Với gradient lô nhỏ, SGD không còn …" (giữ ghi chú ≤ 150) | — |
