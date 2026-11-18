@@ -2,7 +2,7 @@
 <html lang="vi" data-lecture="01">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="icon" href="data:," />
   <title>Bài 01: Giới thiệu tối ưu, tập lồi và hàm lồi</title>
   <link rel="stylesheet" href="revealjs/dist/reset.css" />
@@ -21,11 +21,60 @@
       <section data-slide-id="M01">
         <h1>Giới thiệu tối ưu, tập lồi và hàm lồi</h1>
         <h3>Bài 01 · Cơ sở toán học cho AI</h3>
+        <p>Với hàm liên tục trên miền không rỗng, đóng, miền và hàm lồi cho tính toàn cục, miền bị chặn hoặc hàm cưỡng bức cho tồn tại, hàm lồi chặt cho nhiều nhất một nghiệm.</p>
         <p>Năm học 2026–2027 · Học kỳ 1</p>
         <p>Trường Đại học Công nghệ · Đại học Quốc gia Hà Nội</p>
         <aside class="notes">
           <p>Tối ưu hóa được tiếp cận qua ba bài toán ứng dụng trước khi có lý thuyết: điều khiển một bước, hồi quy tuyến tính và hồi quy logistic. Tập lồi (convex set) và hàm lồi (convex function) được định nghĩa sau khi ba bài toán này đặt ra câu hỏi về nghiệm, và được dùng để trả lời từng câu hỏi ở cuối bài.</p>
           <p>Kiến thức tiên quyết gồm Giải tích 1 (đạo hàm, cực trị của hàm một biến), Đại số tuyến tính cho kỹ thuật (ma trận, hạng, tích vô hướng) và Xác suất thống kê.</p>
+          <p>Trong luận điểm, tính lồi là tính lồi của cả miền và hàm mục tiêu. Lồi chặt chỉ cho nhiều nhất một nghiệm; nghiệm duy nhất khi có thêm một điều kiện tồn tại, chẳng hạn miền bị chặn hoặc hàm cưỡng bức.</p>
+        </aside>
+      </section>
+
+      <section data-slide-id="M01C">
+        <h2>Tiên quyết và quy ước</h2>
+        <p><strong>Nhắc lại:</strong></p>
+        <ul>
+          <li>cực tiểu địa phương của hàm khả vi trên tập mở có $\nabla f=0$ (Định lý 00.42);</li>
+          <li>$Q$ đối xứng, $Q\succeq0$ nếu $v^TQv\ge0$ với mọi $v$ (Định nghĩa 00.17); $X\in\mathbb R^{n\times d}$: $X^TX\succ0$ khi và chỉ khi $\operatorname{rank}(X)=d$ (Mệnh đề 00.20);</li>
+          <li>$X^TXw=X^Ty$ luôn có nghiệm; mỗi nghiệm cực tiểu $\lVert Xw-y\rVert_2^2$ (Định lý 00.22).</li>
+        </ul>
+        <p><strong>Ký hiệu:</strong> $\log$ là logarit tự nhiên; $w\ge0$ theo từng tọa độ.</p>
+        <aside class="notes">
+          <p>Bài 00 cho hai điều kiện tối ưu trên tập mở: cực tiểu địa phương có gradient bằng $0$ (Định lý 00.42), và điểm dừng có Hessian xác định dương là cực tiểu địa phương chặt (Định lý 00.43). Cả hai chỉ cho kết luận địa phương.</p>
+          <p>Với $X\in\mathbb R^{n\times d}$, ma trận Gram $X^TX$ quyết định tính duy nhất của nghiệm bình phương nhỏ nhất; phương trình chuẩn cho sự tồn tại của nghiệm đó mà không cần miền bị chặn. Cận dưới đúng (infimum) $\inf$ của một tập số thực là cận dưới lớn nhất của tập đó; khái niệm này phân biệt giá trị tối ưu với giá trị nhỏ nhất ở hồi quy logistic. Các chứng minh trong ghi chú bài giảng còn dùng định lý giá trị trung bình và định lý Bolzano–Weierstrass của Giải tích 1.</p>
+          <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 01, Kiến thức tiên quyết, §2.</p>
+        </aside>
+      </section>
+
+      <section data-slide-id="M02">
+        <h2>Mục tiêu học tập</h2>
+        <ol>
+          <li>Tách dữ kiện, biến, mục tiêu, miền; viết bài toán ở dạng tổng quát.</li>
+          <li>Lập và giải bài toán điều khiển, bình phương nhỏ nhất, hồi quy logistic trên dữ liệu nhỏ.</li>
+          <li>Kiểm tra tính lồi của tập bằng định nghĩa, phép toán bảo toàn; của hàm bằng định nghĩa, điều kiện bậc nhất, bậc hai, phép toán bảo toàn.</li>
+          <li>Chứng nhận riêng ba kết luận (toàn cục, tồn tại, duy nhất) và nêu đúng giả thiết của từng kết luận.</li>
+          <li>Áp dụng quy trình chứng nhận cho mô hình học máy mới, chỉ ra kết luận mất khi bỏ một giả thiết.</li>
+        </ol>
+        <aside class="notes">
+          <p>Năm mục tiêu xếp theo quan hệ phụ thuộc. Mục tiêu 1 và 2: tách dữ kiện (problem data, đại lượng đã biết) khỏi biến quyết định (decision variable, đại lượng được chọn), viết hàm mục tiêu (objective function) và miền khả thi (feasible set), rồi giải ba bài toán trên dữ liệu nhỏ. Mục tiêu 3: kiểm tra tính lồi bằng định nghĩa, điều kiện bậc nhất, điều kiện bậc hai hoặc các phép toán bảo toàn tính lồi.</p>
+          <p>Mục tiêu 4 tách ba kết luận. Cực tiểu toàn cục (global minimum): không điểm khả thi nào cho giá trị mục tiêu nhỏ hơn. Tồn tại: có ít nhất một điểm khả thi đạt giá trị tối ưu. Duy nhất: chỉ có một điểm như vậy. Chứng nhận một kết luận nghĩa là chỉ ra giả thiết được thỏa và kết quả nối giả thiết đó với kết luận. Mục tiêu 5 dùng quy trình chứng nhận cho một mô hình mới và xác định kết luận nào mất khi một giả thiết bị vi phạm. Các mục tiêu cụ thể hóa hai chuẩn đầu ra của đề cương về tối ưu lồi và về tập lồi, hàm lồi.</p>
+        </aside>
+      </section>
+
+      <section data-slide-id="M02B">
+        <h2>Nội dung</h2>
+        <ol>
+          <li><a href="#/1">Mở đầu</a></li>
+          <li><a href="#/2">Điều khiển một bước</a></li>
+          <li><a href="#/3">Hồi quy tuyến tính</a></li>
+          <li><a href="#/4">Hồi quy logistic</a></li>
+          <li><a href="#/5">Dạng tổng quát của bài toán tối ưu</a></li>
+          <li><a href="#/6">Tập lồi và hàm lồi</a></li>
+          <li><a href="#/7">Chứng nhận nghiệm và tổng kết</a></li>
+        </ol>
+        <aside class="notes">
+          <p>Bảy mục đi theo trình tự bài toán, mô hình, dạng tổng quát, công cụ, chứng nhận. Ba mô hình của mục 2–4 có chung dạng $\min_{x\in C}f_0(x)$ (mục 5). Tập lồi, hàm lồi và các điều kiện đủ cho tồn tại, duy nhất (mục 6) trả lời các câu hỏi về nghiệm của ba mô hình. Mục 7 ghép những công cụ đó thành chứng nhận cho ba bài toán và cho bài toán chiếu sáng, rồi tổng kết giả thiết của từng kết luận.</p>
         </aside>
       </section>
 
@@ -84,37 +133,6 @@
         </aside>
       </section>
 
-      <section data-slide-id="M02">
-        <h2>Mục tiêu học tập</h2>
-        <ol>
-          <li>Tách dữ kiện, biến, mục tiêu, miền; viết bài toán ở dạng tổng quát.</li>
-          <li>Lập và giải bài toán điều khiển, bình phương nhỏ nhất, hồi quy logistic.</li>
-          <li>Kiểm tra tính lồi của tập và hàm bằng định nghĩa, đạo hàm, phép toán bảo toàn.</li>
-          <li>Chứng nhận riêng ba kết luận: toàn cục, tồn tại, duy nhất.</li>
-          <li>Áp dụng quy trình chứng nhận cho mô hình mới, chỉ ra kết luận mất khi bỏ giả thiết.</li>
-        </ol>
-        <aside class="notes">
-          <p>Năm mục tiêu xếp theo quan hệ phụ thuộc. Mục tiêu 1 và 2: tách dữ kiện (problem data, đại lượng đã biết) khỏi biến quyết định (decision variable, đại lượng được chọn), viết hàm mục tiêu (objective function) và miền khả thi (feasible set), rồi giải ba bài toán trên dữ liệu nhỏ. Mục tiêu 3: kiểm tra tính lồi bằng định nghĩa, điều kiện bậc nhất, điều kiện bậc hai hoặc các phép toán bảo toàn tính lồi.</p>
-          <p>Mục tiêu 4 tách ba kết luận. Cực tiểu toàn cục (global minimum): không điểm khả thi nào cho giá trị mục tiêu nhỏ hơn. Tồn tại: có ít nhất một điểm khả thi đạt giá trị tối ưu. Duy nhất: chỉ có một điểm như vậy. Chứng nhận một kết luận nghĩa là chỉ ra giả thiết được thỏa và kết quả nối giả thiết đó với kết luận. Mục tiêu 5 dùng quy trình chứng nhận cho một mô hình mới và xác định kết luận nào mất khi một giả thiết bị vi phạm. Các mục tiêu cụ thể hóa hai chuẩn đầu ra của đề cương về tối ưu lồi và về tập lồi, hàm lồi.</p>
-        </aside>
-      </section>
-
-      <section data-slide-id="M02B">
-        <h2>Nội dung</h2>
-        <ol>
-          <li>Mở đầu và ba bài toán tối ưu.</li>
-          <li>Điều khiển một bước.</li>
-          <li>Hồi quy tuyến tính.</li>
-          <li>Hồi quy logistic.</li>
-          <li>Dạng tổng quát của bài toán tối ưu.</li>
-          <li>Tập lồi và hàm lồi.</li>
-          <li>Chứng nhận nghiệm và tổng kết.</li>
-        </ol>
-        <aside class="notes">
-          <p>Bảy mục đi theo trình tự bài toán, mô hình, dạng tổng quát, công cụ, chứng nhận. Ba mô hình của mục 2–4 có chung dạng $\min_{x\in C}f_0(x)$ (mục 5). Tập lồi, hàm lồi và các điều kiện đủ cho tồn tại, duy nhất (mục 6) trả lời các câu hỏi về nghiệm của ba mô hình. Mục 7 ghép những công cụ đó thành chứng nhận cho ba bài toán và cho bài toán chiếu sáng, rồi tổng kết giả thiết của từng kết luận.</p>
-        </aside>
-      </section>
-
       <section data-slide-id="M03">
         <h2>Một số bài toán tối ưu trong điều khiển và trí tuệ nhân tạo (AI)</h2>
         <div class="route">
@@ -122,11 +140,28 @@
           <div class="stage"><p><strong>Hồi quy tuyến tính</strong><br />Chọn tham số khớp dữ liệu số</p><img class="case-visual" src="img/lec-01/m03-linear-fit-sketch.svg" alt="Điểm dữ liệu, đường khớp và phần dư thẳng đứng" /></div>
           <div class="stage"><p><strong>Hồi quy logistic</strong><br />Chọn tham số để phân loại</p><img class="case-visual" src="img/lec-01/m03-logistic-classes.svg" alt="Hai lớp tròn và vuông tách bởi biên quyết định" /></div>
         </div>
-        <div class="check"><p><strong>Nhu cầu:</strong> lập mô hình tối ưu và tìm giả thiết bảo đảm nghiệm toàn cục, tồn tại, duy nhất.</p></div>
+        <div class="check"><p>Ba quyết định cần một mô hình tối ưu và các giả thiết bảo đảm nghiệm toàn cục, tồn tại, duy nhất.</p></div>
         <aside class="notes">
           <p>Ba quyết định sẽ được mô hình hóa theo ba hình. Hình trái: trạng thái $x_0$ cộng tác động $u$ cho trạng thái $x_1$, được so với đích $t$; hai số hạng chi phí là sai lệch bám đích $(x_1-t)^2$ và năng lượng $\lambda u^2$, còn $|u|\le u_{\max}$ là giới hạn vật lý, tức một ràng buộc (constraint). Hình giữa: các điểm dữ liệu, một đường thẳng khớp dữ liệu và các đoạn thẳng đứng biểu diễn phần dư (residual), tức giá trị dự đoán trừ giá trị quan sát. Hình phải: hai lớp điểm (hình tròn và hình vuông) được tách bởi một biên quyết định (decision boundary).</p>
           <p>Trong cả ba trường hợp, một đại lượng được chọn để làm nhỏ nhất một tiêu chí: tác động $u$ trong bài toán điều khiển, tham số của mô hình trong hai bài toán hồi quy. Mỗi bài toán bộc lộ một khó khăn khác nhau về nghiệm: nghiệm điều khiển có thể nằm trên biên của miền khả thi, hồi quy tuyến tính có thể có nhiều nghiệm, hồi quy logistic có thể có cận dưới mà không điểm nào đạt.</p>
-          <p>Nhu cầu của bài gồm hai nửa: lập mô hình, và xác định giả thiết đủ cho từng kết luận về nghiệm toàn cục, sự tồn tại, tính duy nhất. Bài toán điều khiển được xét đầu tiên vì nó chỉ có một biến thực $u$ và một ràng buộc vật lý, nên mọi tính toán làm được bằng giải tích một biến.</p>
+          <p>Bài có hai việc: lập mô hình, và xác định giả thiết đủ cho từng kết luận về nghiệm toàn cục, sự tồn tại, tính duy nhất. Bài toán điều khiển được xét đầu tiên vì nó chỉ có một biến thực $u$ và một ràng buộc vật lý, nên mọi tính toán làm được bằng giải tích một biến.</p>
+        </aside>
+      </section>
+
+      <section data-slide-id="M03B">
+        <h2>Vấn đề trung tâm</h2>
+        <div class="box"><p><strong>Câu hỏi:</strong> Khi nào một điểm tìm được là nghiệm toàn cục, khi nào nghiệm tồn tại và khi nào nghiệm duy nhất?</p></div>
+        <aside class="notes">
+          <p>Câu trả lời theo phần:</p>
+          <ul>
+            <li>phần 2: với bộ số của ví dụ, nghiệm điều khiển nằm trên biên với $q'(u^*)\ne0$, nên điều kiện đạo hàm bằng $0$ không nhận ra nó;</li>
+            <li>phần 3: bình phương nhỏ nhất luôn có nghiệm, vô số nghiệm khi ma trận thiết kế thiếu hạng cột;</li>
+            <li>phần 4: logistic trên dữ liệu tách được có cận dưới đúng $0$ không đạt, nên không có nghiệm;</li>
+            <li>phần 5: dạng chung $\min_{x\in C}f_0(x)$ tách sáu câu hỏi chứng nhận;</li>
+            <li>phần 6: tính lồi cho kết luận toàn cục, miền bị chặn hoặc tính cưỡng bức cho sự tồn tại, tính lồi chặt cho nhiều nhất một nghiệm, tính lồi mạnh cho cả tồn tại và duy nhất;</li>
+            <li>phần 7: quy trình chứng nhận áp dụng các giả thiết đó cho ba bài toán và bài toán chiếu sáng.</li>
+          </ul>
+          <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 01, đoạn mở đầu, §10.5.</p>
         </aside>
       </section>
     </section>
@@ -135,7 +170,7 @@
       <section id="mach-2" class="strand-title" data-slide-id="D00">
         <div class="strand-title-body">
           <h2><span class="strand-number">2.</span> Điều khiển một bước</h2>
-          <p class="strand-lead">Muốn chọn tác động $u$ gần đích với $|u|\le u_{\max}$ và xác định nghiệm nằm trong hay trên biên.</p>
+          <p class="strand-lead">Khi cực tiểu không ràng buộc vượt giới hạn biên độ, nghiệm nằm trên biên, nơi đạo hàm khác không.</p>
           <p class="strand-keys">Hàm chi phí · ràng buộc biên độ · nghiệm trên biên</p>
         </div>
         <aside class="notes">
@@ -145,7 +180,7 @@
 
       <section data-slide-id="D01">
         <h2>Dữ kiện của bài toán điều khiển</h2>
-        <p><strong>Nhu cầu:</strong> chọn $u$ đưa $x_1$ gần đích $t$, tốn ít năng lượng, với $|u|\le u_{\max}$.</p>
+        <p>Tác động $u$ phải đưa $x_1$ gần đích $t$, tốn ít năng lượng và thỏa $|u|\le u_{\max}$.</p>
         <img class="visual control-overview" src="img/lec-01/one-step-control.svg" alt="Sơ đồ trạng thái x0 cộng tác động u tạo trạng thái x1, cùng hai số hạng chi phí bám đích và năng lượng" />
         <div class="grid2">
           <div class="card">
@@ -223,7 +258,7 @@
       <section id="mach-3" class="strand-title" data-slide-id="L00">
         <div class="strand-title-body">
           <h2><span class="strand-number">3.</span> Hồi quy tuyến tính</h2>
-          <p class="strand-lead">Muốn chọn tham số của dự đoán tuyến tính khớp dữ liệu số và biết khi nào nghiệm duy nhất.</p>
+          <p class="strand-lead">Nghiệm bình phương nhỏ nhất luôn tồn tại, và có vô số nghiệm khi các cột dữ liệu phụ thuộc tuyến tính.</p>
           <p class="strand-keys">Ma trận thiết kế · bình phương nhỏ nhất · phương trình chuẩn · hạng cột</p>
         </div>
         <aside class="notes">
@@ -237,7 +272,7 @@
           <img class="visual visual-short" src="img/lec-01/height-weight-regression-note.svg" alt="Năm điểm dữ liệu cân nặng s và chiều cao y cùng đường hồi quy y mũ bằng 123 cộng 0,7 s; ba đoạn nét đứt biểu diễn phần dư" />
           <div>
             <div class="card">
-              <p>Muốn dự đoán chiều cao $y_i$ (cm) từ cân nặng $s_i$ (kg).</p>
+              <p>Dự đoán chiều cao $y_i$ (cm) từ cân nặng $s_i$ (kg):</p>
               <table class="mini-data" aria-label="Năm cặp dữ liệu cân nặng và chiều cao">
                 <tbody>
                   <tr><th>$s_i$ (kg)</th><td>50</td><td>55</td><td>60</td><td>65</td><td>70</td></tr>
@@ -348,7 +383,7 @@
       <section id="mach-4" class="strand-title" data-slide-id="GT">
         <div class="strand-title-body">
           <h2><span class="strand-number">4.</span> Hồi quy logistic</h2>
-          <p class="strand-lead">Nhu cầu: học tham số $w$ cho quyết định hai lớp từ dữ liệu có nhãn và biết bài toán có nghiệm hay không.</p>
+          <p class="strand-lead">Khi một biên tuyến tính tách đúng hai lớp, mất mát giảm dần về 0 nhưng không đạt giá trị nhỏ nhất.</p>
           <p class="strand-keys">Biên có dấu · mất mát logistic · dữ liệu tách được tuyến tính · cận dưới đúng</p>
         </div>
         <aside class="notes">
@@ -364,7 +399,7 @@
           <div class="card"><p>$z_2=100\,A_{\mathrm{spot}}/A_{\mathrm{fruit}}$: phần trăm diện tích vết sẫm.</p></div>
           <div class="card"><p>Nhãn $y=+1$ cho cam tốt, $y=-1$ cho cam xấu.</p></div>
         </div>
-        <div class="check"><p><strong>Nhu cầu:</strong> từ các quả cam đã gán nhãn, học một đường thẳng tách cam tốt khỏi cam xấu.</p></div>
+        <div class="check"><p>Từ các quả cam đã gán nhãn, cần học một đường thẳng tách cam tốt khỏi cam xấu.</p></div>
         <aside class="notes">
           <p>Sơ đồ có ba bước: camera quan sát quả cam; từ ảnh trích ra hai đặc trưng số; mỗi quả trở thành một điểm trong mặt phẳng đặc trưng $(z_1,z_2)$, cam tốt vẽ bằng hình tròn, cam xấu bằng hình vuông.</p>
           <p>Đặc trưng $z_1=d_{\max}/d_{\min}\ge1$ là tỉ lệ giữa kích thước lớn nhất và nhỏ nhất của quả, gần $1$ khi quả tròn đều. Đặc trưng $z_2\in[0,100]$ là phần trăm diện tích bề mặt có vết sẫm, với diện tích vết $A_{\mathrm{spot}}$ và diện tích quả $A_{\mathrm{fruit}}$ đo trên ảnh. Nhãn mã hóa bằng $\pm1$ để có thể so dấu của một biểu thức với nhãn.</p>
@@ -459,7 +494,7 @@
       <section id="mach-5" class="strand-title" data-slide-id="T00">
         <div class="strand-title-body">
           <h2><span class="strand-number">5.</span> Dạng tổng quát của bài toán tối ưu</h2>
-          <p class="strand-lead">Muốn đặt ba bài toán vào cùng một dạng để so sánh các kết luận về nghiệm.</p>
+          <p class="strand-lead">Mỗi bài toán gồm biến quyết định, hàm mục tiêu và miền khả thi; kết luận về nghiệm chia thành bốn loại.</p>
           <p class="strand-keys">Biến quyết định · hàm mục tiêu · miền khả thi · các loại kết luận</p>
         </div>
         <aside class="notes">
@@ -469,7 +504,7 @@
 
       <section data-slide-id="T01">
         <h2>Ba thành phần của bài toán tối ưu</h2>
-        <p><strong>Nhu cầu:</strong> một dạng chung để so sánh kết luận về nghiệm của ba bài toán.</p>
+        <p>Ba bài toán được đặt vào một dạng chung để so sánh kết luận về nghiệm.</p>
         <div class="split-6040">
           <img class="visual" src="img/lec-01/optimization-model-anatomy-deck.svg" alt="Sơ đồ dữ kiện đi vào biến quyết định có d thành phần, hàm mục tiêu, ràng buộc và miền khả thi để tạo nghiệm tối ưu" />
           <div>
@@ -562,7 +597,7 @@
       <section id="mach-6" class="strand-title" data-slide-id="F00">
         <div class="strand-title-body">
           <h2><span class="strand-number">6.</span> Tập lồi và hàm lồi</h2>
-          <p class="strand-lead">Nhu cầu: tìm giả thiết trên $C$ và $f_0$ đủ để bảo đảm cực tiểu toàn cục, tồn tại, duy nhất.</p>
+          <p class="strand-lead">Trên miền lồi, mọi cực tiểu địa phương của hàm lồi là toàn cục; tồn tại và duy nhất cần thêm giả thiết.</p>
           <p class="strand-keys">Tập lồi · hàm lồi · điều kiện bậc nhất, bậc hai · tồn tại và duy nhất</p>
         </div>
         <aside class="notes">
@@ -572,7 +607,7 @@
 
       <section data-slide-id="F01">
         <h2>Đoạn nối giữa hai phương án</h2>
-        <p><strong>Nhu cầu:</strong> điều kiện trên $C$ cho câu 2, trên $f_0$ cho câu 3, trên cả hai cho câu 4 đến câu 6.</p>
+        <p>Câu 2 cần điều kiện trên $C$, câu 3 trên $f_0$, câu 4 đến câu 6 trên cả hai.</p>
         <div class="split-6040">
           <img class="visual" src="img/lec-01/convex-set-and-combination.svg" alt="So sánh một tập chứa toàn bộ đoạn nối hai điểm với một tập có đoạn nối đi ra ngoài" />
           <div>
@@ -786,9 +821,9 @@
         <h2>Tồn tại và duy nhất</h2>
         <img class="visual visual-compact" src="img/lec-01/existence-and-uniqueness.svg" alt="Ba đồ thị đối chiếu trường hợp không đạt cận dưới đúng, có nhiều nghiệm và có một nghiệm duy nhất" />
         <div class="grid3">
-          <div class="card"><h3>(a) Tồn tại</h3><p><strong>Định lý (Weierstrass).</strong> Liên tục trên miền không rỗng, đóng, bị chặn ⇒ đạt giá trị nhỏ nhất.</p></div>
-          <div class="card"><h3>(b) Cưỡng bức</h3><p><strong>Định lý.</strong> $f$ liên tục, cưỡng bức ($f(x)\to+\infty$ khi $\lVert x\rVert\to\infty$), miền đóng, không rỗng ⇒ đạt giá trị nhỏ nhất.</p></div>
-          <div class="card"><h3>(c) Duy nhất</h3><p><strong>Định lý.</strong> $f$ lồi chặt trên miền lồi ⇒ có nhiều nhất một nghiệm.</p></div>
+          <div class="card"><h3>(a) Tồn tại</h3><p><strong>Định lý 01.35 (Weierstrass).</strong> Liên tục trên miền không rỗng, đóng, bị chặn ⇒ đạt giá trị nhỏ nhất.</p></div>
+          <div class="card"><h3>(b) Cưỡng bức</h3><p><strong>Định lý 01.38.</strong> $f$ liên tục, cưỡng bức ($f(x)\to+\infty$ khi $\lVert x\rVert\to\infty$), miền đóng, không rỗng ⇒ đạt giá trị nhỏ nhất.</p></div>
+          <div class="card"><h3>(c) Duy nhất</h3><p><strong>Định lý 01.34.</strong> $f$ lồi chặt trên miền lồi ⇒ có nhiều nhất một nghiệm.</p></div>
         </div>
         <aside class="notes">
           <p>Tính lồi trả lời câu 4 nhưng không trả lời câu 5 và câu 6. Thẻ (a) là định lý Weierstrass (còn gọi là định lý giá trị cực trị, extreme value theorem): hàm liên tục trên tập không rỗng, đóng và bị chặn trong $\mathbb R^d$ đạt giá trị nhỏ nhất. Thẻ (b) dùng cho miền không bị chặn; hàm cưỡng bức (coercive) thỏa $f(x)\to+\infty$ khi $\lVert x\rVert_2\to\infty$ với $x$ thuộc miền. Với $\bar x\in C$, tập $\{x\in C\mid f(x)\le f(\bar x)\}$ không rỗng, bị chặn và đóng, nên định lý Weierstrass áp dụng trên tập này. Thẻ (c): nếu có hai nghiệm $x\ne y$, trung điểm cho $f\big(\tfrac{x+y}2\big)&lt;p^*$, mâu thuẫn.</p>
@@ -813,7 +848,7 @@
 
       <section data-slide-id="H08">
         <h2>Hàm lồi mạnh</h2>
-        <p><strong>Nhu cầu:</strong> điều kiện cho cả tồn tại và duy nhất, vì $e^x$ lồi chặt mà không có nghiệm.</p>
+        <p>Hàm $e^x$ lồi chặt mà không có nghiệm, nên cần một điều kiện cho cả tồn tại và duy nhất.</p>
         <p><strong>Trực quan.</strong> Độ cong theo mọi hướng ít nhất $\mu&gt;0$ thì $f$ tăng ít nhất như $\tfrac\mu2\lVert x\rVert_2^2$.</p>
         <div class="box"><p><strong>Định nghĩa.</strong> Với $C$ lồi, $\mu&gt;0$, $f:C\to\mathbb R$ lồi mạnh (strongly convex) với hằng số $\mu$ nếu $f-\tfrac\mu2\lVert\cdot\rVert_2^2$ lồi trên $C$.</p></div>
         <p><strong>Nhận xét.</strong> $C$ mở, $f$ thuộc lớp $C^2$: lồi mạnh khi và chỉ khi $\nabla^2f\succeq\mu I_d$.</p>
@@ -826,7 +861,7 @@
       <section data-slide-id="H09">
         <h2>Nghiệm duy nhất và chính quy hóa bậc hai</h2>
         <p><strong>Hệ quả.</strong> $f:\mathbb R^d\to\mathbb R$ khả vi, lồi mạnh thì có đúng một nghiệm (Hệ quả 01.41).</p>
-        <p><strong>Nhu cầu:</strong> biến mục tiêu lồi thành lồi mạnh, như $L$ trên dữ liệu tách được.</p>
+        <p>Cộng hạng bậc hai biến mục tiêu lồi, như $L$ trên dữ liệu tách được, thành lồi mạnh.</p>
         <div class="box"><p><strong>Định nghĩa.</strong> Chính quy hóa bậc hai (quadratic regularization) của $F:\mathbb R^d\to\mathbb R$ là $F_\mu(w)=F(w)+\tfrac\mu2\lVert w\rVert_2^2$, $\mu&gt;0$.</p></div>
         <p>Nếu $F$ lồi, khả vi thì $F_\mu-\tfrac\mu2\lVert w\rVert_2^2=F$ lồi, nên $F_\mu$ lồi mạnh với hằng số $\mu$ và có đúng một nghiệm.</p>
         <aside class="notes">
@@ -841,7 +876,7 @@
       <section id="mach-7" class="strand-title" data-slide-id="K00">
         <div class="strand-title-body">
           <h2><span class="strand-number">7.</span> Chứng nhận nghiệm và tổng kết</h2>
-          <p class="strand-lead">Muốn chứng nhận từng kết luận về nghiệm cho ba bài toán và cho một mô hình mới.</p>
+          <p class="strand-lead">Ba bài toán và bài toán chiếu sáng được chứng nhận theo cùng một quy trình bốn bước.</p>
           <p class="strand-keys">Ba chứng nhận · quy trình chứng nhận · bài toán chiếu sáng · tổng kết</p>
         </div>
         <aside class="notes">
@@ -851,7 +886,7 @@
 
       <section data-slide-id="K01">
         <h2>Chứng nhận bài toán điều khiển</h2>
-        <p><strong>Nhu cầu:</strong> gắn mỗi kết luận về nghiệm với đúng giả thiết bảo đảm nó.</p>
+        <p>Mỗi kết luận về nghiệm được gắn với đúng giả thiết bảo đảm nó.</p>
         <div class="grid2">
           <div class="card">
             <p>$C=[-u_{\max},u_{\max}]$ không rỗng, đóng, bị chặn; $q$ liên tục nên nghiệm tồn tại.</p>
@@ -979,17 +1014,32 @@
       <section data-slide-id="K07">
         <h2>Tổng kết</h2>
         <table>
-          <thead><tr><th>Kết quả</th><th>Giả thiết đủ</th><th>Công cụ kiểm tra</th></tr></thead>
+          <thead><tr><th>Kết quả</th><th>Giả thiết không được bỏ</th><th>Công thức hoặc thuật toán</th></tr></thead>
           <tbody>
-            <tr><td>Toàn cục</td><td>$C$ lồi, $f_0$ lồi trên $C$</td><td>Tập cơ bản, giao; bậc nhất, bậc hai, phép toán bảo toàn</td></tr>
+            <tr><td>Toàn cục</td><td>$C$ lồi, $f_0$ lồi trên $C$</td><td>$\nabla^2f_0\succeq0$ trên $C$ mở; bậc nhất; tập cơ bản, giao; phép toán bảo toàn</td></tr>
             <tr><td>Tồn tại</td><td>$f_0$ liên tục, $C$ không rỗng, đóng; $C$ bị chặn hoặc $f_0$ cưỡng bức</td><td>Định lý Weierstrass; định lý về hàm cưỡng bức</td></tr>
             <tr><td>Nhiều nhất một nghiệm</td><td>$f_0$ lồi chặt trên $C$ lồi</td><td>Định nghĩa; $\nabla^2f_0\succ0$ trên $C$ mở</td></tr>
             <tr><td>Đúng một nghiệm</td><td>$C=\mathbb R^d$; $f_0$ khả vi, lồi mạnh</td><td>$\nabla^2f_0\succeq\mu I_d$; chính quy hóa bậc hai</td></tr>
           </tbody>
         </table>
         <aside class="notes">
-          <p>Các giả thiết là đủ, không cần: bình phương nhỏ nhất với $X$ không có hạng cột đầy đủ có miền không bị chặn và mục tiêu không cưỡng bức, nhưng nghiệm vẫn tồn tại nhờ phương trình chuẩn. Bỏ giả thiết thì kết luận có thể sai: thiếu tính lồi, $x^3-3x$ trên $[-3,3]$ có cực tiểu địa phương không toàn cục; thiếu tính bị chặn hoặc tính cưỡng bức, $e^x$ trên $\mathbb R$ và mất mát logistic trên dữ liệu tách được tuyến tính không có nghiệm; thiếu lồi chặt, hàm hằng trên $[-1,1]$ có vô số nghiệm.</p>
+          <p>Bỏ giả thiết thì kết luận có thể sai: thiếu tính lồi, $x^3-3x$ trên $[-3,3]$ có cực tiểu địa phương không toàn cục; thiếu tính bị chặn hoặc tính cưỡng bức, $e^x$ trên $\mathbb R$ và mất mát logistic trên dữ liệu tách được tuyến tính không có nghiệm; thiếu lồi chặt, hàm hằng trên $[-1,1]$ có vô số nghiệm. Các giả thiết là đủ, không cần: bình phương nhỏ nhất với $X$ không có hạng cột đầy đủ có miền không bị chặn và mục tiêu không cưỡng bức, nhưng nghiệm vẫn tồn tại nhờ phương trình chuẩn.</p>
           <p>Bảng ứng với mục tiêu học tập 3 và 4; các chứng nhận của ba bài toán và bài toán chiếu sáng là minh chứng cho mục tiêu 1, 2 và 5. Điều kiện $\nabla^2f_0\succ0$ chỉ là điều kiện đủ cho lồi chặt: $x^4$ lồi chặt dù đạo hàm bậc hai bằng $0$ tại $0$. Nguồn: ghi chú bài giảng, §8 và §10.5.</p>
+        </aside>
+      </section>
+
+      <section data-slide-id="K07A">
+        <h2>Vấn đề trung tâm</h2>
+        <ul>
+          <li>Nếu $C$ và $f_0$ lồi thì mọi cực tiểu địa phương là toàn cục.</li>
+          <li>Với $f_0$ liên tục trên $C$ không rỗng, đóng, nghiệm tồn tại khi $C$ bị chặn hoặc $f_0$ cưỡng bức.</li>
+          <li>$f_0$ lồi chặt trên $C$ lồi cho nhiều nhất một nghiệm; $f_0$ khả vi, lồi mạnh trên $\mathbb R^d$ cho đúng một nghiệm.</li>
+          <li>Trên hai mẫu tách được, $L$ lồi chặt, không có nghiệm; $L_\mu$ có đúng một nghiệm.</li>
+        </ul>
+        <aside class="notes">
+          <p>Ba kết luận cần ba giả thiết riêng, và tính lồi chỉ trả lời câu hỏi toàn cục.</p>
+          <p>Ví dụ: một thuật toán huấn luyện dừng tại $w=8$ khi $L(w)&lt;0{,}001$. Bài toán $\min_{w\in\mathbb R}2\log(1+e^{-w})$ không có nghiệm, nên $w=8$ không là nghiệm: $L(9)&lt;L(8)$. Cộng $\tfrac\mu2w^2$ cho một bài toán có đúng một nghiệm hữu hạn.</p>
+          <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 01, Câu hỏi mở đầu, §9.1, §10.5.</p>
         </aside>
       </section>
 
@@ -1007,16 +1057,20 @@
       </section>
 
       <section data-slide-id="K08">
-        <h2>Tài liệu đọc</h2>
+        <h2>Tài liệu tham khảo</h2>
         <ul>
-          <li>Trước buổi học: Boyd và Vandenberghe (2004), <em>Convex Optimization</em>, §1.1–1.2.1, §2.1, §3.1.1.</li>
-          <li>Sau buổi học: Boyd và Vandenberghe (2004), §2.2–2.3, §3.1.3–3.1.6, §3.2.1–3.2.3, §4.1.1, §4.2.2–4.2.3, §9.1.2.</li>
-          <li>Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>, §8.1, §10.2.</li>
-          <li>MIT OpenCourseWare 6.079 (2009), lec01, lec02, lec03.</li>
+          <li>Boyd và Vandenberghe (2004), <em>Convex Optimization</em>: §1.1–1.2.1, §2.1–2.2.3, §2.3.1–2.3.2, §3.1.1, §3.1.3–3.1.4, §3.1.6, §3.2.1–3.2.3, §4.1.1, §4.2.2–4.2.3, §6.3.2, §8.6.1, §9.1.2.</li>
+          <li>Murphy (2022), <em>Probabilistic Machine Learning: An Introduction</em>: §8.1.1, §8.1.3, §10.2.1, §10.2.3, §10.2.7.</li>
+          <li>Rudin (1976), <em>Principles of Mathematical Analysis</em>: Định lý 2.41, 4.16.</li>
+          <li>MIT OpenCourseWare 6.079 (2009): lec01–lec03.</li>
         </ul>
+        <p>Bài 02 xếp bài toán vào lớp chuẩn: quy hoạch tuyến tính, bậc hai, hình học.</p>
+        <p><a href="material-viewer.html?doc=materials/lec-01/lecture-note.md&amp;deck=lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html">Ghi chú bài giảng</a> · <a href="material-viewer.html?doc=materials/lec-01/exercises.md&amp;deck=lecture-01-gioi-thieu-toi-uu-tap-loi-ham-loi.html">Bài tập</a></p>
         <aside class="notes">
-          <p>Boyd và Vandenberghe cho định nghĩa và các tiêu chuẩn tính lồi (§2–§3), bài toán tối ưu, giá trị tối ưu và điều kiện tối ưu cho hàm khả vi (§4.1.1, §4.2.2–4.2.3), tính lồi mạnh (§9.1.2). Murphy nối tối ưu lồi với hồi quy logistic và chính quy hóa $\ell_2$. Ba bài lec01, lec02, lec03 của MIT 6.079 lần lượt cho mô hình tối ưu, tập lồi và hàm lồi. Các chứng minh đầy đủ, ví dụ có dòng kiểm tra và bài tập có lời giải nằm trong ghi chú bài giảng Bài 01 và tệp bài tập.</p>
+          <p>Trước buổi học: Boyd và Vandenberghe §1.1–1.2.1, §2.1, §3.1.1. Sau buổi học: Boyd và Vandenberghe §2.2.1–2.2.3, §2.3.1–2.3.2, §3.1.3–3.1.4, §3.1.6, §3.2.1–3.2.3, §4.1.1, §4.2.2–4.2.3, §6.3.2, §8.6.1, §9.1.2; Murphy §8.1.1, §8.1.3, §8.1.3.4, §10.2.1, §10.2.3, §10.2.7; Rudin, cho chứng minh định lý Weierstrass. Mở rộng: slide MIT OpenCourseWare 6.079/6.975 (Boyd, Parrilo, 2009), giấy phép CC BY-NC-SA 4.0; lec01, lec02, lec03 lần lượt cho mô hình tối ưu, tập lồi, hàm lồi.</p>
+          <p>Murphy nối tối ưu lồi với hồi quy logistic và chính quy hóa $\ell_2$.</p>
           <p>Bài 02 dựa trên định nghĩa tập lồi, hàm lồi và các phép toán bảo toàn tính lồi của bài này để xếp bài toán vào các lớp chuẩn như quy hoạch tuyến tính và quy hoạch bậc hai.</p>
+          <p class="note-source"><strong>Nguồn:</strong> ghi chú bài giảng Bài 01, §12, §13.</p>
         </aside>
       </section>
     </section>

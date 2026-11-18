@@ -1024,3 +1024,31 @@ Kiểm của điều phối viên: đọc diff; 58 trang; `deck_check.py` (cổn
 Đề nghị sửa ghi chú (báo người dùng): ghi chú dùng hai SVG gốc có nhãn cũ ($n$, $H(x)$) và hai câu giải thích nhãn (§5.1, sau Định lý 01.29); có thể chuyển sang bản `-deck` và bỏ hai câu đó.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18 ("Sửa deck math-4-AI 00, 01, 02, 03, 04, 05, 06, 07, 10, 11 theo MỨC 2"). Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec01.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi do điều phối viên lập từ `deck_lint --course math-4-AI` (HEAD 2d93133: 42 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` nào từ ghi chú, bài tập hay chỉ mục vào deck (điều phối viên grep toàn repo).
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | ba lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 chưa đạt (3 nghiêm trọng, 2 trung bình); lượt 2 đạt (1 trung bình, 4 nhẹ) |
+
+Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu học tập" giữ đủ nghĩa và động từ các mục tiêu của ghi chú (NT11), tối đa 120 âm tiết theo ngoại lệ NT17 cho trang mục tiêu; trang "Tiên quyết và quy ước", "Vấn đề trung tâm" của Tổng kết tối đa 90 với ngoại lệ ghi trong storyboard; trang "Tài liệu tham khảo" trần 80 (NT17), `deck_lint` báo theo trần 60 vì không nhận tiêu đề này; bìa giữ ID cũ nên lint đếm âm tiết bìa (ngoại lệ).
+
+**Các lượt và quyết định của điều phối viên:**
+- Lượt 1: thêm M01C "Tiên quyết và quy ước", M03B "Vấn đề trung tâm" (một hộp), K07A "Vấn đề trung tâm" của Tổng kết; bìa có luận điểm; M02, M02B đưa lên trước M01A, M01B (giới thiệu học phần, vị trí P5); "Nội dung" có liên kết; dòng dẫn mạch và 8 câu "Nhu cầu:" viết lại; H07 nhãn có số hiệu; K07 cột P4; K08 "Tài liệu tham khảo" theo §13 với dòng nối Bài 02 và liên kết trình xem.
+- Ngoại lệ tên mạch 7 "Chứng nhận nghiệm và tổng kết": mạch có Thuật toán 01.47 (K06, §9.2) và Ví dụ 01.17 (K05/K05B), mới so với mạch 6; người kiểm lại xác nhận → chờ tác giả.
+- Sau lượt 1 (**yêu cầu sửa**, điều phối viên đối chiếu Định lý 01.29, 00.42, Định nghĩa 00.17): K08 đè chân trang; K07 thiếu "trên $C$ mở"; M01C thiếu "khả vi" và gán sai số hiệu; bìa "lồi chặt cho tính duy nhất"; M02 mục tiêu (quyết định chung); dòng dẫn L00, GT, D00, T00, K00; H09; ghi chú M03B, K07A.
+- Sau lượt 2: K08 dải mục rộng hơn §13 → ghi đúng từng mục; M01C, GT, L00, bìa ("tính toàn cục" để giữ 60), ghi chú M03B → **chấp nhận**.
+
+**Kiểm cuối của điều phối viên** (máy chủ tĩnh tạm 127.0.0.1:8771, bản HEAD 2d93133 ở 8773):
+- `deck_lint`: 21 phát hiện = 17 NOTES150 (có từ trước), SYLL60 M02 103/80 (mục tiêu), K08 67 (tài liệu tham khảo, trần 80), STRUCT ID bìa, tên mạch 7 (ngoại lệ).
+- `deck_check`: 61 trang, console 0, pageerrors 0, failed 0, `.katex-error` 0; không cờ OVERFLOW mới.
+- `footer_check`: 4 trang (D01, D03, G01, T02B), trùng HEAD. `formula_overflow` 390 px: trùng HEAD.
+- `git diff --check` sạch. Số trang 58 → 61, mọi `data-slide-id` cũ giữ. Bỏ qua tệp `…backup-2026-09-05.html`.
+
+**Còn lại, chờ tác giả:** tên mạch 7; trang "Câu hỏi tự kiểm tra", "Bài tập về nhà" của NT15; K05/K05B là ca tính mẫu của ghi chú (Ví dụ 01.17) nhưng đặt tiêu đề "Bài tập" (NT24); trang chạm chân trang và công thức tràn có từ trước.
+
+**Quyết định:** **chấp nhận**.

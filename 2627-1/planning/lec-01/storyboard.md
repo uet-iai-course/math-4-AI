@@ -229,3 +229,79 @@ Chu trình sáu bước không áp dụng cho hai trang định hướng hành c
 Khác mẫu có chủ ý: chèn hai trang để đáp ứng yêu cầu giới thiệu học phần; không thay thứ tự lec01 → lec02 → lec03. Cuối kỳ có hai buổi theo chỉ dẫn người dùng (một buổi tuần 15, một buổi theo lịch thi), chung trọng số 60%.
 
 Kiểm định toàn tuyến phát hiện dấu nhỏ hơn trong ghi chú H03 bị HTML hiểu thành thẻ. Đã đổi cách mã hóa thành `&lt;`, giữ nguyên bất đẳng thức và toàn bộ lập luận; rà lại H01–H06 để xác nhận kết nối và phân biệt nội dung hiển thị với ghi chú.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Phạm vi: NT10–NT16, NT19, NT22 theo `nhat-ky/ke-hoach-sua-deck-theo-NT.md`, mục 1 "Mức 2". Không đổi nội dung toán học; mọi `data-slide-id` cũ giữ nguyên; số mạch giữ 7; số trang 58 → 61 (thêm 3). Số âm tiết lấy từ cách đếm của `deck_lint.py` (trước → sau).
+
+### Mạch mở đầu: thứ tự mới (NT11)
+
+M01 bìa → M01C "Tiên quyết và quy ước" (thêm) → M02 "Mục tiêu học tập" → M02B "Nội dung" → M01A "Hai phần của học phần" → M01B "Kiểm tra và đánh giá" → M03 "Một số bài toán tối ưu trong điều khiển và trí tuệ nhân tạo (AI)" → M03B "Vấn đề trung tâm" (thêm).
+
+- Di chuyển: M02 và M02B lên trước M01A, M01B. M01A, M01B (giới thiệu học phần) đứng ở vị trí trang bổ sung theo P5, sau "Nội dung"; M03 là ví dụ dẫn nhập (P5). Chữ của các khối di chuyển không đổi.
+
+### Trang thêm
+
+| ID | Tiêu đề | Nội dung | Nguồn trong ghi chú | Lý do |
+|---|---|---|---|---|
+| M01C | Tiên quyết và quy ước | "Nhắc lại:" Định lý 00.42, dạng toàn phương và Mệnh đề 00.20, Định lý 00.22 (phương trình chuẩn), cận dưới đúng; "Ký hiệu:" $\log$ tự nhiên, $w\ge0$ theo tọa độ. 60 âm tiết | Kiến thức tiên quyết; §2 | NT11: mạch mở đầu thiếu trang tiên quyết |
+| M03B | Vấn đề trung tâm | Một hộp "Câu hỏi:" nêu câu hỏi trung tâm bằng lời; câu trả lời theo phần 2–7 ở ghi chú diễn giả. 23 âm tiết | đoạn mở đầu; §10.5 | NT11: thiếu trang "Vấn đề trung tâm" mở đầu |
+| K07A | Vấn đề trung tâm | Bốn câu trả lời cho cả bài (toàn cục, tồn tại, duy nhất, ví dụ logistic hai mẫu và $L_\mu$), đặt sau bảng tổng kết K07. 60 âm tiết | Câu hỏi mở đầu; §9.1; §10.5 | NT15: mạch cuối thiếu trang trả lời câu hỏi trung tâm |
+
+### Trang sửa
+
+| ID | Sửa | Âm tiết |
+|---|---|---|
+| M01 | thêm luận điểm một câu, có điều kiện (theo câu tóm tắt của §10.5) | 25 → 60 |
+| M02B | danh sách liên kết `#/1`–`#/7`, tên trùng trang tiêu đề mạch, mục 1 "Mở đầu" | 38 → 32 |
+| M03 | bỏ "Nhu cầu:" trong hộp; ghi chú: "Nhu cầu của bài gồm hai nửa" → "Bài có hai việc" | 50 → 52 |
+| D00, L00, GT, T00, F00, K00 | `strand-lead` viết lại (NT12), không KaTeX, ≤ 25 âm tiết | lead 16/20/23/17/19/18 → 20/21/19/25/23/25 |
+| D01, G00, T01, F01, H08, H09, K01 | bỏ nhãn "Nhu cầu:", câu khẳng định giữ đủ ký hiệu, điều kiện | D01 20→21, G00 40→39, T01 25, F01 59→55, H08 57→58, H09 57→59, K01 38→37 |
+| L01 | "Muốn dự đoán …" → "Dự đoán … :" | 32 → 31 |
+| H07 | "Định lý (Weierstrass)." → "Định lý 01.35 (Weierstrass)." (NT19, số hiệu ghi chú) | 54 → 55 |
+| K07 | cột "Giả thiết không được bỏ", "Công thức hoặc thuật toán" (P4); thêm $\nabla^2f_0\succeq0$ ở hàng "Toàn cục"; ghi chú đổi thứ tự hai câu cho khớp tiêu đề cột | 71 → 74 (trần 80) |
+| K08 | tiêu đề "Tài liệu tham khảo"; danh sách nguồn đối chiếu từng mục với §13 của ghi chú (thêm Boyd và Vandenberghe §6.3.2, §8.6.1, tách đúng các mục §2.2–2.3, §3.1; Murphy theo mục con; thêm Rudin 1976); dòng nối sang Bài 02 theo §12; liên kết "Ghi chú bài giảng · Bài tập"; ghi chú chia trước/sau buổi học | 41 → 73 |
+| `<head>` | meta viewport `width=device-width,initial-scale=1` (P7) | — |
+
+### Ngoại lệ (chờ tác giả)
+
+- **Tên mạch 7 giữ "Chứng nhận nghiệm và tổng kết"** (NT15, mục 8 của bản giao việc). Lý do chính: K06 trình bày Thuật toán 01.47 "Quy trình chứng nhận" (§9.2), và K05/K05B áp dụng nó cho bài toán chiếu sáng, nguồn Ví dụ 01.17 (§9.2); cả hai là kết quả và ví dụ mới, chưa có ở mạch 6 (§6–§8). K01–K03 (Mệnh đề 01.44–01.46) cũng thuộc §9. `deck_lint` còn báo STRUCT "mạch cuối không tên 'Tổng kết'". Mục 7 của "Nội dung" dùng đúng tên này.
+- **K08: 67 âm tiết** (`deck_lint` báo SYLL60 vì công cụ dùng trần 60 cho tiêu đề này; NT17 cho trang tài liệu tham khảo trần 80). Danh sách mục trên mặt trang khớp §13 của ghi chú (lượt kiểm lại thứ hai); đáy nội dung 758 px, không chạm chân trang.
+- **Thiếu "Câu hỏi tự kiểm tra" và "Bài tập về nhà"** (NT15): không thêm ở mức 2. Mạch 7 có K05/K05B (bài toán chiếu sáng, nguồn Ví dụ 01.17 của ghi chú, lời giải trên mặt trang) và K07B (Bài tập 01.19, lời giải trong ghi chú diễn giả).
+- **Bìa ID `M01`** (STRUCT "bìa không có ID LNN-1-01"): mã cũ của deck, giữ.
+- **Mục tiêu học tập M02: 103 âm tiết** (`deck_lint` báo SYLL60 > 80). Ngoại lệ NT17 cho trang mục tiêu giữ đúng nghĩa ghi chú, trần 120 theo quyết định chung của điều phối viên cho đợt mức 2; vừa khung 1600×900 (đáy 765 px, chân trang ẩn ở mạch mở đầu), không thu chữ, không tách trang.
+- **Có từ trước, không sửa ở mức này:** `footer_check` báo D01, D03, G01, T02B chạm chân trang ở 1600×900 (D01 đo 878 px trước và sau khi sửa); `formula_overflow` ở 390 px báo D03, D04, L04, F04, H02, H04, H06, K01; NOTES150 ở 17 trang như trước.
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+| ID | trước | sau | Âm tiết |
+|---|---|---|---|
+| M01 | "…, tính lồi cho kết luận toàn cục, miền bị chặn hoặc tính cưỡng bức cho sự tồn tại, lồi chặt cho tính duy nhất." | "Với hàm liên tục trên miền không rỗng, đóng, tính lồi cho kết luận toàn cục, miền bị chặn hoặc hàm cưỡng bức cho sự tồn tại, hàm lồi chặt cho nhiều nhất một nghiệm." Ghi chú thêm câu: lồi chặt chỉ cho nhiều nhất một nghiệm, duy nhất khi có thêm điều kiện tồn tại (Nhận xét 01.43, §10.5) | 60 → 60 |
+| M01C | "cực tiểu địa phương trên tập mở có $\nabla f=0$"; "$Q\succeq0$ … với mọi $v$; $X^TX\succ0$ …"; dòng $\inf$ trên mặt trang | "cực tiểu địa phương của hàm khả vi trên tập mở có $\nabla f=0$ (Định lý 00.42)"; "… với mọi $v$ (Định nghĩa 00.17); $X\in\mathbb R^{n\times d}$: $X^TX\succ0$ … (Mệnh đề 00.20)"; dòng $\inf$ chuyển xuống ghi chú diễn giả | 60 → 52 |
+| M02 | mục tiêu 2–5 rút gọn | thêm "trên dữ liệu nhỏ"; mục 3 tách tập (định nghĩa, phép toán bảo toàn) và hàm (định nghĩa, bậc nhất, bậc hai, phép toán bảo toàn); mục 4 thêm "và nêu đúng giả thiết của từng kết luận"; mục 5 "mô hình học máy mới", "bỏ một giả thiết" | 76 → 103 (ngoại lệ ≤ 120) |
+| D00 lead | "Giới hạn biên độ có thể đẩy nghiệm …" | "Khi cực tiểu không ràng buộc vượt giới hạn biên độ, nghiệm nằm trên biên, nơi đạo hàm khác không." | lead 20 |
+| L00 lead | "Tham số khớp dữ liệu số tốt nhất …" | "Nghiệm bình phương nhỏ nhất luôn tồn tại, và có vô số nghiệm khi ma trận thiết kế thiếu hạng cột." | lead 21 |
+| GT lead | "Khi một đường thẳng tách đúng hai lớp, mất mát giảm mãi …" | "Khi một biên tuyến tính tách đúng hai lớp, mất mát tiến về không mà không đạt giá trị nhỏ nhất." (§10.5: cận dưới đúng không đạt khi dữ liệu tách được) | lead 21 |
+| T00 lead | "Ba bài toán có chung dạng … được tách riêng." | "Mỗi bài toán gồm biến quyết định, hàm mục tiêu và miền khả thi; kết luận về nghiệm chia thành bốn loại." | lead 22 |
+| K00 lead | "Quy trình chứng nhận gắn mỗi kết luận …" | "Ba bài toán và bài toán chiếu sáng được chứng nhận theo cùng một quy trình bốn bước." | lead 18 |
+| H07 | "**Định lý.**" ở card (b), (c) | "**Định lý 01.38.**", "**Định lý 01.34.**" | 55 → 57 |
+| H09 | "Mục tiêu lồi như $L$ … cần được sửa thành mục tiêu lồi mạnh." | "Cộng hạng bậc hai biến mục tiêu lồi, như $L$ trên dữ liệu tách được, thành lồi mạnh." (Định nghĩa 01.42) | 59 → 59 |
+| K07 | "Tập cơ bản, giao; bậc nhất, bậc hai ($\nabla^2f_0\succeq0$), phép toán bảo toàn" | "$\nabla^2f_0\succeq0$ trên $C$ mở; bậc nhất; tập cơ bản, giao; phép toán bảo toàn" (Định lý 01.29 cần miền mở; ô hai dòng, đáy 840 px < chân trang 863 px) | 74 → 76 |
+| K07A | "$L$ lồi chặt mà vô nghiệm"; ghi chú có hai câu lặp K04, K07 | "$L$ lồi chặt, không có nghiệm"; bỏ hai câu lặp, giữ ví dụ $w=8$ | 60 → 60 |
+| K08 | Boyd 13 mục con, Murphy 6 mục con trên mặt trang; dòng liên kết đè chân trang | Boyd "§1.1–1.2.1, §2.1–2.3.2, §3.1–3.2.3, §4.1.1, §4.2.2–4.2.3, §6.3.2, §8.6.1, §9.1.2"; Murphy "§8.1, §10.2"; MIT "lec01–lec03"; "Bài 02 xếp bài toán vào lớp chuẩn: …"; danh sách mục con chính xác theo §13 trong ghi chú diễn giả; đáy 729 px | 73 → 60 |
+| M03B (ghi chú) | "nghiệm điều khiển nằm trên biên"; "tách ba kết luận thành sáu câu hỏi" | "với bộ số của ví dụ, nghiệm điều khiển nằm trên biên"; "tách sáu câu hỏi chứng nhận" | ghi chú 142 |
+
+Kiểm sau lượt sửa: `deck_lint` còn M02 SYLL60 (ngoại lệ trên), STRUCT ID bìa, STRUCT tên mạch 7, 17 NOTES150 như trước; `footer_check` chỉ còn D01, D03, G01, T02B (có từ trước); Playwright 1600×900 và 390×844 không lỗi console, không `.katex-error`, liên kết `#/1`–`#/7` đúng.
+
+Lượt kiểm lại thứ hai (đạt, sửa các điểm còn lại):
+
+| ID | trước | sau | Âm tiết |
+|---|---|---|---|
+| K08 | Boyd "§1.1–1.2.1, §2.1–2.3.2, §3.1–3.2.3, …"; Murphy "§8.1, §10.2" (rộng hơn §13) | Boyd "§1.1–1.2.1, §2.1–2.2.3, §2.3.1–2.3.2, §3.1.1, §3.1.3–3.1.4, §3.1.6, §3.2.1–3.2.3, §4.1.1, §4.2.2–4.2.3, §6.3.2, §8.6.1, §9.1.2"; Murphy "§8.1.1, §8.1.3, §10.2.1, §10.2.3, §10.2.7" (§8.1.3.4 nằm trong §8.1.3) | 60 → 67 (trần 80) |
+| M01C | gạch cuối kết thúc bằng ";" | kết thúc bằng "." | 52 |
+| GT lead | "…, mất mát tiến về không mà không đạt giá trị nhỏ nhất." | "…, mất mát giảm dần về 0 nhưng không đạt giá trị nhỏ nhất." | lead 22 |
+| L00 lead | "…, và có vô số nghiệm khi ma trận thiết kế thiếu hạng cột." | "…, và có vô số nghiệm khi các cột dữ liệu phụ thuộc tuyến tính." | lead 22 |
+| M01 | "…, tính lồi cho kết luận toàn cục, miền bị chặn hoặc hàm cưỡng bức cho sự tồn tại, …" | "…, miền và hàm lồi cho tính toàn cục, miền bị chặn hoặc hàm cưỡng bức cho tồn tại, hàm lồi chặt cho nhiều nhất một nghiệm." ("kết luận toàn cục" → "tính toàn cục" để giữ 60 âm tiết) | 60 |
+| M03B (ghi chú) | "tính lồi chặt cho tính duy nhất, tính lồi mạnh cho cả hai" | "tính lồi chặt cho nhiều nhất một nghiệm, tính lồi mạnh cho cả tồn tại và duy nhất" | ghi chú 147 |
+
+Kiểm: `deck_lint` còn M02 SYLL60 103 > 80 và K08 SYLL60 67 > 60 (hai ngoại lệ trên), hai STRUCT đã ghi, 17 NOTES150 như trước; `footer_check` chỉ còn D01, D03, G01, T02B (có từ trước); Playwright 1600×900 và 390×844 không lỗi, không `.katex-error`, liên kết `#/1`–`#/7` đúng.
