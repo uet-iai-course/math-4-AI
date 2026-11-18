@@ -1232,3 +1232,68 @@ Ngày 2026-11-13, sửa deck theo bảng phát hiện và ghi chú viết lại 
 Ngày 2026-10-15, rà soát mạch 5 giảm số trang từ 67 xuống 65 (bỏ KL02, KL03a, KL04, KL04a; thêm TK00, TK03a) và tách mạch 6 "Tổng hợp và chuyển giao"; xem đoạn cập nhật ở mục Phạm vi và dòng "Sửa 2026-10-15" của từng trang.
 
 Bài được xây lại theo thiết kế của người dùng, không theo cấu trúc của deck Bài 05 cũ (từ ngày 2026-10-12 là Bài 06b, `lecture-06b-toi-uu-bac-nhat-cho-hoc-may.html`; 37 trang, các phần A–E về SGD, momentum, Nesterov và khởi tạo). Không trang nào được giữ; các nội dung momentum, Nesterov và khởi tạo được đề xuất chuyển sang bài bổ trợ "06b" (dàn bài, mục Nội dung đề cương không còn; quyết định D2 của người dùng). Số trang tăng từ 37 lên 44 (43 theo kế hoạch đã duyệt, cộng một trang do tách HQ08 sau cổng storyboard) vì bài mới có ba phiên, mỗi phiên một cụm hai đến ba khái niệm với trang kiểm tra riêng, cộng mạch kết luận năm trang mang luận đề.
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+Đợt sửa bố cục theo NT10–NT16, NT19, NT22 (kế hoạch `nhat-ky/ke-hoach-sua-deck-theo-NT.md`, mức 2). Giữ đủ 64 `data-slide-id` cũ, số mạch 6, không bớt hay gộp trang; thêm 3 trang (64 → 67). Không đổi nội dung toán học.
+
+### Trang thêm
+
+| ID | Vị trí | Tiêu đề | Lý do | Nguồn |
+|---|---|---|---|---|
+| MD05 | cuối mạch 1, sau MD03c | Vấn đề trung tâm | NT11: mạch mở đầu thiếu trang một hộp "Câu hỏi:"; câu trả lời theo mạch ở ghi chú diễn giả | ghi chú, đoạn mở đầu (câu hỏi trung tâm), mục 8.5 |
+| TK02a | mạch 6, sau TK02 | Vấn đề trung tâm | NT15: mạch Tổng kết thiếu trang trả lời câu hỏi trung tâm cho cả bài | ghi chú, mục 8.5, mục 10 |
+| TK05 | cuối mạch 6, sau TK04 | Tài liệu tham khảo | NT15: TK04 "Tài liệu đọc và bài tập về nhà" gộp hai chức năng; tách để trang cuối mang tiêu đề "Tài liệu tham khảo" | ghi chú, mục 10, mục 11 |
+
+### Trang di chuyển và đổi tên
+
+- MD04: "Ký hiệu chung" → "Tiên quyết và quy ước", chuyển lên ngay sau bìa (NT11); thêm dòng "Nhắc lại:" theo mục Kiến thức tiên quyết của ghi chú; đoạn kiến thức cần có trong ghi chú diễn giả của bìa chuyển sang ghi chú diễn giả của MD04.
+- Thứ tự mạch 1 sau sửa: MD01 → MD04 → MD02 → MD03a → MD03b (Ngữ cảnh, P5) → MD03c (trang nội dung, giữ chỗ và chữ) → MD05.
+- TK00: "6. Tổng hợp và chuyển giao" → "6. Tổng kết" (mạch không có khái niệm mới); TK04: "Tài liệu đọc và bài tập về nhà" → "Bài tập về nhà" (khối tài liệu đọc chuyển sang TK05).
+
+### Trang đổi (mặt trang)
+
+| ID | Thay đổi | Âm tiết trước → sau |
+|---|---|---|
+| MD01 | thêm luận điểm một câu; dòng học phần thêm học kỳ | 30 → 58 |
+| MD04 | đổi tiêu đề; thêm "Nhắc lại:"; vector nhãn $y$ chuyển sang cột "Nghĩa" để bảng vừa khung | 47 → 60 |
+| MD03a | mục "Nội dung" thành liên kết `#/1`–`#/6`, tên mạch 1 "Mở đầu", mạch 6 "Tổng kết"; dòng đọc trước theo mục 11 (trước buổi học) của ghi chú | 52 → 46 |
+| MD03b | bỏ nhãn "Nhu cầu:", gộp hai câu thành một câu khẳng định | 59 → 57 |
+| HQ00, LG00, CP00, KL00, TK00 | dòng dẫn viết lại thành câu trần thuật (NT12); bỏ KaTeX khỏi `strand-keys` (CP00, KL00); ghi chú diễn giả 40–100 âm tiết, bỏ "Nhiệm vụ của mạch", "Đầu ra:" | dòng dẫn 25, 21, 22, 19, 24 (trần 25) |
+| HQ01, HQ06, HQ08, HQ10, LG01, LG07, LG09, CP01, CP07a, KL01, KL03 | bỏ nhãn "Nhu cầu:" (NT14) | không tăng quá trần (lớn nhất KL03 57) |
+| HQ09 | nhãn "**Mệnh đề** (thêm đặc trưng)**.**" → "**Mệnh đề 05.16.**" | 34 → 32 |
+| TK01, TK02 | cột thứ ba "Công thức hoặc thuật toán" (P4); TK02 thêm `colgroup` (25/43/32 %) để tiêu đề cột không xuống dòng | 57 → 60; 70 → 73 (trần 80) |
+| TK04 | đổi tiêu đề, bỏ khối tài liệu đọc | 58 → 29 |
+
+### Ngoại lệ, chờ tác giả
+
+- Bìa giữ `h2` (không `h1`) vì luật CSS `.title-slide h2` của khối bài 05/05b/06/06b trong `lecture-course.css`; đổi sang `h1` cần sửa CSS chung cho bốn deck.
+- MD02 "Mục tiêu học tập" giữ nguyên chữ (75 âm tiết, trần 80): bốn mục tiêu đúng thứ tự và ý của ghi chú nhưng rút gọn; viết đủ như ghi chú (thiếu "giải phương trình chuẩn", "tập nghiệm", "chứng minh … lồi mạnh", "các bảo đảm còn lại") sẽ vượt trần 80.
+- MD04 dùng $\nabla^2F$ ở dòng $L,\mu,\kappa$ trước khi $F$ được định nghĩa ở MD03b (hệ quả của thứ tự NT11).
+- Mạch Tổng kết chưa có "Câu hỏi tự kiểm tra" và bảng `Mục | Bài tập` của "Bài tập về nhà" (NT15): ngoài phạm vi mức 2.
+- TK05 ghi chương (ch.) trên mặt trang, mục cụ thể ở ghi chú diễn giả, để giữ dưới 60 âm tiết (`deck_lint` dùng trần 60 cho trang này).
+- TK02 chạm chân trang ở 1600×900 (đáy nội dung 676 so với 671 ở HEAD); LG12 chạm chân trang từ trước. Công thức tràn ở 390 px (HQ02, HQ09, LG02, CP04, CP08, KL01b) có từ trước, không thuộc mức 2.
+- NOTES150 không sửa ở mức này; MD04 tăng do nhận đoạn kiến thức tiên quyết chuyển từ bìa.
+
+### Sửa theo yêu cầu của điều phối viên sau lượt kiểm lại (2026-11-18)
+
+| ID | Sửa | Âm tiết mặt trang |
+|---|---|---|
+| MD01 | Luận điểm viết lại: điều kiện mô hình tuyến tính và hạng của ma trận thiết kế bằng số mẫu; tách mất mát bình phương (khớp cả nhiễu, Mệnh đề 05.10) và logistic (không có cực tiểu, Mệnh đề 05.21, Định lý 05.22); thêm vế chi phí theo số mẫu ở mỗi bước (Mệnh đề 05.33, mục 8.5). Ghi chú diễn giả: "sai số xác thực tăng theo $d$" là quan sát trên năm mẫu (Ví dụ 05.4). | 58 → 86 (ngoại lệ: bìa, luận điểm 52 âm tiết, một câu có điều kiện) |
+| MD04 | "Nhắc lại:" thêm chính quy hóa bậc hai, hàm cưỡng bức, lồi mạnh, trung bình mẫu tại tham số cố định; hàng $w$ thành "$w\in\mathbb R^d,$ $F(w)$ │ …; mất mát huấn luyện" (NT9); bỏ nhãn "Nhắc lại:" thứ hai trong ô bảng. | 60 → 78 (ngoại lệ ≤ 90: trang tiên quyết liệt kê theo mục Kiến thức tiên quyết) |
+| MD02 | Bốn mục tiêu viết đủ nghĩa và động từ theo ghi chú (bỏ danh sách lồng). Ngoại lệ trước đó về MD02 được thay bằng ngoại lệ này. | 75 → 120 (ngoại lệ NT17 cho trang mục tiêu, ≤ 120; vừa khung ở 1600×900) |
+| MD05 | Ghi chú diễn giả: "trên năm mẫu, sai số xác thực tăng theo $d$ (Ví dụ 05.4)". | 55 |
+| CP00 | Dòng dẫn: "Tổng chi phí bằng số bước nhân chi phí một bước; số bước hạ gradient tăng theo số điều kiện, bước Newton đắt hơn." (bỏ cách đọc "Newton cần ít bước hơn" mà mục 8.5 cảnh báo) | dòng dẫn 25 |
+| TK02a | Nhóm theo ba phần của câu hỏi (tồn tại và duy nhất; dự đoán; chi phí); thêm "duy nhất khi $\operatorname{rank}X=d$", giả thiết $\lVert x_i\rVert\le r$ cho cận $\kappa$; "sai số xác thực tăng theo $d$" ghi là quan sát trên năm mẫu; dòng chi phí tách hạ gradient $O(nd)$ và Newton $O(nd^2+d^3)$ khi $n\ge d$. Ghi chú bỏ câu mở. | 60 → 79 (ngoại lệ ≤ 90: trang trả lời cả ba phần của câu hỏi trung tâm) |
+| TK05 | "Goodfellow, Bengio và Courville", "Boyd và Vandenberghe", "Bottou và Bousquet", "Sra, Nowozin và Wright"; dòng MIT OCW bỏ tên tác giả (có ở ghi chú); ghi chú thêm Bảng 13.2, 13.3. | 59 → 60 |
+| HQ00 | Ghi chú giữ "tập nghiệm có chiều $d-n$". | ghi chú 93 |
+| TK02 | Thử `colgroup` 22/48/30, 22/49/29, 23/48/29, 21/50/29, 20/50/30: đáy bảng 710–748; giữ 25/43/32 (676, thấp nhất). Bảng vẫn chạm chân trang; đề xuất luật CSS cho điều phối viên (padding dọc ô bảng của TK02). | 73 |
+
+Lượt sửa thứ hai (sau lần kiểm lại thứ hai, 2026-11-18):
+
+| ID | Sửa | Âm tiết mặt trang |
+|---|---|---|
+| TK02a; ghi chú MD01, MD05, TK02a | "sai số xác thực tăng theo $d$" → "sai số xác thực tăng từ $d=2$ đến $d=5$" (Ví dụ 05.4: MSE xác thực giảm từ $d=1$ đến $d=2$ rồi tăng). Ghi chú TK02a bỏ câu "Chất lượng dự đoán đo trên tập xác thực, …" (136 âm tiết). | TK02a 80 (ngoại lệ ≤ 90) |
+| MD01 | Vế ba của luận điểm tách khỏi điều kiện hạng: "…, mất mát logistic không có cực tiểu; còn mỗi bước hạ gradient và Newton luôn có chi phí tăng theo số mẫu." | 84 (ngoại lệ bìa, luận điểm 50) |
+| MD04 | Hàng $w$ thành "$w\in\mathbb R^d,$ $F,$ $\lambda$ │ tham số, hệ số chặn $w_0;$ mất mát huấn luyện; hệ số chính quy hóa $\lambda>0$" để $\lambda$ được định nghĩa trước MD02 (NT9); gộp vào hàng có sẵn vì hàng riêng làm bảng vượt khung (đáy 711). | 80 (ngoại lệ ≤ 90; đáy 646/675) |
+| MD02 | Mục tiêu 1: "Giải phương trình chuẩn; xác định hạng, tập nghiệm, nghiệm chuẩn nhỏ nhất, số điều kiện; …" (bỏ "với đặc trưng đa thức" và ký hiệu $\kappa(X^TX)$). | 118 (ngoại lệ ≤ 120) |

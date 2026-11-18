@@ -1054,3 +1054,30 @@ Quyết định của điều phối viên: bỏ KL06 (dùng SGD, lô nhỏ, $\t
 Kiểm của điều phối viên: đọc diff; 64 trang; `deck_check.py` (cổng 8810): 0 lỗi console, 0 lỗi trang, 0 request lỗi, 0 `.katex-error`; MD03a LINES (ngoại lệ cũ); cờ OVERFLOW/NARROW-H ở HQ09, HQ11a, LG08, LG10, LG11a, CP07a là đuôi SVG dấu căn KaTeX bị cắt (báo nhầm, đã xác minh). Đã xem ảnh 1600×900 và 390×844 của MD02, HQ07b, HQ09a, HQ10, CP06, KL01b, KL03, TK02: vừa khung.
 
 Quyết định: **chấp nhận**; mọi phát hiện của bảng 2026-11-13 đã đóng.
+
+
+## Sửa deck theo NT, mức 2 (2026-11-18)
+
+**Phạm vi:** mức 2 của `nhat-ky/ke-hoach-sua-deck-theo-NT.md` (NT10–NT16, NT19, NT22, lỗi cấu trúc); yêu cầu tác giả 2026-11-18 ("Sửa deck math-4-AI 00, 01, 02, 03, 04, 05, 06, 07, 10, 11 theo MỨC 2"). Bản giao việc: `tools/courses/math-4-AI/2627-1/deck-build/brief-muc2-bien-tap-chung.md`, `brief-muc2-lec05.md`, `brief-muc2-kiem-lai-chung.md`. Danh sách lỗi do điều phối viên lập từ `deck_lint --course math-4-AI` (HEAD 2d93133: 46 phát hiện) và rà tay NT11–NT16. Không có liên kết sâu `#/N/k` nào từ ghi chú, bài tập hay chỉ mục vào deck (điều phối viên grep toàn repo).
+
+| Vai trò | Loại tác tử | Mô hình | Effort | Kết luận |
+|---|---|---|---|---|
+| Biên tập viên | `general-purpose` | `opus` (Opus 5.5) | medium | ba lượt sửa |
+| Người kiểm lại (toán, mạch truyện ±2, mở đầu, Tổng kết, diff mặt trang; `no-ai-slop` Detect) | `general-purpose` | `opus` (Opus 5.5) | high | lượt 1 chưa đạt (5 nghiêm trọng, 4 trung bình); lượt 2 chưa đạt (1 nghiêm trọng, 2 trung bình) |
+
+Quyết định chung của điều phối viên cho cả đợt: "Mục tiêu học tập" giữ đủ nghĩa và động từ các mục tiêu của ghi chú (NT11), tối đa 120 âm tiết theo ngoại lệ NT17 cho trang mục tiêu; trang "Tiên quyết và quy ước", "Vấn đề trung tâm" của Tổng kết tối đa 90 với ngoại lệ ghi trong storyboard; trang "Tài liệu tham khảo" trần 80 (NT17), `deck_lint` báo theo trần 60 vì không nhận tiêu đề này; bìa giữ ID cũ nên lint đếm âm tiết bìa (ngoại lệ).
+
+**Các lượt và quyết định của điều phối viên:**
+- Lượt 1: MD04 thành "Tiên quyết và quy ước" và đưa lên sau bìa; thêm MD05 "Vấn đề trung tâm" (một hộp), TK02a "Vấn đề trung tâm" của Tổng kết, TK05 "Tài liệu tham khảo" (TK04 thành "Bài tập về nhà"); bìa có luận điểm; "Nội dung" có liên kết; dòng dẫn mạch và các câu "Nhu cầu:" viết lại; HQ09 nhãn có số hiệu; mạch 6 "Tổng kết"; TK01, TK02 cột P4.
+- Sau lượt 1 (**yêu cầu sửa**, điều phối viên đối chiếu mục 8.5 dòng 2258, 2303): TK02a tổng quát hóa quan sát của Ví dụ 05.4, thiếu $\lVert x_i\rVert\le r$ (Mệnh đề 05.28), chi phí thiếu $n\ge d$; bìa thiếu điều kiện và gộp hai mất mát; CP00 so sánh không điều kiện (mục 8.5 cảnh báo); MD04 dùng $F$ trước định nghĩa (NT9); MD02 mục tiêu (quyết định chung); TK02 hàng cuối bị cắt (có từ HEAD) → điều phối viên thêm luật `lecture-course.css` giảm lề ô dọc của TK02 (7px), giữ cỡ chữ.
+- Sau lượt 2: "sai số xác thực tăng theo $d$" sai số liệu (câu mẫu của lượt 1) → "tăng từ $d=2$ đến $d=5$"; điều phối viên đối chiếu ghi chú dòng 318, 329 (MSE xác thực nhỏ nhất tại $d=2$ rồi tăng); bìa vế chi phí; MD04 thêm $\lambda$ (NT9); ghi chú TK02a ≤ 150 → **chấp nhận**.
+
+**Kiểm cuối của điều phối viên** (máy chủ tĩnh tạm 127.0.0.1:8771, bản HEAD 2d93133 ở 8773):
+- `deck_lint`: 31 phát hiện = NOTES150, REPEAT (có từ trước), STRUCT ID bìa, SYLL60 MD01 84 (bìa), MD02 118/80 (mục tiêu), MD04 80, TK02a 80 (≤ 90, ngoại lệ).
+- `deck_check`: 67 trang, console 0, pageerrors 0, failed 0, `.katex-error` 0; không cờ OVERFLOW mới.
+- `footer_check`: 1 trang (LG12, có từ trước; HEAD 3 trang gồm TK02). `formula_overflow` 390 px: trùng HEAD.
+- `git diff --check` sạch. Số trang 64 → 67, mọi `data-slide-id` cũ giữ.
+
+**Còn lại, chờ tác giả:** trang "Câu hỏi tự kiểm tra" và bảng `Mục | Bài tập` của NT15; bìa giữ `h2.title-slide` (kiểu bìa của khối 05/05b/06/06b trong CSS) thay vì `h1`; LG12 chạm chân trang có từ trước.
+
+**Quyết định:** **chấp nhận**.
